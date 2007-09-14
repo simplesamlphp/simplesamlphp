@@ -86,12 +86,4 @@ if (!isset($session) || !$session->isValid() ) {
 }
 
 
-
-
-#print_r($metadata->getMetaData('sam.feide.no'));
-#print_r($req);
-
-//echo 'Location: ' . $relaystate;
-
-
 ?>

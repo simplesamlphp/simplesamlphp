@@ -10,8 +10,17 @@ $metadata = array(
 	"dev.andreas.feide.no" => array(
 		'host'							=>	'dev.andreas.feide.no',
  		"assertionConsumerServiceURL"	=>	"http://dev.andreas.feide.no/saml2/sp/AssertionConsumerService.php", 
+ 		'SingleLogOutUrl'				=>	'http://dev.andreas.feide.no/saml2/sp/SingleLogoutService.php',
 		"issuer"						=>	"dev.andreas.feide.no",
 		"spNameQualifier" 				=>	"dev.andreas.feide.no",
+		"ForceAuthn"					=>	"false",
+		"NameIDFormat"					=>	"urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+	),
+	"dev2.andreas.feide.no" => array(
+		'host'							=>	'dev2.andreas.feide.no',
+ 		"assertionConsumerServiceURL"	=>	"http://dev2.andreas.feide.no/saml2/sp/AssertionConsumerService.php", 
+		"issuer"						=>	"dev2.andreas.feide.no",
+		"spNameQualifier" 				=>	"dev2.andreas.feide.no",
 		"ForceAuthn"					=>	"false",
 		"NameIDFormat"					=>	"urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
 	),
@@ -32,6 +41,7 @@ $metadata = array(
 		"NameIDFormat"					=>	"urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
 	)
 );
+
 
 
 ?>
