@@ -1,0 +1,22 @@
+simpleSAMLphp is based on code from Sun OpenSSO Extensions (formerly known as Lightbulb).
+The initial versions of the SAML 2.0 part was written by Pat Patterson, Sun.
+
+The functionality have been extended and Andreas Åkre Solberg, UNINETT, has rewritten the
+library and added support for Shibboleth IdP/SP, and SAML 2.0 IdP. The product is used to 
+bridge AAI protocols in the GÉANT project, http://geant2.net
+
+----
+simpleSAMLphp is subject to the terms
+of the Common Development and Distribution License
+(the License). You may not use this file except in
+compliance with the License.
+
+You can obtain a copy of the License at
+https://opensso.dev.java.net/public/CDDLv1.0.html or
+opensso/legal/CDDLv1.0.txt
+See the License for the specific language governing
+permission and limitations under the License.
+
+When distributing Covered Code, include this CDDL
+Header Notice in each file and include the License file
+at opensso/legal/CDDLv1.0.txt.

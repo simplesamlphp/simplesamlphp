@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>simpleSAMLphp Installation and Configuration</title><link rel="stylesheet" href="html.css" type="text/css" /><meta name="generator" content="DocBook XSL Stylesheets V1.69.1" /></head><body><div class="article" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title"><a id="id721994"></a>simpleSAMLphp Installation and Configuration</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Andreas Åkre</span> <span class="surname">Solberg</span></h3><code class="email">&lt;<a href="mailto:andreas.solberg@uninett.no">andreas.solberg@uninett.no</a>&gt;</code></div></div><div><p class="pubdate">Fri Sep 14 10:49:49 2007</p></div></div><hr /></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#id856632">The history of simpleSAMLphp</a></span></dt><dt><span class="section"><a href="#id856682">Changelog</a></span></dt><dd><dl><dt><span class="section"><a href="#id856693">Version 0.4</a></span></dt></dl></dd><dt><span class="section"><a href="#id856807">Download and get simpleSAMLphp</a></span></dt><dd><dl><dt><span class="section"><a href="#id856826">Getting a working copy of simpleSAMLphp from subversion</a></span></dt></dl></dd><dt><span class="section"><a href="#id856866">Installing simpleSAMLphp</a></span></dt><dd><dl><dt><span class="section"><a href="#id856941">The simpleSAMLphp installation webpage</a></span></dt></dl></dd><dt><span class="section"><a href="#id856967">Making configuration and metadata files</a></span></dt><dt><span class="section"><a href="#sect.config">Configuring simpleSAMLphp</a></span></dt><dd><dl><dt><span class="section"><a href="#id857037">Configuration for LDAP authentication plugin</a></span></dt></dl></dd><dt><span class="section"><a href="#id857095">Setting up a SAML 2.0 SP</a></span></dt><dd><dl><dt><span class="section"><a href="#id857107">Configuring metadata for a SAML 2.0 SP</a></span></dt><dt><span class="section"><a href="#id857190">Test the SAML 2.0 SP example</a></span></dt></dl></dd><dt><span class="section"><a href="#id857224">Setting up a Shibboleth 1.3 SP</a></span></dt><dd><dl><dt><span class="section"><a href="#id857235">Configuring metadata for Shibboleth 1.3 SP</a></span></dt><dt><span class="section"><a href="#id857296">Test the Shibboleth 1.3 SP example</a></span></dt></dl></dd><dt><span class="section"><a href="#id857331">Setting up a SAML 2.0 IdP</a></span></dt><dd><dl><dt><span class="section"><a href="#id857342">Configuring the SAML 2.0 IdP</a></span></dt><dt><span class="section"><a href="#id857376">Adding a SAML IdP signing certificate</a></span></dt><dt><span class="section"><a href="#id857440">Test SAML 2.0 IdP</a></span></dt></dl></dd><dt><span class="section"><a href="#id857453">Using the built-in SP WAYF functionality</a></span></dt><dt><span class="section"><a href="#id857466">Setting up WebSSO bridges</a></span></dt><dd><dl><dt><span class="section"><a href="#id857477">Bridging SAML 2.0 &lt;-&gt; SAML 2.0</a></span></dt><dt><span class="section"><a href="#id857522">Bridging Shibboleth 1.3 &lt;-&gt; Shibboleth 1.3</a></span></dt><dt><span class="section"><a href="#id857533">Bridging Shibboleth 1.3 &lt;-&gt; SAML 2.0</a></span></dt><dt><span class="section"><a href="#id857544">Bridging SAML 2.0 &lt;-&gt; Shibboleth 1.3</a></span></dt><dt><span class="section"><a href="#id857554">Bridging SAML 2.0 &lt;-&gt; OpenID</a></span></dt><dt><span class="section"><a href="#id857564">Bridging Shibboelth 1.3 &lt;-&gt; OpenID</a></span></dt></dl></dd><dt><span class="section"><a href="#id857576">Authentication API</a></span></dt></dl></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id856632"></a>The history of simpleSAMLphp</h2></div></div></div><p>simpleSAMLphp is based on code from <a href="https://opensso.dev.java.net/public/extensions/" target="_top">Sun OpenSSO
+    Extensions</a> (formerly known as Lightbulb).</p><p>The initial versions of the SAML 2.0 SP part was written by <a href="http://blogs.sun.com/superpat/" target="_top">Pat Patterson, Sun</a>.</p><p>The functionality has been extended and <a href="http://claimid.com/erlang" target="_top">Andreas Åkre Solberg</a>, <a href="http://uninett.no" target="_top">UNINETT</a>, has rewritten the library and
+    added support for Shibboleth. The product is used to bridge AAI protocols
+    in the GÉANT project, <a href="http://geant2.net" target="_top">http://geant2.net</a>.</p></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id856682"></a>Changelog</h2></div></div></div><p>Here is changes between simpleSAML versions. Look here if you are
+    upgrading, to see if there are any changes to the config format.</p><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id856693"></a>Version 0.4</h3></div></div></div><p>Released 2007-09-14. Revision X.</p><div class="itemizedlist"><ul type="disc"><li><p>Improved documentation</p></li><li><p>Authentication plugin API. Only LDAP authenticaiton plugin is
+          included, but it is now easier to implement your own plugin.</p></li><li><p>Added support for SAML 2.0 IdP to work with Google Apps for
+          Education. Tested.</p></li><li><p>Initial implementation of SAML 2.0 Single Log-Out
+          functionality both for SP and IdP. Seems to work, but not yet
+          well-tested.</p></li><li><p>Added support for bridging SAML 2.0 to SAML 2.0.</p></li><li><p>Added some time skew offset to the NotBefore timestamp on the
+          assertion, to allow some time skew between the SP and IdP.</p></li><li><p>Fixed Browser/POST page to automaticly submit, and have fall
+          back functionality for user agents with no javascript
+          support.</p></li><li><p>Fixed some bug with warning traversing Shibboleth 1.3
+          Assertions.</p></li><li><p>Fixed tabindex on the login page of the LDAP authentication
+          module to allow you to tab from username, to password and then to
+          submit.</p></li><li><p>Fixed bug on autodiscovering hostname in multihost
+          environments.</p></li><li><p>Cleaned out some debug messages, and added a debug option in
+          the configuration file. This debug option let's you turn on the
+          possibility of showing all SAML messages to users in the web
+          browser, and manually submit them.</p></li><li><p>Several minor bugfixes.</p></li></ul></div></div></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id856807"></a>Download and get simpleSAMLphp</h2></div></div></div><p>You can go to <a href="http://rnd.feide.no/category/simplesamlphp/" target="_top">http://rnd.feide.no/category/simplesamlphp/</a>
+    to find the most recent release of simpleSAMLphp. Download the zipped
+    file, and unzip it on your webserver. However I hightly reccomend running
+    from a subversion checkout instead.</p><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id856826"></a>Getting a working copy of simpleSAMLphp from subversion</h3></div></div></div><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>Right now the subversion repository is requiring a username /
+        password. I'll update the access control, so that everyone can get
+        read access without authentication. I'll announce it on the rnd blog
+        when it is ready.</p></div><p>If you want a working copy from subversion enter:</p><pre class="screen">svn co https://svn.uninett.no/svn/feidernd/simplesamlphp</pre><p>If you know subversion you know how to view logs and review
+      changes to the files. To update the version you have checked out,
+      enter:</p><pre class="screen">cd simplesamlphp
+svn up</pre></div></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id856866"></a>Installing simpleSAMLphp</h2></div></div></div><p>First find an appropriate place for the <code class="filename">simplesamlphp
+    </code>folder. In example
+    <code class="filename">/var/simplesamlphp</code>.</p><p>Of the folders inside simplesamlphp, only the www folder needs to be
+    accessible from the web. There are several ways of putting the
+    simpleSAMLphp depending on the way web sites are structured on your apache
+    web server. Here is what I believe is the best configuration.</p><p>Find the apache configuration file for the virtual hosts that you
+    want to run simpleSAML on. The configuration may look like this:</p><pre class="programlisting">&lt;VirtualHost  *&gt;
+        ServerName service.example.com
+        DocumentRoot /var/www/service.example.com
+
+        Alias /simplesamlphp /var/simplesamlphp/www
+&lt;/VirtualHost&gt;
+</pre><p>What is special is tha Alias directive. That directive will give
+    control to simplesamlphp to all urls that matches
+    <code class="literal">http(s)://service.example.com/simplesamlphp/*</code>.
+    SimpleSAML will need to have several SAML interfaces available on the web,
+    and all these interfaces are included in the www subdirectory of your
+    simplesamlphp installation. You can set the alias to whatever you want,
+    but this alias must be set in the config.php file of simpleSAML as
+    described in <a href="#sect.config" title="Configuring simpleSAMLphp">the section called “Configuring simpleSAMLphp”</a>. Here is an example of how
+    this configuration may look like in config.php:</p><pre class="programlisting">$config = array (
+	'basedir' 				=&gt; '/var/simplesamlphp/',
+	'baseurl'				=&gt; 'http://service.example.com',
+	'baseurlpath'			=&gt; 'simplesamlphp/',</pre><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id856941"></a>The simpleSAMLphp installation webpage</h3></div></div></div><p>When you have installed simpleSAMLphp, you can access the homepage
+      of your installation, which contains some information and a few links to
+      the test services. The url of an installation can be in example:</p><div class="literallayout"><p>https://service.example.com/simplesamlphp/</p></div><p>But it depends on how you set it up with apache.</p></div></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id856967"></a>Making configuration and metadata files</h2></div></div></div><p>Configuration and metadata files are stored in a template format,
+    you need to copy them to have your local copies. The reason why it is done
+    this way, is that when you upgrade you can do svn up in subversion or just
+    copy the whole directory over your installation, without replacing your
+    existing configuration. When you are updating, you should investigate
+    whether the config format is changed, this should be documented in the
+    changelog.</p><p>Here are the steps you need to do to create local configuration
+    files:</p><pre class="screen">cd /var/simplesamlphp
+cp config/config-template.php config/config.php
+cp -r metadata-templates/*.php metadata/
+</pre></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="sect.config"></a>Configuring simpleSAMLphp</h2></div></div></div><p>First configure all the paths in the beginning of the config file,
+    to correspond to your organization of the apache web server, and where you
+    place simpleSAMLphp.</p><p>You will need to set the entityid of a default IdP in
+    <code class="literal">default-saml20-idp</code> or
+    <code class="literal">default-shib13-idp</code> depending on whether you use
+    shibboleth or SAML 2.0.</p><p>There is one parameter debug that may be set to true or false. If
+    you set it to true, then all Browser/POST SAML messages will be printed to
+    the web browser, and the user will have to manually submit it. </p><p>The session.duration parameter says how many seconds that a session
+    should be valid. After this amont of time, the session is not valid
+    anymore.</p><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857037"></a>Configuration for LDAP authentication plugin</h3></div></div></div><p>If you want to perform local authentication on this server, and
+      you want to use the LDAP authenticaiton plugin, then you need to
+      configure the following parameters:</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">auth.ldap.dnpattern</code>: What DN should you
+          bind to? Replacing %username% with the username the user types
+          in.</p></li><li><p><code class="literal">auth.ldap.hostname</code>: The hostname of the
+          LDAP server</p></li><li><p><code class="literal">auth.ldap.attributes</code>: Search parameter to
+          LDAP. What attributes should be extracted?
+          <code class="literal">objectclass=*</code> gives you all.</p></li></ul></div></div></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id857095"></a>Setting up a SAML 2.0 SP</h2></div></div></div><p>This functionality is relevant if you want to integrate SAML 2.0
+    authentication on a service of yours, and you know one or more IdPs that
+    you can connect to. You would need metadata for those IdPs.</p><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857107"></a>Configuring metadata for a SAML 2.0 SP</h3></div></div></div><p>To configure a SAML 2.0 SP, you first need to configure the SP
+      data for all your vhosts. If you run only one host, you need only one
+      entry. This metadata is stored in the
+      <code class="filename">metadata/saml20-sp-hosted.php</code> file. Here is an
+      example of a metadata:</p><pre class="programlisting">	"dev.andreas.feide.no" =&gt; array(
+		'host'							=&gt;	'dev.andreas.feide.no',
+ 		"assertionConsumerServiceURL"	=&gt;	"http://dev.andreas.feide.no/saml2/sp/AssertionConsumerService.php", 
+		"issuer"						=&gt;	"dev.andreas.feide.no",
+		"spNameQualifier" 				=&gt;	"dev.andreas.feide.no",
+		"ForceAuthn"					=&gt;	"false",
+		"NameIDFormat"					=&gt;	"urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+	),</pre><p>Note that you should fill in the host field matching the hostname
+      of your vhost. That way simpleSAMLphp can automatically detect what SP
+      metadata to use based on the <code class="literal">Host:</code> header sent by the
+      HTTP user agent.</p><p>You also need to configure the metadata for the IdP that you want
+      to use. Here is a metadata example for the Feide IdP:</p><pre class="programlisting">	"sam.feide.no" =&gt;  array( 
+			"SingleSignOnUrl"	=&gt;	"https://sam.feide.no/amserver/SSORedirect/metaAlias/idp",
+		 	"SingleLogOutUrl"	=&gt;	"https://sam.feide.no/amserver/IDPSloRedirect/metaAlias/idp",
+		 	"certFingerprint"	=&gt;	"3a:e7:d3:d3:06:ba:57:fd:7f:62:6a:4b:a8:64:b3:4a:53:d9:5d:d0",
+		 	"base64attributes"	=&gt;	true),</pre><p>The IdP metadata is stored in the
+      <code class="filename">metadata/saml20-idp-remote.php</code> file. Configure the
+      correct URLs of the endpoints, the hash of the certificate, and whether
+      the IdP is base64 encoding attributes or not. Most IdPs don't use
+      base64, so if you do not connect to Feide you should turn this parameter
+      to <code class="literal">false</code>. Notice that the key of the array is the
+      entity id of the IdP, in this example:
+      <code class="literal">sam.feide.no</code>.</p></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857190"></a>Test the SAML 2.0 SP example</h3></div></div></div><p>Go to the URL of the test page, similar to:</p><div class="literallayout"><p>http://service.example.com/simplesamlphp/example-simple/saml2-example.php</p></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>The simpleSAMLphp installation homepage will link you to this
+        example, so you do not need to type in the full url.</p></div><p>You should be redirected to the IdP. Login, and you should be sent
+      back and shown all the attributes sent form the IdP.</p></div></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id857224"></a>Setting up a Shibboleth 1.3 SP</h2></div></div></div><p>If you want to configure a service with authentication towards an
+    external Shibboleth 1.3 IdP, this section describes you how to proceed.
+    </p><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857235"></a>Configuring metadata for Shibboleth 1.3 SP</h3></div></div></div><p>Configure Shibboleth 1.3 SP metadata for all your vhosts. If you
+      run only one host, you need only one entry. This metadata is stored in
+      the <code class="filename">metadata/shib13-sp-hosted.php</code> file. Here is an
+      example:</p><pre class="programlisting">	'http://dev.andreas.feide.no'	=&gt; array(
+		'AssertionConsumerService'	=&gt;	'http://dev.andreas.feide.no/shib13/sp/AssertionConsumerService.php',
+		'host'						=&gt;	'dev.andreas.feide.no'
+	),</pre><p>Note that you should fill in the host field matching the hostname
+      of your vhost. That way simpleSAMLphp can automatically detect what SP
+      metadata to use based on the <code class="literal">Host:</code> header sent by the
+      HTTP user agent.</p><p>You also need to configure the metadata for the Shibboleth 1.3
+      IdPs that you want to connect to. Here is an example:</p><pre class="programlisting">	'urn:mace:switch.ch:aaitest:dukono.switch.ch'	=&gt; array(
+		'SingleSignOnUrl'		=&gt;	'https://dukono.switch.ch/shibboleth-idp/SSO',
+		'certFingerprint'		=&gt;	'c7279a9f28f11380509e075441e3dc55fb9ab864' 
+	),</pre><p>Notice that the key of the array is the entity ID.</p></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857296"></a>Test the Shibboleth 1.3 SP example</h3></div></div></div><p>Go to the URL of the shibboleth test page, similar to:</p><div class="literallayout"><p>http://service.example.com/example-simple/shib13-example.php</p></div><p>You should be redirected to the IdP. Login, and you should be sent
+      back and shown all the attributes sent form the IdP.</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>simpleSAMLphp does not support the attribute profile that
+        Shibboleth is using by default. To make attributes work, you need to
+        configure the IdP to perform attribute push.</p></div></div></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id857331"></a>Setting up a SAML 2.0 IdP</h2></div></div></div><p>If you have a user database and want to offer a SAML 2.0 IdP
+    functinoality towards external services, here is how you set it up.</p><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857342"></a>Configuring the SAML 2.0 IdP</h3></div></div></div><p>Setup idp metadata in saml20-idp-hosted. Then for all the SP the
+      IdP shold trust in saml20-sp-remote. Then configure in config.php, ldap
+      DN patterns, ldap host etc. Next add a certificate with openssl.</p><p>Example config.php:</p><pre class="programlisting">	'auth.ldap.dnpattern'	=&gt; 'uid=%username%,dc=feide,dc=no,ou=feide,dc=uninett,dc=no',
+	'auth.ldap.hostname'	=&gt; 'ldap.uninett.no',
+	'auth.ldap.attributes'	=&gt; 'objectclass=*'</pre><p>Example IdP Metadata saml20-idp-hosted:</p><pre class="programlisting">	'dev2.andreas.feide.no' =&gt; array(
+		'host'				=&gt;	'dev2.andreas.feide.no',
+		'SingleSignOnUrl'	=&gt;	"http://dev2.andreas.feide.no/saml2/idp/SSOService.php",
+		'SingleLogOutUrl'	=&gt;	"http://dev2.andreas.feide.no/saml2/idp/LogoutService.php",
+		'privatekey'		=&gt;	'server.pem',
+		'certificate'		=&gt;	'server.crt',
+		'base64attributes'	=&gt;	true,
+		'auth'				=&gt;	'auth/login.php'
+	)</pre><p>The server.pem and server.crt is an example certificate shipped
+      with the package, and be used for demo purposes, but you must generate
+      your own to use in production services.</p><p>You also need to configure metadata for trusted SPs, here is an
+      example:</p><pre class="programlisting">_	"dev.andreas.feide.no" =&gt; array(
+		'host'							=&gt;	'dev.andreas.feide.no',
+ 		"assertionConsumerServiceURL"	=&gt;	"http://dev.andreas.feide.no/saml2/sp/AssertionConsumerService.php", 
+		"issuer"						=&gt;	"dev.andreas.feide.no",
+		"spNameQualifier" 				=&gt;	"dev.andreas.feide.no",
+		"ForceAuthn"					=&gt;	"false",
+		"NameIDFormat"					=&gt;	"urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+	),</pre></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857376"></a>Adding a SAML IdP signing certificate</h3></div></div></div><p>You should generate a new certificate for your IdP.</p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>There is a certificate that follows this package that you can
+        use for test purposes, but off course NEVER use this in production as
+        the private key is also included in the package and can be downloaded
+        by anyone.</p></div><p>Here is an examples of openssl commands to generate a new key and
+      a selfsigned certificate to use for signing SAML messages:</p><pre class="screen">openssl genrsa -des3 -out server2.key 1024 
+openssl rsa -in server2.key -out server2.pem
+openssl req -new -key server.key -out server2.csr
+openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt</pre><p>The certificate above will be valid for 60 days.</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>simpleSAMLphp will only work with RSA and not DSA
+        certificates.</p></div></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857440"></a>Test SAML 2.0 IdP</h3></div></div></div><p>To test the SAML 2.0 IdP, it is best to configure two hosts with
+      simpleSAMLphp, and use the SAML 2.0 SP demo example to test the
+      IdP.</p></div></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id857453"></a>Using the built-in SP WAYF functionality</h2></div></div></div><p>The WAYF is not yet a part of the simpleSAMLphp release. This
+    functionality will be added soon.</p></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id857466"></a>Setting up WebSSO bridges</h2></div></div></div><p>simpleSAMLphp can be used to bridge between two WebSSO protocols.
+    Here is some short descriptions of how to setup the different bridge
+    configurations.</p><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857477"></a>Bridging SAML 2.0 &lt;-&gt; SAML 2.0</h3></div></div></div><p>In this setup you can bridge between two federations using SAML
+      2.0.</p><p>To approach this, you must configure both saml 2.0 IdP and SP
+      hosted metadata, and in the IdP hosted metadata configure the auth
+      parameter to be the SP initialization endpoint, like this:</p><pre class="screen">		'auth'				=&gt;	'saml2/sp/initSSO.php?idpentityid=sam.feide.no'</pre><p>As you can see you specify the IdP in the remote federation as a
+      parameter to the initalization endpoint.</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>This section of the documentation is only a placeholder. There
+        will be more detailed information added later. For now, ask the author
+        if you want more details of such a setup.</p><p>Briding SAML 2.0 SLO is not implemented. Will be improved
+        soon.</p></div></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857522"></a>Bridging Shibboleth 1.3 &lt;-&gt; Shibboleth 1.3</h3></div></div></div><p>Will be supported soon.</p></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857533"></a>Bridging Shibboleth 1.3 &lt;-&gt; SAML 2.0</h3></div></div></div><p>Will be supported soon.</p></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857544"></a>Bridging SAML 2.0 &lt;-&gt; Shibboleth 1.3</h3></div></div></div><p>Will be supported soon.</p></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857554"></a>Bridging SAML 2.0 &lt;-&gt; OpenID</h3></div></div></div><p>Will be supported soon.</p></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h3 class="title"><a id="id857564"></a>Bridging Shibboelth 1.3 &lt;-&gt; OpenID</h3></div></div></div><p>Will be supported soon.</p></div></div><div class="section" lang="en" xml:lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id857576"></a>Authentication API</h2></div></div></div><p>The authentication plugin should be placed in the auth directory.
+    </p><p>The following parameters must be accepted in the incomming
+    URL:</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">RelayState</code>: This is the URL that the user
+        should be sent back to after authentication within the plugin.</p></li><li><p><code class="literal">RequestID</code>: This is the ID of an incomming
+        request.</p></li></ul></div><p>The initSSO.php takes in addition the following parameters:</p><div class="itemizedlist"><ul type="disc"><li><p><code class="literal">idpentityid</code>: This is the entityid of the IdP
+        to authenticate with. This parameter is optional, if not set the
+        default for this host will be used.</p></li><li><p><code class="literal">spentityid</code>: This is which SP config to use.
+        This parameter is optional, if not set the default for this host will
+        be used.</p></li></ul></div><p>In hosted IdP metadata there is a config parameter auth that will
+    tell simpleSAML which authentication plugin that can be used.</p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Tip</h3><p>The authentication API is pretty basic. The easiest way to
+      understand how it works is to look at one of the existing plugins that
+      is located in the auth directory of your installation.</p></div></div></div></body></html>
