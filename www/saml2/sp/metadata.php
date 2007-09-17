@@ -32,7 +32,7 @@ try {
 
 		<SingleLogoutService 
 			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" 
-			Location="' . $spmeta['assertionConsumerServiceURL'] . '"/>
+			Location="' . $spmeta['SingleLogOutUrl'] . '"/>
 		
 		<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
 		
@@ -40,7 +40,7 @@ try {
 			index="0" 
 			isDefault="true" 
 			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" 
-			Location="' .  $spmeta['SingleLogOutUrl']  . '" />
+			Location="' .  $spmeta['assertionConsumerServiceURL']  . '" />
 
 	</SPSSODescriptor>
 
