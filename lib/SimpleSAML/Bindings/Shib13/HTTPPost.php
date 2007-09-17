@@ -135,6 +135,16 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		# openssl req -new -key server.key -out server.csr
 		# openssl x509 -req -days 60 -in server.csr -signkey server.key -out server.crt
 		
+		$p = new SimpleSAML_XHTML_Template($this->configuration, 'post.php');
+	
+		$p->data['RelayStateName'] = 'TARGET';
+		$p->data['RelayState'] = $relayState;
+		$p->data['destination'] = $destination;
+		$p->data['response'] = base64_encode($response);
+		
+		$p->show();
+		/*
+		
 		
 		
 		echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -165,6 +175,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		
 		</body>
 		</html>';
+		*/
 		
 	}
 	
