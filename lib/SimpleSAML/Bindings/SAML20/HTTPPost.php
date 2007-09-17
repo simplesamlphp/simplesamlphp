@@ -76,10 +76,11 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		/*
 		$privatekey = "/home/as/erlang/feide2/cert/edugain/server1Key.pem";
 		$publiccert = "/home/as/erlang/feide2/cert/edugain/server2chain.pem";
-		*/
+
 
 		$privatekey = "/home/as/erlang/feide2/cert/server.pem";
 		$publiccert = "/home/as/erlang/feide2/cert/server.crt";
+				*/
 		
 		$privatekey = $this->configuration->getValue('basedir') . '/cert/' . $idpmd['privatekey'];
 		$publiccert = $this->configuration->getValue('basedir') . '/cert/' . $idpmd['certificate'];

@@ -34,6 +34,8 @@ class SimpleSAML_Session {
 	private $configuration = null;
 	
 	private $authnrequests = array();
+	private $shibauthreq = null;
+	
 	private $authnresponse = null;
 	
 	private $logoutrequest = null;
@@ -60,6 +62,7 @@ class SimpleSAML_Session {
 
 		$this->protocol = $protocol;
 		$this->authnresponse = $message;
+		
 		
 		$this->authenticated = $authenticated;
 		if ($authenticated) {
@@ -118,6 +121,14 @@ class SimpleSAML_Session {
 			self::$instance = new SimpleSAML_Session($protocol, $message, $authenticated);
 			$_SESSION['SimpleSAMLphp_SESSION'] = self::$instance;
 		}
+	}
+	
+	public function setShibAuthnRequest(SimpleSAML_XML_Shib13_AuthnRequest $req) {
+		$this->shibauthreq = $req;
+	}
+	
+	public function getShibAuthnRequest() {
+		return $this->shibauthreq;
 	}
 
 	public function setAuthnRequest($requestid, SimpleSAML_XML_SAML20_AuthnRequest $xml) {	
@@ -216,6 +227,10 @@ class SimpleSAML_Session {
 
 	public function setAttributes($attributes) {
 		$this->attributes = $attributes;
+	}
+	
+	public function setAttribute($name, $value) {
+		$this->attributes[$name] = $value;
 	}
 	
 }

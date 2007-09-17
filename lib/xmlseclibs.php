@@ -811,10 +811,10 @@ class XMLSecurityDSig {
 		return TRUE;
 	}
 
-	private function addRefInternal($sinfoNode, $node, $algorithm, $arTransforms=NULL, $options=NULL) {
+	private function addRefInternal($sinfoNode, $node, $algorithm, $arTransforms=NULL, $options=NULL, $id_name = 'ID') {
 		$prefix = NULL;
 		$prefix_ns = NULL;
-		$id_name = 'ID';
+
 
 		if (is_array($options)) {
 			$prefix = empty($options['prefix'])?NULL:$options['prefix'];
@@ -868,23 +868,23 @@ class XMLSecurityDSig {
 		$refNode->appendChild($digestValue);
 	}
 
-	public function addReference($node, $algorithm, $arTransforms=NULL, $options=NULL) {
+	public function addReference($node, $algorithm, $arTransforms=NULL, $options=NULL, $idname = 'ID') {
 		if ($xpath = $this->getXPathObj()) {
 			$query = "./secdsig:SignedInfo";
 			$nodeset = $xpath->query($query, $this->sigNode);
 			if ($sInfo = $nodeset->item(0)) {
-				$this->addRefInternal($sInfo, $node, $algorithm, $arTransforms, $options);
+				$this->addRefInternal($sInfo, $node, $algorithm, $arTransforms, $options, $idname);
 			}
 		}
 	}
 
-	public function addReferenceList($arNodes, $algorithm, $arTransforms=NULL, $options=NULL) {
+	public function addReferenceList($arNodes, $algorithm, $arTransforms=NULL, $options=NULL, $idname = 'ID') {
 		if ($xpath = $this->getXPathObj()) {
 			$query = "./secdsig:SignedInfo";
 			$nodeset = $xpath->query($query, $this->sigNode);
 			if ($sInfo = $nodeset->item(0)) {
 				foreach ($arNodes AS $node) {
-					$this->addRefInternal($sInfo, $node, $algorithm, $arTransforms, $options);
+					$this->addRefInternal($sInfo, $node, $algorithm, $arTransforms, $options, $idname);
 				}
 			}
 		}
@@ -979,7 +979,50 @@ class XMLSecurityDSig {
 		$objKey->serializeKey($parent);
 	}
 
-	public function appendSignature($parentNode, $insertBefore = FALSE, $assertion = false) {
+
+	public function appendSignatureShib($parentNode, $insertBefore = FALSE, $assertion = false) {
+		$baseDoc = ($parentNode instanceof DOMDocument)?$parentNode:$parentNode->ownerDocument;
+		$newSig = $baseDoc->importNode($this->sigNode, TRUE);
+
+	
+	
+		$xnode = null;
+		
+		$xpath = new DOMXPath($baseDoc);
+		$xpath->registerNamespace('secdsig', XMLSecurityDSig::XMLDSIGNS);
+		$xpath->registerNamespace('samlp', 'urn:oasis:names:tc:SAML:1.0:protocol');
+		$xpath->registerNamespace('saml', 'urn:oasis:names:tc:SAML:1.0:assertion');
+
+
+		if ($insertBefore && !$assertion) {
+
+			$query = "//samlp:Status";
+			$nodeset = $xpath->query($query, $parentNode);
+
+			$xnode = $nodeset->item(0);
+			if (!$xnode)
+				throw new Exception("Could not find node to sign before (Root signing mode)");
+		
+			$parentNode->insertBefore($newSig, $xnode);
+			
+		} elseif ($insertBefore) {
+			
+			$query = "//saml:Assertion/saml:Subject";
+			$nodeset = $xpath->query($query, $parentNode);
+
+			$xnode = $nodeset->item(0);
+			if (!$xnode)
+				throw new Exception("Could not find node to sign before (Assertion signing mode)");
+
+			$parentNode->insertBefore($newSig, $xnode);
+		} else {
+			$parentNode->appendChild($newSig);
+		}
+	}
+	
+	
+
+	public function appendSignature($parentNode, $insertBefore = false, $assertion = false) {
 		$baseDoc = ($parentNode instanceof DOMDocument)?$parentNode:$parentNode->ownerDocument;
 		$newSig = $baseDoc->importNode($this->sigNode, TRUE);
 

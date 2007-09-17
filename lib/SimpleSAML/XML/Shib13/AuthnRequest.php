@@ -34,6 +34,8 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_XML_MetaDataStore $metadatastore) {
 		$this->configuration = $configuration;
 		$this->metadata = $metadatastore;
+		
+		$this->requestid = $this->generateID();
 	}
 	
 	public function setRelayState($relayState) {
@@ -54,7 +56,13 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 
 
 	public function parseGet($get) {
-		return null;
+		if (!isset($get['shire'])) throw new Exception('Could not read shire parameter from HTTP GET request');
+		if (!isset($get['providerId'])) throw new Exception('Could not read providerId parameter from HTTP GET request');
+		if (!isset($get['target'])) throw new Exception('Could not read target parameter from HTTP GET request');
+
+		$this->setIssuer($get['providerId']);
+		$this->setRelayState($get['target']);
+
 	}
 	
 	public function setNewRequestID() {	
@@ -70,11 +78,11 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 		$session = SimpleSAML_Session::getInstance();
 		
 		if (!isset($session)) {
-			SimpleSAML_Session::init(self::PROTOCOL);
+			SimpleSAML_Session::init(self::PROTOCOL, null, false);
 			$session = SimpleSAML_Session::getInstance();
 		}
 
-		$session->setAuthnRequest($this->getRequestID(), $this);
+		$session->setShibAuthnRequest($this);
 		
 		/*
 		if (isset($this->relayState)) {

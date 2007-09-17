@@ -319,15 +319,15 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 		//echo 'idp:' . $idpentityid . ' sp:' . $spentityid .' inresponseto:' .  $inresponseto . ' namid:' . $nameid;
 	
-		$idpmd 	= $this->metadata->getMetaData($idpentityid, 'saml20-idp-hosted');
-		$spmd 	= $this->metadata->getMetaData($spentityid, 'saml20-sp-remote');
+		$idpmd 	= $this->metadata->getMetaData($idpentityid, 'shib13-idp-hosted');
+		$spmd 	= $this->metadata->getMetaData($spentityid, 'shib13-sp-remote');
 		
 		$id = self::generateID();
 		$issueInstant = self::generateIssueInstant();
 		$assertionExpire = self::generateIssueInstant(60 * 5); # 5 minutes
 		
 		$assertionid = self::generateID();
-		$sessionindex = self::generateID();
+		
 		
 		if (is_null($nameid)) {
 			$nameid = self::generateID();
@@ -335,63 +335,82 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 		$issuer = $idpentityid;
 
-		$assertionConsumerServiceURL = $spmd['assertionConsumerServiceURL'];
-		$spNameQualifier = $spmd['spNameQualifier'];
-		
-		$destination = $spmd['assertionConsumerServiceURL'];
+		$shire = $spmd['shire'];
+		$audience = $spmd['audience'];
+		$spnamequalifier = $spmd['spnamequalifier'];
+		$base64 = $idpmd['base64'];
 		
 		$encodedattributes = '';
-		foreach ($attributes AS $name => $value) {
-			$encodedattributes .= $this->enc_attribute($name, $value[0], true);
+		
+		if (is_array($attributes)) {
+
+			$encodedattributes .= '<AttributeStatement>
+				<Subject>
+					<NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier" NameQualifier="' . $spnamequalifier . '"
+						>' . $nameid . '</NameIdentifier>
+				</Subject>';
+				
+			foreach ($attributes AS $name => $value) {
+				$encodedattributes .= $this->enc_attribute($name, $value[0], $base64);
+			}
+			
+			$encodedattributes .= '</AttributeStatement>';
 		}
 		
-		$authnResponse = '<samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
-    ID="' . $id . '"
-    InResponseTo="' . $inresponseto. '" Version="2.0"
-    IssueInstant="' . $issueInstant . '"
-    Destination="' . $destination . '">
-    <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' . $issuer . '</saml:Issuer>
-    <samlp:Status xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
-        <samlp:StatusCode xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
-            Value="urn:oasis:names:tc:SAML:2.0:status:Success"> </samlp:StatusCode>
-    </samlp:Status>
-    <saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Version="2.0"
-        ID="' . $assertionid . '" IssueInstant="' . $issueInstant . '">
-        <saml:Issuer>' . $issuer . '</saml:Issuer>
-        <saml:Subject>
-            <saml:NameID NameQualifier="' . $issuer . '" SPNameQualifier="'. $spentityid. '"
-                Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
-                >' . $nameid. '</saml:NameID>
-            <saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
-                <saml:SubjectConfirmationData NotOnOrAfter="' . $assertionExpire . '"
-                    InResponseTo="' . $inresponseto. '"
-                    Recipient="' . $destination . '"/>
-            </saml:SubjectConfirmation>
-        </saml:Subject>
-        <saml:Conditions NotBefore="' . $issueInstant. '" NotOnOrAfter="' . $assertionExpire. '">
-            <saml:AudienceRestriction>
-                <saml:Audience>' . $spentityid . '</saml:Audience>
-            </saml:AudienceRestriction>
-        </saml:Conditions>
-        <saml:AuthnStatement AuthnInstant="' . $issueInstant . '"
-            SessionIndex="' . $sessionindex . '">
-            <saml:AuthnContext>
-                <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:Password</saml:AuthnContextClassRef>
-            </saml:AuthnContext>
-        </saml:AuthnStatement>
-        <saml:AttributeStatement>
-            ' . $encodedattributes . '
-        </saml:AttributeStatement>
-    </saml:Assertion>
-</samlp:Response>
-';
+		
+		
+		/*
+		 * The SAML 1.1 response message
+		 */
+		$response = '<Response xmlns="urn:oasis:names:tc:SAML:1.0:protocol"
+    xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion"
+    xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" IssueInstant="' . $issueInstant. '"
+    MajorVersion="1" MinorVersion="1"
+    Recipient="' . $shire . '"
+    ResponseID="' . $id . '">
+
+<Status>
+        <StatusCode Value="samlp:Success">
+            <StatusCode xmlns:code="urn:geant2:edugain:protocol" Value="code:Accepted"/>
+        </StatusCode>
+    </Status>    
+    <Assertion xmlns="urn:oasis:names:tc:SAML:1.0:assertion"
+        AssertionID="' . $assertionid . '" IssueInstant="' . $issueInstant. '"
+        Issuer="' . $issuer . '" MajorVersion="1" MinorVersion="1">
+        <Conditions NotBefore="' . $issueInstant. '" NotOnOrAfter="'. $assertionExpire . '">
+            <AudienceRestrictionCondition>
+                <Audience>' . $audience . '</Audience>
+            </AudienceRestrictionCondition>
+        </Conditions>
+        <AuthenticationStatement AuthenticationInstant="' . $issueInstant. '"
+            AuthenticationMethod="urn:oasis:names:tc:SAML:1.0:am:unspecified">
+            <Subject>
+                <NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier" NameQualifier="' . $spnamequalifier . '"
+                    >' . $nameid . '</NameIdentifier>
+                <SubjectConfirmation>
+                    <ConfirmationMethod>urn:oasis:names:tc:SAML:1.0:cm:bearer</ConfirmationMethod>
+                </SubjectConfirmation>
+            </Subject>
+        </AuthenticationStatement>
+        
+                ' . $encodedattributes . '
+    </Assertion>
+</Response>';
 		  
-		return $authnResponse;
+		return $response;
 	}
 
 
 	
 
+
+	private function enc_attribute($name, $value, $base64 = false) {
+		return '<Attribute AttributeName="' . $name . '" 
+			AttributeNamespace="urn:mace:shibboleth:1.0:attributeNamespace:uri">
+		<AttributeValue>' . ($base64 ? base64_encode($value) : htmlspecialchars($value) ) . '</AttributeValue>
+	</Attribute>';
+	}	
 	
 }
 

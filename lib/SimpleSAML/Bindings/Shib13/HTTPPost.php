@@ -68,18 +68,14 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 	
 	public function sendResponse($response, $idpentityid, $spentityid, $relayState = null) {
 
-		$idpmd = $this->metadata->getMetaData($idpentityid, 'saml20-idp-hosted');
-		$spmd = $this->metadata->getMetaData($spentityid, 'saml20-sp-remote');
+		$idpmd = $this->metadata->getMetaData($idpentityid, 'shib13-idp-hosted');
+		$spmd = $this->metadata->getMetaData($spentityid, 'shib13-sp-remote');
 		
-		$destination = $spmd['assertionConsumerServiceURL'];
+		$destination = $spmd['shire'];
 	
-		/*
-		$privatekey = "/home/as/erlang/feide2/cert/edugain/server1Key.pem";
-		$publiccert = "/home/as/erlang/feide2/cert/edugain/server2chain.pem";
-		*/
+		$privatekey = $this->configuration->getValue('basedir') . '/cert/' . $idpmd['privatekey'];
+		$publiccert = $this->configuration->getValue('basedir') . '/cert/' . $idpmd['certificate'];
 
-		$privatekey = "/home/as/erlang/feide2/cert/server.pem";
-		$publiccert = "/home/as/erlang/feide2/cert/server.crt";
 
 		
 		/*
@@ -87,7 +83,8 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		 */
 		$objXMLSecDSig = new XMLSecurityDSig();
 		//$objXMLSecDSig->idKeys[] = 'ResponseID';
-		#$objXMLSecDSig->idKeys = array('ResponseID');
+		
+		$objXMLSecDSig->idKeys = array('ResponseID');
 		
 		$objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
 		
@@ -99,9 +96,9 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		//$assertionroot = $responsedom->getElementsByTagName('Assertion')->item(1);
 		$firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
 		
-		#$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'));
-		$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature',
-			'http://www.w3.org/2001/10/xml-exc-c14n#'));
+		$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'), null, 'ResponseID');
+		#$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature',
+		#	'http://www.w3.org/2001/10/xml-exc-c14n#'));
 		
 		#$objXMLSecDSig->addRefInternal($responseroot, $responseroot, XMLSecurityDSig::SHA1);
 		
@@ -128,7 +125,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		*/
 		
 		
-		$objXMLSecDSig->appendSignature($firstassertionroot, true);
+		$objXMLSecDSig->appendSignature($responseroot, false);
 		
 		$response = $responsedom->saveXML();
 		

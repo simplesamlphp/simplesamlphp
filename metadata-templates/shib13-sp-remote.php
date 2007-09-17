@@ -1,6 +1,9 @@
 <?php
 /* 
- * SAML 2.0 Meta data for simpleSAMLphp
+ * Shibboleth 1.3 Meta data for simpleSAMLphp
+ *
+ *
+ *
  *
  */
 
