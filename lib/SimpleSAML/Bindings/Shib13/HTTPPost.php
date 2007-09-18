@@ -125,7 +125,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		*/
 		
 		
-		$objXMLSecDSig->appendSignature($responseroot, false);
+		$objXMLSecDSig->appendSignature($responseroot, true);
 		
 		$response = $responsedom->saveXML();
 		
