@@ -141,7 +141,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		}
 
 		if ($fingerprint != $issuerFingerprint) {
-			echo "Expecting fingerprint $issuerFingerprint but got fingerprint $fingerprint .st";
+			throw new Exception("Expecting fingerprint $issuerFingerprint but got fingerprint $fingerprint .");
 		}
 	
 		return ($fingerprint == $issuerFingerprint);

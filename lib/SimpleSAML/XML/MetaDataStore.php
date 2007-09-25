@@ -66,6 +66,12 @@ class SimpleSAML_XML_MetaDataStore {
 			$this->load($set);
 		}
 		$currenthost = $_SERVER['HTTP_HOST'];
+		
+		if(strstr($currenthost, ":")) {
+				$currenthostdecomposed = explode(":", $currenthost);
+				$currenthost = $currenthostdecomposed[0];
+		}
+		
 		if (!isset($this->hostmap[$set])) {
 			throw new Exception('No default entities defined for metadata set [' . $set . ']');
 		}
