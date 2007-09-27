@@ -73,7 +73,7 @@ class SimpleSAML_XML_MetaDataStore {
 		}
 		
 		if (!isset($this->hostmap[$set])) {
-			throw new Exception('No default entities defined for metadata set [' . $set . ']');
+			throw new Exception('No default entities defined for metadata set [' . $set . '] (host:' . $currenthost. ')');
 		}
 		if (!isset($currenthost)) {
 			throw new Exception('Could not get HTTP_HOST, in order to resolve default entity ID');
