@@ -1,8 +1,6 @@
 <?php
 
-
 require_once('../../www/_include.php');
-
 
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
@@ -25,65 +23,61 @@ $attributes = array();
 if (isset($_POST['username'])) {
 
 
-	$dn = str_replace('%username%', $_POST['username'], $config->getValue('auth.ldap.dnpattern'));
-	$pwd = $_POST['password'];
-
-	$ds = ldap_connect($config->getValue('auth.ldap.hostname'));
+	try {
 	
-	if ($ds) {
+		$radius = radius_auth_open();
+		// ( resource $radius_handle, string $hostname, int $port, string $secret, int $timeout, int $max_tries )
+		if (! radius_add_server($radius, $config->getValue('auth.radius.hostname'), $config->getValue('auth.radius.port'), 
+				$config->getValue('auth.radius.secret'), 5, 3)) {
+			throw new Exception('Problem occured when connecting to Radius server: ' . radius_strerror($radius));
+		}
 	
-		if (!ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3)) {
-			echo "Failed to set LDAP Protocol version to 3";
-			exit;
+		if (! radius_create_request($radius,RADIUS_ACCESS_REQUEST)) {
+			throw new Exception('Problem occured when creating the Radius request: ' . radius_strerror($radius));
 		}
-		/*
-		if (!ldap_start_tls($ds)) {
-		echo "Failed to start TLS";
-		exit;
-		}
-		*/
-		if (!ldap_bind($ds, $dn, $pwd)) {
-			$error = "Bind failed, wrong username or password. Tried with DN=[" . $dn . "] DNPattern=[" . $config->getValue('auth.ldap.dnpattern') . "]";
-			
-			
-		} else {
-			$sr = ldap_read($ds, $dn, $config->getValue('auth.ldap.attributes'));
-			$ldapentries = ldap_get_entries($ds, $sr);
-			
-
-			for ($i = 0; $i < $ldapentries[0]['count']; $i++) {
-				$values = array();
-				if ($ldapentries[0][$i] == 'jpegphoto') continue;
-				for ($j = 0; $j < $ldapentries[0][$ldapentries[0][$i]]['count']; $j++) {
-					$values[] = $ldapentries[0][$ldapentries[0][$i]][$j];
-				}
+	
+		radius_put_attr($radius,RADIUS_USER_NAME,$_POST['username']);
+		radius_put_attr($radius,RADIUS_USER_PASSWORD, $_POST['password']);
+	
+		switch (radius_send_request($radius))
+		{
+			case RADIUS_ACCESS_ACCEPT:
+	
+				// GOOD Login :)
+				$attributes = array('urn:mace:eduroam.no:username' => array($_POST['username']));
 				
-				$attributes[$ldapentries[0][$i]] = $values;
-			}
-
-			// generelt ldap_next_entry for flere, men bare ett her
-			//print_r($ldapentries);
-			//print_r($attributes);
+				$session->setAuthenticated(true);
+				$session->setAttributes($attributes);
+				$returnto = $_REQUEST['RelayState'];
+				header("Location: " . $returnto);
+				
+				exit(0);
+				
+	
+			case RADIUS_ACCESS_REJECT:
 			
-			$session->setAuthenticated(true);
-			$session->setAttributes($attributes);
-			$returnto = $_REQUEST['RelayState'];
-			header("Location: " . $returnto);
-
+				throw new Exception('Radius authentication error: Bad credentials ');
+				break;
+			case RADIUS_ACCESS_CHALLENGE:
+				throw new Exception('Radius authentication error: Challenge requested');
+				break;
+			default:
+				throw new Exception('Error during radius authentication: ' . radius_strerror($radius));
+				
 		}
-	// ldap_close() om du vil, men frigjoeres naar skriptet slutter
-	}
-	
 
-	
-	
+	} catch (Exception $e) {
+		
+		$error = $e->getMessage();
+		
+	}
 }
 
 
 $t = new SimpleSAML_XHTML_Template($config, 'login.php');
 
 $t->data['header'] = 'simpleSAMLphp: Enter username and password';	
-$t->data['requestid'] = $_REQUEST['RequestID'];
+$t->data['relaystate'] = $_REQUEST['RelayState'];
 $t->data['error'] = $error;
 if (isset($error)) {
 	$t->data['username'] = $_POST['username'];
