@@ -21,6 +21,12 @@ class SimpleSAML_Utilities {
 
 	public static function selfURLNoQuery() {
 	
+		$currenthost = $_SERVER['HTTP_HOST'];
+		if(strstr($currenthost, ":")) {
+				$currenthostdecomposed = explode(":", $currenthost);
+				$currenthost = $currenthostdecomposed[0];
+		}
+	
 		$s = empty($_SERVER["HTTPS"]) ? ''
 			: ($_SERVER["HTTPS"] == "on") ? "s"
 			: "";
@@ -28,12 +34,18 @@ class SimpleSAML_Utilities {
 		$port = ($_SERVER["SERVER_PORT"] == "80") ? ""
 			: (":".$_SERVER["SERVER_PORT"]);
 		$querystring = '';
-		return $protocol."://".$_SERVER['HTTP_HOST'].$port . $_SERVER['SCRIPT_NAME'];
+		return $protocol."://" . $currenthost . $port . $_SERVER['SCRIPT_NAME'];
 	
 	}
 
 	public static function selfURL() {
 	
+		$currenthost = $_SERVER['HTTP_HOST'];
+		if(strstr($currenthost, ":")) {
+				$currenthostdecomposed = explode(":", $currenthost);
+				$currenthost = $currenthostdecomposed[0];
+		}
+	
 		$s = empty($_SERVER["HTTPS"]) ? ''
 			: ($_SERVER["HTTPS"] == "on") ? "s"
 			: "";
@@ -41,7 +53,8 @@ class SimpleSAML_Utilities {
 		$port = ($_SERVER["SERVER_PORT"] == "80") ? ""
 			: (":".$_SERVER["SERVER_PORT"]);
 		$querystring = '';
-		return $protocol."://".$_SERVER['HTTP_HOST'].$port.$_SERVER['REQUEST_URI'];
+		return $protocol . "://" . $currenthost . $port . $_SERVER['REQUEST_URI'];
+
 	
 	}
 	
