@@ -11,10 +11,10 @@ $config = array (
 	 * Setup the following parameters to match the directory of your installation.
 	 * See the user manual for more details.
 	 */
-	'basedir' 				=> '/var/www/simplesamlphp/',
+	'basedir' 				=> '/var/simplesamlphp/',
 	'baseurlpath'			=> 'simplesamlphp/',
-	'templatedir'			=> '/var/www/simplesamlphp/templates',
-	'metadatadir'			=> '/var/www/simplesamlphp/metadata',
+	'templatedir'			=> 'templates/',
+	'metadatadir'			=> 'metadata/',
 	
 	/*
 	 * If you set the debug parameter to true, all SAML messages will be visible in the

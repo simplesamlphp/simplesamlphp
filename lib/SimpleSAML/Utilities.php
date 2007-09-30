@@ -19,6 +19,25 @@ require_once('SimpleSAML/Configuration.php');
 class SimpleSAML_Utilities {
 
 
+	public static function selfURLhost() {
+	
+		$currenthost = $_SERVER['HTTP_HOST'];
+		if(strstr($currenthost, ":")) {
+				$currenthostdecomposed = explode(":", $currenthost);
+				$currenthost = $currenthostdecomposed[0];
+		}
+	
+		$s = empty($_SERVER["HTTPS"]) ? ''
+			: ($_SERVER["HTTPS"] == "on") ? "s"
+			: "";
+		$protocol = self::strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/").$s;
+		$port = ($_SERVER["SERVER_PORT"] == "80") ? ""
+			: (":".$_SERVER["SERVER_PORT"]);
+		$querystring = '';
+		return $protocol."://" . $currenthost . $port;
+	
+	}
+
 	public static function selfURLNoQuery() {
 	
 		$currenthost = $_SERVER['HTTP_HOST'];

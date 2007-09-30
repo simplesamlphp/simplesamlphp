@@ -111,7 +111,7 @@ class SimpleSAML_XML_SAML20_LogoutResponse {
 		$id = self::generateID();
 		$issueInstant = self::generateIssueInstant();
 
-		$destination = $receivermd['SingleLogOutUrl'];
+		$destination = $receivermd['SingleLogoutService'];
 		
 		$samlResponse = '<samlp:LogoutResponse  xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
 ID="_' . $id . '" Version="2.0" IssueInstant="' . $issueInstant . '" Destination="'. $destination. '" InResponseTo="' . $inresponseto . '">

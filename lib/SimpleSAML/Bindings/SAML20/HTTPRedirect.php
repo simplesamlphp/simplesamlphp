@@ -27,7 +27,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		$this->metadata = $metadatastore;
 	}
 	
-	public function sendMessage($request, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnUrl', $direction = 'SAMLRequest', $mode = 'SP') {
+	public function sendMessage($request, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP') {
 		if (!in_array($mode, array('SP', 'IdP'))) {
 			throw new Exception('mode parameter of sendMessage() must be either SP or IdP');
 		}

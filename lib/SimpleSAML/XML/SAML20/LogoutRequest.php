@@ -129,7 +129,7 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
 		$id = self::generateID();
 		$issueInstant = self::generateIssueInstant();
 
-		$destination = $receivermd['SingleLogOutUrl'];
+		$destination = $receivermd['SingleLogoutService'];
 
 /*
 		$spNameQualifier = $md['spNameQualifier'];

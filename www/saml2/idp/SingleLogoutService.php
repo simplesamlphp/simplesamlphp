@@ -79,8 +79,8 @@ if ($spentityid) {
 			$relayState = $_GET['RelayState'];
 		}
 		
-		//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnUrl', $direction = 'SAMLRequest', $mode = 'SP'
-		$httpredirect->sendMessage($req, $spentityid, $relayState, 'SingleLogOutUrl', 'SAMLRequest', 'IdP');
+		//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
+		$httpredirect->sendMessage($req, $spentityid, $relayState, 'SingleLogoutService', 'SAMLRequest', 'IdP');
 		
 		exit();
 
@@ -126,8 +126,8 @@ try {
 		$relayState = $_GET['RelayState'];
 	}
 	
-	//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnUrl', $direction = 'SAMLRequest', $mode = 'SP'
-	$httpredirect->sendMessage($logoutResponseXML, $logoutrequest->getIssuer(), $relayState, 'SingleLogOutUrl', 'SAMLResponse', 'IdP');
+	//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
+	$httpredirect->sendMessage($logoutResponseXML, $logoutrequest->getIssuer(), $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
 
 } catch(Exception $exception) {
 	

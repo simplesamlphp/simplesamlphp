@@ -36,8 +36,8 @@ if (isset($session) ) {
 			$relayState = $_GET['RelayState'];
 		}
 		
-		//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnUrl', $direction = 'SAMLRequest', $mode = 'SP'
-		$httpredirect->sendMessage($req, $idpentityid, $relayState, 'SingleLogOutUrl', 'SAMLRequest', 'SP');
+		//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
+		$httpredirect->sendMessage($req, $idpentityid, $relayState, 'SingleLogoutService', 'SAMLRequest', 'SP');
 
 	} catch(Exception $exception) {
 		

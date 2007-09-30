@@ -19,8 +19,10 @@ try {
 	$spmeta = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrent();
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 	
+	/*
 	if (!$spmeta['assertionConsumerServiceURL']) throw new Exception('The following parameter is not set in your SAML 2.0 SP Hosted metadata: assertionConsumerServiceURL');
 	if (!$spmeta['SingleLogOutUrl']) throw new Exception('The following parameter is not set in your SAML 2.0 SP Hosted metadata: SingleLogOutUrl');
+	*/
 	
 	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <EntityDescriptor entityID="' . $spentityid . '" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
@@ -32,7 +34,7 @@ try {
 
 		<SingleLogoutService 
 			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" 
-			Location="' . $spmeta['SingleLogOutUrl'] . '"/>
+			Location="' . $metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted') . '"/>
 		
 		<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
 		
@@ -40,17 +42,21 @@ try {
 			index="0" 
 			isDefault="true" 
 			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" 
-			Location="' .  $spmeta['assertionConsumerServiceURL']  . '" />
+			Location="' . $metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted') . '" />
 
 	</SPSSODescriptor>
 
 </EntityDescriptor>';
 	
+	$defaultidp = $config->getValue('default-saml20-idp');
 	
 	$et = new SimpleSAML_XHTML_Template($config, 'metadata.php');
 	
+
 	$et->data['header'] = 'SAML 2.0 SP Metadata';
 	$et->data['metadata'] = htmlentities($metaxml);
+	$et->data['feide'] = in_array($defaultidp, array('sam.feide.no', 'max.feide.no'));
+	$et->data['defaultidp'] = $defaultidp;
 	
 	$et->show();
 	

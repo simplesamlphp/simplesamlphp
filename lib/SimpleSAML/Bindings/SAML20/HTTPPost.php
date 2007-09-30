@@ -29,7 +29,7 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 	}
 	
 	
-	public function sendResponseUnsigned($response, $idpentityid, $spentityid, $relayState = null, $endpoint = 'assertionConsumerServiceURL') {
+	public function sendResponseUnsigned($response, $idpentityid, $spentityid, $relayState = null, $endpoint = 'AssertionConsumerService') {
 
 		$idpmd = $this->metadata->getMetaData($idpentityid, 'saml20-idp-hosted');
 		$spmd = $this->metadata->getMetaData($spentityid, 'saml20-sp-remote');
@@ -71,7 +71,7 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		$idpmd = $this->metadata->getMetaData($idpentityid, 'saml20-idp-hosted');
 		$spmd = $this->metadata->getMetaData($spentityid, 'saml20-sp-remote');
 		
-		$destination = $spmd['assertionConsumerServiceURL'];
+		$destination = $spmd['AssertionConsumerService'];
 	
 		/*
 		$privatekey = "/home/as/erlang/feide2/cert/edugain/server1Key.pem";

@@ -29,7 +29,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 	}
 	
 	
-	public function sendResponseUnsigned($response, $idpentityid, $spentityid, $relayState = null, $endpoint = 'assertionConsumerServiceURL') {
+	public function sendResponseUnsigned($response, $idpentityid, $spentityid, $relayState = null, $endpoint = 'AssertionConsumerService') {
 
 		$idpmd = $this->metadata->getMetaData($idpentityid, 'saml20-idp-hosted');
 		$spmd = $this->metadata->getMetaData($spentityid, 'saml20-sp-remote');
@@ -71,7 +71,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		$idpmd = $this->metadata->getMetaData($idpentityid, 'shib13-idp-hosted');
 		$spmd = $this->metadata->getMetaData($spentityid, 'shib13-sp-remote');
 		
-		$destination = $spmd['shire'];
+		$destination = $spmd['AssertionConsumerService'];
 	
 		$privatekey = $this->configuration->getValue('basedir') . '/cert/' . $idpmd['privatekey'];
 		$publiccert = $this->configuration->getValue('basedir') . '/cert/' . $idpmd['certificate'];

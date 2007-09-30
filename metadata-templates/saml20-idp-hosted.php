@@ -10,14 +10,10 @@
 $metadata = array( 
 
 	// The SAML entity ID is the index of this config.
-	'dev2.andreas.feide.no' => array(
+	'sp.example.org' => array(
 	
 		// The hostname of the server (VHOST) that this SAML entity will use.
-		'host'				=>	'dev2.andreas.feide.no',
-		
-		// SAML endpoints.
-		'SingleSignOnUrl'	=>	"http://dev2.andreas.feide.no/saml2/idp/SSOService.php",
-		'SingleLogOutUrl'	=>	"http://dev2.andreas.feide.no/saml2/idp/LogoutService.php",
+		'host'				=>	'sp.example.org',
 		
 		// X.509 key and certificate. Relative to the cert directory.
 		'privatekey'		=>	'server.pem',

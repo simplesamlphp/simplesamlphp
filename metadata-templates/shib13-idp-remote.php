@@ -7,22 +7,26 @@
 
 $metadata = array(
 
+
 	'urn:mace:switch.ch:aaitest:dukono.switch.ch'	=> array(
 		'SingleSignOnUrl'		=>	'https://dukono.switch.ch/shibboleth-idp/SSO',
 		'certFingerprint'		=>	'c7279a9f28f11380509e075441e3dc55fb9ab864' 
-//		'certFingerprint'		=>	'4e730f327ce8d9fe6269298d8f777a4bd0937ba5'
-//		c7279a9f28f11380509e075441e3dc55fb9ab864
-		// "SingleLogOutUrl" => "https://mars.feide.no/amserver/IDPSloRedirect/metaAlias/idp",
 	),
 	
-	'feide.erlang.no-shib13'	=> array(
-		'issuer'						=>	'feide.erlang.no',
-		'assertionDurationMinutes'		=>	10,
-		'audience'						=> 'urn:mace:feide:shiblab'
+
+	'hbe.edugain.bridge.feide.no'	=> array(
+		'SingleSignOnUrl'		=>	'https://hbe.edugain.bridge.feide.no/simplesaml/shib13/idp/SSOService.php',
+		'certFingerprint'		=>	'afe71c28ef740bc87425be13a2263d37971da1f9' 
 	),
 	
+	'urn:mace:switch.ch:aaitest:dukono.switch.ch'	=> array(
+		'SingleSignOnUrl'		=>	'https://dukono.switch.ch/shibboleth-idp/SSO',
+		'certFingerprint'		=>	'c7279a9f28f11380509e075441e3dc55fb9ab864' 
+	),
+		
 	'urn:mace:dfnwayf'	=> array(
-		'SingleSignOnUrl'		=>	'https://dfn.wayf.com/WAYF'
+		'SingleSignOnUrl'		=>	'https://dfn.wayf.com/WAYF',
+		'certFingerprint'		=>	'---' 
 	)
 );
 

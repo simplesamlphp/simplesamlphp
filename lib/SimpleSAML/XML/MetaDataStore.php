@@ -12,6 +12,7 @@
  */
 
 require_once('SimpleSAML/Configuration.php');
+require_once('SimpleSAML/Utilities.php');
 
 /**
  * Configuration of SimpleSAMLphp
@@ -34,7 +35,9 @@ class SimpleSAML_XML_MetaDataStore {
 				throw new Exception('Trying to load illegal set of Meta data [' . $set . ']');
 		}
 		
-		$metadatasetfile = $this->configuration->getValue('metadatadir') . '/' . $set . '.php';
+		$metadatasetfile = $this->configuration->getValue('basedir') . '/' . 
+			$this->configuration->getValue('metadatadir') . '/' . $set . '.php';
+		
 		
 		if (!file_exists($metadatasetfile)) {
 			throw new Exception('Could not open file: ' . $metadatasetfile);
@@ -104,6 +107,43 @@ class SimpleSAML_XML_MetaDataStore {
 		}
 		return $this->metadata[$set][$entityid];
 	}
+	
+	public function getGenerated($property, $set = 'saml20-sp-hosted') {
+		
+		$baseurl = SimpleSAML_Utilities::selfURLhost() . '/' . $this->configuration->getValue('baseurlpath');
+		
+		
+		if ($set == 'saml20-sp-hosted') {
+			switch ($property) {				
+				case 'AssertionConsumerService' : 
+					return $baseurl . 'saml2/sp/AssertionConsumerService.php';
+
+				case 'SingleLogoutService' : 
+					return $baseurl . 'saml2/sp/SingleLogoutService.php';					
+			}
+		} elseif($set == 'saml20-idp-hosted') {
+			switch ($property) {				
+				case 'SingleSignOnService' : 
+					return $baseurl . 'saml2/idp/SSOService.php';
+
+				case 'SingleLogoutService' : 
+					return $baseurl . 'saml2/idp/SingleLogoutService.php';					
+			}
+		} elseif($set == 'shib13-sp-hosted') {
+			switch ($property) {				
+				case 'AssertionConsumerService' : 
+					return $baseurl . 'shib13/sp/AssertionConsumerService.php';
+			}
+		} elseif($set == 'shib13-idp-hosted') {
+			switch ($property) {				
+				case 'SingleSignOnService' : 
+					return $baseurl . 'shib13/idp/SSOService.php';			
+			}
+		}
+		
+		throw new Exception('Could not generate metadata property ' . $property . ' for set ' . $set . '.');
+	}
+	
 	
 	
 }

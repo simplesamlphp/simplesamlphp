@@ -32,7 +32,8 @@ class SimpleSAML_XHTML_Template {
 	
 	public function show() {
 		$data = $this->data;
-		$filename = $this->configuration->getValue('templatedir') . '/' . $this->template;
+		$filename = $this->configuration->getValue('basedir') . '/' . 
+			$this->configuration->getValue('templatedir') . '/' . $this->template;
 		if (!file_exists($filename)) {
 			throw new Exception('Could not find template file [' . $this->template . '] at [' . $filename . ']');
 		}

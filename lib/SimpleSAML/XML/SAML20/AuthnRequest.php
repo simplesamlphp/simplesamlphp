@@ -138,7 +138,10 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		$id = self::generateID();
 		$issueInstant = self::generateIssueInstant();
 
-		$assertionConsumerServiceURL = $md['assertionConsumerServiceURL'];
+		//$assertionConsumerServiceURL = $md['AssertionConsumerService'];
+		$assertionConsumerServiceURL = $this->metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted');
+		
+		
 		$spNameQualifier = $md['spNameQualifier'];
 		$nameidformat = isset($md['NameIDformat']) ? 
 			$md['NameIDformat'] : 

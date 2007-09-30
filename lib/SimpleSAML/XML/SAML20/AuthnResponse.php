@@ -357,10 +357,10 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 		$issuer = $idpentityid;
 
-		$assertionConsumerServiceURL = $spmd['assertionConsumerServiceURL'];
+		$assertionConsumerServiceURL = $spmd['AssertionConsumerService'];
 		$spNameQualifier = $spmd['spNameQualifier'];
 		
-		$destination = $spmd['assertionConsumerServiceURL'];
+		$destination = $spmd['AssertionConsumerService'];
 		
 		$base64 = isset($idpmd['base64attributes']) ? $idpmd['base64attributes'] : false;
 		
