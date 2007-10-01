@@ -12,7 +12,7 @@ $config = array (
 	 * See the user manual for more details.
 	 */
 	'basedir' 				=> '/var/simplesamlphp/',
-	'baseurlpath'			=> 'simplesamlphp/',
+	'baseurlpath'			=> 'simplesaml/',
 	'templatedir'			=> 'templates/',
 	'metadatadir'			=> 'metadata/',
 	
