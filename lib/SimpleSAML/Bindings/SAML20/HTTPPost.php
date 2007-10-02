@@ -14,7 +14,9 @@
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/XML/MetaDataStore.php');
 require_once('SimpleSAML/XML/SAML20/AuthnResponse.php');
- 
+require_once('SimpleSAML/XHTML/Template.php');
+
+
 /**
  * Configuration of SimpleSAMLphp
  */

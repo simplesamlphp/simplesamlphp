@@ -13,7 +13,9 @@
  
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/XML/MetaDataStore.php');
- 
+require_once('SimpleSAML/XHTML/Template.php');
+
+
 /**
  * Configuration of SimpleSAMLphp
  */
@@ -46,8 +48,25 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			$redirectURL .= "&RelayState=" . urlencode($relayState);
 		}
 		
+		if ($this->configuration->getValue('debug')) {
+	
+			$p = new SimpleSAML_XHTML_Template($this->configuration, 'httpredirect-debug.php');
+			
+			$p->data['header'] = 'HTTP-REDIRECT Debug';
+			$p->data['url'] = $redirectURL;
+			$p->data['message'] = htmlentities($request);
+			
+			$p->show();
 
-		header("Location: " . $redirectURL);
+		
+		} else {
+
+			header("Location: " . $redirectURL);
+
+		
+		}
+
+		
 		
 	}
 
