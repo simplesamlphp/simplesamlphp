@@ -40,6 +40,10 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 
 		$md = $this->metadata->getMetaData($remoteentityid, $metadataset);
 		$idpTargetUrl = $md[$endpoint];
+		
+		if (!isset($idpTargetUrl) or $idpTargetUrl == '') {
+			throw new Exception('Could not find endpoint [' .$endpoint  . '] in metadata for [' . $remoteentityid . '] (looking in ' . $metadataset . ')');
+		}
 	
 		$encodedRequest = urlencode( base64_encode( gzdeflate( $request ) ));
 		
