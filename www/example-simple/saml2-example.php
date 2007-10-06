@@ -36,8 +36,6 @@ $attributes = $session->getAttributes();
  *
  */
 
-
-
 $et = new SimpleSAML_XHTML_Template($config, 'status.php');
 
 $et->data['header'] = 'SAML 2.0 SP Demo Example';
@@ -48,10 +46,6 @@ $et->data['valid'] = $session->isValid() ? 'Session is valid' : 'Session is inva
 $et->data['logout'] = '<p>[ <a href="/' . $config->getValue('baseurlpath') . 'saml2/sp/initSLO.php?RelayState=/' . 
 	$config->getValue('baseurlpath') . 'logout.html">Logout</a> ]';
 
-/*
-$et->data['logout'] = '[ <a href="https://sam.feide.no/amserver/saml2/jsp/idpSingleLogoutInit.jsp?binding=urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect">IdP intiated logout from Feide (only if you are connected to the Feide IdP)</a> ]</p>
-			<p>[ <a href="/' . $config->getValue('baseurlpath') . 'saml2/sp/initSLO.php?RelayState=' .  urlencode(SimpleSAML_Utilities::selfURL()) . '">SP initated logout</a> ]';
-*/
 $et->show();
 
 
