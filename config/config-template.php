@@ -32,6 +32,12 @@ $config = array (
 	/*
 	 * Default IdPs. If you do not enter an idpentityid in the SSO initialization endpoints,
 	 * the default IdP configured here will be used.
+	 *
+	 * To enable the SAML 2.0 IdP Discovery service for a SAML 2.0 SP, you need to set the
+	 * default-saml20-idp to be null, like this:
+	 *
+	 * 		'default-saml20-idp'	=> null,
+	 *
 	 */
 	'default-saml20-idp'	=> 'sam.feide.no',
 	'default-shib13-idp'	=> 'urn:mace:switch.ch:aaitest:dukono.switch.ch',

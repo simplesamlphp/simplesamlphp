@@ -108,6 +108,15 @@ class SimpleSAML_XML_MetaDataStore {
 		return $this->metadata[$set][$entityid];
 	}
 	
+	public function getList($set = 'saml20-idp-remote') {
+		if (!isset($this->metadata[$set])) {
+			$this->load($set);
+		}
+		return $this->metadata[$set];
+	}
+	
+	
+	
 	public function getGenerated($property, $set = 'saml20-sp-hosted') {
 		
 		$baseurl = SimpleSAML_Utilities::selfURLhost() . '/' . $this->configuration->getValue('baseurlpath');

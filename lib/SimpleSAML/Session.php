@@ -37,6 +37,7 @@ class SimpleSAML_Session {
 	private $shibauthreq = null;
 	
 	private $authnresponse = null;
+	private $idp = null;
 	
 	private $logoutrequest = null;
 	
@@ -145,6 +146,13 @@ class SimpleSAML_Session {
 	
 	public function getAuthnResposne() {
 		return $this->authnresponse;
+	}
+	
+	public function setIdP($idp) {
+		$this->idp = $idp;
+	}
+	public function getIdP() {
+		return $this->idp;
 	}
 	
 	public function setLogoutRequest(SimpleSAML_XML_SAML20_LogoutRequest $lr) {

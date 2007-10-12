@@ -161,6 +161,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$session->setNameID($nameid['NameID']);
 		$session->setNameIDFormat($nameid['Format']);
 		$session->setSessionIndex($this->getSessionIndex());
+		$session->setIdP($this->getIssuer());
 		/*
 		$nameID["NameID"] = $node->nodeValue;
 		

@@ -36,12 +36,22 @@ try {
 
 if (!isset($session) || !$session->isValid() ) {
 	
+	
+	if ($idpentityid == null) {
+	
+		$returnURL = urlencode(SimpleSAML_Utilities::selfURL());
+		$discservice = '/' . $config->getValue('baseurlpath') . 'saml2/sp/idpdisco.php?entityID=' . $spentityid . 
+			'&return=' . $returnURL . '&returnIDParam=idpentityid';
+		header('Location: ' . $discservice);
+		exit(0);
+		
+	}
+	
+	
 	try {
 		$sr = new SimpleSAML_XML_SAML20_AuthnRequest($config, $metadata);
 	
 		$req = $sr->generate($spentityid);
-		
-	
 		
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 		
@@ -65,11 +75,10 @@ if (!isset($session) || !$session->isValid() ) {
 	}
 
 } else {
-
 	
 	
 	$relaystate = $session->getRelayState();
-	
+		
 	if (isset($relaystate) && !empty($relaystate)) {
 		header('Location: ' . $relaystate );
 	} else {

@@ -17,7 +17,8 @@ $metadata = new SimpleSAML_XML_MetaDataStore($config);
 
 $session = SimpleSAML_Session::getInstance();
 
-$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getValue('default-saml20-idp') ;
+$idpentityid = $session->getIdP();
+//	isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getValue('default-saml20-idp') ;
 $spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 
 
