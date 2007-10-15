@@ -1,0 +1,223 @@
+/* General layout */
+
+body { 
+    background: #FFFFFF; 
+    margin: 1em;
+    padding: 2px .3em .3em .3em;
+    border: thin solid #eee;
+}
+
+body > div.article, body > div.section {
+	margin: 1em;
+}
+div {
+	margin: 0; padding: 0;
+}
+div.literallayout {
+	font-family: "Monaco" monospace;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	padding-left: 1em;
+}
+.application {
+	color: #030;
+	font-weight: bold;
+}
+
+h1, h2, h3, h4, h5 { 
+    color: #800000; 
+    font-family: sans-serif; 
+}
+h1 {
+	margin: .3em 0px 0px 2px;
+}
+h2, h3 {
+	margin: 2em 0px 0px 2px;
+}
+div.figure p.title {
+	text-align: center;
+}
+
+div.note {
+	background-color:  #FF9;
+	background-image: url('icons/note.png');
+	background-repeat: no-repeat;
+	
+	border: thin solid #444;
+	padding: .2em .2em .2em 60px;
+	margin: 0px ! important;
+}
+div.note .title {
+	color: #444; margin: 0.1em;
+}
+
+div.example {
+	background-color:  #9cb;
+	background-image: url('icons/example.png');
+	background-repeat: no-repeat;
+	
+	border: thin solid #444;
+	padding: .2em .2em .2em 60px;
+	margin: 0px ! important;
+}
+div.example .title {
+	color: #444; margin: 0.1em;
+}
+
+div.tip {
+	background-color:  #FC0;
+	background-image: url('icons/tip.png');
+	background-repeat: no-repeat;
+	
+	border: thin solid #444;
+	padding: .2em .2em .2em 60px;
+	margin: 0px ! important;
+}
+div.tip .title {
+	color: #444; margin: 0.1em;
+}
+
+
+div.important {
+	background-color:  #FF3;
+	background-image: url('icons/important.png');
+	background-repeat: no-repeat;
+	
+	border: thin solid #444;
+	padding: .2em .2em .2em 60px;
+	margin: 0px ! important;
+}
+div.important .title {
+	color: #444; margin: 0.1em;
+}
+
+div.warning {
+	background-color:  #C90;
+	background-image: url('icons/warning.png');
+	background-repeat: no-repeat;
+	
+	border: thin solid #444;
+	padding: .2em .2em .2em 60px;
+	margin: 0px ! important;
+}
+div.warning .title {
+	color: #444; margin: 0.1em;
+}
+
+
+div.caution {
+	background-color:  #3C9;
+	background-image: url('icons/caution.png');
+	background-repeat: no-repeat;
+	
+	border: thin solid #444;
+	padding: .2em .2em .2em 60px;
+	margin: 0px ! important;
+}
+div.caution .title {
+	color: #444; margin: 0.1em;
+}
+
+
+
+
+
+div.sidebar { 
+    background: #F0F0F0; 
+    border: 1px solid gray; 
+    padding: 5px; 
+    margin: 20px; 
+}
+
+div.table {
+}
+
+div.table table td,div.table table th {
+	padding: .1em .1em .1em 1em;
+	border-top: thin solid #ccc;
+	border-left: thin solid #ccc;
+	
+}
+div.table table th {
+	border-bottom: 2px solid #999;
+}
+div.table table {
+	width: 90%;
+	border: 2px solid #333;
+	border-collapse: collapse;
+}
+img {
+	max-width: 90%;
+	margin-bottom: 1em;
+}
+
+.navheader > table, .navfooter > table {
+	font-family: sans-serif;
+	background: #eee;
+}
+.navheader > table {
+	border-bottom: thin solid #666;
+}
+.navfooter table {
+	position: fixed; 
+	height: 3em;
+	bottom: 0px;
+	border-top: thin solid #666;
+}
+hr {
+	display: none;
+}
+
+.navfooter hr {
+	display: block;
+	visibility: hidden;
+	height: 3em;
+}
+a {
+	color: #020;
+}
+a:hover {
+	color: #060;
+}
+
+/* Layout bound to specific docbook tags */
+span.term { 
+    font-weight: bold; 
+}
+span.strong {
+    font-weight: bold; 
+}
+
+
+pre.programlisting { 
+    background: #F0e0e0; 
+    border: 1px solid #666; 
+    color: #300;
+    padding: 2px; 
+    font-size: 10pt;
+    white-space: pre;
+}
+pre.screen {
+    background: #F0F0F0; 
+    border: 1px solid gray; 
+    padding: 2px; 
+    font-size: 10pt;
+    white-space: pre;
+}
+
+tt.filename {
+	font-weight: bold;
+	color: #600;
+}
+
+
+
+dl dt {
+	color: #060;
+	font-weight: bold;
+}
+dl dl dt {
+	font-weight: normal;
+}
+
+
