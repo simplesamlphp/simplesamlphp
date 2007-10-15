@@ -105,10 +105,33 @@ if (!$session->isAuthenticated() ) {
 
 	try {
 	
-		$session->add_sp_session($authnrequest->getIssuer());
+	
+		$spentityid = $authnrequest->getIssuer();
+		//$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
+		
+		
+	
+		if ($idpmeta['requireconsent']) {
+			
+			if (!isset($_GET['consent'])) {
+			
+				$t = new SimpleSAML_XHTML_Template($config, 'consent.php');
+				$t->data['header'] = 'Consent';
+				$t->data['spentityid'] = $spentityid;
+				$t->data['attributes'] = $session->getAttributes();
+				$t->data['consenturl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), 'consent=1');
+				$t->show();
+				exit(0);
+				
+			}
+			
+		}
+	
+	
+		$session->add_sp_session($spentityid);
 
 		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-		$authnResponseXML = $ar->generate($idpentityid, $authnrequest->getIssuer(), 
+		$authnResponseXML = $ar->generate($idpentityid, $spentityid, 
 			$requestid, null, $session->getAttributes());
 		
 		#echo $authnResponseXML;

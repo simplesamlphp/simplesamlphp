@@ -10,7 +10,7 @@
 $metadata = array( 
 
 	// The SAML entity ID is the index of this config.
-	'sp.example.org' => array(
+	'idp.example.org' => array(
 	
 		// The hostname of the server (VHOST) that this SAML entity will use.
 		'host'				=>	'sp.example.org',

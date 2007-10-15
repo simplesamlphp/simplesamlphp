@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+  <title>Using simpleSAMLphp as an identity provider</title>
+
+  <articleinfo>
+    <date>2007-10-15</date>
+
+    <pubdate>Mon Oct 15 16:54:09 2007</pubdate>
+
+    <author>
+      <firstname>Andreas Åkre</firstname>
+
+      <surname>Solberg</surname>
+
+      <email>andreas.solberg@uninett.no</email>
+    </author>
+  </articleinfo>
+
+  <section>
+    <title>Authentication modules</title>
+
+    <para>In the <filename>www/auth</filename> directory, you see multiple
+    files, each representing an authentication module. In the IdP hosted
+    metadata configuration you specify which authentication module that should
+    be used for that specific IdP. You can implement your own authentication
+    module, see <xref linkend="sect.customauth" />.</para>
+
+    <para>These authentication modules are included:</para>
+
+    <glosslist>
+      <glossentry>
+        <glossterm>auth/login.php</glossterm>
+
+        <glossdef>
+          <para>This is the standard LDAP backend authentication module, it
+          uses LDAP configuration from the config.php file.</para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>auth/login-ldapmulti.php</glossterm>
+
+        <glossdef>
+          <para>This authentication module lets you connect to multiple LDAPS
+          depending on what organization the user selects in the login
+          form.</para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>auth/login-radius.php</glossterm>
+
+        <glossdef>
+          <para>This authentication module will authenticate users against an
+          RADIUS server instead of LDAP.</para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>auth/login-auto.php</glossterm>
+
+        <glossdef>
+          <para>This module will automatically login the user with some test
+          details. You can use this to test the IdP functionality if you do
+          not have</para>
+
+          <para>This module is not completed yet. Work in progress.</para>
+        </glossdef>
+      </glossentry>
+    </glosslist>
+
+    <section>
+      <title>Configuring the LDAP authentication module</title>
+
+      <para>The LDAP module is <filename>auth/login.php</filename>.</para>
+
+      <para>If you want to perform local authentication on this server, and
+      you want to use the LDAP authenticaiton plugin, then you need to
+      configure the following parameters in
+      <filename>config.php</filename>:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><literal>auth.ldap.dnpattern</literal>: What DN should you
+          bind to? Replacing %username% with the username the user types
+          in.</para>
+        </listitem>
+
+        <listitem>
+          <para><literal>auth.ldap.hostname</literal>: The hostname of the
+          LDAP server</para>
+        </listitem>
+
+        <listitem>
+          <para><literal>auth.ldap.attributes</literal>: Search parameter to
+          LDAP. What attributes should be extracted?
+          <literal>objectclass=*</literal> gives you all.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Configuring the multi-LDAP authenticaiton module</title>
+
+      <para>The module is
+      <filename>auth/login-ldapmulti.php</filename>.</para>
+
+      <note>
+        <para>Documentation will be added later. For now, contact the
+        author.</para>
+      </note>
+    </section>
+  </section>
+
+  <section>
+    <title>Setting up a SSL signing certificate</title>
+
+    <para>For test purposes, you can skip this section, and use the included
+    certificate.</para>
+
+    <para>For a production system, uou must generate a new certificate for
+    your IdP. </para>
+
+    <warning>
+      <para>There is a certificate that follows this package that you can use
+      for test purposes, but off course <emphasis>NEVER</emphasis> use this in
+      production as the private key is also included in the package and can be
+      downloaded by anyone.</para>
+    </warning>
+
+    <para>Here is an examples of openssl commands to generate a new key and a
+    selfsigned certificate to use for signing SAML messages:</para>
+
+    <screen>openssl genrsa -des3 -out server2.key 1024 
+openssl rsa -in server2.key -out server2.pem
+openssl req -new -key server.key -out server2.csr
+openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt</screen>
+
+    <para>The certificate above will be valid for 60 days.</para>
+
+    <note>
+      <para>simpleSAMLphp will only work with RSA and not DSA
+      certificates.</para>
+    </note>
+  </section>
+
+  <section>
+    <title>Configuring metadata for an SAML 2.0 IdP</title>
+
+    <para>If you want to setup a SAML 2.0 IdP you need to configure two
+    metadata files: <filename>saml20-idp-hosted.php</filename> and
+    <filename>saml20-sp-remote.php</filename>.</para>
+
+    <section>
+      <title>Configuring SAML 2.0 IdP Hosted metadata</title>
+
+      <para>This is the configuration of the IdP itself. Here is some example
+      config:</para>
+
+      <programlisting>	// The SAML entity ID is the index of this config.
+	'idp.example.org' =&gt; array(
+	
+		// The hostname of the server (VHOST) that this SAML entity will use.
+		'host'				=&gt;	'sp.example.org',
+		
+		// X.509 key and certificate. Relative to the cert directory.
+		'privatekey'		=&gt;	'server.pem',
+		'certificate'		=&gt;	'server.crt',
+		
+		/* If base64attributes is set to true, then all attributes will be base64 encoded. Make sure
+		 * that you set the SP to have the same value for this.
+		 */
+		'base64attributes'	=&gt;	false,
+		
+		// Authentication plugin to use. login.php is the default one that uses LDAP.
+		'auth'				=&gt;	'auth/login.php'
+	)</programlisting>
+
+      <para>Here are some details of each of the parameters:</para>
+
+      <glosslist>
+        <glossentry>
+          <glossterm>index (index of array)</glossterm>
+
+          <glossdef>
+            <para>The entity ID of the IdP. In this example this value is set
+            to: <literal>idp.example.org</literal>.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>host</glossterm>
+
+          <glossdef>
+            <para>The hostname of the server running this IdP.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>privatekey</glossterm>
+
+          <glossdef>
+            <para>Pointing to the private key in PEM format, in the certs
+            directory.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>certificate</glossterm>
+
+          <glossdef>
+            <para>Pointing to the certificate file in PEM format, in the certs
+            directory.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>base64attributes</glossterm>
+
+          <glossdef>
+            <para>Do you want to encode all attributes in base64? If so,
+            remember to turn on the same option on the SP.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>auth</glossterm>
+
+          <glossdef>
+            <para>Which authentication module to use? Default is:
+            <filename>auth/login.php</filename> which is the LDAP
+            authentication module.</para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+    </section>
+
+    <section>
+      <title>Configuring SAML 2.0 SP Remote metadata</title>
+
+      <para>Here (saml20-sp-remote.php) you configure all SPs that you trust.
+      Here is an example:</para>
+
+      <programlisting>	/*
+	 * Example simpleSAMLphp SAML 2.0 SP
+	 */
+	'saml2sp.example.org' =&gt; array(
+ 		'AssertionConsumerService'		=&gt;	'https://saml2sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php', 
+ 		'SingleLogoutService'			=&gt;	'https://saml2sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
+		'spNameQualifier' 				=&gt;	'dev.andreas.feide.no',
+		'ForceAuthn'					=&gt;	'false',
+		'NameIDFormat'					=&gt;	'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+		'simplesaml.attributes'			=&gt;	true
+	),</programlisting>
+
+      <para>Here are some details about each of the parameters:;</para>
+
+      <glosslist>
+        <glossentry>
+          <glossterm>index (index of array)</glossterm>
+
+          <glossdef>
+            <para>The entity ID of the given SP. Here it is:
+            <literal>saml2sp.example.org</literal>.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>AssertionConsumerService</glossterm>
+
+          <glossdef>
+            <para>The URL of this SAML 2.0 endpoint. Ask the SP if you are
+            unsure. If the SP sent you SAML 2.0 metadata, you can find the
+            parameter in there.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>SingleLogoutService</glossterm>
+
+          <glossdef>
+            <para>The URL of this SAML 2.0 endpoint. Ask the SP if you are
+            unsure. If the SP sent you SAML 2.0 metadata, you can find the
+            parameter in there.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>spNameQualifier</glossterm>
+
+          <glossdef>
+            <para>The SP NameQualifier for this SP. If unsure, set it to the
+            same as the entityID.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>ForceAuthn</glossterm>
+
+          <glossdef>
+            <para>This basicly means you turn off SSO for this SP.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>NameIDFormat</glossterm>
+
+          <glossdef>
+            <para>Set it to the default: transient.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>simplesaml.attributes</glossterm>
+
+          <glossdef>
+            <para>Set to true to include attribtues, if not no attribute
+            statements will be sent.</para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+    </section>
+  </section>
+
+  <section>
+    <title>Configuring metadata for a Shibboleth 1.3 IdP</title>
+
+    <para>You need to configure the <filename>shib13-idp-hosted.php</filename>
+    metadata, as well as the list of trusted SPs in the
+    <filename>shib13-sp-remote-php</filename> metadata. This configuration is
+    very similar to the SAML 2.0 metadata mentioned in the previous section,
+    so go look there for now.</para>
+  </section>
+
+  <section>
+    <title>Test IdP</title>
+
+    <para>To test the IdP, it is best to configure two hosts with
+    simpleSAMLphp, and use the SP demo example to test the IdP.</para>
+
+    <tip>
+      <para>To make the initial test up and running with minimal hassle, use
+      the login-auto if you do not want to setup a user storage, and use the
+      included cert so you do not need to create a new certificate.</para>
+    </tip>
+  </section>
+
+  <appendix>
+    <title>Writing your own authentication module</title>
+
+    <para>You can write your own authentication module. Just copy one of the
+    files in the www/auth directory and play with it, then configure an IdP to
+    use that module with the auth parameter in the metadata. The file must
+    support incoming URL parameters, massage the session object with login
+    state information and return to the RelayState, and that is all you need
+    to do!</para>
+
+    <tip>
+      <para>Instead of changing the code of the builtin authentication module,
+      copy it into a new file and edit that. That way, your module will not be
+      replaced or in conflict when you upgrade simpleSAMLphp to a newer
+      version.</para>
+    </tip>
+
+    <section>
+      <title>Authentication API</title>
+
+      <para>The authentication plugin should be placed in the auth
+      directory.</para>
+
+      <para>The following parameters must be accepted in the incomming
+      URL:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><literal>RelayState</literal>: This is the URL that the user
+          should be sent back to after authentication within the
+          plugin.</para>
+        </listitem>
+
+        <listitem>
+          <para><literal>RequestID</literal>: This is the ID of an incomming
+          request.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>The initSSO.php takes in addition the following parameters:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><literal>idpentityid</literal>: This is the entityid of the
+          IdP to authenticate with. This parameter is optional, if not set the
+          default for this host will be used.</para>
+        </listitem>
+
+        <listitem>
+          <para><literal>spentityid</literal>: This is which SP config to use.
+          This parameter is optional, if not set the default for this host
+          will be used.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>In hosted IdP metadata there is a config parameter auth that will
+      tell simpleSAML which authentication plugin that can be used.</para>
+
+      <tip>
+        <para>The authentication API is pretty basic. The easiest way to
+        understand how it works is to look at one of the existing plugins that
+        is located in the auth directory of your installation.</para>
+      </tip>
+    </section>
+  </appendix>
+</article>

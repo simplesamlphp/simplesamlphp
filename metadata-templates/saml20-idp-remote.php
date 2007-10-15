@@ -14,6 +14,8 @@ $metadata = array(
 	 * Example simpleSAMLphp SAML 2.0 IdP
 	 */
 	'idp.example.org' =>  array(
+		'name'					=>	'Test',
+		'description'			=> 'Description of this example entry',
 		'SingleSignOnService'	=>	'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
 		'SingleLogoutService'	=>	'https://idp.example.org/simplesaml/saml2/idp/LogoutService.php',
 		'certFingerprint'		=>	'3fa158e8abfd4b5203315b08c0b791b6ee4715f6',

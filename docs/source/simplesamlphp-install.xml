@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-08-30</date>
 
-    <pubdate>Fri Sep 14 10:49:49 2007</pubdate>
+    <pubdate>Mon Oct 15 16:54:59 2007</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -21,19 +21,40 @@
   <section>
     <title>The history of simpleSAMLphp</title>
 
-    <para>simpleSAMLphp is based on code from <ulink
+    <para>simpleSAMLphp is an iteration of what was earlier referred to as
+    lightbulb (<ulink
     url="https://opensso.dev.java.net/public/extensions/">Sun OpenSSO
-    Extensions</ulink> (formerly known as Lightbulb).</para>
+    Extensions</ulink>), written by <ulink
+    url="http://blogs.sun.com/superpat/">Pat Patterson, Sun</ulink>. There are
+    not much code left from lightbulb, but credits go to Pat for introducing a
+    new way of thinking when it comes to implementing federation protocols in
+    a simple and elegant way.</para>
 
-    <para>The initial versions of the SAML 2.0 SP part was written by <ulink
-    url="http://blogs.sun.com/superpat/">Pat Patterson, Sun</ulink>.</para>
-
-    <para>The functionality has been extended and <ulink
+    <para>The simpleSAMLphp project is currently led by <ulink
     url="http://claimid.com/erlang">Andreas Åkre Solberg</ulink>, <ulink
-    url="http://uninett.no">UNINETT</ulink>, has rewritten the library and
-    added support for Shibboleth. The product is used to bridge AAI protocols
-    in the GÉANT project, <ulink
-    url="http://geant2.net">http://geant2.net</ulink>.</para>
+    url="http://uninett.no">UNINETT</ulink>.</para>
+
+    <para>The product is used to bridge AAI protocols in the GÉANT project,
+    <ulink url="http://geant2.net">http://geant2.net</ulink>.</para>
+
+    <para>We have received a bunch of external contributions.</para>
+
+    <section>
+      <title>Contributors</title>
+
+      <para>Thank you very much for your contributions to
+      simpleSAMLphp:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Lukas Hammerle, SWITCH, Switzerland</para>
+        </listitem>
+
+        <listitem>
+          <para>Stefan Winter, Restena, Luxemborg</para>
+        </listitem>
+      </itemizedlist>
+    </section>
   </section>
 
   <section>
@@ -47,7 +68,16 @@
 
       <para>Released . Revision X.</para>
 
+      <warning>
+        <para>Both config.php and metadata format is changed. Look at the
+        templates to understand the new format.</para>
+      </warning>
+
       <itemizedlist>
+        <listitem>
+          <para>Documentation is updated!</para>
+        </listitem>
+
         <listitem>
           <para>Metadata files have been more tidy. Removed unused entries.
           Look at the new templates on how to change your existing
@@ -78,6 +108,20 @@
 
         <listitem>
           <para>SAML 2.0 SP example now contains a logout page.</para>
+        </listitem>
+
+        <listitem>
+          <para>Added new authentication backend with support for multiple
+          LDAP based on which organization the user selects.</para>
+        </listitem>
+
+        <listitem>
+          <para>Added SAML 2.0 Discovery Service</para>
+        </listitem>
+
+        <listitem>
+          <para>Initial proof of concept implementation of "User consent on
+          attribute release"</para>
         </listitem>
 
         <listitem>
@@ -158,10 +202,23 @@
   </section>
 
   <section>
-    <title>Download and get simpleSAMLphp</title>
+    <title>News about simpleSAMLphp</title>
+
+    <para>To get the latest news about simpleSAMLphp you can follow this url:
+    <ulink
+    url="http://rnd.feide.no/category/simplesamlphp/">http://rnd.feide.no/category/simplesamlphp/</ulink>.</para>
+
+    <para>Currently simpleSAMLphp has a project page at Google Code:</para>
+
+    <para><ulink
+    url="http://code.google.com/p/simplesamlphp/">http://code.google.com/p/simplesamlphp/</ulink></para>
+  </section>
+
+  <section>
+    <title>Download and install simpleSAMLphp</title>
 
     <para>You can go to <ulink
-    url="http://rnd.feide.no/category/simplesamlphp/">http://rnd.feide.no/category/simplesamlphp/</ulink>
+    url="http://code.google.com/p/simplesamlphp/">code.google.com/p/simplesamlphp/</ulink>
     to find the most recent release of simpleSAMLphp. Download the zipped
     file, and unzip it on your webserver. However I hightly reccomend running
     from a subversion checkout instead.</para>
@@ -169,74 +226,21 @@
     <section>
       <title>Getting a working copy of simpleSAMLphp from subversion</title>
 
-      <warning>
-        <para>Right now the subversion repository is requiring a username /
-        password. I'll update the access control, so that everyone can get
-        read access without authentication. I'll announce it on the rnd blog
-        when it is ready.</para>
-      </warning>
+      <para>Go to the directory where you want to install
+      simpleSAMLphp:</para>
 
-      <para>If you want a working copy from subversion enter:</para>
+      <screen>cd /var</screen>
 
-      <screen>svn co https://svn.uninett.no/svn/feidernd/simplesamlphp</screen>
+      <para>Then do a subversion checkout:</para>
+
+      <screen>svn checkout http://simplesamlphp.googlecode.com/svn/trunk/ simplesamlphp</screen>
 
       <para>If you know subversion you know how to view logs and review
       changes to the files. To update the version you have checked out,
       enter:</para>
 
-      <screen>cd simplesamlphp
+      <screen>cd /var/simplesamlphp
 svn up</screen>
-    </section>
-  </section>
-
-  <section>
-    <title>Installing simpleSAMLphp</title>
-
-    <para>First find an appropriate place for the <filename>simplesamlphp
-    </filename>folder. In example
-    <filename>/var/simplesamlphp</filename>.</para>
-
-    <para>Of the folders inside simplesamlphp, only the www folder needs to be
-    accessible from the web. There are several ways of putting the
-    simpleSAMLphp depending on the way web sites are structured on your apache
-    web server. Here is what I believe is the best configuration.</para>
-
-    <para>Find the apache configuration file for the virtual hosts that you
-    want to run simpleSAML on. The configuration may look like this:</para>
-
-    <programlisting>&lt;VirtualHost  *&gt;
-        ServerName service.example.com
-        DocumentRoot /var/www/service.example.com
-
-        Alias /simplesamlphp /var/simplesamlphp/www
-&lt;/VirtualHost&gt;
-</programlisting>
-
-    <para>What is special is tha Alias directive. That directive will give
-    control to simplesamlphp to all urls that matches
-    <literal>http(s)://service.example.com/simplesamlphp/*</literal>.
-    SimpleSAML will need to have several SAML interfaces available on the web,
-    and all these interfaces are included in the www subdirectory of your
-    simplesamlphp installation. You can set the alias to whatever you want,
-    but this alias must be set in the config.php file of simpleSAML as
-    described in <xref linkend="sect.config" />. Here is an example of how
-    this configuration may look like in config.php:</para>
-
-    <programlisting>$config = array (
-	'basedir' 				=&gt; '/var/simplesamlphp/',
-	'baseurl'				=&gt; 'http://service.example.com',
-	'baseurlpath'			=&gt; 'simplesamlphp/',</programlisting>
-
-    <section>
-      <title>The simpleSAMLphp installation webpage</title>
-
-      <para>When you have installed simpleSAMLphp, you can access the homepage
-      of your installation, which contains some information and a few links to
-      the test services. The url of an installation can be in example:</para>
-
-      <literallayout>https://service.example.com/simplesamlphp/</literallayout>
-
-      <para>But it depends on how you set it up with apache.</para>
     </section>
   </section>
 
@@ -260,373 +264,122 @@ cp -r metadata-templates/*.php metadata/
 </screen>
   </section>
 
-  <section id="sect.config">
-    <title>Configuring simpleSAMLphp</title>
+  <section>
+    <title>Configuring apache</title>
 
-    <para>First configure all the paths in the beginning of the config file,
-    to correspond to your organization of the apache web server, and where you
-    place simpleSAMLphp.</para>
+    <para>In this example simpleSAMLphp is located in
+    <filename>/var/simplesamlphp</filename>, that is the default location. If
+    you want to modify this location, you can do so freely, but then you need
+    to update the path in a few files. <link linkend="sect.altlocations">I
+    wrote a separate chapter about that, read on</link>.</para>
 
-    <para>You will need to set the entityid of a default IdP in
-    <literal>default-saml20-idp</literal> or
-    <literal>default-shib13-idp</literal> depending on whether you use
-    shibboleth or SAML 2.0.</para>
+    <para>Of the folders inside simplesamlphp, only the www folder needs to be
+    accessible from the web. There are several ways of putting the
+    simpleSAMLphp depending on the way web sites are structured on your apache
+    web server. Here is what I believe is the best configuration.</para>
 
-    <para>There is one parameter debug that may be set to true or false. If
-    you set it to true, then all Browser/POST SAML messages will be printed to
-    the web browser, and the user will have to manually submit it.</para>
+    <para>Find the apache configuration file for the virtual hosts that you
+    want to run simpleSAML on. The configuration may look like this:</para>
 
-    <para>The session.duration parameter says how many seconds that a session
-    should be valid. After this amont of time, the session is not valid
-    anymore.</para>
+    <programlisting>&lt;VirtualHost  *&gt;
+        ServerName service.example.com
+        DocumentRoot /var/www/service.example.com
 
-    <section>
-      <title>Configuration for LDAP authentication plugin</title>
+        Alias /simplesaml /var/simplesamlphp/www
+&lt;/VirtualHost&gt;
+</programlisting>
 
-      <para>If you want to perform local authentication on this server, and
-      you want to use the LDAP authenticaiton plugin, then you need to
-      configure the following parameters:</para>
+    <para>What is special is the <literal>Alias</literal> directive. That
+    directive will give control to simpleSAMLphp for all urls that matches
+    <literal>http(s)://service.example.com/simplesaml/*</literal>.
+    simpleSAMLphp will need to have several SAML interfaces available on the
+    web, and all these interfaces are included in the <filename>www</filename>
+    subdirectory of your simpleSAMLphp installation. You can set the alias to
+    whatever you want, but this alias must be set in the
+    <filename>config.php</filename> file of simpleSAML as described in <xref
+    linkend="sect.config" />. Here is an example of how this configuration may
+    look like in <filename>config.php</filename>:</para>
 
-      <itemizedlist>
-        <listitem>
-          <para><literal>auth.ldap.dnpattern</literal>: What DN should you
-          bind to? Replacing %username% with the username the user types
-          in.</para>
-        </listitem>
-
-        <listitem>
-          <para><literal>auth.ldap.hostname</literal>: The hostname of the
-          LDAP server</para>
-        </listitem>
-
-        <listitem>
-          <para><literal>auth.ldap.attributes</literal>: Search parameter to
-          LDAP. What attributes should be extracted?
-          <literal>objectclass=*</literal> gives you all.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
+    <programlisting>$config = array (
+[...]
+	'baseurlpath'			=&gt; 'simplesaml/',</programlisting>
   </section>
 
   <section>
-    <title>Setting up a SAML 2.0 SP</title>
+    <title>The simpleSAMLphp installation webpage</title>
 
-    <para>This functionality is relevant if you want to integrate SAML 2.0
-    authentication on a service of yours, and you know one or more IdPs that
-    you can connect to. You would need metadata for those IdPs.</para>
+    <para>When you have installed simpleSAMLphp, you can access the homepage
+    of your installation, which contains some information and a few links to
+    the test services. The url of an installation can be in example:</para>
 
-    <section>
-      <title>Configuring metadata for a SAML 2.0 SP</title>
+    <literallayout>https://service.example.com/simplesaml/</literallayout>
 
-      <para>To configure a SAML 2.0 SP, you first need to configure the SP
-      data for all your vhosts. If you run only one host, you need only one
-      entry. This metadata is stored in the
-      <filename>metadata/saml20-sp-hosted.php</filename> file. Here is an
-      example of a metadata:</para>
+    <para>The exact link depends on how you set it up with apache and off
+    course your hostname.</para>
 
-      <programlisting>	"dev.andreas.feide.no" =&gt; array(
-		'host'							=&gt;	'dev.andreas.feide.no',
- 		"assertionConsumerServiceURL"	=&gt;	"http://dev.andreas.feide.no/saml2/sp/AssertionConsumerService.php", 
-		"issuer"						=&gt;	"dev.andreas.feide.no",
-		"spNameQualifier" 				=&gt;	"dev.andreas.feide.no",
-		"ForceAuthn"					=&gt;	"false",
-		"NameIDFormat"					=&gt;	"urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
-	),</programlisting>
+    <warning>
+      <para>Don't click on any of the links yet, because they require you to
+      eigther have setup simpleSAMLphp as an Service Provider or as an
+      Identity Provider.</para>
+    </warning>
 
-      <para>Note that you should fill in the host field matching the hostname
-      of your vhost. That way simpleSAMLphp can automatically detect what SP
-      metadata to use based on the <literal>Host:</literal> header sent by the
-      HTTP user agent.</para>
+    <para>Here is an example screenshot of what the simpleSAMLphp page looks
+    like:</para>
 
-      <para>You also need to configure the metadata for the IdP that you want
-      to use. Here is a metadata example for the Feide IdP:</para>
+    <figure>
+      <title>Screenshot of the simpleSAMLphp installation page.</title>
 
-      <programlisting>	"sam.feide.no" =&gt;  array( 
-			"SingleSignOnUrl"	=&gt;	"https://sam.feide.no/amserver/SSORedirect/metaAlias/idp",
-		 	"SingleLogOutUrl"	=&gt;	"https://sam.feide.no/amserver/IDPSloRedirect/metaAlias/idp",
-		 	"certFingerprint"	=&gt;	"3a:e7:d3:d3:06:ba:57:fd:7f:62:6a:4b:a8:64:b3:4a:53:d9:5d:d0",
-		 	"base64attributes"	=&gt;	true),</programlisting>
-
-      <para>The IdP metadata is stored in the
-      <filename>metadata/saml20-idp-remote.php</filename> file. Configure the
-      correct URLs of the endpoints, the hash of the certificate, and whether
-      the IdP is base64 encoding attributes or not. Most IdPs don't use
-      base64, so if you do not connect to Feide you should turn this parameter
-      to <literal>false</literal>. Notice that the key of the array is the
-      entity id of the IdP, in this example:
-      <literal>sam.feide.no</literal>.</para>
-    </section>
-
-    <section>
-      <title>Test the SAML 2.0 SP example</title>
-
-      <para>Go to the URL of the test page, similar to:</para>
-
-      <literallayout>http://service.example.com/simplesamlphp/example-simple/saml2-example.php</literallayout>
-
-      <note>
-        <para>The simpleSAMLphp installation homepage will link you to this
-        example, so you do not need to type in the full url.</para>
-      </note>
-
-      <para>You should be redirected to the IdP. Login, and you should be sent
-      back and shown all the attributes sent form the IdP.</para>
-    </section>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="resources/simplesamlphp-install/screenshot-installationpage.png" />
+          </imageobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
   </section>
 
   <section>
-    <title>Setting up a Shibboleth 1.3 SP</title>
+    <title>Next steps</title>
 
-    <para>If you want to configure a service with authentication towards an
-    external Shibboleth 1.3 IdP, this section describes you how to
-    proceed.</para>
-
-    <section>
-      <title>Configuring metadata for Shibboleth 1.3 SP</title>
-
-      <para>Configure Shibboleth 1.3 SP metadata for all your vhosts. If you
-      run only one host, you need only one entry. This metadata is stored in
-      the <filename>metadata/shib13-sp-hosted.php</filename> file. Here is an
-      example:</para>
-
-      <programlisting>	'http://dev.andreas.feide.no'	=&gt; array(
-		'AssertionConsumerService'	=&gt;	'http://dev.andreas.feide.no/shib13/sp/AssertionConsumerService.php',
-		'host'						=&gt;	'dev.andreas.feide.no'
-	),</programlisting>
-
-      <para>Note that you should fill in the host field matching the hostname
-      of your vhost. That way simpleSAMLphp can automatically detect what SP
-      metadata to use based on the <literal>Host:</literal> header sent by the
-      HTTP user agent.</para>
-
-      <para>You also need to configure the metadata for the Shibboleth 1.3
-      IdPs that you want to connect to. Here is an example:</para>
-
-      <programlisting>	'urn:mace:switch.ch:aaitest:dukono.switch.ch'	=&gt; array(
-		'SingleSignOnUrl'		=&gt;	'https://dukono.switch.ch/shibboleth-idp/SSO',
-		'certFingerprint'		=&gt;	'c7279a9f28f11380509e075441e3dc55fb9ab864' 
-	),</programlisting>
-
-      <para>Notice that the key of the array is the entity ID.</para>
-    </section>
-
-    <section>
-      <title>Test the Shibboleth 1.3 SP example</title>
-
-      <para>Go to the URL of the shibboleth test page, similar to:</para>
-
-      <literallayout>http://service.example.com/example-simple/shib13-example.php</literallayout>
-
-      <para>You should be redirected to the IdP. Login, and you should be sent
-      back and shown all the attributes sent form the IdP.</para>
-
-      <note>
-        <para>simpleSAMLphp does not support the attribute profile that
-        Shibboleth is using by default. To make attributes work, you need to
-        configure the IdP to perform attribute push.</para>
-      </note>
-    </section>
-  </section>
-
-  <section>
-    <title>Setting up a SAML 2.0 IdP</title>
-
-    <para>If you have a user database and want to offer a SAML 2.0 IdP
-    functinoality towards external services, here is how you set it up.</para>
-
-    <section>
-      <title>Configuring the SAML 2.0 IdP</title>
-
-      <para>Setup idp metadata in saml20-idp-hosted. Then for all the SP the
-      IdP shold trust in saml20-sp-remote. Then configure in config.php, ldap
-      DN patterns, ldap host etc. Next add a certificate with openssl.</para>
-
-      <para>Example config.php:</para>
-
-      <programlisting>	'auth.ldap.dnpattern'	=&gt; 'uid=%username%,dc=feide,dc=no,ou=feide,dc=uninett,dc=no',
-	'auth.ldap.hostname'	=&gt; 'ldap.uninett.no',
-	'auth.ldap.attributes'	=&gt; 'objectclass=*'</programlisting>
-
-      <para>Example IdP Metadata saml20-idp-hosted:</para>
-
-      <programlisting>	'dev2.andreas.feide.no' =&gt; array(
-		'host'				=&gt;	'dev2.andreas.feide.no',
-		'SingleSignOnUrl'	=&gt;	"http://dev2.andreas.feide.no/saml2/idp/SSOService.php",
-		'SingleLogOutUrl'	=&gt;	"http://dev2.andreas.feide.no/saml2/idp/LogoutService.php",
-		'privatekey'		=&gt;	'server.pem',
-		'certificate'		=&gt;	'server.crt',
-		'base64attributes'	=&gt;	true,
-		'auth'				=&gt;	'auth/login.php'
-	)</programlisting>
-
-      <para>The server.pem and server.crt is an example certificate shipped
-      with the package, and be used for demo purposes, but you must generate
-      your own to use in production services.</para>
-
-      <para>You also need to configure metadata for trusted SPs, here is an
-      example:</para>
-
-      <programlisting>_	"dev.andreas.feide.no" =&gt; array(
-		'host'							=&gt;	'dev.andreas.feide.no',
- 		"assertionConsumerServiceURL"	=&gt;	"http://dev.andreas.feide.no/saml2/sp/AssertionConsumerService.php", 
-		"issuer"						=&gt;	"dev.andreas.feide.no",
-		"spNameQualifier" 				=&gt;	"dev.andreas.feide.no",
-		"ForceAuthn"					=&gt;	"false",
-		"NameIDFormat"					=&gt;	"urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
-	),</programlisting>
-    </section>
-
-    <section>
-      <title>Adding a SAML IdP signing certificate</title>
-
-      <para>You should generate a new certificate for your IdP.</para>
-
-      <warning>
-        <para>There is a certificate that follows this package that you can
-        use for test purposes, but off course NEVER use this in production as
-        the private key is also included in the package and can be downloaded
-        by anyone.</para>
-      </warning>
-
-      <para>Here is an examples of openssl commands to generate a new key and
-      a selfsigned certificate to use for signing SAML messages:</para>
-
-      <screen>openssl genrsa -des3 -out server2.key 1024 
-openssl rsa -in server2.key -out server2.pem
-openssl req -new -key server.key -out server2.csr
-openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt</screen>
-
-      <para>The certificate above will be valid for 60 days.</para>
-
-      <note>
-        <para>simpleSAMLphp will only work with RSA and not DSA
-        certificates.</para>
-      </note>
-    </section>
-
-    <section>
-      <title>Test SAML 2.0 IdP</title>
-
-      <para>To test the SAML 2.0 IdP, it is best to configure two hosts with
-      simpleSAMLphp, and use the SAML 2.0 SP demo example to test the
-      IdP.</para>
-    </section>
-  </section>
-
-  <section>
-    <title>Using the built-in SP WAYF functionality</title>
-
-    <para>The WAYF is not yet a part of the simpleSAMLphp release. This
-    functionality will be added soon.</para>
-  </section>
-
-  <section>
-    <title>Setting up WebSSO bridges</title>
-
-    <para>simpleSAMLphp can be used to bridge between two WebSSO protocols.
-    Here is some short descriptions of how to setup the different bridge
-    configurations.</para>
-
-    <section>
-      <title>Bridging SAML 2.0 &lt;-&gt; SAML 2.0</title>
-
-      <para>In this setup you can bridge between two federations using SAML
-      2.0.</para>
-
-      <para>To approach this, you must configure both saml 2.0 IdP and SP
-      hosted metadata, and in the IdP hosted metadata configure the auth
-      parameter to be the SP initialization endpoint, like this:</para>
-
-      <screen>		'auth'				=&gt;	'saml2/sp/initSSO.php?idpentityid=sam.feide.no'</screen>
-
-      <para>As you can see you specify the IdP in the remote federation as a
-      parameter to the initalization endpoint.</para>
-
-      <note>
-        <para>This section of the documentation is only a placeholder. There
-        will be more detailed information added later. For now, ask the author
-        if you want more details of such a setup.</para>
-
-        <para>Briding SAML 2.0 SLO is not implemented. Will be improved
-        soon.</para>
-      </note>
-    </section>
-
-    <section>
-      <title>Bridging Shibboleth 1.3 &lt;-&gt; Shibboleth 1.3</title>
-
-      <para>Will be supported soon.</para>
-    </section>
-
-    <section>
-      <title>Bridging Shibboleth 1.3 &lt;-&gt; SAML 2.0</title>
-
-      <para>Will be supported soon.</para>
-    </section>
-
-    <section>
-      <title>Bridging SAML 2.0 &lt;-&gt; Shibboleth 1.3</title>
-
-      <para>Will be supported soon.</para>
-    </section>
-
-    <section>
-      <title>Bridging SAML 2.0 &lt;-&gt; OpenID</title>
-
-      <para>Will be supported soon.</para>
-    </section>
-
-    <section>
-      <title>Bridging Shibboelth 1.3 &lt;-&gt; OpenID</title>
-
-      <para>Will be supported soon.</para>
-    </section>
-  </section>
-
-  <section>
-    <title>Authentication API</title>
-
-    <para>The authentication plugin should be placed in the auth
-    directory.</para>
-
-    <para>The following parameters must be accepted in the incomming
-    URL:</para>
+    <para>You have now successfully installed simpleSAMLphp, and the next
+    steps depends on whether you want to setup a service provider, to protect
+    a website with authentication or if you want to setup an identity provider
+    and connect it to a user storage. We will also provide documentation on
+    bridging federation protocols in a separate document.</para>
 
     <itemizedlist>
       <listitem>
-        <para><literal>RelayState</literal>: This is the URL that the user
-        should be sent back to after authentication within the plugin.</para>
+        <para><ulink url="simplesamlphp-sp.html">Setting up simpleSAMLphp as a
+        service provider</ulink></para>
       </listitem>
 
       <listitem>
-        <para><literal>RequestID</literal>: This is the ID of an incomming
-        request.</para>
+        <para><ulink url="simplesamlphp-idp.html">Setting up simpleSAMLphp as
+        an identity provider</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="simplesamlphp-bridge.html">Setting up simpleSAMLphp
+        as a bridge</ulink></para>
       </listitem>
     </itemizedlist>
-
-    <para>The initSSO.php takes in addition the following parameters:</para>
-
-    <itemizedlist>
-      <listitem>
-        <para><literal>idpentityid</literal>: This is the entityid of the IdP
-        to authenticate with. This parameter is optional, if not set the
-        default for this host will be used.</para>
-      </listitem>
-
-      <listitem>
-        <para><literal>spentityid</literal>: This is which SP config to use.
-        This parameter is optional, if not set the default for this host will
-        be used.</para>
-      </listitem>
-    </itemizedlist>
-
-    <para>In hosted IdP metadata there is a config parameter auth that will
-    tell simpleSAML which authentication plugin that can be used.</para>
-
-    <tip>
-      <para>The authentication API is pretty basic. The easiest way to
-      understand how it works is to look at one of the existing plugins that
-      is located in the auth directory of your installation.</para>
-    </tip>
   </section>
+
+  <appendix id="sect.altlocations">
+    <title>Installing simpleSAMLphp in alternative locations</title>
+
+    <para>If you want to install simpleSAMLphp in an alternative directory,
+    feel free to do so. You need to set the path of the installation directory
+    in the config.php file:</para>
+
+    <programlisting>$config = array (
+[...]
+	'basedir' 				=&gt; '/usr/local/simplesaml/simplesamlphp',</programlisting>
+
+    <para>And you also need to modify the Alias directive in the apache
+    configuration:</para>
+
+    <programlisting>        Alias /simplesaml /usr/local/simplesaml/simplesamlphp/www</programlisting>
+  </appendix>
 </article>
