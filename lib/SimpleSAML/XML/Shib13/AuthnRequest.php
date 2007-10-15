@@ -97,7 +97,7 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 		$spmetadata = $this->metadata->getMetaData($this->getIssuer(), 'shib13-sp-hosted');
 	
 		$desturl = $idpmetadata['SingleSignOnUrl'];
-		$shire = $spmetadata['AssertionConsumerService'];
+		$shire = $this->metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted');
 		$target = $this->getRelayState();
 		
 		$url = $desturl . '?' .

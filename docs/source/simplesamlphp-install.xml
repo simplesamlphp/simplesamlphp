@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-08-30</date>
 
-    <pubdate>Mon Oct 15 16:54:59 2007</pubdate>
+    <pubdate>Fri Sep 14 10:49:49 2007</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -66,11 +66,11 @@
     <section>
       <title>Version 0.5</title>
 
-      <para>Released . Revision X.</para>
+      <para>Released 2007-10-15. Revision 28.</para>
 
       <warning>
-        <para>Both config.php and metadata format is changed. Look at the
-        templates to understand the new format.</para>
+        <para>Both <filename>config.php</filename> and metadata format is
+        changed. Look at the templates to understand the new format.</para>
       </warning>
 
       <itemizedlist>
@@ -94,7 +94,8 @@
         </listitem>
 
         <listitem>
-          <para>Added support for Shibboleth 1.3 IdP functionality.</para>
+          <para>Added support for Shibboleth 1.3 IdP functionality (beta,
+          contact me if any problems)</para>
         </listitem>
 
         <listitem>
