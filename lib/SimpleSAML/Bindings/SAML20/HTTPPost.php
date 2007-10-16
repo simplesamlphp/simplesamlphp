@@ -188,8 +188,12 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 	}
 	
 	public function decodeResponse($post) {
+		if (!isset($post["SAMLResponse"])) throw new Exception('Could not get SAMLResponse from Browser/POST. May be there is some redirection related problem on your server? In example apache redirecting the POST to http to a GET on https.');
+		
 		$rawResponse = 	$post["SAMLResponse"];
 		$relaystate = 	$post["RelayState"];
+		
+
 		
 		$samlResponseXML = base64_decode( $rawResponse );
 		
