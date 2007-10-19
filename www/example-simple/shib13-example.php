@@ -16,7 +16,7 @@ $session = SimpleSAML_Session::getInstance();
 
 if (!isset($session) || !$session->isValid() ) {
 	
-	header('Location: ' . $config->getValue('baseurlpath') . '/shib13/sp/initSSO.php?RelayState=' . urlencode(SimpleSAML_Utilities::selfURL()));
+	header('Location: /' . $config->getValue('baseurlpath') . 'shib13/sp/initSSO.php?RelayState=' . urlencode(SimpleSAML_Utilities::selfURL()));
 		// . '&idpentityid=' . $idpentityid );
 	exit(0);
 }
