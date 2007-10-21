@@ -77,7 +77,7 @@ if (!isset($session) || !$session->isValid() ) {
 } else {
 	
 	
-	$relaystate = $session->getRelayState();
+	$relaystate = $_GET['RelayState'];
 		
 	if (isset($relaystate) && !empty($relaystate)) {
 		header('Location: ' . $relaystate );

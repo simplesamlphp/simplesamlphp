@@ -7,6 +7,7 @@ require_once('../../../www/_include.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/XML/MetaDataStore.php');
+require_once('SimpleSAML/XML/AttributeFilter.php');
 require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
 require_once('SimpleSAML/XML/SAML20/AuthnResponse.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
@@ -107,9 +108,11 @@ if (!$session->isAuthenticated() ) {
 	
 	
 		$spentityid = $authnrequest->getIssuer();
-		//$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
+		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
 		
-		
+		/*
+		 * Dealing with attribute release consent.
+		 */
 	
 		if ($idpmeta['requireconsent']) {
 			
@@ -127,24 +130,34 @@ if (!$session->isAuthenticated() ) {
 			
 		}
 	
-	
+		// Adding this service provider to the list of sessions.
 		$session->add_sp_session($spentityid);
 
+
+		/*
+		 * Filtering attributes.
+		 */
 		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
+		$afilter = new SimpleSAML_XML_AttributeFilter($config, $session->getAttributes());
+		if (isset($spmetadata['attributemap'])) {
+			$afilter->namemap($spmetadata['attributemap']);
+		}
+		if (isset($spmetadata['attributes'])) {
+			$afilter->filter($spmetadata['attributes']);
+		}
+		$filteredattributes = $afilter->getAttributes();
+		
+		// Generate an SAML 2.0 AuthNResponse message
 		$authnResponseXML = $ar->generate($idpentityid, $spentityid, 
-			$requestid, null, $session->getAttributes());
-		
-		#echo $authnResponseXML;
-		#print_r($session);
-		
-		//sendResponse($response, $idpentityid, $spentityid, $relayState = null) {
+			$requestid, null, $filteredattributes);
+	
+		// Sending the AuthNResponse using HTTP-Post SAML 2.0 binding
 		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
-		
-		//echo 'Relaystate[' . $authnrequest->getRelayState() . ']';
-		
 		$httppost->sendResponse($authnResponseXML, 
 			$idpentityid, $authnrequest->getIssuer(), $authnrequest->getRelayState());
-			
+		
+		
+		
 	} catch(Exception $exception) {
 		
 		$et = new SimpleSAML_XHTML_Template($config, 'error.php');

@@ -15,6 +15,7 @@ $config = array (
 	'baseurlpath'			=> 'simplesaml/',
 	'templatedir'			=> 'templates/',
 	'metadatadir'			=> 'metadata/',
+	'attributenamemapdir'	=> 'attributemap/',
 	
 	/*
 	 * If you set the debug parameter to true, all SAML messages will be visible in the
@@ -28,6 +29,9 @@ $config = array (
 	 * cookies both at the SP and the IdP exceeds this duration.
 	 */
 	'session.duration'		=>  8 * (60*60), // 8 hours.
+	
+	'language.available'	=> array('en', 'no'),
+	'language.default'		=> 'en',
 	
 	/*
 	 * Default IdPs. If you do not enter an idpentityid in the SSO initialization endpoints,
