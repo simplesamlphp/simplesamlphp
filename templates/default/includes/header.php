@@ -47,3 +47,26 @@ h6 {font-size: 96%}
 <body>
 
 <div id="wrap">
+
+
+<?php 
+
+$languages = $this->getLanguageList();
+$langnames = array(
+	'no'	=>	'Norsk',
+	'en'	=>	'English',
+	'de'	=>	'Deutch',
+	'dk'	=>	'Dansk'
+);
+
+
+foreach ($languages AS $lang => $current) {
+	if ($current) {
+		echo $langnames[$lang] . ' | ';
+	} else {
+		echo '<a href="' . SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), 'language=' . $lang) . '">' . 
+			$langnames[$lang] . '</a> | ';
+	}
+}
+
+?>

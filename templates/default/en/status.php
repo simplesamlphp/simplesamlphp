@@ -1,4 +1,4 @@
-<?php include('includes/header.php'); ?>
+<?php $this->includeAtTemplateBase('includes/header.php'); ?>
 
 	<div id="header">
 		<h1>simpleSAMLphp status page</h1>
@@ -15,7 +15,6 @@
 		
 		<h2>Your attributes</h2>
 		
-
 			<table>
 			<?php
 			
@@ -43,4 +42,4 @@
 		<p>Hey! This simpleSAMLphp thing is pretty cool, where can I read more about it?
 		You can find more information about simpleSAMLphp at <a href="http://rnd.feide.no">the Feide RnD blog</a> over at <a href="http://uninett.no">UNINETT</a>.</p>
 		
-<?php include('includes/footer.php'); ?>
+<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
