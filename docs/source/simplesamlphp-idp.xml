@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Mon Oct 15 16:54:09 2007</pubdate>
+    <pubdate>Sun Oct 21 13:49:41 2007</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -121,7 +121,7 @@
     certificate.</para>
 
     <para>For a production system, uou must generate a new certificate for
-    your IdP. </para>
+    your IdP.</para>
 
     <warning>
       <para>There is a certificate that follows this package that you can use
@@ -345,6 +345,22 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
       the login-auto if you do not want to setup a user storage, and use the
       included cert so you do not need to create a new certificate.</para>
     </tip>
+  </section>
+
+  <section>
+    <title>Support</title>
+
+    <para>If you have problems to get this work, or want to discuss
+    simpleSAMLphp with other users of the software you are lucky! Around
+    simpleSAMLphp there is a great Open source community, and you are welcome
+    to join! Both for asking question, answer other questions, request
+    improvements or contribute with code or plugins of your own.</para>
+
+    <para>Visit the project page of simpleSAMLphp at: <ulink
+    url="http://code.google.com/p/simplesamlphp/">http://code.google.com/p/simplesamlphp/</ulink></para>
+
+    <para>And please join the mailinglist: <ulink
+    url="???">https://postlister.uninett.no/sympa/subscribe/simplesaml</ulink></para>
   </section>
 
   <appendix>

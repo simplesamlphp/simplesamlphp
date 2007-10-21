@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Mon Oct 15 16:55:49 2007</pubdate>
+    <pubdate>Sun Oct 21 13:50:29 2007</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -225,8 +225,7 @@
       <programlisting>	'default-saml20-idp'	=&gt;	'sam.feide.no',</programlisting>
 
       <para>The configuration above will use the IdP configured in IdP Remote
-      metadata with entity ID equal to <literal>sam.feide.no</literal>.
-      </para>
+      metadata with entity ID equal to <literal>sam.feide.no</literal>.</para>
     </section>
 
     <section>
@@ -484,5 +483,21 @@ if (!isset($session) || !$session-&gt;isValid() ) {
 $attributes = $session-&gt;getAttributes();
 print_r($attributes);
 </programlisting>
+  </section>
+
+  <section>
+    <title>Support</title>
+
+    <para>If you have problems to get this work, or want to discuss
+    simpleSAMLphp with other users of the software you are lucky! Around
+    simpleSAMLphp there is a great Open source community, and you are welcome
+    to join! Both for asking question, answer other questions, request
+    improvements or contribute with code or plugins of your own.</para>
+
+    <para>Visit the project page of simpleSAMLphp at: <ulink
+    url="http://code.google.com/p/simplesamlphp/">http://code.google.com/p/simplesamlphp/</ulink></para>
+
+    <para>And please join the mailinglist: <ulink
+    url="???">https://postlister.uninett.no/sympa/subscribe/simplesaml</ulink></para>
   </section>
 </article>
