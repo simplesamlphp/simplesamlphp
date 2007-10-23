@@ -7,6 +7,7 @@ require_once('../../../www/_include.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/XML/MetaDataStore.php');
+require_once('SimpleSAML/XML/AttributeFilter.php');
 require_once('SimpleSAML/XML/Shib13/AuthnRequest.php');
 require_once('SimpleSAML/XML/Shib13/AuthnResponse.php');
 require_once('SimpleSAML/Bindings/Shib13/HTTPPost.php');
@@ -117,9 +118,28 @@ if (!$session->isAuthenticated() ) {
 
 		//$session->setAttribute('eduPersonAffiliation', array('student'));
 
+
+
+		/*
+		 * Filtering attributes.
+		 */
+		$afilter = new SimpleSAML_XML_AttributeFilter($config, $session->getAttributes());
+		if (isset($spmetadata['attributemap'])) {
+			$afilter->namemap($spmetadata['attributemap']);
+		}
+		if (isset($spmetadata['attributes'])) {
+			$afilter->filter($spmetadata['attributes']);
+		}
+		$filteredattributes = $afilter->getAttributes();
+		
+
+
+
+		// Generating a Shibboleth 1.3 Response.
 		$ar = new SimpleSAML_XML_Shib13_AuthnResponse($config, $metadata);
 		$authnResponseXML = $ar->generate($idpentityid, $authnrequest->getIssuer(), 
-			$requestid, null, $session->getAttributes());
+			$requestid, null, $filteredattributes);
+		
 		
 		#echo $authnResponseXML;
 		#print_r($authnResponseXML);
