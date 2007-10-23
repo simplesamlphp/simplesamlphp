@@ -242,15 +242,22 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 				}
 				
-				if (isset($assertion->AttributeStatement->Attribute)) {
-					foreach ($assertion->AttributeStatement->Attribute AS $attribute) {
+				
+				// Traverse AttributeStatements
+				foreach ($assertion->AttributeStatement AS $attributestatement) {
+				
+					// Traverse Attributes
+					foreach ($attributestatement->Attribute AS $attribute) {
 						$values = array();
+						
+						// Traverse Values
 						foreach ($attribute->AttributeValue AS $val) {
 							$values[] = (string) $val;
 						}
 						
 						$attributes[(string)$attribute['AttributeName']] = $values;
 					}
+
 				}
 				
 			}
@@ -260,12 +267,12 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			echo "<PRE>token:";
 			echo htmlentities($token->saveXML());
 			echo ":</PRE>";
-			*/
-			/*
+
+		
 			echo '<pre>Attributes: ';
 			print_r($attributes);
 			echo '</pre>';
-	*/
+			*/
 		}
 		return $attributes;
 		
