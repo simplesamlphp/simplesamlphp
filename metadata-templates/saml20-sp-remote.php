@@ -28,7 +28,10 @@ $metadata = array(
 		'spNameQualifier' 				=>	'dev.andreas.feide.no',
 		'ForceAuthn'					=>	'false',
 		'NameIDFormat'					=>	'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
-		'simplesaml.attributes'			=>	true
+		
+		'simplesaml.attributes'			=>	true,
+//		'attributemap'					=>	'test',
+//		'attributes'					=>	array('mail')
 	),
 	
 	/*
@@ -43,6 +46,7 @@ $metadata = array(
 		'spNameQualifier' 				=>	'google.com',
 		'ForceAuthn'					=>	'false',
 		'NameIDFormat'					=>	'urn:oasis:names:tc:SAML:2.0:nameid-format:email',
+		
 		'simplesaml.nameidattribute'	=>	'uid',
 		'simplesaml.attributes'			=>	false
 	)
