@@ -45,6 +45,18 @@ try {
 
 if (!isset($session) || !$session->isValid() ) {
 	
+	
+	if ($idpentityid == null) {
+	
+		$returnURL = urlencode(SimpleSAML_Utilities::selfURL());
+		$discservice = '/' . $config->getValue('baseurlpath') . 'shib13/sp/idpdisco.php?entityID=' . $spentityid . 
+			'&return=' . $returnURL . '&returnIDParam=idpentityid';
+		header('Location: ' . $discservice);
+		exit(0);
+		
+	}
+	
+	
 	try {
 		$ar = new SimpleSAML_XML_Shib13_AuthnRequest($config, $metadata);
 		$ar->setIssuer($spentityid);	
