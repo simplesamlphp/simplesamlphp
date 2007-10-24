@@ -24,6 +24,9 @@ try {
 	
 	$session = $authnResponse->createSession();
 	if (isset($session)) {
+		
+		$attributes = $session->getAttributes();
+		syslog(LOG_INFO, 'User is authenticated,' . $attributes['mail'] . ',' . $authnResponse->getIssuer());
 	
 		$relayState = $authnResponse->getRelayState();
 		if (isset($relayState)) {

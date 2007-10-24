@@ -13,6 +13,7 @@ require_once('SimpleSAML/Configuration.php');
 SimpleSAML_Configuration::init(dirname(dirname(__FILE__)) . '/config');
 
 
-
+define_syslog_variables();
+openlog("simpleSAMLphp", LOG_PID, LOG_LOCAL0);
 
 ?>
