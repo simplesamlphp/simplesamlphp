@@ -73,7 +73,7 @@ try {
 	
 	
 	if ($_GET['output'] == 'xml') {
-		header('Content-type: application/xml');
+		header('Content-Type: application/xml');
 		
 		echo $metaxml;
 		exit(0);
