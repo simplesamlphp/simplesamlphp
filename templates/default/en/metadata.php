@@ -1,7 +1,7 @@
 <?php $this->includeAtTemplateBase('includes/header.php'); ?>
 
 	<div id="header">
-		<h1>simpleSAMLphp status page</h1>
+		<h1>simpleSAMLphp Metadata</h1>
 		<div id="poweredby"><img src="/<?php echo $data['baseurlpath']; ?>resources/icons/bino.png" alt="Bino" /></div>
 	</div>
 	
@@ -11,6 +11,10 @@
 		
 		<p>Here is SAML 2.0 metadata that simpleSAMLphp has generated for you. You may send this SAML 2.0 Metadata document to trusted partners to setup a trusted federation.</p>
 		
+		<?php if (isset($data['metaurl'])) { ?>
+			<p>You can <a href="<?php echo $data['metaurl']; ?>">get the metadata xml on a dedicated URL</a>:<br />
+			<input type="text" style="width: 90%" value="<?php echo $data['metaurl']; ?>" /></p>
+		<?php } ?>
 		<h2>Metadata</h2>
 		
 		<pre style="overflow: scroll; border: 1px solid #eee; padding: 2px"><?php echo $data['metadata']; ?></pre>

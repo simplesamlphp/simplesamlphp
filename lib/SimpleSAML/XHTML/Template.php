@@ -68,11 +68,13 @@ class SimpleSAML_XHTML_Template {
 
 	
 	private function includeAtTemplateBase($file) {
+		$data = $this->data;
 		$filebase = $this->configuration->getValue('basedir') . $this->configuration->getValue('templatedir');
 		include($filebase . $file);
 	}
 
 	private function includeAtLanguageBase($file) {
+		$data = $this->data;
 		$filebase = $this->configuration->getValue('basedir') . $this->configuration->getValue('templatedir') . $this->getLanguage() . '/' ;
 		include($filebase . $file);
 	}

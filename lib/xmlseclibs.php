@@ -1076,7 +1076,7 @@ class XMLSecurityDSig {
 					if (strncmp($curData, '-----END CERTIFICATE', 20) == 0) {
 						break;
 					}
-					$data .= trim($curData);
+					$data .= trim($curData) . "\n";
 				}
 			}
 		} else {
