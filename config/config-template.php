@@ -43,7 +43,7 @@ $config = array (
 	 * 		'default-saml20-idp'	=> null,
 	 *
 	 */
-	'default-saml20-idp'	=> 'sam.feide.no',
+	'default-saml20-idp'	=> 'max.feide.no',
 	'default-shib13-idp'	=> 'urn:mace:switch.ch:aaitest:dukono.switch.ch',
 	
 	/*
