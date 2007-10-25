@@ -19,20 +19,39 @@ require_once('SimpleSAML/Configuration.php');
 class SimpleSAML_Utilities {
 
 
-	public static function selfURLhost() {
+
+	public static function getSelfHost() {
 	
 		$currenthost = $_SERVER['HTTP_HOST'];
 		if(strstr($currenthost, ":")) {
 				$currenthostdecomposed = explode(":", $currenthost);
 				$currenthost = $currenthostdecomposed[0];
 		}
+		return $currenthost;
+	}
+
+
+	public static function selfURLhost() {
+	
+		$currenthost = self::getSelfHost();
 	
 		$s = empty($_SERVER["HTTPS"]) ? ''
 			: ($_SERVER["HTTPS"] == "on") ? "s"
 			: "";
 		$protocol = self::strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/").$s;
+		
 		$port = ($_SERVER["SERVER_PORT"] == "80") ? ""
 			: (":".$_SERVER["SERVER_PORT"]);
+		
+		
+		$portnumber = $_SERVER["SERVER_PORT"];
+		$port = ':' . $portnumber;
+		if ($protocol == 'http') {
+			if ($portnumber == '80') $port = '';
+		} elseif ($protocol == 'https') {
+			if ($portnumber == '443') $port = '';
+		}
+			
 		$querystring = '';
 		return $protocol."://" . $currenthost . $port;
 	
@@ -40,41 +59,14 @@ class SimpleSAML_Utilities {
 
 	public static function selfURLNoQuery() {
 	
-		$currenthost = $_SERVER['HTTP_HOST'];
-		if(strstr($currenthost, ":")) {
-				$currenthostdecomposed = explode(":", $currenthost);
-				$currenthost = $currenthostdecomposed[0];
-		}
-	
-		$s = empty($_SERVER["HTTPS"]) ? ''
-			: ($_SERVER["HTTPS"] == "on") ? "s"
-			: "";
-		$protocol = self::strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/").$s;
-		$port = ($_SERVER["SERVER_PORT"] == "80") ? ""
-			: (":".$_SERVER["SERVER_PORT"]);
-		$querystring = '';
-		return $protocol."://" . $currenthost . $port . $_SERVER['SCRIPT_NAME'];
+		$selfURLhost = self::selfURLhost();
+		return $selfURLhost . $_SERVER['SCRIPT_NAME'];
 	
 	}
 
 	public static function selfURL() {
-	
-		$currenthost = $_SERVER['HTTP_HOST'];
-		if(strstr($currenthost, ":")) {
-				$currenthostdecomposed = explode(":", $currenthost);
-				$currenthost = $currenthostdecomposed[0];
-		}
-	
-		$s = empty($_SERVER["HTTPS"]) ? ''
-			: ($_SERVER["HTTPS"] == "on") ? "s"
-			: "";
-		$protocol = self::strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/").$s;
-		$port = ($_SERVER["SERVER_PORT"] == "80") ? ""
-			: (":".$_SERVER["SERVER_PORT"]);
-		$querystring = '';
-		return $protocol . "://" . $currenthost . $port . $_SERVER['REQUEST_URI'];
-
-	
+		$selfURLhost = self::selfURLhost();
+		return $selfURLhost . $_SERVER['REQUEST_URI'];	
 	}
 	
 	public static function addURLparameter($url, $parameter) {

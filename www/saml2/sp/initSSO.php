@@ -71,7 +71,7 @@ if (!isset($session) || !$session->isValid() ) {
 		$et->data['e'] = $exception;
 		
 		$et->show();
-
+		exit(0);
 	}
 
 } else {
