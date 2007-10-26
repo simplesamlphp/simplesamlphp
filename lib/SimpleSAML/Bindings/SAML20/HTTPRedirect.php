@@ -29,7 +29,8 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		$this->metadata = $metadatastore;
 	}
 	
-	public function sendMessage($request, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP') {
+	public function getRedirectURL($request, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP') {
+	
 		if (!in_array($mode, array('SP', 'IdP'))) {
 			throw new Exception('mode parameter of sendMessage() must be either SP or IdP');
 		}
@@ -39,7 +40,12 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		}
 
 		$md = $this->metadata->getMetaData($remoteentityid, $metadataset);
-		$idpTargetUrl = $md[$endpoint];
+		
+		$realendpoint = $endpoint;
+		if ($endpoint == 'SingleLogoutServiceResponse' && !isset($md[$endpoint])) 
+			$realendpoint = 'SingleLogoutService';
+		
+		$idpTargetUrl = $md[$realendpoint];
 		
 		if (!isset($idpTargetUrl) or $idpTargetUrl == '') {
 			throw new Exception('Could not find endpoint [' .$endpoint  . '] in metadata for [' . $remoteentityid . '] (looking in ' . $metadataset . ')');
@@ -51,6 +57,14 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		if (isset($relayState)) {
 			$redirectURL .= "&RelayState=" . urlencode($relayState);
 		}
+		return $redirectURL;
+	
+	}
+	
+	
+	public function sendMessage($request, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP') {
+		
+		$redirectURL = $this->getRedirectURL($request, $remoteentityid, $relayState, $endpoint, $direction, $mode);
 		
 		if ($this->configuration->getValue('debug')) {
 	
