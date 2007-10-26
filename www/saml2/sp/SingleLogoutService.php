@@ -58,7 +58,7 @@ if (isset($_GET['SAMLRequest'])) {
 	$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 	
 	// Send the Logout response using HTTP POST binding.
-	$httpredirect->sendMessage($logoutResponseXML, $requester, $logoutrequest->getRelayState(), 'SingleLogoutService', 'SAMLResponse');
+	$httpredirect->sendMessage($logoutResponseXML, $requester, $logoutrequest->getRelayState(), 'SingleLogoutServiceResponse', 'SAMLResponse');
 
 } elseif(isset($_GET['SAMLResponse'])) {
 	
