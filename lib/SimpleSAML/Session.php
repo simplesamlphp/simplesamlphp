@@ -90,6 +90,19 @@ class SimpleSAML_Session {
 		return null;
 	}
 	
+	public function get_sp_list() {
+		
+		$list = array();
+		if (!$this->sp_at_idpsessions) return $list;
+		
+		foreach ($this->sp_at_idpsessions AS $entityid => $sp) {
+			if ($sp == self::STATE_ONLINE) {
+				$list[] = $entityid;
+			}
+		}
+		return $list;
+	}
+	
 	public function set_sp_logout_completed($entityid) {
 		$this->sp_at_idpsessions[$entityid] = self::STATE_LOGGEDOUT;
 	}
