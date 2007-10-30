@@ -30,6 +30,8 @@ class SimpleSAML_Session {
 	const STATE_LOGGEDOUT = 3;
 
 	private static $instance = null;
+	
+	private $trackid = 0;
 
 	private $configuration = null;
 	
@@ -71,6 +73,47 @@ class SimpleSAML_Session {
 		}
 		
 		$this->sessionduration = $this->configuration->getValue('session.duration');
+		
+		$this->trackid = SimpleSAML_Utilities::generateTrackID();
+	}
+	
+	
+	
+	public function getInstance($allowcreate = false) {
+		if (isset(self::$instance)) {
+			return self::$instance;
+		} elseif(isset($_SESSION['SimpleSAMLphp_SESSION'])) {
+			self::$instance = $_SESSION['SimpleSAMLphp_SESSION'];
+			return self::$instance;
+		}
+		if ($allowcreate) {
+			self::init('saml2');
+			return self::$instance;
+		} else {
+			return null;
+		}
+	}
+	
+	public static function init($protocol, $message = null, $authenticated = false) {
+		
+		$preinstance = self::getInstance();
+		
+		if (isset($preinstance)) {
+			if (isset($message)) $preinstance->authnresponse = $message;
+			if (isset($authenticated)) $preinstance->setAuthenticated($authenticated);
+		} else {	
+			self::$instance = new SimpleSAML_Session($protocol, $message, $authenticated);
+			$_SESSION['SimpleSAMLphp_SESSION'] = self::$instance;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	public function getTrackID() {
+		return $this->trackid;
 	}
 	
 	public function add_sp_session($entityid) {
@@ -90,18 +133,20 @@ class SimpleSAML_Session {
 		return null;
 	}
 	
-	public function get_sp_list() {
+	public function get_sp_list($state = self::STATE_ONLINE) {
 		
 		$list = array();
 		if (!$this->sp_at_idpsessions) return $list;
 		
 		foreach ($this->sp_at_idpsessions AS $entityid => $sp) {
-			if ($sp == self::STATE_ONLINE) {
+			if ($sp == $state) {
 				$list[] = $entityid;
 			}
 		}
 		return $list;
 	}
+	
+
 	
 	public function set_sp_logout_completed($entityid) {
 		$this->sp_at_idpsessions[$entityid] = self::STATE_LOGGEDOUT;
@@ -113,30 +158,7 @@ class SimpleSAML_Session {
 			error_log('Dump sp sessions: ' . $entityid . ' status: ' . $sp);
 		}
 	}
-	
-	public function getInstance() {
-		if (isset(self::$instance)) {
-			return self::$instance;
-		} elseif(isset($_SESSION['SimpleSAMLphp_SESSION'])) {
-			self::$instance = $_SESSION['SimpleSAMLphp_SESSION'];
-			return self::$instance;
-		}
-		return null;
-	}
-	
-	public static function init($protocol, $message = null, $authenticated = true) {
-		
-		$preinstance = self::getInstance();
-		
-		if (isset($preinstance)) {
-			if (isset($message)) $preinstance->authnresponse = $message;
-			if (isset($authenticated)) $preinstance->setAuthenticated($authenticated);
-		} else {	
-			self::$instance = new SimpleSAML_Session($protocol, $message, $authenticated);
-			$_SESSION['SimpleSAMLphp_SESSION'] = self::$instance;
-		}
-	}
-	
+
 	public function setShibAuthnRequest(SimpleSAML_XML_Shib13_AuthnRequest $req) {
 		$this->shibauthreq = $req;
 	}

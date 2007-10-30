@@ -111,6 +111,11 @@ class SimpleSAML_Utilities {
 		return $key;
 	}
 	
+	public static function generateTrackID() {		
+		$uniqueid = substr(md5(uniqid(rand(), true)), 0, 10);
+		return $uniqueid;
+	}
+	
 }
 
 ?>
