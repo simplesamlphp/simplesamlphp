@@ -6,6 +6,7 @@ require_once('../../../www/_include.php');
 
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
+require_once('SimpleSAML/Logger.php');
 require_once('SimpleSAML/XML/MetaDataStore.php');
 require_once('SimpleSAML/XML/AttributeFilter.php');
 require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
@@ -19,12 +20,16 @@ session_start();
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = new SimpleSAML_XML_MetaDataStore($config);
+$session = SimpleSAML_Session::getInstance(true);
+
+$logger = new SimpleSAML_Logger();
 
 $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idpmeta = $metadata->getMetaDataCurrent('saml20-idp-hosted');
 
 $requestid = null;
-$session = null;
+
+$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'EVENT', 'Access', 'Accessing SAML 2.0 IdP endpoint SSOService');
 
 
 if (isset($_GET['SAMLRequest'])) {
@@ -35,12 +40,13 @@ if (isset($_GET['SAMLRequest'])) {
 		$authnrequest = $binding->decodeRequest($_GET);
 		
 		$session = $authnrequest->createSession();
-	
 		$requestid = $authnrequest->getRequestID();
 		
-	
-		
 		$session->setAuthnRequest($requestid, $authnrequest);
+		
+		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'AuthnRequest', 
+			array($authnrequest->getIssuer(), $requestid), 
+			'Incomming Authentication request');
 	
 	} catch(Exception $exception) {
 		
@@ -61,6 +67,9 @@ if (isset($_GET['SAMLRequest'])) {
 		$requestid = $_GET['RequestID'];
 		$session = SimpleSAML_Session::getInstance();
 		$authnrequest = $session->getAuthnRequest($requestid);
+		
+		$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'EVENT', $requestid, 'Got incomming RequestID');
+		
 		
 		if (!$authnrequest) throw new Exception('Could not retrieve cached RequestID = ' . $requestid);
 		
@@ -100,6 +109,10 @@ if (!$session->isAuthenticated() ) {
 		'&RequestID=' . urlencode($requestid);
 	$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getValue('baseurlpath') . $idpmeta['auth'], 
 		'RelayState=' . urlencode($relaystate));
+		
+	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'AuthNext', $idpmeta['auth'], 
+		'Will go to authentication module ' . $idpmeta['auth']);
+		
 	header('Location: ' . $authurl);
 	exit(0);
 } else {
@@ -117,7 +130,10 @@ if (!$session->isAuthenticated() ) {
 		if ($idpmeta['requireconsent']) {
 			
 			if (!isset($_GET['consent'])) {
-			
+
+				$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'Consent', 'request', 
+					'Requires consent from user for attribute release');
+
 				$t = new SimpleSAML_XHTML_Template($config, 'consent.php');
 				$t->data['header'] = 'Consent';
 				$t->data['spentityid'] = $spentityid;
@@ -126,6 +142,11 @@ if (!$session->isAuthenticated() ) {
 				$t->show();
 				exit(0);
 				
+			} else {
+			
+				$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'ConsentOK', '-', 
+					'Got consent from user');
+			
 			}
 			
 		}
@@ -133,6 +154,11 @@ if (!$session->isAuthenticated() ) {
 		// Adding this service provider to the list of sessions.
 		$session->add_sp_session($spentityid);
 
+
+		
+		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'AuthnResponse', $spentityid, 
+			'Sending back AuthnResponse');
+		
 
 		/*
 		 * Filtering attributes.

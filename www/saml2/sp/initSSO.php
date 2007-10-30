@@ -5,6 +5,7 @@ require_once('../../_include.php');
 
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
+require_once('SimpleSAML/Logger.php');
 require_once('SimpleSAML/XHTML/Template.php');
 require_once('SimpleSAML/XML/MetaDataStore.php');
 require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
@@ -16,10 +17,14 @@ session_start();
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = new SimpleSAML_XML_MetaDataStore($config);
+$session = SimpleSAML_Session::getInstance(true);
+
+$logger = new SimpleSAML_Logger();
 
 
-$session = SimpleSAML_Session::getInstance();
-		
+$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'EVENT', 'Access', 
+	'Accessing SAML 2.0 SP initSSO script');
+
 try {
 
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getValue('default-saml20-idp') ;
@@ -39,6 +44,9 @@ if (!isset($session) || !$session->isValid() ) {
 	
 	if ($idpentityid == null) {
 	
+		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'NextDisco', $spentityid, 
+			'No SP default or specified, go to SAML2disco');
+		
 		$returnURL = urlencode(SimpleSAML_Utilities::selfURL());
 		$discservice = '/' . $config->getValue('baseurlpath') . 'saml2/sp/idpdisco.php?entityID=' . $spentityid . 
 			'&return=' . $returnURL . '&returnIDParam=idpentityid';
@@ -60,6 +68,9 @@ if (!isset($session) || !$session->isValid() ) {
 			$relayState = $_GET['RelayState'];
 		}
 		
+		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'AuthnRequest', $idpentityid, 
+			'SP (' . $spentityid . ') is sending authenticatino request to IdP (' . $idpentityid . ')');
+		
 		$httpredirect->sendMessage($req, $idpentityid, $relayState);
 
 	
@@ -80,6 +91,10 @@ if (!isset($session) || !$session->isValid() ) {
 	$relaystate = $_GET['RelayState'];
 		
 	if (isset($relaystate) && !empty($relaystate)) {
+	
+		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'AlreadyAuthenticated', '-', 
+			'Go back to RelayState');
+	
 		header('Location: ' . $relaystate );
 	} else {
 		$et = new SimpleSAML_XHTML_Template($config, 'error.php');

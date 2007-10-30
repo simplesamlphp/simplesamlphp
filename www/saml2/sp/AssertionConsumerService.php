@@ -5,12 +5,21 @@ require_once('../../_include.php');
 
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
+require_once('SimpleSAML/Logger.php');
 require_once('SimpleSAML/XML/MetaDataStore.php');
 require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
 session_start();
+
+$session = SimpleSAML_Session::getInstance();
+
+$logger = new SimpleSAML_Logger();
+
+
+$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'SP.AssertionConsumerService', 'EVENT', 'Access', 
+	'Accessing SAML 2.0 SP endpoint AssertionConsumerService');
 
 try {
 	
@@ -26,7 +35,9 @@ try {
 	if (isset($session)) {
 		
 		$attributes = $session->getAttributes();
-		syslog(LOG_INFO, 'User is authenticated,' . $attributes['mail'] . ',' . $authnResponse->getIssuer());
+
+		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.AssertionConsumerService', 'AuthnResponse', '-', 
+			'Successfully created local session from Authentication Response');
 	
 		$relayState = $authnResponse->getRelayState();
 		if (isset($relayState)) {

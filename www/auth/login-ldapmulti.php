@@ -3,12 +3,10 @@
 
 require_once('../../www/_include.php');
 
-
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
+require_once('SimpleSAML/Logger.php');
 require_once('SimpleSAML/XML/MetaDataStore.php');
-require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
-require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
 session_start();
@@ -16,10 +14,13 @@ session_start();
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = new SimpleSAML_XML_MetaDataStore($config);
 $session = SimpleSAML_Session::getInstance();
-
+$logger = new SimpleSAML_Logger();
 
 $ldapconfigfile = $config->getValue('basedir') . 'config/ldapmulti.php';
 require_once($ldapconfigfile);
+
+
+$logger->log(LOG_INFO, $session->getTrackID(), 'AUTH', 'ldap-multi', 'EVENT', 'Access', 'Accessing auth endpoint login-ldapmulti');
 
 
 $error = null;
@@ -39,6 +40,9 @@ if (isset($_POST['username'])) {
 	if ($ds) {
 	
 		if (!ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3)) {
+		
+			$logger->log(LOG_CRIT, $session->getTrackID(), 'AUTH', 'ldap-multi', 'LDAP_OPT_PROTOCOL_VERSION', '3', 'Error setting LDAP prot version to 3');
+			
 			echo "Failed to set LDAP Protocol version to 3";
 			exit;
 		}
@@ -50,7 +54,8 @@ if (isset($_POST['username'])) {
 		*/
 		if (!ldap_bind($ds, $dn, $pwd)) {
 			$error = "Bind failed, wrong username or password. Tried with DN=[" . $dn . "] DNPattern=[" .  $ldapconfig['dnpattern'] . "]";
-			
+
+			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-multi', 'Fail', $_POST['username'], $_POST['username'] . ' failed to authenticate');
 			
 		} else {
 			$sr = ldap_read($ds, $dn, $ldapconfig['attributes'] );
@@ -70,6 +75,9 @@ if (isset($_POST['username'])) {
 			// generelt ldap_next_entry for flere, men bare ett her
 			//print_r($ldapentries);
 			//print_r($attributes);
+			
+			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-multi', 'OK', $_POST['username'], $_POST['username'] . ' successfully authenticated');
+			
 			
 			$session->setAuthenticated(true);
 			$session->setAttributes($attributes);

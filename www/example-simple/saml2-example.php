@@ -11,7 +11,9 @@ require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
+
 session_start();
+
 
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
