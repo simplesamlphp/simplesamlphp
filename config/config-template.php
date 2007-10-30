@@ -24,6 +24,20 @@ $config = array (
 	 */
 	'debug'					=>	false,
 	
+	/*
+	 * Logging.
+	 * 
+	 * Choose a syslog facility to use for logging.
+	 * And define the minimum log level to log
+	 *		LOG_ERR				No statistics, only errors
+	 *		LOG_WARNING			No statistics, only warnings/errors
+	 *		LOG_NOTICE			Statistics and errors 
+	 *		LOG_INFO			Verbose logs
+	 *		LOG_DEBUG			Full debug logs - not reccomended for production
+	 */
+	'logging.facility'		=> LOG_LOCAL5,
+	'logging.level'			=> LOG_NOTICE,
+	
 	/* 
 	 * This value is the duration of the session in seconds. Make sure that the time duration of
 	 * cookies both at the SP and the IdP exceeds this duration.
