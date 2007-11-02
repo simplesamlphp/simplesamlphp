@@ -66,17 +66,27 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		</html>';
 	}
 	
-	public function sendResponse($response, $idpentityid, $spentityid, $relayState = null) {
+	public function sendResponse($response, $idpentityid, $spentityid, $relayState = null, $claimedacs = null) {
 
 		$idpmd = $this->metadata->getMetaData($idpentityid, 'shib13-idp-hosted');
 		$spmd = $this->metadata->getMetaData($spentityid, 'shib13-sp-remote');
 		
 		$destination = $spmd['AssertionConsumerService'];
+		
+		if (!isset($destination) or $destination == '') 
+			throw new Exception('Could not find AssertionConsumerService for SP entity ID [' . $spentityid. ']. ' . 
+				'Claimed ACS is: ' . (isset($claimedacs) ? $claimedacs : 'N/A'));
 	
 		$privatekey = $this->configuration->getValue('basedir') . '/cert/' . $idpmd['privatekey'];
 		$publiccert = $this->configuration->getValue('basedir') . '/cert/' . $idpmd['certificate'];
 
-
+		
+		if (strstr($claimedacs, $destination) == 0) {
+			$destination = $claimedacs;
+		} else {
+			throw new Exception('Claimed ACS (shire) and ACS in SP Metadata do not match. [' . $claimedacs. '] [' . $destination . ']');
+		}
+		
 		
 		/*
 		 * XMLDSig. Sign the complete request with the key stored in cert/server.pem

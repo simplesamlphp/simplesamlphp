@@ -23,6 +23,7 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	private $metadata = null;
 	
 	private $issuer = null;
+	private $shire = null;
 	private $relayState = null;
 	
 	private $requestid = null;
@@ -46,6 +47,14 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 		return $this->relayState;
 	}
 	
+	public function setShire($shire) {
+		$this->shire = $shire;
+	}
+	
+	public function getShire() {
+		return $this->shire;
+	}
+	
 	public function setIssuer($issuer) {
 		$this->issuer = $issuer;
 	}
@@ -62,6 +71,8 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 
 		$this->setIssuer($get['providerId']);
 		$this->setRelayState($get['target']);
+		
+		$this->setShire($get['shire']);
 
 	}
 	

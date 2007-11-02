@@ -12,11 +12,6 @@ require_once('SimpleSAML/XML/Shib13/AuthnRequest.php');
 require_once('SimpleSAML/XML/Shib13/AuthnResponse.php');
 require_once('SimpleSAML/Bindings/Shib13/HTTPPost.php');
 
-//require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
-//require_once('SimpleSAML/XML/SAML20/AuthnResponse.php');
-//require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
-//require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
-
 require_once('SimpleSAML/XHTML/Template.php');
 
 
@@ -149,8 +144,13 @@ if (!$session->isAuthenticated() ) {
 		
 		//echo 'Relaystate[' . $authnrequest->getRelayState() . ']';
 		
+		$issuer = $authnrequest->getIssuer();
+		$shire = $authnrequest->getShire();
+		if ($issuer == null || $issuer == '')
+			throw new Exception('Could not retrieve issuer of the AuthNRequest (ProviderID)');
+		
 		$httppost->sendResponse($authnResponseXML, 
-			$idpentityid, $authnrequest->getIssuer(), $authnrequest->getRelayState());
+			$idpentityid, $issuer, $authnrequest->getRelayState(), $shire);
 			
 	} catch(Exception $exception) {
 		

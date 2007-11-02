@@ -30,10 +30,10 @@ try {
 
 	$xml = $authnResponse->getXML();
 	/*
-	echo '<pre>';
-	echo $xml;
-	echo '</pre>';
-*/
+		echo '<pre>';
+		echo $xml;
+		echo '</pre>';
+	*/
 
 	$authnResponse->validate();
 	$session = $authnResponse->createSession();
