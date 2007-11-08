@@ -15,8 +15,7 @@ require_once('SimpleSAML/XML/AttributeFilter.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
 // Include openid libs
-require_once 'lib/session.php';
-require_once 'lib/actions.php';
+
 
 require_once "Auth/OpenID.php";
 require_once "Auth/OpenID/Server.php";
