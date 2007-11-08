@@ -31,7 +31,8 @@ class SimpleSAML_XML_MetaDataStore {
 		$metadata = null;
 		if (!in_array($set, array(
 			'saml20-sp-hosted', 'saml20-sp-remote','saml20-idp-hosted', 'saml20-idp-remote',
-			'shib13-sp-hosted', 'shib13-sp-remote', 'shib13-idp-hosted', 'shib13-idp-remote'))) {
+			'shib13-sp-hosted', 'shib13-sp-remote', 'shib13-idp-hosted', 'shib13-idp-remote',
+			'openid-provider'))) {
 				throw new Exception('Trying to load illegal set of Meta data [' . $set . ']');
 		}
 		
@@ -147,6 +148,11 @@ class SimpleSAML_XML_MetaDataStore {
 			switch ($property) {				
 				case 'SingleSignOnService' : 
 					return $baseurl . 'shib13/idp/SSOService.php';			
+			}
+		} elseif($set == 'openid-provider') {
+			switch ($property) {				
+				case 'server' : 
+					return $baseurl . 'openid/provider/server.php';			
 			}
 		}
 		
