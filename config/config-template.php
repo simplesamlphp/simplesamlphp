@@ -74,6 +74,13 @@ $config = array (
 	'auth.radius.port'		=> '1812',
 	'auth.radius.secret'	=> 'topsecret'
 	
+	/*
+	 * These parameters are only relevant if you setup an OpenID Provider.
+	 */
+	'openid.userid_attributename'		=>	'eduPersonPrincipalName',
+	'openid.delegation_prefix'			=>	'https://openid.feide.no/',
+	'openid.filestore'					=>	'/tmp/openidstore',
+	
 );
 
 
