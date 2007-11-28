@@ -116,6 +116,64 @@ class SimpleSAML_Utilities {
 		return $uniqueid;
 	}
 	
+
+	/* This function dumps a backtrace to the error log.
+	 *
+	 * The log is in the following form:
+	 *  BT: (0) <filename>:<line> (<current function>)
+	 *  BT: (1) <filename>:<line> (<previous fucntion>)
+	 *  ...
+	 *  BT: (N) <filename>:<line> (N/A)
+	 *
+	 * The log starts at the function which calls logBacktrace().
+	 */
+	public static function logBacktrace() {
+
+		/* Get the backtrace. */
+		$bt = debug_backtrace();
+
+		/* Variable to hold the stack depth. */
+		$depth = 0;
+
+		/* PHP stores the backtrace as a list of function calls.
+		 * This means that $bt[0]['function'] contains the function
+		 * which is called, while $bt[0]['line'] contains the line
+		 * the function was called from.
+		 *
+		 * To get the form of bactrace we want, we are going to use
+		 * $bt[i+1] to get the function and $bt[i] to get the file
+		 * name and the line number.
+		 */
+
+		for($i = 0; $i < count($bt); $i++) {
+			$file = $bt[$i]['file'];
+			$line = $bt[$i]['line'];
+
+			/* We can't get a function name or class for the source
+			 * of the first call.
+			 */
+			if($i == count($bt) - 1) {
+				$function = 'N/A';
+				$class = NULL;
+			} else {
+				$function = $bt[$i+1]['function'];
+				$class = $bt[$i+1]['class'];
+			}
+
+			/* Attach the class name to the function name if
+			 * we have a class name.
+			 */
+			if($class !== NULL) {
+				$function = $class  . '::' . $function;
+			}
+
+
+			error_log('BT: (' . $depth . ') ' . $file . ':' .
+			          $line . ' (' . $function . ')');
+
+			$depth++;
+		}
+	}
 }
 
 ?>
