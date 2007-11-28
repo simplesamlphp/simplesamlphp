@@ -80,7 +80,7 @@ class SimpleSAML_Session {
 	
 	
 	
-	public function getInstance($allowcreate = false) {
+	public static function getInstance($allowcreate = false) {
 
 		/* Check if we already have initialized the session. */
 		if (isset(self::$instance)) {
