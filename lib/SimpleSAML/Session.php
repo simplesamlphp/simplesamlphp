@@ -15,6 +15,7 @@
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
+require_once('SimpleSAML/SessionHandler.php');
 require_once('SimpleSAML/XML/MetaDataStore.php');
 require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
 require_once('SimpleSAML/XML/AuthnResponse.php');
@@ -80,12 +81,25 @@ class SimpleSAML_Session {
 	
 	
 	public function getInstance($allowcreate = false) {
+
+		/* Check if we already have initialized the session. */
 		if (isset(self::$instance)) {
 			return self::$instance;
-		} elseif(isset($_SESSION['SimpleSAMLphp_SESSION'])) {
-			self::$instance = $_SESSION['SimpleSAMLphp_SESSION'];
+		}
+
+
+		/* Check if we have stored a session stored with the session
+		 * handler.
+		 */
+		$sh = SimpleSAML_SessionHandler::getSessionHandler();
+		if($sh->get('SimpleSAMLphp_SESSION') !== NULL) {
+			self::$instance = $sh->get('SimpleSAMLphp_SESSION');
 			return self::$instance;
 		}
+
+		/* We don't have a session. Create one if allowed to. Return
+		 * null if not.
+		 */
 		if ($allowcreate) {
 			self::init('saml2');
 			return self::$instance;
@@ -103,7 +117,10 @@ class SimpleSAML_Session {
 			if (isset($authenticated)) $preinstance->setAuthenticated($authenticated);
 		} else {	
 			self::$instance = new SimpleSAML_Session($protocol, $message, $authenticated);
-			$_SESSION['SimpleSAMLphp_SESSION'] = self::$instance;
+
+			/* Save the new session with the session handler. */
+			$sh = SimpleSAML_SessionHandler::getSessionHandler();
+			$sh->set('SimpleSAMLphp_SESSION', self::$instance);
 		}
 	}
 	
