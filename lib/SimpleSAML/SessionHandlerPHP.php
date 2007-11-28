@@ -21,8 +21,15 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 		 */
 		parent::__construct();
 
-		/* Initialize the php session handling. */
-		session_start();
+		/* Initialize the php session handling.
+		 *
+		 * If session_id() returns a blank string, then we need
+		 * to call session start. Otherwise the session is already
+		 * started, and we should avoid calling session_start().
+		 */
+		if(session_id === '') {
+			session_start();
+		}
 	}
 
 
