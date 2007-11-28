@@ -81,6 +81,78 @@ $config = array (
 	'openid.delegation_prefix'			=>	'https://openid.feide.no/',
 	'openid.filestore'					=>	'/tmp/openidstore',
 	
+
+	/*
+	 * This configuration option allows you to select which session handler
+	 * SimpleSAMLPHP should use to store the session information. Currently
+	 * we have two session handlers:
+	 * - 'phpsession': The default PHP session handler.
+	 * - 'memcache': Stores the session information in one or more
+	 *   memcache servers by using the MemcacheStore class.
+	 *
+	 * The default session handler is 'phpsession'.
+	 */
+	'session.handler'       => 'phpsession',
+
+
+	/*
+	 * Configuration for the MemcacheStore class. This allows you to store
+	 * multiple redudant copies of sessions on different memcache servers.
+	 *
+	 * 'memcache_store.servers' is an array of server groups. Every data
+	 * item will be mirrored in every server group.
+	 *
+	 * Each server group is an array of servers. The data items will be
+	 * load-balanced between all servers in each server group.
+	 *
+	 * Each server is an array of parameters for the server. The following
+	 * options are available:
+	 *  - 'hostname': This is the hostname or ip address where the
+	 *    memcache server runs. This is the only required option.
+	 *  - 'port': This is the port number of the memcache server. If this
+	 *    option isn't set, then we will use the 'memcache.default_port'
+	 *    ini setting. This is 11211 by default.
+	 *  - 'weight': This sets the weight of this server in this server
+	 *    group. http://php.net/manual/en/function.Memcache-addServer.php
+	 *    contains more information about the weight option.
+	 *  - 'timeout': The timeout for this server. By default, the timeout
+	 *    is 3 seconds.
+	 *
+	 * Example of redudant configuration with load balancing:
+	 * This configuration makes it possible to lose both servers in the
+	 * a-group or both servers in the b-group without losing any sessions.
+	 * Note that sessions will be lost if one server is lost from both the
+	 * a-group and the b-group.
+	 *
+	 * 'memcache_store.servers' => array(
+	 *     array(
+	 *         array('hostname' => 'mc_a1'),
+	 *         array('hostname' => 'mc_a2'),
+	 *     ),
+	 *     array(
+	 *         array('hostname' => 'mc_b1'),
+	 *         array('hostname' => 'mc_b2'),
+	 *     ),
+	 * ),
+	 *
+	 * Example of simple configuration with only one memcache server,
+	 * running on the same computer as the web server:
+	 * Note that all sessions will be lost if the memcache server crashes.
+	 *
+	 * 'memcache_store.servers' => array(
+	 *     array(
+	 *         array('hostname' => 'localhost'),
+	 *     ),
+	 * ),
+	 *
+	 */
+	'memcache_store.servers' => array(
+		array(
+			array('hostname' => 'localhost'),
+		),
+	),
+
+
 );
 
 
