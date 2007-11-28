@@ -1,6 +1,10 @@
 <?php
 
-/* This file defines a session handler which uses the MemcacheStore
+/*
+ * This file is part of SimpleSAMLphp. See the file COPYING in the
+ * root of the distribution for licence information.
+ *
+ * This file defines a session handler which uses the MemcacheStore
  * class to store data in memcache servers.
  */
 

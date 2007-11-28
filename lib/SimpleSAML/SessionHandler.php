@@ -1,6 +1,9 @@
 <?php
 
 /*
+ * This file is part of SimpleSAMLphp. See the file COPYING in the
+ * root of the distribution for licence information.
+ *
  * This file defines a base class for session handling.
  * Instantiation of session handler objects should be done through
  * the class method getSessionHandler().

@@ -1,6 +1,9 @@
 <?
 
 /*
+ * This file is part of SimpleSAMLphp. See the file COPYING in the
+ * root of the distribution for licence information.
+ *
  * This file implements a storage class which stores data to one or more
  * groups memcache servers.
  *

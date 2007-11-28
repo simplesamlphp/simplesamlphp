@@ -1,6 +1,9 @@
 <?php
 
 /*
+ * This file is part of SimpleSAMLphp. See the file COPYING in the
+ * root of the distribution for licence information.
+ *
  * This file defines a base class for session handlers that need to store
  * the session id in a cookie. It takes care of storing and retrieving the
  * session id.
