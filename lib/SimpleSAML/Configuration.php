@@ -28,7 +28,7 @@ class SimpleSAML_Configuration {
 
 	}
 	
-	public function getInstance() {
+	public static function getInstance() {
 		return self::$instance;
 	}
 	
