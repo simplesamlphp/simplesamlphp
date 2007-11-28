@@ -72,7 +72,7 @@ $config = array (
 	 */
 	'auth.radius.hostname'	=> 'radius.example.org',
 	'auth.radius.port'		=> '1812',
-	'auth.radius.secret'	=> 'topsecret'
+	'auth.radius.secret'	=> 'topsecret',
 	
 	/*
 	 * These parameters are only relevant if you setup an OpenID Provider.
