@@ -153,6 +153,23 @@ $config = array (
 	),
 
 
+	/*
+	 * This value is the duration data should be stored in memcache. Data
+	 * will be dropped from the memcache servers when this time expires.
+	 * The time will be reset every time the data is written to the
+	 * memcache servers.
+	 *
+	 * This value should always be larger than the 'session.duration'
+	 * option. Not doing this may result in the session being deleted from
+	 * the memcache servers while it is still in use.
+	 *
+	 * Set this value to 0 if you don't want data to expire.
+	 *
+	 * Note: The oldest data will always be deleted if the memcache server
+	 * runs out of storage space.
+	 */
+	'memcache_store.expires' =>  36 * (60*60), // 36 hours.
+
 );
 
 

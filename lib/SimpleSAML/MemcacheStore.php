@@ -281,7 +281,8 @@ class SimpleSAML_MemcacheStore {
 
 		/* Store this object to all groups of memcache servers. */
 		foreach(self::getMemcacheServers() as $server) {
-			$server->set($this->id, $this->savedData);
+			$server->set($this->id, $this->savedData, 0,
+			             self::getExpireTime());
 		}
 	}
 
@@ -564,6 +565,67 @@ class SimpleSAML_MemcacheStore {
 		}
 
 		return TRUE;
+	}
+
+
+	/* This is a helper-function which returns the expire value of data
+	 * we should store to the memcache servers.
+	 *
+	 * The value is set depending on the configuration. If no value is
+	 * set in the configuration, then we will use a default value of 0.
+	 * 0 means that the item will never expire.
+	 *
+	 * Returns:
+	 *  The value which should be passed in the set(...) calls to the
+	 *  memcache objects.
+	 */
+	private static function getExpireTime()
+	{
+		/* Get the configuration instance. */
+		$config = SimpleSAML_Configuration::getInstance();
+		assert($config instanceof SimpleSAML_Configuration);
+
+		/* Get the expire-value from the configuration. */
+		$expire = $config->getValue('memcache_store.expires');
+
+		/* If 'memcache_store.expires' isn't defined in the
+		 * configuration, then we will use 0 as the expire parameter.
+		 */
+		if($expire === NULL) {
+			return 0;
+		}
+
+		/* The 'memcache_store.expires' option must be an integer. */
+		if(!is_integer($expire)) {
+			$e = 'The value of \'memcache_store.expires\' in the' .
+			     ' configuration must be a valid integer.';
+			error_log($e);
+			die($e);
+		}
+
+		/* It must be a positive integer. */
+		if($expire < 0) {
+			$e = 'The value of \'memcache_store.expires\' in the' .
+			     ' configuration can\'t be a negative integer.';
+			error_log($e);
+			die($e);
+		}
+
+		/* If the configuration option is 0, then we should
+		 * return 0. This allows the user to specify that the data
+		 * shouldn't expire.
+		 */
+		if($expire == 0) {
+			return 0;
+		}
+
+		/* The expire option is given as the number of seconds into the
+		 * future an item should expire. We convert this to an actual
+		 * timestamp.
+		 */
+		$expireTime = time() + $expire;
+
+		return $expireTime;
 	}
 }
 ?>
