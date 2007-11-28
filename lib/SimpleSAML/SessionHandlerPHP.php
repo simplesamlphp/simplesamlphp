@@ -27,7 +27,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 		 * to call session start. Otherwise the session is already
 		 * started, and we should avoid calling session_start().
 		 */
-		if(session_id === '') {
+		if(session_id() === '') {
 			session_start();
 		}
 	}
