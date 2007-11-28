@@ -149,6 +149,9 @@ class SimpleSAML_MemcacheStore {
 			$latest->savedData = $latestSerializedValue;
 		}
 
+		/* Add a call to save the data when we exit. */
+		register_shutdown_function(array($latest, 'save'));
+
 		return $latest;
 	}
 
