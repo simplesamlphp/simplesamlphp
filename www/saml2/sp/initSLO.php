@@ -44,7 +44,7 @@ if (isset($session) ) {
 			$relayState = $_GET['RelayState'];
 		}
 		
-		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSLO', 'LogoutRequest', $req->getRequestID(), 
+		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSLO', 'LogoutRequest', 'N/A', 
 			'SP (' . $spentityid . ') is sending logout request to IdP (' . $idpentityid . ')');
 		
 		//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
@@ -66,7 +66,7 @@ if (isset($session) ) {
 	
 	$relaystate = $session->getRelayState();
 	
-	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSLO', 'AlreadyLoggedOut', $req->getRequestID(), 
+	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSLO', 'AlreadyLoggedOut', 'N/A', 
 		'User is already logged out. Go back to relaystate');
 	
 	header('Location: ' . $relaystate );
