@@ -145,7 +145,7 @@ class SimpleSAML_MemcacheStore {
 		 * we need to update this object, then we don't store the
 		 * serialized value.
 		 */
-		if($mustUpdate === TRUE) {
+		if($mustUpdate === FALSE) {
 			$latest->savedData = $latestSerializedValue;
 		}
 
