@@ -127,7 +127,8 @@ if (!$session->isAuthenticated() ) {
 		 * Dealing with attribute release consent.
 		 */
 	
-		if ($idpmeta['requireconsent']) {
+		if (array_key_exists('requireconsent', $idpmeta)
+		    && $idpmeta['requireconsent']) {
 			
 			if (!isset($_GET['consent'])) {
 
