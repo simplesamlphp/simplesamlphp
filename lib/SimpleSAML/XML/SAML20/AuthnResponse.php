@@ -366,8 +366,8 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$base64 = isset($idpmd['base64attributes']) ? $idpmd['base64attributes'] : false;
 		
 		$encodedattributes = '';
-		foreach ($attributes AS $name => $value) {
-			$encodedattributes .= $this->enc_attribute($name, $value[0], $base64);
+		foreach ($attributes AS $name => $values) {
+			$encodedattributes .= self::enc_attribute($name, $values, $base64);
 		}
 		$attributestatement = '<saml:AttributeStatement>' . $encodedattributes . '</saml:AttributeStatement>';
 		
@@ -516,11 +516,39 @@ Version="2.0">
 	}
 
 	
-	private function enc_attribute($name,$value, $base64 = false) {
-		return '<saml:Attribute Name="' . $name. '">
-                <saml:AttributeValue xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
-                >' . ($base64 ? base64_encode($value) : htmlspecialchars($value) ) . '</saml:AttributeValue>
-            </saml:Attribute>';
+	/* This function converts an array of attribute values into an
+	 * encoded saml:Attribute element which should go into the
+	 * AuthnResponse. The data can optionally be base64 encoded.
+	 *
+	 * Parameters:
+	 *  $name      Name of this attribute.
+	 *  $values    Array with the values of this attribute.
+	 *  $base64    Enable base64 encoding of attribute values.
+	 *
+	 * Returns:
+	 *  String containing the encoded saml:attribute value for this
+	 *  attribute.
+	 */
+	private static function enc_attribute($name, $values, $base64 = false) {
+		assert(is_array($values));
+
+		$ret = '<saml:Attribute Name="' . $name . '">';
+
+		foreach($values as $value) {
+			if($base64) {
+				$text = base64_encode($value);
+			} else {
+				$text = htmlspecialchars($value);
+			}
+
+			$ret .= '<saml:AttributeValue xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' .
+			        $text . '</saml:AttributeValue>';
+		}
+
+
+		$ret .= '</saml:Attribute>';
+
+		return $ret;
 	}
 	
 	
