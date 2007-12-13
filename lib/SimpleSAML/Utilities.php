@@ -174,6 +174,48 @@ class SimpleSAML_Utilities {
 			$depth++;
 		}
 	}
+
+
+	/* This function converts a SAML2 timestamp on the form
+	 * yyyy-mm-ddThh:mm:ssZ to a UNIX timestamp.
+	 *
+	 * Parameters:
+	 *  $time     The time we should convert.
+	 *
+	 * Returns:
+	 *  $time converted to a unix timestamp.
+	 */
+	public static function parseSAML2Time($time) {
+		$matches = array();
+
+
+		/* We use a very strict regex to parse the timestamp. */
+		if(preg_match('/^(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d)' .
+		              'T(\\d\\d):(\\d\\d):(\\d\\d)Z$/D',
+		              $time, $matches) == 0) {
+			throw new Exception(
+				'Invalid SAML2 timestamp passed to' .
+				' parseSAML2Time: ' . $time);
+		}
+
+		/* Extract the different components of the time from the
+		 * matches in the regex. intval will ignore leading zeroes
+		 * in the string.
+		 */
+		$year = intval($matches[1]);
+		$month = intval($matches[2]);
+		$day = intval($matches[3]);
+		$hour = intval($matches[4]);
+		$minute = intval($matches[5]);
+		$second = intval($matches[6]);
+
+		/* We use gmmktime because the timestamp will always be given
+		 * in UTC.
+		 */
+		$ts = gmmktime($hour, $minute, $second, $month, $day, $year);
+
+		return $ts;
+	}
 }
 
 ?>
