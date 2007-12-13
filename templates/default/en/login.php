@@ -32,7 +32,7 @@
 					<?php if (isset($data['username'])) {
 						echo 'value="' . htmlspecialchars($data['username']) . '"';
 					} ?> /></td>
-				<td style="padding: .4em; rowspan="2">
+				<td style="padding: .4em;" rowspan="2">
 					<input type="submit" tabindex="3" value="Login" />
 					<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($data['relaystate']); ?>" />
 				</td>

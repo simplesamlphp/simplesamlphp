@@ -34,7 +34,7 @@
 					} ?> /></td>
 
 					
-				<td style="padding: .4em; rowspan="3">
+				<td style="padding: .4em;" rowspan="3">
 					<input type="submit" tabindex="3" value="Login" />
 					<input type="hidden" name="RelayState" value="<?php echo $data['relaystate']; ?>" />
 				</td>
