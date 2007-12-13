@@ -45,6 +45,14 @@ class SimpleSAML_Configuration {
 		if (!isset($this->configuration)) {
 			$this->loadConfig();
 		}
+
+		/* Avoid notice about non-existant member of array
+		 * if an option isn't set.
+		 */
+		if (!array_key_exists($name, $this->configuration)) {
+			return NULL;
+		}
+
 		return $this->configuration[$name];
 	}
 
