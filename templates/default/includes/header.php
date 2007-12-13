@@ -64,7 +64,7 @@ foreach ($languages AS $lang => $current) {
 	if ($current) {
 		echo $langnames[$lang] . ' | ';
 	} else {
-		echo '<a href="' . SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), 'language=' . $lang) . '">' . 
+		echo '<a href="' . htmlspecialchars(SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), 'language=' . $lang)) . '">' . 
 			$langnames[$lang] . '</a> | ';
 	}
 }
