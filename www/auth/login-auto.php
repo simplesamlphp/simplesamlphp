@@ -4,13 +4,13 @@
  * This php script implements an automatic login handler which gives the user
  * a default set of attributes.
  *
- * To use this login handler, the 'login_auto.enable' configuration option
+ * To use this login handler, the 'auth.auto.enable' configuration option
  * must be set to true. The attributes which are returned is configured in the
- * 'login_auto.attributes' configuration option.
+ * 'auth.auto.attributes' configuration option.
  *
  * There are also two other options for use in simulation:
- *  - 'login_auto.ask_login' - ask for username and password.
- *  - 'login_auto.delay_login' - delay the login process for the given number
+ *  - 'auth.auto.ask_login' - ask for username and password.
+ *  - 'auth.auto.delay_login' - delay the login process for the given number
  *    of milliseconds.
  *
  * See 'config/config-template.php' for documentation about these configuration
@@ -26,17 +26,17 @@ require_once('SimpleSAML/XHTML/Template.php');
 
 /* Load the configuration. */
 $config = SimpleSAML_Configuration::getInstance();
-$enable = (bool)$config->getValue('login_auto.enable');
-$attributes = $config->getValue('login_auto.attributes');
-$ask_login = (bool)$config->getValue('login_auto.ask_login');
-$delay_login = (int)$config->getValue('login_auto.delay_login');
+$enable = (bool)$config->getValue('auth.auto.enable');
+$attributes = $config->getValue('auth.auto.attributes');
+$ask_login = (bool)$config->getValue('auth.auto.ask_login');
+$delay_login = (int)$config->getValue('auth.auto.delay_login');
 
 /* Verify that this authentication handler is enabled. */
 if(!$enable) {
 	$e = 'You attempted to use the login-auto authentication handler,' .
 	     'but this handler isn\'t enabled in the configuration. If you' .
 	     ' want to enable this authentication handler, set' .
-	     ' \'login_auto.enable\' to true.';
+	     ' \'auth.auto.enable\' to true.';
 	error_log($e);
 
 	$t = new SimpleSAML_XHTML_Template($config, 'error.php');
@@ -47,11 +47,11 @@ if(!$enable) {
 	exit;
 }
 
-/* Verify that the 'login_auto.attributes' option is configured. */
+/* Verify that the 'auth.auto.attributes' option is configured. */
 if(!is_array($attributes)) {
 	$e = 'The login-auto authentication handler is enabled, but no' .
 	     ' attributes are configured. Please set' .
-	     ' \'login_auto.attributes\' to the attributes you want to give' .
+	     ' \'auth.auto.attributes\' to the attributes you want to give' .
 	     ' users.';
 	error_log($e);
 
