@@ -1,95 +1,96 @@
 <?php
 
+/*
+ * This php script implements an automatic login handler which gives the user
+ * a default set of attributes.
+ *
+ * To use this login handler, the 'login_auto.enable' configuration option
+ * must be set to true. The attributes which are returned is configured in the
+ * 'login_auto.attributes' configuration option.
+ *
+ * There are also two other options for use in simulation:
+ *  - 'login_auto.ask_login' - ask for username and password.
+ *  - 'login_auto.delay_login' - delay the login process for the given number
+ *    of milliseconds.
+ *
+ * See 'config/config-template.php' for documentation about these configuration
+ * options.
+ */
 
 require_once('../../www/_include.php');
 
-
-require_once('SimpleSAML/Utilities.php');
+require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Session.php');
-require_once('SimpleSAML/XML/MetaDataStore.php');
-require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
-require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
+require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
-session_start();
-
+/* Load the configuration. */
 $config = SimpleSAML_Configuration::getInstance();
-$metadata = new SimpleSAML_XML_MetaDataStore($config);
+$enable = (bool)$config->getValue('login_auto.enable');
+$attributes = $config->getValue('login_auto.attributes');
+$ask_login = (bool)$config->getValue('login_auto.ask_login');
+$delay_login = (int)$config->getValue('login_auto.delay_login');
 
-	
+/* Verify that this authentication handler is enabled. */
+if(!$enable) {
+	$e = 'You attempted to use the login-auto authentication handler,' .
+	     'but this handler isn\'t enabled in the configuration. If you' .
+	     ' want to enable this authentication handler, set' .
+	     ' \'login_auto.enable\' to true.';
+	error_log($e);
+	/* TODO: show error page. */
+	exit(1);
+}
+
+/* Verify that the 'login_auto.attributes' option is configured. */
+if(!is_array($attributes)) {
+	$e = 'The login-auto authentication handler is enabled, but no' .
+	     ' attributes are configured. Please set' .
+	     ' \'login_auto.attributes\' to the attributes you want to give' .
+	     ' users.';
+	error_log($e);
+	/* TODO: show error page. */
+	exit(1);
+}
+
+
+/* Check if we should display a login page. */
+if($ask_login && !array_key_exists('username', $_POST)) {
+	/* Show login page. */
+
+	$t = new SimpleSAML_XHTML_Template($config, 'login.php');
+
+	$t->data['header'] = 'simpleSAMLphp: Enter username and password';
+	$t->data['relaystate'] = $_REQUEST['RelayState'];
+
+	$t->show();
+	exit(0);
+}
+
+
+/* Delay the execution of the script to simulate the login process taking
+ * time.
+ */
+usleep($delay_login * 1000);
+
+
+/* Load the session of the current user. */
 $session = SimpleSAML_Session::getInstance();
-
-$error = null;
-$attributes = array();
-	
-if (isset($_POST['username'])) {
-
-
-	$dn = str_replace('%username%', $_POST['username'], $config->getValue('auth.ldap.dnpattern'));
-	$pwd = $_POST['password'];
-
-	$ds = ldap_connect($config->getValue('auth.ldap.hostname'));
-	
-	if ($ds) {
-	
-		if (!ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3)) {
-			echo "Failed to set LDAP Protocol version to 3";
-			exit;
-		}
-		/*
-		if (!ldap_start_tls($ds)) {
-		echo "Failed to start TLS";
-		exit;
-		}
-		*/
-		if (!ldap_bind($ds, $dn, $pwd)) {
-			$error = "Bind failed, wrong username or password. Tried with DN=[" . $dn . "] DNPattern=[" . $config->getValue('auth.ldap.dnpattern') . "]";
-			
-			
-		} else {
-			$sr = ldap_read($ds, $dn, $config->getValue('auth.ldap.attributes'));
-			$ldapentries = ldap_get_entries($ds, $sr);
-			
-
-			for ($i = 0; $i < $ldapentries[0]['count']; $i++) {
-				$values = array();
-				if ($ldapentries[0][$i] == 'jpegphoto') continue;
-				for ($j = 0; $j < $ldapentries[0][$ldapentries[0][$i]]['count']; $j++) {
-					$values[] = $ldapentries[0][$ldapentries[0][$i]][$j];
-				}
-				
-				$attributes[$ldapentries[0][$i]] = $values;
-			}
-
-			// generelt ldap_next_entry for flere, men bare ett her
-			//print_r($ldapentries);
-			//print_r($attributes);
-			
-			$session->setAuthenticated(true);
-			$session->setAttributes($attributes);
-			$returnto = $_SESSION['webssourl']. '?RequestID=' . $_REQUEST['RequestID'];
-			header("Location: " . $returnto);
-
-		}
-	// ldap_close() om du vil, men frigjoeres naar skriptet slutter
-	}
-	
-
-	
-	
+if($session == NULL) {
+	$e = 'No session was found. Are cookies disabled?';
+	error_log($e);
+	/* TODO: show error page. */
+	exit(1);
 }
 
+/* Set the user as authenticated and add the attributes from the
+ * configuration.
+ */
+$session->setAuthenticated(true);
+$session->setAttributes($attributes);
 
-$t = new SimpleSAML_XHTML_Template($config, 'login.php');
-
-$t->data['header'] = 'simpleSAMLphp: Enter username and password';	
-$t->data['requestid'] = $_REQUEST['RequestID'];
-$t->data['error'] = $error;
-if (isset($error)) {
-	$t->data['username'] = $_POST['username'];
-}
-
-$t->show();
-
+/* Return the user to the page set in the RelayState parameter. */
+$returnto = $_REQUEST['RelayState'];
+header("Location: " . $returnto);
 
 ?>
