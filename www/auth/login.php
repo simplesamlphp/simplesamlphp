@@ -56,22 +56,49 @@ if (isset($_POST['username'])) {
 		} else {
 			$sr = ldap_read($ds, $dn, $config->getValue('auth.ldap.attributes'));
 			$ldapentries = ldap_get_entries($ds, $sr);
-			
 
-			for ($i = 0; $i < $ldapentries[0]['count']; $i++) {
-				$values = array();
-				if ($ldapentries[0][$i] == 'jpegphoto') continue;
-				for ($j = 0; $j < $ldapentries[0][$ldapentries[0][$i]]['count']; $j++) {
-					$values[] = $ldapentries[0][$ldapentries[0][$i]][$j];
-				}
-				
-				$attributes[$ldapentries[0][$i]] = $values;
+			/* Check if we have any entries in the search result.
+			 */
+			if($ldapentries['count'] == 0) {
+				throw new Exception('LDAP: No entries in the' .
+				                    ' search result.');
 			}
 
-			// generelt ldap_next_entry for flere, men bare ett her
-			//print_r($ldapentries);
-			//print_r($attributes);
-			
+			/* Currently we only care about the first entry. We
+			 * write a message to the error log if we have more.
+			 */
+			if($ldapentries['count'] > 1) {
+				error_log('LDAP: we have more than one entry' .
+				          ' in the search result.');
+			}
+
+			/* Iterate over all the attributes in the first
+			 * result. $ldapentries[0]['count'] contains the
+			 * attribute count, while $ldapentries[0][$i]
+			 * contains the name of the $i'th attribute.
+			 */
+			for ($i = 0; $i < $ldapentries[0]['count']; $i++) {
+				$name = $ldapentries[0][$i];
+
+				/* We currently ignore the 'jpegphoto'
+				 * attribute since it is relatively big.
+				 */
+				if ($name === 'jpegphoto') {
+					continue;
+				}
+
+				$attribute = $ldapentries[0][$name];
+
+				$values = array();
+
+				for ($j = 0; $j < $attribute['count']; $j++) {
+					$values[] = $attribute[$j];
+				}
+
+				assert(!array_key_exists($name, $attributes));
+				$attributes[$name] = $values;
+			}
+
 			$session->setAuthenticated(true);
 			$session->setAttributes($attributes);
 			
