@@ -23,13 +23,63 @@ $logger->log(LOG_INFO, $session->getTrackID(), 'AUTH', 'ldap', 'EVENT', 'Access'
 
 $error = null;
 $attributes = array();
-	
+$username = null;
+
+
+/* Load the RelayState argument. The RelayState argument contains the address
+ * we should redirect the user to after a successful authentication.
+ */
+if (!array_key_exists('RelayState', $_REQUEST)) {
+	SimpleSAML_Utilities::fatalError(
+		'Invalid access of LDAP login page',
+		'Missing RelayState argument to LDAP authenticator.'
+		);
+}
+
+$relaystate = $_REQUEST['RelayState'];
+/* Remove backslashes if magic quotes are enabled. */
+if(get_magic_quotes_gpc()) {
+	$relaystate = stripslashes($relaystate);
+}
+
+
 if (isset($_POST['username'])) {
 
+	/* Validate and sanitize form data. */
 
-	$dn = str_replace('%username%', $_POST['username'], $config->getValue('auth.ldap.dnpattern'));
-	$pwd = $_POST['password'];
+	/* First, make sure that the password field is included. */
+	if (!array_key_exists('password', $_POST)) {
+		SimpleSAML_Utilities::fatalError(
+			'Invalid access of LDAP login page',
+			'Invalid form data posted to login form. Missing' .
+			' required password form field.'
+			);
+	}
 
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+
+	/* Remove backslashes if magic quotes are enabled. */
+	if(get_magic_quotes_gpc()) {
+		$username = stripslashes($username);
+		$password = stripslashes($password);
+	}
+
+	/* Escape any characters with a special meaning in LDAP. The following
+	 * characters have a special meaning (according to RFC 2253):
+	 * ',', '+', '"', '\', '<', '>', ';'
+	 * These characters are escaped by prefixing them with '\'.
+	 * TODO: should '*' be escaped as well?
+	 */
+	$ldapusername = addcslashes($username, ',+"\\<>;');
+
+	/* Insert the LDAP username into the pattern configured in the
+	 * 'auth.ldap.dnpattern' option.
+	 */
+	$dn = str_replace('%username%', $ldapusername,
+	                  $config->getValue('auth.ldap.dnpattern'));
+
+	/* Connect to the LDAP server. */
 	$ds = ldap_connect($config->getValue('auth.ldap.hostname'));
 	
 	if ($ds) {
@@ -47,11 +97,11 @@ if (isset($_POST['username'])) {
 		exit;
 		}
 		*/
-		if (!ldap_bind($ds, $dn, $pwd)) {
+		if (!ldap_bind($ds, $dn, $password)) {
 			$error = "Bind failed, wrong username or password. Tried with DN=[" . $dn . "] DNPattern=[" . $config->getValue('auth.ldap.dnpattern')
 				. "] Error=[" . ldap_error($ds) . "] ErrNo=[" . ldap_errno($ds) . "]";
 			
-			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap', 'Fail', $_POST['username'], $_POST['username'] . ' failed to authenticate');
+			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap', 'Fail', $username, $username . ' failed to authenticate');
 			
 		} else {
 			$sr = ldap_read($ds, $dn, $config->getValue('auth.ldap.attributes'));
@@ -105,11 +155,10 @@ if (isset($_POST['username'])) {
 			$session->setNameID(SimpleSAML_Utilities::generateID());
 			$session->setNameIDFormat('urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
 			
-			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap', 'OK', $_POST['username'], $_POST['username'] . ' successfully authenticated');
+			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap', 'OK', $username, $username . ' successfully authenticated');
 			
 			
-			$returnto = $_REQUEST['RelayState'];
-			header("Location: " . $returnto);
+			header("Location: " . $relaystate);
 			exit(0);
 
 		}
@@ -123,10 +172,10 @@ if (isset($_POST['username'])) {
 $t = new SimpleSAML_XHTML_Template($config, 'login.php');
 
 $t->data['header'] = 'simpleSAMLphp: Enter username and password';	
-$t->data['relaystate'] = $_REQUEST['RelayState'];
+$t->data['relaystate'] = $relaystate;
 $t->data['error'] = $error;
 if (isset($error)) {
-	$t->data['username'] = $_POST['username'];
+	$t->data['username'] = $username;
 }
 
 $t->show();
