@@ -85,14 +85,14 @@ class SimpleSAML_Utilities {
 		$currentTime = time();
 	
 		if (! empty($start)) {
-			$startTime = strtotime($start);
+			$startTime = self::parseSAML2Time($start);
 			/* Allow for a 10 minute difference in Time */
 			if (($startTime < 0) || (($startTime - 600) > $currentTime)) {
 				return FALSE;
 			}
 		}
 		if (! empty($end)) {
-			$endTime = strtotime($end);
+			$endTime = self::parseSAML2Time($end);
 			if (($endTime < 0) || ($endTime <= $currentTime)) {
 				return FALSE;
 			}
