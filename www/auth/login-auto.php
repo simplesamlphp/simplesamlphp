@@ -38,8 +38,13 @@ if(!$enable) {
 	     ' want to enable this authentication handler, set' .
 	     ' \'login_auto.enable\' to true.';
 	error_log($e);
-	/* TODO: show error page. */
-	exit(1);
+
+	$t = new SimpleSAML_XHTML_Template($config, 'error.php');
+	$t->data['header'] = 'login-auto: configuration error';
+	$t->data['message'] = $e;
+	$t->show();
+
+	exit;
 }
 
 /* Verify that the 'login_auto.attributes' option is configured. */
@@ -49,8 +54,13 @@ if(!is_array($attributes)) {
 	     ' \'login_auto.attributes\' to the attributes you want to give' .
 	     ' users.';
 	error_log($e);
-	/* TODO: show error page. */
-	exit(1);
+
+	$t = new SimpleSAML_XHTML_Template($config, 'error.php');
+	$t->data['header'] = 'login-auto: configuration error';
+	$t->data['message'] = $e;
+	$t->show();
+
+	exit;
 }
 
 
@@ -79,8 +89,13 @@ $session = SimpleSAML_Session::getInstance();
 if($session == NULL) {
 	$e = 'No session was found. Are cookies disabled?';
 	error_log($e);
-	/* TODO: show error page. */
-	exit(1);
+
+	$t = new SimpleSAML_XHTML_Template($config, 'error.php');
+	$t->data['header'] = 'login-auto: missing session';
+	$t->data['message'] = $e;
+	$t->show();
+
+	exit;
 }
 
 /* Set the user as authenticated and add the attributes from the
