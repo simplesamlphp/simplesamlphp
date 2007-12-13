@@ -30,11 +30,11 @@
 				<td style="padding: .3em;">Username</td>
 				<td><input type="text" tabindex="1" name="username" 
 					<?php if (isset($data['username'])) {
-						echo 'value="' . $data['username'] . '"';
+						echo 'value="' . htmlspecialchars($data['username']) . '"';
 					} ?> /></td>
 				<td style="padding: .4em; rowspan="2">
 					<input type="submit" tabindex="3" value="Login" />
-					<input type="hidden" name="RelayState" value="<?php echo $data['relaystate']; ?>" />
+					<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($data['relaystate']); ?>" />
 				</td>
 			</tr>
 			<tr>
