@@ -12,7 +12,8 @@
  */
  
 require_once('SimpleSAML/Configuration.php');
- 
+require_once('SimpleSAML/XHTML/Template.php');
+
 /**
  * Configuration of SimpleSAMLphp
  */
@@ -215,6 +216,26 @@ class SimpleSAML_Utilities {
 		$ts = gmmktime($hour, $minute, $second, $month, $day, $year);
 
 		return $ts;
+	}
+
+
+	/* This function logs a error message to the error log and shows the
+	 * message to the user. Script execution terminates afterwards.
+	 *
+	 * Parameters:
+	 *  $title       Short title for the error message.
+	 *  $message     The error message.
+	 */
+	public static function fatalError($title, $message) {
+		error_log($title . ': ' . $message);
+
+		$config = SimpleSAML_Configuration::getInstance();
+		$t = new SimpleSAML_XHTML_Template($config, 'error.php');
+		$t->data['header'] = $title;
+		$t->data['message'] = $message;
+		$t->show();
+
+		exit;
 	}
 }
 
