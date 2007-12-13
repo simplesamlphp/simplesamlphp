@@ -18,7 +18,12 @@
 
 		</p>
 
-		
+
+<?php
+/* Print out exception only if the exception is available. */
+if (array_key_exists('e', $data)) {
+?>
+
 		<p>The debug information below may be interesting for the administrator / help desk:</p>
 		
 		<div style="border: 1px solid #eee; padding: 1em; font-size: x-small">
@@ -27,6 +32,9 @@
 				<?php echo htmlentities($data['e']->getTraceAsString()); ?>
 			</div>
 		</div>
+<?php
+}
+?>
 		
 		<h2 style="clear: both">How to get help</h2>
 		
