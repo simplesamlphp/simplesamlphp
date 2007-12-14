@@ -13,7 +13,7 @@
 	
 	<form method="post" action="<?php echo htmlspecialchars($data['destination']); ?>">
 		<input type="hidden" name="SAMLResponse" value="<?php echo htmlspecialchars($data['response']); ?>" />
-		<input type="hidden" name="<?php echo htmlspecialchars($data['RelayStateName']); ?>" value="<?php echo htmlspecialchars($data['RelayState']); ?>">
+		<input type="hidden" name="<?php echo htmlspecialchars($data['RelayStateName']); ?>" value="<?php echo htmlspecialchars($data['RelayState']); ?>" />
 		
 		<noscript>
 			<input type="submit" value="Submit the response to the service" />
