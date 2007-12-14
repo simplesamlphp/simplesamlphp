@@ -16,8 +16,6 @@ require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
 
-session_start();
-
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = new SimpleSAML_XML_MetaDataStore($config);
 $session = SimpleSAML_Session::getInstance(true);

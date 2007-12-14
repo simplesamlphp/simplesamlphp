@@ -8,8 +8,6 @@ require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/XHTML/Template.php');
 require_once('SimpleSAML/XML/MetaDataStore.php');
 
-session_start();
-
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = new SimpleSAML_XML_MetaDataStore($config);
 

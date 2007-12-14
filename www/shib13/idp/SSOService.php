@@ -15,8 +15,6 @@ require_once('SimpleSAML/Bindings/Shib13/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
 
-session_start();
-
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = new SimpleSAML_XML_MetaDataStore($config);
 

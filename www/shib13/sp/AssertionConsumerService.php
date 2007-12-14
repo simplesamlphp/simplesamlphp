@@ -10,8 +10,6 @@ require_once('SimpleSAML/XML/Shib13/AuthnRequest.php');
 require_once('SimpleSAML/Bindings/Shib13/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
-session_start();
-
 try {
 	
 	/*

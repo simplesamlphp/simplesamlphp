@@ -12,8 +12,6 @@ require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
 
 
 
-session_start();
-
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = new SimpleSAML_XML_MetaDataStore($config);
 

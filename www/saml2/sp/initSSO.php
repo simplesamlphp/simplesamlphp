@@ -13,8 +13,6 @@ require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
 //require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 
-session_start();
-
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = new SimpleSAML_XML_MetaDataStore($config);
 $session = SimpleSAML_Session::getInstance(true);

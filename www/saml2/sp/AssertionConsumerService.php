@@ -11,8 +11,6 @@ require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
-session_start();
-
 $session = SimpleSAML_Session::getInstance();
 
 $logger = new SimpleSAML_Logger();

@@ -6,7 +6,6 @@ require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/XML/MetaDataStore.php');
 require_once('SimpleSAML/XHTML/Template.php');
-session_start();
 
 
 $config = SimpleSAML_Configuration::getInstance();

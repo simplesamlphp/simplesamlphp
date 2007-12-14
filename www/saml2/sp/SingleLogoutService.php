@@ -11,8 +11,6 @@ require_once('SimpleSAML/XML/SAML20/LogoutRequest.php');
 require_once('SimpleSAML/XML/SAML20/LogoutResponse.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 
-session_start();
-
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = new SimpleSAML_XML_MetaDataStore($config);
 
