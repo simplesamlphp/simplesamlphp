@@ -11,9 +11,9 @@
 		<p><strong>Note:</strong> Since your browser does not support JavaScript, you must press the button below once to proceed.</p> 
 	</noscript> 
 	
-	<form method="post" action="<?php echo $data['destination']; ?>">
-		<input type="hidden" name="SAMLResponse" value="<?php echo $data['response']; ?>" />
-		<input type="hidden" name="<?php echo $data['RelayStateName']; ?>" value="<?php echo $data['RelayState']; ?>">
+	<form method="post" action="<?php echo htmlspecialchars($data['destination']); ?>">
+		<input type="hidden" name="SAMLResponse" value="<?php echo htmlspecialchars($data['response']); ?>" />
+		<input type="hidden" name="<?php echo htmlspecialchars($data['RelayStateName']); ?>" value="<?php echo htmlspecialchars($data['RelayState']); ?>">
 		
 		<noscript>
 			<input type="submit" value="Submit the response to the service" />
