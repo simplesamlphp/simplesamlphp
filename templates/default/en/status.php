@@ -21,13 +21,13 @@
 			$attributes = $data['attributes'];
 			foreach ($attributes AS $name => $value) {
 				if (sizeof($value) > 1) {
-					echo '<tr><td>' . $name . '</td><td><ul>';
+					echo '<tr><td>' . htmlspecialchars($name) . '</td><td><ul>';
 					foreach ($value AS $v) {
-						echo '<li>' . $v . '</li>';
+						echo '<li>' . htmlspecialchars($v) . '</li>';
 					}
 					echo '</ul></td></tr>';
 				} else {
-					echo '<tr><td>' . $name . '</td><td>' . $value[0] . '</td></tr>';
+					echo '<tr><td>' . htmlspecialchars($name) . '</td><td>' . htmlspecialchars($value[0]) . '</td></tr>';
 				}
 			}
 			
