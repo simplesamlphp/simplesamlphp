@@ -36,7 +36,7 @@ class SimpleSAML_XML_MetaDataStore {
 				throw new Exception('Trying to load illegal set of Meta data [' . $set . ']');
 		}
 		
-		$metadatasetfile = $this->configuration->getValue('basedir') . '/' . 
+		$metadatasetfile = $this->configuration->getBaseDir() . '/' . 
 			$this->configuration->getValue('metadatadir') . '/' . $set . '.php';
 		
 		

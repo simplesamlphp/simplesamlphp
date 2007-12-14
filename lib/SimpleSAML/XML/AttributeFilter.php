@@ -27,7 +27,7 @@ class SimpleSAML_XML_AttributeFilter {
 
 	public function namemap($map) {
 		
-		$mapfile = $this->configuration->getValue('basedir') . $this->configuration->getValue('attributenamemapdir') . $map . '.php';
+		$mapfile = $this->configuration->getBaseDir() . $this->configuration->getValue('attributenamemapdir') . $map . '.php';
 		if (!file_exists($mapfile)) throw new Exception('Could not find attributemap file: ' . $mapfile);
 		
 		include($mapfile);

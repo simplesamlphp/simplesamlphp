@@ -16,7 +16,7 @@ $metadata = new SimpleSAML_XML_MetaDataStore($config);
 $session = SimpleSAML_Session::getInstance();
 $logger = new SimpleSAML_Logger();
 
-$ldapconfigfile = $config->getValue('basedir') . 'config/ldapmulti.php';
+$ldapconfigfile = $config->getBaseDir() . 'config/ldapmulti.php';
 require_once($ldapconfigfile);
 
 

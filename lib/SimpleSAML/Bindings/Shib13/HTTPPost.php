@@ -77,8 +77,8 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 			throw new Exception('Could not find AssertionConsumerService for SP entity ID [' . $spentityid. ']. ' . 
 				'Claimed ACS is: ' . (isset($claimedacs) ? $claimedacs : 'N/A'));
 	
-		$privatekey = $this->configuration->getValue('basedir') . '/cert/' . $idpmd['privatekey'];
-		$publiccert = $this->configuration->getValue('basedir') . '/cert/' . $idpmd['certificate'];
+		$privatekey = $this->configuration->getBaseDir() . '/cert/' . $idpmd['privatekey'];
+		$publiccert = $this->configuration->getBaseDir() . '/cert/' . $idpmd['certificate'];
 
 		
 		if (strstr($claimedacs, $destination) == 0) {

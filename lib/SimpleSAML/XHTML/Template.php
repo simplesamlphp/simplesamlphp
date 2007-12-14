@@ -69,20 +69,20 @@ class SimpleSAML_XHTML_Template {
 	
 	private function includeAtTemplateBase($file) {
 		$data = $this->data;
-		$filebase = $this->configuration->getValue('basedir') . $this->configuration->getValue('templatedir');
+		$filebase = $this->configuration->getBaseDir() . $this->configuration->getValue('templatedir');
 		include($filebase . $file);
 	}
 
 	private function includeAtLanguageBase($file) {
 		$data = $this->data;
-		$filebase = $this->configuration->getValue('basedir') . $this->configuration->getValue('templatedir') . $this->getLanguage() . '/' ;
+		$filebase = $this->configuration->getBaseDir() . $this->configuration->getValue('templatedir') . $this->getLanguage() . '/' ;
 		include($filebase . $file);
 	}
 
 	
 	public function show() {
 		$data = $this->data;
-		$filename = $this->configuration->getValue('basedir') . $this->configuration->getValue('templatedir') . $this->getLanguage() . '/' . 
+		$filename = $this->configuration->getBaseDir() . $this->configuration->getValue('templatedir') . $this->getLanguage() . '/' . 
 			$this->template;
 		
 		
@@ -92,7 +92,7 @@ class SimpleSAML_XHTML_Template {
 //				echo 'Could not find template file [' . $this->template . '] at [' . $filename . ']';
 //				exit(0);
 		
-			$filename = $this->configuration->getValue('basedir') . $this->configuration->getValue('templatedir') .  
+			$filename = $this->configuration->getBaseDir() . $this->configuration->getValue('templatedir') .  
 				$this->configuration->getValue('language.default') . '/' . $this->template;
 
 
