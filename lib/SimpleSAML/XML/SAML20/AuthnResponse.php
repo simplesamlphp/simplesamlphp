@@ -385,28 +385,28 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" 
 			xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" 
 			ID="' . $id . '"
-			InResponseTo="' . $inresponseto. '" Version="2.0"
+			InResponseTo="' . htmlspecialchars($inresponseto) . '" Version="2.0"
 			IssueInstant="' . $issueInstant . '"
 			Destination="' . $destination . '">
-	<saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' . $issuer . '</saml:Issuer>
+	<saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' . htmlspecialchars($issuer) . '</saml:Issuer>
 	<samlp:Status xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
 		<samlp:StatusCode xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
 			Value="urn:oasis:names:tc:SAML:2.0:status:Success" />
 	</samlp:Status>
 	<saml:Assertion Version="2.0"
 		ID="' . $assertionid . '" IssueInstant="' . $issueInstant . '">
-		<saml:Issuer>' . $issuer . '</saml:Issuer>
+		<saml:Issuer>' . htmlspecialchars($issuer) . '</saml:Issuer>
 		<saml:Subject>
 			' . $nameid . ' 
 			<saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
 				<saml:SubjectConfirmationData NotOnOrAfter="' . $assertionExpire . '"
-					InResponseTo="' . $inresponseto. '"
+					InResponseTo="' . htmlspecialchars($inresponseto). '"
 					Recipient="' . $destination . '"/>
 			</saml:SubjectConfirmation>
 		</saml:Subject>
 		<saml:Conditions NotBefore="' . $notBefore. '" NotOnOrAfter="' . $assertionExpire. '">
             <saml:AudienceRestriction>
-                <saml:Audience>' . $spentityid . '</saml:Audience>
+                <saml:Audience>' . htmlspecialchars($spentityid) . '</saml:Audience>
             </saml:AudienceRestriction>
 		</saml:Conditions> 
 		<saml:AuthnStatement AuthnInstant="' . $issueInstant . '"
@@ -433,12 +433,12 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			$value = 'anonymous', $namequalifier = null, $spnamequalifier = null) {
 			
 		if ($type == self::EMAIL) {
-			return '<saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">' . $value . '</saml:NameID>';
+			return '<saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">' . htmlspecialchars($value) . '</saml:NameID>';
 
 		} else {
-			return '<saml:NameID NameQualifier="' . $namequalifier . '" SPNameQualifier="'. $spnamequalifier. '"
+			return '<saml:NameID NameQualifier="' . htmlspecialchars($namequalifier) . '" SPNameQualifier="'. htmlspecialchars($spnamequalifier). '"
                 Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
-                >' . $value. '</saml:NameID>';
+                >' . htmlspecialchars($value). '</saml:NameID>';
 		}
 		
 	}
@@ -460,7 +460,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	private static function enc_attribute($name, $values, $base64 = false) {
 		assert(is_array($values));
 
-		$ret = '<saml:Attribute Name="' . $name . '">';
+		$ret = '<saml:Attribute Name="' . htmlspecialchars($name) . '">';
 
 		foreach($values as $value) {
 			if($base64) {
