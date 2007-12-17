@@ -356,7 +356,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		assert('$dom instanceof DOMDocument');
 
 		$xPath = new DOMXpath($dom);
-		$xPath->registerNamespace('samlp', 'urn:oasis:names:tc:SAML:2.0:protocol');
+		$xPath->registerNamespace('samlp', self::SAML2_PROTOCOL_NS);
 
 		$result = $xPath->query('/samlp:Response/@InResponseTo');
 		if($result->length === 0) {
