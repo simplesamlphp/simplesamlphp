@@ -337,7 +337,35 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		//echo '<pre>'; print_r($nameID); echo '</pre>';
 		return $nameID;
 	}
-	
+
+
+	/* This function retrieves the ID of the request this response is a
+	 * response to. This ID is stored in the InResponseTo attribute of the
+	 * top level DOM element.
+	 *
+	 * Returns:
+	 *  The ID of the request this response is a response to, or NULL if
+	 *  we don't know.
+	 */
+	public function getInResponseTo() {
+		$dom = $this->getDOM();
+		if($dom === NULL) {
+			return NULL;
+		}
+
+		assert('$dom instanceof DOMDocument');
+
+		$xPath = new DOMXpath($dom);
+		$xPath->registerNamespace('samlp', 'urn:oasis:names:tc:SAML:2.0:protocol');
+
+		$result = $xPath->query('/samlp:Response/@InResponseTo');
+		if($result->length === 0) {
+			return NULL;
+		}
+
+		return $result->item(0)->value;
+	}		
+			
 
 	// Not updated for response. from request.
 	public function generate($idpentityid, $spentityid, $inresponseto, $nameid, $attributes) {
