@@ -103,8 +103,8 @@ if (isset($_GET['SAMLRequest'])) {
 
 if (!$session->isAuthenticated() ) {
 
-	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() . '?RelayState=' . urlencode($_GET['RelayState']) .
-		'&RequestID=' . urlencode($requestid);
+	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() .
+		'?RequestID=' . urlencode($requestid);
 	$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getValue('baseurlpath') . $idpmeta['auth'], 
 		'RelayState=' . urlencode($relaystate));
 		
