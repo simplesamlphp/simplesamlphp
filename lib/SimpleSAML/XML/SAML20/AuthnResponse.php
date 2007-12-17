@@ -358,12 +358,13 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$xPath = new DOMXpath($dom);
 		$xPath->registerNamespace('samlp', self::SAML2_PROTOCOL_NS);
 
-		$result = $xPath->query('/samlp:Response/@InResponseTo');
-		if($result->length === 0) {
+		$query = 'string(/samlp:Response/@InResponseTo)';
+		$result = $xPath->evaluate($query);
+		if($result === '') {
 			return NULL;
 		}
 
-		return $result->item(0)->value;
+		return $result;
 	}		
 			
 
