@@ -37,6 +37,13 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 	const TRANSIENT 	= 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
 	const EMAIL 		= 'urn:oasis:names:tc:SAML:2.0:nameid-format:email';
+
+	/* Namespaces used in the XML representation of this object.
+	 * TODO: Move these constants into a generic SAML2-class?
+	 */
+	const SAML2_ASSERT_NS = 'urn:oasis:names:tc:SAML:2.0:assertion';
+	const SAML2_PROTOCOL_NS = 'urn:oasis:names:tc:SAML:2.0:protocol';
+	
 	
 
 	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_XML_MetaDataStore $metadatastore) {
@@ -195,9 +202,6 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$md = $this->metadata->getMetadata($this->getIssuer(), 'saml20-idp-remote');
 		
 		$base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
-		
-		define('SAML2_ASSERT_NS', 'urn:oasis:names:tc:SAML:2.0:assertion');
-		define('SAML2_PROTOCOL_NS', 'urn:oasis:names:tc:SAML:2.0:protocol');
 		
 		define('SAML2_BINDINGS_POST', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST');
 		
