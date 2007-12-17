@@ -183,8 +183,8 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$token = $this->getDOM();
 		if ($token instanceof DOMDocument) {
 			$xPath = new DOMXpath($token);
-			$xPath->registerNamespace('mysaml', SAML2_ASSERT_NS);
-			$xPath->registerNamespace('mysamlp', SAML2_PROTOCOL_NS);
+			$xPath->registerNamespace('mysaml', self::SAML2_ASSERT_NS);
+			$xPath->registerNamespace('mysamlp', self::SAML2_PROTOCOL_NS);
 	
 			$query = '/mysamlp:Response/mysaml:Assertion/mysaml:AuthnStatement';
 			$nodelist = $xPath->query($query);
@@ -225,8 +225,8 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			*/
 			
 			$xPath = new DOMXpath($token);
-			$xPath->registerNamespace("mysaml", SAML2_ASSERT_NS);
-			$xPath->registerNamespace("mysamlp", SAML2_PROTOCOL_NS);
+			$xPath->registerNamespace("mysaml", self::SAML2_ASSERT_NS);
+			$xPath->registerNamespace("mysamlp", self::SAML2_PROTOCOL_NS);
 			$query = "/mysamlp:Response/mysaml:Assertion/mysaml:Conditions";
 			$nodelist = $xPath->query($query);
 		
@@ -321,8 +321,8 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		
 		if ($dom instanceof DOMDocument) {
 			$xPath = new DOMXpath($dom);
-			$xPath->registerNamespace('mysaml', SAML2_ASSERT_NS);
-			$xPath->registerNamespace('mysamlp', SAML2_PROTOCOL_NS);
+			$xPath->registerNamespace('mysaml', self::SAML2_ASSERT_NS);
+			$xPath->registerNamespace('mysamlp', self::SAML2_PROTOCOL_NS);
 	
 			$query = '/mysamlp:Response/mysaml:Assertion/mysaml:Subject/mysaml:NameID';
 			$nodelist = $xPath->query($query);
