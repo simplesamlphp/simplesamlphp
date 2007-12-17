@@ -65,11 +65,10 @@ if (isset($_POST['username'])) {
 
 	/* Escape any characters with a special meaning in LDAP. The following
 	 * characters have a special meaning (according to RFC 2253):
-	 * ',', '+', '"', '\', '<', '>', ';'
+	 * ',', '+', '"', '\', '<', '>', ';', '*'
 	 * These characters are escaped by prefixing them with '\'.
-	 * TODO: should '*' be escaped as well?
 	 */
-	$ldapusername = addcslashes($username, ',+"\\<>;');
+	$ldapusername = addcslashes($username, ',+"\\<>;*');
 
 	/* Insert the LDAP username into the pattern configured in the
 	 * 'auth.ldap.dnpattern' option.
