@@ -203,10 +203,6 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		
 		$base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 		
-		define('SAML2_BINDINGS_POST', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST');
-		
-		define('SAML2_STATUS_SUCCESS', 'urn:oasis:names:tc:SAML:2.0:status:Success');
-		
 		/*
 		echo 'Validids<pre>';
 		print_r($this->validIDs);
