@@ -135,7 +135,21 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			throw new Exception('SAMLRequest parameter not set in paramter (on SAML 2.0 HTTP Redirect binding endpoint)');
 		}
 		$rawRequest = 	$get["SAMLRequest"];
-		$relaystate = isset($get["RelayState"]) ? $get["RelayState"] : null;
+		/* We don't need to remove any magic quotes from the
+		 * SAMLRequest parameter since this parameter is guaranteed
+		 * to be base64-encoded.
+		 */
+
+		/* Check if a RelayState was provided with the request. */
+		if(array_key_exists('RelayState', $get)) {
+			$relaystate = $get['RelayState'];
+			/* Remove any magic quotes that php may have added. */
+			if(get_magic_quotes_gpc()) {
+				$relaystate = stripslashes($relaystate);
+			}
+		} else {
+			$relaystate = NULL;
+		}
 		
 		$samlRequestXML = gzinflate(base64_decode( $rawRequest ));
          
@@ -157,7 +171,21 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			throw new Exception('SAMLResponse parameter not set in paramter (on SAML 2.0 HTTP Redirect binding endpoint)');
 		}
 		$rawRequest = 	$get["SAMLResponse"];
-		$relaystate = isset($get["RelayState"]) ? $get["RelayState"] : null;
+		/* We don't need to remove any magic quotes from the
+		 * SAMLResponse parameter since this parameter is guaranteed
+		 * to be base64-encoded.
+		 */
+
+		/* Check if a RelayState was provided with the request. */
+		if(array_key_exists('RelayState', $get)) {
+			$relaystate = $get['RelayState'];
+			/* Remove any magic quotes that php may have added. */
+			if(get_magic_quotes_gpc()) {
+				$relaystate = stripslashes($relaystate);
+			}
+		} else {
+			$relaystate = NULL;
+		}
 		
 		$samlRequestXML = gzinflate(base64_decode( $rawRequest ));
          
