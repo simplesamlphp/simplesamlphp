@@ -11,7 +11,10 @@ require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
-$session = SimpleSAML_Session::getInstance();
+/* Get the session object for the user. Create a new session if no session
+ * exists for this user.
+ */
+$session = SimpleSAML_Session::getInstance(TRUE);
 
 $logger = new SimpleSAML_Logger();
 
