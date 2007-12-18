@@ -235,9 +235,7 @@ function check_authenticated_user() {
 		$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getValue('baseurlpath') . $idpmeta['auth'], 
 			'RelayState=' . urlencode($relaystate));
 		
-	
-		header('Location: ' . $authurl);
-		exit(0);
+		SimpleSAML_Utilities::redirect($authurl);
 	}
 	
 	$attributes = $session->getAttributes();
@@ -333,17 +331,7 @@ function action_sites()
  */
 function redirect_render($redir_url)
 {
-	/*
-    $headers = array(http_found,
-                     header_content_text,
-                     header_connection_close,
-                     'Location: ' . $redir_url,
-                     );
-      */               
-	header('Location: ' . $redir_url);
-                     
-//    $body = sprintf(redirect_message, $redir_url);
- //   return array($headers, $body);
+	SimpleSAML_Utilities::redirect($redir_url);
 }
 
 

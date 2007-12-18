@@ -67,7 +67,7 @@ if (isset($session) ) {
 	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSLO', 'AlreadyLoggedOut', 'N/A', 
 		'User is already logged out. Go back to relaystate');
 	
-	header('Location: ' . $relaystate );
+	SimpleSAML_Utilities::redirect($relaystate);
 	
 	#print_r($metadata->getMetaData('sam.feide.no'));
 	#print_r($req);

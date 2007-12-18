@@ -83,7 +83,7 @@ if (isset($_GET['SAMLRequest'])) {
 	
 
 	if (isset($_GET['RelayState'])) {
-		header('Location: ' . $_GET['RelayState']);
+		SimpleSAML_Utilities::redirect($_GET['RelayState']);
 	} else {
 		
 		echo 'You are now successfully logged out.';

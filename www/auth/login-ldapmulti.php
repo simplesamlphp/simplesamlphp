@@ -88,8 +88,7 @@ if (isset($_POST['username'])) {
 			$session->setNameIDFormat('urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
 			
 			$returnto = $_REQUEST['RelayState'];
-			header("Location: " . $returnto);
-			exit(0);
+			SimpleSAML_Utilities::redirect($returnto);
 
 		}
 	// ldap_close() om du vil, men frigjoeres naar skriptet slutter

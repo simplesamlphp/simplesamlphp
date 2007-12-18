@@ -12,6 +12,7 @@
  */
  
 require_once('SimpleSAML/Configuration.php');
+require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/XML/MetaDataStore.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
@@ -79,8 +80,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		
 		} else {
 
-			header("Location: " . $redirectURL);
-
+			SimpleSAML_Utilities::redirect($redirectURL);
 		
 		}
 

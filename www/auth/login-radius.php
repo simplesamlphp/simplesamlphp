@@ -53,10 +53,9 @@ if (isset($_POST['username'])) {
 				
 				$session->setAuthenticated(true);
 				$session->setAttributes($attributes);
+
 				$returnto = $_REQUEST['RelayState'];
-				header("Location: " . $returnto);
-				
-				exit(0);
+				SimpleSAML_Utilities::redirect($returnto);
 				
 	
 			case RADIUS_ACCESS_REJECT:

@@ -155,9 +155,7 @@ if (isset($_POST['username'])) {
 			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap', 'OK', $username, $username . ' successfully authenticated');
 			
 			
-			header("Location: " . $relaystate);
-			exit(0);
-
+			SimpleSAML_Utilities::redirect($relaystate);
 		}
 	// ldap_close() om du vil, men frigjoeres naar skriptet slutter
 	}

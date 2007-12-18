@@ -19,8 +19,11 @@ $session = SimpleSAML_Session::getInstance();
 
 /* Check if valid local session exists.. */
 if (!isset($session) || !$session->isValid() ) {
-	header('Location: /' . $config->getValue('baseurlpath') . 'saml2/sp/initSSO.php?RelayState=' . urlencode(SimpleSAML_Utilities::selfURL()));
-	exit(0);
+	SimpleSAML_Utilities::redirect(
+		'/' . $config->getValue('baseurlpath') .
+		'saml2/sp/initSSO.php',
+		array('RelayState' => SimpleSAML_Utilities::selfURL())
+		);
 }
 
 $attributes = $session->getAttributes();

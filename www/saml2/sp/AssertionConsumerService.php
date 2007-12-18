@@ -39,8 +39,7 @@ try {
 	
 		$relayState = $authnResponse->getRelayState();
 		if (isset($relayState)) {
-			header("Location: " . $relayState);
-			exit(0);
+			SimpleSAML_Utilities::redirect($relayState);
 		} else {
 			echo 'Could not find RelayState parameter, you are stucked here.';
 		}

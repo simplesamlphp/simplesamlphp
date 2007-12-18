@@ -108,16 +108,15 @@ if (isset($_GET['SAMLRequest'])) {
 
 if (!$session->isAuthenticated() ) {
 
-	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() .
-		'?RequestID=' . urlencode($requestid);
-	$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getValue('baseurlpath') . $idpmeta['auth'], 
-		'RelayState=' . urlencode($relaystate));
-		
 	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'AuthNext', $idpmeta['auth'], 
 		'Will go to authentication module ' . $idpmeta['auth']);
-		
-	header('Location: ' . $authurl);
-	exit(0);
+
+	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() .
+		'?RequestID=' . urlencode($requestid);
+	$authurl = '/' . $config->getValue('baseurlpath') . $idpmeta['auth'];
+
+	SimpleSAML_Utilities::redirect($authurl,
+		array('RelayState' => $relaystate));
 } else {
 
 	try {

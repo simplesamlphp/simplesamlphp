@@ -91,6 +91,6 @@ $session->setAttributes($attributes);
 
 /* Return the user to the page set in the RelayState parameter. */
 $returnto = $_REQUEST['RelayState'];
-header("Location: " . $returnto);
+SimpleSAML_Utilities::redirect($returnto);
 
 ?>

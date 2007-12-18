@@ -48,9 +48,7 @@ if (!isset($session) || !$session->isValid() ) {
 		$returnURL = urlencode(SimpleSAML_Utilities::selfURL());
 		$discservice = '/' . $config->getValue('baseurlpath') . 'saml2/sp/idpdisco.php?entityID=' . $spentityid . 
 			'&return=' . $returnURL . '&returnIDParam=idpentityid';
-		header('Location: ' . $discservice);
-		exit(0);
-		
+		SimpleSAML_Utilities::redirect($discservice);
 	}
 	
 	
@@ -93,7 +91,7 @@ if (!isset($session) || !$session->isValid() ) {
 		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'AlreadyAuthenticated', '-', 
 			'Go back to RelayState');
 	
-		header('Location: ' . $relaystate );
+		SimpleSAML_Utilities::redirect($relaystate);
 	} else {
 		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
 

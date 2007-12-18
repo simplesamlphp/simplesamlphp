@@ -43,8 +43,7 @@ if (isset($_GET['idpentityid'])) {
 	$idpentityid = $_GET['idpentityid'];
 
 	$returnurl = SimpleSAML_Utilities::addURLparameter($return, $returnidparam . '=' . $idpentityid);
-	header('Location: ' . $returnurl);
-	exit(0);
+	SimpleSAML_Utilities::redirect($returnurl);
 }
 
 

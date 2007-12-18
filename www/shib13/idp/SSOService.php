@@ -100,8 +100,7 @@ if (!$session->isAuthenticated() ) {
 	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() . '?RequestID=' . urlencode($requestid);
 	$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getValue('baseurlpath') . $idpmeta['auth'], 
 		'RelayState=' . urlencode($relaystate));
-	header('Location: ' . $authurl);
-	exit(0);
+	SimpleSAML_Utilities::redirect($authurl);
 } else {
 
 	try {
