@@ -51,7 +51,11 @@ if (isset($_POST['username'])) {
 		}
 		*/
 		if (!ldap_bind($ds, $dn, $pwd)) {
-			$error = "Bind failed, wrong username or password. Tried with DN=[" . $dn . "] DNPattern=[" .  $ldapconfig['dnpattern'] . "]";
+			$error = 'Bind failed, wrong username or password.' .
+				' Tried with DN=[' . $dn . '] DNPattern=[' .
+				$ldapconfig['dnpattern'] . '] Error=[' .
+				ldap_error($ds) . "] ErrNo=[" .
+				ldap_errno($ds) . "]";
 
 			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-multi', 'Fail', $_POST['username'], $_POST['username'] . ' failed to authenticate');
 			
