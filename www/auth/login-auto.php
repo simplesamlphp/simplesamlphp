@@ -33,34 +33,24 @@ $delay_login = (int)$config->getValue('auth.auto.delay_login');
 
 /* Verify that this authentication handler is enabled. */
 if(!$enable) {
-	$e = 'You attempted to use the login-auto authentication handler,' .
-	     'but this handler isn\'t enabled in the configuration. If you' .
-	     ' want to enable this authentication handler, set' .
-	     ' \'auth.auto.enable\' to true.';
-	error_log($e);
-
-	$t = new SimpleSAML_XHTML_Template($config, 'error.php');
-	$t->data['header'] = 'login-auto: configuration error';
-	$t->data['message'] = $e;
-	$t->show();
-
-	exit;
+	SimpleSAML_Utilities::fatalError(
+		'login-auto not enabled',
+		'You attempted to use the login-auto authentication handler,' .
+		' but this handler isn\'t enabled in the configuration. If' .
+		' you want to enable this authentication handler, set' .
+		' \'auth.auto.enable\' to true.'
+		);
 }
 
 /* Verify that the 'auth.auto.attributes' option is configured. */
 if(!is_array($attributes)) {
-	$e = 'The login-auto authentication handler is enabled, but no' .
-	     ' attributes are configured. Please set' .
-	     ' \'auth.auto.attributes\' to the attributes you want to give' .
-	     ' users.';
-	error_log($e);
-
-	$t = new SimpleSAML_XHTML_Template($config, 'error.php');
-	$t->data['header'] = 'login-auto: configuration error';
-	$t->data['message'] = $e;
-	$t->show();
-
-	exit;
+	SimpleSAML_Utilities::fatalError(
+		'login-auto not configured',
+		'The login-auto authentication handler is enabled, but no' .
+		' attributes are configured. Please set' .
+		' \'auth.auto.attributes\' to the attributes you want to' .
+		' give users.'
+		);
 }
 
 
@@ -87,15 +77,10 @@ usleep($delay_login * 1000);
 /* Load the session of the current user. */
 $session = SimpleSAML_Session::getInstance();
 if($session == NULL) {
-	$e = 'No session was found. Are cookies disabled?';
-	error_log($e);
-
-	$t = new SimpleSAML_XHTML_Template($config, 'error.php');
-	$t->data['header'] = 'login-auto: missing session';
-	$t->data['message'] = $e;
-	$t->show();
-
-	exit;
+	SimpleSAML_Utilities::fatalError(
+		'Missing session',
+		'No session was found. Are cookies disabled?'
+		);
 }
 
 /* Set the user as authenticated and add the attributes from the
