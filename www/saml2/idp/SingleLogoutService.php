@@ -21,8 +21,6 @@ $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 
 $session = SimpleSAML_Session::getInstance();
 
-$session->dump_sp_sessions();
-
 /*
  * If we get an LogoutRequest then we initiate the logout process.
  */
@@ -55,6 +53,11 @@ if (isset($_GET['SAMLRequest'])) {
 	
 	error_log('IdP LogoutService: got LogoutResponse from ' . $loginresponse->getIssuer() . '  ');
 }
+
+
+/* Dump the current sessions (for debugging). */
+$session->dump_sp_sessions();
+
 
 /*
  * We proceed to send logout requests to all remaining SPs.
