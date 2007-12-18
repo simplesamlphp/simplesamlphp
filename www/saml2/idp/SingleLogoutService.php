@@ -28,6 +28,35 @@ if (isset($_GET['SAMLRequest'])) {
 
 	$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 	$logoutrequest = $binding->decodeLogoutRequest($_GET);
+
+
+	/* Check if we have a valid session. */
+	if($session === NULL) {
+		/* Invalid session. To prevent the user from being unable to
+		 * log out from the service provider, we should just return a
+		 * LogoutResponse pretending that the logout was successful to
+		 * the SP that sent the LogoutRequest.
+		 */
+
+		$spentityid = $logoutrequest->getIssuer();
+
+		/* Generate the response. */
+		$response = new SimpleSAML_XML_SAML20_LogoutResponse($config,
+			$metadata);
+		$responseText = $response->generate($idpentityid, $spentityid,
+			$logoutrequest->getRequestID(), 'IdP');
+
+		/* Retrieve the relay state from the request. */
+		$relayState = $logoutrequest->getRelayState();
+
+		/* Send the response using the HTTP-Redirect binding. */
+		$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config,
+			$metadata);
+		$binding->sendMessage($responseText, $spentityid, $relayState,
+			'SingleLogoutService', 'SAMLResponse', 'IdP');
+		exit;
+	}
+
 	
 	$session->setAuthenticated(false);
 
