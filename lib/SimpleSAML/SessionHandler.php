@@ -48,6 +48,14 @@ abstract class SimpleSAML_SessionHandler {
 	}
 
 
+	/* This function retrieves the session id of the current session.
+	 *
+	 * Returns:
+	 *  The session id of the current session.
+	 */
+	abstract public function getSessionId();
+
+
 	/* This function is used to store data in this session object.
 	 *
 	 * Note: You are allowed to store a reference to an object in the

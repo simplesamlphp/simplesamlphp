@@ -48,6 +48,16 @@ extends SimpleSAML_SessionHandler {
 	}
 
 
+	/* This function retrieves the session id of the current session.
+	 *
+	 * Returns:
+	 *  The session id of the current session.
+	 */
+	public function getSessionId() {
+		return $this->session_id;
+	}
+
+
 	/* This static function creates a session id. A session id consists
 	 * of 32 random hexadecimal characters.
 	 *
