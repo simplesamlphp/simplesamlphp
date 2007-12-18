@@ -17,9 +17,18 @@ $metadata = new SimpleSAML_XML_MetaDataStore($config);
 // Get the local session
 $session = SimpleSAML_Session::getInstance();
 
+/* Get the tracking id for this session if we have a valid session. Use an
+ * empty string if we don't have a valid session.
+ */
+if($session !== NULL) {
+	$trackId = $session->getTrackId();
+} else {
+	$trackId = '';
+}
+
 $logger = new SimpleSAML_Logger();
 
-$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'SP.SingleLogoutService', 'EVENT', 'Access', 
+$logger->log(LOG_INFO, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'EVENT', 'Access',
 	'Accessing SAML 2.0 SP endpoint SingleLogoutService');
 
 // Destroy local session if exists.
@@ -51,7 +60,7 @@ if (isset($_GET['SAMLRequest'])) {
 	$responder = $metadata->getMetaDataCurrentEntityID();
 	
 	
-	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.SingleLogoutService', 'LogoutRequest', $requestid, 
+	$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutRequest', $requestid,
 		'IdP (' . $requester . ') is sending logout request to me SP (' . $responder . ')');
 
 	
@@ -64,7 +73,7 @@ if (isset($_GET['SAMLRequest'])) {
 	$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 	
 	
-	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.SingleLogoutService', 'LogoutResponse', '-', 
+	$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutResponse', '-',
 		'SP me (' . $responder . ') is sending logout response to IdP (' . $requester . ')');
 	
 	// Send the Logout response using HTTP POST binding.
