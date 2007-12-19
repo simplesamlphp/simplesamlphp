@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-08-30</date>
 
-    <pubdate>Sun Oct 21 11:56:20 2007</pubdate>
+    <pubdate>Wed Dec 19 12:03:53 2007</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -207,12 +207,12 @@
 
     <para>To get the latest news about simpleSAMLphp you can follow this url:
     <ulink
-    url="http://rnd.feide.no/category/simplesamlphp/">http://rnd.feide.no/category/simplesamlphp/</ulink>.</para>
+    url="http://rnd.feide.no/taxonomy/term/4">http://rnd.feide.no/taxonomy/term/4</ulink>.</para>
 
-    <para>Currently simpleSAMLphp has a project page at Google Code:</para>
+    <para>Here is the simpleSAMLphp homepage:</para>
 
     <para><ulink
-    url="http://code.google.com/p/simplesamlphp/">http://code.google.com/p/simplesamlphp/</ulink></para>
+    url="http://rnd.feide.no/simplesamlphp">http://rnd.feide.no/simplesamlphp</ulink></para>
   </section>
 
   <section>
@@ -351,18 +351,21 @@ cp -r metadata-templates/*.php metadata/
 
     <itemizedlist>
       <listitem>
-        <para><ulink url="simplesamlphp-sp.html">Setting up simpleSAMLphp as a
-        service provider</ulink></para>
+        <para><ulink
+        url="http://rnd.feide.no/content/using-simplesamlphp-service-provider">Setting
+        up simpleSAMLphp as a service provider</ulink></para>
       </listitem>
 
       <listitem>
-        <para><ulink url="simplesamlphp-idp.html">Setting up simpleSAMLphp as
-        an identity provider</ulink></para>
+        <para><ulink
+        url="http://rnd.feide.no/content/using-simplesamlphp-identity-provider">Setting
+        up simpleSAMLphp as an identity provider</ulink></para>
       </listitem>
 
       <listitem>
-        <para><ulink url="simplesamlphp-bridge.html">Setting up simpleSAMLphp
-        as a bridge</ulink></para>
+        <para><ulink
+        url="http://rnd.feide.no/content/using-simplesamlphp-bridge-federation-protocols">Setting
+        up simpleSAMLphp as a bridge</ulink></para>
       </listitem>
     </itemizedlist>
   </section>

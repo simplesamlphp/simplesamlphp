@@ -1,29 +1,17 @@
-README
+Updated: December 19th, 2007
 
 
-Installation instructions:
-==========================
+All you need to know to install and configure simpleSAMLphp is available at:
+http://rnd.feide.no/view/simplesamlphpdocs
 
-Store the simplesamlphp directory somewhere...
+simpleSAMLphp homepage:
+http://rnd.feide.no/simplesamlphp
 
-In there there is a www directory, it have to be accessible from web, on the root of a vhost. The www can be moved outside the simplesamlphp folder. You can in example drop the content of the www folder into your existing web site folder.
-
-IF you decide to move the www folder out of the simplesamlphp folder, then you need to update the www/_include.php file properly.
-
-Next, configure config.php:
-- set the path and hostnames.
-- Use sam.feide.no as default idp.
-- Set the default duration of a session to be in example 3 hours.
+simpleSAMLphp mailinglist (for support):
+http://rnd.feide.no/content/simplesamlphp-users-mailinglist
 
 
-Then, configure saml20-sp-hosted to match your SP metadata. Change dev.andreas.feide.no to your hostname. Contact feide to ensure that your meta data is added to the Feide IdP.
-
-Then configure the saml20-idp-remote to match Feide. If there exists an entry for sam.feide.no it is probably already there.
-
-Then test the /example-simple/saml2-example.php log in with the feide test user, and look at the attributes. then test sp initated logout.
-
-Look at the example code of how to integrate with a service.
-
-Contact Andreas for questions:
+To contact the author team:
 andreas@uninett.no
+(please use the mailinglist as often as possible for support questions and feature requests)
 
