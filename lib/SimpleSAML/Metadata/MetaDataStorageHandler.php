@@ -89,6 +89,12 @@ abstract class SimpleSAML_Metadata_MetaDataStorageHandler {
 			require_once('SimpleSAML/Metadata/MetaDataStorageHandlerFlatfile.php');
 			$sh = new SimpleSAML_Metadata_MetaDataStorageHandlerFlatfile();
 			
+		} elseif ($handler === 'saml2XMLmeta')  {
+
+			require_once('SimpleSAML/Metadata/MetaDataStorageHandlerSAML2Meta.php');
+			$sh = new SimpleSAML_Metadata_MetaDataStorageHandlerFlatfile();
+
+		
 		} else {
 			throw new Exception('Invalid value for the [metadata.handler] configuration option. Unknown handler: ' . $handler);
 		}

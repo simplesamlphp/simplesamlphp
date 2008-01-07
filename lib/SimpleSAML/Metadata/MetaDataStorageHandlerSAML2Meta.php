@@ -20,8 +20,6 @@ class MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Metadata_MetaDataStorag
 
 
 
-
-
 	/* This constructor is included in case it is needed in the the
 	 * future. Including it now allows us to write parent::__construct() in
 	 * the subclasses of this class.
