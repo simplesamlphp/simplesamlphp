@@ -43,7 +43,7 @@ class MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Metadata_MetaDataStorag
 		assert($config instanceof SimpleSAML_Configuration);
 		
 		$metadatasetfile = $config->getBaseDir() . '/' . 
-			$config->getValue('metadatadir') . '/' . $set . '.php';
+			$config->getValue('metadatadir') . '/' . $set . '/' . $file . '.php';
 		
 		
 		if (!file_exists($metadatasetfile)) {
