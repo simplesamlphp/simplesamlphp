@@ -193,6 +193,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 
 		$md = $this->metadata->getMetadata($this->getIssuer(), 'shib13-idp-remote');
+		$base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 		
 		//$base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 		
@@ -251,7 +252,18 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 						$values = array();
 						
 						// Traverse Values
-						foreach ($attribute->AttributeValue AS $val) {
+						foreach ($attribute->AttributeValue AS $newvalue) {
+						
+							if ($base64) {
+								$encodedvalues = explode('_', $newvalue);
+								foreach($encodedvalues AS $v) {
+									$values[] = base64_decode($v);
+								}
+							} else {
+
+								$values[] = $newvalue;
+							}
+						
 							$values[] = (string) $val;
 						}
 						
