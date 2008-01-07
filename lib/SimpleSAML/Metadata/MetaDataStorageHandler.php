@@ -15,11 +15,11 @@ require_once('SimpleSAML/Utilities.php');
 /**
  * Configuration of SimpleSAMLphp
  */
-class SimpleSAML_Metadata_MetaDataStorageHandler {
+abstract class SimpleSAML_Metadata_MetaDataStorageHandler {
 
 
-	private $metadata = null;
-	private $hostmap = null;
+	protected $metadata = null;
+	protected $hostmap = null;
 
 
 	/* This static variable contains a reference to the current
@@ -86,15 +86,15 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 
 		if($handler === 'flatfile') {
 		
-			require_once('SimpleSAML/Metadata/MetaDataHandlerFlatfile.php');
-			$sh = new SimpleSAML_Metadata_MetaDataHandlerFlatfile();
+			require_once('SimpleSAML/Metadata/MetaDataStorageHandlerFlatfile.php');
+			$sh = new SimpleSAML_Metadata_MetaDataStorageHandlerFlatfile();
 			
 		} else {
 			throw new Exception('Invalid value for the [metadata.handler] configuration option. Unknown handler: ' . $handler);
 		}
 		
 		/* Set the session handler. */
-		self::$sessionHandler = $sh;
+		self::$metadataHandler = $sh;
 	}
 	
 	

@@ -11,11 +11,12 @@
 
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Utilities.php');
+require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 
 /**
  * Configuration of SimpleSAMLphp
  */
-class SimpleSAML_XML_MetaDataStore {
+class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Metadata_MetaDataStorageHandler {
 
 
 
@@ -39,8 +40,12 @@ class SimpleSAML_XML_MetaDataStore {
 				throw new Exception('Trying to load illegal set of Meta data [' . $set . ']');
 		}
 		
-		$metadatasetfile = $this->configuration->getBaseDir() . '/' . 
-			$this->configuration->getValue('metadatadir') . '/' . $set . '.php';
+		/* Get the configuration. */
+		$config = SimpleSAML_Configuration::getInstance();
+		assert($config instanceof SimpleSAML_Configuration);
+		
+		$metadatasetfile = $config->getBaseDir() . '/' . 
+			$config->getValue('metadatadir') . '/' . $set . '.php';
 		
 		
 		if (!file_exists($metadatasetfile)) {

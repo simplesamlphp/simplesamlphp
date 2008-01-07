@@ -14,7 +14,7 @@
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/Utilities.php');
-require_once('SimpleSAML/XML/MetaDataStore.php');
+require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/AuthnResponse.php');
 
 require_once('xmlseclibs.php');
@@ -46,7 +46,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 	
 
-	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_XML_MetaDataStore $metadatastore) {
+	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore) {
 		$this->configuration = $configuration;
 		$this->metadata = $metadatastore;
 	}

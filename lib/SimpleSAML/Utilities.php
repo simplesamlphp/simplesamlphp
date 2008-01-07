@@ -117,6 +117,50 @@ class SimpleSAML_Utilities {
 		return $uniqueid;
 	}
 	
+	public static function array_values_equals($array, $equalsvalue) {
+		$foundkeys = array();
+		foreach ($array AS $key => $value) {
+			if ($value === $equalsvalue) $foundkeys[] = $key;
+		}
+		return $foundkeys;
+	}
+	
+	public static function checkAssocArrayRules($target, $required, $optional = array()) {
+
+		$results = array(
+			'required.found' 		=> array(),
+			'required.notfound'		=> array(),
+			'optional.found'		=> array(),
+			'optional.notfound'		=> array(),
+			'leftovers'				=> array()
+		);
+		
+		foreach ($target AS $key => $value) {
+			if(in_array($key, $required)) {
+				$results['required.found'][$key] = $value;
+			} elseif (in_array($key, $optional)) {
+				$results['optional.found'][$key] = $value;
+			} else {
+				$results['leftovers'][$key] = $value;
+			}
+		}
+		
+		foreach ($required AS $key) {
+			if (!array_key_exists($key, $target)) {
+				$results['required.notfound'][] = $key;
+			}
+		}
+		
+		foreach ($optional AS $key) {
+			if (!array_key_exists($key, $target)) {
+				$results['optional.notfound'][] = $key;
+			}
+		}
+		return $results;
+	}
+	
+	
+	
 
 	/* This function dumps a backtrace to the error log.
 	 *

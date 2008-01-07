@@ -12,7 +12,8 @@
  */
  
 require_once('SimpleSAML/Configuration.php');
-require_once('SimpleSAML/XML/MetaDataStore.php');
+require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
+
 require_once('SimpleSAML/XML/Shib13/AuthnResponse.php');
  
 /**
@@ -23,7 +24,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 	private $configuration = null;
 	private $metadata = null;
 
-	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_XML_MetaDataStore $metadatastore) {
+	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore) {
 		$this->configuration = $configuration;
 		$this->metadata = $metadatastore;
 	}
