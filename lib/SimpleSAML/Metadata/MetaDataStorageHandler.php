@@ -1,14 +1,12 @@
 <?php
 
-
-/**
- * SimpleSAMLphp
+/*
+ * This file is part of simpleSAMLphp. See the file COPYING in the
+ * root of the distribution for licence information.
  *
- * PHP versions 4 and 5
- *
- * LICENSE: See the COPYING file included in this distribution.
- *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * This file defines a base class for metadata handling.
+ * Instantiation of session handler objects should be done through
+ * the class method getMetadataHandler().
  */
 
 require_once('SimpleSAML/Configuration.php');
@@ -17,15 +15,102 @@ require_once('SimpleSAML/Utilities.php');
 /**
  * Configuration of SimpleSAMLphp
  */
-class SimpleSAML_XML_MetaDataStore {
+class SimpleSAML_Metadata_MetaDataStorageHandler {
 
 	private $configuration = null;
 	private $metadata = null;
 	private $hostmap = null;
 
-	function __construct(SimpleSAML_Configuration $configuration) {
-		$this->configuration = $configuration;
+
+
+	/* This static variable contains a reference to the current
+	 * instance of the metadata handler. This variable will be NULL if
+	 * we haven't instantiated a metadata handler yet.
+	 */
+	private static $metadataHandler = NULL;
+
+
+
+	/* This function retrieves the current instance of the metadata handler.
+	 * The metadata handler will be instantiated if this is the first call
+	 * to this fuunction.
+	 *
+	 * Returns:
+	 *  The current metadata handler.
+	 */
+	public static function getMetadataHandler() {
+		if(self::$metadataHandler === NULL) {
+			self::createMetadataHandler();
+		}
+
+		return self::$metadataHandler;
 	}
+
+
+
+	/* This constructor is included in case it is needed in the the
+	 * future. Including it now allows us to write parent::__construct() in
+	 * the subclasses of this class.
+	 */
+	protected function __construct() {
+	}
+
+
+	/* This function creates an instance of the metadata handler which is
+	 * selected in the 'metadata.handler' configuration directive. If no
+	 * metadata handler is selected, then we will fall back to the default
+	 * PHP metadata handler.
+	 */
+	public static function createMetadataHandler() {
+	
+		/* Get the configuration. */
+		$config = SimpleSAML_Configuration::getInstance();
+		assert($config instanceof SimpleSAML_Configuration);
+
+		/* Get the session handler option from the configuration. */
+		$handler = $config->getValue('metadata.handler');
+
+		/* If 'session.handler' is NULL or unset, then we want
+		 * to fall back to the default PHP session handler.
+		 */
+		if(is_null($handler)) {
+			$handler = 'phpsession';
+		}
+
+
+		/* The session handler must be a string. */
+		if(!is_string($handler)) {
+			$e = 'Invalid setting for the \'session.handler\'' .
+			     ' configuration option. This option should be' .
+			     ' set to a valid string.';
+			error_log($e);
+			die($e);
+		}
+
+		$handler = strtolower($handler);
+
+		if($handler === 'phpsession') {
+			require_once('SimpleSAML/SessionHandlerPHP.php');
+			$sh = new SimpleSAML_SessionHandlerPHP();
+		} else if($handler === 'memcache') {
+			require_once('SimpleSAML/SessionHandlerMemcache.php');
+			$sh = new SimpleSAML_SessionHandlerMemcache();
+		} else {
+			$e = 'Invalid value for the \'session.handler\'' .
+			     ' configuration option. Unknown session' .
+			     ' handler: ' . $handler;
+			error_log($e);
+			die($e);
+		}
+
+		/* Set the session handler. */
+		self::$sessionHandler = $sh;
+	}
+	
+	
+
+
+
 
 	public function load($set) {
 		$metadata = null;
