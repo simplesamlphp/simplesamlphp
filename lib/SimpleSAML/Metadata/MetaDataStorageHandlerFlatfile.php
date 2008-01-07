@@ -17,38 +17,7 @@ require_once('SimpleSAML/Utilities.php');
  */
 class SimpleSAML_XML_MetaDataStore {
 
-	private $configuration = null;
-	private $metadata = null;
-	private $hostmap = null;
 
-	function __construct(SimpleSAML_Configuration $configuration) {
-		$this->configuration = $configuration;
-	}
-
-
-
-	/* This static variable contains a reference to the current
-	 * instance of the metadata handler. This variable will be NULL if
-	 * we haven't instantiated a metadata handler yet.
-	 */
-	private static $metadataHandler = NULL;
-
-
-
-	/* This function retrieves the current instance of the metadata handler.
-	 * The metadata handler will be instantiated if this is the first call
-	 * to this fuunction.
-	 *
-	 * Returns:
-	 *  The current metadata handler.
-	 */
-	public static function getMetadataHandler() {
-		if(self::$metadataHandler === NULL) {
-			self::createMetadataHandler();
-		}
-
-		return self::$metadataHandler;
-	}
 
 
 
@@ -58,61 +27,6 @@ class SimpleSAML_XML_MetaDataStore {
 	 */
 	protected function __construct() {
 	}
-
-
-	/* This function creates an instance of the metadata handler which is
-	 * selected in the 'metadata.handler' configuration directive. If no
-	 * metadata handler is selected, then we will fall back to the default
-	 * PHP metadata handler.
-	 */
-	public static function createSessionHandler() {
-	
-		/* Get the configuration. */
-		$config = SimpleSAML_Configuration::getInstance();
-		assert($config instanceof SimpleSAML_Configuration);
-
-		/* Get the session handler option from the configuration. */
-		$handler = $config->getValue('metadata.handler');
-
-		/* If 'session.handler' is NULL or unset, then we want
-		 * to fall back to the default PHP session handler.
-		 */
-		if(is_null($handler)) {
-			$handler = 'phpsession';
-		}
-
-
-		/* The session handler must be a string. */
-		if(!is_string($handler)) {
-			$e = 'Invalid setting for the \'session.handler\'' .
-			     ' configuration option. This option should be' .
-			     ' set to a valid string.';
-			error_log($e);
-			die($e);
-		}
-
-		$handler = strtolower($handler);
-
-		if($handler === 'phpsession') {
-			require_once('SimpleSAML/SessionHandlerPHP.php');
-			$sh = new SimpleSAML_SessionHandlerPHP();
-		} else if($handler === 'memcache') {
-			require_once('SimpleSAML/SessionHandlerMemcache.php');
-			$sh = new SimpleSAML_SessionHandlerMemcache();
-		} else {
-			$e = 'Invalid value for the \'session.handler\'' .
-			     ' configuration option. Unknown session' .
-			     ' handler: ' . $handler;
-			error_log($e);
-			die($e);
-		}
-
-		/* Set the session handler. */
-		self::$sessionHandler = $sh;
-	}
-	
-	
-
 
 
 
@@ -146,41 +60,9 @@ class SimpleSAML_XML_MetaDataStore {
 			}
 			
 		}
-		/*
-		echo '<pre>';
-		print_r();
-		echo '</pre>';
-		*/
+
 	}
 
-	public function getMetaDataCurrentEntityID($set = 'saml20-sp-hosted') {
-	
-		if (!isset($this->metadata[$set])) {
-			$this->load($set);
-		}
-		$currenthost = $_SERVER['HTTP_HOST'];
-		
-		if(strstr($currenthost, ":")) {
-				$currenthostdecomposed = explode(":", $currenthost);
-				$currenthost = $currenthostdecomposed[0];
-		}
-		
-		if (!isset($this->hostmap[$set])) {
-			throw new Exception('No default entities defined for metadata set [' . $set . '] (host:' . $currenthost. ')');
-		}
-		if (!isset($currenthost)) {
-			throw new Exception('Could not get HTTP_HOST, in order to resolve default entity ID');
-		}
-		if (!isset($this->hostmap[$set][$currenthost])) {
-			throw new Exception('Could not find any default metadata entities in set [' . $set . '] for host [' . $currenthost . ']');
-		}
-		if (!$this->hostmap[$set][$currenthost]) throw new Exception('Could not find default metadata for current host');
-		return $this->hostmap[$set][$currenthost];
-	}
-
-	public function getMetaDataCurrent($set = 'saml20-sp-hosted') {
-		return $this->getMetaData($this->getMetaDataCurrentEntityID($set), $set);
-	}
 	
 	public function getMetaData($entityid = null, $set = 'saml20-sp-hosted') {
 		if (!isset($entityid)) {
@@ -198,56 +80,8 @@ class SimpleSAML_XML_MetaDataStore {
 		return $this->metadata[$set][$entityid];
 	}
 	
-	public function getList($set = 'saml20-idp-remote') {
-		if (!isset($this->metadata[$set])) {
-			$this->load($set);
-		}
-		return $this->metadata[$set];
-	}
-	
-	
-	
-	public function getGenerated($property, $set = 'saml20-sp-hosted') {
-		
-		$baseurl = SimpleSAML_Utilities::selfURLhost() . '/' . $this->configuration->getValue('baseurlpath');
-		
-		
-		if ($set == 'saml20-sp-hosted') {
-			switch ($property) {				
-				case 'AssertionConsumerService' : 
-					return $baseurl . 'saml2/sp/AssertionConsumerService.php';
 
-				case 'SingleLogoutService' : 
-					return $baseurl . 'saml2/sp/SingleLogoutService.php';					
-			}
-		} elseif($set == 'saml20-idp-hosted') {
-			switch ($property) {				
-				case 'SingleSignOnService' : 
-					return $baseurl . 'saml2/idp/SSOService.php';
 
-				case 'SingleLogoutService' : 
-					return $baseurl . 'saml2/idp/SingleLogoutService.php';					
-			}
-		} elseif($set == 'shib13-sp-hosted') {
-			switch ($property) {				
-				case 'AssertionConsumerService' : 
-					return $baseurl . 'shib13/sp/AssertionConsumerService.php';
-			}
-		} elseif($set == 'shib13-idp-hosted') {
-			switch ($property) {				
-				case 'SingleSignOnService' : 
-					return $baseurl . 'shib13/idp/SSOService.php';			
-			}
-		} elseif($set == 'openid-provider') {
-			switch ($property) {				
-				case 'server' : 
-					return $baseurl . 'openid/provider/server.php';			
-			}
-		}
-		
-		throw new Exception('Could not generate metadata property ' . $property . ' for set ' . $set . '.');
-	}
-	
 	
 	
 }
