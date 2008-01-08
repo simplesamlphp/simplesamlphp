@@ -52,6 +52,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageHandler {
 	 * the subclasses of this class.
 	 */
 	protected function __construct() {
+		
 	}
 
 
@@ -89,10 +90,10 @@ abstract class SimpleSAML_Metadata_MetaDataStorageHandler {
 			require_once('SimpleSAML/Metadata/MetaDataStorageHandlerFlatfile.php');
 			$sh = new SimpleSAML_Metadata_MetaDataStorageHandlerFlatfile();
 			
-		} elseif ($handler === 'saml2XMLmeta')  {
+		} elseif ($handler === 'saml2xmlmeta')  {
 
 			require_once('SimpleSAML/Metadata/MetaDataStorageHandlerSAML2Meta.php');
-			$sh = new SimpleSAML_Metadata_MetaDataStorageHandlerFlatfile();
+			$sh = new SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta();
 
 		
 		} else {

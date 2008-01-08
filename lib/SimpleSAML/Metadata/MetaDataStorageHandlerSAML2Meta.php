@@ -16,7 +16,7 @@ require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 /**
  * Configuration of SimpleSAMLphp
  */
-class MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Metadata_MetaDataStorageHandler {
+class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Metadata_MetaDataStorageHandler {
 
 
 
@@ -26,7 +26,6 @@ class MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Metadata_MetaDataStorag
 	 */
 	protected function __construct() {
 	}
-
 
 
 	public function load($set) {
@@ -43,13 +42,56 @@ class MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Metadata_MetaDataStorag
 		assert($config instanceof SimpleSAML_Configuration);
 		
 		$metadatasetfile = $config->getBaseDir() . '/' . 
-			$config->getValue('metadatadir') . '/' . $set . '/' . $file . '.php';
+			$config->getValue('metadatadir') . '/xml/' . $set . '.xml';
 		
 		
-		if (!file_exists($metadatasetfile)) {
-			throw new Exception('Could not open file: ' . $metadatasetfile);
+		if (!file_exists($metadatasetfile)) throw new Exception('Could not find SAML 2.0 Metadata file :'. $metadatasetfile);
+		
+		#$metadata = file_get_contents($metadatasetfile);
+		
+		// for now testing with the shib aai metadata...
+		$metadata = file_get_contents("http://www.switch.ch/aai/federation/SWITCHaai/metadata.switchaai_signed.xml");
+		echo '<pre>';
+		
+		$simplexml_metadata = new SimpleXMLElement($metadata);
+		$simplexml_metadata->registerXPathNamespace('saml2meta', 'urn:oasis:names:tc:SAML:2.0:metadata');
+		
+		$idpentities = $simplexml_metadata->xpath('/saml2meta:EntitiesDescriptor/saml2meta:EntityDescriptor[./saml2meta:IDPSSODescriptor]');
+		
+		if (!$idpentities) throw new Exception('Could not find any entity descriptors in the meta data file: ' . $metadatasetfile);
+		foreach ($idpentities as $idpentity) {
+			echo 'Entity: ' . $idpentity['entityID'][0] . "\n";
+			
+			$newmeta = array('entityid' => (string) $idpentity['entityID']);
+			
+			#$idpentity['xmlns'] = 'urn:oasis:names:tc:SAML:2.0:metadata';
+			
+			$namespaces = $idpentity->getNamespaces();
+			
+			foreach ($namespaces AS $prefix => $ns) {
+				$newmeta[($prefix === '') ? 'xmlns' : 'xmlns:' . $prefix)] = $ns;
+			}
+			
+			$simplexml_metadata_entry = new SimpleXMLElement($idpentity->asXML());
+			$simplexml_metadata_entry->registerXPathNamespace('saml2meta', 'urn:oasis:names:tc:SAML:2.0:metadata');
+			
+			
+			$entry = $simplexml_metadata_entry->xpath("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:SingleSignOnService[@Binding='urn:mace:shibboleth:1.0:profiles:AuthnRequest']/@Location");
+			
+			$newmeta['SingleSignOnService'] = (string)$entry[0]['Location'];
+			
+			echo 'Entry: ';
+			print_r($newmeta);
+
 		}
-		include($metadatasetfile);
+		
+		
+		//echo htmlentities($metadata);
+		echo '</pre>';
+				exit();
+		
+
+
 		
 		if (!is_array($metadata)) {
 			throw new Exception('Could not load metadata set [' . $set . '] from file: ' . $metadatasetfile);
@@ -65,7 +107,7 @@ class MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Metadata_MetaDataStorag
 		}
 
 	}
-
+	
 	
 	public function getMetaData($entityid = null, $set = 'saml20-sp-hosted') {
 		if (!isset($entityid)) {

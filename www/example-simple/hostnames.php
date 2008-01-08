@@ -4,7 +4,7 @@ require_once('../_include.php');
 
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
-require_once('SimpleSAML/XML/MetaDataStore.php');
+require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
 require_once('SimpleSAML/XML/SAML20/AuthnResponse.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
@@ -13,7 +13,8 @@ require_once('SimpleSAML/XHTML/Template.php');
 
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
-$metadata = new SimpleSAML_XML_MetaDataStore($config);
+
+$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 
 

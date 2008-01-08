@@ -10,7 +10,7 @@ require_once('../../_include.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/Logger.php');
-require_once('SimpleSAML/XML/MetaDataStore.php');
+require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/AttributeFilter.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
@@ -91,7 +91,7 @@ function action_default()
     if (!$request) {
 
 		$config = SimpleSAML_Configuration::getInstance();
-		$metadata = new SimpleSAML_XML_MetaDataStore($config);
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		
 		$t = new SimpleSAML_XHTML_Template($config, 'openid-about.php');
 		$t->data['openidserver'] = $metadata->getGenerated('server', 'openid-provider');
@@ -217,7 +217,7 @@ function check_authenticated_user() {
 	//session_start();
 	
 	$config = SimpleSAML_Configuration::getInstance();
-	$metadata = new SimpleSAML_XML_MetaDataStore($config);
+	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 	$session = SimpleSAML_Session::getInstance(true);
 	
 	$logger = new SimpleSAML_Logger();

@@ -6,13 +6,13 @@ require_once('../../_include.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/Logger.php');
-require_once('SimpleSAML/XML/MetaDataStore.php');
+require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/SAML20/LogoutRequest.php');
 require_once('SimpleSAML/XML/SAML20/LogoutResponse.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 
 $config = SimpleSAML_Configuration::getInstance();
-$metadata = new SimpleSAML_XML_MetaDataStore($config);
+$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 // Get the local session
 $session = SimpleSAML_Session::getInstance();

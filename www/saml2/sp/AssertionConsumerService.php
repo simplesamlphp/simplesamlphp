@@ -6,7 +6,7 @@ require_once('../../_include.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/Logger.php');
-require_once('SimpleSAML/XML/MetaDataStore.php');
+require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
@@ -25,7 +25,7 @@ $logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'SP.AssertionConsumerS
 try {
 	
 	$config = SimpleSAML_Configuration::getInstance();	
-	$metadata = new SimpleSAML_XML_MetaDataStore($config);
+	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 	$binding = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
 	$authnResponse = $binding->decodeResponse($_POST);
