@@ -29,6 +29,7 @@ try {
 		$metalist = $metadata->getList('saml20-sp-hosted');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
+				// TODO: UPDATE Required and optional parameter list
 				array('entityid', 'host', 'spNameQualifier', 'NameIDFormat', 'ForceAuthn'),
 				array('name', 'description')
 			);
@@ -38,6 +39,7 @@ try {
 		$metalist = $metadata->getList('saml20-idp-remote');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
+				// TODO: UPDATE Required and optional parameter list
 				array('entityid', 'host', 'spNameQualifier', 'NameIDFormat', 'ForceAuthn'),
 				array('name', 'description')
 			);
@@ -51,6 +53,7 @@ try {
 		$metalist = $metadata->getList('saml20-idp-hosted');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
+				// TODO: UPDATE Required and optional parameter list
 				array('entityid', 'host', 'spNameQualifier', 'NameIDFormat', 'ForceAuthn'),
 				array('name', 'description')
 			);
@@ -60,6 +63,7 @@ try {
 		$metalist = $metadata->getList('saml20-sp-remote');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
+				// TODO: UPDATE Required and optional parameter list
 				array('entityid', 'host', 'spNameQualifier', 'NameIDFormat', 'ForceAuthn'),
 				array('name', 'description')
 			);

@@ -20,13 +20,14 @@ require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Metadata_MetaDataStorageHandler {
 
 
-	static var $cachedfiles = array();
+	private static $cachedfiles;
 
 	/* This constructor is included in case it is needed in the the
 	 * future. Including it now allows us to write parent::__construct() in
 	 * the subclasses of this class.
 	 */
 	protected function __construct() {
+		if (!isset($this->cachedfiles)) $this->cachedfiles = array();
 	}
 
 
@@ -57,16 +58,17 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 		$metadatasetfile = $config->getBaseDir() . '' . 
 			$config->getValue('metadatadir') . 'xml/' . $settofile[$set] . '.xml';
 		
-		if (array_key_exists($metadatasetfile, $cachedfiles)) {
-			$metadata = self::$cachedfiles[$metadatasetfile];
+		if (array_key_exists($metadatasetfile, $this->cachedfiles)) {
+			$metadataxml = self::$cachedfiles[$metadatasetfile];
 		} else {
 			if (!file_exists($metadatasetfile)) throw new Exception('Could not find SAML 2.0 Metadata file :'. $metadatasetfile);
 		
 			// for now testing with the shib aai metadata...
 			//$metadataxml = file_get_contents("http://www.switch.ch/aai/federation/SWITCHaai/metadata.switchaai_signed.xml");
-			$metadata = file_get_contents($metadatasetfile);
+			$metadataxml = file_get_contents($metadatasetfile);
+			self::$cachedfiles[$metadatasetfile] = $metadataxml;
 		}
-
+		
 		$metadata = null;
 		switch ($set) {
 			case 'saml20-idp-remote' : $metadata = $this->getmetadata_saml20idpremote($metadataxml); break;
@@ -78,11 +80,16 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 			case 'shib13-sp-remote' : throw new Exception('Meta data parsing for Shib 1.3 SP Remote not yet implemented.');
 			case 'shib13-sp-hosted' : throw new Exception('Meta data parsing for Shib 1.3 SP Hosted not yet implemented.');
 		}
-
 		
 		if (!is_array($metadata)) {
 			throw new Exception('Could not load metadata set [' . $set . '] from file: ' . $metadatasetfile);
 		}
+		
+		echo '<pre>';
+		print_r($metadata);
+		echo '</pre>';
+		exit();
+		
 		foreach ($metadata AS $key => $entry) { 
 			$this->metadata[$set][$key] = $entry;
 			$this->metadata[$set][$key]['entityid'] = $key;
@@ -90,7 +97,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 			if (isset($entry['host'])) {
 				$this->hostmap[$set][$entry['host']] = $key;
 			}
-			
 		}
 
 	}
@@ -116,7 +122,24 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 				$metadata[$entityid] = array('entityid' => $entityid);				
 				$metadata_entry = SimpleSAML_XML_Parser::fromSimpleXMLElement($idpentity);
 				
-				$metadata[$entityid]['SingleSignOnService'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:SingleSignOnService[@Binding='urn:mace:shibboleth:1.0:profiles:AuthnRequest']/@Location", true);
+				$metadata[$entityid]['SingleSignOnService'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:SingleSignOnService[@Binding='urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect']/@Location", true);
+
+				$metadata[$entityid]['SingleLogoutService'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:SingleLogoutService[@Binding='urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect']/@Location", true);
+				
+				$metadata[$entityid]['certFingerprint'] = SimpleSAML_Utilities::cert_fingerprint($metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:KeyDescriptor[@use='signing']/ds:KeyInfo/ds:X509Data/ds:X509Certificate", true));
+				
+				$seek_base64 = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:base64encode']/saml2:AttributeValue");
+				$metadata[$entityid]['base64encode'] = (isset($seek_base64) ? ($seek_base64 === 'true') : false);
+				
+
+				
+				$metadata[$entityid]['name'] = $metadata_entry->getValueAlternatives(
+					array("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:name']/saml2:AttributeValue",
+					"/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:Organization/saml2meta:OrganizationDisplayName"
+					));
+					
+				$metadata[$entityid]['description'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:description']/saml2:AttributeValue");
+												
 
 			} catch (Exception $e) {
 				echo 'Error reading one metadata entry: ' . $e;
@@ -125,6 +148,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 		}
 		return $metadata;
 	}
+
 	
 	private function getmetadata_shib13idpremote($metadataxml) {
 		// Create a parser for the metadata document.

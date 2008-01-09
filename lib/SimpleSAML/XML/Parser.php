@@ -21,7 +21,11 @@ class SimpleSAML_XML_Parser  {
 	function __construct($xml) {
 		#parent::construct($xml);
 		$this->simplexml = new SimpleXMLElement($xml);
+		
+		$this->simplexml->registerXPathNamespace('saml2',     'urn:oasis:names:tc:SAML:2.0:assertion');
 		$this->simplexml->registerXPathNamespace('saml2meta', 'urn:oasis:names:tc:SAML:2.0:metadata');
+		$this->simplexml->registerXPathNamespace('ds',        'http://www.w3.org/2000/09/xmldsig#');
+		
 	}
 	
 	public static function fromSimpleXMLElement(SimpleXMLElement $element) {
@@ -48,6 +52,15 @@ class SimpleSAML_XML_Parser  {
 				else return null;
 		}
 		return (string) $result[0];
+	}
+	
+	public function getValueAlternatives(array $xpath, $required = false) {
+		foreach ($xpath AS $x) {
+			$seek = $this->getValue($x);
+			if ($seek) return $seek;
+		}
+		if ($required) throw new Exception('Could not get value from XML document using multiple alternative XPath expressions.');
+			else return null;
 	}
 	
 }

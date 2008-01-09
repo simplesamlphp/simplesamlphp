@@ -101,6 +101,11 @@ class SimpleSAML_Utilities {
 		return TRUE;
 	}
 	
+	public static function cert_fingerprint($pem) {
+		$x509data = base64_decode( $pem );
+		return strtolower( sha1( $x509data ) );
+	}
+	
 	public static function generateID() {
 	
 		$length = 42;
