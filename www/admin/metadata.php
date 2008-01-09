@@ -25,6 +25,7 @@ try {
 	
 	if ($config->getValue('enable.saml20-sp') === true) {
 		$results = array();	
+		/*
 		$metalist = $metadata->getList('saml20-sp-hosted');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
@@ -33,7 +34,7 @@ try {
 			);
 		}
 		$et->data['metadata.saml20-sp-hosted'] = $results;
-		
+		*/
 		$metalist = $metadata->getList('saml20-idp-remote');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
