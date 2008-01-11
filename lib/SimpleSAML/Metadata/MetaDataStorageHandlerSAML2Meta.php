@@ -72,10 +72,10 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 		$metadata = null;
 		switch ($set) {
 			case 'saml20-idp-remote' : $metadata = $this->getmetadata_saml20idpremote($metadataxml); break;
-			case 'saml20-idp-hosted' : throw new Exception('Meta data parsing for SAML 2.0 IdP Hosted not yet implemented.');
-			case 'saml20-sp-remote' : throw new Exception('Meta data parsing for SAML 2.0 SP Remote not yet implemented.');
-			case 'saml20-sp-hosted' : throw new Exception('Meta data parsing for SAML 2.0 SP Hosted not yet implemented.');
-			case 'shib13-idp-remote' : $metadata = getmetadata_shib13idpremote($metadataxml); break;
+			case 'saml20-idp-hosted' : $metadata = $this->getmetadata_saml20idphosted($metadataxml); break;
+			case 'saml20-sp-remote' : $metadata = $this->getmetadata_saml20spremote($metadataxml); break; 
+			case 'saml20-sp-hosted' : $metadata = $this->getmetadata_saml20sphosted($metadataxml); break; 
+			case 'shib13-idp-remote' : $metadata = $this->getmetadata_shib13idpremote($metadataxml); break;
 			case 'shib13-idp-hosted' : throw new Exception('Meta data parsing for Shib 1.3 IdP Hosted not yet implemented.');
 			case 'shib13-sp-remote' : throw new Exception('Meta data parsing for Shib 1.3 SP Remote not yet implemented.');
 			case 'shib13-sp-hosted' : throw new Exception('Meta data parsing for Shib 1.3 SP Hosted not yet implemented.');
@@ -84,12 +84,12 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 		if (!is_array($metadata)) {
 			throw new Exception('Could not load metadata set [' . $set . '] from file: ' . $metadatasetfile);
 		}
-		
+		/*
 		echo '<pre>';
 		print_r($metadata);
 		echo '</pre>';
 		exit();
-		
+		*/
 		foreach ($metadata AS $key => $entry) { 
 			$this->metadata[$set][$key] = $entry;
 			$this->metadata[$set][$key]['entityid'] = $key;
@@ -128,10 +128,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 				
 				$metadata[$entityid]['certFingerprint'] = SimpleSAML_Utilities::cert_fingerprint($metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:KeyDescriptor[@use='signing']/ds:KeyInfo/ds:X509Data/ds:X509Certificate", true));
 				
-				$seek_base64 = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:base64encode']/saml2:AttributeValue");
-				$metadata[$entityid]['base64encode'] = (isset($seek_base64) ? ($seek_base64 === 'true') : false);
+				$seek_base64 = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:base64attributes']/saml2:AttributeValue");
+				$metadata[$entityid]['base64attributes'] = (isset($seek_base64) ? ($seek_base64 === 'true') : false);
 				
-
 				
 				$metadata[$entityid]['name'] = $metadata_entry->getValueAlternatives(
 					array("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:name']/saml2:AttributeValue",
@@ -149,6 +148,155 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 		return $metadata;
 	}
 
+
+	private function getmetadata_saml20sphosted($metadataxml) {
+		// Create a parser for the metadata document.
+		$metadata_parser = new SimpleSAML_XML_Parser($metadataxml);
+		
+		// Get all entries in the metadata.
+		$idpentities = $metadata_parser->simplexml->xpath('/saml2meta:EntitiesDescriptor/saml2meta:EntityDescriptor[./saml2meta:SPSSODescriptor]');
+		if (!$idpentities) throw new Exception('Could not find any entity descriptors in the meta data file: ' . $metadatasetfile);
+		
+		// Array to hold the resulting metadata, to return at the end of this function.
+		$metadata = array();
+		
+		// Traverse all entries.
+		foreach ($idpentities as $idpentity) {
+			try {
+				$entityid = (string) $idpentity['entityID'];
+				if (!$entityid) throw new Exception('Could not find entityID in element');
+				
+				$metadata[$entityid] = array('entityid' => $entityid);				
+				$metadata_entry = SimpleSAML_XML_Parser::fromSimpleXMLElement($idpentity);
+
+				$metadata[$entityid]['NameIDFormat'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:NameIDFormat", true);
+					
+				$metadata[$entityid]['host'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:host']/saml2:AttributeValue");
+												
+
+				$seek_forceauth = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:ForceAuthn']/saml2:AttributeValue");
+				$metadata[$entityid]['ForceAuthn'] = (isset($seek_forceauth) ? ($seek_forceauth === 'true') : false);
+				
+			} catch (Exception $e) {
+				echo 'Error reading one metadata entry: ' . $e;
+			}
+
+		}
+		return $metadata;
+	}
+	
+	private function getmetadata_saml20idphosted($metadataxml) {
+		// Create a parser for the metadata document.
+		$metadata_parser = new SimpleSAML_XML_Parser($metadataxml);
+		
+		// Get all entries in the metadata.
+		$idpentities = $metadata_parser->simplexml->xpath('/saml2meta:EntitiesDescriptor/saml2meta:EntityDescriptor[./saml2meta:IDPSSODescriptor]');
+		if (!$idpentities) throw new Exception('Could not find any entity descriptors in the meta data file.');
+		
+		// Array to hold the resulting metadata, to return at the end of this function.
+		$metadata = array();
+		
+		
+		/*
+			required	array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
+			optional	array('base64attributes', 'requireconsent')
+		*/
+		
+		// Traverse all entries.
+		foreach ($idpentities as $idpentity) {
+			try {
+				$entityid = (string) $idpentity['entityID'];
+				if (!$entityid) throw new Exception('Could not find entityID in element');
+				
+				$metadata[$entityid] = array('entityid' => $entityid);				
+				$metadata_entry = SimpleSAML_XML_Parser::fromSimpleXMLElement($idpentity);
+
+				$metadata[$entityid]['host'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:host']/saml2:AttributeValue");
+
+				$metadata[$entityid]['privatekey'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:privatekey']/saml2:AttributeValue", true);
+
+				$metadata[$entityid]['certificate'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:certificate']/saml2:AttributeValue", true);
+
+				$metadata[$entityid]['auth'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:auth']/saml2:AttributeValue", true);
+				
+				$seek_requireconsent = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:IDPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:requireconsent']/saml2:AttributeValue");
+				$metadata[$entityid]['requireconsent'] = (isset($seek_requireconsent) ? ($seek_requireconsent === 'true') : false);
+				
+			} catch (Exception $e) {
+				// TODO: do syslog, not echo.
+				echo 'Error reading one metadata entry: ' . $e;
+			}
+
+		}
+		return $metadata;
+	}
+	
+	
+	private function getmetadata_saml20spremote($metadataxml) {
+		// Create a parser for the metadata document.
+		$metadata_parser = new SimpleSAML_XML_Parser($metadataxml);
+		
+		// Get all entries in the metadata.
+		$idpentities = $metadata_parser->simplexml->xpath('/saml2meta:EntitiesDescriptor/saml2meta:EntityDescriptor[./saml2meta:SPSSODescriptor]');
+		if (!$idpentities) throw new Exception('Could not find any entity descriptors in the meta data file: ' . $metadatasetfile);
+		
+		// Array to hold the resulting metadata, to return at the end of this function.
+		$metadata = array();
+		
+		// Traverse all entries.
+		foreach ($idpentities as $idpentity) {
+			try {
+				$entityid = (string) $idpentity['entityID'];
+				if (!$entityid) throw new Exception('Could not find entityID in element');
+				
+				
+				/*
+					array('entityid', 'spNameQualifier', 'AssertionConsumerService', 'SingleLogoutService', 'NameIDFormat'),
+					array('base64attributes', 'attributemap', 'simplesaml.attributes', 'attributes')
+				*/
+				
+				$metadata[$entityid] = array('entityid' => $entityid);				
+				$metadata_entry = SimpleSAML_XML_Parser::fromSimpleXMLElement($idpentity);
+
+				$metadata[$entityid]['spNameQualifier'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:spnamequalifier']/saml2:AttributeValue");
+				
+				$metadata[$entityid]['NameIDFormat'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:NameIDFormat", true);
+												
+
+				$seek_base64 = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:base64attributes']/saml2:AttributeValue");
+				$metadata[$entityid]['base64attributes'] = (isset($seek_base64) ? ($seek_base64 === 'true') : false);
+				
+				
+				$metadata[$entityid]['name'] = $metadata_entry->getValueAlternatives(
+					array("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:name']/saml2:AttributeValue",
+					"/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:Organization/saml2meta:OrganizationDisplayName"
+					));
+					
+				$metadata[$entityid]['description'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:description']/saml2:AttributeValue");
+
+				$metadata[$entityid]['simplesaml.attributes'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:simplesaml.attributes']/saml2:AttributeValue");
+				
+				
+				$seek_attributes = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:attributes']/saml2:AttributeValue");
+				if (isset($seek_attributes)) $metadata[$entityid]['attributes'] = explode(',', $seek_attributes);
+				
+				$metadata[$entityid]['attributemap'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:Extensions/saml2:Attribute[@Name='urn:mace:feide.no:simplesamlphp:attributemap']/saml2:AttributeValue");
+				
+				$metadata[$entityid]['AssertionConsumerService'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:AssertionConsumerService/@Location", true);
+				
+				$metadata[$entityid]['SingleLogoutService'] = $metadata_entry->getValue("/saml2meta:EntityDescriptor/saml2meta:SPSSODescriptor/saml2meta:SingleLogoutService/@Location", true);
+				
+				
+				
+			} catch (Exception $e) {
+				echo 'Error reading one metadata entry: ' . $e;
+			}
+
+		}
+		return $metadata;
+	}
+	
+	
 	
 	private function getmetadata_shib13idpremote($metadataxml) {
 		// Create a parser for the metadata document.
