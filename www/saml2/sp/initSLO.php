@@ -25,7 +25,7 @@ $spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getM
 
 $logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'SP.initSLO', 'EVENT', 'Access', 
 	'Accessing SAML 2.0 SP initSLO script');
-	
+
 
 if (isset($session) ) {
 	
@@ -47,6 +47,7 @@ if (isset($session) ) {
 		
 		//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
 		$httpredirect->sendMessage($req, $idpentityid, $relayState, 'SingleLogoutService', 'SAMLRequest', 'SP');
+		
 
 	} catch(Exception $exception) {
 		
@@ -69,9 +70,6 @@ if (isset($session) ) {
 	
 	SimpleSAML_Utilities::redirect($relaystate);
 	
-	#print_r($metadata->getMetaData('sam.feide.no'));
-	#print_r($req);
-
 }
 
 
