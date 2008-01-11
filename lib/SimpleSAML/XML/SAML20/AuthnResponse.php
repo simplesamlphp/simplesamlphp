@@ -392,7 +392,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		
 		$destination = $spmd['AssertionConsumerService'];
 		
-		$base64 = isset($idpmd['base64attributes']) ? $idpmd['base64attributes'] : false;
+		$base64 = isset($spmd['base64attributes']) ? $spmd['base64attributes'] : false;
 		
 		$encodedattributes = '';
 		foreach ($attributes AS $name => $values) {
