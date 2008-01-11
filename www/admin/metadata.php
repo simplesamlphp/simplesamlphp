@@ -12,36 +12,31 @@ $config = SimpleSAML_Configuration::getInstance();
 //$metadata = new SimpleSAML_XML_MetaDataStore($config);
 $session = SimpleSAML_Session::getInstance();
 
-
-
 try {
 
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-
 	$et = new SimpleSAML_XHTML_Template($config, 'admin-metadatalist.php');
 
 
-	
 	if ($config->getValue('enable.saml20-sp') === true) {
 		$results = array();	
-		/*
+		
 		$metalist = $metadata->getList('saml20-sp-hosted');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
-				// TODO: UPDATE Required and optional parameter list
-				array('entityid', 'host', 'spNameQualifier', 'NameIDFormat', 'ForceAuthn'),
-				array('name', 'description')
+				array('entityid', 'host', 'NameIDFormat', 'ForceAuthn'),
+				array()
 			);
 		}
 		$et->data['metadata.saml20-sp-hosted'] = $results;
-		*/
+		
+		$results = array();	
 		$metalist = $metadata->getList('saml20-idp-remote');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
-				// TODO: UPDATE Required and optional parameter list
-				array('entityid', 'host', 'spNameQualifier', 'NameIDFormat', 'ForceAuthn'),
-				array('name', 'description')
+				array('entityid', 'SingleSignOnService', 'SingleLogoutService', 'certFingerprint'),
+				array('name', 'description', 'base64attributes')
 			);
 		}
 		$et->data['metadata.saml20-idp-remote'] = $results;
@@ -53,19 +48,18 @@ try {
 		$metalist = $metadata->getList('saml20-idp-hosted');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
-				// TODO: UPDATE Required and optional parameter list
-				array('entityid', 'host', 'spNameQualifier', 'NameIDFormat', 'ForceAuthn'),
-				array('name', 'description')
+				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
+				array('requireconsent')
 			);
 		}
 		$et->data['metadata.saml20-idp-hosted'] = $results;
 		
+		$results = array();	
 		$metalist = $metadata->getList('saml20-sp-remote');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
-				// TODO: UPDATE Required and optional parameter list
-				array('entityid', 'host', 'spNameQualifier', 'NameIDFormat', 'ForceAuthn'),
-				array('name', 'description')
+				array('entityid', 'spNameQualifier', 'AssertionConsumerService', 'SingleLogoutService', 'NameIDFormat'),
+				array('base64attributes', 'attributemap', 'simplesaml.attributes', 'attributes', 'name', 'description')
 			);
 		}
 		$et->data['metadata.saml20-sp-remote'] = $results;
@@ -73,11 +67,7 @@ try {
 	}
 
 	
-	
 
-	
-	
-	
 	$et->data['header'] = 'Metadata overview';
 
 	
