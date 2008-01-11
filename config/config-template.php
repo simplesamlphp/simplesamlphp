@@ -48,6 +48,19 @@ $config = array (
 	'logging.facility'		=> LOG_LOCAL5,
 	'logging.level'			=> LOG_NOTICE,
 	
+	/*
+	 * Enable
+	 * 
+	 * Which functionality in simpleSAMLphp do you want to enable. Normally you would enable only 
+	 * one of the functionalities below, but in some cases you could run multiple functionalities.
+	 * In example when you are setting up a federation bridge.
+	 */
+	'enable.saml20-sp'		=> true,
+	'enable.saml20-idp'		=> false,
+	'enable.shib13-sp'		=> false,
+	'enable.shib13-idp'		=> false,
+	'enable.openid-provider'=> false,
+	
 	/* 
 	 * This value is the duration of the session in seconds. Make sure that the time duration of
 	 * cookies both at the SP and the IdP exceeds this duration.
@@ -69,6 +82,18 @@ $config = array (
 	 */
 	'default-saml20-idp'	=> 'max.feide.no',
 	'default-shib13-idp'	=> 'urn:mace:switch.ch:aaitest:dukono.switch.ch',
+	
+	/*
+	 * Meta data handler.
+	 *
+	 *	Options: [flatfile,saml2xmlmeta]
+	 *
+	 */
+	#'metadata.handler'		=> 'saml2xmlmeta',
+	'metadata.handler'		=> 'flatfile',
+
+	
+
 	
 	/*
 	 * LDAP configuration. This is only relevant if you use the LDAP authentication plugin.

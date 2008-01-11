@@ -1,102 +1,45 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>simpleSAMLphp</title>
+<?php
 
-<style type="text/css">
+require_once('_include.php');
 
-/* these styles are in the head of this page because this is a unique page */
 
-/* THE BIG GUYS */
-* {margin:0;padding:0}
-body {text-align:center;padding: 20px 0;background: #222;color:#333;font:83%/1.5 arial,tahoma,verdana,sans-serif}
-img {border:none;display:block}
-hr {margin: 1em 0;background:#eee;height:1px;color:#eee;border:none;clear:both}
+require_once('SimpleSAML/Utilities.php');
+require_once('SimpleSAML/Session.php');
+require_once('SimpleSAML/XHTML/Template.php');
+require_once('SimpleSAML/XML/MetaDataStore.php');
 
-/* LINKS */
-a,a:link,a:link,a:link,a:hover {font-weight:bold;background:transparent;text-decoration:underline;cursor:pointer} 
-a:link {color:#c00} 
-a:visited {color:#999} 
-a:hover,a:active {color:#069} 
+$config = SimpleSAML_Configuration::getInstance();
 
-/* LISTS */
-ul {margin: .3em 0 1.5em 2em}
-	ul.related {margin-top:-1em}
-li {margin-left:2em}
-dt {font-weight:bold}
-#wrap {border: 1px solid #fff;position:relative;background:#fff;width:600px;margin: 0 auto;text-align:left}
-#header {background: #666 url("resources/sprites.gif") repeat-x 0 100%;margin: 0 0 25px;padding: 0 0 8px}
-#header h1 {color:#fff;font-size: 145%;padding:20px 20px 12px}
-#poweredby {width:96px;height:63px;position:absolute;top:0;right:0}
-#content {padding: 0 20px}
 
-/* TYPOGRAPHY */
-p, ul, ol {margin: 0 0 1.5em}
-h1, h2, h3, h4, h5, h6 {letter-spacing: -1px;font-family: arial,verdana,sans-serif;margin: 1.2em 0 .3em;color:#000;border-bottom: 1px solid #eee;padding-bottom: .1em}
-h1 {font-size: 196%;margin-top:0;border:none}
-h2 {font-size: 136%}
-h3 {font-size: 126%}
-h4 {font-size: 116%}
-h5 {font-size: 106%}
-h6 {font-size: 96%}
-
-.old {text-decoration:line-through}
-</style>
-</head>
-<body>
-
-<div id="wrap">
-
-	<div id="header">
-		<h1>simpleSAMLphp is installed</h1>
-		<div id="poweredby"><img src="resources/icons/compass_l.png" alt="Bino" /></div>
-	</div>
+$session = SimpleSAML_Session::getInstance();
 	
-	<div id="content">
-
-		<h2>Welcome to simpleSAMlphp</h2>
-		
-		<p>You have installed simpleSAMLphp on this web host.</p>
-		
-		<p>After you have configured it properly as described in the documentation you may want to test one of the two examples:
-			<ul>
-				<li><a href="saml2/sp/metadata.php">Look at your SAML 2.0 SP metadata</a> - you can send this metadata document to your IdP.</a></li>
-				<li><a href="saml2/idp/metadata.php">Look at your SAML 2.0 IdP metadata</a></a></li>
-				<li><a href="example-simple/saml2-example.php">SAML 2.0 SP example</a></li>
-				<li><a href="example-simple/shib13-example.php">Shibboleth 1.3 SP example</a></li>
-				<li><a href="openid/provider/server.php">OpenID Provider site</a></li>
-			</ul>
-		</p>
-		
-		<h2>Diagnostics</h2>
-		<p>Here are some help tools to diagnose what is wrong if things do not work as expected.</p>
-		
-		<p>Misconfiguration of NameVirtualHosts and similar things are pretty common in Apache. simpleSAMLphp relies on getting correct information from Apache what relates to port number information about ssl and so on. Here is a diagnostics page that shows what simpleSAMLphp is getting from Apache:
-			<ul>
-				<li><a href="example-simple/hostnames.php">Diagnostics on hostname, port and protocol</a></li>
-			</ul>
-		</p>
-		
-
-
-		<h2>About simpleSAMLphp</h2>
-		<p>Hey! This simpleSAMLphp thing is pretty cool, where can I read more about it?
-		You can find more information about simpleSAMLphp at <a href="http://rnd.feide.no">the Feide RnD blog</a> over at <a href="http://uninett.no">UNINETT</a>.</p>
-		
-
-		
-
-
-		<hr />
-		
-		Copyright &copy; 2007 <a href="http://rnd.feide.no/">Feide RnD</a>
-		
-		<hr />
 	
-	</div>
+$links = array();
 
-</div>
+$links[] = array('href' => 'admin/metadata.php', 'text' => 'Meta data overview for your installation. Diagnose your meta data files.');
 
-</body>
-</html>
+if ($config->getValue('enable.saml20-sp') === true)
+	$links[] = array('href' => 'saml2/sp/metadata.php', 'text' => 'SAML 2.0 Service Provider Metadata (automatically generated)');
+
+if ($config->getValue('enable.saml20-sp') === true)
+	$links[] = array('href' => 'example-simple/saml2-example.php', 'text' => 'SAML 2.0 SP example - test logging in through your IdP');
+
+if ($config->getValue('enable.saml20-idp') === true)
+	$links[] = array('href' => 'saml2/idp/metadata.php', 'text' => 'SAML 2.0 Identity Provider Metadata (automatically generated)');
+
+if ($config->getValue('enable.shib13-sp') === true)
+	$links[] = array('href' => 'example-simple/shib13-example.php', 'text' => 'Shibboleth 1.3 SP example - test logging in through your Shib IdP');
+
+
+if ($config->getValue('enable.openid-provider') === true)
+	$links[] = array('href' => 'openid/provider/server.php', 'text' => 'OpenID Provider site - Alpha version (test code)');
+
+
+$t = new SimpleSAML_XHTML_Template($config, 'frontpage.php');
+$t->data['header'] = 'simpleSAMLphp installation page';
+$t->data['links'] = $links;
+$t->show();
+
+
+
+?>
