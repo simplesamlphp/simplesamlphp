@@ -12,7 +12,7 @@
  */
  
 require_once('SimpleSAML/Configuration.php');
-require_once('SimpleSAML/XML/MetaDataStore.php');
+require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
  
 /**
  * Configuration of SimpleSAMLphp
@@ -32,7 +32,7 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	const PROTOCOL = 'shibboleth';
 
 
-	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_XML_MetaDataStore $metadatastore) {
+	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore) {
 		$this->configuration = $configuration;
 		$this->metadata = $metadatastore;
 		

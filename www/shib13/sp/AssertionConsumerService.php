@@ -5,7 +5,7 @@ require_once('../../_include.php');
 
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
-require_once('SimpleSAML/XML/MetaDataStore.php');
+require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/Shib13/AuthnRequest.php');
 require_once('SimpleSAML/Bindings/Shib13/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
@@ -18,7 +18,7 @@ try {
 	echo '</pre>';
 	*/
 	$config = SimpleSAML_Configuration::getInstance();
-	$metadata = new SimpleSAML_XML_MetaDataStore($config);
+	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 	
 	#print_r($metadata->getMetaData('sam.feide.no'));
 #	$sr = new SimpleSAML_XML_Shib13_AuthnResponse($config, $metadata);

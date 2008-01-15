@@ -9,7 +9,6 @@ require_once('SimpleSAML/XHTML/Template.php');
 
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
-//$metadata = new SimpleSAML_XML_MetaDataStore($config);
 $session = SimpleSAML_Session::getInstance();
 
 try {
