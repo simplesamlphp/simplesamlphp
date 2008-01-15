@@ -254,6 +254,8 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 						// Traverse Values
 						foreach ($attribute->AttributeValue AS $newvalue) {
 						
+							$newvalue = (string)$newvalue;
+
 							if ($base64) {
 								$encodedvalues = explode('_', $newvalue);
 								foreach($encodedvalues AS $v) {
@@ -263,8 +265,6 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 								$values[] = $newvalue;
 							}
-						
-							$values[] = (string) $val;
 						}
 						
 						$attributes[(string)$attribute['AttributeName']] = $values;
