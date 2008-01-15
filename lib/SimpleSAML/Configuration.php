@@ -41,16 +41,26 @@ class SimpleSAML_Configuration {
 		$this->configuration = $config;
 	}
 
-	public function getValue($name) {
+
+	/* Retrieve a configuration option set in config.php.
+	 *
+	 * Parameters:
+	 *  $name     Name of the configuration option.
+	 *  $default  Default value of the configuration option. This
+	 *            parameter will default to NULL if not specified.
+	 *
+	 * Returns:
+	 *  The configuration option with name $name, or $default if
+	 *  the option was not found.
+	 */
+	public function getValue($name, $default = NULL) {
 		if (!isset($this->configuration)) {
 			$this->loadConfig();
 		}
 
-		/* Avoid notice about non-existant member of array
-		 * if an option isn't set.
-		 */
+		/* Return the default value if the option is unset. */
 		if (!array_key_exists($name, $this->configuration)) {
-			return NULL;
+			return $default;
 		}
 
 		return $this->configuration[$name];
