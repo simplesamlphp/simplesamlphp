@@ -47,7 +47,7 @@ if (isset($_GET['idpentityid'])) {
 
 $idplist = $metadata->getList('shib13-idp-remote');
 
-if ($config->getValue('disco.layout') == 'dropdown') {
+if ($config->getValue('idpdisco.layout') == 'dropdown') {
 	$t = new SimpleSAML_XHTML_Template($config, 'selectidp-dropdown.php');
 	$t->data['header'] = 'Select your identity provider';
 	$t->data['idplist'] = $idplist;
