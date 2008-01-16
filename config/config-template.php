@@ -84,6 +84,21 @@ $config = array (
 	'default-shib13-idp'	=> 'urn:mace:switch.ch:aaitest:dukono.switch.ch',
 	
 	/*
+	 * IdP Discovery service look configuration. 
+	 * Wether to display a list of idp or to display a dropdown box. For many IdP' a dropdown box  
+	 * gives the best use experience.
+	 * 
+	 * When using dropdown box a cookie is used to highlight the previously chosen IdP in the dropdown.  
+	 * This makes it easier for the user to choose the IdP
+	 * 
+	 * Options: [links,dropdown]
+	 * 
+	 */
+	#'idpdisco.layout' => 'dropdown',
+	'idpdisco.layout' => 'links',
+
+
+	/*
 	 * Meta data handler.
 	 *
 	 *	Options: [flatfile,saml2xmlmeta]

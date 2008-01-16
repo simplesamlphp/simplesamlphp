@@ -37,21 +37,34 @@ try {
 if (isset($_GET['idpentityid'])) {
 
 	$idpentityid = $_GET['idpentityid'];
-
+	setcookie('preferedidp',$idpentityid,time()+60*60*24*90); // set cookie valid 90 days
+	
 	$returnurl = SimpleSAML_Utilities::addURLparameter($return, $returnidparam . '=' . $idpentityid);
 	SimpleSAML_Utilities::redirect($returnurl);
+
 }
 
 
 $idplist = $metadata->getList('shib13-idp-remote');
 
-
-$t = new SimpleSAML_XHTML_Template($config, 'selectidp.php');
-$t->data['header'] = 'Select your identity provider';
-$t->data['idplist'] = $idplist;
-$t->data['urlpattern'] = htmlentities(SimpleSAML_Utilities::selfURL() . '&idpentityid=');
-$t->show();
-
+if ($config->getValue('disco.layout') == 'dropdown') {
+	$t = new SimpleSAML_XHTML_Template($config, 'selectidp-dropdown.php');
+	$t->data['header'] = 'Select your identity provider';
+	$t->data['idplist'] = $idplist;
+	$t->data['return']= $return;
+	$t->data['returnIDParam'] = $returnidparam;
+	$t->data['entityID'] = $spentityid;
+	$t->data['preferedidp'] = (!empty($_COOKIE['preferedidp'])) ? $_COOKIE['preferedidp'] : null;
+	$t->data['urlpattern'] = htmlentities(SimpleSAML_Utilities::selfURLNoQuery());
+}
+else
+{
+	$t = new SimpleSAML_XHTML_Template($config, 'selectidp-links.php');
+	$t->data['header'] = 'Select your identity provider';
+	$t->data['idplist'] = $idplist;
+	$t->data['urlpattern'] = htmlentities(SimpleSAML_Utilities::selfURL() . '&idpentityid=');
+	$t->show();
+}
 
 
 ?>
