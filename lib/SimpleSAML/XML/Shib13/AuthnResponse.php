@@ -236,7 +236,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 						if (! SimpleSAML_Utilities::checkDateConditions($start, $end)) {
 							error_log( " Date check failed ... (from $start to $end)");
-							next;
+							continue;
 						} 
 
 					}
@@ -273,8 +273,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 				}
 				
 			}
-		
-		
+				
 			/*
 			echo "<PRE>token:";
 			echo htmlentities($token->saveXML());
