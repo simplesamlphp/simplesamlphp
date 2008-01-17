@@ -254,7 +254,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 					"/mysamlp:Response[" . $valididquery . "]/mysaml:Assertion/mysaml:AttributeStatement/mysaml:Attribute",
 					"/mysamlp:Response/mysaml:Assertion[" . $valididquery . "]/mysaml:AttributeStatement/mysaml:Attribute") AS $query) {
 		
-//				echo 'performing query : ' . $query;
+				//echo 'performing query : ' . $query;
 		
 //				$query = "/mysamlp:Response[" . $valididquery . "]/mysaml:Assertion/mysaml:AttributeStatement/mysaml:Attribute";
 				$nodelist = $xPath->query($query);

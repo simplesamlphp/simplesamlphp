@@ -118,8 +118,13 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		
 		//$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1, //array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'));
 		
-		$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature',
-			'http://www.w3.org/2001/10/xml-exc-c14n#'));
+// 		$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1, 
+// 			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature',
+// 			'http://www.w3.org/2001/10/xml-exc-c14n#'));
+			
+		$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1,
+			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'),
+			array('id_name' => 'ID'));
 		
 		#$objXMLSecDSig->addRefInternal($responseroot, $responseroot, XMLSecurityDSig::SHA1);
 		
