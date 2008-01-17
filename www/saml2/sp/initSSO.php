@@ -20,8 +20,17 @@ $session = SimpleSAML_Session::getInstance(true);
 $logger = new SimpleSAML_Logger();
 
 
+/*
+ * Incomming URL parameters
+ *
+ * idpentityid 		The entityid of the wanted IdP to authenticate with. If not provided will use default.
+ * spentityid		The entityid of the SP config to use. If not provided will use default to host.
+ * 
+ */		
+
 $logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'EVENT', 'Access', 
 	'Accessing SAML 2.0 SP initSSO script');
+
 
 try {
 
