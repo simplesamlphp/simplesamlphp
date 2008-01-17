@@ -179,40 +179,6 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		}
 		
 		
-		/*
-		
-		
-		
-		echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-				"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-		<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-		<head>
-			<meta http-equiv="content-type" content="text/html; charset=utf-8">
-			<title>Send SAML 2.0 Authentication Response</title>
-		</head>
-		<body>
-		<h1>Send SAML 2.0 Authentication Response</h1>
-		 
-		 <form style="border: 1px solid #777; margin: 2em; padding: 2em" method="post" action="' . $destination . '">
-			<input type="hidden" name="SAMLResponse" value="' . base64_encode($response) . '" />
-			<input type="hidden" name="TARGET" value="' . $relayState. '">
-			<input type="submit" value="Submit the SAML 1.1 Response" />
-		 </form>
-		 
-		<ul>
-			<li>From IdP: <tt>' . $idpentityid . '</tt></li>
-			<li>To SP: <tt>' . $spentityid . '</tt></li>
-			<li>SP Assertion Consumer Service URL: <tt>' . $destination . '</tt></li>
-			<li>RelayState: <tt>' . $relayState . '</tt></li>
-		</ul>
-		
-		<p>SAML Message: <pre>' .  htmlentities($responsedom->saveHTML()) . '</pre>
-		
-		
-		</body>
-		</html>';
-		*/
-		
 	}
 	
 	public function decodeResponse($post) {
