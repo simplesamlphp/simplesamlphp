@@ -132,7 +132,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 	}
 	
 
-	public function generate($spentityid) {
+	public function generate($spentityid, $destination) {
 		$md = $this->metadata->getMetaData($spentityid);
 		
 		$id = self::generateID();
@@ -154,6 +154,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		  "IssueInstant=\"" . $issueInstant . "\" " .
 		  "ForceAuthn=\"false\" " .
 		  "IsPassive=\"false\" " .
+		  "Destination=\"" . $destination . "\" " .
 		  "ProtocolBinding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\" " .
 		  "AssertionConsumerServiceURL=\"" . $assertionConsumerServiceURL . "\">\n" .
 			"<saml:Issuer " .

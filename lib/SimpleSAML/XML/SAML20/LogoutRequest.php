@@ -141,6 +141,7 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
       "xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" " . 
       "ID=\"" . $id . "\" " .
       "Version=\"2.0\" " .
+      "Destination=\"" . $destination . "\" " .
       "IssueInstant=\"" . $issueInstant . "\"> " .
         "<saml:Issuer " . 
         "xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\">" .

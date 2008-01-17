@@ -77,7 +77,7 @@ if (isset($_GET['SAMLRequest'])) {
 		'SP me (' . $responder . ') is sending logout response to IdP (' . $requester . ')');
 	
 	// Send the Logout response using HTTP POST binding.
-	$httpredirect->sendMessage($logoutResponseXML, $requester, $logoutrequest->getRelayState(), 'SingleLogoutServiceResponse', 'SAMLResponse');
+	$httpredirect->sendMessage($logoutResponseXML, $responser, $requester, $logoutrequest->getRelayState(), 'SingleLogoutServiceResponse', 'SAMLResponse');
 
 } elseif(isset($_GET['SAMLResponse'])) {
 	

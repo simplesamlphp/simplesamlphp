@@ -52,7 +52,7 @@ if (isset($_GET['SAMLRequest'])) {
 		/* Send the response using the HTTP-Redirect binding. */
 		$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config,
 			$metadata);
-		$binding->sendMessage($responseText, $spentityid, $relayState,
+		$binding->sendMessage($responseText, $idpentityid, $spentityid, $relayState,
 			'SingleLogoutService', 'SAMLResponse', 'IdP');
 		exit;
 	}
@@ -114,7 +114,7 @@ if ($spentityid) {
 		}
 		
 		//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
-		$httpredirect->sendMessage($req, $spentityid, $relayState, 'SingleLogoutService', 'SAMLRequest', 'IdP');
+		$httpredirect->sendMessage($req, $idpentityid, $spentityid, $relayState, 'SingleLogoutService', 'SAMLRequest', 'IdP');
 		
 		exit();
 
@@ -165,7 +165,7 @@ try {
 	}
 	
 	//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
-	$httpredirect->sendMessage($logoutResponseXML, $logoutrequest->getIssuer(), $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
+	$httpredirect->sendMessage($logoutResponseXML, $idpentityid, $logoutrequest->getIssuer(), $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
 
 } catch(Exception $exception) {
 	

@@ -46,7 +46,7 @@ if (isset($session) ) {
 			'SP (' . $spentityid . ') is sending logout request to IdP (' . $idpentityid . ')');
 		
 		//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
-		$httpredirect->sendMessage($req, $idpentityid, $relayState, 'SingleLogoutService', 'SAMLRequest', 'SP');
+		$httpredirect->sendMessage($req, $spentityid, $idpentityid, $relayState, 'SingleLogoutService', 'SAMLRequest', 'SP');
 		
 
 	} catch(Exception $exception) {

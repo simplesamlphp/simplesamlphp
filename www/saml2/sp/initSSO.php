@@ -64,7 +64,9 @@ if (!isset($session) || !$session->isValid() ) {
 	try {
 		$sr = new SimpleSAML_XML_SAML20_AuthnRequest($config, $metadata);
 	
-		$req = $sr->generate($spentityid);
+		$md = $metadata->getMetaData($idpentityid, 'saml20-idp-remote');
+		$req = $sr->generate($spentityid, $md['SingleSignOnService']);
+
 		
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 		
@@ -76,7 +78,7 @@ if (!isset($session) || !$session->isValid() ) {
 		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'AuthnRequest', $idpentityid, 
 			'SP (' . $spentityid . ') is sending authenticatino request to IdP (' . $idpentityid . ')');
 		
-		$httpredirect->sendMessage($req, $idpentityid, $relayState);
+		$httpredirect->sendMessage($req, $spentityid, $idpentityid, $relayState);
 
 	
 	} catch(Exception $exception) {

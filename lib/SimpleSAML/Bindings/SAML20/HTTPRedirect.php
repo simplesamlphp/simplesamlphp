@@ -29,8 +29,76 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		$this->configuration = $configuration;
 		$this->metadata = $metadatastore;
 	}
-	
-	public function getRedirectURL($request, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP') {
+
+
+	public function signQuery($query, $md) {
+
+		/* Check if signing of HTTP-Redirect messages is enabled. */
+		if($this->configuration->getValue('binding.httpredirect.sign', false) !== true) {
+			return $query;
+		}
+
+		/* Don't attempt to sign the query if no private key is set in the metadata.  */
+		if(!array_key_exists('privatekey', $md) || $md['privatekey'] === NULL) {
+			return $query;
+		}
+
+
+		/* Load the private key. */
+
+		$privatekey = $this->configuration->getBaseDir() . 'cert/' . $md['privatekey'];
+		if (!file_exists($privatekey)) {
+			throw new Exception('Could not find private key file [' . $privatekey . '] which is needed to sign the request.');
+		}
+
+		$keydata = file_get_contents($privatekey);
+		if($keydata === FALSE) {
+			throw new Exception('Unable to load private key file: ' . $privatekey);
+		}
+
+		$keyid = openssl_pkey_get_private($keydata);
+		if($keyid === FALSE) {
+			throw new Exception('OpenSSL was unable to parse the private key from the following file: ' . $privatekey);
+		}
+
+		/* Make sure that the loaded key is a RSA key. */
+		$keydetails = openssl_pkey_get_details($keyid);
+		if($keydetails === FALSE) {
+			throw new Exception('Unable to get key details of already loaded key.');
+		}
+		if($keydetails['type'] !== OPENSSL_KEYTYPE_RSA) {
+			throw new Exception('Private key used to sign the query string isn\'t a RSA key. Key was loaded from the following file: ' . $privatekey);
+		}
+
+
+		/* Sign the query string. According to the specification, the string which should be
+		 * signed is the concatenation of the following query parameters (in order):
+		 * - SAMLRequest/SAMLResponse
+		 * - RelayState (if present)
+		 * - SigAlg
+		 *
+		 * We assume that the query string now contains only the two first parameters.
+		 */
+
+		/* Append the signature algorithm. We always use RSA-SHA1. */
+		$algURI = 'http://www.w3.org/2000/09/xmldsig#rsa-sha1';
+		$query = $query . "&" . "SigAlg=" . urlencode($algURI);
+
+		/* Sign the query string. The default hash algorithm of openssl_sign is (fortunately) SHA1. */
+		if(!openssl_sign($query, $signature, $keyid)) {
+			throw new Exception('OpenSSL was unable to sign the query string.');
+		}
+
+		/* Free the key we used. */
+		openssl_pkey_free($keyid);
+
+		/* Return the signed query string. */
+		$query = $query . "&" . "Signature=" . urlencode(base64_encode($signature));
+		return $query;
+	}
+
+
+	public function getRedirectURL($request, $localentityid, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP') {
 	
 		if (!in_array($mode, array('SP', 'IdP'))) {
 			throw new Exception('mode parameter of sendMessage() must be either SP or IdP');
@@ -51,21 +119,28 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		if (!isset($idpTargetUrl) or $idpTargetUrl == '') {
 			throw new Exception('Could not find endpoint [' .$endpoint  . '] in metadata for [' . $remoteentityid . '] (looking in ' . $metadataset . ')');
 		}
-	
-		$encodedRequest = urlencode( base64_encode( gzdeflate( $request ) ));
-		
-		$redirectURL = $idpTargetUrl . "?" . $direction . "=" . $encodedRequest;
+
+		$request = urlencode( base64_encode( gzdeflate( $request ) ));
+		$request = $direction . "=" . $request;
 		if (isset($relayState)) {
-			$redirectURL .= "&RelayState=" . urlencode($relayState);
+			$request .= "&RelayState=" . urlencode($relayState);
 		}
+
+		$metadataset = 'saml20-sp-hosted';
+		if ($mode == 'IdP') {
+			$metadataset = 'saml20-idp-hosted';
+		}
+		$localmd = $this->metadata->getMetaData($localentityid, $metadataset);
+		$request = $this->signQuery($request, $localmd);
+		$redirectURL = $idpTargetUrl . "?" . $request;
+
 		return $redirectURL;
 	
 	}
 	
-	
-	public function sendMessage($request, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP') {
+	public function sendMessage($request, $localentityid, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP') {
 		
-		$redirectURL = $this->getRedirectURL($request, $remoteentityid, $relayState, $endpoint, $direction, $mode);
+		$redirectURL = $this->getRedirectURL($request, $localentityid, $remoteentityid, $relayState, $endpoint, $direction, $mode);
 		
 		if ($this->configuration->getValue('debug')) {
 	
