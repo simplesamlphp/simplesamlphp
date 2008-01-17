@@ -110,7 +110,8 @@ if (!$session->isAuthenticated() ) {
 
 		//$session->setAttribute('eduPersonAffiliation', array('student'));
 
-
+		$spentityid = $authnrequest->getIssuer();
+		$spmetadata = $metadata->getMetaData($spentityid, 'shib13-sp-remote');
 
 		/*
 		 * Filtering attributes.
