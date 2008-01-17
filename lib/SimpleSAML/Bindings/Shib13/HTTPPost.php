@@ -146,14 +146,39 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		# openssl req -new -key server.key -out server.csr
 		# openssl x509 -req -days 60 -in server.csr -signkey server.key -out server.crt
 		
-		$p = new SimpleSAML_XHTML_Template($this->configuration, 'post.php');
-	
-		$p->data['RelayStateName'] = 'TARGET';
-		$p->data['RelayState'] = $relayState;
-		$p->data['destination'] = $destination;
-		$p->data['response'] = base64_encode($response);
+
 		
-		$p->show();
+		
+		
+		if ($this->configuration->getValue('debug')) {
+	
+			$p = new SimpleSAML_XHTML_Template($this->configuration, 'post-debug.php');
+			
+			$p->data['header'] = 'SAML (Shibboleth 1.3) Response Debug-mode';
+			$p->data['RelayStateName'] = 'TARGET';
+			$p->data['RelayState'] = $relayState;
+			$p->data['destination'] = $destination;
+			$p->data['response'] = str_replace("\n", "", base64_encode($response));
+			$p->data['responseHTML'] = htmlentities($responsedom->saveHTML());
+			
+			$p->show();
+
+		
+		} else {
+			
+			$p = new SimpleSAML_XHTML_Template($this->configuration, 'post.php');
+		
+			$p->data['RelayStateName'] = 'TARGET';
+			$p->data['RelayState'] = $relayState;
+			$p->data['destination'] = $destination;
+			$p->data['response'] = base64_encode($response);
+			
+			$p->show();
+
+		
+		}
+		
+		
 		/*
 		
 		
