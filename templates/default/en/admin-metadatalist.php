@@ -84,6 +84,15 @@
 		if (array_key_exists('metadata.saml20-idp-remote', $data)) 
 			showEntry('SAML 2.0 Identity Provider (Remote)', $data['metadata.saml20-idp-remote']);
 
+		if (array_key_exists('metadata.shib13-sp-hosted', $data)) 
+			showEntry('Shib 1.3 Service Provider (Hosted)', $data['metadata.shib13-sp-hosted']);
+		if (array_key_exists('metadata.shib13-sp-remote', $data)) 
+			showEntry('Shib 1.3 Service Provider (Remote)', $data['metadata.shib13-sp-remote']);
+		if (array_key_exists('metadata.shib13-idp-hosted', $data)) 
+			showEntry('Shib 1.3 Identity Provider (Hosted)', $data['metadata.shib13-idp-hosted']);
+		if (array_key_exists('metadata.shib13-idp-remote', $data)) 
+			showEntry('Shib 1.3 Identity Provider (Remote)', $data['metadata.shib13-idp-remote']);
+
 		
 		?>
 

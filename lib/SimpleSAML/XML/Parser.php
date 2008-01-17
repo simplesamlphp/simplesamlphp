@@ -17,6 +17,7 @@
 class SimpleSAML_XML_Parser  {
 
 	var $simplexml = null;
+
 	
 	function __construct($xml) {
 		#parent::construct($xml);
@@ -42,6 +43,14 @@ class SimpleSAML_XML_Parser  {
 		$parser = new SimpleSAML_XML_Parser($element->asXML());
 		return $parser;
 		
+	}
+	
+	public function getValueDefault($xpath, $defvalue) {
+		try {
+			return $this->getValue($xpath, true);
+		} catch (Exception $e) {
+			return $defvalue;
+		}
 	}
 	
 	public function getValue($xpath, $required = false) {

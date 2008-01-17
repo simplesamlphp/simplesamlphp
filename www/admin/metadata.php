@@ -65,6 +65,59 @@ try {
 		
 	}
 
+
+
+
+	if ($config->getValue('enable.shib13-sp') === true) {
+		$results = array();	
+
+		$metalist = $metadata->getList('shib13-sp-hosted');
+		foreach ($metalist AS $entityid => $mentry) {
+			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
+				array('entityid', 'host', 'NameIDFormat', 'ForceAuthn'),
+				array()
+			);
+		}
+		$et->data['metadata.shib13-sp-hosted'] = $results;
+
+		$results = array();	
+		$metalist = $metadata->getList('shib13-idp-remote');
+		foreach ($metalist AS $entityid => $mentry) {
+			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
+				array('entityid', 'SingleSignOnService', 'SingleLogoutService', 'certFingerprint'),
+				array('name', 'description', 'base64attributes')
+			);
+		}
+		$et->data['metadata.shib13-idp-remote'] = $results;
+		
+	}
+	
+	if ($config->getValue('enable.shib13-idp') === true) {
+		$results = array();	
+		$metalist = $metadata->getList('shib13-idp-hosted');
+		foreach ($metalist AS $entityid => $mentry) {
+			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
+				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
+				array('requireconsent')
+			);
+		}
+		$et->data['metadata.shib13-idp-hosted'] = $results;
+		
+		$results = array();	
+		$metalist = $metadata->getList('shib13-sp-remote');
+		foreach ($metalist AS $entityid => $mentry) {
+			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
+				array('entityid', 'spNameQualifier', 'AssertionConsumerService', 'audience', 'NameIDFormat'),
+				array('base64attributes', 'attributemap', 'simplesaml.attributes', 'attributes', 'name', 'description')
+			);
+		}
+		$et->data['metadata.shib13-sp-remote'] = $results;
+		
+	}
+
+
+
+
 	
 
 	$et->data['header'] = 'Metadata overview';

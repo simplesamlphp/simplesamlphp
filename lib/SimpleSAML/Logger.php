@@ -9,7 +9,7 @@
  */
 
 require_once('SimpleSAML/Configuration.php');
-
+require_once('SimpleSAML/Session.php');
 
 /**
  * A logger class.
@@ -33,8 +33,13 @@ class SimpleSAML_Logger {
 	/*
 	 * Log a message to syslog.
 	 */
-	public function log($priority, $trackid, $module, $submodule, $eventtype, $content, $message) {
+	public function log($priority, $trackid = null, $module, $submodule, $eventtype, $content, $message) {
 		if ($priority < $this->loglevel) return;
+		
+		if ($trackid == null) {
+			$session = SimpleSAML_Session::getInstance(true);
+			$trackid = $session->getTrackID();
+		}
 		
 		$contentstring = '';
 		if (is_array($content)) {
