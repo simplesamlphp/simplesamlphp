@@ -227,7 +227,8 @@ class SimpleSAML_Utilities {
 
 
 	/* This function converts a SAML2 timestamp on the form
-	 * yyyy-mm-ddThh:mm:ssZ to a UNIX timestamp.
+	 * yyyy-mm-ddThh:mm:ss(\.s+)?Z to a UNIX timestamp. The sub-second
+	 * part is ignored.
 	 *
 	 * Andreas comments:
 	 *  I got this timestamp from Shibboleth 1.3 IdP: 2008-01-17T11:28:03.577Z
@@ -247,7 +248,7 @@ class SimpleSAML_Utilities {
 
 		/* We use a very strict regex to parse the timestamp. */
 		if(preg_match('/^(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d)' .
-		              'T(\\d\\d):(\\d\\d):(\\d\\d)(\.\\d{1,3})?Z$/D',
+		              'T(\\d\\d):(\\d\\d):(\\d\\d)(?:\\.\\d+)?Z$/D',
 		              $time, $matches) == 0) {
 			throw new Exception(
 				'Invalid SAML2 timestamp passed to' .
