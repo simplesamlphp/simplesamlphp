@@ -143,9 +143,9 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		
 		
 		$spNameQualifier = $md['spNameQualifier'];
-		$nameidformat = isset($md['NameIDformat']) ? 
-			$md['NameIDformat'] : 
-			'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent';
+		$nameidformat = isset($md['NameIDFormat']) ? 
+			$md['NameIDFormat'] : 
+			'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
 		
 		$authnRequest = "<samlp:AuthnRequest  " .
 		  "xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\"\n" .
