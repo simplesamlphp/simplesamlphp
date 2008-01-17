@@ -123,10 +123,10 @@ $config = array (
 	 */
 	'auth.radius.hostname'        => 'radius.example.org',
 	'auth.radius.port'            => '1812',
-	'auth.radius.secret'          => 'topsecret'
+	'auth.radius.secret'          => 'topsecret',
 	'auth.radius.URNForUsername'  => 'urn:mace:dir:attribute-def:eduPersonPrincipalName',
 	'auth.radius.vendor'          => '23735',
-	'auth.radius.vendor-attr'     => '4'
+	'auth.radius.vendor-attr'     => '4',
 
 	
 	/*
