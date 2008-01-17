@@ -80,13 +80,17 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 	
 		$privatekey = $this->configuration->getBaseDir() . '/cert/' . $idpmd['privatekey'];
 		$publiccert = $this->configuration->getBaseDir() . '/cert/' . $idpmd['certificate'];
+		$certchain_pem_file = $this->configuration->getBaseDir() . '/cert/' . $idpmd['certificatechain'];
 
+		$privatek = file_get_contents($privatekey);
 		
 		if (strstr($claimedacs, $destination) == 0) {
 			$destination = $claimedacs;
 		} else {
 			throw new Exception('Claimed ACS (shire) and ACS in SP Metadata do not match. [' . $claimedacs. '] [' . $destination . ']');
 		}
+		
+		
 		
 		
 		/*
@@ -107,7 +111,14 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		//$assertionroot = $responsedom->getElementsByTagName('Assertion')->item(1);
 		$firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
 		
-		$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'), null, 'ResponseID');
+		#$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1, #array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'), null, 'ResponseID');
+		
+		$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1,
+			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'),
+			array('id_name' => 'ResponseID'));
+			
+			// TODO: Add option to sign assertion versus response
+
 		#$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature',
 		#	'http://www.w3.org/2001/10/xml-exc-c14n#'));
 		
@@ -116,17 +127,33 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		/* create new XMLSecKey using RSA-SHA-1 and type is private key */
 		$objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
 		
+		//$objKey->passphrase = '1234';
+		
 		/* load the private key from file - last arg is bool if key in file (TRUE) or is string (FALSE) */
-		$objKey->loadKey($privatekey,TRUE);
+		#$objKey->loadKey($privatekey_pem,false);
+		$objKey->loadKey($privatek,false);
 		
-		
-		
-		
+		// TODO: Check for whether cert files exists or not.
 		
 		$objXMLSecDSig->sign($objKey);
 		
 		$public_cert = file_get_contents($publiccert);
+		
+		//echo '<pre>publiccert:' . $public_cert . '</pre>';
+		
+		
 		$objXMLSecDSig->add509Cert($public_cert, true);
+		
+		if (isset($certchain_pem_file)) {
+			$certchain_pem = file_get_contents($certchain_pem_file);
+		
+			//echo '<pre>chain:' . $certchain_pem . '</pre>';
+			$certchain = XMLSecurityDSig::staticGet509XCerts($certchain_pem);
+#			foreach ($certchain AS $scert) {
+				$objXMLSecDSig->add509Cert($certchain_pem, true);
+#			}
+		}
+		
 		/*
 		$public_cert = file_get_contents("cert/edugain/public2.pem");
 		$objXMLSecDSig->add509Cert($public_cert, true);
