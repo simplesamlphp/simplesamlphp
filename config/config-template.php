@@ -104,32 +104,37 @@ $config = array (
 	 *	Options: [flatfile,saml2xmlmeta]
 	 *
 	 */
-	#'metadata.handler'		=> 'saml2xmlmeta',
 	'metadata.handler'		=> 'flatfile',
-
-	
 
 	
 	/*
 	 * LDAP configuration. This is only relevant if you use the LDAP authentication plugin.
 	 */
-	'auth.ldap.dnpattern'	=> 'uid=%username%,dc=feide,dc=no,ou=feide,dc=uninett,dc=no',
-	'auth.ldap.hostname'	=> 'ldap.uninett.no',
-	'auth.ldap.attributes'	=> 'objectclass=*',
+	'auth.ldap.dnpattern'  => 'uid=%username%,dc=feide,dc=no,ou=feide,dc=uninett,dc=no',
+	'auth.ldap.hostname'   => 'ldap.uninett.no',
+	'auth.ldap.attributes' => 'objectclass=*',
 	
 	/*
 	 * Radius authentication. This is only relevant if you use the Radius authentication plugin.
+	 * user attributes are expected to be stored in a Vendor-Specific RADIUS string attribute and have
+	 * the form aai-attribute=value
+	 * vendor and vendor-attr below indicate in which RADIUS attribute the AAI attributes are in.
+	 * multiple occurences of that RADIUS attribute are supported
 	 */
-	'auth.radius.hostname'	=> 'radius.example.org',
-	'auth.radius.port'		=> '1812',
-	'auth.radius.secret'	=> 'topsecret',
+	'auth.radius.hostname'        => 'radius.example.org',
+	'auth.radius.port'            => '1812',
+	'auth.radius.secret'          => 'topsecret'
+	'auth.radius.URNForUsername'  => 'urn:mace:dir:attribute-def:eduPersonPrincipalName',
+	'auth.radius.vendor'          => '23735',
+	'auth.radius.vendor-attr'     => '4'
+
 	
 	/*
 	 * These parameters are only relevant if you setup an OpenID Provider.
 	 */
-	'openid.userid_attributename'		=>	'eduPersonPrincipalName',
-	'openid.delegation_prefix'			=>	'https://openid.feide.no/',
-	'openid.filestore'					=>	'/tmp/openidstore',
+	'openid.userid_attributename' => 'eduPersonPrincipalName',
+	'openid.delegation_prefix'    => 'https://openid.feide.no/',
+	'openid.filestore'            => '/tmp/openidstore',
 	
 
 	/*

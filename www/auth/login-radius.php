@@ -45,9 +45,36 @@ if (isset($_POST['username'])) {
 		switch (radius_send_request($radius))
 		{
 			case RADIUS_ACCESS_ACCEPT:
-	
+				
 				// GOOD Login :)
-				$attributes = array('urn:mace:eduroam.no:username' => array($_POST['username']));
+				
+				$attributes = array( $config->getValue('auth.radius.URNForUsername') => array($_POST['username']));
+				
+				// get AAI attribute sets. Contributed by Stefan Winter, (c) RESTENA
+				while ($resa = radius_get_attr($radius)) {
+					
+					if (! is_array($resa)) {
+						printf ("Error getting attribute: %s\n",  radius_strerror($res));
+						exit;
+					}
+					
+					if ($resa['attr'] == RADIUS_VENDOR_SPECIFIC) {
+						$resv = radius_get_vendor_attr($resa['data']);
+						if (is_array($resv)) {
+							$vendor = $resv['vendor'];
+							$attrv = $resv['attr'];
+							$datav = $resv['data'];
+							printf("Got Vendor Attr:%d %d Bytes %s\n", $attrv, strlen($datav), bin2hex($datav));
+							if ($vendor == $config->getValue('auth.radius.vendor') && $attrv == $config->getValue('auth.radius.vendor-attr'))
+							   $attrib_name  = strtok ($datav,'=');
+							   $attrib_value = strtok ('=');
+							   $attributes = $attributes + array($attrib_name => array($attrib_value));
+						}
+					}
+				}
+				// end of contribution
+
+				//$attributes = array('urn:mace:eduroam.no:username' => array($_POST['username']));
 				
 				$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'radius', 'OK', $_POST['username'], $_POST['username'] . ' successfully authenticated');
 				
