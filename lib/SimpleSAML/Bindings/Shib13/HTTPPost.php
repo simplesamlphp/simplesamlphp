@@ -113,8 +113,19 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		
 		#$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1, #array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'), null, 'ResponseID');
 		
+		/*
+		
+			Removed 2008-01-10 after a tips from Rob Richards..
+			
+			
 		$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1,
 			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'),
+			array('id_name' => 'ResponseID'));
+			
+			*/
+			
+		$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1,
+			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
 			array('id_name' => 'ResponseID'));
 			
 			// TODO: Add option to sign assertion versus response
