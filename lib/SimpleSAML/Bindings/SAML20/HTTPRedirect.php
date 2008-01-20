@@ -15,7 +15,7 @@ require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XHTML/Template.php');
-
+require_once('xmlseclibs.php');
 
 /**
  * Configuration of SimpleSAMLphp
@@ -34,42 +34,17 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 	public function signQuery($query, $md) {
 
 		/* Check if signing of HTTP-Redirect messages is enabled. */
-		if($this->configuration->getValue('binding.httpredirect.sign', false) !== true) {
+		
+		if (!array_key_exists('request.signing', $md) || !$md['request.signing']){ 
 			return $query;
 		}
-
-		/* Don't attempt to sign the query if no private key is set in the metadata.  */
-		if(!array_key_exists('privatekey', $md) || $md['privatekey'] === NULL) {
-			return $query;
-		}
-
 
 		/* Load the private key. */
 
-		$privatekey = $this->configuration->getBaseDir() . 'cert/' . $md['privatekey'];
+		$privatekey = $this->configuration->getBaseDir() . '/cert/' . $md['privatekey'];
 		if (!file_exists($privatekey)) {
 			throw new Exception('Could not find private key file [' . $privatekey . '] which is needed to sign the request.');
 		}
-
-		$keydata = file_get_contents($privatekey);
-		if($keydata === FALSE) {
-			throw new Exception('Unable to load private key file: ' . $privatekey);
-		}
-
-		$keyid = openssl_pkey_get_private($keydata);
-		if($keyid === FALSE) {
-			throw new Exception('OpenSSL was unable to parse the private key from the following file: ' . $privatekey);
-		}
-
-		/* Make sure that the loaded key is a RSA key. */
-		$keydetails = openssl_pkey_get_details($keyid);
-		if($keydetails === FALSE) {
-			throw new Exception('Unable to get key details of already loaded key.');
-		}
-		if($keydetails['type'] !== OPENSSL_KEYTYPE_RSA) {
-			throw new Exception('Private key used to sign the query string isn\'t a RSA key. Key was loaded from the following file: ' . $privatekey);
-		}
-
 
 		/* Sign the query string. According to the specification, the string which should be
 		 * signed is the concatenation of the following query parameters (in order):
@@ -83,18 +58,73 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		/* Append the signature algorithm. We always use RSA-SHA1. */
 		$algURI = 'http://www.w3.org/2000/09/xmldsig#rsa-sha1';
 		$query = $query . "&" . "SigAlg=" . urlencode($algURI);
+		
+		$xmlseckey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
+		$xmlseckey->loadKey($privatekey,TRUE);
+        $signature = $xmlseckey->signData($query);
+                
+		$query = $query . "&" . "Signature=" . urlencode(base64_encode($signature));
 
-		/* Sign the query string. The default hash algorithm of openssl_sign is (fortunately) SHA1. */
-		if(!openssl_sign($query, $signature, $keyid)) {
-			throw new Exception('OpenSSL was unable to sign the query string.');
+		return $query;
+	}
+	
+	public function validateQuery($issuer,$mode = 'SP',$request = 'SAMLRequest') {
+
+		$metadataset = 'saml20-idp-remote';
+		if ($mode == 'IdP') {
+			$metadataset = 'saml20-sp-remote';
 		}
 
-		/* Free the key we used. */
-		openssl_pkey_free($keyid);
+		$md = $this->metadata->getMetaData($issuer, $metadataset);
+		
+		// check wether to validate or not
+		if (!array_key_exists('request.signing', $md) || !$md['request.signing']){ 
+			return $query;
+		}
 
-		/* Return the signed query string. */
-		$query = $query . "&" . "Signature=" . urlencode(base64_encode($signature));
-		return $query;
+		if (!isset($_GET['Signature'])) {
+			throw new Exception('No Signature on the request, required by configuration');
+		}
+
+		// building query string
+		$query = $request.'='.urlencode($_GET[$request]);
+
+		if($_GET['RelayState']) {
+			$relaystate = $_GET['RelayState'];
+			/* Remove any magic quotes that php may have added. */
+			if(get_magic_quotes_gpc()) {
+				$relaystate = stripslashes($relaystate);
+			}
+			$query .= "&RelayState=" . urlencode($relaystate);
+		} 
+		
+		$algURI = 'http://www.w3.org/2000/09/xmldsig#rsa-sha1';
+
+		if (isset($_GET['SigAlg']) && $_GET['SigAlg'] != $algURI) {
+			throw new Exception('Signature must be rsa-sha1 based');
+		}
+
+		$query = $query . "&" . "SigAlg=" . urlencode($algURI);
+				
+		// check if public key of sp exists
+		$publickey = $this->configuration->getBaseDir() . '/cert/' . $md['certificate'];
+		if (!file_exists($publickey)) {
+			throw new Exception('Could not find private key file [' . $publickey . '] which is needed to verify the request.');
+		}
+
+		// getting signature from get arguments
+		$signature = base64_decode(($_GET['Signature']));
+
+		// verify signature using xmlseclibs
+		$xmlseckey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
+		$xmlseckey->loadKey($publickey,TRUE);
+
+		if (!$xmlseckey->verifySignature($query,$signature)) {
+			throw new Exception("Unable to validate Signature");
+		}
+
+		//signature ok
+		return true;
 	}
 
 
@@ -187,7 +217,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			}
 		} else {
 			$relaystate = NULL;
-		}
+		}		
 		
 		$samlRequestXML = gzinflate(base64_decode( $rawRequest ));
          

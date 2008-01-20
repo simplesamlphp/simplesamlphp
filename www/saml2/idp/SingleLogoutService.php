@@ -6,6 +6,7 @@ require_once('../../../www/_include.php');
 
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
+require_once('SimpleSAML/Logger.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/SAML20/LogoutRequest.php');
 require_once('SimpleSAML/XML/SAML20/LogoutResponse.php');
@@ -21,15 +22,36 @@ $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 
 $session = SimpleSAML_Session::getInstance();
 
+$logger = new SimpleSAML_Logger();
+
+$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SingleLogoutService', 'EVENT', 'Access',
+	'Accessing SAML 2.0 IdP endpoint SingleLogoutService');
 /*
  * If we get an LogoutRequest then we initiate the logout process.
  */
 if (isset($_GET['SAMLRequest'])) {
 
 	$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-	$logoutrequest = $binding->decodeLogoutRequest($_GET);
 
+	try {
+		$logoutrequest = $binding->decodeLogoutRequest($_GET);
 
+		if ($binding->validateQuery($logoutrequest->getIssuer(),'IdP')) {
+			$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SingleLogoutService', 'LogoutRequest', $logoutrequest->getRequestID(), 'Valid signature found');
+		}
+
+	} catch(Exception $exception) {
+
+		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
+
+		$et->data['header'] = 'Error in received logout request';
+		$et->data['message'] = 'An error occured when trying to read logout request.';
+		$et->data['e'] = $exception;
+
+		$et->show();
+		exit(0);
+
+	}
 	/* Check if we have a valid session. */
 	if($session === NULL) {
 		/* Invalid session. To prevent the user from being unable to
@@ -42,44 +64,66 @@ if (isset($_GET['SAMLRequest'])) {
 
 		/* Generate the response. */
 		$response = new SimpleSAML_XML_SAML20_LogoutResponse($config,
-			$metadata);
+		$metadata);
 		$responseText = $response->generate($idpentityid, $spentityid,
-			$logoutrequest->getRequestID(), 'IdP');
+		$logoutrequest->getRequestID(), 'IdP');
 
 		/* Retrieve the relay state from the request. */
 		$relayState = $logoutrequest->getRelayState();
 
 		/* Send the response using the HTTP-Redirect binding. */
 		$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config,
-			$metadata);
+		$metadata);
 		$binding->sendMessage($responseText, $idpentityid, $spentityid, $relayState,
 			'SingleLogoutService', 'SAMLResponse', 'IdP');
 		exit;
 	}
 
-	
+
 	$session->setAuthenticated(false);
 
 	//$requestid = $authnrequest->getRequestID();
 	//$session->setAuthnRequest($requestid, $authnrequest);
-	
+
 	//echo '<pre>' . htmlentities($logoutrequest->getXML()) . '</pre>';
-	
+
 	error_log('IdP LogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer() . '  ');
-	
+
 	$session->set_sp_logout_completed($logoutrequest->getIssuer() );
 	$session->setLogoutRequest($logoutrequest);
 
-/*
- * We receive a Logout Response to a Logout Request that we have issued earlier.
- */
+	/*
+	 * We receive a Logout Response to a Logout Request that we have issued earlier.
+	 */
 } elseif (isset($_GET['SAMLResponse'])) {
 
 	$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-	$loginresponse = $binding->decodeLogoutResponse($_GET);
-	
+
+	try {
+		$loginresponse = $binding->decodeLogoutResponse($_GET);
+
+		if ($binding->validateQuery($loginresponse->getIssuer(),'SP','SAMLResponse')) {
+			$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutResponse', 'SingleLogoutServiceResponse','Valid signature found');
+		}
+
+
+	} catch(Exception $exception) {
+
+		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
+
+		$et->data['header'] = 'Error in received logout response';
+		$et->data['message'] = 'An error occured when trying to read logout response.';
+		$et->data['e'] = $exception;
+
+		$et->show();
+		exit(0);
+
+	}
+
+
+
 	$session->set_sp_logout_completed($loginresponse->getIssuer());
-	
+
 	error_log('IdP LogoutService: got LogoutResponse from ' . $loginresponse->getIssuer() . '  ');
 }
 
@@ -98,12 +142,12 @@ if ($spentityid) {
 
 	try {
 		$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
-	
+
 		// ($issuer, $receiver, $nameid, $nameidformat, $sessionindex, $mode) {
 		$req = $lr->generate($idpentityid, $spentityid, $session->getNameID(), $session->getNameIDFormat(), $session->getSessionIndex(), 'IdP');
-		
+
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-		
+
 		$relayState = SimpleSAML_Utilities::selfURL();
 		if (isset($_GET['RelayState'])) {
 			$relayState = $_GET['RelayState'];
@@ -112,20 +156,20 @@ if ($spentityid) {
 				$relayState = stripslashes($relayState);
 			}
 		}
-		
+
 		//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
 		$httpredirect->sendMessage($req, $idpentityid, $spentityid, $relayState, 'SingleLogoutService', 'SAMLRequest', 'IdP');
-		
+
 		exit();
 
 	} catch(Exception $exception) {
-		
+
 		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-		
+
 		$et->data['header'] = 'Error sending logout request to service';
-		$et->data['message'] = 'Some error occured when trying to issue the logout response, and send it to the SP.';	
+		$et->data['message'] = 'Some error occured when trying to issue the logout response, and send it to the SP.';
 		$et->data['e'] = $exception;
-		
+
 		$et->show();
 		exit(0);
 	}
@@ -145,16 +189,16 @@ try {
 	}
 
 	$rg = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
-	
+
 	// generate($issuer, $receiver, $inresponseto, $mode )
-	
+
 	$logoutResponseXML = $rg->generate($idpentityid, $logoutrequest->getIssuer(), $logoutrequest->getRequestID(), 'IdP');
-	
+
 	//	echo '<pre>' . htmlentities($logoutResponseXML) . '</pre>';
 	//	exit();
-	
+
 	$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-	
+
 	$relayState = SimpleSAML_Utilities::selfURL();
 	if (isset($_GET['RelayState'])) {
 		$relayState = $_GET['RelayState'];
@@ -163,18 +207,18 @@ try {
 			$relayState = stripslashes($relayState);
 		}
 	}
-	
+
 	//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
 	$httpredirect->sendMessage($logoutResponseXML, $idpentityid, $logoutrequest->getIssuer(), $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
 
 } catch(Exception $exception) {
-	
+
 	$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-	
+
 	$et->data['header'] = 'Error sending response to service';
-	$et->data['message'] = 'Some error occured when trying to issue the logout response, and send it to the SP.';	
+	$et->data['message'] = 'Some error occured when trying to issue the logout response, and send it to the SP.';
 	$et->data['e'] = $exception;
-	
+
 	$et->show();
 
 }

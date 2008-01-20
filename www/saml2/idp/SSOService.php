@@ -40,6 +40,11 @@ if (isset($_GET['SAMLRequest'])) {
 		$session = $authnrequest->createSession();
 		$requestid = $authnrequest->getRequestID();
 		
+		
+		if ($binding->validateQuery($authnrequest->getIssuer(),'IdP')) {
+			$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'AuthnRequest', $requestid, 'Valid signature found');
+		}
+		
 		$session->setAuthnRequest($requestid, $authnrequest);
 		
 		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'AuthnRequest', 
@@ -55,7 +60,7 @@ if (isset($_GET['SAMLRequest'])) {
 		$et->data['e'] = $exception;
 		
 		$et->show();
-
+		exit(0);
 	}
 
 } elseif(isset($_GET['RequestID'])) {
@@ -85,6 +90,7 @@ if (isset($_GET['SAMLRequest'])) {
 		$et->data['e'] = $exception;
 		
 		$et->show();
+		exit(0);
 
 	}
 	

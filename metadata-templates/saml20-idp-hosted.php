@@ -25,7 +25,16 @@ $metadata = array(
 		'base64attributes'	=>	false,
 		
 		// Authentication plugin to use. login.php is the default one that uses LDAP.
-		'auth'				=>	'auth/login.php'
+		'auth'				=>	'auth/login.php',
+		
+		/*
+		 * When request.signing is true the privatekey and certificate of the SP
+		 * will be used to sign/verify all messages received/sent with the HTTPRedirect binding.
+		 * 
+		 * The certificate and privatekey from above will be used for signing and 
+		 * verification purposes.  
+		 */
+		'request.signing' => true
 	)
 
 );

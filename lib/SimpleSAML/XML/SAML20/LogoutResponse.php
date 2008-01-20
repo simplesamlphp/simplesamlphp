@@ -88,7 +88,6 @@ class SimpleSAML_XML_SAML20_LogoutResponse {
 		return $issuer;
 	}
 
-
 	// Not updated for response. from request.
 	public function generate($issuer, $receiver, $inresponseto, $mode ) {
 		if (!in_array($mode, array('SP', 'IdP'))) {

@@ -283,15 +283,6 @@ $config = array (
 	 */
 	'auth.auto.delay_login' => 0,
 
-
-	/*
-	 * This option enables signing of all messages sent with the
-	 * HTTP-Redirect binding. The default value is false. To enable, set
-	 * this option to true, and add a 'privatekey' element to the entity
-	 * (IdP or SP) which is sending the message.
-	 */
-	'binding.httpredirect.sign' => true,
-
 );
 
 

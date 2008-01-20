@@ -19,7 +19,18 @@ $metadata = array(
 		'SingleSignOnService'	=>	'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
 		'SingleLogoutService'	=>	'https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php',
 		'certFingerprint'		=>	'3fa158e8abfd4b5203315b08c0b791b6ee4715f6',
-		'base64attributes'		=>	true
+		'base64attributes'		=>	true,
+
+		 /*
+		 * When request.signing is true the certificate of the IdP will be used
+		 * to verify all messages received with the HTTPRedirect binding.
+		 * 
+		 * The certificate from the IdP must be installed in the cert directory 
+		 * before verification can be done.  
+		 */
+		'request.signing' => false,
+		'certificate' => "idp.example.org.crt",
+
 	),
 
 
