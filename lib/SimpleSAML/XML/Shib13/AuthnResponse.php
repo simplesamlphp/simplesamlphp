@@ -174,6 +174,11 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 			$node = $node->parentNode;
 		}
+
+		/* Neither this node nor any of the parent nodes could be found in the list of
+		 * signed nodes.
+		 */
+		return FALSE;
 	}
 	
 	
