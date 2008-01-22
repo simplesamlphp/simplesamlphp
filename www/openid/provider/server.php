@@ -593,8 +593,8 @@ function doAuth($info, $trusted=null, $fail_cancels=false)
 		$t = new SimpleSAML_XHTML_Template($config, 'error.php');
 
 		$t->data['header'] = 'OpenID identity mismatch';
-		$t->data['message'] = 'Your identity ' . $user . ' does not match the requested identity from the 
-			OpenID consumer, which was: ' . $req_url;
+		$t->data['message'] = 'Your identity ' . htmlspecialchars($user) . ' does not match the requested identity from the
+			OpenID consumer, which was: ' . htmlspecialchars($req_url);
 		$t->data['e'] = new Exception('OpenID Error');
 		
 		$t->show();    

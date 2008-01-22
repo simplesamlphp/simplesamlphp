@@ -21,8 +21,8 @@
 		  Insert the following markup into the <code>&lt;head&gt;</code> of the HTML
 		  document at that URL:
 		</p>
-<pre>&lt;link rel="openid.server" href="<?php echo $data['openidserver']; ?>" /&gt;
-&lt;link rel="openid.delegation" href="<?php echo $data['openiddelegation']; ?>" /&gt;
+<pre>&lt;link rel="openid.server" href="<?php echo htmlspecialchars($data['openidserver']); ?>" /&gt;
+&lt;link rel="openid.delegation" href="<?php echo htmlspecialchars($data['openiddelegation']); ?>" /&gt;
 		
 		</pre>
 		
@@ -30,9 +30,9 @@
 		<p><?php
 			
 			if (isset($data['userid'])) {
-				echo 'You are now logged in as ' . $data['userid']; 
+				echo 'You are now logged in as ' . htmlspecialchars($data['userid']);
 			} else {
-				echo '<a href="' . $data['initssourl'] . '">Login</a>';
+				echo '<a href="' . htmlspecialchars($data['initssourl']) . '">Login</a>';
 			}
 		
 		?>

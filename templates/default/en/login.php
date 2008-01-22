@@ -12,7 +12,7 @@
 		<img src="/<?php echo $data['baseurlpath']; ?>resources/icons/bomb.png" style="float: left; margin: 15px " />
 		<h2>What you entered was not accepted!</h2>
 		
-		<p><?php echo $data['error']; ?> </p>
+		<p><?php echo htmlspecialchars($data['error']); ?> </p>
 		</div>
 		<?php } ?>
 	

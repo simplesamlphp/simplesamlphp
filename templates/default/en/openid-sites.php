@@ -40,7 +40,7 @@
 											   'Untrusted Sites' => $untrusted_sites) as
 										 $name => $sites) {
 									if ($sites) {
-										echo '<tr><th colspan="2">'. $name . '</th></tr>';
+										echo '<tr><th colspan="2">'. htmlspecialchars($name) . '</th></tr>';
 										foreach ($sites as $site) {
 											$siteid = 'site' . $i;
 											echo '<tr>

@@ -16,7 +16,7 @@
 			<?php
 			
 				foreach ($data['links'] AS $link) {
-					echo '<li><a href="' . $link['href'] . '">' . $link['text'] . '</a></li>';
+					echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . htmlspecialchars($link['text']) . '</a></li>';
 				}
 			?>
 				<!-- li><a href="saml2/sp/metadata.php">Look at your SAML 2.0 SP metadata</a> - you can send this metadata document to your IdP.</a></li>

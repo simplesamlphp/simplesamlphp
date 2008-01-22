@@ -12,7 +12,7 @@
 		<img src="/<?php echo $data['baseurlpath']; ?>resources/icons/bomb.png" style="float: left; margin: 15px " />
 		<h2>What you entered was not accepted!</h2>
 		
-		<p><?php echo $data['error']; ?> </p>
+		<p><?php echo htmlspecialchars($data['error']); ?> </p>
 		</div>
 		<?php } ?>
 	
@@ -30,13 +30,13 @@
 				<td style="padding: .3em;">Username</td>
 				<td><input type="text" tabindex="1" name="username" 
 					<?php if (isset($data['username'])) {
-						echo 'value="' . $data['username'] . '"';
+						echo 'value="' . htmlspecialchars($data['username']) . '"';
 					} ?> /></td>
 
 					
 				<td style="padding: .4em;" rowspan="3">
 					<input type="submit" tabindex="3" value="Login" />
-					<input type="hidden" name="RelayState" value="<?php echo $data['relaystate']; ?>" />
+					<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($data['relaystate']); ?>" />
 				</td>
 			</tr>
 			
@@ -48,7 +48,7 @@
 					foreach ($data['ldapconfig'] AS $key => $entry) {
 						echo '<option ' .
 							($key == $data['org'] ? 'selected="selected" ' : '')
-							. 'value="' . $key . '">' . $entry['description'] . '</option>';
+							. 'value="' . htmlspecialchars($key) . '">' . htmlspecialchars($entry['description']) . '</option>';
 					}
 					
 					?>

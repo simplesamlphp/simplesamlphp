@@ -14,7 +14,7 @@
 		<a href="/<?php echo $data['baseurlpath']; ?>/openid/provider/server.php/about">About simpleSAMLphp OpenID</a> ]</p>
 		
 		<div class="form">
-		  <p>Do you wish to confirm your identity URL (<code><?php echo $data['openidurl']; ?></code>) 
+		  <p>Do you wish to confirm your identity URL (<code><?php echo htmlspecialchars($data['openidurl']); ?></code>)
 		  	with <code><?php echo $data['siteurl']; ?></code>?</p>
 		  <form method="post" action="<?php echo $data['trusturl']; ?>">
 			<input type="checkbox" name="remember" value="on" id="remember"><label

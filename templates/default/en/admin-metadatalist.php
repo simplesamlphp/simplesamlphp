@@ -26,22 +26,22 @@
 
 				//print_r($entity);
 
-				echo '<h4>' . $name . '</h4>';
+				echo '<h4>' . htmlspecialchars($name) . '</h4>';
 				if (isset($entity['optional.found']['description'])) {
-					echo '<p>' . $entity['optional.found']['description'] . '</p>';
+					echo '<p>' . htmlspecialchars($entity['optional.found']['description']) . '</p>';
 				}
 				
 				echo '<p>Required fields</p>';
 				echo '<table style="width: 100%; border: 1px solid #eee"><tr><th>Key</th><th>Value</th></tr>';
 				foreach ($entity['required.found'] AS $key => $value) {
-					echo '<tr><td>' . $key . '</td><td>' . $value . '</td></tr>';
+					echo '<tr><td>' . htmlspecialchars($key) . '</td><td>' . htmlspecialchars($value) . '</td></tr>';
 				}
 				echo '</table>';
 	
 				if (count($entity['required.notfound']) > 0) {
 					echo '<p>The following required fields was not found:<ul>';
 					foreach ($entity['required.notfound'] AS $key) {
-						echo '<li>' . $key . '</li>';
+						echo '<li>' . htmlspecialchars($key) . '</li>';
 					}
 					echo '</ul>';				
 				}
@@ -50,7 +50,7 @@
 					echo '<p>Optional fields</p>';
 					echo '<table><tr><th>Key</th><th>Value</th></tr>';
 					foreach ($entity['optional.found'] AS $key => $value) {
-						echo '<tr><td>' . $key . '</td><td>' . $value . '</td></tr>';
+						echo '<tr><td>' . htmlspecialchars($key) . '</td><td>' . htmlspecialchars($value) . '</td></tr>';
 					}
 					echo '</table>';
 				}
@@ -58,7 +58,7 @@
 				if (count($entity['optional.notfound']) > 0) {
 					echo '<p>The following optional fields was not found:<ul>';
 					foreach ($entity['optional.notfound'] AS $key) {
-						echo '<li>' . $key . '</li>';
+						echo '<li>' . htmlspecialchars($key) . '</li>';
 					}
 					echo '</ul>';				
 				}
@@ -66,7 +66,7 @@
 				if (count($entity['leftovers']) > 0) {
 					echo '<p>The following fields was not reckognized:<ul>';
 					foreach ($entity['leftovers'] AS $key => $value) {
-						echo '<li>' . $key . '</li>';
+						echo '<li>' . htmlspecialchars($key) . '</li>';
 					}
 					echo '</ul>';				
 				}

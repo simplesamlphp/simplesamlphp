@@ -16,9 +16,9 @@
 		
 		foreach ($data['idplist'] AS $idpentry) {
 			
-			echo '<h3>' . $idpentry['name'] . '</h3>';
-			echo '<p>' . $idpentry['description'] . '<br />';
-			echo '[ <a href="' . $data['urlpattern'] . $idpentry['entityid'] . '">Select this IdP</a>]</p>';
+			echo '<h3>' . htmlspecialchars($idpentry['name']) . '</h3>';
+			echo '<p>' . htmlspecialchars($idpentry['description']) . '<br />';
+			echo '[ <a href="' . $data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
 		
 		}
 		

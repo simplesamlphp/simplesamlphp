@@ -12,8 +12,8 @@
 		<p>Here is SAML 2.0 metadata that simpleSAMLphp has generated for you. You may send this SAML 2.0 Metadata document to trusted partners to setup a trusted federation.</p>
 		
 		<?php if (isset($data['metaurl'])) { ?>
-			<p>You can <a href="<?php echo $data['metaurl']; ?>">get the metadata xml on a dedicated URL</a>:<br />
-			<input type="text" style="width: 90%" value="<?php echo $data['metaurl']; ?>" /></p>
+			<p>You can <a href="<?php echo htmlspecialchars($data['metaurl']); ?>">get the metadata xml on a dedicated URL</a>:<br />
+			<input type="text" style="width: 90%" value="<?php echo htmlspecialchars($data['metaurl']); ?>" /></p>
 		<?php } ?>
 		<h2>Metadata</h2>
 		
@@ -42,7 +42,7 @@
 					</p>
 					
 					<input type="hidden" name="metadata" value="<?php echo urlencode(base64_encode($data['metadata'])); ?>" />
-					<input type="hidden" name="defaultidp" value="<?php echo $data['defaultidp']; ?>" />
+					<input type="hidden" name="defaultidp" value="<?php echo htmlspecialchars($data['defaultidp']); ?>" />
 					<input type="submit" name="send" value="Send my metadata to Feide" />
 					
 				</form>
