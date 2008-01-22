@@ -64,12 +64,6 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		}
 		
 		
-		/* Must check certificate fingerprint now - validateReference removes it */        
-		// TODO FIX"!!!
-		if ( ! $this->validateCertFingerprint($objDSig) ) {
-			throw new Exception("Fingerprint Validation Failed");
-		}
-
 		/* Get information about canoncalization in to the xmlsec library. Read from the siginfo part. */
 		$objXMLSecDSig->canonicalizeSignedInfo();
 		
@@ -96,6 +90,12 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			throw new Exception("Error loading key to handle Signature");
 		}
 
+
+		/* Check certificate fingerprint. */
+		if ( ! $this->validateCertFingerprint($objKey) ) {
+			throw new Exception("Fingerprint Validation Failed");
+		}
+
 		if (! $objXMLSecDSig->verify($objKey)) {
 			throw new Exception("Unable to validate Signature");
 		}
@@ -107,18 +107,12 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 	
 	
-	function validateCertFingerprint($dom) {
-//		$dom = $this->getDOM();
-		$fingerprint = "";
-		
-		
-		// Find the certificate in the document.
-		if ($x509certNodes = $dom->getElementsByTagName('X509Certificate')) {
-			if ($x509certNodes->length > 0) {
-				$x509cert = $x509certNodes->item(0)->textContent;
-				$x509data = base64_decode( $x509cert );
-				$fingerprint = strtolower( sha1( $x509data ) );
-			}
+	function validateCertFingerprint($objKey) {
+
+		/* Get the fingerprint. */
+		$fingerprint = $objKey->getX509Fingerprint();
+		if($fingerprint === NULL) {
+			throw new Exception('Key used to sign the message wasn\'t an X509 certificate.');
 		}
 	
 		// Get the issuer of the assertion.
