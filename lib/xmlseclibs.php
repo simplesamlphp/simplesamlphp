@@ -185,6 +185,9 @@ class XMLSecurityKey {
     public $encryptedCtx = NULL;
     public $guid = NULL;
 
+    /* This variable contains the certificate fingerprint if we have loaded an X509-certificate. */
+    private $X509Fingerprint = NULL;
+
     public function __construct($type, $params=NULL) {
         srand();
         switch ($type) {
@@ -280,6 +283,47 @@ class XMLSecurityKey {
         return $key;
     }
 
+    /* This function calculates the fingerprint of an X509 certificate.
+     *
+     * Parameters:
+     *  $x509cert  The certificate as a base64-encoded string. The string may optionally
+     *             be framed with '-----BEGIN CERTIFICATE-----' and '-----END CERTIFICATE-----'.
+     *
+     * Returns:
+     *  The fingerprint as a 40-character lowercase hexadecimal number.
+     *  NULL is returned if the argument isn't an X509 certificate.
+     */
+    private static function calculateX509Fingerprint($x509cert) {
+        assert('is_string($x509cert)');
+
+        $lines = explode("\n", $x509cert);
+
+        $data = '';
+
+        foreach($lines as $line) {
+            /* Remove '\r' from end of line if present. */
+            $line = rtrim($line);
+            if($line === '-----BEGIN CERTIFICATE-----') {
+                /* Delete junk from before the certificate. */
+                $data = '';
+            } elseif($line === '-----END CERTIFICATE-----') {
+                /* Ignore data after the certificate. */
+                break;
+            } elseif($line === '-----BEGIN PUBLIC KEY-----') {
+                /* This isn't an X509 certificate. */
+                return NULL;
+            } else {
+                /* Append the current line to the certificate data. */
+                $data .= $line;
+            }
+        }
+
+        /* $data now contains the certificate as a base64-encoded string. The fingerprint
+         * of the certificate is the sha1-hash of the certificate.
+         */
+        return strtolower(sha1(base64_decode($data)));
+    }
+
     public function loadKey($key, $isFile=FALSE, $isCert = FALSE) {
         if ($isFile) {
             $this->key = file_get_contents($key);
@@ -293,6 +337,9 @@ class XMLSecurityKey {
         }
         if ($this->cryptParams['library'] == 'openssl') {
             if ($this->cryptParams['type'] == 'public') {
+                /* Load the fingerprint if this is an X509 certificate. */
+                $this->X509Fingerprint = self::calculateX509Fingerprint($this->key);
+
                 $this->key = openssl_get_publickey($this->key);
             } else {
                 $this->key = openssl_get_privatekey($this->key, $this->passphrase);
@@ -481,6 +528,17 @@ class XMLSecurityKey {
 
     public function serializeKey($parent) {
 
+    }
+
+
+    /* Get the fingerprint of this X509 certificate.
+     *
+     * Returns:
+     *  The fingerprint as a lowercase 40-character hexadecimal number, or NULL
+     *  if this isn't a X509 certificate.
+     */
+    public function getX509Fingerprint() {
+        return $this->X509Fingerprint;
     }
 }
 
