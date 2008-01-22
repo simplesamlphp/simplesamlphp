@@ -569,6 +569,10 @@ class XMLSecurityDSig {
     private $prefix = 'ds';
     private $searchpfx = 'secdsig';
 
+
+    /* This variable contains an associative array of validated nodes. */
+    private $validatedNodes = NULL;
+
     public function __construct() {
         $sigdoc = new DOMDocument();
         $sigdoc->loadXML(XMLSecurityDSig::template);
@@ -823,7 +827,20 @@ class XMLSecurityDSig {
             $dataObject = $refNode->ownerDocument;
         }
         $data = $this->processTransforms($refNode, $dataObject);
-        return $this->validateDigest($refNode, $data);
+        if (!$this->validateDigest($refNode, $data)) {
+            return FALSE;
+        }
+
+        if ($dataObject instanceof DOMNode) {
+            /* Add this node to the list of validated nodes. */
+            if($identifier) {
+                $this->validatedNodes[$identifier] = $dataObject;
+            } else {
+                $this->validatedNodes[] = $dataObject;
+            }
+        }
+
+        return TRUE;
     }
 
     public function getRefNodeID($refNode) {
@@ -865,8 +882,15 @@ class XMLSecurityDSig {
         if ($nodeset->length == 0) {
             throw new Exception("Reference nodes not found");
         }
+
+        /* Initialize/reset the list of validated nodes. */
+        $this->validatedNodes = array();
+
         foreach ($nodeset AS $refNode) {
             if (! $this->processRefNode($refNode)) {
+                /* Clear the list of validated nodes. */
+                $this->validatedNodes = NULL;
+
                 throw new Exception("Reference validation failed");
             }
         }
@@ -1225,6 +1249,18 @@ class XMLSecurityDSig {
          if ($xpath = $this->getXPathObj()) {
             self::staticAdd509Cert($this->sigNode, $cert, $isPEMFormat, $isURL, $xpath);
          }
+    }
+
+    /* This function retrieves an associative array of the validated nodes.
+     *
+     * The array will contain the id of the referenced node as the key and the node itself
+     * as the value.
+     *
+     * Returns:
+     *  An associative array of validated nodes or NULL if no nodes have been validated.
+     */
+    public function getValidatedNodes() {
+        return $this->validatedNodes;
     }
 }
 
