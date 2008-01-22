@@ -79,7 +79,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		
 		// check wether to validate or not
 		if (!array_key_exists('request.signing', $md) || !$md['request.signing']){ 
-			return $query;
+			return true;
 		}
 
 		if (!isset($_GET['Signature'])) {
