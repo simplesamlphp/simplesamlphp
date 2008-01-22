@@ -30,7 +30,8 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	private $relayState = null;
 	
 	private $validIDs = null;
-	
+	private $validNodes = null;
+
 	const PROTOCOL = 'urn:oasis:names:tc:SAML:2.0';
 	const SHIB_PROTOCOL_NS = 'urn:oasis:names:tc:SAML:1.0:protocol';
 	const SHIB_ASSERT_NS = 'urn:oasis:names:tc:SAML:1.0:assertion';
@@ -101,6 +102,9 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		}
 		
 		$this->validIDs = $refids;
+
+		$this->validNodes = $objXMLSecDSig->getValidatedNodes();
+
 		return true;
 	}
 	
@@ -142,6 +146,34 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		}
 	
 		return ($fingerprint == $issuerFingerprint);
+	}
+
+
+	/* Checks if the given node is validated by the signatore on this response.
+	 *
+	 * Returns:
+	 *  TRUE if the node is validated or FALSE if not.
+	 */
+	private function isNodeValidated($node) {
+
+		if($this->validNodes === NULL) {
+			return FALSE;
+		}
+
+		/* Convert the node to a DOM node if it is an element from SimpleXML. */
+		if($node instanceof SimpleXMLElement) {
+			$node = dom_import_simplexml($node);
+		}
+
+		assert('$node instanceof DOMNode');
+
+		while($node !== NULL) {
+			if(in_array($node, $this->validNodes)) {
+				return TRUE;
+			}
+
+			$node = $node->parentNode;
+		}
 	}
 	
 	
@@ -219,9 +251,12 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			
 
 			
-			$assertions = $sxml->xpath('/samlp:Response[@ResponseID="' . $this->validIDs[0] . '"]/saml:Assertion');
+			$assertions = $sxml->xpath('/samlp:Response/saml:Assertion');
 
 			foreach ($assertions AS $assertion) {				
+				if(!$this->isNodeValidated($assertion)) {
+					throw new Exception('Shib13 AuthResponse contained an unsigned assertion.');
+				}
 
 				if ($assertion->Conditions) {
 
