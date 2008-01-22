@@ -53,8 +53,8 @@ if (isset($session) ) {
 		
 		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
 
-		$et->$data['message'] = 'Some error occured when trying to issue the logout request to the IdP.';	
-		$et->$data['e'] = $exception;
+		$et->data['message'] = 'Some error occured when trying to issue the logout request to the IdP.';
+		$et->data['e'] = $exception;
 		
 		$et->show();
 
