@@ -398,8 +398,8 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 			$encodedattributes .= '<AttributeStatement>
 				<Subject>
-					<NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier" NameQualifier="' . $spnamequalifier . '"
-						>' . $nameid . '</NameIdentifier>
+					<NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier" NameQualifier="' . htmlspecialchars($spnamequalifier) . '"
+						>' . htmlspecialchars($nameid) . '</NameIdentifier>
 				</Subject>';
 				
 			foreach ($attributes AS $name => $value) {
@@ -419,7 +419,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
     xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" IssueInstant="' . $issueInstant. '"
     MajorVersion="1" MinorVersion="1"
-    Recipient="' . $shire . '"
+    Recipient="' . htmlspecialchars($shire) . '"
     ResponseID="' . $id . '">
 
 <Status>
@@ -429,17 +429,17 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
     </Status>    
     <Assertion xmlns="urn:oasis:names:tc:SAML:1.0:assertion"
         AssertionID="' . $assertionid . '" IssueInstant="' . $issueInstant. '"
-        Issuer="' . $issuer . '" MajorVersion="1" MinorVersion="1">
+        Issuer="' . htmlspecialchars($issuer) . '" MajorVersion="1" MinorVersion="1">
         <Conditions NotBefore="' . $issueInstant. '" NotOnOrAfter="'. $assertionExpire . '">
             <AudienceRestrictionCondition>
-                <Audience>' . $audience . '</Audience>
+                <Audience>' . htmlspecialchars($audience) . '</Audience>
             </AudienceRestrictionCondition>
         </Conditions>
         <AuthenticationStatement AuthenticationInstant="' . $issueInstant. '"
             AuthenticationMethod="urn:oasis:names:tc:SAML:1.0:am:unspecified">
             <Subject>
-                <NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier" NameQualifier="' . $spnamequalifier . '"
-                    >' . $nameid . '</NameIdentifier>
+                <NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier" NameQualifier="' . htmlspecialchars($spnamequalifier) . '"
+                    >' . htmlspecialchars($nameid) . '</NameIdentifier>
                 <SubjectConfirmation>
                     <ConfirmationMethod>urn:oasis:names:tc:SAML:1.0:cm:bearer</ConfirmationMethod>
                 </SubjectConfirmation>
@@ -458,7 +458,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 
 	private function enc_attribute($name, $value, $base64 = false) {
-		return '<Attribute AttributeName="' . $name . '" 
+		return '<Attribute AttributeName="' . htmlspecialchars($name) . '"
 			AttributeNamespace="urn:mace:shibboleth:1.0:attributeNamespace:uri">
 		<AttributeValue>' . ($base64 ? base64_encode($value) : htmlspecialchars($value) ) . '</AttributeValue>
 	</Attribute>';
