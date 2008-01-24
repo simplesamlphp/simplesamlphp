@@ -70,7 +70,7 @@ try {
 </EntityDescriptor>';
 	
 	
-	if ($_GET['output'] == 'xml') {
+	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xml') {
 		header('Content-Type: application/xml');
 		
 		echo $metaxml;
