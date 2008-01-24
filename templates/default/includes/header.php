@@ -2,7 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title><?php echo $data['header']; ?></title>
+<title><?php
+if(array_key_exists('header', $data)) {
+	echo $data['header'];
+} else {
+	echo 'simpleSAMLphp';
+}
+?></title>
 
 <style type="text/css">
 
