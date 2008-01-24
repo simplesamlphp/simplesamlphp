@@ -23,7 +23,7 @@ try {
 	*/
 	
 	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<EntityDescriptor entityID="' . $spentityid . '" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+<EntityDescriptor entityID="' . htmlspecialchars($spentityid) . '" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
 
 	<SPSSODescriptor 
 		AuthnRequestsSigned="false" 
@@ -32,7 +32,7 @@ try {
 
 		<SingleLogoutService 
 			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" 
-			Location="' . $metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted') . '"/>
+			Location="' . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted')) . '"/>
 		
 		<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
 		
@@ -40,7 +40,7 @@ try {
 			index="0" 
 			isDefault="true" 
 			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" 
-			Location="' . $metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted') . '" />
+			Location="' . htmlspecialchars($metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted')) . '" />
 
 	</SPSSODescriptor>
 
