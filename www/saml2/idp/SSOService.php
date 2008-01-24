@@ -68,10 +68,6 @@ if (isset($_GET['SAMLRequest'])) {
 	try {
 
 		$requestid = $_GET['RequestID'];
-		/* Remove any "magic" quotes that php may have added. */
-		if(get_magic_quotes_gpc()) {
-			$requestid = stripslashes($requestid);
-		}
 
 		$session = SimpleSAML_Session::getInstance();
 		$authnrequest = $session->getAuthnRequest($requestid);

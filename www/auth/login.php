@@ -35,10 +35,6 @@ if (!array_key_exists('RelayState', $_REQUEST)) {
 }
 
 $relaystate = $_REQUEST['RelayState'];
-/* Remove backslashes if magic quotes are enabled. */
-if(get_magic_quotes_gpc()) {
-	$relaystate = stripslashes($relaystate);
-}
 
 
 if (isset($_POST['username'])) {
@@ -56,12 +52,6 @@ if (isset($_POST['username'])) {
 
 	$username = $_POST['username'];
 	$password = $_POST['password'];
-
-	/* Remove backslashes if magic quotes are enabled. */
-	if(get_magic_quotes_gpc()) {
-		$username = stripslashes($username);
-		$password = stripslashes($password);
-	}
 
 	/* Escape any characters with a special meaning in LDAP. The following
 	 * characters have a special meaning (according to RFC 2253):

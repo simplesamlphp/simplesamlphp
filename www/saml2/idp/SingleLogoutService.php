@@ -151,10 +151,6 @@ if ($spentityid) {
 		$relayState = SimpleSAML_Utilities::selfURL();
 		if (isset($_GET['RelayState'])) {
 			$relayState = $_GET['RelayState'];
-			/* Remove any magic quotes that php may have added. */
-			if(get_magic_quotes_gpc()) {
-				$relayState = stripslashes($relayState);
-			}
 		}
 
 		//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
@@ -202,10 +198,6 @@ try {
 	$relayState = SimpleSAML_Utilities::selfURL();
 	if (isset($_GET['RelayState'])) {
 		$relayState = $_GET['RelayState'];
-		/* Remove any magic quotes that php may have added. */
-		if(get_magic_quotes_gpc()) {
-			$relayState = stripslashes($relayState);
-		}
 	}
 
 	//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
