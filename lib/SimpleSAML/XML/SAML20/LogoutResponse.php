@@ -113,14 +113,14 @@ class SimpleSAML_XML_SAML20_LogoutResponse {
 		$destination = $receivermd['SingleLogoutService'];
 		
 		$samlResponse = '<samlp:LogoutResponse  xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
-ID="_' . $id . '" Version="2.0" IssueInstant="' . $issueInstant . '" Destination="'. $destination. '" InResponseTo="' . htmlspecialchars($inresponseto) . '">
-<saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' . $issuer . '</saml:Issuer>
+ID="_' . $id . '" Version="2.0" IssueInstant="' . $issueInstant . '" Destination="'. htmlspecialchars($destination). '" InResponseTo="' . htmlspecialchars($inresponseto) . '">
+<saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' . htmlspecialchars($issuer) . '</saml:Issuer>
 <samlp:Status xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
 <samlp:StatusCode  xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
 Value="urn:oasis:names:tc:SAML:2.0:status:Success">
 </samlp:StatusCode>
 <samlp:StatusMessage xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
-Successfully logged out from service ' . $issuer . '
+Successfully logged out from service ' . htmlspecialchars($issuer) . '
 </samlp:StatusMessage>
 </samlp:Status>
 </samlp:LogoutResponse>';

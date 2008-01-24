@@ -154,17 +154,17 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		  "IssueInstant=\"" . $issueInstant . "\" " .
 		  "ForceAuthn=\"false\" " .
 		  "IsPassive=\"false\" " .
-		  "Destination=\"" . $destination . "\" " .
+		  "Destination=\"" . htmlspecialchars($destination) . "\" " .
 		  "ProtocolBinding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\" " .
-		  "AssertionConsumerServiceURL=\"" . $assertionConsumerServiceURL . "\">\n" .
+		  "AssertionConsumerServiceURL=\"" . htmlspecialchars($assertionConsumerServiceURL) . "\">\n" .
 			"<saml:Issuer " .
 			"xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\">" .
-			  $spentityid .
+			  htmlspecialchars($spentityid) .
 			"</saml:Issuer>\n" .
 			"<samlp:NameIDPolicy  " .
 			"xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" " .
-			"Format=\"" . $nameidformat. "\" " .
-			"SPNameQualifier=\"" . $spNameQualifier . "\" " .
+			"Format=\"" . htmlspecialchars($nameidformat). "\" " .
+			"SPNameQualifier=\"" . htmlspecialchars($spNameQualifier) . "\" " .
 			"AllowCreate=\"true\" />\n" . 
 			"<samlp:RequestedAuthnContext " .
 			"xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" " .

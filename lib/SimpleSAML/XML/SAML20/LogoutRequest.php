@@ -141,22 +141,22 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
       "xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" " . 
       "ID=\"" . $id . "\" " .
       "Version=\"2.0\" " .
-      "Destination=\"" . $destination . "\" " .
+      "Destination=\"" . htmlspecialchars($destination) . "\" " .
       "IssueInstant=\"" . $issueInstant . "\"> " .
         "<saml:Issuer " . 
         "xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\">" .
-          $issuer .
+          htmlspecialchars($issuer) .
         "</saml:Issuer>" .
         "<saml:NameID " . 
         "xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" " . 
 //        "NameQualifier=\"" . $nameId["NameQualifier"] . "\" " . 
 //        "SPNameQualifier=\"" . $nameId["SPNameQualifier"] . "\" " . 
-        "Format=\"" .  $nameidformat. "\">" . 
-          $nameid . 
+        "Format=\"" . htmlspecialchars($nameidformat) . "\">" .
+          htmlspecialchars($nameid) .
         "</saml:NameID>" . 
         "<samlp:SessionIndex " .
         "xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\">" . 
-          $sessionindex .
+          htmlspecialchars($sessionindex) .
         "</samlp:SessionIndex>" .
       "</samlp:LogoutRequest>";
 		  

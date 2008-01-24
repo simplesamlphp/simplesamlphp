@@ -409,7 +409,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			ID="' . $id . '"
 			InResponseTo="' . htmlspecialchars($inresponseto) . '" Version="2.0"
 			IssueInstant="' . $issueInstant . '"
-			Destination="' . $destination . '">
+			Destination="' . htmlspecialchars($destination) . '">
 	<saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' . htmlspecialchars($issuer) . '</saml:Issuer>
 	<samlp:Status xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
 		<samlp:StatusCode xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
@@ -423,7 +423,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			<saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
 				<saml:SubjectConfirmationData NotOnOrAfter="' . $assertionExpire . '"
 					InResponseTo="' . htmlspecialchars($inresponseto). '"
-					Recipient="' . $destination . '"/>
+					Recipient="' . htmlspecialchars($destination) . '"/>
 			</saml:SubjectConfirmation>
 		</saml:Subject>
 		<saml:Conditions NotBefore="' . $notBefore. '" NotOnOrAfter="' . $assertionExpire. '">
@@ -432,7 +432,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
             </saml:AudienceRestriction>
 		</saml:Conditions> 
 		<saml:AuthnStatement AuthnInstant="' . $issueInstant . '"
-			SessionIndex="' . $sessionindex . '">
+			SessionIndex="' . htmlspecialchars($sessionindex) . '">
 			<saml:AuthnContext>
 				<saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:Password</saml:AuthnContextClassRef>
 			</saml:AuthnContext>
