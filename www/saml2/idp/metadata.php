@@ -30,7 +30,7 @@ try {
 	
 	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 	<EntityDescriptor xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
- entityID="' . $idpentityid . '">
+ entityID="' . htmlspecialchars($idpentityid) . '">
     <IDPSSODescriptor
         WantAuthnRequestsSigned="false"
         protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
@@ -38,7 +38,7 @@ try {
                 <KeyDescriptor use="signing">
                         <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
                           <ds:X509Data>
-                                <ds:X509Certificate>' . $data . '</ds:X509Certificate>
+                                <ds:X509Certificate>' . htmlspecialchars($data) . '</ds:X509Certificate>
                         </ds:X509Data>
                   </ds:KeyInfo>
                 </KeyDescriptor>  
@@ -48,8 +48,8 @@ try {
         <!-- Logout endpoints -->
         <SingleLogoutService
             Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
-            Location="' . $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted') . '"
-            ResponseLocation="' . $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted') . '" 
+            Location="' . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted')) . '"
+            ResponseLocation="' . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted')) . '"
             index="0" 
             isDefault="true"
             />
@@ -61,7 +61,7 @@ try {
         <!-- AuthenticationRequest Consumer endpoint -->
         <SingleSignOnService
             Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
-            Location="' . $metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted') . '" 
+            Location="' . htmlspecialchars($metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted')) . '"
             index="0" 
             isDefault="true"
             />
