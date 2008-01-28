@@ -24,14 +24,6 @@ require_once('xmlseclibs.php');
  */
 class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
-	private $configuration = null;
-	private $metadata = 'default.php';
-	
-	private $message = null;
-	private $dom;
-	private $relayState = null;
-	
-	private $validIDs = null;
 	
 	const PROTOCOL = 'urn:oasis:names:tc:SAML:2.0';
 	
@@ -105,12 +97,15 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			throw new Exception("Unable to validate Signature");
 		}
 		
+		foreach ($refids AS $key => $value) {
+			$refids[$key] = str_replace('#', '', $value);
+		}
+		
 		$this->validIDs = $refids;
 		return true;
 	}
 	
-	
-	
+
 	
 	function validateCertFingerprint($objKey) {
 
@@ -229,9 +224,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 				$end = $node->getAttribute("NotOnOrAfter");
 	
 				if (! SimpleSAML_Utilities::checkDateConditions($start, $end)) {
-					error_log( " Date check failed ... (from $start to $end)");
-		
-					return $attributes;
+					throw new Exception("Date check failed (between $start and $end). Check if the clocks on the SP and IdP are synchronized. Alternatively you can get this message, when you move back in history or refresh an old page.");
 				}
 			}
 	
@@ -332,12 +325,12 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	}
 
 
-	/* This function retrieves the ID of the request this response is a
+	/**
+	 * This function retrieves the ID of the request this response is a
 	 * response to. This ID is stored in the InResponseTo attribute of the
 	 * top level DOM element.
 	 *
-	 * Returns:
-	 *  The ID of the request this response is a response to, or NULL if
+	 * @return The ID of the request this response is a response to, or NULL if
 	 *  we don't know.
 	 */
 	public function getInResponseTo() {
@@ -466,17 +459,16 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	}
 
 	
-	/* This function converts an array of attribute values into an
+	/**
+	 * This function converts an array of attribute values into an
 	 * encoded saml:Attribute element which should go into the
 	 * AuthnResponse. The data can optionally be base64 encoded.
 	 *
-	 * Parameters:
-	 *  $name      Name of this attribute.
-	 *  $values    Array with the values of this attribute.
-	 *  $base64    Enable base64 encoding of attribute values.
+	 *  @param $name      Name of this attribute.
+	 *  @param $values    Array with the values of this attribute.
+	 *  @param $base64    Enable base64 encoding of attribute values.
 	 *
-	 * Returns:
-	 *  String containing the encoded saml:attribute value for this
+	 *  @return String containing the encoded saml:attribute value for this
 	 *  attribute.
 	 */
 	private static function enc_attribute($name, $values, $base64 = false) {
@@ -494,7 +486,6 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			$ret .= '<saml:AttributeValue xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' .
 			        $text . '</saml:AttributeValue>';
 		}
-
 
 		$ret .= '</saml:Attribute>';
 

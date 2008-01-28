@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * The Session class holds information about a user session, and everything attached to it.
  *
@@ -32,10 +30,19 @@ class SimpleSAML_Session {
 	const STATE_LOGOUTINPROGRESS = 2;
 	const STATE_LOGGEDOUT = 3;
 
+	/**
+	 * This variable holds the instance of the session - Singleton approach.
+	 */
 	private static $instance = null;
 	
+	/**
+	 * The track id is a new random unique identifier that is generate for each session.
+	 * This is used in the debug logs and error messages to easily track more information
+	 * about what went wrong.
+	 */
 	private $trackid = 0;
 
+	
 	private $configuration = null;
 	
 	private $authnrequests = array();
@@ -60,8 +67,13 @@ class SimpleSAML_Session {
 	// Session duration parameters
 	private $sessionstarted = null;
 	private $sessionduration = null;
+	
+	private $dirty = false;
+	
 
-	// private constructor restricts instantiaton to getInstance()
+	/**
+	 * private constructor restricts instantiaton to getInstance()
+	 */
 	private function __construct($protocol, SimpleSAML_XML_AuthnResponse $message = null, $authenticated = true) {
 
 		$this->configuration = SimpleSAML_Configuration::getInstance();
@@ -96,6 +108,7 @@ class SimpleSAML_Session {
 		$sh = SimpleSAML_SessionHandler::getSessionHandler();
 		if($sh->get('SimpleSAMLphp_SESSION') !== NULL) {
 			self::$instance = $sh->get('SimpleSAMLphp_SESSION');
+			self::$instance->dirty = false;
 			return self::$instance;
 		}
 
@@ -178,21 +191,61 @@ class SimpleSAML_Session {
 		}
 	}
 
-	public function setShibAuthnRequest(SimpleSAML_XML_Shib13_AuthnRequest $req) {
-		$this->shibauthreq = $req;
-	}
-	
-	public function getShibAuthnRequest() {
-		return $this->shibauthreq;
-	}
 
-	public function setAuthnRequest($requestid, SimpleSAML_XML_SAML20_AuthnRequest $xml) {	
-		$this->authnrequests[$requestid] = $xml;
+	
+	
+	/**
+	 * This method retrieves from session a cache of a specific Authentication Request
+	 * The complete request is not stored, instead the values that will be needed later
+	 * are stored in an assoc array.
+	 *
+	 * @param $protocol 		saml2 or shib13
+	 * @param $requestid 		The request id used as a key to lookup the cache.
+	 *
+	 * @return Returns an assoc array of cached variables associated with the
+	 * authentication request.
+	 */
+	public function getAuthnRequest($protocol, $requestid) {
+		if (isset($this->authnrequests[$protocol])) {
+			/*
+			 * Traverse all cached authentication requests in this session for this user using this protocol
+			 */
+			foreach ($this->authnrequests[$protocol] AS $id => $cache) {
+				/*
+				 * If any of the cached requests is elder than the session.requestcache duration, then just
+				 * simply delete it :)
+				 */
+				if ($cache['date'] < $this->configuration->getValue('session.requestcache', time() - (4*60*60) ))
+					unset($this->authnrequests[$protocol][$id]);
+			}
+		}
+		/*
+		 * Then look if the request id that was requested exists, if so return it.
+		 */
+		if (isset($this->authnrequests[$protocol][$requestid])) {
+			return $this->authnrequests[$protocol][$requestid];
+		}
+
+		/*
+		 * Could not find requested ID. Throw an error. Could be that it is never set, or that it is deleted due to age.
+		 */
+		throw new Exception('Could not find cached version of authentication request with ID ' . $requestid . ' (' . $protocol . ')');
 	}
 	
-	public function getAuthnRequest($requestid) {
-		return $this->authnrequests[$requestid];
+	/**
+	 * This method sets a cached assoc array to the authentication request cache storage.
+	 *
+	 * @param $protocol 		saml2 or shib13
+	 * @param $requestid 		The request id used as a key to lookup the cache.
+	 * @param $cache			The assoc array that will be stored.
+	 */
+	public function setAuthnRequest($protocol, $requestid, array $cache) {
+		$cache['date'] = time();
+		$this->authnrequests[$protocol][$requestid] = $cache;
+
 	}
+	
+	
 	
 	public function setAuthnResponse(SimpleSAML_XML_AuthnResponse $xml) {
 		$this->authnresponse = $xml;
@@ -294,7 +347,14 @@ class SimpleSAML_Session {
 	public function setAttribute($name, $value) {
 		$this->attributes[$name] = $value;
 	}
-	
+	 
+	 
+	/**
+	 * Is this session modified since loaded?
+	 */
+	public function isModified() {
+		return $this->dirty;
+	}
 }
 
 ?>

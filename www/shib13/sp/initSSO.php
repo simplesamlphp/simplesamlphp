@@ -8,9 +8,6 @@ require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/XHTML/Template.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/Shib13/AuthnRequest.php');
-//require_once('SimpleSAML/XML/SAML20/AuthnResponse.php');
-//require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
-//require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
@@ -41,8 +38,9 @@ try {
 	exit(0);
 }
 
+
+
 if (!isset($session) || !$session->isValid() ) {
-	
 	
 	if ($idpentityid == null) {
 	
@@ -77,7 +75,6 @@ if (!isset($session) || !$session->isValid() ) {
 } else {
 
 	
-	
 	$relaystate = $session->getRelayState();
 	
 	if (isset($relaystate) && !empty($relaystate)) {
@@ -96,10 +93,6 @@ if (!isset($session) || !$session->isValid() ) {
 }
 
 
-#print_r($metadata->getMetaData('sam.feide.no'));
-#print_r($req);
-
-//echo 'Location: ' . $relaystate;
 
 
 ?>

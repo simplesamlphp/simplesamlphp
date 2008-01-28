@@ -1,21 +1,15 @@
 <?php
 
-
-/**
- * SimpleSAMLphp
- *
- * PHP versions 4 and 5
- *
- * LICENSE: See the COPYING file included in this distribution.
- *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- */
- 
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
  
 /**
- * Configuration of SimpleSAMLphp
+ * The Shibboleth 1.3 Authentication Request. Not part of SAML 1.1, 
+ * but an extension using query paramters no XML.
+ *
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
  */
 class SimpleSAML_XML_Shib13_AuthnRequest {
 
@@ -29,7 +23,7 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	private $requestid = null;
 	
 	
-	const PROTOCOL = 'shibboleth';
+	const PROTOCOL = 'shib13';
 
 
 	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore) {
@@ -83,25 +77,7 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	public function getRequestID() {
 		return $this->requestid;
 	}
-	
-	public function createSession() {
-		
-		$session = SimpleSAML_Session::getInstance();
-		
-		if (!isset($session)) {
-			SimpleSAML_Session::init(self::PROTOCOL, null, false);
-			$session = SimpleSAML_Session::getInstance();
-		}
 
-		$session->setShibAuthnRequest($this);
-		
-		/*
-		if (isset($this->relayState)) {
-			$session->setRelayState($this->relayState);
-		}
-		*/
-		return $session;
-	}
 	
 	public function createRedirect($destination) {
 		$idpmetadata = $this->metadata->getMetaData($destination, 'shib13-idp-remote');

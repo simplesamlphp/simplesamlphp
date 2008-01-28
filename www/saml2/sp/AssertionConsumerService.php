@@ -44,7 +44,7 @@ try {
 		if (isset($relayState)) {
 			SimpleSAML_Utilities::redirect($relayState);
 		} else {
-			echo 'Could not find RelayState parameter, you are stucked here.';
+			throw new Exception('Could not find RelayState parameter, you are stucked here.');
 		}
 	} else {
 		throw new Exception('Unkown error. Could not get session.');

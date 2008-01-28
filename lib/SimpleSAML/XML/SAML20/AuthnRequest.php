@@ -1,21 +1,15 @@
 <?php
-
-
-/**
- * SimpleSAMLphp
- *
- * PHP versions 4 and 5
- *
- * LICENSE: See the COPYING file included in this distribution.
- *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- */
  
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
  
 /**
- * Configuration of SimpleSAMLphp
+ * The Shibboleth 1.3 Authentication Request. Not part of SAML 1.1, 
+ * but an extension using query paramters no XML.
+ *
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
  */
 class SimpleSAML_XML_SAML20_AuthnRequest {
 
@@ -27,7 +21,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 	private $relayState = null;
 	
 	
-	const PROTOCOL = 'urn:oasis:names:tc:SAML:2.0';
+	const PROTOCOL = 'saml2';
 
 
 	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore) {
@@ -110,7 +104,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		return $requestid;	
 		*/
 	}
-	
+	/*
 	public function createSession() {
 	
 		
@@ -122,15 +116,10 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		}
 
 		$session->setAuthnRequest($this->getRequestID(), $this);
-		
-		/*
-		if (isset($this->relayState)) {
-			$session->setRelayState($this->relayState);
-		}
-		*/
+
 		return $session;
 	}
-	
+	*/
 
 	public function generate($spentityid, $destination) {
 		$md = $this->metadata->getMetaData($spentityid);

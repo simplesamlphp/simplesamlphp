@@ -66,7 +66,11 @@ $config = array (
 	 * cookies both at the SP and the IdP exceeds this duration.
 	 */
 	'session.duration'		=>  8 * (60*60), // 8 hours.
+	'session.requestcache'	=>  4 * (60*60), // 4 hours
 	
+	/*
+	 * Languages available and what language is default
+	 */
 	'language.available'	=> array('en', 'no'),
 	'language.default'		=> 'en',
 	
