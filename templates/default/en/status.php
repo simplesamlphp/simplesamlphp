@@ -13,6 +13,8 @@
 		
 		<p><?php echo $data['valid']; ?>. Your session is valid for <?php echo $data['remaining']; ?> seconds from now.</p>
 		
+		<p>Session size: <?php echo isset($data['sessionsize']) ? $data['sessionsize'] : 'na'; ?>
+		
 		<h2>Your attributes</h2>
 		
 			<table>

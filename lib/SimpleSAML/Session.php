@@ -41,9 +41,6 @@ class SimpleSAML_Session {
 	 * about what went wrong.
 	 */
 	private $trackid = 0;
-
-	
-	private $configuration = null;
 	
 	private $authnrequests = array();
 	private $shibauthreq = null;
@@ -76,7 +73,7 @@ class SimpleSAML_Session {
 	 */
 	private function __construct($protocol, SimpleSAML_XML_AuthnResponse $message = null, $authenticated = true) {
 
-		$this->configuration = SimpleSAML_Configuration::getInstance();
+
 
 		$this->protocol = $protocol;
 		$this->authnresponse = $message;
@@ -87,7 +84,8 @@ class SimpleSAML_Session {
 			$this->sessionstarted = time();
 		}
 		
-		$this->sessionduration = $this->configuration->getValue('session.duration');
+		$configuration = SimpleSAML_Configuration::getInstance();
+		$this->sessionduration = $configuration->getValue('session.duration');
 		
 		$this->trackid = SimpleSAML_Utilities::generateTrackID();
 	}
@@ -206,6 +204,8 @@ class SimpleSAML_Session {
 	 * authentication request.
 	 */
 	public function getAuthnRequest($protocol, $requestid) {
+
+		$configuration = SimpleSAML_Configuration::getInstance();
 		if (isset($this->authnrequests[$protocol])) {
 			/*
 			 * Traverse all cached authentication requests in this session for this user using this protocol
@@ -215,7 +215,7 @@ class SimpleSAML_Session {
 				 * If any of the cached requests is elder than the session.requestcache duration, then just
 				 * simply delete it :)
 				 */
-				if ($cache['date'] < $this->configuration->getValue('session.requestcache', time() - (4*60*60) ))
+				if ($cache['date'] < $configuration->getValue('session.requestcache', time() - (4*60*60) ))
 					unset($this->authnrequests[$protocol][$id]);
 			}
 		}
@@ -354,6 +354,12 @@ class SimpleSAML_Session {
 	 */
 	public function isModified() {
 		return $this->dirty;
+	}
+	
+	
+	public function getSize() {
+		$s = serialize($this);
+		return strlen($s);
 	}
 }
 

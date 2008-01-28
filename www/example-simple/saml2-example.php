@@ -5,10 +5,6 @@ require_once('../_include.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
-require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
-require_once('SimpleSAML/XML/SAML20/AuthnResponse.php');
-require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
-require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
 
@@ -42,6 +38,7 @@ $et = new SimpleSAML_XHTML_Template($config, 'status.php');
 
 $et->data['header'] = 'SAML 2.0 SP Demo Example';
 $et->data['remaining'] = $session->remainingTime();
+$et->data['sessionsize'] = $session->getSize();
 $et->data['attributes'] = $attributes;
 $et->data['valid'] = $session->isValid() ? 'Session is valid' : 'Session is invalid';
 
