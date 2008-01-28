@@ -49,6 +49,7 @@ h6 {font-size: 96%}
 
 .old {text-decoration:line-through}
 </style>
+	<link rel="icon" type="image/icon" href="/<?php echo $data['baseurlpath']; ?>resources/icons/favicon.ico" />
 </head>
 <body>
 
