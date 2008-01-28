@@ -41,7 +41,7 @@ if (isset($_GET['idpentityid'])) {
 	
 	$returnurl = SimpleSAML_Utilities::addURLparameter($return, $returnidparam . '=' . $idpentityid);
 	SimpleSAML_Utilities::redirect($returnurl);
-
+	
 }
 
 
@@ -56,6 +56,7 @@ if ($config->getValue('idpdisco.layout') == 'dropdown') {
 	$t->data['entityID'] = $spentityid;
 	$t->data['preferedidp'] = (!empty($_COOKIE['preferedidp'])) ? $_COOKIE['preferedidp'] : null;
 	$t->data['urlpattern'] = htmlentities(SimpleSAML_Utilities::selfURLNoQuery());
+	$t->show();
 }
 else
 {
