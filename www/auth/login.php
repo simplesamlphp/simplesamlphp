@@ -84,7 +84,7 @@ if (isset($_POST['username'])) {
 		exit;
 		}
 		*/
-		if (!ldap_bind($ds, $dn, $password)) {
+		if (!@ldap_bind($ds, $dn, $password)) {
 			$error = "Bind failed, wrong username or password. Tried with DN=[" . $dn . "] DNPattern=[" . $config->getValue('auth.ldap.dnpattern')
 				. "] Error=[" . ldap_error($ds) . "] ErrNo=[" . ldap_errno($ds) . "]";
 			
