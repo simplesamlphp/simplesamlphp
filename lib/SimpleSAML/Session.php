@@ -42,10 +42,12 @@ class SimpleSAML_Session {
 	 */
 	private $trackid = 0;
 	
+	/**
+	 * The authentication requests are an array with cached information about the requests.
+	 * This is mostly used at the Shib and SAML 2.0 IdP side, at the SSOService endpoint.
+	 */
 	private $authnrequests = array();
-	private $shibauthreq = null;
-	
-	private $authnresponse = null;
+		
 	private $idp = null;
 	
 	private $logoutrequest = null;
@@ -71,13 +73,9 @@ class SimpleSAML_Session {
 	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
-	private function __construct($protocol, SimpleSAML_XML_AuthnResponse $message = null, $authenticated = true) {
-
-
+	private function __construct($protocol, $authenticated = true) {
 
 		$this->protocol = $protocol;
-		$this->authnresponse = $message;
-		
 		
 		$this->authenticated = $authenticated;
 		if ($authenticated) {
@@ -121,15 +119,14 @@ class SimpleSAML_Session {
 		}
 	}
 	
-	public static function init($protocol, $message = null, $authenticated = false) {
+	public static function init($protocol, $authenticated = false) {
 		
 		$preinstance = self::getInstance();
 		
 		if (isset($preinstance)) {
-			if (isset($message)) $preinstance->authnresponse = $message;
 			if (isset($authenticated)) $preinstance->setAuthenticated($authenticated);
 		} else {	
-			self::$instance = new SimpleSAML_Session($protocol, $message, $authenticated);
+			self::$instance = new SimpleSAML_Session($protocol, $authenticated);
 
 			/* Save the new session with the session handler. */
 			$sh = SimpleSAML_SessionHandler::getSessionHandler();
@@ -179,6 +176,7 @@ class SimpleSAML_Session {
 
 	
 	public function set_sp_logout_completed($entityid) {
+		$this->dirty = true;
 		$this->sp_at_idpsessions[$entityid] = self::STATE_LOGGEDOUT;
 	}
 	
@@ -240,22 +238,27 @@ class SimpleSAML_Session {
 	 * @param $cache			The assoc array that will be stored.
 	 */
 	public function setAuthnRequest($protocol, $requestid, array $cache) {
+		$this->dirty = true;
 		$cache['date'] = time();
 		$this->authnrequests[$protocol][$requestid] = $cache;
 
 	}
 	
 	
-	
+	/*
 	public function setAuthnResponse(SimpleSAML_XML_AuthnResponse $xml) {
+		throw new Exception('setAuthnResponse deprecaed'));
 		$this->authnresponse = $xml;
 	}
 	
 	public function getAuthnResposne() {
+		throw new Exception('getAuthnResponse deprecaed'));
 		return $this->authnresponse;
 	}
+	*/
 	
 	public function setIdP($idp) {
+		$this->dirty = true;
 		$this->idp = $idp;
 	}
 	public function getIdP() {
@@ -263,6 +266,7 @@ class SimpleSAML_Session {
 	}
 	
 	public function setLogoutRequest(SimpleSAML_XML_SAML20_LogoutRequest $lr) {
+		$this->dirty = true;
 		$this->logoutrequest = $lr;
 	}
 	
@@ -271,18 +275,21 @@ class SimpleSAML_Session {
 	}
 
 	public function setSessionIndex($sessionindex) {
+		$this->dirty = true;
 		$this->sessionindex = $sessionindex;
 	}
 	public function getSessionIndex() {
 		return $this->sessionindex;
 	}
 	public function setNameID($nameid) {
+		$this->dirty = true;
 		$this->nameid = $nameid;
 	}
 	public function getNameID() {
 		return $this->nameid;
 	}
 	public function setNameIDformat($nameidformat) {
+		$this->dirty = true;
 		$this->nameidformat = $nameidformat;
 	}
 	public function getNameIDformat() {
@@ -290,6 +297,7 @@ class SimpleSAML_Session {
 	}
 
 	public function setAuthenticated($auth) {
+		$this->dirty = ($auth || ($this->authenticated != $auth));
 		$this->authenticated = $auth;
 		if ($auth) {
 			$this->sessionstarted = time();
@@ -297,6 +305,7 @@ class SimpleSAML_Session {
 	}
 	
 	public function setSessionDuration($duration) {
+		$this->dirty = true;
 		$this->sessionduration = $duration;
 	}
 	
@@ -332,6 +341,9 @@ class SimpleSAML_Session {
 		return $this->protocol;
 	}
 	
+	
+	// *** Attributes ***
+	
 	public function getAttributes() {
 		return $this->attributes;
 	}
@@ -341,10 +353,12 @@ class SimpleSAML_Session {
 	}
 
 	public function setAttributes($attributes) {
+		$this->dirty = true;
 		$this->attributes = $attributes;
 	}
 	
 	public function setAttribute($name, $value) {
+		$this->dirty = true;
 		$this->attributes[$name] = $value;
 	}
 	 
@@ -356,7 +370,11 @@ class SimpleSAML_Session {
 		return $this->dirty;
 	}
 	
-	
+	/**
+	 * Calculates the size of the session object after serialization
+	 *
+	 * @return The size of the session measured in bytes.
+	 */
 	public function getSize() {
 		$s = serialize($this);
 		return strlen($s);
