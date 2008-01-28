@@ -9,7 +9,8 @@ require_once('SimpleSAML/Logger.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/SAML20/LogoutRequest.php');
 require_once('SimpleSAML/XML/SAML20/LogoutResponse.php');
-require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
+require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
+
 require_once('SimpleSAML/XHTML/Template.php');
 
 $config = SimpleSAML_Configuration::getInstance();
@@ -35,8 +36,8 @@ $logger->log(LOG_INFO, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'EVENT', '
 // Destroy local session if exists.
 if (isset($session) && $session->isAuthenticated() ) {
 	$session->setAuthenticated(false);
+	$session->clean();
 }
-
 
 
 
@@ -74,7 +75,6 @@ if (isset($_GET['SAMLRequest'])) {
 	}
 
 
-
 	$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutRequest', $requestid,
 		'IdP (' . $requester . ') is sending logout request to me SP (' . $responder . ')');
 
@@ -98,6 +98,7 @@ if (isset($_GET['SAMLRequest'])) {
 
 	// Create a HTTPRedirect binding
 	$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
+	
 	try {
 		// Decode the LogoutResponse using the HTTP Redirect binding.
 		$logoutresponse = $binding->decodeLogoutResponse($_GET);

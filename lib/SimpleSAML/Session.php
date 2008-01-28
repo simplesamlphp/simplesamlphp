@@ -1,4 +1,12 @@
 <?php
+
+require_once('SimpleSAML/Configuration.php');
+require_once('SimpleSAML/Utilities.php');
+require_once('SimpleSAML/Session.php');
+require_once('SimpleSAML/SessionHandler.php');
+require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
+require_once('SimpleSAML/XML/AuthnResponse.php');
+
 /**
  * The Session class holds information about a user session, and everything attached to it.
  *
@@ -8,21 +16,8 @@
  * Single-Log-Out.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
  * @version $Id$
- */
-
-
-require_once('SimpleSAML/Configuration.php');
-require_once('SimpleSAML/Utilities.php');
-require_once('SimpleSAML/Session.php');
-require_once('SimpleSAML/SessionHandler.php');
-require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
-require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
-require_once('SimpleSAML/XML/AuthnResponse.php');
-require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
-
-/**
- * A class representing a session.
  */
 class SimpleSAML_Session {
 
@@ -47,15 +42,12 @@ class SimpleSAML_Session {
 	 * This is mostly used at the Shib and SAML 2.0 IdP side, at the SSOService endpoint.
 	 */
 	private $authnrequests = array();
-		
-	private $idp = null;
-	
 	private $logoutrequest = null;
+	private $idp = null;
 	
 	private $authenticated = null;
 	private $protocol = null;
 	private $attributes = null;
-	
 	
 	private $sessionindex = null;
 	private $nameid = null;
@@ -67,6 +59,7 @@ class SimpleSAML_Session {
 	private $sessionstarted = null;
 	private $sessionduration = null;
 	
+	// Track whether the session object is modified or not.
 	private $dirty = false;
 	
 
@@ -138,10 +131,17 @@ class SimpleSAML_Session {
 	
 	
 	
-	
+	/**
+	 * Get a unique ID that will be permanent for this session.
+	 * Used for debugging and tracing log files related to a session.
+	 */
 	public function getTrackID() {
 		return $this->trackid;
 	}
+	
+	
+	// *** SP list to be used with SAML 2.0 SLO ***
+	// *** *** *** *** *** *** *** *** *** *** ***
 	
 	public function add_sp_session($entityid) {
 		$this->sp_at_idpsessions[$entityid] = self::STATE_ONLINE;
@@ -173,8 +173,6 @@ class SimpleSAML_Session {
 		return $list;
 	}
 	
-
-	
 	public function set_sp_logout_completed($entityid) {
 		$this->dirty = true;
 		$this->sp_at_idpsessions[$entityid] = self::STATE_LOGGEDOUT;
@@ -186,6 +184,7 @@ class SimpleSAML_Session {
 			error_log('Dump sp sessions: ' . $entityid . ' status: ' . $sp);
 		}
 	}
+	// *** --- ***
 
 
 	
@@ -244,19 +243,9 @@ class SimpleSAML_Session {
 
 	}
 	
-	
-	/*
-	public function setAuthnResponse(SimpleSAML_XML_AuthnResponse $xml) {
-		throw new Exception('setAuthnResponse deprecaed'));
-		$this->authnresponse = $xml;
-	}
-	
-	public function getAuthnResposne() {
-		throw new Exception('getAuthnResponse deprecaed'));
-		return $this->authnresponse;
-	}
-	*/
-	
+
+
+
 	public function setIdP($idp) {
 		$this->dirty = true;
 		$this->idp = $idp;
@@ -265,14 +254,22 @@ class SimpleSAML_Session {
 		return $this->idp;
 	}
 	
-	public function setLogoutRequest(SimpleSAML_XML_SAML20_LogoutRequest $lr) {
+	
+	
+	
+	
+	public function setLogoutRequest($requestcache) {
 		$this->dirty = true;
-		$this->logoutrequest = $lr;
+		$this->logoutrequest = $requestcache;
 	}
 	
 	public function getLogoutRequest() {
 		return $this->logoutrequest;
 	}
+	
+	
+	
+	
 
 	public function setSessionIndex($sessionindex) {
 		$this->dirty = true;
@@ -297,7 +294,8 @@ class SimpleSAML_Session {
 	}
 
 	public function setAuthenticated($auth) {
-		$this->dirty = ($auth || ($this->authenticated != $auth));
+		if ($auth === false) $this->dirty = false;
+		if ($auth != $this->authenticated) $this->dirty = false;
 		$this->authenticated = $auth;
 		if ($auth) {
 			$this->sessionstarted = time();
@@ -361,7 +359,25 @@ class SimpleSAML_Session {
 		$this->dirty = true;
 		$this->attributes[$name] = $value;
 	}
-	 
+	
+	/**
+	 * Clean the session object.
+	 */
+	public function clean() {
+		$this->authnrequests = array();
+		$this->logoutrequest = null;
+		$this->idp = null;
+	
+		$this->authenticated = null;
+		$this->protocol = null;
+		$this->attributes = null;
+	
+		$this->sessionindex = null;
+		$this->nameid = null;
+		$this->nameidformat = null;
+	
+		$this->sp_at_idpsessions = array();	
+	}
 	 
 	/**
 	 * Is this session modified since loaded?

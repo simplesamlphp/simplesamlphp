@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * This SAML 2.0 endpoint can receive incomming LogoutRequests. It will also send LogoutResponses, and LogoutRequests
+ * and also receive LogoutResponses. It is implemeting SLO at the SAML 2.0 IdP.
+ *
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
+ */
 
 require_once('../../../www/_include.php');
 
@@ -11,23 +19,25 @@ require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/SAML20/LogoutRequest.php');
 require_once('SimpleSAML/XML/SAML20/LogoutResponse.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
-//require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$session = SimpleSAML_Session::getInstance();
 
 $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 
-$session = SimpleSAML_Session::getInstance();
-
 $logger = new SimpleSAML_Logger();
-
 $logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SingleLogoutService', 'EVENT', 'Access',
 	'Accessing SAML 2.0 IdP endpoint SingleLogoutService');
-/*
- * If we get an LogoutRequest then we initiate the logout process.
+	
+	
+/**
+ * If we get an incomming LogoutRequest then we initiate the logout process.
+ * in this case an SAML 2.0 SP is sending an request, which also is referred to as
+ * SP initiated Single Logout.
+ *
  */
 if (isset($_GET['SAMLRequest'])) {
 
@@ -54,6 +64,7 @@ if (isset($_GET['SAMLRequest'])) {
 	}
 	/* Check if we have a valid session. */
 	if($session === NULL) {
+	
 		/* Invalid session. To prevent the user from being unable to
 		 * log out from the service provider, we should just return a
 		 * LogoutResponse pretending that the logout was successful to
@@ -89,8 +100,23 @@ if (isset($_GET['SAMLRequest'])) {
 
 	error_log('IdP LogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer() . '  ');
 
+	
+#	$session->setLogoutRequest($logoutrequest);
+
+	/*
+	 * Create an assoc array of the request to store in the session cache.
+	 */
+	$requestcache = array(
+		'Issuer'    	=> $logoutrequest->getIssuer(),
+		'RequestID'		=> $logoutrequest->getRequestID()
+	);
+	if ($relaystate = $logoutrequest->getRelayState() )
+		$requestcache['RelayState'] = $relaystate;
+		
+	$session->setLogoutRequest($requestcache);
+	
 	$session->set_sp_logout_completed($logoutrequest->getIssuer() );
-	$session->setLogoutRequest($logoutrequest);
+	
 
 	/*
 	 * We receive a Logout Response to a Logout Request that we have issued earlier.
@@ -179,29 +205,40 @@ if ($spentityid) {
 error_log('IdP LogoutService:  SPs done ');
 try {
 
-	$logoutrequest = $session->getLogoutRequest();
-	if (!$logoutrequest) {
+	$requestcache = $session->getLogoutRequest();
+	if (!$requestcache) {
 		throw new Exception('Could not get reference to the logout request.');
 	}
-
+	
+	
+	/**
+	 * Clean up session object to save storage.
+	 */
+	if ($config->getValue('debug', false)) 
+		$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SingleLogoutService', 'EVENT', 'SessionSize', 'Size before cleaning: ' . $session->getSize());
+		
+	$session->clean();
+	
+	if ($config->getValue('debug', false)) 
+		$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SingleLogoutService', 'EVENT', 'SessionSize', 'Size after cleaning: ' . $session->getSize());
+	
+	
+	/**
+	 * Create a Logot Response.
+	 */
 	$rg = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
 
-	// generate($issuer, $receiver, $inresponseto, $mode )
+	// 							generate($issuer, $receiver, $inresponseto, $mode )
+	$logoutResponseXML = $rg->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], 'IdP');
 
-	$logoutResponseXML = $rg->generate($idpentityid, $logoutrequest->getIssuer(), $logoutrequest->getRequestID(), 'IdP');
-
-	//	echo '<pre>' . htmlentities($logoutResponseXML) . '</pre>';
-	//	exit();
-
+	// Create a HTTP-REDIRECT Binding.
 	$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 
-	$relayState = SimpleSAML_Utilities::selfURL();
-	if (isset($_GET['RelayState'])) {
-		$relayState = $_GET['RelayState'];
-	}
+	// Find the relaystate if cached.
+	$relayState = isset($requestcache['RelayState']) ? $requestcache['RelayState'] : null;
 
-	//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
-	$httpredirect->sendMessage($logoutResponseXML, $idpentityid, $logoutrequest->getIssuer(), $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
+	// Parameters: $request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
+	$httpredirect->sendMessage($logoutResponseXML, $idpentityid, $requestcache['Issuer'], $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
 
 } catch(Exception $exception) {
 
@@ -212,9 +249,6 @@ try {
 	$et->data['e'] = $exception;
 
 	$et->show();
-
 }
-
-
 
 ?>
