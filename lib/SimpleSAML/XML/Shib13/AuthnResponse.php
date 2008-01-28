@@ -1,13 +1,4 @@
 <?php
-
-
-/**
- * SimpleSAMLphp
- *
- * LICENSE: See the COPYING file included in this distribution.
- *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- */
  
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Session.php');
@@ -18,7 +9,12 @@ require_once('SimpleSAML/XML/AuthnResponse.php');
 require_once('xmlseclibs.php');
  
 /**
- * Configuration of SimpleSAMLphp
+ * A Shibboleth 1.3 authentication response.
+ *
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
+ * @abstract
  */
 class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 

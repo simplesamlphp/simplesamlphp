@@ -1,16 +1,5 @@
 <?php
 
-
-/**
- * SimpleSAMLphp
- *
- * PHP versions 4 and 5
- *
- * LICENSE: See the COPYING file included in this distribution.
- *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- */
- 
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/Utilities.php');
@@ -20,7 +9,12 @@ require_once('SimpleSAML/XML/AuthnResponse.php');
 require_once('xmlseclibs.php');
  
 /**
- * Configuration of SimpleSAMLphp
+ * An SAML 2.0 Authentication Response
+ *
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
+ * @abstract
  */
 class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
