@@ -48,6 +48,14 @@ $config = array (
 	'logging.facility'		=> LOG_LOCAL5,
 	'logging.level'			=> LOG_NOTICE,
 	
+	
+	/**
+	 * This password must be kept secret, and modified from the default value 123.
+	 * This password will give access to the installation page of simpleSAMLphp with
+	 * metadata listing and diagnostics pages.
+	 */
+	'auth.adminpassword'	=> '123',
+	
 	/*
 	 * Enable
 	 * 

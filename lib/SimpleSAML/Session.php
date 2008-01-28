@@ -55,6 +55,8 @@ class SimpleSAML_Session {
 	
 	private $sp_at_idpsessions = array();
 	
+	private $authority = null;
+	
 	// Session duration parameters
 	private $sessionstarted = null;
 	private $sessionduration = null;
@@ -66,7 +68,7 @@ class SimpleSAML_Session {
 	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
-	private function __construct($protocol, $authenticated = true) {
+	private function __construct($authenticated = true) {
 
 		$this->protocol = $protocol;
 		
@@ -112,14 +114,17 @@ class SimpleSAML_Session {
 		}
 	}
 	
-	public static function init($protocol, $authenticated = false) {
+	public static function init($authenticated = false, $authority = null) {
 		
 		$preinstance = self::getInstance();
 		
 		if (isset($preinstance)) {
-			if (isset($authenticated)) $preinstance->setAuthenticated($authenticated);
+		
+			$preinstance->clean();
+			if (isset($authenticated)) $preinstance->setAuthenticated($authenticated, $authority);
+			
 		} else {	
-			self::$instance = new SimpleSAML_Session($protocol, $authenticated);
+			self::$instance = new SimpleSAML_Session($authenticated, $authority);
 
 			/* Save the new session with the session handler. */
 			$sh = SimpleSAML_SessionHandler::getSessionHandler();
@@ -138,6 +143,14 @@ class SimpleSAML_Session {
 	public function getTrackID() {
 		return $this->trackid;
 	}
+	
+	/**
+	 * Who authorized this session. could be in example saml2, shib13, login,login-admin etc.
+	 */
+	public function getAuthority() {
+		return $this->authority;
+	}
+	
 	
 	
 	// *** SP list to be used with SAML 2.0 SLO ***
@@ -293,11 +306,14 @@ class SimpleSAML_Session {
 		return $this->nameidformat;
 	}
 
-	public function setAuthenticated($auth) {
+	public function setAuthenticated($auth, $authority = null) {
 		if ($auth === false) $this->dirty = false;
 		if ($auth != $this->authenticated) $this->dirty = false;
+		
+		$this->authority = $authority;
 		$this->authenticated = $auth;
-		if ($auth) {
+		
+		if ($auth) {	
 			$this->sessionstarted = time();
 		}
 	}
@@ -313,8 +329,9 @@ class SimpleSAML_Session {
 	 * This function will return false after the user has timed out.
 	 */
 
-	public function isValid() {
+	public function isValid($authority = null) {
 		if (!$this->isAuthenticated()) return false;
+		if (!empty($authority) && ($authority != $this->authority) ) return false;
 		return $this->remainingTime() > 0;
 	}
 	
@@ -367,6 +384,8 @@ class SimpleSAML_Session {
 		$this->authnrequests = array();
 		$this->logoutrequest = null;
 		$this->idp = null;
+		
+		$this->authority = null;
 	
 		$this->authenticated = null;
 		$this->protocol = null;

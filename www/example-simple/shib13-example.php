@@ -16,7 +16,7 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 $session = SimpleSAML_Session::getInstance();
 
-if (!isset($session) || !$session->isValid() ) {
+if (!isset($session) || !$session->isValid('shib13') ) {
 	
 	SimpleSAML_Utilities::redirect(
 		'/' . $config->getValue('baseurlpath') .

@@ -78,7 +78,7 @@ if (isset($_POST['username'])) {
 				
 				$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'radius', 'OK', $_POST['username'], $_POST['username'] . ' successfully authenticated');
 				
-				$session->setAuthenticated(true);
+				$session->setAuthenticated(true, 'login-radius');
 				$session->setAttributes($attributes);
 
 				$returnto = $_REQUEST['RelayState'];

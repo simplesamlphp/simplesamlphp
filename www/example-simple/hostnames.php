@@ -11,10 +11,18 @@ require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
-/* Load simpleSAMLphp, configuration and metadata */
+/* Load simpleSAMLphp, configuration */
 $config = SimpleSAML_Configuration::getInstance();
+$session = SimpleSAML_Session::getInstance(true);
 
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+/* Check if valid local session exists.. */
+if (!isset($session) || !$session->isValid('login-admin') ) {
+	SimpleSAML_Utilities::redirect('/' . $config->getValue('baseurlpath') . 'auth/login-admin.php',
+		array('RelayState' => SimpleSAML_Utilities::selfURL())
+	);
+}
+
+
 
 
 

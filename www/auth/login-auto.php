@@ -86,7 +86,7 @@ if($session == NULL) {
 /* Set the user as authenticated and add the attributes from the
  * configuration.
  */
-$session->setAuthenticated(true);
+$session->setAuthenticated(true, 'login-auto');
 $session->setAttributes($attributes);
 
 /* Return the user to the page set in the RelayState parameter. */

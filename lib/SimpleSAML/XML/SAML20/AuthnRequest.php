@@ -104,22 +104,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		return $requestid;	
 		*/
 	}
-	/*
-	public function createSession() {
-	
-		
-		$session = SimpleSAML_Session::getInstance();
-		
-		if (!isset($session)) {
-			SimpleSAML_Session::init(self::PROTOCOL, null, false);
-			$session = SimpleSAML_Session::getInstance();
-		}
 
-		$session->setAuthnRequest($this->getRequestID(), $this);
-
-		return $session;
-	}
-	*/
 
 	public function generate($spentityid, $destination) {
 		$md = $this->metadata->getMetaData($spentityid);

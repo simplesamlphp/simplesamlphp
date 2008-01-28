@@ -136,7 +136,8 @@ if (isset($_POST['username'])) {
 				$attributes[$name] = $values;
 			}
 
-			$session->setAuthenticated(true);
+			$session->setAuthenticated(true, 'login');
+			
 			$session->setAttributes($attributes);
 			
 			$session->setNameID(SimpleSAML_Utilities::generateID());

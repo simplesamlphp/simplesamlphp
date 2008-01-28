@@ -14,7 +14,7 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance();
 
 /* Check if valid local session exists.. */
-if (!isset($session) || !$session->isValid() ) {
+if (!isset($session) || !$session->isValid('saml2') ) {
 	SimpleSAML_Utilities::redirect(
 		'/' . $config->getValue('baseurlpath') .
 		'saml2/sp/initSSO.php',

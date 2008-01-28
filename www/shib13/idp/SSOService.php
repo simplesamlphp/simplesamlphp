@@ -132,7 +132,7 @@ if (isset($_GET['shire'])) {
 
 }
 
-
+$authority = isset($idpmeta['authority']) ? $idpmeta['authority'] : null;
 
 /*
  * As we have passed the code above, we have an accociated request that is already processed.
@@ -143,7 +143,7 @@ if (isset($_GET['shire'])) {
  * endpoint - then the session is authenticated and set, and the user is redirected back with a RequestID
  * parameter so we can retrieve the cached information from the request.
  */
-if (!$session->isAuthenticated() ) {
+if (!$session->isAuthenticated($authority) ) {
 
 	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() . '?RequestID=' . urlencode($requestid);
 	$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getValue('baseurlpath') . $idpmeta['auth'], 

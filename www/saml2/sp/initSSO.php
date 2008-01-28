@@ -46,7 +46,7 @@ try {
 	exit(0);
 }
 
-if (!isset($session) || !$session->isValid() ) {
+if (!isset($session) || !$session->isValid('saml2') ) {
 	
 	
 	if ($idpentityid == null) {

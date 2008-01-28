@@ -8,11 +8,21 @@ require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/XHTML/Template.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 
+
+
+/* Load simpleSAMLphp, configuration */
 $config = SimpleSAML_Configuration::getInstance();
+$session = SimpleSAML_Session::getInstance(true);
+
+/* Check if valid local session exists.. */
+if (!isset($session) || !$session->isValid('login-admin') ) {
+	SimpleSAML_Utilities::redirect('/' . $config->getValue('baseurlpath') . 'auth/login-admin.php',
+		array('RelayState' => SimpleSAML_Utilities::selfURL())
+	);
+}
 
 
-$session = SimpleSAML_Session::getInstance();
-	
+
 	
 $links = array();
 

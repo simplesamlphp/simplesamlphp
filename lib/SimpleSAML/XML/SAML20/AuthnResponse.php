@@ -138,8 +138,8 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 	public function createSession() {
 	
-	//($protocol, $message = null, $authenticated = true) {
-		SimpleSAML_Session::init(self::PROTOCOL, true);
+
+		SimpleSAML_Session::init(true, 'saml2');
 		$session = SimpleSAML_Session::getInstance();
 		$session->setAttributes($this->getAttributes());
 		

@@ -40,7 +40,7 @@ try {
 
 
 
-if (!isset($session) || !$session->isValid() ) {
+if (!isset($session) || !$session->isValid('shib13') ) {
 	
 	if ($idpentityid == null) {
 	

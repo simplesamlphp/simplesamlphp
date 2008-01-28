@@ -136,6 +136,9 @@ if (isset($_GET['SAMLRequest'])) {
 }
 
 
+$authority = isset($idpmeta['authority']) ? $idpmeta['authority'] : null;
+
+
 /*
  * As we have passed the code above, we have an accociated request that is already processed.
  *
@@ -145,7 +148,7 @@ if (isset($_GET['SAMLRequest'])) {
  * endpoint - then the session is authenticated and set, and the user is redirected back with a RequestID
  * parameter so we can retrieve the cached information from the request.
  */
-if (!$session->isAuthenticated() ) {
+if (!isset($session) || !$session->isValid($authority) ) {
 
 	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'AuthNext', $idpmeta['auth'], 
 		'Will go to authentication module ' . $idpmeta['auth']);

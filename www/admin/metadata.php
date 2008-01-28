@@ -11,6 +11,15 @@ require_once('SimpleSAML/XHTML/Template.php');
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
+
+/* Check if valid local session exists.. */
+if (!isset($session) || !$session->isValid('login-admin') ) {
+	SimpleSAML_Utilities::redirect('/' . $config->getValue('baseurlpath') . 'auth/login-admin.php',
+		array('RelayState' => SimpleSAML_Utilities::selfURL())
+	);
+}
+
+
 try {
 
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
@@ -48,7 +57,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
-				array('requireconsent','request.signing')
+				array('requireconsent','request.signing', 'authority')
 			);
 		}
 		$et->data['metadata.saml20-idp-hosted'] = $results;
@@ -98,7 +107,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
-				array('requireconsent')
+				array('requireconsent', 'authority')
 			);
 		}
 		$et->data['metadata.shib13-idp-hosted'] = $results;

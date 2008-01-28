@@ -81,7 +81,7 @@ if (isset($_POST['username'])) {
 			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-multi', 'OK', $_POST['username'], $_POST['username'] . ' successfully authenticated');
 			
 			
-			$session->setAuthenticated(true);
+			$session->setAuthenticated(true, 'login-ldapmulti');
 			$session->setAttributes($attributes);
 			
 			$session->setNameID(SimpleSAML_Utilities::generateID());
