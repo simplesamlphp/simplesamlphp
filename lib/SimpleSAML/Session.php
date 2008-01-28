@@ -2,13 +2,15 @@
 
 
 /**
- * SimpleSAMLphp
+ * The Session class holds information about a user session, and everything attached to it.
  *
- * PHP versions 4 and 5
- *
- * LICENSE: See the COPYING file included in this distribution.
+ * The session will have a duration, and validity, and also cache information about the different
+ * federation protocols, as Shibboleth and SAML 2.0. On the IdP side the Session class holds 
+ * information about all the currently logged in SPs. This is used when the user initiate a 
+ * Single-Log-Out.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @version $Id$
  */
 
 
