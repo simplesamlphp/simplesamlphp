@@ -25,7 +25,6 @@ $metadata = array(
 	'saml2sp.example.org' => array(
  		'AssertionConsumerService'		=>	'https://saml2sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php', 
  		'SingleLogoutService'			=>	'https://saml2sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
-		'spNameQualifier' 				=>	'dev.andreas.feide.no',
 		'ForceAuthn'					=>	'false',
 		'NameIDFormat'					=>	'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
 		
@@ -52,7 +51,6 @@ $metadata = array(
 	'google.com' => array(
  		'AssertionConsumerService'		=>	'https://www.google.com/a/g.feide.no/acs', 
  		'SingleLogoutService'			=> 	'',
-		'spNameQualifier' 				=>	'google.com',
 		'ForceAuthn'					=>	'false',
 		'NameIDFormat'					=>	'urn:oasis:names:tc:SAML:2.0:nameid-format:email',
 		

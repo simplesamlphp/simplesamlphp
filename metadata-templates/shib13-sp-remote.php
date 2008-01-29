@@ -12,22 +12,18 @@ $metadata = array(
 
 	'https://sp.shiblab.feide.no'	=> array(
 		'AssertionConsumerService'				=>	'http://sp.shiblab.feide.no/Shibboleth.sso/SAML/POST',
-		'spnamequalifier'	=>	'urn:feide.no',
 		'audience'			=>	'urn:mace:feide:shiblab'
 	),
 	'urn:geant:edugain:component:be:switchaai-test:central' => array(
 		'AssertionConsumerService'				=>	'https://edugain-login.switch.ch/ShiBE-R/WebSSOResponseListener',
-		'spnamequalifier'	=>	'urn:geant:edugain:component:be:rediris:rediris.es',
 		'audience'			=>	'urn:geant:edugain:component:be:switchaai-test:central'
 	),
 	'urn:geant:edugain:component:be:rediris:rediris.es' => array(
 		'AssertionConsumerService'				=>	'http://serrano.rediris.es:8080/PAPIWebSSOResponseListener/request',
-		'spnamequalifier'	=>	'urn:geant:edugain:component:be:rediris:rediris.es',
 		'audience'			=>	'urn:geant:edugain:component:be:rediris:rediris.es'
 	),
 	'https://skjak.uninett.no/shibboleth/target' => array(
 		'AssertionConsumerService'				=>	'https://skjak.uninett.no/Shibboleth.shire',
-		'spnamequalifier'	=>	'https://skjak.uninett.no/shibboleth/target',
 		'audience'			=>	'https://skjak.uninett.no/shibboleth/target'
 	)
 

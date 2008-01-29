@@ -66,7 +66,7 @@ try {
 		$metalist = $metadata->getList('saml20-sp-remote');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
-				array('entityid', 'spNameQualifier', 'AssertionConsumerService', 'SingleLogoutService', 'NameIDFormat'),
+				array('entityid', 'AssertionConsumerService', 'SingleLogoutService', 'NameIDFormat'),
 				array('base64attributes', 'attributemap', 'simplesaml.attributes', 'attributes', 'name', 'description','request.signing','certificate')
 			);
 		}
@@ -116,7 +116,7 @@ try {
 		$metalist = $metadata->getList('shib13-sp-remote');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
-				array('entityid', 'spNameQualifier', 'AssertionConsumerService', 'audience', 'NameIDFormat'),
+				array('entityid', 'AssertionConsumerService', 'audience', 'NameIDFormat'),
 				array('base64attributes', 'attributemap', 'simplesaml.attributes', 'attributes', 'name', 'description')
 			);
 		}

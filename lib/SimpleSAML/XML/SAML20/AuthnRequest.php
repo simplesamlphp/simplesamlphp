@@ -115,9 +115,9 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		//$assertionConsumerServiceURL = $md['AssertionConsumerService'];
 		$assertionConsumerServiceURL = $this->metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted');
 		
-		
-		$spNameQualifier = $md['spNameQualifier'];
 		$nameidformat = isset($md['NameIDFormat']) ? $md['NameIDFormat'] : 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+		
+		$forceauthn = isset($md['ForceAuthn']) ? $md['ForceAuthn'] : 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
 		
 		// TODO: Make an option in the metadata to allow adding a RequestedAuthnContext
 		$requestauthncontext = '<samlp:RequestedAuthnContext Comparison="exact">
@@ -127,7 +127,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		$authnRequest = '<samlp:AuthnRequest 
     xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
     ID="' . $id . '" Version="2.0"
-    IssueInstant="' . $issueInstant . '" 
+    IssueInstant="' . $issueInstant . '" ForceAuthn="' . $forceauthn . '"
     Destination="' . htmlspecialchars($destination) . '"
     ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
     AssertionConsumerServiceURL="' . htmlspecialchars($assertionConsumerServiceURL) . '">
