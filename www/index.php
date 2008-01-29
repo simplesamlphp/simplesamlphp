@@ -15,12 +15,17 @@ $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance(true);
 
 /* Check if valid local session exists.. */
-if (!isset($session) || !$session->isValid('login-admin') ) {
-	SimpleSAML_Utilities::redirect('/' . $config->getValue('baseurlpath') . 'auth/login-admin.php',
-		array('RelayState' => SimpleSAML_Utilities::selfURL())
-	);
-}
 
+
+
+
+if ($config->getValue('admin.protectindexpage', false)) {
+	if (!isset($session) || !$session->isValid('login-admin') ) {
+		SimpleSAML_Utilities::redirect('/' . $config->getValue('baseurlpath') . 'auth/login-admin.php',
+			array('RelayState' => SimpleSAML_Utilities::selfURL())
+		);
+	}
+}
 
 
 	

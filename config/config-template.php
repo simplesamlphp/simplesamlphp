@@ -54,7 +54,8 @@ $config = array (
 	 * This password will give access to the installation page of simpleSAMLphp with
 	 * metadata listing and diagnostics pages.
 	 */
-	'auth.adminpassword'	=> '123',
+	'auth.adminpassword'		=> '123',
+	'admin.protectindexpage'	=> false,
 	
 	/*
 	 * Enable

@@ -107,7 +107,7 @@ class SimpleSAML_Session {
 		 * null if not.
 		 */
 		if ($allowcreate) {
-			self::init('saml2');
+			self::init();
 			return self::$instance;
 		} else {
 			return null;
@@ -328,7 +328,6 @@ class SimpleSAML_Session {
 	 * Is the session representing an authenticated user, and is the session still alive.
 	 * This function will return false after the user has timed out.
 	 */
-
 	public function isValid($authority = null) {
 		if (!$this->isAuthenticated()) return false;
 		if (!empty($authority) && ($authority != $this->authority) ) return false;
