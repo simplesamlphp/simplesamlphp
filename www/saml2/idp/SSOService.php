@@ -148,7 +148,7 @@ $authority = isset($idpmeta['authority']) ? $idpmeta['authority'] : null;
  * endpoint - then the session is authenticated and set, and the user is redirected back with a RequestID
  * parameter so we can retrieve the cached information from the request.
  */
-if (!isset($session) || !$session->isValid($authority) ) {
+if (!isset($session) || !$session->isValid($authority) ) {
 
 	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'AuthNext', $idpmeta['auth'], 
 		'Will go to authentication module ' . $idpmeta['auth']);
