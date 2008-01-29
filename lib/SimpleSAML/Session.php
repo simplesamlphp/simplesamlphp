@@ -46,7 +46,6 @@ class SimpleSAML_Session {
 	private $idp = null;
 	
 	private $authenticated = null;
-	private $protocol = null;
 	private $attributes = null;
 	
 	private $sessionindex = null;
@@ -70,8 +69,6 @@ class SimpleSAML_Session {
 	 */
 	private function __construct($authenticated = true) {
 
-		$this->protocol = $protocol;
-		
 		$this->authenticated = $authenticated;
 		if ($authenticated) {
 			$this->sessionstarted = time();
@@ -349,13 +346,6 @@ class SimpleSAML_Session {
 	}
 	
 	
-	
-	
-	public function getProtocol() {
-		return $this->protocol;
-	}
-	
-	
 	// *** Attributes ***
 	
 	public function getAttributes() {
@@ -387,7 +377,6 @@ class SimpleSAML_Session {
 		$this->authority = null;
 	
 		$this->authenticated = null;
-		$this->protocol = null;
 		$this->attributes = null;
 	
 		$this->sessionindex = null;
