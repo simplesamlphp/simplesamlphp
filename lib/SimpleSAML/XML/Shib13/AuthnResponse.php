@@ -311,7 +311,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 				</Subject>';
 				
 			foreach ($attributes AS $name => $value) {
-				$encodedattributes .= $this->enc_attribute($name, $value[0], $base64);
+				$encodedattributes .= $this->enc_attribute($name, $value, $base64);
 			}
 			
 			$encodedattributes .= '</AttributeStatement>';
@@ -364,11 +364,14 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 
 
-	private function enc_attribute($name, $value, $base64 = false) {
-		return '<Attribute AttributeName="' . htmlspecialchars($name) . '"
-			AttributeNamespace="urn:mace:shibboleth:1.0:attributeNamespace:uri">
-		<AttributeValue>' . ($base64 ? base64_encode($value) : htmlspecialchars($value) ) . '</AttributeValue>
-	</Attribute>';
+	private function enc_attribute($name, $values, $base64 = false) {
+		$attr = '<Attribute AttributeName="' . htmlspecialchars($name) . '" AttributeNamespace="urn:mace:shibboleth:1.0:attributeNamespace:uri">';
+		foreach ($values AS $value) {
+			$attr .= '<AttributeValue>' . ($base64 ? base64_encode($value) : htmlspecialchars($value) ) . '</AttributeValue>';
+		}
+		$attr .= '</Attribute>';
+		
+		return $attr;
 	}	
 	
 }
