@@ -5,6 +5,7 @@ require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/AuthnResponse.php');
+require_once('SimpleSAML/XML/Validator.php');
 
 require_once('xmlseclibs.php');
  
@@ -25,8 +26,11 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	private $dom;
 	private $relayState = null;
 	
-	private $validIDs = null;
-	private $validNodes = null;
+	/**
+	 * This variable contains an XML validator for this message.
+	 */
+	private $validator = null;
+
 
 	const PROTOCOL = 'urn:oasis:names:tc:SAML:2.0';
 	const SHIB_PROTOCOL_NS = 'urn:oasis:names:tc:SAML:1.0:protocol';
@@ -46,102 +50,23 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	public function validate() {
 	
 		$dom = $this->getDOM();
-		
-		/* Create an XML security object, and register ID as the id attribute for sig references. */
-		$objXMLSecDSig = new XMLSecurityDSig();
-		$objXMLSecDSig->idKeys[] = 'ResponseID';
-		
-		/* Locate the signature element to be used. */
-		$objDSig = $objXMLSecDSig->locateSignature($dom);
-		
 
-		/* If no signature element was found, throw an error */
-		if (!$objDSig) {
-			throw new Exception("Could not locate XML Signature element in Authentication Response");
-		}
-		
-		
-		/* Get information about canoncalization in to the xmlsec library. Read from the siginfo part. */
-		$objXMLSecDSig->canonicalizeSignedInfo();
-		
-		$refids = $objXMLSecDSig->getRefIDs();
-		
-		
-		
-		/* Validate refrences */
-		$retVal = $objXMLSecDSig->validateReference();
-		if (! $retVal) {
-			throw new Exception("XMLsec: digest validation failed");
-		}
+		/* Validate the signature. */
+		$this->validator = new SimpleSAML_XML_Validator($dom, 'ResponseID');
 
-		$key = NULL;
-		$objKey = $objXMLSecDSig->locateKey();
-	
-		if ($objKey) {
-			if ($objKeyInfo = XMLSecEnc::staticLocateKeyInfo($objKey, $objDSig)) {
-				/* Handle any additional key processing such as encrypted keys here */
-			}
-		}
-	
-		if (empty($objKey)) {
-			throw new Exception("Error loading key to handle Signature");
-		}
+		// Get the issuer of the response.
+		$issuer = $this->getIssuer();
 
+		/* Get the metadata of the issuer. */
+		$md = $this->metadata->getMetaData($issuer, 'shib13-idp-remote');
 
-		/* Check certificate fingerprint. */
-		if ( ! $this->validateCertFingerprint($objKey) ) {
-			throw new Exception("Fingerprint Validation Failed");
-		}
+		/* Get fingerprint for the certificate of the issuer. */
+		$issuerFingerprint = $md['certFingerprint'];
 
-		if (! $objXMLSecDSig->verify($objKey)) {
-			throw new Exception("Unable to validate Signature");
-		}
-		
-		$this->validIDs = $refids;
-
-		$this->validNodes = $objXMLSecDSig->getValidatedNodes();
+		/* Validate the fingerprint. */
+		$this->validator->validateFingerprint($issuerFingerprint);
 
 		return true;
-	}
-	
-	
-	
-	
-	function validateCertFingerprint($objKey) {
-
-		/* Get the fingerprint. */
-		$fingerprint = $objKey->getX509Fingerprint();
-		if($fingerprint === NULL) {
-			throw new Exception('Key used to sign the message wasn\'t an X509 certificate.');
-		}
-	
-		// Get the issuer of the assertion.
-		$issuer = $this->getIssuer();
-		
-		//echo 'found issuer: ' . $this->getIssuer();
-		$md = $this->metadata->getMetaData($issuer, 'shib13-idp-remote');
-		
-		/*
-		 * Get fingerprint from saml20-idp-remote metadata...
-		 * 
-		 * Accept fingerprints with or without colons, case insensitive
-		 */
-		$issuerFingerprint = strtolower( str_replace(":", "", $md['certFingerprint']) );
-	
-		//echo 'issuer fingerprint: ' . $issuerFingerprint;
-		
-		if (empty($issuerFingerprint)) {
-			throw new Exception("Certificate finger print for entity ID [" . $issuer . "] in metadata was empty.");
-		}
-		if (empty($fingerprint)) {
-			throw new Exception("Certificate finger print in message was empty.");
-		}
-
-		if ($fingerprint != $issuerFingerprint) {
-			throw new Exception("Expecting certificate fingerprint [$issuerFingerprint] but got [$fingerprint]");
-		}
-	
-		return ($fingerprint == $issuerFingerprint);
 	}
 
 
@@ -152,7 +77,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	 */
 	private function isNodeValidated($node) {
 
-		if($this->validNodes === NULL) {
+		if($this->validator === NULL) {
 			return FALSE;
 		}
 
@@ -163,18 +88,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 		assert('$node instanceof DOMNode');
 
-		while($node !== NULL) {
-			if(in_array($node, $this->validNodes)) {
-				return TRUE;
-			}
-
-			$node = $node->parentNode;
-		}
-
-		/* Neither this node nor any of the parent nodes could be found in the list of
-		 * signed nodes.
-		 */
-		return FALSE;
+		return $this->validator->isNodeValidated($node);
 	}
 	
 	
