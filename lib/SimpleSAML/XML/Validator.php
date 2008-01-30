@@ -2,6 +2,10 @@
 
 /**
  * This class implements helper functions for XML validation.
+ *
+ * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
  */
 class SimpleSAML_XML_Validator {
 

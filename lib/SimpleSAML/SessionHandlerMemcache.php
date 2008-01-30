@@ -1,13 +1,5 @@
 <?php
 
-/*
- * This file is part of SimpleSAMLphp. See the file COPYING in the
- * root of the distribution for licence information.
- *
- * This file defines a session handler which uses the MemcacheStore
- * class to store data in memcache servers.
- */
-
 /* We use the MemcacheStore class to store session information. */
 require_once('SimpleSAML/MemcacheStore.php');
 
@@ -16,7 +8,17 @@ require_once('SimpleSAML/MemcacheStore.php');
  */
 require_once('SimpleSAML/SessionHandlerCookie.php');
 
-
+/**
+ * This file is part of SimpleSAMLphp. See the file COPYING in the
+ * root of the distribution for licence information.
+ *
+ * This file defines a session handler which uses the MemcacheStore
+ * class to store data in memcache servers.
+ *
+ * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
+ */
 class SimpleSAML_SessionHandlerMemcache
 extends SimpleSAML_SessionHandlerCookie {
 

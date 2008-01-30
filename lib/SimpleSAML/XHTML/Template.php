@@ -1,18 +1,13 @@
 <?php
 
-
-/**
- * simpleSAMLphp
- *
- * LICENSE: See the COPYING file included in this distribution.
- *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- */
- 
 require_once('SimpleSAML/Configuration.php');
  
 /**
- * Configuration of SimpleSAMLphp
+ * A minimalistic XHTML PHP based template system implemented for simpleSAMLphp.
+ *
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
  */
 class SimpleSAML_XHTML_Template {
 

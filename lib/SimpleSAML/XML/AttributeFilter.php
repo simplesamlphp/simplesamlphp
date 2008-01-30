@@ -1,19 +1,13 @@
 <?php
 
+require_once('SimpleSAML/Configuration.php');
 
 /**
- * SimpleSAMLphp
- *
- * LICENSE: See the COPYING file included in this distribution.
+ * AttributeFilter is a mapping between attribute names.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- */
-
-require_once('SimpleSAML/Configuration.php');
-//require_once('SimpleSAML/Utilities.php');
-
-/**
- * Configuration of SimpleSAMLphp
+ * @package simpleSAMLphp
+ * @version $Id$
  */
 class SimpleSAML_XML_AttributeFilter {
 

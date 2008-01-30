@@ -1,18 +1,20 @@
 <?php
 
-/*
+/* We need access to the configuration from config/config.php. */
+require_once('SimpleSAML/Configuration.php');
+
+/**
  * This file is part of SimpleSAMLphp. See the file COPYING in the
  * root of the distribution for licence information.
  *
  * This file defines a base class for session handling.
  * Instantiation of session handler objects should be done through
  * the class method getSessionHandler().
+ *
+ * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
  */
-
-/* We need access to the configuration from config/config.php. */
-require_once('SimpleSAML/Configuration.php');
-
-
 abstract class SimpleSAML_SessionHandler {
 
 

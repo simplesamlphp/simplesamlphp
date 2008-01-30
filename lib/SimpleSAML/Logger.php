@@ -1,18 +1,14 @@
 <?php
 
-/**
- * SimpleSAMLphp
- *
- * LICENSE: See the COPYING file included in this distribution.
- *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- */
-
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Session.php');
 
 /**
- * A logger class.
+ * A class for logging
+ *
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $ID$
  */
 class SimpleSAML_Logger {
 

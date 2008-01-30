@@ -1,18 +1,11 @@
 <?php
-
-
-/**
- * SimpleSAMLphp
- *
- * PHP versions 4 and 5
- *
- * LICENSE: See the COPYING file included in this distribution.
- *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- */
  
 /**
  * Configuration of SimpleSAMLphp
+ *
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
  */
 class SimpleSAML_Configuration {
 

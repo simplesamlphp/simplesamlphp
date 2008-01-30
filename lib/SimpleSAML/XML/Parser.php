@@ -1,18 +1,11 @@
 <?php
 
-/*
- * This file is part of simpleSAMLphp. See the file COPYING in the
- * root of the distribution for licence information.
- *
- * This file will help doing XPath queries in SAML 2 XML documents.
- */
-
-
 /**
- * Configuration of SimpleSAMLphp
+ * This file will help doing XPath queries in SAML 2 XML documents.
  *
- * This class should be extending SimpleXMLElement, but it is not because of some bugs:
- * http://bugs.php.net/bug.php?id=32188&edit=1
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
  */
 class SimpleSAML_XML_Parser  {
 

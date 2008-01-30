@@ -1,16 +1,5 @@
 <?php
 
-
-/**
- * SimpleSAMLphp
- *
- * PHP versions 4 and 5
- *
- * LICENSE: See the COPYING file included in this distribution.
- *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- */
- 
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 
@@ -19,7 +8,11 @@ require_once('SimpleSAML/XHTML/Template.php');
 
 
 /**
- * Configuration of SimpleSAMLphp
+ * Implementation of the SAML 2.0 HTTP-POST binding.
+ *
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
  */
 class SimpleSAML_Bindings_SAML20_HTTPPost {
 

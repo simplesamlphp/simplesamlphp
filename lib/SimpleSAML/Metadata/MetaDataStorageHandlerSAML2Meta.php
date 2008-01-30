@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of simpleSAMLphp. See the file COPYING in the
- * root of the distribution for licence information.
- *
- * This file defines a base class for metadata handling.
- * Instantiation of session handler objects should be done through
- * the class method getMetadataHandler().
- */
-
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/XML/Parser.php');
@@ -16,7 +7,13 @@ require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/Logger.php');
 
 /**
- * Configuration of SimpleSAMLphp
+ * This file defines a SAML 2.0 XML metadata handler.
+ * Instantiation of session handler objects should be done through
+ * the class method getMetadataHandler().
+ *
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
  */
 class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Metadata_MetaDataStorageHandler {
 

@@ -1,5 +1,8 @@
 <?
 
+/* We need access to the configuration from config/config.php. */
+require_once('SimpleSAML/Configuration.php');
+
 /*
  * This file is part of SimpleSAMLphp. See the file COPYING in the
  * root of the distribution for licence information.
@@ -15,12 +18,11 @@
  * For this code to work correctly, all web servers accessing the data must
  * have the same clock (as measured by the time()-function). Different clock
  * values will lead to incorrect behaviour.
+ *
+ * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
  */
-
-/* We need access to the configuration from config/config.php. */
-require_once('SimpleSAML/Configuration.php');
-
-
 class SimpleSAML_MemcacheStore {
 
 

@@ -1,19 +1,14 @@
 <?php
 
-
-/**
- * SimpleSAMLphp
- *
- * LICENSE: See the COPYING file included in this distribution.
- *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- */
- 
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
  
 /**
- * Configuration of SimpleSAMLphp
+ * Implementation of the SAML 2.0 LogoutRequest message.
+ *
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
  */
 class SimpleSAML_XML_SAML20_LogoutRequest {
 

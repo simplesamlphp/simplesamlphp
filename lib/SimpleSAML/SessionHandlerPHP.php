@@ -1,13 +1,16 @@
 <?php
 
-/*
+/**
  * This file is part of SimpleSAMLphp. See the file COPYING in the
  * root of the distribution for licence information.
  *
  * This file defines a session handler which uses the default php
  * session handler for storage.
+ *
+ * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
  */
-
 class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 
 	/* Initialize the PHP session handling. This constructor is protected
