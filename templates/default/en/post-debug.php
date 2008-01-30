@@ -1,9 +1,6 @@
 <?php $this->includeAtTemplateBase('includes/header.php'); ?>
 
-	<div id="header">
-		<h1>simpleSAMLphp authentication</h1>
-		<div id="poweredby"><img src="/<?php echo $data['baseurlpath']; ?>resources/icons/debug.png" alt="Debug" /></div>
-	</div>
+
 	
 	<div id="content">
 	

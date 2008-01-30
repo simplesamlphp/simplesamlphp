@@ -1,9 +1,5 @@
 <?php $this->includeAtTemplateBase('includes/header.php'); ?>
 
-	<div id="header">
-		<h1>SAML 2.0 IdP Discovery Service</h1>
-		<div id="poweredby"><img src="/<?php echo $data['baseurlpath']; ?>resources/icons/bino.png" alt="Bino" /></div>
-	</div>
 	
 	<div id="content">
 

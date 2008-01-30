@@ -15,10 +15,6 @@ $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance(true);
 
 /* Check if valid local session exists.. */
-
-
-
-
 if ($config->getValue('admin.protectindexpage', false)) {
 	if (!isset($session) || !$session->isValid('login-admin') ) {
 		SimpleSAML_Utilities::redirect('/' . $config->getValue('baseurlpath') . 'auth/login-admin.php',
@@ -49,10 +45,13 @@ if ($config->getValue('enable.shib13-sp') === true)
 if ($config->getValue('enable.openid-provider') === true)
 	$links[] = array('href' => 'openid/provider/server.php', 'text' => 'OpenID Provider site - Alpha version (test code)');
 
+$links[] = array('href' => 'example-simple/hostnames.php', 'text' => 'Diagnostics on hostname, port and protocol');
 
 $t = new SimpleSAML_XHTML_Template($config, 'frontpage.php');
 $t->data['header'] = 'simpleSAMLphp installation page';
+$t->data['icon'] = 'compass_l.png';
 $t->data['links'] = $links;
+
 $t->show();
 
 

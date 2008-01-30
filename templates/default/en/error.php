@@ -1,10 +1,6 @@
 <?php $this->includeAtTemplateBase('includes/header.php'); ?>
 
-	<div id="header">
-		<h1>simpleSAMLphp error page</h1>
-		<div id="poweredby"><img src="/<?php echo $data['baseurlpath']; ?>resources/icons/bomb_l.png" alt="Login screen" /></div>
-	</div>
-	
+
 	<div id="content">
 	
 

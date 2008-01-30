@@ -1,10 +1,6 @@
 <?php $this->includeAtTemplateBase('includes/header.php'); ?>
 
-	<div id="header">
-		<h1>User consent on attribute release</h1>
-		<div id="poweredby"><img src="/<?php echo $data['baseurlpath']; ?>resources/icons/bino.png" alt="Bino" /></div>
-	</div>
-	
+
 	<div id="content">
 
 		<p>You are about to login to the service <strong><?php echo htmlspecialchars($data['spentityid']); ?></strong>. In the login proccess, the identity provider will send attributes containing information about your identity to this service. Do you accept this?</p>

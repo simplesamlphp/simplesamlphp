@@ -1,10 +1,5 @@
 <?php $this->includeAtTemplateBase('includes/header.php'); ?>
 
-	<div id="header">
-		<h1>simpleSAMLphp Metadata</h1>
-		<div id="poweredby"><img src="/<?php echo $data['baseurlpath']; ?>resources/icons/bino.png" alt="Bino" /></div>
-	</div>
-	
 	<div id="content">
 
 		<h2><?php if (isset($data['header'])) { echo $data['header']; } else { echo "Some error occured"; } ?></h2>

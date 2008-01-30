@@ -1,18 +1,9 @@
 <?php $this->includeAtTemplateBase('includes/header.php'); ?>
 
-	<div id="header">
-		<h1>Metadata overview</h1>
-		<div id="poweredby"><img src="/<?php echo $data['baseurlpath']; ?>resources/icons/bino.png" alt="Bino" /></div>
-	</div>
 	
 	<div id="content">
 
-		<h2><?php if (isset($data['header'])) { echo $data['header']; } else { echo "Metadata overview"; } ?></h2>
-		
-		<p>Here is a list of metadata that is configured for your installation.</p>
-		
-		<p>[ <a href="../">Go back to installation main page</a> ]</p>
-		
+
 		<?php
 		
 		
@@ -31,32 +22,41 @@
 					echo '<p>' . htmlspecialchars($entity['optional.found']['description']) . '</p>';
 				}
 				
-				echo '<p>Required fields</p>';
-				echo '<table style="width: 100%; border: 1px solid #eee"><tr><th>Key</th><th>Value</th></tr>';
+				echo '<div style="margin-left: 1em">';
+				echo '<div class="efieldlist"><h5>Required fields<h5>';
+				echo '<dl>';
 				foreach ($entity['required.found'] AS $key => $value) {
-					echo '<tr><td>' . htmlspecialchars($key) . '</td><td>' . htmlspecialchars($value) . '</td></tr>';
+					echo '<dt>' . htmlspecialchars($key) . '</dt><dd>' . htmlspecialchars($value) . '</dd>';
 				}
-				echo '</table>';
+				echo '</dl>';
+
+
 	
 				if (count($entity['required.notfound']) > 0) {
-					echo '<p>The following required fields was not found:<ul>';
+					echo '</div><div class="efieldlist warning">';
+					echo '<h5>The following required fields was not found</h5><ul>';
 					foreach ($entity['required.notfound'] AS $key) {
 						echo '<li>' . htmlspecialchars($key) . '</li>';
 					}
 					echo '</ul>';				
 				}
+			
 				
 				if (count($entity['optional.found']) > 0) {
-					echo '<p>Optional fields</p>';
-					echo '<table><tr><th>Key</th><th>Value</th></tr>';
+					echo '</div><div class="efieldlist">';
+					echo '<h5>Optional fields</h5>';
+					echo '<dl>';
 					foreach ($entity['optional.found'] AS $key => $value) {
-						echo '<tr><td>' . htmlspecialchars($key) . '</td><td>' . htmlspecialchars($value) . '</td></tr>';
+						echo '<dt>' . htmlspecialchars($key) . '</dt><dd>' . htmlspecialchars($value) . '</dd>';
 					}
-					echo '</table>';
+					echo '</dl>';
 				}
+				
+				
 	
 				if (count($entity['optional.notfound']) > 0) {
-					echo '<p>The following optional fields was not found:<ul>';
+					echo '</div><div class="efieldlist info">';				
+					echo '<h5>The following optional fields was not found:</h5><ul>';
 					foreach ($entity['optional.notfound'] AS $key) {
 						echo '<li>' . htmlspecialchars($key) . '</li>';
 					}
@@ -64,13 +64,14 @@
 				}
 				
 				if (count($entity['leftovers']) > 0) {
-					echo '<p>The following fields was not reckognized:<ul>';
+					echo '</div><div class="efieldlist warning">';
+					echo '<h5>The following fields was not reckognized</h5><ul>';
 					foreach ($entity['leftovers'] AS $key => $value) {
 						echo '<li>' . htmlspecialchars($key) . '</li>';
 					}
 					echo '</ul>';				
 				}
-			
+				echo '</div></div>';
 			}
 		}
 		

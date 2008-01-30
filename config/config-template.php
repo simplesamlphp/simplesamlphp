@@ -34,6 +34,8 @@ $config = array (
 	 */
 	'debug'					=>	false,
 	
+	'version'				=>	'0.9',
+	
 	/*
 	 * Logging.
 	 * 
@@ -107,7 +109,6 @@ $config = array (
 	 * Options: [links,dropdown]
 	 * 
 	 */
-	#'idpdisco.layout' => 'dropdown',
 	'idpdisco.layout' => 'links',
 
 

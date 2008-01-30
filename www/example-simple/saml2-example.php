@@ -41,7 +41,7 @@ $et->data['remaining'] = $session->remainingTime();
 $et->data['sessionsize'] = $session->getSize();
 $et->data['attributes'] = $attributes;
 $et->data['valid'] = $session->isValid() ? 'Session is valid' : 'Session is invalid';
-
+	$et->data['icon'] = 'bino.png';
 $et->data['logout'] = '<p>[ <a href="/' . $config->getValue('baseurlpath') . 'saml2/sp/initSLO.php?RelayState=/' . 
 	$config->getValue('baseurlpath') . 'logout.html">Logout</a> ]';
 

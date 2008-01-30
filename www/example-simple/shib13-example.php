@@ -32,7 +32,7 @@ $et->data['remaining'] = $session->remainingTime();
 $et->data['attributes'] = $session->getAttributes();
 $et->data['valid'] = $session->isValid() ? 'Session is valid' : 'Session is invalid';
 $et->data['logout'] = 'Shibboleth logout not implemented yet.';
-
+	$et->data['icon'] = 'bino.png';
 $et->show();
 
 

@@ -1,9 +1,8 @@
-<?php $this->includeAtTemplateBase('includes/header.php'); ?>
+<?php 
+	if (!array_key_exists('icon', $this->data)) $this->data['icon'] = 'lock.png';
+	$this->includeAtTemplateBase('includes/header.php'); 
+?>
 
-	<div id="header">
-		<h1>simpleSAMLphp authentication</h1>
-		<div id="poweredby"><img src="/<?php echo $data['baseurlpath']; ?>resources/icons/lock.png" alt="Login screen" /></div>
-	</div>
 	
 	<div id="content">
 	

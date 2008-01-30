@@ -124,12 +124,8 @@ try {
 		
 	}
 
-
-
-
-	
-
 	$et->data['header'] = 'Metadata overview';
+	$et->data['icon'] = 'bino.png';
 
 	
 	$et->show();

@@ -7,6 +7,8 @@ require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
+require_once('xmlseclibs.php');
+
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
