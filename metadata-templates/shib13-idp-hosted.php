@@ -12,8 +12,6 @@ $metadata = array(
 		'issuer'						=>	'dev3.andreas.feide.no',
 		'host'							=>	'dev3.andreas.feide.no',
 		'audience'						=> 'urn:mace:feide:shiblab',
-
-		'base64'			=> false,
 		
 		// X.509 key and certificate. Relative to the cert directory.
 		'privatekey'		=>	'server.pem',

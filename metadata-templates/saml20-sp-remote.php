@@ -34,7 +34,7 @@ $metadata = array(
 		'base64attributes'	=>	false,
 		'simplesaml.attributes'			=>	true,
 		//'attributemap'				=>	'test',
-		//'attributes'					=>	array('mail')
+		//'attributes'					=>	array('mail'),
 		
 		
 		/*

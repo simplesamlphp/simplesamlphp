@@ -296,7 +296,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 		$shire = $spmd['shire'];
 		$audience = $spmd['audience'];
-		$base64 = $idpmd['base64'];
+		$base64 = $spmd['base64attributes'];
 		
 		$encodedattributes = '';
 		
