@@ -5,7 +5,6 @@ require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/SessionHandler.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
-require_once('SimpleSAML/XML/AuthnResponse.php');
 
 /**
  * The Session class holds information about a user session, and everything attached to it.

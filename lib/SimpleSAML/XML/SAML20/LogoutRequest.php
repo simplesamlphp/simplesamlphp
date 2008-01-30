@@ -130,36 +130,19 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
 		$issueInstant = self::generateIssueInstant();
 
 		$destination = $receivermd['SingleLogoutService'];
-
-/*
-		$spNameQualifier = $md['spNameQualifier'];
-		$nameidformat = isset($md['NameIDformat']) ? 
-			$md['NameIDformat'] : 
-			'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent';
-	*/	
-		$logoutRequest = "<samlp:LogoutRequest " .
-      "xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" " . 
-      "ID=\"" . $id . "\" " .
-      "Version=\"2.0\" " .
-      "Destination=\"" . htmlspecialchars($destination) . "\" " .
-      "IssueInstant=\"" . $issueInstant . "\"> " .
-        "<saml:Issuer " . 
-        "xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\">" .
-          htmlspecialchars($issuer) .
-        "</saml:Issuer>" .
-        "<saml:NameID " . 
-        "xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" " . 
-//        "NameQualifier=\"" . $nameId["NameQualifier"] . "\" " . 
-//        "SPNameQualifier=\"" . $nameId["SPNameQualifier"] . "\" " . 
-        "Format=\"" . htmlspecialchars($nameid['Format']) . "\">" .
-          htmlspecialchars($nameid['value']) .
-        "</saml:NameID>" . 
-        "<samlp:SessionIndex " .
-        "xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\">" . 
-          htmlspecialchars($sessionindex) .
-        "</samlp:SessionIndex>" .
-      "</samlp:LogoutRequest>";
-		  
+		
+		$logoutRequest = '<samlp:LogoutRequest 
+    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+    ID="' . $id . '" Version="2.0"
+    Destination="' . htmlspecialchars($destination) . '"
+    IssueInstant="' . $issueInstant . '">
+    <saml:Issuer >' . htmlspecialchars($issuer) . '</saml:Issuer>
+    <saml:NameID Format="' . htmlspecialchars($nameid['Format']) . '">' . htmlspecialchars($nameid['value']) . '</saml:NameID>
+    <samlp:SessionIndex>' . htmlspecialchars($sessionindex) . '</samlp:SessionIndex>
+</samlp:LogoutRequest>
+';
+		
 		return $logoutRequest;
 	}
 	
