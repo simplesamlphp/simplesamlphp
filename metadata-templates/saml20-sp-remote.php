@@ -28,10 +28,16 @@ $metadata = array(
 		'ForceAuthn'					=>	'false',
 		'NameIDFormat'					=>	'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
 		
+		/* If base64attributes is set to true, then all attributes will be base64 encoded. Make sure
+		 * that you set the SP to have the same value for this.
+		 */
+		'base64attributes'	=>	false,
 		'simplesaml.attributes'			=>	true,
-//		'attributemap'					=>	'test',
-//		'attributes'					=>	array('mail')
-		 /*
+		//'attributemap'				=>	'test',
+		//'attributes'					=>	array('mail')
+		
+		
+		/*
 		 * When request.signing is true the certificate of the sp 
 		 * will be used to verify all messages received with the HTTPRedirect binding.
 		 * 
@@ -39,7 +45,7 @@ $metadata = array(
 		 * before verification can be done.  
 		 */
 		'request.signing' => false,
-		'certificate' => "saml2sp.example.org.crt",
+		'certificate' => "saml2sp.example.org.crt"
 	),
 	
 	/*

@@ -19,11 +19,6 @@ $metadata = array(
 		'privatekey'		=>	'server.pem',
 		'certificate'		=>	'server.crt',
 		
-		/* If base64attributes is set to true, then all attributes will be base64 encoded. Make sure
-		 * that you set the SP to have the same value for this.
-		 */
-		'base64attributes'	=>	false,
-		
 		// Authentication plugin to use. login.php is the default one that uses LDAP.
 		'auth'				=>	'auth/login.php',
 		
