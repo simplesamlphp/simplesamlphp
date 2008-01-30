@@ -12,7 +12,7 @@ require_once('SimpleSAML/Utilities.php');
  * @package simpleSAMLphp
  * @version $Id$
  */ 
- class SimpleSAML_Metadata_MetaDataStorageHandler {
+abstract class SimpleSAML_Metadata_MetaDataStorageHandler {
 
 
 	protected $metadata = null;
