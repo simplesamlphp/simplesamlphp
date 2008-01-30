@@ -32,8 +32,8 @@ if (isset($session) ) {
 	try {
 		$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
 	
-		// ($issuer, $receiver, $nameid, $nameidformat, $sessionindex, $mode) {
-		$req = $lr->generate($spentityid, $idpentityid, $session->getNameID(), $session->getNameIDFormat(), $session->getSessionIndex(), 'SP');
+		// ($issuer, $receiver, $nameid, $sessionindex, $mode) {
+		$req = $lr->generate($spentityid, $idpentityid, $session->getNameID(), $session->getSessionIndex(), 'SP');
 		
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 		

@@ -110,7 +110,7 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
 	
 
 
-	public function generate($issuer, $receiver, $nameid, $nameidformat, $sessionindex, $mode) {
+	public function generate($issuer, $receiver, $nameid, $sessionindex, $mode) {
 	
 		if (!in_array($mode, array('SP', 'IdP'))) {
 			throw new Exception('mode parameter of generate() must be either SP or IdP');
@@ -151,8 +151,8 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
         "xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" " . 
 //        "NameQualifier=\"" . $nameId["NameQualifier"] . "\" " . 
 //        "SPNameQualifier=\"" . $nameId["SPNameQualifier"] . "\" " . 
-        "Format=\"" . htmlspecialchars($nameidformat) . "\">" .
-          htmlspecialchars($nameid) .
+        "Format=\"" . htmlspecialchars($nameid['Format']) . "\">" .
+          htmlspecialchars($nameid['value']) .
         "</saml:NameID>" . 
         "<samlp:SessionIndex " .
         "xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\">" . 

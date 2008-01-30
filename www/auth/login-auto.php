@@ -87,7 +87,11 @@ if($session == NULL) {
  * configuration.
  */
 $session->setAuthenticated(true, 'login-auto');
+
 $session->setAttributes($attributes);
+$session->setNameID(array(
+	'value' => SimpleSAML_Utilities::generateID(),
+	'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
 
 /* Return the user to the page set in the RelayState parameter. */
 $returnto = $_REQUEST['RelayState'];

@@ -57,8 +57,9 @@ if (isset($_POST['password'])) {
 		$session->setAuthenticated(true, 'login-admin');
 		$session->setAttributes($attributes);
 
-		$session->setNameID(SimpleSAML_Utilities::generateID());
-		$session->setNameIDFormat('urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
+		$session->setNameID(array(
+			'value' => SimpleSAML_Utilities::generateID(),
+			'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
 		
 		$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'admin', 'OK', $username, $username . ' successfully authenticated');
 		

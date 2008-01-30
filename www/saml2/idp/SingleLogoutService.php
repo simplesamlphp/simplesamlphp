@@ -170,7 +170,7 @@ if ($spentityid) {
 		$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
 
 		// ($issuer, $receiver, $nameid, $nameidformat, $sessionindex, $mode) {
-		$req = $lr->generate($idpentityid, $spentityid, $session->getNameID(), $session->getNameIDFormat(), $session->getSessionIndex(), 'IdP');
+		$req = $lr->generate($idpentityid, $spentityid, $session->getNameID(), $session->getSessionIndex(), 'IdP');
 
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 

@@ -138,28 +138,19 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 	public function createSession() {
 	
-
 		SimpleSAML_Session::init(true, 'saml2');
 		$session = SimpleSAML_Session::getInstance();
 		$session->setAttributes($this->getAttributes());
-		
-		
-		$nameid = $this->getNameID();
-		
-		$session->setNameID($nameid['NameID']);
-		$session->setNameIDFormat($nameid['Format']);
+			
+		$session->setNameID($this->getNameID());
 		$session->setSessionIndex($this->getSessionIndex());
 		$session->setIdP($this->getIssuer());
-		/*
-		$nameID["NameID"] = $node->nodeValue;
 		
-				$nameID["NameQualifier"] = $node->getAttribute('NameQualifier');
-				$nameID["SPNameQualifier"] = $node->getAttribute('SPNameQualifier');
-		*/
 		return $session;
 	}
 	
-	//TODO
+	
+	// TODO: Not tested, but neigther is it used.
 	function getSessionIndex() {
 		$token = $this->getDOM();
 		if ($token instanceof DOMDocument) {
@@ -307,13 +298,12 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			$nodelist = $xPath->query($query);
 			if ($node = $nodelist->item(0)) {
 
-				$nameID["NameID"] = $node->nodeValue;
+				$nameID["value"] = $node->nodeValue;
 				//$nameID["NameQualifier"] = $node->getAttribute('NameQualifier');
 				//$nameID["SPNameQualifier"] = $node->getAttribute('SPNameQualifier');
 				$nameID["Format"] = $node->getAttribute('Format');
 			}
 		}
-		//echo '<pre>'; print_r($nameID); echo '</pre>';
 		return $nameID;
 	}
 
@@ -347,14 +337,32 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	}		
 			
 
-	// Not updated for response. from request.
+	/**
+	 * This function generates an AuthenticationResponse
+	 *
+	 *  @param $idpentityid   entityid of IdP
+	 *  @param $spentityid    entityid of SP
+	 *  @param $inresponseto  the ID of the request, that these message is an response to.
+	 *  @param $nameid        the NameID of the user (an array)
+	 *  @param $attributes    A two level array of multivalued attributes, where the first level
+	 *   index is the attribute name.
+	 *
+	 *  @return AuthenticationResponse as string
+	 */
 	public function generate($idpentityid, $spentityid, $inresponseto, $nameid, $attributes) {
-	
-		//echo 'idp:' . $idpentityid . ' sp:' . $spentityid .' inresponseto:' .  $inresponseto . ' namid:' . $nameid;
-	
+		
+		/**
+		 * Retrieving metadata for the two specific entity IDs.
+		 */
 		$idpmd 	= $this->metadata->getMetaData($idpentityid, 'saml20-idp-hosted');
 		$spmd 	= $this->metadata->getMetaData($spentityid, 'saml20-sp-remote');
 		
+		$issuer = $idpentityid;
+		$destination = $spmd['AssertionConsumerService'];
+		
+		/**
+		 * Generating IDs and timestamps.
+		 */
 		$id = self::generateID();
 		$issueInstant = self::generateIssueInstant();
 		$assertionExpire = self::generateIssueInstant(60 * 5); # 5 minutes
@@ -362,32 +370,34 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		
 		$assertionid = self::generateID();
 		$sessionindex = self::generateID();
-		
 
-		$issuer = $idpentityid;
-
-		$assertionConsumerServiceURL = $spmd['AssertionConsumerService'];
 		
-		$destination = $spmd['AssertionConsumerService'];
-		
+		/**
+		 * Handling attributes.
+		 */
 		$base64 = isset($spmd['base64attributes']) ? $spmd['base64attributes'] : false;
-		
 		$encodedattributes = '';
 		foreach ($attributes AS $name => $values) {
 			$encodedattributes .= self::enc_attribute($name, $values, $base64);
 		}
 		$attributestatement = '<saml:AttributeStatement>' . $encodedattributes . '</saml:AttributeStatement>';
-		
 		if (!$spmd['simplesaml.attributes']) 
 			$attributestatement = '';
 		
-		$namid = null;
+		
+		/**
+		 * Handling NameID
+		 */
+		$nameid = null;
 		if ($spmd['NameIDFormat'] == self::EMAIL) {
 			$nameid = $this->generateNameID($spmd['NameIDFormat'], $attributes[$spmd['simplesaml.nameidattribute']][0]);
 		} else {
 			$nameid = $this->generateNameID($spmd['NameIDFormat'], self::generateID());
 		}
 		
+		/**
+		 * Generating the response.
+		 */
 		$authnResponse = '<samlp:Response 
 			xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" 
 			xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" 
@@ -427,11 +437,6 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 </samlp:Response>
 ';
 
-
-//echo $authnResponse;
-
-
-		//  echo $authnResponse; exit(0);
 		return $authnResponse;
 	}
 

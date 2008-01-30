@@ -50,7 +50,6 @@ class SimpleSAML_Session {
 	
 	private $sessionindex = null;
 	private $nameid = null;
-	private $nameidformat = null;
 	
 	private $sp_at_idpsessions = array();
 	
@@ -295,13 +294,6 @@ class SimpleSAML_Session {
 	public function getNameID() {
 		return $this->nameid;
 	}
-	public function setNameIDformat($nameidformat) {
-		$this->dirty = true;
-		$this->nameidformat = $nameidformat;
-	}
-	public function getNameIDformat() {
-		return $this->nameidformat;
-	}
 
 	public function setAuthenticated($auth, $authority = null) {
 		if ($auth === false) $this->dirty = false;
@@ -381,7 +373,6 @@ class SimpleSAML_Session {
 	
 		$this->sessionindex = null;
 		$this->nameid = null;
-		$this->nameidformat = null;
 	
 		$this->sp_at_idpsessions = array();	
 	}

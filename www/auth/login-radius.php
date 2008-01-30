@@ -79,7 +79,11 @@ if (isset($_POST['username'])) {
 				$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'radius', 'OK', $_POST['username'], $_POST['username'] . ' successfully authenticated');
 				
 				$session->setAuthenticated(true, 'login-radius');
+				
 				$session->setAttributes($attributes);
+				$session->setNameID(array(
+					'value' => SimpleSAML_Utilities::generateID(),
+					'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
 
 				$returnto = $_REQUEST['RelayState'];
 				SimpleSAML_Utilities::redirect($returnto);

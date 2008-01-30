@@ -15,7 +15,6 @@ require_once('xmlseclibs.php');
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
- * @abstract
  */
 class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
@@ -100,8 +99,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		
 		$nameid = $this->getNameID();
 		
-		$session->setNameID($nameid['NameID']);
-		$session->setNameIDFormat($nameid['Format']);
+		$session->setNameID($nameid);
 		$session->setSessionIndex($this->getSessionIndex());
 		/*
 		$nameID["NameID"] = $node->nodeValue;
@@ -254,8 +252,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	}
 	
 	public function getNameID() {
-		
-		
+				
 		$token = $this->getDOM();
 		$nameID = array();
 		if ($token instanceof DOMDocument) {
@@ -266,9 +263,9 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			$query = '/mysamlp:Response/mysaml:Assertion/mysaml:AuthenticationStatement/mysaml:Subject/mysaml:NameIdentifier';
 			$nodelist = $xPath->query($query);
 			if ($node = $nodelist->item(0)) {
-				$nameID["NameID"] = $node->nodeValue;
+				$nameID["value"] = $node->nodeValue;
 				$nameID["Format"] = $node->getAttribute('Format');
-				$nameID["NameQualifier"] = $node->getAttribute('NameQualifier');
+				//$nameID["NameQualifier"] = $node->getAttribute('NameQualifier');
 			}
 		}
 		return $nameID;
