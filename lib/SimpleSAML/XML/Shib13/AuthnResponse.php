@@ -18,20 +18,12 @@ require_once('xmlseclibs.php');
  */
 class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
-	private $configuration = null;
-	private $metadata = 'default.php';
-	
-	private $message = null;
-	private $dom;
-	private $relayState = null;
-	
 	/**
 	 * This variable contains an XML validator for this message.
 	 */
 	private $validator = null;
 
 
-	const PROTOCOL = 'urn:oasis:names:tc:SAML:2.0';
 	const SHIB_PROTOCOL_NS = 'urn:oasis:names:tc:SAML:1.0:protocol';
 	const SHIB_ASSERT_NS = 'urn:oasis:names:tc:SAML:1.0:assertion';
 
