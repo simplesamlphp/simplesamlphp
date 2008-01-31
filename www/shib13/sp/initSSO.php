@@ -30,12 +30,7 @@ try {
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID('shib13-sp-hosted');
 
 } catch (Exception $exception) {
-
-	$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-	$et->data['message'] = 'Error loading SAML 2.0 metadata';	
-	$et->data['e'] = $exception;	
-	$et->show();
-	exit(0);
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
 }
 
 
@@ -61,15 +56,8 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 		$url = $ar->createRedirect($idpentityid);
 		SimpleSAML_Utilities::redirect($url);
 	
-	} catch(Exception $exception) {
-		
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-
-		$et->data['message'] = 'Some error occured when trying to issue the authentication request to the IdP.';	
-		$et->data['e'] = $exception;
-		
-		$et->show();
-
+	} catch(Exception $exception) {		
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CREATEREQUEST', $exception);
 	}
 
 } else {
@@ -80,14 +68,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 	if (isset($relaystate) && !empty($relaystate)) {
 		SimpleSAML_Utilities::redirect($relaystate);
 	} else {
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-
-		$et->data['message'] = 'Could not get relay state, do not know where to send the user.';	
-		$et->data['e'] = new Exception();
-		
-		$et->show();
-
-	
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
 	}
 
 }

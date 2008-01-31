@@ -16,7 +16,7 @@ if(array_key_exists('header', $data)) {
 <body>
 
 <div id="wrap">
-
+	
 	<div id="header">
 		<h1><a style="text-decoration: none; color: white" href="/<?php echo $data['baseurlpath']; ?>"><?php 
 			echo (isset($data['header']) ? $data['header'] : 'simpleSAMLphp'); 

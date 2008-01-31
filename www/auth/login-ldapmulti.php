@@ -23,79 +23,91 @@ $logger->log(LOG_INFO, $session->getTrackID(), 'AUTH', 'ldap-multi', 'EVENT', 'A
 
 $error = null;
 $attributes = array();
-	
+
+/* Load the RelayState argument. The RelayState argument contains the address
+ * we should redirect the user to after a successful authentication.
+ */
+if (!array_key_exists('RelayState', $_REQUEST)) {
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+}
+
 if (isset($_POST['username'])) {
 
-	$ldapconfig = $ldapmulti[$_POST['org']];
+	try {
 	
-	
-
-	$dn = str_replace('%username%', $_POST['username'], $ldapconfig['dnpattern'] );
-	$pwd = $_POST['password'];
-
-	$ds = ldap_connect($ldapconfig['hostname']);
-	
-	if ($ds) {
-	
-		if (!ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3)) {
+		$ldapconfig = $ldapmulti[$_POST['org']];
 		
-			$logger->log(LOG_CRIT, $session->getTrackID(), 'AUTH', 'ldap-multi', 'LDAP_OPT_PROTOCOL_VERSION', '3', 'Error setting LDAP prot version to 3');
-			
-			echo "Failed to set LDAP Protocol version to 3";
-			exit;
-		}
-		/*
-		if (!ldap_start_tls($ds)) {
-		echo "Failed to start TLS";
-		exit;
-		}
-		*/
-		if (!ldap_bind($ds, $dn, $pwd)) {
-			$error = 'Bind failed, wrong username or password.' .
-				' Tried with DN=[' . $dn . '] DNPattern=[' .
-				$ldapconfig['dnpattern'] . '] Error=[' .
-				ldap_error($ds) . "] ErrNo=[" .
-				ldap_errno($ds) . "]";
-
-			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-multi', 'Fail', $_POST['username'], $_POST['username'] . ' failed to authenticate');
-			
-		} else {
-			$sr = ldap_read($ds, $dn, $ldapconfig['attributes'] );
-			$ldapentries = ldap_get_entries($ds, $sr);
-			
-
-			for ($i = 0; $i < $ldapentries[0]['count']; $i++) {
-				$values = array();
-				if ($ldapentries[0][$i] == 'jpegphoto') continue;
-				for ($j = 0; $j < $ldapentries[0][$ldapentries[0][$i]]['count']; $j++) {
-					$values[] = $ldapentries[0][$ldapentries[0][$i]][$j];
-				}
-				
-				$attributes[$ldapentries[0][$i]] = $values;
-			}
-
-			// generelt ldap_next_entry for flere, men bare ett her
-			//print_r($ldapentries);
-			//print_r($attributes);
-			
-			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-multi', 'OK', $_POST['username'], $_POST['username'] . ' successfully authenticated');
-			
-			
-			$session->setAuthenticated(true, 'login-ldapmulti');
-			$session->setAttributes($attributes);
-			
-			$session->setNameID(array(
-				'value' => SimpleSAML_Utilities::generateID(),
-				'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
-			
-			$returnto = $_REQUEST['RelayState'];
-			SimpleSAML_Utilities::redirect($returnto);
-
-		}
-	// ldap_close() om du vil, men frigjoeres naar skriptet slutter
-	}
-
+		
 	
+		$dn = str_replace('%username%', $_POST['username'], $ldapconfig['dnpattern'] );
+		$pwd = $_POST['password'];
+	
+		$ds = ldap_connect($ldapconfig['hostname']);
+		
+		if ($ds) {
+		
+			if (!ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3)) {
+			
+				$logger->log(LOG_CRIT, $session->getTrackID(), 'AUTH', 'ldap-multi', 'LDAP_OPT_PROTOCOL_VERSION', '3', 'Error setting LDAP prot version to 3');
+				
+				$error = "Failed to set LDAP Protocol version to 3";
+			}
+			/*
+			if (!ldap_start_tls($ds)) {
+			echo "Failed to start TLS";
+			exit;
+			}
+			*/
+			if (!ldap_bind($ds, $dn, $pwd)) {
+				$error = 'Bind failed, wrong username or password.' .
+					' Tried with DN=[' . $dn . '] DNPattern=[' .
+					$ldapconfig['dnpattern'] . '] Error=[' .
+					ldap_error($ds) . "] ErrNo=[" .
+					ldap_errno($ds) . "]";
+	
+				$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-multi', 'Fail', $_POST['username'], $_POST['username'] . ' failed to authenticate');
+				
+			} else {
+				$sr = ldap_read($ds, $dn, $ldapconfig['attributes'] );
+				$ldapentries = ldap_get_entries($ds, $sr);
+				
+	
+				for ($i = 0; $i < $ldapentries[0]['count']; $i++) {
+					$values = array();
+					if ($ldapentries[0][$i] == 'jpegphoto') continue;
+					for ($j = 0; $j < $ldapentries[0][$ldapentries[0][$i]]['count']; $j++) {
+						$values[] = $ldapentries[0][$ldapentries[0][$i]][$j];
+					}
+					
+					$attributes[$ldapentries[0][$i]] = $values;
+				}
+	
+				// generelt ldap_next_entry for flere, men bare ett her
+				//print_r($ldapentries);
+				//print_r($attributes);
+				
+				$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-multi', 'OK', $_POST['username'], $_POST['username'] . ' successfully authenticated');
+				
+				
+				$session->setAuthenticated(true, 'login-ldapmulti');
+				$session->setAttributes($attributes);
+				
+				$session->setNameID(array(
+					'value' => SimpleSAML_Utilities::generateID(),
+					'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
+				
+				$returnto = $_REQUEST['RelayState'];
+				SimpleSAML_Utilities::redirect($returnto);
+	
+			}
+		// ldap_close() om du vil, men frigjoeres naar skriptet slutter
+		}
+
+	} catch (Exception $e) {
+		
+		$error = $e->getMessage();
+		
+	}	
 }
 
 

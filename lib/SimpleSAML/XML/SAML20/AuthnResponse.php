@@ -13,6 +13,7 @@ require_once('xmlseclibs.php');
  * An SAML 2.0 Authentication Response
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Olav Morken, UNINETT AS
  * @package simpleSAMLphp
  * @version $Id$
  */

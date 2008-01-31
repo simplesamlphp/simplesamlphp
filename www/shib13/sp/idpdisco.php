@@ -25,12 +25,7 @@ try {
 	$returnidparam = $_GET['returnIDParam'];
 	
 } catch (Exception $exception) {
-
-	$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-	$et->data['message'] = 'Error getting required parameters for IdP Discovery Service';	
-	$et->data['e'] = $exception;	
-	$et->show();
-	exit(0);
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'DISCOPARAMS', $exception);
 }
 
 
@@ -44,8 +39,11 @@ if (isset($_GET['idpentityid'])) {
 	
 }
 
-
-$idplist = $metadata->getList('shib13-idp-remote');
+try {
+	$idplist = $metadata->getList('shib13-idp-remote');
+} catch (Exception $exception) {
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
+}
 
 if ($config->getValue('idpdisco.layout') == 'dropdown') {
 	$t = new SimpleSAML_XHTML_Template($config, 'selectidp-dropdown.php');

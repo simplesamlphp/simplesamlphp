@@ -29,8 +29,12 @@ $session = SimpleSAML_Session::getInstance(true);
 
 $logger = new SimpleSAML_Logger();
 
-$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-$idpmeta = $metadata->getMetaDataCurrent('saml20-idp-hosted');
+try {
+	$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+	$idpmeta = $metadata->getMetaDataCurrent('saml20-idp-hosted');
+} catch (Exception $exception) {
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
+}
 
 $requestid = null;
 
@@ -75,15 +79,7 @@ if (isset($_GET['SAMLRequest'])) {
 			'Incomming Authentication request');
 	
 	} catch(Exception $exception) {
-		
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-		
-		$et->data['header'] = 'Error getting incomming request';
-		$et->data['message'] = 'Something bad happened when simpleSAML got the incomming authentication request';	
-		$et->data['e'] = $exception;
-		
-		$et->show();
-		exit(0);
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
 	}
 
 /*
@@ -108,31 +104,12 @@ if (isset($_GET['SAMLRequest'])) {
 		if (!$requestcache) throw new Exception('Could not retrieve cached RequestID = ' . $requestid);
 		
 	} catch(Exception $exception) {
-		
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-		
-		$et->data['header'] = 'Error retrieving authnrequest cache';
-		$et->data['message'] = 'simpleSAML cannot find the authnrequest that it earlier stored.';	
-		$et->data['e'] = $exception;
-		
-		$et->show();
-		exit(0);
-
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CACHEAUTHNREQUEST', $exception);
 	}
 	
 
 } else {
-	/*
-	 * We did neither get a request or a requestID as a parameter. Then throw an error.
-	 */
-	$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-	
-	$et->data['header'] = 'No parameters found';
-	$et->data['message'] = 'You must either provide a SAML Request message or a RequestID on this interface.';	
-	$et->data['e'] = $exception;
-	
-	$et->show();
-	exit(0);
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SSOSERVICEPARAMS');
 }
 
 
@@ -231,14 +208,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		);
 		
 	} catch(Exception $exception) {
-		
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-		
-		$et->data['header'] = 'Error sending response to service';
-		$et->data['message'] = 'Some error occured when trying to issue the authentication response, and send it back to the SP.';	
-		$et->data['e'] = $exception;
-		
-		$et->show();
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
 	}
 	
 }

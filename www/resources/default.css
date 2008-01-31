@@ -76,3 +76,18 @@ dl dd {
 	color: #200;
 	margin: .3em;
 }
+
+.trackidtext {
+	border: 1px dashed #aaa;
+	background: #eaeaea;
+	padding: .6em;
+	margin: .4em;
+}
+.trackidtext .trackid {
+	border: 1px solid #ccc;
+	background: #eee;
+	margin: .4em;
+	padding: .4em;
+	font-family: monospace;
+	font-size: large;
+}

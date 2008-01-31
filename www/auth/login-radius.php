@@ -17,7 +17,14 @@ $logger->log(LOG_INFO, $session->getTrackID(), 'AUTH', 'radius', 'EVENT', 'Acces
 
 $error = null;
 $attributes = array();
-	
+
+/* Load the RelayState argument. The RelayState argument contains the address
+ * we should redirect the user to after a successful authentication.
+ */
+if (!array_key_exists('RelayState', $_REQUEST)) {
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+}
+
 if (isset($_POST['username'])) {
 
 

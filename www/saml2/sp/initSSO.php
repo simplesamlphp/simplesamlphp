@@ -17,17 +17,17 @@ $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance(true);
 
-$logger = new SimpleSAML_Logger();
 
-
-/*
+/**
  * Incomming URL parameters
  *
- * idpentityid 		The entityid of the wanted IdP to authenticate with. If not provided will use default.
- * spentityid		The entityid of the SP config to use. If not provided will use default to host.
+ * idpentityid 	optional	The entityid of the wanted IdP to authenticate with. If not provided will use default.
+ * spentityid	optional	The entityid of the SP config to use. If not provided will use default to host.
+ * RelayState	required	Where to send the user back to after authentication.
  * 
  */		
 
+$logger = new SimpleSAML_Logger();
 $logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'EVENT', 'Access', 
 	'Accessing SAML 2.0 SP initSSO script');
 
@@ -38,12 +38,7 @@ try {
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 
 } catch (Exception $exception) {
-
-	$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-	$et->data['message'] = 'Error loading SAML 2.0 metadata';	
-	$et->data['e'] = $exception;	
-	$et->show();
-	exit(0);
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
 }
 
 if (!isset($session) || !$session->isValid('saml2') ) {
@@ -76,20 +71,13 @@ if (!isset($session) || !$session->isValid('saml2') ) {
 		}
 		
 		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'AuthnRequest', $idpentityid, 
-			'SP (' . $spentityid . ') is sending authenticatino request to IdP (' . $idpentityid . ')');
+			'SP (' . $spentityid . ') is sending authentication request to IdP (' . $idpentityid . ')');
 		
 		$httpredirect->sendMessage($req, $spentityid, $idpentityid, $relayState);
 
 	
-	} catch(Exception $exception) {
-		
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-
-		$et->data['message'] = 'Some error occured when trying to issue the authentication request to the IdP.';	
-		$et->data['e'] = $exception;
-		
-		$et->show();
-		exit(0);
+	} catch(Exception $exception) {		
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CREATEREQUEST', $exception);
 	}
 
 } else {
@@ -104,14 +92,7 @@ if (!isset($session) || !$session->isValid('saml2') ) {
 	
 		SimpleSAML_Utilities::redirect($relaystate);
 	} else {
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-
-		$et->data['message'] = 'Could not get relay state, do not know where to send the user.';	
-		$et->data['e'] = new Exception();
-		
-		$et->show();
-
-	
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
 	}
 
 }

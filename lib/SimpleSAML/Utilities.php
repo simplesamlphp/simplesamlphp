@@ -2,6 +2,7 @@
 
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/XHTML/Template.php');
+require_once('SimpleSAML/Logger.php');
 
 /**
  * Misc static functions that is used several places.in example parsing and id generation.
@@ -268,22 +269,46 @@ class SimpleSAML_Utilities {
 	}
 
 
-	/* This function logs a error message to the error log and shows the
+	/** 
+	 * This function logs a error message to the error log and shows the
 	 * message to the user. Script execution terminates afterwards.
 	 *
-	 * Parameters:
-	 *  $title       Short title for the error message.
-	 *  $message     The error message.
+	 *  @param $title       Short title for the error message.
+	 *  @param $message     The error message.
 	 */
-	public static function fatalError($title, $message) {
-		error_log($title . ': ' . $message);
-
+	public static function fatalError($trackid = 'na', $errorcode = null, Exception $e = null, $level = LOG_ERR) {
+	
 		$config = SimpleSAML_Configuration::getInstance();
-		$t = new SimpleSAML_XHTML_Template($config, 'error.php');
-		$t->data['header'] = $title;
-		$t->data['message'] = $message;
+		
+		// Get the exception message if there is any exception provided.
+		$emsg   = (empty($e) ? 'No exception available' : $e->getMessage());
+		$etrace = (empty($e) ? 'No exception available' : $e->getTraceAsString()); 
+		
+		// Log a error message
+		$logger = new SimpleSAML_Logger();
+		$logger->log($level, $trackid, $_SERVER['PHP_SELF'], '-', 'UserError', (!empty($errorcode) ? $errorcode : 'na'), 
+			urlencode($emsg) );
+		
+		$languagefile = null;
+		if (isset($errorcode)) $languagefile = 'error_' . $errorcode . '.php';
+		
+		// Initialize a template
+		$t = new SimpleSAML_XHTML_Template($config, 'error.php', $languagefile);
+		
+		
+		$t->data['showerrors'] = $config->getValue('showerrors', true);
+		$t->data['errorreportaddress'] = $config->getValue('errorreportaddress', null); 
+		
+		$t->data['exceptionmsg'] = $emsg;
+		$t->data['exceptiontrace'] = $etrace;
+		
+		$t->data['trackid'] = $trackid;
+		
+		$t->data['version'] = $config->getValue('version', 'na');
+		$t->data['email'] = $config->getValue('technicalcontact_email', 'na');
+		
 		$t->show();
-
+		
 		exit;
 	}
 

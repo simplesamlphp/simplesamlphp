@@ -41,29 +41,21 @@ try {
 
 	$binding = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
 	$authnResponse = $binding->decodeResponse($_POST);
-
+	
 	$authnResponse->process();
 
-	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.AssertionConsumerService', 'AuthnResponse', '-',
-		     'Successfully created local session from Authentication Response');
-	
+	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.AssertionConsumerService', 'AuthnResponse', '-', 
+		'Successfully created local session from Authentication Response');
+
 	$relayState = $authnResponse->getRelayState();
 	if (isset($relayState)) {
 		SimpleSAML_Utilities::redirect($relayState);
 	} else {
-		throw new Exception('Could not find RelayState parameter, you are stuck here.');
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
 	}
 
 } catch(Exception $exception) {
-
-	$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-
-	$et->data['header'] = 'Error receiving response from IdP';
-	$et->data['message'] = 'Some error occured when trying to issue the authentication request to the IdP.';	
-	$et->data['e'] = $exception;
-	
-	$et->show();
-
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSASSERTION', $exception);
 }
 
 

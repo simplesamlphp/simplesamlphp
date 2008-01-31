@@ -33,24 +33,12 @@ $delay_login = (int)$config->getValue('auth.auto.delay_login');
 
 /* Verify that this authentication handler is enabled. */
 if(!$enable) {
-	SimpleSAML_Utilities::fatalError(
-		'login-auto not enabled',
-		'You attempted to use the login-auto authentication handler,' .
-		' but this handler isn\'t enabled in the configuration. If' .
-		' you want to enable this authentication handler, set' .
-		' \'auth.auto.enable\' to true.'
-		);
+	throw new Exception('login-auto not enabled: You attempted to use the login-auto authentication handler, but this handler isn\'t enabled in the configuration. If you want to enable this authentication handler, set \'auth.auto.enable\' to true.');
 }
 
 /* Verify that the 'auth.auto.attributes' option is configured. */
 if(!is_array($attributes)) {
-	SimpleSAML_Utilities::fatalError(
-		'login-auto not configured',
-		'The login-auto authentication handler is enabled, but no' .
-		' attributes are configured. Please set' .
-		' \'auth.auto.attributes\' to the attributes you want to' .
-		' give users.'
-		);
+	throw new Exception('login-auto not configured: The login-auto authentication handler is enabled, but no attributes are configured. Please set \'auth.auto.attributes\' to the attributes you want to give users.');
 }
 
 
@@ -75,12 +63,9 @@ usleep($delay_login * 1000);
 
 
 /* Load the session of the current user. */
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getInstance(true);
 if($session == NULL) {
-	SimpleSAML_Utilities::fatalError(
-		'Missing session',
-		'No session was found. Are cookies disabled?'
-		);
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOSESSION');
 }
 
 /* Set the user as authenticated and add the attributes from the

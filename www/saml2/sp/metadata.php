@@ -10,7 +10,24 @@ require_once('SimpleSAML/XHTML/Template.php');
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getInstance(TRUE);
+
+
+/**
+ * Preconfigured to help out some federations. This makes it easier for users to report metadata
+ * to the administrators of the IdP.
+ */
+$send_metadata_to_idp = array(
+	'sam.feide.no'	=> array(
+		'name' 		=> 'Feide',
+		'address'	=> 'http://rnd.feide.no/content/sending-information-simplesamlphp'
+	),
+	'max.feide.no'	=> array(
+		'name' 		=> 'Feide',
+		'address'	=> 'http://rnd.feide.no/content/sending-information-simplesamlphp'
+	)
+);
+
 
 try {
 
@@ -53,6 +70,12 @@ try {
 
 	$et->data['header'] = 'SAML 2.0 SP Metadata';
 	$et->data['metadata'] = htmlentities($metaxml);
+	
+	if (array_key_exists($defaultidp, $send_metadata_to_idp)) {
+		$et->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];
+		$et->data['federationname'] = $send_metadata_to_idp[$defaultidp]['name'];
+	}
+	
 	$et->data['feide'] = in_array($defaultidp, array('sam.feide.no', 'max.feide.no'));
 	$et->data['defaultidp'] = $defaultidp;
 	

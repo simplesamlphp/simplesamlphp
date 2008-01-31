@@ -13,28 +13,19 @@ require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
 
 require_once('SimpleSAML/XHTML/Template.php');
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = SimpleSAML_Configuration::getInstance(true);
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 // Get the local session
 $session = SimpleSAML_Session::getInstance();
 
-/* Get the tracking id for this session if we have a valid session. Use an
- * empty string if we don't have a valid session.
- */
-if($session !== NULL) {
-	$trackId = $session->getTrackId();
-} else {
-	$trackId = '';
-}
 
 $logger = new SimpleSAML_Logger();
-
-$logger->log(LOG_INFO, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'EVENT', 'Access',
+$logger->log(LOG_INFO, $session->getTrackId(), 'SAML2.0', 'SP.SingleLogoutService', 'EVENT', 'Access',
 	'Accessing SAML 2.0 SP endpoint SingleLogoutService');
 
 // Destroy local session if exists.
-if (isset($session) && $session->isAuthenticated() ) {
+if (isset($session) ) {
 	$session->setAuthenticated(false);
 	$session->clean();
 }
@@ -60,39 +51,31 @@ if (isset($_GET['SAMLRequest'])) {
 
 		//$responder = $config->getValue('saml2-hosted-sp');
 		$responder = $metadata->getMetaDataCurrentEntityID();
-
+	
+		$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutRequest', $requestid,
+			'IdP (' . $requester . ') is sending logout request to me SP (' . $responder . ')');
+	
+	
+		// Create a logout response
+		$lr = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
+		$logoutResponseXML = $lr->generate($responder, $requester, $requestid, 'SP');
+	
+	
+		// Create a HTTP Redirect binding.
+		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
+	
+	
+		$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutResponse', '-',
+			'SP me (' . $responder . ') is sending logout response to IdP (' . $requester . ')');
+	
+		// Send the Logout response using HTTP POST binding.
+		$httpredirect->sendMessage($logoutResponseXML, $responser, $requester, $logoutrequest->getRelayState(), 'SingleLogoutServiceResponse', 'SAMLResponse');
+	
 	} catch(Exception $exception) {
 
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-
-		$et->data['header'] = 'Error in received logout request';
-		$et->data['message'] = 'An error occured when trying to read logout request.';
-		$et->data['e'] = $exception;
-
-		$et->show();
-		exit(0);
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTREQUEST', $exception);
 
 	}
-
-
-	$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutRequest', $requestid,
-		'IdP (' . $requester . ') is sending logout request to me SP (' . $responder . ')');
-
-
-	// Create a logout response
-	$lr = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
-	$logoutResponseXML = $lr->generate($responder, $requester, $requestid, 'SP');
-
-
-	// Create a HTTP Redirect binding.
-	$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-
-
-	$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutResponse', '-',
-		'SP me (' . $responder . ') is sending logout response to IdP (' . $requester . ')');
-
-	// Send the Logout response using HTTP POST binding.
-	$httpredirect->sendMessage($logoutResponseXML, $responser, $requester, $logoutrequest->getRelayState(), 'SingleLogoutServiceResponse', 'SAMLResponse');
 
 } elseif(isset($_GET['SAMLResponse'])) {
 
@@ -108,24 +91,13 @@ if (isset($_GET['SAMLRequest'])) {
 		}
 
 	} catch(Exception $exception) {
-
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-
-		$et->data['header'] = 'Error in received logout response';
-		$et->data['message'] = 'An error occured when trying to read logout response.';
-		$et->data['e'] = $exception;
-
-		$et->show();
-		exit(0);
-
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTRESPONSE', $exception);
 	}
 
 	if (isset($_GET['RelayState'])) {
 		SimpleSAML_Utilities::redirect($_GET['RelayState']);
 	} else {
-
-		echo 'You are now successfully logged out.';
-
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
 	}
 
 }

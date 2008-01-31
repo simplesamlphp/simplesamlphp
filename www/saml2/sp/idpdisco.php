@@ -7,10 +7,6 @@ require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/XHTML/Template.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
-require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
-//require_once('SimpleSAML/XML/SAML20/AuthnResponse.php');
-require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
-//require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
@@ -29,12 +25,7 @@ try {
 	$returnidparam = $_GET['returnIDParam'];
 	
 } catch (Exception $exception) {
-
-	$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-	$et->data['message'] = 'Error getting required parameters for IdP Discovery Service';	
-	$et->data['e'] = $exception;	
-	$et->show();
-	exit(0);
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'DISCOPARAMS', $exception);
 }
 
 
@@ -45,12 +36,14 @@ if (isset($_GET['idpentityid'])) {
 	
 	$returnurl = SimpleSAML_Utilities::addURLparameter($return, $returnidparam . '=' . $idpentityid);
 	SimpleSAML_Utilities::redirect($returnurl);
-
+	
 }
 
-
-$idplist = $metadata->getList('saml20-idp-remote');
-
+try {
+	$idplist = $metadata->getList('saml20-idp-remote');
+} catch (Exception $exception) {
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
+}
 
 if ($config->getValue('idpdisco.layout') == 'dropdown') {
 	$t = new SimpleSAML_XHTML_Template($config, 'selectidp-dropdown.php');

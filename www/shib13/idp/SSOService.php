@@ -51,13 +51,7 @@ if (isset($_GET['shire'])) {
 		$authnrequest = new SimpleSAML_XML_Shib13_AuthnRequest($config, $metadata);
 		$authnrequest->parseGet($_GET);
 		
-		//$session = $authnrequest->createSession();
-	
 		$requestid = $authnrequest->getRequestID();
-
-		//$session->setShibAuthnRequest($authnrequest);
-		
-		
 
 		/*
 		 * Create an assoc array of the request to store in the session cache.
@@ -107,29 +101,12 @@ if (isset($_GET['shire'])) {
 		if (!$requestcache) throw new Exception('Could not retrieve cached RequestID = ' . $requestid);
 
 	} catch(Exception $exception) {
-		
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-		
-		$et->data['header'] = 'Error retrieving authnrequest cache';
-		$et->data['message'] = 'simpleSAML cannot find the authnrequest that it earlier stored.';	
-		$et->data['e'] = $exception;
-		
-		$et->show();
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CACHEAUTHNREQUEST', $exception);
 	}
+	
 
 } else {
-	/*
-	 * We did neither get a request or a requestID as a parameter. Then throw an error.
-	 */
-	$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-	
-	$et->data['header'] = 'No parameters found';
-	$et->data['message'] = 'You must either provide a Shibboleth Request message or a RequestID on this interface.';	
-	$et->data['e'] = $exception;
-	
-	$et->show();
-	exit(0);
-
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SSOSERVICEPARAMS');
 }
 
 $authority = isset($idpmeta['authority']) ? $idpmeta['authority'] : null;
@@ -205,15 +182,7 @@ if (!$session->isAuthenticated($authority) ) {
 			$idpentityid, $issuer, isset($requestcache['RelayState']) ? $requestcache['RelayState'] : null, $shire);
 			
 	} catch(Exception $exception) {
-		
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-		
-		$et->data['header'] = 'Error sending response to service';
-		$et->data['message'] = 'Some error occured when trying to issue the authentication response, and send it back to the SP.';	
-		$et->data['e'] = $exception;
-		
-		$et->show();
-
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
 	}
 	
 }
