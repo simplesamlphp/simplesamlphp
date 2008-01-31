@@ -89,8 +89,35 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 		return $this->validator->isNodeValidated($node);
 	}
-	
-	
+
+
+	/**
+	 * This function runs an xPath query on this authentication response.
+	 *
+	 * @param $query  The query which should be run.
+	 * @param $node   The node which this query is relative to. If this node is NULL (the default)
+	 *                then the query will be relative to the root of the response.
+	 */
+	private function doXPathQuery($query, $node = NULL) {
+		assert('is_string($query)');
+
+		$dom = $this->getDOM();
+		assert('$dom instanceof DOMDocument');
+
+		if($node === NULL) {
+			$node = $dom->documentElement;
+		}
+
+		assert('$node instanceof DOMNode');
+
+		$xPath = new DOMXpath($dom);
+		$xPath->registerNamespace('shibp', self::SHIB_PROTOCOL_NS);
+		$xPath->registerNamespace('shib', self::SHIB_ASSERT_NS);
+
+		return $xPath->query($query, $node);
+	}
+
+
 	public function createSession() {
 	
 		SimpleSAML_Session::init(true, 'shib13');
@@ -130,106 +157,64 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 	public function getAttributes() {
 
-
 		$md = $this->metadata->getMetadata($this->getIssuer(), 'shib13-idp-remote');
 		$base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
-		
-		//$base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
-		
-		/*
-		define('SAML2_BINDINGS_POST', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST');
-		define('SAML2_STATUS_SUCCESS', 'urn:oasis:names:tc:SAML:2.0:status:Success');
-		*/
-		
-		/*
-		echo 'Validids<pre>';
-		print_r($this->validIDs);
-		echo '</pre>';
-		*/
 
-		$attributes = array();
-		$token = $this->getDOM();
-			
-		
-		//echo $this->getXML();
-		
-		$attributes = array();
-		
-		if ($token instanceof DOMDocument) {
-		
-			$sxml = simplexml_import_dom($token);
-			
-			$sxml->registerXPathNamespace('samlp', self::SHIB_PROTOCOL_NS);
-			$sxml->registerXPathNamespace('saml', self::SHIB_ASSERT_NS);
-			
-
-			
-			$assertions = $sxml->xpath('/samlp:Response/saml:Assertion');
-
-			foreach ($assertions AS $assertion) {				
-				if(!$this->isNodeValidated($assertion)) {
-					throw new Exception('Shib13 AuthResponse contained an unsigned assertion.');
-				}
-
-				if ($assertion->Conditions) {
-
-					if (($start = (string)$assertion->Conditions['NotBefore']) &&
-						($end = (string)$assertion->Conditions['NotOnOrAfter'])) {
-	
-						if (! SimpleSAML_Utilities::checkDateConditions($start, $end)) {
-							error_log( " Date check failed ... (from $start to $end)");
-							continue;
-						} 
-
-					}
-
-				}
-				
-				
-				// Traverse AttributeStatements
-				foreach ($assertion->AttributeStatement AS $attributestatement) {
-				
-					// Traverse Attributes
-					foreach ($attributestatement->Attribute AS $attribute) {
-						$values = array();
-						
-						// Traverse Values
-						foreach ($attribute->AttributeValue AS $newvalue) {
-						
-							$newvalue = (string)$newvalue;
-
-							if ($base64) {
-								$encodedvalues = explode('_', $newvalue);
-								foreach($encodedvalues AS $v) {
-									$values[] = base64_decode($v);
-								}
-							} else {
-
-								$values[] = $newvalue;
-							}
-						}
-						
-						$attributes[(string)$attribute['AttributeName']] = $values;
-					}
-
-				}
-				
-			}
-				
-			/*
-			echo "<PRE>token:";
-			echo htmlentities($token->saveXML());
-			echo ":</PRE>";
-
-		
-			echo '<pre>Attributes: ';
-			print_r($attributes);
-			echo '</pre>';
-			*/
+		if (! ($this->getDOM() instanceof DOMDocument) ) {
+			return array();
 		}
+
+		$attributes = array();
+
+		$assertions = $this->doXPathQuery('/shibp:Response/shib:Assertion');
+
+		foreach ($assertions AS $assertion) {
+
+			if(!$this->isNodeValidated($assertion)) {
+				throw new Exception('Shib13 AuthnResponse contained an unsigned assertion.');
+			}
+
+			$conditions = $this->doXPathQuery('shib:Conditions', $assertion);
+			if ($conditions && $conditions->length > 0) {
+				$condition = $conditions->item(0);
+
+				$start = $condition->getAttribute('NotBefore');
+				$end = $condition->getAttribute('NotOnOrAfter');
+
+				if ($start && $end) {
+					if (! SimpleSAML_Utilities::checkDateConditions($start, $end)) {
+						error_log('Date check failed ... (from ' . $start . ' to ' . $end . ')');
+						continue;
+					}
+				}
+			}
+
+			$attribute_nodes = $this->doXPathQuery('shib:AttributeStatement/shib:Attribute/shib:AttributeValue', $assertion);
+			foreach($attribute_nodes as $attribute) {
+
+				$value = $attribute->textContent;
+				$name = $attribute->parentNode->getAttribute('AttributeName');
+
+				if(!is_string($name)) {
+					throw new Exception('Shib13 Attribute node without an AttributeName.');
+				}
+
+				if(!array_key_exists($name, $attributes)) {
+					$attributes[$name] = array();
+				}
+
+				if ($base64) {
+					$encodedvalues = explode('_', $value);
+					foreach($encodedvalues AS $v) {
+						$attributes[$name][] = base64_decode($v);
+					}
+				} else {
+					$attributes[$name][] = $value;
+				}
+			}
+		}
+
 		return $attributes;
-		
-		
 	}
 
 	
