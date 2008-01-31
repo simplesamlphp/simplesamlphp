@@ -67,11 +67,9 @@ require_once('xmlseclibs.php');
 	public function getDOM() {
 		if (isset($this->message) ) {
 			
-			/*
 			if (isset($this->dom)) {
 				return $this->dom;
 			}
-			*/
 		
 			$token = new DOMDocument();
 			$token->loadXML(str_replace ("\r", "", $this->message));
