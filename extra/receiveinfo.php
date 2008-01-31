@@ -1,3 +1,4 @@
+<?php
 /**
  * Copy and paste this file into a page in your drupal installation, or similar CMS system.
  * Make sure the Input mode in your new page is PHP Mode.
@@ -6,7 +7,7 @@
  * config.php of your simpleSAMLphp installation.
  * 
  */
-
+?>
 <p>Thanks for sending information to us from simpleSAMLphp.</p>
 
 
@@ -27,8 +28,17 @@ if (isset($_POST['action'])) {
 
 		echo '<p>We have received your metadata.';	
 		$subject = 'SAML 2.0 Metadata from '. $_POST['email'];
-		$message = 'Someone just used simpleSAMLphp to send metadata to Feide. Here is the metadata: ' . "\r\n\r\n------- BEGIN SAML 2.0 METADATA ----------\r\n" . 
-			html_entity_decode(base64_decode(urldecode($_POST['metadata']))) . "\r\n------- END SAML 2.0 METADATA ----------\r\n\r\nDefault IdP: " . $_POST['defaultidp'] . "\r\nSent by simpleSAMLphp :)";
+		$message = 'Someone just used simpleSAMLphp to send metadata to Feide. Here is the metadata: 
+------- BEGIN SAML 2.0 METADATA ----------
+' . html_entity_decode(base64_decode(urldecode($_POST['metadata']))) . '
+------- END SAML 2.0 METADATA ----------
+
+
+Default IdP: ' . $_POST['defaultidp'] . '
+simpleSAMLphp version: ' . $_POST['version'] . '
+Technical contact at server: ' . $_POST['techemail'] . ' 
+
+Sent using simpleSAMLphp';
 	
 } elseif($_POST['action'] == 'error') {
 	

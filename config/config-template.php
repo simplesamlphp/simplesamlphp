@@ -7,7 +7,7 @@
 
 $config = array (
 
-	/*
+	/**
 	 * This option configures the base directory for this simpleSAMLphp
 	 * installation. Under most circumstances this option is optional,
 	 * and can be left unset.
@@ -17,24 +17,42 @@ $config = array (
 	 */
 	'basedir' => NULL,
 
-
-	/*
+	/**
 	 * Setup the following parameters to match the directory of your installation.
 	 * See the user manual for more details.
 	 */
-	'baseurlpath'			=> 'simplesaml/',
-	'templatedir'			=> 'templates/default/',
-	'metadatadir'			=> 'metadata/',
-	'attributenamemapdir'	=> 'attributemap/',
+	'baseurlpath'           => 'simplesaml/',
+	'templatedir'           => 'templates/default/',
+	'metadatadir'           => 'metadata/',
+	'attributenamemapdir'   => 'attributemap/',
+	'certdir'               => 'certs/',
+	'dictionarydir'         => 'dictionaries/',
 	
-	/*
+	
+	'version'				=>	'0.9.1',
+	
+	/**
 	 * If you set the debug parameter to true, all SAML messages will be visible in the
 	 * browser, and require the user to click the submit button. If debug is set to false,
 	 * Browser/POST SAML messages will be automaticly submitted.
 	 */
-	'debug'					=>	false,
+	'debug'                 =>	false,
+	'showerrors'            =>	true,
+	'errorreportaddress'    =>  'http://rnd.feide.no/content/sending-information-simplesamlphp',
 	
-	'version'				=>	'0.9',
+	/**
+	 * This password must be kept secret, and modified from the default value 123.
+	 * This password will give access to the installation page of simpleSAMLphp with
+	 * metadata listing and diagnostics pages.
+	 */
+	'auth.adminpassword'		=> '123',
+	'admin.protectindexpage'	=> false,
+	
+	/*
+	 * Some information about the technical persons running this installation.
+	 */
+	'technicalcontact_name'     => 'Administrator',
+	'technicalcontact_email'    => 'na@example.org',
 	
 	/*
 	 * Logging.
@@ -50,15 +68,7 @@ $config = array (
 	'logging.facility'		=> LOG_LOCAL5,
 	'logging.level'			=> LOG_NOTICE,
 	
-	
-	/**
-	 * This password must be kept secret, and modified from the default value 123.
-	 * This password will give access to the installation page of simpleSAMLphp with
-	 * metadata listing and diagnostics pages.
-	 */
-	'auth.adminpassword'		=> '123',
-	'admin.protectindexpage'	=> false,
-	
+
 	/*
 	 * Enable
 	 * 

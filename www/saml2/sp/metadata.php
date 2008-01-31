@@ -75,7 +75,9 @@ try {
 		$et->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];
 		$et->data['federationname'] = $send_metadata_to_idp[$defaultidp]['name'];
 	}
-	
+
+	$et->data['techemail'] = $config->getValue('technicalcontact_email', 'na');
+	$et->data['version'] = $config->getValue('version', 'na');
 	$et->data['feide'] = in_array($defaultidp, array('sam.feide.no', 'max.feide.no'));
 	$et->data['defaultidp'] = $defaultidp;
 	
