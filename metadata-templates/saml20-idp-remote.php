@@ -31,6 +31,25 @@ $metadata = array(
 		'request.signing' => false,
 		'certificate' => "idp.example.org.crt",
 
+		/*
+		 * It is possible to relax some parts of the validation of SAML2 messages.
+		 * To relax a part, add the id to the 'saml2.relaxvalidation' array.
+		 *
+		 * Valid ids:
+		 * - 'unknowncondition'         Disables errors when encountering unknown <Condition> nodes.
+		 * - 'nosubject'                Ignore missing <Subject> in <Assertion>.
+		 * - 'noconditions'             Ignore missing <Conditions> in <Assertion>.
+		 * - 'noauthnstatement'         Ignore missing <AuthnStatement> in <Assertion>.
+		 * - 'noattributestatement'     Ignore missing <AttributeStatement> in <Assertion>.
+		 *
+		 * Example:
+		 * 'saml2.relaxvalidation' => array('unknowncondition', 'noattributestatement'),
+		 *
+		 * Default:
+		 * 'saml2.relaxvalidation' => array(),
+		 */
+		'saml2.relaxvalidation' => array(),
+
 	),
 
 

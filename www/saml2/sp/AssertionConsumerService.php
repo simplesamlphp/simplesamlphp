@@ -41,25 +41,17 @@ try {
 
 	$binding = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
 	$authnResponse = $binding->decodeResponse($_POST);
-	
-	$authnResponse->validate();
-	
-	$session = $authnResponse->createSession();
-	if (isset($session)) {
-		
-		$attributes = $session->getAttributes();
 
-		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.AssertionConsumerService', 'AuthnResponse', '-', 
-			'Successfully created local session from Authentication Response');
+	$authnResponse->process();
+
+	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.AssertionConsumerService', 'AuthnResponse', '-',
+		     'Successfully created local session from Authentication Response');
 	
-		$relayState = $authnResponse->getRelayState();
-		if (isset($relayState)) {
-			SimpleSAML_Utilities::redirect($relayState);
-		} else {
-			throw new Exception('Could not find RelayState parameter, you are stucked here.');
-		}
+	$relayState = $authnResponse->getRelayState();
+	if (isset($relayState)) {
+		SimpleSAML_Utilities::redirect($relayState);
 	} else {
-		throw new Exception('Unkown error. Could not get session.');
+		throw new Exception('Could not find RelayState parameter, you are stuck here.');
 	}
 
 } catch(Exception $exception) {
