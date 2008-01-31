@@ -5,6 +5,7 @@ require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/AuthnResponse.php');
+require_once('SimpleSAML/XML/Validator.php');
 
 require_once('xmlseclibs.php');
  
@@ -28,7 +29,12 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	 */
 	const SAML2_ASSERT_NS = 'urn:oasis:names:tc:SAML:2.0:assertion';
 	const SAML2_PROTOCOL_NS = 'urn:oasis:names:tc:SAML:2.0:protocol';
-	
+
+
+	/**
+	 * This variable contains an XML validator for this message.
+	 */
+	private $validator = null;
 	
 
 	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore) {
@@ -40,102 +46,54 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	public function validate() {
 	
 		$dom = $this->getDOM();
-		
-		/* Create an XML security object, and register ID as the id attribute for sig references. */
-		$objXMLSecDSig = new XMLSecurityDSig();
-		$objXMLSecDSig->idKeys[] = 'ID';
-		
-		/* Locate the signature element to be used. */
-		$objDSig = $objXMLSecDSig->locateSignature($dom);
-		
 
-		/* If no signature element was found, throw an error */
-		if (!$objDSig) {
-			throw new Exception("Could not locate XML Signature element in Authentication Response");
-		}
-		
-		
-		/* Get information about canoncalization in to the xmlsec library. Read from the siginfo part. */
-		$objXMLSecDSig->canonicalizeSignedInfo();
-		
-		$refids = $objXMLSecDSig->getRefIDs();
-		
-		
-		
-		/* Validate refrences */
-		$retVal = $objXMLSecDSig->validateReference();
-		if (! $retVal) {
-			throw new Exception("XMLsec: digest validation failed");
-		}
+		/* Validate the signature. */
+		$this->validator = new SimpleSAML_XML_Validator($dom, 'ID');
 
-		$key = NULL;
-		$objKey = $objXMLSecDSig->locateKey();
-	
-		if ($objKey) {
-			if ($objKeyInfo = XMLSecEnc::staticLocateKeyInfo($objKey, $objDSig)) {
-				/* Handle any additional key processing such as encrypted keys here */
-			}
-		}
-	
-		if (empty($objKey)) {
-			throw new Exception("Error loading key to handle Signature");
-		}
+		// Get the issuer of the response.
+		$issuer = $this->getIssuer();
 
-		/* Check certificate fingerprint. */
-		if ( ! $this->validateCertFingerprint($objKey) ) {
-			throw new Exception("Fingerprint Validation Failed");
-		}
+		/* Get the metadata of the issuer. */
+		$md = $this->metadata->getMetaData($issuer, 'saml20-idp-remote');
 
-		if (! $objXMLSecDSig->verify($objKey)) {
-			throw new Exception("Unable to validate Signature");
-		}
-		
-		foreach ($refids AS $key => $value) {
-			$refids[$key] = str_replace('#', '', $value);
-		}
-		
-		$this->validIDs = $refids;
+		/* Get fingerprint for the certificate of the issuer. */
+		$issuerFingerprint = $md['certFingerprint'];
+
+		/* Validate the fingerprint. */
+		$this->validator->validateFingerprint($issuerFingerprint);
+
 		return true;
 	}
-	
 
-	
-	function validateCertFingerprint($objKey) {
 
-		/* Get the fingerprint. */
-		$fingerprint = $objKey->getX509Fingerprint();
-		if($fingerprint === NULL) {
-			throw new Exception('Key used to sign the message wasn\'t an X509 certificate.');
+	/**
+	 * This function runs an xPath query on this authentication response.
+	 *
+	 * @param $query  The query which should be run.
+	 * @param $node   The node which this query is relative to. If this node is NULL (the default)
+	 *                then the query will be relative to the root of the response.
+	 * @return Whatever DOMXPath::query returns.
+	 */
+	private function doXPathQuery($query, $node = NULL) {
+		assert('is_string($query)');
+
+		$dom = $this->getDOM();
+		assert('$dom instanceof DOMDocument');
+
+		if($node === NULL) {
+			$node = $dom->documentElement;
 		}
 
-		// Get the issuer of the assertion.
-		$issuer = $this->getIssuer();
-		$md = $this->metadata->getMetaData($issuer, 'saml20-idp-remote');
-		
-		/*
-		 * Get fingerprint from saml20-idp-remote metadata...
-		 * 
-		 * Accept fingerprints with or without colons, case insensitive
-		 */
-		$issuerFingerprint = strtolower( str_replace(":", "", $md['certFingerprint']) );
-	
+		assert('$node instanceof DOMNode');
 
-		
-		if (empty($issuerFingerprint)) {
-			throw new Exception("Certificate finger print for entity ID [" . $issuer . "] in metadata was empty.");
-		}
-		if (empty($fingerprint)) {
-			throw new Exception("Certificate finger print in message was empty.");
-		}
+		$xPath = new DOMXpath($dom);
+		$xPath->registerNamespace("saml", self::SAML2_ASSERT_NS);
+		$xPath->registerNamespace("samlp", self::SAML2_PROTOCOL_NS);
 
-		if ($fingerprint != $issuerFingerprint) {
-			throw new Exception("Expecting fingerprint $issuerFingerprint but got fingerprint $fingerprint .");
-		}
-	
-		return ($fingerprint == $issuerFingerprint);
+		return $xPath->query($query, $node);
 	}
-	
-	
+
+
 	public function createSession() {
 	
 		SimpleSAML_Session::init(true, 'saml2');
@@ -170,105 +128,58 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 	public function getAttributes() {
 
-
 		$md = $this->metadata->getMetadata($this->getIssuer(), 'saml20-idp-remote');
-		
+
 		$base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
-		
-		/*
-		echo 'Validids<pre>';
-		print_r($this->validIDs);
-		echo '</pre>';
-		*/
 
 		$attributes = array();
 		$token = $this->getDOM();
-		
-		
-		//echo '<pre>' . $this->getXML() . '</pre>';
-		
-		
-		if ($token instanceof DOMDocument) {
-		
-			/*
-			echo "<PRE>token:";
-			echo htmlentities($token->saveXML());
-			echo ":</PRE>";
-			*/
-			
-			$xPath = new DOMXpath($token);
-			$xPath->registerNamespace("mysaml", self::SAML2_ASSERT_NS);
-			$xPath->registerNamespace("mysamlp", self::SAML2_PROTOCOL_NS);
-			$query = "/mysamlp:Response/mysaml:Assertion/mysaml:Conditions";
-			$nodelist = $xPath->query($query);
-		
-			if ($node = $nodelist->item(0)) {
-		
-				$start = $node->getAttribute("NotBefore");
-				$end = $node->getAttribute("NotOnOrAfter");
-	
+
+		if($this->validator === NULL) {
+			throw new Exception('Called getAttributes on a SAML2 AuthnResponse which hasn\'t been validated.');
+		}
+
+
+		if ( !($token instanceof DOMDocument)) {
+			throw new Exception('Called getAttributes on a SAML2 AuthnResponse which doesn\'t contain a message.');
+		}
+
+		$assertions = $this->doXPathQuery('/samlp:Response/saml:Assertion');
+		foreach($assertions as $assertion) {
+
+			if(!$this->validator->isNodeValidated($assertion)) {
+				throw new Exception('A SAML2 AuthnResponse contained an Assertion which isn\'t verified by the signature.');
+			}
+
+			foreach($this->doXPathQuery('saml:Conditions', $assertion) as $condition) {
+
+				$start = $condition->getAttribute("NotBefore");
+				$end = $condition->getAttribute("NotOnOrAfter");
+
 				if (! SimpleSAML_Utilities::checkDateConditions($start, $end)) {
 					throw new Exception("Date check failed (between $start and $end). Check if the clocks on the SP and IdP are synchronized. Alternatively you can get this message, when you move back in history or refresh an old page.");
 				}
 			}
-	
-			$valididqueries = array();
-			foreach ($this->validIDs AS $vid) {
-				$valididqueries[] = "@ID='" . $vid . "'";
-			}
-			$valididquery = join(' or ', $valididqueries);
-			
-	
-			foreach (
-				array(
-					"/mysamlp:Response[" . $valididquery . "]/mysaml:Assertion/mysaml:AttributeStatement/mysaml:Attribute",
-					"/mysamlp:Response/mysaml:Assertion[" . $valididquery . "]/mysaml:AttributeStatement/mysaml:Attribute") AS $query) {
-		
-				//echo 'performing query : ' . $query;
-		
-//				$query = "/mysamlp:Response[" . $valididquery . "]/mysaml:Assertion/mysaml:AttributeStatement/mysaml:Attribute";
-				$nodelist = $xPath->query($query);
-				
 
-				
-//				if (is_array($nodelist)) {
-					
+			foreach($this->doXPathQuery('saml:AttributeStatement/saml:Attribute/saml:AttributeValue', $assertion) as $attribute) {
 
-					foreach ($nodelist AS $node) {
+				$name = $attribute->parentNode->getAttribute('Name');
+				$value = $attribute->textContent;
 
-						if ($name = $node->getAttribute("Name")) {
-//							echo "Name ";
-							$value = array();
-							foreach ($node->childNodes AS $child) {
-								if ($child->localName == "AttributeValue") {
-									$newvalue = $child->textContent;
-									if ($base64) {
-										$values = explode('_', $newvalue);
-										foreach($values AS $v) {
-											$value[] = base64_decode($v);
-										}
-									} else {
-		
-										$value[] = $newvalue;
-									}
-								}
-							}
-							$attributes[$name] = $value;
-						}
+				if(!array_key_exists($name, $attributes)) {
+					$attributes[$name] = array();
+				}
+
+				if ($base64) {
+					foreach(explode('_', $value) AS $v) {
+						$attributes[$name][] = base64_decode($v);
 					}
-					
-//				}
-				
+				} else {
+					$attributes[$name][] = $value;
+				}
 			}
-			
-			
-			
 		}
-/*
-		echo '<p>Attributes<pre>';
-		print_r($attributes);
-		echo '</pre>';
-*/
+
 		return $attributes;
 	}
 
