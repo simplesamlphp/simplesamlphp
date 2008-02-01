@@ -75,6 +75,10 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		$certchain_pem_file = isset($idpmd['certificatechain']) ? 
 			$this->configuration->getBaseDir() . '/cert/' . $idpmd['certificatechain'] : null;
 
+
+		if (!file_exists($privatekey)) throw new Exception('Could not find private key file [' . $privatekey . ']');
+		if (!file_exists($publiccert)) throw new Exception('Could not find public cert file [' . $publiccert . ']');
+		
 		$privatek = file_get_contents($privatekey);
 		
 		if (strstr($claimedacs, $destination) == 0) {
@@ -84,13 +88,10 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		}
 		
 		
-		
-		
 		/*
 		 * XMLDSig. Sign the complete request with the key stored in cert/server.pem
 		 */
 		$objXMLSecDSig = new XMLSecurityDSig();
-		//$objXMLSecDSig->idKeys[] = 'ResponseID';
 		
 		$objXMLSecDSig->idKeys = array('ResponseID');
 		
@@ -100,34 +101,18 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		$responsedom->loadXML(str_replace ("\r", "", $response));
 		
 		$responseroot = $responsedom->getElementsByTagName('Response')->item(0);
+		//$firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
 		
-		//$assertionroot = $responsedom->getElementsByTagName('Assertion')->item(1);
-		$firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
 		
-		#$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1, #array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'), null, 'ResponseID');
-		
-		/*
-		
-			Removed 2008-01-10 after a tips from Rob Richards..
-			
-			
-		$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1,
-			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'),
-			array('id_name' => 'ResponseID'));
-			
-			*/
-			
+		/**
+		 * Add a reference to what element we want to sign.
+		 *
+		 * TODO: Add option to sign assertion versus response	
+		 */
 		$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1,
 			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
 			array('id_name' => 'ResponseID'));
-			
-			// TODO: Add option to sign assertion versus response
 
-		#$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature',
-		#	'http://www.w3.org/2001/10/xml-exc-c14n#'));
-		
-		#$objXMLSecDSig->addRefInternal($responseroot, $responseroot, XMLSecurityDSig::SHA1);
-		
 		/* create new XMLSecKey using RSA-SHA-1 and type is private key */
 		$objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
 		
@@ -137,15 +122,10 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		#$objKey->loadKey($privatekey_pem,false);
 		$objKey->loadKey($privatek,false);
 		
-		// TODO: Check for whether cert files exists or not.
-		
 		$objXMLSecDSig->sign($objKey);
 		
 		$public_cert = file_get_contents($publiccert);
-		
-		//echo '<pre>publiccert:' . $public_cert . '</pre>';
-		
-		
+				
 		$objXMLSecDSig->add509Cert($public_cert, true);
 		
 		if (isset($certchain_pem_file)) {
@@ -176,10 +156,6 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		# openssl rsa -in server.key -out server.pem
 		# openssl req -new -key server.key -out server.csr
 		# openssl x509 -req -days 60 -in server.csr -signkey server.key -out server.crt
-		
-
-		
-		
 		
 		if ($this->configuration->getValue('debug')) {
 	
@@ -225,9 +201,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		if (isset($relaystate)) {
 			$samlResponse->setRelayState($relaystate);
 		}
-	
-        #echo("Authn response = " . $samlResponse );
-
+        
         return $samlResponse;
         
 	}
