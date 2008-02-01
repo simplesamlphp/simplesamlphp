@@ -1,4 +1,7 @@
-<?php $this->includeAtTemplateBase('includes/header.php'); ?>
+<?php 
+	$this->data['icon'] = 'debug.png';
+	$this->includeAtTemplateBase('includes/header.php'); 
+?>
 
 
 	

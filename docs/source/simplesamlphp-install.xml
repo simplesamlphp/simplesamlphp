@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-08-30</date>
 
-    <pubdate>Wed Dec 19 12:03:53 2007</pubdate>
+    <pubdate>Fri Feb  1 11:02:46 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -18,189 +18,10 @@
     </author>
   </articleinfo>
 
-  <section>
-    <title>The history of simpleSAMLphp</title>
-
-    <para>simpleSAMLphp is an iteration of what was earlier referred to as
-    lightbulb (<ulink
-    url="https://opensso.dev.java.net/public/extensions/">Sun OpenSSO
-    Extensions</ulink>), written by <ulink
-    url="http://blogs.sun.com/superpat/">Pat Patterson, Sun</ulink>. There are
-    not much code left from lightbulb, but credits go to Pat for introducing a
-    new way of thinking when it comes to implementing federation protocols in
-    a simple and elegant way.</para>
-
-    <para>The simpleSAMLphp project is currently led by <ulink
-    url="http://claimid.com/erlang">Andreas Åkre Solberg</ulink>, <ulink
-    url="http://uninett.no">UNINETT</ulink>.</para>
-
-    <para>The product is used to bridge AAI protocols in the GÉANT project,
-    <ulink url="http://geant2.net">http://geant2.net</ulink>.</para>
-
-    <para>We have received a bunch of external contributions.</para>
-
-    <section>
-      <title>Contributors</title>
-
-      <para>Thank you very much for your contributions to
-      simpleSAMLphp:</para>
-
-      <itemizedlist>
-        <listitem>
-          <para>Lukas Hammerle, SWITCH, Switzerland</para>
-        </listitem>
-
-        <listitem>
-          <para>Stefan Winter, Restena, Luxemborg</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-  </section>
-
-  <section>
-    <title>Changelog</title>
-
-    <para>Here is changes between simpleSAML versions. Look here if you are
-    upgrading, to see if there are any changes to the config format.</para>
-
-    <section>
-      <title>Version 0.5</title>
-
-      <para>Released 2007-10-15. Revision 28.</para>
-
-      <warning>
-        <para>Both <filename>config.php</filename> and metadata format is
-        changed. Look at the templates to understand the new format.</para>
-      </warning>
-
-      <itemizedlist>
-        <listitem>
-          <para>Documentation is updated!</para>
-        </listitem>
-
-        <listitem>
-          <para>Metadata files have been more tidy. Removed unused entries.
-          Look at the new templates on how to change your existing
-          metadata.</para>
-        </listitem>
-
-        <listitem>
-          <para>Support for sending metadata on mail to Feide. Automatically
-          detecting if you have configured Feide as the default IdP.</para>
-        </listitem>
-
-        <listitem>
-          <para>Improved SAML 2.0 Metadata generation</para>
-        </listitem>
-
-        <listitem>
-          <para>Added support for Shibboleth 1.3 IdP functionality (beta,
-          contact me if any problems)</para>
-        </listitem>
-
-        <listitem>
-          <para>Added RADIUS authentication backend</para>
-        </listitem>
-
-        <listitem>
-          <para>Added support for HTTP-Redirect debugging when enable
-          <literal>debug=true</literal></para>
-        </listitem>
-
-        <listitem>
-          <para>SAML 2.0 SP example now contains a logout page.</para>
-        </listitem>
-
-        <listitem>
-          <para>Added new authentication backend with support for multiple
-          LDAP based on which organization the user selects.</para>
-        </listitem>
-
-        <listitem>
-          <para>Added SAML 2.0 Discovery Service</para>
-        </listitem>
-
-        <listitem>
-          <para>Initial proof of concept implementation of "User consent on
-          attribute release"</para>
-        </listitem>
-
-        <listitem>
-          <para>Fixed some minor bugs.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
-      <title>Version 0.4</title>
-
-      <para>Released 2007-09-14. Revision X.</para>
-
-      <itemizedlist>
-        <listitem>
-          <para>Improved documentation</para>
-        </listitem>
-
-        <listitem>
-          <para>Authentication plugin API. Only LDAP authenticaiton plugin is
-          included, but it is now easier to implement your own plugin.</para>
-        </listitem>
-
-        <listitem>
-          <para>Added support for SAML 2.0 IdP to work with Google Apps for
-          Education. Tested.</para>
-        </listitem>
-
-        <listitem>
-          <para>Initial implementation of SAML 2.0 Single Log-Out
-          functionality both for SP and IdP. Seems to work, but not yet
-          well-tested.</para>
-        </listitem>
-
-        <listitem>
-          <para>Added support for bridging SAML 2.0 to SAML 2.0.</para>
-        </listitem>
-
-        <listitem>
-          <para>Added some time skew offset to the NotBefore timestamp on the
-          assertion, to allow some time skew between the SP and IdP.</para>
-        </listitem>
-
-        <listitem>
-          <para>Fixed Browser/POST page to automaticly submit, and have fall
-          back functionality for user agents with no javascript
-          support.</para>
-        </listitem>
-
-        <listitem>
-          <para>Fixed some bug with warning traversing Shibboleth 1.3
-          Assertions.</para>
-        </listitem>
-
-        <listitem>
-          <para>Fixed tabindex on the login page of the LDAP authentication
-          module to allow you to tab from username, to password and then to
-          submit.</para>
-        </listitem>
-
-        <listitem>
-          <para>Fixed bug on autodiscovering hostname in multihost
-          environments.</para>
-        </listitem>
-
-        <listitem>
-          <para>Cleaned out some debug messages, and added a debug option in
-          the configuration file. This debug option let's you turn on the
-          possibility of showing all SAML messages to users in the web
-          browser, and manually submit them.</para>
-        </listitem>
-
-        <listitem>
-          <para>Several minor bugfixes.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-  </section>
+  <warning>
+    <para>This version of this document is work in progress. We are currently
+    working on updating the document to </para>
+  </warning>
 
   <section>
     <title>News about simpleSAMLphp</title>
@@ -304,6 +125,12 @@ cp -r metadata-templates/*.php metadata/
     <programlisting>$config = array (
 [...]
 	'baseurlpath'			=&gt; 'simplesaml/',</programlisting>
+  </section>
+
+  <section>
+    <title>simpleSAMLphp configuration: config.php</title>
+
+    <para>placeholder. will add more text.</para>
   </section>
 
   <section>

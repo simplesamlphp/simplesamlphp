@@ -1,5 +1,6 @@
 <?php 
 	$this->data['header'] = 'simpleSAMLphp error';
+	$this->data['icon'] = 'bomb_l.png';
 	$this->includeAtTemplateBase('includes/header.php'); 
 ?>
 
