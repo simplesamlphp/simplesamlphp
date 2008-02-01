@@ -116,8 +116,8 @@ try {
 		$metalist = $metadata->getList('shib13-sp-remote');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
-				array('entityid', 'AssertionConsumerService', 'audience', 'NameIDFormat'),
-				array('base64attributes', 'attributemap', 'simplesaml.attributes', 'attributes', 'name', 'description')
+				array('entityid', 'AssertionConsumerService'),
+				array('base64attributes', 'audience', 'attributemap', 'simplesaml.attributes', 'attributes', 'name', 'description')
 			);
 		}
 		$et->data['metadata.shib13-sp-remote'] = $results;
