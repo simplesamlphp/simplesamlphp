@@ -72,7 +72,8 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 	
 		$privatekey = $this->configuration->getBaseDir() . '/cert/' . $idpmd['privatekey'];
 		$publiccert = $this->configuration->getBaseDir() . '/cert/' . $idpmd['certificate'];
-		$certchain_pem_file = $this->configuration->getBaseDir() . '/cert/' . $idpmd['certificatechain'];
+		$certchain_pem_file = isset($idpmd['certificatechain']) ? 
+			$this->configuration->getBaseDir() . '/cert/' . $idpmd['certificatechain'] : null;
 
 		$privatek = file_get_contents($privatekey);
 		
@@ -116,7 +117,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 			
 			*/
 			
-		$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1,
+		$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1,
 			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
 			array('id_name' => 'ResponseID'));
 			
