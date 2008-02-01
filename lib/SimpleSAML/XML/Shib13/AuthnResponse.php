@@ -271,9 +271,11 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 		$issuer = $idpentityid;
 
-		$shire = $spmd['shire'];
-		$audience = $spmd['audience'];
-		$base64 = $spmd['base64attributes'];
+		if (!array_key_exists('AssertionConsumerService', $spmd)) throw new Exception('Could not find [AssertionConsumerService] in Shib 1.3 Service Provider remote metadata.');
+		
+		$shire = $spmd['AssertionConsumerService'];
+		$audience = isset($spmd['audience']) ? $spmd['audience'] : $spentityid;
+		$base64 = isset($spmd['base64attributes']) ? $spmd['base64attributes'] : false;
 		
 		$encodedattributes = '';
 		
@@ -303,8 +305,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
     MajorVersion="1" MinorVersion="1"
     Recipient="' . htmlspecialchars($shire) . '"
     ResponseID="' . $id . '">
-
-<Status>
+	<Status>
         <StatusCode Value="samlp:Success">
             <StatusCode xmlns:code="urn:geant2:edugain:protocol" Value="code:Accepted"/>
         </StatusCode>
