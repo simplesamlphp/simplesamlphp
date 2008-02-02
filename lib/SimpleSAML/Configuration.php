@@ -9,24 +9,24 @@
  */
 class SimpleSAML_Configuration {
 
-	private static $instance = null;
+	private static $instance = array();
 
 	private $configpath = null;	
 	private $configuration = null;
 
 	// private constructor restricts instantiaton to getInstance()
 	private function __construct($configpath) {
-
 		$this->configpath = $configpath;
-
 	}
 	
-	public static function getInstance() {
-		return self::$instance;
+	public static function getInstance($instancename = 'simplesaml') {
+		if (!array_key_exists($instancename, self::$instance)) 
+			throw new Exception('Configuration with name ' . $instancename . ' is not initialized.');
+		return self::$instance[$instancename];
 	}
 	
-	public static function init($path) {
-		self::$instance = new SimpleSAML_Configuration($path);
+	public static function init($path, $instancename = 'simplesaml') {
+		self::$instance[$instancename] = new SimpleSAML_Configuration($path);
 	}
 
 	private function loadConfig() {
