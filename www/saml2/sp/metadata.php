@@ -85,12 +85,7 @@ try {
 	
 } catch(Exception $exception) {
 	
-	$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-
-	$et->data['message'] = 'Some error occured when trying to generate metadata.';	
-	$et->data['e'] = $exception;
-	
-	$et->show();
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
 
 }
 
