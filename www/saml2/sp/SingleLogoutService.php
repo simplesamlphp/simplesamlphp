@@ -13,11 +13,11 @@ require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
 
 require_once('SimpleSAML/XHTML/Template.php');
 
-$config = SimpleSAML_Configuration::getInstance(true);
+$config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 // Get the local session
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getInstance(true);
 
 
 $logger = new SimpleSAML_Logger();
