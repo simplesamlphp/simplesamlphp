@@ -83,7 +83,11 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 		$idpmetadata = $this->metadata->getMetaData($destination, 'shib13-idp-remote');
 		$spmetadata = $this->metadata->getMetaData($this->getIssuer(), 'shib13-sp-hosted');
 	
-		$desturl = $idpmetadata['SingleSignOnUrl'];
+		if (!isset($idpmetadata['SingleSignOnService'])) {
+			throw new Exception('Could not find the SingleSignOnService parameter in the Shib 1.3 IdP Remote metadata. This parameter has changed name from an earlier version of simpleSAMLphp, when it was called SingleSignOnUrl. Please check your shib13-sp-remote.php configuration the IdP with entity id ' . $destination . ' and make sure the SingleSignOnService parameter is set.');
+		}
+		
+		$desturl = $idpmetadata['SingleSignOnService'];
 		$shire = $this->metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted');
 		$target = $this->getRelayState();
 		

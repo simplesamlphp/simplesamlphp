@@ -4,16 +4,30 @@
  *
  * The SAML 2.0 SP Remote config is used by the SAML 2.0 IdP to identify trusted SAML 2.0 SPs.
  *
- *	Required parameters:
- * 
- *		spNameQualifier
- *		NameIDFormat
- *		simplesaml.attributes (Will you send an attributestatement [true/false])
+ * Required parameters:
+ *   - AssertionConsumerService
+ *   - SingleLogoutService
  *
- *	Optional parameters:
+ * Optional parameters:
  *
- *		ForceAuthn (default: "false")
- *		simplesaml.nameidattribute (only needed when you are using NameID format email.
+ *   - simplesaml.attributes (Will you send an attributestatement [true/false])
+ *   - NameIDFormat
+ *   - ForceAuthn (default: "false")
+ *   - simplesaml.nameidattribute (only needed when you are using NameID format email.
+ *
+ *   - 'base64attributes'	=>	false,
+ *   - 'simplesaml.attributes'	=>	true,
+ *   - 'attributemap'		=>	'test',
+ *   - 'attributes'			=>	array('mail'),
+ *
+ * Request signing
+ *    When request.signing is true the certificate of the sp 
+ *    will be used to verify all messages received with the HTTPRedirect binding.
+ *    The certificate from the SP must be installed in the cert directory 
+ *    before verification can be done.  
+ *
+ *   'request.signing' => false,
+ *   'certificate' => "saml2sp.example.org.crt"
  *
  */
 
@@ -24,28 +38,7 @@ $metadata = array(
 	 */
 	'saml2sp.example.org' => array(
  		'AssertionConsumerService'		=>	'https://saml2sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php', 
- 		'SingleLogoutService'			=>	'https://saml2sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
-		'ForceAuthn'					=>	'false',
-		'NameIDFormat'					=>	'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
-		
-		/* If base64attributes is set to true, then all attributes will be base64 encoded. Make sure
-		 * that you set the SP to have the same value for this.
-		 */
-		'base64attributes'	=>	false,
-		'simplesaml.attributes'			=>	true,
-		//'attributemap'				=>	'test',
-		//'attributes'					=>	array('mail'),
-		
-		
-		/*
-		 * When request.signing is true the certificate of the sp 
-		 * will be used to verify all messages received with the HTTPRedirect binding.
-		 * 
-		 * The certificate from the SP must be installed in the cert directory 
-		 * before verification can be done.  
-		 */
-		'request.signing' => false,
-		'certificate' => "saml2sp.example.org.crt"
+ 		'SingleLogoutService'			=>	'https://saml2sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php'
 	),
 	
 	/*
@@ -57,9 +50,7 @@ $metadata = array(
 	'google.com' => array(
  		'AssertionConsumerService'		=>	'https://www.google.com/a/g.feide.no/acs', 
  		'SingleLogoutService'			=> 	'',
-		'ForceAuthn'					=>	'false',
 		'NameIDFormat'					=>	'urn:oasis:names:tc:SAML:2.0:nameid-format:email',
-		
 		'simplesaml.nameidattribute'	=>	'uid',
 		'simplesaml.attributes'			=>	false
 	)

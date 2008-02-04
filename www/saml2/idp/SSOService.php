@@ -196,6 +196,9 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		}
 		$filteredattributes = $afilter->getAttributes();
 		
+		
+		//echo '<pre>before filter:' ; print_r($session->getAttributes()); echo "\n\n"; print_r($filteredattributes); echo '</pre>'; exit;
+		
 		// Generate an SAML 2.0 AuthNResponse message
 		$authnResponseXML = $ar->generate($idpentityid, $spentityid, 
 			$requestid, null, $filteredattributes);

@@ -33,8 +33,8 @@ try {
 		$metalist = $metadata->getList('saml20-sp-hosted');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
-				array('entityid', 'host', 'NameIDFormat', 'ForceAuthn'),
-				array('request.signing','certificate','privatekey')
+				array('entityid', 'host'),
+				array('request.signing','certificate','privatekey', 'NameIDFormat', 'ForceAuthn')
 			);
 		}
 		$et->data['metadata.saml20-sp-hosted'] = $results;
@@ -66,8 +66,8 @@ try {
 		$metalist = $metadata->getList('saml20-sp-remote');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
-				array('entityid', 'AssertionConsumerService', 'SingleLogoutService', 'NameIDFormat'),
-				array('base64attributes', 'attributemap', 'simplesaml.attributes', 'attributes', 'name', 'description','request.signing','certificate')
+				array('entityid', 'AssertionConsumerService', 'SingleLogoutService'),
+				array('base64attributes', 'attributemap', 'simplesaml.attributes', 'attributes', 'name', 'description','request.signing','certificate', 'NameIDFormat')
 			);
 		}
 		$et->data['metadata.saml20-sp-remote'] = $results;
@@ -83,8 +83,8 @@ try {
 		$metalist = $metadata->getList('shib13-sp-hosted');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
-				array('entityid', 'host', 'NameIDFormat', 'ForceAuthn'),
-				array()
+				array('entityid', 'host'),
+				array('NameIDFormat', 'ForceAuthn')
 			);
 		}
 		$et->data['metadata.shib13-sp-hosted'] = $results;

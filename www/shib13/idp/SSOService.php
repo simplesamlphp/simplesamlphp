@@ -68,7 +68,7 @@ if (isset($_GET['shire'])) {
 		$logger->log(LOG_INFO, $session->getTrackID(), 'Shib1.3', 'IdP.SSOService', 'EVENT', $requestid, 'Got incomming Shib authnRequest');
 	
 	} catch(Exception $exception) {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST');
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
 	}
 
 

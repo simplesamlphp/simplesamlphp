@@ -4,6 +4,24 @@
  *
  * The SAML 2.0 IdP Hosted config is used by the SAML 2.0 IdP to identify itself.
  *
+ * Required parameters:
+ *   - host
+ *   - privatekey
+ *   - certificate
+ *   - auth
+ *   - authority
+ *
+ * Optional Parameters:
+ *
+ *
+ * Request signing (optional paramters)
+ *    When request.signing is true the privatekey and certificate of the SP
+ *    will be used to sign/verify all messages received/sent with the HTTPRedirect binding.
+ *    The certificate and privatekey from above will be used for signing and 
+ *    verification purposes.  
+ *
+ *   - request.signing
+ *
  */
 
 
@@ -20,16 +38,7 @@ $metadata = array(
 		'certificate'		=>	'server.crt',
 		
 		// Authentication plugin to use. login.php is the default one that uses LDAP.
-		'auth'				=>	'auth/login.php',
-		
-		/*
-		 * When request.signing is true the privatekey and certificate of the SP
-		 * will be used to sign/verify all messages received/sent with the HTTPRedirect binding.
-		 * 
-		 * The certificate and privatekey from above will be used for signing and 
-		 * verification purposes.  
-		 */
-		'request.signing' => true
+		'auth'				=>	'auth/login.php'
 	)
 
 );

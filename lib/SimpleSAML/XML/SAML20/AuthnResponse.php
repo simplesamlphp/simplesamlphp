@@ -491,12 +491,17 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		 * Handling attributes.
 		 */
 		$base64 = isset($spmd['base64attributes']) ? $spmd['base64attributes'] : false;
+		$nameidformat = isset($spmd['NameIDFormat']) ? $spmd['NameIDFormat'] : 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+		
 		$encodedattributes = '';
 		foreach ($attributes AS $name => $values) {
 			$encodedattributes .= self::enc_attribute($name, $values, $base64);
 		}
 		$attributestatement = '<saml:AttributeStatement>' . $encodedattributes . '</saml:AttributeStatement>';
-		if (!$spmd['simplesaml.attributes']) 
+		
+		$sendattributes = isset($spmd['simplesaml.attributes']) ? $spmd['simplesaml.attributes'] : true;
+		
+		if (!$sendattributes) 
 			$attributestatement = '';
 		
 		
@@ -504,10 +509,10 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		 * Handling NameID
 		 */
 		$nameid = null;
-		if ($spmd['NameIDFormat'] == self::EMAIL) {
-			$nameid = $this->generateNameID($spmd['NameIDFormat'], $attributes[$spmd['simplesaml.nameidattribute']][0]);
+		if ($nameidformat == self::EMAIL) {
+			$nameid = $this->generateNameID($nameidformat, $attributes[$spmd['simplesaml.nameidattribute']][0]);
 		} else {
-			$nameid = $this->generateNameID($spmd['NameIDFormat'], self::generateID());
+			$nameid = $this->generateNameID($nameidformat, self::generateID());
 		}
 		
 		/**
