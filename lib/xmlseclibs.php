@@ -337,9 +337,10 @@ class XMLSecurityKey {
         }
         if ($this->cryptParams['library'] == 'openssl') {
             if ($this->cryptParams['type'] == 'public') {
-                /* Load the fingerprint if this is an X509 certificate. */
-                $this->X509Fingerprint = self::calculateX509Fingerprint($this->key);
-
+                if ($isCert) {
+                    /* Load the fingerprint if this is an X509 certificate. */
+                    $this->X509Fingerprint = self::calculateX509Fingerprint($this->key);
+                }
                 $this->key = openssl_get_publickey($this->key);
             } else {
                 $this->key = openssl_get_privatekey($this->key, $this->passphrase);
@@ -1540,7 +1541,7 @@ class XMLSecEnc {
                                     $x509cert = $x509certNodes->item(0)->textContent;
                                     $x509cert = str_replace(array("\r", "\n"), "", $x509cert);
                                     $x509cert = "-----BEGIN CERTIFICATE-----\n".chunk_split($x509cert, 64, "\n")."-----END CERTIFICATE-----\n";
-                                    $objBaseKey->loadKey($x509cert);
+                                    $objBaseKey->loadKey($x509cert, FALSE, TRUE);
                                 }
                             }
                             break;
