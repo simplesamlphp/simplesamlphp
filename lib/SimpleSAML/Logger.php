@@ -30,10 +30,12 @@ class SimpleSAML_Logger {
 	 * Log a message to syslog.
 	 */
 	public function log($priority, $trackid = null, $module, $submodule, $eventtype, $content, $message) {
-		error_log('This entry is ' . $priority . ' and configuration says minimum ' . $this->loglevel);
-		error_log('LOG_ERR is ' . LOG_ERR . ' and LOGINFO is ' . LOG_INFO);
+	/*
+		error_log('This entry: ' . $message );
+		error_log('This entry is ' . $priority . ' and will be loged if <= ' . $this->loglevel);
+		error_log('LOG_ERR is ' . LOG_ERR . ' and LOGINFO is ' . LOG_INFO . " LOG_DEBUG is " . LOG_DEBUG);
+		*/
 		if ($priority > $this->loglevel) return;
-		error_log('Log2');
 		if ($trackid == null) {
 			$trackid = 'na';
 			//$session = SimpleSAML_Session::getInstance(true);
