@@ -7,7 +7,7 @@ require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
  * The Shibboleth 1.3 Authentication Request. Not part of SAML 1.1, 
  * but an extension using query paramters no XML.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas ï¿½kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
  */
@@ -117,7 +117,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		
 		$nameidformat = isset($md['NameIDFormat']) ? $md['NameIDFormat'] : 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
 		
-		$forceauthn = isset($md['ForceAuthn']) ? $md['ForceAuthn'] : 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+		$forceauthn = isset($md['ForceAuthn']) ? $md['ForceAuthn'] : 'false';
 		
 		// TODO: Make an option in the metadata to allow adding a RequestedAuthnContext
 		$requestauthncontext = '<samlp:RequestedAuthnContext Comparison="exact">
