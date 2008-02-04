@@ -64,18 +64,11 @@ if (isset($_GET['shire'])) {
 			$requestcache['RelayState'] = $relaystate;
 			
 		$session->setAuthnRequest('shib13', $requestid, $requestcache);
-
+		
+		$logger->log(LOG_INFO, $session->getTrackID(), 'Shib1.3', 'IdP.SSOService', 'EVENT', $requestid, 'Got incomming Shib authnRequest');
 	
 	} catch(Exception $exception) {
-		
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-		
-		$et->data['header'] = 'Error getting incomming request';
-		$et->data['message'] = 'Something bad happened when simpleSAML got the incomming authentication request';	
-		$et->data['e'] = $exception;
-		
-		$et->show();
-		exit(0);
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST');
 	}
 
 
