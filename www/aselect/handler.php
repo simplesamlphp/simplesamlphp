@@ -45,15 +45,11 @@
  *		'auth'				=>	'aselect/handler.php?request=bridge',
  *
  * TODO:
- * - extend config possibilities and move it to metadata/aselect-*-*.php
+ * - separate metadata configuration into metadata/aselect-*-*.php
  * - add robustness/error-handling/error-reporting
  * - generic bridging
- * - check the crypto related stuff (is encrypting rid enough?)
- * - more checks on parameters (really needed?)
  *
  * - factor out common, app/local server and remote server code
- * - use xmlseclibs or plain openssl, not both
- * - preload configured keys from their respective files
  */
 
 require_once('../../www/_include.php');
@@ -66,108 +62,154 @@ $logger = new SimpleSAML_Logger();
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-$as_config = array(
-	'server_id' => 'default.aselect.org',
-	'organization_id' => 'simpleSAMLphp',
-	'authsp_level' => '10',
-	'authsp' => 'simpleSAMLphp',
-	'app_level' => '10',
-	'tgt_exp_time' => '1194590521000',
-	'metadata' => $metadata->getMetaData('localhost', 'saml20-sp-hosted'),
+$as_metadata = array(
+	'idp' => array(
+		'hosted' => array(
+			'organization' => 'simpleSAMLphp',
+			'server_id' => 'default.aselect.org',
+			'key' => $config->getBaseDir() . '/cert/server.pem',
+			'cert' => $config->getBaseDir() . '/cert/server.crt',
+			'authsp_level' => '10',
+			'authsp' => 'simpleSAMLphp',
+			'app_level' => '10',
+			'tgt_exp_time' => '1194590521000',
+			'logout_url' => '/' . $config->getValue('baseurlpath') . 'logout.html',
+		),
+		'remote' => array(
+			'testorg' => array(
+				'server_id' => 'default.aselect.org',
+				'server_url' => 'https://localhost/aselectserver/server',
+				'sign_requests' => true,
+				// TODO: this one is actually requestor related
+				'app_level' => '10',
+			),
+		),
+	),
+	'sp' => array(
+		'hosted' => array(
+			'organization' => 'simpleSAMLphp',
+			'server_id' => 'default.aselect.org',
+			'key' => $config->getBaseDir() . '/cert/agent.key',
+		),
+		'remote' => array(
+			'testorg' => array(
+				'require_signing' => true,
+				'cert' => $config->getBaseDir() . '/cert/aselect.crt',
+			),
+		),
+	),
+	'app' => array(
+		'app1' => array(
+			'require_signing' => false,
+		),
+		'federatiedemo' => array(
+			'require_signing' => true,
+			'cert' => $config->getBaseDir() . '/cert/app.crt',
+		),
+	),
 	'saml20' => array(
 		'sp_url_sso' => '/' . $config->getValue('baseurlpath') . '/saml2/sp/initSSO.php',
 		'sp_url_slo' => '/' . $config->getValue('baseurlpath') . '/saml2/sp/initSLO.php',
 	),
-	'logout_url' => '/' . $config->getValue('baseurlpath') . 'logout.html',
-	'remote_server_id' => 'default.aselect.org',
-	'remote_organization_id' => 'testorg',
-	'remote_server_url' => 'https://localhost/aselectserver/server',
-	'require_signing' => true,
-	'verify_certificate' => $config->getBaseDir() . '/cert/aselect.crt',
-	'sign_requests' => true,
-	'sign_certificate' => $config->getBaseDir() . '/cert/agent.key'
 );
 
 if ($_GET['local_rid']) session_id($_GET['local_rid']); else if ($_GET['rid']) session_id($_GET['rid']);
 
 session_start();
 
+// log an error and throw an exception
+function as_error_exception($msg) {
+	global $logger;	
+
+	$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', $msg);
+	throw new Exception($msg);
+}
+
+// read certificates and keys from files
+function as_read_pem($cert_key_file) {
+	if (!file_exists($cert_key_file)) {
+		as_error_exception('Could not find certificate/key file: ' . $cert_key_file);
+	}
+	$fp = fopen($cert_key_file, "r");
+	$contents = fread($fp, 8192);
+	fclose($fp);	
+	return $contents;
+}
+
+// verify a signature on an incoming request
 function as_verify_signature($parms, $publickey) {
-	global $as_config, $logger, $config;	
+	global $as_metadata;
+	
 	$signature = base64_decode($_GET['signature']);
 	$data = '';
 	foreach ($parms as $p) {
 		if (array_key_exists($p, $_GET)) $data .= $_GET[$p];
 	}
-	if (!file_exists($publickey)) {
-		throw new Exception('Could not find public key file [' . $publickey . '] which is needed to verify the signature.');
+	if (openssl_verify ($data, $signature, as_read_pem($publickey)) != 1) {
+		as_error_exception('Signature verification failed: ' . openssl_error_string());
 	}
-	$xmlseckey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
-	$xmlseckey->loadKey($publickey,TRUE);
-	if (openssl_verify ($data, $signature, $xmlseckey->key) != 1) {
-		$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', 'Signature verification failed: '. openssl_error_string());
-		throw new Exception('Signature verification failed: ' . openssl_error_string());
-	}
-	$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', 'Signature on request succesfully verified.');
 }
 
 // handle authenticate request from an agent or a local server
 function as_request_authenticate() {
-	global $as_config, $logger;
-	$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', 'local_as_url: ' . $_GET['local_as_url']);
+	global $as_metadata;	
+
+	$app_id = $_GET['app_id'];
+	$local_organization = $_GET['local_organization'];
 	
-	//required_level=1
-	//signature=mEAywVj%2BMsiK6gcnw6QGKuDWpu5rnDYfgk8yYHzmvSReIhs%2F3H79kAY3ZA53Bm03Npmh6TYPQWRduQrvFvvTrGTQbpw3L0qdGz4X8sfM2ax2UPzhfMU3KtRLN13TPzDakpsPuXtT36t1zuKUsTO127ZRG2itCMGm3WDV%2Futk%2FIA%3D
-	//forced_logon=false
-	//local_as_url=https%3A%2F%2Flocalhost%2Faselectserver%2Fserver%3Flocal_rid%3D86E16F83BEFA1AA0
-	//request=authenticate
-	//local_organization=testorg
-	//a-select-server=localhost
-	
-	// harmonize signature verification between app and local server requests:
-	// app: a-select-server, app_id, app_url, country, forced_logon, language, remote_organization, uid
-	// server: a-select-server, country, forced_logon, language, local_as_url, local_organization, required_level, uid
-	if ($as_config['require_signing']) {
-		as_verify_signature(array(
-				'a-select-server','app_id', 'app_url', 'country',
-				'forced_logon', 'language', 'local_as_url', 'remote_organization',
-				'local_organization', 'required_level', 'uid'
-			),
-			$as_config['verify_certificate']
-		);
+	if ($app_id) {
+		$md = $as_metadata['app'][$app_id];
+		if ($md['require_signing']) {
+			as_verify_signature(array(
+					'a-select-server','app_id', 'app_url', 'country',
+					'forced_logon', 'language', 'remote_organization', 'uid'
+				),
+				$md['cert']
+			);
+		}
+		$_SESSION['app_id'] = $app_id;	
+		$_SESSION['return_url'] = $_GET['app_url'];
+	} else if ($local_organization) {
+		$md = $as_metadata['sp']['remote'][$local_organization];
+		if ($md['require_signing']) {
+			as_verify_signature(array(
+					'a-select-server', 'country', 'forced_logon', 'language',
+					'local_as_url', 'local_organization', 'required_level', 'uid'
+				),
+				$md['cert']
+			);
+		}		
+		$_SESSION['local_organization'] = $local_organization;	
+		$_SESSION['return_url'] = $_GET['local_as_url'];
+	} else {
+		as_error_exception('Invalid "authenticate" request: no "app_id" or "local_organization" parameter found.');
 	}
-	$_SESSION['return_url'] = array_key_exists('app_url', $_GET) ? $_GET['app_url'] : $_GET['local_as_url'];
-	$_SESSION['app_id'] = $_GET['app_id'];	
+	
 	print 'result_code=0000' . 
-          '&a-select-server=' . $as_config['server_id'] .
+          '&a-select-server=' . $as_metadata['idp']['hosted']['server_id'] .
           '&rid=' . session_id() . 
           '&as_url=' . $_SERVER['PHP_SELF'] . '?request=login';
 }
 
 // handle browser login redirect from agent or local server
 function as_request_login() {
-	global $as_config;
+	global $as_metadata;
+	
 	$return_url = $_SERVER['PHP_SELF'] . '?request=return';
 	header('Location: ' .
-		$as_config['saml20']['sp_url_sso'] .
+		$as_metadata['saml20']['sp_url_sso'] .
 		'?RelayState=' . $return_url);
 }
 
-// handle browser return redirect from bridged IDP (SAML 2.0 for now)
+// handle browser return redirect from a bridged IDP
 function as_request_return() {
-	global $as_config, $config;
-	$rid = session_id();
-	$publickey = $config->getBaseDir() . '/cert/' . $as_config['metadata']['certificate'];
-	if (!file_exists($publickey)) {
-		throw new Exception('Could not find public key file [' . $publickey . '] which is needed to encrypt the credentials.');
-	}
-	$xmlseckey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
-	$xmlseckey->loadKey($publickey,TRUE);
-	//TODO; why does xmlseclibs not work!?
-	//$credentials = $xmlseckey->encryptData($rid);
-	if (openssl_public_encrypt($rid, $credentials, $xmlseckey->key) == FALSE) {
-		$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', 'Could not encrypt aselect_credentials: ' . $rid . ' : ' . openssl_error_string());
-		throw new Exception("Could not encrypt credentials!");	
+	global $as_metadata;
+
+	$rid = session_id();	
+	$md = $as_metadata['idp']['hosted'];
+	$credentials = '';
+	if (openssl_public_encrypt($rid, $credentials, as_read_pem($md['cert'])) == FALSE) {
+		as_error_exception('Could not encrypt aselect_credentials: ' . $rid . ' : ' . openssl_error_string());
 	}
 	$redirect = $_SESSION['return_url'];
 	if (!strrchr($redirect, '?')) {
@@ -177,42 +219,53 @@ function as_request_return() {
 	}
 	$redirect .=
 		'rid=' . $rid .
-		 '&a-select-server=' . $as_config['server_id'] .
+		 '&a-select-server=' . $md['server_id'] .
 		 '&aselect_credentials=' . urlencode(base64_encode($credentials));
 	header('Location: ' . 	$redirect);
 }
 
 // handle verify credentials request from agent or local server
 function as_request_verify_credentials() {
-	global $as_config, $config, $logger;
-	// harmonize signature verification between app and local server requests:
-	// app: a-select-server, aselect_credentials, rid
-	// server: a-select-server, aselect_credentials, local_organization, rid
-	if ($as_config['require_signing']) {
-		as_verify_signature(array(
-				'a-select-server','aselect_credentials', 'local_organization', 'rid'
-			),
-			$as_config['verify_certificate']		
-		);
+	global $as_metadata;
+	
+	$app_id = $_SESSION['app_id'];
+	$local_organization = $_GET['local_organization'];
+	
+	if ($app_id) {
+		$md = $as_metadata['app'][$app_id];
+		if ($md['require_signing']) {
+			as_verify_signature(array(
+					'a-select-server', 'aselect_credentials', 'rid'
+				),
+				$md['cert']
+			);
+		}
+		// NB: different handling of credentials between agent and server requests!
+		$credentials = base64_decode($_GET['aselect_credentials']);
+	} else if ($local_organization) {
+		$md = $as_metadata['sp']['remote'][$local_organization];
+		if ($md['require_signing']) {
+			as_verify_signature(array(
+					'a-select-server', 'aselect_credentials', 'local_organization', 'rid'
+				),
+				$md['cert']
+			);
+		}
+		// NB: different handling of credentials between agent and server requests!
+		$credentials = base64_decode(urldecode($_GET['aselect_credentials']));
+	} else {
+		as_error_exception('Could not process verify_credentials request: no "app_id" parameter found in the session and no "local_organization" parameter found in the request.');
 	}
-	// NB: accomodate for weird a-select behaviour: agent and local a-select server pass in credentials in different ways...
-	$credentials = array_key_exists('local_organization', $_GET) ? base64_decode(urldecode($_GET['aselect_credentials'])) : base64_decode($_GET['aselect_credentials']);
-	$privatekey = $config->getBaseDir() . '/cert/' . $as_config['metadata']['privatekey'];
-	if (!file_exists($privatekey)) {
-		throw new Exception('Could not find private key file [' . $privatekey . '] which is needed to verify the credentials.');
-	}
-	$xmlseckey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
-	$xmlseckey->loadKey($privatekey,TRUE);
-	//TODO; why does xmlseclibs not work!?
-	//$decrypted = $xmlseckey->decryptData($credentials);
-	if (openssl_private_decrypt($credentials, $decrypted, $xmlseckey->key) == FALSE) {
-		$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', 'Could not decrypt aselect_credentials: ' . $credentials . ' : ' . openssl_error_string());
-		throw new Exception("Could not decrypt credentials!");
+	
+	$md = $as_metadata['idp']['hosted'];
+	$decrypted = '';	
+	if (openssl_private_decrypt($credentials, $decrypted, as_read_pem($md['key'])) == FALSE) {
+		as_error_exception('Could not decrypt aselect_credentials: ' . $_GET['aselect_credentials'] . ' : ' . openssl_error_string());
 	}
 	if ($decrypted != session_id()) {
-		$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', 'Credentials incorrect or tampered with: ' . $decrypted . ' != ' . session_id());
-		throw new Exception("Incorrect credentials!");
+		as_error_exception('Credentials incorrect or tampered with: ' . $decrypted . ' != ' . session_id());
 	}
+
 	$session = SimpleSAML_Session::getInstance();
 	$serialized = '';
 	foreach ($session->getAttributes() as $name => $values) {
@@ -222,15 +275,18 @@ function as_request_verify_credentials() {
 		}
 	}
 	$nameid = $session->getNameID();
+
 	print 'result_code=0000' .
-		'&app_id=' . $_SESSION['app_id'] . 
 		'&uid=' . $nameid['value'] .
-		'&organization=' . $as_config['organization_id'] .
-		'&authsp_level=' . $as_config['authsp_level'] .
-		'&authsp=' . $as_config['authsp'] .
-		'&app_level=' . $as_config['app_level'] .
-		'&a-select-server=' . $as_config['server_id'] .
-		'&tgt_exp_time=' . $as_config['tgt_exp_time'];	
+		'&organization=' . $md['organization'] .
+		'&authsp_level=' . $md['authsp_level'] .
+		'&authsp=' . $md['authsp'] .
+		'&app_level=' . $md['app_level'] .
+		'&a-select-server=' . $md['server_id'] .
+		'&tgt_exp_time=' . $md['tgt_exp_time'];	
+	if ($app_id) {
+		print '&app_id=' . $app_id;
+	}
 	if ($serialized != '') {
 		print '&attributes=' . base64_encode($serialized);
 	}
@@ -238,26 +294,24 @@ function as_request_verify_credentials() {
 
 // handle browser logout redirect from agent or local server
 function as_request_logout() {
-	global $as_config;
+	global $as_metadata;
+
 	header('Location: ' .
-		$as_config['saml20']['sp_url_slo'] .
-		'?RelayState=' . $as_config['logout_url']);
+		$as_metadata['saml20']['sp_url_slo'] .
+		'?RelayState=' . $as_metadata['idp']['hosted']['logout_url']);
 }
 
 // helper function for sending a non-browser request to a remote server
 function as_call($url) {
-	global $logger;
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_URL, $url);
-	$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', 'Outgoing request: ' . $url);
 	$result = curl_exec($ch);
 	$error = curl_error($ch);
 	curl_close($ch);
 	if ($result == FALSE) {
-		$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', 'Request on remote server failed [' . $url . '] : ' . $error);
-		throw new Exception('Request on remote server failed: ' . $error);
+		as_error_exception('Request on remote server failed: ' . $error);
 	}
 	$parms = array();
 	foreach (explode('&', $result) as $p) {
@@ -265,84 +319,97 @@ function as_call($url) {
 		$parms[$a[0]] = urldecode($a[1]);
 	}
 	if ($parms['result_code'] != '0000') {
-		$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', 'Request on remote server returned error: ' . $result);
-		throw new Exception('Request on remote server returned error: ' . $result);
+		as_error_exception('Request on remote server returned error: ' . $result);
 	}
 	return $parms;
 }
 
 // calculate signature on request parameters
 function as_compute_signature($parms, $privatekey) {
-	if (!file_exists($privatekey)) {
-		throw new Exception('Could not find private key file [' . $privatekey . '] which is needed to sign the request.');
-	}
-	$xmlseckey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
-	$xmlseckey->loadKey($privatekey,TRUE);
 	$data = '';
-	foreach ($parms as $p) $data .= $p;
+	foreach ($parms as $p) {
+		$data .= $p;	
+	}
 	$signature = '';
-	if (openssl_sign($data, $signature, $xmlseckey->key) != TRUE) {
-		$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', 'Signing request failed: '. openssl_error_string());
-		throw new Exception('Signing request failed: ' . openssl_error_string());
+	if (openssl_sign($data, $signature, as_read_pem($privatekey)) != TRUE) {
+		as_error_exception('Signing the request failed: ' . openssl_error_string());
 	}
 	return urlencode(base64_encode($signature));
 }
 
 // handle bridged authentication request from simpleSAMLphp to remote server
 function as_request_bridge() {
-	global $as_config, $logger;
-	// perform authenticate
+	global $as_metadata;
+	
 	$_SESSION['relaystate'] = $_GET['RelayState'];
+	
+	$local_md = $as_metadata['sp']['hosted'];
 	$local_as_url = $_SERVER['PHP_SELF'] .
 						'?request=bridge_return' .
 						'&local_rid=' . session_id();
-	$url = $as_config['remote_server_url'] .
+
+	// TODO: perform remote IDP discovery
+	$idps = array_keys($as_metadata['idp']['remote']);
+	$remote_organization = $idps[0];
+	$_SESSION['remote_organization'] = $remote_organization;
+	$remote_md = $as_metadata['idp']['remote'][$remote_organization];
+	
+	$url = $remote_md['server_url'] .
 		'?request=authenticate' .
-		'&required_level=' . $as_config['app_level'] .
-		'&local_organization=' . $as_config['organization_id'] .
-		'&a-select-server=' . $as_config['remote_server_id'] .
+		'&required_level=' . $remote_md['app_level'] .
+		'&local_organization=' . $local_md['organization'] .
+		'&a-select-server=' . $remote_md['server_id'] .
 		'&local_as_url=' . urlencode($local_as_url);
-	if ($as_config['sign_requests']) {		
+
+	if ($remote_md['sign_requests']) {
 		$url .= '&signature=' . as_compute_signature(array(
-						$as_config['remote_server_id'],
+						$remote_md['server_id'],
 						$local_as_url,
-						$as_config['organization_id'],
-						$as_config['app_level']
+						$local_md['organization'],
+						$remote_md['app_level']
 					),
-					$as_config['sign_certificate']
+					$local_md['key']
 				);
 	}
 	$parms = as_call($url);
+
 	header('Location: ' .
 		$parms['as_url'] .
 			'&rid=' . $parms['rid'] .
-			'&a-select-server=' . $as_config['remote_server_id']);
+			'&a-select-server=' . $remote_md['server_id']);
 }
 
 // handle browser return redirect from (bridged) remote server
 function as_request_bridge_return() {
-	global $as_config, $logger;
-	if ((array_key_exists('aselect_credentials', $_GET) == FALSE)
-		||
-		(array_key_exists('rid', $_GET) == FALSE))
-		{
-		$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', 'Error on return from login at remote server!');
-		throw new Exception('Error on return from login at remote server!');		
+	global $as_metadata;
+	
+	$credentials = $_GET['aselect_credentials'];
+	$rid = $_GET['rid'];
+	$relaystate = $_SESSION['relaystate'];
+
+	if ( (!credentials) || (!rid) ) {
+		as_error_exception('Error on return from login at remote server!');		
 	}
-	$url = $as_config['remote_server_url'] .
+	
+	$local_md = $as_metadata['sp']['hosted'];
+	$remote_organization = $_SESSION['remote_organization'];
+	$remote_md = $as_metadata['idp']['remote'][$remote_organization];
+	
+	$url = $remote_md['server_url'] .
 		'?request=verify_credentials' .
-		'&rid=' . $_GET['rid'] .
-		'&local_organization=' . $as_config['organization_id'] .
-		'&a-select-server=' . $as_config['remote_server_id'] .
-		'&aselect_credentials=' . $_GET['aselect_credentials'];
-	if ($as_config['sign_requests']) {		
+		'&rid=' . $rid .
+		'&local_organization=' . $local_md['organization'] .
+		'&a-select-server=' . $remote_md['server_id'] .
+		'&aselect_credentials=' . $credentials;
+		
+	if ($remote_md['sign_requests']) {
 		$url .= '&signature=' . as_compute_signature(array(
-						$as_config['remote_server_id'],
-						$_GET['aselect_credentials'],
-						$as_config['organization_id'],
-						$_GET['rid']
+						$remote_md['server_id'],
+						$credentials,
+						$local_md['organization'],
+						$rid
 					),
-					$as_config['sign_certificate']
+					$local_md['key']
 				);
 	}
 	$parms = as_call($url);
@@ -363,7 +430,8 @@ function as_request_bridge_return() {
 		$session->setAttributes($attributes);
 	}
 	#$session->setNameID('test');
-	header('Location: ' . 	$_SESSION['relaystate']);
+
+	header('Location: ' . 	$relaystate);
 }
 
 // demultiplex incoming request
