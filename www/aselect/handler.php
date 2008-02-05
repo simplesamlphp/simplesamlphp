@@ -21,21 +21,21 @@
  *
  * Connect "local" A-Select Server:
  *   configure simpleSAMLphp as a "remote" aselect server as follows (example):
- *			<organization id="simplSAMLphp"
- *				server="localhost"
+ *			<organization id="simpleSAMLphp"
+ *				server="default.aselect.org"
  *				friendly_name="simpleSAMLphp (TEST)"
- *				resourcegroup="remote_simplsamlphp_resources" />
+ *				resourcegroup="remote_simplesamlphp_resources" />
  *
- *			<resourcegroup id="remote_simplsamlphp_resources"
+ *			<resourcegroup id="remote_simplesamlphp_resources"
  *				interval="30">
  *				<resource id="simpleSAMLphp1">
- *					<url>https: *localhost/simplesaml/aselect/handler.php</url>
+ *					<url>https://localhost/simplesaml/aselect/handler.php</url>
  *				</resource>
  *			</resourcegroup>
  *
  * Bridge to "remote" A-Select Server:
  *   configure simpleSAMLphp as a "local" aselect server as follows (example):
- *			<organization id="simplSAMLphp" server="localhost">
+ *			<organization id="simpleSAMLphp" server="default.aselect.org">
  *				<level>1</level>
  *				<forced_authenticate>false</forced_authenticate>
  *				<attribute_policy>policyA</attribute_policy>
@@ -46,21 +46,20 @@
  *
  * TODO:
  * - separate metadata configuration into metadata/aselect-*-*.php
+ * - remote IDP discovery handling (similar to saml2: with optional default)
  * - add robustness/error-handling/error-reporting
- * - generic bridging
- *
  * - factor out common, app/local server and remote server code
+ * 
+ * - dynamic bridging after IDP discovery across all protocols (core feature)
  */
 
 require_once('../../www/_include.php');
 require_once('xmlseclibs.php');
 require_once('SimpleSAML/Logger.php');
 require_once('SimpleSAML/Configuration.php');
-require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 
 $logger = new SimpleSAML_Logger();
 $config = SimpleSAML_Configuration::getInstance();
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 $as_metadata = array(
 	'idp' => array(
@@ -73,14 +72,21 @@ $as_metadata = array(
 			'authsp' => 'simpleSAMLphp',
 			'app_level' => '10',
 			'tgt_exp_time' => '1194590521000',
-			'logout_url' => '/' . $config->getValue('baseurlpath') . 'logout.html',
+#			'auth' => '/' . $config->getValue('baseurlpath') . '/auth/login.php',
+#			'logout' => '/' . $config->getValue('baseurlpath') . 'logout.html',
+			'auth' => '/' . $config->getValue('baseurlpath') . '/saml2/sp/initSSO.php',
+			'logout' => '/' . $config->getValue('baseurlpath') . '/saml2/sp/initSLO.php',
+			'loggedout_url' => '/' . $config->getValue('baseurlpath') . 'logout.html',
 		),
 		'remote' => array(
+			// so far the IDP bridging is statically configured to the first one in
+			// this list; IDP discovery should be implemented
 			'testorg' => array(
 				'server_id' => 'default.aselect.org',
 				'server_url' => 'https://localhost/aselectserver/server',
 				'sign_requests' => true,
-				// TODO: this one is actually requestor related
+				// fixed required authentication level per remote IDP, because this
+				// requestor concept cannot be mapped from the other protocols
 				'app_level' => '10',
 			),
 		),
@@ -107,12 +113,10 @@ $as_metadata = array(
 			'cert' => $config->getBaseDir() . '/cert/app.crt',
 		),
 	),
-	'saml20' => array(
-		'sp_url_sso' => '/' . $config->getValue('baseurlpath') . '/saml2/sp/initSSO.php',
-		'sp_url_slo' => '/' . $config->getValue('baseurlpath') . '/saml2/sp/initSLO.php',
-	),
 );
 
+// some work to put a browser request into the corresponding session that was
+// started by the original "authenticate" request of the agent or local server 
 if ($_GET['local_rid']) session_id($_GET['local_rid']); else if ($_GET['rid']) session_id($_GET['rid']);
 
 session_start();
@@ -195,14 +199,14 @@ function as_request_authenticate() {
 function as_request_login() {
 	global $as_metadata;
 	
-	$return_url = $_SERVER['PHP_SELF'] . '?request=return';
+	$return_url = $_SERVER['PHP_SELF'] . '?request=login_return';
 	header('Location: ' .
-		$as_metadata['saml20']['sp_url_sso'] .
+		$as_metadata['idp']['hosted']['auth'] .
 		'?RelayState=' . $return_url);
 }
 
 // handle browser return redirect from a bridged IDP
-function as_request_return() {
+function as_request_login_return() {
 	global $as_metadata;
 
 	$rid = session_id();	
@@ -297,8 +301,8 @@ function as_request_logout() {
 	global $as_metadata;
 
 	header('Location: ' .
-		$as_metadata['saml20']['sp_url_slo'] .
-		'?RelayState=' . $as_metadata['idp']['hosted']['logout_url']);
+		$as_metadata['idp']['hosted']['logout'] .
+		'?RelayState=' . urlencode($as_metadata['idp']['hosted']['loggedout_url']));
 }
 
 // helper function for sending a non-browser request to a remote server
@@ -314,9 +318,9 @@ function as_call($url) {
 		as_error_exception('Request on remote server failed: ' . $error);
 	}
 	$parms = array();
-	foreach (explode('&', $result) as $p) {
-		$a = explode('=', $p);
-		$parms[$a[0]] = urldecode($a[1]);
+	foreach (explode('&', $result) as $parm) {
+		$tuple = explode('=', $parm);
+		$parms[urldecode($tuple[0])] = urldecode($tuple[1]);
 	}
 	if ($parms['result_code'] != '0000') {
 		as_error_exception('Request on remote server returned error: ' . $result);
@@ -418,14 +422,15 @@ function as_request_bridge_return() {
 	$session->setAuthenticated(true, 'aselect');
 	
 	if (array_key_exists('attributes', $parms)) {
-		$parm = base64_decode($parms['attributes']);
+		$decoded = base64_decode($parms['attributes']);
 		$attributes = array();
-		foreach (explode('&', $parm) as $p) {
-			$a = explode('=', $p);
-			if (array_key_exists($a[0], $attributes)) {
-				$attributes[$a[0]] = array();
+		foreach (explode('&', $decoded) as $parm) {
+			$tuple = explode('=', $parm);
+			$name = urldecode($tuple[0]);
+			if (array_key_exists($name, $attributes)) {
+				$attributes[$name] = array();
 			}
-			$attributes[$a[0]][] = urldecode($a[1]);
+			$attributes[$name][] = urldecode($tuple[1]);
 		}
 		$session->setAttributes($attributes);
 	}
