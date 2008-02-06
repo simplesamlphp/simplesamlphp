@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Fri Feb  1 08:44:40 2008</pubdate>
+    <pubdate>Fri Feb 1 08:44:40 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -17,6 +17,12 @@
       <email>andreas.solberg@uninett.no</email>
     </author>
   </articleinfo>
+
+  <note>
+    <para>This document is in progress of beeing updated to correspond to
+    simpleSAMLphp version 1.0. simpleSAMLphp version 1.0 is scheduled to be
+    released in March 2008.</para>
+  </note>
 
   <section>
     <title>Introduction</title>
@@ -31,9 +37,11 @@
     <title>Configuring metadata for SAML 2.0 SP</title>
 
     <para>When you are setting up a SAML 2.0 SP, you would need to configure
-    two metadata files. saml20-sp-hosted.php and saml20-idp-remote.php.
-    saml20-sp-hosted.php represent the SAML entity of the service provider
-    itself, while the saml20-idp-remote.php configuration lists all the
+    two metadata files. <filename>saml20-sp-hosted.php</filename> and
+    <filename>saml20-idp-remote.php</filename>.
+    <filename>saml20-sp-hosted.php</filename> represent the SAML entity of the
+    service provider itself, while the
+    <filename>saml20-idp-remote.php</filename> configuration lists all the
     trusted SAML 2.0 IdP and how to connect to them.</para>
 
     <section>
@@ -50,166 +58,293 @@
         use.</para>
       </note>
 
-      <para>Here is an example of the metadata file:</para>
+      <example>
+        <title>Example of metadata for hosted SAML 2.0 SP</title>
 
-      <programlisting>$metadata = array( 
+        <para>Here is an example of the metadata file:</para>
 
-	/*
-	 * Example of a hosted SP 
-	 */
-	'entityid' =&gt; array(
-		'host'							=&gt;	'hostname',
-		'spNameQualifier' 				=&gt;	'entityid',
-		'NameIDFormat'					=&gt;	'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
-		'ForceAuthn'					=&gt;	'false'
-	)
+        <programlisting>/*
+ * Example of a hosted SP 
+ */
+'sp-entityid' =&gt; array(
+	'host' =&gt; 'sp.example.org'
+)</programlisting>
+      </example>
 
-);</programlisting>
+      <para>You may add any number of SP definitions in the same installation
+      of simpleSAMLphp. simpleSAMLphp will discover automatically which
+      configuration to use in a specific scenario, by looking up the current
+      hostname sent by the client and map that to the <literal>host</literal>
+      entry in the metadata.</para>
 
-      <para>Here are the description of the possible fields:</para>
+      <para>Below is a description of the mandatory and optional fields in the
+      SAML 2.0 SP hosted metadata.</para>
 
-      <glosslist>
-        <glossentry>
-          <glossterm>index (the index of the array)</glossterm>
+      <section>
+        <title>Mandatory metadata fields</title>
 
-          <glossdef>
-            <para>The entity ID of the hosted SP entity.</para>
-          </glossdef>
-        </glossentry>
+        <para>These field are required to be included in the metadata:</para>
 
-        <glossentry>
-          <glossterm>spNameQualifier</glossterm>
+        <glosslist>
+          <glossentry>
+            <glossterm>index (the index of the array)</glossterm>
 
-          <glossdef>
-            <para>The name qualifier of the SP. If this is not important to
-            you, you can set it to be identical with the entity ID
-            above.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>The entity ID of the hosted SP entity.</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>host</glossterm>
+          <glossentry>
+            <glossterm>host</glossterm>
 
-          <glossdef>
-            <para>The hostname of the server running this SAML 2.0 SP. This
-            option allows simpleSAMLphp to automatically discover which SP
-            metadata to use, when it runs multiple virtual hosts.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>The hostname of the server running this SAML 2.0 SP. This
+              option allows simpleSAMLphp to automatically discover which SP
+              metadata to use, when it runs multiple virtual hosts.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+      </section>
 
-        <glossentry>
-          <glossterm>NameIDFormat</glossterm>
+      <section>
+        <title>Optional metadata fields</title>
 
-          <glossdef>
-            <para>The NameIDFormat in the request. If you don't know what this
-            is, or don't need it to be anything specific, leave it with the
-            default configuration.</para>
-          </glossdef>
-        </glossentry>
+        <para>These fields can be left out if not needed.</para>
 
-        <glossentry>
-          <glossterm>ForceAuthn</glossterm>
+        <glosslist>
+          <glossentry>
+            <glossterm>NameIDFormat</glossterm>
 
-          <glossdef>
-            <para>Force authentication is a parameter that allows you to force
-            re-authenticatino of users even if the user contains a SSO session
-            at the IdP.</para>
-          </glossdef>
-        </glossentry>
-      </glosslist>
+            <glossdef>
+              <para>The NameIDFormat in the request. If you don't know what
+              this is, or don't need it to be anything specific, leave it with
+              the default configuration.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>ForceAuthn</glossterm>
+
+            <glossdef>
+              <para>Force authentication is a parameter that allows you to
+              force re-authenticatino of users even if the user contains a SSO
+              session at the IdP.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+      </section>
+
+      <section>
+        <title>Fields for signing authentication requests</title>
+
+        <para>simpleSAMLphp supports signing the HTTP-REDIRECT authentication
+        request, but by default it will not sign it. Note that if you want to
+        sign the authentication requests, you will need to have a
+        keypair/certificate at the SP.</para>
+
+        <glosslist>
+          <glossentry>
+            <glossterm>request.signing</glossterm>
+
+            <glossdef>
+              <para>A boolean value, that should be true or false. Default is
+              false. To turn on signing authentication requests, set this flag
+              to true.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>privatekey</glossterm>
+
+            <glossdef>
+              <para>The filename of the privatekey to be used for
+              singing.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>certificate</glossterm>
+
+            <glossdef>
+              <para>The filename of the certificate which corresponds to the
+              privatekey.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+
+        <example>
+          <title>Example of configured signed requests</title>
+
+          <programlisting>'request.signing' =&gt; true,
+'privatekey' =&gt; 'server.pem',
+'certificate' =&gt; 'server.crt'</programlisting>
+        </example>
+      </section>
     </section>
 
     <section>
       <title>Configuring SAML 2.0 IdP Remote metadata</title>
 
-      <para>This metadata file lists all the IdPs that you trust.</para>
+      <para>The metadata file <filename>saml20-idp-remote.php</filename>
+      represent the SAML 2.0 IdPs that your service provider trust.</para>
 
-      <programlisting>	/*
-	 * Example simpleSAMLphp SAML 2.0 IdP
-	 */
-	'idp.example.org' =&gt;  array(
-		'name'					=&gt;	'Test',
-		'description'			=&gt; 'Description of this example entry',
-		'SingleSignOnService'	=&gt;	'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
-		'SingleLogoutService'	=&gt;	'https://idp.example.org/simplesaml/saml2/idp/LogoutService.php',
-		'certFingerprint'		=&gt;	'3fa158e8abfd4b5203315b08c0b791b6ee4715f6',
-		'base64attributes'		=&gt;	true
-	),</programlisting>
+      <example>
+        <title>Example of metadata for trusted remote SAML 2.0 IdP</title>
 
-      <glosslist>
-        <glossentry>
-          <glossterm>index (the index of the array)</glossterm>
+        <para>Here is an example of a metadata entry for a remote trusted
+        IdP:</para>
 
-          <glossdef>
-            <para>The entity ID of this SAML 2.0 IdP entity.</para>
-          </glossdef>
-        </glossentry>
+        <programlisting>/*
+ * Example simpleSAMLphp SAML 2.0 IdP
+ */
+'idp-entity-id-simple' =&gt;  array(
+	'name'                 =&gt; 'Test',
+	'description'          =&gt; 'Description of this example entry',
+	
+	'SingleSignOnService'  =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
+	'SingleLogoutService'  =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php',
+	'certFingerprint'      =&gt; '3fa158e8abfd4b5203315b08c0b791b6ee4715f6'
+),</programlisting>
+      </example>
 
-        <glossentry>
-          <glossterm>name</glossterm>
+      <section>
+        <title>Mandatory metadata fields</title>
 
-          <glossdef>
-            <para>Set the name of this identity provider. Will just be used in
-            the UI of the discovery service, so set it to whatever you
-            want.</para>
-          </glossdef>
-        </glossentry>
+        <para>These field are required to be included in the metadata:</para>
 
-        <glossentry>
-          <glossterm>description</glossterm>
+        <glosslist>
+          <glossentry>
+            <glossterm>index (the index of the array)</glossterm>
 
-          <glossdef>
-            <para>Set the description of this identity provider. Will just be
-            used in the UI of the discovery service, so set it to whatever you
-            want.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>The entity ID of the remote IdP.</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>SingleSignOnService</glossterm>
+          <glossentry>
+            <glossterm>name</glossterm>
 
-          <glossdef>
-            <para>Contact the IdP to get the endpoint URL of this service.
-            This is the URL which the user is redirected with the AuthnRequest
-            using HTTP-REDIRECT.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>A textual name of the IdP. (used in the SAML 2.0 discovery
+              service)</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>SingleLogoutService</glossterm>
+          <glossentry>
+            <glossterm>description</glossterm>
 
-          <glossdef>
-            <para>Contact the IdP to get the endpoint URL of this service.
-            This is the URL which the user is redirected with the
-            LogoutRequest using HTTP-REDIRECT.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>A longer description of the IdP. (used in the SAML 2.0
+              discovery service)</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>certFingerprint</glossterm>
+          <glossentry>
+            <glossterm>SingleSignOnService</glossterm>
 
-          <glossdef>
-            <para>The md5sum of the certificate used by the IdP. If you don't
-            know how to compute this, you can leave it as it is, and then
-            you'll get an error message the first time you try to login. In
-            this error message you are told what is the fingerprint of the IdP
-            certiciate, so you can copy and use that.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>Contact the IdP to get the endpoint URL of this service.
+              This is the URL which the user is redirected with the
+              AuthnRequest using HTTP-REDIRECT.</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>base64encode</glossterm>
+          <glossentry>
+            <glossterm>SingleLogoutService</glossterm>
 
-          <glossdef>
-            <para>Is the IdP base64 encoding all the attributes?
-            Base64encoding should be avoided but makes it much easier to send
-            data in different formats and characterencodings, so you can leave
-            it on when you test. If you are using simpleSAMLphp at the IdP,
-            remember to set the parameter in the metadata at the IdP to be the
-            same.</para>
-          </glossdef>
-        </glossentry>
-      </glosslist>
+            <glossdef>
+              <para>Contact the IdP to get the endpoint URL of this service.
+              This is the URL which the user is redirected with the
+              LogoutRequest using HTTP-REDIRECT.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>certFingerprint</glossterm>
+
+            <glossdef>
+              <para>The md5sum of the certificate used by the IdP. If you
+              don't know how to compute this, you can leave it as it is, and
+              then you'll get an error message the first time you try to
+              login. In this error message you are told what is the
+              fingerprint of the IdP certiciate, so you can copy and use
+              that.</para>
+
+              <para>See <xref linkend="a.fingerprint" /> for an example of how
+              to calculate the fingerprint with the openssl tool.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+      </section>
+
+      <section>
+        <title>Optional metadata fields</title>
+
+        <para>These fields can be left out if not needed.</para>
+
+        <glosslist>
+          <glossentry>
+            <glossterm>base64encode</glossterm>
+
+            <glossdef>
+              <para>Is the IdP base64 encoding all the attributes?
+              Base64encoding should be avoided but makes it much easier to
+              send data in different formats and characterencodings, so you
+              can leave it on when you test. <warning>
+                  <para>If you are using simpleSAMLphp at the IdP, remember to
+                  set the parameter in the metadata at the IdP to be the
+                  same.</para>
+                </warning></para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+      </section>
+
+      <section>
+        <title>Fields for requireing signed LogoutRequests</title>
+
+        <para>simpleSAMLphp supports signing the HTTP-REDIRECT authentication
+        request, but by default it will not sign it. Note that if you want to
+        sign the authentication requests, you will need to have a
+        keypair/certificate at the SP.</para>
+
+        <glosslist>
+          <glossentry>
+            <glossterm>request.signing</glossterm>
+
+            <glossdef>
+              <para>A boolean value, that should be true or false. Default is
+              false. To turn on signing authentication requests, set this flag
+              to true.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>privatekey</glossterm>
+
+            <glossdef>
+              <para>The filename of the privatekey to be used for
+              singing.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>certificate</glossterm>
+
+            <glossdef>
+              <para>The filename of the certificate which corresponds to the
+              privatekey.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+
+        <example>
+          <title>Example of configured signed LogoutRequests</title>
+
+          <programlisting>'request.signing' =&gt; true,
+'certificate' =&gt; 'server.crt'</programlisting>
+        </example>
+      </section>
     </section>
 
     <section>
@@ -257,32 +392,41 @@
       configure two parameters, the entity ID and the hostname of the server
       running this SP.</para>
 
-      <programlisting>	/*
-	 * Example of hosted Shibboleth 1.3 SP.
-	 */
-	'sp1entityid'	=&gt; array(
-		'host'						=&gt;	'sp.example.org'
-	)</programlisting>
+      <example>
+        <title>Shibboleth 1.3 SP hosted metadata</title>
 
-      <glosslist>
-        <glossentry>
-          <glossterm>index (the index of the array)</glossterm>
+        <programlisting>/*
+ * Example of hosted Shibboleth 1.3 SP.
+ */
+'sp-provider-id' =&gt; array(
+	'host' =&gt; 'sp.example.org'
+)
+</programlisting>
+      </example>
 
-          <glossdef>
-            <para>The entity ID of the hosted SP entity.</para>
-          </glossdef>
-        </glossentry>
+      <section>
+        <title>Mandatory fields</title>
 
-        <glossentry>
-          <glossterm>host</glossterm>
+        <glosslist>
+          <glossentry>
+            <glossterm>index (the index of the array)</glossterm>
 
-          <glossdef>
-            <para>The hostname of the server running this Shibboleth 1.3 SP.
-            This option allows simpleSAMLphp to automatically discover which
-            SP metadata to use, when it runs multiple virtual hosts.</para>
-          </glossdef>
-        </glossentry>
-      </glosslist>
+            <glossdef>
+              <para>The entity ID of the hosted SP entity.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>host</glossterm>
+
+            <glossdef>
+              <para>The hostname of the server running this Shibboleth 1.3 SP.
+              This option allows simpleSAMLphp to automatically discover which
+              SP metadata to use, when it runs multiple virtual hosts.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+      </section>
     </section>
 
     <section>
@@ -291,29 +435,37 @@
       <para>Here (shib13-idp-remote.php) you configure which IdPs that you
       trust.</para>
 
-      <programlisting>	'urn:mace:switch.ch:aaitest:dukono.switch.ch'	=&gt; array(
-		'SingleSignOnUrl'		=&gt;	'https://dukono.switch.ch/shibboleth-idp/SSO',
-		'certFingerprint'		=&gt;	'c7279a9f28f11380509e075441e3dc55fb9ab864' 
-	),</programlisting>
+      <example>
+        <title>Example of remote Shibboleth 1.3 IdP metadata</title>
+
+        <programlisting>'theproviderid-of-the-idp'	=&gt; array(
+	'SingleSignOnService'  =&gt; 'https://idp.example.org/shibboleth-idp/SSO',
+	'certFingerprint'      =&gt; 'c7279a9f28f11380509e072441e3dc55fb9ab864' 
+)</programlisting>
+      </example>
 
       <glosslist>
         <glossentry>
           <glossterm>index (the index of the array)</glossterm>
 
           <glossdef>
-            <para>The entity ID of this Shibboleth 1.3 IdP entity. In this
+            <para>The providerID of this Shibboleth 1.3 IdP entity. In this
             example the entity ID is set to
             <literal>urn:mace:switch.ch:aaitest:dukono.switch.ch</literal>.</para>
           </glossdef>
         </glossentry>
 
         <glossentry>
-          <glossterm>SingleSignOnUrl</glossterm>
+          <glossterm>SingleSignOnService</glossterm>
 
           <glossdef>
             <para>Contact the IdP to get the endpoint URL of this service.
             This is the URL which the user is redirected with the request for
-            authentication.</para>
+            authentication.<note>
+                <para>The name of this parameter changed from SingleSignOnUrl
+                to SingleSignOnService betwen simpleSAMLphp version 0.5 and
+                1.0.</para>
+              </note></para>
           </glossdef>
         </glossentry>
 
@@ -326,6 +478,9 @@
             you'll get an error message the first time you try to login. In
             this error message you are told what is the fingerprint of the IdP
             certiciate, so you can copy and use that.</para>
+
+            <para>See <xref linkend="a.fingerprint" /> for an example of how
+            to calculate the fingerprint with the openssl tool.</para>
           </glossdef>
         </glossentry>
       </glosslist>
@@ -449,10 +604,6 @@
     <programlisting>require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
-require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
-require_once('SimpleSAML/XML/SAML20/AuthnResponse.php');
-require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
-require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
 </programlisting>
 
@@ -460,13 +611,10 @@ require_once('SimpleSAML/XHTML/Template.php');
     with simpleSAMLphp. You can copy this lines into your application without
     changes:</para>
 
-    <programlisting>session_start();
-
-/* Load simpleSAMLphp, configuration and metadata */
+    <programlisting>/* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-$session = SimpleSAML_Session::getInstance();
-</programlisting>
+$session = SimpleSAML_Session::getInstance(true);</programlisting>
 
     <para>Then at last, you check whether the session is valid. If it is not,
     redirect to the initSSO.php script adding the current URL as a RelayState
@@ -475,9 +623,12 @@ $session = SimpleSAML_Session::getInstance();
     so why don't you print_r it out right away to get the structure...</para>
 
     <programlisting>/* Check if valid local session exists.. */
-if (!isset($session) || !$session-&gt;isValid() ) {
-	header('Location: /' . $config-&gt;getValue('baseurlpath') . 'saml2/sp/initSSO.php?RelayState=' . urlencode(SimpleSAML_Utilities::selfURL()));
-	exit(0);
+if (!isset($session) || !$session-&gt;isValid('saml2') ) {
+	SimpleSAML_Utilities::redirect(
+		'/' . $config-&gt;getValue('baseurlpath') .
+		'saml2/sp/initSSO.php',
+		array('RelayState' =&gt; SimpleSAML_Utilities::selfURL())
+		);
 }
 
 $attributes = $session-&gt;getAttributes();
@@ -500,4 +651,15 @@ print_r($attributes);
     <para>And please join the mailinglist: <ulink
     url="http://rnd.feide.no/content/simplesamlphp-users-mailinglist">http://rnd.feide.no/content/simplesamlphp-users-mailinglist</ulink></para>
   </section>
+
+  <appendix id="a.fingerprint">
+    <title>Calculating the fingerprint of a certificate</title>
+
+    <para>If you have a certificate file, and want to calculate the
+    fingerprint, you can use the openssl command:</para>
+
+    <screen>cert]$ cat server.crt|openssl x509 -fingerprint 
+MD5 Fingerprint=D1:BA:B0:17:66:6D:7F:42:7B:91:1E:22:7E:3A:27:D2
+</screen>
+  </appendix>
 </article>
