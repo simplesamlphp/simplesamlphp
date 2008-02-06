@@ -19,7 +19,7 @@
  *
  *  - 'request.signing' => true,
  *  - 'privatekey' => 'server.pem',
- *  - 'certificate' => 'server.pem',
+ *  - 'certificate' => 'server.crt',
  */
  
 $metadata = array( 
@@ -28,7 +28,7 @@ $metadata = array(
 	 * Example of a hosted SP 
 	 */
 	'sp-entityid' => array(
-		'host'  => 'sp.example.org'
+		'host'  => 'sp.example.org'		
 	)
 
 );

@@ -9,8 +9,8 @@ $metadata = array(
 	/*
 	 * Example of hosted Shibboleth 1.3 SP.
 	 */
-	'sp.example.org'	=> array(
-		'host'						=>	'sp.example.org'
+	'sp-provider-id' => array(
+		'host' => 'sp.example.org'
 	)
 
 );
