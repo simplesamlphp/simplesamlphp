@@ -27,6 +27,7 @@ $config = array (
 	'attributenamemapdir'   => 'attributemap/',
 	'certdir'               => 'certs/',
 	'dictionarydir'         => 'dictionaries/',
+	'loggingdir'            => 'log/',
 	
 	
 	'version'				=>	'0.9.1',
@@ -57,17 +58,34 @@ $config = array (
 	/*
 	 * Logging.
 	 * 
-	 * Choose a syslog facility to use for logging.
-	 * And define the minimum log level to log
+	 * define the minimum log level to log
 	 *		LOG_ERR				No statistics, only errors
 	 *		LOG_WARNING			No statistics, only warnings/errors
 	 *		LOG_NOTICE			Statistics and errors 
 	 *		LOG_INFO			Verbose logs
 	 *		LOG_DEBUG			Full debug logs - not reccomended for production
+	 * 
+	 * Choose logging handler.
+	 * 
+	 * Options: [syslog,file]
+	 * 
+	 */
+	'logging.level'			=> LOG_NOTICE,
+	'logging.handler'		=> 'syslog',
+
+	/*
+	 * Logging: syslog
+	 * Choose a syslog facility to use for logging.
 	 */
 	'logging.facility'		=> LOG_LOCAL5,
-	'logging.level'			=> LOG_NOTICE,
 	
+	/*
+	 * Logging: file
+	 * 
+	 * Logfilename in the loggingdir from above.
+	 */
+	'logging.logfile'		=> 'simplesamlphp.log',
+
 
 	/*
 	 * Enable
