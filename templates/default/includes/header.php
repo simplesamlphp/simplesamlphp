@@ -10,7 +10,7 @@ if(array_key_exists('header', $data)) {
 }
 ?></title>
 
-	<link rel="stylesheet" type="text/css" href="/<?php echo $data['baseurlpath']; ?>resources/default.css">
+	<link rel="stylesheet" type="text/css" href="/<?php echo $data['baseurlpath']; ?>resources/default.css" />
 	<link rel="icon" type="image/icon" href="/<?php echo $data['baseurlpath']; ?>resources/icons/favicon.ico" />
 </head>
 <body>
