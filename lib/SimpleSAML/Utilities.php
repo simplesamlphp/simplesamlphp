@@ -25,19 +25,19 @@ class SimpleSAML_Utilities {
 		return $currenthost;
 	}
 
+	public static function getSelfProtocol() {
+		$s = empty($_SERVER["HTTPS"]) ? ''
+			: ($_SERVER["HTTPS"] == "on") ? "s"
+			: "";
+		$protocol = self::strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/").$s;
+		return $protocol;
+	}
 
 	public static function selfURLhost() {
 	
 		$currenthost = self::getSelfHost();
 	
-		$s = empty($_SERVER["HTTPS"]) ? ''
-			: ($_SERVER["HTTPS"] == "on") ? "s"
-			: "";
-		$protocol = self::strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/").$s;
-		
-		$port = ($_SERVER["SERVER_PORT"] == "80") ? ""
-			: (":".$_SERVER["SERVER_PORT"]);
-		
+		$protocol = self::getSelfProtocol();
 		
 		$portnumber = $_SERVER["SERVER_PORT"];
 		$port = ':' . $portnumber;
@@ -51,6 +51,8 @@ class SimpleSAML_Utilities {
 		return $protocol."://" . $currenthost . $port;
 	
 	}
+	
+
 
 	public static function selfURLNoQuery() {
 	

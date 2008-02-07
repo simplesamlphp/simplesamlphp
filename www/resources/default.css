@@ -91,3 +91,12 @@ dl dd {
 	font-family: monospace;
 	font-size: large;
 }
+div.caution {
+	background-color:  #FF9;
+	background-image: url('icons/caution.png');
+	background-repeat: no-repeat;
+	
+	border: thin solid #444;
+	padding: .2em .2em .2em 60px;
+	margin: 1em 0px 1em 0p;
+}

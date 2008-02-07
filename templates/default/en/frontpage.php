@@ -11,12 +11,24 @@
 			<ul>
 			<?php
 			
-				foreach ($data['links'] AS $link) {
+				foreach ($this->data['links'] AS $link) {
 					echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . htmlspecialchars($link['text']) . '</a></li>';
 				}
 			?>
 			</ul>
 		</p>
+		<?php
+		
+			foreach($this->data['warnings'] AS $warning) {
+			
+			
+				echo '<div class="caution">' . $warning . '</div>';
+				
+			
+			
+			}
+		
+		?>
 
 
 
