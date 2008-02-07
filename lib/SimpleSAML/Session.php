@@ -81,7 +81,17 @@ class SimpleSAML_Session {
 		
 		$this->trackid = SimpleSAML_Utilities::generateTrackID();
 	}
-	
+
+
+	/**
+	 * This function is called after this class has been deserialized.
+	 */
+	public function __wakeup() {
+		/* Initialize the $logger class variable if it hasn't been initialized. */
+		if (self::$logger === NULL) {
+			self::$logger = new SimpleSAML_Logger();
+		}
+	}
 	
 	
 	public static function getInstance($allowcreate = false) {
