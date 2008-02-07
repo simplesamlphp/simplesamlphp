@@ -3,6 +3,9 @@
 /* We need access to the configuration from config/config.php. */
 require_once('SimpleSAML/Configuration.php');
 
+/* For access to SimpleSAML_Utilities::transposeArray. */
+require_once('SimpleSAML/Utilities.php');
+
 /*
  * This file is part of SimpleSAMLphp. See the file COPYING in the
  * root of the distribution for licence information.
@@ -628,6 +631,31 @@ class SimpleSAML_MemcacheStore {
 		$expireTime = time() + $expire;
 
 		return $expireTime;
+	}
+
+
+	/**
+	 * This function retrieves statistics about all memcache server groups.
+	 *
+	 * @return Array with the names of each stat and an array with the value for each
+	 *         server group.
+	 */
+	public static function getStats()
+	{
+		$ret = array();
+
+		foreach(self::getMemcacheServers() as $sg) {
+			$stats = $sg->getExtendedStats();
+			if($stats === FALSE) {
+				throw new Exception('Failed to get memcache server status.');
+			}
+
+			$stats = SimpleSAML_Utilities::transposeArray($stats);
+
+			$ret = array_merge_recursive($ret, $stats);
+		}
+
+		return $ret;
 	}
 }
 ?>
