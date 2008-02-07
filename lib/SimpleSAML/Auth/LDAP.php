@@ -17,7 +17,7 @@ class SimpleSAML_Auth_LDAP {
 	/**
 	 * LDAP link
 	 */
-	private static $ldap = null;
+	private $ldap = null;
 	
 
 	/**
@@ -30,7 +30,7 @@ class SimpleSAML_Auth_LDAP {
 	 */
 	public function __construct($hostname) {
 
-		if (!isset($this->logger)) $this->logger = new SimpleSAML_Logger();
+		if (!isset(self::$logger)) self::$logger = new SimpleSAML_Logger();
 		
 
 		$this->ldap = @ldap_connect($hostname);

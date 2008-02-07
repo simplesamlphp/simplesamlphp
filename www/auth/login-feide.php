@@ -103,14 +103,14 @@ if (isset($_REQUEST['username'])) {
 		 * Bind as user
 		 */
 		if (!$ldap->bind($dn, $password)) {
-			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-feide', 'Fail', $username, $username . ' failed to authenticate. DN=' . $dn);
+			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-feide', 'Fail', $requestedUser, $requestedUser . ' failed to authenticate. DN=' . $dn);
 			throw new Exception('Wrong username or password');
 		}
 
 		// Retrieve attributes from LDAP
 		$attributes = $ldap->getAttributes($dn, $ldapconfig['attributes']);
 
-		$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-feide', 'OK', $username, $username . ' successfully authenticated');
+		$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-feide', 'OK', $requestedUser, $requestedUser . ' successfully authenticated');
 		
 		$session->setAuthenticated(true, 'login-feide');
 		$session->setAttributes($attributes);
@@ -124,7 +124,8 @@ if (isset($_REQUEST['username'])) {
 
 		
 	} catch (Exception $e) {
-		$logger->log(LOG_ERR, $session->getTrackID(), 'AUTH', 'ldap-feide', 'ERROR', $username, $e->getMessage());
+		$logger->log(LOG_ERR, $session->getTrackID(), 'AUTH', 'ldap-feide', 'ERROR', 
+			(isset($requestedUser) ? $requestedUser : 'na'), $e->getMessage());
 		$error = $e->getMessage();
 	}
 	

@@ -69,7 +69,7 @@ class SimpleSAML_Session {
 	 */
 	private function __construct($authenticated = true) {
 
-		if (!isset($this->logger)) $this->logger = new SimpleSAML_Logger();
+		if (!isset(self::$logger)) self::$logger = new SimpleSAML_Logger();
 
 		$this->authenticated = $authenticated;
 		if ($authenticated) {
@@ -215,7 +215,7 @@ class SimpleSAML_Session {
 	public function getAuthnRequest($protocol, $requestid) {
 
 
-		$this->logger->log(LOG_DEBUG, $this->getTrackID(), 'Library', 'Session', 'DEBUG', $requestid, 
+		self::$logger->log(LOG_DEBUG, $this->getTrackID(), 'Library', 'Session', 'DEBUG', $requestid, 
 			'Get authnrequest from cache ' . $protocol . ' time:' . time() . '  id: '. $requestid );
 
 		$configuration = SimpleSAML_Configuration::getInstance();
@@ -230,7 +230,7 @@ class SimpleSAML_Session {
 				 */
 				if ($cache['date'] < time() - $configuration->getValue('session.requestcache', 4*(60*60)) ) {
 				
-					$this->logger->log(LOG_DEBUG, $this->getTrackID(), 'Library', 'Session', 'DEBUG', $id, 
+					self::$logger->log(LOG_DEBUG, $this->getTrackID(), 'Library', 'Session', 'DEBUG', $id, 
 						'Deleting expired authn request with id ' . $id);
 					unset($this->authnrequests[$protocol][$id]);
 				}
@@ -258,7 +258,7 @@ class SimpleSAML_Session {
 	 */
 	public function setAuthnRequest($protocol, $requestid, array $cache) {
 	
-		$this->logger->log(LOG_DEBUG, $this->getTrackID(), 'Library', 'Session', 'DEBUG', $requestid, 
+		self::$logger->log(LOG_DEBUG, $this->getTrackID(), 'Library', 'Session', 'DEBUG', $requestid, 
 			'Set authnrequest ' . $protocol . ' time:' . time() . ' size:' . count($cache) . '  id: '. $requestid );
 
 		$this->dirty = true;
@@ -378,7 +378,7 @@ class SimpleSAML_Session {
 	 */
 	public function clean($cleancache = false) {
 	
-		$this->logger->log(LOG_DEBUG, $this->getTrackID(), 'Library', 'Session', 'DEBUG', '-', 
+		self::$logger->log(LOG_DEBUG, $this->getTrackID(), 'Library', 'Session', 'DEBUG', '-', 
 			'Cleaning Session. Clean cache: ' . ($cleancache ? 'yes' : 'no') );
 	
 		if ($cleancache) {
