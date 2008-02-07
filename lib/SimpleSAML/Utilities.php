@@ -410,6 +410,34 @@ class SimpleSAML_Utilities {
 		/* End script execution. */
 		exit;
 	}
+
+
+	/**
+	 * This function transposes a two-dimensional array, so that
+	 * $a['k1']['k2'] becomes $a['k2']['k1'].
+	 *
+	 * @param $in   Input two-dimensional array.
+	 * @return      The transposed array.
+	 */
+	public static function transposeArray($in) {
+		assert('is_array($in)');
+
+		$ret = array();
+
+		foreach($in as $k1 => $a2) {
+			assert('is_array($a2)');
+
+			foreach($a2 as $k2 => $v) {
+				if(!array_key_exists($k2, $ret)) {
+					$ret[$k2] = array();
+				}
+
+				$ret[$k2][$k1] = $v;
+			}
+		}
+
+		return $ret;
+	}
 }
 
 ?>
