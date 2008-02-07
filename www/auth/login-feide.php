@@ -8,6 +8,8 @@ require_once('SimpleSAML/Logger.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XHTML/Template.php');
 
+require_once('SimpleSAML/Auth/LDAP.php');
+
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance();
@@ -89,86 +91,26 @@ if (isset($_REQUEST['username'])) {
 		/*
 		 * Connecting to LDAP
 		 */
-		
-		$search_eppn = "(eduPersonPrincipalName=".$requestedUser."@".$requestedOrg.")";
-		
-		$ds = @ldap_connect($ldapconfig['hostname']);
-				
-		if (empty($ds)) {
-			throw new Exception('Could not connect to LDAP server. Please try again, and if the problem persists, please report the error.');
-		}
-		
+		$ldap = new SimpleSAML_Auth_LDAP($ldapconfig['hostname']);
 
-		// Give error if LDAPv3 is not supported
-		if (!@ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3)) {
-			$logger->log(LOG_CRIT, $session->getTrackID(), 'AUTH', 'ldap-feide', 'LDAP_OPT_PROTOCOL_VERSION', '3', 
-				'Error setting LDAP prot version to 3');
-			throw new Exception('Failed to set LDAP Protocol version to 3: ' . ldap_error($ds) );
-		}
+		/**
+		 * Search for edupersonprincipalname
+		 */
+		$eppn = $requestedUser."@".$requestedOrg;
+		$dn = $ldap->searchfordn($ldapconfig['searchbase'],'eduPersonPrincipalName', $eppn);
 
-		// Search for ePPN
-		$eppn_result = @ldap_search($ds, $ldapconfig['searchbase'], $search_eppn);
-
-		if ($eppn_result === false)
-			throw new Exception('Failed performing a LDAP search: ' . ldap_error($ds) . ' search:' . $search_eppn);
-
-		// Check number of entries. ePPN should be unique!
-		if (ldap_count_entries($ds, $eppn_result) > 1 ) {
-			throw new Exception("Din organisasjon (".$requestedOrg.") har feilregistrert flere like FEIDE-navn.");
+		/**
+		 * Bind as user
+		 */
+		if (!$ldap->bind($dn, $password)) {
+			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-feide', 'Fail', $username, $username . ' failed to authenticate. DN=' . $dn);
+			throw new Exception('Wrong username or password');
 		}
 
-		if (ldap_count_entries($ds, $eppn_result) == 0) {
-			throw new Exception('User could not be found.');
-		}
-		
-		// Authenticate user and fetch attributes
-		$entry = ldap_first_entry($ds, $eppn_result);
-		
-		if (empty($entry))
-			throw new Exception('Could not retrieve result of LDAP search for Feide name.');
-		
+		// Retrieve attributes from LDAP
+		$attributes = $ldap->getAttributes($dn, $ldapconfig['attributes']);
 
-		$dn = @ldap_get_dn($ds, $entry);
-		
-		if (empty($dn))
-			throw new Exception('Error retrieving DN from search result.');
-		
-		
-
-		if (!@ldap_bind($ds, $dn, $password)) {
-		
-			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-feide', 'Fail', $username, $username . ' failed to authenticate');
-			throw new Exception('Bind failed, wrong username or password. ' .
-				' Tried with DN=[' . $dn . '] DNPattern=[' .
-				$ldapconfig['dnpattern'] . '] Error=[' .
-				ldap_error($ds) . '] ErrNo=[' .
-				ldap_errno($ds) . ']');
-			
-		}
-
-		$sr = @ldap_read($ds, $dn, $ldapconfig['attributes'] );
-		
-		if ($sr === false) 
-			throw new Exception('Could not retrieve attribtues for user:' . ldap_error($ds));
-		
-		$ldapentries = @ldap_get_entries($ds, $sr);
-		
-		if ($ldapentries === false)
-			throw new Exception('Could not retrieve results from attribute retrieval for user:' . ldap_error($ds));
-		
-		
-		for ($i = 0; $i < $ldapentries[0]['count']; $i++) {
-			$values = array();
-			if ($ldapentries[0][$i] == 'jpegphoto') continue;
-			for ($j = 0; $j < $ldapentries[0][$ldapentries[0][$i]]['count']; $j++) {
-				$values[] = $ldapentries[0][$ldapentries[0][$i]][$j];
-			}
-			
-			$attributes[$ldapentries[0][$i]] = $values;
-		}
-			
 		$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-feide', 'OK', $username, $username . ' successfully authenticated');
-		
 		
 		$session->setAuthenticated(true, 'login-feide');
 		$session->setAttributes($attributes);
@@ -182,6 +124,7 @@ if (isset($_REQUEST['username'])) {
 
 		
 	} catch (Exception $e) {
+		$logger->log(LOG_ERR, $session->getTrackID(), 'AUTH', 'ldap-feide', 'ERROR', $username, $e->getMessage());
 		$error = $e->getMessage();
 	}
 	
