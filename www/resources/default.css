@@ -100,3 +100,7 @@ div.caution {
 	padding: .2em .2em .2em 60px;
 	margin: 1em 0px 1em 0p;
 }
+
+th.rowtitle {
+        text-align: left;
+}
