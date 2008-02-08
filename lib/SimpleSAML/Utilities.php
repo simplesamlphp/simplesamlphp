@@ -403,9 +403,20 @@ class SimpleSAML_Utilities {
 		header('Location: ' . $url, TRUE, $code);
 
 		/* Show a minimal web page with a clickable link to the URL. */
-		echo '<html><body><h1>Redirect</h1>You were redirected to: <a href="' .
-			htmlspecialchars($url) . '">' . htmlspecialchars($url)
-			. '</a></body></html>';
+		echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+		echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"' .
+			' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">' . "\n";
+		echo '<html xmlns="http://www.w3.org/1999/xhtml">';
+		echo '<head><title>Redirect</title></head>';
+		echo '<body>';
+		echo '<h1>Redirect</h1>';
+		echo '<p>';
+		echo 'You were redirected to: ';
+		echo '<a id="redirlink" href="' . htmlspecialchars($url) . '">' . htmlspecialchars($url) . '</a>';
+		echo '<script type="text/javascript">document.getElementById("redirlink").focus();</script>';
+		echo '</p>';
+		echo '</body>';
+		echo '</html>';
 
 		/* End script execution. */
 		exit;
