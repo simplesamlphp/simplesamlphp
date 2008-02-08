@@ -47,7 +47,30 @@ extends SimpleSAML_SessionHandler {
 
 		/* We don't have a valid session. Create a new session id. */
 		$this->session_id = self::createSessionID();
-		setcookie('SimpleSAMLSessionID', $this->session_id, 0, '/');
+		setcookie('SimpleSAMLSessionID', $this->session_id, 0, '/',
+			NULL, self::secureCookie(), TRUE);
+	}
+
+
+	/**
+	 * This function checks if we should set a secure cookie.
+	 *
+	 * @return TRUE if the cookie should be secure, FALSE otherwise.
+	 */
+	private static function secureCookie() {
+
+		if(!array_key_exists('HTTPS', $_SERVER)) {
+			/* Not a https-request. */
+			return FALSE;
+		}
+
+		if($_SERVER['HTTPS'] === 'off') {
+			/* IIS with HTTPS off. */
+			return FALSE;
+		}
+
+		/* Otherwise, HTTPS will be a non-empty string. */
+		return $_SERVER['HTTPS'] !== '';
 	}
 
 
