@@ -8,20 +8,30 @@
 	<div id="content">
 	
 		<h2><?php echo (isset($this->data['title']) ? $this->data['title'] : 'simpleSAMLphp error'); ?></h2>
-		
-		<p><?php echo $this->data['descr']; ?></p>
 
+<?php
+if(array_key_exists('descr', $this->data)) {
+	echo '<p>' . $this->data['descr'] . '</p>';
+}
+?>
+
+<?php
+/* Print out the track id if it exists. */
+if(array_key_exists('trackid', $this->data)) {
+?>
 		<div class="trackidtext">
 			If you report this error the track ID makes it possible to track your session in the logs available to the system adinistrator: 
 				<span class="trackid"><?php echo $this->data['trackid']; ?><span>
 
 		</div>
+<?php
+}
+?>
 		
-
 
 <?php
 /* Print out exception only if the exception is available. */
-if ($this->data['showerrors']) {
+if (array_key_exists('showerrors', $this->data) && $this->data['showerrors']) {
 ?>
 		<h2>Debug information</h2>
 		<p>The debug information below may be interesting for the administrator / help desk:</p>
