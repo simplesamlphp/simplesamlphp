@@ -9,8 +9,10 @@
  * @version $Id$
  */
 
-require_once('../../../www/_include.php');
+// TODO: Show error message, when shibboleth sp is logged in.
+// TODO: Propagate HTTP-REDIRECT SLO on SAML 2.0 bridge.
 
+require_once('../../../www/_include.php');
 
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
