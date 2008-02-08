@@ -1,4 +1,22 @@
 <?php
+/*
+ * This file is part of SimpleSAMLphp. See the file COPYING in the
+ * root of the distribution for licence information.
+ *
+ * This file implements authentication of users using LDAP. Which LDAP
+ * server to do bind against is decided based on the users home
+ * organization.
+ *
+ * First a search is done on the users eduPersonPrincipalName (ePPN). Only
+ * one user with the ePPN should exist. After the DN of the user is found
+ * a LDAP bind is used to authenticate the user and fetch the attributes.
+ *
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Anders Lund, UNINETT AS. <anders.lund@uninett.no>
+ * @package simpleSAMLphp
+ * @version $ID$
+ */
+
 
 require_once('../../www/_include.php');
 
@@ -18,34 +36,33 @@ $logger = new SimpleSAML_Logger();
 $ldapconfigfile = $config->getBaseDir() . 'config/ldapfeide.php';
 require_once($ldapconfigfile);
 
-
 $logger->log(LOG_INFO, $session->getTrackID(), 'AUTH', 'ldap-feide', 'EVENT', 'Access', 'Accessing auth endpoint login-feide');
-
 
 $error = null;
 $attributes = array();
 
-/* Load the RelayState argument. The RelayState argument contains the address
+/*
+ * Load the RelayState argument. The RelayState argument contains the address
  * we should redirect the user to after a successful authentication.
  */
 if (!array_key_exists('RelayState', $_REQUEST)) {
         SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
 }
 
-
-if (isset($_REQUEST['username'])) {
-
+if (isset($_REQUEST['username'])) {	
 	try {
-
 		$requestedOrg = null;
 		$requestedUser = strtolower($_REQUEST['username']);
+		
 		/*
-		 * Checking username parameter
+		 * Checking username parameter for illegal characters.
 		 */
 		if (!preg_match('/^[a-z0-9._]+(@[a-z0-9._]+)?$/', $requestedUser) ) 
-			throw new Exception('Illegal characters in username.');
+			throw new Exception('Illegal characters in (or empty) username.');
 		
-		
+		/*
+		 * Split username and organization if user input includes @.
+		 */
 		if (strstr($requestedUser, '@')) {
 			$decomposed = explode('@', $requestedUser);
 			$requestedUser = $decomposed[0];
@@ -53,26 +70,26 @@ if (isset($_REQUEST['username'])) {
 		}
 		
 		/*
-		 * Checking organization parameter
-		 */
-		
+		 * Checking organization parameter.
+		 */		
 		if (empty($requestedOrg) ) {		
 			if (empty($_REQUEST['org'])) 
 				throw new Exception('Organization parameter is not set.');
 			
 			$requestedOrg = strtolower($_REQUEST['org']);
 		}
-		 
-		
+
 		if (!preg_match('/^[a-z0-9.]*$/', $requestedOrg) ) 
 			throw new Exception('Illegal characters in organization.');
-		
+
 		if (!array_key_exists($requestedOrg, $ldapfeide))
 			throw new Exception('Organization ' . $requestedOrg . ' does not exist in configuration.');
 		
 		$ldapconfig = $ldapfeide[$requestedOrg];
 		
-		
+		/*
+		 * Checking password parameter.
+		 */
 		if (empty($_REQUEST['password']))
 			throw new Exception('The password field was left empty. Please fill in a valid password.');
 		
@@ -81,33 +98,28 @@ if (isset($_REQUEST['username'])) {
 		if (!preg_match('/^[a-zA-Z0-9.]+$/', $password) ) 
 			throw new Exception('Illegal characters in password.');
 		
-		
-		//throw new Exception('everything is ok   username:' . $requestedUser . ' org:' . $requestedOrg);
-		
-
-		
-		
-		
 		/*
-		 * Connecting to LDAP
+		 * Connecting to LDAP.
 		 */
 		$ldap = new SimpleSAML_Auth_LDAP($ldapconfig['hostname']);
 
-		/**
-		 * Search for edupersonprincipalname
+		/*
+		 * Search for eduPersonPrincipalName.
 		 */
 		$eppn = $requestedUser."@".$requestedOrg;
 		$dn = $ldap->searchfordn($ldapconfig['searchbase'],'eduPersonPrincipalName', $eppn);
 
-		/**
-		 * Bind as user
+		/*
+		 * Do LDAP bind using DN found from the search on ePPN.
 		 */
 		if (!$ldap->bind($dn, $password)) {
 			$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-feide', 'Fail', $requestedUser, $requestedUser . ' failed to authenticate. DN=' . $dn);
 			throw new Exception('Wrong username or password');
 		}
 
-		// Retrieve attributes from LDAP
+		/*
+		 * Retrieve attributes from LDAP
+		 */
 		$attributes = $ldap->getAttributes($dn, $ldapconfig['attributes']);
 
 		$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'ldap-feide', 'OK', $requestedUser, $requestedUser . ' successfully authenticated');
@@ -128,7 +140,6 @@ if (isset($_REQUEST['username'])) {
 			(isset($requestedUser) ? $requestedUser : 'na'), $e->getMessage());
 		$error = $e->getMessage();
 	}
-	
 }
 
 
@@ -144,6 +155,5 @@ if (isset($error)) {
 }
 
 $t->show();
-
 
 ?>
