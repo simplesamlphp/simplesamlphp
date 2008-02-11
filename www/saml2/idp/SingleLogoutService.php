@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This SAML 2.0 endpoint can receive incomming LogoutRequests. It will also send LogoutResponses, and LogoutRequests
- * and also receive LogoutResponses. It is implemeting SLO at the SAML 2.0 IdP.
+ * This SAML 2.0 endpoint can receive incomming LogoutRequests. It will also send LogoutResponses, 
+ * and LogoutRequests and also receive LogoutResponses. It is implemeting SLO at the SAML 2.0 IdP.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
@@ -35,6 +35,9 @@ $logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SingleLogoutServi
 	'Accessing SAML 2.0 IdP endpoint SingleLogoutService');
 	
 	
+// TODO: if session is not set, give error or do something else.
+
+	
 /**
  * If we get an incomming LogoutRequest then we initiate the logout process.
  * in this case an SAML 2.0 SP is sending an request, which also is referred to as
@@ -49,7 +52,9 @@ if (isset($_GET['SAMLRequest'])) {
 		$logoutrequest = $binding->decodeLogoutRequest($_GET);
 
 		if ($binding->validateQuery($logoutrequest->getIssuer(),'IdP')) {
-			$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SingleLogoutService', 'LogoutRequest', $logoutrequest->getRequestID(), 'Valid signature found');
+			$logger->log(LOG_INFO,
+				isset($session) ? $session->getTrackID() : 'NA', 
+				'SAML2.0', 'IdP.SingleLogoutService', 'LogoutRequest', $logoutrequest->getRequestID(), 'Valid signature found');
 		}
 
 	} catch(Exception $exception) {
@@ -93,7 +98,7 @@ if (isset($_GET['SAMLRequest'])) {
 	}
 
 
-	$session->setAuthenticated(false);
+	$session->setAuthenticated(false, $session->getAuthority() );
 
 	//$requestid = $authnrequest->getRequestID();
 	//$session->setAuthnRequest($requestid, $authnrequest);
@@ -201,10 +206,35 @@ if ($spentityid) {
 
 }
 
+if ($config->getValue('debug', false)) 
+	$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SingleLogoutService', 'EVENT', 'LogoutDone', 'IdP LogoutService:  SPs done ');
+
+
+
+/**
+ * If there exists a local valid session with the SAML 2.0 module as an authority, 
+ * initiate SAML 2.0 SP Single LogOut, with the RelayState equal this URL.
+ */
+if ($session->getAuthority() == 'saml2') {
+	SimpleSAML_Utilities::redirect('/' . $config->getValue('baseurlpath') . 'saml2/sp/initSLO.php',
+		array('RelayState' => SimpleSAML_Utilities::selfURLNoQuery())
+	);
+}
+
+if ($session->getAuthority() == 'shib13') {
+	/**
+	 * TODO: Show warning to inform the user that he is logged on through an Shibboleth 1.3 IdP that
+	 * do not support logout.
+	 */
+}
+
+
+
+
 /*
  * Logout procedure is done and we send a Logout Response back to the SP
  */
-error_log('IdP LogoutService:  SPs done ');
+
 try {
 
 	$requestcache = $session->getLogoutRequest();

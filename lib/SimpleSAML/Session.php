@@ -321,8 +321,6 @@ class SimpleSAML_Session {
 	}
 
 	public function setAuthenticated($auth, $authority = null) {
-		if ($auth === false) $this->dirty = false;
-		if ($auth != $this->authenticated) $this->dirty = false;
 		
 		$this->authority = $authority;
 		$this->authenticated = $auth;
