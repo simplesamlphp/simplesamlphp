@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+  <title>Configuring a Shibboleth 1.3 SP to talk to simpleSAMLphp IdP</title>
+
+  <section>
+    <title>Background</title>
+
+    <para>You should have installed and configured simpleSAMLphp.</para>
+
+    <para>You should also have installed Shibboleth 1.3 SP.</para>
+  </section>
+
+  <section>
+    <title>Installing Shibboleth 1.3 SP</title>
+
+    <para></para>
+
+    <itemizedlist>
+      <listitem>
+        <para><ulink
+        url="http://www.switch.ch/aai/docs/shibboleth/SWITCH/1.3/sp/install-sp-1.3-debian-etch.html">SWITCH
+        documentation on installing Shibboleth 1.3 on Debian sarge
+        4.0</ulink></para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section>
+    <title>Configuration</title>
+
+    <para></para>
+  </section>
+</article>

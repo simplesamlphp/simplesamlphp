@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+  <title>Advanced configuration and maintainance of simpleSAMLphp</title>
+
+  <articleinfo>
+    <date>2007-08-30</date>
+
+    <pubdate>Wed Dec 19 12:03:53 2007</pubdate>
+
+    <author>
+      <firstname>Andreas Åkre</firstname>
+
+      <surname>Solberg</surname>
+
+      <email>andreas.solberg@uninett.no</email>
+    </author>
+  </articleinfo>
+
+  <section>
+    <title>Session management </title>
+
+    <para>simpleSAMLphp has an abstraction layer for session management. That
+    means it is possible to choose between different kind of session stores,
+    as well as write new session store plugins.</para>
+
+    <para>The current version of simpleSAMLphp includes two plugins for
+    session management. </para>
+  </section>
+
+  <section>
+    <title>Load balancing and failover</title>
+
+    <para></para>
+  </section>
+
+  <section>
+    <title>Logging and statistics</title>
+
+    <para></para>
+  </section>
+
+  <section>
+    <title>Error handling, error reporting and metadata reporting</title>
+
+    <para></para>
+  </section>
+
+  <section>
+    <title>Multi-language support</title>
+
+    <para></para>
+  </section>
+
+  <section>
+    <title>Customizing the web frontend</title>
+
+    <para></para>
+  </section>
+</article>
