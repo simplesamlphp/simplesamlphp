@@ -14,7 +14,7 @@
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @author Anders Lund, UNINETT AS. <anders.lund@uninett.no>
  * @package simpleSAMLphp
- * @version $ID$
+ * @version $Id$
  */
 
 
