@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-08-30</date>
 
-    <pubdate>Wed Dec 19 12:03:53 2007</pubdate>
+    <pubdate>Wed Feb 13 10:16:12 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -19,14 +19,125 @@
   </articleinfo>
 
   <section>
-    <title>Session management </title>
+    <title>Session management</title>
 
     <para>simpleSAMLphp has an abstraction layer for session management. That
     means it is possible to choose between different kind of session stores,
     as well as write new session store plugins.</para>
 
     <para>The current version of simpleSAMLphp includes two plugins for
-    session management. </para>
+    session management:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>PHPSESSION is using the built in session management in PHP. This
+        is the default, and is simplest to use. But it will not work in a
+        load-balanced environement.</para>
+      </listitem>
+
+      <listitem>
+        <para>memcache is using the memcache software to cache sessions in
+        memory. Sessions can be distributed and replicated among several
+        memcache servers, enabling both load-balancing and fail-over.</para>
+      </listitem>
+    </itemizedlist>
+
+    <section>
+      <title>Configuring memcache</title>
+
+      <para>From config.php</para>
+
+      <programlisting>
+	/*
+	 * This configuration option allows you to select which session handler
+	 * SimpleSAMLPHP should use to store the session information. Currently
+	 * we have two session handlers:
+	 * - 'phpsession': The default PHP session handler.
+	 * - 'memcache':   Stores the session information in one or more
+	 *   memcache servers by using the MemcacheStore class.
+	 *
+	 * The default session handler is 'phpsession'.
+	 */
+	'session.handler'       =&gt; 'phpsession',
+
+
+	/*
+	 * Configuration for the MemcacheStore class. This allows you to store
+	 * multiple redudant copies of sessions on different memcache servers.
+	 *
+	 * 'memcache_store.servers' is an array of server groups. Every data
+	 * item will be mirrored in every server group.
+	 *
+	 * Each server group is an array of servers. The data items will be
+	 * load-balanced between all servers in each server group.
+	 *
+	 * Each server is an array of parameters for the server. The following
+	 * options are available:
+	 *  - 'hostname': This is the hostname or ip address where the
+	 *    memcache server runs. This is the only required option.
+	 *  - 'port': This is the port number of the memcache server. If this
+	 *    option isn't set, then we will use the 'memcache.default_port'
+	 *    ini setting. This is 11211 by default.
+	 *  - 'weight': This sets the weight of this server in this server
+	 *    group. http://php.net/manual/en/function.Memcache-addServer.php
+	 *    contains more information about the weight option.
+	 *  - 'timeout': The timeout for this server. By default, the timeout
+	 *    is 3 seconds.
+	 *
+	 * Example of redudant configuration with load balancing:
+	 * This configuration makes it possible to lose both servers in the
+	 * a-group or both servers in the b-group without losing any sessions.
+	 * Note that sessions will be lost if one server is lost from both the
+	 * a-group and the b-group.
+	 *
+	 * 'memcache_store.servers' =&gt; array(
+	 *     array(
+	 *         array('hostname' =&gt; 'mc_a1'),
+	 *         array('hostname' =&gt; 'mc_a2'),
+	 *     ),
+	 *     array(
+	 *         array('hostname' =&gt; 'mc_b1'),
+	 *         array('hostname' =&gt; 'mc_b2'),
+	 *     ),
+	 * ),
+	 *
+	 * Example of simple configuration with only one memcache server,
+	 * running on the same computer as the web server:
+	 * Note that all sessions will be lost if the memcache server crashes.
+	 *
+	 * 'memcache_store.servers' =&gt; array(
+	 *     array(
+	 *         array('hostname' =&gt; 'localhost'),
+	 *     ),
+	 * ),
+	 *
+	 */
+	'memcache_store.servers' =&gt; array(
+		array(
+			array('hostname' =&gt; 'localhost'),
+		),
+	),
+
+
+	/*
+	 * This value is the duration data should be stored in memcache. Data
+	 * will be dropped from the memcache servers when this time expires.
+	 * The time will be reset every time the data is written to the
+	 * memcache servers.
+	 *
+	 * This value should always be larger than the 'session.duration'
+	 * option. Not doing this may result in the session being deleted from
+	 * the memcache servers while it is still in use.
+	 *
+	 * Set this value to 0 if you don't want data to expire.
+	 *
+	 * Note: The oldest data will always be deleted if the memcache server
+	 * runs out of storage space.
+	 */
+	'memcache_store.expires' =&gt;  36 * (60*60), // 36 hours.
+
+</programlisting>
+    </section>
   </section>
 
   <section>
@@ -38,24 +149,96 @@
   <section>
     <title>Logging and statistics</title>
 
+    <para>Supports standard syslog logging. Also possible to configure
+    flatfile logging.</para>
+  </section>
+
+  <section>
+    <title>Apache configuration</title>
+
     <para></para>
+  </section>
+
+  <section>
+    <title>PHP configuration</title>
+
+    <para>Secure cookies.</para>
+  </section>
+
+  <section>
+    <title>Getting ready for production</title>
+
+    <para>Here are some steps that should be checked </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Remove all entities in metadata files that you do not trust. It
+        is easy to forget about some of the entities that were used for
+        test.</para>
+      </listitem>
+
+      <listitem>
+        <para>Switch signing certificate if you have used one for test phase
+        that have been exposed.</para>
+      </listitem>
+
+      <listitem>
+        <para>Make sure you have the latest security upgrades on your OS, and
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>Make sure you run on HTTPS and not HTTP.</para>
+      </listitem>
+
+      <listitem>
+        <para>Block access to your servers anything except port 443.
+        simpleSAMLphp does not do anything but plan HTTP(s), so no need to
+        open ports for SOAP or other communication.</para>
+      </listitem>
+    </itemizedlist>
   </section>
 
   <section>
     <title>Error handling, error reporting and metadata reporting</title>
 
-    <para></para>
+    <para>Check out the extras folder for a script that can be embedded in a
+    webpage and enable the possibility of sending UI errors to the
+    administrators.</para>
   </section>
 
   <section>
     <title>Multi-language support</title>
 
-    <para></para>
+    <para>Localization files in <filename>dictionaries/</filename>. In
+    addition some text is stored in the XHTML templates, so you may copy the
+    <filename>en</filename> directory to in example <filename>no</filename>
+    directory to do a norwegian translation.</para>
   </section>
 
   <section>
     <title>Customizing the web frontend</title>
 
-    <para></para>
+    <para>All XHTML templates are stored in the simplesamlphp/templates
+    directory. They are stored in a two level hierarchy; first the theme name,
+    and then the language code. </para>
+
+    <example>
+      <title>Example of organization of themes</title>
+
+      <para>An example of a directory structure:</para>
+
+      <literallayout>templates/default/en
+templates/default/no
+templates/dkaaitheme/en
+templates/dkaaitheme/dk
+</literallayout>
+    </example>
+
+    <para>Which theme to use is specified in the
+    <filename>config.php</filename> file, where the metadata dir is specified.
+    To use the dkaaitheme as illustrated in the above example, set the value
+    of <literal>templatedir</literal> to
+    <filename>templates/dkaaitheme/</filename>.</para>
   </section>
 </article>

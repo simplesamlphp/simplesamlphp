@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Wed Feb 13 07:57:11 2008</pubdate>
+    <pubdate>Fri Feb 1 08:44:40 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -53,9 +53,16 @@
       the IdP of what entity ID you should use.</para>
 
       <note>
-        <para>Feide has special rules for setting entity IDs, so if you want
-        to connect to Feide, contact them and ask what entity ID you should
-        use.</para>
+        <para>Feide has special rules for setting entity IDs. These rules and
+        instructions on how to select an entity ID to use in Feide is
+        documented in this document:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para><ulink url="http://docs.feide.no/fs-0051-1.0-en.html">Feide
+            entity names (in norwegian)</ulink></para>
+          </listitem>
+        </itemizedlist>
       </note>
 
       <example>
@@ -295,6 +302,18 @@
                   set the parameter in the metadata at the IdP to be the
                   same.</para>
                 </warning></para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>SPNameQualifier</glossterm>
+
+            <glossdef>
+              <para>This corresponds to the SPNameQualifier in the SAML 2.0
+              specification. It allows to give subjects a SP specific
+              namespace. This value is seldom used, so if you don't need it,
+              do not include it. If you do not include it, simpleSAMLphp will
+              include the entityID of your SP as the SPNameQualifier.</para>
             </glossdef>
           </glossentry>
         </glosslist>
