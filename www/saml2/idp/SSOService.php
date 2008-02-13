@@ -29,7 +29,7 @@ $session = SimpleSAML_Session::getInstance(true);
 
 try {
 	$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-	$idpmeta = $metadata->getMetaDataCurrent('saml20-idp-hosted');
+	$idpmetadata = $metadata->getMetaDataCurrent('saml20-idp-hosted');
 } catch (Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
 }
@@ -109,7 +109,7 @@ if (isset($_GET['SAMLRequest'])) {
 }
 
 
-$authority = isset($idpmeta['authority']) ? $idpmeta['authority'] : null;
+$authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : null;
 
 
 /*
@@ -123,11 +123,12 @@ $authority = isset($idpmeta['authority']) ? $idpmeta['authority'] : null;
  */
 if (!isset($session) || !$session->isValid($authority) ) {
 
-	Logger::notice('SAML2.0 - IdP.SSOService: Will go to authentication module ' . $idpmeta['auth']);
+
+	Logger::notice('SAML2.0 - IdP.SSOService: Will go to authentication module ' . $idpmetadata['auth']);
 
 	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() .
 		'?RequestID=' . urlencode($requestid);
-	$authurl = '/' . $config->getValue('baseurlpath') . $idpmeta['auth'];
+	$authurl = '/' . $config->getValue('baseurlpath') . $idpmetadata['auth'];
 
 	SimpleSAML_Utilities::redirect($authurl,
 		array('RelayState' => $relaystate));
@@ -147,8 +148,8 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		 * Dealing with attribute release consent.
 		 */
 	
-		if (array_key_exists('requireconsent', $idpmeta)
-		    && $idpmeta['requireconsent']) {
+		if (array_key_exists('requireconsent', $idpmetadata)
+		    && $idpmetadata['requireconsent']) {
 			
 			if (!isset($_GET['consent'])) {
 
@@ -178,11 +179,9 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		/*
 		 * Filtering attributes.
 		 */
-		 
-#		print_r($session->getAttributes());
-
 		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
 		$afilter = new SimpleSAML_XML_AttributeFilter($config, $session->getAttributes());
+		
 		if (isset($spmetadata['attributemap'])) {
 			$afilter->namemap($spmetadata['attributemap']);
 		}
@@ -204,8 +203,6 @@ if (!isset($session) || !$session->isValid($authority) ) {
 			$afilter->filter($spmetadata['attributes']);
 		}
 		$filteredattributes = $afilter->getAttributes();
-		
-#		print_r($filteredattributes);
 		
 		//echo '<pre>before filter:' ; print_r($session->getAttributes()); echo "\n\n"; print_r($filteredattributes); echo '</pre>'; exit;
 		
