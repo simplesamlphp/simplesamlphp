@@ -186,16 +186,34 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		/*
 		 * Filtering attributes.
 		 */
+		 
+#		print_r($session->getAttributes());
+
 		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
 		$afilter = new SimpleSAML_XML_AttributeFilter($config, $session->getAttributes());
 		if (isset($spmetadata['attributemap'])) {
 			$afilter->namemap($spmetadata['attributemap']);
+		}
+		if (isset($idpmetadata['attributealter'])) {
+			if (!is_array($idpmetadata['attributealter']))
+				$afilter->alter($idpmetadata['attributealter']);
+			else
+				foreach($idpmetadata['attributealter'] AS $alterfunc) 
+					$afilter->alter($alterfunc);
+		}
+		if (isset($spmetadata['attributealter'])) {
+			if (!is_array($spmetadata['attributealter']))
+				$afilter->alter($spmetadata['attributealter']);
+			else
+				foreach($spmetadata['attributealter'] AS $alterfunc) 
+					$afilter->alter($alterfunc);
 		}
 		if (isset($spmetadata['attributes'])) {
 			$afilter->filter($spmetadata['attributes']);
 		}
 		$filteredattributes = $afilter->getAttributes();
 		
+#		print_r($filteredattributes);
 		
 		//echo '<pre>before filter:' ; print_r($session->getAttributes()); echo "\n\n"; print_r($filteredattributes); echo '</pre>'; exit;
 		

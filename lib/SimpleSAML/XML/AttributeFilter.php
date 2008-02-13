@@ -38,6 +38,34 @@ class SimpleSAML_XML_AttributeFilter {
 		
 	}
 	
+	/**
+	 * This function will call custom alter plugins.
+	 */
+	public function alter($rule, $spentityid = null, $idpentityid = null) {
+		
+		$alterfile = $this->configuration->getBaseDir() . 'attributealter/alterfunctions.php';
+		if (!file_exists($alterfile)) throw new Exception('Could not find attributemap file: ' . $alterfile);
+		
+		include_once($alterfile);
+		
+		$function = 'attributealter_' . $rule;
+		
+		if (function_exists($function)) {
+			$function($this->attributes, $spentityid, $idpentityid);
+		} else {
+			throw new Exception('Could not find attribute alter fucntion: ' . $function);
+		}
+		
+	}
+	
+	private function addValue($name, $value) {
+		if (array_key_exists($name, $this->attributes)) {
+			$this->attributes[$name][] = $value;
+		} else {
+			$this->attributes[$name] = array($value);
+		}
+	}
+	
 	public function filter($allowedattributes) {
 		$newattributes = array();
 		foreach($this->attributes AS $key => $value) {

@@ -30,7 +30,7 @@ $session = SimpleSAML_Session::getInstance(true);
 $logger = new SimpleSAML_Logger();
 
 $idpentityid = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
-$idpmeta = $metadata->getMetaDataCurrent('shib13-idp-hosted');
+$idpmetadata = $metadata->getMetaDataCurrent('shib13-idp-hosted');
 
 $requestid = null;
 
@@ -102,7 +102,7 @@ if (isset($_GET['shire'])) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SSOSERVICEPARAMS');
 }
 
-$authority = isset($idpmeta['authority']) ? $idpmeta['authority'] : null;
+$authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : null;
 
 /*
  * As we have passed the code above, we have an accociated request that is already processed.
@@ -116,7 +116,7 @@ $authority = isset($idpmeta['authority']) ? $idpmeta['authority'] : null;
 if (!$session->isAuthenticated($authority) ) {
 
 	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() . '?RequestID=' . urlencode($requestid);
-	$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getValue('baseurlpath') . $idpmeta['auth'], 
+	$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getValue('baseurlpath') . $idpmetadata['auth'], 
 		'RelayState=' . urlencode($relaystate));
 	SimpleSAML_Utilities::redirect($authurl);
 	
@@ -141,13 +141,29 @@ if (!$session->isAuthenticated($authority) ) {
 		 * Filtering attributes.
 		 */
 		$afilter = new SimpleSAML_XML_AttributeFilter($config, $session->getAttributes());
+		
 		if (isset($spmetadata['attributemap'])) {
 			$afilter->namemap($spmetadata['attributemap']);
+		}
+		if (isset($idpmetadata['attributealter'])) {
+			if (!is_array($idpmetadata['attributealter']))
+				$afilter->alter($idpmetadata['attributealter']);
+			else
+				foreach($idpmetadata['attributealter'] AS $alterfunc) 
+					$afilter->alter($alterfunc);
+		}
+		if (isset($spmetadata['attributealter'])) {
+			if (!is_array($spmetadata['attributealter']))
+				$afilter->alter($spmetadata['attributealter']);
+			else
+				foreach($spmetadata['attributealter'] AS $alterfunc) 
+					$afilter->alter($alterfunc);
 		}
 		if (isset($spmetadata['attributes'])) {
 			$afilter->filter($spmetadata['attributes']);
 		}
 		$filteredattributes = $afilter->getAttributes();
+		
 		
 
 
