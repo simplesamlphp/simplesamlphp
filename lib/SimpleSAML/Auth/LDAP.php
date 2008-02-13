@@ -19,19 +19,10 @@ class SimpleSAML_Auth_LDAP {
 	 */
 	private $ldap = null;
 	
-
-	/**
-	 * Logger class. 
-	 */
-	private static $logger = null;
-	
 	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
 	public function __construct($hostname) {
-
-		if (!isset(self::$logger)) self::$logger = new SimpleSAML_Logger();
-		
 
 		$this->ldap = @ldap_connect($hostname);
 		if (empty($this->ldap)) 

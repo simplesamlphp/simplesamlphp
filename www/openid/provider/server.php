@@ -220,8 +220,6 @@ function check_authenticated_user() {
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 	$session = SimpleSAML_Session::getInstance(true);
 	
-	$logger = new SimpleSAML_Logger();
-	
 	$idpentityid = $metadata->getMetaDataCurrentEntityID('openid-provider');
 	$idpmeta = $metadata->getMetaDataCurrent('openid-provider');
 

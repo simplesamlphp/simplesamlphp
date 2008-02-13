@@ -11,9 +11,9 @@ require_once('SimpleSAML/XHTML/Template.php');
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance();
-$logger = new SimpleSAML_Logger();
 
-$logger->log(LOG_INFO, $session->getTrackID(), 'AUTH', 'radius', 'EVENT', 'Access', 'Accessing auth endpoint login');
+
+Logger::info('AUTH - radius: Accessing auth endpoint login');
 
 $error = null;
 $attributes = array();
@@ -35,14 +35,12 @@ if (isset($_POST['username'])) {
 		if (! radius_add_server($radius, $config->getValue('auth.radius.hostname'), $config->getValue('auth.radius.port'), 
 				$config->getValue('auth.radius.secret'), 5, 3)) {
 				
-			$logger->log(LOG_CRIT, $session->getTrackID(), 'AUTH', 'radius', 'radius_strerror', radius_strerror($radius), 
-				'Problem occured when connecting to Radius server');
+			Logger::critical('AUTH - radius: Problem occured when connecting to Radius server: '.radius_strerror($radius));
 			throw new Exception('Problem occured when connecting to Radius server: ' . radius_strerror($radius));
 		}
 	
 		if (! radius_create_request($radius,RADIUS_ACCESS_REQUEST)) {
-			$logger->log(LOG_CRIT, $session->getTrackID(), 'AUTH', 'radius', 'radius_strerror', radius_strerror($radius), 
-				'Problem occured when creating the Radius request');
+			Logger::critical('AUTH - radius: Problem occured when creating the Radius request: '.radius_strerror($radius));
 			throw new Exception('Problem occured when creating the Radius request: ' . radius_strerror($radius));
 		}
 	
@@ -83,7 +81,7 @@ if (isset($_POST['username'])) {
 
 				//$attributes = array('urn:mace:eduroam.no:username' => array($_POST['username']));
 				
-				$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'radius', 'OK', $_POST['username'], $_POST['username'] . ' successfully authenticated');
+				Logger::notice('AUTH - radius: '. $_POST['username'] . ' successfully authenticated');
 				
 				$session->setAuthenticated(true, 'login-radius');
 				
@@ -98,17 +96,15 @@ if (isset($_POST['username'])) {
 	
 			case RADIUS_ACCESS_REJECT:
 			
-				$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'radius', 'Fail', $_POST['username'], $_POST['username'] . ' failed to authenticate');
+				Logger::notice('AUTH - radius: '. $_POST['username'] . ' failed to authenticate');
 				throw new Exception('Radius authentication error: Bad credentials ');
 				break;
 			case RADIUS_ACCESS_CHALLENGE:
-				$logger->log(LOG_CRIT, $session->getTrackID(), 'AUTH', 'radius', 'radius_strerror', radius_strerror($radius), 
-					'Challenge requested');
+				Logger::critical('AUTH - radius: Challenge requested: ' . radius_strerror($radius));
 				throw new Exception('Radius authentication error: Challenge requested');
 				break;
 			default:
-				$logger->log(LOG_CRIT, $session->getTrackID(), 'AUTH', 'radius', 'radius_strerror', radius_strerror($radius), 
-					'General radius error');
+				Logger::critical('AUTH  -radius: General radius error: ' . radius_strerror($radius));
 				throw new Exception('Error during radius authentication: ' . radius_strerror($radius));
 				
 		}

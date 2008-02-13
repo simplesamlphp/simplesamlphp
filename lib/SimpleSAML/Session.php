@@ -5,7 +5,7 @@ require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/SessionHandler.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
-
+require_once('SimpleSAML/Logger.php');
 /**
  * The Session class holds information about a user session, and everything attached to it.
  *
@@ -60,16 +60,12 @@ class SimpleSAML_Session {
 	
 	// Track whether the session object is modified or not.
 	private $dirty = false;
-	
-	private static $logger = null;
-	
+		
 
 	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
 	private function __construct($authenticated = true) {
-
-		if (!isset(self::$logger)) self::$logger = new SimpleSAML_Logger();
 
 		$this->authenticated = $authenticated;
 		if ($authenticated) {
@@ -87,10 +83,7 @@ class SimpleSAML_Session {
 	 * This function is called after this class has been deserialized.
 	 */
 	public function __wakeup() {
-		/* Initialize the $logger class variable if it hasn't been initialized. */
-		if (self::$logger === NULL) {
-			self::$logger = new SimpleSAML_Logger();
-		}
+
 	}
 	
 	
@@ -225,8 +218,7 @@ class SimpleSAML_Session {
 	public function getAuthnRequest($protocol, $requestid) {
 
 
-		self::$logger->log(LOG_DEBUG, $this->getTrackID(), 'Library', 'Session', 'DEBUG', $requestid, 
-			'Get authnrequest from cache ' . $protocol . ' time:' . time() . '  id: '. $requestid );
+		Logger::debug('Library - Session: Get authnrequest from cache ' . $protocol . ' time:' . time() . '  id: '. $requestid );
 
 		$configuration = SimpleSAML_Configuration::getInstance();
 		if (isset($this->authnrequests[$protocol])) {
@@ -239,9 +231,7 @@ class SimpleSAML_Session {
 				 * simply delete it :)
 				 */
 				if ($cache['date'] < time() - $configuration->getValue('session.requestcache', 4*(60*60)) ) {
-				
-					self::$logger->log(LOG_DEBUG, $this->getTrackID(), 'Library', 'Session', 'DEBUG', $id, 
-						'Deleting expired authn request with id ' . $id);
+					Logger::debug('Library - Session: Deleting expired authn request with id ' . $id);
 					unset($this->authnrequests[$protocol][$id]);
 				}
 			}
@@ -268,8 +258,7 @@ class SimpleSAML_Session {
 	 */
 	public function setAuthnRequest($protocol, $requestid, array $cache) {
 	
-		self::$logger->log(LOG_DEBUG, $this->getTrackID(), 'Library', 'Session', 'DEBUG', $requestid, 
-			'Set authnrequest ' . $protocol . ' time:' . time() . ' size:' . count($cache) . '  id: '. $requestid );
+		Logger::debug('Library - Session: Set authnrequest ' . $protocol . ' time:' . time() . ' size:' . count($cache) . '  id: '. $requestid );
 
 		$this->dirty = true;
 		$cache['date'] = time();
@@ -386,8 +375,7 @@ class SimpleSAML_Session {
 	 */
 	public function clean($cleancache = false) {
 	
-		self::$logger->log(LOG_DEBUG, $this->getTrackID(), 'Library', 'Session', 'DEBUG', '-', 
-			'Cleaning Session. Clean cache: ' . ($cleancache ? 'yes' : 'no') );
+		Logger::debug('Library - Session: Cleaning Session. Clean cache: ' . ($cleancache ? 'yes' : 'no') );
 	
 		if ($cleancache) {
 			$this->authnrequests = array();

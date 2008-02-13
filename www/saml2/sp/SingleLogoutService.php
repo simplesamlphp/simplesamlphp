@@ -20,9 +20,7 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance(true);
 
 
-$logger = new SimpleSAML_Logger();
-$logger->log(LOG_INFO, $session->getTrackId(), 'SAML2.0', 'SP.SingleLogoutService', 'EVENT', 'Access',
-	'Accessing SAML 2.0 SP endpoint SingleLogoutService');
+Logger::info('SAML2.0 - SP.SingleLogoutService: Accessing SAML 2.0 SP endpoint SingleLogoutService');
 
 // Destroy local session if exists.
 if (isset($session) ) {
@@ -41,7 +39,7 @@ if (isset($_GET['SAMLRequest'])) {
 		$logoutrequest = $binding->decodeLogoutRequest($_GET);
 
 		if ($binding->validateQuery($logoutrequest->getIssuer(),'SP')) {
-			$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutRequest', $requestid,'Valid signature found');
+			Logger::notice('SAML2.0 - SP.SingleLogoutService: Valid signature found for '.$requestid);
 		}
 
 		// Extract some parameters from the logout request
@@ -52,8 +50,7 @@ if (isset($_GET['SAMLRequest'])) {
 		//$responder = $config->getValue('saml2-hosted-sp');
 		$responder = $metadata->getMetaDataCurrentEntityID();
 	
-		$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutRequest', $requestid,
-			'IdP (' . $requester . ') is sending logout request to me SP (' . $responder . ')');
+		Logger::notice('SAML2.0 - SP.SingleLogoutService: IdP (' . $requester . ') is sending logout request to me SP (' . $responder . ') requestid '.$requestid);
 	
 	
 		// Create a logout response
@@ -65,8 +62,7 @@ if (isset($_GET['SAMLRequest'])) {
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 	
 	
-		$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutResponse', '-',
-			'SP me (' . $responder . ') is sending logout response to IdP (' . $requester . ')');
+		Logger::notice('SAML2.0 - SP.SingleLogoutService: SP me (' . $responder . ') is sending logout response to IdP (' . $requester . ')');
 	
 		// Send the Logout response using HTTP POST binding.
 		$httpredirect->sendMessage($logoutResponseXML, $responser, $requester, $logoutrequest->getRelayState(), 'SingleLogoutServiceResponse', 'SAMLResponse');
@@ -87,7 +83,7 @@ if (isset($_GET['SAMLRequest'])) {
 		$logoutresponse = $binding->decodeLogoutResponse($_GET);
 
 		if ($binding->validateQuery($logoutresponse->getIssuer(),'SP','SAMLResponse')) {
-			$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutResponse', 'SingleLogoutServiceResponse','Valid signature found');
+			Logger::notice('SAML2.0  - SP.SingleLogoutService: Valid signature found');
 		}
 
 	} catch(Exception $exception) {

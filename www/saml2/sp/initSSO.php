@@ -24,9 +24,7 @@ $session = SimpleSAML_Session::getInstance(true);
  * 
  */		
 
-$logger = new SimpleSAML_Logger();
-$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'EVENT', 'Access', 
-	'Accessing SAML 2.0 SP initSSO script');
+Logger::info('SAML2.0 - SP.initSSO: Accessing SAML 2.0 SP initSSO script');
 
 
 try {
@@ -43,8 +41,7 @@ if (!isset($session) || !$session->isValid('saml2') ) {
 	
 	if ($idpentityid == null) {
 	
-		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'NextDisco', $spentityid, 
-			'No SP default or specified, go to SAML2disco');
+		Logger::notice('SAML2.0 - SP.initSSO: No chosen or default IdP, go to SAML2disco');
 		
 		$returnURL = urlencode(SimpleSAML_Utilities::selfURL());
 		$discservice = '/' . $config->getValue('baseurlpath') . 'saml2/sp/idpdisco.php?entityID=' . $spentityid . 
@@ -67,8 +64,7 @@ if (!isset($session) || !$session->isValid('saml2') ) {
 			$relayState = $_GET['RelayState'];
 		}
 		
-		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'AuthnRequest', $idpentityid, 
-			'SP (' . $spentityid . ') is sending authentication request to IdP (' . $idpentityid . ')');
+		Logger::notice('SAML2.0 - SP.initSSO: SP (' . $spentityid . ') is sending AuthNRequest to IdP (' . $idpentityid . ')');
 		
 		$httpredirect->sendMessage($req, $spentityid, $idpentityid, $relayState);
 
@@ -84,8 +80,7 @@ if (!isset($session) || !$session->isValid('saml2') ) {
 		
 	if (isset($relaystate) && !empty($relaystate)) {
 	
-		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'SP.initSSO', 'AlreadyAuthenticated', '-', 
-			'Go back to RelayState');
+		Logger::notice('SAML2.0 - SP.initSSO: Already Authenticated, Go back to RelayState');
 	
 		SimpleSAML_Utilities::redirect($relaystate);
 	} else {

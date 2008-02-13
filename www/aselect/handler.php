@@ -58,7 +58,6 @@ require_once('xmlseclibs.php');
 require_once('SimpleSAML/Logger.php');
 require_once('SimpleSAML/Configuration.php');
 
-$logger = new SimpleSAML_Logger();
 $config = SimpleSAML_Configuration::getInstance();
 
 $as_metadata = array(
@@ -123,9 +122,7 @@ session_start();
 
 // log an error and throw an exception
 function as_error_exception($msg) {
-	global $logger;	
-
-	$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', $msg);
+	Logger::notice(array('1', 'aselect', 'handler', 'request', 'access', $msg));
 	throw new Exception($msg);
 }
 
@@ -441,7 +438,7 @@ function as_request_bridge_return() {
 
 // demultiplex incoming request
 try {
-	$logger->log(LOG_NOTICE, '1', 'aselect', 'handler', 'request', 'access', $_SERVER['REQUEST_URI']);
+	Logger::notice(array('1', 'aselect', 'handler', 'request', 'access', $_SERVER['REQUEST_URI']));
 	if ($_GET['request']) {
 		$handler = 'as_request_' . $_GET['request'];
 		$handler();

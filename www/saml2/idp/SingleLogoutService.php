@@ -30,9 +30,7 @@ $session = SimpleSAML_Session::getInstance();
 
 $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 
-$logger = new SimpleSAML_Logger();
-$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SingleLogoutService', 'EVENT', 'Access',
-	'Accessing SAML 2.0 IdP endpoint SingleLogoutService');
+Logger::info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
 	
 	
 // TODO: if session is not set, give error or do something else.
@@ -52,9 +50,7 @@ if (isset($_GET['SAMLRequest'])) {
 		$logoutrequest = $binding->decodeLogoutRequest($_GET);
 
 		if ($binding->validateQuery($logoutrequest->getIssuer(),'IdP')) {
-			$logger->log(LOG_INFO,
-				isset($session) ? $session->getTrackID() : 'NA', 
-				'SAML2.0', 'IdP.SingleLogoutService', 'LogoutRequest', $logoutrequest->getRequestID(), 'Valid signature found');
+			Logger::info('SAML2.0 - IdP.SingleLogoutService: Valid signature found for '.$logoutrequest->getRequestID());
 		}
 
 	} catch(Exception $exception) {
@@ -105,7 +101,7 @@ if (isset($_GET['SAMLRequest'])) {
 
 	//echo '<pre>' . htmlentities($logoutrequest->getXML()) . '</pre>';
 
-	error_log('IdP LogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer() . '  ');
+	Logger::notice('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer());
 
 	
 #	$session->setLogoutRequest($logoutrequest);
@@ -136,7 +132,7 @@ if (isset($_GET['SAMLRequest'])) {
 		$loginresponse = $binding->decodeLogoutResponse($_GET);
 
 		if ($binding->validateQuery($loginresponse->getIssuer(),'SP','SAMLResponse')) {
-			$logger->log(LOG_NOTICE, $trackId, 'SAML2.0', 'SP.SingleLogoutService', 'LogoutResponse', 'SingleLogoutServiceResponse','Valid signature found');
+			Logger::notice('SAML2.0 - IDP.SingleLogoutService: Valid signature found');
 		}
 
 
@@ -157,7 +153,7 @@ if (isset($_GET['SAMLRequest'])) {
 
 	$session->set_sp_logout_completed($loginresponse->getIssuer());
 
-	error_log('IdP LogoutService: got LogoutResponse from ' . $loginresponse->getIssuer() . '  ');
+	Logger::notice('SAML2.0 - IDP.SingleLogoutService: got LogoutResponse from ' . $loginresponse->getIssuer());
 }
 
 
@@ -171,7 +167,7 @@ $session->dump_sp_sessions();
 $spentityid = $session->get_next_sp_logout();
 if ($spentityid) {
 
-	error_log('IdP LogoutService: next SP ' . $spentityid);
+	Logger::notice('SAML2.0 - IDP.SingleLogoutService: Logout next SP ' . $spentityid);
 
 	try {
 		$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
@@ -206,8 +202,8 @@ if ($spentityid) {
 
 }
 
-if ($config->getValue('debug', false)) 
-	$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SingleLogoutService', 'EVENT', 'LogoutDone', 'IdP LogoutService:  SPs done ');
+if ($config->getValue('debug', false))
+	Logger::info('SAML2.0 - IdP.SingleLogoutService: LogoutService: All SPs done ');
 
 
 
@@ -247,12 +243,12 @@ try {
 	 * Clean up session object to save storage.
 	 */
 	if ($config->getValue('debug', false)) 
-		$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SingleLogoutService', 'EVENT', 'SessionSize', 'Size before cleaning: ' . $session->getSize());
+		Logger::info('SAML2.0 - IdP.SingleLogoutService: Session Size before cleaning: ' . $session->getSize());
 		
 	$session->clean();
 	
 	if ($config->getValue('debug', false)) 
-		$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SingleLogoutService', 'EVENT', 'SessionSize', 'Size after cleaning: ' . $session->getSize());
+		Logger::info('SAML2.0 - IdP.SingleLogoutService: Session Size after cleaning: ' . $session->getSize());
 	
 	
 	/**

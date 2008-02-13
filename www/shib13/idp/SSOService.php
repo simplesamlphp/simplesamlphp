@@ -27,14 +27,13 @@ $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance(true);
 
-$logger = new SimpleSAML_Logger();
 
 $idpentityid = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
 $idpmetadata = $metadata->getMetaDataCurrent('shib13-idp-hosted');
 
 $requestid = null;
 
-$logger->log(LOG_INFO, $session->getTrackID(), 'Shib1.3', 'IdP.SSOService', 'EVENT', 'Access', 'Accessing Shibboleth 1.3 IdP endpoint SSOService');
+Logger::info('Shib1.3 - IdP.SSOService: Accessing Shibboleth 1.3 IdP endpoint SSOService');
 
 /*
  * If the shire query parameter is set, we got an incomming Authentication Request 
@@ -65,7 +64,7 @@ if (isset($_GET['shire'])) {
 			
 		$session->setAuthnRequest('shib13', $requestid, $requestcache);
 		
-		$logger->log(LOG_INFO, $session->getTrackID(), 'Shib1.3', 'IdP.SSOService', 'EVENT', $requestid, 'Got incomming Shib authnRequest');
+		Logger::info('Shib1.3 - IdP.SSOService: Got incomming Shib authnRequest requestid: '.$requestid);
 	
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
@@ -89,7 +88,7 @@ if (isset($_GET['shire'])) {
 
 		$requestcache = $session->getAuthnRequest('shib13', $requestid);
 		
-		$logger->log(LOG_INFO, $session->getTrackID(), 'Shib1.3', 'IdP.SSOService', 'EVENT', $requestid, 'Got incomming RequestID');
+		Logger::info('Shib1.3 - IdP.SSOService: Got incomming RequestID: '.$requestid);
 		
 		if (!$requestcache) throw new Exception('Could not retrieve cached RequestID = ' . $requestid);
 

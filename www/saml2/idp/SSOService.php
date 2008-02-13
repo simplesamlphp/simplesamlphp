@@ -27,8 +27,6 @@ $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance(true);
 
-$logger = new SimpleSAML_Logger();
-
 try {
 	$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 	$idpmeta = $metadata->getMetaDataCurrent('saml20-idp-hosted');
@@ -38,7 +36,7 @@ try {
 
 $requestid = null;
 
-$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'EVENT', 'Access', 'Accessing SAML 2.0 IdP endpoint SSOService');
+Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
 /*
  * If the SAMLRequest query parameter is set, we got an incomming Authentication Request 
@@ -71,12 +69,10 @@ if (isset($_GET['SAMLRequest'])) {
 		
 		
 		if ($binding->validateQuery($authnrequest->getIssuer(),'IdP')) {
-			$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'AuthnRequest', $requestid, 'Valid signature found');
+			Logger::info('SAML2.0 - IdP.SSOService: Valid signature found for '.$requestid);
 		}
 		
-		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'AuthnRequest', 
-			array($authnrequest->getIssuer(), $requestid), 
-			'Incomming Authentication request');
+		Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '.$authnrequest->getIssuer().' id '.$requestid);
 	
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
@@ -99,7 +95,7 @@ if (isset($_GET['SAMLRequest'])) {
 
 		$requestcache = $session->getAuthnRequest('saml2', $requestid);
 		
-		$logger->log(LOG_INFO, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'EVENT', $requestid, 'Got incomming RequestID');
+		Logger::info('SAML2.0 - IdP.SSOService: Got incomming RequestID');
 		
 		if (!$requestcache) throw new Exception('Could not retrieve cached RequestID = ' . $requestid);
 		
@@ -127,8 +123,7 @@ $authority = isset($idpmeta['authority']) ? $idpmeta['authority'] : null;
  */
 if (!isset($session) || !$session->isValid($authority) ) {
 
-	$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'AuthNext', $idpmeta['auth'], 
-		'Will go to authentication module ' . $idpmeta['auth']);
+	Logger::notice('SAML2.0 - IdP.SSOService: Will go to authentication module ' . $idpmeta['auth']);
 
 	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() .
 		'?RequestID=' . urlencode($requestid);
@@ -157,8 +152,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 			
 			if (!isset($_GET['consent'])) {
 
-				$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'Consent', 'request', 
-					'Requires consent from user for attribute release');
+				Logger::notice('SAML2.0 - IdP.SSOService: Requires consent from user for attribute release');
 
 				$t = new SimpleSAML_XHTML_Template($config, 'consent.php');
 				$t->data['header'] = 'Consent';
@@ -170,8 +164,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 				
 			} else {
 			
-				$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'ConsentOK', '-', 
-					'Got consent from user');
+				Logger::notice('SAML2.0 - IdP.SSOService: Got consent from user');
 			}
 			
 		}
@@ -180,8 +173,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		// Right now the list is used for SAML 2.0 only.
 		$session->add_sp_session($spentityid);
 
-		$logger->log(LOG_NOTICE, $session->getTrackID(), 'SAML2.0', 'IdP.SSOService', 'AuthnResponse', $spentityid, 
-			'Sending back AuthnResponse');
+		Logger::notice('SAML2.0 - IdP.SSOService: Sending back AuthnResponse to '.$spentityid);
 
 		/*
 		 * Filtering attributes.

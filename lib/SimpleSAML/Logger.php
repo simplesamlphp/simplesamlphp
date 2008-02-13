@@ -50,7 +50,7 @@ class SimpleSAML_Logger {
 		}
 		
 		$logstring = implode(',', array($priority, $trackid, $module, $submodule, $eventtype, $contentstring, $message));
-		syslog($priority, $logstring);
+		syslog($priority, " OLD ".$logstring);
 	
 	}
 }

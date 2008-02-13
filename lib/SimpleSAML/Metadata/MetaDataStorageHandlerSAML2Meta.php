@@ -19,7 +19,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 
 
 	private static $cachedfiles;
-	private $logger;
 
 	/* This constructor is included in case it is needed in the the
 	 * future. Including it now allows us to write parent::__construct() in
@@ -27,8 +26,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 	 */
 	protected function __construct() {
 		if (!isset($this->cachedfiles)) $this->cachedfiles = array();
-		$this->logger = new SimpleSAML_Logger();
-
 	}
 
 
@@ -105,8 +102,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 			$metadata = $this->loadFile($metadatasetfile);
 		}
 		
-		$this->logger->log(LOG_INFO, null, 'MetaData', 'Handler.SAML2Meta', 'INFO', 'Loading', 
-			'Loading metadata set [' . $set . '] from [' . $metadatasetfile . ']' );
+		Logger::info('MetaData - Handler.SAML2Meta: Loading metadata set [' . $set . '] from [' . $metadatasetfile . ']' );
 		
 		if (!is_array($metadata))
 			throw new Exception('Could not load metadata set [' . $set . '] from file: ' . $metadatasetfile);
@@ -182,8 +178,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 												
 
 			} catch (Exception $e) {
-				$this->logger->log(LOG_INFO, null, 'MetaData', 'Handler.SAML2Meta', 'WARNING', 'Parsing', 
-					'Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
+				Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
 			}
 
 		}
@@ -220,8 +215,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 				$metadata[$entityid]['ForceAuthn'] = (isset($seek_forceauth) ? ($seek_forceauth === 'true') : false);
 				
 			} catch (Exception $e) {
-				$this->logger->log(LOG_INFO, null, 'MetaData', 'Handler.SAML2Meta', 'WARNING', 'Parsing', 
-					'Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
+				Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
 			}
 
 		}
@@ -266,8 +260,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 				$metadata[$entityid]['requireconsent'] = (isset($seek_requireconsent) ? ($seek_requireconsent === 'true') : false);
 				
 			} catch (Exception $e) {
-				$this->logger->log(LOG_INFO, null, 'MetaData', 'Handler.SAML2Meta', 'WARNING', 'Parsing', 
-					'Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
+				Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
 			}
 
 		}
@@ -332,8 +325,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 				
 				
 			} catch (Exception $e) {
-				$this->logger->log(LOG_INFO, null, 'MetaData', 'Handler.SAML2Meta', 'WARNING', 'Parsing', 
-					'Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
+				Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
 			}
 
 		}
@@ -379,8 +371,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 												
 
 			} catch (Exception $e) {
-				$this->logger->log(LOG_INFO, null, 'MetaData', 'Handler.SAML2Meta', 'WARNING', 'Parsing', 
-					'Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
+				Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
 			}
 
 		}
@@ -464,8 +455,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 				
 				
 			} catch (Exception $e) {
-				$this->logger->log(LOG_INFO, null, 'MetaData', 'Handler.SAML2Meta', 'WARNING', 'Parsing', 
-					'Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
+				Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
 			}
 
 		}

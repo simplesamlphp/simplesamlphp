@@ -85,9 +85,7 @@ class SimpleSAML_XHTML_Template {
 				
 			
 			if (!file_exists($filebase . $file) ) {
-				$logger = new SimpleSAML_Logger();
-				$logger->log(LOG_ERR, null, $_SERVER['PHP_SELF'], '-', 'Template', 'CannotFindFile', 
-					'Could not find template file [' . $this->template . '] at [' . $filename . ']');
+				Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
 				return;
 			}
 		}
@@ -99,9 +97,7 @@ class SimpleSAML_XHTML_Template {
 		$filebase = $this->configuration->getBaseDir() . $this->configuration->getValue('dictionarydir');
 		
 		if (!file_exists($filebase . $file)) {
-			$logger = new SimpleSAML_Logger();
-			$logger->log(LOG_ERR, null, $_SERVER['PHP_SELF'], '-', 'Template', 'CannotFindFile', 
-				'Could not find template file [' . $this->template . '] at [' . $filebase . $file . ']');
+			Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filebase . $file . ']');
 			return;
 		}
 		include($filebase . $file);
@@ -132,9 +128,7 @@ class SimpleSAML_XHTML_Template {
 
 
 			if (!file_exists($filename)) {
-				$logger = new SimpleSAML_Logger();
-				$logger->log(LOG_ERR, null, $_SERVER['PHP_SELF'], '-', 'Template', 'CannotFindFile', 
-					'Could not find template file [' . $this->template . '] at [' . $filename . ']');
+				Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
 			
 				echo 'Fatal error: Could not find template file [' . $this->template . '] at [' . $filename . ']';
 				exit(0);

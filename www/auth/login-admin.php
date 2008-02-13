@@ -12,9 +12,8 @@ require_once('SimpleSAML/Logger.php');
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance();
-$logger = new SimpleSAML_Logger();
 
-$logger->log(LOG_INFO, $session->getTrackID(), 'AUTH', 'admin', 'EVENT', 'Access', 'Accessing auth endpoint login-admin');
+Logger::info('AUTH -admin: Accessing auth endpoint login-admin');
 
 $error = null;
 $attributes = array();
@@ -61,7 +60,7 @@ if (isset($_POST['password'])) {
 			'value' => SimpleSAML_Utilities::generateID(),
 			'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
 		
-		$logger->log(LOG_NOTICE, $session->getTrackID(), 'AUTH', 'admin', 'OK', $username, $username . ' successfully authenticated');
+		Logger::notice('AUTH - admin: '. $username . ' successfully authenticated');
 		
 		SimpleSAML_Utilities::redirect($relaystate);
 		exit(0);
