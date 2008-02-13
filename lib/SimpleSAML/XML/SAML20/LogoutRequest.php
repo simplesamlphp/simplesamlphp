@@ -121,6 +121,12 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
 		$issuermd 	= $this->metadata->getMetaData($issuer, $issuerset);
 		$receivermd = $this->metadata->getMetaData($receiver, $receiverset);
 		
+		if ($mode == 'IdP') {
+			$spnamequalifier = isset($receivermd['SPNameQualifier']) ? $receivermd['SPNameQualifier'] : $receivermd['entityid'];
+		} else {
+			$spnamequalifier = isset($issuermd['SPNameQualifier']) ? $issuermd['SPNameQualifier'] : $issuermd['entityid'];
+		}
+		
 		$id = self::generateID();
 		$issueInstant = self::generateIssueInstant();
 
@@ -133,7 +139,7 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
     Destination="' . htmlspecialchars($destination) . '"
     IssueInstant="' . $issueInstant . '">
     <saml:Issuer >' . htmlspecialchars($issuer) . '</saml:Issuer>
-    <saml:NameID Format="' . htmlspecialchars($nameid['Format']) . '">' . htmlspecialchars($nameid['value']) . '</saml:NameID>
+    <saml:NameID Format="' . htmlspecialchars($nameid['Format']) . '" SPNameQualifier="' . htmlspecialchars($spnamequalifier) . '">' . htmlspecialchars($nameid['value']) . '</saml:NameID>
     <samlp:SessionIndex>' . htmlspecialchars($sessionindex) . '</samlp:SessionIndex>
 </samlp:LogoutRequest>
 ';

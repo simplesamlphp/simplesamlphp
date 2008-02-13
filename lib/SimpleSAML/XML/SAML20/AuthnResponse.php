@@ -492,6 +492,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		 */
 		$base64 = isset($spmd['base64attributes']) ? $spmd['base64attributes'] : false;
 		$nameidformat = isset($spmd['NameIDFormat']) ? $spmd['NameIDFormat'] : 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+		$spnamequalifier = isset($spmd['SPNameQualifier']) ? $spmd['SPNameQualifier'] : $spmd['entityid'];
 		
 		$encodedattributes = '';
 		foreach ($attributes AS $name => $values) {
@@ -510,9 +511,9 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		 */
 		$nameid = null;
 		if ($nameidformat == self::EMAIL) {
-			$nameid = $this->generateNameID($nameidformat, $attributes[$spmd['simplesaml.nameidattribute']][0]);
+			$nameid = $this->generateNameID($nameidformat, $attributes[$spmd['simplesaml.nameidattribute']][0], $spnamequalifier);
 		} else {
-			$nameid = $this->generateNameID($nameidformat, self::generateID());
+			$nameid = $this->generateNameID($nameidformat, self::generateID(), $spnamequalifier);
 		}
 		
 		/**
@@ -562,13 +563,20 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 
 	private function generateNameID($type = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient', 
-			$value = 'anonymous') {
-			
+			$value = 'anonymous', $spnamequalifier = null) {
+		
+		$spnamequalifiertext = '';
+		if (!empty($spnamequalifier)) {
+			$spnamequalifiertext = ' SPNameQualifier="' . htmlspecialchars($spnamequalifier) . '"';
+		}
+		
 		if ($type == self::EMAIL) {
-			return '<saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">' . htmlspecialchars($value) . '</saml:NameID>';
+			return '<saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"' . 
+				$spnamequalifiertext . '>' . htmlspecialchars($value) . '</saml:NameID>';
 
 		} else {
-			return '<saml:NameID Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient">' . htmlspecialchars($value). '</saml:NameID>';
+			return '<saml:NameID Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"' . 
+				$spnamequalifiertext. '>' . htmlspecialchars($value). '</saml:NameID>';
 		}
 		
 	}
