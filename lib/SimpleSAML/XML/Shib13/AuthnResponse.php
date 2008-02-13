@@ -277,13 +277,15 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$audience = isset($spmd['audience']) ? $spmd['audience'] : $spentityid;
 		$base64 = isset($spmd['base64attributes']) ? $spmd['base64attributes'] : false;
 		
+		$namequalifier = isset($spmd['NameQualifier']) ? $spmd['NameQualifier'] : $spmd['entityid'];
+		
 		$encodedattributes = '';
 		
 		if (is_array($attributes)) {
 
 			$encodedattributes .= '<AttributeStatement>
 				<Subject>
-					<NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier">' . htmlspecialchars($nameid) . '</NameIdentifier>
+					<NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier" NameQualifier="' . htmlspecialchars($namequalifier) . '">' . htmlspecialchars($nameid) . '</NameIdentifier>
 				</Subject>';
 				
 			foreach ($attributes AS $name => $value) {
@@ -321,14 +323,13 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
         <AuthenticationStatement AuthenticationInstant="' . $issueInstant. '"
             AuthenticationMethod="urn:oasis:names:tc:SAML:1.0:am:unspecified">
             <Subject>
-                <NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier">' . htmlspecialchars($nameid) . '</NameIdentifier>
+                <NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier" NameQualifier="' . htmlspecialchars($namequalifier) . '">' . htmlspecialchars($nameid) . '</NameIdentifier>
                 <SubjectConfirmation>
                     <ConfirmationMethod>urn:oasis:names:tc:SAML:1.0:cm:bearer</ConfirmationMethod>
                 </SubjectConfirmation>
             </Subject>
         </AuthenticationStatement>
-        
-                ' . $encodedattributes . '
+        ' . $encodedattributes . '
     </Assertion>
 </Response>';
 		  
