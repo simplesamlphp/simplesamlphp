@@ -13,7 +13,7 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance();
 
 
-Logger::info('AUTH - radius: Accessing auth endpoint login');
+SimpleSAML_Logger::info('AUTH - radius: Accessing auth endpoint login');
 
 $error = null;
 $attributes = array();
@@ -35,12 +35,12 @@ if (isset($_POST['username'])) {
 		if (! radius_add_server($radius, $config->getValue('auth.radius.hostname'), $config->getValue('auth.radius.port'), 
 				$config->getValue('auth.radius.secret'), 5, 3)) {
 				
-			Logger::critical('AUTH - radius: Problem occured when connecting to Radius server: '.radius_strerror($radius));
+			SimpleSAML_Logger::critical('AUTH - radius: Problem occured when connecting to Radius server: '.radius_strerror($radius));
 			throw new Exception('Problem occured when connecting to Radius server: ' . radius_strerror($radius));
 		}
 	
 		if (! radius_create_request($radius,RADIUS_ACCESS_REQUEST)) {
-			Logger::critical('AUTH - radius: Problem occured when creating the Radius request: '.radius_strerror($radius));
+			SimpleSAML_Logger::critical('AUTH - radius: Problem occured when creating the Radius request: '.radius_strerror($radius));
 			throw new Exception('Problem occured when creating the Radius request: ' . radius_strerror($radius));
 		}
 	
@@ -81,7 +81,7 @@ if (isset($_POST['username'])) {
 
 				//$attributes = array('urn:mace:eduroam.no:username' => array($_POST['username']));
 				
-				Logger::notice('AUTH - radius: '. $_POST['username'] . ' successfully authenticated');
+				SimpleSAML_Logger::notice('AUTH - radius: '. $_POST['username'] . ' successfully authenticated');
 				
 				$session->setAuthenticated(true, 'login-radius');
 				
@@ -96,15 +96,15 @@ if (isset($_POST['username'])) {
 	
 			case RADIUS_ACCESS_REJECT:
 			
-				Logger::notice('AUTH - radius: '. $_POST['username'] . ' failed to authenticate');
+				SimpleSAML_Logger::notice('AUTH - radius: '. $_POST['username'] . ' failed to authenticate');
 				throw new Exception('Radius authentication error: Bad credentials ');
 				break;
 			case RADIUS_ACCESS_CHALLENGE:
-				Logger::critical('AUTH - radius: Challenge requested: ' . radius_strerror($radius));
+				SimpleSAML_Logger::critical('AUTH - radius: Challenge requested: ' . radius_strerror($radius));
 				throw new Exception('Radius authentication error: Challenge requested');
 				break;
 			default:
-				Logger::critical('AUTH  -radius: General radius error: ' . radius_strerror($radius));
+				SimpleSAML_Logger::critical('AUTH  -radius: General radius error: ' . radius_strerror($radius));
 				throw new Exception('Error during radius authentication: ' . radius_strerror($radius));
 				
 		}

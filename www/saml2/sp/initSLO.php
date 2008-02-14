@@ -22,7 +22,7 @@ if (isset($session) ) {
 		$idpentityid = $session->getIdP();
 		$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 		
-		Logger::info('SAML2.0 - SP.initSLO: Accessing SAML 2.0 SP initSLO script');
+		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: Accessing SAML 2.0 SP initSLO script');
 	
 		/**
 		 * Create a logout request
@@ -37,7 +37,7 @@ if (isset($session) ) {
 			$relayState = $_REQUEST['RelayState'];
 		}
 		
-		Logger::notice('SAML2.0 - SP.initSLO: SP (' . $spentityid . ') is sending logout request to IdP (' . $idpentityid . ')');
+		SimpleSAML_Logger::notice('SAML2.0 - SP.initSLO: SP (' . $spentityid . ') is sending logout request to IdP (' . $idpentityid . ')');
 		
 		$httpredirect->sendMessage($req, $spentityid, $idpentityid, $relayState, 'SingleLogoutService', 'SAMLRequest', 'SP');
 		
@@ -53,7 +53,7 @@ if (isset($session) ) {
 	
 	$relaystate = $_REQUEST['RelayState'];
 	
-	Logger::notice('SAML2.0 - SP.initSLO: User is already logged out. Go back to relaystate');
+	SimpleSAML_Logger::notice('SAML2.0 - SP.initSLO: User is already logged out. Go back to relaystate');
 	
 	SimpleSAML_Utilities::redirect($relaystate);
 	

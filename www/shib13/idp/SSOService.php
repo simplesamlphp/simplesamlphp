@@ -33,7 +33,7 @@ $idpmetadata = $metadata->getMetaDataCurrent('shib13-idp-hosted');
 
 $requestid = null;
 
-Logger::info('Shib1.3 - IdP.SSOService: Accessing Shibboleth 1.3 IdP endpoint SSOService');
+SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Accessing Shibboleth 1.3 IdP endpoint SSOService');
 
 /*
  * If the shire query parameter is set, we got an incomming Authentication Request 
@@ -64,7 +64,7 @@ if (isset($_GET['shire'])) {
 			
 		$session->setAuthnRequest('shib13', $requestid, $requestcache);
 		
-		Logger::info('Shib1.3 - IdP.SSOService: Got incomming Shib authnRequest requestid: '.$requestid);
+		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incomming Shib authnRequest requestid: '.$requestid);
 	
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
@@ -88,7 +88,7 @@ if (isset($_GET['shire'])) {
 
 		$requestcache = $session->getAuthnRequest('shib13', $requestid);
 		
-		Logger::info('Shib1.3 - IdP.SSOService: Got incomming RequestID: '.$requestid);
+		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incomming RequestID: '.$requestid);
 		
 		if (!$requestcache) throw new Exception('Could not retrieve cached RequestID = ' . $requestid);
 
@@ -136,33 +136,66 @@ if (!$session->isAuthenticated($authority) ) {
 		$spentityid = $requestcache['Issuer'];
 		$spmetadata = $metadata->getMetaData($spentityid, 'shib13-sp-remote');
 
+
+		
 		/*
-		 * Filtering attributes.
+		 * Attribute handling
 		 */
 		$afilter = new SimpleSAML_XML_AttributeFilter($config, $session->getAttributes());
-		
+		if (isset($idpmetadata['attributemap'])) {
+			SimpleSAML_Logger::debug('Applying IdP specific attributemap: ' . $idpmetadata['attributemap']);
+			$afilter->namemap($idpmetadata['attributemap']);
+		}
 		if (isset($spmetadata['attributemap'])) {
+			SimpleSAML_Logger::debug('Applying SP specific attributemap: ' . $spmetadata['attributemap']);
 			$afilter->namemap($spmetadata['attributemap']);
 		}
 		if (isset($idpmetadata['attributealter'])) {
-			if (!is_array($idpmetadata['attributealter']))
+			if (!is_array($idpmetadata['attributealter'])) {
+				SimpleSAML_Logger::debug('Applying IdP specific attribute alter: ' . $idpmetadata['attributealter']);
 				$afilter->alter($idpmetadata['attributealter']);
-			else
-				foreach($idpmetadata['attributealter'] AS $alterfunc) 
+			} else {
+				foreach($idpmetadata['attributealter'] AS $alterfunc) {
+					SimpleSAML_Logger::debug('Applying IdP specific attribute alter: ' . $alterfunc);
 					$afilter->alter($alterfunc);
+				}
+			}
 		}
 		if (isset($spmetadata['attributealter'])) {
-			if (!is_array($spmetadata['attributealter']))
+			if (!is_array($spmetadata['attributealter'])) {
+				SimpleSAML_Logger::debug('Applying SP specific attribute alter: ' . $spmetadata['attributealter']);
 				$afilter->alter($spmetadata['attributealter']);
-			else
-				foreach($spmetadata['attributealter'] AS $alterfunc) 
+			} else {
+				foreach($spmetadata['attributealter'] AS $alterfunc) {
+					SimpleSAML_Logger::debug('Applying SP specific attribute alter: ' . $alterfunc);
 					$afilter->alter($alterfunc);
+				}
+			}
 		}
+
+		/**
+		 * Make a log entry in the statistics for this SSO login.
+		 */
+		$tempattr = $afilter->getAttributes();
+		$realmattr = $config->getValue('statistics.realmattr', null);
+		$realmstr = 'NA';
+		if (!empty($realmattr)) {
+			if (array_key_exists($realmattr, $tempattr) && is_array($tempattr[$realmattr]) ) {
+				$realmstr = $tempattr[$realmattr][0];
+			} else {
+				SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
+			}
+		} 
+		SimpleSAML_Logger::stats('shib13-idp-SSO ' . $spentityid . ' ' . $idpentityid . ' ' . $realmstr);
+		
+		/**
+		 * Filter away attributes that are not allowed for this SP.
+		 */
 		if (isset($spmetadata['attributes'])) {
+			SimpleSAML_Logger::debug('Applying SP specific attribute filter: ' . join(',', $spmetadata['attributes']));
 			$afilter->filter($spmetadata['attributes']);
 		}
 		$filteredattributes = $afilter->getAttributes();
-		
 		
 
 

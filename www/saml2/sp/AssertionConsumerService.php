@@ -28,7 +28,7 @@ require_once('SimpleSAML/XHTML/Template.php');
  */
 $session = SimpleSAML_Session::getInstance(TRUE);
 
-Logger::info('SAML2.0 - SP.AssertionConsumerService: Accessing SAML 2.0 SP endpoint AssertionConsumerService');
+SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Accessing SAML 2.0 SP endpoint AssertionConsumerService');
 
 try {
 	
@@ -40,7 +40,7 @@ try {
 	
 	$authnResponse->process();
 
-	Logger::notice('SAML2.0 - SP.AssertionConsumerService: Successfully created local session from Authentication Response');
+	SimpleSAML_Logger::notice('SAML2.0 - SP.AssertionConsumerService: Successfully created local session from Authentication Response');
 
 	$relayState = $authnResponse->getRelayState();
 	if (isset($relayState)) {

@@ -218,7 +218,7 @@ class SimpleSAML_Session {
 	public function getAuthnRequest($protocol, $requestid) {
 
 
-		Logger::debug('Library - Session: Get authnrequest from cache ' . $protocol . ' time:' . time() . '  id: '. $requestid );
+		SimpleSAML_Logger::debug('Library - Session: Get authnrequest from cache ' . $protocol . ' time:' . time() . '  id: '. $requestid );
 
 		$configuration = SimpleSAML_Configuration::getInstance();
 		if (isset($this->authnrequests[$protocol])) {
@@ -231,7 +231,7 @@ class SimpleSAML_Session {
 				 * simply delete it :)
 				 */
 				if ($cache['date'] < time() - $configuration->getValue('session.requestcache', 4*(60*60)) ) {
-					Logger::debug('Library - Session: Deleting expired authn request with id ' . $id);
+					SimpleSAML_Logger::debug('Library - Session: Deleting expired authn request with id ' . $id);
 					unset($this->authnrequests[$protocol][$id]);
 				}
 			}
@@ -258,7 +258,7 @@ class SimpleSAML_Session {
 	 */
 	public function setAuthnRequest($protocol, $requestid, array $cache) {
 	
-		Logger::debug('Library - Session: Set authnrequest ' . $protocol . ' time:' . time() . ' size:' . count($cache) . '  id: '. $requestid );
+		SimpleSAML_Logger::debug('Library - Session: Set authnrequest ' . $protocol . ' time:' . time() . ' size:' . count($cache) . '  id: '. $requestid );
 
 		$this->dirty = true;
 		$cache['date'] = time();
@@ -375,7 +375,7 @@ class SimpleSAML_Session {
 	 */
 	public function clean($cleancache = false) {
 	
-		Logger::debug('Library - Session: Cleaning Session. Clean cache: ' . ($cleancache ? 'yes' : 'no') );
+		SimpleSAML_Logger::debug('Library - Session: Cleaning Session. Clean cache: ' . ($cleancache ? 'yes' : 'no') );
 	
 		if ($cleancache) {
 			$this->authnrequests = array();

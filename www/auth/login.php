@@ -16,7 +16,7 @@ $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance(true);
 
-Logger::info('AUTH  - ldap: Accessing auth endpoint login');
+SimpleSAML_Logger::info('AUTH  - ldap: Accessing auth endpoint login');
 
 $error = null;
 $attributes = array();
@@ -69,7 +69,7 @@ if (isset($_POST['username'])) {
 		
 			if (!ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3)) {
 			
-				Logger::critical('AUTH - ldap: Error setting LDAP protocol version to 3');
+				SimpleSAML_Logger::critical('AUTH - ldap: Error setting LDAP protocol version to 3');
 				
 				throw new Exception("Failed to set LDAP Protocol version to 3");
 			}
@@ -83,7 +83,7 @@ if (isset($_POST['username'])) {
 				$error = "Bind failed, wrong username or password. Tried with DN=[" . $dn . "] DNPattern=[" . $config->getValue('auth.ldap.dnpattern')
 					. "] Error=[" . ldap_error($ds) . "] ErrNo=[" . ldap_errno($ds) . "]";
 				
-				Logger::notice('AUTH - ldap: '. $username . ' failed to authenticate');
+				SimpleSAML_Logger::notice('AUTH - ldap: '. $username . ' failed to authenticate');
 				
 			} else {
 				$sr = ldap_read($ds, $dn, $config->getValue('auth.ldap.attributes'));
@@ -137,7 +137,7 @@ if (isset($_POST['username'])) {
 					'value' => SimpleSAML_Utilities::generateID(),
 					'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
 				
-				Logger::notice('AUTH - ldap: '. $username . ' successfully authenticated');
+				SimpleSAML_Logger::notice('AUTH - ldap: '. $username . ' successfully authenticated');
 				
 				
 				SimpleSAML_Utilities::redirect($relaystate);

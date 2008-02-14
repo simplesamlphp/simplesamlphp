@@ -6,63 +6,29 @@ require_once('SimpleSAML/Session.php');
 /**
  * A class for logging
  *
+ * @author Lasse Birnbaum Jensen, SDU.
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $ID$
  */
-class SimpleSAML_Logger {
-
-
-	private $configuration = null;
-	private $loglevel = LOG_NOTICE;
-
-	public function __construct() {
-
-		$this->configuration = SimpleSAML_Configuration::getInstance();
-		$this->loglevel = $this->configuration->getValue('logging.level');
-		
-		define_syslog_variables();
-		openlog("simpleSAMLphp", LOG_PID, $this->configuration->getValue('logging.facility') );
-		
-	}
-	
-	/*
-	 * Log a message to syslog.
-	 */
-	public function log($priority, $trackid = null, $module, $submodule, $eventtype, $content, $message) {
-	/*
-		error_log('This entry: ' . $message );
-		error_log('This entry is ' . $priority . ' and will be loged if <= ' . $this->loglevel);
-		error_log('LOG_ERR is ' . LOG_ERR . ' and LOGINFO is ' . LOG_INFO . " LOG_DEBUG is " . LOG_DEBUG);
-		*/
-		if ($priority > $this->loglevel) return;
-		if ($trackid == null) {
-			$trackid = 'na';
-			//$session = SimpleSAML_Session::getInstance(true);
-			//$trackid = $session->getTrackID();
-		}
-		
-		$contentstring = '';
-		if (is_array($content)) {
-			$contentstring = implode('|', $content); 
-		} else {
-			$contentstring = $content; 
-		}
-		
-		$logstring = implode(',', array($priority, $trackid, $module, $submodule, $eventtype, $contentstring, $message));
-		syslog($priority, " OLD ".$logstring);
-	
-	}
-}
 
 interface SimpleSAML_Logger_LoggingHandler {
     function log_internal($level,$string);
 }
 
-class Logger {
+class SimpleSAML_Logger {
 	private static $loggingHandler = null;
 	private static $logLevel = null;
 	private static $trackid = null;
+
+/*
+	 *		LOG_ERR				No statistics, only errors
+	 *		LOG_WARNING			No statistics, only warnings/errors
+	 *		LOG_NOTICE			Statistics and errors 
+	 *		LOG_INFO			Verbose logs
+	 *		LOG_DEBUG			Full debug logs - not reccomended for production
+
+*/
 
 	static function emergency($string) {
 		self::log_internal(LOG_EMERG,$string);
@@ -84,21 +50,39 @@ class Logger {
 		self::log_internal(LOG_WARNING,$string);
 	}
 
+	/**
+	 * We reserve the notice level for statistics, so do not use
+	 * this level for other kind of log messages.
+	 */
 	static function notice($string) {
 		self::log_internal(LOG_NOTICE,$string);
 	}
 
+	/**
+	 * Info messages is abit less verbose than debug messages. This is useful
+	 * for tracing a session. 
+	 */
 	static function info($string) {
 		self::log_internal(LOG_INFO,$string);
 	}
-
+	
+	/**
+	 * Debug messages is very verbose, and will contain more inforation than 
+	 * what is neccessary for a production system.
+	 */
 	static function debug($string) {
 		self::log_internal(LOG_DEBUG,$string);
 	}
 
+	/**
+	 * Statisitics
+	 */
 	static function stats($string) {
-		self::log_internal(LOG_INFO,$string,true);
+		self::log_internal(LOG_NOTICE,$string,true);
 	}
+	
+	
+	
 	public static function createLoggingHandler() {
 		/* Get the configuration. */
 		$config = SimpleSAML_Configuration::getInstance();
@@ -158,6 +142,46 @@ class Logger {
 			self::$loggingHandler->log_internal($level,$string);
 		}
 	}
+	
 }
+
+
+ /*
+class SimpleSAML_Logger {
+
+
+	private $configuration = null;
+	private $loglevel = LOG_NOTICE;
+
+	public function __construct() {
+
+		$this->configuration = SimpleSAML_Configuration::getInstance();
+		$this->loglevel = $this->configuration->getValue('logging.level');
+		
+		define_syslog_variables();
+		openlog("simpleSAMLphp", LOG_PID, $this->configuration->getValue('logging.facility') );
+		
+	}
+	public function log($priority, $trackid = null, $module, $submodule, $eventtype, $content, $message) {
+
+		if ($priority > $this->loglevel) return;
+		if ($trackid == null) {
+			$trackid = 'na';
+		}
+		
+		$contentstring = '';
+		if (is_array($content)) {
+			$contentstring = implode('|', $content); 
+		} else {
+			$contentstring = $content; 
+		}
+		
+		$logstring = implode(',', array($priority, $trackid, $module, $submodule, $eventtype, $contentstring, $message));
+		syslog($priority, " OLD ".$logstring);
+	
+	}
+}
+*/
+
 
 ?>

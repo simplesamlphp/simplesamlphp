@@ -287,7 +287,7 @@ class SimpleSAML_Utilities {
 		$etrace = (empty($e) ? 'No exception available' : $e->getTraceAsString()); 
 		
 		// Log a error message
-		Logger::error($_SERVER['PHP_SELF'].' - UserError: ErrCode:'.(!empty($errorcode) ? $errorcode : 'na').': '.urlencode($emsg) );
+		SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - UserError: ErrCode:'.(!empty($errorcode) ? $errorcode : 'na').': '.urlencode($emsg) );
 		
 		$languagefile = null;
 		if (isset($errorcode)) $languagefile = 'error_' . $errorcode . '.php';

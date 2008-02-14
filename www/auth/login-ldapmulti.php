@@ -17,7 +17,7 @@ $ldapconfigfile = $config->getBaseDir() . 'config/ldapmulti.php';
 require_once($ldapconfigfile);
 
 
-Logger::info('AUTH - ldap-multi: Accessing auth endpoint login-ldapmulti');
+SimpleSAML_Logger::info('AUTH - ldap-multi: Accessing auth endpoint login-ldapmulti');
 
 
 $error = null;
@@ -47,7 +47,7 @@ if (isset($_POST['username'])) {
 		
 			if (!ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3)) {
 			
-				Logger::critical('AUTH - ldap-multi: Error setting LDAP protocol version to 3');
+				SimpleSAML_Logger::critical('AUTH - ldap-multi: Error setting LDAP protocol version to 3');
 				
 				$error = "Failed to set LDAP Protocol version to 3";
 			}
@@ -64,7 +64,7 @@ if (isset($_POST['username'])) {
 					ldap_error($ds) . "] ErrNo=[" .
 					ldap_errno($ds) . "]";
 	
-				Logger::notice('AUTH - ldap-multi: '. $_POST['username'] . ' failed to authenticate');
+				SimpleSAML_Logger::notice('AUTH - ldap-multi: '. $_POST['username'] . ' failed to authenticate');
 				
 			} else {
 				$sr = ldap_read($ds, $dn, $ldapconfig['attributes'] );
@@ -85,7 +85,7 @@ if (isset($_POST['username'])) {
 				//print_r($ldapentries);
 				//print_r($attributes);
 				
-				Logger::notice('AUTH - ldap-multi: '. $_POST['username'] . ' successfully authenticated');
+				SimpleSAML_Logger::notice('AUTH - ldap-multi: '. $_POST['username'] . ' successfully authenticated');
 				
 				
 				$session->setAuthenticated(true, 'login-ldapmulti');

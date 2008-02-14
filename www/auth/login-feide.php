@@ -35,7 +35,7 @@ $session = SimpleSAML_Session::getInstance();
 $ldapconfigfile = $config->getBaseDir() . 'config/ldapfeide.php';
 require_once($ldapconfigfile);
 
-Logger::info('AUTH - ldap-feide: Accessing auth endpoint login-feide');
+SimpleSAML_Logger::info('AUTH - ldap-feide: Accessing auth endpoint login-feide');
 
 $error = null;
 $attributes = array();
@@ -112,7 +112,7 @@ if (isset($_REQUEST['username'])) {
 		 * Do LDAP bind using DN found from the search on ePPN.
 		 */
 		if (!$ldap->bind($dn, $password)) {
-			Logger::notice('AUTH - ldap-feide: '. $requestedUser . ' failed to authenticate. DN=' . $dn);
+			SimpleSAML_Logger::notice('AUTH - ldap-feide: '. $requestedUser . ' failed to authenticate. DN=' . $dn);
 			throw new Exception('Wrong username or password');
 		}
 
@@ -121,7 +121,7 @@ if (isset($_REQUEST['username'])) {
 		 */
 		$attributes = $ldap->getAttributes($dn, $ldapconfig['attributes']);
 
-		Logger::notice('AUTH - ldap-feide: '. $requestedUser . ' successfully authenticated');
+		SimpleSAML_Logger::notice('AUTH - ldap-feide: '. $requestedUser . ' successfully authenticated');
 		
 		$session->setAuthenticated(true, 'login-feide');
 		$session->setAttributes($attributes);
@@ -135,7 +135,7 @@ if (isset($_REQUEST['username'])) {
 
 		
 	} catch (Exception $e) {
-		Logger::error('AUTH - ldap-feide: User: '.(isset($requestedUser) ? $requestedUser : 'na'). ':'. $e->getMessage());
+		SimpleSAML_Logger::error('AUTH - ldap-feide: User: '.(isset($requestedUser) ? $requestedUser : 'na'). ':'. $e->getMessage());
 		$error = $e->getMessage();
 	}
 }

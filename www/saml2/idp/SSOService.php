@@ -36,7 +36,7 @@ try {
 
 $requestid = null;
 
-Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
+SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
 /*
  * If the SAMLRequest query parameter is set, we got an incomming Authentication Request 
@@ -69,10 +69,10 @@ if (isset($_GET['SAMLRequest'])) {
 		
 		
 		if ($binding->validateQuery($authnrequest->getIssuer(),'IdP')) {
-			Logger::info('SAML2.0 - IdP.SSOService: Valid signature found for '.$requestid);
+			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Valid signature found for '.$requestid);
 		}
 		
-		Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '.$authnrequest->getIssuer().' id '.$requestid);
+		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '.$authnrequest->getIssuer().' id '.$requestid);
 	
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
@@ -95,7 +95,7 @@ if (isset($_GET['SAMLRequest'])) {
 
 		$requestcache = $session->getAuthnRequest('saml2', $requestid);
 		
-		Logger::info('SAML2.0 - IdP.SSOService: Got incomming RequestID');
+		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Got incomming RequestID');
 		
 		if (!$requestcache) throw new Exception('Could not retrieve cached RequestID = ' . $requestid);
 		
@@ -124,7 +124,7 @@ $authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : null
 if (!isset($session) || !$session->isValid($authority) ) {
 
 
-	Logger::notice('SAML2.0 - IdP.SSOService: Will go to authentication module ' . $idpmetadata['auth']);
+	SimpleSAML_Logger::notice('SAML2.0 - IdP.SSOService: Will go to authentication module ' . $idpmetadata['auth']);
 
 	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() .
 		'?RequestID=' . urlencode($requestid);
@@ -153,7 +153,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 			
 			if (!isset($_GET['consent'])) {
 
-				Logger::notice('SAML2.0 - IdP.SSOService: Requires consent from user for attribute release');
+				SimpleSAML_Logger::notice('SAML2.0 - IdP.SSOService: Requires consent from user for attribute release');
 
 				$t = new SimpleSAML_XHTML_Template($config, 'consent.php');
 				$t->data['header'] = 'Consent';
@@ -165,7 +165,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 				
 			} else {
 			
-				Logger::notice('SAML2.0 - IdP.SSOService: Got consent from user');
+				SimpleSAML_Logger::notice('SAML2.0 - IdP.SSOService: Got consent from user');
 			}
 			
 		}
@@ -174,48 +174,81 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		// Right now the list is used for SAML 2.0 only.
 		$session->add_sp_session($spentityid);
 
-		Logger::notice('SAML2.0 - IdP.SSOService: Sending back AuthnResponse to '.$spentityid);
+		SimpleSAML_Logger::notice('SAML2.0 - IdP.SSOService: Sending back AuthnResponse to '.$spentityid);
+		
+
+		
 
 		/*
-		 * Filtering attributes.
+		 * Attribute handling
 		 */
-		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
 		$afilter = new SimpleSAML_XML_AttributeFilter($config, $session->getAttributes());
 		if (isset($idpmetadata['attributemap'])) {
+			SimpleSAML_Logger::debug('Applying IdP specific attributemap: ' . $idpmetadata['attributemap']);
 			$afilter->namemap($idpmetadata['attributemap']);
 		}
 		if (isset($spmetadata['attributemap'])) {
+			SimpleSAML_Logger::debug('Applying SP specific attributemap: ' . $spmetadata['attributemap']);
 			$afilter->namemap($spmetadata['attributemap']);
 		}
 		if (isset($idpmetadata['attributealter'])) {
-			if (!is_array($idpmetadata['attributealter']))
+			if (!is_array($idpmetadata['attributealter'])) {
+				SimpleSAML_Logger::debug('Applying IdP specific attribute alter: ' . $idpmetadata['attributealter']);
 				$afilter->alter($idpmetadata['attributealter']);
-			else
-				foreach($idpmetadata['attributealter'] AS $alterfunc) 
+			} else {
+				foreach($idpmetadata['attributealter'] AS $alterfunc) {
+					SimpleSAML_Logger::debug('Applying IdP specific attribute alter: ' . $alterfunc);
 					$afilter->alter($alterfunc);
+				}
+			}
 		}
 		if (isset($spmetadata['attributealter'])) {
-			if (!is_array($spmetadata['attributealter']))
+			if (!is_array($spmetadata['attributealter'])) {
+				SimpleSAML_Logger::debug('Applying SP specific attribute alter: ' . $spmetadata['attributealter']);
 				$afilter->alter($spmetadata['attributealter']);
-			else
-				foreach($spmetadata['attributealter'] AS $alterfunc) 
+			} else {
+				foreach($spmetadata['attributealter'] AS $alterfunc) {
+					SimpleSAML_Logger::debug('Applying SP specific attribute alter: ' . $alterfunc);
 					$afilter->alter($alterfunc);
+				}
+			}
 		}
+
+		/**
+		 * Make a log entry in the statistics for this SSO login.
+		 */
+		$tempattr = $afilter->getAttributes();
+		$realmattr = $config->getValue('statistics.realmattr', null);
+		$realmstr = 'NA';
+		if (!empty($realmattr)) {
+			if (array_key_exists($realmattr, $tempattr) && is_array($tempattr[$realmattr]) ) {
+				$realmstr = $tempattr[$realmattr][0];
+			} else {
+				SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
+			}
+		} 
+		SimpleSAML_Logger::stats('saml20-idp-SSO ' . $spentityid . ' ' . $idpentityid . ' ' . $realmstr);
+		
+		/**
+		 * Filter away attributes that are not allowed for this SP.
+		 */
 		if (isset($spmetadata['attributes'])) {
+			SimpleSAML_Logger::debug('Applying SP specific attribute filter: ' . join(',', $spmetadata['attributes']));
 			$afilter->filter($spmetadata['attributes']);
 		}
 		$filteredattributes = $afilter->getAttributes();
 		
-		//echo '<pre>before filter:' ; print_r($session->getAttributes()); echo "\n\n"; print_r($filteredattributes); echo '</pre>'; exit;
+		
+
+				
 		
 		// Generate an SAML 2.0 AuthNResponse message
-		$authnResponseXML = $ar->generate($idpentityid, $spentityid, 
-			$requestid, null, $filteredattributes);
+		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
+		$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestid, null, $filteredattributes);
 	
 		// Sending the AuthNResponse using HTTP-Post SAML 2.0 binding
 		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
-		$httppost->sendResponse($authnResponseXML, 
-			$idpentityid, $spentityid, 
+		$httppost->sendResponse($authnResponseXML, $idpentityid, $spentityid, 
 			isset($requestcache['RelayState']) ? $requestcache['RelayState'] : null
 		);
 		

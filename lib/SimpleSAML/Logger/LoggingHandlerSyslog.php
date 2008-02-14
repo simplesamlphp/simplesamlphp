@@ -3,6 +3,15 @@
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Logger.php');
 
+/**
+ * A class for logging
+ *
+ * @author Lasse Birnbaum Jensen, SDU.
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $ID$
+ */
+
 class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_LoggingHandler {
 
     function __construct() {

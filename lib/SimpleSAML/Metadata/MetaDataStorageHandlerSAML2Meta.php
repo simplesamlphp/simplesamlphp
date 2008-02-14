@@ -102,7 +102,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 			$metadata = $this->loadFile($metadatasetfile);
 		}
 		
-		Logger::info('MetaData - Handler.SAML2Meta: Loading metadata set [' . $set . '] from [' . $metadatasetfile . ']' );
+		SimpleSAML_Logger::info('MetaData - Handler.SAML2Meta: Loading metadata set [' . $set . '] from [' . $metadatasetfile . ']' );
 		
 		if (!is_array($metadata))
 			throw new Exception('Could not load metadata set [' . $set . '] from file: ' . $metadatasetfile);
@@ -178,7 +178,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 												
 
 			} catch (Exception $e) {
-				Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
+				SimpleSAML_Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
 			}
 
 		}
@@ -215,7 +215,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 				$metadata[$entityid]['ForceAuthn'] = (isset($seek_forceauth) ? ($seek_forceauth === 'true') : false);
 				
 			} catch (Exception $e) {
-				Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
+				SimpleSAML_Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
 			}
 
 		}
@@ -260,7 +260,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 				$metadata[$entityid]['requireconsent'] = (isset($seek_requireconsent) ? ($seek_requireconsent === 'true') : false);
 				
 			} catch (Exception $e) {
-				Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
+				SimpleSAML_Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
 			}
 
 		}
@@ -325,7 +325,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 				
 				
 			} catch (Exception $e) {
-				Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
+				SimpleSAML_Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
 			}
 
 		}
@@ -371,7 +371,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 												
 
 			} catch (Exception $e) {
-				Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
+				SimpleSAML_Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
 			}
 
 		}
@@ -455,7 +455,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 				
 				
 			} catch (Exception $e) {
-				Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
+				SimpleSAML_Logger::info('MetaData - Handler.SAML2Meta: Error parsing [' . __FUNCTION__ . '] ' . $e->getMessage() );
 			}
 
 		}
