@@ -6,6 +6,8 @@ require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/SessionHandler.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/Logger.php');
+require_once('SimpleSAML/ModifiedInfo.php');
+
 /**
  * The Session class holds information about a user session, and everything attached to it.
  *
@@ -18,7 +20,7 @@ require_once('SimpleSAML/Logger.php');
  * @package simpleSAMLphp
  * @version $Id$
  */
-class SimpleSAML_Session {
+class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 
 	const STATE_ONLINE = 1;
 	const STATE_LOGOUTINPROGRESS = 2;
