@@ -26,6 +26,29 @@ $tests[] = array(
 	);
 
 
+/* Add a test towards the default IdP using the shib13 protocol. */
+$tests[] = array(
+
+	/* The full url to the admin/test.php page on the SP. */
+	'url' => 'https://example.org/simplesaml/admin/test.php',
+
+	/* The protocol we are going to test. */
+	'protocol' => 'shib13',
+
+	/* The username and password which should be used for logging in. ('simplesaml' login type) */
+	'username' => 'username',
+	'password' => 'secretpassword',
+
+	/* The type of login page we expect. */
+	'logintype' => 'simplesaml',
+
+	/* Expected attributes in the result. */
+	'attributes' => array(
+		'uid' => 'test',
+		),
+	);
+
+
 /* Add a test towards the specified IdP using the FEIDE login handler. */
 $tests[] = array(
 

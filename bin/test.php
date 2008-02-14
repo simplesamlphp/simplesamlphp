@@ -136,7 +136,9 @@ function parseSimpleSamlHttpRedirectDebug($page) {
  *         the post destination in 'url' and the post arguments as an associative array in 'post'.
  */
 function parseSimpleSamlHttpPost($page) {
-	if(strpos($page, '<title>SAML 2.0 POST</title>') === FALSE && strpos($page, '<title>SAML Response Debug-mode</title>') === FALSE) {
+	if(strpos($page, '<title>SAML 2.0 POST</title>') === FALSE
+		&& strpos($page, '<title>SAML Response Debug-mode</title>') === FALSE
+		&& strpos($page, '<title>SAML (Shibboleth 1.3) Response Debug-mode</title>') === FALSE) {
 		return FALSE;
 	}
 
@@ -146,20 +148,24 @@ function parseSimpleSamlHttpPost($page) {
 	}
 	$url = html_entity_decode($matches[1]);
 
+	$params = array();
+
 	if(!preg_match('/<input type="hidden" name="SAMLResponse" value="([^"]*)" \\/>/', $page, $matches)) {
 		echo('Invalid simpleSAMLphp HTTP-POST page. Missing SAMLResponse.' . "\n");
 		return FALSE;
 	}
-	$samlResponse = html_entity_decode($matches[1]);
+	$params['SAMLResponse'] = html_entity_decode($matches[1]);
 
-	if(!preg_match('/<input type="hidden" name="RelayState" value="([^"]*)" \\/>/', $page, $matches)) {
-		echo('Invalid simpleSAMLphp HTTP-POST page. Missing RelayState.' . "\n");
-		return FALSE;
+	if(preg_match('/<input type="hidden" name="RelayState" value="([^"]*)" \\/>/', $page, $matches)) {
+		$params['RelayState'] = html_entity_decode($matches[1]);
 	}
-	$relayState = html_entity_decode($matches[1]);
+
+	if(preg_match('/<input type="hidden" name="TARGET" value="([^"]*)" \\/>/', $page, $matches)) {
+		$params['TARGET'] = html_entity_decode($matches[1]);
+	}
 
 
-	return array('url' => $url, 'post' => array('SAMLResponse' => $samlResponse, 'RelayState' => $relayState));
+	return array('url' => $url, 'post' => $params);
 }
 
 
@@ -340,6 +346,11 @@ function initSSO($test, $curl) {
 	$params = array('op' => 'login');
 	if(array_key_exists('idp', $test)) {
 		$params['idp'] = $test['idp'];
+	}
+
+	/* Add the protocol which simpleSAMLphp should use to authenticate. */
+	if(array_key_exists('protocol', $test)) {
+		$params['protocol'] = $test['protocol'];
 	}
 
 	/* Add attribute tests. */
@@ -540,6 +551,8 @@ function doLogout($test, $curl) {
 function doTest($test) {
 	$curl = curlCreate();
 
+	$res = TRUE;
+
 	/* Initialize SSO. */
 	do {
 		$loginPage = initSSO($test, $curl);
@@ -562,6 +575,11 @@ function doTest($test) {
 		}
 
 		echo('Logged in, attributes OK' . "\n");
+
+		if(array_key_exists('protocol', $test) && $test['protocol'] === 'shib13') {
+			echo('Shib13: Logout not implemented.' . "\n");
+			break;
+		}
 
 		echo('Logging out.' . "\n");
 
