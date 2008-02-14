@@ -10,11 +10,13 @@
 ?>
 <p>Thanks for sending information to us from simpleSAMLphp.</p>
 
+<p>If you sent us metadata and expect us to add the metadata to our test enviornment, you also would need to send us an email to moria-support@uninett.no to explain what is the purpose of the testing, and tell us who you are :).</p>
+
 
 <?php
 
-#$to   = 'andreas.solberg@uninett.no, moria-support@uninett.no';
-$to   = 'andreas.solberg@uninett.no';
+$to   = 'andreas.solberg@uninett.no, moria-support@uninett.no';
+#$to   = 'andreas.solberg@uninett.no';
 
 if (isset($_POST['action'])) {
 	
@@ -69,4 +71,3 @@ mail($to, $subject, $message, $headers);
 }
 
 ?>
-
