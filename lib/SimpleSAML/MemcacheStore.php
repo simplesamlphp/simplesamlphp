@@ -6,6 +6,11 @@ require_once('SimpleSAML/Configuration.php');
 /* For access to SimpleSAML_Utilities::transposeArray. */
 require_once('SimpleSAML/Utilities.php');
 
+/* For the interface that objects can export to allow us to see if it
+ * is modified or not.
+ */
+require_once('SimpleSAML/ModifiedInfo.php');
+
 /*
  * This file is part of SimpleSAMLphp. See the file COPYING in the
  * root of the distribution for licence information.
@@ -249,6 +254,47 @@ class SimpleSAML_MemcacheStore {
 		 */
 		if($this->savedData === NULL) {
 			return TRUE;
+		}
+
+		/* Check if we need to serialize this to make sure
+		 * that it hasn't changed.
+		 */
+		$needSer = FALSE;
+		foreach($this->data as $k => $v) {
+			/* We can safely ignore all values that aren't
+			 * objects since they are changed with the set-method.
+			 */
+			if(!is_object($v)) {
+				continue;
+			}
+
+			/* If this object implements ModifiedInfo, then
+			 * we can query that to find out if the object has
+			 * changed.
+			 */
+			if($v instanceof SimpleSAML_ModifiedInfo) {
+				/* Check if this object is modified. If it is
+				 * then we return immediately.
+				 */
+				if($v->isModified()) {
+					return TRUE;
+				}
+				/* This object hasn't changed. */
+				continue;
+			}
+
+			/* We have no way of knowing whether this object
+			 * is changed or not. We need to serialize to check
+			 * this.
+			 */
+			$needSer = TRUE;
+		}
+
+		/* If we don't need to serialize, then we know we haven't
+		 * changed. (Any changes will have been picked up earlier.)
+		 */
+		if($needSer === FALSE) {
+			return FALSE;
 		}
 
 		/* Calculate the serialized value of this object. */
