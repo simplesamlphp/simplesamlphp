@@ -33,9 +33,7 @@ $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
 	
 	
-// TODO: if session is not set, give error or do something else.
 
-	
 /**
  * If we get an incomming LogoutRequest then we initiate the logout process.
  * in this case an SAML 2.0 SP is sending an request, which also is referred to as
@@ -65,6 +63,9 @@ if (isset($_GET['SAMLRequest'])) {
 		exit(0);
 
 	}
+	
+	SimpleSAML_Logger::notice('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer());
+	
 	/* Check if we have a valid session. */
 	if($session === NULL) {
 	
@@ -74,13 +75,13 @@ if (isset($_GET['SAMLRequest'])) {
 		 * the SP that sent the LogoutRequest.
 		 */
 
+		SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Did not find a session here, but we are returning a LogoutResponse anyway.');
+
 		$spentityid = $logoutrequest->getIssuer();
 
 		/* Generate the response. */
-		$response = new SimpleSAML_XML_SAML20_LogoutResponse($config,
-		$metadata);
-		$responseText = $response->generate($idpentityid, $spentityid,
-		$logoutrequest->getRequestID(), 'IdP');
+		$response = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
+		$responseText = $response->generate($idpentityid, $spentityid, $logoutrequest->getRequestID(), 'IdP');
 
 		/* Retrieve the relay state from the request. */
 		$relayState = $logoutrequest->getRelayState();
@@ -96,15 +97,6 @@ if (isset($_GET['SAMLRequest'])) {
 
 	$session->setAuthenticated(false, $session->getAuthority() );
 
-	//$requestid = $authnrequest->getRequestID();
-	//$session->setAuthnRequest($requestid, $authnrequest);
-
-	//echo '<pre>' . htmlentities($logoutrequest->getXML()) . '</pre>';
-
-	SimpleSAML_Logger::notice('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer());
-
-	
-#	$session->setLogoutRequest($logoutrequest);
 
 	/*
 	 * Create an assoc array of the request to store in the session cache.
@@ -117,7 +109,6 @@ if (isset($_GET['SAMLRequest'])) {
 		$requestcache['RelayState'] = $relaystate;
 		
 	$session->setLogoutRequest($requestcache);
-	
 	$session->set_sp_logout_completed($logoutrequest->getIssuer() );
 	
 

@@ -22,7 +22,6 @@ require_once('SimpleSAML/XHTML/Template.php');
  */
 
 
-
 /* Get the session object for the user. Create a new session if no session
  * exists for this user.
  */

@@ -10,19 +10,19 @@ require_once('SimpleSAML/XML/SAML20/LogoutRequest.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
 
 
-$config = SimpleSAML_Configuration::getInstance();
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-
 $session = SimpleSAML_Session::getInstance();
+
+SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: Accessing SAML 2.0 SP initSLO script');
 
 if (isset($session) ) {
 	
 	try {
 	
+		$config = SimpleSAML_Configuration::getInstance();
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+	
 		$idpentityid = $session->getIdP();
 		$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
-		
-		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: Accessing SAML 2.0 SP initSLO script');
 	
 		/**
 		 * Create a logout request
@@ -52,9 +52,7 @@ if (isset($session) ) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');		
 	
 	$relaystate = $_REQUEST['RelayState'];
-	
 	SimpleSAML_Logger::notice('SAML2.0 - SP.initSLO: User is already logged out. Go back to relaystate');
-	
 	SimpleSAML_Utilities::redirect($relaystate);
 	
 }

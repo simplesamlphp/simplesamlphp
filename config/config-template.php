@@ -70,22 +70,20 @@ $config = array (
 	 * Options: [syslog,file]
 	 * 
 	 */
-	'logging.level'			=> LOG_NOTICE,
-	'logging.handler'		=> 'syslog',
-
-	/*
-	 * Logging: syslog
-	 * Choose a syslog facility to use for logging.
-	 */
-	'logging.facility'		=> LOG_LOCAL5,
+	'logging.level'         => LOG_NOTICE,
+	'logging.handler'       => 'syslog',
 	
-	/*
-	 * Logging: file
-	 * 
-	 * Logfilename in the loggingdir from above.
+	/* Logging: syslog - Choose a syslog facility to use for logging.
+	 */
+	'logging.facility'      => LOG_LOCAL5,
+	
+	/* Logging: file - Logfilename in the loggingdir from above.
 	 */
 	'logging.logfile'		=> 'simplesamlphp.log',
-
+	
+	'statistics.realmattr'  => 'realm',
+	
+	
 
 	/*
 	 * Enable

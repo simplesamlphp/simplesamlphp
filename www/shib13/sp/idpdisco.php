@@ -13,7 +13,9 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 
 $session = SimpleSAML_Session::getInstance();
-		
+
+SimpleSAML_Logger::info('Shib1.3 - SP.idpDisco : Accessing Shib 1.3 discovery service');
+
 try {
 
 	if (!isset($_GET['entityID'])) throw new Exception('Missing parameter: entityID');
@@ -30,6 +32,8 @@ try {
 
 
 if (isset($_GET['idpentityid'])) {
+
+	SimpleSAML_Logger::info('Shib1.3 - SP.idpDisco : Choice made [ ' . $_GET['idpentityid'] . '] Setting preferedidp cookie.');
 
 	$idpentityid = $_GET['idpentityid'];
 	setcookie('preferedidp',$idpentityid,time()+60*60*24*90); // set cookie valid 90 days

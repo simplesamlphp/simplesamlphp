@@ -196,7 +196,7 @@ class SimpleSAML_Session {
 	
 	public function dump_sp_sessions() {
 		foreach ($this->sp_at_idpsessions AS $entityid => $sp) {
-			error_log('Dump sp sessions: ' . $entityid . ' status: ' . $sp);
+			SimpleSAML_Logger::debug('Dump sp sessions: ' . $entityid . ' status: ' . $sp);
 		}
 	}
 	// *** --- ***

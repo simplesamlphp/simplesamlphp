@@ -79,9 +79,7 @@ if (!isset($session) || !$session->isValid('saml2') ) {
 	$relaystate = $_GET['RelayState'];
 		
 	if (isset($relaystate) && !empty($relaystate)) {
-	
 		SimpleSAML_Logger::notice('SAML2.0 - SP.initSSO: Already Authenticated, Go back to RelayState');
-	
 		SimpleSAML_Utilities::redirect($relaystate);
 	} else {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
