@@ -181,7 +181,9 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		 */
 		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
 		$afilter = new SimpleSAML_XML_AttributeFilter($config, $session->getAttributes());
-		
+		if (isset($idpmetadata['attributemap'])) {
+			$afilter->namemap($idpmetadata['attributemap']);
+		}
 		if (isset($spmetadata['attributemap'])) {
 			$afilter->namemap($spmetadata['attributemap']);
 		}
