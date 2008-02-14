@@ -97,7 +97,7 @@ class SimpleSAML_XML_Validator {
 		assert('is_string($fingerprint)');
 
 		if($this->x509Fingerprint === NULL) {
-			throw new Exception('Key used to sign the message wasn\'t an X509 certificate.');
+			throw new Exception('Key used to sign the message was not an X509 certificate.');
 		}
 
 		/* Make sure that the fingerprint is in the correct format. */
@@ -105,7 +105,7 @@ class SimpleSAML_XML_Validator {
 
 		/* Compare the fingerprints. Throw an exception if they didn't match. */
 		if ($fingerprint !== $this->x509Fingerprint) {
-			throw new Exception('Expecting certificate fingerprint [' . $fingerprint . ']but got [' . $this->x509Fingerprint . ']');
+			throw new Exception('Expecting certificate fingerprint [' . $fingerprint . '] but got [' . $this->x509Fingerprint . ']');
 		}
 
 		/* The fingerprints matched. */

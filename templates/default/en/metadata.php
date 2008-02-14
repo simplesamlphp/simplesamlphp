@@ -12,7 +12,16 @@
 		<?php } ?>
 		<h2>Metadata</h2>
 		
+		<p>In SAML 2.0 Meta data XML format:</p>
+		
 		<pre style="overflow: scroll; border: 1px solid #eee; padding: 2px"><?php echo $data['metadata']; ?></pre>
+		
+		
+		<p>In simpleSAMLphp flat file format - use this if you are using a simpleSAMLphp entity on the other side:</p>
+		
+		<pre style="overflow: scroll; border: 1px solid #eee; padding: 2px"><?php echo $data['metadataflat']; ?></pre>
+		
+		
 
 		
 		<?php if(array_key_exists('sendmetadatato', $this->data)) { ?>

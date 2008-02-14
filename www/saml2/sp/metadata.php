@@ -43,6 +43,13 @@ try {
 	if (!$spmeta['SingleLogOutUrl']) throw new Exception('The following parameter is not set in your SAML 2.0 SP Hosted metadata: SingleLogOutUrl');
 	*/
 	
+	$metaflat = "
+	'" . htmlspecialchars($spentityid) . "' => array(
+ 		'AssertionConsumerService' => '" . htmlspecialchars($metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted')) . "',
+ 		'SingleLogoutService'      => '" . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted')) . "'
+	)
+";
+	
 	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <EntityDescriptor entityID="' . htmlspecialchars($spentityid) . '" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
 
@@ -74,6 +81,7 @@ try {
 
 	$et->data['header'] = 'SAML 2.0 SP Metadata';
 	$et->data['metadata'] = htmlentities($metaxml);
+	$et->data['metadataflat'] = htmlentities($metaflat);
 	
 	if (array_key_exists($defaultidp, $send_metadata_to_idp)) {
 		$et->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];

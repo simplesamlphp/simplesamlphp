@@ -41,7 +41,15 @@ try {
 	$data = XMLSecurityDSig::get509XCert($cert, true);
 	
 	
-	
+	$metaflat = "
+	'" . htmlspecialchars($idpentityid) . "' =>  array(
+		'name'                 => 'Type in a name for this entity',
+		'description'          => 'and a proper description that would help users know when to select this IdP.',
+		'SingleSignOnService'  => '" . htmlspecialchars($metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted')) . "',
+		'SingleLogoutService'  => '" . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted')) . "',
+		'certFingerprint'      => '" . strtolower(sha1(base64_decode($data))) ."'
+	),
+";
 	
 	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 	<EntityDescriptor xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
@@ -99,8 +107,11 @@ try {
 	
 
 	$et->data['header'] = 'SAML 2.0 IdP Metadata';
+	
 	$et->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), 'output=xml');
 	$et->data['metadata'] = htmlentities($metaxml);
+	$et->data['metadataflat'] = htmlentities($metaflat);
+	
 	$et->data['feide'] = in_array($defaultidp, array('sam.feide.no', 'max.feide.no'));
 	$et->data['defaultidp'] = $defaultidp;
 	
