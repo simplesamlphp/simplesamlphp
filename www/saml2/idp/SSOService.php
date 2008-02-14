@@ -38,6 +38,10 @@ $requestid = null;
 
 SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
+if (!$config->getValue('enable.saml20-idp', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
+
 /*
  * If the SAMLRequest query parameter is set, we got an incomming Authentication Request 
  * at this interface.

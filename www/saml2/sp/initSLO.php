@@ -14,6 +14,10 @@ $session = SimpleSAML_Session::getInstance();
 
 SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: Accessing SAML 2.0 SP initSLO script');
 
+if (!$config->getValue('enable.saml20-sp', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
+	
 if (isset($session) ) {
 	
 	try {

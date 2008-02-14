@@ -15,6 +15,9 @@ $session = SimpleSAML_Session::getInstance(TRUE);
 
 SimpleSAML_Logger::info('Shib1.3 - SP.AssertionConsumerService: Accessing Shibboleth 1.3 SP endpoint AssertionConsumerService');
 
+if (!$config->getValue('enable.shib13-sp', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
 try {
 
 	$config = SimpleSAML_Configuration::getInstance();

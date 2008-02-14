@@ -29,6 +29,10 @@ $session = SimpleSAML_Session::getInstance(TRUE);
 
 SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Accessing SAML 2.0 SP endpoint AssertionConsumerService');
 
+if (!$config->getValue('enable.saml20-sp', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
+	
 try {
 	
 	$config = SimpleSAML_Configuration::getInstance();	

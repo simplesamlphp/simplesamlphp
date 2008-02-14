@@ -16,6 +16,10 @@ $session = SimpleSAML_Session::getInstance();
 
 SimpleSAML_Logger::info('Shib1.3 - SP.idpDisco : Accessing Shib 1.3 discovery service');
 
+if (!$config->getValue('enable.shib13-sp', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
+
 try {
 
 	if (!isset($_GET['entityID'])) throw new Exception('Missing parameter: entityID');

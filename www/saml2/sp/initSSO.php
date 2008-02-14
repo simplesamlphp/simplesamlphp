@@ -15,6 +15,7 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance(true);
 
 
+
 /**
  * Incomming URL parameters
  *
@@ -26,6 +27,8 @@ $session = SimpleSAML_Session::getInstance(true);
 
 SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: Accessing SAML 2.0 SP initSSO script');
 
+if (!$config->getValue('enable.saml20-sp', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
 try {
 

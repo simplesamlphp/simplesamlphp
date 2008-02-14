@@ -35,6 +35,11 @@ $requestid = null;
 
 SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Accessing Shibboleth 1.3 IdP endpoint SSOService');
 
+if (!$config->getValue('enable.shib13-idp', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
+
+
 /*
  * If the shire query parameter is set, we got an incomming Authentication Request 
  * at this interface.

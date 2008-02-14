@@ -31,8 +31,10 @@ $session = SimpleSAML_Session::getInstance();
 $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 
 SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
-	
-	
+
+if (!$config->getValue('enable.saml20-idp', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
 
 /**
  * If we get an incomming LogoutRequest then we initiate the logout process.

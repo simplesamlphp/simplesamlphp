@@ -13,6 +13,10 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance(TRUE);
 
 
+if (!$config->getValue('enable.saml20-sp', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
+
 /**
  * Preconfigured to help out some federations. This makes it easier for users to report metadata
  * to the administrators of the IdP.

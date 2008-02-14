@@ -17,6 +17,10 @@ $session = SimpleSAML_Session::getInstance();
 
 SimpleSAML_Logger::info('SAML2.0 - SP.idpDisco: Accessing SAML 2.0 discovery service');
 
+if (!$config->getValue('enable.saml20-sp', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
+	
 try {
 
 	if (!isset($_GET['entityID'])) throw new Exception('Missing parameter: entityID');

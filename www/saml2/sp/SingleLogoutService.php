@@ -22,6 +22,11 @@ $session = SimpleSAML_Session::getInstance(true);
 
 SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: Accessing SAML 2.0 SP endpoint SingleLogoutService');
 
+if (!$config->getValue('enable.saml20-sp', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
+
+
 // Destroy local session if exists.
 if (isset($session) ) {
 	$session->setAuthenticated(false);

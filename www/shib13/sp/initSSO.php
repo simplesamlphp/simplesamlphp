@@ -27,6 +27,10 @@ $session = SimpleSAML_Session::getInstance();
 
 SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: Accessing Shib 1.3 SP initSSO script');
 
+if (!$config->getValue('enable.shib13-sp', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
+
 try {
 
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getValue('default-shib13-idp') ;
