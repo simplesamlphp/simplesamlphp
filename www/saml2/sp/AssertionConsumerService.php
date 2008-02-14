@@ -3,6 +3,7 @@
 require_once('../../_include.php');
 
 
+require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/Logger.php');
@@ -21,6 +22,7 @@ require_once('SimpleSAML/XHTML/Template.php');
  * @abstract
  */
 
+$config = SimpleSAML_Configuration::getInstance();
 
 /* Get the session object for the user. Create a new session if no session
  * exists for this user.
@@ -35,7 +37,6 @@ if (!$config->getValue('enable.saml20-sp', false))
 	
 try {
 	
-	$config = SimpleSAML_Configuration::getInstance();	
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 	$binding = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);

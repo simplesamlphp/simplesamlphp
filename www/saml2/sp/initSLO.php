@@ -2,6 +2,7 @@
 
 require_once('../../_include.php');
 
+require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Logger.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
@@ -9,6 +10,7 @@ require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/SAML20/LogoutRequest.php');
 require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
 
+$config = SimpleSAML_Configuration::getInstance();
 
 $session = SimpleSAML_Session::getInstance();
 
@@ -22,7 +24,6 @@ if (isset($session) ) {
 	
 	try {
 	
-		$config = SimpleSAML_Configuration::getInstance();
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 	
 		$idpentityid = $session->getIdP();

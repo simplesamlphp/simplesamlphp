@@ -3,12 +3,15 @@
 require_once('../../_include.php');
 
 
+require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Utilities.php');
 require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once('SimpleSAML/XML/Shib13/AuthnRequest.php');
 require_once('SimpleSAML/Bindings/Shib13/HTTPPost.php');
 require_once('SimpleSAML/XHTML/Template.php');
+
+$config = SimpleSAML_Configuration::getInstance();
 
 $session = SimpleSAML_Session::getInstance(TRUE);
 
@@ -20,7 +23,6 @@ if (!$config->getValue('enable.shib13-sp', false))
 
 try {
 
-	$config = SimpleSAML_Configuration::getInstance();
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 	$binding = new SimpleSAML_Bindings_Shib13_HTTPPost($config, $metadata);
