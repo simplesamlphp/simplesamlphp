@@ -9,7 +9,18 @@
 
 $tests = array();
 
-require_once('../config/test.php');
+/* The configuration file is relative to this script. */
+$configFile = dirname(dirname(__FILE__)) . '/config/test.php';
+
+/* Check if the configuration file exists. */
+if(!file_exists($configFile)) {
+	echo('Missing configuration file: ' . $configFile . "\n");
+	echo('Maybe you need to copy config/test-template.php to config/test.php and update it?.' . "\n");
+	exit(1);
+}
+
+/* Load the configuration file. */
+require_once($configFile);
 
 /**
  * This function creates a curl handle and initializes it.
