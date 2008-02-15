@@ -81,7 +81,7 @@ if (isset($_POST['username'])) {
 
 				//$attributes = array('urn:mace:eduroam.no:username' => array($_POST['username']));
 				
-				SimpleSAML_Logger::notice('AUTH - radius: '. $_POST['username'] . ' successfully authenticated');
+				SimpleSAML_Logger::info('AUTH - radius: '. $_POST['username'] . ' successfully authenticated');
 				
 				$session->setAuthenticated(true, 'login-radius');
 				
@@ -108,7 +108,7 @@ if (isset($_POST['username'])) {
 	
 			case RADIUS_ACCESS_REJECT:
 			
-				SimpleSAML_Logger::notice('AUTH - radius: '. $_POST['username'] . ' failed to authenticate');
+				SimpleSAML_Logger::info('AUTH - radius: '. $_POST['username'] . ' failed to authenticate');
 				throw new Exception('Radius authentication error: Bad credentials ');
 				break;
 			case RADIUS_ACCESS_CHALLENGE:

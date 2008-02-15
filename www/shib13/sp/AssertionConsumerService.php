@@ -37,7 +37,7 @@ try {
 
 	if (isset($session)) {
 
-		SimpleSAML_Logger::notice('Shib1.3 - SP.AssertionConsumerService: Successfully created local session from Authentication Response');
+		SimpleSAML_Logger::info('Shib1.3 - SP.AssertionConsumerService: Successfully created local session from Authentication Response');
 
 		/**
 		 * Make a log entry in the statistics for this SSO login.

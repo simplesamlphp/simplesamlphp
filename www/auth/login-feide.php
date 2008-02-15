@@ -112,7 +112,7 @@ if (isset($_REQUEST['username'])) {
 		 * Do LDAP bind using DN found from the search on ePPN.
 		 */
 		if (!$ldap->bind($dn, $password)) {
-			SimpleSAML_Logger::notice('AUTH - ldap-feide: '. $requestedUser . ' failed to authenticate. DN=' . $dn);
+			SimpleSAML_Logger::info('AUTH - ldap-feide: '. $requestedUser . ' failed to authenticate. DN=' . $dn);
 			throw new Exception('Wrong username or password');
 		}
 
@@ -121,7 +121,7 @@ if (isset($_REQUEST['username'])) {
 		 */
 		$attributes = $ldap->getAttributes($dn, $ldapconfig['attributes']);
 
-		SimpleSAML_Logger::notice('AUTH - ldap-feide: '. $requestedUser . ' successfully authenticated');
+		SimpleSAML_Logger::info('AUTH - ldap-feide: '. $requestedUser . ' successfully authenticated');
 		
 		$session->setAuthenticated(true, 'login-feide');
 		$session->setAttributes($attributes);

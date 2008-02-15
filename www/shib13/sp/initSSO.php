@@ -46,7 +46,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 	
 	if ($idpentityid == null) {
 	
-		SimpleSAML_Logger::notice('Shib1.3 - SP.initSSO: No chosen or default IdP, go to Shib13disco');
+		SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: No chosen or default IdP, go to Shib13disco');
 	
 		$returnURL = urlencode(SimpleSAML_Utilities::selfURL());
 		$discservice = '/' . $config->getValue('baseurlpath') . 'shib13/sp/idpdisco.php?entityID=' . $spentityid . 
@@ -62,7 +62,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 		if(isset($_GET['RelayState'])) 
 			$ar->setRelayState($_GET['RelayState']);
 
-		SimpleSAML_Logger::notice('Shib1.3 - SP.initSSO: SP (' . $spentityid . ') is sending AuthNRequest to IdP (' . $idpentityid . ')');
+		SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: SP (' . $spentityid . ') is sending AuthNRequest to IdP (' . $idpentityid . ')');
 
 		$url = $ar->createRedirect($idpentityid);
 		SimpleSAML_Utilities::redirect($url);
@@ -77,7 +77,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 	$relaystate = $session->getRelayState();
 	
 	if (isset($relaystate) && !empty($relaystate)) {
-		SimpleSAML_Logger::notice('Shib1.3 - SP.initSSO: Already Authenticated, Go back to RelayState');
+		SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: Already Authenticated, Go back to RelayState');
 		SimpleSAML_Utilities::redirect($relaystate);
 	} else {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');

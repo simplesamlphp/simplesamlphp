@@ -47,7 +47,7 @@ try {
 	
 	$authnResponse->process();
 
-	SimpleSAML_Logger::notice('SAML2.0 - SP.AssertionConsumerService: Successfully created local session from Authentication Response');
+	SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Successfully created local session from Authentication Response');
 	
 	
 	/**

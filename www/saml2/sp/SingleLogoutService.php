@@ -44,7 +44,7 @@ if (isset($_GET['SAMLRequest'])) {
 		$logoutrequest = $binding->decodeLogoutRequest($_GET);
 
 		if ($binding->validateQuery($logoutrequest->getIssuer(),'SP')) {
-			SimpleSAML_Logger::notice('SAML2.0 - SP.SingleLogoutService: Valid signature found for '.$requestid);
+			SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: Valid signature found for '.$requestid);
 		}
 
 		// Extract some parameters from the logout request
@@ -55,7 +55,7 @@ if (isset($_GET['SAMLRequest'])) {
 		//$responder = $config->getValue('saml2-hosted-sp');
 		$responder = $metadata->getMetaDataCurrentEntityID();
 	
-		SimpleSAML_Logger::notice('SAML2.0 - SP.SingleLogoutService: IdP (' . $requester . ') is sending logout request to me SP (' . $responder . ') requestid '.$requestid);
+		SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: IdP (' . $requester . ') is sending logout request to me SP (' . $responder . ') requestid '.$requestid);
 		SimpleSAML_Logger::stats('saml20-idp-SLO idpinit ' . $responder . ' ' . $requester);
 	
 		// Create a logout response
@@ -67,7 +67,7 @@ if (isset($_GET['SAMLRequest'])) {
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 	
 	
-		SimpleSAML_Logger::notice('SAML2.0 - SP.SingleLogoutService: SP me (' . $responder . ') is sending logout response to IdP (' . $requester . ')');
+		SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: SP me (' . $responder . ') is sending logout response to IdP (' . $requester . ')');
 	
 		// Send the Logout response using HTTP POST binding.
 		$httpredirect->sendMessage($logoutResponseXML, $responser, $requester, $logoutrequest->getRelayState(), 'SingleLogoutServiceResponse', 'SAMLResponse');
@@ -88,7 +88,7 @@ if (isset($_GET['SAMLRequest'])) {
 		$logoutresponse = $binding->decodeLogoutResponse($_GET);
 
 		if ($binding->validateQuery($logoutresponse->getIssuer(),'SP','SAMLResponse')) {
-			SimpleSAML_Logger::notice('SAML2.0  - SP.SingleLogoutService: Valid signature found');
+			SimpleSAML_Logger::info('SAML2.0  - SP.SingleLogoutService: Valid signature found');
 		}
 
 	} catch(Exception $exception) {

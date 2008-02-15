@@ -64,7 +64,7 @@ if (isset($_POST['username'])) {
 					ldap_error($ds) . "] ErrNo=[" .
 					ldap_errno($ds) . "]";
 	
-				SimpleSAML_Logger::notice('AUTH - ldap-multi: '. $_POST['username'] . ' failed to authenticate');
+				SimpleSAML_Logger::info('AUTH - ldap-multi: '. $_POST['username'] . ' failed to authenticate');
 				
 			} else {
 				$sr = ldap_read($ds, $dn, $ldapconfig['attributes'] );
@@ -85,7 +85,7 @@ if (isset($_POST['username'])) {
 				//print_r($ldapentries);
 				//print_r($attributes);
 				
-				SimpleSAML_Logger::notice('AUTH - ldap-multi: '. $_POST['username'] . ' successfully authenticated');
+				SimpleSAML_Logger::info('AUTH - ldap-multi: '. $_POST['username'] . ' successfully authenticated');
 				
 				
 				$session->setAuthenticated(true, 'login-ldapmulti');

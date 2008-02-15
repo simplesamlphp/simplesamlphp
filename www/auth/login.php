@@ -83,7 +83,7 @@ if (isset($_POST['username'])) {
 				$error = "Bind failed, wrong username or password. Tried with DN=[" . $dn . "] DNPattern=[" . $config->getValue('auth.ldap.dnpattern')
 					. "] Error=[" . ldap_error($ds) . "] ErrNo=[" . ldap_errno($ds) . "]";
 				
-				SimpleSAML_Logger::notice('AUTH - ldap: '. $username . ' failed to authenticate');
+				SimpleSAML_Logger::info('AUTH - ldap: '. $username . ' failed to authenticate');
 				
 			} else {
 				$sr = ldap_read($ds, $dn, $config->getValue('auth.ldap.attributes'));
@@ -137,7 +137,7 @@ if (isset($_POST['username'])) {
 					'value' => SimpleSAML_Utilities::generateID(),
 					'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
 				
-				SimpleSAML_Logger::notice('AUTH - ldap: '. $username . ' successfully authenticated');
+				SimpleSAML_Logger::info('AUTH - ldap: '. $username . ' successfully authenticated');
 				
 				
 				SimpleSAML_Utilities::redirect($relaystate);

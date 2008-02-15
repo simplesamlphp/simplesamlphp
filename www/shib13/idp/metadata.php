@@ -18,13 +18,6 @@ if (!$config->getValue('enable.shib13-idp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
 
-/* Check if valid local session exists.. */
-if (!isset($session) || !$session->isValid('login-admin') ) {
-	SimpleSAML_Utilities::redirect('/' . $config->getValue('baseurlpath') . 'auth/login-admin.php',
-		array('RelayState' => SimpleSAML_Utilities::selfURL())
-	);
-}
-
 
 
 try {

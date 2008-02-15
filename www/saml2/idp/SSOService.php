@@ -128,7 +128,7 @@ $authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : null
 if (!isset($session) || !$session->isValid($authority) ) {
 
 
-	SimpleSAML_Logger::notice('SAML2.0 - IdP.SSOService: Will go to authentication module ' . $idpmetadata['auth']);
+	SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Will go to authentication module ' . $idpmetadata['auth']);
 
 	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() .
 		'?RequestID=' . urlencode($requestid);
@@ -157,7 +157,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 			
 			if (!isset($_GET['consent'])) {
 
-				SimpleSAML_Logger::notice('SAML2.0 - IdP.SSOService: Requires consent from user for attribute release');
+				SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Requires consent from user for attribute release');
 
 				$t = new SimpleSAML_XHTML_Template($config, 'consent.php');
 				$t->data['header'] = 'Consent';
@@ -169,7 +169,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 				
 			} else {
 			
-				SimpleSAML_Logger::notice('SAML2.0 - IdP.SSOService: Got consent from user');
+				SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Got consent from user');
 			}
 			
 		}
@@ -178,7 +178,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		// Right now the list is used for SAML 2.0 only.
 		$session->add_sp_session($spentityid);
 
-		SimpleSAML_Logger::notice('SAML2.0 - IdP.SSOService: Sending back AuthnResponse to '.$spentityid);
+		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Sending back AuthnResponse to '.$spentityid);
 		
 
 		

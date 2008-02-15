@@ -60,7 +60,7 @@ if (isset($_POST['password'])) {
 			'value' => SimpleSAML_Utilities::generateID(),
 			'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
 		
-		SimpleSAML_Logger::notice('AUTH - admin: '. $username . ' successfully authenticated');
+		SimpleSAML_Logger::info('AUTH - admin: '. $username . ' successfully authenticated');
 
 		/**
 		 * Create a statistics log entry for every successfull login attempt.

@@ -79,7 +79,7 @@ if (isset($_GET['SAMLRequest'])) {
 	$responder = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 	
 	
-	SimpleSAML_Logger::notice('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer());
+	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer());
 	SimpleSAML_Logger::stats('saml20-idp-SLO spinit ' . $requester . ' ' . $responder);
 	
 	/* Check if we have a valid session. */
@@ -139,7 +139,7 @@ if (isset($_GET['SAMLRequest'])) {
 		$loginresponse = $binding->decodeLogoutResponse($_GET);
 
 		if ($binding->validateQuery($loginresponse->getIssuer(),'SP','SAMLResponse')) {
-			SimpleSAML_Logger::notice('SAML2.0 - IDP.SingleLogoutService: Valid signature found');
+			SimpleSAML_Logger::info('SAML2.0 - IDP.SingleLogoutService: Valid signature found');
 		}
 
 
@@ -160,7 +160,7 @@ if (isset($_GET['SAMLRequest'])) {
 
 	$session->set_sp_logout_completed($loginresponse->getIssuer());
 
-	SimpleSAML_Logger::notice('SAML2.0 - IDP.SingleLogoutService: got LogoutResponse from ' . $loginresponse->getIssuer());
+	SimpleSAML_Logger::info('SAML2.0 - IDP.SingleLogoutService: got LogoutResponse from ' . $loginresponse->getIssuer());
 } else {
 	
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS');
@@ -177,7 +177,7 @@ $session->dump_sp_sessions();
 $spentityid = $session->get_next_sp_logout();
 if ($spentityid) {
 
-	SimpleSAML_Logger::notice('SAML2.0 - IDP.SingleLogoutService: Logout next SP ' . $spentityid);
+	SimpleSAML_Logger::info('SAML2.0 - IDP.SingleLogoutService: Logout next SP ' . $spentityid);
 
 	try {
 		$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
