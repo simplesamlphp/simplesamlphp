@@ -237,5 +237,8 @@ th.rowtitle {
 }
 
 .metadatabox {
-	overflow: scroll; border: 1px solid #eee; padding: 2px;
+	overflow: scroll; 
+	border: 1px solid #eee; 
+	padding: 2px;
 }
+
