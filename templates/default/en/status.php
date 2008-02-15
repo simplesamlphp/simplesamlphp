@@ -1,6 +1,5 @@
 <?php $this->includeAtTemplateBase('includes/header.php'); ?>
 
-	
 <div id="content">
 
 	<h2><?php if (isset($data['header'])) { echo $data['header']; } else { echo "Some error occured"; } ?></h2>
