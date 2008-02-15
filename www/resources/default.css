@@ -235,3 +235,7 @@ th.rowtitle {
 .enablebox tr.disabled td {
 	background: #ccc;
 }
+
+.metadatabox {
+	overflow: scroll; border: 1px solid #eee; padding: 2px;
+}

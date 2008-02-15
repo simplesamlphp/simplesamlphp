@@ -67,7 +67,19 @@ if ($config->getValue('enable.saml20-idp') === true)
 	$linksmeta[] = array(
 		'href' => 'saml2/idp/metadata.php', 
 		'text' => 'Hosted SAML 2.0 Identity Provider Metadata (automatically generated)');
+
+if ($config->getValue('enable.shib13-sp') === true)
+	$linksmeta[] = array(
+		'href' => 'shib13/sp/metadata.php', 
+		'text' => 'Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)');
+
+if ($config->getValue('enable.shib13-idp') === true)
+	$linksmeta[] = array(
+		'href' => 'shib13/idp/metadata.php', 
+		'text' => 'Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)');
 	
+
+
 
 
 $linksdoc = array();
