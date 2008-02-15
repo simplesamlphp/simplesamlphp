@@ -290,11 +290,13 @@ class SimpleSAML_Utilities {
 		SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - UserError: ErrCode:'.(!empty($errorcode) ? $errorcode : 'na').': '.urlencode($emsg) );
 		
 		$languagefile = null;
-		if (isset($errorcode)) $languagefile = 'error_' . $errorcode . '.php';
+		if (isset($errorcode)) $languagefile = 'errors.php';
 		
 		// Initialize a template
 		$t = new SimpleSAML_XHTML_Template($config, 'error.php', $languagefile);
 		
+		
+		$t->data['errorcode'] = $errorcode;
 		
 		$t->data['showerrors'] = $config->getValue('showerrors', true);
 		$t->data['errorreportaddress'] = $config->getValue('errorreportaddress', null); 

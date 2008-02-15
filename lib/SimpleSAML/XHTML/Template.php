@@ -92,8 +92,10 @@ class SimpleSAML_XHTML_Template {
 		include($filebase . $file);
 	}
 	
+	/**
+	 * Include language file from the dictionaries directory.
+	 */
 	private function includeLanguageFile($file) {
-		$data = $this->data;
 		$filebase = $this->configuration->getBaseDir() . $this->configuration->getValue('dictionarydir');
 		
 		if (!file_exists($filebase . $file)) {
@@ -115,7 +117,9 @@ class SimpleSAML_XHTML_Template {
 		}
 	}
 
-	
+	/**
+	 * Show the template to the user.
+	 */
 	public function show() {
 		$data = $this->data;
 		$filename = $this->configuration->getBaseDir() . $this->configuration->getValue('templatedir') . $this->getLanguage() . '/' . 
@@ -128,7 +132,7 @@ class SimpleSAML_XHTML_Template {
 
 
 			if (!file_exists($filename)) {
-				SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
+				SimpleSAML_Logger::critical($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
 			
 				echo 'Fatal error: Could not find template file [' . $this->template . '] at [' . $filename . ']';
 				exit(0);

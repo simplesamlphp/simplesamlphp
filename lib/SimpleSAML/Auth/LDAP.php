@@ -2,6 +2,7 @@
 
 require_once('SimpleSAML/Configuration.php');
 require_once('SimpleSAML/Utilities.php');
+require_once('SimpleSAML/Logger.php');
 
 /**
  * The LDAP class holds helper functions to access an LDAP database.
@@ -43,6 +44,10 @@ class SimpleSAML_Auth_LDAP {
 	
 	
 	public function searchfordn($searchbase, $searchattr, $searchvalue) {
+	
+		SimpleSAML_Logger::debug('Library - LDAP: Search for DN (base:' . 
+			$searchbase . ' attr:' . $searchattr . ' value:' . $searchvalue . ')');
+
 		// Search for ePPN
 		$search = '(' . $searchattr . '=' . $searchvalue. ')';
 		$search_result = @ldap_search($this->ldap, $searchbase, $search);
@@ -78,8 +83,10 @@ class SimpleSAML_Auth_LDAP {
 	 */
 	public function bind($dn, $password) {
 		if (@ldap_bind($this->ldap, $dn, $password)) {
+			SimpleSAML_Logger::debug('Library - LDAP: Bind successfull with ' . $dn);
 			return true;
 		}
+		SimpleSAML_Logger::debug('Library - LDAP: Bind failed with ' . $dn);
 		return false;
 	}
 
@@ -89,7 +96,7 @@ class SimpleSAML_Auth_LDAP {
 	 */
 	public function getAttributes($dn, $search) {
 	
-	
+		SimpleSAML_Logger::debug('Library - LDAP: Get attributes from ' . $dn . ' (' . $search . ')');
 		$sr = @ldap_read($this->ldap, $dn, $search );
 		
 		if ($sr === false) 
@@ -111,6 +118,8 @@ class SimpleSAML_Auth_LDAP {
 			
 			$attributes[$ldapentries[0][$i]] = $values;
 		}
+		
+		SimpleSAML_Logger::debug('Library - LDAP: Found attributes (' . join(',', array_keys($attributes)) . ')');
 		return $attributes;
 	
 	}

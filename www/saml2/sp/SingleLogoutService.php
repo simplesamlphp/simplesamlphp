@@ -101,6 +101,9 @@ if (isset($_GET['SAMLRequest'])) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
 	}
 
+} else {
+	
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS');
 }
 
 

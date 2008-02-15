@@ -5,13 +5,15 @@
 ?>
 
 
-	<div id="content">
-	
-		<h2><?php echo (isset($this->data['title']) ? $this->data['title'] : 'simpleSAMLphp error'); ?></h2>
+<div id="content">
+
+	<h2><?php 
+		echo (isset($this->data['title_' . $this->data['errorcode']]) ? $this->data['title_' . $this->data['errorcode']] : 'simpleSAMLphp error'); 
+	?></h2>
 
 <?php
-if(array_key_exists('descr', $this->data)) {
-	echo '<p>' . $this->data['descr'] . '</p>';
+if(array_key_exists('descr_'  . $this->data['errorcode'], $this->data)) {
+	echo '<p>' . $this->data['descr_' . $this->data['errorcode']] . '</p>';
 }
 ?>
 
@@ -77,10 +79,10 @@ if (!empty($this->data['errorreportaddress'])) {
 
 
 		
-		<h2 style="clear: both">How to get help</h2>
-		
-		
-		<p>This error probably is due to some unexpected behaviour or to misconfiguration of simpleSAMLphp. Contact the administrator of this login service, and send them the error message above.</p>
+	<h2 style="clear: both">How to get help</h2>
+	
+	
+	<p>This error probably is due to some unexpected behaviour or to misconfiguration of simpleSAMLphp. Contact the administrator of this login service, and send them the error message above.</p>
 		
 
 

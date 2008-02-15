@@ -28,12 +28,16 @@ $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance();
 
-$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-
 SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
 
 if (!$config->getValue('enable.saml20-idp', false))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+	SimpleSAML_Utilities::fatalError(isset($session) ? $session->getTrackID() : null, 'NOACCESS');
+
+try {
+	$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+} catch (Exception $exception) {
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
+}
 
 
 /**
@@ -147,6 +151,9 @@ if (isset($_GET['SAMLRequest'])) {
 	$session->set_sp_logout_completed($loginresponse->getIssuer());
 
 	SimpleSAML_Logger::notice('SAML2.0 - IDP.SingleLogoutService: got LogoutResponse from ' . $loginresponse->getIssuer());
+} else {
+	
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS');
 }
 
 

@@ -28,9 +28,6 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance(true);
 
 
-$idpentityid = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
-$idpmetadata = $metadata->getMetaDataCurrent('shib13-idp-hosted');
-
 $requestid = null;
 
 SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Accessing Shibboleth 1.3 IdP endpoint SSOService');
@@ -38,7 +35,12 @@ SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Accessing Shibboleth 1.3 IdP 
 if (!$config->getValue('enable.shib13-idp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
-
+try {
+	$idpentityid = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
+	$idpmetadata = $metadata->getMetaDataCurrent('shib13-idp-hosted');
+} catch (Exception $exception) {
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
+}
 
 /*
  * If the shire query parameter is set, we got an incomming Authentication Request 

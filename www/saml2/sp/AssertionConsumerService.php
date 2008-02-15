@@ -34,6 +34,9 @@ SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Accessing SAML 2
 if (!$config->getValue('enable.saml20-sp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
+if (empty($_POST['SAMLResponse'])) 
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'ACSPARAMS', $exception);
+
 	
 try {
 	

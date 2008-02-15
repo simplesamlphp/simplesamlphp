@@ -21,6 +21,9 @@ SimpleSAML_Logger::info('Shib1.3 - SP.AssertionConsumerService: Accessing Shibbo
 if (!$config->getValue('enable.shib13-sp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
+if (empty($_POST['SAMLResponse'])) 
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'ACSPARAMS', $exception);
+
 try {
 
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();

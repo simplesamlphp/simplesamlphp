@@ -100,7 +100,7 @@ class SimpleSAML_Logger {
 		 * get trackid, prefixes all logstrings
 		 */
 		$session = SimpleSAML_Session::getInstance();
-		self::$trackid = $session->getTrackID();
+		self::$trackid = (isset($session) ? $session->getTrackID() : 'NA');
 
 		/* If 'session.handler' is NULL or unset, then we want
 		 * to fall back to the default PHP session handler.

@@ -78,6 +78,7 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 		$this->sessionduration = $configuration->getValue('session.duration');
 		
 		$this->trackid = SimpleSAML_Utilities::generateTrackID();
+
 	}
 
 
@@ -161,6 +162,7 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	// *** *** *** *** *** *** *** *** *** *** ***
 	
 	public function add_sp_session($entityid) {
+		SimpleSAML_Logger::debug('Library - Session: Adding SP session: ' . $entityid);
 		$this->sp_at_idpsessions[$entityid] = self::STATE_ONLINE;
 	}
 	
@@ -191,6 +193,7 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	}
 	
 	public function set_sp_logout_completed($entityid) {
+		SimpleSAML_Logger::debug('Library - Session: Setting SP state completed for : ' . $entityid);
 		$this->dirty = true;
 		$this->sp_at_idpsessions[$entityid] = self::STATE_LOGGEDOUT;
 	}
@@ -272,6 +275,8 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 
 
 	public function setIdP($idp) {
+	
+		SimpleSAML_Logger::debug('Library - Session: Set IdP to : ' . $idp);
 		$this->dirty = true;
 		$this->idp = $idp;
 	}
@@ -284,6 +289,7 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	
 	
 	public function setLogoutRequest($requestcache) {
+		SimpleSAML_Logger::debug('Library - Session: Adding LogoutRequest cache.');
 		$this->dirty = true;
 		$this->logoutrequest = $requestcache;
 	}
@@ -297,6 +303,7 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	
 
 	public function setSessionIndex($sessionindex) {
+		SimpleSAML_Logger::debug('Library - Session: Set sessionindex: ' . $sessionindex);
 		$this->dirty = true;
 		$this->sessionindex = $sessionindex;
 	}
@@ -304,6 +311,7 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 		return $this->sessionindex;
 	}
 	public function setNameID($nameid) {
+		SimpleSAML_Logger::debug('Library - Session: Set nameID: ');
 		$this->dirty = true;
 		$this->nameid = $nameid;
 	}
@@ -313,6 +321,8 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 
 	public function setAuthenticated($auth, $authority = null) {
 		
+		SimpleSAML_Logger::debug('Library - Session: Set authenticated ' . ($auth ? 'yes': 'no'). ' authority:' . 
+			(isset($authority) ? $authority : 'null'));
 		$this->authority = $authority;
 		$this->authenticated = $auth;
 		
@@ -322,6 +332,7 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	}
 	
 	public function setSessionDuration($duration) {
+		SimpleSAML_Logger::debug('Library - Session: Set session duration ' . $duration);
 		$this->dirty = true;
 		$this->sessionduration = $duration;
 	}
@@ -332,6 +343,12 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	 * This function will return false after the user has timed out.
 	 */
 	public function isValid($authority = null) {
+		SimpleSAML_Logger::debug('Library - Session: Check if session is valid.' .
+			' checkauthority:' . (isset($authority) ? $authority : 'null') . 
+			' thisauthority:' . (isset($this->authority) ? $this->authority : 'null') .
+			' isauthenticated:' . ($this->isAuthenticated() ? 'yes' : 'no') . 
+			' remainingtime:' . $this->remainingTime());
+			
 		if (!$this->isAuthenticated()) return false;
 		if (!empty($authority) && ($authority != $this->authority) ) return false;
 		return $this->remainingTime() > 0;
