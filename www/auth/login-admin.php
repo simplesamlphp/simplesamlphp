@@ -61,10 +61,21 @@ if (isset($_POST['password'])) {
 			'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
 		
 		SimpleSAML_Logger::notice('AUTH - admin: '. $username . ' successfully authenticated');
+
+		/**
+		 * Create a statistics log entry for every successfull login attempt.
+		 * Also log a specific attribute as set in the config: statistics.authlogattr
+		 */
+		$authlogattr = $config->getValue('statistics.authlogattr', null);
+		if ($authlogattr && array_key_exists($authlogattr, $attributes)) 
+			SimpleSAML_Logger::stats('AUTH-login-admin OK ' . $attributes[$authlogattr][0]);
+		else 
+			SimpleSAML_Logger::stats('AUTH-login-admin OK');
 		
 		SimpleSAML_Utilities::redirect($relaystate);
 		exit(0);
 	} else {
+		SimpleSAML_Logger::stats('AUTH-login-admin Failed');
 		$error = 'Password incorrect';
 	}
 	

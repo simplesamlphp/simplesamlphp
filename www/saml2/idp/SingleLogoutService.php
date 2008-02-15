@@ -70,7 +70,17 @@ if (isset($_GET['SAMLRequest'])) {
 
 	}
 	
+	// Extract some parameters from the logout request
+	#$requestid = $logoutrequest->getRequestID();
+	$requester = $logoutrequest->getIssuer();
+	#$relayState = $logoutrequest->getRelayState();
+
+	//$responder = $config->getValue('saml2-hosted-sp');
+	$responder = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+	
+	
 	SimpleSAML_Logger::notice('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer());
+	SimpleSAML_Logger::stats('saml20-idp-SLO spinit ' . $requester . ' ' . $responder);
 	
 	/* Check if we have a valid session. */
 	if($session === NULL) {
@@ -256,7 +266,7 @@ try {
 	 */
 	$rg = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
 
-	// 							generate($issuer, $receiver, $inresponseto, $mode )
+	// generate($issuer, $receiver, $inresponseto, $mode )
 	$logoutResponseXML = $rg->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], 'IdP');
 
 	// Create a HTTP-REDIRECT Binding.

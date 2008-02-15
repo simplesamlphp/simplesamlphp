@@ -38,13 +38,14 @@ $langnames = array(
 	'dk'	=>	'Dansk'
 );
 
-
-foreach ($languages AS $lang => $current) {
-	if ($current) {
-		echo $langnames[$lang] . ' | ';
-	} else {
-		echo '<a href="' . htmlspecialchars(SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), 'language=' . $lang)) . '">' . 
-			$langnames[$lang] . '</a> | ';
+if (empty($_POST) ) {
+	foreach ($languages AS $lang => $current) {
+		if ($current) {
+			echo $langnames[$lang] . ' | ';
+		} else {
+			echo '<a href="' . htmlspecialchars(SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), 'language=' . $lang)) . '">' . 
+				$langnames[$lang] . '</a> | ';
+		}
 	}
 }
 

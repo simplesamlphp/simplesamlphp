@@ -130,12 +130,25 @@ if (isset($_REQUEST['username'])) {
 			'value' => SimpleSAML_Utilities::generateID(),
 			'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
 		
+		
+		/**
+		 * Create a statistics log entry for every successfull login attempt.
+		 * Also log a specific attribute as set in the config: statistics.authlogattr
+		 */
+		$authlogattr = $config->getValue('statistics.authlogattr', null);
+		if ($authlogattr && array_key_exists($authlogattr, $attributes)) 
+			SimpleSAML_Logger::stats('AUTH-login-feide OK ' . $attributes[$authlogattr][0]);
+		else 
+			SimpleSAML_Logger::stats('AUTH-login-feide OK');
+		
+		
 		$returnto = $_REQUEST['RelayState'];
 		SimpleSAML_Utilities::redirect($returnto);
 
 		
 	} catch (Exception $e) {
 		SimpleSAML_Logger::error('AUTH - ldap-feide: User: '.(isset($requestedUser) ? $requestedUser : 'na'). ':'. $e->getMessage());
+		SimpleSAML_Logger::stats('AUTH-login-feide Failed');
 		$error = $e->getMessage();
 	}
 }
@@ -146,7 +159,7 @@ $t = new SimpleSAML_XHTML_Template($config, 'login-ldapmulti.php');
 $t->data['header'] = 'simpleSAMLphp: Enter username and password';	
 $t->data['relaystate'] = $_REQUEST['RelayState'];
 $t->data['ldapconfig'] = $ldapfeide;
-$t->data['org'] = $_REQUEST['org'];
+$t->data['org'] = isset($_REQUEST['org']) ? $_REQUEST['org'] : null;
 $t->data['error'] = $error;
 if (isset($error)) {
 	$t->data['username'] = $_POST['username'];

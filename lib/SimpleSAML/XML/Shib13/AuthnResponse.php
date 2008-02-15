@@ -120,6 +120,8 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		
 		$session->setNameID($nameid);
 		$session->setSessionIndex($this->getSessionIndex());
+		
+		$session->setIdP($this->getIssuer());
 		/*
 		$nameID["NameID"] = $node->nodeValue;
 		

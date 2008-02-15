@@ -56,7 +56,7 @@ if (isset($_GET['SAMLRequest'])) {
 		$responder = $metadata->getMetaDataCurrentEntityID();
 	
 		SimpleSAML_Logger::notice('SAML2.0 - SP.SingleLogoutService: IdP (' . $requester . ') is sending logout request to me SP (' . $responder . ') requestid '.$requestid);
-	
+		SimpleSAML_Logger::stats('saml20-idp-SLO idpinit ' . $responder . ' ' . $requester);
 	
 		// Create a logout response
 		$lr = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
@@ -94,6 +94,17 @@ if (isset($_GET['SAMLRequest'])) {
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTRESPONSE', $exception);
 	}
+
+
+	// Extract some parameters from the logout request
+	#$requestid = $logoutrequest->getRequestID();
+	$responder = $logoutresponse->getIssuer();
+	#$relayState = $logoutrequest->getRelayState();
+
+	//$responder = $config->getValue('saml2-hosted-sp');
+	$requester = $metadata->getMetaDataCurrentEntityID('saml20-sp-hosted');
+
+	SimpleSAML_Logger::stats('saml20-sp-SLO spinit ' . $requester . ' ' . $responder);
 
 	if (isset($_GET['RelayState'])) {
 		SimpleSAML_Utilities::redirect($_GET['RelayState']);

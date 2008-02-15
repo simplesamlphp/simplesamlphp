@@ -90,6 +90,18 @@ if (isset($_POST['username'])) {
 					'value' => SimpleSAML_Utilities::generateID(),
 					'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
 
+				
+				/**
+				 * Create a statistics log entry for every successfull login attempt.
+				 * Also log a specific attribute as set in the config: statistics.authlogattr
+				 */
+				$authlogattr = $config->getValue('statistics.authlogattr', null);
+				if ($authlogattr && array_key_exists($authlogattr, $attributes)) 
+					SimpleSAML_Logger::stats('AUTH-login-radius OK ' . $attributes[$authlogattr][0]);
+				else 
+					SimpleSAML_Logger::stats('AUTH-login-radius OK');
+
+	
 				$returnto = $_REQUEST['RelayState'];
 				SimpleSAML_Utilities::redirect($returnto);
 				
