@@ -58,13 +58,13 @@ try {
         WantAuthnRequestsSigned="false"
         protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
         
-                <KeyDescriptor use="signing">
-                        <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
-                          <ds:X509Data>
-                                <ds:X509Certificate>' . htmlspecialchars($data) . '</ds:X509Certificate>
-                        </ds:X509Data>
-                  </ds:KeyInfo>
-                </KeyDescriptor>  
+		<KeyDescriptor use="signing">
+			<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+				<ds:X509Data>
+					<ds:X509Certificate>' . htmlspecialchars($data) . '</ds:X509Certificate>
+				</ds:X509Data>
+			</ds:KeyInfo>
+		</KeyDescriptor>  
         
 
         
@@ -103,19 +103,15 @@ try {
 
 	$defaultidp = $config->getValue('default-saml20-idp');
 	
-	$et = new SimpleSAML_XHTML_Template($config, 'metadata.php');
+	$t = new SimpleSAML_XHTML_Template($config, 'metadata.php');
 	
 
-	$et->data['header'] = 'SAML 2.0 IdP Metadata';
-	
-	$et->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), 'output=xml');
-	$et->data['metadata'] = htmlentities($metaxml);
-	$et->data['metadataflat'] = htmlentities($metaflat);
-	
-	$et->data['feide'] = in_array($defaultidp, array('sam.feide.no', 'max.feide.no'));
-	$et->data['defaultidp'] = $defaultidp;
-	
-	$et->show();
+	$t->data['header'] = 'SAML 2.0 IdP Metadata';
+	$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), 'output=xml');
+	$t->data['metadata'] = htmlentities($metaxml);
+	$t->data['metadataflat'] = htmlentities($metaflat);
+	$t->data['defaultidp'] = $defaultidp;
+	$t->show();
 	
 } catch(Exception $exception) {
 	

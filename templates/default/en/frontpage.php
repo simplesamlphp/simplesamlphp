@@ -5,9 +5,34 @@
 
 	<div id="content">
 
-		<h2>Welcome to simpleSAMlphp</h2>
+<div class="enablebox">
+<table>
+
+<?php
+
+$icon_enabled  = '<img src="/' . $data['baseurlpath'] . 'resources/icons/accept.png" alt="enabled" />';
+$icon_disabled = '<img src="/' . $data['baseurlpath'] . 'resources/icons/delete.png" alt="disabled" />';
+?>
+
+<tr class="<?php echo $this->data['enablematrix']['saml20-sp'] ? 'enabled' : 'disabled'; ?>"><td>SAML 2.0 SP</td>
+	<td><?php echo $this->data['enablematrix']['saml20-sp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
+	
+<tr class="<?php echo $this->data['enablematrix']['saml20-idp'] ? 'enabled' : 'disabled'; ?>"><td>SAML 2.0 IdP</td>
+	<td><?php echo $this->data['enablematrix']['saml20-idp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
+	
+<tr class="<?php echo $this->data['enablematrix']['shib13-sp'] ? 'enabled' : 'disabled'; ?>"><td>Shib 1.3 SP</td>
+	<td><?php echo $this->data['enablematrix']['shib13-sp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
+	
+<tr class="<?php echo $this->data['enablematrix']['shib13-idp'] ? 'enabled' : 'disabled'; ?>"><td>Shib 1.3 IdP</td>
+	<td><?php echo $this->data['enablematrix']['shib13-idp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
+	
+</table>
+</div>
+
+
+		<p><strong>Congratulations</strong>, you have successfully installed simpleSAMLphp. This is the start page of your installation, where you will find links to test examples, diagnostics, metadata and even links to relevant documentation.</p>
 		
-		<p>You have installed simpleSAMLphp on this web host. Here are some relevant links for your installation:
+		<h2>Useful links for your installation</h2>
 			<ul>
 			<?php
 			
@@ -17,23 +42,42 @@
 			?>
 			</ul>
 		</p>
+		
+		<h2>Metadata</h2>
+			<ul>
+			<?php
+			
+				foreach ($this->data['links_meta'] AS $link) {
+					echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . htmlspecialchars($link['text']) . '</a></li>';
+				}
+			?>
+			</ul>
+		</p>
+		
+		<h2>Documentation</h2>
+			<ul>
+			<?php
+			
+				foreach ($this->data['links_doc'] AS $link) {
+					echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . htmlspecialchars($link['text']) . '</a></li>';
+				}
+			?>
+			</ul>
+		</p>
+		
 		<?php
+			if (array_key_exists('warnings', $this->data) && is_array($this->data['warnings']) && !empty($this->data['warnings'])) {
+
+				echo '<h2>Warnings</h2>';
 		
-			foreach($this->data['warnings'] AS $warning) {
-			
-			
-				echo '<div class="caution">' . $warning . '</div>';
-				
-			
-			
+				foreach($this->data['warnings'] AS $warning) {
+					echo '<div class="caution">' . $warning . '</div>';
+				}
 			}
-		
 		?>
+		
 
-
-
-		<h2>About simpleSAMLphp</h2>
-		<p>Hey! This simpleSAMLphp thing is pretty cool, where can I read more about it?
-		You can find more information about <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp at the Feide RnD blog</a> over at <a href="http://uninett.no">UNINETT</a>.</p>
+	<h2>About simpleSAMLphp</h2>
+		<p>Hey! This simpleSAMLphp thing is pretty cool, where can I read more about it? You can find more information about <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp at the Feide RnD blog</a> over at <a href="http://uninett.no">UNINETT</a>.</p>
 		
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>

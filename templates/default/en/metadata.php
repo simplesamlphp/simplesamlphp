@@ -31,15 +31,15 @@
 			
 				<h2>Send your metadata to <?php echo $this->data['federationname']; ?></h2>
 				
-				<p>simpleSAMLphp has detected that you have configured Feide as your default IdP.</p>
+				<p>simpleSAMLphp has detected that you have configured <?php echo $this->data['federationname']; ?> as your default IdP.</p>
 				
-				<p>Before you can connect to Feide, Feide needs to add your service in its trust configuration. When you
-					contact Feide to add you as a new service, you will be asked to send your metadata. Here you can easily send
-					the metadata to Feide by clicking the button below.</p>
+				<p>Before you can connect to <?php echo $this->data['federationname']; ?>, <?php echo $this->data['federationname']; ?> needs to add your service in its trust configuration. When you
+					contact <?php echo $this->data['federationname']; ?> to add you as a new service, you will be asked to send your metadata. Here you can easily send
+					the metadata to <?php echo $this->data['federationname']; ?> by clicking the button below.</p>
 					
 				<form action="<?php echo $this->data['sendmetadatato']; ?>" method="post">
 
-					<p>Feide needs to know how to get in contact with you, so you need to type in <strong>your email address</strong>:
+					<p><?php echo $this->data['federationname']; ?> needs to know how to get in contact with you, so you need to type in <strong>your email address</strong>:
 						<input type="text" size="25" name="email" value="" />
 					</p>
 					

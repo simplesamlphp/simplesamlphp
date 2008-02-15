@@ -13,87 +13,69 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance(TRUE);
 
 
-if (!$config->getValue('enable.saml20-sp', false))
+if (!$config->getValue('enable.shib13-sp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
-
-/**
- * Preconfigured to help out some federations. This makes it easier for users to report metadata
- * to the administrators of the IdP.
- */
-$send_metadata_to_idp = array(
-	'sam.feide.no'	=> array(
-		'name' 		=> 'Feide',
-		'address'	=> 'http://rnd.feide.no/content/sending-information-simplesamlphp'
-	),
-	'max.feide.no'	=> array(
-		'name' 		=> 'Feide',
-		'address'	=> 'http://rnd.feide.no/content/sending-information-simplesamlphp'
-	)
-);
 
 
 try {
 
-	$spmeta = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrent();
-	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
+	$spmeta = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrent('shib13-sp-hosted');
+	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID('shib13-sp-hosted');
 	
-	/*
-	if (!$spmeta['assertionConsumerServiceURL']) throw new Exception('The following parameter is not set in your SAML 2.0 SP Hosted metadata: assertionConsumerServiceURL');
-	if (!$spmeta['SingleLogOutUrl']) throw new Exception('The following parameter is not set in your SAML 2.0 SP Hosted metadata: SingleLogOutUrl');
-	*/
-	
+
 	$metaflat = "
 	'" . htmlspecialchars($spentityid) . "' => array(
- 		'AssertionConsumerService' => '" . htmlspecialchars($metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted')) . "',
- 		'SingleLogoutService'      => '" . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted')) . "'
+ 		'AssertionConsumerService' => '" . htmlspecialchars($metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted')) . "'
 	)
 ";
 	
 	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<EntityDescriptor entityID="' . htmlspecialchars($spentityid) . '" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+<EntityDescriptor entityID="' . htmlspecialchars($spentityid) . '">
+	<SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol">
 
-	<SPSSODescriptor 
-		AuthnRequestsSigned="false" 
-		WantAssertionsSigned="false" 
-		protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
-
-		<SingleLogoutService 
-			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" 
-			Location="' . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted')) . '"/>
+		<NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
 		
-		<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+		<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="' . htmlspecialchars($metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted')) . '" index="1" isDefault="true" />
 		
-		<AssertionConsumerService 
-			index="0" 
-			isDefault="true" 
-			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" 
-			Location="' . htmlspecialchars($metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted')) . '" />
-
 	</SPSSODescriptor>
-
+	
+	<ContactPerson contactType="technical">
+		<SurName>' . $config->getValue('technicalcontact_name', 'Not entered') . '</SurName>
+		<EmailAddress>' . $config->getValue('technicalcontact_email', 'Not entered') . '</EmailAddress>
+	</ContactPerson>
+		
 </EntityDescriptor>';
+
+	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xml') {
+		header('Content-Type: application/xml');
+		
+		echo $metaxml;
+		exit(0);
+	}
 	
-	$defaultidp = $config->getValue('default-saml20-idp');
+	$defaultidp = $config->getValue('default-shib13-idp');
 	
-	$et = new SimpleSAML_XHTML_Template($config, 'metadata.php');
+	$t = new SimpleSAML_XHTML_Template($config, 'metadata.php');
 	
 
-	$et->data['header'] = 'SAML 2.0 SP Metadata';
-	$et->data['metadata'] = htmlentities($metaxml);
-	$et->data['metadataflat'] = htmlentities($metaflat);
+	$t->data['header'] = 'Shib 1.3 SP Metadata';
+	$t->data['metadata'] = htmlspecialchars($metaxml);
+	$t->data['metadataflat'] = htmlspecialchars($metaflat);
+	$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), 'output=xml');
 	
+	/*
 	if (array_key_exists($defaultidp, $send_metadata_to_idp)) {
 		$et->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];
 		$et->data['federationname'] = $send_metadata_to_idp[$defaultidp]['name'];
 	}
+	*/
 
-	$et->data['techemail'] = $config->getValue('technicalcontact_email', 'na');
-	$et->data['version'] = $config->getValue('version', 'na');
-	$et->data['feide'] = in_array($defaultidp, array('sam.feide.no', 'max.feide.no'));
-	$et->data['defaultidp'] = $defaultidp;
+	$t->data['techemail'] = $config->getValue('technicalcontact_email', 'na');
+	$t->data['version'] = $config->getValue('version', 'na');
+	$t->data['defaultidp'] = $defaultidp;
 	
-	$et->show();
+	$t->show();
 	
 } catch(Exception $exception) {
 	

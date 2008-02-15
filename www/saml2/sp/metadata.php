@@ -73,27 +73,34 @@ try {
 	</SPSSODescriptor>
 
 </EntityDescriptor>';
+
+	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xml') {
+		header('Content-Type: application/xml');
+		
+		echo $metaxml;
+		exit(0);
+	}
+	
 	
 	$defaultidp = $config->getValue('default-saml20-idp');
 	
-	$et = new SimpleSAML_XHTML_Template($config, 'metadata.php');
-	
+	$t = new SimpleSAML_XHTML_Template($config, 'metadata.php');
 
-	$et->data['header'] = 'SAML 2.0 SP Metadata';
-	$et->data['metadata'] = htmlentities($metaxml);
-	$et->data['metadataflat'] = htmlentities($metaflat);
+	$t->data['header'] = 'SAML 2.0 SP Metadata';
+	$t->data['metadata'] = htmlentities($metaxml);
+	$t->data['metadataflat'] = htmlentities($metaflat);
+	$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), 'output=xml');
 	
 	if (array_key_exists($defaultidp, $send_metadata_to_idp)) {
-		$et->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];
-		$et->data['federationname'] = $send_metadata_to_idp[$defaultidp]['name'];
+		$t->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];
+		$t->data['federationname'] = $send_metadata_to_idp[$defaultidp]['name'];
 	}
 
-	$et->data['techemail'] = $config->getValue('technicalcontact_email', 'na');
-	$et->data['version'] = $config->getValue('version', 'na');
-	$et->data['feide'] = in_array($defaultidp, array('sam.feide.no', 'max.feide.no'));
-	$et->data['defaultidp'] = $defaultidp;
+	$t->data['techemail'] = $config->getValue('technicalcontact_email', 'na');
+	$t->data['version'] = $config->getValue('version', 'na');
+	$t->data['defaultidp'] = $defaultidp;
 	
-	$et->show();
+	$t->show();
 	
 } catch(Exception $exception) {
 	
