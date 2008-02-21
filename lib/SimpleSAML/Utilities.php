@@ -508,6 +508,41 @@ class SimpleSAML_Utilities {
 
 		return TRUE;
 	}
+
+
+	/**
+	 * This function finds direct descendants of a DOM element with the specified
+	 * localName and namespace. They are returned in an array.
+	 *
+	 * This function accepts the same shortcuts for namespaces as the isDOMElementOfType function.
+	 *
+	 * @param $element The element we should look in.
+	 * @param $localName The name the element should have.
+	 * @param $namespaceURI The namespace the element should have.
+	 * @return Array with the matching elements in the order they are found. An empty array is
+	 *         returned if no elements match.
+	 */
+	public static function getDOMChildren($element, $localName, $namespaceURI) {
+		assert('$element instanceof DOMElement');
+
+		$ret = array();
+
+		for($i = 0; $i < $element->childNodes->length; $i++) {
+			$child = $element->childNodes->item($i);
+
+			/* Skip text nodes. */
+			if($child instanceof DOMText) {
+				continue;
+			}
+
+			if(self::isDOMElementOfType($child, $localName, $namespaceURI) === TRUE) {
+				$ret[] = $child;
+			}
+		}
+
+		return $ret;
+	}
+
 }
 
 ?>
