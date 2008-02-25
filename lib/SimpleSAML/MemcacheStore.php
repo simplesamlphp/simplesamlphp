@@ -1,4 +1,4 @@
-<?
+<?php 
 
 /* We need access to the configuration from config/config.php. */
 require_once('SimpleSAML/Configuration.php');
