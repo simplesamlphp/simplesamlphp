@@ -3,21 +3,20 @@
 /* Remove magic quotes. */
 if(get_magic_quotes_gpc()) {
 	foreach(array('_GET', '_POST', '_COOKIE', '_REQUEST') as $a) {
-		foreach($$a as &$v) {
-
-			/* We don't use array-parameters anywhere.
-			 * Ignore any that may appear.
-			 */
-			if(is_array($v)) {
-				continue;
+		if (is_array($$a)) {
+			foreach($$a as &$v) {
+				/* We don't use array-parameters anywhere.
+				 * Ignore any that may appear.
+				 */
+				if(is_array($v)) {
+					continue;
+				}
+				/* Unescape the string. */
+				$v = stripslashes($v);
 			}
-
-			/* Unescape the string. */
-			$v = stripslashes($v);
 		}
 	}
 }
-
 
 $path_extra = dirname(dirname(__FILE__)) . '/lib';
 
