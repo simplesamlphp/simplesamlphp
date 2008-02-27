@@ -163,7 +163,11 @@ if (isset($_GET['SAMLRequest'])) {
 	SimpleSAML_Logger::info('SAML2.0 - IDP.SingleLogoutService: got LogoutResponse from ' . $loginresponse->getIssuer());
 } else {
 	
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS');
+	/**
+	 * This error message was removed 2008-02-27, because it interrupts with bridged SLO.
+	 *
+	 * SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS');
+	 */
 }
 
 
