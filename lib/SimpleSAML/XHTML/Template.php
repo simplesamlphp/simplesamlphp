@@ -71,16 +71,16 @@ class SimpleSAML_XHTML_Template {
 	
 	private function includeAtTemplateBase($file) {
 		$data = $this->data;
-		$filebase = $this->configuration->getBaseDir() . $this->configuration->getValue('templatedir');
+		$filebase = $this->configuration->getPathValue('templatedir');
 		include($filebase . $file);
 	}
 
 	private function includeAtLanguageBase($file) {
 		$data = $this->data;
-		$filebase = $this->configuration->getBaseDir() . $this->configuration->getValue('templatedir') . $this->getLanguage() . '/' ;
+		$filebase = $this->configuration->getPathValue('templatedir') . $this->getLanguage() . '/' ;
 		
 		if (!file_exists($filebase . $file)) {
-			$filebase = $this->configuration->getBaseDir() . $this->configuration->getValue('templatedir') . 
+			$filebase = $this->configuration->getPathValue('templatedir') . 
 				$this->configuration->getValue('language.default') . '/';
 				
 			
@@ -96,7 +96,7 @@ class SimpleSAML_XHTML_Template {
 	 * Include language file from the dictionaries directory.
 	 */
 	private function includeLanguageFile($file) {
-		$filebase = $this->configuration->getBaseDir() . $this->configuration->getValue('dictionarydir');
+		$filebase = $this->configuration->getPathValue('dictionarydir');
 		
 		if (!file_exists($filebase . $file)) {
 			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filebase . $file . ']');
@@ -122,12 +122,12 @@ class SimpleSAML_XHTML_Template {
 	 */
 	public function show() {
 		$data = $this->data;
-		$filename = $this->configuration->getBaseDir() . $this->configuration->getValue('templatedir') . $this->getLanguage() . '/' . 
+		$filename = $this->configuration->getPathValue('templatedir') . $this->getLanguage() . '/' . 
 			$this->template;
 
 		if (!file_exists($filename)) {
 				
-			$filename = $this->configuration->getBaseDir() . $this->configuration->getValue('templatedir') .  
+			$filename = $this->configuration->getPathValue('templatedir') .  
 				$this->configuration->getValue('language.default') . '/' . $this->template;
 
 

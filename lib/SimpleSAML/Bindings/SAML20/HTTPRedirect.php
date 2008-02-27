@@ -34,7 +34,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 
 		/* Load the private key. */
 
-		$privatekey = $this->configuration->getBaseDir() . '/cert/' . $md['privatekey'];
+		$privatekey = $this->configuration->getPathValue('certdir') . $md['privatekey'];
 		if (!file_exists($privatekey)) {
 			throw new Exception('Could not find private key file [' . $privatekey . '] which is needed to sign the request.');
 		}
@@ -96,7 +96,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		$query = $query . "&" . "SigAlg=" . urlencode($algURI);
 				
 		// check if public key of sp exists
-		$publickey = $this->configuration->getBaseDir() . '/cert/' . $md['certificate'];
+		$publickey = $this->configuration->getPathValue('certdir') . $md['certificate'];
 		if (!file_exists($publickey)) {
 			throw new Exception('Could not find private key file [' . $publickey . '] which is needed to verify the request.');
 		}

@@ -41,9 +41,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
 		$config = SimpleSAML_Configuration::getInstance();
 		assert($config instanceof SimpleSAML_Configuration);
 		
-		$metadatasetfile = $config->getBaseDir() . '/' . 
-			$config->getValue('metadatadir') . '/' . $set . '.php';
-		
+		$metadatasetfile = $config->getPathValue('metadatadir') . $set . '.php';
 		
 		if (!file_exists($metadatasetfile)) {
 			throw new Exception('Could not open file: ' . $metadatasetfile);

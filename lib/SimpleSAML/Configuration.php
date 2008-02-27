@@ -67,6 +67,46 @@ class SimpleSAML_Configuration {
 	}
 
 
+	/* Retrieve a path configuration option set in config.php.
+	 * The function will always return an absolute path unless the
+	 * option is not set. It will then return the default value.
+	 *
+	 * It checks if the value starts with a slash, and prefixes it
+	 * with the value from getBaseDir if it doesn't.
+	 *
+	 * Parameters:
+	 *  $name     Name of the configuration option.
+	 *  $default  Default value of the configuration option. This
+	 *            parameter will default to NULL if not specified.
+	 *
+	 * Returns:
+	 *  The path configuration option with name $name, or $default if
+	 *  the option was not found.
+	 */
+	public function getPathValue($name, $default = NULL) {
+		if (!isset($this->configuration)) {
+			$this->loadConfig();
+		}
+
+		/* Return the default value if the option is unset. */
+		if (!array_key_exists($name, $this->configuration)) {
+			return $default;
+		}
+
+		$path = $this->configuration[$name];
+
+		/* Prepend path with basedir if it doesn't start with
+                 * a slash. We assume getBaseDir ends with a slash.
+		 */
+		if ($path[0] !== '/') $path = $this->getBaseDir() . $path;
+		
+		/* Add trailing slash if it is missing to be consistent with getBaseDir */
+		if (substr($path, -1) !== '/') $path .= '/';
+		
+		return $path;
+	}
+
+
 	/* Retrieve the base directory for this simpleSAMLphp installation.
 	 * This function first checks the 'basedir' configuration option. If
 	 * this option is undefined or NULL, then we fall back to looking at

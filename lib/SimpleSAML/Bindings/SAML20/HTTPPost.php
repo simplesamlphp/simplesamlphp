@@ -73,13 +73,12 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		$privatekey = "/home/as/erlang/feide2/cert/edugain/server1Key.pem";
 		$publiccert = "/home/as/erlang/feide2/cert/edugain/server2chain.pem";
 
-
 		$privatekey = "/home/as/erlang/feide2/cert/server.pem";
 		$publiccert = "/home/as/erlang/feide2/cert/server.crt";
-				*/
+		*/
 		
-		$privatekey = $this->configuration->getBaseDir() . '/cert/' . $idpmd['privatekey'];
-		$publiccert = $this->configuration->getBaseDir() . '/cert/' . $idpmd['certificate'];
+		$privatekey = $this->configuration->getPathValue('certdir') . $idpmd['privatekey'];
+		$publiccert = $this->configuration->getPathValue('certdir') . $idpmd['certificate'];
 
 		if (!file_exists($privatekey))
 			throw new Exception('Could not find private key file [' . $privatekey . '] which is needed to sign the authentication response');

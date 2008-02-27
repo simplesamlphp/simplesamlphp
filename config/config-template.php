@@ -25,7 +25,7 @@ $config = array (
 	'templatedir'           => 'templates/default/',
 	'metadatadir'           => 'metadata/',
 	'attributenamemapdir'   => 'attributemap/',
-	'certdir'               => 'certs/',
+	'certdir'               => 'cert/',
 	'dictionarydir'         => 'dictionaries/',
 	'loggingdir'            => 'log/',
 	

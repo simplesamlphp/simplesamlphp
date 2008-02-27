@@ -65,8 +65,8 @@ $as_metadata = array(
 		'hosted' => array(
 			'organization' => 'simpleSAMLphp',
 			'server_id' => 'default.aselect.org',
-			'key' => $config->getBaseDir() . '/cert/server.pem',
-			'cert' => $config->getBaseDir() . '/cert/server.crt',
+			'key' => $config->getPathValue('certdir') . 'server.pem',
+			'cert' => $config->getPathValue('certdir') . 'server.crt',
 			'authsp_level' => '10',
 			'authsp' => 'simpleSAMLphp',
 			'app_level' => '10',
@@ -94,12 +94,12 @@ $as_metadata = array(
 		'hosted' => array(
 			'organization' => 'simpleSAMLphp',
 			'server_id' => 'default.aselect.org',
-			'key' => $config->getBaseDir() . '/cert/agent.key',
+			'key' => $config->getPathValue('certdir'). 'agent.key',
 		),
 		'remote' => array(
 			'testorg' => array(
 				'require_signing' => true,
-				'cert' => $config->getBaseDir() . '/cert/aselect.crt',
+				'cert' => $config->getPathValue('certdir'). 'aselect.crt',
 			),
 		),
 	),
@@ -109,7 +109,7 @@ $as_metadata = array(
 		),
 		'federatiedemo' => array(
 			'require_signing' => true,
-			'cert' => $config->getBaseDir() . '/cert/app.crt',
+			'cert' => $config->getPathValue('certdir') . 'app.crt',
 		),
 	),
 );

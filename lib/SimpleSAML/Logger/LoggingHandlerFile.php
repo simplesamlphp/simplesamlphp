@@ -21,7 +21,7 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
         assert($config instanceof SimpleSAML_Configuration);
 
         /* Get the metadata handler option from the configuration. */
-        $this->logFile = $config->getBaseDir().'/'.$config->getValue('loggingdir').'/'.$config->getValue('logging.logfile');
+        $this->logFile = $config->getPathValue('loggingdir').$config->getValue('logging.logfile');
 
         if (@file_exists($this->logFile)) {
             if (!@is_writeable($this->logFile)) throw new Exception("Could not write to logfile: ".$this->logFile);

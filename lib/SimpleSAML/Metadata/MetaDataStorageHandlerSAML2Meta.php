@@ -64,8 +64,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta extends SimpleSAML_Met
 			// The metadata location is an URL
 			$metadatasetfile = $metadatalocation;
 		} else {
-			$metadatasetfile = $config->getBaseDir() . '' . 
-				$config->getValue('metadatadir') . $metadatalocation;
+			$metadatasetfile = $config->getPathValue('metadatadir') . $metadatalocation;
 			if (!file_exists($metadatasetfile)) throw new Exception('Could not find SAML 2.0 Metadata file :'. $metadatasetfile);
 			if (preg_match('@\.php$@', $metadatalocation)) {
 				$xml = false;
