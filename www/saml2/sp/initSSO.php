@@ -47,7 +47,7 @@ if (!isset($session) || !$session->isValid('saml2') ) {
 		SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: No chosen or default IdP, go to SAML2disco');
 		
 		$returnURL = urlencode(SimpleSAML_Utilities::selfURL());
-		$discservice = '/' . $config->getValue('baseurlpath') . 'saml2/sp/idpdisco.php?entityID=' . $spentityid . 
+		$discservice = '/' . $config->getBaseURL() . 'saml2/sp/idpdisco.php?entityID=' . $spentityid . 
 			'&return=' . $returnURL . '&returnIDParam=idpentityid';
 		SimpleSAML_Utilities::redirect($discservice);
 	}

@@ -132,7 +132,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 
 	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() .
 		'?RequestID=' . urlencode($requestid);
-	$authurl = '/' . $config->getValue('baseurlpath') . $idpmetadata['auth'];
+	$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];
 
 	SimpleSAML_Utilities::redirect($authurl,
 		array('RelayState' => $relaystate));

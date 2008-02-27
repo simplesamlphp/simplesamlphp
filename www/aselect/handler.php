@@ -71,11 +71,11 @@ $as_metadata = array(
 			'authsp' => 'simpleSAMLphp',
 			'app_level' => '10',
 			'tgt_exp_time' => '1194590521000',
-#			'auth' => '/' . $config->getValue('baseurlpath') . '/auth/login.php',
-#			'logout' => '/' . $config->getValue('baseurlpath') . 'logout.html',
-			'auth' => '/' . $config->getValue('baseurlpath') . '/saml2/sp/initSSO.php',
-			'logout' => '/' . $config->getValue('baseurlpath') . '/saml2/sp/initSLO.php',
-			'loggedout_url' => '/' . $config->getValue('baseurlpath') . 'logout.html',
+#			'auth' => '/' . $config->getBaseURL() . '/auth/login.php',
+#			'logout' => '/' . $config->getBaseURL() . 'logout.html',
+			'auth' => '/' . $config->getBaseURL() . '/saml2/sp/initSSO.php',
+			'logout' => '/' . $config->getBaseURL() . '/saml2/sp/initSLO.php',
+			'loggedout_url' => '/' . $config->getBaseURL() . 'logout.html',
 		),
 		'remote' => array(
 			// so far the IDP bridging is statically configured to the first one in

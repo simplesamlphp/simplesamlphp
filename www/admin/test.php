@@ -94,9 +94,9 @@ if ($op === 'login') {
 		}
 
 		if($protocol === 'saml2') {
-			$url = '/' . $config->getValue('baseurlpath') . 'saml2/sp/initSSO.php';
+			$url = '/' . $config->getBaseURL() . 'saml2/sp/initSSO.php';
 		} elseif($protocol === 'shib13') {
-			$url = '/' . $config->getValue('baseurlpath') . 'shib13/sp/initSSO.php';
+			$url = '/' . $config->getBaseURL() . 'shib13/sp/initSSO.php';
 		} else {
 			error('Unable to log in with protocol "' . $protocol . '".');
 		}
@@ -133,7 +133,7 @@ if ($op === 'login') {
 	}
 
 	if ($protocol === 'saml2') {
-		$url = '/' . $config->getValue('baseurlpath') . 'saml2/sp/initSLO.php';
+		$url = '/' . $config->getBaseURL() . 'saml2/sp/initSLO.php';
 	} else {
 		error('Logout unsupported for protocol "' . $protocol . '".');
 	}

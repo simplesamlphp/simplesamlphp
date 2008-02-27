@@ -40,7 +40,7 @@ $session = SimpleSAML_Session::getInstance(TRUE);
  */
 if (!isset($session) || !$session->isValid('shib13') ) {	
 	SimpleSAML_Utilities::redirect(
-		'/' . $config->getValue('baseurlpath') . 'shib13/sp/initSSO.php',
+		'/' . $config->getBaseURL() . 'shib13/sp/initSSO.php',
 		array('RelayState' => SimpleSAML_Utilities::selfURL())
 	);
 }

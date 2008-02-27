@@ -58,6 +58,13 @@ class SimpleSAML_Configuration {
 
 		return $this->configuration[$name];
 	}
+	
+	public function getBaseURL() {
+		if (preg_match('/^\*(.*)$/', $this->getValue('baseurlpath', ''), $matches)) {
+			return SimpleSAML_Utilities::getFirstPathElement(false) . $matches[1];
+		}
+		return $this->getValue('baseurlpath', '');
+	}
 
 
 	/* Retrieve the base directory for this simpleSAMLphp installation.

@@ -49,7 +49,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 		SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: No chosen or default IdP, go to Shib13disco');
 	
 		$returnURL = urlencode(SimpleSAML_Utilities::selfURL());
-		$discservice = '/' . $config->getValue('baseurlpath') . 'shib13/sp/idpdisco.php?entityID=' . $spentityid . 
+		$discservice = '/' . $config->getBaseURL() . 'shib13/sp/idpdisco.php?entityID=' . $spentityid . 
 			'&return=' . $returnURL . '&returnIDParam=idpentityid';
 		SimpleSAML_Utilities::redirect($discservice);
 		

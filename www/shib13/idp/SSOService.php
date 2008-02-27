@@ -122,7 +122,7 @@ $authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : null
 if (!$session->isAuthenticated($authority) ) {
 
 	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() . '?RequestID=' . urlencode($requestid);
-	$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getValue('baseurlpath') . $idpmetadata['auth'], 
+	$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getBaseURL() . $idpmetadata['auth'], 
 		'RelayState=' . urlencode($relaystate));
 	SimpleSAML_Utilities::redirect($authurl);
 	

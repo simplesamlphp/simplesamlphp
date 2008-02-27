@@ -109,8 +109,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageHandler {
 		assert($config instanceof SimpleSAML_Configuration);
 		
 		$baseurl = SimpleSAML_Utilities::selfURLhost() . '/' . 
-			$config->getValue('baseurlpath');
-		
+			$config->getBaseURL();
 		
 		if ($set == 'saml20-sp-hosted') {
 			switch ($property) {				
@@ -164,7 +163,8 @@ abstract class SimpleSAML_Metadata_MetaDataStorageHandler {
 		if (!isset($this->metadata[$set])) {
 			$this->load($set);
 		}
-		$currenthost = $_SERVER['HTTP_HOST'];
+		$currenthost         = SimpleSAML_Utilities::getSelfHost(); 			// sp.example.org
+		$currenthostwithpath = SimpleSAML_Utilities::getSelfHostWithPath(); 	// sp.example.org/university
 		
 		if(strstr($currenthost, ":")) {
 				$currenthostdecomposed = explode(":", $currenthost);
@@ -177,11 +177,12 @@ abstract class SimpleSAML_Metadata_MetaDataStorageHandler {
 		if (!isset($currenthost)) {
 			throw new Exception('Could not get HTTP_HOST, in order to resolve default entity ID');
 		}
-		if (!isset($this->hostmap[$set][$currenthost])) {
-			throw new Exception('Could not find any default metadata entities in set [' . $set . '] for host [' . $currenthost . ']');
-		}
-		if (!$this->hostmap[$set][$currenthost]) throw new Exception('Could not find default metadata for current host');
-		return $this->hostmap[$set][$currenthost];
+		
+		
+		if (isset($this->hostmap[$set][$currenthostwithpath])) return $this->hostmap[$set][$currenthostwithpath];
+		if (isset($this->hostmap[$set][$currenthost])) return $this->hostmap[$set][$currenthost];
+		
+		throw new Exception('Could not find any default metadata entities in set [' . $set . '] for host [' . $currenthost . ' : ' . $currenthostwithpath . ']');
 	}
 
 	abstract public function load($set);

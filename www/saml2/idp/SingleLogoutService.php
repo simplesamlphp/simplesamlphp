@@ -222,7 +222,7 @@ if ($config->getValue('debug', false))
  * initiate SAML 2.0 SP Single LogOut, with the RelayState equal this URL.
  */
 if ($session->getAuthority() == 'saml2') {
-	SimpleSAML_Utilities::redirect('/' . $config->getValue('baseurlpath') . 'saml2/sp/initSLO.php',
+	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'saml2/sp/initSLO.php',
 		array('RelayState' => SimpleSAML_Utilities::selfURLNoQuery())
 	);
 }

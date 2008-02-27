@@ -24,7 +24,7 @@ class SimpleSAML_XHTML_Template {
 		$this->configuration = $configuration;
 		$this->template = $template;
 		
-		$this->data['baseurlpath'] = $this->configuration->getValue('baseurlpath');
+		$this->data['baseurlpath'] = $this->configuration->getBaseURL();
 		
 		if (!empty($languagefile)) $this->includeLanguageFile($languagefile);
 	}

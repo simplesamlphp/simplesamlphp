@@ -112,7 +112,7 @@ function action_default()
 		
 		$relaystate = SimpleSAML_Utilities::selfURLNoQuery() . '?RelayState=' . urlencode($_GET['RelayState']) .
 			'&RequestID=' . urlencode($requestid);
-		$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getValue('baseurlpath') . $idpmeta['auth'], 
+		$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getBaseURL() . $idpmeta['auth'], 
 			'RelayState=' . urlencode($relaystate));
 		
 		$t->data['initssourl'] 			= $authurl;
@@ -230,7 +230,7 @@ function check_authenticated_user() {
 		
 		
 		$relaystate = SimpleSAML_Utilities::selfURLNoQuery() . '/login';
-		$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getValue('baseurlpath') . $idpmeta['auth'], 
+		$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getBaseURL() . $idpmeta['auth'], 
 			'RelayState=' . urlencode($relaystate));
 		
 		SimpleSAML_Utilities::redirect($authurl);

@@ -17,7 +17,7 @@ $session = SimpleSAML_Session::getInstance(true);
 
 /* Check if valid local session exists.. */
 if (!isset($session) || !$session->isValid('login-admin') ) {
-	SimpleSAML_Utilities::redirect('/' . $config->getValue('baseurlpath') . 'auth/login-admin.php',
+	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
 		array('RelayState' => SimpleSAML_Utilities::selfURL())
 	);
 }
@@ -31,6 +31,7 @@ $attributes = array();
 $attributes['selfURLhost'] = array(SimpleSAML_Utilities::selfURLhost());
 $attributes['selfURLNoQuery'] = array(SimpleSAML_Utilities::selfURLNoQuery());
 $attributes['selfURL'] = array(SimpleSAML_Utilities::selfURL());
+$attributes['selfHostWithPath'] = array(SimpleSAML_Utilities::getSelfHostWithPath());
 
 $attributes['HTTP_HOST'] = array($_SERVER['HTTP_HOST']);
 $attributes['HTTPS'] = array($_SERVER['HTTPS']);

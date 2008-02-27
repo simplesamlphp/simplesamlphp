@@ -14,7 +14,9 @@ require_once('SimpleSAML/Logger.php');
 class SimpleSAML_Utilities {
 
 
-
+	/**
+	 * Will return sp.example.org
+	 */
 	public static function getSelfHost() {
 	
 		$currenthost = $_SERVER['HTTP_HOST'];
@@ -22,9 +24,12 @@ class SimpleSAML_Utilities {
 				$currenthostdecomposed = explode(":", $currenthost);
 				$currenthost = $currenthostdecomposed[0];
 		}
-		return $currenthost;
+		return $currenthost;# . self::getFirstPathElement() ;
 	}
 
+	/**
+	 * Will return https
+	 */
 	public static function getSelfProtocol() {
 		$s = empty($_SERVER["HTTPS"]) ? ''
 			: ($_SERVER["HTTPS"] == "on") ? "s"
@@ -33,6 +38,9 @@ class SimpleSAML_Utilities {
 		return $protocol;
 	}
 
+	/**
+	 * Will return https://sp.example.org
+	 */
 	public static function selfURLhost() {
 	
 		$currenthost = self::getSelfHost();
@@ -52,18 +60,62 @@ class SimpleSAML_Utilities {
 	
 	}
 	
-
-
+	/**
+	 * Will return https://sp.example.org/universities/ruc/baz/simplesaml/saml2/SSOService.php
+	 */
 	public static function selfURLNoQuery() {
 	
 		$selfURLhost = self::selfURLhost();
-		return $selfURLhost . $_SERVER['SCRIPT_NAME'];
+		return $selfURLhost . self::getScriptName();
 	
 	}
+	
+	public static function getScriptName() {
+		$scriptname = $_SERVER['SCRIPT_NAME'];
+		if (preg_match('|^/.*?(/.*)$|', $_SERVER['SCRIPT_NAME'], $matches)) {
+			#$scriptname = $matches[1];
+		}
+		return $scriptname;
+	}
+	
+	
+	/**
+	 * Will return sp.example.org/foo
+	 */
+	public static function getSelfHostWithPath() {
+	
+		$selfhostwithpath = self::getSelfHost();
+		if (preg_match('|^(/.*?)/|', $_SERVER['SCRIPT_NAME'], $matches)) {
+			$selfhostwithpath .= $matches[1];
+		}
+		return $selfhostwithpath;
+	
+	}
+	
+	/**
+	 * Will return foo
+	 */
+	public static function getFirstPathElement($trailingslash = true) {
+	
+		if (preg_match('|^/(.*?)/|', $_SERVER['SCRIPT_NAME'], $matches)) {
+			return ($trailingslash ? '/' : '') . $matches[1];
+		}
+		return '';
+	}
+	
 
 	public static function selfURL() {
 		$selfURLhost = self::selfURLhost();
-		return $selfURLhost . $_SERVER['REQUEST_URI'];	
+		return $selfURLhost . self::getRequestURI();	
+	}
+	
+	public static function getRequestURI() {
+		
+		$requesturi = $_SERVER['REQUEST_URI'];
+		if (preg_match('|^/.*?(/.*)$|', $_SERVER['REQUEST_URI'], $matches)) {
+		#$requesturi = $matches[1];
+		}
+		return $requesturi;
 	}
 	
 	public static function addURLparameter($url, $parameter) {

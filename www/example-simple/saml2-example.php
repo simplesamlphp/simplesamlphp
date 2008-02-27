@@ -40,7 +40,7 @@ $session = SimpleSAML_Session::getInstance(TRUE);
  */
 if (!$session->isValid('saml2') ) {
 	SimpleSAML_Utilities::redirect(
-		'/' . $config->getValue('baseurlpath') . 'saml2/sp/initSSO.php',
+		'/' . $config->getBaseURL() . 'saml2/sp/initSSO.php',
 		array('RelayState' => SimpleSAML_Utilities::selfURL())
 	);
 }
@@ -57,15 +57,15 @@ $attributes = $session->getAttributes();
  *
  */
 
-$t = new SimpleSAML_XHTML_Template($config, 'status.php');
+$t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes.php');
 
 $t->data['header'] = 'SAML 2.0 SP Demo Example';
 $t->data['remaining'] = $session->remainingTime();
 $t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;
 $t->data['icon'] = 'bino.png';
-$t->data['logout'] = '<p>[ <a href="/' . $config->getValue('baseurlpath') . 'saml2/sp/initSLO.php?RelayState=/' . 
-	$config->getValue('baseurlpath') . 'logout.html">Logout</a> ]';
+$t->data['logout'] = '<p>[ <a href="/' . $config->getBaseURL() . 'saml2/sp/initSLO.php?RelayState=/' . 
+	$config->getBaseURL() . 'logout.html">Logout</a> ]';
 $t->show();
 
 
