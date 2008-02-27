@@ -42,7 +42,10 @@ class SimpleSAML_Auth_LDAP {
 			throw new Exception('Failed to set LDAP Protocol version to 3: ' . ldap_error($this->ldap) );
 	}
 	
-	
+	/**
+	 * Search for a DN. You specify an attribute name and an attribute value
+	 * and the function will return the DN of the result of the search.
+	 */
 	public function searchfordn($searchbase, $searchattr, $searchvalue) {
 	
 		SimpleSAML_Logger::debug('Library - LDAP: Search for DN (base:' . 
@@ -96,11 +99,16 @@ class SimpleSAML_Auth_LDAP {
 	 */
 	public function getAttributes($dn, $search) {
 	
-		SimpleSAML_Logger::debug('Library - LDAP: Get attributes from ' . $dn . ' (' . $search . ')');
-		$sr = @ldap_read($this->ldap, $dn, $search );
+		$searchtxt = (is_array($search) ? join(',', $search) : 'all attributes');
+		SimpleSAML_Logger::debug('Library - LDAP: Get attributes from ' . $dn . ' (' . $searchtxt . ')');
 		
+		if (is_array($search)) 
+			$sr = @ldap_read($this->ldap, $dn, 'objectClass=*', $search );
+		else 
+			$sr = @ldap_read($this->ldap, $dn, 'objectClass=*');
+			
 		if ($sr === false) 
-			throw new Exception('Could not retrieve attribtues for user:' . ldap_error($this->ldap));
+			throw new Exception('Could not retrieve attributes for user: ' . ldap_error($this->ldap));
 		
 		$ldapentries = @ldap_get_entries($this->ldap, $sr);
 		
