@@ -18,8 +18,8 @@
 		$attributes = $data['attributes'];
 		foreach ($attributes AS $name => $value) {
 			
-			if (isset($this->data['attribute_' . htmlspecialchars($name) ])) {
-				$name = $this->data['attribute_' . htmlspecialchars($name) ];
+			if (isset($this->data['attribute_' . htmlspecialchars(strtolower($name)) ])) {
+				$name = $this->data['attribute_' . htmlspecialchars(strtolower($name))];
 			}
 			
 			if (sizeof($value) > 1) {
