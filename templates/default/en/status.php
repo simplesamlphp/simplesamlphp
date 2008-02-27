@@ -17,6 +17,11 @@
 		
 		$attributes = $data['attributes'];
 		foreach ($attributes AS $name => $value) {
+			
+			if (isset($this->data['attribute_' . htmlspecialchars($name) ])) {
+				$name = $this->data['attribute_' . htmlspecialchars($name) ];
+			}
+			
 			if (sizeof($value) > 1) {
 				echo '<tr><td>' . htmlspecialchars($name) . '</td><td><ul>';
 				foreach ($value AS $v) {
