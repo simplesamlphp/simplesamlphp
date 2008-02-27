@@ -135,50 +135,15 @@ if (!$session->isAuthenticated($authority) ) {
 
 	try {
 	
-		//$session->add_sp_session($authnrequest->getIssuer());
-
-
-		//$session->setAttribute('eduPersonAffiliation', array('student'));
-
 		$spentityid = $requestcache['Issuer'];
 		$spmetadata = $metadata->getMetaData($spentityid, 'shib13-sp-remote');
-
 
 		
 		/*
 		 * Attribute handling
 		 */
 		$afilter = new SimpleSAML_XML_AttributeFilter($config, $session->getAttributes());
-		if (isset($idpmetadata['attributemap'])) {
-			SimpleSAML_Logger::debug('Applying IdP specific attributemap: ' . $idpmetadata['attributemap']);
-			$afilter->namemap($idpmetadata['attributemap']);
-		}
-		if (isset($spmetadata['attributemap'])) {
-			SimpleSAML_Logger::debug('Applying SP specific attributemap: ' . $spmetadata['attributemap']);
-			$afilter->namemap($spmetadata['attributemap']);
-		}
-		if (isset($idpmetadata['attributealter'])) {
-			if (!is_array($idpmetadata['attributealter'])) {
-				SimpleSAML_Logger::debug('Applying IdP specific attribute alter: ' . $idpmetadata['attributealter']);
-				$afilter->alter($idpmetadata['attributealter']);
-			} else {
-				foreach($idpmetadata['attributealter'] AS $alterfunc) {
-					SimpleSAML_Logger::debug('Applying IdP specific attribute alter: ' . $alterfunc);
-					$afilter->alter($alterfunc);
-				}
-			}
-		}
-		if (isset($spmetadata['attributealter'])) {
-			if (!is_array($spmetadata['attributealter'])) {
-				SimpleSAML_Logger::debug('Applying SP specific attribute alter: ' . $spmetadata['attributealter']);
-				$afilter->alter($spmetadata['attributealter']);
-			} else {
-				foreach($spmetadata['attributealter'] AS $alterfunc) {
-					SimpleSAML_Logger::debug('Applying SP specific attribute alter: ' . $alterfunc);
-					$afilter->alter($alterfunc);
-				}
-			}
-		}
+		$afilter->process($idpmetadata, $spmetadata);
 
 		/**
 		 * Make a log entry in the statistics for this SSO login.
@@ -198,14 +163,10 @@ if (!$session->isAuthenticated($authority) ) {
 		/**
 		 * Filter away attributes that are not allowed for this SP.
 		 */
-		if (isset($spmetadata['attributes'])) {
-			SimpleSAML_Logger::debug('Applying SP specific attribute filter: ' . join(',', $spmetadata['attributes']));
-			$afilter->filter($spmetadata['attributes']);
-		}
+		$afilter->processFilter($idpmetadata, $spmetadata);
+		
 		$filteredattributes = $afilter->getAttributes();
 		
-
-
 
 		// Generating a Shibboleth 1.3 Response.
 		$ar = new SimpleSAML_XML_Shib13_AuthnResponse($config, $metadata);
