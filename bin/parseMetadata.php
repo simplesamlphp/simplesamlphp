@@ -2,19 +2,33 @@
 <?php
 
 /*
- * This script can be used to generate SAML 1.x metadata for simpleSAMLphp
- * based on a metadata file.
+ * This script can be used to generate metadata for simpleSAMLphp
+ * based on an XML metadata file.
  */
 
 
+/* This is the base directory of the simpleSAMLphp installation. */
+$baseDir = dirname(dirname(__FILE__));
+
 /* Set up the include path. */
-$path_extra = dirname(dirname(__FILE__)) . '/lib';
+$path_extra =  $baseDir . '/lib';
 $path = ini_get('include_path');
 $path = $path_extra . PATH_SEPARATOR . $path;
 ini_set('include_path', $path);
 
 /* Load required libraries. */
 require_once('SimpleSAML/Metadata/SAMLParser.php');
+
+
+/* $outputDir contains the directory we will store the generated metadata in. */
+$outputDir = $baseDir . '/metadata-generated';
+
+
+/* $toStdOut is a boolean telling us wheter we will print the output to stdout instead
+ * of writing it to files in $outputDir.
+ */
+$toStdOut = FALSE;
+
 
 
 /* This variable contains the files we will parse. */
@@ -35,9 +49,19 @@ foreach($argv as $a) {
 		continue;
 	}
 
+	if(strpos($a, '=') !== FALSE) {
+		$p = strpos($a, '=');
+		$v = substr($a, $p + 1);
+		$a = substr($a, 0, $p);
+	} else {
+		$v = NULL;
+	}
+
 	/* Map short options to long options. */
 	$shortOptMap = array(
 		'-h' => '--help',
+		'-o' => '--out-dir',
+		'-s' => '--stdout',
 		);
 	if(array_key_exists($a, $shortOptMap)) {
 		$a = $shortOptMap[$a];
@@ -47,6 +71,17 @@ foreach($argv as $a) {
 	case '--help':
 		printHelp();
 		exit(0);
+	case '--out-dir':
+		if($v === NULL || $v === '') {
+			echo('The --out-dir option requires an parameter.' . "\n");
+			echo('Please run `' . $progName . ' --help` for usage information.' . "\n");
+			exit(1);
+		}
+		$outputDir = $v;
+		break;
+	case '--stdout':
+		$toStdOut = TRUE;
+		break;
 	default:
 		echo('Unknown option: ' . $a . "\n");
 		echo('Please run `' . $progName . ' --help` for usage information.' . "\n");
@@ -71,7 +106,11 @@ foreach($files as $f) {
 	processFile($f);
 }
 
-dumpMetadata();
+if($toStdOut) {
+	dumpMetadataStdOut();
+} else {
+	writeMetadataFiles();
+}
 
 exit(0);
 
@@ -88,15 +127,67 @@ function printHelp() {
 	echo('be added to the metadata files in metadata/.' . "\n");
 	echo("\n");
 	echo('Options:' . "\n");
-	echo(' -h, --help     Print this help.' . "\n");
+	echo(' -h, --help                   Print this help.' . "\n");
+	echo(' -o=<DIR>, --out-dir=<DIR>    Write the output to this directory. The' . "\n");
+	echo('                              default directory is metadata-generated/' . "\n");
+	echo(' -s, --stdout                 Write the output to stdout instead of' . "\n");
+	echo('                              seperate files in the output directory.' . "\n");
 	echo("\n");
 }
 
 
 /**
- * This function outputs data which should be added to the metadata/shib13-sp-remote.php file.
+ * This function writes the metadata to to separate files in the output directory.
  */
-function dumpMetadata() {
+function writeMetadataFiles() {
+
+	global $outputDir;
+
+	while(strlen($outputDir) > 0 && $outputDir[strlen($outputDir) - 1] === '/') {
+		$outputDir = substr($outputDir, 0, strlen($outputDir) - 1);
+	}
+
+	if(!file_exists($outputDir)) {
+		echo('Creating directory: ' . $outputDir . "\n");
+		mkdir($outputDir, 0777, TRUE);
+	}
+
+	foreach($GLOBALS['metadata'] as $category => $elements) {
+
+		$filename = $outputDir . '/' . $category . '.php';
+
+		echo('Writing: ' . $filename . "\n");
+
+		$fh = fopen($filename, 'w');
+		if($fh === FALSE) {
+			echo('Failed to open file for writing: ' . $filename . "\n");
+			exit(1);
+		}
+
+		fwrite($fh, '<?php' . "\n");
+
+		foreach($elements as $m) {
+			$filename = $m['filename'];
+			$entityID = $m['metadata']['entityID'];
+
+			fwrite($fh, "\n");
+			fwrite($fh, '/* The following metadata was generated from ' . $filename . ' on ' . $GLOBALS['when'] . '. */' . "\n");
+			fwrite($fh, '$metadata[\'' . addslashes($entityID) . '\'] = ' . var_export($m['metadata'], TRUE)) . ';' . "\n";
+		}
+
+
+		fwrite($fh, "\n");
+		fwrite($fh, '?>');
+
+		fclose($fh);
+	}
+}
+
+
+/**
+ * This function writes the metadata to stdout.
+ */
+function dumpMetadataStdOut() {
 
 	foreach($GLOBALS['metadata'] as $category => $elements) {
 
