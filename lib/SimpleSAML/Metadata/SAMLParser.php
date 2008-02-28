@@ -5,10 +5,13 @@ require_once('SimpleSAML/Utilities.php');
 /**
  * This is class for parsing of SAML 1.x and SAML 2.0 metadata.
  *
- * Metadata is loaded by calling SimpleSAML_Metadata_SAMLParser::parseFile or
- * SimpleSAML_Metadata_SAMLParser::parseString. These functions returns an instance of
- * SimpleSAML_Metadata_SAMLParser. To get metadata from this object, use the methods
- * getMetadata1xSP or getMetadata20SP.
+ * Metadata is loaded by calling the static methods parseFile, parseString or parseElement.
+ * These functions returns an instance of SimpleSAML_Metadata_SAMLParser. To get metadata
+ * from this object, use the methods getMetadata1xSP or getMetadata20SP.
+ *
+ * To parse a file which can contain a collection of EntityDescriptor or EntitiesDescriptor elements, use the
+ * parseDescriptorsFile, parseDescriptorsString or parseDescriptorsElement methods. These functions will return
+ * an array of SAMLParser elements where each element represents an EntityDescriptor-element.
  */
 class SimpleSAML_Metadata_SAMLParser {
 
@@ -72,12 +75,36 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * This is the constructor for the SAMLParser class.
 	 *
-	 * @param $doc The DOMDocument with the metadata.
+	 * @param $entityElement The DOMElement which represents the EntityDescriptor-element.
 	 */
-	private function __construct($doc) {
+	private function __construct($entityElement) {
 		$this->spDescriptors = array();
 
-		$this->processDOMDocument($doc);
+
+		assert('$entityElement instanceof DOMElement');
+
+		/* Extract the entityID from the EntityDescriptor element. This is a required
+		 * attribute, so we throw an exception if it isn't found.
+		 */
+		if(!$entityElement->hasAttribute('entityID')) {
+			throw new Exception('EntityDescriptor missing required entityID attribute.');
+		}
+		$this->entityID = $entityElement->getAttribute('entityID');
+
+
+		/* Look over the child nodes for any known element types. */
+		for($i = 0; $i < $entityElement->childNodes->length; $i++) {
+			$child = $entityElement->childNodes->item($i);
+
+			/* Skip text nodes. */
+			if($child instanceof DOMText) {
+				continue;
+			}
+
+			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'SPSSODescriptor', '@md') === TRUE) {
+				$this->processSPSSODescriptor($child);
+			}
+		}
 	}
 
 
@@ -95,7 +122,7 @@ class SimpleSAML_Metadata_SAMLParser {
 			throw new Exception('Failed to read XML from file: ' . $file);
 		}
 
-		return new SimpleSAML_Metadata_SAMLParser($doc);
+		return self::parseDocument($doc);
 	}
 
 
@@ -113,7 +140,112 @@ class SimpleSAML_Metadata_SAMLParser {
 			throw new Exception('Failed to parse XML string.');
 		}
 
-		return new SimpleSAML_Metadata_SAMLParser($doc);
+		return self::parseDocument($doc);
+	}
+
+
+	/**
+	 * This function parses a DOMDocument which is assumed to contain a single EntityDescriptor element.
+	 *
+	 * @param $document  The DOMDocument which contains the EntityDescriptor element.
+	 * @return An instance of this class with the metadata loaded.
+	 */
+	public static function parseDocument($document) {
+		assert('$document instanceof DOMDocument');
+
+		$entityElement = self::findEntityDescriptor($document);
+
+		return self::parseElement($entityElement);
+	}
+
+
+	/**
+	 * This function parses a DOMElement which represents a EntityDescriptor element.
+	 *
+	 * @param $entityElement  A DOMElement which represents a EntityDescriptor element.
+	 * @return An instance of this class with the metadata loaded.
+	 */
+	public static function parseElement($entityElement) {
+		assert('$entityElement instanceof DOMElement');
+
+		return new SimpleSAML_Metadata_SAMLParser($entityElement);
+	}
+
+
+	/**
+	 * This function parses a file where the root node is either an EntityDescriptor element or an
+	 * EntitiesDescriptor element. In both cases it will return an array of SAMLParser instances. If
+	 * the file contains a single EntityDescriptorElement, then the array will contain a single SAMLParser
+	 * instance.
+	 *
+	 * @param $file  The path to the file which contains the EntityDescriptor or EntitiesDescriptor element.
+	 * @return An array of SAMLParser instances.
+	 */
+	public static function parseDescriptorsFile($file) {
+
+		$doc = new DOMDocument();
+
+		$res = $doc->load($file);
+		if($res !== TRUE) {
+			throw new Exception('Failed to read XML from file: ' . $file);
+		}
+
+		return self::parseDescriptorsElement($doc->documentElement);
+	}
+
+
+	/**
+	 * This function parses a string with XML data. The root node of the XML data is expected to be either an
+	 * EntityDescriptor element or an EntitiesDescriptor element. It will return an array of SAMLParser instances.
+	 *
+	 * @param $string  The string with XML data.
+	 * @return An array of SAMLParser instances.
+	 */
+	public static function parseDescriptorsString($string) {
+
+		$doc = new DOMDocument();
+
+		$res = $doc->loadXML($string);
+		if($res !== TRUE) {
+			throw new Exception('Failed to parse XML string.');
+		}
+
+		return self::parseDescriptorsElement($doc->documentElement);
+	}
+
+
+	/**
+	 * This function parses a DOMElement which represents either an EntityDescriptor element or an
+	 * EntitiesDescriptor element. It will return an array of SAMLParser instances in both cases.
+	 *
+	 * @param $element  The DOMElement which contains the EntityDescriptor element or the EntitiesDescriptor
+	 *                  element.
+	 * @return An array of SAMLParser instances.
+	 */
+	public static function parseDescriptorsElement($element) {
+
+		if($element === NULL) {
+			throw new Exception('Document was empty.');
+		}
+
+		assert('$element instanceof DOMElement');
+
+
+		if(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntityDescriptor', '@md') === TRUE) {
+			$elements = array($element);
+		} elseif(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntitiesDescriptor', '@md') === TRUE) {
+			$elements = SimpleSAML_Utilities::getDOMChildren($element, 'EntityDescriptor', '@md');
+		} else {
+			throw new Exception('Unexpected root node: [' . $element->namespaceURI . ']:' .
+				$element->localName);
+		}
+
+		$ret = array();
+		foreach($elements as $e) {
+			$ret[] = self::parseElement($e);
+		}
+
+		return $ret;
 	}
 
 
@@ -129,7 +261,6 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * @return Associative array with metadata or NULL if we are unable to generate metadata for a SAML 1.x SP.
 	 */
 	public function getMetadata1xSP() {
-		assert('$this->metadataLoaded == TRUE');
 
 		$ret = array();
 
@@ -173,7 +304,6 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * @return Associative array with metadata or NULL if we are unable to generate metadata for a SAML 1.x SP.
 	 */
 	public function getMetadata20SP() {
-		assert('$this->metadataLoaded == TRUE');
 
 		$ret = array();
 
@@ -216,42 +346,6 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 		return $ret;
-	}
-
-
-	/**
-	 * This function parses a DOMDocument which contains a single EntityDescriptor element.
-	 *
-	 * @param $doc  The DOMDocument which should be parsed.
-	 */
-	private function processDOMDocument($doc) {
-
-		$ed = self::findEntityDescriptor($doc);
-
-		/* Extract the entityID from the EntityDescriptor element. This is a required
-		 * attribute, so we throw an exception if it isn't found.
-		 */
-		if(!$ed->hasAttribute('entityID')) {
-			throw new Exception('EntityDescriptor missing required entityID attribute.');
-		}
-		$this->entityID = $ed->getAttribute('entityID');
-
-
-		/* Look over the child nodes for any known element types. */
-		for($i = 0; $i < $ed->childNodes->length; $i++) {
-			$child = $ed->childNodes->item($i);
-
-			/* Skip text nodes. */
-			if($child instanceof DOMText) {
-				continue;
-			}
-
-			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'SPSSODescriptor', '@md') === TRUE) {
-				$this->processSPSSODescriptor($child);
-			}
-		}
-
-		$this->metadataLoaded = TRUE;
 	}
 
 

@@ -126,10 +126,12 @@ function dumpMetadata() {
  * @param $filename  Filename of the metadata file.
  */
 function processFile($filename) {
-	$sp = SimpleSAML_Metadata_SAMLParser::parseFile($filename);
+	$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($filename);
 
-	addMetadata($filename, $sp->getMetadata1xSP(), 'shib13-sp-remote');
-	addMetadata($filename, $sp->getMetadata20SP(), 'saml20-sp-remote');
+	foreach($entities as $entity) {
+		addMetadata($filename, $entity->getMetadata1xSP(), 'shib13-sp-remote');
+		addMetadata($filename, $entity->getMetadata20SP(), 'saml20-sp-remote');
+	}
 }
 
 
