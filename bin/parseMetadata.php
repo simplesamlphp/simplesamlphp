@@ -172,7 +172,7 @@ function writeMetadataFiles() {
 
 			fwrite($fh, "\n");
 			fwrite($fh, '/* The following metadata was generated from ' . $filename . ' on ' . $GLOBALS['when'] . '. */' . "\n");
-			fwrite($fh, '$metadata[\'' . addslashes($entityID) . '\'] = ' . var_export($m['metadata'], TRUE)) . ';' . "\n";
+			fwrite($fh, '$metadata[\'' . addslashes($entityID) . '\'] = ' . var_export($m['metadata'], TRUE) . ';' . "\n");
 		}
 
 
