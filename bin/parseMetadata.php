@@ -130,7 +130,9 @@ function processFile($filename) {
 
 	foreach($entities as $entity) {
 		addMetadata($filename, $entity->getMetadata1xSP(), 'shib13-sp-remote');
+		addMetadata($filename, $entity->getMetadata1xIdP(), 'shib13-idp-remote');
 		addMetadata($filename, $entity->getMetadata20SP(), 'saml20-sp-remote');
+		addMetadata($filename, $entity->getMetadata20IdP(), 'saml20-idp-remote');
 	}
 }
 
