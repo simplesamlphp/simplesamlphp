@@ -582,8 +582,8 @@ class SimpleSAML_Utilities {
 		for($i = 0; $i < $element->childNodes->length; $i++) {
 			$child = $element->childNodes->item($i);
 
-			/* Skip text nodes. */
-			if($child instanceof DOMText) {
+			/* Skip text nodes and comment elements. */
+			if($child instanceof DOMText || $child instanceof DOMComment) {
 				continue;
 			}
 
