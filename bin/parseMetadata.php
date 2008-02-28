@@ -72,7 +72,7 @@ foreach($argv as $a) {
 		printHelp();
 		exit(0);
 	case '--out-dir':
-		if($v === NULL || $v === '') {
+		if($v === NULL || strlen($v) === 0) {
 			echo('The --out-dir option requires an parameter.' . "\n");
 			echo('Please run `' . $progName . ' --help` for usage information.' . "\n");
 			exit(1);
