@@ -97,13 +97,13 @@ class SimpleSAML_Auth_LDAP {
 	/**
 	 * Search DN for attributes, and return associative array.
 	 */
-	public function getAttributes($dn, $search) {
+	public function getAttributes($dn, $attributes) {
 	
-		$searchtxt = (is_array($search) ? join(',', $search) : 'all attributes');
+		$searchtxt = (is_array($attributes) ? join(',', $attributes) : 'all attributes');
 		SimpleSAML_Logger::debug('Library - LDAP: Get attributes from ' . $dn . ' (' . $searchtxt . ')');
 		
 		if (is_array($search)) 
-			$sr = @ldap_read($this->ldap, $dn, 'objectClass=*', $search );
+			$sr = @ldap_read($this->ldap, $dn, 'objectClass=*', $attributes );
 		else 
 			$sr = @ldap_read($this->ldap, $dn, 'objectClass=*');
 			
