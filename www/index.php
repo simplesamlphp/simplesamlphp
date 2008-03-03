@@ -50,6 +50,10 @@ $links[] = array(
 	'href' => 'example-simple/hostnames.php', 
 	'text' => 'Diagnostics on hostname, port and protocol');
 
+$links[] = array(
+	'href' => 'admin/phpinfo.php', 
+	'text' => 'PHPinfo');
+
 
 
 $linksmeta = array();
