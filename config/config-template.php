@@ -48,6 +48,7 @@ $config = array (
 	 */
 	'auth.adminpassword'		=> '123',
 	'admin.protectindexpage'	=> false,
+	'admin.protectmetadata'		=> false,
 	
 	/*
 	 * Some information about the technical persons running this installation.

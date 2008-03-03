@@ -8,7 +8,7 @@ require_once('SimpleSAML/XML/AuthnResponse.php');
 require_once('SimpleSAML/XML/Validator.php');
 
 require_once('xmlseclibs.php');
- 
+
 /**
  * An SAML 2.0 Authentication Response
  *
