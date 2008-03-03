@@ -219,8 +219,11 @@ th.rowtitle {
 }
 .enablebox table {
 	border: 1px solid #eee;
-	float: right;
+
 	margin-left: 1em;
+}
+.enablebox.mini table {
+	float: right;
 }
 .enablebox tr td {
 	padding: .5px 1em 1px .5em;

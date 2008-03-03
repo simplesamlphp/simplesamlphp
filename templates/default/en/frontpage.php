@@ -5,7 +5,7 @@
 
 	<div id="content">
 
-<div class="enablebox">
+<div class="enablebox mini">
 <table>
 
 <?php
@@ -75,6 +75,28 @@ $icon_disabled = '<img src="/' . $data['baseurlpath'] . 'resources/icons/delete.
 				}
 			}
 		?>
+		
+		<h2>Checking your PHP installation</h2>
+		
+		
+		<div class="enablebox">
+		<table>
+		
+		<?php
+		
+		$icon_enabled  = '<img src="/' . $data['baseurlpath'] . 'resources/icons/accept.png" alt="enabled" />';
+		$icon_disabled = '<img src="/' . $data['baseurlpath'] . 'resources/icons/delete.png" alt="disabled" />';
+		
+		
+		foreach ($this->data['funcmatrix'] AS $func) {
+			echo '<tr class="' . ($func['enabled'] ? 'enabled' : 'disabled') . '"><td>' . ($func['enabled'] ? $icon_enabled : $icon_disabled) . '</td>
+			<td>' . $func['required'] . '</td><td>' . $func['descr'] . '</td></tr>';
+		}
+		
+		?>
+
+		</table>
+		</div>
 		
 
 	<h2>About simpleSAMLphp</h2>

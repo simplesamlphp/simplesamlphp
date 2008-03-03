@@ -127,6 +127,25 @@ $enablematrix = array(
 );
 
 
+$functionchecks = array(
+	'hash'             => array('required',  'Hashing function'),
+	'gzinflate'        => array('required',  'ZLib'),
+	'openssl_sign'     => array('required',  'OpenSSL'),
+	'simplexml_import_dom' => array('required', 'SimpleXML'),
+	'dom_import_simplexml' => array('required', 'XML DOM'),
+	'preg_match'       => array('required',  'RegEx support'),
+	'ldap_bind'        => array('required for LDAP auth module',  'LDAP Extension'),
+	'radius_auth_open' => array('required for Radius auth module',  'Radius Extension'),
+	'mcrypt_module_open'=> array('optional',  'MCrypt'),
+);
+$funcmatrix = array();
+$funcmatrix[] = array('required' => 'required', 'descr' => 'PHP Version >= 5.1.2. You run: ' . phpversion(), 'enabled' => version_compare(phpversion(), '5.1.2', '>='));
+$funcmatrix[] = array('required' => 'reccomended', 'descr' => 'PHP Version >= 5.2', 'enabled' => version_compare(phpversion(), '5.2', '>='));
+foreach ($functionchecks AS $func => $descr) {
+	$funcmatrix[] = array('descr' => $descr[1], 'required' => $descr[0], 'enabled' => function_exists($func));
+}
+
+
 $t = new SimpleSAML_XHTML_Template($config, 'frontpage.php');
 $t->data['header'] = 'simpleSAMLphp installation page';
 $t->data['icon'] = 'compass_l.png';
@@ -135,6 +154,7 @@ $t->data['links'] = $links;
 $t->data['links_meta'] = $linksmeta;
 $t->data['links_doc'] = $linksdoc;
 $t->data['enablematrix'] = $enablematrix;
+$t->data['funcmatrix'] = $funcmatrix;
 
 $t->show();
 
