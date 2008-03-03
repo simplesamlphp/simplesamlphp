@@ -45,6 +45,21 @@ Functions to generate simple cases of Exclusive Canonical XML - Callable functio
 i.e.: $canonical = C14NGeneral($domelement, TRUE);
 */
 
+
+
+/**
+ * Older versions of PHP does not have the hash function, so we implement it
+ * if it does not exists
+ */
+if(!function_exists('hash')) {
+	function hash($algo, $data, $raw_output = 0) {
+		if($algo == 'md5') return(md5($data, $raw_output));
+		if($algo == 'sha1') return(sha1($data, $raw_output));
+		throw new Exception('xmlseclibs added hash() method: Hashing algoritm: ' . $algo . ' is not implemented');
+	}
+}
+
+
 /* helper function */
 function sortAndAddAttrs($element, $arAtts) {
    $newAtts = array();
