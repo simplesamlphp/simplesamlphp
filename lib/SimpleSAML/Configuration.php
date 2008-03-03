@@ -30,6 +30,9 @@ class SimpleSAML_Configuration {
 	}
 
 	private function loadConfig() {
+		if (!file_exists($this->configpath . '/config.php')) {
+			echo 'You have not yet created a configuration file. [ <a href="http://rnd.feide.no/content/installing-simplesamlphp#id405868">simpleSAMLphp installation manual</a> ]';
+		}
 		require_once($this->configpath . '/config.php');
 		$this->configuration = $config;
 	}

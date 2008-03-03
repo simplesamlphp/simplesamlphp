@@ -26,7 +26,8 @@ ini_set('include_path', $path);
 
 require_once('SimpleSAML/Configuration.php');
 
-SimpleSAML_Configuration::init(dirname(dirname(__FILE__)) . '/config');
+$configdir = dirname(dirname(__FILE__)) . '/config';
+SimpleSAML_Configuration::init($configdir);
 
 
 
