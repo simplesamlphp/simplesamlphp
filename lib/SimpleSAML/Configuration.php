@@ -70,6 +70,38 @@ class SimpleSAML_Configuration {
 	}
 
 
+	/**
+	 * This function resolves a path which may be relative to the
+	 * simpleSAMLphp base directory.
+	 *
+	 * The path will never end with a '/'.
+	 *
+	 * @param $path  The path we should resolve. This option may be NULL.
+	 * @return $path if $path is an absolute path, or $path prepended with
+	 *         the base directory of this simpleSAMLphp installation. We
+	 *         will return NULL if $path is NULL.
+	 */
+	public function resolvePath($path) {
+		if($path === NULL) {
+			return NULL;
+		}
+
+		assert('is_string($path)');
+
+		/* Prepend path with basedir if it doesn't start with
+                 * a slash. We assume getBaseDir ends with a slash.
+		 */
+		if ($path[0] !== '/') $path = $this->getBaseDir() . $path;
+
+		/* Remove trailing slashes. */
+		while (substr($path, -1) === '/') {
+			$path = substr($path, 0, -1);
+		}
+
+		return $path;
+	}
+
+
 	/* Retrieve a path configuration option set in config.php.
 	 * The function will always return an absolute path unless the
 	 * option is not set. It will then return the default value.
@@ -93,20 +125,12 @@ class SimpleSAML_Configuration {
 
 		/* Return the default value if the option is unset. */
 		if (!array_key_exists($name, $this->configuration)) {
-			return $default;
+			$path = $default;
+		} else {
+			$path = $this->configuration[$name];
 		}
 
-		$path = $this->configuration[$name];
-
-		/* Prepend path with basedir if it doesn't start with
-                 * a slash. We assume getBaseDir ends with a slash.
-		 */
-		if ($path[0] !== '/') $path = $this->getBaseDir() . $path;
-		
-		/* Add trailing slash if it is missing to be consistent with getBaseDir */
-		if (substr($path, -1) !== '/') $path .= '/';
-		
-		return $path;
+		return $this->resolvePath($path) . '/';
 	}
 
 
