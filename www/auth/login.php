@@ -81,7 +81,7 @@ if (isset($_POST['username'])) {
 		 * Do LDAP bind using DN found from the the dnpattern
 		 */
 		if (!$ldap->bind($dn, $password)) {
-			SimpleSAML_Logger::info('AUTH - ldap: '. $requestedUser . ' failed to authenticate. DN=' . $dn);
+			SimpleSAML_Logger::info('AUTH - ldap: '. $username . ' failed to authenticate. DN=' . $dn);
 			throw new Exception('Wrong username or password');
 		}
 
