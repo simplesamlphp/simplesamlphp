@@ -1,6 +1,7 @@
 <?php
 
 require_once('SimpleSAML/Metadata/MetaDataStorageHandlerFlatfile.php');
+require_once('SimpleSAML/Metadata/MetaDataStorageHandlerXML.php');
 
 /**
  * This abstract class defines an interface for metadata storage sources.
@@ -37,6 +38,8 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 		switch($type) {
 		case 'flatfile':
 			return new SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile($sourceConfig);
+		case 'xml':
+			return new SimpleSAML_Metadata_MetaDataStorageHandlerXML($sourceConfig);
 		default:
 			throw new Exception('Invalid metadata source type: "' . $type . '".');
 		}

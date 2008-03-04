@@ -154,6 +154,15 @@ $config = array (
 	 *                this option is the value of the 'metadatadir' configuration option, or
 	 *                'metadata/' if that option is unset.
 	 *
+	 * XML metadata handler:
+	 * This metadata handler parses an XML file with either an EntityDescriptor element or an
+	 * EntitiesDescriptor element. The XML file may be stored locally, or (for debugging) on a remote
+	 * web server.
+	 * The XML hetadata handler defines the following options:
+	 * - 'type': This is always 'xml'.
+	 * - 'file': Path to an XML file with either
+	 * - 'url': The url to fetch metadata from. THIS IS ONLY FOR DEBUGGING - THERE IS NO CACHING OF THE RESPONSE.
+	 *
 	 *
 	 * Examples:
 	 *
@@ -163,6 +172,12 @@ $config = array (
 	 * 'metadata.sources' => array(
 	 *     array('type' => 'flatfile'),
 	 *     array('type' => 'flatfile', 'directory' => 'metadata-generated'),
+	 *     ),
+	 *
+	 * This example defines a flatfile source and an XML source.
+	 * 'metadata.sources' => array(
+	 *     array('type' => 'flatfile'),
+	 *     array('type' => 'xml', 'file' => 'idp.example.org-idpMeta.xml'),
 	 *     ),
 	 *
 	 *
