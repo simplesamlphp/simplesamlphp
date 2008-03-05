@@ -102,7 +102,7 @@ class SimpleSAML_Auth_LDAP {
 		$searchtxt = (is_array($attributes) ? join(',', $attributes) : 'all attributes');
 		SimpleSAML_Logger::debug('Library - LDAP: Get attributes from ' . $dn . ' (' . $searchtxt . ')');
 		
-		if (is_array($search)) 
+		if (is_array($attributes)) 
 			$sr = @ldap_read($this->ldap, $dn, 'objectClass=*', $attributes );
 		else 
 			$sr = @ldap_read($this->ldap, $dn, 'objectClass=*');
