@@ -67,7 +67,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		if ($mode == 'IdP') {
 			$metadataset = 'saml20-sp-remote';
 		}
-
+		SimpleSAML_Logger::debug('Library - HTTPRedirect validateQuery(): Looking up metadata issuer:' . $issuer . ' in set '. $metadataset);
 		$md = $this->metadata->getMetaData($issuer, $metadataset);
 		
 		// check wether to validate or not

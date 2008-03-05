@@ -13,12 +13,19 @@ $lang = array(
 		
 		'title_GENERATEAUTHNRESPONSE' => 'Could not create authentication response',
 		'descr_GENERATEAUTHNRESPONSE' => 'When this identity provider tried to create an authentication response, an error occured.',
+
+		'title_GENERATELOGOUTRESPONSE' => 'Could not create logout response',
+		'descr_GENERATELOGOUTRESPONSE' => 'When this SAML entity tried to create an logout response, an error occured.',
+
 		
 		'title_LDAPERROR' => 'LDAP Error',
 		'descr_LDAPERROR' => 'LDAP is the user database, and when you try to login, we need to contact an LDAP database. When we tried it this time an error occured.',
 		
 		'title_LOGOUTREQUEST' => 'Error processing Logout Request',
 		'descr_LOGOUTREQUEST' => 'An error occured when trying to process the Logout Request.',
+		
+		'title_GENERATELOGOUTREQUEST' => 'Could not create logout request',
+		'descr_GENERATELOGOUTREQUEST' => 'When this SAML entity tried to create an logout request, an error occured.',
 		
 		'title_LOGOUTRESPONSE' => 'Error processing Logout Response',
 		'descr_LOGOUTRESPONSE' => 'An error occured when trying to process the Logout Response.',
