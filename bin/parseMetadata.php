@@ -17,7 +17,7 @@ $path = $path_extra . PATH_SEPARATOR . $path;
 ini_set('include_path', $path);
 
 /* Load required libraries. */
-require_once('SimpleSAML/Metadata/SAMLParser.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/SAMLParser.php');
 
 
 /* $outputDir contains the directory we will store the generated metadata in. */

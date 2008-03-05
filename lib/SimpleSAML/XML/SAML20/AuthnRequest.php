@@ -1,7 +1,7 @@
 <?php
  
-require_once('SimpleSAML/Configuration.php');
-require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
  
 /**
  * The Shibboleth 1.3 Authentication Request. Not part of SAML 1.1, 

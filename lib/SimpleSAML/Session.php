@@ -1,12 +1,12 @@
 <?php
 
-require_once('SimpleSAML/Configuration.php');
-require_once('SimpleSAML/Utilities.php');
-require_once('SimpleSAML/Session.php');
-require_once('SimpleSAML/SessionHandler.php');
-require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
-require_once('SimpleSAML/Logger.php');
-require_once('SimpleSAML/ModifiedInfo.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/SessionHandler.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/ModifiedInfo.php');
 
 /**
  * The Session class holds information about a user session, and everything attached to it.

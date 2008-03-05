@@ -1,8 +1,8 @@
 <?php
 
-require_once('SimpleSAML/Configuration.php');
-require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
-require_once('SimpleSAML/XML/Shib13/AuthnResponse.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XML/Shib13/AuthnResponse.php');
  
 /**
  * Implementation of the Shibboleth 1.3 HTTP-POST binding.

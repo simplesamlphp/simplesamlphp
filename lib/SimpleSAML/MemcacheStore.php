@@ -1,15 +1,15 @@
 <?php 
 
 /* We need access to the configuration from config/config.php. */
-require_once('SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
 
 /* For access to SimpleSAML_Utilities::transposeArray. */
-require_once('SimpleSAML/Utilities.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
 
 /* For the interface that objects can export to allow us to see if it
  * is modified or not.
  */
-require_once('SimpleSAML/ModifiedInfo.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/ModifiedInfo.php');
 
 /*
  * This file is part of SimpleSAMLphp. See the file COPYING in the

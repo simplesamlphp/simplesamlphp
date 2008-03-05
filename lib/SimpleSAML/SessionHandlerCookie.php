@@ -1,7 +1,7 @@
 <?php
 
 /* We need access to the configuration from config/config.php. */
-require_once('SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
 
 /**
  * This file is part of SimpleSAMLphp. See the file COPYING in the

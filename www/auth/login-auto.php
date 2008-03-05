@@ -17,12 +17,12 @@
  * options.
  */
 
-require_once('../../www/_include.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . '../../www/_include.php');
 
-require_once('SimpleSAML/Configuration.php');
-require_once('SimpleSAML/Session.php');
-require_once('SimpleSAML/Utilities.php');
-require_once('SimpleSAML/XHTML/Template.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XHTML/Template.php');
 
 /* Load the configuration. */
 $config = SimpleSAML_Configuration::getInstance();

@@ -1,12 +1,12 @@
 <?php
 
 /* We use the MemcacheStore class to store session information. */
-require_once('SimpleSAML/MemcacheStore.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/MemcacheStore.php');
 
 /* We base this session handler on the SessionHandlerCookie helper
  * class. This saves us from having to handle session ids in this class.
  */
-require_once('SimpleSAML/SessionHandlerCookie.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/SessionHandlerCookie.php');
 
 /**
  * This file is part of SimpleSAMLphp. See the file COPYING in the

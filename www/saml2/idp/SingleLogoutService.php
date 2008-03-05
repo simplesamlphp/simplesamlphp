@@ -12,16 +12,16 @@
 // TODO: Show error message, when shibboleth sp is logged in.
 // TODO: Propagate HTTP-REDIRECT SLO on SAML 2.0 bridge.
 
-require_once('../../../www/_include.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . '../../../www/_include.php');
 
-require_once('SimpleSAML/Utilities.php');
-require_once('SimpleSAML/Session.php');
-require_once('SimpleSAML/Logger.php');
-require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
-require_once('SimpleSAML/XML/SAML20/LogoutRequest.php');
-require_once('SimpleSAML/XML/SAML20/LogoutResponse.php');
-require_once('SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
-require_once('SimpleSAML/XHTML/Template.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XML/SAML20/LogoutRequest.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XML/SAML20/LogoutResponse.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XHTML/Template.php');
 
 
 $config = SimpleSAML_Configuration::getInstance();

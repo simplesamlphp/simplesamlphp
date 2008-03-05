@@ -1,7 +1,7 @@
 <?php
 
-require_once('SimpleSAML/Metadata/MetaDataStorageHandlerFlatfile.php');
-require_once('SimpleSAML/Metadata/MetaDataStorageHandlerXML.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandlerFlatfile.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandlerXML.php');
 
 /**
  * This abstract class defines an interface for metadata storage sources.

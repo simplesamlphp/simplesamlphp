@@ -1,7 +1,7 @@
 <?php
 
-require_once('SimpleSAML/Configuration.php');
-require_once('SimpleSAML/Session.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');
 
 /**
  * A class for logging
@@ -84,6 +84,9 @@ class SimpleSAML_Logger {
 	
 	
 	public static function createLoggingHandler() {
+	
+		global $SIMPLESAML_INCPREFIX;
+	
 		/* Get the configuration. */
 		$config = SimpleSAML_Configuration::getInstance();
 		assert($config instanceof SimpleSAML_Configuration);
@@ -118,11 +121,11 @@ class SimpleSAML_Logger {
 		$handler = strtolower($handler);
 
 		if($handler === 'syslog') {
-			require_once('SimpleSAML/Logger/LoggingHandlerSyslog.php');
+			require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger/LoggingHandlerSyslog.php');
 			$sh = new SimpleSAML_Logger_LoggingHandlerSyslog();
 
 		} elseif ($handler === 'file')  {
-			require_once('SimpleSAML/Logger/LoggingHandlerFile.php');
+			require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger/LoggingHandlerFile.php');
 			$sh = new SimpleSAML_Logger_LoggingHandlerFile();
 		} else {
 			throw new Exception('Invalid value for the [logging.handler] configuration option. Unknown handler: ' . $handler);

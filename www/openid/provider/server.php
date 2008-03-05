@@ -4,15 +4,15 @@
 
 
 	
-require_once('../../_include.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . '../../_include.php');
 
 // Include simpleSAMLphp libraries
-require_once('SimpleSAML/Utilities.php');
-require_once('SimpleSAML/Session.php');
-require_once('SimpleSAML/Logger.php');
-require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
-require_once('SimpleSAML/XML/AttributeFilter.php');
-require_once('SimpleSAML/XHTML/Template.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XML/AttributeFilter.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XHTML/Template.php');
 
 // Include openid libs
 

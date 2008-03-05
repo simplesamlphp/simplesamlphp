@@ -1,16 +1,16 @@
 <?php
 
-require_once('../../_include.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . '../../_include.php');
 
 
-require_once('SimpleSAML/Configuration.php');
-require_once('SimpleSAML/Utilities.php');
-require_once('SimpleSAML/Session.php');
-require_once('SimpleSAML/Logger.php');
-require_once('SimpleSAML/Metadata/MetaDataStorageHandler.php');
-require_once('SimpleSAML/XML/SAML20/AuthnRequest.php');
-require_once('SimpleSAML/Bindings/SAML20/HTTPPost.php');
-require_once('SimpleSAML/XHTML/Template.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XML/SAML20/AuthnRequest.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Bindings/SAML20/HTTPPost.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XHTML/Template.php');
 
 /**
  * This SAML 2.0 endpoint is the endpoint at the SAML 2.0 SP that takes an Authentication Response

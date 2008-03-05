@@ -1,6 +1,6 @@
 <?php
 
-require_once('SimpleSAML/Utilities.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
 
 /**
  * This is class for parsing of SAML 1.x and SAML 2.0 metadata.

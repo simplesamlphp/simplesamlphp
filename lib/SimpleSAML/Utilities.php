@@ -1,8 +1,8 @@
 <?php
 
-require_once('SimpleSAML/Configuration.php');
-require_once('SimpleSAML/XHTML/Template.php');
-require_once('SimpleSAML/Logger.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XHTML/Template.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
 
 /**
  * Misc static functions that is used several places.in example parsing and id generation.
