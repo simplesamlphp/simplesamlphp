@@ -2,7 +2,7 @@
 /* 
  * The configuration of simpleSAMLphp
  * 
- * 
+ * $Id$
  */
 
 $config = array (
