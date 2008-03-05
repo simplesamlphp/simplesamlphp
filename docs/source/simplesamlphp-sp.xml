@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Thu Feb 28 11:23:01 2008</pubdate>
+    <pubdate>Wed Mar  5 15:38:05 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -76,6 +76,21 @@
 'sp-entityid' =&gt; array(
 	'host' =&gt; 'sp.example.org'
 )</programlisting>
+      </example>
+
+      <example>
+        <title>Real life example</title>
+
+        <para>Here is a real life example from Feide:</para>
+
+        <programlisting>'urn:mace:feide.no:services:no.feide.foodle' =&gt; array(
+ 'host' =&gt; 'foodle.feide.no',
+),
+</programlisting>
+
+        <para>Here the service run on the host
+        <literal>foodle.feide.no</literal> and have the entity ID
+        <literal>urn:mace:feide.no:services:no.feide.foodle</literal>.</para>
       </example>
 
       <para>You may add any number of SP definitions in the same installation
