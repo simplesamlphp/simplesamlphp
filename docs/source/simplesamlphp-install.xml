@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-08-30</date>
 
-    <pubdate>Fri Feb  1 11:02:46 2008</pubdate>
+    <pubdate>Wed Mar  5 08:15:51 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -20,7 +20,7 @@
 
   <warning>
     <para>This version of this document is work in progress. We are currently
-    working on updating the document to </para>
+    working on updating the document to</para>
   </warning>
 
   <section>
@@ -81,7 +81,7 @@ svn up</screen>
     files:</para>
 
     <screen>cd /var/simplesamlphp
-cp config/config-template.php config/config.php
+cp -r config-templates/*.php config/
 cp -r metadata-templates/*.php metadata/
 </screen>
   </section>
