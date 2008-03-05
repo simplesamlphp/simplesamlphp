@@ -113,7 +113,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 			if(!is_array($entry['hint.cidr'])) continue;
 			
 			foreach ($entry['hint.cidr'] AS $hint_entry) {
-				if (ipCIDRcheck($hint_entry, $ip))
+				if (SimpleSAML_Utilities::ipCIDRcheck($hint_entry, $ip))
 					return $entityId;
 			}
 
