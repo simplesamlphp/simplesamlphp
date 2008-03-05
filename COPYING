@@ -1,5 +1,9 @@
 Note that some of the embedded libraries may be using other licences.
 In example xmlseclibs uses BSD licence.
+
+If you will be using simpleSAMLphp in a commercial context, please do not use
+the embedded default template which contains some icons with licence that are limited
+to non-commercial use.
 --
 simpleSAMLphp is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

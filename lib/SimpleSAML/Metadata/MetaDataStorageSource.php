@@ -91,6 +91,37 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 		/* No entries matched - we should return NULL. */
 		return NULL;
 	}
+	
+	/**
+	 * This function will go through all the metadata, and check the hint.cidr
+	 * parameter, which defines a network space (ip range) for each remote entry.
+	 * This function returns the entityID for any of the entities that have an 
+	 * IP range which the IP falls within.
+	 *
+	 * @param $set  Which set of metadata we are looking it up in.
+	 * @param $ip	IP address
+	 * @return The entity id of a entity which have a CIDR hint where the provided
+	 * 		IP address match.
+	 */
+	public function getPreferredEntityIdFromCIDRhint($set, $ip) {
+		
+		$metadataSet = $this->getMetadataSet($set);
+
+		foreach($metadataSet AS $entityId => $entry) {
+
+			if(!array_key_exists('hint.cidr', $entry)) continue;
+			if(!is_array($entry['hint.cidr'])) continue;
+			
+			foreach ($entry['hint.cidr'] AS $hint_entry) {
+				if (ipCIDRcheck($hint_entry, $ip))
+					return $entityId;
+			}
+
+		}
+
+		/* No entries matched - we should return NULL. */
+		return NULL;
+	}
 
 
 	/**

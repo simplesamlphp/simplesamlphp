@@ -76,7 +76,8 @@ $metadata = array(
 		'SingleSignOnService'	=>	'https://max.feide.no/amserver/SSORedirect/metaAlias/idp',
 		'SingleLogoutService'	=>	'https://max.feide.no/amserver/IDPSloRedirect/metaAlias/idp',
 		'certFingerprint'		=>	'3fa158e8abfd4b5203315b08c0b791b6ee4715f6',
-		'base64attributes'		=>	true
+		'base64attributes'		=>	true,
+		'hint.cidr'				=> '158.38.0.0/16'
 	),
 		 	
 	/*
@@ -88,7 +89,8 @@ $metadata = array(
 		'SingleSignOnService'	=>	'https://sam.feide.no/amserver/SSORedirect/metaAlias/idp',
 		'SingleLogoutService'	=>	'https://sam.feide.no/amserver/IDPSloRedirect/metaAlias/idp',
 		'certFingerprint'		=>	'3a:e7:d3:d3:06:ba:57:fd:7f:62:6a:4b:a8:64:b3:4a:53:d9:5d:d0',
-		'base64attributes'		=>	true
+		'base64attributes'		=>	true,
+		'hint.cidr'				=> '158.38.0.0/16'
 	) 
 
     );

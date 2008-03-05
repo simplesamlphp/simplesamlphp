@@ -365,6 +365,23 @@ class SimpleSAML_Utilities {
 		
 		exit;
 	}
+	
+	/**
+	 * Check whether an IP address is part of an CIDR.
+	 */
+	static function ipCIDRcheck($cidr, $ip = null) {
+		if ($ip == null) $ip = $_SERVER['REMOTE_ADDR'];
+		list ($net, $mask) = split ("/", $cidr);
+		
+		$ip_net = ip2long ($net);
+		$ip_mask = ~((1 << (32 - $mask)) - 1);
+		
+		$ip_ip = ip2long ($ip);
+		
+		$ip_ip_net = $ip_ip & $ip_mask;
+		
+		return ($ip_ip_net == $ip_net);
+	}
 
 
 	/* This function redirects the user to the specified address.

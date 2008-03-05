@@ -214,7 +214,28 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 		/* We were unable to find the hostname/path in any metadata source. */
 		throw new Exception('Could not find any default metadata entities in set [' . $set . '] for host [' . $currenthost . ' : ' . $currenthostwithpath . ']');
 	}
-
+	
+	/**
+	 * This method will call getPreferredEntityIdFromCIDRhint() on all of the
+	 * sources.
+	 *
+	 * @param $set  Which set of metadata we are looking it up in.
+	 * @param $ip	IP address
+	 * @return The entity id of a entity which have a CIDR hint where the provided
+	 * 		IP address match.
+	 */
+	public function getPreferredEntityIdFromCIDRhint($set, $ip) {
+	
+		foreach($this->sources as $source) {
+			$entityId = $source->getPreferredEntityIdFromCIDRhint($set, $ip);
+			if($entityId !== NULL) {
+				return $entityId;
+			}
+		}
+		
+		return NULL;
+		
+	}
 
 	/**
 	 * This function looks up the metadata for the given entity id in the given set. It will throw an
