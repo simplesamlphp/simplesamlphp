@@ -8,7 +8,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Sun Oct 21 13:51:26 2007</pubdate>
+    <pubdate>Wed Mar  5 15:37:46 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -160,9 +160,9 @@ An optional company name []:</screen>
         </listitem>
 
         <listitem>
-          <para><literal>auth.ldap.attributes</literal>: Search parameter to
-          LDAP. What attributes should be extracted?
-          <literal>objectclass=*</literal> gives you all.</para>
+          <para><literal>auth.ldap.attributes</literal>: A list of attributes
+          that will be retrieved from LDAP. Setting this option to
+          <literal>null</literal> will retrieve all attributes.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -203,13 +203,9 @@ An optional company name []:</screen>
 		'privatekey'		=&gt;	'googleappsidp.pem',
 		'certificate'		=&gt;	'googleappsidp.crt',
 		
-		/* If base64attributes is set to true, then all attributes will be base64 encoded. Make sure
-		 * that you set the SP to have the same value for this.
-		 */
-		'base64attributes'	=&gt;	false,
-		
 		// Authentication plugin to use. login.php is the default one that uses LDAP.
-		'auth'				=&gt;	'auth/login.php'
+		'auth'				=&gt;	'auth/login.php',
+     'authority' =&gt; 'login'
 	)</programlisting>
 
       <para>Here are some details of each of the parameters:</para>
@@ -254,15 +250,6 @@ An optional company name []:</screen>
         </glossentry>
 
         <glossentry>
-          <glossterm>base64attributes</glossterm>
-
-          <glossdef>
-            <para>Google Apps do not want us to base64encode any attributes,
-            so we set it to <literal>false</literal>.</para>
-          </glossdef>
-        </glossentry>
-
-        <glossentry>
           <glossterm>auth</glossterm>
 
           <glossdef>
@@ -270,6 +257,16 @@ An optional company name []:</screen>
             <filename>auth/login.php</filename> which is the LDAP
             authentication module. See the <xref linkend="sect.authmodule" />
             for more information on the authentication modules.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>authority</glossterm>
+
+          <glossdef>
+            <para>This refer to the ID of the authentication module you are
+            using. Set this value if you only allow one authentication
+            module.</para>
           </glossdef>
         </glossentry>
       </glosslist>
@@ -291,7 +288,6 @@ An optional company name []:</screen>
 	'google.com' =&gt; array(
 		'AssertionConsumerService'	=&gt;	'https://www.google.com/a/g.feide.no/acs', 
 		'spNameQualifier' 				=&gt;	'google.com',
-		'ForceAuthn'					=&gt;	'false',
 		'NameIDFormat'					=&gt;	'urn:oasis:names:tc:SAML:2.0:nameid-format:email',
 		'simplesaml.nameidattribute'	=&gt;	'uid',
 		'simplesaml.attributes'			=&gt;	false
@@ -300,7 +296,7 @@ An optional company name []:</screen>
       <para>You also need to map some attribute from the IdP into the email
       field sent to Google Apps. The attributes comes from the authentication
       module, and in this example we have an LDAP that returns the uid
-      attribute. The uid attribute contains the local part of </para>
+      attribute. The uid attribute contains the local part of</para>
 
       <para>What you need to do is modify the
       <literal>AssertionConsumerService</literal> to include your Google Apps
@@ -346,8 +342,8 @@ An optional company name []:</screen>
     </figure>
 
     <para>Then, we start off by uploading a certificate, and we upload the
-    certificate we created in an earlier section, the googleappsidp.crt file:
-    </para>
+    certificate we created in an earlier section, the googleappsidp.crt
+    file:</para>
 
     <figure>
       <title>Uploading certificate</title>
@@ -370,18 +366,20 @@ An optional company name []:</screen>
 
     <para>but use the hostname of your IdP server.</para>
 
+    <para>You will also need to configure the IdP initiated Single LogOut
+    endpoint of your server. This endpoint takes a RelayState parameter, which
+    is the URL to redirect the user to after successfull logout. Here is the
+    reccomended value:</para>
+
+    <literallayout>http://dev2.andreas.feide.no/simplesaml/saml2/idp/initSLO.php?RelayState=/simplesaml/logout.html</literallayout>
+
     <para>The Sign-out page or change password url can be static pages on your
     server.</para>
 
-    <warning>
-      <para>Single Logout functionality with SAML 2.0 in simpleSAMlphp and
-      Google Apps is not yet fully tested. We will do more testing about that,
-      and then include a detailed descrition in this document.</para>
-    </warning>
-
     <para>The network mask, is which IP addresses that will be asked for SSO
     login. IP addresses that do not match this mask will be presented with the
-    normal Google Apps login page.</para>
+    normal Google Apps login page. I think you can leave this field empty to
+    enable authentication for all URLs.</para>
 
     <figure>
       <title>Fill out the remaining fields</title>
