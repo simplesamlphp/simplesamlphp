@@ -160,7 +160,7 @@ $config = array (
 	 * web server.
 	 * The XML hetadata handler defines the following options:
 	 * - 'type': This is always 'xml'.
-	 * - 'file': Path to an XML file with either
+	 * - 'file': Path to the XML file with the metadata.
 	 * - 'url': The url to fetch metadata from. THIS IS ONLY FOR DEBUGGING - THERE IS NO CACHING OF THE RESPONSE.
 	 *
 	 *
