@@ -137,6 +137,21 @@
 	'memcache_store.expires' =&gt;  36 * (60*60), // 36 hours.
 
 </programlisting>
+
+      <important>
+        <para>Setup a firewall restricting access to the memcache
+        server.</para>
+      </important>
+
+      <para>Configure memcahce to not do internal failover. This parameter is
+      configured in <filename>php.ini</filename>.</para>
+
+      <programlisting>memcache.allow_failover = Off</programlisting>
+
+      <para>Because simpleSAMLphp uses a timestamp to check which session is
+      most recent in a fail-over setup, it is very important to run
+      syncrhonized clocks on all webservers where you run
+      simpleSAMLphp.</para>
     </section>
   </section>
 
@@ -163,12 +178,14 @@
     <title>PHP configuration</title>
 
     <para>Secure cookies.</para>
+
+    <para>Turn off PHPSESSID in query string.</para>
   </section>
 
   <section>
     <title>Getting ready for production</title>
 
-    <para>Here are some steps that should be checked </para>
+    <para>Here are some steps that should be checked</para>
 
     <itemizedlist>
       <listitem>
@@ -183,8 +200,8 @@
       </listitem>
 
       <listitem>
-        <para>Make sure you have the latest security upgrades on your OS, and
-        </para>
+        <para>Make sure you have the latest security upgrades on your OS,
+        and</para>
       </listitem>
 
       <listitem>
@@ -221,7 +238,7 @@
 
     <para>All XHTML templates are stored in the simplesamlphp/templates
     directory. They are stored in a two level hierarchy; first the theme name,
-    and then the language code. </para>
+    and then the language code.</para>
 
     <example>
       <title>Example of organization of themes</title>
