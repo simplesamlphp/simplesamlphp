@@ -12,23 +12,25 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-$session = SimpleSAML_Session::getInstance(true);
+$session = SimpleSAML_Session::getInstance(TRUE);
 
-
-
-/**
- * Incomming URL parameters
- *
- * idpentityid 	optional	The entityid of the wanted IdP to authenticate with. If not provided will use default.
- * spentityid	optional	The entityid of the SP config to use. If not provided will use default to host.
- * RelayState	required	Where to send the user back to after authentication.
- * 
- */		
 
 SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: Accessing SAML 2.0 SP initSSO script');
 
 if (!$config->getValue('enable.saml20-sp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
+/*
+ * Incomming URL parameters
+ *
+ * idpentityid 	optional	The entityid of the wanted IdP to authenticate with. If not provided will use default.
+ * spentityid	optional	The entityid of the SP config to use. If not provided will use default to host.
+ * RelayState	required	Where to send the user back to after authentication.
+ */		
+
+if (empty($_GET['RelayState'])) {
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+}
 
 try {
 
@@ -39,56 +41,40 @@ try {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
 }
 
-if (!isset($session) || !$session->isValid('saml2') ) {
-	
-	
-	if ($idpentityid == null) {
-	
-		SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: No chosen or default IdP, go to SAML2disco');
-		
-		$returnURL = urlencode(SimpleSAML_Utilities::selfURL());
-		$discservice = '/' . $config->getBaseURL() . 'saml2/sp/idpdisco.php?entityID=' . $spentityid . 
-			'&return=' . $returnURL . '&returnIDParam=idpentityid';
-		SimpleSAML_Utilities::redirect($discservice);
-	}
-	
-	
-	try {
-		$sr = new SimpleSAML_XML_SAML20_AuthnRequest($config, $metadata);
-	
-		$md = $metadata->getMetaData($idpentityid, 'saml20-idp-remote');
-		$req = $sr->generate($spentityid, $md['SingleSignOnService']);
 
-		
-		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-		
-		$relayState = SimpleSAML_Utilities::selfURL();
-		if (isset($_GET['RelayState'])) {
-			$relayState = $_GET['RelayState'];
-		}
-		
-		SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: SP (' . $spentityid . ') is sending AuthNRequest to IdP (' . $idpentityid . ')');
-		
-		$httpredirect->sendMessage($req, $spentityid, $idpentityid, $relayState);
+/*
+ * If no IdP can be resolved, send the user to the SAML 2.0 Discovery Service
+ */
+if ($idpentityid == null) {
 
-	
-	} catch(Exception $exception) {		
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CREATEREQUEST', $exception);
-	}
+	SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: No chosen or default IdP, go to SAML2disco');
 
-} else {
-	
-	
-	$relaystate = $_GET['RelayState'];
-		
-	if (isset($relaystate) && !empty($relaystate)) {
-		SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: Already Authenticated, Go back to RelayState');
-		SimpleSAML_Utilities::redirect($relaystate);
-	} else {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
-	}
-
+	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'saml2/sp/idpdisco.php', array(
+		'entityID' => $spentityid,
+		'return' => SimpleSAML_Utilities::selfURL(),
+		'returnIDParam' => 'idpentityid')
+	);
 }
 
+
+/*
+ * Create and send authentication request to the IdP.
+ */
+try {
+
+	$sr = new SimpleSAML_XML_SAML20_AuthnRequest($config, $metadata);
+
+	$md = $metadata->getMetaData($idpentityid, 'saml20-idp-remote');
+	$req = $sr->generate($spentityid, $md['SingleSignOnService']);
+
+	$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
+	
+	SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: SP (' . $spentityid . ') is sending AuthNRequest to IdP (' . $idpentityid . ')');
+	
+	$httpredirect->sendMessage($req, $spentityid, $idpentityid, $_GET['RelayState']);
+
+} catch(Exception $exception) {		
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CREATEREQUEST', $exception);
+}
 
 ?>
