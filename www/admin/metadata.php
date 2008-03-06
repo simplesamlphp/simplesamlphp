@@ -93,7 +93,7 @@ try {
 		$metalist = $metadata->getList('shib13-idp-remote');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
-				array('entityid', 'SingleSignOnService', 'SingleLogoutService', 'certFingerprint'),
+				array('entityid', 'SingleSignOnService', 'certFingerprint'),
 				array('name', 'description', 'base64attributes')
 			);
 		}
