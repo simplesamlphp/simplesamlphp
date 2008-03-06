@@ -40,6 +40,11 @@ SimpleSAML_Logger::info('AUTH - ldap-feide: Accessing auth endpoint login-feide'
 $error = null;
 $attributes = array();
 
+
+if (empty($session))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOSESSION');
+
+
 /*
  * Load the RelayState argument. The RelayState argument contains the address
  * we should redirect the user to after a successful authentication.
