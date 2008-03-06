@@ -155,7 +155,6 @@ class SimpleSAML_Utilities {
 	}
 	
 	public static function generateID() {
-	
 		$length = 42;
 		$key = "_";
 		for ( $i=0; $i < $length; $i++ )
@@ -163,6 +162,10 @@ class SimpleSAML_Utilities {
 			 $key .= dechex( rand(0,15) );
 		}
 		return $key;
+	}
+	
+	public static function generateTimestamp() {
+		return gmdate("Y-m-d\TH:i:s\Z");
 	}
 	
 	public static function generateTrackID() {		
