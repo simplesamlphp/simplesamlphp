@@ -44,7 +44,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'SingleSignOnService', 'SingleLogoutService', 'certFingerprint'),
-				array('name', 'description', 'base64attributes','request.signing','certificate', 'hint.cidr')
+				array('name', 'description', 'base64attributes','request.signing','certificate', 'hint.cidr', 'saml2.relaxvalidation')
 			);
 		}
 		$et->data['metadata.saml20-idp-remote'] = $results;
