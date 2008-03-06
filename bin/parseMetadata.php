@@ -200,7 +200,7 @@ function dumpMetadataStdOut() {
 
 			echo("\n");
 			echo('/* The following metadata was generated from ' . $filename . ' on ' . $GLOBALS['when'] . '. */' . "\n");
-			echo('$metadata[\'' . addslashes($entityID) . '\'] = ' . var_export($m['metadata'], TRUE)) . ';' . "\n";
+			echo('$metadata[\'' . addslashes($entityID) . '\'] = ' . var_export($m['metadata'], TRUE) . ';' . "\n");
 		}
 
 
