@@ -35,8 +35,6 @@ ini_set('include_path', $path);
  */
 //$SIMPLESAML_INCPREFIX = $path_extra . '/';
 
-
-
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
 
 $configdir = dirname(dirname(__FILE__)) . '/config';

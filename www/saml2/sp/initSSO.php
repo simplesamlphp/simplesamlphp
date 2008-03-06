@@ -73,7 +73,7 @@ try {
 	
 	$httpredirect->sendMessage($req, $spentityid, $idpentityid, $_GET['RelayState']);
 
-} catch(Exception $exception) {		
+} catch(Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CREATEREQUEST', $exception);
 }
 

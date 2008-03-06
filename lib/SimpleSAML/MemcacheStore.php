@@ -27,7 +27,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
  * have the same clock (as measured by the time()-function). Different clock
  * values will lead to incorrect behaviour.
  *
- * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
  * @version $Id$
  */

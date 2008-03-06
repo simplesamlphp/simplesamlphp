@@ -1,13 +1,14 @@
 <?php
  
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
  
 /**
  * The Shibboleth 1.3 Authentication Request. Not part of SAML 1.1, 
  * but an extension using query paramters no XML.
  *
- * @author Andreas �kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
  */
@@ -106,58 +107,79 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 	}
 
 
+	/**
+	 * Generate a new SAML 2.0 Authentication Request
+	 *
+	 * @param $spentityid SP Entity ID
+	 * @param $destination SingleSignOnService endpoint
+	 */
 	public function generate($spentityid, $destination) {
 		$md = $this->metadata->getMetaData($spentityid);
 		
-		$id = self::generateID();
-		$issueInstant = self::generateIssueInstant();
+		$id = SimpleSAML_Utilities::generateID();
+		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
 
-		//$assertionConsumerServiceURL = $md['AssertionConsumerService'];
 		$assertionConsumerServiceURL = $this->metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted');
 		
-		$nameidformat = isset($md['NameIDFormat']) ? $md['NameIDFormat'] : 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+		/*
+		 * Process the SAML 2.0 SP hosted metadata parameter: NameIDFormat
+		 */
+		$nameidformat = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+		if (isset($md['NameIDFormat'])) {
+			if (!is_string($md['NameIDFormat'])) {
+				throw new Exception('SAML 2.0 SP hosted metadata parameter [NameIDFormat] must be a string.');
+			}
+			$nameidformat = $md['NameIDFormat'];
+		}
 		
-		$forceauthn = isset($md['ForceAuthn']) ? $md['ForceAuthn'] : 'false';
-		
-		// TODO: Make an option in the metadata to allow adding a RequestedAuthnContext
-		$requestauthncontext = '<samlp:RequestedAuthnContext Comparison="exact">
-        <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef>
-    </samlp:RequestedAuthnContext>';
-		
+		/*
+		 * Process the SAML 2.0 SP hosted metadata parameter: ForceAuthn
+		 */
+		$forceauthn = 'false';
+		if (isset($md['ForceAuthn'])) {
+			if (is_bool($md['ForceAuthn'])) {
+				$forceauthn = ($md['ForceAuthn'] ? 'true' : 'false');
+			} else {
+				throw new Exception('Illegal format of the ForceAuthn parameter in the SAML 2.0 SP hosted metadata for entity [' . $spentityid . ']. This value should be set to a PHP boolean value.');
+			}
+		}
+
+		/*
+		 * Process the SAML 2.0 SP hosted metadata parameter: AuthnContextClassRef
+		 */
+		$requestauthncontext = '';
+		if (!empty($md['AuthnContextClassRef'])) {
+			if (!is_string($md['AuthnContextClassRef'])) {
+				throw new Exception('SAML 2.0 SP hosted metadata parameter [AuthnContextClassRef] must be a string.');
+			}
+			
+			$requestauthncontext = '<samlp:RequestedAuthnContext Comparison="exact">
+		<saml:AuthnContextClassRef>' . $md['AuthnContextClassRef'] . '</saml:AuthnContextClassRef>
+	</samlp:RequestedAuthnContext>';
+		}
+
+		/*
+		 * Create the complete SAML 2.0 Authentication Request
+		 */
 		$authnRequest = '<samlp:AuthnRequest 
-    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
-    ID="' . $id . '" Version="2.0"
-    IssueInstant="' . $issueInstant . '" ForceAuthn="' . $forceauthn . '"
-    Destination="' . htmlspecialchars($destination) . '"
-    ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
-    AssertionConsumerServiceURL="' . htmlspecialchars($assertionConsumerServiceURL) . '">
-    <saml:Issuer >' . htmlspecialchars($spentityid) . '</saml:Issuer>
-    <samlp:NameIDPolicy
-        Format="' . htmlspecialchars($nameidformat) . '"
-        AllowCreate="true"/>
-    '  . '
+	xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+	ID="' . $id . '" Version="2.0"
+	IssueInstant="' . $issueInstant . '" ForceAuthn="' . $forceauthn . '"
+	Destination="' . htmlspecialchars($destination) . '"
+	ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+	AssertionConsumerServiceURL="' . htmlspecialchars($assertionConsumerServiceURL) . '">
+	<saml:Issuer >' . htmlspecialchars($spentityid) . '</saml:Issuer>
+	<samlp:NameIDPolicy
+		Format="' . htmlspecialchars($nameidformat) . '"
+		AllowCreate="true"/>
+	' . $requestauthncontext . '
 </samlp:AuthnRequest>
 ';
-		
-		
-		
+
 		return $authnRequest;
 	}
 	
-	public static function generateID() {
-	
-		$length = 42;
-		$key = "_";
-		for ( $i=0; $i < $length; $i++ )
-		{
-			 $key .= dechex( rand(0,15) );
-		}
-		return $key;
-	}
-	
-	public static function generateIssueInstant() {
-		return gmdate("Y-m-d\TH:i:s\Z");
-	}
+
 	
 }
 
