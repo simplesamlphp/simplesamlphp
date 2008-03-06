@@ -99,24 +99,9 @@ abstract class SimpleSAML_SessionHandler {
 		assert($config instanceof SimpleSAML_Configuration);
 
 		/* Get the session handler option from the configuration. */
-		$handler = $config->getValue('session.handler');
+		$handler = $config->getValue('session.handler', 'phpsession');
 
-		/* If 'session.handler' is NULL or unset, then we want
-		 * to fall back to the default PHP session handler.
-		 */
-		if(is_null($handler)) {
-			$handler = 'phpsession';
-		}
-
-
-		/* The session handler must be a string. */
-		if(!is_string($handler)) {
-			$e = 'Invalid setting for the \'session.handler\'' .
-			     ' configuration option. This option should be' .
-			     ' set to a valid string.';
-			error_log($e);
-			die($e);
-		}
+		assert('is_string($handler)');
 
 		$handler = strtolower($handler);
 
