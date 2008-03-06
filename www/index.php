@@ -81,8 +81,12 @@ if ($config->getValue('enable.shib13-idp') === true)
 	$linksmeta[] = array(
 		'href' => 'shib13/idp/metadata.php', 
 		'text' => 'Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)');
-	
 
+
+$linksmeta[] = array(
+	'href' => 'admin/metadata-converter.php',
+	'text' => 'XML to simpleSAMLphp metadata converter',
+	);
 
 
 
