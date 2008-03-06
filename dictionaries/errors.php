@@ -40,7 +40,7 @@ $lang = array(
 		'descr_NORELAYSTATE' => 'The initiator of this request did not provide an RelayState parameter, that tells where to go next.',
 		
 		'title_NOSESSION' => 'No session found',
-		'descr_NOSESSION' => 'Unfortuneately we could not get your session. This could be because your browser do not support cookies, or cookies is disabled.',
+		'descr_NOSESSION' => 'Unfortuneately we could not get your session. This could be because your browser do not support cookies, or cookies is disabled. Or may be your session timed out because you let the browser open for a long time.',
 		
 		'title_PROCESSASSERTION' =>	'Error processing response from IdP',
 		'descr_PROCESSASSERTION' =>	'We did not accept the response sent from the Identity Provider.',
