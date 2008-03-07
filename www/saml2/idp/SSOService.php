@@ -12,6 +12,7 @@
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . '../../../www/_include.php');
 
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Consent/Consent.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
@@ -51,7 +52,6 @@ if (!$config->getValue('enable.saml20-idp', false))
  *
  */
 if (isset($_GET['SAMLRequest'])) {
-
 
 	try {
 		$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
@@ -107,7 +107,6 @@ if (isset($_GET['SAMLRequest'])) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CACHEAUTHNREQUEST', $exception);
 	}
 	
-
 } else {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SSOSERVICEPARAMS');
 }
@@ -148,31 +147,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		$spentityid = $requestcache['Issuer'];
 		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
 		
-		/*
-		 * Dealing with attribute release consent.
-		 */
-	
-		if (array_key_exists('requireconsent', $idpmetadata)
-		    && $idpmetadata['requireconsent']) {
-			
-			if (!isset($_GET['consent'])) {
-
-				SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Requires consent from user for attribute release');
-
-				$t = new SimpleSAML_XHTML_Template($config, 'consent.php');
-				$t->data['header'] = 'Consent';
-				$t->data['spentityid'] = $spentityid;
-				$t->data['attributes'] = $session->getAttributes();
-				$t->data['consenturl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), 'consent=1');
-				$t->show();
-				exit(0);
-				
-			} else {
-			
-				SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Got consent from user');
-			}
-			
-		}
+		$sp_name = (isset($spmetadata['name']) ? $spmetadata['name'] : $spentityid);
 	
 		// Adding this service provider to the list of sessions.
 		// Right now the list is used for SAML 2.0 only.
@@ -186,7 +161,8 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		/*
 		 * Attribute handling
 		 */
-		$afilter = new SimpleSAML_XML_AttributeFilter($config, $session->getAttributes());
+		$attributes = $session->getAttributes();
+		$afilter = new SimpleSAML_XML_AttributeFilter($config, $attributes);
 		
 		$afilter->process($idpmetadata, $spmetadata);
 		/**
@@ -208,6 +184,45 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		$afilter->processFilter($idpmetadata, $spmetadata);
 				
 		$filteredattributes = $afilter->getAttributes();
+		
+		
+		
+		
+		/*
+		 * Dealing with attribute release consent.
+		 */
+		$requireconsent = false;
+		if (isset($idpmetadata['requireconsent'])) {
+			if (is_bool($idpmetadata['requireconsent'])) {
+				$requireconsent = $idpmetadata['requireconsent'];
+			} else {
+				throw new Exception('SAML 2.0 IdP hosted metadata parameter [requireconsent] is in illegal format, must be a PHP boolean type.');
+			}
+		}
+		if ($requireconsent) {
+			
+			$consent = new SimpleSAML_Consent_Consent($config, $session, $spentityid, $idpentityid, $attributes, $filteredattributes);
+			
+			if (!$consent->consent()) {
+				
+				$t = new SimpleSAML_XHTML_Template($config, 'consent.php', 'attributes.php');
+				$t->data['header'] = 'Consent';
+				$t->data['sp_name'] = $sp_name;
+				$t->data['attributes'] = $filteredattributes;
+				$t->data['consenturl'] = SimpleSAML_Utilities::selfURLNoQuery();
+				$t->data['requestid'] = $requestid;
+				$t->data['usestorage'] = $consent->useStorage();
+				$t->data['noconsent'] = '/' . $config->getBaseURL() . 'noconsent.php';
+				$t->show();
+				exit;
+			}
+
+		}
+		// END ATTRIBUTE CONSENT CODE
+		
+		
+		
+		
 		
 		
 		// Generate an SAML 2.0 AuthNResponse message

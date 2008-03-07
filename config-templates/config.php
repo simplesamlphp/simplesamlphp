@@ -138,6 +138,16 @@ $config = array (
 	 */
 	'idpdisco.layout' => 'links',
 
+	/*
+	 * Configuration of Consent storage used for attribute consent.
+	 * connect, user and passwd is used with PDO (in example Mysql)
+	 */
+	'consent_usestorage' => FALSE,
+	'consent_userid' => 'eduPersonPrincipalName',
+	'consent_salt' => 'sdkfjhsidu87werwe8r79w8e7r',
+	'consent_pdo_connect' => 'mysql:host=sql.example.org;dbname=simplesamlconsent',
+	'consent_pdo_user' => 'simplesamluser',
+	'consent_pdo_passwd' => 'xxxx',
 
 	/*
 	 * This option configures the metadata sources. The metadata sources is given as an array with
