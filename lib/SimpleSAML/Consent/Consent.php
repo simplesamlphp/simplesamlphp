@@ -122,6 +122,8 @@ class SimpleSAML_Consent_Consent {
 		$targeted_id    = $this->getTargetedID($hashed_user_id);
 		$attribute_hash = $this->getAttributeHash();
 		
+		
+		
 		try {
 			// Create a consent storage.
 			$consent_storage = new SimpleSAML_Consent_Storage($this->config);
@@ -131,6 +133,7 @@ class SimpleSAML_Consent_Consent {
 			$this->storageerror = true;
 			return false;
 		}
+		
 		/**
 		 * User has given cosent and asked for storing it for later.
 		 */

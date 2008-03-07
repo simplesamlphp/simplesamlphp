@@ -65,6 +65,22 @@ class SimpleSAML_Consent_Storage {
 	}
 
 
+
+	/**
+	 * Lookup consent database for an entry, and update the timestamp.
+	 *
+	 * @return Will return true if consent is stored, and false if consent is not stored.
+	 */
+	public function getList($user_id) {
+		$stmt = $this->dbh->prepare("SELECT * FROM consent WHERE federation_id = ?");
+		$stmt->execute(array($user_id));
+
+		SimpleSAML_Logger::debug('Library - ConsentStorage getList(): Getting list of all consent entries for a user');
+		
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+
 	/**
 	 * Store user consent in database
 	 */
