@@ -9,12 +9,12 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
  * The Consent Storage class is used for storing Attribute Release consents.
  *
  * CREATE TABLE consent ( 
- *	federation_id varchar(128) NOT NULL, 
+ *	hashed_user_id varchar(128) NOT NULL, 
  *	service_id varchar(128) NOT NULL, 
  *	attribute varchar(128) NOT NULL, 
  *	consent_date datetime NOT NULL, 
  *	usage_date datetime NOT NULL, 
- *	PRIMARY KEY USING BTREE (federation_id, service_id) 
+ *	PRIMARY KEY USING BTREE (hashed_user_id, service_id) 
  * );
  *
  * @author Mads, Lasse, David, Peter and Andreas.
@@ -51,7 +51,7 @@ class SimpleSAML_Consent_Storage {
 	 * @return Will return true if consent is stored, and false if consent is not stored.
 	 */
 	public function lookup($user_id, $targeted_id, $attribute_hash) {
-		$stmt = $this->dbh->prepare("UPDATE consent SET usage_date = NOW() WHERE federation_id = ? AND service_id = ? AND attribute = ?");
+		$stmt = $this->dbh->prepare("UPDATE consent SET usage_date = NOW() WHERE hashed_user_id = ? AND service_id = ? AND attribute = ?");
 		$stmt->execute(array($user_id, $targeted_id, $attribute_hash));
 		$rows = $stmt->rowCount();
 		
@@ -72,7 +72,7 @@ class SimpleSAML_Consent_Storage {
 	 * @return Will return true if consent is stored, and false if consent is not stored.
 	 */
 	public function getList($user_id) {
-		$stmt = $this->dbh->prepare("SELECT * FROM consent WHERE federation_id = ?");
+		$stmt = $this->dbh->prepare("SELECT * FROM consent WHERE hashed_user_id = ?");
 		$stmt->execute(array($user_id));
 
 		SimpleSAML_Logger::debug('Library - ConsentStorage getList(): Getting list of all consent entries for a user');
