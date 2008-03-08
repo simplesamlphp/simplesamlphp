@@ -22,7 +22,7 @@ if(array_key_exists('descr_'  . $this->data['errorcode'], $this->data)) {
 if(array_key_exists('trackid', $this->data)) {
 ?>
 		<div class="trackidtext">
-			If you report this error the track ID makes it possible to track your session in the logs available to the system administrator: 
+			If you report this error, please also report this tracking ID which makes it possible to locate your session in the logs which are available to the system administrator: 
 				<span class="trackid"><?php echo $this->data['trackid']; ?><span>
 
 		</div>
