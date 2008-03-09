@@ -48,8 +48,7 @@ $metadata = array(
 	 * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.
 	 */
 	'google.com' => array(
- 		'AssertionConsumerService'		=>	'https://www.google.com/a/g.feide.no/acs', 
- 		'SingleLogoutService'			=> 	'',
+ 		'AssertionConsumerService'		=>	'https://www.google.com/a/g.feide.no/acs',
 		'NameIDFormat'					=>	'urn:oasis:names:tc:SAML:2.0:nameid-format:email',
 		'simplesaml.nameidattribute'	=>	'uid',
 		'simplesaml.attributes'			=>	false
