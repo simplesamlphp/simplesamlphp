@@ -72,7 +72,12 @@ if (isset($_POST['username'])) {
 							$vendor = $resv['vendor'];
 							$attrv = $resv['attr'];
 							$datav = $resv['data'];
-							printf("Got Vendor Attr:%d %d Bytes %s\n", $attrv, strlen($datav), bin2hex($datav));
+							
+							/**
+							 * Uncomment this to debug vendor attributes.
+							 */
+							// printf("Got Vendor Attr:%d %d Bytes %s\n", $attrv, strlen($datav), bin2hex($datav));
+							
 							if ($vendor == $config->getValue('auth.radius.vendor') && $attrv == $config->getValue('auth.radius.vendor-attr'))
 							   $attrib_name  = strtok ($datav,'=');
 							   $attrib_value = strtok ('=');
