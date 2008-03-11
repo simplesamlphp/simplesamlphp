@@ -34,7 +34,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host'),
-				array('request.signing','certificate','privatekey', 'NameIDFormat', 'ForceAuthn')
+				array('request.signing','certificate','privatekey', 'NameIDFormat', 'ForceAuthn', 'AuthnContextClassRef')
 			);
 		}
 		$et->data['metadata.saml20-sp-hosted'] = $results;
@@ -44,7 +44,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'SingleSignOnService', 'SingleLogoutService', 'certFingerprint'),
-				array('name', 'description', 'base64attributes','request.signing','certificate', 'hint.cidr', 'saml2.relaxvalidation')
+				array('name', 'description', 'base64attributes', 'certificate', 'hint.cidr', 'saml2.relaxvalidation', 'SPNameQualifier', 'SingleLogoutServiceResponse')
 			);
 		}
 		$et->data['metadata.saml20-idp-remote'] = $results;
@@ -57,7 +57,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
-				array('requireconsent','request.signing', 'authority')
+				array('requireconsent','request.signing', 'authority', 'attributemap', 'attributealter')
 			);
 		}
 		$et->data['metadata.saml20-idp-hosted'] = $results;
@@ -66,8 +66,8 @@ try {
 		$metalist = $metadata->getList('saml20-sp-remote');
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
-				array('entityid', 'AssertionConsumerService', 'SingleLogoutService'),
-				array('base64attributes', 'attributemap', 'simplesaml.attributes', 'attributes', 'name', 'description','request.signing','certificate', 'NameIDFormat')
+				array('entityid', 'AssertionConsumerService'),
+				array('base64attributes', 'simplesaml.nameidattribute', 'attributemap', 'attributealter', 'simplesaml.attributes', 'attributes', 'name', 'description','request.signing','certificate', 'NameIDFormat', 'SingleLogoutService')
 			);
 		}
 		$et->data['metadata.saml20-sp-remote'] = $results;
@@ -117,7 +117,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'AssertionConsumerService'),
-				array('base64attributes', 'audience', 'attributemap', 'simplesaml.attributes', 'attributes', 'name', 'description')
+				array('base64attributes', 'audience', 'attributemap', 'attributealter', 'simplesaml.attributes', 'attributes', 'name', 'description')
 			);
 		}
 		$et->data['metadata.shib13-sp-remote'] = $results;
