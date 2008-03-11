@@ -3,21 +3,36 @@
 	
 	<div id="content">
 
+		<p>To look at the details for an SAML entity, click on the SAML entity header.</p>
 
 		<?php
 		
 		
-		function showEntry($header, $list) {
+		function showEntry($header, $list, $baseurl) {
 		
 			echo '<h3>' . $header . '</h3>';
-		
+			
 			foreach ($list AS $entityid => $entity) {
 				$name = $entityid;
 				if (isset($entity['optional.found']['name'])) $name = $entity['optional.found']['name'];
 
 				//print_r($entity);
+				
+				$warning = false;
+				if (count($entity['leftovers']) > 0) $warning = TRUE;
+				if (count($entity['required.notfound']) > 0) $warning = TRUE;
 
-				echo '<h4>' . htmlspecialchars($name) . '</h4>';
+
+
+				echo '<h4 style="padding-left: 2em; clear: both;" onclick="document.getElementById(\'metadatasection-' . $entityid . '\').style.display=\'block\';">' . htmlspecialchars($name) . '</h4>';
+				
+				if ($warning) {
+					echo '<div><img src="/' . $baseurl . 'resources/icons/caution.png" style="float: left; margin-right: 1em" />';
+					echo 'Error in this metadata entry.</div>';
+				}
+				
+				echo '<div id="metadatasection-' . $entityid . '" style="display: none">';
+				
 				if (isset($entity['optional.found']['description'])) {
 					echo '<p>' . htmlspecialchars($entity['optional.found']['description']) . '</p>';
 				}
@@ -26,7 +41,7 @@
 				echo '<div class="efieldlist"><h5>Required fields<h5>';
 				echo '<dl>';
 				foreach ($entity['required.found'] AS $key => $value) {
-					echo '<dt>' . htmlspecialchars($key) . '</dt><dd>' . htmlspecialchars($value) . '</dd>';
+					echo '<dt>' . htmlspecialchars($key) . '</dt><dd>' . htmlspecialchars(var_export($value, TRUE)) . '</dd>';
 				}
 				echo '</dl>';
 
@@ -47,7 +62,7 @@
 					echo '<h5>Optional fields</h5>';
 					echo '<dl>';
 					foreach ($entity['optional.found'] AS $key => $value) {
-						echo '<dt>' . htmlspecialchars($key) . '</dt><dd>' . htmlspecialchars($value) . '</dd>';
+						echo '<dt>' . htmlspecialchars($key) . '</dt><dd>' . htmlspecialchars(var_export($value, TRUE)) . '</dd>';
 					}
 					echo '</dl>';
 				}
@@ -72,27 +87,28 @@
 					echo '</ul>';				
 				}
 				echo '</div></div>';
+				echo '</div>';
 			}
 		}
 		
 		
 		if (array_key_exists('metadata.saml20-sp-hosted', $data)) 
-			showEntry('SAML 2.0 Service Provider (Hosted)', $data['metadata.saml20-sp-hosted']);
+			showEntry('SAML 2.0 Service Provider (Hosted)', $data['metadata.saml20-sp-hosted'], $this->data['baseurlpath']);
 		if (array_key_exists('metadata.saml20-sp-remote', $data)) 
-			showEntry('SAML 2.0 Service Provider (Remote)', $data['metadata.saml20-sp-remote']);
+			showEntry('SAML 2.0 Service Provider (Remote)', $data['metadata.saml20-sp-remote'], $this->data['baseurlpath']);
 		if (array_key_exists('metadata.saml20-idp-hosted', $data)) 
-			showEntry('SAML 2.0 Identity Provider (Hosted)', $data['metadata.saml20-idp-hosted']);
+			showEntry('SAML 2.0 Identity Provider (Hosted)', $data['metadata.saml20-idp-hosted'], $this->data['baseurlpath']);
 		if (array_key_exists('metadata.saml20-idp-remote', $data)) 
-			showEntry('SAML 2.0 Identity Provider (Remote)', $data['metadata.saml20-idp-remote']);
+			showEntry('SAML 2.0 Identity Provider (Remote)', $data['metadata.saml20-idp-remote'], $this->data['baseurlpath']);
 
 		if (array_key_exists('metadata.shib13-sp-hosted', $data)) 
-			showEntry('Shib 1.3 Service Provider (Hosted)', $data['metadata.shib13-sp-hosted']);
+			showEntry('Shib 1.3 Service Provider (Hosted)', $data['metadata.shib13-sp-hosted'], $this->data['baseurlpath']);
 		if (array_key_exists('metadata.shib13-sp-remote', $data)) 
-			showEntry('Shib 1.3 Service Provider (Remote)', $data['metadata.shib13-sp-remote']);
+			showEntry('Shib 1.3 Service Provider (Remote)', $data['metadata.shib13-sp-remote'], $this->data['baseurlpath']);
 		if (array_key_exists('metadata.shib13-idp-hosted', $data)) 
-			showEntry('Shib 1.3 Identity Provider (Hosted)', $data['metadata.shib13-idp-hosted']);
+			showEntry('Shib 1.3 Identity Provider (Hosted)', $data['metadata.shib13-idp-hosted'], $this->data['baseurlpath']);
 		if (array_key_exists('metadata.shib13-idp-remote', $data)) 
-			showEntry('Shib 1.3 Identity Provider (Remote)', $data['metadata.shib13-idp-remote']);
+			showEntry('Shib 1.3 Identity Provider (Remote)', $data['metadata.shib13-idp-remote'], $this->data['baseurlpath']);
 
 		
 		?>
