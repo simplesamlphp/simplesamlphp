@@ -474,6 +474,10 @@ class SimpleSAML_Utilities {
 		/* Set the location header. */
 		header('Location: ' . $url, TRUE, $code);
 
+		/* Disable caching of this response. */
+		header('Pragma: no-cache');
+		header('Cache-Control: no-cache, must-revalidate');
+
 		/* Show a minimal web page with a clickable link to the URL. */
 		echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
 		echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"' .
