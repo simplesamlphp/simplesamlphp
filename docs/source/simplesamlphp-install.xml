@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-08-30</date>
 
-    <pubdate>Wed Mar  5 08:15:51 2008</pubdate>
+    <pubdate>Sat Mar 8 22:44:07 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -18,21 +18,15 @@
     </author>
   </articleinfo>
 
-  <warning>
-    <para>This version of this document is work in progress. We are currently
-    working on updating the document to</para>
-  </warning>
-
   <section>
     <title>News about simpleSAMLphp</title>
 
     <para>To get the latest news about simpleSAMLphp you can follow this url:
     <ulink
-    url="http://rnd.feide.no/taxonomy/term/4">http://rnd.feide.no/taxonomy/term/4</ulink>.</para>
+    url="http://rnd.feide.no/taxonomy/term/4">http://rnd.feide.no/taxonomy/term/4</ulink>.
+    It also conatins a RSS feed.</para>
 
-    <para>Here is the simpleSAMLphp homepage:</para>
-
-    <para><ulink
+    <para>Here is the simpleSAMLphp homepage: <ulink
     url="http://rnd.feide.no/simplesamlphp">http://rnd.feide.no/simplesamlphp</ulink></para>
   </section>
 
@@ -63,6 +57,41 @@
 
       <screen>cd /var/simplesamlphp
 svn up</screen>
+    </section>
+  </section>
+
+  <section>
+    <title>Upgrading from a previous version of simpleSAMLphp</title>
+
+    <para>If you run a the subversion version, you can just type in:</para>
+
+    <screen>svn update</screen>
+
+    <para>in the root folder of your simpleSAMLphp installation. If you did
+    download and install the zipped version, you should take backup of the
+    config and the metadata directories, and then replace your simpleSAMLphp
+    directory with the new version.</para>
+
+    <para>After updating from subversion or from a newer release as a zip
+    file, you will need to update your configuration and metadata. This is
+    only neccessary if the format of the config files or metadata has changed
+    between the version you ran and the one you are upgrading to.</para>
+
+    <section>
+      <title>Upgrading config.php</title>
+
+      <para>A good approach is to run a diff between your preivous config.php
+      file and the new config.php file located in config-templates/config.php,
+      and apply your modifications to the new template. Then you make sure
+      that all new entries in the latest version of config.php are included,
+      as well as your local modifications are preserved.</para>
+    </section>
+
+    <section>
+      <title>Upgrading metadata files</title>
+
+      <para>Most likely the metadata format is backward compatible. Otherwise
+      it shold</para>
     </section>
   </section>
 
