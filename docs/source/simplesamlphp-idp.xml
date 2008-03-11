@@ -159,82 +159,144 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
       <para>This is the configuration of the IdP itself. Here is some example
       config:</para>
 
-      <programlisting>	// The SAML entity ID is the index of this config.
-	'idp.example.org' =&gt; array(
-	
-		// The hostname of the server (VHOST) that this SAML entity will use.
-		'host'				=&gt;	'sp.example.org',
-		
-		// X.509 key and certificate. Relative to the cert directory.
-		'privatekey'		=&gt;	'server.pem',
-		'certificate'		=&gt;	'server.crt',
-		
-		/* If base64attributes is set to true, then all attributes will be base64 encoded. Make sure
-		 * that you set the SP to have the same value for this.
-		 */
-		'base64attributes'	=&gt;	false,
-		
-		// Authentication plugin to use. login.php is the default one that uses LDAP.
-		'auth'				=&gt;	'auth/login.php'
-	)</programlisting>
+      <programlisting>// The SAML entity ID is the index of this config.
+'idp.example.org' =&gt; array(
+
+ // The hostname of the server (VHOST) that this SAML entity will use.
+ 'host'				=&gt; 'sp.example.org',
+ 
+ // X.509 key and certificate. Relative to the cert directory.
+ 'privatekey'		=&gt; 'server.pem',
+ 'certificate'		=&gt; 'server.crt',
+ 
+ // Authentication plugin to use. login.php is the default one that uses LDAP.
+ 'auth'				=&gt; 'auth/login.php',
+ 'authority'        =&gt; 'login',
+),</programlisting>
 
       <para>Here are some details of each of the parameters:</para>
 
-      <glosslist>
-        <glossentry>
-          <glossterm>index (index of array)</glossterm>
+      <section>
+        <title>Mandatory metadata fields</title>
 
-          <glossdef>
-            <para>The entity ID of the IdP. In this example this value is set
-            to: <literal>idp.example.org</literal>.</para>
-          </glossdef>
-        </glossentry>
+        <glosslist>
+          <glossentry>
+            <glossterm>key (the key of the associative array)</glossterm>
 
-        <glossentry>
-          <glossterm>host</glossterm>
+            <glossdef>
+              <para>The entity ID of the IdP. In this example this value is
+              set to: <literal>idp.example.org</literal>.</para>
+            </glossdef>
+          </glossentry>
 
-          <glossdef>
-            <para>The hostname of the server running this IdP.</para>
-          </glossdef>
-        </glossentry>
+          <glossentry>
+            <glossterm>host</glossterm>
 
-        <glossentry>
-          <glossterm>privatekey</glossterm>
+            <glossdef>
+              <para>The hostname of the server running this IdP.</para>
+            </glossdef>
+          </glossentry>
 
-          <glossdef>
-            <para>Pointing to the private key in PEM format, in the certs
-            directory.</para>
-          </glossdef>
-        </glossentry>
+          <glossentry>
+            <glossterm>privatekey</glossterm>
 
-        <glossentry>
-          <glossterm>certificate</glossterm>
+            <glossdef>
+              <para>Pointing to the private key in PEM format, in the certs
+              directory.</para>
+            </glossdef>
+          </glossentry>
 
-          <glossdef>
-            <para>Pointing to the certificate file in PEM format, in the certs
-            directory.</para>
-          </glossdef>
-        </glossentry>
+          <glossentry>
+            <glossterm>certificate</glossterm>
 
-        <glossentry>
-          <glossterm>base64attributes</glossterm>
+            <glossdef>
+              <para>Pointing to the certificate file in PEM format, in the
+              certs directory.</para>
+            </glossdef>
+          </glossentry>
 
-          <glossdef>
-            <para>Do you want to encode all attributes in base64? If so,
-            remember to turn on the same option on the SP.</para>
-          </glossdef>
-        </glossentry>
+          <glossentry>
+            <glossterm>auth</glossterm>
 
-        <glossentry>
-          <glossterm>auth</glossterm>
+            <glossdef>
+              <para>Which authentication module to use? Default is:
+              <filename>auth/login.php</filename> which is the LDAP
+              authentication module.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+      </section>
 
-          <glossdef>
-            <para>Which authentication module to use? Default is:
-            <filename>auth/login.php</filename> which is the LDAP
-            authentication module.</para>
-          </glossdef>
-        </glossentry>
-      </glosslist>
+      <section>
+        <title>Optional metadata fields</title>
+
+        <glosslist>
+          <glossentry>
+            <glossterm>requireconsent</glossterm>
+
+            <glossdef>
+              <para>Set to true if you want to require user's consent each
+              time attributes are sent to an SP.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>authority</glossterm>
+
+            <glossdef>
+              <para>Who is authorized to create sessions for this IdP. Can be
+              login for LDAP login module, or saml2 for SAML 2.0 SP. It is
+              highly reccomended to set this parameter.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>attributemap</glossterm>
+
+            <glossdef>
+              <para>An attribute map is a mapping table that translate
+              attribute names. Read more in the advances features
+              document.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>attributealter</glossterm>
+
+            <glossdef>
+              <para>You can implement custom functions that injects or
+              modifies attributes. Here you can specify an array of such
+              fuctions. Read more in the advances features document.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+      </section>
+
+      <section>
+        <title>Fields for signing authentication requests</title>
+
+        <para>simpleSAMLphp supports signing the HTTP-REDIRECT LogoutRequest,
+        but by default it will not sign it. It will use the same
+        privatekey/certificate as used for signing the AuthnResponse.</para>
+
+        <glosslist>
+          <glossentry>
+            <glossterm>request.signing</glossterm>
+
+            <glossdef>
+              <para>A boolean value, that should be true or false. Default is
+              false. To turn on signing authentication requests, set this flag
+              to true.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+
+        <example>
+          <title>Example of configured signed requests</title>
+
+          <programlisting> 'request.signing' =&gt; true,</programlisting>
+        </example>
+      </section>
     </section>
 
     <section>
@@ -243,84 +305,172 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
       <para>Here (saml20-sp-remote.php) you configure all SPs that you trust.
       Here is an example:</para>
 
-      <programlisting>	/*
-	 * Example simpleSAMLphp SAML 2.0 SP
-	 */
-	'saml2sp.example.org' =&gt; array(
- 		'AssertionConsumerService'		=&gt;	'https://saml2sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php', 
- 		'SingleLogoutService'			=&gt;	'https://saml2sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
-		'spNameQualifier' 				=&gt;	'dev.andreas.feide.no',
-		'ForceAuthn'					=&gt;	'false',
-		'NameIDFormat'					=&gt;	'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
-		'simplesaml.attributes'			=&gt;	true
-	),</programlisting>
+      <programlisting>/*
+ * Example simpleSAMLphp SAML 2.0 SP
+ */
+'saml2sp.example.org' =&gt; array(
+ 'AssertionConsumerService' =&gt; 'https://saml2sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php', 
+ 'SingleLogoutService'      =&gt; 'https://saml2sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
+ 
+ 'attributes' =&gt; array('email', 'eduPersonPrincipalName'),
+ 'name' =&gt; 'Example service provider',
+),</programlisting>
 
-      <para>Here are some details about each of the parameters:;</para>
+      <para>Here are some details about each of the parameters:</para>
 
-      <glosslist>
-        <glossentry>
-          <glossterm>index (index of array)</glossterm>
+      <section>
+        <title>Mandatory metadata fields</title>
 
-          <glossdef>
-            <para>The entity ID of the given SP. Here it is:
-            <literal>saml2sp.example.org</literal>.</para>
-          </glossdef>
-        </glossentry>
+        <glosslist>
+          <glossentry>
+            <glossterm>key (the key of the associative array)</glossterm>
 
-        <glossentry>
-          <glossterm>AssertionConsumerService</glossterm>
+            <glossdef>
+              <para>The entity ID of the given SP. Here it is:
+              <literal>saml2sp.example.org</literal>.</para>
+            </glossdef>
+          </glossentry>
 
-          <glossdef>
-            <para>The URL of this SAML 2.0 endpoint. Ask the SP if you are
-            unsure. If the SP sent you SAML 2.0 metadata, you can find the
-            parameter in there.</para>
-          </glossdef>
-        </glossentry>
+          <glossentry>
+            <glossterm>AssertionConsumerService</glossterm>
 
-        <glossentry>
-          <glossterm>SingleLogoutService</glossterm>
+            <glossdef>
+              <para>The URL of this SAML 2.0 endpoint. Ask the SP if you are
+              unsure. If the SP sent you SAML 2.0 metadata, you can find the
+              parameter in there.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+      </section>
 
-          <glossdef>
-            <para>The URL of this SAML 2.0 endpoint. Ask the SP if you are
-            unsure. If the SP sent you SAML 2.0 metadata, you can find the
-            parameter in there.</para>
-          </glossdef>
-        </glossentry>
+      <section>
+        <title>Optional metadata fields</title>
 
-        <glossentry>
-          <glossterm>spNameQualifier</glossterm>
+        <glosslist>
+          <glossentry>
+            <glossterm>SingleLogoutService</glossterm>
 
-          <glossdef>
-            <para>The SP NameQualifier for this SP. If unsure, set it to the
-            same as the entityID.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>The URL of this SAML 2.0 endpoint. Ask the SP if you are
+              unsure. If the SP sent you SAML 2.0 metadata, you can find the
+              parameter in there.</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>ForceAuthn</glossterm>
+          <glossentry>
+            <glossterm>NameIDFormat</glossterm>
 
-          <glossdef>
-            <para>This basicly means you turn off SSO for this SP.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>Set it to the default: transient.</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>NameIDFormat</glossterm>
+          <glossentry>
+            <glossterm>SPNameQualifier</glossterm>
 
-          <glossdef>
-            <para>Set it to the default: transient.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>The SP NameQualifier for this SP. If not set, the IdP will
+              set the SPNameQualifier to be the SP entity ID.</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>simplesaml.attributes</glossterm>
+          <glossentry>
+            <glossterm>base64attributes</glossterm>
 
-          <glossdef>
-            <para>Set to true to include attribtues, if not no attribute
-            statements will be sent.</para>
-          </glossdef>
-        </glossentry>
-      </glosslist>
+            <glossdef>
+              <para>Perform base64 encoding of attributes sent to this
+              SP.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>simplesaml.nameidattribute</glossterm>
+
+            <glossdef>
+              <para>If the NameIDFormat is set to email, then the email
+              address will be retrieved from the attribute with this name. In
+              example, the simplesaml.nameidattribute can be set to uid, and
+              then the authentcation module sets an attribute with name uid.
+              The value of this attribute will be set as the NameID.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>attributemap</glossterm>
+
+            <glossdef>
+              <para>An attribute map is a mapping table that translate
+              attribute names. Read more in the advanced features
+              document.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>attributealter</glossterm>
+
+            <glossdef>
+              <para>You can implement custom functions that injects or
+              modifies attributes. Here you can specify an array of such
+              fuctions. Read more in the advances features document.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>simplesaml.attributes</glossterm>
+
+            <glossdef>
+              <para>Should an attribute statement be sent to the SP? Default
+              is <literal>true</literal>.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>attributes</glossterm>
+
+            <glossdef>
+              <para>An array of attributes that will be sent to the SP. If
+              this field is not set, the SP will get all attributes available
+              at the IdP.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>name</glossterm>
+
+            <glossdef>
+              <para>A descriptive name of the SP. (Used in the consent
+              module)</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>description</glossterm>
+
+            <glossdef>
+              <para>A longer description of the SP. (Not used)</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>request.signing</glossterm>
+
+            <glossdef>
+              <para>A boolean value set to true or false. Defines whether this
+              IdP should require signed requests from this SP.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>certificate</glossterm>
+
+            <glossdef>
+              <para>The name of the certificate file used to verify the
+              signature, if <literal>request.signing</literal> is set to
+              true.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+      </section>
     </section>
   </section>
 

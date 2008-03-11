@@ -37,8 +37,8 @@ $metadata = array(
 	 * Example simpleSAMLphp SAML 2.0 SP
 	 */
 	'saml2sp.example.org' => array(
- 		'AssertionConsumerService'		=>	'https://saml2sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php', 
- 		'SingleLogoutService'			=>	'https://saml2sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php'
+ 		'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php', 
+ 		'SingleLogoutService'      => 'https://saml2sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php'
 	),
 	
 	/*
