@@ -32,6 +32,11 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			return $query;
 		}
 
+		if (!array_key_exists('privatekey', $md)) {
+			throw new Exception('If you set request.signing to be true in the metadata, you also have to add the privatekey parameter.');
+		}
+		
+
 		/* Load the private key. */
 
 		$privatekey = $this->configuration->getPathValue('certdir') . $md['privatekey'];
@@ -198,19 +203,26 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			$relaystate = $get['RelayState'];
 		} else {
 			$relaystate = NULL;
+		}
+		
+		$decodedRequest = @base64_decode($rawRequest, TRUE);
+		if (!$decodedRequest) {
+			throw new Exception('Could not base64 decode SAMLRequest GET parameter');
+		}
+
+		$samlRequestXML = @gzinflate($decodedRequest);
+		if (!$samlRequestXML) {
+			$error = error_get_last();
+			throw new Exception('Could not gzinflate base64 decoded SAMLRequest: ' . $error['message'] );
 		}		
 		
-		$samlRequestXML = gzinflate(base64_decode( $rawRequest ));
-         
 		$samlRequest = new SimpleSAML_XML_SAML20_AuthnRequest($this->configuration, $this->metadata);
 	
 		$samlRequest->setXML($samlRequestXML);
 		
-		if (isset($relaystate)) {
+		if (!is_null($relaystate)) {
 			$samlRequest->setRelayState($relaystate);
 		}
-	
-        #echo("Authn response = " . $samlResponse );
 
         return $samlRequest;
         
