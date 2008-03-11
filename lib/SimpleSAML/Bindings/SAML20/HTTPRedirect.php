@@ -241,7 +241,17 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			$relaystate = NULL;
 		}
 		
-		$samlRequestXML = gzinflate(base64_decode( $rawRequest ));
+		$decodedRequest = @base64_decode($rawRequest, TRUE);
+		if (!$decodedRequest) {
+			throw new Exception('Could not base64 decode SAMLRequest GET parameter');
+		}
+
+		$samlRequestXML = @gzinflate($decodedRequest);
+		if (!$samlRequestXML) {
+			$error = error_get_last();
+			throw new Exception('Could not gzinflate base64 decoded SAMLRequest: ' . $error['message'] );
+		}		
+		
          
 		$samlRequest = new SimpleSAML_XML_SAML20_LogoutRequest($this->configuration, $this->metadata);
 	
@@ -269,7 +279,17 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			$relaystate = NULL;
 		}
 		
-		$samlRequestXML = gzinflate(base64_decode( $rawRequest ));
+		$decodedRequest = @base64_decode($rawRequest, TRUE);
+		if (!$decodedRequest) {
+			throw new Exception('Could not base64 decode SAMLRequest GET parameter');
+		}
+
+		$samlRequestXML = @gzinflate($decodedRequest);
+		if (!$samlRequestXML) {
+			$error = error_get_last();
+			throw new Exception('Could not gzinflate base64 decoded SAMLRequest: ' . $error['message'] );
+		}		
+		
          
 		$samlRequest = new SimpleSAML_XML_SAML20_LogoutResponse($this->configuration, $this->metadata);
 	
