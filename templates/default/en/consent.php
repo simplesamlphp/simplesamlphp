@@ -9,15 +9,15 @@
 
 
 		<form action="<?php echo htmlspecialchars($data['consenturl']); ?>">
-			<input type="submit" value="Yes">
-			<input type="hidden" name="consent" value="1">
-			<input type="hidden" name="RequestID" value="<?php echo $this->data['requestid']; ?>">
+			<input type="submit" value="Yes" />
+			<input type="hidden" name="consent" value="<?php echo htmlspecialchars($this->data['consent_cookie']); ?>" />
+			<input type="hidden" name="RequestID" value="<?php echo htmlspecialchars($this->data['requestid']); ?>" />
 			<?php if($this->data['usestorage']) { ?>
-				<input type="checkbox" name="saveconsent" id="saveconsent" value="1"> remember consent
+				<input type="checkbox" name="saveconsent" id="saveconsent" value="1" /> remember consent
 			<?php } ?>
 		</form>
 		<form action="<?php echo htmlspecialchars($this->data['noconsent']); ?>" method="GET">
-			<input type="submit" value="No">
+			<input type="submit" value="No" />
 		</form>
 
 

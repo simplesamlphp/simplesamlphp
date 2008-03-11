@@ -32,7 +32,7 @@ try {
 	$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 	$idpmetadata = $metadata->getMetaDataCurrent('saml20-idp-hosted');
 	
-	if (!array_key_exists($idpmetadata, 'auth')) {
+	if (!array_key_exists('auth', $idpmetadata)) {
 		throw new Exception('Missing mandatory parameter in SAML 2.0 IdP Hosted Metadata: [auth]');
 	}
 	
@@ -69,7 +69,8 @@ if (isset($_GET['SAMLRequest'])) {
 		 * Create an assoc array of the request to store in the session cache.
 		 */
 		$requestcache = array(
-			'Issuer'    => $issuer
+			'Issuer'    => $issuer,
+			'ConsentCookie' => SimpleSAML_Utilities::generateID(),
 		);
 		if ($relaystate = $authnrequest->getRelayState() )
 			$requestcache['RelayState'] = $relaystate;
@@ -202,7 +203,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		}
 		if ($requireconsent) {
 			
-			$consent = new SimpleSAML_Consent_Consent($config, $session, $spentityid, $idpentityid, $attributes, $filteredattributes);
+			$consent = new SimpleSAML_Consent_Consent($config, $session, $spentityid, $idpentityid, $attributes, $filteredattributes, $requestcache['ConsentCookie']);
 			
 			if (!$consent->consent()) {
 				
@@ -212,6 +213,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 				$t->data['attributes'] = $filteredattributes;
 				$t->data['consenturl'] = SimpleSAML_Utilities::selfURLNoQuery();
 				$t->data['requestid'] = $requestid;
+				$t->data['consent_cookie'] = $requestcache['ConsentCookie'];
 				$t->data['usestorage'] = $consent->useStorage();
 				$t->data['noconsent'] = '/' . $config->getBaseURL() . 'noconsent.php';
 				$t->show();
@@ -220,9 +222,6 @@ if (!isset($session) || !$session->isValid($authority) ) {
 
 		}
 		// END ATTRIBUTE CONSENT CODE
-		
-		
-		
 		
 		
 		

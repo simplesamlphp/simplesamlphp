@@ -25,21 +25,28 @@ class SimpleSAML_Consent_Consent {
 	
 	private $attributes;
 	private $filteredattributes;
+	private $consent_cookie;
 	
 	private $storageerror;
 	
 	/**
 	 * Constructor
 	 */
-	public function __construct($config, $session, $spentityid, $idpentityid, $attributes, $filteredattributes) {
+	public function __construct($config, $session, $spentityid, $idpentityid, $attributes, $filteredattributes, $consent_cookie) {
 
 		$this->config = $config;
-		$this->salt = $this->config->getValue('consent_salt', 'eae46a3d5cb6e8546dded65be9855e5c');
+		$this->salt = $this->config->getValue('consent_salt');
+		
+		if (!isset($this->salt)) {
+			throw new Exception('Configuration parameter [consent_salt] is not set.');
+		}
+		
 		$this->attributes = $attributes;
 		$this->filteredattributes = $filteredattributes;
 		$this->session = $session;
 		$this->spentityid = $spentityid;
 		$this->idpentityid = $idpentityid;
+		$this->consent_cookie = $consent_cookie;
 		
 		$this->storageerror = false;
 	}
@@ -83,7 +90,7 @@ class SimpleSAML_Consent_Consent {
 	 */
 	private function getTargetedID($hashed_userid) {
 		
-		return hash('sha1', $hashed_userid . $salt . $this->spentityid);
+		return hash('sha1', $hashed_userid . $this->salt . $this->spentityid);
 		
 	}
 
@@ -102,6 +109,14 @@ class SimpleSAML_Consent_Consent {
 	
 	public function consent() {
 		
+
+		if (isset($_GET['consent']) ) {
+			
+			if ($_GET['consent'] != $this->consent_cookie) {
+				throw new Exception('Consent cookie set to wrong value.');
+			}
+			
+		}
 
 		/**
 		 * The user has manually accepted consent and chosen not to store the consent
