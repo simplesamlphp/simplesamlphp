@@ -26,11 +26,16 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-$session = SimpleSAML_Session::getInstance(true);
+$session = SimpleSAML_Session::getInstance(TRUE);
 
 try {
 	$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 	$idpmetadata = $metadata->getMetaDataCurrent('saml20-idp-hosted');
+	
+	if (!array_key_exists($idpmetadata, 'auth')) {
+		throw new Exception('Missing mandatory parameter in SAML 2.0 IdP Hosted Metadata: [auth]');
+	}
+	
 } catch (Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
 }
@@ -56,15 +61,15 @@ if (isset($_GET['SAMLRequest'])) {
 	try {
 		$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 		$authnrequest = $binding->decodeRequest($_GET);
-		
-		//$session = $authnrequest->createSession();
+
 		$requestid = $authnrequest->getRequestID();
+		$issuer = $authnrequest->getIssuer();
 		
 		/*
 		 * Create an assoc array of the request to store in the session cache.
 		 */
 		$requestcache = array(
-			'Issuer'    => $authnrequest->getIssuer()
+			'Issuer'    => $issuer
 		);
 		if ($relaystate = $authnrequest->getRelayState() )
 			$requestcache['RelayState'] = $relaystate;
@@ -72,11 +77,11 @@ if (isset($_GET['SAMLRequest'])) {
 		$session->setAuthnRequest('saml2', $requestid, $requestcache);
 		
 		
-		if ($binding->validateQuery($authnrequest->getIssuer(),'IdP')) {
-			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Valid signature found for '.$requestid);
+		if ($binding->validateQuery($issuer, 'IdP')) {
+			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Valid signature found for ' . $requestid);
 		}
 		
-		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '.$authnrequest->getIssuer().' id '.$requestid);
+		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '.$issuer.' id '.$requestid);
 	
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
@@ -94,13 +99,11 @@ if (isset($_GET['SAMLRequest'])) {
 } elseif(isset($_GET['RequestID'])) {
 
 	try {
-
-		$requestid = $_GET['RequestID'];
-
-		$requestcache = $session->getAuthnRequest('saml2', $requestid);
-		
+	
 		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Got incomming RequestID');
 		
+		$requestid = $_GET['RequestID'];
+		$requestcache = $session->getAuthnRequest('saml2', $requestid);
 		if (!$requestcache) throw new Exception('Could not retrieve cached RequestID = ' . $requestid);
 		
 	} catch(Exception $exception) {
@@ -112,11 +115,11 @@ if (isset($_GET['SAMLRequest'])) {
 }
 
 
-$authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : null;
+$authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : NULL;
 
 
-/*
- * As we have passed the code above, we have an accociated request that is already processed.
+/**
+ * As we have passed the code above, we have an associated request that is already processed.
  *
  * Now we check whether we have a authenticated session. If we do not have an authenticated session,
  * we look up in the metadata of the IdP, to see what authenticaiton module to use, then we redirect
@@ -126,18 +129,16 @@ $authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : null
  */
 if (!isset($session) || !$session->isValid($authority) ) {
 
-
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Will go to authentication module ' . $idpmetadata['auth']);
 
 	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() .
 		'?RequestID=' . urlencode($requestid);
 	$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];
 
-	SimpleSAML_Utilities::redirect($authurl,
-		array('RelayState' => $relaystate));
+	SimpleSAML_Utilities::redirect($authurl, array('RelayState' => $relaystate));
 		
-/*
- * We got an request, and we hav a valid session. Then we send an AuthenticationResponse back to the
+/**
+ * We got an request, and we have a valid session. Then we send an AuthnResponse back to the
  * service.
  */
 } else {
@@ -153,7 +154,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		// Right now the list is used for SAML 2.0 only.
 		$session->add_sp_session($spentityid);
 
-		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Sending back AuthnResponse to '.$spentityid);
+		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Sending back AuthnResponse to ' . $spentityid);
 		
 
 		
@@ -163,8 +164,8 @@ if (!isset($session) || !$session->isValid($authority) ) {
 		 */
 		$attributes = $session->getAttributes();
 		$afilter = new SimpleSAML_XML_AttributeFilter($config, $attributes);
-		
 		$afilter->process($idpmetadata, $spmetadata);
+		
 		/**
 		 * Make a log entry in the statistics for this SSO login.
 		 */
