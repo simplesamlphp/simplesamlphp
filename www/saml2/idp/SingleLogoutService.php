@@ -12,7 +12,7 @@
 // TODO: Show error message, when shibboleth sp is logged in.
 // TODO: Propagate HTTP-REDIRECT SLO on SAML 2.0 bridge.
 
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . '../../../www/_include.php');
+require_once('../../../www/_include.php');
 
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');

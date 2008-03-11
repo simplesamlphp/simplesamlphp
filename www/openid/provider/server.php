@@ -4,7 +4,7 @@
 
 
 	
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . '../../_include.php');
+require_once('../../_include.php');
 
 // Include simpleSAMLphp libraries
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');

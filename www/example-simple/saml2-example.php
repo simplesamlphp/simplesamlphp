@@ -4,7 +4,7 @@
  * The _include script sets simpleSAMLphp libraries in the PHP PATH, as well as 
  * initialize the simpleSAMLphp config class with the correct path.
  */
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . '../_include.php');
+require_once('../_include.php');
 
 /**
  * We need to load a few classes from simpleSAMLphp. These are available because
