@@ -24,7 +24,7 @@
     <para>To get the latest news about simpleSAMLphp you can follow this url:
     <ulink
     url="http://rnd.feide.no/taxonomy/term/4">http://rnd.feide.no/taxonomy/term/4</ulink>.
-    It also conatins a RSS feed.</para>
+    It also conatins an RSS feed.</para>
 
     <para>Here is the simpleSAMLphp homepage: <ulink
     url="http://rnd.feide.no/simplesamlphp">http://rnd.feide.no/simplesamlphp</ulink></para>
@@ -40,7 +40,7 @@
     from a subversion checkout instead.</para>
 
     <section>
-      <title>Getting a working copy of simpleSAMLphp from subversion</title>
+      <title>Get a working copy of simpleSAMLphp from subversion</title>
 
       <para>Go to the directory where you want to install
       simpleSAMLphp:</para>
@@ -60,7 +60,7 @@ svn up</screen>
     </section>
   </section>
 
-  <section>
+  <section id="sect.upgrading">
     <title>Upgrading from a previous version of simpleSAMLphp</title>
 
     <para>If you run a the subversion version, you can just type in:</para>
@@ -91,12 +91,21 @@ svn up</screen>
       <title>Upgrading metadata files</title>
 
       <para>Most likely the metadata format is backward compatible. Otherwise
-      it shold</para>
+      it should give a very clear error message about how and what you need to
+      update. Still, it is reccomended to take a look at the metadata in the
+      metadata-templates directory after the upgrade, and see if the
+      reccomended defaults are changed.</para>
     </section>
   </section>
 
   <section>
     <title>Making configuration and metadata files</title>
+
+    <tip>
+      <para>You do not need to read this section if you are upgrading
+      simpleSAMLphp from an earlier version, then see <xref
+      linkend="sect.upgrading" />.</para>
+    </tip>
 
     <para>Configuration and metadata files are stored in a template format,
     you need to copy them to have your local copies. The reason why it is done
@@ -124,7 +133,7 @@ cp -r metadata-templates/*.php metadata/
     to update the path in a few files. <link linkend="sect.altlocations">I
     wrote a separate chapter about that, read on</link>.</para>
 
-    <para>Of the folders inside simplesamlphp, only the www folder needs to be
+    <para>Of the folders inside simpleSAMLphp, only the www folder needs to be
     accessible from the web. There are several ways of putting the
     simpleSAMLphp depending on the way web sites are structured on your apache
     web server. Here is what I believe is the best configuration.</para>
@@ -176,8 +185,8 @@ cp -r metadata-templates/*.php metadata/
 
     <warning>
       <para>Don't click on any of the links yet, because they require you to
-      eigther have setup simpleSAMLphp as an Service Provider or as an
-      Identity Provider.</para>
+      either have setup simpleSAMLphp as an Service Provider or as an Identity
+      Provider.</para>
     </warning>
 
     <para>Here is an example screenshot of what the simpleSAMLphp page looks
@@ -220,8 +229,12 @@ cp -r metadata-templates/*.php metadata/
 
       <listitem>
         <para><ulink
-        url="http://rnd.feide.no/content/using-simplesamlphp-bridge-federation-protocols">Setting
-        up simpleSAMLphp as a bridge</ulink></para>
+        url="http://rnd.feide.no/content/simplesamlphp-idp-google-apps-education">Setting
+        up simpleSAMLphp with Google Apps for Eduation</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para></para>
       </listitem>
     </itemizedlist>
   </section>
