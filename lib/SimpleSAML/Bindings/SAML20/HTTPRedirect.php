@@ -75,7 +75,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		SimpleSAML_Logger::debug('Library - HTTPRedirect validateQuery(): Looking up metadata issuer:' . $issuer . ' in set '. $metadataset);
 		$md = $this->metadata->getMetaData($issuer, $metadataset);
 		
-		// check wether to validate or not
+		// check whether to validate or not
 		if (!array_key_exists('request.signing', $md) || !$md['request.signing']){ 
 			return false;
 		}
@@ -83,6 +83,8 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		if (!isset($_GET['Signature'])) {
 			throw new Exception('No Signature on the request, required by configuration');
 		}
+		
+		SimpleSAML_Logger::debug('Library - HTTPRedirect validateQuery(): All required paramaters received.');
 
 		// building query string
 		$query = $request.'='.urlencode($_GET[$request]);
@@ -99,15 +101,27 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		}
 
 		$query = $query . "&" . "SigAlg=" . urlencode($algURI);
+		
+		SimpleSAML_Logger::debug('Library - HTTPRedirect validateQuery(): Built query: ' . $query);
+		SimpleSAML_Logger::debug('Library - HTTPRedirect validateQuery(): Sig Alg: ' . $algURI);
 				
+				
+
+		if (!array_key_exists('certificate', $md)) {
+			throw new Exception('If you set request.signing to be true in the metadata, you also have to add the certificate parameter.');
+		}
+
 		// check if public key of sp exists
 		$publickey = $this->configuration->getPathValue('certdir') . $md['certificate'];
-		if (!file_exists($publickey)) {
-			throw new Exception('Could not find private key file [' . $publickey . '] which is needed to verify the request.');
+		if (!is_file($publickey)) {
+			throw new Exception('Could not find certificate file [' . $publickey . '] which is needed to verify the request.');
 		}
 
 		// getting signature from get arguments
-		$signature = base64_decode(($_GET['Signature']));
+		$signature = @base64_decode($_GET['Signature'], TRUE);
+		if (!$signature) {
+			throw new Exception('Error base64 decoding signature parameter.');
+		}
 
 		// verify signature using xmlseclibs
 		$xmlseckey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
