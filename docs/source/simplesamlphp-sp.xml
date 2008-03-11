@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Wed Mar  5 15:38:05 2008</pubdate>
+    <pubdate>Wed Mar 5 15:38:05 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -74,7 +74,7 @@
  * Example of a hosted SP 
  */
 'sp-entityid' =&gt; array(
-	'host' =&gt; 'sp.example.org'
+ 'host' =&gt; 'sp.example.org'
 )</programlisting>
       </example>
 
@@ -109,7 +109,7 @@
 
         <glosslist>
           <glossentry>
-            <glossterm>index (the index of the array)</glossterm>
+            <glossterm>key (the key of the associative array)</glossterm>
 
             <glossdef>
               <para>The entity ID of the hosted SP entity.</para>
@@ -149,8 +149,19 @@
 
             <glossdef>
               <para>Force authentication is a parameter that allows you to
-              force re-authenticatino of users even if the user contains a SSO
+              force re-authentication of users even if the user has a SSO
               session at the IdP.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>AuthnContextClassRef</glossterm>
+
+            <glossdef>
+              <para>The SP can request authentication with a specific
+              authentication context class. One example of usage could be if
+              the IdP supports both username/password authentication as well
+              as software-PKI.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -189,7 +200,10 @@
 
             <glossdef>
               <para>The filename of the certificate which corresponds to the
-              privatekey.</para>
+              privatekey. This is highly optional, and the certificate is not
+              used right now, but is reserved for future use. Then the
+              certificate will be used to generate SAML 2.0 Metadata to export
+              to the IdP.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -197,9 +211,8 @@
         <example>
           <title>Example of configured signed requests</title>
 
-          <programlisting>'request.signing' =&gt; true,
-'privatekey' =&gt; 'server.pem',
-'certificate' =&gt; 'server.crt'</programlisting>
+          <programlisting> 'request.signing' =&gt; true,
+ 'privatekey' =&gt; 'server.pem',</programlisting>
         </example>
       </section>
     </section>
@@ -236,7 +249,7 @@
 
         <glosslist>
           <glossentry>
-            <glossterm>index (the index of the array)</glossterm>
+            <glossterm>key (the key of the associative array)</glossterm>
 
             <glossdef>
               <para>The entity ID of the remote IdP.</para>
@@ -306,7 +319,7 @@
 
         <glosslist>
           <glossentry>
-            <glossterm>base64encode</glossterm>
+            <glossterm>base64attributes</glossterm>
 
             <glossdef>
               <para>Is the IdP base64 encoding all the attributes?
@@ -391,7 +404,7 @@
 
       <para>Here is an example from <filename>config.php</filename>:</para>
 
-      <programlisting>	'default-saml20-idp'	=&gt;	'sam.feide.no',</programlisting>
+      <programlisting> 'default-saml20-idp' =&gt; 'sam.feide.no',</programlisting>
 
       <para>The configuration above will use the IdP configured in IdP Remote
       metadata with entity ID equal to <literal>sam.feide.no</literal>.</para>
@@ -406,7 +419,7 @@
       service to let the user select IdP. Here is the neccessary configuration
       from <filename>config.php</filename>:</para>
 
-      <programlisting>	'default-saml20-idp'	=&gt;	null,</programlisting>
+      <programlisting> 'default-saml20-idp' =&gt; null,</programlisting>
     </section>
   </section>
 
