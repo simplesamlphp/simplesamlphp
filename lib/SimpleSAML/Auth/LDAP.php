@@ -7,7 +7,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 /**
  * The LDAP class holds helper functions to access an LDAP database.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @author Anders Lund, UNINETT AS. <anders.lund@uninett.no>
  * @package simpleSAMLphp
  * @version $Id: Session.php 244 2008-02-04 08:36:24Z andreassolberg $
@@ -23,7 +23,9 @@ class SimpleSAML_Auth_LDAP {
 	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
-	public function __construct($hostname, $enable_tls=true) {
+	public function __construct($hostname, $enable_tls = true) {
+
+		SimpleSAML_Logger::debug('Library - LDAP __construct(): Setup LDAP with host [' . $hostname . '] and tls [' . var_export($enable_tls, true) . ']');
 
 		$this->ldap = @ldap_connect($hostname);
 		if (empty($this->ldap)) 
@@ -32,7 +34,7 @@ class SimpleSAML_Auth_LDAP {
 		$this->setV3();
 		
         if ($enable_tls) {
-            if (!ldap_start_tls($this->ldap)) {
+            if (!@ldap_start_tls($this->ldap)) {
                 throw new Exception('Could not force LDAP into TLS-session. Please verify certificates and configuration');
             }
         }
