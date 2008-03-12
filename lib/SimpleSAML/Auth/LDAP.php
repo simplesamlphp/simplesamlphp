@@ -35,7 +35,7 @@ class SimpleSAML_Auth_LDAP {
 		
         if ($enable_tls) {
             if (!@ldap_start_tls($this->ldap)) {
-                throw new Exception('Could not force LDAP into TLS-session. Please verify certificates and configuration');
+                throw new Exception('Could not force LDAP into TLS-session. Please verify certificates and configuration. Could also be that PHP the LDAP library cannot connect to the LDAP server [' . $hostname . ']: ' . ldap_error($this->ldap) );
             }
         }
 
