@@ -106,6 +106,9 @@ $config = array (
 	'session.duration'		=>  8 * (60*60), // 8 hours.
 	'session.requestcache'	=>  4 * (60*60), // 4 hours
 	
+	'session.phpsession.cookiename'  => null,
+	'session.phpsession.limitedpath' => false,
+	
 	/*
 	 * Languages available and what language is default
 	 */

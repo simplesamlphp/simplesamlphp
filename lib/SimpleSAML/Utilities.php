@@ -61,6 +61,27 @@ class SimpleSAML_Utilities {
 	}
 	
 	/**
+	 * This function checks if we should set a secure cookie.
+	 *
+	 * @return TRUE if the cookie should be secure, FALSE otherwise.
+	 */
+	public static function isHTTPS() {
+
+		if(!array_key_exists('HTTPS', $_SERVER)) {
+			/* Not a https-request. */
+			return FALSE;
+		}
+
+		if($_SERVER['HTTPS'] === 'off') {
+			/* IIS with HTTPS off. */
+			return FALSE;
+		}
+
+		/* Otherwise, HTTPS will be a non-empty string. */
+		return $_SERVER['HTTPS'] !== '';
+	}
+	
+	/**
 	 * Will return https://sp.example.org/universities/ruc/baz/simplesaml/saml2/SSOService.php
 	 */
 	public static function selfURLNoQuery() {

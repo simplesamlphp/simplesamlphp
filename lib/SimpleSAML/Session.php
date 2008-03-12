@@ -117,6 +117,9 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 		}
 	}
 	
+	
+	
+	
 	public static function init($authenticated = false, $authority = null) {
 		
 		$preinstance = self::getInstance();

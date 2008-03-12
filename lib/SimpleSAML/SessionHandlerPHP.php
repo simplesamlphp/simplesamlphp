@@ -31,6 +31,14 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 		 * started, and we should avoid calling session_start().
 		 */
 		if(session_id() === '') {
+			$config = SimpleSAML_Configuration::getInstance();
+			
+			$cookiepath = ($config->getValue('session.phpsession.limitedpath', FALSE) ? '/' . $config->getValue('baseurlpath') : '/');
+			session_set_cookie_params(0, $cookiepath, NULL, SimpleSAML_Utilities::isHTTPS());
+			
+			$cookiename = $config->getValue('session.phpsession.cookiename', NULL);
+			if (!empty($cookiename)) session_name($cookiename);
+			
 			session_start();
 		}
 	}
