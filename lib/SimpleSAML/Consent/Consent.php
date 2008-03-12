@@ -88,7 +88,7 @@ class SimpleSAML_Consent_Consent {
 	/**
 	 * Get a targeted ID. An identifier that is unique per SP entity ID.
 	 */
-	private function getTargetedID($hashed_userid) {
+	public function getTargetedID($hashed_userid) {
 		
 		return hash('sha1', $hashed_userid . $this->salt . $this->spentityid);
 		
@@ -97,7 +97,7 @@ class SimpleSAML_Consent_Consent {
 	/**
 	 * Get a hash value that changes when attributes are added or attribute values changed.
 	 */
-	private function getAttributeHash() {
+	public function getAttributeHash() {
 		return hash('sha1', serialize($this->filteredattributes));
 	}
 
