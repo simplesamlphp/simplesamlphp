@@ -55,7 +55,11 @@ $lang = array(
 		'descr_SLOSERVICEPARAMS' => 'You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse.',
 		
 		'title_ACSPARAMS' => 'No SAML response provided',
-		'descr_ACSPARAMS' => 'You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response.'
+		'descr_ACSPARAMS' => 'You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response.',
+		
+		'title_CASERROR' => 'CAS Error',
+		'descr_CASERROR' => 'Error when communicating with the CAS server.'
+
 	)
 
 );
