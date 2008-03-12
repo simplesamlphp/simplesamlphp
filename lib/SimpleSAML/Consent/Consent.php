@@ -80,7 +80,7 @@ class SimpleSAML_Consent_Consent {
 				$userid_attributename . '] was not available.');
 		}
 		
-		$userid = $this->attributes[$userid_attributename];
+		$userid = $this->attributes[$userid_attributename][0];
 		
 		return hash('sha1', $userid . $this->salt . $this->getIdPID() );
 	}
