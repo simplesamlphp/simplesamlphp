@@ -12,11 +12,13 @@ class SimpleSAML_Configuration {
 	private static $instance = array();
 
 	private $configpath = null;	
+	private $configfilename = null; 
 	private $configuration = null;
 
 	// private constructor restricts instantiaton to getInstance()
-	private function __construct($configpath) {
+	private function __construct($configpath, $configfilename = 'config.php') {
 		$this->configpath = $configpath;
+		$this->configfilename = $configfilename;
 	}
 	
 	public static function getInstance($instancename = 'simplesaml') {
@@ -25,15 +27,15 @@ class SimpleSAML_Configuration {
 		return self::$instance[$instancename];
 	}
 	
-	public static function init($path, $instancename = 'simplesaml') {
-		self::$instance[$instancename] = new SimpleSAML_Configuration($path);
+	public static function init($path, $instancename = 'simplesaml', $configfilename = 'config.php') {
+		self::$instance[$instancename] = new SimpleSAML_Configuration($path, $configfilename);
 	}
 
 	private function loadConfig() {
-		if (!file_exists($this->configpath . '/config.php')) {
+		if (!file_exists($this->configpath . '/' . $this->configfilename)) {
 			echo 'You have not yet created a configuration file. [ <a href="http://rnd.feide.no/content/installing-simplesamlphp#id405868">simpleSAMLphp installation manual</a> ]';
 		}
-		require_once($this->configpath . '/config.php');
+		require_once($this->configpath . '/' . $this->configfilename);
 		$this->configuration = $config;
 	}
 

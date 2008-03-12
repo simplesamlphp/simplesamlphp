@@ -17,6 +17,11 @@ $session = SimpleSAML_Session::getInstance(true);
 SimpleSAML_Logger::info('AUTH  - ldap: Accessing auth endpoint login');
 
 
+SimpleSAML_Configuration::init($configdir, 'ldapconfig', 'ldap.php');
+$ldapconfig = SimpleSAML_Configuration::getInstance('ldapconfig');
+
+
+
 $error = null;
 $attributes = array();
 $username = null;
@@ -61,17 +66,17 @@ if (isset($_POST['username'])) {
 		/*
 		 * Connecting to LDAP.
 		 */
-		$ldap = new SimpleSAML_Auth_LDAP($config->getValue('auth.ldap.hostname',
-                                         $config->getValue('auth.ldap.enable_tls')));
+		$ldap = new SimpleSAML_Auth_LDAP($ldapconfig->getValue('auth.ldap.hostname'),
+                                         $ldapconfig->getValue('auth.ldap.enable_tls'));
 	
 		/* Insert the LDAP username into the pattern configured in the
 		 * 'auth.ldap.dnpattern' option.
 		 */
 		$dn = str_replace('%username%', $ldapusername,
-						  $config->getValue('auth.ldap.dnpattern'));
+						  $ldapconfig->getValue('auth.ldap.dnpattern'));
 	
 		/* Connect to the LDAP server. */
-		#$ds = ldap_connect($config->getValue('auth.ldap.hostname'));
+		#$ds = ldap_connect($ldapconfig->getValue('auth.ldap.hostname'));
 		
 		
 		/*
@@ -85,7 +90,7 @@ if (isset($_POST['username'])) {
 		/*
 		 * Retrieve attributes from LDAP
 		 */
-		$attributes = $ldap->getAttributes($dn, $config->getValue('auth.ldap.attributes', null));
+		$attributes = $ldap->getAttributes($dn, $ldapconfig->getValue('auth.ldap.attributes', null));
 
 		SimpleSAML_Logger::info('AUTH - ldap: '. $ldapusername . ' successfully authenticated');
 		

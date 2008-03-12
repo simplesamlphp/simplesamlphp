@@ -48,12 +48,6 @@ if (!array_key_exists('RelayState', $_REQUEST)) {
 
 
 
-
-
-
-
-
-
 function casValidate($cas) {
 
 	$service = SimpleSAML_Utilities::selfURL();
