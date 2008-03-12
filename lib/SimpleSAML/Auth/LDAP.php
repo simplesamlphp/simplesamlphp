@@ -23,18 +23,19 @@ class SimpleSAML_Auth_LDAP {
 	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
-	public function __construct($hostname,$enable_tls=true) {
+	public function __construct($hostname, $enable_tls=true) {
 
 		$this->ldap = @ldap_connect($hostname);
 		if (empty($this->ldap)) 
-			throw new Exception('Could not connect to LDAP server. Please try again, and if the problem persists, please report the error.');
-
-        if (!preg_match("/ldaps:/i",$hostname) and $enable_tls) {
+			throw new Exception('Error initializing LDAP connection with PHP LDAP library.');
+		
+		$this->setV3();
+		
+        if ($enable_tls) {
             if (!ldap_start_tls($this->ldap)) {
                 throw new Exception('Could not force LDAP into TLS-session. Please verify certificates and configuration');
             }
         }
-		$this->setV3();
 
 	}
 	
@@ -53,12 +54,12 @@ class SimpleSAML_Auth_LDAP {
 	 */
 	public function searchfordn($searchbase, $searchattr, $searchvalue) {
 	
-		SimpleSAML_Logger::debug('Library - LDAP: Search for DN (base:' . 
-			$searchbase . ' attr:' . $searchattr . ' value:' . $searchvalue . ')');
-
 		// Search for ePPN
-		$search = '(' . $searchattr . '=' . $searchvalue. ')';
-		$search_result = @ldap_search($this->ldap, $searchbase, $search);
+		$search = $this->generateSearchFilter($searchattr, $searchvalue);
+		
+		SimpleSAML_Logger::debug('Library - LDAP: Search for DN base:' . $searchbase . ' search: ' . $search);
+		
+		$search_result = @ldap_search($this->ldap, $searchbase, $search, array() );
 
 		if ($search_result === false) {
 			throw new Exception('Failed performing a LDAP search: ' . ldap_error($this->ldap) . ' search:' . $search);
@@ -85,6 +86,31 @@ class SimpleSAML_Auth_LDAP {
 		return $dn;
 
 	}
+	
+	/**
+	 * Generate a search filter for one or more attribute names to match
+	 * one attribute value.
+	 *
+	 * @param $searchattr Can be either an array or a string. Attribute name.
+	 * @param $searchvalue Attribute value to match
+	 * @return A LDAP search filter.
+	 */
+	private function generateSearchFilter($searchattr, $searchvalue) {
+		if (is_array($searchattr)) {
+			
+			$search = '';
+			foreach ($searchattr AS $attr) {
+				$search .= '(' . $attr . '=' . $searchvalue. ')';
+			}
+			return '(|' . $search . ')';
+			
+		} elseif (is_string($searchattr)) {
+			return '(' . $searchattr . '=' . $searchvalue. ')';
+		} else {
+			throw Exception('Search attribute is required to be an array or a string.');
+		}
+	}
+	
 	
 	/**
 	 * Bind to LDAP with a specific DN and password.
@@ -115,21 +141,21 @@ class SimpleSAML_Auth_LDAP {
 		if ($sr === false) 
 			throw new Exception('Could not retrieve attributes for user: ' . ldap_error($this->ldap));
 		
-		$ldapentries = @ldap_get_entries($this->ldap, $sr);
+		$ldapentry = @ldap_get_entries($this->ldap, $sr);
 		
-		if ($ldapentries === false)
+		if ($ldapentry === false)
 			throw new Exception('Could not retrieve results from attribute retrieval for user:' . ldap_error($this->ldap));
 		
 		
 		$attributes = array();
-		for ($i = 0; $i < $ldapentries[0]['count']; $i++) {
+		for ($i = 0; $i < $ldapentry[0]['count']; $i++) {
 			$values = array();
-			if ($ldapentries[0][$i] == 'jpegphoto') continue;
-			for ($j = 0; $j < $ldapentries[0][$ldapentries[0][$i]]['count']; $j++) {
-				$values[] = $ldapentries[0][$ldapentries[0][$i]][$j];
+			if ($ldapentry[0][$i] == 'jpegphoto') continue;
+			for ($j = 0; $j < $ldapentry[0][$ldapentry[0][$i]]['count']; $j++) {
+				$values[] = $ldapentry[0][$ldapentry[0][$i]][$j];
 			}
 			
-			$attributes[$ldapentries[0][$i]] = $values;
+			$attributes[$ldapentry[0][$i]] = $values;
 		}
 		
 		SimpleSAML_Logger::debug('Library - LDAP: Found attributes (' . join(',', array_keys($attributes)) . ')');
