@@ -72,7 +72,7 @@ class SimpleSAML_Consent_Consent {
 	 *
 	 * @return hash( eduPersonPrincipalName + salt + IdP-identifier ) 
 	 */
-	private function getHashedUserID() {
+	public function getHashedUserID() {
 		$userid_attributename = $this->config->getValue('consent_userid', 'eduPersonPrincipalName');
 		
 		if (empty($this->attributes[$userid_attributename])) {
