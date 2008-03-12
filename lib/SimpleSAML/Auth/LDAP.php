@@ -23,12 +23,17 @@ class SimpleSAML_Auth_LDAP {
 	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
-	public function __construct($hostname) {
+	public function __construct($hostname,$enable_tls=true) {
 
 		$this->ldap = @ldap_connect($hostname);
 		if (empty($this->ldap)) 
 			throw new Exception('Could not connect to LDAP server. Please try again, and if the problem persists, please report the error.');
 
+        if (!preg_match("/ldaps:/i",$hostname) and $enable_tls) {
+            if (!ldap_start_tls($this->ldap)) {
+                throw new Exception('Could not force LDAP into TLS-session. Please verify certificates and configuration');
+            }
+        }
 		$this->setV3();
 
 	}

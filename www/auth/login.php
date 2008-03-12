@@ -61,7 +61,8 @@ if (isset($_POST['username'])) {
 		/*
 		 * Connecting to LDAP.
 		 */
-		$ldap = new SimpleSAML_Auth_LDAP($config->getValue('auth.ldap.hostname'));
+		$ldap = new SimpleSAML_Auth_LDAP($config->getValue('auth.ldap.hostname',
+                                         $config->getValue('auth.ldap.enable_tls')));
 	
 		/* Insert the LDAP username into the pattern configured in the
 		 * 'auth.ldap.dnpattern' option.
