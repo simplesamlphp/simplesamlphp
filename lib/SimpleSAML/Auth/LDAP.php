@@ -33,11 +33,11 @@ class SimpleSAML_Auth_LDAP {
 		
 		$this->setV3();
 		
-        if ($enable_tls) {
-            if (!@ldap_start_tls($this->ldap)) {
-                throw new Exception('Could not force LDAP into TLS-session. Please verify certificates and configuration. Could also be that PHP the LDAP library cannot connect to the LDAP server [' . $hostname . ']: ' . ldap_error($this->ldap) );
-            }
-        }
+		if (!preg_match("/ldaps:/i",$hostname) and $enable_tls) {
+			if (!@ldap_start_tls($this->ldap)) {
+				throw new Exception('Could not force LDAP into TLS-session. Please verify certificates and configuration. Could also be that PHP the LDAP library cannot connect to the LDAP server [' . $hostname . ']: ' . ldap_error($this->ldap) );
+			}
+		}
 
 	}
 	
