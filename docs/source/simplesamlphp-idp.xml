@@ -35,7 +35,8 @@
 
         <glossdef>
           <para>This is the standard LDAP backend authentication module, it
-          uses LDAP configuration from the config.php file.</para>
+          uses LDAP configuration from the <filename>config/ldap.php</filename>
+          file.</para>
         </glossdef>
       </glossentry>
 
@@ -79,7 +80,7 @@
       <para>If you want to perform local authentication on this server, and
       you want to use the LDAP authenticaiton plugin, then you need to
       configure the following parameters in
-      <filename>config.php</filename>:</para>
+      <filename>config/ldap.php</filename>:</para>
 
       <itemizedlist>
         <listitem>
@@ -98,6 +99,14 @@
           LDAP. What attributes should be extracted?
           <literal>objectclass=*</literal> gives you all.</para>
         </listitem>
+
+        <listitem>
+          <para><literal>auth.ldap.enable_tls</literal>: Enable TLS for
+          the connection to the LDAP server. The default is
+          <literal>false</literal></para>
+        </listitem>
+
+
       </itemizedlist>
     </section>
 
@@ -131,7 +140,7 @@
     </warning>
 
     <para>Here is an examples of openssl commands to generate a new key and a
-    selfsigned certificate to use for signing SAML messages:</para>
+    self-signed certificate to use for signing SAML messages:</para>
 
     <screen>openssl genrsa -des3 -out server2.key 1024 
 openssl rsa -in server2.key -out server2.pem
@@ -163,14 +172,14 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
 'idp.example.org' =&gt; array(
 
  // The hostname of the server (VHOST) that this SAML entity will use.
- 'host'				=&gt; 'sp.example.org',
+ 'host'             =&gt; 'sp.example.org',
  
  // X.509 key and certificate. Relative to the cert directory.
- 'privatekey'		=&gt; 'server.pem',
- 'certificate'		=&gt; 'server.crt',
+ 'privatekey'       =&gt; 'server.pem',
+ 'certificate'      =&gt; 'server.crt',
  
  // Authentication plugin to use. login.php is the default one that uses LDAP.
- 'auth'				=&gt; 'auth/login.php',
+ 'auth'             =&gt; 'auth/login.php',
  'authority'        =&gt; 'login',
 ),</programlisting>
 
@@ -193,7 +202,9 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>host</glossterm>
 
             <glossdef>
-              <para>The hostname of the server running this IdP.</para>
+              <para>The hostname of the server running this IdP. This hostname
+              is used to determine which IdP the user is accessing and must
+              match the domain name the user uses to access your IdP.</para>
             </glossdef>
           </glossentry>
 
@@ -235,8 +246,8 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>requireconsent</glossterm>
 
             <glossdef>
-              <para>Set to true if you want to require user's consent each
-              time attributes are sent to an SP.</para>
+              <para>Set to true if you want to require the user's consent
+              before sending attributes to an SP.</para>
             </glossdef>
           </glossentry>
 
@@ -245,7 +256,8 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
 
             <glossdef>
               <para>Who is authorized to create sessions for this IdP. Can be
-              login for LDAP login module, or saml2 for SAML 2.0 SP. It is
+              <literal>login</literal> for LDAP login module, or
+              <literal>saml2</literal> for SAML 2.0 SP. It is
               highly reccomended to set this parameter.</para>
             </glossdef>
           </glossentry>
@@ -266,7 +278,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossdef>
               <para>You can implement custom functions that injects or
               modifies attributes. Here you can specify an array of such
-              fuctions. Read more in the advances features document.</para>
+              functions. Read more in the advances features document.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -284,9 +296,10 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>request.signing</glossterm>
 
             <glossdef>
-              <para>A boolean value, that should be true or false. Default is
-              false. To turn on signing authentication requests, set this flag
-              to true.</para>
+              <para>A boolean value which should be <literal>true</literal>
+              or <literal>false</literal>. Default is <literal>false</literal>.
+              To turn on signing authentication requests, set this flag
+              to <literal>true</literal>.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -361,7 +374,12 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>NameIDFormat</glossterm>
 
             <glossdef>
-              <para>Set it to the default: transient.</para>
+              <para>The format of the NameID sent to this SP. The default is
+              <literal>'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'</literal>.
+              It could also be set to 
+              <literal>'urn:oasis:names:tc:SAML:2.0:nameid-format:email'</literal>
+              to use the email name format. No other name formats are
+              currently supported by simpleSAMLphp.</para>
             </glossdef>
           </glossentry>
 
@@ -387,11 +405,9 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>simplesaml.nameidattribute</glossterm>
 
             <glossdef>
-              <para>If the NameIDFormat is set to email, then the email
-              address will be retrieved from the attribute with this name. In
-              example, the simplesaml.nameidattribute can be set to uid, and
-              then the authentcation module sets an attribute with name uid.
-              The value of this attribute will be set as the NameID.</para>
+              <para>This is the name of the attribute simpleSAMLphp will use
+              as the email address if email is selected as the
+              NameIDFormat.</para>
             </glossdef>
           </glossentry>
 
