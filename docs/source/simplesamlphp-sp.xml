@@ -344,16 +344,31 @@
                 </warning></para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>SingleLogoutServiceResponse</glossterm>
+
+            <glossdef>
+              <para>Some IdPs may require logout responses to be sent to a
+              different URL than logout requests. If this option is set, then
+              logout responses will be sent to this URL while logout requests
+              are sent to the URL in
+              <literal>SingleLogoutService</literal>.
+              <literal>SingleLogoutService</literal> will be used for both
+              messages if this option is unset.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
       </section>
 
       <section>
-        <title>Fields for requireing signed LogoutRequests</title>
+        <title>Fields for requireing signed
+        LogoutRequests/LogoutResponses</title>
 
-        <para>simpleSAMLphp supports signing the HTTP-REDIRECT authentication
-        request, but by default it will not sign it. Note that if you want to
-        sign the authentication requests, you will need to have a
-        keypair/certificate at the SP.</para>
+        <para>simpleSAMLphp supports signing the HTTP-REDIRECT messages, but
+        by default it will neither sign nor validate them. To enable validation
+        of LogoutRequest and LogoutResponse messages from this IdP, you will
+        need to set these options:</para>
 
         <glosslist>
           <glossentry>
@@ -361,17 +376,8 @@
 
             <glossdef>
               <para>A boolean value, that should be true or false. Default is
-              false. To turn on signing authentication requests, set this flag
-              to true.</para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>privatekey</glossterm>
-
-            <glossdef>
-              <para>The filename of the privatekey to be used for
-              singing.</para>
+              false. To require validation of messages from the IdP, set this
+              flag to true.</para>
             </glossdef>
           </glossentry>
 
@@ -379,14 +385,15 @@
             <glossterm>certificate</glossterm>
 
             <glossdef>
-              <para>The filename of the certificate which corresponds to the
-              privatekey.</para>
+              <para>The filename of the certificate which should be used to
+              verify the signature.</para>
             </glossdef>
           </glossentry>
         </glosslist>
 
         <example>
-          <title>Example of configured signed LogoutRequests</title>
+          <title>Example of configuration which requires validation valid
+          signatures on LogoutRequests</title>
 
           <programlisting>'request.signing' =&gt; true,
 'certificate' =&gt; 'server.crt'</programlisting>
