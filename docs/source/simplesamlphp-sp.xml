@@ -164,6 +164,18 @@
               as software-PKI.</para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>SPNameQualifier</glossterm>
+
+            <glossdef>
+              <para>This corresponds to the SPNameQualifier in the SAML 2.0
+              specification. It allows to give subjects a SP specific
+              namespace. This value is seldom used, so if you don't need it,
+              do not include it. If you do not include it, simpleSAMLphp will
+              include the entityID of your SP as the SPNameQualifier.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
       </section>
 
@@ -330,18 +342,6 @@
                   set the parameter in the metadata at the IdP to be the
                   same.</para>
                 </warning></para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>SPNameQualifier</glossterm>
-
-            <glossdef>
-              <para>This corresponds to the SPNameQualifier in the SAML 2.0
-              specification. It allows to give subjects a SP specific
-              namespace. This value is seldom used, so if you don't need it,
-              do not include it. If you do not include it, simpleSAMLphp will
-              include the entityID of your SP as the SPNameQualifier.</para>
             </glossdef>
           </glossentry>
         </glosslist>
