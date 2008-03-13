@@ -147,8 +147,14 @@ $functionchecks = array(
 	'mcrypt_module_open'=> array('optional',  'MCrypt'),
 );
 $funcmatrix = array();
-$funcmatrix[] = array('required' => 'required', 'descr' => 'PHP Version >= 5.1.2. You run: ' . phpversion(), 'enabled' => version_compare(phpversion(), '5.1.2', '>='));
-$funcmatrix[] = array('required' => 'reccomended', 'descr' => 'PHP Version >= 5.2', 'enabled' => version_compare(phpversion(), '5.2', '>='));
+$funcmatrix[] = array(
+	'required' => 'required', 
+	'descr' => 'PHP Version >= 5.1.2. You run: ' . phpversion(), 
+	'enabled' => version_compare(phpversion(), '5.1.2', '>='));
+$funcmatrix[] = array(
+	'required' => 'reccomended', 
+	'descr' => 'PHP Version >= 5.2 (Required for Shibboleth 1.3 SP)', 
+	'enabled' => version_compare(phpversion(), '5.2', '>='));
 foreach ($functionchecks AS $func => $descr) {
 	$funcmatrix[] = array('descr' => $descr[1], 'required' => $descr[0], 'enabled' => function_exists($func));
 }
