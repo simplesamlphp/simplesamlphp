@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Fri Mar 14 10:39:22 2008</pubdate>
+    <pubdate>Tue Mar 11 20:59:28 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -111,7 +111,7 @@
       <para>If you want to perform local authentication on this server, and
       you want to use the LDAP authenticaiton plugin, then you need to
       configure the following parameters in
-      <filename>config.php</filename>:</para>
+      <filename>config/ldap.php</filename>:</para>
 
       <itemizedlist>
         <listitem>
@@ -129,6 +129,11 @@
           <para><literal>auth.ldap.attributes</literal>: Search parameter to
           LDAP. What attributes should be extracted?
           <literal>objectclass=*</literal> gives you all.</para>
+        </listitem>
+
+        <listitem>
+          <para><literal>auth.ldap.enable_tls</literal>: Will perform
+          start_tls() after creation the connectino to the LDAP server.</para>
         </listitem>
       </itemizedlist>
     </section>
