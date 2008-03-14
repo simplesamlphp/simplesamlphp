@@ -85,19 +85,55 @@ class SimpleSAML_Consent_Storage {
 	 * Store user consent in database
 	 */
 	public function store($user_id, $targeted_id, $attribute_hash) {
-
-		SimpleSAML_Logger::debug('Library - ConsentStorage store(): user_id        : ' . $user_id);
-		SimpleSAML_Logger::debug('Library - ConsentStorage store(): targeted_id    : ' . $targeted_id);
-		SimpleSAML_Logger::debug('Library - ConsentStorage store(): attribute_hash : ' . $attribute_hash);
-		
 		/**
 		 * insert new entry into consent storage.
 		 */
 		$stmt = $this->dbh->prepare("REPLACE INTO consent VALUES (?,?,?,NOW(),NOW())");
 		$stmt->execute(array($user_id, $targeted_id, $attribute_hash));
+		$rows = $stmt->rowCount();
 	
+		SimpleSAML_Logger::debug('Library - ConsentStorage store(): user_id        : ' . $user_id);
+		SimpleSAML_Logger::debug('Library - ConsentStorage store(): targeted_id    : ' . $targeted_id);
+		SimpleSAML_Logger::debug('Library - ConsentStorage store(): attribute_hash : ' . $attribute_hash);
+
+		SimpleSAML_Logger::debug('Library - ConsentStorage store(): Number of rows : [' . $rows . ']');
+
+		return ($rows === 1);
 	}
 
+  /**
+   * Delete specific user consent in database
+   */
+  public function delete($user_id, $targeted_id, $attribute_hash) {
+
+    SimpleSAML_Logger::debug('Library - ConsentStorage delete(): user_id        : ' . $user_id);
+    SimpleSAML_Logger::debug('Library - ConsentStorage delete(): targeted_id    : ' . $targeted_id);
+    SimpleSAML_Logger::debug('Library - ConsentStorage delete(): attribute_hash : ' . $attribute_hash);
+    
+    /**
+     * delete specific entry from consent storage.
+     */
+    $stmt = $this->dbh->prepare("DELETE FROM consent WHERE hashed_user_id = ? AND service_id = ? AND attribute = ?");
+    $stmt->execute(array($user_id, $targeted_id, $attribute_hash));
+    
+    return $stmt->rowCount();
+  }
+
+  /**
+   * Delete user consent in database
+   */
+  public function deleteUserConsent($user_id) {
+
+    SimpleSAML_Logger::debug('Library - ConsentStorage deleteUserConsent(): user_id        : ' . $user_id);
+    
+    /**
+     * delete specific entry from consent storage.
+     */
+    $stmt = $this->dbh->prepare("DELETE FROM consent WHERE hashed_user_id = ?");
+    $stmt->execute(array($user_id));
+    
+    return $stmt->rowCount();
+  }
 }
 
 ?>
