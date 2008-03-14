@@ -8,7 +8,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Sat Mar  8 22:40:15 2008</pubdate>
+    <pubdate>Fri Mar 14 10:38:52 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -30,6 +30,18 @@
     for Education:</para>
 
     <literallayout>dev2.andreas.feide.no</literallayout>
+  </section>
+
+  <section>
+    <title>Enabling the Identity Provider functionality</title>
+
+    <para>Edit <filename>config.php</filename>, and enable the SAML 2.0
+    IdP:</para>
+
+    <programlisting>'enable.saml20-sp'  =&gt; false,
+'enable.saml20-idp' =&gt; true,
+'enable.shib13-sp'  =&gt; false,
+'enable.shib13-idp' =&gt; false,</programlisting>
   </section>
 
   <section>
@@ -116,6 +128,15 @@ An optional company name []:</screen>
       </glossentry>
 
       <glossentry>
+        <glossterm>auth/login-feide.php</glossterm>
+
+        <glossdef>
+          <para>A multi-LDAP module which looks up the users in LDAP first
+          searching for <literal>eduPersonPrincipalName</literal>.</para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
         <glossterm>auth/login-radius.php</glossterm>
 
         <glossdef>
@@ -133,6 +154,15 @@ An optional company name []:</screen>
           not have</para>
 
           <para>This module is not completed yet. Work in progress.</para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>auth/login-cas-ldap.php</glossterm>
+
+        <glossdef>
+          <para>Authentication via CAS. Then look up attributes via
+          LDAP.</para>
         </glossdef>
       </glossentry>
     </glosslist>
@@ -433,7 +463,27 @@ An optional company name []:</screen>
     to join! Both for asking question, answer other questions, request
     improvements or contribute with code or plugins of your own.</para>
 
-    <para>Visit the project page of simpleSAMLphp at: <ulink
-    url="http://code.google.com/p/simplesamlphp/">http://code.google.com/p/simplesamlphp/</ulink></para>
+    <itemizedlist>
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/simplesamlphp">simpleSAMLphp
+        homepage (at Feide RnD)</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/view/simplesamlphpdocs">List of
+        all available simpleSAMLphp documentation</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink
+        url="http://rnd.feide.no/content/simplesamlphp-users-mailinglist">Join
+        the simpleSAMLphp user's mailing list</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="https://ow.feide.no/simplesamlphp:start">Visit and
+        contribute to the simpleSAMLphp wiki</ulink></para>
+      </listitem>
+    </itemizedlist>
   </section>
 </article>

@@ -41,43 +41,176 @@
   <section>
     <title>Attribute control</title>
 
-    <para></para>
+    <para>You have several options if you want control what attributes are
+    sent to services. in this section functionality around filtering and
+    modification of attributes are discussed.</para>
 
     <section>
       <title>Attribute filtering</title>
 
-      <para></para>
+      <para>Attribute filtering lets you configure an array of attribute names
+      that are sent to each service. This option is placed in the service
+      provider metadata files.</para>
+
+      <para>On a Shibboleth or SAML 2.0 SimpleSAMLphp IdP, look at the
+      <filename>shib13-sp-remote.php</filename> or
+      <filename>saml20-sp-remote.php</filename> metadata file. Here you
+      optionally can add a parameter called <literal>attributes</literal>. If
+      you do not include this parameter, all available attributes will be sent
+      by default. Adding an array of attributes to this parameter, limits the
+      attributes sent to match this list. </para>
+
+      <example>
+        <title>Example of attribute filtering</title>
+
+        <para>Here is a metadata entry for a remote SP that will only receive
+        two attributes:</para>
+
+        <programlisting>'dev.andreas.feide.no' =&gt; array(
+	'AssertionConsumerService'		=&gt;	'http://dev.andreas.feide.no/simplesaml/saml2/sp/AssertionConsumerService.php', 
+	'SingleLogoutService'			=&gt;	'http://dev.andreas.feide.no/simplesaml/saml2/sp/SingleLogoutService.php',
+	'attributes' =&gt; array('eduPersonPrincipalName', 'mail'),
+),</programlisting>
+      </example>
     </section>
 
     <section>
       <title>Attribute name mapping</title>
 
-      <para></para>
+      <para>You can configure a mapping table with attribute names that are
+      transformed into another name. This is particularly useful whe bridging
+      between different federations.</para>
+
+      <para>To define a new attribute name mapping table, give it a name,
+      f.ex. <literal>feide2edugain</literal>. Then you create a new file in
+      <filename>attributemap/feide2edugain.php</filename>. This file shuold
+      have a syntax like this:</para>
+
+      <programlisting>&lt;?php
+
+$attributemap = array(
+	'mobile'			=&gt;	'urn:mace:dir:attribute-def:mobile'
+);
+
+?&gt;
+</programlisting>
+
+      <para>Next, you need to configure where to apply this mapping. There is
+      a parameter called <literal>attributemap</literal>, which you can add to
+      either the IdP hosted metadata or the SP remote metadata. This parameter
+      can be set to a name of a mapping table.</para>
+
+      <example>
+        <title>Example of attribute mapping</title>
+
+        <para>Here is an example of saml20-idp-hosted.php:</para>
+
+        <programlisting>'test.andreas.feide.no' =&gt; array(
+	'host'         =&gt; 'dev2.andreas.feide.no',
+	'privatekey'   =&gt; 'googleappsidp.pem',
+	'certificate'  =&gt; 'googleappsidp.crt',
+	'auth'         =&gt; 'auth/login.php',
+	
+	'attributemap' =&gt; 'feide2edugain'
+),</programlisting>
+
+        <para>This will process the attributemap
+        <literal>feide2edugain</literal> for all SPs that connects to the SAML
+        2.0 IdP <literal>test.andreas.feide.no</literal>. Alternatively the
+        parameter can be configured to the SP remote metadata, where it will
+        be processed for that specific SP only.</para>
+      </example>
     </section>
 
     <section>
       <title>Attribute alter functions</title>
 
-      <para></para>
+      <para>You can implement your own attribute function that filter,
+      injects, modifies or removes attributes. You shuold give your attribute
+      alter function a name, in example we can create an attribute alter
+      functions that take the last part of the eduPersonPrincipalName
+      attribute (the part after <literal>@</literal>, f.ex.
+      <literal>uninett.no</literal> in <literal>andreas@uninett.no</literal>),
+      and add this part as a new attribute with the name
+      <literal>realm</literal>. Let us call this attribute alter function for
+      <literal>realm</literal>. Then we create this function in the attribute
+      alter function file:
+      <filename>attributealter/alterfunctions.php</filename>. We the function
+      will have the name of the attribute alter function, but prefixed with
+      <literal>attributealter_</literal>, so we end up with:
+      <literal>attributealter_realm</literal>. The method signature should
+      be:</para>
 
-      <example>
-        <title>Example of alter script</title>
+      <programlisting>function attributealter_realm(&amp;$attributes, $spentityid = null, $idpentityid = null) {</programlisting>
 
-        <para>This example injects a realm attribute that is generated from
-        the eduPersonPrincipalName.</para>
+      <para>We see that we get a reference to the attributes array. This array
+      contains all the other attributes, and we can add new attributes into
+      this array that will be sent to the service. We also get the entity ID
+      of the SP and the IdP.</para>
 
-        <programlisting>function attributealter_realm(&amp;$attributes, $spentityid = null, $idpentityid = null) {
+      <para>Here is the full example function:</para>
 
-	if (array_key_exists('eduPersonPrincipalName', $attributes)) {
-		$eduppn = $attributes['eduPersonPrincipalName'][0];
+      <programlisting>function attributealter_realm(&amp;$attributes, $spentityid = null, $idpentityid = null) {
+
+	$attributename = 'eduPersonPrincipalName';
+	if (array_key_exists($attributename, $attributes)) {
+		$eduppn = $attributes[$attributename][0];
 		$splitted = explode('@', $eduppn);
 		if (count($splitted) &gt; 1) {
 			$attributes['realm'] = array($splitted[1]);
+		} else {
+			SimpleSAML_Logger::debug('attributealter_realm: Wrong format on ' . $attributename . ' (not including @)');
 		}
+	} else {
+		SimpleSAML_Logger::debug('attributealter_realm: Could not find ' . $attributename);
 	}
 
 }</programlisting>
-      </example>
+
+      <itemizedlist>
+        <listitem>
+          <para><ulink
+          url="https://ow.feide.no/simplesamlphp:alterfunctions">This wiki
+          page on the simpleSAMLphp wiki page is supposed to hold several
+          example attribute alter functions for inspiration for
+          others</ulink>. Please contribute with your attribute alter
+          functions to this page. Contact Andreas, if you have not access to
+          the wiki and want to add some examples.</para>
+        </listitem>
+      </itemizedlist>
     </section>
+  </section>
+
+  <section>
+    <title>Support</title>
+
+    <para>If you have problems to get this work, or want to discuss
+    simpleSAMLphp with other users of the software you are lucky! Around
+    simpleSAMLphp there is a great Open source community, and you are welcome
+    to join! Both for asking question, answer other questions, request
+    improvements or contribute with code or plugins of your own.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/simplesamlphp">simpleSAMLphp
+        homepage (at Feide RnD)</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/view/simplesamlphpdocs">List of
+        all available simpleSAMLphp documentation</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink
+        url="http://rnd.feide.no/content/simplesamlphp-users-mailinglist">Join
+        the simpleSAMLphp user's mailing list</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="https://ow.feide.no/simplesamlphp:start">Visit and
+        contribute to the simpleSAMLphp wiki</ulink></para>
+      </listitem>
+    </itemizedlist>
   </section>
 </article>

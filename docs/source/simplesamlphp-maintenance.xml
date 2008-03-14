@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-08-30</date>
 
-    <pubdate>Sat Mar  8 22:40:37 2008</pubdate>
+    <pubdate>Fri Mar 14 09:53:04 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -18,6 +18,10 @@
     </author>
   </articleinfo>
 
+  <warning>
+    <para>This document is in progress of beeing written.</para>
+  </warning>
+
   <section>
     <title>Session management</title>
 
@@ -25,8 +29,10 @@
     means it is possible to choose between different kind of session stores,
     as well as write new session store plugins.</para>
 
-    <para>The current version of simpleSAMLphp includes two plugins for
-    session management:</para>
+    <para>The <literal>session.handler</literal> configuration option in
+    <filename>config.php</filename> allows you to select which session handler
+    SimpleSAMLPHP should use to store the session information. Currently we
+    have two session handlers:</para>
 
     <itemizedlist>
       <listitem>
@@ -42,116 +48,155 @@
       </listitem>
     </itemizedlist>
 
+    <programlisting> 'session.handler'       =&gt; 'phpsession',</programlisting>
+
     <section>
       <title>Configuring memcache</title>
 
-      <para>From config.php</para>
+      <para>To use the memcache session handler, set the session.handler
+      parameter in <literal>config.php</literal>:</para>
 
-      <programlisting>
-	/*
-	 * This configuration option allows you to select which session handler
-	 * SimpleSAMLPHP should use to store the session information. Currently
-	 * we have two session handlers:
-	 * - 'phpsession': The default PHP session handler.
-	 * - 'memcache':   Stores the session information in one or more
-	 *   memcache servers by using the MemcacheStore class.
-	 *
-	 * The default session handler is 'phpsession'.
-	 */
-	'session.handler'       =&gt; 'phpsession',
+      <programlisting>'session.handler'       =&gt; 'memcache',</programlisting>
 
+      <para>Memcache allows you to store multiple redudant copies of sessions
+      on different memcache servers.</para>
 
-	/*
-	 * Configuration for the MemcacheStore class. This allows you to store
-	 * multiple redudant copies of sessions on different memcache servers.
-	 *
-	 * 'memcache_store.servers' is an array of server groups. Every data
-	 * item will be mirrored in every server group.
-	 *
-	 * Each server group is an array of servers. The data items will be
-	 * load-balanced between all servers in each server group.
-	 *
-	 * Each server is an array of parameters for the server. The following
-	 * options are available:
-	 *  - 'hostname': This is the hostname or ip address where the
-	 *    memcache server runs. This is the only required option.
-	 *  - 'port': This is the port number of the memcache server. If this
-	 *    option isn't set, then we will use the 'memcache.default_port'
-	 *    ini setting. This is 11211 by default.
-	 *  - 'weight': This sets the weight of this server in this server
-	 *    group. http://php.net/manual/en/function.Memcache-addServer.php
-	 *    contains more information about the weight option.
-	 *  - 'timeout': The timeout for this server. By default, the timeout
-	 *    is 3 seconds.
-	 *
-	 * Example of redudant configuration with load balancing:
-	 * This configuration makes it possible to lose both servers in the
-	 * a-group or both servers in the b-group without losing any sessions.
-	 * Note that sessions will be lost if one server is lost from both the
-	 * a-group and the b-group.
-	 *
-	 * 'memcache_store.servers' =&gt; array(
-	 *     array(
-	 *         array('hostname' =&gt; 'mc_a1'),
-	 *         array('hostname' =&gt; 'mc_a2'),
-	 *     ),
-	 *     array(
-	 *         array('hostname' =&gt; 'mc_b1'),
-	 *         array('hostname' =&gt; 'mc_b2'),
-	 *     ),
-	 * ),
-	 *
-	 * Example of simple configuration with only one memcache server,
-	 * running on the same computer as the web server:
-	 * Note that all sessions will be lost if the memcache server crashes.
-	 *
-	 * 'memcache_store.servers' =&gt; array(
-	 *     array(
-	 *         array('hostname' =&gt; 'localhost'),
-	 *     ),
-	 * ),
-	 *
-	 */
-	'memcache_store.servers' =&gt; array(
-		array(
-			array('hostname' =&gt; 'localhost'),
-		),
+      <para>The configuration parameter
+      <literal>memcache_store.servers</literal> is an array of server groups.
+      Every data item will be mirrored in every server group.</para>
+
+      <para>Each server group is an array of servers. The data items will be
+      load-balanced between all servers in each server group.</para>
+
+      <para>Each server is an array of parameters for the server. The
+      following options are available:</para>
+
+      <glosslist>
+        <glossentry>
+          <glossterm><literal>hostname</literal></glossterm>
+
+          <glossdef>
+            <para>This is the hostname or ip address where the memcache server
+            runs. This is the only required option.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm><literal>port</literal></glossterm>
+
+          <glossdef>
+            <para>This is the port number of the memcache server. If this
+            option isn't set, then we will use the
+            <literal>memcache.default_port</literal> ini setting. This is
+            11211 by default.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm><literal>weight</literal></glossterm>
+
+          <glossdef>
+            <para>This sets the weight of this server in this server group.
+            <ulink
+            url="http://php.net/manual/en/function.Memcache-addServer.php">http://php.net/manual/en/function.Memcache-addServer.php</ulink>
+            contains more information about the weight option.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm><literal>timeout</literal></glossterm>
+
+          <glossdef>
+            <para>The timeout for this server. By default, the timeout is 3
+            seconds.</para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+
+      <para>Here are two examples of configuration of memcache session
+      handling:</para>
+
+      <example>
+        <title>Example of redudant configuration with load balancing</title>
+
+        <para>Example of redudant configuration with load balancing: This
+        configuration makes it possible to lose both servers in the a-group or
+        both servers in the b-group without losing any sessions. Note that
+        sessions will be lost if one server is lost from both the a-group and
+        the b-group.</para>
+
+        <programlisting>'memcache_store.servers' =&gt; array(
+	array(
+		array('hostname' =&gt; 'mc_a1'),
+		array('hostname' =&gt; 'mc_a2'),
 	),
+	array(
+		array('hostname' =&gt; 'mc_b1'),
+		array('hostname' =&gt; 'mc_b2'),
+	),
+),</programlisting>
+      </example>
 
+      <example>
+        <title>Example of simple configuration with only one memcache
+        server</title>
 
-	/*
-	 * This value is the duration data should be stored in memcache. Data
-	 * will be dropped from the memcache servers when this time expires.
-	 * The time will be reset every time the data is written to the
-	 * memcache servers.
-	 *
-	 * This value should always be larger than the 'session.duration'
-	 * option. Not doing this may result in the session being deleted from
-	 * the memcache servers while it is still in use.
-	 *
-	 * Set this value to 0 if you don't want data to expire.
-	 *
-	 * Note: The oldest data will always be deleted if the memcache server
-	 * runs out of storage space.
-	 */
-	'memcache_store.expires' =&gt;  36 * (60*60), // 36 hours.
+        <para>Example of simple configuration with only one memcache server,
+        running on the same computer as the web server: Note that all sessions
+        will be lost if the memcache server crashes.</para>
 
-</programlisting>
+        <programlisting>'memcache_store.servers' =&gt; array(
+	array(
+		array('hostname' =&gt; 'localhost'),
+	),
+),</programlisting>
+      </example>
 
-      <important>
+      <para>The expiration value (<literal>memcache_store.expires</literal>)
+      is the duration data should be stored in memcache. Datawill be dropped
+      from the memcache servers when this time expires. The time will be reset
+      every time the data is written to the memcache servers.</para>
+
+      <para>This value should always be larger than the
+      <literal>session.duration</literal> option. Not doing this may result in
+      the session being deleted from the memcache servers while it is still in
+      use.</para>
+
+      <para>Set this value to 0 if you don't want data to expire. </para>
+
+      <note>
+        <para>The oldest data will always be deleted if the memcache server
+        runs out of storage space.</para>
+      </note>
+
+      <example>
+        <title>Example of configuration setting for session expiration</title>
+
+        <para>Here is an example of this configuration parameter:</para>
+
+        <programlisting>'memcache_store.expires' =&gt;  36 * (60*60), // 36 hours.</programlisting>
+      </example>
+
+      <section>
+        <title>Memcache PHP configuration</title>
+
+        <para>Configure memcahce to not do internal failover. This parameter
+        is configured in <filename>php.ini</filename>.</para>
+
+        <programlisting>memcache.allow_failover = Off</programlisting>
+      </section>
+
+      <section>
+        <title>Environmental configuration</title>
+
         <para>Setup a firewall restricting access to the memcache
         server.</para>
-      </important>
 
-      <para>Configure memcahce to not do internal failover. This parameter is
-      configured in <filename>php.ini</filename>.</para>
-
-      <programlisting>memcache.allow_failover = Off</programlisting>
-
-      <para>Because simpleSAMLphp uses a timestamp to check which session is
-      most recent in a fail-over setup, it is very important to run
-      syncrhonized clocks on all webservers where you run
-      simpleSAMLphp.</para>
+        <para>Because simpleSAMLphp uses a timestamp to check which session is
+        most recent in a fail-over setup, it is very important to run
+        syncrhonized clocks on all webservers where you run
+        simpleSAMLphp.</para>
+      </section>
     </section>
   </section>
 
@@ -177,7 +222,7 @@
   <section>
     <title>PHP configuration</title>
 
-    <para>Secure cookies.</para>
+    <para>Secure cookies (if you run HTTPS).</para>
 
     <para>Turn off PHPSESSID in query string.</para>
   </section>
@@ -257,5 +302,38 @@ templates/dkaaitheme/dk
     To use the dkaaitheme as illustrated in the above example, set the value
     of <literal>templatedir</literal> to
     <filename>templates/dkaaitheme/</filename>.</para>
+  </section>
+
+  <section>
+    <title>Support</title>
+
+    <para>If you have problems to get this work, or want to discuss
+    simpleSAMLphp with other users of the software you are lucky! Around
+    simpleSAMLphp there is a great Open source community, and you are welcome
+    to join! Both for asking question, answer other questions, request
+    improvements or contribute with code or plugins of your own.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/simplesamlphp">simpleSAMLphp
+        homepage (at Feide RnD)</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/view/simplesamlphpdocs">List of
+        all available simpleSAMLphp documentation</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink
+        url="http://rnd.feide.no/content/simplesamlphp-users-mailinglist">Join
+        the simpleSAMLphp user's mailing list</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="https://ow.feide.no/simplesamlphp:start">Visit and
+        contribute to the simpleSAMLphp wiki</ulink></para>
+      </listitem>
+    </itemizedlist>
   </section>
 </article>

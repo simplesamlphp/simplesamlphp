@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Thu Mar 13 22:22:51 2008</pubdate>
+    <pubdate>Fri Mar 14 10:39:22 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -17,6 +17,20 @@
       <email>andreas.solberg@uninett.no</email>
     </author>
   </articleinfo>
+
+  <section>
+    <title>Enabling the Identity Provider functionality</title>
+
+    <para>The SAML 2.0 SP functionality is enabled per default. Edit
+    <filename>config.php</filename>, and enable either the SAML 2.0 IdP or the
+    Shib 1.3 IdP, depending on your needs. Here is an example of SAML 2.0 IdP
+    enabled:</para>
+
+    <programlisting>'enable.saml20-sp'  =&gt; false,
+'enable.saml20-idp' =&gt; true,
+'enable.shib13-sp'  =&gt; false,
+'enable.shib13-idp' =&gt; false,</programlisting>
+  </section>
 
   <section>
     <title>Authentication modules</title>
@@ -35,8 +49,7 @@
 
         <glossdef>
           <para>This is the standard LDAP backend authentication module, it
-          uses LDAP configuration from the <filename>config/ldap.php</filename>
-          file.</para>
+          uses LDAP configuration from the config.php file.</para>
         </glossdef>
       </glossentry>
 
@@ -47,6 +60,15 @@
           <para>This authentication module lets you connect to multiple LDAPS
           depending on what organization the user selects in the login
           form.</para>
+        </glossdef>
+      </glossentry>
+
+      <glossentry>
+        <glossterm>auth/login-feide.php</glossterm>
+
+        <glossdef>
+          <para>A multi-LDAP module which looks up the users in LDAP first
+          searching for <literal>eduPersonPrincipalName</literal>.</para>
         </glossdef>
       </glossentry>
 
@@ -70,6 +92,15 @@
           <para>This module is not completed yet. Work in progress.</para>
         </glossdef>
       </glossentry>
+
+      <glossentry>
+        <glossterm>auth/login-cas-ldap.php</glossterm>
+
+        <glossdef>
+          <para>Authentication via CAS. Then look up attributes via
+          LDAP.</para>
+        </glossdef>
+      </glossentry>
     </glosslist>
 
     <section>
@@ -80,7 +111,7 @@
       <para>If you want to perform local authentication on this server, and
       you want to use the LDAP authenticaiton plugin, then you need to
       configure the following parameters in
-      <filename>config/ldap.php</filename>:</para>
+      <filename>config.php</filename>:</para>
 
       <itemizedlist>
         <listitem>
@@ -99,14 +130,6 @@
           LDAP. What attributes should be extracted?
           <literal>objectclass=*</literal> gives you all.</para>
         </listitem>
-
-        <listitem>
-          <para><literal>auth.ldap.enable_tls</literal>: Enable TLS for
-          the connection to the LDAP server. The default is
-          <literal>false</literal></para>
-        </listitem>
-
-
       </itemizedlist>
     </section>
 
@@ -140,7 +163,7 @@
     </warning>
 
     <para>Here is an examples of openssl commands to generate a new key and a
-    self-signed certificate to use for signing SAML messages:</para>
+    selfsigned certificate to use for signing SAML messages:</para>
 
     <screen>openssl genrsa -des3 -out server2.key 1024 
 openssl rsa -in server2.key -out server2.pem
@@ -172,14 +195,14 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
 'idp.example.org' =&gt; array(
 
  // The hostname of the server (VHOST) that this SAML entity will use.
- 'host'             =&gt; 'sp.example.org',
+ 'host'				=&gt; 'sp.example.org',
  
  // X.509 key and certificate. Relative to the cert directory.
- 'privatekey'       =&gt; 'server.pem',
- 'certificate'      =&gt; 'server.crt',
+ 'privatekey'		=&gt; 'server.pem',
+ 'certificate'		=&gt; 'server.crt',
  
  // Authentication plugin to use. login.php is the default one that uses LDAP.
- 'auth'             =&gt; 'auth/login.php',
+ 'auth'				=&gt; 'auth/login.php',
  'authority'        =&gt; 'login',
 ),</programlisting>
 
@@ -202,9 +225,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>host</glossterm>
 
             <glossdef>
-              <para>The hostname of the server running this IdP. This hostname
-              is used to determine which IdP the user is accessing and must
-              match the domain name the user uses to access your IdP.</para>
+              <para>The hostname of the server running this IdP.</para>
             </glossdef>
           </glossentry>
 
@@ -246,8 +267,8 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>requireconsent</glossterm>
 
             <glossdef>
-              <para>Set to true if you want to require the user's consent
-              before sending attributes to an SP.</para>
+              <para>Set to true if you want to require user's consent each
+              time attributes are sent to an SP.</para>
             </glossdef>
           </glossentry>
 
@@ -256,8 +277,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
 
             <glossdef>
               <para>Who is authorized to create sessions for this IdP. Can be
-              <literal>login</literal> for LDAP login module, or
-              <literal>saml2</literal> for SAML 2.0 SP. It is
+              login for LDAP login module, or saml2 for SAML 2.0 SP. It is
               highly reccomended to set this parameter.</para>
             </glossdef>
           </glossentry>
@@ -278,7 +298,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossdef>
               <para>You can implement custom functions that injects or
               modifies attributes. Here you can specify an array of such
-              functions. Read more in the advances features document.</para>
+              fuctions. Read more in the advances features document.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -296,10 +316,9 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>request.signing</glossterm>
 
             <glossdef>
-              <para>A boolean value which should be <literal>true</literal>
-              or <literal>false</literal>. Default is <literal>false</literal>.
-              To turn on signing authentication requests, set this flag
-              to <literal>true</literal>.</para>
+              <para>A boolean value, that should be true or false. Default is
+              false. To turn on signing authentication requests, set this flag
+              to true.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -374,12 +393,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>NameIDFormat</glossterm>
 
             <glossdef>
-              <para>The format of the NameID sent to this SP. The default is
-              <literal>'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'</literal>.
-              It could also be set to 
-              <literal>'urn:oasis:names:tc:SAML:2.0:nameid-format:email'</literal>
-              to use the email name format. No other name formats are
-              currently supported by simpleSAMLphp.</para>
+              <para>Set it to the default: transient.</para>
             </glossdef>
           </glossentry>
 
@@ -405,9 +419,11 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>simplesaml.nameidattribute</glossterm>
 
             <glossdef>
-              <para>This is the name of the attribute simpleSAMLphp will use
-              as the email address if email is selected as the
-              NameIDFormat.</para>
+              <para>If the NameIDFormat is set to email, then the email
+              address will be retrieved from the attribute with this name. In
+              example, the simplesaml.nameidattribute can be set to uid, and
+              then the authentcation module sets an attribute with name uid.
+              The value of this attribute will be set as the NameID.</para>
             </glossdef>
           </glossentry>
 
@@ -522,11 +538,28 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
     to join! Both for asking question, answer other questions, request
     improvements or contribute with code or plugins of your own.</para>
 
-    <para>Go to simpleSAMLphp homepage: <ulink
-    url="http://rnd.feide.no/simplesamlphp">http://rnd.feide.no/simplesamlphp</ulink></para>
+    <itemizedlist>
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/simplesamlphp">simpleSAMLphp
+        homepage (at Feide RnD)</ulink></para>
+      </listitem>
 
-    <para>And please join the mailinglist: <ulink
-    url="http://rnd.feide.no/content/simplesamlphp-users-mailinglist">http://rnd.feide.no/content/simplesamlphp-users-mailinglist</ulink></para>
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/view/simplesamlphpdocs">List of
+        all available simpleSAMLphp documentation</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink
+        url="http://rnd.feide.no/content/simplesamlphp-users-mailinglist">Join
+        the simpleSAMLphp user's mailing list</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="https://ow.feide.no/simplesamlphp:start">Visit and
+        contribute to the simpleSAMLphp wiki</ulink></para>
+      </listitem>
+    </itemizedlist>
   </section>
 
   <appendix>

@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-08-30</date>
 
-    <pubdate>Tue Mar 11 21:00:08 2008</pubdate>
+    <pubdate>Fri Mar 14 10:39:49 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -234,7 +234,48 @@ cp -r metadata-templates/*.php metadata/
       </listitem>
 
       <listitem>
-        <para></para>
+        <para><ulink
+        url="http://rnd.feide.no/content/simplesamlphp-advanced-features">Advanced
+        simpleSAMLphp features</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink
+        url="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">simpleSAMLphp
+        maintenance and configuration</ulink></para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section>
+    <title>Support</title>
+
+    <para>If you have problems to get this work, or want to discuss
+    simpleSAMLphp with other users of the software you are lucky! Around
+    simpleSAMLphp there is a great Open source community, and you are welcome
+    to join! Both for asking question, answer other questions, request
+    improvements or contribute with code or plugins of your own.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/simplesamlphp">simpleSAMLphp
+        homepage (at Feide RnD)</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/view/simplesamlphpdocs">List of
+        all available simpleSAMLphp documentation</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink
+        url="http://rnd.feide.no/content/simplesamlphp-users-mailinglist">Join
+        the simpleSAMLphp user's mailing list</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="https://ow.feide.no/simplesamlphp:start">Visit and
+        contribute to the simpleSAMLphp wiki</ulink></para>
       </listitem>
     </itemizedlist>
   </section>
@@ -242,17 +283,35 @@ cp -r metadata-templates/*.php metadata/
   <appendix id="sect.altlocations">
     <title>Installing simpleSAMLphp in alternative locations</title>
 
-    <para>If you want to install simpleSAMLphp in an alternative directory,
-    feel free to do so. You need to set the path of the installation directory
-    in the config.php file:</para>
+    <para>You can spit the <literal>www</literal> folder in simpleSAMLphp from
+    the installation directory. You need to set the path of the installation
+    directory in the <filename>config.php</filename> file:</para>
 
-    <programlisting>$config = array (
-[...]
-	'basedir' 				=&gt; '/usr/local/simplesaml/simplesamlphp',</programlisting>
+    <programlisting> 'basedir' =&gt; '/usr/local/simplesaml/simplesamlphp',</programlisting>
 
     <para>And you also need to modify the Alias directive in the apache
     configuration:</para>
 
-    <programlisting>        Alias /simplesaml /usr/local/simplesaml/simplesamlphp/www</programlisting>
+    <programlisting> Alias /simplesaml /usr/local/simplesaml/simplesamlphp/www</programlisting>
+
+    <para>You also need to change the path of the <literal>require_once(...
+    _include.php )</literal> line in the examples and in your integration
+    code.</para>
+
+    <para>Normally you would not want to do it this way, but one example is if
+    you must install simpleSAMLphp in your home directory, and you would like
+    the following directory structure:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><filename>~/simplesamlphp</filename></para>
+      </listitem>
+
+      <listitem>
+        <para><filename>~/publichtml/simplesaml</filename> where simplesaml is
+        the <filename>www</filename> directory from simplesamlphp installation
+        directory, either moved or a symlink.</para>
+      </listitem>
+    </itemizedlist>
   </appendix>
 </article>
