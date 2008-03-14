@@ -168,7 +168,7 @@ function writeMetadataFiles() {
 
 		foreach($elements as $m) {
 			$filename = $m['filename'];
-			$entityID = $m['metadata']['entityID'];
+			$entityID = $m['metadata']['entityid'];
 
 			fwrite($fh, "\n");
 			fwrite($fh, '/* The following metadata was generated from ' . $filename . ' on ' . $GLOBALS['when'] . '. */' . "\n");
@@ -196,7 +196,7 @@ function dumpMetadataStdOut() {
 
 		foreach($elements as $m) {
 			$filename = $m['filename'];
-			$entityID = $m['metadata']['entityID'];
+			$entityID = $m['metadata']['entityid'];
 
 			echo("\n");
 			echo('/* The following metadata was generated from ' . $filename . ' on ' . $GLOBALS['when'] . '. */' . "\n");
