@@ -32,10 +32,13 @@ class SimpleSAML_Configuration {
 	}
 
 	private function loadConfig() {
-		if (!file_exists($this->configpath . '/' . $this->configfilename)) {
-			echo 'You have not yet created a configuration file. [ <a href="http://rnd.feide.no/content/installing-simplesamlphp#id405868">simpleSAMLphp installation manual</a> ]';
+		$filename = $this->configpath . '/' . $this->configfilename;
+		if (!file_exists($filename)) {
+			echo '<p>You have not yet created a configuration file. [ <a href="http://rnd.feide.no/content/installing-simplesamlphp#id434777">simpleSAMLphp installation manual</a> ]</p>';
+			echo '<p>This file was missing: [' . $filename . ']</p>';
+			exit;
 		}
-		require_once($this->configpath . '/' . $this->configfilename);
+		require_once($filename);
 		$this->configuration = $config;
 	}
 

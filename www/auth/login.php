@@ -16,10 +16,8 @@ $session = SimpleSAML_Session::getInstance(true);
 
 SimpleSAML_Logger::info('AUTH  - ldap: Accessing auth endpoint login');
 
-
 SimpleSAML_Configuration::init($configdir, 'ldapconfig', 'ldap.php');
 $ldapconfig = SimpleSAML_Configuration::getInstance('ldapconfig');
-
 
 
 $error = null;
