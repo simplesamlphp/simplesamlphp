@@ -125,12 +125,20 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		 * Process the SAML 2.0 SP hosted metadata parameter: NameIDFormat
 		 */
 		$nameidformat = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
-		if (isset($md['NameIDFormat'])) {
-			if (!is_string($md['NameIDFormat'])) {
+		$includeNameIDPolicy = true;
+		if (array_key_exists('NameIDFormat', $md)) {
+			if (is_null($md['NameIDFormat'])) {
+				$includeNameIDPolicy = false;
+			} elseif (!is_string($md['NameIDFormat'])) {
 				throw new Exception('SAML 2.0 SP hosted metadata parameter [NameIDFormat] must be a string.');
+			} else {
+				$nameidformat = $md['NameIDFormat'];
 			}
-			$nameidformat = $md['NameIDFormat'];
 		}
+		if ($includeNameIDPolicy) {	
+			$nameIDPolicy = $this->generateNameIDPolicy($nameidformat);
+		}
+		
 		
 		/*
 		 * Process the SAML 2.0 SP hosted metadata parameter: ForceAuthn
@@ -158,6 +166,8 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 	</samlp:RequestedAuthnContext>';
 		}
 
+		
+
 		/*
 		 * Create the complete SAML 2.0 Authentication Request
 		 */
@@ -169,9 +179,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 	ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
 	AssertionConsumerServiceURL="' . htmlspecialchars($assertionConsumerServiceURL) . '">
 	<saml:Issuer >' . htmlspecialchars($spentityid) . '</saml:Issuer>
-	<samlp:NameIDPolicy
-		Format="' . htmlspecialchars($nameidformat) . '"
-		AllowCreate="true"/>
+	' . $nameIDPolicy . '
 	' . $requestauthncontext . '
 </samlp:AuthnRequest>
 ';
@@ -179,6 +187,16 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		return $authnRequest;
 	}
 	
+	/**
+	 * Generate a NameIDPoliy element
+	 *
+	 * @param $nameidformat NameIDFormat. 
+	 */
+	public function generateNameIDPolicy($nameidformat) {
+		return '<samlp:NameIDPolicy
+		Format="' . htmlspecialchars($nameidformat) . '"
+		AllowCreate="true" />';
+	}
 
 	
 }

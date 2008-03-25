@@ -157,6 +157,13 @@
               <para>The NameIDFormat in the request. If you don't know what
               this is, or don't need it to be anything specific, leave it with
               the default configuration.</para>
+
+              <para>If you leave out this entry, the default value
+              <literal>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</literal>
+              would be used in the authentication request. If you set the
+              value to <code>null</code>, the
+              <literal>samlp:NameIDPolicy</literal> element would be
+              completely removed from the request.</para>
             </glossdef>
           </glossentry>
 
