@@ -38,12 +38,12 @@
 				}
 				
 				echo '<div style="margin-left: 1em">';
-				echo '<div class="efieldlist"><h5>Required fields<h5>';
+				echo '<div class="efieldlist"><h5>Required fields</h5>';
 				echo '<dl>';
 				foreach ($entity['required.found'] AS $key => $value) {
 					echo '<dt>' . htmlspecialchars($key) . '</dt><dd>' . htmlspecialchars(var_export($value, TRUE)) . '</dd>';
 				}
-				echo '</dl>';
+				echo '</dl>' . "\n\n";
 
 
 	
@@ -87,7 +87,7 @@
 					echo '</ul>';				
 				}
 				echo '</div></div>';
-				echo '</div>';
+				echo '</div>' . "\n\n";;
 			}
 		}
 		
