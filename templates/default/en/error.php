@@ -22,7 +22,7 @@ if(array_key_exists('trackid', $this->data)) {
 ?>
 	<div class="trackidtext">
 		If you report this error, please also report this tracking ID which makes it possible to locate your session in the logs which are available to the system administrator: 
-			<span class="trackid"><?php echo $this->data['trackid']; ?><span>
+			<span class="trackid"><?php echo $this->data['trackid']; ?></span>
 	</div>
 <?php
 }
@@ -59,7 +59,7 @@ if (!empty($this->data['errorreportaddress'])) {
 	
 		<p>
 		<textarea style="width: 300px; height: 100px" name="text">Explain what you did to get this error...</textarea>
-		</p></p>
+		</p><p>
 		<input type="hidden" name="action" value="error" />
 		<input type="hidden" name="techemail" value="<?php echo $this->data['email']; ?>" />
 		<input type="hidden" name="version" value="<?php echo $this->data['version']; ?>" />

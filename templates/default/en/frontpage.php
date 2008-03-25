@@ -41,7 +41,7 @@ $icon_disabled = '<img src="/' . $data['baseurlpath'] . 'resources/icons/delete.
 				}
 			?>
 			</ul>
-		</p>
+
 		
 		<h2>Metadata</h2>
 			<ul>
@@ -52,7 +52,6 @@ $icon_disabled = '<img src="/' . $data['baseurlpath'] . 'resources/icons/delete.
 				}
 			?>
 			</ul>
-		</p>
 		
 		<h2>Documentation</h2>
 			<ul>
@@ -63,7 +62,6 @@ $icon_disabled = '<img src="/' . $data['baseurlpath'] . 'resources/icons/delete.
 				}
 			?>
 			</ul>
-		</p>
 		
 		<?php
 			if (array_key_exists('warnings', $this->data) && is_array($this->data['warnings']) && !empty($this->data['warnings'])) {
