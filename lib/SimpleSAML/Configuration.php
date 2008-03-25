@@ -43,15 +43,13 @@ class SimpleSAML_Configuration {
 	}
 
 
-	/* Retrieve a configuration option set in config.php.
+	/** 
+	 * Retrieve a configuration option set in config.php.
 	 *
-	 * Parameters:
-	 *  $name     Name of the configuration option.
-	 *  $default  Default value of the configuration option. This
-	 *            parameter will default to NULL if not specified.
-	 *
-	 * Returns:
-	 *  The configuration option with name $name, or $default if
+	 * @param $name 	Name of the configuration option.
+	 * @param $default 	Default value of the configuration option. This
+	 * parameter will default to NULL if not specified.
+	 * @return 			The configuration option with name $name, or $default if
 	 *  the option was not found.
 	 */
 	public function getValue($name, $default = NULL) {
@@ -107,20 +105,18 @@ class SimpleSAML_Configuration {
 	}
 
 
-	/* Retrieve a path configuration option set in config.php.
+	/**
+	 * Retrieve a path configuration option set in config.php.
 	 * The function will always return an absolute path unless the
 	 * option is not set. It will then return the default value.
 	 *
 	 * It checks if the value starts with a slash, and prefixes it
 	 * with the value from getBaseDir if it doesn't.
 	 *
-	 * Parameters:
-	 *  $name     Name of the configuration option.
-	 *  $default  Default value of the configuration option. This
-	 *            parameter will default to NULL if not specified.
-	 *
-	 * Returns:
-	 *  The path configuration option with name $name, or $default if
+	 * @param $name Name of the configuration option.
+	 * @param $default Default value of the configuration option. 
+	 * 		This parameter will default to NULL if not specified.
+	 * @return The path configuration option with name $name, or $default if
 	 *  the option was not found.
 	 */
 	public function getPathValue($name, $default = NULL) {
@@ -139,13 +135,13 @@ class SimpleSAML_Configuration {
 	}
 
 
-	/* Retrieve the base directory for this simpleSAMLphp installation.
+	/** 
+	 * Retrieve the base directory for this simpleSAMLphp installation.
 	 * This function first checks the 'basedir' configuration option. If
 	 * this option is undefined or NULL, then we fall back to looking at
 	 * the current filename.
 	 *
-	 * Returns:
-	 *  The absolute path to the base directory for this simpleSAMLphp
+	 * @return The absolute path to the base directory for this simpleSAMLphp
 	 *  installation. This path will always end with a slash.
 	 */
 	public function getBaseDir() {
