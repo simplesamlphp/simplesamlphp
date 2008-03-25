@@ -50,7 +50,7 @@ $t = new SimpleSAML_XHTML_Template($config, 'status.php');
 $t->data['header'] = 'Shibboleth demo';
 $t->data['remaining'] = $session->remainingTime();
 $t->data['attributes'] = $session->getAttributes();
-$t->data['logout'] = 'Shibboleth logout not implemented yet.';
+$t->data['logout'] = null;
 $et->data['icon'] = 'bino.png';
 $t->show();
 

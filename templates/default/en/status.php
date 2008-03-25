@@ -36,9 +36,12 @@
 		?>
 		</table>
 
+	<?php if (isset($this->data['logout'])) { ?>
 	<h2>Logout</h2>
 
-		<p><?php echo $data['logout']; ?></p>
+		<p><?php echo $this->data['logout']; ?></p>
+
+	<?php } ?>
 	
 	<h2>About simpleSAMLphp</h2>
 	<p>Hey! This simpleSAMLphp thing is pretty cool, where can I read more about it?

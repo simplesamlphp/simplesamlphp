@@ -47,7 +47,7 @@ $et->data['header'] = 'SimpleSAMLphp Diagnostics';
 $et->data['remaining'] = 'na';
 $et->data['attributes'] = $attributes;
 $et->data['valid'] = 'na';
-$et->data['logout'] = '';
+$et->data['logout'] = null;
 
 $et->show();
 
