@@ -12,7 +12,11 @@
 		
 			echo '<h3>' . $header . '</h3>';
 			
+
+			
 			foreach ($list AS $entityid => $entity) {
+			
+				$encodedEntityID = preg_replace('/=/', '_', base64_encode($entityid . $header));
 				$name = $entityid;
 				if (isset($entity['optional.found']['name'])) $name = $entity['optional.found']['name'];
 
@@ -24,14 +28,14 @@
 
 
 
-				echo '<h4 style="padding-left: 2em; clear: both;" onclick="document.getElementById(\'metadatasection-' . $entityid . '\').style.display=\'block\';">' . htmlspecialchars($name) . '</h4>';
+				echo '<h4 style="padding-left: 2em; clear: both;" onclick="document.getElementById(\'metadatasection-' . $encodedEntityID . '\').style.display=\'block\';">' . htmlspecialchars($name) . '</h4>';
 				
 				if ($warning) {
 					echo '<div><img src="/' . $baseurl . 'resources/icons/caution.png" style="float: left; margin-right: 1em" />';
 					echo 'Error in this metadata entry.</div>';
 				}
 				
-				echo '<div id="metadatasection-' . $entityid . '" style="display: none">';
+				echo '<div id="metadatasection-' . $encodedEntityID . '" style="display: none">';
 				
 				if (isset($entity['optional.found']['description'])) {
 					echo '<p>' . htmlspecialchars($entity['optional.found']['description']) . '</p>';
