@@ -26,6 +26,10 @@ class SimpleSAML_XHTML_Template {
 		
 		$this->data['baseurlpath'] = $this->configuration->getBaseURL();
 		
+		if (isset($_GET['language'])) {
+			$this->setLanguage($_GET['language']);
+		}
+		
 		if (!empty($languagefile)) $this->includeLanguageFile($languagefile);
 	}
 	
@@ -41,11 +45,7 @@ class SimpleSAML_XHTML_Template {
 		// Language is set in object
 		if (isset($this->language)) {
 			return $this->language;
-		
-		// Language is provided in query string
-		} else if (isset($_GET['language'])) {
-			$this->setLanguage($_GET['language']);
-		
+
 		// Language is provided in a stored COOKIE
 		} else if (isset($_COOKIE['language'])) {
 			$this->language = $_COOKIE['language'];
@@ -75,11 +75,29 @@ class SimpleSAML_XHTML_Template {
 	
 	private function includeAtTemplateBase($file) {
 		$data = $this->data;
-		$filebase = $this->configuration->getPathValue('templatedir');
-		include($filebase . $file);
+		$filename = $this->configuration->getPathValue('templatedir') . $this->configuration->getValue('template.use') . '/' . $file;
+		
+		if (!file_exists($filename)) {
+			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $file . 
+				'] at [' . $filename . '] - Now trying at base');
+			
+			$filename = $this->configuration->getPathValue('templatedir') . $this->configuration->getValue('template.base') . '/' . $file;
+			
+			if (!file_exists($filename)) {
+				SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $file . 
+					'] at [' . $filename . ']');
+				throw new Exception('Could not load template file [' . $file . ']');
+			}
+			
+		}
+		
+		include($filename);
 	}
 
 	private function includeAtLanguageBase($file) {
+	
+		throw new Exception('Deprecated method call includeAtLanguageBase()');
+	/*
 		$data = $this->data;
 		$filebase = $this->configuration->getPathValue('templatedir') . $this->getLanguage() . '/' ;
 		
@@ -94,6 +112,7 @@ class SimpleSAML_XHTML_Template {
 			}
 		}
 		include($filebase . $file);
+		*/
 	}
 	
 	
@@ -191,14 +210,14 @@ class SimpleSAML_XHTML_Template {
 		
 
 		$filename  = $this->configuration->getPathValue('templatedir') . 
-			$this->configuration->getPathValue('template.use') . '/' . $this->template;
+			$this->configuration->getValue('template.use') . '/' . $this->template;
 
 
 		if (!file_exists($filename)) {
 			SimpleSAML_Logger::warning($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . '] - now trying the base template');
 			
 			$filename = $this->configuration->getPathValue('templatedir') . 
-				$this->configuration->getPathValue('template.base') . '/' . $this->template;
+				$this->configuration->getValue('template.base') . '/' . $this->template;
 			
 
 			if (!file_exists($filename)) {

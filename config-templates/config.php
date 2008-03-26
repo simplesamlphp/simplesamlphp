@@ -22,7 +22,7 @@ $config = array (
 	 * See the user manual for more details.
 	 */
 	'baseurlpath'           => 'simplesaml/',
-	'templatedir'           => 'templates/default/',
+	'templatedir'           => 'templates/',
 	'metadatadir'           => 'metadata/',
 	'attributenamemapdir'   => 'attributemap/',
 	'certdir'               => 'cert/',
