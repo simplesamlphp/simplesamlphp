@@ -2,24 +2,24 @@
 
 	<div id="content">
 
-		<h2><?php if (isset($data['header'])) { echo $data['header']; } else { echo "Some error occured"; } ?></h2>
+		<h2><?php if (isset($this->data['header'])) { echo $this->data['header']; } else { echo "Some error occured"; } ?></h2>
 		
 		<p>Here is SAML 2.0 metadata that simpleSAMLphp has generated for you. You may send this SAML 2.0 Metadata document to trusted partners to setup a trusted federation.</p>
 		
-		<?php if (isset($data['metaurl'])) { ?>
-			<p>You can <a href="<?php echo htmlspecialchars($data['metaurl']); ?>">get the metadata xml on a dedicated URL</a>:<br />
-			<input type="text" style="width: 90%" value="<?php echo htmlspecialchars($data['metaurl']); ?>" /></p>
+		<?php if (isset($this->data['metaurl'])) { ?>
+			<p>You can <a href="<?php echo htmlspecialchars($this->data['metaurl']); ?>">get the metadata xml on a dedicated URL</a>:<br />
+			<input type="text" style="width: 90%" value="<?php echo htmlspecialchars($this->data['metaurl']); ?>" /></p>
 		<?php } ?>
 		<h2>Metadata</h2>
 		
 		<p>In SAML 2.0 Meta data XML format:</p>
 		
-		<pre class="metadatabox"><?php echo $data['metadata']; ?></pre>
+		<pre class="metadatabox"><?php echo $this->data['metadata']; ?></pre>
 		
 		
 		<p>In simpleSAMLphp flat file format - use this if you are using a simpleSAMLphp entity on the other side:</p>
 		
-		<pre class="metadatabox"><?php echo $data['metadataflat']; ?></pre>
+		<pre class="metadatabox"><?php echo $this->data['metadataflat']; ?></pre>
 		
 		
 
@@ -44,10 +44,10 @@
 					</p>
 					
 					<input type="hidden" name="action" value="metadata" />
-					<input type="hidden" name="metadata" value="<?php echo urlencode(base64_encode($data['metadata'])); ?>" />
+					<input type="hidden" name="metadata" value="<?php echo urlencode(base64_encode($this->data['metadata'])); ?>" />
 					<input type="hidden" name="techemail" value="<?php echo $this->data['techemail']; ?>" />
 					<input type="hidden" name="version" value="<?php echo $this->data['version']; ?>" />
-					<input type="hidden" name="defaultidp" value="<?php echo htmlspecialchars($data['defaultidp']); ?>" />
+					<input type="hidden" name="defaultidp" value="<?php echo htmlspecialchars($this->data['defaultidp']); ?>" />
 					<input type="submit" name="send" value="Send my metadata to <?php echo $this->data['federationname']; ?>" />
 					
 				</form>

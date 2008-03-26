@@ -24,7 +24,7 @@ if ($config->getValue('admin.protectindexpage', false)) {
 $warnings = array();
 
 if (SimpleSAML_Utilities::getSelfProtocol() != 'https') {
-	$warnings[] = '<strong>You are not using HTTPS</strong> - encrypted communication with the user. Using simpleSAMLphp will works perfectly fine on HTTP for test purposes, but if you will be using simpleSAMLphp in a production environment, you should be running it on HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">read more about simpleSAMLphp maintenance</a> ]';
+	$warnings[] = 'warnings_https';
 }
 
 	
@@ -142,8 +142,8 @@ $functionchecks = array(
 	'simplexml_import_dom' => array('required', 'SimpleXML'),
 	'dom_import_simplexml' => array('required', 'XML DOM'),
 	'preg_match'       => array('required',  'RegEx support'),
-	'ldap_bind'        => array('required for LDAP auth module',  'LDAP Extension'),
-	'radius_auth_open' => array('required for Radius auth module',  'Radius Extension'),
+	'ldap_bind'        => array('required_ldap',  'LDAP Extension'),
+	'radius_auth_open' => array('required_radius',  'Radius Extension'),
 	'mcrypt_module_open'=> array('optional',  'MCrypt'),
 );
 $funcmatrix = array();
@@ -160,7 +160,7 @@ foreach ($functionchecks AS $func => $descr) {
 }
 
 
-$t = new SimpleSAML_XHTML_Template($config, 'frontpage.php');
+$t = new SimpleSAML_XHTML_Template($config, 'frontpage.php', 'frontpage.php');
 $t->data['header'] = 'simpleSAMLphp installation page';
 $t->data['icon'] = 'compass_l.png';
 $t->data['warnings'] = $warnings;

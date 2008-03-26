@@ -1,5 +1,5 @@
 <?php 
-	$this->data['header'] = 'simpleSAMLphp error';
+	$this->data['header'] = $this->t('error_header');
 	$this->data['icon'] = 'bomb_l.png';
 	$this->includeAtTemplateBase('includes/header.php'); 
 ?>
@@ -7,12 +7,12 @@
 <div id="content">
 
 	<h2><?php 
-		echo (isset($this->data['title_' . $this->data['errorcode']]) ? $this->data['title_' . $this->data['errorcode']] : 'simpleSAMLphp error'); 
+		echo $this->t('title_' . $this->data['errorcode']); 
 	?></h2>
 
 <?php
-if(array_key_exists('descr_'  . $this->data['errorcode'], $this->data)) {
-	echo '<p>' . $this->data['descr_' . $this->data['errorcode']] . '</p>';
+if($this->t('descr_' . $this->data['errorcode'])) {
+	echo $this->t('descr_' . $this->data['errorcode']);
 }
 ?>
 
@@ -21,8 +21,8 @@ if(array_key_exists('descr_'  . $this->data['errorcode'], $this->data)) {
 if(array_key_exists('trackid', $this->data)) {
 ?>
 	<div class="trackidtext">
-		If you report this error, please also report this tracking ID which makes it possible to locate your session in the logs which are available to the system administrator: 
-			<span class="trackid"><?php echo $this->data['trackid']; ?></span>
+		<?php echo $this->t('report_trackid'); ?>
+		<span class="trackid"><?php echo $this->data['trackid']; ?></span>
 	</div>
 <?php
 }
@@ -33,8 +33,8 @@ if(array_key_exists('trackid', $this->data)) {
 /* Print out exception only if the exception is available. */
 if (array_key_exists('showerrors', $this->data) && $this->data['showerrors']) {
 ?>
-		<h2>Debug information</h2>
-		<p>The debug information below may be interesting for the administrator / help desk:</p>
+		<h2><?php echo $this->t('debuginfo_header'); ?></h2>
+		<p><?php echo $this->t('debuginfo_text'); ?></p>
 		
 		<div style="border: 1px solid #eee; padding: 1em; font-size: x-small">
 			<p style="margin: 1px"><?php echo htmlentities($this->data['exceptionmsg']); ?></p>
@@ -51,14 +51,14 @@ if (array_key_exists('showerrors', $this->data) && $this->data['showerrors']) {
 if (!empty($this->data['errorreportaddress'])) {
 ?>
 
-	<h2>Report errors</h2>		
+	<h2><?php echo $this->t('report_header'); ?></h2>
 	<form action="<?php echo $this->data['errorreportaddress']; ?>" method="post">
 	
-		<p>Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:			</p>
-			<p>E-mail address: <input type="text" size="25" name="email" value="" />
+		<p><?php echo $this->t('report_text'); ?></p>
+			<p><?php echo $this->t('report_email'); ?> <input type="text" size="25" name="email" value="" />
 	
 		<p>
-		<textarea style="width: 300px; height: 100px" name="text">Explain what you did to get this error...</textarea>
+		<textarea style="width: 300px; height: 100px" name="text"><?php echo $this->t('report_explain'); ?></textarea>
 		</p><p>
 		<input type="hidden" name="action" value="error" />
 		<input type="hidden" name="techemail" value="<?php echo $this->data['email']; ?>" />
@@ -67,15 +67,16 @@ if (!empty($this->data['errorreportaddress'])) {
 		<input type="hidden" name="exceptionmsg" value="<?php echo urlencode(base64_encode($this->data['exceptionmsg'])); ?>" />
 		<input type="hidden" name="exceptiontrace" value="<?php echo urlencode(base64_encode($this->data['exceptiontrace'])); ?>" />
 		
-		<input type="submit" name="send" value="Send error report" />
+		<input type="submit" name="send" value="<?php echo $this->t('report_submit'); ?>" />
 		</p>
 	</form>
 <?php
 }
 ?>
 
-<h2 style="clear: both">How to get help</h2>
+<h2 style="clear: both"><?php echo $this->t('howto_header'); ?></h2>
 
-<p>This error probably is due to some unexpected behaviour or to misconfiguration of simpleSAMLphp. Contact the administrator of this login service, and send them the error message above.</p>
+<p><?php echo $this->t('howto_text'); ?></p>
+
 
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>

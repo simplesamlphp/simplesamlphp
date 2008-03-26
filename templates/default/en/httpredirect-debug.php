@@ -11,9 +11,9 @@
 	
 		<p>You are about to send a SAML message using HTTP REDIRECT. Here is the message:</p>
 		
-		<pre style="overflow: scroll; border: 1px solid #eee"><?php echo $data['message']; ?></pre>
+		<pre style="overflow: scroll; border: 1px solid #eee"><?php echo $this->data['message']; ?></pre>
 		
-		<p>[ <a id="sendlink" href="<?php echo htmlentities($data['url']); ?>">send SAML message</a> ]</p>
+		<p>[ <a id="sendlink" href="<?php echo htmlentities($this->data['url']); ?>">send SAML message</a> ]</p>
 		<script type="text/javascript">
 			document.getElementById('sendlink').focus();
 		</script>

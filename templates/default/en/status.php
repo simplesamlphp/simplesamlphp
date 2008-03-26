@@ -2,34 +2,35 @@
 
 <div id="content">
 
-	<h2><?php if (isset($data['header'])) { echo $data['header']; } else { echo "Some error occured"; } ?></h2>
+	<h2><?php if (isset($this->data['header'])) { echo $this->data['header']; } else { echo "Some error occured"; } ?></h2>
 	
 	<p>Hi, this is the status page of simpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that is attached to your session.</p>
 	
-	<p>Your session is valid for <?php echo $data['remaining']; ?> seconds from now.</p>
+	<p>Your session is valid for <?php echo $this->data['remaining']; ?> seconds from now.</p>
 	
-	<p>Session size: <?php echo isset($data['sessionsize']) ? $data['sessionsize'] : 'na'; ?>
+	<p>Session size: <?php echo isset($this->data['sessionsize']) ? $this->data['sessionsize'] : 'na'; ?>
 	
 	<h2>Your attributes</h2>
 	
-		<table>
+		<table width="100%" class="attributes">
 		<?php
 		
-		$attributes = $data['attributes'];
+		$attributes = $this->data['attributes'];
 		foreach ($attributes AS $name => $value) {
 			
-			if (isset($this->data['attribute_' . htmlspecialchars(strtolower($name)) ])) {
-				$name = $this->data['attribute_' . htmlspecialchars(strtolower($name))];
+			$txtname = '<code style="color: blue">' . $name . '</code>';
+			if ($this->t('attribute_' . htmlspecialchars(strtolower($name)), false)) {
+				$txtname = $this->t('attribute_' . htmlspecialchars(strtolower($name))) . '<br /><code style="color: blue">' . $name . '</code>';
 			}
 			
 			if (sizeof($value) > 1) {
-				echo '<tr><td>' . htmlspecialchars($name) . '</td><td><ul>';
+				echo '<tr><td>' . $txtname . '</td><td><ul>';
 				foreach ($value AS $v) {
 					echo '<li>' . htmlspecialchars($v) . '</li>';
 				}
 				echo '</ul></td></tr>';
 			} else {
-				echo '<tr><td>' . htmlspecialchars($name) . '</td><td>' . htmlspecialchars($value[0]) . '</td></tr>';
+				echo '<tr><td>' . $txtname . '</td><td>' . htmlspecialchars($value[0]) . '</td></tr>';
 			}
 		}
 		

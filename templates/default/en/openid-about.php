@@ -3,9 +3,9 @@
 	
 	<div id="content">
 
-		<?php if (isset($data['header'])) { echo '<h2>' . $data['header'] . '</h2>'; } ?>
+		<?php if (isset($this->data['header'])) { echo '<h2>' . $this->data['header'] . '</h2>'; } ?>
 		
-		<p>[ <a href="/<?php echo $data['baseurlpath']; ?>/openid/provider/server.php/sites">List of trusted sites</a> |
+		<p>[ <a href="/<?php echo $this->data['baseurlpath']; ?>/openid/provider/server.php/sites">List of trusted sites</a> |
 		About simpleSAMLphp OpenID ]</p>
 
 		
@@ -17,18 +17,18 @@
 		  Insert the following markup into the <code>&lt;head&gt;</code> of the HTML
 		  document at that URL:
 		</p>
-<pre>&lt;link rel="openid.server" href="<?php echo htmlspecialchars($data['openidserver']); ?>" /&gt;
-&lt;link rel="openid.delegation" href="<?php echo htmlspecialchars($data['openiddelegation']); ?>" /&gt;
+<pre>&lt;link rel="openid.server" href="<?php echo htmlspecialchars($this->data['openidserver']); ?>" /&gt;
+&lt;link rel="openid.delegation" href="<?php echo htmlspecialchars($this->data['openiddelegation']); ?>" /&gt;
 		
 		</pre>
 		
 		
 		<p><?php
 			
-			if (isset($data['userid'])) {
-				echo 'You are now logged in as ' . htmlspecialchars($data['userid']);
+			if (isset($this->data['userid'])) {
+				echo 'You are now logged in as ' . htmlspecialchars($this->data['userid']);
 			} else {
-				echo '<a href="' . htmlspecialchars($data['initssourl']) . '">Login</a>';
+				echo '<a href="' . htmlspecialchars($this->data['initssourl']) . '">Login</a>';
 			}
 		
 		?>

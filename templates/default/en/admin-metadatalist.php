@@ -96,23 +96,23 @@
 		}
 		
 		
-		if (array_key_exists('metadata.saml20-sp-hosted', $data)) 
-			showEntry('SAML 2.0 Service Provider (Hosted)', $data['metadata.saml20-sp-hosted'], $this->data['baseurlpath']);
-		if (array_key_exists('metadata.saml20-sp-remote', $data)) 
-			showEntry('SAML 2.0 Service Provider (Remote)', $data['metadata.saml20-sp-remote'], $this->data['baseurlpath']);
-		if (array_key_exists('metadata.saml20-idp-hosted', $data)) 
-			showEntry('SAML 2.0 Identity Provider (Hosted)', $data['metadata.saml20-idp-hosted'], $this->data['baseurlpath']);
-		if (array_key_exists('metadata.saml20-idp-remote', $data)) 
-			showEntry('SAML 2.0 Identity Provider (Remote)', $data['metadata.saml20-idp-remote'], $this->data['baseurlpath']);
+		if (array_key_exists('metadata.saml20-sp-hosted', $this->data)) 
+			showEntry('SAML 2.0 Service Provider (Hosted)', $this->data['metadata.saml20-sp-hosted'], $this->data['baseurlpath']);
+		if (array_key_exists('metadata.saml20-sp-remote', $this->data)) 
+			showEntry('SAML 2.0 Service Provider (Remote)', $this->data['metadata.saml20-sp-remote'], $this->data['baseurlpath']);
+		if (array_key_exists('metadata.saml20-idp-hosted', $this->data)) 
+			showEntry('SAML 2.0 Identity Provider (Hosted)', $this->data['metadata.saml20-idp-hosted'], $this->data['baseurlpath']);
+		if (array_key_exists('metadata.saml20-idp-remote', $this->data)) 
+			showEntry('SAML 2.0 Identity Provider (Remote)', $this->data['metadata.saml20-idp-remote'], $this->data['baseurlpath']);
 
-		if (array_key_exists('metadata.shib13-sp-hosted', $data)) 
-			showEntry('Shib 1.3 Service Provider (Hosted)', $data['metadata.shib13-sp-hosted'], $this->data['baseurlpath']);
-		if (array_key_exists('metadata.shib13-sp-remote', $data)) 
-			showEntry('Shib 1.3 Service Provider (Remote)', $data['metadata.shib13-sp-remote'], $this->data['baseurlpath']);
-		if (array_key_exists('metadata.shib13-idp-hosted', $data)) 
-			showEntry('Shib 1.3 Identity Provider (Hosted)', $data['metadata.shib13-idp-hosted'], $this->data['baseurlpath']);
-		if (array_key_exists('metadata.shib13-idp-remote', $data)) 
-			showEntry('Shib 1.3 Identity Provider (Remote)', $data['metadata.shib13-idp-remote'], $this->data['baseurlpath']);
+		if (array_key_exists('metadata.shib13-sp-hosted', $this->data)) 
+			showEntry('Shib 1.3 Service Provider (Hosted)', $this->data['metadata.shib13-sp-hosted'], $this->data['baseurlpath']);
+		if (array_key_exists('metadata.shib13-sp-remote', $this->data)) 
+			showEntry('Shib 1.3 Service Provider (Remote)', $this->data['metadata.shib13-sp-remote'], $this->data['baseurlpath']);
+		if (array_key_exists('metadata.shib13-idp-hosted', $this->data)) 
+			showEntry('Shib 1.3 Identity Provider (Hosted)', $this->data['metadata.shib13-idp-hosted'], $this->data['baseurlpath']);
+		if (array_key_exists('metadata.shib13-idp-remote', $this->data)) 
+			showEntry('Shib 1.3 Identity Provider (Remote)', $this->data['metadata.shib13-idp-remote'], $this->data['baseurlpath']);
 
 		
 		?>

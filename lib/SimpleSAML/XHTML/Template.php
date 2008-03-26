@@ -6,7 +6,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 /**
  * A minimalistic XHTML PHP based template system implemented for simpleSAMLphp.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Ã…kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
  */
@@ -52,10 +52,14 @@ class SimpleSAML_XHTML_Template {
 		
 		// Language is not set, and we get the default language from the configuration.
 		} else {
-			return $this->configuration->getValue('language.default');
+			return $this->getDefaultLanguage('language.default');
 		}
 		
 		return $this->language;
+	}
+	
+	private function getDefaultLanguage() {
+		return $this->configuration->getValue('language.default', 'en');
 	}
 
 	private function getLanguageList() {
@@ -92,11 +96,73 @@ class SimpleSAML_XHTML_Template {
 		include($filebase . $file);
 	}
 	
+	
+	/**
+	 * Include text in the current language.
+	 *
+	 * @param $tag				A name tag of the string that should be returned.
+	 * @param $fallbacktag		If set to true and string was not found in any languages, return the tag it self.
+	 * @param $fallbackdefault 	If not found in selected language fallback to default language.
+	 * @param $replacements		An associative array of keys that should be replaced with values in the translated string.
+	 * @param $striptags		Should HTML tags be stripped from the translation
+	 */
+	private function t($tag, $fallbacktag = true, $fallbackdefault = true, $replacements = null, $striptags = false) {
+		
+		if (empty($this->langtext) || !is_array($this->langtext)) {
+			SimpleSAML_Logger::error('Template: No language text loaded. Looking up [' . $tag . ']');
+			return $this->t_not_translated($tag, $fallbacktag);
+		}
+
+#		echo 'LANGTEXT: ';
+#		print_r($this->langtext);
+
+		$selected_language = $this->getLanguage();
+		$default_language  = $this->getDefaultLanguage();
+		
+		if (array_key_exists($tag, $this->langtext) ) {
+			
+			/**
+			 * Look up translation of tag in the selected language
+			 */
+			if (array_key_exists($selected_language, $this->langtext[$tag])) {
+				return $this->langtext[$tag][$selected_language];
+
+			/**
+			 * Look up translation of tag in the default language, only if fallbackdefault = true (method parameter)
+			 */				
+			} elseif($fallbackdefault && array_key_exists($default_language, $this->langtext[$tag])) {
+				SimpleSAML_Logger::error('Template: Looking up [' . $tag . ']: not found in language [' . $selected_language . '] using default [' . $default_language . '].');
+				return $this->langtext[$tag][$default_language];
+				
+			}
+		}
+		SimpleSAML_Logger::error('Template: Looking up [' . $tag . ']: not translated at all.');
+		return $this->t_not_translated($tag, $fallbacktag); 
+		
+	}
+	
+	/**
+	 * Return the string that should be used when no translation was found.
+	 *
+	 * @param $tag				A name tag of the string that should be returned.
+	 * @param $fallbacktag		If set to true and string was not found in any languages, return 
+	 * 					the tag it self. If false return null.
+	 */
+	private function t_not_translated($tag, $fallbacktag) {
+		if ($fallbacktag) {
+			return 'not translated (' . $tag . ')';
+		} else {
+			return null;
+		}
+	}
+	
+	
 	/**
 	 * Include language file from the dictionaries directory.
 	 */
 	private function includeLanguageFile($file) {
 		$filebase = $this->configuration->getPathValue('dictionarydir');
+		SimpleSAML_Logger::info('Template: Loading [' . $filebase . $file . ']');
 		
 		if (!file_exists($filebase . $file)) {
 			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filebase . $file . ']');
@@ -104,32 +170,36 @@ class SimpleSAML_XHTML_Template {
 		}
 		include($filebase . $file);
 		if (isset($lang)) {
-		
-			if (array_key_exists($this->getLanguage(), $lang) )  {
-				foreach ($lang[$this->getLanguage()] AS $key => $text) {
-					$this->data[$key] = $text;
-				}
-			} elseif (array_key_exists($this->configuration->getValue('language.default', 'en'), $lang) ) {
-				foreach ($lang[$this->configuration->getValue('language.default')] AS $key => $text) {
-					$this->data[$key] = $text;
-				}
+			if (is_array($this->langtext)) {
+				SimpleSAML_Logger::info('Template: Merging language array. Loading [' . $file . ']');
+				$this->langtext = array_merge($this->langtext, $lang);
+			} else {
+				SimpleSAML_Logger::info('Template: Setting new language array. Loading [' . $file . ']');
+				$this->langtext = $lang;
 			}
 		}
+		
+
+		
 	}
 
 	/**
 	 * Show the template to the user.
 	 */
 	public function show() {
-		$data = $this->data;
-		$filename = $this->configuration->getPathValue('templatedir') . $this->getLanguage() . '/' . 
-			$this->template;
+	
+		
+
+		$filename  = $this->configuration->getPathValue('templatedir') . 
+			$this->configuration->getPathValue('template.use') . '/' . $this->template;
+
 
 		if (!file_exists($filename)) {
-				
-			$filename = $this->configuration->getPathValue('templatedir') .  
-				$this->configuration->getValue('language.default') . '/' . $this->template;
-
+			SimpleSAML_Logger::warning($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . '] - now trying the base template');
+			
+			$filename = $this->configuration->getPathValue('templatedir') . 
+				$this->configuration->getPathValue('template.base') . '/' . $this->template;
+			
 
 			if (!file_exists($filename)) {
 				SimpleSAML_Logger::critical($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');

@@ -249,3 +249,9 @@ div.preferredidp {
 	background: #eee;
 	padding: 2px 2em 2px 2em;	
 }
+
+table.attributes tr td {
+	border-bottom: 1px dashed #ccc;
+	padding-top: 5px;
+	vertical-align: top;
+}

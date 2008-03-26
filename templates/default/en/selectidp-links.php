@@ -3,7 +3,7 @@
 	
 	<div id="content">
 
-		<h2><?php if (isset($data['header'])) { echo $data['header']; } else { echo "Select your IdP"; } ?></h2>
+		<h2><?php if (isset($this->data['header'])) { echo $this->data['header']; } else { echo "Select your IdP"; } ?></h2>
 		
 		<p>Please select the identity provider where you want to authenticate:</p>
 		
@@ -17,16 +17,16 @@
 			echo '	<img src="/' . $this->data['baseurlpath'] .'resources/icons/star.png" style="float: right" />';
 			echo '	<h3>' . htmlspecialchars($idpentry['name']) . '</h3>';
 			echo '	<p>' . htmlspecialchars($idpentry['description']) . '<br />';
-			echo '	[ <a href="' . $data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
+			echo '	[ <a href="' . $this->data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
 			echo '</div>';
 		}
 		
 		
-		foreach ($data['idplist'] AS $idpentry) {
+		foreach ($this->data['idplist'] AS $idpentry) {
 			if ($idpentry['entityid'] != $this->data['preferredidp']) {
 				echo '<h3>' . htmlspecialchars($idpentry['name']) . '</h3>';
 				echo '<p>' . htmlspecialchars($idpentry['description']) . '<br />';
-				echo '[ <a href="' . $data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
+				echo '[ <a href="' . $this->data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
 			}
 		}
 		

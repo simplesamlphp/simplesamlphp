@@ -5,12 +5,12 @@
 
 	<div id="content">
 	
-		<?php if (isset($data['error'])) { ?>
+		<?php if (isset($this->data['error'])) { ?>
 		<div style="border-left: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; background: #f5f5f5"
-		<img src="/<?php echo $data['baseurlpath']; ?>resources/icons/bomb.png" style="float: left; margin: 15px " />
+		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/bomb.png" style="float: left; margin: 15px " />
 		<h2>What you entered was not accepted!</h2>
 		
-		<p><?php echo htmlspecialchars($data['error']); ?> </p>
+		<p><?php echo htmlspecialchars($this->data['error']); ?> </p>
 		</div>
 		<?php } ?>
 	
@@ -24,15 +24,15 @@
 
 		<table>
 			<tr>
-				<td rowspan="2"><img src="/<?php echo $data['baseurlpath']; ?>resources/icons/pencil.png" /></td>
+				<td rowspan="2"><img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/pencil.png" /></td>
 				<td style="padding: .3em;">Username</td>
 				<td><input type="text" tabindex="1" name="username" 
-					<?php if (isset($data['username'])) {
-						echo 'value="' . htmlspecialchars($data['username']) . '"';
+					<?php if (isset($this->data['username'])) {
+						echo 'value="' . htmlspecialchars($this->data['username']) . '"';
 					} ?> /></td>
 				<td style="padding: .4em;" rowspan="2">
 					<input type="submit" tabindex="3" value="Login" />
-					<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($data['relaystate']); ?>" />
+					<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($this->data['relaystate']); ?>" />
 				</td>
 			</tr>
 			<tr>

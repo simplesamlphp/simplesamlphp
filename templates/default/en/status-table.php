@@ -1,13 +1,13 @@
 <?php
 $this->includeAtTemplateBase('includes/header.php');
 
-$title = $data['title'];
-$table = $data['table'];
+$title = $this->data['title'];
+$table = $this->data['table'];
 
 /* Identify column headings. */
 $column_titles = array();
 foreach($table as $row_title => $row_data) {
-	foreach($row_data as $ct => $data) {
+	foreach($row_data as $ct => $this->data) {
 		if(!in_array($ct, $column_titles)) {
 			$column_titles[] = $ct;
 		}

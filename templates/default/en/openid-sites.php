@@ -3,27 +3,27 @@
 	
 	<div id="content">
 
-		<?php if (isset($data['header'])) { echo '<h2>' . $data['header'] . '</h2>'; } ?>
+		<?php if (isset($this->data['header'])) { echo '<h2>' . $this->data['header'] . '</h2>'; } ?>
 		
 		
 		<p>[ List of trusted sites |
-		<a href="/<?php echo $data['baseurlpath']; ?>/openid/provider/server.php/about">About simpleSAMLphp OpenID</a> ]</p>
+		<a href="/<?php echo $this->data['baseurlpath']; ?>/openid/provider/server.php/about">About simpleSAMLphp OpenID</a> ]</p>
 
 		
 		<p>These decisions have been remembered for this session. All decisions will be forgotten when the session ends.</p>
 		
 		
-		<?php if (isset($data['sites'])) { ?>
+		<?php if (isset($this->data['sites'])) { ?>
 		
 			<div class="form">
-				<form method="post" action="<?php echo '/' . $data['baseurlpath'] . 'openid/provider/server.php/sites'; ?>">
+				<form method="post" action="<?php echo '/' . $this->data['baseurlpath'] . 'openid/provider/server.php/sites'; ?>">
 					<table>
 						<tbody>
 							<?php 
 							
 							    $trusted_sites = array();
 								$untrusted_sites = array();
-								foreach ($data['sites'] as $site => $trusted) {
+								foreach ($this->data['sites'] as $site => $trusted) {
 									if ($trusted) {
 										$trusted_sites[] = $site;
 									} else {
