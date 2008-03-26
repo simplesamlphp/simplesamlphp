@@ -116,10 +116,11 @@ $config = array (
 	'language.default'		=> 'en',
 	
 	/*
-	 * Which template directory should be used? The base is fallback (leave it to default).
+	 * Which theme directory should be used? The base is fallback (leave it to default).
 	 */
-	'template.use' 			=> 'default',
-	'template.base' 		=> 'default',
+	'theme.use' 		=> 'default',
+	'theme.base' 		=> 'default',
+
 	
 	/*
 	 * Default IdPs. If you do not enter an idpentityid in the SSO initialization endpoints,

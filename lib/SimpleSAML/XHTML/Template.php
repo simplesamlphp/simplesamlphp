@@ -17,6 +17,7 @@ class SimpleSAML_XHTML_Template {
 	private $language = null;
 	
 	private $langtext = null;
+	private $usebasetheme = false;
 	
 	public $data = null;
 
@@ -71,25 +72,34 @@ class SimpleSAML_XHTML_Template {
 		}
 		return $lang;
 	}
-
 	
 	private function includeAtTemplateBase($file) {
 		$data = $this->data;
-		$filename = $this->configuration->getPathValue('templatedir') . $this->configuration->getValue('template.use') . '/' . $file;
-		
-		if (!file_exists($filename)) {
-			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $file . 
-				'] at [' . $filename . '] - Now trying at base');
+		$filename = $this->configuration->getPathValue('templatedir') . $this->configuration->getValue('theme.use') . '/' . $file;
+
+		if ($this->usebasetheme) {
+			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Using base for inclusion');
 			
-			$filename = $this->configuration->getPathValue('templatedir') . $this->configuration->getValue('template.base') . '/' . $file;
-			
+			$filename = $this->configuration->getPathValue('templatedir') . $this->configuration->getValue('theme.base') . '/' . $file;
 			if (!file_exists($filename)) {
 				SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $file . 
 					'] at [' . $filename . ']');
 				throw new Exception('Could not load template file [' . $file . ']');
 			}
 			
-		}
+		} elseif (!file_exists($filename)) {
+		
+			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $file . 
+				'] at [' . $filename . '] - Now trying at base');
+			
+			$filename = $this->configuration->getPathValue('templatedir') . $this->configuration->getValue('theme.base') . '/' . $file;
+			if (!file_exists($filename)) {
+				SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $file . 
+					'] at [' . $filename . ']');
+				throw new Exception('Could not load template file [' . $file . ']');
+			}
+		
+		} 
 		
 		include($filename);
 	}
@@ -210,14 +220,16 @@ class SimpleSAML_XHTML_Template {
 		
 
 		$filename  = $this->configuration->getPathValue('templatedir') . 
-			$this->configuration->getValue('template.use') . '/' . $this->template;
-
+			$this->configuration->getValue('theme.use') . '/' . $this->template;
+		
 
 		if (!file_exists($filename)) {
 			SimpleSAML_Logger::warning($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . '] - now trying the base template');
 			
+			$this->usebasetheme = true;
+			
 			$filename = $this->configuration->getPathValue('templatedir') . 
-				$this->configuration->getValue('template.base') . '/' . $this->template;
+				$this->configuration->getValue('theme.base') . '/' . $this->template;
 			
 
 			if (!file_exists($filename)) {
