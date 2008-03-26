@@ -34,25 +34,25 @@ $links = array();
 if ($config->getValue('enable.saml20-sp') === true)
 	$links[] = array(
 		'href' => 'example-simple/saml2-example.php', 
-		'text' => 'SAML 2.0 SP example - test logging in through your IdP');
+		'text' => 'link_saml2example');
 
 if ($config->getValue('enable.shib13-sp') === true)
 	$links[] = array(
 		'href' => 'example-simple/shib13-example.php', 
-		'text' => 'Shibboleth 1.3 SP example - test logging in through your Shib IdP');
+		'text' => 'link_shib13example');
 
 if ($config->getValue('enable.openid-provider') === true)
 	$links[] = array(
 		'href' => 'openid/provider/server.php', 
-		'text' => 'OpenID Provider site - Alpha version (test code)');
+		'text' => 'link_openidprovider');
 
 $links[] = array(
 	'href' => 'example-simple/hostnames.php', 
-	'text' => 'Diagnostics on hostname, port and protocol');
+	'text' => 'link_diagnostics');
 
 $links[] = array(
 	'href' => 'admin/phpinfo.php', 
-	'text' => 'PHPinfo');
+	'text' => 'link_phpinfo');
 
 
 
@@ -60,32 +60,32 @@ $linksmeta = array();
 
 $linksmeta[] = array(
 	'href' => 'admin/metadata.php', 
-	'text' => 'Meta data overview for your installation. Diagnose your meta data files.');
+	'text' => 'link_meta_overview');
 
 if ($config->getValue('enable.saml20-sp') === true)
 	$linksmeta[] = array(
 		'href' => 'saml2/sp/metadata.php', 
-		'text' => 'Hosted SAML 2.0 Service Provider Metadata (automatically generated)');
+		'text' => 'link_meta_saml2sphosted');
 
 if ($config->getValue('enable.saml20-idp') === true)
 	$linksmeta[] = array(
 		'href' => 'saml2/idp/metadata.php', 
-		'text' => 'Hosted SAML 2.0 Identity Provider Metadata (automatically generated)');
+		'text' => 'link_meta_saml2idphosted');
 
 if ($config->getValue('enable.shib13-sp') === true)
 	$linksmeta[] = array(
 		'href' => 'shib13/sp/metadata.php', 
-		'text' => 'Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)');
+		'text' => 'link_meta_shib13sphosted');
 
 if ($config->getValue('enable.shib13-idp') === true)
 	$linksmeta[] = array(
 		'href' => 'shib13/idp/metadata.php', 
-		'text' => 'Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)');
+		'text' => 'link_meta_shib13idphosted');
 
 
 $linksmeta[] = array(
 	'href' => 'admin/metadata-converter.php',
-	'text' => 'XML to simpleSAMLphp metadata converter',
+	'text' => 'link_xmlconvert',
 	);
 
 
@@ -94,38 +94,38 @@ $linksdoc = array();
 
 $linksdoc[] = array(
 	'href' => 'http://rnd.feide.no/content/installing-simplesamlphp', 
-	'text' => 'Installing simpleSAMLphp');
+	'text' => 'link_doc_install');
 
 if ($config->getValue('enable.saml20-sp', false ) || $config->getValue('enable.shib13-sp', false))
 	$linksdoc[] = array(
 		'href' => 'http://rnd.feide.no/content/using-simplesamlphp-service-provider', 
-		'text' => 'Using simpleSAMLphp as a Service Provider');
+		'text' => 'link_doc_sp');
 
 if ($config->getValue('enable.saml20-idp', false ) || $config->getValue('enable.shib13-idp', false))
 	$linksdoc[] = array(
 		'href' => 'http://rnd.feide.no/content/using-simplesamlphp-identity-provider', 
-		'text' => 'Using simpleSAMLphp as an Identity Provider');
+		'text' => 'link_doc_idp');
 
 if ($config->getValue('enable.shib13-idp', false))
 	$linksdoc[] = array(
 		'href' => 'http://rnd.feide.no/content/configure-shibboleth-13-sp-work-simplesamlphp-idp', 
-		'text' => 'Configure Shibboleth 1.3 SP to work with simpleSAMLphp IdP');
+		'text' => 'link_doc_shibsp');
 
 if ($config->getValue('enable.saml20-idp', false ))
 	$linksdoc[] = array(
 		'href' => 'http://rnd.feide.no/content/simplesamlphp-idp-google-apps-education', 
-		'text' => 'simpleSAMLphp as an IdP for Google Apps for Education');
+		'text' => 'link_doc_googleapps');
 
 $linksdoc[] = array(
 	'href' => 'http://rnd.feide.no/content/simplesamlphp-advanced-features', 
-	'text' => 'simpleSAMLphp Advanced Features
-');
+	'text' => 'link_doc_advanced',
+);
 
 
 
 $linksdoc[] = array(
 	'href' => 'http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration', 
-	'text' => 'simpleSAMLphp Maintenance and Configuration');
+	'text' => 'link_doc_maintenance');
 
 $enablematrix = array(
 	'saml20-sp' => $config->getValue('enable.saml20-sp', false),

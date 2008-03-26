@@ -128,9 +128,9 @@ if (isset($_POST['username'])) {
 }
 
 
-$t = new SimpleSAML_XHTML_Template($config, 'login.php');
+$t = new SimpleSAML_XHTML_Template($config, 'login.php', 'login.php');
 
-$t->data['header'] = 'simpleSAMLphp: Enter username and password';	
+$t->data['header'] = 'simpleSAMLphp: Enter username and password';
 $t->data['relaystate'] = $relaystate;
 $t->data['error'] = $error;
 if (isset($error)) {

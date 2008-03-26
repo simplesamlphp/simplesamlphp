@@ -37,7 +37,7 @@ $icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/d
 			<?php
 			
 				foreach ($this->data['links'] AS $link) {
-					echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . htmlspecialchars($link['text']) . '</a></li>';
+					echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . $this->t($link['text']) . '</a></li>';
 				}
 			?>
 			</ul>
@@ -48,7 +48,7 @@ $icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/d
 			<?php
 			
 				foreach ($this->data['links_meta'] AS $link) {
-					echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . htmlspecialchars($link['text']) . '</a></li>';
+					echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . $this->t($link['text']) . '</a></li>';
 				}
 			?>
 			</ul>
@@ -58,7 +58,7 @@ $icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/d
 			<?php
 			
 				foreach ($this->data['links_doc'] AS $link) {
-					echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . htmlspecialchars($link['text']) . '</a></li>';
+					echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . $this->t($link['text']) . '</a></li>';
 				}
 			?>
 			</ul>

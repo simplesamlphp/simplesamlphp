@@ -40,14 +40,16 @@ $langnames = array(
 );
 
 if (empty($_POST) ) {
+	$textarray = array();
 	foreach ($languages AS $lang => $current) {
 		if ($current) {
-			echo $langnames[$lang] . ' | ';
+			$textarray[] = $langnames[$lang];
 		} else {
-			echo '<a href="' . htmlspecialchars(SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), 'language=' . $lang)) . '">' . 
-				$langnames[$lang] . '</a> | ';
+			$textarray[] = '<a href="' . htmlspecialchars(SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), 'language=' . $lang)) . '">' . 
+				$langnames[$lang] . '</a>';
 		}
 	}
+	echo join(' | ', $textarray);
 }
 
 ?>
