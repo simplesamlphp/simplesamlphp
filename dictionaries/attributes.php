@@ -9,13 +9,13 @@ $lang = array(
 		'de' => 'Zugehörigkeit',
 		'nl' => 'Affiliatie',
 	),
-	
+
 	'attribute_title' => array(
 		'en' => 'Title',
 		'no' => 'Tittel',
 		'nl' => 'Titel',
 	),
-	
+
 	'attribute_uid' => array(
 		'en' => 'User ID',
 		'no' => 'Bruker ID',
@@ -23,7 +23,7 @@ $lang = array(
 		'de' => 'Nutzer ID',
 		'nl' => 'Gebruikers ID',
 	),
-	
+
 	'attribute_sn' => array(
 		'en' => 'Surname',
 		'no' => 'Etternavn',
@@ -32,7 +32,7 @@ $lang = array(
 		'de' => 'Nachname',
 		'nl' => 'Achternaam',
 	),
-	
+
 	'attribute_gn' => array(
 		'en' => 'Given name',
 		'no' => 'Fornavn',
@@ -50,7 +50,7 @@ $lang = array(
 		'de' => 'Allgemeiner Name',
 		'nl' => 'Algemene Naam',
 	),
-	
+
 	'attribute_mail' => array(
 		'en' => 'E-mail',
 		'no' => 'E-post',
@@ -67,7 +67,7 @@ $lang = array(
 		'de' => 'Mobiltelefon',
 		'nl' => 'Mobiel',
 	),
-	
+
 	'attribute_preferredlanguage' => array(
 		'en' => 'Preferred language',
 		'no' => 'Foretrukket språk',
@@ -85,16 +85,16 @@ $lang = array(
 		'de' => 'Personalausweisnummer',
 		'nl' => 'Burgerservicenummer',
 	),
-	
+
 	'attribute_schachomeorganization' => array(
 		'en' => 'Unique home organization ID',
-		'no' => 'Unik ID for organisasjon',
+		'no' => 'Unik ID for vertsorganisasjon',
 		'dk' => 'Hjemmeorganisationens entydige ID',
 		'fr' => 'Nom de l\'organisation',
 		'de' => 'Eindeutige ID der Heimorganisation',
 		'nl' => 'Unieke Organizatie ID',
 	),
-	
+
 	'attribute_organisationname' => array(
 		'en' => 'Organisation name',
 		'no' => 'Navn på organisasjon',
@@ -103,7 +103,7 @@ $lang = array(
 		'de' => 'Name der Organisation',
 		'nl' => 'Organizatie naam',
 	),
-	
+
 	'attribute_edupersonentitlement' => array(
 		'en' => 'Entitlement regarding the service',
 		'no' => 'Rettighet',
@@ -125,7 +125,7 @@ $lang = array(
 
 	'attribute_edupersontargetedid' => array(
 		'en' => 'Persistent anonymous ID',
-		'no' => 'Persistent anonynm ID',
+		'no' => 'Persistent anonym ID',
 		'dk' => 'Vedholdende anonymt bruger-ID hos tjenesten',
 		'fr' => 'Identifiant persistent anonyme',
 		'de' => 'Persistente anonyme ID',
@@ -139,7 +139,7 @@ $lang = array(
 		'de' => 'Persönliche ID bei der Heimorganisation',
 		'nl' => 'Persoons ID bij organizatie',
 	),
-	
+
 );
 
 $lang['attribute_o'] = $lang['attribute_organisationname'];
