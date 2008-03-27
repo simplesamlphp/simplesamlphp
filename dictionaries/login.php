@@ -5,7 +5,7 @@ $lang = array(
 
 	'error_header' => array(
 		'en' => 'Error',
-		'no' => 'Error',
+		'no' => 'Feil',
 		'nn' => 'Feil',
 		'dk' => 'Fejl',
 		'es' => 'Los datos que ha suministrado no son v&aacute;lidos',
@@ -25,7 +25,7 @@ $lang = array(
 	),
 	'user_pass_text' => array(
 		'en' => 'A service has requested you to authenticate your self. That means you need to enter your username and password in the form below.',
-		'no' => 'En tjeneste har forespurt autentisering av deg. Det betyr at du må skriv inn ditt brukernavn og passord for å autentisere deg.',
+		'no' => 'En tjeneste har bedt om bekreftelse på din identitet. Skriv inn ditt brukernavn og passord for å autentisere deg.',
 		'nn' => 'Ei webteneste har spurt etter autentisering av deg. Skriv inn brukarnamnet ditt og passordet ditt for å autentisera deg.',
 		'dk' => 'En web-tjeneste har bedt om at tilkendegiver dig. Det betyder, at du skal indtaste dit brugernavn og kodeord herunder',
 		'es' => 'Un servicio solicita que se autentique usted. Esto siginifica que debe indicar su nombre de usuario y su clave de acceso en el siguiente formulario.',
@@ -77,7 +77,7 @@ $lang = array(
 	'help_text' => array(
 		'en' => 'Too bad! - Without your username and password you cannot authenticate your self and access the service.
 		There may be someone that can help you. Contact the help desk at your university!',
-		'no' => 'Synd! - Uten riktig brukernavn og passord kan du ikke autentisere deg. Det kan være noen som kan hjelpe deg. Forsøk å kontakt help-desk hos din hjemmeorganisasjon.',
+		'no' => 'Synd! - Uten riktig brukernavn og passord kan du ikke autentisere deg. Det kan være noen som kan hjelpe deg. Forsøk å kontakt brukerstøtte ved din vertsorganisasjon.',
 		'nn' => 'Synd! - Utan riktig brukernamn og passord kan du ikkje autentisera deg.  Ta kontakt med brukarstøtte hos din organisasjon.',
 		'dk' => 'Desværre, uden korrekt brugernavn og kodeord kan du ikke få adgang til tjenesten. Måske kan help-desk på din hjemmeinstitution hjælpe dig',
 		'es' => '&iexcl;Muy mal! - Sin su nombre de usuario y su clave de acceso usted no se puede identificar y acceder al servicio. A lo mejor hay alguien que puede ayudarle. &iexcl;P&oacute;ngase en contacto con el centro de ayuda de su universidad!',
@@ -94,7 +94,7 @@ $lang = array(
 		'fr' => 'Vous avez envoyé quelque chose sur la pge d\'identification mais pour une raison inconnue votre mot de passe n\'a pas été transmis.  Veuillez réessayer.',
 		'de' => 'Sie haben etwas an die Loginseite geschickt, aber aus irgendeinem Grund ist das Passwort nicht übermittelt worden. Bitte versuchen Sie es erneut.',
 		'nl' => 'Je hebt wel iets ingetikt, maar blijkbaar is je wachtwoord niet verstuurd. Probeer het opnieuw AUB.',
-	),	
+	),
 
 	'error_wrongpassword' => array(
 		'en' => 'Wrong username or password.',
@@ -104,7 +104,7 @@ $lang = array(
 		'fr' => 'Mauvais identifiant au mot de passe.',
 		'de' => 'Falscher Nutzername oder Passwort.',
 		'nl' => 'Gebruikersnaam of wachtwoord niet bekend',
-	),	
+	),
 
-	
+
 );
