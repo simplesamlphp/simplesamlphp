@@ -47,21 +47,20 @@
   <section>
     <title>Setting up a SSL signing certificate</title>
 
-    <para>For test purposes, you can skip this section, and use the included
-    certificate.</para>
+    <para>For test purposes, you can skip this section, and use the
+    certificate included in the simpleSAMLphp distribution.</para>
 
-    <para>For a production system, uou must generate a new certificate for
+    <para>For a production system, you must generate a new certificate for
     your IdP.</para>
 
     <warning>
-      <para>There is a certificate that follows this package that you can use
-      for test purposes, but off course <emphasis>NEVER</emphasis> use this in
-      production as the private key is also included in the package and can be
-      downloaded by anyone.</para>
+      <para>The certificate that follows the simpleSAMLphp distribution must
+      <emphasis>NEVER</emphasis> be used in production, as the private key is
+      also included in the package and can be downloaded by anyone.</para>
     </warning>
 
-    <para>Here is an examples of openssl commands to generate a new key and a
-    selfsigned certificate to use for signing SAML messages:</para>
+    <para>Here is an example of openssl commands to generate a new key and a
+    self signed certificate to use for signing SAML messages:</para>
 
     <screen>openssl genrsa -des3 -out googleappsidp.key 1024 
 openssl rsa -in googleappsidp.key -out googleappsidp.pem
@@ -70,15 +69,15 @@ openssl x509 -req -days 1095 -in googleappsidp.csr -signkey googleappsidp.key -o
 
     <para>The certificate above will be valid for 1095 days (3 years).</para>
 
-    <para>Here is an example of what can be typed in when creating a
-    certificate request:</para>
+    <para>Here is an example of typical user input when creating a certificate
+    request:</para>
 
-    <screen>Country Name (2 letter code) [AU]:NO
-State or Province Name (full name) [Some-State]:Trondheim
-Locality Name (eg, city) []:Trondheim
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:UNINETT
+    <screen>Country Name (2 letter code) [AU]:<userinput>NO</userinput>
+State or Province Name (full name) [Some-State]:<userinput>Trondheim</userinput>
+Locality Name (eg, city) []:<userinput>Trondheim</userinput>
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:<userinput>UNINETT</userinput>
 Organizational Unit Name (eg, section) []:
-Common Name (eg, YOUR name) []:dev2.andreas.feide.no
+Common Name (eg, YOUR name) []:<userinput>dev2.andreas.feide.no</userinput>
 Email Address []:
 
 Please enter the following 'extra' attributes
@@ -95,25 +94,27 @@ An optional company name []:</screen>
   <section id="sect.authmodule">
     <title>Authentication modules</title>
 
-    <para>You will need to connect the IdP to your existing user storage. For
-    different technologies of user storage, there are different authentication
-    modules.</para>
+    <para>The IdP must be connected to your existing user catalog.
+    Authentication modules are provided for different user catalog
+    technologies.</para>
 
-    <para>In the <filename>www/auth</filename> directory, you see multiple
-    files, each representing an authentication module. In the IdP hosted
-    metadata configuration you specify which authentication module that should
-    be used for that specific IdP. You can implement your own authentication
-    module, see the IdP documentation.</para>
+    <para>The <filename>www/auth</filename> directory contains multiple files,
+    each representing an authentication module. In the IdP hosted metadata
+    configuration you specify which authentication module should be used for
+    that specific IdP. You can implement your own authentication module, see
+    the IdP documentation.</para>
 
-    <para>These authentication modules are included:</para>
+    <para>These authentication modules are included in the simpleSAMLphp
+    distribution:</para>
 
     <glosslist>
       <glossentry>
         <glossterm>auth/login.php</glossterm>
 
         <glossdef>
-          <para>This is the standard LDAP backend authentication module, it
-          uses LDAP configuration from the config.php file.</para>
+          <para>This is the standard LDAP backend authentication module. It
+          uses LDAP configuration from the <filename>config.php</filename>
+          file.</para>
         </glossdef>
       </glossentry>
 
@@ -121,9 +122,8 @@ An optional company name []:</screen>
         <glossterm>auth/login-ldapmulti.php</glossterm>
 
         <glossdef>
-          <para>This authentication module lets you connect to multiple LDAPS
-          depending on what organization the user selects in the login
-          form.</para>
+          <para>This authentication module lets you connect to multiple LDAPs
+          depending on the home organization selected by the user.</para>
         </glossdef>
       </glossentry>
 
@@ -131,7 +131,7 @@ An optional company name []:</screen>
         <glossterm>auth/login-feide.php</glossterm>
 
         <glossdef>
-          <para>A multi-LDAP module which looks up the users in LDAP first
+          <para>A multi-LDAP module which looks up the users in LDAP, first
           searching for <literal>eduPersonPrincipalName</literal>.</para>
         </glossdef>
       </glossentry>
@@ -161,7 +161,7 @@ An optional company name []:</screen>
         <glossterm>auth/login-cas-ldap.php</glossterm>
 
         <glossdef>
-          <para>Authentication via CAS. Then look up attributes via
+          <para>Authentication via CAS, followed by attribute lookup in
           LDAP.</para>
         </glossdef>
       </glossentry>
@@ -170,37 +170,37 @@ An optional company name []:</screen>
     <section>
       <title>Configuring the LDAP authentication module</title>
 
-      <para>The LDAP module is <filename>auth/login.php</filename>.</para>
+      <para>The LDAP module is found in
+      <filename>auth/login.php</filename>.</para>
 
-      <para>If you want to perform local authentication on this server, and
-      you want to use the LDAP authenticaiton plugin, then you need to
-      configure the following parameters in
-      <filename>config.php</filename>:</para>
+      <para>If you want to perform local authentication using this server,
+      using the LDAP authenticaiton plugin, the following parameters should be
+      configured in <filename>config.php</filename>:</para>
 
       <itemizedlist>
         <listitem>
-          <para><literal>auth.ldap.dnpattern</literal>: What DN should you
-          bind to? Replacing %username% with the username the user types
-          in.</para>
+          <para><literal>auth.ldap.dnpattern</literal>: Which DN to bind to.
+          <literal>%username%</literal> is replaced with with the user name
+          typed in.</para>
         </listitem>
 
         <listitem>
-          <para><literal>auth.ldap.hostname</literal>: The hostname of the
-          LDAP server</para>
+          <para><literal>auth.ldap.hostname</literal>: Host name of the LDAP
+          server</para>
         </listitem>
 
         <listitem>
-          <para><literal>auth.ldap.attributes</literal>: A list of attributes
-          that will be retrieved from LDAP. Setting this option to
-          <literal>null</literal> will retrieve all attributes.</para>
+          <para><literal>auth.ldap.attributes</literal>: List of attributes
+          retrieved from LDAP. Set this option to <literal>null</literal> to
+          retrieve all attributes available.</para>
         </listitem>
       </itemizedlist>
     </section>
 
     <section>
-      <title>Configuring the multi-LDAP authenticaiton module</title>
+      <title>Configuring the multi-LDAP authentication module</title>
 
-      <para>The module is
+      <para>The module is found in
       <filename>auth/login-ldapmulti.php</filename>.</para>
 
       <note>
@@ -223,22 +223,22 @@ An optional company name []:</screen>
       <para>This is the configuration of the IdP itself. Here is some example
       config:</para>
 
-      <programlisting>	// The SAML entity ID is the index of this config.
-	'dev2.andreas.feide.no' =&gt; array(
-	
-		// The hostname of the server (VHOST) that this SAML entity will use.
-		'host'				=&gt;	'sp.example.org',
-		
-		// X.509 key and certificate. Relative to the cert directory.
-		'privatekey'		=&gt;	'googleappsidp.pem',
-		'certificate'		=&gt;	'googleappsidp.crt',
-		
-		// Authentication plugin to use. login.php is the default one that uses LDAP.
-		'auth'				=&gt;	'auth/login.php',
-     'authority' =&gt; 'login'
-	)</programlisting>
+      <programlisting>  // The SAML entity ID is the index of this config.
+  'dev2.andreas.feide.no' =&gt; array(
 
-      <para>Here are some details of each of the parameters:</para>
+    // The hostname of the server (VHOST) that this SAML entity will use.
+   'host'        =&gt; 'sp.example.org',
+
+    // X.509 key and certificate. Relative to the cert directory.
+    'privatekey'   =&gt; 'googleappsidp.pem',
+    'certificate'  =&gt; 'googleappsidp.crt',
+
+    // Authentication plugin to use. login.php is the default one that uses LDAP.
+    'auth'         =&gt; 'auth/login.php',
+    'authority'    =&gt; 'login'
+  )</programlisting>
+
+      <para>Parameter details:</para>
 
       <glosslist>
         <glossentry>
@@ -263,9 +263,10 @@ An optional company name []:</screen>
           <glossterm>privatekey</glossterm>
 
           <glossdef>
-            <para>Pointing to the private key in PEM format, in the certs
-            directory. Remeber we created the <literal>googleappsidp</literal>
-            key?</para>
+            <para>Name of private key file in PEM format, in the
+            <filename>certs</filename> directory. For key generation, see
+            generation of the <literal>googleappsidp</literal> key,
+            above.</para>
           </glossdef>
         </glossentry>
 
@@ -273,9 +274,10 @@ An optional company name []:</screen>
           <glossterm>certificate</glossterm>
 
           <glossdef>
-            <para>Pointing to the certificate file in PEM format, in the certs
-            directory. Remeber we created the <literal>googleappsidp</literal>
-            key?</para>
+            <para>Name of certificate file in PEM format, in the
+            <filename>certs</filename> directory. For certificate generation,
+            see generation of the <literal>googleappsidp</literal> key,
+            above.</para>
           </glossdef>
         </glossentry>
 
@@ -283,10 +285,10 @@ An optional company name []:</screen>
           <glossterm>auth</glossterm>
 
           <glossdef>
-            <para>Which authentication module to use? Default is:
-            <filename>auth/login.php</filename> which is the LDAP
-            authentication module. See the <xref linkend="sect.authmodule" />
-            for more information on the authentication modules.</para>
+            <para>Which authentication module to use. Default:
+            <filename>auth/login.php,</filename>the LDAP authentication
+            module. See the <xref linkend="sect.authmodule" /> for more
+            information on the authentication modules.</para>
           </glossdef>
         </glossentry>
 
@@ -294,9 +296,8 @@ An optional company name []:</screen>
           <glossterm>authority</glossterm>
 
           <glossdef>
-            <para>This refer to the ID of the authentication module you are
-            using. Set this value if you only allow one authentication
-            module.</para>
+            <para>The ID of the authentication module you are using. Set this
+            value if you only allow one authentication module.</para>
           </glossdef>
         </glossentry>
       </glosslist>
@@ -309,31 +310,31 @@ An optional company name []:</screen>
       Google Apps for education. There is already an entry for Google Apps in
       the template, but we will change the domain name:</para>
 
-      <programlisting>	/*
-	 * This example shows an example config that works with Google Apps for education.
-	 * What is important is that you have an attribute in your IdP that maps to the local part of the email address
-	 * at Google Apps. In example, if your google account is foo.com, and you have a user that has an email john@foo.com, then you
-	 * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.
-	 */
-	'google.com' =&gt; array(
-		'AssertionConsumerService'	=&gt;	'https://www.google.com/a/g.feide.no/acs', 
-		'spNameQualifier' 				=&gt;	'google.com',
-		'NameIDFormat'					=&gt;	'urn:oasis:names:tc:SAML:2.0:nameid-format:email',
-		'simplesaml.nameidattribute'	=&gt;	'uid',
-		'simplesaml.attributes'			=&gt;	false
-	),</programlisting>
+      <programlisting>  /*
+   * This example shows an example config that works with Google Apps for education.
+   * What is important is that you have an attribute in your IdP that maps to the local part of the email address
+   * at Google Apps. In example, if your google account is foo.com, and you have a user that has an email john@foo.com, then you
+   * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.
+   */
+  'google.com' =&gt; array(
+    'AssertionConsumerService'   =&gt; 'https://www.google.com/a/g.feide.no/acs', 
+    'spNameQualifier'            =&gt; 'google.com',
+    'NameIDFormat'               =&gt; 'urn:oasis:names:tc:SAML:2.0:nameid-format:email',
+    'simplesaml.nameidattribute' =&gt; 'uid',
+    'simplesaml.attributes'      =&gt; false
+  );</programlisting>
 
-      <para>You also need to map some attribute from the IdP into the email
-      field sent to Google Apps. The attributes comes from the authentication
-      module, and in this example we have an LDAP that returns the uid
-      attribute. The uid attribute contains the local part of</para>
+      <para>You must also map some attributes received from the authentication
+      module into email field sent to Google Apps. In this example, the LDAP
+      returns the <code>uid</code> attribute. The <code>uid</code> attribute
+      contains the local part of the user name.</para>
 
-      <para>What you need to do is modify the
-      <literal>AssertionConsumerService</literal> to include your Google Apps
-      domain name instead of <literal>g.feide.no</literal>.</para>
+      <para>You should modify the <literal>AssertionConsumerService</literal>
+      to include your Google Apps domain name instead of
+      <literal>g.feide.no</literal>.</para>
 
-      <para>To understand what the different parameters mean, see in the
-      <ulink url="simplesamlphp-idp.html">simpleSAMLphp IdP
+      <para>For an explanation of the parameters, see the <ulink
+      url="simplesamlphp-idp.html">simpleSAMLphp IdP
       documentation</ulink>.</para>
     </section>
   </section>
@@ -341,9 +342,8 @@ An optional company name []:</screen>
   <section>
     <title>Configure Google Apps for education</title>
 
-    <para>Now, we are ready to configure Google Apps to use our IdP. We start
-    by logging in to our Google Apps for education account panel. We then go
-    to "Advanced tools":</para>
+    <para>Start by logging in to our Google Apps for education account panel.
+    Then select "Advanced tools":</para>
 
     <figure>
       <title>We go to advanced tools</title>
@@ -357,7 +357,7 @@ An optional company name []:</screen>
       </screenshot>
     </figure>
 
-    <para>Then we go to "Set up single sign-on (SSO)":</para>
+    <para>Then select "Set up single sign-on (SSO)":</para>
 
     <figure>
       <title>We go to setup SSO</title>
@@ -371,9 +371,8 @@ An optional company name []:</screen>
       </screenshot>
     </figure>
 
-    <para>Then, we start off by uploading a certificate, and we upload the
-    certificate we created in an earlier section, the googleappsidp.crt
-    file:</para>
+    <para>Upload a certificate, such as the googleappsidp.crt created
+    above:</para>
 
     <figure>
       <title>Uploading certificate</title>
@@ -387,27 +386,28 @@ An optional company name []:</screen>
       </screenshot>
     </figure>
 
-    <para>Then we need to fill out the remaining fields:</para>
+    <para>Fill out the remaining fields:</para>
 
-    <para>The important field to fill out is the Sign-in page URL. Set it to
+    <para>The most important field is the Sign-in page URL. Set it to
     something similar to:</para>
 
     <literallayout>http://dev2.andreas.feide.no/simplesaml/saml2/idp/SSOService.php</literallayout>
 
-    <para>but use the hostname of your IdP server.</para>
+    <para>using the hostname of your IdP server.</para>
 
-    <para>You will also need to configure the IdP initiated Single LogOut
-    endpoint of your server. This endpoint takes a RelayState parameter, which
-    is the URL to redirect the user to after successfull logout. Here is the
-    reccomended value:</para>
+    <para>You must also configure the IdP initiated Single LogOut endpoint of
+    your server. The RelayState parameter of the endpoint is the URL where the
+    user is redirected after successfull logout. Recommended value:</para>
 
     <literallayout>http://dev2.andreas.feide.no/simplesaml/saml2/idp/initSLO.php?RelayState=/simplesaml/logout.html</literallayout>
+
+    <para>again, using the host name of your IdP server.</para>
 
     <para>The Sign-out page or change password url can be static pages on your
     server.</para>
 
-    <para>The network mask, is which IP addresses that will be asked for SSO
-    login. IP addresses that do not match this mask will be presented with the
+    <para>The network mask determines which IP addresses will be asked for SSO
+    login. IP addresses not matching this mask will be presented with the
     normal Google Apps login page. I think you can leave this field empty to
     enable authentication for all URLs.</para>
 
@@ -424,11 +424,11 @@ An optional company name []:</screen>
     </figure>
 
     <section>
-      <title>Add a user in Google Apps that is also in the IdP</title>
+      <title>Add a user in Google Apps that is known to the IdP</title>
 
-      <para>Add a new user in Google Apps, before we can test login. This user
-      needs to have the mail field to match the email prefix mapped from the
-      attribute as described in the metadata section.</para>
+      <para>Before we can test login, a new user must be defined in Google
+      Apps. This user must have a mail field matching the email prefix mapped
+      from the attribute as described above in the metadata section.</para>
     </section>
   </section>
 
@@ -440,28 +440,29 @@ An optional company name []:</screen>
 
     <literallayout>http://mail.google.com/a/yourgoogleappsdomain.com</literallayout>
 
-    <para>but remember to replace with your own google apps domain
+    <para>replacing the last part with your own google apps domain
     name.</para>
   </section>
 
   <section>
     <title>Security Considerations</title>
 
-    <para>You should make sure that your IdP server runs on HTTPS (SSL). Check
-    the Apache documentation if you need to know how to configure that.</para>
+    <para>Make sure that your IdP server runs HTTPS (SSL). The Apache
+    documentation contains information for how to configure HTTPS.</para>
 
-    <para>And make sure you have switched away from the default certificate
-    that follows the simpleSAMLphp distribution.</para>
+    <para>Make sure you have replaced the default certificate delivered with
+    the simpleSAMLphp distribution with your own certificate.</para>
   </section>
 
   <section>
     <title>Support</title>
 
-    <para>If you have problems to get this work, or want to discuss
-    simpleSAMLphp with other users of the software you are lucky! Around
-    simpleSAMLphp there is a great Open source community, and you are welcome
-    to join! Both for asking question, answer other questions, request
-    improvements or contribute with code or plugins of your own.</para>
+    <para>If you need help to make this work, or want to discuss simpleSAMLphp
+    with other users of the software, you are fortunate: Around simpleSAMLphp
+    there is a great Open source community, and you are welcome to join! The
+    forums are open for you to ask questions, contribute answers other further
+    questions, request improvements or contribute with code or plugins of your
+    own.</para>
 
     <itemizedlist>
       <listitem>
