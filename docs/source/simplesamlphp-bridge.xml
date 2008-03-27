@@ -22,22 +22,22 @@
     <title>Setting up WebSSO bridges</title>
 
     <para>simpleSAMLphp can be used to bridge between two WebSSO protocols.
-    Here is some short descriptions of how to setup the different bridge
-    configurations.</para>
+    Below you will find short descriptions of how to setup the different
+    bridge configurations.</para>
 
     <section>
       <title>Bridging SAML 2.0 &lt;-&gt; SAML 2.0</title>
 
-      <para>In this setup you can bridge between two federations using SAML
-      2.0.</para>
+      <para>This setup will bridge between two federations using SAML
+      2.0:</para>
 
-      <para>To approach this, you must configure both saml 2.0 IdP and SP
-      hosted metadata, and in the IdP hosted metadata configure the auth
-      parameter to be the SP initialization endpoint, like this:</para>
+      <para>Configure both SAML 2.0 IdP and SP hosted metadata. In the IdP
+      hosted metadata, configure the auth parameter to be the SP
+      initialization endpoint, like this:</para>
 
-      <screen>		'auth'				=&gt;	'saml2/sp/initSSO.php?idpentityid=sam.feide.no'</screen>
+      <screen>    'auth' =&gt; 'saml2/sp/initSSO.php?idpentityid=sam.feide.no'</screen>
 
-      <para>As you can see you specify the IdP in the remote federation as a
+      <para>As shown, the IdP in the remote federation is specified as a
       parameter to the initalization endpoint.</para>
 
       <note>
@@ -84,16 +84,17 @@
   <section>
     <title>Support</title>
 
-    <para>If you have problems to get this work, or want to discuss
-    simpleSAMLphp with other users of the software you are lucky! Around
-    simpleSAMLphp there is a great Open source community, and you are welcome
-    to join! Both for asking question, answer other questions, request
-    improvements or contribute with code or plugins of your own.</para>
+    <para>If you need help to make this work, or want to discuss simpleSAMLphp
+    with other users of the software, you are fortunate: Around simpleSAMLphp
+    there is a great Open source community, and you are welcome to join! The
+    forums are open for you to ask questions, contribute answers other further
+    questions, request improvements or contribute with code or plugins of your
+    own.</para>
 
     <para>Visit the project page of simpleSAMLphp at: <ulink
     url="http://code.google.com/p/simplesamlphp/">http://code.google.com/p/simplesamlphp/</ulink></para>
 
-    <para>And please join the mailinglist: <ulink
+    <para>Please join the mailinglist: <ulink
     url="???">https://postlister.uninett.no/sympa/subscribe/simplesaml</ulink></para>
   </section>
 </article>
