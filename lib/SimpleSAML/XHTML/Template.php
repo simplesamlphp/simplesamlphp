@@ -130,6 +130,7 @@ class SimpleSAML_XHTML_Template {
 
 		$selected_language = $this->getLanguage();
 		$default_language  = $this->getDefaultLanguage();
+		$base_language     = $this->configuration->getValue('language.base', 'en');
 		
 		if (array_key_exists($tag, $this->langtext) ) {
 			
@@ -143,12 +144,19 @@ class SimpleSAML_XHTML_Template {
 			 * Look up translation of tag in the default language, only if fallbackdefault = true (method parameter)
 			 */				
 			} elseif($fallbackdefault && array_key_exists($default_language, $this->langtext[$tag])) {
-				SimpleSAML_Logger::error('Template: Looking up [' . $tag . ']: not found in language [' . $selected_language . '] using default [' . $default_language . '].');
+				SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not found in language [' . $selected_language . '] using default [' . $default_language . '].');
 				return $this->langtext[$tag][$default_language];
+				
+			/**
+			 * Look up translation of tag in the base language, only if fallbackdefault = true (method parameter)
+			 */				
+			} elseif($fallbackdefault && array_key_exists($base_language, $this->langtext[$tag])) {
+				SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not found in language default [' . $default_language . '] using base [' . $base_language . '].');
+				return $this->langtext[$tag][$base_language];
 				
 			}
 		}
-		SimpleSAML_Logger::error('Template: Looking up [' . $tag . ']: not translated at all.');
+		SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not translated at all.');
 		return $this->t_not_translated($tag, $fallbacktag); 
 		
 	}

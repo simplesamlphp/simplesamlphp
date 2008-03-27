@@ -13,6 +13,7 @@ $lang = array(
 		'de' => 'Fehler',
 		'nl' => 'Fout',
 		'lu' => 'Fehler',
+		'sl' => 'Napaka',
 	),
 	'user_pass_header' => array(
 		'en' => 'Enter your username and password',
@@ -24,6 +25,7 @@ $lang = array(
 		'de' => 'Bitten geben sie ihren Nutzernamen und Passwort ein',
 		'nl' => 'Geef je gebruikersnaam en wachtwoord',
 		'lu' => 'Gid w.e.g Aeren Benotzernumm an d Passwuert an',
+		'sl' => 'Vnesite svoje uporabniško ime in geslo',
 	),
 	'user_pass_text' => array(
 		'en' => 'A service has requested you to authenticate your self. That means you need to enter your username and password in the form below.',
@@ -35,6 +37,7 @@ $lang = array(
 		'de' => 'Ein Dienst hat eine Authentifizierung angefordert. Bitte geben Sie daher unten ihren Nutzernamen und Passwort in der Form ein.',
 		'nl' => 'Voor deze dienst is authenticatie vereist. Geef je gebruikersnaam en wachtwoord in onderstaand formulier.',
 		'lu' => 'En Service huet ungefrot aerch ze authentifizéiren. Daat heescht daer musst aeren Benotzernumm an d Passwuert an de Formulairen heidrënner angin.',
+		'sl' => 'Storitev zahteva, da se prijavite. To pomeni, da je potreben vnos uporabniškega imena in gesla v spodnje okno',
 	),
 	'login_button' => array(
 		'en' => 'Login',
@@ -46,6 +49,7 @@ $lang = array(
 		'de' => 'Einloggen',
 		'nl' => 'Inloggen',
 		'lu' => 'Login',
+		'sl' => 'Prijava',
 	),
 	'username' => array(
 		'en' => 'Username',
@@ -57,6 +61,7 @@ $lang = array(
 		'de' => 'Nutzername',
 		'nl' => 'Gebruikersnaam',
 		'lu' => 'Benotzernumm',
+		'sl' => 'Uporabniško ime',
 	),
 	'password' => array(
 		'en' => 'Password',
@@ -68,6 +73,7 @@ $lang = array(
 		'de' => 'Passwort',
 		'nl' => 'Wachtwoord',
 		'lu' => 'Passwuert',
+		'sl' => 'Geslo',
 	),
 
 	'help_header' => array(
@@ -80,6 +86,7 @@ $lang = array(
 		'de' => 'Hilfe, ich habe mein Passwort vergessen',
 		'nl' => 'Help! Ik weet mijn wachtwoord niet meer.',
 		'lu' => 'Hellef! Ech hun mäin Passwuert vergiess!',
+		'sl' => 'Na pomoč! Pozabil sem svoje geslo',
 	),
 	'help_text' => array(
 		'en' => 'Too bad! - Without your username and password you cannot authenticate your self and access the service.
@@ -92,6 +99,7 @@ $lang = array(
 		'de' => 'Pech! - Ohne Nutzername und Passwort können Sie sich nicht authentifizieren und somit den Dienst nicht nutzen. Möglicherweise kann ihnen jemand helfen, kontaktieren Sie den Help-Desk in ihrer Einrichtung.',
 		'nl' => 'Vette pech! - Zonder je gebruikersnaam en wachtwoord kun je je niet authenticeren en dus niet gebruikmaken van deze dienst.',
 		'lu' => 'Pesch gehaat! - Ouni aeren Benotzernumm an d\'Passwuert kënn der aerch net authentifizéiren an op den Service zougraiffen.',
+		'sl' => 'Žal se brez uporabniškega imena in gesla ne morete prijaviti in uporabljati storitev', 
 	),
 
 	'error_nopassword' => array(
@@ -103,6 +111,7 @@ $lang = array(
 		'de' => 'Sie haben etwas an die Loginseite geschickt, aber aus irgendeinem Grund ist das Passwort nicht übermittelt worden. Bitte versuchen Sie es erneut.',
 		'nl' => 'Je hebt wel iets ingetikt, maar blijkbaar is je wachtwoord niet verstuurd. Probeer het opnieuw AUB.',
 		'lu' => 'Der hud eppes un d\'Login Sait geschéeckt me aus iergentengem Grond huet d Passwuert gefehlt. Probéiert w.e.g nach eng Kéier.',
+		'sl' => 'V prijavno stran ste vnesli podatke, vendar geslo ni bilo poslano. Poskusite znova',
 	),
 
 	'error_wrongpassword' => array(
@@ -114,6 +123,7 @@ $lang = array(
 		'de' => 'Falscher Nutzername oder Passwort.',
 		'nl' => 'Gebruikersnaam of wachtwoord niet bekend',
 		'lu' => 'Falschen Benotzernumm oder Passwuert',
+		'sl' => 'Napačno uporabniško ime ali geslo',
 	),
 
 

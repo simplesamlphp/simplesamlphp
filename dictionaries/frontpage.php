@@ -12,6 +12,7 @@ $lang = array(
 		'de' => '<strong>Glückwunsch</strong>, Sie haben erfolgreich simpleSAMLphp installiert. Dies ist die Startseite der Installation, hier gibts es Links zu Testbeispielen, Diagnose, Metadaten und anderer relevanten Dokumentation.',
 		'nl' => '<strong>Gefeliciteerd</strong>, simpleSAMLphp is succesvol geinstalleerd. Dit is de startpagina voor simpleSAMLphp, waar je links kan vinden naar voorbeelden, test-paginas, analyses, metadata en ook naar relevante documentatie.',
 		'lu' => '<strong>Haerzleche Glëckwonsch</strong>, d\'simpleSAMLphp Installatioun wor en Succéss. Dest as d\'Startsäit vun aerer Installatioun wou der Links, Beispiller, Diagnoseméiglechkeeten, Meta Données an Links op relevant Dokumenter fannt.',
+		'sl' => '<strong>Čestitamo!</strong> Uspešno ste namestili simpleSAMLphp. Na tej strani se nahajajo povezave do vzorčnih nastavitev, diagnostike, metapodatkov in s tem povezane dokumentacije.',
 	),
 
 	'useful_links_header' => array(
@@ -24,6 +25,7 @@ $lang = array(
 		'de' => 'Nützliche Links für ihre Installation',
 		'nl' => 'Nuttige links',
 		'lu' => 'Hëllefräich Links fir aer Installatioun',
+		'sl' => 'Uporabne povezave',
 
 	),
 	'metadata_header' => array(
@@ -36,6 +38,7 @@ $lang = array(
 		'de' => 'Metadaten',
 		'nl' => 'Metadata',
 		'lu' => 'Meta Données',
+		'sl' => 'Metapodatki',
 	),
 	'doc_header' => array(
 		'en' => 'Documentation',
@@ -47,6 +50,7 @@ $lang = array(
 		'de' => 'Dokumentation',
 		'nl' => 'Documentatie',
 		'lu' => 'Dokumentatioun',
+		'sl' => 'Dokumentacija',
 	),
 	'checkphp' => array(
 		'en' => 'Checking your PHP installation',
@@ -58,6 +62,7 @@ $lang = array(
 		'de' => 'Überprüfen der PHP Installation',
 		'nl' => 'Test de PHP installatie',
 		'lu' => 'PHP Installatioun kontrolléiren',
+		'sl' => 'Preverjanje namestitve PHP',
 	),
 	'about_header' => array(
 		'en' => 'About simpleSAMLphp',
@@ -69,6 +74,7 @@ $lang = array(
 		'de' => 'Über simpleSAMLphp',
 		'nl' => 'Over simpleSAMLphp',
 		'lu' => 'Iwwert simpleSAMLphp',
+		'sl' => 'O simpleSAMLphp',
 	),
 	'about_text' => array(
 		'en' => 'This simpleSAMLphp thing is pretty cool, where can I read more about it? You can find more information about <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp at the Feide RnD blog</a> over at <a href="http://uninett.no">UNINETT</a>.',
@@ -80,6 +86,7 @@ $lang = array(
 		'de' => 'Hey, dieses simpleSAMLphp ist eine ziemlich coole Sache, wo kann ich mehr darüber lesen? Sie finden mehr Informationen über <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp auf dem Feide RnD blog</a> auf <a href="http://uninett.no">UNINETT</a>.',
 		'nl' => 'He, dat simpleSAMLphp dingetje is vet cool, waar kan ik er meer over vinden? Je kan meer informatie over <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp</a> vinden op de Feide RnD blog van <a href="http://uninett.no">UNINETT</a>.',
 		'lu' => 'Desen simpleSAMLphp system as nach ewëll dëcken Gas, wou kann ech méi doriwwer gewuer gin? Mei Informatiounen iwer <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp at the Feide RnD blog</a> op <a href="http://uninett.no">UNINETT</a>',
+		'sl' => 'Da! simpleSAMLphp je zares kul! Kje si lahko preberem kaj več o tem? Dodatne informacije se nahajajo na <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp Feide RnD blogu</a>.',
 	),
 
 	'required' => array(
@@ -91,6 +98,7 @@ $lang = array(
 		'de' => 'Erforderlich',
 		'nl' => 'Vereist',
 		'lu' => 'Néideg',
+		'sl' => 'Zahtevano',
 	),
 	'required_ldap' => array(
 		'en' => 'Required for LDAP',
@@ -101,6 +109,7 @@ $lang = array(
 		'de' => 'Erforderlich für LDAP',
 		'nl' => 'Vereist voor LDAP',
 		'lu' => 'Néideg fir LDAP',
+		'sl' => 'Zahtevano za LDAP',
 	),
 	'required_radius' => array(
 		'en' => 'Required for Radius',
@@ -111,6 +120,7 @@ $lang = array(
 		'de' => 'Erforderlich für Radius',
 		'nl' => 'Vereist voor Radius',
 		'lu' => 'Néideg fir RADIUS',
+		'sl' => 'Zahtevano za RADIUS',
 	),
 	'optional' => array(
 		'en' => 'Optional',
@@ -121,6 +131,7 @@ $lang = array(
 		'de' => 'Optional',
 		'nl' => 'Optioneel',
 		'lu' => 'Optional',
+		'sl' => 'Dodatno',
 	),
 	'reccomended' => array(
 		'en' => 'Recommended',
@@ -131,6 +142,7 @@ $lang = array(
 		'de' => 'Empfohlen',
 		'nl' => 'Aanbevolen',
 		'lu' => 'Recommendéiert',
+		'sl' => 'Priporočljivo',
 	),	
 	'warnings' => array(
 		'en' => 'Warnings',
@@ -142,6 +154,7 @@ $lang = array(
 		'de' => 'Warnungen',
 		'nl' => 'Waarschuwingen',
 		'lu' => 'Warnungen',
+		'sl' => 'Opozorila',
 	),
 
 	'warnings_https' => array(
@@ -153,6 +166,7 @@ $lang = array(
 		'de' => '<strong>Sie benutzen keine HTTPS</strong> - verschlüsselte Kommunikation mit dem Nutzer. simpleSAMLphp funktioniert zum Testen völlig perfekt mit HTTP , aber in einer Produktionsumgebung sollten Sie HTTPS benutzen. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Lesen Sie mehr über die Verwaltung von simpleSAMLphp</a> ]',
 		'nl' => '<strong>Je gebruikt geen HTTPS</strong> - versleutelde communicatie met de gebruiker. simpleSAMLphp werkt prima op HTTP voor test doeleinden, maar als je simpleSAMLphp in een productie omgeving gaat gebruiken, zou je dat moeten doen over HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">lees meer over simpleSAMLphp onderhoud</a> ]',
 		'lu' => '<strong>Der benotzt ken HTTPS</strong> - verschlësselt Kommunikatioun mat dem Benotzer. SimpleSAMLphp funktionéiert einwandfräi mat HTTP fir Testzwéecker mais an engem produktiven Emfeld sollt et besser mat HTTPS lafen. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Liest méi iwert Maintenance vun simpleSAMLphp</a> ]',
+		'sl' => 'Ne uporabljate HTTPS</strong>-šifrirano komunikacijo z uporabnikom. SimpleSAMLphp deluje brez težav na HTTP za testne namene, vendar je potrebno za uporabo simpleSAMLphp v produkcijskem okolju uporabiti HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">preberite več o simpleSAMLphp vzdrževanju',
 	),
 
 
@@ -165,6 +179,7 @@ $lang = array(
 		'de' => 'SAML 2.0 SP Beispiel - Anmelden über ihren IdP testen',
 		'nl' => 'SAML 2.0 SP voorbeeld - test inloggen via je IdP',
 		'lu' => 'SAML 2.0 SP Beispill - probeier dech iwert dain IdP anzeloggen',
+		'sl' => 'SAML 2.0 SP primer - preveri prijavo preko svojega IdP',
 	),
 	'link_shib13example' => array(
 		'en' => 'Shibboleth 1.3 SP example - test logging in through your Shib IdP',
@@ -175,6 +190,7 @@ $lang = array(
 		'de' => 'Shibboleth 1.3 SP Beispiel - Anmelden über ihren Shibboleth IdP testen',
 		'nl' => 'Shibboleth 1.3 SP voorbeeld - test inloggen via je Shibboleth 1.3 IdP',
 		'lu' => 'Shibboleth 1.3 SP Beispill - probeier dech iwer dain Shib IdP anzeloggen',
+		'sl' => 'Shibboleth 1.3 SP primer - preveri prijavo preko svojega Shib IdP',
 	),
 	'link_openidprovider' => array(
 		'en' => 'OpenID Provider site - Alpha version (test code)',
@@ -185,6 +201,7 @@ $lang = array(
 		'de' => 'OpenID Provider Seite - Alpha Version (Testcode)',
 		'nl' => 'OpenID Provider site - Alpha versie (test code)',
 		'lu' => 'OpenID Privider Sait - Alpha versioun (Test Code)',
+		'sl' => 'OpenID Provider lokacija - Alpha različica (v razvoju)',
 	),
 	'link_diagnostics' => array(
 		'en' => 'Diagnostics on hostname, port and protocol',
@@ -195,6 +212,7 @@ $lang = array(
 		'de' => 'Diagnose des Hostnamen, Ports und Protokolls',
 		'nl' => 'Inspectie op hostnaam, poort en protocol',
 		'lu' => 'Diognose vum Hostname, Port an Protokoll',
+		'sl' => 'Diagnostika strežnika, vrata in protokol',
 	),
 	'link_phpinfo' => array(
 		'en' => 'PHP info',
@@ -205,6 +223,7 @@ $lang = array(
 		'de' => 'PHPinfo',
 		'nl' => 'PHP info',
 		'lu' => 'PHPinfo',
+		'sl' => 'PHPinfo',
 	),
 
 	'link_meta_overview' => array(
@@ -216,6 +235,7 @@ $lang = array(
 		'de' => 'Überblick über die Metadaten dieser Installation. Diagnose der Metadaten.',
 		'nl' => 'Meta data overzicht voor jouw installatie. Inspecteer je meta data files',
 		'lu' => 'Iwwersicht vun den Meta Données fir aer Installatioun. Diagnosizéiert aer Meta Données',
+		'sl' => 'Pregled metapodatkov in njihova diagnostika.',
 	),
 
 	'link_meta_saml2sphosted' => array(
@@ -226,6 +246,7 @@ $lang = array(
 		'de' => 'Hosted SAML 2.0 Service Provider Metadaten (automatisch generiert)',
 		'nl' => 'Lokale SAML 2.0 Service Provider Metadata (automatisch gegenereerd)',
 		'lu' => 'Hosted SAML 2.0 Service Provider Meta Données (automatesch erstallt)',
+		'sl' => 'Metapodatki za SAML 2.0 Service Provider (samodejno zgenerirani)',
 	),
 	'link_meta_saml2idphosted' => array(
 		'en' => 'Hosted SAML 2.0 Identity Provider Metadata (automatically generated)',
@@ -236,6 +257,7 @@ $lang = array(
 		'de' => 'Hosted SAML 2.0 Identity Provider Metadaten (automatisch generiert)',
 		'nl' => 'Lokale SAML 2.0 Identity Provider Metadata (automatisch gegenereerd)',
 		'lu' => 'Hosted SAML 2.0 Identity Provider Meta Données (automatesch erstallt)',
+		'sl' => 'Metapodatki za SAML 2.0 Identity Provider (samodejno zgenerirani)',
 	),
 	'link_meta_shib13sphosted' => array(
 		'en' => 'Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)',
@@ -246,6 +268,7 @@ $lang = array(
 		'de' => 'Hosted Shibboleth 1.3 Service Provider Metadaten (automatisch generiert)',
 		'nl' => 'Lokale Shibboleth 1.3 Service Provider Metadata (automatisch gegenereerd)',
 		'lu' => 'Hosted Shibboleth 1.3 Service Provider Meta Données (automatesch erstallt)',
+		'sl' => 'Metapodatki za Shibboleth 1.3 Service Provider (samodejno zgenerirani)',
 	),
 	'link_meta_shib13idphosted' => array(
 		'en' => 'Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)',
@@ -256,6 +279,7 @@ $lang = array(
 		'de' => 'Hosted Shibboleth 1.3 Identity Provider Metadaten (automatisch generiert)',
 		'nl' => 'Lokale Shibboleth 1.3 Identity Provider Metadata (automatisch gegenereerd)',
 		'lu' => 'Hosted Shibboleth 1.3 Identity Provider Meta Données (automatesch erstallt)',
+		'sl' => 'Metapodatki za Shibboleth 1.3 Identity Provider (samodejno zgenerirani)',
 	),
 	'link_xmlconvert' => array(
 		'en' => 'XML to simpleSAMLphp metadata converter',
@@ -266,6 +290,7 @@ $lang = array(
 		'de' => 'XML zu simpleSAMLphp Metadaten Konvertierer',
 		'nl' => 'XML naar simpleSAMLphp metadata vertaling',
 		'lu' => 'XML zu simpleSAMLphp Meta Données Emwandler',
+		'sl' => 'XML v simpleSAMLphp pretvornik metapodatkov',
 	),
 
 
@@ -277,6 +302,7 @@ $lang = array(
 		'de' => 'simpleSAMLphp installieren',
 		'nl' => 'Installatie van simpleSAMLphp',
 		'lu' => 'SimpleSAMLphp installéiren',
+		'sl' => 'Namestitev simpleSAMLphp',
 	),
 	'link_doc_sp' => array(
 		'en' => 'Using simpleSAMLphp as a Service Provider',
@@ -286,6 +312,7 @@ $lang = array(
 		'de' => 'simpleSAMLphp als Service Provider benutzen',
 		'nl' => 'Gebruik simpleSAMLphp als Service Provider',
 		'lu' => 'SimpleSAMLphp als Service Provicer benotzen',
+		'sl' => 'Uporabi simpleSAMLphp za Service Provider',
 	),
 	'link_doc_idp' => array(
 		'en' => 'Using simpleSAMLphp as an Identity Provider',
@@ -295,6 +322,7 @@ $lang = array(
 		'de' => 'simpleSAMLphp als Identitiy Provider benutzen',
 		'nl' => 'Gebruik simpleSAMLphp als Identity Provider',
 		'lu' => 'SimpleSAMLphp als Identity Provider benotzen',
+		'sl' => 'Uporabi simpleSAMLphp za Identity Provider',
 	),
 	'link_doc_shibsp' => array(
 		'en' => 'Configure Shibboleth 1.3 SP to work with simpleSAMLphp IdP',
@@ -304,6 +332,7 @@ $lang = array(
 		'de' => 'Shibboleth 1.3 SP für die Zusammenarbeit mit einem simpleSAMLphp IdP konfigurieren',
 		'nl' => 'Configureer een Shibboleth 1.3 SP voor de simpleSAMLphp IdP',
 		'lu' => 'Shibboleth 1.3 SP anstellen fir mam simpleSAMLphp Idp ze funktionnéiren',
+		'sl' => 'Nastavi Shibboleth 1.3 SP o work with simpleSAMLphp IdP',
 	),
 	'link_doc_googleapps' => array(
 		'en' => 'simpleSAMLphp as an IdP for Google Apps for Education',
@@ -312,6 +341,7 @@ $lang = array(
 		'fr' => 'simpleSAMLphp comme IdP pour les Google Apps for Education',
 		'de' => 'simpleSAMLphp als IdP für Google Apps für Education verwernden',
 		'lu' => 'simpleSAMLphp als IdP fir Google Apps for Education',
+		'sl' => 'simpleSAMLphp IdP za Google Apps for Education',
 	),
 	'link_doc_advanced' => array(
 		'en' => 'simpleSAMLphp Advanced Features',
@@ -321,6 +351,7 @@ $lang = array(
 		'de' => 'Fortgeschrittene Eigenschaften von simpleSAMLphp',
 		'nl' => 'simpleSAMLphp Geavanceerde Functies',
 		'lu' => 'Erweidert Funktiounen vun simpleSAMLphp ',
+		'sl' => 'simpleSAMLphp napredna funkcionalnost',
 	),
 	'link_doc_maintenance' => array(
 		'en' => 'simpleSAMLphp Maintenance and Configuration',
@@ -330,6 +361,7 @@ $lang = array(
 		'de' => 'Verwaltung und Konfiguration von simpleSAMLphp',
 		'nl' => 'simpleSAMLphp Onderhoud en Configuratie',
 		'lu' => 'simpleSAMLphp Maintenance an Konfiguratioun',
+		'sl' => 'simpleSAMLphp vzdrževanje in nastavitve',
 	),
 
 

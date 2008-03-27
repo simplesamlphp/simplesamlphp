@@ -11,6 +11,7 @@ $lang = array(
 		'de' => 'simpleSAMLphp Fehler',
 		'nl' => 'simpleSAMLphp fout',
 		'lu' => 'simpleSAMLphp Fehler',
+		'sl' => 'simpleSAMLphp napaka',
 	),
 
 	'report_trackid' => array(
@@ -22,6 +23,7 @@ $lang = array(
 		'de' => 'Falls Sie diesen Fehler melden, teilen Sie bitte ebenfalls diese Tracking ID mit, dadurch ist es dem Administrator möglich ihre Sitzung in den Logs zu finden:',
 		'nl' => 'Wanneer je deze fout rapporteert, geef dan AUB ook de volgende tracking ID door, waarmee het mogelijk is om jouw sessie in de logs terug te vinden:',
 		'lu' => 'Wann dir ons dësen Fehler matdeelt, dann schéckt w.e.g och d Tracking ID mat. Dei ennerstëtzt den System Administrator aer Session an den Logs erëmzefannen:',
+		'sl' => 'Če boste prijavili to napako, priložite tudi ID seje, preko katere bo lažje najti vaše dnevniške datoteke, ki so na voljo skrbniku sistema', 
 	),
 
 	'debuginfo_header' => array(
@@ -33,6 +35,7 @@ $lang = array(
 		'de' => 'Debug Information',
 		'nl' => 'Debug informatie',
 		'lu' => 'Debug Informatiounen',
+		'sl' => 'Podatki o popravljanju napak (debug)',
 	),
 
 	'debuginfo_text' => array(
@@ -44,6 +47,7 @@ $lang = array(
 		'de' => 'Die unten angegebene Debug Information kann von Interesse für den Administrator oder das Help Desk sein:',
 		'nl' => 'Onderstaande debug informatie kan van belang zijn voor de beheerder / help desk:',
 		'lu' => 'Dei Debug Informatiounen hei drënner kinnten den Administrator interesséiren:',
+		'sl' => 'Podatki o odpravljanju napak bodo zanimali srbnika / helpdesk',
 	),
 
 	'report_header' => array(
@@ -55,6 +59,7 @@ $lang = array(
 		'de' => 'Fehler melden',
 		'nl' => 'Rapporteer fouten',
 		'lu' => 'Fehler matdeelen',
+		'sl' => 'Prijavi napake',
 	),
 
 	'report_text' => array(
@@ -65,7 +70,8 @@ $lang = array(
 		'fr' => 'Facultativement vous pouvez entrer votre courriel, pour que les administrateurs puissent vous contacter par la suite à propose de votre problème :',
 		'de' => 'Geben Sie optional eine Emailadresse ein, so dass der Administrator Sie bei etwaigen Rückfragen kontaktieren kann:',
 		'nl' => 'Voeg desgewenst je e-mail adres toe, zodat de beheerders contact kunnen zoeken voor verder informatie over dit probleem:',
-		'lu' => 'Optionnal kennt dir aer E-mail Adress angin, fir dass den Administrator aerch fir weider Froen kontaktéieren kann:'
+		'lu' => 'Optionnal kennt dir aer E-mail Adress angin, fir dass den Administrator aerch fir weider Froen kontaktéieren kann:',
+		'sl' => 'Če želite, vnesite svoj elektronski naslov, na katerem boste dosegljivi za skrbnika sistema v primeru dodatnih vprašanj',
 	),
 
 	'report_email' => array(
@@ -77,6 +83,7 @@ $lang = array(
 		'de' => 'Emailadresse:',
 		'nl' => 'E-mail addres:',
 		'lu' => 'E-mail Adress',
+		'sl' => 'Elektronski naslov',
 	),
 
 	'report_explain' => array(
@@ -88,6 +95,7 @@ $lang = array(
 		'de' => 'Erläutern Sie wodurch der Fehler auftrat...',
 		'nl' => 'Leg uit wat je deed toen deze foutmelding optrad...',
 		'lu' => 'Erklaert w.e.g genau waat dir gemaacht hud fir den Fehler auszeléisen...',
+		'sl' => 'Opišite, kako je do napake prišlo...',
 	),
 
 	'report_submit' => array(
@@ -99,6 +107,7 @@ $lang = array(
 		'de' => 'Fehlerbericht absenden',
 		'nl' => 'Verstuur het foutmeldingsrapport',
 		'lu' => 'Fehlerbericht schécken',
+		'sl' => 'Pošlji poročilo o napaki',
 	),
 
 	'howto_header' => array(
@@ -108,6 +117,7 @@ $lang = array(
 		'fr' => 'Envoyer le rapport d\'erreur',
 		'nl' => 'Hoe kan ik hulp vragen',
 		'lu' => 'Wéi een Hellëf kritt',
+		'sl' => 'Pošlji poročilo o napaki',
 	),
 
 	'howto_text' => array(
@@ -118,7 +128,8 @@ $lang = array(
 		'fr' => 'Cette erreur est problablement causée par un comportement imprévu ou une mauvaise configuration de simpleSAMLphp.  Contactez l\'administrateur de ce service d\'identification et envoyez lui le message d\'erreur.',
 		'de' => 'Dieser Fehler ist wahrscheinlich auf Grund eines unvorhergesehenen Verhaltens oder einer Fehlkonfiguration von simpleSAMLphp aufgetreten. Kontaktieren Sie bitte den Administrator dieses Dienstes und schicken ihm die obige Fehlermeldung.',
 		'nl' => 'Deze foutmelding is waarschijnlijk ontstaan door onverwacht gedrag of door verkeerde configuratie van simpleSAMLphp. Meld dit bij de beheerder van deze authenticatie dienst, en geef bovenstaande melding door.',
-		'lu' => 'Dësen Fehler gouf wahrscheinlech duerch eng falsch Konfiguratioun vun simpleSAMLphp ausgeléist. Kontaktéiert am beschten den Administrator vun dësem Login Service an schéckt him den Fehlerbericht'
+		'lu' => 'Dësen Fehler gouf wahrscheinlech duerch eng falsch Konfiguratioun vun simpleSAMLphp ausgeléist. Kontaktéiert am beschten den Administrator vun dësem Login Service an schéckt him den Fehlerbericht',
+		'sl' => 'Ta napaka je verjetno posledica nepravilne konfiguracije simpleSAMLphp-ja. Obrnite se na skrbnika in mu posredujte to napako', 
 	),
 
 	'title_CACHEAUTHNREQUEST' => array(
@@ -127,7 +138,8 @@ $lang = array(
 		'es' => 'Error en el inicio de sesi—n œnico',
 		'de' => 'Fehler beim Anmelden am Single-Sign-On Dienst',
 		'nl' => 'Fout bij het afhandelen van Single-Signon',
-		'lu' => 'Fehler beim single sign-on bei dësem Service'
+		'lu' => 'Fehler beim single sign-on bei dësem Service',
+		'sl' => 'Prišlo je do napake pri enkratnem vpisu v storitev',
 	),
 	'descr_CACHEAUTHNREQUEST' => array(
 		'en' => 'You can authenticated and are ready to be sent back to the service that requested authentication, but we could not find your cached authentication request. The request is only cached for a limited amount of time. If you left your browser open for hours before entering your username and password, this could be one possible explanation. If this could be the case in your situation, try to go back to the service you want to access, and start a new login process. If this issue continues, please report the problem.',
@@ -145,6 +157,7 @@ $lang = array(
 		'de' => 'Fehler beim Erzeugen der Anfrage',
 		'nl' => 'Fout bij nieuw request',
 		'lu' => 'Fehler beim Erstellen vun der Unfro',
+		'sl' => 'Napaka pri ustvarjanju zahteve',
 	),
 	'descr_CREATEREQUEST' => array(
 		'en' => 'An error occured when trying to create the SAML request.',
@@ -153,6 +166,7 @@ $lang = array(
 		'de' => 'Ein Fehler beim Erzeugen der SAML Anfrage ist aufgetreten',
 		'nl' => 'Er is een fout opgetreden bij het aanmaken van een SAML request.',
 		'lu' => 'Beim Erstellen vun der SAML Unfro as en Fehler geschitt.',
+		'sl' => 'Pri ustvarjanju SAMP zahteve je prišlo do napake',
 	),
 
 	'title_DISCOPARAMS' => array(
@@ -162,6 +176,7 @@ $lang = array(
 		'de' => 'Ungültige Anfrage an den Discovery Service',
 		'nl' => 'Toegangsfout bij discovery service',
 		'lu' => 'Falsch Unfro fir den Discovery Service',
+		'sl' => 'Bad request to discovery service', 
 	),
 	'descr_DISCOPARAMS' => array(
 		'en' => 'The parameters sent to the discovery service were not following the specification.',
@@ -170,6 +185,7 @@ $lang = array(
 		'de' => 'Die Parameter die an den Discovery Service geschickt wurden entsprachen nicht der Spezifikation.',
 		'lu' => 'D Parameter fir den Disovery Service woren net korrekt par rapport zur Specifikatioun',
 		'nl' => 'De parameters die naar de discovery service zijn gestuurd, zijn niet correct volgens de specificatie.',
+		'sl' => 'Parametri, ki so bili poslani v "discovery service", ne ustrezajo specifikaciji',
 	),
 
 	'title_GENERATEAUTHNRESPONSE' => array(
@@ -179,6 +195,7 @@ $lang = array(
 		'de' => 'Konnte keine Authentifikationsantwort erstellen',
 		'lu' => 'Et wor net méiglech eng Authenticatiounsaentwert ze erstellen',
 		'nl' => 'Authenticatie response kon niet worden aangemaakt',
+		'sl' => 'Odgovora za avtentikacijo ni bilo mogoče ustvariti',
 	),
 	'descr_GENERATEAUTHNRESPONSE' => array(
 		'en' => 'When this identity provider tried to create an authentication response, an error occured.',
@@ -187,6 +204,7 @@ $lang = array(
 		'de' => 'Beim Versuch des Identity Providers eine Authentifikationsantwort zu erstellen trat ein Fehler auf.',
 		'lu' => 'Beim Erstellen vun der Authenticatiounsaentwert as en Fehler passéiert',
 		'nl' => 'Tijdens het aanmaken van een authenticatie response door deze Identity Provider is er een fout opgetreden.',
+		'sl' => 'Ko je ponudnik identitete želel ustvariti odgovor za avtentikacijo, je prišlo do napake',
 	),
 
 	'title_GENERATELOGOUTRESPONSE' => array(
@@ -196,6 +214,7 @@ $lang = array(
 		'de' => 'Konnte keine Logout Antwort erstellen',
 		'nl' => 'Logout response kon niet worden aangemaakt',
 		'lu' => 'Et wor net méiglech eng Logoutaentwert ze erstellen',
+		'sl' => 'Odgovora o odjavi ni bilo mogoče ustvariti',
 	),
 	'descr_GENERATELOGOUTRESPONSE' => array(
 		'en' => 'When this SAML entity tried to create an logout response, an error occured.',
@@ -204,6 +223,7 @@ $lang = array(
 		'de' => 'Beim Versuch dieser SAML Entity eine Logout Antwort zu erstellen ist ein Fehler aufgetreten',
 		'nl' => 'Bij het aanmaken van een logout response door deze SAML entiteit is er een fout opgetreden.',
 		'lu' => 'Wéi des SAML Eenheet probéiert huet eng Logoutaentwert ze erstellen as en Fehler geschitt',
+		'sl' => 'Ko je SAML želel ustvariti odgovor o odjavi, je prišlo do napake',
 	),
 
 	'title_LDAPERROR' => array(
@@ -213,6 +233,7 @@ $lang = array(
 		'de' => 'LDAP Fehler',
 		'nl' => 'LDAP Fout',
 		'lu' => 'LDAP Fehler',
+		'sl' => 'Napaka v LDAP-u',
 	),
 
 	'descr_LDAPERROR' => array(
@@ -222,6 +243,7 @@ $lang = array(
 		'de' => 'LDAP ist die Nutzerdatenbank, wenn sie versuchen sich anzumelden muss diese LDAP Datenbank kontaktiert werden, dabei ist dieses mal ein Fehler aufgetreten.',
 		'lu' => 'LDAP as eng Benotzerdatenbank an wann een anloggen well gët se kontaktéiert. Dobai as des Kéier een Fehler geschitt.',
 		'nl' => 'De account database is in LDAP opgeslagen en bij het inloggen moet er worden gecommuniceerd met een LDAP backend. Daarbij is een fout opgetreden.',
+		'sl' => 'LDAP je baza uporabnikov. Ko se želite prijaviti, je potrebno prijavo preveriti v LDAPu. Pri trenutnem preverjanju je prišlo do napake',
 	),
 
 	'title_LOGOUTREQUEST' => array(
@@ -231,6 +253,7 @@ $lang = array(
 		'de' => 'Fehler beim Bearbeiten der Abmeldeanfrage',
 		'lu' => 'Fehler beim Bearbeschten vun der Logout Unfro',
 		'nl' => 'Fout bij het verwerken van een Logout Request',
+		'sl' => 'Napaka pri obdelavi zahteve za odjavo',
 	),
 	'descr_LOGOUTREQUEST' => array(
 		'en' => 'An error occured when trying to process the Logout Request.',
@@ -239,6 +262,7 @@ $lang = array(
 		'de' => 'Beim Versuch die Abmeldeanfrage zu bearbeiten ist ein Fehler aufgetreten',
 		'lu' => 'En Fehler as geschit beim Bearbeschten vun der Logout Unfro',
 		'nl' => 'Er is een fout opgetreden tijdens het verwerken van een Logout Request.',
+		'sl' => 'Pri obdelavi zahteve za odjavo je prišlo do napake',
 	),
 
 	'title_GENERATELOGOUTREQUEST' => array(
@@ -248,6 +272,7 @@ $lang = array(
 		'de' => 'Konnte keine Abmeldeanfrage erstellen',
 		'lu' => 'Konnt keng Logout Unfro erstellen',
 		'nl' => 'Logout request kon niet worden aangemaakt',
+		'sl' => 'Zahteve za odjavo ni bilo mogoče ustvariti',
 	),
 	'descr_GENERATELOGOUTREQUEST' => array(
 		'en' => 'When this SAML entity tried to create an logout request, an error occured.',
@@ -256,6 +281,7 @@ $lang = array(
 		'de' => 'Beim Versuch dieser SAML Entity eine Abmeldeanfrage zu erstellen ist ein Fehler aufgetreten',
 		'lu' => 'Wei des SAML Eenheet probéiert huet eng Logout Unfro ze erstellen as en Fehler geschitt',
 		'nl' => 'Bij het aanmaken van een logout request door deze SAML entiteit, is er een fout opgetreden.',
+		'sl' => 'Ko je SAML želel ustvariti zahtevo za odjavo, je prišlo do napake',
 	),
 
 	'title_LOGOUTRESPONSE' => array(
@@ -265,6 +291,7 @@ $lang = array(
 		'de' => 'Fehler beim Bearbeiten der Abmeldeantwort',
 		'lu' => 'Fehler beim Bearbeschten vun der Logout Aentwert',
 		'nl' => 'Fout bij het verwerken van een Logout Response',
+		'sl' => 'Napaka pri obdelavi odgovora za odjavo',
 	),
 	'descr_LOGOUTRESPONSE' => array(
 		'en' => 'An error occured when trying to process the Logout Response.',
@@ -273,6 +300,7 @@ $lang = array(
 		'de' => 'Beim Versuch die Abmeldeantwort zu bearbeiten ist ein Fehler aufgetreten',
 		'lu' => 'Et as en Fehler geschitt beim Bearbeschten vun der Logout Aentwert',
 		'nl' => 'Er is een fout opgetreden tijdens het verwerken van een Logout Response.',
+		'sl' => 'Pri obdelavi odgovora za odjavo je prišlo do napake',
 	),
 
 	'title_METADATA' => array(
@@ -282,6 +310,7 @@ $lang = array(
 		'de' => 'Fehler beim Laden der Metadaten',
 		'lu' => 'Fehler beim Lueden vun den Meta Données',
 		'nl' => 'Fout bij het laden van metadata',
+		'sl' => 'Napaka pri nalaganju metapodatkov',
 	),
 	'descr_METADATA' => array(
 		'en' => 'There is some misconfiguration of your simpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup.',
@@ -290,6 +319,7 @@ $lang = array(
 		'de' => 'Diese Installation von simpleSAMLphp ist falsch konfiguriert. Falls Sie der Administrator dieses Dienstes sind sollten sie sicherstellen das die Metadatenkonfiguration korrekt ist.',
 		'lu' => 'Des simpleSAMLphp Installatioun schéint falsch konfiguréiert ze sin. Wann dir den Administrator vun dësem Service sid, dann stellt sëcher dass d Meta Données richteg angeriicht sin.',
 		'nl' => 'SimplSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst dient de metadata configuratie te controleren.',
+		'sl' => 'V namestitvi simpleSAMLphp-ja je napaka. Če ste skrbnik te storitve, preverite, da je namestitev metapodatkov pravilna',
 	),
 
 	'title_NOACCESS' => array(
@@ -299,6 +329,7 @@ $lang = array(
 		'de' => 'Kein Zugriff',
 		'lu' => 'Keen Zougrëff',
 		'nl' => 'Geen toegang',
+		'sl' => 'Ni dostopa',
 	),
 	'descr_NOACCESS' => array(
 		'en' => 'This endpoint is not enabled. Check the enable options in your configuration of simpleSAMLphp.',
@@ -307,6 +338,7 @@ $lang = array(
 		'de' => 'Dieser Endpunkt ist nicht aktiviert. Überprüfen Sie die Aktivierungsoptionen in der simpleSAMLphp Konfiguration.',
 		'lu' => 'Dësen Punkt as net aktivéiert. Verifizéiert d Optiounen an der simpleSAMLphp Konfiguratioun.',
 		'nl' => 'Deze toegangsmogelijkheid is niet beschikbaar. Controleer de opties in de configuratie van simpleSAMLphp.',
+		'sl' => 'Ta končna točka ni omogočena. Preverite možnost omogočenja v konfiguraciji simpleSAMLphp-ja',
 	),
 
 	'title_NORELAYSTATE' => array(
@@ -316,6 +348,7 @@ $lang = array(
 		'de' => 'Kein Weiterleitungsangabge',
 		'lu' => 'Den ReplayState Parameter fehlt',
 		'nl' => 'Geen RelayState',
+		'sl' => 'Ni RelayState parametra',
 	),
 	'descr_NORELAYSTATE' => array(
 		'en' => 'The initiator of this request did not provide an RelayState parameter, that tells where to go next.',
@@ -324,6 +357,7 @@ $lang = array(
 		'de' => 'Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter bereit gestellt, der Auskunft gibt wohin es als nächstes gehen soll.',
 		'lu' => 'Den Initiator vun der Unfro huet ken ReplayState Parameter matgeschekt.',
 		'nl' => 'De afzender van deze request heeft geen RelayState parameter meegestuurd om aan te geven wat de volgende bestemming is.',
+		'sl' => 'Začetnik te zahteve ni zagotovil RelayState parametra, ki pove, kje je potrebno nadaljevati',
 	),
 
 	'title_NOSESSION' => array(
@@ -333,6 +367,7 @@ $lang = array(
 		'de' => 'Keine Session gefunden',
 		'lu' => 'Keng Sessioun fonnt',
 		'nl' => 'Geen sessie gevonden',
+		'sl' => 'Nobene seje ni bilo mogoče najti',
 	),
 	'descr_NOSESSION' => array(
 		'en' => 'Unfortuneately we could not get your session. This could be because your browser do not support cookies, or cookies is disabled. Or may be your session timed out because you let the browser open for a long time.',
@@ -341,6 +376,7 @@ $lang = array(
 		'de' => 'Die Session konnte nicht gefunden werden. Möglicherweise unterstützt der Browser keine Cookies, oder Cookies sind deaktiviert. Eventuell ist die Session auch ausgelaufen weil der Browser zu lange offen war.',
 		'lu' => 'Onglëcklecherweis konnte mer aer Sessioun net feststellen. Ursach dofir kint sin dass aeren Browser keng cookies ënnerstëtzt oder des Funktioun désaktivéiert as. Alternativ kinnt et och sin dass aer Sessioun ofgelaaf as well den Browser ze lang op wor.',
 		'nl' => 'Helaas kon er geen sessie worden gevonden. Dit kan worden veroorzaakt omdat uw browsser geen cookies ondersteunt, of deze niet gebruikt. Ook kan uw sessie verlopen zijn omdat uw browser al langere tijd openstaat.',
+		'sl' => 'Žal vaše seje ni bilo mogoče najti. Vzrok je lahko vaš brskalnik, ki ne podpira piškotkov, ali pa so piškotki onemogočeni. Lahko pa se je iztekla časovna omejitev seje, ker ste pustili brskalnik dlje časa odprt',
 	),
 
 	'title_PROCESSASSERTION' =>	array(
@@ -350,6 +386,7 @@ $lang = array(
 		'de' => 'Fehler beim Bearbeiten der Antwort des IdP',
 		'lu' => 'Fehler beim Bearbeschten vun de Aentwert vum IdP',
 		'nl' => 'Fout in IdP response',
+		'sl' => 'Pri obdelavi odgovora od IdP-ja je prišlo do napake',
 	),
 	'descr_PROCESSASSERTION' =>	array(
 		'en' => 'We did not accept the response sent from the Identity Provider.',
@@ -358,6 +395,7 @@ $lang = array(
 		'de' => 'Die Antwort des Identitiy Provider konnte nicht akzeptiert werden.',
 		'lu' => 'Mer konnten d Aentwert vum Identity Provider net akzeptéiren',
 		'nl' => 'Het antwoord van de Identity Provider is niet geaccepteerd.',
+		'sl' => 'Odgovor, poslan od Identity providerja, ni bil sprejet',
 	),
 
 	'title_PROCESSAUTHNRESPONSE' =>	array(
@@ -367,6 +405,7 @@ $lang = array(
 		'de' => 'Fehler beim Bearbeiten der Antwort des Identity Providers',
 		'lu' => 'Fehler beim Bearbeschten vun der Aentwert vum Identity Provider',
 		'nl' => 'Fout in IdP response',
+		'sl' => 'Napaka pri obdelavi odgovora od identity Providerja',
 	),
 	'descr_PROCESSAUTHNRESPONSE' =>	array(
 		'en' => 'This SP received an authentication response from an identity provider, but an error occured when trying to process the response.',
@@ -374,6 +413,7 @@ $lang = array(
 		'de' => 'Dieser Service Provider hat eine Antwort von einem Identity Provider erhalten, aber beim Bearbeiten dieser Antwort ist ein Fehler aufgetreten.',
 		'lu' => 'Dësen IdP kruut eng Authenticatiounsaentwert vun engem Service provider, mais et gouf en Fehler wéi déi sollt bearbescht gin.',
 		'nl' => 'De SP heeft een authenticatie antwoord ontvangen van een Identity Provider, maar er is een fout opgetreden bij het verwerken ervan. ',
+		'sl' => 'Ta IdP je prejel avtenticiran odgovor od Service Providerja, vendar je pri obdelavi tega odgovora prišlo do napake',
 	),
 
 	'title_PROCESSAUTHNREQUEST' => array(
@@ -383,6 +423,7 @@ $lang = array(
 		'de' => 'Fehler beim Bearbeiten der Anfrage des Service Providers',
 		'lu' => 'Fehler beim Bearbeschten vun der Unfro vum Service Provider',
 		'nl' => 'Fout in Service Provider request',
+		'sl' => 'Napaka pri obdelavi zahteve od Service Providerja',
 	),
 	'descr_PROCESSAUTHNREQUEST' => array(
 		'en' => 'This IdP received an authentication request from a service provider, but an error occured when trying to process the request.',
@@ -391,6 +432,7 @@ $lang = array(
 		'de' => 'Dieser Identity Provider hat eine Authentifizierungsanfrage von einem Service Provider erhalten, aber es ist ein Fehler beim Bearbeiten dieser Anfrage aufgetreten',
 		'lu' => 'Dësen IdP kruut eng Authenticatiounsunfro vun engem Service provider, mais et gouf en Fehler wéi déi sollt bearbescht gin.',
 		'nl' => 'Deze IdP heeft een authenticatie verzoek ontvangen van een Service Provider, maar er is een fout opgetreden bij het verwerken ervan.',
+		'sl' => 'Ta IdP je prejel avtenticirano zahtevo od Service Providerja, vendar je prišlo do napake pri obdelavi te zahteve',
 	),
 
 
@@ -401,6 +443,7 @@ $lang = array(
 		'de' => 'Falsche Parameter bereit gestellt',
 		'lu' => 'Falsch Parameter',
 		'nl' => 'Fout in parameters',
+		'sl' => 'Zagotovljeni so bili napačni parametri',
 	),
 	'descr_SSOSERVICEPARAMS' =>	array(
 		'en' => 'You must either provide a SAML Request message or a RequestID on this interface.',
@@ -409,6 +452,7 @@ $lang = array(
 		'de' => 'Sie müssen diesem Interface entweder eine SAML Anfragenachricht oder eine AnfrageID übergeben.',
 		'lu' => 'Der musst entweder en SAML Unfro message oder eng Unfro ID op desem Interface unginn.',
 		'nl' => 'Een SAML Request message of een RequestID is vereist op deze interface.',
+		'sl' => 'Potrebno je zagotoviti sporočilo za SAML zahtevo ali RequestID na tem vmesniku',
 	),
 
 	'title_SLOSERVICEPARAMS' => array(
@@ -418,6 +462,7 @@ $lang = array(
 		'de' => 'Keine SAML Nachricht bereit gestellt',
 		'lu' => 'Keen SAML message unginn',
 		'nl' => 'Geen SAML bericht gevonden',
+		'sl' => 'Sporočila za SAML ni na voljo',
 	),
 	'descr_SLOSERVICEPARAMS' => array(
 		'en' => 'You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse.',
@@ -426,6 +471,7 @@ $lang = array(
 		'de' => 'Sie haben auf das SingleLogoutService Interface zugegriffen aber haben keine SAML Abmeldeanfrage oder Abmeldeantwort bereit gestellt.',
 		'lu' => 'Der hud den SingleLogoutService accédéiert mais ken SAML LogoutRequest oder LogoutResponse unginn.',
 		'nl' => 'Je hebt de SingleLogoutService interface aangeroepen, maar hebt geen SAML LogoutRequest of LogoutResponse meegestuurd.',
+		'sl' => 'Dostopili ste do SingleLogoutService vmesnika, ampak niste zagotovili SAML LogoutRequest ali LogoutResponse',
 	),
 
 	'title_ACSPARAMS' => array(
@@ -435,6 +481,7 @@ $lang = array(
 		'de' => 'Keine SAML Antwort bereit gestellt',
 		'lu' => 'Keng SAML Aentwert ungin',
 		'nl' => 'Geen SAML response gevonden',
+		'sl' => 'Nobenega odgovora za SAML ni na voljo',
 	),
 	'descr_ACSPARAMS' => array(
 		'en' => 'You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response.',
@@ -443,6 +490,7 @@ $lang = array(
 		'de' => 'Sie haben auf das Assertion Consumer Service Interface zugegriffen aber haben keine SAML Authentifizierungsantwort bereit gestellt.',
 		'nl' => 'Je hebt de Assertion Consumer Service interface aangeroepen, maar hebt geen SAML Authentication Response meegestuurd.',
 		'lu' => 'Der hud den Assertion Consumer Sercice Interface accédéiert mais keng SAML Authentication Aentwert unginn',
+		'sl' => 'Dostopili ste do Assertion Consumer Service vmesnika, ampak niste zagotovili SAML Authentication Responsa.',
 	),
 
 	'title_CASERROR' => array(
@@ -451,6 +499,7 @@ $lang = array(
 		'de' => 'CAS Fehler',
 		'lu' => 'CAS Fehler',
 		'nl' => 'CAS Fout',
+		'sl' => 'CAS napaka',
 	),
 	'descr_CASERROR' => array(
 		'en' => 'Error when communicating with the CAS server.',
@@ -458,6 +507,7 @@ $lang = array(
 		'de' => 'Fehler bei der Kommunikation mit dem CAS Server.',
 		'lu' => 'Fehler beim Kommunizeiren mam CAS Server',
 		'nl' => 'Fout tijdens communicatie met de CAS server.',
+		'sl' => 'Napaka pri komunikaciji s CAS strežnikom',
 	),
 
 	'title_CONFIG' => array(

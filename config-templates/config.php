@@ -113,8 +113,15 @@ $config = array (
 	/*
 	 * Languages available and what language is default
 	 */
-	'language.available'	=> array('en', 'no', 'nn', 'dk', 'es', 'de', 'fr', 'nl', 'lu'),
+	'language.available'	=> array('en', 'no', 'nn', 'dk', 'es', 'de', 'fr', 'nl', 'lu', 'sl'),
 	'language.default'		=> 'en',
+	/* 
+	 * Leave the language.base to 'en' (english). The language base MUST be set
+	 * to a language that contains 100% of the strings available. It is used as
+	 * a fallback language if not the selected, nor the default have a translation
+	 * for a specific string.
+	 */
+	'language.base'			=> 'en',
 	
 	/*
 	 * Which theme directory should be used? The base is fallback (leave it to default).
