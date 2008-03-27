@@ -19,7 +19,7 @@
   </articleinfo>
 
   <warning>
-    <para>This document is in progress of beeing written.</para>
+    <para>This document still in the writing stage.</para>
   </warning>
 
   <section>
@@ -49,20 +49,21 @@
 
     <para>The <literal>session.handler</literal> configuration option in
     <filename>config.php</filename> allows you to select which session handler
-    SimpleSAMLPHP should use to store the session information. Currently we
-    have two session handlers:</para>
+    SimpleSAMLphp should use to store the session information. Currently,
+    two session handlers are included in the distribution:</para>
 
     <itemizedlist>
       <listitem>
-        <para>PHPSESSION is using the built in session management in PHP. This
-        is the default, and is simplest to use. But it will not work in a
-        load-balanced environement.</para>
+        <para><literal>phpsession</literal> uses the built in session
+        management in PHP. This is the default, and is simplest to use. It
+        will not work in a load-balanced environement.</para>
       </listitem>
 
       <listitem>
-        <para>memcache is using the memcache software to cache sessions in
-        memory. Sessions can be distributed and replicated among several
-        memcache servers, enabling both load-balancing and fail-over.</para>
+        <para><literal>memcache</literal> uses the memcache software to cache
+        sessions in memory. Sessions can be distributed and replicated among
+        several memcache servers, enabling both load-balancing and
+        fail-over.</para>
       </listitem>
     </itemizedlist>
 
@@ -71,12 +72,13 @@
     <section>
       <title>Configuring memcache</title>
 
-      <para>To use the memcache session handler, set the session.handler
-      parameter in <literal>config.php</literal>:</para>
+      <para>To use the memcache session handler, set the
+      <literal>session.handler</literal> parameter in
+      <literal>config.php</literal>:</para>
 
       <programlisting>'session.handler'       =&gt; 'memcache',</programlisting>
 
-      <para>Memcache allows you to store multiple redudant copies of sessions
+      <para>memcache allows you to store multiple redudant copies of sessions
       on different memcache servers.</para>
 
       <para>The configuration parameter
@@ -94,8 +96,8 @@
           <glossterm><literal>hostname</literal></glossterm>
 
           <glossdef>
-            <para>This is the hostname or ip address where the memcache server
-            runs. This is the only required option.</para>
+            <para>Host name or ip address of a memcache server runs. This is
+            the only required option.</para>
           </glossdef>
         </glossentry>
 
@@ -103,10 +105,9 @@
           <glossterm><literal>port</literal></glossterm>
 
           <glossdef>
-            <para>This is the port number of the memcache server. If this
-            option isn't set, then we will use the
-            <literal>memcache.default_port</literal> ini setting. This is
-            11211 by default.</para>
+            <para>Port number of the memcache server. If not set, the
+            <literal>memcache.default_port</literal> ini setting is used. This
+            is 11211 by default.</para>
           </glossdef>
         </glossentry>
 
@@ -114,10 +115,9 @@
           <glossterm><literal>weight</literal></glossterm>
 
           <glossdef>
-            <para>This sets the weight of this server in this server group.
-            <ulink
+            <para>Weight of this server in this server group. <ulink
             url="http://php.net/manual/en/function.Memcache-addServer.php">http://php.net/manual/en/function.Memcache-addServer.php</ulink>
-            contains more information about the weight option.</para>
+            has more information about the weight option.</para>
           </glossdef>
         </glossentry>
 
@@ -125,7 +125,7 @@
           <glossterm><literal>timeout</literal></glossterm>
 
           <glossdef>
-            <para>The timeout for this server. By default, the timeout is 3
+            <para>Timeout for this server. By default, the timeout is 3
             seconds.</para>
           </glossdef>
         </glossentry>
@@ -144,14 +144,14 @@
         the b-group.</para>
 
         <programlisting>'memcache_store.servers' =&gt; array(
-	array(
-		array('hostname' =&gt; 'mc_a1'),
-		array('hostname' =&gt; 'mc_a2'),
-	),
-	array(
-		array('hostname' =&gt; 'mc_b1'),
-		array('hostname' =&gt; 'mc_b2'),
-	),
+  array(
+    array('hostname' =&gt; 'mc_a1'),
+    array('hostname' =&gt; 'mc_a2'),
+  ),
+  array(
+    array('hostname' =&gt; 'mc_b1'),
+    array('hostname' =&gt; 'mc_b2'),
+  ),
 ),</programlisting>
       </example>
 
@@ -164,16 +164,16 @@
         will be lost if the memcache server crashes.</para>
 
         <programlisting>'memcache_store.servers' =&gt; array(
-	array(
-		array('hostname' =&gt; 'localhost'),
-	),
+  array(
+    array('hostname' =&gt; 'localhost'),
+  ),
 ),</programlisting>
       </example>
 
       <para>The expiration value (<literal>memcache_store.expires</literal>)
-      is the duration data should be stored in memcache. Datawill be dropped
-      from the memcache servers when this time expires. The time will be reset
-      every time the data is written to the memcache servers.</para>
+      is the duration for which data should be retained in memcache. Data are
+      dropped from the memcache servers when this time expires. The time will
+      be reset every time the data is written to the memcache servers.</para>
 
       <para>This value should always be larger than the
       <literal>session.duration</literal> option. Not doing this may result in
@@ -227,8 +227,8 @@
   <section>
     <title>Logging and statistics</title>
 
-    <para>Supports standard syslog logging. Also possible to configure
-    flatfile logging.</para>
+    <para>simpleSAMLphp supports standard <literal>syslog</literal> logging.
+    As an alternative, you may log to flat files.</para>
   </section>
 
   <section>
@@ -248,7 +248,7 @@
   <section>
     <title>Getting ready for production</title>
 
-    <para>Here are some steps that should be checked</para>
+    <para>Here are some checkpoints</para>
 
     <itemizedlist>
       <listitem>
@@ -258,23 +258,24 @@
       </listitem>
 
       <listitem>
-        <para>Switch signing certificate if you have used one for test phase
-        that have been exposed.</para>
+        <para>If you during testing have been using a certificate that has
+        been exposed (notably: the one found in the simpleSAMLphp distribution): 
+        Obtain and install a new one.</para>
       </listitem>
 
       <listitem>
-        <para>Make sure you have the latest security upgrades on your OS,
-        and</para>
+        <para>Make sure you have installed the latest security upgrades for
+        your OS.</para>
       </listitem>
 
       <listitem>
-        <para>Make sure you run on HTTPS and not HTTP.</para>
+        <para>Make sure to use HTTPS rather than HTTP.</para>
       </listitem>
 
       <listitem>
-        <para>Block access to your servers anything except port 443.
-        simpleSAMLphp does not do anything but plan HTTP(s), so no need to
-        open ports for SOAP or other communication.</para>
+        <para>Block access to your servers on anything except port 443.
+        simpleSAMLphp only uses plain HTTP(S), so there is no need to open
+        ports for SOAP or other communication.</para>
       </listitem>
     </itemizedlist>
   </section>
@@ -290,89 +291,94 @@
   <section>
     <title>Multi-language support</title>
 
-    <para>Localization files in <filename>dictionaries/</filename>.</para>
+      <para>To add support for a new language, add your new language to the
+      <literal>language.available</literal> configuration parameter in
+      <filename>config.php</filename>:</para>
+  
+      <programlisting>  /*
+         * Languages available and which language is default
+         */
+        'language.available' =&gt; array('en', 'no', 'dk', 'es', 'xx'),
+        'language.default'   =&gt; 'en',</programlisting>
+  
+      <para>Please use the standarized two-character <ulink
+      url="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">language codes
+      as specified in ISO-639-1</ulink>.</para>
+  
+      <para>You also can set the default language. You should ensure
+      that the default language is complete, as it is used as a fallback when
+      a text is not available in the language selected by the user.</para>
+  
+      <tip>
+        <para>This may change in the future. We may distinguish between the
+        fallback-lanauge (which is usually English) and the default language.</para>
+      </tip>
+  
+      <para>All strings that can
+      be localized are found in the files <filename>dictionaries/</filename>.
+      Add a new entry for each string, with your language code, like
+      this:</para>
+  
+      <programlisting>'user_pass_header' =&gt; array(
+    'en' =&gt; 'Enter your username and password',
+    'no' =&gt; 'Skriv inn brukernavn og passord',
+    'xx' =&gt; 'Pooa jujjique jamba',
+  ),</programlisting>
+  
+      <para>You can translate as many of the texts as you would like; a full translation is
+      not required unless you want to make this the default language. From the end users
+      point of view, it looks best if all text fragments used in a given screen or form
+      is in one single language.
+      </para>
+      
+      <para>Note that themes used for customization of the web frontend (see below)
+      also may contain language specific texts which you would like to include in your 
+      translation. Language independent themes may be created by putting all theme
+      texts in a file in the <filename>dictionaries</filename> directory.
+      </para>
 
-    <para>To add support for a new language add your new language to the
-    language.available configuration parameter in
-    <filename>config.php</filename>:</para>
-
-    <programlisting>	/*
-	 * Languages available and what language is default
-	 */
-	'language.available'	=&gt; array('en', 'no', 'dk', 'es', 'xx'),
-	'language.default'		=&gt; 'en',</programlisting>
-
-    <para>Please use the standarized <ulink
-    url="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">language codes
-    as specified in ISO-639-1</ulink>.</para>
-
-    <para>You also can set the default language. What is really important is
-    that the default language is complete! The default language is also the
-    fallback, so that when a user selects a language that in example has not
-    translated all the error messages, then strings from the default languae
-    is used instead.</para>
-
-    <tip>
-      <para>This may change in the future. We may distinguish between the
-      fallback-lanauge (which usually are english) and the default
-      language.</para>
-    </tip>
-
-    <para>Next, the translation it self needs to be done. All the strings can
-    be localized by editing the files in <filename>dictionaries/</filename>.
-    Add a new entry for each string, with your language code, like
-    this:</para>
-
-    <programlisting>'user_pass_header' =&gt; array(
-  'en' =&gt; 'Enter your username and password',
-  'no' =&gt; 'Skriv inn brukernavn og passord',
-  'xx' =&gt; 'Pooa jujjique jamba',
-),</programlisting>
-
-    <para>You can translate as much as you would like, a full translation is
-    not required. Though, it looks abit stupid with half of the text in
-    english, and only half of the text localized.</para>
   </section>
 
   <section>
     <title>Customizing the web frontend with themes</title>
 
     <para>All XHTML templates are stored in the
-    <filename>templates/</filename> directory. In this directory there is one
-    directory for each theme. The default theme is named
-    <literal>default</literal>. An example theme is provided named
+    <filename>templates/</filename> directory, one
+    subdirectory for each theme. The default theme is named
+    <literal>default</literal>. An sample theme is provided, named
     <literal>feidernd</literal>.</para>
 
     <para>It is possible to define a new theme, where only some of the pages
-    is customized, for the rest of the pages, the default theme can be used.
-    The feidernd theme is a good example of this, here only the login page is
-    customized.</para>
+    are customized. For the rest of the pages, the default theme is used.
+    The <literal>feidernd</literal> theme is a good example of this: 
+    Only the login page is customized.</para>
 
-    <para>In <filename>config.php</filename> you specify which theme that you
-    would like to use, as well as a theme base. The theme base is the fallback
+    <para>In <filename>config.php</filename> you specify the theme to use, 
+    as well as a theme base. The theme base is the fallback
     theme that should be used when the selected theme does not include the
     specific template needed to render a page. Here is an example of a
     configuration:</para>
 
-    <programlisting>	/*
-	 * Which theme directory should be used? The base is fallback (leave it to default).
-	 */
-	'theme.use' 		=&gt; 'feidernd',
-	'theme.base' 		=&gt; 'default',</programlisting>
+    <programlisting>    /*
+         * Which theme directory should be used? The base is fallback (leave it to default).
+         */
+        'theme.use'             =&gt; 'feidernd',
+        'theme.base'            =&gt; 'default',</programlisting>
 
     <important>
       <para>The feidernd theme is based on the wordpress login form style.
-      Feel free to use this as a base for making your own login form. But
-      please do not use the feidernd theme as it is, because it contains the
-      Feide logo, which off course should not be used outside Feide.</para>
+      Feel free to use this as a base for making your own login form. However:
+      Please do not use the feidernd theme unmodified - it contains the
+      Feide logo, which of course should be used to identify Feide services, 
+      not services provided by your institution.</para>
     </important>
   </section>
-
+  
   <section>
     <title>Support</title>
 
-    <para>If you have problems to get this work, or want to discuss
-    simpleSAMLphp with other users of the software you are lucky! Around
+    <para>If you need help to make this work, or want to discuss
+    simpleSAMLphp with other users of the software you are fortunate: Around
     simpleSAMLphp there is a great Open source community, and you are welcome
     to join! Both for asking question, answer other questions, request
     improvements or contribute with code or plugins of your own.</para>
