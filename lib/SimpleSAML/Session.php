@@ -63,6 +63,13 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 		
 
 	/**
+	 * This is an array of registered logout handlers.
+	 * All registered logout handlers will be called on logout.
+	 */
+	private $logout_handlers = array();
+
+
+	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
 	private function __construct($authenticated = true) {
@@ -329,6 +336,9 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 		
 		if ($auth) {	
 			$this->sessionstarted = time();
+		} else {
+			/* Call logout handlers. */
+			$this->callLogoutHandlers();
 		}
 	}
 	
@@ -430,6 +440,39 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 		$s = serialize($this);
 		return strlen($s);
 	}
+
+
+	/**
+	 * This function registers a logout handler.
+	 *
+	 * @param $file  The file which contains the logout handler.
+	 * @param $classname  The class which contains the logout handler.
+	 * @param $functionname  The logout handler function.
+	 */
+	public function registerLogoutHandler($file, $classname, $functionname) {
+		$this->logout_handlers[] = array('file' => $file, 'class' => $classname, 'function' => $functionname);
+	}
+
+
+	/**
+	 * This function calls all registered logout handlers.
+	 */
+	private function callLogoutHandlers() {
+		foreach($this->logout_handlers as $handler) {
+
+			/* Load the file with the logout handler. */
+			require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . $handler['file']);
+
+			/* Call the logout handler. */
+			$classname = $handler['class'];
+			$functionname = $handler['function'];
+			call_user_func(array($classname, $functionname));
+		}
+
+		/* We require the logout handlers to register themselves again if they want to be called later. */
+		$this->logout_handlers = array();
+	}
+
 }
 
 ?>
