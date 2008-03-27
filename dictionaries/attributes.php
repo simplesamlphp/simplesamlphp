@@ -82,10 +82,6 @@ $lang = array(
 		'dk' => 'Gruppemedlemskab',
 	),
 
-	'attribute_edupersonentitlement' => array(
-		'en' => 'Entitlement regarding the service',
-		'no' => 'Rettighet',
-	),
 
 	'attribute_edupersontargetedid' => array(
 		'en' => 'Persistent anonymous ID',
