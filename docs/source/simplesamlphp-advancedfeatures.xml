@@ -5,6 +5,24 @@
   <title>simpleSAMLphp advanced features</title>
 
   <section>
+    <title>simpleSAMLphp documentation</title>
+
+    <para>This document is part of the simpleSAMLphp documentation
+    suite.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/view/simplesamlphpdocs">List of
+        all simpleSAMLphp documentation</ulink></para>
+      </listitem>
+    </itemizedlist>
+
+    <para>This document assumes that you already have a installation of
+    simpleSAMLphp running, configured and working. This is the next step
+    :)</para>
+  </section>
+
+  <section>
     <title>Bridging between protocols</title>
 
     <para>To setup a bridge between two protocols, you need to would need to
@@ -196,7 +214,7 @@ $attributemap = array(
   </section>
 
   <section>
-    <title>Automated testing </title>
+    <title>Automated testing</title>
 
     <para>simpleSAMLphp includes a test script that can go to a simpleSAMLphp
     SP, initiate login, enter some credentials, and then follow the response

@@ -23,6 +23,24 @@
   </warning>
 
   <section>
+    <title>simpleSAMLphp documentation</title>
+
+    <para>This document is part of the simpleSAMLphp documentation
+    suite.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/view/simplesamlphpdocs">List of
+        all simpleSAMLphp documentation</ulink></para>
+      </listitem>
+    </itemizedlist>
+
+    <para>This document assumes that you already have a installation of
+    simpleSAMLphp running, configured and working. This is the next step
+    :)</para>
+  </section>
+
+  <section>
     <title>Session management</title>
 
     <para>simpleSAMLphp has an abstraction layer for session management. That
@@ -162,7 +180,7 @@
       the session being deleted from the memcache servers while it is still in
       use.</para>
 
-      <para>Set this value to 0 if you don't want data to expire. </para>
+      <para>Set this value to 0 if you don't want data to expire.</para>
 
       <note>
         <para>The oldest data will always be deleted if the memcache server
@@ -272,36 +290,82 @@
   <section>
     <title>Multi-language support</title>
 
-    <para>Localization files in <filename>dictionaries/</filename>. In
-    addition some text is stored in the XHTML templates, so you may copy the
-    <filename>en</filename> directory to in example <filename>no</filename>
-    directory to do a norwegian translation.</para>
+    <para>Localization files in <filename>dictionaries/</filename>.</para>
+
+    <para>To add support for a new language add your new language to the
+    language.available configuration parameter in
+    <filename>config.php</filename>:</para>
+
+    <programlisting>	/*
+	 * Languages available and what language is default
+	 */
+	'language.available'	=&gt; array('en', 'no', 'dk', 'es', 'xx'),
+	'language.default'		=&gt; 'en',</programlisting>
+
+    <para>Please use the standarized <ulink
+    url="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">language codes
+    as specified in ISO-639-1</ulink>.</para>
+
+    <para>You also can set the default language. What is really important is
+    that the default language is complete! The default language is also the
+    fallback, so that when a user selects a language that in example has not
+    translated all the error messages, then strings from the default languae
+    is used instead.</para>
+
+    <tip>
+      <para>This may change in the future. We may distinguish between the
+      fallback-lanauge (which usually are english) and the default
+      language.</para>
+    </tip>
+
+    <para>Next, the translation it self needs to be done. All the strings can
+    be localized by editing the files in <filename>dictionaries/</filename>.
+    Add a new entry for each string, with your language code, like
+    this:</para>
+
+    <programlisting>'user_pass_header' =&gt; array(
+  'en' =&gt; 'Enter your username and password',
+  'no' =&gt; 'Skriv inn brukernavn og passord',
+  'xx' =&gt; 'Pooa jujjique jamba',
+),</programlisting>
+
+    <para>You can translate as much as you would like, a full translation is
+    not required. Though, it looks abit stupid with half of the text in
+    english, and only half of the text localized.</para>
   </section>
 
   <section>
-    <title>Customizing the web frontend</title>
+    <title>Customizing the web frontend with themes</title>
 
-    <para>All XHTML templates are stored in the simplesamlphp/templates
-    directory. They are stored in a two level hierarchy; first the theme name,
-    and then the language code.</para>
+    <para>All XHTML templates are stored in the
+    <filename>templates/</filename> directory. In this directory there is one
+    directory for each theme. The default theme is named
+    <literal>default</literal>. An example theme is provided named
+    <literal>feidernd</literal>.</para>
 
-    <example>
-      <title>Example of organization of themes</title>
+    <para>It is possible to define a new theme, where only some of the pages
+    is customized, for the rest of the pages, the default theme can be used.
+    The feidernd theme is a good example of this, here only the login page is
+    customized.</para>
 
-      <para>An example of a directory structure:</para>
+    <para>In <filename>config.php</filename> you specify which theme that you
+    would like to use, as well as a theme base. The theme base is the fallback
+    theme that should be used when the selected theme does not include the
+    specific template needed to render a page. Here is an example of a
+    configuration:</para>
 
-      <literallayout>templates/default/en
-templates/default/no
-templates/dkaaitheme/en
-templates/dkaaitheme/dk
-</literallayout>
-    </example>
+    <programlisting>	/*
+	 * Which theme directory should be used? The base is fallback (leave it to default).
+	 */
+	'theme.use' 		=&gt; 'feidernd',
+	'theme.base' 		=&gt; 'default',</programlisting>
 
-    <para>Which theme to use is specified in the
-    <filename>config.php</filename> file, where the metadata dir is specified.
-    To use the dkaaitheme as illustrated in the above example, set the value
-    of <literal>templatedir</literal> to
-    <filename>templates/dkaaitheme/</filename>.</para>
+    <important>
+      <para>The feidernd theme is based on the wordpress login form style.
+      Feel free to use this as a base for making your own login form. But
+      please do not use the feidernd theme as it is, because it contains the
+      Feide logo, which off course should not be used outside Feide.</para>
+    </important>
   </section>
 
   <section>

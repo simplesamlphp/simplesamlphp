@@ -19,6 +19,24 @@
   </articleinfo>
 
   <section>
+    <title>simpleSAMLphp documentation</title>
+
+    <para>This document is part of the simpleSAMLphp documentation
+    suite.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/view/simplesamlphpdocs">List of
+        all simpleSAMLphp documentation</ulink></para>
+      </listitem>
+    </itemizedlist>
+
+    <para>This document assumes that you already have a installation of
+    simpleSAMLphp. Before you continue make sure all the required entries in
+    the check list at the buttom is showing green light.</para>
+  </section>
+
+  <section>
     <title>Enabling the Identity Provider functionality</title>
 
     <para>The SAML 2.0 SP functionality is enabled per default. Edit
