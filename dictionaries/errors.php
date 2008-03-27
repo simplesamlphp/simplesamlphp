@@ -221,7 +221,9 @@ $lang = array(
 		'en' => 'Error processing response from Identity Provider',
 		'es' => 'Error al procesar la solicitud del proveedor de servicio',
 	),
-	'descr_PROCESSAUTHNRESPONSE' =>	array('en' => 'This IdP received an authentication response from a service provider, but an error occured when trying to process the response.'),
+	'descr_PROCESSAUTHNRESPONSE' =>	array(
+		'en' => 'This SP received an authentication response from a identity provider, but an error occured when trying to process the response.'
+	),
 	
 	'title_PROCESSAUTHNREQUEST' => array(
 		'en' => 'Error processing request from Service Provider',
