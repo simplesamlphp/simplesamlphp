@@ -147,138 +147,163 @@ $lang = array(
 		'es' => 'Los parametros enviados al servicio de descubrimiento no se ajustan a la especificaci—n
 .',
 		'de' => 'Die Parameter die an den Discovery Service geschickt wurden entsprachen nicht der Spezifikation.',
+		'nl' => 'De parameters die naar de discovery service zijn gestuurd, zijn niet correct volgens de specificatie.',
 	),
 	
 	'title_GENERATEAUTHNRESPONSE' => array(
 		'en' => 'Could not create authentication response',
 		'es' => 'No se pudo crear la respuesta de autenticaci—n',
 		'de' => 'Konnte keine Authentifikationsantwort erstellen',
+		'nl' => 'Authenticatie response kon niet worden aangemaakt',
 	),
 	'descr_GENERATEAUTHNRESPONSE' => array(
 		'en' => 'When this identity provider tried to create an authentication response, an error occured.',
 		'es' => 'El proveedor de identidad ha detectado un error al crear respuesta de autenticaci—n.',
 		'de' => 'Beim Versuch des Identity Providers eine Authentifikationsantwort zu erstellen trat ein Fehler auf.',
+		'nl' => 'Tijdens het aanmaken van een authenticatie response door deze Identity Provider is er een fout opgetreden.',
 	),
 
 	'title_GENERATELOGOUTRESPONSE' => array(
 		'en' => 'Could not create logout response',
 		'es' => 'No se pudo crear la respuesta de cierre de sesi—n',
 		'de' => 'Konnte keine Logout Antwort erstellen',
+		'nl' => 'Logout response kon niet worden aangemaakt',
 	),
 	'descr_GENERATELOGOUTRESPONSE' => array(
 		'en' => 'When this SAML entity tried to create an logout response, an error occured.',
 		'es' => 'La entidad SAML ha detectado un error al crear la respuesta de cierre de sesi—n.',
 		'de' => 'Beim Versuch dieser SAML Entity eine Logout Antwort zu erstellen ist ein Fehler aufgetreten',
+		'nl' => 'Bij het aanmaken van een logout response door deze SAML entiteit is er een fout opgetreden.',
 	),
 
 	'title_LDAPERROR' => array(
 		'en' => 'LDAP Error',
 		'es' => 'Error de LDAP',
 		'de' => 'LDAP Fehler',
+		'nl' => 'LDAP Fout',
 	),
 	
 	'descr_LDAPERROR' => array(
 		'en' => 'LDAP is the user database, and when you try to login, we need to contact an LDAP database. When we tried it this time an error occured.',
 		'es' => 'LDAP es la base de datos de usuarios, es necesario contactar con ella cuando usted decide entrar. Se ha producido un error en dicho acceso',
 		'de' => 'LDAP ist die Nutzerdatenbank, wenn sie versuchen sich anzumelden muss diese LDAP Datenbank kontaktiert werden, dabei ist dieses mal ein Fehler aufgetreten.',
+		'nl' => 'De account database is in LDAP opgeslagen en bij het inloggen moet er worden gecommuniceerd met een LDAP backend. Daarbij is een fout opgetreden.',
 	),
 	
 	'title_LOGOUTREQUEST' => array(
 		'en' => 'Error processing Logout Request',
 		'es' => 'Error al procesar la solicitud de cierre de sesi—n',
 		'de' => 'Fehler beim Bearbeiten der Abmeldeanfrage',
+		'nl' => 'Fout bij het verwerken van een Logout Request',
 	),
 	'descr_LOGOUTREQUEST' => array(
 		'en' => 'An error occured when trying to process the Logout Request.',
 		'es' => 'Se ha producido un error al tratar de procesar la solicitud de cierre de sesi—n.',
 		'de' => 'Beim Versuch die Abmeldeanfrage zu bearbeiten ist ein Fehler aufgetreten',
+		'nl' => 'Er is een fout opgetreden tijdens het verwerken van een Logout Request.',
 	),
 	
 	'title_GENERATELOGOUTREQUEST' => array(
 		'en' => 'Could not create logout request',
 		'es' => 'No se ha podido crear la solicitud de cierre de sesi—n',
 		'de' => 'Konnte keine Abmeldeanfrage erstellen',
+		'nl' => 'Logout request kon niet worden aangemaakt',
 	),
 	'descr_GENERATELOGOUTREQUEST' => array(
 		'en' => 'When this SAML entity tried to create an logout request, an error occured.',
 		'es' => 'La entidad SAML ha detectado un error al crear la solicitud de cierre de sesi—n.',
 		'de' => 'Beim Versuch dieser SAML Entity eine Abmeldeanfrage zu erstellen ist ein Fehler aufgetreten',
+		'nl' => 'Bij het aanmaken van een logout request door deze SAML entiteit, is er een fout opgetreden.',
 	),
 	
 	'title_LOGOUTRESPONSE' => array(
 		'en' => 'Error processing Logout Response',
 		'es' => 'Error al procesar la respuesta de cierre de sesi—n',
 		'de' => 'Fehler beim Bearbeiten der Abmeldeantwort', 
+		'nl' => 'Fout bij het verwerken van een Logout Response',
 	),
 	'descr_LOGOUTRESPONSE' => array(
 		'en' => 'An error occured when trying to process the Logout Response.',
 		'es' => 'Se ha producido un error al tratar de procesar la respuesta de cierre de sesi—n.',
 		'de' => 'Beim Versuch die Abmeldeantwort zu bearbeiten ist ein Fehler aufgetreten',
+		'nl' => 'Er is een fout opgetreden tijdens het verwerken van een Logout Response.',
 	),
 	
 	'title_METADATA' => array(
 		'en' => 'Error loading metadata',
 		'es' => 'Error al cargar los metadatos',
 		'de' => 'Fehler beim Laden der Metadaten',
+		'nl' => 'Fout bij het laden van metadata',
 	),
 	'descr_METADATA' => array(
 		'en' => 'There is some misconfiguration of your simpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup.',
 		'es' => 'Hay errores de configuraci—n en su instalaci—n de simpleSAMLphp. Si es usted el administrador del servicio, cerci—rese de que la configuraci—n de los metadatos es correcta.',
 		'de' => 'Diese Installation von simpleSAMLphp ist falsch konfiguriert. Falls Sie der Administrator dieses Dienstes sind sollten sie sicherstellen das die Metadatenkonfiguration korrekt ist.',
+		'nl' => 'SimplSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst dient de metadata configuratie te controleren.',
 	),
 	
 	'title_NOACCESS' => array(
 		'en' => 'No access',
 		'es' => 'Acceso no definido',
 		'de' => 'Kein Zugriff',
+		'nl' => 'Geen toegang',
 	),
 	'descr_NOACCESS' => array(
 		'en' => 'This endpoint is not enabled. Check the enable options in your configuration of simpleSAMLphp.',
 		'es' => 'Este punto de acceso no est‡ habilitado. Verifique las opciones de habilitaci—n en la configuraci—n de simpleSAMLphp.',
 		'de' => 'Dieser Endpunkt ist nicht aktiviert. Überprüfen Sie die Aktivierungsoptionen in der simpleSAMLphp Konfiguration.',
+		'nl' => 'Deze toegangsmogelijkheid is niet beschikbaar. Controleer de opties in de configuratie van simpleSAMLphp.',
 	),
 	
 	'title_NORELAYSTATE' => array(
 		'en' => 'No RelayState',
 		'es' => 'RelayState no definido',
 		'de' => 'Kein Weiterleitungsangabge',
+		'nl' => 'Geen RelayState',
 	),
 	'descr_NORELAYSTATE' => array(
 		'en' => 'The initiator of this request did not provide an RelayState parameter, that tells where to go next.',
 		'es' => 'El iniciador de esta solicitud no proporcion— el par‡metro RelayState que indica donde ir a continuaci—n',
 		'de' => 'Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter bereit gestellt, der Auskunft gibt wohin es als nächstes gehen soll.',
+		'nl' => 'De afzender van deze request heeft geen RelayState parameter meegestuurd om aan te geven wat de volgende bestemming is.',
 	),
 	
 	'title_NOSESSION' => array(
 		'en' => 'No session found',
 		'es' => 'Sesi—n no encontrada',
 		'de' => 'Keine Session gefunden',
+		'nl' => 'Geen sessie gevonden',
 	),
 	'descr_NOSESSION' => array(
 		'en' => 'Unfortuneately we could not get your session. This could be because your browser do not support cookies, or cookies is disabled. Or may be your session timed out because you let the browser open for a long time.',
 		'es' => 'Desgraciadamente no hemos podido recuperar su sesi—n. Esto podr’a deberse a que su navegador no soporte cookies o a que las cookies estŽn deshabilitadas.. O quiz‡s su sesi—n caduc— si dej— su navegador abierto durante un periodo importante de tiempo.',
 		'de' => 'Die Session konnte nicht gefunden werden. Möglicherweise unterstützt der Browser keine Cookies, oder Cookies sind deaktiviert. Eventuell ist die Session auch ausgelaufen weil der Browser zu lange offen war.',
+		'nl' => 'Helaas kon er geen sessie worden gevonden. Dit kan worden veroorzaakt omdat uw browsser geen cookies ondersteunt, of deze niet gebruikt. Ook kan uw sessie verlopen zijn omdat uw browser al langere tijd openstaat.',
 	),
 	
 	'title_PROCESSASSERTION' =>	array(
 		'en' => 'Error processing response from IdP',
 		'es' => 'Error al procesar la respuesta procedente del IdP',
 		'de' => 'Fehler beim Bearbeiten der Antwort des IdP',
+		'nl' => 'Fout in IdP response',
 	),
 	'descr_PROCESSASSERTION' =>	array(
 		'en' => 'We did not accept the response sent from the Identity Provider.',
 		'es' => 'No ha sido posible aceptar la respuesta enviada por el proveedor de identidad.',
 		'de' => 'Die Antwort des Identitiy Provider konnte nicht akzeptiert werden.',
+		'nl' => 'Het antwoord van de Identity Provider is niet geaccepteerd.',
 	),
 	
 	'title_PROCESSAUTHNRESPONSE' =>	array(
 		'en' => 'Error processing response from Identity Provider',
 		'es' => 'Error al procesar la solicitud del proveedor de servicio',
 		'de' => 'Fehler beim Bearbeiten der Antwort des Identity Providers',
+		'nl' => 'Fout in IdP response',
 	),
 	'descr_PROCESSAUTHNRESPONSE' =>	array(
 		'en' => 'This SP received an authentication response from a identity provider, but an error occured when trying to process the response.',
 		'de' => 'Dieser Service Provider hat eine Antwort von einem Identity Provider erhalten, aber beim Bearbeiten dieser Antwort ist ein Fehler aufgetreten.',
+		'nl' => 'De SP heeft een authenticatie antwoord ontvangen van een Identity Provider, maar er is een fout opgetreden bij het verwerken ervan. ',
 	),
 	
 	'title_PROCESSAUTHNREQUEST' => array(
@@ -286,12 +311,14 @@ $lang = array(
 		'no' => 'Feil under prosessering av forespørsel fra SP',
 		'es' => 'Error al procesar la solicitud del proveedor de servicio',
 		'de' => 'Fehler beim Bearbeiten der Anfrage des Service Providers',
+		'nl' => 'Fout in Service Provider request',
 	),
 	'descr_PROCESSAUTHNREQUEST' => array(
 		'en' => 'This IdP received an authentication request from a service provider, but an error occured when trying to process the request.',
 		'no' => 'Denne IdP-en mottok en autentiseringsforespørsel fra en SP, men en feil oppsto under prosessering av requesten.',
 		'es' => 'Este IdP ha recibido una petici—n de autenticaci—n de un proveedor de servicio pero se ha producido un error al tratar de procesar la misma.',
 		'de' => 'Dieser Identity Provider hat eine Authentifizierungsanfrage von einem Service Provider erhalten, aber es ist ein Fehler beim Bearbeiten dieser Anfrage aufgetreten',
+		'nl' => 'Deze IdP heeft een authenticatie verzoek ontvangen van een Service Provider, maar er is een fout opgetreden bij het verwerken ervan.',
 	),
 	
 	
@@ -299,49 +326,59 @@ $lang = array(
 		'en' => 'Wrong parameters provided',
 		'es' => 'Error en los par‡metros recibidos',
 		'de' => 'Falsche Parameter bereit gestellt',
+		'nl' => 'Fout in parameters',
 	),
 	'descr_SSOSERVICEPARAMS' =>	array(
 		'en' => 'You must either provide a SAML Request message or a RequestID on this interface.',
 		'es' => 'Debe propocionar o una solicitud SAML o un RequestIP para esta interfaz.',
 		'de' => 'Sie müssen diesem Interface entweder eine SAML Anfragenachricht oder eine AnfrageID übergeben.',
+		'nl' => 'Een SAML Request message of een RequestID is vereist op deze interface.',
 	),
 	
 	'title_SLOSERVICEPARAMS' => array(
 		'en' => 'No SAML message provided',
 		'es' => 'Falta el mensaje SAML',
 		'de' => 'Keine SAML Nachricht bereit gestellt',
+		'nl' => 'Geen SAML bericht gevonden',
 	),
 	'descr_SLOSERVICEPARAMS' => array(
 		'en' => 'You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse.',
 		'es' => 'Usted accedi— a la interfaz SingleLogoutService pero no incluy— un mensaje SAML LogoutRequest o LogoutResponse',
 		'de' => 'Sie haben auf das SingleLogoutService Interface zugegriffen aber haben keine SAML Abmeldeanfrage oder Abmeldeantwort bereit gestellt.',
+		'nl' => 'Je hebt de SingleLogoutService interface aangeroepen, maar hebt geen SAML LogoutRequest of LogoutResponse meegestuurd.',
 	),
 	
 	'title_ACSPARAMS' => array(
 		'en' => 'No SAML response provided',
 		'es' => 'Falta la respuesta SAML',
 		'de' => 'Keine SAML Antwort bereit gestellt',
+		'nl' => 'Geen SAML response gevonden',
 	),
 	'descr_ACSPARAMS' => array(
 		'en' => 'You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response.',
 		'es' => 'Usted accedi— a la interfaz consumidora de aserciones pero no incluy— una respuesta de autenticaci—n SAML.',
 		'de' => 'Sie haben auf das Assertion Consumer Service Interface zugegriffen aber haben keine SAML Authentifizierungsantwort bereit gestellt.',
+		'nl' => 'Je hebt de Assertion Consumer Service interface aangeroepen, maar hebt geen SAML Authentication Response meegestuurd.',
 	),
 	
 	'title_CASERROR' => array(
 		'en' => 'CAS Error',
 		'de' => 'CAS Fehler',
+		'nl' => 'CAS Fout',
 	),
 	'descr_CASERROR' => array(
 		'en' => 'Error when communicating with the CAS server.',
 		'de' => 'Fehler bei der Kommunikation mit dem CAS Server.',
+		'nl' => 'Fout tijdens communicatie met de CAS server.',
 	),
 
 	'title_CONFIG' => array(
 		'en' => 'Configuration error',
+		'nl' => 'Configuratie fout',
 	),
 	'descr_CONFIG' => array(
 		'en' => 'simpleSAMLphp appears to be misconfigured.',
+		'nl' => 'simpleSAMLphp is niet goed geconfigureerd.',
 	),
 
 );
