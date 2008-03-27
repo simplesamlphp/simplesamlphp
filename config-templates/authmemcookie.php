@@ -56,7 +56,7 @@ $config = array(
 
 	/*
 	 * This option contains the port number of the memcache server where we should store the
-	 * authentication information. Thos option should match the port part of the
+	 * authentication information. This option should match the port part of the
 	 * Auth_memCookie_Memcached_AddrPort option in the Auth MemCookie configuration.
 	 *
 	 * Default:
