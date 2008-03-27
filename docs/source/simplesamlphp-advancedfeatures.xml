@@ -25,30 +25,30 @@
   <section>
     <title>Bridging between protocols</title>
 
-    <para>To setup a bridge between two protocols, you need to would need to
-    setup an installation with both an IdP and an SP, and then connect them
-    together. If you want to setup a bridge that allows a SAML 2.0 SP talk to
-    a Shibboleth IdP, you would need to setup a simpleSAMLphp bridge and
-    configure a SAML 2.0 IdP and a Shibboleth SP. Next you configure the SAML
-    2.0 IdP to use the Shibboleth 1.3 SP for authentication. This is
-    configured in the IdP hosted metadata, and is controlled by the auth and
-    the authority parameters.</para>
+    <para>A bridge between two protocols is built using both an IdP and an SP,
+    connected together. To let a SAML 2.0 SP talk to a Shibboleth
+    IdP, you build a simpleSAMLphp bridge from a SAML 2.0 IdP and a
+    Shibboleth SP.The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the
+    request over to the Shibboleth 1.3 SP, which forwards it to the Shibboleth IdP. 
+    This is configured in the IdP hosted metadata, and is controlled by the 
+    <code>auth</code> and <code>authority</code> parameters.</para>
 
     <example>
       <title>Example of bridge configuration</title>
 
-      <para>A bridge with a configured SAML 2.0 IdP and a Shibboleth 1.3 SP:
-      in the saml20-idp-hosted.php metadata you configure the authentication
-      to use Shibboleth 1.3 SP like this:</para>
+      <para>A bridge configured with a SAML 2.0 IdP and a Shibboleth 1.3 SP:
+      In the <filename>saml20-idp-hosted.php</filename> metadata you configure
+      the authentication to use Shibboleth 1.3 SP like this:</para>
 
       <programlisting>'auth' =&gt; 'shib13/sp/initSSO.php',
 'authority' =&gt; 'shib13'
 </programlisting>
 
-      <para>As no specific Shibboleth IdP is specified to the initSSO.php
-      script, the discovery service page will be shown. If you want to connect
-      the SAML 2.0 IdP to a specific Shibboleth 1.3 IdP, specify the entity id
-      as a parameter to the initSSO script.</para>
+      <para>As no specific Shibboleth IdP is specified as parameter to the
+      <filename>initSSO.php</filename> script, the discovery service page will
+      be shown. If you want to connect the SAML 2.0 IdP to a specific
+      Shibboleth 1.3 IdP, give the entity id as a parameter to the
+      <filename>initSSO.php</filename> script:</para>
 
       <programlisting>'auth' =&gt; 'shib13/sp/initSSO.php?idpentityid=shib13idp.example.org',
 'authority' =&gt; 'shib13'
@@ -59,35 +59,34 @@
   <section>
     <title>Attribute control</title>
 
-    <para>You have several options if you want control what attributes are
-    sent to services. in this section functionality around filtering and
-    modification of attributes are discussed.</para>
+    <para>You have several options for controlling which attributes are sent
+    to services.This chapter discusses functionality for filtering and
+    modification of attributes.</para>
 
     <section>
       <title>Attribute filtering</title>
 
-      <para>Attribute filtering lets you configure an array of attribute names
-      that are sent to each service. This option is placed in the service
-      provider metadata files.</para>
+      <para>Attribute filtering restricts the selection of attributes sent to
+      each service. This option is placed in the service provider metadata
+      files.</para>
 
-      <para>On a Shibboleth or SAML 2.0 SimpleSAMLphp IdP, look at the
-      <filename>shib13-sp-remote.php</filename> or
-      <filename>saml20-sp-remote.php</filename> metadata file. Here you
-      optionally can add a parameter called <literal>attributes</literal>. If
-      you do not include this parameter, all available attributes will be sent
-      by default. Adding an array of attributes to this parameter, limits the
-      attributes sent to match this list.</para>
+      <para>In the <filename>shib13-sp-remote.php</filename> or
+      <filename>saml20-sp-remote.php</filename> metadata file, you may add a
+      parameter <code>attributes</code>, limiting theattributes to be sent to
+      the SP to those named in this list. If you omit this parameter, all
+      available attributes are sent.</para>
 
       <example>
         <title>Example of attribute filtering</title>
 
         <para>Here is a metadata entry for a remote SP that will only receive
-        two attributes:</para>
+        the two attributes <code>eduPersonPrincipalName</code> and
+        <code>mail</code>:</para>
 
         <programlisting>'dev.andreas.feide.no' =&gt; array(
-	'AssertionConsumerService'		=&gt;	'http://dev.andreas.feide.no/simplesaml/saml2/sp/AssertionConsumerService.php', 
-	'SingleLogoutService'			=&gt;	'http://dev.andreas.feide.no/simplesaml/saml2/sp/SingleLogoutService.php',
-	'attributes' =&gt; array('eduPersonPrincipalName', 'mail'),
+  'AssertionConsumerService' =&gt; 'http://dev.andreas.feide.no/simplesaml/saml2/sp/AssertionConsumerService.php', 
+  'SingleLogoutService'      =&gt; 'http://dev.andreas.feide.no/simplesaml/saml2/sp/SingleLogoutService.php',
+  'attributes'               =&gt; array('eduPersonPrincipalName', 'mail'),
 ),</programlisting>
       </example>
     </section>
@@ -95,41 +94,43 @@
     <section>
       <title>Attribute name mapping</title>
 
-      <para>You can configure a mapping table with attribute names that are
-      transformed into another name. This is particularly useful whe bridging
-      between different federations.</para>
+      <para>When bridging between federations, attribute names may differ for
+      a given property. To handle this, you may configure an attribute name
+      mapping table.</para>
 
-      <para>To define a new attribute name mapping table, give it a name,
-      f.ex. <literal>feide2edugain</literal>. Then you create a new file in
-      <filename>attributemap/feide2edugain.php</filename>. This file shuold
-      have a syntax like this:</para>
+      <para>The mapping table is defined as a PHP array in a file in the
+      <filename>attributemap</filename> directory. E.g. you may define a
+      mapping table from Feide to EduGAIN in
+      <filename>attributemap/feide2edugain.php</filename> that might look like
+      this:</para>
 
       <programlisting>&lt;?php
 
 $attributemap = array(
-	'mobile'			=&gt;	'urn:mace:dir:attribute-def:mobile'
+  'mobile' =&gt; 'urn:mace:dir:attribute-def:mobile'
 );
 
 ?&gt;
 </programlisting>
 
-      <para>Next, you need to configure where to apply this mapping. There is
-      a parameter called <literal>attributemap</literal>, which you can add to
-      either the IdP hosted metadata or the SP remote metadata. This parameter
-      can be set to a name of a mapping table.</para>
+      <para>IdP hosted metadata or SP remote metadata may identify an
+      attribute name mapping table in the parameter
+      <literal>attributemap</literal>.</para>
 
       <example>
         <title>Example of attribute mapping</title>
 
-        <para>Here is an example of saml20-idp-hosted.php:</para>
+        <para>Here is an example of
+        <filename>saml20-idp-hosted.php</filename>, configuring the mapping
+        table defined above:</para>
 
         <programlisting>'test.andreas.feide.no' =&gt; array(
-	'host'         =&gt; 'dev2.andreas.feide.no',
-	'privatekey'   =&gt; 'googleappsidp.pem',
-	'certificate'  =&gt; 'googleappsidp.crt',
-	'auth'         =&gt; 'auth/login.php',
-	
-	'attributemap' =&gt; 'feide2edugain'
+ 'host'         =&gt; 'dev2.andreas.feide.no',
+ 'privatekey'   =&gt; 'googleappsidp.pem',
+ 'certificate'  =&gt; 'googleappsidp.crt',
+ 'auth'         =&gt; 'auth/login.php',
+
+ 'attributemap' =&gt; 'feide2edugain'
 ),</programlisting>
 
         <para>This will process the attributemap
@@ -143,45 +144,61 @@ $attributemap = array(
     <section>
       <title>Attribute alter functions</title>
 
-      <para>You can implement your own attribute function that filter,
-      injects, modifies or removes attributes. You shuold give your attribute
-      alter function a name, in example we can create an attribute alter
-      functions that take the last part of the eduPersonPrincipalName
-      attribute (the part after <literal>@</literal>, f.ex.
-      <literal>uninett.no</literal> in <literal>andreas@uninett.no</literal>),
-      and add this part as a new attribute with the name
-      <literal>realm</literal>. Let us call this attribute alter function for
-      <literal>realm</literal>. Then we create this function in the attribute
-      alter function file:
-      <filename>attributealter/alterfunctions.php</filename>. We the function
-      will have the name of the attribute alter function, but prefixed with
-      <literal>attributealter_</literal>, so we end up with:
-      <literal>attributealter_realm</literal>. The method signature should
-      be:</para>
+      <para>You can implement attribute alter functions that filters, injects,
+      modifies or removes attributes. E.g. you may create a function
+      extracting the part following the '@' of the eduPersonPrincipalName
+      attribute (e.g. <literal>uninett.no</literal> in
+      <literal>andreas@uninett.no</literal>), and define this a new attribute
+      with the name <literal>realm</literal>.</para>
+
+      <para>Attribute alter functions are named by the attribute name prefixed
+      with <code>attributealter_</code>, and are stored in the file
+      <filename>attributealter/alterfunctions.php</filename>. The attribute
+      alter function should have the name of the attribute, but prefixed with
+      <literal>attributealter_</literal>, e.g. <literal>attributealter_realm
+      for the <code>realm</code> attribute</literal>. The function signature
+      should be:</para>
 
       <programlisting>function attributealter_realm(&amp;$attributes, $spentityid = null, $idpentityid = null) {</programlisting>
 
-      <para>We see that we get a reference to the attributes array. This array
-      contains all the other attributes, and we can add new attributes into
-      this array that will be sent to the service. We also get the entity ID
-      of the SP and the IdP.</para>
+      <para>The function receives a reference to the <code>attributes</code>
+      array, containing the attributes that will be sent to the service. h,
+      and may add new attributes into this array. The function also receives
+      the entity IDs of the SP and the IdP.</para>
 
-      <para>Here is the full example function:</para>
+      <para>The attribute alter function must be declared in the metadata for
+      the IdP or SP metadata, similar to the 'attributemap' parameter
+      discussed above: The <code>'attributealter'</code> parameter names the
+      attributes defined by attribute alter functions:</para>
+
+      <para><programlisting>'test.andreas.feide.no' =&gt; array(
+ 'host'           =&gt; 'dev2.andreas.feide.no',
+ 'privatekey'     =&gt; 'googleappsidp.pem',
+ 'certificate'    =&gt; 'googleappsidp.crt',
+ 'auth'           =&gt; 'auth/login.php',
+
+ 'attributealter' =&gt; 'realm'
+),</programlisting></para>
+
+      <para>If more than one function is defined, the parameter should be an
+      array of names.</para>
+
+      <para>Here is the complete example function:</para>
 
       <programlisting>function attributealter_realm(&amp;$attributes, $spentityid = null, $idpentityid = null) {
 
-	$attributename = 'eduPersonPrincipalName';
-	if (array_key_exists($attributename, $attributes)) {
-		$eduppn = $attributes[$attributename][0];
-		$splitted = explode('@', $eduppn);
-		if (count($splitted) &gt; 1) {
-			$attributes['realm'] = array($splitted[1]);
-		} else {
-			SimpleSAML_Logger::debug('attributealter_realm: Wrong format on ' . $attributename . ' (not including @)');
-		}
-	} else {
-		SimpleSAML_Logger::debug('attributealter_realm: Could not find ' . $attributename);
-	}
+  $attributename = 'eduPersonPrincipalName';
+  if (array_key_exists($attributename, $attributes)) {
+    $eduppn = $attributes[$attributename][0];
+    $split = explode('@', $eduppn);
+    if (count($split) &gt; 1) {
+      $attributes['realm'] = array($split[1]);
+    } else {
+      SimpleSAML_Logger::debug('attributealter_realm: Wrong format of ' . $attributename . ' (missing @)');
+    }
+  } else {
+    SimpleSAML_Logger::debug('attributealter_realm: Could not find ' . $attributename);
+  }
 
 }</programlisting>
 
@@ -190,59 +207,60 @@ $attributemap = array(
           <para><ulink
           url="https://ow.feide.no/simplesamlphp:alterfunctions">This wiki
           page on the simpleSAMLphp wiki page is supposed to hold several
-          example attribute alter functions for inspiration for
-          others</ulink>. Please contribute with your attribute alter
-          functions to this page. Contact Andreas, if you have not access to
-          the wiki and want to add some examples.</para>
+          example attribute alter functions as inspiration for others</ulink>.
+          Please contribute with your attribute alter functions to this page.
+          Contact Andreas, if you have not access to the wiki and want to add
+          some examples.</para>
         </listitem>
       </itemizedlist>
     </section>
   </section>
 
   <section>
-    <title>Automatically update SAML 2.0 Metadata XML from HTTPS</title>
+    <title>Automatic update of SAML 2.0 Metadata XML from HTTPS</title>
 
     <para>simpleSAMLphp supports the SAML 2.0 Metadata XML format. There are
     mulitple ways of using simpleSAMLphp with SAML 2.0 Metadata XML documents,
-    but the reccomended approach would be to use the command line utility
+    but the reccomended approach is to use the command line utility
     <filename>bin/parseMetadata.php</filename> to download and parse metadata
-    from a HTTPS location. This script will grab the XML document from an URL
-    and parse the content. Next it will output simpleSAMLphp flat files in a
-    directory. In config.php configuration you should configure simpleSAMLphp
-    to read these files generated by
+    from a HTTPS location. This script will grab the XML document from a URL
+    and parse the content and output simpleSAMLphp flat files in a directory. 
+    In the <filename>config.php</filename> configuration you should configure 
+    simpleSAMLphp to read these files generated by
     <filename>parseMetadata.php</filename>.</para>
   </section>
 
   <section>
     <title>Automated testing</title>
 
-    <para>simpleSAMLphp includes a test script that can go to a simpleSAMLphp
-    SP, initiate login, enter some credentials, and then follow the response
-    back to the SP where it is validated, and check the output for expected
-    attributes.</para>
+    <para>simpleSAMLphp includes a test script that can connect to a simpleSAMLphp
+    SP, initiate login, enter some credentials. It then picks up the response
+    to the SP and validates it, checking the output for expected attributes.</para>
 
-    <para>The intension of this script is to be run in some system monitoring
-    systems, like nagios or hobbit, and generate alerts when something breaks
-    (in example a server is down or metadata misconfigured).</para>
+    <para>The intention of this script is to be run in system monitoring
+    systems, like nagios or hobbit, to generate alerts when something breaks
+    (e.g. a server is down or metadata misconfigured).</para>
 
-    <para>This test script is located here: <filename>bin/test.php</filename>.
+    <para>The test script is located in <filename>bin/test.php</filename>.
     The configuration file is located in
     <filename>config/test.php</filename>.</para>
 
     <para>Documentation about configuration file format and more details about
-    this test script will be added later. If you in example write a nagios
+    this test script will be added later. If you e.g. write a nagios
     plugin for this test script, let us know :) We will add a hobbit plugin
     and publish it somewhere pretty soon. Stay tuned!</para>
   </section>
 
+
   <section>
     <title>Support</title>
 
-    <para>If you have problems to get this work, or want to discuss
-    simpleSAMLphp with other users of the software you are lucky! Around
-    simpleSAMLphp there is a great Open source community, and you are welcome
-    to join! Both for asking question, answer other questions, request
-    improvements or contribute with code or plugins of your own.</para>
+    <para>If you need help to make this work, or want to discuss simpleSAMLphp
+    with other users of the software, you are fortunate: Around simpleSAMLphp
+    there is a great Open source community, and you are welcome to join! The
+    forums are open for you to ask questions, contribute answers other further
+    questions, request improvements or contribute with code or plugins of your
+    own.</para>
 
     <itemizedlist>
       <listitem>
