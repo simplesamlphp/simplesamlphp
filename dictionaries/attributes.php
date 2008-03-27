@@ -6,6 +6,7 @@ $lang = array(
 		'en' => 'Affiliation',
 		'no' => 'Tilhørighet',
 		'fr' => 'Affiliation',
+		'de' => 'Zugehörigkeit',
 	),
 	
 	'attribute_title' => array(
@@ -17,6 +18,7 @@ $lang = array(
 		'en' => 'User ID',
 		'no' => 'Bruker ID',
 		'fr' => 'ID Utilisateur',
+		'de' => 'Nutzer ID',
 	),
 	
 	'attribute_sn' => array(
@@ -24,6 +26,7 @@ $lang = array(
 		'no' => 'Etternavn',
 		'dk' => 'Efternavn',
 		'fr' => 'Nom',
+		'de' => 'Nachname',
 	),
 	
 	'attribute_gn' => array(
@@ -31,6 +34,7 @@ $lang = array(
 		'no' => 'Fornavn',
 		'dk' => 'Fornavne',
 		'fr' => 'Prénom',
+		'de' => 'Vorname',
 	),
 
 	'attribute_cn' => array(
@@ -38,6 +42,7 @@ $lang = array(
 		'no' => 'Fullt navn',
 		'dk' => 'Kaldenavn',
 		'fr' => 'Nom usuel',
+		'de' => 'Allgemeiner Name',
 	),
 	
 	'attribute_mail' => array(
@@ -45,12 +50,14 @@ $lang = array(
 		'no' => 'E-post',
 		'dk' => 'Emailadresse',
 		'fr' => 'Courriel',
+		'de' => 'Emailadresse',
 	),
 
 	'attribute_mobile' => array(
 		'en' => 'Mobile',
 		'no' => 'Mobiltelefon',
 		'fr' => 'Mobile',
+		'de' => 'Mobiltelefon',
 	),
 	
 	'attribute_preferredlanguage' => array(
@@ -58,6 +65,7 @@ $lang = array(
 		'no' => 'Foretrukket språk',
 		'dk' => 'Foretrukne sprog',
 		'fr' => 'Langue préférée',
+		'de' => 'Bevorzugte Sprache',
 	),
 
 	'attribute_noredupersonnin' => array(
@@ -65,6 +73,7 @@ $lang = array(
 		'no' => 'Personnummer',
 		'dk' => 'CPR nummer',
 		'fr' => 'Numéro de sécurité sociale',
+		'de' => 'Personalausweisnummer',
 	),
 	
 	'attribute_schachomeorganization' => array(
@@ -72,6 +81,7 @@ $lang = array(
 		'no' => 'Unik ID for organisasjon',
 		'dk' => 'Hjemmeorganisationens entydige ID',
 		'fr' => 'Nom de l\'organisation',
+		'de' => 'Eindeutige ID der Heimorganisation',
 	),
 	
 	'attribute_organisationname' => array(
@@ -79,6 +89,7 @@ $lang = array(
 		'no' => 'Navn på organisasjon',
 		'dk' => 'Hjemmeorganisationens kaldenavn',
 		'fr' => 'Rôles pour ce service',
+		'de' => 'Name der Organisation',
 	),
 	
 	'attribute_edupersonentitlement' => array(
@@ -86,6 +97,7 @@ $lang = array(
 		'no' => 'Rettighet',
 		'dk' => 'Specifik rolle i forhold til tjenesten',
 		'fr' => 'Appartenance à un groupe',
+		'de' => 'Besondere Rolle für den Service'
 	),
 
 	'attribute_edupersonscopedaffiliation' => array(
@@ -93,6 +105,7 @@ $lang = array(
 		'no' => 'Gruppetilhørighet',
 		'dk' => 'Gruppemedlemskab',
 		'fr' => 'Rôles pour ce service',
+		'de' => 'Gruppenzugehörigkeit',
 	),
 
 
@@ -101,12 +114,14 @@ $lang = array(
 		'no' => 'Persistent anonynm ID',
 		'dk' => 'Vedholdende anonymt bruger-ID hos tjenesten',
 		'fr' => 'Identifiant persistent anonyme',
+		'de' => 'Persistente anonyme ID',
 	),
 
 	'attribute_edupersonprincipalname' => array(
 		'en' => 'Person principal name at home organization',
 		'no' => 'Personlig ID hos organisasjonen',
 		'dk' => 'Bruger-ID hos hjemmeorganisationen',
+		'de' => 'Persönliche ID bei der Heimorganisation',
 	),
 	
 );
