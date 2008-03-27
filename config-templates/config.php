@@ -30,7 +30,7 @@ $config = array (
 	'loggingdir'            => 'log/',
 	
 	
-	'version'				=>	'0.9.1',
+	'version'				=>	'1.0',
 	
 	/**
 	 * If you set the debug parameter to true, all SAML messages will be visible in the
