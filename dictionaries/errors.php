@@ -9,6 +9,7 @@ $lang = array(
 		'dk' => 'simpleSAMLphp fejl',
 		'fr' => 'erreur de simpleSAMLphp',
 		'de' => 'simpleSAMLphp Fehler',
+		'nl' => 'simpleSAMLphp fout',
 	),
 	
 	'report_trackid' => array(
@@ -18,6 +19,7 @@ $lang = array(
 		'es' => 'Por favor, si informa de este error, mantenga el <emph>tracking ID</emph> que permite enonctrar su sesi&oacute;n en los registros de que dispone el administrador del sistema:',
 		'fr' => 'Si vous signalez cette erreur, veuillez aussi signaler l\'identifiant de suivi qui permet de trouver votre session dans les logs accessibles à l\'administrateur système :',
 		'de' => 'Falls Sie diesen Fehler melden, teilen Sie bitte ebenfalls diese Tracking ID mit, dadurch ist es dem Administrator möglich ihre Sitzung in den Logs zu finden:',
+		'nl' => 'Wanneer je deze fout rapporteert, geef dan AUB ook de volgende tracking ID door, waarmee het mogelijk is om jouw sessie in de logs terug te vinden:',
 	),
 	
 	'debuginfo_header' => array(
@@ -27,6 +29,7 @@ $lang = array(
 		'es' => 'Informaci&oacute;n de depuraci&oacute;n',
 		'fr' => 'Information de débugage',
 		'de' => 'Debug Information',
+		'nl' => 'Debug informatie',
 	),
 
 	'debuginfo_text' => array(
@@ -36,6 +39,7 @@ $lang = array(
 		'es' => 'La siguiente informaci&oacute; de depuraci;oacute;n puede ser de utilidad para el administrador del sistema o el centro de atenci&aucte;n a usuarios:',
 		'fr' => 'L\'information de débugage ci-dessous peut être intéressante pour l\'administrateur ou le help desk',
 		'de' => 'Die unten angegebene Debug Information kann von Interesse für den Administrator oder das Help Desk sein:',
+		'nl' => 'Onderstaande debug informatie kan van belang zijn voor de beheerder / help desk:',
 	),
 	
 	'report_header' => array(
@@ -45,6 +49,7 @@ $lang = array(
 		'es' => 'Informar del error',
 		'fr' => 'Signaler les erreurs',
 		'de' => 'Fehler melden',
+		'nl' => 'Rapporteer fouten',
 	),
 
 	'report_text' => array(
@@ -54,6 +59,7 @@ $lang = array(
 		'es' => 'Si lo desea, indique su direcci&oacute;n electr;oacute;nica, para que los administradores puedan ponerse en contacto con usted y obtener datos adicionales de su problema',
 		'fr' => 'Facultativement vous pouvez entrer votre courriel, pour que les administrateurs puissent vous contacter par la suite à propose de votre problème :',
 		'de' => 'Geben Sie optional eine Emailadresse ein, so dass der Administrator Sie bei etwaigen Rückfragen kontaktieren kann:',
+		'nl' => 'Voeg desgewenst je e-mail adres toe, zodat de beheerders contact kunnen zoeken voor verder informatie over dit probleem:',
 	),
 	
 	'report_email' => array(
@@ -63,6 +69,7 @@ $lang = array(
 		'es' => 'Correo-e:',
 		'fr' => 'Courriel :',
 		'de' => 'Emailadresse:',
+		'nl' => 'E-mail addres:',
 	),
 	
 	'report_explain' => array(
@@ -72,6 +79,7 @@ $lang = array(
 		'es' => 'Explique lo que ha hecho para llegar a este error...',
 		'fr' => 'Expliquez ce que vous faisiez pour obtenir cette erreur ...',
 		'de' => 'Erläutern Sie wodurch der Fehler auftrat...',
+		'nl' => 'Leg uit wat je deed toen deze foutmelding optrad...',
 	),
 	
 	'report_submit' => array(
@@ -81,6 +89,7 @@ $lang = array(
 		'es' => 'Send error report',
 		'fr' => 'Envoyer le rapport d\'erreur',
 		'de' => 'Fehlerbericht absenden',
+		'nl' => 'Verstuur het foutmeldingsrapport',
 	),
 	
 	'howto_header' => array(
@@ -88,6 +97,7 @@ $lang = array(
 		'no' => 'Hvordan få hjelp',
 		'dk' => 'Hvordan få hjælp',
 		'fr' => 'Envoyer le rapport d\'erreur',
+		'nl' => 'Hoe kan ik hulp vragen',
 	),
 	
 	'howto_text' => array(
@@ -97,35 +107,41 @@ $lang = array(
 		'es' => 'Este erro se debe probablemente a un comportamiento inesperado o a una configuraci&oacute; incorrecta de simpleSAMLphp. P&oacute;ngase en contacto con el administrador de este servicio de conexi&oacute;n y env&iacute;ele el mensaje de error anterior.',
 		'fr' => 'Cette erreur est problablement causée par un comportement imprévu ou une mauvaise configuration de simpleSAMLphp.  Contactez l\'administrateur de ce service d\'identification et envoyez lui le message d\'erreur.',
 		'de' => 'Dieser Fehler ist wahrscheinlich auf Grund eines unvorhergesehenen Verhaltens oder einer Fehlkonfiguration von simpleSAMLphp aufgetreten. Kontaktieren Sie bitte den Administrator dieses Dienstes und schicken ihm die obige Fehlermeldung.',
+		'nl' => 'Deze foutmelding is waarschijnlijk ontstaan door onverwacht gedrag of door verkeerde configuratie van simpleSAMLphp. Meld dit bij de beheerder van deze authenticatie dienst, en geef bovenstaande melding door.',
 	),
 	
 	'title_CACHEAUTHNREQUEST' => array(
 		'en' => 'Error making single sign-on to service',
 		'es' => 'Error en el inicio de sesi—n œnico',
 		'de' => 'Fehler beim Anmelden am Single-Sign-On Dienst',
+		'nl' => 'Fout bij het afhandelen van Single-Signon',
 	),
 	'descr_CACHEAUTHNREQUEST' => array(
 		'en' => 'You can authenticated and are ready to be sent back to the service that requested authentication, but we could not find your cached authentication request. The request is only cached for a limited amount of time. If you leaved your browser open for hours before entering your username and password, this could be one possible explaination. If this could be the case in your situation, try to go back to the service you want to access, and start a new login process. If this issue continues, please report the problem.',
 		'es' => 'Has podido ser autenticado y est‡s listo para retornar al servicio que solicit— la autenticaci—n, pero no es posible encontrar tu solicitud de autenticaci—n en cachŽ. Esta solicitud s—lo se conserva en cachŽ por un periodo limitado de tiempo. Si dej— su navegador abierto durante horas antes de introducir el nombre de usuario y la contrase–a, esto pudo provocar este error. Si es esa la situaci—n, intente retornar al servicio que quer’a acceder e intente acceder de nuevo. Si el problema continœa, por favor informe del problema',
 		'de' => 'Sie können authentifiziert werden und sind breit zurück zu dem Dienst geschickt zu werden der die Authentifizierung erfordert hat, allerdings ist die gespeicherte Authentifizierungsanfrage nicht auffindbar. Diese Anfrage wird nur für einen begrenzten Zeitraum gespeichert. Eine mögliche Erklärung wäre, dass Sie ihren Browser für ein paar Stunden offen gelassen haben bevor sie Nutzername und Passwort eingegeben haben. Falls dies der Fall war versuchen Sie bitte erneut auf den Dienst zuzugreifen und starten sie somit einen erneuten Loginprozess. Bitte melden Sie das Problem, falls es weiterhin besteht', 
+		'nl' => 'Je ben succesvol geauthenticeerd en gereed om terug te gaan naar de dienst die de authenticatie vereiste, maar het opgeslagen authenticatie verzoek kon niet worden teruggevonden. Het verzoek wordt slechts voor een beperkte duur opgeslagen. Als je je browser al langere tijd open hebt laten staan voordat je je gebruikersnaam en wachtwoord intikte, zou dat de oorzaak kunnen zijn. Als dit het geval is, ga dan terug naar de dienst die je wilde gebruiken en start het login proces opnieuw. Als het probleem blijft bestaan, meld het dan.',
 	),
 	
 	'title_CREATEREQUEST' => array(
 		'en' => 'Error creating request',
 		'es' => 'Error en la creaci—n de la solictud',
 		'de' => 'Fehler beim Erzeugen der Anfrage',
+		'nl' => 'Fout bij nieuw request',
 	),
 	'descr_CREATEREQUEST' => array(
 		'en' => 'An error occured when trying to create the SAML request.',
 		'es' => 'Se ha producido un error al tratar de crear la petici—n SAML.',
 		'de' => 'Ein Fehler beim Erzeugen der SAML Anfrage ist aufgetreten',
+		'nl' => 'Er is een fout opgetreden bij het aanmaken van een SAML request.',
 	),
 	
 	'title_DISCOPARAMS' => array(
 		'en' => 'Bad request to discovery service',
 		'es' => 'Solicitud err—nea al servicio de descubrimiento',
 		'de' => 'Ungültige Anfrage an den Discovery Service',
-	),
+		'nl' => 'Toegangsfout bij discovery service',
+	),	
 	'descr_DISCOPARAMS' => array(
 		'en' => 'The parameters sent to the discovery service were not following the specification.',
 		'es' => 'Los parametros enviados al servicio de descubrimiento no se ajustan a la especificaci—n

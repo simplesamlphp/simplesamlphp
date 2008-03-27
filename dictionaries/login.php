@@ -11,6 +11,7 @@ $lang = array(
 		'es' => 'Los datos que ha suministrado no son v&aacute;lidos',
 		'fr' => 'Erreur',
 		'de' => 'Fehler',
+		'nl' => 'Fout',
 	),
 	'user_pass_header' => array(
 		'en' => 'Enter your username and password',
@@ -20,6 +21,7 @@ $lang = array(
 		'es' => 'Indique su nombre de usuario y clave de acceso',
 		'fr' => 'Entrez votre identifiant et votre mot de passe',
 		'de' => 'Bitten geben sie ihren Nutzernamen und Passwort ein',
+		'nl' => 'Geef je gebruikersnaam en wachtwoord',
 	),
 	'user_pass_text' => array(
 		'en' => 'A service has requested you to authenticate your self. That means you need to enter your username and password in the form below.',
@@ -29,6 +31,7 @@ $lang = array(
 		'es' => 'Un servicio solicita que se autentique usted. Esto siginifica que debe indicar su nombre de usuario y su clave de acceso en el siguiente formulario.',
 		'fr' => "Un service a demandé à ce que vous vous authentifiez.  Cela signifie que vous devez entre votre identifiant et votre mot de passe dans le formulaire ci-dessous.",
 		'de' => 'Ein Dienst hat eine Authentifizierung angefordert. Bitte geben Sie daher unten ihren Nutzernamen und Passwort in der Form ein.',
+		'nl' => 'Voor deze dienst is authenticatie vereist. Geef je gebruikersnaam en wachtwoord in onderstaand formulier.',
 	),
 	'login_button' => array(
 		'en' => 'Login',
@@ -38,6 +41,7 @@ $lang = array(
 		'es' => 'Login',
 		'fr' => "S'identifier",
 		'de' => 'Einloggen',
+		'nl' => 'Inloggen',
 	),
 	'username' => array(
 		'en' => 'Username',
@@ -47,6 +51,7 @@ $lang = array(
 		'es' => 'Nombre de usuario',
 		'fr' => 'Identifiant',
 		'de' => 'Nutzername',
+		'nl' => 'Gebruikersnaam',
 	),
 	'password' => array(
 		'en' => 'Password',
@@ -56,6 +61,7 @@ $lang = array(
 		'es' => 'Clave de acceso',
 		'fr' => 'Mot de passe',
 		'de' => 'Passwort',
+		'nl' => 'Wachtwoord',
 	),
 
 	'help_header' => array(
@@ -66,6 +72,7 @@ $lang = array(
 		'es' => '&iexcl;Socorro! Se me ha olvidado mi clave de acceso.',
 		'fr' => 'À l\'aide !  Je ne me souviens plus de mon mot de passe.',
 		'de' => 'Hilfe, ich habe mein Passwort vergessen',
+		'nl' => 'Help! Ik weet mijn wachtwoord niet meer.',
 	),
 	'help_text' => array(
 		'en' => 'Too bad! - Without your username and password you cannot authenticate your self and access the service.
@@ -76,6 +83,7 @@ $lang = array(
 		'es' => '&iexcl;Muy mal! - Sin su nombre de usuario y su clave de acceso usted no se puede identificar y acceder al servicio. A lo mejor hay alguien que puede ayudarle. &iexcl;P&oacute;ngase en contacto con el centro de ayuda de su universidad!',
 		'fr' => 'Pas de chance !  Sans votre identifiant et votre mot de passe vous ne pouvez pas vous authentifier et accéder au service. Il y a peut-être quelqu\'un pour vous aider.  Contactez le help desk de votre université !',
 		'de' => 'Pech! - Ohne Nutzername und Passwort können Sie sich nicht authentifizieren und somit den Dienst nicht nutzen. Möglicherweise kann ihnen jemand helfen, kontaktieren Sie den Help-Desk in ihrer Einrichtung.',
+		'nl' => 'Vette pech! - Zonder je gebruikersnaam en wachtwoord kun je je niet authenticeren en dus niet gebruikmaken van deze dienst.',
 	),
 
 	'error_nopassword' => array(
@@ -85,6 +93,7 @@ $lang = array(
 		'dk' => 'Dit kodeord blev ikke sendt - prøv igen',
 		'fr' => 'Vous avez envoyé quelque chose sur la pge d\'identification mais pour une raison inconnue votre mot de passe n\'a pas été transmis.  Veuillez réessayer.',
 		'de' => 'Sie haben etwas an die Loginseite geschickt, aber aus irgendeinem Grund ist das Passwort nicht übermittelt worden. Bitte versuchen Sie es erneut.',
+		'nl' => 'Je hebt wel iets ingetikt, maar blijkbaar is je wachtwoord niet verstuurd. Probeer het opnieuw AUB.',
 	),	
 
 	'error_wrongpassword' => array(
@@ -94,6 +103,7 @@ $lang = array(
 		'dk' => 'Forkert brugernavn eller kodeord',
 		'fr' => 'Mauvais identifiant au mot de passe.',
 		'de' => 'Falscher Nutzername oder Passwort.',
+		'nl' => 'Gebruikersnaam of wachtwoord niet bekend',
 	),	
 
 	
