@@ -237,7 +237,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
 
         <glosslist>
           <glossentry>
-            <glossterm>key (the key of the associative array)</glossterm>
+            <glossterm>index in the <code>$metadata</code> array</glossterm>
 
             <glossdef>
               <para>The entity ID of the IdP. In this example:
@@ -343,8 +343,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>request.signing</glossterm>
 
             <glossdef>
-              <para>A boolean value, that should be true or false. Default is
-              false.</para>
+              <para>Boolean, default <literal>false</literal>.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -381,7 +380,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
 
         <glosslist>
           <glossentry>
-            <glossterm>key (the key of the associative array)</glossterm>
+            <glossterm>index in the <code>$metadata</code> array</glossterm>
 
             <glossdef>
               <para>Entity ID of the given SP. Here:
@@ -594,7 +593,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
   </section>
 
   <appendix>
-    <title>Writing your own authentication module</title>
+    <title id="sect.customauth">Writing your own authentication module</title>
 
     <para>You can write your own authentication module. Just copy one of the
     files in the www/auth directory and play with it, then configure an IdP to
