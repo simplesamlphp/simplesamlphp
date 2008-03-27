@@ -112,8 +112,7 @@ $config = array (
 	/*
 	 * Languages available and what language is default
 	 */
-	'language.available'	=> array('en', 'no', 'dk', 'es', 'de', 'fr'),
-	'language.default'		=> 'en',
+	'language.available'	=> array('en', 'no', 'nn', 'dk', 'es', 'de', 'fr'),	'language.default'		=> 'en',
 	
 	/*
 	 * Which theme directory should be used? The base is fallback (leave it to default).

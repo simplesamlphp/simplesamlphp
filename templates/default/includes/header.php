@@ -32,11 +32,12 @@ if(array_key_exists('header', $this->data)) {
 
 $languages = $this->getLanguageList();
 $langnames = array(
-	'no' => 'Norsk',
+	'no' => 'Bokmål',
+	'nn' => 'Nynorsk',
 	'en' => 'English',
 	'de' => 'Deutch',
 	'dk' => 'Dansk',
-	'es' => 'Spanish',
+	'es' => 'Español',
 	'fr' => 'Français',
 );
 
