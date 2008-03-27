@@ -98,7 +98,8 @@ $config = array (
 	'enable.shib13-sp'		=> false,
 	'enable.shib13-idp'		=> false,
 	'enable.openid-provider'=> false,
-	
+	'enable.authmemcookie' => false,
+
 	/* 
 	 * This value is the duration of the session in seconds. Make sure that the time duration of
 	 * cookies both at the SP and the IdP exceeds this duration.

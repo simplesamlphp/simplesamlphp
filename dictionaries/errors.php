@@ -337,4 +337,11 @@ $lang = array(
 		'de' => 'Fehler bei der Kommunikation mit dem CAS Server.',
 	),
 
+	'title_CONFIG' => array(
+		'en' => 'Configuration error',
+	),
+	'descr_CONFIG' => array(
+		'en' => 'simpleSAMLphp appears to be misconfigured.',
+	),
+
 );
