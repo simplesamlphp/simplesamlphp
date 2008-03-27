@@ -19,7 +19,7 @@
   </articleinfo>
 
   <note>
-    <para>This document is in progress of beeing updated to correspond to
+    <para>This document is in progress of being updated to correspond to
     simpleSAMLphp version 1.0. simpleSAMLphp version 1.0 is scheduled to be
     released in March 2008.</para>
   </note>
@@ -46,55 +46,55 @@
     <title>Introduction</title>
 
     <para>simpleSAMLphp can run as both a SAML 2.0 Service Provider and as a
-    Shibboleth 1.3 Service Provider. The configuration and metadata would be
-    somewhat different, therefore there are separate chapter for the two,
-    although the configuration is similar.</para>
+    Shibboleth 1.3 Service Provider. Although the configuration is similar for
+    the two alternatives, there are some differences in configuration and
+    metadata differs somewhat, so they are treated in separate chapters.</para>
   </section>
 
   <section>
-    <title>Enabling the Service Provider functionality</title>
+    <title>Selecting the desired Service Provider functionality</title>
 
-    <para>The SAML 2.0 SP functionality is enabled per default. If you want to
-    setup a shibboleth 1.3 SP, you shuold disable SAML 2.0 SP and enable Shib
-    1.3 SP. In <filename>config.php</filename>:</para>
+    <para>Your identity provider (IdP) may offer user authentication either
+    using the SAML 2.0 protocol, or the older Shibboleth 1.3 protocol.</para>
+
+    <para>SAML 2.0 SP functionality is enabled by default. If this is what you
+    want to use, leave the default configuration unmodified.</para>
+
+    <para>To setup a Shibboleth 1.3 SP, you must disable SAML 2.0 SP and
+    enable Shib 1.3 SP in <filename>config.php</filename>:</para>
 
     <programlisting>'enable.saml20-sp'  =&gt; false,
 'enable.saml20-idp' =&gt; false,
 'enable.shib13-sp'  =&gt; true,
 'enable.shib13-idp' =&gt; false,</programlisting>
-
-    <para>If you will be using SAML 2.0 SP, leave the enable config as
-    default.</para>
   </section>
 
   <section>
     <title>Configuring metadata for SAML 2.0 SP</title>
 
-    <para>When you are setting up a SAML 2.0 SP, you would need to configure
-    two metadata files. <filename>saml20-sp-hosted.php</filename> and
-    <filename>saml20-idp-remote.php</filename>.
-    <filename>saml20-sp-hosted.php</filename> represent the SAML entity of the
-    service provider itself, while the
-    <filename>saml20-idp-remote.php</filename> configuration lists all the
-    trusted SAML 2.0 IdP and how to connect to them.</para>
+    <para>To set up a SAML 2.0 SP, configure two metadata files: 
+    <filename>saml20-sp-hosted.php</filename> and
+    <filename>saml20-idp-remote.php</filename>. The former represents the SAML
+    entity of your SP, the latter lists all the SAML 2.0
+    IdPs you trust to authenticate users, and how to connect to them.</para>
 
     <section>
       <title>Configuring SAML 2.0 SP Hosted metadata</title>
 
-      <para>You need to know at least two variables to be able to setup this
-      metadata. You need to know the hostname of the server you are using, and
-      you need to set an entity ID for this server. Talk to the people running
-      the IdP of what entity ID you should use.</para>
+      <para>To se tup these metadata, you must know the host name of your
+      web server, and select an entity ID for this server. The IdP may impose
+      restrictions on your choice of entity ID.</para>
 
       <note>
-        <para>Feide has special rules for setting entity IDs. These rules and
-        instructions on how to select an entity ID to use in Feide is
-        documented in this document:</para>
+        <para>Feide has special rules for setting entity IDs. The rules and
+        instructions on how to select an entity ID to use in Feide are
+        documented in the fact sheet:</para>
 
         <itemizedlist>
           <listitem>
-            <para><ulink url="http://docs.feide.no/fs-0051-1.0-en.html">Feide
-            entity names (in norwegian)</ulink></para>
+            <para><ulink url="http://docs.feide.no/fs-0051--en.html">Regulations for 
+            SAML 2.0 entityIDs
+            for Feide Services</ulink> (Feide Fact Sheet #51)</para>
           </listitem>
         </itemizedlist>
       </note>
@@ -129,21 +129,21 @@
 
       <para>You may add any number of SP definitions in the same installation
       of simpleSAMLphp. simpleSAMLphp will discover automatically which
-      configuration to use in a specific scenario, by looking up the current
-      hostname sent by the client and map that to the <literal>host</literal>
+      configuration to use in a specific scenario, by mapping current hostname
+      in the URL sent by the end user client to the <literal>host</literal>
       entry in the metadata.</para>
 
-      <para>Below is a description of the mandatory and optional fields in the
+      <para>Below is a description of mandatory and optional fields in the
       SAML 2.0 SP hosted metadata.</para>
 
       <section>
         <title>Mandatory metadata fields</title>
 
-        <para>These field are required to be included in the metadata:</para>
+        <para>These metadata fields are required:</para>
 
         <glosslist>
           <glossentry>
-            <glossterm>key (the key of the associative array)</glossterm>
+            <glossterm>index in the <code>$metadata</code> array</glossterm>
 
             <glossdef>
               <para>The entity ID of the hosted SP entity.</para>
@@ -154,7 +154,7 @@
             <glossterm>host</glossterm>
 
             <glossdef>
-              <para>The hostname of the server running this SAML 2.0 SP. This
+              <para>Host name of the web server running this SAML 2.0 SP. This
               option allows simpleSAMLphp to automatically discover which SP
               metadata to use, when it runs multiple virtual hosts.</para>
             </glossdef>
@@ -173,15 +173,16 @@
 
             <glossdef>
               <para>The NameIDFormat in the request. If you don't know what
-              this is, or don't need it to be anything specific, leave it with
-              the default configuration.</para>
+              this is, or do not require a specific format, leave the default
+              value unmodified.</para>
 
               <para>If you leave out this entry, the default value
               <literal>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</literal>
-              would be used in the authentication request. If you set the
-              value to <code>null</code>, the
-              <literal>samlp:NameIDPolicy</literal> element would be
+              is used in the authentication request. If you set the
+              value to <literal>null</literal>, the
+              <literal>samlp:NameIDPolicy</literal> element is
               completely removed from the request.</para>
+              
             </glossdef>
           </glossentry>
 
@@ -189,9 +190,8 @@
             <glossterm>ForceAuthn</glossterm>
 
             <glossdef>
-              <para>Force authentication is a parameter that allows you to
-              force re-authentication of users even if the user has a SSO
-              session at the IdP.</para>
+              <para>Force authentication allows you to force re-authentication
+              of users even if the user has a SSO session at the IdP.</para>
             </glossdef>
           </glossentry>
 
@@ -213,7 +213,7 @@
 
         <para>simpleSAMLphp supports signing the HTTP-REDIRECT authentication
         request, but by default it will not sign it. Note that if you want to
-        sign the authentication requests, you will need to have a
+        sign the authentication requests, you will need a
         keypair/certificate at the SP.</para>
 
         <glosslist>
@@ -221,9 +221,8 @@
             <glossterm>request.signing</glossterm>
 
             <glossdef>
-              <para>A boolean value, that should be true or false. Default is
-              false. To turn on signing authentication requests, set this flag
-              to true.</para>
+              <para>Boolean, default <literal>false</literal>. To turn on signing of
+              authentication requests, set this flag to true.</para>
             </glossdef>
           </glossentry>
 
@@ -231,8 +230,7 @@
             <glossterm>privatekey</glossterm>
 
             <glossdef>
-              <para>The filename of the privatekey to be used for
-              singing.</para>
+              <para>File name of private key to be used for singing.</para>
             </glossdef>
           </glossentry>
 
@@ -240,11 +238,10 @@
             <glossterm>certificate</glossterm>
 
             <glossdef>
-              <para>The filename of the certificate which corresponds to the
-              privatekey. This is highly optional, and the certificate is not
-              used right now, but is reserved for future use. Then the
-              certificate will be used to generate SAML 2.0 Metadata to export
-              to the IdP.</para>
+              <para>File name of certificate corresponding to the private key.
+              Use of certificates is not yet implemented in simpleSAMLphp, but
+              is reserved for future use; the certificate will be used to
+              generate SAML 2.0 Metadata for export to the IdP.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -262,7 +259,8 @@
       <title>Configuring SAML 2.0 IdP Remote metadata</title>
 
       <para>The metadata file <filename>saml20-idp-remote.php</filename>
-      represent the SAML 2.0 IdPs that your service provider trust.</para>
+      represent the SAML 2.0 IdPs that your service provider trust to
+      authenticate users of your service.</para>
 
       <example>
         <title>Example of metadata for trusted remote SAML 2.0 IdP</title>
@@ -274,26 +272,26 @@
  * Example simpleSAMLphp SAML 2.0 IdP
  */
 'idp-entity-id-simple' =&gt;  array(
-	'name'                 =&gt; 'Test',
-	'description'          =&gt; 'Description of this example entry',
-	
-	'SingleSignOnService'  =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
-	'SingleLogoutService'  =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php',
-	'certFingerprint'      =&gt; '3fa158e8abfd4b5203315b08c0b791b6ee4715f6'
+  'name'                 =&gt; 'Test',
+  'description'          =&gt; 'Description of this example entry',
+
+  'SingleSignOnService'  =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
+  'SingleLogoutService'  =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php',
+  'certFingerprint'      =&gt; '3fa158e8abfd4b5203315b08c0b791b6ee4715f6'
 ),</programlisting>
       </example>
 
       <section>
         <title>Mandatory metadata fields</title>
 
-        <para>These field are required to be included in the metadata:</para>
+        <para>These are the required metadata fields:</para>
 
         <glosslist>
           <glossentry>
-            <glossterm>key (the key of the associative array)</glossterm>
+            <glossterm>index in the <code>$metadata</code> array</glossterm>
 
             <glossdef>
-              <para>The entity ID of the remote IdP.</para>
+              <para>Entity ID of the remote IdP.</para>
             </glossdef>
           </glossentry>
 
@@ -301,8 +299,8 @@
             <glossterm>name</glossterm>
 
             <glossdef>
-              <para>A textual name of the IdP. (used in the SAML 2.0 discovery
-              service)</para>
+              <para>A textual name of the IdP. This name is used in the SAML
+              2.0 discovery service.</para>
             </glossdef>
           </glossentry>
 
@@ -310,8 +308,8 @@
             <glossterm>description</glossterm>
 
             <glossdef>
-              <para>A longer description of the IdP. (used in the SAML 2.0
-              discovery service)</para>
+              <para>A longer description of the IdP. The description is used
+              in the SAML 2.0 discovery service.</para>
             </glossdef>
           </glossentry>
 
@@ -319,9 +317,10 @@
             <glossterm>SingleSignOnService</glossterm>
 
             <glossdef>
-              <para>Contact the IdP to get the endpoint URL of this service.
-              This is the URL which the user is redirected with the
-              AuthnRequest using HTTP-REDIRECT.</para>
+              <para>Endpoint URL for sign on. You should obtain this from the
+              IdP. Your simpleSAMLphp implementation will redirected users who
+              are not yet authenticated to this URL with the AuthnRequest
+              using HTTP-REDIRECT.</para>
             </glossdef>
           </glossentry>
 
@@ -329,9 +328,9 @@
             <glossterm>SingleLogoutService</glossterm>
 
             <glossdef>
-              <para>Contact the IdP to get the endpoint URL of this service.
-              This is the URL which the user is redirected with the
-              LogoutRequest using HTTP-REDIRECT.</para>
+              <para>Endpoint URL for logout. You should obtain this from the
+              IdP. Users who log out from your service is redirected to this
+              URL with the LogoutRequest using HTTP-REDIRECT.</para>
             </glossdef>
           </glossentry>
 
@@ -339,15 +338,16 @@
             <glossterm>certFingerprint</glossterm>
 
             <glossdef>
-              <para>The md5sum of the certificate used by the IdP. If you
-              don't know how to compute this, you can leave it as it is, and
-              then you'll get an error message the first time you try to
-              login. In this error message you are told what is the
-              fingerprint of the IdP certiciate, so you can copy and use
-              that.</para>
+              <para>The <literal>md5</literal> checksum of the certificate
+              used by the IdP. If you don't know how to compute this, you can
+              leave it as it is, and then you'll get an error message the
+              first time you try to login. In this error message you are told
+              what is the fingerprint of the IdP certificiate, which you may
+              copy to this metadata parameter.</para>
 
               <para>See <xref linkend="a.fingerprint" /> for an example of how
-              to calculate the fingerprint with the openssl tool.</para>
+              to calculate the fingerprint with the <literal>openssl</literal>
+              tool.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -363,10 +363,10 @@
             <glossterm>base64attributes</glossterm>
 
             <glossdef>
-              <para>Is the IdP base64 encoding all the attributes?
-              Base64encoding should be avoided but makes it much easier to
-              send data in different formats and characterencodings, so you
-              can leave it on when you test. <warning>
+              <para>If the IdP base64 encodesattributes, you may set this
+              parameter to <literal>true</literal>. Base64 encoding should be
+              avoided when not strictly needed, but it allows attributes in
+              any binary format to be exchanged. <warning>
                   <para>If you are using simpleSAMLphp at the IdP, remember to
                   set the parameter in the metadata at the IdP to be the
                   same.</para>
@@ -380,30 +380,29 @@
             <glossdef>
               <para>This corresponds to the SPNameQualifier in the SAML 2.0
               specification. It allows to give subjects a SP specific
-              namespace. This value is seldom used, so if you don't need it,
-              do not include it. If you do not include it, simpleSAMLphp will
-              include the entityID of your SP as the SPNameQualifier.</para>
+              namespace. This option is rarely used, so if you don't need it,
+              leave it out. When left out, simpleSAMLphp assumes the entityID
+              of your SP as the SPNameQualifier.</para>
             </glossdef>
           </glossentry>
         </glosslist>
       </section>
 
       <section>
-        <title>Fields for requireing signed LogoutRequests</title>
+        <title>Fields for requiring signed LogoutRequests</title>
 
         <para>simpleSAMLphp supports signing the HTTP-REDIRECT authentication
         request, but by default it will not sign it. Note that if you want to
-        sign the authentication requests, you will need to have a
-        keypair/certificate at the SP.</para>
+        sign the authentication requests, you must supply a
+        keypair/certificate to the SP.</para>
 
         <glosslist>
           <glossentry>
             <glossterm>request.signing</glossterm>
 
             <glossdef>
-              <para>A boolean value, that should be true or false. Default is
-              false. To turn on signing authentication requests, set this flag
-              to true.</para>
+              <para>Boolean, default <literal>false</literal>. To turn on signing authentication
+              requests, set this flag to true.</para>
             </glossdef>
           </glossentry>
 
@@ -411,7 +410,7 @@
             <glossterm>privatekey</glossterm>
 
             <glossdef>
-              <para>The filename of the privatekey to be used for
+              <para>File name of the private key to be used for
               singing.</para>
             </glossdef>
           </glossentry>
@@ -420,8 +419,8 @@
             <glossterm>certificate</glossterm>
 
             <glossdef>
-              <para>The filename of the certificate which corresponds to the
-              privatekey.</para>
+              <para>File name of certificate corresponding to the private
+              key.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -438,10 +437,10 @@
     <section>
       <title>Setting the default SAML 2.0 IdP</title>
 
-      <para>In the global configuration (<filename>config.php</filename>)
-      there is a parameter to set the default IdP to use. Alternatively you
-      can specify which IdP to use in a parameter to the initSSO.php script
-      when you initiate logon in your application.</para>
+      <para>The global configuration (<filename>config.php</filename>) holds a
+      parameter to set the default IdP to use. Alternatively you can specify
+      which IdP to use in a parameter to the initSSO.php script when you
+      initiate logon in your application.</para>
 
       <para>Here is an example from <filename>config.php</filename>:</para>
 
@@ -454,11 +453,11 @@
     <section>
       <title>Using the SAML 2.0 IdP Discovery Service</title>
 
-      <para>If you want end users to be able to select one of all the
-      specified entries in IdP remote metadata, you can set the default IdP to
-      be null, then simpleSAMLphp will initiate the builtin IdP discovery
-      service to let the user select IdP. Here is the neccessary configuration
-      from <filename>config.php</filename>:</para>
+      <para>If you want end users to be able to select one of several
+      specified entries in IdP remote metadata, set the default IdP to be
+      null. simpleSAMLphp will then use its builtin IdP discovery service to
+      let the user select IdP. Here is the neccessary configuration from
+      <filename>config.php</filename>:</para>
 
       <programlisting> 'default-saml20-idp' =&gt; null,</programlisting>
     </section>
@@ -467,18 +466,20 @@
   <section>
     <title>Configuring metadata for Shibboleth 1.3 SP</title>
 
-    <para>When you are setting up a Shibboleth 1.3 SP, you need to configure
-    two metadata files. shib13-sp-hosted.php and shib13-idp-remote.php.
-    shib13-sp-hosted.php represents the SAML entity of the service provider
-    itself, while the shib13-idp-remote.php metadata lists all the trusted
-    SAML 2.0 IdPs and contains information on how to connect to them.</para>
+    <para>To set up a Shibboleth 1.3 SP, configure two metadata files.
+    shib13-sp-hosted.php and shib13-idp-remote.php.The former represents the
+    SAML entity of your service provider, the latter lists all the trusted
+    Shibboleth 1.3 IdPs and how to connect to them.</para>
+
+    <para>Note: Shibboleth 2.0 IdPs should be configured as SAML 2.0
+    IdPs.</para>
 
     <section>
       <title>Configuring Shibboleth 1.3 SP Hosted metadata</title>
 
-      <para>In the hosted metadata (shib13-sp-hosted.php) you will need to
-      configure two parameters, the entity ID and the hostname of the server
-      running this SP.</para>
+      <para>Two parameters, the entity ID and the host name of the web server
+      running this SP, are configured in the hosted metadata
+      (<literal>shib13-sp-hosted.php</literal>).</para>
 
       <example>
         <title>Shibboleth 1.3 SP hosted metadata</title>
@@ -487,7 +488,7 @@
  * Example of hosted Shibboleth 1.3 SP.
  */
 'sp-provider-id' =&gt; array(
-	'host' =&gt; 'sp.example.org'
+  'host' =&gt; 'sp.example.org'
 )
 </programlisting>
       </example>
@@ -520,25 +521,25 @@
     <section>
       <title>Configuring Shibboleth 1.3 IdP Remote metadata</title>
 
-      <para>Here (shib13-idp-remote.php) you configure which IdPs that you
-      trust.</para>
+      <para>Here (<filename>shib13-idp-remote.php</filename>) you configure
+      which IdPs that you trust to authenticate users of your service.</para>
 
       <example>
         <title>Example of remote Shibboleth 1.3 IdP metadata</title>
 
-        <programlisting>'theproviderid-of-the-idp'	=&gt; array(
-	'SingleSignOnService'  =&gt; 'https://idp.example.org/shibboleth-idp/SSO',
-	'certFingerprint'      =&gt; 'c7279a9f28f11380509e072441e3dc55fb9ab864' 
+        <programlisting>'theproviderid-of-the-idp' =&gt; array(
+  'SingleSignOnService'  =&gt; 'https://idp.example.org/shibboleth-idp/SSO',
+  'certFingerprint'      =&gt; 'c7279a9f28f11380509e072441e3dc55fb9ab864' 
 )</programlisting>
       </example>
 
       <glosslist>
         <glossentry>
-          <glossterm>index (the index of the array)</glossterm>
+          <glossterm>index in the <code>$metadata</code> array</glossterm>
 
           <glossdef>
-            <para>The providerID of this Shibboleth 1.3 IdP entity. In this
-            example the entity ID is set to
+            <para>The <literal>providerID</literal> of this Shibboleth 1.3 IdP
+            entity. In this example the entity ID is set to
             <literal>urn:mace:switch.ch:aaitest:dukono.switch.ch</literal>.</para>
           </glossdef>
         </glossentry>
@@ -561,11 +562,12 @@
           <glossterm>certFingerprint</glossterm>
 
           <glossdef>
-            <para>The md5sum of the certificate used by the IdP. If you don't
-            know how to compute this, you can leave it as it is, and then
-            you'll get an error message the first time you try to login. In
-            this error message you are told what is the fingerprint of the IdP
-            certiciate, so you can copy and use that.</para>
+            <para>The <literal>md5</literal> checksum of the certificate used
+            by the IdP. If you don't know how to compute this, you can leave
+            it as it is, and then you'll get an error message the first time
+            you try to login. In this error message you are told what is the
+            fingerprint of the IdP certificiate, which you may copy to this
+            metadata parameter.</para>
 
             <para>See <xref linkend="a.fingerprint" /> for an example of how
             to calculate the fingerprint with the openssl tool.</para>
@@ -580,15 +582,15 @@
 
     <para>Before you can run the test examples, you need the people running
     the IdP to load the metadata for your SP. If you run Shibboleth 1.3 SP,
-    you will need to manually create metadata for your SP and send to the IdP,
-    if you use SAML 2.0, metadata can be generated automatically.</para>
+    you must manually create metadata for your SP and send to the IdP. If you
+    use SAML 2.0, metadata can be generated automatically.</para>
 
     <section>
-      <title>Automatically generation of SP metadata for SAML 2.0</title>
+      <title>Automatic generation of SAML 2.0 SP metadata</title>
 
       <para>On the installation page there is a link named "Look at your SAML
-      2.0 SP metadata". Click there to look at the metadata for your SP. Send
-      this metadata document to the IdP and ask them to load it.</para>
+      2.0 SP metadata". Click to inspect the metadata for your SP. Send this
+      metadata document to the IdP and ask them to load it.</para>
 
       <screenshot>
         <screeninfo>Example of automatically generated SAML 2.0
@@ -614,27 +616,26 @@
         </mediaobject>
       </screenshot>
 
-      <para>Enter your email address and click the button to send the metadata
-      to Feide. Remeber to get in contact with Feide to discuss your new
-      service, and how you can be connected to Feides test environment.</para>
+      <para>Enter your email address and click the button "Send my metadata to
+      Feide". Remeber to get in contact with Feide to discuss your new
+      service, and how you can be connected to Feide's test environment. To
+      test your service, you must have a valid Feide login name. If you are
+      not affiliated with a Feide host institution, you may obtain a test user
+      identity from Feide.</para>
     </section>
   </section>
 
   <section>
     <title>Test the SAML 2.0 SP examples</title>
 
-    <para>When you have installed simpleSAMLphp, configured apache, and setup
-    metadata and exchanged metadata with the IdP you are ready to test the
-    example service that is included in the simpleSAMLphp installation.</para>
+    <para>After you have installed simpleSAMLphp, configured Apache, set up
+    metadata and exchanged metadata with the IdP, you are ready to test the
+    sample service included in the simpleSAMLphp distribution.</para>
 
-    <para>On the installation page of simpleSAMLphp as you remember from the
-    installation guide, there is a link to a Shibboleth 1.3 and SAML 2.0
-    example. When you click on that example, you should be automatically
-    redirected to the IdP. Then login as usual, and you should get back to a
-    status page with .</para>
-
-    <para>You should be redirected to the IdP. Login, and you should be sent
-    back and shown all the attributes sent form the IdP.</para>
+    <para>The installation page of simpleSAMLphp has a link to a Shibboleth
+    1.3 and a SAML 2.0 sample service. When you click the link, you should be
+    automatically redirected to the IdP. Login, and you should be sent back
+    and shown all the attributes sent form the IdP.</para>
 
     <figure>
       <title>Screenshot of the status page after an user have succesfully
@@ -653,40 +654,45 @@
   <section>
     <title>Integrating authentication with your own application</title>
 
-    <para>You will need to hook some code into your application executed for
-    every protected HTTP request. The flow in that code goes like:</para>
+    <para>For those web resources you want to protect, you must add a few
+    lines of PHP code:</para>
 
     <itemizedlist>
       <listitem>
-        <para>Check whether the user is authenticated or not.</para>
+        <para>Check whether the user is already authenticated.</para>
       </listitem>
 
       <listitem>
-        <para>If the user is not authenticated, and it should be, then
-        redirect the user to the initSSO.php script with the appropriate
-        parameters. In particular the RelayState that tells the URL to return
-        to after login.</para>
+        <para>If the user is not authenticated, but should be for this
+        resource, redirect him to the <filename>initSSO.php</filename> script
+        with the appropriate parameters. Note particularly the
+        <literal>RelayState</literal> specifying the treturn URL after
+        login.</para>
       </listitem>
 
       <listitem>
-        <para>If the user is authenticated then your done, map to your own
-        user database if neccessary, and access the attributes from the
-        session object as you like.</para>
+        <para>If authentication is successful, but you need to determine the
+        user's authorization, read the user attributes supplied by the IdP
+        from the session object. If you need user attributes beyond those
+        supplied by the IdP, you may maintain an exteded user description in
+        you own database, using the (authenticated) user ID as a key.</para>
       </listitem>
     </itemizedlist>
 
-    <para>Here are some example code from the included example that you can
-    reuse:</para>
+    <para>Sample code:</para>
 
     <para>We start off with including a common file _include.php. All this
-    file is doing is adding simpleSAMLphp to the classpath. If you want you
-    can do this in php.ini instead. Or you can include all the content of
-    _include.php in the application it self.</para>
+    file does is to add simpleSAMLphp to the classpath. Alternately, this can
+    be configured in <filename>php.ini</filename>, or the contents of
+    <filename>_include.php</filename> can be included directly in the
+    application code.</para>
+
+    <para></para>
 
     <programlisting>require_once('../_include.php');</programlisting>
 
-    <para>Including class specifications. This is for SAML 2.0, for shibboleth
-    look at the shibboleth example in
+    <para>Including class specifications. This is for SAML 2.0; for Shibboleth
+    look at the Shibboleth example in
     <filename>www/example-simple/shib13-example.php</filename>.</para>
 
     <programlisting>require_once('SimpleSAML/Utilities.php');
@@ -694,32 +700,44 @@ require_once('SimpleSAML/Session.php');
 require_once('SimpleSAML/XHTML/Template.php');
 </programlisting>
 
-    <para>Then enable using PHP Sessions and load configuration with
-    simpleSAMLphp. You can copy this lines into your application without
-    changes:</para>
+    <para>Enable PHP Sessions and load configuration with simpleSAMLphp. You
+    can copy this lines into your application without changes:</para>
 
     <programlisting>/* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance(true);</programlisting>
 
-    <para>Then at last, you check whether the session is valid. If it is not,
-    redirect to the initSSO.php script adding the current URL as a RelayState
-    parameter. If you are authenticated, then retrieve all the attributes from
-    the session object. You may want to look closer at the attributes array,
-    so why don't you print_r it out right away to get the structure...</para>
+    <para>Then check whether the session is valid. If not, redirect the user
+    to the IdP, specifying the <filename>initSSO.php</filename> script (for
+    SAML 2.0 or Shibboleth 1.3, respectively). adding the current URL as a
+    <literal>RelayState</literal> parameter. The user will leave your web page
+    temporarily. When he returns after successful authentication, there will
+    be a valid session, and the body of the <code>if</code> statement is
+    skipped.</para>
+
+    <para>After successful athentication, user attributes supplied by the IdP
+    are available in session object. To take a closer look at the attributes
+    array, you may print it out...</para>
 
     <programlisting>/* Check if valid local session exists.. */
 if (!isset($session) || !$session-&gt;isValid('saml2') ) {
-	SimpleSAML_Utilities::redirect(
-		'/' . $config-&gt;getBaseURL() .
-		'saml2/sp/initSSO.php',
-		array('RelayState' =&gt; SimpleSAML_Utilities::selfURL())
-		);
+  SimpleSAML_Utilities::redirect(
+    '/' . $config-&gt;getBaseURL() .
+    'saml2/sp/initSSO.php',
+    array('RelayState' =&gt; SimpleSAML_Utilities::selfURL())
+    );
 }
 
 $attributes = $session-&gt;getAttributes();
 print_r($attributes);
 </programlisting>
+
+    <para>(Obviously, printing out all attributes this way would be done in a
+    test phase only!)</para>
+
+    <para>Each attribute name can be used as an index into $attributes to
+    obtain the value. Every attribute value is an array - a single-valued
+    attribute is an array of a single element.</para>
 
     <section>
       <title>Upgrading service integration from version 0.5 to 1.0</title>
@@ -738,11 +756,12 @@ print_r($attributes);
   <section>
     <title>Support</title>
 
-    <para>If you have problems to get this work, or want to discuss
-    simpleSAMLphp with other users of the software you are lucky! Around
-    simpleSAMLphp there is a great Open source community, and you are welcome
-    to join! Both for asking question, answer other questions, request
-    improvements or contribute with code or plugins of your own.</para>
+    <para>If you need help to make this work, or want to discuss simpleSAMLphp
+    with other users of the software, you are fortunate: Around simpleSAMLphp
+    there is a great Open source community, and you are welcome to join! The
+    forums are open for you to ask questions, contribute answers other further
+    questions, request improvements or contribute with code or plugins of your
+    own.</para>
 
     <itemizedlist>
       <listitem>
@@ -771,10 +790,11 @@ print_r($attributes);
   <appendix id="a.fingerprint">
     <title>Calculating the fingerprint of a certificate</title>
 
-    <para>If you have a certificate file, and want to calculate the
-    fingerprint, you can use the openssl command:</para>
+    <para>If you have obtained a certificate file, and want to calculate the
+    fingerprint of the file, you can use the <literal>openssl</literal>
+    command:</para>
 
-    <screen>cert]$ cat server.crt|openssl x509 -fingerprint 
+    <screen>$ cat server.crt|openssl x509 -fingerprint 
 MD5 Fingerprint=D1:BA:B0:17:66:6D:7F:42:7B:91:1E:22:7E:3A:27:D2
 </screen>
   </appendix>
