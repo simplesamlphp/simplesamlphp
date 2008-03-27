@@ -218,7 +218,7 @@ cp -r metadata-templates/*.php metadata/
         'baseurlpath'                   =&gt; 'simplesaml/',</programlisting>
   </section>
 
-  <section>
+  <section id="sect.config">
     <title>simpleSAMLphp configuration: config.php</title>
 
     <para>placeholder. will add more text.</para>
