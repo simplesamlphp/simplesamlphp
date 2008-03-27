@@ -12,7 +12,7 @@ $lang = array(
 		'de' => '<strong>Glückwunsch</strong>, Sie haben erfolgreich simpleSAMLphp installiert. Dies ist die Startseite der Installation, hier gibts es Links zu Testbeispielen, Diagnose, Metadaten und anderer relevanten Dokumentation.',
 		'nl' => '<strong>Gefeliciteerd</strong>, simpleSAMLphp is succesvol geinstalleerd. Dit is de startpagina voor simpleSAMLphp, waar je links kan vinden naar voorbeelden, test-paginas, analyses, metadata en ook naar relevante documentatie.',
 	),
-	
+
 	'useful_links_header' => array(
 		'en' => 'Useful links for your installation',
 		'no' => 'Nyttige lenker for denne installasjonen',
@@ -73,7 +73,7 @@ $lang = array(
 		'de' => 'Hey, dieses simpleSAMLphp ist eine ziemlich coole Sache, wo kann ich mehr darüber lesen? Sie finden mehr Informationen über <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp auf dem Feide RnD blog</a> auf <a href="http://uninett.no">UNINETT</a>.',
 		'nl' => 'He, dat simpleSAMLphp dingetje is vet cool, waar kan ik er meer over vinden? Je kan meer informatie over <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp</a> vinden op de Feide RnD blog van <a href="http://uninett.no">UNINETT</a>.',
 	),
-	
+
 	'required' => array(
 		'en' => 'Required',
 		'no' => 'Påkrevd',
@@ -118,8 +118,8 @@ $lang = array(
 		'fr' => 'Recommendé',
 		'de' => 'Empfohlen',
 		'nl' => 'Aanbevolen',
-	),	
-	
+	),
+
 	'warnings' => array(
 		'en' => 'Warnings',
 		'no' => 'Advarsler',
@@ -130,18 +130,18 @@ $lang = array(
 		'de' => 'Warnungen',
 		'nl' => 'Waarschuwingen',
 	),
-	
+
 	'warnings_https' => array(
-		'en' => '<strong>You are not using HTTPS</strong> - encrypted communication with the user. Using simpleSAMLphp will works perfectly fine on HTTP for test purposes, but if you will be using simpleSAMLphp in a production environment, you should be running it on HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">read more about simpleSAMLphp maintenance</a> ]',
-		'no' => '<strong>Du benytter ikke HTTPS</strong> - kryptert kommunikasjon med brukeren. Det vil fungere utmerket å benytte simpleSAMLphp uten HTTPS til testformål, men dersom du skal bruke simpleSAMLphp i et produksjonsmiljø, vil vi sterkt anbefale å skru på sikker kommunikasjon med HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">les mer i dokumentet: simpleSAMLphp maintenance</a> ]',
+		'en' => '<strong>You are not using HTTPS</strong> - encrypted communication with the user. HTTP works fine for test purposes, but in a production environment, you should use HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Read more about simpleSAMLphp maintenance</a> ]',
+		'no' => '<strong>Du bruker ikke HTTPS</strong> - kryptert kommunikasjon med brukeren. HTTP fungerer utmerket til testformål, men  i et produksjonsmiljø anbefales sterkt å skru på sikker kommunikasjon med HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Les mer i dokumentet: simpleSAMLphp maintenance</a> ]',
 		'nn' => '<strong>Du bruker ikkje HTTPS</strong> - kryptert kommunikasjon med brukaren. Du kan bruka simpleSAMLphp uten HTTPS til testformål, men dersom du skal bruka simpleSAMLphp i eit produksjonsmiljø, vil vi sterkt tilrå å skru på sikker kommunikasjon med HTTPS. [ Les meir i dokumentet: <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">simpleSAMLphp maintenance</a> ]',
 		'dk' => '<strong>Du benytter ikke HTTPS</strong>-krypteret kommunikation med brugeren. SimpleSAMLphp vil fungere uden problemer med HTTP alene, men hvis du anvende systemet i produktionssystemer, anbefales det stærkt at benytte sikker kommunikation i form af HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">læs mere i dokumentet: simpleSAMLphp maintenance</a> ] ',
 		'fr' => '<strong>Vous n\'utilisez pas HTTPS</strong>, communications chiffrées avec l\'utilisateur.  Utiliser simpleSAMLphp marchera parfaitement avec HTTP pour des tests, mais si vous voulez l\'utiliser dans un environnement de production, vous devriez utiliser HTTPS. [  <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">lire plus sur la maintenance de simpleSAMLphp</a> ]',
 		'de' => '<strong>Sie benutzen keine HTTPS</strong> - verschlüsselte Kommunikation mit dem Nutzer. simpleSAMLphp funktioniert zum Testen völlig perfekt mit HTTP , aber in einer Produktionsumgebung sollten Sie HTTPS benutzen. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Lesen Sie mehr über die Verwaltung von simpleSAMLphp</a> ]',
 		'nl' => '<strong>Je gebruikt geen HTTPS</strong> - versleutelde communicatie met de gebruiker. simpleSAMLphp werkt prima op HTTP voor test doeleinden, maar als je simpleSAMLphp in een productie omgeving gaat gebruiken, zou je dat moeten doen over HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">lees meer over simpleSAMLphp onderhoud</a> ]',
 	),
-	
-	
+
+
 	'link_saml2example' => array(
 		'en' => 'SAML 2.0 SP example - test logging in through your IdP',
 		'no' => 'SAML 2.0 SP eksempel - test innlogging med SAML 2.0 via din IdP',
@@ -187,9 +187,9 @@ $lang = array(
 		'de' => 'PHPinfo',
 		'nl' => 'PHP info',
 	),
-	
+
 	'link_meta_overview' => array(
-		'en' => 'Meta data overview for your installation. Diagnose your meta data files',
+		'en' => 'Metadata overview for your installation. Diagnose your metadata files',
 		'no' => 'Oversikt over metadata for din installasjon. Diagnostiser metadatafilene her.',
 		'nn' => 'Oversikt over metadata for din installasjon. Diagnostiser metadatafilene her.',
 		'dk' => 'Oversigt over metadata for din installation. Check metadatafilerne her',
@@ -197,7 +197,7 @@ $lang = array(
 		'de' => 'Überblick über die Metadaten dieser Installation. Diagnose der Metadaten.',
 		'nl' => 'Meta data overzicht voor jouw installatie. Inspecteer je meta data files',
 	),
-	
+
 	'link_meta_saml2sphosted' => array(
 		'en' => 'Hosted SAML 2.0 Service Provider Metadata (automatically generated)',
 		'no' => 'Hosted SAML 2.0 Service Provider Metadata (automatisk generert)',
@@ -242,8 +242,8 @@ $lang = array(
 		'de' => 'XML zu simpleSAMLphp Metadaten Konvertierer',
 		'nl' => 'XML naar simpleSAMLphp metadata vertaling',
 	),
-	
-	
+
+
 	'link_doc_install' => array(
 		'en' => 'Installing simpleSAMLphp',
 		'no' => 'Installerer simpleSAMLphp',
@@ -300,7 +300,7 @@ $lang = array(
 		'de' => 'Verwaltung und Konfiguration von simpleSAMLphp',
 		'nl' => 'simpleSAMLphp Onderhoud en Configuratie',
 	),
-	
-	
-	
+
+
+
 );
