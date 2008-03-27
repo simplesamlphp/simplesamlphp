@@ -39,6 +39,7 @@ $langnames = array(
 	'dk' => 'Dansk',
 	'es' => 'Español',
 	'fr' => 'Français',
+	'nl' => 'Dutch',
 );
 
 if (empty($_POST) ) {
