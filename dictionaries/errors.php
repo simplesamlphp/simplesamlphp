@@ -6,67 +6,76 @@ $lang = array(
 	'error_header' => array(
 		'en' => 'simpleSAMLphp error',
 		'no' => 'simpleSAMLphp feil',
-		'dk' => '',
+		'dk' => 'simpleSAMLphp fejl',
 	),
 	
 	'report_trackid' => array(
 		'en' => 'If you report this error, please also report this tracking ID which makes it possible to locate your session in the logs which are available to the system administrator:',
 		'no' => 'Hvis du ønsker å rapportere denne feilen, send også med denne sporings-IDen. Den gjør det enklere for systemadministratorene og finne ut hva som gikk galt:',
 		'dk' => 'Hvis du vil rapportere denne fejl, så medsend venligst dette sporings-ID. Den gør det muligt for teknikerne at finde fejlen.',
+		'es' => 'Por favor, si informa de este error, mantenga el <emph>tracking ID</emph> que permite enonctrar su sesi&oacute;n en los registros de que dispone el administrador del sistema:',
 	),
 	
 	'debuginfo_header' => array(
 		'en' => 'Debug information',
 		'no' => 'Detaljer for feilsøking',
 		'dk' => 'Detaljer til fejlsøgning',
+		'es' => 'Informaci&oacute;n de depuraci&oacute;n',
 	),
 
 	'debuginfo_text' => array(
 		'en' => 'The debug information below may be interesting for the administrator / help desk:',
 		'no' => 'Detaljene nedenunder kan være av interesse for administratoren / hjelpetjenesten',
 		'dk' => 'Detaljerne herunder kan være af interesse for teknikerne / help-desken',
+		'es' => 'La siguiente informaci&oacute; de depuraci;oacute;n puede ser de utilidad para el administrador del sistema o el centro de atenci&aucte;n a usuarios:',
 	),
 	
 	'report_header' => array(
 		'en' => 'Report errors',
 		'no' => 'Rapporter feil',
 		'dk' => 'Rapportér fejl',
+		'es' => 'Informar del error',
 	),
 
 	'report_text' => array(
 		'en' => 'Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:',
 		'no' => 'Dersom du ønsker at hjelpetjenesten skal kunde kontakte deg igjen i forbindelse med denne feilen, må du oppgi e-post adressen din nedenunder:',
 		'dk' => 'Hvis du vil kunne kontaktes i forbindelse med fejlmeldingen, bedes du indtaste din emailadresse herunder',
+		'es' => 'Si lo desea, indique su direcci&oacute;n electr;oacute;nica, para que los administradores puedan ponerse en contacto con usted y obtener datos adicionales de su problema',
 	),
 	
 	'report_email' => array(
-		'en' => 'E-mail address: ',
+		'en' => 'E-mail address:',
 		'no' => 'E-post adresse:',
-		'dk' => 'E-mailadresse',
+		'dk' => 'E-mailadresse:',
+		'es' => 'Correo-e:',
 	),
 	
 	'report_explain' => array(
 		'en' => 'Explain what you did to get this error...',
 		'no' => 'Forklar hva du gjorde og hvordan feilen oppsto...',
 		'dk' => 'Forklar hvad du gjorde og hvordan fejlen opstod',
+		'es' => 'Explique lo que ha hecho para llegar a este error...',
 	),
 	
 	'report_submit' => array(
 		'en' => 'Send error report',
 		'no' => 'Send feilrapport',
 		'dk' => 'Send fejlrapport',
+		'es' => 'Send error report',
 	),
 	
 	'howto_header' => array(
-		'en' => 'Send error report',
-		'no' => 'Send feilrapport',
-		'dk' => 'Send fejlrapport',
+		'en' => 'How to get help',
+		'no' => 'Hvordan få hjelp',
+		'dk' => 'Hvordan få hjælp',
 	),
 	
 	'howto_text' => array(
 		'en' => 'This error probably is due to some unexpected behaviour or to misconfiguration of simpleSAMLphp. Contact the administrator of this login service, and send them the error message above.',
 		'no' => 'Denne feilen skyldes sannsynligvis en feilkonfigurasjon av simpleSAMLphp eller som en følge av en uforutsett hendelse. Kontakt administratoren av denne tjenesten og rapporter så mye som mulig angående feilen.',
 		'dk' => 'Denne fejl skyldes formentlig en fejlkonfiguration af simpleSAMLphp - alternativt en ukendt fejl. Kontakt administratoren af denne tjeneste og rapportér så mange detaljer som muligt om fejlen',
+		'es' => 'Este erro se debe probablemente a un comportamiento inesperado o a una configuraci&oacute; incorrecta de simpleSAMLphp. P&oacute;ngase en contacto con el administrador de este servicio de conexi&oacute;n y env&iacute;ele el mensaje de error anterior.',
 	),
 	
 	'title_CACHEAUTHNREQUEST' => array('en' => 'Error making single sign-on to service'),

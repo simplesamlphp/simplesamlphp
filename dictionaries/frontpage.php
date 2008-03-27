@@ -6,37 +6,44 @@ $lang = array(
 		'en' => '<strong>Congratulations</strong>, you have successfully installed simpleSAMLphp. This is the start page of your installation, where you will find links to test examples, diagnostics, metadata and even links to relevant documentation.',
 		'no' => '<strong>Gratulerer</strong>, du har nå installert simpleSAMLphp. Dette er startsiden til din simpleSAMLphp installasjon, hvor du vil finne eksempler, diagnostikk, metadata og til og med lenker til relevant dokumentasjon.',
 		'dk' => '<strong>Tillykke</strong>, du har nu installeret simpleSAMLphp. Dette er startsiden til installationen, hvor du vil finde eksempler, diagnostik, metadata og links til relevant dokumentation',
+		'es' => '<strong>&iexcl;Felicidades!</strong>, ha instalado simpleSAMLphp con &eacute;xito. This &eacute;sta es la p&aacute;gina inicial de su instalaci&oacute;n, aqu&iacute; encontrar&aacute; enlaces a ejemplos de prueba, diagn&oacute;sticos, metadatos e incluso enlaces a la documentaci&oacute;n pertienente.',
 	),
 	
 	'useful_links_header' => array(
 		'en' => 'Useful links for your installation',
 		'no' => 'Nyttige lenker for denne installasjonen',
 		'dk' => 'Nyttige links',
+		'es' => 'Enalces &uacute;tiles para su instalaci&oacute;n',
 	),
 	'metadata_header' => array(
 		'en' => 'Metadata',
 		'no' => 'Metadata',
 		'dk' => 'Metadata',
+		'es' => 'Metadatos',
 	),
 	'doc_header' => array(
 		'en' => 'Documentation',
 		'no' => 'Dokumentasjon',
 		'dk' => 'Dokumentation',
+		'es' => 'Documentaci&oacute;n',
 	),
 	'checkphp' => array(
 		'en' => 'Checking your PHP installation',
 		'no' => 'Sjekker din PHP installasjon',
 		'dk' => 'Checker din PHP-installation',
+		'es' => 'Verificaci&oacute;n de su instalaci&oacute;n de PHP',
 	),
 	'about_header' => array(
 		'en' => 'About simpleSAMLphp',
 		'no' => 'Om simpleSAMLphp',
 		'dk' => 'Om simpleSAMLphp',
+		'es' => 'Sobre simpleSAMLphp',
 	),
 	'about_text' => array(
 		'en' => 'This simpleSAMLphp thing is pretty cool, where can I read more about it? You can find more information about <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp at the Feide RnD blog</a> over at <a href="http://uninett.no">UNINETT</a>.',
 		'no' => 'Yey! simpleSAMLphp virker jammen kult, hvor kan jeg finne ut mer om det? Du kan lese mer om simpleSAMLphp på <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp sin hjemmeside</a>.',
 		'dk' => 'Yes, det er cool! Hvor kan jeg læse mere om det? Gå til <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp sin hjemmeside</a>',
+		'es' => '&iexcl;Eh! Esto del simpleSAMLphp est&aacute; interesante, &iquest;d&oacute;nde puedo averiguar m&aacute;a? Hay m&aacute;s informaci&oacute;n sobre <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp en el blog de I+D de Feide</a> en <a href="http://uninett.no">UNINETT</a>.',
 	),
 	
 	'required' => array(
@@ -69,6 +76,7 @@ $lang = array(
 		'en' => 'Warnings',
 		'no' => 'Advarsler',
 		'dk' => 'Advarsler',
+		'es' => 'Avisos',
 	),
 	
 	'warnings_https' => array(
