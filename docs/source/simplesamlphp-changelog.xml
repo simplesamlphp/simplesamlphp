@@ -11,9 +11,9 @@
   </section>
 
   <section>
-    <title>Changelog</title>
+    <title>Change log</title>
 
-    <para>Here is changes between simpleSAML versions. Look here if you are
+    <para>Here is changes between simpleSAMLphp versions. Look here if you are
     upgrading, to see if there are any changes to the config format.</para>
 
     <section>
@@ -28,7 +28,7 @@
       <para>Released 2007-10-15. Revision 28.</para>
 
       <warning>
-        <para>Both <filename>config.php</filename> and metadata format is
+        <para>Both <filename>config.php</filename> and metadata format are
         changed. Look at the templates to understand the new format.</para>
       </warning>
 
@@ -38,14 +38,14 @@
         </listitem>
 
         <listitem>
-          <para>Metadata files have been more tidy. Removed unused entries.
-          Look at the new templates on how to change your existing
-          metadata.</para>
+          <para>Metadata files made tidier. Unused entries removed. Look at
+          the new templates on how to change your existing metadata.</para>
         </listitem>
 
         <listitem>
-          <para>Support for sending metadata on mail to Feide. Automatically
-          detecting if you have configured Feide as the default IdP.</para>
+          <para>Support for sending metadata by mail to Feide. Automatically
+          detecting whether you have configured Feide as the default IdP or
+          not.</para>
         </listitem>
 
         <listitem>
@@ -80,7 +80,7 @@
         </listitem>
 
         <listitem>
-          <para>Initial proof of concept implementation of "User consent on
+          <para>Initial 'proof of concept' implementation of "User consent on
           attribute release"</para>
         </listitem>
 
@@ -111,7 +111,7 @@
         </listitem>
 
         <listitem>
-          <para>Initial implementation of SAML 2.0 Single Log-Out
+          <para>Initial implementation of SAML 2.0 Single Log Out
           functionality both for SP and IdP. Seems to work, but not yet
           well-tested.</para>
         </listitem>
