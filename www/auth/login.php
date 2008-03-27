@@ -46,7 +46,7 @@ if (isset($_POST['username'])) {
 	
 		/* First, make sure that the password field is included. */
 		if (!array_key_exists('password', $_POST)) {
-			$error = 'You sent something to the login page, but for some reason the password was not sent. Try again please.';
+			$error = 'error_nopassword'; 
 			continue;
 		}
 	
@@ -67,22 +67,21 @@ if (isset($_POST['username'])) {
 		$ldap = new SimpleSAML_Auth_LDAP($ldapconfig->getValue('auth.ldap.hostname'),
                                          $ldapconfig->getValue('auth.ldap.enable_tls'));
 	
-		/* Insert the LDAP username into the pattern configured in the
-		 * 'auth.ldap.dnpattern' option.
-		 */
-		$dn = str_replace('%username%', $ldapusername,
-						  $ldapconfig->getValue('auth.ldap.dnpattern'));
-	
-		/* Connect to the LDAP server. */
-		#$ds = ldap_connect($ldapconfig->getValue('auth.ldap.hostname'));
 		
+		
+		
+		/** 
+		 * Insert the LDAP username into the pattern configured in the 'auth.ldap.dnpattern' option.
+		 */
+		$dn = str_replace('%username%', $ldapusername, $ldapconfig->getValue('auth.ldap.dnpattern'));
+	
 		
 		/*
 		 * Do LDAP bind using DN found from the the dnpattern
 		 */
 		if (!$ldap->bind($dn, $password)) {
 			SimpleSAML_Logger::info('AUTH - ldap: '. $username . ' failed to authenticate. DN=' . $dn);
-			throw new Exception('Wrong username or password');
+			throw new Exception('error_wrongpassword');
 		}
 
 		/*
@@ -109,14 +108,9 @@ if (isset($_POST['username'])) {
 		else 
 			SimpleSAML_Logger::stats('AUTH-login OK');
 			
-			
-		
-		
+
 		$returnto = $_REQUEST['RelayState'];
 		SimpleSAML_Utilities::redirect($returnto);	
-		
-		
-		
 		
 		
 	} catch (Exception $e) {

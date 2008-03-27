@@ -53,7 +53,10 @@ class SimpleSAML_XHTML_Template {
 		
 		// Language is not set, and we get the default language from the configuration.
 		} else {
-			return $this->getDefaultLanguage('language.default');
+		
+			#$nego = http_negotiate_language($this->configuration->getValue('language.available'));
+		
+			return $this->getDefaultLanguage();
 		}
 		
 		return $this->language;
@@ -104,25 +107,8 @@ class SimpleSAML_XHTML_Template {
 		include($filename);
 	}
 
-	private function includeAtLanguageBase($file) {
-	
+	private function includeAtLanguageBase($file) {	
 		throw new Exception('Deprecated method call includeAtLanguageBase()');
-	/*
-		$data = $this->data;
-		$filebase = $this->configuration->getPathValue('templatedir') . $this->getLanguage() . '/' ;
-		
-		if (!file_exists($filebase . $file)) {
-			$filebase = $this->configuration->getPathValue('templatedir') . 
-				$this->configuration->getValue('language.default') . '/';
-				
-			
-			if (!file_exists($filebase . $file) ) {
-				SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
-				return;
-			}
-		}
-		include($filebase . $file);
-		*/
 	}
 	
 	
@@ -141,9 +127,6 @@ class SimpleSAML_XHTML_Template {
 			SimpleSAML_Logger::error('Template: No language text loaded. Looking up [' . $tag . ']');
 			return $this->t_not_translated($tag, $fallbacktag);
 		}
-
-#		echo 'LANGTEXT: ';
-#		print_r($this->langtext);
 
 		$selected_language = $this->getLanguage();
 		$default_language  = $this->getDefaultLanguage();
@@ -217,8 +200,6 @@ class SimpleSAML_XHTML_Template {
 	 */
 	public function show() {
 	
-		
-
 		$filename  = $this->configuration->getPathValue('templatedir') . 
 			$this->configuration->getValue('theme.use') . '/' . $this->template;
 		

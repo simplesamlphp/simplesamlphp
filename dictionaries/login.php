@@ -4,8 +4,8 @@ $lang = array(
 
 
 	'error_header' => array(
-		'en' => 'What you entered was not accepted!',
-		'no' => 'Feil under innlogging',
+		'en' => 'Error',
+		'no' => 'Error',
 	),
 	'user_pass_header' => array(
 		'en' => 'Enter your username and password',
@@ -37,6 +37,16 @@ $lang = array(
 		There may be someone that can help you. Contact the help desk at your university!',
 		'no' => 'Synd! - Uten riktig brukernavn og passord kan du ikke autentisere deg. Det kan være noen som kan hjelpe deg. Forsøk å kontakt help-desk hos din hjemmeorganisasjon.',
 	),
+
+	'error_nopassword' => array(
+		'en' => 'You sent something to the login page, but for some reason the password was not sent. Try again please.',
+		'no' => 'Du kontaktet loginsiden, men passordet ble ikke sendt med. Forsøk igjen.',
+	),	
+
+	'error_wrongpassword' => array(
+		'en' => 'Wrong username or password.',
+		'no' => 'Feil brukernavn eller passord.',
+	),	
 
 	
 );
