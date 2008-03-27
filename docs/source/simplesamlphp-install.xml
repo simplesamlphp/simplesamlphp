@@ -27,7 +27,7 @@
     <itemizedlist>
       <listitem>
         <para><ulink url="http://rnd.feide.no/view/simplesamlphpdocs">List of
-        all simpleSAMLphp documentation</ulink></para>
+        all <application>simpleSAMLphp</application> documentation</ulink></para>
       </listitem>
     </itemizedlist>
   </section>
@@ -35,52 +35,44 @@
   <section>
     <title>News about simpleSAMLphp</title>
 
-    <para>To get the latest news about
-    <application>simpleSAMLphp</application> you can follow this url: <ulink
+    <para>To get the latest news about <application>simpleSAMLphp</application> you can follow this url:
+    <ulink
     url="http://rnd.feide.no/taxonomy/term/4">http://rnd.feide.no/taxonomy/term/4</ulink>.
     It also conatins an RSS feed.</para>
 
-    <para>Here is the <application>simpleSAMLphp</application> homepage:
-    <ulink
+    <para>Here is the <application>simpleSAMLphp</application> homepage: <ulink
     url="http://rnd.feide.no/simplesamlphp">http://rnd.feide.no/simplesamlphp</ulink></para>
   </section>
 
   <section>
     <title>Prerequisites</title>
 
-    <itemizedlist>
-      <listitem>
-        <para><application>PHP</application> version &gt;= 5.1.2. If you want
-        to run the <emphasis>Shibboleth 1.3 SP</emphasis> part of
-        <application>simpleSAMLphp</application>, you must have
-        <application>PHP</application> &gt;= 5.2.</para>
-      </listitem>
+    <para><application>PHP</application> version &gt;= 5.1.2. If you want to run the 
+    <emphasis>Shibboleth 1.3</emphasis> part
+    of <application>simpleSAMLphp</application>, you must have <application>PHP</application> &gt;= 5.2.</para>
 
-      <listitem>
-        <para><application>Apache </application>or some other webserver.
-        </para>
-      </listitem>
-    </itemizedlist>
+    <para>Apache or some other webserver.</para>
 
-    <para><application>simpleSAMLphp</application> is mostly tested on
-    different Linux, Unix, and Mac OS X, but someone has also made it work on
-    Windows.</para>
+    <para><application>simpleSAMLphp</application> is has been tested most thoroughly on different Linux
+    versions, Unix, and Mac OS X. It also runs on Windows, but at the time of
+    writing, testing has been less thorough.</para>
   </section>
 
   <section>
     <title>Download and install simpleSAMLphp</title>
 
-    <para>You can go to <ulink
-    url="http://code.google.com/p/simplesamlphp/">code.google.com/p/simplesamlphp/</ulink>
-    to find the most recent release of simpleSAMLphp. Download the zipped
-    file, and unzip it on your webserver. However I hightly reccomend running
-    from a subversion checkout instead.</para>
+    <para>The most recent relase of <application>simpleSAMLphp</application> is found at <ulink
+    url="http://code.google.com/p/simplesamlphp/">code.google.com/p/simplesamlphp/.</ulink>
+    To obtain a stable version, you may download the zipped
+    <filename>simplesamlphp</filename> zip file listed under Featured
+    Dowloads, or you may check out the last version includeing the most recent
+    updates from the subversion repository.</para>
 
     <section>
       <title>Get a working copy of simpleSAMLphp from subversion</title>
 
       <para>Go to the directory where you want to install
-      simpleSAMLphp:</para>
+      <application>simpleSAMLphp</application>:</para>
 
       <screen>cd /var</screen>
 
@@ -88,9 +80,8 @@
 
       <screen>svn checkout http://simplesamlphp.googlecode.com/svn/trunk/ simplesamlphp</screen>
 
-      <para>If you know subversion you know how to view logs and review
-      changes to the files. To update the version you have checked out,
-      enter:</para>
+      <para>Using subversion, you can view logs and review changes to the
+      files. To update the version you have checked out, enter:</para>
 
       <screen>cd /var/simplesamlphp
 svn up</screen>
@@ -98,40 +89,66 @@ svn up</screen>
   </section>
 
   <section id="sect.upgrading">
-    <title>Upgrading from a previous version of simpleSAMLphp</title>
+    <title>Upgrading from a previous version of <application>simpleSAMLphp</application></title>
 
-    <para>If you run a the subversion version, you can just type in:</para>
+    <para><emphasis>If you have downloaded a version from the subversion
+    repository:</emphasis></para>
+
+    <para>Type, while located in the root folder of your <application>simpleSAMLphp</application>
+    installation:</para>
 
     <screen>svn update</screen>
 
-    <para>in the root folder of your simpleSAMLphp installation. If you did
-    download and install the zipped version, you should take backup of the
-    config and the metadata directories, and then replace your simpleSAMLphp
-    directory with the new version.</para>
+    <para><emphasis>If you download and install the zipped version:
+    </emphasis></para>
 
-    <para>After updating from subversion or from a newer release as a zip
-    file, you will need to update your configuration and metadata. This is
-    only neccessary if the format of the config files or metadata has changed
-    between the version you ran and the one you are upgrading to.</para>
+    <para><itemizedlist>
+        <listitem>
+          <para>Make a backup of the <filename>config</filename> and the
+          <filename>metadata</filename> directories.</para>
+        </listitem>
+
+        <listitem>
+          <para>Delete all files from your current simpleSAMLphp directory
+          .</para>
+        </listitem>
+
+        <listitem>
+          <para>Unzip the new version in the simpleSAMLphp directory.</para>
+        </listitem>
+
+        <listitem>
+          <para>Install the backups of <filename>config</filename> and the
+          <filename>metadata</filename> directories in the simpleSAMLphp
+          directory.</para>
+        </listitem>
+      </itemizedlist></para>
+
+    <para>If the format of the config files or metadata has changed from your
+    previous version of <application>simpleSAMLphp</application> (check the revision log), you may have
+    to update your configuration and metadata after updating the <application>simpleSAMLphp</application>
+    code:</para>
 
     <section>
       <title>Upgrading config.php</title>
 
-      <para>A good approach is to run a diff between your preivous config.php
-      file and the new config.php file located in config-templates/config.php,
-      and apply your modifications to the new template. Then you make sure
-      that all new entries in the latest version of config.php are included,
-      as well as your local modifications are preserved.</para>
+      <para>A good approach is to run a <literal>diff</literal> between your
+      preivous <filename>config.php</filename> file and the new
+      <filename>config.php</filename> file located in
+      <filename>config-templates/config.php</filename>, and apply relevant
+      modifications to the new template. This will ensure that all new entries
+      in the latest version of config.php are included, as well as preserve
+      your local modifications.</para>
     </section>
 
     <section>
       <title>Upgrading metadata files</title>
 
-      <para>Most likely the metadata format is backward compatible. Otherwise
-      it should give a very clear error message about how and what you need to
-      update. Still, it is reccomended to take a look at the metadata in the
-      metadata-templates directory after the upgrade, and see if the
-      reccomended defaults are changed.</para>
+      <para>Most likely the metadata format is backwards compatible. If not,
+      you should receive a very clear error message at startup indicating how
+      and what you need to update. You should look through the metadata in the
+      metadata-templates directory after the upgrade to see whether
+      recommended defaults have been changed.</para>
     </section>
   </section>
 
@@ -140,17 +157,16 @@ svn up</screen>
 
     <tip>
       <para>You do not need to read this section if you are upgrading
-      simpleSAMLphp from an earlier version, then see <xref
+      <application>simpleSAMLphp</application> from an earlier version, then see <xref
       linkend="sect.upgrading" />.</para>
     </tip>
 
-    <para>Configuration and metadata files are stored in a template format,
-    you need to copy them to have your local copies. The reason why it is done
-    this way, is that when you upgrade you can do svn up in subversion or just
-    copy the whole directory over your installation, without replacing your
-    existing configuration. When you are updating, you should investigate
-    whether the config format is changed, this should be documented in the
-    changelog.</para>
+    <para>Configuration and metadata files are distributed as templates; you
+    should make local copies to directories <filename>config</filename> and
+    <filename>metadata</filename> and edit these copies to suit your local
+    requirements. When you later upgrade, through a subversion <literal>svn
+    up</literal> command or by installing a new zip file, your existing
+    configuration data will not not be overwritten.</para>
 
     <para>Here are the steps you need to do to create local configuration
     files:</para>
@@ -162,23 +178,23 @@ cp -r metadata-templates/*.php metadata/
   </section>
 
   <section>
-    <title>Configuring apache</title>
+    <title>Configuring Apache</title>
 
-    <para>In this example simpleSAMLphp is located in
-    <filename>/var/simplesamlphp</filename>, that is the default location. If
-    you want to modify this location, you can do so freely, but then you need
-    to update the path in a few files. <link linkend="sect.altlocations">I
-    wrote a separate chapter about that, read on</link>.</para>
+    <para>Examples below assume that <application>simpleSAMLphp</application> is installed in the default
+    location, <filename>/var/simplesamlphp</filename>. You may choose another
+    location, but this requires a path update in a few files. <link
+    linkend="sect.altlocations">See Appendix A for details</link>.</para>
 
-    <para>Of the folders inside simpleSAMLphp, only the www folder needs to be
-    accessible from the web. There are several ways of putting the
-    simpleSAMLphp depending on the way web sites are structured on your apache
-    web server. Here is what I believe is the best configuration.</para>
+    <para>The only subdirectories of <filename>simpleSAMLphp</filename> that
+    needs to be accessible from the web is <filename>www</filename>. There are
+    several ways of putting the <application>simpleSAMLphp</application> depending on the way web sites
+    are structured on your apache web server. Here is what I believe is the
+    best configuration.</para>
 
-    <para>Find the apache configuration file for the virtual hosts that you
-    want to run simpleSAML on. The configuration may look like this:</para>
+    <para>Find the Apache configuration file for the virtual hosts where you
+    want to run <application>simpleSAMLphp</application>. The configuration may look like this:</para>
 
-    <programlisting>&lt;VirtualHost  *&gt;
+    <programlisting>&lt;VirtualHost *&gt;
         ServerName service.example.com
         DocumentRoot /var/www/service.example.com
 
@@ -186,20 +202,20 @@ cp -r metadata-templates/*.php metadata/
 &lt;/VirtualHost&gt;
 </programlisting>
 
-    <para>What is special is the <literal>Alias</literal> directive. That
-    directive will give control to simpleSAMLphp for all urls that matches
+    <para>Note the <literal>Alias</literal> directive, which gives control to
+    <application>simpleSAMLphp</application> for all urls matching
     <literal>http(s)://service.example.com/simplesaml/*</literal>.
-    simpleSAMLphp will need to have several SAML interfaces available on the
-    web, and all these interfaces are included in the <filename>www</filename>
-    subdirectory of your simpleSAMLphp installation. You can set the alias to
-    whatever you want, but this alias must be set in the
-    <filename>config.php</filename> file of simpleSAML as described in <xref
-    linkend="sect.config" />. Here is an example of how this configuration may
-    look like in <filename>config.php</filename>:</para>
+    <application>simpleSAMLphp</application> makes several SAML interfaces available on the web; all of
+    them are included in the <filename>www</filename> subdirectory of your
+    <application>simpleSAMLphp</application> installation. You can name the alias whatever you want, but
+    the name must be specified in the <filename>config.php</filename> file of
+    simpleSAML as described in <xref linkend="sect.config" />. Here is an
+    example of how this configuration may look like in
+    <filename>config.php</filename>:h</para>
 
     <programlisting>$config = array (
 [...]
-	'baseurlpath'			=&gt; 'simplesaml/',</programlisting>
+        'baseurlpath'                   =&gt; 'simplesaml/',</programlisting>
   </section>
 
   <section>
@@ -211,22 +227,22 @@ cp -r metadata-templates/*.php metadata/
   <section>
     <title>The simpleSAMLphp installation webpage</title>
 
-    <para>When you have installed simpleSAMLphp, you can access the homepage
-    of your installation, which contains some information and a few links to
-    the test services. The url of an installation can be in example:</para>
+    <para>After installing <application>simpleSAMLphp</application>, you can access the homepage of your
+    installation, which contains some information and a few links to the test
+    services. The url of an installation can be e.g.:</para>
 
     <literallayout>https://service.example.com/simplesaml/</literallayout>
 
-    <para>The exact link depends on how you set it up with apache and off
-    course your hostname.</para>
+    <para>The exact link depends on how you set it up with Apache, and off
+    course on your hostname.</para>
 
     <warning>
       <para>Don't click on any of the links yet, because they require you to
-      either have setup simpleSAMLphp as an Service Provider or as an Identity
+      either have setup <application>simpleSAMLphp</application> as an Service Provider or as an Identity
       Provider.</para>
     </warning>
 
-    <para>Here is an example screenshot of what the simpleSAMLphp page looks
+    <para>Here is an example screenshot of what the <application>simpleSAMLphp</application> page looks
     like:</para>
 
     <figure>
@@ -244,23 +260,22 @@ cp -r metadata-templates/*.php metadata/
     <section>
       <title>Check your PHP environment</title>
 
-      <para>On the bottom of the installation page there is some green lights.
-      simpleSAML runs some tests to see whether required and reccomended
-      prerequisites are met. If you see some red lights, there might be
-      neccessary to add some extensions or modules to PHP. In example you
-      would need PHP LDAP extension to use the LDAP authentication
-      module.</para>
+      <para>At the bottom of the installation page are some green lights.
+      simpleSAML runs some tests to see whether required and recommended
+      prerequisites are met. If any of the lights are red, you may have to add
+      some extensions or modules to <application>PHP</application>, e.g. you need the PHP LDAP extension
+      to use the LDAP authentication module.</para>
     </section>
   </section>
 
   <section>
     <title>Next steps</title>
 
-    <para>You have now successfully installed simpleSAMLphp, and the next
+    <para>You have now successfully installed <application>simpleSAMLphp</application>, and the next
     steps depends on whether you want to setup a service provider, to protect
-    a website with authentication or if you want to setup an identity provider
-    and connect it to a user storage. We will also provide documentation on
-    bridging federation protocols in a separate document.</para>
+    a website by authentication or if you want to setup an identity provider
+    and connect it to a user catalog. Documentation on bridging between
+    federation protocols is found in a separate document.</para>
 
     <itemizedlist>
       <listitem>
@@ -298,32 +313,33 @@ cp -r metadata-templates/*.php metadata/
   <section>
     <title>Support</title>
 
-    <para>If you have problems to get this work, or want to discuss
-    simpleSAMLphp with other users of the software you are lucky! Around
-    simpleSAMLphp there is a great Open source community, and you are welcome
-    to join! Both for asking question, answer other questions, request
-    improvements or contribute with code or plugins of your own.</para>
+    <para>If you need help to make this work, or want to discuss <application>simpleSAMLphp</application>
+    with other users of the software, you are fortunate: Around <application>simpleSAMLphp</application>
+    there is a great Open source community, and you are welcome to join! The
+    forums are open for you to ask questions, contribute answers other further
+    questions, request improvements or contribute with code or plugins of your
+    own.</para>
 
     <itemizedlist>
       <listitem>
-        <para><ulink url="http://rnd.feide.no/simplesamlphp">simpleSAMLphp
+        <para><ulink url="http://rnd.feide.no/simplesamlphp"><application>simpleSAMLphp</application>
         homepage (at Feide RnD)</ulink></para>
       </listitem>
 
       <listitem>
         <para><ulink url="http://rnd.feide.no/view/simplesamlphpdocs">List of
-        all available simpleSAMLphp documentation</ulink></para>
+        all available <application>simpleSAMLphp</application> documentation</ulink></para>
       </listitem>
 
       <listitem>
         <para><ulink
         url="http://rnd.feide.no/content/simplesamlphp-users-mailinglist">Join
-        the simpleSAMLphp user's mailing list</ulink></para>
+        the <application>simpleSAMLphp</application> user's mailing list</ulink></para>
       </listitem>
 
       <listitem>
         <para><ulink url="https://ow.feide.no/simplesamlphp:start">Visit and
-        contribute to the simpleSAMLphp wiki</ulink></para>
+        contribute to the <application>simpleSAMLphp</application> wiki</ulink></para>
       </listitem>
     </itemizedlist>
   </section>
@@ -331,24 +347,25 @@ cp -r metadata-templates/*.php metadata/
   <appendix id="sect.altlocations">
     <title>Installing simpleSAMLphp in alternative locations</title>
 
-    <para>You can spit the <literal>www</literal> folder in simpleSAMLphp from
-    the installation directory. You need to set the path of the installation
-    directory in the <filename>config.php</filename> file:</para>
+    <para>You can separate the <literal>www</literal> subdirectory of
+    <filename>simpleSAMLphp</filename> from the installation directory. You
+    need to set the path of the installation directory in the
+    <filename>config.php</filename> file:</para>
 
     <programlisting> 'basedir' =&gt; '/usr/local/simplesaml/simplesamlphp',</programlisting>
 
-    <para>And you also need to modify the Alias directive in the apache
-    configuration:</para>
+    <para>And you also need to modify the <literal>Alias</literal> directive
+    in the apache configuration:</para>
 
     <programlisting> Alias /simplesaml /usr/local/simplesaml/simplesamlphp/www</programlisting>
 
     <para>You also need to change the path of the <literal>require_once(...
-    _include.php )</literal> line in the examples and in your integration
+    _include.php)</literal> line in the examples and in your integration
     code.</para>
 
-    <para>Normally you would not want to do it this way, but one example is if
-    you must install simpleSAMLphp in your home directory, and you would like
-    the following directory structure:</para>
+    <para>One case where you might want to make this separation is if you must
+    install <application>simpleSAMLphp</application> in your home directory, and you would like the
+    following directory structure:</para>
 
     <itemizedlist>
       <listitem>
@@ -357,7 +374,7 @@ cp -r metadata-templates/*.php metadata/
 
       <listitem>
         <para><filename>~/publichtml/simplesaml</filename> where simplesaml is
-        the <filename>www</filename> directory from simplesamlphp installation
+        the <filename>www</filename> directory from the <filename>simplesamlphp</filename> installation
         directory, either moved or a symlink.</para>
       </listitem>
     </itemizedlist>
