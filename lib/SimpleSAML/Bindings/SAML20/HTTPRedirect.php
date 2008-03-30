@@ -118,7 +118,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		}
 
 		// getting signature from get arguments
-		$signature = @base64_decode($_GET['Signature'], TRUE);
+		$signature = @base64_decode($_GET['Signature']);
 		if (!$signature) {
 			throw new Exception('Error base64 decoding signature parameter.');
 		}
@@ -219,7 +219,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			$relaystate = NULL;
 		}
 		
-		$decodedRequest = @base64_decode($rawRequest, TRUE);
+		$decodedRequest = @base64_decode($rawRequest);
 		if (!$decodedRequest) {
 			throw new Exception('Could not base64 decode SAMLRequest GET parameter');
 		}
@@ -255,7 +255,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			$relaystate = NULL;
 		}
 		
-		$decodedRequest = @base64_decode($rawRequest, TRUE);
+		$decodedRequest = @base64_decode($rawRequest);
 		if (!$decodedRequest) {
 			throw new Exception('Could not base64 decode SAMLRequest GET parameter');
 		}
@@ -293,7 +293,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			$relaystate = NULL;
 		}
 		
-		$decodedRequest = @base64_decode($rawRequest, TRUE);
+		$decodedRequest = @base64_decode($rawRequest);
 		if (!$decodedRequest) {
 			throw new Exception('Could not base64 decode SAMLRequest GET parameter');
 		}
