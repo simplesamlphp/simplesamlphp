@@ -529,6 +529,16 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
               <literal>true</literal>.</para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>ForceAuthn</glossterm>
+
+            <glossdef>
+              <para>Set this <literal>true</literal> to force authentication
+              when receiving authentication requests from this SP. The default
+              is <literal>false</literal>.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
       </section>
     </section>

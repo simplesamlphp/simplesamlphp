@@ -335,6 +335,7 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 		$this->authenticated = $auth;
 		
 		if ($auth) {	
+			$this->clearNeedAuthFlag();
 			$this->sessionstarted = time();
 		} else {
 			/* Call logout handlers. */
@@ -471,6 +472,21 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 
 		/* We require the logout handlers to register themselves again if they want to be called later. */
 		$this->logout_handlers = array();
+	}
+
+
+	/**
+	 * This function iterates over all current authentication requests, and removes any 'NeedAuthentication' flags
+	 * from them.
+	 */
+	private function clearNeedAuthFlag() {
+		foreach($this->authnrequests as &$cache) {
+			foreach($cache as &$request) {
+				if(array_key_exists('NeedAuthentication', $request)) {
+					$request['NeedAuthentication'] = FALSE;
+				}
+			}
+		}
 	}
 
 }

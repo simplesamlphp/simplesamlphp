@@ -75,6 +75,41 @@ if (isset($_GET['SAMLRequest'])) {
 		if ($relaystate = $authnrequest->getRelayState() )
 			$requestcache['RelayState'] = $relaystate;
 			
+
+		/*
+		 * Handle the ForceAuthn option.
+		 */
+
+		/* The default value is FALSE. */
+		$forceAuthn = FALSE;
+
+		$spentityid = $requestcache['Issuer'];
+		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
+		if(array_key_exists('ForceAuthn', $spmetadata)) {
+			/* The ForceAuthn flag is set in the metadata for this SP. */
+			$forceAuthn = $spmetadata['ForceAuthn'];
+			if(!is_bool($spmetadata['ForceAuthn'])) {
+				throw new Exception('The ForceAuthn option in the metadata for the sp [' . $spentityid . '] is not a boolean.');
+			}
+
+			if($spmetadata['ForceAuthn']) {
+				/* ForceAuthn enabled in the metadata for the SP. */
+				$forceAuthn = TRUE;
+			}
+		}
+
+		if($authnrequest->getForceAuthn()) {
+			/* The ForceAuthn flag was set to true in the authentication request. */
+			$forceAuthn = TRUE;
+		}
+
+		if($forceAuthn) {
+			/* ForceAuthn is enabled. Mark the request as needing authentication. This flag
+			 * will be cleared by a call to setAuthenticated(TRUE, ...) to the current session.
+			 */
+			$requestcache['NeedAuthentication'] = TRUE;
+		}
+
 		$session->setAuthnRequest('saml2', $requestid, $requestcache);
 		
 		
@@ -129,6 +164,17 @@ $authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : NULL
  * parameter so we can retrieve the cached information from the request.
  */
 if (!isset($session) || !$session->isValid($authority) ) {
+	/* We don't have a valid session. */
+	$needAuth = TRUE;
+} elseif (array_key_exists('NeedAuthentication', $requestcache) && $requestcache['NeedAuthentication']) {
+	/* We have a valid session, but ForceAuthn is on. */
+	$needAuth = TRUE;
+} else {
+	/* We have a valid session. */
+	$needAuth = FALSE;
+}
+
+if($needAuth) {
 
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Will go to authentication module ' . $idpmetadata['auth']);
 

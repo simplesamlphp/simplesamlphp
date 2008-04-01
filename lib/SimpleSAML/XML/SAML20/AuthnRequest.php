@@ -108,6 +108,36 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 
 
 	/**
+	 * This function retrieves the ForceAuthn flag from this authentication request.
+	 *
+	 * @return The ForceAuthn flag from this authentication request.
+	 */
+	public function getForceAuthn() {
+		$dom = $this->getDOM();
+		if (empty($dom)) {
+			throw new Exception("Could not get message DOM in AuthnRequest object");
+		}
+
+		$root = $dom->documentElement;
+
+		if(!$root->hasAttribute('ForceAuthn')) {
+			/* ForceAuthn defaults to false. */
+			return FALSE;
+		}
+
+		$fa = $root->getAttribute('ForceAuthn');
+		if($fa === 'true') {
+			return TRUE;
+		} elseif($fa === 'false') {
+			return FALSE;
+		} else {
+			throw new Exception('Invalid value of ForceAuthn attribute in SAML2 AuthnRequest.');
+		}
+	}
+
+
+
+	/**
 	 * Generate a new SAML 2.0 Authentication Request
 	 *
 	 * @param $spentityid SP Entity ID
