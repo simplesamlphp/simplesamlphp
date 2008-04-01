@@ -12,6 +12,13 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
  */
 class SimpleSAML_XHTML_Template {
 
+	/**
+	 * This is the default language map. It is used to map languages codes from the user agent to
+	 * other language codes.
+	 */
+	private static $defaultLanguageMap = array('nb' => 'no');
+
+
 	private $configuration = null;
 	private $template = 'default.php';
 	private $language = null;
@@ -75,11 +82,21 @@ class SimpleSAML_XHTML_Template {
 		$availableLanguages = $this->configuration->getValue('language.available');
 		$languageScore = SimpleSAML_Utilities::getAcceptLanguage();
 
+		/* For now we only use the default language map. We may use a configurable language map
+		 * in the future.
+		 */
+		$languageMap = self::$defaultLanguageMap;
+
 		/* Find the available language with the best score. */
 		$bestLanguage = NULL;
 		$bestScore = -1.0;
 
 		foreach($languageScore as $language => $score) {
+
+			/* Apply the language map to the language code. */
+			if(array_key_exists($language, $languageMap)) {
+				$language = $languageMap[$language];
+			}
 
 			if(!in_array($language, $availableLanguages, TRUE)) {
 				/* Skip this language - we don't have it. */
