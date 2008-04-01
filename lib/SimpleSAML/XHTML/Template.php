@@ -46,21 +46,55 @@ class SimpleSAML_XHTML_Template {
 		// Language is set in object
 		if (isset($this->language)) {
 			return $this->language;
+		}
 
 		// Language is provided in a stored COOKIE
-		} else if (isset($_COOKIE['language'])) {
+		if (isset($_COOKIE['language'])) {
 			$this->language = $_COOKIE['language'];
-		
-		// Language is not set, and we get the default language from the configuration.
-		} else {
-		
-			#$nego = http_negotiate_language($this->configuration->getValue('language.available'));
-		
-			return $this->getDefaultLanguage();
+			return $this->language;
 		}
-		
-		return $this->language;
+
+		/* Check if we can find a good language from the Accept-Language http header. */
+		$httpLanguage = $this->getHTTPLanguage();
+		if ($httpLanguage !== NULL) {
+			return $httpLanguage;
+		}
+
+		// Language is not set, and we get the default language from the configuration.
+		return $this->getDefaultLanguage();
 	}
+
+
+	/**
+	 * This function gets the prefered language for the user based on the Accept-Language http header.
+	 *
+	 * @return The prefered language based on the Accept-Language http header, or NULL if none of the
+	 *         languages in the header were available.
+	 */
+	private function getHTTPLanguage() {
+		$availableLanguages = $this->configuration->getValue('language.available');
+		$languageScore = SimpleSAML_Utilities::getAcceptLanguage();
+
+		/* Find the available language with the best score. */
+		$bestLanguage = NULL;
+		$bestScore = -1.0;
+		foreach($availableLanguages as $language) {
+
+			if(!array_key_exists($language, $languageScore)) {
+				/* Skip this language - it wasn't mentioned in the http header. */
+				continue;
+			}
+			$score = $languageScore[$language];
+
+			if($score > $bestScore) {
+				$bestLanguage = $language;
+				$bestScore = $score;
+			}
+		}
+
+		return $bestLanguage;
+	}
+
 	
 	private function getDefaultLanguage() {
 		return $this->configuration->getValue('language.default', 'en');
