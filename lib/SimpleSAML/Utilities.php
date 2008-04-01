@@ -666,6 +666,70 @@ class SimpleSAML_Utilities {
 		return $txt;
 	}
 
+
+	/**
+	 * This function parses the Accept-Language http header and returns an associative array with each
+	 * language and the score for that language.
+	 *
+	 * If an language includes a region, then the result will include both the language with the region
+	 * and the language without the region.
+	 *
+	 * @return An associative array with each language and the score for that language.
+	 */
+	public static function getAcceptLanguage() {
+
+		if(!array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
+			/* No Accept-Language header - return empty set. */
+			return array();
+		}
+
+		$languages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+
+		$ret = array();
+
+		foreach($languages as $l) {
+			$opts = explode(';', $l);
+
+			$l = trim(array_shift($opts)); /* The language is the first element.*/
+
+			$q = 1.0;
+
+			/* Iterate over all options, and check for the quality option. */
+			foreach($opts as $o) {
+				$o = explode('=', $o);
+				if(count($o) < 2) {
+					/* Skip option with no value. */
+					continue;
+				}
+
+				$name = trim($o[0]);
+				$value = trim($o[1]);
+
+				if($name === 'q') {
+					$q = (float)$value;
+				}
+			}
+
+			/* Set the quality in the result. */
+			$ret[$l] = $q;
+
+			if(strpos($l, '-')) {
+				/* The language includes a region part. */
+
+				/* Extract the language without the region. */
+				$l = explode('-', $l);
+				$l = $l[0];
+
+				/* Add this language to the result (unless it is defined already). */
+				if(!array_key_exists($l, $ret)) {
+					$ret[$l] = $q;
+				}
+			}
+		}
+
+		return $ret;
+	}
+
 }
 
 ?>
