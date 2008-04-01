@@ -78,14 +78,19 @@ class SimpleSAML_XHTML_Template {
 		/* Find the available language with the best score. */
 		$bestLanguage = NULL;
 		$bestScore = -1.0;
-		foreach($availableLanguages as $language) {
 
-			if(!array_key_exists($language, $languageScore)) {
-				/* Skip this language - it wasn't mentioned in the http header. */
+		foreach($languageScore as $language => $score) {
+
+			if(!in_array($language, $availableLanguages, TRUE)) {
+				/* Skip this language - we don't have it. */
 				continue;
 			}
-			$score = $languageScore[$language];
 
+			/* Some user agents use very limited precicion of the quality value, but order the
+			 * elements in descending order. Therefore we rely on the order of the output from
+			 * getAcceptLanguage() matching the order of the languages in the header when two
+			 * languages have the same quality.
+			 */
 			if($score > $bestScore) {
 				$bestLanguage = $language;
 				$bestScore = $score;
