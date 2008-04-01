@@ -674,6 +674,8 @@ class SimpleSAML_Utilities {
 	 * If an language includes a region, then the result will include both the language with the region
 	 * and the language without the region.
 	 *
+	 * The returned array will be in the same order as the input.
+	 *
 	 * @return An associative array with each language and the score for that language.
 	 */
 	public static function getAcceptLanguage() {
@@ -709,6 +711,9 @@ class SimpleSAML_Utilities {
 					$q = (float)$value;
 				}
 			}
+
+			/* Remove the old key to ensure that the element is added to the end. */
+			unset($ret[$l]);
 
 			/* Set the quality in the result. */
 			$ret[$l] = $q;
