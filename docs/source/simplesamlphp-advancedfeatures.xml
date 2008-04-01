@@ -251,6 +251,119 @@ $attributemap = array(
     and publish it somewhere pretty soon. Stay tuned!</para>
   </section>
 
+  <section>
+    <title>Auth MemCookie</title>
+
+    <para>It is possible to integrate simpleSAMLphp with
+    <ulink url="http://authmemcookie.sourceforge.net/">Auth MemCookie</ulink>.
+    This allows you to integrate simpleSAMLphp with web applications written
+    in another language than PHP.</para>
+
+    <para>Auth MemCookie works by reading authentication data from a memcache
+    server and setting environment variables based on attributes in this data.
+    It also allows you to use the default Apache access control features to
+    restrict access to your site.</para>
+
+    <para>The simpleSAMLphp Auth MemCookie module can be found in
+    <filename>www/authmemcookie.php</filename> and the configuration should be
+    stored in <filename>config/authmemcookie.php</filename>. You may have to
+    copy this file from
+    <filename>config-template/authmemcookie.php</filename>.</para>
+
+    <para>To use Auth MemCookie, you need to do the following steps:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Install and configure simpleSAMLphp for running as an SP.</para>
+      </listitem>
+
+      <listitem>
+        <para>Install and configure a memcache server.</para>
+      </listitem>
+
+      <listitem>
+        <para>Install and configure Auth MemCookie. Go to the
+        <ulink url="http://authmemcookie.sourceforge.net/">Auth MemCookie
+        homepage</ulink> for downloads and installation instructions. The
+        following example (from <filename>extra/auth_memcookie.conf</filename>)
+        may be useful when configuring Auth MemCookie:</para>
+
+        <para><programlisting>&lt;Location /&gt;
+        # This is a list of memcache servers which Auth MemCookie
+        # should use. It is a ','-separated list of
+        # host:port-pairs.
+        # Note that this list must list the same servers as the
+        # 'authmemcookie.servers'-option in config.php in the
+        # configuration for simpleSAMLphp.
+        Auth_memCookie_Memcached_AddrPort "127.0.0.1:11211"
+
+        # This must be set to 'on' to enable Auth MemCookie for
+        # this directory.
+        Auth_memCookie_Authoritative on
+
+        # This adjusts the maximum number of data elements in the
+        # session data. The default is 10, which can be to low.
+        Auth_memCookie_SessionTableSize "40"
+
+        # These two commands are required to enable access control
+        # in Apache.
+        AuthType Cookie
+        AuthName "My Login"
+
+        # This command causes apache to redirect to the given
+        # URL when we receive a '401 Authorization Required'
+        # error. We redirect to "/simplesaml/authmemcookie.php",
+        # which initializes a login to the IdP.
+        ErrorDocument 401 "/simplesaml/authmemcookie.php"
+
+&lt;/Location&gt;
+
+&lt;Location /secret&gt;
+        # This allows all authenticated users to access the
+        # directory. To learn more about the 'Require' command,
+        # please look at:
+        # http://httpd.apache.org/docs/2.0/mod/core.html#require
+        Require valid-user
+&lt;/Location&gt;</programlisting></para>
+      </listitem>
+
+      <listitem>
+        <para>Configure the simpleSAMLphp Auth MemCookie module by editing
+        <filename>config/authmemcookie.php</filename>. You must set the
+        <option>username</option> option to a valid attribute name. All other
+        can most likely be left at their default values.</para>
+      </listitem>
+
+      <listitem>
+        <para>Enable the simpleSAMLphp Auth MemCookie module by setting
+        <option>enable.authmemcookie</option> to <parameter>true</parameter> in
+        <filename>config/config.php</filename>.</para>
+      </listitem>
+
+      <listitem>
+        <para>To test the installation, you can add the following script as
+        your <filename>/secret/index.php</filename> directory:</para>
+
+        <para><programlisting>&lt;html&gt;&lt;body&gt;&lt;table&gt;
+&lt;?php
+foreach($_SERVER as $key=&gt;$value) {
+  echo('&lt;tr&gt;&lt;td&gt;' . htmlspecialchars($key) . '&lt;/td&gt;&lt;td&gt;' . htmlspecialchars($value) . '&lt;/td&gt;&lt;/tr&gt;');
+}
+?&gt;
+&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</programlisting></para>
+
+        <para>You should now be able to go to
+        <filename>http://yourserver/secret/</filename> to test the
+        configuration. You should be redirected to your IdP, and after entering
+        your username and password you should be taken back to
+        <filename>http://yourserver/secret/</filename>. The resulting page
+        should list all environment variables set by Apache, including the ones
+        set by Auth MemCookie.</para>
+      </listitem>
+    </orderedlist>
+
+  </section>
+
 
   <section>
     <title>Support</title>
