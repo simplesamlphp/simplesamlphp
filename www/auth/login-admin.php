@@ -38,8 +38,8 @@ $correctpassword = $config->getValue('auth.adminpassword', '123');
 
 if (empty($correctpassword) or $correctpassword === '123') {
 	SimpleSAML_Utilities::fatalError(
-		'Password not set',
-		'The password in the coniguration (auth.adminpassword) is not changed from the default value, please edit the config.'
+		$session->getTrackID(),
+		'NOTSET'
 	);
 }
 
