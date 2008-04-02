@@ -7,7 +7,7 @@ $lang = array(
 		'no' => '<strong>Gratulerer</strong>, du har nå installert simpleSAMLphp. Dette er startsiden til din simpleSAMLphp installasjon, hvor du vil finne eksempler, diagnostikk, metadata og til og med lenker til relevant dokumentasjon.',
 		'nn' => '<strong>Gratulerer</strong>, du har installert simpleSAMLphp. Dette er startsida til simpleSAMLphp installasjonen din.  Her finn du døme, diagnostikk, metadata og lenker til relevant dokumentasjon.',
 		'dk' => '<strong>Tillykke</strong>, du har nu installeret simpleSAMLphp. Dette er startsiden til installationen, hvor du vil finde eksempler, diagnostik, metadata og links til relevant dokumentation',
-		'es' => '<strong>&iexcl;Felicidades!</strong>, ha instalado simpleSAMLphp con &eacute;xito.  &eacute;sta es la p&aacute;gina inicial de su instalaci&oacute;n, aqu&iacute; encontrar&aacute; enlaces a ejemplos de prueba, diagn&oacute;sticos, metadatos e incluso enlaces a la documentaci&oacute;n pertienente.',
+		'es' => '<strong>&iexcl;Felicidades!</strong>, ha instalado simpleSAMLphp con &eacute;xito. This &eacute;sta es la p&aacute;gina inicial de su instalaci&oacute;n, aqu&iacute; encontrar&aacute; enlaces a ejemplos de prueba, diagn&oacute;sticos, metadatos e incluso enlaces a la documentaci&oacute;n pertienente.',
 		'fr' => '<strong>Félicitations</strong>, vous avez installé simpleSAMLphp avec succès.  Ceci est la page de démarrage de votre installation, où vous trouverez des liens vers des exemples, des pages de diagnostic, les métadata et même vers de la documentation.',
 		'de' => '<strong>Glückwunsch</strong>, Sie haben erfolgreich simpleSAMLphp installiert. Dies ist die Startseite der Installation, hier gibts es Links zu Testbeispielen, Diagnose, Metadaten und anderer relevanten Dokumentation.',
 		'nl' => '<strong>Gefeliciteerd</strong>, simpleSAMLphp is succesvol geinstalleerd. Dit is de startpagina voor simpleSAMLphp, waar je links kan vinden naar voorbeelden, test-paginas, analyses, metadata en ook naar relevante documentatie.',
@@ -99,6 +99,7 @@ $lang = array(
 		'nl' => 'Vereist',
 		'lu' => 'Néideg',
 		'sl' => 'Zahtevano',
+		'es' => 'Necesario'
 	),
 	'required_ldap' => array(
 		'en' => 'Required for LDAP',
@@ -110,6 +111,7 @@ $lang = array(
 		'nl' => 'Vereist voor LDAP',
 		'lu' => 'Néideg fir LDAP',
 		'sl' => 'Zahtevano za LDAP',
+		'es' => 'Necesario para LDAP'
 	),
 	'required_radius' => array(
 		'en' => 'Required for Radius',
@@ -121,6 +123,7 @@ $lang = array(
 		'nl' => 'Vereist voor Radius',
 		'lu' => 'Néideg fir RADIUS',
 		'sl' => 'Zahtevano za RADIUS',
+		'es' => 'Necesario para RADIUS'
 	),
 	'optional' => array(
 		'en' => 'Optional',
@@ -132,6 +135,7 @@ $lang = array(
 		'nl' => 'Optioneel',
 		'lu' => 'Optional',
 		'sl' => 'Dodatno',
+		'es' => 'Opcional',
 	),
 	'reccomended' => array(
 		'en' => 'Recommended',
@@ -143,6 +147,7 @@ $lang = array(
 		'nl' => 'Aanbevolen',
 		'lu' => 'Recommendéiert',
 		'sl' => 'Priporočljivo',
+		'es' => 'Recomendado',
 	),	
 	'warnings' => array(
 		'en' => 'Warnings',
@@ -167,6 +172,7 @@ $lang = array(
 		'nl' => '<strong>Je gebruikt geen HTTPS</strong> - versleutelde communicatie met de gebruiker. simpleSAMLphp werkt prima op HTTP voor test doeleinden, maar als je simpleSAMLphp in een productie omgeving gaat gebruiken, zou je dat moeten doen over HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">lees meer over simpleSAMLphp onderhoud</a> ]',
 		'lu' => '<strong>Der benotzt ken HTTPS</strong> - verschlësselt Kommunikatioun mat dem Benotzer. SimpleSAMLphp funktionéiert einwandfräi mat HTTP fir Testzwéecker mais an engem produktiven Emfeld sollt et besser mat HTTPS lafen. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Liest méi iwert Maintenance vun simpleSAMLphp</a> ]',
 		'sl' => 'Ne uporabljate HTTPS</strong>-šifrirano komunikacijo z uporabnikom. SimpleSAMLphp deluje brez težav na HTTP za testne namene, vendar je potrebno za uporabo simpleSAMLphp v produkcijskem okolju uporabiti HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">preberite več o simpleSAMLphp vzdrževanju',
+		'es' => 'No está usando HTTPS HTTPS</strong> - comunicaciones cifradas con el usuario. HTTP funciona bien en entornos de evaluación, pero si va a emplearlo en producción, debería emplear HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Read more about simpleSAMLphp maintenance</a> ]',
 	),
 
 
@@ -303,6 +309,7 @@ $lang = array(
 		'nl' => 'Installatie van simpleSAMLphp',
 		'lu' => 'SimpleSAMLphp installéiren',
 		'sl' => 'Namestitev simpleSAMLphp',
+		'es' => 'Instalación de simpleSAMLphp',
 	),
 	'link_doc_sp' => array(
 		'en' => 'Using simpleSAMLphp as a Service Provider',
@@ -313,6 +320,7 @@ $lang = array(
 		'nl' => 'Gebruik simpleSAMLphp als Service Provider',
 		'lu' => 'SimpleSAMLphp als Service Provicer benotzen',
 		'sl' => 'Uporabi simpleSAMLphp za Service Provider',
+		'es' => 'Empleo de simpleSAMLphp como Service Provider'
 	),
 	'link_doc_idp' => array(
 		'en' => 'Using simpleSAMLphp as an Identity Provider',
@@ -323,6 +331,7 @@ $lang = array(
 		'nl' => 'Gebruik simpleSAMLphp als Identity Provider',
 		'lu' => 'SimpleSAMLphp als Identity Provider benotzen',
 		'sl' => 'Uporabi simpleSAMLphp za Identity Provider',
+		'es' => 'Empleo de simpleSAMLphp como Identity Provider',
 	),
 	'link_doc_shibsp' => array(
 		'en' => 'Configure Shibboleth 1.3 SP to work with simpleSAMLphp IdP',
@@ -333,6 +342,7 @@ $lang = array(
 		'nl' => 'Configureer een Shibboleth 1.3 SP voor de simpleSAMLphp IdP',
 		'lu' => 'Shibboleth 1.3 SP anstellen fir mam simpleSAMLphp Idp ze funktionnéiren',
 		'sl' => 'Nastavi Shibboleth 1.3 SP o work with simpleSAMLphp IdP',
+		'es' => 'Configuración de Shibboleth 1.3 SP para trabajar con un IdP simpleSAMLphp'
 	),
 	'link_doc_googleapps' => array(
 		'en' => 'simpleSAMLphp as an IdP for Google Apps for Education',
@@ -342,6 +352,7 @@ $lang = array(
 		'de' => 'simpleSAMLphp als IdP für Google Apps für Education verwernden',
 		'lu' => 'simpleSAMLphp als IdP fir Google Apps for Education',
 		'sl' => 'simpleSAMLphp IdP za Google Apps for Education',
+		'es' => 'simpleSAMLphp como IdP para Google Apps for Education'
 	),
 	'link_doc_advanced' => array(
 		'en' => 'simpleSAMLphp Advanced Features',
@@ -352,6 +363,7 @@ $lang = array(
 		'nl' => 'simpleSAMLphp Geavanceerde Functies',
 		'lu' => 'Erweidert Funktiounen vun simpleSAMLphp ',
 		'sl' => 'simpleSAMLphp napredna funkcionalnost',
+		'es' => 'Características avanzadas de simpleSAMLphp'
 	),
 	'link_doc_maintenance' => array(
 		'en' => 'simpleSAMLphp Maintenance and Configuration',
@@ -362,6 +374,7 @@ $lang = array(
 		'nl' => 'simpleSAMLphp Onderhoud en Configuratie',
 		'lu' => 'simpleSAMLphp Maintenance an Konfiguratioun',
 		'sl' => 'simpleSAMLphp vzdrževanje in nastavitve',
+		'es' => 'Mantenimento y configuración de simpleSAMLphp',
 	),
 
 
