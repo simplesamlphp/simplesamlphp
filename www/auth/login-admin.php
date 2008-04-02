@@ -27,8 +27,8 @@ if (empty($session))
  */
 if (!array_key_exists('RelayState', $_REQUEST)) {
 	SimpleSAML_Utilities::fatalError(
-		'Invalid access of LDAP login page',
-		'Missing RelayState argument to authentication module.'
+		$session->getTrackID(),
+		'NORELAYSTATE'
 		);
 }
 
@@ -78,7 +78,8 @@ if (isset($_POST['password'])) {
 		exit(0);
 	} else {
 		SimpleSAML_Logger::stats('AUTH-login-admin Failed');
-		$error = 'Password incorrect';
+		$error = 'error_wrongpassword';
+		SimpleSAML_Logger::info($error);;
 	}
 	
 }
