@@ -63,6 +63,10 @@ $lang = array(
 		'lu' => 'Benotzernumm',
 		'sl' => 'Uporabniško ime',
 	),
+	'organization' => array(
+		'en' =>	'Organization',
+		'es' => 'Organización',
+	),
 	'password' => array(
 		'en' => 'Password',
 		'no' => 'Passord',
