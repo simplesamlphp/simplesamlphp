@@ -8,7 +8,7 @@ $lang = array(
 		'no' => 'Feil',
 		'nn' => 'Feil',
 		'dk' => 'Fejl',
-		'es' => 'Los datos que ha suministrado no son v&aacute;lidos',
+		'es' => 'Los datos que ha suministrado no son vàlidos',
 		'fr' => 'Erreur',
 		'de' => 'Fehler',
 		'nl' => 'Fout',
@@ -124,6 +124,7 @@ $lang = array(
 		'nl' => 'Gebruikersnaam of wachtwoord niet bekend',
 		'lu' => 'Falschen Benotzernumm oder Passwuert',
 		'sl' => 'Napačno uporabniško ime ali geslo',
+		'es' => 'Nombre de usuario o contraseña erróneos'
 	),
 
 

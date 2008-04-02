@@ -111,7 +111,7 @@ $lang = array(
 		'no' => 'Send feilrapport',
 		'nn' => 'Send feilrapport',
 		'dk' => 'Send fejlrapport',
-		'es' => 'Send error report',
+		'es' => 'Envíe el informe de error',
 		'fr' => 'Envoyer le rapport d\'erreur',
 		'de' => 'Fehlerbericht absenden',
 		'nl' => 'Verstuur het foutmeldingsrapport',
@@ -128,6 +128,7 @@ $lang = array(
 		'nl' => 'Hoe kan ik hulp vragen',
 		'lu' => 'W√©i een Hell√´f kritt',
 		'sl' => 'Po≈°lji poroƒçilo o napaki',
+		'es' => 'Cómo obtener asistencia'
 	),
 
 	'howto_text' => array(
@@ -135,7 +136,7 @@ $lang = array(
 		'no' => 'Denne feilen skyldes sannsynligvis feil i oppsettet av simpleSAMLphp eller som en f√∏lge av en uforutsett hendelse. Kontakt administratoren av denne tjenesten og rapporter s√• mye som mulig ang√•ende feilen.',
 		'nn' => 'Denne feilen er truleg p√• grunn av feilkonfigurasjon av simpleSAMLphp eller ein ukjent feil. Kontakt administrator av tenesta og rapporter detaljar om feilen.',
 		'dk' => 'Denne fejl skyldes formentlig en fejlkonfiguration af simpleSAMLphp - alternativt en ukendt fejl. Kontakt administratoren af denne tjeneste og rapport√©r s√• mange detaljer som muligt om fejlen',
-		'es' => 'Este erro se debe probablemente a un comportamiento inesperado o a una configuraci&oacute; incorrecta de simpleSAMLphp. P&oacute;ngase en contacto con el administrador de este servicio de conexi&oacute;n y env&iacute;ele el mensaje de error anterior.',
+		'es' => 'Este error se debe probablemente a un comportamiento inesperado o a una configuración incorrecta de simpleSAMLphp. P&oacute;ngase en contacto con el administrador de este servicio de conexi&oacute;n y env&iacute;ele el mensaje de error anterior.',
 		'fr' => 'Cette erreur est problablement caus√©e par un comportement impr√©vu ou une mauvaise configuration de simpleSAMLphp.  Contactez l\'administrateur de ce service d\'identification et envoyez lui le message d\'erreur.',
 		'de' => 'Dieser Fehler ist wahrscheinlich auf Grund eines unvorhergesehenen Verhaltens oder einer Fehlkonfiguration von simpleSAMLphp aufgetreten. Kontaktieren Sie bitte den Administrator dieses Dienstes und schicken ihm die obige Fehlermeldung.',
 		'nl' => 'Deze foutmelding is waarschijnlijk ontstaan door onverwacht gedrag of door verkeerde configuratie van simpleSAMLphp. Meld dit bij de beheerder van deze authenticatie dienst, en geef bovenstaande melding door.',
