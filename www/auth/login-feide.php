@@ -29,16 +29,14 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Auth/LDAP.php');
 
 $config = SimpleSAML_Configuration::getInstance();
+$ldapconfig = $config->copyFromBase('loginfeide', 'config-login-feide.php');
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance();
 
-$ldapconfigfile = $config->getBaseDir() . 'config/ldapfeide.php';
-require_once($ldapconfigfile);
 
 SimpleSAML_Logger::info('AUTH - ldap-feide: Accessing auth endpoint login-feide');
 
-$error = null;
-$attributes = array();
+$ldaporgconfig = $ldapconfig->getValue('orgldapconfig');
 
 
 if (empty($session))
@@ -52,6 +50,42 @@ if (empty($session))
 if (!array_key_exists('RelayState', $_REQUEST)) {
         SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
 }
+
+
+$error = null;
+$attributes = array();
+
+$selectorg = true;
+$org = null;
+
+/**
+ * Check if user has selected organization in this request.
+ */
+if (isset($_REQUEST['org'])) {
+	$org = $_REQUEST['org'];
+	// OrgCookie is set to expire in 30 days. If set to 0, or omitted, the cookie will expire at the end of the session (when the browser closes). 
+	setcookie("OrgCookie", $_REQUEST['org'], time()+60*60*24*30);
+	$selectorg = false;
+
+/**
+ * If user has not selected organization in this request, then check if the user
+ * has stored the selected organization as a cookie.
+ */
+} elseif (isset($_COOKIE["OrgCookie"])) {
+	$org = $_COOKIE["OrgCookie"];
+	$selectorg = false;
+}
+
+/**
+ * If the user has excplicitly selected to change the preselected organization.
+ */
+if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'change_org') {
+	setcookie("OrgCookie", "", time() - 3600);
+	$selectorg = true;
+}
+
+
+
 
 if (isset($_REQUEST['username'])) {	
 	try {
@@ -86,10 +120,10 @@ if (isset($_REQUEST['username'])) {
 		if (!preg_match('/^[a-z0-9.]*$/', $requestedOrg) ) 
 			throw new Exception('Illegal characters in organization.');
 
-		if (!array_key_exists($requestedOrg, $ldapfeide))
+		if (!array_key_exists($requestedOrg, $ldaporgconfig))
 			throw new Exception('Organization ' . $requestedOrg . ' does not exist in configuration.');
 		
-		$ldapconfig = $ldapfeide[$requestedOrg];
+		$orgconfig = $ldaporgconfig[$requestedOrg];
 		
 		/*
 		 * Checking password parameter.
@@ -105,13 +139,17 @@ if (isset($_REQUEST['username'])) {
 		/*
 		 * Connecting to LDAP.
 		 */
-		$ldap = new SimpleSAML_Auth_LDAP($ldapconfig['hostname']);
+		$ldap = new SimpleSAML_Auth_LDAP($orgconfig['hostname'], $orgconfig['enable_tls']);
 
 		/*
 		 * Search for eduPersonPrincipalName.
 		 */
+		if (isset($orgconfig['adminUser'])) {
+			$ldap->bind($orgconfig['adminUser'], $orgconfig['adminPassword']);
+		}
+		 
 		$eppn = $requestedUser."@".$requestedOrg;
-		$dn = $ldap->searchfordn($ldapconfig['searchbase'],'eduPersonPrincipalName', $eppn);
+		$dn = $ldap->searchfordn($orgconfig['searchbase'], 'eduPersonPrincipalName', $eppn);
 
 		/*
 		 * Do LDAP bind using DN found from the search on ePPN.
@@ -124,17 +162,62 @@ if (isset($_REQUEST['username'])) {
 		/*
 		 * Retrieve attributes from LDAP
 		 */
-		$attributes = $ldap->getAttributes($dn, $ldapconfig['attributes']);
+		$attributes = $ldap->getAttributes($dn, $orgconfig['attributes']);
+		
+		
+		/**
+		 * Retrieve organizational attributes, if the edupersonorgdn attribute is set.
+		 */
+		if (isset($attributes['edupersonorgdn'])) {
+			$orgdn = $attributes['edupersonorgdn'][0];
+			$orgattributes = $ldap->getAttributes($orgdn);
+			
+			$orgattr = array_keys($orgattributes);
+			foreach($orgattr as $value){
+				$orgattributename = ('edupersonorg:' . $value);
+				//SimpleSAML_Logger::debug('AUTH - ldap-feide: Orgattributename: '. $orgattributename);
+				$attributes[$orgattributename] = $orgattributes[$value];
+				//SimpleSAML_Logger::debug('AUTH - ldap-feide: Attribute added: '. $attributes[$orgattributename]);
+			}
+			
+		}
+		/*
+		
+		TODO: We need to figure out how to map the orgunit attributes into SAML attributes.
+		
+		if(isset($attributes['edupersonprimaryorgunitdn'][0])){
+			$orgunitdn = $attributes['edupersonprimaryorgunitdn'][0];
+		}
+			elseif(isset($attributes['edupersonorgunitdn'][0])){
+				$orgunitdn = $attributes['edupersonorgunitdn'][0];
+			}
+			
+		$orgunitattributes = $ldap->getAttributes($orgunitdn);
 
+
+		
+		$orgunitattr = array_keys($orgunitattributes);
+		foreach($orgunitattr as $value){
+			$orgunitattributename = ('edupersonorgunit: ' . $value);
+			// SimpleSAML_Logger::debug('AUTH - ldap-feide: Orgunitattributename: '. $orgunitattributename);
+			$attributes[$orgunitattributename] = $orgunitattributes[$value];
+		}
+		*/
+		
+		
+		
+		//SimpleSAML_Logger::debug('AUTH - ldap-feide: '. $orgattributes . ' successfully authenticated');
 		SimpleSAML_Logger::info('AUTH - ldap-feide: '. $requestedUser . ' successfully authenticated');
 		
 		$session->setAuthenticated(true, 'login-feide');
+		
+		
 		$session->setAttributes($attributes);
 		
 		$session->setNameID(array(
 			'value' => SimpleSAML_Utilities::generateID(),
 			'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
-		
+
 		
 		/**
 		 * Create a statistics log entry for every successfull login attempt.
@@ -159,12 +242,15 @@ if (isset($_REQUEST['username'])) {
 }
 
 
-$t = new SimpleSAML_XHTML_Template($config, 'login-ldapmulti.php', 'login.php');
+$t = new SimpleSAML_XHTML_Template($config, 'login-feide.php', 'login.php');
 
 $t->data['header'] = 'simpleSAMLphp: Enter username and password';	
 $t->data['relaystate'] = $_REQUEST['RelayState'];
-$t->data['ldapconfig'] = $ldapfeide;
-$t->data['org'] = isset($_REQUEST['org']) ? $_REQUEST['org'] : null;
+$t->data['ldapconfig'] = $ldaporgconfig;
+#$t->data['orgconfig'] = $orgconfig;
+
+$t->data['selectorg'] = $selectorg;
+$t->data['org'] = $org;
 $t->data['error'] = $error;
 if (isset($error)) {
 	$t->data['username'] = $_POST['username'];
