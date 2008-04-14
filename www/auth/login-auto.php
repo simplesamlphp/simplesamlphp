@@ -26,10 +26,13 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 
 /* Load the configuration. */
 $config = SimpleSAML_Configuration::getInstance();
-$enable = (bool)$config->getValue('auth.auto.enable');
-$attributes = $config->getValue('auth.auto.attributes');
-$ask_login = (bool)$config->getValue('auth.auto.ask_login');
-$delay_login = (int)$config->getValue('auth.auto.delay_login');
+$autoconfig = $config->copyFromBase('loginauto', 'config-login-auto.php');
+
+
+$enable = (bool)$autoconfig->getValue('auth.auto.enable');
+$attributes = $autoconfig->getValue('auth.auto.attributes');
+$ask_login = (bool)$autoconfig->getValue('auth.auto.ask_login');
+$delay_login = (int)$autoconfig->getValue('auth.auto.delay_login');
 
 /* Verify that this authentication handler is enabled. */
 if(!$enable) {
