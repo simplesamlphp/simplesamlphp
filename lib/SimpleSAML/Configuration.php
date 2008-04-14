@@ -3,7 +3,7 @@
 /**
  * Configuration of SimpleSAMLphp
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
  */
@@ -29,6 +29,11 @@ class SimpleSAML_Configuration {
 	
 	public static function init($path, $instancename = 'simplesaml', $configfilename = 'config.php') {
 		self::$instance[$instancename] = new SimpleSAML_Configuration($path, $configfilename);
+	}
+	
+	public function copyFromBase($instancename, $filename) {
+		self::$instance[$instancename] = new SimpleSAML_Configuration($this->configpath, $filename);
+		return self::$instance[$instancename];
 	}
 
 	private function loadConfig() {
