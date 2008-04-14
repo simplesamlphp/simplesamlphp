@@ -14,6 +14,7 @@ $lang = array(
 		'sl' => 'Vloga uporabnika',
 	),
 
+
 	'attribute_title' => array(
 		'en' => 'Title',
 		'no' => 'Tittel',
@@ -49,7 +50,7 @@ $lang = array(
 		'sl' => 'Priimek',
 	),
 
-	'attribute_gn' => array(
+	'attribute_givenname' => array(
 		'en' => 'Given name',
 		'no' => 'Fornavn',
 		'nn' => 'Fornamn',
@@ -200,3 +201,4 @@ $lang = array(
 );
 
 $lang['attribute_o'] = $lang['attribute_organisationname'];
+$lang['attribute_gn'] = $lang['attribute_givenname'];
