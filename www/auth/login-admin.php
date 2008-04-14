@@ -79,7 +79,7 @@ if (isset($_POST['password'])) {
 	} else {
 		SimpleSAML_Logger::stats('AUTH-login-admin Failed');
 		$error = 'error_wrongpassword';
-		SimpleSAML_Logger::info($error);;
+		SimpleSAML_Logger::info($error);
 	}
 	
 }
