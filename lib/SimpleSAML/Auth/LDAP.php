@@ -130,7 +130,7 @@ class SimpleSAML_Auth_LDAP {
 	/**
 	 * Search DN for attributes, and return associative array.
 	 */
-	public function getAttributes($dn, $attributes) {
+	public function getAttributes($dn, $attributes = null) {
 	
 		$searchtxt = (is_array($attributes) ? join(',', $attributes) : 'all attributes');
 		SimpleSAML_Logger::debug('Library - LDAP: Get attributes from ' . $dn . ' (' . $searchtxt . ')');
