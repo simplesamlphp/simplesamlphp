@@ -12,7 +12,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-$session = SimpleSAML_Session::getInstance(true);
+$session = SimpleSAML_Session::getInstance(TRUE);
 
 SimpleSAML_Logger::info('AUTH  - ldap: Accessing auth endpoint login');
 
@@ -24,8 +24,6 @@ $error = null;
 $attributes = array();
 $username = null;
 
-if (empty($session))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOSESSION');
 
 /* Load the RelayState argument. The RelayState argument contains the address
  * we should redirect the user to after a successful authentication.

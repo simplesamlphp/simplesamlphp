@@ -31,16 +31,12 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 $config = SimpleSAML_Configuration::getInstance();
 $ldapconfig = $config->copyFromBase('loginfeide', 'config-login-feide.php');
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getInstance(TRUE);
 
 
 SimpleSAML_Logger::info('AUTH - ldap-feide: Accessing auth endpoint login-feide');
 
 $ldaporgconfig = $ldapconfig->getValue('orgldapconfig');
-
-
-if (empty($session))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOSESSION');
 
 
 /*
