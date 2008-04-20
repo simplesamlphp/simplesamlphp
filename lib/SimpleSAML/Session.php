@@ -333,7 +333,8 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 			(isset($authority) ? $authority : 'null'));
 		$this->authority = $authority;
 		$this->authenticated = $auth;
-		
+		$this->dirty = true;
+
 		if ($auth) {	
 			$this->clearNeedAuthFlag();
 			$this->sessionstarted = time();
