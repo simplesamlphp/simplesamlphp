@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Thu Mar 27 20:46:34 2008</pubdate>
+    <pubdate>Wed Apr 16 10:24:40 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -120,6 +120,15 @@
             LDAP.</para>
           </glossdef>
         </glossentry>
+
+        <glossentry>
+          <glossterm>auth/login-tlsclient.php</glossterm>
+
+          <glossdef>
+            <para>Authentication via client certificates. (using the apache
+            SSL module)</para>
+          </glossdef>
+        </glossentry>
       </glosslist></para>
 
     <section>
@@ -156,6 +165,28 @@
           LDAP server.</para>
         </listitem>
       </itemizedlist>
+    </section>
+
+    <section>
+      <title>Configure the tlsclient authenticaiton module</title>
+
+      <para>Configure apache like this:</para>
+
+      <programlisting>	SSLEngine On
+	SSLCertificateFile    /etc/ssl/private/bridge.pem
+	SSLCertificateKeyFile /etc/ssl/private/bridge.key
+	SSLCertificateChainFile    /etc/ssl/certs/sureserverEDU.pem
+	SSLOptions +StdEnvVars +ExportCertData
+	KeepAliveTimeout 60
+	SSLCipherSuite ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP:+eNULL
+	
+	SSLCACertificateFile "/etc/ssl/private/tlsclienttest-ca.crt"
+	SSLVerifyClient optional
+	SSLVerifyDepth  1</programlisting>
+
+      <para>And, then configure the identity provider to use the
+      authentication module:
+      <filename>auth/login-tlsclient.php</filename>.</para>
     </section>
 
     <section>
