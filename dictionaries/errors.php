@@ -567,5 +567,16 @@ $lang = array(
 		'en' => 'The password in the configuration (auth.adminpassword) is not changed from the default value, please edit the config.',
 		'es' => 'La clave de acceso del fichero de configuración (auth.adminpassword) no ha sido cambiada de su valor por defecto. Por favor, edite dicho fichero'
 	),
+	
+	
+	'title_NOTVALIDCERT' => array(
+		'en' => 'Invalid certificate',
+		'es' => 'Certificado no válido',
+	),
+	'descr_NOTVALIDCERT' => array(
+		'en' => 'You did not present a valid certificate',
+		'es' => 'No se ha podido validar el certificado recibido',
+	),
+	
 
 );
