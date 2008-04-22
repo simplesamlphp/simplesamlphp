@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Wed Apr 16 10:24:40 2008</pubdate>
+    <pubdate>Tue Apr 22 10:22:44 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -508,20 +508,20 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
           </glossentry>
 
           <glossentry>
-            <glossterm>simplesaml.attributes</glossterm>
-
-            <glossdef>
-              <para>Boolean, default <literal>true</literal>: Send an
-              attribute statement to the SP.</para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
             <glossterm>attributes</glossterm>
 
             <glossdef>
               <para>Array of attributes sent to the SP. If this field is not
               set, the SP receives all attributes available at the IdP.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>simplesaml.attributes</glossterm>
+
+            <glossdef>
+              <para>Boolean, default <literal>true</literal>: Send an
+              attribute statement to the SP.</para>
             </glossdef>
           </glossentry>
 

@@ -6,6 +6,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XML/AttributeFilter.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XML/SAML20/AuthnRequest.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Bindings/SAML20/HTTPPost.php');
@@ -49,6 +50,17 @@ try {
 	SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Successfully created local session from Authentication Response');
 	
 	
+	$idpmetadata = $metadata->getMetaData($session->getIdP(), 'saml20-idp-remote');
+	$spmetadata = $metadata->getMetaDataCurrent();
+	
+	
+	/*
+	 * Attribute handling
+	 */
+	$attributes = $session->getAttributes();
+	$afilter = new SimpleSAML_XML_AttributeFilter($config, $attributes);
+	$afilter->process($idpmetadata, $spmetadata);
+	
 	/**
 	 * Make a log entry in the statistics for this SSO login.
 	 */
@@ -63,6 +75,15 @@ try {
 		}
 	} 
 	SimpleSAML_Logger::stats('saml20-sp-SSO ' . $metadata->getMetaDataCurrentEntityID() . ' ' . $session->getIdP() . ' ' . $realmstr);
+	
+	
+	$afilter->processFilter($idpmetadata, $spmetadata);
+			
+	$session->setAttributes($afilter->getAttributes());
+	SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Completed attribute handling');
+	
+	
+
 		
 		
 
