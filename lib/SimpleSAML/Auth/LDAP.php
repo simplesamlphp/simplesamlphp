@@ -109,7 +109,7 @@ class SimpleSAML_Auth_LDAP {
 		} elseif (is_string($searchattr)) {
 			return '(' . $searchattr . '=' . $searchvalue. ')';
 		} else {
-			throw Exception('Search attribute is required to be an array or a string.');
+			throw new Exception('Search attribute is required to be an array or a string.');
 		}
 	}
 	
@@ -163,6 +163,40 @@ class SimpleSAML_Auth_LDAP {
 		SimpleSAML_Logger::debug('Library - LDAP: Found attributes (' . join(',', array_keys($attributes)) . ')');
 		return $attributes;
 	
+	}
+	
+	public function validate($config, $username, $password = null) {
+
+		/* Escape any characters with a special meaning in LDAP. The following
+		 * characters have a special meaning (according to RFC 2253):
+		 * ',', '+', '"', '\', '<', '>', ';', '*'
+		 * These characters are escaped by prefixing them with '\'.
+		 */
+		$username = addcslashes($username, ',+"\\<>;*');
+		$password = addcslashes($password, ',+"\\<>;*');
+		
+		if (isset($config['dnpattern'])) {
+			$dn = str_replace('%username%', $username, $config['dnpattern']);
+		} else {
+			if (isset($config['priv_user_dn']) && !$this->bind($config['priv_user_dn'], $config['priv_user_pw']) ) {
+				throw new Exception('Could not bind with system user: ' . $config['priv_user_dn']);
+			}
+			$dn = $this->searchfordn($config['searchbase'], $config['searchattributes'], $username);	
+		}
+
+		if ($password != null) { /* checking users credentials ... assuming below that she may read her own attributes ... */
+			if (!$this->bind($dn, $password)) {
+				SimpleSAML_Logger::info('AUTH - ldap: '. $username . ' failed to authenticate. DN=' . $dn);
+				return FALSE;
+			}
+		}
+
+		/*
+		 * Retrieve attributes from LDAP
+		 */
+		$attributes = $this->getAttributes($dn, $config['attributes']);
+		return $attributes;
+		
 	}
 
 
