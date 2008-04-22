@@ -447,6 +447,30 @@
               validating signatures.</para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>assertion.encryption</glossterm>
+
+            <glossdef>
+              <para>Set to true if the remote idp encrypts assertions.
+              Encrypted assertions are decrypted regardless of the value this
+              field if the neccesary certificate or key is available, but if
+              it is set to true and an unencrypted assertion is recieved an
+              exception is raised.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>sharedkey</glossterm>
+
+            <glossdef>
+              <para>Used for optional symmetric decryption of assertions.
+              Currently the algorithm is hardcoded to AES128_CBC/RIJNDAEL_128
+              which uses up to 128 bit for the passphrase/key. Not necessary
+              if the idp uses a sessionkey which is encrypted by the idp's
+              private key.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
       </section>
 

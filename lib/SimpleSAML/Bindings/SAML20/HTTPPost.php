@@ -125,11 +125,7 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		
 		/* load the private key from file - last arg is bool if key in file (TRUE) or is string (FALSE) */
 		$objKey->loadKey($privatekey,TRUE);
-		
-		
-		
-		
-		
+				
 		$objXMLSecDSig->sign($objKey);
 		
 		$public_cert = file_get_contents($publiccert);
@@ -146,6 +142,43 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		$objXMLSecDSig->appendSignature($firstassertionroot, true, true);
 		//$objXMLSecDSig->appendSignature($responseroot, true, false);
 		
+		if (isset($spmd['assertion.encryption']) && $spmd['assertion.encryption']) {
+			$encryptedassertion = $responsedom->createElement("saml:EncryptedAssertion");
+			$encryptedassertion->setAttribute("xmlns:saml", "urn:oasis:names:tc:SAML:2.0:assertion");
+		
+			$firstassertionroot->parentNode->replaceChild($encryptedassertion, $firstassertionroot);
+			$encryptedassertion->appendChild($firstassertionroot);
+	
+			$enc = new XMLSecEnc();
+			$enc->setNode($firstassertionroot);
+			$enc->type = XMLSecEnc::Element;
+			
+			$objKey = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
+			if (isset($spmd['sharedkey'])) {
+				$objKey->loadkey($spmd['sharedkey']);
+			} else {
+				$key = $objKey->generateSessionKey();
+				$objKey->loadKey($key);
+
+				if (!isset($spmd['certificate'])) {
+					throw new Exception("Public key for encrypting assertion needed, but not specified for saml20-sp-remote id: " . $spentityid);
+				}
+
+				$sp_publiccert = @file_get_contents($this->configuration->getPathValue('certdir') . $spmd['certificate']);
+
+				if ($sp_publiccert === FALSE) {
+					throw new Exception("Public key for encrypting assertion specified but not found for saml20-sp-remote id: " . $spentityid . " Filename: " . $spmd['certificate']);
+				}
+				
+				$keyKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
+				
+				$keyKey->loadKey($sp_publiccert);
+				
+				$enc->encryptKey($keyKey, $objKey);
+			}
+			$encNode = $enc->encryptNode($objKey); # replacing the unencrypted node
+	
+		}
 		$response = $responsedom->saveXML();
 		
 		

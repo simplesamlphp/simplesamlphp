@@ -258,6 +258,7 @@ class XMLSecurityKey {
             case (XMLSecurityKey::RSA_SHA1):
                 $this->cryptParams['library'] = 'openssl';
                 $this->cryptParams['method'] = 'http://www.w3.org/2000/09/xmldsig#rsa-sha1';
+                $this->cryptParams['padding'] = OPENSSL_PKCS1_PADDING;
                 if (is_array($params) && ! empty($params['type'])) {
                     if ($params['type'] == 'public' || $params['type'] == 'private') {
                         $this->cryptParams['type'] = $params['type'];
@@ -415,7 +416,7 @@ class XMLSecurityKey {
     private function encryptOpenSSL($data) {
         if ($this->cryptParams['type'] == 'public') {
             if (! openssl_public_encrypt($data, $encrypted_data, $this->key, $this->cryptParams['padding'])) {
-                throw new Exception('Failure encrypting Data');
+                throw new Exception('Failure encrypting Data ' . openssl_error_string() . "###" . $this->key);
                 return;
             }
         } else {
@@ -435,7 +436,7 @@ class XMLSecurityKey {
             }
         } else {
             if (! openssl_private_decrypt($data, $decrypted, $this->key, $this->cryptParams['padding'])) {
-                throw new Exception('Failure decrypting Data');
+                throw new Exception('Failure decrypting Data' . openssl_error_string() . "###" . $this->key);
                 return;
             }
         }

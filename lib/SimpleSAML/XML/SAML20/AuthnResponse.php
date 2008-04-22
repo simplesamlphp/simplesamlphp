@@ -168,6 +168,68 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 
 	/**
+	* This function decrypts the Assertion in the AuthnResponse
+	* It throws an exception if the encryptAssertion for the remote idp is true and
+	* the assertion is not encrypted
+	* To Do: handle multible assertions
+	*/
+	private function decryptAssertion() {
+
+		$dom = $this->getDOM();
+		$encryptedassertion = $this->doXPathQuery('/samlp:Response/saml:EncryptedAssertion')->item(0);
+		$objenc = new XMLSecEnc();
+		$encData = $objenc->locateEncryptedData($dom);
+		if ($encData) {	
+			$spmd = $this->metadata->getMetaDataCurrent('saml20-sp-hosted');
+			$spid = $this->metadata->getMetaDataCurrentEntityID('saml20-sp-hosted');
+			$objenc->setNode($encData);
+			$objenc->type = $encData->getAttribute("Type");
+
+			$key = NULL;
+			$objKey = $objenc->locateKey($encData);
+			if ($objKey) {
+				if ($objKeyInfo = $objenc->locateKeyInfo($objKey)) {
+					if ($objKeyInfo->isEncrypted) {
+						$objencKey = $objKeyInfo->encryptedCtx;
+						if (!isset($spmd['privatekey'])) {
+							throw new Exception("Private key for decrypting assertion needed, but not specified for saml20-sp-hosted id: " . $spid);
+						}
+						$privatekey = @file_get_contents($this->configuration->getPathValue('certdir') . $spmd['privatekey']);
+						if ($privatekey === FALSE) {
+							throw new Exception("Private key for decrypting assertion specified but not found for saml20-sp-hosted id: " . $spid . " Filename: " . $spmd['privatekey']);
+						}
+						$objKeyInfo->loadKey($privatekey);
+						$key = $objencKey->decryptKey($objKeyInfo);
+					} else {
+						$idpmd = $this->metadata->getMetaData($this->issuer, 'saml20-idp-remote');
+						if (!isset( $idpmd['sharedkey'])) {
+							throw new Exception("Shared key for decrypting assertion needed, but not specified for saml20-idp-remote id: " . $this->issuer);
+						}
+						$key = $idpmd['sharedkey'];
+					}
+				}
+			}
+
+			if (empty($objKey) || empty($key)) {
+				throw new Exception("Error loading key to handle Decryption: >" . var_export($objKey, true));
+			}
+			$objKey->loadkey($key);
+			
+			$decrypted = $objenc->decryptNode($objKey, false);
+	
+			$newdoc = new DOMDocument();
+			$newdoc->loadXML('<root xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'.$decrypted.'</root>');
+			$importEnc = $encData->ownerDocument->importNode($newdoc->documentElement->firstChild, TRUE);
+			$encryptedassertion->parentNode->replaceChild($importEnc, $encryptedassertion);
+		} else {
+			$md = $this->metadata->getMetaData($this->issuer, 'saml20-idp-remote');
+			if (isset($md['assertion.encryption']) && $md['assertion.encryption']) {
+				throw new Exception('Received unencrypted assertion from [' . $this->issuer . '] contrary to its metadata attribute [assertion.encryption]: ' . $md['assertion.encryption']);
+			}
+		}
+	}
+
+	/**
 	 * This function validates the signature element of this response. It will throw an exception
 	 * if it is unable to validate the signature.
 	 */
@@ -180,7 +242,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 		$publickey = FALSE;
 		if (isset($md['certificate'])) {
-			$publickey = file_get_contents($this->configuration->getPathValue('certdir') . $md['certificate']);
+			$publickey = @file_get_contents($this->configuration->getPathValue('certdir') . $md['certificate']);
 			if (!$publickey) {
 				throw new Exception("Optional saml20-idp-remote metadata 'certificate' set, but no certificate found");			
 			}
@@ -408,6 +470,8 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		/* Find the issuer of this response. */
 		$this->issuer = $this->findIssuer();
 
+		$this->decryptAssertion();
+
 		/* Validate the signature element. */
 		$this->validateSignature();
 
@@ -531,6 +595,8 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$authnResponse = '<samlp:Response 
 			xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" 
 			xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			ID="' . $id . '"
 			InResponseTo="' . htmlspecialchars($inresponseto) . '" Version="2.0"
 			IssueInstant="' . $issueInstant . '"
@@ -606,7 +672,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	private static function enc_attribute($name, $values, $base64 = false) {
 		assert(is_array($values));
 
-		$ret = '<saml:Attribute Name="' . htmlspecialchars($name) . '">';
+		$ret = '<saml:Attribute NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic"  Name="' . htmlspecialchars($name) . '">';
 
 		foreach($values as $value) {
 			if($base64) {
@@ -615,7 +681,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 				$text = htmlspecialchars($value);
 			}
 
-			$ret .= '<saml:AttributeValue xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' .
+			$ret .= '<saml:AttributeValue xsi:type="xs:string">' .
 			        $text . '</saml:AttributeValue>';
 		}
 

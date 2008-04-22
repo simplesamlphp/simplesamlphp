@@ -570,6 +570,27 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
               is <literal>false</literal>.</para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>assertion.enctyption</glossterm>
+
+            <glossdef>
+              <para>Boolean, default <literal>false</literal>. Defines whether
+              this IdP shoul encrypt assertions to this SP.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>sharedkey</glossterm>
+
+            <glossdef>
+              <para>Used for optional symmetric encryption of assertions.
+              Currently the algorithm is hardcoded to AES128_CBC/RIJNDAEL_128
+              which uses up to 128 bit for the passphrase/key. If you want to
+              use a sessionkey which is encrypted by this idp's private key do
+              not specify a sharedkey.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
       </section>
     </section>
