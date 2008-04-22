@@ -33,7 +33,7 @@ class SimpleSAML_XML_Validator {
 	 * @param $idAttribute  The ID attribute which is used in node references. If this attribute is
 	 *                      NULL (the default), then we will use whatever is the default ID.
 	 */
-	public function __construct($xmlDocument, $idAttribute = NULL) {
+	public function __construct($xmlDocument, $idAttribute = NULL, $publickey = FALSE) {
 		assert('$xmlDocument instanceof DOMDocument');
 
 		$this->xmlDocument = $xmlDocument;
@@ -69,10 +69,13 @@ class SimpleSAML_XML_Validator {
 		}
 
 		/* Load the key data. */
-		if (!XMLSecEnc::staticLocateKeyInfo($objKey, $signatureElement)) {
-			throw new Exception('Error finding key data for XML signature validation.');
+		if ($publickey) {
+			$objKey->loadKey($publickey);
+		} else {
+			if (!XMLSecEnc::staticLocateKeyInfo($objKey, $signatureElement)) {
+				throw new Exception('Error finding key data for XML signature validation.');
+			}
 		}
-
 		/* Check the signature. */
 		if (! $objXMLSecDSig->verify($objKey)) {
 			throw new Exception("Unable to validate Signature");

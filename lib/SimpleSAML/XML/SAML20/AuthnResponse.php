@@ -175,17 +175,26 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 		$dom = $this->getDOM();
 
-		/* Validate the signature. */
-		$this->validator = new SimpleSAML_XML_Validator($dom, 'ID');
-
 		/* Get the metadata of the issuer. */
 		$md = $this->metadata->getMetaData($this->issuer, 'saml20-idp-remote');
 
-		/* Get fingerprint for the certificate of the issuer. */
-		$issuerFingerprint = $md['certFingerprint'];
-
-		/* Validate the fingerprint. */
-		$this->validator->validateFingerprint($issuerFingerprint);
+		$publickey = FALSE;
+		if (isset($md['certificate'])) {
+			$publickey = file_get_contents($this->configuration->getPathValue('certdir') . $md['certificate']);
+			if (!$publickey) {
+				throw new Exception("Optional saml20-idp-remote metadata 'certificate' set, but no certificate found");			
+			}
+		}
+		/* Validate the signature. */
+		$this->validator = new SimpleSAML_XML_Validator($dom, 'ID', $publickey);
+		
+		if (!$publickey) {
+			/* Get fingerprint for the certificate of the issuer. */
+			$issuerFingerprint = $md['certFingerprint'];
+	
+			/* Validate the fingerprint. */
+			$this->validator->validateFingerprint($issuerFingerprint);
+		}
 	}
 
 
