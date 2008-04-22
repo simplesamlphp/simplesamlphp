@@ -444,7 +444,7 @@
               <para>Name of certificate file in PEM format, in the
               <filename>certs</filename> directory. Used for decrypting
               assertions and as an alternative to certFingerprint for
-              validating signatures. </para>
+              validating signatures.</para>
             </glossdef>
           </glossentry>
         </glosslist>
