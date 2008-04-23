@@ -569,4 +569,15 @@ $lang = array(
 	),
 	
 
+	'title_NOTSET' => array(
+		'en' => 'Password not set',
+		'no' => 'Passordet er ikke satt',
+		'es' => 'No ha establecido una clave de acceso'
+	),
+	'descr_NOTSET' => array(
+		'en' => 'The password in the configuration (auth.adminpassword) is not changed from the default value, please edit the config.',
+		'no' => 'Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til noe annet enn default verdien. Bytt passord i config.php.',
+		'es' => 'La clave de acceso del fichero de configuración (auth.adminpassword) no ha sido cambiada de su valor por defecto. Por favor, edite dicho fichero'
+	),
+
 );
