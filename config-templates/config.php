@@ -113,7 +113,7 @@ $config = array (
 	/*
 	 * Languages available and what language is default
 	 */
-	'language.available'	=> array('en', 'no', 'nn', 'dk', 'es', 'de', 'fr', 'nl', 'lu', 'sl'),
+	'language.available'	=> array('en', 'no', 'nn', 'da', 'es', 'de', 'fr', 'nl', 'lu', 'sl'),
 	'language.default'		=> 'en',
 	/* 
 	 * Leave the language.base to 'en' (english). The language base MUST be set

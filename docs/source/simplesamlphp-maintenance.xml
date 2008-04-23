@@ -298,7 +298,7 @@
       <programlisting>  /*
          * Languages available and which language is default
          */
-        'language.available' =&gt; array('en', 'no', 'dk', 'es', 'xx'),
+        'language.available' =&gt; array('en', 'no', 'da', 'es', 'xx'),
         'language.default'   =&gt; 'en',</programlisting>
   
       <para>Please use the standarized two-character <ulink
