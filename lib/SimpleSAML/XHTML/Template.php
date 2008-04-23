@@ -166,7 +166,7 @@ class SimpleSAML_XHTML_Template {
 	 * @param $replacements		An associative array of keys that should be replaced with values in the translated string.
 	 * @param $striptags		Should HTML tags be stripped from the translation
 	 */
-	private function t($tag, $fallbacktag = true, $fallbackdefault = true, $replacements = null, $striptags = false) {
+	private function t($tag, $fallbacktag = true, $fallbackdefault = true, $replacements = array(), $striptags = false) {
 		
 		if (empty($this->langtext) || !is_array($this->langtext)) {
 			SimpleSAML_Logger::error('Template: No language text loaded. Looking up [' . $tag . ']');
@@ -183,23 +183,27 @@ class SimpleSAML_XHTML_Template {
 			 * Look up translation of tag in the selected language
 			 */
 			if (array_key_exists($selected_language, $this->langtext[$tag])) {
-				return $this->langtext[$tag][$selected_language];
+				$translated =  $this->langtext[$tag][$selected_language];
 
 			/**
 			 * Look up translation of tag in the default language, only if fallbackdefault = true (method parameter)
 			 */				
 			} elseif($fallbackdefault && array_key_exists($default_language, $this->langtext[$tag])) {
 				SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not found in language [' . $selected_language . '] using default [' . $default_language . '].');
-				return $this->langtext[$tag][$default_language];
+				$translated =  $this->langtext[$tag][$default_language];
 				
 			/**
 			 * Look up translation of tag in the base language, only if fallbackdefault = true (method parameter)
 			 */				
 			} elseif($fallbackdefault && array_key_exists($base_language, $this->langtext[$tag])) {
 				SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not found in language default [' . $default_language . '] using base [' . $base_language . '].');
-				return $this->langtext[$tag][$base_language];
+				$translated =  $this->langtext[$tag][$base_language];
 				
 			}
+			foreach ($replacements as $k => $v) {
+				$translated = str_replace($k, $v, $translated);
+			}
+			return $translated;
 		}
 		SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not translated at all.');
 		return $this->t_not_translated($tag, $fallbacktag); 
