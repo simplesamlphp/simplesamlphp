@@ -81,7 +81,6 @@ $lang = array(
 		'no' => 'Yey! simpleSAMLphp virker jammen kult, hvor kan jeg finne ut mer om det? Du kan lese mer om simpleSAMLphp på <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp sin hjemmeside</a>.',
 		'nn' => 'Yey! simpleSAMLphp er jammen kult, kvar finn eg ut meir? Du kan lesa meir om simpleSAMLphp på <a href="http://rnd.feide.no/simplesamlphp">heimesida til simpleSAMLphp</a>.',
 		'da' => 'Yes, det er cool! Hvor kan jeg læse mere om det? Gå til <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp\'s hjemmeside</a>',
-		'da' => 'Yes, det er cool! Hvor kan jeg læse mere om det? Gå til <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp sin hjemmeside</a>',
 		'es' => '&iexcl;Eh! Esto del simpleSAMLphp est&aacute; interesante, &iquest;d&oacute;nde puedo averiguar m&aacute;a? Hay m&aacute;s informaci&oacute;n sobre <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp en el blog de I+D de Feide</a> en <a href="http://uninett.no">UNINETT</a>.',
 		'fr' => 'Yeah! simpleSAMLphp est assez cool, où puis-je en lire plus à son sujet ?  Vous trouverez plus d\'informations sur  <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp sur le blog de la R&amp;D de Feide</a> sur <a href=\"http://uninett.no\">UNINETT</a>.',
 		'de' => 'Hey, dieses simpleSAMLphp ist eine ziemlich coole Sache, wo kann ich mehr darüber lesen? Sie finden mehr Informationen über <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp auf dem Feide RnD blog</a> auf <a href="http://uninett.no">UNINETT</a>.',
