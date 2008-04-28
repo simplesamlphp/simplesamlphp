@@ -56,7 +56,7 @@ try {
 	'" . htmlspecialchars($spentityid) . "' => array(
  		'AssertionConsumerService' => '" . htmlspecialchars($metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted')) . "',
  		'SingleLogoutService'      => '" . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted')) . "'
-	)
+	),
 ";
 	
 	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
