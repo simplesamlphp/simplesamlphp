@@ -27,6 +27,13 @@ class SimpleSAML_XHTML_Template {
 	
 	public $data = null;
 
+	/*
+	 * Constructor
+	 *
+	 * @param $configuration   Configuration object
+	 * @param $template        Which template file to load
+	 * @param $languagefile    Optionally load a language file
+	 */
 	function __construct(SimpleSAML_Configuration $configuration, $template, $languagefile = null) {
 		$this->configuration = $configuration;
 		$this->template = $template;
@@ -40,13 +47,26 @@ class SimpleSAML_XHTML_Template {
 		if (!empty($languagefile)) $this->includeLanguageFile($languagefile);
 	}
 	
+	/**
+	 * setLanguage() will set a cookie for the user's browser to remember what language 
+	 * was selected
+	 * 
+	 * @param $language    Language code for the language to set.
+	 */
 	public function setLanguage($language) {
 		$this->language = $language;
 		// setcookie ( string $name [, string $value [, int $expire [, string $path [, string $domain [, bool $secure [, bool $httponly ]]]]]] )
 		// time()+60*60*24*900 expires 900 days from now.
 		setcookie('language', $language, time()+60*60*24*900);
 	}
-	
+
+	/**
+	 * getLanguage() will return the language selected by the user, or the default language
+	 * This function first looks for a cached language code, 
+	 * then checks for a language cookie,
+	 * then it tries to calculate the preferred language from HTTP headers.
+	 * Last it returns the default language.
+	 */	
 	public function getLanguage() {
 		
 		// Language is set in object
@@ -117,10 +137,16 @@ class SimpleSAML_XHTML_Template {
 	}
 
 	
+	/**
+	 * Returns the language default (from configuration)
+	 */
 	private function getDefaultLanguage() {
 		return $this->configuration->getValue('language.default', 'en');
 	}
 
+	/**
+	 * Returns a list of all available languages.
+	 */
 	private function getLanguageList() {
 		$availableLanguages = $this->configuration->getValue('language.available');
 		$thisLang = $this->getLanguage();
@@ -130,7 +156,11 @@ class SimpleSAML_XHTML_Template {
 		}
 		return $lang;
 	}
-	
+
+	/**
+	 * Includs a file relative to the template base directory.
+	 * This function can be used to include headers and footers etc.
+	 */	
 	private function includeAtTemplateBase($file) {
 		$data = $this->data;
 		$filename = $this->configuration->getPathValue('templatedir') . $this->configuration->getValue('theme.use') . '/' . $file;
@@ -152,6 +182,13 @@ class SimpleSAML_XHTML_Template {
 		include($filename);
 	}
 
+
+	/**
+	 * Earlier simpleSAMLphp had a separate directory for each language. This is
+	 * not the case anymore, therefore this function is deprecated.
+	 *
+	 * @deprecated
+	 */	
 	private function includeAtLanguageBase($file) {	
 		throw new Exception('Deprecated method call includeAtLanguageBase()');
 	}
