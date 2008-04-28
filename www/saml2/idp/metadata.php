@@ -100,7 +100,7 @@ try {
 		
 	
 		$t->data['header'] = 'SAML 2.0 IdP Metadata';
-		$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery());
+		$t->data['metaurl'] = SimpleSAML_Utilities::selfURLNoQuery();
 		$t->data['metadata'] = htmlentities($metaxml);
 		$t->data['metadataflat'] = htmlentities($metaflat);
 		$t->data['defaultidp'] = $defaultidp;
