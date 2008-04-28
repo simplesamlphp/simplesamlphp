@@ -37,9 +37,10 @@ $langnames = array(
 	'en' => 'English',
 	'de' => 'Deutsch',
 	'da' => 'Dansk',
+	'se' => 'Svenska',
 	'es' => 'Español',
 	'fr' => 'Français',
-	'nl' => 'Dutch',
+	'nl' => 'Nederlands',
 	'lu' => 'Luxembourgish',
 	'sl' => 'Slovenščina',
 );
