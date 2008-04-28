@@ -55,35 +55,39 @@ try {
 		
 </EntityDescriptor>';
 
-	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xml') {
+	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
+		$defaultidp = $config->getValue('default-shib13-idp');
+		
+		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php');
+		
+	
+		$t->data['header'] = 'Shib 1.3 SP Metadata';
+		$t->data['metadata'] = htmlspecialchars($metaxml);
+		$t->data['metadataflat'] = htmlspecialchars($metaflat);
+		$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), 'output=xml');
+		
+		/*
+		if (array_key_exists($defaultidp, $send_metadata_to_idp)) {
+			$et->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];
+			$et->data['federationname'] = $send_metadata_to_idp[$defaultidp]['name'];
+		}
+		*/
+	
+		$t->data['techemail'] = $config->getValue('technicalcontact_email', 'na');
+		$t->data['version'] = $config->getValue('version', 'na');
+		$t->data['defaultidp'] = $defaultidp;
+		
+		$t->show();
+		
+	} else {	
+	
 		header('Content-Type: application/xml');
 		
 		echo $metaxml;
 		exit(0);
 	}
 	
-	$defaultidp = $config->getValue('default-shib13-idp');
-	
-	$t = new SimpleSAML_XHTML_Template($config, 'metadata.php');
-	
 
-	$t->data['header'] = 'Shib 1.3 SP Metadata';
-	$t->data['metadata'] = htmlspecialchars($metaxml);
-	$t->data['metadataflat'] = htmlspecialchars($metaflat);
-	$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), 'output=xml');
-	
-	/*
-	if (array_key_exists($defaultidp, $send_metadata_to_idp)) {
-		$et->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];
-		$et->data['federationname'] = $send_metadata_to_idp[$defaultidp]['name'];
-	}
-	*/
-
-	$t->data['techemail'] = $config->getValue('technicalcontact_email', 'na');
-	$t->data['version'] = $config->getValue('version', 'na');
-	$t->data['defaultidp'] = $defaultidp;
-	
-	$t->show();
 	
 } catch(Exception $exception) {
 	

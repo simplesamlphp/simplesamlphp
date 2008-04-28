@@ -83,7 +83,28 @@ try {
 
 </EntityDescriptor>';
 
-	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xml') {
+	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
+		$defaultidp = $config->getValue('default-saml20-idp');
+		
+		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php');
+	
+		$t->data['header'] = 'SAML 2.0 SP Metadata';
+		$t->data['metadata'] = htmlentities($metaxml);
+		$t->data['metadataflat'] = htmlentities($metaflat);
+		$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), 'output=xml');
+		
+		if (array_key_exists($defaultidp, $send_metadata_to_idp)) {
+			$t->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];
+			$t->data['federationname'] = $send_metadata_to_idp[$defaultidp]['name'];
+		}
+	
+		$t->data['techemail'] = $config->getValue('technicalcontact_email', 'na');
+		$t->data['version'] = $config->getValue('version', 'na');
+		$t->data['defaultidp'] = $defaultidp;
+		
+		$t->show();
+		
+	} else {
 		header('Content-Type: application/xml');
 		
 		echo $metaxml;
@@ -91,25 +112,7 @@ try {
 	}
 	
 	
-	$defaultidp = $config->getValue('default-saml20-idp');
-	
-	$t = new SimpleSAML_XHTML_Template($config, 'metadata.php');
 
-	$t->data['header'] = 'SAML 2.0 SP Metadata';
-	$t->data['metadata'] = htmlentities($metaxml);
-	$t->data['metadataflat'] = htmlentities($metaflat);
-	$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), 'output=xml');
-	
-	if (array_key_exists($defaultidp, $send_metadata_to_idp)) {
-		$t->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];
-		$t->data['federationname'] = $send_metadata_to_idp[$defaultidp]['name'];
-	}
-
-	$t->data['techemail'] = $config->getValue('technicalcontact_email', 'na');
-	$t->data['version'] = $config->getValue('version', 'na');
-	$t->data['defaultidp'] = $defaultidp;
-	
-	$t->show();
 	
 } catch(Exception $exception) {
 	

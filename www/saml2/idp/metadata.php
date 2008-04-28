@@ -93,25 +93,29 @@ try {
 </EntityDescriptor>';
 	
 	
-	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xml') {
+	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
+		$defaultidp = $config->getValue('default-saml20-idp');
+		
+		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php');
+		
+	
+		$t->data['header'] = 'SAML 2.0 IdP Metadata';
+		$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery());
+		$t->data['metadata'] = htmlentities($metaxml);
+		$t->data['metadataflat'] = htmlentities($metaflat);
+		$t->data['defaultidp'] = $defaultidp;
+		$t->show();
+			
+	} else {
+	
 		header('Content-Type: application/xml');
 		
 		echo $metaxml;
 		exit(0);
+
 	}
 
 
-	$defaultidp = $config->getValue('default-saml20-idp');
-	
-	$t = new SimpleSAML_XHTML_Template($config, 'metadata.php');
-	
-
-	$t->data['header'] = 'SAML 2.0 IdP Metadata';
-	$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), 'output=xml');
-	$t->data['metadata'] = htmlentities($metaxml);
-	$t->data['metadataflat'] = htmlentities($metaflat);
-	$t->data['defaultidp'] = $defaultidp;
-	$t->show();
 	
 } catch(Exception $exception) {
 	
