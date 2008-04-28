@@ -36,7 +36,8 @@ if (!$config->getValue('enable.shib13-idp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
 try {
-	$idpentityid = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
+	$idpentityid = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted', 'entityid');
+	$idmetaindex = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted', 'metaindex');
 	$idpmetadata = $metadata->getMetaDataCurrent('shib13-idp-hosted');
 } catch (Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
@@ -188,7 +189,7 @@ if (!$session->isAuthenticated($authority) ) {
 			throw new Exception('Could not retrieve issuer of the AuthNRequest (ProviderID)');
 		
 		$httppost->sendResponse($authnResponseXML, 
-			$idpentityid, $issuer, isset($requestcache['RelayState']) ? $requestcache['RelayState'] : null, $shire);
+			$idpmetaindex, $issuer, isset($requestcache['RelayState']) ? $requestcache['RelayState'] : null, $shire);
 			
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);

@@ -8,9 +8,9 @@
 
 
 $metadata = array(
-	'dev3.andreas.feide.no'	=> array(
-		'issuer'						=>	'dev3.andreas.feide.no',
-		'host'							=>	'dev3.andreas.feide.no',
+	'__DYNAMIC:1__'	=> array(
+
+		'host'							=>	'__DEFAULT__',
 		'audience'						=> 'urn:mace:feide:shiblab',
 		
 		// X.509 key and certificate. Relative to the cert directory.

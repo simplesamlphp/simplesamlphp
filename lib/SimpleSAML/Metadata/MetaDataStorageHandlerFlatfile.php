@@ -1,6 +1,7 @@
 <?php
 
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageSource.php');
 
 /**
@@ -116,12 +117,35 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
 
 		/* Add the entity id of an entry to each entry in the metadata. */
 		foreach ($metadataSet AS $entityId => &$entry) {
-			$entry['entityid'] = $entityId;
+			if (preg_match('/__DYNAMIC(:[0-9]+)?__/', $entityId)) {
+				$entry['entityid'] = $this->generateDynamicHostedEntityID($set);
+			} else {
+				$entry['entityid'] = $entityId;
+			}
 		}
 
 		$this->cachedMetadata[$set] = $metadataSet;
 
 		return $metadataSet;
+	}
+	
+	private function generateDynamicHostedEntityID($set) {
+
+		/* Get the configuration. */
+		$config = SimpleSAML_Configuration::getInstance();
+		$baseurl = SimpleSAML_Utilities::selfURLhost() . '/' . $config->getBaseURL();
+
+		if ($set === 'saml20-idp-hosted') {
+			return $baseurl . 'saml2/idp/metadata.php';
+		} elseif($set === 'saml20-sp-hosted') {
+			return $baseurl . 'saml2/sp/metadata.php';			
+		} elseif($set === 'shib13-idp-hosted') {
+			return $baseurl . 'shib13/idp/metadata.php';
+		} elseif($set === 'shib13-sp-hosted') {
+			return $baseurl . 'shib13/sp/metadata.php';
+		} else {
+			throw new Exception('Can not generate dynamic EntityID for metadata of this type: [' . $set . ']');
+		}
 	}
 
 

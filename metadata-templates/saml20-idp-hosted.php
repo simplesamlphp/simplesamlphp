@@ -28,10 +28,10 @@
 $metadata = array( 
 
 	// The SAML entity ID is the index of this config.
-	'idp.example.org' => array(
+	'__DYNAMIC:1__' => array(
 	
 		// The hostname of the server (VHOST) that this SAML entity will use.
-		'host'				=>	'sp.example.org',
+		'host'				=>	'__DEFAULT__',
 		
 		// X.509 key and certificate. Relative to the cert directory.
 		'privatekey'		=>	'server.pem',

@@ -62,9 +62,9 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		</html>';
 	}
 	
-	public function sendResponse($response, $idpentityid, $spentityid, $relayState = null) {
+	public function sendResponse($response, $idmetaindex, $spentityid, $relayState = null) {
 
-		$idpmd = $this->metadata->getMetaData($idpentityid, 'saml20-idp-hosted');
+		$idpmd = $this->metadata->getMetaData($idmetaindex, 'saml20-idp-hosted');
 		$spmd = $this->metadata->getMetaData($spentityid, 'saml20-sp-remote');
 		
 		$destination = $spmd['AssertionConsumerService'];

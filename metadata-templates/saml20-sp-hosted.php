@@ -27,8 +27,8 @@ $metadata = array(
 	/*
 	 * Example of a hosted SP 
 	 */
-	'sp-entityid' => array(
-		'host'  => 'sp.example.org'		
+	'__DYNAMIC:1__' => array(
+		'host'  => '__DEFAULT__'
 	)
 
 );

@@ -6,7 +6,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 /**
  * This file defines a class for metadata handling.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Ã…kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
  */ 
@@ -179,9 +179,10 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 	 * It will throw an exception if it is unable to locate the entity id.
 	 *
 	 * @param $set  The set we look for the entity id in.
+	 * @param $type Do you want to return the metaindex or the entityID. [entityid|metaindex]
 	 * @return The entity id which is associated with the current hostname/path combination.
 	 */
-	public function getMetaDataCurrentEntityID($set = 'saml20-sp-hosted') {
+	public function getMetaDataCurrentEntityID($set = 'saml20-sp-hosted', $type = 'entityid') {
 
 		assert('is_string($set)');
 
@@ -189,9 +190,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 		$currenthostwithpath = SimpleSAML_Utilities::getSelfHostWithPath(); // sp.example.org/university
 
 		foreach($this->sources as $source) {
-			$entityId = $source->getEntityIdFromHostPath($currenthostwithpath, $set);
-			if($entityId !== NULL) {
-				return $entityId;
+			$index = $source->getEntityIdFromHostPath($currenthostwithpath, $set, $type);
+			if($index !== NULL) {
+				return $index;
 			}
 		}
 
@@ -204,11 +205,21 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 		}
 
 		foreach($this->sources as $source) {
-			$entityId = $source->getEntityIdFromHostPath($currenthost, $set);
+			$index = $source->getEntityIdFromHostPath($currenthost, $set, $type);
+			if($index !== NULL) {
+				return $index;
+			}
+		}
+
+
+		/* Then we look for the DEFAULT entry. */
+		foreach($this->sources as $source) {
+			$entityId = $source->getEntityIdFromHostPath('__DEFAULT__', $set, $type);
 			if($entityId !== NULL) {
 				return $entityId;
 			}
 		}
+
 
 
 		/* We were unable to find the hostname/path in any metadata source. */
@@ -241,28 +252,28 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 	 * This function looks up the metadata for the given entity id in the given set. It will throw an
 	 * exception if it is unable to locate the metadata.
 	 *
-	 * @param $entityId  The entity id we are looking up. This parameter may be NULL, in which case we look up
+	 * @param $index  The entity id we are looking up. This parameter may be NULL, in which case we look up
 	 *                   the current entity id based on the current hostname/path.
 	 * @param $set  The set of metadata we are looking up the entity id in.
 	 */
-	public function getMetaData($entityId, $set = 'saml20-sp-hosted') {
+	public function getMetaData($index, $set = 'saml20-sp-hosted') {
 
 		assert('is_string($set)');
 
-		if($entityId === NULL) {
-			$entityId = $this->getMetaDataCurrentEntityID($set);
+		if($index === NULL) {
+			$index = $this->getMetaDataCurrentEntityID($set, 'metaindex');
 		}
 
-		assert('is_string($entityId)');
+		assert('is_string($index)');
 
 		foreach($this->sources as $source) {
-			$metadata = $source->getMetaData($entityId, $set);
+			$metadata = $source->getMetaData($index, $set);
 			if($metadata !== NULL) {
 				return $metadata;
 			}
 		}
 
-		throw new Exception('Unable to locate metadata for \'' . $entityId . '\' in set \'' . $set . '\'.');
+		throw new Exception('Unable to locate metadata for \'' . $index . '\' in set \'' . $set . '\'.');
 	}
 
 }

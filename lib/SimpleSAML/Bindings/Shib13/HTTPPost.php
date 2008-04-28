@@ -59,9 +59,14 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		</html>';
 	}
 	
-	public function sendResponse($response, $idpentityid, $spentityid, $relayState = null, $claimedacs = null) {
+	/**
+	 * Send an authenticationResponse using HTTP-POST.
+	 *
+	 * @param $idpmetaindex The metaindex of the IdP to send from.
+	 */
+	public function sendResponse($response, $idpmetaindex, $spentityid, $relayState = null, $claimedacs = null) {
 
-		$idpmd = $this->metadata->getMetaData($idpentityid, 'shib13-idp-hosted');
+		$idpmd = $this->metadata->getMetaData($idpmetaindex, 'shib13-idp-hosted');
 		$spmd = $this->metadata->getMetaData($spentityid, 'shib13-sp-remote');
 		
 		$destination = $spmd['AssertionConsumerService'];
@@ -74,6 +79,8 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		$publiccert = $this->configuration->getPathValue('certdir') . $idpmd['certificate'];
 		$certchain_pem_file = isset($idpmd['certificatechain']) ? 
 			$this->configuration->getPathValue('certdir') . $idpmd['certificatechain'] : null;
+			
+#		throw new Exception('lookup: ' . $idpentityid);
 
 
 		if (!file_exists($privatekey)) throw new Exception('Could not find private key file [' . $privatekey . ']');

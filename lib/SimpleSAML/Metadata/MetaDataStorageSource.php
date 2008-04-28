@@ -11,6 +11,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
  * to the getSource static function.
  *
  * @author Olav Morken, UNINETT AS.
+ * @author Andreas Aakre Solberg, UNINETT AS.
  * @package simpleSAMLphp
  * @version $Id$
  */
@@ -70,21 +71,27 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 	 *
 	 * @param $hostPath  The host/path combination we are looking up.
 	 * @param $set  Which set of metadata we are looking it up in.
+	 * @param $type Do you want to return the metaindex or the entityID. [entityid|metaindex]
+
 	 * @return An entity id which matches the given host/path combination, or NULL if
 	 *         we are unable to locate one which matches.
 	 */
-	public function getEntityIdFromHostPath($hostPath, $set) {
+	public function getEntityIdFromHostPath($hostPath, $set, $type = 'entityid') {
 
 		$metadataSet = $this->getMetadataSet($set);
 
-		foreach($metadataSet AS $entityId => $entry) {
+		foreach($metadataSet AS $index => $entry) {
 
 			if(!array_key_exists('host', $entry)) {
 				continue;
 			}
 
 			if($hostPath === $entry['host']) {
-				return $entityId;
+				if ($type === 'entityid') {
+					return $entry['entityid'];
+				} else {
+					return $index;
+				}	
 			}
 		}
 
@@ -100,21 +107,27 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 	 *
 	 * @param $set  Which set of metadata we are looking it up in.
 	 * @param $ip	IP address
+	 * @param $type Do you want to return the metaindex or the entityID. [entityid|metaindex]
 	 * @return The entity id of a entity which have a CIDR hint where the provided
 	 * 		IP address match.
 	 */
-	public function getPreferredEntityIdFromCIDRhint($set, $ip) {
+	public function getPreferredEntityIdFromCIDRhint($set, $ip, $type = 'entityid') {
 		
 		$metadataSet = $this->getMetadataSet($set);
 
-		foreach($metadataSet AS $entityId => $entry) {
+		foreach($metadataSet AS $index => $entry) {
 
 			if(!array_key_exists('hint.cidr', $entry)) continue;
 			if(!is_array($entry['hint.cidr'])) continue;
 			
 			foreach ($entry['hint.cidr'] AS $hint_entry) {
-				if (SimpleSAML_Utilities::ipCIDRcheck($hint_entry, $ip))
-					return $entityId;
+				if (SimpleSAML_Utilities::ipCIDRcheck($hint_entry, $ip)) {
+					if ($type === 'entityid') {
+						return $entry['entityid'];
+					} else {
+						return $index;
+					}		
+				}
 			}
 
 		}
@@ -123,6 +136,21 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 		return NULL;
 	}
 
+	/*
+	 *
+	 */
+	private function lookupIndexFromEntityId($entityId, $set) {
+
+		assert('is_string($entityId)');
+		assert('isset($set)');
+
+		$metadataSet = $this->getMetadataSet($set);
+
+		foreach($metadataSet AS $index => $entry)
+			if ($entry['entityid'] === $entityId) return $index;
+		
+		return NULL;
+	}
 
 	/**
 	 * This function retrieves metadata for the given entity id in the given set of metadata.
@@ -132,22 +160,26 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 	 * override this function if it doesn't implement the getMetadataSet function, or if the
 	 * implementation of getMetadataSet is slow.
 	 *
-	 * @param $entityId  The entity id we are looking up.
+	 * @param $index  The entityId or metaindex we are looking up.
 	 * @param $set  The set we are looking for metadata in.
 	 * @return An associative array with metadata for the given entity, or NULL if we are unable to
 	 *         locate the entity.
 	 */
-	public function getMetaData($entityId, $set) {
+	public function getMetaData($index, $set) {
 
-		assert('is_string($entityId)');
+		assert('is_string($index)');
+		assert('isset($set)');
 
 		$metadataSet = $this->getMetadataSet($set);
 
-		if(!array_key_exists($entityId, $metadataSet)) {
-			return NULL;
-		}
+		if(array_key_exists($index, $metadataSet))
+			return $metadataSet[$index];
 
-		return $metadataSet[$entityId];
+		$indexlookup = $this->lookupIndexFromEntityId($index, $set);
+		if (isset($indexlookup) && array_key_exists($indexlookup, $metadataSet)) 
+			return $metadataSet[$indexlookup];
+
+		return NULL;
 	}
 
 }
