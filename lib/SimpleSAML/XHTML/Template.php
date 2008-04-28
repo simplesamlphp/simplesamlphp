@@ -27,7 +27,7 @@ class SimpleSAML_XHTML_Template {
 	
 	public $data = null;
 
-	/*
+	/**
 	 * Constructor
 	 *
 	 * @param $configuration   Configuration object
@@ -160,6 +160,7 @@ class SimpleSAML_XHTML_Template {
 	/**
 	 * Includs a file relative to the template base directory.
 	 * This function can be used to include headers and footers etc.
+	 *
 	 */	
 	private function includeAtTemplateBase($file) {
 		$data = $this->data;
@@ -197,11 +198,11 @@ class SimpleSAML_XHTML_Template {
 	/**
 	 * Include text in the current language.
 	 *
-	 * @param $tag				A name tag of the string that should be returned.
-	 * @param $fallbacktag		If set to true and string was not found in any languages, return the tag it self.
-	 * @param $fallbackdefault 	If not found in selected language fallback to default language.
-	 * @param $replacements		An associative array of keys that should be replaced with values in the translated string.
-	 * @param $striptags		Should HTML tags be stripped from the translation
+	 * @param $tag				 A name tag of the string that should be returned.
+	 * @param $fallbacktag		 If set to true and string was not found in any languages, return the tag it self.
+	 * @param $fallbackdefault 	 If not found in selected language fallback to default language.
+	 * @param $replacements		 An associative array of keys that should be replaced with values in the translated string.
+	 * @param $striptags		 Should HTML tags be stripped from the translation
 	 */
 	private function t($tag, $fallbacktag = true, $fallbackdefault = true, $replacements = array(), $striptags = false) {
 		
@@ -264,10 +265,42 @@ class SimpleSAML_XHTML_Template {
 	
 	
 	/**
-	 * Include language file from the dictionaries directory.
+	 * You can include translation inline instead of putting translation
+	 * in dictionaries. This function is reccomended to only be used from dynamic
+	 * data, or when the translation is already provided from an external source, as
+	 * a database or in metadata.
+	 *
+	 * @param $tag         The tag that has a translation
+	 * @param $translation The translation array
 	 */
-	private function includeLanguageFile($file) {
-		$filebase = $this->configuration->getPathValue('dictionarydir');
+	public function includeInlineTranslation($tag, array $translation) {
+		
+		if (!is_array($this->langtext)) 
+			$this->langtext = array();	
+		
+		SimpleSAML_Logger::info('Template: Adding inline language translation for tag [' . $tag . ']');
+		$this->langtext[$tag] = $translation;
+	}
+	
+	/**
+	 * Include language file from the dictionaries directory.
+	 *
+	 * @param $file         File name of dictionary to include
+	 * @param $otherConfig  Optionally provide a different configuration object than
+	 *  the one provided in the constructor to be used to find the dictionary directory.
+	 *  This enables the possiblity of combining dictionaries inside simpleSAMLphp 
+	 *  distribution with external dictionaries.
+	 */
+	public function includeLanguageFile($file, $otherConfig = null) {
+		
+		$filebase = null;
+		if (!empty($otherConfig)) {
+			$filebase = $otherConfig->getPathValue('dictionarydir');
+		} else {
+			$filebase = $this->configuration->getPathValue('dictionarydir');
+		}
+		
+		
 		SimpleSAML_Logger::info('Template: Loading [' . $filebase . $file . ']');
 		
 		if (!file_exists($filebase . $file)) {
