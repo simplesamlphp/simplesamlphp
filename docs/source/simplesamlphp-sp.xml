@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Tue Apr 22 10:23:15 2008</pubdate>
+    <pubdate>Mon Apr 28 11:48:32 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -149,6 +149,17 @@
 
             <glossdef>
               <para>The entity ID of the hosted SP entity.</para>
+
+              <para>simpleSAMLphp supports dynamic entityIDs that matches a
+              URL where simpleSAMLphp automatically generates metadata for the
+              hosted entity. To enable this functionality, set the index to be
+              <literal>__DYNAMIC:1__</literal>. The index needs to be unique,
+              so when you have multiple entries, increase the integer after
+              the colon. When the index <literal>__DYNAMIC:1__</literal> is
+              used, the resulting generated entity becomes something
+              like:</para>
+
+              <literallayout>https://sp.example.org/simplesaml/saml2/sp/metadata.php</literallayout>
             </glossdef>
           </glossentry>
 
@@ -156,9 +167,10 @@
             <glossterm>host</glossterm>
 
             <glossdef>
-              <para>Host name of the web server running this SAML 2.0 SP. This
-              option allows simpleSAMLphp to automatically discover which SP
-              metadata to use, when it runs multiple virtual hosts.</para>
+              <para>Host name of the server running this SP. One of your
+              metadata entries can have the value
+              <literal>__DEFAULT__</literal>. A default entry will be used
+              when no other entry matches the current hostname.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -588,6 +600,17 @@
 
             <glossdef>
               <para>The entity ID of the hosted SP entity.</para>
+
+              <para>simpleSAMLphp supports dynamic entityIDs that matches a
+              URL where simpleSAMLphp automatically generates metadata for the
+              hosted entity. To enable this functionality, set the index to be
+              <literal>__DYNAMIC:1__</literal>. The index needs to be unique,
+              so when you have multiple entries, increase the integer after
+              the colon. When the index <literal>__DYNAMIC:1__</literal> is
+              used, the resulting generated entity becomes something
+              like:</para>
+
+              <literallayout>https://sp.example.org/simplesaml/shib13/sp/metadata.php</literallayout>
             </glossdef>
           </glossentry>
 
@@ -595,9 +618,10 @@
             <glossterm>host</glossterm>
 
             <glossdef>
-              <para>The hostname of the server running this Shibboleth 1.3 SP.
-              This option allows simpleSAMLphp to automatically discover which
-              SP metadata to use, when it runs multiple virtual hosts.</para>
+              <para>Host name of the server running this SP. One of your
+              metadata entries can have the value
+              <literal>__DEFAULT__</literal>. A default entry will be used
+              when no other entry matches the current hostname.</para>
             </glossdef>
           </glossentry>
         </glosslist>

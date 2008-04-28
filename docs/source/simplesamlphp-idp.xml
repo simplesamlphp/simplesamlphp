@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Tue Apr 22 10:22:44 2008</pubdate>
+    <pubdate>Mon Apr 28 11:48:30 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -273,6 +273,17 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossdef>
               <para>The entity ID of the IdP. In this example:
               <literal>idp.example.org</literal>.</para>
+
+              <para>simpleSAMLphp supports dynamic entityIDs that matches a
+              URL where simpleSAMLphp automatically generates metadata for the
+              hosted entity. To enable this functionality, set the index to be
+              <literal>__DYNAMIC:1__</literal>. The index needs to be unique,
+              so when you have multiple entries, increase the integer after
+              the colon. When the index <literal>__DYNAMIC:1__</literal> is
+              used, the resulting generated entity becomes something
+              like:</para>
+
+              <literallayout>https://sp.example.org/simplesaml/saml2/idp/metadata.php</literallayout>
             </glossdef>
           </glossentry>
 
@@ -280,7 +291,10 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>host</glossterm>
 
             <glossdef>
-              <para>Host name of the server running this IdP.</para>
+              <para>Host name of the server running this IdP. One of your
+              metadata entries can have the value
+              <literal>__DEFAULT__</literal>. A default entry will be used
+              when no other entry matches the current hostname.</para>
             </glossdef>
           </glossentry>
 
