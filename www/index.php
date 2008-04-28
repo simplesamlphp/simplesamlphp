@@ -47,7 +47,7 @@ if ($config->getValue('enable.openid-provider') === true)
 		'text' => 'link_openidprovider');
 
 $links[] = array(
-	'href' => 'example-simple/hostnames.php', 
+	'href' => 'example-simple/hostnames.php?dummy=1', 
 	'text' => 'link_diagnostics');
 
 $links[] = array(
