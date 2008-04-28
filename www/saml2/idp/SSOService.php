@@ -30,6 +30,7 @@ $session = SimpleSAML_Session::getInstance(TRUE);
 
 try {
 	$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+	$idmetaindex = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted', 'metaindex');
 	$idpmetadata = $metadata->getMetaDataCurrent('saml20-idp-hosted');
 	
 	if (!array_key_exists('auth', $idpmetadata)) {
@@ -277,7 +278,7 @@ if($needAuth) {
 	
 		// Sending the AuthNResponse using HTTP-Post SAML 2.0 binding
 		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
-		$httppost->sendResponse($authnResponseXML, $idpentityid, $spentityid, 
+		$httppost->sendResponse($authnResponseXML, $idmetaindex, $spentityid, 
 			isset($requestcache['RelayState']) ? $requestcache['RelayState'] : null
 		);
 		
