@@ -36,22 +36,22 @@ class SimpleSAML_XML_AttributeFilter {
 		if (isset($idpmetadata['attributealter'])) {
 			if (!is_array($idpmetadata['attributealter'])) {
 				SimpleSAML_Logger::debug('Applying IdP specific attribute alter: ' . $idpmetadata['attributealter']);
-				$this->alter($idpmetadata['attributealter']);
+				$this->alter($idpmetadata['attributealter'],$spmetadata['entityid'],$idpmetadata['entityid']);
 			} else {
 				foreach($idpmetadata['attributealter'] AS $alterfunc) {
 					SimpleSAML_Logger::debug('Applying IdP specific attribute alter: ' . $alterfunc);
-					$this->alter($alterfunc);
+					$this->alter($alterfunc,$spmetadata['entityid'],$idpmetadata['entityid']);
 				}
 			}
 		}
 		if (isset($spmetadata['attributealter'])) {
 			if (!is_array($spmetadata['attributealter'])) {
 				SimpleSAML_Logger::debug('Applying SP specific attribute alter: ' . $spmetadata['attributealter']);
-				$this->alter($spmetadata['attributealter']);
+				$this->alter($spmetadata['attributealter'],$spmetadata['entityid'],$idpmetadata['entityid']);
 			} else {
 				foreach($spmetadata['attributealter'] AS $alterfunc) {
 					SimpleSAML_Logger::debug('Applying SP specific attribute alter: ' . $alterfunc);
-					$this->alter($alterfunc);
+					$this->alter($alterfunc,$spmetadata['entityid'],$idpmetadata['entityid']);
 				}
 			}
 		}
