@@ -170,7 +170,7 @@ if (isset($_REQUEST['username'])) {
 			
 			$orgattr = array_keys($orgattributes);
 			foreach($orgattr as $value){
-				$orgattributename = ('edupersonorg:' . $value);
+				$orgattributename = ('eduPersonOrgDN:' . $value);
 				//SimpleSAML_Logger::debug('AUTH - ldap-feide: Orgattributename: '. $orgattributename);
 				$attributes[$orgattributename] = $orgattributes[$value];
 				//SimpleSAML_Logger::debug('AUTH - ldap-feide: Attribute added: '. $attributes[$orgattributename]);
