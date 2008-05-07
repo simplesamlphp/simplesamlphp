@@ -2,6 +2,7 @@
 
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandlerFlatfile.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandlerXML.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandlerDynamicXML.php');
 
 /**
  * This abstract class defines an interface for metadata storage sources.
@@ -41,6 +42,8 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 			return new SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile($sourceConfig);
 		case 'xml':
 			return new SimpleSAML_Metadata_MetaDataStorageHandlerXML($sourceConfig);
+		case 'dynamicxml':
+			return new SimpleSAML_Metadata_MetaDataStorageHandlerDynamicXML($sourceConfig);
 		default:
 			throw new Exception('Invalid metadata source type: "' . $type . '".');
 		}
