@@ -12,6 +12,7 @@
  *   - authority
  *
  * Optional Parameters:
+ *   - 'userid.attribute'
  *
  *
  * Request signing (optional paramters)

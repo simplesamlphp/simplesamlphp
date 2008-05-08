@@ -19,6 +19,7 @@
  *   - 'simplesaml.attributes'	=>	true,
  *   - 'attributemap'		=>	'test',
  *   - 'attributes'			=>	array('mail'),
+ *   - 'userid.attribute'
  *
  * Request signing
  *    When request.signing is true the certificate of the sp 

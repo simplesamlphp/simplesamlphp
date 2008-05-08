@@ -55,6 +55,16 @@ $config = array (
 	'auth.adminpassword'		=> '123',
 	'admin.protectindexpage'	=> false,
 	'admin.protectmetadata'		=> false,
+
+	/**
+	 * This is a secret salt used by simpleSAMLphp when it needs to generate a secure hash
+	 * of a value. It must be changed from its default value to a secret value. The value of
+	 * 'secretsalt' can be any valid string of any length.
+	 *
+	 * A possible way to generate a random salt is by running the following command from a unix shell:
+	 * tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
+	 */
+	'secretsalt' => 'defaultsecretsalt',
 	
 	/*
 	 * Some information about the technical persons running this installation.

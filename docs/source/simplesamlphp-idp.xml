@@ -371,6 +371,20 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
               Features</emphasis> document.</para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>userid.attribute</glossterm>
+
+            <glossdef>
+              <para>The attribute name of an attribute which uniquely
+              identifies the user. This attribute is used if simpleSAMLphp
+              needs to generate a persistent unique identifier for the
+              user. This option can be set in both the IdP-hosted and the
+              SP-remote metadata. The value in the sp-remote metadata has the
+              highest priority. The default value is
+              <literal>eduPersonPrincipalName</literal>.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
       </section>
 
@@ -603,6 +617,20 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
               which uses up to 128 bit for the passphrase/key. If you want to
               use a sessionkey which is encrypted by this idp's private key do
               not specify a sharedkey.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>userid.attribute</glossterm>
+
+            <glossdef>
+              <para>The attribute name of an attribute which uniquely
+              identifies the user. This attribute is used if simpleSAMLphp
+              needs to generate a persistent unique identifier for the
+              user. This option can be set in both the IdP-hosted and the
+              SP-remote metadata. The value in the sp-remote metadata has the
+              highest priority. The default value is
+              <literal>eduPersonPrincipalName</literal>.</para>
             </glossdef>
           </glossentry>
         </glosslist>

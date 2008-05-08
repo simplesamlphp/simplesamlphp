@@ -3,6 +3,7 @@
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XHTML/Template.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
 
 /**
  * Misc static functions that is used several places.in example parsing and id generation.
@@ -804,6 +805,70 @@ class SimpleSAML_Utilities {
 		if($result !== '') {
 			SimpleSAML_Logger::warning($result);
 		}
+	}
+
+
+	/**
+	 * This function is used to generate a non-revesible unique identifier for a user.
+	 * The identifier should be persistent (unchanging) for a given SP-IdP federation.
+	 * The identifier can be shared between several different SPs connected to the same IdP, or it
+	 * can be unique for each SP.
+	 *
+	 * @param $idpEntityId  The entity id of the IdP.
+	 * @param $spEntityId   The entity id of the SP.
+	 * @param $attributes   The attributes of the user.
+	 * @return A non-reversible unique identifier for the user.
+	 */
+	public static function generateUserIdentifier($idpEntityId, $spEntityId, $attributes) {
+		$metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$idpMetadata = $metadataHandler->getMetaData($idpEntityId, 'saml20-idp-hosted');
+		$spMetadata = $metadataHandler->getMetaData($spEntityId, 'saml20-sp-remote');
+
+		if(array_key_exists('userid.attribute', $spMetadata)) {
+			$attributeName = $spMetadata['userid.attribute'];
+		} elseif(array_key_exists('userid.attribute', $idpMetadata)) {
+			$attributeName = $idpMetadata['userid.attribute'];
+		} else {
+			$attributeName = 'eduPersonPrincipalName';
+		}
+
+		if(!array_key_exists($attributeName, $attributes)) {
+			throw new Exception('Missing attribute "' . $attributeName . '" for user. Cannot' .
+			                    ' generate user id.');
+		}
+
+		$attributeValue = $attributes[$attributeName];
+		if(count($attributeValue) !== 1) {
+			throw new Exception('Attribute "' . $attributeName . '" for user did not contain exactly' .
+			                    ' one value. Cannot generate user id.');
+		}
+
+		$attributeValue = $attributeValue[0];
+		if(empty($attributeValue)) {
+			throw new Exception('Attribute "' . $attributeName . '" for user was empty. Cannot' .
+			                    ' generate user id.');
+		}
+
+
+		$secretSalt = SimpleSAML_Configuration::getInstance()->getValue('secretsalt');
+		if(empty($secretSalt)) {
+			throw new Exception('The "secretsalt" configuration option must be set before user' .
+			                    ' ids can be generated.');
+		}
+		if($secretSalt === 'defaultsecretsalt') {
+			throw new Exception('The "secretsalt" configuration option must be set to a secret' .
+			                    ' value.');
+		}
+
+		$uidData = 'uidhashbase' . $secretSalt;
+		$uidData .= strlen($idpEntityId) . ':' . $idpEntityId;
+		$uidData .= strlen($spEntityId) . ':' . $spEntityId;
+		$uidData .= strlen($attributeValue) . ':' . $attributeValue;
+		$uidData .= $secretSalt;
+
+		$userid = hash('sha1', $uidData);
+
+		return $userid;
 	}
 
 }
