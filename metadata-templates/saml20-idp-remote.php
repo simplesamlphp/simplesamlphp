@@ -10,7 +10,15 @@
 
 $metadata = array( 
 
-
+	'https://openidp.feide.no' =>  array(
+		'name'                 => 'Feide RnD OpenIdP',
+		'description'          => 'Here you can login with your account on Feide RnD OpenID. If you do not already have an account on this identity provider, you can create a new one by following the create new account link and follow the instructions.',
+		'SingleSignOnService'  => 'https://openidp.feide.no/simplesaml/saml2/idp/SSOService.php',
+		'SingleLogoutService'  => 'https://openidp.feide.no/simplesaml/saml2/idp/SingleLogoutService.php',
+		'certFingerprint'      => 'c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb'
+	),
+	
+	
 	/*
 	 * Example simpleSAMLphp SAML 2.0 IdP
 	 */

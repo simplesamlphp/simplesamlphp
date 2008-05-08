@@ -137,11 +137,11 @@ $config = array (
 	 * To enable the SAML 2.0 IdP Discovery service for a SAML 2.0 SP, you need to set the
 	 * default-saml20-idp to be null, like this:
 	 *
-	 * 		'default-saml20-idp'	=> null,
+	 * 		'default-saml20-idp' => NULL,
 	 *
 	 */
-	'default-saml20-idp'	=> 'max.feide.no',
-	'default-shib13-idp'	=> 'urn:mace:switch.ch:aaitest:dukono.switch.ch',
+	'default-saml20-idp' => 'https://openidp.feide.no',
+	'default-shib13-idp' => NULL,
 	
 	/*
 	 * IdP Discovery service look configuration. 
