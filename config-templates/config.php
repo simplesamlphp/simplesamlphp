@@ -40,7 +40,13 @@ $config = array (
 	'debug'                 =>	false,
 	'showerrors'            =>	true,
 	'errorreportaddress'    =>  'http://rnd.feide.no/content/sending-information-simplesamlphp',
-	
+
+	/**
+	 * This option allows you to enable validation of SAML 2.0 messages against their
+	 * schemas. A warning will be written to the log if validation fails.
+	 */
+	'debug.validatesaml2messages' => false,
+
 	/**
 	 * This password must be kept secret, and modified from the default value 123.
 	 * This password will give access to the installation page of simpleSAMLphp with

@@ -735,6 +735,77 @@ class SimpleSAML_Utilities {
 		return $ret;
 	}
 
+
+	/**
+	 * This function attempts to validate an XML string against the specified schema.
+	 *
+	 * It will parse the string into a DOM document and validate this document against the schema.
+	 *
+	 * @param $xml     The XML string which should be validated.
+	 * @param $schema  The schema which should be used.
+	 * @return Returns a string with the errors if validation fails. An empty string is
+	 *         returned if validation passes.
+	 */
+	public static function validateXML($message, $schema) {
+		assert('is_string($message)');
+		assert('is_string($schema)');
+
+		$xmlErrorState = libxml_use_internal_errors(TRUE);
+		libxml_clear_errors();
+
+		$dom = new DOMDocument;
+		$res = $dom->loadXML($message);
+		if($res) {
+
+			$config = SimpleSAML_Configuration::getInstance();
+			$schemaPath = $config->resolvePath('schemas') . '/';
+			$schemaFile = $schemaPath . $schema;
+
+			$res = $dom->schemaValidate($schemaFile);
+			if($res) {
+				libxml_use_internal_errors($xmlErrorState);
+				return '';
+			}
+
+			$errorText = 'Schema validation failed on XML string:';
+		} else {
+			$errorText = 'Failed to parse XML string for schema validation:';
+		}
+
+		$errors = libxml_get_errors();
+		foreach($errors as $error) {
+			$errorText .= ' [' . $error->level . ':'  . $error->code . '@'
+				. $error->line . ',' . $error->column . ' ' . trim($error->message) . ']';
+		}
+
+		return $errorText;
+	}
+
+
+	/**
+	 * This function validates a SAML2 message against its schema.
+	 * A warning will be printed to the log if validation fails.
+	 *
+	 * @param $message  The message which should be validated.
+	 */
+	public static function validateSAML2Message($message) {
+		assert('is_string($message)');
+
+		$enabled = SimpleSAML_Configuration::getInstance()->getValue('debug.validatesaml2messages', FALSE);
+		if(!is_bool($enabled)) {
+			throw new Exception('Expected "debug.validatesaml2messages" to be set to a boolean value.');
+		}
+
+		if(!$enabled) {
+			return;
+		}
+
+		$result = self::validateXML($message, 'saml-schema-protocol-2.0.xsd');
+		if($result !== '') {
+			SimpleSAML_Logger::warning($result);
+		}
+	}
+
 }
 
 ?>
