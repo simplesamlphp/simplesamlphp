@@ -20,6 +20,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 	private $message = null;
 	private $dom;
 	private $relayState = null;
+	private $isPassive = 'false';
 	
 	
 	const PROTOCOL = 'saml2';
@@ -104,6 +105,43 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		}
 		return $requestid;	
 		*/
+	}
+
+
+	/**
+	 * This function sets the IsPassive flag
+	 *
+	 */
+	public function setIsPassive($isPassive) {
+		$this->isPassive = $isPassive ? 'true' : 'false';
+	}
+
+	/**
+	 * This function retrieves the IsPassive flag from this authentication request.
+	 *
+	 * @return The IsPassive flag from this authentication request.
+	 */
+	public function getIsPassive() {
+		$dom = $this->getDOM();
+		if (empty($dom)) {
+			throw new Exception("Could not get message DOM in AuthnRequest object");
+		}
+
+		$root = $dom->documentElement;
+
+		if(!$root->hasAttribute('IsPassive')) {
+			/* ForceAuthn defaults to false. */
+			return FALSE;
+		}
+
+		$fa = $root->getAttribute('IsPassive');
+		if($fa === 'true') {
+			return TRUE;
+		} elseif($fa === 'false') {
+			return FALSE;
+		} else {
+			throw new Exception('Invalid value of IsPassive attribute in SAML2 AuthnRequest.');
+		}
 	}
 
 
@@ -204,7 +242,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		$authnRequest = '<samlp:AuthnRequest 
 	xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
 	ID="' . $id . '" Version="2.0"
-	IssueInstant="' . $issueInstant . '" ForceAuthn="' . $forceauthn . '"
+	IssueInstant="' . $issueInstant . '" ForceAuthn="' . $forceauthn . '" IsPassive="' . $this->isPassive . '"
 	Destination="' . htmlspecialchars($destination) . '"
 	ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
 	AssertionConsumerServiceURL="' . htmlspecialchars($assertionConsumerServiceURL) . '">

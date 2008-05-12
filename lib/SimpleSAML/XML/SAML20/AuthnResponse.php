@@ -142,10 +142,22 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 
 	/**
+	 * This function finds the status of this response.
+	 */
+	public function findstatus() {
+
+		$status = $this->doXPathQuery('/samlp:Response/samlp:Status/samlp:StatusCode')->item(0);
+		if($status != NULL) {
+			return $status->getAttribute('Value');
+		}
+		throw new Exception('Unable to determine the status of this SAML2 AuthnResponse message.: ' . $this->getXML());
+	}
+
+	/**
 	 * This function finds the issuer of this response. It will first search the Response element,
 	 * and if it isn't found there, it will search all Assertion elements.
 	 */
-	private function findIssuer() {
+	public function findIssuer() {
 
 		/* First check the Response element. */
 		$issuer = $this->doXPathQuery('/samlp:Response/saml:Issuer')->item(0);
@@ -244,7 +256,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		if (isset($md['certificate'])) {
 			$publickey = @file_get_contents($this->configuration->getPathValue('certdir') . $md['certificate']);
 			if (!$publickey) {
-				throw new Exception("Optional saml20-idp-remote metadata 'certificate' set, but no certificate found");			
+				throw new Exception("Saml20-idp-remote id: " . $this-issuer . " 'certificate' set to ': " . $md['certificate'] . "', but no certificate found");			
 			}
 		}
 		/* Validate the signature. */
@@ -476,32 +488,43 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	 * current session if it is valid. It throws an exception if it is invalid.
 	 */
 	public function process() {
-		/* Find the issuer of this response. */
-		$this->issuer = $this->findIssuer();
-
-		$this->decryptAssertion();
-
-		/* Validate the signature element. */
-		$this->validateSignature();
-
-		/* Process all assertions. */
-		$assertions = $this->doXPathQuery('/samlp:Response/saml:Assertion');
-		foreach($assertions as $assertion) {
-			$this->processAssertion($assertion);
+		$status = $this->findstatus();
+		if ($status == 'urn:oasis:names:tc:SAML:2.0:status:Success' ) {
+			/* Find the issuer of this response. */
+			$this->issuer = $this->findIssuer();
+	
+			$this->decryptAssertion();
+	
+			/* Validate the signature element. */
+			$this->validateSignature();
+	
+			/* Process all assertions. */
+			$assertions = $this->doXPathQuery('/samlp:Response/saml:Assertion');
+			foreach($assertions as $assertion) {
+				$this->processAssertion($assertion);
+			}
+	
+			if($this->nameid === NULL) {
+				throw new Exception('No nameID found in AuthnResponse.');
+			}
+	
+			/* Update the session information */
+			SimpleSAML_Session::init(true, 'saml2');
+			$session = SimpleSAML_Session::getInstance();
+	
+			$session->setAttributes($this->attributes);
+			$session->setNameID($this->nameid);
+			$session->setSessionIndex($this->sessionIndex);
+			$session->setIdP($this->issuer);
+		} elseif ($status == 'urn:oasis:names:tc:SAML:2.0:status:NoPassive') {
+			/* 	Do not process the authResponse when NoPassive is sent - we continue with an empty set of attributes.
+		   		Some day we will be able to tell the application what happened */
+			SimpleSAML_Session::init(true, 'saml2');
+			$session = SimpleSAML_Session::getInstance();
+			$session->setAttributes(array());
+		} else {
+			SimpleSAML_Utilities::fatalError($session->getTrackID(), 'RESPONSESTATUSNOSUCCESS', new Exception("Status = " . $status));
 		}
-
-		if($this->nameid === NULL) {
-			throw new Exception('No nameID found in AuthnResponse.');
-		}
-
-		/* Update the session information */
-		SimpleSAML_Session::init(true, 'saml2');
-		$session = SimpleSAML_Session::getInstance();
-
-		$session->setAttributes($this->attributes);
-		$session->setNameID($this->nameid);
-		$session->setSessionIndex($this->sessionIndex);
-		$session->setIdP($this->issuer);
 	}
 
 
@@ -546,7 +569,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	 *
 	 *  @return AuthenticationResponse as string
 	 */
-	public function generate($idpentityid, $spentityid, $inresponseto, $nameid, $attributes) {
+	public function generate($idpentityid, $spentityid, $inresponseto, $nameid, $attributes, $status = 'Success') {
 		
 		/**
 		 * Retrieving metadata for the two specific entity IDs.
@@ -597,25 +620,10 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		} else {
 			$nameid = $this->generateNameID($nameidformat, self::generateID(), $spnamequalifier);
 		}
-		
-		/**
-		 * Generating the response.
-		 */
-		$authnResponse = '<samlp:Response 
-			xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" 
-			xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" 
-			xmlns:xs="http://www.w3.org/2001/XMLSchema"
-			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			ID="' . $id . '"
-			InResponseTo="' . htmlspecialchars($inresponseto) . '" Version="2.0"
-			IssueInstant="' . $issueInstant . '"
-			Destination="' . htmlspecialchars($destination) . '">
-	<saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' . htmlspecialchars($issuer) . '</saml:Issuer>
-	<samlp:Status xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
-		<samlp:StatusCode xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
-			Value="urn:oasis:names:tc:SAML:2.0:status:Success" />
-	</samlp:Status>
-	<saml:Assertion Version="2.0"
+
+		$assertion = "";
+		if ($status === 'Success') {
+			$assertion = '<saml:Assertion Version="2.0"
 		ID="' . $assertionid . '" IssueInstant="' . $issueInstant . '">
 		<saml:Issuer>' . htmlspecialchars($issuer) . '</saml:Issuer>
 		<saml:Subject>
@@ -638,9 +646,29 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			</saml:AuthnContext>
         </saml:AuthnStatement>
         ' . $attributestatement. '
-    </saml:Assertion>
-</samlp:Response>
-';
+    </saml:Assertion>';
+		}
+		
+		
+		/**
+		 * Generating the response.
+		 */
+		$authnResponse = '<samlp:Response 
+			xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" 
+			xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			ID="' . $id . '"
+			InResponseTo="' . htmlspecialchars($inresponseto) . '" Version="2.0"
+			IssueInstant="' . $issueInstant . '"
+			Destination="' . htmlspecialchars($destination) . '">
+			<saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' . htmlspecialchars($issuer) . '</saml:Issuer>
+			<samlp:Status xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
+				<samlp:StatusCode xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+				Value="urn:oasis:names:tc:SAML:2.0:status:' . $status . '" />
+			</samlp:Status>'
+			. $assertion . 
+			'</samlp:Response>';
 
 		return $authnResponse;
 	}

@@ -104,9 +104,17 @@ if (isset($_GET['SAMLRequest'])) {
 			$forceAuthn = TRUE;
 		}
 
-		if($forceAuthn) {
+		$isPassive = $authnrequest->getIsPassive();
+		/* 
+		 * The ForceAuthn flag was set to true in the authentication request
+		 * and IsPassive was not - IsPassive overrides ForceAuthn thus the check
+		 *
+		 */
+
+		if($forceAuthn && !$isPassive) {
 			/* ForceAuthn is enabled. Mark the request as needing authentication. This flag
 			 * will be cleared by a call to setAuthenticated(TRUE, ...) to the current session.
+			 *
 			 */
 			$requestcache['NeedAuthentication'] = TRUE;
 		}
@@ -175,7 +183,7 @@ if (!isset($session) || !$session->isValid($authority) ) {
 	$needAuth = FALSE;
 }
 
-if($needAuth) {
+if($needAuth && !$isPassive) {
 
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Will go to authentication module ' . $idpmetadata['auth']);
 
@@ -204,9 +212,21 @@ if($needAuth) {
 
 		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Sending back AuthnResponse to ' . $spentityid);
 		
-
+		if ($isPassive) {
+			/* Generate an SAML 2.0 AuthNResponse message
+			   With statusCode: urn:oasis:names:tc:SAML:2.0:status:NoPassive
+			*/
+			$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
+			$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestid, null, array(), 'NoPassive');
 		
-
+			// Sending the AuthNResponse using HTTP-Post SAML 2.0 binding
+			$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
+			$httppost->sendResponse($authnResponseXML, $idpentityid, $spentityid, 
+				isset($requestcache['RelayState']) ? $requestcache['RelayState'] : null
+			);
+			exit;
+		}
+		
 		/*
 		 * Attribute handling
 		 */

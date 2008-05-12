@@ -64,6 +64,9 @@ try {
 
 	$sr = new SimpleSAML_XML_SAML20_AuthnRequest($config, $metadata);
 
+	if (isset($_GET['IsPassive'])) { 
+		$sr->setIsPassive($_GET['IsPassive']);
+	};
 	$md = $metadata->getMetaData($idpentityid, 'saml20-idp-remote');
 	$req = $sr->generate($spentityid, $md['SingleSignOnService']);
 
