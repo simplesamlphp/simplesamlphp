@@ -273,8 +273,13 @@ class SimpleSAML_XHTML_Template {
 	 * @param $tag         The tag that has a translation
 	 * @param $translation The translation array
 	 */
-	public function includeInlineTranslation($tag, array $translation) {
+	public function includeInlineTranslation($tag, $translation) {
 		
+		if (is_string($translaton)) {
+			$translation = array($selected_language => $translated);
+		} elseif (!is_array($translaton)) {
+			throw new Exception("Inline translation should be string or array. Is " . gettype($translation) . " now!");
+		}
 		if (!is_array($this->langtext)) 
 			$this->langtext = array();	
 		
