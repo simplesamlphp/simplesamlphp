@@ -1,5 +1,7 @@
 <?php
 
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
+
 /**
  * This file is part of SimpleSAMLphp. See the file COPYING in the
  * root of the distribution for licence information.
@@ -38,6 +40,11 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 			
 			$cookiename = $config->getValue('session.phpsession.cookiename', NULL);
 			if (!empty($cookiename)) session_name($cookiename);
+
+			if(!array_key_exists(session_name(), $_COOKIE)) {
+				/* Session cookie unset - session id not set. Generate new (secure) session id. */
+				session_id(SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16)));
+			}
 			
 			session_start();
 		}
