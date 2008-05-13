@@ -100,8 +100,8 @@ class SimpleSAML_XML_SAML20_LogoutResponse {
 		$issuermd 	= $this->metadata->getMetaData($issuer, $issuerset);
 		$receivermd = $this->metadata->getMetaData($receiver, $receiverset);
 		
-		$id = self::generateID();
-		$issueInstant = self::generateIssueInstant();
+		$id = SimpleSAML_Utilities::generateID();
+		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
 
 		$destination = $receivermd['SingleLogoutService'];
 		
@@ -123,24 +123,6 @@ class SimpleSAML_XML_SAML20_LogoutResponse {
 		return $samlResponse;
 	}
 
-
-	
-	
-	public static function generateID() {
-	
-		$length = 42;
-		$key = "_";
-		for ( $i=0; $i < $length; $i++ )
-		{
-			 $key .= dechex( rand(0,15) );
-		}
-		return $key;
-	}
-	
-	public static function generateIssueInstant($offset = 0) {
-		return gmdate("Y-m-d\TH:i:s\Z", time() + $offset);
-	}
-	
 }
 
 ?>

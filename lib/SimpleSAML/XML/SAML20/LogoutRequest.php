@@ -1,6 +1,7 @@
 <?php
 
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
  
 /**
@@ -127,8 +128,8 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
 			$spnamequalifier = isset($issuermd['SPNameQualifier']) ? $issuermd['SPNameQualifier'] : $issuermd['entityid'];
 		}
 		
-		$id = self::generateID();
-		$issueInstant = self::generateIssueInstant();
+		$id = SimpleSAML_Utilities::generateID();
+		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
 
 		$destination = $receivermd['SingleLogoutService'];
 		
@@ -146,22 +147,6 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
 		
 		return $logoutRequest;
 	}
-	
-	public static function generateID() {
-	
-		$length = 42;
-		$key = "_";
-		for ( $i=0; $i < $length; $i++ )
-		{
-			 $key .= dechex( rand(0,15) );
-		}
-		return $key;
-	}
-	
-	public static function generateIssueInstant() {
-		return gmdate("Y-m-d\TH:i:s\Z");
-	}
-
 }
 
 ?>
