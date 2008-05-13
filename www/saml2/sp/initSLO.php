@@ -44,7 +44,6 @@ if (isset($session) ) {
 
 		/* Save the $returnTo url until the user returns from the IdP. */
 		$session->setData('spLogoutReturnTo', $lr->getGeneratedID(), 15*60, $returnTo);
-		error_log('Saved: "' . $lr->getGeneratedID() . '" => "' . $returnTo . '"');
 		
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 		
