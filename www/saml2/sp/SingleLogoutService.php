@@ -106,11 +106,16 @@ if (isset($_GET['SAMLRequest'])) {
 
 	SimpleSAML_Logger::stats('saml20-sp-SLO spinit ' . $requester . ' ' . $responder);
 
-	if (isset($_GET['RelayState'])) {
-		SimpleSAML_Utilities::redirect($_GET['RelayState']);
-	} else {
+	$id = $logoutresponse->getInResponseTo();
+	error_log('ID: ' . strlen($id) . ':' . $id);
+	$returnTo = $session->getData('spLogoutReturnTo', $id);
+	error_log("returnTo: " . var_export($returnTo, TRUE));
+
+	if(empty($returnTo)) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
 	}
+
+	SimpleSAML_Utilities::redirect($returnTo);
 
 } else {
 	

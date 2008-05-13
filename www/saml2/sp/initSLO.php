@@ -19,6 +19,13 @@ SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: Accessing SAML 2.0 SP initSLO scr
 if (!$config->getValue('enable.saml20-sp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
+
+if (isset($_REQUEST['RelayState'])) {
+	$returnTo = $_REQUEST['RelayState'];
+} else {
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+}
+
 	
 if (isset($session) ) {
 	
@@ -34,17 +41,17 @@ if (isset($session) ) {
 		 */
 		$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
 		$req = $lr->generate($spentityid, $idpentityid, $session->getNameID(), $session->getSessionIndex(), 'SP');
+
+		/* Save the $returnTo url until the user returns from the IdP. */
+		$session->setData('spLogoutReturnTo', $lr->getGeneratedID(), 15*60, $returnTo);
+		error_log('Saved: "' . $lr->getGeneratedID() . '" => "' . $returnTo . '"');
 		
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 		
-		$relayState = SimpleSAML_Utilities::selfURL();
-		if (isset($_REQUEST['RelayState'])) {
-			$relayState = $_REQUEST['RelayState'];
-		}
 		
 		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: SP (' . $spentityid . ') is sending logout request to IdP (' . $idpentityid . ')');
 		
-		$httpredirect->sendMessage($req, $spentityid, $idpentityid, $relayState, 'SingleLogoutService', 'SAMLRequest', 'SP');
+		$httpredirect->sendMessage($req, $spentityid, $idpentityid, NULL, 'SingleLogoutService', 'SAMLRequest', 'SP');
 		
 
 	} catch(Exception $exception) {
@@ -53,12 +60,8 @@ if (isset($session) ) {
 
 } else {
 
-	if (!isset($_REQUEST['RelayState']))
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');		
-	
-	$relaystate = $_REQUEST['RelayState'];
 	SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: User is already logged out. Go back to relaystate');
-	SimpleSAML_Utilities::redirect($relaystate);
+	SimpleSAML_Utilities::redirect($returnTo);
 	
 }
 
