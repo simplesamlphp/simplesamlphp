@@ -177,12 +177,7 @@ class SimpleSAML_Utilities {
 	}
 	
 	public static function generateID() {
-		$bytes = self::generateRandomBytes(21);
-		$key = '_';
-		for($i = 0; $i < 21; $i++) {
-			$key .= sprintf('%02x', ord($bytes[$i]));
-		}
-		return $key;
+		return '_' . self::stringToHex(self::generateRandomBytes(21));
 	}
 	
 
@@ -915,6 +910,21 @@ class SimpleSAML_Utilities {
 		}
 
 		return $data;
+	}
+
+
+	/**
+	 * This function converts a binary string to hexadecimal characters.
+	 *
+	 * @param $bytes  Input string.
+	 * @return String with lowercase hexadecimal characters.
+	 */
+	public function stringToHex($bytes) {
+		$ret = '';
+		for($i = 0; $i < strlen($bytes); $i++) {
+			$ret .= sprintf('%02x', ord($bytes[$i]));
+		}
+		return $ret;
 	}
 
 }
