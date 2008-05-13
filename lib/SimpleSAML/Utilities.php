@@ -177,11 +177,10 @@ class SimpleSAML_Utilities {
 	}
 	
 	public static function generateID() {
-		$length = 42;
-		$key = "_";
-		for ( $i=0; $i < $length; $i++ )
-		{
-			 $key .= dechex( rand(0,15) );
+		$bytes = self::generateRandomBytes(21);
+		$key = '_';
+		for($i = 0; $i < 21; $i++) {
+			$key .= sprintf('%02x', ord($bytes[$i]));
 		}
 		return $key;
 	}
@@ -879,6 +878,43 @@ class SimpleSAML_Utilities {
 		$userid = hash('sha1', $uidData);
 
 		return $userid;
+	}
+
+
+	/**
+	 * This function generates a binary string containing random bytes.
+	 *
+	 * It will use /dev/urandom if available, and fall back to the builtin mt_rand()-function if not.
+	 *
+	 * @param $length  The number of random bytes to return.
+	 * @return A string of lenght $length with random bytes.
+	 */
+	public static function generateRandomBytes($length) {
+		static $fp = NULL;
+		assert('is_int($length)');
+
+		if($fp === NULL) {
+			$fp = @fopen('/dev/urandom', 'rb');
+		}
+
+		if($fp !== FALSE) {
+			/* Read random bytes from /dev/urandom. */
+			$data = fread($fp, $length);
+			if($data === FALSE) {
+				throw new Exception('Error reading random data.');
+			}
+			if(strlen($data) != $length) {
+				throw new Exception('Did not get requested number of bytes from random source.');
+			}
+		} else {
+			/* Use mt_rand to generate $length random bytes. */
+			$data = '';
+			for($i = 0; $i < $length; $i++) {
+				$data .= chr(mt_rand(0, 255));
+			}
+		}
+
+		return $data;
 	}
 
 }
