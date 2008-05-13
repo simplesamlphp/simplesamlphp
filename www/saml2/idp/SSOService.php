@@ -41,8 +41,6 @@ try {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
 }
 
-$requestid = null;
-
 SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
 if (!$config->getValue('enable.saml20-idp', false))
@@ -70,11 +68,11 @@ if (isset($_GET['SAMLRequest'])) {
 		 * Create an assoc array of the request to store in the session cache.
 		 */
 		$requestcache = array(
-			'Issuer'    => $issuer,
+			'RequestID' => $requestid,
+			'Issuer' => $issuer,
 			'ConsentCookie' => SimpleSAML_Utilities::generateID(),
+			'RelayState' => $authnrequest->getRelayState()
 		);
-		if ($relaystate = $authnrequest->getRelayState() )
-			$requestcache['RelayState'] = $relaystate;
 			
 
 		/*
@@ -119,9 +117,6 @@ if (isset($_GET['SAMLRequest'])) {
 			$requestcache['NeedAuthentication'] = TRUE;
 		}
 
-		$session->setAuthnRequest('saml2', $requestid, $requestcache);
-		
-		
 		if ($binding->validateQuery($issuer, 'IdP')) {
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Valid signature found for ' . $requestid);
 		}
@@ -145,11 +140,13 @@ if (isset($_GET['SAMLRequest'])) {
 
 	try {
 	
-		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Got incomming RequestID');
+		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Got incomming authentication ID');
 		
-		$requestid = $_GET['RequestID'];
-		$requestcache = $session->getAuthnRequest('saml2', $requestid);
-		if (!$requestcache) throw new Exception('Could not retrieve cached RequestID = ' . $requestid);
+		$authId = $_GET['RequestID'];
+		$requestcache = $session->getAuthnRequest('saml2', $authId);
+		if (!$requestcache) {
+			throw new Exception('Could not retrieve cached RequestID = ' . $authId);
+		}
 		
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CACHEAUTHNREQUEST', $exception);
@@ -187,11 +184,14 @@ if($needAuth && !$isPassive) {
 
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Will go to authentication module ' . $idpmetadata['auth']);
 
-	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() .
-		'?RequestID=' . urlencode($requestid);
+	$authId = SimpleSAML_Utilities::generateID();
+	$session->setAuthnRequest('saml2', $authId, $requestcache);
+
+	$redirectTo = SimpleSAML_Utilities::selfURLNoQuery() .
+		'?RequestID=' . urlencode($authId);
 	$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];
 
-	SimpleSAML_Utilities::redirect($authurl, array('RelayState' => $relaystate));
+	SimpleSAML_Utilities::redirect($authurl, array('RelayState' => $redirectTo));
 		
 /**
  * We got an request, and we have a valid session. Then we send an AuthnResponse back to the
@@ -217,13 +217,11 @@ if($needAuth && !$isPassive) {
 			   With statusCode: urn:oasis:names:tc:SAML:2.0:status:NoPassive
 			*/
 			$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-			$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestid, null, array(), 'NoPassive');
+			$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestcache['RequestID'], null, array(), 'NoPassive');
 		
 			// Sending the AuthNResponse using HTTP-Post SAML 2.0 binding
 			$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
-			$httppost->sendResponse($authnResponseXML, $idpentityid, $spentityid, 
-				isset($requestcache['RelayState']) ? $requestcache['RelayState'] : null
-			);
+			$httppost->sendResponse($authnResponseXML, $idpentityid, $spentityid, $requestcache['RelayState']);
 			exit;
 		}
 		
@@ -273,13 +271,16 @@ if($needAuth && !$isPassive) {
 			$consent = new SimpleSAML_Consent_Consent($config, $session, $spentityid, $idpentityid, $attributes, $filteredattributes, $requestcache['ConsentCookie']);
 			
 			if (!$consent->consent()) {
+				/* Save the request information. */
+				$authId = SimpleSAML_Utilities::generateID();
+				$session->setAuthnRequest('saml2', $authId, $requestcache);
 				
 				$t = new SimpleSAML_XHTML_Template($config, 'consent.php', 'attributes.php');
 				$t->data['header'] = 'Consent';
 				$t->data['sp_name'] = $sp_name;
 				$t->data['attributes'] = $filteredattributes;
 				$t->data['consenturl'] = SimpleSAML_Utilities::selfURLNoQuery();
-				$t->data['requestid'] = $requestid;
+				$t->data['requestid'] = $authId;
 				$t->data['consent_cookie'] = $requestcache['ConsentCookie'];
 				$t->data['usestorage'] = $consent->useStorage();
 				$t->data['noconsent'] = '/' . $config->getBaseURL() . 'noconsent.php';
@@ -294,13 +295,11 @@ if($needAuth && !$isPassive) {
 		
 		// Generate an SAML 2.0 AuthNResponse message
 		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-		$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestid, null, $filteredattributes);
+		$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestcache['RequestID'], null, $filteredattributes);
 	
 		// Sending the AuthNResponse using HTTP-Post SAML 2.0 binding
 		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
-		$httppost->sendResponse($authnResponseXML, $idmetaindex, $spentityid, 
-			isset($requestcache['RelayState']) ? $requestcache['RelayState'] : null
-		);
+		$httppost->sendResponse($authnResponseXML, $idmetaindex, $spentityid, $requestcache['RelayState']);
 		
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);

@@ -28,8 +28,6 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance(true);
 
 
-$requestid = null;
-
 SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Accessing Shibboleth 1.3 IdP endpoint SSOService');
 
 if (!$config->getValue('enable.shib13-idp', false))
@@ -64,14 +62,12 @@ if (isset($_GET['shire'])) {
 		 * Create an assoc array of the request to store in the session cache.
 		 */
 		$requestcache = array(
+			'RequestID' => $requestid,
 			'Issuer'    => $authnrequest->getIssuer(),
 			'shire'		=> $authnrequest->getShire(),
+			'RelayState' => $authnrequest->getRelayState(),
 		);
-		if ($relaystate = $authnrequest->getRelayState() )
-			$requestcache['RelayState'] = $relaystate;
 			
-		$session->setAuthnRequest('shib13', $requestid, $requestcache);
-		
 		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incomming Shib authnRequest requestid: '.$requestid);
 	
 	} catch(Exception $exception) {
@@ -92,13 +88,15 @@ if (isset($_GET['shire'])) {
 	
 	try {
 
-		$requestid = $_GET['RequestID'];
+		$authId = $_GET['RequestID'];
 
-		$requestcache = $session->getAuthnRequest('shib13', $requestid);
+		$requestcache = $session->getAuthnRequest('shib13', $authId);
 		
-		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incomming RequestID: '.$requestid);
+		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incomming RequestID: '. $authId);
 		
-		if (!$requestcache) throw new Exception('Could not retrieve cached RequestID = ' . $requestid);
+		if (!$requestcache) {
+			throw new Exception('Could not retrieve cached RequestID = ' . $authId);
+		}
 
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CACHEAUTHNREQUEST', $exception);
@@ -122,7 +120,11 @@ $authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : null
  */
 if (!$session->isAuthenticated($authority) ) {
 
-	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() . '?RequestID=' . urlencode($requestid);
+	$authId = SimpleSAML_Utilities::generateID();
+	$session->setAuthnRequest('shib13', $authId, $requestcache);
+
+
+	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() . '?RequestID=' . urlencode($authId);
 	$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getBaseURL() . $idpmetadata['auth'], 
 		'RelayState=' . urlencode($relaystate));
 	SimpleSAML_Utilities::redirect($authurl);
@@ -171,8 +173,8 @@ if (!$session->isAuthenticated($authority) ) {
 
 		// Generating a Shibboleth 1.3 Response.
 		$ar = new SimpleSAML_XML_Shib13_AuthnResponse($config, $metadata);
-		$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'], 
-			$requestid, null, $filteredattributes);
+		$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'],
+			$requestcache['RequestID'], null, $filteredattributes);
 		
 		
 		#echo $authnResponseXML;
@@ -188,8 +190,7 @@ if (!$session->isAuthenticated($authority) ) {
 		if ($issuer == null || $issuer == '')
 			throw new Exception('Could not retrieve issuer of the AuthNRequest (ProviderID)');
 		
-		$httppost->sendResponse($authnResponseXML, 
-			$idpmetaindex, $issuer, isset($requestcache['RelayState']) ? $requestcache['RelayState'] : null, $shire);
+		$httppost->sendResponse($authnResponseXML, $idpmetaindex, $issuer, $requestcache['RelayState'], $shire);
 			
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
