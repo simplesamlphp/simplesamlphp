@@ -507,6 +507,10 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	 */
 	private function expireData() {
 
+		if(!is_array($this->dataStore)) {
+			return;
+		}
+
 		$ct = time();
 
 		foreach($this->dataStore as &$typedData) {
