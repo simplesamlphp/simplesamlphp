@@ -41,6 +41,47 @@ try {
 
 SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: Got IdP entity id: ' . $idpentityid);
 
+
+/**
+ * The $logoutInfo contains information about the current logout operation.
+ * It can have the following attributes:
+ * - 'RelayState' - The RelayState which should be returned to the SP which initiated the logout operation.
+ * - 'Issuer' - The entity id of the SP which initiated the logout operation.
+ * - 'RequestID' - The id of the LogoutRequest which initiated the logout operation.
+ */
+$logoutInfo = array();
+
+
+/**
+ * This function retrieves the logout info with the given ID.
+ *
+ * @param $id  The identifier of the logout info.
+ */
+function fetchLogoutInfo($id) {
+	global $session;
+	global $logoutInfo;
+
+	$logoutInfo = $session->getData('idplogoutresponsedata', $id);
+
+	if($logoutInfo === NULL) {
+		SimpleSAML_Logger::warning('SAML2.0 - IdP.SingleLogoutService: Lost logout information.');
+	}
+}
+
+
+/**
+ * This function saves the logout info with the given ID.
+ *
+ * @param $id  The identifier the logout info should be saved with.
+ */
+function saveLogoutInfo($id) {
+	global $session;
+	global $logoutInfo;
+
+	$session->setData('idplogoutresponsedata', $id, 15*60, $logoutInfo);
+}
+
+
 /**
  * If we get an incomming LogoutRequest then we initiate the logout process.
  * in this case an SAML 2.0 SP is sending an request, which also is referred to as
@@ -110,17 +151,16 @@ if (isset($_GET['SAMLRequest'])) {
 	$session->setAuthenticated(false, $session->getAuthority() );
 
 
-	/*
-	 * Create an assoc array of the request to store in the session cache.
-	 */
-	$requestcache = array(
-		'Issuer'    	=> $logoutrequest->getIssuer(),
-		'RequestID'		=> $logoutrequest->getRequestID()
-	);
-	if ($relaystate = $logoutrequest->getRelayState() )
-		$requestcache['RelayState'] = $relaystate;
+	/* Fill in the $logoutInfo associative array with information about this logout request. */
+	$logoutInfo['Issuer'] = $logoutrequest->getIssuer();
+	$logoutInfo['RequestID'] = $logoutrequest->getRequestID();
+
+	$relayState = $logoutrequest->getRelayState();
+	if($relayState !== NULL) {
+		$logoutInfo['RelayState'] = $relayState;
+	}
+
 		
-	$session->setLogoutRequest($requestcache);
 	SimpleSAML_Logger::debug('SAML2.0 - IDP.SingleLogoutService: Setting cached request with issuer ' . $logoutrequest->getIssuer());
 	
 	$session->set_sp_logout_completed($logoutrequest->getIssuer() );
@@ -151,19 +191,27 @@ if (isset($_GET['SAMLRequest'])) {
 
 	}
 
-
+	/* Fetch the $logoutInfo variable based on the InResponseTo attribute of the response. */
+	fetchLogoutInfo($loginresponse->getInResponseTo());
 
 	$session->set_sp_logout_completed($loginresponse->getIssuer());
 
 	SimpleSAML_Logger::info('SAML2.0 - IDP.SingleLogoutService: got LogoutResponse from ' . $loginresponse->getIssuer());
+
+} elseif(array_key_exists('LogoutID', $_GET)) {
+	/* This is a response from bridged SLO. */
+	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: Got response from bridged SLO.');
+
+	/* Fetch the $logoutInfo variable. */
+	fetchLogoutInfo($_GET['LogoutID']);
+
 } else {
-	
-	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: No request or response...');
-	/**
-	 * This error message was removed 2008-02-27, because it interrupts with bridged SLO.
-	 *
-	 * SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS');
+	/*
+	 * We have no idea what to do here. It is neither a logout request, a logout
+	 * response nor a response from bridged SLO.
 	 */
+	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: No request, response or bridge');
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS');
 }
 
 $lookformore = true;
@@ -208,15 +256,14 @@ if ($spentityid) {
 		// ($issuer, $receiver, $nameid, $nameidformat, $sessionindex, $mode) {
 		$req = $lr->generate($idpentityid, $spentityid, $session->getNameID(), $session->getSessionIndex(), 'IdP');
 
+		/* Save the $logoutInfo until we return from the SP. */
+		saveLogoutInfo($lr->getGeneratedID());
+
+
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 
-		$relayState = SimpleSAML_Utilities::selfURL();
-		if (isset($_GET['RelayState'])) {
-			$relayState = $_GET['RelayState'];
-		}
-
 		//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
-		$httpredirect->sendMessage($req, $idpentityid, $spentityid, $relayState, 'SingleLogoutService', 'SAMLRequest', 'IdP');
+		$httpredirect->sendMessage($req, $idpentityid, $spentityid, NULL, 'SingleLogoutService', 'SAMLRequest', 'IdP');
 
 		exit();
 
@@ -239,8 +286,15 @@ if ($config->getValue('debug', false))
  * initiate SAML 2.0 SP Single LogOut, with the RelayState equal this URL.
  */
 if ($session->getAuthority() == 'saml2') {
+
+	$bridgedId = SimpleSAML_Utilities::generateID();
+	$returnTo = SimpleSAML_Utilities::selfURLNoQuery() . '?LogoutID=' . $bridgedId;
+
+	/* Save the $logoutInfo until we return from the SP. */
+	saveLogoutInfo($bridgedId);
+
 	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'saml2/sp/initSLO.php',
-		array('RelayState' => SimpleSAML_Utilities::selfURLNoQuery())
+		array('RelayState' => $returnTo)
 	);
 }
 
@@ -260,12 +314,11 @@ if ($session->getAuthority() == 'shib13') {
 
 try {
 
-	$requestcache = $session->getLogoutRequest();
-	if (!$requestcache) {
-		throw new Exception('Could not get reference to the logout request.');
+	if(!$logoutInfo) {
+		throw new Exception('The logout information has been lost during logout processing.');
 	}
 	
-	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: Found request cache with these keys: ' . join(',', array_keys($requestcache)));
+	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: Found logout info with these keys: ' . join(',', array_keys($logoutInfo)));
 	
 	/**
 	 * Clean up session object to save storage.
@@ -282,7 +335,7 @@ try {
 	/*
 	 * Check if the Single Logout procedure is initated by an SP (alternatively IdP initiated SLO
 	 */
-	if (array_key_exists('Issuer', $requestcache)) {
+	if (array_key_exists('Issuer', $logoutInfo)) {
 		
 		/**
 		 * Create a Logot Response.
@@ -290,21 +343,21 @@ try {
 		$rg = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
 	
 		// generate($issuer, $receiver, $inresponseto, $mode )
-		$logoutResponseXML = $rg->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], 'IdP');
+		$logoutResponseXML = $rg->generate($idpentityid, $logoutInfo['Issuer'], $logoutInfo['RequestID'], 'IdP');
 	
 		// Create a HTTP-REDIRECT Binding.
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 	
 		// Find the relaystate if cached.
-		$relayState = isset($requestcache['RelayState']) ? $requestcache['RelayState'] : null;
+		$relayState = isset($logoutInfo['RelayState']) ? $logoutInfo['RelayState'] : null;
 	
 		// Parameters: $request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
-		$httpredirect->sendMessage($logoutResponseXML, $idpentityid, $requestcache['Issuer'], $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
+		$httpredirect->sendMessage($logoutResponseXML, $idpentityid, $logoutInfo['Issuer'], $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
 		exit;
 		
-	} elseif (array_key_exists('RelayState', $requestcache)) {
+	} elseif (array_key_exists('RelayState', $logoutInfo)) {
 
-		SimpleSAML_Utilities::redirect($requestcache['RelayState']);
+		SimpleSAML_Utilities::redirect($logoutInfo['RelayState']);
 		exit;
 		
 	} else {
