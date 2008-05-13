@@ -3,6 +3,9 @@
 /* We need access to the configuration from config/config.php. */
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
 
+/* We need the generateID function from Utilities. */
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
+
 /**
  * This file is part of SimpleSAMLphp. See the file COPYING in the
  * root of the distribution for licence information.
@@ -46,7 +49,7 @@ extends SimpleSAML_SessionHandler {
 		}
 
 		/* We don't have a valid session. Create a new session id. */
-		$this->session_id = self::createSessionID();
+		$this->session_id = SimpleSAML_Utilities::generateID();
 		setcookie('SimpleSAMLSessionID', $this->session_id, 0, '/',
 			NULL, self::secureCookie(), TRUE);
 	}
@@ -81,23 +84,6 @@ extends SimpleSAML_SessionHandler {
 	 */
 	public function getSessionId() {
 		return $this->session_id;
-	}
-
-
-	/* This static function creates a session id. A session id consists
-	 * of 32 random hexadecimal characters.
-	 *
-	 * Returns:
-	 *  A random session id.
-	 */
-	private static function createSessionID() {
-		$id = '';
-		for($i = 0; $i < 32; $i++) {
-			/* TODO: Is rand(...) secure enough? */
-			$id .= dechex(rand(0, 15));
-		}
-
-		return $id;
 	}
 
 
