@@ -583,13 +583,13 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		/**
 		 * Generating IDs and timestamps.
 		 */
-		$id = self::generateID();
-		$issueInstant = self::generateIssueInstant();
-		$assertionExpire = self::generateIssueInstant(60 * 5); # 5 minutes
-		$notBefore = self::generateIssueInstant(-30);
+		$id = SimpleSAML_Utilities::generateID();
+		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
+		$assertionExpire = SimpleSAML_Utilities::generateTimestamp(time() + 60 * 5);# 5 minutes
+		$notBefore = SimpleSAML_Utilities::generateTimestamp(time() - 30);
 		
-		$assertionid = self::generateID();
-		$sessionindex = self::generateID();
+		$assertionid = SimpleSAML_Utilities::generateID();
+		$sessionindex = SimpleSAML_Utilities::generateID();
 
 		
 		/**
@@ -618,7 +618,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		if ($nameidformat == self::EMAIL) {
 			$nameid = $this->generateNameID($nameidformat, $attributes[$spmd['simplesaml.nameidattribute']][0], $spnamequalifier);
 		} else {
-			$nameid = $this->generateNameID($nameidformat, self::generateID(), $spnamequalifier);
+			$nameid = $this->generateNameID($nameidformat, SimpleSAML_Utilities::generateID(), $spnamequalifier);
 		}
 
 		$assertion = "";

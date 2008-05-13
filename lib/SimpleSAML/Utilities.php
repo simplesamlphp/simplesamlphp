@@ -186,8 +186,18 @@ class SimpleSAML_Utilities {
 		return $key;
 	}
 	
-	public static function generateTimestamp() {
-		return gmdate("Y-m-d\TH:i:s\Z");
+
+	/**
+	 * This function generates a timestamp on the form used by the SAML protocols.
+	 *
+	 * @param $instant  The time the timestamp should represent.
+	 * @return The timestamp.
+	 */
+	public static function generateTimestamp($instant = NULL) {
+		if($instant === NULL) {
+			$instant = time();
+		}
+		return gmdate('Y-m-d\TH:i:s\Z', $instant);
 	}
 	
 	public static function generateTrackID() {		

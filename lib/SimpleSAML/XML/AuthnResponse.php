@@ -83,25 +83,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'xmlsecli
 		
 		return null;
 	}
-	
 
-
-	
-	public static function generateID() {
-	
-		$length = 42;
-		$key = "_";
-		for ( $i=0; $i < $length; $i++ )
-		{
-			 $key .= dechex( rand(0,15) );
-		}
-		return $key;
-	}
-	
-	public static function generateIssueInstant($offset = 0) {
-		return gmdate("Y-m-d\TH:i:s\Z", time() + $offset);
-	}
-	
 }
 
 ?>

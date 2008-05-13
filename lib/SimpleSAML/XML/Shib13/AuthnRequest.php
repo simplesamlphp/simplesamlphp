@@ -1,6 +1,7 @@
 <?php
 
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
  
 /**
@@ -30,7 +31,7 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 		$this->configuration = $configuration;
 		$this->metadata = $metadatastore;
 		
-		$this->requestid = $this->generateID();
+		$this->requestid = SimpleSAML_Utilities::generateID();
 	}
 	
 	public function setRelayState($relayState) {
@@ -71,7 +72,7 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	}
 	
 	public function setNewRequestID() {	
-		$this->requestid = $this->generateID();
+		$this->requestid = SimpleSAML_Utilities::generateID();
 	}
 	
 	public function getRequestID() {
@@ -97,17 +98,7 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 		    (isset($target) ? '&target=' . urlencode($target) : '');
 		return $url;
 	}
-	
-	public static function generateID() {
-		$length = 42;
-		$key = "_";
-		for ( $i=0; $i < $length; $i++ ) {
-			 $key .= dechex( rand(0,15) );
-		}
-		return $key;
-	}
-	
-	
+
 }
 
 ?>

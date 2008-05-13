@@ -263,15 +263,15 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$idpmd 	= $this->metadata->getMetaData($idpentityid, 'shib13-idp-hosted');
 		$spmd 	= $this->metadata->getMetaData($spentityid, 'shib13-sp-remote');
 		
-		$id = self::generateID();
-		$issueInstant = self::generateIssueInstant();
-		$assertionExpire = self::generateIssueInstant(60 * 5); # 5 minutes
+		$id = SimpleSAML_Utilities::generateID();
+		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
+		$assertionExpire = SimpleSAML_Utilities::generateTimestamp(time() + 60 * 5);# 5 minutes
 		
-		$assertionid = self::generateID();
+		$assertionid = SimpleSAML_Utilities::generateID();
 		
 		
 		if (is_null($nameid)) {
-			$nameid = self::generateID();
+			$nameid = SimpleSAML_Utilities::generateID();
 		}
 
 		$issuer = $idpentityid;
