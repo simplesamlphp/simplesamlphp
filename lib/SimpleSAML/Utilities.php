@@ -919,7 +919,7 @@ class SimpleSAML_Utilities {
 	 * @param $bytes  Input string.
 	 * @return String with lowercase hexadecimal characters.
 	 */
-	public function stringToHex($bytes) {
+	public static function stringToHex($bytes) {
 		$ret = '';
 		for($i = 0; $i < strlen($bytes); $i++) {
 			$ret .= sprintf('%02x', ord($bytes[$i]));
