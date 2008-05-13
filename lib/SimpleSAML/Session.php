@@ -70,6 +70,17 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 
 
 	/**
+	 * This is an array of objects which will autoexpire after a set time. It is used
+	 * where one needs to store some information - for example a logout request, but doesn't
+	 * want it to be stored forever.
+	 *
+	 * The data store contains three levels of nested associative arrays. The first is the data type, the
+	 * second is the identifier, and the third contains the expire time of the data and the data itself.
+	 */
+	private $dataStore = null;
+
+
+	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
 	private function __construct($authenticated = true) {
@@ -488,6 +499,89 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 				}
 			}
 		}
+	}
+
+
+	/**
+	 * This function removes expired data from the data store.
+	 */
+	private function expireData() {
+
+		$ct = time();
+
+		foreach($this->dataStore as &$typedData) {
+			foreach($typedData as $id => $info) {
+				if($ct > $info['expires']) {
+					unset($typedData[$id]);
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * This function stores data in the data store.
+	 *
+	 * @param $type     The type of the data. This is checked when retrieving data from the store.
+	 * @param $id       The identifier of the data.
+	 * @param $timeout  The number of seconds this data should be stored after its last access.
+	 * @param $data     The data.
+	 */
+	public function setData($type, $id, $timeout, $data) {
+		assert(is_string($type));
+		assert(is_string($id));
+		assert(is_int($timeout));
+
+		/* Clean out old data. */
+		$this->expireData();
+
+		$dataInfo = array('expires' => time() + $timeout, 'timeout' => $timeout, 'data' => $data);
+
+		if(!is_array($this->dataStore)) {
+			$this->dataStore = array();
+		}
+
+		if(!array_key_exists($type, $this->dataStore)) {
+			$this->dataStore[$type] = array();
+		}
+
+		$this->dataStore[$type][$id] = $dataInfo;
+
+		$this->dirty = TRUE;
+	}
+
+
+	/**
+	 * This function retrieves data from the data store.
+	 *
+	 * @param $type  The type of the data. This must match the type used when adding the data.
+	 * @param $id    The identifier of the data.
+	 * @return The data of the given type with the given id or NULL if the data doesn't exist in the data store.
+	 */
+	public function getData($type, $id) {
+		assert(is_string($type));
+		assert(is_string($id));
+
+		$this->expireData();
+
+		if(!is_array($this->dataStore)) {
+			return NULL;
+		}
+
+		if(!array_key_exists($type, $this->dataStore)) {
+			return NULL;
+		}
+
+		if(!array_key_exists($id, $this->dataStore[$type])) {
+			return NULL;
+		}
+
+		$dataInfo =& $this->dataStore[$type][$id];
+		$dataInfo['expires'] = time() + $dataInfo['timeout'];
+
+		$this->dirty = TRUE;
+
+		return $dataInfo['data'];
 	}
 
 }
