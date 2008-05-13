@@ -81,6 +81,26 @@ class SimpleSAML_XML_SAML20_LogoutResponse {
 		return $issuer;
 	}
 
+
+	/**
+	 * This function retrieves the InResponseTo attribute value from the logout response.
+	 *
+	 * @return The InResponseTo attribute value from the logout response.
+	 */
+	public function getInResponseTo() {
+		$dom = $this->getDOM();
+
+		$responseElement = $dom->getElementsByTagName('LogoutResponse')->item(0);
+		$inResponseTo = $responseElement->getAttribute('InResponseTo');
+
+		if(empty($inResponseTo)) {
+			throw new Exception('Empty InResponseTo attribute on SAML2 logout response.');
+		}
+
+		return $inResponseTo;
+	}
+
+
 	// Not updated for response. from request.
 	public function generate($issuer, $receiver, $inresponseto, $mode ) {
 		if (!in_array($mode, array('SP', 'IdP'))) {

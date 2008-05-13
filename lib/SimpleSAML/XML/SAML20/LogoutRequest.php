@@ -23,9 +23,19 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
 	
 	const PROTOCOL = 'urn:oasis:names:tc:SAML:2.0';
 
+
+	/**
+	 * This variable holds the generated request id for this request.
+	 */
+	private $id = null;
+
+
 	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore) {
 		$this->configuration = $configuration;
 		$this->metadata = $metadatastore;
+
+		/* Generate request id. */
+		$this->id = SimpleSAML_Utilities::generateID();
 	}
 	
 	public function setXML($xml) {
@@ -128,7 +138,6 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
 			$spnamequalifier = isset($issuermd['SPNameQualifier']) ? $issuermd['SPNameQualifier'] : $issuermd['entityid'];
 		}
 		
-		$id = SimpleSAML_Utilities::generateID();
 		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
 
 		$destination = $receivermd['SingleLogoutService'];
@@ -136,7 +145,7 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
 		$logoutRequest = '<samlp:LogoutRequest 
     xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
-    ID="' . $id . '" Version="2.0"
+    ID="' . $this->id . '" Version="2.0"
     Destination="' . htmlspecialchars($destination) . '"
     IssueInstant="' . $issueInstant . '">
     <saml:Issuer >' . htmlspecialchars($issuer) . '</saml:Issuer>
@@ -147,6 +156,16 @@ class SimpleSAML_XML_SAML20_LogoutRequest {
 		
 		return $logoutRequest;
 	}
+
+	/**
+	 * This function retrieves the request id we used for the generated logout request.
+	 *
+	 * @return The request id of the generated logout request.
+	 */
+	public function getGeneratedID() {
+		return $this->id;
+	}
+
 }
 
 ?>
