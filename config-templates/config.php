@@ -123,8 +123,12 @@ $config = array (
 	'session.duration'		=>  8 * (60*60), // 8 hours.
 	'session.requestcache'	=>  4 * (60*60), // 4 hours
 	
+	/*
+	 * Options to override the default settings for php sessions.
+	 */
 	'session.phpsession.cookiename'  => null,
 	'session.phpsession.limitedpath' => false,
+	'session.phpsession.savepath'    => null,
 	
 	/*
 	 * Languages available and what language is default

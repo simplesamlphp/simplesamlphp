@@ -41,6 +41,11 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 			$cookiename = $config->getValue('session.phpsession.cookiename', NULL);
 			if (!empty($cookiename)) session_name($cookiename);
 
+			$savepath = $config->getValue('session.phpsession.savepath', NULL);
+			if(!empty($savepath)) {
+				session_save_path($savepath);
+			}
+
 			if(!array_key_exists(session_name(), $_COOKIE)) {
 				/* Session cookie unset - session id not set. Generate new (secure) session id. */
 				session_id(SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16)));
