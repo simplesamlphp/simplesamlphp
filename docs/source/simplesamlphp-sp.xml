@@ -247,6 +247,15 @@
               set, the SP receives all attributes available at the IdP.</para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>IsPassive</glossterm>
+
+            <glossdef>
+              <para>IsPassive allows you to enable passive authentication by
+              default for this SP.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
       </section>
 

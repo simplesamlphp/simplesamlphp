@@ -20,7 +20,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 	private $message = null;
 	private $dom;
 	private $relayState = null;
-	private $isPassive = 'false';
+	private $isPassive = null;
 	
 	
 	const PROTOCOL = 'saml2';
@@ -234,6 +234,25 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 	</samlp:RequestedAuthnContext>';
 		}
 
+
+		/* Check the metadata for isPassive if $this->isPassive === NULL. */
+		if($this->isPassive === NULL) {
+			/*
+			 * Process the SAML 2.0 SP hosted metadata parameter: IsPassive
+			 */
+			if (isset($md['IsPassive'])) {
+				if (is_bool($md['IsPassive'])) {
+					$this->isPassive = ($md['IsPassive'] ? 'true' : 'false');
+				} else {
+					throw new Exception('Illegal format of the IsPassive parameter in' .
+						' the SAML 2.0 SP hosted metadata for entity [' . $spentityid .
+						']. This value should be set to a PHP boolean value.');
+				}
+			} else {
+				/* The default is off. */
+				$this->isPassive = 'false';
+			}
+		}
 		
 
 		/*
