@@ -385,6 +385,36 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
               <literal>eduPersonPrincipalName</literal>.</para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>SingleSignOnService</glossterm>
+
+            <glossdef>
+              <para>Override the default URL for the SingleSignOnService
+              for this IdP. This is an absolute URL. The default value is
+              <literal>&lt;simpleSAMLphp-root&gt;/saml2/idp/SSOService.php</literal></para>
+
+              <para>Note that this only changes the values in the generated
+              metadata and in the messages sent to others. You must also
+              configure your webserver to deliver this URL to the correct
+              PHP page.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>SingleLogoutService</glossterm>
+
+            <glossdef>
+              <para>Override the default URL for the SingleLogoutService
+              for this IdP. This is an absolute URL. The default value is
+              <literal>&lt;simpleSAMLphp-root&gt;/saml2/idp/SingleLogoutService.php</literal></para>
+
+              <para>Note that this only changes the values in the generated
+              metadata and in the messages sent to others. You must also
+              configure your webserver to deliver this URL to the correct
+              PHP page.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
       </section>
 

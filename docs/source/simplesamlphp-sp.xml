@@ -256,6 +256,36 @@
               default for this SP.</para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>AssertionConsumerService</glossterm>
+
+            <glossdef>
+              <para>Override the default URL for the AssertionConsumerService
+              for this SP. This is an absolute URL. The default value is
+              <literal>&lt;simpleSAMLphp-root&gt;/saml2/sp/AssertionConsumerService.php</literal></para>
+
+              <para>Note that this only changes the values in the generated
+              metadata and in the messages sent to others. You must also
+              configure your webserver to deliver this URL to the correct
+              PHP page.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>SingleLogoutService</glossterm>
+
+            <glossdef>
+              <para>Override the default URL for the SingleLogoutService
+              for this SP. This is an absolute URL. The default value is
+              <literal>&lt;simpleSAMLphp-root&gt;/saml2/sp/SingleLogoutService.php</literal></para>
+
+              <para>Note that this only changes the values in the generated
+              metadata and in the messages sent to others. You must also
+              configure your webserver to deliver this URL to the correct
+              PHP page.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
       </section>
 
@@ -631,6 +661,29 @@
               metadata entries can have the value
               <literal>__DEFAULT__</literal>. A default entry will be used
               when no other entry matches the current hostname.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+      </section>
+
+      <section>
+        <title>Optional metadata fields</title>
+
+        <para>These fields can be left out if not needed.</para>
+
+        <glosslist>
+          <glossentry>
+            <glossterm>AssertionConsumerService</glossterm>
+
+            <glossdef>
+              <para>Override the default URL for the AssertionConsumerService
+              for this SP. This is an absolute URL. The default value is
+              <literal>&lt;simpleSAMLphp-root&gt;/shib13/sp/AssertionConsumerService.php</literal></para>
+
+              <para>Note that this only changes the values in the generated
+              metadata and in the messages sent to others. You must also
+              configure your webserver to deliver this URL to the correct
+              PHP page.</para>
             </glossdef>
           </glossentry>
         </glosslist>
