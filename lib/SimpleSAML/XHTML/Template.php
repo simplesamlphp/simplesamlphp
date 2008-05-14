@@ -275,9 +275,9 @@ class SimpleSAML_XHTML_Template {
 	 */
 	public function includeInlineTranslation($tag, $translation) {
 		
-		if (is_string($translaton)) {
+		if (is_string($translation)) {
 			$translation = array($selected_language => $translated);
-		} elseif (!is_array($translaton)) {
+		} elseif (!is_array($translation)) {
 			throw new Exception("Inline translation should be string or array. Is " . gettype($translation) . " now!");
 		}
 		if (!is_array($this->langtext)) 
