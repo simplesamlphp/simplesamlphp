@@ -174,12 +174,15 @@ class SimpleSAML_Session {
 	
 	public function add_sp_session($entityid) {
 		SimpleSAML_Logger::debug('Library - Session: Adding SP session: ' . $entityid);
+		$this->dirty = TRUE;
 		$this->sp_at_idpsessions[$entityid] = self::STATE_ONLINE;
 	}
 	
 	public function get_next_sp_logout() {
 		
 		if (!$this->sp_at_idpsessions) return null;
+
+		$this->dirty = TRUE;
 		
 		foreach ($this->sp_at_idpsessions AS $entityid => $sp) {
 			if ($sp == self::STATE_ONLINE) {
