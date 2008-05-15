@@ -105,10 +105,9 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	/**
 	 * Retrieves the current session. Will create a new session if there isn't a session.
 	 *
-	 * @param $allowcreate  Set this to FALSE to disable creation of new sessions. TRUE by default.
 	 * @return The current session.
 	 */
-	public static function getInstance($allowcreate = TRUE) {
+	public static function getInstance() {
 
 		/* Check if we already have initialized the session. */
 		if (isset(self::$instance)) {
@@ -124,12 +123,6 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 			self::$instance = $sh->get('SimpleSAMLphp_SESSION');
 			self::$instance->dirty = false;
 			return self::$instance;
-		}
-
-
-		if(!$allowcreate) {
-			/* We aren't allowed to create a new session - return NULL. */
-			return NULL;
 		}
 
 
