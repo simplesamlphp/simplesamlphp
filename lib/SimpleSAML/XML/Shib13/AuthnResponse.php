@@ -115,8 +115,8 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 	public function createSession() {
 	
-		SimpleSAML_Session::init(true, 'shib13');
 		$session = SimpleSAML_Session::getInstance();
+		$session->doLogin('shib13');
 		$session->setAttributes($this->getAttributes());
 		
 		$nameid = $this->getNameID();

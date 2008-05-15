@@ -509,8 +509,8 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			}
 	
 			/* Update the session information */
-			SimpleSAML_Session::init(true, 'saml2');
 			$session = SimpleSAML_Session::getInstance();
+			$session->doLogin('saml2');
 	
 			$session->setAttributes($this->attributes);
 			$session->setNameID($this->nameid);
@@ -519,8 +519,8 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		} elseif ($status == 'urn:oasis:names:tc:SAML:2.0:status:NoPassive') {
 			/* 	Do not process the authResponse when NoPassive is sent - we continue with an empty set of attributes.
 		   		Some day we will be able to tell the application what happened */
-			SimpleSAML_Session::init(true, 'saml2');
 			$session = SimpleSAML_Session::getInstance();
+			$session->doLogin('saml2');
 			$session->setAttributes(array());
 		} else {
 			SimpleSAML_Utilities::fatalError($session->getTrackID(), 'RESPONSESTATUSNOSUCCESS', new Exception("Status = " . $status));
