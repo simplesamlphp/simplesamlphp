@@ -19,6 +19,18 @@ interface SimpleSAML_Logger_LoggingHandler {
 class SimpleSAML_Logger {
 	private static $loggingHandler = null;
 	private static $logLevel = null;
+
+	/**
+	 * This constant defines the string we set the trackid to while we are fetching the
+	 * trackid from the session class. This is used to prevent infinite recursion.
+	 */
+	private static $TRACKID_FETCHING = '_NOTRACKIDYET_';
+
+	/**
+	 * This variable holds the trackid we have retrieved from the session class.
+	 * It can also hold NULL, in which case we haven't fetched the trackid yet, or
+	 * TRACKID_FETCHING, which means that we are fetching the trackid now.
+	 */
 	private static $trackid = null;
 
 /*
@@ -99,12 +111,6 @@ class SimpleSAML_Logger {
 		 */
 		self::$logLevel = $config->getValue('logging.level',LOG_INFO);
 
-		/*
-		 * get trackid, prefixes all logstrings
-		 */
-		$session = SimpleSAML_Session::getInstance();
-		self::$trackid = (isset($session) ? $session->getTrackID() : 'NA');
-
 		/* If 'session.handler' is NULL or unset, then we want
 		 * to fall back to the default PHP session handler.
 		 */
@@ -140,12 +146,43 @@ class SimpleSAML_Logger {
 		
 		if (self::$logLevel >= $level || $statsLog) {
 			if (is_array($string)) $string = implode(",",$string);
-			$string = '['.self::$trackid.'] '.$string;
+			$string = '['.self::getTrackId().'] '.$string;
 			if ($statsLog) $string = 'STAT '.$string;  
 			self::$loggingHandler->log_internal($level,$string);
 		}
 	}
 	
+
+	/**
+	 * Retrieve the trackid we should use for logging.
+	 *
+	 * It is used to avoid infinite recursion between the logger class and the session class.
+	 *
+	 * @return The trackid we should use for logging, or 'NA' if we detect recursion.
+	 */
+	private static function getTrackId() {
+
+		if(self::$trackid === self::$TRACKID_FETCHING) {
+			/* Recursion detected. */
+			return 'NA';
+		}
+
+		if(self::$trackid === NULL) {
+			/* No trackid yet, fetch it from the session class. */
+
+			/* Mark it as currently being fetched. */
+			self::$trackid = self::$TRACKID_FETCHING;
+
+			/* Get the current session. This could cause recursion back to the logger class. */
+			$session = SimpleSAML_Session::getInstance(TRUE);
+
+			/* Update the trackid. */
+			self::$trackid = $session->getTrackId();
+		}
+
+		assert('is_string(self::$trackid)');
+		return self::$trackid;
+	}
 }
 
 
