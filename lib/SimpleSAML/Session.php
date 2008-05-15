@@ -83,18 +83,14 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
-	private function __construct($authenticated = true) {
-
-		$this->authenticated = $authenticated;
-		if ($authenticated) {
-			$this->sessionstarted = time();
-		}
+	private function __construct() {
 		
 		$configuration = SimpleSAML_Configuration::getInstance();
 		$this->sessionduration = $configuration->getValue('session.duration');
 		
 		$this->trackid = SimpleSAML_Utilities::generateTrackID();
 
+		$this->dirty = TRUE;
 	}
 
 
@@ -106,6 +102,12 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	}
 	
 	
+	/**
+	 * Retrieves the current session. Will create a new session if there isn't a session.
+	 *
+	 * @param $allowcreate  Set this to FALSE to disable creation of new sessions. TRUE by default.
+	 * @return The current session.
+	 */
 	public static function getInstance($allowcreate = TRUE) {
 
 		/* Check if we already have initialized the session. */
@@ -124,36 +126,35 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 			return self::$instance;
 		}
 
-		/* We don't have a session. Create one if allowed to. Return
-		 * null if not.
-		 */
-		if ($allowcreate) {
-			self::init();
-			return self::$instance;
-		} else {
-			return null;
-		}
-	}
-	
-	
-	
-	
-	public static function init($authenticated = false, $authority = null) {
-		
-		$preinstance = self::getInstance(FALSE);
-		
-		if (isset($preinstance)) {
-		
-			$preinstance->clean();
-			if (isset($authenticated)) $preinstance->setAuthenticated($authenticated, $authority);
-			
-		} else {	
-			self::$instance = new SimpleSAML_Session($authenticated, $authority);
 
-			/* Save the new session with the session handler. */
-			$sh = SimpleSAML_SessionHandler::getSessionHandler();
-			$sh->set('SimpleSAMLphp_SESSION', self::$instance);
+		if(!$allowcreate) {
+			/* We aren't allowed to create a new session - return NULL. */
+			return NULL;
 		}
+
+
+		/* Create a new session. */
+		self::$instance = new SimpleSAML_Session();
+
+		/* Save the new session with the session handler. */
+		$sh = SimpleSAML_SessionHandler::getSessionHandler();
+		$sh->set('SimpleSAMLphp_SESSION', self::$instance);
+
+		return self::$instance;
+	}
+
+
+	/**
+	 * Initializes a session with the specified authentication state.
+	 *
+	 * @param $authenticated  TRUE if this session is authenticated, FALSE if not.
+	 * @param $authority      The authority which authenticated the session.
+	 * @deprecated  Replace with getInstance() and doLogin(...) / doLogout().
+	 */
+	public static function init($authenticated = false, $authority = null) {
+		$session = self::getInstance(TRUE);
+		$session->clean();
+		$session->setAuthenticated($authenticated, $authority);
 	}
 	
 	
