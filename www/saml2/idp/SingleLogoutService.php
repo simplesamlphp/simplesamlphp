@@ -205,6 +205,10 @@ if (isset($_GET['SAMLRequest'])) {
 	/* Fetch the $logoutInfo variable. */
 	fetchLogoutInfo($_GET['LogoutID']);
 
+} elseif(array_key_exists('ReturnTo', $_GET)) {
+	/* We have a ReturnTo - this is IdP initialized SLO. */
+	$logoutInfo['RelayState'] = $_GET['ReturnTo'];
+
 } else {
 	/*
 	 * We have no idea what to do here. It is neither a logout request, a logout
