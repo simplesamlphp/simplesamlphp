@@ -106,7 +106,7 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	}
 	
 	
-	public static function getInstance($allowcreate = false) {
+	public static function getInstance($allowcreate = TRUE) {
 
 		/* Check if we already have initialized the session. */
 		if (isset(self::$instance)) {
@@ -140,7 +140,7 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	
 	public static function init($authenticated = false, $authority = null) {
 		
-		$preinstance = self::getInstance();
+		$preinstance = self::getInstance(FALSE);
 		
 		if (isset($preinstance)) {
 		
