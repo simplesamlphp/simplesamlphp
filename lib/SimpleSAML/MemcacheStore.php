@@ -60,11 +60,11 @@ class SimpleSAML_MemcacheStore {
 		assert(self::isValidID($id));
 
 		$serializedData = SimpleSAML_Memcache::get($id);
-		$data = unserialize($serializedData);
-
-		if($data === NULL) {
-			return $NULL;
+		if($serializedData === NULL) {
+			return NULL;
 		}
+
+		$data = unserialize($serializedData);
 
 		if(!($data instanceof self)) {
 			SimpleSAML_Logger::warning('Retrieved key from memcache did not contain a MemcacheStore object.');
