@@ -122,11 +122,7 @@ if ($op === 'login') {
 	}
 
 } elseif ($op === 'logout') {
-	$session = SimpleSAML_Session::getInstance(FALSE);
-
-	if ($session === NULL) {
-		error('No session.');
-	}
+	$session = SimpleSAML_Session::getInstance();
 
 	if (!$session->isValid('saml2')) {
 		error('Not logged in.');
@@ -147,8 +143,8 @@ if ($op === 'login') {
 		);
 
 } elseif ($op === 'testnosession') {
-	$session = SimpleSAML_Session::getInstance(FALSE);
-	if ($session !== NULL && $session->isValid('saml2')) {
+	$session = SimpleSAML_Session::getInstance();
+	if ($session->isValid('saml2')) {
 		error('Still logged in.');
 	}
 
