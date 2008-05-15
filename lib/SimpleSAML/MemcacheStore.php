@@ -3,6 +3,7 @@
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/ModifiedInfo.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Memcache.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
 
 /**
  * This class provides a class with behaviour similar to the $_SESSION variable.
@@ -66,7 +67,7 @@ class SimpleSAML_MemcacheStore {
 		}
 
 		if(!($data instanceof self)) {
-			error_log('Retrieved key from memcache did not contain a MemcacheStore object.');
+			SimpleSAML_Logger::warning('Retrieved key from memcache did not contain a MemcacheStore object.');
 			return NULL;
 		}
 

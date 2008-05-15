@@ -1,6 +1,7 @@
 <?php
 
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
 
 /**
  * This file implements functions to read and write to a group of memcache
@@ -57,17 +58,17 @@ class SimpleSAML_Memcache {
 			 * - 'data': The data.
 			 */
 			if(!is_array($info)) {
-				error_log('Retrieved invalid data from a memcache server.' .
+				SimpleSAML_Logger::warning('Retrieved invalid data from a memcache server.' .
 					' Data was not an array.');
 				continue;
 			}
 			if(!array_key_exists('timestamp', $info)) {
-				error_log('Retrieved invalid data from a memcache server.' .
+				SimpleSAML_Logger::warning('Retrieved invalid data from a memcache server.' .
 					' Missing timestamp.');
 				continue;
 			}
 			if(!array_key_exists('data', $info)) {
-				error_log('Retrieved invalid data from a memcache server.' .
+				SimpleSAML_Logger::warning('Retrieved invalid data from a memcache server.' .
 					' Missing data.');
 				continue;
 			}
@@ -358,18 +359,14 @@ class SimpleSAML_Memcache {
 
 		/* The 'memcache_store.expires' option must be an integer. */
 		if(!is_integer($expire)) {
-			$e = 'The value of \'memcache_store.expires\' in the' .
-			     ' configuration must be a valid integer.';
-			error_log($e);
-			die($e);
+			throw new Exception('The value of \'memcache_store.expires\' in the' .
+				' configuration must be a valid integer.');
 		}
 
 		/* It must be a positive integer. */
 		if($expire < 0) {
-			$e = 'The value of \'memcache_store.expires\' in the' .
-			     ' configuration can\'t be a negative integer.';
-			error_log($e);
-			die($e);
+			throw new Exception('The value of \'memcache_store.expires\' in the' .
+				' configuration can\'t be a negative integer.');
 		}
 
 		/* If the configuration option is 0, then we should
