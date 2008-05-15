@@ -27,7 +27,7 @@ $config = SimpleSAML_Configuration::getInstance();
 /* Get the session object for the user. Create a new session if no session
  * exists for this user.
  */
-$session = SimpleSAML_Session::getInstance(TRUE);
+$session = SimpleSAML_Session::getInstance();
 
 SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Accessing SAML 2.0 SP endpoint AssertionConsumerService');
 

@@ -19,7 +19,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 
 
 $config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getInstance(TRUE);
+$session = SimpleSAML_Session::getInstance();
 
 try {
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();

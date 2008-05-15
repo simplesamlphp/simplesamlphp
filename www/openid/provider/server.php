@@ -97,7 +97,7 @@ function action_default()
 		$t->data['openidserver'] = $metadata->getGenerated('server', 'openid-provider');
 		
 		
-		$session = SimpleSAML_Session::getInstance(true);
+		$session = SimpleSAML_Session::getInstance();
 		
 		$useridfield = $config->getValue('openid.userid_attributename');
 		$delegationprefix = $config->getValue('openid.delegation_prefix');
@@ -218,7 +218,7 @@ function check_authenticated_user() {
 	
 	$config = SimpleSAML_Configuration::getInstance();
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-	$session = SimpleSAML_Session::getInstance(true);
+	$session = SimpleSAML_Session::getInstance();
 	
 	$idpentityid = $metadata->getMetaDataCurrentEntityID('openid-provider');
 	$idpmeta = $metadata->getMetaDataCurrent('openid-provider');

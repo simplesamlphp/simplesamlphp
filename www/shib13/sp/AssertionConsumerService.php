@@ -13,7 +13,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 
 $config = SimpleSAML_Configuration::getInstance();
 
-$session = SimpleSAML_Session::getInstance(TRUE);
+$session = SimpleSAML_Session::getInstance();
 
 
 SimpleSAML_Logger::info('Shib1.3 - SP.AssertionConsumerService: Accessing Shibboleth 1.3 SP endpoint AssertionConsumerService');

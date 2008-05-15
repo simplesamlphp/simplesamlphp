@@ -415,7 +415,7 @@ function as_request_bridge_return() {
 	}
 	$parms = as_call($url);
 	
-	$session = SimpleSAML_Session::getInstance(true);
+	$session = SimpleSAML_Session::getInstance();
 	$session->doLogin('aselect');
 	
 	if (array_key_exists('attributes', $parms)) {

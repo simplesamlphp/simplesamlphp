@@ -83,7 +83,7 @@ foreach ($_GET as $k => $v) {
 
 
 if ($op === 'login') {
-	$session = SimpleSAML_Session::getInstance(TRUE);
+	$session = SimpleSAML_Session::getInstance();
 
 	/* Initialize SSO if we aren't authenticated. */
 	if (!$session->isValid($protocol) ) {

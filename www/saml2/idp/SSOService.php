@@ -26,7 +26,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-$session = SimpleSAML_Session::getInstance(TRUE);
+$session = SimpleSAML_Session::getInstance();
 
 try {
 	$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');

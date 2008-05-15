@@ -174,7 +174,7 @@ class SimpleSAML_Logger {
 			self::$trackid = self::$TRACKID_FETCHING;
 
 			/* Get the current session. This could cause recursion back to the logger class. */
-			$session = SimpleSAML_Session::getInstance(TRUE);
+			$session = SimpleSAML_Session::getInstance();
 
 			/* Update the trackid. */
 			self::$trackid = $session->getTrackId();

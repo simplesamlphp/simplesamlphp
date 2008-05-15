@@ -17,7 +17,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getInstance(TRUE);
+$session = SimpleSAML_Session::getInstance();
 
 /**
  * Check if valid local session exists, and the authority is the Shib 1.3 SP

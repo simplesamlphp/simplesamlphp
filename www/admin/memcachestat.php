@@ -11,7 +11,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 try {
 
 	$config = SimpleSAML_Configuration::getInstance();
-	$session = SimpleSAML_Session::getInstance(true);
+	$session = SimpleSAML_Session::getInstance();
 
 	/* Make sure that the user has admin access rights. */
 	if (!isset($session) || !$session->isValid('login-admin') ) {

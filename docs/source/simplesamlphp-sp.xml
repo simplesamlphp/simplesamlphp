@@ -877,7 +877,7 @@ require_once('SimpleSAML/XHTML/Template.php');
 
     <programlisting>/* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getInstance(true);</programlisting>
+$session = SimpleSAML_Session::getInstance();</programlisting>
 
     <para>Then check whether the session is valid. If not, redirect the user
     to the IdP, specifying the <filename>initSSO.php</filename> script (for

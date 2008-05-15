@@ -66,7 +66,7 @@ usleep($delay_login * 1000);
 
 
 /* Load the session of the current user. */
-$session = SimpleSAML_Session::getInstance(true);
+$session = SimpleSAML_Session::getInstance();
 if($session == NULL) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOSESSION');
 }

@@ -12,7 +12,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'xmlsecli
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-$session = SimpleSAML_Session::getInstance(true);
+$session = SimpleSAML_Session::getInstance();
 
 if (!$config->getValue('enable.saml20-idp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');

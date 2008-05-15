@@ -17,7 +17,7 @@ $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 // Get the local session
-$session = SimpleSAML_Session::getInstance(true);
+$session = SimpleSAML_Session::getInstance();
 
 
 SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: Accessing SAML 2.0 SP endpoint SingleLogoutService');

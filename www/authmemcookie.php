@@ -19,7 +19,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 try {
 	/* Load simpleSAMLphp configuration. */
 	$globalConfig = SimpleSAML_Configuration::getInstance();
-	$session = SimpleSAML_Session::getInstance(TRUE);
+	$session = SimpleSAML_Session::getInstance();
 
 	/* Check if this module is enabled. */
 	if(!$globalConfig->getValue('enable.authmemcookie', FALSE)) {
