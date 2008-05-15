@@ -29,7 +29,7 @@ if (!$config->getValue('enable.saml20-sp', false))
 
 // Destroy local session if exists.
 if (isset($session) ) {
-	$session->setAuthenticated(false);
+	$session->doLogout();
 	$session->clean();
 }
 

@@ -74,7 +74,7 @@ if($session == NULL) {
 /* Set the user as authenticated and add the attributes from the
  * configuration.
  */
-$session->setAuthenticated(true, 'login-auto');
+$session->doLogin('login-auto');
 
 $session->setAttributes($attributes);
 $session->setNameID(array(

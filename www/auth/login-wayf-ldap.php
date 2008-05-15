@@ -58,7 +58,7 @@ if ($username = $_POST['username']) {
 		if ($attributes === FALSE) {
 			$error = "LDAP_INVALID_CREDENTIALS";
 		} else {
-			$session->setAuthenticated(true, 'login-wayf-ldap');
+			$session->doLogin('login-wayf-ldap');
 			$session->setAttributes($attributes);
 			
 			$session->setNameID(array(

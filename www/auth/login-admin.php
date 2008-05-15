@@ -55,7 +55,7 @@ if (isset($_POST['password'])) {
 	
 		$attributes = array('user' => array('admin'));
 	
-		$session->setAuthenticated(true, 'login-admin');
+		$session->doLogin('login-admin');
 		$session->setAttributes($attributes);
 
 		$session->setNameID(array(

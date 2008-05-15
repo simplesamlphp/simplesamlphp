@@ -130,7 +130,7 @@ try {
 		$ldapattributes = $ldap->validate($ldapconfig, $username);
 	}
 	$attributes = array_merge_recursive($casattributes, $ldapattributes);
-	$session->setAuthenticated(true, 'login-cas-ldap');
+	$session->doLogin('login-cas-ldap');
 	$session->setAttributes($attributes);
 	
 	$session->setNameID(array(

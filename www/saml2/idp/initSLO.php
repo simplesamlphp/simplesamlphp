@@ -49,7 +49,7 @@ if (isset($_GET['RelayState'])) {
 	}
 
 	// Set local IdP session to invalid.
-	$session->setAuthenticated(false, $session->getAuthority() );
+	$session->doLogout(false);
 
 
 	/*

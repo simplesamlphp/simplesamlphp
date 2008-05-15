@@ -54,7 +54,7 @@ try {
 	$attributes['CertificateDN']   = array($userid);
 	$attributes['CertificateDNCN'] = array($_SERVER['SSL_CLIENT_S_DN_CN']);
 	
-	$session->setAuthenticated(true, 'tlsclient');
+	$session->doLogin('tlsclient');
 	$session->setAttributes($attributes);
 	
 	#echo '<pre>';

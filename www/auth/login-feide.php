@@ -205,7 +205,7 @@ if (isset($_REQUEST['username'])) {
 		//SimpleSAML_Logger::debug('AUTH - ldap-feide: '. $orgattributes . ' successfully authenticated');
 		SimpleSAML_Logger::info('AUTH - ldap-feide: '. $requestedUser . ' successfully authenticated');
 		
-		$session->setAuthenticated(true, 'login-feide');
+		$session->doLogin('login-feide');
 		
 		
 		$session->setAttributes($attributes);

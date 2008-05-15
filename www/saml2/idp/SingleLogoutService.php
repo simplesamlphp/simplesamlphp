@@ -148,7 +148,7 @@ if (isset($_GET['SAMLRequest'])) {
 	}
 
 
-	$session->setAuthenticated(false, $session->getAuthority() );
+	$session->doLogout();
 
 
 	/* Fill in the $logoutInfo associative array with information about this logout request. */

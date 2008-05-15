@@ -89,7 +89,7 @@ if (isset($_POST['username'])) {
 
 		SimpleSAML_Logger::info('AUTH - ldap: '. $ldapusername . ' successfully authenticated');
 		
-		$session->setAuthenticated(true, 'login');
+		$session->doLogin('login');
 		$session->setAttributes($attributes);
 		
 		$session->setNameID(array(

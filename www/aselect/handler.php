@@ -416,7 +416,7 @@ function as_request_bridge_return() {
 	$parms = as_call($url);
 	
 	$session = SimpleSAML_Session::getInstance(true);
-	$session->setAuthenticated(true, 'aselect');
+	$session->doLogin('aselect');
 	
 	if (array_key_exists('attributes', $parms)) {
 		$decoded = base64_decode($parms['attributes']);

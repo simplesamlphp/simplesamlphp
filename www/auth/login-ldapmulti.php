@@ -90,7 +90,7 @@ if (isset($_POST['username'])) {
 				SimpleSAML_Logger::info('AUTH - ldap-multi: '. $_POST['username'] . ' successfully authenticated');
 				
 				
-				$session->setAuthenticated(true, 'login-ldapmulti');
+				$session->doLogin('login-ldapmulti');
 				$session->setAttributes($attributes);
 				
 				$session->setNameID(array(

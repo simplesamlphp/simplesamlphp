@@ -91,7 +91,7 @@ if (isset($_POST['username'])) {
 				
 				SimpleSAML_Logger::info('AUTH - radius: '. $_POST['username'] . ' successfully authenticated');
 				
-				$session->setAuthenticated(true, 'login-radius');
+				$session->doLogin('login-radius');
 				
 				$session->setAttributes($attributes);
 				$session->setNameID(array(
