@@ -338,20 +338,73 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 		return $this->nameid;
 	}
 
+
+	/**
+	 * Marks the user as logged in with the specified authority.
+	 *
+	 * If the user already has logged in, the user will be logged out first.
+	 *
+	 * @param @authority  The authority the user logged in with.
+	 */
+	public function doLogin($authority) {
+		assert('is_string($authority)');
+
+		SimpleSAML_Logger::debug('Session: doLogin("' . $authority . '")');
+
+		$this->dirty = TRUE;
+
+		if($this->authenticated) {
+			/* We are already logged in. Log the user out first. */
+			$this->doLogout();
+		}
+
+		$this->authenticated = TRUE;
+		$this->authority = $authority;
+
+		$this->sessionstarted = time();
+
+		/* Clear NeedAuthentication flags. This flag is used to implement ForceAuthn. */
+		$this->clearNeedAuthFlag();
+	}
+
+
+	/**
+	 * Marks the user as logged out.
+	 *
+	 * This function will call any registered logout handlers before marking the user as logged out.
+	 */
+	public function doLogout() {
+
+		SimpleSAML_Logger::debug('Session: doLogout()');
+
+		$this->dirty = TRUE;
+
+		$this->callLogoutHandlers();
+
+		$this->authenticated = FALSE;
+		$this->authority = NULL;
+	}
+
+
+	/**
+	 * Sets the current authentication state of the user.
+	 *
+	 * @param $auth       The current authentication state of the user.
+	 * @param $authority  The authority (if the user is authenticated).
+	 * @deprecated  Replaced with doLogin(...) and doLogout().
+	 */
 	public function setAuthenticated($auth, $authority = null) {
 		
 		SimpleSAML_Logger::debug('Library - Session: Set authenticated ' . ($auth ? 'yes': 'no'). ' authority:' . 
 			(isset($authority) ? $authority : 'null'));
-		$this->authority = $authority;
-		$this->authenticated = $auth;
-		$this->dirty = true;
 
 		if ($auth) {	
-			$this->clearNeedAuthFlag();
-			$this->sessionstarted = time();
+			if(!is_string($authority)) {
+				$authority = 'null';
+			}
+			$this->doLogin($authority);
 		} else {
-			/* Call logout handlers. */
-			$this->callLogoutHandlers();
+			$this->doLogout();
 		}
 	}
 	
