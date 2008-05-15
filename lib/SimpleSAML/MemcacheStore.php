@@ -1,13 +1,15 @@
 <?php 
 
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/ModifiedInfo.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Memcache.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
 
 /**
  * This class provides a class with behaviour similar to the $_SESSION variable.
  * Data is automatically saved on exit.
+ *
+ * Care should be taken when using this class to store objects. It will not detect changes to objects
+ * automatically. Instead, a call to set(...) should be done to notify this class of changes.
  *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
@@ -34,17 +36,11 @@ class SimpleSAML_MemcacheStore {
 
 
 	/**
-	 * This variable contains the serialized data which is currently
-	 * stored on the memcache servers. By comparing the data which is
-	 * stored against the current data, we can determine whether we
-	 * should update the data.
-	 *
-	 * If this variable is NULL, then we need to store data to the
-	 * memcache servers.
+	 * This variable indicates whether our shutdown function has been registered.
 	 *
 	 * This variable isn't serialized.
 	 */
-	private $savedData = NULL;
+	private $shutdownFunctionRegistered = FALSE;
 
 
 
@@ -71,11 +67,6 @@ class SimpleSAML_MemcacheStore {
 			return NULL;
 		}
 
-		$data->savedData = $serializedData;
-
-		/* Add a call to save the data when we exit. */
-		register_shutdown_function(array($data, 'save'));
-
 		return $data;
 	}
 
@@ -96,9 +87,6 @@ class SimpleSAML_MemcacheStore {
 
 		$this->id = $id;
 		$this->data = $data;
-
-		/* Add a call to save the data when we exit. */
-		register_shutdown_function(array($this, 'save'));
 	}
 
 
@@ -138,85 +126,10 @@ class SimpleSAML_MemcacheStore {
 	public function set($key, $value) {
 		$this->data[$key] = $value;
 
-		/* Set savedData to NULL. This will save time when
-		 * we are going to decide whether we need to update this
-		 * object on the memcache servers.
-		 */
-		$this->savedData = NULL;
-	}
-
-
-	/**
-	 * This function determines whether we need to update the data which
-	 * is stored on the memcache servers.
-	 *
-	 * If we are unable to detect a change, then we will serialize the
-	 * class and compare this to the data we have cached. We do this to
-	 * determine if any of the references have changed.
-	 *
-	 * @return TRUE if this object needs an update, FALSE if not.
-	 */
-	private function needUpdate() {
-		/* If $savedData is NULL, then we don't have any data stored
-		 * on any servers. Therefore, we need to update the data.
-		 */
-		if($this->savedData === NULL) {
-			return TRUE;
+		/* Register the shutdown function if it isn't registered yet. */
+		if(!$this->shutdownFunctionRegistered) {
+			$this->registerShutdownFunction();
 		}
-
-		/* Check if we need to serialize this to make sure
-		 * that it hasn't changed.
-		 */
-		$needSer = FALSE;
-		foreach($this->data as $k => $v) {
-			/* We can safely ignore all values that aren't
-			 * objects since they are changed with the set-method.
-			 */
-			if(!is_object($v)) {
-				continue;
-			}
-
-			/* If this object implements ModifiedInfo, then
-			 * we can query that to find out if the object has
-			 * changed.
-			 */
-			if($v instanceof SimpleSAML_ModifiedInfo) {
-				/* Check if this object is modified. If it is
-				 * then we return immediately.
-				 */
-				if($v->isModified()) {
-					return TRUE;
-				}
-				/* This object hasn't changed. */
-				continue;
-			}
-
-			/* We have no way of knowing whether this object
-			 * is changed or not. We need to serialize to check
-			 * this.
-			 */
-			$needSer = TRUE;
-		}
-
-		/* If we don't need to serialize, then we know we haven't
-		 * changed. (Any changes will have been picked up earlier.)
-		 */
-		if($needSer === FALSE) {
-			return FALSE;
-		}
-
-		/* Calculate the serialized value of this object. */
-		$serialized = serialize($this);
-
-		/* If the serialized value of this object matches the previous
-		 * serialized value, then we don't need to update the data on
-		 * the servers.
-		 */
-		if($serialized === $this->savedData) {
-			return FALSE;
-		}
-
-		return TRUE;
 	}
 
 
@@ -224,17 +137,8 @@ class SimpleSAML_MemcacheStore {
 	 * This function stores this storage object to the memcache servers.
 	 */
 	public function save() {
-		/* First, chech whether we need to store new data. */
-		if(!$this->needUpdate()) {
-			/* This object is unchanged - we don't need to commit. */
-			return;
-		}
-
-		/* Serialize this object. */
-		$this->savedData = serialize($this);
-
 		/* Write to the memcache servers. */
-		SimpleSAML_Memcache::set($this->id, $this->savedData);
+		SimpleSAML_Memcache::set($this->id, serialize($this));
 	}
 
 
@@ -260,6 +164,26 @@ class SimpleSAML_MemcacheStore {
 		}
 
 		return TRUE;
+	}
+
+
+	/**
+	 * Register our shutdown function.
+	 */
+	private function registerShutdownFunction() {
+		register_shutdown_function(array($this, 'shutdown'));
+		$this->shutdownFunctionRegistered = TRUE;
+	}
+
+
+	/**
+	 * Shutdown function. Calls save and updates flag indicating that the function has been called.
+	 *
+	 * This function is only public because this is a requirement of the way callbacks work in PHP.
+	 */
+	public function shutdown() {
+		$this->save();
+		$this->shutdownFunctionRegistered = FALSE;
 	}
 
 }
