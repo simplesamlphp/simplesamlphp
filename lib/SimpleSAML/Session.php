@@ -4,7 +4,6 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/SessionHandler.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/ModifiedInfo.php');
 
 /**
  * The Session class holds information about a user session, and everything attached to it.
@@ -18,7 +17,7 @@ require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSA
  * @package simpleSAMLphp
  * @version $Id$
  */
-class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
+class SimpleSAML_Session {
 
 	const STATE_ONLINE = 1;
 	const STATE_LOGOUTINPROGRESS = 2;
@@ -91,6 +90,7 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 		$this->trackid = SimpleSAML_Utilities::generateTrackID();
 
 		$this->dirty = TRUE;
+		$this->addShutdownFunction();
 	}
 
 
@@ -98,7 +98,7 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	 * This function is called after this class has been deserialized.
 	 */
 	public function __wakeup() {
-
+		$this->addShutdownFunction();
 	}
 	
 	
@@ -118,10 +118,8 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 		/* Check if we have stored a session stored with the session
 		 * handler.
 		 */
-		$sh = SimpleSAML_SessionHandler::getSessionHandler();
-		if($sh->get('SimpleSAMLphp_SESSION') !== NULL) {
-			self::$instance = $sh->get('SimpleSAMLphp_SESSION');
-			self::$instance->dirty = false;
+		self::$instance = self::loadSession();
+		if(self::$instance !== NULL) {
 			return self::$instance;
 		}
 
@@ -485,13 +483,6 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 	}
 	 
 	/**
-	 * Is this session modified since loaded?
-	 */
-	public function isModified() {
-		return $this->dirty;
-	}
-	
-	/**
 	 * Calculates the size of the session object after serialization
 	 *
 	 * @return The size of the session measured in bytes.
@@ -633,6 +624,62 @@ class SimpleSAML_Session implements SimpleSAML_ModifiedInfo {
 		$this->dirty = TRUE;
 
 		return $dataInfo['data'];
+	}
+
+
+	/**
+	 * Load a session from the session handler.
+	 *
+	 * @return The session which is stored in the session handler, or NULL if the session wasn't found.
+	 */
+	private static function loadSession() {
+
+		$sh = SimpleSAML_SessionHandler::getSessionHandler();
+		$sessionData = $sh->get('SimpleSAMLphp_SESSION');
+		if($sessionData == NULL) {
+			return NULL;
+		}
+
+		if(!is_string($sessionData)) {
+			return NULL;
+		}
+
+		$sessionData = unserialize($sessionData);
+
+		if(!($sessionData instanceof self)) {
+			SimpleSAML_Logger::warning('Retrieved and deserialized session data was not a session.');
+			return NULL;
+		}
+
+		return $sessionData;
+	}
+
+
+	/**
+	 * Save the session to the session handler.
+	 *
+	 * This function will check the dirty-flag to check if the session has changed.
+	 */
+	public function saveSession() {
+
+		if(!$this->dirty) {
+			/* Session hasn't changed - don't bother saving it. */
+			return;
+		}
+
+		$this->dirty = FALSE;
+		$sessionData = serialize($this);
+
+		$sh = SimpleSAML_SessionHandler::getSessionHandler();
+		$sh->set('SimpleSAMLphp_SESSION', $sessionData);
+	}
+
+
+	/**
+	 * Add a shutdown function for saving this session object on exit.
+	 */
+	private function addShutdownFunction() {
+		register_shutdown_function(array($this, 'saveSession'));
 	}
 
 }
