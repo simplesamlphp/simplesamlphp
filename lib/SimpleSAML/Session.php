@@ -638,6 +638,38 @@ class SimpleSAML_Session {
 
 
 	/**
+	 * This function retrieves all data of the specified type from the data store.
+	 *
+	 * The data will be returned as an associative array with the id of the data as the key, and the data
+	 * as the value of each key. The value will be stored as a copy of the original data. setData must be
+	 * used to update the data.
+	 *
+	 * An empty array will be returned if no data of the given type is found.
+	 *
+	 * @param $type  The type of the data.
+	 * @return An associative array with all data of the given type.
+	 */
+	public function getDataOfType($type) {
+		assert('is_string($type)');
+
+		if(!is_array($this->dataStore)) {
+			return array();
+		}
+
+		if(!array_key_exists($type, $this->dataStore)) {
+			return array();
+		}
+
+		$ret = array();
+		foreach($this->dataStore[$type] as $id => $info) {
+			$ret[$id] = $info['data'];
+		}
+
+		return $ret;
+	}
+
+
+	/**
 	 * Load a session from the session handler.
 	 *
 	 * @return The session which is stored in the session handler, or NULL if the session wasn't found.
