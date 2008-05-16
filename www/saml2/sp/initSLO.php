@@ -43,7 +43,7 @@ if (isset($session) ) {
 		$req = $lr->generate($spentityid, $idpentityid, $session->getNameID(), $session->getSessionIndex(), 'SP');
 
 		/* Save the $returnTo url until the user returns from the IdP. */
-		$session->setData('spLogoutReturnTo', $lr->getGeneratedID(), 15*60, $returnTo);
+		$session->setData('spLogoutReturnTo', $lr->getGeneratedID(), $returnTo);
 		
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 		

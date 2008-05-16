@@ -122,6 +122,13 @@ $config = array (
 	 */
 	'session.duration'		=>  8 * (60*60), // 8 hours.
 	'session.requestcache'	=>  4 * (60*60), // 4 hours
+
+	/*
+	 * Sets the duration, in seconds, data should be stored in the datastore. As the datastore is used for
+	 * login and logout requests, thid option will control the maximum time these operations can take.
+	 * The default is 4 hours (4*60*60) seconds, which should be more than enough for these operations.
+	 */
+	'session.datastore.timeout' => (4*60*60), // 4 hours
 	
 	/*
 	 * Options to override the default settings for php sessions.

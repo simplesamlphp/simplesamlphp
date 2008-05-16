@@ -551,16 +551,39 @@ class SimpleSAML_Session {
 	 *
 	 * @param $type     The type of the data. This is checked when retrieving data from the store.
 	 * @param $id       The identifier of the data.
-	 * @param $timeout  The number of seconds this data should be stored after its last access.
 	 * @param $data     The data.
+	 * @param $timeout  The number of seconds this data should be stored after its last access.
+	 *                  This parameter is optional. The default value is set in 'session.datastore.timeout',
+	 *                  and the default is 4 hours.
 	 */
-	public function setData($type, $id, $timeout, $data) {
+	public function setData($type, $id, $data, $timeout = NULL) {
 		assert(is_string($type));
 		assert(is_string($id));
-		assert(is_int($timeout));
+		assert(is_int($timeout) || is_null($timeout));
 
 		/* Clean out old data. */
 		$this->expireData();
+
+		if($timeout === NULL) {
+			/* Use the default timeout. */
+
+			$configuration = SimpleSAML_Configuration::getInstance();
+
+			$timeout = $configuration->getValue('session.datastore.timeout', NULL);
+			if($timeout !== NULL) {
+				if(!is_int($timeout) || $timeout <= 0) {
+					throw new Exception('The value of the session.datastore.timeout' .
+						' configuration option should be a positive integer.');
+				}
+			} else {
+				/* For backwards compatibility. */
+				$timeout = $configuration->getValue('session.requestcache', 4*(60*60));
+				if(!is_int($timeout) || $timeout <= 0) {
+					throw new Exception('The value of the session.requestcache' .
+						' configuration option should be a positive integer.');
+				}
+			}
+		}
 
 		$dataInfo = array('expires' => time() + $timeout, 'timeout' => $timeout, 'data' => $data);
 

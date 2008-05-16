@@ -78,7 +78,7 @@ function saveLogoutInfo($id) {
 	global $session;
 	global $logoutInfo;
 
-	$session->setData('idplogoutresponsedata', $id, 15*60, $logoutInfo);
+	$session->setData('idplogoutresponsedata', $id, $logoutInfo);
 }
 
 
