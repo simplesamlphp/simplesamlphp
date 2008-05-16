@@ -632,4 +632,13 @@ $lang = array(
 		'es' => 'La clave de acceso del fichero de configuración (auth.adminpassword) no ha sido cambiada de su valor por defecto. Por favor, edite dicho fichero'
 	),
 
+	'title_LOGOUTINFOLOST' => array(
+		'en' => 'Logout information lost',
+		'no' => 'Informasjon om utlogging er tapt',
+	),
+	'descr_LOGOUTINFOLOST' => array(
+		'en' => 'The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amout of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider.',
+		'no' => 'Informasjonen om den nåværende utloggingen har gått tapt. Du bør gå tilbake til den opprinnelige tjesesten og prøve å logge ut på nytt. Informasjon om utloggingsoperasjoner er kun lagret i en begrenset tid - vanligvis noen timer. Dette er lengere tid enn en vanlig utlogging skal ta, så denne feilen kan tyde på at noe er galt med oppsettet. Ta kontakt med tjenesteyteren hvis problemet gjentar seg.',
+	),
+
 );

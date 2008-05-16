@@ -110,7 +110,7 @@ if (isset($_GET['SAMLRequest'])) {
 	$returnTo = $session->getData('spLogoutReturnTo', $id);
 
 	if(empty($returnTo)) {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTINFOLOST');
 	}
 
 	SimpleSAML_Utilities::redirect($returnTo);

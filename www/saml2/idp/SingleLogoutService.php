@@ -319,7 +319,7 @@ if ($session->getAuthority() == 'shib13') {
 try {
 
 	if(!$logoutInfo) {
-		throw new Exception('The logout information has been lost during logout processing.');
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTINFOLOST');
 	}
 	
 	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: Found logout info with these keys: ' . join(',', array_keys($logoutInfo)));
