@@ -35,11 +35,6 @@ class SimpleSAML_Session {
 	 */
 	private $trackid = 0;
 	
-	/**
-	 * The authentication requests are an array with cached information about the requests.
-	 * This is mostly used at the Shib and SAML 2.0 IdP side, at the SSOService endpoint.
-	 */
-	private $authnrequests = array();
 	private $idp = null;
 	
 	private $authenticated = null;
@@ -238,33 +233,17 @@ class SimpleSAML_Session {
 
 		SimpleSAML_Logger::debug('Library - Session: Get authnrequest from cache ' . $protocol . ' time:' . time() . '  id: '. $requestid );
 
-		$configuration = SimpleSAML_Configuration::getInstance();
-		if (isset($this->authnrequests[$protocol])) {
+		$type = 'AuthnRequest-' . $protocol;
+		$authnRequest = $this->getData($type, $requestid);
+
+		if($authnRequest === NULL) {
 			/*
-			 * Traverse all cached authentication requests in this session for this user using this protocol
+			 * Could not find requested ID. Throw an error. Could be that it is never set, or that it is deleted due to age.
 			 */
-			foreach ($this->authnrequests[$protocol] AS $id => $cache) {
-				/*
-				 * If any of the cached requests is elder than the session.requestcache duration, then just
-				 * simply delete it :)
-				 */
-				if ($cache['date'] < time() - $configuration->getValue('session.requestcache', 4*(60*60)) ) {
-					SimpleSAML_Logger::debug('Library - Session: Deleting expired authn request with id ' . $id);
-					unset($this->authnrequests[$protocol][$id]);
-				}
-			}
-		}
-		/*
-		 * Then look if the request id that was requested exists, if so return it.
-		 */
-		if (isset($this->authnrequests[$protocol][$requestid])) {
-			return $this->authnrequests[$protocol][$requestid];
+			throw new Exception('Could not find cached version of authentication request with ID ' . $requestid . ' (' . $protocol . ')');
 		}
 
-		/*
-		 * Could not find requested ID. Throw an error. Could be that it is never set, or that it is deleted due to age.
-		 */
-		throw new Exception('Could not find cached version of authentication request with ID ' . $requestid . ' (' . $protocol . ')');
+		return $authnRequest;
 	}
 	
 	/**
@@ -278,10 +257,8 @@ class SimpleSAML_Session {
 	
 		SimpleSAML_Logger::debug('Library - Session: Set authnrequest ' . $protocol . ' time:' . time() . ' size:' . count($cache) . '  id: '. $requestid );
 
-		$this->dirty = true;
-		$cache['date'] = time();
-		$this->authnrequests[$protocol][$requestid] = $cache;
-
+		$type = 'AuthnRequest-' . $protocol;
+		$this->setData($type, $requestid, $cache);
 	}
 	
 
@@ -515,11 +492,20 @@ class SimpleSAML_Session {
 	 * from them.
 	 */
 	private function clearNeedAuthFlag() {
-		foreach($this->authnrequests as &$cache) {
-			foreach($cache as &$request) {
-				if(array_key_exists('NeedAuthentication', $request)) {
-					$request['NeedAuthentication'] = FALSE;
+
+		foreach(array('AuthnRequest-saml2', 'AuthnRequest-shib13') as $type) {
+			foreach($this->getDataOfType($type) as $id => $request) {
+
+				if(!array_key_exists('NeedAuthentication', $request)) {
+					continue;
 				}
+
+				if($request['NeedAuthentication'] === FALSE) {
+					continue;
+				}
+
+				$request['NeedAuthentication'] = FALSE;
+				$this->setData($type, $id, $request);
 			}
 		}
 	}
