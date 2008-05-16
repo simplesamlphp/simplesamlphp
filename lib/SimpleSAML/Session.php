@@ -40,7 +40,6 @@ class SimpleSAML_Session {
 	 * This is mostly used at the Shib and SAML 2.0 IdP side, at the SSOService endpoint.
 	 */
 	private $authnrequests = array();
-	private $logoutrequest = null;
 	private $idp = null;
 	
 	private $authenticated = null;
@@ -297,23 +296,6 @@ class SimpleSAML_Session {
 	public function getIdP() {
 		return $this->idp;
 	}
-	
-	
-	
-	
-	
-	public function setLogoutRequest($requestcache) {
-		SimpleSAML_Logger::debug('Library - Session: Adding LogoutRequest cache.');
-		$this->dirty = true;
-		$this->logoutrequest = $requestcache;
-	}
-	
-	public function getLogoutRequest() {
-		return $this->logoutrequest;
-	}
-	
-	
-	
 	
 
 	public function setSessionIndex($sessionindex) {
