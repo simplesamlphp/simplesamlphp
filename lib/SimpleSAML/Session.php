@@ -527,6 +527,10 @@ class SimpleSAML_Session {
 
 	/**
 	 * This function removes expired data from the data store.
+	 *
+	 * Note that this function doesn't mark the session object as dirty. This means that
+	 * if the only change to the session object is that some data has expired, it will not be
+	 * written back to the session store.
 	 */
 	private function expireData() {
 
@@ -604,6 +608,9 @@ class SimpleSAML_Session {
 	/**
 	 * This function retrieves data from the data store.
 	 *
+	 * Note that this will not change when the data stored in the data store will expire. If that is required,
+	 * the data should be written back with setData.
+	 *
 	 * @param $type  The type of the data. This must match the type used when adding the data.
 	 * @param $id    The identifier of the data.
 	 * @return The data of the given type with the given id or NULL if the data doesn't exist in the data store.
@@ -626,12 +633,7 @@ class SimpleSAML_Session {
 			return NULL;
 		}
 
-		$dataInfo =& $this->dataStore[$type][$id];
-		$dataInfo['expires'] = time() + $dataInfo['timeout'];
-
-		$this->dirty = TRUE;
-
-		return $dataInfo['data'];
+		return $this->dataStore[$type][$id]['data'];
 	}
 
 
