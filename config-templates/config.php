@@ -113,6 +113,7 @@ $config = array (
 	'enable.saml20-idp'		=> false,
 	'enable.shib13-sp'		=> false,
 	'enable.shib13-idp'		=> false,
+	'enable.wsfed-sp'		=> false,
 	'enable.openid-provider'=> false,
 	'enable.authmemcookie' => false,
 
@@ -169,6 +170,7 @@ $config = array (
 	 */
 	'default-saml20-idp' => 'https://openidp.feide.no',
 	'default-shib13-idp' => NULL,
+	'default-wsfed-idp'	=> 'urn:federation:pingfederate:localhost',
 	
 	/*
 	 * IdP Discovery service look configuration. 
