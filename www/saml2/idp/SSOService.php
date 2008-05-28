@@ -191,7 +191,11 @@ if($needAuth && !$isPassive) {
 		'?RequestID=' . urlencode($authId);
 	$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];
 
-	SimpleSAML_Utilities::redirect($authurl, array('RelayState' => $redirectTo));
+	SimpleSAML_Utilities::redirect($authurl, array(
+		'RelayState' => $redirectTo,
+		'AuthId' => $authId,
+		'protocol' => 'saml2',
+	));
 		
 /**
  * We got an request, and we have a valid session. Then we send an AuthnResponse back to the
