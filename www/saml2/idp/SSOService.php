@@ -187,8 +187,7 @@ if($needAuth && !$isPassive) {
 	$authId = SimpleSAML_Utilities::generateID();
 	$session->setAuthnRequest('saml2', $authId, $requestcache);
 
-	$redirectTo = SimpleSAML_Utilities::selfURLNoQuery() .
-		'?RequestID=' . urlencode($authId);
+	$redirectTo = SimpleSAML_Utilities::selfURLNoQuery() . '?RequestID=' . urlencode($authId);
 	$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];
 
 	SimpleSAML_Utilities::redirect($authurl, array(

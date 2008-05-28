@@ -123,11 +123,14 @@ if (!$session->isAuthenticated($authority) ) {
 	$authId = SimpleSAML_Utilities::generateID();
 	$session->setAuthnRequest('shib13', $authId, $requestcache);
 
+	$redirectTo = SimpleSAML_Utilities::selfURLNoQuery() . '?RequestID=' . urlencode($authId);
+	$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];
 
-	$relaystate = SimpleSAML_Utilities::selfURLNoQuery() . '?RequestID=' . urlencode($authId);
-	$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getBaseURL() . $idpmetadata['auth'], 
-		'RelayState=' . urlencode($relaystate));
-	SimpleSAML_Utilities::redirect($authurl);
+	SimpleSAML_Utilities::redirect($authurl, array(
+		'RelayState' => $redirectTo,
+		'AuthId' => $authId,
+		'protocol' => 'shib13',
+	));
 	
 	
 /*
