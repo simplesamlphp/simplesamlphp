@@ -1,182 +1,142 @@
 <?php
 
-// consentadmin dictionary
-
-/*
-	'' => array(
-		'en' => '',
-		'no' => '',
-		'nn' => '',
-        'da' => '',
-		'es' => '',
-		'fr' => '',
-		'de' => '',
-		'nl' => '',
-		'lu' => '',
-		'sl' => '',
-	),
-
-
-* 
-* */
-
-
 $lang = array(
-
-// WAYF: Additional attributes START
-
-	'attribute_org' => array(
-		'en' => 'Organisation',
-		'da' => 'Organisation',
+	'yes' => array (
+		'no' => 'Ja',
+		'nn' => 'Ja',
+		'da' => 'Ja',
+		'en' => 'Yes',
+		'de' => 'Ja',
+		'sv' => 'Ja',
+		'es' => 'Sí',
+		'fr' => 'Oui',
+		'nl' => 'Ja',
+		'sl' => 'Da',
+		'hr' => 'Da',
+		'hu' => 'Igen',
 	),
-
-	'attribute_id' => array(
-		'en' => 'Id',
-		'da' => 'Id',
+	'no' => array (
+		'no' => 'Nei',
+		'nn' => 'Nei',
+		'da' => 'Nej',
+		'en' => 'No',
+		'de' => 'Nein',
+		'sv' => 'Nej',
+		'es' => 'No',
+		'fr' => 'Non',
+		'nl' => 'Nee',
+		'sl' => 'Ne',
+		'hr' => 'Ne',
+		'hu' => 'Nem',
 	),
-
-	'attribute_injected' => array(
-		'en' => 'Injected attribute',
-		'da' => 'Injiceret attribut',
+	'remember' => array (
+		'no' => 'Husk samtykke',
+		'nn' => 'Hugs samtykke',
+		'da' => 'Husk samtykke',
+		'en' => 'Remember consent',
+		'sv' => 'Spara samtycke',
+		'es' => 'Recordar el consentimiento',
+		'fr' => 'Se souvenir du consentement',
+		'nl' => 'Bewaar toestemming',
+		'sl' => 'Zapomni si privolitev.',
+		'hr' => 'Zapamti dozvolu',
+		'hu' => 'Emlékezzen a belegyezésre',
 	),
-	
-// WAYF: Additional attributes END
-
-
-'yes' => array(
-		'en' => 'yes',
-		'no' => 'ja',
-		'nn' => 'ja',
-        'da' => 'ja',
-//		'es' => '',
-		'fr' => 'oui',
-		'de' => 'ja',
-//		'nl' => '',
-//		'lu' => '',
-//		'sl' => '',
-	),
-
-'no' => array(
-		'en' => 'no',
-		'no' => 'nej',
-		'nn' => 'nej',
-        'da' => 'nej',
-//		'es' => 'no',
-		'fr' => 'non',
-		'de' => 'nein',
-//		'nl' => '',
-//		'lu' => '',
-//		'sl' => '',
-	),
-	
-	
-	'remember' => array(
-		'en' => 'remember consent',
-		'no' => 'husk samtykke',
-		//'nn' => '',
-        'da' => 'husk samtykke',		
-//		'es' => '',
-//		'fr' => '',
-//		'de' => '',
-//		'nl' => '',
-//		'lu' => '',
-//		'sl' => '',
-		),
-		
-	
-	'consent_notice' => array(
+	'consent_notice' => array (
+		'no' => 'Du er nå i ferd med å logge inn på tjenesten',
+		'nn' => 'Du er i ferd med å logga inn på tenesta',
+		'da' => 'Du er ved at logge ind på servicen',
 		'en' => 'You are about to login to the service',
-		'no' => 'Du er ved at logge på servicen',
-//		'nn' => '',
-        'da' => 'Du er ved at logge ind på servicen',
-//		'es' => '',
-//		'fr' => '',
-//		'de' => '',
-//		'nl' => '',
-//		'lu' => '',
-//		'sl' => '',
+		'de' => 'Sie sind dabei sich bei dem Service anzumelden',
+		'sv' => 'Du är på väg att logga in i tjänsten',
+		'es' => 'Está a punto de acceder al servicio',
+		'fr' => 'Vous êtes sur le point de vous connecter au service',
+		'nl' => 'U gaat inloggen bij een dienst',
+		'sl' => 'Pravkar se nameravate prijaviti v storitev',
+		'hr' => 'Prijavit ćete se za pristup servisu',
+		'hu' => 'Ön azonosítja magát ehhez a szolgáltatáshoz',
 	),
-
-	'consent_accept' => array(
+	'consent_accept' => array (
+		'no' => 'I forbindelse med innloggingen, vil vertsorganisasjonen sende attributter med informasjon om din identitet til tjenesteleverandøren. Vil du gi tillatelse til dette?',
+		'nn' => 'I løpet av innlogginga vil identitetsleverandøren (IdP) senda attributtar med informasjon om din identitet til denne tenesta.  Gjev du samtykke til slik overføring?',
+		'da' => 'I login processen vil din Identity Provider sende attributter som indeholder oplysninger om din identitet til denne service. Vil du acceptere dette?',
 		'en' => 'In the login proccess, the identity provider will send attributes containing information about your identity to this service. Do you accept this?',
-//		'no' => '',
-//		'nn' => '',
-        'da' => 'I login processen vil din Identity Provider sende attributter som indeholder oplysninger om din identitet til denne service. Vil du acceptere dette?',
-//	    'es' => '',
-//		'fr' => '',
-//		'de' => '',
-//		'nl' => '',
-//		'lu' => '',
-//		'sl' => '',
-		),
-		
-		
-	'login' => array(
-		'en' => 'login',
-//		'no' => '',
-//		'nn' => '',
-        'da' => 'login',
-//		'es' => '',
-//		'fr' => '',
-//		'de' => '',
-//		'nl' => '',
-//		'lu' => '',
-//		'sl' => '',
+		'sv' => 'Vid inloggningen kommer din inloggningstjänst att skicka attribut med information om användaridentitet till denna tjänst. Är detta okej?',
+		'es' => 'Durante el proceso de login, el IdP enviará atributos que contienen información acerca de su identidad a este servicio. Acepta esto?',
+		'fr' => 'Lors de l\'ouverture de session, le fournisseur d\'identité enverra des informations sur votre identité à ce service. Acceptez-vous cela ?',
+		'nl' => 'Tijdens het login proces stuurt de identity provider zgn. attributen met daarin informatie over uw identiteit voor deze dienst. Bent u het daarmee eens?',
+		'sl' => 'Med procesom prijave bo IdP posredoval atribute, ki vsebujejo informacije o vaši identiteti, tej storitvi. Ali se s tem strinjate? ',
+		'hr' => 'Tijekom procesa prijavljivanja vaša matična ustanova će servisu poslati atribute koji sadrže podatke o vašem identitetu. Slažete li se s time?',
+		'hu' => 'Az azonosítás során az azonosító szolgáltató személyes adatokat fog küldeni ennek a szolgáltatásnak. Engedélyezi?',
 	),
-		   		
-	'service_providers_for' => array(
+	'login' => array (
+		'no' => 'innlogging',
+		'nn' => 'Logg inn',
+		'da' => 'login',
+		'en' => 'login',
+		'de' => 'anmelden',
+		'sv' => 'Logga in',
+		'es' => 'login',
+		'fr' => 'ouvrir une session',
+		'nl' => 'Login',
+		'sl' => 'Prijava',
+		'hr' => 'prijava',
+		'hu' => 'bejelentkezés',
+	),
+	'service_providers_for' => array (
+		'no' => 'Tjenesteleverandør for',
+		'nn' => 'Tenesteleverandørar for',
+		'da' => 'Service Providers for',
 		'en' => 'Service Providers for',
-		'no' => 'Service Providers for',
-		'nn' => 'Service Providers for',
-        'da' => 'Service Providers for',
-//	    'es' => '',
-//		'fr' => '',
-//		'de' => '',
-//		'nl' => '',
-//		'lu' => '',
-//		'sl' => '',
-		),
-		
-  
-  
-  'service_provider_header' => array(
+		'de' => 'Service-Provider für',
+		'sv' => 'Tjänsteleverantör för',
+		'es' => 'Proveedores de servicio para',
+		'fr' => 'Fournisseurs de services pour',
+		'nl' => 'Service Providers voor',
+		'sl' => 'SP za',
+		'hr' => 'Davatelji usluge za',
+		'hu' => 'Alkalmazásszolgáltatók a következő számára',
+	),
+	'service_provider_header' => array (
+		'no' => 'Tjenesteleverandør',
+		'nn' => 'Tenesteleverandør',
+		'da' => 'Service Provider',
 		'en' => 'Service Provider',
-		'no' => 'Service Provider',
-		'nn' => 'Service Provider',
-        'da' => 'Service Provider',
-	    'es' => 'Service Provider',
-		'fr' => 'Service Provider',
-		'de' => 'Service Provider',
+		'de' => 'Service-Provider',
+		'sv' => 'Tjänsteleverantör',
+		'es' => 'Proveedor de servicio',
+		'fr' => 'Fournisseur de service',
 		'nl' => 'Service Provider',
-		'lu' => 'Service Provider',
-		'sl' => 'Service Provider',
-		),
-		
-	'status_header' => array(
+		'sl' => 'SP',
+		'hr' => 'Davatelj usluge',
+		'hu' => 'Alkalmazásszolgáltató',
+	),
+	'status_header' => array (
+		'no' => 'Samtylle status',
+		'nn' => 'Samtykkestatus',
+		'da' => 'Samtykke status',
 		'en' => 'Consent status',
-		'no' => 'Samtykke status',
-		//'nn' => '',
-        'da' => 'Samtykke status',		
-//		'es' => '',
-//		'fr' => '',
-//		'de' => '',
-//		'nl' => '',
-//		'lu' => '',
-//		'sl' => '',
-		),
-		
-	'show_hide_attributes' => array(
+		'sv' => 'Status för samtycke',
+		'es' => 'Estado del consentimiento',
+		'fr' => 'État des consentements',
+		'nl' => 'Toestemming status',
+		'sl' => 'Stanje privolitve',
+		'hr' => 'Status dozvole',
+		'hu' => 'Belegyezés állapota',
+	),
+	'show_hide_attributes' => array (
+		'no' => 'Vis/skjul attributter',
+		'nn' => 'vis/skjul attributtar',
+		'da' => 'vis/skjul attributter',
 		'en' => 'show/hide attributes',
-		'no' => 'vis/skjul attributter',
-		//'nn' => 'vis/skjul attributter',
-        'da' => 'vis/skjul attributter',		
-//		'es' => '',
-//		'fr' => '',
-//		'de' => '',
-//		'nl' => '',
-//		'lu' => '',
-//		'sl' => '',
-		),
-		
-);
+		'de' => 'zeige/verstecke Eigenschaften',
+		'sv' => 'visa/göm attribut',
+		'es' => 'Mostrar/ocultar atributos',
+		'fr' => 'montrer/cacher les attributs',
+		'nl' => 'toon/verberg attributen',
+		'sl' => 'prikaži/skrij atribute',
+		'hr' => 'prikaži/sakrij atribute',
+		'hu' => 'attribútumok mutatása/elrejtése',
+	),
 
+); ?>

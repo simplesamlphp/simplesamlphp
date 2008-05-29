@@ -141,8 +141,9 @@ $config = array (
 	/*
 	 * Languages available and what language is default
 	 */
-	'language.available'	=> array('en', 'no', 'nn', 'da', 'se', 'es', 'de', 'fr', 'nl', 'lu', 'sl'),
+	'language.available'	=> array('en', 'no', 'nn', 'se', 'da', 'sv', 'de', 'es', 'fr', 'nl', 'lb', 'hr', 'hu'),
 	'language.default'		=> 'en',
+	
 	/* 
 	 * Leave the language.base to 'en' (english). The language base MUST be set
 	 * to a language that contains 100% of the strings available. It is used as

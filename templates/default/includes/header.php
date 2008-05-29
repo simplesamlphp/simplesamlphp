@@ -34,15 +34,18 @@ $languages = $this->getLanguageList();
 $langnames = array(
 	'no' => 'Bokmål',
 	'nn' => 'Nynorsk',
+	'se' => 'Sami',
+	'da' => 'Dansk',
 	'en' => 'English',
 	'de' => 'Deutsch',
-	'da' => 'Dansk',
-	'se' => 'Svenska',
+	'sv' => 'Svenska',
 	'es' => 'Español',
 	'fr' => 'Français',
 	'nl' => 'Nederlands',
-	'lu' => 'Luxembourgish',
-	'sl' => 'Slovenščina',
+	'lb' => 'Luxembourgish', 
+	'sl' => 'Slovenščina', // Slovensk
+	'hr' => 'Hrvatski', // Croatian
+	'hu' => 'Magyar', // Hungarian
 );
 
 if (empty($_POST) ) {
