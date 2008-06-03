@@ -1,5 +1,7 @@
 <?php
 
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'xmlseclibs.php');
+
 /**
  * This class implements helper functions for XML validation.
  *
