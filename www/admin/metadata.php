@@ -34,7 +34,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host'),
-				array('request.signing','certificate','privatekey', 'NameIDFormat', 'ForceAuthn', 'AuthnContextClassRef', 'SPNameQualifier', 'attributemap', 'attributealter', 'attributes')
+				array('request.signing','certificate','privatekey', 'NameIDFormat', 'ForceAuthn', 'AuthnContextClassRef', 'SPNameQualifier', 'attributemap', 'attributealter', 'attributes', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.certificate')
 			);
 		}
 		$et->data['metadata.saml20-sp-hosted'] = $results;
@@ -57,7 +57,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
-				array('requireconsent','request.signing', 'authority', 'attributemap', 'attributealter', 'userid.attribute')
+				array('requireconsent','request.signing', 'authority', 'attributemap', 'attributealter', 'userid.attribute', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.certificate')
 			);
 		}
 		$et->data['metadata.saml20-idp-hosted'] = $results;
@@ -94,7 +94,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'SingleSignOnService', 'certFingerprint'),
-				array('name', 'description', 'base64attributes')
+				array('name', 'description', 'base64attributes', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.certificate')
 			);
 		}
 		$et->data['metadata.shib13-idp-remote'] = $results;
@@ -117,7 +117,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'AssertionConsumerService'),
-				array('base64attributes', 'audience', 'attributemap', 'attributealter', 'simplesaml.attributes', 'attributes', 'name', 'description')
+				array('base64attributes', 'audience', 'attributemap', 'attributealter', 'simplesaml.attributes', 'attributes', 'name', 'description', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.certificate')
 			);
 		}
 		$et->data['metadata.shib13-sp-remote'] = $results;

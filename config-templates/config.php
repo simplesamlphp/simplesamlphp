@@ -363,6 +363,27 @@ $config = array (
 	'memcache_store.expires' =>  36 * (60*60), // 36 hours.
 
 
+	/*
+	 * Should signing of generated metadata be enabled by default.
+	 *
+	 * Metadata signing can also be enabled for a individual SP or IdP by setting the
+	 * same option in the metadata for the SP or IdP.
+	 */
+	'metadata.sign.enable' => FALSE,
+
+	/*
+	 * The default key & certificate which should be used to sign generated metadata. These
+	 * are files stored in the cert dir.
+	 * These values can be overridden by the options with the same names in the SP or
+	 * IdP metadata.
+	 *
+	 * If these aren't specified here or in the metadata for the SP or IdP, then
+	 * the 'certificate' and 'privatekey' option in the metadata will be used.
+	 * if those aren't set, signing of metadata will fail.
+	 */
+	'metadata.sign.privatekey' => NULL,
+	'metadata.sign.certificate' => NULL,
+
 
 );
 
