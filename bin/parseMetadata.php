@@ -29,6 +29,11 @@ $outputDir = $baseDir . '/metadata-generated';
  */
 $toStdOut = FALSE;
 
+/* $validateFingerprint contains the fingerprint of the certificate which should have been used
+ * to sign the EntityDescriptor in the metadata, or NULL if fingerprint validation shouldn't be
+ * done.
+ */
+$validateFingerprint = NULL;
 
 
 /* This variable contains the files we will parse. */
@@ -68,6 +73,14 @@ foreach($argv as $a) {
 	}
 
 	switch($a) {
+	case '--validate-fingerprint':
+		if($v === NULL || strlen($v) === 0) {
+			echo('The --validate-fingerprint option requires an parameter.' . "\n");
+			echo('Please run `' . $progName . ' --help` for usage information.' . "\n");
+			exit(1);
+		}
+		$validateFingerprint = $v;
+		break;
 	case '--help':
 		printHelp();
 		exit(0);
@@ -127,6 +140,10 @@ function printHelp() {
 	echo('be added to the metadata files in metadata/.' . "\n");
 	echo("\n");
 	echo('Options:' . "\n");
+	echo('     --validate-fingerprint=<FINGERPRINT>' . "\n");
+	echo('                              Check the signature of the metadata,' . "\n");
+	echo('                              and check the fingerprint of the' . "\n");
+	echo('                              certificate against <FINGERPRINT>.' . "\n");
 	echo(' -h, --help                   Print this help.' . "\n");
 	echo(' -o=<DIR>, --out-dir=<DIR>    Write the output to this directory. The' . "\n");
 	echo('                              default directory is metadata-generated/' . "\n");
@@ -219,7 +236,16 @@ function dumpMetadataStdOut() {
 function processFile($filename) {
 	$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($filename);
 
+	global $validateFingerprint;
+
 	foreach($entities as $entity) {
+		if($validateFingerprint !== NULL) {
+			if(!$entity->validateFingerprint($validateFingerprint)) {
+				echo('Skipping "' . $entity->getEntityId() . '" - could not verify signature.' . "\n");
+				continue;
+			}
+		}
+
 		addMetadata($filename, $entity->getMetadata1xSP(), 'shib13-sp-remote');
 		addMetadata($filename, $entity->getMetadata1xIdP(), 'shib13-idp-remote');
 		addMetadata($filename, $entity->getMetadata20SP(), 'saml20-sp-remote');
