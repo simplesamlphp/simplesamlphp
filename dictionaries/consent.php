@@ -139,4 +139,7 @@ $lang = array(
 		'hu' => 'attribútumok mutatása/elrejtése',
 	),
 
-); ?>
+);
+
+
+?>

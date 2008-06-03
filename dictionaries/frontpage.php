@@ -482,4 +482,7 @@ $lang = array(
 		'hu' => 'SimpleSAMLphp karbantartása és beállítása',
 	),
 
-); ?>
+);
+
+
+?>

@@ -823,4 +823,7 @@ $lang = array(
 		'hu' => 'Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a konfigurációs fájlban, kérjük, változtassa meg most! ',
 	),
 
-); ?>
+);
+
+
+?>

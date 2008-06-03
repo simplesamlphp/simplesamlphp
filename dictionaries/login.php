@@ -171,4 +171,7 @@ $lang = array(
 		'hu' => 'Hibás felhasználói név vagy jelszó!',
 	),
 
-); ?>
+);
+
+
+?>
