@@ -428,8 +428,7 @@ class SimpleSAML_Session {
 		SimpleSAML_Logger::debug('Library - Session: Cleaning Session. Clean cache: ' . ($cleancache ? 'yes' : 'no') );
 	
 		if ($cleancache) {
-			$this->authnrequests = array();
-			$this->logoutrequest = null;
+			$this->dataStore = null;
 			$this->idp = null;
 		}
 		
