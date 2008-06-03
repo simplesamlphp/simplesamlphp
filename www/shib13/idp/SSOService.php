@@ -12,6 +12,7 @@
 require_once('../../../www/_include.php');
 
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Consent/Consent.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger.php');
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
@@ -144,6 +145,7 @@ if (!$session->isAuthenticated($authority) ) {
 		$spentityid = $requestcache['Issuer'];
 		$spmetadata = $metadata->getMetaData($spentityid, 'shib13-sp-remote');
 
+		$sp_name = (isset($spmetadata['name']) ? $spmetadata['name'] : $spentityid);
 		
 		/*
 		 * Attribute handling
@@ -173,7 +175,44 @@ if (!$session->isAuthenticated($authority) ) {
 		
 		$filteredattributes = $afilter->getAttributes();
 		
+		
+		/*
+		 * Dealing with attribute release consent.
+		 */
+		$requireconsent = false;
+		if (isset($idpmetadata['requireconsent'])) {
+			if (is_bool($idpmetadata['requireconsent'])) {
+				$requireconsent = $idpmetadata['requireconsent'];
+			} else {
+				throw new Exception('Shib1.3 IdP hosted metadata parameter [requireconsent] is in illegal format, must be a PHP boolean type.');
+			}
+		}
+		if ($requireconsent) {
+			
+			$consent = new SimpleSAML_Consent_Consent($config, $session, $spentityid, $idpentityid, $attributes, $filteredattributes, $requestcache['ConsentCookie']);
+			
+			if (!$consent->consent()) {
+				/* Save the request information. */
+				$authId = SimpleSAML_Utilities::generateID();
+				$session->setAuthnRequest('shib13', $authId, $requestcache);
+				
+				$t = new SimpleSAML_XHTML_Template($config, 'consent.php', 'attributes.php');
+				$t->data['header'] = 'Consent';
+				$t->data['sp_name'] = $sp_name;
+				$t->data['attributes'] = $filteredattributes;
+				$t->data['consenturl'] = SimpleSAML_Utilities::selfURLNoQuery();
+				$t->data['requestid'] = $authId;
+				$t->data['consent_cookie'] = $requestcache['ConsentCookie'];
+				$t->data['usestorage'] = $consent->useStorage();
+				$t->data['noconsent'] = '/' . $config->getBaseURL() . 'noconsent.php';
+				$t->show();
+				exit;
+			}
 
+		}
+		// END ATTRIBUTE CONSENT CODE
+		
+		
 		// Generating a Shibboleth 1.3 Response.
 		$ar = new SimpleSAML_XML_Shib13_AuthnResponse($config, $metadata);
 		$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'],
