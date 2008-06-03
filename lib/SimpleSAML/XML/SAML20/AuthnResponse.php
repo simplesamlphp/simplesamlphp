@@ -599,9 +599,17 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$nameidformat = isset($spmd['NameIDFormat']) ? $spmd['NameIDFormat'] : 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
 		$spnamequalifier = isset($spmd['SPNameQualifier']) ? $spmd['SPNameQualifier'] : $spmd['entityid'];
 		
+		// Attribute Name Format handling. Priority is 1) SP metadata 2) IdP metadata 3) default setting
+		$attributeNameFormat = 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic';
+		if (isset($spmd['AttributeNameFormat']))
+			$attributeNameFormat = $spmd['AttributeNameFormat'];
+		elseif (isset($idpmd['AttributeNameFormat']))
+			$attributeNameFormat = $idpmd['AttributeNameFormat'];
+
+		
 		$encodedattributes = '';
 		foreach ($attributes AS $name => $values) {
-			$encodedattributes .= self::enc_attribute($name, $values, $base64);
+			$encodedattributes .= self::enc_attribute($name, $values, $base64, $attributeNameFormat);
 		}
 		$attributestatement = '<saml:AttributeStatement>' . $encodedattributes . '</saml:AttributeStatement>';
 		
@@ -609,6 +617,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		
 		if (!$sendattributes) 
 			$attributestatement = '';
+		
 		
 		
 		/**
@@ -702,14 +711,16 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	 *  @param $name      Name of this attribute.
 	 *  @param $values    Array with the values of this attribute.
 	 *  @param $base64    Enable base64 encoding of attribute values.
+	 *  @param $attributeNameFormat		Which attribute name format to use. (See SAML 2.0 Spec for details)
 	 *
 	 *  @return String containing the encoded saml:attribute value for this
 	 *  attribute.
 	 */
-	private static function enc_attribute($name, $values, $base64 = false) {
+	private static function enc_attribute($name, $values, $base64 = false, $attributeNameFormat) {
 		assert(is_array($values));
 
-		$ret = '<saml:Attribute NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic"  Name="' . htmlspecialchars($name) . '">';
+		// Default: urn:oasis:names:tc:SAML:2.0:attrname-format:basic
+		$ret = '<saml:Attribute NameFormat="' . htmlspecialchars($attributeNameFormat) . '"  Name="' . htmlspecialchars($name) . '">';
 
 		foreach($values as $value) {
 			if($base64) {
@@ -717,9 +728,13 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			} else {
 				$text = htmlspecialchars($value);
 			}
+			
+			$xsiType = '';
+			if ($attributeNameFormat == 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic')
+				$xsiType = ' xsi:type="xs:string"';
+			
 
-			$ret .= '<saml:AttributeValue xsi:type="xs:string">' .
-			        $text . '</saml:AttributeValue>';
+			$ret .= '<saml:AttributeValue' . $xsiType . '>' . $text . '</saml:AttributeValue>';
 		}
 
 		$ret .= '</saml:Attribute>';

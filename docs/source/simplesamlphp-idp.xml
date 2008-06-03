@@ -378,11 +378,60 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossdef>
               <para>The attribute name of an attribute which uniquely
               identifies the user. This attribute is used if simpleSAMLphp
-              needs to generate a persistent unique identifier for the
-              user. This option can be set in both the IdP-hosted and the
-              SP-remote metadata. The value in the sp-remote metadata has the
-              highest priority. The default value is
+              needs to generate a persistent unique identifier for the user.
+              This option can be set in both the IdP-hosted and the SP-remote
+              metadata. The value in the sp-remote metadata has the highest
+              priority. The default value is
               <literal>eduPersonPrincipalName</literal>.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>AttributeNameFormat</glossterm>
+
+            <glossdef>
+              <para>What value will be set in the Format field of attribute
+              statements. This parameter can be configured multiple places,
+              and the actual value used is fetched from metadata by the
+              following priority:</para>
+
+              <orderedlist>
+                <listitem>
+                  <para>SP Remote Metadata</para>
+                </listitem>
+
+                <listitem>
+                  <para>IdP Hosted Metadata</para>
+                </listitem>
+
+                <listitem>
+                  <para>Default value:
+                  <literal>urn:oasis:names:tc:SAML:2.0:attrname-format:basic</literal></para>
+                </listitem>
+              </orderedlist>
+
+              <para>Some examples of values specified in the SAML 2.0 Core
+              Specification:</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><literal>urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified</literal></para>
+                </listitem>
+
+                <listitem>
+                  <para><literal>urn:oasis:names:tc:SAML:2.0:attrname-format:uri</literal>
+                  (Used as default in Shibboleth 2.0)</para>
+                </listitem>
+
+                <listitem>
+                  <para><literal>urn:oasis:names:tc:SAML:2.0:attrname-format:basic</literal>
+                  (Used as default in Sun Access Manager)</para>
+                </listitem>
+
+                <listitem>
+                  <para>You can define your own value.</para>
+                </listitem>
+              </itemizedlist>
             </glossdef>
           </glossentry>
 
@@ -390,14 +439,14 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>SingleSignOnService</glossterm>
 
             <glossdef>
-              <para>Override the default URL for the SingleSignOnService
-              for this IdP. This is an absolute URL. The default value is
+              <para>Override the default URL for the SingleSignOnService for
+              this IdP. This is an absolute URL. The default value is
               <literal>&lt;simpleSAMLphp-root&gt;/saml2/idp/SSOService.php</literal></para>
 
               <para>Note that this only changes the values in the generated
               metadata and in the messages sent to others. You must also
-              configure your webserver to deliver this URL to the correct
-              PHP page.</para>
+              configure your webserver to deliver this URL to the correct PHP
+              page.</para>
             </glossdef>
           </glossentry>
 
@@ -405,14 +454,14 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>SingleLogoutService</glossterm>
 
             <glossdef>
-              <para>Override the default URL for the SingleLogoutService
-              for this IdP. This is an absolute URL. The default value is
+              <para>Override the default URL for the SingleLogoutService for
+              this IdP. This is an absolute URL. The default value is
               <literal>&lt;simpleSAMLphp-root&gt;/saml2/idp/SingleLogoutService.php</literal></para>
 
               <para>Note that this only changes the values in the generated
               metadata and in the messages sent to others. You must also
-              configure your webserver to deliver this URL to the correct
-              PHP page.</para>
+              configure your webserver to deliver this URL to the correct PHP
+              page.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -518,6 +567,55 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossdef>
               <para>SP NameQualifier for this SP. If not set, the IdP will set
               the SPNameQualifier to be the SP entity ID.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>AttributeNameFormat</glossterm>
+
+            <glossdef>
+              <para>What value will be set in the Format field of attribute
+              statements. This parameter can be configured multiple places,
+              and the actual value used is fetched from metadata by the
+              following priority:</para>
+
+              <orderedlist>
+                <listitem>
+                  <para>SP Remote Metadata</para>
+                </listitem>
+
+                <listitem>
+                  <para>IdP Hosted Metadata</para>
+                </listitem>
+
+                <listitem>
+                  <para>Default value:
+                  <literal>urn:oasis:names:tc:SAML:2.0:attrname-format:basic</literal></para>
+                </listitem>
+              </orderedlist>
+
+              <para>Some examples of values specified in the SAML 2.0 Core
+              Specification:</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><literal>urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified</literal></para>
+                </listitem>
+
+                <listitem>
+                  <para><literal>urn:oasis:names:tc:SAML:2.0:attrname-format:uri</literal>
+                  (Used as default in Shibboleth 2.0)</para>
+                </listitem>
+
+                <listitem>
+                  <para><literal>urn:oasis:names:tc:SAML:2.0:attrname-format:basic</literal>
+                  (Used as default in Sun Access Manager)</para>
+                </listitem>
+
+                <listitem>
+                  <para>You can define your own value.</para>
+                </listitem>
+              </itemizedlist>
             </glossdef>
           </glossentry>
 
@@ -656,10 +754,10 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossdef>
               <para>The attribute name of an attribute which uniquely
               identifies the user. This attribute is used if simpleSAMLphp
-              needs to generate a persistent unique identifier for the
-              user. This option can be set in both the IdP-hosted and the
-              SP-remote metadata. The value in the sp-remote metadata has the
-              highest priority. The default value is
+              needs to generate a persistent unique identifier for the user.
+              This option can be set in both the IdP-hosted and the SP-remote
+              metadata. The value in the sp-remote metadata has the highest
+              priority. The default value is
               <literal>eduPersonPrincipalName</literal>.</para>
             </glossdef>
           </glossentry>
