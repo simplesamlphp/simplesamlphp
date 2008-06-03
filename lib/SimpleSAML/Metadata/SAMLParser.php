@@ -1,6 +1,7 @@
 <?php
 
 require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
+require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XML/Validator.php');
 
 /**
  * This is class for parsing of SAML 1.x and SAML 2.0 metadata.
@@ -82,6 +83,14 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
+	 * This is a SimpleSAML_XML_Validator class if this EntityDescriptor is signed.
+	 * The validator can be used to check the fingerprint of the certificate which was used to sign
+	 * the EntityDescriptor.
+	 */
+	private $validator;
+
+
+	/**
 	 * This is the constructor for the SAMLParser class.
 	 *
 	 * @param $entityElement The DOMElement which represents the EntityDescriptor-element.
@@ -109,6 +118,10 @@ class SimpleSAML_Metadata_SAMLParser {
 			/* Skip text nodes. */
 			if($child instanceof DOMText) {
 				continue;
+			}
+
+			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Signature', '@ds') === TRUE) {
+				$this->processSignature($child);
 			}
 
 			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'SPSSODescriptor', '@md') === TRUE) {
@@ -914,6 +927,76 @@ class SimpleSAML_Metadata_SAMLParser {
 		$supProt = explode(' ', $supProt);
 
 		return $supProt;
+	}
+
+
+	/**
+	 * This function processes a signature element in an EntityDescriptor element.
+	 *
+	 * It will attempt to validate the EntityDescriptor element using the signature. If the signature
+	 * is good, it will and will store the fingerprint the certificate in the $validatedFingerprint variable.
+	 *
+	 * @param $element  The ds:Signature element.
+	 */
+	private function processSignature($element) {
+		assert('$element instanceof DOMElement');
+
+		/* We want to validate the EntityDescriptor which contains the signature. */
+		$entityDescriptor = $element->parentNode;
+		assert('$entityDescriptor instanceof DOMElement');
+
+		/* xmlseclib works on DOMDocuments. We need to make sure that the EntityDescriptor is the only
+		 * element in the document.
+		 */
+		$document = $entityDescriptor->ownerDocument;
+		if(!$entityDescriptor->isSameNode($document->firstChild) ||
+			!$entityDescriptor->isSameNode($document->lastChild)) {
+
+			/* This EntityDescriptor element isn't the only element in the document. Copy
+			 * the DOMNode with the EntityDescriptor into its own document.
+			 */
+			$document = new DOMDocument($document->version, $document->encoding);
+			$entityDescriptor = $document->importNode($entityDescriptor, TRUE);
+			$document->appendChild($entityDescriptor);
+		}
+
+		/* Attempt to check the signature. */
+		try {
+			$validator = new SimpleSAML_XML_Validator($document, 'ID');
+
+			if($validator->isNodeValidated($entityDescriptor)) {
+				/* The EntityDescriptor is signed. Store the validator in $this->validator, so
+				 * that it can be used to verify the fingerprint of the certificate later.
+				 */
+				$this->validator = $validator;
+			}
+		} catch(Exception $e) {
+			/* Ignore validation errors and pretend that this EntityDescriptor is unsigned. */
+		}
+	}
+
+
+	/**
+	 * This function checks if this EntityDescriptor was signed with a certificate with the
+	 * given fingerprint.
+	 *
+	 * @param $fingerprint  Fingerprint of the certificate which should have been used to sign this
+	 *                      EntityDescriptor.
+	 * @return TRUE if it was signed with the certificate with the given fingerprint, FALSE otherwise.
+	 */
+	public function validateFingerprint($fingerprint) {
+
+		if($this->validator === NULL) {
+			return FALSE;
+		}
+
+		try {
+			$this->validator->validateFingerprint($fingerprint);
+			return TRUE;
+		} catch(Exception $e) {
+			/* Validation failed. */
+			return FALSE;
+		}
 	}
 
 }
