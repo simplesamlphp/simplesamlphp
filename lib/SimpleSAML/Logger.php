@@ -133,6 +133,9 @@ class SimpleSAML_Logger {
 		} elseif ($handler === 'file')  {
 			require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger/LoggingHandlerFile.php');
 			$sh = new SimpleSAML_Logger_LoggingHandlerFile();
+		} elseif ($handler === 'errorlog')  {
+			require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Logger/LoggingHandlerErrorLog.php');
+			$sh = new SimpleSAML_Logger_LoggingHandlerErrorLog();
 		} else {
 			throw new Exception('Invalid value for the [logging.handler] configuration option. Unknown handler: ' . $handler);
 		}

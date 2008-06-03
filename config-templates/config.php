@@ -84,7 +84,7 @@ $config = array (
 	 * 
 	 * Choose logging handler.
 	 * 
-	 * Options: [syslog,file]
+	 * Options: [syslog,file,errorlog]
 	 * 
 	 */
 	'logging.level'         => LOG_NOTICE,
