@@ -1139,6 +1139,31 @@ class XMLSecurityDSig {
 	}
 	
 	
+	/**
+	 * This function inserts the signature element.
+	 *
+	 * The signature element will be appended to the element, unless $beforeNode is specified. If $beforeNode
+	 * is specified, the signature element will be inserted as the last element before $beforeNode.
+	 *
+	 * @param $node  The node the signature element should be inserted into.
+	 * @param $beforeNode  The node the signature element should be located before.
+	 */
+	public function insertSignature($node, $beforeNode = NULL) {
+
+		if($node instanceof DOMDocument) {
+			$node = $node->firstChild;
+		}
+
+		$document = $node->ownerDocument;
+		$signatureElement = $document->importNode($this->sigNode, TRUE);
+
+		if($beforeNode == NULL) {
+			$node->insertBefore($signatureElement);
+		} else {
+			$node->insertBefore($signatureElement, $beforeNode);
+		}
+	}
+
 
 	public function appendSignature($parentNode, $insertBefore = false, $assertion = false) {
 		$baseDoc = ($parentNode instanceof DOMDocument)?$parentNode:$parentNode->ownerDocument;
