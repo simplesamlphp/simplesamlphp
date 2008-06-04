@@ -83,6 +83,29 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
+	 * This is an associative array with the organization name for this entity. The key of
+	 * the associative array is the language code, while the value is a string with the
+	 * organization name.
+	 */
+	private $organizationName = array();
+
+
+	/**
+	 * This is an associative array with the organization display name for this entity. The key of
+	 * the associative array is the language code, while the value is a string with the
+	 * organization display name.
+	 */
+	private $organizationDisplayName = array();
+
+
+	/**
+	 * This is an associative array with the organization URI for this entity. The key of
+	 * the associative array is the language code, while the value is the URI.
+	 */
+	private $organizationURL = array();
+
+
+	/**
 	 * This is an array of SimpleSAML_XML_Validator classes. If this EntityDescriptor is signed, one of the
 	 * validators should be able to verify the fingerprint of the certificate which was used to sign
 	 * this EntityDescriptor.
@@ -140,6 +163,10 @@ class SimpleSAML_Metadata_SAMLParser {
 
 			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'IDPSSODescriptor', '@md') === TRUE) {
 				$this->processIDPSSODescriptor($child);
+			}
+
+			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Organization', '@md') === TRUE) {
+				$this->processOrganization($child);
 			}
 		}
 	}
@@ -347,6 +374,9 @@ class SimpleSAML_Metadata_SAMLParser {
 		$ret['AssertionConsumerService'] = $acs['location'];
 
 
+		/* Add organization info. */
+		$this->addOrganizationInfo($ret);
+
 		return $ret;
 	}
 
@@ -403,6 +433,10 @@ class SimpleSAML_Metadata_SAMLParser {
 			break;
 		}
 
+
+		/* Add organization info. */
+		$this->addOrganizationInfo($ret);
+
 		return $ret;
 	}
 
@@ -458,6 +492,10 @@ class SimpleSAML_Metadata_SAMLParser {
 			/* simpleSAMLphp currently only supports a single NameIDFormat pr. SP. We use the first one. */
 			$ret['NameIDFormat'] = $spd['nameIDFormats'][0];
 		}
+
+
+		/* Add organization info. */
+		$this->addOrganizationInfo($ret);
 
 		return $ret;
 	}
@@ -530,9 +568,35 @@ class SimpleSAML_Metadata_SAMLParser {
 			break;
 		}
 
+
+		/* Add organization info. */
+		$this->addOrganizationInfo($ret);
+
 		return $ret;
 	}
 
+
+	/**
+	 * Add organization info to returned SP/IdP information.
+	 *
+	 * @param &$ret  Array where the the organization info should be added.
+	 */
+	private function addOrganizationInfo(&$ret) {
+
+		if(array_key_exists('en', $this->organizationName)) {
+			$ret['description'] = $this->organizationName['en'];
+		} elseif(count($this->organizationName) > 0) {
+			$languages = array_keys($this->organizationName);
+			$ret['description'] = $this->organizationName[$languages[0]];
+		}
+
+		if(array_key_exists('en', $this->organizationDisplayName)) {
+			$ret['name'] = $this->organizationDisplayName['en'];
+		} elseif(count($this->organizationDisplayName) > 0) {
+			$languages = array_keys($this->organizationDisplayName);
+			$ret['name'] = $this->organizationDisplayName[$languages[0]];
+		}
+	}
 
 	/**
 	 * This function extracts metadata from a SSODescriptor element.
@@ -625,6 +689,62 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 		$this->idpDescriptors[] = $idp;
+	}
+
+
+	/**
+	 * Parse and process a Organization element.
+	 *
+	 * @param $element  The DOMElement which represents the Organization element.
+	 */
+	private function processOrganization($element) {
+		assert('$element instanceof DOMElement');
+
+		for($i = 0; $i < $element->childNodes->length; $i++) {
+			$child = $element->childNodes->item($i);
+
+			/* Skip text nodes. */
+			if($child instanceof DOMText) {
+				continue;
+			}
+
+			/* Determine the type. */
+			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'OrganizationName', '@md')) {
+				$type = 'organizationName';
+			} elseif(SimpleSAML_Utilities::isDOMElementOfType($child, 'OrganizationDisplayName', '@md')) {
+				$type = 'organizationDisplayName';
+			} elseif(SimpleSAML_Utilities::isDOMElementOfType($child, 'OrganizationURL', '@md')) {
+				$type = 'organizationURL';
+			} else {
+				/* Skip unknown/unhandled elements. */
+				continue;
+			}
+
+			/* Extract the text. */
+			$text = SimpleSAML_Utilities::getDOMText($child);
+
+			/* Skip nodes without text. */
+			if(empty($text)) {
+				continue;
+			}
+
+			/* Find the language of the text. This should be stored in the xml:lang attribute. */
+			$language = $child->getAttributeNS('http://www.w3.org/XML/1998/namespace', 'lang');
+			//$language = $child->getAttributeNS('xml', 'lang');
+			if(empty($language)) {
+				/* No language given, assume 'en'. */
+				$language = 'en';
+			}
+
+			/* Add the result to the appropriate list. */
+			if($type === 'organizationName') {
+				$this->organizationName[$language] = $text;
+			} elseif($type === 'organizationDisplayName') {
+				$this->organizationDisplayName[$language] = $text;
+			} elseif($type === 'organizationURL') {
+				$this->organizationURL[$language] = $text;
+			}
+		}
 	}
 
 
