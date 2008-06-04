@@ -448,12 +448,9 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		/* Find the single logout service endpoint. */
 		$slo = $this->getDefaultEndpoint($spd['singleLogoutServices'], array(self::SAML_20_REDIRECT_BINDING));
-		if($slo === NULL) {
-			throw new Exception('Could not find any valid SingleLogoutService.' .
-				' simpleSAMLphp currently supports only the http-redirect binding for SAML 2.0 logout.');
+		if($slo !== NULL) {
+			$ret['SingleLogoutService'] = $slo['location'];
 		}
-
-		$ret['SingleLogoutService'] = $slo['location'];
 
 
 		/* Find the NameIDFormat. This may not exists. */
@@ -508,11 +505,9 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		/* Find the single logout service endpoint. */
 		$slo = $this->getDefaultEndpoint($idp['singleLogoutServices'], array(self::SAML_20_REDIRECT_BINDING));
-		if($slo === NULL) {
-			throw new Exception('Could not find any valid SingleLogoutService.' .
-				' simpleSAMLphp currently supports only the http-redirect binding for SAML 2.0 logout.');
+		if($slo !== NULL) {
+			$ret['SingleLogoutService'] = $slo['location'];
 		}
-		$ret['SingleLogoutService'] = $slo['location'];
 
 		/* If the response location is set, include it in the returned metadata. */
 		if($slo['responseLocation']) {
