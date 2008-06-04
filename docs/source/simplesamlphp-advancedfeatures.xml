@@ -366,6 +366,47 @@ foreach($_SERVER as $key=&gt;$value) {
 
 
   <section>
+    <title>Metadata signing</title>
+
+    <para>simpleSAMLphp supports signing of the metadata it generates.
+    Metadata signing is configured by three options:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><literal>metadata.sign.enable</literal>: Whether metadata
+        signing should be enabled or not. Set to <literal>TRUE</literal> to
+        enable metadata signing. Defaults to <literal>FALSE</literal>.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>metadata.sign.privatekey</literal>: Name of the file
+        with the private key which should be used to sign the metadata. This
+        file must exist in in the <literal>cert</literal> directory.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>metadata.sign.certificate</literal>: Name of the file
+        with the certificate which matches the private key. This file must
+        exist in in the <literal>cert</literal> directory.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>These options can be configured globally in the
+    <literal>config/config.php</literal>-file, or per SP/IdP by adding
+    them to the hosted metadata for the SP/IdP. The configuration in the
+    metadata for the SP/IdP takes precedence over the global
+    configuration.</para>
+
+    <para>There is also an additional fallback for the private key and the
+    certificate. If <literal>metadata.sign.privatekey</literal> and
+    <literal>metadata.sign.certificate</literal> isn't configured,
+    simpleSAMLphp will use the <literal>privatekey</literal> and
+    <literal>certificate</literal> options in the metadata for the
+    SP/IdP.</para>
+  </section>
+
+
+  <section>
     <title>Support</title>
 
     <para>If you need help to make this work, or want to discuss simpleSAMLphp
