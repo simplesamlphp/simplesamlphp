@@ -117,7 +117,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* Check if the Signature element from the EntitiesDescriptor can be used to verify this
 		 * EntityDescriptor, and add it to the list of validators if it is.
 		 */
-		if($entitiesValidator !== NULL && $entitiesValidator->isNodeSigned($entityElement)) {
+		if($entitiesValidator !== NULL && $entitiesValidator->isNodeValidated($entityElement)) {
 			$this->validator[] = $entitiesValidator;
 		}
 
