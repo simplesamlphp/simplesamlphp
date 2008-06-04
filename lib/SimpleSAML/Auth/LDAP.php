@@ -142,22 +142,37 @@ class SimpleSAML_Auth_LDAP {
 			
 		if ($sr === false) 
 			throw new Exception('Could not retrieve attributes for user: ' . ldap_error($this->ldap));
-		
-		$ldapentry = @ldap_get_entries($this->ldap, $sr);
-		
-		if ($ldapentry === false)
-			throw new Exception('Could not retrieve results from attribute retrieval for user:' . ldap_error($this->ldap));
-		
-		
+
+		$ldapEntry = @ldap_first_entry($this->ldap, $sr);
+		if ($ldapEntry === false) {
+			throw new Exception('Could not retrieve attributes for user -' .
+				' could not select first entry: ' . ldap_error($this->ldap));
+		}
+
+		$ldapAttributes = @ldap_get_attributes($this->ldap, $ldapEntry);
+		if ($ldapAttributes === false) {
+			throw new Exception('Could not retrieve attributes for user -' .
+				' error fetching attributes for select first entry: ' .	ldap_error($this->ldap));
+		}
+
 		$attributes = array();
-		for ($i = 0; $i < $ldapentry[0]['count']; $i++) {
-			$values = array();
-			if ($ldapentry[0][$i] == 'jpegphoto') continue;
-			for ($j = 0; $j < $ldapentry[0][$ldapentry[0][$i]]['count']; $j++) {
-				$values[] = $ldapentry[0][$ldapentry[0][$i]][$j];
+		for ($i = 0; $i < $ldapAttributes['count']; $i++) {
+			$attributeName = $ldapAttributes[$i];
+
+			/* Skip the 'jpegphoto' attribute. */
+			if (strtolower($attributeName) === 'jpegphoto') {
+				continue;
 			}
-			
-			$attributes[$ldapentry[0][$i]] = $values;
+
+			$attribute = $ldapAttributes[$attributeName];
+			$valueCount = $attribute['count'];
+
+			$values = array();
+			for ($j = 0; $j < $valueCount; $j++) {
+				$values[] = $attribute[$j];
+			}
+
+			$attributes[$attributeName] = $values;
 		}
 		
 		SimpleSAML_Logger::debug('Library - LDAP: Found attributes (' . join(',', array_keys($attributes)) . ')');
