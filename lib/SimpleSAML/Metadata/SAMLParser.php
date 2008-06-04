@@ -83,19 +83,22 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
-	 * This is a SimpleSAML_XML_Validator class if this EntityDescriptor is signed.
-	 * The validator can be used to check the fingerprint of the certificate which was used to sign
-	 * the EntityDescriptor.
+	 * This is an array of SimpleSAML_XML_Validator classes. If this EntityDescriptor is signed, one of the
+	 * validators should be able to verify the fingerprint of the certificate which was used to sign
+	 * this EntityDescriptor.
 	 */
-	private $validator;
+	private $validator = array();
 
 
 	/**
 	 * This is the constructor for the SAMLParser class.
 	 *
 	 * @param $entityElement The DOMElement which represents the EntityDescriptor-element.
+	 * @param $entitiesValidator  A Validator instance for a signature element in the EntitiesDescriptor,
+	 *                            or NULL if this EntityDescriptor isn't a child of an EntitiesDescriptor
+	 *                            with a Signature element.
 	 */
-	private function __construct($entityElement) {
+	private function __construct($entityElement, $entitiesValidator) {
 		$this->spDescriptors = array();
 		$this->idpDescriptors = array();
 
@@ -110,6 +113,13 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 		$this->entityId = $entityElement->getAttribute('entityID');
 
+
+		/* Check if the Signature element from the EntitiesDescriptor can be used to verify this
+		 * EntityDescriptor, and add it to the list of validators if it is.
+		 */
+		if($entitiesValidator !== NULL && $entitiesValidator->isNodeSigned($entityElement)) {
+			$this->validator[] = $entitiesValidator;
+		}
 
 		/* Look over the child nodes for any known element types. */
 		for($i = 0; $i < $entityElement->childNodes->length; $i++) {
@@ -195,7 +205,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	public static function parseElement($entityElement) {
 		assert('$entityElement instanceof DOMElement');
 
-		return new SimpleSAML_Metadata_SAMLParser($entityElement);
+		return new SimpleSAML_Metadata_SAMLParser($entityElement, NULL);
 	}
 
 
@@ -259,9 +269,21 @@ class SimpleSAML_Metadata_SAMLParser {
 		assert('$element instanceof DOMElement');
 
 
+		$entitiesValidator = NULL;
+
 		if(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntityDescriptor', '@md') === TRUE) {
 			$elements = array($element);
 		} elseif(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntitiesDescriptor', '@md') === TRUE) {
+
+			/* Check if there is a signature element in the EntitiesDescriptor. */
+			if(count(SimpleSAML_Utilities::getDOMChildren($element, 'Signature', '@ds')) > 0) {
+				try {
+					$entitiesValidator = new SimpleSAML_XML_Validator($element, 'ID');
+				} catch(Exception $e) {
+					$entitiesValidator = NULL;
+				}
+			}
+
 			$elements = SimpleSAML_Utilities::getDOMChildren($element, 'EntityDescriptor', '@md');
 		} else {
 			throw new Exception('Unexpected root node: [' . $element->namespaceURI . ']:' .
@@ -270,7 +292,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		$ret = array();
 		foreach($elements as $e) {
-			$entity = self::parseElement($e);
+			$entity = new SimpleSAML_Metadata_SAMLParser($e, $entitiesValidator);
 			$ret[$entity->getEntityId()] = $entity;
 		}
 
@@ -945,30 +967,15 @@ class SimpleSAML_Metadata_SAMLParser {
 		$entityDescriptor = $element->parentNode;
 		assert('$entityDescriptor instanceof DOMElement');
 
-		/* xmlseclib works on DOMDocuments. We need to make sure that the EntityDescriptor is the only
-		 * element in the document.
-		 */
-		$document = $entityDescriptor->ownerDocument;
-		if(!$entityDescriptor->isSameNode($document->firstChild) ||
-			!$entityDescriptor->isSameNode($document->lastChild)) {
-
-			/* This EntityDescriptor element isn't the only element in the document. Copy
-			 * the DOMNode with the EntityDescriptor into its own document.
-			 */
-			$document = new DOMDocument($document->version, $document->encoding);
-			$entityDescriptor = $document->importNode($entityDescriptor, TRUE);
-			$document->appendChild($entityDescriptor);
-		}
-
 		/* Attempt to check the signature. */
 		try {
-			$validator = new SimpleSAML_XML_Validator($document, 'ID');
+			$validator = new SimpleSAML_XML_Validator($entityDescriptor, 'ID');
 
 			if($validator->isNodeValidated($entityDescriptor)) {
 				/* The EntityDescriptor is signed. Store the validator in $this->validator, so
 				 * that it can be used to verify the fingerprint of the certificate later.
 				 */
-				$this->validator = $validator;
+				$this->validator[] = $validator;
 			}
 		} catch(Exception $e) {
 			/* Ignore validation errors and pretend that this EntityDescriptor is unsigned. */
@@ -986,17 +993,16 @@ class SimpleSAML_Metadata_SAMLParser {
 	 */
 	public function validateFingerprint($fingerprint) {
 
-		if($this->validator === NULL) {
-			return FALSE;
+		foreach($this->validator as $validator) {
+			try {
+				$validator->validateFingerprint($fingerprint);
+				return TRUE;
+			} catch(Exception $e) {
+				/* Validation with this validator failed. */
+			}
 		}
 
-		try {
-			$this->validator->validateFingerprint($fingerprint);
-			return TRUE;
-		} catch(Exception $e) {
-			/* Validation failed. */
-			return FALSE;
-		}
+		return FALSE;
 	}
 
 }
