@@ -18,6 +18,29 @@ $config = array (
 	'auth.ldap.attributes' => null,
 	'auth.ldap.enable_tls' => false,
 	
+	/*
+	 * Searching the DN of the user.
+	 */
+
+	/* Set this to TRUE to enable searching. */
+	'auth.ldap.search.enable' => FALSE,
+
+	/* The base DN for the search. */
+	'auth.ldap.search.base' => NULL,
+
+	/* The attribute(s) to search for.
+	 *
+	 * This may be a single string, or an array of string. If this is an array, then any of the attributes
+	 * in the array may match the value the user supplied as the username.
+	 */
+	'auth.ldap.search.attributes' => NULL,
+
+	/* The username & password the simpleSAMLphp should bind as before searching. If this is left
+	 * as NULL, no bind will be performed before searching.
+	 */
+	'auth.ldap.search.username' => NULL,
+	'auth.ldap.search.password' => NULL,
+
 );
 
 ?>

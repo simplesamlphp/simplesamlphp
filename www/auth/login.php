@@ -64,18 +64,44 @@ if (isset($_POST['username'])) {
 		 */
 		$ldap = new SimpleSAML_Auth_LDAP($ldapconfig->getValue('auth.ldap.hostname'),
                                          $ldapconfig->getValue('auth.ldap.enable_tls'));
-	
-		
-		
-		
-		/** 
-		 * Insert the LDAP username into the pattern configured in the 'auth.ldap.dnpattern' option.
-		 */
-		$dn = str_replace('%username%', $ldapusername, $ldapconfig->getValue('auth.ldap.dnpattern'));
-	
+
+		if($ldapconfig->getValue('auth.ldap.search.enable', FALSE)) {
+			/* We are configured to search for the users dn. */
+
+			$searchUsername = $ldapconfig->getValue('auth.ldap.search.username', NULL);
+
+			if($searchUsername !== NULL) {
+				/* Log in with username & password for searching. */
+
+				$searchPassword = $ldapconfig->getValue('auth.ldap.search.password', NULL);
+				if($searchPassword === NULL) {
+					throw new Exception('"auth.ldap.search.username" is configured, but not' .
+						' "auth.ldap.search.password".');
+				}
+
+				if(!$ldap->bind($searchUsername, $searchPassword)) {
+					throw new Exception('Error authenticating using search username & password.');
+				}
+			}
+
+			$searchBase = $ldapconfig->getValue('auth.ldap.search.base', NULL);
+			$searchAttributes = $ldapconfig->getValue('auth.ldap.search.attributes', NULL);
+			if($searchBase === NULL || $searchAttributes === NULL) {
+				throw new Exception('"auth.ldap.search.base" and "auth.ldap.search.attributes"' .
+					' must be configured before LDAP search can be enabled.');
+			}
+
+			/* Search for the dn. */
+			$dn = $ldap->searchfordn($searchBase, $searchAttributes, $username);
+		} else {
+			/* We aren't configured to search for the dn. Insert the LDAP username into the pattern
+			 * configured in the 'auth.ldap.dnpattern' option.
+			 */
+			$dn = str_replace('%username%', $ldapusername, $ldapconfig->getValue('auth.ldap.dnpattern'));
+		}
 		
 		/*
-		 * Do LDAP bind using DN found from the the dnpattern
+		 * Do LDAP bind using DN.
 		 */
 		if (!$ldap->bind($dn, $password)) {
 			SimpleSAML_Logger::info('AUTH - ldap: '. $username . ' failed to authenticate. DN=' . $dn);
