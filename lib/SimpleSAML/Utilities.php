@@ -380,15 +380,25 @@ class SimpleSAML_Utilities {
 		$t->data['errorcode'] = $errorcode;
 		
 		$t->data['showerrors'] = $config->getValue('showerrors', true);
-		$t->data['errorreportaddress'] = $config->getValue('errorreportaddress', null); 
-		
+
+		/* Check if there is a valid technical contact email address. */
+		if($config->getValue('technicalcontact_email', 'na@example.org') !== 'na@example.org') {
+			/* Enable error reporting. */
+			$baseurl = SimpleSAML_Utilities::selfURLhost() . '/' . $config->getBaseURL();
+			$t->data['errorreportaddress'] = $baseurl . 'errorreport.php';
+
+		} else {
+			/* Disable error reporting. */
+			$t->data['errorreportaddress'] = NULL;
+		}
+
 		$t->data['exceptionmsg'] = $emsg;
 		$t->data['exceptiontrace'] = $etrace;
 		
 		$t->data['trackid'] = $trackid;
 		
 		$t->data['version'] = $config->getValue('version', 'na');
-		$t->data['email'] = $config->getValue('technicalcontact_email', 'na');
+		$t->data['url'] = self::selfURLNoQuery();
 		
 		$t->show();
 		

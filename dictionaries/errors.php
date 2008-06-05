@@ -167,6 +167,12 @@ $lang = array(
 		'hr' => 'Ova greška se vjerojatno javila zbog neočekivanog ponašanja ili neispravnog konfiguriranja simpleSAMLphp-a. Kontaktirajte administratora i pošaljite mu gore navedenu poruku o greški.',
 		'hu' => 'Ez a hiba valószínűleg a simpleSAMLphp nem várt működésével vagy félrekonfigurálásával kapcsolatos. Kérjük, keresse meg a bejelentkező szolgáltatás adminisztrátorát, és küldje el neki a fenti hibaüzenetet!',
 	),
+	'errorreport_header' => array (
+		'en' => 'Error report sent',
+	),
+	'errorreport_text' => array (
+		'en' => 'The error report has been sent to the administrators.',
+	),
 	'title_CACHEAUTHNREQUEST' => array (
 		'no' => 'Feil ved fellesinnlogging',
 		'nn' => 'Feil under Single Sign-On til webtenesta',

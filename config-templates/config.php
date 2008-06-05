@@ -39,7 +39,6 @@ $config = array (
 	 */
 	'debug'                 =>	false,
 	'showerrors'            =>	true,
-	'errorreportaddress'    =>  'http://rnd.feide.no/content/sending-information-simplesamlphp',
 
 	/**
 	 * This option allows you to enable validation of SAML 2.0 messages against their
@@ -68,6 +67,7 @@ $config = array (
 	
 	/*
 	 * Some information about the technical persons running this installation.
+	 * The email address will be used as the recipient address for error reports.
 	 */
 	'technicalcontact_name'     => 'Administrator',
 	'technicalcontact_email'    => 'na@example.org',

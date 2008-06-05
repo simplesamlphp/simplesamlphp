@@ -47,12 +47,14 @@ if (array_key_exists('showerrors', $this->data) && $this->data['showerrors']) {
 ?>
 
 <?php
-/* Print out exception only if the exception is available. */
+/* Add error report submit section if we have a valid technical contact. 'errorreportaddress' will only be set if
+ * the technical contact email address has been set.
+ */
 if (!empty($this->data['errorreportaddress'])) {
 ?>
 
 	<h2><?php echo $this->t('report_header'); ?></h2>
-	<form action="<?php echo $this->data['errorreportaddress']; ?>" method="post">
+	<form action="<?php echo htmlspecialchars($this->data['errorreportaddress']); ?>" method="post">
 	
 		<p><?php echo $this->t('report_text'); ?></p>
 			<p><?php echo $this->t('report_email'); ?> <input type="text" size="25" name="email" value="" />
@@ -60,13 +62,13 @@ if (!empty($this->data['errorreportaddress'])) {
 		<p>
 		<textarea style="width: 300px; height: 100px" name="text"><?php echo $this->t('report_explain'); ?></textarea>
 		</p><p>
-		<input type="hidden" name="action" value="error" />
-		<input type="hidden" name="techemail" value="<?php echo $this->data['email']; ?>" />
-		<input type="hidden" name="version" value="<?php echo $this->data['version']; ?>" />
-		<input type="hidden" name="trackid" value="<?php echo $this->data['trackid']; ?>" />
-		<input type="hidden" name="exceptionmsg" value="<?php echo urlencode(base64_encode($this->data['exceptionmsg'])); ?>" />
-		<input type="hidden" name="exceptiontrace" value="<?php echo urlencode(base64_encode($this->data['exceptiontrace'])); ?>" />
-		
+		<input type="hidden" name="version" value="<?php echo htmlspecialchars($this->data['version']); ?>" />
+		<input type="hidden" name="trackid" value="<?php echo htmlspecialchars($this->data['trackid']); ?>" />
+		<input type="hidden" name="exceptionmsg" value="<?php echo htmlspecialchars($this->data['exceptionmsg']); ?>" />
+		<input type="hidden" name="exceptiontrace" value="<?php echo htmlspecialchars($this->data['exceptiontrace']); ?>" />
+		<input type="hidden" name="errorcode" value="<?php echo htmlspecialchars($this->data['errorcode']); ?>" />
+		<input type="hidden" name="url" value="<?php echo htmlspecialchars($this->data['url']); ?>" />
+
 		<input type="submit" name="send" value="<?php echo $this->t('report_submit'); ?>" />
 		</p>
 	</form>
