@@ -165,6 +165,75 @@
           LDAP server.</para>
         </listitem>
       </itemizedlist>
+
+      <section>
+        <title>Searching for the user's DN</title>
+
+        <para>It is possible to search for the DN of the user by matching the
+        username provided by the user against one or more attributes. This
+        feature is configured by the following options in
+        <filename>config/ldap.php</filename>:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para><literal>auth.ldap.search.enable</literal>: Whether
+            searching for the user's DN should be enabled. Set this to
+            <literal>TRUE</literal> to enable searching.</para>
+          </listitem>
+
+          <listitem>
+            <para><literal>auth.ldap.search.base</literal>: The DN we should
+            search for the user in.</para>
+          </listitem>
+
+          <listitem>
+            <para><literal>auth.ldap.search.attributes</literal>: The
+            attributes we shoule match the username against. This can be a
+            single attribute, in which case it should be a string, or multiple
+            attributes, in which case it should be an array of strings.</para>
+
+            <para>If this is multiple attributes, they will be joined into a
+            search query with the following form:
+            <literal>(|(&lt;attr1&gt;=&lt;username&gt;)(&lt;attr2&gt;=&lt;username&gt;)...)</literal>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para><literal>auth.ldap.search.username</literal>: The user we
+            should authenticate to the LDAP server as before searching.
+            Leave this as <literal>NULL</literal> if it isn't necessary to
+            authenticate to the server before searching.</para>
+          </listitem>
+
+          <listitem>
+            <para><literal>auth.ldap.search.password</literal>: The password
+            for the user selected with the
+            <literal>auth.ldap.search.username</literal> option.</para>
+          </listitem>
+        </itemizedlist>
+
+        <example>
+          <title>Configuring LDAP for searching</title>
+
+          <programlisting>$config = array (
+  'auth.ldap.hostname' =&gt; 'ldap.example.org',
+  'auth.ldap.attributes' =&gt; NULL,
+  'auth.ldap.enable_tls' =&gt; FALSE,
+
+  /* Enable searching. */
+  'auth.ldap.search.enable' =&gt; TRUE,
+
+  /* The base DN for the search. */
+  'auth.ldap.search.base' =&gt; 'cn=users,dc=example,dc=org',
+
+  /* The user can authenticate using the uid or the email address. */
+  'auth.ldap.search.attributes' =&gt; array('uid', 'mail'),
+
+  'auth.ldap.search.username' =&gt; 'uid=authsearch,cn=server,dc=example,dc=org',
+  'auth.ldap.search.password' =&gt; 'secret',
+);</programlisting>
+        </example>
+      </section>
     </section>
 
     <section>
