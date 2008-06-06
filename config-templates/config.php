@@ -181,7 +181,7 @@ $config = array (
 	 * By default simpleSAMLphp will use its builtin IdP discovery service.
 	 */
 	'idpdisco.url.shib13' => NULL,
-	'idpdisco.url.saml2' => NULL,
+	'idpdisco.url.saml20' => NULL,
 	
 	/*
 	 * IdP Discovery service look configuration. 

@@ -31,7 +31,7 @@ try {
 
 	if($idpentityid === NULL) {
 		/* We are going to need the SP metadata to determine which IdP discovery service we should use. */
-		$spmetadata = $metadata->getMetaData($spentityid);
+		$spmetadata = $metadata->getMetaDataCurrent('saml20-sp-hosted');
 	}
 
 } catch (Exception $exception) {
@@ -51,8 +51,8 @@ if ($idpentityid == null) {
 	 */
 	if(array_key_exists('idpdisco.url', $spmetadata)) {
 		$discourl = $spmetadata['idpdisco.url'];
-	} elseif($config->getValue('idpdisco.url.saml2', NULL) !== NULL) {
-		$discourl = $config->getValue('idpdisco.url.saml2', NULL);
+	} elseif($config->getValue('idpdisco.url.saml20', NULL) !== NULL) {
+		$discourl = $config->getValue('idpdisco.url.saml20', NULL);
 	} else {
 		$discourl = '/' . $config->getBaseURL() . 'saml2/sp/idpdisco.php';
 	}
