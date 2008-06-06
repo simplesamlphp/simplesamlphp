@@ -29,6 +29,12 @@ try {
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getValue('default-shib13-idp') ;
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID('shib13-sp-hosted');
 
+	if($idpentityid === NULL) {
+		/* We are going to need the SP metadata to determine which IdP discovery service we should use. */
+		$spmetadata = $metadata->getMetaDataCurrent('shib13-sp-hosted');
+	}
+
+
 } catch (Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
 }
@@ -40,12 +46,23 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 	if ($idpentityid == null) {
 	
 		SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: No chosen or default IdP, go to Shib13disco');
-	
-		$returnURL = urlencode(SimpleSAML_Utilities::selfURL());
-		$discservice = '/' . $config->getBaseURL() . 'shib13/sp/idpdisco.php?entityID=' . $spentityid . 
-			'&return=' . $returnURL . '&returnIDParam=idpentityid';
-		SimpleSAML_Utilities::redirect($discservice);
-		
+
+		/* Which IdP discovery service should we use? Can be set in SP metadata or in global configuration.
+		 * Falling back to builtin discovery service.
+		 */
+		if(array_key_exists('idpdisco.url', $spmetadata)) {
+			$discservice = $spmetadata['idpdisco.url'];
+		} elseif($config->getValue('idpdisco.url.shib13', NULL) !== NULL) {
+			$discservice = $config->getValue('idpdisco.url.shib13', NULL);
+		} else {
+			$discservice = '/' . $config->getBaseURL() . 'shib13/sp/idpdisco.php';
+		}
+
+		SimpleSAML_Utilities::redirect($discservice, array(
+			'entityID' => $spentityid,
+			'return' => SimpleSAML_Utilities::selfURL(),
+			'returnIDParam' => 'idpentityid',
+			));
 	}
 	
 	

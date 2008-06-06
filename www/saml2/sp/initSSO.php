@@ -29,6 +29,11 @@ try {
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getValue('default-saml20-idp') ;
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 
+	if($idpentityid === NULL) {
+		/* We are going to need the SP metadata to determine which IdP discovery service we should use. */
+		$spmetadata = $metadata->getMetaData($spentityid);
+	}
+
 } catch (Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
 }
@@ -41,7 +46,18 @@ if ($idpentityid == null) {
 
 	SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: No chosen or default IdP, go to SAML2disco');
 
-	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'saml2/sp/idpdisco.php', array(
+	/* Which IdP discovery service should we use? Can be set in SP metadata or in global configuration.
+	 * Falling back to builtin discovery service.
+	 */
+	if(array_key_exists('idpdisco.url', $spmetadata)) {
+		$discourl = $spmetadata['idpdisco.url'];
+	} elseif($config->getValue('idpdisco.url.saml2', NULL) !== NULL) {
+		$discourl = $config->getValue('idpdisco.url.saml2', NULL);
+	} else {
+		$discourl = '/' . $config->getBaseURL() . 'saml2/sp/idpdisco.php';
+	}
+
+	SimpleSAML_Utilities::redirect($discourl, array(
 		'entityID' => $spentityid,
 		'return' => SimpleSAML_Utilities::selfURL(),
 		'returnIDParam' => 'idpentityid')
