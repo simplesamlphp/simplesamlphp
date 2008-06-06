@@ -463,6 +463,7 @@ class SimpleSAML_Session {
 	 */
 	public function registerLogoutHandler($file, $classname, $functionname) {
 		$this->logout_handlers[] = array('file' => $file, 'class' => $classname, 'function' => $functionname);
+		$this->dirty = TRUE;
 	}
 
 
