@@ -1,9 +1,5 @@
 <?php
 
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageSource.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/SAMLParser.php');
-
 /**
  * This class implements a metadata source which loads metadata from XML files.
  * The XML files should be in the SAML 2.0 metadata format.

@@ -1,11 +1,5 @@
 <?php
 
-/* We need access to the configuration from config/config.php. */
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
-
-/* We need the randomBytes and stringToHex functions from Utilities. */
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
-
 /**
  * This file is part of SimpleSAMLphp. See the file COPYING in the
  * root of the distribution for licence information.

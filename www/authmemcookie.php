@@ -12,10 +12,6 @@
 
 require_once('_include.php');
 
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/AuthMemCookie.php');
-
 try {
 	/* Load simpleSAMLphp configuration. */
 	$globalConfig = SimpleSAML_Configuration::getInstance();

@@ -1,7 +1,5 @@
 <?php
 
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
-
 /**
  * This file is part of SimpleSAMLphp. See the file COPYING in the
  * root of the distribution for licence information.

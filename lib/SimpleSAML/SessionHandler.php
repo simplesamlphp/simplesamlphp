@@ -1,8 +1,5 @@
 <?php
 
-/* We need access to the configuration from config/config.php. */
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Configuration.php');
-
 /**
  * This file is part of SimpleSAMLphp. See the file COPYING in the
  * root of the distribution for licence information.
@@ -106,10 +103,8 @@ abstract class SimpleSAML_SessionHandler {
 		$handler = strtolower($handler);
 
 		if($handler === 'phpsession') {
-			require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/SessionHandlerPHP.php');
 			$sh = new SimpleSAML_SessionHandlerPHP();
 		} else if($handler === 'memcache') {
-			require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/SessionHandlerMemcache.php');
 			$sh = new SimpleSAML_SessionHandlerMemcache();
 		} else {
 			$e = 'Invalid value for the \'session.handler\'' .

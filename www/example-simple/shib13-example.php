@@ -1,19 +1,10 @@
 <?php
 
 /**
- * The _include script sets simpleSAMLphp libraries in the PHP PATH, as well as 
- * initialize the simpleSAMLphp config class with the correct path.
+ * The _include script registers a autoloader for the simpleSAMLphp libraries. It also
+ * initializes the simpleSAMLphp config class with the correct path.
  */
 require_once('../_include.php');
-
-/**
- * We need to load a few classes from simpleSAMLphp. These are available because
- * the _include script above did set the PHP class PATH properly.
- */
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XHTML/Template.php');
-
 
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();

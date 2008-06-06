@@ -10,15 +10,8 @@
 /* This is the base directory of the simpleSAMLphp installation. */
 $baseDir = dirname(dirname(__FILE__));
 
-/* Set up the include path. */
-$path_extra =  $baseDir . '/lib';
-$path = ini_get('include_path');
-$path = $path_extra . PATH_SEPARATOR . $path;
-ini_set('include_path', $path);
-
-/* Load required libraries. */
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/SAMLParser.php');
-
+/* Add library autoloader. */
+require_once($baseDir . '/lib/_autoload.php');
 
 /* $outputDir contains the directory we will store the generated metadata in. */
 $outputDir = $baseDir . '/metadata-generated';
