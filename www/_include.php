@@ -18,6 +18,10 @@ if(get_magic_quotes_gpc()) {
 	}
 }
 
+
+/* Initialize the autoloader. */
+require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
+
 $path_extra = dirname(dirname(__FILE__)) . '/lib';
 
 
