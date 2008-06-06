@@ -33,7 +33,24 @@ function SimpleSAML_autoload($className) {
 	}
 }
 
-/* Register autload function for simpleSAMLphp. */
-spl_autoload_register('SimpleSAML_autoload');
+/* Register autoload function for simpleSAMLphp. */
+if(function_exists('spl_autoload_register')) {
+	/* Use the spl_autoload_register function if it is available. It should be available
+	 * for PHP versions >= 5.1.2.
+	 */
+	spl_autoload_register('SimpleSAML_autoload');
+} else {
+
+	/* spl_autoload_register is unavailable - let us hope that no one else uses the __autoload function. */
+
+	/**
+	 * Autoload function for those who don't have spl_autoload_register.
+	 *
+	 * @param $className  The name of the requested class.
+	 */
+	function __autoload($className) {
+		SimpleSAML_autoload($className);
+	}
+}
 
 ?>
