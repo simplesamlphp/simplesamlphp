@@ -457,12 +457,20 @@ class SimpleSAML_Session {
 	/**
 	 * This function registers a logout handler.
 	 *
-	 * @param $file  The file which contains the logout handler.
 	 * @param $classname  The class which contains the logout handler.
 	 * @param $functionname  The logout handler function.
 	 */
-	public function registerLogoutHandler($file, $classname, $functionname) {
-		$this->logout_handlers[] = array('file' => $file, 'class' => $classname, 'function' => $functionname);
+	public function registerLogoutHandler($classname, $functionname) {
+
+		$logout_handler = array($classname, $functionname);
+
+		if(!is_callable($logout_handler)) {
+			throw new Exception('Logout handler is not a vaild function: ' . $classname . '::' .
+				$functionname);
+		}
+
+
+		$this->logout_handlers[] = $logout_handler;
 		$this->dirty = TRUE;
 	}
 
@@ -473,13 +481,20 @@ class SimpleSAML_Session {
 	private function callLogoutHandlers() {
 		foreach($this->logout_handlers as $handler) {
 
-			/* Load the file with the logout handler. */
-			require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . $handler['file']);
+			$logout_handler = array($classname, $functionname);
+
+			/* Verify that the logout handler is a valid function. */
+			if(!is_callable($logout_handler)) {
+				$classname = $logout_handler[0];
+				$functionname = $logout_handler[1];
+
+				throw new Exception('Logout handler is not a vaild function: ' . $classname . '::' .
+					$functionname);
+			}
 
 			/* Call the logout handler. */
-			$classname = $handler['class'];
-			$functionname = $handler['function'];
-			call_user_func(array($classname, $functionname));
+			call_user_func($logout_handler);
+
 		}
 
 		/* We require the logout handlers to register themselves again if they want to be called later. */
