@@ -79,7 +79,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host'),
-				array('NameIDFormat', 'ForceAuthn')
+				array('NameIDFormat', 'ForceAuthn', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.privatekey_pass', 'metadata.sign.certificate')
 			);
 		}
 		$et->data['metadata.shib13-sp-hosted'] = $results;
@@ -89,7 +89,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'SingleSignOnService', 'certFingerprint'),
-				array('name', 'description', 'base64attributes', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.privatekey_pass', 'metadata.sign.certificate')
+				array('name', 'description', 'base64attributes')
 			);
 		}
 		$et->data['metadata.shib13-idp-remote'] = $results;
