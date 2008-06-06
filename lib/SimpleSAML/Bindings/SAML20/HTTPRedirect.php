@@ -52,6 +52,14 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		$query = $query . "&" . "SigAlg=" . urlencode($algURI);
 		
 		$xmlseckey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
+
+		/* Set the passphrase which should be used to open the key, if this attribute is
+		 * set in the metadata.
+		 */
+		if(array_key_exists('privatekey_pass', $md)) {
+			$xmlseckey->passphrase = $md['privatekey_pass'];
+		}
+
 		$xmlseckey->loadKey($privatekey,TRUE);
         $signature = $xmlseckey->signData($query);
                 

@@ -326,6 +326,15 @@
               generate SAML 2.0 Metadata for export to the IdP.</para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>privatekey_pass</glossterm>
+
+            <glossdef>
+              <para>Optional field with the passphrase for the private
+              key.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
 
         <example>
@@ -557,6 +566,15 @@
 
             <glossdef>
               <para>File name of certificate corresponding to the private
+              key.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>privatekey_pass</glossterm>
+
+            <glossdef>
+              <para>Optional field with the passphrase for the private
               key.</para>
             </glossdef>
           </glossentry>

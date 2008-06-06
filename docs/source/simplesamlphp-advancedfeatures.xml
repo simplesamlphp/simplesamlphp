@@ -369,7 +369,7 @@ foreach($_SERVER as $key=&gt;$value) {
     <title>Metadata signing</title>
 
     <para>simpleSAMLphp supports signing of the metadata it generates.
-    Metadata signing is configured by three options:</para>
+    Metadata signing is configured by four options:</para>
 
     <itemizedlist>
       <listitem>
@@ -382,6 +382,13 @@ foreach($_SERVER as $key=&gt;$value) {
         <para><literal>metadata.sign.privatekey</literal>: Name of the file
         with the private key which should be used to sign the metadata. This
         file must exist in in the <literal>cert</literal> directory.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>metadata.sign.privatekey_pass</literal>: Passphrase
+        which should be used to open the private key. This parameter is
+        optional, and should be left out if the private key is
+        unencrypted.</para>
       </listitem>
 
       <listitem>
@@ -400,9 +407,9 @@ foreach($_SERVER as $key=&gt;$value) {
     <para>There is also an additional fallback for the private key and the
     certificate. If <literal>metadata.sign.privatekey</literal> and
     <literal>metadata.sign.certificate</literal> isn't configured,
-    simpleSAMLphp will use the <literal>privatekey</literal> and
-    <literal>certificate</literal> options in the metadata for the
-    SP/IdP.</para>
+    simpleSAMLphp will use the <literal>privatekey</literal>,
+    <literal>privatekey_pass</literal> and <literal>certificate</literal>
+    options in the metadata for the SP/IdP.</para>
   </section>
 
 

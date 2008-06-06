@@ -382,6 +382,7 @@ $config = array (
 	 * if those aren't set, signing of metadata will fail.
 	 */
 	'metadata.sign.privatekey' => NULL,
+	'metadata.sign.privatekey_pass' => NULL,
 	'metadata.sign.certificate' => NULL,
 
 

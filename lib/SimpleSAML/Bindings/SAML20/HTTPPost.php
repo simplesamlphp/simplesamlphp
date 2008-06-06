@@ -118,6 +118,13 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		/* create new XMLSecKey using RSA-SHA-1 and type is private key */
 		$objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
 		
+		/* Set the passphrase which should be used to open the key, if this attribute is
+		 * set in the metadata.
+		 */
+		if(array_key_exists('privatekey_pass', $idpmd)) {
+			$objKey->passphrase = $idpmd['privatekey_pass'];
+		}
+
 		/* load the private key from file - last arg is bool if key in file (TRUE) or is string (FALSE) */
 		$objKey->loadKey($privatekey,TRUE);
 				

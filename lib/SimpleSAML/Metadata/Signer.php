@@ -16,7 +16,7 @@ class SimpleSAML_Metadata_Signer {
 	 * @param $config  Our SimpleSAML_Configuration instance.
 	 * @param $entityMetadata  The metadata of the entity.
 	 * @param $type  A string which describes the type entity this is, e.g. 'SAML 2 IdP' or 'Shib 1.3 SP'.
-	 * @return An associative array with the keys 'privatekey' and 'certificate'.
+	 * @return An associative array with the keys 'privatekey', 'certificate', and optionally 'privatekey_pass'.
 	 */
 	private static function findKeyCert($config, $entityMetadata, $type) {
 
@@ -32,10 +32,17 @@ class SimpleSAML_Metadata_Signer {
 					' the ' . $type . ' "' . $entityMetadata['entityid'] . '". If one of' .
 					' these options is specified, then the other must also be specified.');
 			}
-			return array(
+
+			$ret = array(
 				'privatekey' => $entityMetadata['metadata.sign.privatekey'],
 				'certificate' => $entityMetadata['metadata.sign.certificate']
 				);
+
+			if(array_key_exists('metadata.sign.privatekey_pass', $entityMetadata)) {
+				$ret['privatekey_pass'] = $entityMetadata['metadata.sign.privatekey_pass'];
+			}
+
+			return $ret;
 		}
 
 		/* Then we look for default values in the global configuration. */
@@ -48,7 +55,14 @@ class SimpleSAML_Metadata_Signer {
 					' configuration. If one of these options is specified, then the other'.
 					' must also be specified.');
 			}
-			return array('privatekey' => $privatekey, 'certificate' => $certificate);
+			$ret = array('privatekey' => $privatekey, 'certificate' => $certificate);
+
+			$privatekey_pass = $config->getValue('metadata.sign.privatekey_pass', NULL);
+			if($privatekey_pass !== NULL) {
+				$ret['privatekey_pass'] = $privatekey_pass;
+			}
+
+			return $ret;
 		}
 
 		/* As a last resort we attempt to use the privatekey and certificate option from the metadata. */
@@ -63,11 +77,16 @@ class SimpleSAML_Metadata_Signer {
 					' from this entity.');
 			}
 
-			return array(
+			$ret = array(
 				'privatekey' => $entityMetadata['privatekey'],
 				'certificate' => $entityMetadata['certificate']
 				);
 
+			if(array_key_exists('privatekey_pass', $entityMetadata)) {
+				$ret['privatekey_pass'] = $entityMetadata['privatekey_pass'];
+			}
+
+			return $ret;
 		}
 
 		throw new Exception('Could not find what key & certificate should be used to sign the metadata' .
@@ -149,6 +168,9 @@ class SimpleSAML_Metadata_Signer {
 
 		/* Load the private key. */
 		$objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
+		if(array_key_exists('privatekey_pass', $keyCertFiles)) {
+			$objKey->passphrase = $keyCertFiles['privatekey_pass'];
+		}
 		$objKey->loadKey($keyData, FALSE);
 
 		/* Get the EntityDescriptor node we should sign. */
