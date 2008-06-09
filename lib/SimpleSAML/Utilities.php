@@ -932,6 +932,48 @@ class SimpleSAML_Utilities {
 		return $ret;
 	}
 
+
+	/**
+	 * Resolve a (possibly) relative path from the given base path.
+	 *
+	 * A path which starts with a '/' is assumed to be absolute, all others are assumed to be
+	 * relative. The default base path is the root of the simpleSAMPphp installation.
+	 *
+	 * @param $path  The path we should resolve.
+	 * @param $base  The base path, where we should search for $path from. Default value is the root
+	 *               of the simpleSAMLphp installation.
+	 * @return An absolute path referring to $path.
+	 */
+	public static function resolvePath($path, $base = NULL) {
+		if($base === NULL) {
+			$config = SimpleSAML_Configuration::getInstance();
+			$base =  $config->getBaseDir();
+		}
+
+		/* Remove trailing slashes from $base. */
+		while(substr($base, -1) === '/') {
+			$base = substr($base, 0, -1);
+		}
+
+		$ret = $base;
+
+		$path = explode('/', $path);
+		foreach($path as $d) {
+			if($d === '.') {
+				continue;
+			} elseif($d === '..') {
+				$ret = dirname($ret);
+			} else {
+				if(substr($ret, -1) !== '/') {
+					$ret .= '/';
+				}
+				$ret .= $d;
+			}
+		}
+
+		return $ret;
+	}
+
 }
 
 ?>
