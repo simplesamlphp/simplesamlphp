@@ -793,24 +793,44 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * This function validates a SAML2 message against its schema.
-	 * A warning will be printed to the log if validation fails.
+	 * This function performs some sanity checks on SAML messages, and optionally validates them
+	 * against their schema. A warning will be printed to the log if validation fails.
 	 *
 	 * @param $message  The message which should be validated.
+	 * @param $type     The type of message - can be either 'saml20' or 'saml11'.
 	 */
-	public static function validateSAML2Message($message) {
+	public static function validateSAMLMessage($message, $type) {
 		assert('is_string($message)');
+		assert($type === 'saml11' || $type === 'saml20');
 
-		$enabled = SimpleSAML_Configuration::getInstance()->getValue('debug.validatesaml2messages', FALSE);
-		if(!is_bool($enabled)) {
-			throw new Exception('Expected "debug.validatesaml2messages" to be set to a boolean value.');
+		/* A SAML message should not contain a doctype-declaration. */
+		if(strpos($message, '<!DOCTYPE') !== FALSE) {
+			throw new Exception('SAML message contained a doctype declaration.');
+		}
+
+		$enabled = SimpleSAML_Configuration::getInstance()->getValue('debug.validatesamlmessages', NULL);
+		if($enabled === NULL) {
+			/* Fall back to old configuration option. */
+			$enabled = SimpleSAML_Configuration::getInstance()->getValue('debug.validatesaml2messages', FALSE);
+			if(!is_bool($enabled)) {
+				throw new Exception('Expected "debug.validatesaml2messages" to be set to a boolean value.');
+			}
+		} elseif(!is_bool($enabled)) {
+			throw new Exception('Expected "debug.validatesamlmessages" to be set to a boolean value.');
 		}
 
 		if(!$enabled) {
 			return;
 		}
 
-		$result = self::validateXML($message, 'saml-schema-protocol-2.0.xsd');
+		if($type === 'saml11') {
+			$result = self::validateXML($message, 'oasis-sstc-saml-schema-protocol-1.1.xsd');
+		} elseif($type === 'saml20') {
+			$result = self::validateXML($message, 'saml-schema-protocol-2.0.xsd');
+		} else {
+			throw new Exception('Invalid message type.');
+		}
+
 		if($result !== '') {
 			SimpleSAML_Logger::warning($result);
 		}

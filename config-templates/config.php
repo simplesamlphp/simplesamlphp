@@ -41,10 +41,10 @@ $config = array (
 	'showerrors'            =>	true,
 
 	/**
-	 * This option allows you to enable validation of SAML 2.0 messages against their
+	 * This option allows you to enable validation of SAML messages against their
 	 * schemas. A warning will be written to the log if validation fails.
 	 */
-	'debug.validatesaml2messages' => false,
+	'debug.validatesamlmessages' => false,
 
 	/**
 	 * This password must be kept secret, and modified from the default value 123.
