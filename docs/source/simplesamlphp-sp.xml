@@ -544,6 +544,15 @@
               private key.</para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>icon</glossterm>
+
+            <glossdef>
+              <para>An icon for this IdP. This icon will be displayed in the
+              IdP discovery service.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
       </section>
 
@@ -787,6 +796,15 @@
 
             <para>See <xref linkend="a.fingerprint" /> for an example of how
             to calculate the fingerprint with the openssl tool.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>icon</glossterm>
+
+          <glossdef>
+            <para>An icon for this IdP. This icon will be displayed in the
+            IdP discovery service. This field is optional.</para>
           </glossdef>
         </glossentry>
       </glosslist>
