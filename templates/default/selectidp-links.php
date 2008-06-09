@@ -15,7 +15,14 @@
 			$idpentry = $this->data['idplist'][$this->data['preferredidp']];
 			echo '<div class="preferredidp">';
 			echo '	<img src="/' . $this->data['baseurlpath'] .'resources/icons/star.png" style="float: right" />';
-			echo '	<h3>' . htmlspecialchars($idpentry['name']) . '</h3>';
+
+			echo '	<h3>';
+			if(array_key_exists('icon', $idpentry) && $idpentry['icon'] !== NULL) {
+				$iconUrl = SimpleSAML_Utilities::resolveURL($idpentry['icon']);
+				echo '<img style="display: inline" src="' . htmlspecialchars($iconUrl) . '" />';
+			}
+			echo htmlspecialchars($idpentry['name']) . '</h3>';
+
 			echo '	<p>' . htmlspecialchars($idpentry['description']) . '<br />';
 			echo '	[ <a href="' . $this->data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
 			echo '</div>';
@@ -24,7 +31,13 @@
 		
 		foreach ($this->data['idplist'] AS $idpentry) {
 			if ($idpentry['entityid'] != $this->data['preferredidp']) {
-				echo '<h3>' . htmlspecialchars($idpentry['name']) . '</h3>';
+				echo '	<h3>';
+				if(array_key_exists('icon', $idpentry) && $idpentry['icon'] !== NULL) {
+					$iconUrl = SimpleSAML_Utilities::resolveURL($idpentry['icon']);
+					echo '<img style="display: inline" src="' . htmlspecialchars($iconUrl) . '" />';
+				}
+				echo htmlspecialchars($idpentry['name']) . '</h3>';
+
 				echo '<p>' . htmlspecialchars($idpentry['description']) . '<br />';
 				echo '[ <a href="' . $this->data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
 			}
