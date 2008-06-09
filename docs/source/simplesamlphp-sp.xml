@@ -549,8 +549,10 @@
             <glossterm>icon</glossterm>
 
             <glossdef>
-              <para>An icon for this IdP. This icon will be displayed in the
-              IdP discovery service.</para>
+              <para>An icon for this IdP. This is a URL to a icon which will
+              be displayed next to this IdP in the IdP discovery service. The
+              URL can be absolute or relative. If it is relative, it will be
+              relative to the simpleSAMPphp www-directory.</para>
             </glossdef>
           </glossentry>
         </glosslist>
@@ -803,8 +805,11 @@
           <glossterm>icon</glossterm>
 
           <glossdef>
-            <para>An icon for this IdP. This icon will be displayed in the
-            IdP discovery service. This field is optional.</para>
+            <para>An icon for this IdP. This is a URL to a icon which will
+            be displayed next to this IdP in the IdP discovery service. The
+            URL can be absolute or relative. If it is relative, it will be
+            relative to the simpleSAMPphp www-directory. This field is
+            optional.</para>
           </glossdef>
         </glossentry>
       </glosslist>

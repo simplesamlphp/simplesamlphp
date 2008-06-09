@@ -39,7 +39,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'SingleSignOnService', 'SingleLogoutService', 'certFingerprint'),
-				array('name', 'description', 'base64attributes', 'certificate', 'hint.cidr', 'saml2.relaxvalidation', 'SingleLogoutServiceResponse', 'request.signing', 'attributemap', 'attributealter', 'sharedkey', 'assertion.encryption')
+				array('name', 'description', 'base64attributes', 'certificate', 'hint.cidr', 'saml2.relaxvalidation', 'SingleLogoutServiceResponse', 'request.signing', 'attributemap', 'attributealter', 'sharedkey', 'assertion.encryption', 'icon')
 			);
 		}
 		$et->data['metadata.saml20-idp-remote'] = $results;
@@ -89,7 +89,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'SingleSignOnService', 'certFingerprint'),
-				array('name', 'description', 'base64attributes')
+				array('name', 'description', 'base64attributes', 'icon')
 			);
 		}
 		$et->data['metadata.shib13-idp-remote'] = $results;
