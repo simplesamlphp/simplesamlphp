@@ -62,8 +62,7 @@ if (!empty($_COOKIE['preferedidp'])) {
  * Currently the supported options is either a drop down menu or a list view.
  */
 $templatefile = ($config->getValue('idpdisco.layout') == 'dropdown' ? 'selectidp-dropdown.php' : 'selectidp-links.php');
-$t = new SimpleSAML_XHTML_Template($config, $templatefile);
-$t->data['header'] = 'Select your identity provider';
+$t = new SimpleSAML_XHTML_Template($config, $templatefile, 'disco.php');
 $t->data['idplist'] = $idplist;
 $t->data['preferredidp'] = $preferredidp;
 
@@ -71,11 +70,11 @@ if ($config->getValue('idpdisco.layout') == 'dropdown') {
 	$t->data['return']= $return;
 	$t->data['returnIDParam'] = $returnidparam;
 	$t->data['entityID'] = $spentityid;
-	$t->data['urlpattern'] = htmlentities(SimpleSAML_Utilities::selfURLNoQuery());
+	$t->data['urlpattern'] = htmlspecialchars(SimpleSAML_Utilities::selfURLNoQuery());
 	$t->show();
 
 } else {
-	$t->data['urlpattern'] = htmlentities(SimpleSAML_Utilities::selfURL() . '&idpentityid=');
+	$t->data['urlpattern'] = htmlspecialchars(SimpleSAML_Utilities::selfURL() . '&idpentityid=');
 	$t->show();
 }
 

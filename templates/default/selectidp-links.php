@@ -1,11 +1,18 @@
-<?php $this->includeAtTemplateBase('includes/header.php'); ?>
+<?php
 
-	
+if(!array_key_exists('header', $this->data)) {
+	$this->data['header'] = 'selectidp';
+}
+$this->data['header'] = $this->t($this->data['header']);
+
+$this->includeAtTemplateBase('includes/header.php');
+
+?>
 	<div id="content">
 
-		<h2><?php if (isset($this->data['header'])) { echo $this->data['header']; } else { echo "Select your IdP"; } ?></h2>
+		<h2><?php echo $this->data['header']; ?></h2>
 		
-		<p>Please select the identity provider where you want to authenticate:</p>
+		<p><?php echo $this->t('selectidp_full'); ?></p>
 		
 		
 		<?php

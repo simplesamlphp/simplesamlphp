@@ -48,22 +48,20 @@ try {
 }
 
 if ($config->getValue('idpdisco.layout') == 'dropdown') {
-	$t = new SimpleSAML_XHTML_Template($config, 'selectidp-dropdown.php');
-	$t->data['header'] = 'Select your identity provider';
+	$t = new SimpleSAML_XHTML_Template($config, 'selectidp-dropdown.php', 'disco.php');
 	$t->data['idplist'] = $idplist;
 	$t->data['return']= $return;
 	$t->data['returnIDParam'] = $returnidparam;
 	$t->data['entityID'] = $spentityid;
 	$t->data['preferedidp'] = (!empty($_COOKIE['preferedidp'])) ? $_COOKIE['preferedidp'] : null;
-	$t->data['urlpattern'] = htmlentities(SimpleSAML_Utilities::selfURLNoQuery());
+	$t->data['urlpattern'] = htmlspecialchars(SimpleSAML_Utilities::selfURLNoQuery());
 	$t->show();
 }
 else
 {
-	$t = new SimpleSAML_XHTML_Template($config, 'selectidp-links.php');
-	$t->data['header'] = 'Select your identity provider';
+	$t = new SimpleSAML_XHTML_Template($config, 'selectidp-links.php', 'disco.php');
 	$t->data['idplist'] = $idplist;
-	$t->data['urlpattern'] = htmlentities(SimpleSAML_Utilities::selfURL() . '&idpentityid=');
+	$t->data['urlpattern'] = htmlspecialchars(SimpleSAML_Utilities::selfURL() . '&idpentityid=');
 	$t->show();
 }
 
