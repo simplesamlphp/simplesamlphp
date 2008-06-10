@@ -48,6 +48,11 @@ $links[] = array(
 	'href' => 'admin/phpinfo.php', 
 	'text' => 'link_phpinfo');
 
+$links[] = array(
+	'href' => 'admin/config.php',
+	'text' => 'link_configcheck',
+	);
+
 
 
 $linksmeta = array();

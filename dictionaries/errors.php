@@ -828,6 +828,14 @@ $lang = array(
 		'hr' => 'Izvorna vrijednost administratorske zaporke (auth.adminpassword) u konfiguraciji nije promjenjena, molimo promjenite zaporku.',
 		'hu' => 'Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a konfigurációs fájlban, kérjük, változtassa meg most! ',
 	),
+	'title_READCONFIGTEMPLATES' => array (
+		'en' => 'Error reading config-templates directory',
+		'no' => 'Feil ved lesing av config-templates katalogen',
+	),
+	'descr_READCONFIGTEMPLATES' => array (
+		'en' => 'An error occured while simpleSAMLphp was attempting to find the available files in the config-templates directory.',
+		'no' => 'En feil oppstod mens simpleSAMLphp prøvde å finne tilgjengelige filer i config-templates katalogen.',
+	),
 
 );
 

@@ -481,6 +481,10 @@ $lang = array(
 		'hr' => 'Održavanje i konfiguriranje simpleSAMLphp-a',
 		'hu' => 'SimpleSAMLphp karbantartása és beállítása',
 	),
+	'link_configcheck' => array (
+		'no' => 'simpleSAMLphp konfigurasjonskontroll',
+		'en' => 'simpleSAMLphp configuraction check',
+	),
 
 );
 
