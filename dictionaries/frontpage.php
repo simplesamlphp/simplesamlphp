@@ -13,7 +13,7 @@ $lang = array(
 		'nl' => '<strong>Gefeliciteerd</strong>, simpleSAMLphp is succesvol geinstalleerd. Dit is de startpagina voor simpleSAMLphp, waar je links kan vinden naar voorbeelden, test-paginas, analyses, metadata en ook naar relevante documentatie.',
 		'lb' => '<strong>Haerzleche Glëckwonsch</strong>, d\'simpleSAMLphp Installatioun wor en Succéss. Dest as d\'Startsäit vun aerer Installatioun wou der Links, Beispiller, Diagnoseméiglechkeeten, Meta Données an Links op relevant Dokumenter fannt.',
 		'sl' => '<strong>Čestitamo!</strong> Uspešno ste namestili simpleSAMLphp. Na tej strani se nahajajo povezave do vzorčnih nastavitev, diagnostike, metapodatkov in s tem povezane dokumentacije.',
-		'hr' => '<strong>Čestitamo</strong>, uspješno ste instalirali simpleSAMLphp. Ovo je početna stranica na kojoj možete pronaći adrese primjere, dijagnostiku i metapodatke, kao i na relevantnu dokumentaciju.',
+		'hr' => '<strong>Čestitamo</strong>, uspješno ste instalirali simpleSAMLphp. Ovo je početna stranica na kojoj možete pronaći primjere, dijagnostiku i metapodatke, kao i linkove na relevantnu dokumentaciju.',
 		'hu' => '<strong>Gratulálunk</strong>, a simpleSAMLphp sikeresen települt. Ez a működő rendszer nyitóoldala, ahol teszt példák, diagnosztikai eszközök, metaadatok és dokumentációk találhatók',
 	),
 	'useful_links_header' => array (
@@ -286,6 +286,10 @@ $lang = array(
 		'hr' => 'Informacije o PHP instalaciji',
 		'hu' => 'PHP futási információk',
 	),
+	'link_configcheck' => array (
+		'no' => 'Sjekk av simpleSAMLphp konfigurasjonsfiler',
+		'en' => 'simpleSAMLphp configuration check',
+	),
 	'link_meta_overview' => array (
 		'no' => 'Oversikt over metadata for din installasjon. Diagnostiser metadatafilene her.',
 		'nn' => 'Oversikt over metadata for din installasjon. Diagnostiser metadatafilene her.',
@@ -362,7 +366,7 @@ $lang = array(
 		'hu' => 'Ezen a gépen futó (hosted) Shibboleth 1.3 személyazonosság-szolgáltató (IdP) metaadat (automatikusan generált)',
 	),
 	'link_xmlconvert' => array (
-		'no' => 'XML til simpleSAMLphp metadata oversetter',
+		'no' => 'XML til simpleSAMLphp metadata-oversetter',
 		'nn' => 'Oversetter fra XML til simpleSAMLphp metadata',
 		'da' => 'XML til simpleSAMLphp metadata oversætter',
 		'en' => 'XML to simpleSAMLphp metadata converter',
@@ -403,11 +407,11 @@ $lang = array(
 		'nl' => 'Gebruik simpleSAMLphp als Service Provider',
 		'lb' => 'SimpleSAMLphp als Service Provicer benotzen',
 		'sl' => 'Uporabi simpleSAMLphp za Service Provider',
-		'hr' => 'Korištenje simpleSAMLphp-a u aplikacijama (simpleSAMlphp kao SP)',
+		'hr' => 'Kako koristiti simpleSAMLphp kao Service Provider',
 		'hu' => 'SimpleSAMLphp használata mint alkalmazásszolgáltató(SP)',
 	),
 	'link_doc_idp' => array (
-		'no' => 'Bruk simpleSAMLphp som Identity Provider',
+		'no' => 'Bruk simpleSAMLphp som identitetstjeneste',
 		'nn' => 'Bruk simpleSAMLphp som Identity Provider',
 		'da' => 'simpleSAMLphp som en identitets udbyder (IdP)',
 		'en' => 'Using simpleSAMLphp as an Identity Provider',
@@ -418,11 +422,11 @@ $lang = array(
 		'nl' => 'Gebruik simpleSAMLphp als Identity Provider',
 		'lb' => 'SimpleSAMLphp als Identity Provider benotzen',
 		'sl' => 'Uporabi simpleSAMLphp za Identity Provider (IdP)',
-		'hr' => 'Korištenje simpleSAMLphp-a kao autentikacijskog servisa (simpleSAMLphp kao IdP)',
+		'hr' => 'Kako koristiti simpleSAMLphp kao Identity Provider',
 		'hu' => 'SimpleSAMLphp használata mint személyazonosság-szolgáltató (IdP)',
 	),
 	'link_doc_shibsp' => array (
-		'no' => 'Konfigurer Shibboleth 1.3 SP for å fungere sammen med simpleSAMLphp IdP',
+		'no' => 'Konfigurer Shibboleth 1.3 SP for å fungere sammen med simpleSAMLphp identitetstjeneste',
 		'nn' => 'Konfigurer Shibboleth 1.3 SP for å fungere sammen med simpleSAMLphp IdP',
 		'da' => 'Konfigurer en Shibboleth 1.3 SP til at virke mod en simpleSAMLphp IdP',
 		'en' => 'Configure Shibboleth 1.3 SP to work with simpleSAMLphp IdP',
@@ -437,7 +441,7 @@ $lang = array(
 		'hu' => 'Shibboleth 1.3 SP beállítása, hogy együtt működjön a simpleSAMLphp IdP-vel',
 	),
 	'link_doc_googleapps' => array (
-		'no' => 'simpleSAMLphp som IdP for Google Apps for Education',
+		'no' => 'simpleSAMLphp som identitetstjeneste for Google Apps for Education',
 		'nn' => 'simpleSAMLphp som IdP for Google Apps for Education',
 		'da' => 'simpleSAMLphp som en IdP for Google Apps for Education',
 		'en' => 'simpleSAMLphp as an IdP for Google Apps for Education',
@@ -480,10 +484,6 @@ $lang = array(
 		'sl' => 'simpleSAMLphp vzdrževanje in nastavitve',
 		'hr' => 'Održavanje i konfiguriranje simpleSAMLphp-a',
 		'hu' => 'SimpleSAMLphp karbantartása és beállítása',
-	),
-	'link_configcheck' => array (
-		'no' => 'simpleSAMLphp konfigurasjonskontroll',
-		'en' => 'simpleSAMLphp configuraction check',
 	),
 
 );
