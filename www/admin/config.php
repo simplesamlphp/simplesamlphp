@@ -135,7 +135,7 @@ function canCheckFile($file) {
  *
  * @param $config  The configuration data.
  */
-function validate_config($config, &$errors, &$warnings) {
+function validate_config($config) {
 
 	if($config['auth.adminpassword'] === '123') {
 		error('auth.adminpassword should be changed from the default value.');
