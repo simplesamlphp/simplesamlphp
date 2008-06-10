@@ -159,6 +159,31 @@ foreach ($functionchecks AS $func => $descr) {
 }
 
 
+/* Some basic configuration checks */
+
+if($config->getValue('technicalcontact_email', 'na@example.org') === 'na@example.org') {
+	$mail_ok = FALSE;
+} else {
+	$mail_ok = TRUE;
+}
+$funcmatrix[] = array(
+	'required' => 'reccomended',
+	'descr' => 'technicalcontact_email option set',
+	'enabled' => $mail_ok
+	);
+if($config->getValue('auth.adminpassword', '123') === '123') {
+	$password_ok = FALSE;
+} else {
+	$password_ok = TRUE;
+}
+$funcmatrix[] = array(
+	'required' => 'required',
+	'descr' => 'auth.adminpassword option set',
+	'enabled' => $password_ok
+	);
+
+
+
 $t = new SimpleSAML_XHTML_Template($config, 'frontpage.php', 'frontpage.php');
 $t->data['header'] = 'simpleSAMLphp installation page';
 $t->data['icon'] = 'compass_l.png';
