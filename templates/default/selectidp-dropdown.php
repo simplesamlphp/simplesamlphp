@@ -7,6 +7,14 @@ $this->data['header'] = $this->t($this->data['header']);
 
 $this->includeAtTemplateBase('includes/header.php');
 
+foreach ($this->data['idplist'] AS $idpentry) {
+	if (isset($idpentry['name']))
+		$this->includeInlineTranslation('idpname_' . $idpentry['entityid'], $idpentry['name']);
+	if (isset($idpentry['description']))
+		$this->includeInlineTranslation('idpdesc_' . $idpentry['entityid'], $idpentry['description']);
+}
+
+
 ?>
 	<div id="content">
 
@@ -28,7 +36,7 @@ $this->includeAtTemplateBase('includes/header.php');
 				$idpentry['entityid'] == $this->data['preferredidp']) 
 				echo ' selected="selected"';
 				
-			echo '>'.htmlspecialchars($idpentry['name']).'</option>';
+			echo '>'.htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])).'</option>';
 		
 		}
 		?>

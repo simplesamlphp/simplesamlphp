@@ -7,6 +7,14 @@ $this->data['header'] = $this->t($this->data['header']);
 
 $this->includeAtTemplateBase('includes/header.php');
 
+foreach ($this->data['idplist'] AS $idpentry) {
+	if (isset($idpentry['name']))
+		$this->includeInlineTranslation('idpname_' . $idpentry['entityid'], $idpentry['name']);
+	if (isset($idpentry['description']))
+		$this->includeInlineTranslation('idpdesc_' . $idpentry['entityid'], $idpentry['description']);
+}
+
+
 ?>
 	<div id="content">
 
@@ -28,9 +36,9 @@ $this->includeAtTemplateBase('includes/header.php');
 				$iconUrl = SimpleSAML_Utilities::resolveURL($idpentry['icon']);
 				echo '<img style="display: inline" src="' . htmlspecialchars($iconUrl) . '" />';
 			}
-			echo htmlspecialchars($idpentry['name']) . '</h3>';
+			echo htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
 
-			echo '	<p>' . htmlspecialchars($idpentry['description']) . '<br />';
+			echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
 			echo '	[ <a href="' . $this->data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
 			echo '</div>';
 		}
@@ -43,9 +51,9 @@ $this->includeAtTemplateBase('includes/header.php');
 					$iconUrl = SimpleSAML_Utilities::resolveURL($idpentry['icon']);
 					echo '<img style="display: inline" src="' . htmlspecialchars($iconUrl) . '" />';
 				}
-				echo htmlspecialchars($idpentry['name']) . '</h3>';
+				echo htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
 
-				echo '<p>' . htmlspecialchars($idpentry['description']) . '<br />';
+				echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
 				echo '[ <a href="' . $this->data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
 			}
 		}
