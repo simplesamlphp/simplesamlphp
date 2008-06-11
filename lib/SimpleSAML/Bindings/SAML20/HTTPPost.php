@@ -172,7 +172,7 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 					throw new Exception("Public key for encrypting assertion specified but not found for saml20-sp-remote id: " . $spentityid . " Filename: " . $spmd['certificate']);
 				}
 				
-				$keyKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
+				$keyKey = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'public'));
 				
 				$keyKey->loadKey($sp_publiccert);
 				
