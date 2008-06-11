@@ -9,6 +9,11 @@
  */
 class SimpleSAML_Configuration {
 
+	/**
+	 * A default value which means that the given option is required.
+	 */
+	const REQUIRED_OPTION = '___REQUIRED_OPTION___';
+
 	private static $instance = array();
 
 	private $configpath = null;	
@@ -51,11 +56,11 @@ class SimpleSAML_Configuration {
 	/** 
 	 * Retrieve a configuration option set in config.php.
 	 *
-	 * @param $name 	Name of the configuration option.
-	 * @param $default 	Default value of the configuration option. This
-	 * parameter will default to NULL if not specified.
-	 * @return 			The configuration option with name $name, or $default if
-	 *  the option was not found.
+	 * @param $name  Name of the configuration option.
+	 * @param $default  Default value of the configuration option. This parameter will default to NULL if not
+	 *                  specified. This can be set to SimpleSAML_Configuration::REQUIRED_OPTION, which will
+	 *                  cause an exception to be thrown if the option isn't found.
+	 * @return  The configuration option with name $name, or $default if the option was not found.
 	 */
 	public function getValue($name, $default = NULL) {
 		if (!isset($this->configuration)) {
@@ -64,6 +69,10 @@ class SimpleSAML_Configuration {
 
 		/* Return the default value if the option is unset. */
 		if (!array_key_exists($name, $this->configuration)) {
+			if($default === self::REQUIRED_OPTION) {
+				throw new Exception('Could not retrieve the required option \'' . $name .
+					'\' from \'' . $this->configfilename . '\'.');
+			}
 			return $default;
 		}
 
@@ -182,6 +191,72 @@ class SimpleSAML_Configuration {
 		$dir .= '/';
 
 		return $dir;
+	}
+
+
+	/**
+	 * This function retrieves a boolean configuration option.
+	 *
+	 * An exception will be thrown if this option isn't a boolean, or if this option isn't found, and no
+	 * default value is given.
+	 *
+	 * @param $name  The name of the option.
+	 * @param $default  A default value which will be returned if the option isn't found. The option will be
+	 *                  required if this parameter isn't given. The default value can be any value, including
+	 *                  NULL.
+	 * @return  The option with the given name, or $default if the option isn't found and $default is specified.
+	 */
+	public function getBoolean($name, $default = self::REQUIRED_OPTION) {
+		assert('is_string($name)');
+
+		$ret = $this->getValue($name, $default);
+
+		if($ret === $default) {
+			/* The option wasn't found, or it matches the default value. In any case, return
+			 * this value.
+			 */
+			return $ret;
+		}
+
+		if(!is_bool($ret)) {
+			throw new Exception('The option \'' . $name . '\' in \'' . $this->configfilename .
+				'\' is not a valid boolean value.');
+		}
+
+		return $ret;
+	}
+
+
+	/**
+	 * This function retrieves a string configuration option.
+	 *
+	 * An exception will be thrown if this option isn't a string, or if this option isn't found, and no
+	 * default value is given.
+	 *
+	 * @param $name  The name of the option.
+	 * @param $default  A default value which will be returned if the option isn't found. The option will be
+	 *                  required if this parameter isn't given. The default value can be any value, including
+	 *                  NULL.
+	 * @return  The option with the given name, or $default if the option isn't found and $default is specified.
+	 */
+	public function getString($name, $default = self::REQUIRED_OPTION) {
+		assert('is_string($name)');
+
+		$ret = $this->getValue($name, $default);
+
+		if($ret === $default) {
+			/* The option wasn't found, or it matches the default value. In any case, return
+			 * this value.
+			 */
+			return $ret;
+		}
+
+		if(!is_string($ret)) {
+			throw new Exception('The option \'' . $name . '\' in \'' . $this->configfilename .
+				'\' is not a valid string value.');
+		}
+
+		return $ret;
 	}
 
 }
