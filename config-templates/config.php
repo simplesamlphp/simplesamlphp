@@ -41,10 +41,10 @@ $config = array (
 	'showerrors'            =>	true,
 
 	/**
-	 * This option allows you to enable validation of SAML messages against their
+	 * This option allows you to enable validation of XML data against its
 	 * schemas. A warning will be written to the log if validation fails.
 	 */
-	'debug.validatesamlmessages' => false,
+	'debug.validatexml' => false,
 
 	/**
 	 * This password must be kept secret, and modified from the default value 123.

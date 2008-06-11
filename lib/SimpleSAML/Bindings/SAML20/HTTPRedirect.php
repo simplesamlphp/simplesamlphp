@@ -180,7 +180,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 	
 	public function sendMessage($request, $localentityid, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP') {
 		
-		SimpleSAML_Utilities::validateSAMLMessage($request, 'saml20');
+		SimpleSAML_Utilities::validateXMLDocument($request, 'saml20');
 
 		$redirectURL = $this->getRedirectURL($request, $localentityid, $remoteentityid, $relayState, $endpoint, $direction, $mode);
 		
@@ -234,7 +234,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			throw new Exception('Could not gzinflate base64 decoded SAMLRequest: ' . $error['message'] );
 		}		
 
-		SimpleSAML_Utilities::validateSAMLMessage($samlRequestXML, 'saml20');
+		SimpleSAML_Utilities::validateXMLDocument($samlRequestXML, 'saml20');
 		
 		$samlRequest = new SimpleSAML_XML_SAML20_AuthnRequest($this->configuration, $this->metadata);
 	
@@ -272,7 +272,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			throw new Exception('Could not gzinflate base64 decoded SAMLRequest: ' . $error['message'] );
 		}		
 
-		SimpleSAML_Utilities::validateSAMLMessage($samlRequestXML, 'saml20');
+		SimpleSAML_Utilities::validateXMLDocument($samlRequestXML, 'saml20');
 
 		$samlRequest = new SimpleSAML_XML_SAML20_LogoutRequest($this->configuration, $this->metadata);
 	
@@ -311,7 +311,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			throw new Exception('Could not gzinflate base64 decoded SAMLRequest: ' . $error['message'] );
 		}		
 
-		SimpleSAML_Utilities::validateSAMLMessage($samlRequestXML, 'saml20');
+		SimpleSAML_Utilities::validateXMLDocument($samlRequestXML, 'saml20');
 		
          
 		$samlRequest = new SimpleSAML_XML_SAML20_LogoutResponse($this->configuration, $this->metadata);

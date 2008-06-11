@@ -20,7 +20,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 	
 	public function sendResponseUnsigned($response, $idpentityid, $spentityid, $relayState = null, $endpoint = 'AssertionConsumerService') {
 
-		SimpleSAML_Utilities::validateSAMLMessage($response, 'saml11');
+		SimpleSAML_Utilities::validateXMLDocument($response, 'saml11');
 
 		$idpmd = $this->metadata->getMetaData($idpentityid, 'saml20-idp-hosted');
 		$spmd = $this->metadata->getMetaData($spentityid, 'saml20-sp-remote');
@@ -64,7 +64,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 	 */
 	public function sendResponse($response, $idpmetaindex, $spentityid, $relayState = null, $claimedacs = null) {
 
-		SimpleSAML_Utilities::validateSAMLMessage($response, 'saml11');
+		SimpleSAML_Utilities::validateXMLDocument($response, 'saml11');
 
 		$idpmd = $this->metadata->getMetaData($idpmetaindex, 'shib13-idp-hosted');
 		$spmd = $this->metadata->getMetaData($spentityid, 'shib13-sp-remote');
@@ -206,7 +206,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		
 		$samlResponseXML = base64_decode( $rawResponse );
 
-		SimpleSAML_Utilities::validateSAMLMessage($samlResponseXML, 'saml11');
+		SimpleSAML_Utilities::validateXMLDocument($samlResponseXML, 'saml11');
         
 		$samlResponse = new SimpleSAML_XML_Shib13_AuthnResponse($this->configuration, $this->metadata);
 	

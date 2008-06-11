@@ -793,41 +793,51 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * This function performs some sanity checks on SAML messages, and optionally validates them
+	 * This function performs some sanity checks on XML documents, and optionally validates them
 	 * against their schema. A warning will be printed to the log if validation fails.
 	 *
-	 * @param $message  The message which should be validated.
-	 * @param $type     The type of message - can be either 'saml20' or 'saml11'.
+	 * @param $message  The message which should be validated, as a string.
+	 * @param $type     The type of document - can be either 'saml20', 'saml11' or 'saml-meta'.
 	 */
-	public static function validateSAMLMessage($message, $type) {
+	public static function validateXMLDocument($message, $type) {
 		assert('is_string($message)');
-		assert($type === 'saml11' || $type === 'saml20');
+		assert($type === 'saml11' || $type === 'saml20' || $type === 'saml-meta');
 
 		/* A SAML message should not contain a doctype-declaration. */
 		if(strpos($message, '<!DOCTYPE') !== FALSE) {
-			throw new Exception('SAML message contained a doctype declaration.');
+			throw new Exception('XML contained a doctype declaration.');
 		}
 
-		$enabled = SimpleSAML_Configuration::getInstance()->getValue('debug.validatesamlmessages', NULL);
+		$enabled = SimpleSAML_Configuration::getInstance()->getValue('debug.validatexml', NULL);
 		if($enabled === NULL) {
 			/* Fall back to old configuration option. */
-			$enabled = SimpleSAML_Configuration::getInstance()->getValue('debug.validatesaml2messages', FALSE);
-			if(!is_bool($enabled)) {
-				throw new Exception('Expected "debug.validatesaml2messages" to be set to a boolean value.');
+			$enabled = SimpleSAML_Configuration::getInstance()->getValue('debug.validatesamlmessages', NULL);
+			if($enabled === NULL) {
+				/* Fall back to even older configuration option. */
+				$enabled = SimpleSAML_Configuration::getInstance()->getValue('debug.validatesaml2messages', FALSE);
+				if(!is_bool($enabled)) {
+					throw new Exception('Expected "debug.validatesaml2messages" to be set to a boolean value.');
+				}
+			} elseif(!is_bool($enabled)) {
+				throw new Exception('Expected "debug.validatexml" to be set to a boolean value.');
 			}
-		} elseif(!is_bool($enabled)) {
-			throw new Exception('Expected "debug.validatesamlmessages" to be set to a boolean value.');
 		}
 
 		if(!$enabled) {
 			return;
 		}
 
-		if($type === 'saml11') {
+		switch($type) {
+		case 'saml11':
 			$result = self::validateXML($message, 'oasis-sstc-saml-schema-protocol-1.1.xsd');
-		} elseif($type === 'saml20') {
+			break;
+		case 'saml20':
 			$result = self::validateXML($message, 'saml-schema-protocol-2.0.xsd');
-		} else {
+			break;
+		case 'saml-meta':
+			$result = self::validateXML($message, 'saml-schema-metadata-2.0.xsd');
+			break;
+		default:
 			throw new Exception('Invalid message type.');
 		}
 
