@@ -133,6 +133,12 @@ class SimpleSAML_XHTML_Template {
 		return $bestLanguage;
 	}
 
+	/**
+	 * Returns the language base (from configuration)
+	 */
+	private function getBaseLanguage() {
+		return $this->configuration->getValue('language.base', 'en');
+	}
 	
 	/**
 	 * Returns the language default (from configuration)
@@ -201,7 +207,7 @@ class SimpleSAML_XHTML_Template {
 	 * @param $replacements		 An associative array of keys that should be replaced with values in the translated string.
 	 * @param $striptags		 Should HTML tags be stripped from the translation
 	 */
-	private function t($tag, $fallbacktag = true, $fallbackdefault = true, $replacements = array(), $striptags = false) {
+	private function t($tag, $fallbacktag = TRUE, $fallbackdefault = true, $replacements = array(), $striptags = false) {
 		
 		if (empty($this->langtext) || !is_array($this->langtext)) {
 			SimpleSAML_Logger::error('Template: No language text loaded. Looking up [' . $tag . ']');
@@ -210,7 +216,7 @@ class SimpleSAML_XHTML_Template {
 
 		$selected_language = $this->getLanguage();
 		$default_language  = $this->getDefaultLanguage();
-		$base_language     = $this->configuration->getValue('language.base', 'en');
+		$base_language     = $this->getBaseLanguage();
 		
 		if (array_key_exists($tag, $this->langtext) ) {
 			
@@ -218,6 +224,8 @@ class SimpleSAML_XHTML_Template {
 			 * Look up translation of tag in the selected language
 			 */
 			if (array_key_exists($selected_language, $this->langtext[$tag])) {
+			
+				//SimpleSAML_Logger::debug('Template: Found up [' . $tag . ']: in selected language [' . $selected_language . ']. Text is: [' . $this->langtext[$tag][$selected_language] . '].');
 				$translated =  $this->langtext[$tag][$selected_language];
 
 			/**
@@ -249,14 +257,14 @@ class SimpleSAML_XHTML_Template {
 	 * Return the string that should be used when no translation was found.
 	 *
 	 * @param $tag				A name tag of the string that should be returned.
-	 * @param $fallbacktag		If set to true and string was not found in any languages, return 
-	 * 					the tag it self. If false return null.
+	 * @param $fallbacktag		If set to TRUE and string was not found in any languages, return 
+	 * 					the tag it self. If FALSE return NULL.
 	 */
 	private function t_not_translated($tag, $fallbacktag) {
 		if ($fallbacktag) {
 			return 'not translated (' . $tag . ')';
 		} else {
-			return null;
+			return NULL;
 		}
 	}
 	
@@ -273,7 +281,7 @@ class SimpleSAML_XHTML_Template {
 	public function includeInlineTranslation($tag, $translation) {
 		
 		if (is_string($translation)) {
-			$translation = array($selected_language => $translated);
+			$translation = array($this->getBaseLanguage() => $translation);
 		} elseif (!is_array($translation)) {
 			throw new Exception("Inline translation should be string or array. Is " . gettype($translation) . " now!");
 		}

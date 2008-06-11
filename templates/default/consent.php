@@ -1,18 +1,17 @@
-<?php $this->includeAtTemplateBase('includes/header.php'); ?>
-<?php
-//array('SP'=>
-   $this->includeLanguageFile('consent.php'); 
-   $this->includeInlineTranslation('spname', $this->data['sp_name']);
-   //$this->includeInlineTranslation('spdescription', $this->data['description']);
+<?php 
+	$this->includeAtTemplateBase('includes/header.php');
+	
+	$this->includeLanguageFile('consent.php'); 
+	$this->includeInlineTranslation('spname', $this->data['sp_name']);
 ?>
 
 	<div id="content">
-[default]
-		<p><?php echo htmlspecialchars($this->t('consent_notice')); ?> <strong><?php echo htmlspecialchars($this->t('spname', false, true) ); ?></strong>.
+
+		<p><?php echo htmlspecialchars($this->t('consent_notice')); ?> <strong><?php echo htmlspecialchars($this->t('spname')); ?></strong>.
 		<?php echo htmlspecialchars($this->t('consent_accept')) ?> 
 		</p>
 
-		<form action="<?php echo htmlspecialchars($this->data['consenturl']); ?>">
+		<form style="display: inline" action="<?php echo htmlspecialchars($this->data['consenturl']); ?>">
 			<input type="submit" value="<?php echo htmlspecialchars($this->t('yes')) ?>" />
 			<input type="hidden" name="consent" value="<?php echo htmlspecialchars($this->data['consent_cookie']); ?>" />
 			<input type="hidden" name="RequestID" value="<?php echo htmlspecialchars($this->data['requestid']); ?>" />
@@ -20,12 +19,9 @@
 				<input type="checkbox" name="saveconsent" id="saveconsent" value="1" /> <?php echo htmlspecialchars($this->t('remember')) ?>
 			<?php } ?>
 		</form>
-		<form action="<?php echo htmlspecialchars($this->data['noconsent']); ?>" method="GET">
+		<form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noconsent']); ?>" method="GET">
 			<input type="submit" value="<?php echo htmlspecialchars($this->t('no')) ?>" />
 		</form>
-
-
-
 
 
 		<table style="font-size: x-small">

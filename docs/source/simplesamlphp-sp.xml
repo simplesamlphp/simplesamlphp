@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Mon Apr 28 11:48:32 2008</pubdate>
+    <pubdate>Fri Jun  6 00:43:25 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -267,8 +267,8 @@
 
               <para>Note that this only changes the values in the generated
               metadata and in the messages sent to others. You must also
-              configure your webserver to deliver this URL to the correct
-              PHP page.</para>
+              configure your webserver to deliver this URL to the correct PHP
+              page.</para>
             </glossdef>
           </glossentry>
 
@@ -276,14 +276,14 @@
             <glossterm>SingleLogoutService</glossterm>
 
             <glossdef>
-              <para>Override the default URL for the SingleLogoutService
-              for this SP. This is an absolute URL. The default value is
+              <para>Override the default URL for the SingleLogoutService for
+              this SP. This is an absolute URL. The default value is
               <literal>&lt;simpleSAMLphp-root&gt;/saml2/sp/SingleLogoutService.php</literal></para>
 
               <para>Note that this only changes the values in the generated
               metadata and in the messages sent to others. You must also
-              configure your webserver to deliver this URL to the correct
-              PHP page.</para>
+              configure your webserver to deliver this URL to the correct PHP
+              page.</para>
             </glossdef>
           </glossentry>
 
@@ -724,8 +724,8 @@
 
               <para>Note that this only changes the values in the generated
               metadata and in the messages sent to others. You must also
-              configure your webserver to deliver this URL to the correct
-              PHP page.</para>
+              configure your webserver to deliver this URL to the correct PHP
+              page.</para>
             </glossdef>
           </glossentry>
 
