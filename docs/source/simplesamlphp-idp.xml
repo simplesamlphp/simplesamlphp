@@ -838,6 +838,22 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
               <literal>eduPersonPrincipalName</literal>.</para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>signresponse</glossterm>
+
+            <glossdef>
+              <para>The default behaviour of simpleSAMLphp is to sign the
+              Assertion element in the SAML 2.0 response sent to SPs. This
+              option allows you to override this behaviour on a per SP
+              basis. Set this to <literal>TRUE</literal> to sign the
+              Response element. <literal>FALSE</literal> will make the SP
+              sign the Assertion. If this option is unset, the value from
+              <literal>saml2.signresponse</literal> in
+              <literal>config.php</literal> will be used. That value is
+              <literal>FALSE</literal> by default.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
       </section>
     </section>

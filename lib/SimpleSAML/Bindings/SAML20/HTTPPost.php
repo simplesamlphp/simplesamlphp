@@ -64,14 +64,6 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		
 		$destination = $spmd['AssertionConsumerService'];
 	
-		/*
-		$privatekey = "/home/as/erlang/feide2/cert/edugain/server1Key.pem";
-		$publiccert = "/home/as/erlang/feide2/cert/edugain/server2chain.pem";
-
-		$privatekey = "/home/as/erlang/feide2/cert/server.pem";
-		$publiccert = "/home/as/erlang/feide2/cert/server.crt";
-		*/
-		
 		$privatekey = $this->configuration->getPathValue('certdir') . $idpmd['privatekey'];
 		$publiccert = $this->configuration->getPathValue('certdir') . $idpmd['certificate'];
 
@@ -86,9 +78,6 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		 * XMLDSig. Sign the complete request with the key stored in cert/server.pem
 		 */
 		$objXMLSecDSig = new XMLSecurityDSig();
-		//$objXMLSecDSig->idKeys[] = 'ResponseID';
-		#$objXMLSecDSig->idKeys = array('ResponseID');
-		
 		$objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
 	
 	
@@ -98,22 +87,40 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		} catch (Exception $e) {
 			throw new Exception("foo");
 		}
+
 		$responseroot = $responsedom->getElementsByTagName('Response')->item(0);
-		
-		//$assertionroot = $responsedom->getElementsByTagName('Assertion')->item(1);
 		$firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
+
+
+		/* Determine what we should sign - either the Response element or the Assertion. The default
+		 * is to sign the Assertion, but that can be overridden by the 'signresponse' option in the
+		 * SP metadata or 'saml20.signresponse' in the global configuration.
+		 */
+		$signResponse = FALSE;
+		if(array_key_exists('signresponse', $spmd) && $spmd['signresponse'] !== NULL) {
+			$signResponse = $spmd['signresponse'];
+			if(!is_bool($signResponse)) {
+				throw new Exception('Expected the \'signresponse\' option in the metadata of the' .
+					' SP \'' . $spmd['entityid'] . '\' to be a boolean value.');
+			}
+		} else {
+			$signResponse = $this->configuration->getBoolean('saml20.signresponse', FALSE);
+		}
+
+		if($signResponse) {
+			/* Sign the response. */
+
+			$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1,
+				array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
+				array('id_name' => 'ID'));
+		} else {
+			/* Sign the assertion. */
+
+			$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1,
+				array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
+				array('id_name' => 'ID'));
+		}
 		
-		//$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1, //array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'));
-		
-// 		$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1, 
-// 			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature',
-// 			'http://www.w3.org/2001/10/xml-exc-c14n#'));
-			
-		$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1,
-			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
-			array('id_name' => 'ID'));
-		
-		#$objXMLSecDSig->addRefInternal($responseroot, $responseroot, XMLSecurityDSig::SHA1);
 		
 		/* create new XMLSecKey using RSA-SHA-1 and type is private key */
 		$objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
@@ -132,17 +139,12 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		
 		$public_cert = file_get_contents($publiccert);
 		$objXMLSecDSig->add509Cert($public_cert, true);
-		/*
-		$public_cert = file_get_contents("cert/edugain/public2.pem");
-		$objXMLSecDSig->add509Cert($public_cert, true);
-		
-		$public_cert = file_get_contents("cert/edugain/public3.pem");
-		$objXMLSecDSig->add509Cert($public_cert, true);
-		*/
-		
-		
-		$objXMLSecDSig->appendSignature($firstassertionroot, true, true);
-		//$objXMLSecDSig->appendSignature($responseroot, true, false);
+
+		if($signResponse) {
+			$objXMLSecDSig->appendSignature($responseroot, true, false);
+		} else {
+			$objXMLSecDSig->appendSignature($firstassertionroot, true, true);
+		}
 		
 		if (isset($spmd['assertion.encryption']) && $spmd['assertion.encryption']) {
 			$encryptedassertion = $responsedom->createElement("saml:EncryptedAssertion");

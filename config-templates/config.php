@@ -197,6 +197,16 @@ $config = array (
 	'idpdisco.layout' => 'links',
 
 	/*
+	 * Whether simpleSAMLphp should sign the response or the assertion in SAML 2.0 authentication
+	 * responses.
+	 *
+	 * The default is to sign the assertion element, but that can be overridden by setting this
+	 * option to TRUE. It can also be overridden on a pr. SP basis by adding an option with the
+	 * same name to the metadata of the SP.
+	 */
+	'saml20.signresponse' => FALSE,
+
+	/*
 	 * Configuration of Consent storage used for attribute consent.
 	 * connect, user and passwd is used with PDO (in example Mysql)
 	 */
