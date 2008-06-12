@@ -5,6 +5,8 @@ if(!array_key_exists('header', $this->data)) {
 }
 $this->data['header'] = $this->t($this->data['header']);
 
+$this->data['autofocus'] = 'selectbutton';
+
 $this->includeAtTemplateBase('includes/header.php');
 
 foreach ($this->data['idplist'] AS $idpentry) {
@@ -41,7 +43,7 @@ foreach ($this->data['idplist'] AS $idpentry) {
 		}
 		?>
 		</select>
-		<input type="submit" value="<?php echo $this->t('select'); ?>"/>
+		<input id="selectbutton" type="submit" value="<?php echo $this->t('select'); ?>"/>
 		</form>
 
 		

@@ -5,6 +5,8 @@ if(!array_key_exists('header', $this->data)) {
 }
 $this->data['header'] = $this->t($this->data['header']);
 
+$this->data['autofocus'] = 'preferredidp';
+
 $this->includeAtTemplateBase('includes/header.php');
 
 foreach ($this->data['idplist'] AS $idpentry) {
@@ -39,7 +41,7 @@ foreach ($this->data['idplist'] AS $idpentry) {
 			echo htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
 
 			echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
-			echo '	[ <a href="' . $this->data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
+			echo '	[ <a id="preferredidp" href="' . $this->data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
 			echo '</div>';
 		}
 		
