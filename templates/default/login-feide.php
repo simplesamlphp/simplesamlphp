@@ -20,7 +20,7 @@
 
 		<?php if ($this->data['selectorg']) { ?>
 		<div id="orgframe">
-			<form action="?" method="post" name="f">
+			<form action="?" method="get" name="f">
 			<fieldset>
 			<legend>Choose your home organization</legend>
 				<select name="org" tabindex="1">
@@ -33,6 +33,8 @@
 				?>
 				</select><br />
 				<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($this->data['relaystate']); ?>" />
+                                <input type="hidden" name="protocol" value="<?php echo htmlspecialchars($this->data['protocol']); ?>" />
+                                <input type="hidden" name="AuthId" value="<?php echo htmlspecialchars($this->data['authid']); ?>" />
 				<input type="submit" id="submit" value="Next" />
 			</fieldset>
 			</form>
@@ -57,6 +59,8 @@
 				<input type="password" id="password" name="password" /><br />
 
 				<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($this->data['relaystate']); ?>" />
+                                <input type="hidden" name="protocol" value="<?php echo htmlspecialchars($this->data['protocol']); ?>" />
+                                <input type="hidden" name="AuthId" value="<?php echo htmlspecialchars($this->data['authid']); ?>" />
 				<input type="hidden" name="org" value="<?php echo $this->data['org']; ?>" />
 				<input type="submit" id="submit" value="Login" />
 			</fieldset>
@@ -64,12 +68,14 @@
 		</div>
 
 		<div id="rechooseorgframe">
-			<form action="?" method="post" name="g">
+			<form action="?" method="get" name="g">
 			<fieldset>
 			<legend>Change your home organization</legend>
 			<p>You have chosen <b><?php echo $this->data['ldapconfig'][$this->data['org']]['description']; ?></b> as your home organization. If this is wrong you may choose
 			another one.</p>
 				<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($this->data['relaystate']); ?>" />
+                                <input type="hidden" name="protocol" value="<?php echo htmlspecialchars($this->data['protocol']); ?>" />
+                                <input type="hidden" name="AuthId" value="<?php echo htmlspecialchars($this->data['authid']); ?>" />
 				<input type="hidden" name="action" value="change_org" />
 				<input type="submit" id="submit" value="Choose home organization" />
 			</fieldset>
