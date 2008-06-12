@@ -68,7 +68,7 @@ if (isset($_REQUEST['org'])) {
  * If the user has excplicitly selected to change the preselected organization.
  */
 if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'change_org') {
-	setcookie("OrgCookie", "", time() - 3600);
+//	setcookie("OrgCookie", "", time() - 3600);
 	$selectorg = true;
 }
 
