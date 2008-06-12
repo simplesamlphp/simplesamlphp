@@ -39,6 +39,25 @@ if (!array_key_exists('RelayState', $_REQUEST)) {
         SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
 }
 
+/*
+ * Fetch information about the service the user is coming from.
+ */
+if (!array_key_exists('AuthId', $_REQUEST)) {
+        SimpleSAML_Utilities::fatalError($session->getTrackID(), null, new Exception('This login module does not support local login without reference to a Login request'));
+}
+if (!array_key_exists('protocol', $_REQUEST)) {
+        SimpleSAML_Utilities::fatalError($session->getTrackID(), null, new Exception('Protocol URL parameter was not set'));
+}
+if ($_REQUEST['protocol'] != 'saml2') {
+        SimpleSAML_Utilities::fatalError($session->getTrackID(), null, new Exception('This login module only works with SAML 2.0'));
+}
+ 
+$protocol = $_REQUEST['protocol'];
+$authid = $_REQUEST['AuthId'];
+$authrequestcache = $session->getAuthnRequest($protocol, $authid);
+ 
+$spentityid = $authrequestcache['Issuer'];
+$spmetadata = $metadata->getMetadata($spentityid, 'saml20-sp-remote');
 
 $error = null;
 $attributes = array();
@@ -235,7 +254,12 @@ $t = new SimpleSAML_XHTML_Template($config, 'login-feide.php', 'login.php');
 $t->data['header'] = 'simpleSAMLphp: Enter username and password';	
 $t->data['relaystate'] = $_REQUEST['RelayState'];
 $t->data['ldapconfig'] = $ldaporgconfig;
-#$t->data['orgconfig'] = $orgconfig;
+$t->data['protocol'] = $protocol;
+$t->data['authid'] = $authid;
+$t->data['splogo'] = $spmetadata['logo'];
+$t->data['spdesc'] = $spmetadata['description'];
+$t->data['spname'] = $spmetadata['name'];
+$t->data['contact'] = $spmetadata['contact'];
 
 $t->data['selectorg'] = $selectorg;
 $t->data['org'] = $org;
