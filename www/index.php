@@ -144,6 +144,7 @@ $functionchecks = array(
 	'ldap_bind'        => array('required_ldap',  'LDAP Extension'),
 	'radius_auth_open' => array('required_radius',  'Radius Extension'),
 	'mcrypt_module_open'=> array('optional',  'MCrypt'),
+	'mysql_connect'    => array('optional',  'MySQL support'),
 );
 $funcmatrix = array();
 $funcmatrix[] = array(
