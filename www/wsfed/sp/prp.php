@@ -76,9 +76,6 @@ try {
 	/* Find the certificate used by the IdP. */
 	if(array_key_exists('certificate', $idpMetadata)) {
 		$certFile = $config->getPathvalue('certdir') . $idpMetadata['certificate'];
-	} elseif(array_key_exists('cert', $idpMetadata)) {
-		/* For backwards compatibility. */
-		$certFile = $config->getBaseDir() . $idpMetadata['cert'];
 	} else {
 		throw new Exception('Missing \'certificate\' metadata option in the \'wsfed-idp-remote\' metadata' .
 			' for the IdP \'' .  $idpEntityId . '\'.');
