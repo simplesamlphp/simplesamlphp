@@ -1,14 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-	<title>Log in using Feide</title>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<!-- <link rel="stylesheet" type="text/css" href="/simplesaml/resources/feide-login.css"> -->
-</head>
+<?php
 
-<body>
-	<div id="borderframe">
-		<!-- <img src="/simplesaml/resources/uninett.png" alt="UNINETT" /> -->
+$this->data['header'] = $this->t($this->data['header']);
+
+$this->includeAtTemplateBase('includes/header.php');
+
+?>
 
 		<?php if (isset($this->data['error'])) { ?>
 		<div id="errorframe">
@@ -106,6 +102,5 @@
 		</div>
 		<?php } ?>
 
-	</div>
-</body>
-</html>
+<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+
