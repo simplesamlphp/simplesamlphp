@@ -2,6 +2,8 @@
 /**
  * WS-Federation/ADFS PRP protocol support for simpleSAMLphp.
  *
+ * This endpoint currently only supports assertions. Logout is not implemented.
+ *
  * The AssertionConsumerService handler accepts responses from a WS-Federation
  * Account Partner using the Passive Requestor Profile (PRP) and handles it as
  * a Resource Partner.  It receives a response, parses it and passes on the
@@ -20,92 +22,119 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 SimpleSAML_Logger::info('WS-Fed - SP.AssertionConsumerService: Accessing WS-Fed SP endpoint AssertionConsumerService');
 
-if (!$config->getValue('enable.wsfed-sp', false))
+if (!$config->getBoolean('enable.wsfed-sp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
-if (empty($_POST['wresult'])) 
+/* Make sure that the correct query parameters are passed to this script. */
+try {
+	if (empty($_POST['wresult'])) {
+		throw new Exception('Missing wresult parameter');
+	}
+	if (empty($_POST['wa'])) {
+		throw new Exception('Missing wa parameter');
+	}
+	if (empty($_POST['wctx'])) {
+		throw new Exception('Missing wctx parameter');
+	}
+} catch(Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'ACSPARAMS', $exception);
-
-// verify the response from the Account Partner, containing the assertion
-function wsf_verify_response($dom, $cert) {
-	$objXMLSecDSig = new XMLSecurityDSig();
-	$objXMLSecDSig->idKeys[] = 'AssertionID';
-	$signatureElement = $objXMLSecDSig->locateSignature($dom);
-	if  (!$signatureElement) {
-		throw new Exception('Could not locate XML Signature element.');
-	}
-	$objXMLSecDSig->canonicalizeSignedInfo();
-	if (!$objXMLSecDSig->validateReference()) {
-		throw new Exception('XMLsec: digest validation failed');
-	}
-	$objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
-	$objKey->loadKey($cert, TRUE, TRUE);
-	if (! $objXMLSecDSig->verify($objKey)) {
-		throw new Exception('Unable to validate Signature');
-	}
 }
 
+
 try {
-	
-	$idpmetadata = $metadata->getMetaData($session->getIdP(), 'wsfed-idp-remote');
-	$spmetadata = $metadata->getMetaDataCurrent();
 
 	$wa = $_POST['wa'];
 	$wresult = $_POST['wresult'];
 	$wctx = $_POST['wctx'];
-		
-	$attributes = array();
+
+	/* Load and parse the XML. */
 	$dom = new DOMDocument();
-	# accommodate for MS-ADFS escaped quotes
+	/* Accommodate for MS-ADFS escaped quotes */
 	$wresult = str_replace('\"', '"', $wresult);
 	$dom->loadXML(str_replace ("\r", "", $wresult));	
 
-	wsf_verify_response($dom, $config->getBaseDir() . $idpmetadata['cert']);
-
-	$session = SimpleSAML_Session::getInstance(true);
-	
 	$xpath = new DOMXpath($dom);
 	$xpath->registerNamespace('wst', 'http://schemas.xmlsoap.org/ws/2005/02/trust');
 	$xpath->registerNamespace('saml', 'urn:oasis:names:tc:SAML:1.0:assertion');
-	$assertions = $xpath->query('/wst:RequestSecurityTokenResponse/wst:RequestedSecurityToken/saml:Assertion', $dom->documentElement);
-	foreach ($assertions as $assertion) {
-		$statement = $xpath->query('saml:AuthenticationStatement', $assertion);
-		if (($statement == NULL) or ($statement->item(0) == NULL)) {
-			throw new Exception('no authentication statement found');
-		}
-		// TODO: only process first authentication statement for now;
-		$subject = $xpath->query('saml:Subject', $statement->item(0));
-		if (($subject == NULL) or ($subject->item(0) == NULL)) {
-			throw new Exception('no subject found in authentication statement');
-		}
-		$nameid = $xpath->query('saml:NameIdentifier', $subject->item(0));
-		if (($nameid == NULL) or ($nameid->item(0) == NULL)) {
-			throw new Exception('no nameid found in subject in authentication statement');
-		}
-		$session->setNameID(array(
-				'Format' => $nameid->item(0)->getAttribute('Format'),
-				'value' => $nameid->item(0)->textContent,
-			)
+
+	/* Find the saml:Assertion element in the response. */
+	$assertions = $xpath->query('/wst:RequestSecurityTokenResponse/wst:RequestedSecurityToken/saml:Assertion');
+	if ($assertions->length === 0) {
+		throw new Exception('Received a response without an assertion on the WS-Fed PRP handler.');
+	}
+	if ($assertions->length > 1) {
+		throw new Exception('The WS-Fed PRP handler currently only supports a single assertion in a response.');
+	}
+	$assertion = $assertions->item(0);
+
+	/* Find the entity id of the issuer. */
+	$idpEntityId = $assertion->getAttribute('Issuer');
+
+	/* Load the IdP metadata. */
+	$idpMetadata = $metadata->getMetaData($idpEntityId, 'wsfed-idp-remote');
+
+	/* Find the certificate used by the IdP. */
+	if(array_key_exists('certificate', $idpMetadata)) {
+		$certFile = $config->getPathvalue('certdir') . $idpMetadata['certificate'];
+	} elseif(array_key_exists('cert', $idpMetadata)) {
+		/* For backwards compatibility. */
+		$certFile = $config->getBaseDir() . $idpMetadata['cert'];
+	} else {
+		throw new Exception('Missing \'certificate\' metadata option in the \'wsfed-idp-remote\' metadata' .
+			' for the IdP \'' .  $idpEntityId . '\'.');
+	}
+
+	/* Load the certificate. */
+	$certData = file_get_contents($certFile);
+	if($certData === FALSE) {
+		throw new Exception('Unable to load certificate file \'' . $certFile . '\' for wsfed-idp \'' .
+			$idpEntityId . '\'.');
+	}
+
+	/* Verify that the assertion is signed by the issuer. */
+	$validator = new SimpleSAML_XML_Validator($assertion, 'AssertionID', $certData);
+	if(!$validator->isNodeValidated($assertion)) {
+		throw new Exception('The assertion was not correctly signed by the WS-Fed IdP \'' .
+			$idpEntityId . '\'.');
+	}
+
+
+	/* Extract the name identifier from the response. */
+	$nameid = $xpath->query('./saml:AuthenticationStatement/saml:Subject/saml:NameIdentifier', $assertion);
+	if ($nameid->length === 0) {
+		throw new Exception('Could not find the name identifier in the response from the WS-Fed IdP \'' .
+			$idpEntityId . '\'.');
+	}
+	$nameid = array(
+		'Format' => $nameid->item(0)->getAttribute('Format'),
+		'value' => $nameid->item(0)->textContent,
 		);
-		$statement = $xpath->query('saml:AttributeStatement', $assertion);
-		if (($statement != NULL) and ($statement->item(0) != NULL)) {
-			foreach ($xpath->query('saml:Attribute/saml:AttributeValue', $statement->item(0)) as $attribute) {
-				$name = $attribute->parentNode->getAttribute('AttributeName');
-				$value = $attribute->textContent;
-				if(!array_key_exists($name, $attributes)) {
-					$attributes[$name] = array();
-				}
-				$attributes[$name][] = $value;
-			}
+
+
+	/* Extract the attributes from the response. */
+	$attributes = array();
+	$attributeValues = $xpath->query('./saml:AttributeStatement/saml:Attribute/saml:AttributeValue', $assertion);
+	foreach($attributeValues as $attribute) {
+		$name = $attribute->parentNode->getAttribute('AttributeName');
+		$value = $attribute->textContent;
+		if(!array_key_exists($name, $attributes)) {
+			$attributes[$name] = array();
 		}
-		// TODO: only process first assertion for now;
-		break;		
-	}	
-	$session->setAuthenticated(true, 'wsfed');
+		$attributes[$name][] = $value;
+	}
+
+
+	/* Mark the user as logged in. */
+	$session->doLogin('wsfed');
 	$session->setAttributes($attributes);
-		
+	$session->setNameID($nameid);
+	$session->setIdP($idpEntityId);
+
+	/* Redirect the user back to the page which requested the login. */
 	SimpleSAML_Utilities::redirect($wctx);
-	
+
 } catch(Exception $exception) {		
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSASSERTION', $exception);
 }
+
+?>

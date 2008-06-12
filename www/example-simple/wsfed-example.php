@@ -21,8 +21,7 @@ $t->data['remaining'] = $session->remainingTime();
 $t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;
 $t->data['icon'] = 'bino.png';
-$t->data['logout'] = '[ <a href="/' . $config->getBaseURL() . 'wsfed/sp/initSLO.php?RelayState=/' . 
-	$config->getBaseURL() . 'logout.html">Logout</a> ]';
+$t->data['logout'] = null;
 $t->show();
 
 

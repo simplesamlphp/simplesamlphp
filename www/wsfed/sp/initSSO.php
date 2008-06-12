@@ -28,7 +28,7 @@ if (empty($_GET['RelayState'])) {
 
 try {
 
-	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getValue('default-wsfed-idp') ;
+	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getString('default-wsfed-idp', NULL);
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID('wsfed-sp-hosted');
 
 } catch (Exception $exception) {
@@ -36,6 +36,9 @@ try {
 }
 
 if ($idpentityid == null) {
+
+	throw new Exception('IdP discovery for WS-Fed is currently unsupported.');
+	/* TODO: Add idpdisco.php */
 
 	SimpleSAML_Logger::info('WS-Fed - SP.initSSO: No chosen or default IdP, go to WSFeddisco');
 
@@ -51,15 +54,16 @@ try {
 	
 	$idpmeta = $metadata->getMetaData($idpentityid, 'wsfed-idp-remote');
 	$spmeta = $metadata->getMetaData($spentityid, 'wsfed-sp-hosted');
-	
-	$url = $idpmeta['prp'] .
-		'?wa=wsignin1.0' .
-		'&wct=' . gmdate("Y-m-d\TH:i:s\Z", time()) .
-		'&wtrealm=' . $spmeta['realm'] .
-		'&wctx=' . urlencode($relaystate);
 
-	SimpleSAML_Utilities::redirect($url);
+	SimpleSAML_Utilities::redirect($idpmeta['prp'], array(
+		'wa' => 'wsignin1.0',
+		'wct' =>  gmdate('Y-m-d\TH:i:s\Z', time()),
+		'wtrealm' => $spentityid,
+		'wctx' => $relaystate
+		));
 	
 } catch (Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CREATEREQUEST', $exception);
 }
+
+?>
