@@ -95,6 +95,15 @@ try {
 			$idpEntityId . '\'.');
 	}
 
+	/* Check time constraints of contitions (if present). */
+	foreach($xpath->query('./saml:Conditions', $assertion) as $condition) {
+		$notBefore = $condition->getAttribute('NotBefore');
+		$notOnOrAfter = $condition->getAttribute('NotOnOrAfter');
+		if(!SimpleSAML_Utilities::checkDateConditions($notBefore, $notOnOrAfter)) {
+			throw new Exception('The response has expired.');
+		}
+	}
+
 
 	/* Extract the name identifier from the response. */
 	$nameid = $xpath->query('./saml:AuthenticationStatement/saml:Subject/saml:NameIdentifier', $assertion);
