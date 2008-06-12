@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 function encodeIllegalChars($input) {
 	return preg_replace("/[^a-zA-Z0-9_@=.]/", "_", $input);
 }
@@ -72,36 +68,4 @@ function attributealter_groups(&$attributes, $spentityid = null, $idpentityid = 
 	$attributes['groups'] = $groups;
 
 }
-
-
-
-function attributealter_test(&$attributes, $spentityid = null, $idpentityid = null) {
-	$attributes['injected'] = array('newvalue');
-}
-
-function attributealter_realm(&$attributes, $spentityid = null, $idpentityid = null) {
-
-	$attributename = 'eduPersonPrincipalName';
-#	$attributename = 'edupersonprincipalname';
-	if (array_key_exists($attributename, $attributes)) {
-		$eduppn = $attributes[$attributename][0];
-		$splitted = explode('@', $eduppn);
-		if (count($splitted) > 1) {
-			$attributes['realm'] = array($splitted[1]);
-		} else {
-			SimpleSAML_Logger::debug('attributealter_realm: Wrong format on ' . $attributename . ' (not including @)');
-		}
-	} else {
-		SimpleSAML_Logger::debug('attributealter_realm: Could not find ' . $attributename);
-	}
-
-}
-
-function attributealter_edupersontargetedid(&$attributes, $spEntityId = null, $idpEntityId = null) {
-	assert('$spEntityId !== NULL');
-	assert('$idpEntityId !== NULL');
-
-	$userid = SimpleSAML_Utilities::generateUserIdentifier($idpEntityId, $spEntityId, $attributes);
-
-	$attributes['eduPersonTargetedID'] = array($userid);
-}
+?>

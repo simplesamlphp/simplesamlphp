@@ -93,8 +93,8 @@ class SimpleSAML_XML_AttributeFilter {
 	 */
 	public function alter($rule, $spentityid = null, $idpentityid = null) {
 		
-		$alterfile = $this->configuration->getBaseDir() . 'attributealter/alterfunctions.php';
-		if (!file_exists($alterfile)) throw new Exception('Could not find attributemap file: ' . $alterfile);
+		$alterfile = $this->configuration->getBaseDir() . 'attributealter/' . $rule . '.php';
+		if (!file_exists($alterfile)) throw new Exception('Could not find attributealter file: ' . $alterfile);
 		
 		include_once($alterfile);
 		
@@ -103,7 +103,7 @@ class SimpleSAML_XML_AttributeFilter {
 		if (function_exists($function)) {
 			$function($this->attributes, $spentityid, $idpentityid);
 		} else {
-			throw new Exception('Could not find attribute alter fucntion: ' . $function);
+			throw new Exception('Could not find attribute alter fucntion: ' . $function . ' in file ' .$alterfile);
 		}
 		
 	}
