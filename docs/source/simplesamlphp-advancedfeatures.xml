@@ -152,11 +152,13 @@ $attributemap = array(
       with the name <literal>realm</literal>.</para>
 
       <para>Attribute alter functions are named by the attribute name prefixed
-      with <code>attributealter_</code>, and are stored in the file
-      <filename>attributealter/alterfunctions.php</filename>. The attribute
-      alter function should have the name of the attribute, but prefixed with
+      with <code>attributealter_</code>, and are stored in a file in the 
+      <filename>attributealter/</filename> directory. The filename for a given 
+      attribute alter functions must be named with the function name.
+      The attribute alter function should have the name of the attribute, but prefixed with
       <literal>attributealter_</literal>, e.g. <literal>attributealter_realm
-      for the <code>realm</code> attribute</literal>. The function signature
+      for the <code>realm</code> attribute</literal> this function should then
+      be placed in <filename>attributealter/realm.php</filename>. The function signature
       should be:</para>
 
       <programlisting>function attributealter_realm(&amp;$attributes, $spentityid = null, $idpentityid = null) {</programlisting>
@@ -165,7 +167,17 @@ $attributemap = array(
       array, containing the attributes that will be sent to the service. h,
       and may add new attributes into this array. The function also receives
       the entity IDs of the SP and the IdP.</para>
-
+      
+      <para>When doing bridging installation the IdP entity ID given to attribute
+      alter functions is the ID of the hosted IdP (the bridge) 
+      and not remote IdP where the user actually came from. The correct IdP 
+      (remote one) is found in the session object. e.g. in an alter function:</para>
+	  <para><programlisting>...
+$session = SimpleSAML_Session::getInstance();
+$remoteidp = $session->getIdp();
+...</programlisting></para>
+	  
+	  
       <para>The attribute alter function must be declared in the metadata for
       the IdP or SP metadata, similar to the 'attributemap' parameter
       discussed above: The <code>'attributealter'</code> parameter names the
@@ -183,7 +195,7 @@ $attributemap = array(
       <para>If more than one function is defined, the parameter should be an
       array of names.</para>
 
-      <para>Here is the complete example function:</para>
+      <para>Here is the complete example function which must be placed in the file <filename>attributealter/realm.php</filename>:</para>
 
       <programlisting>function attributealter_realm(&amp;$attributes, $spentityid = null, $idpentityid = null) {
 
