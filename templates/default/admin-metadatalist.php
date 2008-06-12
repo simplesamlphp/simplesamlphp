@@ -114,6 +114,11 @@
 		if (array_key_exists('metadata.shib13-idp-remote', $this->data)) 
 			showEntry('Shib 1.3 Identity Provider (Remote)', $this->data['metadata.shib13-idp-remote'], $this->data['baseurlpath']);
 
+		if (array_key_exists('metadata.wsfed-sp-hosted', $this->data))
+			showEntry('WS-Federation Service Provider (Hosted)', $this->data['metadata.wsfed-sp-hosted'], $this->data['baseurlpath']);
+		if (array_key_exists('metadata.wsfed-idp-remote', $this->data))
+			showEntry('WS-Federation Identity Provider (Remote)', $this->data['metadata.wsfed-idp-remote'], $this->data['baseurlpath']);
+
 		
 		?>
 

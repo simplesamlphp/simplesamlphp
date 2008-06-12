@@ -119,6 +119,29 @@ try {
 		
 	}
 
+	if ($config->getValue('enable.wsfed-sp') === true) {
+		$results = array();
+		$metalist = $metadata->getList('wsfed-sp-hosted');
+		foreach ($metalist AS $entityid => $mentry) {
+			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
+				array('entityid', 'host'),
+				array()
+			);
+		}
+		$et->data['metadata.wsfed-sp-hosted'] = $results;
+
+		$results = array();
+		$metalist = $metadata->getList('wsfed-idp-remote');
+		foreach ($metalist AS $entityid => $mentry) {
+			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
+				array('entityid', 'prp', 'certificate'),
+				array()
+			);
+		}
+		$et->data['metadata.wsfed-idp-remote'] = $results;
+
+	}
+
 	$et->data['header'] = 'Metadata overview';
 	$et->data['icon'] = 'bino.png';
 
