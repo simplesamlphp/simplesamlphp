@@ -1,5 +1,6 @@
 <?php 
 	$this->data['icon'] = 'debug.png';
+	$this->data['autofocus'] = 'sendbutton';
 	$this->includeAtTemplateBase('includes/header.php'); 
 ?>
 
@@ -18,10 +19,6 @@
 			<input type="hidden" name="<?php echo htmlspecialchars($this->data['RelayStateName']); ?>" value="<?php echo htmlspecialchars($this->data['RelayState']); ?>" />
 			<input type="submit" value="Submit the response to the service" id="sendbutton" />
 		</form>
-
-		<script type="text/javascript">
-			document.getElementById('sendbutton').focus();
-		</script>
 
 		<h2>Debug mode</h2>
 		

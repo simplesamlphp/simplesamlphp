@@ -1,5 +1,6 @@
 <?php 
 	$this->data['icon'] = 'debug.png';
+	$this->data['autofocus'] = 'sendlink';
 	$this->includeAtTemplateBase('includes/header.php'); 
 ?>
 
@@ -14,9 +15,6 @@
 		<pre style="overflow: scroll; border: 1px solid #eee"><?php echo $this->data['message']; ?></pre>
 		
 		<p>[ <a id="sendlink" href="<?php echo htmlentities($this->data['url']); ?>">send SAML message</a> ]</p>
-		<script type="text/javascript">
-			document.getElementById('sendlink').focus();
-		</script>
 
 		<h2>Debug mode</h2>
 		

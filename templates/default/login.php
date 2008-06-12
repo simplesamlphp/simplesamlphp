@@ -1,13 +1,8 @@
 <?php 
 	if (!array_key_exists('icon', $this->data)) $this->data['icon'] = 'lock.png';
+	$this->data['autofocus'] = 'username';
 	$this->includeAtTemplateBase('includes/header.php'); 
 ?>
-	<script type="text/javascript">
-		function focusit() {
-			document.getElementById('username').focus();
-		}
-		window.onload = focusit;
-	</script>
 <div id="content">
 
 	<?php if (isset($this->data['error'])) { ?>
