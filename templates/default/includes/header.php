@@ -12,7 +12,7 @@ if(array_key_exists('header', $this->data)) {
 
 	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/default.css" />
 	<link rel="icon" type="image/icon" href="/<?php echo $this->data['baseurlpath']; ?>resources/icons/favicon.ico" />
-	<script type="text/javascript" src="/<?php echo $this->data['baseurlpath']; ?>resources/script.js" />
+	<script type="text/javascript" src="/<?php echo $this->data['baseurlpath']; ?>resources/script.js"></script>
 </head>
 <?php
 $onLoad = '';
