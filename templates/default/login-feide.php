@@ -1,7 +1,5 @@
 <?php
 
-$this->data['header'] = $this->t($this->data['header']);
-
 $this->includeAtTemplateBase('includes/header.php');
 
 ?>
