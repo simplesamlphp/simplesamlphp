@@ -259,7 +259,7 @@ $lang = array(
 	'link_diagnostics' => array (
 		'no' => 'Diagnostiser hostnavn, port og protokoll',
 		'nn' => 'Diagnostiser hostnavn, port og protokoll',
-		'da' => 'Diagnostisør hostnavn, port og protokol',
+		'da' => 'Diagnostisér hostnavn, port og protokol',
 		'en' => 'Diagnostics on hostname, port and protocol',
 		'de' => 'Diagnose des Hostnamen, Ports und Protokolls',
 		'sv' => 'Diagnosera värdnamn, port och protokoll',
@@ -288,7 +288,12 @@ $lang = array(
 	),
 	'link_configcheck' => array (
 		'no' => 'Sjekk av simpleSAMLphp konfigurasjonsfiler',
+		'da' => 'simpleSAMLphp konfigurationscheck',
 		'en' => 'simpleSAMLphp configuration check',
+		'sv' => 'Konfigurationskontroll av simpleSAMLphp',
+		'es' => 'Comprobación de la configuración de simpleSAMLphp',
+		'sl' => 'Preveri simpleSAMLphp nastavitve',
+		'hr' => 'Provjera simpleSAMLphp konfiguracije',
 	),
 	'link_meta_overview' => array (
 		'no' => 'Oversikt over metadata for din installasjon. Diagnostiser metadatafilene her.',
@@ -364,6 +369,10 @@ $lang = array(
 		'sl' => 'Metapodatki za Shibboleth 1.3 Identity Provider (samodejno zgenerirani)',
 		'hr' => 'Metapodaci za lokalni Shibboleth 1.3 IdP (automatski generirani)',
 		'hu' => 'Ezen a gépen futó (hosted) Shibboleth 1.3 személyazonosság-szolgáltató (IdP) metaadat (automatikusan generált)',
+	),
+	'link_cleardiscochoices' => array (
+		'no' => 'Slett mitt valg av IdP i IdP discovery tjenestene',
+		'en' => 'Delete my choices of IdP in the IdP discovery services',
 	),
 	'link_xmlconvert' => array (
 		'no' => 'XML til simpleSAMLphp metadata-oversetter',
