@@ -5,7 +5,7 @@ if(!array_key_exists('header', $this->data)) {
 }
 $this->data['header'] = $this->t($this->data['header']);
 
-$this->data['autofocus'] = 'selectbutton';
+$this->data['autofocus'] = 'dropdownlist';
 
 $this->includeAtTemplateBase('includes/header.php');
 
@@ -28,7 +28,7 @@ foreach ($this->data['idplist'] AS $idpentry) {
 		<input type="hidden" name="entityID" value="<?php echo htmlspecialchars($this->data['entityID']); ?>" />
 		<input type="hidden" name="return" value="<?php echo htmlspecialchars($this->data['return']); ?>" />
 		<input type="hidden" name="returnIDParam" value="<?php echo htmlspecialchars($this->data['returnIDParam']); ?>" />
-		<select name="idpentityid">
+		<select id="dropdownlist" name="idpentityid">
 		<?php
 			
 		foreach ($this->data['idplist'] AS $idpentry) {
@@ -43,7 +43,12 @@ foreach ($this->data['idplist'] AS $idpentry) {
 		}
 		?>
 		</select>
-		<input id="selectbutton" type="submit" value="<?php echo $this->t('select'); ?>"/>
+		<input type="submit" value="<?php echo $this->t('select'); ?>"/>
+		<?php
+		if($this->data['rememberenabled']) {
+			echo('<br/><input type="checkbox" name="remember" value="1" />' . $this->t('remember'));
+		}
+		?>
 		</form>
 
 		

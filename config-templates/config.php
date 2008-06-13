@@ -182,7 +182,12 @@ $config = array (
 	 */
 	'idpdisco.url.shib13' => NULL,
 	'idpdisco.url.saml20' => NULL,
-	
+
+	/*
+	 * Whether the discovery service should allow the user to save his choice of IdP.
+	 */
+	'idpdisco.enableremember' => TRUE,
+
 	/*
 	 * IdP Discovery service look configuration. 
 	 * Wether to display a list of idp or to display a dropdown box. For many IdP' a dropdown box  

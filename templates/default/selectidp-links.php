@@ -21,10 +21,19 @@ foreach ($this->data['idplist'] AS $idpentry) {
 	<div id="content">
 
 		<h2><?php echo $this->data['header']; ?></h2>
+
+		<form method="get" action="<?php echo $this->data['urlpattern']; ?>">
+		<input type="hidden" name="entityID" value="<?php echo htmlspecialchars($this->data['entityID']); ?>" />
+		<input type="hidden" name="return" value="<?php echo htmlspecialchars($this->data['return']); ?>" />
+		<input type="hidden" name="returnIDParam" value="<?php echo htmlspecialchars($this->data['returnIDParam']); ?>" />
 		
-		<p><?php echo $this->t('selectidp_full'); ?></p>
-		
-		
+		<p><?php
+		echo $this->t('selectidp_full');
+		if($this->data['rememberenabled']) {
+			echo('<br /><input type="checkbox" name="remember" value="1" />' . $this->t('remember'));
+		}
+		?></p>
+
 		<?php
 
 		
@@ -41,7 +50,9 @@ foreach ($this->data['idplist'] AS $idpentry) {
 			echo htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
 
 			echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
-			echo '	[ <a id="preferredidp" href="' . $this->data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
+			echo('<input id="preferredidp" type="submit" name="idp_' .
+				htmlspecialchars($idpentry['entityid']) . '" value="' .
+				$this->t('select') . '" /></p>');
 			echo '</div>';
 		}
 		
@@ -56,11 +67,13 @@ foreach ($this->data['idplist'] AS $idpentry) {
 				echo htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
 
 				echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
-				echo '[ <a href="' . $this->data['urlpattern'] . htmlspecialchars($idpentry['entityid']) . '">Select this IdP</a>]</p>';
+				echo('<input id="preferredidp" type="submit" name="idp_' .
+					htmlspecialchars($idpentry['entityid']) . '" value="' .
+					$this->t('select') . '" /></p>');
 			}
 		}
 		
 		?>
-
+		</form>
 		
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>

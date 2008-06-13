@@ -53,6 +53,12 @@ $links[] = array(
 	'text' => 'link_configcheck',
 	);
 
+if($config->getBoolean('idpdisco.enableremember', FALSE)) {
+	$links[] = array(
+		'href' => 'cleardiscochoices.php',
+		'text' => 'link_cleardiscochoices',
+		);
+}
 
 
 $linksmeta = array();
