@@ -23,12 +23,20 @@ $rememberEnabled = $config->getBoolean('idpdisco.enableremember', FALSE);
 try {
 
 	if (!isset($_GET['entityID'])) throw new Exception('Missing parameter: entityID');
-	if (!isset($_GET['return'])) throw new Exception('Missing parameter: return');
+	
 	if (!isset($_GET['returnIDParam'])) throw new Exception('Missing parameter: returnIDParam');
 
 	$spentityid = $_GET['entityID'];
 	$return = $_GET['return'];
-	$returnidparam = $_GET['returnIDParam'];
+	
+	// Default value for "returnIDParam". Added to support Shibboleth 2.0 SP which does not 
+	// send this parameter.
+	$returnidparam = 'idpentityid';
+	
+	//if (!isset($_GET['return'])) throw new Exception('Missing parameter: return');
+	if (isset($_GET['returnIDParam'])) {
+		$returnidparam = $_GET['returnIDParam'];
+	}
 	
 } catch (Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'DISCOPARAMS', $exception);
