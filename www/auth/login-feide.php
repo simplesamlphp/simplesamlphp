@@ -51,10 +51,14 @@ if (!array_key_exists('protocol', $_REQUEST)) {
 if ($_REQUEST['protocol'] != 'saml2') {
         SimpleSAML_Utilities::fatalError($session->getTrackID(), null, new Exception('This login module only works with SAML 2.0'));
 }
- 
-$protocol = $_REQUEST['protocol'];
-$authid = $_REQUEST['AuthId'];
-$authrequestcache = $session->getAuthnRequest($protocol, $authid);
+
+try {
+        $protocol = $_REQUEST['protocol'];
+        $authid = $_REQUEST['AuthId'];
+        $authrequestcache = $session->getAuthnRequest($protocol, $authid);
+} catch (Exception $e) {
+        SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOSESSION', $e);
+}
  
 $spentityid = $authrequestcache['Issuer'];
 $spmetadata = $metadata->getMetadata($spentityid, 'saml20-sp-remote');
