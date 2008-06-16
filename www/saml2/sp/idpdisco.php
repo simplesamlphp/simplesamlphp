@@ -23,17 +23,19 @@ $rememberEnabled = $config->getBoolean('idpdisco.enableremember', FALSE);
 try {
 
 	if (!isset($_GET['entityID'])) throw new Exception('Missing parameter: entityID');
-	
-	if (!isset($_GET['returnIDParam'])) throw new Exception('Missing parameter: returnIDParam');
+	if (!isset($_GET['return'])) throw new Exception('Missing parameter: return');
+
+
 
 	$spentityid = $_GET['entityID'];
 	$return = $_GET['return'];
 	
 	// Default value for "returnIDParam". Added to support Shibboleth 2.0 SP which does not 
 	// send this parameter.
+	//    if (!isset($_GET['returnIDParam'])) throw new Exception('Missing parameter: returnIDParam'); 
 	$returnidparam = 'idpentityid';
 	
-	//if (!isset($_GET['return'])) throw new Exception('Missing parameter: return');
+	//
 	if (isset($_GET['returnIDParam'])) {
 		$returnidparam = $_GET['returnIDParam'];
 	}
