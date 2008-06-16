@@ -49,7 +49,9 @@ foreach ($this->data['idplist'] AS $idpentry) {
 			}
 			echo htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
 
-			echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
+			if (!empty($idpentry['description'])) {
+				echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
+			}
 			echo('<input id="preferredidp" type="submit" name="idp_' .
 				htmlspecialchars($idpentry['entityid']) . '" value="' .
 				$this->t('select') . '" /></p>');
@@ -66,7 +68,10 @@ foreach ($this->data['idplist'] AS $idpentry) {
 				}
 				echo htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
 
-				echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
+				if (!empty($idpentry['description'])) {
+
+					echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
+				}
 				echo('<input id="preferredidp" type="submit" name="idp_' .
 					htmlspecialchars($idpentry['entityid']) . '" value="' .
 					$this->t('select') . '" /></p>');

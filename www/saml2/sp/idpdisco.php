@@ -105,6 +105,7 @@ if($selectedIdP !== NULL) {
 		}
 	}
 
+	SimpleSAML_Logger::info('SAML2.0 - SP.idpDisco: Choice made [ ' . $selectedIdP . '] (Redirecting the user back)');
 	SimpleSAML_Utilities::redirect($return, array($returnidparam => $selectedIdP));
 }
 
