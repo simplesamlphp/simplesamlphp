@@ -33,7 +33,7 @@ try {
 	// Default value for "returnIDParam". Added to support Shibboleth 2.0 SP which does not 
 	// send this parameter.
 	//    if (!isset($_GET['returnIDParam'])) throw new Exception('Missing parameter: returnIDParam'); 
-	$returnidparam = 'idpentityid';
+	$returnidparam = 'entityID';
 	
 	//
 	if (isset($_GET['returnIDParam'])) {
