@@ -137,7 +137,8 @@ if (!$session->isAuthenticated($authority) ) {
 		/*
 		 * Attribute handling
 		 */
-		$afilter = new SimpleSAML_XML_AttributeFilter($config, $session->getAttributes());
+		$attributes = $session->getAttributes();
+		$afilter = new SimpleSAML_XML_AttributeFilter($config, $attributes);
 		$afilter->process($idpmetadata, $spmetadata);
 
 		/**
