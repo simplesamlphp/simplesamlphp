@@ -25,7 +25,7 @@ try {
 	$idpmeta = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $metadata->getMetaDataCurrent('saml20-idp-hosted');
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 	
-	$publiccert = $config->getBaseDir() . '/cert/' . $idpmeta['certificate'];
+	$publiccert = $config->getPathValue('certdir') . $idpmeta['certificate'];
 
 	if (!file_exists($publiccert)) 
 		throw new Exception('Could not find certificate [' . $publiccert . '] to attach to the authentication resposne');
