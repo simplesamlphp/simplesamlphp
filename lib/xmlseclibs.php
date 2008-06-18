@@ -353,10 +353,9 @@ class XMLSecurityKey {
         }
         if ($this->cryptParams['library'] == 'openssl') {
             if ($this->cryptParams['type'] == 'public') {
-                if ($isCert) {
-                    /* Load the fingerprint if this is an X509 certificate. */
-                    $this->X509Fingerprint = self::calculateX509Fingerprint($this->key);
-                }
+                /* Load the fingerprint if this is an X509 certificate. */
+                $this->X509Fingerprint = self::calculateX509Fingerprint($this->key);
+
                 $this->key = openssl_get_publickey($this->key);
             } else {
                 $this->key = openssl_get_privatekey($this->key, $this->passphrase);
