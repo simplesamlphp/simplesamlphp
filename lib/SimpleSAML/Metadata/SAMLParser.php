@@ -423,7 +423,14 @@ class SimpleSAML_Metadata_SAMLParser {
 
 			$certData = base64_decode($key['X509Certificate']);
 			if($certData === FALSE) {
-				throw new Exception('Unable to parse base64 encoded certificate data.');
+				break;
+				/*
+				 * At 2008-06-18 we removed the requirement for certificate to be emedded in metadata. Instead
+				 * of throwing an exception which caused the whole parsing to crash, we just skip adding the
+				 * certificate fingerprint for this entity. 
+				 *
+				 * throw new Exception('Unable to parse base64 encoded certificate data.');
+				 */
 			}
 
 			$ret['certFingerprint'] = sha1($certData);
