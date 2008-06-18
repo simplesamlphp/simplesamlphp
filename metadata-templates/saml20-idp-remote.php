@@ -83,7 +83,7 @@ $metadata = array(
 		'description'			=> 'max.feide.no: the test environment of Feide.',
 		'SingleSignOnService'	=>	'https://max.feide.no/amserver/SSORedirect/metaAlias/idp',
 		'SingleLogoutService'	=>	'https://max.feide.no/amserver/IDPSloRedirect/metaAlias/idp',
-		'certFingerprint'		=>	'3fa158e8abfd4b5203315b08c0b791b6ee4715f6',
+		'certFingerprint'		=>	'5dd3196bdb2fb7e75380fe234a3f4f2d1e8d6d84',
 		'base64attributes'		=>	true,
 		'hint.cidr'				=> '158.38.0.0/16'
 	),
