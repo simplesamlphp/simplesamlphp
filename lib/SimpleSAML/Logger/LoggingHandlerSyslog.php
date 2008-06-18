@@ -17,6 +17,7 @@ class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_Loggin
         $config = SimpleSAML_Configuration::getInstance();
         assert($config instanceof SimpleSAML_Configuration);
         $facility = $config->getValue('logging.facility');
+        $processname = $config->getValue('logging.processname','simpleSAMLphp');
         /*
          * OS Check 
          * Setting facility to LOG_USER (only valid in Windows), enable log level rewrite on windows systems.
@@ -26,7 +27,7 @@ class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_Loggin
         	$facility = LOG_USER;
         }
         	
-        openlog("simpleSAMLphp", LOG_PID, $facility);
+        openlog($processname, LOG_PID, $facility);
     }
 
     function log_internal($level,$string) {

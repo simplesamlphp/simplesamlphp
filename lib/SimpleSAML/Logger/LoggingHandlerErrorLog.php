@@ -23,17 +23,21 @@ class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_Logg
 		LOG_NOTICE => 'NOTICE',
 		LOG_INFO => 'INFO',
 		LOG_DEBUG => 'DEBUG',
-		);
+	);
 
 
 	function log_internal($level, $string) {
+		$config = SimpleSAML_Configuration::getInstance();
+        assert($config instanceof SimpleSAML_Configuration);
+        $processname = $config->getValue('logging.processname','simpleSAMLphp');
+		
 		if(array_key_exists($level, self::$levelNames)) {
 			$levelName = self::$levelNames[$level];
 		} else {
 			$levelName = sprintf('UNKNOWN%d', $level);
 		}
 
-		error_log($levelName . ': ' . $string);
+		error_log($processname.' - '.$levelName . ': ' . $string);
 	}
 }
 

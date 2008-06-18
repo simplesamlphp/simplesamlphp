@@ -89,7 +89,7 @@ $config = array (
 	 */
 	'logging.level'         => LOG_NOTICE,
 	'logging.handler'       => 'syslog',
-	
+	'logging.processname'       => 'simpleSAMLphp',
 	/* Logging: syslog - Choose a syslog facility to use for logging.
 	 */
 	'logging.facility'      => LOG_LOCAL5,
