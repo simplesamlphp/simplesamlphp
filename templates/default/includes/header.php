@@ -49,6 +49,7 @@ $langnames = array(
 	'en' => 'English',
 	'de' => 'Deutsch',
 	'sv' => 'Svenska',
+	'fi' => 'Suomeksi',
 	'es' => 'Español',
 	'fr' => 'Français',
 	'nl' => 'Nederlands',
