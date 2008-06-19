@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-10-15</date>
 
-    <pubdate>Fri Jun  6 00:43:25 2008</pubdate>
+    <pubdate>Thu Jun 19 08:35:05 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -17,12 +17,6 @@
       <email>andreas.solberg@uninett.no</email>
     </author>
   </articleinfo>
-
-  <note>
-    <para>This document is in progress of being updated to correspond to
-    simpleSAMLphp version 1.0. simpleSAMLphp version 1.0 is scheduled to be
-    released in March 2008.</para>
-  </note>
 
   <section>
     <title>simpleSAMLphp documentation</title>
@@ -805,9 +799,9 @@
           <glossterm>icon</glossterm>
 
           <glossdef>
-            <para>An icon for this IdP. This is a URL to a icon which will
-            be displayed next to this IdP in the IdP discovery service. The
-            URL can be absolute or relative. If it is relative, it will be
+            <para>An icon for this IdP. This is a URL to a icon which will be
+            displayed next to this IdP in the IdP discovery service. The URL
+            can be absolute or relative. If it is relative, it will be
             relative to the simpleSAMPphp www-directory. This field is
             optional.</para>
           </glossdef>
