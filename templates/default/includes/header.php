@@ -37,7 +37,8 @@ if($onLoad !== '') {
 				echo (isset($this->data['icon']) ? $this->data['icon'] : 'compass_l.png'); 
 			?>" alt="Header icon" /></a></div>
 	</div>
-	
+
+<div style="padding-right: 40px">
 <?php 
 
 $languages = $this->getLanguageList();
@@ -73,3 +74,4 @@ if (empty($_POST) ) {
 }
 
 ?>
+</div>
