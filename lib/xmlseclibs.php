@@ -200,8 +200,8 @@ class XMLSecurityKey {
     public $encryptedCtx = NULL;
     public $guid = NULL;
 
-    /* This variable contains the certificate fingerprint if we have loaded an X509-certificate. */
-    private $X509Fingerprint = NULL;
+    /* This variable contains the certificate ifif this key represents an X509-certificate. */
+    private $X509Certificate = NULL;
 
     public function __construct($type, $params=NULL) {
         srand();
@@ -349,13 +349,11 @@ class XMLSecurityKey {
         if ($isCert) {
             $this->key = openssl_x509_read($this->key);
             openssl_x509_export($this->key, $str_cert);
+            $this->X509Certificate = $str_cert;
             $this->key = $str_cert;
         }
         if ($this->cryptParams['library'] == 'openssl') {
             if ($this->cryptParams['type'] == 'public') {
-                /* Load the fingerprint if this is an X509 certificate. */
-                $this->X509Fingerprint = self::calculateX509Fingerprint($this->key);
-
                 $this->key = openssl_get_publickey($this->key);
             } else {
                 $this->key = openssl_get_privatekey($this->key, $this->passphrase);
@@ -547,6 +545,19 @@ class XMLSecurityKey {
     }
 
 
+    /**
+     * Retrieve the X509 certificate this key represents.
+     *
+     * Will return the X509 certificate in PEM-format if this key represents
+     * an X509 certificate.
+     *
+     * @return  The X509 certificate or NULL if this key doesn't represent an X509-certificate.
+     */
+    public function getX509Certificate() {
+        return $this->X509Certificate;
+    }
+
+
     /* Get the fingerprint of this X509 certificate.
      *
      * Returns:
@@ -554,7 +565,10 @@ class XMLSecurityKey {
      *  if this isn't a X509 certificate.
      */
     public function getX509Fingerprint() {
-        return $this->X509Fingerprint;
+        if($this->X509Certificate === NULL) {
+            return NULL;
+        }
+        return self::calculateX509Fingerprint($this->X509Certificate);
     }
 }
 
