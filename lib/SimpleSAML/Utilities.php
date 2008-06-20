@@ -985,7 +985,14 @@ class SimpleSAML_Utilities {
 			$base = substr($base, 0, -1);
 		}
 
-		$ret = $base;
+		/* Check for absolute path. */
+		if(substr($path, 0, 1) === '/') {
+			/* Absolute path. */
+			$ret = '/';
+		} else {
+			/* Path relative to base. */
+			$ret = $base;
+		}
 
 		$path = explode('/', $path);
 		foreach($path as $d) {
