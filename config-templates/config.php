@@ -410,6 +410,11 @@ $config = array (
 	'metadata.sign.privatekey_pass' => NULL,
 	'metadata.sign.certificate' => NULL,
 
+	/*
+	 * This is the default URL to a MetaShare service where a SAML 2.0 IdP can register its metadata.
+	 * This is a highly experimentar feature.
+	 */
+	'metashare.publishurl' => NULL,
 
 );
 

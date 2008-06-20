@@ -536,6 +536,9 @@ $lang = array(
 		'hr' => 'Održavanje i konfiguriranje simpleSAMLphp-a',
 		'hu' => 'SimpleSAMLphp karbantartása és beállítása',
 	),
+	'link_publish' => array (
+		'en' => 'Publish my SAML 2.0 IdP metadata to the configured MetaShare',
+	),
 
 );
 

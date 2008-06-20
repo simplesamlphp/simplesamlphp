@@ -60,6 +60,18 @@ if($config->getBoolean('idpdisco.enableremember', FALSE)) {
 		);
 }
 
+if ($config->getValue('enable.saml20-idp') === TRUE) {
+	$publishURL = $config->getString('metashare.publishurl', NULL);
+	if ($publishURL !== NULL) {
+		$metadataURL = SimpleSAML_Utilities::resolveURL('saml2/idp/metadata.php');
+		$publishURL = SimpleSAML_Utilities::addURLparameter($publishURL, 'url=' . urlencode($metadataURL));
+		$links[] = array(
+			'href' => $publishURL,
+			'text' => 'link_publish',
+			);
+	}
+}
+
 
 $linksmeta = array();
 
