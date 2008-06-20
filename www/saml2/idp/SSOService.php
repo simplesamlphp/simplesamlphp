@@ -268,6 +268,7 @@ if($needAuth && !$isPassive) {
 				$t = new SimpleSAML_XHTML_Template($config, 'consent.php', 'attributes.php');
 				$t->data['header'] = 'Consent';
 				$t->data['sp_name'] = $sp_name;
+				$t->data['spentityid'] = $spentityid;
 				$t->data['attributes'] = $filteredattributes;
 				$t->data['consenturl'] = SimpleSAML_Utilities::selfURLNoQuery();
 				$t->data['requestid'] = $authId;
