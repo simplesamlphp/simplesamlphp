@@ -536,8 +536,17 @@ $lang = array(
 		'hr' => 'Održavanje i konfiguriranje simpleSAMLphp-a',
 		'hu' => 'SimpleSAMLphp karbantartása és beállítása',
 	),
-	'link_publish' => array (
+	'link_publish_saml20-idp' => array (
 		'en' => 'Publish my SAML 2.0 IdP metadata to the configured MetaShare',
+	),
+	'link_publish_saml20-sp' => array (
+		'en' => 'Publish my SAML 2.0 SP metadata to the configured MetaShare',
+	),
+	'link_publish_shib13-idp' => array (
+		'en' => 'Publish my Shib 1.3 IdP metadata to the configured MetaShare',
+	),
+	'link_publish_shib13-sp' => array (
+		'en' => 'Publish my Shib 1.3 SP metadata to the configured MetaShare',
 	),
 
 );

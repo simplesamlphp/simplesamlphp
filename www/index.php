@@ -60,14 +60,25 @@ if($config->getBoolean('idpdisco.enableremember', FALSE)) {
 		);
 }
 
-if ($config->getValue('enable.saml20-idp') === TRUE) {
-	$publishURL = $config->getString('metashare.publishurl', NULL);
-	if ($publishURL !== NULL) {
-		$metadataURL = SimpleSAML_Utilities::resolveURL('saml2/idp/metadata.php');
-		$publishURL = SimpleSAML_Utilities::addURLparameter($publishURL, 'url=' . urlencode($metadataURL));
+
+$publishURL = $config->getString('metashare.publishurl', NULL);
+if ($publishURL !== NULL) {
+	$metadataSources = array(
+		'saml20-idp' => 'saml2/idp/metadata.php',
+		'saml20-sp' => 'saml2/sp/metadata.php',
+		'shib13-idp' => 'shib13/idp/metadata.php',
+		'shib13-sp' => 'shib13/sp/metadata.php',
+		);
+	foreach($metadataSources as $name => $url) {
+		if(!$config->getBoolean('enable.' . $name, FALSE)) {
+			continue;
+		}
+
+		$url = SimpleSAML_Utilities::resolveURL($url);
+		$linkTarget = SimpleSAML_Utilities::addURLparameter($publishURL, 'url=' . urlencode($url));
 		$links[] = array(
-			'href' => $publishURL,
-			'text' => 'link_publish',
+			'href' => $linkTarget,
+			'text' => 'link_publish_' . $name,
 			);
 	}
 }
