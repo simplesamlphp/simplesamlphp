@@ -751,19 +751,25 @@ class SimpleSAML_Utilities {
 	 *
 	 * It will parse the string into a DOM document and validate this document against the schema.
 	 *
-	 * @param $xml     The XML string which should be validated.
+	 * @param $xml     The XML string or document which should be validated.
 	 * @param $schema  The schema which should be used.
 	 * @return Returns a string with the errors if validation fails. An empty string is
 	 *         returned if validation passes.
 	 */
-	public static function validateXML($message, $schema) {
-		assert('is_string($message)');
+	public static function validateXML($xml, $schema) {
+		assert('is_string($xml) || $xml instanceof DOMDocument');
 		assert('is_string($schema)');
 
 		SimpleSAML_XML_Errors::begin();
 
-		$dom = new DOMDocument;
-		$res = $dom->loadXML($message);
+		if($xml instanceof DOMDocument) {
+			$dom = $xml;
+			$res = TRUE;
+		} else {
+			$dom = new DOMDocument;
+			$res = $dom->loadXML($xml);
+		}
+
 		if($res) {
 
 			$config = SimpleSAML_Configuration::getInstance();
