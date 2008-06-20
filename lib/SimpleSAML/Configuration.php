@@ -33,10 +33,20 @@ class SimpleSAML_Configuration {
 	}
 	
 	public static function init($path, $instancename = 'simplesaml', $configfilename = 'config.php') {
+		/* Check if we already have loaded the given config - return the existing instance if we have. */
+		if(array_key_exists($instancename, self::$instance)) {
+			return self::$instance[$instancename];
+		}
+
 		self::$instance[$instancename] = new SimpleSAML_Configuration($path, $configfilename);
 	}
 	
 	public function copyFromBase($instancename, $filename) {
+		/* Check if we already have loaded the given config - return the existing instance if we have. */
+		if(array_key_exists($instancename, self::$instance)) {
+			return self::$instance[$instancename];
+		}
+
 		self::$instance[$instancename] = new SimpleSAML_Configuration($this->configpath, $filename);
 		return self::$instance[$instancename];
 	}
