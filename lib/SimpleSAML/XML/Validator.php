@@ -16,6 +16,12 @@ class SimpleSAML_XML_Validator {
 	private $x509Fingerprint;
 
 	/**
+	 * This variable contains the X509 certificate the XML document
+	 * was signed with, or NULL if it wasn't signed with an X509 certificate.
+	 */
+	private $x509Certificate;
+
+	/**
 	 * This variable contains the nodes which are signed.
 	 */
 	private $validNodes = null;
@@ -77,8 +83,24 @@ class SimpleSAML_XML_Validator {
 		/* Extract the certificate fingerprint. */
 		$this->x509Fingerprint = $objKey->getX509Fingerprint();
 
+		/* Extract the certificate. */
+		$this->x509Certificate = $objKey->getX509Certificate();
+
 		/* Find the list of validated nodes. */
 		$this->validNodes = $objXMLSecDSig->getValidatedNodes();
+	}
+
+
+	/**
+	 * Retrieve the X509 certificate which was used to sign the XML.
+	 *
+	 * This function will return the certificate as a PEM-encoded string. If the XML
+	 * wasn't signed by an X509 certificate, NULL will be returned.
+	 *
+	 * @return The certificate as a PEM-encoded string, or NULL if not signed with an X509 certificate.
+	 */
+	public function getX509Certificate() {
+		return $this->x509Certificate;
 	}
 
 
