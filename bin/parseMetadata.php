@@ -28,6 +28,10 @@ $toStdOut = FALSE;
  */
 $validateFingerprint = NULL;
 
+/* $CA contains a path to a PEM file with certificates which are trusted,
+ * or NULL if we don't want to verify certificates this way.
+ */
+$ca = NULL;
 
 /* This variable contains the files we will parse. */
 $files = array();
@@ -73,6 +77,14 @@ foreach($argv as $a) {
 			exit(1);
 		}
 		$validateFingerprint = $v;
+		break;
+	case '--ca':
+		if($v === NULL || strlen($v) === 0) {
+			echo('The --ca option requires an parameter.' . "\n");
+			echo('Please run `' . $progName . ' --help` for usage information.' . "\n");
+			exit(1);
+		}
+		$ca = $v;
 		break;
 	case '--help':
 		printHelp();
@@ -137,12 +149,68 @@ function printHelp() {
 	echo('                              Check the signature of the metadata,' . "\n");
 	echo('                              and check the fingerprint of the' . "\n");
 	echo('                              certificate against <FINGERPRINT>.' . "\n");
+	echo('     --ca=<PEM file>          Use the given PEM file as a source of' . "\n");
+	echo('                              trusted root certificates.' . "\n");
 	echo(' -h, --help                   Print this help.' . "\n");
 	echo(' -o=<DIR>, --out-dir=<DIR>    Write the output to this directory. The' . "\n");
 	echo('                              default directory is metadata-generated/' . "\n");
 	echo(' -s, --stdout                 Write the output to stdout instead of' . "\n");
 	echo('                              seperate files in the output directory.' . "\n");
 	echo("\n");
+}
+
+
+/**
+ * This function checks the given certificate against the CA root.
+ *
+ * @param $certificate  The certificate which should be checked, as a string with a PEM-encoded certificate.
+ */
+function verifyCertificate($certificate) {
+	static $verifiedCertificates = array();
+	if(array_key_exists($certificate, $verifiedCertificates)) {
+		return $verifiedCertificates[$certificate];
+	}
+
+	$command = array(
+		'openssl', 'verify',
+		'-CAfile', $GLOBALS['ca'],
+		'-purpose', 'any',
+		);
+
+	$cmdline = '';
+	foreach($command as $c) {
+		$cmdline .= escapeshellarg($c) . ' ';
+	}
+
+	$cmdline .= '2>&1';
+	$descSpec = array(
+		0 => array('pipe', 'r'),
+		1 => array('pipe', 'w'),
+		);
+	$process = proc_open($cmdline, $descSpec, $pipes);
+	if(!is_resource($process)) {
+		echo('Failed to execute verification command: ' . $cmdline . "\n");
+		exit(1);
+	}
+
+	if(fwrite($pipes[0], $certificate) === FALSE) {
+		echo('Failed to write certificate for verification.' . "\n");
+		exit(1);
+	}
+	fclose($pipes[0]);
+
+	$out = trim(fgets($pipes[1]));
+	fclose($pipes[1]);
+
+	$status = proc_close($process);
+	if($status !== 0 || $out !== 'stdin: OK') {
+		$ok = FALSE;
+	} else {
+		$ok = TRUE;
+	}
+
+	$verifiedCertificates[$certificate] = $ok;
+	return $ok;
 }
 
 
@@ -230,11 +298,26 @@ function processFile($filename) {
 	$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($filename);
 
 	global $validateFingerprint;
+	global $ca;
 
 	foreach($entities as $entity) {
 		if($validateFingerprint !== NULL) {
 			if(!$entity->validateFingerprint($validateFingerprint)) {
 				echo('Skipping "' . $entity->getEntityId() . '" - could not verify signature.' . "\n");
+				continue;
+			}
+		}
+
+		if($ca !== NULL) {
+			$ok = FALSE;
+			foreach($entity->getX509Certificates() as $cert) {
+				if(verifyCertificate($cert)) {
+					$ok = TRUE;
+					break;
+				}
+			}
+			if(!$ok) {
+				echo('Skipping "' . $entity->getEntityId() . '" - could not verify certificate.' . "\n");
 				continue;
 			}
 		}
