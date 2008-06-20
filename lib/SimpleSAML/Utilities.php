@@ -760,8 +760,7 @@ class SimpleSAML_Utilities {
 		assert('is_string($message)');
 		assert('is_string($schema)');
 
-		$xmlErrorState = libxml_use_internal_errors(TRUE);
-		libxml_clear_errors();
+		SimpleSAML_XML_Errors::begin();
 
 		$dom = new DOMDocument;
 		$res = $dom->loadXML($message);
@@ -773,20 +772,17 @@ class SimpleSAML_Utilities {
 
 			$res = $dom->schemaValidate($schemaFile);
 			if($res) {
-				libxml_use_internal_errors($xmlErrorState);
+				SimpleSAML_XML_Errors::end();
 				return '';
 			}
 
-			$errorText = 'Schema validation failed on XML string:';
+			$errorText = "Schema validation failed on XML string:\n";
 		} else {
-			$errorText = 'Failed to parse XML string for schema validation:';
+			$errorText = "Failed to parse XML string for schema validation:\n";
 		}
 
-		$errors = libxml_get_errors();
-		foreach($errors as $error) {
-			$errorText .= ' [' . $error->level . ':'  . $error->code . '@'
-				. $error->line . ',' . $error->column . ' ' . trim($error->message) . ']';
-		}
+		$errors = SimpleSAML_XML_Errors::end();
+		$errorText .= SimpleSAML_XML_Errors::formatErrors($errors);
 
 		return $errorText;
 	}
