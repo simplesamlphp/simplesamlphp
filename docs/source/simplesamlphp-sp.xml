@@ -436,12 +436,19 @@
             <glossterm>certFingerprint</glossterm>
 
             <glossdef>
-              <para>The <literal>md5</literal> checksum of the certificate
+              <para>The <literal>sha1</literal> checksum of the certificate
               used by the IdP. If you don't know how to compute this, you can
               leave it as it is, and then you'll get an error message the
               first time you try to login. In this error message you are told
               what is the fingerprint of the IdP certificiate, which you may
               copy to this metadata parameter.</para>
+
+              <para>It is also possible to add an array of valid fingerprints,
+              where any fingerprints in that array is accepted as valid. This
+              can be used to update the certificate of the IdP without having
+              to update every SP at that exact time. Instead, one can update
+              the SPs with the new fingerprint, and only update the certificate
+              after every SP is updated.</para>
 
               <para>See <xref linkend="a.fingerprint" /> for an example of how
               to calculate the fingerprint with the <literal>openssl</literal>
@@ -783,12 +790,19 @@
           <glossterm>certFingerprint</glossterm>
 
           <glossdef>
-            <para>The <literal>md5</literal> checksum of the certificate used
+            <para>The <literal>sha</literal> checksum of the certificate used
             by the IdP. If you don't know how to compute this, you can leave
             it as it is, and then you'll get an error message the first time
             you try to login. In this error message you are told what is the
             fingerprint of the IdP certificiate, which you may copy to this
             metadata parameter.</para>
+
+            <para>It is also possible to add an array of valid fingerprints,
+            where any fingerprints in that array is accepted as valid. This
+            can be used to update the certificate of the IdP without having to
+            update every SP at that exact time. Instead, one can update the
+            SPs with the new fingerprint, and only update the certificate
+            after every SP is updated.</para>
 
             <para>See <xref linkend="a.fingerprint" /> for an example of how
             to calculate the fingerprint with the openssl tool.</para>
