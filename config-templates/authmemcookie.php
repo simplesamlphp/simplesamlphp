@@ -7,6 +7,12 @@
 $config = array(
 
 	/*
+	 * What type of login Auth MemCookie will use. Can be either 'saml2' or 'shib13'.
+	 * The default value is 'saml2'.
+	 */
+	'loginmethod' => 'saml2',
+
+	/*
 	 * This is the name of the cookie we should save the session id in. The value of this option must match the
 	 * Auth_memCookie_CookieName option in the Auth MemCookie configuration. The default value is 'AuthMemCookie'.
 	 *

@@ -26,11 +26,27 @@ try {
 	$amc = SimpleSAML_AuthMemCookie::getInstance();
 
 	/* Check if the user is authorized. We attempt to authenticate the user if not. */
-	if (!$session->isValid('saml2') ) {
-		SimpleSAML_Utilities::redirect(
-			'/' . $globalConfig->getBaseURL() . 'saml2/sp/initSSO.php',
-			array('RelayState' => SimpleSAML_Utilities::selfURL())
-			);
+	$loginMethod = $amc->getLoginMethod();
+	switch($loginMethod) {
+	case 'saml2':
+		if (!$session->isValid('saml2') ) {
+			SimpleSAML_Utilities::redirect(
+				'/' . $globalConfig->getBaseURL() . 'saml2/sp/initSSO.php',
+				array('RelayState' => SimpleSAML_Utilities::selfURL())
+				);
+		}
+		break;
+	case 'shib13':
+		if (!$session->isValid('shib13') ) {
+			SimpleSAML_Utilities::redirect(
+				'/' . $globalConfig->getBaseURL() . 'shib13/sp/initSSO.php',
+				array('RelayState' => SimpleSAML_Utilities::selfURL())
+				);
+		}
+		break;
+	default:
+		/* Should never happen, as the login method is checked in the AuthMemCookie class. */
+		throw new Exception('Invalid login method.');
 	}
 
 

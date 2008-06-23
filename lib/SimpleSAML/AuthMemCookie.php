@@ -47,6 +47,25 @@ class SimpleSAML_AuthMemCookie {
 
 
 	/**
+	 * Retrieve the login method which should be used to authenticate the user.
+	 *
+	 * @return  The login type which should be used for Auth MemCookie.
+	 */
+	public function getLoginMethod() {
+		$loginMethod = $this->amcConfig->getValue('loginmethod', 'saml2');
+		$supportedLogins = array(
+			'saml2',
+			'shib13',
+			);
+		if(!in_array($loginMethod, $supportedLogins, TRUE)) {
+			throw new Exception('Configuration option \'loginmethod\' contains an invalid value.');
+		}
+
+		return $loginMethod;
+	}
+
+
+	/**
 	 * This function retrieves the name of the cookie from the configuration.
 	 *
 	 * @return The name of the cookie.
