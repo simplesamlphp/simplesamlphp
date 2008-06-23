@@ -105,28 +105,42 @@ class SimpleSAML_XML_Validator {
 
 
 	/**
-	 * This function validates that the fingerprint of the certificate which was used to
-	 * sign this document matches the given fingerprint. An exception will be thrown if
-	 * the fingerprints doesn't match.
+	 * Validate the fingerprint of the certificate which was used to sign this document.
 	 *
-	 * @param $fingerprint  The fingerprint which should match.
+	 * This function accepts either a string, or an array of strings as a parameter. If this
+	 * is an array, then any string (certificate) in the array can match. If this is a string,
+	 * then that string must match,
+	 *
+	 * @param $fingerprints  The fingerprints which should match. This can be a single string,
+	 *                       or an array of fingerprints.
 	 */
-	public function validateFingerprint($fingerprint) {
-		assert('is_string($fingerprint)');
+	public function validateFingerprint($fingerprints) {
+		assert('is_string($fingerprints) || is_array($fingerprints)');
 
 		if($this->x509Fingerprint === NULL) {
 			throw new Exception('Key used to sign the message was not an X509 certificate.');
 		}
 
-		/* Make sure that the fingerprint is in the correct format. */
-		$fingerprint = strtolower(str_replace(":", "", $fingerprint));
-
-		/* Compare the fingerprints. Throw an exception if they didn't match. */
-		if ($fingerprint !== $this->x509Fingerprint) {
-			throw new Exception('Expecting certificate fingerprint [' . $fingerprint . '] but got [' . $this->x509Fingerprint . ']');
+		if(!is_array($fingerprints)) {
+			$fingerprints = array($fingerprints);
 		}
 
-		/* The fingerprints matched. */
+		foreach($fingerprints as $fp) {
+			assert('is_string($fp)');
+
+			/* Make sure that the fingerprint is in the correct format. */
+			$fp = strtolower(str_replace(":", "", $fp));
+
+			if($fp === $this->x509Fingerprint) {
+				/* The fingerprints matched. */
+				return;
+			}
+
+		}
+
+		/* None of the fingerprints matched. Throw an exception describing the error. */
+		throw new Exception('Invalid fingerprint of certificate. Expected one of [' .
+			implode('], [', $fingerprints) . '], but got [' . $this->x509Fingerprint . ']');
 	}
 
 
