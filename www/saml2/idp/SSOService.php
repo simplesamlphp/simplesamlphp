@@ -182,7 +182,27 @@ if($needAuth && !$isPassive) {
 		'AuthId' => $authId,
 		'protocol' => 'saml2',
 	));
-		
+
+} elseif($needAuth) {
+	/* We have a passive request, but need authentication. Send back a response indicating that
+	 * the user didn't have a valid session.
+	 */
+
+	try {
+
+		/* Generate an SAML 2.0 AuthNResponse message
+		 * With statusCode: urn:oasis:names:tc:SAML:2.0:status:NoPassive
+		 */
+		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
+		$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], null, array(), 'NoPassive');
+
+		/* Sending the AuthNResponse using HTTP-Post SAML 2.0 binding. */
+		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
+		$httppost->sendResponse($authnResponseXML, $idpentityid, $requestcache['Issuer'], $requestcache['RelayState']);
+	} catch(Exception $exception) {
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
+	}
+
 /**
  * We got an request, and we have a valid session. Then we send an AuthnResponse back to the
  * service.
@@ -201,19 +221,6 @@ if($needAuth && !$isPassive) {
 		$session->add_sp_session($spentityid);
 
 		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Sending back AuthnResponse to ' . $spentityid);
-		
-		if ($isPassive) {
-			/* Generate an SAML 2.0 AuthNResponse message
-			   With statusCode: urn:oasis:names:tc:SAML:2.0:status:NoPassive
-			*/
-			$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-			$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestcache['RequestID'], null, array(), 'NoPassive');
-		
-			// Sending the AuthNResponse using HTTP-Post SAML 2.0 binding
-			$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
-			$httppost->sendResponse($authnResponseXML, $idpentityid, $spentityid, $requestcache['RelayState']);
-			exit;
-		}
 		
 		/*
 		 * Attribute handling
