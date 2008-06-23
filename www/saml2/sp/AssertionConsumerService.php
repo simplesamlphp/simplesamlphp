@@ -38,9 +38,11 @@ try {
 	$authnResponse->process();
 
 	SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Successfully created local session from Authentication Response');
+
+	/* The response should include the entity id of the IdP. */
+	$idpentityid = $authnResponse->findIssuer();
 	
-	
-	$idpmetadata = $metadata->getMetaData($session->getIdP(), 'saml20-idp-remote');
+	$idpmetadata = $metadata->getMetaData($idpentityid, 'saml20-idp-remote');
 	$spmetadata = $metadata->getMetaDataCurrent();
 	
 	
@@ -64,7 +66,7 @@ try {
 			SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
 		}
 	} 
-	SimpleSAML_Logger::stats('saml20-sp-SSO ' . $metadata->getMetaDataCurrentEntityID() . ' ' . $session->getIdP() . ' ' . $realmstr);
+	SimpleSAML_Logger::stats('saml20-sp-SSO ' . $metadata->getMetaDataCurrentEntityID() . ' ' . $idpentityid . ' ' . $realmstr);
 	
 	
 	$afilter->processFilter($idpmetadata, $spmetadata);
@@ -73,7 +75,7 @@ try {
 	SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Completed attribute handling');
 	
 	
-
+	$session->setIdP($idpentityid);
 		
 		
 
