@@ -415,7 +415,8 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 		$ret['SingleSignOnService'] = $sso['location'];
 
-		/* Find the certificate fingerprint. */
+		/* Find the certificate fingerprints. */
+		$ret['certFingerprint'] = array();
 		foreach($idp['keys'] as $key) {
 			if($key['type'] !== 'X509Certificate') {
 				continue;
@@ -423,7 +424,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 			$certData = base64_decode($key['X509Certificate']);
 			if($certData === FALSE) {
-				break;
+				continue;
 				/*
 				 * At 2008-06-18 we removed the requirement for certificate to be emedded in metadata. Instead
 				 * of throwing an exception which caused the whole parsing to crash, we just skip adding the
@@ -433,7 +434,7 @@ class SimpleSAML_Metadata_SAMLParser {
 				 */
 			}
 
-			$ret['certFingerprint'] = sha1($certData);
+			$ret['certFingerprint'][] = sha1($certData);
 			break;
 		}
 
@@ -558,6 +559,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 		/* Find the certificate fingerprint. */
+		$ret['certFingerprint'] = array();
 		foreach($idp['keys'] as $key) {
 			if($key['type'] !== 'X509Certificate') {
 				continue;
@@ -568,7 +570,7 @@ class SimpleSAML_Metadata_SAMLParser {
 				throw new Exception('Unable to parse base64 encoded certificate data.');
 			}
 
-			$ret['certFingerprint'] = sha1($certData);
+			$ret['certFingerprint'][] = sha1($certData);
 			break;
 		}
 
