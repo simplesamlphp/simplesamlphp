@@ -107,6 +107,11 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 			$signResponse = $this->configuration->getBoolean('saml20.signresponse', FALSE);
 		}
 
+		/* Check if we have an assertion to sign. Force to sign the response if not. */
+		if($firstassertionroot === NULL) {
+			$signResponse = TRUE;
+		}
+
 		if($signResponse) {
 			/* Sign the response. */
 
