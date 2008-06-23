@@ -282,6 +282,20 @@ if($needAuth && !$isPassive) {
 				$t->data['consent_cookie'] = $requestcache['ConsentCookie'];
 				$t->data['usestorage'] = $consent->useStorage();
 				$t->data['noconsent'] = '/' . $config->getBaseURL() . 'noconsent.php';
+
+				if (array_key_exists('privacypolicy', $spmetadata)) {
+					$privacypolicy = $spmetadata['privacypolicy'];
+				} elseif (array_key_exists('privacypolicy', $idpmetadata)) {
+					$privacypolicy = $idpmetadata['privacypolicy'];
+				} else {
+					$privacypolicy = FALSE;
+				}
+				if($privacypolicy !== FALSE) {
+					$privacypolicy = str_replace('%SPENTITYID%', urlencode($spentityid),
+						$privacypolicy);
+				}
+				$t->data['sppp'] = $privacypolicy;
+
 				$t->show();
 				exit;
 			}

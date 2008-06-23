@@ -541,6 +541,17 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
               page.</para>
             </glossdef>
           </glossentry>
+
+          <glossentry>
+            <glossterm>privacypolicy</glossterm>
+
+            <glossdef>
+              <para>This is an absolute URL for where an user can find a
+              privacypolicy. If set, this will be shown on the consent page.
+              <literal>%SPENTITYID%</literal> in the URL will be replaced with
+              the entity id of the service the user is accessing.</para>
+            </glossdef>
+          </glossentry>
         </glosslist>
       </section>
 
@@ -852,6 +863,17 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
               <literal>saml2.signresponse</literal> in
               <literal>config.php</literal> will be used. That value is
               <literal>FALSE</literal> by default.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>privacypolicy</glossterm>
+
+            <glossdef>
+              <para>This is an absolute URL for where an user can find a
+              privacypolicy for this SP. If set, this will be shown on the
+              consent page. <literal>%SPENTITYID%</literal> in the URL will be
+              replaced with the entity id of this service provider.</para>
             </glossdef>
           </glossentry>
         </glosslist>

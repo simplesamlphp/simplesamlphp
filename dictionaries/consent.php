@@ -79,6 +79,11 @@ $lang = array(
 		'hr' => 'Tijekom procesa prijavljivanja vaša matična ustanova će servisu poslati atribute koji sadrže podatke o vašem identitetu. Slažete li se s time?',
 		'hu' => 'Az azonosítás során az azonosító szolgáltató személyes adatokat fog küldeni ennek a szolgáltatásnak. Engedélyezi?',
 	),
+	'consent_privacypolicy' => array (
+		'en' => 'Privacypolicy for the service',
+		'sv' => 'Registerbeskrivning för tjänsten',
+		'fi' => 'Tietosuojaseloste palvelulle',
+	),
 	'login' => array (
 		'no' => 'innlogging',
 		'nn' => 'Logg inn',

@@ -11,6 +11,12 @@
 		<?php echo htmlspecialchars($this->t('consent_accept')) ?> 
 		</p>
 
+		<?php if ($this->data['sppp'] !== FALSE) {
+			echo "<p>" . htmlspecialchars($this->t('consent_privacypolicy')) . " ";
+			echo "<a target='_new_window' href='" . htmlspecialchars($this->data['sppp']) . "'>" . htmlspecialchars($this->t('spname')) . "</a>";
+			echo "</p>";
+		} ?>
+
 		<form style="display: inline" action="<?php echo htmlspecialchars($this->data['consenturl']); ?>">
 			<input type="submit" value="<?php echo htmlspecialchars($this->t('yes')) ?>" />
 			<input type="hidden" name="consent" value="<?php echo htmlspecialchars($this->data['consent_cookie']); ?>" />
