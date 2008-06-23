@@ -476,19 +476,17 @@ class SimpleSAML_Session {
 	private function callLogoutHandlers() {
 		foreach($this->logout_handlers as $handler) {
 
-			$logout_handler = array($classname, $functionname);
-
 			/* Verify that the logout handler is a valid function. */
-			if(!is_callable($logout_handler)) {
-				$classname = $logout_handler[0];
-				$functionname = $logout_handler[1];
+			if(!is_callable($handler)) {
+				$classname = $handler[0];
+				$functionname = $handler[1];
 
 				throw new Exception('Logout handler is not a vaild function: ' . $classname . '::' .
 					$functionname);
 			}
 
 			/* Call the logout handler. */
-			call_user_func($logout_handler);
+			call_user_func($handler);
 
 		}
 
