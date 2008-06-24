@@ -45,21 +45,6 @@ Functions to generate simple cases of Exclusive Canonical XML - Callable functio
 i.e.: $canonical = C14NGeneral($domelement, TRUE);
 */
 
-
-
-/**
- * Older versions of PHP does not have the hash function, so we implement it
- * if it does not exists
- */
-if(!function_exists('hash')) {
-	function hash($algo, $data, $raw_output = 0) {
-		if($algo == 'md5') return(md5($data, $raw_output));
-		if($algo == 'sha1') return(sha1($data, $raw_output));
-		throw new Exception('xmlseclibs added hash() method: Hashing algoritm: ' . $algo . ' is not implemented');
-	}
-}
-
-
 /* helper function */
 function sortAndAddAttrs($element, $arAtts) {
    $newAtts = array();
@@ -206,8 +191,11 @@ class XMLSecurityKey {
     public $encryptedCtx = NULL;
     public $guid = NULL;
 
-    /* This variable contains the certificate ifif this key represents an X509-certificate. */
-    private $X509Certificate = NULL;
+    /**
+     * This variable contains the certificate as a string if this key represents an X509-certificate.
+     * If this key doesn't represent a certificate, this will be NULL.
+     */
+    private $x509Certificate = NULL;
 
     public function __construct($type, $params=NULL) {
         srand();
@@ -314,8 +302,10 @@ class XMLSecurityKey {
         if ($isCert) {
             $this->key = openssl_x509_read($this->key);
             openssl_x509_export($this->key, $str_cert);
-            $this->X509Certificate = $str_cert;
+            $this->x509Certificate = $str_cert;
             $this->key = $str_cert;
+        } else {
+            $this->x509Certificate = NULL;
         }
         if ($this->cryptParams['library'] == 'openssl') {
             if ($this->cryptParams['type'] == 'public') {
@@ -519,7 +509,7 @@ class XMLSecurityKey {
      * @return  The X509 certificate or NULL if this key doesn't represent an X509-certificate.
      */
     public function getX509Certificate() {
-        return $this->X509Certificate;
+        return $this->x509Certificate;
     }
 }
 
@@ -702,9 +692,13 @@ class XMLSecurityDSig {
         }
         if (function_exists('hash')) {
             return base64_encode(hash($alg, $data, TRUE));
-        } else {
+        } elseif (function_exists('mhash')) {
             $alg = "MHASH_" . strtoupper($alg);
             return base64_encode(mhash(constant($alg), $data));
+        } elseif ($alg === 'sha1') {
+            return base64_encode(sha1($data, TRUE));
+        } else {
+            throw new Exception('xmlseclibs is unable to calculate a digest. Maybe you need the mhash library?');
         }
     }
 
@@ -1063,31 +1057,30 @@ class XMLSecurityDSig {
         }
     }
 	
-	
-	/**
-	 * This function inserts the signature element.
-	 *
-	 * The signature element will be appended to the element, unless $beforeNode is specified. If $beforeNode
-	 * is specified, the signature element will be inserted as the last element before $beforeNode.
-	 *
-	 * @param $node  The node the signature element should be inserted into.
-	 * @param $beforeNode  The node the signature element should be located before.
-	 */
-	public function insertSignature($node, $beforeNode = NULL) {
+    /**
+     * This function inserts the signature element.
+     *
+     * The signature element will be appended to the element, unless $beforeNode is specified. If $beforeNode
+     * is specified, the signature element will be inserted as the last element before $beforeNode.
+     *
+     * @param $node  The node the signature element should be inserted into.
+     * @param $beforeNode  The node the signature element should be located before.
+     */
+    public function insertSignature($node, $beforeNode = NULL) {
 
-		if($node instanceof DOMDocument) {
-			$node = $node->firstChild;
-		}
+        if($node instanceof DOMDocument) {
+            $node = $node->firstChild;
+        }
 
-		$document = $node->ownerDocument;
-		$signatureElement = $document->importNode($this->sigNode, TRUE);
+        $document = $node->ownerDocument;
+        $signatureElement = $document->importNode($this->sigNode, TRUE);
 
-		if($beforeNode == NULL) {
-			$node->insertBefore($signatureElement);
-		} else {
-			$node->insertBefore($signatureElement, $beforeNode);
-		}
-	}
+        if($beforeNode == NULL) {
+            $node->insertBefore($signatureElement);
+        } else {
+            $node->insertBefore($signatureElement, $beforeNode);
+        }
+    }
 
     static function get509XCert($cert, $isPEMFormat=TRUE) {
         $certs = XMLSecurityDSig::staticGet509XCerts($cert, $isPEMFormat);
