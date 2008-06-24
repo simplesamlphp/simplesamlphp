@@ -1097,8 +1097,6 @@ class XMLSecurityDSig {
         $objKey->serializeKey($parent);
     }
 
-
-	/*
     public function appendSignature($parentNode, $insertBefore = FALSE) {
         $baseDoc = ($parentNode instanceof DOMDocument)?$parentNode:$parentNode->ownerDocument;
         $newSig = $baseDoc->importNode($this->sigNode, TRUE);
@@ -1108,48 +1106,6 @@ class XMLSecurityDSig {
             $parentNode->appendChild($newSig);
         }
     }
-	*/
-	
-
-	public function appendSignatureShib($parentNode, $insertBefore = FALSE, $assertion = false) {
-		$baseDoc = ($parentNode instanceof DOMDocument)?$parentNode:$parentNode->ownerDocument;
-		$newSig = $baseDoc->importNode($this->sigNode, TRUE);
-
-	
-	
-		$xnode = null;
-		
-		$xpath = new DOMXPath($baseDoc);
-		$xpath->registerNamespace('secdsig', XMLSecurityDSig::XMLDSIGNS);
-		$xpath->registerNamespace('samlp', 'urn:oasis:names:tc:SAML:1.0:protocol');
-		$xpath->registerNamespace('saml', 'urn:oasis:names:tc:SAML:1.0:assertion');
-
-
-		if ($insertBefore && !$assertion) {
-
-			$query = "//samlp:Status";
-			$nodeset = $xpath->query($query, $parentNode);
-
-			$xnode = $nodeset->item(0);
-			if (!$xnode)
-				throw new Exception("Could not find node to sign before (Root signing mode)");
-		
-			$parentNode->insertBefore($newSig, $xnode);
-			
-		} elseif ($insertBefore) {
-			
-			$query = "//saml:Assertion/saml:Subject";
-			$nodeset = $xpath->query($query, $parentNode);
-
-			$xnode = $nodeset->item(0);
-			if (!$xnode)
-				throw new Exception("Could not find node to sign before (Assertion signing mode)");
-
-			$parentNode->insertBefore($newSig, $xnode);
-		} else {
-			$parentNode->appendChild($newSig);
-		}
-	}
 	
 	
 	/**
@@ -1177,47 +1133,6 @@ class XMLSecurityDSig {
 		}
 	}
 
-
-	public function appendSignature($parentNode, $insertBefore = false, $assertion = false) {
-		$baseDoc = ($parentNode instanceof DOMDocument)?$parentNode:$parentNode->ownerDocument;
-		$newSig = $baseDoc->importNode($this->sigNode, TRUE);
-
-	
-	
-		$xnode = null;
-		
-		$xpath = new DOMXPath($baseDoc);
-		$xpath->registerNamespace('secdsig', XMLSecurityDSig::XMLDSIGNS);
-		$xpath->registerNamespace('samlp', 'urn:oasis:names:tc:SAML:2.0:protocol');
-		$xpath->registerNamespace('saml', 'urn:oasis:names:tc:SAML:2.0:assertion');
-
-
-		if ($insertBefore && !$assertion) {
-
-			$query = "//samlp:Status";
-			$nodeset = $xpath->query($query, $parentNode);
-
-			$xnode = $nodeset->item(0);
-			if (!$xnode)
-				throw new Exception("Could not find node to sign before (Root signing mode)");
-		
-			$parentNode->insertBefore($newSig, $xnode);
-			
-		} elseif ($insertBefore) {
-			
-			$query = "//saml:Assertion/saml:Subject";
-			$nodeset = $xpath->query($query, $parentNode);
-
-			$xnode = $nodeset->item(0);
-			if (!$xnode)
-				throw new Exception("Could not find node to sign before (Assertion signing mode)");
-
-			$parentNode->insertBefore($newSig, $xnode);
-		} else {
-			$parentNode->appendChild($newSig);
-		}
-	}
-	
     static function get509XCert($cert, $isPEMFormat=TRUE) {
         $certs = XMLSecurityDSig::staticGet509XCerts($cert, $isPEMFormat);
         if (! empty($certs)) {
