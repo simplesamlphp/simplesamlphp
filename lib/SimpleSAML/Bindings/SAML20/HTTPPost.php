@@ -63,24 +63,28 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		$spmd = $this->metadata->getMetaData($spentityid, 'saml20-sp-remote');
 		
 		$destination = $spmd['AssertionConsumerService'];
-	
-		$privatekey = $this->configuration->getPathValue('certdir') . $idpmd['privatekey'];
-		$publiccert = $this->configuration->getPathValue('certdir') . $idpmd['certificate'];
 
-		if (!file_exists($privatekey))
-			throw new Exception('Could not find private key file [' . $privatekey . '] which is needed to sign the authentication response');
+		if(!array_key_exists('privatekey', $idpmd)) {
+			throw new Exception('Missing \'privatekey\' option from metadata for idp: ' . $idpmetaindex);
+		}
 
-		if (!file_exists($publiccert)) 
-			throw new Exception('Could not find certificate [' . $publiccert . '] to attach to the authentication resposne');
+		if(!array_key_exists('certificate', $idpmd)) {
+			throw new Exception('Missing \'certificate\' option from metadata for idp: ' . $idpmetaindex);
+		}
 
-		
-		/*
-		 * XMLDSig. Sign the complete request with the key stored in cert/server.pem
-		 */
-		$objXMLSecDSig = new XMLSecurityDSig();
-		$objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
-	
-	
+		if(array_key_exists('privatekey_pass', $idpmd)) {
+			$passphrase = $idpmd['privatekey_pass'];
+		} else {
+			$passphrase = NULL;
+		}
+
+		$signer = new SimpleSAML_XML_Signer(array(
+			'privatekey' => $idpmd['privatekey'],
+			'privatekey_pass' => $passphrase,
+			'certificate' => $idpmd['certificate'],
+			'id' => 'ID',
+			));
+
 		try {
 			$responsedom = new DOMDocument();
 			$responsedom->loadXML(str_replace("\n", "", str_replace ("\r", "", $response)));
@@ -115,42 +119,22 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		if($signResponse) {
 			/* Sign the response. */
 
-			$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1,
-				array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
-				array('id_name' => 'ID'));
+			/* We insert the signature before the saml2p:Status element. */
+			$statusElements = SimpleSAML_Utilities::getDOMChildren($responseroot, 'Status', '@saml2p');
+			assert('count($statusElements) === 1');
+
+			$signer->sign($responseroot, $responseroot, $statusElements[0]);
 		} else {
 			/* Sign the assertion. */
 
-			$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1,
-				array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
-				array('id_name' => 'ID'));
-		}
-		
-		
-		/* create new XMLSecKey using RSA-SHA-1 and type is private key */
-		$objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
-		
-		/* Set the passphrase which should be used to open the key, if this attribute is
-		 * set in the metadata.
-		 */
-		if(array_key_exists('privatekey_pass', $idpmd)) {
-			$objKey->passphrase = $idpmd['privatekey_pass'];
+			/* We insert the signature before the saml2:Subject element. */
+			$subjectElements = SimpleSAML_Utilities::getDOMChildren(
+				$firstassertionroot, 'Subject', '@saml2');
+			assert('count($subjectElements) === 1');
+
+			$signer->sign($firstassertionroot, $firstassertionroot, $subjectElements[0]);
 		}
 
-		/* load the private key from file - last arg is bool if key in file (TRUE) or is string (FALSE) */
-		$objKey->loadKey($privatekey,TRUE);
-				
-		$objXMLSecDSig->sign($objKey);
-		
-		$public_cert = file_get_contents($publiccert);
-		$objXMLSecDSig->add509Cert($public_cert, true);
-
-		if($signResponse) {
-			$objXMLSecDSig->appendSignature($responseroot, true, false);
-		} else {
-			$objXMLSecDSig->appendSignature($firstassertionroot, true, true);
-		}
-		
 		if (isset($spmd['assertion.encryption']) && $spmd['assertion.encryption']) {
 			$encryptedassertion = $responsedom->createElement("saml:EncryptedAssertion");
 			$encryptedassertion->setAttribute("xmlns:saml", "urn:oasis:names:tc:SAML:2.0:assertion");
