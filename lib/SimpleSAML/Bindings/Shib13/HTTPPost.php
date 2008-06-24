@@ -71,96 +71,54 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		
 		$destination = $spmd['AssertionConsumerService'];
 		
-		if (!isset($destination) or $destination == '') 
+		if(!isset($destination) or $destination == '') {
 			throw new Exception('Could not find AssertionConsumerService for SP entity ID [' . $spentityid. ']. ' . 
 				'Claimed ACS is: ' . (isset($claimedacs) ? $claimedacs : 'N/A'));
-	
-		$privatekey = $this->configuration->getPathValue('certdir') . $idpmd['privatekey'];
-		$publiccert = $this->configuration->getPathValue('certdir') . $idpmd['certificate'];
-		$certchain_pem_file = isset($idpmd['certificatechain']) ? 
-			$this->configuration->getPathValue('certdir') . $idpmd['certificatechain'] : null;
-			
-#		throw new Exception('lookup: ' . $idpentityid);
+		}
 
-
-		if (!file_exists($privatekey)) throw new Exception('Could not find private key file [' . $privatekey . ']');
-		if (!file_exists($publiccert)) throw new Exception('Could not find public cert file [' . $publiccert . ']');
-		
-		$privatek = file_get_contents($privatekey);
-		
-		if (strstr($claimedacs, $destination) == 0) {
+		if(strpos($claimedacs, $destination) === 0) {
 			$destination = $claimedacs;
 		} else {
 			throw new Exception('Claimed ACS (shire) and ACS in SP Metadata do not match. [' . $claimedacs. '] [' . $destination . ']');
 		}
-		
-		
-		/*
-		 * XMLDSig. Sign the complete request with the key stored in cert/server.pem
-		 */
-		$objXMLSecDSig = new XMLSecurityDSig();
-		
-		$objXMLSecDSig->idKeys = array('ResponseID');
-		
-		$objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
+
+
+		if(!array_key_exists('privatekey', $idpmd)) {
+			throw new Exception('Missing \'privatekey\' option from metadata for idp: ' . $idpmetaindex);
+		}
+
+		if(!array_key_exists('certificate', $idpmd)) {
+			throw new Exception('Missing \'certificate\' option from metadata for idp: ' . $idpmetaindex);
+		}
+
+		if(array_key_exists('privatekey_pass', $idpmd)) {
+			$passphrase = $idpmd['privatekey_pass'];
+		} else {
+			$passphrase = NULL;
+		}
+
+		$signer = new SimpleSAML_XML_Signer(array(
+			'privatekey' => $idpmd['privatekey'],
+			'privatekey_pass' => $passphrase,
+			'certificate' => $idpmd['certificate'],
+			'id' => 'ResponseID',
+			));
+
+		if(array_key_exists('certificatechain', $idpmd)) {
+			$signer->addCertificate($idpmd['certificatechain']);
+		}
 		
 		$responsedom = new DOMDocument();
 		$responsedom->loadXML(str_replace ("\r", "", $response));
 		
 		$responseroot = $responsedom->getElementsByTagName('Response')->item(0);
-		//$firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
-		
-		
-		/**
-		 * Add a reference to what element we want to sign.
-		 *
-		 * TODO: Add option to sign assertion versus response	
-		 */
-		$objXMLSecDSig->addReferenceList(array($responseroot), XMLSecurityDSig::SHA1,
-			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
-			array('id_name' => 'ResponseID'));
 
-		/* create new XMLSecKey using RSA-SHA-1 and type is private key */
-		$objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
+		/* We insert the signature before the saml1p:Status element. */
+		$statusElements = SimpleSAML_Utilities::getDOMChildren($responseroot, 'Status', '@saml1p');
+		assert('count($statusElements) === 1');
 
-		/* Set the passphrase which should be used to open the key, if this attribute is
-		 * set in the metadata.
-		 */
-		if(array_key_exists('privatekey_pass', $idpmd)) {
-			$objKey->passphrase = $idpmd['privatekey_pass'];
-		}
+		$signer->sign($responseroot, $responseroot, $statusElements[0]);
 
-		/* load the private key from file - last arg is bool if key in file (TRUE) or is string (FALSE) */
-		#$objKey->loadKey($privatekey_pem,false);
-		$objKey->loadKey($privatek,false);
-		
-		$objXMLSecDSig->sign($objKey);
-		
-		$public_cert = file_get_contents($publiccert);
-				
-		$objXMLSecDSig->add509Cert($public_cert, true);
-		
-		if (isset($certchain_pem_file)) {
-			$certchain_pem = file_get_contents($certchain_pem_file);
-		
-			//echo '<pre>chain:' . $certchain_pem . '</pre>';
-			$certchain = XMLSecurityDSig::staticGet509XCerts($certchain_pem);
-#			foreach ($certchain AS $scert) {
-				$objXMLSecDSig->add509Cert($certchain_pem, true);
-#			}
-		}
-		
-		/*
-		$public_cert = file_get_contents("cert/edugain/public2.pem");
-		$objXMLSecDSig->add509Cert($public_cert, true);
-		
-		$public_cert = file_get_contents("cert/edugain/public3.pem");
-		$objXMLSecDSig->add509Cert($public_cert, true);
-		*/
-		
-		
-		$objXMLSecDSig->appendSignature($responseroot, true);
-		
 		$response = $responsedom->saveXML();
 		
 		
