@@ -244,6 +244,8 @@ class SimpleSAML_XHTML_Template {
 				
 			}
 			foreach ($replacements as $k => $v) {
+				/* try to translate if no replacement is given */
+				if (!$v) $v = $this->t($k);
 				$translated = str_replace($k, $v, $translated);
 			}
 			return $translated;
