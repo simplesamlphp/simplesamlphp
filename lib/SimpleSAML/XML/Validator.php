@@ -10,12 +10,6 @@
 class SimpleSAML_XML_Validator {
 
 	/**
-	 * This variable contains the fingerprint of the certificate the XML document
-	 * was signed with.
-	 */
-	private $x509Fingerprint;
-
-	/**
 	 * This variable contains the X509 certificate the XML document
 	 * was signed with, or NULL if it wasn't signed with an X509 certificate.
 	 */
@@ -80,9 +74,6 @@ class SimpleSAML_XML_Validator {
 			throw new Exception("Unable to validate Signature");
 		}
 
-		/* Extract the certificate fingerprint. */
-		$this->x509Fingerprint = $objKey->getX509Fingerprint();
-
 		/* Extract the certificate. */
 		$this->x509Certificate = $objKey->getX509Certificate();
 
@@ -105,6 +96,46 @@ class SimpleSAML_XML_Validator {
 
 
 	/**
+	 * Calculates the fingerprint of an X509 certificate.
+	 *
+	 * @param $x509cert  The certificate as a base64-encoded string. The string may optionally
+	 *                   be framed with '-----BEGIN CERTIFICATE-----' and '-----END CERTIFICATE-----'.
+	 * @return  The fingerprint as a 40-character lowercase hexadecimal number. NULL is returned if the
+	 *          argument isn't an X509 certificate.
+	 */
+	private static function calculateX509Fingerprint($x509cert) {
+		assert('is_string($x509cert)');
+
+		$lines = explode("\n", $x509cert);
+
+		$data = '';
+
+		foreach($lines as $line) {
+			/* Remove '\r' from end of line if present. */
+			$line = rtrim($line);
+			if($line === '-----BEGIN CERTIFICATE-----') {
+				/* Delete junk from before the certificate. */
+				$data = '';
+			} elseif($line === '-----END CERTIFICATE-----') {
+				/* Ignore data after the certificate. */
+				break;
+			} elseif($line === '-----BEGIN PUBLIC KEY-----') {
+				/* This isn't an X509 certificate. */
+				return NULL;
+			} else {
+				/* Append the current line to the certificate data. */
+				$data .= $line;
+			}
+		}
+
+		/* $data now contains the certificate as a base64-encoded string. The fingerprint
+		 * of the certificate is the sha1-hash of the certificate.
+		 */
+		return strtolower(sha1(base64_decode($data)));
+	}
+
+
+	/**
 	 * Validate the fingerprint of the certificate which was used to sign this document.
 	 *
 	 * This function accepts either a string, or an array of strings as a parameter. If this
@@ -117,9 +148,10 @@ class SimpleSAML_XML_Validator {
 	public function validateFingerprint($fingerprints) {
 		assert('is_string($fingerprints) || is_array($fingerprints)');
 
-		if($this->x509Fingerprint === NULL) {
+		if($this->x509Certificate === NULL) {
 			throw new Exception('Key used to sign the message was not an X509 certificate.');
 		}
+		$certFingerprint = self::calculateX509Fingerprint($this->x509Certificate);
 
 		if(!is_array($fingerprints)) {
 			$fingerprints = array($fingerprints);
@@ -131,7 +163,7 @@ class SimpleSAML_XML_Validator {
 			/* Make sure that the fingerprint is in the correct format. */
 			$fp = strtolower(str_replace(":", "", $fp));
 
-			if($fp === $this->x509Fingerprint) {
+			if($fp === $certFingerprint) {
 				/* The fingerprints matched. */
 				return;
 			}
@@ -140,7 +172,7 @@ class SimpleSAML_XML_Validator {
 
 		/* None of the fingerprints matched. Throw an exception describing the error. */
 		throw new Exception('Invalid fingerprint of certificate. Expected one of [' .
-			implode('], [', $fingerprints) . '], but got [' . $this->x509Fingerprint . ']');
+			implode('], [', $fingerprints) . '], but got [' . $certFingerprint . ']');
 	}
 
 
