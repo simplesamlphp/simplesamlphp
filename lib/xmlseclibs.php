@@ -37,7 +37,7 @@
  * @author     Robert Richards <rrichards@cdatazone.org>
  * @copyright  2007 Robert Richards <rrichards@cdatazone.org>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    1.2.0
+ * @version    1.2.1-dev
  */
 
 /*
@@ -80,6 +80,12 @@ function canonical($tree, $element, $withcomments) {
         $dom = $tree;
     }
     if ($element->nodeType != XML_ELEMENT_NODE) {
+        if ($element->nodeType == XML_DOCUMENT_NODE) {
+            foreach ($element->childNodes AS $node) {
+                canonical($dom, $node, $withcomments);
+            }
+            return;
+        }
         if ($element->nodeType == XML_COMMENT_NODE && ! $withcomments) {
             return;
         }
@@ -165,8 +171,8 @@ function C14NGeneral($element, $exclusive=FALSE, $withcomments=FALSE) {
         return $element->C14N($exclusive, $withcomments);
     }
 
-    /* Must be element */
-    if (! $element instanceof DOMElement) {
+    /* Must be element or document */
+    if (! $element instanceof DOMElement && ! $element instanceof DOMDocument) {
         return NULL;
     }
     /* Currently only exclusive XML is supported */
@@ -372,7 +378,7 @@ class XMLSecurityKey {
     private function encryptOpenSSL($data) {
         if ($this->cryptParams['type'] == 'public') {
             if (! openssl_public_encrypt($data, $encrypted_data, $this->key, $this->cryptParams['padding'])) {
-                throw new Exception('Failure encrypting Data ' . openssl_error_string() . "###" . $this->key);
+                throw new Exception('Failure encrypting Data');
                 return;
             }
         } else {
@@ -392,7 +398,7 @@ class XMLSecurityKey {
             }
         } else {
             if (! openssl_private_decrypt($data, $decrypted, $this->key, $this->cryptParams['padding'])) {
-                throw new Exception('Failure decrypting Data' . openssl_error_string() . "###" . $this->key);
+                throw new Exception('Failure decrypting Data');
                 return;
             }
         }
@@ -694,7 +700,12 @@ class XMLSecurityDSig {
             default:
                 throw new Exception("Cannot validate digest: Unsupported Algorith <$digestAlgorithm>");
         }
-        return base64_encode(hash($alg, $data, TRUE));
+        if (function_exists('hash')) {
+            return base64_encode(hash($alg, $data, TRUE));
+        } else {
+            $alg = "MHASH_" . strtoupper($alg);
+            return base64_encode(mhash(constant($alg), $data));
+        }
     }
 
     public function validateDigest($refNode, $data) {
@@ -882,7 +893,7 @@ class XMLSecurityDSig {
             $prefix = empty($options['prefix'])?NULL:$options['prefix'];
             $prefix_ns = empty($options['prefix_ns'])?NULL:$options['prefix_ns'];
             $id_name = empty($options['id_name'])?'Id':$options['id_name'];
-            $overwrite_id = empty($options['overwrite'])?TRUE:(bool)$options['overwrite'];
+            $overwrite_id = !isset($options['overwrite'])?TRUE:(bool)$options['overwrite'];
         }
 
         $attname = $id_name;
