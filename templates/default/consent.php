@@ -3,12 +3,13 @@
 	
 	$this->includeLanguageFile('consent.php'); 
 	$this->includeInlineTranslation('spname', $this->data['sp_name']);
+	$this->includeInlineTranslation('IDPNAME', $this->data['idp_name']);
 ?>
 
 	<div id="content">
 
 		<p><?php echo htmlspecialchars($this->t('consent_notice')); ?> <strong><?php echo htmlspecialchars($this->t('spname')); ?></strong>.
-		<?php echo htmlspecialchars($this->t('consent_accept')) ?> 
+		<?php echo htmlspecialchars($this->t('consent_accept', true, true, array('IDPNAME' => ''))) ?> 
 		</p>
 
 		<?php if ($this->data['sppp'] !== FALSE) {
@@ -28,7 +29,7 @@
 		<form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noconsent']); ?>" method="GET">
 			<input type="submit" value="<?php echo htmlspecialchars($this->t('no')) ?>" />
 		</form>
-
+		<p>
 
 		<table style="font-size: x-small">
 <?php
