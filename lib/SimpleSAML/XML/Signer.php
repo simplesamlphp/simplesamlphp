@@ -33,6 +33,11 @@ class SimpleSAML_XML_Signer {
 	private $certificate;
 
 
+	/**
+	 * Extra certificates which should be included in the response.
+	 */
+	private $extraCertificates;
+
 
 	/**
 	 * Constructor for the metadata signer.
@@ -59,6 +64,7 @@ class SimpleSAML_XML_Signer {
 		$this->idAttrName = FALSE;
 		$this->privateKey = FALSE;
 		$this->certificate = FALSE;
+		$this->extraCertificates = array();
 
 		if(array_key_exists('privatekey', $options)) {
 			$pass = NULL;
@@ -144,6 +150,32 @@ class SimpleSAML_XML_Signer {
 		$this->idAttrName = $idAttrName;
 	}
 
+
+	/**
+	 * Add an extra certificate to the certificate chain in the signature.
+	 *
+	 * Extra certificates will be added to the certificate chain in the order they
+	 * are added.
+	 *
+	 * @param $file  The file which contains the certificate, relative to the cert-directory.
+	 */
+	public function addCertificate($file) {
+		assert('is_string($file)');
+
+		$certFile = self::$certDir . $file;
+		if (!file_exists($certFile)) {
+			throw new Exception('Could not find extra certificate file "' . $certFile . '".');
+		}
+
+		$certificate = file_get_contents($certFile);
+		if($certificate === FALSE) {
+			throw new Exception('Unable to read extra certificate file "' . $certFile . '".');
+		}
+
+		$this->extraCertificates[] = $certificate;
+	}
+
+
 	/**
 	 * Signs the given DOMElement and inserts the signature at the given position.
 	 *
@@ -186,6 +218,10 @@ class SimpleSAML_XML_Signer {
 			$objXMLSecDSig->add509Cert($this->certificate, TRUE);
 		}
 
+		/* Add extra certificates. */
+		foreach($this->extraCertificates as $certificate) {
+			$objXMLSecDSig->add509Cert($certificate, TRUE);
+		}
 
 		$objXMLSecDSig->insertSignature($insertInto, $insertBefore);
 	}
