@@ -20,6 +20,9 @@ class SimpleSAML_XHTML_IdPDisco {
 		'shib13' => array(
 			'metadata' => 'shib13-idp-remote',
 			),
+		'wsfed' => array(
+			'metadata' => 'wsfed-idp-remote',
+			),
 		);
 
 

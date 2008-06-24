@@ -37,9 +37,6 @@ try {
 
 if ($idpentityid == null) {
 
-	throw new Exception('IdP discovery for WS-Fed is currently unsupported.');
-	/* TODO: Add idpdisco.php */
-
 	SimpleSAML_Logger::info('WS-Fed - SP.initSSO: No chosen or default IdP, go to WSFeddisco');
 
 	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'wsfed/sp/idpdisco.php', array(
