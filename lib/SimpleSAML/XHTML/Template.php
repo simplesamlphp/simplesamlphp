@@ -207,7 +207,7 @@ class SimpleSAML_XHTML_Template {
 	 * @param $replacements		 An associative array of keys that should be replaced with values in the translated string.
 	 * @param $striptags		 Should HTML tags be stripped from the translation
 	 */
-	private function t($tag, $fallbacktag = TRUE, $fallbackdefault = true, $replacements = array(), $striptags = false) {
+	public function t($tag, $fallbacktag = TRUE, $fallbackdefault = true, $replacements = array(), $striptags = false) {
 		
 		if (empty($this->langtext) || !is_array($this->langtext)) {
 			SimpleSAML_Logger::error('Template: No language text loaded. Looking up [' . $tag . ']');
