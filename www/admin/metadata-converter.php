@@ -52,7 +52,7 @@ try {
 	}
 
 
-	$template = new SimpleSAML_XHTML_Template($config, 'metadata-converter.php');
+	$template = new SimpleSAML_XHTML_Template($config, 'metadata-converter.php', 'admin.php');
 
 	$template->data['xmldata'] = $xmldata;
 	$template->data['output'] = $output;

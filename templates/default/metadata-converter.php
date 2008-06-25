@@ -1,11 +1,11 @@
 <?php
-$this->data['header'] = 'Metadata parser';
+$this->data['header'] = $this->t('metaconv_title');
 $this->includeAtTemplateBase('includes/header.php');
 ?>
 
 <div id="content">
 
-<h2>Metadata parser</h2>
+<h2><?php echo $this->t('metaconv_title'); ?></h2>
 
 <form action="?" method="post">
 
@@ -14,7 +14,7 @@ $this->includeAtTemplateBase('includes/header.php');
 <textarea rows="20" cols="75" name="xmldata"><?php echo htmlspecialchars($this->data['xmldata']); ?></textarea>
 </p>
 <p>
-<input type="submit" value="Parse" />
+<input type="submit" value="<?php echo $this->t('metaconv_parse'); ?>" />
 </p>
 </form>
 
@@ -24,7 +24,7 @@ $output = $this->data['output'];
 
 if($output !== NULL) {
 
-	echo('<h2>Converted metadata</h2>' . "\n");
+	echo('<h2>' . $this->t('metaconv_converted') . '</h2>' . "\n");
 
 	foreach($output as $type => $text) {
 		if($text === '') {

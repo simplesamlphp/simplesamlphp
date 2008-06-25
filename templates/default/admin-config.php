@@ -1,6 +1,6 @@
 <?php
 
-$this->data['header'] = 'Configuration check';
+$this->data['header'] = $this->t('cfg_check_header');
 
 if(array_key_exists('file', $this->data)) {
 	$this->data['header'] .= ' - ' . htmlspecialchars($this->data['file']);
@@ -16,7 +16,7 @@ $this->includeAtTemplateBase('includes/header.php');
 <?php
 if(array_key_exists('files', $this->data)) {
 	/* File list. */
-	echo('<p>Select configuration file to check:</p>');
+	echo('<p>' . $this->t('cfg_check_select_file') . '</p>');
 
 	echo('<ul>');
 	foreach($this->data['files'] as $file) {
@@ -39,7 +39,7 @@ if(array_key_exists('files', $this->data)) {
 	$superfluous = $this->data['superfluous'];
 
 	if(count($notices) > 0) {
-		echo('<h3>Notices</h3>');
+		echo('<h3>' . $this->t('notices') .' </h3>');
 		echo('<ul>');
 		foreach($notices as $i) {
 			$type = $i['type'];
@@ -59,7 +59,7 @@ if(array_key_exists('files', $this->data)) {
 	}
 
 	if(count($missing) > 0) {
-		echo('<h3>Options missing from config file</h3>');
+		echo('<h3>' . $this->t('cfg_check_missing') . '</h3>');
 		echo('<ul>');
 		foreach($missing as $i) {
 			echo('<li>' . htmlspecialchars($i) . '</li>');
@@ -68,7 +68,7 @@ if(array_key_exists('files', $this->data)) {
 	}
 
 	if(count($superfluous) > 0) {
-		echo('<h3>Superfluous options in config file</h3>');
+		echo('<h3>' . $this->t('cfg_check_superfluous') . '</h3>');
 		echo('<ul>');
 		foreach($superfluous as $i) {
 			echo('<li>' . htmlspecialchars($i) . '</li>');
@@ -77,10 +77,10 @@ if(array_key_exists('files', $this->data)) {
 	}
 
 	if(count($notices) === 0 && count($missing) === 0 && count($superfluous) === 0) {
-		echo('<p>No errors found.</p>');
+		echo('<p>' . $this->t('cfg_check_noerrors') . '</p>');
 	}
 
-	echo('<p><a href="' . htmlspecialchars($this->data['url']) . '">Go back to the file list</a></p>');
+	echo('<p><a href="' . htmlspecialchars($this->data['url']) . '">' . $this->t('cfg_check_back') . '</a></p>');
 }
 
 $this->includeAtTemplateBase('includes/footer.php');

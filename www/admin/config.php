@@ -196,7 +196,7 @@ if(array_key_exists('file', $_GET)) {
 
 
 /* Initialize template page. */
-$et = new SimpleSAML_XHTML_Template($config, 'admin-config.php');
+$et = new SimpleSAML_XHTML_Template($config, 'admin-config.php', 'admin.php');
 $et->data['url'] = SimpleSAML_Utilities::selfURLNoQuery();
 
 if($file === NULL) {

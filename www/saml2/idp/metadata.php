@@ -87,10 +87,10 @@ try {
 	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
 		$defaultidp = $config->getValue('default-saml20-idp');
 		
-		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php');
+		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin.php');
 		
 	
-		$t->data['header'] = 'SAML 2.0 IdP Metadata';
+		$t->data['header'] = 'saml20-idp';
 		$t->data['metaurl'] = SimpleSAML_Utilities::selfURLNoQuery();
 		$t->data['metadata'] = htmlentities($metaxml);
 		$t->data['metadataflat'] = htmlentities($metaflat);

@@ -19,7 +19,7 @@ try {
 
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-	$et = new SimpleSAML_XHTML_Template($config, 'admin-metadatalist.php');
+	$et = new SimpleSAML_XHTML_Template($config, 'admin-metadatalist.php', 'admin.php');
 
 
 	if ($config->getValue('enable.saml20-sp') === true) {
@@ -141,9 +141,6 @@ try {
 		$et->data['metadata.wsfed-idp-remote'] = $results;
 
 	}
-
-	$et->data['header'] = 'Metadata overview';
-	$et->data['icon'] = 'bino.png';
 
 	
 	$et->show();
