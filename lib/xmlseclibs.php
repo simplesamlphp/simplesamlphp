@@ -498,6 +498,7 @@ class XMLSecurityKey {
     public function serializeKey($parent) {
 
     }
+    
 
 
     /**
@@ -511,6 +512,7 @@ class XMLSecurityKey {
     public function getX509Certificate() {
         return $this->x509Certificate;
     }
+    
 }
 
 class XMLSecurityDSig {
@@ -539,7 +541,6 @@ class XMLSecurityDSig {
     private $canonicalMethod = NULL;
     private $prefix = 'ds';
     private $searchpfx = 'secdsig';
-
 
     /* This variable contains an associative array of validated nodes. */
     private $validatedNodes = NULL;
@@ -813,7 +814,7 @@ class XMLSecurityDSig {
 
         if ($dataObject instanceof DOMNode) {
             /* Add this node to the list of validated nodes. */
-            if($identifier) {
+            if(! empty($identifier)) {
                 $this->validatedNodes[$identifier] = $dataObject;
             } else {
                 $this->validatedNodes[] = $dataObject;
@@ -862,15 +863,14 @@ class XMLSecurityDSig {
         if ($nodeset->length == 0) {
             throw new Exception("Reference nodes not found");
         }
-
+        
         /* Initialize/reset the list of validated nodes. */
         $this->validatedNodes = array();
-
+        
         foreach ($nodeset AS $refNode) {
             if (! $this->processRefNode($refNode)) {
                 /* Clear the list of validated nodes. */
                 $this->validatedNodes = NULL;
-
                 throw new Exception("Reference validation failed");
             }
         }
@@ -1047,16 +1047,7 @@ class XMLSecurityDSig {
         $objKey->serializeKey($parent);
     }
 
-    public function appendSignature($parentNode, $insertBefore = FALSE) {
-        $baseDoc = ($parentNode instanceof DOMDocument)?$parentNode:$parentNode->ownerDocument;
-        $newSig = $baseDoc->importNode($this->sigNode, TRUE);
-        if ($insertBefore) {
-            $parentNode->insertBefore($newSig, $parentNode->firstChild);
-        } else {
-            $parentNode->appendChild($newSig);
-        }
-    }
-	
+
     /**
      * This function inserts the signature element.
      *
@@ -1068,10 +1059,6 @@ class XMLSecurityDSig {
      */
     public function insertSignature($node, $beforeNode = NULL) {
 
-        if($node instanceof DOMDocument) {
-            $node = $node->firstChild;
-        }
-
         $document = $node->ownerDocument;
         $signatureElement = $document->importNode($this->sigNode, TRUE);
 
@@ -1080,6 +1067,11 @@ class XMLSecurityDSig {
         } else {
             $node->insertBefore($signatureElement, $beforeNode);
         }
+    }
+
+    public function appendSignature($parentNode, $insertBefore = FALSE) {
+        $beforeNode = $insertBefore ? $parentNode->firstChild : NULL;
+        $this->insertSignature($parentNode, $beforeNode);
     }
 
     static function get509XCert($cert, $isPEMFormat=TRUE) {
@@ -1169,7 +1161,7 @@ class XMLSecurityDSig {
             self::staticAdd509Cert($this->sigNode, $cert, $isPEMFormat, $isURL, $xpath);
          }
     }
-
+    
     /* This function retrieves an associative array of the validated nodes.
      *
      * The array will contain the id of the referenced node as the key and the node itself
@@ -1478,4 +1470,3 @@ class XMLSecEnc {
         return XMLSecEnc::staticLocateKeyInfo($objBaseKey, $node);
     }
 }
-?>
