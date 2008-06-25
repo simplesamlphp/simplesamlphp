@@ -1,4 +1,5 @@
 <?php 
+	$this->data['autofocus'] = 'yesbutton';
 	$this->includeAtTemplateBase('includes/header.php');
 	
 	$this->includeLanguageFile('consent.php'); 
@@ -19,7 +20,7 @@
 		} ?>
 
 		<form style="display: inline" action="<?php echo htmlspecialchars($this->data['consenturl']); ?>">
-			<input type="submit" value="<?php echo htmlspecialchars($this->t('yes')) ?>" />
+			<input type="submit" id="yesbutton" value="<?php echo htmlspecialchars($this->t('yes')) ?>" />
 			<input type="hidden" name="consent" value="<?php echo htmlspecialchars($this->data['consent_cookie']); ?>" />
 			<input type="hidden" name="RequestID" value="<?php echo htmlspecialchars($this->data['requestid']); ?>" />
 			<?php if($this->data['usestorage']) { ?>
