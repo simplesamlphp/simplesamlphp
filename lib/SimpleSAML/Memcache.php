@@ -408,5 +408,23 @@ class SimpleSAML_Memcache {
 		return $ret;
 	}
 
+
+	/**
+	 * Retrieve statistics directly in the form returned by getExtendedStats, for
+	 * all server groups.
+	 *
+	 * @return Array with the extended stats output for each server group.
+	 */
+	public static function getRawStats() {
+		$ret = array();
+
+		foreach(self::getMemcacheServers() as $sg) {
+			$stats = $sg->getExtendedStats();
+			$ret[] = $stats;
+		}
+
+		return $ret;
+	}
+
 }
 ?>
