@@ -1,5 +1,4 @@
 <?php 
-	$this->data['autofocus'] = 'yesbutton';
 	$this->includeAtTemplateBase('includes/header.php');
 	
 	$this->includeLanguageFile('consent.php'); 
@@ -28,7 +27,7 @@
 			<?php } ?>
 		</form>
 		<form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noconsent']); ?>" method="GET">
-			<input type="submit" value="<?php echo htmlspecialchars($this->t('no')) ?>" />
+			<input type="submit" id="nobutton" value="<?php echo htmlspecialchars($this->t('no')) ?>" />
 		</form>
 		<p>
 

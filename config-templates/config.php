@@ -223,6 +223,16 @@ $config = array (
 	'consent_pdo_passwd' => 'xxxx',
 
 	/*
+	 * This option controls the initial focus in the consent form.
+	 * It has three possible values:
+	 * - NULL   No initial focus.
+	 * - 'yes'  The "yes"-button has focus.
+	 * - 'no'   The "no"-button has focus.
+	 */
+	'consent_autofocus' => NULL,
+
+
+	/*
 	 * This option configures the metadata sources. The metadata sources is given as an array with
 	 * different metadata sources. When searching for metadata, simpleSAMPphp will search through
 	 * the array from start to end.
