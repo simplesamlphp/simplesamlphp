@@ -209,7 +209,7 @@ if (!$session->isAuthenticated($authority) ) {
 				}
 				$t->data['sppp'] = $privacypolicy;
 
-				switch($config->getString('consent_autofocus', NULL)) {
+				switch($config->getValueValidate('consent_autofocus', array(NULL, 'yes', 'no'), NULL)) {
 				case NULL:
 					break;
 				case 'yes':
@@ -218,9 +218,6 @@ if (!$session->isAuthenticated($authority) ) {
 				case 'no':
 					$t->data['autofocus'] = 'nobutton';
 					break;
-				default:
-					throw new Exception('Invalid value for the consent_autofocus option.' .
-						' Should be one of NULL, \'yes\' or \'no\'.');
 				}
 
 				$t->show();
