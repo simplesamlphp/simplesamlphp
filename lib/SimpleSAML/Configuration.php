@@ -269,6 +269,52 @@ class SimpleSAML_Configuration {
 		return $ret;
 	}
 
+
+	/**
+	 * Retrieve a configuration option with one of the given values.
+	 *
+	 * This will check that the configuration option matches one of the given values. The match will use
+	 * strict comparison. An exception will be thrown if it does not match.
+	 *
+	 * The option can be mandatory or optional. If no default value is given, it will be considered to be
+	 * mandatory, and an exception will be thrown if it isn't provided. If a default value is given, it
+	 * is considered to be optional, and the default value is returned. The default value is automatically
+	 * included in the list of allowed values.
+	 *
+	 * @param $name  The name of the option.
+	 * @param $allowedValues  The values the option is allowed to take, as an array.
+	 * @param $default  The default value which will be returned if the option isn't found. If this parameter
+	 *                  isn't given, the option will be considered to be mandatory. The default value can be
+	 *                  any value, including NULL.
+	 * @return  The option with the given name, or $default if the option isn't found adn $default is given.
+	 */
+	public function getValueValidate($name, $allowedValues, $default = self::REQUIRED_OPTION) {
+		assert('is_string($name)');
+		assert('is_array($allowedValues)');
+
+		$ret = $this->getValue($name, $default);
+		if($ret === $default) {
+			/* The option wasn't found, or it matches the default value. In any case, return
+			 * this value.
+			 */
+			return $ret;
+		}
+
+		if(!in_array($ret, $allowedValues, TRUE)) {
+			$strValues = array();
+			foreach($allowedValues as $av) {
+				$strValues[] = var_export($av, TRUE);
+			}
+			$strValues = implode(', ', $strValues);
+
+			throw new Exception('Invalid value given for the option \'' . $name . '\' in \'' .
+				$this->configfilename . '\'. It should have one of the following values: ' .
+				$strValues . '; but it had the following value: ' . var_export($ret, TRUE));
+		}
+
+		return $ret;
+	}
+
 }
 
 ?>
