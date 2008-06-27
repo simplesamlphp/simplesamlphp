@@ -102,7 +102,7 @@ $config = array (
 	 *
 	 * The default is to use LOG_LOCAL5 if available, and fall back to LOG_USER if not.
 	 */
-	'logging.facility' => (constant('LOG_LOCAL5') !== NULL) ? constant('LOG_LOCAL5') : LOG_USER,
+	'logging.facility' => defined('LOG_LOCAL5') ? constant('LOG_LOCAL5') : LOG_USER,
 
 	/* Logging: file - Logfilename in the loggingdir from above.
 	 */
