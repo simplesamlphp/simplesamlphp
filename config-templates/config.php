@@ -90,10 +90,20 @@ $config = array (
 	'logging.level'         => LOG_NOTICE,
 	'logging.handler'       => 'syslog',
 	'logging.processname'       => 'simpleSAMLphp',
-	/* Logging: syslog - Choose a syslog facility to use for logging.
+
+	/*
+	 * Choose which facility should be used when logging with syslog.
+	 *
+	 * These can be used for filtering the syslog output from simpleSAMLphp into its
+	 * own file by configuring the syslog daemon.
+	 *
+	 * See the documentation for openlog (http://php.net/manual/en/function.openlog.php) for available
+	 * facilities. Note that only LOG_USER is valid on windows.
+	 *
+	 * The default is to use LOG_LOCAL5 if available, and fall back to LOG_USER if not.
 	 */
-	'logging.facility'      => LOG_LOCAL5,
-	
+	'logging.facility' => (constant('LOG_LOCAL5') !== NULL) ? constant('LOG_LOCAL5') : LOG_USER,
+
 	/* Logging: file - Logfilename in the loggingdir from above.
 	 */
 	'logging.logfile'		=> 'simplesamlphp.log',
