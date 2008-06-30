@@ -19,7 +19,8 @@ $this->includeAtTemplateBase('includes/header.php');
 			<legend>Choose your home organization</legend>
 				<select name="org" tabindex="1">
 				<?php
-					foreach ($this->data['ldapconfig'] AS $key => $entry) {
+					foreach ($this->data['allowedorgs'] AS $key) {
+						$entry = $this->data['ldapconfig'][$key];
 						echo '<option ' 
 						. ($key == $this->data['org'] ? 'selected="selected" ' : '')
 						. 'value="' . htmlspecialchars($key) . '">' . htmlspecialchars($entry['description']) . '</option>';

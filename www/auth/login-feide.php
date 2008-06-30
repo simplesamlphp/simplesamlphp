@@ -63,6 +63,16 @@ try {
 $spentityid = $authrequestcache['Issuer'];
 $spmetadata = $metadata->getMetadata($spentityid, 'saml20-sp-remote');
 
+/*
+ * Find the list of allowed organizations.
+ */
+$allowedOrgs = array_keys($ldaporgconfig);
+if(array_key_exists('feide.allowedorgs', $spmetadata)) {
+	assert('is_array($spmetadata["feide.allowedorgs"])');
+	$allowedOrgs = array_intersect($spmetadata['feide.allowedorgs'], $allowedOrgs);
+}
+
+
 $error = null;
 $attributes = array();
 
@@ -95,7 +105,12 @@ if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'change_org') {
 	$selectorg = true;
 }
 
-
+/*
+ * The user may have previously selected an organization which the SP doesn't allow. Correct this.
+ */
+if ($selectorg === FALSE && !in_array($org, $allowedOrgs, TRUE)) {
+	$selectorg = TRUE;
+}
 
 
 if (isset($_REQUEST['username'])) {	
@@ -260,13 +275,31 @@ $t->data['relaystate'] = $_REQUEST['RelayState'];
 $t->data['ldapconfig'] = $ldaporgconfig;
 $t->data['protocol'] = $protocol;
 $t->data['authid'] = $authid;
-$t->data['splogo'] = $spmetadata['logo'];
-$t->data['spdesc'] = $spmetadata['description'];
-$t->data['spname'] = $spmetadata['name'];
-$t->data['contact'] = $spmetadata['contact'];
+
+if(array_key_exists('logo', $spmetadata)) {
+	$t->data['splogo'] = $spmetadata['logo'];
+} else {
+	$t->data['splogo'] = NULL;
+}
+if(array_key_exists('description', $spmetadata)) {
+	$t->data['spdesc'] = $spmetadata['description'];
+} else {
+	$t->data['spdesc'] = NULL;
+}
+if(array_key_exists('name', $spmetadata)) {
+	$t->data['spname'] = $spmetadata['name'];
+} else {
+	$t->data['spname'] = NULL;
+}
+if(array_key_exists('contact', $spmetadata)) {
+	$t->data['contact'] = $spmetadata['contact'];
+} else {
+	$t->data['contact'] = NULL;
+}
 
 $t->data['selectorg'] = $selectorg;
 $t->data['org'] = $org;
+$t->data['allowedorgs'] = $allowedOrgs;
 $t->data['error'] = $error;
 if (isset($error)) {
 	$t->data['username'] = $_POST['username'];
