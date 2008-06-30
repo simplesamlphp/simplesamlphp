@@ -476,7 +476,13 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 	/**
 	 * This function processes a response message and adds information from it to the
-	 * current session if it is valid. It throws an exception if it is invalid.
+	 * current session if it is valid.
+	 *
+	 * An exception will be thrown on a processing error. If the status code is something
+	 * else than [...]:Success, FALSE will be returned, and no futher processing will occur.
+	 *
+	 * @return  TRUE on success. FALSE on an error response. The SAML 2.0 status code can
+	 *          be retrieved with the findstatus() function.
 	 */
 	public function process() {
 		$status = $this->findstatus();
@@ -507,14 +513,11 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			$session->setNameID($this->nameid);
 			$session->setSessionIndex($this->sessionIndex);
 			$session->setIdP($this->issuer);
-		} elseif ($status == 'urn:oasis:names:tc:SAML:2.0:status:NoPassive') {
-			/* 	Do not process the authResponse when NoPassive is sent - we continue with an empty set of attributes.
-		   		Some day we will be able to tell the application what happened */
-			$session = SimpleSAML_Session::getInstance();
-			$session->doLogin('saml2');
-			$session->setAttributes(array());
+
+			return TRUE;
 		} else {
-			SimpleSAML_Utilities::fatalError($session->getTrackID(), 'RESPONSESTATUSNOSUCCESS', new Exception("Status = " . $status));
+			/* A different status code. */
+			return FALSE;
 		}
 	}
 
