@@ -20,10 +20,17 @@ function attributealter_feideaccess(&$attributes, $spEntityId = null, $idpEntity
 	$org = $org[1];
 
 	if(!in_array($org, $allowedOrgs, TRUE)) {
-		$session = SimpleSAML_Session::getInstance();
 		SimpleSAML_Logger::error('FEIDE access control: Organization "' . $org .
 			'" not in list of allowed organization for SP "' . $spEntityId . '".');
-		SimpleSAML_Utilities::fatalError($session->getTrackId(), 'NOACCESS');
+		$config = SimpleSAML_Configuration::getInstance();
+		$t = new SimpleSAML_XHTML_Template($config, 'no_access.php', 'no_access_dictionary.php');
+		if(array_key_exists('name', $spMetadata)) {
+			$t->data['sp_name'] = $spMetadata['name'];
+		} else {
+			$t->data['sp_name'] = $spEntityId;
+		}
+		$t->show();
+		exit();
 	}
 
 	SimpleSAML_Logger::info('FEIDE access control: Organization "' . $org .
