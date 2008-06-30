@@ -79,9 +79,6 @@ $lang = array(
 	'metaconv_title' => array (
 		'en' => 'Metadata parser',
 	),
-	'metaconv_title' => array (
-		'en' => 'Metadata parser',
-	),
 	'metaconv_parse' => array (
 		'en' => 'Parse',
 	),
@@ -130,6 +127,7 @@ $lang = array(
 	'metadata_send_send' => array (
 		'en' => 'Send my metadata to %FEDERATION%',
 	),
+
 );
 
 
