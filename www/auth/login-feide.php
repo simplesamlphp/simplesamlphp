@@ -192,10 +192,10 @@ if (isset($_REQUEST['username'])) {
 		
 		
 		/**
-		 * Retrieve organizational attributes, if the edupersonorgdn attribute is set.
+		 * Retrieve organizational attributes, if the eduPersonOrgDN attribute is set.
 		 */
-		if (isset($attributes['edupersonorgdn'])) {
-			$orgdn = $attributes['edupersonorgdn'][0];
+		if (isset($attributes['eduPersonOrgDN'])) {
+			$orgdn = $attributes['eduPersonOrgDN'][0];
 			$orgattributes = $ldap->getAttributes($orgdn);
 			
 			$orgattr = array_keys($orgattributes);
