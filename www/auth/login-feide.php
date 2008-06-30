@@ -299,7 +299,7 @@ if(array_key_exists('contact', $spmetadata)) {
 if(array_key_exists('attributes', $spmetadata)) {
 	$t->data['attrib'] = $spmetadata['attributes'];
 } else {
-	$t->data['contact'] = NULL;
+	$t->data['attrib'] = NULL;
 }
 
 $t->data['selectorg'] = $selectorg;
