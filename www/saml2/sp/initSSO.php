@@ -84,6 +84,14 @@ try {
 	
 	$httpredirect->sendMessage($req, $spentityid, $idpentityid, $_GET['RelayState']);
 
+	/* Save request information. */
+	$info = array();
+	$info['RelayState'] = $_GET['RelayState'];
+	if(array_key_exists('OnError', $_REQUEST)) {
+		$info['OnError'] = $_REQUEST['OnError'];
+	}
+	$session->setData('SAML2:SP:SSO:Info', $sr->getGeneratedID(), $info);
+
 } catch(Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CREATEREQUEST', $exception);
 }

@@ -35,7 +35,36 @@ try {
 	$binding = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
 	$authnResponse = $binding->decodeResponse($_POST);
 	
-	$authnResponse->process();
+	$result = $authnResponse->process();
+
+	/* Fetch the request information if it exists, fall back to RelayState if not. */
+	$requestId = $authnResponse->getInResponseTo();
+	$info = $session->getData('SAML2:SP:SSO:Info', $requestId);
+	if($info === NULL) {
+		/* Fall back to RelayState. */
+		$info = array();
+		$info['RelayState'] = $authnResponse->getRelayState();
+		if(!isset($info['RelayState'])) {
+			/* RelayState missing. */
+			SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+		}
+	}
+
+	/* Check status code, call OnError handler on error. */
+	if($result === FALSE) {
+		/* Not successful. */
+		$statusCode = $authnResponse->findstatus();
+		if(array_key_exists('OnError', $info)) {
+			/* We have an error handler. Return the error to it. */
+			SimpleSAML_Utilities::redirect($info['OnError'], array('StatusCode' => $statusCode));
+		} else {
+			/* We don't have an error handler. Show an error page. */
+			SimpleSAML_Utilities::fatalError($session->getTrackID(), 'RESPONSESTATUSNOSUCCESS',
+				new Exception("Status = " . $statusCode));
+		}
+	}
+
+	/* Successful authentication. */
 
 	SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Successfully created local session from Authentication Response');
 
@@ -79,12 +108,7 @@ try {
 		
 		
 
-	$relayState = $authnResponse->getRelayState();
-	if (isset($relayState)) {
-		SimpleSAML_Utilities::redirect($relayState);
-	} else {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
-	}
+	SimpleSAML_Utilities::redirect($info['RelayState']);
 
 } catch(Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSASSERTION', $exception);
