@@ -538,15 +538,23 @@ $lang = array(
 	),
 	'link_publish_saml20-idp' => array (
 		'en' => 'Publish my SAML 2.0 IdP metadata to the configured MetaShare',
+		'sv' => 'Publisera SAML 2.0 IdP-metadata till den konfigurerade MetaShare',
+		'es' => 'Publicar los metadatos del IdP SAML 2.0 en el MetaShare configurado',
 	),
 	'link_publish_saml20-sp' => array (
 		'en' => 'Publish my SAML 2.0 SP metadata to the configured MetaShare',
+		'sv' => 'Publisera SAML 2.0 SP-metadata till den konfigurerade MetaShare',
+		'es' => 'Publicar los metadatos del SP SAML 2.0 en el MetaShare configurado',
 	),
 	'link_publish_shib13-idp' => array (
 		'en' => 'Publish my Shib 1.3 IdP metadata to the configured MetaShare',
+		'sv' => 'Publisera Shib 1.3 IdP-metadata till den konfigurerade MetaShare',
+		'es' => 'Publicar los metadatos del IdP Shib 1.3 en el MetaShare configurado',
 	),
 	'link_publish_shib13-sp' => array (
 		'en' => 'Publish my Shib 1.3 SP metadata to the configured MetaShare',
+		'sv' => 'Publisera Shib 1.3 SP-metadata till den konfigurerade MetaShare',
+		'es' => 'Publicar los metadatos del SP Shib 1.3 en el MetaShare configurado',
 	),
 
 );

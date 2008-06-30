@@ -71,7 +71,7 @@ $lang = array(
 		'en' => 'The service requires that the information below is transferred from IDPNAME. Do you accept this?  ',
 		'sv' => 'Vid inloggningen kommer din inloggningstjänst att skicka attribut med information om användaridentitet till denna tjänst. Är detta okej?',
 		'fi' => 'Kirjautuessasi Identity Provider haluaa lähettää attribuutteja joissa on henkilötietoja palvelun tarjoajalle. Hyväksytkö tämän?',
-		'es' => 'Durante el proceso de login, el IdP enviará atributos que contienen información acerca de su identidad a este servicio. Acepta esto?',
+		'es' => 'El servicio requiere que la información que se muestra a continuación sea transferida desde IDPNAME. ¿Acepta esto?  ',
 		'fr' => 'Lors de l\'ouverture de session, le fournisseur d\'identité enverra des informations sur votre identité à ce service. Acceptez-vous cela ?',
 		'nl' => 'Tijdens het login proces stuurt de identity provider zgn. attributen met daarin informatie over uw identiteit voor deze dienst. Bent u het daarmee eens?',
 		'lb' => 'Waerend dem Login Prozess schéckt den Identity Provider Attributer, déi Informatiounen iwert aer Identitéit enthaalen. Akzeptéier daer daat?',
@@ -83,6 +83,7 @@ $lang = array(
 		'en' => 'Privacypolicy for the service',
 		'sv' => 'Registerbeskrivning för tjänsten',
 		'fi' => 'Tietosuojaseloste palvelulle',
+		'es' => 'Política de privacidad para el servicio',
 	),
 	'login' => array (
 		'no' => 'innlogging',
