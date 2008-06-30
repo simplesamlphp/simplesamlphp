@@ -21,10 +21,18 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 	
 	const PROTOCOL = 'saml2';
 
+	/**
+	 * This variable holds the generated request id for this request.
+	 */
+	private $id = null;
+
 
 	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore) {
 		$this->configuration = $configuration;
 		$this->metadata = $metadatastore;
+
+		/* Generate request id. */
+		$this->id = SimpleSAML_Utilities::generateID();
 	}
 	
 	public function setXML($xml) {
@@ -180,7 +188,6 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 	public function generate($spentityid, $destination) {
 		$md = $this->metadata->getMetaData($spentityid);
 		
-		$id = SimpleSAML_Utilities::generateID();
 		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
 
 		$assertionConsumerServiceURL = $this->metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted');
@@ -256,7 +263,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		 */
 		$authnRequest = '<samlp:AuthnRequest 
 	xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
-	ID="' . $id . '" Version="2.0"
+	ID="' . $this->id . '" Version="2.0"
 	IssueInstant="' . $issueInstant . '" ForceAuthn="' . $forceauthn . '" IsPassive="' . $this->isPassive . '"
 	Destination="' . htmlspecialchars($destination) . '"
 	ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
@@ -281,7 +288,16 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		AllowCreate="true" />';
 	}
 
-	
+
+	/**
+	 * Retrieves the request id we used for the generated authentication request.
+	 *
+	 * @return  The request id of the generated authentication request.
+	 */
+	public function getGeneratedID() {
+		return $this->id;
+	}
+
 }
 
 ?>
