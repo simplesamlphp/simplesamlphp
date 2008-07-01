@@ -116,16 +116,8 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 			$signResponse = TRUE;
 		}
 
-		if($signResponse) {
-			/* Sign the response. */
-
-			/* We insert the signature before the saml2p:Status element. */
-			$statusElements = SimpleSAML_Utilities::getDOMChildren($responseroot, 'Status', '@saml2p');
-			assert('count($statusElements) === 1');
-
-			$signer->sign($responseroot, $responseroot, $statusElements[0]);
-		} else {
-			/* Sign the assertion. */
+		if(!$signResponse) {
+			/* Sign the assertion - this must be done before encrypting the assertion. */
 
 			/* We insert the signature before the saml2:Subject element. */
 			$subjectElements = SimpleSAML_Utilities::getDOMChildren(
@@ -172,6 +164,18 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 			$encNode = $enc->encryptNode($objKey); # replacing the unencrypted node
 	
 		}
+
+		if($signResponse) {
+			/* Sign the response - this must be done after encrypting the assertion. */
+
+			/* We insert the signature before the saml2p:Status element. */
+			$statusElements = SimpleSAML_Utilities::getDOMChildren($responseroot, 'Status', '@saml2p');
+			assert('count($statusElements) === 1');
+
+			$signer->sign($responseroot, $responseroot, $statusElements[0]);
+		}
+
+
 		$response = $responsedom->saveXML();
 		
 		SimpleSAML_Utilities::validateXMLDocument($response, 'saml20');
