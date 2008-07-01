@@ -33,8 +33,7 @@ class SimpleSAML_Consent_Storage {
 		$pdo_passwd  = $config->getValue('consent_pdo_passwd');
 		
 		try {
-			$this->dbh = new PDO($pdo_connect, $pdo_user, $pdo_passwd,
-				array( PDO::ATTR_PERSISTENT => false));
+			$this->dbh = new PDO($pdo_connect, $pdo_user, $pdo_passwd);
 		} catch(Exception $exception) {
 			$session = SimpleSAML_Session::getInstance();
 			SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSASSERTION', $exception);
