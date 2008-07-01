@@ -202,6 +202,9 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 						if ($privatekey === FALSE) {
 							throw new Exception("Private key for decrypting assertion specified but not found for saml20-sp-hosted id: " . $spid . " Filename: " . $spmd['privatekey']);
 						}
+						if(array_key_exists('privatekey_pass', $spmd)) {
+							$objKeyInfo->passphrase = $spmd['privatekey_pass'];
+						}
 						$objKeyInfo->loadKey($privatekey);
 						$key = $objencKey->decryptKey($objKeyInfo);
 					} else {
