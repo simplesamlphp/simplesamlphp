@@ -7,7 +7,7 @@ function getRealmPart($userid) {
 
 	$decomposedID = explode("@", $userid);
 	if (isset($decomposedID[1])) {
-		return self::encodeIllegalChars($decomposedID[1]);
+		return encodeIllegalChars($decomposedID[1]);
 	}
 	return null;
 }
@@ -20,7 +20,11 @@ function attributealter_groups(&$attributes, $spentityid = null, $idpentityid = 
 	/*
 	 * Then we add the realm of the user. The part after the @ of the eduPersonPrincipalName
 	 */
-	$realmpart = getRealmPart($attributes['eduPersonPrincipalName']);
+	if(array_key_exists('eduPersonPrincipalName', $attributes)) {
+		$realmpart = getRealmPart($attributes['eduPersonPrincipalName'][0]);
+	} else {
+		$realmpart = NULL;
+	}
 	if (isset($realmpart)) {
 		$groups[] = 'realm-' . $realmpart;
 	} else {
