@@ -98,6 +98,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$xPath = new DOMXpath($dom);
 		$xPath->registerNamespace("saml", self::SAML2_ASSERT_NS);
 		$xPath->registerNamespace("samlp", self::SAML2_PROTOCOL_NS);
+		$xPath->registerNamespace("ds", 'http://www.w3.org/2000/09/xmldsig#');
 
 		return $xPath->query($query, $node);
 	}
@@ -233,12 +234,14 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	}
 
 	/**
-	 * This function validates the signature element of this response. It will throw an exception
-	 * if it is unable to validate the signature.
+	 * Validate the signature in the given node.
+	 *
+	 * The node should either be a samlp:Response node, or a saml:Assertion node.
+	 * An exception will be thrown if an error occurs during validation.
+	 *
+	 * @param $node  The node which contains the ds:Signature element.
 	 */
-	private function validateSignature() {
-	
-		$dom = $this->getDOM();
+	private function validateSignature($node) {
 
 		/* Get the metadata of the issuer. */
 		$md = $this->metadata->getMetaData($this->issuer, 'saml20-idp-remote');
@@ -251,7 +254,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			}
 		}
 		/* Validate the signature. */
-		$this->validator = new SimpleSAML_XML_Validator($dom, 'ID', $publickey);
+		$this->validator = new SimpleSAML_XML_Validator($node, 'ID', $publickey);
 		
 		if (!$publickey) {
 			/* Get fingerprint for the certificate of the issuer. */
@@ -489,12 +492,21 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		if ($status == 'urn:oasis:names:tc:SAML:2.0:status:Success' ) {
 			/* Find the issuer of this response. */
 			$this->issuer = $this->findIssuer();
+
+			/* Check for signature in the saml:Response-element, and validate it if present. */
+			$signature = $this->doXPathQuery('/samlp:Response/ds:Signature');
+			if($signature->length > 0) {
+				$this->validateSignature($signature->item(0)->parentNode);
+			}
 	
 			$this->decryptAssertion();
-	
-			/* Validate the signature element. */
-			$this->validateSignature();
-	
+
+			/* Check for signature in the saml:Assertion-element(s), and validate it if present. */
+			$signature = $this->doXPathQuery('/samlp:Response/saml:Assertion/ds:Signature');
+			if($signature->length > 0) {
+				$this->validateSignature($signature->item(0)->parentNode);
+			}
+
 			/* Process all assertions. */
 			$assertions = $this->doXPathQuery('/samlp:Response/saml:Assertion');
 			foreach($assertions as $assertion) {
