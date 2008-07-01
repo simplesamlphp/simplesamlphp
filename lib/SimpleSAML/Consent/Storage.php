@@ -86,7 +86,7 @@ class SimpleSAML_Consent_Storage {
 		/**
 		 * insert new entry into consent storage.
 		 */
-		$stmt = $this->dbh->prepare("REPLACE INTO consent VALUES (?,?,?,NOW(),NOW())");
+		$stmt = $this->dbh->prepare("INSERT INTO consent VALUES (?,?,?,NOW(),NOW())");
 		$stmt->execute(array($user_id, $targeted_id, $attribute_hash));
 		$rows = $stmt->rowCount();
 	
