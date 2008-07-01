@@ -442,7 +442,7 @@ foreach($_SERVER as $key=&gt;$value) {
       <title>Consent storage setup</title>
 
       <para>Consent storage requires a database to store the consent
-      information in. Currently, only MySQL is tested and known to work. The
+      information in. MySQL and PostgreSQL are tested and known to work. The
       consent will be stored in a table named <literal>consent</literal>. This
       table can be created with the following command:</para>
 
@@ -450,9 +450,9 @@ foreach($_SERVER as $key=&gt;$value) {
   hashed_user_id varchar(128) NOT NULL,
   service_id varchar(128) NOT NULL,
   attribute varchar(128) NOT NULL,
-  consent_date datetime NOT NULL,
-  usage_date datetime NOT NULL,
-  PRIMARY KEY USING BTREE (hashed_user_id, service_id)
+  consent_date timestamp NOT NULL,
+  usage_date timestamp NOT NULL,
+  PRIMARY KEY (hashed_user_id, service_id)
 );</programlisting>
 
       <para>Consent storage is controlled by the following options in
