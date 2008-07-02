@@ -20,7 +20,7 @@ class SimpleSAML_XHTML_Template {
 	private $template = 'default.php';
 	private $language = null;
 	
-	private $langtext = null;
+	private $langtext = array();
 	
 	public $data = null;
 
@@ -32,13 +32,19 @@ class SimpleSAML_XHTML_Template {
 
 
 	/**
+	 * The default dictionary.
+	 */
+	private $defaultDictionary = NULL;
+
+
+	/**
 	 * Constructor
 	 *
 	 * @param $configuration   Configuration object
 	 * @param $template        Which template file to load
-	 * @param $languagefile    Optionally load a language file
+	 * @param $defaultDictionary  The default dictionary where tags will come from.
 	 */
-	function __construct(SimpleSAML_Configuration $configuration, $template, $languagefile = null) {
+	function __construct(SimpleSAML_Configuration $configuration, $template, $defaultDictionary = NULL) {
 		$this->configuration = $configuration;
 		$this->template = $template;
 		
@@ -47,8 +53,18 @@ class SimpleSAML_XHTML_Template {
 		if (isset($_GET['language'])) {
 			$this->setLanguage($_GET['language']);
 		}
-		
-		if (!empty($languagefile)) $this->includeLanguageFile($languagefile);
+
+		if($defaultDictionary !== NULL && substr($defaultDictionary, -4) === '.php') {
+			/* For backwards compatibility - print warning. */
+			$backtrace = debug_backtrace();
+			$where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
+			SimpleSAML_Logger::warning('Deprecated use of new SimpleSAML_Template(...) at ' . $where .
+				'. The last parameter is now a dictionary name, which should not end in ".php".');
+
+			$this->defaultDictionary = substr($defaultDictionary, 0, -4);
+		} else {
+			$this->defaultDictionary = $defaultDictionary;
+		}
 	}
 	
 	/**
@@ -227,14 +243,24 @@ class SimpleSAML_XHTML_Template {
 	public function getTag($tag) {
 		assert('is_string($tag)');
 
+		/* First check translations loaded by the includeInlineTranslation and includeLanguageFile methods. */
+		if(array_key_exists($tag, $this->langtext)) {
+			return $this->langtext[$tag];
+		}
+
+		/* Check whether we should use the default dictionary or a dictionary specified in the tag. */
 		if(substr($tag, 0, 1) === '{' && preg_match('/^{(\w+?):(.*)}$/', $tag, $matches)) {
 			$dictionary = $matches[1];
 			$tag = $matches[2];
-			$dictionary = $this->getDictionary($dictionary);
 		} else {
-			$dictionary = $this->langtext;
+			$dictionary = $this->defaultDictionary;
+			if($dictionary === NULL) {
+				/* We don't have any dictionary to load the tag from. */
+				return NULL;
+			}
 		}
 
+		$dictionary = $this->getDictionary($dictionary);
 		if(!array_key_exists($tag, $dictionary)) {
 			return NULL;
 		}
@@ -307,11 +333,6 @@ class SimpleSAML_XHTML_Template {
 			$replacements = $oldreplacements;
 		}
 
-		if (empty($this->langtext) || !is_array($this->langtext)) {
-			SimpleSAML_Logger::error('Template: No language text loaded. Looking up [' . $tag . ']');
-			return $this->t_not_translated($tag, TRUE);
-		}
-
 		$tagData = $this->getTag($tag);
 		if($tagData === NULL) {
 			/* Tag not found. */
@@ -361,8 +382,6 @@ class SimpleSAML_XHTML_Template {
 		} elseif (!is_array($translation)) {
 			throw new Exception("Inline translation should be string or array. Is " . gettype($translation) . " now!");
 		}
-		if (!is_array($this->langtext)) 
-			$this->langtext = array();	
 		
 		SimpleSAML_Logger::info('Template: Adding inline language translation for tag [' . $tag . ']');
 		$this->langtext[$tag] = $translation;
@@ -388,13 +407,8 @@ class SimpleSAML_XHTML_Template {
 		
 
 		$lang = $this->readDictionaryFile($filebase . $file);
-		if (is_array($this->langtext)) {
-			SimpleSAML_Logger::info('Template: Merging language array. Loading [' . $file . ']');
-			$this->langtext = array_merge($this->langtext, $lang);
-		} else {
-			SimpleSAML_Logger::info('Template: Setting new language array. Loading [' . $file . ']');
-			$this->langtext = $lang;
-		}
+		SimpleSAML_Logger::info('Template: Merging language array. Loading [' . $file . ']');
+		$this->langtext = array_merge($this->langtext, $lang);
 	}
 
 
