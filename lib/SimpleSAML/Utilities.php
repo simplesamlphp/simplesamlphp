@@ -134,15 +134,41 @@ class SimpleSAML_Utilities {
 		}
 		return $requesturi;
 	}
-	
+
+
+	/**
+	 * Add one or more query parameters to the given URL.
+	 *
+	 * @param $url  The URL the query parameters should be added to.
+	 * @param $parameter  The query parameters which should be added to the url. This should be
+	 *                    an associative array. For backwards comaptibility, it can also be a
+	 *                    query string representing the new parameters.
+	 * @return The URL with the new query parameters.
+	 */
 	public static function addURLparameter($url, $parameter) {
-		if (strstr($url, '?')) {
-			return $url . '&' . $parameter;
-		} else {
-			return $url . '?' . $parameter;
+
+		/* For backwards compatibility - allow $parameter to be a string. */
+		if(is_string($parameter)) {
+			$parameter = self::parseQueryString($parameter);
 		}
+		assert('is_array($parameter)');
+
+		$queryStart = strpos($url, '?');
+		if($queryStart === FALSE) {
+			$oldQuery = array();
+			$url .= '?';
+		} else {
+			$oldQuery = self::parseQueryString(substr($url, $queryStart + 1));
+			$url = substr($url, 0, $queryStart + 1);
+		}
+
+		$query = array_merge($oldQuery, $parameter);
+		$url .= http_build_query($query);
+
+		return $url;
 	}
-	
+
+
 	public static function strleft($s1, $s2) {
 		return substr($s1, 0, strpos($s1, $s2));
 	}
