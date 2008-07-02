@@ -207,6 +207,44 @@ class SimpleSAML_XHTML_Template {
 
 
 	/**
+	 * Retrieve the preferred translation of a given text.
+	 *
+	 * @param $translations  The translations, as an associative array with language => text mappings.
+	 * @return The preferred translation.
+	 */
+	public function getTranslation($translations) {
+		assert('is_array($translations)');
+
+		/* Look up translation of tag in the selected language. */
+		$selected_language = $this->getLanguage();
+		if (array_key_exists($selected_language, $translations)) {
+			return $translations[$selected_language];
+		}
+
+		/* Look up translation of tag in the default language. */
+		$default_language = $this->getDefaultLanguage();
+		if(array_key_exists($default_language, $translations)) {
+			return $translations[$default_language];
+		}
+
+		/* Look up translation of tag in the base language. */
+		$base_language = $this->getBaseLanguage();
+		if(array_key_exists($base_language, $translations)) {
+			return $translations[$base_language];
+		}
+
+		/* Pick the first translation available. */
+		if(count($translations) > 0) {
+			$languages = array_keys($translations);
+			return $translations[$languages[0]];
+		}
+
+		/* We don't have anything to return. */
+		throw new Exception('Nothing to return from translation.');
+	}
+
+
+	/**
 	 * Include text in the current language.
 	 *
 	 * @param $tag  A name tag of the string that should be returned.
