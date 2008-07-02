@@ -9,7 +9,7 @@
 	<div id="content">
 
 		<p><?php echo htmlspecialchars($this->t('consent_notice')); ?> <strong><?php echo htmlspecialchars($this->t('spname')); ?></strong>.
-		<?php echo htmlspecialchars($this->t('consent_accept', true, true, array('IDPNAME' => ''))) ?> 
+		<?php echo htmlspecialchars($this->t('consent_accept', array('IDPNAME' => ''))) ?>
 		</p>
 
 		<?php if ($this->data['sppp'] !== FALSE) {
@@ -39,7 +39,7 @@
 				if (isset($this->data['attribute_' . htmlspecialchars(strtolower($name)) ])) {
 				  $name = $this->data['attribute_' . htmlspecialchars(strtolower($name))];
 			  }
-				$name = $this->t('attribute_'.strtolower($name), true); // translate	
+				$name = $this->t('attribute_'.strtolower($name)); // translate
 				if (sizeof($value) > 1) {
 					echo '<tr><td>' . htmlspecialchars($name) . '</td><td><ul>';
 					foreach ($value AS $v) {

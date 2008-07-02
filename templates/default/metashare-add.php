@@ -10,7 +10,7 @@ $status = $this->data['status'];
 
 $replaceurl = array('%URL%' => htmlspecialchars($this->data['url']));
 
-echo('<p>' . $this->t('addpage_' . $status, TRUE, TRUE, $replaceurl) . '</p>');
+echo('<p>' . $this->t('addpage_' . $status, $replaceurl) . '</p>');
 
 
 if(array_key_exists('errortext', $this->data)) {

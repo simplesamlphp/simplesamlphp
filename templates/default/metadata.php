@@ -10,7 +10,7 @@ $this->includeAtTemplateBase('includes/header.php');
 		<p><?php echo $this->t('metadata_intro'); ?></p>
 		
 		<?php if (isset($this->data['metaurl'])) { ?>
-			<p><?php echo($this->t('metadata_xmlurl', TRUE, TRUE, array('%METAURL%' => htmlspecialchars($this->data['metaurl'])))); ?><br />
+			<p><?php echo($this->t('metadata_xmlurl', array('%METAURL%' => htmlspecialchars($this->data['metaurl'])))); ?><br />
 			<input type="text" style="width: 90%" value="<?php echo htmlspecialchars($this->data['metaurl']); ?>" /></p>
 		<?php } ?>
 		<h2><?php echo($this->t('metadata_metadata')); ?></h2>
@@ -34,15 +34,15 @@ $this->includeAtTemplateBase('includes/header.php');
 
 			<div style="border: 1px solid #444; margin: 2em; padding: 1em; background: #eee">
 			
-				<h2><?php echo $this->t('metadata_send_title', TRUE, TRUE, $param); ?></h2>
+				<h2><?php echo $this->t('metadata_send_title', $param); ?></h2>
 				
-				<p><?php echo $this->t('metadata_send_hasdetected', TRUE, TRUE, $param); ?></p>
+				<p><?php echo $this->t('metadata_send_hasdetected', $param); ?></p>
 				
-				<p><?php echo $this->t('metadata_send_desc', TRUE, TRUE, $param); ?></p>
+				<p><?php echo $this->t('metadata_send_desc', $param); ?></p>
 					
 				<form action="<?php echo $this->data['sendmetadatato']; ?>" method="post">
 
-					<p><?php echo $this->t('metadata_send_email', TRUE, TRUE, $param); ?>
+					<p><?php echo $this->t('metadata_send_email', $param); ?>
 						<input type="text" size="25" name="email" value="" />
 					</p>
 					
@@ -51,7 +51,7 @@ $this->includeAtTemplateBase('includes/header.php');
 					<input type="hidden" name="techemail" value="<?php echo $this->data['techemail']; ?>" />
 					<input type="hidden" name="version" value="<?php echo $this->data['version']; ?>" />
 					<input type="hidden" name="defaultidp" value="<?php echo htmlspecialchars($this->data['defaultidp']); ?>" />
-					<input type="submit" name="send" value="<?php echo $this->t('metadata_send_send', TRUE, TRUE, $param); ?>" />
+					<input type="submit" name="send" value="<?php echo $this->t('metadata_send_send', $param); ?>" />
 					
 				</form>
 				
