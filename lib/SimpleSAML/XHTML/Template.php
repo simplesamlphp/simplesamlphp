@@ -188,17 +188,6 @@ class SimpleSAML_XHTML_Template {
 
 
 	/**
-	 * Earlier simpleSAMLphp had a separate directory for each language. This is
-	 * not the case anymore, therefore this function is deprecated.
-	 *
-	 * @deprecated
-	 */	
-	private function includeAtLanguageBase($file) {	
-		throw new Exception('Deprecated method call includeAtLanguageBase()');
-	}
-	
-	
-	/**
 	 * Include text in the current language.
 	 *
 	 * @param $tag				 A name tag of the string that should be returned.
