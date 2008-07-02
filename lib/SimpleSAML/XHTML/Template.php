@@ -209,17 +209,32 @@ class SimpleSAML_XHTML_Template {
 	/**
 	 * Include text in the current language.
 	 *
-	 * @param $tag				 A name tag of the string that should be returned.
-	 * @param $fallbacktag		 If set to true and string was not found in any languages, return the tag it self.
-	 * @param $fallbackdefault 	 If not found in selected language fallback to default language.
-	 * @param $replacements		 An associative array of keys that should be replaced with values in the translated string.
-	 * @param $striptags		 Should HTML tags be stripped from the translation
+	 * @param $tag  A name tag of the string that should be returned.
+	 * @param $replacements	 An associative array of keys that should be replaced with values in the translated string.
 	 */
-	public function t($tag, $fallbacktag = TRUE, $fallbackdefault = true, $replacements = array(), $striptags = false) {
-		
+	public function t($tag, $replacements = array(), $fallbackdefault = true, $oldreplacements = array(), $striptags = false) {
+
+		if(!is_array($replacements)) {
+
+			/* Old style call to t(...). Print warning to log. */
+			$backtrace = debug_backtrace();
+			$where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
+			SimpleSAML_Logger::warning('Deprecated use of SimpleSAML_Template::t(...) at ' . $where .
+				'. Please update the code to use the new style of parameters.');
+
+			/* For backwards compatibility. */
+			if(!$replacements && $this->getTag($tag) === NULL) {
+				SimpleSAML_Logger::warning('Code which uses $fallbackdefault === FALSE shouls be' .
+					' updated to use the getTag-method instead.');
+				return NULL;
+			}
+
+			$replacements = $oldreplacements;
+		}
+
 		if (empty($this->langtext) || !is_array($this->langtext)) {
 			SimpleSAML_Logger::error('Template: No language text loaded. Looking up [' . $tag . ']');
-			return $this->t_not_translated($tag, $fallbacktag);
+			return $this->t_not_translated($tag, TRUE);
 		}
 
 		$selected_language = $this->getLanguage();
@@ -230,7 +245,7 @@ class SimpleSAML_XHTML_Template {
 		if($tagData === NULL) {
 			/* Tag not found. */
 			SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not translated at all.');
-			return $this->t_not_translated($tag, $fallbacktag);
+			return $this->t_not_translated($tag, TRUE);
 		}
 
 		/**
@@ -242,16 +257,16 @@ class SimpleSAML_XHTML_Template {
 			$translated =  $tagData[$selected_language];
 
 		/**
-		 * Look up translation of tag in the default language, only if fallbackdefault = true (method parameter)
+		 * Look up translation of tag in the default language
 		 */
-		} elseif($fallbackdefault && array_key_exists($default_language, $tagData)) {
+		} elseif(array_key_exists($default_language, $tagData)) {
 			SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not found in language [' . $selected_language . '] using default [' . $default_language . '].');
 			$translated =  $tagData[$default_language];
 
 		/**
-		 * Look up translation of tag in the base language, only if fallbackdefault = true (method parameter)
+		 * Look up translation of tag in the base language
 		 */
-		} elseif($fallbackdefault && array_key_exists($base_language, $tagData)) {
+		} elseif(array_key_exists($base_language, $tagData)) {
 			SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not found in language default [' . $default_language . '] using base [' . $base_language . '].');
 			$translated =  $tagData[$base_language];
 
