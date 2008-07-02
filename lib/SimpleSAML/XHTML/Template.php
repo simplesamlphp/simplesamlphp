@@ -188,6 +188,25 @@ class SimpleSAML_XHTML_Template {
 
 
 	/**
+	 * Retrieve a tag.
+	 *
+	 * This function retrieves a tag as an array with language => string mappings.
+	 *
+	 * @param $tag  The tag name.
+	 * @return As associative array with language => string mappings, or NULL if the tag wasn't found.
+	 */
+	public function getTag($tag) {
+		assert('is_string($tag)');
+
+		if(!array_key_exists($tag, $this->langtext)) {
+			return NULL;
+		}
+
+		return $this->langtext[$tag];
+	}
+
+
+	/**
 	 * Include text in the current language.
 	 *
 	 * @param $tag				 A name tag of the string that should be returned.
