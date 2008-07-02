@@ -16,7 +16,7 @@ $attributes = $session->getAttributes();
 
 $t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes');
 
-$t->data['header'] = 'WS-Fed SP Demo Example';
+$t->data['header'] = '{status:header_wsfed}';
 $t->data['remaining'] = $session->remainingTime();
 $t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;

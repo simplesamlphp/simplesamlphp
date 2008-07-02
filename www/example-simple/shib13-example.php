@@ -38,7 +38,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 
 $t = new SimpleSAML_XHTML_Template($config, 'status.php');
 
-$t->data['header'] = 'Shibboleth demo';
+$t->data['header'] = '{status:header_shib}';
 $t->data['remaining'] = $session->remainingTime();
 $t->data['attributes'] = $session->getAttributes();
 $t->data['logout'] = null;

@@ -41,7 +41,7 @@ $attributes['Utilities_getRequestURI()'] = array(SimpleSAML_Utilities::getReques
 
 $et = new SimpleSAML_XHTML_Template($config, 'status.php');
 
-$et->data['header'] = 'SimpleSAMLphp Diagnostics';
+$et->data['header'] = '{status:header_diagnostics}';
 $et->data['remaining'] = 'na';
 $et->data['attributes'] = $attributes;
 $et->data['valid'] = 'na';

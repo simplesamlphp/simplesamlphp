@@ -1,16 +1,28 @@
-<?php $this->includeAtTemplateBase('includes/header.php'); ?>
+<?php
+if(array_key_exists('header', $this->data)) {
+	if($this->getTag($this->data['header']) !== NULL) {
+		$this->data['header'] = $this->t($this->data['header']);
+	}
+}
+
+$this->includeAtTemplateBase('includes/header.php');
+?>
 
 <div id="content">
 
-	<h2><?php if (isset($this->data['header'])) { echo $this->data['header']; } else { echo "Some error occured"; } ?></h2>
+	<h2><?php if (isset($this->data['header'])) { echo($this->data['header']); } else { echo($this->t('{status:some_error_occured}')); } ?></h2>
 	
-	<p>Hi, this is the status page of simpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that is attached to your session.</p>
+	<p><?php echo($this->t('{status:intro}')); ?></p>
 	
-	<p>Your session is valid for <?php echo $this->data['remaining']; ?> seconds from now.</p>
+	<p><?php echo($this->t('{status:validfor}', array('%SECONDS%' => $this->data['remaining']))); ?></p>
 	
-	<p>Session size: <?php echo isset($this->data['sessionsize']) ? $this->data['sessionsize'] : 'na'; ?>
+	<?php
+	if(isset($this->data['sessionsize'])) {
+		echo('<p>' . $this->t('{status:sessionsize}', array('%SIZE%' => $this->data['sessionsize'])) . '</p>');
+	}
+	?>
 	
-	<h2>Your attributes</h2>
+	<h2><?php echo($this->t('{status:attributes_header}')); ?></h2>
 	
 		<table width="100%" class="attributes">
 		<?php
@@ -37,15 +49,19 @@
 		?>
 		</table>
 
-	<?php if (isset($this->data['logout'])) { ?>
-	<h2>Logout</h2>
+<?php
+if (isset($this->data['logout'])) {
+	echo('<h2>' . $this->t('{status:logout}') . '</h2>');
+	echo('<p>' . $this->data['logout'] . '</p>');
+}
 
-		<p><?php echo $this->data['logout']; ?></p>
+if (isset($this->data['logouturl'])) {
+	echo('<h2>' . $this->t('{status:logout}') . '</h2>');
+	echo('<p>[ <a href="' . htmlspecialchars($this->data['logouturl']) . '">' . $this->t('{status:logout}') . '</a> ]</p>');
+}
+?>
 
-	<?php } ?>
-	
-	<h2>About simpleSAMLphp</h2>
-	<p>Hey! This simpleSAMLphp thing is pretty cool, where can I read more about it?
-	You can find more information about simpleSAMLphp at <a href="http://rnd.feide.no">the Feide RnD blog</a> over at <a href="http://uninett.no">UNINETT</a>.</p>
+	<h2><?php echo $this->t('{frontpage:about_header}'); ?></h2>
+	<p><?php echo $this->t('{frontpage:about_text}'); ?></p>
 	
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>

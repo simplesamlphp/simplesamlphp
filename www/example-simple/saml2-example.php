@@ -50,13 +50,13 @@ $attributes = $session->getAttributes();
 
 $t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes');
 
-$t->data['header'] = 'SAML 2.0 SP Demo Example';
+$t->data['header'] = '{status:header_saml20_sp}';
 $t->data['remaining'] = $session->remainingTime();
 $t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;
 $t->data['icon'] = 'bino.png';
-$t->data['logout'] = '[ <a href="/' . $config->getBaseURL() . 'saml2/sp/initSLO.php?RelayState=/' . 
-	$config->getBaseURL() . 'logout.html">Logout</a> ]';
+$t->data['logouturl'] = '/' . $config->getBaseURL() . 'saml2/sp/initSLO.php?RelayState=/' .
+	$config->getBaseURL() . 'logout.html';
 $t->show();
 
 
