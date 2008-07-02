@@ -89,7 +89,7 @@ try {
 		$t->data['header'] = 'saml20-sp';
 		$t->data['metadata'] = htmlentities($metaxml);
 		$t->data['metadataflat'] = htmlentities($metaflat);
-		$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), 'output=xml');
+		$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), array('output' => 'xml'));
 		
 		if (array_key_exists($defaultidp, $send_metadata_to_idp)) {
 			$t->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];

@@ -81,7 +81,7 @@ try {
 	
 		$t->data['header'] = 'shib13-idp';
 		
-		$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), 'output=xml');
+		$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), array('output' => 'xml'));
 		$t->data['metadata'] = htmlspecialchars($metaxml);
 		$t->data['metadataflat'] = htmlspecialchars($metaflat);
 	

@@ -93,7 +93,7 @@ function action_default()
 		$relaystate = SimpleSAML_Utilities::selfURLNoQuery() . '?RelayState=' . urlencode($_GET['RelayState']) .
 			'&RequestID=' . urlencode($requestid);
 		$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getBaseURL() . $idpmeta['auth'], 
-			'RelayState=' . urlencode($relaystate));
+			array('RelayState' => $relaystate));
 		
 		$t->data['initssourl'] 			= $authurl;
 		$t->data['openiddelegation'] 	= $delegationprefix . $username;
@@ -211,7 +211,7 @@ function check_authenticated_user() {
 		
 		$relaystate = SimpleSAML_Utilities::selfURLNoQuery() . '/login';
 		$authurl = SimpleSAML_Utilities::addURLparameter('/' . $config->getBaseURL() . $idpmeta['auth'], 
-			'RelayState=' . urlencode($relaystate));
+			array('RelayState' => $relaystate));
 		
 		SimpleSAML_Utilities::redirect($authurl);
 	}

@@ -75,7 +75,7 @@ if ($publishURL !== NULL) {
 		}
 
 		$url = SimpleSAML_Utilities::resolveURL($url);
-		$linkTarget = SimpleSAML_Utilities::addURLparameter($publishURL, 'url=' . urlencode($url));
+		$linkTarget = SimpleSAML_Utilities::addURLparameter($publishURL, array('url' => $url));
 		$links[] = array(
 			'href' => $linkTarget,
 			'text' => 'link_publish_' . $name,
