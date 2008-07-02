@@ -142,13 +142,21 @@ class SimpleSAML_Utilities {
 	 * @param $url  The URL the query parameters should be added to.
 	 * @param $parameter  The query parameters which should be added to the url. This should be
 	 *                    an associative array. For backwards comaptibility, it can also be a
-	 *                    query string representing the new parameters.
+	 *                    query string representing the new parameters. This will write a warning
+	 *                    to the log.
 	 * @return The URL with the new query parameters.
 	 */
 	public static function addURLparameter($url, $parameter) {
 
 		/* For backwards compatibility - allow $parameter to be a string. */
 		if(is_string($parameter)) {
+			/* Print warning to log. */
+			$backtrace = debug_backtrace();
+			$where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
+			SimpleSAML_Logger::warning(
+				'Deprecated use of SimpleSAML_Utilities::addURLparameter at ' .	$where .
+				'. The parameter "$parameter" should now be an array, but a string was passed.');
+
 			$parameter = self::parseQueryString($parameter);
 		}
 		assert('is_array($parameter)');
