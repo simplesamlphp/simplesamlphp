@@ -1133,7 +1133,7 @@ class SimpleSAML_Utilities {
 	 * @param $query_string  The query string which should be parsed.
 	 * @return The query string as an associative array.
 	 */
-	public function parseQueryString($query_string) {
+	public static function parseQueryString($query_string) {
 		assert('is_string($query_string)');
 
 		$res = array();
