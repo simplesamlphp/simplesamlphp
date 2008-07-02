@@ -400,7 +400,7 @@ class SimpleSAML_Utilities {
 		SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - UserError: ErrCode:'.(!empty($errorcode) ? $errorcode : 'na').': '.urlencode($emsg) );
 		
 		$languagefile = null;
-		if (isset($errorcode)) $languagefile = 'errors.php';
+		if (isset($errorcode)) $languagefile = 'errors';
 		
 		// Initialize a template
 		$t = new SimpleSAML_XHTML_Template($config, 'error.php', $languagefile);

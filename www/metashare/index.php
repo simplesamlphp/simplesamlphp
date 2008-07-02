@@ -18,7 +18,7 @@ if(!$metaConfig->getBoolean('metashare.enable', FALSE)) {
 $store = SimpleSAML_MetaShare_Store::getInstance();
 $entities = $store->getEntityList();
 
-$t = new SimpleSAML_XHTML_Template($config, 'metashare-list.php', 'metashare.php');
+$t = new SimpleSAML_XHTML_Template($config, 'metashare-list.php', 'metashare');
 $t->data['entities'] = $entities;
 $t->show();
 exit;

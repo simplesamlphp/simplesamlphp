@@ -214,7 +214,7 @@ $funcmatrix[] = array(
 
 
 
-$t = new SimpleSAML_XHTML_Template($config, 'frontpage.php', 'frontpage.php');
+$t = new SimpleSAML_XHTML_Template($config, 'frontpage.php', 'frontpage');
 $t->data['header'] = 'simpleSAMLphp installation page';
 $t->data['icon'] = 'compass_l.png';
 $t->data['warnings'] = $warnings;

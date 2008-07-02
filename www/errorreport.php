@@ -8,7 +8,7 @@ $config = SimpleSAML_Configuration::getInstance();
 if($_SERVER['REQUEST_METHOD'] !== 'POST') {
 	/* The message has been sent. Show error report page. */
 
-	$t = new SimpleSAML_XHTML_Template($config, 'errorreport.php', 'errors.php');
+	$t = new SimpleSAML_XHTML_Template($config, 'errorreport.php', 'errors');
 	$t->show();
 	exit;
 }

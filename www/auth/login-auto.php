@@ -44,7 +44,7 @@ if(!is_array($attributes)) {
 if($ask_login && !array_key_exists('username', $_POST)) {
 	/* Show login page. */
 
-	$t = new SimpleSAML_XHTML_Template($config, 'login.php', 'login.php');
+	$t = new SimpleSAML_XHTML_Template($config, 'login.php', 'login');
 
 	$t->data['header'] = 'simpleSAMLphp: Enter username and password';
 	$t->data['relaystate'] = $_REQUEST['RelayState'];

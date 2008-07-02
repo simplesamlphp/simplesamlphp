@@ -14,7 +14,7 @@ if (!$session->isValid('wsfed') ) {
 
 $attributes = $session->getAttributes();
 
-$t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes.php');
+$t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes');
 
 $t->data['header'] = 'WS-Fed SP Demo Example';
 $t->data['remaining'] = $session->remainingTime();

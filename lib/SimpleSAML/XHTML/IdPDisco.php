@@ -371,7 +371,7 @@ class SimpleSAML_XHTML_IdPDisco {
 			throw new Exception('Invalid value for the \'idpdisco.layout\' option.');
 		}
 
-		$t = new SimpleSAML_XHTML_Template($this->config, $templateFile, 'disco.php');
+		$t = new SimpleSAML_XHTML_Template($this->config, $templateFile, 'disco');
 		$t->data['idplist'] = $idpList;
 		$t->data['preferredidp'] = $preferredIdP;
 		$t->data['return'] = $this->returnURL;

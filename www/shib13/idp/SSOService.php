@@ -184,7 +184,7 @@ if (!$session->isAuthenticated($authority) ) {
 				$authId = SimpleSAML_Utilities::generateID();
 				$session->setAuthnRequest('shib13', $authId, $requestcache);
 				
-				$t = new SimpleSAML_XHTML_Template($config, 'consent.php', 'attributes.php');
+				$t = new SimpleSAML_XHTML_Template($config, 'consent.php', 'attributes');
 				$t->data['header'] = 'Consent';
 				$t->data['sp_name'] = $sp_name;
 				$t->data['idp_name'] = (isset($idpmetadata['name']) ? $idpmetadata['name'] : $idpentityid);

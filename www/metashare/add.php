@@ -16,7 +16,7 @@ if(!$metaConfig->getBoolean('metashare.enable', FALSE)) {
 }
 
 $store = SimpleSAML_MetaShare_Store::getInstance();
-$t = new SimpleSAML_XHTML_Template($config, 'metashare-add.php', 'metashare.php');
+$t = new SimpleSAML_XHTML_Template($config, 'metashare-add.php', 'metashare');
 
 
 if(!array_key_exists('url', $_GET) || empty($_GET['url'])) {

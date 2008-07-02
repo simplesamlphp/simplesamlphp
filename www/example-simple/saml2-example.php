@@ -48,7 +48,7 @@ $attributes = $session->getAttributes();
  *
  */
 
-$t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes.php');
+$t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes');
 
 $t->data['header'] = 'SAML 2.0 SP Demo Example';
 $t->data['remaining'] = $session->remainingTime();

@@ -77,7 +77,7 @@ try {
 	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
 		$defaultidp = $config->getValue('default-shib13-idp');
 		
-		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin.php');
+		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
 	
 		$t->data['header'] = 'shib13-idp';
 		

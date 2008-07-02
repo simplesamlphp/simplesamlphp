@@ -268,7 +268,7 @@ if (isset($_REQUEST['username'])) {
 }
 
 
-$t = new SimpleSAML_XHTML_Template($config, 'login-feide.php', 'login.php');
+$t = new SimpleSAML_XHTML_Template($config, 'login-feide.php', 'login');
 
 $t->data['header'] = 'simpleSAMLphp: Enter username and password';	
 $t->data['relaystate'] = $_REQUEST['RelayState'];

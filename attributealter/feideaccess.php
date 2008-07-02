@@ -23,7 +23,7 @@ function attributealter_feideaccess(&$attributes, $spEntityId = null, $idpEntity
 		SimpleSAML_Logger::error('FEIDE access control: Organization "' . $org .
 			'" not in list of allowed organization for SP "' . $spEntityId . '".');
 		$config = SimpleSAML_Configuration::getInstance();
-		$t = new SimpleSAML_XHTML_Template($config, 'no_access.php', 'no_access_dictionary.php');
+		$t = new SimpleSAML_XHTML_Template($config, 'no_access.php', 'no_access_dictionary');
 		if(array_key_exists('name', $spMetadata)) {
 			$t->data['sp_name'] = $spMetadata['name'];
 		} else {

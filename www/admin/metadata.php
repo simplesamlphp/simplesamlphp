@@ -19,7 +19,7 @@ try {
 
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-	$et = new SimpleSAML_XHTML_Template($config, 'admin-metadatalist.php', 'admin.php');
+	$et = new SimpleSAML_XHTML_Template($config, 'admin-metadatalist.php', 'admin');
 
 
 	if ($config->getValue('enable.saml20-sp') === true) {
