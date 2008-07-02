@@ -160,7 +160,7 @@ class SimpleSAML_XHTML_Template {
 	 * Returns the language base (from configuration)
 	 */
 	private function getBaseLanguage() {
-		return $this->configuration->getValue('language.base', 'en');
+		return 'en';
 	}
 	
 	/**
