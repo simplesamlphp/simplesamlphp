@@ -349,27 +349,43 @@ class SimpleSAML_XHTML_Template {
 			$filebase = $this->configuration->getPathValue('dictionarydir');
 		}
 		
-		
-		SimpleSAML_Logger::info('Template: Loading [' . $filebase . $file . ']');
-		
-		if (!file_exists($filebase . $file)) {
-			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filebase . $file . ']');
-			return;
-		}
-		include($filebase . $file);
-		if (isset($lang)) {
-			if (is_array($this->langtext)) {
-				SimpleSAML_Logger::info('Template: Merging language array. Loading [' . $file . ']');
-				$this->langtext = array_merge($this->langtext, $lang);
-			} else {
-				SimpleSAML_Logger::info('Template: Setting new language array. Loading [' . $file . ']');
-				$this->langtext = $lang;
-			}
-		}
-		
 
-		
+		$lang = $this->readDictionaryFile($filebase . $file);
+		if (is_array($this->langtext)) {
+			SimpleSAML_Logger::info('Template: Merging language array. Loading [' . $file . ']');
+			$this->langtext = array_merge($this->langtext, $lang);
+		} else {
+			SimpleSAML_Logger::info('Template: Setting new language array. Loading [' . $file . ']');
+			$this->langtext = $lang;
+		}
 	}
+
+
+	/**
+	 * Read a dictionary file.
+	 *
+	 * @param $filename  The absolute path to the dictionary file.
+	 * @return The translation array which was found in the dictionary file.
+	 */
+	private function readDictionaryFile($filename) {
+		assert('is_string($filename)');
+
+		SimpleSAML_Logger::info('Template: Reading [' . $filename . ']');
+
+		if (!file_exists($filename)) {
+			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
+			return array();
+		}
+
+		$lang = NULL;
+		include($filename);
+		if (isset($lang)) {
+			return $lang;
+		}
+
+		return array();
+	}
+
 
 	/**
 	 * Show the template to the user.
