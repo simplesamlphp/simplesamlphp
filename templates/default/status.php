@@ -19,7 +19,7 @@
 		foreach ($attributes AS $name => $value) {
 			
 			$txtname = '<code style="color: blue">' . $name . '</code>';
-			if ($this->t('attribute_' . htmlspecialchars(strtolower($name)), false)) {
+			if ($this->getTag('attribute_' . htmlspecialchars(strtolower($name))) !== NULL) {
 				$txtname = $this->t('attribute_' . htmlspecialchars(strtolower($name))) . '<br /><code style="color: blue">' . $name . '</code>';
 			}
 			
