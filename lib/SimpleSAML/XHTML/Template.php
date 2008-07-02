@@ -24,6 +24,13 @@ class SimpleSAML_XHTML_Template {
 	
 	public $data = null;
 
+
+	/**
+	 * Associative array of dictionaries.
+	 */
+	private $dictionaries = array();
+
+
 	/**
 	 * Constructor
 	 *
@@ -188,21 +195,51 @@ class SimpleSAML_XHTML_Template {
 
 
 	/**
+	 * Retrieve a dictionary.
+	 *
+	 * This function retrieves a dictionary with the given name.
+	 *
+	 * @param $name  The name of the dictionary, as the filename in the dictionary directory,
+	 *               without the '.php'-ending.
+	 * @return  An associative array with the dictionary.
+	 */
+	private function getDictionary($name) {
+		assert('is_string($name)');
+
+		if(!array_key_exists($name, $this->dictionaries)) {
+			$dictDir = $this->configuration->getPathValue('dictionarydir');
+			$this->dictionaries[$name] = $this->readDictionaryFile($dictDir . $name . '.php');
+		}
+
+		return $this->dictionaries[$name];
+	}
+
+
+	/**
 	 * Retrieve a tag.
 	 *
 	 * This function retrieves a tag as an array with language => string mappings.
 	 *
-	 * @param $tag  The tag name.
+	 * @param $tag  The tag name. The tag name can also be on the form '{<dictionary>:<tag>}', to retrieve
+	 *              a tag from the specific dictionary.
 	 * @return As associative array with language => string mappings, or NULL if the tag wasn't found.
 	 */
 	public function getTag($tag) {
 		assert('is_string($tag)');
 
-		if(!array_key_exists($tag, $this->langtext)) {
+		if(substr($tag, 0, 1) === '{' && preg_match('/^{(\w+?):(.*)}$/', $tag, $matches)) {
+			$dictionary = $matches[1];
+			$tag = $matches[2];
+			$dictionary = $this->getDictionary($dictionary);
+		} else {
+			$dictionary = $this->langtext;
+		}
+
+		if(!array_key_exists($tag, $dictionary)) {
 			return NULL;
 		}
 
-		return $this->langtext[$tag];
+		return $dictionary[$tag];
 	}
 
 
