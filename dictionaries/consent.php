@@ -164,6 +164,12 @@ $lang = array(
 		'hr' => 'prikaži/sakrij atribute',
 		'hu' => 'attribútumok mutatása/elrejtése',
 	),
+	'noconsent_title' => array (
+		'en' => 'No consent given',
+	),
+	'noconsent_text' => array (
+		'en' => 'You did not give consent for transfering your attributes to the service provider.',
+	),
 
 );
 
