@@ -332,6 +332,7 @@ class SimpleSAML_Session {
 
 		$this->authenticated = FALSE;
 		$this->authority = NULL;
+		$this->attributes = NULL;
 	}
 
 
