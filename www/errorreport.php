@@ -102,6 +102,16 @@ $message .= "where this report was sent.\n";
 $headers = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-Type: text/plain; charset="UTF-8"' . "\r\n";
 
+/* Add the email address of the submitter as the Reply-To address. */
+if(array_key_exists('email', $_POST)) {
+	$email = $_POST['email'];
+	$email = trim($email);
+	/* Check that it looks like a valid email address. */
+	if(!preg_match('/\s/', $email) && strpos($email, '@') !== FALSE) {
+		$headers .= 'Reply-To: ' . $email . "\r\n";
+	}
+}
+
 /* Send the email. */
 $email = $config->getValue('technicalcontact_email', 'na@example.org');
 if($email !== 'na@example.org') {
