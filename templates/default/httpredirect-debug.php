@@ -8,18 +8,18 @@
 	
 
 
-		<h2>Sending a SAML message using HTTP-REDIRECT</h2>
+		<h2><?php echo($this->t('{admin:debug_sending_message_title}')); ?></h2>
 	
-		<p>You are about to send a SAML message using HTTP REDIRECT. Here is the message:</p>
+		<p><?php echo($this->t('{admin:debug_sending_message_text_link}')); ?></p>
+		
+		<p>[ <a id="sendlink" href="<?php echo htmlentities($this->data['url']); ?>"><?php echo($this->t('{admin:debug_sending_message_send}')); ?></a> ]</p>
+		
+		<h2><?php echo($this->t('{admin:debug_sending_message_msg_title}')); ?></h2>
+		
+		<p><?php echo($this->t('{admin:debug_sending_message_msg_text}')); ?></p>
 		
 		<pre style="overflow: scroll; border: 1px solid #eee"><?php echo $this->data['message']; ?></pre>
-		
-		<p>[ <a id="sendlink" href="<?php echo htmlentities($this->data['url']); ?>">send SAML message</a> ]</p>
 
-		<h2>Debug mode</h2>
-		
-		<p>As you are in debug mode you are lucky to see the content of the response you are sending. You can turn off debug mode in the global simpleSAMLphp configuration file <tt>config/config.php</tt>.</p>
-		
-		
+		<p><?php echo($this->t('{admin:debug_disable_debug_mode}')); ?></p>
 
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>

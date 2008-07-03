@@ -211,6 +211,27 @@ $lang = array(
 		'sv' => 'Skicka metadata till %FEDERATION%',
 		'es' => 'Enviar mis metadatos a %FEDERATION%',
 	),
+	'debug_sending_message_title' => array (
+		'en' => 'Sending message',
+	),
+	'debug_sending_message_text_button' => array (
+		'en' => 'You are about to send a message. Hit the submit message button to continue.',
+	),
+	'debug_sending_message_text_link' => array (
+		'en' => 'You are about to send a message. Hit the submit message link to continue.',
+	),
+	'debug_sending_message_send' => array (
+		'en' => 'Submit message',
+	),
+	'debug_sending_message_msg_title' => array (
+		'en' => 'Message',
+	),
+	'debug_sending_message_msg_text' => array (
+		'en' => 'As you are in debug mode, you get to see the content of the message you are sending:',
+	),
+	'debug_disable_debug_mode' => array (
+		'en' => 'You can turn off debug mode in the global simpleSAMLphp configuration file <tt>config/config.php</tt>.',
+	),
 
 );
 
