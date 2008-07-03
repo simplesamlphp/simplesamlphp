@@ -1,4 +1,10 @@
-<?php $this->includeAtTemplateBase('includes/header.php'); ?>
+<?php
+if (isset($this->data['header']) && $this->getTag($this->data['header']) !== NULL) {
+	$this->data['header'] = $this->t($this->data['header']);
+}
+
+$this->includeAtTemplateBase('includes/header.php');
+?>
 
 	
 	<div id="content">
@@ -6,24 +12,28 @@
 		<?php if (isset($this->data['header'])) { echo '<h2>' . $this->data['header'] . '</h2>'; } ?>
 		
 		
-		<p>[ <a href="/<?php echo $this->data['baseurlpath']; ?>/openid/provider/server.php/sites">List of trusted sites</a> |
-		<a href="/<?php echo $this->data['baseurlpath']; ?>/openid/provider/server.php/about">About simpleSAMLphp OpenID</a> ]</p>
+		<p>[ <a href="/<?php echo $this->data['baseurlpath']; ?>/openid/provider/server.php/sites"><?php echo($this->t('{openid:list_trusted_sites}')); ?></a> |
+		<a href="/<?php echo $this->data['baseurlpath']; ?>/openid/provider/server.php/about"><?php echo($this->t('{openid:about_link}')); ?></a> ]</p>
 		
 		<div class="form">
-		  <p>Do you wish to confirm your identity URL (<code><?php echo htmlspecialchars($this->data['openidurl']); ?></code>)
-		  	with <code><?php echo $this->data['siteurl']; ?></code>?</p>
+<?php
+$params = array(
+	'%OPENIDURL%' => '<code>' . htmlspecialchars($this->data['openidurl']) . '</code>',
+	'%SITEURL%' => '<code>' . $this->data['siteurl'] . '</code>',
+	);
+echo('<p>' . $this->t('{openid:confirm_question}', $params) . '</p>');
+?>
 		  <form method="post" action="<?php echo $this->data['trusturl']; ?>">
 			<input type="checkbox" name="remember" value="on" id="remember"><label
-				for="remember">Remember this decision</label>
+				for="remember"><?php echo($this->t('{openid:remember}')); ?></label>
 			<br />
-			<input type="submit" name="trust" value="Confirm" />
-			<input type="submit" value="Do not confirm" />
+			<input type="submit" name="trust" value="<?php echo($this->t('{openid:confirm}')); ?>" />
+			<input type="submit" value="<?php echo($this->t('{openid:notconfirm}')); ?>" />
 		  </form>
 		</div>
 
 		
-		<h2>About simpleSAMLphp</h2>
-		<p>Hey! This simpleSAMLphp thing is pretty cool, where can I read more about it?
-		You can find more information about simpleSAMLphp at <a href="http://rnd.feide.no">the Feide RnD blog</a> over at <a href="http://uninett.no">UNINETT</a>.</p>
+		<h2><?php echo $this->t('{frontpage:about_header}'); ?></h2>
+		<p><?php echo $this->t('{frontpage:about_text}'); ?></p>
 		
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>

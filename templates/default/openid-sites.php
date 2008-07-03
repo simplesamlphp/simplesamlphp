@@ -1,4 +1,10 @@
-<?php $this->includeAtTemplateBase('includes/header.php'); ?>
+<?php
+if (isset($this->data['header']) && $this->getTag($this->data['header']) !== NULL) {
+	$this->data['header'] = $this->t($this->data['header']);
+}
+
+$this->includeAtTemplateBase('includes/header.php');
+?>
 
 	
 	<div id="content">
@@ -6,11 +12,11 @@
 		<?php if (isset($this->data['header'])) { echo '<h2>' . $this->data['header'] . '</h2>'; } ?>
 		
 		
-		<p>[ List of trusted sites |
-		<a href="/<?php echo $this->data['baseurlpath']; ?>/openid/provider/server.php/about">About simpleSAMLphp OpenID</a> ]</p>
+		<p>[ <?php echo($this->t('{openid:list_trusted_sites}')); ?> |
+		<a href="/<?php echo $this->data['baseurlpath']; ?>/openid/provider/server.php/about"><?php echo($this->t('{openid:about_link}')); ?></a> ]</p>
 
 		
-		<p>These decisions have been remembered for this session. All decisions will be forgotten when the session ends.</p>
+		<p><?php echo($this->t('{openid:trustlist_desc}')); ?></p>
 		
 		
 		<?php if (isset($this->data['sites'])) { ?>
@@ -32,8 +38,8 @@
 								}
 								
 								$i = 0;
-								foreach (array('Trusted Sites' => $trusted_sites,
-											   'Untrusted Sites' => $untrusted_sites) as
+								foreach (array($this->t('{openid:trustlist_trustedsites}') => $trusted_sites,
+											   $this->t('{openid:trustlist_untrustedsites}') => $untrusted_sites) as
 										 $name => $sites) {
 									if ($sites) {
 										echo '<tr><th colspan="2">'. htmlspecialchars($name) . '</th></tr>';
@@ -53,25 +59,21 @@
 							?>
 						</tbody>
 					</table>
-					<input type="submit" name="remove" value="Remove Selected" />
-					<input type="submit" name="refresh" value="Refresh List" />
-					<input type="submit" name="forget" value="Forget All" />
+					<input type="submit" name="remove" value="<?php echo($this->t('{openid:trustlist_remove}')); ?>" />
+					<input type="submit" name="refresh" value="<?php echo($this->t('{openid:trustlist_refresh}')); ?>" />
+					<input type="submit" name="forget" value="<?php echo($this->t('{openid:trustlist_forget}')); ?>" />
 				</form>
 			</div>
 
 		<?php } else { ?>
 		
-			<p>No sites are remembered for this session. When you authenticate with a site,
-				you can choose to add it to this list by choosing <q>Remember this decision</q>.
-			</p>
+			<p><?php echo($this->t('{openid:trustlist_nosites}')); ?></p>
 
 		<?php } ?>
 
 
-		<h2>About simpleSAMLphp</h2>
-
-			<p>Hey! This simpleSAMLphp thing is pretty cool, where can I read more about it?
-		You can find more information about simpleSAMLphp at <a href="http://rnd.feide.no">the Feide RnD blog</a> over at <a href="http://uninett.no">UNINETT</a>.</p>
+		<h2><?php echo $this->t('{frontpage:about_header}'); ?></h2>
+		<p><?php echo $this->t('{frontpage:about_text}'); ?></p>
 		
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>
 
