@@ -421,6 +421,15 @@ class SimpleSAML_Utilities {
 			$t->data['errorreportaddress'] = NULL;
 		}
 
+		$session = SimpleSAML_Session::getInstance();
+		$attributes = $session->getAttributes();
+		if(is_array($attributes) && array_key_exists('mail', $attributes) && count($attributes['mail']) > 0) {
+			$email = $attributes['mail'][0];
+		} else {
+			$email = '';
+		}
+		$t->data['email'] = $email;
+
 		$t->data['exceptionmsg'] = $emsg;
 		$t->data['exceptiontrace'] = $etrace;
 		
