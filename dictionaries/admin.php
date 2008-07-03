@@ -131,6 +131,9 @@ $lang = array(
 		'sv' => 'Metadataanalyserare',
 		'es' => 'Analizar metadatos',
 	),
+	'metaconv_xmlmetadata' => array (
+		'en' => 'XML metadata',
+	),
 	'metaconv_parse' => array (
 		'en' => 'Parse',
 		'sv' => 'Analysera',

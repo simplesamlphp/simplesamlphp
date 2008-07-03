@@ -9,7 +9,7 @@ $this->includeAtTemplateBase('includes/header.php');
 
 <form action="?" method="post">
 
-<p>XML metadata</p>
+<p><?php echo($this->t('{admin:metaconv_xmlmetadata}')); ?></p>
 <p>
 <textarea rows="20" cols="75" name="xmldata"><?php echo htmlspecialchars($this->data['xmldata']); ?></textarea>
 </p>
