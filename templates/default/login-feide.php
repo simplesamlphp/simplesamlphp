@@ -1,4 +1,7 @@
 <?php
+if(isset($this->data['header']) && $this->getTag($this->data['header']) !== NULL) {
+	$this->data['header'] = $this->t($this->data['header']);
+}
 
 $this->includeAtTemplateBase('includes/header.php');
 
@@ -6,9 +9,18 @@ $this->includeAtTemplateBase('includes/header.php');
 
 		<?php if (isset($this->data['error'])) { ?>
 		<div id="errorframe">
-			<h2>What you entered was not accepted!</h2>
+			<h2><?php echo $this->t('{login:error_header}'); ?></h2>
 		
-			<p><?php echo htmlspecialchars($this->data['error']); ?> </p>
+
+<?php
+echo('<p>');
+if($this->getTag($this->data['error']) !== NULL) {
+	echo $this->t($this->data['error']);
+} else {
+	echo(htmlspecialchars($this->data['error']));
+}
+echo('</p>');
+?>
 		</div>
 		<?php } ?>
 
@@ -16,7 +28,7 @@ $this->includeAtTemplateBase('includes/header.php');
 		<div id="orgframe">
 			<form action="?" method="get" name="f">
 			<fieldset>
-			<legend>Choose your home organization</legend>
+			<legend><?php echo($this->t('{login:select_home_org}')); ?></legend>
 				<select name="org" tabindex="1">
 				<?php
 					foreach ($this->data['allowedorgs'] AS $key) {
@@ -30,7 +42,7 @@ $this->includeAtTemplateBase('includes/header.php');
 				<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($this->data['relaystate']); ?>" />
                                 <input type="hidden" name="protocol" value="<?php echo htmlspecialchars($this->data['protocol']); ?>" />
                                 <input type="hidden" name="AuthId" value="<?php echo htmlspecialchars($this->data['authid']); ?>" />
-				<input type="submit" id="submit" value="Next" />
+				<input type="submit" id="submit" value="<?php echo($this->t('{login:next}')); ?>" />
 			</fieldset>
 			</form>
 		</div>
@@ -40,24 +52,23 @@ $this->includeAtTemplateBase('includes/header.php');
 		<div id="inputframe">
 			<form action="?" method="post" name="f">
 			<fieldset>
-			<legend>Enter your username and password</legend>
-			<p>A service has requested you to authenticate your self. 
-			That means you need to enter your username and password in the form below.</p>
-				<label for="username" accesskey="u" tabindex="1">Username: </label>
+			<legend><?php echo $this->t('{login:user_pass_header}'); ?></legend>
+			<p><?php echo $this->t('{login:user_pass_text}'); ?></p>
+				<label for="username" accesskey="u" tabindex="1"><?php echo($this->t('{login:username}')); ?></label>
 				<input type="text" id="username" name="username" 
 					<?php if (isset($this->data['username'])) {
 						echo 'value="' . htmlspecialchars($this->data['username']) . '"';
 					} ?> 
 				/> @ <?php echo $this->data['org']; ?><br />
 
-				<label for="password" accesskey="p" tabindex="2">Password: </label>
+				<label for="password" accesskey="p" tabindex="2"><?php echo($this->t('{login:password}')); ?></label>
 				<input type="password" id="password" name="password" /><br />
 
 				<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($this->data['relaystate']); ?>" />
                                 <input type="hidden" name="protocol" value="<?php echo htmlspecialchars($this->data['protocol']); ?>" />
                                 <input type="hidden" name="AuthId" value="<?php echo htmlspecialchars($this->data['authid']); ?>" />
 				<input type="hidden" name="org" value="<?php echo $this->data['org']; ?>" />
-				<input type="submit" id="submit" value="Login" />
+				<input type="submit" id="submit" value="<?php echo($this->t('{login:login_button}')); ?>" />
 			</fieldset>
 			</form>
 		</div>
@@ -65,21 +76,20 @@ $this->includeAtTemplateBase('includes/header.php');
 		<div id="rechooseorgframe">
 			<form action="?" method="get" name="g">
 			<fieldset>
-			<legend>Change your home organization</legend>
-			<p>You have chosen <b><?php echo $this->data['ldapconfig'][$this->data['org']]['description']; ?></b> as your home organization. If this is wrong you may choose
-			another one.</p>
+			<legend><?php echo($this->t('{login:change_home_org_title}')); ?></legend>
+			<p><?php echo($this->t('{login:change_home_org_text}', array('%HOMEORG%' => $this->data['ldapconfig'][$this->data['org']]['description']))); ?></p>
 				<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($this->data['relaystate']); ?>" />
                                 <input type="hidden" name="protocol" value="<?php echo htmlspecialchars($this->data['protocol']); ?>" />
                                 <input type="hidden" name="AuthId" value="<?php echo htmlspecialchars($this->data['authid']); ?>" />
 				<input type="hidden" name="action" value="change_org" />
-				<input type="submit" id="submit" value="Choose home organization" />
+				<input type="submit" id="submit" value="<?php echo($this->t('{login:change_home_org_button}')); ?>" />
 			</fieldset>
 			</form>
 		</div>
 
 		<div id="helpframe">
-			<h3>Help! I don't remember my password.</h3>	
-			<p>Too bad! - Without your username and password you cannot authenticate your self and access the service.</p>
+			<h3><?php echo($this->t('{login:help_header}')); ?></h3>
+			<p><?php echo($this->t('{login:help_text}')); ?></p>
 
 			<?php
 				$listitems = array();
@@ -87,14 +97,14 @@ $this->includeAtTemplateBase('includes/header.php');
 
 				
 				if (isset($this->data['ldapconfig'][$this->data['org']]['contactURL'])) {
-					$listitems[] = '<li><a href="' . $this->data['ldapconfig'][$this->data['org']]['contactURL'] . '">Help desk homepage</a></li>';
+					$listitems[] = '<li><a href="' . $this->data['ldapconfig'][$this->data['org']]['contactURL'] . '">' . $this->t('{login:help_desk_link}') . '</a></li>';
 				}
 				if (isset($this->data['ldapconfig'][$this->data['org']]['contactMail'])) {
-					$listitems[] = '<li><a href="mailto:' . $this->data['ldapconfig'][$this->data['org']]['contactMail'] . '">Send e-mail to help desk</a></li>';
+					$listitems[] = '<li><a href="mailto:' . $this->data['ldapconfig'][$this->data['org']]['contactMail'] . '">' . $this->t('{login:help_desk_email}') . '</a></li>';
 				}
 				
 				if ($listitems) {
-					echo '<p>Contact information:</p><ul>' . join("\n", $listitems) . '</ul>';
+					echo '<p>' . $this->t('{login:contact_info}') . '</p><ul>' . join("\n", $listitems) . '</ul>';
 				}
 				
 			?>

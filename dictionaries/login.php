@@ -182,6 +182,30 @@ $lang = array(
 		'hr' => 'Neispravna korisnička oznaka ili zaporka.',
 		'hu' => 'Hibás felhasználói név vagy jelszó!',
 	),
+	'select_home_org' => array (
+		'en' => 'Choose your home organization',
+	),
+	'next' => array (
+		'en' => 'Next',
+	),
+	'change_home_org_title' => array (
+		'en' => 'Change your home organization',
+	),
+	'change_home_org_text' => array (
+		'en' => 'You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one.',
+	),
+	'change_home_org_button' => array (
+		'en' => 'Choose home organization',
+	),
+	'help_desk_link' => array (
+		'en' => 'Help desk homepage',
+	),
+	'help_desk_email' => array (
+		'en' => 'Send e-mail to help desk',
+	),
+	'contact_info' => array (
+		'en' => 'Contact information:',
+	),
 
 );
 
