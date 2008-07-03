@@ -69,10 +69,10 @@ $as_metadata = array(
 			'app_level' => '10',
 			'tgt_exp_time' => '1194590521000',
 #			'auth' => '/' . $config->getBaseURL() . '/auth/login.php',
-#			'logout' => '/' . $config->getBaseURL() . 'logout.html',
+#			'logout' => '/' . $config->getBaseURL() . 'logout.php',
 			'auth' => '/' . $config->getBaseURL() . '/saml2/sp/initSSO.php',
 			'logout' => '/' . $config->getBaseURL() . '/saml2/sp/initSLO.php',
-			'loggedout_url' => '/' . $config->getBaseURL() . 'logout.html',
+			'loggedout_url' => '/' . $config->getBaseURL() . 'logout.php',
 		),
 		'remote' => array(
 			// so far the IDP bridging is statically configured to the first one in

@@ -56,7 +56,7 @@ $t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;
 $t->data['icon'] = 'bino.png';
 $t->data['logouturl'] = '/' . $config->getBaseURL() . 'saml2/sp/initSLO.php?RelayState=/' .
-	$config->getBaseURL() . 'logout.html';
+	$config->getBaseURL() . 'logout.php';
 $t->show();
 
 

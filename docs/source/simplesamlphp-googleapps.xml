@@ -399,7 +399,7 @@ An optional company name []:</screen>
     your server. The RelayState parameter of the endpoint is the URL where the
     user is redirected after successfull logout. Recommended value:</para>
 
-    <literallayout>http://dev2.andreas.feide.no/simplesaml/saml2/idp/initSLO.php?RelayState=/simplesaml/logout.html</literallayout>
+    <literallayout>http://dev2.andreas.feide.no/simplesaml/saml2/idp/initSLO.php?RelayState=/simplesaml/logout.php</literallayout>
 
     <para>again, using the host name of your IdP server.</para>
 
