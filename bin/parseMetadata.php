@@ -13,6 +13,9 @@ $baseDir = dirname(dirname(__FILE__));
 /* Add library autoloader. */
 require_once($baseDir . '/lib/_autoload.php');
 
+/* Initialize the configuration. */
+SimpleSAML_Configuration::init($baseDir . '/config');
+
 /* $outputDir contains the directory we will store the generated metadata in. */
 $outputDir = $baseDir . '/metadata-generated';
 
@@ -161,60 +164,6 @@ function printHelp() {
 
 
 /**
- * This function checks the given certificate against the CA root.
- *
- * @param $certificate  The certificate which should be checked, as a string with a PEM-encoded certificate.
- */
-function verifyCertificate($certificate) {
-	static $verifiedCertificates = array();
-	if(array_key_exists($certificate, $verifiedCertificates)) {
-		return $verifiedCertificates[$certificate];
-	}
-
-	$command = array(
-		'openssl', 'verify',
-		'-CAfile', $GLOBALS['ca'],
-		'-purpose', 'any',
-		);
-
-	$cmdline = '';
-	foreach($command as $c) {
-		$cmdline .= escapeshellarg($c) . ' ';
-	}
-
-	$cmdline .= '2>&1';
-	$descSpec = array(
-		0 => array('pipe', 'r'),
-		1 => array('pipe', 'w'),
-		);
-	$process = proc_open($cmdline, $descSpec, $pipes);
-	if(!is_resource($process)) {
-		echo('Failed to execute verification command: ' . $cmdline . "\n");
-		exit(1);
-	}
-
-	if(fwrite($pipes[0], $certificate) === FALSE) {
-		echo('Failed to write certificate for verification.' . "\n");
-		exit(1);
-	}
-	fclose($pipes[0]);
-
-	$out = trim(fgets($pipes[1]));
-	fclose($pipes[1]);
-
-	$status = proc_close($process);
-	if($status !== 0 || $out !== 'stdin: OK') {
-		$ok = FALSE;
-	} else {
-		$ok = TRUE;
-	}
-
-	$verifiedCertificates[$certificate] = $ok;
-	return $ok;
-}
-
-
-/**
  * This function writes the metadata to to separate files in the output directory.
  */
 function writeMetadataFiles() {
@@ -309,14 +258,7 @@ function processFile($filename) {
 		}
 
 		if($ca !== NULL) {
-			$ok = FALSE;
-			foreach($entity->getX509Certificates() as $cert) {
-				if(verifyCertificate($cert)) {
-					$ok = TRUE;
-					break;
-				}
-			}
-			if(!$ok) {
+			if(!$entity->validateCA($ca)) {
 				echo('Skipping "' . $entity->getEntityId() . '" - could not verify certificate.' . "\n");
 				continue;
 			}
