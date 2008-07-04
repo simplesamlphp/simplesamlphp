@@ -547,6 +547,19 @@
           </glossentry>
 
           <glossentry>
+            <glossterm>caFile</glossterm>
+
+            <glossdef>
+              <para>Alternative to certFingerprint. Allows you to specify a
+               file with root certificates, and responses from the service
+               be validated against these certificates. Note that
+               simpleSAMLphp doesn't support chains with any itermediate
+               certificates between the root and the certificate used to sign
+               the response.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
             <glossterm>icon</glossterm>
 
             <glossdef>
@@ -806,6 +819,18 @@
 
             <para>See <xref linkend="a.fingerprint" /> for an example of how
             to calculate the fingerprint with the openssl tool.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>caFile</glossterm>
+
+          <glossdef>
+            <para>Alternative to certFingerprint. Allows you to specify a file
+             with root certificates, and responses from the service be
+             validated against these certificates. Note that simpleSAMLphp
+             doesn't support chains with any itermediate certificates between
+             the root and the certificate used to sign the response.</para>
           </glossdef>
         </glossentry>
 
