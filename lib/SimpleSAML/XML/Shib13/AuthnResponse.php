@@ -42,14 +42,18 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		/* Get the metadata of the issuer. */
 		$md = $this->metadata->getMetaData($issuer, 'shib13-idp-remote');
 
-		if (!array_key_exists('certFingerprint', $md))
-			throw new Exception('Required field [certFingerprint] in Shibboleth 1.3 IdP Remote metadata was not found for identity provider [' . $issuer . ']. Please add a fingerprint and try again. You can add a dummy fingerprint first, and then an error message will be printed with the real fingerprint.');
+		if(array_key_exists('certFingerprint', $md)) {
+			/* Get fingerprint for the certificate of the issuer. */
+			$issuerFingerprint = $md['certFingerprint'];
 
-		/* Get fingerprint for the certificate of the issuer. */
-		$issuerFingerprint = $md['certFingerprint'];
-
-		/* Validate the fingerprint. */
-		$this->validator->validateFingerprint($issuerFingerprint);
+			/* Validate the fingerprint. */
+			$this->validator->validateFingerprint($issuerFingerprint);
+		} elseif(array_key_exists('caFile', $md)) {
+			/* Validate against CA. */
+			$this->validator->validateCA($this->configuration->getPathValue('certdir') . $md['caFile']);
+		} else {
+			throw new Exception('Required field [certFingerprint] or [caFile] in Shibboleth 1.3 IdP Remote metadata was not found for identity provider [' . $issuer . ']. Please add a fingerprint and try again. You can add a dummy fingerprint first, and then an error message will be printed with the real fingerprint.');
+		}
 
 		return true;
 	}
