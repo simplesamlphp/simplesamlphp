@@ -260,11 +260,24 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$this->validator = new SimpleSAML_XML_Validator($node, 'ID', $publickey);
 		
 		if (!$publickey) {
-			/* Get fingerprint for the certificate of the issuer. */
-			$issuerFingerprint = $md['certFingerprint'];
+			if(array_key_exists('certFingerprint', $md)) {
+
+				/* Get fingerprint for the certificate of the issuer. */
+				$issuerFingerprint = $md['certFingerprint'];
 	
-			/* Validate the fingerprint. */
-			$this->validator->validateFingerprint($issuerFingerprint);
+				/* Validate the fingerprint. */
+				$this->validator->validateFingerprint($issuerFingerprint);
+
+			} elseif(array_key_exists('caFile', $md)) {
+
+				/* Validation against a CA file. */
+				$this->validator->validateCA($this->configuration->getPathValue('certdir') . $md['caFile']);
+			} else {
+
+				/* Misconfigured - neither publickey, certFingerprint or caFile given. */
+				throw new Exception('Misconfigured saml20-idp-remote ' . $this->issuer . ':' .
+					' Neither publickey, certFingerprint or caFile given.');
+			}
 		}
 	}
 
