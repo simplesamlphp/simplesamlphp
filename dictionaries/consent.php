@@ -14,7 +14,7 @@ $lang = array(
 		'nl' => 'Ja',
 		'lb' => 'Jo',
 		'sl' => 'Da',
-		'hr' => 'Da',
+		'hr' => 'Da, prihvaćam',
 		'hu' => 'Igen',
 	),
 	'no' => array (
@@ -30,7 +30,7 @@ $lang = array(
 		'nl' => 'Nee',
 		'lb' => 'Nee',
 		'sl' => 'Ne',
-		'hr' => 'Ne',
+		'hr' => 'Ne privaćam',
 		'hu' => 'Nem',
 	),
 	'remember' => array (
@@ -76,7 +76,7 @@ $lang = array(
 		'nl' => 'Tijdens het login proces stuurt de identity provider zgn. attributen met daarin informatie over uw identiteit voor deze dienst. Bent u het daarmee eens?',
 		'lb' => 'Waerend dem Login Prozess schéckt den Identity Provider Attributer, déi Informatiounen iwert aer Identitéit enthaalen. Akzeptéier daer daat?',
 		'sl' => 'Med procesom prijave bo IdP posredoval atribute, ki vsebujejo informacije o vaši identiteti, tej storitvi. Ali se s tem strinjate? ',
-		'hr' => 'Tijekom procesa prijavljivanja vaša matična ustanova će servisu poslati atribute koji sadrže podatke o vašem identitetu. Slažete li se s time?',
+		'hr' => 'Servis zahtjeva da IDPNAME isporuči dolje navedene podatke. Slažete li se s time?',
 		'hu' => 'Az azonosítás során az azonosító szolgáltató személyes adatokat fog küldeni ennek a szolgáltatásnak. Engedélyezi?',
 	),
 	'consent_privacypolicy' => array (
@@ -84,6 +84,9 @@ $lang = array(
 		'sv' => 'Tjänstens policy för personlig integritet',
 		'fi' => 'Tietosuojaseloste palvelulle',
 		'es' => 'Política de privacidad para el servicio',
+		'sl' => 'Politika zasebnosti za ta SP',
+		'hr' => 'Politika zaštite privatnosti',
+		'hu' => 'A szolgáltatás adatvádelminyilatkozata',
 	),
 	'login' => array (
 		'no' => 'innlogging',
@@ -166,9 +169,15 @@ $lang = array(
 	),
 	'noconsent_title' => array (
 		'en' => 'No consent given',
+		'sl' => 'Privolitev ni bila dana.',
+		'hr' => 'Nema pristanka',
+		'hu' => 'Nincs belegyezés',
 	),
 	'noconsent_text' => array (
 		'en' => 'You did not give consent for transfering your attributes to the service provider.',
+		'sl' => 'Niste podali privolitve za posredovanje atributov SP-ju.',
+		'hr' => 'Niste dali pristanak da se vaši podaci isporuče davatelju usluge.',
+		'hu' => 'Nem adta belegyezését, ahoz hogy adatait kiszlgálatassuk a szolgáltató felé.',
 	),
 
 );

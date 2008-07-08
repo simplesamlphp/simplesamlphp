@@ -184,27 +184,51 @@ $lang = array(
 	),
 	'select_home_org' => array (
 		'en' => 'Choose your home organization',
+		'sl' => 'Izberite vašo domačo organizacijo',
+		'hr' => 'Odaberite vašu matičnu ustanovu',
+		'hu' => 'Válassza ki az ön szervezetét',
 	),
 	'next' => array (
 		'en' => 'Next',
+		'sl' => 'Naprej',
+		'hr' => 'Dalje',
+		'hu' => 'Következő',
 	),
 	'change_home_org_title' => array (
 		'en' => 'Change your home organization',
+		'sl' => 'Izberite vašo domačo organizacijo.',
+		'hr' => 'Promjenite vašu matičnu ustanovu',
+		'hu' => 'Válasszon másik szervezetet',
 	),
 	'change_home_org_text' => array (
 		'en' => 'You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one.',
+		'sl' => 'Izbrali ste <b>%HOMEORG%</b> kot vašo domačo organizacijo. V primeru, da je izbor napačen izberite drugo.',
+		'hr' => 'Odabrali ste <b>%HOMEORG%</b> kao vašu matičnu ustanovu. Ako to nije točno možete odabrati drugu ustanovu.',
+		'hu' => 'A <b>%HOMEORG%</b> szervezetet választotta ki. Ha a választás nem volt helyes, kérem válasszon másikat.',
 	),
 	'change_home_org_button' => array (
 		'en' => 'Choose home organization',
+		'sl' => 'Izberite domačo organizacijo.',
+		'hr' => 'Odaberite matičnu ustanovu',
+		'hu' => 'Válassza ki a szervezetét',
 	),
 	'help_desk_link' => array (
 		'en' => 'Help desk homepage',
+		'sl' => 'Spletna stran tehnične podpore uporabnikom.',
+		'hr' => 'Helpdesk stranice',
+		'hu' => 'Ügyfélszolgálat weboldala',
 	),
 	'help_desk_email' => array (
 		'en' => 'Send e-mail to help desk',
+		'sl' => 'Pošlji e-poštno sporočilo tehnični podpori.',
+		'hr' => 'Pošaljite e-mail helpdesk službi',
+		'hu' => 'Küldjön e-mailt az ügyfélszolgálatnak',
 	),
 	'contact_info' => array (
 		'en' => 'Contact information:',
+		'sl' => 'Kontakt',
+		'hr' => 'Kontakt podaci',
+		'hu' => 'Elérési információk',
 	),
 
 );
