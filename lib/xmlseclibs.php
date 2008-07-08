@@ -714,7 +714,7 @@ class XMLSecurityDSig {
         return ($digValue == $digestValue);
     }
 
-    public function processTransforms($refNode, $objData) {
+    public function processTransforms($refNode, $objData, $includeCommentNodes = TRUE) {
         $data = $objData;
         $xpath = new DOMXPath($refNode->ownerDocument);
         $xpath->registerNamespace('secdsig', XMLSecurityDSig::XMLDSIGNS);
@@ -728,6 +728,16 @@ class XMLSecurityDSig {
             switch ($algorithm) {
                 case 'http://www.w3.org/2001/10/xml-exc-c14n#':
                 case 'http://www.w3.org/2001/10/xml-exc-c14n#WithComments':
+
+                    if(!$includeCommentNodes) {
+                        /* We remove comment nodes by forcing it to use a canonicalization
+                         * without comments.
+                         */
+                        $canonicalMethod = 'http://www.w3.org/2001/10/xml-exc-c14n#';
+                    } else {
+                        $canonicalMethod = $algorithm;
+                    }
+
                     $node = $transform->firstChild;
                     while ($node) {
                         if ($node->localName == 'InclusiveNamespaces') {
@@ -748,9 +758,18 @@ class XMLSecurityDSig {
                         }
                         $node = $node->nextSibling;
                     }
+		    break;
                 case 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315':
                 case 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments':
-                    $canonicalMethod = $algorithm;
+                    if(!$includeCommentNodes) {
+                        /* We remove comment nodes by forcing it to use a canonicalization
+                         * without comments.
+                         */
+                        $canonicalMethod = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315';
+                    } else {
+                        $canonicalMethod = $algorithm;
+                    }
+
                     break;
                 case 'http://www.w3.org/TR/1999/REC-xpath-19991116':
                     $node = $transform->firstChild;
@@ -780,10 +799,23 @@ class XMLSecurityDSig {
 
     public function processRefNode($refNode) {
         $dataObject = NULL;
+
+        /*
+         * Depending on the URI, we may not want to include comments in the result
+         * See: http://www.w3.org/TR/xmldsig-core/#sec-ReferenceProcessingModel
+         */
+        $includeCommentNodes = TRUE;
+
         if ($uri = $refNode->getAttribute("URI")) {
             $arUrl = parse_url($uri);
             if (empty($arUrl['path'])) {
                 if ($identifier = $arUrl['fragment']) {
+
+                    /* This reference identifies a node with the given id by using
+                     * a URI on the form "#identifier". This should not include comments.
+                     */
+                    $includeCommentNodes = FALSE;
+
                     $xPath = new DOMXPath($refNode->ownerDocument);
                     if ($this->idNS && is_array($this->idNS)) {
                         foreach ($this->idNS AS $nspf=>$ns) {
@@ -805,9 +837,14 @@ class XMLSecurityDSig {
                 $dataObject = file_get_contents($arUrl);
             }
         } else {
+            /* This reference identifies the root node with an empty URI. This should
+             * not include comments.
+             */
+            $includeCommentNodes = FALSE;
+
             $dataObject = $refNode->ownerDocument;
         }
-        $data = $this->processTransforms($refNode, $dataObject);
+        $data = $this->processTransforms($refNode, $dataObject, $includeCommentNodes);
         if (!$this->validateDigest($refNode, $data)) {
             return FALSE;
         }
