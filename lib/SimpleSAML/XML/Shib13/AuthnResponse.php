@@ -286,6 +286,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			$encodedattributes .= '<AttributeStatement>
 				<Subject>
 					<NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier" NameQualifier="' . htmlspecialchars($namequalifier) . '">' . htmlspecialchars($nameid) . '</NameIdentifier>
+					<SubjectConfirmation><ConfirmationMethod>urn:oasis:names:tc:SAML:1.0:cm:bearer</ConfirmationMethod></SubjectConfirmation>
 				</Subject>';
 				
 			foreach ($attributes AS $name => $value) {
