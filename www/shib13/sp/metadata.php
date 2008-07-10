@@ -34,7 +34,7 @@ try {
 ";
 	
 	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<EntityDescriptor entityID="' . htmlspecialchars($spentityid) . '">
+<EntityDescriptor entityID="' . htmlspecialchars($spentityid) . '" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
 	<SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol">
 
 		<NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>

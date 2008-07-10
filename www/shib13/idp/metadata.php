@@ -44,7 +44,7 @@ try {
 ";
 	
 	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<EntityDescriptor entityID="' . htmlspecialchars($idpentityid) . '">
+<EntityDescriptor entityID="' . htmlspecialchars($idpentityid) . '" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
 
 	<IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:mace:shibboleth:1.0">
 
