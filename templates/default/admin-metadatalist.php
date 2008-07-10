@@ -57,7 +57,7 @@ $this->includeAtTemplateBase('includes/header.php');
 				}
 				
 				echo '<div style="margin-left: 1em">';
-				echo '<div class="efieldlist"><h5>' . $t->t('metaover_required') . '</h5>';
+				echo '<div class="efieldlist"><h5>' . $t->t('metaover_required_found') . '</h5>';
 				echo '<dl>';
 				foreach ($entity['required.found'] AS $key => $value) {
 					echo '<dt>' . htmlspecialchars($key) . '</dt><dd>' . htmlspecialchars(var_export($value, TRUE)) . '</dd>';
