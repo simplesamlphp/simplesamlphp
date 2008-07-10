@@ -52,7 +52,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
-				array('requireconsent','request.signing', 'privatekey_pass', 'authority', 'attributemap', 'attributealter', 'userid.attribute', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.privatekey_pass', 'metadata.sign.certificate')
+				array('requireconsent','request.signing', 'privatekey_pass', 'authority', 'attributemap', 'attributealter', 'userid.attribute', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.privatekey_pass', 'metadata.sign.certificate', 'AttributeNameFormat', 'name')
 			);
 		}
 		$et->data['metadata.saml20-idp-hosted'] = $results;
@@ -62,7 +62,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'AssertionConsumerService'),
-				array('SingleLogoutService', 'NameIDFormat', 'SPNameQualifier', 'base64attributes', 'simplesaml.nameidattribute', 'attributemap', 'attributealter', 'simplesaml.attributes', 'attributes', 'name', 'description','request.signing','certificate', 'ForceAuthn', 'sharedkey', 'assertion.encryption', 'userid.attribute', 'signresponse')
+				array('SingleLogoutService', 'NameIDFormat', 'SPNameQualifier', 'base64attributes', 'simplesaml.nameidattribute', 'attributemap', 'attributealter', 'simplesaml.attributes', 'attributes', 'name', 'description','request.signing','certificate', 'ForceAuthn', 'sharedkey', 'assertion.encryption', 'userid.attribute', 'signresponse', 'AttributeNameFormat')
 			);
 		}
 		$et->data['metadata.saml20-sp-remote'] = $results;
@@ -102,7 +102,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
-				array('requireconsent', 'authority', 'privatekey_pass')
+				array('name', 'requireconsent', 'authority', 'privatekey_pass')
 			);
 		}
 		$et->data['metadata.shib13-idp-hosted'] = $results;
