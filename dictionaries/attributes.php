@@ -522,7 +522,7 @@ $lang = array(
 		'hr' => 'Brojčani identifikator ustanove',
 		'hu' => 'Szervezeti szám',
 	),
-	'attribute_noredupersonbirthday' => array (
+	'attribute_noredupersonbirthdate' => array (
 		'no' => 'Fødselsdato',
 		'nn' => 'Fødselsdato',
 		'en' => 'Date of birth',

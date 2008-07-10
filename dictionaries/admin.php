@@ -185,6 +185,7 @@ $lang = array(
 	),
 	'metaconv_xmlmetadata' => array (
 		'en' => 'XML metadata',
+		'sv' => 'XML-metadata',
 		'sl' => 'XML metadata',
 		'hu' => 'XML metadat',
 	),
@@ -299,34 +300,41 @@ $lang = array(
 	),
 	'debug_sending_message_title' => array (
 		'en' => 'Sending message',
+		'sv' => 'Skickar meddelande',
 		'sl' => 'Pošiljanje sporočila',
 		'hu' => 'Üzenet küldése',
 	),
 	'debug_sending_message_text_button' => array (
 		'en' => 'You are about to send a message. Hit the submit message button to continue.',
+		'sv' => 'Du är på väg att skicka ett meddelande. Klicka på skickaknappen för att fortsätta.',
 		'sl' => 'Sporočilo boste poslali s klikom na gumb za pošiljanje.',
 	),
 	'debug_sending_message_text_link' => array (
 		'en' => 'You are about to send a message. Hit the submit message link to continue.',
+		'sv' => 'Du är på väg att skicka ett meddelande. Klicka på skickalänken för att fortsätta.',
 		'sl' => 'Sporočilo boste poslali s klikom na gumb za pošiljanje.',
 		'hu' => 'Üzenetet küldhet. Kattintson az elküldés linkre a folytatáshoz.',
 	),
 	'debug_sending_message_send' => array (
 		'en' => 'Submit message',
+		'sv' => 'Skicka meddelande',
 		'sl' => 'Pošlji sporočilo',
 		'hu' => 'Üzenet küldése',
 	),
 	'debug_sending_message_msg_title' => array (
 		'en' => 'Message',
+		'sv' => 'Meddelande',
 		'sl' => 'Sporočilo',
 		'hu' => 'Üzenet',
 	),
 	'debug_sending_message_msg_text' => array (
 		'en' => 'As you are in debug mode, you get to see the content of the message you are sending:',
+		'sv' => 'Med avseende på att du är i debugläge kommer du att se innehållet i meddelandet som du skickar:',
 		'sl' => 'Ste v debug načinu, lahko si ogledate vsebino sporočila, ki ga pošiljate',
 	),
 	'debug_disable_debug_mode' => array (
 		'en' => 'You can turn off debug mode in the global simpleSAMLphp configuration file <tt>config/config.php</tt>.',
+		'sv' => 'Du kan stänga av debugläget i simpleSAMLphps globala konfigurationsfil <tt>config/config.php</tt>.',
 		'sl' => 'Debug način lahko izklopite v globalni simpleSAMLphp konfiguracijski datoteki <tt>config/config.php</tt>.',
 	),
 

@@ -169,12 +169,14 @@ $lang = array(
 	),
 	'noconsent_title' => array (
 		'en' => 'No consent given',
+		'sv' => 'Inget samtycket givet',
 		'sl' => 'Privolitev ni bila dana.',
 		'hr' => 'Nema pristanka',
 		'hu' => 'Nincs belegyezés',
 	),
 	'noconsent_text' => array (
 		'en' => 'You did not give consent for transfering your attributes to the service provider.',
+		'sv' => 'Du gav icke samtycke för att överföra dina attribut till tjänsteleverantören.',
 		'sl' => 'Niste podali privolitve za posredovanje atributov SP-ju.',
 		'hr' => 'Niste dali pristanak da se vaši podaci isporuče davatelju usluge.',
 		'hu' => 'Nem adta belegyezését, ahoz hogy adatait kiszlgálatassuk a szolgáltató felé.',
