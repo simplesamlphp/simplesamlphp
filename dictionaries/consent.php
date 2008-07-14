@@ -75,7 +75,7 @@ $lang = array(
 		'fr' => 'Lors de l\'ouverture de session, le fournisseur d\'identité enverra des informations sur votre identité à ce service. Acceptez-vous cela ?',
 		'nl' => 'Tijdens het login proces stuurt de identity provider zgn. attributen met daarin informatie over uw identiteit voor deze dienst. Bent u het daarmee eens?',
 		'lb' => 'Waerend dem Login Prozess schéckt den Identity Provider Attributer, déi Informatiounen iwert aer Identitéit enthaalen. Akzeptéier daer daat?',
-		'sl' => 'Med procesom prijave bo IdP posredoval atribute, ki vsebujejo informacije o vaši identiteti, tej storitvi. Ali se s tem strinjate? ',
+		'sl' => 'Med postopkom prijave bo IdP posredoval atribute, ki vsebujejo informacije o vaši identiteti, tej storitvi. Ali se s tem strinjate? ',
 		'hr' => 'Servis zahtjeva da IDPNAME isporuči dolje navedene podatke. Slažete li se s time?',
 		'hu' => 'Az azonosítás során az azonosító szolgáltató személyes adatokat fog küldeni ennek a szolgáltatásnak. Engedélyezi?',
 	),

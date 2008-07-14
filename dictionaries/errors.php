@@ -320,7 +320,7 @@ $lang = array(
 		'fr' => 'Une erreur s\'est produite lorsque ce fournisseur d\'identité a essayé de créer une réponse d\'authentification.',
 		'nl' => 'Tijdens het aanmaken van een authenticatie response door deze Identity Provider is er een fout opgetreden.',
 		'lb' => 'Beim Erstellen vun der Authenticatiounsaentwert as en Fehler passéiert',
-		'sl' => 'Ko je ponudnik identitete želel ustvariti odgovor za avtentikacijo, je prišlo do napake.',
+		'sl' => 'Ko je IdP želel ustvariti odgovor za avtentikacijo, je prišlo do napake.',
 		'hr' => 'Na strani IdP-a se pojavila greška prilikom kreiranja autentikacijskog odgovora.',
 		'hu' => 'Hiba történt az azonosítási válaszüzenet összeállítása során.',
 	),

@@ -82,7 +82,7 @@ $lang = array(
 	'notconfirm' => array (
 		'en' => 'Do not confirm',
 		'sv' => 'Bekräfta inte',
-		'sl' => 'NE potrdi',
+		'sl' => 'Ne potrdi',
 		'hu' => 'Nem erősíti meg',
 	),
 	'trustlist_desc' => array (
