@@ -1272,7 +1272,7 @@ class XMLSecEnc {
 
         $encMethod = $this->encdoc->documentElement->appendChild($this->encdoc->createElementNS(XMLSecEnc::XMLENCNS, 'xenc:EncryptionMethod'));
         $encMethod->setAttribute('Algorithm', $objKey->getAlgorith());
-        $cipherValue->parentNode->parentNode->insertBefore($encMethod, $cipherValue->parentNode);
+        $cipherValue->parentNode->parentNode->insertBefore($encMethod, $cipherValue->parentNode->parentNode->firstChild);
 
         $strEncrypt = base64_encode($objKey->encryptData($data));
         $value = $this->encdoc->createTextNode($strEncrypt);
@@ -1360,7 +1360,7 @@ class XMLSecEnc {
         $root = $this->encdoc->documentElement;
         $encKey = $this->encdoc->createElementNS(XMLSecEnc::XMLENCNS, 'xenc:EncryptedKey');
         if ($append) {
-            $keyInfo = $root->appendChild($this->encdoc->createElementNS('http://www.w3.org/2000/09/xmldsig#', 'dsig:KeyInfo'));
+            $keyInfo = $root->insertBefore($this->encdoc->createElementNS('http://www.w3.org/2000/09/xmldsig#', 'dsig:KeyInfo'), $root->firstChild);
             $keyInfo->appendChild($encKey);
         } else {
             $this->encKey = $encKey;
