@@ -133,6 +133,8 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		
 			$firstassertionroot->parentNode->replaceChild($encryptedassertion, $firstassertionroot);
 			$encryptedassertion->appendChild($firstassertionroot);
+			$firstassertionroot->setAttribute("xmlns:saml", "urn:oasis:names:tc:SAML:2.0:assertion");
+			$firstassertionroot->setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
 	
 			$enc = new XMLSecEnc();
 			$enc->setNode($firstassertionroot);
