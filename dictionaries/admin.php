@@ -60,7 +60,7 @@ $lang = array(
 		'en' => 'Metadata overview',
 		'sv' => 'Metadataöversikt',
 		'es' => 'Ver metadatos',
-		'sl' => 'Pregled metadate',
+		'sl' => 'Pregled metapodatkov',
 		'hr' => 'Pregled metapodataka',
 		'hu' => 'Metaadat áttekintés',
 	),
@@ -206,7 +206,7 @@ $lang = array(
 	'metaconv_xmlmetadata' => array (
 		'en' => 'XML metadata',
 		'sv' => 'XML-metadata',
-		'sl' => 'XML metadata',
+		'sl' => 'XML metapodatki',
 		'hr' => 'XML metapodaci',
 		'hu' => 'XML metadat',
 	),
