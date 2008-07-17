@@ -609,9 +609,11 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
 		$assertionExpire = SimpleSAML_Utilities::generateTimestamp(time() + 60 * 5);# 5 minutes
 		$notBefore = SimpleSAML_Utilities::generateTimestamp(time() - 30);
-		
+
 		$assertionid = SimpleSAML_Utilities::generateID();
-		$sessionindex = SimpleSAML_Utilities::generateID();
+
+		$session = SimpleSAML_Session::getInstance();
+		$sessionindex = $session->getSessionIndex();
 
 		
 		/**
