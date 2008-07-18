@@ -248,7 +248,11 @@ if ($spentityid) {
 		$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
 
 		// ($issuer, $receiver, $nameid, $nameidformat, $sessionindex, $mode) {
-		$req = $lr->generate($idpentityid, $spentityid, $session->getNameID(), $session->getSessionIndex(), 'IdP');
+		$nameId = $session->getSessionNameId('saml20-sp-remote', $spentityid);
+		if($nameId === NULL) {
+			$nameId = $session->getNameID();
+		}
+		$req = $lr->generate($idpentityid, $spentityid, $nameId, $session->getSessionIndex(), 'IdP');
 
 		/* Save the $logoutInfo until we return from the SP. */
 		saveLogoutInfo($lr->getGeneratedID());

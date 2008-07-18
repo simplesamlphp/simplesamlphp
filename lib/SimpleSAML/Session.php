@@ -69,6 +69,14 @@ class SimpleSAML_Session {
 
 
 	/**
+	 * Current NameIDs for sessions.
+	 *
+	 * Stored as a two-level associative array: $sessionNameId[<entityType>][<entityId>]
+	 */
+	private $sessionNameId;
+
+
+	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
 	private function __construct() {
@@ -288,6 +296,57 @@ class SimpleSAML_Session {
 	}
 	public function getNameID() {
 		return $this->nameid;
+	}
+
+
+	/**
+	 * Set the NameID of the users session to the specified entity.
+	 *
+	 * @param string $entityType  The type of the entity (saml20-sp-remote, shib13-sp-remote, ...).
+	 * @param string $entityId  The entity id.
+	 * @param array $nameId  The name identifier.
+	 */
+	public function setSessionNameId($entityType, $entityId, $nameId) {
+		assert('is_string($entityType)');
+		assert('is_string($entityId)');
+		assert('is_array($nameId)');
+
+		if(!is_array($this->sessionNameId)) {
+			$this->sessionNameId = array();
+		}
+
+		if(!array_key_exists($entityType, $this->sessionNameId)) {
+			$this->sessionNameId[$entityType] = array();
+		}
+
+		$this->sessionNameId[$entityType][$entityId] = $nameId;
+	}
+
+
+	/**
+	 * Get the NameID of the users session to the specified entity.
+	 *
+	 * @param string $entityType  The type of the entity (saml20-sp-remote, shib13-sp-remote, ...).
+	 * @param string $entityId  The entity id.
+	 * @return array  The name identifier, or NULL if no name identifier is associated with this session.
+	 */
+	public function getSessionNameId($entityType, $entityId) {
+		assert('is_string($entityType)');
+		assert('is_string($entityId)');
+
+		if(!is_array($this->sessionNameId)) {
+			return NULL;
+		}
+
+		if(!array_key_exists($entityType, $this->sessionNameId)) {
+			return NULL;
+		}
+
+		if(!array_key_exists($entityId, $this->sessionNameId[$entityType])) {
+			return NULL;
+		}
+
+		return $this->sessionNameId[$entityType][$entityId];
 	}
 
 

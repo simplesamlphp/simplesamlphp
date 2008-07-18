@@ -647,12 +647,14 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		/**
 		 * Handling NameID
 		 */
-		$nameid = null;
 		if ($nameidformat == self::EMAIL) {
-			$nameid = $this->generateNameID($nameidformat, $attributes[$spmd['simplesaml.nameidattribute']][0], $spnamequalifier);
+			$nameIdValue = $attributes[$spmd['simplesaml.nameidattribute']][0];
 		} else {
-			$nameid = $this->generateNameID($nameidformat, SimpleSAML_Utilities::generateID(), $spnamequalifier);
+			$nameIdValue = SimpleSAML_Utilities::generateID();
 		}
+		$nameIdData = array('Format' => $nameidformat, 'value' => $nameIdValue);
+		$session->setSessionNameId('saml20-sp-remote', $spentityid, $nameIdData);
+		$nameid = $this->generateNameID($nameidformat, $nameIdValue, $spnamequalifier);
 
 		$assertion = "";
 		if ($status === 'Success') {
