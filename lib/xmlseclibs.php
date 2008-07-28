@@ -1507,3 +1507,4 @@ class XMLSecEnc {
         return XMLSecEnc::staticLocateKeyInfo($objBaseKey, $node);
     }
 }
+?>
