@@ -102,7 +102,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
-				array('name', 'requireconsent', 'authority', 'privatekey_pass')
+				array('name', 'requireconsent', 'authority', 'privatekey_pass', 'attributemap', 'attributealter')
 			);
 		}
 		$et->data['metadata.shib13-idp-hosted'] = $results;
