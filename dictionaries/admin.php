@@ -206,6 +206,7 @@ $lang = array(
 	'metaconv_xmlmetadata' => array (
 		'en' => 'XML metadata',
 		'sv' => 'XML-metadata',
+		'es' => 'Metadatos XML',
 		'sl' => 'XML metapodatki',
 		'hr' => 'XML metapodaci',
 		'hu' => 'XML metadat',
@@ -306,18 +307,21 @@ $lang = array(
 		'sv' => 'simpleSAMLphp har upptäckt att %FEDERATION% är konfigurerad som förvald IdP.',
 		'es' => 'simpleSAMLphp ha detectado que ha configurado %FEDERATION% como su IdP por defecto.',
 		'sl' => 'simpleSAMLphp je zaznal, da ste nastavili %FEDERATION% za privzeti IdP.',
+		'hu' => 'simpleSAMLphp az érzékeli hogy a %FEDERATION% az alapértelmezett IdP-je.',
 	),
 	'metadata_send_desc' => array (
 		'en' => 'Before you can connect to %FEDERATION%, %FEDERATION% needs to add your service in its trust configuration. When you contact %FEDERATION% to add you as a new service, you will be asked to send your metadata. Here you can easily send the metadata to %FEDERATION% by clicking the button below.',
 		'sv' => 'Innan det går att ansluta till %FEDERATION% måste %FEDERATION% lägga till din tjänst i konfigurationen över betrodda tjänster. Du kan enkelt skicka metadata till %FEDERATION% genom klicka på knappen nedan.',
 		'es' => 'Antes de que pueda conectar con %FEDERATION%, %FEDERATION% tiene que añadir el servicio en su configuración de confianza. Cuando contacte con %FEDERATION% para que le añada como un nuevo servicio, le indicarán que les envíe sus metadatos. Pulsando el siguiente botón puede enviar de una forma sencila los metadatos a %FEDERATION%.',
 		'sl' => 'Preden se boste lahko povezali na %FEDERATION%, mora %FEDERATION% dodati vašo storitev v konfiguracijo zaupanja vrednih virov. Ko boste kontaktirali %FEDERATION%, da doda novo storitev, bo potrebno poslati vaše metapodatke. S klikom na spodnji gumb lahko enostavno pošljete metapodatke na %FEDERATION%',
+		'hu' => 'Mielött csatlakozna a %FEDERATION% szervezethez, szükségvan az ön szolgáltatásának elfogadására a %FEDERATION% által. Mikor új szolgáltatóként jeletkezik a %FEDERATION% szervezetnél, szükség van az metaadatának elküldésére. A lenti gombra kattintva ezt egyszerűen megteheti.',
 	),
 	'metadata_send_email' => array (
 		'en' => '%FEDERATION% needs to know how to get in contact with you, so you need to type in <strong>your email address</strong>:',
 		'sv' => '%FEDERATION% behöver veta din kontaktinformation vilket betyder att du måste ange en <strong>e-postadress</strong>:',
 		'es' => '%FEDERATION% necesita conocer cómo ponerse en contacto con Usted, por lo que se necesita que indique su <strong>dirección de correo electrónico</strong>:',
 		'sl' => '%FEDERATION% mora vedeti, kako lahko stopi v kontakt z vami, zato je potrebno vnesti <strong>vaš elektronski naslov</strong>',
+		'hu' => '%FEDERATION% szüsége van az ön elérhetőségére, így szükséges az <strong>ön email címének</strong> megadása:',
 	),
 	'metadata_send_send' => array (
 		'en' => 'Send my metadata to %FEDERATION%',
@@ -330,6 +334,7 @@ $lang = array(
 	'debug_sending_message_title' => array (
 		'en' => 'Sending message',
 		'sv' => 'Skickar meddelande',
+		'es' => 'Enviando mensaje',
 		'sl' => 'Pošiljanje sporočila',
 		'hr' => 'Šaljem poruku',
 		'hu' => 'Üzenet küldése',
@@ -337,23 +342,28 @@ $lang = array(
 	'debug_sending_message_text_button' => array (
 		'en' => 'You are about to send a message. Hit the submit message button to continue.',
 		'sv' => 'Du är på väg att skicka ett meddelande. Klicka på skickaknappen för att fortsätta.',
+		'es' => 'Se va a proceder a enviar un mensaje. Pulse el botón "Enviar mensaje" para continuar.',
 		'sl' => 'Sporočilo boste poslali s klikom na gumb za pošiljanje.',
+		'hu' => 'Üzenetet küldhet. Kattintson az elküldés gombra a folytatáshoz.',
 	),
 	'debug_sending_message_text_link' => array (
 		'en' => 'You are about to send a message. Hit the submit message link to continue.',
 		'sv' => 'Du är på väg att skicka ett meddelande. Klicka på skickalänken för att fortsätta.',
+		'es' => 'Se va a proceder a enviar un mensaje. Pulse el enlace "Enviar mensaje" para continuar.',
 		'sl' => 'Sporočilo boste poslali s klikom na gumb za pošiljanje.',
 		'hu' => 'Üzenetet küldhet. Kattintson az elküldés linkre a folytatáshoz.',
 	),
 	'debug_sending_message_send' => array (
 		'en' => 'Submit message',
 		'sv' => 'Skicka meddelande',
+		'es' => 'Enviar mensaje',
 		'sl' => 'Pošlji sporočilo',
 		'hu' => 'Üzenet küldése',
 	),
 	'debug_sending_message_msg_title' => array (
 		'en' => 'Message',
 		'sv' => 'Meddelande',
+		'es' => 'Mensaje',
 		'sl' => 'Sporočilo',
 		'hr' => 'Poruka',
 		'hu' => 'Üzenet',
@@ -361,12 +371,16 @@ $lang = array(
 	'debug_sending_message_msg_text' => array (
 		'en' => 'As you are in debug mode, you get to see the content of the message you are sending:',
 		'sv' => 'Med avseende på att du är i debugläge kommer du att se innehållet i meddelandet som du skickar:',
+		'es' => 'Si está en modo de depuración, verá el contenido del mensaje que va a enviar:',
 		'sl' => 'Ste v debug načinu, lahko si ogledate vsebino sporočila, ki ga pošiljate',
+		'hu' => 'Hibakereső modban van, lehetőség van az elküldendő üzenet megtekintésére:',
 	),
 	'debug_disable_debug_mode' => array (
 		'en' => 'You can turn off debug mode in the global simpleSAMLphp configuration file <tt>config/config.php</tt>.',
 		'sv' => 'Du kan stänga av debugläget i simpleSAMLphps globala konfigurationsfil <tt>config/config.php</tt>.',
+		'es' => 'Puede desactivar el modo de depuración en el fichero de configuración global de simpleSAMLphp <tt>config/config.php</tt>.',
 		'sl' => 'Debug način lahko izklopite v globalni simpleSAMLphp konfiguracijski datoteki <tt>config/config.php</tt>.',
+		'hu' => 'A simpleSAMLphp <tt>config/config.php</tt> fájljában kikapcsolhatja a hiba kereső módot.',
 	),
 
 );

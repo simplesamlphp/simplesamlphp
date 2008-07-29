@@ -125,6 +125,7 @@ $lang = array(
 		'en' => 'No sites are remembered for this session. When you authenticate with a site, you can choose to add it to this list by choosing <q>Remember this decision</q>.',
 		'sv' => 'Inga sajter är sparade i denna session. När du loggar in på en sajt kan du välja om du ska lägga den i listan genom att välja <q>Spara detta beslut</q>.',
 		'sl' => 'Nobena stran ni bila shranjena za to sejo. Shranite jo lahko med prijavo na strani.',
+		'hu' => 'Nincs megjegyezve oldal ehhez a munkamenethez. Amikor bejelentkezik egy oldal segítségével, akkor hozzá adhatja ehhez a listához a <q>Emlékezzen erre a választásra</q> lehetőség kiválasztásával.',
 	),
 
 );
