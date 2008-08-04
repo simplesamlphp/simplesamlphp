@@ -11,8 +11,9 @@
 	?></h2>
 
 <?php
-if($this->t('descr_' . $this->data['errorcode'])) {
-	echo $this->t('descr_' . $this->data['errorcode']);
+$descr = $this->t('descr_' . $this->data['errorcode'], $this->data['parameters']);
+if($descr) {
+	echo htmlspecialchars($descr);
 }
 ?>
 
@@ -67,6 +68,7 @@ if (!empty($this->data['errorreportaddress'])) {
 		<input type="hidden" name="exceptionmsg" value="<?php echo htmlspecialchars($this->data['exceptionmsg']); ?>" />
 		<input type="hidden" name="exceptiontrace" value="<?php echo htmlspecialchars($this->data['exceptiontrace']); ?>" />
 		<input type="hidden" name="errorcode" value="<?php echo htmlspecialchars($this->data['errorcode']); ?>" />
+		<input type="hidden" name="parameters" value="<?php echo htmlspecialchars(var_export($this->data['parameters'], TRUE)); ?>" />
 		<input type="hidden" name="url" value="<?php echo htmlspecialchars($this->data['url']); ?>" />
 
 		<input type="submit" name="send" value="<?php echo $this->t('report_submit'); ?>" />

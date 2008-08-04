@@ -388,22 +388,50 @@ class SimpleSAML_Utilities {
 
 
 	/** 
+	 * Show and log fatal error message.
+	 *
 	 * This function logs a error message to the error log and shows the
 	 * message to the user. Script execution terminates afterwards.
 	 *
-	 *  @param $title       Short title for the error message.
-	 *  @param $message     The error message.
+	 * The error code comes from the errors-dictionary. It can optionally include parameters, which
+	 * will be substituted into the output string.
+	 *
+	 * @param string $trackid  The trackid of the user, from $session->getTrackID().
+	 * @param mixed $errorcode  Either a string with the error code, or an array with the error code and
+	 *                          additional parameters.
+	 * @param Exception $e  The exception which caused the error.
 	 */
-	public static function fatalError($trackid = 'na', $errorcode = null, Exception $e = null, $level = LOG_ERR) {
+	public static function fatalError($trackid = 'na', $errorcode = null, Exception $e = null) {
 	
 		$config = SimpleSAML_Configuration::getInstance();
-		
+
+		if(is_array($errorcode)) {
+			$parameters = $errorcode;
+			unset($parameters[0]);
+			$errorcode = $errorcode[0];
+		} else {
+			$parameters = array();
+		}
+
 		// Get the exception message if there is any exception provided.
 		$emsg   = (empty($e) ? 'No exception available' : $e->getMessage());
 		$etrace = (empty($e) ? 'No exception available' : $e->getTraceAsString()); 
-		
+
+		if(!empty($errorcode) && count($parameters) > 0) {
+			$reptext = array();
+			foreach($parameters as $k => $v) {
+				$reptext[] = '"' . $k . '"' . ' => "' . $v . '"';
+			}
+			$reptext = '(' . implode(', ', $reptext) . ')';
+			$error = $errorcode . $reptext;
+		} elseif(!empty($errorcode)) {
+			$error = $errorcode;
+		} else {
+			$error = 'na';
+		}
+
 		// Log a error message
-		SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - UserError: ErrCode:'.(!empty($errorcode) ? $errorcode : 'na').': '.urlencode($emsg) );
+		SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - UserError: ErrCode:' . $error . ': ' . urlencode($emsg) );
 		
 		$languagefile = null;
 		if (isset($errorcode)) $languagefile = 'errors';
@@ -413,7 +441,8 @@ class SimpleSAML_Utilities {
 		
 		
 		$t->data['errorcode'] = $errorcode;
-		
+		$t->data['parameters'] = $parameters;
+
 		$t->data['showerrors'] = $config->getValue('showerrors', true);
 
 		/* Check if there is a valid technical contact email address. */

@@ -22,6 +22,7 @@ $mailFormat = array(
 	'email' => 'Email address of submitter',
 	'url' => 'URL of page where the error occured',
 	'errorcode' => 'Error code',
+	'parameters' => 'Parameters for the error',
 	'text' => 'Message from user',
 	'trackid' => 'Track id for the user\' session',
 	'exceptionmsg' => 'Exception message',
