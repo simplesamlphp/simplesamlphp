@@ -972,6 +972,54 @@ $lang = array(
 		'hr' => 'Informacija o tekućem zahtjevu za odjavljivanjem se izgubila. Preporučamo da se vratite u aplikaciju iz koje ste se htjeli odjaviti i pokušate se odjaviti ponovo. Ova greška može biti uzrokovana istekom valjanosti zahtjeva za odjavom. Zahtjev se pohranjuje određeno vrijeme - u pravilu nekoliko sati. Obzirom da je to dulje nego što bi bilo koja operacija odjavljivanja trebala trajati, greška koja se pojavila može upućivati na grešku u konfiguraciji. Ako se problem nastavi, kontaktirajte vašeg davatelja usluge. ',
 		'hu' => 'A kijelentkezési művelettel kapcsolatos információk valahol elvesztek. Kérjük, térjen vissza ahhoz a szolgáltatáshoz, ahonnan ki akart jelentkezni, és próbálja újra! Lehetséges, hogy a hibát az okozza, hogy a kijelentkezéshez szükséges információ elévült. A kijelentkezési információ csak korlátozott ideig érvényes - általában néhány óráig. Ez hosszabb, mint amennyi normális esetben a kijelentkezéshez szükséges, ezért ez a hibaüzenet konfigurációs hibát jelenthet. Ha a probléma továbbra is fennáll, kérjük, forduljon az alkalmazásszolgáltatóhoz (SP)!',
 	),
+	'title_ASSERTFAIL' => array (
+		'en' => 'Assertion failure',
+		'es' => 'Error en la afirmación (Assertion)',
+		'sl' => 'Neveljavna zahteva',
+		'hu' => 'Igazolás (assertion) hiba',
+	),
+	'descr_ASSERTFAIL' => array (
+		'en' => 'An assertion in the code failed. The assertion was: %ASSERTION%',
+		'es' => 'Una afirmación del código ha fallado. La afirmación es: %ASSERTION%',
+		'sl' => 'Vnos v kodo je spodletel. Navedena je bila naslednja zahteva: %ASSERTION%',
+		'hu' => 'Igazolás (assetion) hiba a kódban. A hibás igazolás: %ASSERTION%',
+	),
+	'title_UNHANDLEDEXCEPTION' => array (
+		'en' => 'Unhandled exception',
+		'es' => 'Excepción no controlada',
+		'sl' => 'Nedefinirana izjema.',
+		'hu' => 'Kezeletlen kivétel',
+	),
+	'descr_UNHANDLEDEXCEPTION' => array (
+		'en' => 'An unhandled exception was thrown.',
+		'es' => 'Se lanzó una excepción no controlada.',
+		'sl' => 'Zagnana je bila nedefinirana izjema.',
+		'hu' => 'Kezeletlen kivétel keletkezett.',
+	),
+	'title_NOTFOUND' => array (
+		'en' => 'Page not found',
+		'es' => 'Página no encontrada',
+		'sl' => 'Strani ni bilo mogoče najti.',
+		'hu' => 'Oldal nem található',
+	),
+	'descr_NOTFOUND' => array (
+		'en' => 'The given page was not found. The URL was: %URL%',
+		'es' => 'La página que indicó no se encontró. La URL es: %URL%',
+		'sl' => 'Strani ni bilo mogoče najti. Naveden URL strani je bil: %URL%',
+		'hu' => 'Az alábbi oldal nem található: %URL%',
+	),
+	'title_NOTFOUNDREASON' => array (
+		'en' => 'Page not found',
+		'es' => 'Página no encontrada',
+		'sl' => 'Strani ni bilo mogoče najti.',
+		'hu' => 'Oldal nem található',
+	),
+	'descr_NOTFOUNDREASON' => array (
+		'en' => 'The given page was not found. The reason was: %REASON%  The URL was: %URL%',
+		'es' => 'La página que indicó no se encontró. El motivo es: %REASON% La URL es: %URL%',
+		'sl' => 'Strani ni bilo mogoče najti. Razlog: %REASON%. Naveden URL strani je bil: %URL%',
+		'hu' => '%URL% oldal nem található, a következő ok miatt: %REASON% ',
+	),
 
 );
 
