@@ -189,6 +189,7 @@ if (!$session->isAuthenticated($authority) ) {
 				$t->data['sp_name'] = $sp_name;
 				$t->data['idp_name'] = (isset($idpmetadata['name']) ? $idpmetadata['name'] : $idpentityid);
 				$t->data['spentityid'] = $spentityid;
+				$t->data['spmetadata'] = $spmetadata;
 				$t->data['attributes'] = $filteredattributes;
 				$t->data['consenturl'] = SimpleSAML_Utilities::selfURLNoQuery();
 				$t->data['requestid'] = $authId;
