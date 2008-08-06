@@ -166,7 +166,12 @@ class SimpleSAML_Utilities {
 			$oldQuery = array();
 			$url .= '?';
 		} else {
-			$oldQuery = self::parseQueryString(substr($url, $queryStart + 1));
+			$oldQuery = substr($url, $queryStart + 1);
+			if($oldQuery === FALSE) {
+				$oldQuery = array();
+			} else {
+				$oldQuery = self::parseQueryString($oldQuery);
+			}
 			$url = substr($url, 0, $queryStart + 1);
 		}
 
