@@ -2,6 +2,7 @@
 
 $lang = array(
 	'access_denied' => array (
+		'no' => 'Du har ikke tilgang til denne tjenesten',
 		'da' => 'Du har ikke adgang til denne service',
 		'en' => 'You do not have access to this service',
 		'sv' => 'Du har inte tillgång till denna tjänst',
@@ -11,6 +12,7 @@ $lang = array(
 		'hu' => 'Önnek nincs hozzáférése ehhez a szolgáltatáshoz',
 	),
 	'no_access_to' => array (
+		'no' => 'Du har ikke tilgang til følgende tjeneste:',
 		'da' => 'Du har ikke adgang til servicen:',
 		'en' => 'You do not have access to the service:',
 		'sv' => 'Du har inte tillgång till angiven tjänst:',
@@ -20,6 +22,7 @@ $lang = array(
 		'hu' => 'Ön nem férhet hozzá ehhez a szolgáltatáshoz:',
 	),
 	'contact_home' => array (
+		'no' => 'Hvilke tjenester du har tilgang til er bestemt av din vertsorganisasjon. Ta kontakt med din lokale brukerstøtte for spørsmål.',
 		'da' => 'Adgang til services bestemmes af din hjemmeorganisation. Kontakt venligst din lokale helpdesk for spørgsmål.',
 		'en' => 'Access to services is controlled by your home organization. Please contact your local it support for questions.',
 		'sv' => 'Tillgång till tjänster kontrolleras av din hemmaorganisation. Ta kontakt med din lokala support om du har några frågor.',
