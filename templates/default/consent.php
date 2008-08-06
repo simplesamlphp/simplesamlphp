@@ -28,9 +28,10 @@
 		</form>
 		<form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noconsent']); ?>" method="GET">
 <?php
-if(array_key_exists('sptype', $this->data) && array_key_exists('spentityid', $this->data)) {
-	echo('<input type="hidden" name="sptype" value="' . htmlspecialchars($this->data['sptype']) . '" />');
-	echo('<input type="hidden" name="spentityid" value="' . htmlspecialchars($this->data['spentityid']) . '" />');
+if(array_key_exists('noconsent_data', $this->data)) {
+	foreach($this->data['noconsent_data'] as $name => $value) {
+		echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
+	}
 }
 ?>
 			<input type="submit" id="nobutton" value="<?php echo htmlspecialchars($this->t('no')) ?>" />

@@ -14,6 +14,9 @@ $session = SimpleSAML_Session::getInstance();
 
 $t = new SimpleSAML_XHTML_Template($config, 'noconsent.php');
 $t->data['spmetadata'] = $spmetadata;
+if(array_key_exists('resumeFrom', $_REQUEST)) {
+	$t->data['resumeFrom'] = $_REQUEST['resumeFrom'];
+}
 $t->show();
 
 ?>

@@ -276,7 +276,6 @@ if($needAuth && !$isPassive) {
 				$t->data['header'] = 'Consent';
 				$t->data['sp_name'] = $sp_name;
 				$t->data['idp_name'] = (isset($idpmetadata['name']) ? $idpmetadata['name'] : $idpentityid);
-				$t->data['sptype'] = 'saml20-sp-remote';
 				$t->data['spentityid'] = $spentityid;
 				$t->data['spmetadata'] = $spmetadata;
 				$t->data['attributes'] = $filteredattributes;
@@ -285,6 +284,11 @@ if($needAuth && !$isPassive) {
 				$t->data['consent_cookie'] = $requestcache['ConsentCookie'];
 				$t->data['usestorage'] = $consent->useStorage();
 				$t->data['noconsent'] = '/' . $config->getBaseURL() . 'noconsent.php';
+				$t->data['noconsent_data'] = array(
+					'sptype' => 'saml20-sp-remote',
+					'spentityid' => $spentityid,
+					'resumeFrom' => SimpleSAML_Utilities::selfURL(),
+					);
 
 				if (array_key_exists('privacypolicy', $spmetadata)) {
 					$privacypolicy = $spmetadata['privacypolicy'];

@@ -189,6 +189,9 @@ $lang = array(
 		'hr' => 'Niste dali pristanak da se vaši podaci isporuče davatelju usluge.',
 		'hu' => 'Nem adta belegyezését, ahoz hogy adatait kiszlgálatassuk a szolgáltató felé.',
 	),
+	'noconsent_return' => array (
+		'en' => 'Return to consent page',
+	),
 
 );
 
