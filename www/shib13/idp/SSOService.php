@@ -23,7 +23,7 @@ if (!$config->getValue('enable.shib13-idp', false))
 
 try {
 	$idpentityid = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted', 'entityid');
-	$idmetaindex = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted', 'metaindex');
+	$idpmetaindex = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted', 'metaindex');
 	$idpmetadata = $metadata->getMetaDataCurrent('shib13-idp-hosted');
 } catch (Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
@@ -54,6 +54,7 @@ if (isset($_GET['shire'])) {
 			'Issuer'    => $authnrequest->getIssuer(),
 			'shire'		=> $authnrequest->getShire(),
 			'RelayState' => $authnrequest->getRelayState(),
+			'ConsentCookie' => SimpleSAML_Utilities::generateID(),
 		);
 			
 		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incomming Shib authnRequest requestid: '.$requestid);
