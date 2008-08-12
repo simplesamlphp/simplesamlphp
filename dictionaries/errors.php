@@ -1020,6 +1020,12 @@ $lang = array(
 		'sl' => 'Strani ni bilo mogoče najti. Razlog: %REASON%. Naveden URL strani je bil: %URL%',
 		'hu' => '%URL% oldal nem található, a következő ok miatt: %REASON% ',
 	),
+	'title_BADREQUEST' => array (
+		'en' => 'Bad request received',
+	),
+	'descr_BADREQUEST' => array (
+		'en' => 'There is an error in the request to this page. The reason was: %REASON%',
+	),
 
 );
 
