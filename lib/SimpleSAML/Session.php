@@ -608,6 +608,31 @@ class SimpleSAML_Session {
 
 
 	/**
+	 * Delete data from the data store.
+	 *
+	 * This function immediately deletes the data with the given type and id from the data store.
+	 *
+	 * @param string $type  The type of the data.
+	 * @param string $id  The identifier of the data.
+	 */
+	public function deleteData($type, $id) {
+		assert('is_string($type)');
+		assert('is_string($id)');
+
+		if (!is_array($this->dataStore)) {
+			return;
+		}
+
+		if(!array_key_exists($type, $this->dataStore)) {
+			return;
+		}
+
+		unset($this->dataStore[$type][$id]);
+		$this->dirty = TRUE;
+	}
+
+
+	/**
 	 * This function stores data in the data store.
 	 *
 	 * @param $type     The type of the data. This is checked when retrieving data from the store.
