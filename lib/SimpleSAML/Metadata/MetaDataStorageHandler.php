@@ -276,6 +276,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 		foreach($this->sources as $source) {
 			$metadata = $source->getMetaData($index, $set);
 			if($metadata !== NULL) {
+				$metadata['metadata-index'] = $index;
+				$metadata['metadata-set'] = $set;
 				return $metadata;
 			}
 		}
