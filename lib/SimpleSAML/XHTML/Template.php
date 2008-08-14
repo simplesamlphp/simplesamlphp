@@ -308,10 +308,24 @@ class SimpleSAML_XHTML_Template {
 
 
 	/**
-	 * Include text in the current language.
+	 * Translate a tag into the current language, with a fallback to english.
 	 *
-	 * @param $tag  A name tag of the string that should be returned.
-	 * @param $replacements	 An associative array of keys that should be replaced with values in the translated string.
+	 * This function is used to look up a translation tag in dictionaries, and return the
+	 * translation into the current language. If no translation into the current language can be
+	 * found, english will be tried, and if that fails, placeholder text will be returned.
+	 *
+	 * An array can be passed as the tag. In that case, the array will be assumed to be on the
+	 * form (language => text), and will be used as the source of translations.
+	 *
+	 * This function can also do replacements into the translated tag. It will search the
+	 * translated tag for the keys provided in $replacements, and replace any found occurances
+	 * with the value of the key.
+	 *
+	 * @param string|array $tag  A tag name for the translation which should be looked up, or an
+	 *                           array with (language => text) mappings.
+	 * @param array $replacements  An associative array of keys that should be replaced with
+	 *                             values in the translated string.
+	 * @return string  The translated tag, or a placeholder value if the tag wasn't found.
 	 */
 	public function t($tag, $replacements = array(), $fallbackdefault = true, $oldreplacements = array(), $striptags = false) {
 
@@ -333,11 +347,15 @@ class SimpleSAML_XHTML_Template {
 			$replacements = $oldreplacements;
 		}
 
-		$tagData = $this->getTag($tag);
-		if($tagData === NULL) {
-			/* Tag not found. */
-			SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not translated at all.');
-			return $this->t_not_translated($tag, TRUE);
+		if(is_array($tag)) {
+			$tagData = $tag;
+		} else {
+			$tagData = $this->getTag($tag);
+			if($tagData === NULL) {
+				/* Tag not found. */
+				SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not translated at all.');
+				return $this->t_not_translated($tag, TRUE);
+			}
 		}
 
 		$translated = $this->getTranslation($tagData);
