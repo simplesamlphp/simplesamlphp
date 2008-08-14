@@ -2,6 +2,7 @@
 
 $lang = array(
 	'list_trusted_sites' => array (
+		'nn' => 'Liste over tiltrudde partnarar',
 		'en' => 'List of trusted sites',
 		'sv' => 'Lista med godkända sajter',
 		'es' => 'Lista de sitios de confianza',
@@ -9,6 +10,7 @@ $lang = array(
 		'hu' => 'Megbízható oldlak listája',
 	),
 	'about_link' => array (
+		'nn' => 'Om OpenID fra simpleSAMLphp',
 		'en' => 'About simpleSAMLphp OpenID',
 		'sv' => 'Om simpleSAMLphp OpenID',
 		'es' => 'Sobre simpleSAMLphp OpenID',
@@ -16,6 +18,7 @@ $lang = array(
 		'hu' => 'A simpleSAMLphp alapú OpenID-ról',
 	),
 	'welcome' => array (
+		'nn' => 'Velkommen til simpleSAMLphp OpenID-tilbyder',
 		'en' => 'Welcome to the simpleSAMLphp OpenID provider.',
 		'sv' => 'Välkommen till simpleSAMLphp OpenID-leverantör',
 		'es' => 'Bienvenido al proveedor OpenID de simpleSAMLphp',
@@ -23,6 +26,7 @@ $lang = array(
 		'hu' => 'Köszöntjük a simpleSAMLphp-val üzemletett OpenID kiszolgálókon.',
 	),
 	'howtouse' => array (
+		'nn' => 'For å bruka denne tenesta må du setja opp ein URL som kan brukast som identifikator.  Legg inn følgjande kode inne i <code>&lt;head&gt;</code> for HTML dokumentet på URLen din:',
 		'en' => 'To use this server, you will have to set up a URL to use as an identifier. Insert the following markup into the <code>&lt;head&gt;</code> of the HTML document at that URL:',
 		'sv' => 'För att använda denna server måste du ha satt upp en URL som identifierare. Lägg till följande märktagg i <code>&lt;head&gt;</code> på webbsidan som finns på URLen:',
 		'es' => 'Para usar este servidor, necesita definir una URL para usar como identificador. Inserte la etiqueta <code>&lt;head&gt;&gt;</code> del documento HTML en esta URL:',
@@ -30,6 +34,7 @@ $lang = array(
 		'hu' => 'A szerverhasználatához, be kell állítani egy azonosító URL-t. A következőt kell beállítani a HTML dokumentum <code>&lt;head&gt;</code> tegjébe (fejlécébe):',
 	),
 	'loggedinas' => array (
+		'nn' => 'Du er no logga inn som ',
 		'en' => 'You are now logged in as %USERID%',
 		'sv' => 'Du är nu inloggad som %USERID%',
 		'es' => 'Se ha identificado como %USERID%',
@@ -37,6 +42,7 @@ $lang = array(
 		'hu' => 'A %USERID% névvel van bejelentkezve',
 	),
 	'login' => array (
+		'nn' => 'Innlogging',
 		'en' => 'Login',
 		'sv' => 'Logga in',
 		'es' => 'Usuario',
@@ -44,6 +50,7 @@ $lang = array(
 		'hu' => 'Belépés',
 	),
 	'howtouse_cont' => array (
+		'nn' => 'Etterpå konfigurerer du denne tenaren slik at du kan logga inn til URLen.  Når du har konfiguerert tenaren og lagt inn identitetsURLen, kan du sjekka om alt fungerer ved å bruka',
 		'en' => 'Then configure this server so that you can log in with that URL. Once you have configured the server, and marked up your identity URL, you can verify that it is working by using the %SITE% %TOOL%:',
 		'sv' => 'Konfigurera sedan denna server så du kan logga in med den URLen. När du har konfigurerat servern och märkt upp din identiets-URL kan du verifiera att det fungerar genom att använda %SITE% %TOOL%:',
 		'es' => 'Configure este servidor de modo que pueda identificarse con la URL. Una vez que ha configurado el servidor y definida su URL de identificación, puede verificar si funciona usando %SITE% %TOOL%:',
@@ -51,6 +58,7 @@ $lang = array(
 		'hu' => 'Miután beállította a szervet ezen az URL-n bejelentkezhet. Először beállítja a szervert és az azonosító URL-t, azonosíthatja magát a következő használatával %SITE% %TOOL%:',
 	),
 	'checkup_tool' => array (
+		'nn' => 'Verktøy for å sjekka OpenID (OpenID Checkup)',
 		'en' => 'OpenID Checkup tool',
 		'sv' => 'OpenID kontrollverktyg',
 		'es' => 'Herramienta de comprobación OpenID',
@@ -58,6 +66,7 @@ $lang = array(
 		'hu' => 'OpenID ellenőrző eszköz',
 	),
 	'openid_url' => array (
+		'nn' => 'OpenID URL',
 		'en' => 'OpenID URL:',
 		'sv' => 'OpenID URL:',
 		'es' => 'URL OpenID:',
@@ -65,6 +74,7 @@ $lang = array(
 		'hu' => 'OpenID URL:',
 	),
 	'check' => array (
+		'nn' => 'Sjekk',
 		'en' => 'Check',
 		'sv' => 'Kontrollera',
 		'es' => 'Comprobar',
@@ -79,6 +89,7 @@ $lang = array(
 		'hu' => 'Kívánja megerősíteni a személyazonosságát igazólő URL-t (%OPENIDURL%) a %SITEURL% segítségével?',
 	),
 	'remember' => array (
+		'nn' => 'Hugs denne avgjerda',
 		'en' => 'Remember this decision',
 		'sv' => 'Spara detta beslut',
 		'es' => 'Recordar esta decisión',
@@ -86,6 +97,7 @@ $lang = array(
 		'hu' => 'Emlékezzen erre a választásra',
 	),
 	'confirm' => array (
+		'nn' => 'Stadfest',
 		'en' => 'Confirm',
 		'sv' => 'Bekräfta',
 		'es' => 'Confirmar',
@@ -93,6 +105,7 @@ $lang = array(
 		'hu' => 'Megerősít',
 	),
 	'notconfirm' => array (
+		'nn' => 'Treng ikkje stadfesting',
 		'en' => 'Do not confirm',
 		'sv' => 'Bekräfta inte',
 		'es' => 'No confirmar',
@@ -107,6 +120,7 @@ $lang = array(
 		'hu' => 'Ezekre a válaszokra emlékezzen a munkamenet folyamán. Az összes változtatás elvésza munkamenet befelyeztével.',
 	),
 	'trustlist_trustedsites' => array (
+		'nn' => 'Tiltrudde partnarar',
 		'en' => 'Trusted Sites',
 		'sv' => 'Godkända sajter',
 		'es' => 'Sitios de confianza',
@@ -114,6 +128,7 @@ $lang = array(
 		'hu' => 'Megbízható oldalak',
 	),
 	'trustlist_untrustedsites' => array (
+		'nn' => 'Ikkje tiltrudde partnarar',
 		'en' => 'Untrusted Sites',
 		'sv' => 'Ej godkända sajter',
 		'es' => 'Sitios no confiables',

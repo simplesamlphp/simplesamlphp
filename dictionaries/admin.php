@@ -2,6 +2,7 @@
 
 $lang = array(
 	'cfg_check_header' => array (
+		'nn' => 'Konfigurasjonssjekk',
 		'en' => 'Configuration check',
 		'sv' => 'Konfigurationskontroll',
 		'es' => 'Comprobar configuración',
@@ -10,6 +11,7 @@ $lang = array(
 		'hu' => 'Beállítások ellenőrzése',
 	),
 	'cfg_check_select_file' => array (
+		'nn' => 'Vel konfigurasjonsfil som skal sjekkast',
 		'en' => 'Select configuration file to check:',
 		'sv' => 'Välj vilken konfigurationfil som ska kontrolleras:',
 		'es' => 'Seleccione el fichero de configuración a comprobar:',
@@ -18,6 +20,7 @@ $lang = array(
 		'hu' => 'Válassza ki az ellenőrizendő bállító fájlt',
 	),
 	'cfg_check_notices' => array (
+		'nn' => 'Legg merke til',
 		'en' => 'Notices',
 		'sv' => 'Meddelanden',
 		'es' => 'Avisos',
@@ -26,6 +29,7 @@ $lang = array(
 		'hu' => 'Megjegyzések',
 	),
 	'cfg_check_missing' => array (
+		'nn' => 'Det manglar informasjon i konfigurasjonsfila',
 		'en' => 'Options missing from config file',
 		'sv' => 'Alternativ saknas i konfigurationsfilen',
 		'es' => 'Opciones que faltan en el fichero de configuración',
@@ -34,6 +38,7 @@ $lang = array(
 		'hu' => 'Bállítási feltételek hiányoznak a beállító fájlból',
 	),
 	'cfg_check_superfluous' => array (
+		'nn' => 'Overflødig informasjon i konfigurasjonsfila',
 		'en' => 'Superfluous options in config file',
 		'sv' => 'Överflödiga alternativ i konfigurationsfilen',
 		'es' => 'Opciones sobrantes en el fichero de configuración',
@@ -41,6 +46,7 @@ $lang = array(
 		'hu' => 'Felesleges feltétel van a beállító fájlban',
 	),
 	'cfg_check_noerrors' => array (
+		'nn' => 'Fann ingen feil',
 		'en' => 'No errors found.',
 		'sv' => 'Inga fel funna.',
 		'es' => 'No se han encontrado errores',
@@ -49,6 +55,7 @@ $lang = array(
 		'hu' => 'Hiba mentes.',
 	),
 	'cfg_check_back' => array (
+		'nn' => 'Gå tilbake til filoversikten',
 		'en' => 'Go back to the file list',
 		'sv' => 'Gå tillbaka till fillistan',
 		'es' => 'Volver al listado de archivos',
@@ -57,6 +64,7 @@ $lang = array(
 		'hu' => 'Vissza a fájl listához.',
 	),
 	'metaover_header' => array (
+		'nn' => 'Oversikt over metadata',
 		'en' => 'Metadata overview',
 		'sv' => 'Metadataöversikt',
 		'es' => 'Ver metadatos',
@@ -65,6 +73,7 @@ $lang = array(
 		'hu' => 'Metaadat áttekintés',
 	),
 	'metaover_intro' => array (
+		'nn' => 'For å sjå på detaljane for ein SAML entitet, klikk på SAML entitet',
 		'en' => 'To look at the details for an SAML entity, click on the SAML entity header.',
 		'sv' => 'För att titta på detaljer för en SAML-entitet klicka på rubriken för SAML-entiteten.',
 		'es' => 'Para ver los detalles de una entidad SAML, haga click en la cabecera de la entidad.',
@@ -72,6 +81,7 @@ $lang = array(
 		'hu' => 'A SAML egységek bővebb információjáért, kattintson a SAML egység fejlécére.',
 	),
 	'metaover_errorentry' => array (
+		'nn' => 'Feil i dette metadatainnslaget',
 		'en' => 'Error in this metadata entry',
 		'sv' => 'Fel i dessa metadat',
 		'es' => 'Error en los metadatos de la entrada',
@@ -79,6 +89,7 @@ $lang = array(
 		'hu' => 'Hiba ebben a metaadat bejegyzésben',
 	),
 	'metaover_required_found' => array (
+		'nn' => 'Nødvendige felt',
 		'en' => 'Required fields',
 		'sv' => 'Nödvändiga alternativ',
 		'es' => 'Campos obligatorios',
@@ -87,6 +98,7 @@ $lang = array(
 		'hu' => 'Kötelező mező',
 	),
 	'metaover_required_not_found' => array (
+		'nn' => 'Fann ikkje følgjande nødvendige felt',
 		'en' => 'The following required fields was not found',
 		'sv' => 'Följande nödvändiga alternativ hittades inte',
 		'es' => 'Los siguientes datos obligatorios no se han encontrado',
@@ -95,6 +107,7 @@ $lang = array(
 		'hu' => 'A következő kötelező mezők hiányoznak',
 	),
 	'metaover_optional_found' => array (
+		'nn' => 'Valfrie felt',
 		'en' => 'Optional fields',
 		'sv' => 'Frivilliga alternativ',
 		'es' => 'Datos opcionales',
@@ -103,6 +116,7 @@ $lang = array(
 		'hu' => 'Nem kötelező mező',
 	),
 	'metaover_optional_not_found' => array (
+		'nn' => 'Fann ikkje følgjande valfrie felt',
 		'en' => 'The following optional fields was not found',
 		'sv' => 'Följande frivilliga alternativ hittades inte',
 		'es' => 'Los siguientes datos opcionales no se han encontrado',
@@ -111,6 +125,7 @@ $lang = array(
 		'hu' => 'A következő NEM kötelező mezők hiányoznak',
 	),
 	'metaover_unknown_found' => array (
+		'nn' => 'Gjenkjenner ikkje følgjande felt',
 		'en' => 'The following fields was not recognized',
 		'sv' => 'Följande alternativ kändes inte igen',
 		'es' => 'No se han reconocido los siguientes datos',
@@ -119,6 +134,7 @@ $lang = array(
 		'hu' => 'A következő mezők nincsenek kitöltve',
 	),
 	'metaover_group_metadata.saml20-sp-hosted' => array (
+		'nn' => 'SAML 2.0 Service Provider (Hosted)',
 		'en' => 'SAML 2.0 Service Provider (Hosted)',
 		'sv' => 'SAML 2.0 Service Provider (Värd)',
 		'es' => 'Proveedor de Servicio SAML 2.0 (Anfitrión)',
@@ -127,6 +143,7 @@ $lang = array(
 		'hu' => 'SAML 2.0 Service Provider (tartalom szolgáltató) (helyi)',
 	),
 	'metaover_group_metadata.saml20-sp-remote' => array (
+		'nn' => 'SAML 2.0 Service Provider (Remote)',
 		'en' => 'SAML 2.0 Service Provider (Remote)',
 		'sv' => 'SAML 2.0 Service Provider (Fjärr)',
 		'es' => 'Proveedor de Servicio SAML 2.0 (Remoto)',
@@ -135,6 +152,7 @@ $lang = array(
 		'hu' => 'SAML 2.0 Service Provider (tartalom szolgáltató) (távoli)',
 	),
 	'metaover_group_metadata.saml20-idp-hosted' => array (
+		'nn' => 'SAML 2.0 Identity Provider (Hosted)',
 		'en' => 'SAML 2.0 Identity Provider (Hosted)',
 		'sv' => 'SAML 2.0 Identity Provider (Värd)',
 		'es' => 'Proveedor de Identidad SAML 2.0 (Anfitrión)',
@@ -143,6 +161,7 @@ $lang = array(
 		'hu' => 'SAML 2.0 Identity Provider (azonosító szolgáltató) (helyi)',
 	),
 	'metaover_group_metadata.saml20-idp-remote' => array (
+		'nn' => 'SAML 2.0 Identity Provider (Remote)',
 		'en' => 'SAML 2.0 Identity Provider (Remote)',
 		'sv' => 'SAML 2.0 Identity Provider (Fjärr)',
 		'es' => 'Proveedor de Identidad SAML 2.0 (Remoto)',
@@ -151,6 +170,7 @@ $lang = array(
 		'hu' => 'SAML 2.0 Identity Provider (azonosító szolgáltató) (távoli)',
 	),
 	'metaover_group_metadata.shib13-sp-hosted' => array (
+		'nn' => 'Shib 1.3 Service Provider (Hosted)',
 		'en' => 'Shib 1.3 Service Provider (Hosted)',
 		'sv' => 'Shib 1.3 Service Provider (Värd)',
 		'es' => 'Proveedor de Servicio Shib 1.3 (Anfitrión)',
@@ -159,6 +179,7 @@ $lang = array(
 		'hu' => 'Shib 1.3 Service Provider (tartalom szolgáltató) (helyi)',
 	),
 	'metaover_group_metadata.shib13-sp-remote' => array (
+		'nn' => 'Shib 1.3 Service Provider (Remote)',
 		'en' => 'Shib 1.3 Service Provider (Remote)',
 		'sv' => 'Shib 1.3 Service Provider (Fjärr)',
 		'es' => 'Proveedor de Servicio Shib 1.3 (Remoto)',
@@ -167,6 +188,7 @@ $lang = array(
 		'hu' => 'Shib 1.3 Service Provider (tartalom szolgáltató) (távoli)',
 	),
 	'metaover_group_metadata.shib13-idp-hosted' => array (
+		'nn' => 'Shib 1.3 Identity Provider (Hosted)',
 		'en' => 'Shib 1.3 Identity Provider (Hosted)',
 		'sv' => 'Shib 1.3 Identity Provider (Värd)',
 		'es' => 'Proveedor de Identidad Shib 1.3 (Anfitrión)',
@@ -175,6 +197,7 @@ $lang = array(
 		'hu' => 'Shib 1.3 Identity Provider (azonosító szolgáltató) (helyi)',
 	),
 	'metaover_group_metadata.shib13-idp-remote' => array (
+		'nn' => 'Shib 1.3 Identity Provider (Remote)',
 		'en' => 'Shib 1.3 Identity Provider (Remote)',
 		'sv' => 'Shib 1.3 Identity Provider (Fjärr)',
 		'es' => 'Proveedor de Identidad Shib 1.3 (Remoto)',
@@ -183,6 +206,7 @@ $lang = array(
 		'hu' => 'Shib 1.3 Identity Provider (azonosító szolgáltató) (távoli)',
 	),
 	'metaover_group_metadata.wsfed-sp-hosted' => array (
+		'nn' => 'WS-Federation Service Provider (Hosted)',
 		'en' => 'WS-Federation Service Provider (Hosted)',
 		'sv' => 'WS-Federation Service Provider (Värd)',
 		'es' => 'Proveedor de Servicios WS-Federation (Anfitrión)',
@@ -190,6 +214,7 @@ $lang = array(
 		'hu' => 'WS-Federation Service Provider (tartalom szolgáltató) (helyi)',
 	),
 	'metaover_group_metadata.wsfed-idp-remote' => array (
+		'nn' => 'WS-Federation Identity Provider (Remote)',
 		'en' => 'WS-Federation Identity Provider (Remote)',
 		'sv' => 'WS-Federation Service Provider (Fjärr)',
 		'es' => 'Proveedor de Identidad WS-Federation (Remoto)',
@@ -197,6 +222,7 @@ $lang = array(
 		'hu' => 'WS-Federation Service Provider (tartalom szolgáltató) (távoli)',
 	),
 	'metaconv_title' => array (
+		'nn' => 'Parser for metadata',
 		'en' => 'Metadata parser',
 		'sv' => 'Metadataanalyserare',
 		'es' => 'Analizar metadatos',
@@ -204,6 +230,7 @@ $lang = array(
 		'hu' => 'Metaadat feldolgozó',
 	),
 	'metaconv_xmlmetadata' => array (
+		'nn' => 'XML metadata',
 		'en' => 'XML metadata',
 		'sv' => 'XML-metadata',
 		'es' => 'Metadatos XML',
@@ -212,6 +239,7 @@ $lang = array(
 		'hu' => 'XML metadat',
 	),
 	'metaconv_parse' => array (
+		'nn' => 'Parser',
 		'en' => 'Parse',
 		'sv' => 'Analysera',
 		'es' => 'Analizar',
@@ -219,6 +247,7 @@ $lang = array(
 		'hu' => 'Peldolgozás',
 	),
 	'metaconv_converted' => array (
+		'nn' => 'Konverterte metadata',
 		'en' => 'Converted metadata',
 		'sv' => 'Omformat metadata',
 		'es' => 'Metadatos convertidos',
@@ -227,6 +256,7 @@ $lang = array(
 		'hu' => 'Konvertált metaadat',
 	),
 	'metadata_saml20-sp' => array (
+		'nn' => 'SAML 2.0 SP Metadata',
 		'en' => 'SAML 2.0 SP Metadata',
 		'sv' => 'SAML 2.0 SP Metadata',
 		'es' => 'Metadatos SP SAML 2.0',
@@ -235,6 +265,7 @@ $lang = array(
 		'hu' => 'SAML 2.0 SP Metaadat',
 	),
 	'metadata_saml20-idp' => array (
+		'nn' => 'SAML 2.0 IdP Metadata',
 		'en' => 'SAML 2.0 IdP Metadata',
 		'sv' => 'SAML 2.0 IdP Metadata',
 		'es' => 'Metadatos IdP SAML 2.0',
@@ -243,6 +274,7 @@ $lang = array(
 		'hu' => 'SAML 2.0 IdP Metaadat',
 	),
 	'metadata_shib13-sp' => array (
+		'nn' => 'Shib 1.3 SP Metadata',
 		'en' => 'Shib 1.3 SP Metadata',
 		'sv' => 'Shib 1.3 SP Metadata',
 		'es' => 'Metadatos SP Shib 1.3',
@@ -251,6 +283,7 @@ $lang = array(
 		'hu' => 'Shib 1.3 SP Metaadat',
 	),
 	'metadata_shib13-idp' => array (
+		'nn' => 'Shib 1.3 IdP Metadata',
 		'en' => 'Shib 1.3 IdP Metadata',
 		'sv' => 'Shib 1.3 IdP Metadata',
 		'es' => 'Metadatos IdP Shib 1.3',
@@ -273,6 +306,7 @@ $lang = array(
 		'hu' => 'A következő dedikált címről <a href="%METAURL%">töltheti le a metaadatot</a>:',
 	),
 	'metadata_metadata' => array (
+		'nn' => 'Metadata',
 		'en' => 'Metadata',
 		'sv' => 'Metadata',
 		'es' => 'Metadatos',
@@ -281,6 +315,7 @@ $lang = array(
 		'hu' => 'Metaadat',
 	),
 	'metadata_xmlformat' => array (
+		'nn' => 'På SAML 2.0 metadata XML-format',
 		'en' => 'In SAML 2.0 Metadata XML format:',
 		'sv' => 'I SAML 2.0 Metadata XML-format:',
 		'es' => 'en formato xml de metadatos SAML 2.0:',
@@ -324,6 +359,7 @@ $lang = array(
 		'hu' => '%FEDERATION% szüsége van az ön elérhetőségére, így szükséges az <strong>ön email címének</strong> megadása:',
 	),
 	'metadata_send_send' => array (
+		'nn' => 'Send mine metadata til %FEDERATION%',
 		'en' => 'Send my metadata to %FEDERATION%',
 		'sv' => 'Skicka metadata till %FEDERATION%',
 		'es' => 'Enviar mis metadatos a %FEDERATION%',
@@ -332,6 +368,7 @@ $lang = array(
 		'hu' => 'Metaadat küldése a %FEDERATION% felé',
 	),
 	'debug_sending_message_title' => array (
+		'nn' => 'Sender melding',
 		'en' => 'Sending message',
 		'sv' => 'Skickar meddelande',
 		'es' => 'Enviando mensaje',
@@ -354,6 +391,7 @@ $lang = array(
 		'hu' => 'Üzenetet küldhet. Kattintson az elküldés linkre a folytatáshoz.',
 	),
 	'debug_sending_message_send' => array (
+		'nn' => 'Send melding',
 		'en' => 'Submit message',
 		'sv' => 'Skicka meddelande',
 		'es' => 'Enviar mensaje',
@@ -361,6 +399,7 @@ $lang = array(
 		'hu' => 'Üzenet küldése',
 	),
 	'debug_sending_message_msg_title' => array (
+		'nn' => 'Melding',
 		'en' => 'Message',
 		'sv' => 'Meddelande',
 		'es' => 'Mensaje',

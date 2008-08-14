@@ -82,6 +82,7 @@ $lang = array(
 		'hu' => 'Az azonosítás során az azonosító szolgáltató személyes adatokat fog küldeni ennek a szolgáltatásnak. Engedélyezi?',
 	),
 	'consent_privacypolicy' => array (
+		'nn' => 'Personvernpolicy for tenesta',
 		'en' => 'Privacypolicy for the service',
 		'de' => 'Datenschutzrichtlinie des Dienstes',
 		'sv' => 'Tjänstens policy för personlig integritet',
@@ -172,6 +173,7 @@ $lang = array(
 		'hu' => 'attribútumok mutatása/elrejtése',
 	),
 	'noconsent_title' => array (
+		'nn' => 'Utan samtykke',
 		'en' => 'No consent given',
 		'de' => 'Zustimmung verweigert',
 		'sv' => 'Inget samtycket givet',
@@ -181,6 +183,7 @@ $lang = array(
 		'hu' => 'Nincs belegyezés',
 	),
 	'noconsent_text' => array (
+		'nn' => 'Du har ikkje gitt samtykke til at dine opplysingar (attibuttar) kan overførast til tenesteleverandøren',
 		'en' => 'You did not give consent for transfering your attributes to the service provider.',
 		'de' => 'Sie haben der Weitergabe Ihrer Daten an den Service Provider nicht zugestimmt.',
 		'sv' => 'Du gav icke samtycke för att överföra dina attribut till tjänsteleverantören.',
@@ -190,6 +193,7 @@ $lang = array(
 		'hu' => 'Nem adta belegyezését, ahoz hogy adatait kiszlgálatassuk a szolgáltató felé.',
 	),
 	'noconsent_return' => array (
+		'nn' => 'Gå tilbake til samtykkesida',
 		'en' => 'Return to consent page',
 	),
 

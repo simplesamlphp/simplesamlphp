@@ -184,6 +184,7 @@ $lang = array(
 	),
 	'select_home_org' => array (
 		'no' => 'Velg vertsorganisasjon',
+		'nn' => 'Vel vertsorganisasjon',
 		'en' => 'Choose your home organization',
 		'sv' => 'Välj vilken organisation du kommer ifrån',
 		'es' => 'Seleccione su organización origen',
@@ -193,6 +194,7 @@ $lang = array(
 	),
 	'next' => array (
 		'no' => 'Fortsett',
+		'nn' => 'Neste',
 		'en' => 'Next',
 		'sv' => 'Nästa',
 		'es' => 'Siguiente',
@@ -202,6 +204,7 @@ $lang = array(
 	),
 	'change_home_org_title' => array (
 		'no' => 'Endre din vertsorganisasjon',
+		'nn' => 'Endra vertsorganisasjon',
 		'en' => 'Change your home organization',
 		'sv' => 'Ändra vilken organisation du kommer ifrån',
 		'es' => 'Cambiar su organización origen',
@@ -211,6 +214,7 @@ $lang = array(
 	),
 	'change_home_org_text' => array (
 		'no' => 'Du har valgt <b>%HOMEORG%</b> som din vertsorganisasjon. Dersom dette er feil kan du velge en annen.',
+		'nn' => 'Du har vald <b>%HOMEORG%</b> som din vertsorganisasjon.  Dersom dette er feil, kan du velja ein annan organisasjon frå menyen.',
 		'en' => 'You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one.',
 		'sv' => 'Du har valt <b>%HOMEORG%</b> som organisation du kommer ifrån. Om detta är fel så kan du välja en annan.',
 		'es' => 'Ha seleccionado <b>%HOMEORG%</b> como organización origen. Si esta información es incorrecta puede seleccionar otra.',
@@ -220,6 +224,7 @@ $lang = array(
 	),
 	'change_home_org_button' => array (
 		'no' => 'Velg vertsorganisasjon',
+		'nn' => 'Vel vertsorganisasjon',
 		'en' => 'Choose home organization',
 		'sv' => 'Ändra organisation',
 		'es' => 'Seleccionar la organización origen',
@@ -229,6 +234,7 @@ $lang = array(
 	),
 	'help_desk_link' => array (
 		'no' => 'Hjemmesiden til brukerstøtte',
+		'nn' => 'Heimeside for brukarstøtte',
 		'en' => 'Help desk homepage',
 		'sv' => 'Hemsida för helpdesk',
 		'es' => 'Página de soporte técnico',
@@ -238,6 +244,7 @@ $lang = array(
 	),
 	'help_desk_email' => array (
 		'no' => 'Send e-post til brukerstøtte',
+		'nn' => 'Send epost til brukarstøtte',
 		'en' => 'Send e-mail to help desk',
 		'sv' => 'Skicka e-post till helpdesk',
 		'es' => 'Enviar correo electrónico al soporte técnico',
@@ -247,6 +254,7 @@ $lang = array(
 	),
 	'contact_info' => array (
 		'no' => 'Kontaktinformasjon:',
+		'nn' => 'Kontaktinformasjon:',
 		'en' => 'Contact information:',
 		'sv' => 'Kontaktinformation:',
 		'es' => 'Información de contacto:',

@@ -2,6 +2,7 @@
 
 $lang = array(
 	'title' => array (
+		'nn' => 'Utlogga',
 		'en' => 'Logged out',
 		'sv' => 'Utloggad',
 		'es' => 'Desconectado',
@@ -10,6 +11,7 @@ $lang = array(
 		'hu' => 'Sikeres kilépés',
 	),
 	'logged_out_text' => array (
+		'nn' => 'Du har blitt logga ut.  Takk for at du brukte denne tenesta.',
 		'en' => 'You have been logged out. Thank you for using this service.',
 		'sv' => 'Du har blivit uloggad. Tack för att du använde denna tjänst.',
 		'es' => 'Ha sido desconectado. Gracias por usar este servicio.',
@@ -18,6 +20,7 @@ $lang = array(
 		'hu' => 'Sikeresen kijelentkezet. Köszönjük, hogy a mi szolgáltatásunkat használja!',
 	),
 	'default_link_text' => array (
+		'nn' => 'Gå tilbake til simpleSAMLphp installasjonssida',
 		'en' => 'Go back to simpleSAMLphp installation page',
 		'sv' => 'Åter till installationssidan för simpleSAMLphp',
 		'es' => 'Volver a la página de instalación de simpleSAMLphp',
