@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+  <title>simpleSAMLphp modules</title>
+
+  <section>
+    <title>simpleSAMLphp documentation</title>
+
+    <para>This document is part of the simpleSAMLphp documentation
+    suite.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><ulink url="http://rnd.feide.no/view/simplesamlphpdocs">List of
+        all simpleSAMLphp documentation</ulink></para>
+      </listitem>
+    </itemizedlist>
+
+    <para>This document describes how the module system in simpleSAMLphp works.
+    It descibes what types of modules there are, how they are configured, and
+    how to write new modules.</para>
+  </section>
+
+  <section>
+    <title>Overview</title>
+
+    <para>There are currently three parts of simpleSAMLphp which can be stored
+    in modules - authentication sources, authentication processing filters and
+    themes. More than one thing can be stored in a single module. There is
+    also support for storing supporting files, such as templates and
+    dictionaries, in modules.</para>
+
+    <para>The different functionalities which can be created as modules will be
+    described in more detail in the following sections; what follows is a short
+    introduction to what you can du with them:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Authentication sources implement different methods for
+        authenticating users, for example simple login forms which authenticate
+        against a database backend, or login methods which use client-side
+        certificates.</para>
+      </listitem>
+
+      <listitem>
+        <para>Authentication processing filters perform various tasks after the
+        user is authenticated and has a set of attributes. They can add, remove
+        and modify attributes, do additional authentication checks, ask
+        questions of the user, +++.</para>
+      </listitem>
+
+      <listitem>
+        <para>Themes allow you to package custom templates for multiple modules
+        into a single module.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section>
+    <title>Module layout</title>
+
+    <para>Each simpleSAMLphp  module is stored in a directory under the the
+    <filename>modules</filename>-directory. The module directory contains the
+    following directories and files:</para>
+
+    <para>
+      <glosslist>
+        <glossentry>
+          <glossterm>default-disable</glossterm>
+
+          <glossdef>
+            <para>The presence of this file indicates that the module is
+            disabled by default. This module can be enabled by creating a file
+            named <filename>enable</filename> in the same directory.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>default-enable</glossterm>
+
+          <glossdef>
+            <para>The presence of this file indicates that the module is
+            enabled by default. This module can be disabled by creating a file
+            named <filename>disable</filename> in the same directory.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>dictionaries</glossterm>
+
+          <glossdef>
+            <para>This directory contains dictionaries which belong to this
+            module. To use a dictionary stored in a module, the extended tag
+            names can be used:
+            <literal>{&lt;module name&gt;:&lt;dictionary name&gt;:&lt;tag name&gt;}</literal>
+            For example, <literal>{example:login:hello}</literal> will look up
+            <literal>hello</literal> in
+            <literal>modules/example/dictionaries/login.php</literal>.</para>
+
+            <para>It is also possible to specify
+            <literal>&lt;module name&gt;:&lt;dictionary name&gt;</literal> as
+            the default dictionary when instantiating the
+            <literal>SimpleSAML_XHTML_Template</literal> class.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>lib</glossterm>
+
+          <glossdef>
+            <para>This directory contains classes which belong to this module.
+            All classes must be named in the following pattern:
+            <literal>sspmod_&lt;module name&gt;_&lt;class name&gt;</literal>
+            When looking up the filename of a class, simpleSAMLphp will search
+            for <literal>&lt;class name&gt;</literal> in the
+            <literal>lib</literal> directory. Underscores in the class name
+            will be translated into slashes.</para>
+
+            <para>Thus, if simpleSAMLphp needs to load a class named
+            <literal>sspmod_example_Auth_Source_Example</literal>, it will
+            load the file named
+            <literal>modules/example/lib/Auth/Source/Example.php</literal>.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>templates</glossterm>
+
+          <glossdef>
+            <para>These are module-specific templates. To use one of these
+            templates, specify
+            <literal>&lt;module name&gt;:&lt;template file&gt;.php</literal> as
+            the template file in the constructor of
+            <literal>SimpleSAML_XHTML_Template</literal>. For example,
+            <literal>example:login-form.php</literal> is translated to the file
+            <literal>modules/example/templates/default/login-form.php</literal>.
+            Note that <literal>default</literal> in the previous example is
+            defined by the <literal>theme.use</literal> configuration
+            option.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>themes</glossterm>
+
+          <glossdef>
+            <para>This directory contains themes the module defines. A single
+            module can define multiple themes, and these themes may override
+            all templates in all modules. Each subdirectory of
+            <literal>themes</literal> defines a theme. The theme directory
+            contains a subdirectory for each module. The templates stored
+            under <literal>simplesamlphp/templates</literal> can be overridden
+            by a directory named <literal>default</literal>.</para>
+
+            <para>To use a theme provided by a module, the
+            <literal>theme.use</literal> configuration option should be set to
+            <literal>&lt;module name&gt;:&lt;theme name&gt;</literal>.</para>
+
+            <para>When using the theme <literal>example:blue</literal>, the
+            template <literal>templates/default/login.php</literal> will be
+            overridden by
+            <literal>modules/example/themes/blue/default/login.php</literal>,
+            while the template
+            <literal>modules/core/templates/default/loginuserpass.php</literal>
+            will be overridden by
+            <literal>modules/example/themes/blue/core/loginuserpass.php</literal>.
+            </para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>www</glossterm>
+
+          <glossdef>
+            <para>All files stored in this directory will be available by
+            accessing the URL <literal>https://.../simplesamlphp/module.php/&lt;module name&gt;/&lt;file name&gt;</literal>.
+            For example, if a script named <literal>login.php</literal> is
+            stored in <literal>modules/example/www/</literal>, it can be
+            accessed by the URL <literal>https://.../simplesamlphp/module.php/example/login.php</literal>.</para>
+
+            <para>To retrieve this URL, the
+            <literal>SimpleSAML_Module::getModuleURL($resource)</literal>-function
+            can be used. This function takes in a resource on the form
+            <literal>&lt;module&gt;/&lt;file&gt;</literal>. This function will
+            then return an URL to the given file in the
+            <literal>www</literal>-directory of <literal>module</literal>.</para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+    </para>
+  </section>
+
+  <section>
+    <title>Authentication sources</title>
+
+    <para>An authentication source is used to authenticate a user and receive a
+    set of attributes belonging to this user. In a single-signon setup, the
+    authentication source will only be called once, and the attributes
+    belonging to the user will be cached until the user logs out.</para>
+
+    <para>Authentication sources are defined in
+    <filename>config/authsources.php</filename>. This file contains an array of
+    <literal>name =&gt; configuration</literal> pairs. The name is used to
+    refer to the authentication source in metadata. When configuring an IdP to
+    authenticate against an authentication source, the <literal>auth</literal>
+    option should be set to this name. The configuration for an authentication
+    source is an array. The first element in the array identifies the class
+    which implements the authentication source. The remaining elements in the
+    array are configuration entries for the authentication source.</para>
+
+    <para>A typical configuration entry for an authentication source looks like
+    this:</para>
+
+    <programlisting>'example-static' =&gt; array(
+  /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
+  'exampleauth:Static',
+
+  /* The following is configuration which is passed on to the exampleauth:Static authentication source. */
+  'uid' =&gt; 'testuser',
+  'eduPersonAffiliation' =&gt; array('member', 'employee'),
+  'cn' =&gt; array('Test User'),
+),</programlisting>
+
+    <para>To use this authentication source in a SAML 2.0 IdP, set the <literal>auth</literal>-option of the IdP to <literal>'example-static'</literal>:</para>
+
+    <programlisting>'__DYNAMIC:1__' =&gt; array(
+  'host' =&gt; '__DEFAULT__',
+  'privatekey' =&gt; 'server.pem',
+  'certificate' =&gt; 'server.crt',
+  <emphasis>'auth' =&gt; 'example-static',</emphasis>
+),</programlisting>
+
+    <section>
+      <title>Creating authentication sources</title>
+
+      <para>Authentication sources are implemented by creating a class which
+      is a subclass of the <literal>SimpleSAML_Auth_Source</literal>-class.
+      They must implement at least one function -
+      <literal>authenticate</literal>. This function may can either update
+      the <literal>$state</literal>-array it receives with the attributes
+      of the user and return, or it may save the state and redirect the user to
+      another page for authentication. It redirects, it should later retrieve
+      the state array, update it with the attributes and call
+      <literal>SimpleSAML_Source_Auth::completeAuth($state)</literal>.</para>
+
+      <para>There is also a simpler way to implement many authentication
+      sources. If the authentication source only needs a username and password
+      from the user, it may subclass
+      <literal>sspmod_core_Auth_UserPassBase</literal>, and implement a single
+      function - <literal>login($username, $password)</literal>. This function
+      receives the username and password the user gives, and should return an
+      associative array with the attributes of the user. If the username or
+      password is incorrect, it should throw an exception:
+      <literal>SimpleSAML_Error_Error('WRONGUSERPASS')</literal></para>
+
+      <para>Requirements for an authentication source:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Must be derived from the
+          <literal>SimpleSAML_Auth_Source</literal>-class.</para>
+        </listitem>
+
+        <listitem>
+          <para>If a constructor is implemented, it must first call the parent
+          constructor, passing along all parameters, before accessing any of
+          the parameters. In general, only the $config parameter should be
+          accessed.</para>
+        </listitem>
+
+        <listitem>
+          <para>The <literal>authenticate(&$state)</literal>-function must be
+          implemented. If this function completes, it is assumed that the user
+          is authenticated, and that the $state array has been updated with the
+          user's attributes.</para>
+        </listitem>
+
+        <listitem>
+          <para>If the <literal>authenticate</literal>-function does not
+          return, it must at a later time call
+          <literal>SimpleSAML_Auth_Source::completeAuth</literal> with the new
+          state. The state must be an update of the array passed to the
+          <literal>authenticate</literal>-function.</para>
+        </listitem>
+
+        <listitem>
+          <para>No pages may be shown to the user from the
+          <literal>authenticate</literal>-function. Instead, the state should
+          be saved, and the user should be redirected to a new page. This must
+          be done to prevent unpredictable events if the user for example
+          reloads the page.</para>
+        </listitem>
+
+        <listitem>
+          <para>No state information about any authentication should be stored
+          in the authentication source object. It must instead be stored in the
+          state array. Any changes to variables in the authentication source
+          object may be lost.</para>
+        </listitem>
+
+        <listitem>
+          <para>The authentication source object must be serializable. It may
+          be serializes between being constructed and the call to the
+          <literal>authenticate</literal>-function. This means that, for
+          example, no database connections should be created in the constructor
+          and later used in the
+          <literal>authenticate</literal>-function.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section>
+    <title>Authentication processing filters</title>
+
+    <para>Authentication processing filters postprocesses authentication
+    information received from authentication sources. It is possible to use
+    this for additional authentication checks, requesting the users consent
+    before delivering attributes to the user, modifying the users attributes,
+    and other things which should be performed before returning the user to
+    the service provider he came from.</para>
+
+    <para>Authentication processing filters are added to IdPs by setting the
+    <literal>authproc</literal> option in the <literal>idp-hosted</literal>-
+    and <literal>sp-remote</literal>-metadata. This is an array of filters,
+    where the filters will typically run first to last. Each filter is either
+    specified as a single string (if there is no configuration) or as an array
+    (if there is configuration for the filter).</para>
+
+    <para>Example:</para>
+
+    <programlisting>'authproc' =&gt; array(
+  'example:Test',
+  array('core:AttributeLimit', 'uid', 'mail', 'cn'),
+  array('core:AttributeMap', 'mail' =&gt; 'email'),
+),</programlisting>
+
+    <para>Filternames are on the form
+    <literal>&lt;module&gt;:&lt;name&gt;</literal>, and map to
+    <literal>modules/&lt;module&gt;/lib/Auth/Process/&lt;name&gt;.php</literal>,
+    which is expected to be a subclass of
+    <literal>SimpleSAML_Auth_ProcessingFilter</literal>.</para>
+
+    <section>
+      <title>Priority and merging of SP/IdP <literal>authproc</literal> filter
+      lists</title>
+
+      <para>By default, the filters defined in the IdP are run before those
+      defined in the SP. However, sometimes one may want to change the order,
+      and run some filters on the SP befoer one filter on the IdP. To achieve
+      this, we have the <literal>%priority</literal>-option of filters. The
+      default priority, if no <literal>%priority</literal>-option is added, is
+      50. By giving a filter a higher priority value, you can make it run after
+      those with a lower priority:</para>
+
+      <programlisting>/* saml20-idp-hosted.php */
+'authproc' => array(
+  array('consent:Consent', '%priority' =&gt; 60),
+),
+
+/* saml20-sp-remote.php */
+'authproc' => array(
+  array('core:AttributeLimit', 'uid', 'mail', 'cn'),
+  array('core:AttributeMap', '%priority' =&gt; 70, 'mail' =&gt; 'email'),
+),</programlisting>
+
+      <para>In this example, the <literal>core:AttributeLimit</literal>-filter
+      will be run before the <literal>consent:Consent</literal>-filter. The
+      <literal>core:AttributeMap</literal>-filter will be run last (after the
+      <literal>consent:Consent</literal>-filter). Filters with the same
+      priority value will be ordered in the order they appear in the
+      configuration, with IdP filters preceeding SP filters.</para>
+    </section>
+
+    <section>
+      <title>Creating authentication processing filters</title>
+
+      <para>Authentication processing filters are created by creating a class
+      under <literal>Auth/Process/</literal> in a module. This class is
+      expected to subclass <literal>SimpleSAML_Auth_ProcessingFilter</literal>.
+      A filter must implement at lease one function - the
+      <literal>process(&$request)</literal>-function. This function can access
+      the <literal>$request</literal>-array add, delete and modify attributes,
+      and can also do more advanced processing based on the SP/IdP metadata
+      (which is also included in the <literal>$request</literal>-array). When
+      this function returns, it is assumed that the filter has finished
+      processing.</para>
+
+      <para>If a filter for some reason needs to redirect the user, for example
+      to show a web page, it should save the current request. Upon completion
+      it should retrieve the request, update it with the changes it is going
+      to make, and call
+      <literal>SimpleSAML_Auth_ProcessingChain::resumeProcessing</literal>.
+      This function will continue processing the next configured filter.</para>
+
+      <para>Requirements for authentication processing filters:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Must be derived from the
+          <literal>SimpleSAML_Auth_ProcessingFilter</literal>-class.</para>
+        </listitem>
+
+        <listitem>
+          <para>If a constructor is implemented, it must first call the parent
+          constructor, passing along all parameters, before accessing any of
+          the parameters. In general, only the $config parameter should be
+          accessed.</para>
+        </listitem>
+
+        <listitem>
+          <para>The <literal>process(&$state)</literal>-function must be
+          implemented. If this function completes, it is assumed that
+          processing is completed, and that the $request array has been
+          updated.</para>
+        </listitem>
+
+        <listitem>
+          <para>If the <literal>process</literal>-function does not
+          return, it must at a later time call
+          <literal>SimpleSAML_Auth_ProcessingChain::resumeProcessing</literal>
+          with the new request state. The request state must be an update of
+          the array passed to the <literal>process</literal>-function.</para>
+        </listitem>
+
+        <listitem>
+          <para>No pages may be shown to the user from the
+          <literal>process</literal>-function. Instead, the request state
+          should be saved, and the user should be redirected to a new page.
+          This must be done to prevent unpredictable events if the user for
+          example reloads the page.</para>
+        </listitem>
+
+        <listitem>
+          <para>No state information should be stored in the filter object. It
+          must instead be stored in the request state array. Any changes to
+          variables in the filter object may be lost.</para>
+        </listitem>
+
+        <listitem>
+          <para>The filter object must be serializable. It may be serialized
+          between being constructed and the call to the
+          <literal>process</literal>-function. This means that, for example, no
+          database connections should be created in the constructor and later
+          used in the <literal>process</literal>-function.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section>
+    <title>Themes</title>
+
+    <para>This feature allows you to collect all your custom templates in one
+    place. The directory structure is like this:
+    <literal>modules/&lt;thememodule&gt;/themes/&lt;theme&gt;/&lt;module&gt;/&lt;template&gt;</literal>
+    <literal>thememodule</literal> is the module where you store your theme,
+    while <literal>theme</literal> is the name of the theme. A theme is
+    activated by setting the <literal>theme.use</literal> configuration option
+    to <literal>&lt;thememodule&gt;:&lt;theme&gt;</literal>.
+    <literal>module</literal> is the module the template belongs to, and
+    <literal>template</literal> is the template in that module.</para>
+
+    <para>For example, <literal>modules/example/themes/test/core/loginuserpass.php</literal>
+    replaces <literal>modules/core/templates/default/loginuserpass.php</literal>.
+    <literal>modules/example/themes/test/default/frontpage.php</literal> replaces
+    <literal>templates/default/frontpage.php</literal>. This theme can be
+    activated by setting <literal>theme.use</literal> to
+    <literal>example:test</literal>.</para>
+  </section>
+</article>
