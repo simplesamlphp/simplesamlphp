@@ -144,7 +144,17 @@ if (isset($_GET['SAMLRequest'])) {
 }
 
 
-$authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : NULL;
+/* Check whether we should authenticate with an AuthSource. Any time the auth-option matches a
+ * valid AuthSource, we assume that this is the case.
+ */
+if(SimpleSAML_Auth_Source::getById($idpmetadata['auth']) !== NULL) {
+	/* Authenticate with an AuthSource. */
+	$authSource = TRUE;
+	$authority = $idpmetadata['auth'];
+} else {
+	$authSource = FALSE;
+	$authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : NULL;
+}
 
 
 /**
@@ -175,13 +185,24 @@ if($needAuth && !$isPassive) {
 	$session->setAuthnRequest('saml2', $authId, $requestcache);
 
 	$redirectTo = SimpleSAML_Utilities::selfURLNoQuery() . '?RequestID=' . urlencode($authId);
-	$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];
 
-	SimpleSAML_Utilities::redirect($authurl, array(
-		'RelayState' => $redirectTo,
-		'AuthId' => $authId,
-		'protocol' => 'saml2',
-	));
+	if($authSource) {
+		/* Authenticate with an AuthSource. */
+		$hints = array(
+			'SPMetadata' => $metadata->getMetaData($requestcache['Issuer'], 'saml20-sp-remote'),
+			'IdPMetadata' => $idpmetadata,
+		);
+
+		SimpleSAML_Auth_Default::initLogin($idpmetadata['auth'], $redirectTo, NULL, $hints);
+	} else {
+		$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];
+
+		SimpleSAML_Utilities::redirect($authurl, array(
+		       'RelayState' => $redirectTo,
+		       'AuthId' => $authId,
+		       'protocol' => 'saml2',
+		));
+	}
 
 } elseif($needAuth) {
 	/* We have a passive request, but need authentication. Send back a response indicating that

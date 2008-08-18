@@ -1036,6 +1036,12 @@ $lang = array(
 		'nn' => 'Det er ein feil i spørringa etter denne sida.  Grunnen til dette er %REASON%',
 		'en' => 'There is an error in the request to this page. The reason was: %REASON%',
 	),
+	'title_WRONGUSERPASS' => array (
+		'en' => 'Incorrect username or password',
+	),
+	'descr_WRONGUSERPASS' => array (
+		'en' => 'Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again.',
+	),
 
 );
 

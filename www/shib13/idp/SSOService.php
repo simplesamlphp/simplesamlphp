@@ -96,7 +96,17 @@ if (isset($_GET['shire'])) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SSOSERVICEPARAMS');
 }
 
-$authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : null;
+/* Check whether we should authenticate with an AuthSource. Any time the auth-option matches a
+ * valid AuthSource, we assume that this is the case.
+ */
+if(SimpleSAML_Auth_Source::getById($idpmetadata['auth']) !== NULL) {
+	/* Authenticate with an AuthSource. */
+	$authSource = TRUE;
+	$authority = $idpmetadata['auth'];
+} else {
+	$authSource = FALSE;
+	$authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : NULL;
+}
 
 /*
  * As we have passed the code above, we have an accociated request that is already processed.
@@ -113,14 +123,24 @@ if (!$session->isAuthenticated($authority) ) {
 	$session->setAuthnRequest('shib13', $authId, $requestcache);
 
 	$redirectTo = SimpleSAML_Utilities::selfURLNoQuery() . '?RequestID=' . urlencode($authId);
-	$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];
 
-	SimpleSAML_Utilities::redirect($authurl, array(
-		'RelayState' => $redirectTo,
-		'AuthId' => $authId,
-		'protocol' => 'shib13',
-	));
-	
+	if($authSource) {
+		/* Authenticate with an AuthSource. */
+		$hints = array(
+			'SPMetadata' => $metadata->getMetaData($requestcache['Issuer'], 'shib13-sp-remote'),
+			'IdPMetadata' => $idpmetadata,
+		);
+
+		SimpleSAML_Auth_Default::initLogin($idpmetadata['auth'], $redirectTo, NULL, $hints);
+	} else {
+		$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];
+
+		SimpleSAML_Utilities::redirect($authurl, array(
+			'RelayState' => $redirectTo,
+			'AuthId' => $authId,
+			'protocol' => 'shib13',
+		));
+	}
 	
 /*
  * We got an request, and we hav a valid session. Then we send an AuthenticationResponse back to the
