@@ -129,6 +129,23 @@ class SimpleSAML_Module {
 		return $className;
 	}
 
+
+	/**
+	 * Get absolute URL to a specified module resource.
+	 *
+	 * This function creates an absolute URL to a resource stored under ".../modules/<module>/www/".
+	 *
+	 * @param string $resource  Resource path, on the form "<module name>/<resource>"
+	 * @return string  The absolute URL to the given resource.
+	 */
+	public static function getModuleURL($resource) {
+		assert('is_string($resource)');
+		assert('$resource[0] !== "/"');
+
+		$config = SimpleSAML_Configuration::getInstance();
+		return SimpleSAML_Utilities::selfURLhost() . '/' . $config->getBaseURL() . 'module.php/' . $resource;
+	}
+
 }
 
 ?>

@@ -190,21 +190,8 @@ class SimpleSAML_XHTML_Template {
 	 */	
 	private function includeAtTemplateBase($file) {
 		$data = $this->data;
-		$filename = $this->configuration->getPathValue('templatedir') . $this->configuration->getValue('theme.use') . '/' . $file;
 
-		if (!file_exists($filename)) {
-		
-			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $file . 
-				'] at [' . $filename . '] - Now trying at base');
-			
-			$filename = $this->configuration->getPathValue('templatedir') . $this->configuration->getValue('theme.base') . '/' . $file;
-			if (!file_exists($filename)) {
-				SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $file . 
-					'] at [' . $filename . ']');
-				throw new Exception('Could not load template file [' . $file . ']');
-			}
-		
-		} 
+		$filename = $this->findTemplatePath($file);
 		
 		include($filename);
 	}
@@ -223,8 +210,16 @@ class SimpleSAML_XHTML_Template {
 		assert('is_string($name)');
 
 		if(!array_key_exists($name, $this->dictionaries)) {
-			$dictDir = $this->configuration->getPathValue('dictionarydir');
-			$this->dictionaries[$name] = $this->readDictionaryFile($dictDir . $name . '.php');
+			$sepPos = strpos($name, ':');
+			if($sepPos !== FALSE) {
+				$module = substr($name, 0, $sepPos);
+				$fileName = substr($name, $sepPos + 1);
+				$dictDir = SimpleSAML_Module::getModuleDir($module) . '/dictionaries/';
+			} else {
+				$dictDir = $this->configuration->getPathValue('dictionarydir');
+				$fileName = $name;
+			}
+			$this->dictionaries[$name] = $this->readDictionaryFile($dictDir . $fileName . '.php');
 		}
 
 		return $this->dictionaries[$name];
@@ -249,7 +244,7 @@ class SimpleSAML_XHTML_Template {
 		}
 
 		/* Check whether we should use the default dictionary or a dictionary specified in the tag. */
-		if(substr($tag, 0, 1) === '{' && preg_match('/^{(\w+?):(.*)}$/', $tag, $matches)) {
+		if(substr($tag, 0, 1) === '{' && preg_match('/^{((?:\w+:)?\w+?):(.*)}$/', $tag, $matches)) {
 			$dictionary = $matches[1];
 			$tag = $matches[2];
 		} else {
@@ -460,31 +455,99 @@ class SimpleSAML_XHTML_Template {
 	 * Show the template to the user.
 	 */
 	public function show() {
-	
-		$filename  = $this->configuration->getPathValue('templatedir') . 
-			$this->configuration->getValue('theme.use') . '/' . $this->template;
-		
 
-		if (!file_exists($filename)) {
-			SimpleSAML_Logger::warning($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . '] - now trying the base template');
-			
-			
-			$filename = $this->configuration->getPathValue('templatedir') . 
-				$this->configuration->getValue('theme.base') . '/' . $this->template;
-			
-
-			if (!file_exists($filename)) {
-				SimpleSAML_Logger::critical($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
-			
-				echo 'Fatal error: Could not find template file [' . $this->template . '] at [' . $filename . ']';
-				exit(0);
-			}
-		}
-		
+		$filename = $this->findTemplatePath($this->template);
 		require_once($filename);
 	}
-	
-	
+
+
+	/**
+	 * Find template path.
+	 *
+	 * This function locates the given template based on the template name.
+	 * It will first search for the template in the current theme directory, and
+	 * then the default theme.
+	 *
+	 * The template name may be on the form <module name>:<template path>, in which case
+	 * it will search for the template file in the given module.
+	 *
+	 * An error will be thrown if the template file couldn't be found.
+	 *
+	 * @param string $template  The relative path from the theme directory to the template file.
+	 * @return string  The absolute path to the template file.
+	 */
+	private function findTemplatePath($template) {
+		assert('is_string($template)');
+
+		$tmp = explode(':', $template, 2);
+		if (count($tmp) === 2) {
+			$templateModule = $tmp[0];
+			$templateName = $tmp[1];
+		} else {
+			$templateModule = 'default';
+			$templateName = $tmp[0];
+		}
+
+		$tmp = explode(':', $this->configuration->getValue('theme.use'), 2);
+		if (count($tmp) === 2) {
+			$themeModule = $tmp[0];
+			$themeName = $tmp[1];
+		} else {
+			$themeModule = NULL;
+			$themeName = $tmp[0];
+		}
+
+
+		/* First check the current theme. */
+		if ($themeModule !== NULL) {
+			/* .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName> */
+
+			$filename = SimpleSAML_Module::getModuleDir($themeModule) . '/themes/' . $themeName . '/' .
+				$templateModule . '/' . $templateName;
+		} elseif ($templateModule !== 'default') {
+			/* .../module/<templateModule>/templates/<themeName>/<templateName> */
+			$filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' .
+				$themeName . '/' . $templateName;
+		} else {
+			/* .../templates/<theme>/<templateName> */
+			$filename = $this->configuration->getPathValue('templatedir') . $themeName . '/' .
+				$templateName;
+		}
+
+		if (file_exists($filename)) {
+			return $filename;
+		}
+
+
+		/* Not found in current theme. */
+		SimpleSAML_Logger::info($_SERVER['PHP_SELF'].' - Template: Could not find template file [' .
+			$template . '] at [' . $filename . '] - now trying the base template');
+
+
+		/* Try default theme. */
+		$baseTheme = $this->configuration->getValue('theme.base');
+		if ($templateModule !== 'default') {
+			/* .../module/<templateModule>/templates/<baseTheme>/<templateName> */
+			$filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' .
+				$baseTheme . '/' . $templateName;
+		} else {
+			/* .../templates/<baseTheme>/<templateName> */
+			$filename = $this->configuration->getPathValue('templatedir') . $baseTheme . '/' .
+				$templateName;
+		}
+
+		if (file_exists($filename)) {
+			return $filename;
+		}
+
+
+		/* Not found in default template - log error and throw exception. */
+		$error = 'Template: Could not find template file [' . $template . '] at [' . $filename . ']';
+		SimpleSAML_Logger::critical($_SERVER['PHP_SELF'] . ' - ' . $error);
+
+		throw new Exception($error);
+	}
+
 }
 
 ?>
