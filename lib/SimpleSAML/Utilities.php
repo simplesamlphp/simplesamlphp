@@ -1209,6 +1209,47 @@ class SimpleSAML_Utilities {
 		return $res;
 	}
 
+
+	/**
+	 * Parse and validate an array with attributes.
+	 *
+	 * This function takes in an associative array with attributes, and parses and validates
+	 * this array. On success, it will return a normalized array, where each attribute name
+	 * is an index to an array of one or more strings. On failure an exception will be thrown.
+	 * This exception will contain an message describing what is wrong.
+	 *
+	 * @param array $attributes  The attributes we should parse and validate.
+	 * @return array  The parsed attributes.
+	 */
+	public static function parseAttributes($attributes) {
+
+		if (!is_array($attributes)) {
+			throw new Exception('Attributes was not an array. Was: ' . var_export($attributes, TRUE));
+		}
+
+		$newAttrs = array();
+		foreach ($attributes as $name => $values) {
+			if (!is_string($name)) {
+				throw new Exception('Invalid attribute name: ' . var_export($name, TRUE));
+			}
+
+			if (!is_array($values)) {
+				$values = array($values);
+			}
+
+			foreach ($values as $value) {
+				if (!is_string($value)) {
+					throw new Exception('Invalid attribute value for attribute ' . $name .
+						': ' . var_export($value, TRUE));
+				}
+			}
+
+			$newAttrs[$name] = $values;
+		}
+
+		return $newAttrs;
+	}
+
 }
 
 ?>
