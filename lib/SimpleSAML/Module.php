@@ -1,0 +1,134 @@
+<?
+
+/**
+ * Helper class for accessing information about modules.
+ *
+ * @author Olav Morken, UNINETT AS.
+ * @package simpleSAMLphp
+ * @version $Id$
+ */
+class SimpleSAML_Module {
+
+
+	/**
+	 * Retrieve the base directory for a module.
+	 *
+	 * The returned path name will be an absoulte path.
+	 *
+	 * @param string $module  Name of the module
+	 * @return string  The base directory of a module.
+	 */
+	public static function getModuleDir($module) {
+		$baseDir = dirname(dirname(dirname(__FILE__))) . '/modules';
+		$moduleDir = $baseDir . '/' . $module;
+
+		return $moduleDir;
+	}
+
+
+	/**
+	 * Determine whether a module is enabled.
+	 *
+	 * Will return FALSE if the given module doesn't exists.
+	 *
+	 * @param string $module  Name of the module
+	 * @return bool  TRUE if the given module is enabled, FALSE if not.
+	 */
+	public static function isModuleEnabled($module) {
+
+		$moduleDir = self::getModuleDir($module);
+
+		if(!is_dir($moduleDir)) {
+			return FALSE;
+		}
+
+		assert('file_exists($moduleDir . "/default-disable") || file_exists($moduleDir . "/default-enable")');
+
+		if(file_exists($moduleDir . '/enable')) {
+			return TRUE;
+		}
+
+		if(!file_exists($moduleDir . '/disable') && file_exists($moduleDir . '/default-enable')) {
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
+
+	/**
+	 * Get available modules.
+	 *
+	 * @return array  One string for each module.
+	 */
+	public static function getModules() {
+
+		$path = self::getModuleDir('.');
+
+		$dh = opendir($path);
+		if($dh === FALSE) {
+			throw new Exception('Unable to open module directory "' . $path . '".');
+		}
+
+		$modules = array();
+
+		while( ($f = readdir($dh)) !== FALSE) {
+			if($f[0] === '.') {
+				continue;
+			}
+
+			if(!is_dir($path . '/' . $f)) {
+				continue;
+			}
+
+			$modules[] = $f;
+		}
+
+		closedir($dh);
+
+		return $modules;
+	}
+
+
+	/**
+	 * Resolve module class.
+	 *
+	 * This function takes a string on the form "<module>:<class>" and converts it to a class
+	 * name. It can also check that the given class is a subclass of a specific class. The
+	 * resolved classname will be "sspmod_<module>_<$type>_<class>.
+	 *
+	 * It is also possible to specify a full classname instead of <module>:<class>.
+	 *
+	 * An exception will be thrown if the class can't be resolved.
+	 *
+	 * @param string $id  The string we should resolve.
+	 * @param string $type  The type of the class.
+	 * @param string|NULL $subclass  The class should be a subclass of this class. Optional.
+	 * @return string  The classname.
+	 */
+	public static function resolveClass($id, $type, $subclass = NULL) {
+		assert('is_string($id)');
+		assert('is_string($type)');
+		assert('is_string($subclass) || is_null($subclass)');
+
+		$tmp = explode(':', $id, 2);
+		if (count($tmp) === 1) {
+			$className = $tmp[0];
+		} else {
+			$className = 'sspmod_' . $tmp[0] . '_' . $type . '_' . $tmp[1];
+		}
+
+		if (!class_exists($className)) {
+			throw new Exception('Could not resolve \'' . $id .
+				'\': No class named \'' . $className . '\'.');
+		} elseif ($subclass !== NULL && !is_subclass_of($className, $subclass)) {
+			throw new Exception('Could not resolve \'' . $id . '\': The class \'' .
+				$className . '\' isn\'t a subclass of \'' . $subclass . '\'.');
+		}
+
+		return $className;
+	}
+
+}
+
+?>

@@ -27,7 +27,21 @@ function SimpleSAML_autoload($className) {
 		return;
 	}
 
-	$file = $libDir . str_replace('_', '/', $className) . '.php';
+	/* Handlig of modules. */
+	if(substr($className, 0, 7) === 'sspmod_') {
+		$modNameEnd = strpos($className, '_', 7);
+		$module = substr($className, 7, $modNameEnd - 7);
+		$moduleClass = substr($className, $modNameEnd + 1);
+
+		if(!SimpleSAML_Module::isModuleEnabled($module)) {
+			return;
+		}
+
+		$file = SimpleSAML_Module::getModuleDir($module) . '/lib/' . str_replace('_', '/', $moduleClass) . '.php';
+	} else {
+		$file = $libDir . str_replace('_', '/', $className) . '.php';
+	}
+
 	if(file_exists($file)) {
 		require_once($file);
 	}
