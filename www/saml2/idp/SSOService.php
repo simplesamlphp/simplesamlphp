@@ -139,6 +139,13 @@ if (isset($_GET['SAMLRequest'])) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CACHEAUTHNREQUEST', $exception);
 	}
 	
+} elseif(isset($_REQUEST[SimpleSAML_Auth_ProcessingChain::AUTHPARAM])) {
+
+	/* Resume from authentication processing chain. */
+	$authProcId = $_REQUEST[SimpleSAML_Auth_ProcessingChain::AUTHPARAM];
+	$authProcState = SimpleSAML_Auth_ProcessingChain::fetchProcessedState($authProcId);
+	$requestcache = $authProcState['core:saml20-idp:requestcache'];
+
 } else {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SSOSERVICEPARAMS');
 }
@@ -270,6 +277,34 @@ if($needAuth && !$isPassive) {
 				
 		$filteredattributes = $afilter->getAttributes();
 		
+
+		/* Authentication processing operations. */
+		if (array_key_exists('AuthProcState', $requestcache)) {
+			/* Processed earlier, saved in requestcache. */
+			$authProcState = $requestcache['AuthProcState'];
+
+		} elseif (isset($authProcState)) {
+			/* Returned from redirect during processing. */
+			$requestcache['AuthProcState'] = $authProcState;
+
+		} else {
+			/* Not processed. */
+			$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata);
+
+			$authProcState = array(
+				'core:saml20-idp:requestcache' => $requestcache,
+				'ReturnURL' => SimpleSAML_Utilities::selfURLNoQuery(),
+				'Attributes' => $filteredattributes,
+				'Destination' => $spmetadata,
+				'Source' => $idpmetadata,
+				);
+
+			$pc->processState($authProcState);
+
+			$requestcache['AuthProcState'] = $authProcState;
+		}
+
+		$filteredattributes = $authProcState['Attributes'];
 		
 		
 		
