@@ -107,27 +107,8 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		return $xPath->query($query, $node);
 	}
 
-
-	public function createSession() {
-	
-		$session = SimpleSAML_Session::getInstance();
-		$session->doLogin('shib13');
-		$session->setAttributes($this->getAttributes());
-		
-		$nameid = $this->getNameID();
-		
-		$session->setNameID($nameid);
-		$session->setSessionIndex($this->getSessionIndex());
-		
-		$session->setIdP($this->getIssuer());
-		/*
-		$nameID["NameID"] = $node->nodeValue;
-		
-				$nameID["NameQualifier"] = $node->getAttribute('NameQualifier');
-				$nameID["SPNameQualifier"] = $node->getAttribute('SPNameQualifier');
-		*/
-		return $session;
-	}
+	/* This function is only included because it is in the base class. Will be removed in the future. */
+	public function createSession() { throw new Exception('Removed');}
 	
 	//TODO
 	function getSessionIndex() {

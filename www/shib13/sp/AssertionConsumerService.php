@@ -23,40 +23,42 @@ try {
 	$authnResponse = $binding->decodeResponse($_POST);
 
 	$authnResponse->validate();
-	$session = $authnResponse->createSession();
+
+	/* Successfully authenticated. */
+
+	$idpmetadata = $metadata->getMetadata($authnResponse->getIssuer(), 'shib13-idp-remote');
+
+	SimpleSAML_Logger::info('Shib1.3 - SP.AssertionConsumerService: Successful authentication to IdP ' . $idpmetadata['entityid']);
 
 
-	if (isset($session)) {
-
-		SimpleSAML_Logger::info('Shib1.3 - SP.AssertionConsumerService: Successfully created local session from Authentication Response');
-
-		/**
-		 * Make a log entry in the statistics for this SSO login.
-		 */
-		$tempattr = $session->getAttributes();
-		$realmattr = $config->getValue('statistics.realmattr', null);
-		$realmstr = 'NA';
-		if (!empty($realmattr)) {
-			if (array_key_exists($realmattr, $tempattr) && is_array($tempattr[$realmattr]) ) {
-				$realmstr = $tempattr[$realmattr][0];
-			} else {
-				SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
-			}
-		} 
-		SimpleSAML_Logger::stats('shib13-sp-SSO ' . $metadata->getMetaDataCurrentEntityID('shib13-sp-hosted') . ' ' . $session->getIdP() . ' ' . $realmstr);
-
-
-	
-		$relayState = $authnResponse->getRelayState();
-		if (isset($relayState)) {
-			SimpleSAML_Utilities::redirect($relayState);
+	/**
+	 * Make a log entry in the statistics for this SSO login.
+	 */
+	$tempattr = $authnResponse->getAttributes();
+	$realmattr = $config->getValue('statistics.realmattr', null);
+	$realmstr = 'NA';
+	if (!empty($realmattr)) {
+		if (array_key_exists($realmattr, $tempattr) && is_array($tempattr[$realmattr]) ) {
+			$realmstr = $tempattr[$realmattr][0];
 		} else {
-			SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+			SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
 		}
-	} else {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOSESSION');
 	}
+	SimpleSAML_Logger::stats('shib13-sp-SSO ' . $metadata->getMetaDataCurrentEntityID('shib13-sp-hosted') . ' ' . $idpmetadata['entityid'] . ' ' . $realmstr);
 
+	/* Update session. */
+	$session->doLogin('shib13');
+	$session->setAttributes($authnResponse->getAttributes());
+	$session->setNameID($authnResponse->getNameID());
+	$session->setSessionIndex($authnResponse->getSessionIndex());
+	$session->setIdP($authnResponse->getIssuer());
+
+	$relayState = $authnResponse->getRelayState();
+	if (isset($relayState)) {
+		SimpleSAML_Utilities::redirect($relayState);
+	} else {
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+	}
 
 } catch(Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
