@@ -66,10 +66,10 @@ try {
 
 	/* Successful authentication. */
 
-	SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Successfully created local session from Authentication Response');
+	SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Successful response from IdP');
 
 	/* The response should include the entity id of the IdP. */
-	$idpentityid = $authnResponse->findIssuer();
+	$idpentityid = $authnResponse->getIssuer();
 	
 	$idpmetadata = $metadata->getMetaData($idpentityid, 'saml20-idp-remote');
 	$spmetadata = $metadata->getMetaDataCurrent();
@@ -78,14 +78,14 @@ try {
 	/*
 	 * Attribute handling
 	 */
-	$attributes = $session->getAttributes();
+	$attributes = $authnResponse->getAttributes();
 	$afilter = new SimpleSAML_XML_AttributeFilter($config, $attributes);
 	$afilter->process($idpmetadata, $spmetadata);
 	
 	/**
 	 * Make a log entry in the statistics for this SSO login.
 	 */
-	$tempattr = $session->getAttributes();
+	$tempattr = $authnResponse->getAttributes();
 	$realmattr = $config->getValue('statistics.realmattr', null);
 	$realmstr = 'NA';
 	if (!empty($realmattr)) {
@@ -100,10 +100,17 @@ try {
 	
 	$afilter->processFilter($idpmetadata, $spmetadata);
 			
-	$session->setAttributes($afilter->getAttributes());
+	$attributes = $afilter->getAttributes();
+
 	SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Completed attribute handling');
 	
 	
+
+	/* Update the session information */
+	$session->doLogin('saml2');
+	$session->setAttributes($attributes);
+	$session->setNameID($authnResponse->getNameID());
+	$session->setSessionIndex($authnResponse->getSessionIndex());
 	$session->setIdP($idpentityid);
 		
 		

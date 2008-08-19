@@ -70,9 +70,6 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	 */
 	public function validate() { throw new Exception('TODO!'); }
 	public function createSession() { throw new Exception('TODO!'); }
-	public function getAttributes() { throw new Exception('TODO!'); }
-	public function getIssuer() { throw new Exception('TODO!'); }
-	public function getNameID() { throw new Exception('TODO!'); }
 
 
 	/**
@@ -533,15 +530,6 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 				throw new Exception('No nameID found in AuthnResponse.');
 			}
 	
-			/* Update the session information */
-			$session = SimpleSAML_Session::getInstance();
-			$session->doLogin('saml2');
-	
-			$session->setAttributes($this->attributes);
-			$session->setNameID($this->nameid);
-			$session->setSessionIndex($this->sessionIndex);
-			$session->setIdP($this->issuer);
-
 			return TRUE;
 		} else {
 			/* A different status code. */
@@ -577,7 +565,71 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 		return $result;
 	}		
-			
+
+
+	/**
+	 * Retrieve the attributes.
+	 *
+	 * This function should only be called after a successful call to the process-function.
+	 *
+	 * @return array  The attributes.
+	 */
+	public function getAttributes() {
+		return $this->attributes;
+	}
+
+
+	/**
+	 * Retrieve the NameID.
+	 *
+	 * The NameID will be returned as an associative array with two elements:
+	 * - 'Format'  The format of the NameID.
+	 * - 'value'   The valud of the NameID.
+	 *
+	 * This function should only be called after a successful call to the process-function.
+	 *
+	 * @return array  The NameID.
+	 */
+	public function getNameID() {
+		assert('is_array($this->nameid)');
+		assert('array_key_exists("Format", $this->nameid)');
+		assert('array_key_exists("value", $this->nameid)');
+
+		return $this->nameid;
+	}
+
+
+	/**
+	 * Retrieve the session index.
+	 *
+	 * This function retrieves the SessionIndex of this authentication response.
+	 *
+	 * This function should only be called after a successful call to the process-function.
+	 *
+	 * @return string  The SessionIndex of this response.
+	 */
+	public function getSessionIndex() {
+		assert('is_string($this->sessionIndex)');
+
+		return $this->sessionIndex;
+	}
+
+
+	/**
+	 * Retrieve the issuer.
+	 *
+	 * This function retrieves the Issuer of this authentication response.
+	 *
+	 * This function should only be called after a successful call to the process-function.
+	 *
+	 * @return string  The entity id of the issuer of this response.
+	 */
+	public function getIssuer() {
+		assert('is_string($this->issuer)');
+
+		return $this->issuer;
+	}
+
 
 	/**
 	 * This function generates an AuthenticationResponse
