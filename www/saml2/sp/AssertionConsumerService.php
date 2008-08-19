@@ -19,10 +19,49 @@ $config = SimpleSAML_Configuration::getInstance();
  */
 $session = SimpleSAML_Session::getInstance();
 
+
+/**
+ * Finish login operation.
+ *
+ * This helper function finishes a login operation and redirects the user back to the page which
+ * requested the login.
+ *
+ * @param array $authProcState  The state of the authentication process.
+ */
+function finishLogin($authProcState) {
+	assert('is_array($authProcState)');
+	assert('array_key_exists("Attributes", $authProcState)');
+	assert('array_key_exists("core:saml20-sp:NameID", $authProcState)');
+	assert('array_key_exists("core:saml20-sp:SessionIndex", $authProcState)');
+	assert('array_key_exists("core:saml20-sp:TargetURL", $authProcState)');
+	assert('array_key_exists("Source", $authProcState)');
+	assert('array_key_exists("entityid", $authProcState["Source"])');
+
+	global $session;
+
+	/* Update the session information */
+	$session->doLogin('saml2');
+	$session->setAttributes($authProcState['Attributes']);
+	$session->setNameID($authProcState['core:saml20-sp:NameID']);
+	$session->setSessionIndex($authProcState['core:saml20-sp:SessionIndex']);
+	$session->setIdP($authProcState['Source']['entityid']);
+
+	SimpleSAML_Utilities::redirect($authProcState['core:saml20-sp:TargetURL']);
+}
+
 SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Accessing SAML 2.0 SP endpoint AssertionConsumerService');
 
 if (!$config->getValue('enable.saml20-sp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
+if (array_key_exists(SimpleSAML_Auth_ProcessingChain::AUTHPARAM, $_REQUEST)) {
+	/* We have returned from the authentication processing filters. */
+
+	$authProcId = $_REQUEST[SimpleSAML_Auth_ProcessingChain::AUTHPARAM];
+	$authProcState = SimpleSAML_Auth_ProcessingChain::fetchProcessedState($authProcId);
+	finishLogin($authProcState);
+}
+
 
 if (empty($_POST['SAMLResponse'])) 
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'ACSPARAMS', $exception);
@@ -104,18 +143,27 @@ try {
 
 	SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Completed attribute handling');
 	
-	
 
-	/* Update the session information */
-	$session->doLogin('saml2');
-	$session->setAttributes($attributes);
-	$session->setNameID($authnResponse->getNameID());
-	$session->setSessionIndex($authnResponse->getSessionIndex());
-	$session->setIdP($idpentityid);
-		
-		
+	/* Begin module attribute processing */
 
-	SimpleSAML_Utilities::redirect($info['RelayState']);
+	$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata);
+
+	$authProcState = array(
+		'core:saml20-sp:NameID' => $authnResponse->getNameID(),
+		'core:saml20-sp:SessionIndex' => $authnResponse->getSessionIndex(),
+		'core:saml20-sp:TargetURL' => $info['RelayState'],
+		'ReturnURL' => SimpleSAML_Utilities::selfURLNoQuery(),
+		'Attributes' => $attributes,
+		'Destination' => $spmetadata,
+		'Source' => $idpmetadata,
+		);
+
+	$pc->processState($authProcState);
+	/* Since this function returns, processing has completed and attributes have
+	 * been updated.
+	 */
+
+	finishLogin($authProcState);
 
 } catch(Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSASSERTION', $exception);
