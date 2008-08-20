@@ -773,8 +773,9 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>name</glossterm>
 
             <glossdef>
-              <para>A descriptive name of the SP. (Used in the consent
-              module)</para>
+              <para>A descriptive name of the SP. This can be a string, or an
+              associative array with language code =&gt; translation
+              pairs.</para>
             </glossdef>
           </glossentry>
 
@@ -782,7 +783,9 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>description</glossterm>
 
             <glossdef>
-              <para>A longer description of the SP. (Not used)</para>
+              <para>A longer description of the SP. This can be a string, or an
+              associative array with language code =&gt; translation
+              pairs.</para>
             </glossdef>
           </glossentry>
 

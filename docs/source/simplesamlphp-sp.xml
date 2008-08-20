@@ -397,8 +397,9 @@
             <glossterm>name</glossterm>
 
             <glossdef>
-              <para>A textual name of the IdP. This name is used in the SAML
-              2.0 discovery service.</para>
+              <para>A textual name of the IdP.  This can contain a string or an
+              associative array of language code =&gt; translation pairs. This
+              name is used in the SAML 2.0 discovery service.</para>
             </glossdef>
           </glossentry>
 
@@ -406,8 +407,9 @@
             <glossterm>description</glossterm>
 
             <glossdef>
-              <para>A longer description of the IdP. The description is used
-              in the SAML 2.0 discovery service.</para>
+              <para>A longer description of the IdP. This can contain a string
+              or an associative array of language code =&gt; translation pairs.
+              The description is used in the SAML 2.0 discovery service.</para>
             </glossdef>
           </glossentry>
 
