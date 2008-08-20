@@ -155,6 +155,15 @@ $linksdoc[] = array(
 	'href' => 'http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration', 
 	'text' => 'link_doc_maintenance');
 
+
+$allLinks = array(
+	'links' => &$links,
+	'metadata' => &$linksmeta,
+	'doc' => &$linksdoc,
+	);
+
+SimpleSAML_Module::callHooks('frontpage', $allLinks);
+
 $enablematrix = array(
 	'saml20-sp' => $config->getValue('enable.saml20-sp', false),
 	'saml20-idp' => $config->getValue('enable.saml20-idp', false),
