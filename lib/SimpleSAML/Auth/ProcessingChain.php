@@ -163,6 +163,11 @@ class SimpleSAML_Auth_ProcessingChain {
 
 		$state[self::FILTERS_INDEX] = $this->filters;
 
+		if (!array_key_exists('UserID', $state)) {
+			/* No unique user ID present. Attempt to add one. */
+			self::addUserID($state);
+		}
+
 		while (count($state[self::FILTERS_INDEX]) > 0) {
 			$filter = array_shift($state[self::FILTERS_INDEX]);
 			$filter->process($state);
@@ -211,6 +216,46 @@ class SimpleSAML_Auth_ProcessingChain {
 		assert('is_string($id)');
 
 		return SimpleSAML_Auth_State::loadState($id, self::COMPLETED_STAGE);
+	}
+
+
+	/**
+	 * Add unique user ID.
+	 *
+	 * This function attempts to add an unique user ID to the state.
+	 *
+	 * @param array &$state  The state we should update.
+	 */
+	private static function addUserID(&$state) {
+		assert('is_array($state)');
+		assert('array_key_exists("Attributes", $state)');
+
+		if (isset($state['Destination']['userid.attribute'])) {
+			$attributeName = $state['Destination']['userid.attribute'];
+		} elseif (isset($state['Source']['userid.attribute'])) {
+			$attributeName = $state['Source']['userid.attribute'];
+		} else {
+			/* Default attribute. */
+			$attributeName = 'eduPersonPrincipalName';
+		}
+
+		if (!array_key_exists($attributeName, $state['Attributes'])) {
+			return;
+		}
+
+		$uid = $state['Attributes'][$attributeName];
+		if (count($uid) === 0) {
+			SimpleSAML_Logger::warning('Empty user id attribute \'' . $attributeName . '\'.');
+			return;
+		}
+
+		if (count($uid) > 1) {
+			SimpleSAML_Logger::warning('Multiple attribute values for user id attribute \'' .
+				$attributeName . '\'.');
+		}
+
+		$uid = $uid[0];
+		$state['UserID'] = $uid;
 	}
 
 }
