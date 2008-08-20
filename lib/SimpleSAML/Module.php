@@ -146,6 +146,37 @@ class SimpleSAML_Module {
 		return SimpleSAML_Utilities::selfURLhost() . '/' . $config->getBaseURL() . 'module.php/' . $resource;
 	}
 
+
+	/**
+	 * Call a hook in all enabled modules.
+	 *
+	 * This function iterates over all enabled modules and calls a hook in each module.
+	 *
+	 * @param string $hook  The name of the hook.
+	 * @param mixed &$data  The data which should be passed to each hook. Will be passed as a reference.
+	 */
+	public static function callHooks($hook, &$data = NULL) {
+		assert('is_string($hook)');
+
+		foreach (self::getModules() as $module) {
+			if (!self::isModuleEnabled($module)) {
+				continue;
+			}
+
+			$hookfile = self::getModuleDir($module) . '/hooks/hook_' . $hook . '.php';
+			if (!file_exists($hookfile)) {
+				continue;
+			}
+
+			require_once($hookfile);
+
+			$hookfunc = $module . '_hook_' . $hook;
+			assert('is_callable($hookfunc)');
+
+			$hookfunc($data);
+		}
+	}
+
 }
 
 ?>
