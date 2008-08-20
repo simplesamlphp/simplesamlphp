@@ -37,77 +37,38 @@ if (isset($_POST['username'])) {
 		$dn = str_replace('%username%', $_POST['username'], $ldapconfig['dnpattern'] );
 		$pwd = $_POST['password'];
 	
-		$ds = ldap_connect($ldapconfig['hostname']);
+		$ldap = new SimpleSAML_Auth_LDAP($ldapconfig['hostname'], $ldapconfig['enable_tls']);
 		
-		if ($ds) {
-		
-			if (!ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3)) {
-			
-				SimpleSAML_Logger::critical('AUTH - ldap-multi: Error setting LDAP protocol version to 3');
-				
-				$error = "Failed to set LDAP Protocol version to 3";
-			}
-			/*
-			if (!ldap_start_tls($ds)) {
-			echo "Failed to start TLS";
-			exit;
-			}
-			*/
-			if (!@ldap_bind($ds, $dn, $pwd)) {
-				$error = 'Bind failed, wrong username or password.' .
-					' Tried with DN=[' . $dn . '] DNPattern=[' .
-					$ldapconfig['dnpattern'] . '] Error=[' .
-					ldap_error($ds) . "] ErrNo=[" .
-					ldap_errno($ds) . "]";
-	
-				SimpleSAML_Logger::info('AUTH - ldap-multi: '. $_POST['username'] . ' failed to authenticate');
-				
-			} else {
-				$sr = ldap_read($ds, $dn, $ldapconfig['attributes'] );
-				$ldapentries = ldap_get_entries($ds, $sr);
-				
-	
-				for ($i = 0; $i < $ldapentries[0]['count']; $i++) {
-					$values = array();
-					if ($ldapentries[0][$i] == 'jpegphoto') continue;
-					for ($j = 0; $j < $ldapentries[0][$ldapentries[0][$i]]['count']; $j++) {
-						$values[] = $ldapentries[0][$ldapentries[0][$i]][$j];
-					}
-					
-					$attributes[$ldapentries[0][$i]] = $values;
-				}
-	
-				// generelt ldap_next_entry for flere, men bare ett her
-				//print_r($ldapentries);
-				//print_r($attributes);
-				
-				SimpleSAML_Logger::info('AUTH - ldap-multi: '. $_POST['username'] . ' successfully authenticated');
-				
-				
-				$session->doLogin('login-ldapmulti');
-				$session->setAttributes($attributes);
-				
-				$session->setNameID(array(
-					'value' => SimpleSAML_Utilities::generateID(),
-					'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
-				
-				/**
-				 * Create a statistics log entry for every successfull login attempt.
-				 * Also log a specific attribute as set in the config: statistics.authlogattr
-				 */
-				$authlogattr = $config->getValue('statistics.authlogattr', null);
-				if ($authlogattr && array_key_exists($authlogattr, $attributes)) 
-					SimpleSAML_Logger::stats('AUTH-login-ldapmulti OK ' . $attributes[$authlogattr][0]);
-				else 
-					SimpleSAML_Logger::stats('AUTH-login-ldapmulti OK');
-				
-				
-				$returnto = $_REQUEST['RelayState'];
-				SimpleSAML_Utilities::redirect($returnto);
-	
-			}
-		// ldap_close() om du vil, men frigjoeres naar skriptet slutter
+		if (!$ldap->bind($dn, $pwd)) {
+			SimpleSAML_Logger::info('AUTH - ldap-multi: '. $_POST['username'] . ' failed to authenticate. DN=' . $dn);
+			throw new Exception('Wrong username or password');
 		}
+						
+		$attributes = $ldap->getAttributes($dn, $ldapconfig['attributes']);
+						
+		SimpleSAML_Logger::info('AUTH - ldap-multi: '. $_POST['username'] . ' successfully authenticated');
+				
+				
+		$session->doLogin('login-ldapmulti');
+		$session->setAttributes($attributes);
+				
+		$session->setNameID(array(
+			'value' => SimpleSAML_Utilities::generateID(),
+			'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
+				
+		/**
+		 * Create a statistics log entry for every successfull login attempt.
+		 * Also log a specific attribute as set in the config: statistics.authlogattr
+		 */
+		$authlogattr = $config->getValue('statistics.authlogattr', null);
+		if ($authlogattr && array_key_exists($authlogattr, $attributes)) 
+			SimpleSAML_Logger::stats('AUTH-login-ldapmulti OK ' . $attributes[$authlogattr][0]);
+		else 
+			SimpleSAML_Logger::stats('AUTH-login-ldapmulti OK');
+				
+				
+		$returnto = $_REQUEST['RelayState'];
+		SimpleSAML_Utilities::redirect($returnto);
 
 	} catch (Exception $e) {
 		
