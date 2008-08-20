@@ -31,10 +31,16 @@ if (isset($_POST['username'])) {
 	try {
 	
 		$ldapconfig = $ldapmulti[$_POST['org']];
+
+		if ($ldapconfig['search.enable'] === TRUE) {
+			if(!$ldap->bind($ldapconfig['search.username'], $ldapconfig['search.password'])) {
+				throw new Exception('Error authenticating using search username & password.');
+			}
+			$dn = $ldap->searchfordn($ldapconfig['search.base'], $ldapconfig['search.attributes'], $_POST['username']);
+		} else {
+			$dn = str_replace('%username%', $_POST['username'], $ldapconfig['dnpattern'] );
+		}
 		
-		
-	
-		$dn = str_replace('%username%', $_POST['username'], $ldapconfig['dnpattern'] );
 		$pwd = $_POST['password'];
 	
 		$ldap = new SimpleSAML_Auth_LDAP($ldapconfig['hostname'], $ldapconfig['enable_tls']);
