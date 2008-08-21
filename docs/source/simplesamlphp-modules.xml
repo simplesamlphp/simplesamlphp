@@ -4,6 +4,18 @@
 <article>
   <title>simpleSAMLphp modules</title>
 
+  <articleinfo>
+    <date>2008-08-21</date>
+
+    <pubdate>Thu Aug 21 10:32:42 2008</pubdate>
+
+    <author>
+      <firstname>Olav</firstname>
+
+      <surname>Morken</surname>
+    </author>
+  </articleinfo>
+
   <section>
     <title>simpleSAMLphp documentation</title>
 
@@ -17,9 +29,9 @@
       </listitem>
     </itemizedlist>
 
-    <para>This document describes how the module system in simpleSAMLphp works.
-    It descibes what types of modules there are, how they are configured, and
-    how to write new modules.</para>
+    <para>This document describes how the module system in simpleSAMLphp
+    works. It descibes what types of modules there are, how they are
+    configured, and how to write new modules.</para>
   </section>
 
   <section>
@@ -31,28 +43,28 @@
     also support for storing supporting files, such as templates and
     dictionaries, in modules.</para>
 
-    <para>The different functionalities which can be created as modules will be
-    described in more detail in the following sections; what follows is a short
-    introduction to what you can du with them:</para>
+    <para>The different functionalities which can be created as modules will
+    be described in more detail in the following sections; what follows is a
+    short introduction to what you can du with them:</para>
 
     <itemizedlist>
       <listitem>
         <para>Authentication sources implement different methods for
-        authenticating users, for example simple login forms which authenticate
-        against a database backend, or login methods which use client-side
-        certificates.</para>
+        authenticating users, for example simple login forms which
+        authenticate against a database backend, or login methods which use
+        client-side certificates.</para>
       </listitem>
 
       <listitem>
-        <para>Authentication processing filters perform various tasks after the
-        user is authenticated and has a set of attributes. They can add, remove
-        and modify attributes, do additional authentication checks, ask
+        <para>Authentication processing filters perform various tasks after
+        the user is authenticated and has a set of attributes. They can add,
+        remove and modify attributes, do additional authentication checks, ask
         questions of the user, +++.</para>
       </listitem>
 
       <listitem>
-        <para>Themes allow you to package custom templates for multiple modules
-        into a single module.</para>
+        <para>Themes allow you to package custom templates for multiple
+        modules into a single module.</para>
       </listitem>
     </itemizedlist>
   </section>
@@ -60,12 +72,11 @@
   <section>
     <title>Module layout</title>
 
-    <para>Each simpleSAMLphp  module is stored in a directory under the the
+    <para>Each simpleSAMLphp module is stored in a directory under the the
     <filename>modules</filename>-directory. The module directory contains the
     following directories and files:</para>
 
-    <para>
-      <glosslist>
+    <para><glosslist>
         <glossentry>
           <glossterm>default-disable</glossterm>
 
@@ -92,15 +103,15 @@
           <glossdef>
             <para>This directory contains dictionaries which belong to this
             module. To use a dictionary stored in a module, the extended tag
-            names can be used:
-            <literal>{&lt;module name&gt;:&lt;dictionary name&gt;:&lt;tag name&gt;}</literal>
-            For example, <literal>{example:login:hello}</literal> will look up
+            names can be used: <literal>{&lt;module name&gt;:&lt;dictionary
+            name&gt;:&lt;tag name&gt;}</literal> For example,
+            <literal>{example:login:hello}</literal> will look up
             <literal>hello</literal> in
             <literal>modules/example/dictionaries/login.php</literal>.</para>
 
-            <para>It is also possible to specify
-            <literal>&lt;module name&gt;:&lt;dictionary name&gt;</literal> as
-            the default dictionary when instantiating the
+            <para>It is also possible to specify <literal>&lt;module
+            name&gt;:&lt;dictionary name&gt;</literal> as the default
+            dictionary when instantiating the
             <literal>SimpleSAML_XHTML_Template</literal> class.</para>
           </glossdef>
         </glossentry>
@@ -120,8 +131,7 @@
             <para>Thus, if simpleSAMLphp needs to load a class named
             <literal>sspmod_example_Auth_Source_Example</literal>, it will
             load the file named
-            <literal>modules/example/lib/Auth/Source/Example.php</literal>.
-            </para>
+            <literal>modules/example/lib/Auth/Source/Example.php</literal>.</para>
           </glossdef>
         </glossentry>
 
@@ -130,11 +140,11 @@
 
           <glossdef>
             <para>These are module-specific templates. To use one of these
-            templates, specify
-            <literal>&lt;module name&gt;:&lt;template file&gt;.php</literal> as
-            the template file in the constructor of
+            templates, specify <literal>&lt;module name&gt;:&lt;template
+            file&gt;.php</literal> as the template file in the constructor of
             <literal>SimpleSAML_XHTML_Template</literal>. For example,
-            <literal>example:login-form.php</literal> is translated to the file
+            <literal>example:login-form.php</literal> is translated to the
+            file
             <literal>modules/example/templates/default/login-form.php</literal>.
             Note that <literal>default</literal> in the previous example is
             defined by the <literal>theme.use</literal> configuration
@@ -165,8 +175,7 @@
             while the template
             <literal>modules/core/templates/default/loginuserpass.php</literal>
             will be overridden by
-            <literal>modules/example/themes/blue/core/loginuserpass.php</literal>.
-            </para>
+            <literal>modules/example/themes/blue/core/loginuserpass.php</literal>.</para>
           </glossdef>
         </glossentry>
 
@@ -175,34 +184,37 @@
 
           <glossdef>
             <para>All files stored in this directory will be available by
-            accessing the URL <literal>https://.../simplesamlphp/module.php/&lt;module name&gt;/&lt;file name&gt;</literal>.
-            For example, if a script named <literal>login.php</literal> is
-            stored in <literal>modules/example/www/</literal>, it can be
-            accessed by the URL <literal>https://.../simplesamlphp/module.php/example/login.php</literal>.</para>
+            accessing the URL
+            <literal>https://.../simplesamlphp/module.php/&lt;module
+            name&gt;/&lt;file name&gt;</literal>. For example, if a script
+            named <literal>login.php</literal> is stored in
+            <literal>modules/example/www/</literal>, it can be accessed by the
+            URL
+            <literal>https://.../simplesamlphp/module.php/example/login.php</literal>.</para>
 
             <para>To retrieve this URL, the
             <literal>SimpleSAML_Module::getModuleURL($resource)</literal>-function
             can be used. This function takes in a resource on the form
             <literal>&lt;module&gt;/&lt;file&gt;</literal>. This function will
             then return an URL to the given file in the
-            <literal>www</literal>-directory of <literal>module</literal>.</para>
+            <literal>www</literal>-directory of
+            <literal>module</literal>.</para>
           </glossdef>
         </glossentry>
-      </glosslist>
-    </para>
+      </glosslist></para>
   </section>
 
   <section>
     <title>Authentication sources</title>
 
-    <para>An authentication source is used to authenticate a user and receive a
-    set of attributes belonging to this user. In a single-signon setup, the
+    <para>An authentication source is used to authenticate a user and receive
+    a set of attributes belonging to this user. In a single-signon setup, the
     authentication source will only be called once, and the attributes
     belonging to the user will be cached until the user logs out.</para>
 
     <para>Authentication sources are defined in
-    <filename>config/authsources.php</filename>. This file contains an array of
-    <literal>name =&gt; configuration</literal> pairs. The name is used to
+    <filename>config/authsources.php</filename>. This file contains an array
+    of <literal>name =&gt; configuration</literal> pairs. The name is used to
     refer to the authentication source in metadata. When configuring an IdP to
     authenticate against an authentication source, the <literal>auth</literal>
     option should be set to this name. The configuration for an authentication
@@ -210,8 +222,8 @@
     which implements the authentication source. The remaining elements in the
     array are configuration entries for the authentication source.</para>
 
-    <para>A typical configuration entry for an authentication source looks like
-    this:</para>
+    <para>A typical configuration entry for an authentication source looks
+    like this:</para>
 
     <programlisting>'example-static' =&gt; array(
   /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
@@ -223,7 +235,9 @@
   'cn' =&gt; array('Test User'),
 ),</programlisting>
 
-    <para>To use this authentication source in a SAML 2.0 IdP, set the <literal>auth</literal>-option of the IdP to <literal>'example-static'</literal>:</para>
+    <para>To use this authentication source in a SAML 2.0 IdP, set the
+    <literal>auth</literal>-option of the IdP to
+    <literal>'example-static'</literal>:</para>
 
     <programlisting>'__DYNAMIC:1__' =&gt; array(
   'host' =&gt; '__DEFAULT__',
@@ -238,9 +252,9 @@
       <para>Authentication sources are implemented by creating a class which
       is a subclass of the <literal>SimpleSAML_Auth_Source</literal>-class.
       They must implement at least one function -
-      <literal>authenticate</literal>. This function may can either update
-      the <literal>$state</literal>-array it receives with the attributes
-      of the user and return, or it may save the state and redirect the user to
+      <literal>authenticate</literal>. This function may can either update the
+      <literal>$state</literal>-array it receives with the attributes of the
+      user and return, or it may save the state and redirect the user to
       another page for authentication. It redirects, it should later retrieve
       the state array, update it with the attributes and call
       <literal>SimpleSAML_Source_Auth::completeAuth($state)</literal>.</para>
@@ -271,10 +285,10 @@
         </listitem>
 
         <listitem>
-          <para>The <literal>authenticate(&$state)</literal>-function must be
-          implemented. If this function completes, it is assumed that the user
-          is authenticated, and that the $state array has been updated with the
-          user's attributes.</para>
+          <para>The <literal>authenticate(&amp;$state)</literal>-function must
+          be implemented. If this function completes, it is assumed that the
+          user is authenticated, and that the $state array has been updated
+          with the user's attributes.</para>
         </listitem>
 
         <listitem>
@@ -295,17 +309,17 @@
 
         <listitem>
           <para>No state information about any authentication should be stored
-          in the authentication source object. It must instead be stored in the
-          state array. Any changes to variables in the authentication source
-          object may be lost.</para>
+          in the authentication source object. It must instead be stored in
+          the state array. Any changes to variables in the authentication
+          source object may be lost.</para>
         </listitem>
 
         <listitem>
           <para>The authentication source object must be serializable. It may
           be serializes between being constructed and the call to the
           <literal>authenticate</literal>-function. This means that, for
-          example, no database connections should be created in the constructor
-          and later used in the
+          example, no database connections should be created in the
+          constructor and later used in the
           <literal>authenticate</literal>-function.</para>
         </listitem>
       </itemizedlist>
@@ -352,16 +366,16 @@
       and run some filters on the SP befoer one filter on the IdP. To achieve
       this, we have the <literal>%priority</literal>-option of filters. The
       default priority, if no <literal>%priority</literal>-option is added, is
-      50. By giving a filter a higher priority value, you can make it run after
-      those with a lower priority:</para>
+      50. By giving a filter a higher priority value, you can make it run
+      after those with a lower priority:</para>
 
       <programlisting>/* saml20-idp-hosted.php */
-'authproc' => array(
+'authproc' =&gt; array(
   array('consent:Consent', '%priority' =&gt; 60),
 ),
 
 /* saml20-sp-remote.php */
-'authproc' => array(
+'authproc' =&gt; array(
   array('core:AttributeLimit', 'uid', 'mail', 'cn'),
   array('core:AttributeMap', '%priority' =&gt; 70, 'mail' =&gt; 'email'),
 ),</programlisting>
@@ -379,21 +393,23 @@
 
       <para>Authentication processing filters are created by creating a class
       under <literal>Auth/Process/</literal> in a module. This class is
-      expected to subclass <literal>SimpleSAML_Auth_ProcessingFilter</literal>.
-      A filter must implement at lease one function - the
-      <literal>process(&$request)</literal>-function. This function can access
-      the <literal>$request</literal>-array add, delete and modify attributes,
-      and can also do more advanced processing based on the SP/IdP metadata
-      (which is also included in the <literal>$request</literal>-array). When
-      this function returns, it is assumed that the filter has finished
-      processing.</para>
+      expected to subclass
+      <literal>SimpleSAML_Auth_ProcessingFilter</literal>. A filter must
+      implement at lease one function - the
+      <literal>process(&amp;$request)</literal>-function. This function can
+      access the <literal>$request</literal>-array add, delete and modify
+      attributes, and can also do more advanced processing based on the SP/IdP
+      metadata (which is also included in the
+      <literal>$request</literal>-array). When this function returns, it is
+      assumed that the filter has finished processing.</para>
 
-      <para>If a filter for some reason needs to redirect the user, for example
-      to show a web page, it should save the current request. Upon completion
-      it should retrieve the request, update it with the changes it is going
-      to make, and call
+      <para>If a filter for some reason needs to redirect the user, for
+      example to show a web page, it should save the current request. Upon
+      completion it should retrieve the request, update it with the changes it
+      is going to make, and call
       <literal>SimpleSAML_Auth_ProcessingChain::resumeProcessing</literal>.
-      This function will continue processing the next configured filter.</para>
+      This function will continue processing the next configured
+      filter.</para>
 
       <para>Requirements for authentication processing filters:</para>
 
@@ -411,15 +427,15 @@
         </listitem>
 
         <listitem>
-          <para>The <literal>process(&$state)</literal>-function must be
+          <para>The <literal>process(&amp;$state)</literal>-function must be
           implemented. If this function completes, it is assumed that
           processing is completed, and that the $request array has been
           updated.</para>
         </listitem>
 
         <listitem>
-          <para>If the <literal>process</literal>-function does not
-          return, it must at a later time call
+          <para>If the <literal>process</literal>-function does not return, it
+          must at a later time call
           <literal>SimpleSAML_Auth_ProcessingChain::resumeProcessing</literal>
           with the new request state. The request state must be an update of
           the array passed to the <literal>process</literal>-function.</para>
@@ -442,9 +458,9 @@
         <listitem>
           <para>The filter object must be serializable. It may be serialized
           between being constructed and the call to the
-          <literal>process</literal>-function. This means that, for example, no
-          database connections should be created in the constructor and later
-          used in the <literal>process</literal>-function.</para>
+          <literal>process</literal>-function. This means that, for example,
+          no database connections should be created in the constructor and
+          later used in the <literal>process</literal>-function.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -463,11 +479,13 @@
     <literal>module</literal> is the module the template belongs to, and
     <literal>template</literal> is the template in that module.</para>
 
-    <para>For example, <literal>modules/example/themes/test/core/loginuserpass.php</literal>
-    replaces <literal>modules/core/templates/default/loginuserpass.php</literal>.
-    <literal>modules/example/themes/test/default/frontpage.php</literal> replaces
-    <literal>templates/default/frontpage.php</literal>. This theme can be
-    activated by setting <literal>theme.use</literal> to
+    <para>For example,
+    <literal>modules/example/themes/test/core/loginuserpass.php</literal>
+    replaces
+    <literal>modules/core/templates/default/loginuserpass.php</literal>.
+    <literal>modules/example/themes/test/default/frontpage.php</literal>
+    replaces <literal>templates/default/frontpage.php</literal>. This theme
+    can be activated by setting <literal>theme.use</literal> to
     <literal>example:test</literal>.</para>
   </section>
 </article>
