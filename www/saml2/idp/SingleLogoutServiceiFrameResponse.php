@@ -1,32 +1,41 @@
 <?php
 
 
-require_once('../../_include.php');
+/**
+ * This SAML 2.0 endpoint can receive incomming LogoutResponses. 
+ *
+ * @author Andreas kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @package simpleSAMLphp
+ * @version $Id$
+ */
 
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Utilities.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Session.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Metadata/MetaDataStorageHandler.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XML/SAML20/LogoutRequest.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XML/SAML20/LogoutResponse.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Bindings/SAML20/HTTPRedirect.php');
-//require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/Bindings/SAML20/HTTPPost.php');
-require_once((isset($SIMPLESAML_INCPREFIX)?$SIMPLESAML_INCPREFIX:'') . 'SimpleSAML/XHTML/Template.php');
+require_once('../../_include.php');
 
 
 
 sleep(rand(1,6));
 
 
-session_start();
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-
-$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-
 $session = SimpleSAML_Session::getInstance();
 
-//$session->dump_sp_sessions();
+SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutServiceiFrameResponse: Accessing SAML 2.0 IdP endpoint SingleLogoutServiceResponse (iFrame version)');
+
+if (!$config->getValue('enable.saml20-idp', false))
+	SimpleSAML_Utilities::fatalError(isset($session) ? $session->getTrackID() : null, 'NOACCESS');
+
+try {
+	$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+} catch (Exception $exception) {
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
+}
+
+SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutServiceiFrame: Got IdP entity id: ' . $idpentityid);
+
+
+
 
 
 
@@ -37,13 +46,21 @@ if (isset($_GET['SAMLResponse'])) {
 
 	$session->set_sp_logout_completed($logoutresponse->getIssuer());
 	
-	error_log('IdP LogoutService: got LogoutResponse at SingleLogoutServiceAjaxResponse from ' . $logoutresponse->getIssuer() . '  ');
+	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutServiceiFrameResponse: Logging out completed');
 	
-	echo 'OK';
+	echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Logout OK</title>
+</head>
+<body>OK</body>
+</html>';
 	
 } else {
 
-	error_log('Error on SingleLogoutServiceAjaxResponse');
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS' new Exception('No valid SAMLResponse found? Probably some error in remote partys metadata that sends something to this endpoint that is not SAML LogoutResponses') );
 	echo 'Not set: SAMLResponse';
 }
 

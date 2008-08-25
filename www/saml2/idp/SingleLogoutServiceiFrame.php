@@ -254,48 +254,6 @@ foreach ($listofsps AS $spentityid) {
 
 
 
-/*
-try {
-
-	$logoutrequest = $session->getLogoutRequest();
-	if (!$logoutrequest) {
-		throw new Exception('Could not get reference to the logout request.');
-	}
-
-	$rg = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
-	
-	
-	$logoutResponseXML = $rg->generate($idpentityid, $logoutrequest->getIssuer(), $logoutrequest->getRequestID(), 'IdP');
-	
-	
-	$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-	
-	$relayState = SimpleSAML_Utilities::selfURL();
-	if (isset($_GET['RelayState'])) {
-		$relayState = $_GET['RelayState'];
-	}
-	
-
-	$logoutresponse = $httpredirect->getRedirectURL($logoutResponseXML, $logoutrequest->getIssuer(), $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
-
-} catch(Exception $exception) {
-	
-	$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-	
-	$et->data['header'] = 'Error sending response to service';
-	$et->data['message'] = 'Some error occured when trying to issue the logout response, and send it to the SP.';	
-	$et->data['e'] = $exception;
-	
-	$et->show();
-
-}
-
-
-
-*/
-
-
-
 
 
 
