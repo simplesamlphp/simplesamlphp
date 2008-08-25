@@ -255,3 +255,14 @@ table.attributes tr td {
 	padding-top: 5px;
 	vertical-align: top;
 }
+
+div.inprogress {
+	background: #eee;
+}
+div.loggedout {
+	background: #9f9 ! important ;
+}
+iframe.hiddeniframe {
+	display: none;
+}
+

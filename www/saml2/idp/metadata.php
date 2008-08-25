@@ -33,16 +33,25 @@ try {
 	$cert = file_get_contents($publiccert);
 	$data = XMLSecurityDSig::get509XCert($cert, true);
 	
+	$logouttype = 'traditional';
+	if (array_key_exists('logouttype', $idpmeta)) $logouttype = $idpmeta['logouttype'];
+	
+	$urlSLO = $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted', array('logouttype' => $logouttype));
+	$urlSLOr = $metadata->getGenerated('SingleLogoutServiceResponse', 'saml20-idp-hosted', array('logouttype' => $logouttype));
 	
 	$metaflat = "
 	'" . htmlspecialchars($idpentityid) . "' =>  array(
 		'name'                 => 'Type in a name for this entity',
 		'description'          => 'and a proper description that would help users know when to select this IdP.',
-		'SingleSignOnService'  => '" . htmlspecialchars($metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted')) . "',
-		'SingleLogoutService'  => '" . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted')) . "',
+		'SingleSignOnService'  => '" . htmlspecialchars($metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted', array())) . "',
+		'SingleLogoutService'  => '" . htmlspecialchars($urlSLO) . "'," . 
+			(($urlSLO !== $urlSLOr) ? "
+		'SingleLogoutServiceResponse'  => '" . htmlspecialchars($urlSLOr) . "'," : "") . "
 		'certFingerprint'      => '" . strtolower(sha1(base64_decode($data))) ."'
 	),
 ";
+
+
 	
 	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 	<EntityDescriptor xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
@@ -64,8 +73,8 @@ try {
         <!-- Logout endpoints -->
         <SingleLogoutService
             Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
-            Location="' . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted')) . '"
-            ResponseLocation="' . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted')) . '"
+            Location="' . htmlspecialchars($urlSLO) . '"
+            ResponseLocation="' . htmlspecialchars($urlSLOr) . '"
             />
 
         

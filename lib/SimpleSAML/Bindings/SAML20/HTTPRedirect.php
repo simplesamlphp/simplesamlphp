@@ -177,7 +177,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		return $redirectURL;
 	
 	}
-	
+	# $request, $localentityid, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP'
 	public function sendMessage($request, $localentityid, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP') {
 		
 		SimpleSAML_Utilities::validateXMLDocument($request, 'saml20');

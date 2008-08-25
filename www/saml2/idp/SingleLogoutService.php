@@ -4,15 +4,14 @@
  * This SAML 2.0 endpoint can receive incomming LogoutRequests. It will also send LogoutResponses, 
  * and LogoutRequests and also receive LogoutResponses. It is implemeting SLO at the SAML 2.0 IdP.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Ã…kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
  */
 
 // TODO: Show error message, when shibboleth sp is logged in.
-// TODO: Propagate HTTP-REDIRECT SLO on SAML 2.0 bridge.
 
-require_once('../../../www/_include.php');
+require_once('../../_include.php');
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
@@ -139,7 +138,6 @@ if (isset($_GET['SAMLRequest'])) {
 
 
 	$session->doLogout();
-
 
 	/* Fill in the $logoutInfo associative array with information about this logout request. */
 	$logoutInfo['Issuer'] = $logoutrequest->getIssuer();

@@ -14,6 +14,12 @@ if(array_key_exists('header', $this->data)) {
 	<link rel="icon" type="image/icon" href="/<?php echo $this->data['baseurlpath']; ?>resources/icons/favicon.ico" />
 	<script type="text/javascript" src="/<?php echo $this->data['baseurlpath']; ?>resources/script.js"></script>
 	<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+
+<?php	
+if(array_key_exists('head', $this->data)) {
+	echo '<!-- head -->' . $this->data['head'] . '<!-- /head -->';
+}
+?>
 </head>
 <?php
 $onLoad = '';
