@@ -203,12 +203,22 @@ class SimpleSAML_Session {
 		return $list;
 	}
 	
+	public function sp_logout_completed() {
+
+		if (!$this->sp_at_idpsessions) return TRUE;
+		
+		foreach ($this->sp_at_idpsessions AS $entityid => $sp) {
+			if ($sp != self::STATE_LOGGEDOUT) return FALSE;
+		}
+		return TRUE;
+	}
+	
+	
 	public function set_sp_logout_completed($entityid) {
 		SimpleSAML_Logger::debug('Library - Session: Setting SP state completed for : ' . $entityid);
 		$this->dirty = true;
 		$this->sp_at_idpsessions[$entityid] = self::STATE_LOGGEDOUT;
 	}
-	
 	
 	public function dump_sp_sessions() {
 		foreach ($this->sp_at_idpsessions AS $entityid => $sp) {

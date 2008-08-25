@@ -34,6 +34,12 @@ try {
 
 SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutServiceiFrame: Got IdP entity id: ' . $idpentityid);
 
+$logouttype = 'traditional';
+$idpmeta = $metadata->getMetaDataCurrent('saml20-idp-hosted');
+if (array_key_exists('logouttype', $idpmeta)) $logouttype = $idpmeta['logouttype'];
+
+if ($logouttype !== 'iframe') 
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS', new Exception('This IdP is configured to use logout type [' . $logouttype . '], but this endpoint is only available for IdP using logout type [iframe]'));
 
 
 
@@ -60,8 +66,9 @@ if (isset($_GET['SAMLResponse'])) {
 	
 } else {
 
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS' new Exception('No valid SAMLResponse found? Probably some error in remote partys metadata that sends something to this endpoint that is not SAML LogoutResponses') );
-	echo 'Not set: SAMLResponse';
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS', 
+		new Exception('No valid SAMLResponse found? Probably some error in remote partys metadata that sends something to this endpoint that is not SAML LogoutResponses') );
+#	echo 'Not set: SAMLResponse';
 }
 
 ?>

@@ -29,6 +29,16 @@ try {
 SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutServiceiFrame: Got IdP entity id: ' . $idpentityid);
 
 
+
+$logouttype = 'traditional';
+$idpmeta = $metadata->getMetaDataCurrent('saml20-idp-hosted');
+if (array_key_exists('logouttype', $idpmeta)) $logouttype = $idpmeta['logouttype'];
+
+if ($logouttype !== 'iframe') 
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS', new Exception('This IdP is configured to use logout type [' . $logouttype . '], but this endpoint is only available for IdP using logout type [iframe]'));
+
+
+
 /**
  * The $logoutInfo contains information about the current logout operation.
  * It can have the following attributes:
@@ -80,6 +90,8 @@ require_once(SimpleSAML_Utilities::resolvePath('libextinc') . '/xajax/xajax.inc.
  */
 function updateslostatus() {
 
+	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutServiceiFrame: Accessing SAML 2.0 IdP endpoint SingleLogoutService (iFrame version) within updateslostatus() ');
+
 	$config = SimpleSAML_Configuration::getInstance();
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 	$session = SimpleSAML_Session::getInstance();
@@ -96,9 +108,35 @@ function updateslostatus() {
 		error_log('Completed ' . $spentityid);
 		// add a command to the response to assign the innerHTML attribute of
 		// the element with id="SomeElementId" to whatever the new content is
-		$objResponse->addAssign($spentityid, "className", 'loggedout');
-		$objResponse->addAssign($spentityid, "innerHTML", 'Logging out from ' . $spentityid . ' successfully completed');
+		
+		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
+		$name = array_key_exists('name', $spmetadata) ? $spmetadata['name'] : $spentityid;
 
+		
+		$objResponse->addAssign($spentityid, "className", 'loggedout');
+		$objResponse->addAssign($spentityid, "innerHTML", 'Logging out from <strong>' . $name . '</strong> successfully completed');
+
+	}
+	
+	if ($session->sp_logout_completed() === TRUE) {
+		$objResponse->addAssign('iscompleted', "className", 'allcompleted');
+		$objResponse->addAssign('interrupt', "className", 'allcompleted');
+
+		/**
+		 * Clean up session object to save storage.
+		 */
+		if ($config->getValue('debug', false)) 
+			SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Session Size before cleaning: ' . $session->getSize());
+			
+		$session->clean();
+		
+		if ($config->getValue('debug', false)) 
+			SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Session Size after cleaning: ' . $session->getSize());
+
+
+
+	} else {
+		SimpleSAML_Logger::debug('SAML2.0 - sp_logout_completed FALSE');
 	}
     
     //return the  xajaxResponse object
@@ -244,12 +282,15 @@ foreach ($listofsps AS $spentityid) {
 	// $request, $localentityid, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP'
 	$url = $httpredirect->getRedirectURL($req, $idpentityid, $spentityid, NULL, 'SingleLogoutService', 'SAMLRequest', 'IdP');
 
-	$sparray[$spentityid] = array('url' => $url);
+	$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
+	$name = array_key_exists('name', $spmetadata) ? $spmetadata['name'] : $spentityid;
+
+	$sparray[$spentityid] = array('url' => $url, 'name' => $name);
 
 }
 
 
-
+#print_r($sparray);
 
 
 
@@ -271,16 +312,7 @@ try {
 	
 	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: Found logout info with these keys: ' . join(',', array_keys($logoutInfo)));
 	
-	/**
-	 * Clean up session object to save storage.
-	 */
-	if ($config->getValue('debug', false)) 
-		SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Session Size before cleaning: ' . $session->getSize());
-		
-	$session->clean();
-	
-	if ($config->getValue('debug', false)) 
-		SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Session Size after cleaning: ' . $session->getSize());
+
 	
 	
 	/*
@@ -327,7 +359,9 @@ try {
 
 
 
-
+$spmeta = $metadata->getMetaData($requester, 'saml20-sp-remote');
+$spname = $requester;
+if (array_key_exists('name', $spmeta)) $spname = $spmeta['name'];
 
 
 
@@ -362,6 +396,7 @@ $et->data['header'] = 'SAML 2.0 IdP Ajax Logout';
 $et->data['sparray'] = $sparray;
 $et->data['logoutresponse'] = $logoutresponse;
 $et->data['xajax'] = $xajax;
+$et->data['requesterName'] = $spname;
 
 $et->data['head'] = $xajax->printJavascript();
 
@@ -369,126 +404,6 @@ $et->show();
 
 exit(0);
 
-
-
-
-
-
-/*
- * If we get an LogoutRequest then we initiate the logout process.
- */
-if (isset($_GET['SAMLRequest'])) {
-
-	$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-	$logoutrequest = $binding->decodeLogoutRequest($_GET);
-	
-	$session->setAuthenticated(false);
-
-	//$requestid = $authnrequest->getRequestID();
-	//$session->setAuthnRequest($requestid, $authnrequest);
-	
-	//echo '<pre>' . htmlentities($logoutrequest->getXML()) . '</pre>';
-	
-	error_log('IdP LogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer() . '  ');
-	
-	$session->set_sp_logout_completed($logoutrequest->getIssuer() );
-	$session->setLogoutRequest($logoutrequest);
-
-/*
- * We receive a Logout Response to a Logout Request that we have issued earlier.
- */
-} elseif (isset($_GET['SAMLResponse'])) {
-
-	$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-	$loginresponse = $binding->decodeLogoutResponse($_GET);
-	
-	$session->set_sp_logout_completed($loginresponse->getIssuer());
-	
-	error_log('IdP LogoutService: got LogoutResponse from ' . $loginresponse->getIssuer() . '  ');
-}
-
-/*
- * We proceed to send logout requests to all remaining SPs.
- */
-$spentityid = $session->get_next_sp_logout();
-if ($spentityid) {
-
-	error_log('IdP LogoutService: next SP ' . $spentityid);
-
-	try {
-		$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
-	
-		// ($issuer, $receiver, $nameid, $nameidformat, $sessionindex, $mode) {
-		$req = $lr->generate($idpentityid, $spentityid, $session->getNameID(), $session->getNameIDFormat(), $session->getSessionIndex(), 'IdP');
-		
-		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-		
-		$relayState = SimpleSAML_Utilities::selfURL();
-		if (isset($_GET['RelayState'])) {
-			$relayState = $_GET['RelayState'];
-		}
-		
-		//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
-		$httpredirect->sendMessage($req, $spentityid, $relayState, 'SingleLogoutService', 'SAMLRequest', 'IdP');
-		
-		exit();
-
-	} catch(Exception $exception) {
-		
-		$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-		
-		$et->data['header'] = 'Error sending logout request to service';
-		$et->data['message'] = 'Some error occured when trying to issue the logout response, and send it to the SP.';	
-		$et->data['e'] = $exception;
-		
-		$et->show();
-		exit(0);
-	}
-
-
-}
-
-/*
- * Logout procedure is done and we send a Logout Response back to the SP
- */
-error_log('IdP LogoutService:  SPs done ');
-try {
-
-	$logoutrequest = $session->getLogoutRequest();
-	if (!$logoutrequest) {
-		throw new Exception('Could not get reference to the logout request.');
-	}
-
-	$rg = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
-	
-	// generate($issuer, $receiver, $inresponseto, $mode )
-	
-	$logoutResponseXML = $rg->generate($idpentityid, $logoutrequest->getIssuer(), $logoutrequest->getRequestID(), 'IdP');
-	
-	//	echo '<pre>' . htmlentities($logoutResponseXML) . '</pre>';
-	//	exit();
-	
-	$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-	
-	$relayState = SimpleSAML_Utilities::selfURL();
-	if (isset($_GET['RelayState'])) {
-		$relayState = $_GET['RelayState'];
-	}
-	
-	//$request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
-	$httpredirect->sendMessage($logoutResponseXML, $logoutrequest->getIssuer(), $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
-
-} catch(Exception $exception) {
-	
-	$et = new SimpleSAML_XHTML_Template($config, 'error.php');
-	
-	$et->data['header'] = 'Error sending response to service';
-	$et->data['message'] = 'Some error occured when trying to issue the logout response, and send it to the SP.';	
-	$et->data['e'] = $exception;
-	
-	$et->show();
-
-}
 
 
 

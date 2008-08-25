@@ -31,6 +31,16 @@ try {
 SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: Got IdP entity id: ' . $idpentityid);
 
 
+$logouttype = 'traditional';
+$idpmeta = $metadata->getMetaDataCurrent('saml20-idp-hosted');
+if (array_key_exists('logouttype', $idpmeta)) $logouttype = $idpmeta['logouttype'];
+
+if ($logouttype !== 'traditional') 
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS', new Exception('This IdP is configured to use logout type [' . $logouttype . '], but this endpoint is only available for IdP using logout type [traditional]'));
+
+
+
+
 /**
  * The $logoutInfo contains information about the current logout operation.
  * It can have the following attributes:

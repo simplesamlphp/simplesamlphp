@@ -256,10 +256,47 @@ table.attributes tr td {
 	vertical-align: top;
 }
 
+
+div.allcompleted#interrupt {
+	display: none;
+}
+div#interrupt a:link {
+	color: #036;
+	border-bottom: 1px dotted #036;
+	text-decoration: none;
+}
+div#interrupt a:hover {
+	border-bottom: 1px solid #036;
+}
+div#interrupt {
+	display: block;
+	border: 3px solid #036;
+	background: #39F;
+	padding: 1em;	
+	margin: 1em;
+}
+div#iscompleted {
+	display: none;
+	border: 3px solid #993;
+	background: #FF9;
+	padding: 1em;
+	margin: 1em;
+}
+div.allcompleted#iscompleted {
+	display: block ! important;
+}
+div.inprogress, div.loggedout {
+
+	background: #eee; 
+	color: #444; 
+	padding: 1em;
+	margin: 1em;
+}
 div.inprogress {
-	background: #eee;
+	border: 1px dotted #888; 
 }
 div.loggedout {
+	border: 1px solid #888; 
 	background: #9f9 ! important ;
 }
 iframe.hiddeniframe {
