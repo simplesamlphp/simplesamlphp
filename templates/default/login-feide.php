@@ -79,8 +79,8 @@ echo('</p>');
 			<legend><?php echo($this->t('{login:change_home_org_title}')); ?></legend>
 			<p><?php echo($this->t('{login:change_home_org_text}', array('%HOMEORG%' => $this->data['ldapconfig'][$this->data['org']]['description']))); ?></p>
 				<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($this->data['relaystate']); ?>" />
-                                <input type="hidden" name="protocol" value="<?php echo htmlspecialchars($this->data['protocol']); ?>" />
-                                <input type="hidden" name="AuthId" value="<?php echo htmlspecialchars($this->data['authid']); ?>" />
+                <input type="hidden" name="protocol" value="<?php echo htmlspecialchars($this->data['protocol']); ?>" />
+                <input type="hidden" name="AuthId" value="<?php echo htmlspecialchars($this->data['authid']); ?>" />
 				<input type="hidden" name="action" value="change_org" />
 				<input type="submit" id="submit" value="<?php echo($this->t('{login:change_home_org_button}')); ?>" />
 			</fieldset>
