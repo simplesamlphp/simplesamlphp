@@ -20,8 +20,13 @@ for (j=1; j<=10; j++) {
 ?>
 
 	<div id="content">
-	
-		<p>You have initiated a <strong>global logout</strong> from the service <strong><?php echo $this->data['requesterName']; ?></strong>. Global logout means you will be logged out from all services connected to this identity provider. This page will show the status of the logout proccess for all of the services you are logged into.</p>
+		<?php
+		
+		$requestername = is_array($this->data['requesterName']) ? 
+			$this->getTranslation($this->data['requesterName']) : $this->data['requesterName'];
+		
+		?>
+		<p>You have initiated a <strong>global logout</strong> from the service <strong><?php echo $requestername; ?></strong>. Global logout means you will be logged out from all services connected to this identity provider. This page will show the status of the logout proccess for all of the services you are logged into.</p>
 	
 
 		<?php
