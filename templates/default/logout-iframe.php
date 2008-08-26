@@ -51,7 +51,7 @@ for (j=1; j<=10; j++) {
 			<!-- form method="get" action="<?php echo $this->data['logoutresponse']; ?>">
 				<input type="submit" name="s" value="OK, continue back to <?php echo $this->data['requesterName']; ?> to complete the logout process." />
 			</form  -->
-			<br />[ <a href="<?php echo $this->data['logoutresponse']; ?>">OK, continue back to <?php echo $this->data['requesterName']; ?> to complete the logout process.</a> ]
+			<br />[ <a href="<?php echo $this->data['logoutresponse']; ?>">OK, continue back to <?php echo $requestername; ?> to complete the logout process.</a> ]
 		</div>
 	</div>
 
