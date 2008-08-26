@@ -273,14 +273,14 @@ div#interrupt {
 	border: 3px solid #036;
 	background: #39F;
 	padding: 1em;	
-	margin: 1em;
+	margin: .2em;
 }
 div#iscompleted {
 	display: none;
 	border: 3px solid #993;
 	background: #FF9;
 	padding: 1em;
-	margin: 1em;
+	margin: .2em;
 }
 div.allcompleted#iscompleted {
 	display: block ! important;
@@ -289,8 +289,8 @@ div.inprogress, div.loggedout {
 
 	background: #eee; 
 	color: #444; 
-	padding: 1em;
-	margin: 1em;
+	padding: .2em 1em;
+	margin: .2em;
 }
 div.inprogress {
 	border: 1px dotted #888; 

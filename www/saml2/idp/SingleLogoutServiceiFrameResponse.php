@@ -13,7 +13,7 @@ require_once('../../_include.php');
 
 
 
-sleep(rand(1,6));
+sleep(max(0, rand(-3,5)));
 
 
 

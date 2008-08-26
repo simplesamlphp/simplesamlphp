@@ -24,21 +24,21 @@ for (j=1; j<=10; j++) {
 		<p>You have initiated a <strong>global logout</strong> from the service <strong><?php echo $this->data['requesterName']; ?></strong>. Global logout means you will be logged out from all services connected to this identity provider. This page will show the status of the logout proccess for all of the services you are logged into.</p>
 	
 
-	
-
-		
 		<?php
 		
+
+			
 			foreach ($this->data['sparray'] AS $sp) {
 				echo '<iframe class="hiddeniframe" style="border: 1px solid #888; width: 80%; height: 100px" src="' . $sp['url'] . '" ></iframe>';
 			}
 			
 			foreach ($this->data['sparray'] AS $spentityid => $sp) {
+			
+				$spname = is_array($sp['name']) ? $this->getTranslation($sp['name']) : $sp['name'];
 				echo '<div class="inprogress" id="' . $spentityid . '">
-					<img style="float: left; margin: 3px" src="/' . $this->data['baseurlpath'] . 'resources/progress.gif" />Wait... is logging out from <strong>' . $sp['name'] . '</strong></div>';
+					<img style="float: left; margin: 3px" src="/' . $this->data['baseurlpath'] . 'resources/progress.gif" />Wait... is logging out from <strong>' . $spname . '</strong></div>';
 			}
 			
-		
 		?>
 		
 		<div id="interrupt">[ <a href="<?php echo $this->data['logoutresponse']; ?>">Interrupt logging out and go back to service</a> ]</div>
@@ -49,8 +49,5 @@ for (j=1; j<=10; j++) {
 			<br />[ <a href="<?php echo $this->data['logoutresponse']; ?>">OK, continue back to <?php echo $this->data['requesterName']; ?> to complete the logout process.</a> ]
 		</div>
 	</div>
-	
-
-	
 
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>

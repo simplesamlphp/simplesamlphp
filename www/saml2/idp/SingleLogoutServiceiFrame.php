@@ -100,6 +100,9 @@ function updateslostatus() {
 	
 	$listofsps = $session->get_sp_list(SimpleSAML_Session::STATE_LOGGEDOUT);
 
+	// Using template object to be able to translate name of service provider.
+	$t = new SimpleSAML_XHTML_Template($config, 'logout-iframe.php');
+
     // Instantiate the xajaxResponse object
     $objResponse = new xajaxResponse();
 
@@ -111,10 +114,11 @@ function updateslostatus() {
 		
 		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
 		$name = array_key_exists('name', $spmetadata) ? $spmetadata['name'] : $spentityid;
-
+		
+		$spname = is_array($name) ? $t->getTranslation($name) : $name;
 		
 		$objResponse->addAssign($spentityid, "className", 'loggedout');
-		$objResponse->addAssign($spentityid, "innerHTML", 'Logging out from <strong>' . $name . '</strong> successfully completed');
+		$objResponse->addAssign($spentityid, "innerHTML", 'Logging out from <strong>' . $spname . '</strong> successfully completed');
 
 	}
 	
