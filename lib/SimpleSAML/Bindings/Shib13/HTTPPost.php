@@ -97,16 +97,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 			$passphrase = NULL;
 		}
 
-		$signer = new SimpleSAML_XML_Signer(array(
-			'privatekey' => $idpmd['privatekey'],
-			'privatekey_pass' => $passphrase,
-			'certificate' => $idpmd['certificate'],
-			'id' => 'ResponseID',
-			));
 
-		if(array_key_exists('certificatechain', $idpmd)) {
-			$signer->addCertificate($idpmd['certificatechain']);
-		}
 		
 		$responsedom = new DOMDocument();
 		$responsedom->loadXML(str_replace ("\r", "", $response));
@@ -138,10 +129,18 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		}
 		
 		
-		
-		if(!$signResponse) {
-			$signer->sign($firstassertionroot, $firstassertionroot);
+		$signer = new SimpleSAML_XML_Signer(array(
+			'privatekey' => $idpmd['privatekey'],
+			'privatekey_pass' => $passphrase,
+			'certificate' => $idpmd['certificate'],
+			'id' => ($signResponse ? 'ResponseID' : 'AssertionID') ,
+			));
+
+
+		if(array_key_exists('certificatechain', $idpmd)) {
+			$signer->addCertificate($idpmd['certificatechain']);
 		}
+		
 		
 		if($signResponse) {
 			/* Sign the response - this must be done after encrypting the assertion. */
@@ -151,7 +150,14 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 			assert('count($statusElements) === 1');
 
 			$signer->sign($responseroot, $responseroot, $statusElements[0]);
+			
+		} else {
+			/* Sign the assertion */
+		
+			$signer->sign($firstassertionroot, $firstassertionroot);
 		}
+		
+
 		
 		$response = $responsedom->saveXML();
 		
