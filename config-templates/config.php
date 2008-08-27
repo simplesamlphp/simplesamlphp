@@ -212,6 +212,8 @@ $config = array (
 	 * same name to the metadata of the SP.
 	 */
 	'saml20.signresponse' => FALSE,
+	'shib13.signresponse' => TRUE,
+
 
 	/*
 	 * Configuration of Consent storage used for attribute consent.

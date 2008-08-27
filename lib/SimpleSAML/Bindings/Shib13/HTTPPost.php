@@ -112,13 +112,47 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		$responsedom->loadXML(str_replace ("\r", "", $response));
 		
 		$responseroot = $responsedom->getElementsByTagName('Response')->item(0);
+		
+		$firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
+		
+		
+		
+		/* Determine what we should sign - either the Response element or the Assertion. The default
+		 * is to sign the Assertion, but that can be overridden by the 'signresponse' option in the
+		 * SP metadata or 'saml20.signresponse' in the global configuration.
+		 */
+		$signResponse = FALSE;
+		if(array_key_exists('signresponse', $spmd) && $spmd['signresponse'] !== NULL) {
+			$signResponse = $spmd['signresponse'];
+			if(!is_bool($signResponse)) {
+				throw new Exception('Expected the \'signresponse\' option in the metadata of the' .
+					' SP \'' . $spmd['entityid'] . '\' to be a boolean value.');
+			}
+		} else {
+			$signResponse = $this->configuration->getBoolean('shib13.signresponse', TRUE);
+		}
+		
+		/* Check if we have an assertion to sign. Force to sign the response if not. */
+		if($firstassertionroot === NULL) {
+			$signResponse = TRUE;
+		}
+		
+		
+		
+		if(!$signResponse) {
+			$signer->sign($firstassertionroot, $firstassertionroot);
+		}
+		
+		if($signResponse) {
+			/* Sign the response - this must be done after encrypting the assertion. */
 
-		/* We insert the signature before the saml1p:Status element. */
-		$statusElements = SimpleSAML_Utilities::getDOMChildren($responseroot, 'Status', '@saml1p');
-		assert('count($statusElements) === 1');
+			/* We insert the signature before the saml2p:Status element. */
+			$statusElements = SimpleSAML_Utilities::getDOMChildren($responseroot, 'Status', '@saml1p');
+			assert('count($statusElements) === 1');
 
-		$signer->sign($responseroot, $responseroot, $statusElements[0]);
-
+			$signer->sign($responseroot, $responseroot, $statusElements[0]);
+		}
+		
 		$response = $responsedom->saveXML();
 		
 		
