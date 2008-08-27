@@ -34,7 +34,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$dom = $this->getDOM();
 
 		/* Validate the signature. */
-		$this->validator = new SimpleSAML_XML_Validator($dom, 'ResponseID');
+		$this->validator = new SimpleSAML_XML_Validator($dom, array('ResponseID', 'AssertionID'));
 
 		// Get the issuer of the response.
 		$issuer = $this->getIssuer();

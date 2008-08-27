@@ -26,7 +26,8 @@ class SimpleSAML_XML_Validator {
 	 *
 	 * @param $xmlNode  The XML node which contains the Signature element.
 	 * @param $idAttribute  The ID attribute which is used in node references. If this attribute is
-	 *                      NULL (the default), then we will use whatever is the default ID.
+	 *                      NULL (the default), then we will use whatever is the default ID. Can be eigther
+	 *						a string with one value, or an array with multiple ID attrbute names.
 	 */
 	public function __construct($xmlNode, $idAttribute = NULL, $publickey = FALSE) {
 		assert('$xmlNode instanceof DOMNode');
@@ -36,8 +37,12 @@ class SimpleSAML_XML_Validator {
 
 		/* Add the id attribute if the user passed in an id attribute. */
 		if($idAttribute !== NULL) {
-			assert('is_string($idAttribute)');
-			$objXMLSecDSig->idKeys[] = $idAttribute;
+			if (is_string($idAttribute)) {
+				$objXMLSecDSig->idKeys[] = $idAttribute;
+			} elseif (is_array($idAttribute)) {
+				foreach ($idAttribute AS $ida) 
+					$objXMLSecDSig->idKeys[] = $ida;
+			}
 		}
 
 		/* Locate the XMLDSig Signature element to be used. */
