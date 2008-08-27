@@ -82,6 +82,7 @@ $lang = array(
 		'hu' => 'Az azonosítás során az azonosító szolgáltató személyes adatokat fog küldeni ennek a szolgáltatásnak. Engedélyezi?',
 	),
 	'consent_privacypolicy' => array (
+		'no' => 'Privacy policy for tjenesten',
 		'nn' => 'Personvernpolicy for tenesta',
 		'en' => 'Privacypolicy for the service',
 		'de' => 'Datenschutzrichtlinie des Dienstes',
@@ -173,6 +174,7 @@ $lang = array(
 		'hu' => 'attribútumok mutatása/elrejtése',
 	),
 	'noconsent_title' => array (
+		'no' => 'Ingen samtykke gitt',
 		'nn' => 'Utan samtykke',
 		'en' => 'No consent given',
 		'de' => 'Zustimmung verweigert',
@@ -183,18 +185,23 @@ $lang = array(
 		'hu' => 'Nincs belegyezés',
 	),
 	'noconsent_text' => array (
+		'no' => 'Du har ikke gitt samtykke til å overlevere attributter til tjenesteleverandøren.',
 		'nn' => 'Du har ikkje gitt samtykke til at dine opplysingar (attibuttar) kan overførast til tenesteleverandøren',
 		'en' => 'You did not give consent for transfering your attributes to the service provider.',
 		'de' => 'Sie haben der Weitergabe Ihrer Daten an den Service Provider nicht zugestimmt.',
-		'sv' => 'Du gav icke samtycke för att överföra dina attribut till tjänsteleverantören.',
+		'sv' => 'Du gav inte samtycke för att överföra dina attribut till tjänsteleverantören.',
 		'es' => 'No ha dado su consentimiento para tranferir sus atributos al proveedor de servicio.',
 		'sl' => 'Niste podali privolitve za posredovanje atributov SP-ju.',
 		'hr' => 'Niste dali pristanak da se vaši podaci isporuče davatelju usluge.',
 		'hu' => 'Nem adta belegyezését, ahoz hogy adatait kiszlgálatassuk a szolgáltató felé.',
 	),
 	'noconsent_return' => array (
+		'no' => 'Returner tilbake til samtykke siden.',
 		'nn' => 'Gå tilbake til samtykkesida',
 		'en' => 'Return to consent page',
+		'sv' => 'Åter till sidan för samtycke',
+		'es' => 'Volver a la página de consentimiento',
+		'sl' => 'Vrnitev na privolitveno stran',
 	),
 
 );

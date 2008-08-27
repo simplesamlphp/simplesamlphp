@@ -537,6 +537,7 @@ $lang = array(
 		'hu' => 'SimpleSAMLphp karbantartása és beállítása',
 	),
 	'link_publish_saml20-idp' => array (
+		'no' => 'Publiser mine SAML 2.0 IdP metadata til den konfigurerte MetaShare',
 		'nn' => 'Publiser ut mine SAML 2.0 IdP metadata til MetaShare som konfigurert',
 		'en' => 'Publish my SAML 2.0 IdP metadata to the configured MetaShare',
 		'sv' => 'Publisera SAML 2.0 IdP-metadata till den konfigurerade MetaShare',
@@ -546,6 +547,7 @@ $lang = array(
 		'hu' => 'Publikálódjon a SAML 2.0 IdP metadatom a beállított Közösmegosztásba(MetaShare)',
 	),
 	'link_publish_saml20-sp' => array (
+		'no' => 'Publiser mine SAML 2.0 SP metadata til den konfigurerte MetaShare',
 		'nn' => 'Publiser ut mine SAML 2.0 SP metadata til MetaShare som konfigurert',
 		'en' => 'Publish my SAML 2.0 SP metadata to the configured MetaShare',
 		'sv' => 'Publisera SAML 2.0 SP-metadata till den konfigurerade MetaShare',
@@ -555,6 +557,7 @@ $lang = array(
 		'hu' => 'Publikálódjon a SAML 2.0 SP metadatom a beállított Közösmegosztásba(MetaShare)',
 	),
 	'link_publish_shib13-idp' => array (
+		'no' => 'Publiser mine Shibboleth 1.3 IdP metadata til den konfigurerte MetaShare',
 		'nn' => 'Publiser ut mine Shibboleth 1.3 IdP metadata til MetaShare som konfigurert',
 		'en' => 'Publish my Shib 1.3 IdP metadata to the configured MetaShare',
 		'sv' => 'Publisera Shib 1.3 IdP-metadata till den konfigurerade MetaShare',
@@ -564,6 +567,7 @@ $lang = array(
 		'hu' => 'Publikálódjon a Shib 1.3 IdP metadatom a beállított Közösmegosztásba(MetaShare)',
 	),
 	'link_publish_shib13-sp' => array (
+		'no' => 'Publiser mine Shibboleth 1.3 SP metadata til den konfigurerte MetaShare',
 		'nn' => 'Publiser ut mine Shibboleth 1.3 SP metadata til MetaShare som konfigurert',
 		'en' => 'Publish my Shib 1.3 SP metadata to the configured MetaShare',
 		'sv' => 'Publisera Shib 1.3 SP-metadata till den konfigurerade MetaShare',
