@@ -102,7 +102,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
-				array('name', 'requireconsent', 'authority', 'privatekey_pass', 'attributemap', 'attributealter')
+				array('name', 'requireconsent', 'authority', 'privatekey_pass', 'attributemap', 'attributealter', 'scopedattributes')
 			);
 		}
 		$et->data['metadata.shib13-idp-hosted'] = $results;
@@ -112,7 +112,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'AssertionConsumerService'),
-				array('base64attributes', 'audience', 'attributemap', 'attributealter', 'simplesaml.attributes', 'attributes', 'name', 'description', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.privatekey_pass', 'metadata.sign.certificate')
+				array('base64attributes', 'audience', 'attributemap', 'attributealter', 'simplesaml.attributes', 'attributes', 'name', 'description', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.privatekey_pass', 'metadata.sign.certificate', 'scopedattributes')
 			);
 		}
 		$et->data['metadata.shib13-sp-remote'] = $results;

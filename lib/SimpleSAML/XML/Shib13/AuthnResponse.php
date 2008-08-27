@@ -168,6 +168,12 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 				$value = $attribute->textContent;
 				$name = $attribute->parentNode->getAttribute('AttributeName');
 
+				if ($attribute->hasAttribute('Scope')) {
+					$scopePart = '@' . $attribute->getAttribute('Scope');
+				} else {
+					$scopePart = '';
+				}
+
 				if(!is_string($name)) {
 					throw new Exception('Shib13 Attribute node without an AttributeName.');
 				}
@@ -179,10 +185,10 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 				if ($base64) {
 					$encodedvalues = explode('_', $value);
 					foreach($encodedvalues AS $v) {
-						$attributes[$name][] = base64_decode($v);
+						$attributes[$name][] = base64_decode($v) . $scopePart;
 					}
 				} else {
-					$attributes[$name][] = $value;
+					$attributes[$name][] = $value . $scopePart;
 				}
 			}
 		}
@@ -238,6 +244,27 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 		$idpmd 	= $this->metadata->getMetaData($idpentityid, 'shib13-idp-hosted');
 		$spmd 	= $this->metadata->getMetaData($spentityid, 'shib13-sp-remote');
+
+		if (array_key_exists('scopedattributes', $spmd)) {
+			$scopedAttributes = $spmd['scopedattributes'];
+			$scopedAttributesSource = 'the shib13-sp-remote sp \'' . $spentityid . '\'';
+		} elseif (array_key_exists('scopedattributes', $idpmd)) {
+			$scopedAttributes = $idpmd['scopedattributes'];
+			$scopedAttributesSource = 'the shib13-idp-hosted idp \'' . $idpentityid . '\'';
+		} else {
+			$scopedAttributes = array();
+		}
+		if (!is_array($scopedAttributes)) {
+			throw new Exception('The \'scopedattributes\' option in ' . $scopedAttributesSource .
+				' should be an array of attribute names.');
+		}
+		foreach ($scopedAttributes as $an) {
+			if (!is_string($an)) {
+				throw new Exception('Invalid attribute name in the \'scopedattributes\' option in ' .
+					$scopedAttributesSource . ': ' . var_export($an, TRUE));
+			}
+		}
+
 		
 		$id = SimpleSAML_Utilities::generateID();
 		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
@@ -271,7 +298,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 				</Subject>';
 				
 			foreach ($attributes AS $name => $value) {
-				$encodedattributes .= $this->enc_attribute($name, $value, $base64);
+				$encodedattributes .= $this->enc_attribute($name, $value, $base64, $scopedAttributes);
 			}
 			
 			$encodedattributes .= '</AttributeStatement>';
@@ -321,11 +348,44 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 	
 
+	/**
+	 * Format a shib13 attribute.
+	 *
+	 * @param string $name  Name of the attribute.
+	 * @param array $values  Values of the attribute (as an array of strings).
+	 * @param bool $base64  Whether the attriubte values should be base64-encoded.
+	 * @param array $scopedAttributes  Array of attributes names which are scoped.
+	 * @return string  The attribute encoded as an XML-string.
+	 */
+	private function enc_attribute($name, $values, $base64, $scopedAttributes) {
+		assert('is_string($name)');
+		assert('is_array($values)');
+		assert('is_bool($base64)');
+		assert('is_array($scopedAttributes)');
 
-	private function enc_attribute($name, $values, $base64 = false) {
+		if (in_array($name, $scopedAttributes, TRUE)) {
+			$scoped = TRUE;
+		} else {
+			$scoped = FALSE;
+		}
+
 		$attr = '<Attribute AttributeName="' . htmlspecialchars($name) . '" AttributeNamespace="urn:mace:shibboleth:1.0:attributeNamespace:uri">';
 		foreach ($values AS $value) {
-			$attr .= '<AttributeValue>' . ($base64 ? base64_encode($value) : htmlspecialchars($value) ) . '</AttributeValue>';
+
+			$scopePart = '';
+			if ($scoped) {
+				$tmp = explode('@', $value, 2);
+				if (count($tmp) === 2) {
+					$value = $tmp[0];
+					$scopePart = ' Scope="' . htmlspecialchars($tmp[1]) . '"';
+				}
+			}
+
+			if ($base64) {
+				$value = base64_encode($value);
+			}
+
+			$attr .= '<AttributeValue' . $scopePart . '>' . htmlspecialchars($value) . '</AttributeValue>';
 		}
 		$attr .= '</Attribute>';
 		
