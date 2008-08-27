@@ -39,8 +39,9 @@
 
     <para>There are currently three parts of simpleSAMLphp which can be stored
     in modules - authentication sources, authentication processing filters and
-    themes. More than one thing can be stored in a single module. There is
-    also support for storing supporting files, such as templates and
+    themes. There is also support for defining hooks - functions run at
+    specific times. More than one thing can be stored in a single module.
+    There is also support for storing supporting files, such as templates and
     dictionaries, in modules.</para>
 
     <para>The different functionalities which can be created as modules will
@@ -113,6 +114,16 @@
             name&gt;:&lt;dictionary name&gt;</literal> as the default
             dictionary when instantiating the
             <literal>SimpleSAML_XHTML_Template</literal> class.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>hooks</glossterm>
+
+          <glossdef>
+            <para>This directory contains hook functions for this module. Each
+            file in this directory represents a single function. See the
+            hook-section in the documentation for more information.</para>
           </glossdef>
         </glossentry>
 
@@ -487,5 +498,26 @@
     replaces <literal>templates/default/frontpage.php</literal>. This theme
     can be activated by setting <literal>theme.use</literal> to
     <literal>example:test</literal>.</para>
+  </section>
+
+  <section>
+    <title>Hook interface</title>
+
+    <para>The hook interface allows you to call a hook function in all enabled
+    modules which define that hook. Hook functions are stored in a directory
+    called 'hooks' in each module directory. Each hook is stored in a file
+    named <literal>hook_&lt;hook name&gt;.php</literal>, and each file defines
+    a function named
+    <literal>&lt;module name&gt;_hook_&lt;hook name&gt;</literal>.</para>
+
+    <para>Each hook function accepts a single argument. This argument will be
+    passed by reference, which allows each hook to update that
+    argument.</para>
+
+    <para>There is currently a single user of the hook interface - the front
+    page. The front page defines a hook named <literal>frontpage</literal>,
+    which allows modules to add things to the different sections on the front
+    page. For an example of this, see
+    <filename>modules/modinfo/hooks/hook_frontpage.php</filename>.</para>
   </section>
 </article>
