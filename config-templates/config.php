@@ -28,7 +28,7 @@ $config = array (
 	'certdir'               => 'cert/',
 	'dictionarydir'         => 'dictionaries/',
 	'loggingdir'            => 'log/',
-	
+	'libextinc'				=> 'libextinc/',
 	
 	'version'				=>	'trunk',
 	
@@ -189,6 +189,11 @@ $config = array (
 	 * Whether the discovery service should allow the user to save his choice of IdP.
 	 */
 	'idpdisco.enableremember' => TRUE,
+	
+	// Disco service only accepts entities it knows.
+	'idpdisco.validate' => TRUE,
+	
+	'idpdisco.extDiscoveryStorage' => NULL, //'http://rnd.feide.no',
 
 	/*
 	 * IdP Discovery service look configuration. 
@@ -233,7 +238,7 @@ $config = array (
 	 * - 'yes'  The "yes"-button has focus.
 	 * - 'no'   The "no"-button has focus.
 	 */
-	'consent_autofocus' => NULL,
+	'consent_autofocus' => 'yes',
 
 
 	/*
