@@ -314,11 +314,12 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
     xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" IssueInstant="' . $issueInstant. '"
     MajorVersion="1" MinorVersion="1"
-    Recipient="' . htmlspecialchars($shire) . '"
+    Recipient="' . htmlspecialchars($shire) . '" 
+    ' . (isset($idpmd['edugainInResponseTo']) ? 'InResponseTo="' . $idpmd['edugainInResponseTo'] . '"' : '') . ' 
     ResponseID="' . $id . '">
 	<Status>
         <StatusCode Value="samlp:Success">
-            <StatusCode xmlns:code="urn:geant2:edugain:protocol" Value="code:Accepted"/>
+            <StatusCode xmlns:code="urn:geant:edugain:protocol" Value="code:Accepted" />
         </StatusCode>
     </Status>    
     <Assertion xmlns="urn:oasis:names:tc:SAML:1.0:assertion"

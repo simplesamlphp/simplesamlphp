@@ -4,6 +4,20 @@
 <article>
   <title>simpleSAMLphp advanced features</title>
 
+  <articleinfo>
+    <date>...</date>
+
+    <pubdate>Thu Mar 27 20:44:55 2008</pubdate>
+
+    <author>
+      <firstname>Andreas Åkre</firstname>
+
+      <surname>Solberg</surname>
+
+      <email>andreas.solberg@uninett.no</email>
+    </author>
+  </articleinfo>
+
   <section>
     <title>simpleSAMLphp documentation</title>
 
@@ -26,11 +40,11 @@
     <title>Bridging between protocols</title>
 
     <para>A bridge between two protocols is built using both an IdP and an SP,
-    connected together. To let a SAML 2.0 SP talk to a Shibboleth
-    IdP, you build a simpleSAMLphp bridge from a SAML 2.0 IdP and a
-    Shibboleth SP.The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the
-    request over to the Shibboleth 1.3 SP, which forwards it to the Shibboleth IdP. 
-    This is configured in the IdP hosted metadata, and is controlled by the 
+    connected together. To let a SAML 2.0 SP talk to a Shibboleth IdP, you
+    build a simpleSAMLphp bridge from a SAML 2.0 IdP and a Shibboleth SP.The
+    SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the
+    Shibboleth 1.3 SP, which forwards it to the Shibboleth IdP. This is
+    configured in the IdP hosted metadata, and is controlled by the
     <code>auth</code> and <code>authority</code> parameters.</para>
 
     <example>
@@ -152,13 +166,14 @@ $attributemap = array(
       with the name <literal>realm</literal>.</para>
 
       <para>Attribute alter functions are named by the attribute name prefixed
-      with <code>attributealter_</code>, and are stored in a file in the 
-      <filename>attributealter/</filename> directory. The filename for a given 
-      attribute alter functions must be named with the function name.
-      The attribute alter function should have the name of the attribute, but prefixed with
-      <literal>attributealter_</literal>, e.g. <literal>attributealter_realm
-      for the <code>realm</code> attribute</literal> this function should then
-      be placed in <filename>attributealter/realm.php</filename>. The function signature
+      with <code>attributealter_</code>, and are stored in a file in the
+      <filename>attributealter/</filename> directory. The filename for a given
+      attribute alter functions must be named with the function name. The
+      attribute alter function should have the name of the attribute, but
+      prefixed with <literal>attributealter_</literal>, e.g.
+      <literal>attributealter_realm for the <code>realm</code>
+      attribute</literal> this function should then be placed in
+      <filename>attributealter/realm.php</filename>. The function signature
       should be:</para>
 
       <programlisting>function attributealter_realm(&amp;$attributes, $spentityid = null, $idpentityid = null) {</programlisting>
@@ -167,17 +182,18 @@ $attributemap = array(
       array, containing the attributes that will be sent to the service. h,
       and may add new attributes into this array. The function also receives
       the entity IDs of the SP and the IdP.</para>
-      
-      <para>When doing bridging installation the IdP entity ID given to attribute
-      alter functions is the ID of the hosted IdP (the bridge) 
-      and not remote IdP where the user actually came from. The correct IdP 
-      (remote one) is found in the session object. e.g. in an alter function:</para>
-	  <para><programlisting>...
+
+      <para>When doing bridging installation the IdP entity ID given to
+      attribute alter functions is the ID of the hosted IdP (the bridge) and
+      not remote IdP where the user actually came from. The correct IdP
+      (remote one) is found in the session object. e.g. in an alter
+      function:</para>
+
+      <para><programlisting>...
 $session = SimpleSAML_Session::getInstance();
-$remoteidp = $session->getIdp();
+$remoteidp = $session-&gt;getIdp();
 ...</programlisting></para>
-	  
-	  
+
       <para>The attribute alter function must be declared in the metadata for
       the IdP or SP metadata, similar to the 'attributemap' parameter
       discussed above: The <code>'attributealter'</code> parameter names the
@@ -195,7 +211,8 @@ $remoteidp = $session->getIdp();
       <para>If more than one function is defined, the parameter should be an
       array of names.</para>
 
-      <para>Here is the complete example function which must be placed in the file <filename>attributealter/realm.php</filename>:</para>
+      <para>Here is the complete example function which must be placed in the
+      file <filename>attributealter/realm.php</filename>:</para>
 
       <programlisting>function attributealter_realm(&amp;$attributes, $spentityid = null, $idpentityid = null) {
 
@@ -236,8 +253,8 @@ $remoteidp = $session->getIdp();
     but the reccomended approach is to use the command line utility
     <filename>bin/parseMetadata.php</filename> to download and parse metadata
     from a HTTPS location. This script will grab the XML document from a URL
-    and parse the content and output simpleSAMLphp flat files in a directory. 
-    In the <filename>config.php</filename> configuration you should configure 
+    and parse the content and output simpleSAMLphp flat files in a directory.
+    In the <filename>config.php</filename> configuration you should configure
     simpleSAMLphp to read these files generated by
     <filename>parseMetadata.php</filename>.</para>
   </section>
@@ -245,31 +262,32 @@ $remoteidp = $session->getIdp();
   <section>
     <title>Automated testing</title>
 
-    <para>simpleSAMLphp includes a test script that can connect to a simpleSAMLphp
-    SP, initiate login, enter some credentials. It then picks up the response
-    to the SP and validates it, checking the output for expected attributes.</para>
+    <para>simpleSAMLphp includes a test script that can connect to a
+    simpleSAMLphp SP, initiate login, enter some credentials. It then picks up
+    the response to the SP and validates it, checking the output for expected
+    attributes.</para>
 
     <para>The intention of this script is to be run in system monitoring
     systems, like nagios or hobbit, to generate alerts when something breaks
     (e.g. a server is down or metadata misconfigured).</para>
 
-    <para>The test script is located in <filename>bin/test.php</filename>.
-    The configuration file is located in
+    <para>The test script is located in <filename>bin/test.php</filename>. The
+    configuration file is located in
     <filename>config/test.php</filename>.</para>
 
     <para>Documentation about configuration file format and more details about
-    this test script will be added later. If you e.g. write a nagios
-    plugin for this test script, let us know :) We will add a hobbit plugin
-    and publish it somewhere pretty soon. Stay tuned!</para>
+    this test script will be added later. If you e.g. write a nagios plugin
+    for this test script, let us know :) We will add a hobbit plugin and
+    publish it somewhere pretty soon. Stay tuned!</para>
   </section>
 
   <section>
     <title>Auth MemCookie</title>
 
-    <para>It is possible to integrate simpleSAMLphp with
-    <ulink url="http://authmemcookie.sourceforge.net/">Auth MemCookie</ulink>.
-    This allows you to integrate simpleSAMLphp with web applications written
-    in another language than PHP.</para>
+    <para>It is possible to integrate simpleSAMLphp with <ulink
+    url="http://authmemcookie.sourceforge.net/">Auth MemCookie</ulink>. This
+    allows you to integrate simpleSAMLphp with web applications written in
+    another language than PHP.</para>
 
     <para>Auth MemCookie works by reading authentication data from a memcache
     server and setting environment variables based on attributes in this data.
@@ -294,11 +312,12 @@ $remoteidp = $session->getIdp();
       </listitem>
 
       <listitem>
-        <para>Install and configure Auth MemCookie. Go to the
-        <ulink url="http://authmemcookie.sourceforge.net/">Auth MemCookie
+        <para>Install and configure Auth MemCookie. Go to the <ulink
+        url="http://authmemcookie.sourceforge.net/">Auth MemCookie
         homepage</ulink> for downloads and installation instructions. The
-        following example (from <filename>extra/auth_memcookie.conf</filename>)
-        may be useful when configuring Auth MemCookie:</para>
+        following example (from
+        <filename>extra/auth_memcookie.conf</filename>) may be useful when
+        configuring Auth MemCookie:</para>
 
         <para><programlisting>&lt;Location /&gt;
         # This is a list of memcache servers which Auth MemCookie
@@ -348,8 +367,8 @@ $remoteidp = $session->getIdp();
 
       <listitem>
         <para>Enable the simpleSAMLphp Auth MemCookie module by setting
-        <option>enable.authmemcookie</option> to <parameter>true</parameter> in
-        <filename>config/config.php</filename>.</para>
+        <option>enable.authmemcookie</option> to <parameter>true</parameter>
+        in <filename>config/config.php</filename>.</para>
       </listitem>
 
       <listitem>
@@ -366,16 +385,14 @@ foreach($_SERVER as $key=&gt;$value) {
 
         <para>You should now be able to go to
         <filename>http://yourserver/secret/</filename> to test the
-        configuration. You should be redirected to your IdP, and after entering
-        your username and password you should be taken back to
+        configuration. You should be redirected to your IdP, and after
+        entering your username and password you should be taken back to
         <filename>http://yourserver/secret/</filename>. The resulting page
-        should list all environment variables set by Apache, including the ones
-        set by Auth MemCookie.</para>
+        should list all environment variables set by Apache, including the
+        ones set by Auth MemCookie.</para>
       </listitem>
     </orderedlist>
-
   </section>
-
 
   <section>
     <title>Metadata signing</title>
@@ -411,10 +428,9 @@ foreach($_SERVER as $key=&gt;$value) {
     </itemizedlist>
 
     <para>These options can be configured globally in the
-    <literal>config/config.php</literal>-file, or per SP/IdP by adding
-    them to the hosted metadata for the SP/IdP. The configuration in the
-    metadata for the SP/IdP takes precedence over the global
-    configuration.</para>
+    <literal>config/config.php</literal>-file, or per SP/IdP by adding them to
+    the hosted metadata for the SP/IdP. The configuration in the metadata for
+    the SP/IdP takes precedence over the global configuration.</para>
 
     <para>There is also an additional fallback for the private key and the
     certificate. If <literal>metadata.sign.privatekey</literal> and
@@ -423,7 +439,6 @@ foreach($_SERVER as $key=&gt;$value) {
     <literal>privatekey_pass</literal> and <literal>certificate</literal>
     options in the metadata for the SP/IdP.</para>
   </section>
-
 
   <section>
     <title>Attribute release consent</title>
@@ -459,71 +474,72 @@ foreach($_SERVER as $key=&gt;$value) {
       <literal>config/config.php</literal>:</para>
 
       <para><glosslist>
-        <glossentry>
-          <glossterm>consent_usestorage</glossterm>
+          <glossentry>
+            <glossterm>consent_usestorage</glossterm>
 
-          <glossdef>
-            <para>Whether the consent storage module should be enabled. Set
-            this to <literal>TRUE</literal> to allow simpleSAMLphp to remember
-            the user's consent choices.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>Whether the consent storage module should be enabled. Set
+              this to <literal>TRUE</literal> to allow simpleSAMLphp to
+              remember the user's consent choices.</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>consent_userid</glossterm>
+          <glossentry>
+            <glossterm>consent_userid</glossterm>
 
-          <glossdef>
-            <para>This is the name of the attribute which should be used to
-            uniquely identify each user. It is important that the value of the
-            attribute uniquely identifies a single user - otherwise several
-            users will share the same consent information. The default
-            attribute is <literal>eduPersonPrincipalName</literal>.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>This is the name of the attribute which should be used to
+              uniquely identify each user. It is important that the value of
+              the attribute uniquely identifies a single user - otherwise
+              several users will share the same consent information. The
+              default attribute is
+              <literal>eduPersonPrincipalName</literal>.</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>consent_salt</glossterm>
+          <glossentry>
+            <glossterm>consent_salt</glossterm>
 
-          <glossdef>
-            <para>This option should be set to a random valid PHP string. This
-            option is used when hashing values which are stored in the
-            database.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>This option should be set to a random valid PHP string.
+              This option is used when hashing values which are stored in the
+              database.</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>consent_pdo_connect</glossterm>
+          <glossentry>
+            <glossterm>consent_pdo_connect</glossterm>
 
-          <glossdef>
-            <para>This is the DSN for the database where the consent
-            information is stored. See the
-            <ulink url="http://www.php.net/manual/en/pdo.drivers.php">database
-            driver specific documentation</ulink> in the PHP documentation for
-            information about the syntax. The DSN syntax for the MySQL driver
-            can be found
-            <ulink url="http://www.php.net/manual/en/ref.pdo-mysql.connection.php">
-            here</ulink>.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>This is the DSN for the database where the consent
+              information is stored. See the <ulink
+              url="http://www.php.net/manual/en/pdo.drivers.php">database
+              driver specific documentation</ulink> in the PHP documentation
+              for information about the syntax. The DSN syntax for the MySQL
+              driver can be found <ulink
+              url="http://www.php.net/manual/en/ref.pdo-mysql.connection.php">
+              here</ulink>.</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>consent_pdo_user</glossterm>
+          <glossentry>
+            <glossterm>consent_pdo_user</glossterm>
 
-          <glossdef>
-            <para>This is the username which should be used when
-            authenticating with the database server.</para>
-          </glossdef>
-        </glossentry>
+            <glossdef>
+              <para>This is the username which should be used when
+              authenticating with the database server.</para>
+            </glossdef>
+          </glossentry>
 
-        <glossentry>
-          <glossterm>consent_pdo_passwd</glossterm>
+          <glossentry>
+            <glossterm>consent_pdo_passwd</glossterm>
 
-          <glossdef>
-            <para>This is the password which should be used when
-            authenticating with the database server.</para>
-          </glossdef>
-        </glossentry>
-      </glosslist></para>
+            <glossdef>
+              <para>This is the password which should be used when
+              authenticating with the database server.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist></para>
     </section>
   </section>
 
