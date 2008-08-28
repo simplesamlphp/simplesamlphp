@@ -4,7 +4,11 @@
  * This class implements a generic IdP discovery service, for use in various IdP
  * discovery service pages. This should reduce code duplication.
  *
+ * Experimental support added for Extended IdP Metadata Discovery Protocol by Andreas 2008-08-28
+ * More information: http://rnd.feide.no/content/extended-identity-provider-discovery-service-protocol
+ *
  * @author Olav Morken, UNINETT AS.
+ * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package simpleSAMLphp
  * @version $Id$
  */
@@ -54,6 +58,17 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * The entity id of the SP which accesses this IdP discovery service.
 	 */
 	private $spEntityId;
+	
+	/*
+	 * HTTP parameter from the request, indicating whether the discovery service
+	 * can interact with the user or not.
+	 */
+	private $isPassive;
+	
+	/*
+	 * The SP request to set the IdPentityID... 
+	 */
+	private $setIdPentityID = NULL;
 
 
 	/**
@@ -113,6 +128,15 @@ class SimpleSAML_XHTML_IdPDisco {
 			throw new Exception('Missing parameter: return');
 		} else {
 			$this->returnURL = $_GET['return'];
+		}
+		
+		$this->isPassive = FALSE;
+		if (!array_key_exists('isPassive', $_GET)) {
+			if ($_GET['isPassive'] === 'true') $this->isPassive = TRUE;
+		}
+		
+		if (!array_key_exists('IdPentityID', $_GET)) {
+			$setIdPentityID = $_GET['IdPentityID'];
 		}
 
 	}
@@ -186,6 +210,10 @@ class SimpleSAML_XHTML_IdPDisco {
 			return NULL;
 		}
 
+		if(!$this->config->getBoolean('idpdisco.validate', TRUE)) {
+			return $idp;
+		}
+
 		try {
 			$this->metadata->getMetaData($idp, $this->discoType['metadata']);
 			return $idp;
@@ -206,6 +234,15 @@ class SimpleSAML_XHTML_IdPDisco {
 	 */
 	private function getSelectedIdP() {
 
+
+		/*
+		 * Parameter set from the Extended IdP Metadata Discovery Service Protocol
+		 */
+		if(array_key_exists('IdPentityID', $_GET)) {
+			return $this->validateIdP($_GET['IdPentityID']);
+		}
+
+		// Set by the user, clicking on a link
 		if(array_key_exists('idpentityid', $_GET)) {
 			return $this->validateIdP($_GET['idpentityid']);
 		}
@@ -346,8 +383,29 @@ class SimpleSAML_XHTML_IdPDisco {
 
 		$idp = $this->getTargetIdp();
 		if($idp !== NULL) {
-			$this->log('Choice made [' . $idp . '] (Redirecting the user back)');
-			SimpleSAML_Utilities::redirect($this->returnURL, array($this->returnIdParam => $idp));
+		
+			if ($this->config->getValue('idpdisco.extDiscoveryStorage', NULL) != NULL) {
+				$extDiscoveryStorage = $this->config->getValue('idpdisco.extDiscoveryStorage');
+				$this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
+				SimpleSAML_Utilities::redirect($extDiscoveryStorage, array(
+					$this->returnIdParam => $idp,
+					'IdPentityID' => $idp,
+					'returnIdParam' => $this->returnIdParam,
+					'isPassive' => 'true',
+					'return' => $this->returnURL
+				));
+				
+			} else {
+				$this->log('Choice made [' . $idp . '] (Redirecting the user back)');
+				SimpleSAML_Utilities::redirect($this->returnURL, array($this->returnIdParam => $idp));
+			}
+			
+			return;
+		}
+		
+		if ($this->isPassive) {
+			$this->log('Choice not made. (Redirecting the user back without answer)');
+			SimpleSAML_Utilities::redirect($this->returnURL);
 			return;
 		}
 
