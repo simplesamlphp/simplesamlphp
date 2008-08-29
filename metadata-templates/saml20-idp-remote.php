@@ -96,7 +96,7 @@ $metadata = array(
 		'description'			=> 'Authenticate with your identity from a school or university in Norway.',
 		'SingleSignOnService'	=>	'https://sam.feide.no/amserver/SSORedirect/metaAlias/idp',
 		'SingleLogoutService'	=>	'https://sam.feide.no/amserver/IDPSloRedirect/metaAlias/idp',
-		'certFingerprint'		=>	'3a:e7:d3:d3:06:ba:57:fd:7f:62:6a:4b:a8:64:b3:4a:53:d9:5d:d0',
+		'certFingerprint'		=>	'f6:72:c5:e7:04:fb:86:5e:93:6b:3b:cd:45:b0:49:2e:94:f5:f0:95',
 		'base64attributes'		=>	true,
 		'hint.cidr'				=> '158.38.0.0/16'
 	) 
