@@ -54,8 +54,26 @@ if ($idpentityid == null) {
 	} elseif($config->getValue('idpdisco.url.saml20', NULL) !== NULL) {
 		$discourl = $config->getValue('idpdisco.url.saml20', NULL);
 	} else {
-		$discourl = '/' . $config->getBaseURL() . 'saml2/sp/idpdisco.php';
+		$discourl = SimpleSAML_Utilities::selfURLhost() . '/' . $config->getBaseURL() . 'saml2/sp/idpdisco.php';
 	}
+
+	if ($config->getValue('idpdisco.extDiscoveryStorage', NULL) != NULL) {
+		
+		$extDiscoveryStorage = $config->getValue('idpdisco.extDiscoveryStorage');
+		
+		SimpleSAML_Utilities::redirect($extDiscoveryStorage, array(
+			'entityID' => $spentityid,
+			'return' => SimpleSAML_Utilities::addURLparameter($discourl, array(
+				'return' => SimpleSAML_Utilities::selfURL(),
+				'remember' => 'true',
+				'entityID' => $spentityid,
+				'returnIDParam' => 'idpentityid',
+			)),
+			'returnIDParam' => 'idpentityid',
+			'isPassive' => 'true')
+		);
+	}
+
 
 	SimpleSAML_Utilities::redirect($discourl, array(
 		'entityID' => $spentityid,

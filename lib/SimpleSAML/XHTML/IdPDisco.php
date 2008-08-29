@@ -123,6 +123,8 @@ class SimpleSAML_XHTML_IdPDisco {
 		} else {
 			$this->returnIdParam = $_GET['returnIDParam'];
 		}
+		
+		$this->log('returnIdParam initially set to [' . $this->returnIdParam . ']');
 
 		if(!array_key_exists('return', $_GET)) {
 			throw new Exception('Missing parameter: return');
@@ -131,9 +133,10 @@ class SimpleSAML_XHTML_IdPDisco {
 		}
 		
 		$this->isPassive = FALSE;
-		if (!array_key_exists('isPassive', $_GET)) {
+		if (array_key_exists('isPassive', $_GET)) {
 			if ($_GET['isPassive'] === 'true') $this->isPassive = TRUE;
 		}
+		$this->log('isPassive initially set to [' . ($this->isPassive ? 'TRUE' : 'FALSE' ) . ']');
 		
 		if (!array_key_exists('IdPentityID', $_GET)) {
 			$setIdPentityID = $_GET['IdPentityID'];
@@ -277,8 +280,16 @@ class SimpleSAML_XHTML_IdPDisco {
 		}
 
 		if($this->getCookie('remember') === '1') {
+			$this->log('Return previously saved IdP because of remember cookie set to 1');
 			return $this->getPreviousIdP();
 		}
+		
+		if( $this->isPassive) {
+			$this->log('Return previously saved IdP because of isPassive');
+			return $this->getPreviousIdP();
+		}
+		
+		return NULL;
 	}
 
 
@@ -362,6 +373,8 @@ class SimpleSAML_XHTML_IdPDisco {
 			return $idp;
 		}
 
+		$this->log('getSelectedIdP() returned NULL');
+
 		/* Check if the user has saved an choice earlier. */
 		$idp = $this->getSavedIdP();
 		if($idp !== NULL) {
@@ -388,15 +401,16 @@ class SimpleSAML_XHTML_IdPDisco {
 				$extDiscoveryStorage = $this->config->getValue('idpdisco.extDiscoveryStorage');
 				$this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
 				SimpleSAML_Utilities::redirect($extDiscoveryStorage, array(
-					$this->returnIdParam => $idp,
+//					$this->returnIdParam => $idp,
+					'entityID' => $this->spEntityId,
 					'IdPentityID' => $idp,
-					'returnIdParam' => $this->returnIdParam,
+					'returnIDParam' => $this->returnIdParam,
 					'isPassive' => 'true',
 					'return' => $this->returnURL
 				));
 				
 			} else {
-				$this->log('Choice made [' . $idp . '] (Redirecting the user back)');
+				$this->log('Choice made [' . $idp . '] (Redirecting the user back. returnIDParam=' . $this->returnIdParam . ')');
 				SimpleSAML_Utilities::redirect($this->returnURL, array($this->returnIdParam => $idp));
 			}
 			
