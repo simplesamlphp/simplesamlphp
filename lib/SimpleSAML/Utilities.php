@@ -987,6 +987,16 @@ class SimpleSAML_Utilities {
 		return $userid;
 	}
 
+	public static function generateRandomBytesMTrand($length) {
+	
+		/* Use mt_rand to generate $length random bytes. */
+		$data = '';
+		for($i = 0; $i < $length; $i++) {
+			$data .= chr(mt_rand(0, 255));
+		}
+	
+	}
+
 
 	/**
 	 * This function generates a binary string containing random bytes.
@@ -996,7 +1006,7 @@ class SimpleSAML_Utilities {
 	 * @param $length  The number of random bytes to return.
 	 * @return A string of lenght $length with random bytes.
 	 */
-	public static function generateRandomBytes($length) {
+	public static function generateRandomBytes($length, $fallback = TRUE) {
 		static $fp = NULL;
 		assert('is_int($length)');
 
@@ -1011,14 +1021,16 @@ class SimpleSAML_Utilities {
 				throw new Exception('Error reading random data.');
 			}
 			if(strlen($data) != $length) {
-				throw new Exception('Did not get requested number of bytes from random source.');
+				SimpleSAML_Logger::warning('Did not get requested number of bytes from random source. Requested (' . $length . ') got (' . strlen($data) . ')');
+				if ($fallback) {
+					$data = self::generateRandomBytesMTrand($length);
+				} else {
+					throw new Exception('Did not get requested number of bytes from random source. Requested (' . $length . ') got (' . strlen($data) . ')');
+				}
 			}
 		} else {
 			/* Use mt_rand to generate $length random bytes. */
-			$data = '';
-			for($i = 0; $i < $length; $i++) {
-				$data .= chr(mt_rand(0, 255));
-			}
+			$data = self::generateRandomBytesMTrand($length);
 		}
 
 		return $data;
