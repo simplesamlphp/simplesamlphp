@@ -1,4 +1,4 @@
-<?
+<?php 
 
 /**
  * Helper class for accessing information about modules.
