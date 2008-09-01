@@ -4,6 +4,6 @@
 	$this->includeAtTemplateBase('includes/header.php');
 ?>
 <div id="content">
-<h2><? echo $this->t('errorreport_header'); ?></h2>
-<p><? echo $this->t('errorreport_text'); ?></p>
+<h2><?php echo $this->t('errorreport_header'); ?></h2>
+<p><?php echo $this->t('errorreport_text'); ?></p>
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>
