@@ -2,6 +2,7 @@
 
 $lang = array(
 	'front_header' => array (
+		'da' => 'Metashare',
 		'en' => 'MetaShare',
 		'sv' => 'MetaShare',
 		'es' => 'MetaShare',
@@ -9,6 +10,7 @@ $lang = array(
 		'hu' => 'MetaShare (Metaadat tár)',
 	),
 	'front_desc' => array (
+		'da' => 'Dette er en metadata-delingstjeneste, som gør det muligt at tilføje dynamisk genereret metadata til et fælles repository',
 		'en' => 'This is a metadata sharing service. It allows you to add dynamically generated metadata to a shared store.',
 		'sv' => 'Detta delningsjänsten för metadata. Den tillåter att du lägger till dynamiskt skapad metadata till ett delat datalager.',
 		'es' => 'Servicio de compartición de metadatos. Le permite añadir metadatos generados dinámicamente a un almacenamiento compartido.',
@@ -16,6 +18,7 @@ $lang = array(
 		'hu' => 'Ez egy metaadat megosztó szolgáltatás. Dinamikusan generált metaadatok megosztott tárolását teszi lehetővé.',
 	),
 	'add_title' => array (
+		'da' => 'Tilføj enhed',
 		'en' => 'Add entity',
 		'sv' => 'Lägg till entitet',
 		'es' => 'Añadir entidad',
@@ -23,12 +26,14 @@ $lang = array(
 		'hu' => 'Bejegyzés hozzáadása',
 	),
 	'add_desc' => array (
+		'da' => 'Tilføj nyt eller opdaterert metadat ved at skrive den url der fører til metadata. Urlen skal matche entitets identificatoren for den entitet der er beskrevet i metadata',
 		'en' => 'Add new or updated metadata by specifying the URL of the metadata. This URL must match the entity identifier of the entity described in the metadata.',
 		'sv' => 'Läg till ny eller uppdatera metadata genom att ange URL för metadatat. URLen måste matcha entitetsidentifieraren för entiteten som är beskriven i metatdatat.',
 		'es' => 'Añadir o actualizar metadatos indicando la URL de los metadatos. Esta URL debe coincidir con el "identificador de la entidad" de la entidad descrita en los metadatos.',
 		'sl' => 'Dodajte nove ali popravljene metapodatke tako, da podate njen URL. URL se mora ujemati z identifikatorjem entitete.',
 	),
 	'add_entityid' => array (
+		'da' => 'Entitets idetifikatoren for entiteten',
 		'en' => 'Entity identifier of the entity:',
 		'sv' => 'Entitetsidentifierare för entiteten:',
 		'es' => 'Identificador de la entidad:',
@@ -36,6 +41,7 @@ $lang = array(
 		'hu' => 'Bejegyzés azonosítója:',
 	),
 	'add_do' => array (
+		'da' => 'Tilføj',
 		'en' => 'Add',
 		'sv' => 'Lägg till',
 		'es' => 'Añadir',
@@ -43,6 +49,7 @@ $lang = array(
 		'hu' => 'Hozzáadás',
 	),
 	'downloadall_desc' => array (
+		'da' => 'Det er muligt at downloade metadata som en enkelt XML-fil. Denne fil indeholder en enkelt Entitetsbeskrivelse som indeholder alle de entiteter som er tilføjet til det fælles metadatarepository. Entitetsbeskrivelsen kan være signeret af metadatrepositoryet, hvis det er tilføjet i konfigurationen ',
 		'en' => 'It is possible to download all the metadata as a single XML file. This file will contain a single EntitiesDescriptor which contains all the entities which are atted to this MetaShare. The EntitiesDescriptor may be signed by this MetaShare if that is enabled in the configuration.',
 		'sv' => 'Det är möjligt att hämta all metadata som en enda XML-fil. Denna fil kommer innehålla en enda EntitiesDescriptor som innehåller alla enteiteter som finns lagrade i denna MetaShare. EntitiesDescriptor kan vara signerade av MetaShare om detta är aktiverat i konfgiurationen för MetaShare.',
 		'es' => 'Es posible descargar todos los metatados en un único archivo XML. Este archivo contendrá un único EntitiesDescriptor con todas las entidades que se han definido en el MetaShare. El EntitiesDescriptor puede que esté firmado por este MetaShare si se habilitó la opción en la configuración.',
@@ -50,6 +57,7 @@ $lang = array(
 		'hu' => 'Lehetőség van az összes metaadat letöltésére egyetlen XML fájlban. A file egyetlen EntitiesDescriptor elmet fog tartalmazni, amely magába foglalja az összes MetaShare-ben tárolt elemet. A EntitiesDescriptor A MetaShare is aláírhatja, ha engedélyezve van a beállításoknál.',
 	),
 	'downloadall_link' => array (
+		'da' => 'Download alt metadata',
 		'en' => 'Download all metadata',
 		'sv' => 'Hämta alla metadata',
 		'es' => 'Descargar todos los metadatos',
@@ -57,6 +65,7 @@ $lang = array(
 		'hu' => 'Összes metaadat letöltése',
 	),
 	'entities_title' => array (
+		'da' => 'Entiteter',
 		'en' => 'Entities',
 		'sv' => 'Entiteter',
 		'es' => 'Entidades',
@@ -64,6 +73,7 @@ $lang = array(
 		'hu' => 'Bejegyzések',
 	),
 	'entities_desc' => array (
+		'da' => 'Dette er en liste bestående af alle de entiteter der for indeværende er gemt i det fælles repository.',
 		'en' => 'This is a list of all the entities which are currently stored in this MetaShare. Click on a link to download the metadata of the given entity.',
 		'sv' => 'Detta är en lista över alla entiteter som förnärvarande finns lagrades i denna MetaShare. Klicka på aktuell länk för att hämta för att hämta metadata för en viss entitet.',
 		'es' => 'Esta es la lista de todas las entidades que están almacenadas actualmente en este MetaShare. Pulse en el enlace para descargar los metadatos de una determinada entidad.',
@@ -71,6 +81,7 @@ $lang = array(
 		'hu' => 'Ez a lista a jelnleg a MetaShare-ben tárolt elmeket utatja. Kattintson a linkre, hogy letölthesse a metaadatot.',
 	),
 	'entities_empty' => array (
+		'da' => 'Ingen entieties ',
 		'en' => 'No entities are currently stored in this MetaShare.',
 		'sv' => 'Det finns förnärvarande inga eniteter lagrade i denna MetaShare.',
 		'es' => 'Actualmente no existen entidades almacenadas en este MetaShare.',
@@ -78,6 +89,7 @@ $lang = array(
 		'hu' => 'Egyetlen bejegyzés sincs a Mataadat megosztóban',
 	),
 	'text' => array (
+		'da' => 'Tekst',
 		'en' => 'text',
 		'sv' => 'txt',
 		'es' => 'Texto',
@@ -85,6 +97,7 @@ $lang = array(
 		'hu' => 'szöveg',
 	),
 	'addpage_header' => array (
+		'da' => 'Tilføj metadata',
 		'en' => 'Add metadata',
 		'sv' => 'Lägg till metadata',
 		'es' => 'Añadir metadatos',
@@ -92,6 +105,7 @@ $lang = array(
 		'hu' => 'Metaadat hozzáadás',
 	),
 	'addpage_ok' => array (
+		'da' => 'Metadata fra "%URL%" blev tilføjet',
 		'en' => 'The metadata from "%URL%" was successfylly added.',
 		'sv' => 'Metadata från "%URL%" har lagts till.',
 		'es' => 'Los metadatos de "%URL%" se han añadido correctamente.',
@@ -99,6 +113,7 @@ $lang = array(
 		'hu' => 'A "%URL%" metaadat sikeresen hozzálett adva.',
 	),
 	'addpage_nourl' => array (
+		'da' => 'URL ikke opgivet',
 		'en' => 'No URL parameter given.',
 		'sv' => 'Ingen URL angavs.',
 		'es' => 'No indicó el parámetro URL.',
@@ -106,6 +121,7 @@ $lang = array(
 		'hu' => 'Nem lett URL megadva!',
 	),
 	'addpage_invalidurl' => array (
+		'da' => 'Ugyldig URL/entitet ID i metadata. Entiteten bør være på formen http: eller https:. URL\'en du gav var "%URL%".',
 		'en' => 'Invalid URL/entity id to metadata. The entity id should be a valid http: or https: URL. The URL you gave was "%URL%".',
 		'sv' => 'Felaktig URL/Entitetsidentifierare för metadata. Entitetsidentifieraren ska vara en giltig http- eller https-adress (URL). Adressen du angav var "%URL%".',
 		'es' => 'El identificador de la entidad o la URL de los metadatos no es válido. El identificador de la entidad debería ser una URL del tipo http o https. La URL indicada fue "%URL%".',
@@ -113,6 +129,7 @@ $lang = array(
 		'hu' => 'érvénytelen URL/elem azonosítót tartalmaz a metaadat. Az elem azonosítónak érvényes http: vagy https: protokolt hanáló URL-nek kell lennie. A megadott URL "%URL%".',
 	),
 	'addpage_nodownload' => array (
+		'da' => 'Kunne ikke hente metadata fra "%URL%"',
 		'en' => 'Unable to download metadata from "%URL%".',
 		'sv' => 'Kunde inte hämta metadata från "%URL%".',
 		'es' => 'No se pudo descargar los metadatos desde "%URL%".',
@@ -120,6 +137,7 @@ $lang = array(
 		'hu' => 'Nem lehet metaadatot letölteni a "%URL%" helyről.',
 	),
 	'addpage_invalidxml' => array (
+		'da' => 'Ugyldig XML i metadata. URL\'en du gav var "%URL%".',
 		'en' => 'Malformed XML in metadata. The URL you gave was "%URL%".',
 		'sv' => 'Felaktigt formaterad XML i metadata. Adressen du angav var "%URL%".',
 		'es' => 'El XML con los metadatos no es un documento bien formado. La URL indicada fue "%URL%".',
@@ -127,6 +145,7 @@ $lang = array(
 		'hu' => 'Hibás XML formátumú metaadat. Ez a "%URL%" lett megadva.',
 	),
 	'addpage_notentitydescriptor' => array (
+		'da' => 'Roden af metadata var ikke en \'EntityDescriptor\'. URL\'en du gav var "%URL%"',
 		'en' => 'The root node of the metadata was not an EntityDescriptor element. The URL you gave was "%URL%".',
 		'sv' => 'Toppnoden av metadatat var inte en EntityDescriptor. Adressen du angav var "%URL%".',
 		'es' => 'El nodo raíz de los metadatos no es un elemento del tipo EntityDescriptor. La URL indicada fue "%URL%".',
@@ -134,6 +153,7 @@ $lang = array(
 		'hu' => 'A metaadat gyökér elme nem tartalmaz EntityDescriptor elemet. A megadott URL "%URL%".',
 	),
 	'addpage_entityid' => array (
+		'da' => '\'EntityIdentifyer\' i metadata matchede i metadatas %URL%',
 		'en' => 'The entity identifier in the metadata did not match the URL of the metadata ("%URL%").',
 		'sv' => 'Entitetsidentifieraren i metadatat stämmer inte överens med adressen för metadatat ("%URL%").',
 		'es' => 'El identificador de la entidad en los metadatos no coincide con la URL de los metadatos ("%URL%").',
@@ -141,6 +161,7 @@ $lang = array(
 		'hu' => 'A elem azonosító nem egyezik a metaadatban megadott URL-lel ("%URL%").',
 	),
 	'addpage_validation' => array (
+		'da' => 'Fejl i XML-validering af metadata fra %URL%',
 		'en' => 'XML validation of the metadata from "%URL%" failed:',
 		'sv' => 'XML-valideringen av metatdatat från "%URL%" misslyckades:',
 		'es' => 'La validación del XML de los metadatos  desde "%URL%" ha fallado:',
@@ -148,6 +169,7 @@ $lang = array(
 		'hu' => 'A "%URL%" metaadat XML érvénytelen:',
 	),
 	'addpage_gofront' => array (
+		'da' => 'Gå til metada listen',
 		'en' => 'Go to metadata list',
 		'sv' => 'Gå till metadatalistan',
 		'es' => 'Ir a la lista de metadatos',

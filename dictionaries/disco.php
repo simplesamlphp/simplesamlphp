@@ -40,6 +40,7 @@ $lang = array(
 	'remember' => array (
 		'no' => 'Husk mitt valg',
 		'nn' => 'Hugs mitt val',
+		'da' => 'Husk valget',
 		'en' => 'Remember my choice',
 		'sv' => 'Kom ihåg mitt val',
 		'fi' => 'Muista valintani',

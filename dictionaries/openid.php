@@ -3,6 +3,7 @@
 $lang = array(
 	'list_trusted_sites' => array (
 		'nn' => 'Liste over tiltrudde partnarar',
+		'da' => 'Liste af betroede sider',
 		'en' => 'List of trusted sites',
 		'sv' => 'Lista med godkända sajter',
 		'es' => 'Lista de sitios de confianza',
@@ -11,6 +12,7 @@ $lang = array(
 	),
 	'about_link' => array (
 		'nn' => 'Om OpenID fra simpleSAMLphp',
+		'da' => 'Om simpleSAMLphp OpenID',
 		'en' => 'About simpleSAMLphp OpenID',
 		'sv' => 'Om simpleSAMLphp OpenID',
 		'es' => 'Sobre simpleSAMLphp OpenID',
@@ -19,6 +21,7 @@ $lang = array(
 	),
 	'welcome' => array (
 		'nn' => 'Velkommen til simpleSAMLphp OpenID-tilbyder',
+		'da' => 'Velkommen til simpleSAMLphp OpenID udbyder.',
 		'en' => 'Welcome to the simpleSAMLphp OpenID provider.',
 		'sv' => 'Välkommen till simpleSAMLphp OpenID-leverantör',
 		'es' => 'Bienvenido al proveedor OpenID de simpleSAMLphp',
@@ -27,6 +30,7 @@ $lang = array(
 	),
 	'howtouse' => array (
 		'nn' => 'For å bruka denne tenesta må du setja opp ein URL som kan brukast som identifikator.  Legg inn følgjande kode inne i <code>&lt;head&gt;</code> for HTML dokumentet på URLen din:',
+		'da' => 'For at bruge denne server skal du indsætte en urlder kan bruges som "identifikator". Indsæt følgende kode <code>&lt;head&gt;</code> fra HTML dokumnetet som denne URL:',
 		'en' => 'To use this server, you will have to set up a URL to use as an identifier. Insert the following markup into the <code>&lt;head&gt;</code> of the HTML document at that URL:',
 		'sv' => 'För att använda denna server måste du ha satt upp en URL som identifierare. Lägg till följande märktagg i <code>&lt;head&gt;</code> på webbsidan som finns på URLen:',
 		'es' => 'Para usar este servidor, necesita definir una URL para usar como identificador. Inserte la etiqueta <code>&lt;head&gt;&gt;</code> del documento HTML en esta URL:',
@@ -35,6 +39,7 @@ $lang = array(
 	),
 	'loggedinas' => array (
 		'nn' => 'Du er no logga inn som ',
+		'da' => 'Du er nu logget in som %USERID%',
 		'en' => 'You are now logged in as %USERID%',
 		'sv' => 'Du är nu inloggad som %USERID%',
 		'es' => 'Se ha identificado como %USERID%',
@@ -43,6 +48,7 @@ $lang = array(
 	),
 	'login' => array (
 		'nn' => 'Innlogging',
+		'da' => 'Login',
 		'en' => 'Login',
 		'sv' => 'Logga in',
 		'es' => 'Usuario',
@@ -51,6 +57,7 @@ $lang = array(
 	),
 	'howtouse_cont' => array (
 		'nn' => 'Etterpå konfigurerer du denne tenaren slik at du kan logga inn til URLen.  Når du har konfiguerert tenaren og lagt inn identitetsURLen, kan du sjekka om alt fungerer ved å bruka',
+		'da' => 'Konfigurer denne server så du kan logge ind med URLen. Når du har konfigureret serveren og gemt din identitetsURL, kan du se at det virker ved at bruge %SITE% %TOOL%:',
 		'en' => 'Then configure this server so that you can log in with that URL. Once you have configured the server, and marked up your identity URL, you can verify that it is working by using the %SITE% %TOOL%:',
 		'sv' => 'Konfigurera sedan denna server så du kan logga in med den URLen. När du har konfigurerat servern och märkt upp din identiets-URL kan du verifiera att det fungerar genom att använda %SITE% %TOOL%:',
 		'es' => 'Configure este servidor de modo que pueda identificarse con la URL. Una vez que ha configurado el servidor y definida su URL de identificación, puede verificar si funciona usando %SITE% %TOOL%:',
@@ -59,6 +66,7 @@ $lang = array(
 	),
 	'checkup_tool' => array (
 		'nn' => 'Verktøy for å sjekka OpenID (OpenID Checkup)',
+		'da' => 'OpenID "Checkup tool"',
 		'en' => 'OpenID Checkup tool',
 		'sv' => 'OpenID kontrollverktyg',
 		'es' => 'Herramienta de comprobación OpenID',
@@ -67,6 +75,7 @@ $lang = array(
 	),
 	'openid_url' => array (
 		'nn' => 'OpenID URL',
+		'da' => 'OpenID URL:',
 		'en' => 'OpenID URL:',
 		'sv' => 'OpenID URL:',
 		'es' => 'URL OpenID:',
@@ -75,6 +84,7 @@ $lang = array(
 	),
 	'check' => array (
 		'nn' => 'Sjekk',
+		'da' => 'Check',
 		'en' => 'Check',
 		'sv' => 'Kontrollera',
 		'es' => 'Comprobar',
@@ -82,6 +92,7 @@ $lang = array(
 		'hu' => 'Ellenőriz',
 	),
 	'confirm_question' => array (
+		'da' => 'Ønsker du at bekræfte din identitetsurl (%OPENIDURL%) overfor %SITEURL%?',
 		'en' => 'Do you wish to confirm your identity URL (%OPENIDURL%) with %SITEURL%?',
 		'sv' => 'Vill du bekräfta din URL (%OPENIDURL%) med %SITEURL%?',
 		'es' => '¿Desea confirmar su URL de identificación (%OPENIDURL%) en %SITEURL%?',
@@ -90,6 +101,7 @@ $lang = array(
 	),
 	'remember' => array (
 		'nn' => 'Hugs denne avgjerda',
+		'da' => 'Husk dette',
 		'en' => 'Remember this decision',
 		'sv' => 'Spara detta beslut',
 		'es' => 'Recordar esta decisión',
@@ -98,6 +110,7 @@ $lang = array(
 	),
 	'confirm' => array (
 		'nn' => 'Stadfest',
+		'da' => 'Bekræft',
 		'en' => 'Confirm',
 		'sv' => 'Bekräfta',
 		'es' => 'Confirmar',
@@ -106,6 +119,7 @@ $lang = array(
 	),
 	'notconfirm' => array (
 		'nn' => 'Treng ikkje stadfesting',
+		'da' => 'Bekræft ikke',
 		'en' => 'Do not confirm',
 		'sv' => 'Bekräfta inte',
 		'es' => 'No confirmar',
@@ -113,6 +127,7 @@ $lang = array(
 		'hu' => 'Nem erősíti meg',
 	),
 	'trustlist_desc' => array (
+		'da' => 'Dine beslutninger huskes i denne session. Alle beslutninger er glemt når sessionen er slut.',
 		'en' => 'These decisions have been remembered for this session. All decisions will be forgotten when the session ends.',
 		'sv' => 'Dessa beslut har sparats för denna session. Alla beslut kommer att glömmas när sessionen avslutas.',
 		'es' => 'Las decisiones han sido recordadadas para esta sesión. Todas las decisiones serán eliminadas cuando termine la sesión.',
@@ -121,6 +136,7 @@ $lang = array(
 	),
 	'trustlist_trustedsites' => array (
 		'nn' => 'Tiltrudde partnarar',
+		'da' => 'Hjemmesider du har tillid til',
 		'en' => 'Trusted Sites',
 		'sv' => 'Godkända sajter',
 		'es' => 'Sitios de confianza',
@@ -129,6 +145,7 @@ $lang = array(
 	),
 	'trustlist_untrustedsites' => array (
 		'nn' => 'Ikkje tiltrudde partnarar',
+		'da' => 'Hjemmesider du ikke har tillid til',
 		'en' => 'Untrusted Sites',
 		'sv' => 'Ej godkända sajter',
 		'es' => 'Sitios no confiables',
@@ -136,6 +153,7 @@ $lang = array(
 		'hu' => 'Megbízhatatlanoldlak',
 	),
 	'trustlist_remove' => array (
+		'da' => 'Fjern valgte',
 		'en' => 'Remove Selected',
 		'sv' => 'Ta bort vald',
 		'es' => 'Eliminar selección',
@@ -143,6 +161,7 @@ $lang = array(
 		'hu' => 'Kijelölt eltávolítása',
 	),
 	'trustlist_refresh' => array (
+		'da' => 'Genopfrisk siden',
 		'en' => 'Refresh List',
 		'sv' => 'Uppdatera listan',
 		'es' => 'Actualizar lista',
@@ -150,6 +169,7 @@ $lang = array(
 		'hu' => 'Lista frissítése',
 	),
 	'trustlist_forget' => array (
+		'da' => 'Glem alt',
 		'en' => 'Forget All',
 		'sv' => 'Glöm alla',
 		'es' => 'Eliminar todas',
@@ -157,6 +177,7 @@ $lang = array(
 		'hu' => 'Mind el felejt',
 	),
 	'trustlist_nosites' => array (
+		'da' => 'Der er ikke gemt  nogle sites i denne session. Når authenticater mod et site kan du vælge at gemme sitet i denne liste ved at vælge <q>Gem mit valg</q>',
 		'en' => 'No sites are remembered for this session. When you authenticate with a site, you can choose to add it to this list by choosing <q>Remember this decision</q>.',
 		'sv' => 'Inga sajter är sparade i denna session. När du loggar in på en sajt kan du välja om du ska lägga den i listan genom att välja <q>Spara detta beslut</q>.',
 		'es' => 'No se han almacenado sitios para esta sesión. Cuando se autentique en un sitio, puede añadirlo a esta lista seleccionando <q>Recordar esta decisión</q>.',
