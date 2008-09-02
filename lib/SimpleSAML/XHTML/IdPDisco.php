@@ -59,13 +59,13 @@ class SimpleSAML_XHTML_IdPDisco {
 	 */
 	private $spEntityId;
 	
-	/*
+	/**
 	 * HTTP parameter from the request, indicating whether the discovery service
 	 * can interact with the user or not.
 	 */
 	private $isPassive;
 	
-	/*
+	/**
 	 * The SP request to set the IdPentityID... 
 	 */
 	private $setIdPentityID = NULL;
@@ -138,8 +138,10 @@ class SimpleSAML_XHTML_IdPDisco {
 		}
 		$this->log('isPassive initially set to [' . ($this->isPassive ? 'TRUE' : 'FALSE' ) . ']');
 		
-		if (!array_key_exists('IdPentityID', $_GET)) {
-			$setIdPentityID = $_GET['IdPentityID'];
+		if (array_key_exists('IdPentityID', $_GET)) {
+			$this->setIdPentityID = $_GET['IdPentityID'];
+		} else {
+			$this->setIdPentityID = NULL;
 		}
 
 	}
@@ -238,14 +240,14 @@ class SimpleSAML_XHTML_IdPDisco {
 	private function getSelectedIdP() {
 
 
-		/*
-		 * Parameter set from the Extended IdP Metadata Discovery Service Protocol
+		/* Parameter set from the Extended IdP Metadata Discovery Service Protocol,
+		 * indicating that the user prefers this IdP.
 		 */
-		if(array_key_exists('IdPentityID', $_GET)) {
-			return $this->validateIdP($_GET['IdPentityID']);
+		if ($this->setIdPentityID) {
+			return $this->validateIdP($this->setIdPentityID);
 		}
 
-		// Set by the user, clicking on a link
+		/* User has clicked on a link, or selected the IdP from a dropdown list. */
 		if(array_key_exists('idpentityid', $_GET)) {
 			return $this->validateIdP($_GET['idpentityid']);
 		}
