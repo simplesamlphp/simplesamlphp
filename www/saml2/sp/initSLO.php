@@ -40,6 +40,8 @@ if (isset($session) ) {
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 		
 		
+		$session->doLogout();
+		
 		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: SP (' . $spentityid . ') is sending logout request to IdP (' . $idpentityid . ')');
 		
 		$httpredirect->sendMessage($req, $spentityid, $idpentityid, NULL, 'SingleLogoutService', 'SAMLRequest', 'SP');
