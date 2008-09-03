@@ -374,26 +374,6 @@ if (array_key_exists('name', $spmeta)) $spname = $spmeta['name'];
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $et = new SimpleSAML_XHTML_Template($config, 'logout-iframe.php');
 
 $et->data['header'] = 'SAML 2.0 IdP Ajax Logout';
@@ -402,7 +382,7 @@ $et->data['logoutresponse'] = $logoutresponse;
 $et->data['xajax'] = $xajax;
 $et->data['requesterName'] = $spname;
 
-$et->data['head'] = $xajax->printJavascript();
+$et->data['head'] = $xajax->getJavascript();
 
 $et->show();
 
