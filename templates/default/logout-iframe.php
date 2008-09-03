@@ -1,7 +1,7 @@
 <?php 
 
 	
-	$this->data['head'] .= '<script language="JavaScript">
+	$this->data['head'] .= '<script type="text/javascript" language="JavaScript">
 // use pre-formatted output for this multiplication table
 var j;	// loop variables
 
