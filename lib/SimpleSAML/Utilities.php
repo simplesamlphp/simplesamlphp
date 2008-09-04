@@ -941,12 +941,15 @@ class SimpleSAML_Utilities {
 	 * @param $idpEntityId  The entity id of the IdP.
 	 * @param $spEntityId   The entity id of the SP.
 	 * @param $attributes   The attributes of the user.
+	 * @param $idpset       Allows to select another metadata set. (to support both saml2 or shib13)
+	 * @param $sppset       Allows to select another metadata set. (to support both saml2 or shib13)
 	 * @return A non-reversible unique identifier for the user.
 	 */
-	public static function generateUserIdentifier($idpEntityId, $spEntityId, $attributes) {
+	public static function generateUserIdentifier($idpEntityId, $spEntityId, $attributes, $idpset = 'saml20-idp-hosted', $spset = 'saml20-sp-remote') {
+	
 		$metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-		$idpMetadata = $metadataHandler->getMetaData($idpEntityId, 'saml20-idp-hosted');
-		$spMetadata = $metadataHandler->getMetaData($spEntityId, 'saml20-sp-remote');
+		$idpMetadata = $metadataHandler->getMetaData($idpEntityId, $idpset);
+		$spMetadata = $metadataHandler->getMetaData($spEntityId, $spset);
 
 		if(array_key_exists('userid.attribute', $spMetadata)) {
 			$attributeName = $spMetadata['userid.attribute'];
