@@ -734,6 +734,11 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
         </saml:AuthnStatement>
         ' . $attributestatement. '
     </saml:Assertion>';
+			$statusCode = '<samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>';
+		} else {
+			$statusCode = '<samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Responder">
+				<samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:' . $status . '"/>;
+				</samlp:statusCode>';
 		}
 		
 		
@@ -750,10 +755,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			IssueInstant="' . $issueInstant . '"
 			Destination="' . htmlspecialchars($destination) . '">
 			<saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' . htmlspecialchars($issuer) . '</saml:Issuer>
-			<samlp:Status xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
-				<samlp:StatusCode xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
-				Value="urn:oasis:names:tc:SAML:2.0:status:' . $status . '" />
-			</samlp:Status>'
+			<samlp:Status>' . $statusCode .	'</samlp:Status>'
 			. $assertion . 
 			'</samlp:Response>';
 

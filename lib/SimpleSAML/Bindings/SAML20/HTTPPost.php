@@ -127,7 +127,8 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 			$signer->sign($firstassertionroot, $firstassertionroot, $subjectElements[0]);
 		}
 
-		if (isset($spmd['assertion.encryption']) && $spmd['assertion.encryption']) {
+		/* if the response status is not Success (eg. NoPassive) there is no assertions (firstassertionroot == null) to encrypt */
+		if (isset($spmd['assertion.encryption']) && $spmd['assertion.encryption'] && $firstassertionroot != null) {
 			$encryptedassertion = $responsedom->createElement("saml:EncryptedAssertion");
 			$encryptedassertion->setAttribute("xmlns:saml", "urn:oasis:names:tc:SAML:2.0:assertion");
 		
