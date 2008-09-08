@@ -469,7 +469,7 @@ class SimpleSAML_Utilities {
 		$timestamp += $durDays * 24 * 60 * 60;
 		$timestamp += $durHours * 60 * 60;
 		$timestamp += $durMinutes * 60;
-		$timestamp += $durSecods;
+		$timestamp += $durSeconds;
 
 		return $timestamp;
 	}
