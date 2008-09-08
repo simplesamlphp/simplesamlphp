@@ -117,8 +117,11 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * @param $entitiesValidator  A Validator instance for a signature element in the EntitiesDescriptor,
 	 *                            or NULL if this EntityDescriptor isn't a child of an EntitiesDescriptor
 	 *                            with a Signature element.
+	 * @param int|NULL $expireTime  The unix timestamp for when this entity should expire, or NULL if unknwon.
 	 */
-	private function __construct($entityElement, $entitiesValidator) {
+	private function __construct($entityElement, $entitiesValidator, $expireTime) {
+		assert('is_null($expireTime) || is_int($expireTime)');
+
 		$this->spDescriptors = array();
 		$this->idpDescriptors = array();
 
@@ -132,6 +135,13 @@ class SimpleSAML_Metadata_SAMLParser {
 			throw new Exception('EntityDescriptor missing required entityID attribute.');
 		}
 		$this->entityId = $entityElement->getAttribute('entityID');
+
+		if ($expireTime === NULL) {
+			/* No expiry time defined by a parent element. Check if this element defines
+			 * one.
+			 */
+			$expireTime = self::getExpireTime($entityElement);
+		}
 
 
 		/* Check if the Signature element from the EntitiesDescriptor can be used to verify this
@@ -155,11 +165,11 @@ class SimpleSAML_Metadata_SAMLParser {
 			}
 
 			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'SPSSODescriptor', '@md') === TRUE) {
-				$this->processSPSSODescriptor($child);
+				$this->processSPSSODescriptor($child, $expireTime);
 			}
 
 			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'IDPSSODescriptor', '@md') === TRUE) {
-				$this->processIDPSSODescriptor($child);
+				$this->processIDPSSODescriptor($child, $expireTime);
 			}
 
 			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Organization', '@md') === TRUE) {
@@ -229,7 +239,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	public static function parseElement($entityElement) {
 		assert('$entityElement instanceof DOMElement');
 
-		return new SimpleSAML_Metadata_SAMLParser($entityElement, NULL);
+		return new SimpleSAML_Metadata_SAMLParser($entityElement, NULL, NULL);
 	}
 
 
@@ -292,11 +302,11 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		assert('$element instanceof DOMElement');
 
-
 		$entitiesValidator = NULL;
 
 		if(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntityDescriptor', '@md') === TRUE) {
 			$elements = array($element);
+			$expireTime = NULL;
 		} elseif(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntitiesDescriptor', '@md') === TRUE) {
 
 			/* Check if there is a signature element in the EntitiesDescriptor. */
@@ -308,6 +318,8 @@ class SimpleSAML_Metadata_SAMLParser {
 				}
 			}
 
+			$expireTime = self::getExpireTime($element);
+
 			$elements = SimpleSAML_Utilities::getDOMChildren($element, 'EntityDescriptor', '@md');
 		} else {
 			throw new Exception('Unexpected root node: [' . $element->namespaceURI . ']:' .
@@ -316,11 +328,59 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		$ret = array();
 		foreach($elements as $e) {
-			$entity = new SimpleSAML_Metadata_SAMLParser($e, $entitiesValidator);
+			$entity = new SimpleSAML_Metadata_SAMLParser($e, $entitiesValidator, $expireTime);
 			$ret[$entity->getEntityId()] = $entity;
 		}
 
 		return $ret;
+	}
+
+
+	/**
+	 * Determine how long a given element can be cached.
+	 *
+	 * This function looks for the 'cacheDuration' and 'validUntil' attributes to determine
+	 * how long a given XML-element is valid. It returns this as na unix timestamp.
+	 *
+	 * If both the 'cacheDuration' and 'validUntil' attributes are present, the shorter of them
+	 * will be returned.
+	 *
+	 * @param DOMElement $element  The element we should determine the expiry time of.
+	 * @return int  The unix timestamp for when the element should expire. Will be NULL if no
+	 *              limit is set for the element.
+	 */
+	private static function getExpireTime(DOMElement $element) {
+
+		if ($element->hasAttribute('cacheDuration')) {
+			$cacheDuration = $element->getAttribute('cacheDuration');
+			$cacheDuration = SimpleSAML_Utilities::parseDuration($cacheDuration, time());
+		} else {
+			$cacheDuration = NULL;
+		}
+
+		if ($element->hasAttribute('validUntil')) {
+			$validUntil = $element->getAttribute('validUntil');
+			$validUntil = SimpleSAML_Utilities::parseSAML2Time($validUntil);
+		} else {
+			$validUntil = NULL;
+		}
+
+		if ($cacheDuration !== NULL && $validUntil !== NULL) {
+			/* Both are given. Return the shortest. */
+
+			if($cacheDuration < $validUntil) {
+				return $cacheDuration;
+			} else {
+				return $validUntil;
+			}
+
+		} elseif ($cacheDuration !== NULL) {
+			return $cacheDuration;
+		} elseif ($validUntil !== NULL) {
+			return $validUntil;
+		} else {
+			return NULL;
+		}
 	}
 
 
@@ -360,6 +420,11 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		/* We currently only look at the first SPDescriptor which supports SAML 1.x. */
 		$spd = $spd[0];
+
+		/* Add expire time to metadata. */
+		if (array_key_exists('expire', $spd)) {
+			$ret['expire'] = $spd['expire'];
+		}
 
 		/* Find the assertion consumer service endpoint. */
 		$acs = $this->getDefaultEndpoint($spd['assertionConsumerServices'], array(self::SAML_1X_POST_BINDING));
@@ -407,6 +472,11 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		/* We currently only look at the first IDP descriptor which supports SAML 1.x. */
 		$idp = $idp[0];
+
+		/* Add expire time to metadata. */
+		if (array_key_exists('expire', $idp)) {
+			$ret['expire'] = $idp['expire'];
+		}
 
 		/* Find the SSO service endpoint. */
 		$sso = $this->getDefaultEndpoint($idp['singleSignOnServices'], array(self::SAML_1x_AUTHN_REQUEST));
@@ -475,6 +545,11 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* We currently only look at the first SPDescriptor which supports SAML 2.0. */
 		$spd = $spd[0];
 
+		/* Add expire time to metadata. */
+		if (array_key_exists('expire', $spd)) {
+			$ret['expire'] = $spd['expire'];
+		}
+
 		/* Find the assertion consumer service endpoint. */
 		$acs = $this->getDefaultEndpoint($spd['assertionConsumerServices'], array(self::SAML_20_POST_BINDING));
 		if($acs === NULL) {
@@ -537,6 +612,11 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		/* We currently only look at the first IDP descriptor which supports SAML 2.0. */
 		$idp = $idp[0];
+
+		/* Add expire time to metadata. */
+		if (array_key_exists('expire', $idp)) {
+			$ret['expire'] = $idp['expire'];
+		}
 
 		/* Find the SSO service endpoint. */
 		$sso = $this->getDefaultEndpoint($idp['singleSignOnServices'], array(self::SAML_20_REDIRECT_BINDING));
@@ -615,13 +695,30 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor:
 	 *
 	 * @param $element The element we should extract metadata from.
+	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
+	 *                              NULL if unknwon.
 	 * @return Associative array with metadata we have extracted from this element.
 	 */
-	private static function parseSSODescriptor($element) {
-
+	private static function parseSSODescriptor($element, $expireTime) {
 		assert('$element instanceof DOMElement');
+		assert('is_null($expireTime) || is_int($expireTime)');
+
+		if ($expireTime === NULL) {
+			/* No expiry time defined by a parent element. Check if this element defines
+			 * one.
+			 */
+			$expireTime = self::getExpireTime($element);
+		}
+
 
 		$sd = array();
+
+		if ($expireTime !== NULL) {
+			/* We have got an expire timestamp, either from this element, or one of the
+			 * parent elements.
+			 */
+			$sd['expire'] = $expireTime;
+		}
 
 		$sd['protocols'] = self::getSupportedProtocols($element);
 
@@ -658,11 +755,14 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This function extracts metadata from a SPSSODescriptor element.
 	 *
 	 * @param $element The element which should be parsed.
+	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
+	 *                              NULL if unknwon.
 	 */
-	private function processSPSSODescriptor($element) {
+	private function processSPSSODescriptor($element, $expireTime) {
 		assert('$element instanceof DOMElement');
+		assert('is_null($expireTime) || is_int($expireTime)');
 
-		$sp = self::parseSSODescriptor($element);
+		$sp = self::parseSSODescriptor($element, $expireTime);
 
 		/* Find all AssertionConsumerService elements. */
 		$sp['assertionConsumerServices'] = array();
@@ -680,11 +780,14 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This function extracts metadata from a IDPSSODescriptor element.
 	 *
 	 * @param $element The element which should be parsed.
+	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
+	 *                              NULL if unknwon.
 	 */
-	private function processIDPSSODescriptor($element) {
+	private function processIDPSSODescriptor($element, $expireTime) {
 		assert('$element instanceof DOMElement');
+		assert('is_null($expireTime) || is_int($expireTime)');
 
-		$idp = self::parseSSODescriptor($element);
+		$idp = self::parseSSODescriptor($element, $expireTime);
 
 		/* Find all SingleSignOnService elements. */
 		$idp['singleSignOnServices'] = array();
