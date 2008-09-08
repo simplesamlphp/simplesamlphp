@@ -19,12 +19,13 @@ $indexFiles = array('index.php', 'index.html', 'index.htm', 'index.txt');
 
 /* MIME types - key is file extension, value is MIME type. */
 $mimeTypes = array(
-	'bml' => 'image/x-ms-bmp',
+	'bmp' => 'image/x-ms-bmp',
 	'css' => 'text/css',
 	'gif' => 'image/gif',
 	'htm' => 'text/html',
 	'html' => 'text/html',
 	'shtml' => 'text/html',
+	'ico' => 'image/vnd.microsoft.icon',
 	'jpe' => 'image/jpeg',
 	'jpeg' => 'image/jpeg',
 	'jpg' => 'image/jpeg',
@@ -114,15 +115,25 @@ try {
 	/* Some other file type - attempt to serve it. */
 
 	/* Find MIME type for file, based on extension. */
+	$contentType = NULL;
 	if (preg_match('#\.([^/]+)$#', $path, $type)) {
 		$type = strtolower($type[1]);
 		if (array_key_exists($type, $mimeTypes)) {
 			$contentType = $mimeTypes[$type];
-		} else {
-			$contentType = mime_content_type($path);
 		}
-	} else {
-		$contentType = mime_content_type($path);
+	}
+
+	if ($contentType === NULL) {
+		/* We were unable to determine the MIME type from the file extension. Fall back
+		 * to mime_content_type (if it exists).
+		 */
+		if (function_exists('mime_content_type')) {
+			$contentType = mime_content_type($path);
+		} else {
+			/* mime_content_type doesn't exist. Return a default MIME type. */
+			SimpleSAML_Logger::warning('Unable to determine mime content type of file: ' . $path);
+			$contentType = 'application/octet-stream';
+		}
 	}
 
 	$contentLength = sprintf('%u', filesize($path)); /* Force filesize to an unsigned number. */
