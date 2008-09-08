@@ -392,6 +392,89 @@ class SimpleSAML_Utilities {
 	}
 
 
+	/**
+	 * Interpret a ISO8601 duration value relative to a given timestamp.
+	 *
+	 * @param string $duration  The duration, as a string.
+	 * @param int $timestamp  The unix timestamp we should apply the duration to. Optional, default
+	 *                        to the current time.
+	 * @return int  The new timestamp, after the duration is applied.
+	 */
+	public static function parseDuration($duration, $timestamp = NULL) {
+		assert('is_string($duration)');
+		assert('is_null($timestamp) || is_int($timestamp)');
+
+		/* Parse the duration. We use a very strict pattern. */
+		$durationRegEx = '#^(-?)P(?:(?:(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)D)?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)S)?)?)|(?:(\\d+)W))$#';
+		if (!preg_match($durationRegEx, $duration, $matches)) {
+			throw new Exception('Invalid ISO 8601 duration: ' . $duration);
+		}
+
+		$durYears = (empty($matches[2]) ? 0 : (int)$matches[2]);
+		$durMonths = (empty($matches[3]) ? 0 : (int)$matches[3]);
+		$durDays = (empty($matches[4]) ? 0 : (int)$matches[4]);
+		$durHours = (empty($matches[5]) ? 0 : (int)$matches[5]);
+		$durMinutes = (empty($matches[6]) ? 0 : (int)$matches[6]);
+		$durSeconds = (empty($matches[7]) ? 0 : (int)$matches[7]);
+		$durWeeks = (empty($matches[8]) ? 0 : (int)$matches[8]);
+
+		if (!empty($matches[1])) {
+			/* Negative */
+			$durYears = -$durYears;
+			$durMonths = -$durMonths;
+			$durDays = -$durDays;
+			$durHours = -$durHours;
+			$durMinutes = -$durMinutes;
+			$durSeconds = -$durSeconds;
+			$durWeeks = -$durWeeks;
+		}
+
+		if ($timestamp === NULL) {
+			$timestamp = time();
+		}
+
+		if ($durYears !== 0 || $durMonths !== 0) {
+			/* Special handling of months and years, since they aren't a specific interval, but
+			 * instead depend on the current time.
+			 */
+
+			/* We need the year and month from the timestamp. Unfortunately, PHP doesn't have the
+			 * gmtime function. Instead we use the gmdate function, and split the result.
+			 */
+			$yearmonth = explode(':', gmdate('Y:n', $timestamp));
+			$year = (int)($yearmonth[0]);
+			$month = (int)($yearmonth[1]);
+
+			/* Remove the year and month from the timestamp. */
+			$timestamp -= gmmktime(0, 0, 0, $month, 1, $year);
+
+			/* Add years and months, and normalize the numbers afterwards. */
+			$year += $durYears;
+			$month += $durMonths;
+			while ($month > 12) {
+				$year += 1;
+				$month -= 12;
+			}
+			while ($month < 1) {
+				$year -= 1;
+				$month += 12;
+			}
+
+			/* Add year and month back into timestamp. */
+			$timestamp += gmmktime(0, 0, 0, $month, 1, $year);
+		}
+
+		/* Add the other elements. */
+		$timestamp += $durWeeks * 7 * 24 * 60 * 60;
+		$timestamp += $durDays * 24 * 60 * 60;
+		$timestamp += $durHours * 60 * 60;
+		$timestamp += $durMinutes * 60;
+		$timestamp += $durSecods;
+
+		return $timestamp;
+	}
+
+
 	/** 
 	 * Show and log fatal error message.
 	 *
