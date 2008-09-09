@@ -59,7 +59,7 @@ if (isset($_GET['SAMLRequest'])) {
 		SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: SP me (' . $responder . ') is sending logout response to IdP (' . $requester . ')');
 	
 		// Send the Logout response using HTTP POST binding.
-		$httpredirect->sendMessage($logoutResponseXML, $responser, $requester, $logoutrequest->getRelayState(), 'SingleLogoutServiceResponse', 'SAMLResponse');
+		$httpredirect->sendMessage($logoutResponseXML, $responder, $requester, $logoutrequest->getRelayState(), 'SingleLogoutServiceResponse', 'SAMLResponse');
 	
 	} catch(Exception $exception) {
 
