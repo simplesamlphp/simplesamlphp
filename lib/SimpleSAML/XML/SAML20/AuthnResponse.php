@@ -737,8 +737,8 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			$statusCode = '<samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>';
 		} else {
 			$statusCode = '<samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Responder">
-				<samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:' . $status . '"/>;
-				</samlp:statusCode>';
+				<samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:' . $status . '"/>
+				</samlp:StatusCode>';
 		}
 		
 		
