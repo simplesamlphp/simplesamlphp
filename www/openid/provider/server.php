@@ -565,9 +565,15 @@ function doAuth($info, $trusted=null, $fail_cancels=false)
     setRequestInfo($info);
 
     if ($req_url != $user) {
-		error_log('simpleSAMLphp doauth():' . 'Your identity ' . $user . 
-			' does not match the requested identity from the OpenID consumer, which was: ' . $req_url);
+			
 		$config = SimpleSAML_Configuration::getInstance();
+		$session = SimpleSAML_Session::getInstance();
+		
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'OPENID', 
+			new Exception('OpenID: simpleSAMLphp doauth():' . 'Your identity [' . $user . 
+			'] does not match the requested identity from the OpenID consumer, which was: [' . $req_url . ']'));
+		
+		/*
 		$t = new SimpleSAML_XHTML_Template($config, 'error.php');
 
 		$t->data['header'] = 'OpenID identity mismatch';
@@ -577,7 +583,7 @@ function doAuth($info, $trusted=null, $fail_cancels=false)
 		
 		$t->show();    
 		exit(0);
-		
+		*/
     }
 
     $sites = getSessionSites();
