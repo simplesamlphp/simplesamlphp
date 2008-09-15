@@ -64,19 +64,13 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 				);
 		}
 
-		$this->sources = array();
-		
-		foreach($sourcesConfig as $elementConfig) {
-			if(!is_array($elementConfig)) {
-				throw new Exception(
-					'Invalid configuration of the \'metadata.sources\' configuration option.' .
-					' Every element in the array should be an associative array.'
-					);
-			}
-
-			$src = SimpleSAML_Metadata_MetaDataStorageSource::getSource($elementConfig);
-			$this->sources[] = $src;
+		try {
+			$this->sources = SimpleSAML_Metadata_MetaDataStorageSource::parseSources($sourcesConfig);
+		} catch (Exception $e) {
+			throw new Exception('Invalid configuration of the \'metadata.sources\'' .
+				' configuration option: ' . $e->getMessage());
 		}
+
 	}
 
 

@@ -16,6 +16,33 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 
 
 	/**
+	 * Parse array with metadata sources.
+	 *
+	 * This function accepts an array with metadata sources, and returns an array with
+	 * each metadata source as an object.
+	 *
+	 * @param array $sourcesConfig  Array with metadata source configuration.
+	 * @return array  Parsed metadata configuration.
+	 */
+	public static function parseSources($sourcesConfig) {
+		assert('is_array($sourcesConfig)');
+
+		$sources = array();
+
+		foreach ($sourcesConfig as $sourceConfig) {
+			if (!is_array($sourceConfig)) {
+				throw new Exception('Found an element in metadata source' .
+					' configuration which wasn\'t an array.');
+			}
+
+			$sources[] = self::getSource($sourceConfig);
+		}
+
+		return $sources;
+	}
+
+
+	/**
 	 * This function creates a metadata source based on the given configuration.
 	 * The type of source is based on the 'type' parameter in the configuration.
 	 * The default type is 'flatfile'.
