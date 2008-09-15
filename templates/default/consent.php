@@ -4,12 +4,13 @@
 	$this->includeLanguageFile('consent.php'); 
 	$this->includeInlineTranslation('spname', $this->data['sp_name']);
 	$this->includeInlineTranslation('IDPNAME', $this->data['idp_name']);
+	$this->includeInlineTranslation('SPDESC', $this->data['sp_description']);
 ?>
 
 	<div id="content">
 
 		<p><?php echo htmlspecialchars($this->t('consent_notice')); ?> <strong><?php echo htmlspecialchars($this->t('spname')); ?></strong>.
-		<?php echo htmlspecialchars($this->t('consent_accept', array('IDPNAME' => ''))) ?>
+		<?php echo htmlspecialchars($this->t('consent_accept', array('IDPNAME' => '', 'SPDESC' => ''))) ?>
 		</p>
 
 		<?php if ($this->data['sppp'] !== FALSE) {

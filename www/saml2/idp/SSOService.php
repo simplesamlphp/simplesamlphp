@@ -331,6 +331,7 @@ if($needAuth && !$isPassive) {
 				$t = new SimpleSAML_XHTML_Template($config, 'consent.php', 'attributes');
 				$t->data['header'] = 'Consent';
 				$t->data['sp_name'] = $sp_name;
+				$t->data['sp_description'] = (isset($spmetadata['description']) ? $spmetadata['description'] : "SP DESCRIPTION");
 				$t->data['idp_name'] = (isset($idpmetadata['name']) ? $idpmetadata['name'] : $idpentityid);
 				$t->data['spentityid'] = $spentityid;
 				$t->data['spmetadata'] = $spmetadata;
