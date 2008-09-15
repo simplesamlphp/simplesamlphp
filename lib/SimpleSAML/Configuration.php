@@ -317,6 +317,39 @@ class SimpleSAML_Configuration {
 
 
 	/**
+	 * This function retrieves an array configuration option.
+	 *
+	 * An exception will be thrown if this option isn't an array, or if this option isn't found, and no
+	 * default value is given.
+	 *
+	 * @param string $name  The name of the option.
+	 * @param mixed$default  A default value which will be returned if the option isn't found. The option will be
+	 *                       required if this parameter isn't given. The default value can be any value, including
+	 *                       NULL.
+	 * @return mixed  The option with the given name, or $default if the option isn't found and $default is specified.
+	 */
+	public function getArray($name, $default = self::REQUIRED_OPTION) {
+		assert('is_string($name)');
+
+		$ret = $this->getValue($name, $default);
+
+		if ($ret === $default) {
+			/* The option wasn't found, or it matches the default value. In any case, return
+			 * this value.
+			 */
+			return $ret;
+		}
+
+		if (!is_array($ret)) {
+			throw new Exception('The option \'' . $name . '\' in \'' . $this->configfilename .
+				'\' is not an array.');
+		}
+
+		return $ret;
+	}
+
+
+	/**
 	 * Retrieve list of options.
 	 *
 	 * This function returns the name of all options which are defined in this
