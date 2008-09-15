@@ -111,6 +111,12 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
+	 * The original EntityDescriptor element for this entity, as a base64 encoded string.
+	 */
+	private $entityDescriptor;
+
+
+	/**
 	 * This is the constructor for the SAMLParser class.
 	 *
 	 * @param $entityElement The DOMElement which represents the EntityDescriptor-element.
@@ -119,14 +125,16 @@ class SimpleSAML_Metadata_SAMLParser {
 	 *                            with a Signature element.
 	 * @param int|NULL $expireTime  The unix timestamp for when this entity should expire, or NULL if unknwon.
 	 */
-	private function __construct($entityElement, $entitiesValidator, $expireTime) {
+	private function __construct(DOMElement $entityElement,	$entitiesValidator, $expireTime) {
+		assert('is_null($entitiesValidator) || $entitiesValidator instanceof SimpleSAML_XML_Validator');
 		assert('is_null($expireTime) || is_int($expireTime)');
 
 		$this->spDescriptors = array();
 		$this->idpDescriptors = array();
 
-
-		assert('$entityElement instanceof DOMElement');
+		$tmpDoc = new DOMDocument();
+		$tmpDoc->appendChild($tmpDoc->importNode($entityElement, TRUE));
+		$this->entityDescriptor = base64_encode($tmpDoc->saveXML());
 
 		/* Extract the entity id from the EntityDescriptor element. This is a required
 		 * attribute, so we throw an exception if it isn't found.
@@ -410,6 +418,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$ret = array();
 
 		$ret['entityid'] = $this->entityId;
+		$ret['entityDescriptor'] = $this->entityDescriptor;
 
 
 		/* Find SP information which supports one of the SAML 1.x protocols. */
@@ -461,6 +470,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$ret = array();
 
 		$ret['entityid'] = $this->entityId;
+		$ret['entityDescriptor'] = $this->entityDescriptor;
 
 		$ret['name'] = $this->entityId;
 
@@ -534,6 +544,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$ret = array();
 
 		$ret['entityid'] = $this->entityId;
+		$ret['entityDescriptor'] = $this->entityDescriptor;
 
 
 		/* Find SP information which supports the SAML 2.0 protocol. */
@@ -601,6 +612,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$ret = array();
 
 		$ret['entityid'] = $this->entityId;
+		$ret['entityDescriptor'] = $this->entityDescriptor;
 
 		$ret['name'] = $this->entityId;
 
