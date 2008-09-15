@@ -239,27 +239,15 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerDynamicXML extends SimpleSAML_Me
 			throw new Exception('No entities found in "' . $index . '".');
 		}
 
-		if (array_key_exists($index, $entities)) {
-			$entity = $entities[$index];
-			$data = self::getParsedSet($entity, $set);
-			if ($data === NULL) {
-				throw new Exception('No metadata for set "' . $set .
-					'" available from "' . $index . '".');
-			}
-		} else {
-			SimpleSAML_Logger::warning('MetaData - Handler.DynamicXML: No entity with correct' .
-				' entity id found. Using the first entity which defines the correct' .
-				' metadata.');
-			foreach ($entities as $entity) {
-				$data = self::getParsedSet($entity, $set);
-				if ($data !== NULL) {
-					break;
-				}
-			}
-			if ($data === NULL) {
-				throw new Exception('No entities defines metadata for set "' .
-					$set . '" in "' . $index . '".');
-			}
+		if (!array_key_exists($index, $entities)) {
+			throw new Exception ('No entity with correct entity id found in "' . $index . '".');
+		}
+
+		$entity = $entities[$index];
+		$data = self::getParsedSet($entity, $set);
+		if ($data === NULL) {
+			throw new Exception('No metadata for set "' . $set .
+				'" available from "' . $index . '".');
 		}
 
 		$this->writeToCache($set, $index, $data);
