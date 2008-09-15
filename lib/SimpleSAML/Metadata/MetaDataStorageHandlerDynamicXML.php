@@ -12,73 +12,42 @@
 class SimpleSAML_Metadata_MetaDataStorageHandlerDynamicXML extends SimpleSAML_Metadata_MetaDataStorageSource {
 
 	/**
-	 * This variable contains an associative array with the parsed metadata.
+	 * The cache directory, or NULL if no cache directory is configured.
 	 */
-	private $metadata;
-	private $config;
+	private $cacheDir;
+
 
 	/**
-	 * This function initializes the XML metadata source. The configuration must contain one of
-	 * the following options:
-	 * - 'file': Path to a file with the metadata. This path is relative to the simpleSAMLphp
-	 *           base directory.
-	 * - 'url': URL we should download the metadata from. This is only meant for testing.
+	 * The maximum cache length, in seconds.
+	 */
+	private $cacheLength;
+
+
+	/**
+	 * This function initializes the dynamic XML metadata source.
 	 *
-	 * @param $config  The configuration for this instance of the XML metadata source.
+	 * Options:
+	 * - 'cachedir':  Directory where metadata can be cached. Optional.
+	 * - 'cachelength': Maximum time metadata cah be cached, in seconds. Default to 24
+	 *                  hours (86400 seconds).
+	 *
+	 * @param array $config  The configuration for this instance of the XML metadata source.
 	 */
 	protected function __construct($config) {
+		assert('is_array($config)');
 
-		$this->config = $config;
-	
-		/* Get the configuration. 
-		$globalConfig = SimpleSAML_Configuration::getInstance();
-
-		if(array_key_exists('cache', $config)) {
-			$src = $globalConfig->resolvePath($config['file']);
-		} elseif(array_key_exists('url', $config)) {
-			$src = $config['url'];
+		if (array_key_exists('cachedir', $config)) {
+			$globalConfig = SimpleSAML_Configuration::getInstance();
+			$this->cacheDir = $globalConfig->resolvePath($config['cachedir']);
 		} else {
-			throw new Exception('Missing either \'file\' or \'url\' in XML metadata source configuration.');
+			$this->cacheDir = NULL;
 		}
 
-
-		$SP1x = array();
-		$IdP1x = array();
-		$SP20 = array();
-		$IdP20 = array();
-
-		$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($src);
-		foreach($entities as $entityId => $entity) {
-
-			$md = $entity->getMetadata1xSP();
-			if($md !== NULL) {
-				$SP1x[$entityId] = $md;
-			}
-
-			$md = $entity->getMetadata1xIdP();
-			if($md !== NULL) {
-				$IdP1x[$entityId] = $md;
-			}
-
-			$md = $entity->getMetadata20SP();
-			if($md !== NULL) {
-				$SP20[$entityId] = $md;
-			}
-
-			$md = $entity->getMetadata20IdP();
-			if($md !== NULL) {
-				$IdP20[$entityId] = $md;
-			}
-
+		if (array_key_exists('cachelength', $config)) {
+			$this->cacheLength = $config['cachelength'];
+		} else {
+			$this->cacheLength = 86400;
 		}
-
-		$this->metadata = array(
-			'shib13-sp-remote' => $SP1x,
-			'shib13-idp-remote' => $IdP1x,
-			'saml20-sp-remote' => $SP20,
-			'saml20-idp-remote' => $IdP20,
-			);
-		*/
 
 	}
 
@@ -91,40 +60,130 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerDynamicXML extends SimpleSAML_Me
 	 * @return An associative array with all entities in the given set.
 	 */
 	public function getMetadataSet($set) {
-		/*
-		if(array_key_exists($set, $this->metadata)) {
-			return $this->metadata[$set];
-		}
-		*/
 
 		/* We don't have this metadata set. */
 		return array();
 	}
-	
-	
-	private function getCacheFilename($entityId) {
+
+
+	/**
+	 * Find the cache file name for an entity,
+	 *
+	 * @param string $set  The metadata set this entity belongs to.
+	 * @param string $entityId  The entity id of this entity.
+	 * @return string  The full path to the cache file.
+	 */
+	private function getCacheFilename($set, $entityId) {
+		assert('is_string($set)');
+		assert('is_string($entityId)');
+
 		$cachekey = sha1($entityId);
 		$globalConfig = SimpleSAML_Configuration::getInstance();
-		return $globalConfig->resolvePath($this->config['cachedir']) . '/' . $cachekey . '.cached.xml';
+		return $this->cacheDir . '/' . $set . '-' . $cachekey . '.cached.xml';
 	}
-	
-	
-	private function getFromCache($entityId) {
-		$cachefilename = $this->getCacheFilename($entityId);
+
+
+	/**
+	 * Load a entity from the cache.
+	 *
+	 * @param string $set  The metadata set this entity belongs to.
+	 * @param string $entityId  The entity id of this entity.
+	 * @return array|NULL  The associative array with the metadata for this entity, or NULL
+	 *                     if the entity could not be found.
+	 */
+	private function getFromCache($set, $entityId) {
+		assert('is_string($set)');
+		assert('is_string($entityId)');
+
+		if (empty($this->cacheDir)) {
+			return NULL;
+		}
+
+		$cachefilename = $this->getCacheFilename($set, $entityId);
 		if (!file_exists($cachefilename)) return NULL;
 		if (!is_readable($cachefilename)) throw new Exception('Could not read cache file for entity [' . $cachefilename. ']');
 		SimpleSAML_Logger::debug('MetaData - Handler.DynamicXML: Reading cache [' . $entityId . '] => [' . $cachefilename . ']' );
-		return file_get_contents($cachefilename);		
+
+		/* Ensure that this metadata isn't older that the cachelength option allows. This
+		 * must be verified based on the file, since this option may be changed after the
+		 * file is written.
+		 */
+		$stat = stat($cachefilename);
+		if ($stat['mtime'] + $this->cacheLength <= time()) {
+			SimpleSAML_Logger::debug('MetaData - Handler.DynamicXML: Cache file older that the cachelength option allows.');
+			return NULL;
+		}
+
+		$rawData = file_get_contents($cachefilename);
+		if (empty($rawData)) {
+			throw new Exception('Error reading metadata from cache file "' . $cachefilename . '": ' .
+				SimpleSAML_Utilities::getLastError());
+		}
+
+		$data = unserialize($rawData);
+		if ($data === FALSE) {
+			throw new Exception('Error deserializing cached data from file "' . $cachefilename .'".');
+		}
+
+		if (!is_array($data)) {
+			throw new Exception('Cached metadata from "' . $cachefilename . '" wasn\'t an array.');
+		}
+
+		return $data;
 	}
-	
-	private function writeToCache($entityId, $xmldata) {
-		$cachefilename = $this->getCacheFilename($entityId);
+
+
+	/**
+	 * Save a entity to the cache.
+	 *
+	 * @param string $set  The metadata set this entity belongs to.
+	 * @param string $entityId  The entity id of this entity.
+	 * @param array $data  The associative array with the metadata for this entity.
+	 */
+	private function writeToCache($set, $entityId, $data) {
+		assert('is_string($set)');
+		assert('is_string($entityId)');
+		assert('is_array($data)');
+
+		if (empty($this->cacheDir)) {
+			return;
+		}
+
+		$cachefilename = $this->getCacheFilename($set, $entityId);
 		if (!is_writable(dirname($cachefilename))) throw new Exception('Could not write cache file for entity [' . $cachefilename. ']');
 		SimpleSAML_Logger::debug('MetaData - Handler.DynamicXML: Writing cache [' . $entityId . '] => [' . $cachefilename . ']' );
-		file_put_contents($cachefilename, $xmldata);
+		file_put_contents($cachefilename, serialize($data));
 	}
-	
-	
+
+
+	/**
+	 * Retrieve metadata for the correct set from a SAML2Parser.
+	 *
+	 * @param SimpleSAML_Metadata_SAMLParser $entity  A SAML2Parser representing an entity.
+	 * @param string $set  The metadata set we are looking for.
+	 * @return array|NULL  The associative array with the metadata, or NULL if no metadata for
+	 *                     the given set was found.
+	 */
+	private static function getParsedSet(SimpleSAML_Metadata_SAMLParser $entity, $set) {
+		assert('is_string($set)');
+
+		switch($set) {
+		case 'saml20-idp-remote':
+			return $entity->getMetadata20IdP();
+		case 'saml20-sp-remote':
+			return $entity->getMetadata20SP();
+		case 'shib13-idp-remote':
+			return $entity->getMetadata1xIdP();
+		case 'shib13-sp-remote':
+			return $entity->getMetadata1xSP();
+		default:
+			SimpleSAML_Logger::warning('MetaData - Handler.DynamicXML: Unknown metadata set: ' . $set);
+		}
+
+		return NULL;
+	}
+
+
 	/**
 	 * Overriding this function from the superclass SimpleSAML_Metadata_MetaDataStorageSource.
 	 *
@@ -141,77 +200,73 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerDynamicXML extends SimpleSAML_Me
 	 *         locate the entity.
 	 */
 	public function getMetaData($index, $set) {
-		
-		
-		SimpleSAML_Logger::info('MetaData - Handler.DynamicXML: Loading metadata entity [' . $index . '] from [' . $set . ']' );
-
-		
-		/* Get the configuration. */
-		$globalConfig = SimpleSAML_Configuration::getInstance();
+		assert('is_string($index)');
+		assert('is_string($set)');
 
 		if (!preg_match('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@', $index)) {
 			SimpleSAML_Logger::info('MetaData - Handler.DynamicXML: EntityID/index [' . $index . '] does not look like an URL. Skipping.' );
 			return NULL;
 		}
 
-		$xmldata = NULL;
+		SimpleSAML_Logger::info('MetaData - Handler.DynamicXML: Loading metadata entity [' . $index . '] from [' . $set . ']' );
 
-		/**
-		 * Read from cache if cache is defined.
-		 */
-		if (!empty($this->config['cachedir'])) {
-			$xmldata = $this->getFromCache($index);
+		/* Read from cache if possible. */
+		$data = $this->getFromCache($set, $index);
+
+		if ($data !== NULL && array_key_exists('expires', $data) && $data['expires'] < time()) {
+			/* Metadata has expired. */
+			$data = NULL;
 		}
 
+		if (isset($data)) {
+			/* Metadata found in cache and not expired. */
+			SimpleSAML_Logger::debug('MetaData - Handler.DynamicXML: Using cached metadata.');
+			return $data;
+		}
+
+		SimpleSAML_Logger::debug('MetaData - Handler.DynamicXML: Downloading [' . $index . ']' );
+		$xmldata = file_get_contents($index);
 		if (empty($xmldata)) {
-			$xmldata = file_get_contents($index);
-		
-			if (!empty($this->config['cachedir'])) {
-				$this->writeToCache($index, $xmldata);
-			}
+			throw new Exception('Error downloading metadata from "' . $index . '": ' .
+				SimpleSAML_Utilities::getLastError());
 		}
 
-		
 		$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsString($xmldata);
+		SimpleSAML_Logger::debug('MetaData - Handler.DynamicXML: Completed parsing of [' .
+			$index . '] Found [' . count($entities). '] entries.' );
 
-
-		SimpleSAML_Logger::debug('MetaData - Handler.DynamicXML: Completed parsing of [' . $index . '] Found [' . count($entities). '] entries.' );
-
-		foreach($entities as $entityId => $entity) {
-
-			SimpleSAML_Logger::debug('MetaData - Handler.DynamicXML: Looking for [' . $index . '] found [' . $entityId . '] entries.' );
-		
-			switch($set) {
-				case 'saml20-idp-remote' : 
-					$md = $entity->getMetadata20IdP();
-					if ($md !== NULL) return $md;
-					break;
-
-				case 'saml20-sp-remote' : 
-					$md = $entity->getMetadata20SP();
-					if ($md !== NULL) return $md;
-					break;
-
-				case 'shib13-idp-remote' : 
-					$md = $entity->getMetadata1xIdP();
-					if ($md !== NULL) return $md;
-					break;
-
-				case 'shib13-sp-remote' : 
-					$md = $entity->getMetadata1xSP();
-					if ($md !== NULL) return $md;
-					break;
-					
-			}
-
-
+		if (count($entities) === 0) {
+			throw new Exception('No entities found in "' . $index . '".');
 		}
-		
-		return NULL;
-		
+
+		if (array_key_exists($index, $entities)) {
+			$entity = $entities[$index];
+			$data = self::getParsedSet($entity, $set);
+			if ($data === NULL) {
+				throw new Exception('No metadata for set "' . $set .
+					'" available from "' . $index . '".');
+			}
+		} else {
+			SimpleSAML_Logger::warning('MetaData - Handler.DynamicXML: No entity with correct' .
+				' entity id found. Using the first entity which defines the correct' .
+				' metadata.');
+			foreach ($entities as $entity) {
+				$data = self::getParsedSet($entity, $set);
+				if ($data !== NULL) {
+					break;
+				}
+			}
+			if ($data === NULL) {
+				throw new Exception('No entities defines metadata for set "' .
+					$set . '" in "' . $index . '".');
+			}
+		}
+
+		$this->writeToCache($set, $index, $data);
+
+		return $data;
 	}
-	
-	
+
 }
 
 ?>
