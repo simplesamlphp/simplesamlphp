@@ -315,6 +315,24 @@ class SimpleSAML_Configuration {
 		return $ret;
 	}
 
+
+	/**
+	 * Retrieve list of options.
+	 *
+	 * This function returns the name of all options which are defined in this
+	 * configuration file, as an array of strings.
+	 *
+	 * @return array  Name of all options defined in this configuration file.
+	 */
+	public function getOptions() {
+
+		if (!isset($this->configuration)) {
+			$this->loadConfig();
+		}
+
+		return array_keys($this->configuration);
+	}
+
 }
 
 ?>
