@@ -1365,6 +1365,30 @@ class SimpleSAML_Utilities {
 		return $secretSalt;
 	}
 
+
+	/**
+	 * Retrieve last error message.
+	 *
+	 * This function retrieves the last error message. If no error has occured,
+	 * '[No error message found]' will be returned. If the required function isn't available,
+	 * '[Cannot get error message]' will be returned.
+	 *
+	 * @return string  Last error message.
+	 */
+	public static function getLastError() {
+
+		if (!function_exists('error_get_last')) {
+			return '[Cannot get error message]';
+		}
+
+		$error = error_get_last();
+		if ($error === NULL) {
+			return '[No error message found]';
+		}
+
+		return $error['message'];
+	}
+
 }
 
 ?>
