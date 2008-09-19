@@ -20,7 +20,7 @@ $this->includeAtTemplateBase('includes/header.php');
 
 		<p><?php echo($this->t('{openid:howtouse}')); ?></p>
 <pre>&lt;link rel="openid.server" href="<?php echo htmlspecialchars($this->data['openidserver']); ?>" /&gt;
-&lt;link rel="openid.delegation" href="<?php echo htmlspecialchars($this->data['openiddelegation']); ?>" /&gt;
+&lt;link rel="openid.delegate" href="<?php echo htmlspecialchars($this->data['openiddelegation']); ?>" /&gt;
 		
 		</pre>
 		
