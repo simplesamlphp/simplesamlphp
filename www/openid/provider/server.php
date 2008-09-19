@@ -1,30 +1,32 @@
 <?php
 
 require_once('../../_include.php');
-
+require_once('Auth/OpenID/Server.php');
 session_start();
 
 
+$config = SimpleSAML_Configuration::getInstance();
 
+/* Get the session object for the user. Create a new session if no session
+ * exists for this user.
+ */
+$session = SimpleSAML_Session::getInstance();
 
+if (!$config->getValue('enable.openid-provider', false))
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
-
+SimpleSAML_Logger::info('OpenID - Provider: Accessing OpenID Provider endpoint');
 
 /*
  * CONFIGURATION
  */
-
-
-
 /**
  * Initialize an OpenID store
  *
  * @return object $store an instance of OpenID store (see the
  * documentation for how to create one)
  */
-function getOpenIDStore()
-{
-    
+function getOpenIDStore() {
 	$config = SimpleSAML_Configuration::getInstance();
     return new Auth_OpenID_FileStore($config->getValue('openid.filestore'));
 }
@@ -54,8 +56,8 @@ $trusted_sites = array(
 /**
  * Handle a standard OpenID server request
  */
-function action_default()
-{
+function action_default() {
+
     $server =& getServer();
     $method = $_SERVER['REQUEST_METHOD'];
     $request = null;
@@ -107,7 +109,7 @@ function action_default()
     setRequestInfo($request);
 
     if (in_array($request->mode,
-                 array('checkid_immediate', 'checkid_setup'))) {
+			array('checkid_immediate', 'checkid_setup'))) {
 
         if (isTrusted($request->identity, $request->trust_root)) {
             $response =& $request->answer(true);
@@ -117,8 +119,10 @@ function action_default()
                     $response->addField('sreg', $k, $v);
                 }
             }
+            
         } else if ($request->immediate) {
             $response =& $request->answer(false, getServerURL());
+            
         } else {
             if (!getLoggedInUser()) {
             	// TODO Login
@@ -128,6 +132,8 @@ function action_default()
             
 			$config = SimpleSAML_Configuration::getInstance();
 			$t = new SimpleSAML_XHTML_Template($config, 'openid-trust.php');
+			
+
 			
 			$t->data['openidurl'] = getLoggedInUser();
 			$t->data['siteurl'] = htmlspecialchars($request->trust_root);;
@@ -156,38 +162,12 @@ function action_default()
 /**
  * Log out the currently logged in user
  */
-function action_logout()
-{
+function action_logout() {
     setLoggedInUser(null);
     setRequestInfo(null);
     return authCancel(null);
 }
 
-/**
- * Check the input values for a login request
- */
-function _login_checkInput($input)
-{
-    $openid_url = false;
-    $errors = array();
-
-    if (!isset($input['openid_url'])) {
-        $errors[] = 'Enter an OpenID URL to continue';
-    }
-    if (!isset($input['password'])) {
-        $errors[] = 'Enter a password to continue';
-    }
-    if (count($errors) == 0) {
-        $openid_url = $input['openid_url'];
-        $openid_url = Auth_OpenID::normalizeUrl($openid_url);
-        $password = $input['password'];
-        if (!checkLogin($openid_url, $password)) {
-            $errors[] = 'The entered password does not match the ' .
-                'entered identity URL.';
-        }
-    }
-    return array($errors, $openid_url);
-}
 
 
 
@@ -228,7 +208,7 @@ function check_authenticated_user() {
 		
 	$openid_url = $delegationprefix . $username;
 
-	error_log('set logged in user to be [' .$delegationprefix. '][' . $username . ']' );
+	SimpleSAML_Logger::info('OpenID - Provider: set logged in user to be [' .$delegationprefix. '][' . $username . ']');
 	setLoggedInUser($openid_url);
 
 }
@@ -237,22 +217,12 @@ function check_authenticated_user() {
 /**
  * Log in a user and potentially continue the requested identity approval
  */
-function action_login()
-{
-
-	error_log('action login');
-	
-	//session_start();
-	
+function action_login() {
+	SimpleSAML_Logger::info('OpenID - Provider: action login');
 	check_authenticated_user();
-	
 	$info = getRequestInfo();
-	
 	return doAuth($info);
-
 }
-
-
 
 
 
@@ -271,8 +241,8 @@ function action_trust()
     return doAuth($info, $trusted, true);
 }
 
-function action_sites()
-{
+function action_sites() {
+
     $sites = getSessionSites();
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['forget'])) {
@@ -292,7 +262,7 @@ function action_sites()
 	$t = new SimpleSAML_XHTML_Template($config, 'openid-sites.php');
 	
 	$t->data['openidurl'] = getLoggedInUser();
-	$t->data['sites'] = $sites;
+	$t->data['sites'] = is_array($sites) ? $sites : array();
 	
 	$t->show();    
 	exit(0);
@@ -307,29 +277,9 @@ function action_sites()
 /**
  * Return an HTTP redirect response
  */
-function redirect_render($redir_url)
-{
+function redirect_render($redir_url) {
 	SimpleSAML_Utilities::redirect($redir_url);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -510,8 +460,7 @@ function setRequestInfo($info=null)
 }
 
 
-function getSreg($identity)
-{
+function getSreg($identity) {
     // from config.php
     global $openid_sreg;
 
@@ -529,21 +478,13 @@ function getSreg($identity)
 
 
 
-
-
-
-
-
-
-
 /*
  * OpenID Transactions
  */ 
 
 
 
-function authCancel($info)
-{
+function authCancel($info) {
     if ($info) {
         setRequestInfo();
         $url = $info->getCancelURL();
@@ -553,13 +494,12 @@ function authCancel($info)
     redirect_render($url);
 }
 
-function doAuth($info, $trusted=null, $fail_cancels=false)
-{
+function doAuth($info, $trusted=null, $fail_cancels=false) {
     if (!$info) {
         // There is no authentication information, so bail
         authCancel(null);
     }
-
+    
     $req_url = $info->identity;
     $user = getLoggedInUser();
     setRequestInfo($info);
@@ -569,21 +509,10 @@ function doAuth($info, $trusted=null, $fail_cancels=false)
 		$config = SimpleSAML_Configuration::getInstance();
 		$session = SimpleSAML_Session::getInstance();
 		
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'OPENID', 
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'OPENIDWRONG', 
 			new Exception('OpenID: simpleSAMLphp doauth():' . 'Your identity [' . $user . 
 			'] does not match the requested identity from the OpenID consumer, which was: [' . $req_url . ']'));
-		
-		/*
-		$t = new SimpleSAML_XHTML_Template($config, 'error.php');
 
-		$t->data['header'] = 'OpenID identity mismatch';
-		$t->data['message'] = 'Your identity ' . htmlspecialchars($user) . ' does not match the requested identity from the
-			OpenID consumer, which was: ' . htmlspecialchars($req_url);
-		$t->data['e'] = new Exception('OpenID Error');
-		
-		$t->show();    
-		exit(0);
-		*/
     }
 
     $sites = getSessionSites();
@@ -615,9 +544,8 @@ function doAuth($info, $trusted=null, $fail_cancels=false)
 
 		$config = SimpleSAML_Configuration::getInstance();
 		$t = new SimpleSAML_XHTML_Template($config, 'openid-trust.php');
-		
 		$t->data['openidurl'] = getLoggedInUser();
-		$t->data['siteurl'] = htmlspecialchars($request->trust_root);;
+		$t->data['siteurl'] = htmlspecialchars($trust_root);;
 		$t->data['trusturl'] = buildURL('trust', true);
 		
 		$t->show();    
@@ -626,8 +554,6 @@ function doAuth($info, $trusted=null, $fail_cancels=false)
 
     }
 }
-
-
 
 
 /*
