@@ -65,6 +65,7 @@ $langnames = array(
 	'sl' => 'Slovenščina', // Slovensk
 	'hr' => 'Hrvatski', // Croatian
 	'hu' => 'Magyar', // Hungarian
+	'pt' => 'Português', // Portuguese
 );
 
 if (empty($_POST) ) {
