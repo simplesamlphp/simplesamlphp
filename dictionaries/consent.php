@@ -15,7 +15,8 @@ $lang = array(
 		'lb' => 'Jo',
 		'sl' => 'Da',
 		'hr' => 'Da, prihvaćam',
-		'hu' => 'Igen',
+		'hu' => 'Igen, elfogadom',
+		'pt' => 'Sim, Aceito',
 	),
 	'no' => array (
 		'no' => 'Nei',
@@ -31,7 +32,8 @@ $lang = array(
 		'lb' => 'Nee',
 		'sl' => 'Ne',
 		'hr' => 'Ne privaćam',
-		'hu' => 'Nem',
+		'hu' => 'Nem, nem fogadom el',
+		'pt' => 'Não, não aceito',
 	),
 	'remember' => array (
 		'no' => 'Husk samtykke',
@@ -47,7 +49,8 @@ $lang = array(
 		'lb' => 'Zoustëmmung verhalen',
 		'sl' => 'Zapomni si privolitev.',
 		'hr' => 'Zapamti dozvole',
-		'hu' => 'Emlékezzen a belegyezésre',
+		'hu' => 'Emlékezzen a hozzájárulásra',
+		'pt' => 'Lembrar Consentimento',
 	),
 	'consent_notice' => array (
 		'no' => 'Du er nå i ferd med å logge inn på tjenesten',
@@ -64,6 +67,7 @@ $lang = array(
 		'sl' => 'Pravkar se nameravate prijaviti v storitev',
 		'hr' => 'U tijeku je proces prijave za pristup servisu',
 		'hu' => 'Ön azonosítja magát ehhez a szolgáltatáshoz',
+		'pt' => 'Você está prestes a acessar o serviço',
 	),
 	'consent_accept' => array (
 		'no' => 'I forbindelse med innloggingen vil vertsorganisasjonen sende attributter med informasjon om din identitet til tjenesteleverandøren. Vil du gi tillatelse til dette?',
@@ -79,7 +83,8 @@ $lang = array(
 		'lb' => 'Waerend dem Login Prozess schéckt den Identity Provider Attributer, déi Informatiounen iwert aer Identitéit enthaalen. Akzeptéier daer daat?',
 		'sl' => 'Med postopkom prijave bo IdP posredoval atribute, ki vsebujejo informacije o vaši identiteti, tej storitvi. Ali se s tem strinjate? ',
 		'hr' => 'Servis zahtjeva da IDPNAME isporuči dolje navedene podatke. Slažete li se s time?',
-		'hu' => 'Az azonosítás során az azonosító szolgáltató személyes adatokat fog küldeni ennek a szolgáltatásnak. Engedélyezi?',
+		'hu' => 'Az azonosítás során IDPNAME az alábbi adatokat fogja küldeni a szolgáltatásnak. Engedélyezi?',
+		'pt' => 'O serviço exige que as informações a seguir sejam transferidas do IDPNAME. Você aceita isso?',
 	),
 	'consent_privacypolicy' => array (
 		'no' => 'Personvern for tjenesten',
@@ -92,7 +97,8 @@ $lang = array(
 		'es' => 'Política de privacidad para el servicio',
 		'sl' => 'Politika zasebnosti za ta SP',
 		'hr' => 'Politika zaštite privatnosti',
-		'hu' => 'A szolgáltatás adatvádelminyilatkozata',
+		'hu' => 'A szolgáltatás adatvádelmi nyilatkozata',
+		'pt' => 'Política de Privacidade deste serviço',
 	),
 	'login' => array (
 		'no' => 'innlogging',
@@ -109,6 +115,7 @@ $lang = array(
 		'sl' => 'Prijava',
 		'hr' => 'prijava',
 		'hu' => 'bejelentkezés',
+		'pt' => 'login',
 	),
 	'service_providers_for' => array (
 		'no' => 'Tjenesteleverandør for',
@@ -125,6 +132,7 @@ $lang = array(
 		'sl' => 'SP za',
 		'hr' => 'Davatelji usluge za',
 		'hu' => 'Alkalmazásszolgáltatók a következő számára',
+		'pt' => 'Provedor de serviços para',
 	),
 	'service_provider_header' => array (
 		'no' => 'Tjenesteleverandør',
@@ -141,6 +149,7 @@ $lang = array(
 		'sl' => 'SP',
 		'hr' => 'Davatelj usluge',
 		'hu' => 'Alkalmazásszolgáltató',
+		'pt' => 'Provedor de Serviços',
 	),
 	'status_header' => array (
 		'no' => 'Samtykke-status',
@@ -156,7 +165,8 @@ $lang = array(
 		'lb' => 'Zoustëmmungsstatus',
 		'sl' => 'Stanje privolitve',
 		'hr' => 'Status dozvole',
-		'hu' => 'Belegyezés állapota',
+		'hu' => 'Hozzájárulás állapota',
+		'pt' => 'Status do Consentimento',
 	),
 	'show_hide_attributes' => array (
 		'no' => 'Vis/skjul attributter',
@@ -173,6 +183,7 @@ $lang = array(
 		'sl' => 'prikaži/skrij atribute',
 		'hr' => 'prikaži/sakrij atribute',
 		'hu' => 'attribútumok mutatása/elrejtése',
+		'pt' => 'mostra/esconder Atributos',
 	),
 	'noconsent_title' => array (
 		'no' => 'Ingen samtykke gitt',
@@ -184,7 +195,8 @@ $lang = array(
 		'es' => 'No se dió el consentimiento',
 		'sl' => 'Privolitev ni bila dana.',
 		'hr' => 'Nema pristanka',
-		'hu' => 'Nincs belegyezés',
+		'hu' => 'Nincs hozzájárulás',
+		'pt' => 'Nenhum consentimento dado',
 	),
 	'noconsent_text' => array (
 		'no' => 'Du har ikke gitt samtykke til å overlevere attributter til tjenesteleverandøren.',
@@ -196,7 +208,8 @@ $lang = array(
 		'es' => 'No ha dado su consentimiento para tranferir sus atributos al proveedor de servicio.',
 		'sl' => 'Niste podali privolitve za posredovanje atributov SP-ju.',
 		'hr' => 'Niste dali pristanak da se vaši podaci isporuče davatelju usluge.',
-		'hu' => 'Nem adta belegyezését, ahoz hogy adatait kiszlgálatassuk a szolgáltató felé.',
+		'hu' => 'Nem adta hozzájárulását, hogy adatait továbbadjuk a szolgáltatónak.',
+		'pt' => 'Você não deu o consentimento para a transferência de seus atributos para o provedor de serviços.',
 	),
 	'noconsent_return' => array (
 		'no' => 'Gå tilbake til siden for samtykke',
@@ -206,6 +219,9 @@ $lang = array(
 		'sv' => 'Åter till sidan för samtycke',
 		'es' => 'Volver a la página de consentimiento',
 		'sl' => 'Vrnitev na privolitveno stran',
+		'hr' => 'Povratak na stranicu s dozvolama',
+		'hu' => 'Vissza az hozzájárulás-kezelő oldalra',
+		'pt' => 'Retornar a página de consentimento',
 	),
 
 );

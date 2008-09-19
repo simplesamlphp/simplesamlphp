@@ -16,6 +16,7 @@ $lang = array(
 		'sl' => 'Napaka',
 		'hr' => 'Greška',
 		'hu' => 'Hiba',
+		'pt' => 'Erro',
 	),
 	'user_pass_header' => array (
 		'no' => 'Skriv inn brukernavn og passord',
@@ -31,7 +32,8 @@ $lang = array(
 		'lb' => 'Gid w.e.g Aeren Benotzernumm an d Passwuert an',
 		'sl' => 'Vnesite svoje uporabniško ime in geslo',
 		'hr' => 'Unesite vašu korisničku oznaku i zaporku',
-		'hu' => 'Felhasználi név és jelszó',
+		'hu' => 'Felhasználónév és jelszó',
+		'pt' => 'Digite seu usuário e senha',
 	),
 	'user_pass_text' => array (
 		'no' => 'En tjeneste har bedt om bekreftelse på din identitet. Skriv inn ditt brukernavn og passord for å autentisere deg.',
@@ -47,7 +49,8 @@ $lang = array(
 		'lb' => 'En Service huet ungefrot aerch ze authentifizéiren. Daat heescht daer musst aeren Benotzernumm an d\'Passwuert an de Formulairen heidrënner angin.',
 		'sl' => 'Storitev zahteva, da se prijavite. To pomeni, da je potreben vnos uporabniškega imena in gesla v spodnji polji.',
 		'hr' => 'Servis zahtjeva od vas da se autenticirate. To znači da u donji obrazac trebate unijeti vašu korisničku oznaku i zaporku.',
-		'hu' => 'Ez a szolgáltatás megköveteli, hogy azonosítsa magát. Kérjük, adja meg felhasználó nevét és jelszavát az alábbi űrlapon.',
+		'hu' => 'Ez a szolgáltatás megköveteli, hogy azonosítsa magát. Kérjük, adja meg felhasználónevét és jelszavát az alábbi űrlapon.',
+		'pt' => 'Um serviço que você pediu necessita que você se autentique. Digite seu nome de usuário e senha no formulário abaixo.',
 	),
 	'login_button' => array (
 		'no' => 'Logg inn',
@@ -65,6 +68,7 @@ $lang = array(
 		'sl' => 'Prijava',
 		'hr' => 'Prijavi se',
 		'hu' => 'Bejelentkezés',
+		'pt' => 'Acessar',
 	),
 	'username' => array (
 		'no' => 'Brukernavn',
@@ -81,7 +85,8 @@ $lang = array(
 		'lb' => 'Benotzernumm',
 		'sl' => 'Uporabniško ime',
 		'hr' => 'Korisnička oznaka',
-		'hu' => 'Felhasználói név',
+		'hu' => 'Felhasználónév',
+		'pt' => 'Usuário',
 	),
 	'organization' => array (
 		'no' => 'Organisasjon',
@@ -99,6 +104,7 @@ $lang = array(
 		'sl' => 'Organizacija',
 		'hr' => 'Ustanova',
 		'hu' => 'Szervezet',
+		'pt' => 'Organização',
 	),
 	'password' => array (
 		'no' => 'Passord',
@@ -116,6 +122,7 @@ $lang = array(
 		'sl' => 'Geslo',
 		'hr' => 'Zaporka',
 		'hu' => 'Jelszó',
+		'pt' => 'Senha',
 	),
 	'help_header' => array (
 		'no' => 'Hjelp! Jeg har glemt passordet mitt.',
@@ -132,6 +139,7 @@ $lang = array(
 		'sl' => 'Na pomoč! Pozabil sem svoje geslo.',
 		'hr' => 'Upomoć! Zaboravio/la sam svoju zaporku.',
 		'hu' => 'Segítség! Elfelejtettem a jelszavam.',
+		'pt' => 'Ajude-me! Não lembro minha senha.',
 	),
 	'help_text' => array (
 		'no' => 'Synd! - Uten riktig brukernavn og passord kan du ikke autentisere deg. Det kan være noen som kan hjelpe deg. Forsøk å kontakt brukerstøtte ved din vertsorganisasjon.',
@@ -147,7 +155,8 @@ $lang = array(
 		'lb' => 'Pesch gehaat! - Ouni aeren Benotzernumm an d\'Passwuert kënn der aerch net authentifizéiren an op den Service zougraiffen.',
 		'sl' => 'Žal se brez uporabniškega imena in gesla ne morete prijaviti in uporabljati storitev.',
 		'hr' => 'Šteta! - Bez ispravne korisničke oznake i zaporke ne možete se autenticirati za pristup servisu. Da biste saznali vašu zaporku kontaktirajte administratora elektroničkog imenika vaše ustanove.',
-		'hu' => 'Ajaj! - Felhasználói neve és jelszava nélkül nem tudja azonosítani magát, így nem férhet hozzá a szolgáltatáshoz. Biztosan van valaki aki tud önnek segíteni. Vegye fel a kapcsolatot az ügyfélszolgálattal!',
+		'hu' => 'Ajaj! - Felhasználói neve és jelszava nélkül nem tudja azonosítani magát, így nem férhet hozzá a szolgáltatáshoz. Biztosan van valaki, aki tud önnek segíteni. Vegye fel a kapcsolatot az ügyfélszolgálattal!',
+		'pt' => 'Muito mal! - Sem o seu nome de usuário e a senha você não pode autenticar-se para acessar o serviço. Pode haver alguém que possa lhe ajudar. Consulte a central de dúvidas!',
 	),
 	'error_nopassword' => array (
 		'no' => 'Du kontaktet loginsiden, men passordet ble ikke sendt med. Forsøk igjen.',
@@ -164,6 +173,7 @@ $lang = array(
 		'sl' => 'Prišlo je do napake, poskusite znova.',
 		'hr' => 'Iz nekog razloga autentikacijski servis nije dobio vašu zaporku. Molimo pokušajte ponovo.',
 		'hu' => 'Valamilyen oknál fogva a jelszó nem olvasható. Kérjük, próbálja újra!',
+		'pt' => 'Você enviou alguma coisa para a página de login, mas por alguma razão a senha não foi enviada. Por favor tente novamente.  ',
 	),
 	'error_wrongpassword' => array (
 		'no' => 'Feil brukernavn eller passord.',
@@ -181,6 +191,7 @@ $lang = array(
 		'sl' => 'Napačno uporabniško ime ali geslo!',
 		'hr' => 'Neispravna korisnička oznaka ili zaporka.',
 		'hu' => 'Hibás felhasználói név vagy jelszó!',
+		'pt' => 'Nome de usuário ou senha incorretos.',
 	),
 	'select_home_org' => array (
 		'no' => 'Velg vertsorganisasjon',
@@ -192,6 +203,7 @@ $lang = array(
 		'sl' => 'Izberite vašo domačo organizacijo',
 		'hr' => 'Odaberite vašu matičnu ustanovu',
 		'hu' => 'Válassza ki az ön szervezetét',
+		'pt' => 'Escolha a sua organização principal',
 	),
 	'next' => array (
 		'no' => 'Fortsett',
@@ -203,6 +215,7 @@ $lang = array(
 		'sl' => 'Naprej',
 		'hr' => 'Dalje',
 		'hu' => 'Következő',
+		'pt' => 'Próximo',
 	),
 	'change_home_org_title' => array (
 		'no' => 'Endre din vertsorganisasjon',
@@ -214,6 +227,7 @@ $lang = array(
 		'sl' => 'Izberite vašo domačo organizacijo.',
 		'hr' => 'Promjenite vašu matičnu ustanovu',
 		'hu' => 'Válasszon másik szervezetet',
+		'pt' => 'Mudar a organização principal',
 	),
 	'change_home_org_text' => array (
 		'no' => 'Du har valgt <b>%HOMEORG%</b> som din vertsorganisasjon. Dersom dette er feil kan du velge en annen.',
@@ -225,6 +239,7 @@ $lang = array(
 		'sl' => 'Izbrali ste <b>%HOMEORG%</b> kot vašo domačo organizacijo. V primeru, da je izbor napačen izberite drugo.',
 		'hr' => 'Odabrali ste <b>%HOMEORG%</b> kao vašu matičnu ustanovu. Ako to nije točno možete odabrati drugu ustanovu.',
 		'hu' => 'A <b>%HOMEORG%</b> szervezetet választotta ki. Ha a választás nem volt helyes, kérem válasszon másikat.',
+		'pt' => 'Você escolheu <b>%HOMEORG%</b> como sua organização pessoal. Se isto estiver incorreto você pode escolher outra.',
 	),
 	'change_home_org_button' => array (
 		'no' => 'Velg vertsorganisasjon',
@@ -236,6 +251,7 @@ $lang = array(
 		'sl' => 'Izberite domačo organizacijo.',
 		'hr' => 'Odaberite matičnu ustanovu',
 		'hu' => 'Válassza ki a szervezetét',
+		'pt' => 'Escolher uma organização principal',
 	),
 	'help_desk_link' => array (
 		'no' => 'Hjemmesiden til brukerstøtte',
@@ -247,6 +263,7 @@ $lang = array(
 		'sl' => 'Spletna stran tehnične podpore uporabnikom.',
 		'hr' => 'Helpdesk stranice',
 		'hu' => 'Ügyfélszolgálat weboldala',
+		'pt' => 'Central de Ajuda',
 	),
 	'help_desk_email' => array (
 		'no' => 'Send e-post til brukerstøtte',
@@ -258,6 +275,7 @@ $lang = array(
 		'sl' => 'Pošlji e-poštno sporočilo tehnični podpori.',
 		'hr' => 'Pošaljite e-mail helpdesk službi',
 		'hu' => 'Küldjön e-mailt az ügyfélszolgálatnak',
+		'pt' => 'Envie um e-mail para a Central de Ajuda.',
 	),
 	'contact_info' => array (
 		'no' => 'Kontaktinformasjon:',
@@ -269,6 +287,7 @@ $lang = array(
 		'sl' => 'Kontakt',
 		'hr' => 'Kontakt podaci',
 		'hu' => 'Elérési információk',
+		'pt' => 'Informações de Contato',
 	),
 
 );

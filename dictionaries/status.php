@@ -10,6 +10,7 @@ $lang = array(
 		'sl' => 'SAML 2.0 SP Demo primer',
 		'hr' => 'SAML 2.0 SP primjer',
 		'hu' => 'SAML 2.0 SP próba példa',
+		'pt' => 'SAML 2.0 SP Exemplo',
 	),
 	'header_shib' => array (
 		'no' => 'Shibboleth Demo',
@@ -20,6 +21,7 @@ $lang = array(
 		'sl' => 'Shibboleth demo primer',
 		'hr' => 'Shibboleth primjer',
 		'hu' => 'Shibboleth próba',
+		'pt' => 'Shibboleth Demo',
 	),
 	'header_wsfed' => array (
 		'no' => 'WS-Fed SP Demo Eksempel',
@@ -30,6 +32,7 @@ $lang = array(
 		'sl' => 'WS-Fed SP demo primer',
 		'hr' => 'WS-Fed SP primjer',
 		'hu' => 'WS-Fed SP próba példa',
+		'pt' => 'WS-Fed SP Exemplo',
 	),
 	'header_diagnostics' => array (
 		'no' => 'SimpleSAMLphp diagnostikk',
@@ -40,6 +43,7 @@ $lang = array(
 		'sl' => 'SimpleSAMLphp diagnostika',
 		'hr' => 'SimpleSAMLphp dijagnostika',
 		'hu' => 'SimpleSAMLphp hibakeresés',
+		'pt' => 'Diagnósticos do SimpleSAMLphp',
 	),
 	'some_error_occured' => array (
 		'no' => 'En feil har oppstått',
@@ -49,7 +53,8 @@ $lang = array(
 		'es' => 'Se produjo un error',
 		'sl' => 'Prišlo je do napake!',
 		'hr' => 'Došlo je do greške',
-		'hu' => 'Néhány hiba lépet fel',
+		'hu' => 'Hiba történt',
+		'pt' => 'Ocorreu algum erro',
 	),
 	'intro' => array (
 		'no' => 'Hei, dette er en statusside på simpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon.',
@@ -58,7 +63,9 @@ $lang = array(
 		'sv' => 'Detta är stutussidan för simpleSAMLphp. Här kan du se om sessions giltig har gått ut, hur länge det dröjer innan den går ut samt alla attribut som tillhör sessionen.',
 		'es' => 'Hola, esta es la página de estado de simpleSAMLphp. Desde aquí puede ver si su sesión ha caducado, cuanto queda hasta que lo haga y todos los atributos existentes en su sesión.',
 		'sl' => 'Živjo! To je statusna stran simpleSAMLphp, ki omogoča pregled nad trajanjem vaše trenutne seje in atributi, ki so povezani z njo.',
-		'hu' => 'Üdvözöljük, az a SimpleSAMLphp státus oldala. Itt láthatja, ha lejárt a munkamenete, mikor lépet be utoljára és a munkamenetben tárolt jellemzőit.',
+		'hr' => 'Zdravo, ovo je stranica s prikazom aktualnog stanja simpleSAMLphp-a. Ovdje možete vidjeti je li vam istekla sjednica, koliko dugo će vaša sjednica još biti valjana i sve atribute koji su vezani uz vašu sjednicu.',
+		'hu' => 'Üdvözöljük, ez a SimpleSAMLphp státus oldala. Itt láthatja, ha lejárt a munkamenete, mikor lépett be utoljára és a munkamenethez tartozó attribútumokat.',
+		'pt' => 'Olá, esta é a página de status simpleSAMLphp. Aqui você pode ver é se a sua sessão expirou, o tempo que dura até ele expirar e todos os atributos que estão anexados à sua sessão.',
 	),
 	'validfor' => array (
 		'no' => 'Din sesjon er gyldig i %SECONDS% sekunder fra nå.',
@@ -67,7 +74,9 @@ $lang = array(
 		'sv' => 'Din session är giltig för %SECONDS% sekunder från nu.',
 		'es' => 'Su sesión será valida durante %SECONDS% segundos.',
 		'sl' => 'Vaša trenutna seja je veljavna še %SECONDS% sekund.',
-		'hu' => 'Az ön munkamenete %SECONDS% másodperce hitelesítve van.',
+		'hr' => 'Vaša sjednica je valjana još %SECONDS% sekundi.',
+		'hu' => 'Az ön munkamenete még %SECONDS% másodpercig érvényes',
+		'pt' => 'Sua sessão é válida por %SECONDS% segundos a partir de agora.',
 	),
 	'sessionsize' => array (
 		'no' => 'Sesjons størrelse: %SIZE%',
@@ -76,7 +85,9 @@ $lang = array(
 		'sv' => 'Sessionsstorlek: %SIZE%',
 		'es' => 'Tamaño de la sesión: %SIZE%',
 		'sl' => 'Velikost seje: %SIZE% bajtov',
+		'hr' => 'Veličina sjednice: %SIZE%',
 		'hu' => 'Munkamenet mérete: %SIZE%',
+		'pt' => 'Tamanho da sessão: %SIZE%',
 	),
 	'attributes_header' => array (
 		'no' => 'Dine attributter',
@@ -86,7 +97,8 @@ $lang = array(
 		'es' => 'Atributos',
 		'sl' => 'Vaši atributi',
 		'hr' => 'Vaši atributi',
-		'hu' => 'Az ön jellemzői',
+		'hu' => 'Az ön attribútumai',
+		'pt' => 'Seus atributos',
 	),
 	'logout' => array (
 		'no' => 'Logg ut',
@@ -97,6 +109,7 @@ $lang = array(
 		'sl' => 'Odjava',
 		'hr' => 'Odjavi se',
 		'hu' => 'Kilépés',
+		'pt' => 'Desconectar',
 	),
 
 );

@@ -17,6 +17,7 @@ $lang = array(
 		'sl' => 'Polno ime',
 		'hr' => 'Ime i prezime',
 		'hu' => 'Teljes név',
+		'pt' => 'Nome Comum (CN)',
 	),
 	'attribute_dc' => array (
 		'no' => 'Navneledd (DC)',
@@ -31,6 +32,7 @@ $lang = array(
 		'sl' => 'Domenska komponenta (DC)',
 		'hr' => 'Domenska komponenta (DC)',
 		'hu' => 'domain összetevő',
+		'pt' => 'Componente do Domínio (DC)',
 	),
 	'attribute_displayname' => array (
 		'no' => 'Navn som normalt vises',
@@ -45,6 +47,7 @@ $lang = array(
 		'sl' => 'Prikazno ime',
 		'hr' => 'Ime koje se prikazuje',
 		'hu' => 'Megjelenő név',
+		'pt' => 'Nome a ser mostrado',
 	),
 	'attribute_facsimiletelephonenumber' => array (
 		'no' => 'Faksnummer',
@@ -59,6 +62,7 @@ $lang = array(
 		'sl' => 'Fax',
 		'hr' => 'Fax broj',
 		'hu' => 'Fax',
+		'pt' => 'Número do Fax',
 	),
 	'attribute_givenname' => array (
 		'no' => 'Fornavn',
@@ -76,6 +80,7 @@ $lang = array(
 		'sl' => 'Ime',
 		'hr' => 'Ime',
 		'hu' => 'Keresztnév',
+		'pt' => 'Nome',
 	),
 	'attribute_homephone' => array (
 		'no' => 'Hjemmetelefon',
@@ -90,6 +95,7 @@ $lang = array(
 		'sl' => 'Domača telefonska številka',
 		'hr' => 'Kućni telefonski broj',
 		'hu' => 'Otthoni telefon',
+		'pt' => 'Telefone fixo',
 	),
 	'attribute_homepostaladdress' => array (
 		'no' => 'Postadresse hjemme',
@@ -104,6 +110,7 @@ $lang = array(
 		'sl' => 'Domači naslov',
 		'hr' => 'Kućna poštanska adresa',
 		'hu' => 'Otthoni levelezési cím',
+		'pt' => 'Endereço residencial',
 	),
 	'attribute_jpegphoto' => array (
 		'no' => 'JPEG-foto',
@@ -118,6 +125,7 @@ $lang = array(
 		'sl' => 'JPEG Slika',
 		'hr' => 'JPEG slika',
 		'hu' => 'Fotó JPEG formátumban',
+		'pt' => 'Foto JPEG',
 	),
 	'attribute_l' => array (
 		'no' => 'Sted',
@@ -131,7 +139,8 @@ $lang = array(
 		'lb' => 'Uertschaft',
 		'sl' => 'Kraj',
 		'hr' => 'Mjesto (lokalitet)',
-		'hu' => 'Helység',
+		'hu' => 'Település',
+		'pt' => 'Localidade',
 	),
 	'attribute_labeleduri' => array (
 		'no' => 'URI med valgfri tilleggskommentar',
@@ -145,7 +154,8 @@ $lang = array(
 		'lb' => 'Beschrëfteten URI',
 		'sl' => 'Označen URI',
 		'hr' => 'URI adresa',
-		'hu' => 'Címkézett URI',
+		'hu' => 'Honlap cím',
+		'pt' => 'URI rotulado',
 	),
 	'attribute_mail' => array (
 		'no' => 'E-post',
@@ -163,6 +173,7 @@ $lang = array(
 		'sl' => 'Elektronski naslov',
 		'hr' => 'Elektronička adresa',
 		'hu' => 'E-mail',
+		'pt' => 'E-mail',
 	),
 	'attribute_manager' => array (
 		'no' => 'Overordnet',
@@ -176,7 +187,8 @@ $lang = array(
 		'lb' => 'Manager',
 		'sl' => 'Menedžer',
 		'hr' => 'Menadžer',
-		'hu' => 'Karbantartó',
+		'hu' => 'Manager',
+		'pt' => 'Administrador',
 	),
 	'attribute_mobile' => array (
 		'no' => 'Mobiltelefon',
@@ -194,6 +206,7 @@ $lang = array(
 		'sl' => 'Mobilni telefon',
 		'hr' => 'Broj mobilnog telefona',
 		'hu' => 'Mobil',
+		'pt' => 'Celular',
 	),
 	'attribute_o' => array (
 		'no' => 'Navn på organisasjon',
@@ -210,6 +223,7 @@ $lang = array(
 		'sl' => 'Ime organizacije',
 		'hr' => 'Naziv matične ustanove',
 		'hu' => 'Szervezet neve',
+		'pt' => 'Nome da Organização (O)',
 	),
 	'attribute_ou' => array (
 		'no' => 'Organisasjonsenhet',
@@ -224,6 +238,7 @@ $lang = array(
 		'sl' => 'Oddelek',
 		'hr' => 'Organizacijska jedinica',
 		'hu' => 'Szervezeti egység',
+		'pt' => 'Unidade Organizacional (OU)',
 	),
 	'attribute_postaladdress' => array (
 		'no' => 'Postadresse',
@@ -238,6 +253,7 @@ $lang = array(
 		'sl' => 'Poštni naslov',
 		'hr' => 'Poštanska adresa',
 		'hu' => 'Levelezési cím',
+		'pt' => 'Endereço',
 	),
 	'attribute_postalcode' => array (
 		'no' => 'Postnummer',
@@ -252,6 +268,7 @@ $lang = array(
 		'sl' => 'Poštna številka',
 		'hr' => 'Broj pošte',
 		'hu' => 'Irányítószám',
+		'pt' => 'CEP',
 	),
 	'attribute_postofficebox' => array (
 		'no' => 'Postboks',
@@ -266,6 +283,7 @@ $lang = array(
 		'sl' => 'Poštni predal',
 		'hr' => 'Broj poštanskog pretinca',
 		'hu' => 'Postafiók',
+		'pt' => 'Caixa Postal',
 	),
 	'attribute_preferredlanguage' => array (
 		'no' => 'Foretrukket språk',
@@ -283,6 +301,7 @@ $lang = array(
 		'sl' => 'Želen jezik',
 		'hr' => 'Prioritetni jezik',
 		'hu' => 'Elsődleges nyelv',
+		'pt' => 'Linguagem preferida',
 	),
 	'attribute_sn' => array (
 		'no' => 'Etternavn',
@@ -300,6 +319,7 @@ $lang = array(
 		'sl' => 'Priimek',
 		'hr' => 'Prezime',
 		'hu' => 'Vezetéknév',
+		'pt' => 'Sobrenome',
 	),
 	'attribute_street' => array (
 		'no' => 'Gate',
@@ -314,6 +334,7 @@ $lang = array(
 		'sl' => 'Ulica',
 		'hr' => 'Ulica',
 		'hu' => 'Utca',
+		'pt' => 'Rua',
 	),
 	'attribute_telephonenumber' => array (
 		'no' => 'Telefon',
@@ -327,7 +348,8 @@ $lang = array(
 		'lb' => 'Telefonsnummer',
 		'sl' => 'Telefonska številka',
 		'hr' => 'Broj telefona',
-		'hu' => 'Telefon szám',
+		'hu' => 'Telefonszám',
+		'pt' => 'Número de Telefone',
 	),
 	'attribute_title' => array (
 		'no' => 'Tittel',
@@ -344,6 +366,7 @@ $lang = array(
 		'sl' => 'Naziv',
 		'hr' => 'Naziv',
 		'hu' => 'Cím',
+		'pt' => 'Título',
 	),
 	'attribute_uid' => array (
 		'no' => 'Bruker-ID',
@@ -361,6 +384,7 @@ $lang = array(
 		'sl' => 'Uporabniško ime',
 		'hr' => 'Identifikator korisnika u ustanovi',
 		'hu' => 'Felhasználói azonosító',
+		'pt' => 'Identificação (UID)',
 	),
 	'attribute_eduorghomepageuri' => array (
 		'no' => 'Organisasjonens hjemmeside',
@@ -375,6 +399,7 @@ $lang = array(
 		'sl' => 'Spletna stran organizacije',
 		'hr' => 'Službene web stranice (URL adresa) ustanove',
 		'hu' => 'Szervezet weboldala',
+		'pt' => 'Site da organização',
 	),
 	'attribute_eduorglegalname' => array (
 		'no' => 'Foretaksnavn',
@@ -389,6 +414,7 @@ $lang = array(
 		'sl' => 'Naziv organizacije',
 		'hr' => 'Službeni naziv ustanove',
 		'hu' => 'Szervezet hivatalos neve',
+		'pt' => 'Nome legal da Organização',
 	),
 	'attribute_edupersonaffiliation' => array (
 		'no' => 'Tilhørighet',
@@ -406,6 +432,7 @@ $lang = array(
 		'sl' => 'Vloga uporabnika',
 		'hr' => 'Pripadnost',
 		'hu' => 'Viszony',
+		'pt' => 'Filiação',
 	),
 	'attribute_edupersonentitlement' => array (
 		'no' => 'Rettighet',
@@ -423,6 +450,7 @@ $lang = array(
 		'sl' => 'Upravičenost do storitve',
 		'hr' => 'Pripadnost grupi',
 		'hu' => 'Ezekre a szolgáltatásokra jogosult',
+		'pt' => 'Titularidade sobre o serviço',
 	),
 	'attribute_edupersonnickname' => array (
 		'no' => 'Kallenavn',
@@ -437,6 +465,7 @@ $lang = array(
 		'sl' => 'Vzdevek',
 		'hr' => 'Nadimak',
 		'hu' => 'Becenév',
+		'pt' => 'Apelido',
 	),
 	'attribute_edupersonorgdn' => array (
 		'no' => 'Entydig navn (DN) for brukerens vertsorganisasjon',
@@ -450,7 +479,8 @@ $lang = array(
 		'lb' => 'Distinguished name (DN) of person\'s home organization',
 		'sl' => 'Ime domače organizacije (DN), kateri pripada oseba',
 		'hr' => 'DN korisnikove matične ustanove',
-		'hu' => 'A felhasználó munkahelyének azonosító neve(DN-je)',
+		'hu' => 'A felhasználó munkahelyének azonosító neve (DN-je)',
+		'pt' => 'Nome distinto (DN) da sua organização principal',
 	),
 	'attribute_edupersonorgunitdn' => array (
 		'no' => 'Entydig navn (DN) for brukerens organisasjonsenhet',
@@ -464,7 +494,8 @@ $lang = array(
 		'lb' => 'Distinguished name (DN) of the person\'s home organizational unit',
 		'sl' => 'Ime oddelka domače organizacije (DN), kateremu pripada oseba',
 		'hr' => 'DN korisnikove organizacijske jedinice u matičnoj ustanovi',
-		'hu' => 'A felhasználó szervezeti egység azonosító neve(DN-je)',
+		'hu' => 'A felhasználó szervezeti egység azonosító neve (DN-je)',
+		'pt' => 'Nome distinto (DN) da sua unidade organizacional principal',
 	),
 	'attribute_edupersonprimaryaffiliation' => array (
 		'no' => 'Primær tilknytning til organisasjon',
@@ -478,7 +509,8 @@ $lang = array(
 		'lb' => 'Haapt Zougehéiregkeet',
 		'sl' => 'Primarna pripadnost',
 		'hr' => 'Temeljna povezanost s ustanovom',
-		'hu' => 'Elsődleges tagság',
+		'hu' => 'Elsődleges viszony',
+		'pt' => 'Filiação Primária',
 	),
 	'attribute_edupersonprincipalname' => array (
 		'no' => 'Personlig ID hos organisasjonen',
@@ -496,6 +528,7 @@ $lang = array(
 		'sl' => 'ID uporabnika na domači organizaciji',
 		'hr' => 'Korisnička oznaka',
 		'hu' => 'Állandó azonosító a saját intézményben',
+		'pt' => 'Diretor da organização principal',
 	),
 	'attribute_edupersonscopedaffiliation' => array (
 		'no' => 'Gruppetilhørighet',
@@ -512,7 +545,8 @@ $lang = array(
 		'lb' => 'Gruppen Zougehéiregket',
 		'sl' => 'Članstvo v skupini',
 		'hr' => 'Povezanost s ustanovom',
-		'hu' => 'Csoporttagság',
+		'hu' => 'Saját intézményhez való viszony',
+		'pt' => 'Filiação na organização principal',
 	),
 	'attribute_edupersontargetedid' => array (
 		'no' => 'Persistent anonym ID',
@@ -529,6 +563,7 @@ $lang = array(
 		'sl' => 'Trajni anonimni ID',
 		'hr' => 'Trajni anonimni ID',
 		'hu' => 'Állandó anonim azonosító',
+		'pt' => 'Apelido persistente ID',
 	),
 	'attribute_noreduorgnin' => array (
 		'no' => 'Organisasjonsnummer',
@@ -543,6 +578,7 @@ $lang = array(
 		'sl' => 'Organizacijska številka',
 		'hr' => 'Brojčani identifikator ustanove',
 		'hu' => 'Szervezeti szám',
+		'pt' => 'Número Organizacional',
 	),
 	'attribute_noredupersonbirthdate' => array (
 		'no' => 'Fødselsdato',
@@ -556,7 +592,8 @@ $lang = array(
 		'lb' => 'Gebuertsdaag',
 		'sl' => 'Datum rojstva',
 		'hr' => 'Datum rođenja',
-		'hu' => 'Szüetési dátum',
+		'hu' => 'Születési dátum',
+		'pt' => 'Data de Nascimento',
 	),
 	'attribute_noredupersonlin' => array (
 		'no' => 'Lokalt ID-nummer',
@@ -571,6 +608,7 @@ $lang = array(
 		'sl' => 'Vpisna številka',
 		'hr' => 'Lokalni brojčani identifikator osobe u ustanovi (LOCAL_NO)',
 		'hu' => 'Helyi azonosító szám',
+		'pt' => 'Número de Identificação Local',
 	),
 	'attribute_noredupersonnin' => array (
 		'no' => 'Fødselsnummer',
@@ -588,6 +626,7 @@ $lang = array(
 		'sl' => 'Matična številka',
 		'hr' => 'Brojčani identifikator osobe (JMBG, JMBAG, MBZ ili PASSPORT_NO)',
 		'hu' => 'Társadalombiztosítási azonosító szám',
+		'pt' => 'Número de identificação atribuído pelas autoridades públicas',
 	),
 	'attribute_schachomeorganization' => array (
 		'no' => 'Unik ID for vertsorganisasjon',
@@ -603,7 +642,8 @@ $lang = array(
 		'lb' => 'Eendeiteg Heemorganisatiouns ID',
 		'sl' => 'ID domače organizacije',
 		'hr' => 'Oznaka matične ustanove',
-		'hu' => 'Saját intézmény',
+		'hu' => 'Saját intézmény domain neve',
+		'pt' => 'Nome de domínio da organização principal',
 	),
 	'attribute_organisationname' => array (
 		'no' => 'Navn på organisasjon',
@@ -621,6 +661,7 @@ $lang = array(
 		'sl' => 'Ime organizacije',
 		'hr' => 'Naziv matične ustanove',
 		'hu' => 'Szervezet neve',
+		'pt' => 'Nome da Organização',
 	),
 
 );

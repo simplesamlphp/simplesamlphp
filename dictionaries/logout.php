@@ -11,6 +11,7 @@ $lang = array(
 		'sl' => 'Odjavljen',
 		'hr' => 'Odjavili ste se',
 		'hu' => 'Sikeres kilépés',
+		'pt' => 'Desconectado',
 	),
 	'logged_out_text' => array (
 		'no' => 'Du er nå utlogget. Takk for at du benyttet denne tjenesten.',
@@ -21,7 +22,8 @@ $lang = array(
 		'es' => 'Ha sido desconectado. Gracias por usar este servicio.',
 		'sl' => 'Odjava je bila uspešna. Hvala, ker uporabljate to storitev.',
 		'hr' => 'Odjavili ste se. Hvala što ste koristili ovaj servis.',
-		'hu' => 'Sikeresen kijelentkezet. Köszönjük, hogy a mi szolgáltatásunkat használja!',
+		'hu' => 'Sikeresen kijelentkezett. Köszönjük, hogy használta a szolgáltatást.',
+		'pt' => 'Você foi desconectado. Obrigado por usar este serviço.',
 	),
 	'default_link_text' => array (
 		'no' => 'Gå tilbake til simpleSAMLphp installasjonen sin startside.',
@@ -33,6 +35,7 @@ $lang = array(
 		'sl' => 'Nazaj na namestitveno stran simpleSAMLphp',
 		'hr' => 'Natrag na simpleSAMLphp instalacijsku stranicu',
 		'hu' => 'Vissza a simpleSAMLphp telepítő oldalára',
+		'pt' => 'Voltar a instalação do simpleSAMLphp',
 	),
 
 );
