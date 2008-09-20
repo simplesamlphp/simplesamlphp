@@ -57,18 +57,19 @@ $trusted_sites = array(
  * Handle a standard OpenID server request
  */
 function action_default() {
-
+	SimpleSAML_Logger::debug('OpenID - Provider: action default');
+	
     $server =& getServer();
-    $method = $_SERVER['REQUEST_METHOD'];
-    $request = null;
-    if ($method == 'GET') {
-        $request = $_GET;
-    } else {
-        $request = $_POST;
-    }
+//     $method = $_SERVER['REQUEST_METHOD'];
+//     $request = null;
+//     if ($method == 'GET') {
+//         $request = $_GET;
+//     } else {
+//         $request = $_POST;
+//     }
 
-    $request = Auth_OpenID::fixArgs($request);
-    $request = $server->decodeRequest($request);
+//    $request = Auth_OpenID::fixArgs($request);
+    $request = $server->decodeRequest();
 
     if (!$request) {
 
@@ -105,48 +106,43 @@ function action_default() {
 		$t->show();    
 		exit(0);
     }
-
+    
+    
+    
     setRequestInfo($request);
 
     if (in_array($request->mode,
-			array('checkid_immediate', 'checkid_setup'))) {
+                 array('checkid_immediate', 'checkid_setup'))) {
 
-        if (isTrusted($request->identity, $request->trust_root)) {
-            $response =& $request->answer(true);
-            $sreg = getSreg($request->identity);
-            if (is_array($sreg)) {
-                foreach ($sreg as $k => $v) {
-                    $response->addField('sreg', $k, $v);
-                }
+        if ($request->idSelect()) {
+            // Perform IDP-driven identifier selection
+            if ($request->mode == 'checkid_immediate') {
+                $response =& $request->answer(false);
+            } else {
+                return trust_render($request);
             }
-            
+        } else if ((!$request->identity) &&
+                   (!$request->idSelect())) {
+            // No identifier used or desired; display a page saying
+            // so.
+            return noIdentifier_render();
         } else if ($request->immediate) {
-            $response =& $request->answer(false, getServerURL());
-            
+            $response =& $request->answer(false, buildURL());
         } else {
             if (!getLoggedInUser()) {
-            	// TODO Login
-                //return login_render();
-                check_authenticated_user();
+	            check_authenticated_user();
+                #return login_render();
             }
-            
-			$config = SimpleSAML_Configuration::getInstance();
-			$t = new SimpleSAML_XHTML_Template($config, 'openid-trust.php');
-			
-
-			
-			$t->data['openidurl'] = getLoggedInUser();
-			$t->data['siteurl'] = htmlspecialchars($request->trust_root);;
-			$t->data['trusturl'] = buildURL('trust', true);
-			
-			$t->show();    
-			exit(0);
-            
-            //return trust_render($request);
+            return trust_render($request);
         }
     } else {
+    
+// 	    error_log('request is null' . (is_null($request) ? 'yes' : 'no'));
+// 	    error_log('request dump: ' . var_export($request, TRUE) );
         $response =& $server->handleRequest($request);
     }
+	
+// 	error_log('response is null' . (is_null($response) ? 'yes' : 'no'));
 
     $webresponse =& $server->encodeResponse($response);
 
@@ -156,13 +152,16 @@ function action_default() {
 
     header(header_connection_close);
     print $webresponse->body;
-    exit(0);
+    exit(0);    
+
 }
 
 /**
  * Log out the currently logged in user
  */
 function action_logout() {
+	SimpleSAML_Logger::debug('OpenID - Provider: action logout');
+	
     setLoggedInUser(null);
     setRequestInfo(null);
     return authCancel(null);
@@ -170,9 +169,17 @@ function action_logout() {
 
 
 
-
+function trust_render($request) {
+	$config = SimpleSAML_Configuration::getInstance();
+	$t = new SimpleSAML_XHTML_Template($config, 'openid-trust.php');
+	$t->data['openidurl'] = getLoggedInUser();
+	$t->data['siteurl'] = htmlspecialchars($request->trust_root);;
+	$t->data['trusturl'] = buildURL('trust', true);	
+	$t->show();    
+}
 
 function check_authenticated_user() {
+	SimpleSAML_Logger::debug('OpenID - Provider: check authenticated user() ');
 
 	//session_start();
 	
@@ -218,7 +225,7 @@ function check_authenticated_user() {
  * Log in a user and potentially continue the requested identity approval
  */
 function action_login() {
-	SimpleSAML_Logger::info('OpenID - Provider: action login');
+	SimpleSAML_Logger::debug('OpenID - Provider: action login');
 	check_authenticated_user();
 	$info = getRequestInfo();
 	return doAuth($info);
@@ -229,8 +236,8 @@ function action_login() {
 /**
  * Ask the user whether he wants to trust this site
  */
-function action_trust()
-{
+function action_trust() {
+	SimpleSAML_Logger::debug('OpenID - Provider: action trust');
     $info = getRequestInfo();
     $trusted = isset($_POST['trust']);
     if ($info && isset($_POST['remember'])) {
@@ -242,6 +249,7 @@ function action_trust()
 }
 
 function action_sites() {
+	SimpleSAML_Logger::debug('OpenID - Provider: action sites');
 
     $sites = getSessionSites();
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -297,8 +305,7 @@ function redirect_render($redir_url) {
 /**
  * Get the URL of the current script
  */
-function getServerURL()
-{
+function getServerURL() {
     $path = $_SERVER['SCRIPT_NAME'];
     $host = $_SERVER['HTTP_HOST'];
     $port = $_SERVER['SERVER_PORT'];
@@ -315,8 +322,7 @@ function getServerURL()
 /**
  * Build a URL to a server action
  */
-function buildURL($action=null, $escaped=true)
-{
+function buildURL($action=null, $escaped=true) {
     $url = getServerURL();
     if ($action) {
         $url .= '/' . $action;
@@ -327,8 +333,7 @@ function buildURL($action=null, $escaped=true)
 /**
  * Extract the current action from the request
  */
-function getAction()
-{
+function getAction() {
     $path_info = @$_SERVER['PATH_INFO'];
     $action = ($path_info) ? substr($path_info, 1) : '';
     $function_name = 'action_' . $action;
@@ -338,8 +343,7 @@ function getAction()
 /**
  * Write the response to the request
  */
-function writeResponse($resp)
-{
+function writeResponse($resp) {
     list ($headers, $body) = $resp;
     array_walk($headers, 'header');
     header(header_connection_close);
@@ -361,8 +365,8 @@ function getServer()
 /**
  * Return whether the trust root is currently trusted
  */
-function isTrusted($identity_url, $trust_root)
-{
+function isTrusted($identity_url, $trust_root) {
+
     // from config.php
     global $trusted_sites;
 
