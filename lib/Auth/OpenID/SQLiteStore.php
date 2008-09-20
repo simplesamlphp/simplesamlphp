@@ -20,23 +20,13 @@ class Auth_OpenID_SQLiteStore extends Auth_OpenID_SQLStore {
     function setSQL()
     {
         $this->sql['nonce_table'] =
-            "CREATE TABLE %s (nonce CHAR(8) UNIQUE PRIMARY KEY, ".
-            "expires INTEGER)";
+            "CREATE TABLE %s (server_url VARCHAR(2047), timestamp INTEGER, ".
+            "salt CHAR(40), UNIQUE (server_url, timestamp, salt))";
 
         $this->sql['assoc_table'] =
             "CREATE TABLE %s (server_url VARCHAR(2047), handle VARCHAR(255), ".
             "secret BLOB(128), issued INTEGER, lifetime INTEGER, ".
             "assoc_type VARCHAR(64), PRIMARY KEY (server_url, handle))";
-
-        $this->sql['settings_table'] =
-            "CREATE TABLE %s (setting VARCHAR(128) UNIQUE PRIMARY KEY, ".
-            "value BLOB(20))";
-
-        $this->sql['create_auth'] =
-            "INSERT INTO %s VALUES ('auth_key', ?)";
-
-        $this->sql['get_auth'] =
-            "SELECT value FROM %s WHERE setting = 'auth_key'";
 
         $this->sql['set_assoc'] =
             "INSERT OR REPLACE INTO %s VALUES (?, ?, ?, ?, ?, ?)";
@@ -44,6 +34,9 @@ class Auth_OpenID_SQLiteStore extends Auth_OpenID_SQLStore {
         $this->sql['get_assocs'] =
             "SELECT handle, secret, issued, lifetime, assoc_type FROM %s ".
             "WHERE server_url = ?";
+
+        $this->sql['get_expired'] =
+            "SELECT server_url FROM %s WHERE issued + lifetime < ?";
 
         $this->sql['get_assoc'] =
             "SELECT handle, secret, issued, lifetime, assoc_type FROM %s ".
@@ -53,13 +46,22 @@ class Auth_OpenID_SQLiteStore extends Auth_OpenID_SQLStore {
             "DELETE FROM %s WHERE server_url = ? AND handle = ?";
 
         $this->sql['add_nonce'] =
-            "INSERT OR REPLACE INTO %s (nonce, expires) VALUES (?, ?)";
+            "INSERT INTO %s (server_url, timestamp, salt) VALUES (?, ?, ?)";
+    }
 
-        $this->sql['get_nonce'] =
-            "SELECT * FROM %s WHERE nonce = ?";
-
-        $this->sql['remove_nonce'] =
-            "DELETE FROM %s WHERE nonce = ?";
+    /**
+     * @access private
+     */
+    function _add_nonce($server_url, $timestamp, $salt)
+    {
+        // PECL SQLite extensions 1.0.3 and older (1.0.3 is the
+        // current release at the time of this writing) have a broken
+        // sqlite_escape_string function that breaks when passed the
+        // empty string. Prefixing all strings with one character
+        // keeps them unique and avoids this bug. The nonce table is
+        // write-only, so we don't have to worry about updating other
+        // functions with this same bad hack.
+        return parent::_add_nonce('x' . $server_url, $timestamp, $salt);
     }
 }
 

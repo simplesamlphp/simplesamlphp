@@ -1,22 +1,26 @@
 <?php
 
-require_once 'Services/Yadis/XRDS.php';
-require_once 'Services/Yadis/XRI.php';
+/**
+ * Code for using a proxy XRI resolver.
+ */
 
-class Services_Yadis_ProxyResolver {
-    function Services_Yadis_ProxyResolver(&$fetcher, $proxy_url = null)
+require_once 'Auth/Yadis/XRDS.php';
+require_once 'Auth/Yadis/XRI.php';
+
+class Auth_Yadis_ProxyResolver {
+    function Auth_Yadis_ProxyResolver(&$fetcher, $proxy_url = null)
     {
         $this->fetcher =& $fetcher;
         $this->proxy_url = $proxy_url;
         if (!$this->proxy_url) {
-            $this->proxy_url = Services_Yadis_getDefaultProxy();
+            $this->proxy_url = Auth_Yadis_getDefaultProxy();
         }
     }
 
     function queryURL($xri, $service_type = null)
     {
         // trim off the xri:// prefix
-        $qxri = substr(Services_Yadis_toURINormal($xri), 6);
+        $qxri = substr(Auth_Yadis_toURINormal($xri), 6);
         $hxri = $this->proxy_url . $qxri;
         $args = array(
                       '_xrd_r' => 'application/xrds+xml'
@@ -29,7 +33,7 @@ class Services_Yadis_ProxyResolver {
             $args['_xrd_r'] .= ';sep=false';
         }
 
-        $query = Services_Yadis_XRIAppendArgs($hxri, $args);
+        $query = Auth_Yadis_XRIAppendArgs($hxri, $args);
         return $query;
     }
 
@@ -43,11 +47,11 @@ class Services_Yadis_ProxyResolver {
             if ($response->status != 200) {
                 continue;
             }
-            $xrds = Services_Yadis_XRDS::parseXRDS($response->body);
+            $xrds = Auth_Yadis_XRDS::parseXRDS($response->body);
             if (!$xrds) {
                 continue;
             }
-            $canonicalID = Services_Yadis_getCanonicalID($xri,
+            $canonicalID = Auth_Yadis_getCanonicalID($xri,
                                                          $xrds);
 
             if ($canonicalID === false) {

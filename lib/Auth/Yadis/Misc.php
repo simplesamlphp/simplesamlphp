@@ -9,7 +9,7 @@
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
  */
 
-function Services_Yadis_getUCSChars()
+function Auth_Yadis_getUCSChars()
 {
     return array(
                  array(0xA0, 0xD7FF),
@@ -32,7 +32,7 @@ function Services_Yadis_getUCSChars()
                  );
 }
 
-function Services_Yadis_getIPrivateChars()
+function Auth_Yadis_getIPrivateChars()
 {
     return array(
                  array(0xE000, 0xF8FF),
@@ -41,7 +41,7 @@ function Services_Yadis_getIPrivateChars()
                  );
 }
 
-function Services_Yadis_pct_escape_unicode($char_match)
+function Auth_Yadis_pct_escape_unicode($char_match)
 {
     $c = $char_match[0];
     $result = "";
@@ -51,7 +51,7 @@ function Services_Yadis_pct_escape_unicode($char_match)
     return $result;
 }
 
-function Services_Yadis_startswith($s, $stuff)
+function Auth_Yadis_startswith($s, $stuff)
 {
     return strpos($s, $stuff) === 0;
 }

@@ -7,7 +7,7 @@
  *
  * LICENSE: See the COPYING file included in this distribution.
  *
- * @package Yadis
+ * @package OpenID
  * @author JanRain, Inc. <openid@janrain.com>
  * @copyright 2005 Janrain, Inc.
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
@@ -18,9 +18,9 @@
  * tags and their attributes.  This is used by the Yadis discovery
  * process.  This class must be instantiated to be used.
  *
- * @package Yadis
+ * @package OpenID
  */
-class Services_Yadis_ParseHTML {
+class Auth_Yadis_ParseHTML {
 
     /**
      * @access private
@@ -43,7 +43,7 @@ class Services_Yadis_ParseHTML {
      */
     var $_attr_find = '\b([-\w]+)=(".*?"|\'.*?\'|.+?)[\s>]';
 
-    function Services_Yadis_ParseHTML()
+    function Auth_Yadis_ParseHTML()
     {
         $this->_attr_find = sprintf("/%s/%s",
                                     $this->_attr_find,
@@ -199,7 +199,8 @@ class Services_Yadis_ParseHTML {
         if (!is_null($key_tags_pos[0]) && $key_tags_pos[1] < $key_tags_pos[0]) {
             return array();
         }
-        $html_string = substr($html_string, $key_tags_pos[1], ($key_tags_pos[2]-$key_tags_pos[1]));
+        $html_string = substr($html_string, $key_tags_pos[1],
+                              ($key_tags_pos[2]-$key_tags_pos[1]));
 
         $link_data = array();
         $link_matches = array();

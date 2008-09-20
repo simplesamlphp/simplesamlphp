@@ -79,18 +79,11 @@ class Auth_OpenID_DumbStore extends Auth_OpenID_OpenIDStore {
     }
 
     /**
-     * This implementation does nothing.
-     */
-    function storeNonce($nonce)
-    {
-    }
-
-    /**
      * In a system truly limited to dumb mode, nonces must all be
      * accepted. This therefore always returns true, which makes
      * replay attacks feasible.
      */
-    function useNonce($nonce)
+    function useNonce($server_url, $timestamp, $salt)
     {
         return true;
     }
@@ -101,15 +94,6 @@ class Auth_OpenID_DumbStore extends Auth_OpenID_OpenIDStore {
     function getAuthKey()
     {
         return $this->auth_key;
-    }
-
-    /**
-     * This store is a dumb mode store, so this method is overridden
-     * to return true.
-     */
-    function isDumb()
-    {
-        return true;
     }
 }
 

@@ -20,8 +20,8 @@
 /**
  * Require the fetcher code.
  */
-require_once "Services/Yadis/PlainHTTPFetcher.php";
-require_once "Services/Yadis/ParanoidHTTPFetcher.php";
+require_once "Auth/Yadis/PlainHTTPFetcher.php";
+require_once "Auth/Yadis/ParanoidHTTPFetcher.php";
 require_once "Auth/OpenID/BigMath.php";
 
 /**
@@ -109,41 +109,63 @@ if (Auth_OpenID_getMathLib() === null) {
 class Auth_OpenID {
 
     /**
-     * These namespaces are automatically fixed in query arguments by
-     * Auth_OpenID::fixArgs.
+     * Return true if $thing is an Auth_OpenID_FailureResponse object;
+     * false if not.
+     *
+     * @access private
      */
-    function getOpenIDNamespaces()
+    function isFailure($thing)
     {
-        return array('openid',
-                     'sreg');
+        return is_a($thing, 'Auth_OpenID_FailureResponse');
     }
 
     /**
-     * Rename query arguments back to 'openid.' from 'openid_'
+     * Gets the query data from the server environment based on the
+     * request method used.  If GET was used, this looks at
+     * $_SERVER['QUERY_STRING'] directly.  If POST was used, this
+     * fetches data from the special php://input file stream.
+     *
+     * Returns an associative array of the query arguments.
+     *
+     * Skips invalid key/value pairs (i.e. keys with no '=value'
+     * portion).
+     *
+     * Returns an empty array if neither GET nor POST was used, or if
+     * POST was used but php://input cannot be opened.
      *
      * @access private
-     * @param array $args An associative array of URL query arguments
      */
-    function fixArgs($args)
+    function getQuery($query_str=null)
     {
-        foreach (array_keys($args) as $key) {
-            $fixed = $key;
-            if (preg_match('/^openid/', $key)) {
-                foreach (Auth_OpenID::getOpenIDNamespaces() as $ns) {
-                    if (preg_match('/'.$ns.'_/', $key)) {
-                        $fixed = preg_replace('/'.$ns.'_/', $ns.'.', $fixed);
-                    }
-                }
+        if ($query_str !== null) {
+            $str = $query_str;
+        } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $str = $_SERVER['QUERY_STRING'];
+        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $str = file_get_contents('php://input');
 
-                if ($fixed != $key) {
-                    $val = $args[$key];
-                    unset($args[$key]);
-                    $args[$fixed] = $val;
-                }
+            if ($str === false) {
+                return array();
             }
+        } else {
+            return array();
         }
 
-        return $args;
+        $chunks = explode("&", $str);
+
+        $data = array();
+        foreach ($chunks as $chunk) {
+            $parts = explode("=", $chunk, 2);
+
+            if (count($parts) != 2) {
+                continue;
+            }
+
+            list($k, $v) = $parts;
+            $data[$k] = urldecode($v);
+        }
+
+        return $data;
     }
 
     /**
@@ -167,7 +189,24 @@ class Auth_OpenID {
     }
 
     /**
-     * Convenience function for getting array values.
+     * Adds a string prefix to all values of an array.  Returns a new
+     * array containing the prefixed values.
+     *
+     * @access private
+     */
+    function addPrefix($values, $prefix)
+    {
+        $new_values = array();
+        foreach ($values as $s) {
+            $new_values[] = $prefix . $s;
+        }
+        return $new_values;
+    }
+
+    /**
+     * Convenience function for getting array values.  Given an array
+     * $arr and a key $key, get the corresponding value from the array
+     * or return $default if the key is absent.
      *
      * @access private
      */
@@ -180,10 +219,38 @@ class Auth_OpenID {
                 return $fallback;
             }
         } else {
-            trigger_error("Auth_OpenID::arrayGet expected " .
-                          "array as first parameter", E_USER_WARNING);
+            trigger_error("Auth_OpenID::arrayGet (key = ".$key.") expected " .
+                          "array as first parameter, got " .
+                          gettype($arr), E_USER_WARNING);
+
             return false;
         }
+    }
+
+    /**
+     * Replacement for PHP's broken parse_str.
+     */
+    function parse_str($query)
+    {
+        if ($query === null) {
+            return null;
+        }
+
+        $parts = explode('&', $query);
+
+        $new_parts = array();
+        for ($i = 0; $i < count($parts); $i++) {
+            $pair = explode('=', $parts[$i]);
+
+            if (count($pair) != 2) {
+                continue;
+            }
+
+            list($key, $value) = $pair;
+            $new_parts[$key] = urldecode($value);
+        }
+
+        return $new_parts;
     }
 
     /**
@@ -214,6 +281,7 @@ class Auth_OpenID {
      * "Appends" query arguments onto a URL.  The URL may or may not
      * already have arguments (following a question mark).
      *
+     * @access private
      * @param string $url A URL, which may or may not already have
      * arguments.
      * @param array $args Either an array key/value pairs or an array of
@@ -301,7 +369,7 @@ class Auth_OpenID {
      * specified components.
      */
     function urlunparse($scheme, $host, $port = null, $path = '/',
-                                    $query = '', $fragment = '')
+                        $query = '', $fragment = '')
     {
 
         if (!$scheme) {
@@ -406,6 +474,54 @@ class Auth_OpenID {
         assert(is_string($url));
 
         return $url;
+    }
+
+    /**
+     * Replacement (wrapper) for PHP's intval() because it's broken.
+     *
+     * @access private
+     */
+    function intval($value)
+    {
+        $re = "/^\\d+$/";
+
+        if (!preg_match($re, $value)) {
+            return false;
+        }
+
+        return intval($value);
+    }
+
+    /**
+     * Count the number of bytes in a string independently of
+     * multibyte support conditions.
+     *
+     * @param string $str The string of bytes to count.
+     * @return int The number of bytes in $str.
+     */
+    function bytes($str)
+    {
+        return strlen(bin2hex($str)) / 2;
+    }
+
+    /**
+     * Get the bytes in a string independently of multibyte support
+     * conditions.
+     */
+    function toBytes($str)
+    {
+        $hex = bin2hex($str);
+
+        if (!$hex) {
+            return array();
+        }
+
+        $b = array();
+        for ($i = 0; $i < strlen($hex); $i += 2) {
+            $b[] = chr(base_convert(substr($hex, $i, 2), 16, 10));
+        }
+
+        return $b;
     }
 }
 

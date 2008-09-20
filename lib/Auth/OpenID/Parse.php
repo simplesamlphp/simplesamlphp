@@ -287,20 +287,21 @@ class Auth_OpenID_Parse {
     }
 }
 
-function Auth_OpenID_legacy_discover($html_text)
+function Auth_OpenID_legacy_discover($html_text, $server_rel,
+                                     $delegate_rel)
 {
     $p = new Auth_OpenID_Parse();
 
     $link_attrs = $p->parseLinkAttrs($html_text);
 
     $server_url = $p->findFirstHref($link_attrs,
-                                    'openid.server');
+                                    $server_rel);
 
     if ($server_url === null) {
         return false;
     } else {
         $delegate_url = $p->findFirstHref($link_attrs,
-                                          'openid.delegate');
+                                          $delegate_rel);
         return array($delegate_url, $server_url);
     }
 }

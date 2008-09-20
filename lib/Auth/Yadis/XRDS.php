@@ -7,7 +7,7 @@
  *
  * LICENSE: See the COPYING file included in this distribution.
  *
- * @package Yadis
+ * @package OpenID
  * @author JanRain, Inc. <openid@janrain.com>
  * @copyright 2005 Janrain, Inc.
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
@@ -16,17 +16,17 @@
 /**
  * Require the XPath implementation.
  */
-require_once 'Services/Yadis/XML.php';
+require_once 'Auth/Yadis/XML.php';
 
 /**
  * This match mode means a given service must match ALL filters passed
- * to the Services_Yadis_XRDS::services() call.
+ * to the Auth_Yadis_XRDS::services() call.
  */
 define('SERVICES_YADIS_MATCH_ALL', 101);
 
 /**
  * This match mode means a given service must match ANY filters (at
- * least one) passed to the Services_Yadis_XRDS::services() call.
+ * least one) passed to the Auth_Yadis_XRDS::services() call.
  */
 define('SERVICES_YADIS_MATCH_ANY', 102);
 
@@ -36,16 +36,26 @@ define('SERVICES_YADIS_MATCH_ANY', 102);
  */
 define('SERVICES_YADIS_MAX_PRIORITY', pow(2, 30));
 
-function Services_Yadis_getNSMap()
+/**
+ * XRD XML namespace
+ */
+define('Auth_Yadis_XMLNS_XRD_2_0', 'xri://$xrd*($v*2.0)');
+
+/**
+ * XRDS XML namespace
+ */
+define('Auth_Yadis_XMLNS_XRDS', 'xri://$xrds');
+
+function Auth_Yadis_getNSMap()
 {
-    return array('xrds' => 'xri://$xrds',
-                 'xrd' => 'xri://$xrd*($v*2.0)');
+    return array('xrds' => Auth_Yadis_XMLNS_XRDS,
+                 'xrd' => Auth_Yadis_XMLNS_XRD_2_0);
 }
 
 /**
  * @access private
  */
-function Services_Yadis_array_scramble($arr)
+function Auth_Yadis_array_scramble($arr)
 {
     $result = array();
 
@@ -61,21 +71,21 @@ function Services_Yadis_array_scramble($arr)
 /**
  * This class represents a <Service> element in an XRDS document.
  * Objects of this type are returned by
- * Services_Yadis_XRDS::services() and
- * Services_Yadis_Yadis::services().  Each object corresponds directly
+ * Auth_Yadis_XRDS::services() and
+ * Auth_Yadis_Yadis::services().  Each object corresponds directly
  * to a <Service> element in the XRDS and supplies a
  * getElements($name) method which you should use to inspect the
- * element's contents.  See {@link Services_Yadis_Yadis} for more
+ * element's contents.  See {@link Auth_Yadis_Yadis} for more
  * information on the role this class plays in Yadis discovery.
  *
- * @package Yadis
+ * @package OpenID
  */
-class Services_Yadis_Service {
+class Auth_Yadis_Service {
 
     /**
      * Creates an empty service object.
      */
-    function Services_Yadis_Service()
+    function Auth_Yadis_Service()
     {
         $this->element = null;
         $this->parser = null;
@@ -97,6 +107,19 @@ class Services_Yadis_Service {
             }
         }
         return $t;
+    }
+
+    function matchTypes($type_uris)
+    {
+        $result = array();
+
+        foreach ($this->getTypes() as $typ) {
+            if (in_array($typ, $type_uris)) {
+                $result[] = $typ;
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -132,12 +155,12 @@ class Services_Yadis_Service {
         // Rebuild array of URIs.
         $result = array();
         foreach ($keys as $k) {
-            $new_uris = Services_Yadis_array_scramble($uris[$k]);
+            $new_uris = Auth_Yadis_array_scramble($uris[$k]);
             $result = array_merge($result, $new_uris);
         }
 
         $result = array_merge($result,
-                              Services_Yadis_array_scramble($last));
+                              Auth_Yadis_array_scramble($last));
 
         return $result;
     }
@@ -173,7 +196,7 @@ class Services_Yadis_Service {
      * @return array $list An array of elements with the specified
      * name which are direct children of the <Service> element.  The
      * nodes returned by this function can be passed to $this->parser
-     * methods (see {@link Services_Yadis_XMLParser}).
+     * methods (see {@link Auth_Yadis_XMLParser}).
      */
     function getElements($name)
     {
@@ -187,22 +210,22 @@ class Services_Yadis_Service {
  * You should not instantiate this class directly; rather, call
  * parseXRDS statically:
  *
- * <pre>  $xrds = Services_Yadis_XRDS::parseXRDS($xml_string);</pre>
+ * <pre>  $xrds = Auth_Yadis_XRDS::parseXRDS($xml_string);</pre>
  *
  * If the XRDS can be parsed and is valid, an instance of
- * Services_Yadis_XRDS will be returned.  Otherwise, null will be
- * returned.  This class is used by the Services_Yadis_Yadis::discover
+ * Auth_Yadis_XRDS will be returned.  Otherwise, null will be
+ * returned.  This class is used by the Auth_Yadis_Yadis::discover
  * method.
  *
- * @package Yadis
+ * @package OpenID
  */
-class Services_Yadis_XRDS {
+class Auth_Yadis_XRDS {
 
     /**
-     * Instantiate a Services_Yadis_XRDS object.  Requires an XPath
+     * Instantiate a Auth_Yadis_XRDS object.  Requires an XPath
      * instance which has been used to parse a valid XRDS document.
      */
-    function Services_Yadis_XRDS(&$xmlParser, &$xrdNodes)
+    function Auth_Yadis_XRDS(&$xmlParser, &$xrdNodes)
     {
         $this->parser =& $xmlParser;
         $this->xrdNode = $xrdNodes[count($xrdNodes) - 1];
@@ -213,11 +236,11 @@ class Services_Yadis_XRDS {
 
     /**
      * Parse an XML string (XRDS document) and return either a
-     * Services_Yadis_XRDS object or null, depending on whether the
+     * Auth_Yadis_XRDS object or null, depending on whether the
      * XRDS XML is valid.
      *
      * @param string $xml_string An XRDS XML string.
-     * @return mixed $xrds An instance of Services_Yadis_XRDS or null,
+     * @return mixed $xrds An instance of Auth_Yadis_XRDS or null,
      * depending on the validity of $xml_string
      */
     function &parseXRDS($xml_string, $extra_ns_map = null)
@@ -228,9 +251,9 @@ class Services_Yadis_XRDS {
             return $_null;
         }
 
-        $parser = Services_Yadis_getXMLParser();
+        $parser = Auth_Yadis_getXMLParser();
 
-        $ns_map = Services_Yadis_getNSMap();
+        $ns_map = Auth_Yadis_getNSMap();
 
         if ($extra_ns_map && is_array($extra_ns_map)) {
             $ns_map = array_merge($ns_map, $extra_ns_map);
@@ -253,11 +276,11 @@ class Services_Yadis_XRDS {
         $attrs = $parser->attributes($root);
 
         if (array_key_exists('xmlns:xrd', $attrs) &&
-            $attrs['xmlns:xrd'] != 'xri://$xrd*($v*2.0)') {
+            $attrs['xmlns:xrd'] != Auth_Yadis_XMLNS_XRDS) {
             return $_null;
         } else if (array_key_exists('xmlns', $attrs) &&
                    preg_match('/xri/', $attrs['xmlns']) &&
-                   $attrs['xmlns'] != 'xri://$xrd*($v*2.0)') {
+                   $attrs['xmlns'] != Auth_Yadis_XMLNS_XRD_2_0) {
             return $_null;
         }
 
@@ -268,7 +291,7 @@ class Services_Yadis_XRDS {
             return $_null;
         }
 
-        $xrds = new Services_Yadis_XRDS($parser, $xrd_nodes);
+        $xrds = new Auth_Yadis_XRDS($parser, $xrd_nodes);
         return $xrds;
     }
 
@@ -299,7 +322,7 @@ class Services_Yadis_XRDS {
         $services = $this->parser->evalXPath('xrd:Service', $this->xrdNode);
 
         foreach ($services as $node) {
-            $s =& new Services_Yadis_Service();
+            $s =& new Auth_Yadis_Service();
             $s->element = $node;
             $s->parser =& $this->parser;
 
@@ -323,7 +346,7 @@ class Services_Yadis_XRDS {
      * specified filters, but $filter_mode may be
      * SERVICES_YADIS_MATCH_ALL if you want to be sure that the
      * returned services match all the given filters.  See {@link
-     * Services_Yadis_Yadis} for detailed usage information on filter
+     * Auth_Yadis_Yadis} for detailed usage information on filter
      * functions.
      *
      * @param mixed $filters An array of callbacks to filter the
@@ -333,7 +356,7 @@ class Services_Yadis_XRDS {
      * services should match ALL or ANY of the specified filters,
      * respectively.
      * @return mixed $services An array of {@link
-     * Services_Yadis_Service} objects if $filter_mode is a valid
+     * Auth_Yadis_Service} objects if $filter_mode is a valid
      * mode; null if $filter_mode is an invalid mode (i.e., not
      * SERVICES_YADIS_MATCH_ANY or SERVICES_YADIS_MATCH_ALL).
      */

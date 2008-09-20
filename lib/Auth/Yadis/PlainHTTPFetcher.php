@@ -8,7 +8,7 @@
  *
  * LICENSE: See the COPYING file included in this distribution.
  *
- * @package Yadis
+ * @package OpenID
  * @author JanRain, Inc. <openid@janrain.com>
  * @copyright 2005 Janrain, Inc.
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
@@ -17,20 +17,30 @@
 /**
  * Interface import
  */
-require_once "Services/Yadis/HTTPFetcher.php";
+require_once "Auth/Yadis/HTTPFetcher.php";
 
 /**
  * This class implements a plain, hand-built socket-based fetcher
  * which will be used in the event that CURL is unavailable.
  *
- * @package Yadis
+ * @package OpenID
  */
-class Services_Yadis_PlainHTTPFetcher extends Services_Yadis_HTTPFetcher {
+class Auth_Yadis_PlainHTTPFetcher extends Auth_Yadis_HTTPFetcher {
+    /**
+     * Does this fetcher support SSL URLs?
+     */
+    function supportsSSL()
+    {
+        return function_exists('openssl_open');
+    }
+
     function get($url, $extra_headers = null)
     {
+        if ($this->isHTTPS($url) && !$this->supportsSSL()) {
+            return null;
+        }
+
         if (!$this->allowedURL($url)) {
-            trigger_error("Bad URL scheme in url: " . $url,
-                          E_USER_WARNING);
             return null;
         }
 
@@ -53,10 +63,6 @@ class Services_Yadis_PlainHTTPFetcher extends Services_Yadis_HTTPFetcher {
                 } elseif ($parts['scheme'] == 'https') {
                     $parts['port'] = 443;
                 } else {
-                    trigger_error("fetcher post method doesn't support " .
-                                  " scheme '" . $parts['scheme'] .
-                                  "', no default port available",
-                                  E_USER_WARNING);
                     return null;
                 }
             }
@@ -132,14 +138,16 @@ class Services_Yadis_PlainHTTPFetcher extends Services_Yadis_HTTPFetcher {
 
         }
 
-        return new Services_Yadis_HTTPResponse($url, $code, $new_headers, $body);
+        return new Auth_Yadis_HTTPResponse($url, $code, $new_headers, $body);
     }
 
     function post($url, $body, $extra_headers = null)
     {
+        if ($this->isHTTPS($url) && !$this->supportsSSL()) {
+            return null;
+        }
+
         if (!$this->allowedURL($url)) {
-            trigger_error("Bad URL scheme in url: " . $url,
-                          E_USER_WARNING);
             return null;
         }
 
@@ -175,10 +183,6 @@ class Services_Yadis_PlainHTTPFetcher extends Services_Yadis_HTTPFetcher {
             } elseif ($parts['scheme'] == 'https') {
                 $parts['port'] = 443;
             } else {
-                trigger_error("fetcher post method doesn't support scheme '" .
-                              $parts['scheme'] .
-                              "', no default port available",
-                              E_USER_WARNING);
                 return null;
             }
         }
@@ -195,9 +199,6 @@ class Services_Yadis_PlainHTTPFetcher extends Services_Yadis_HTTPFetcher {
                           $this->timeout);
 
         if ($sock === false) {
-            trigger_error("Could not connect to " . $parts['host'] .
-                          " port " . $parts['port'],
-                          E_USER_WARNING);
             return null;
         }
 
@@ -237,8 +238,8 @@ class Services_Yadis_PlainHTTPFetcher extends Services_Yadis_HTTPFetcher {
 
         }
 
-        return new Services_Yadis_HTTPResponse($url, $code,
-                                               $headers, $response_body);
+        return new Auth_Yadis_HTTPResponse($url, $code,
+                                           $new_headers, $response_body);
     }
 }
 

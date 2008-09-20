@@ -4,23 +4,23 @@
  * XML-parsing classes to wrap the domxml and DOM extensions for PHP 4
  * and 5, respectively.
  *
- * @package Yadis
+ * @package OpenID
  */
 
 /**
  * The base class for wrappers for available PHP XML-parsing
  * extensions.  To work with this Yadis library, subclasses of this
  * class MUST implement the API as defined in the remarks for this
- * class.  Subclasses of Services_Yadis_XMLParser are used to wrap
+ * class.  Subclasses of Auth_Yadis_XMLParser are used to wrap
  * particular PHP XML extensions such as 'domxml'.  These are used
  * internally by the library depending on the availability of
  * supported PHP XML extensions.
  *
- * @package Yadis
+ * @package OpenID
  */
-class Services_Yadis_XMLParser {
+class Auth_Yadis_XMLParser {
     /**
-     * Initialize an instance of Services_Yadis_XMLParser with some
+     * Initialize an instance of Auth_Yadis_XMLParser with some
      * XML and namespaces.  This SHOULD NOT be overridden by
      * subclasses.
      *
@@ -125,16 +125,16 @@ class Services_Yadis_XMLParser {
 }
 
 /**
- * This concrete implementation of Services_Yadis_XMLParser implements
+ * This concrete implementation of Auth_Yadis_XMLParser implements
  * the appropriate API for the 'domxml' extension which is typically
  * packaged with PHP 4.  This class will be used whenever the 'domxml'
- * extension is detected.  See the Services_Yadis_XMLParser class for
+ * extension is detected.  See the Auth_Yadis_XMLParser class for
  * details on this class's methods.
  *
- * @package Yadis
+ * @package OpenID
  */
-class Services_Yadis_domxml extends Services_Yadis_XMLParser {
-    function Services_Yadis_domxml()
+class Auth_Yadis_domxml extends Auth_Yadis_XMLParser {
+    function Auth_Yadis_domxml()
     {
         $this->xml = null;
         $this->doc = null;
@@ -170,6 +170,11 @@ class Services_Yadis_domxml extends Services_Yadis_XMLParser {
             $result = @$this->xpath->xpath_eval($xpath);
         }
 
+        if (!$result) {
+            $n = array();
+            return $n;
+        }
+
         if (!$result->nodeset) {
             $n = array();
             return $n;
@@ -203,16 +208,16 @@ class Services_Yadis_domxml extends Services_Yadis_XMLParser {
 }
 
 /**
- * This concrete implementation of Services_Yadis_XMLParser implements
+ * This concrete implementation of Auth_Yadis_XMLParser implements
  * the appropriate API for the 'dom' extension which is typically
  * packaged with PHP 5.  This class will be used whenever the 'dom'
- * extension is detected.  See the Services_Yadis_XMLParser class for
+ * extension is detected.  See the Auth_Yadis_XMLParser class for
  * details on this class's methods.
  *
- * @package Yadis
+ * @package OpenID
  */
-class Services_Yadis_dom extends Services_Yadis_XMLParser {
-    function Services_Yadis_dom()
+class Auth_Yadis_dom extends Auth_Yadis_XMLParser {
+    function Auth_Yadis_dom()
     {
         $this->xml = null;
         $this->doc = null;
@@ -257,6 +262,10 @@ class Services_Yadis_dom extends Services_Yadis_XMLParser {
 
         $n = array();
 
+        if (!$result) {
+            return $n;
+        }
+
         for ($i = 0; $i < $result->length; $i++) {
             $n[] = $result->item($i);
         }
@@ -289,8 +298,8 @@ class Services_Yadis_dom extends Services_Yadis_XMLParser {
     }
 }
 
-global $__Services_Yadis_defaultParser;
-$__Services_Yadis_defaultParser = null;
+global $__Auth_Yadis_defaultParser;
+$__Auth_Yadis_defaultParser = null;
 
 /**
  * Set a default parser to override the extension-driven selection of
@@ -298,43 +307,43 @@ $__Services_Yadis_defaultParser = null;
  * one in which multiple parsers can be used but one is more
  * desirable.
  *
- * @param Services_Yadis_XMLParser $parser An instance of a
- * Services_Yadis_XMLParser subclass.
+ * @param Auth_Yadis_XMLParser $parser An instance of a
+ * Auth_Yadis_XMLParser subclass.
  */
-function Services_Yadis_setDefaultParser(&$parser)
+function Auth_Yadis_setDefaultParser(&$parser)
 {
-    global $__Services_Yadis_defaultParser;
-    $__Services_Yadis_defaultParser =& $parser;
+    global $__Auth_Yadis_defaultParser;
+    $__Auth_Yadis_defaultParser =& $parser;
 }
 
-function Services_Yadis_getSupportedExtensions()
+function Auth_Yadis_getSupportedExtensions()
 {
     return array(
-                 'dom' => array('classname' => 'Services_Yadis_dom',
-                                'libname' => array('dom.so', 'dom.dll')),
-                 'domxml' => array('classname' => 'Services_Yadis_domxml',
-                                   'libname' => array('domxml.so', 'php_domxml.dll')),
+                 'dom' => array('classname' => 'Auth_Yadis_dom',
+                       'libname' => array('dom.so', 'dom.dll')),
+                 'domxml' => array('classname' => 'Auth_Yadis_domxml',
+                       'libname' => array('domxml.so', 'php_domxml.dll')),
                  );
 }
 
 /**
- * Returns an instance of a Services_Yadis_XMLParser subclass based on
+ * Returns an instance of a Auth_Yadis_XMLParser subclass based on
  * the availability of PHP extensions for XML parsing.  If
- * Services_Yadis_setDefaultParser has been called, the parser used in
+ * Auth_Yadis_setDefaultParser has been called, the parser used in
  * that call will be returned instead.
  */
-function &Services_Yadis_getXMLParser()
+function &Auth_Yadis_getXMLParser()
 {
-    global $__Services_Yadis_defaultParser;
+    global $__Auth_Yadis_defaultParser;
 
-    if (isset($__Services_Yadis_defaultParser)) {
-        return $__Services_Yadis_defaultParser;
+    if (isset($__Auth_Yadis_defaultParser)) {
+        return $__Auth_Yadis_defaultParser;
     }
 
     $p = null;
     $classname = null;
 
-    $extensions = Services_Yadis_getSupportedExtensions();
+    $extensions = Auth_Yadis_getSupportedExtensions();
 
     // Return a wrapper for the resident implementation, if any.
     foreach ($extensions as $name => $params) {
@@ -356,7 +365,7 @@ function &Services_Yadis_getXMLParser()
     if (!isset($p)) {
         trigger_error('No XML parser was found', E_USER_ERROR);
     } else {
-        Services_Yadis_setDefaultParser($p);
+        Auth_Yadis_setDefaultParser($p);
     }
 
     return $p;

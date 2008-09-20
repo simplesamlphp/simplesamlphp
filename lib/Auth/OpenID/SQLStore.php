@@ -29,13 +29,17 @@ $__Auth_OpenID_PEAR_AVAILABLE = @include_once 'DB.php';
 require_once 'Auth/OpenID/Interface.php';
 
 /**
+ * @access private
+ */
+require_once 'Auth/OpenID.php';
+
+/**
  * This is the parent class for the SQL stores, which contains the
  * logic common to all of the SQL stores.
  *
  * The table names used are determined by the class variables
- * settings_table_name, associations_table_name, and
- * nonces_table_name.  To change the name of the tables used, pass new
- * table names into the constructor.
+ * associations_table_name and nonces_table_name.  To change the name
+ * of the tables used, pass new table names into the constructor.
  *
  * To create the tables with the proper schema, see the createTables
  * method.
@@ -67,10 +71,6 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
      * connection handle or an instance of a subclass of
      * Auth_OpenID_DatabaseConnection.
      *
-     * @param string $settings_table This is an optional parameter to
-     * specify the name of the table used for this store's settings.
-     * The default value is 'oid_settings'.
-     *
      * @param associations_table: This is an optional parameter to
      * specify the name of the table used for storing associations.
      * The default value is 'oid_associations'.
@@ -79,13 +79,12 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
      * the name of the table used for storing nonces.  The default
      * value is 'oid_nonces'.
      */
-    function Auth_OpenID_SQLStore($connection, $settings_table = null,
+    function Auth_OpenID_SQLStore($connection,
                                   $associations_table = null,
                                   $nonces_table = null)
     {
         global $__Auth_OpenID_PEAR_AVAILABLE;
 
-        $this->settings_table_name = "oid_settings";
         $this->associations_table_name = "oid_associations";
         $this->nonces_table_name = "oid_nonces";
 
@@ -110,10 +109,6 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
         // implement ::setFetchMode for this reason.
         if ($__Auth_OpenID_PEAR_AVAILABLE) {
             $this->connection->setFetchMode(DB_FETCHMODE_ASSOC);
-        }
-
-        if ($settings_table) {
-            $this->settings_table_name = $settings_table;
         }
 
         if ($associations_table) {
@@ -213,9 +208,6 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
 
         $this->connection->query(sprintf("DELETE FROM %s",
                                          $this->nonces_table_name));
-
-        $this->connection->query(sprintf("DELETE FROM %s",
-                                         $this->settings_table_name));
     }
 
     /**
@@ -229,16 +221,11 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
         $required_sql_keys = array(
                                    'nonce_table',
                                    'assoc_table',
-                                   'settings_table',
-                                   'get_auth',
-                                   'create_auth',
                                    'set_assoc',
                                    'get_assoc',
                                    'get_assocs',
                                    'remove_assoc',
-                                   'add_nonce',
-                                   'get_nonce',
-                                   'remove_nonce'
+                                   'get_expired',
                                    );
 
         foreach ($required_sql_keys as $key) {
@@ -261,9 +248,7 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
                               array(
                                     'value' => $this->nonces_table_name,
                                     'keys' => array('nonce_table',
-                                                    'add_nonce',
-                                                    'get_nonce',
-                                                    'remove_nonce')
+                                                    'add_nonce')
                                     ),
                               array(
                                     'value' => $this->associations_table_name,
@@ -271,13 +256,8 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
                                                     'set_assoc',
                                                     'get_assoc',
                                                     'get_assocs',
-                                                    'remove_assoc')
-                                    ),
-                              array(
-                                    'value' => $this->settings_table_name,
-                                    'keys' => array('settings_table',
-                                                    'get_auth',
-                                                    'create_auth')
+                                                    'remove_assoc',
+                                                    'get_expired')
                                     )
                               );
 
@@ -313,10 +293,9 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
         $this->connection->autoCommit(true);
         $n = $this->create_nonce_table();
         $a = $this->create_assoc_table();
-        $s = $this->create_settings_table();
         $this->connection->autoCommit(false);
 
-        if ($n && $a && $s) {
+        if ($n && $a) {
             return true;
         } else {
             return false;
@@ -339,58 +318,6 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
             return $this->resultToBool($r);
         }
         return true;
-    }
-
-    function create_settings_table()
-    {
-        if (!$this->tableExists($this->settings_table_name)) {
-            $r = $this->connection->query($this->sql['settings_table']);
-            return $this->resultToBool($r);
-        }
-        return true;
-    }
-
-    /**
-     * @access private
-     */
-    function _get_auth()
-    {
-        return $this->connection->getOne($this->sql['get_auth']);
-    }
-
-    /**
-     * @access private
-     */
-    function _create_auth($str)
-    {
-        return $this->connection->query($this->sql['create_auth'],
-                                        array($str));
-    }
-
-    function getAuthKey()
-    {
-        $value = $this->_get_auth();
-        if (!$value) {
-            $auth_key =
-                Auth_OpenID_CryptUtil::randomString($this->AUTH_KEY_LEN);
-
-            $auth_key_s = $this->blobEncode($auth_key);
-            $this->_create_auth($auth_key_s);
-        } else {
-            $auth_key_s = $value;
-            $auth_key = $this->blobDecode($auth_key_s);
-        }
-
-        $this->connection->commit();
-
-        if (strlen($auth_key) != $this->AUTH_KEY_LEN) {
-            $fmt = "Expected %d-byte string for auth key. Got key of length %d";
-            trigger_error(sprintf($fmt, $this->AUTH_KEY_LEN, strlen($auth_key)),
-                          E_USER_WARNING);
-            return null;
-        }
-
-        return $auth_key;
     }
 
     /**
@@ -472,6 +399,20 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
         return true;
     }
 
+    function getExpired()
+    {
+        $sql = $this->sql['get_expired'];
+        $result = $this->connection->getAll($sql, array(time()));
+
+        $expired = array();
+
+        foreach ($result as $row) {
+            $expired[] = $row['server_url'];
+        }
+
+        return $expired;
+    }
+
     function getAssociation($server_url, $handle = null)
     {
         if ($handle !== null) {
@@ -529,72 +470,23 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
     /**
      * @access private
      */
-    function _add_nonce($nonce, $expires)
+    function _add_nonce($server_url, $timestamp, $salt)
     {
         $sql = $this->sql['add_nonce'];
-        $result = $this->connection->query($sql, array($nonce, $expires));
+        $result = $this->connection->query($sql, array($server_url,
+                                                       $timestamp,
+                                                       $salt));
+        if ($this->isError($result)) {
+            $this->connection->rollback();
+        } else {
+            $this->connection->commit();
+        }
         return $this->resultToBool($result);
     }
 
-    /**
-     * @access private
-     */
-    function storeNonce($nonce)
+    function useNonce($server_url, $timestamp, $salt)
     {
-        if ($this->_add_nonce($nonce, time())) {
-            $this->connection->commit();
-        } else {
-            $this->connection->rollback();
-        }
-    }
-
-    /**
-     * @access private
-     */
-    function _get_nonce($nonce)
-    {
-        $result = $this->connection->getRow($this->sql['get_nonce'],
-                                            array($nonce));
-
-        if ($this->isError($result)) {
-            return null;
-        } else {
-            return $result;
-        }
-    }
-
-    /**
-     * @access private
-     */
-    function _remove_nonce($nonce)
-    {
-        $this->connection->query($this->sql['remove_nonce'],
-                                 array($nonce));
-    }
-
-    function useNonce($nonce)
-    {
-        $row = $this->_get_nonce($nonce);
-
-        if ($row !== null) {
-            $nonce = $row['nonce'];
-            $timestamp = $row['expires'];
-            $nonce_age = time() - $timestamp;
-
-            if ($nonce_age > $this->max_nonce_age) {
-                $present = 0;
-            } else {
-                $present = 1;
-            }
-
-            $this->_remove_nonce($nonce);
-        } else {
-            $present = 0;
-        }
-
-        $this->connection->commit();
-
-        return $present;
+        return $this->_add_nonce($server_url, $timestamp, $salt);
     }
 
     /**
@@ -607,7 +499,7 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
     function _octify($str)
     {
         $result = "";
-        for ($i = 0; $i < strlen($str); $i++) {
+        for ($i = 0; $i < Auth_OpenID::bytes($str); $i++) {
             $ch = substr($str, $i, 1);
             if ($ch == "\\") {
                 $result .= "\\\\\\\\";
