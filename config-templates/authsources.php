@@ -2,6 +2,14 @@
 
 $config = array(
 
+	'example-sql' => array(
+		'sqlauth:SQL',
+		'dsn' => 'pgsql:host=sql.example.org;port=5432;dbname=simplesaml',
+		'username' => 'simplesaml',
+		'password' => 'secretpassword',
+		'query' => 'SELECT "username", "name", "email" FROM "users" WHERE "username" = :username AND "password" = :password',
+	),
+
 	'example-static' => array(
 		'exampleauth:Static',
 		'uid' => 'testuser',
