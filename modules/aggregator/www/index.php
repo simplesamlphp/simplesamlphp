@@ -14,8 +14,9 @@ $aggregatorConfig = $globalConfig->copyFromBase('aggregator', 'aggregator.php');
 $aggregators = $aggregatorConfig->getArray('aggragators');
 
 if (!array_key_exists('id', $_GET)) {
-	/* TODO: Show list. */
-	echo('TODO: Show list');
+	$t = new SimpleSAML_XHTML_Template($globalConfig, 'aggregator:list.php');
+	$t->data['sources'] = array_keys($aggregators);
+	$t->show();
 	exit;
 }
 

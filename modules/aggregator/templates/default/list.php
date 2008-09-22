@@ -1,0 +1,27 @@
+<?php
+$this->data['header'] = $this->t('{aggregator:dict:aggregator_header}');
+$this->includeAtTemplateBase('includes/header.php');
+
+echo('<div id="content">');
+echo('<h1>'. $this->data['header'] . '</h1>');
+
+if (count($this->data['sources']) === 0) {
+	echo('<p>' . $this->t('{aggregator:dict:no_aggregators}') . '</p>');
+} else {
+
+	echo('<ul>');
+
+	foreach ($this->data['sources'] as $source) {
+		$encId = urlencode($source);
+		$encName = htmlspecialchars($source);
+		echo('<li>');
+		echo('<a href="?id=' . $encId . '">' . $encName . '</a>');
+		echo(' <a href="?id=' . $encId . '&amp;mimetype=text/plain">[' . $this->t('{aggregator:dict:text}') . ']</a>');
+		echo('</li>');
+	}
+
+	echo('</ul>');
+}
+
+$this->includeAtTemplateBase('includes/footer.php');
+?>
