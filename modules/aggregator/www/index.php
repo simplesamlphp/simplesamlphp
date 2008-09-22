@@ -103,6 +103,21 @@ foreach ($entities as $entity => $sets) {
 	$entitiesDescriptor->appendChild($xml->importNode($entityDescriptor, TRUE));
 }
 
+/* Sign the metadata if enabled. */
+if ($aggregatorConfig->getBoolean('sign.enable', FALSE)) {
+	$privateKey = $aggregatorConfig->getString('sign.privatekey');
+	$privateKeyPass = $aggregatorConfig->getString('sign.privatekey_pass', NULL);
+	$certificate = $aggregatorConfig->getString('sign.certificate');
+
+	$signer = new SimpleSAML_XML_Signer(array(
+		'privatekey' => $privateKey,
+		'privatekey_pass' => $privateKeyPass,
+		'certificate' => $certificate,
+		'id' => 'ID',
+		));
+	$signer->sign($entitiesDescriptor, $entitiesDescriptor, $entitiesDescriptor->firstChild);
+}
+
 /* Show the metadata. */
 if(array_key_exists('mimetype', $_GET)) {
 	$mimeType = $_GET['mimetype'];
