@@ -61,7 +61,10 @@ foreach ($sources as $source) {
 
 $xml = new DOMDocument();
 $entitiesDescriptor = $xml->createElementNS('urn:oasis:names:tc:SAML:2.0:metadata', 'EntitiesDescriptor');
+$entitiesDescriptor->setAttribute('Name', $id);
 $xml->appendChild($entitiesDescriptor);
+
+
 
 /* Build EntityDescriptor elements for them. */
 foreach ($entities as $entity => $sets) {

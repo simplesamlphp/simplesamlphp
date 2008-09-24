@@ -13,7 +13,6 @@ $lang = array(
 	'text' => array (
 		'en' => 'text',
 	),
-
 );
 
 
