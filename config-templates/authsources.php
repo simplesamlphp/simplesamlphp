@@ -16,6 +16,11 @@ $config = array(
 		'eduPersonAffiliation' => array('member', 'employee'),
 		'cn' => array('Test User'),
 	),
+	
+	// Requires you to enable the OpenID module.
+	'openid' => array(
+		'openid:OpenIDConsumer',
+	),
 
 	'example-userpass' => array(
 		'exampleauth:UserPass',
