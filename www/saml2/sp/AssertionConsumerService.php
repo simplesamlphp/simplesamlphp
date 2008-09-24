@@ -156,7 +156,7 @@ try {
 		'Attributes' => $attributes,
 		'Destination' => $spmetadata,
 		'Source' => $idpmetadata,
-		);
+	);
 
 	$pc->processState($authProcState);
 	/* Since this function returns, processing has completed and attributes have

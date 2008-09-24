@@ -4,7 +4,7 @@
  * from a SAML 2.0 SP, parses, and process it, and then authenticates the user and sends the user back
  * to the SP with an Authentication Response.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Ã…kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
  */
@@ -361,14 +361,14 @@ if($needAuth && !$isPassive) {
 				$t->data['sppp'] = $privacypolicy;
 
 				switch($config->getValueValidate('consent_autofocus', array(NULL, 'yes', 'no'), NULL)) {
-				case NULL:
-					break;
-				case 'yes':
-					$t->data['autofocus'] = 'yesbutton';
-					break;
-				case 'no':
-					$t->data['autofocus'] = 'nobutton';
-					break;
+					case NULL:
+						break;
+					case 'yes':
+						$t->data['autofocus'] = 'yesbutton';
+						break;
+					case 'no':
+						$t->data['autofocus'] = 'nobutton';
+						break;
 				}
 
 				$t->show();
