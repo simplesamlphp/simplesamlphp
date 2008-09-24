@@ -5,6 +5,8 @@ require_once('Auth/OpenID/SReg.php');
 require_once('Auth/OpenID/Server.php');
 require_once('Auth/OpenID/ServerRequest.php');
 
+session_start();
+
 $config = SimpleSAML_Configuration::getInstance();
 
 /* Find the authentication state. */
