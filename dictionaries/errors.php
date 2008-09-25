@@ -1057,6 +1057,7 @@ $lang = array(
 		'sv' => 'Fel vid försäkran',
 		'es' => 'Error en la afirmación (Assertion)',
 		'sl' => 'Neveljavna zahteva',
+		'hr' => 'Neispravna potvrda',
 		'hu' => 'Igazolás (assertion) hiba',
 		'pt' => 'Erro na Afirmação',
 	),
@@ -1068,6 +1069,7 @@ $lang = array(
 		'sv' => 'En försäkran i koden fungerade inte. Aktuella försäkran: %ASSERTION%',
 		'es' => 'Una afirmación del código ha fallado. La afirmación es: %ASSERTION%',
 		'sl' => 'Vnos v kodo je spodletel. Navedena je bila naslednja zahteva: %ASSERTION%',
+		'hr' => 'Potvrda u kodu je neispravna. Potvrda je: %ASSERTION%',
 		'hu' => 'Igazolás (assertion) hiba a kódban. A hibás igazolás: %ASSERTION%',
 		'pt' => 'Uma afirmação no código falhou. A afirmação foi: %ASSERTION%',
 	),
@@ -1191,9 +1193,17 @@ $lang = array(
 	),
 	'title_OPENIDWRONG' => array (
 		'en' => 'Wrong identity for OpenID',
+		'sv' => 'Fel identitet för OpenID',
+		'es' => 'Identidad incorrecta para OpenID',
+		'sl' => 'Napačna identiteta za OpenID',
+		'hr' => 'Neispravan identitet za OpenID',
 	),
 	'descr_OPENIDWRONG' => array (
 		'en' => 'The OpenID requested you to verify an identity, and you are logged in with another identity.',
+		'sv' => 'OepnID försöker verfiera dig med en identitet men du är inloggad med en annan.',
+		'es' => 'OpenID ha solicitado que se verifique con una identidad y usted se ha identificado con otra.',
+		'sl' => 'OpenID je zahteval preverjanje identitete, vi ste prijavljeni z drugo identiteto.',
+		'hr' => 'OpenID je od vas tražio provjeru identiteta, a vi ste prijavljeni s drugim identitetom.',
 	),
 
 );
