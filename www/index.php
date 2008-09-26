@@ -233,6 +233,8 @@ $t->data['links_doc'] = $linksdoc;
 $t->data['enablematrix'] = $enablematrix;
 $t->data['funcmatrix'] = $funcmatrix;
 
+$t->data['directory'] = dirname(dirname(__FILE__));
+
 $t->show();
 
 
