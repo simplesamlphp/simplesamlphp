@@ -13,11 +13,16 @@
     <section>
       <title>Version 1.2</title>
 
-      <para>Released 2008-08-??. Revision ???.</para>
+      <para>Released 2008-09-26. Revision 899.</para>
 
       <para>There are some changes in the configuration files from version 1.1
-      to 1.2. <literal>/simplesaml/admin/config.php</literal> should be used to
-      check what options have changed.</para>
+      to 1.2. <literal>/simplesaml/admin/config.php</literal> should be used
+      to check what options have changed.</para>
+
+      <para>When you upgrade from an previous version you should copy
+      <literal>authsources.php</literal> from
+      <literal>config-templates</literal> into <literal>config</literal>
+      directory.</para>
 
       <para>There are also some changes to the templates. If you have any
       custom templates, they should be updated to match the ones included. Of
@@ -37,14 +42,19 @@
           </listitem>
 
           <listitem>
-            <para>Limited support for validating against a CA root certificate.
-            The current implementation only supports cases where the
-            certificate is directly signed by the CA.</para>
+            <para>An generic SQL autentication module added for those who
+            store their users in an SQL database.</para>
           </listitem>
 
           <listitem>
-            <para>Allow an IdP to have multiple valid certificate fingerprints,
-            to allow for easier updating of certificates.</para>
+            <para>Limited support for validating against a CA root
+            certificate. The current implementation only supports cases where
+            the certificate is directly signed by the CA.</para>
+          </listitem>
+
+          <listitem>
+            <para>Allow an IdP to have multiple valid certificate
+            fingerprints, to allow for easier updating of certificates.</para>
           </listitem>
 
           <listitem>
@@ -76,8 +86,8 @@
           </listitem>
 
           <listitem>
-            <para>Proof-of-concept MetaShare service, for easy publishing
-            and sharing of metadata.</para>
+            <para>Proof-of-concept MetaShare service, for easy publishing and
+            sharing of metadata.</para>
           </listitem>
         </itemizedlist>
       </section>
