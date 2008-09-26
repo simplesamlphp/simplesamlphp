@@ -10,6 +10,8 @@ body {
 	text-align: center;
 	padding: 20px 0;
 	background: #222;
+	background-image: url(icons/ssplogo-fish.png);
+	background-repeat: no-repeat;
 	color: #333;
 	font: 83%/1.5 arial,tahoma,verdana,sans-serif;
 }
@@ -66,11 +68,17 @@ dt {
 }
 
 #wrap {
+	opacity:.92;
+	filter: alpha(opacity=92); 
+	-moz-opacity: 0.92;
+	
+	background: #fff;
+	
 	border: 1px solid #fff;
 	position: relative;
-	background: #fff;
+	
 	width: 600px;
-	margin: 0 auto;
+	margin: 20px auto;
 	text-align: left;
 }
 
