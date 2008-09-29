@@ -46,37 +46,24 @@ try {
 	if (!$spmeta['assertionConsumerServiceURL']) throw new Exception('The following parameter is not set in your SAML 2.0 SP Hosted metadata: assertionConsumerServiceURL');
 	if (!$spmeta['SingleLogOutUrl']) throw new Exception('The following parameter is not set in your SAML 2.0 SP Hosted metadata: SingleLogOutUrl');
 	*/
-	
-	$metaflat = "
-	'" . htmlspecialchars($spentityid) . "' => array(
- 		'AssertionConsumerService' => '" . htmlspecialchars($metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted')) . "',
- 		'SingleLogoutService'      => '" . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted')) . "'
-	),
-";
-	
-	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<EntityDescriptor entityID="' . htmlspecialchars($spentityid) . '" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
 
-	<SPSSODescriptor 
-		AuthnRequestsSigned="false" 
-		WantAssertionsSigned="false" 
-		protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+	$metaArray = array(
+		'AssertionConsumerService' => $metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted'),
+		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted'),
+	);
 
-		<SingleLogoutService 
-			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" 
-			Location="' . htmlspecialchars($metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted')) . '"/>
-		
-		<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
-		
-		<AssertionConsumerService 
-			index="0" 
-			isDefault="true" 
-			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" 
-			Location="' . htmlspecialchars($metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted')) . '" />
+	$metaflat = var_export($spentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
 
-	</SPSSODescriptor>
-
-</EntityDescriptor>';
+	if (array_key_exists('certificate', $spmeta)) {
+		$metaArray['certificate'] = $spmeta['certificate'];
+	}
+	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($spentityid);
+	$metaBuilder->addMetadataSP20($metaArray);
+	$metaBuilder->addContact('technical', array(
+		'emailAddress' => $config->getValue('technicalcontact_email'),
+		'name' => $config->getValue('technicalcontact_name'),
+		));
+	$metaxml = $metaBuilder->getEntityDescriptorText();
 
 	/* Sign the metadata if enabled. */
 	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $spmeta, 'SAML 2 SP');

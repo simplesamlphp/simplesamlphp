@@ -34,41 +34,23 @@ try {
 	$data = XMLSecurityDSig::get509XCert($cert, true);
 	
 	
-	$metaflat = "
-	'" . htmlspecialchars($idpentityid) . "' =>  array(
-		'name'                 => 'Type in a name for this entity',
-		'description'          => 'and a proper description that would help users know when to select this IdP.',
-		'SingleSignOnService'  => '" . htmlspecialchars($metadata->getGenerated('SingleSignOnService', 'shib13-idp-hosted')) . "',
-		'certFingerprint'      => '" . strtolower(sha1(base64_decode($data))) ."'
-	),
-";
+	$metaArray = array(
+		'name' => 'Type in a name for this entity',
+		'description' => 'and a proper description that would help users know when to select this IdP.',
+		'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'shib13-idp-hosted'),
+		'certFingerprint' => strtolower(sha1(base64_decode($data))),
+	);
+
+	$metaflat = var_export($idpentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
 	
-	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<EntityDescriptor entityID="' . htmlspecialchars($idpentityid) . '" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
-
-	<IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:mace:shibboleth:1.0">
-
-		<KeyDescriptor use="signing">
-			<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
-				<ds:X509Data>
-					<ds:X509Certificate>' . htmlspecialchars($data) . '</ds:X509Certificate>
-				</ds:X509Data>
-			</ds:KeyInfo>
-		</KeyDescriptor>
-
-		<NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
-		
-		<SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest"
-			Location="' . htmlspecialchars($metadata->getGenerated('SingleSignOnService', 'shib13-idp-hosted')) . '"/>
-
-	</IDPSSODescriptor>
-
-	<ContactPerson contactType="technical">
-		<SurName>' . $config->getValue('technicalcontact_name', 'Not entered') . '</SurName>
-		<EmailAddress>' . $config->getValue('technicalcontact_email', 'Not entered') . '</EmailAddress>
-	</ContactPerson>
-	
-</EntityDescriptor>';
+	$metaArray['certificate'] = $idpmeta['certificate'];
+	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
+	$metaBuilder->addMetadataIdP11($metaArray);
+	$metaBuilder->addContact('technical', array(
+		'emailAddress' => $config->getValue('technicalcontact_email'),
+		'name' => $config->getValue('technicalcontact_name'),
+		));
+	$metaxml = $metaBuilder->getEntityDescriptorText();
 
 	/* Sign the metadata if enabled. */
 	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta, 'Shib 1.3 IdP');

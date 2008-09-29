@@ -67,7 +67,8 @@ $config = array (
 	
 	/*
 	 * Some information about the technical persons running this installation.
-	 * The email address will be used as the recipient address for error reports.
+	 * The email address will be used as the recipient address for error reports, and
+	 * also as the technical contact in generated metadata.
 	 */
 	'technicalcontact_name'     => 'Administrator',
 	'technicalcontact_email'    => 'na@example.org',

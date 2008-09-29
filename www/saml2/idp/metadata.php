@@ -38,57 +38,30 @@ try {
 	
 	$urlSLO = $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted', array('logouttype' => $logouttype));
 	$urlSLOr = $metadata->getGenerated('SingleLogoutServiceResponse', 'saml20-idp-hosted', array('logouttype' => $logouttype));
-	
-	$metaflat = "
-	'" . htmlspecialchars($idpentityid) . "' =>  array(
-		'name'                 => 'Type in a name for this entity',
-		'description'          => 'and a proper description that would help users know when to select this IdP.',
-		'SingleSignOnService'  => '" . htmlspecialchars($metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted', array())) . "',
-		'SingleLogoutService'  => '" . htmlspecialchars($urlSLO) . "'," . 
-			(($urlSLO !== $urlSLOr) ? "
-		'SingleLogoutServiceResponse'  => '" . htmlspecialchars($urlSLOr) . "'," : "") . "
-		'certFingerprint'      => '" . strtolower(sha1(base64_decode($data))) ."'
-	),
-";
 
+	$metaArray = array(
+		'name' => 'Type in a name for this entity',
+		'description' => 'and a proper description that would help users know when to select this IdP.',
+		'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted', array()),
+		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted', array('logouttype' => $logouttype)),
+		'SingleLogoutServiceResponse'  => $metadata->getGenerated('SingleLogoutServiceResponse', 'saml20-idp-hosted', array('logouttype' => $logouttype)),
+		'certFingerprint' => strtolower(sha1(base64_decode($data))),
+	);
 
-	
-	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-	<EntityDescriptor xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
- entityID="' . htmlspecialchars($idpentityid) . '">
-    <IDPSSODescriptor
-        WantAuthnRequestsSigned="false"
-        protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
-        
-		<KeyDescriptor use="signing">
-			<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
-				<ds:X509Data>
-					<ds:X509Certificate>' . htmlspecialchars($data) . '</ds:X509Certificate>
-				</ds:X509Data>
-			</ds:KeyInfo>
-		</KeyDescriptor>  
-        
+	if ($metaArray['SingleLogoutServiceResponse'] === $metaArray['SingleLogoutService']) {
+		unset($metaArray['SingleLogoutServiceResponse']);
+	}
 
-        
-        <!-- Logout endpoints -->
-        <SingleLogoutService
-            Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
-            Location="' . htmlspecialchars($urlSLO) . '"
-            ResponseLocation="' . htmlspecialchars($urlSLOr) . '"
-            />
+	$metaflat = var_export($idpentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
 
-        
-        <!-- Supported Name Identifier Formats -->
-        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
-        
-        <!-- AuthenticationRequest Consumer endpoint -->
-        <SingleSignOnService
-            Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
-            Location="' . htmlspecialchars($metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted')) . '"
-            />
-        
-    </IDPSSODescriptor>
-</EntityDescriptor>';
+	$metaArray['certificate'] = $idpmeta['certificate'];
+	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
+	$metaBuilder->addMetadataIdP20($metaArray);
+	$metaBuilder->addContact('technical', array(
+		'emailAddress' => $config->getValue('technicalcontact_email'),
+		'name' => $config->getValue('technicalcontact_name'),
+		));
+	$metaxml = $metaBuilder->getEntityDescriptorText();
 
 	/* Sign the metadata if enabled. */
 	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta, 'SAML 2 IdP');

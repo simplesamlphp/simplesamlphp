@@ -27,28 +27,22 @@ try {
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID('shib13-sp-hosted');
 	
 
-	$metaflat = "
-	'" . htmlspecialchars($spentityid) . "' => array(
- 		'AssertionConsumerService' => '" . htmlspecialchars($metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted')) . "'
-	),
-";
-	
-	$metaxml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<EntityDescriptor entityID="' . htmlspecialchars($spentityid) . '" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
-	<SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol">
+	$metaArray = array(
+		'AssertionConsumerService' => $metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted'),
+	);
 
-		<NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
-		
-		<AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="' . htmlspecialchars($metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted')) . '" index="1" isDefault="true" />
-		
-	</SPSSODescriptor>
-	
-	<ContactPerson contactType="technical">
-		<SurName>' . $config->getValue('technicalcontact_name', 'Not entered') . '</SurName>
-		<EmailAddress>' . $config->getValue('technicalcontact_email', 'Not entered') . '</EmailAddress>
-	</ContactPerson>
-		
-</EntityDescriptor>';
+	$metaflat = var_export($spentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
+
+	if (array_key_exists('certificate', $spmeta)) {
+		$metaArray['certificate'] = $spmeta['certificate'];
+	}
+	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($spentityid);
+	$metaBuilder->addMetadataSP11($metaArray);
+	$metaBuilder->addContact('technical', array(
+		'emailAddress' => $config->getValue('technicalcontact_email'),
+		'name' => $config->getValue('technicalcontact_name'),
+		));
+	$metaxml = $metaBuilder->getEntityDescriptorText();
 
 	/* Sign the metadata if enabled. */
 	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $spmeta, 'Shib 1.3 SP');

@@ -32,8 +32,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$this->document = new DOMDocument();
 		$this->entityDescriptor = $this->createElement('EntityDescriptor');
-
 		$this->entityDescriptor->setAttribute('entityID', $entityId);
+		$this->document->appendChild($this->entityDescriptor);
 	}
 
 
@@ -45,6 +45,18 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	 */
 	public function getEntityDescriptor() {
 		return $this->entityDescriptor;
+	}
+
+
+	/**
+	 * Retrieve the EntityDescriptor as text.
+	 *
+	 * This function serializes this EntityDescriptor, and returns it as text.
+	 *
+	 * @return string  The serialized EntityDescriptor.
+	 */
+	public function getEntityDescriptorText() {
+		return $this->document->saveXML();
 	}
 
 
@@ -112,6 +124,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		if (array_key_exists('AssertionConsumerService', $metadata)) {
 			$t = $this->createElement('AssertionConsumerService');
+			$t->setAttribute('index', '0');
 			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST');
 			$t->setAttribute('Location', $metadata['AssertionConsumerService']);
 			$e->appendChild($t);
@@ -184,6 +197,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		if (array_key_exists('AssertionConsumerService', $metadata)) {
 			$t = $this->createElement('AssertionConsumerService');
+			$t->setAttribute('index', '0');
 			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post');
 			$t->setAttribute('Location', $metadata['AssertionConsumerService']);
 			$e->appendChild($t);
@@ -224,6 +238,84 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
+	 * Add contact information.
+	 *
+	 * Accepts a contact type, and an array of the following elements (all are optional):
+	 * - emailAddress     Email address (as string), or array of email addresses.
+	 * - telephoneNumber  Telephone number of contact (as string), or array of telephone numbers.
+	 * - name             Full name of contact, either as <GivenName> <SurName>, or as <SurName>, <GivenName>.
+	 * - surName          Surname of contact.
+	 * - givenName        Givenname of contact.
+	 * - company          Company name of contact.
+	 *
+	 * 'name' will only be used if neither givenName nor surName is present.
+	 *
+	 * The following contact types are allowed:
+	 * "technical", "support", "administrative", "billing", "other"
+	 *
+	 * @param string $type  The type of contact.
+	 * @param array $details  The details about the contact.
+	 */
+	public function addContact($type, $details) {
+		assert('is_string($type)');
+		assert('is_array($details)');
+		assert('in_array($type, array("technical", "support", "administrative", "billing", "other"), TRUE)');
+
+		/* Parse name into givenName and surName. */
+		if (isset($details['name']) && empty($details['surName']) && empty($details['givenName'])) {
+			$names = explode(',', $details['name'], 2);
+			if (count($names) === 2) {
+				$details['surName'] = trim($names[0]);
+				$details['givenName'] = trim($names[1]);
+			} else {
+				$names = explode(' ', $details['name'], 2);
+				if (count($names) === 2) {
+					$details['givenName'] = trim($names[0]);
+					$details['surName'] = trim($names[1]);
+				} else {
+					$details['surName'] = trim($names[0]);
+				}
+			}
+		}
+
+		$e = $this->createElement('ContactPerson');
+		$e->setAttribute('contactType', $type);
+
+		if (isset($details['company'])) {
+			$e->appendChild($this->createTextElement('Company', $details['company']));
+		}
+		if (isset($details['givenName'])) {
+			$e->appendChild($this->createTextElement('GivenName', $details['givenName']));
+		}
+		if (isset($details['surName'])) {
+			$e->appendChild($this->createTextElement('SurName', $details['surName']));
+		}
+
+		if (isset($details['emailAddress'])) {
+			$eas = $details['emailAddress'];
+			if (!is_array($eas)) {
+				$eas = array($eas);
+			}
+			foreach ($eas as $ea) {
+				$e->appendChild($this->createTextElement('EmailAddress', $ea));
+			}
+		}
+
+		if (isset($details['telephoneNumber'])) {
+			$tlfNrs = $details['telephoneNumber'];
+			if (!is_array($tlfNrs)) {
+				$tlfNrs = array($tlfNrs);
+			}
+			foreach ($tlfNrs as $tlfNr) {
+				$e->appendChild($this->createTextElement('TelephoneNumber', $tlfNr));
+			}
+		}
+
+		$this->entityDescriptor->appendChild($e);
+	}
+
+
+	/**
 	 * Create DOMElement in metadata namespace.
 	 *
 	 * Helper function for creating DOMElements with the metadata namespace.
@@ -235,6 +327,24 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		assert('is_string($name)');
 
 		return $this->document->createElementNS('urn:oasis:names:tc:SAML:2.0:metadata', $name);
+	}
+
+
+	/**
+	 * Create a DOMElement in metadata namespace with a single text node.
+	 *
+	 * @param string $name  The name of the DOMElement.
+	 * @param string $text  The text contained in the element.
+	 * @return DOMElement  The new DOMElement with a text node.
+	 */
+	private function createTextElement($name, $text) {
+		assert('is_string($name)');
+		assert('is_string($text)');
+
+		$node = $this->createElement($name);
+		$node->appendChild($this->document->createTextNode($text));
+
+		return $node;
 	}
 
 
