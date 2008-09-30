@@ -15,7 +15,7 @@ try {
 	}
 
 
-	$stats = SimpleSAML_MemcacheStore::getStats();
+	$stats = SimpleSAML_Memcache::getStats();
 
 	$template = new SimpleSAML_XHTML_Template($config, 'status-table.php');
 	$template->data['title'] = 'Memcache stats';
