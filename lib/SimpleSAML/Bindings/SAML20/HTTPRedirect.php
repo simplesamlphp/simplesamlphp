@@ -3,7 +3,7 @@
 /**
  * Implementation of the SAML 2.0 HTTP-REDIRECT binding.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Ã…kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
  */
