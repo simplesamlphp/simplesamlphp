@@ -12,7 +12,6 @@ if(array_key_exists('header', $this->data)) {
 
 	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/default.css" />
 	<link rel="icon" type="image/icon" href="/<?php echo $this->data['baseurlpath']; ?>resources/icons/favicon.ico" />
-	<script type="text/javascript" src="/<?php echo $this->data['baseurlpath']; ?>resources/script.js"></script>
 	<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
 
 <?php	
@@ -26,6 +25,10 @@ $onLoad = '';
 if(array_key_exists('autofocus', $this->data)) {
 	$onLoad .= 'SimpleSAML_focus(\'' . $this->data['autofocus'] . '\');';
 }
+if (isset($this->data['onLoad'])) {
+	$onLoad .= $this->data['onLoad']; 
+}
+
 if($onLoad !== '') {
 	$onLoad = ' onload="' . $onLoad . '"';
 }
