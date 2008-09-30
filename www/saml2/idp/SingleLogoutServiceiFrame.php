@@ -117,8 +117,8 @@ function updateslostatus() {
 		
 		$spname = is_array($name) ? $t->getTranslation($name) : $name;
 		
-		$objResponse->addAssign($spentityid, "className", 'loggedout');
-		$objResponse->addAssign($spentityid, "innerHTML", 'Logging out from <strong>' . $spname . '</strong> successfully completed');
+		$objResponse->addAssign('e' . sha1($spentityid), "className", 'loggedout');
+		$objResponse->addAssign('e' . sha1($spentityid), "innerHTML", 'Logging out from <strong>' . $spname . '</strong> successfully completed');
 
 	}
 	
@@ -366,6 +366,26 @@ try {
 $spmeta = $metadata->getMetaData($requester, 'saml20-sp-remote');
 $spname = $requester;
 if (array_key_exists('name', $spmeta)) $spname = $spmeta['name'];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -4,18 +4,12 @@
 /**
  * This SAML 2.0 endpoint can receive incomming LogoutResponses. 
  *
- * @author Andreas �kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
  */
 
 require_once('../../_include.php');
-
-
-
-sleep(max(0, rand(-3,5)));
-
-
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
