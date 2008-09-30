@@ -20,23 +20,10 @@ function showdiv(id) {
 		}
 	}
 }
-
-function init_updateslostatus() {
-	// use pre-formatted output for this multiplication table
-	var j;	// loop variables
-	for (j=1; j<=10; j++) {
-		setTimeout(\'xajax_updateslostatus()\',j*1000)
-	}
-}
 </script>';
-
-	$this->data['onLoad'] = ' init_updateslostatus();';
 	
 	$this->includeAtTemplateBase('includes/header.php');
 	
-#	$this->includeLanguageFile('consent.php'); 
-#	$this->includeInlineTranslation('spname', $this->data['sp_name']);
-#	$this->includeInlineTranslation('IDPNAME', $this->data['idp_name']);
 ?>
 
 
@@ -67,7 +54,7 @@ function init_updateslostatus() {
 			<?php
 
 				foreach ($this->data['sparray'] AS $sp) {
-					echo '<iframe class="hiddeniframe" style="border: 1px solid #888; width: 80%; height: 100px" src="' . $sp['url'] . '" ></iframe>' . "\n";
+					echo '<iframe class="hiddeniframe" onload="xajax_updateslostatus()" style="border: 1px solid #888; width: 80%; height: 100px" src="' . $sp['url'] . '" ></iframe>' . "\n";
 				}
 				
 				foreach ($this->data['sparray'] AS $spentityid => $sp) {
