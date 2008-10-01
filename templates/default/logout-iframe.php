@@ -26,9 +26,6 @@ function showdiv(id) {
 	
 ?>
 
-
-		<div id="a" style="display: none; background: blue; width: 10px; height: 10px">Poot</div>
-		
 	<div id="content">
 	
 
@@ -50,6 +47,7 @@ function showdiv(id) {
 			?>
 			<p>You have initiated a <strong>global logout</strong> from the service <strong><?php echo $requestername; ?></strong>. Global logout means you will be logged out from all services connected to this identity provider. This page will show the status of the logout proccess for all of the services you are logged into.</p>
 		
+			<div class="loggedout">Logout was started from <?php echo $requestername; ?>.</div>
 	
 			<?php
 
@@ -63,11 +61,16 @@ function showdiv(id) {
 					echo '<div class="inprogress" id="e' . sha1($spentityid) . '">
 						<img style="float: left; margin: 3px" src="/' . $this->data['baseurlpath'] . 'resources/progress.gif" alt="Progress bar" />Wait... is logging out from <strong>' . $spname . '</strong></div>'  . "\n";
 				}
-				
+	
+				$completed = ' class="allcompleted"';
+				if (count($this->data['sparray']) > 0) {
+					$completed = '';
+				}
+	
 			?>
 			
-			<div id="interrupt">[ <a href="<?php echo $this->data['logoutresponse']; ?>">Interrupt logging out and go back to service</a> ]</div>
-			<div id="iscompleted">You have successfully logged out from all services listed above.
+			<div id="interrupt"<?php echo $completed; ?>>[ <a href="<?php echo $this->data['logoutresponse']; ?>">Interrupt logging out and go back to service</a> ]</div>
+			<div id="iscompleted"<?php echo $completed; ?>>You have successfully logged out from all services listed above.
 				<!-- form method="get" action="<?php echo $this->data['logoutresponse']; ?>">
 					<input type="submit" name="s" value="OK, continue back to <?php echo $this->data['requesterName']; ?> to complete the logout process." />
 				</form  -->
