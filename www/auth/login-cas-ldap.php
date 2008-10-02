@@ -63,7 +63,7 @@ function casValidate($cas) {
 		if (isset($cas['validate'])) { # cas v1 yes|no\r<username> style
 			$paramPrefix = strpos($cas['validate'], '?') ? '&' : '?';
 			$result = file_get_contents($cas['validate'] . $paramPrefix . 'ticket=' . $ticket . '&service=' . urlencode($service) );
-			$res = preg_split("/\n/",$result);
+			$res = preg_split("/\r?\n/",$result);
 			
 			if (strcmp($res[0], "yes") == 0) {
 				return array($res[1], array());
