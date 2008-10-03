@@ -41,6 +41,12 @@ try {
 				array('entityid', 'SingleSignOnService', 'SingleLogoutService', 'certFingerprint'),
 				array('name', 'description', 'base64attributes', 'certificate', 'hint.cidr', 'saml2.relaxvalidation', 'SingleLogoutServiceResponse', 'request.signing', 'attributemap', 'attributealter', 'sharedkey', 'assertion.encryption', 'icon')
 			);
+			$index = array_search('certFingerprint', $results[$entityid]['required.notfound']);
+			if ($index !== FALSE) {
+				if (array_key_exists('certificate', $mentry)) {
+					unset($results[$entityid]['required.notfound'][$index]);
+				}
+			}
 		}
 		$et->data['metadata.saml20-idp-remote'] = $results;
 		
