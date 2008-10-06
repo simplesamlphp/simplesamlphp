@@ -1080,7 +1080,8 @@ class SimpleSAML_Utilities {
 		for($i = 0; $i < $length; $i++) {
 			$data .= chr(mt_rand(0, 255));
 		}
-	
+
+		return $data;
 	}
 
 
