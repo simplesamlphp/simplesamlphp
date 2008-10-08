@@ -16,6 +16,12 @@
 
       <email>andreas.solberg@uninett.no</email>
     </author>
+
+    <author>
+      <firstname>Mads</firstname>
+
+      <surname>Freek</surname>
+    </author>
   </articleinfo>
 
   <section>
@@ -194,14 +200,13 @@
 
             <para>If this is multiple attributes, they will be joined into a
             search query with the following form:
-            <literal>(|(&lt;attr1&gt;=&lt;username&gt;)(&lt;attr2&gt;=&lt;username&gt;)...)</literal>
-            </para>
+            <literal>(|(&lt;attr1&gt;=&lt;username&gt;)(&lt;attr2&gt;=&lt;username&gt;)...)</literal></para>
           </listitem>
 
           <listitem>
             <para><literal>auth.ldap.search.username</literal>: The user we
-            should authenticate to the LDAP server as before searching.
-            Leave this as <literal>NULL</literal> if it isn't necessary to
+            should authenticate to the LDAP server as before searching. Leave
+            this as <literal>NULL</literal> if it isn't necessary to
             authenticate to the server before searching.</para>
           </listitem>
 
@@ -268,6 +273,171 @@
         <para>Documentation will be added later. For now, contact the
         author.</para>
       </note>
+    </section>
+
+    <section>
+      <title>Configuring the 'login-CAS-LDAP' module for
+      authentication</title>
+
+      <para>If you want to connect your identity provider using either CAS or
+      CAS in combination with LDAP (for attribute retrieval), you may use the
+      login-cas-ldap module. It is found in
+      <filename>auth/login-cas-ldap.php</filename>.</para>
+
+      <para>The following parameters should be configured in
+      config/cas-ldap.php:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>make an entry for each identity provider using the identity ID
+          as key</para>
+        </listitem>
+
+        <listitem>
+          <para>you should make a sub entry with 'cas' as key and the
+          following parameters:</para>
+
+          <glosslist>
+            <glossentry>
+              <glossterm>login</glossterm>
+
+              <glossdef>
+                <para>the url of the login service of the CAS server</para>
+              </glossdef>
+            </glossentry>
+          </glosslist>
+        </listitem>
+      </itemizedlist>
+
+      <para>We recomment you always use 'renew=true'v to be able to comply
+      with a SAML2 'force-auth' request. In addition you may configure either
+      a 'validate' or a 'serviceValdate' (simpleSAMLphp supports both CAS
+      ver.1 and ver.2).</para>
+
+      <para>'validate' is the CAS ver.1 YES/NO\r&lt;username&gt;style
+      validation which only returns a user name to simpleSAMLphp and which
+      requires subsequent use of LDAP to retrieve the attributes. The value of
+      this parameter is the url of the validate service of the CAS
+      server.</para>
+
+      <para>'serviceValidate' is the url of the CAS servers' ver.2 validation.
+      In some cases the CAS server returns attributes in non-standard XML
+      format. The login-cas-ldap module allows you to map a list of attribute
+      names to Xpath expressions which are returned to simpleSAMLphp from the
+      auth-module. The list is named 'attributes' (see example for further
+      information).</para>
+
+      <para>If you want to use LDAP for retrieving attributes you should make
+      sub entry with 'ldap' as key and the following parameters:</para>
+
+      <glosslist>
+        <glossentry>
+          <glossterm>servers</glossterm>
+
+          <glossdef>
+            <para>a space separated list of urls in OpelLDAP format (see
+            example)</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>starttls</glossterm>
+
+          <glossdef>
+            <para>(set to true to secure (encrypt) the LDAP connection)</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>searchbase</glossterm>
+
+          <glossdef>
+            <para>the starting point for the LDAP search (simpleSAMLphp always
+            uses sub-tree search)</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>searchattributes</glossterm>
+
+          <glossdef>
+            <para>an array of attribute names to search for (when used in this
+            combination with CAS only one value is needed)</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>dnpattern</glossterm>
+
+          <glossdef>
+            <para>a pattern for a dn for the user where %username% is replaced
+            with the actual user name for constructing the dn of the users'
+            entry. If used no search for the user is performed and the
+            constructed dn is used in stead.</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>attributes</glossterm>
+
+          <glossdef>
+            <para>the list of attributes retrieved from the users'
+            entry</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>priv_user_dn (optional)</glossterm>
+
+          <glossdef>
+            <para>the dn of a priviliged user who is allowed to search and
+            read the whole LDAP sub-tree for the user if anonynous search and
+            read is not allowed</para>
+          </glossdef>
+        </glossentry>
+
+        <glossentry>
+          <glossterm>priv_user_pw (optional)</glossterm>
+
+          <glossdef>
+            <para>the password of the priviiliged user</para>
+          </glossdef>
+        </glossentry>
+      </glosslist>
+
+      <para>Samle configuration:</para>
+
+      <programlisting>$casldapconfig = array (
+	'idpentityid.example.org' =&gt; array(
+		'cas' =&gt; array(
+			'login' =&gt; 'https://idpentityid.example.org/cas/login',
+			'validate' =&gt; 'https://idpentityid.example.org/cas/validate',
+		),
+		'ldap' =&gt; array(
+			'servers' =&gt; 'idpentityid.example.org',
+			'enable_tls' =&gt; false,
+			'searchbase' =&gt; 'dc=example,dc=org',
+			'searchattributes' =&gt; 'uid',
+			'attributes' =&gt; array('cn', 'mail'),
+		),
+	),
+	'idpentityid2.example.org' =&gt; array(
+		'cas' =&gt; array(
+			'login' =&gt; 'https://idpentityid2.example.org/login',
+			'validate' =&gt; 'https://idpentityid2.example.org/validate',
+		),
+		'ldap' =&gt; array(
+			'servers' =&gt; 'ldap://idpentityid2.example.org',
+			'enable_tls' =&gt; false,
+			'searchbase' =&gt; 'ou=users,dc=example,dc=org',
+			'searchattributes' =&gt; array('uid', 'mail'), # array for being able to login with either uid or mail.
+			'attributes' =&gt; null,
+			'priv_user_dn' =&gt; 'uid=admin,ou=users,dc=example,dc=org',
+			'priv_user_pw' =&gt; 'xxxxx',
+		),
+	),
+
+);</programlisting>
     </section>
   </section>
 
@@ -783,8 +953,8 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossterm>description</glossterm>
 
             <glossdef>
-              <para>A longer description of the SP. This can be a string, or an
-              associative array with language code =&gt; translation
+              <para>A longer description of the SP. This can be a string, or
+              an associative array with language code =&gt; translation
               pairs.</para>
             </glossdef>
           </glossentry>
@@ -859,10 +1029,10 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             <glossdef>
               <para>The default behaviour of simpleSAMLphp is to sign the
               Assertion element in the SAML 2.0 response sent to SPs. This
-              option allows you to override this behaviour on a per SP
-              basis. Set this to <literal>TRUE</literal> to sign the
-              Response element. <literal>FALSE</literal> will make the SP
-              sign the Assertion. If this option is unset, the value from
+              option allows you to override this behaviour on a per SP basis.
+              Set this to <literal>TRUE</literal> to sign the Response
+              element. <literal>FALSE</literal> will make the SP sign the
+              Assertion. If this option is unset, the value from
               <literal>saml2.signresponse</literal> in
               <literal>config.php</literal> will be used. That value is
               <literal>FALSE</literal> by default.</para>
@@ -898,8 +1068,8 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
       <title>Scoped attributes</title>
 
       <para>It is possible to configure some attributes to be scoped, and
-      include the Scope-attribute on the attribute values. This is enabled
-      by setting the <literal>scopedattributes</literal>-option in either
+      include the Scope-attribute on the attribute values. This is enabled by
+      setting the <literal>scopedattributes</literal>-option in either
       <filename>shib13-sp-remote.php</filename> or
       <filename>shib13-idp-hosted.php</filename>. If both are defined, the SP
       configuration is used.</para>
@@ -913,7 +1083,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
       <programlisting>/*
  * Example of scopedattributes option. Will use scoped attribute for eduPersonPrincipalName.
  */
-'scopedattributes' => array('eduPersonPrincipalName'),</programlisting>
+'scopedattributes' =&gt; array('eduPersonPrincipalName'),</programlisting>
     </section>
   </section>
 
