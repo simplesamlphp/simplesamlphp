@@ -76,11 +76,10 @@ dt {
 	
 	border: 1px solid #fff;
 	position: relative;
+	text-align: left;
 	
-#	width: 600px;
 	margin: 20px 75px 2em 75px;
 	max-width: 950px;
-	text-align: left;
 }
 
 #header {
