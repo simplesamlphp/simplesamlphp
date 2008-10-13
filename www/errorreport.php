@@ -17,6 +17,8 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST') {
 /* Format of the email.
  * POST fields will be added to the email in the order they appear here, and with the description
  * from the value in the array.
+ *
+ * DEPRECATED. Included as reference of incomming parameters.
  */
 $mailFormat = array(
 	'email' => 'Email address of submitter',
@@ -41,86 +43,66 @@ $ignoredFields = array(
 $reportId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(4));
 SimpleSAML_Logger::error('Error report with  id ' . $reportId . ' generated.');
 
+
+function getPValue($key) {
+	if (array_key_exists($key, $_POST)) {
+		return strip_tags($_POST[$key]);
+	}
+	return 'not set';
+}
+
 /* Build the email message. */
 
-$message = '';
+$message = '<h1>SimpleSAMLphp Error Report</h1>
 
-/**
- * Format and add a section to the email message.
- *
- * @param $title  The title of the section.
- * @param $content  The content of the section.
- */
-function addMessageSection($title, $content) {
-	global $message;
+<p>Message from user:</p>
+<div class="box" style="background: yellow; color: #888; border: 1px solid #999900; padding: .4em; margin: .5em">' . getPValue('text') . '</div>
 
-	$message .= $title . "\n";
-	$message .= "===============================================================\n";
+<p>Exception: <strong>' . getPValue('exceptionmsg') . '</strong></p>
+<pre>' . getPValue('exceptiontrace') . '</pre>
 
-	foreach(split("\n", $content) as $line) {
-		$message .= ' ' . $line . "\n";
-	}
+<p>URL:</p>
+<pre><a href="' . getPValue('url') . '">' . getPValue('url') . '</a></pre>
 
-	$message .= "\n";
-}
+<p>Directory:</p>
+<pre>' . dirname(dirname(__FILE__)) . '</pre>
 
-/* Add the default fields to the message. */
-foreach($mailFormat as $key => $desc) {
-	if(!array_key_exists($key, $_POST)) {
-		/* Not included in the POST message, skip. */
-		continue;
-	}
+<p>Track ID:</p>
+<pre>' . getPValue('trackid') . '</pre>
 
-	$data = $_POST[$key];
+<p>Version: <tt>' . getPValue('version') . '</tt></p>
 
-	addMessageSection($desc, $data);
-}
+<p>Report ID: <tt>' . $reportId . '</tt></p>
 
-/* Add any unknown fields to the message. */
-foreach($_POST as $key => $data) {
+<hr />
+<div class="footer">This message was sent using simpleSAMLphp. Visit <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp homepage</a>.</div>
 
-	/* Skip known fields. */
-	if(array_key_exists($key, $mailFormat)) {
-		continue;
-	}
+';
 
-	/* Skip ignored fields. */
-	if(in_array($key, $ignoredFields, TRUE)) {
-		continue;
-	}
-
-	$title = 'Unknown field: ' . $key;
-	addMessageSection($title, $data);
-}
-
-
-/* Add footer to message. */
-$message .= 'Error report id: ' . $reportId . "\n";
-$message .= "You may search the logs for this id to find the location\n";
-$message .= "where this report was sent.\n";
-
-/* We want to use UTF-8 encoding of the email message. */
-$headers = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-Type: text/plain; charset="UTF-8"' . "\r\n";
 
 /* Add the email address of the submitter as the Reply-To address. */
+$replyto = NULL;
+$from = 'no-reply@simplesamlphp.org';
 if(array_key_exists('email', $_POST)) {
 	$email = $_POST['email'];
 	$email = trim($email);
 	/* Check that it looks like a valid email address. */
 	if(!preg_match('/\s/', $email) && strpos($email, '@') !== FALSE) {
-		$headers .= 'Reply-To: ' . $email . "\r\n";
+		$replyto = $email;
+		$from = $email;
 	}
 }
 
 /* Send the email. */
-$email = $config->getValue('technicalcontact_email', 'na@example.org');
+$toaddress = $config->getValue('technicalcontact_email', 'na@example.org');
 if($email !== 'na@example.org') {
-	/* This should always be TRUE, as the error report button should not appear unless
-	 * the email is set.
-	 */
-	mail($email, 'simpleSAMLphp error report', $message, $headers);
+	
+	$email = new SimpleSAML_XHTML_EMail($email, 'simpleSAMLphp error report', $from);
+	$email->setBody($message);
+	$email->send();
 }
+
+
 
 /* Redirect the user back to this page to clear the POST request. */
 SimpleSAML_Utilities::redirect(SimpleSAML_Utilities::selfURLNoQuery());
