@@ -491,6 +491,10 @@ $lang = array(
 		'hu' => 'SimpleSAMLphp fájl formátumban - akkor használható, ha a másik oldalon simpleSAMLphp van:',
 		'pt' => 'Em formato de arquivo plano simpleSAMLphp - use isso se você estiver usando uma entidade  simpleSAMLphp do outro lado:',
 	),
+	'metadata_send_success' => array (
+		'no' => 'Metadata er nå sendt på e-post til identitetsleverandøren.',
+		'en' => 'Successfully sent metadata to Identity Provider.',
+	),
 	'metadata_send_title2' => array (
 		'no' => 'Send metadata til din identitetsleverandør',
 		'en' => 'Send Metadata to your IdP',
