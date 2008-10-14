@@ -62,6 +62,10 @@ class SimpleSAML_Configuration {
 		$this->configuration = $config;
 	}
 
+	public function getVersion() {
+		return 'trunk';
+	}
+
 
 	/** 
 	 * Retrieve a configuration option set in config.php.
