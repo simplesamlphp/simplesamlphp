@@ -79,8 +79,12 @@ $metadata = array(
 	 * Metadata for Feide's test environment.
 	 */
 	'max.feide.no' =>  array(
-		'name'					=>	'Test environment of Feide',
-		'description'			=> 'max.feide.no: the test environment of Feide.',
+		'name'					=>	array(
+			'en' => 'Feide Test environment',
+			'en' => 'Feide testmilj¿',
+		)
+		'description'			=> 'Feide test environment (max.feide.no). Authenticate with your identity from a school or university in Norway.',
+		'send_metadata_email' 	=> 'moria-support@uninett.no',
 		'SingleSignOnService'	=>	'https://max.feide.no/amserver/SSORedirect/metaAlias/idp',
 		'SingleLogoutService'	=>	'https://max.feide.no/amserver/IDPSloRedirect/metaAlias/idp',
 		'certFingerprint'		=>	'5dd3196bdb2fb7e75380fe234a3f4f2d1e8d6d84',
@@ -94,6 +98,7 @@ $metadata = array(
 	'sam.feide.no' =>  array( 
 		'name'					=>	'Feide',
 		'description'			=> 'Authenticate with your identity from a school or university in Norway.',
+		'send_metadata_email' 	=> 'moria-support@uninett.no',
 		'SingleSignOnService'	=>	'https://sam.feide.no/amserver/SSORedirect/metaAlias/idp',
 		'SingleLogoutService'	=>	'https://sam.feide.no/amserver/IDPSloRedirect/metaAlias/idp',
 		'certFingerprint'		=>	'f6:72:c5:e7:04:fb:86:5e:93:6b:3b:cd:45:b0:49:2e:94:f5:f0:95',

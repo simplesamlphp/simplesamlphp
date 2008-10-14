@@ -20,33 +20,12 @@ if ($config->getValue('admin.protectmetadata', false)) {
 	}
 }
 
-
-/**
- * Preconfigured to help out some federations. This makes it easier for users to report metadata
- * to the administrators of the IdP.
- */
-$send_metadata_to_idp = array(
-	'sam.feide.no'	=> array(
-		'name' 		=> 'Feide',
-		'address'	=> 'http://rnd.feide.no/content/sending-information-simplesamlphp'
-	),
-	'max.feide.no'	=> array(
-		'name' 		=> 'Feide',
-		'address'	=> 'http://rnd.feide.no/content/sending-information-simplesamlphp'
-	)
-);
-
-
 try {
+	
 
 	$spmeta = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrent();
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 	
-	/*
-	if (!$spmeta['assertionConsumerServiceURL']) throw new Exception('The following parameter is not set in your SAML 2.0 SP Hosted metadata: assertionConsumerServiceURL');
-	if (!$spmeta['SingleLogOutUrl']) throw new Exception('The following parameter is not set in your SAML 2.0 SP Hosted metadata: SingleLogOutUrl');
-	*/
-
 	$metaArray = array(
 		'AssertionConsumerService' => $metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted'),
 		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted'),
@@ -67,8 +46,90 @@ try {
 
 	/* Sign the metadata if enabled. */
 	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $spmeta, 'SAML 2 SP');
+	
+	
+	
+	
+	/*
+	 * Generate list of IdPs that you can send metadata to.
+	 */
+	$idplist = $metadata->getList('saml20-idp-remote');
+	$idpsend = array();
+	foreach ($idplist AS $entityid => $mentry) {
+		if (array_key_exists('send_metadata_email', $mentry)) {
+			$idpsend[$entityid] = $mentry;
+		}
+	}
+	
+	
+	$adminok = (isset($session) && $session->isValid('login-admin') );
+	$adminlogin = SimpleSAML_Utilities::addURLparameter(
+		'/' . $config->getBaseURL() . 'auth/login-admin.php', 
+		array('RelayState' => 
+			SimpleSAML_Utilities::addURLParameter(
+				SimpleSAML_Utilities::selfURLNoQuery(),
+				array('output' => 'xhtml')
+			)
+		)
+	);
+	
 
-	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
+	
+	/*
+	 * Send metadata to Identity Provider, if the user filled submitted the form
+	 */
+	if (array_key_exists('sendtoidp', $_POST)) {
+		
+		if (!array_key_exists($_POST['sendtoidp'], $idpsend))
+			throw new Exception('Entity ID ' . $_POST['sendtoidp'] . ' not found in metadata. Cannot send metadata to this IdP.');
+		
+		$emailadr = $idpsend[$_POST['sendtoidp']]['send_metadata_email'];
+		$from = $_POST['email'];
+		
+		$message = '<h1>simpleSAMLphp SAML 2.0 Service Provider Metadata</h1>
+
+<p>Metadata was sent to you from a simpleSAMLphp SAML 2.0 Service Provider. The service provider requests to connect to the following Identity Provider: 
+	<ul>
+		<li><tt>' . htmlentities($_POST['sendtoidp']) . '</tt></li>
+	</ul>
+</p>
+
+<p>SAML 2.0 Service Provider EntityID :</p>
+<pre>' . htmlentities($spentityid) . '</pre>
+
+<p>Links to metadata at service provider
+<ul>
+	<li><a href="' . htmlentities(SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), array('output' => 'xhtml'))) . '">SimpleSAMLphp Metadata page</a></li>
+	<li><a href="' . htmlentities(SimpleSAML_Utilities::selfURLNoQuery()) . '">SimpleSAMLphp Metadata (XML only)</a></li>
+</ul>
+</p>
+
+<p>SAML 2.0 XML Metadata :</p>
+<pre>' . htmlentities($metaxml) . '</pre>
+
+<p>Metadata in SimpleSAMLphp format :</p>
+<pre>' . htmlentities($metaflat) . '</pre>
+
+<p>SimpleSAMLphp version: ' . $config->getVersion() . '</p>
+
+';
+		
+		$email = new SimpleSAML_XHTML_EMail($emailadr, 'simpleSAMLphp SAML 2.0 Service Provider Metadata', $from);
+		$email->setBody($message);
+		$email->send();
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
 		$defaultidp = $config->getValue('default-saml20-idp');
 		
 		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
@@ -76,16 +137,16 @@ try {
 		$t->data['header'] = 'saml20-sp';
 		$t->data['metadata'] = htmlentities($metaxml);
 		$t->data['metadataflat'] = htmlentities($metaflat);
-		$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), array('output' => 'xml'));
+		$t->data['metaurl'] = SimpleSAML_Utilities::selfURLNoQuery();
 		
-		if (array_key_exists($defaultidp, $send_metadata_to_idp)) {
-			$t->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];
-			$t->data['federationname'] = $send_metadata_to_idp[$defaultidp]['name'];
-		}
-	
-		$t->data['techemail'] = $config->getValue('technicalcontact_email', 'na');
-		$t->data['version'] = $config->getValue('version', 'na');
-		$t->data['defaultidp'] = $defaultidp;
+		$t->data['idpsend'] = $idpsend;
+		$t->data['adminok'] = $adminok;
+		$t->data['adminlogin'] = $adminlogin;
+		
+		$t->data['techemail'] = $config->getValue('technicalcontact_email', NULL);
+		
+// 		$t->data['version'] = $config->getValue('version', 'na');
+// 		$t->data['defaultidp'] = $defaultidp;
 		
 		$t->show();
 		
