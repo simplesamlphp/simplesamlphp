@@ -81,8 +81,8 @@ $metadata = array(
 	'max.feide.no' =>  array(
 		'name'					=>	array(
 			'en' => 'Feide Test environment',
-			'en' => 'Feide testmilj¿',
-		)
+			'no' => 'Feide testmiljÃ¸',
+		),
 		'description'			=> 'Feide test environment (max.feide.no). Authenticate with your identity from a school or university in Norway.',
 		'send_metadata_email' 	=> 'moria-support@uninett.no',
 		'SingleSignOnService'	=>	'https://max.feide.no/amserver/SSORedirect/metaAlias/idp',

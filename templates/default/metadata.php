@@ -20,7 +20,21 @@ $this->includeAtTemplateBase('includes/header.php');
 		?>
 			<div style="border: 1px solid #444; margin: .5em 2em .5em 2em; padding: .5em 1em 1em 1em; background: #FFFFCC">
 
-				<h2 style="margin-top: 0px" ></h2>
+				
+
+
+				<h2 style="margin-top: 0px" ><?php echo $this->t('metadata_send_title2'); ?></h2>
+				
+				<?php
+
+				if ($this->data['sentok'] === TRUE) {
+				
+					echo '<p><strong>' . $this->t('metadata_send_success') . '</strong></p>';
+				
+				}
+				
+				?>
+				
 
 				<form action="metadata.php" method="post">
 

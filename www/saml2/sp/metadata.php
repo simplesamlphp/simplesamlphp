@@ -74,11 +74,12 @@ try {
 	);
 	
 
-	
+	$sentok = FALSE;
 	/*
 	 * Send metadata to Identity Provider, if the user filled submitted the form
 	 */
 	if (array_key_exists('sendtoidp', $_POST)) {
+		
 		
 		if (!array_key_exists($_POST['sendtoidp'], $idpsend))
 			throw new Exception('Entity ID ' . $_POST['sendtoidp'] . ' not found in metadata. Cannot send metadata to this IdP.');
@@ -117,7 +118,7 @@ try {
 		$email = new SimpleSAML_XHTML_EMail($emailadr, 'simpleSAMLphp SAML 2.0 Service Provider Metadata', $from);
 		$email->setBody($message);
 		$email->send();
-		
+		$sentok = TRUE;
 	}
 	
 	
@@ -140,6 +141,7 @@ try {
 		$t->data['metaurl'] = SimpleSAML_Utilities::selfURLNoQuery();
 		
 		$t->data['idpsend'] = $idpsend;
+		$t->data['sentok'] = $sentok;
 		$t->data['adminok'] = $adminok;
 		$t->data['adminlogin'] = $adminlogin;
 		
