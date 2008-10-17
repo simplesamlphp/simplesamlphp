@@ -379,6 +379,55 @@
 ),</programlisting>
       </example>
 
+      <example>
+        <title>More complex example</title>
+
+        <para>Here is an example with more configuration:</para>
+
+        <programlisting>	/*
+	 * Example simpleSAMLphp SAML 2.0 IdP
+	 */
+	'idp-entity-id' =&gt;  array(
+		'name'					=&gt;	'Test',
+		'description'			=&gt; 'Description of this example entry',
+		
+		'SingleSignOnService'	=&gt;	'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
+		'SingleLogoutService'	=&gt;	'https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php',
+		'certFingerprint'		=&gt;	'3fa158e8abfd4b5203315b08c0b791b6ee4715f6',
+		'base64attributes'		=&gt;	true,
+
+		 /*
+		 * When request.signing is true the certificate of the IdP will be used
+		 * to verify all messages received with the HTTPRedirect binding.
+		 * 
+		 * The certificate from the IdP must be installed in the cert directory 
+		 * before verification can be done.  
+		 */
+		'request.signing' =&gt; false,
+		'certificate' =&gt; "idp.example.org.crt",
+
+		/*
+		 * It is possible to relax some parts of the validation of SAML2 messages.
+		 * To relax a part, add the id to the 'saml2.relaxvalidation' array.
+		 *
+		 * Valid ids:
+		 * - 'unknowncondition'         Disables errors when encountering unknown &lt;Condition&gt; nodes.
+		 * - 'nosubject'                Ignore missing &lt;Subject&gt; in &lt;Assertion&gt;.
+		 * - 'noconditions'             Ignore missing &lt;Conditions&gt; in &lt;Assertion&gt;.
+		 * - 'noauthnstatement'         Ignore missing &lt;AuthnStatement&gt; in &lt;Assertion&gt;.
+		 * - 'noattributestatement'     Ignore missing &lt;AttributeStatement&gt; in &lt;Assertion&gt;.
+		 *
+		 * Example:
+		 * 'saml2.relaxvalidation' =&gt; array('unknowncondition', 'noattributestatement'),
+		 *
+		 * Default:
+		 * 'saml2.relaxvalidation' =&gt; array(),
+		 */
+		'saml2.relaxvalidation' =&gt; array(),
+
+	),</programlisting>
+      </example>
+
       <section>
         <title>Mandatory metadata fields</title>
 
@@ -397,7 +446,7 @@
             <glossterm>name</glossterm>
 
             <glossdef>
-              <para>A textual name of the IdP.  This can contain a string or an
+              <para>A textual name of the IdP. This can contain a string or an
               associative array of language code =&gt; translation pairs. This
               name is used in the SAML 2.0 discovery service.</para>
             </glossdef>
@@ -408,8 +457,9 @@
 
             <glossdef>
               <para>A longer description of the IdP. This can contain a string
-              or an associative array of language code =&gt; translation pairs.
-              The description is used in the SAML 2.0 discovery service.</para>
+              or an associative array of language code =&gt; translation
+              pairs. The description is used in the SAML 2.0 discovery
+              service.</para>
             </glossdef>
           </glossentry>
 
@@ -449,8 +499,8 @@
               where any fingerprints in that array is accepted as valid. This
               can be used to update the certificate of the IdP without having
               to update every SP at that exact time. Instead, one can update
-              the SPs with the new fingerprint, and only update the certificate
-              after every SP is updated.</para>
+              the SPs with the new fingerprint, and only update the
+              certificate after every SP is updated.</para>
 
               <para>See <xref linkend="a.fingerprint" /> for an example of how
               to calculate the fingerprint with the <literal>openssl</literal>
@@ -553,11 +603,10 @@
 
             <glossdef>
               <para>Alternative to certFingerprint. Allows you to specify a
-               file with root certificates, and responses from the service
-               be validated against these certificates. Note that
-               simpleSAMLphp doesn't support chains with any itermediate
-               certificates between the root and the certificate used to sign
-               the response.</para>
+              file with root certificates, and responses from the service be
+              validated against these certificates. Note that simpleSAMLphp
+              doesn't support chains with any itermediate certificates between
+              the root and the certificate used to sign the response.</para>
             </glossdef>
           </glossentry>
 
@@ -829,10 +878,10 @@
 
           <glossdef>
             <para>Alternative to certFingerprint. Allows you to specify a file
-             with root certificates, and responses from the service be
-             validated against these certificates. Note that simpleSAMLphp
-             doesn't support chains with any itermediate certificates between
-             the root and the certificate used to sign the response.</para>
+            with root certificates, and responses from the service be
+            validated against these certificates. Note that simpleSAMLphp
+            doesn't support chains with any itermediate certificates between
+            the root and the certificate used to sign the response.</para>
           </glossdef>
         </glossentry>
 
