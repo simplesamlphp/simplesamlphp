@@ -1390,6 +1390,157 @@ class SimpleSAML_Utilities {
 		return $error['message'];
 	}
 
+
+	/**
+	 * Get public key or certificate from metadata.
+	 *
+	 * This function implements a function to retrieve the public key or certificate from
+	 * a metadata array.
+	 *
+	 * It will search for the following elements in the metadata:
+	 * 'certData'  The certificate as a base64-encoded string.
+	 * 'certificate'  A file with a certificate or public key in PEM-format.
+	 * 'certFingerprint'  The fingerprint of the certificate. Can be a single fingerprint,
+	 *                    or an array of multiple valid fingerprints.
+	 *
+	 * This function will return an array with these elements:
+	 * 'PEM'  The public key/certificate in PEM-encoding.
+	 * 'certData'  The certificate data, base64 encoded, on a single line. (Only
+	 *             present if this is a certificate.)
+	 * 'certFingerprint'  Array of valid certificate fingerprints. (Only present
+	 *                    if this is a certificate.)
+	 *
+	 * @param array $metadata  The metadata array.
+	 * @param bool $required  Whether the private key is required. If this is TRUE, a
+	 *                        missing key will cause an exception. Default is FALSE.
+	 * @param string $prefix  The prefix which should be used when reading from the metadata
+	 *                        array. Defaults to ''.
+	 * @return array|NULL  Public key or certificate data, or NULL if no public key or
+	 *                     certificate was found.
+	 */
+	public static function loadPublicKey($metadata, $required = FALSE, $prefix = '') {
+		assert('is_array($metadata)');
+		assert('is_bool($required)');
+		assert('is_string($prefix)');
+
+		$ret = array();
+
+		if (array_key_exists($prefix . 'certData', $metadata)) {
+			/* Full certificate data available from metadata. */
+			$ret['certData'] = $metadata[$prefix . 'certData'];
+
+			/* Recreate PEM-encoded certificate. */
+			$ret['PEM'] = "-----BEGIN CERTIFICATE-----\n" .
+				chunk_split($ret['certData'], 64) .
+				"-----END CERTIFICATE-----\n";
+
+		} elseif (array_key_exists($prefix . 'certificate', $metadata)) {
+			/* Reference to certificate file. */
+			$config = SimpleSAML_Configuration::getInstance();
+			$file = $config->getPathValue('certdir') . $metadata[$prefix . 'certificate'];
+			$data = @file_get_contents($file);
+			if ($data === FALSE) {
+				throw new Exception('Unable to load certificate/public key from file "' . $file . '"');
+			}
+			$ret['PEM'] = $data;
+
+			/* Extract certificate data (if this is a certificate). */
+			$pattern = '/^-----BEGIN CERTIFICATE-----$([^-]*)^-----END CERTIFICATE-----$/m';
+			if (preg_match($pattern, $data, $matches)) {
+				/* We have a certificate. */
+				$ret['certData'] = str_replace(array("\r", "\n"), '', $matches[1]);
+			}
+
+		} elseif (array_key_exists($prefix . 'certFingerprint', $metadata)) {
+			/* We only have a fingerprint available. */
+			$fps = $metadata[$prefix . 'certFingerprint'];
+
+			if (!is_array($fps)) {
+				$fps = array($fps);
+			}
+
+			/* Normalize fingerprint(s) - lowercase and no colons. */
+			foreach($fps as &$fp) {
+				assert('is_string($fp)');
+				$fp = strtolower(str_replace(':', '', $fp));
+			}
+
+			/* We can't build a full certificate from a fingerprint, and may as well
+			 * return an array with only the fingerprint(s) immediately.
+			 */
+			return array('certFingerprint' => $fp);
+
+		} else {
+			/* No public key/certificate available. */
+			if ($required) {
+				throw new Exception('No public key / certificate found in metadata.');
+			} else {
+				return NULL;
+			}
+		}
+
+		if (array_key_exists('certData', $ret)) {
+			/* This is a certificate - calculate the fingerprint. */
+			$ret['certFingerprint'] = array(
+				strtolower(sha1(base64_decode($ret['certData'])))
+			);
+		}
+
+		return $ret;
+	}
+
+
+	/**
+	 * Load private key from metadata.
+	 *
+	 * This function loads a private key from a metadata array. It searches for the
+	 * following elements:
+	 * 'privatekey'  Name of a private key file in the cert-directory.
+	 * 'privatekey_pass'  Password for the private key.
+	 *
+	 * It returns and array with the following elements:
+	 * 'PEM'  Data for the private key, in PEM-format
+	 * 'password'  Password for the private key.
+	 *
+	 * @param array $metadata  The metadata array the private key should be loaded from.
+	 * @param bool $required  Whether the private key is required. If this is TRUE, a
+	 *                        missing key will cause an exception. Default is FALSE.
+	 * @param string $prefix  The prefix which should be used when reading from the metadata
+	 *                        array. Defaults to ''.
+	 * @return array|NULL  Extracted private key, or NULL if no private key is present.
+	 */
+	public static function loadPrivateKey($metadata, $required = FALSE, $prefix = '') {
+		assert('is_array($metadata)');
+		assert('is_bool($required)');
+		assert('is_string($prefix)');
+
+		if (!array_key_exists($prefix . 'privatekey', $metadata)) {
+			/* No private key found. */
+			if ($required) {
+				throw new Exception('No private key found in metadata.');
+			} else {
+				return NULL;
+			}
+		}
+
+		$config = SimpleSAML_Configuration::getInstance();
+		$file = $config->getPathValue('certdir') . $metadata[$prefix . 'privatekey'];
+		$data = @file_get_contents($file);
+		if ($data === FALSE) {
+			throw new Exception('Unable to load private key from file "' . $file . '"');
+		}
+
+		$ret = array(
+			'PEM' => $data,
+		);
+
+		if (array_key_exists($prefix . 'privatekey_pass', $metadata)) {
+			$ret['password'] = $metadata[$prefix . 'privatekey_pass'];
+		}
+
+		return $ret;
+	}
+
 }
 
 ?>
