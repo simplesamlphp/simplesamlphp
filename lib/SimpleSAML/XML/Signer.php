@@ -49,6 +49,8 @@ class SimpleSAML_XML_Signer {
 	 *  - privatekey       The file with the private key, relative to the cert-directory.
 	 *  - privatekey_pass  The passphrase for the private key.
 	 *  - certificate      The file with the certificate, relative to the cert-directory.
+	 *  - privatekey_array The private key, as an array returned from SimpleSAML_Utilities::loadPrivateKey.
+	 *  - publickey_array  The public key, as an array returned from SimpleSAML_Utilities::loadPublicKey.
 	 *  - id               The name of the ID attribute.
 	 *
 	 * @param $options  Associative array with options for the constructor. Defaults to an empty array.
@@ -79,9 +81,37 @@ class SimpleSAML_XML_Signer {
 			$this->loadCertificate($options['certificate']);
 		}
 
+		if (array_key_exists('privatekey_array', $options)) {
+			$this->loadPrivateKeyArray($options['privatekey_array']);
+		}
+
+		if (array_key_exists('publickey_array', $options)) {
+			$this->loadPublicKeyArray($options['publickey_array']);
+		}
+
 		if(array_key_exists('id', $options)) {
 			$this->setIdAttribute($options['id']);
 		}
+	}
+
+
+	/**
+	 * Set the private key from an array.
+	 *
+	 * This function loads the private key from an array matching what is returned
+	 * by SimpleSAML_Utilities::loadPrivateKey(...).
+	 *
+	 * @param array $privatekey  The private key.
+	 */
+	public function loadPrivateKeyArray($privatekey) {
+		assert('is_array($privatekey)');
+		assert('array_key_exists("PEM", $privatekey)');
+
+		$this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
+		if (array_key_exists('password', $privatekey)) {
+			$this->privateKey->passphrase = $privatekey['password'];
+		}
+		$this->privateKey->loadKey($privatekey['PEM'], FALSE);
 	}
 
 
@@ -107,11 +137,32 @@ class SimpleSAML_XML_Signer {
 			throw new Exception('Unable to read private key file "' . $keyFile . '".');
 		}
 
-		$this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
+		$privatekey = array('PEM' => $keyData);
 		if($pass !== NULL) {
-			$this->privateKey->passphrase = $pass;
+			$privatekey['password'] = $pass;
 		}
-		$this->privateKey->loadKey($keyData, FALSE);
+		$this->loadPrivateKeyArray($privatekey);
+	}
+
+
+	/**
+	 * Set the public key / certificate we should include in the signature.
+	 *
+	 * This function loads the public key from an array matching what is returned
+	 * by SimpleSAML_Utilities::loadPublicKey(...).
+	 *
+	 * @param array $publickey  The public key.
+	 */
+	public function loadPublicKeyArray($publickey) {
+		assert('is_array($publickey)');
+
+		if (!array_key_exists('PEM', $publickey)) {
+			/* We have a public key with only a fingerprint. */
+			throw new Exception('Tried to add a certificate fingerprint in a signature.');
+		}
+
+		/* For now, we only assume that the public key is an X509 certificate. */
+		$this->certificate = $publickey['PEM'];
 	}
 
 
