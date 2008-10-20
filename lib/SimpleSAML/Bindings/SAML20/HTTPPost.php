@@ -64,24 +64,12 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		
 		$destination = $spmd['AssertionConsumerService'];
 
-		if(!array_key_exists('privatekey', $idpmd)) {
-			throw new Exception('Missing \'privatekey\' option from metadata for idp: ' . $idpmetaindex);
-		}
-
-		if(!array_key_exists('certificate', $idpmd)) {
-			throw new Exception('Missing \'certificate\' option from metadata for idp: ' . $idpmetaindex);
-		}
-
-		if(array_key_exists('privatekey_pass', $idpmd)) {
-			$passphrase = $idpmd['privatekey_pass'];
-		} else {
-			$passphrase = NULL;
-		}
+		$privatekey = SimpleSAML_Utilities::loadPrivateKey($idpmd, TRUE);
+		$publickey = SimpleSAML_Utilities::loadPublicKey($idpmd, TRUE);
 
 		$signer = new SimpleSAML_XML_Signer(array(
-			'privatekey' => $idpmd['privatekey'],
-			'privatekey_pass' => $passphrase,
-			'certificate' => $idpmd['certificate'],
+			'privatekey_array' => $privatekey,
+			'publickey_array' => $publickey,
 			'id' => 'ID',
 			));
 

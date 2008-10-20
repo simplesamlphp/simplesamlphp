@@ -82,23 +82,9 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 			throw new Exception('Claimed ACS (shire) and ACS in SP Metadata do not match. [' . $claimedacs. '] [' . $destination . ']');
 		}
 
+		$privatekey = SimpleSAML_Utilities::loadPrivateKey($idpmd, TRUE);
+		$publickey = SimpleSAML_Utilities::loadPublicKey($idpmd, TRUE);
 
-		if(!array_key_exists('privatekey', $idpmd)) {
-			throw new Exception('Missing \'privatekey\' option from metadata for idp: ' . $idpmetaindex);
-		}
-
-		if(!array_key_exists('certificate', $idpmd)) {
-			throw new Exception('Missing \'certificate\' option from metadata for idp: ' . $idpmetaindex);
-		}
-
-		if(array_key_exists('privatekey_pass', $idpmd)) {
-			$passphrase = $idpmd['privatekey_pass'];
-		} else {
-			$passphrase = NULL;
-		}
-
-
-		
 		$responsedom = new DOMDocument();
 		$responsedom->loadXML(str_replace ("\r", "", $response));
 		
@@ -130,9 +116,8 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		
 		
 		$signer = new SimpleSAML_XML_Signer(array(
-			'privatekey' => $idpmd['privatekey'],
-			'privatekey_pass' => $passphrase,
-			'certificate' => $idpmd['certificate'],
+			'privatekey_array' => $privatekey,
+			'publickey_array' => $publickey,
 			'id' => ($signResponse ? 'ResponseID' : 'AssertionID') ,
 			));
 
