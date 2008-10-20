@@ -2,7 +2,6 @@
 	
 	
 	$this->data['head'] .= '
-<script type="text/javascript" src="/' . $this->data['baseurlpath']. 'resources/script.js"></script>	
 <script type="text/javascript" language="JavaScript">
 
 function showdiv(id) {
