@@ -32,11 +32,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		
 
 		/* Load the private key. */
-
-		$privatekey = $this->configuration->getPathValue('certdir') . $md['privatekey'];
-		if (!file_exists($privatekey)) {
-			throw new Exception('Could not find private key file [' . $privatekey . '] which is needed to sign the request.');
-		}
+		$privatekey = SimpleSAML_Utilities::loadPrivateKey($md, TRUE);
 
 		/* Sign the query string. According to the specification, the string which should be
 		 * signed is the concatenation of the following query parameters (in order):
@@ -56,12 +52,12 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		/* Set the passphrase which should be used to open the key, if this attribute is
 		 * set in the metadata.
 		 */
-		if(array_key_exists('privatekey_pass', $md)) {
-			$xmlseckey->passphrase = $md['privatekey_pass'];
+		if(array_key_exists('password', $privatekey)) {
+			$xmlseckey->passphrase = $privatekey['password'];
 		}
 
-		$xmlseckey->loadKey($privatekey,TRUE);
-        $signature = $xmlseckey->signData($query);
+		$xmlseckey->loadKey($privatekey['PEM']);
+		$signature = $xmlseckey->signData($query);
                 
 		$query = $query . "&" . "Signature=" . urlencode(base64_encode($signature));
 
@@ -108,15 +104,9 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		SimpleSAML_Logger::debug('Library - HTTPRedirect validateQuery(): Sig Alg: ' . $algURI);
 				
 				
-
-		if (!array_key_exists('certificate', $md)) {
-			throw new Exception('If you set request.signing to be true in the metadata, you also have to add the certificate parameter.');
-		}
-
-		// check if public key of sp exists
-		$publickey = $this->configuration->getPathValue('certdir') . $md['certificate'];
-		if (!is_file($publickey)) {
-			throw new Exception('Could not find certificate file [' . $publickey . '] which is needed to verify the request.');
+		$publickey = SimpleSAML_Utilities::loadPublicKey($md, TRUE);
+		if (!array_key_exists('PEM', $publickey)) {
+			throw new Exception('We need a full public key to validate HTTP-Redirect signatures. A fingerprint is not enough.');
 		}
 
 		// getting signature from get arguments
@@ -127,7 +117,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 
 		// verify signature using xmlseclibs
 		$xmlseckey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
-		$xmlseckey->loadKey($publickey,TRUE);
+		$xmlseckey->loadKey($publickey['PEM']);
 
 		if (!$xmlseckey->verifySignature($query,$signature)) {
 			throw new Exception("Unable to validate Signature");
