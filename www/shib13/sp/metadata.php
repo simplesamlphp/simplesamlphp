@@ -31,6 +31,11 @@ try {
 		'AssertionConsumerService' => $metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted'),
 	);
 
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($spmeta);
+	if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
+		$metaArray['certData'] = $certInfo['certData'];
+	}
+
 	$metaflat = var_export($spentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
 
 	if (array_key_exists('certificate', $spmeta)) {

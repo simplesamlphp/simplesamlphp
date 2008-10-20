@@ -31,11 +31,13 @@ try {
 		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted'),
 	);
 
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($spmeta);
+	if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
+		$metaArray['certData'] = $certInfo['certData'];
+	}
+
 	$metaflat = var_export($spentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
 
-	if (array_key_exists('certificate', $spmeta)) {
-		$metaArray['certificate'] = $spmeta['certificate'];
-	}
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($spentityid);
 	$metaBuilder->addMetadataSP20($metaArray);
 	$metaBuilder->addContact('technical', array(

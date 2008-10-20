@@ -24,14 +24,13 @@ try {
 
 	$idpmeta = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $metadata->getMetaDataCurrent('saml20-idp-hosted');
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-	
-	$publiccert = $config->getPathValue('certdir') . $idpmeta['certificate'];
 
-	if (!file_exists($publiccert)) 
-		throw new Exception('Could not find certificate [' . $publiccert . '] to attach to the authentication resposne');
-	
-	$cert = file_get_contents($publiccert);
-	$data = XMLSecurityDSig::get509XCert($cert, true);
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE);
+	$certFingerprint = $certInfo['certFingerprint'];
+	if (count($certFingerprint) === 1) {
+		/* Only one valid certificate. */
+		$certFingerprint = $certFingerprint[0];
+	}
 	
 	$logouttype = 'traditional';
 	if (array_key_exists('logouttype', $idpmeta)) $logouttype = $idpmeta['logouttype'];
@@ -45,7 +44,7 @@ try {
 		'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted', array()),
 		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted', array('logouttype' => $logouttype)),
 		'SingleLogoutServiceResponse'  => $metadata->getGenerated('SingleLogoutServiceResponse', 'saml20-idp-hosted', array('logouttype' => $logouttype)),
-		'certFingerprint' => strtolower(sha1(base64_decode($data))),
+		'certFingerprint' => $certFingerprint,
 	);
 
 	if ($metaArray['SingleLogoutServiceResponse'] === $metaArray['SingleLogoutService']) {
@@ -54,7 +53,7 @@ try {
 
 	$metaflat = var_export($idpentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
 
-	$metaArray['certificate'] = $idpmeta['certificate'];
+	$metaArray['certData'] = $certInfo['certData'];
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
 	$metaBuilder->addMetadataIdP20($metaArray);
 	$metaBuilder->addContact('technical', array(

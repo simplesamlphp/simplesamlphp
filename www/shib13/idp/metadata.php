@@ -25,25 +25,23 @@ try {
 	$idpmeta = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $metadata->getMetaDataCurrent('shib13-idp-hosted');
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
 	
-	$publiccert = $config->getPathValue('certdir') . $idpmeta['certificate'];
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE);
+	$certFingerprint = $certInfo['certFingerprint'];
+	if (count($certFingerprint) === 1) {
+		/* Only one valid certificate. */
+		$certFingerprint = $certFingerprint[0];
+	}
 
-	if (!file_exists($publiccert)) 
-		throw new Exception('Could not find certificate [' . $publiccert . '] to attach to the authentication resposne');
-	
-	$cert = file_get_contents($publiccert);
-	$data = XMLSecurityDSig::get509XCert($cert, true);
-	
-	
 	$metaArray = array(
 		'name' => 'Type in a name for this entity',
 		'description' => 'and a proper description that would help users know when to select this IdP.',
 		'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'shib13-idp-hosted'),
-		'certFingerprint' => strtolower(sha1(base64_decode($data))),
+		'certFingerprint' => $certFingerprint,
 	);
 
 	$metaflat = var_export($idpentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
 	
-	$metaArray['certificate'] = $idpmeta['certificate'];
+	$metaArray['certData'] = $certInfo['certData'];
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
 	$metaBuilder->addMetadataIdP11($metaArray);
 	$metaBuilder->addContact('technical', array(
