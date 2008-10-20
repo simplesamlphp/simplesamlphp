@@ -79,6 +79,49 @@ abstract class SimpleSAML_Auth_Source {
 
 
 	/**
+	 * Log out from this authentication source.
+	 *
+	 * This function should be overridden if the authentication source requires special
+	 * steps to complete a logout operation.
+	 *
+	 * If the logout process requires a redirect, the state should be saved. Once the
+	 * logout operation is completed, the state should be restored, and completeLogout
+	 * should be called with the state. If this operation can be completed without
+	 * showing the user a page, or redirecting, this function should return.
+	 *
+	 * @param array &$state  Information about the current logout operation.
+	 */
+	public function logout(&$state) {
+		assert('is_array($state)');
+
+		/* Default logout handler which doesn't do anything. */
+	}
+
+
+	/**
+	 * Complete logout.
+	 *
+	 * This function should be called after logout has completed. It will never return,
+	 * except in the case of exceptions. Exceptions thrown from this page should not be caught,
+	 * but should instead be passed to the top-level exception handler.
+	 *
+	 * @param array &$state  Information about the current authentication.
+	 */
+	public static function completeLogout(&$state) {
+		assert('is_array($state)');
+		assert('array_key_exists("LogoutCompletedHandler", $state)');
+
+		SimpleSAML_Auth_State::deleteState($state);
+
+		$func = $state['LogoutCompletedHandler'];
+		assert('is_callable($func)');
+
+		call_user_func($func, $state);
+		assert(FALSE);
+	}
+
+
+	/**
 	 * Create authentication source object from configuration array.
 	 *
 	 * This function takes an array with the configuration for an authentication source object,
