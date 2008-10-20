@@ -246,26 +246,15 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		/* Get the metadata of the issuer. */
 		$md = $this->metadata->getMetaData($this->issuer, 'saml20-idp-remote');
 
-		$publickey = FALSE;
-		if (isset($md['certificate'])) {
-			$publickey = @file_get_contents($this->configuration->getPathValue('certdir') . $md['certificate']);
-			if (!$publickey) {
-				throw new Exception("Saml20-idp-remote id: " . $this-issuer . " 'certificate' set to ': " . $md['certificate'] . "', but no certificate found");			
-			}
-		}
+		/* Load public key / certificate / certificate fingerprints. */
+		$publickey = SimpleSAML_Utilities::loadPublicKey($md);
+
 		/* Validate the signature. */
 		$this->validator = new SimpleSAML_XML_Validator($node, 'ID', $publickey);
-		
+
 		if (!$publickey) {
-			if(array_key_exists('certFingerprint', $md)) {
-
-				/* Get fingerprint for the certificate of the issuer. */
-				$issuerFingerprint = $md['certFingerprint'];
-	
-				/* Validate the fingerprint. */
-				$this->validator->validateFingerprint($issuerFingerprint);
-
-			} elseif(array_key_exists('caFile', $md)) {
+			/* No validation of the certificate performed by the validator if $publickey isn't set. */
+			if(array_key_exists('caFile', $md)) {
 
 				/* Validation against a CA file. */
 				$this->validator->validateCA($this->configuration->getPathValue('certdir') . $md['caFile']);
