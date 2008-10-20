@@ -53,9 +53,17 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	 *
 	 * This function serializes this EntityDescriptor, and returns it as text.
 	 *
+	 * @param bool $formatted  Whether the returned EntityDescriptor should be
+	 *                         formatted first.
 	 * @return string  The serialized EntityDescriptor.
 	 */
-	public function getEntityDescriptorText() {
+	public function getEntityDescriptorText($formatted = TRUE) {
+		assert('is_bool($formatted)');
+
+		if ($formatted) {
+			SimpleSAML_Utilities::formatDOMElement($this->entityDescriptor);
+		}
+
 		return $this->document->saveXML();
 	}
 
