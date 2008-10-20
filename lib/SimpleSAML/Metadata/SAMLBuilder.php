@@ -360,21 +360,13 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	private function addCertificate(DOMElement $ssoDesc, $metadata) {
 		assert('is_array($metadata)');
 
-		if (!array_key_exists('certificate', $metadata)) {
+		$certInfo = SimpleSAML_Utilities::loadPublicKey($metadata);
+		if ($certInfo === NULL || !array_key_exists('certData', $certInfo)) {
 			/* No certificate to add. */
 			return;
 		}
 
-		$globalConfig = SimpleSAML_Configuration::getInstance();
-
-		$certFile = $globalConfig->getPathValue('certdir') . $metadata['certificate'];
-		if (!file_exists($certFile)) {
-			throw new Exception('Could not find certificate file: ' . $certFile);
-		}
-
-		$certData = file_get_contents($certFile);
-		$certData = XMLSecurityDSig::get509XCert($certData, TRUE);
-
+		$certData = $certInfo['certData'];
 
 		$keyDescriptor = $this->createElement('KeyDescriptor');
 		$ssoDesc->appendChild($keyDescriptor);
