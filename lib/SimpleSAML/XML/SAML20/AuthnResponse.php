@@ -192,17 +192,11 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 				if ($objKeyInfo = $objenc->locateKeyInfo($objKey)) {
 					if ($objKeyInfo->isEncrypted) {
 						$objencKey = $objKeyInfo->encryptedCtx;
-						if (!isset($spmd['privatekey'])) {
-							throw new Exception("Private key for decrypting assertion needed, but not specified for saml20-sp-hosted id: " . $spid);
+						$privatekey = SimpleSAML_Utilities::loadPrivateKey($spmd, TRUE);
+						if(array_key_exists('password', $privatekey)) {
+							$objKeyInfo->passphrase = $privatekey['password'];
 						}
-						$privatekey = @file_get_contents($this->configuration->getPathValue('certdir') . $spmd['privatekey']);
-						if ($privatekey === FALSE) {
-							throw new Exception("Private key for decrypting assertion specified but not found for saml20-sp-hosted id: " . $spid . " Filename: " . $spmd['privatekey']);
-						}
-						if(array_key_exists('privatekey_pass', $spmd)) {
-							$objKeyInfo->passphrase = $spmd['privatekey_pass'];
-						}
-						$objKeyInfo->loadKey($privatekey);
+						$objKeyInfo->loadKey($privatekey['PEM']);
 						$key = $objencKey->decryptKey($objKeyInfo);
 					} else {
 						$idpmd = $this->metadata->getMetaData($this->issuer, 'saml20-idp-remote');
