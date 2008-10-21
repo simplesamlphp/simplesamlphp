@@ -121,6 +121,8 @@ try {
 		$email->setBody($message);
 		$email->send();
 		$sentok = TRUE;
+		
+		SimpleSAML_Logger::info('SAML2.0 - Metadata: Metadata was successfully sent to ' . $emailadr . ' from ' . $from);
 	}
 	
 	
