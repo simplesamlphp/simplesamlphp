@@ -7,16 +7,12 @@ $this->includeAtTemplateBase('includes/header.php');
 
 		<h2><?php echo $this->data['header']; ?></h2>
 		
-		
 		<?php 
-		
-
 		
 		if(array_key_exists('idpsend', $this->data) && is_array($this->data['idpsend']) && count($this->data['idpsend']) > 0 ) {
 
 			if ($this->data['adminok']) {
 
-#				$param = array('%FEDERATION%' => $this->data['federationname']);
 		?>
 			<div style="border: 1px solid #444; margin: .5em 2em .5em 2em; padding: .5em 1em 1em 1em; background: #FFFFCC">
 
