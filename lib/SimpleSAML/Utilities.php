@@ -1468,7 +1468,7 @@ class SimpleSAML_Utilities {
 			/* We can't build a full certificate from a fingerprint, and may as well
 			 * return an array with only the fingerprint(s) immediately.
 			 */
-			return array('certFingerprint' => $fp);
+			return array('certFingerprint' => $fps);
 
 		} else {
 			/* No public key/certificate available. */
