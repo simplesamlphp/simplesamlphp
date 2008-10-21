@@ -90,7 +90,7 @@ $config = array (
 	 */
 	'logging.level'         => LOG_NOTICE,
 	'logging.handler'       => 'syslog',
-	'logging.processname'       => 'simpleSAMLphp',
+	'logging.processname'   => 'simpleSAMLphp',
 
 	/*
 	 * Choose which facility should be used when logging with syslog.
@@ -172,7 +172,7 @@ $config = array (
 	 * 		'default-saml20-idp' => NULL,
 	 *
 	 */
-	'default-saml20-idp' => 'https://openidp.feide.no',
+	'default-saml20-idp' => NULL,
 	'default-shib13-idp' => NULL,
 	'default-wsfed-idp'	=> 'urn:federation:pingfederate:localhost',
 
