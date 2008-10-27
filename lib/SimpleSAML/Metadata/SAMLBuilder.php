@@ -153,6 +153,10 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		$e = $this->createElement('IDPSSODescriptor');
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:2.0:protocol');
 
+		if (array_key_exists('redirect.sign', $metadata) && $metadata['redirect.sign']) {
+			$e->setAttribute('WantAuthnRequestSigned', 'true');
+		}
+
 		$this->addCertificate($e, $metadata);
 
 		if (array_key_exists('SingleLogoutService', $metadata)) {

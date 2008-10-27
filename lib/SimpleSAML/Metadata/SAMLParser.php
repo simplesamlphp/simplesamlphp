@@ -647,6 +647,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		$ret['name'] = $this->entityId;
 
+
 		/* Find IdP information which supports the SAML 2.0 protocol. */
 		$idp = $this->getIdPDescriptors(self::$SAML20Protocols);
 		if(count($idp) === 0) {
@@ -659,6 +660,11 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* Add expire time to metadata. */
 		if (array_key_exists('expire', $idp)) {
 			$ret['expire'] = $idp['expire'];
+		}
+
+		/* Enable redirect.sign if WantAuthnRequestsSigned is enabled. */
+		if ($idp['wantAuthnRequestsSigned']) {
+			$ret['redirect.sign'] = TRUE;
 		}
 
 		/* Find the SSO service endpoint. */
@@ -842,6 +848,11 @@ class SimpleSAML_Metadata_SAMLParser {
 			$idp['singleSignOnServices'][] = self::parseSingleSignOnService($child);
 		}
 
+		if ($element->getAttribute('WantAuthnRequestsSigned') === 'true') {
+			$idp['wantAuthnRequestsSigned'] = TRUE;
+		} else {
+			$idp['wantAuthnRequestsSigned'] = FALSE;
+		}
 
 		$this->idpDescriptors[] = $idp;
 	}
