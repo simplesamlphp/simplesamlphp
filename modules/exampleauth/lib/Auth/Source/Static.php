@@ -35,7 +35,7 @@ class sspmod_exampleauth_Auth_Source_Static extends SimpleSAML_Auth_Source {
 
 		/* Parse attributes. */
 		try {
-			$this->attributes = SimpleSAML_Utilities::parseAttributes($attributes);
+			$this->attributes = SimpleSAML_Utilities::parseAttributes($config);
 		} catch(Exception $e) {
 			throw new Exception('Invalid attributes for authentication source ' .
 				$this->authId . ': ' . $e->getMessage());
