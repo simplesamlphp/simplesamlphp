@@ -11,7 +11,7 @@ $lang = array(
 		'sl' => 'SAML 2.0 SP Demo primer',
 		'hr' => 'SAML 2.0 SP primjer',
 		'hu' => 'SAML 2.0 SP próba példa',
-		'pt' => 'SAML 2.0 SP Exemplo',
+		'pt-BR' => 'SAML 2.0 SP Exemplo',
 	),
 	'header_shib' => array (
 		'no' => 'Shibboleth Demo',
@@ -23,7 +23,7 @@ $lang = array(
 		'sl' => 'Shibboleth demo primer',
 		'hr' => 'Shibboleth primjer',
 		'hu' => 'Shibboleth próba',
-		'pt' => 'Shibboleth Demo',
+		'pt-BR' => 'Shibboleth Demo',
 	),
 	'header_wsfed' => array (
 		'no' => 'WS-Fed SP Demo Eksempel',
@@ -35,7 +35,7 @@ $lang = array(
 		'sl' => 'WS-Fed SP demo primer',
 		'hr' => 'WS-Fed SP primjer',
 		'hu' => 'WS-Fed SP próba példa',
-		'pt' => 'WS-Fed SP Exemplo',
+		'pt-BR' => 'WS-Fed SP Exemplo',
 	),
 	'header_diagnostics' => array (
 		'no' => 'SimpleSAMLphp diagnostikk',
@@ -47,7 +47,7 @@ $lang = array(
 		'sl' => 'SimpleSAMLphp diagnostika',
 		'hr' => 'SimpleSAMLphp dijagnostika',
 		'hu' => 'SimpleSAMLphp hibakeresés',
-		'pt' => 'Diagnósticos do SimpleSAMLphp',
+		'pt-BR' => 'Diagnósticos do SimpleSAMLphp',
 	),
 	'some_error_occured' => array (
 		'no' => 'En feil har oppstått',
@@ -59,7 +59,7 @@ $lang = array(
 		'sl' => 'Prišlo je do napake!',
 		'hr' => 'Došlo je do greške',
 		'hu' => 'Hiba történt',
-		'pt' => 'Ocorreu algum erro',
+		'pt-BR' => 'Ocorreu algum erro',
 	),
 	'intro' => array (
 		'no' => 'Hei, dette er en statusside på simpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon.',
@@ -71,7 +71,7 @@ $lang = array(
 		'sl' => 'Živjo! To je statusna stran simpleSAMLphp, ki omogoča pregled nad trajanjem vaše trenutne seje in atributi, ki so povezani z njo.',
 		'hr' => 'Zdravo, ovo je stranica s prikazom aktualnog stanja simpleSAMLphp-a. Ovdje možete vidjeti je li vam istekla sjednica, koliko dugo će vaša sjednica još biti valjana i sve atribute koji su vezani uz vašu sjednicu.',
 		'hu' => 'Üdvözöljük, ez a SimpleSAMLphp státus oldala. Itt láthatja, ha lejárt a munkamenete, mikor lépett be utoljára és a munkamenethez tartozó attribútumokat.',
-		'pt' => 'Olá, esta é a página de status simpleSAMLphp. Aqui você pode ver é se a sua sessão expirou, o tempo que dura até ele expirar e todos os atributos que estão anexados à sua sessão.',
+		'pt-BR' => 'Olá, esta é a página de status simpleSAMLphp. Aqui você pode ver é se a sua sessão expirou, o tempo que dura até ele expirar e todos os atributos que estão anexados à sua sessão.',
 	),
 	'validfor' => array (
 		'no' => 'Din sesjon er gyldig i %SECONDS% sekunder fra nå.',
@@ -83,7 +83,7 @@ $lang = array(
 		'sl' => 'Vaša trenutna seja je veljavna še %SECONDS% sekund.',
 		'hr' => 'Vaša sjednica je valjana još %SECONDS% sekundi.',
 		'hu' => 'Az ön munkamenete még %SECONDS% másodpercig érvényes',
-		'pt' => 'Sua sessão é válida por %SECONDS% segundos a partir de agora.',
+		'pt-BR' => 'Sua sessão é válida por %SECONDS% segundos a partir de agora.',
 	),
 	'sessionsize' => array (
 		'no' => 'Sesjons størrelse: %SIZE%',
@@ -95,7 +95,7 @@ $lang = array(
 		'sl' => 'Velikost seje: %SIZE% bajtov',
 		'hr' => 'Veličina sjednice: %SIZE%',
 		'hu' => 'Munkamenet mérete: %SIZE%',
-		'pt' => 'Tamanho da sessão: %SIZE%',
+		'pt-BR' => 'Tamanho da sessão: %SIZE%',
 	),
 	'attributes_header' => array (
 		'no' => 'Dine attributter',
@@ -107,7 +107,7 @@ $lang = array(
 		'sl' => 'Vaši atributi',
 		'hr' => 'Vaši atributi',
 		'hu' => 'Az ön attribútumai',
-		'pt' => 'Seus atributos',
+		'pt-BR' => 'Seus atributos',
 	),
 	'logout' => array (
 		'no' => 'Logg ut',
@@ -119,7 +119,7 @@ $lang = array(
 		'sl' => 'Odjava',
 		'hr' => 'Odjavi se',
 		'hu' => 'Kilépés',
-		'pt' => 'Desconectar',
+		'pt-BR' => 'Desconectar',
 	),
 
 );

@@ -2,6 +2,7 @@
 
 $lang = array(
 	'list_trusted_sites' => array (
+		'no' => 'Godkjente steder',
 		'nn' => 'Liste over tiltrudde partnarar',
 		'da' => 'Liste af betroede sider',
 		'en' => 'List of trusted sites',
@@ -11,9 +12,10 @@ $lang = array(
 		'sl' => 'Seznam zaupanja vrednih strani.',
 		'hr' => 'Popis sjedišta kojima vjerujete',
 		'hu' => 'Megbízható oldalak listája',
-		'pt' => 'Lista de sites confiáveis',
+		'pt-BR' => 'Lista de sites confiáveis',
 	),
 	'about_link' => array (
+		'no' => 'Om simpleSAMLphp OpenID',
 		'nn' => 'Om OpenID fra simpleSAMLphp',
 		'da' => 'Om simpleSAMLphp OpenID',
 		'en' => 'About simpleSAMLphp OpenID',
@@ -23,9 +25,10 @@ $lang = array(
 		'sl' => 'O simpleSAMLphp OpenID',
 		'hr' => 'O simpleSAMLphp OpenID',
 		'hu' => 'A simpleSAMLphp OpenID-ról',
-		'pt' => 'Sobre o simpleSAMLphp OpenID',
+		'pt-BR' => 'Sobre o simpleSAMLphp OpenID',
 	),
 	'welcome' => array (
+		'no' => 'Velkommen til simpleSAMLphp OpenID tilbyder',
 		'nn' => 'Velkommen til simpleSAMLphp OpenID-tilbyder',
 		'da' => 'Velkommen til simpleSAMLphp OpenID udbyder.',
 		'en' => 'Welcome to the simpleSAMLphp OpenID provider.',
@@ -35,7 +38,7 @@ $lang = array(
 		'sl' => 'Dobrodošli v simpleSAMLphp OpenID ponudnik.',
 		'hr' => 'Dobro došli u simpleSAMLphp davatelj OpenID usluge.',
 		'hu' => 'Köszöntjük a simpleSAMLphp OpenID kiszolgálón.',
-		'pt' => 'Bem vindo ao Provedor OpenID simpleSAMLphp',
+		'pt-BR' => 'Bem vindo ao Provedor OpenID simpleSAMLphp',
 	),
 	'howtouse' => array (
 		'nn' => 'For å bruka denne tenesta må du setja opp ein URL som kan brukast som identifikator.  Legg inn følgjande kode inne i <code>&lt;head&gt;</code> for HTML dokumentet på URLen din:',
@@ -47,9 +50,10 @@ $lang = array(
 		'sl' => 'Pred uporabo tega strežnika morate vzpostaviti URL, ki se bo uporabil kot identifikator.  Vstavite naslednjo oznako <code>&lt;head&gt;</code> v HTML dokument na URLju:',
 		'hr' => 'Da biste koristili ovaj poslužitelj, morate podesiti identifikacijski URL. Unesite sljedeću oznaku u <code>&lt;head&gt;</code> HTML dokumenta koji se nalazi na tom URL-u:',
 		'hu' => 'A szerver használatához, be kell állítani egy azonosító URL-t. A következőt kell beállítani a HTML dokumentum <code>&lt;head&gt;</code> részébe:',
-		'pt' => 'Para utilizar este servidor, você terá que configurar uma URL para o uso como um identificador. Inserira o seguinte código na <code>&lt;head&gt;</code> do seu documento HTML em que se encontra a URL:',
+		'pt-BR' => 'Para utilizar este servidor, você terá que configurar uma URL para o uso como um identificador. Inserira o seguinte código na <code>&lt;head&gt;</code> do seu documento HTML em que se encontra a URL:',
 	),
 	'loggedinas' => array (
+		'no' => 'Du er nå logget inn som %USERID%',
 		'nn' => 'Du er no logga inn som ',
 		'da' => 'Du er nu logget in som %USERID%',
 		'en' => 'You are now logged in as %USERID%',
@@ -59,9 +63,10 @@ $lang = array(
 		'sl' => 'Prijavljeni ste kot %USERID%',
 		'hr' => 'Prijavljeni ste kao %USERID%',
 		'hu' => '%USERID% névvel van bejelentkezve',
-		'pt' => 'Você está logado como %USERID%',
+		'pt-BR' => 'Você está logado como %USERID%',
 	),
 	'login' => array (
+		'no' => 'Logg inn',
 		'nn' => 'Innlogging',
 		'da' => 'Login',
 		'en' => 'Login',
@@ -71,7 +76,7 @@ $lang = array(
 		'sl' => 'Prijava',
 		'hr' => 'Prijavi se',
 		'hu' => 'Belépés',
-		'pt' => 'Entar',
+		'pt-BR' => 'Entar',
 	),
 	'howtouse_cont' => array (
 		'nn' => 'Etterpå konfigurerer du denne tenaren slik at du kan logga inn til URLen.  Når du har konfiguerert tenaren og lagt inn identitetsURLen, kan du sjekka om alt fungerer ved å bruka',
@@ -83,7 +88,7 @@ $lang = array(
 		'sl' => 'Nato nastavite ta strežnik tako, da se boste lahko prijavili s tem URL naslovom. Pravilno delovanje lahko preverite s %SITE% %TOOL%:',
 		'hr' => 'Nakon toga iskonfigurirajte ovaj poslužitelj tako da se možete prijaviti sa zadanim URL-om. Kad jednom iskonfigurirate poslužitelj i označite vaš identifikacijski URL, možete provjeriti da li sve radi uporabom %SITE% %TOOL%:',
 		'hu' => 'Ezután állítsa be a szervert, hogy be tudjon jelentkezni ezzel az URL-lel. Miután beállította a szervert és megjegyezte az azonosító URL-t, ellenőrizni tudja a működést a(z) %SITE% %TOOL% használatával:',
-		'pt' => 'Em seguida, configure este servidor de forma que você possa fazer login com a URL. Uma vez que você tenha configurado o servidor, e marcou a sua identidade URL, você pode verificar se ele está trabalhando pela utilização do %SITE% %TOOL%:',
+		'pt-BR' => 'Em seguida, configure este servidor de forma que você possa fazer login com a URL. Uma vez que você tenha configurado o servidor, e marcou a sua identidade URL, você pode verificar se ele está trabalhando pela utilização do %SITE% %TOOL%:',
 	),
 	'checkup_tool' => array (
 		'nn' => 'Verktøy for å sjekka OpenID (OpenID Checkup)',
@@ -95,9 +100,10 @@ $lang = array(
 		'sl' => 'OpenID orodje za preverjanje',
 		'hr' => 'OpenID alat za provjeru',
 		'hu' => 'OpenID ellenőrző eszköz',
-		'pt' => 'Ferramenta de verificação do OpenID',
+		'pt-BR' => 'Ferramenta de verificação do OpenID',
 	),
 	'openid_url' => array (
+		'no' => 'OpenID URL:',
 		'nn' => 'OpenID URL',
 		'da' => 'OpenID URL:',
 		'en' => 'OpenID URL:',
@@ -107,7 +113,7 @@ $lang = array(
 		'sl' => 'OpenID URL:',
 		'hr' => 'OpenID URL:',
 		'hu' => 'OpenID URL:',
-		'pt' => 'URL do OpenID:',
+		'pt-BR' => 'URL do OpenID:',
 	),
 	'check' => array (
 		'nn' => 'Sjekk',
@@ -119,9 +125,10 @@ $lang = array(
 		'sl' => 'Preveri',
 		'hr' => 'Provjeri',
 		'hu' => 'Ellenőriz',
-		'pt' => 'Checar',
+		'pt-BR' => 'Checar',
 	),
 	'confirm_question' => array (
+		'no' => 'Ønsker du å bekrefte din identitets-url (%OPENIDURL%) med %SITEURL%?',
 		'da' => 'Ønsker du at bekræfte din identitetsurl (%OPENIDURL%) overfor %SITEURL%?',
 		'en' => 'Do you wish to confirm your identity URL (%OPENIDURL%) with %SITEURL%?',
 		'sv' => 'Vill du bekräfta din URL (%OPENIDURL%) med %SITEURL%?',
@@ -130,9 +137,10 @@ $lang = array(
 		'sl' => 'Ali želite potrditi svoj entitetni URL (%OPENIDURL%) z %SITEURL%?',
 		'hr' => 'Želite li potvrditi vaš identifikacijski URL (%OPENIDURL%) s %SITEURL%?',
 		'hu' => 'Megerősíti az azonosító URL-t (%OPENIDURL%) a(z) %SITEURL% segítségével?',
-		'pt' => 'Você deseja confirmar sua URL de identidade (%OPENIDURL%) com %SITEURL%?',
+		'pt-BR' => 'Você deseja confirmar sua URL de identidade (%OPENIDURL%) com %SITEURL%?',
 	),
 	'remember' => array (
+		'no' => 'Husk dette valget',
 		'nn' => 'Hugs denne avgjerda',
 		'da' => 'Husk dette',
 		'en' => 'Remember this decision',
@@ -142,9 +150,10 @@ $lang = array(
 		'sl' => 'Zapomni si to odločitev',
 		'hr' => 'Zapamti ovu odluku',
 		'hu' => 'Emlékezzen erre a választásra',
-		'pt' => 'Lembrar desta decisão',
+		'pt-BR' => 'Lembrar desta decisão',
 	),
 	'confirm' => array (
+		'no' => 'Bekreft',
 		'nn' => 'Stadfest',
 		'da' => 'Bekræft',
 		'en' => 'Confirm',
@@ -154,9 +163,10 @@ $lang = array(
 		'sl' => 'Potrdi',
 		'hr' => 'Potvrdi',
 		'hu' => 'Megerősít',
-		'pt' => 'Confirmar',
+		'pt-BR' => 'Confirmar',
 	),
 	'notconfirm' => array (
+		'no' => 'Ikke bekreft',
 		'nn' => 'Treng ikkje stadfesting',
 		'da' => 'Bekræft ikke',
 		'en' => 'Do not confirm',
@@ -166,7 +176,7 @@ $lang = array(
 		'sl' => 'Ne potrdi',
 		'hr' => 'Nemoj potvrditi',
 		'hu' => 'Nem erősíti meg',
-		'pt' => 'Não confirmar',
+		'pt-BR' => 'Não confirmar',
 	),
 	'trustlist_desc' => array (
 		'da' => 'Dine beslutninger huskes i denne session. Alle beslutninger er glemt når sessionen er slut.',
@@ -177,7 +187,7 @@ $lang = array(
 		'sl' => 'Te odločitve veljajo samo v trenutni seji. Ko se bo seja zakjučila, bodo odločitve izbrisane.',
 		'hr' => 'Za ovu sjednicu zapamćeni su ovi odabiri. Svi odabiri bit će poništeni po završetku sjednice. ',
 		'hu' => 'Ezekre a válaszokra emlékezzen a munkamenet folyamán. Az összes változtatás elvész a munkamenet befejeztével.',
-		'pt' => 'Estas decisões serão lembradas durante esta sessão. Todas as decisões serão esquecidades no final da sessão.',
+		'pt-BR' => 'Estas decisões serão lembradas durante esta sessão. Todas as decisões serão esquecidades no final da sessão.',
 	),
 	'trustlist_trustedsites' => array (
 		'nn' => 'Tiltrudde partnarar',
@@ -189,7 +199,7 @@ $lang = array(
 		'sl' => 'Zaupanja vredne strani',
 		'hr' => 'Sjedišta kojima vjerujete',
 		'hu' => 'Megbízható oldalak',
-		'pt' => 'Sites Confiáveis',
+		'pt-BR' => 'Sites Confiáveis',
 	),
 	'trustlist_untrustedsites' => array (
 		'nn' => 'Ikkje tiltrudde partnarar',
@@ -201,9 +211,10 @@ $lang = array(
 		'sl' => 'Nepreverjene strani',
 		'hr' => 'Sjedišta kojima ne vjerujete',
 		'hu' => 'Megbízhatatlan oldalak',
-		'pt' => 'Sites Não Confiáveis',
+		'pt-BR' => 'Sites Não Confiáveis',
 	),
 	'trustlist_remove' => array (
+		'no' => 'Fjern valgte',
 		'da' => 'Fjern valgte',
 		'en' => 'Remove Selected',
 		'sv' => 'Ta bort vald',
@@ -212,9 +223,10 @@ $lang = array(
 		'sl' => 'Odstrani izbiro',
 		'hr' => 'Ukloni odabrano',
 		'hu' => 'Kijelöltek eltávolítása',
-		'pt' => 'Remover Seleção',
+		'pt-BR' => 'Remover Seleção',
 	),
 	'trustlist_refresh' => array (
+		'no' => 'Oppdatér liste',
 		'da' => 'Genopfrisk siden',
 		'en' => 'Refresh List',
 		'sv' => 'Uppdatera listan',
@@ -223,9 +235,10 @@ $lang = array(
 		'sl' => 'Osveži seznam',
 		'hr' => 'Obnovi listu',
 		'hu' => 'Lista frissítése',
-		'pt' => 'Atualizar Lista',
+		'pt-BR' => 'Atualizar Lista',
 	),
 	'trustlist_forget' => array (
+		'no' => 'Glem alle',
 		'da' => 'Glem alt',
 		'en' => 'Forget All',
 		'sv' => 'Glöm alla',
@@ -234,7 +247,7 @@ $lang = array(
 		'sl' => 'Izbriši vse',
 		'hr' => 'Zaboravi sve',
 		'hu' => 'Mind elfelejt',
-		'pt' => 'Esquecer Tudo',
+		'pt-BR' => 'Esquecer Tudo',
 	),
 	'trustlist_nosites' => array (
 		'da' => 'Der er ikke gemt  nogle sites i denne session. Når authenticater mod et site kan du vælge at gemme sitet i denne liste ved at vælge <q>Gem mit valg</q>',
@@ -245,7 +258,7 @@ $lang = array(
 		'sl' => 'Nobena stran ni bila shranjena za to sejo. Shranite jo lahko med prijavo na strani.',
 		'hr' => 'Niti jedno web sjedište nije zapamćeno za ovu sjednicu. Nakon što se autenticirate za pristup sjedištu, možete ga dodati na ovaj popis odabirom opcije <q>Zapamti ovu odluku<q>.',
 		'hu' => 'Ehhez a munkamenethez nem tartoznak megjegyzett oldalak. Ha azonosította magát egy oldalnál, hozzáadhatja a listához, ha bejelelöli, hogy <q>Emlékezzen erre a választásra</q>',
-		'pt' => 'Não há sites gravados para esta sessão. Quando você autenticar com um site, você pode escolher adicioná-lo nesta lista escolhendo a opção <q>Lembrar desta Decisão</q>',
+		'pt-BR' => 'Não há sites gravados para esta sessão. Quando você autenticar com um site, você pode escolher adicioná-lo nesta lista escolhendo a opção <q>Lembrar desta Decisão</q>',
 	),
 
 );

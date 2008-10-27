@@ -12,7 +12,7 @@ $lang = array(
 		'sl' => 'Dostop do storitve zavrnjen.',
 		'hr' => 'Nemate pristup ovom servisu',
 		'hu' => 'Önnek nincs hozzáférése ehhez a szolgáltatáshoz',
-		'pt' => 'Você não possui acesso a este serviço',
+		'pt-BR' => 'Você não possui acesso a este serviço',
 	),
 	'no_access_to' => array (
 		'no' => 'Du har ikke tilgang til følgende tjeneste:',
@@ -25,7 +25,7 @@ $lang = array(
 		'sl' => 'Nimate dostopa to te storitve.',
 		'hr' => 'Nemate pristup servisu:',
 		'hu' => 'Ön nem férhet hozzá ehhez a szolgáltatáshoz:',
-		'pt' => 'Você não possui acesso a este serviço',
+		'pt-BR' => 'Você não possui acesso a este serviço',
 	),
 	'contact_home' => array (
 		'no' => 'Hvilke tjenester du har tilgang til er bestemt av din vertsorganisasjon. Ta kontakt med din lokale brukerstøtte for spørsmål.',
@@ -38,7 +38,7 @@ $lang = array(
 		'sl' => 'Možnost dostopa do storitve ureja vaša domača organizacija. Obrnite se na njihov oddelek za pomoč uporabnikom.',
 		'hr' => 'Pristup ovom servisu kontrolira vaš davatelj elektroničkih identiteta. Za dodatne informacije molimo kontaktirajte vašeg davatelja elektroničkih identiteta.',
 		'hu' => 'A hozzáférését ehhez a szolgáltatáshoz az ön szervezete szabályozza. Vegye fel a kapcsolatot a helyi IT felelőssel!',
-		'pt' => 'O acesso a estes serviços é controlado pela sua organização principal. Entre em contato com a equipe local de suporte para ajudá-lo.',
+		'pt-BR' => 'O acesso a estes serviços é controlado pela sua organização principal. Entre em contato com a equipe local de suporte para ajudá-lo.',
 	),
 
 );
