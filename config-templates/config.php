@@ -152,7 +152,7 @@ $config = array (
 	/*
 	 * Languages available and what language is default
 	 */
-	'language.available'	=> array('en', 'no', 'nn', 'se', 'fi', 'da', 'sv', 'de', 'es', 'fr', 'nl', 'lb', 'hr', 'hu', 'sl', 'pt'),
+	'language.available'	=> array('en', 'no', 'nn', 'se', 'fi', 'da', 'sv', 'de', 'es', 'fr', 'nl', 'lb', 'hr', 'hu', 'sl', 'pt-BR'),
 	'language.default'		=> 'en',
 	
 	/*
