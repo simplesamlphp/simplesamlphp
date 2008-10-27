@@ -185,7 +185,7 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 			$p->data['RelayState'] = $relayState;
 			$p->data['destination'] = $destination;
 			$p->data['response'] = str_replace("\n", "", base64_encode($response));
-			$p->data['responseHTML'] = htmlentities($responsedom->saveHTML());
+			$p->data['responseHTML'] = htmlspecialchars(SimpleSAML_Utilities::formatXMLString($response));
 			
 			$p->show();
 

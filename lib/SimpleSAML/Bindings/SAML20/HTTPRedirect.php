@@ -233,7 +233,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			
 			$p->data['header'] = 'HTTP-REDIRECT Debug';
 			$p->data['url'] = $redirectURL;
-			$p->data['message'] = htmlentities($request);
+			$p->data['message'] = htmlspecialchars(SimpleSAML_Utilities::formatXMLString($request));
 			
 			$p->show();
 
