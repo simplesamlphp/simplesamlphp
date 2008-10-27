@@ -86,7 +86,7 @@ class SimpleSAML_XML_Validator {
 		}
 
 		/* Load the key data. */
-		if (array_key_exists('PEM', $publickey)) {
+		if ($publickey !== FALSE && array_key_exists('PEM', $publickey)) {
 			/* We have PEM data for the public key / certificate. */
 			$objKey->loadKey($publickey['PEM']);
 		} else {
