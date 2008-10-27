@@ -1625,6 +1625,32 @@ class SimpleSAML_Utilities {
 		$root->appendChild(new DOMText("\n" . $indentBase));
 	}
 
+
+	/**
+	 * Format an XML string.
+	 *
+	 * This function formats an XML string using the formatDOMElement function.
+	 *
+	 * @param string $xml  XML string which should be formatted.
+	 * @param string $indentBase  Optional indentation which should be applied to all
+	 *                            the output. Optional, defaults to ''.
+	 * @return string  Formatted string.
+	 */
+	public static function formatXMLString($xml, $indentBase = '') {
+		assert('is_string($xml)');
+		assert('is_string($indentBase)');
+
+		$doc = new DOMDocument();
+		if (!$doc->loadXML($xml)) {
+			throw new Exception('Error parsing XML string.');
+		}
+
+		$root = $doc->firstChild;
+		self::formatDOMElement($root);
+
+		return $doc->saveXML($root);
+	}
+
 }
 
 ?>
