@@ -18,18 +18,38 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 	}
 
 
-	public function signQuery($query, $md) {
+	/**
+	 * Sign a HTTP-Redirect query string.
+	 *
+	 * @param string $query  The query string.
+	 * @param array $md  The metadata of the sender.
+	 * @param array $targetmd  The metadata of the recipient.
+	 * @return string  The signed query.
+	 */
+	public function signQuery($query, $md, $targetmd) {
+		assert('is_string($query)');
+		assert('is_array($md)');
+		assert('is_array($targetmd)');
 
 		/* Check if signing of HTTP-Redirect messages is enabled. */
-		
-		if (!array_key_exists('request.signing', $md) || !$md['request.signing']){ 
+		if (array_key_exists('redirect.sign', $targetmd)) {
+			$sign = (bool)$targetmd['redirect.sign'];
+		} elseif (array_key_exists('redirect.sign', $md)) {
+			$sign = (bool)$md['redirect.sign'];
+		} elseif (array_key_exists('request.signing', $md)) {
+			SimpleSAML_Logger::warning('Found deprecated \'request.signing\' metadata' .
+				' option for entity ' . var_export($md['entityid'], TRUE) . '.' .
+				' Please replace with \'redirect.sign\' instead.');
+			$sign = (bool)$md['request.signing'];
+		} else {
+			$sign = FALSE;
+		}
+
+		if (!$sign) {
+			/* Signing of queries disabled. */
 			return $query;
 		}
 
-		if (!array_key_exists('privatekey', $md)) {
-			throw new Exception('If you set request.signing to be true in the metadata, you also have to add the privatekey parameter.');
-		}
-		
 
 		/* Load the private key. */
 		$privatekey = SimpleSAML_Utilities::loadPrivateKey($md, TRUE);
@@ -63,18 +83,51 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 
 		return $query;
 	}
-	
-	public function validateQuery($issuer,$mode = 'SP',$request = 'SAMLRequest') {
 
-		$metadataset = 'saml20-idp-remote';
+
+	/**
+	 * Validate query string.
+	 *
+	 * This function validates the signature on the query string of the current request.
+	 *
+	 * @param string $issuer  The issuer of this query string.
+	 * @param string $mode  Whether we are running as an SP or an IdP.
+	 * @param string $request  The query parameter which contains the request/response we should validate.
+	 * @return bool  FALSE if the query string wasn't validated, TRUE if it validate. An exception will be
+	 *               thrown if the validation fails.
+	 */
+	public function validateQuery($issuer, $mode = 'SP', $request = 'SAMLRequest') {
+		assert('is_string($issuer)');
+		assert('$mode === "SP" || $mode === "IdP"');
+		assert('$request === "SAMLRequest" || $request === "SAMLResponse"');
+
 		if ($mode == 'IdP') {
-			$metadataset = 'saml20-sp-remote';
+			$issuerSet = 'saml20-sp-remote';
+			$recipientSet = 'saml20-idp-hosted';
+		} else {
+			$issuerSet = 'saml20-idp-remote';
+			$recipientSet = 'saml20-sp-hosted';
 		}
-		SimpleSAML_Logger::debug('Library - HTTPRedirect validateQuery(): Looking up metadata issuer:' . $issuer . ' in set '. $metadataset);
-		$md = $this->metadata->getMetaData($issuer, $metadataset);
+		SimpleSAML_Logger::debug('Library - HTTPRedirect validateQuery(): Looking up metadata issuer:' . $issuer . ' in set '. $issuerSet);
+		$md = $this->metadata->getMetaData($issuer, $issuerSet);
+
+		$recipientMetadata = $this->metadata->getMetaDataCurrent($recipientSet);
 		
 		// check whether to validate or not
-		if (!array_key_exists('request.signing', $md) || !$md['request.signing']){ 
+		if (array_key_exists('redirect.validate', $md)) {
+			$validate = (bool)$md['redirect.validate'];
+		} elseif (array_key_exists('redirect.validate', $recipientMetadata)) {
+			$validate = (bool)$recipientMetadata['redirect.validate'];
+		} elseif (array_key_exists('request.signing', $md)) {
+			SimpleSAML_Logger::warning('Found deprecated \'request.signing\' metadata' .
+				' option for entity ' . var_export($issuer, TRUE) . '.' .
+				' Please replace with \'redirect.validate\' instead.');
+			$validate = (bool)$md['request.signing'];
+		} else {
+			$validate = FALSE;
+		}
+
+		if (!$validate) {
 			return false;
 		}
 
@@ -87,7 +140,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 		// building query string
 		$query = $request.'='.urlencode($_GET[$request]);
 
-		if($_GET['RelayState']) {
+		if(array_key_exists('RelayState', $_GET)) {
 			$relaystate = $_GET['RelayState'];
 			$query .= "&RelayState=" . urlencode($relaystate);
 		} 
@@ -161,7 +214,7 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			$metadataset = 'saml20-idp-hosted';
 		}
 		$localmd = $this->metadata->getMetaData($localentityid, $metadataset);
-		$request = $this->signQuery($request, $localmd);
+		$request = $this->signQuery($request, $localmd, $md);
 		$redirectURL = $idpTargetUrl . "?" . $request;
 
 		return $redirectURL;

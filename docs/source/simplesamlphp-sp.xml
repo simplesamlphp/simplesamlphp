@@ -293,33 +293,13 @@
               used.</para>
             </glossdef>
           </glossentry>
-        </glosslist>
-      </section>
-
-      <section>
-        <title>Fields for signing authentication requests</title>
-
-        <para>simpleSAMLphp supports signing the HTTP-REDIRECT authentication
-        request, but by default it will not sign it. Note that if you want to
-        sign the authentication requests, you will need a keypair/certificate
-        at the SP.</para>
-
-        <glosslist>
-          <glossentry>
-            <glossterm>request.signing</glossterm>
-
-            <glossdef>
-              <para>Boolean, default <literal>false</literal>. To turn on
-              signing of authentication requests, set this flag to
-              true.</para>
-            </glossdef>
-          </glossentry>
 
           <glossentry>
             <glossterm>privatekey</glossterm>
 
             <glossdef>
-              <para>File name of private key to be used for singing.</para>
+              <para>File name of private key to be used for signing
+              messages.</para>
             </glossdef>
           </glossentry>
 
@@ -328,9 +308,7 @@
 
             <glossdef>
               <para>File name of certificate corresponding to the private key.
-              Use of certificates is not yet implemented in simpleSAMLphp, but
-              is reserved for future use; the certificate will be used to
-              generate SAML 2.0 Metadata for export to the IdP.</para>
+              This certificate will be included in generated metadata.</para>
             </glossdef>
           </glossentry>
 
@@ -343,11 +321,56 @@
             </glossdef>
           </glossentry>
         </glosslist>
+      </section>
+
+      <section>
+        <title>Fields for signing and validating messages</title>
+
+        <para>simpleSAMLphp only signs authentication responses by default.
+        Signing of authentication requests, logout requests and logout
+        responses can be enabled by setting the
+        <literal>redirect.sign</literal> option. Validation of received
+        messages can be enabled by the <literal>redirect.validate</literal>
+        option. Note that if you want to sign messages, you will need a
+        keypair/certificate at the SP.</para>
+
+        <para>These options set the default for this SP, but options for each
+        IdP can be set in <literal>saml20-idp-remote</literal>.</para>
+
+        <glosslist>
+          <glossentry>
+            <glossterm>redirect.sign</glossterm>
+
+            <glossdef>
+              <para>Boolean, default <literal>false</literal>. To turn on
+              signing of authentication requests, logout requests and logout
+              responses, set this flag to true.</para>
+
+              <para>This option can be overridden by the
+              <literal>redirect.sign</literal> option in
+              <literal>saml20-idp-remote</literal>.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>redirect.validate</glossterm>
+
+            <glossdef>
+              <para>Boolean, default <literal>false</literal>. To turn on
+              validation of received logout requests and logout responses, set
+              this flag to true.</para>
+
+              <para>This option can be overridden by the
+              <literal>redirect.validate</literal> option in
+              <literal>saml20-idp-remote</literal>.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
 
         <example>
-          <title>Example of configured signed requests</title>
+          <title>Example of configured signed messages</title>
 
-          <programlisting> 'request.signing' =&gt; true,
+          <programlisting> 'redirect.sign' =&gt; true,
  'privatekey' =&gt; 'server.pem',</programlisting>
         </example>
       </section>
@@ -397,13 +420,13 @@
 		'base64attributes'		=&gt;	true,
 
 		 /*
-		 * When request.signing is true the certificate of the IdP will be used
+		 * When redirect.validate is true the certificate of the IdP will be used
 		 * to verify all messages received with the HTTPRedirect binding.
 		 * 
 		 * The certificate from the IdP must be installed in the cert directory 
 		 * before verification can be done.  
 		 */
-		'request.signing' =&gt; false,
+		'redirect.validate' =&gt; false,
 		'certificate' =&gt; "idp.example.org.crt",
 
 		/*
@@ -571,6 +594,9 @@
               <filename>certs</filename> directory. Used for decrypting
               assertions and as an alternative to certFingerprint for
               validating signatures.</para>
+
+              <para>This option is also required if validating signed logout
+              requests/responses from this IdP.</para>
             </glossdef>
           </glossentry>
 
@@ -624,55 +650,52 @@
       </section>
 
       <section>
-        <title>Fields for requiring signed LogoutRequests</title>
+        <title>Fields for signing and validating messages</title>
 
-        <para>simpleSAMLphp supports signing the HTTP-REDIRECT authentication
-        request, but by default it will not sign it. Note that if you want to
-        sign the authentication requests, you must supply a
-        keypair/certificate to the SP.</para>
+        <para>simpleSAMLphp only signs authentication responses by default.
+        Signing of authentication requests, logout requests and logout
+        responses can be enabled by setting the
+        <literal>redirect.sign</literal> option. Validation of received
+        messages can be enabled by the <literal>redirect.validate</literal>
+        option. Note that if you want to sign messages, you will need a
+        keypair/certificate at the SP.</para>
+
+        <para>These options overrides the options set in
+        <literal>saml20-sp-hosted</literal>.</para>
 
         <glosslist>
           <glossentry>
-            <glossterm>request.signing</glossterm>
+            <glossterm>redirect.sign</glossterm>
 
             <glossdef>
               <para>Boolean, default <literal>false</literal>. To turn on
-              signing authentication requests, set this flag to true.</para>
+              signing of authentication requests, logout requests and logout
+              responses, set this flag to true.</para>
+
+              <para>This option overrides the <literal>redirect.sign</literal>
+              option in <literal>saml20-sp-hosted</literal>.</para>
             </glossdef>
           </glossentry>
 
           <glossentry>
-            <glossterm>privatekey</glossterm>
+            <glossterm>redirect.validate</glossterm>
 
             <glossdef>
-              <para>File name of the private key to be used for
-              singing.</para>
-            </glossdef>
-          </glossentry>
+              <para>Boolean, default <literal>false</literal>. To turn on
+              validation of received logout requests and logout responses, set
+              this flag to true.</para>
 
-          <glossentry>
-            <glossterm>certificate</glossterm>
-
-            <glossdef>
-              <para>File name of certificate corresponding to the private
-              key.</para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
-            <glossterm>privatekey_pass</glossterm>
-
-            <glossdef>
-              <para>Optional field with the passphrase for the private
-              key.</para>
+              <para>This option overrides the
+              <literal>redirect.validate</literal> option in
+              <literal>saml20-sp-hosted</literal>.</para>
             </glossdef>
           </glossentry>
         </glosslist>
 
         <example>
-          <title>Example of configured signed LogoutRequests</title>
+          <title>Example of configuration for validating messages</title>
 
-          <programlisting>'request.signing' =&gt; true,
+          <programlisting>'redirect.validate' =&gt; true,
 'certificate' =&gt; 'server.crt'</programlisting>
         </example>
       </section>

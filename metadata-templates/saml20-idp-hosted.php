@@ -14,15 +14,6 @@
  * Optional Parameters:
  *   - 'userid.attribute'
  *
- *
- * Request signing (optional paramters)
- *    When request.signing is true the privatekey and certificate of the SP
- *    will be used to sign/verify all messages received/sent with the HTTPRedirect binding.
- *    The certificate and privatekey from above will be used for signing and 
- *    verification purposes.  
- *
- *   - request.signing
- *
  */
 
 

@@ -726,28 +726,51 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
       </section>
 
       <section>
-        <title>Fields for signing authentication requests</title>
+        <title>Fields for signing and validating messages</title>
 
-        <para>By default, simpleSAMLphp will not sign the HTTP-REDIRECT
-        LogoutRequest. To activate signing, set the
-        <literal>request.signing</literal> parameter to
-        <literal>true</literal>. The signing will use the same
-        privatekey/certificate as used for signing the AuthnResponse.</para>
+        <para>simpleSAMLphp only signs authentication responses by default.
+        Signing of logout requests and logout responses can be enabled by
+        setting the <literal>redirect.sign</literal> option. Validation of
+        received messages can be enabled by the
+        <literal>redirect.validate</literal> option.</para>
+
+        <para>These options set the default for this IdP, but options for each
+        SP can be set in <literal>saml20-sp-remote</literal>.</para>
 
         <glosslist>
           <glossentry>
-            <glossterm>request.signing</glossterm>
+            <glossterm>redirect.sign</glossterm>
 
             <glossdef>
-              <para>Boolean, default <literal>false</literal>.</para>
+              <para>Boolean, default <literal>false</literal>. To turn on
+              signing of logout requests and logout responses, set this flag
+              to true.</para>
+
+              <para>This option can be overridden by the
+              <literal>redirect.sign</literal> option in
+              <literal>saml20-sp-remote</literal>.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>redirect.validate</glossterm>
+
+            <glossdef>
+              <para>Boolean, default <literal>false</literal>. To turn on
+              validation of received authentication requests, logout requests
+              and logout responses, set this flag to true.</para>
+
+              <para>This option can be overridden by the
+              <literal>redirect.validate</literal> option in
+              <literal>saml20-sp-remote</literal>.</para>
             </glossdef>
           </glossentry>
         </glosslist>
 
         <example>
-          <title>Example of configured signed requests</title>
+          <title>Example of configuration for signed messages</title>
 
-          <programlisting> 'request.signing' =&gt; true,</programlisting>
+          <programlisting> 'redirect.sign' =&gt; true,</programlisting>
         </example>
       </section>
     </section>
@@ -960,20 +983,11 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
           </glossentry>
 
           <glossentry>
-            <glossterm>request.signing</glossterm>
-
-            <glossdef>
-              <para>Boolean, default <literal>false</literal>. Defines whether
-              this IdP should require signed requests from this SP.</para>
-            </glossdef>
-          </glossentry>
-
-          <glossentry>
             <glossterm>certificate</glossterm>
 
             <glossdef>
               <para>Name of certificate file for verifying the signature when
-              <literal>request.signing</literal> is set to
+              <literal>redirect.validate</literal> is set to
               <literal>true</literal>.</para>
             </glossdef>
           </glossentry>
@@ -1050,6 +1064,55 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
             </glossdef>
           </glossentry>
         </glosslist>
+      </section>
+
+      <section>
+        <title>Fields for signing and validating messages</title>
+
+        <para>simpleSAMLphp only signs authentication responses by default.
+        Signing of logout requests and logout responses can be enabled by
+        setting the <literal>redirect.sign</literal> option. Validation of
+        received messages can be enabled by the
+        <literal>redirect.validate</literal> option.</para>
+
+        <para>These options overrides the options set in
+        <literal>saml20-idp-hosted</literal>.</para>
+
+        <glosslist>
+          <glossentry>
+            <glossterm>redirect.sign</glossterm>
+
+            <glossdef>
+              <para>Boolean, default <literal>false</literal>. To turn on
+              signing of logout requests and logout responses, set this flag
+              to true.</para>
+
+              <para>This option overrides the <literal>redirect.sign</literal>
+              option in <literal>saml20-idp-hosted</literal>.</para>
+            </glossdef>
+          </glossentry>
+
+          <glossentry>
+            <glossterm>redirect.validate</glossterm>
+
+            <glossdef>
+              <para>Boolean, default <literal>false</literal>. To turn on
+              validation of received authentication requests, logout requests
+              and logout responses, set this flag to true.</para>
+
+              <para>This option overrides the
+              <literal>redirect.validate</literal> option in
+              <literal>saml20-idp-hosted</literal>.</para>
+            </glossdef>
+          </glossentry>
+        </glosslist>
+
+        <example>
+          <title>Example of configuration for validating messages</title>
+
+          <programlisting>'redirect.validate' =&gt; true,
+'certificate' =&gt; 'server.crt'</programlisting>
+        </example>
       </section>
     </section>
   </section>
@@ -1189,7 +1252,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
       </itemizedlist>
 
       <para>In hosted IdP metadata there is a config parameter auth that will
-      tell simpleSAML which authentication plugin that can be used.</para>
+      tell simpleSAML which authentication plugin that can beu sed.</para>
 
       <tip>
         <para>The authentication API is pretty basic. The easiest way to
