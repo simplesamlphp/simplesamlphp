@@ -16,6 +16,7 @@ $lang = array(
 		'sl' => 'simpleSAMLphp napaka',
 		'hr' => 'simpleSAMLphp greška',
 		'hu' => 'simpleSAMLphp hiba',
+		'pt' => 'Erro no simpleSAMLphp',
 		'pt-BR' => 'Erro do simpleSAMLphp',
 	),
 	'report_trackid' => array (
@@ -33,6 +34,7 @@ $lang = array(
 		'sl' => 'Če boste prijavili to napako, priložite tudi ID seje, preko katere bo lažje najti vaše zapise v dnevniških datotekah, ki so na voljo skrbniku sistema.',
 		'hr' => 'Ako prijavite ovu grešku, molimo da pošaljete i ovaj ID koji će sistem administratoru omogućiti pronalaženje dodatnih informacija u dnevničkim datotekama. ',
 		'hu' => 'Ha bejelentést küld a hibával kapcsolatban, kérjük, küldje el ezt az azonosítót, mert csak ennek segítségével tudja a rendszeradminisztrátor a naplóállományokból azokat az adatokat megtalálni, amelyek ehhez a munkamenethez tartoznak.',
+		'pt' => 'Se comunicar este erro ao administrador de sistemas inclua o seguinte identificador que possibilita a localização da sua sessão nos registos do serviço:',
 		'pt-BR' => 'Se informar sobre esse erro, por favor, também informe este ID do relatório de monitoramento que torna possível localizar a sua sessão nos registros disponíveis para o administrador do sistema:',
 	),
 	'debuginfo_header' => array (
@@ -50,6 +52,7 @@ $lang = array(
 		'sl' => 'Pomoč pri odpravljanju napak (debug)',
 		'hr' => 'Informacije o greški',
 		'hu' => 'Bővebb információ a hibáról',
+		'pt' => 'Informação de debug',
 		'pt-BR' => 'Informação do Debug',
 	),
 	'debuginfo_text' => array (
@@ -67,6 +70,7 @@ $lang = array(
 		'sl' => 'Podatki o odpravljanju napak bodo zanimali srbnika/helpdesk:',
 		'hr' => 'Sljedeće informacije mogu biti zanimljive administratoru ili službi za podršku korisnicima.',
 		'hu' => 'Az alábbi információ esetleg érdekes lehet a rendszergazda / helpdesk számára:',
+		'pt' => 'A informação de debug abaixo pode ter interesse para o administrador / apoio ao utilizador:',
 		'pt-BR' => 'A informação a seguir é importante para seu administrador / Central de Dúvidas',
 	),
 	'report_header' => array (
@@ -84,6 +88,7 @@ $lang = array(
 		'sl' => 'Prijavi napake',
 		'hr' => 'Prijavite grešku',
 		'hu' => 'Mutassa a hibaüzeneteket',
+		'pt' => 'Reportar um erro',
 		'pt-BR' => 'Reportar erros',
 	),
 	'report_text' => array (
@@ -101,6 +106,7 @@ $lang = array(
 		'sl' => 'Če želite, vnesite svoj elektronski naslov, na katerem boste dosegljivi za skrbnika sistema v primeru dodatnih vprašanj:',
 		'hr' => 'Ako želite, unesite vašu elektroničku adresu kako bi vas administratori mogli kontaktirati u slučaju da su im potrebne dodatne informacije. ',
 		'hu' => 'Opcionálisan megadhatja az e-mail címét, így az adminisztrátorok a hibával kapcsolatban esetleg további kérdéseket tehetnek fel:',
+		'pt' => 'Opcionalmente, pode introduzir o seu email para o administrador de sistemas entrar em contacto consigo, caso tenha alguma questão relativamente ao seu problema.',
 		'pt-BR' => 'Opcionalmente digite o seu endereço de e-mail para que os administradores possam contatá-lo para mais perguntas sobre o seu problema:',
 	),
 	'report_email' => array (
@@ -119,6 +125,7 @@ $lang = array(
 		'sl' => 'Elektronski naslov:',
 		'hr' => 'Elektronička adresa',
 		'hu' => 'E-mail címek:',
+		'pt' => 'Endereço de email:',
 		'pt-BR' => 'Endereço de e-mail:',
 	),
 	'report_explain' => array (
@@ -136,6 +143,7 @@ $lang = array(
 		'sl' => 'Opišite, kako je do napake prišlo...',
 		'hr' => 'Opišite što ste radili kad se pojavila greška...',
 		'hu' => 'Írja le milyen lépéseket hajtott végre, aminek végén hiba történt...',
+		'pt' => 'Introduza uma breve explicação do sucedido...',
 		'pt-BR' => 'Explique o que você estava fazendo quando aconteceu o erro...',
 	),
 	'report_submit' => array (
@@ -153,6 +161,7 @@ $lang = array(
 		'sl' => 'Pošlji poročilo o napaki',
 		'hr' => 'Pošaljite prijavu greške',
 		'hu' => 'Hibabejelentés küldése',
+		'pt' => 'Enviar o relatório de erro',
 		'pt-BR' => 'Enviar o relatório de erro',
 	),
 	'errorreport_header' => array (
@@ -168,6 +177,7 @@ $lang = array(
 		'sl' => 'Poročilo o napaki je bilo poslano',
 		'hr' => 'Prijava greške poslana',
 		'hu' => 'Elküldött hibabejelentés',
+		'pt' => 'Relatório de erro enviado',
 		'pt-BR' => 'Relatório de erro enviado',
 	),
 	'errorreport_text' => array (
@@ -183,6 +193,7 @@ $lang = array(
 		'sl' => 'Poročilo o napaki je bilo poslano administratorjem sistema.',
 		'hr' => 'Prijava greške poslana je administratorima.',
 		'hu' => 'A hibabejelentést elküldtük az adminisztrátoroknak.',
+		'pt' => 'O relatório de erro foi enviado aos administradores',
 		'pt-BR' => 'O relatório de erro foi enviado com sucesso para os administradores.',
 	),
 	'howto_header' => array (
@@ -200,6 +211,7 @@ $lang = array(
 		'sl' => 'Kje lahko iščem pomoč?',
 		'hr' => 'Kako dobiti pomoć',
 		'hu' => 'Hogyan kaphat segítséget',
+		'pt' => 'Como obter ajuda',
 		'pt-BR' => 'Como conseguir ajuda',
 	),
 	'howto_text' => array (
@@ -217,6 +229,7 @@ $lang = array(
 		'sl' => 'Ta napaka je verjetno posledica nepravilne konfiguracije simpleSAMLphp-ja. Obrnite se na skrbnika in mu posredujte to napako.',
 		'hr' => 'Ova greška se vjerojatno javila zbog neočekivanog ponašanja ili neispravnog konfiguriranja simpleSAMLphp-a. Kontaktirajte administratora i pošaljite mu gore navedenu poruku o greški.',
 		'hu' => 'Ez a hiba valószínűleg a simpleSAMLphp nem várt működésével vagy félrekonfigurálásával kapcsolatos. Kérjük, keresse meg a bejelentkező szolgáltatás adminisztrátorát, és küldje el neki a fenti hibaüzenetet!',
+		'pt' => 'Este erro ocorreu provavelmente devido a um comportamento inesperado ou uma má configuração do simpleSAMLphp. Contacte o administrador deste serviço de login, e comunique a mensagem de erro.',
 		'pt-BR' => 'Esse erro é provavelmente devido a algum imprevisto no comportamento do simpleSAMLphp. Contate o administrador deste serviço de login e envie-lhe a mensagem de erro acima.',
 	),
 	'title_CACHEAUTHNREQUEST' => array (
@@ -234,6 +247,7 @@ $lang = array(
 		'sl' => 'Prišlo je do napake pri prijavi (single sign-on) v storitev',
 		'hr' => 'Greška prilikom prijavljivanja kroz sustav jedinstvene autentikacije',
 		'hu' => 'Hiba a single sign-on kapcsolat létrehozásában',
+		'pt' => 'Erro ao efectuar a autenticação única no serviço',
 		'pt-BR' => 'Erro ao fazer uma única conexão ao serviço',
 	),
 	'descr_CACHEAUTHNREQUEST' => array (
@@ -251,6 +265,7 @@ $lang = array(
 		'sl' => 'Zaradi daljšega obdobja neaktivnosti je seja potekla. Lahko se ponovno avtenticirate in samodejno boste preusmerjeni na storitev, ki je zahtevala avtentikacijo. ',
 		'hr' => 'Uspješno ste se autenticirali i sustav se spremao preusmjeriti vas na aplikaciju za koju ste se autenticirali, ali nije mogao pronaći vaš pohranjeni autentikacijski zahtjev. Zahtjev se pohranjuje samo tijekom određenog vremenskog razdoblja. Ako ste ostavili vaš web preglednik otvoren dulje vrijeme prije nego što ste unijeli korisničku oznaku i zaporku, to može biti uzrok navedenom problemu. Molimo pokušajte ponovo pristupiti aplikaciju i unijeti svoju korisničku oznaku i zaporku. Ako to ne riješi problem, molimo prijavite grešku.',
 		'hu' => 'Sikeres azonosítás, de nem találtuk meg az átmeneti tárban az azonosítási kérést. Ez a kérés csak korlátozott ideig található meg az átmeneti tárban. Lehetséges, felhasználónév és jelszó megadása előtt több órán keresztül nyitva volt a bejelentkezési oldal. Ha ez a helyzet, akkor kérjük, menjen vissza a használni kívánt szolgáltatáshoz és jelentkezzen be újra. Ha a hiba továbbra is fennáll, kérjük, jelezze!',
+		'pt' => 'Efectuou previamente uma autenticação com sucesso e estava prestes a ser direccionado para o serviço que requisitou a autenticação. No entanto não foi possível encontrar o pedido de autenticação na cache. O pedido apenas é mantido em cache por um período limitado. O problema pode ter sido originado por ter deixado o browser aberto durante alguma horas antes de introduzir as suas credenciais. Se foi este o caso tente aceder de novo ao serviço que necessita de autenticação, para iniciar um novo processo de entrada. Se o problema persistir, por favor comunique-o.',
 		'pt-BR' => 'Você foi autenticado e pronto para voltar ao serviço de solicitação de autenticação, mas não foi possível encontrar o seu pedido de autenticação em cache. O pedido é armazenado em cache por um tempo limitado. Deixando o navegador aberto por horas antes de entrar seu nome de usuário e senha pode ser a causa do problema. Se este poderia ser o caso na sua situação, tente voltar para o serviço que você deseja acessar, e iniciar um novo processo autenticação. Se o problema persistir, por favor informe-nos.',
 	),
 	'title_CREATEREQUEST' => array (
@@ -268,6 +283,7 @@ $lang = array(
 		'sl' => 'Napaka pri ustvarjanju zahteve',
 		'hr' => 'Greška prilikom kreiranja zahtjeva',
 		'hu' => 'Hiba történt',
+		'pt' => 'Erro ao criar o pedido',
 		'pt-BR' => 'Erro ao criar o pedido',
 	),
 	'descr_CREATEREQUEST' => array (
@@ -285,6 +301,7 @@ $lang = array(
 		'sl' => 'Pri ustvarjanju SAML zahteve je prišlo do napake.',
 		'hr' => 'Pojavila se greška tijekom pokušaja kreiranja SAML zahtjeva.',
 		'hu' => 'Hiba történt a SAML kérés létrehozása közben.',
+		'pt' => 'Ocorreu um erro ao tentar criar o pedido SAML',
 		'pt-BR' => 'Um erro ocorreu ao tentar criar o pedido do SAML.',
 	),
 	'title_DISCOPARAMS' => array (
@@ -302,6 +319,7 @@ $lang = array(
 		'sl' => 'Zahteva, ki je bila poslana "Discovery service-u" je napačna.',
 		'hr' => 'Neispravan zahtjev prema lokacijskom servisu',
 		'hu' => 'Érvénytelen kérés érkezett a felfedező szolgáltatáshoz (discovery service)',
+		'pt' => 'Pedido incorrecto efectuado ao serviço de descoberta de IdP',
 		'pt-BR' => 'Pedido incorreto para o serviço de descoberta',
 	),
 	'descr_DISCOPARAMS' => array (
@@ -319,6 +337,7 @@ $lang = array(
 		'sl' => 'Parametri, ki so bili poslani "Discovery service-u", ne ustrezajo specifikaciji.',
 		'hr' => 'Parametri u zahtjevu poslanom lokacijskom servisu nisu u skladu sa specifikacijama.',
 		'hu' => 'A felfedező szolgáltatás (discovery service) olyan paramétereket kapott, amelyek nem felelnek meg a specifikációnak.',
+		'pt' => 'O pedido efectuado ao serviço de descoberta de IdP não está de acordo com as especificações.',
 		'pt-BR' => 'Os parâmetros enviados para o serviço de descoberta não estão de acordo com as especificações.',
 	),
 	'title_GENERATEAUTHNRESPONSE' => array (
@@ -336,6 +355,7 @@ $lang = array(
 		'sl' => 'Odgovora za avtentikacijo ni bilo mogoče ustvariti',
 		'hr' => 'Ne mogu kreirati autentikacijski odgovor',
 		'hu' => 'Nem lehet az azonosítást végrehajtani',
+		'pt' => 'Não foi possível criar uma resposta de autenticação',
 		'pt-BR' => 'Não foi possível criar a resposta da autenticação',
 	),
 	'descr_GENERATEAUTHNRESPONSE' => array (
@@ -353,6 +373,7 @@ $lang = array(
 		'sl' => 'Ko je IdP želel ustvariti odgovor za avtentikacijo, je prišlo do napake.',
 		'hr' => 'Na strani IdP-a se pojavila greška prilikom kreiranja autentikacijskog odgovora.',
 		'hu' => 'Hiba történt az azonosítási válaszüzenet összeállítása során.',
+		'pt' => 'Ocorreu um erro ao criar uma resposta de autenticação neste fornecedor de identidade.',
 		'pt-BR' => 'Ocorreu um erro quando este servidor de identidade tentou criar uma resposta de autenticação.',
 	),
 	'title_GENERATELOGOUTRESPONSE' => array (
@@ -370,6 +391,7 @@ $lang = array(
 		'sl' => 'Odgovora o odjavi ni bilo mogoče ustvariti',
 		'hr' => 'Ne mogu kreirati odgovor na zahtjev za odjavu',
 		'hu' => 'Nem sikerült kijelentkezési válaszüzenetet létrehozni',
+		'pt' => 'Não foi possível criar uma resposta de logout',
 		'pt-BR' => 'Não foi possível criar a resposta para a desconexão',
 	),
 	'descr_GENERATELOGOUTRESPONSE' => array (
@@ -387,6 +409,7 @@ $lang = array(
 		'sl' => 'Ko je SAML želel ustvariti odgovor o odjavi, je prišlo do napake.',
 		'hr' => 'Pojavila se greška prilikom kreiranja odgovora na zahtjev za odjavu (Logout Response).',
 		'hu' => 'Miközben ez a SAML entitás kijelentkezési válaszüzenetet (logout response) próbált létrehozni, hiba történt.',
+		'pt' => 'Ocorreu um erro ao criar uma resposta de logout nesta entidade SAML.',
 		'pt-BR' => 'Ocorreu um erro quando a entidade SAML tentou criar a resposta para a desconexão.',
 	),
 	'title_LDAPERROR' => array (
@@ -404,6 +427,7 @@ $lang = array(
 		'sl' => 'Napaka LDAP-a',
 		'hr' => 'LDAP greška',
 		'hu' => 'LDAP hiba',
+		'pt' => 'Erro de LDAP',
 		'pt-BR' => 'Erro no LDAP',
 	),
 	'descr_LDAPERROR' => array (
@@ -421,6 +445,7 @@ $lang = array(
 		'sl' => 'LDAP je baza uporabnikov. Ko se želite prijaviti, je potrebno prijavo preveriti v LDAPu. Pri trenutnem preverjanju je prišlo do napake.',
 		'hr' => 'LDAP imenik je baza korisničkih podataka i kad pokušavate pristupiti servisu potrebno je kortaktirati LDAP bazu. Prilikom pokušaja spajanja na LDAP poslužitelj došlo je do greške.',
 		'hu' => 'A felhasználói adatbázis LDAP alapú, ezért bejelentkezéshez szükség van egy LDAP adatbázisra. Ezúttal hiba történt az LDAP-hoz kapcsolódás során.',
+		'pt' => 'Ocorreu um erro ao contactar a base de dados LDAP.',
 		'pt-BR' => 'O banco de dados de usuários é LDAP e quando você tentar efetuar o login é preciso entrar em contato com um banco de dados LDAP. Ocorreu um erro durante a tentativa de conexão.',
 	),
 	'title_LOGOUTREQUEST' => array (
@@ -438,6 +463,7 @@ $lang = array(
 		'sl' => 'Napaka pri obdelavi zahteve za odjavo',
 		'hr' => 'Greška prilikom obrade zahtjeva za odjavu',
 		'hu' => 'Feldolgozhatatlan kijelentkezési kérés',
+		'pt' => 'Erro ao processar o pedido de logout',
 		'pt-BR' => 'Erro ao processar a resposta da desconexão',
 	),
 	'descr_LOGOUTREQUEST' => array (
@@ -455,6 +481,7 @@ $lang = array(
 		'sl' => 'Pri obdelavi zahteve za odjavo je prišlo do napake.',
 		'hr' => 'Pojavila se greška tijekom obrade zahtjeva za odjavu (Logout Request).',
 		'hu' => 'A kijelentkezési kérés (logout request) feldolgozása során hiba történt.',
+		'pt' => 'Ocorreu um erro ao processar o pedido de logout.',
 		'pt-BR' => 'Um erro ocorreu ao tentar processar a resposta da desconexão.',
 	),
 	'title_GENERATELOGOUTREQUEST' => array (
@@ -472,6 +499,7 @@ $lang = array(
 		'sl' => 'Zahteve za odjavo ni bilo mogoče ustvariti',
 		'hr' => 'Ne mogu kreirati zahtjev za odjavu',
 		'hu' => 'Hiba a kijelentkezés során',
+		'pt' => 'Erro ao criar o pedido de logout',
 		'pt-BR' => 'Não foi possível criar a resposta da desconexão',
 	),
 	'descr_GENERATELOGOUTREQUEST' => array (
@@ -489,6 +517,7 @@ $lang = array(
 		'sl' => 'Ko je SAML želel ustvariti zahtevo za odjavo, je prišlo do napake.',
 		'hr' => 'Pojavila se greška prilikom kreiranja zahtjeva za odjavu (Logout Request).',
 		'hu' => 'Miközben ez a SAML entitás kijelentkezési kérést (logout request) próbált létrehozni, hiba történt.',
+		'pt' => 'Ocorreu um erro ao criar o pedido de logout por esta entidade SAML',
 		'pt-BR' => 'Ocorreu um erro quando esta entidade SAML tentou criar a resposta de desconexão.',
 	),
 	'title_LOGOUTRESPONSE' => array (
@@ -506,6 +535,7 @@ $lang = array(
 		'sl' => 'Napaka pri obdelavi odgovora za odjavo',
 		'hr' => 'Greška prilikom odjavljivanja',
 		'hu' => 'Hiba a kijelentkezés feldolgozása során',
+		'pt' => 'Erro ao processar a resposta de logout',
 		'pt-BR' => 'Erro ao processar a resposta da desconexão',
 	),
 	'descr_LOGOUTRESPONSE' => array (
@@ -523,6 +553,7 @@ $lang = array(
 		'sl' => 'Pri obdelavi odgovora za odjavo je prišlo do napake.',
 		'hr' => 'Pojavila se greška tijekom obrade odgovora na zahtjev za odjavom (Logout Response).',
 		'hu' => 'Hiba történt a kijelentkezési válaszüzenet (logout response) feldolgozása során.',
+		'pt' => 'Ocorreu um erro ao processar a resposta de logout.',
 		'pt-BR' => 'Erro ao tentar processar a resposta da desconexão.',
 	),
 	'title_METADATA' => array (
@@ -540,6 +571,7 @@ $lang = array(
 		'sl' => 'Napaka pri nalaganju metapodatkov',
 		'hr' => 'Greška prilikom učitavanja metapodataka',
 		'hu' => 'Metaadat betöltési hiba',
+		'pt' => 'Erro na leitura dos metadados',
 		'pt-BR' => 'Erro ao carregar a metadata.',
 	),
 	'descr_METADATA' => array (
@@ -557,6 +589,7 @@ $lang = array(
 		'sl' => 'V namestitvi simpleSAMLphp-ja je napaka. Če ste skrbnik te storitve, preverite, da je namestitev metapodatkov pravilna.',
 		'hr' => 'Vaša instalacija simpleSAMLphp-a je pogrešno iskonfigurirana. Ako ste vi administrator ovog servisa, provjerite jesu li konfiguracijski metapodaci ispravni.',
 		'hu' => 'simpleSAMLphp konfigurációs hiba. Ha Ön ennek a szolgáltatásnak az adminisztrátora, bizonyosodjon meg arról, hogy a metaadatok helyesen vannak beállítva!',
+		'pt' => 'Existe uma má configuração desta instalação do simpleSAMLphp. Se é o administrador deste serviço, verifique que a configuração dos metadados está correcta.',
 		'pt-BR' => 'Há erros na sua instalação do simpleSAMLphp. Se você é o administrador deste seriço, você deve certificar-se que a sua configuração de metadata está definida corretamente.',
 	),
 	'title_NOACCESS' => array (
@@ -574,6 +607,7 @@ $lang = array(
 		'sl' => 'Ni dostopa',
 		'hr' => 'Nema pristupa',
 		'hu' => 'Hozzáférés megtagadva',
+		'pt' => 'Acesso negado',
 		'pt-BR' => 'Acesso negado.',
 	),
 	'descr_NOACCESS' => array (
@@ -591,6 +625,7 @@ $lang = array(
 		'sl' => 'Ta končna točka ni omogočena. Preverite možnost omogočenja v konfiguraciji simpleSAMLphp-ja.',
 		'hr' => 'Ova krajnja točka nije omogućena. Provjerite dozvole pristupa u vašoj konfiguraciji simpleSAMLphp-a.',
 		'hu' => 'Ez a hozzáférési pont nincs engedélyezve. Engedélyezze a simpleSAMLphp beállításai között.',
+		'pt' => 'Este ponto de acesso (endpoint) não está disponível. Verifique as opções relevantes na configuração do simpleSAMLphp.',
 		'pt-BR' => 'Este parâmetro não está ativado. Marque a opção habilitar na configuração do simpleSAMLphp.',
 	),
 	'title_NORELAYSTATE' => array (
@@ -608,6 +643,7 @@ $lang = array(
 		'sl' => 'RelayState parametr ne obstaja',
 		'hr' => 'Nije postavljen RelayState parametar',
 		'hu' => 'Nincs RelayState paraméter',
+		'pt' => 'RelayState não definido',
 		'pt-BR' => 'Sem RelayState',
 	),
 	'descr_NORELAYSTATE' => array (
@@ -625,6 +661,7 @@ $lang = array(
 		'sl' => 'Iniciator te zahteve ni posredoval RelayState parametra.',
 		'hr' => 'Inicijator ovog zahtjeva nije poslao RelayState parametar s adresom na koju treba preusmjeriti korisnika.',
 		'hu' => 'A kérés összeállítója nem adta meg a RelayState paramétert, amely azt határozza meg, hogy hová irányítsuk tovább.',
+		'pt' => 'Este pedido foi iniciado sem o parâmetro RelayState necessário para continuar com o processamento.',
 		'pt-BR' => 'O promotor deste pedido não fornecer um parâmetro RelayState indicando o local para onde seguir.',
 	),
 	'title_NOSESSION' => array (
@@ -642,6 +679,7 @@ $lang = array(
 		'sl' => 'Veljavne seje ni bilo mogoče najti',
 		'hr' => 'Sjednica nije pronađena',
 		'hu' => 'Nincs érvényes munkamenet',
+		'pt' => 'Sessão não encontrada',
 		'pt-BR' => 'Sessão não encontrada',
 	),
 	'descr_NOSESSION' => array (
@@ -659,6 +697,7 @@ $lang = array(
 		'sl' => 'Žal vaše seje ni bilo mogoče najti. Vzrok je lahko vaš brskalnik, ki ne podpira piškotkov, ali pa so piškotki onemogočeni. Lahko pa se je iztekla časovna omejitev seje, ker ste pustili brskalnik dlje časa odprt.',
 		'hr' => 'Na žalost, ne možemo pronaći podatke o vašoj sjednici. Uzrok tome može biti to što vaš web preglednik nema omogućenu podršku za tzv. kolačiće (cookie). Također, jedan od razloga može biti i predugo otvoren web preglednik.',
 		'hu' => 'Sajnos nem tudunk érvényes munkamenetet (session) meghatározni. Lehetséges, hogy böngészője nem támogatja a cookie-kat, illetve ezek le vannak tiltva. Amennyiben böngészője már régóta meg van nyitva, az is előfordulhat, hogy a munkamenet érvényessége lejárt.',
+		'pt' => 'Não foi possível encontrar informação acerca da sua sessão. Este problema pode ser causado por o seu browser não suportar cookies ou ter este suporte desactivado. Em alternativa, a sua sessão pode ter expirado por ter deixado o browser aberto durante muito tempo.',
 		'pt-BR' => 'Infelizmente, não foi possível obter informações da sua sessão. Isso pode ter ocorrido porque o seu navegador não suporta cookies ou a movimentação de cookies está desativado. Alternadamente, sua sessão expirou, pois você deixou o navegador aberto por muito tempo.',
 	),
 	'title_PROCESSASSERTION' => array (
@@ -676,6 +715,7 @@ $lang = array(
 		'sl' => 'Pri obdelavi odgovora IdP-ja je prišlo do napake',
 		'hr' => 'Greška prilikom obrade odgovora IdP-a',
 		'hu' => 'IdP válasz feldolgozási hiba',
+		'pt' => 'Erro ao processar a resposta do fornecedor de identidade (IdP)',
 		'pt-BR' => 'Erro processando a resposta do Provedor de Identidade.',
 	),
 	'descr_PROCESSASSERTION' => array (
@@ -693,6 +733,7 @@ $lang = array(
 		'sl' => 'Odgovor, poslan od IdP-ja, ni bil sprejet.',
 		'hr' => 'Odgovor koji je poslao IdP nije prihvaćen.',
 		'hu' => 'Nem fogadtuk el a személyazonosság-szolgáltató (IdP) által küldött válaszüzenetet.',
+		'pt' => 'A resposta emitida pelo fornecedor de identidade não foi aceite.',
 		'pt-BR' => 'Nós não aceitamos a resposta enviada pelo Provedor de Identidade.',
 	),
 	'title_PROCESSAUTHNRESPONSE' => array (
@@ -710,6 +751,7 @@ $lang = array(
 		'sl' => 'Napaka pri obdelavi odgovora IdP-ja.',
 		'hr' => 'Greška prilikom obrade odgovora IdP-a',
 		'hu' => 'Hiba történt az IdP válaszának feldolgozása során',
+		'pt' => 'Erro ao processar a resposta do fornecedor de identidade (IdP)',
 		'pt-BR' => 'Erro processando a resposta do Provedor de Identidade.',
 	),
 	'descr_PROCESSAUTHNRESPONSE' => array (
@@ -727,6 +769,7 @@ $lang = array(
 		'sl' => 'IdP je prejel avtenticiran odgovor SP-ja, vendar je pri obdelavi tega odgovora prišlo do napake.',
 		'hr' => 'SP je dobio autentikacijski odgovor od IdP-a, ali je prilikom obrade odgovora došlo go greške.',
 		'hu' => 'Az SP megkapta az IdP-től az azonosítási válaszüzenetet, de ennek feldolgozása során hiba történt.',
+		'pt' => 'Ocorreu um erro ao processar a resposta de autenticação emitida pelo fornecedor de identidade.',
 		'pt-BR' => 'Este SP recebeu uma resposta de autenticação do Provedor de Identidade, mas ocorreu um erro ao tentar processar a resposta.',
 	),
 	'title_PROCESSAUTHNREQUEST' => array (
@@ -744,6 +787,7 @@ $lang = array(
 		'sl' => 'Napaka pri obdelavi zahteve SP',
 		'hr' => 'Greška prilikom obrade zahtjeva koji je poslao SP.',
 		'hu' => 'Hibás SP üzenet',
+		'pt' => 'Erro ao processar o pedido  do fornecedor de serviço (SP)',
 		'pt-BR' => 'Erro processando o pedido do Provedor de Serviços.',
 	),
 	'descr_PROCESSAUTHNREQUEST' => array (
@@ -761,6 +805,7 @@ $lang = array(
 		'sl' => 'IdP je prejel avtenticirano zahtevo SP-ja, vendar je prišlo do napake pri obdelavi te zahteve.',
 		'hr' => 'IdP je dobio autentikacijski zahtjev od davatelja usluge (SP), ali je prilikom obrade zahtjeva došlo do greške.',
 		'hu' => 'Az IdP azonosítási kérést kapott az SP-től, de ennek feldolgozása során hiba történt.',
+		'pt' => 'Ocorreu um erro ao processar o pedido de autenticação emitido pelo fornecedor de serviço.',
 		'pt-BR' => 'Este Provedor de Identidade recebeu um Pedido de Autenticação de um Provedor de Serviços, mas um erro ocorreu ao tentar processar o pedido.',
 	),
 	'title_SSOSERVICEPARAMS' => array (
@@ -778,6 +823,7 @@ $lang = array(
 		'sl' => 'Podani so bili napačni parametri',
 		'hr' => 'Dostavljeni parametri nisu valjani',
 		'hu' => 'Hibás paraméterek',
+		'pt' => 'Parâmetros incorrectos',
 		'pt-BR' => 'Parâmetros fornecidos incorretamente',
 	),
 	'descr_SSOSERVICEPARAMS' => array (
@@ -795,6 +841,7 @@ $lang = array(
 		'sl' => 'Potrebno je zagotoviti SAML zahtevo ali RequestID na tem vmesniku.',
 		'hr' => 'Ovom sučelju morate proslijediti ili SAML Request poruku ili RequestID.',
 		'hu' => 'Ezen az interfészen vagy SAML Request üzenetet vagy RequestID-t kell megadni.',
+		'pt' => 'Deve fornecer uma mensagem SAML do tipo Request ou RequestID nesta interface.',
 		'pt-BR' => 'Você deve fornecer uma mensagem ou uma solicitação SAML RequestID sobre esta interface.',
 	),
 	'title_SLOSERVICEPARAMS' => array (
@@ -812,6 +859,7 @@ $lang = array(
 		'sl' => 'SAML sporočilo ni na voljo',
 		'hr' => 'Nije dostavljena nikakva SAML poruka',
 		'hu' => 'Hiányzó SAML üzenet',
+		'pt' => 'Mensagem SAML não fornecida',
 		'pt-BR' => 'Não fornecida a mensagem SAML',
 	),
 	'descr_SLOSERVICEPARAMS' => array (
@@ -829,6 +877,7 @@ $lang = array(
 		'sl' => 'Dostopili ste do SingleLogoutService vmesnika, ampak niste zagotovili SAML LogoutRequest ali LogoutResponse.',
 		'hr' => 'Pristupili ste SingleLogoutService sučelju, ali niste dostavili SAML LogoutRequest ili LogoutResponse.',
 		'hu' => 'A Single Logout interfészen vagy SAML LogoutRequest vagy LogoutResponse üzenetet kell megadni.',
+		'pt' => 'Na interface SingleLogoutService deve fornecer uma mensagem SAML do tipo LogoutRequest ou LogoutResponse.',
 		'pt-BR' => 'Você acessou a interface do SingleLogoutService, mas não forneceu a SAML LogoutRequest ou LogoutResponse.',
 	),
 	'title_ACSPARAMS' => array (
@@ -846,6 +895,7 @@ $lang = array(
 		'sl' => 'Nobenega odgovora za SAML ni na voljo',
 		'hr' => 'Nije dostavljen nikakav SAML odgovor',
 		'hu' => 'Nincs SAML válasz',
+		'pt' => 'Mensagem SAML não fornecida',
 		'pt-BR' => 'Não fornecida a resposta SAML',
 	),
 	'descr_ACSPARAMS' => array (
@@ -863,6 +913,7 @@ $lang = array(
 		'sl' => 'Dostopili ste do "Assertion Consumer Service" vmesnika, ampak niste zagotovili "SAML Authentication Respons-a".',
 		'hr' => 'Pristupili ste Assertion Consumer Service sučelju, ali niste dostavili SAML autentikacijski odgovor.',
 		'hu' => 'Az Assertion Consumer Service interfészen SAML Authentication Response üzenetet kell megadni.',
+		'pt' => 'Na interface Assertion Consumer Service deve fornecer uma mensagem SAML do tipo Authentication Response.',
 		'pt-BR' => 'Você acessou a interface do Assertion Consumer Service, mas não forneceu uma SAML Authentication Response.',
 	),
 	'title_CASERROR' => array (
@@ -880,6 +931,7 @@ $lang = array(
 		'sl' => 'CAS napaka',
 		'hr' => 'CAS greška',
 		'hu' => 'CAS hiba',
+		'pt' => 'Erro de CAS',
 		'pt-BR' => 'Erro CAS',
 	),
 	'descr_CASERROR' => array (
@@ -897,6 +949,7 @@ $lang = array(
 		'sl' => 'Napaka pri komunikaciji s CAS strežnikom.',
 		'hr' => 'Greška u komunikaciji s CAS poslužiteljem.',
 		'hu' => 'Hiba történt a CAS kiszolgálóval való kommunikáció közben.',
+		'pt' => 'Ocorreu um erro ao comunicar com o servidor CAS.',
 		'pt-BR' => 'Erro ao comunicar-se com o servidor CAS',
 	),
 	'title_CONFIG' => array (
@@ -914,6 +967,7 @@ $lang = array(
 		'sl' => 'Napaka v nastavitvah',
 		'hr' => 'Greška u konfiguraciji',
 		'hu' => 'Beállítási hiba',
+		'pt' => 'Erro de configuração',
 		'pt-BR' => 'Erro na configuração',
 	),
 	'descr_CONFIG' => array (
@@ -931,6 +985,7 @@ $lang = array(
 		'sl' => 'Nastavitve simpleSAMLphp so napačne ali se med seboj izključujejo.',
 		'hr' => 'Izgleda da je simpleSAMLphp pogrešno iskonfiguriran.',
 		'hu' => 'Valószínűleg helytelenül lett konfigurálva a simpleSAMLphp',
+		'pt' => 'O software simpleSAMLphp tem um problema de configuração.',
 		'pt-BR' => 'simpleSAMLphp parece estar mal configurado.',
 	),
 	'title_NOTVALIDCERT' => array (
@@ -948,6 +1003,7 @@ $lang = array(
 		'sl' => 'Napačen certifikat',
 		'hr' => 'Nevažeći certifikat',
 		'hu' => 'Érvénytelen tanúsítvány',
+		'pt' => 'Certificado inválido',
 		'pt-BR' => 'Certificado inválido',
 	),
 	'descr_NOTVALIDCERT' => array (
@@ -965,6 +1021,7 @@ $lang = array(
 		'sl' => 'Posredovan certifikat je neveljaven',
 		'hr' => 'Niste predočili valjani certifikat.',
 		'hu' => 'Nem található hiteles tanúsítvány',
+		'pt' => 'Não foi apresentado um certificado válido.',
 		'pt-BR' => 'Você não possui um certificado válido',
 	),
 	'title_NOTSET' => array (
@@ -982,6 +1039,7 @@ $lang = array(
 		'sl' => 'Geslo ni nastavljeno',
 		'hr' => 'Zaporka nije postavljena',
 		'hu' => 'Jelszó nincs beállítva',
+		'pt' => 'Password inalterada',
 		'pt-BR' => 'Senha não definida',
 	),
 	'descr_NOTSET' => array (
@@ -999,6 +1057,7 @@ $lang = array(
 		'sl' => 'V nastavitvah je administrativno geslo (auth.adminpassword) še vedno nastavljeno na začetno vrednost. Spremenite ga!',
 		'hr' => 'Izvorna vrijednost administratorske zaporke (auth.adminpassword) u konfiguraciji nije promjenjena. Molimo promjenite zaporku u konfiguracijskoj datoteci.',
 		'hu' => 'Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a konfigurációs fájlban, kérjük, változtassa meg most! ',
+		'pt' => 'A password presente na configuração (auth.adminpassword) tem o valor de omissão. Por favor altere esta password no ficheiro de configuração.',
 		'pt-BR' => 'A senha na configuração (auth.adminpassword) não foi alterada. Edite o arquivo de configuração.',
 	),
 	'title_READCONFIGTEMPLATES' => array (
@@ -1014,6 +1073,7 @@ $lang = array(
 		'sl' => 'Napaka pri dostopu do mape z namestitvenimi predlogami.',
 		'hr' => 'Greška prilikom čitanja config-templates direktorija',
 		'hu' => 'Nem sikerült olvasni a config-templates könyvtárából',
+		'pt' => 'Erro na leitura da directoria config-templates',
 		'pt-BR' => 'Erro lendo o diretório config-templates',
 	),
 	'descr_READCONFIGTEMPLATES' => array (
@@ -1029,6 +1089,7 @@ $lang = array(
 		'sl' => 'Prišlo je do napake! simpleSAMLphp v mapi z namestitvenimi predlogami ne najde zahtevanih datotek.',
 		'hr' => 'Došlo je do greške tijekom pokušaja dohvaćanja raspoloživih datoteka u config-templates direktoriju.',
 		'hu' => 'Hiba történt miközben a simpleSAMLphp megpróbálta meghatározni, hogy milyen állományok találhatók a config-templates könyvtárban (konfigurációs sablonok gyűjtőhelye).',
+		'pt' => 'Ocorreu um erro na tentativa de leitura dos ficheiros presentes na directoria config-templates.',
 		'pt-BR' => 'Ocorreu um erro enquanto o simpleSAMLphp tentatava encontrar os arquivos disponíveis no diretório config-templates.',
 	),
 	'title_LOGOUTINFOLOST' => array (
@@ -1044,6 +1105,7 @@ $lang = array(
 		'sl' => 'Odjavni (Logout) parametri niso na voljo.',
 		'hr' => 'Informacija o odjavljivanju izgubljena',
 		'hu' => 'Elveszett kijelentkezési információk',
+		'pt' => 'Informação de logout perdida',
 		'pt-BR' => 'Informações de desconexão perdidas',
 	),
 	'descr_LOGOUTINFOLOST' => array (
@@ -1059,6 +1121,7 @@ $lang = array(
 		'sl' => 'Odjavni (Logout) parametri niso na voljo. Vrnite se na storitev, ki ste jo pravkar uporabljali in se ponovno poskusite odjaviti. Napaka je posledica poteka veljavnosti seje.',
 		'hr' => 'Informacija o tekućem zahtjevu za odjavljivanjem se izgubila. Preporučamo da se vratite u aplikaciju iz koje ste se htjeli odjaviti i pokušate se odjaviti ponovo. Ova greška može biti uzrokovana istekom valjanosti zahtjeva za odjavom. Zahtjev se pohranjuje određeno vrijeme - u pravilu nekoliko sati. Obzirom da je to dulje nego što bi bilo koja operacija odjavljivanja trebala trajati, greška koja se pojavila može upućivati na grešku u konfiguraciji. Ako se problem nastavi, kontaktirajte vašeg davatelja usluge. ',
 		'hu' => 'A kijelentkezési művelettel kapcsolatos információk valahol elvesztek. Kérjük, térjen vissza ahhoz a szolgáltatáshoz, ahonnan ki akart jelentkezni, és próbálja újra! Lehetséges, hogy a hibát az okozza, hogy a kijelentkezéshez szükséges információ elévült. A kijelentkezési információ csak korlátozott ideig érvényes - általában néhány óráig. Ez hosszabb, mint amennyi normális esetben a kijelentkezéshez szükséges, ezért ez a hibaüzenet konfigurációs hibát jelenthet. Ha a probléma továbbra is fennáll, kérjük, forduljon az alkalmazásszolgáltatóhoz (SP)!',
+		'pt' => 'A informação acerca da operação de logout foi perdida. Por favor, volte ao serviço de onde efectuou o logout e tente de novo esta operação. A informação de logout possui um tempo de expiração que é normalmente muito superior ao tempo normal de processamento desta operação. Se o problema persistir pode ser um erro de configuração e deverá ser comunicado.',
 		'pt-BR' => 'As informações sobre a operação de desconexão atual foram perdidas. Você deve voltar para o serviço que estava antes de tentar sair e tente novamente. Esse erro pode ser causado pela expiração das informações da desconexão. As informações são armazenadas em cache por uma quantia limitada de tempo - geralmente um número de horas. Esta é mais longa do que qualquer desconexão em funcionamento normal deve ter, de modo que este erro pode indicar algum outro erro com a configuração. Se o problema persistir, contate o seu fornecedor de serviços.',
 	),
 	'title_ASSERTFAIL' => array (
@@ -1073,6 +1136,7 @@ $lang = array(
 		'sl' => 'Neveljavna zahteva',
 		'hr' => 'Neispravna potvrda',
 		'hu' => 'Igazolás (assertion) hiba',
+		'pt' => 'Erro num afirmação',
 		'pt-BR' => 'Erro na Afirmação',
 	),
 	'descr_ASSERTFAIL' => array (
@@ -1087,6 +1151,7 @@ $lang = array(
 		'sl' => 'Vnos v kodo je spodletel. Navedena je bila naslednja zahteva: %ASSERTION%',
 		'hr' => 'Potvrda u kodu je neispravna. Potvrda je: %ASSERTION%',
 		'hu' => 'Igazolás (assertion) hiba a kódban. A hibás igazolás: %ASSERTION%',
+		'pt' => 'Ocorreu um erro com uma afirmação (assertion). A afirmação em causa foi: %ASSERTION%',
 		'pt-BR' => 'Uma afirmação no código falhou. A afirmação foi: %ASSERTION%',
 	),
 	'title_UNHANDLEDEXCEPTION' => array (
@@ -1101,6 +1166,7 @@ $lang = array(
 		'sl' => 'Nedefinirana izjema.',
 		'hr' => 'Neobrađena iznimka',
 		'hu' => 'Kezeletlen kivétel',
+		'pt' => 'Excepção não tratada',
 		'pt-BR' => 'Exceção não tratada',
 	),
 	'descr_UNHANDLEDEXCEPTION' => array (
@@ -1115,6 +1181,7 @@ $lang = array(
 		'sl' => 'Zagnana je bila nedefinirana izjema.',
 		'hr' => 'Pojavila se iznimka koja nije obrađena.',
 		'hu' => 'Kezeletlen kivétel (exception) keletkezett.',
+		'pt' => 'Foi despoletada um excepção que não foi tratada.',
 		'pt-BR' => 'Uma exceção não tratada foi descartada.',
 	),
 	'title_NOTFOUND' => array (
@@ -1129,6 +1196,7 @@ $lang = array(
 		'sl' => 'Strani ni bilo mogoče najti.',
 		'hr' => 'Stranica nije pronađena',
 		'hu' => 'Oldal nem található',
+		'pt' => 'Página não encontrada',
 		'pt-BR' => 'Página não encontrada',
 	),
 	'descr_NOTFOUND' => array (
@@ -1143,6 +1211,7 @@ $lang = array(
 		'sl' => 'Strani ni bilo mogoče najti. Naveden URL strani je bil: %URL%',
 		'hr' => 'Tražena stranica nije pronađena. URL stranice: %URL%',
 		'hu' => 'Az alábbi oldal nem található: %URL%',
+		'pt' => 'A página não foi encontrada. O URL fornecido foi: %URL%',
 		'pt-BR' => 'A página determinada não foi encontrada. A URL foi: %URL%',
 	),
 	'title_NOTFOUNDREASON' => array (
@@ -1157,6 +1226,7 @@ $lang = array(
 		'sl' => 'Strani ni bilo mogoče najti.',
 		'hr' => 'Stranica nije pronađena',
 		'hu' => 'Oldal nem található',
+		'pt' => 'Página não encontrada',
 		'pt-BR' => 'Página não encontrada',
 	),
 	'descr_NOTFOUNDREASON' => array (
@@ -1171,6 +1241,7 @@ $lang = array(
 		'sl' => 'Strani ni bilo mogoče najti. Razlog: %REASON%. Naveden URL strani je bil: %URL%',
 		'hr' => 'Tražena stranica nije pronađena. Razlog: %REASON% URL stranice: %URL%',
 		'hu' => '%URL% oldal nem található, a következő ok miatt: %REASON% ',
+		'pt' => 'A página não foi encontrada. A razão foi: %REASON% O URL fornecido foi: %URL%',
 		'pt-BR' => 'A página determinada não foi encontrada. A razão foi: %REASON% A URL foi: %URL%',
 	),
 	'title_BADREQUEST' => array (
@@ -1185,6 +1256,7 @@ $lang = array(
 		'sl' => 'Napaka v prejetem zahtevku.',
 		'hr' => 'Dobiveni zahtjev je neispravan',
 		'hu' => 'Hibás kérés',
+		'pt' => 'Pedido inválido recebido',
 		'pt-BR' => 'A solicitação recebida é inválida',
 	),
 	'descr_BADREQUEST' => array (
@@ -1199,6 +1271,7 @@ $lang = array(
 		'sl' => 'Prišlo je do napake pri prejetem zahtevku. Razlog: %REASON%',
 		'hr' => 'Dogodila se pogreška prilikom slanja zahtjeva na ovu adresu. Razlog pogreške %REASON%',
 		'hu' => 'Hiba történt az oldal lekérdezése közben. A hibaüzenet: %REASON%',
+		'pt' => 'Ocorreu um erro com o pedido a esta página. A razão foi: %REASON%',
 		'pt-BR' => 'Há um erro no pedido para esta página. O motivo foi: %REASON%',
 	),
 	'title_WRONGUSERPASS' => array (
@@ -1212,6 +1285,7 @@ $lang = array(
 		'sl' => 'Napačno uporabniško ime ali geslo',
 		'hr' => 'Neispravna korisnička oznaka ili zaporka',
 		'hu' => 'Hibás felhasználónév vagy jelszó',
+		'pt' => 'Utilizador ou senha incorrecto',
 		'pt-BR' => 'Nome de usuário ou senha incorreto.',
 	),
 	'descr_WRONGUSERPASS' => array (
@@ -1225,6 +1299,7 @@ $lang = array(
 		'sl' => 'Uporabnika s tem uporabniškim imenom ni bilo mogoče najti ali pa je vpisano geslo napačno. Prebverite svoje uporabniško ime in poskusite znova.',
 		'hr' => 'Korisnik s navedenom korisničkom oznakom ne može biti pronađen ili je zaporka koju ste unijeli neispravna. Molim provjerite korisničku oznaku i pokušajte ponovo.',
 		'hu' => 'Nem létezik ilyen felhasználó vagy a jelszó hibás. Kérjük, próbálja újra!',
+		'pt' => 'O utilizador ou senha fornecidos são incorrectos. Por favor tente de novo.',
 		'pt-BR' => 'Ou nenhum usuário com o nome de usuário pode ser encontrado, ou a senha que você digitou está incorreta. Verifique o nome de usuário e tente novamente.',
 	),
 	'title_OPENIDWRONG' => array (
@@ -1237,6 +1312,7 @@ $lang = array(
 		'sl' => 'Napačna identiteta za OpenID',
 		'hr' => 'Neispravan identitet za OpenID',
 		'hu' => 'Hibás OpenID identitás',
+		'pt' => 'Erro de Identidade OpenID',
 	),
 	'descr_OPENIDWRONG' => array (
 		'no' => 'OpenID-en som ble etterspurt stemmer ikke overens med identiteten du er logget inn med.',
@@ -1248,6 +1324,7 @@ $lang = array(
 		'sl' => 'OpenID je zahteval preverjanje identitete, vi ste prijavljeni z drugo identiteto.',
 		'hr' => 'OpenID je od vas tražio provjeru identiteta, a vi ste prijavljeni s drugim identitetom.',
 		'hu' => 'Az OpenID egy identitás ellenőrzését kívánta, de ön egy másik identitás nevében van bejelentkezve.',
+		'pt' => 'O OpenID pediu a verificação de uma identidade, mas você está autenticado com outra identidade',
 	),
 
 );

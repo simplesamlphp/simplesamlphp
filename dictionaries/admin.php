@@ -12,6 +12,7 @@ $lang = array(
 		'sl' => 'Preverjanje konfiguracije',
 		'hr' => 'Provjera konfiguracije',
 		'hu' => 'Beállítások ellenőrzése',
+		'pt' => 'Verificação da configuração',
 		'pt-BR' => 'Verificar configuração',
 	),
 	'cfg_check_select_file' => array (
@@ -25,6 +26,7 @@ $lang = array(
 		'sl' => 'Izberite konfiguracijsko datoteko, ki jo želite preveriti',
 		'hr' => 'Odaberite konfiguracijeku datoteku koju želite provjeriti:',
 		'hu' => 'Válassza ki az ellenőrizendő konfigurációs állományt',
+		'pt' => 'Escolha o ficheiro de configuração a verificar:',
 		'pt-BR' => 'Selecione o arquivo de configuração para verificar',
 	),
 	'cfg_check_notices' => array (
@@ -37,6 +39,7 @@ $lang = array(
 		'sl' => 'Obvestila',
 		'hr' => 'Napomene',
 		'hu' => 'Megjegyzések',
+		'pt' => 'Observações',
 		'pt-BR' => 'Avisos',
 	),
 	'cfg_check_missing' => array (
@@ -50,6 +53,7 @@ $lang = array(
 		'sl' => 'V konfiguracijski datoteki manjkajo nastavitve',
 		'hr' => 'Opcije koje nedostaju u konfiguracijskoj datoteci',
 		'hu' => 'Hiányzó opciók a konfigurációs állományban',
+		'pt' => 'Opções ausentes do ficheiro de configuração',
 		'pt-BR' => 'Opções faltando no arquivo de configuração',
 	),
 	'cfg_check_superfluous' => array (
@@ -63,6 +67,7 @@ $lang = array(
 		'sl' => 'Odvečne nastavitve v konfiguracijski datoteki',
 		'hr' => 'Suvišne opcije u konfiguracijskoj datoteci',
 		'hu' => 'Felesleges opciók a konfigurációs állományban',
+		'pt' => 'Opções supérfluas do ficheiro de configuração',
 		'pt-BR' => 'Opções supérfluas no arquivo de configuração',
 	),
 	'cfg_check_noerrors' => array (
@@ -76,6 +81,7 @@ $lang = array(
 		'sl' => 'Ni napak',
 		'hr' => 'Nije pronađena niti jedna greška.',
 		'hu' => 'Nincs hiba.',
+		'pt' => 'Não foram encontrados erros.',
 		'pt-BR' => 'Não foram encontrados erros.',
 	),
 	'cfg_check_back' => array (
@@ -89,6 +95,7 @@ $lang = array(
 		'sl' => 'Vrnite se na seznam datotek',
 		'hr' => 'Vrati se nazad na popis datoteka',
 		'hu' => 'Vissza az fájlok listájához',
+		'pt' => 'Voltar à lista de ficheiros',
 		'pt-BR' => 'Voltar a lista de arquivos',
 	),
 	'metaover_header' => array (
@@ -102,6 +109,7 @@ $lang = array(
 		'sl' => 'Pregled metapodatkov',
 		'hr' => 'Pregled metapodataka',
 		'hu' => 'Metaadat áttekintés',
+		'pt' => 'Vista geral dos metadados',
 		'pt-BR' => 'Visão geral da metadata',
 	),
 	'metaover_intro' => array (
@@ -115,6 +123,7 @@ $lang = array(
 		'sl' => 'Za pregled podrobnosti SAML entitete, kliknite na glavo te entitete',
 		'hr' => 'Da biste pregledali detalje za SAML entitet, kliknite na zaglavlje SAML entiteta.',
 		'hu' => 'A SAML entitások részleteiért kattintson a SAML entitás fejlécére',
+		'pt' => 'Para obter detalhes sobre uma entidade SAML, clique no título da entidade.',
 		'pt-BR' => 'Para ver os detalhes da entidade SAML, clique ',
 	),
 	'metaover_errorentry' => array (
@@ -128,6 +137,7 @@ $lang = array(
 		'sl' => 'Napaka pri vnosu metadate',
 		'hr' => 'Pogreška u zapisu metapodataka',
 		'hu' => 'Hiba ebben a metaadat bejegyzésben',
+		'pt' => 'Erro nesta entrada de metadados',
 		'pt-BR' => 'Erro na entrada desta metadata',
 	),
 	'metaover_required_found' => array (
@@ -141,6 +151,7 @@ $lang = array(
 		'sl' => 'Zahtevana polja',
 		'hr' => 'Obvezna polja',
 		'hu' => 'Kötelező mezők',
+		'pt' => 'Campos obrigatórios',
 		'pt-BR' => 'Campos requeridos',
 	),
 	'metaover_required_not_found' => array (
@@ -154,6 +165,7 @@ $lang = array(
 		'sl' => 'Naslednja zahtevana polja ni bilo mogoce najti',
 		'hr' => 'Sljedeća obvezna polja nisu pronađena',
 		'hu' => 'A következő kötelező mezők hiányoznak',
+		'pt' => 'Os seguintes campos obrigatórios não foram encontrados',
 		'pt-BR' => 'Os seguintes campos requeridos não foram encontrados',
 	),
 	'metaover_optional_found' => array (
@@ -167,6 +179,7 @@ $lang = array(
 		'sl' => 'Neobvezna polja',
 		'hr' => 'Opcionalna polja',
 		'hu' => 'Opcionális mező',
+		'pt' => 'Campos opcionais',
 		'pt-BR' => 'Campos opcionais',
 	),
 	'metaover_optional_not_found' => array (
@@ -180,6 +193,7 @@ $lang = array(
 		'sl' => 'Naslednja neobvezna polja ni bilo mogoče najti',
 		'hr' => 'Sljedeća opcionalna polja nisu pronađena',
 		'hu' => 'A következő opcionális mezők nem találhatók',
+		'pt' => 'Os seguintes campos opcionais não foram encontrados',
 		'pt-BR' => 'Os seguintes campos opcionais não foram encontrados',
 	),
 	'metaover_unknown_found' => array (
@@ -193,6 +207,7 @@ $lang = array(
 		'sl' => 'Nepoznana polja',
 		'hr' => 'Sljedeća polja nisu prepoznata',
 		'hu' => 'A következő mezők nem értelmezhetők',
+		'pt' => 'Os seguintes campos não foram reconhecidos',
 		'pt-BR' => 'Os seguintes campos não foram reconhecidos',
 	),
 	'metaover_group_metadata.saml20-sp-hosted' => array (
@@ -206,6 +221,7 @@ $lang = array(
 		'sl' => 'SAML 2.0 SP (Lokalni)',
 		'hr' => 'SAML 2.0 SP (lokalni)',
 		'hu' => 'SAML 2.0 alkalmazásszolgáltató (helyi)',
+		'pt' => 'Fornecedor de serviço (SP) SAML 2.0 (Local)',
 		'pt-BR' => 'SAML 2.0 Service Provider (Local)',
 	),
 	'metaover_group_metadata.saml20-sp-remote' => array (
@@ -219,6 +235,7 @@ $lang = array(
 		'sl' => 'SAML 2.0 SP (Oddaljeni)',
 		'hr' => 'SAML 2.0 SP (udaljeni)',
 		'hu' => 'SAML 2.0 alkalmazásszolgáltató (távoli)',
+		'pt' => 'Fornecedor de serviço (SP) SAML 2.0 (Remoto)',
 		'pt-BR' => 'SAML 2.0 Service Provider (Remoto)',
 	),
 	'metaover_group_metadata.saml20-idp-hosted' => array (
@@ -232,6 +249,7 @@ $lang = array(
 		'sl' => 'SAML 2.0 IdP (Lokalni)',
 		'hr' => 'SAML 2.0 IdP (lokalni)',
 		'hu' => 'SAML 2.0 személyazonosság-szolgáltató (helyi)',
+		'pt' => 'Fornecedor de identidade (IdP) SAML 2.0 (Local)',
 		'pt-BR' => 'SAML 2.0 Identity Provider (Local)',
 	),
 	'metaover_group_metadata.saml20-idp-remote' => array (
@@ -245,6 +263,7 @@ $lang = array(
 		'sl' => 'SAML 2.0 IdP (Oddaljeni)',
 		'hr' => 'SAML 2.0 IdP (udaljeni)',
 		'hu' => 'SAML 2.0  személyazonosság-szolgáltató (távoli)',
+		'pt' => 'Fornecedor de identidade (IdP) SAML 2.0 (Remoto)',
 		'pt-BR' => 'SAML 2.0 Identity Provider (Remoto)',
 	),
 	'metaover_group_metadata.shib13-sp-hosted' => array (
@@ -258,6 +277,7 @@ $lang = array(
 		'sl' => 'Shib 1.3 SP (Lokalni)',
 		'hr' => 'Shib 1.3 SP (lokalni)',
 		'hu' => 'Shib 1.3 alkalmazásszolgálató (helyi)',
+		'pt' => 'Fornecedor de serviço (SP) Shib 1.3 (Local)',
 		'pt-BR' => 'Shib 1.3 Service Provider (Local)',
 	),
 	'metaover_group_metadata.shib13-sp-remote' => array (
@@ -271,6 +291,7 @@ $lang = array(
 		'sl' => 'Shib 1.3 SP (Oddaljeni)',
 		'hr' => 'Shib 1.3 SP (udaljeni)',
 		'hu' => 'Shib 1.3 alkalmazásszolgáltató (távoli)',
+		'pt' => 'Fornecedor de serviço (SP) SAML 2.0 (Remoto)',
 		'pt-BR' => 'Shib 1.3 Service Provider (Remoto)',
 	),
 	'metaover_group_metadata.shib13-idp-hosted' => array (
@@ -284,6 +305,7 @@ $lang = array(
 		'sl' => 'Shib 1.3 SP (Lokalni)',
 		'hr' => 'Shib 1.3 IdP (lokalni)',
 		'hu' => 'Shib 1.3 személyazonosság-szolgáltató (helyi)',
+		'pt' => 'Fornecedor de identidade (IdP) Shib 1.3 (Local)',
 		'pt-BR' => 'Shib 1.3 Identity Provider (Local)',
 	),
 	'metaover_group_metadata.shib13-idp-remote' => array (
@@ -297,6 +319,7 @@ $lang = array(
 		'sl' => 'Shib 1.3 SP (Oddaljeni)',
 		'hr' => 'Shib 1.3 IdP (udaljeni)',
 		'hu' => 'Shib 1.3 személyazonosság-szolgáltató (távoli)',
+		'pt' => 'Fornecedor de identidade (IdP) Shib 1.3 (Remoto)',
 		'pt-BR' => 'Shib 1.3 Identity Provider (Remoto)',
 	),
 	'metaover_group_metadata.wsfed-sp-hosted' => array (
@@ -310,6 +333,7 @@ $lang = array(
 		'sl' => 'WS-Fedration SP (Lokalni)',
 		'hr' => 'WS-Federation SP (lokalni)',
 		'hu' => 'WS-Federation alkalmazásszolgáltató (helyi)',
+		'pt' => 'Fornecedor de serviço (SP) WS-Federation (Local)',
 		'pt-BR' => 'WS-Federation Service Provider (Local)',
 	),
 	'metaover_group_metadata.wsfed-idp-remote' => array (
@@ -323,6 +347,7 @@ $lang = array(
 		'sl' => 'WS-Federation Idp (Oddaljen)',
 		'hr' => 'WS-Federation IdP (udaljeni)',
 		'hu' => 'WS-Federation alkalmazásszolgáltató (távoli)',
+		'pt' => 'Fornecedor de identidade (IdP) WS-Federation (Remoto)',
 		'pt-BR' => 'WS-Federation Identity Provider (Remoto)',
 	),
 	'metaconv_title' => array (
@@ -336,6 +361,7 @@ $lang = array(
 		'sl' => 'Metapodatkovna sintaktična analiza (parser)',
 		'hr' => 'Analizator metapodataka',
 		'hu' => 'Metaadat értelmező',
+		'pt' => 'Analisador gramatical de Metadados',
 		'pt-BR' => 'Parser Metadata',
 	),
 	'metaconv_xmlmetadata' => array (
@@ -349,6 +375,7 @@ $lang = array(
 		'sl' => 'XML metapodatki',
 		'hr' => 'XML metapodaci',
 		'hu' => 'XML metaadat',
+		'pt' => 'Metadados em XML',
 		'pt-BR' => 'Metadata XML',
 	),
 	'metaconv_parse' => array (
@@ -362,6 +389,7 @@ $lang = array(
 		'sl' => 'Sintaktična analiza (parse)',
 		'hr' => 'Analiziraj',
 		'hu' => 'Értelmez',
+		'pt' => 'Analisador gramatical',
 		'pt-BR' => 'Parse',
 	),
 	'metaconv_converted' => array (
@@ -375,6 +403,7 @@ $lang = array(
 		'sl' => 'Pretvorjeni metapodatki',
 		'hr' => 'Pretvoreni metapodaci',
 		'hu' => 'Konvertált metaadatok',
+		'pt' => 'Resultado da conversão de Metadados',
 		'pt-BR' => 'Metadata convetida',
 	),
 	'metadata_saml20-sp' => array (
@@ -388,6 +417,7 @@ $lang = array(
 		'sl' => 'SAML 2.0 SP Metapodatki',
 		'hr' => 'SAML 2.0 SP metapodaci',
 		'hu' => 'SAML 2.0 SP Metaadatok',
+		'pt' => 'Metadados SAML 2.0 SP',
 		'pt-BR' => 'SAML 2.0 SP Metadata',
 	),
 	'metadata_saml20-idp' => array (
@@ -401,6 +431,7 @@ $lang = array(
 		'sl' => 'SAML 2.0 IdP Metapodatki',
 		'hr' => 'SAML 2.0 IdP metapodaci',
 		'hu' => 'SAML 2.0 IdP Metaadatok',
+		'pt' => 'Metadados SAML 2.0 IdP',
 		'pt-BR' => 'SAML 2.0 IdP Metadata',
 	),
 	'metadata_shib13-sp' => array (
@@ -414,6 +445,7 @@ $lang = array(
 		'sl' => 'Shib 1.3 SP Metapodatki',
 		'hr' => 'Shib 1.3 SP metapodaci',
 		'hu' => 'Shib 1.3 SP Metaadatok',
+		'pt' => 'Metadados Shib 1.3 SP',
 		'pt-BR' => 'Shib 1.3 SP Metadata',
 	),
 	'metadata_shib13-idp' => array (
@@ -427,6 +459,7 @@ $lang = array(
 		'sl' => 'Shib 1.3 IdP Metapodatki',
 		'hr' => 'Shib 1.3 IdP metapodaci',
 		'hu' => 'Shib 1.3 IdP Metaadatok',
+		'pt' => 'Metadados Shib 1.3 IdP',
 		'pt-BR' => 'Shib 1.3 IdP Metadata',
 	),
 	'metadata_intro' => array (
@@ -439,6 +472,7 @@ $lang = array(
 		'sl' => 'Tu so metapodatki, ki jih je zgeneriral simpleSAMLphp. Dokument lahko pošljete zaupanja vrednim partnerjem, s katerimi boste ustvarili federacijo.',
 		'hr' => 'Ovo su metapodaci koje je simpleSAMLphp generirao za vas. Ove metapodatke možete poslati partnerima s kojima želite uspostaviti AAI federaciju.',
 		'hu' => 'Ezeket a metaadatokat a SimpleSAMLphp generálta. Ezt a dokumentumot küldheti el föderációs partnerei számára.',
+		'pt' => 'De seguida pode encontrar os metadados gerados pelo simpleSAMLphp. Pode enviar este documento de metadados aos seus parceiros para configurar uma federação.',
 		'pt-BR' => 'Aqui está a metadata que o simpleSAMLphp gerou para você. Você pode enviar este documento metadata para parceiros confiáveis para a configuração de uma federação confiável.',
 	),
 	'metadata_xmlurl' => array (
@@ -451,6 +485,7 @@ $lang = array(
 		'sl' => 'XML metapodatki se nahajajo na <a href="%METAURL%">tem naslovu</a>:',
 		'hr' => 'Metapodatke možete dohvatiti na <a href="%METAURL%">ovoj adresi</a>:',
 		'hu' => 'A következő címről <a href="%METAURL%">töltheti le a metaadatokat</a>:',
+		'pt' => 'Pode <a href="%METAURL%">obter os metadados em XML num URL dedicado</a>:',
 		'pt-BR' => 'Você pode obter as metadatas xml <a href="%METAURL%"> em uma URL dedicada</a>:',
 	),
 	'metadata_metadata' => array (
@@ -464,6 +499,7 @@ $lang = array(
 		'sl' => 'Metapodatki',
 		'hr' => 'Metapodaci',
 		'hu' => 'Metaadatok',
+		'pt' => 'Metadados',
 		'pt-BR' => 'Metadata',
 	),
 	'metadata_xmlformat' => array (
@@ -477,6 +513,7 @@ $lang = array(
 		'sl' => 'V SAML 2.0 Metapodatkovni XML format:',
 		'hr' => 'SAML 2.0 XML format metapodataka:',
 		'hu' => 'SAML 2.0 XML formátumban:',
+		'pt' => 'Metadados no formato XML SAML 2.0',
 		'pt-BR' => 'Em formato SAML 2.0 Metadata XML',
 	),
 	'metadata_simplesamlformat' => array (
@@ -489,6 +526,7 @@ $lang = array(
 		'sl' => 'V simpleSAMLphp "flat file" formatu - uporabite to, če uporabljate simpleSAMLphp entiteto na drugi strani:',
 		'hr' => 'U simpleSAMLphp formatu - koristite ovu opciju ako se na drugoj strani također nalazi simpleSAMLphp entitet.',
 		'hu' => 'SimpleSAMLphp fájl formátumban - akkor használható, ha a másik oldalon simpleSAMLphp van:',
+		'pt' => 'Metadados no formato ficheiro de configuração do simpleSAMLphp - use esta alternativa se usar uma entidade simpleSAMLphp no outro extremo:',
 		'pt-BR' => 'Em formato de arquivo plano simpleSAMLphp - use isso se você estiver usando uma entidade  simpleSAMLphp do outro lado:',
 	),
 	'metadata_send_success' => array (
@@ -498,6 +536,7 @@ $lang = array(
 		'es' => 'Los metadatos se han enviado correctamente al Proveedor de Identidad.',
 		'sl' => 'Metadata uspešno poslana IdPju.',
 		'hu' => 'Sikerült a metaadatok küldése az azonosító kiszolgálónak(IdP).',
+		'pt' => 'Metadados enviados com sucesso para o fornecedor de identidade.',
 	),
 	'metadata_send_title2' => array (
 		'no' => 'Send metadata til din identitetsleverandør',
@@ -506,6 +545,7 @@ $lang = array(
 		'es' => 'Enviar metadatos a su IdP',
 		'sl' => 'Pošlji metadato IdPju domače organizacije',
 		'hu' => 'Metaadat küldésa az IdP-nek',
+		'pt' => 'Enviar os metadados para o seu IdP',
 	),
 	'metadata_send_select' => array (
 		'no' => 'Velg en identitetsleverandør som metadata skal sendes til :',
@@ -514,6 +554,7 @@ $lang = array(
 		'es' => 'Indique el Proveedor de Identidad al que enviar los metadatos:',
 		'sl' => 'Izberite IdP, kateremu želite poslati metadato:',
 		'hu' => 'Címzett IdP kiválasztása:',
+		'pt' => 'Escolha um fornecedor de identidade (IdP) a quem enviar os metadados:',
 	),
 	'metadata_send_adminlogin' => array (
 		'no' => 'Logg inn som administrator for å få tilgang til å sende metadata til en identitetsleverandør',
@@ -522,6 +563,7 @@ $lang = array(
 		'es' => 'Identífiquese como administrador para enviar metadatos a un Proveedor de Identidad',
 		'sl' => 'Prijavite se kot administrator, da boste lahko poslali metadato IdPju.',
 		'hu' => 'Lépjen be adminisztrátorként, hogy elküldhesse a metaadatot az azonosító szolgáltatónak(IdP)',
+		'pt' => 'Entre como administrador para enviar os metadados a um fornecedor de identidade (IdP)',
 	),
 	'metadata_send_email2' => array (
 		'no' => 'Skriv inn din e-post adresse, slik at identitetsleverandøren kan komme i kontakt med deg:',
@@ -530,6 +572,7 @@ $lang = array(
 		'es' => 'Indique su dirección de correo electrónico, de modo que el administrador del Proveedor de Identidad pueda ponerse en contacto con usted:',
 		'sl' => 'Vpišite e-poštni naslov, preko katerega vas bo lahko kontaktiral administrator.',
 		'hu' => 'Adjon meg egy e-mail címet, amin az IdP adminisztrátora szükség eseten felveheti önnel a kapcsolatot:',
+		'pt' => 'Preencha o seu endereço de e-mail para que o administrador do fornecedor de identidade (IdP) possa entrar em contacto consigo:',
 	),
 	'metadata_send_sendbutton' => array (
 		'no' => 'Send metadata',
@@ -538,6 +581,7 @@ $lang = array(
 		'es' => 'Enviar metadatos',
 		'sl' => 'Pošlji metadato',
 		'hu' => 'Metaadat küldése',
+		'pt' => 'Enviar os metadados',
 	),
 	'debug_sending_message_title' => array (
 		'no' => 'Sender melding',
@@ -550,6 +594,7 @@ $lang = array(
 		'sl' => 'Pošiljanje sporočila',
 		'hr' => 'Šaljem poruku',
 		'hu' => 'Üzenet küldése',
+		'pt' => 'A enviar a mensagem',
 		'pt-BR' => 'Enviando a mensagem',
 	),
 	'debug_sending_message_text_button' => array (
@@ -562,6 +607,7 @@ $lang = array(
 		'sl' => 'Sporočilo boste poslali s klikom na gumb za pošiljanje.',
 		'hr' => 'Kliknite na gumb "Pošalji poruku" da biste poslali poruku.',
 		'hu' => 'Üzenetet küldhet. Kattintson az Üzenet küldése gombra a folytatáshoz.',
+		'pt' => 'Está prestes a enviar uma mensagem. Carregue no botão para continuar.',
 		'pt-BR' => 'Você está prestes a enviar uma mensagem. Aperte o botão enviar mensagem para continuar.',
 	),
 	'debug_sending_message_text_link' => array (
@@ -574,6 +620,7 @@ $lang = array(
 		'sl' => 'Sporočilo boste poslali s klikom na gumb za pošiljanje.',
 		'hr' => 'Kliknite na link "Pošalji poruku" da biste poslali poruku.',
 		'hu' => 'Üzenetet küldhet. Kattintson az Üzenet küldése linkre a folytatáshoz.',
+		'pt' => 'Está prestes a enviar uma mensagem. Carregue na ligação para continuar.',
 		'pt-BR' => 'Você está prestes a enviar uma mensagem. Clique no link enviar a mensagem para continuar.',
 	),
 	'debug_sending_message_send' => array (
@@ -587,6 +634,7 @@ $lang = array(
 		'sl' => 'Pošlji sporočilo',
 		'hr' => 'Pošalji poruku',
 		'hu' => 'Üzenet küldése',
+		'pt' => 'Enviar mensagem',
 		'pt-BR' => 'Enviar mensagem',
 	),
 	'debug_sending_message_msg_title' => array (
@@ -600,6 +648,7 @@ $lang = array(
 		'sl' => 'Sporočilo',
 		'hr' => 'Poruka',
 		'hu' => 'Üzenet',
+		'pt' => 'Mensagem',
 		'pt-BR' => 'Mensagem',
 	),
 	'debug_sending_message_msg_text' => array (
@@ -612,6 +661,7 @@ $lang = array(
 		'sl' => 'Ste v debug načinu, lahko si ogledate vsebino sporočila, ki ga pošiljate',
 		'hr' => 'Obzirom da ste u modu za otkrivanje grešaka, imate mogućnost vidjeti sadržaj poruke koju šaljete:',
 		'hu' => 'Mivel hibakereső módban van, láthatja az elküldendő üzenet tartalmát',
+		'pt' => 'Estando em modo debug, pode consultar o conteúdo da mensagem que está a enviar:',
 		'pt-BR' => 'Como você está no modo de debug, você pode ver o conteúdo da mensagem que você está enviando:',
 	),
 	'debug_disable_debug_mode' => array (
@@ -624,6 +674,7 @@ $lang = array(
 		'sl' => 'Debug način lahko izklopite v globalni simpleSAMLphp konfiguracijski datoteki <tt>config/config.php</tt>.',
 		'hr' => 'Možete isključiti mod za otkrivanje grešaka u glavnoj simpleSAMLphp konfiguracijskoj datoteci <tt>config/config.php</tt>. ',
 		'hu' => 'A simpleSAMLphp <tt>config/config.php</tt> fájljában kikapcsolhatja a hibakereső módot.',
+		'pt' => 'Pode desligar o modo debug no ficheiro global de configuração <tt>config/config.php</tt> do simpleSAMLphp.',
 		'pt-BR' => 'Você pode desligar o modo de debug no arquivo de configuração global do simpleSAMLphp <tt>config/config.php</tt>.',
 	),
 

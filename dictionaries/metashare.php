@@ -11,9 +11,11 @@ $lang = array(
 		'sl' => 'MetaShare',
 		'hr' => 'MetaShare',
 		'hu' => 'MetaShare',
+		'pt' => 'MetaShare',
 		'pt-BR' => 'MetaShare',
 	),
 	'front_desc' => array (
+		'no' => 'Dette er en metadata distribusjonstjeneste. Den tillater deg å legge til dyamisk generert metadata til et delt lager.',
 		'da' => 'Dette er en metadata-delingstjeneste, som gør det muligt at tilføje dynamisk genereret metadata til et fælles repository',
 		'en' => 'This is a metadata sharing service. It allows you to add dynamically generated metadata to a shared store.',
 		'sv' => 'Detta delningsjänsten för metadata. Den tillåter att du lägger till dynamiskt skapad metadata till ett delat datalager.',
@@ -22,6 +24,7 @@ $lang = array(
 		'sl' => 'MetaShare je storitev souporabe metapodatkov. Omogoča dodajanje dinamično generiranih metapodatkov v skladišče za skupno rabo.',
 		'hr' => 'Ovo je servis za razmjenu metapodataka. Omogućuje vam da dodate dinamički generirane metapodatke u zajednički repozitorij.',
 		'hu' => 'Ez egy metaadat megosztó szolgáltatás. Dinamikusan generált metaadatok megosztott tárolását teszi lehetővé.',
+		'pt' => 'Está na página do serviço de partilha de metadados. Esta página permite-lhe adicionar metadados gerados dinamicamente a um repositório comum de dados.',
 		'pt-BR' => 'Este é um serviço de compartilhamento de metadata. Ele permite que você adicione metadatas geradas dinamicamente, armazene-as e compartilhe-as.',
 	),
 	'add_title' => array (
@@ -34,6 +37,7 @@ $lang = array(
 		'sl' => 'Dodaj entiteto',
 		'hr' => 'Dodaj entitet',
 		'hu' => 'Bejegyzés hozzáadása',
+		'pt' => 'Adicionar entidade',
 		'pt-BR' => 'Adicionar entidade',
 	),
 	'add_desc' => array (
@@ -45,9 +49,11 @@ $lang = array(
 		'sl' => 'Dodajte nove ali popravljene metapodatke tako, da podate njen URL. URL se mora ujemati z identifikatorjem entitete.',
 		'hr' => 'Dodaj nove ili ažurne metapodatke specificirajući URL metapotataka. URL se mora podudarati s identifikatorom entiteta opisanog u metapodacima. ',
 		'hu' => 'Adja meg az új vagy frissített metaadatok URL-jét! Ennek az URL-nek meg kell egyeznie a metaadatokban leírt entitás azonosítójával.',
+		'pt' => 'Adicionar metadados novos ou actualizados especificando o URL dos metadados. Este URL tem de coincidir com o identificador de entidade (entityID) descrito nos metadados',
 		'pt-BR' => 'Adicionar novo ou atualizar metadata, especificando a URL da metadata. Essa URL deve corresponder a entidade identificadora da entidade descrita na metadata.',
 	),
 	'add_entityid' => array (
+		'no' => 'EntityID for tjenesten:',
 		'da' => 'Entitets idetifikatoren for entiteten',
 		'en' => 'Entity identifier of the entity:',
 		'sv' => 'Entitetsidentifierare för entiteten:',
@@ -56,6 +62,7 @@ $lang = array(
 		'sl' => 'Identifikator entete:',
 		'hr' => 'Identifikator entiteta:',
 		'hu' => 'Bejegyzés azonosítója:',
+		'pt' => 'Identificador de entidade',
 		'pt-BR' => 'Entidade identificador da entidade:',
 	),
 	'add_do' => array (
@@ -68,6 +75,7 @@ $lang = array(
 		'sl' => 'Dodaj',
 		'hr' => 'Dodaj',
 		'hu' => 'Hozzáadás',
+		'pt' => 'Adicionar',
 		'pt-BR' => 'Adicionar',
 	),
 	'downloadall_desc' => array (
@@ -79,9 +87,11 @@ $lang = array(
 		'sl' => 'Celotne metapodatke si lahko prenesete kot eno XML datoteko. Ta bo vsebovala deskriptor entitet in vse entitete, ki so shranjene v MetaShareu. Deskriptor entitet je lahko digitalno podpisan, če je ta možnost v nastavitvah omogočena.',
 		'hr' => 'Moguće je dohvatiti sve metapodatke u obliku jedne XML datoteke. Ta datoteka sadržavat će jedinstveni EntitiesDescriptor koji sadržava sve entitete dodane u MetaShare repozitorij. EntitiesDescriptor može biti digitalno potpisan ako je ta opcija uključena u konfiguraciji.',
 		'hu' => 'Lehetőség van az összes metaadat letöltésére egyetlen XML fájlként. A file egyetlen EntitiesDescriptor elmet fog tartalmazni, amely magába foglalja az összes MetaShare-ben tárolt elemet. Az EntitiesDescriptor-t a MetaShare is aláírhatja, ha ez engedélyezve van a beállításoknál.',
+		'pt' => 'É possível efectuar o dowload de todos os metadados num único ficheiro XML. Este ficheiro irá conter um único elemento EntitiesDescriptor com todas as entidades presentes neste MetaShare. O elemento EntitiesDescriptor pode ser assinado por este serviço de MetaShare se esta opção estiver activa na configuração.',
 		'pt-BR' => 'É possível fazer download de todas as metadatas como um único arquivo XML. Esse arquivo irá conter um único EntitiesDescriptor que contém todas as entidades que estão vinculadas para este MetaShare. O EntitiesDescriptor pode ser assinado por este MetaShare se isto está ativado na configuração.',
 	),
 	'downloadall_link' => array (
+		'no' => 'Last ned all metadata ',
 		'da' => 'Download alt metadata',
 		'en' => 'Download all metadata',
 		'sv' => 'Hämta alla metadata',
@@ -90,6 +100,7 @@ $lang = array(
 		'sl' => 'Prenesi vse metapodatke k sebi.',
 		'hr' => 'Dohvati sve metapodatke',
 		'hu' => 'Összes metaadat letöltése',
+		'pt' => 'Efectuar o download de todos os metadados',
 		'pt-BR' => 'Baixar toda metadata',
 	),
 	'entities_title' => array (
@@ -102,6 +113,7 @@ $lang = array(
 		'sl' => 'Entitete',
 		'hr' => 'Entiteti',
 		'hu' => 'Bejegyzések',
+		'pt' => 'Entidades',
 		'pt-BR' => 'Entidades',
 	),
 	'entities_desc' => array (
@@ -113,9 +125,11 @@ $lang = array(
 		'sl' => 'To je seznam vseh entitet, ki so trenutnotno shranjene v tem MetaShareu. S klikom na povezavo (entiteto), lahko prenesete njeno metadato.',
 		'hr' => 'Ovo je popis svih entiteta koji su trenutno pohranjeni u MetaShare repozitoriju. Kliknite na odgovarajući link da biste dohvatili metapodatke za određeni entitet.',
 		'hu' => 'Ez a lista a jelenleg a MetaShare-ben tárolt összes elemet mutatja. Kattintson a linkre, hogy letölthesse a az entitáshoz tartozó metaadatokat.',
+		'pt' => 'Apresenta-se de seguida uma lista de todas as entidades presentes neste serviço de MetaShare. Siga uma das ligações para efectuar o download dos metadados da entidade correspondente.',
 		'pt-BR' => 'Esta é uma lista de todas as entidades que estão atualmente guardadas nesta MetaShare. Clique em um link para baixar as metadata das determinadas entidades.',
 	),
 	'entities_empty' => array (
+		'no' => 'Ingen tjenester er for øyeblikket lagret i denne MetaShare installasjonen.',
 		'da' => 'Ingen entieties ',
 		'en' => 'No entities are currently stored in this MetaShare.',
 		'sv' => 'Det finns förnärvarande inga eniteter lagrade i denna MetaShare.',
@@ -124,6 +138,7 @@ $lang = array(
 		'sl' => 'V MetaShare trenutno ni shranjene nobene entitete.',
 		'hr' => 'U MetaShare repozitoriju trenutno nije pohranjen niti jedan entitet.',
 		'hu' => 'Egyetlen bejegyzés sincs a MetaShare-ben.',
+		'pt' => 'Não existem entidades presentes neste serviço de MetaShare.',
 		'pt-BR' => 'Não há entidades atualmente guardadas nesta MetaShare.',
 	),
 	'text' => array (
@@ -136,6 +151,7 @@ $lang = array(
 		'sl' => 'Besedilo',
 		'hr' => 'tekst',
 		'hu' => 'szöveg',
+		'pt' => 'Texto',
 		'pt-BR' => 'texto',
 	),
 	'addpage_header' => array (
@@ -148,9 +164,11 @@ $lang = array(
 		'sl' => 'Dodaj metapodatke',
 		'hr' => 'Dodaj metapodatke',
 		'hu' => 'Metaadatok hozzáadása',
+		'pt' => 'Adicionar metadados',
 		'pt-BR' => 'Adicionar metadata',
 	),
 	'addpage_ok' => array (
+		'no' => 'Metadata fra "%URL" ble lagt til vellykket.',
 		'da' => 'Metadata fra "%URL%" blev tilføjet',
 		'en' => 'The metadata from "%URL%" was successfylly added.',
 		'sv' => 'Metadata från "%URL%" har lagts till.',
@@ -159,6 +177,7 @@ $lang = array(
 		'sl' => 'Metapodatki z naslova "%URL%" so bili uspešno dodani.',
 		'hr' => 'Metapodaci s adrese "%URL%" su uspješno dodani.',
 		'hu' => 'A(z) "%URL%" URL-ről származó metaadatok hozzáadása sikerült.',
+		'pt' => 'Foram adicionados com sucesso os metadados disponíveis em "%URL%" ',
 		'pt-BR' => 'A metadata de "%URL%" foi adicionada com sucesso.',
 	),
 	'addpage_nourl' => array (
@@ -171,6 +190,7 @@ $lang = array(
 		'sl' => 'Noben URL parameter ni bil podan.',
 		'hr' => 'Nije zadan URL parametar.',
 		'hu' => 'Hiányzó URL paraméter.',
+		'pt' => 'Não foi fornecido nenhum URL',
 		'pt-BR' => 'Não foi passado o parâmetro URL.',
 	),
 	'addpage_invalidurl' => array (
@@ -182,6 +202,7 @@ $lang = array(
 		'sl' => 'Napačen URL ali ID entitete, le-ta mora biti veljaven http ali https naslov. Posredovali ste naslednji URL: "%URL%".',
 		'hr' => 'Neispravan URL / identifikator entiteta za metapodatke. Identifikator entiteta treba biti valjani http: ili https: URL. URL koji ste zadali je "%URL%".',
 		'hu' => 'Érvénytelen URL/entitás azonosító. Az entitás azonosítójának érvényes http: vagy https: protokollt használó URL-nek kell lennie. A megadott URL ez volt: "%URL%".',
+		'pt' => 'URL inválido. O identificador de entidade (entityID) deve ser um URL válido do tipo http: ou https:. O URL fornecido foi "%URL%".',
 		'pt-BR' => 'URL/Identificação da Entidade inválida para a metadata. A identificação da entidade deve ser um endereço http: ou https: válido. A URL passada foi "%URL%".',
 	),
 	'addpage_nodownload' => array (
@@ -193,6 +214,7 @@ $lang = array(
 		'sl' => 'Prenos metapodatkov z naslova "%URL%" ni mogoč.',
 		'hr' => 'Ne mogu dohvatiti metapodatke s adrese "%URL%".',
 		'hu' => 'Nem lehet a metaadatokat letölteni a(z) "%URL%" helyről.',
+		'pt' => 'Não foi possível efectuar o download dos metadados a partir de "%URL%".',
 		'pt-BR' => 'Não foi possível baixar a metadata de "%URL%".',
 	),
 	'addpage_invalidxml' => array (
@@ -204,6 +226,7 @@ $lang = array(
 		'sl' => 'Napaka v strukturi XML metapodatkov. URL, ki ste ga posredovali "%URL%".',
 		'hr' => 'XML sadržaj u metapodacima je izobličen. Zadani URL je "%URL%".',
 		'hu' => 'Hibás XML a metaadat-állományban. Az URL az alábbi volt: "%URL%"',
+		'pt' => 'Metadados com XML mal formatado. O URL fornecido foi "%URL%".',
 		'pt-BR' => 'XML incorreto na metadata. A URL passada foi "%URL%".',
 	),
 	'addpage_notentitydescriptor' => array (
@@ -215,9 +238,11 @@ $lang = array(
 		'sl' => 'Korensko vozlišče (root node) metapodakov ni element tipa entitetni deskriptor. URL, ki ste ga posredovali "%URL%".',
 		'hr' => 'Korijenski čvor u metapodacima nije EntityDescriptor element. Zadani URL je "%URL%".',
 		'hu' => 'A metaadatok gyökéreleme nem EntityDescriptor volt. Az URL az alábbi volt: "%URL%".',
+		'pt' => 'O elemento raiz dos metadados não é um elemento do tipo EntityDescriptor. O URL fornecido foi "%URL%".',
 		'pt-BR' => 'O nó raiz da metadata não era um elemento EntityDescriptor. A URL passada foi "%URL%".',
 	),
 	'addpage_entityid' => array (
+		'no' => 'EntityID i metadataene stemmer ikke overens med URL-en til metadata dokumentet ("%URL%").',
 		'da' => '\'EntityIdentifyer\' i metadata matchede i metadatas %URL%',
 		'en' => 'The entity identifier in the metadata did not match the URL of the metadata ("%URL%").',
 		'sv' => 'Entitetsidentifieraren i metadatat stämmer inte överens med adressen för metadatat ("%URL%").',
@@ -226,9 +251,11 @@ $lang = array(
 		'sl' => 'Identifikator entitene se ne ujema z URLjem metapodatkov ("%URL%").',
 		'hr' => 'Identifikator entiteta u metapodacima ne podudara se s URL-om metapodataka ("%URL%").',
 		'hu' => 'A entitás azonosító nem egyezik a metaadatok elérhetőségének URL-jével ("%URL%").',
+		'pt' => 'O identificador de entidade (entityID) nos metadados não corresponde ao URL dos metadados ("%URL%").',
 		'pt-BR' => 'A entidade identificadora na metadata não corresponde a url da metadata ("%URL%").',
 	),
 	'addpage_validation' => array (
+		'no' => 'XML validering av metadata from "%URL%" feilet:',
 		'da' => 'Fejl i XML-validering af metadata fra %URL%',
 		'en' => 'XML validation of the metadata from "%URL%" failed:',
 		'sv' => 'XML-valideringen av metatdatat från "%URL%" misslyckades:',
@@ -237,6 +264,7 @@ $lang = array(
 		'sl' => 'XML validacija metapodatkov z naslova "%URL%" je spodletela:',
 		'hr' => 'XML validacija metapodataka na adresi "%URL%" nije uspješno izvršena:',
 		'hu' => 'A "%URL%" metaadatok XML ellenőrzése sikeretelen volt:',
+		'pt' => 'Falhou a validação XML dos metadados do URL "%URL%".',
 		'pt-BR' => 'A validação do XML para a metadata da URL "%URL%" falhou.',
 	),
 	'addpage_gofront' => array (
@@ -249,6 +277,7 @@ $lang = array(
 		'sl' => 'Pojdi na seznam metapodatkov',
 		'hr' => 'Idi na popis metapodataka',
 		'hu' => 'Metaadatok listája',
+		'pt' => 'Voltar à lista de metadados',
 		'pt-BR' => 'Ir para a lista de metadata',
 	),
 

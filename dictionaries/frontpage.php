@@ -16,6 +16,7 @@ $lang = array(
 		'sl' => '<strong>Čestitamo!</strong> Uspešno ste namestili simpleSAMLphp. Na tej strani se nahajajo povezave do vzorčnih nastavitev, diagnostike, metapodatkov in s tem povezane dokumentacije.',
 		'hr' => '<strong>Čestitamo</strong>, uspješno ste instalirali simpleSAMLphp. Ovo je početna stranica na kojoj možete pronaći primjere, dijagnostiku i metapodatke, kao i linkove na relevantnu dokumentaciju.',
 		'hu' => '<strong>Gratulálunk</strong>, a simpleSAMLphp sikeresen települt. Ez a működő rendszer nyitóoldala, ahol teszt példák, diagnosztikai eszközök, metaadatok és dokumentációk találhatók',
+		'pt' => '<strong>Parabéns</strong>, o software simpleSAMLphp foi instalado com sucesso. Esta é a página inicial da sua instalação, onde encontrará ligações para páginas de teste, de diagnóstico, de metadata e de documentação relevante.    ',
 		'pt-BR' => '<strong>Parabéns</strong>, você instalou com sucesso o simpleSAMLphp. Esta é a página de introdução de sua instalação, onde você encontrará links para as páginas de teste, diagnóstico, metadata e para a documentação.',
 	),
 	'useful_links_header' => array (
@@ -33,6 +34,7 @@ $lang = array(
 		'sl' => 'Uporabne povezave',
 		'hr' => 'Korisni linkovi',
 		'hu' => 'Hasznos linkek',
+		'pt' => 'Ligações úteis da sua instalação',
 		'pt-BR' => 'Endereços úteis para sua instalação.',
 	),
 	'metadata_header' => array (
@@ -50,6 +52,7 @@ $lang = array(
 		'sl' => 'Metapodatki',
 		'hr' => 'Metapodaci',
 		'hu' => 'Metaadat',
+		'pt' => 'Metadata  ',
 		'pt-BR' => 'Metadata',
 	),
 	'doc_header' => array (
@@ -67,6 +70,7 @@ $lang = array(
 		'sl' => 'Dokumentacija',
 		'hr' => 'Dokumentacija',
 		'hu' => 'Dokumentáció',
+		'pt' => 'Documentação',
 		'pt-BR' => 'Documentação',
 	),
 	'checkphp' => array (
@@ -84,6 +88,7 @@ $lang = array(
 		'sl' => 'Preverjanje namestitve PHP',
 		'hr' => 'Provjera vaše PHP instalacije',
 		'hu' => 'PHP beállítások ellenőrzése',
+		'pt' => 'Verificação do seu ambiente PHP',
 		'pt-BR' => 'Checando sua instalação do PHP',
 	),
 	'about_header' => array (
@@ -101,6 +106,7 @@ $lang = array(
 		'sl' => 'O simpleSAMLphp',
 		'hr' => 'O simpleSAMLphp-u',
 		'hu' => 'A simpleSAMLphp-ról bővebben',
+		'pt' => 'Sobre o simpleSAMLphp',
 		'pt-BR' => 'Sobre o simpleSAMLphp',
 	),
 	'about_text' => array (
@@ -118,6 +124,7 @@ $lang = array(
 		'sl' => 'Da! simpleSAMLphp je zares kul! Kje si lahko preberem kaj več o tem? Dodatne informacije se nahajajo na <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp Feide RnD blogu</a>.',
 		'hr' => 'Ovaj simpleSAMLphp je prilično cool, gdje mogu pronaći više informacija o njemu? Više informacija možete pronaći na <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp stranici Feide RnD bloga</a>.',
 		'hu' => 'Ez a simpleSAMLphp-dolog nagyon hasznos, hol olvashatnék többet róla? További információkat a <a href="http://rnd.feide.no/simplesamlphp"> Feide RnD simpleSAMLphp-ról szóló blogjában </a> találhat a <a href="http://uninett.no">UNINETT-en</a>.',
+		'pt' => 'Pode encontrar mais informação sobre o <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp no blog da Feide RnD</a> em <a href="http://uninett.no">UNINETT</a>.',
 		'pt-BR' => 'Este simpleSAMLphp é uma coisa muito legal, onde posso ler mais sobre isso? Você pode encontrar mais informações sobre o <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp no blog de Feide RnD</a> durante a <a href="http://uninett.no">UNINETT</a>.',
 	),
 	'required' => array (
@@ -135,6 +142,7 @@ $lang = array(
 		'sl' => 'Zahtevano',
 		'hr' => 'Obavezno',
 		'hu' => 'Szükséges',
+		'pt' => 'Necessário',
 		'pt-BR' => 'Requerido',
 	),
 	'required_ldap' => array (
@@ -152,6 +160,7 @@ $lang = array(
 		'sl' => 'Zahtevano za LDAP',
 		'hr' => 'Obavezno za LDAP',
 		'hu' => 'Szükséges az LDAP támogatáshoz',
+		'pt' => 'Necessário para LDAP',
 		'pt-BR' => 'Requerido para o LDAP',
 	),
 	'required_radius' => array (
@@ -169,6 +178,7 @@ $lang = array(
 		'sl' => 'Zahtevano za RADIUS',
 		'hr' => 'Obavezno za RADIUS',
 		'hu' => 'Szükséges a Radius támogatáshoz',
+		'pt' => 'Necessário para Radius',
 		'pt-BR' => 'Requerido para o Radius',
 	),
 	'optional' => array (
@@ -186,6 +196,7 @@ $lang = array(
 		'sl' => 'Dodatno',
 		'hr' => 'Opcionalno',
 		'hu' => 'Opcionális',
+		'pt' => 'Opcional',
 		'pt-BR' => 'Opcional',
 	),
 	'reccomended' => array (
@@ -203,6 +214,7 @@ $lang = array(
 		'sl' => 'Priporočljivo',
 		'hr' => 'Preporučeno',
 		'hu' => 'Ajánlott',
+		'pt' => 'Recomendado',
 		'pt-BR' => 'Recomendado',
 	),
 	'warnings' => array (
@@ -220,6 +232,7 @@ $lang = array(
 		'sl' => 'Opozorila',
 		'hr' => 'Upozorenja',
 		'hu' => 'Figyelmeztetések',
+		'pt' => 'Avisos',
 		'pt-BR' => 'Avisos',
 	),
 	'warnings_https' => array (
@@ -237,6 +250,7 @@ $lang = array(
 		'sl' => '<strong>Ne uporabljate HTTPS</strong>-šifrirano komunikacijo. SimpleSAMLphp deluje brez težav na HTTP za testne namene, vendar je potrebno za uporabo simpleSAMLphp v produkcijskem okolju uporabiti HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">preberite več o simpleSAMLphp vzdrževanju</a> ]',
 		'hr' => '<strong>Ne koristite HTTPS</strong> - kriptiranu komunikaciju s korisnikom. HTTP se može koristiti za potrebe testiranja, ali u produkcijskom okruženju trebali biste koristiti HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Pročitajte više o simpleSAMLphp postavkama</a> ]',
 		'hu' => '<strong>Nem HTTPS protokollt használ</strong> - nem titkosított a kommunikáció! HTTP jó megoldás lehet teszt rendszerek esetében, de az éles rendszerben lehetőség szerint használjon HTTPS-t! [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Többet olvashat a simpleSAMLphp beállításáról</a> ]',
+		'pt' => '<strong>Não está a ser usado HTTPS</strong> - comunicação cifrada com o utilizador. Para ambientes de teste, ligações HTTP são suficientes, mas num ambiente de produção deve ser usado HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Ler mais sobre manutenção do simpleSAMLphp</a> ]',
 		'pt-BR' => '<strong>Você não está utilizando HTTPS</strong> - comunicação encriptada com o usuário. HTTP funciona bem para testes, mas você deve utilizar HTTPS para produção. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Leia mais sobre manutenção do simpleSAMLphp</a> ]',
 	),
 	'link_saml2example' => array (
@@ -254,6 +268,7 @@ $lang = array(
 		'sl' => 'SAML 2.0 SP primer - preveri prijavo preko svojega IdP',
 		'hr' => 'SAML 2.0 SP primjer - test autentikacija kroz vaš IdP',
 		'hu' => 'SAML 2.0 SP példa - teszt bejelentkezés saját IdP keresztül',
+		'pt' => 'Exemplo de um SP SAML 2.0 - Para testes de login pelo seu IdP',
 		'pt-BR' => 'SAML 2.0 SP exemplo - efetuar login na sua IDP',
 	),
 	'link_shib13example' => array (
@@ -271,6 +286,7 @@ $lang = array(
 		'sl' => 'Shibboleth 1.3 SP primer - preveri prijavo preko svojega Shib IdP',
 		'hr' => 'Shibboleth 1.3 SP primjer - test autentikacija kroz vaš Shib IdP',
 		'hu' => 'Shibboleth 1.3 SP példa - teszt bejelentkezés saját Shibboleth 1.3 IdP keresztül',
+		'pt' => 'Exemplo de um SP Shibboleth 1.3 - Para testes de login pelo seu IdP Shib',
 		'pt-BR' => 'Shibboleth 1.3 SP exemplo - efetuar login na sua Shib IDP',
 	),
 	'link_openidprovider' => array (
@@ -288,6 +304,7 @@ $lang = array(
 		'sl' => 'OpenID Provider lokacija - Alpha različica (v razvoju)',
 		'hr' => 'OpenID Provider lokacija - razvojna verzija (test)',
 		'hu' => 'OpenID kiszolgáló oldal - Alpha verzió (teszt kód)',
+		'pt' => 'Site do provider OpenID - versão Alpha (código de teste)',
 		'pt-BR' => 'OpenID Provider site - Versão Alpha (Código de Teste)',
 	),
 	'link_diagnostics' => array (
@@ -305,6 +322,7 @@ $lang = array(
 		'sl' => 'Diagnostika strežnika, vrata in protokol',
 		'hr' => 'Dijagnostika vezana uz naziv poslužitelja, port i protokol',
 		'hu' => 'Port és protokoll diagnosztika',
+		'pt' => 'Diagnósticos: hostname, porto e protocolo',
 		'pt-BR' => 'Diagnósticos do host, porta e protocolo',
 	),
 	'link_phpinfo' => array (
@@ -322,6 +340,7 @@ $lang = array(
 		'sl' => 'PHPinfo',
 		'hr' => 'Informacije o PHP instalaciji',
 		'hu' => 'PHP futási információk',
+		'pt' => 'PHP info',
 		'pt-BR' => 'Informações do PHP',
 	),
 	'link_configcheck' => array (
@@ -337,6 +356,7 @@ $lang = array(
 		'sl' => 'Preveri simpleSAMLphp nastavitve',
 		'hr' => 'Provjera simpleSAMLphp konfiguracije',
 		'hu' => 'simpleSAMLphp konfigurációjának ellenőrzése',
+		'pt' => 'Teste da configuração do simpleSAMLphp',
 		'pt-BR' => 'Checar a configuração do simpleSAMLphp',
 	),
 	'link_meta_overview' => array (
@@ -354,6 +374,7 @@ $lang = array(
 		'sl' => 'Pregled metapodatkov in njihova diagnostika.',
 		'hr' => 'Pregled metapodataka o vašoj instalaciji. Dijagnostika datoteka s metapodacima.',
 		'hu' => 'Metaadat áttekintés. Vizsgálja át metaadat állományait',
+		'pt' => 'Diagnósticos: ficheiros de metadata, vista geral da metadata da sua instalação',
 		'pt-BR' => 'Metadados para sua instalação. Diagnosticar seus arquivos metadados',
 	),
 	'link_meta_saml2sphosted' => array (
@@ -371,6 +392,7 @@ $lang = array(
 		'sl' => 'Metapodatki za SAML 2.0 SP (samodejno zgenerirani)',
 		'hr' => 'Metapodaci za lokalni SAML 2.0 SP (automatski generirani)',
 		'hu' => 'Ezen a gépen futó (hosted) SAML 2.0 alkalmazásszolgáltató (SP) metaadat (automatikusan generált)',
+		'pt' => 'Metadata do fornecedor de serviço (SP) SAML 2.0 local (gerado automaticamente)',
 		'pt-BR' => 'Hospedado SAML 2.0 Service Provider Metadata (gerado automaticamente)',
 	),
 	'link_meta_saml2idphosted' => array (
@@ -388,6 +410,7 @@ $lang = array(
 		'sl' => 'Metapodatki za SAML 2.0 IdP (samodejno zgenerirani)',
 		'hr' => 'Metapodaci za lokalni SAML 2.0 IdP (automatski generirani) ',
 		'hu' => 'Ezen a gépen futó (hosted) SAML 2.0 személyazonosság-szolgáltató (IdP) metaadat (automatikusan generált)',
+		'pt' => 'Metadata do fornecedor de identidade (IdP) SAML 2.0 local (gerado automaticamente)',
 		'pt-BR' => 'Hospedado SAML 2.0 Identity Provider Metadata (gerado automaticamente)',
 	),
 	'link_meta_shib13sphosted' => array (
@@ -405,6 +428,7 @@ $lang = array(
 		'sl' => 'Metapodatki za Shibboleth 1.3 SP (samodejno zgenerirani)',
 		'hr' => 'Metapodaci za lokalni Shibboleth 1.3 SP (automatski generirani)',
 		'hu' => 'Ezen a gépen futó (hosted) Shibboleth 1.3 alkalmazásszolgáltató (SP) metaadat (automatikusan generált)',
+		'pt' => 'Metadata do fornecedor de serviço (SP) Shibboleth 1.3 local (gerado automaticamente)',
 		'pt-BR' => 'Hospedado Shibboleth 1.3 Service Provider Metadata (gerado automaticamente)',
 	),
 	'link_meta_shib13idphosted' => array (
@@ -422,6 +446,7 @@ $lang = array(
 		'sl' => 'Metapodatki za Shibboleth 1.3 IdP (samodejno zgenerirani)',
 		'hr' => 'Metapodaci za lokalni Shibboleth 1.3 IdP (automatski generirani)',
 		'hu' => 'Ezen a gépen futó (hosted) Shibboleth 1.3 személyazonosság-szolgáltató (IdP) metaadat (automatikusan generált)',
+		'pt' => 'Metadata do fornecedor de identidade (IdP) Shibboleth 1.3 local (gerado automaticamente)',
 		'pt-BR' => 'Hospedado Shibboleth 1.3 Identity Provider Metadata (gerado automaticamente)',
 	),
 	'link_cleardiscochoices' => array (
@@ -437,6 +462,7 @@ $lang = array(
 		'sl' => 'Razveljavi privzeti IdP',
 		'hr' => 'Poništi moje odabire IdP-a u servisu za pronalaženje IdP-a ',
 		'hu' => 'Felejtse el a kiválasztott IdP-ket',
+		'pt' => 'Remover as minhas escolhas de IdP nos serviços de descoberta de IdP',
 		'pt-BR' => 'Excluir minhas escolhas de IdP no serviço de descoberta de IdP',
 	),
 	'link_xmlconvert' => array (
@@ -454,6 +480,7 @@ $lang = array(
 		'sl' => 'XML v simpleSAMLphp pretvornik metapodatkov',
 		'hr' => 'XML u simpleSAMLphp pretvorba metapodataka.',
 		'hu' => 'Metaadatok konvertálása SAML2 XML-ből simpleSAMLphp-ba ',
+		'pt' => 'Conversor de metadata de XML para simpleSAMLphp',
 		'pt-BR' => 'Conversor de XML para metadata do simpleSAMLphp',
 	),
 	'link_doc_install' => array (
@@ -471,6 +498,7 @@ $lang = array(
 		'sl' => 'Namestitev simpleSAMLphp',
 		'hr' => 'Instalacija simpleSAMLphp-a',
 		'hu' => 'SimpleSAMLphp telepítése',
+		'pt' => 'Instalar o simpleSAMLphp',
 		'pt-BR' => 'Instalando o simpleSAMLphp',
 	),
 	'link_doc_sp' => array (
@@ -488,6 +516,7 @@ $lang = array(
 		'sl' => 'Uporabi simpleSAMLphp za SP',
 		'hr' => 'Kako koristiti simpleSAMLphp kao Service Provider',
 		'hu' => 'SimpleSAMLphp használata mint alkalmazásszolgáltató(SP)',
+		'pt' => 'Usar o simpleSAMLphp como um fornecedor de serviço (SP)',
 		'pt-BR' => 'Usando o simpleSAMLphp como Provedor de Serviços',
 	),
 	'link_doc_idp' => array (
@@ -505,6 +534,7 @@ $lang = array(
 		'sl' => 'Uporabi simpleSAMLphp za IdP',
 		'hr' => 'Kako koristiti simpleSAMLphp kao Identity Provider',
 		'hu' => 'SimpleSAMLphp használata mint személyazonosság-szolgáltató (IdP)',
+		'pt' => 'Usar o simpleSAMLphp como um fornecedor de identidade (IdP)',
 		'pt-BR' => 'Usando o simpleSAMLphp como Provedor de Identidade',
 	),
 	'link_doc_shibsp' => array (
@@ -522,6 +552,7 @@ $lang = array(
 		'sl' => 'Nastavi Shibboleth 1.3 SP za delo s simpleSAMLphp IdP',
 		'hr' => 'Konfigurirajte Shibboleth 1.3 SP za rad sa simpleSAMLphp IdP',
 		'hu' => 'Shibboleth 1.3 SP beállítása, hogy együtt működjön a simpleSAMLphp IdP-vel',
+		'pt' => 'Configurar um SP Shibboleth 1.3 para funcionar com um IdP simpleSAMLphp',
 		'pt-BR' => 'Configurando o Shibboleth 1.3 SP para trabalhar com o simpleSAMLphp Idp',
 	),
 	'link_doc_googleapps' => array (
@@ -539,6 +570,7 @@ $lang = array(
 		'sl' => 'simpleSAMLphp IdP za Google Apps for Education',
 		'hr' => 'simpleSAMLphp kao IdP za <i>Googgle Apps for Education</i>',
 		'hu' => 'SimpleSAMLphp mint IdP a Google Apps for Education programok számára',
+		'pt' => 'Configurar o simpleSAMLphp  para funcionar como um IdP para o Google Apps for Education',
 		'pt-BR' => 'simpleSAMLphp como um IdP para o Google Apps Educacional',
 	),
 	'link_doc_advanced' => array (
@@ -556,6 +588,7 @@ $lang = array(
 		'sl' => 'simpleSAMLphp napredna funkcionalnost',
 		'hr' => 'Napredne mogućnosti simpleSAMLphp-a',
 		'hu' => 'SimpleSAMLphp további tulajdonságai',
+		'pt' => 'Funcionalidades avançadas do simpleSAMLphp',
 		'pt-BR' => 'Recursos avançados do simpleSAMLphp',
 	),
 	'link_doc_maintenance' => array (
@@ -573,6 +606,7 @@ $lang = array(
 		'sl' => 'simpleSAMLphp vzdrževanje in nastavitve',
 		'hr' => 'Održavanje i konfiguriranje simpleSAMLphp-a',
 		'hu' => 'SimpleSAMLphp karbantartása és beállítása',
+		'pt' => 'Configuração e manutenção do simpleSAMLphp',
 		'pt-BR' => 'Manutenção e Configuração do simpleSAMLphp',
 	),
 	'link_publish_saml20-idp' => array (
@@ -587,6 +621,7 @@ $lang = array(
 		'sl' => 'Objavi moj SAML 2.0 IdP metadata v prednastavljen MetaShare.',
 		'hr' => 'Objavi moje SAML 2.0 IdP metapodatke na MetaShare servisu',
 		'hu' => 'Publikálja a SAML 2.0 IdP metadatokat a MetaShare-be',
+		'pt' => 'Publicar metadata do IdP SAML 2.0 no MetaShare configurado',
 		'pt-BR' => 'Publicar meu SAML 2.0 IdP metadata para o MetaShare configurado',
 	),
 	'link_publish_saml20-sp' => array (
@@ -601,6 +636,7 @@ $lang = array(
 		'sl' => 'Objavi moj SAML 2.0 SP metadata v prednastavljen MetaShare.',
 		'hr' => 'Objavi moje SAML 2.0 SP metapodatke na MetaShare servisu',
 		'hu' => 'Publikálja a SAML 2.0 SP metadatokat a MetaShare-be',
+		'pt' => 'Publicar metadata do SP SAML 2.0 no MetaShare configurado',
 		'pt-BR' => 'Publicar meu SAML 2.0 SP metadata para o MetaShare configurado',
 	),
 	'link_publish_shib13-idp' => array (
@@ -615,6 +651,7 @@ $lang = array(
 		'sl' => 'Objavi moj Shib 1.3 IdP metadata v prednastavljen MetaShare.',
 		'hr' => 'Objavi moje Shib 1.3 IdP metapodatke na MetaShare servisu',
 		'hu' => 'Publikálja a Shibboleth 1.3 IdP metadatokat a MetaShare-be',
+		'pt' => 'Publicar metadata de IdP Shib 1.3 no MetaShare configurado',
 		'pt-BR' => 'Publicar meu Shib 1.3 IdP metadata para o MetaShare configurado',
 	),
 	'link_publish_shib13-sp' => array (
@@ -629,6 +666,7 @@ $lang = array(
 		'sl' => 'Objavi moj Shib 1.3 SP metadata v prednastavljen MetaShare.',
 		'hr' => 'Objavi moje Shib 1.3 SP metapodatke na MetaShare servisu',
 		'hu' => 'Publikálja a Shibboleth 1.3 SP metadatokat a MetaShare-be',
+		'pt' => 'Publicar metadata de SP Shib 1.3 no MetaShare configurado',
 		'pt-BR' => 'Publicar meu Shib 1.3 SP metadata para o MetaShare configurado',
 	),
 

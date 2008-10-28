@@ -15,6 +15,7 @@ $lang = array(
 		'sl' => 'Izberite IdP domače organizacije',
 		'hr' => 'Odaberite vašeg davatelja elektroničkih identiteta',
 		'hu' => 'Válasszon személyazonosság-szolgáltatót (IdP)',
+		'pt' => 'Escolha o seu fornecedor de identidade (IdP)',
 		'pt-BR' => 'Selecione seu provedor de identidade',
 	),
 	'selectidp_full' => array (
@@ -31,6 +32,7 @@ $lang = array(
 		'sl' => 'Izberite IdP, na katerem se boste avtenticirali:',
 		'hr' => 'Molimo odaberite davatelja elektroničkih identiteta kod kojeg se želite autenticirati:',
 		'hu' => 'Kérjük, válassza ki azt a személyazonosság-szolgáltatót (IdP), ahol azonosítani kívánja magát:',
+		'pt' => 'Por favor, escolha o  fornecedor de identidade (IdP) que irá usar para se autenticar:',
 		'pt-BR' => 'Por favor selecione o provedor de identidade ao qual deseja se autenticar',
 	),
 	'select' => array (
@@ -47,6 +49,7 @@ $lang = array(
 		'sl' => 'Izberite',
 		'hr' => 'Odaberi',
 		'hu' => 'Választ',
+		'pt' => 'Escolher',
 		'pt-BR' => 'Selecione',
 	),
 	'remember' => array (
@@ -63,6 +66,7 @@ $lang = array(
 		'sl' => 'Shrani kot privzeto izbiro',
 		'hr' => 'Zapamti moj odabir',
 		'hu' => 'Emlékezzen erre',
+		'pt' => 'Lembrar esta escolha',
 		'pt-BR' => 'Lembrar minha escolha',
 	),
 
