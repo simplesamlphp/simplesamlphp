@@ -59,6 +59,10 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 	 */
 	private $focus;
 
+	/**
+	 * Whether or not to include attribute values when generates hash
+	 */
+	private $includeValues;
 
 	/**
 	 * Consent store, if enabled.
@@ -77,6 +81,11 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 		assert('is_array($config)');
+
+		$this->includeValues = FALSE;
+		if (array_key_exists('includeValues', $config)) {
+			$this->includeValues = $config['includeValues'];
+		}
 
 		if (array_key_exists('focus', $config)) {
 			$this->focus = $config['focus'];
@@ -110,11 +119,18 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 		assert('array_key_exists("UserID", $state)');
 		assert('array_key_exists("Destination", $state)');
 		assert('array_key_exists("entityid", $state["Destination"])');
-		assert('array_key_exists("metadata-set", $state["Destination"])');
+		assert('array_key_exists("metadata-set", $state["Destination"])');		
+		assert('array_key_exists("entityid", $state["Source"])');
+		assert('array_key_exists("metadata-set", $state["Source"])');
 
 		if ($this->store !== NULL) {
 			$userId = sha1($state['UserID'] . SimpleSAML_Utilities::getSecretSalt());;
-			$destination = $state['Destination']['metadata-set'] . '/' . $state['Destination']['entityid'];
+			$destination = $state['Destination']['metadata-set'] . '|' . $state['Destination']['entityid'];
+			$source = $state['Source']['metadata-set'] . '|' . $state['Source']['entityid'];
+
+#			echo 'destination: ' . $destination . '  : source: ' . $source; exit;
+
+			$idpentityid = $state['Source']['metadata-set']['entityid'];
 
 			$attributeSet = array_keys($state['Attributes']);
 			sort($attributeSet);
@@ -127,9 +143,10 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 			}
 
 			$state['consent:store'] = $this->store;
-			$state['consent:store.userId'] = $userId;
-			$state['consent:store.destination'] = $destination;
-			$state['consent:store.attributeSet'] = $attributeSet;
+			$state['consent:store.userId'] = self::getHashedUserID($state['UserID'], $source);
+			$state['consent:store.destination'] = self::getTargetedID($state['UserID'], $source, $destination);
+			$state['consent:store.attributeSet'] = self::getAttributeHash($state['Attributes'], $this->includeValues);
+			
 		}
 
 		$state['consent:focus'] = $this->focus;
@@ -139,6 +156,45 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 		$url = SimpleSAML_Module::getModuleURL('consent/getconsent.php');
 		SimpleSAML_Utilities::redirect($url, array('StateId' => $id));
 	}
+	
+
+	/**
+	 * Generate a globally unique identifier of the user. Will also be anonymous (hashed).
+	 *
+	 * @return hash( eduPersonPrincipalName + salt + IdP-identifier ) 
+	 */
+	public static function getHashedUserID($userid, $source) {		
+		return hash('sha1', $userid . '|'  . SimpleSAML_Utilities::getSecretSalt() . '|' . $source );
+	}
+	
+	/**
+	 * Get a targeted ID. An identifier that is unique per SP entity ID.
+	 */
+	public function getTargetedID($userid, $destination) {
+		return hash('sha1', $userid . '|' . SimpleSAML_Utilities::getSecretSalt() . '|' . $source . '|' . $destination);
+	}
+
+	/**
+	 * Get a hash value that changes when attributes are added or attribute values changed.
+	 * @param boolean $includeValues Whether or not to include the attribute value in the generation of the hash.
+	 */
+	public function getAttributeHash($attributes, $includeValues = FALSE) {
+
+		$hashBase = NULL;	
+		if ($includeValues) {
+			ksort($attributes);
+			$hashBase = serialize($attributes);
+		} else {
+			$names = array_keys($attributes);
+			sort($names);
+			$hashBase = implode('|', $names);
+		}
+		return hash('sha1', $hashBase);
+	}
+
+
+
+
 
 }
 
