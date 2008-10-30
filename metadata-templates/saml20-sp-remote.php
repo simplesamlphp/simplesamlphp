@@ -13,7 +13,7 @@
  *   - simplesaml.attributes (Will you send an attributestatement [true/false])
  *   - NameIDFormat
  *   - ForceAuthn (default: "false")
- *   - simplesaml.nameidattribute (only needed when you are using NameID format email.
+ *   - simplesaml.nameidattribute (only needed when you are using NameID format email or persistent).
  *
  *   - 'base64attributes'	=>	false,
  *   - 'simplesaml.attributes'	=>	true,

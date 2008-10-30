@@ -14,6 +14,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	const PROTOCOL = 'urn:oasis:names:tc:SAML:2.0';
 	
 	const TRANSIENT 	= 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+	const PERSISTENT 	= 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent';
 	const EMAIL 		= 'urn:oasis:names:tc:SAML:2.0:nameid-format:email';
 
 	/* Namespaces used in the XML representation of this object.
@@ -682,7 +683,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		/**
 		 * Handling NameID
 		 */
-		if ($nameidformat == self::EMAIL) {
+		if ( ($nameidformat == self::EMAIL) or ($nameidformat == self::PERSISTENT) ) {
 			$nameIdValue = $attributes[$spmd['simplesaml.nameidattribute']][0];
 		} else {
 			$nameIdValue = SimpleSAML_Utilities::generateID();
@@ -753,13 +754,17 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		if (!empty($spnamequalifier)) {
 			$spnamequalifiertext = ' SPNameQualifier="' . htmlspecialchars($spnamequalifier) . '"';
 		}
+
+		if ($value == null) {
+			throw new Exception("NameID value is empty probably because of a configuration error (ie. the attribute that was configured as the simplesaml.nameidattribute setting was not found).");
+		}
 		
 		if ($type == self::EMAIL) {
 			return '<saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"' . 
 				$spnamequalifiertext . '>' . htmlspecialchars($value) . '</saml:NameID>';
 
 		} else {
-			return '<saml:NameID Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"' . 
+			return '<saml:NameID Format="' . $type . '"' . 
 				$spnamequalifiertext. '>' . htmlspecialchars($value). '</saml:NameID>';
 		}
 		
