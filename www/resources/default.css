@@ -8,10 +8,10 @@
 
 body {
 	text-align: center;
-	padding: 20px 0;
+	padding: 10px 0;
 	background: #222;
-	background-image: url(icons/ssplogo-fish.png);
-	background-repeat: no-repeat;
+/*	background-image: url(icons/ssplogo-fish.png);
+	background-repeat: no-repeat; */
 	color: #333;
 	font: 83%/1.5 arial,tahoma,verdana,sans-serif;
 }
@@ -68,10 +68,6 @@ dt {
 }
 
 #wrap {
-	opacity:.92;
-	filter: alpha(opacity=92); 
-	-moz-opacity: 0.92;
-	
 	background: #fff;
 	
 	border: 1px solid #fff;
@@ -82,9 +78,14 @@ dt {
 	max-width: 950px;
 }
 
+#languagebar {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 #header {
 	background: #666 url("sprites.gif") repeat-x 0 100%;
-	margin: 0 0 25px;
+	margin: 0px;
 	padding: 0 0 8px;
 }
 
@@ -94,13 +95,6 @@ dt {
 	padding: 20px 20px 12px;
 }
 
-#poweredby {
-	width: 96px;
-	height: 63px;
-	position: absolute;
-	top: 0;
-	right: 0;
-}
 
 #content {
 	padding: 0 20px;
