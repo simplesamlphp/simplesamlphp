@@ -103,7 +103,7 @@ foreach ($this->data['noData'] as $name => $value) {
 </form>
 
 <p>
-<table style="font-size: x-small">
+<table class="attributes">
 <?php
 foreach ($attributes as $name => $value) {
 	$nameTag = '{attributes:attribute_' . strtolower($name) . '}';
