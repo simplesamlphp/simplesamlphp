@@ -12,7 +12,7 @@
  *        the various DSN formats.
  * - username: The username which should be used when connecting to the database server.
  * - password: The password which should be used when connecting to the database server.
- * - table: The name of the table. Optional, defaults to 'ssp_consent'.
+ * - table: The name of the table. Optional, defaults to 'consent'.
  *
  * Example - consent module with MySQL database:
  * <code>
@@ -46,13 +46,13 @@
  *
  *
  * Table declaration:
- * CREATE TABLE ssp_consent (
- *   consentTime TIMESTAMP NOT NULL,
- *   lastUse TIMESTAMP NOT NULL,
- *   userId VARCHAR(80) NOT NULL,
- *   destinationId VARCHAR(255) NOT NULL,
- *   attributeSet VARCHAR(80) NOT NULL,
- *   UNIQUE (userId, destinationId)
+ * CREATE TABLE consent (
+ *   consent_date TIMESTAMP NOT NULL,
+ *   usage_date TIMESTAMP NOT NULL,
+ *   hashed_user_id VARCHAR(80) NOT NULL,
+ *   service_id VARCHAR(255) NOT NULL,
+ *   attribute VARCHAR(80) NOT NULL,
+ *   UNIQUE (hashed_user_id, service_id)
  * );
  *
  * @package simpleSAMLphp
@@ -122,7 +122,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 			}
 			$this->table = $config['table'];
 		} else {
-			$this->table = 'ssp_consent';
+			$this->table = 'consent';
 		}
 	}
 
@@ -159,7 +159,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 		assert('is_string($destinationId)');
 		assert('is_string($attributeSet)');
 
-		$st = $this->execute('UPDATE ' . $this->table . ' SET lastUse = NOW() WHERE userId = ? AND destinationId = ? AND attributeSet = ?',
+		$st = $this->execute('UPDATE ' . $this->table . ' SET usage_date = NOW() WHERE hashed_user_id = ? AND service_id = ? AND attribute = ?',
 			array($userId, $destinationId, $attributeSet));
 		if ($st === FALSE) {
 			return FALSE;
@@ -193,7 +193,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 		assert('is_string($attributeSet)');
 
 		/* Check for old consent (with different attribute set). */
-		$st = $this->execute('UPDATE ' . $this->table . ' SET consentTime = NOW(), lastUse = NOW(), attributeSet = ? WHERE userId = ? AND destinationId = ?',
+		$st = $this->execute('UPDATE ' . $this->table . ' SET consent_date = NOW(), usage_date = NOW(), attribute = ? WHERE hashed_user_id = ? AND service_id = ?',
 			array($attributeSet, $userId, $destinationId));
 		if ($st === FALSE) {
 			return;
@@ -205,7 +205,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 		}
 
 		/* Add new consent. We don't check for error since there is nothing we can do if one occurs. */
-		$st = $this->execute('INSERT INTO ' . $this->table . ' (consentTime, lastUse, userId, destinationId, attributeSet) VALUES(NOW(),NOW(),?,?,?)',
+		$st = $this->execute('INSERT INTO ' . $this->table . ' (consent_date, usage_date, hashed_user_id, service_id, attribute) VALUES(NOW(),NOW(),?,?,?)',
 			array($userId, $destinationId, $attributeSet));
 		if ($st !== FALSE) {
 			SimpleSAML_Logger::debug('consent:Database - Saved new consent.');
@@ -225,7 +225,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 		assert('is_string($userId)');
 		assert('is_string($destinationId)');
 
-		$st = $this->execute('DELETE FROM ' . $this->table . ' WHERE userId = ? and destinationId = ?',
+		$st = $this->execute('DELETE FROM ' . $this->table . ' WHERE hashed_user_id = ? and service_id = ?',
 			array($userId, $destinationId));
 		if ($st === FALSE) {
 			return;
@@ -252,7 +252,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 
 		$ret = array();
 
-		$st = $this->execute('SELECT destinationId FROM ' . $this->table . ' WHERE userId = ?',
+		$st = $this->execute('SELECT service_id FROM ' . $this->table . ' WHERE hashed_user_id = ?',
 			array($userId));
 		if ($st === FALSE) {
 			return array();
@@ -319,12 +319,12 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 
 		$res = $this->db->exec(
 			'CREATE TABLE ' . $this->table . ' (' .
-			'consentTime TIMESTAMP NOT NULL,' .
-			'lastUse TIMESTAMP NOT NULL,' .
-			'userId VARCHAR(80) NOT NULL,' .
-			'destinationId VARCHAR(255) NOT NULL,' .
-			'attributeSet VARCHAR(80) NOT NULL,' .
-			'UNIQUE (userId, destinationId)' .
+			'consent_date TIMESTAMP NOT NULL,' .
+			'usage_date TIMESTAMP NOT NULL,' .
+			'hashed_user_id VARCHAR(80) NOT NULL,' .
+			'service_id VARCHAR(255) NOT NULL,' .
+			'attribute VARCHAR(80) NOT NULL,' .
+			'UNIQUE (hashed_user_id, service_id)' .
 			')');
 		if ($res === FALSE) {
 			SimpleSAML_Logger::error('consent:Database - Failed to create table \'' . $this->table . '\'.');
