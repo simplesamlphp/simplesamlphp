@@ -82,7 +82,7 @@ dt {
 	padding-left: 10px;
 	padding-right: 10px;
 }
-#languagebar a:link {
+#languagebar a:link, #languagebar a:visited {
 	text-decoration: none;
 	color: #777;
 	border-bottom: 1px dotted #ccc;
