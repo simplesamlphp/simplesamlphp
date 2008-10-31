@@ -100,9 +100,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 		$this->store = NULL;
 		if (array_key_exists('store', $config)) {
 			try {
-				SimpleSAML_Logger::error('Consent - constructor() : Before creation');
 				$this->store = sspmod_consent_Store::parseStoreConfig($config['store']);
-				SimpleSAML_Logger::error('Consent - constructor() : After creation');
 			} catch(Exception $e) {
 				SimpleSAML_Logger::error('Consent - constructor() : Could not create consent storage: ' . $e->getMessage());
 			}
@@ -132,6 +130,11 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 
 			$source = $state['Source']['metadata-set'] . '|' . $state['Source']['entityid'];
 			$destination = $state['Destination']['metadata-set'] . '|' . $state['Destination']['entityid'];
+
+			SimpleSAML_Logger::debug('Consent - userid : ' . $state['UserID']);
+			SimpleSAML_Logger::debug('Consent - source : ' . $source);
+			SimpleSAML_Logger::debug('Consent - destination : ' . $destination);
+			
 
 			$userId = self::getHashedUserID($state['UserID'], $source);
 			$targetedId = self::getTargetedID($state['UserID'], $source, $destination);
@@ -171,7 +174,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 	/**
 	 * Get a targeted ID. An identifier that is unique per SP entity ID.
 	 */
-	public function getTargetedID($userid, $destination) {
+	public function getTargetedID($userid, $source, $destination) {
 		return hash('sha1', $userid . '|' . SimpleSAML_Utilities::getSecretSalt() . '|' . $source . '|' . $destination);
 	}
 
