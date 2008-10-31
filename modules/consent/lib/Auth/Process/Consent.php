@@ -124,28 +124,24 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 		assert('array_key_exists("metadata-set", $state["Source"])');
 
 		if ($this->store !== NULL) {
-			$userId = sha1($state['UserID'] . SimpleSAML_Utilities::getSecretSalt());;
-			$destination = $state['Destination']['metadata-set'] . '|' . $state['Destination']['entityid'];
+
 			$source = $state['Source']['metadata-set'] . '|' . $state['Source']['entityid'];
+			$destination = $state['Destination']['metadata-set'] . '|' . $state['Destination']['entityid'];
 
-#			echo 'destination: ' . $destination . '  : source: ' . $source; exit;
+			$userId = self::getHashedUserID($state['UserID'], $source);
+			$targetedId = self::getTargetedID($state['UserID'], $source, $destination);
+			$attributeSet = self::getAttributeHash($state['Attributes'], $this->includeValues);
 
-			$idpentityid = $state['Source']['metadata-set']['entityid'];
-
-			$attributeSet = array_keys($state['Attributes']);
-			sort($attributeSet);
-			$attributeSet = implode(',', $attributeSet);
-			$attributeSet = sha1($attributeSet);
-
-			if ($this->store->hasConsent($userId, $destination, $attributeSet)) {
+			SimpleSAML_Logger::debug('Consent - hasConsent() : [' . $userId . '|' . $targetedId . '|' .  $attributeSet . ']');
+			if ($this->store->hasConsent($userId, $targetedId, $attributeSet)) {
 				/* Consent already given. */
 				return;
 			}
 
 			$state['consent:store'] = $this->store;
-			$state['consent:store.userId'] = self::getHashedUserID($state['UserID'], $source);
-			$state['consent:store.destination'] = self::getTargetedID($state['UserID'], $source, $destination);
-			$state['consent:store.attributeSet'] = self::getAttributeHash($state['Attributes'], $this->includeValues);
+			$state['consent:store.userId'] = $userId;
+			$state['consent:store.destination'] = $targetedId;
+			$state['consent:store.attributeSet'] = $attributeSet;
 			
 		}
 

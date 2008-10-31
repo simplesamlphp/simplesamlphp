@@ -8,6 +8,8 @@
  * @version $Id$
  */
 
+SimpleSAML_Logger::info('Consent - getconsent: Accessing consent interface');
+
 if (!array_key_exists('StateId', $_REQUEST)) {
 	throw new SimpleSAML_Error_BadRequest('Missing required StateId query parameter.');
 }
@@ -25,9 +27,11 @@ if (array_key_exists('yes', $_REQUEST)) {
 		/* Save consent. */
 		$store = $state['consent:store'];
 		$userId = $state['consent:store.userId'];
-		$destination = $state['consent:store.destination'];
+		$targetedId = $state['consent:store.destination'];
 		$attributeSet = $state['consent:store.attributeSet'];
-		$store->saveConsent($userId, $destination, $attributeSet);
+		
+		SimpleSAML_Logger::debug('Consent - saveConsent() : [' . $userId . '|' . $targetedId . '|' .  $attributeSet . ']');	
+		$store->saveConsent($userId, $targetedId, $attributeSet);
 	}
 
 	SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
@@ -60,14 +64,14 @@ if($privacypolicy !== FALSE) {
 $t->data['sppp'] = $privacypolicy;
 
 switch ($state['consent:focus']) {
-case NULL:
-	break;
-case 'yes':
-	$t->data['autofocus'] = 'yesbutton';
-	break;
-case 'no':
-	$t->data['autofocus'] = 'nobutton';
-	break;
+	case NULL:
+		break;
+	case 'yes':
+		$t->data['autofocus'] = 'yesbutton';
+		break;
+	case 'no':
+		$t->data['autofocus'] = 'nobutton';
+		break;
 }
 
 if (array_key_exists('consent:store', $state)) {

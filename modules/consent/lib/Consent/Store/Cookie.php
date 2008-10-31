@@ -40,6 +40,10 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store {
 		assert('is_string($attributeSet)');
 
 		$cookieName = self::getCookieName($userId, $destinationId);
+		
+		$data = $userId . ':' . $attributeSet . ':' . $destinationId;
+		
+		SimpleSAML_Logger::debug('Consent cookie - Get [' . $data . ']');
 
 		if (!array_key_exists($cookieName, $_COOKIE)) {
 			SimpleSAML_Logger::debug('Consent cookie - no cookie with name \'' . $cookieName . '\'.');
@@ -50,7 +54,8 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store {
 			return FALSE;
 		}
 
-		$data = $userId . ':' . $attributeSet . ':' . $destinationId;
+
+		
 		$data = self::sign($data);
 
 		if ($_COOKIE[$cookieName] !== $data) {
@@ -81,6 +86,9 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store {
 
 		$name = self::getCookieName($userId, $destinationId);
 		$value = $userId . ':' . $attributeSet . ':' . $destinationId;
+		
+		SimpleSAML_Logger::debug('Consent cookie - Set [' . $value . ']');
+		
 		$value = self::sign($value);
 		$this->setConsentCookie($name, $value);
 	}
