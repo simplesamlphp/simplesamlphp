@@ -124,6 +124,8 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 		} else {
 			$this->table = 'consent';
 		}
+		
+		$db = $this->getDB();
 	}
 
 
@@ -346,13 +348,13 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 			return $this->db;
 		}
 
-		try {
-			$this->db = new PDO($this->dsn, $this->username, $this->password);
-		} catch (PDOException $e) {
-			SimpleSAML_Logger::error('consent:Database - Failed to connect to \'' .
-				$this->dsn . '\': '. $e->getMessage());
-			$this->db = FALSE;
-		}
+		//try {
+		$this->db = new PDO($this->dsn, $this->username, $this->password);
+		// 		} catch (PDOException $e) {
+		// 			SimpleSAML_Logger::error('consent:Database - Failed to connect to \'' .
+		// 				$this->dsn . '\': '. $e->getMessage());
+		// 			$this->db = FALSE;
+		// 		}
 
 		return $this->db;
 	}

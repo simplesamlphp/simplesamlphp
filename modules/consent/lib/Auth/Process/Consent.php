@@ -96,12 +96,17 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 		} else {
 			$this->focus = NULL;
 		}
-
+		
+		$this->store = NULL;
 		if (array_key_exists('store', $config)) {
-			$this->store = sspmod_consent_Store::parseStoreConfig($config['store']);
-		} else {
-			$this->store = NULL;
-		}
+			try {
+				SimpleSAML_Logger::error('Consent - constructor() : Before creation');
+				$this->store = sspmod_consent_Store::parseStoreConfig($config['store']);
+				SimpleSAML_Logger::error('Consent - constructor() : After creation');
+			} catch(Exception $e) {
+				SimpleSAML_Logger::error('Consent - constructor() : Could not create consent storage: ' . $e->getMessage());
+			}
+		} 
 
 	}
 
