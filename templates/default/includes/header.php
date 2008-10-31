@@ -42,48 +42,45 @@ if($onLoad !== '') {
 		<h1><a style="text-decoration: none; color: white" href="/<?php echo $this->data['baseurlpath']; ?>"><?php 
 			echo (isset($this->data['header']) ? $this->data['header'] : 'simpleSAMLphp'); 
 		?></a></h1>
-		<div id="poweredby">
-			<a href="/<?php echo $this->data['baseurlpath']; ?>">
-			<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/<?php 
-				echo (isset($this->data['icon']) ? $this->data['icon'] : 'compass_l.png'); 
-			?>" alt="Header icon" /></a></div>
 	</div>
 
-<div style="padding-right: 40px">
-<?php 
-
-$languages = $this->getLanguageList();
-$langnames = array(
-	'no' => 'Bokmål',
-	'nn' => 'Nynorsk',
-	'se' => 'Sámi',
-	'da' => 'Dansk',
-	'en' => 'English',
-	'de' => 'Deutsch',
-	'sv' => 'Svenska',
-	'fi' => 'Suomeksi',
-	'es' => 'Español',
-	'fr' => 'Français',
-	'nl' => 'Nederlands',
-	'lb' => 'Luxembourgish', 
-	'sl' => 'Slovenščina', // Slovensk
-	'hr' => 'Hrvatski', // Croatian
-	'hu' => 'Magyar', // Hungarian
-	'pt' => 'Português', // Portuguese
-);
-
-if (empty($_POST) ) {
-	$textarray = array();
-	foreach ($languages AS $lang => $current) {
-		if ($current) {
-			$textarray[] = $langnames[$lang];
-		} else {
-			$textarray[] = '<a href="' . htmlspecialchars(SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), array('language' => $lang))) . '">' .
-				$langnames[$lang] . '</a>';
+	<div id="languagebar">
+	<?php 
+	
+	$languages = $this->getLanguageList();
+	$langnames = array(
+		'no' => 'Bokmål',
+		'nn' => 'Nynorsk',
+		'se' => 'Sámi',
+		'da' => 'Dansk',
+		'en' => 'English',
+		'de' => 'Deutsch',
+		'sv' => 'Svenska',
+		'fi' => 'Suomeksi',
+		'es' => 'Español',
+		'fr' => 'Français',
+		'nl' => 'Nederlands',
+		'lb' => 'Luxembourgish', 
+		'sl' => 'Slovenščina', // Slovensk
+		'hr' => 'Hrvatski', // Croatian
+		'hu' => 'Magyar', // Hungarian
+		'pt' => 'Português', // Portuguese
+		'pt-BR' => 'Português brasileiro', // Portuguese
+	);
+	
+	if (empty($_POST) ) {
+		$textarray = array();
+		foreach ($languages AS $lang => $current) {
+			if ($current) {
+				$textarray[] = $langnames[$lang];
+			} else {
+				$textarray[] = '<a href="' . htmlspecialchars(SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), array('language' => $lang))) . '">' .
+					$langnames[$lang] . '</a>';
+			}
 		}
+		echo join(' | ', $textarray);
 	}
-	echo join(' | ', $textarray);
-}
-
-?>
-</div>
+	
+	?>
+	</div>
+	<div id="content">

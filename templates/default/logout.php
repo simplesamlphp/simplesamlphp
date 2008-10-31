@@ -4,7 +4,7 @@ $this->data['header'] = $this->t('{logout:title}');
 
 $this->includeAtTemplateBase('includes/header.php');
 
-echo('<div id="content">');
+
 
 echo('<h2>' . $this->data['header'] . '</h2>');
 echo('<p>' . $this->t('{logout:logged_out_text}') . '</p>');

@@ -6,8 +6,6 @@ if (isset($this->data['header']) && $this->getTag($this->data['header']) !== NUL
 $this->includeAtTemplateBase('includes/header.php');
 ?>
 
-	
-	<div id="content">
 
 		<?php if (isset($this->data['header'])) { echo '<h2>' . $this->data['header'] . '</h2>'; } ?>
 		

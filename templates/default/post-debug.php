@@ -5,10 +5,6 @@
 ?>
 
 
-	
-	<div id="content">
-	
-
 
 		<h2><?php echo($this->t('{admin:debug_sending_message_title}')); ?></h2>
 	

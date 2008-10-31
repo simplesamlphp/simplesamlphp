@@ -25,8 +25,6 @@ function showdiv(id) {
 	
 ?>
 
-	<div id="content">
-	
 
 		
 		<noscript>

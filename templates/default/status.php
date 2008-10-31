@@ -8,7 +8,7 @@ if(array_key_exists('header', $this->data)) {
 $this->includeAtTemplateBase('includes/header.php');
 ?>
 
-<div id="content">
+
 
 	<h2><?php if (isset($this->data['header'])) { echo($this->data['header']); } else { echo($this->t('{status:some_error_occured}')); } ?></h2>
 	
@@ -36,13 +36,26 @@ $this->includeAtTemplateBase('includes/header.php');
 			}
 			
 			if (sizeof($value) > 1) {
-				echo '<tr><td>' . $txtname . '</td><td><ul>';
+				echo '<tr><td>' . $txtname . '</td><td><ul>' . "\n";
 				foreach ($value AS $v) {
-					echo '<li>' . htmlspecialchars($v) . '</li>';
+					
+					if (in_array($name, array('jpegPhoto'))) {
+						echo '<li><img src="data:image/jpeg;base64,' . htmlspecialchars($v) . '" /></li>' . "\n";
+					} else {
+						echo '<li>' . htmlspecialchars($v) . '</li>' . "\n";
+					}
+				
+					
 				}
 				echo '</ul></td></tr>';
 			} else {
-				echo '<tr><td>' . $txtname . '</td><td>' . htmlspecialchars($value[0]) . '</td></tr>';
+			
+				if (in_array($name, array('jpegPhoto'))) {
+					echo '<tr><td>' . $txtname . '</td><td><img src="data:image/jpeg;base64,' . htmlspecialchars($value[0]) . '" /></td></tr>' . "\n";
+				} else {
+					echo '<tr><td>' . $txtname . '</td><td>' . htmlspecialchars($value[0]) . '</td></tr>' . "\n";
+				}
+			
 			}
 		}
 		

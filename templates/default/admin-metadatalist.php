@@ -5,8 +5,7 @@ $this->data['icon'] = 'bino.png';
 $this->includeAtTemplateBase('includes/header.php');
 ?>
 
-	
-	<div id="content">
+
 
 		<p><?php echo $this->t('metaover_intro'); ?></p>
 

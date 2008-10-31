@@ -7,7 +7,6 @@
 	$this->includeInlineTranslation('SPDESC', $this->data['sp_description']);
 ?>
 
-	<div id="content">
 
 		<p>
 		<?php echo $this->t('consent_accept', array('SPNAME' => '', 'IDPNAME' => '', 'SPDESC' => '')) ?>

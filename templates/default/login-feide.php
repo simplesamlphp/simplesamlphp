@@ -7,9 +7,9 @@ $this->includeAtTemplateBase('includes/header.php');
 
 ?>
 
-		<?php if (isset($this->data['error'])) { ?>
-		<div id="errorframe">
-			<h2><?php echo $this->t('{login:error_header}'); ?></h2>
+<?php if (isset($this->data['error'])) { ?>
+<div id="errorframe">
+	<h2><?php echo $this->t('{login:error_header}'); ?></h2>
 		
 
 <?php

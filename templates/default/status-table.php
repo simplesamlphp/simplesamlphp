@@ -16,7 +16,6 @@ foreach($table as $row_title => $row_data) {
 
 ?>
 
-<div id="content">
 <h2><?php echo htmlspecialchars($title); ?></h2>
 
 <table>

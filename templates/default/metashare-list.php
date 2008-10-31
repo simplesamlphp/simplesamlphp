@@ -2,7 +2,7 @@
 $this->data['header'] = $this->t('front_header');
 $this->includeAtTemplateBase('includes/header.php');
 
-echo('<div id="content">');
+
 echo('<h2>' . $this->t('front_header') . '</h2>');
 echo('<p>' . $this->t('front_desc') . '</p>');
 

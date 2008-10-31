@@ -2,7 +2,7 @@
 $this->data['header'] = $this->t('addpage_header');
 $this->includeAtTemplateBase('includes/header.php');
 
-echo('<div id="content">');
+
 echo('<h2>' . $this->t('addpage_header') . '</h2>');
 
 $url = $this->data['url'];

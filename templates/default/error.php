@@ -4,7 +4,6 @@
 	$this->includeAtTemplateBase('includes/header.php'); 
 ?>
 
-<div id="content">
 
 	<h2><?php 
 		echo $this->t('title_' . $this->data['errorcode']); 

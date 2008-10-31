@@ -3,7 +3,7 @@ $this->data['header'] = $this->t('metaconv_title');
 $this->includeAtTemplateBase('includes/header.php');
 ?>
 
-<div id="content">
+
 
 <h2><?php echo $this->t('metaconv_title'); ?></h2>
 

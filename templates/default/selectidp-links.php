@@ -18,7 +18,7 @@ foreach ($this->data['idplist'] AS $idpentry) {
 
 
 ?>
-	<div id="content">
+
 
 		<h2><?php echo $this->data['header']; ?></h2>
 

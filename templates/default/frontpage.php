@@ -1,9 +1,9 @@
 <?php 
-	$this->data['icon'] = 'compass_l.png';
+#	$this->data['icon'] = 'compass_l.png';
 	$this->includeAtTemplateBase('includes/header.php'); 
 ?>
 
-	<div id="content">
+
 
 <div class="enablebox mini">
 <table>

@@ -3,7 +3,6 @@ $this->data['header'] = $this->t('metadata_' . $this->data['header']);
 $this->includeAtTemplateBase('includes/header.php');
 ?>
 
-	<div id="content">
 
 		<h2><?php echo $this->data['header']; ?></h2>
 		
