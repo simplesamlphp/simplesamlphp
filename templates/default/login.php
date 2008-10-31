@@ -1,6 +1,8 @@
 <?php 
 	if (!array_key_exists('icon', $this->data)) $this->data['icon'] = 'lock.png';
-	$this->data['autofocus'] = 'username';
+	if (!isset($this->data['autofocus'])) {
+		$this->data['autofocus'] = 'username';
+	}
 	$this->includeAtTemplateBase('includes/header.php'); 
 ?>
 
@@ -23,10 +25,25 @@
 		<tr>
 			<td rowspan="2"><img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/pencil.png" /></td>
 			<td style="padding: .3em;"><?php echo $this->t('username'); ?></td>
-			<td><input type="text" id="username" tabindex="1" name="username" 
-				<?php if (isset($this->data['username'])) {
-					echo 'value="' . htmlspecialchars($this->data['username']) . '"';
-				} ?> /></td>
+			
+			
+			<td>
+			<?php
+			
+				if (array_key_exists('admin', $this->data)) {
+					echo '<strong style="font-size: medium">Administrator</strong>';
+				} else {
+				
+					echo '<input type="text" id="username" tabindex="1" name="username" ';
+					if (isset($this->data['username'])) {
+						echo 'value="' . htmlspecialchars($this->data['username']) . '"';
+					}
+					echo '/></td>';
+				}
+			
+			
+			?>
+
 			<td style="padding: .4em;" rowspan="2">
 				<input type="submit" tabindex="3" value="<?php echo $this->t('login_button'); ?>" />
 				<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($this->data['relaystate']); ?>" />
@@ -34,7 +51,7 @@
 		</tr>
 		<tr>
 			<td style="padding: .3em;"><?php echo $this->t('password'); ?></td>
-			<td><input type="password" tabindex="2" name="password" /></td>
+			<td><input id="password" type="password" tabindex="2" name="password" /></td>
 		</tr>
 	</table>
 	

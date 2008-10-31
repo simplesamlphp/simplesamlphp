@@ -83,6 +83,8 @@ $t = new SimpleSAML_XHTML_Template($config, 'login.php', 'login');
 
 $t->data['header'] = 'simpleSAMLphp: Enter username and password';	
 $t->data['relaystate'] = $relaystate;
+$t->data['admin'] = TRUE;
+$t->data['autofocus'] = 'password';
 $t->data['error'] = $error;
 if (isset($error)) {
 	$t->data['username'] = $username;
