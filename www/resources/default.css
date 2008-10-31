@@ -82,6 +82,18 @@ dt {
 	padding-left: 10px;
 	padding-right: 10px;
 }
+#languagebar a:link {
+	text-decoration: none;
+	color: #777;
+	border-bottom: 1px dotted #ccc;
+	font-weight: normal;
+}
+#languagebar a:hover {
+	text-decoration: none;
+	color: #333;
+	border-bottom: 1px solid #333;
+	
+}
 
 #header {
 	background: #666 url("sprites.gif") repeat-x 0 100%;
