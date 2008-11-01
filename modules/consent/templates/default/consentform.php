@@ -60,12 +60,13 @@ $attributes = $this->data['attributes'];
 
 
 $this->data['header'] = 'Consent'; /* TODO: translation */
+
 $this->includeAtTemplateBase('includes/header.php');
+
 ?>
 <div id="content">
 
 <p>
-<!-- notice:<?php echo $this->t('{consent:consent_notice}'); ?> <strong><?php echo htmlspecialchars($dstName); ?></strong>. -->
 <?php echo $this->t('{consent:consent_accept}', array(
 	'IDPNAME' => $srcName,
 	'SPNAME' => $dstName,
@@ -84,11 +85,13 @@ if ($this->data['sppp'] !== FALSE) {
 <form style="display: inline" action="<?php echo htmlspecialchars($this->data['yesTarget']); ?>">
 	<input type="submit" name="yes" id="yesbutton" value="<?php echo $this->t('{consent:yes}') ?>" />
 <?php
+
 foreach ($this->data['yesData'] as $name => $value) {
 	echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
 }
 if ($this->data['usestorage']) {
-	echo('<input type="checkbox" name="saveconsent" value="1" /> ' . $this->t('{consent:remember}'));
+	$checked = ($this->data['checked'] ? 'checked="checked"' : '');
+	echo('<input type="checkbox" name="saveconsent" ' . $checked . ' value="1" /> ' . $this->t('{consent:remember}'));
 }
 ?>
 </form>
@@ -105,6 +108,7 @@ foreach ($this->data['noData'] as $name => $value) {
 <p>
 <table class="attributes">
 <?php
+
 foreach ($attributes as $name => $value) {
 	$nameTag = '{attributes:attribute_' . strtolower($name) . '}';
 	if ($this->getTag($nameTag) !== NULL) {
@@ -127,5 +131,6 @@ foreach ($attributes as $name => $value) {
 </p>
 
 <?php
+
 $this->includeAtTemplateBase('includes/footer.php');
 ?>

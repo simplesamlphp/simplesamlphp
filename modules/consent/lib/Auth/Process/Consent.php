@@ -63,6 +63,8 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 	 * Whether or not to include attribute values when generates hash
 	 */
 	private $includeValues;
+	
+	private $checked;
 
 	/**
 	 * Consent store, if enabled.
@@ -87,6 +89,10 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 			$this->includeValues = $config['includeValues'];
 		}
 
+		if (array_key_exists('checked', $config)) {
+			$this->checked = $config['checked'];
+		}
+
 		if (array_key_exists('focus', $config)) {
 			$this->focus = $config['focus'];
 			if (!in_array($this->focus, array('yes', 'no'), TRUE)) {
@@ -105,6 +111,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 				SimpleSAML_Logger::error('Consent - constructor() : Could not create consent storage: ' . $e->getMessage());
 			}
 		} 
+		
 
 	}
 
@@ -154,6 +161,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 		}
 
 		$state['consent:focus'] = $this->focus;
+		$state['consent:checked'] = $this->checked;
 
 		/* Save state and redirect. */
 		$id = SimpleSAML_Auth_State::saveState($state, 'consent:request');

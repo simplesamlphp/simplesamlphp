@@ -50,6 +50,8 @@ $t->data['noTarget'] = SimpleSAML_Module::getModuleURL('consent/noconsent.php');
 $t->data['noData'] = array('StateId' => $id);
 $t->data['attributes'] = $state['Attributes'];
 
+$t->data['checked'] = $state['consent:checked'];
+
 if (array_key_exists('privacypolicy', $state['Destination'])) {
 	$privacypolicy = $state['Destination']['privacypolicy'];
 } elseif (array_key_exists('privacypolicy', $state['Source'])) {
@@ -62,6 +64,8 @@ if($privacypolicy !== FALSE) {
 		$privacypolicy);
 }
 $t->data['sppp'] = $privacypolicy;
+
+
 
 switch ($state['consent:focus']) {
 	case NULL:
@@ -79,6 +83,8 @@ if (array_key_exists('consent:store', $state)) {
 } else {
 	$t->data['usestorage'] = FALSE;
 }
+
+
 
 $t->show();
 exit;
