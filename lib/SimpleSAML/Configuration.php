@@ -62,7 +62,7 @@ class SimpleSAML_Configuration {
 		$this->configuration = $config;
 	}
 
-	public function getVersion() {
+	public function getVersion($verbose = FALSE) {
 		return 'trunk';
 	}
 

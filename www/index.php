@@ -221,8 +221,6 @@ $funcmatrix[] = array(
 	'enabled' => $password_ok
 	);
 
-
-
 $t = new SimpleSAML_XHTML_Template($config, 'frontpage.php', 'frontpage');
 $t->data['header'] = 'simpleSAMLphp installation page';
 $t->data['icon'] = 'compass_l.png';
@@ -232,7 +230,7 @@ $t->data['links_meta'] = $linksmeta;
 $t->data['links_doc'] = $linksdoc;
 $t->data['enablematrix'] = $enablematrix;
 $t->data['funcmatrix'] = $funcmatrix;
-
+$t->data['version'] = $config->getVersion();
 $t->data['directory'] = dirname(dirname(__FILE__));
 
 $t->show();

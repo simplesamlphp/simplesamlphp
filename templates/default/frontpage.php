@@ -33,7 +33,9 @@ $icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/d
 		<p><?php echo $this->t('intro'); ?></p>
 		
 		<div>
-			<code style="background: white; border: 1px solid #ccc; padding: 1em; color: #555" ><?php echo $this->data['directory']; ?></code>
+			<code style="background: white; border: 1px solid #ccc; padding: 1em; color: #555" ><?php 
+				echo $this->data['directory'] . ' (' . $this->data['version'] . ')'; 
+			?></code>
 		</div>
 		
 		<h2><?php echo $this->t('useful_links_header'); ?></h2>
