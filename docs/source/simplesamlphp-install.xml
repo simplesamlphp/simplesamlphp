@@ -7,7 +7,7 @@
   <articleinfo>
     <date>2007-08-30</date>
 
-    <pubdate>Thu Oct 16 09:35:10 2008</pubdate>
+    <pubdate>Sun Nov  2 14:45:21 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -54,7 +54,7 @@
     <application>simpleSAMLphp</application>, you must have
     <application>PHP</application> &gt;= 5.2.</para>
 
-    <para>Apache or some other webserver.</para>
+    <para>Apache or some other webserver that allows you to run PHP.</para>
 
     <para><application>simpleSAMLphp</application> is has been tested most
     thoroughly on different Linux versions, Unix, and Mac OS X. It also runs
@@ -136,7 +136,7 @@ svn up</screen>
     after updating the <application>simpleSAMLphp</application> code:</para>
 
     <section>
-      <title>Upgrading config.php</title>
+      <title>Upgrading configuration files</title>
 
       <para>A good approach is to run a <literal>diff</literal> between your
       preivous <filename>config.php</filename> file and the new
@@ -145,6 +145,18 @@ svn up</screen>
       modifications to the new template. This will ensure that all new entries
       in the latest version of config.php are included, as well as preserve
       your local modifications.</para>
+
+      <para>There is a link to a configuration check utility from the
+      frontpage of your simpleSAMLphp installation page. The name of the link
+      is "simpleSAMLphp configuration check". Then you will get a list of all
+      configuration files in your <filename>config/</filename> directory.
+      Click through the files, and you will get a report on superfluous and
+      missing entries in the configuration file. What is done under the hood
+      is that simpleSAMLphp looks up the
+      <filename>config-templates/</filename> directory and compares to your
+      real config. Although not all option is required to have in the
+      configuration files, it's a good thumb rule to include them nontheless,
+      so you simply see what configuration is possible.</para>
     </section>
 
     <section>
@@ -230,7 +242,83 @@ cp -r metadata-templates/*.php metadata/
   <section id="sect.config">
     <title>simpleSAMLphp configuration: config.php</title>
 
-    <para>placeholder. will add more text.</para>
+    <para>There is a few steps that you should edit in the main configuration
+    file, <filename>config.php</filename>, right away:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Set a administrator password. This is needed to access some of
+        the pages in your simpleSAMLphp installation web interface.</para>
+
+        <programlisting>	'auth.adminpassword'		=&gt; 'setnewpasswordhere',</programlisting>
+      </listitem>
+
+      <listitem>
+        <para>Set a secret salt. This should be a random string. Some parts of
+        the simpleSAMLphp needs this salt to generate cryptographically secure
+        hashes. SimpleSAMLphp will give an error if the salt is not changed
+        from the default value. The command below can help you to generated a
+        random string on (some) unix systems:</para>
+
+        <programlisting>tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' &lt;/dev/urandom | dd bs=32 count=1 2&gt;/dev/null;echo</programlisting>
+
+        <para>Here is an example of the config option:</para>
+
+        <programlisting>	'secretsalt' =&gt; 'randombytesinsertedhere',</programlisting>
+      </listitem>
+
+      <listitem>
+        <para>Set technical contact information. This information will be
+        available in the generated metadata. The e-mail address will also be
+        used for receiving error reports sent automatically by simpleSAMLphp.
+        Here is an example:</para>
+
+        <programlisting>	'technicalcontact_name'     =&gt; 'Andreas Åkre Solberg',
+	'technicalcontact_email'    =&gt; 'andreas.solberg@uninett.no',</programlisting>
+      </listitem>
+
+      <listitem>
+        <para>If you use simpleSAMLphp in a country where english is not
+        widespread, you may want to change the default language from english
+        to something else:</para>
+
+        <programlisting>	'language.default'		=&gt; 'no',</programlisting>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section>
+    <title>Configure PHP to be able to send e-mails</title>
+
+    <para>Some parts of simpleSAMLphp will allow you to send e-mails. In
+    example sending error reports to technical admin, as well as sending in
+    metadata to the federation administrators. If you want to make use of this
+    functionality, you should make sure your PHP installation is configured to
+    be able to send e-mails. It's a common problem that PHP is not configured
+    to send e-mails properly. The configuration differs from system to system.
+    On UNIX, PHP is using sendmail, on Windows SMTP. </para>
+  </section>
+
+  <section>
+    <title>Enable modules</title>
+
+    <para>If you want to enable some of the modules that are installed with
+    simpleSAMLphp, but are disabled by default, you should create an empty
+    file in the module directory named <filename>enable</filename>.</para>
+
+    <programlisting># Enabling the consent module
+cd modules
+ls -l
+cd consent
+touch enable
+</programlisting>
+
+    <para>If you later want to disable the module, rename the
+    <filename>enable</filename> file to <filename>disable</filename>.</para>
+
+    <programlisting>cd modules/consent
+mv enable disable
+</programlisting>
   </section>
 
   <section>
@@ -365,7 +453,7 @@ cp -r metadata-templates/*.php metadata/
     <title>Installing simpleSAMLphp in alternative locations</title>
 
     <para>There may be several reasons why you want to install simpleSAMLphp
-    in an alternative way. </para>
+    in an alternative way.</para>
 
     <orderedlist>
       <listitem>
