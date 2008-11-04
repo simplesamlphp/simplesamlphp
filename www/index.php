@@ -219,7 +219,7 @@ $funcmatrix[] = array(
 	'required' => 'required',
 	'descr' => 'auth.adminpassword option set',
 	'enabled' => $password_ok
-	);
+);
 
 $t = new SimpleSAML_XHTML_Template($config, 'frontpage.php', 'frontpage');
 $t->data['header'] = 'simpleSAMLphp installation page';

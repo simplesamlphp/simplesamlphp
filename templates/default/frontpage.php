@@ -3,13 +3,10 @@
 	$this->includeAtTemplateBase('includes/header.php'); 
 ?>
 
-
-
 <div class="enablebox mini">
 <table>
 
 <?php
-
 $icon_enabled  = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="enabled" />';
 $icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="disabled" />';
 ?>
