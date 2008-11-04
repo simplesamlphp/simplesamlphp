@@ -186,12 +186,12 @@ class SimpleSAML_Auth_LDAP {
 		$username = addcslashes($username, ',+"\\<>;*');
 		$password = addcslashes($password, ',+"\\<>;*');
 		
+		if (isset($config['priv_user_dn']) && !$this->bind($config['priv_user_dn'], $config['priv_user_pw']) ) {
+			throw new Exception('Could not bind with system user: ' . $config['priv_user_dn']);
+		}
 		if (isset($config['dnpattern'])) {
 			$dn = str_replace('%username%', $username, $config['dnpattern']);
 		} else {
-			if (isset($config['priv_user_dn']) && !$this->bind($config['priv_user_dn'], $config['priv_user_pw']) ) {
-				throw new Exception('Could not bind with system user: ' . $config['priv_user_dn']);
-			}
 			$dn = $this->searchfordn($config['searchbase'], $config['searchattributes'], $username);	
 		}
 
