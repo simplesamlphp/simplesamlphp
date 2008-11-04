@@ -3,6 +3,7 @@
 $lang = array(
 	'front_header' => array (
 		'no' => 'MetaShare',
+		'nn' => 'MetaShare',
 		'da' => 'Metashare',
 		'en' => 'MetaShare',
 		'sv' => 'MetaShare',
@@ -16,6 +17,7 @@ $lang = array(
 	),
 	'front_desc' => array (
 		'no' => 'Dette er en metadata distribusjonstjeneste. Den tillater deg å legge til dyamisk generert metadata til et delt lager.',
+		'nn' => 'Dette er ei teneste for deling av metadata.  Du kan leggja til dynamisk genererte metadata til eit felles lager.',
 		'da' => 'Dette er en metadata-delingstjeneste, som gør det muligt at tilføje dynamisk genereret metadata til et fælles repository',
 		'en' => 'This is a metadata sharing service. It allows you to add dynamically generated metadata to a shared store.',
 		'sv' => 'Detta delningsjänsten för metadata. Den tillåter att du lägger till dynamiskt skapad metadata till ett delat datalager.',
@@ -29,6 +31,7 @@ $lang = array(
 	),
 	'add_title' => array (
 		'no' => 'Legg til entitet',
+		'nn' => 'Legg til ny entitet',
 		'da' => 'Tilføj enhed',
 		'en' => 'Add entity',
 		'sv' => 'Lägg till entitet',
@@ -41,6 +44,7 @@ $lang = array(
 		'pt-BR' => 'Adicionar entidade',
 	),
 	'add_desc' => array (
+		'nn' => 'Legg til nye eller oppdaterte metadata ved å spesifisera URLen der du finn metadata.  Denne URLen må samsvara med entityID for entiteten i dei aktuelle metadata.',
 		'da' => 'Tilføj nyt eller opdaterert metadat ved at skrive den url der fører til metadata. Urlen skal matche entitets identificatoren for den entitet der er beskrevet i metadata',
 		'en' => 'Add new or updated metadata by specifying the URL of the metadata. This URL must match the entity identifier of the entity described in the metadata.',
 		'sv' => 'Läg till ny eller uppdatera metadata genom att ange URL för metadatat. URLen måste matcha entitetsidentifieraren för entiteten som är beskriven i metatdatat.',
@@ -54,6 +58,7 @@ $lang = array(
 	),
 	'add_entityid' => array (
 		'no' => 'EntityID for tjenesten:',
+		'nn' => 'EntityID for entiteten: ',
 		'da' => 'Entitets idetifikatoren for entiteten',
 		'en' => 'Entity identifier of the entity:',
 		'sv' => 'Entitetsidentifierare för entiteten:',
@@ -67,6 +72,7 @@ $lang = array(
 	),
 	'add_do' => array (
 		'no' => 'Legg til',
+		'nn' => 'Legg til ',
 		'da' => 'Tilføj',
 		'en' => 'Add',
 		'sv' => 'Lägg till',
@@ -79,6 +85,7 @@ $lang = array(
 		'pt-BR' => 'Adicionar',
 	),
 	'downloadall_desc' => array (
+		'nn' => 'Du kan lasta ned alle metadata som ei felles XML-fil.  Denne fila inneheld ein enkelt EntitiesDescriptor som inneheld alle entitetane som er lagt til i MetaShare.  EntitiesDescriptor kan vera signert av denne MetaShare dersom dette er konfigurert inn.',
 		'da' => 'Det er muligt at downloade metadata som en enkelt XML-fil. Denne fil indeholder en enkelt Entitetsbeskrivelse som indeholder alle de entiteter som er tilføjet til det fælles metadatarepository. Entitetsbeskrivelsen kan være signeret af metadatrepositoryet, hvis det er tilføjet i konfigurationen ',
 		'en' => 'It is possible to download all the metadata as a single XML file. This file will contain a single EntitiesDescriptor which contains all the entities which are atted to this MetaShare. The EntitiesDescriptor may be signed by this MetaShare if that is enabled in the configuration.',
 		'sv' => 'Det är möjligt att hämta all metadata som en enda XML-fil. Denna fil kommer innehålla en enda EntitiesDescriptor som innehåller alla enteiteter som finns lagrade i denna MetaShare. EntitiesDescriptor kan vara signerade av MetaShare om detta är aktiverat i konfgiurationen för MetaShare.',
@@ -92,6 +99,7 @@ $lang = array(
 	),
 	'downloadall_link' => array (
 		'no' => 'Last ned all metadata ',
+		'nn' => 'Last ned alle metadata',
 		'da' => 'Download alt metadata',
 		'en' => 'Download all metadata',
 		'sv' => 'Hämta alla metadata',
@@ -105,6 +113,7 @@ $lang = array(
 	),
 	'entities_title' => array (
 		'no' => 'Entiteter',
+		'nn' => 'Entitetar ',
 		'da' => 'Entiteter',
 		'en' => 'Entities',
 		'sv' => 'Entiteter',
@@ -117,6 +126,7 @@ $lang = array(
 		'pt-BR' => 'Entidades',
 	),
 	'entities_desc' => array (
+		'nn' => 'Dette er ei liste over alle entitetar som lagra i MetaShare no.  Klikk på ein peikar for å lasta ned metadata for den aktuelle entiteten.',
 		'da' => 'Dette er en liste bestående af alle de entiteter der for indeværende er gemt i det fælles repository.',
 		'en' => 'This is a list of all the entities which are currently stored in this MetaShare. Click on a link to download the metadata of the given entity.',
 		'sv' => 'Detta är en lista över alla entiteter som förnärvarande finns lagrades i denna MetaShare. Klicka på aktuell länk för att hämta för att hämta metadata för en viss entitet.',
@@ -130,6 +140,7 @@ $lang = array(
 	),
 	'entities_empty' => array (
 		'no' => 'Ingen tjenester er for øyeblikket lagret i denne MetaShare installasjonen.',
+		'nn' => 'Ingen entitetar er lagra i MetaShare her.',
 		'da' => 'Ingen entieties ',
 		'en' => 'No entities are currently stored in this MetaShare.',
 		'sv' => 'Det finns förnärvarande inga eniteter lagrade i denna MetaShare.',
@@ -143,6 +154,7 @@ $lang = array(
 	),
 	'text' => array (
 		'no' => 'Tekst',
+		'nn' => 'Tekst',
 		'da' => 'Tekst',
 		'en' => 'text',
 		'sv' => 'txt',
@@ -156,6 +168,7 @@ $lang = array(
 	),
 	'addpage_header' => array (
 		'no' => 'Legg til metadata',
+		'nn' => 'Legg til metadata',
 		'da' => 'Tilføj metadata',
 		'en' => 'Add metadata',
 		'sv' => 'Lägg till metadata',
@@ -169,6 +182,7 @@ $lang = array(
 	),
 	'addpage_ok' => array (
 		'no' => 'Metadata fra "%URL" ble lagt til vellykket.',
+		'nn' => 'Metadata frå "%URL%" er lagt til',
 		'da' => 'Metadata fra "%URL%" blev tilføjet',
 		'en' => 'The metadata from "%URL%" was successfylly added.',
 		'sv' => 'Metadata från "%URL%" har lagts till.',
@@ -182,6 +196,7 @@ $lang = array(
 	),
 	'addpage_nourl' => array (
 		'no' => 'Mangler URL parameter.',
+		'nn' => 'Fann ikkje URL.  Har du hugsa å leggja inn URL?',
 		'da' => 'URL ikke opgivet',
 		'en' => 'No URL parameter given.',
 		'sv' => 'Ingen URL angavs.',
@@ -194,6 +209,7 @@ $lang = array(
 		'pt-BR' => 'Não foi passado o parâmetro URL.',
 	),
 	'addpage_invalidurl' => array (
+		'nn' => 'Ugyldig URL eller EntityID for metadata.  EntityID må vera ein gyldig http: eller https: URL.  URLen du oppgav var "%URL%".',
 		'da' => 'Ugyldig URL/entitet ID i metadata. Entiteten bør være på formen http: eller https:. URL\'en du gav var "%URL%".',
 		'en' => 'Invalid URL/entity id to metadata. The entity id should be a valid http: or https: URL. The URL you gave was "%URL%".',
 		'sv' => 'Felaktig URL/Entitetsidentifierare för metadata. Entitetsidentifieraren ska vara en giltig http- eller https-adress (URL). Adressen du angav var "%URL%".',
@@ -206,6 +222,7 @@ $lang = array(
 		'pt-BR' => 'URL/Identificação da Entidade inválida para a metadata. A identificação da entidade deve ser um endereço http: ou https: válido. A URL passada foi "%URL%".',
 	),
 	'addpage_nodownload' => array (
+		'nn' => 'Kunne ikkje lasta ned metadata frå "%URL%".',
 		'da' => 'Kunne ikke hente metadata fra "%URL%"',
 		'en' => 'Unable to download metadata from "%URL%".',
 		'sv' => 'Kunde inte hämta metadata från "%URL%".',
@@ -218,6 +235,7 @@ $lang = array(
 		'pt-BR' => 'Não foi possível baixar a metadata de "%URL%".',
 	),
 	'addpage_invalidxml' => array (
+		'nn' => 'Feil format på XML i metadata.  URLen du oppgav var "%URL%".',
 		'da' => 'Ugyldig XML i metadata. URL\'en du gav var "%URL%".',
 		'en' => 'Malformed XML in metadata. The URL you gave was "%URL%".',
 		'sv' => 'Felaktigt formaterad XML i metadata. Adressen du angav var "%URL%".',
@@ -230,6 +248,7 @@ $lang = array(
 		'pt-BR' => 'XML incorreto na metadata. A URL passada foi "%URL%".',
 	),
 	'addpage_notentitydescriptor' => array (
+		'nn' => 'Rotnoden for metadata var ikkje eit EntityDescriptor-element.  URLen du oppgav var "%URL%".',
 		'da' => 'Roden af metadata var ikke en \'EntityDescriptor\'. URL\'en du gav var "%URL%"',
 		'en' => 'The root node of the metadata was not an EntityDescriptor element. The URL you gave was "%URL%".',
 		'sv' => 'Toppnoden av metadatat var inte en EntityDescriptor. Adressen du angav var "%URL%".',
@@ -243,6 +262,7 @@ $lang = array(
 	),
 	'addpage_entityid' => array (
 		'no' => 'EntityID i metadataene stemmer ikke overens med URL-en til metadata dokumentet ("%URL%").',
+		'nn' => 'EntityID i metadata stemmer ikkje med URLen for metadata ("%URL%").',
 		'da' => '\'EntityIdentifyer\' i metadata matchede i metadatas %URL%',
 		'en' => 'The entity identifier in the metadata did not match the URL of the metadata ("%URL%").',
 		'sv' => 'Entitetsidentifieraren i metadatat stämmer inte överens med adressen för metadatat ("%URL%").',
@@ -256,6 +276,7 @@ $lang = array(
 	),
 	'addpage_validation' => array (
 		'no' => 'XML validering av metadata from "%URL%" feilet:',
+		'nn' => 'Feila XML-validering av metadata for "%URL%":',
 		'da' => 'Fejl i XML-validering af metadata fra %URL%',
 		'en' => 'XML validation of the metadata from "%URL%" failed:',
 		'sv' => 'XML-valideringen av metatdatat från "%URL%" misslyckades:',
@@ -269,6 +290,7 @@ $lang = array(
 	),
 	'addpage_gofront' => array (
 		'no' => 'Gå til metadata liste',
+		'nn' => 'Gå til liste over metadata',
 		'da' => 'Gå til metada listen',
 		'en' => 'Go to metadata list',
 		'sv' => 'Gå till metadatalistan',

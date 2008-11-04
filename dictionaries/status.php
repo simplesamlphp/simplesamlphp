@@ -3,6 +3,7 @@
 $lang = array(
 	'header_saml20_sp' => array (
 		'no' => 'SAML 2.0 SP Demo Eksempel',
+		'nn' => 'Demonstrasjon av SAML 2.0 SP',
 		'da' => 'SAML 2.0 tjenesteudbyder-demo',
 		'en' => 'SAML 2.0 SP Demo Example',
 		'sv' => 'SAML 2.0 SP demoexempel',
@@ -16,6 +17,7 @@ $lang = array(
 	),
 	'header_shib' => array (
 		'no' => 'Shibboleth Demo',
+		'nn' => 'Demonstrasjon av Shibboleth',
 		'da' => 'Shibboleth-demo',
 		'en' => 'Shibboleth demo',
 		'sv' => 'Shibboleth demoexempel',
@@ -29,6 +31,7 @@ $lang = array(
 	),
 	'header_wsfed' => array (
 		'no' => 'WS-Fed SP Demo Eksempel',
+		'nn' => 'Demonstrasjon av WS-Federation SP',
 		'da' => 'WS-Federation tjenesteudbyder-demo',
 		'en' => 'WS-Fed SP Demo Example',
 		'sv' => 'WS-Fed SP demoexempel',
@@ -42,6 +45,7 @@ $lang = array(
 	),
 	'header_diagnostics' => array (
 		'no' => 'SimpleSAMLphp diagnostikk',
+		'nn' => 'Feilsøking av simpleSAMLphp',
 		'da' => 'simpleSAMLphp diagnostics',
 		'en' => 'SimpleSAMLphp Diagnostics',
 		'sv' => 'SimpleSAMLphp diagnostik ',
@@ -55,6 +59,7 @@ $lang = array(
 	),
 	'some_error_occured' => array (
 		'no' => 'En feil har oppstått',
+		'nn' => 'Ein feilsituasjon oppsto',
 		'da' => 'En fejl opstod.',
 		'en' => 'Some error occured',
 		'sv' => 'Ett fel har inträffat',
@@ -68,6 +73,7 @@ $lang = array(
 	),
 	'intro' => array (
 		'no' => 'Hei, dette er en statusside på simpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon.',
+		'nn' => 'Hei, dette er statussida for simpleSAMLphp.  Her kan du sjå om sesjonen din er gyldig, kor lenge han varer og du kan sjå alle attributt som blir brukte i sesjonen din.',
 		'da' => 'Dette er statussiden for simpleSAMLphp.Du kan se om din session er udløbet, hvor lang tid der er til at den udløber samt alle øvrige oplysninger om din session.',
 		'en' => 'Hi, this is the status page of simpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that is attached to your session.',
 		'sv' => 'Detta är stutussidan för simpleSAMLphp. Här kan du se om sessions giltig har gått ut, hur länge det dröjer innan den går ut samt alla attribut som tillhör sessionen.',
@@ -81,6 +87,7 @@ $lang = array(
 	),
 	'validfor' => array (
 		'no' => 'Din sesjon er gyldig i %SECONDS% sekunder fra nå.',
+		'nn' => 'Din sesjon er gyldig i %SECONDS% sekund frå no.',
 		'da' => 'Du har %SECONDS% tilbage af din session',
 		'en' => 'Your session is valid for %SECONDS% seconds from now.',
 		'sv' => 'Din session är giltig för %SECONDS% sekunder från nu.',
@@ -94,6 +101,7 @@ $lang = array(
 	),
 	'sessionsize' => array (
 		'no' => 'Sesjons størrelse: %SIZE%',
+		'nn' => 'Sesjonsstorleik: %SIZE%',
 		'da' => 'Sessionsstørrelse: %SIZE%',
 		'en' => 'Session size: %SIZE%',
 		'sv' => 'Sessionsstorlek: %SIZE%',
@@ -107,6 +115,7 @@ $lang = array(
 	),
 	'attributes_header' => array (
 		'no' => 'Dine attributter',
+		'nn' => 'Dine attributtar',
 		'da' => 'Dine oplysninger',
 		'en' => 'Your attributes',
 		'sv' => 'Dina attribut',
@@ -120,6 +129,7 @@ $lang = array(
 	),
 	'logout' => array (
 		'no' => 'Logg ut',
+		'nn' => 'Logg ut',
 		'da' => 'Log ud',
 		'en' => 'Logout',
 		'sv' => 'Logga ut',

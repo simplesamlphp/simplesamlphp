@@ -16,7 +16,7 @@ $lang = array(
 		'sl' => '<strong>Čestitamo!</strong> Uspešno ste namestili simpleSAMLphp. Na tej strani se nahajajo povezave do vzorčnih nastavitev, diagnostike, metapodatkov in s tem povezane dokumentacije.',
 		'hr' => '<strong>Čestitamo</strong>, uspješno ste instalirali simpleSAMLphp. Ovo je početna stranica na kojoj možete pronaći primjere, dijagnostiku i metapodatke, kao i linkove na relevantnu dokumentaciju.',
 		'hu' => '<strong>Gratulálunk</strong>, a simpleSAMLphp sikeresen települt. Ez a működő rendszer nyitóoldala, ahol teszt példák, diagnosztikai eszközök, metaadatok és dokumentációk találhatók',
-		'pt' => '<strong>Parabéns</strong>, o software simpleSAMLphp foi instalado com sucesso. Esta é a página inicial da sua instalação, onde encontrará ligações para páginas de teste, de diagnóstico, de metadata e de documentação relevante.    ',
+		'pt' => '<strong>Parabéns</strong>, o software simpleSAMLphp foi instalado com sucesso. Esta é a página inicial da sua instalação, onde encontrará ligações para páginas de teste, de diagnóstico, de metadados e de documentação relevante.    ',
 		'pt-BR' => '<strong>Parabéns</strong>, você instalou com sucesso o simpleSAMLphp. Esta é a página de introdução de sua instalação, onde você encontrará links para as páginas de teste, diagnóstico, metadata e para a documentação.',
 	),
 	'useful_links_header' => array (
@@ -52,7 +52,7 @@ $lang = array(
 		'sl' => 'Metapodatki',
 		'hr' => 'Metapodaci',
 		'hu' => 'Metaadat',
-		'pt' => 'Metadata  ',
+		'pt' => 'Metadados  ',
 		'pt-BR' => 'Metadata',
 	),
 	'doc_header' => array (
@@ -374,7 +374,7 @@ $lang = array(
 		'sl' => 'Pregled metapodatkov in njihova diagnostika.',
 		'hr' => 'Pregled metapodataka o vašoj instalaciji. Dijagnostika datoteka s metapodacima.',
 		'hu' => 'Metaadat áttekintés. Vizsgálja át metaadat állományait',
-		'pt' => 'Diagnósticos: ficheiros de metadata, vista geral da metadata da sua instalação',
+		'pt' => 'Diagnósticos: ficheiros de metadados, vista geral de metadados da sua instalação',
 		'pt-BR' => 'Metadados para sua instalação. Diagnosticar seus arquivos metadados',
 	),
 	'link_meta_saml2sphosted' => array (
@@ -392,7 +392,7 @@ $lang = array(
 		'sl' => 'Metapodatki za SAML 2.0 SP (samodejno zgenerirani)',
 		'hr' => 'Metapodaci za lokalni SAML 2.0 SP (automatski generirani)',
 		'hu' => 'Ezen a gépen futó (hosted) SAML 2.0 alkalmazásszolgáltató (SP) metaadat (automatikusan generált)',
-		'pt' => 'Metadata do fornecedor de serviço (SP) SAML 2.0 local (gerado automaticamente)',
+		'pt' => 'Metadados do fornecedor de serviço (SP) SAML 2.0 local (gerado automaticamente)',
 		'pt-BR' => 'Hospedado SAML 2.0 Service Provider Metadata (gerado automaticamente)',
 	),
 	'link_meta_saml2idphosted' => array (
@@ -410,7 +410,7 @@ $lang = array(
 		'sl' => 'Metapodatki za SAML 2.0 IdP (samodejno zgenerirani)',
 		'hr' => 'Metapodaci za lokalni SAML 2.0 IdP (automatski generirani) ',
 		'hu' => 'Ezen a gépen futó (hosted) SAML 2.0 személyazonosság-szolgáltató (IdP) metaadat (automatikusan generált)',
-		'pt' => 'Metadata do fornecedor de identidade (IdP) SAML 2.0 local (gerado automaticamente)',
+		'pt' => 'Metadados do fornecedor de identidade (IdP) SAML 2.0 local (gerado automaticamente)',
 		'pt-BR' => 'Hospedado SAML 2.0 Identity Provider Metadata (gerado automaticamente)',
 	),
 	'link_meta_shib13sphosted' => array (
@@ -428,7 +428,7 @@ $lang = array(
 		'sl' => 'Metapodatki za Shibboleth 1.3 SP (samodejno zgenerirani)',
 		'hr' => 'Metapodaci za lokalni Shibboleth 1.3 SP (automatski generirani)',
 		'hu' => 'Ezen a gépen futó (hosted) Shibboleth 1.3 alkalmazásszolgáltató (SP) metaadat (automatikusan generált)',
-		'pt' => 'Metadata do fornecedor de serviço (SP) Shibboleth 1.3 local (gerado automaticamente)',
+		'pt' => 'Metadados do fornecedor de serviço (SP) Shibboleth 1.3 local (gerado automaticamente)',
 		'pt-BR' => 'Hospedado Shibboleth 1.3 Service Provider Metadata (gerado automaticamente)',
 	),
 	'link_meta_shib13idphosted' => array (
@@ -446,7 +446,7 @@ $lang = array(
 		'sl' => 'Metapodatki za Shibboleth 1.3 IdP (samodejno zgenerirani)',
 		'hr' => 'Metapodaci za lokalni Shibboleth 1.3 IdP (automatski generirani)',
 		'hu' => 'Ezen a gépen futó (hosted) Shibboleth 1.3 személyazonosság-szolgáltató (IdP) metaadat (automatikusan generált)',
-		'pt' => 'Metadata do fornecedor de identidade (IdP) Shibboleth 1.3 local (gerado automaticamente)',
+		'pt' => 'Metadados do fornecedor de identidade (IdP) Shibboleth 1.3 local (gerado automaticamente)',
 		'pt-BR' => 'Hospedado Shibboleth 1.3 Identity Provider Metadata (gerado automaticamente)',
 	),
 	'link_cleardiscochoices' => array (
@@ -480,7 +480,7 @@ $lang = array(
 		'sl' => 'XML v simpleSAMLphp pretvornik metapodatkov',
 		'hr' => 'XML u simpleSAMLphp pretvorba metapodataka.',
 		'hu' => 'Metaadatok konvertálása SAML2 XML-ből simpleSAMLphp-ba ',
-		'pt' => 'Conversor de metadata de XML para simpleSAMLphp',
+		'pt' => 'Conversor de metadados de XML para simpleSAMLphp',
 		'pt-BR' => 'Conversor de XML para metadata do simpleSAMLphp',
 	),
 	'link_doc_install' => array (
@@ -621,7 +621,7 @@ $lang = array(
 		'sl' => 'Objavi moj SAML 2.0 IdP metadata v prednastavljen MetaShare.',
 		'hr' => 'Objavi moje SAML 2.0 IdP metapodatke na MetaShare servisu',
 		'hu' => 'Publikálja a SAML 2.0 IdP metadatokat a MetaShare-be',
-		'pt' => 'Publicar metadata do IdP SAML 2.0 no MetaShare configurado',
+		'pt' => 'Publicar metadados do IdP SAML 2.0 no MetaShare configurado',
 		'pt-BR' => 'Publicar meu SAML 2.0 IdP metadata para o MetaShare configurado',
 	),
 	'link_publish_saml20-sp' => array (
@@ -636,7 +636,7 @@ $lang = array(
 		'sl' => 'Objavi moj SAML 2.0 SP metadata v prednastavljen MetaShare.',
 		'hr' => 'Objavi moje SAML 2.0 SP metapodatke na MetaShare servisu',
 		'hu' => 'Publikálja a SAML 2.0 SP metadatokat a MetaShare-be',
-		'pt' => 'Publicar metadata do SP SAML 2.0 no MetaShare configurado',
+		'pt' => 'Publicar metadados do SP SAML 2.0 no MetaShare configurado',
 		'pt-BR' => 'Publicar meu SAML 2.0 SP metadata para o MetaShare configurado',
 	),
 	'link_publish_shib13-idp' => array (
@@ -651,7 +651,7 @@ $lang = array(
 		'sl' => 'Objavi moj Shib 1.3 IdP metadata v prednastavljen MetaShare.',
 		'hr' => 'Objavi moje Shib 1.3 IdP metapodatke na MetaShare servisu',
 		'hu' => 'Publikálja a Shibboleth 1.3 IdP metadatokat a MetaShare-be',
-		'pt' => 'Publicar metadata de IdP Shib 1.3 no MetaShare configurado',
+		'pt' => 'Publicar metadados de IdP Shib 1.3 no MetaShare configurado',
 		'pt-BR' => 'Publicar meu Shib 1.3 IdP metadata para o MetaShare configurado',
 	),
 	'link_publish_shib13-sp' => array (
@@ -666,7 +666,7 @@ $lang = array(
 		'sl' => 'Objavi moj Shib 1.3 SP metadata v prednastavljen MetaShare.',
 		'hr' => 'Objavi moje Shib 1.3 SP metapodatke na MetaShare servisu',
 		'hu' => 'Publikálja a Shibboleth 1.3 SP metadatokat a MetaShare-be',
-		'pt' => 'Publicar metadata de SP Shib 1.3 no MetaShare configurado',
+		'pt' => 'Publicar metadados de SP Shib 1.3 no MetaShare configurado',
 		'pt-BR' => 'Publicar meu Shib 1.3 SP metadata para o MetaShare configurado',
 	),
 

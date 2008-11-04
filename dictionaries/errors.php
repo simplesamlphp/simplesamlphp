@@ -1276,6 +1276,7 @@ $lang = array(
 	),
 	'title_WRONGUSERPASS' => array (
 		'no' => 'Feil brukernavn og passord',
+		'nn' => 'Feil brukarnamn eller passord',
 		'da' => 'Forkert brugernavn eller kodeord',
 		'en' => 'Incorrect username or password',
 		'de' => 'Nutzername oder Passwort falsch.',
@@ -1290,6 +1291,7 @@ $lang = array(
 	),
 	'descr_WRONGUSERPASS' => array (
 		'no' => 'Enten var brukernavnet, eller kombinasjonen med brukernavn og passord feil. Sjekk brukernavn og passord og prøv igjen.',
+		'nn' => 'Fann ingen brukar med det brukarnamnet du oppgav, eller passordet var feil.  Sjekk brukarnamn og prøv igjen.',
 		'da' => 'Enten kunne brugeren ikke findes eller også var kodeordet forkert. Prøv igen.',
 		'en' => 'Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again.',
 		'de' => 'Entweder es konnte kein Nutzer mit dem angegebenen Nutzernamen gefunden werden oder das Passwort ist falsch. Überprüfen sie die Zugangsdaten und probieren sie es nochmal.',
@@ -1304,6 +1306,7 @@ $lang = array(
 	),
 	'title_OPENIDWRONG' => array (
 		'no' => 'Feil identitet for OpenID',
+		'nn' => 'Feil identitet for OpenID',
 		'en' => 'Wrong identity for OpenID',
 		'de' => 'Falsche Identität für OpenID',
 		'sv' => 'Fel identitet för OpenID',
@@ -1316,6 +1319,7 @@ $lang = array(
 	),
 	'descr_OPENIDWRONG' => array (
 		'no' => 'OpenID-en som ble etterspurt stemmer ikke overens med identiteten du er logget inn med.',
+		'nn' => 'OpenID sjekka om du hadde riktig identiete, men du var logga inn på ein annan konto.',
 		'en' => 'The OpenID requested you to verify an identity, and you are logged in with another identity.',
 		'de' => 'OpenID wollte eine bestimmte Identität bestätigt haben, sie sind aber mit einer anderen Identität (anderem Nutzernamen) angemeldet.',
 		'sv' => 'OepnID försöker verfiera dig med en identitet men du är inloggad med en annan.',

@@ -88,7 +88,7 @@ $lang = array(
 		'sl' => 'Pravkar se nameravate prijaviti v storitev SPNAME. Med postopkom prijave bo IdP posredoval atribute, ki vsebujejo informacije o vaši identiteti, tej storitvi. Ali se s tem strinjate? ',
 		'hr' => 'U tijeku je proces prijave za pristup servisu SPNAME. Servis zahtjeva da IDPNAME isporuči dolje navedene podatke. Slažete li se s time?',
 		'hu' => 'Ön azonosítja magát ehhez a szolgáltatáshoz SPNAME. Az azonosítás során IDPNAME az alábbi adatokat fogja küldeni a szolgáltatásnak. Engedélyezi?',
-		'pt' => 'Está prestes a efectuar a entrada no serviço SPNAME. A função deste serviço é SPDESC e necessita que a informação abaixo seja transferida para o IDPNAME. Aceita esta transferência de informação?',
+		'pt' => 'Está prestes a efectuar a entrada no serviço SPNAME. Este serviço é descrito como SPDESC e necessita que a informação apresentada abaixo seja transferida do IDPNAME. Aceita esta transferência de informação?',
 		'pt-BR' => 'Você está prestes a acessar o serviço SPNAME. O serviço exige que as informações a seguir sejam transferidas do IDPNAME. Você aceita isso?',
 	),
 	'consent_privacypolicy' => array (

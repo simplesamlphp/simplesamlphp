@@ -142,6 +142,7 @@ $lang = array(
 	),
 	'confirm_question' => array (
 		'no' => 'Ønsker du å bekrefte din identitets-url (%OPENIDURL%) med %SITEURL%?',
+		'nn' => 'Vil du stadfesta din identitetsURL  (%OPENIDURL%) med %SITEURL%?    ',
 		'da' => 'Ønsker du at bekræfte din identitetsurl (%OPENIDURL%) overfor %SITEURL%?',
 		'en' => 'Do you wish to confirm your identity URL (%OPENIDURL%) with %SITEURL%?',
 		'sv' => 'Vill du bekräfta din URL (%OPENIDURL%) med %SITEURL%?',
@@ -196,6 +197,8 @@ $lang = array(
 		'pt-BR' => 'Não confirmar',
 	),
 	'trustlist_desc' => array (
+		'no' => 'Disse avgjørelsene vil bli husket for denne sesjonen. Alle avgjørelser blir glemt etter at sesjonen ender.',
+		'nn' => 'Alle avgjerder er lagra i denne sesjonen, men blir sletta når sesjonen er over.',
 		'da' => 'Dine beslutninger huskes i denne session. Alle beslutninger er glemt når sessionen er slut.',
 		'en' => 'These decisions have been remembered for this session. All decisions will be forgotten when the session ends.',
 		'sv' => 'Dessa beslut har sparats för denna session. Alla beslut kommer att glömmas när sessionen avslutas.',
@@ -237,6 +240,7 @@ $lang = array(
 	),
 	'trustlist_remove' => array (
 		'no' => 'Fjern valgte',
+		'nn' => 'Ta vekk valde tenester',
 		'da' => 'Fjern valgte',
 		'en' => 'Remove Selected',
 		'sv' => 'Ta bort vald',
@@ -250,6 +254,7 @@ $lang = array(
 	),
 	'trustlist_refresh' => array (
 		'no' => 'Oppdatér liste',
+		'nn' => 'Oppdater lista',
 		'da' => 'Genopfrisk siden',
 		'en' => 'Refresh List',
 		'sv' => 'Uppdatera listan',
@@ -263,6 +268,7 @@ $lang = array(
 	),
 	'trustlist_forget' => array (
 		'no' => 'Glem alle',
+		'nn' => 'Gløym alle',
 		'da' => 'Glem alt',
 		'en' => 'Forget All',
 		'sv' => 'Glöm alla',
@@ -275,6 +281,7 @@ $lang = array(
 		'pt-BR' => 'Esquecer Tudo',
 	),
 	'trustlist_nosites' => array (
+		'nn' => 'Ingen tenester er lagra for denne sesjonen.  Når du logger inn på ei teneste, kan du velja å leggja ho inn på lista over tiltrudde partnarar ved å velja <q>Hugs denne avgjerda</q>.',
 		'da' => 'Der er ikke gemt  nogle sites i denne session. Når authenticater mod et site kan du vælge at gemme sitet i denne liste ved at vælge <q>Gem mit valg</q>',
 		'en' => 'No sites are remembered for this session. When you authenticate with a site, you can choose to add it to this list by choosing <q>Remember this decision</q>.',
 		'sv' => 'Inga sajter är sparade i denna session. När du loggar in på en sajt kan du välja om du ska lägga den i listan genom att välja <q>Spara detta beslut</q>.',
