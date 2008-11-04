@@ -108,8 +108,8 @@ class SimpleSAML_Logger {
 		 */
 		self::$logLevel = $config->getValue('logging.level',LOG_INFO);
 
-		/* If 'session.handler' is NULL or unset, then we want
-		 * to fall back to the default PHP session handler.
+		/* If 'logging.handler' is NULL or unset, then we want
+		 * to fall back to the default logging handler.
 		 */
 		if(is_null($handler)) {
 			$handler = 'syslog';
