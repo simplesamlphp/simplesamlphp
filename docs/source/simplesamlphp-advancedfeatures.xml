@@ -7,7 +7,7 @@
   <articleinfo>
     <date>...</date>
 
-    <pubdate>Thu Aug 28 16:24:40 2008</pubdate>
+    <pubdate>Tue Nov  4 06:50:31 2008</pubdate>
 
     <author>
       <firstname>Andreas Åkre</firstname>
@@ -242,6 +242,35 @@ $remoteidp = $session-&gt;getIdp();
           some examples.</para>
         </listitem>
       </itemizedlist>
+    </section>
+
+    <section>
+      <title>In which order are the attribute tweaking functions
+      executed?</title>
+
+      <para>The order is:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>IdP specific attributemap</para>
+        </listitem>
+
+        <listitem>
+          <para>SP specific attributemap</para>
+        </listitem>
+
+        <listitem>
+          <para>IdP specific attributealter</para>
+        </listitem>
+
+        <listitem>
+          <para>SP specific attributealter</para>
+        </listitem>
+
+        <listitem>
+          <para>SP specific attribute filter</para>
+        </listitem>
+      </orderedlist>
     </section>
   </section>
 
