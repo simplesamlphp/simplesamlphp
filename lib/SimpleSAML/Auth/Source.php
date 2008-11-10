@@ -178,6 +178,81 @@ abstract class SimpleSAML_Auth_Source {
 		return self::parseAuthSource($authId, $authConfig);
 	}
 
+
+	/**
+	 * Add a logout callback association.
+	 *
+	 * This function adds a logout callback association, which allows us to initiate
+	 * a logout later based on the $assoc-value.
+	 *
+	 * Note that logout-associations exists per authentication source. A logout association
+	 * from one authentication source cannot be called from a different authentication source.
+	 *
+	 * @param string $assoc  The identifier for this logout association.
+	 * @param array $state  The state array passed to the authenticate-function.
+	 */
+	protected function addLogoutCallback($assoc, $state) {
+		assert('is_string($assoc)');
+		assert('is_array($state)');
+
+		if (!array_key_exists('LogoutCallback', $state)) {
+			/* The authentication requester doesn't have a logout callback. */
+			return;
+		}
+		$callback = $state['LogoutCallback'];
+
+		if (array_key_exists('LogoutCallbackState', $state)) {
+			$callbackState = $state['LogoutCallbackState'];
+		} else {
+			$callbackState = array();
+		}
+
+		$id = strlen($this->authId) . ':' . $this->authId . $assoc;
+
+		$data = array(
+			'callback' => $callback,
+			'state' => $callbackState,
+			);
+
+
+		$session = SimpleSAML_Session::getInstance();
+		$session->setData('SimpleSAML_Auth_Source.LogoutCallbacks', $id, $data,
+			SimpleSAML_Session::DATA_TIMEOUT_LOGOUT);
+	}
+
+
+	/**
+	 * Call a logout callback based on association.
+	 *
+	 * This function calls a logout callback based on an association saved with
+	 * addLogoutCallback(...).
+	 *
+	 * This function always returns.
+	 *
+	 * @param string $assoc  The logout association which should be called.
+	 */
+	protected function callLogoutCallback($assoc) {
+		assert('is_string($assoc)');
+
+		$id = strlen($this->authId) . ':' . $this->authId . $assoc;
+
+		$session = SimpleSAML_Session::getInstance();
+
+		$data = $session->getData('SimpleSAML_Auth_Source.LogoutCallbacks', $id);
+		if ($data === NULL) {
+			return;
+		}
+
+		assert('is_array($data)');
+		assert('array_key_exists("callback", $data)');
+		assert('array_key_exists("state", $data)');
+
+		$callback = $data['callback'];
+		$callbackState = $data['state'];
+
+		call_user_func($callback, $callbackState);
+	}
+
 }
 
 ?>

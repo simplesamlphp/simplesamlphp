@@ -37,6 +37,10 @@ class SimpleSAML_Auth_Default {
 			'SimpleSAML_Auth_Default.ErrorURL' => $errorURL,
 			'LoginCompletedHandler' => array(get_class(), 'loginCompleted'),
 			'LoginFailedHandler' => array(get_class(), 'loginFailed'),
+			'LogoutCallback' => array(get_class(), 'logoutCallback'),
+			'LogoutCallbackState' => array(
+				'SimpleSAML_Auth_Default.logoutSource' => $authId,
+				),
 			);
 
 		if (array_key_exists('SPMetadata', $hints)) {
@@ -161,6 +165,31 @@ class SimpleSAML_Auth_Default {
 
 		/* Redirect... */
 		SimpleSAML_Utilities::redirect($returnURL);
+	}
+
+
+	/**
+	 * Called when the authentication source receives an external logout request.
+	 *
+	 * @param array $state  State array for the logout operation.
+	 */
+	public static function logoutCallback($state) {
+		assert('is_array($state)');
+		assert('array_key_exists("SimpleSAML_Auth_Default.logoutSource", $state)');
+
+		$source = $state['SimpleSAML_Auth_Default.logoutSource'];
+
+		$session = SimpleSAML_Session::getInstance();
+		$authId = $session->getAuthority();
+
+		if ($authId !== $source) {
+			SimpleSAML_Logger::warning('Received logout from different authentication source ' .
+				'than the current. Current is ' . var_export($authId, TRUE) .
+				'. Logout source is ' . var_export($source, TRUE) . '.');
+			return;
+		}
+
+		$session->doLogout();
 	}
 
 }
