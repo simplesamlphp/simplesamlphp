@@ -77,6 +77,12 @@ class SimpleSAML_Session {
 
 
 	/**
+	 * Logout state when authenticated with authentication sources.
+	 */
+	private $logoutState;
+
+
+	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
 	private function __construct() {
@@ -405,6 +411,7 @@ class SimpleSAML_Session {
 		$this->authenticated = FALSE;
 		$this->authority = NULL;
 		$this->attributes = NULL;
+		$this->logoutState = NULL;
 	}
 
 
@@ -814,6 +821,34 @@ class SimpleSAML_Session {
 	 */
 	private function addShutdownFunction() {
 		register_shutdown_function(array($this, 'saveSession'));
+	}
+
+
+	/**
+	 * Set the logout state for this session.
+	 *
+	 * @param array $state  The state array.
+	 */
+	public function setLogoutState($state) {
+		assert('is_array($state)');
+
+		$this->dirty = TRUE;
+		$this->logoutState = $state;
+	}
+
+
+	/**
+	 * Retrieve the logout state for this session.
+	 *
+	 * @return array  The logout state. If no logout state is set, an empty array will be returned.
+	 */
+	public function getLogoutState() {
+
+		if ($this->logoutState === NULL) {
+			return array();
+		}
+
+		return $this->logoutState;
 	}
 
 }

@@ -66,6 +66,7 @@ class SimpleSAML_Auth_Default {
 		assert('array_key_exists("SimpleSAML_Auth_Default.ReturnURL", $state)');
 		assert('array_key_exists("SimpleSAML_Auth_Default.id", $state)');
 		assert('array_key_exists("Attributes", $state)');
+		assert('!array_key_exists("LogoutState", $state) || is_array($state["LogoutState"])');
 
 		$returnURL = $state['SimpleSAML_Auth_Default.ReturnURL'];
 
@@ -75,6 +76,10 @@ class SimpleSAML_Auth_Default {
 		$session->setAttributes($state['Attributes']);
 		if(array_key_exists('Expires', $state)) {
 			$session->setSessionDuration($state['Expires'] - time());
+		}
+
+		if (array_key_exists('LogoutState', $state)) {
+			$session->setLogoutState($state['LogoutState']);
 		}
 
 		/* Redirect... */
@@ -121,14 +126,14 @@ class SimpleSAML_Auth_Default {
 	public static function initLogout($returnURL) {
 		assert('is_string($returnURL)');
 
-		$state = array(
-			'SimpleSAML_Auth_Default.ReturnURL' => $returnURL,
-			'LogoutCompletedHandler' => array(get_class(), 'logoutCompleted'),
-			);
-
 		$session = SimpleSAML_Session::getInstance();
+
+		$state = $session->getLogoutState();
 		$authId = $session->getAuthority();
 		$session->doLogout();
+
+		$state['SimpleSAML_Auth_Default.ReturnURL'] = $returnURL;
+		$state['LogoutCompletedHandler'] = array(get_class(), 'logoutCompleted');
 
 		$as = SimpleSAML_Auth_Source::getById($authId);
 		if ($as === NULL) {
