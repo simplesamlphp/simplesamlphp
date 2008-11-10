@@ -55,7 +55,7 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$this->entityId = $config['entityId'];
 		} else {
 			$this->entityId = SimpleSAML_Module::getModuleURL('saml2/sp/metadata.php?source=' .
-				urlencode($this->authId) . '&tmp');
+				urlencode($this->authId));
 		}
 
 		if (array_key_exists('idp', $config)) {
