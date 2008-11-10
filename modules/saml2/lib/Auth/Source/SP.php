@@ -104,6 +104,28 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		return $this->entityId;
 	}
 
+
+	/**
+	 * Check if the IdP entity id is allowed to authenticate users for this authentication source.
+	 *
+	 * @param string $idpEntityId  The entity id of the IdP.
+	 * @return boolean  TRUE if it is valid, FALSE if not.
+	 */
+	public function isIdPValid($idpEntityId) {
+		assert('is_string($idpEntityId)');
+
+		if ($this->idp === NULL) {
+			/* No IdP configured - all are allowed. */
+			return TRUE;
+		}
+
+		if ($this->idp === $idpEntityId) {
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
 }
 
 ?>

@@ -41,7 +41,11 @@ if($result === FALSE) {
 /* The response should include the entity id of the IdP. */
 $idp = $authnResponse->getIssuer();
 
-/* TODO: Check that IdP is the correct IdP. */
+/* Check if the IdP is allowed to authenticate users for this authentication source. */
+if (!$source->isIdPValid($idp)) {
+	throw new Exception('Invalid IdP responded for authentication source with id ' . $sourceId .
+		'. The IdP was ' . var_export($idp, TRUE));
+}
 
 /* TODO: Save NameID & SessionIndex for logout. */
 
