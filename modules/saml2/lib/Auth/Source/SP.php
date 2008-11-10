@@ -89,7 +89,7 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$req = $sr->generate($this->entityId, $idpMetadata['SingleSignOnService']);
 
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-		$httpredirect->sendMessage($req, $this->entityid, $this->idp, $id);
+		$httpredirect->sendMessage($req, $this->entityId, $this->idp, $id);
 		exit(0);
 	}
 
