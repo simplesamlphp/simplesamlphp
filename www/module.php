@@ -50,6 +50,11 @@ try {
 	$url = $_SERVER['PATH_INFO'];
 	assert('substr($url, 0, 1) === "/"');
 
+	/* Clear the PATH_INFO option, so that a script can detect whether it is called
+	 * with anything following the '.php'-ending.
+	 */
+	unset($_SERVER['PATH_INFO']);
+
 	$modEnd = strpos($url, '/', 1);
 	if ($modEnd === FALSE) {
 		/* The path must always be on the form /module/. */
@@ -79,6 +84,24 @@ try {
 	}
 
 	$path = SimpleSAML_Module::getModuleDir($module) . '/www/' . $url;
+
+	/* Check for '.php/' in the path, the presence of which indicates that another php-script
+	 * should handle the request.
+	 */
+	for ($phpPos = strpos($path, '.php/'); $phpPos !== FALSE; $phpPos = strpos($path, '.php/', $phpPos + 1)) {
+
+		$newPath = substr($path, 0, $phpPos + 4);
+		$paramPath = substr($path, $phpPos + 4);
+
+		if (is_file($newPath)) {
+			/* $newPath points to a normal file. Point execution to that file, and
+			 * save the remainder of the path in PATH_INFO.
+			 */
+			$path = $newPath;
+			$_SERVER['PATH_INFO'] = $paramPath;
+			break;
+		}
+	}
 
 	if ($path[strlen($path)-1] === '/') {
 		/* Path ends with a slash - directory reference. Attempt to find index file
