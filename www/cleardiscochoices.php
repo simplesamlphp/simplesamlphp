@@ -10,22 +10,12 @@ require_once('_include.php');
 $config = SimpleSAML_Configuration::getInstance();
 $cookiePath = '/' . $config->getBaseUrl();
 
-/* List over the cookies we should delete. */
-$deleteCookies = array(
-	'idpdisco_saml20_rememberchoice',
-	'idpdisco_shib13_rememberchoice',
-	);
-
-error_log(var_export($_COOKIE, TRUE));
-
-/* Delete the cookies. */
-foreach($deleteCookies as $cookieName) {
-	if(!array_key_exists($cookieName, $_COOKIE)) {
-		/* Cookie doesn't exist. */
+/* We delete all cookies which starts with 'idpdisco_' */
+foreach($_COOKIE as $cookieName => $value) {
+	if (substr($cookieName, 0, 9) !== 'idpdisco_') {
+		/* Not a idpdisco cookie. */
 		continue;
 	}
-
-	error_log('Deleting: ' . $cookieName);
 
 	/* Delete the cookie. We delete it once without the secure flag and once with the secure flag. This
 	 * ensures that the cookie will be deleted in any case.
