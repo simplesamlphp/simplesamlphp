@@ -19,11 +19,33 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 	 */
 	const STAGE_SENT = 'saml2:SP-SSOSent';
 
+	/**
+	 * The string used to identify our logout state.
+	 */
+	const STAGE_LOGOUTSENT = 'saml2:SP-LogoutSent';
+
 
 	/**
 	 * The key of the AuthId field in the state.
 	 */
 	const AUTHID = 'saml2:AuthId';
+
+
+	/**
+	 * The key for the IdP entity id in the logout state.
+	 */
+	const LOGOUT_IDP = 'saml2:SP-Logout-IdP';
+
+	/**
+	 * The key for the NameID in the logout state.
+	 */
+	const LOGOUT_NAMEID = 'saml2:SP-Logout-NameID';
+
+
+	/**
+	 * The key for the SessionIndex in the logout state.
+	 */
+	const LOGOUT_SESSIONINDEX = 'saml2:SP-Logout-SessionIndex';
 
 
 	/**
@@ -124,6 +146,62 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		}
 
 		return FALSE;
+	}
+
+
+	/**
+	 * Handle logout operation.
+	 *
+	 * @param array $state  The logout state.
+	 */
+	public function logout(&$state) {
+		assert('is_array($state)');
+		assert('array_key_exists(self::LOGOUT_IDP, $state)');
+		assert('array_key_exists(self::LOGOUT_NAMEID, $state)');
+		assert('array_key_exists(self::LOGOUT_SESSIONINDEX, $state)');
+
+		$id = SimpleSAML_Auth_State::saveState($state, self::STAGE_LOGOUTSENT);
+
+		$idp = $state[self::LOGOUT_IDP];
+		$nameId = $state[self::LOGOUT_NAMEID];
+		$sessionIndex = $state[self::LOGOUT_SESSIONINDEX];
+
+		$config = SimpleSAML_Configuration::getInstance();
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+
+		$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
+		$req = $lr->generate($this->entityId, $idp, $nameId, $sessionIndex, 'SP');
+
+		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
+		$httpredirect->sendMessage($req, $this->entityId, $idp, $id, 'SingleLogoutService', 'SAMLRequest', 'SP');
+
+		exit(0);
+	}
+
+
+	/**
+	 * Called when we are logged in.
+	 *
+	 * @param string $idpEntityId  Entity id of the IdP.
+	 * @param array $state  The state of the authentication operation.
+	 */
+	public function onLogin($idpEntityId, $state) {
+		assert('is_string($idpEntityId)');
+		assert('is_array($state)');
+
+		$this->addLogoutCallback($idpEntityId, $state);
+	}
+
+
+	/**
+	 * Called when we receive a logout request.
+	 *
+	 * @param string $idpEntityId  Entity id of the IdP.
+	 */
+	public function onLogout($idpEntityId) {
+		assert('is_string($idpEntityId)');
+
+		$this->callLogoutCallback($idpEntityId);
 	}
 
 }

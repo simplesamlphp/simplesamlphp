@@ -47,7 +47,15 @@ if (!$source->isIdPValid($idp)) {
 		'. The IdP was ' . var_export($idp, TRUE));
 }
 
-/* TODO: Save NameID & SessionIndex for logout. */
+/* We need to save the NameID and SessionIndex for logout. */
+$logoutState = array(
+	sspmod_saml2_Auth_Source_SP::LOGOUT_IDP => $idp,
+	sspmod_saml2_Auth_Source_SP::LOGOUT_NAMEID => $authnResponse->getNameID(),
+	sspmod_saml2_Auth_Source_SP::LOGOUT_SESSIONINDEX => $authnResponse->getSessionIndex(),
+	);
+$state['LogoutState'] = $logoutState;
+
+$source->onLogin($idp, $state);
 
 $state['Attributes'] = $authnResponse->getAttributes();
 SimpleSAML_Auth_Source::completeAuth($state);

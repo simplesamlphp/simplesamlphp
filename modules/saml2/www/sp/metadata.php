@@ -18,6 +18,7 @@ $entityId = $source->getEntityId();
 
 $metaArray = array(
 	'AssertionConsumerService' => SimpleSAML_Module::getModuleURL('saml2/sp/acs.php'),
+	'SingleLogoutService' => SimpleSAML_Module::getModuleURL('saml2/sp/logout.php/' . $sourceId),
 	);
 
 $metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
