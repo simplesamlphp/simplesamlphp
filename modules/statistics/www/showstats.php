@@ -14,7 +14,7 @@ function show($axis, $axispos, $values, $max) {
 	$nv = count($values);
 
 	$url = 'http://chart.apis.google.com/chart?' .
-		'chs=800x250' .
+		'chs=800x350' .
 		'&chd=' . encodedata($values) .
 		'&cht=lc' .
 		'&chxt=x,y' .
@@ -135,15 +135,21 @@ if (isset($_REQUEST['d'])) {
 }
 
 $maxvalue = 0;
+$maxvaluetime = 0;
 $debugdata = array();
 foreach($results AS $slot => $res) {
+	if ($res[$delimiter] > $maxvalue) { $maxvaluetime = prettydate($slot, $statrules[$rule]['slot'], $offset, $statrules[$rule]['dateformat-intra']); }
 	$maxvalue = max($res[$delimiter],$maxvalue);
+	
 	$debugdata[] = array(
 		prettydate($slot, $statrules[$rule]['slot'], $offset, $statrules[$rule]['dateformat-intra']),
 		$res[$delimiter]
 	);
 }
 $max = roof($maxvalue);
+
+#echo 'Maxvalue [' .  $maxvalue . '] at time ' . $maxvaluetime; exit;
+
 
 #echo '<pre>'; print_r($debugdata); exit;
 
@@ -156,7 +162,7 @@ foreach($results AS $slot => $res) {
 
 	#echo '<p>' . date($dateformat, $slot*$granularity) . ': ' . (isset($results[$slot]) ? $results[$slot] : 0);
 
-	$dataset[] = 100*$res[$delimiter] / $max;
+	$dataset[] = number_format(100*$res[$delimiter] / $max, 2);
 	foreach(array_keys($res) AS $nd) $availdelimiters[$nd] = 1;
 
 	#$dataset[] = (isset($results[$slot]) ? round(($results[$slot]*$perseconds/($granularity*$max))*100) : 0);
@@ -169,7 +175,7 @@ foreach($results AS $slot => $res) {
 	$lastslot = $slot;
 	$i++;
 }
-$axis[] = date($dateformat_intra, ($lastslot*$slotsize) + $slotsize);
+$axis[] = date($dateformat_intra, ($lastslot*$slotsize) + $slotsize - $offset);
 #echo "<p> ". ($lastslot+1) . " = " . date($dateformat_intra, (($lastslot+1)*$slotsize - $offset) ) . " ";
 
 #print_r($axis);
