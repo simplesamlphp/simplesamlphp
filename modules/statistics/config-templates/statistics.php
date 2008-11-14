@@ -10,6 +10,14 @@ $config = array (
 #	'inputfile' => '/Users/andreas/Desktop/simplesamlphp.stat.1',
 	'offset' => 60*60*1,			// Two hours offset to match epoch and norwegian winter time.
 	
+	/*
+	 * Do you want to generate statistics using the cron module? If so, specify which cron tag to use.
+	 * Examples: daily, weekly
+	 * To not run statistics in cron, set value to 
+	 *     'cron_tag' => NULL,
+	 */
+	'cron_tag' => 'daily',
+	
 	'statrules' => array(
 		'sso_hoursday' => array(
 			'name' 		=> 'Numer of SP logins (per 15 minutes for one day)',
