@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * The _include script registers a autoloader for the simpleSAMLphp libraries. It also
+ * initializes the simpleSAMLphp config class with the correct path.
+ */
+require_once('_include.php');
+
+
+/* Load simpleSAMLphp, configuration and metadata */
+$config = SimpleSAML_Configuration::getInstance();
+$session = SimpleSAML_Session::getInstance();
+
+if (!isset($session) || !$session->isValid('login-admin') ) {
+	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
+		array('RelayState' => SimpleSAML_Utilities::selfURL())
+	);
+}
+
+$cronconfig = $config->copyFromBase('cron', 'module_cron.php');
+
+$key = $cronconfig->getValue('key', '');
+$tags = $cronconfig->getValue('allowed_tags');
+
+$def = array(
+	'weekly' 	=> "22 0 * * 0",
+	'daily' 	=> "02 0 * * *",
+	'hourly'	=> "01 * * * *",
+	'default' 	=> "XXXXXXXXXX",
+);
+
+$urls = array();
+foreach ($tags AS $tag) {
+	$urls[] = array(
+		'href' => SimpleSAML_Module::getModuleURL('cron/cron.php?key=' . $key . '&amp;tag=' . $tag),
+		'title' => 'Run cron [' . $tag . ']',
+		'int' => (array_key_exists($tag, $def) ? $def[$tag] : $def['default']),
+	);
+}
+
+
+
+$t = new SimpleSAML_XHTML_Template($config, 'cron:croninfo-tpl.php');
+$t->data['urls'] = $urls;
+$t->show();
+
+
+?>
