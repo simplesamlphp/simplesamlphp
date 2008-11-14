@@ -46,7 +46,9 @@ function parse23($str) {
 $results = array();
 # Sat, 16 Feb 08 00:55:11  (23 chars)
 foreach ($logfile AS $logline) {
-	$datenumbers = 15;
+	$datenumbers = 19;
+	
+	if (!preg_match('/^[0-9]{4}/', $logline)) continue;
 
 	$datestr = substr($logline,0,$datenumbers);
 	#$datestr = substr($logline,0,23);
@@ -55,14 +57,23 @@ foreach ($logfile AS $logline) {
 	$restcols = split(' ', $restofline);
 	$action = $restcols[5];
 	
-#	print_r($restcols); exit;
+// 	print_r($timestamp);
+// 	print_r($restcols); if ($i++ > 5) exit;
 	
 	foreach ($statrules AS $rulename => $rule) {
 		$timeslot = floor($timestamp/$rule['slot']);
 		$fileslot = floor($timestamp/$rule['fileslot']);
-		if ($action !== $rule['action']) continue; 
+		
+		if (isset($rule['action'])) {
+			if ($action !== $rule['action']) continue; 
+		}
 		
 		$difcol = $restcols[$rule['col']];
+		$difcolsp = split('@', $difcol);
+		$difcol = $difcolsp[1];
+		
+// 		print(' foo: ' . $difcol . ' :  ' . $rule['col']); exit;
+		
 		$results[$rulename][$fileslot][$timeslot]['_']++;
 		$results[$rulename][$fileslot][$timeslot][$difcol]++;
 	}
@@ -72,7 +83,7 @@ foreach ($logfile AS $logline) {
 
 
 echo "Results:\n";
-print_r($results);
+#print_r($results);
 
 
 
