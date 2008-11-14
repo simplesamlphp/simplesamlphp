@@ -13,7 +13,7 @@ $this->includeAtTemplateBase('includes/header.php');
 		
 		foreach ($this->data['urls'] AS $url ) {
 			echo "# " . $url['title'] . "\n";
-			echo "" . $url['int'] . " curl --silent --compressed http://example.com/cron.php " . $url['href'] . " > /dev/null 2>&1\n";
+			echo "" . $url['int'] . " curl --silent --compressed " . $url['href'] . " > /dev/null 2>&1\n";
 		}
 		
 		?>
