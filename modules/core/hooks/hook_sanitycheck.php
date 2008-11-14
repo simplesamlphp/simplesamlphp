@@ -31,5 +31,22 @@ function core_hook_sanitycheck(&$hookinfo) {
 		$hookinfo['errors'][] = '[core] You are running PHP version ' . phpversion() . '. SimpleSAMLphp requires version >= 5.1.2, and reccomends version >= 5.2. Please upgrade!';
 	}
 	
+	$info = array();
+	$mihookinfo = array(
+		'info' => &$info,
+	);
+	$availmodules = SimpleSAML_Module::getModules();
+	SimpleSAML_Module::callHooks('moduleinfo', $mihookinfo);
+	foreach($info AS $mi => $i) {
+		if (isset($i['dependencies']) && is_array($i['dependencies'])) {
+			foreach ($i['dependencies'] AS $dep) {
+				// $hookinfo['info'][] = '[core] Module ' . $mi . ' requires ' . $dep;
+				if (!in_array($dep, $availmodules)) {
+					$hookinfo['errors'][] = '[core] Module dependency not met: ' . $mi . ' requires ' . $dep;
+				}
+			}
+		}
+	}
+	
 }
 ?>

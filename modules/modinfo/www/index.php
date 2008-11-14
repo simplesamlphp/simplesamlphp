@@ -8,7 +8,7 @@ $modinfo = array();
 foreach($modules as $m) {
 	$modinfo[$m] = array(
 		'enabled' => SimpleSAML_Module::isModuleEnabled($m),
-		);
+	);
 }
 
 $config = SimpleSAML_Configuration::getInstance();
