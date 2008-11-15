@@ -10,7 +10,7 @@ function statistics_hook_frontpage(&$links) {
 
 	$links['links'][] = array(
 		'href' => SimpleSAML_Module::getModuleURL('statistics/showstats.php'),
-		'text' => 'Show statistics',
+		'text' => array('en' => 'Show statistics', 'no' => 'Vis statistikk'),
 	);
 
 }
