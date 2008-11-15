@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+  <title>The simpleSAMLphp statistics module</title>
+
+  <articleinfo>
+    <date>2007-10-15</date>
+
+    <pubdate>Sat Nov 15 14:34:28 2008</pubdate>
+
+    <author>
+      <firstname>Andreas Åkre</firstname>
+
+      <surname>Solberg</surname>
+
+      <email>andreas.solberg@uninett.no</email>
+    </author>
+  </articleinfo>
+
+  <section>
+    <title>Configure your logs</title>
+
+    <para>Reccomended to use syslog for logging. Then a separate loglevel is
+    dedicated to statistics. You need to get all statistics log entries in one
+    log file. Here is how I do it in syslog.conf:</para>
+
+    <programlisting># SimpleSAMLphp logging
+local5.*						/var/log/simplesamlphp.log
+# Notice level is reserved for statistics only...
+local5.=notice					/var/log/simplesamlphp.stat</programlisting>
+
+    <para>Then make sure you have configured this correctly such that you have
+    one log file like this:</para>
+
+    <screen># ls -la /var/log/simplesamlphp.stat
+-rw-r--r-- 1 root root 76740 Nov 15 13:37 /var/log/simplesamlphp.stat</screen>
+
+    <para>With content that looks like this:</para>
+
+    <screen># tail /var/log/simplesamlphp.stat
+Nov 15 12:01:49 www1 simplesamlphp-foodle[31960]: 5 STAT [77013b4b6e] saml20-sp-SSO urn:mace:feide.no:services:no.feide.foodle sam.feide.no andreas@uninett.no
+Nov 15 13:01:14 www1 simplesamlphp-openwiki[2247]: 5 STAT [50292b9d04] saml20-sp-SSO urn:mace:feide.no:services:no.feide.openwikicore sam.feide.no NA
+Nov 15 13:16:39 www1 simplesamlphp-openwiki[2125]: 5 STAT [3493d5d87f] saml20-sp-SSO urn:mace:feide.no:services:no.feide.openwikicore sam.feide.no NA
+Nov 15 13:37:27 www1 simplesamlphp-foodle[3146]: 5 STAT [77013b4b6e] AUTH-login-admin OK</screen>
+
+    <para>Here you can see that I collect statistics in one file for several
+    installations. You could easily separate each instance of simpleSAMLphp
+    into separate files (your preference).</para>
+  </section>
+
+  <section>
+    <title>Configure the statistics module</title>
+
+    <para>First enable the statistics module, as you enable any other
+    module:</para>
+
+    <screen>cd modules/statistics
+touch enable
+</screen>
+
+    <para>Then take the configuration template:</para>
+
+    <screen>cp modules/statistics/config-templats/*.php config/</screen>
+
+    <para>Configure the path of the log file:</para>
+
+    <programlisting>	'inputfile' =&gt; '/tmp/stat',</programlisting>
+
+    <para>and the syntax of the log file. You need to configure where the date
+    starts (usually 0), and how long the date is (usually 15), and where the
+    first columns starts (such that STAT is in column 3):</para>
+
+    <programlisting>	'datestart' =&gt; 1,
+	'datelength' =&gt; 15,
+	'offsetspan' =&gt; 21,</programlisting>
+
+    <para>Make sure the stat dir is writable. SimpleSAMLphp will write data
+    here:</para>
+
+    <programlisting>	'statdir' =&gt; '/tmp/stats/',</programlisting>
+
+    <section>
+      <title>Setup cron</title>
+
+      <para>You also should setup the cron module:</para>
+
+      <screen>cd modules/cron
+touch enable
+</screen>
+    </section>
+
+    <section>
+      <title>Alternatively to use the cron module</title>
+
+      <para>Alternatively to use the cron module you can run the
+      script<filename> statistics/bin/loganalyzer.php</filename>.</para>
+    </section>
+  </section>
+
+  <section>
+    <title>Presentation of the statistics</title>
+
+    <para>At the installation page there will be a link "show statitics", go
+    there and if simpleSAMLphp finds the statistics files in the
+    <filename>statdir</filename> generated from cron or the script you will
+    see statistics. Enjoy.</para>
+  </section>
+
+  <section>
+    <title>Support</title>
+
+    <para>If you need help to make this work, or want to discuss simpleSAMLphp
+    with other users of the software, you are fortunate: Around simpleSAMLphp
+    there is a great Open source community, and you are welcome to join! The
+    forums are open for you to ask questions, contribute answers other further
+    questions, request improvements or contribute with code or plugins of your
+    own.</para>
+
+    <para>Visit the project page of simpleSAMLphp at: <ulink
+    url="http://code.google.com/p/simplesamlphp/">http://code.google.com/p/simplesamlphp/</ulink></para>
+
+    <para>Please join the mailinglist: <ulink
+    url="???">https://postlister.uninett.no/sympa/subscribe/simplesaml</ulink></para>
+  </section>
+</article>
