@@ -7,7 +7,7 @@ $config = array (
 
 	'statdir' => '/tmp/stats/',
 	'inputfile' => '/var/log/simplesamlphp.stat',
-	'offset' => 60*60*2, // Two hours offset to match epoch and norwegian winter time.
+	'offset' => 60*60*2 + 60*60*24*3, // Two hours offset to match epoch and norwegian winter time.
 	
 	'datestart' => 1,
 	'datelength' => 15,
@@ -23,36 +23,34 @@ $config = array (
 	
 	'statrules' => array(
 		'sso_hoursday' => array(
-			'name' 		=> 'Numer of SP logins (per 15 minutes for one day)',
-			'descr'		=> 'The number of Service Provider logins put into slots of one hour.',
-		
-			'action' 	=> 'saml20-sp-SSO',
-			'col'		=> 7,				// Service Provider EntityID
-			'slot'		=> 60*15,			// Slots of one hour
-			'fileslot'	=> 60*60*24,		// 7 days of data in each file
-			'axislabelint' => 6*4,			// Number of slots per label. 24 is one each day
-			
-			'dateformat-period'	=> 'j. M', 			//  4. Mars
-			'dateformat-intra'	=> 'j. M H:i', 		//  4. Mars 12:30
-#			'dateformat-intra'	=> 'j. H:i', 		//  4. Mars 12:30
-		),
-		'sso_day80' => array(
-			'name' 		=> 'Number of SP logins (per day spanning 80 days)',
-			'descr'		=> 'The number of Service Provider logins put into slots of one hour.',
+			'name' 		=> 'SP logins 15 min slots through one day',
+			'descr'		=> 'The number of logins at a Service Provider divided into slots of one hour. Each file contains data for one day (24 hours)',
 		
 			'action' 	=> 'saml20-sp-SSO',
 			'col'		=> 5,				// Service Provider EntityID
-			'slot'		=> 60*60*24,			// Slots of six hour
-			'fileslot'	=> 60*60*24*80,		// 7 days of data in each file
-			'axislabelint' => 7,			// Number of slots per label. 24 is one each day
+			'slot'		=> 60*15,			// Slots of 15 minutes
+			'fileslot'	=> 60*60*24,		// One day (24 hours) file slots
+			'axislabelint' => 6*4,			// Number of slots per label. 4 per hour *6 = 6 hours 
 			
 			'dateformat-period'	=> 'j. M', 			//  4. Mars
-			'dateformat-intra'	=> 'j. M', # H:i', 		//  4. Mars 12:30
-#			'dateformat-intra'	=> 'j. H:i', 		//  4. Mars 12:30
+			'dateformat-intra'	=> 'j. M H:i', 		//  4. Mars 12:30
+		),
+		'sso_day80' => array(
+			'name' 		=> 'SP logins per day slots through 80 days',
+			'descr'		=> 'The number of logins at a Service Provider divided into slots of one day. Each file contains data for 80 days',
+		
+			'action' 	=> 'saml20-sp-SSO',
+			'col'		=> 5,				// Service Provider EntityID
+			'slot'		=> 60*60*24,		// Slots of 1 day (24 hours)
+			'fileslot'	=> 60*60*24*80,		// 80 days of data in each file
+			'axislabelint' => 7,			// Number of slots per label. 7 days => 1 week
+			
+			'dateformat-period'	=> 'j. M', 		//  4. Mars
+			'dateformat-intra'	=> 'j. M', 		//  4. Mars
 		),
 		'sso_hoursweek' => array(
-			'name' 		=> 'Numer of SP logins (per hour spanning 7 days)',
-			'descr'		=> 'The number of Service Provider logins put into slots of one hour.',
+			'name' 		=> 'SP logins per hour through one week',
+			'descr'		=> 'The number of logins at a Service Provider divided into slots of one hour. Each file contains data for one week.',
 		
 			'action' 	=> 'saml20-sp-SSO',
 			'col'		=> 5,				// Service Provider EntityID
@@ -62,21 +60,19 @@ $config = array (
 			
 			'dateformat-period'	=> 'j. M', 			//  4. Mars
 			'dateformat-intra'	=> 'j. M H:i', 		//  4. Mars 12:30
-#			'dateformat-intra'	=> 'j. H:i', 		//  4. Mars 12:30
 		),
 		'sso_days' => array(
-			'name' 		=> 'Numer of SP logins (per day)',
-			'descr'		=> 'The number of Service Provider logins put into slots of one day.',
+			'name' 		=> 'SP logins per day through 30 days',
+			'descr'		=> 'The number of logins at a Service Provider divided into slots of one day. Each file contains data for 30 days.',
 		
 			'action' 	=> 'saml20-sp-SSO',
 			'col'		=> 5,				// Service Provider EntityID
-			'slot'		=> 60*60*24,			// Slots of one day
+			'slot'		=> 60*60*24,		// Slots of one day
 			'fileslot'	=> 60*60*24*30,		// 30 days of data in each file
-			'axislabelint' => 7,			// Number of slots per label. 24 is one each day
+			'axislabelint' => 7,			// Number of slots per label. 7 days => 1 week
 			
-			'dateformat-period'	=> 'j. M Y H:i', 			//  4. Mars
-			'dateformat-intra'	=> 'j. M', 		//  4. Mars 12:30
-#			'dateformat-intra'	=> 'j. H:i', 		//  4. Mars 12:30
+			'dateformat-period'	=> 'j. M Y H:i', 	//  4. Mars 12:30
+			'dateformat-intra'	=> 'j. M', 			//  4. Mars
 		),
 		
 		
