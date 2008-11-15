@@ -25,8 +25,8 @@ class sspmod_statistics_LogParser {
 
 	public function parseEpoch($line) {
 		$epoch = strtotime(substr($line, 0, $this->datelength));
-		echo 'debug   ' . $line . "\n";
-		echo 'debug   [' . substr($line, 0, $this->datelength)  . '] => [' . $epoch . ']' . "\n";
+// 		echo 'debug   ' . $line . "\n";
+// 		echo 'debug   [' . substr($line, 0, $this->datelength)  . '] => [' . $epoch . ']' . "\n";
 		return $epoch;
 	}
 

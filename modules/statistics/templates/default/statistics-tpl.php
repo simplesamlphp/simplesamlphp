@@ -81,14 +81,20 @@ echo '<img src="' . htmlspecialchars($this->data['imgurl']) . '" />';
 
 
 
-echo '<h3>Debug information</h3>';
-echo '<input style="width: 80%" value="' . htmlspecialchars($this->data['imgurl']) . '" />';
+// echo '<h3>Debug information</h3>';
+// echo '<input style="width: 80%" value="' . htmlspecialchars($this->data['imgurl']) . '" />';
+// 
+// echo '<table style="">';
+// foreach ($this->data['debugdata'] AS $dd) {
+// 	echo '<tr><td style="padding-right: 2em; border: 1px solid #ccc">' . $dd[0] . '</td><td style="padding-right: 2em; border: 1px solid #ccc">' . $dd[1] . '</td></tr>';
+// }
+// echo '</table>';
 
-echo '<table style="">';
-foreach ($this->data['debugdata'] AS $dd) {
-	echo '<tr><td style="padding-right: 2em; border: 1px solid #ccc">' . $dd[0] . '</td><td style="padding-right: 2em; border: 1px solid #ccc">' . $dd[1] . '</td></tr>';
-}
-echo '</table>';
+
+
+
+
+
 // 
 // if (count($this->data['sources']) === 0) {
 // 	echo('<p>' . $this->t('{aggregator:dict:no_aggregators}') . '</p>');
