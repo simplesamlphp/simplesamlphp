@@ -112,7 +112,6 @@ $max = sspmod_statistics_Graph_GoogleCharts::roof($maxvalue);
  */
 $summaryDataset = array();
 foreach($results AS $slot => $res) {
-
 	foreach ($res AS $key => $value) {
 		if (array_key_exists($key, $summaryDataset)) {
 			$summaryDataset[$key] += $value;
@@ -120,10 +119,9 @@ foreach($results AS $slot => $res) {
 			$summaryDataset[$key] = $value;
 		}
 	}
-
 }
-
-
+asort($summaryDataset);
+$summaryDataset = array_reverse($summaryDataset, TRUE);
 #echo '<pre>'; print_r($summaryDataset); exit;
 
 
