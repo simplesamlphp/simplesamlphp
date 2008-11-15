@@ -129,9 +129,7 @@ foreach($results AS $slot => $res) {
 	$i++;
 }
 #echo 'set axis on lastslot [' . $lastslot . ']';
-$axis[] = date($dateformat_intra, ($lastslot*$slotsize) + $slotsize - $offset);
-#echo "<p> ". ($lastslot+1) . " = " . date($dateformat_intra, (($lastslot+1)*$slotsize - $offset) ) . " ";
-
+$axis[] =  $datehandler->prettyDateSlot($lastslot+1, $slotsize, $dateformat_intra); 
 #print_r($axis);
 
 
