@@ -106,6 +106,27 @@ $max = sspmod_statistics_Graph_GoogleCharts::roof($maxvalue);
 
 
 
+
+/**
+ * Aggregate summary table from dataset. To be used in the table view.
+ */
+$summaryDataset = array();
+foreach($results AS $slot => $res) {
+
+	foreach ($res AS $key => $value) {
+		if (array_key_exists($key, $summaryDataset)) {
+			$summaryDataset[$key] += $value;
+		} else {
+			$summaryDataset[$key] = $value;
+		}
+	}
+
+}
+
+
+#echo '<pre>'; print_r($summaryDataset); exit;
+
+
 /*
  * Walk through dataset to get percent values from max into dataset[].
  */
@@ -143,6 +164,7 @@ $t->data['available.times'] = $available_times;
 $t->data['selected.rule']= $rule;
 $t->data['selected.time'] = $fileslot;
 $t->data['debugdata'] = $debugdata;
+$t->data['summaryDataset'] = $summaryDataset;
 $t->data['availdelimiters'] = array_keys($availdelimiters);
 $t->show();
 
