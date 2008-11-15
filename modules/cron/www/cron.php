@@ -34,6 +34,7 @@ if ($cronconfig->getValue('sendemail', TRUE) && count($summary) > 0) {
 	$statustext = '<ul><li>' . join('</li><li>', $summary) . '</li></ul>';
 
 	$message = '<h1>Cron report</h1><p>Cron ran at ' . date(DATE_RFC822) . '</p>' . 
+		'<p>URL: <tt>' . SimpleSAML_Utilities::selfURL() . '</tt></p>' .
 		'<p>Tag: ' . $_REQUEST['tag'] . "</p>\n\n" . $statustext;
 
 	$toaddress = $config->getValue('technicalcontact_email', 'na@example.org');
