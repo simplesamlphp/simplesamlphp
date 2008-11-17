@@ -39,6 +39,13 @@ try {
 		'certFingerprint' => $certFingerprint,
 	);
 
+	if (array_key_exists('NameIDFormat', $idpmeta)) {
+		$metaArray['NameIDFormat'] = $idpmeta['NameIDFormat'];
+	} else {
+		$metaArray['NameIDFormat'] = 'urn:mace:shibboleth:1.0:nameIdentifier';
+	}
+
+
 	$metaflat = var_export($idpentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
 	
 	$metaArray['certData'] = $certInfo['certData'];

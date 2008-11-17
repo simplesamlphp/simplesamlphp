@@ -36,6 +36,13 @@ try {
 		$metaArray['certData'] = $certInfo['certData'];
 	}
 
+	if (array_key_exists('NameIDFormat', $spmeta)) {
+		$metaArray['NameIDFormat'] = $spmeta['NameIDFormat'];
+	} else {
+		$metaArray['NameIDFormat'] = 'urn:mace:shibboleth:1.0:nameIdentifier';
+	}
+
+
 	$metaflat = var_export($spentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
 
 	if (array_key_exists('certificate', $spmeta)) {

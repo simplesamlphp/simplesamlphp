@@ -51,6 +51,13 @@ try {
 		unset($metaArray['SingleLogoutServiceResponse']);
 	}
 
+	if (array_key_exists('NameIDFormat', $idpmeta)) {
+		$metaArray['NameIDFormat'] = $idpmeta['NameIDFormat'];
+	} else {
+		$metaArray['NameIDFormat'] = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+	}
+
+
 	$metaflat = var_export($idpentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
 
 	$metaArray['certData'] = $certInfo['certData'];

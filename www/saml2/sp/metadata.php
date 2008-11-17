@@ -31,6 +31,13 @@ try {
 		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted'),
 	);
 
+	if (array_key_exists('NameIDFormat', $spmeta)) {
+		$metaArray['NameIDFormat'] = $spmeta['NameIDFormat'];
+	} else {
+		$metaArray['NameIDFormat'] = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+	}
+
+
 	$certInfo = SimpleSAML_Utilities::loadPublicKey($spmeta);
 	if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 		$metaArray['certData'] = $certInfo['certData'];
