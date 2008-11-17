@@ -283,12 +283,30 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 				throw new Exception('Unhandled SubjectConfirmationData: ' . $method->value);
 			}
 
-			$subjectConfirmationData = $this->doXPathQuery('saml:SubjectConfirmationData', $subjectConfirmation);
-			if($subjectConfirmationData === NULL) {
-				throw new Exception('Bearer confirmation node without verification data.');
-			}
+			foreach ($this->doXPathQuery('saml:SubjectConfirmationData', $subjectConfirmation)
+				as $subjectConfirmationData) {
 
-			/* TODO: Verify this subject. */
+				$recipient = $subjectConfirmationData->getAttributeNode('Recipient');
+				if ($recipient !== NULL) {
+					/* The Recipient attribute contains the address this assertion should
+					 * be delivered to. Verify that it matches the current address.
+					 */
+					$recipient = $recipient->value;
+					$currentURL = SimpleSAML_Utilities::selfURL();
+
+					if ($recipient !== $currentURL) {
+						throw new Exception('Recipient in assertion doesn\'t match the ' .
+							' current URL. Recipient is "' . $recipient .
+							'", current URL is "' . $currentURL . '".');
+					}
+				}
+
+				/* TODO: Verify the rest of the subject. Missing are:
+				 * - NotBefore & NotOnOrAfter
+				 * - InResponseTo
+				 * - Address
+				 */
+			}
 		}
 
 
