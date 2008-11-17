@@ -128,6 +128,24 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 
 	/**
+	 * Retrieve the NameIDFormat used by this SP.
+	 *
+	 * @return string  NameIDFormat used by this SP.
+	 */
+	public function getNameIDFormat() {
+
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$spmeta = $metadata->getMetadata($this->entityID, 'saml20-sp-hosted');
+
+		if (array_key_exists('NameIDFormat', $spmeta)) {
+			return $spmeta['NameIDFormat'];
+		} else {
+			return 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+		}
+	}
+
+
+	/**
 	 * Check if the IdP entity id is allowed to authenticate users for this authentication source.
 	 *
 	 * @param string $idpEntityId  The entity id of the IdP.
