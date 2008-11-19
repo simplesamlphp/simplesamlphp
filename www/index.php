@@ -35,11 +35,6 @@ if ($config->getValue('enable.shib13-sp') === true)
 		'href' => 'example-simple/shib13-example.php', 
 		'text' => 'link_shib13example');
 
-if ($config->getValue('enable.openid-provider') === true)
-	$links[] = array(
-		'href' => 'openid/provider/server.php', 
-		'text' => 'link_openidprovider');
-
 $links[] = array(
 	'href' => 'example-simple/hostnames.php?dummy=1', 
 	'text' => 'link_diagnostics');
