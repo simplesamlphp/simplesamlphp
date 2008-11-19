@@ -1073,7 +1073,7 @@ class Auth_OpenID_GenericConsumer {
             $result = $this->_verifyDiscoverySingle($endpoint, $to_match);
 
             if (Auth_OpenID::isFailure($result)) {
-                $failure_messages->append($result);
+                $failure_messages[] = $result;
             } else {
                 // It matches, so discover verification has
                 // succeeded. Return this endpoint.
