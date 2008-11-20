@@ -61,7 +61,7 @@ foreach ($results AS $rulename => $ruleresults) {
 		}
 		
 		// store file
-		file_put_contents($statdir . $rulename . '-' . $fileno . '.stat', serialize($filledresult) );
+		file_put_contents($statdir . '/' . $rulename . '-' . $fileno . '.stat', serialize($filledresult), LOCK_EX );
 	}
 }
 
