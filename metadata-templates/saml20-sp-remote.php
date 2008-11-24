@@ -22,13 +22,12 @@
  *   - 'userid.attribute'
  *
  * Request signing
- *    When redirect.sign is true the certificate of the sp
- *    will be used to verify all messages received with the HTTPRedirect binding.
- *    The certificate from the SP must be installed in the cert directory 
- *    before verification can be done.  
+ *    When redirect.sign is true the certificate of the IDP
+ *    will be used to sign all messages sent with the HTTPRedirect binding.
+ *    The certificate from the IDP must be installed in the cert directory 
+ *    before signing can be done.  
  *
  *   'redirect.sign' => false,
- *   'certificate' => "saml2sp.example.org.crt"
  *
  */
 

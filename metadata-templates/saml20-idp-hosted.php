@@ -13,7 +13,7 @@
  *
  * Optional Parameters:
  *   - 'userid.attribute'
- *
+ *   - 'redirect.sign'
  */
 
 
