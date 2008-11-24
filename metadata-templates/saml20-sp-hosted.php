@@ -10,6 +10,7 @@
  * Optional fields:
  *  - NameIDFormat
  *  - ForceAuthn  
+ *  - redirect.sign
  */
  
 $metadata = array( 
