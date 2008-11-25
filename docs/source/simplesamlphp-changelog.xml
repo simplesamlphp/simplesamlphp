@@ -8,7 +8,9 @@
     <title>Change log</title>
 
     <para>Here is changes between simpleSAMLphp versions. Look here if you are
-    upgrading, to see if there are any changes to the config format.</para>
+    upgrading, to see if there are any changes to the config format. There is
+    a <ulink url="???">generic section describing how to perform a upgrade in
+    the installation manual</ulink>.</para>
 
     <section>
       <title>Version 1.3</title>
@@ -659,11 +661,5 @@
         </listitem>
       </itemizedlist>
     </section>
-  </section>
-
-  <section>
-    <title>The history of simpleSAMLphp</title>
-
-    <para>TODO.</para>
   </section>
 </article>
