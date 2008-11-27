@@ -59,7 +59,40 @@ if (array_key_exists('descr_purpose', $this->data['dstMetadata'])) {
 $attributes = $this->data['attributes'];
 
 
-$this->data['header'] = 'Consent'; /* TODO: translation */
+$this->data['header'] = $this->t('{consent:consent_header}');
+$this->data['head']  = '<link rel="stylesheet" type="text/css" href="/' . $this->data['baseurlpath'] . 'module.php/consent/style.css" />' . "\n";
+$this->data['head'] .= '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>
+
+	<script type="text/javascript">
+
+$(document).ready(function() {
+
+	$("table[id=table_with_attributes]").hide();
+
+	$("legend[@id=attribute_switch]").
+		click(function(event){
+			$("table[id=table_with_attributes]").toggle();
+			$("div[@id=addattributes]").toggle();
+		});
+
+	$("a[@id=addattributesb]").
+		click(function(event){
+			event.preventDefault();
+			$("table[id=table_with_attributes]").show();
+			$("div[@id=addattributes]").hide("fast");
+		});
+
+});
+
+	</script>
+
+
+';
+
+
+
+
+
 
 $this->includeAtTemplateBase('includes/header.php');
 
@@ -103,11 +136,15 @@ foreach ($this->data['noData'] as $name => $value) {
 }
 ?>
 	<input type="submit" id="nobutton" value="<?php echo htmlspecialchars($this->t('{consent:no}')) ?>" />
-</form>
 
-<p>
-<table class="attributes">
+<fieldset>
+<legend id="attribute_switch"> » <?php echo $this->t('{consent:consent_attributes_header}'); ?></legend>
+
+<div id="addattributes"><a id="addattributesb"><?php echo $this->t('{consent:show_attributes}'); ?></a></div>
+<table id="table_with_attributes"  class="attributes">
 <?php
+
+$alternate = array('odd', 'even'); $i = 0;
 
 foreach ($attributes as $name => $value) {
 	$nameTag = '{attributes:attribute_' . strtolower($name) . '}';
@@ -116,19 +153,21 @@ foreach ($attributes as $name => $value) {
 	}
 
 	if (sizeof($value) > 1) {
-		echo '<tr><td>' . htmlspecialchars($name) . '</td><td><ul>';
+		echo '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue"><ul>';
 		foreach ($value AS $v) {
 			echo '<li>' . htmlspecialchars($v) . '</li>';
 		}
 		echo '</ul></td></tr>';
 	} else {
-		echo '<tr><td>' . htmlspecialchars($name) . '</td><td>' . htmlspecialchars($value[0]) . '</td></tr>';
+		echo '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue">' . htmlspecialchars($value[0]) . '</td></tr>';
 	}
 }
 
 ?>
 </table>
-</p>
+</fieldset>
+
+</form>
 
 <?php
 

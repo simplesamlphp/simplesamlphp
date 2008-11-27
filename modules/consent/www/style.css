@@ -1,0 +1,55 @@
+fieldset {
+	margin: 2em 1em 1em 1em;
+	border: 1px solid #bbb;
+	padding: 0px;
+}
+fieldset div#addattributes {
+	text-align: right;
+	margin: 0px .5em .5em 1em;
+}
+fieldset div#addattributes a {
+	text-decoration: none;
+	color: #888;
+	font-weight: normal;
+	border-bottom: 1px dotted #bbb;
+}
+fieldset div#addattributes a:hover,fieldset div.addattributes a:link {
+	border-bottom: 1px solid #bbb;
+}
+fieldset legend {
+	margin-left: 2em;
+	padding: 3px 2em 3px 2em;
+	border: 1px solid #bbb;
+	
+	cursor: pointer; cursor: hand;
+}
+fieldset legend:hover {
+	background: #eee;
+}
+table.attributes {
+	width: 100%;
+	margin: 0px 0px 1em 0px;
+	border: 0px;
+	border-collapse: collapse;
+}
+
+table.attributes td.attrname {
+	text-align: right;
+}
+table.attributes tr.even td {
+	background: #eee;
+}
+
+table.attributes tr td {
+	border-bottom: 1px solid #bbb; 
+	border-left: 0px;
+	border-right: 0px;	
+	
+	padding-top: 5px;
+	padding-left: 1em;
+	padding-right: 1em;
+	
+	vertical-align: top;
+}
+
+

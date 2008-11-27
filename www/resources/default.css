@@ -266,13 +266,6 @@ div.preferredidp {
 
 
 
-table.attributes tr td {
-	border-bottom: 1px dashed #ccc;
-	padding-top: 5px;
-	padding-left: 1em;
-	padding-right: 1em;
-	vertical-align: top;
-}
 
 
 div.allcompleted#interrupt {
