@@ -55,6 +55,10 @@ $lang = array(
 		'pt' => 'Lembrar a minha escolha',
 		'pt-BR' => 'Lembrar Consentimento',
 	),
+	'consent_header' => array (
+		'no' => 'Samtykke om overføring av person informasjon',
+		'en' => 'Consent about releasing personal information',
+	),
 	'consent_notice' => array (
 		'no' => 'Du er nå i ferd med å logge inn på tjenesten',
 		'nn' => 'Du er i ferd med å logga inn på tenesta',
@@ -106,6 +110,14 @@ $lang = array(
 		'hu' => 'A szolgáltatás adatvádelmi nyilatkozata',
 		'pt' => 'Política de privacidade do serviço',
 		'pt-BR' => 'Política de Privacidade deste serviço',
+	),
+	'consent_attributes_header' => array (
+		'no' => 'Attributter som vil bli sent til tjenesten',
+		'en' => 'Attributes that will be sent to service',
+	),
+	'show_attributes' => array (
+		'no' => 'Vis attributter',
+		'en' => 'Show attributes',
 	),
 	'login' => array (
 		'no' => 'innlogging',
