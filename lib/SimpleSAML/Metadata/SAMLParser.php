@@ -163,10 +163,8 @@ class SimpleSAML_Metadata_SAMLParser {
 		for($i = 0; $i < $entityElement->childNodes->length; $i++) {
 			$child = $entityElement->childNodes->item($i);
 
-			/* Skip text nodes. */
-			if($child instanceof DOMText) {
-				continue;
-			}
+			// Unless the child is a DOMElement, skip.
+			if ( !($child instanceof DOMelement) ) continue;
 
 			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Signature', '@ds') === TRUE) {
 				$this->processSignature($child);
@@ -262,12 +260,15 @@ class SimpleSAML_Metadata_SAMLParser {
 	 */
 	public static function parseDescriptorsFile($file) {
 
+		if ($file === NULL) throw new Exception('Cannot open file NULL. File name not specified.');
+
 		$doc = new DOMDocument();
 
 		$res = $doc->load($file);
 		if($res !== TRUE) {
 			throw new Exception('Failed to read XML from file: ' . $file);
 		}
+		if ($doc->documentElement === NULL) throw new Exception('Opened file is not an XML document: ' . $file);
 
 		return self::parseDescriptorsElement($doc->documentElement);
 	}
@@ -309,7 +310,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 		assert('$element instanceof DOMElement');
-
+		
 		$entitiesValidator = NULL;
 
 		if(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntityDescriptor', '@md') === TRUE) {
