@@ -598,6 +598,11 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['NameIDFormat'] = $spd['nameIDFormats'][0];
 		}
 
+		// Require that a certificate is embedded
+		if (!is_array($idp['keys'])) {
+			throw new Exception('Could not find any embedded certificates in metadata document.');
+		}
+
 		/* Add certificate data. Only the first valid certificate will be added. */
 		foreach($idp['keys'] as $key) {
 			if($key['type'] !== 'X509Certificate') {

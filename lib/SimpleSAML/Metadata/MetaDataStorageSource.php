@@ -61,14 +61,14 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 		}
 
 		switch($type) {
-		case 'flatfile':
-			return new SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile($sourceConfig);
-		case 'xml':
-			return new SimpleSAML_Metadata_MetaDataStorageHandlerXML($sourceConfig);
-		case 'dynamicxml':
-			return new SimpleSAML_Metadata_MetaDataStorageHandlerDynamicXML($sourceConfig);
-		default:
-			throw new Exception('Invalid metadata source type: "' . $type . '".');
+			case 'flatfile':
+				return new SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile($sourceConfig);
+			case 'xml':
+				return new SimpleSAML_Metadata_MetaDataStorageHandlerXML($sourceConfig);
+			case 'dynamicxml':
+				return new SimpleSAML_Metadata_MetaDataStorageHandlerDynamicXML($sourceConfig);
+			default:
+				throw new Exception('Invalid metadata source type: "' . $type . '".');
 		}
 	}
 
