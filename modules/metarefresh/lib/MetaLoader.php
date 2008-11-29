@@ -30,13 +30,13 @@ class sspmod_metarefresh_MetaLoader {
 	 *
 	 * @param $src  Filename of the metadata file.
 	 */
-	public function loadSource($source, $validateFingerprint = NULL, $template = NULL) {
+	public function loadSource($source) {
 
 		$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($source['src']);
 	
 		foreach($entities as $entity) {
-			if($validateFingerprint !== NULL) {
-				if(!$entity->validateFingerprint($validateFingerprint)) {
+			if($source['validateFingerprint'] !== NULL) {
+				if(!$entity->validateFingerprint($source['validateFingerprint'])) {
 					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature.' . "\n");
 					continue;
 				}
@@ -48,11 +48,13 @@ class sspmod_metarefresh_MetaLoader {
 					continue;
 				}
 			}
+			$template = NULL;
+			if (array_key_exists('template', $source)) $template = $source['template'];
 	
-			$this->addMetadata($src, $entity->getMetadata1xSP(), 'shib13-sp-remote');
-			$this->addMetadata($src, $entity->getMetadata1xIdP(), 'shib13-idp-remote');
-			$this->addMetadata($src, $entity->getMetadata20SP(), 'saml20-sp-remote');
-			$this->addMetadata($src, $entity->getMetadata20IdP(), 'saml20-idp-remote');
+			$this->addMetadata($source['src'], $entity->getMetadata1xSP(), 'shib13-sp-remote', $template);
+			$this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template);
+			$this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template);
+			$this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template);
 		}
 	}
 
@@ -95,10 +97,18 @@ class sspmod_metarefresh_MetaLoader {
 	 * @param $metadata The metadata.
 	 * @param $type The metadata type.
 	 */
-	private function addMetadata($filename, $metadata, $type) {
+	private function addMetadata($filename, $metadata, $type, $template = NULL) {
 	
 		if($metadata === NULL) {
 			return;
+		}
+	
+		if (isset($template)) {
+// 			foreach($metadata AS $mkey => $mentry) {
+// 				echo '<pre>'; print_r($metadata); exit;
+// 				$metadata[$mkey] = array_merge($mentry, $template);
+// 			}
+			$metadata = array_merge($metadata, $template);
 		}
 	
 		if(!array_key_exists($type, $this->metadata)) {
