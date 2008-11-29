@@ -122,7 +122,9 @@ if(count($files) === 0) {
 $metaloader = new sspmod_metarefresh_MetaLoader();
 
 foreach($files as $f) {
-	$metaloader->loadSource($f);
+	$source = array('src' => $f);
+	if (isset($validateFingerprint)) $source['validateFingerprint'] = $validateFingerprint;
+	$metaloader->loadSource($source);
 }
 
 if($toStdOut) {
