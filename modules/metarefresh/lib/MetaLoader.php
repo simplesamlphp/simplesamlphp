@@ -30,21 +30,21 @@ class sspmod_metarefresh_MetaLoader {
 	 *
 	 * @param $src  Filename of the metadata file.
 	 */
-	public function loadSource($src, $validateFingerprint = NULL, $template = NULL) {
+	public function loadSource($source, $validateFingerprint = NULL, $template = NULL) {
 
-		$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($src);
+		$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($source['src']);
 	
 		foreach($entities as $entity) {
 			if($validateFingerprint !== NULL) {
 				if(!$entity->validateFingerprint($validateFingerprint)) {
-					echo('Skipping "' . $entity->getEntityId() . '" - could not verify signature.' . "\n");
+					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature.' . "\n");
 					continue;
 				}
 			}
 	
 			if($ca !== NULL) {
 				if(!$entity->validateCA($ca)) {
-					echo('Skipping "' . $entity->getEntityId() . '" - could not verify certificate.' . "\n");
+					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify certificate.' . "\n");
 					continue;
 				}
 			}
@@ -122,7 +122,7 @@ class sspmod_metarefresh_MetaLoader {
 		}
 	
 		if(!file_exists($outputDir)) {
-			echo('Creating directory: ' . $outputDir . "\n");
+			SimpleSAML_Logger::info('Creating directory: ' . $outputDir . "\n");
 			mkdir($outputDir, 0777, TRUE);
 		}
 	
@@ -130,11 +130,11 @@ class sspmod_metarefresh_MetaLoader {
 	
 			$filename = $outputDir . '/' . $category . '.php';
 	
-			echo('Writing: ' . $filename . "\n");
+			SimpleSAML_Logger::debug('Writing: ' . $filename . "\n");
 	
-			$fh = fopen($filename, 'w');
+			$fh = @fopen($filename, 'w');
 			if($fh === FALSE) {
-				echo('Failed to open file for writing: ' . $filename . "\n");
+				throw new Exception('Failed to open file for writing: ' . $filename . "\n");
 				exit(1);
 			}
 	
