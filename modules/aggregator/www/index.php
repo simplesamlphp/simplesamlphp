@@ -59,6 +59,9 @@ foreach ($sources as $source) {
 	}
 }
 
+
+
+
 $xml = new DOMDocument();
 $entitiesDescriptor = $xml->createElementNS('urn:oasis:names:tc:SAML:2.0:metadata', 'EntitiesDescriptor');
 $entitiesDescriptor->setAttribute('Name', $id);
@@ -107,6 +110,7 @@ foreach ($entities as $entity => $sets) {
 	$entitiesDescriptor->appendChild($xml->importNode($entityDescriptor, TRUE));
 }
 
+
 /* Sign the metadata if enabled. */
 if ($aggregatorConfig->getBoolean('sign.enable', FALSE)) {
 	$privateKey = $aggregatorConfig->getString('sign.privatekey');
@@ -122,12 +126,14 @@ if ($aggregatorConfig->getBoolean('sign.enable', FALSE)) {
 	$signer->sign($entitiesDescriptor, $entitiesDescriptor, $entitiesDescriptor->firstChild);
 }
 
+
 /* Show the metadata. */
 if(array_key_exists('mimetype', $_GET)) {
 	$mimeType = $_GET['mimetype'];
 } else {
 	$mimeType = 'application/samlmetadata+xml';
 }
+
 header('Content-Type: ' . $mimeType);
 
 echo($xml->saveXML());
