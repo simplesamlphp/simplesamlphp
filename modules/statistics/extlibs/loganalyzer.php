@@ -29,8 +29,12 @@ foreach ($logfile AS $logline) {
 	$content = $logparser->parseContent($logline);
 	$action = $content[4];
 	
+	
 	// Iterate all the statrules from config.
 	foreach ($statrules AS $rulename => $rule) {
+	
+		// echo 'Comparing action: [' . $rule['action'] . '] with [' . $action . ']';
+	
 		$timeslot = $datehandler->toSlot($epoch, $rule['slot']);
 		$fileslot = $datehandler->toSlot($epoch, $rule['fileslot']); //print_r($content);
 		if (isset($rule['action']) && ($action !== $rule['action'])) continue;

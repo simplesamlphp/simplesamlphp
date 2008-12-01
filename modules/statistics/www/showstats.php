@@ -151,8 +151,9 @@ foreach($results AS $slot => $res) {
 $axis[] =  $datehandler->prettyDateSlot($lastslot+1, $slotsize, $dateformat_intra); 
 #print_r($axis);
 
-
-$grapher = new sspmod_statistics_Graph_GoogleCharts(800, 350);
+$dimx = $statconfig->getValue('dimension.x', 800);
+$dimy = $statconfig->getValue('dimension.y', 350);
+$grapher = new sspmod_statistics_Graph_GoogleCharts($dimx, $dimy);
 
 $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics-tpl.php');
 $t->data['header'] = 'stat';

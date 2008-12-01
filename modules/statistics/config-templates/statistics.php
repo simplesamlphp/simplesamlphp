@@ -13,6 +13,10 @@ $config = array (
 	'datelength' => 15,
 	'offsetspan' => 21,
 	
+	// Dimensions on graph from Google Charts in pixels...
+	'dimension.x' => 800,
+	'dimension.y' => 350,
+	
 	/*
 	 * Do you want to generate statistics using the cron module? If so, specify which cron tag to use.
 	 * Examples: daily, weekly
