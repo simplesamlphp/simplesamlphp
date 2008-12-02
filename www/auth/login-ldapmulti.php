@@ -45,7 +45,7 @@ if (isset($_POST['username'])) {
 	
 		$ldap = new SimpleSAML_Auth_LDAP($ldapconfig['hostname'], $ldapconfig['enable_tls']);
 		
-		if (!$ldap->bind($dn, $pwd)) {
+		if (($pwd == "") or (!$ldap->bind($dn, $pwd))) {
 			SimpleSAML_Logger::info('AUTH - ldap-multi: '. $_POST['username'] . ' failed to authenticate. DN=' . $dn);
 			throw new Exception('Wrong username or password');
 		}
