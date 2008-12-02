@@ -42,7 +42,7 @@ if(array_key_exists('xmlToken', $_POST) && ($_POST['xmlToken']!=NULL)  ) {
 }
 
 //Login Page
-$t = new SimpleSAML_XHTML_Template($config, 'InfoCard:login-infocard.php', 'logininfocard'); //(configuracion, template, diccionario)
+$t = new SimpleSAML_XHTML_Template($config, 'InfoCard:login-infocard.php', 'InfoCard:logininfocard'); //(configuracion, template, diccionario)
 $t->data['header'] = 'simpleSAMLphp: Infocard login';
 $t->data['stateparams'] = array('AuthState' => $authStateId);
 $t->data['IClogo'] = $IClogo;
