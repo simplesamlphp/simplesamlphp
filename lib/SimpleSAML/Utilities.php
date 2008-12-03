@@ -3,7 +3,7 @@
 /**
  * Misc static functions that is used several places.in example parsing and id generation.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Ã…kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
  */
@@ -92,6 +92,8 @@ class SimpleSAML_Utilities {
 		if (preg_match('|^/.*?(/.*)$|', $_SERVER['SCRIPT_NAME'], $matches)) {
 			#$scriptname = $matches[1];
 		}
+		if (array_key_exists('PATH_INFO', $_SERVER)) $scriptname .= $_SERVER['PATH_INFO'];
+		
 		return $scriptname;
 	}
 	
@@ -680,7 +682,10 @@ class SimpleSAML_Utilities {
 		echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"' .
 			' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">' . "\n";
 		echo '<html xmlns="http://www.w3.org/1999/xhtml">';
-		echo '<head><title>Redirect</title></head>';
+		echo '<head>
+					<meta http-equiv="content-type" content="text/html; charset=utf-8">
+					<title>Redirect</title>
+				</head>';
 		echo '<body>';
 		echo '<h1>Redirect</h1>';
 		echo '<p>';
