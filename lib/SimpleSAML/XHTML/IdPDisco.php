@@ -17,7 +17,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * The various discovery services we can host.
 	 */
-	private static $discoTypes = array(
+	protected static $discoTypes = array(
 		'saml20' => array(
 			'metadata' => 'saml20-idp-remote',
 			),
@@ -33,55 +33,55 @@ class SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * An instance of the configuration class.
 	 */
-	private $config;
+	protected $config;
 
 
 	/**
 	 * An instance of the metadata handler, which will allow us to fetch metadata about IdPs.
 	 */
-	private $metadata;
+	protected $metadata;
 
 
 	/**
 	 * The users session.
 	 */
-	private $session;
+	protected $session;
 
 
 	/**
 	 * Our discovery service type.
 	 */
-	private $discoType;
+	protected $discoType;
 
 
 	/**
 	 * The entity id of the SP which accesses this IdP discovery service.
 	 */
-	private $spEntityId;
+	protected $spEntityId;
 	
 	/**
 	 * HTTP parameter from the request, indicating whether the discovery service
 	 * can interact with the user or not.
 	 */
-	private $isPassive;
+	protected $isPassive;
 	
 	/**
 	 * The SP request to set the IdPentityID... 
 	 */
-	private $setIdPentityID = NULL;
+	protected $setIdPentityID = NULL;
 
 
 	/**
 	 * The name of the query parameter which should contain the users choice of IdP.
 	 * This option default to 'entityID' for Shibboleth compatibility.
 	 */
-	private $returnIdParam;
+	protected $returnIdParam;
 
 
 	/**
 	 * The URL the user should be redirected to after choosing an IdP.
 	 */
-	private $returnURL;
+	protected $returnURL;
 
 
 	/**
@@ -155,7 +155,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 *
 	 * @param $message  The message which should be logged.
 	 */
-	private function log($message) {
+	protected function log($message) {
 		SimpleSAML_Logger::info('idpDisco.' . $this->discoType['type'] . ': ' . $message);
 	}
 
@@ -169,7 +169,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * @param $name  The name of the cookie.
 	 * @return  The value of the cookie with the given name, or NULL if no cookie with that name exists.
 	 */
-	private function getCookie($name) {
+	protected function getCookie($name) {
 		$prefixedName = 'idpdisco_' . $this->discoType['type'] . '_' . $name;
 		if(array_key_exists($prefixedName, $_COOKIE)) {
 			return $_COOKIE[$prefixedName];
@@ -188,7 +188,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * @param $name  The name of the cookie.
 	 * @param $value  The value of the cookie.
 	 */
-	private function setCookie($name, $value) {
+	protected function setCookie($name, $value) {
 		$prefixedName = 'idpdisco_' . $this->discoType['type'] . '_' . $name;
 
 		/* We save the cookies for 90 days. */
@@ -210,7 +210,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * @param $idp  The entity id we want to validate. This can be NULL, in which case we will return NULL.
 	 * @return  The entity id if it is valid, NULL if not.
 	 */
-	private function validateIdP($idp) {
+	protected function validateIdP($idp) {
 		if($idp === NULL) {
 			return NULL;
 		}
@@ -237,7 +237,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 *
 	 * @return  The entity id of the IdP the user has chosen, or NULL if the user has made no choice.
 	 */
-	private function getSelectedIdP() {
+	protected function getSelectedIdP() {
 
 
 		/* Parameter set from the Extended IdP Metadata Discovery Service Protocol,
@@ -275,7 +275,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 *
 	 * @return  The entity id of the IdP the user has saved, or NULL if the user hasn't saved any choice.
 	 */
-	private function getSavedIdP() {
+	protected function getSavedIdP() {
 		if(!$this->config->getBoolean('idpdisco.enableremember', FALSE)) {
 			/* Saving of IdP choices is disabled. */
 			return NULL;
@@ -300,7 +300,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 *
 	 * @return  The entity id of the previous IdP the user used, or NULL if this is the first time.
 	 */
-	private function getPreviousIdP() {
+	protected function getPreviousIdP() {
 		return $this->validateIdP($this->getCookie('lastidp'));
 	}
 
@@ -313,7 +313,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 *
 	 * @return  The entity id of the IdP the user should most likely use.
 	 */
-	private function getRecommendedIdP() {
+	protected function getRecommendedIdP() {
 
 		$idp = $this->getPreviousIdP();
 		if($idp !== NULL) {
@@ -338,7 +338,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 *
 	 * @return  TRUE if the choice should be saved, FALSE if not.
 	 */
-	private function saveIdP() {
+	protected function saveIdP() {
 		if(!$this->config->getBoolean('idpdisco.enableremember', FALSE)) {
 			/* Saving of IdP choices is disabled. */
 			return FALSE;
@@ -356,7 +356,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * @return  The entity id of the IdP the user should be sent to, or NULL if the user
 	 *          should choose.
 	 */
-	private function getTargetIdP() {
+	protected function getTargetIdP() {
 
 		/* First, check if the user has chosen an IdP. */
 		$idp = $this->getSelectedIdP();
