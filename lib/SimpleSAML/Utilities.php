@@ -28,8 +28,9 @@ class SimpleSAML_Utilities {
 	 */
 	public static function getSelfProtocol() {
 		$s = empty($_SERVER["HTTPS"]) ? ''
-			: ($_SERVER["HTTPS"] == "on") ? "s"
-			: "";
+			: ($_SERVER["HTTPS"] == "on") ? 's'
+			: '';
+		if ( empty($_SERVER["HTTPS"]) && $_SERVER["SERVER_PORT"] == 443) $s = 's';
 		$protocol = self::strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/").$s;
 		return $protocol;
 	}
