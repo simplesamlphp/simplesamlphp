@@ -103,8 +103,8 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 		if (!array_key_exists('tags.exclude', $filter)) $filter['tags.exclude'] = array();
 		
 		$defaultrule = TRUE;
-		if ( array_key_exists('entities.include', $filter) ||
-			array_key_exists('tags.include', $filter)) {
+		if ( array_key_exists('entities.include', $spmd['discopower.filter'] ) ||
+			array_key_exists('tags.include', $spmd['discopower.filter'])) {
 				
 				$defaultrule = FALSE;
 		}
