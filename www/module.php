@@ -45,15 +45,18 @@ try {
 
 	if (empty($_SERVER['PATH_INFO'])) {
 		throw new SimpleSAML_Error_NotFound('No PATH_INFO to module.php');
-	}
+	}	
 
 	$url = $_SERVER['PATH_INFO'];
 	assert('substr($url, 0, 1) === "/"');
 
 	/* Clear the PATH_INFO option, so that a script can detect whether it is called
 	 * with anything following the '.php'-ending.
+	 *
+	 * Commented out by Andreas on december 3rd 2008. this conflicts with the helper methods
+	 * in Utilities to get URL right.
 	 */
-	unset($_SERVER['PATH_INFO']);
+#	unset($_SERVER['PATH_INFO']);
 
 	$modEnd = strpos($url, '/', 1);
 	if ($modEnd === FALSE) {
