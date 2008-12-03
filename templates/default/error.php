@@ -38,9 +38,8 @@ if (array_key_exists('showerrors', $this->data) && $this->data['showerrors']) {
 		
 		<div style="border: 1px solid #eee; padding: 1em; font-size: x-small">
 			<p style="margin: 1px"><?php echo htmlentities($this->data['exceptionmsg']); ?></p>
-			<div style=" padding: 1em; font-family: monospace; ">
-				<?php echo htmlentities($this->data['exceptiontrace']); ?>
-			</div>
+			<pre style=" padding: 1em; font-family: monospace; "><?php echo htmlentities($this->data['exceptiontrace']); ?>
+			</pre>
 		</div>
 <?php
 }
