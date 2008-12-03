@@ -1284,6 +1284,7 @@ class SimpleSAML_Metadata_SAMLParser {
 				return TRUE;
 			} catch(Exception $e) {
 				/* Validation with this validator failed. */
+				SimpleSAML_Logger::debug('Validation of fingerprint failed: ' . $e->getMessage());
 			}
 		}
 
