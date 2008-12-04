@@ -1451,7 +1451,7 @@ class SimpleSAML_Utilities {
 			$ret['PEM'] = $data;
 
 			/* Extract certificate data (if this is a certificate). */
-			$pattern = '/^-----BEGIN CERTIFICATE-----$([^-]*)^-----END CERTIFICATE-----$/m';
+			$pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
 			if (preg_match($pattern, $data, $matches)) {
 				/* We have a certificate. */
 				$ret['certData'] = str_replace(array("\r", "\n"), '', $matches[1]);
