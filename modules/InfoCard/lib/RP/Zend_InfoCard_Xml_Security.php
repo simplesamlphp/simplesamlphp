@@ -33,6 +33,11 @@ require_once 'Zend_InfoCard_Xml_Security_Transform.php';
  * @copyright  Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+ 
+/*
+* ÚLTIMA REVISIÓN: 4-DEC-2008
+*/
+
 class Zend_InfoCard_Xml_Security
 {
     /**
@@ -79,6 +84,7 @@ class Zend_InfoCard_Xml_Security
     {
     }
 
+
     /**
      * Validates the signature of a provided XML block
      *
@@ -86,141 +92,133 @@ class Zend_InfoCard_Xml_Security
      * @return bool True if the signature validated, false otherwise
      * @throws Exception
      */
-    static public function validateXMLSignature($strXMLInput)
-    {
-        if(!extension_loaded('openssl')) {
-            SimpleSAML_Logger::debug("You must have the openssl extension installed to use this class");
-        }
-
-        $sxe = simplexml_load_string($strXMLInput);
-
-	$sxe->registerXPathNamespace('ds', 'http://www.w3.org/2000/09/xmldsig#');
-
-        list($canonMethod) = $sxe->xpath("//ds:Signature/ds:SignedInfo/ds:CanonicalizationMethod");
-        switch((string)$canonMethod['Algorithm']) {
-            case self::CANONICAL_METHOD_C14N_EXC:
-                $cMethod = (string)$canonMethod['Algorithm'];
-                break;
-            default:
-                SimpleSAML_Logger::debug("Unknown or unsupported CanonicalizationMethod Requested");
-        }
-
-        list($signatureMethod) = $sxe->xpath("//ds:Signature/ds:SignedInfo/ds:SignatureMethod");
-        switch((string)$signatureMethod['Algorithm']) {
-            case self::SIGNATURE_METHOD_SHA1:
-                $sMethod = (string)$signatureMethod['Algorithm'];
-                break;
-            default:
-                SimpleSAML_Logger::debug("Unknown or unsupported SignatureMethod Requested");
-        }
-
-        list($digestMethod) = $sxe->xpath("//ds:Signature/ds:SignedInfo/ds:Reference/ds:DigestMethod");
-        switch((string)$digestMethod['Algorithm']) {
-            case self::DIGEST_METHOD_SHA1:
-                $dMethod = (string)$digestMethod['Algorithm'];
-                break;
-            default:
-                SimpleSAML_Logger::debug("Unknown or unsupported DigestMethod Requested");
-        }
-
-        $base64DecodeSupportsStrictParam = version_compare(PHP_VERSION, '5.2.0', '>=');
-
-        list($digestValue) = $sxe->xpath("//ds:Signature/ds:SignedInfo/ds:Reference/ds:DigestValue");
-        if ($base64DecodeSupportsStrictParam) {
-            $dValue = base64_decode((string)$digestValue, true);
-        } else {
-            $dValue = base64_decode((string)$digestValue);
-        }
-
-        list($signatureValueElem) = $sxe->xpath("//ds:Signature/ds:SignatureValue");
-        if ($base64DecodeSupportsStrictParam) {
-            $signatureValue = base64_decode((string)$signatureValueElem, true);
-        } else {
-            $signatureValue = base64_decode((string)$signatureValueElem);
-        }
-
-        $transformer = new Zend_InfoCard_Xml_Security_Transform();
+	static public function validateXMLSignature($strXMLInput, $sts_crt=NULL){
+		if(!extension_loaded('openssl')) {
+			throw new SimpleSAML_Error_Error("You must have the openssl extension installed to use this class");
+		}
+		
+		$sxe = simplexml_load_string($strXMLInput);
+		$sxe->registerXPathNamespace('ds', 'http://www.w3.org/2000/09/xmldsig#');
+		
+		list($canonMethod) = $sxe->xpath("//ds:Signature/ds:SignedInfo/ds:CanonicalizationMethod");
+		switch((string)$canonMethod['Algorithm']) {
+			case self::CANONICAL_METHOD_C14N_EXC:
+				$cMethod = (string)$canonMethod['Algorithm'];
+				break;
+			default:
+				 throw new SimpleSAML_Error_Error("Unknown or unsupported CanonicalizationMethod Requested");
+		}
+		
+		list($signatureMethod) = $sxe->xpath("//ds:Signature/ds:SignedInfo/ds:SignatureMethod");
+		switch((string)$signatureMethod['Algorithm']) {
+			case self::SIGNATURE_METHOD_SHA1:
+				$sMethod = (string)$signatureMethod['Algorithm'];
+				break;
+			default:
+				throw new SimpleSAML_Error_Error("Unknown or unsupported SignatureMethod Requested");
+		}
+		
+		list($digestMethod) = $sxe->xpath("//ds:Signature/ds:SignedInfo/ds:Reference/ds:DigestMethod");
+		switch((string)$digestMethod['Algorithm']) {
+			case self::DIGEST_METHOD_SHA1:
+				$dMethod = (string)$digestMethod['Algorithm'];
+				break;
+			default:
+				throw new SimpleSAML_Error_Error("Unknown or unsupported DigestMethod Requested");
+		}
+		
+		$base64DecodeSupportsStrictParam = version_compare(PHP_VERSION, '5.2.0', '>=');
+		
+		list($digestValue) = $sxe->xpath("//ds:Signature/ds:SignedInfo/ds:Reference/ds:DigestValue");
+		if ($base64DecodeSupportsStrictParam) {
+			$dValue = base64_decode((string)$digestValue, true);
+		} else {
+			$dValue = base64_decode((string)$digestValue);
+		}
+		
+		list($signatureValueElem) = $sxe->xpath("//ds:Signature/ds:SignatureValue");
+		if ($base64DecodeSupportsStrictParam) {
+			$signatureValue = base64_decode((string)$signatureValueElem, true);
+		} else {
+			$signatureValue = base64_decode((string)$signatureValueElem);
+		}
+		
+		$transformer = new Zend_InfoCard_Xml_Security_Transform();
 
 	//need to fix this later
-        $transforms = $sxe->xpath("//ds:Signature/ds:SignedInfo/ds:Reference/ds:Transforms/ds:Transform");
-        while(list( , $transform) = each($transforms)) {
-          $transformer->addTransform((string)$transform['Algorithm']);
-        }
+		$transforms = $sxe->xpath("//ds:Signature/ds:SignedInfo/ds:Reference/ds:Transforms/ds:Transform");
+		while(list( , $transform) = each($transforms)) {
+			$transformer->addTransform((string)$transform['Algorithm']);
+		}		
+		$transformed_xml = $transformer->applyTransforms($strXMLInput);		
+		$transformed_xml_binhash = pack("H*", sha1($transformed_xml));		
+		if($transformed_xml_binhash != $dValue) {
+			throw new SimpleSAML_Error_Error("Locally Transformed XML (".$transformed_xml_binhash.") does not match XML Document  (".$dValue."). Cannot Verify Signature");
+		}
+		
+		$public_key = null;
+		
+		$sxe->registerXPathNamespace('ds', 'http://www.w3.org/2000/09/xmldsig#');
+		list($keyValue) = $sxe->xpath("//ds:Signature/ds:KeyInfo");
+		$keyValue->registerXPathNamespace('ds', 'http://www.w3.org/2000/09/xmldsig#');
+		list($x509cert) = $keyValue->xpath("ds:X509Data/ds:X509Certificate");
+		list($rsaKeyValue) = $keyValue->xpath("ds:KeyValue/ds:RSAKeyValue");
+		
+		switch(true) {
+			case isset($x509cert):
+				$certificate = (string)$x509cert;
+				
+				$pem = "-----BEGIN CERTIFICATE-----\n".wordwrap($certificate, 64, "\n", true)."\n-----END CERTIFICATE-----";
+				$public_key = openssl_pkey_get_public($pem);
+				if(!$public_key) {
+					throw new SimpleSAML_Error_Error("Unable to extract and prcoess X509 Certificate from KeyValue");
+				}
+				break;
+			case isset($rsaKeyValue):
+				$rsaKeyValue->registerXPathNamespace('ds', 'http://www.w3.org/2000/09/xmldsig#');
+				list($modulus) = $rsaKeyValue->xpath("ds:Modulus");
+				list($exponent) = $rsaKeyValue->xpath("ds:Exponent");
+				if(!isset($modulus) || !isset($exponent)) {
+					throw new SimpleSAML_Error_Error("RSA Key Value not in Modulus/Exponent form");
+				}
+				$modulus = base64_decode((string)$modulus);
+				$exponent = base64_decode((string)$exponent);
+				$pem_public_key = self::_getPublicKeyFromModExp($modulus, $exponent);
+				$public_key = openssl_pkey_get_public ($pem_public_key);
+				break;
+			default:
+				throw new SimpleSAML_Error_Error("Unable to determine or unsupported representation of the KeyValue block");
+		}
 
-        $transformed_xml = $transformer->applyTransforms($strXMLInput);
-
-        //$transformed_xml_binhash = pack("H*", sha1($transformed_xml));
-        $transformed_xml_binhash = pack("H*", sha1($transformed_xml));
-
-        if($transformed_xml_binhash != $dValue) {
-            SimpleSAML_Logger::debug("Locally Transformed XML (".$transformed_xml_binhash.") does not match XML Document  (".$dValue."). Cannot Verify Signature");
-        }
-
-        $public_key = null;
+		$transformer = new Zend_InfoCard_Xml_Security_Transform();
+		$transformer->addTransform((string)$canonMethod['Algorithm']);
+		list($signedInfo) = $sxe->xpath("//ds:Signature/ds:SignedInfo");
+		$signedInfoXML = self::addNamespace($signedInfo, "http://www.w3.org/2000/09/xmldsig#");
+		$canonical_signedinfo = $transformer->applyTransforms($signedInfoXML);
 
 
-	$sxe->registerXPathNamespace('ds', 'http://www.w3.org/2000/09/xmldsig#');
-	list($keyValue) = $sxe->xpath("//ds:Signature/ds:KeyInfo");
+		//Check received public_key against configured one
+		if ($sts_crt!=NULL){
+			$checkcert = file_get_contents($sts_crt);
+			$check_key = openssl_pkey_get_public($checkcert);
+			$checkData = openssl_pkey_get_details($check_key);
+			$checkData2= openssl_pkey_get_details($public_key);
+		}
+		if (($checkData2 == $checkData) || ($sts_crt==NULL)) {
+			if (openssl_verify($canonical_signedinfo,$signatureValue,$public_key)) {
+				list($reference) = $sxe->xpath("//ds:Signature/ds:SignedInfo/ds:Reference");
+				return (string)$reference['URI'];
+			} else {
+				throw new SimpleSAML_Error_Error("Could not validate the XML signature");
+			}
+		} else {
+			SimpleSAML_Logger::debug("Configured STS cert and received STS cert mismatch");
+			throw new SimpleSAML_Error_Error("Configured STS cert and received STS cert mismatch");
+		}
+		return false;
+	}
 
-	$keyValue->registerXPathNamespace('ds', 'http://www.w3.org/2000/09/xmldsig#');
 
-        list($x509cert) = $keyValue->xpath("ds:X509Data/ds:X509Certificate");
-        list($rsaKeyValue) = $keyValue->xpath("ds:KeyValue/ds:RSAKeyValue");
-
-        switch(true) {
-            case isset($x509cert):
-
-                $certificate = (string)$x509cert;
-
-
-                $pem = "-----BEGIN CERTIFICATE-----\n" .
-                       wordwrap($certificate, 64, "\n", true) .
-                       "\n-----END CERTIFICATE-----";
-
-                $public_key = openssl_pkey_get_public($pem);
-
-                if(!$public_key) {
-                    SimpleSAML_Logger::debug("Unable to extract and prcoess X509 Certificate from KeyValue");
-                }
-
-                break;
-            case isset($rsaKeyValue):
-
-	        $rsaKeyValue->registerXPathNamespace('ds', 'http://www.w3.org/2000/09/xmldsig#');
-                list($modulus) = $rsaKeyValue->xpath("ds:Modulus");
-                list($exponent) = $rsaKeyValue->xpath("ds:Exponent");
-                if(!isset($modulus) ||
-                   !isset($exponent)) {
-                    SimpleSAML_Logger::debug("RSA Key Value not in Modulus/Exponent form");
-                }
-
-                $modulus = base64_decode((string)$modulus);
-                $exponent = base64_decode((string)$exponent);
-
-                $pem_public_key = self::_getPublicKeyFromModExp($modulus, $exponent);
-
-                $public_key = openssl_pkey_get_public ($pem_public_key);
-
-                break;
-            default:
-                SimpleSAML_Logger::debug("Unable to determine or unsupported representation of the KeyValue block");
-        }
-
-        $transformer = new Zend_InfoCard_Xml_Security_Transform();
-        $transformer->addTransform((string)$canonMethod['Algorithm']);
-
-        list($signedInfo) = $sxe->xpath("//ds:Signature/ds:SignedInfo");
-	$signedInfoXML = self::addNamespace($signedInfo, "http://www.w3.org/2000/09/xmldsig#"); 
-
-        $canonical_signedinfo = $transformer->applyTransforms($signedInfoXML);
-
-        if(openssl_verify($canonical_signedinfo, $signatureValue, $public_key)) {
-	    list($reference) = $sxe->xpath("//ds:Signature/ds:SignedInfo/ds:Reference");
-            return (string)$reference['URI'];
-        }
-
-        return false;
-    }
 
     private function addNamespace($xmlElem, $ns) {
         $xmlElem->addAttribute('DS_NS', $ns);
@@ -294,9 +292,9 @@ class Zend_InfoCard_Xml_Security
             case ($len < 0x010000):
                 return sprintf("%c%c%c%c%s", $type, 0x82, $len / 0x0100, $len % 0x0100, $data);
             default:
-                SimpleSAML_Logger::debug("Could not encode value");
+                throw new SimpleSAML_Error_Error("Could not encode value");
         }
 
-        SimpleSAML_Logger::debug("Invalid code path");
+        throw new SimpleSAML_Error_Error("Invalid code path");
     }
 }

@@ -32,15 +32,25 @@ class sspmod_InfoCard_RP_InfoCard
   protected $_password;
   protected $_sxml;
 
+	protected $_sts_crt;
+
   public function __construct() {
     if(!extension_loaded('mcrypt')) {
-      SimpleSAML_Logger::debug("Use of the InfoCard component requires the mcrypt extension to be enabled in PHP");
+      throw new Exception("Use of the InfoCard component requires the mcrypt extension to be enabled in PHP");
     }
 
     if(!extension_loaded('openssl')) {
-      SimpleSAML_Logger::debug("Use of the InfoCard component requires the openssl extension to be enabled in PHP");
+      throw new Exception("Use of the InfoCard component requires the openssl extension to be enabled in PHP");
     }
   }
+
+
+	public function addSTSCertificate($sts_crt){
+		$this->_sts_crt = $sts_crt;
+		if(!file_exists($this->_sts_crt)) {
+			throw new Exception("STS certificate does not exists"); 
+		}
+	}
 
   public function addCertificatePair($private_key_file, $public_key_file, $password = null) {
     $this->_private_key_file = $private_key_file;
@@ -48,19 +58,19 @@ class sspmod_InfoCard_RP_InfoCard
     $this->_password = $password;
 
     if(!file_exists($this->_private_key_file)) {
-      SimpleSAML_Logger::debug("Private key file does not exists"); 
+      throw new Exception("Private key file does not exists"); 
     }
 
     if(!file_exists($this->_public_key_file)) {
-      SimpleSAML_Logger::debug("Public key file does not exists"); 
+      throw new Exception("Public key file does not exists"); 
     }
 
     if(!is_readable($this->_private_key_file)) {
-      SimpleSAML_Logger::debug("Private key file is not readable");
+      throw new Exception("Private key file is not readable");
     }
 
     if(!is_readable($this->_public_key_file)) {
-      SimpleSAML_Logger::debug("Public key file is not readable"); 
+      throw new Exception("Public key file is not readable"); 
     }
   }
 
@@ -82,7 +92,7 @@ class sspmod_InfoCard_RP_InfoCard
     }
     catch(Exception $e) {
       $retval->setError('Failed to extract assertion document');
-      SimpleSAML_Logger::debug('Failed to extract assertion document');
+      throw new Exception('Failed to extract assertion document');
       $retval->setCode(Zend_InfoCard_Claims::RESULT_PROCESSING_FAILURE);
       return $retval;
     }
@@ -92,7 +102,7 @@ class sspmod_InfoCard_RP_InfoCard
     }
     catch(Exception $e) {
        $retval->setError('Failure processing assertion document');
-     	 SimpleSAML_Logger::debug('Failure processing assertion document');
+     	 throw new Exception('Failure processing assertion document');
        $retval->setCode(Zend_InfoCard_Claims::RESULT_PROCESSING_FAILURE);
        return $retval;
     }
@@ -118,7 +128,7 @@ class sspmod_InfoCard_RP_InfoCard
     }
     catch(Exception $e) {
        $retval->setError('Failure processing assertion document');
-				SimpleSAML_Logger::debug('Failure processing assertion document');
+				throw new Exception('Failure processing assertion document');
        $retval->setCode(Zend_InfoCard_Claims::RESULT_PROCESSING_FAILURE);
        return $retval;
     }
@@ -128,9 +138,9 @@ class sspmod_InfoCard_RP_InfoCard
 
   private function ValidateSignature($assertions) {
     include_once 'Zend_InfoCard_Xml_Security.php';
-    $reference_id = Zend_InfoCard_Xml_Security::validateXMLSignature($assertions->asXML());
+    $reference_id = Zend_InfoCard_Xml_Security::validateXMLSignature($assertions->asXML(), $this->_sts_crt);
     if(!$reference_id) {
-      SimpleSAML_Logger::debug("Failure Validating the Signature of the assertion document");
+      throw new Exception("Failure Validating the Signature of the assertion document");
     }
 
     return $reference_id;
@@ -140,16 +150,16 @@ class sspmod_InfoCard_RP_InfoCard
     if($reference_id[0] == '#') {
       $reference_id = substr($reference_id, 1);
     } else {
-      SimpleSAML_Logger::debug("Reference of document signature does not reference the local document");
+      throw new Exception("Reference of document signature does not reference the local document");
     }
 
     if($reference_id != $assertions->getAssertionID()) {
-      SimpleSAML_Logger::debug("Reference of document signature does not reference the local document");
+      throw new Exception("Reference of document signature does not reference the local document");
     }
 
     $conditions = $assertions->getConditions();
     if(is_array($condition_error = $assertions->validateConditions($conditions))) {
-      SimpleSAML_Logger::debug("Conditions of assertion document are not met: {$condition_error[1]} ({$condition_error[0]})");
+      throw new Exception("Conditions of assertion document are not met: {$condition_error[1]} ({$condition_error[0]})");
     }
   }
 
@@ -174,90 +184,90 @@ class sspmod_InfoCard_RP_InfoCard
        }
      }
 
-     SimpleSAML_Logger::debug("Unable to determine Assertion type by Namespace");
+     throw new Exception("Unable to determine Assertion type by Namespace");
   }
 
   private function decryptToken($xmlToken) {
     if($this->_sxml['Type'] != self::XENC_ELEMENT_TYPE) {
-      SimpleSAML_Logger::debug("Unknown EncryptedData type found");
+      throw new Exception("Unknown EncryptedData type found");
     }
 
     $this->_sxml->registerXPathNamespace('enc', self::XENC_NS);  
     list($encryptionMethod) = $this->_sxml->xpath("//enc:EncryptionMethod");
     if(!$encryptionMethod instanceof SimpleXMLElement) {
-      SimpleSAML_Logger::debug("EncryptionMethod node not found");
+      throw new Exception("EncryptionMethod node not found");
     }
 
     $encMethodDom = dom_import_simplexml($encryptionMethod);
     if(!$encMethodDom instanceof DOMElement) {
-      SimpleSAML_Logger::debug("Failed to create DOM from EncryptionMethod node");
+      throw new Exception("Failed to create DOM from EncryptionMethod node");
     }
 
     if(!$encMethodDom->hasAttribute("Algorithm")) {
-      SimpleSAML_Logger::debug("Unable to determine the encryption algorithm in the Symmetric enc:EncryptionMethod XML block");
+      throw new Exception("Unable to determine the encryption algorithm in the Symmetric enc:EncryptionMethod XML block");
     }
 
     $algo = $encMethodDom->getAttribute("Algorithm");
     if($algo != self::XENC_ENC_ALGO) {
-      SimpleSAML_Logger::debug("Unsupported encryption algorithm");
+      throw new Exception("Unsupported encryption algorithm");
     }
 
     $this->_sxml->registerXPathNamespace('ds', self::DSIG_NS);
     list($keyInfo) = $this->_sxml->xpath("ds:KeyInfo");
     if(!$keyInfo instanceof SimpleXMLElement) {
-      SimpleSAML_Logger::debug("KeyInfo node not found");
+      throw new Exception("KeyInfo node not found");
     }
 
     $keyInfo->registerXPathNamespace('enc', self::XENC_NS);  
     list($encryptedKey) = $keyInfo->xpath("enc:EncryptedKey");
     if(!$encryptedKey instanceof SimpleXMLElement) {
-      SimpleSAML_Logger::debug("EncryptedKey element not found in KeyInfo");
+      throw new Exception("EncryptedKey element not found in KeyInfo");
     }
 
     $encryptedKey->registerXPathNamespace('enc', self::XENC_NS);  
     list($keyInfoEncryptionMethod) = $encryptedKey->xpath("enc:EncryptionMethod");
     if(!$keyInfoEncryptionMethod instanceof SimpleXMLElement) {
-      SimpleSAML_Logger::debug("EncryptionMethod element not found in EncryptedKey");
+      throw new Exception("EncryptionMethod element not found in EncryptedKey");
     }
 
     $keyInfoEncMethodDom = dom_import_simplexml($keyInfoEncryptionMethod);
     if(!$keyInfoEncMethodDom instanceof DOMElement) {
-      SimpleSAML_Logger::debug("Failed to create DOM from EncryptionMethod node");
+      throw new Exception("Failed to create DOM from EncryptionMethod node");
     }
 
     if(!$keyInfoEncMethodDom->hasAttribute("Algorithm")) {
-      SimpleSAML_Logger::debug("Unable to determine the encryption algorithm in the Symmetric enc:EncryptionMethod XML block");
+      throw new Exception("Unable to determine the encryption algorithm in the Symmetric enc:EncryptionMethod XML block");
     }
 
     $keyInfoEncMethodAlgo = $keyInfoEncMethodDom->getAttribute("Algorithm");
     if($keyInfoEncMethodAlgo != self::XENC_KEYINFO_ENC_ALGO) {
-      SimpleSAML_Logger::debug("Unsupported encryption algorithm");
+      throw new Exception("Unsupported encryption algorithm");
     }
 
     $encryptedKey->registerXPathNamespace('ds', self::DSIG_NS);
     $encryptedKey->registerXPathNamespace('wsse', self::WSSE_NS);
     list($keyIdentifier) = $encryptedKey->xpath("ds:KeyInfo/wsse:SecurityTokenReference/wsse:KeyIdentifier");
     if(!$keyIdentifier instanceof SimpleXMLElement) {
-      SimpleSAML_Logger::debug("KeyInfo/SecurityTokenReference/KeyIdentifier node not found in KeyInfo");
+      throw new Exception("KeyInfo/SecurityTokenReference/KeyIdentifier node not found in KeyInfo");
     }
 
     $keyIdDom =  dom_import_simplexml($keyIdentifier);
     if(!$keyIdDom instanceof DOMElement) {
-      SimpleSAML_Logger::debug("Failed to create DOM from KeyIdentifier node");
+      throw new Exception("Failed to create DOM from KeyIdentifier node");
     }
 
     if(!$keyIdDom->hasAttribute("ValueType")) {
-      SimpleSAML_Logger::debug("Unable to determine ValueType of KeyIdentifier");
+      throw new Exception("Unable to determine ValueType of KeyIdentifier");
     }
 
     $valueType = $keyIdDom->getAttribute("ValueType");
     if($valueType != self::WSSE_KEYID_VALUE_TYPE) {
-      SimpleSAML_Logger::debug("Unsupported KeyIdentifier ValueType");
+      throw new Exception("Unsupported KeyIdentifier ValueType");
     }
 
     list($cipherValue) = $encryptedKey->xpath("enc:CipherData/enc:CipherValue");
     if(!$cipherValue instanceof SimpleXMLElement) {
-      SimpleSAML_Logger::debug("CipherValue node found in EncryptedKey");
+      throw new Exception("CipherValue node found in EncryptedKey");
     }
 
     $base64DecodeSupportsStrictParam = version_compare(PHP_VERSION, '5.2.0', '>=');
@@ -270,19 +280,19 @@ class sspmod_InfoCard_RP_InfoCard
 
     $private_key = openssl_pkey_get_private(array(file_get_contents($this->_private_key_file), $this->_password));
     if(!$private_key) {
-      SimpleSAML_Logger::debug("Unable to load private key");
+      throw new Exception("Unable to load private key");
     }
     
     $result = openssl_private_decrypt($keyCipherValueBase64Decoded, $symmetricKey, $private_key, OPENSSL_PKCS1_OAEP_PADDING);
     openssl_free_key($private_key);
 
     if(!$result) {
-      SimpleSAML_Logger::debug("Unable to decrypt symmetric key");
+      throw new Exception("Unable to decrypt symmetric key");
     }
 
     list($cipherValue) = $this->_sxml->xpath("enc:CipherData/enc:CipherValue");
     if(!$cipherValue instanceof SimpleXMLElement) {
-      SimpleSAML_Logger::debug("CipherValue node found in EncryptedData");
+      throw new Exception("CipherValue node found in EncryptedData");
     }
 
     if ($base64DecodeSupportsStrictParam) {
@@ -296,7 +306,7 @@ class sspmod_InfoCard_RP_InfoCard
     $decrypted = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $symmetricKey, $keyCipherValueBase64Decoded, MCRYPT_MODE_CBC, $mcrypt_iv);
 
     if(!$decrypted) {
-      SimpleSAML_Logger::debug("Unable to decrypt token");
+      throw new Exception("Unable to decrypt token");
     }
 
     $decryptedLength = strlen($decrypted);
