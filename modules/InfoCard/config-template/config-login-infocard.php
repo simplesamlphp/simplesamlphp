@@ -72,6 +72,8 @@ $config = array (
 	
 	'server_key' => '/etc/apache2/ssl/idp.key',
 	'server_crt' => '/etc/apache2/ssl/idp.crt',
+	'sts_crt' => '/etc/apache2/ssl/sts.crt',
+	
 	'IClogo' => 'resources/infocard_114x80.png',
 	
 
@@ -92,6 +94,22 @@ $config = array (
 			'webpage' => array('displayTag'=>"webpage", 'description'=>"Página web")
 		),
 	),
+
+
+//STS only
+// array of certificates forming a trust chain.  The local signing
+// certificate is [0], the one that signed that is [1], etc, chaining to a
+// trust anchor.
+	
+	'CardGenerator' => 'https://idp.aut.uah.es/simplesaml/module.php/InfoCard/getinfocard.php',
+	'certificates' => array(
+		0 => '/etc/apache2/ssl/sts.crt',
+		1 => '/etc/apache2/ssl/CA.crt'
+	),
+	
+	'sts_key' => '/etc/apache2/ssl/sts.key',
+	'tokenserviceurl' => 'https://sts/tokenservice.php',
+	'mexurl' => 'https://sts/mex.php',
 );
 
 ?>
