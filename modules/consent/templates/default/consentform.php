@@ -107,6 +107,7 @@ $this->includeAtTemplateBase('includes/header.php');
 )) ?>
 </p>
 
+	<p style="margin: 1em">
 <form style="display: inline; margin: 0px; padding: 0px" action="<?php echo htmlspecialchars($this->data['yesTarget']); ?>">
 <?php
 	// Embed hidden fields...
@@ -114,7 +115,7 @@ $this->includeAtTemplateBase('includes/header.php');
 		echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
 	}
 ?>
-	<p style="margin: 1em">
+
 		<input type="submit" name="yes" id="yesbutton" value="<?php echo htmlspecialchars($this->t('{consent:yes}')) ?>" />
 
 <?php
@@ -125,11 +126,20 @@ $this->includeAtTemplateBase('includes/header.php');
 ?>
 
 
-		<input type="submit" name="no" id="nobutton" value="<?php echo htmlspecialchars($this->t('{consent:no}')) ?>" />
-	</p>
 
+</form>
 
-<!-- /form -->
+<form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noTarget']); ?>" method="get">
+<?php
+foreach ($this->data['noData'] as $name => $value) {
+        echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
+}
+?>
+	<input type="submit" style="display: inline" name="no" id="nobutton" value="<?php echo htmlspecialchars($this->t('{consent:no}')) ?>" />
+
+</p>
+
+</form>
 
 <?php
 if ($this->data['sppp'] !== FALSE) {
@@ -139,7 +149,7 @@ if ($this->data['sppp'] !== FALSE) {
 }
 ?>
 
-<!-- form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noTarget']); ?>" method="GET" -->
+<form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noTarget']); ?>" method="get">
 <?php
 foreach ($this->data['noData'] as $name => $value) {
 	echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
