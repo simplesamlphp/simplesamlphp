@@ -28,7 +28,7 @@ fieldset legend:hover {
 }
 table.attributes {
 	width: 100%;
-	margin: 0px 0px 1em 0px;
+	margin: 0px;
 	border: 0px;
 	border-collapse: collapse;
 }
@@ -51,5 +51,7 @@ table.attributes tr td {
 	
 	vertical-align: top;
 }
-
+table#table_with_attributes tr:last-child td {
+	border-bottom: none;
+}
 

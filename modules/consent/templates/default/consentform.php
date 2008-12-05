@@ -23,7 +23,7 @@ assert('is_array($this->data["yesData"])');
 assert('is_string($this->data["noTarget"])');
 assert('is_array($this->data["noData"])');
 assert('is_array($this->data["attributes"])');
-assert('$this->data["sppp"] === FALSE || is_string($this->data["spp"])');
+assert('$this->data["sppp"] === FALSE || is_string($this->data["sppp"])');
 
 
 /* Parse parameters. */
@@ -107,67 +107,90 @@ $this->includeAtTemplateBase('includes/header.php');
 )) ?>
 </p>
 
+<form style="display: inline; margin: 0px; padding: 0px" action="<?php echo htmlspecialchars($this->data['yesTarget']); ?>">
+<?php
+	// Embed hidden fields...
+	foreach ($this->data['yesData'] as $name => $value) {
+		echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
+	}
+?>
+	<p style="margin: 1em">
+		<input type="submit" name="yes" id="yesbutton" value="<?php echo htmlspecialchars($this->t('{consent:yes}')) ?>" />
+
+<?php
+	if ($this->data['usestorage']) {
+		$checked = ($this->data['checked'] ? 'checked="checked"' : '');
+		echo('<input type="checkbox" name="saveconsent" ' . $checked . ' value="1" /> ' . $this->t('{consent:remember}') . '');
+	}
+?>
+
+
+		<input type="submit" name="no" id="nobutton" value="<?php echo htmlspecialchars($this->t('{consent:no}')) ?>" />
+	</p>
+
+
+<!-- /form -->
+
 <?php
 if ($this->data['sppp'] !== FALSE) {
-	echo "<p>" . htmlspecialchars($this->t('consent_privacypolicy')) . " ";
+	echo "<p>" . htmlspecialchars($this->t('{consent:consent_privacypolicy}')) . " ";
 	echo "<a target='_new_window' href='" . htmlspecialchars($this->data['sppp']) . "'>" . htmlspecialchars($dstName) . "</a>";
 	echo "</p>";
 }
 ?>
 
-<form style="display: inline" action="<?php echo htmlspecialchars($this->data['yesTarget']); ?>">
-	<input type="submit" name="yes" id="yesbutton" value="<?php echo $this->t('{consent:yes}') ?>" />
-<?php
-
-foreach ($this->data['yesData'] as $name => $value) {
-	echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
-}
-if ($this->data['usestorage']) {
-	$checked = ($this->data['checked'] ? 'checked="checked"' : '');
-	echo('<input type="checkbox" name="saveconsent" ' . $checked . ' value="1" /> ' . $this->t('{consent:remember}'));
-}
-?>
-</form>
-
-<form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noTarget']); ?>" method="GET">
+<!-- form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noTarget']); ?>" method="GET" -->
 <?php
 foreach ($this->data['noData'] as $name => $value) {
 	echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
 }
 ?>
-	<input type="submit" id="nobutton" value="<?php echo htmlspecialchars($this->t('{consent:no}')) ?>" />
 
-<fieldset>
-<legend id="attribute_switch"> » <?php echo $this->t('{consent:consent_attributes_header}'); ?></legend>
 
-<div id="addattributes"><a id="addattributesb"><?php echo $this->t('{consent:show_attributes}'); ?></a></div>
-<table id="table_with_attributes"  class="attributes">
-<?php
 
-$alternate = array('odd', 'even'); $i = 0;
+<!-- Show attributes that are sent to the service in a fieldset. 
+	This fieldset is not expanded by default, but can be shown by clicking on the legend.
+	-->
 
-foreach ($attributes as $name => $value) {
-	$nameTag = '{attributes:attribute_' . strtolower($name) . '}';
-	if ($this->getTag($nameTag) !== NULL) {
-		$name = $this->t($nameTag);
-	}
-
-	if (sizeof($value) > 1) {
-		echo '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue"><ul>';
-		foreach ($value AS $v) {
-			echo '<li>' . htmlspecialchars($v) . '</li>';
+	<fieldset>
+		<legend id="attribute_switch"> » <?php echo $this->t('{consent:consent_attributes_header}'); ?></legend>
+	
+	<div id="addattributes"><a id="addattributesb"><?php echo $this->t('{consent:show_attributes}'); ?></a></div>
+	<table id="table_with_attributes"  class="attributes">
+	<?php
+	
+	$alternate = array('odd', 'even'); $i = 0;
+	
+	foreach ($attributes as $name => $value) {
+		$nameTag = '{attributes:attribute_' . str_replace(":", "_", strtolower($name) ) . '}';
+		if ($this->getTag($nameTag) !== NULL) {
+			$name = $this->t($nameTag);
 		}
-		echo '</ul></td></tr>';
-	} else {
-		echo '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue">' . htmlspecialchars($value[0]) . '</td></tr>';
+	
+		if (sizeof($value) > 1) {
+			echo '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue"><ul>';
+			foreach ($value AS $v) {
+				echo '<li>' . htmlspecialchars($v) . '</li>';
+			}
+			echo '</ul></td></tr>';
+		} else {
+			echo '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue">' . htmlspecialchars($value[0]) . '</td></tr>';
+		}
+		echo("\n");
 	}
-}
+	
+	?>
+	</table>
+	</fieldset>
+<!-- end attribute view -->
 
-?>
-</table>
-</fieldset>
+
+
+
+
 
 </form>
+
 
 <?php
 
