@@ -15,9 +15,10 @@ function statistics_hook_cron(&$croninfo) {
 	if (is_null($statconfig->getValue('cron_tag', NULL))) return;
 	if ($statconfig->getValue('cron_tag', NULL) !== $croninfo['tag']) return;
 	
-	require_once(SimpleSAML_Module::getModuleDir('statistics') . '/extlibs/loganalyzer.php');
-	
-	$croninfo['summary'][] = 'Loganalyzer did run';
-
+	try {
+		require_once(SimpleSAML_Module::getModuleDir('statistics') . '/extlibs/loganalyzer.php');
+	} catch (Exception $e) {
+		$croninfo['summary'][] = 'Loganalyzer threw exception: ' . $e->getMessage();
+	}
 }
 ?>
