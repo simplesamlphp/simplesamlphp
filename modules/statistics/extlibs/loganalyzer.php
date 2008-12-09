@@ -7,6 +7,13 @@ $statdir = $statconfig->getValue('statdir');
 $inputfile = $statconfig->getValue('inputfile');
 $statrules = $statconfig->getValue('statrules');
 
+if (!is_dir($statdir)) 
+	throw new Exception('Statistics module: output dir do not exists [' . $statdir . ']');
+
+if (!file_exists($inputfile)) 
+	throw new Exception('Statistics module: input file do not exists [' . $inputfile . ']');
+
+
 $file = fopen($inputfile, 'r');
 $logfile = file($inputfile, FILE_IGNORE_NEW_LINES );
 
