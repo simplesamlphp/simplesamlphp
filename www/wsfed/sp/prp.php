@@ -2,8 +2,6 @@
 /**
  * WS-Federation/ADFS PRP protocol support for simpleSAMLphp.
  *
- * This endpoint currently only supports assertions. Logout is not implemented.
- *
  * The AssertionConsumerService handler accepts responses from a WS-Federation
  * Account Partner using the Passive Requestor Profile (PRP) and handles it as
  * a Resource Partner.  It receives a response, parses it and passes on the
@@ -24,6 +22,11 @@ SimpleSAML_Logger::info('WS-Fed - SP.AssertionConsumerService: Accessing WS-Fed 
 
 if (!$config->getBoolean('enable.wsfed-sp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+
+if (!empty($_GET['wa']) and ($_GET['wa'] == 'wsignoutcleanup1.0')) {
+	print 'Logged Out';
+	exit;
+}
 
 /* Make sure that the correct query parameters are passed to this script. */
 try {
