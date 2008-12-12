@@ -2,7 +2,7 @@
 /* 
  * SAML 2.0 Meta data for simpleSAMLphp
  *
- * The SAML 2.0 IdP Remote config is used by the SAML 2.0 SP to identify itself.
+ * The SAML 2.0 SP Hosted config is used by the SAML 2.0 SP to identify itself.
  *
  * Required fields:
  *  - host
