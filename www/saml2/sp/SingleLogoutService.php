@@ -22,7 +22,7 @@ if (isset($session) ) {
 	$session->clean();
 }
 
-
+#	sleep(max(0, rand(-5,15)));
 
 if (isset($_GET['SAMLRequest'])) {
 

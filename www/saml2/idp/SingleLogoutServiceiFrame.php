@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This SAML 2.0 endpoint can receive incomming LogoutRequests. It will also send LogoutResponses, 
+ * This SAML 2.0 endpoint can receive incoming LogoutRequests. It will also send LogoutResponses, 
  * and LogoutRequests and also receive LogoutResponses. It is implemeting SLO at the SAML 2.0 IdP.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
@@ -90,6 +90,8 @@ require_once(SimpleSAML_Utilities::resolvePath('libextinc') . '/xajax/xajax.inc.
  */
 function updateslostatus() {
 
+
+
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutServiceiFrame: Accessing SAML 2.0 IdP endpoint SingleLogoutService (iFrame version) within updateslostatus() ');
 
 	$config = SimpleSAML_Configuration::getInstance();
@@ -117,14 +119,19 @@ function updateslostatus() {
 		
 		$spname = is_array($name) ? $t->getTranslation($name) : $name;
 		
-		$objResponse->addAssign('e' . sha1($spentityid), "className", 'loggedout');
-		$objResponse->addAssign('e' . sha1($spentityid), "innerHTML", 'Logging out from <strong>' . $spname . '</strong> successfully completed');
+		$objResponse->addScriptCall('slocompletesp', 'e' . sha1($spentityid));
+		// $objResponse->addAssign('e' . sha1($spentityid), "className", 'loggedout');
+		// $objResponse->addAssign('e' . sha1($spentityid), "innerHTML", 'Logging out from <strong>' . $spname . '</strong> successfully completed');
 
 	}
 	
 	if ($session->sp_logout_completed() === TRUE) {
-		$objResponse->addAssign('iscompleted', "className", 'allcompleted');
-		$objResponse->addAssign('interrupt', "className", 'allcompleted');
+// 		$objResponse->addAssign('iscompleted', "className", 'allcompleted');
+// 		$objResponse->addAssign('interrupt', "className", 'allcompleted');
+
+		$objResponse->addScriptCall('slocompleted');
+
+		
 
 		/**
 		 * Clean up session object to save storage.
@@ -269,6 +276,7 @@ $session->dump_sp_sessions();
  */
 $listofsps = $session->get_sp_list();
 $sparray = array();
+$sparrayNoLogout = array();
 foreach ($listofsps AS $spentityid) {
 
 	// ($issuer, $receiver, $nameid, $nameidformat, $sessionindex, $mode) {
@@ -276,20 +284,26 @@ foreach ($listofsps AS $spentityid) {
 	if($nameId === NULL) {
 		$nameId = $session->getNameID();
 	}
-	
-	$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
-	$req = $lr->generate($idpentityid, $spentityid, $nameId, $session->getSessionIndex(), 'IdP');
 
-	$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-
-
-	// $request, $localentityid, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP'
-	$url = $httpredirect->getRedirectURL($req, $idpentityid, $spentityid, NULL, 'SingleLogoutService', 'SAMLRequest', 'IdP');
 
 	$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
 	$name = array_key_exists('name', $spmetadata) ? $spmetadata['name'] : $spentityid;
 
-	$sparray[$spentityid] = array('url' => $url, 'name' => $name);
+	try {	
+		$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
+		$req = $lr->generate($idpentityid, $spentityid, $nameId, $session->getSessionIndex(), 'IdP');
+		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
+		// $request, $localentityid, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP'
+		$url = $httpredirect->getRedirectURL($req, $idpentityid, $spentityid, NULL, 'SingleLogoutService', 'SAMLRequest', 'IdP');
+
+	
+		$sparray[$spentityid] = array('url' => $url, 'name' => $name);
+		
+	} catch (Exception $e) {
+		
+		$sparrayNoLogout[$spentityid] = array('name' => $name);
+		
+	}
 
 }
 
@@ -396,8 +410,10 @@ if (array_key_exists('name', $spmeta)) $spname = $spmeta['name'];
 
 $et = new SimpleSAML_XHTML_Template($config, 'logout-iframe.php');
 
-$et->data['header'] = 'SAML 2.0 IdP Ajax Logout';
+$et->data['header'] = 'Global logout';
 $et->data['sparray'] = $sparray;
+$et->data['sparrayNoLogout'] = $sparrayNoLogout;
+
 $et->data['logoutresponse'] = $logoutresponse;
 $et->data['xajax'] = $xajax;
 $et->data['requesterName'] = $spname;
