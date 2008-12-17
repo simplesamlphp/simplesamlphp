@@ -63,6 +63,7 @@ function slocompletesp($entityhash) {
 /* SLO completed for all sps. */
 function slocompleted() {
 /*	$("div.completedButWarnings").show(); */
+	$("div#interrupt").hide();
 ' . ($nologoutSPs ? ' ' : 'setTimeout("sendResponse()", 2000);') . '
 }
 

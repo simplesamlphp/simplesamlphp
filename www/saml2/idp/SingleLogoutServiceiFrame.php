@@ -120,14 +120,10 @@ function updateslostatus() {
 		$spname = is_array($name) ? $t->getTranslation($name) : $name;
 		
 		$objResponse->addScriptCall('slocompletesp', 'e' . sha1($spentityid));
-		// $objResponse->addAssign('e' . sha1($spentityid), "className", 'loggedout');
-		// $objResponse->addAssign('e' . sha1($spentityid), "innerHTML", 'Logging out from <strong>' . $spname . '</strong> successfully completed');
 
 	}
 	
 	if ($session->sp_logout_completed() === TRUE) {
-// 		$objResponse->addAssign('iscompleted', "className", 'allcompleted');
-// 		$objResponse->addAssign('interrupt', "className", 'allcompleted');
 
 		$objResponse->addScriptCall('slocompleted');
 
@@ -315,9 +311,6 @@ foreach ($listofsps AS $spentityid) {
 
 
 
-
-
-
 /*
  * Logout procedure is done and we send a Logout Response back to the SP
  */
@@ -380,19 +373,6 @@ try {
 $spmeta = $metadata->getMetaData($requester, 'saml20-sp-remote');
 $spname = $requester;
 if (array_key_exists('name', $spmeta)) $spname = $spmeta['name'];
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
