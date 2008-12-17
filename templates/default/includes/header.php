@@ -44,31 +44,40 @@ if($onLoad !== '') {
 		?></a></h1>
 	</div>
 
-	<div id="languagebar">
+	
 	<?php 
 	
-	$languages = $this->getLanguageList();
-	$langnames = array(
-		'no' => 'Bokmål',
-		'nn' => 'Nynorsk',
-		'se' => 'Sámi',
-		'da' => 'Dansk',
-		'en' => 'English',
-		'de' => 'Deutsch',
-		'sv' => 'Svenska',
-		'fi' => 'Suomeksi',
-		'es' => 'Español',
-		'fr' => 'Français',
-		'nl' => 'Nederlands',
-		'lb' => 'Luxembourgish', 
-		'sl' => 'Slovenščina', // Slovensk
-		'hr' => 'Hrvatski', // Croatian
-		'hu' => 'Magyar', // Hungarian
-		'pt' => 'Português', // Portuguese
-		'pt-BR' => 'Português brasileiro', // Portuguese
-	);
+	$includeLanguageBar = TRUE;
+	if (!empty($_POST)) 
+		$includeLanguageBar = FALSE;
+	if (isset($this->data['hideLanguageBar']) && $this->data['hideLanguageBar'] === TRUE) 
+		$includeLanguageBar = FALSE;
 	
-	if (empty($_POST) ) {
+	if ($includeLanguageBar) {
+		
+		
+		echo '<div id="languagebar">';
+		$languages = $this->getLanguageList();
+		$langnames = array(
+			'no' => 'Bokmål',
+			'nn' => 'Nynorsk',
+			'se' => 'Sámi',
+			'da' => 'Dansk',
+			'en' => 'English',
+			'de' => 'Deutsch',
+			'sv' => 'Svenska',
+			'fi' => 'Suomeksi',
+			'es' => 'Español',
+			'fr' => 'Français',
+			'nl' => 'Nederlands',
+			'lb' => 'Luxembourgish', 
+			'sl' => 'Slovenščina', // Slovensk
+			'hr' => 'Hrvatski', // Croatian
+			'hu' => 'Magyar', // Hungarian
+			'pt' => 'Português', // Portuguese
+			'pt-BR' => 'Português brasileiro', // Portuguese
+		);
+		
 		$textarray = array();
 		foreach ($languages AS $lang => $current) {
 			if ($current) {
@@ -79,8 +88,9 @@ if($onLoad !== '') {
 			}
 		}
 		echo join(' | ', $textarray);
+		echo '</div>';
+
 	}
 	
 	?>
-	</div>
 	<div id="content">
