@@ -66,6 +66,53 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		return $this->document->saveXML();
 	}
+	
+	
+	
+	private function addOrganizationInfo($metadata) {
+		if (array_key_exists('name', $metadata)) {
+			$org = $this->createElement('Organization'); 
+			
+			if (is_array($metadata['name'])) {
+				foreach($metadata['name'] AS $lang => $localname) {
+					$orgname = $this->createTextElement('OrganizationName', $localname); 
+					$orgname->setAttribute('xml:lang', $lang);					
+					$org->appendChild($orgname);
+				}
+			} else {
+				$orgname = $this->createTextElement('OrganizationName', $metadata['name']); 
+				$orgname->setAttribute('xml:lang', 'en');
+				$org->appendChild($orgname);
+			}
+
+
+			if (is_array($metadata['name'])) {
+				foreach($metadata['name'] AS $lang => $localname) {
+					$orgname = $this->createTextElement('OrganizationDisplayName', $localname); 
+					$orgname->setAttribute('xml:lang', $lang);					
+					$org->appendChild($orgname);
+				}
+			} else {
+				$orgname = $this->createTextElement('OrganizationDisplayName', $metadata['name']); 
+				$orgname->setAttribute('xml:lang', 'en');
+				$org->appendChild($orgname);
+			}
+
+			$url = '';
+			if (array_key_exists('url', $metadata)) {
+				$url = $metadata['url'];
+			}
+			$uel = $this->createTextElement('OrganizationURL', $url); 
+			$uel->setAttribute('xml:lang', 'en');
+			$org->appendChild($uel);
+			
+			$this->entityDescriptor->appendChild($org);
+			
+			
+
+		}
+	}
+	
 
 
 	/**
@@ -138,7 +185,56 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$e->appendChild($t);
 		}
 
+
+		/**
+		 * Add an AttributeConsumingService element with information as name and description and list
+		 * of requested attributes
+		 */
+		$attributeconsumer = $this->createElement('AttributeConsumingService');
+		$attributeconsumer->setAttribute('index', '0');
+		
+		if (array_key_exists('name', $metadata)) {	
+			if (is_array($metadata['name'])) {
+				foreach($metadata['name'] AS $lang => $localname) {
+					$t = $this->createTextElement('ServiceName', $localname); 
+					$t->setAttribute('xml:lang', $lang);					
+					$attributeconsumer->appendChild($t);
+				}
+			} else {
+				$t = $this->createTextElement('ServiceName', $metadata['name']); 
+				$t->setAttribute('xml:lang', 'en');
+				$attributeconsumer->appendChild($t);
+			}
+		}
+		
+		
+		
+		if (array_key_exists('description', $metadata)) {	
+			if (is_array($metadata['description'])) {
+				foreach($metadata['description'] AS $lang => $localname) {
+					$t = $this->createTextElement('ServiceDescription', $localname); 
+					$t->setAttribute('xml:lang', $lang);					
+					$attributeconsumer->appendChild($t);
+				}
+			} else {
+				$t = $this->createTextElement('ServiceDescription', $metadata['description']); 
+				$t->setAttribute('xml:lang', 'en');
+				$attributeconsumer->appendChild($t);
+			}
+		}
+		
+		if (array_key_exists('attributes', $metadata) && is_array($metadata['attributes'])) {
+			foreach ($metadata['attributes'] AS $attribute) {
+				$t = $this->createElement('RequestedAttribute'); 
+				$t->setAttribute('Name', $attribute);
+				$attributeconsumer->appendChild($t);
+			}
+		}
+		$e->appendChild($attributeconsumer);		
+
 		$this->entityDescriptor->appendChild($e);
+		
+		$this->addOrganizationInfo($metadata);
 		
 		if (array_key_exists('contacts', $metadata) && is_array($metadata['contacts']) ) {
 			foreach($metadata['contacts'] AS $contact) {
@@ -158,6 +254,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 				}
 			}
 		}
+		
+		
+		
 	}
 
 
@@ -204,6 +303,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		}
 		
 		$this->entityDescriptor->appendChild($e);
+		
+		$this->addOrganizationInfo($metadata);
 		
 		if (array_key_exists('contacts', $metadata) && is_array($metadata['contacts']) ) {
 			foreach($metadata['contacts'] AS $contact) {
