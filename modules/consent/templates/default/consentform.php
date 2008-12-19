@@ -97,7 +97,6 @@ $(document).ready(function() {
 $this->includeAtTemplateBase('includes/header.php');
 
 ?>
-<div id="content">
 
 <p>
 <?php echo $this->t('{consent:consent_accept}', array(
