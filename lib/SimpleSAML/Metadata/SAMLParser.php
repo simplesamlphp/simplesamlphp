@@ -458,7 +458,7 @@ class SimpleSAML_Metadata_SAMLParser {
 				continue;
 			}
 
-			$ret['certData'] = str_replace(array("\r", "\n"), '', $key['X509Certificate']);
+			$ret['certData'] = preg_replace('/\s+/', '', str_replace(array("\r", "\n"), '', $key['X509Certificate']));
 			break;
 		}
 
@@ -527,7 +527,7 @@ class SimpleSAML_Metadata_SAMLParser {
 			}
 
 			/* Add the certificate data to the metadata. Only the first certificate will be added. */
-			$ret['certData'] = str_replace(array("\r", "\n"), '', $key['X509Certificate']);
+			$ret['certData'] = preg_replace('/\s+/', '', str_replace(array("\r", "\n"), '', $key['X509Certificate']));
 			$ret['certFingerprint'][] = sha1($certData);
 			break;
 		}
@@ -612,7 +612,7 @@ class SimpleSAML_Metadata_SAMLParser {
 				continue;
 			}
 
-			$ret['certData'] = str_replace(array("\r", "\n"), '', $key['X509Certificate']);
+			$ret['certData'] = preg_replace('/\s+/', '', str_replace(array("\r", "\n"), '', $key['X509Certificate']));
 			break;
 		}
 
@@ -705,7 +705,7 @@ class SimpleSAML_Metadata_SAMLParser {
 			}
 
 			/* Add the certificate data to the metadata. Only the first certificate will be added. */
-			$ret['certData'] = str_replace(array("\r", "\n"), '', $key['X509Certificate']);
+			$ret['certData'] = preg_replace('/\s+/', '', str_replace(array("\r", "\n"), '', $key['X509Certificate']));
 			$ret['certFingerprint'][] = sha1($certData);
 			break;
 		}
