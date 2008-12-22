@@ -154,7 +154,72 @@ foreach ($this->data['noData'] as $name => $value) {
 	echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
 }
 ?>
+<?php
 
+	function present_list($attr) {
+		if (is_array($attr) && count($attr) > 1) {
+			$str = '<ul><li>' . join('</li><li>', $attr) . '</li></ul>';
+			return $str;
+		} else {
+			return htmlspecialchars($attr[0]);
+		}
+	}
+
+
+	function present_assoc($attr) {
+		if (is_array($attr)) {
+			
+			$str = '<dl>';
+			foreach ($attr AS $key => $value) {
+				$str .= "\n" . '<dt>' . htmlspecialchars($key) . '</dt><dd>' . present_list($value) . '</dd>';
+			}
+			$str .= '</dl>';
+			return $str;
+		} else {
+			return htmlspecialchars($attr);
+		}
+	}
+	
+
+
+	function present_attributes($t, $attributes, $nameParent) {
+		$alternate = array('odd', 'even'); $i = 0;
+		
+		$parentStr = (strlen($nameParent) > 0)? strtolower($nameParent) . '_': '';
+
+		$str = '<table style="" id="table_with_attributes"  class="attributes">';
+		foreach ($attributes as $name => $value) {
+		
+			$nameraw = $name;
+			$nameTag = '{attributes:attribute_' . $parentStr . str_replace(":", "_", strtolower($name) ) . '}';
+			if ($t->getTag($nameTag) !== NULL) {
+				$name = $t->t($nameTag);
+			}
+			
+			if (preg_match('/^child_/', $nameraw)) {
+				$parentName = preg_replace('/^child_/', '', $nameraw);
+				foreach($value AS $child) {
+					$str .= '<tr class="odd"><td colspan="2" style="padding: 2em">' . present_attributes($t, $child, $parentName) . '</td></tr>';
+				}
+			} else {	
+				if (sizeof($value) > 1) {
+					$str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue"><ul>';
+					foreach ($value AS $listitem) {
+						$str .= '<li>' . present_assoc($listitem) . '</li>';
+					}
+					$str .= '</ul></td></tr>';
+				} elseif(isset($value[0])) {
+					$str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue">' . htmlspecialchars($value[0]) . '</td></tr>';
+				}
+			}
+			$str .= "\n";
+		}
+		$str .= '</table>';
+		return $str;
+	}
+
+
+?>
 
 
 <!-- Show attributes that are sent to the service in a fieldset. 
@@ -165,31 +230,14 @@ foreach ($this->data['noData'] as $name => $value) {
 		<legend id="attribute_switch"> » <?php echo $this->t('{consent:consent_attributes_header}'); ?></legend>
 	
 	<div id="addattributes"><a id="addattributesb"><?php echo $this->t('{consent:show_attributes}'); ?></a></div>
-	<table id="table_with_attributes"  class="attributes">
+	
 	<?php
 	
-	$alternate = array('odd', 'even'); $i = 0;
-	
-	foreach ($attributes as $name => $value) {
-		$nameTag = '{attributes:attribute_' . str_replace(":", "_", strtolower($name) ) . '}';
-		if ($this->getTag($nameTag) !== NULL) {
-			$name = $this->t($nameTag);
-		}
-	
-		if (sizeof($value) > 1) {
-			echo '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue"><ul>';
-			foreach ($value AS $v) {
-				echo '<li>' . htmlspecialchars($v) . '</li>';
-			}
-			echo '</ul></td></tr>';
-		} else {
-			echo '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue">' . htmlspecialchars($value[0]) . '</td></tr>';
-		}
-		echo("\n");
-	}
+		echo(present_attributes($this, $attributes, ''));
+
 	
 	?>
-	</table>
+	
 	</fieldset>
 <!-- end attribute view -->
 
