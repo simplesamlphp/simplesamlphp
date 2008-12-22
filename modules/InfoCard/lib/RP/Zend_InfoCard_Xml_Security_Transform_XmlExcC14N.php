@@ -40,13 +40,16 @@ class Zend_InfoCard_Xml_Security_Transform_XmlExcC14N
      */
     public function transform($strXMLData)
     {
+    	
         $dom = new DOMDocument();
         $dom->loadXML($strXMLData);
+        if ($strXMLData==NULL)     SimpleSAML_Logger::debug("NOXML: ".$dom->saveXML());
+    	else SimpleSAML_Logger::debug("XMLcan: ".$dom->saveXML());
 
         if(method_exists($dom, 'C14N')) {
             return $dom->C14N(true, false);
         }
-
         SimpleSAML_Logger::debug("This transform requires the C14N() method to exist in the DOM extension");
+        throw new Exception('This transform requires the C14N() method to exist in the DOM extension');
     }
 }

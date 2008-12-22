@@ -2,8 +2,8 @@
 /*
 * AUTHOR: Samuel Muñoz Hidalgo
 * EMAIL: samuel.mh@gmail.com
-* LAST REVISION: 1-DEC-08
-* DESCRIPTION: 'login-infocard' module template.
+* LAST REVISION: 22-DEC-08
+* DESCRIPTION: InfoCard module template.
 */
 	$this->includeAtTemplateBase('includes/header.php'); 
 	if (!array_key_exists('icon', $this->data)) $this->data['icon'] = 'lock.png';
@@ -20,39 +20,67 @@
 	
 	<p><?php echo $this->t('user_IC_text'); ?></p>
 	
-	<form name="ctl00" id="ctl00" method="post" action="?">
-		<?php foreach ($this->data['stateparams'] as $name => $value) {
-		echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
-		}?>
-		<ic:informationCard xmlns:ic="<?php echo $this->data['InfoCard']['schema'] ?>" name='xmlToken' 
+	<form name="ctl00" id="ctl00" method="post" action="?AuthState=<?php echo $this->data['stateparams']['AuthState']?>">
+<!--		<ic:informationCard xmlns:ic="<?php echo $this->data['InfoCard']['schema'] ?>" name="xmlToken" 
 			issuer="<?php echo $this->data['InfoCard']['issuer']; ?>"
-			issuerPolicy="<?php echo $this->data['InfoCard']['issuerPolicy']; ?>"
-			tokenType="<?php echo $this->data['InfoCard']['tokenType']; ?>"			
-			privacyUrl="<?php echo $this->data['InfoCard']['privacyURL']; ?>"
-			privacyVersion="<?php echo $this->data['InfoCard']['privacyVersion']; ?>">
+			<?php 
+				if ($this->data['InfoCard']['issuerPolicy']!='') echo 'issuerPolicy="'.$this->data['InfoCard']['issuerPolicy'].'"';
+				if ($this->data['InfoCard']['tokenType']!='') echo 'tokenType="'.$this->data['InfoCard']['tokenType'].'"';			
+				if ($this->data['InfoCard']['privacyURL']!='') echo 'privacyUrl="'.$this->data['InfoCard']['privacyURL'].'"';
+				if ($this->data['InfoCard']['privacyVersion']!='') echo 'privacyVersion="'.$this->data['InfoCard']['privacyVersion'].'"'; ?>>
 			<?php
 				$schema = $this->data['InfoCard']['schema']."/claims/";
 				foreach ($this->data['InfoCard']['requiredClaims'] as $claim=>$data) {
-					echo "<ic:add claimType = \"$schema".$claim."\" optional=\"false\" />\n";
+					echo "<ic:add claimType = \"".$schema.$claim."\" optional=\"false\" />\n";
 				}
 				foreach ($this->data['InfoCard']['optionalClaims'] as $claim=>$data) {
-					echo "<ic:add claimType = \"$schema".$claim."\" optional=\"true\" />\n";
+					echo "<ic:add claimType = \"".$schema.$claim."\" optional=\"true\" />\n";
 				}
 				unset($value);?>
-		</ic:informationCard>
-		<input type='image' src="<?php echo $this->data['IClogo']; ?>" align='center'  style='cursor:pointer' />
+		</ic:informationCard>-->
+		
+		<OBJECT type="application/x-informationCard" name="xmlToken">
+			<?php 
+				echo '<PARAM Name="issuer" Value="'.$this->data['InfoCard']['issuer']."\">\n";
+				if ($this->data['InfoCard']['issuerPolicy']!='') echo '<PARAM Name="issuerPolicy" Value="'.$this->data['InfoCard']['issuerPolicy']."\">\n";
+				if ($this->data['InfoCard']['tokenType']!='') echo '<PARAM Name="tokenType" Value="'.$this->data['InfoCard']['tokenType']."\">\n";
+				if ($this->data['InfoCard']['privacyURL']!='') echo '<PARAM Name="privacyUrl" Value="'.$this->data['InfoCard']['privacyURL']."\">\n";
+				if ($this->data['InfoCard']['privacyVersion']!='')echo '<PARAM Name="privacyVersion" Value="'.$this->data['InfoCard']['privacyVersion']."\">\n";?>
+			<PARAM Name="requiredClaims" Value="<?php
+				$schema = $this->data['InfoCard']['schema']."/claims/";
+				foreach ($this->data['InfoCard']['requiredClaims'] as $claim=>$data) {
+					echo $schema.$claim." ";
+				}?>">
+			<PARAM Name="optionalClaims" Value="<?php
+				$schema = $this->data['InfoCard']['schema']."/claims/";
+				foreach ($this->data['InfoCard']['optionalClaims'] as $claim=>$data) {
+					echo $schema.$claim." ";
+				}?>">
+		</OBJECT>
+		
+		<input type='image' src="<?php echo $this->data['IClogo']; ?>" style='cursor:pointer' />
 	</form>
 	
+<!-- 	GET INFOCARD SECTION -->
 	<?php if (strcmp($this->data['CardGenerator'],'')>0) {
-	echo '<h2>Or get one</h2>';
-	echo '<table border="0">';
+	echo '<h2>'.$this->t('get_IC').'</h2>';
 	echo "<form action=\"". $this->data['CardGenerator'] ."\" method='post'>";
-		echo "<tr><td>Username: </td><td><input type='text' name='username' value='usuario' /></tr></td>";
-		echo "<tr><td>Password: </td><td><input type='password' name='password' value='clave' /></tr></td>";
-		echo "<tr><td></td><td><input type='submit' name='Get_card' value='Get InfoCard' /></tr></td>";
-	echo '</form>';
+		echo '<table border="0">';
+		echo "<tr><td>".$this->t('form_username').": </td><td><input type='text' name='username' value='usuario' /></td></tr>";
+		echo "<tr><td>".$this->t('form_password').": </td><td><input type='password' name='password' value='clave' /></td></tr>";
+		echo "<tr><td></td><td><input type='submit' name='get_button' value='".$this->t('get_button')."' /></td></tr>";
 	echo '</table>';
+	echo '</form>';
 	 } ?>
+	 
+<!-- 	 HELP SECTION -->
 	<h2><?php echo $this->t('help_header'); ?></h2>	
 	<p><?php echo $this->t('help_text'); ?></p>
+	<?php
+		if ((array_key_exists('contact_info_URL',$this->data)) && ($this->data['contact_info_URL']!=null)) 
+			echo "<p><a href='".$this->data['contact_info_URL']."'>".$this->t('contact_info')."</a><p/>";
+		if ((array_key_exists('help_desk_email_URL',$this->data)) && ($this->data['help_desk_email_URL']!=null)) 
+			echo "<p><a href='".$this->data['help_desk_email_URL']."'>".$this->t('help_desk_email')."</a></p>";
+	?>
+	
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>

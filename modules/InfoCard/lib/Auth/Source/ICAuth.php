@@ -1,12 +1,15 @@
 <?php
+
 /*
 * AUTHOR: Samuel Muñoz Hidalgo
 * EMAIL: samuel.mh@gmail.com
-* LAST REVISION: 1-DEC-08
+* LAST REVISION: 22-DEC-08
 * DESCRIPTION:
-*  'login-infocard' module.
-*		Auth class
+*  Authentication module.
+*  Handles the login information
+*  Infocard's claims are extracted passed as attributes.
 */
+
 
 class sspmod_InfoCard_Auth_Source_ICAuth extends SimpleSAML_Auth_Source {
 
@@ -39,38 +42,49 @@ class sspmod_InfoCard_Auth_Source_ICAuth extends SimpleSAML_Auth_Source {
 	
 
 	public static function handleLogin($authStateId, $xmlToken) {
-		assert('is_string($authStateId)');
-		
-		/* Retrieve the authentication state. */
-		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
-
-		/* Find authentication source. */
-		assert('array_key_exists(self::AUTHID, $state)');
-		$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
-		if ($source === NULL) {
-			throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
-		}
+SimpleSAML_Logger::debug('ENTRA en icauth');
+		assert('is_string($authStateId)');		
 
 		$config = SimpleSAML_Configuration::getInstance();
 		$autoconfig = $config->copyFromBase('logininfocard', 'config-login-infocard.php');
-		$server_key = $autoconfig->getValue('server_key');
-		$server_crt = $autoconfig->getValue('server_crt');
+		$idp_key = $autoconfig->getValue('idp_key');
+		$sts_crt = $autoconfig->getValue('sts_crt');
 		$Infocard =   $autoconfig->getValue('InfoCard');
 
 		$infocard = new sspmod_InfoCard_RP_InfoCard();
-		$infocard->addCertificatePair($server_key,$server_crt);
+		$infocard->addIDPKey($idp_key);
+		$infocard->addSTSCertificate($sts_crt);	
+		if (!$xmlToken)     
+			SimpleSAML_Logger::debug("XMLtoken: ".$xmlToken);
+    else
+    	SimpleSAML_Logger::debug("NOXMLtoken: ".$xmlToken);
 		$claims = $infocard->process($xmlToken);
-		if($claims->isValid()) {
+ 		if($claims->isValid()) {
+//		if(false) {
 			$attributes = array();
 			foreach ($Infocard['requiredClaims'] as $claim => $data){
 				$attributes[$claim] = array($claims->$claim);
 			}
 			foreach ($Infocard['optionalClaims'] as $claim => $data){
 				$attributes[$claim] = array($claims->$claim);
-			}
-		$state['Attributes'] = $attributes;
-		SimpleSAML_Auth_Source::completeAuth($state);
+			}	
+			/* Retrieve the authentication state. */
+			$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
+			/* Find authentication source. */
+			assert('array_key_exists(self::AUTHID, $state)');
+			$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
+			if ($source === NULL) {
+				throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
+			}			
+			$state['Attributes'] = $attributes;	
+SimpleSAML_Logger::debug('VALIDA');
+			unset($infocard);
+			unset($claims);
+			SimpleSAML_Auth_Source::completeAuth($state);
 		} else {
+SimpleSAML_Logger::debug('NO VALIDA ERROR:'.$claims->getErrorMsg());
+			unset($infocard);
+			unset($claims);
 			return 'wrong_IC';
 		}
 	}

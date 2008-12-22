@@ -1,5 +1,10 @@
 <?php
-
+/*
+* COAUTHOR: Samuel Muñoz Hidalgo
+* EMAIL: samuel.mh@gmail.com
+* LAST REVISION: 22-DEC-08
+* DESCRIPTION: Zend Infocard libraries added sts certificate check
+*/
 require_once 'Zend_InfoCard_Claims.php';
 
 class sspmod_InfoCard_RP_InfoCard
@@ -45,13 +50,33 @@ class sspmod_InfoCard_RP_InfoCard
   }
 
 
+
 	public function addSTSCertificate($sts_crt){
 		$this->_sts_crt = $sts_crt;
-		if(!file_exists($this->_sts_crt)) {
+		if(!file_exists($sts_crt) && ($sts_crt!=NULL) ) {
 			throw new Exception("STS certificate does not exists"); 
 		}
+		if(!is_readable($sts_crt)) {
+      throw new Exception("STS certificate is not readable");
+    }
 	}
 
+
+
+	public function addIDPKey($private_key_file, $password = null){
+		$this->_private_key_file = $private_key_file;
+    $this->_password = $password;
+
+    if(!file_exists($this->_private_key_file)) {
+      throw new Exception("Private key file does not exists"); 
+    }
+    
+    if(!is_readable($this->_private_key_file)) {
+      throw new Exception("Private key file is not readable");
+    }
+	}
+
+/*Function not used $public_key_file is not used*/
   public function addCertificatePair($private_key_file, $public_key_file, $password = null) {
     $this->_private_key_file = $private_key_file;
     $this->_public_key_file = $public_key_file;
@@ -60,25 +85,28 @@ class sspmod_InfoCard_RP_InfoCard
     if(!file_exists($this->_private_key_file)) {
       throw new Exception("Private key file does not exists"); 
     }
-
-    if(!file_exists($this->_public_key_file)) {
-      throw new Exception("Public key file does not exists"); 
-    }
-
+    
     if(!is_readable($this->_private_key_file)) {
       throw new Exception("Private key file is not readable");
     }
+
+    if(!file_exists($this->_public_key_file)) {
+      throw new Exception("Public key file does not exists"); 
+    }    
 
     if(!is_readable($this->_public_key_file)) {
       throw new Exception("Public key file is not readable"); 
     }
   }
 
+
   public function process($xmlToken) {
     if(strpos($xmlToken, "EncryptedData") === false ) {
+SimpleSAML_Logger::debug('IC: UNsecureToken');
       return self::processUnSecureToken($xmlToken);
     }
     else {
+SimpleSAML_Logger::debug('IC: secureToken');
       return self::processSecureToken($xmlToken);
     }
   }
