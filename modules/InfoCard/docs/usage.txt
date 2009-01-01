@@ -13,7 +13,7 @@ Information cards module for simpleSAMLphp
 	DESCRIPTION: What you should read before starting doing things.
 
 	
-INTRODUCTION
+Introduction
 -------------
 
 WARNING: **THIS IS NOT** mature software, it's released with testing, educational, developing purposes. It's on a very early version, so don't rely the life of anybody on it.
@@ -31,7 +31,7 @@ InfoCard Generator
 : Your users could request their InfoCard filling a form with their username and password.
 	
 	
-VERY IMPORTANT
+Very important
 --------------
 
 This document is not a strict guide, I mean it might have some errors or missed information. I've tried to comment almost every trick i've used to make the system work and make your life easier. So, if at any point of the installation you feel lost, breathe twice, think for ten minutes in what you are trying to do, read again the documentation and use your common sense. It'll be usefull when you'll face again the configuration file.
@@ -64,7 +64,7 @@ Adding an Infocard Generator
 5. Read the USER FUNCTIONS section.
 	
 
-ADDING THE STS FUNCTIONALITY
+Adding the STS functionality
 ----------------------------
 
 1. Go into the `modules/InfoCard` folder.
@@ -73,7 +73,7 @@ ADDING THE STS FUNCTIONALITY
 4. Read the USER FUNCTIONS section.
 	
 	
-USER FUNCTIONS
+User functions
 --------------
 
 Because there are many authentication issues I cannot guess for you, you'll have to code a little bit to fit this module to your authentication system.
@@ -88,7 +88,7 @@ It works filling the claimValues array and your job is the ensure the 'value' va
 `fillICdata`, it's used by the card generator to retrieve needed information. It receives an authenticated username and returns an array containing information such as the card name, the card image, the expiring time, etc.
 	
 	
-CERTIFICATES AND HOSTS
+Certificates and hosts
 ----------------------
 
 The architecture is composed by three independent elements:
