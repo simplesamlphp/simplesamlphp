@@ -76,7 +76,6 @@ function sendResponse() {
 	
 ?>
 
-
 <!-- Proper fallback for browsers that do not support javascript or have javascript turned off -->
 <noscript> 
 	<div id="nojavascriptframe">
@@ -101,13 +100,12 @@ function sendResponse() {
 	
 	$requestername = is_array($this->data['requesterName']) ? 
 		$this->getTranslation($this->data['requesterName']) : $this->data['requesterName'];
+
+	echo('<p>' . $this->t('{logout:description}', array('%REQUESTERNAME%' => $requestername)) . '</p>');
 	
 	?>
-	<p>You have initiated a <strong>global logout</strong> from the service <strong><?php echo $requestername; ?></strong>. Global logout means you will be logged out from all of the services listed below.</p>
 
-
-
-	<!-- <div class="loggedout">Logout was started from <?php echo $requestername; ?>.</div> -->
+	<!-- <div class="loggedout"><?php echo($this->t('{logout:logged_out}', array('%REQUESTERNAME%' => $requestername))); ?></div> -->
 
 	<?php
 
@@ -119,7 +117,7 @@ function sendResponse() {
 		echo '<tr class="initiated" id="e' . sha1($spentityid) . '">' . "\n";
 		echo '	<td><img style="float: left; margin: 3px" src="/' . $this->data['baseurlpath'] . 
 			'resources/icons/silk/accept.png" alt="Initiated from" /></td>' . "\n";
-		echo '	<td>Initiated logout</td>';
+		echo '	<td>' . $this->t('{logout:initiated}') . '</td>';
 		echo '	<td>' . $requestername . '</td>' ."\n";
 		echo '</tr>' . "\n";
 		
@@ -150,10 +148,10 @@ function sendResponse() {
 			echo '	</td>' . "\n";
 			
 			echo '	<td class="statustext">';
-			echo '		<span class="completed">Completed</span>' . "\n";
-			echo '		<span class="onhold">On hold</span>' . "\n";
-			echo '		<span class="inprogress">Logging out…</span>' . "\n";
-			echo '		<span class="failed">Logout failed</span>' . "\n";
+			echo '		<span class="completed">' . $this->t('{logout:completed}') . '</span>' . "\n";
+			echo '		<span class="onhold">' . $this->t('{logout:hold}') . '</span>' . "\n";
+			echo '		<span class="inprogress">' . $this->t('{logout:progress}') . '</span>' . "\n";
+			echo '		<span class="failed">' . $this->t('{logout:failed}') . '</span>' . "\n";
 			echo '	</td>';
 			echo '	<td>' . $spname . '</td>' ."\n";
 			
@@ -172,9 +170,9 @@ function sendResponse() {
 
 	?>
 
-	<p id="confirmation" style="margin-top: 1em" >Do you want to continue global logout? <br />
-		<input type="button" id="ok" name="ok" value="Yes, continue logout" />
-		<input type="button" id="cancel" name="cancel" value="Cancel logout" />
+	<p id="confirmation" style="margin-top: 1em" ><?php echo $this->t('{logout:continue}'); ?> <br />
+		<input type="button" id="ok" name="ok" value="<?php echo $this->t('{logout:do_continue}'); ?>" />
+		<input type="button" id="cancel" name="cancel" value="<?php echo $this->t('{logout:cancel}'); ?>" />
 	</p>
 	
 	<div id="interrupt" style="margin-top: 1em; border: 1px solid #ccc; padding: 1em; background: #eaeaea" >
@@ -182,8 +180,8 @@ function sendResponse() {
 			<img src="/<?php echo($this->data['baseurlpath']); ?>resources/icons/timeout.png" 
 				style="float: left; margin: 0px 5px 0px 0px"
 				/>
-			If some of the service providers do not respond in reasonable time, you are encouraged to close your browser to ensure sessions are closed. <br />
-			<input type="button" id="interruptbutton" name="interrupt" value="Return to service" />
+			<?php echo $this->t('{logout:respond_info}'); ?> <br />
+			<input type="button" id="interruptbutton" name="interrupt" value="<?php echo $this->t('{logout:return}'); ?>" />
 		</p>
 	</div>
 	
@@ -196,7 +194,7 @@ function sendResponse() {
 		</p>
 
 		<div class="completedButWarnings">
-			<input type="button" id="returnanyway" name="ok" value="Return to service" />
+			<input type="button" id="returnanyway" name="ok" value="<?php echo $this->t('{logout:return}'); ?>" />
 		</div>
 
 	</div>

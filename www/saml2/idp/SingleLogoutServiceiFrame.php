@@ -331,12 +331,6 @@ try {
 }
 
 
-#SimpleSAML_Logger::debug('SAML2.0 - SP Counter. other SPs with SLO support (' . count($sparray) . ')  without SLO support (' . count($sparrayNoLogout) . ')');
-
-
-
-
-
 
 
 $spmeta = $metadata->getMetaData($requester, 'saml20-sp-remote');
