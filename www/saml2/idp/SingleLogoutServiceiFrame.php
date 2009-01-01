@@ -90,8 +90,6 @@ require_once(SimpleSAML_Utilities::resolvePath('libextinc') . '/xajax/xajax.inc.
  */
 function updateslostatus() {
 
-
-
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutServiceiFrame: Accessing SAML 2.0 IdP endpoint SingleLogoutService (iFrame version) within updateslostatus() ');
 
 	$config = SimpleSAML_Configuration::getInstance();
@@ -127,8 +125,6 @@ function updateslostatus() {
 
 		$objResponse->addScriptCall('slocompleted');
 
-		
-
 		/**
 		 * Clean up session object to save storage.
 		 */
@@ -139,8 +135,6 @@ function updateslostatus() {
 		
 		if ($config->getValue('debug', false)) 
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Session Size after cleaning: ' . $session->getSize());
-
-
 
 	} else {
 		SimpleSAML_Logger::debug('SAML2.0 - sp_logout_completed FALSE');
@@ -177,19 +171,14 @@ if (isset($_GET['SAMLRequest'])) {
 		}
 
 	} catch(Exception $exception) {
-	
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTREQUEST', $exception);
-		
 	}
 	
 	// Extract some parameters from the logout request
 	#$requestid = $logoutrequest->getRequestID();
 	$requester = $logoutrequest->getIssuer();
 	#$relayState = $logoutrequest->getRelayState();
-
-	//$responder = $config->getValue('saml2-hosted-sp');
 	$responder = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-	
 	
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer());
 	SimpleSAML_Logger::stats('saml20-idp-SLO spinit ' . $requester . ' ' . $responder);
@@ -238,7 +227,7 @@ if (isset($_GET['SAMLRequest'])) {
 		
 	SimpleSAML_Logger::debug('SAML2.0 - IDP.SingleLogoutService: Setting cached request with issuer ' . $logoutrequest->getIssuer());
 	
-	$session->set_sp_logout_completed($logoutrequest->getIssuer() );
+	$session->set_sp_logout_completed($logoutrequest->getIssuer());
 	
 
 
@@ -262,7 +251,7 @@ if (isset($_GET['SAMLRequest'])) {
 }
 
 
-
+// Debug entries in the log about what services the user is logged into.
 $session->dump_sp_sessions();
 
 
@@ -317,17 +306,11 @@ foreach ($listofsps AS $spentityid) {
 
 try {
 
-	if(!$logoutInfo) {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTINFOLOST');
-	}
-	
+	if(!$logoutInfo) SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTINFOLOST');
 	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: Found logout info with these keys: ' . join(',', array_keys($logoutInfo)));
 	
-
-	
-	
 	/*
-	 * Check if the Single Logout procedure is initated by an SP (alternatively IdP initiated SLO
+	 * Check if the Single Logout procedure is initated by an SP (alternatively IdP initiated SLO)
 	 */
 	if (array_key_exists('Issuer', $logoutInfo)) {
 		
