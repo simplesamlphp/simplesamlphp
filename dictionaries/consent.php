@@ -58,6 +58,8 @@ $lang = array(
 	'consent_header' => array (
 		'no' => 'Samtykke om overføring av person informasjon',
 		'en' => 'Consent about releasing personal information',
+		'sv' => 'Samtycke gällande överföring av personinformation',
+		'es' => 'Consentimiento para la liberación de información personal',
 	),
 	'consent_notice' => array (
 		'no' => 'Du er nå i ferd med å logge inn på tjenesten',
@@ -114,10 +116,14 @@ $lang = array(
 	'consent_attributes_header' => array (
 		'no' => 'Attributter som vil bli sent til tjenesten',
 		'en' => 'Attributes that will be sent to service',
+		'sv' => 'Attribut som kommer att skickas till tjänsten',
+		'es' => 'Atributos que serán enviados al servicio',
 	),
 	'show_attributes' => array (
 		'no' => 'Vis attributter',
 		'en' => 'Show attributes',
+		'sv' => 'Visa attribut',
+		'es' => 'Mostrar atributos',
 	),
 	'login' => array (
 		'no' => 'innlogging',

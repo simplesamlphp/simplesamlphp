@@ -49,6 +49,74 @@ $lang = array(
 		'pt' => 'Voltar à página de instalação do simpleSAMLphp',
 		'pt-BR' => 'Voltar a instalação do simpleSAMLphp',
 	),
+	'description' => array (
+		'no' => 'Du har startet en <strong>global utlogging</strong> fra tjenesten <strong>%REQUESTERNAME%</strong>. Global utlogging betyr at du vil bli logget ut fra alle tjenestene vist nedenfor.',
+		'en' => 'You have initiated a <strong>global logout</strong> from the service <strong>%REQUESTERNAME%</strong>. Global logout means you will be logged out from all of the services listed below.',
+	),
+	'initiated' => array (
+		'no' => 'Startet utlogging',
+		'en' => 'Initiated logout',
+	),
+	'hold' => array (
+		'no' => 'På vent',
+		'en' => 'On hold',
+	),
+	'completed' => array (
+		'no' => 'Fullført',
+		'en' => 'Completed',
+	),
+	'progress' => array (
+		'no' => 'Logger ut...',
+		'en' => 'Logging out...',
+	),
+	'failed' => array (
+		'no' => 'Utlogging feilet',
+		'en' => 'Logout failed',
+	),
+	'continue' => array (
+		'no' => 'Ønsker du å fortsette global utlogging?',
+		'en' => 'Do you want to continue global logout?',
+	),
+	'do_continue' => array (
+		'no' => 'Ja, fortsett utlogging',
+		'en' => 'Yes, continue logout',
+	),
+	'cancel' => array (
+		'no' => 'Avbryt utlogging',
+		'en' => 'Cancel logout',
+	),
+	'respond_info' => array (
+		'no' => 'Dersom noen av tjenestene ikke svarer innen rimelig tid anbefales du å lukke din nettleser for å sikre at sesjonen avsluttes.',
+		'en' => 'If some of the service providers do not respond in reasonable time, you are encouraged to close your browser to ensure sessions are closed.',
+	),
+	'return' => array (
+		'no' => 'Tilbake til tjenesten',
+		'en' => 'Return to service',
+	),
+	'progress_bar' => array (
+		'no' => 'Status bar',
+		'en' => 'Progress bar',
+	),
+	'logging_out' => array (
+		'no' => 'Vent... logger ut fra <strong>%SPNAME%</strong>.',
+		'en' => 'Wait... is logging out from <strong>%SPNAME%</strong>.',
+	),
+	'logged_out' => array (
+		'no' => 'Utlogging var startet fra %REQUESTERNAME%.',
+		'en' => 'Logout was started from %REQUESTERNAME%.',
+	),
+	'interrupt' => array (
+		'no' => 'Avbryt utloggingeng og g&aring; tilbake til tjenesten.',
+		'en' => 'Interrupt logging out and go back to service.',
+	),
+	'success' => array (
+		'no' => 'Du har n&aring; logget ut fra alle tjenestene listet ovenfor.',
+		'en' => 'You have successfully logged out from all services listed above.',
+	),
+	'finish' => array (
+		'no' => 'OK, fortsett tilbake til %REQUESTERNAME% for å fullføre utloggingsprosessen.',
+		'en' => 'OK, continue back to %REQUESTERNAME% to complete the logout process.',
+	),
 
 );
 
