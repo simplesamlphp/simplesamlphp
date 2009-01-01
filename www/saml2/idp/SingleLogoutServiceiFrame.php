@@ -183,34 +183,6 @@ if (isset($_GET['SAMLRequest'])) {
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer());
 	SimpleSAML_Logger::stats('saml20-idp-SLO spinit ' . $requester . ' ' . $responder);
 	
-	/* Check if we have a valid session. */
-	if($session === NULL) {
-	
-		/* Invalid session. To prevent the user from being unable to
-		 * log out from the service provider, we should just return a
-		 * LogoutResponse pretending that the logout was successful to
-		 * the SP that sent the LogoutRequest.
-		 */
-
-		SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Did not find a session here, but we are returning a LogoutResponse anyway.');
-
-		$spentityid = $logoutrequest->getIssuer();
-
-		/* Generate the response. */
-		$response = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
-		$responseText = $response->generate($idpentityid, $spentityid, $logoutrequest->getRequestID(), 'IdP');
-
-		/* Retrieve the relay state from the request. */
-		$relayState = $logoutrequest->getRelayState();
-
-		/* Send the response using the HTTP-Redirect binding. */
-		$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config,
-		$metadata);
-		$binding->sendMessage($responseText, $idpentityid, $spentityid, $relayState,
-			'SingleLogoutService', 'SAMLResponse', 'IdP');
-		exit;
-	}
-
 
 	$session->doLogout();
 
@@ -223,12 +195,10 @@ if (isset($_GET['SAMLRequest'])) {
 	if($relayState !== NULL) {
 		$logoutInfo['RelayState'] = $relayState;
 	}
-
 		
 	SimpleSAML_Logger::debug('SAML2.0 - IDP.SingleLogoutService: Setting cached request with issuer ' . $logoutrequest->getIssuer());
 	
 	$session->set_sp_logout_completed($logoutrequest->getIssuer());
-	
 
 
 /*
@@ -257,7 +227,7 @@ $session->dump_sp_sessions();
 
 
 /*
- * Generate a list of all service providers, and creat a LogoutRequest message for all these SPs.
+ * Generate a list of all service providers, and create a LogoutRequest message for all these SPs.
  */
 $listofsps = $session->get_sp_list();
 $sparray = array();
@@ -291,6 +261,9 @@ foreach ($listofsps AS $spentityid) {
 	}
 
 }
+
+
+SimpleSAML_Logger::debug('SAML2.0 - SP Counter. other SPs with SLO support (' . count($sparray) . ')  without SLO support (' . count($sparrayNoLogout) . ')');
 
 
 #print_r($sparray);
@@ -328,8 +301,16 @@ try {
 		// Find the relaystate if cached.
 		$relayState = isset($logoutInfo['RelayState']) ? $logoutInfo['RelayState'] : null;
 	
-		// Parameters: $request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
-		$logoutresponse = $httpredirect->getRedirectURL($logoutResponseXML, $idpentityid, $logoutInfo['Issuer'], $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
+		$logoutresponse = NULL;
+		/*
+		 * If the user is not logged into any other SPs, send the LogoutResponse immediately
+		 */
+		if (count($sparray) === 0) {
+			$httpredirect->sendMessage($logoutResponseXML, $idpentityid, $logoutInfo['Issuer'], $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
+			exit;
+		} else {
+			$logoutresponse = $httpredirect->getRedirectURL($logoutResponseXML, $idpentityid, $logoutInfo['Issuer'], $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
+		}
 
 		
 	} elseif (array_key_exists('RelayState', $logoutInfo)) {
@@ -350,20 +331,17 @@ try {
 }
 
 
+#SimpleSAML_Logger::debug('SAML2.0 - SP Counter. other SPs with SLO support (' . count($sparray) . ')  without SLO support (' . count($sparrayNoLogout) . ')');
+
+
+
+
 
 
 
 $spmeta = $metadata->getMetaData($requester, 'saml20-sp-remote');
 $spname = $requester;
 if (array_key_exists('name', $spmeta)) $spname = $spmeta['name'];
-
-
-
-
-
-
-
-
 
 
 
