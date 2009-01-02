@@ -1,0 +1,99 @@
+Theming the user interface in SimpleSAMLphp
+===========================================
+
+<!-- 
+	This file is written in Markdown syntax. 
+	For more information about how to use the Markdown syntax, read here:
+	http://daringfireball.net/projects/markdown/syntax
+-->
+
+In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the XHTML. SimpleSAMLphp comes with a default set of templates that presents a anonymous look.
+
+You may create your own theme, where you add one or more template files that will override the default ones. This document explains how to achieve that.
+
+
+How themes work
+--------------------
+
+If you want to customize the UI, the right way to do that is to create a new **theme**. A theme is a set of templates that can be configured to override the default templates.
+
+### Configuring which theme to use
+
+In `config.php` there is two configuration parameters that controls theming. Here is an example:
+
+	'theme.use' 		=> 'fancytheme',
+	'theme.base' 		=> 'default',
+
+The `theme.use` parameter points to which theme that will be used. If some functionality in simpleSAMLphp needs to present UI in example with the `logout.php` template, it will first look for `logout.php` in the `theme.use` theme, and if not found it will all fallback to look for the template in the `theme.base` theme. 
+
+All required templates SHOULD be available in the `theme.base` theme named `default`, and you SHOULD never change the base theme, or any templates within it. To customize UI, add a new theme that overrides the `default` base theme, instead of modifying it.
+
+### Templates that includes other files
+
+A template file may *include* other files. In example all the default theme templates will include a header and footer. In example the `login.php` template will first include `includes/header.php` then present the login page, and then include `includes/footer.php`.
+
+SimpleSAMLphp allows themes to override the included templates files only, if needed. That means you can create a new theme `fancytheme` that includes only a header and footer. The header file refers to the CSS files, which means that a simple way of making a new look on simpleSAMLphp is to create a new theme, and copy the existing header, but point to your own CSS instead of the default CSS.
+
+
+Creating your first theme
+-------------------------
+
+Give your theme a name, in example `fancytheme`. Make sure simpleSAMLphp is configured to use your new theme in `config.php`:
+
+	'theme.use' 		=> 'fancytheme',
+
+Then create the directory `templates/fancytheme`.
+
+Next, we create `templates/fancytheme/includes`, and copies the header file from the base theme:
+
+	cp templates/default/includes/header.php templates/fancytheme/includes/
+
+In the `templates/fancytheme/includes/header.php` type in something and go to the simpleSAMLphp front page to see that your new theme is in use.
+
+A good start is to modify the reference to the default CSS:
+
+	&lt;link rel="stylesheet" type="text/css" href="/&lt;?php echo $this-&gt;data['baseurlpath']; ?&gt;resources/default.css" /&gt;
+
+to in example:
+
+	&lt;link rel="stylesheet" type="text/css" href="/&lt;?php echo $this-&gt;data['baseurlpath']; ?&gt;resources/fancytheme/default.css" /&gt;
+
+Adding resource files
+---------------------
+
+As discussed in the section above, you may want to point to a new CSS file, and resource files as images and CSS are *not* stored in the templates directory. Instead, use the `www/resources` directory. All files in the `www` directory is accessible by web.
+
+Notice how the `baseurlpath` is made generic in the template:
+
+	href="/&lt;?php echo $this-&gt;data['baseurlpath']; ?&gt;resources/default.css"
+
+If you add the file `www/resources/fancytheme/default.css` it will be accessible from a URL like this: `https://sp.example.org/simplesaml/resources/fancytheme/default.css`.
+
+
+Overriding templates inside modules
+-----------------------------------
+
+If you are using one or more modules, and want to override templates included in these modules, you have to edit files inside the `modules/somemodule/templates/fancytheme`.
+
+
+
+Including your new theme as a module
+------------------------------------
+
+If you create a theme that includes template files to override both core templates and templates inside modules, and also includes some resource files inside the `www/` directory, you may dislike the fact that your theme is distributed in several directories.
+
+To collect all theme specific files in one directory only, you need to create a module.
+
+In example create the following files:
+
+  * `modules/fancytheme/` - your module named `fancytheme`.
+  * `modules/fancytheme/default-enable` - An empty file to indicate that your module should be *enabled* by default.
+  * `modules/fancytheme/themes/fancygreen` - the folder including your new theme named `fancygreen`.
+  * `modules/fancytheme/themes/fancygreen/default` - the folder including template files to override the core templates. By core templates we mean templates that are included in the core simplesamlphp distribution and is not part of any module.
+  * `modules/fancytheme/themes/fancygreen/default/includes/header.php` - example of overriding the header file.
+  * `modules/fancytheme/themes/fancygreen/openid/consumer.php` - Here we override the template file `consumer.php` part of the `openid` module.
+  
+To configure the use of themes embedded modules, configure the `theme.use` parameter in `config.php` to contain both the module name and the theme name, in this example it would mean:
+
+	'theme.use' 		=> 'fancytheme:fancygreen',
+
