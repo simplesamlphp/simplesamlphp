@@ -52,12 +52,11 @@ In the `templates/fancytheme/includes/header.php` type in something and go to th
 
 A good start is to modify the reference to the default CSS:
 
-	&lt;link rel="stylesheet" type="text/css" href="/&lt;?php echo $this-&gt;data['baseurlpath']; ?&gt;resources/default.css" /&gt;
+	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/default.css" />
 
 to in example:
 
-	&lt;link rel="stylesheet" type="text/css" href="/&lt;?php echo $this-&gt;data['baseurlpath']; ?&gt;resources/fancytheme/default.css" /&gt;
-
+	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/fancytheme/default.css" />
 Adding resource files
 ---------------------
 
@@ -65,7 +64,7 @@ As discussed in the section above, you may want to point to a new CSS file, and 
 
 Notice how the `baseurlpath` is made generic in the template:
 
-	href="/&lt;?php echo $this-&gt;data['baseurlpath']; ?&gt;resources/default.css"
+	href="/<?php echo $this->data['baseurlpath']; ?>resources/default.css"
 
 If you add the file `www/resources/fancytheme/default.css` it will be accessible from a URL like this: `https://sp.example.org/simplesaml/resources/fancytheme/default.css`.
 
