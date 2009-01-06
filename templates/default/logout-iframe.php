@@ -199,7 +199,7 @@ function sendResponse() {
 
 	</div>
 
-	<div id="hiddeniframecontainer" stye="margin: 0px; padding: 0px;"></div>
+	<div id="hiddeniframecontainer" style="margin: 0px; padding: 0px;"></div>
 
 
 </div>
