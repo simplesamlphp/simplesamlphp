@@ -185,52 +185,53 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$e->appendChild($t);
 		}
 
-
-		/**
-		 * Add an AttributeConsumingService element with information as name and description and list
-		 * of requested attributes
-		 */
-		$attributeconsumer = $this->createElement('AttributeConsumingService');
-		$attributeconsumer->setAttribute('index', '0');
-		
-		if (array_key_exists('name', $metadata)) {	
-			if (is_array($metadata['name'])) {
-				foreach($metadata['name'] AS $lang => $localname) {
-					$t = $this->createTextElement('ServiceName', $localname); 
-					$t->setAttribute('xml:lang', $lang);					
+		if (array_key_exists('name', $metadata) || array_key_exists('attributes', $metadata)) {
+			/**
+			 * Add an AttributeConsumingService element with information as name and description and list
+			 * of requested attributes
+			 */
+			$attributeconsumer = $this->createElement('AttributeConsumingService');
+			$attributeconsumer->setAttribute('index', '0');
+			
+			if (array_key_exists('name', $metadata)) {	
+				if (is_array($metadata['name'])) {
+					foreach($metadata['name'] AS $lang => $localname) {
+						$t = $this->createTextElement('ServiceName', $localname); 
+						$t->setAttribute('xml:lang', $lang);					
+						$attributeconsumer->appendChild($t);
+					}
+				} else {
+					$t = $this->createTextElement('ServiceName', $metadata['name']); 
+					$t->setAttribute('xml:lang', 'en');
 					$attributeconsumer->appendChild($t);
 				}
-			} else {
-				$t = $this->createTextElement('ServiceName', $metadata['name']); 
-				$t->setAttribute('xml:lang', 'en');
-				$attributeconsumer->appendChild($t);
 			}
-		}
-		
-		
-		
-		if (array_key_exists('description', $metadata)) {	
-			if (is_array($metadata['description'])) {
-				foreach($metadata['description'] AS $lang => $localname) {
-					$t = $this->createTextElement('ServiceDescription', $localname); 
-					$t->setAttribute('xml:lang', $lang);					
+			
+			
+			
+			if (array_key_exists('description', $metadata)) {	
+				if (is_array($metadata['description'])) {
+					foreach($metadata['description'] AS $lang => $localname) {
+						$t = $this->createTextElement('ServiceDescription', $localname); 
+						$t->setAttribute('xml:lang', $lang);					
+						$attributeconsumer->appendChild($t);
+					}
+				} else {
+					$t = $this->createTextElement('ServiceDescription', $metadata['description']); 
+					$t->setAttribute('xml:lang', 'en');
 					$attributeconsumer->appendChild($t);
 				}
-			} else {
-				$t = $this->createTextElement('ServiceDescription', $metadata['description']); 
-				$t->setAttribute('xml:lang', 'en');
-				$attributeconsumer->appendChild($t);
 			}
-		}
-		
-		if (array_key_exists('attributes', $metadata) && is_array($metadata['attributes'])) {
-			foreach ($metadata['attributes'] AS $attribute) {
-				$t = $this->createElement('RequestedAttribute'); 
-				$t->setAttribute('Name', $attribute);
-				$attributeconsumer->appendChild($t);
+			
+			if (array_key_exists('attributes', $metadata) && is_array($metadata['attributes'])) {
+				foreach ($metadata['attributes'] AS $attribute) {
+					$t = $this->createElement('RequestedAttribute'); 
+					$t->setAttribute('Name', $attribute);
+					$attributeconsumer->appendChild($t);
+				}
 			}
+			$e->appendChild($attributeconsumer);
 		}
-		$e->appendChild($attributeconsumer);		
 
 		$this->entityDescriptor->appendChild($e);
 		
