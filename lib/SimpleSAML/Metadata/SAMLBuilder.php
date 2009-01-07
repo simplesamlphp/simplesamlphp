@@ -10,6 +10,8 @@
  */
 class SimpleSAML_Metadata_SAMLBuilder {
 
+
+
 	/**
 	 * The DOMDocument we are working in.
 	 */
@@ -68,6 +70,24 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	}
 	
 	
+	private function addExtensions($metadata) {
+		$extensions = $this->createElement('Extensions'); 
+#		$extensions->setAttribute('xmlns:saml', 'urn:oasis:names:tc:SAML:2.0:assertion');
+		
+		if (array_key_exists('tags', $metadata)) {
+			$attr = $this->createElement('saml:Attribute', 'urn:oasis:names:tc:SAML:2.0:assertion');
+			$attr->setAttribute('Name', 'tags');
+			foreach ($metadata['tags'] AS $tag) {
+				$attr->appendChild($this->createTextElement('saml:AttributeValue', $tag));
+			}
+			$extensions->appendChild($attr);
+		}
+		
+		
+		$this->entityDescriptor->appendChild($extensions);
+	}
+
+
 	
 	private function addOrganizationInfo($metadata) {
 		if (array_key_exists('name', $metadata)) {
@@ -156,6 +176,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$e = $this->createElement('SPSSODescriptor');
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:2.0:protocol');
+		
+		
+		$this->addExtensions($metadata);
 
 		$this->addCertificate($e, $metadata);
 
@@ -476,10 +499,10 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	 * @param string $name  The name of the DOMElement.
 	 * @return DOMElement  The new DOMElement.
 	 */
-	private function createElement($name) {
+	private function createElement($name, $ns = 'urn:oasis:names:tc:SAML:2.0:metadata') {
 		assert('is_string($name)');
-
-		return $this->document->createElementNS('urn:oasis:names:tc:SAML:2.0:metadata', $name);
+		assert('is_string($ns)');
+		return $this->document->createElementNS($ns, $name);
 	}
 
 
