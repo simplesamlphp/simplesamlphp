@@ -14,6 +14,11 @@
 		echo($this->t('{consent:noconsent_return}'));
 		echo('</a></p>');
 	}
+		if($this->data['aboutService']) {
+		echo('<p><a href="' . htmlspecialchars($this->data['aboutService']) . '">');
+		echo($this->t('{consent:noconsent_goto_about}'));
+		echo('</a></p>');
+	}
 ?>
 
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>

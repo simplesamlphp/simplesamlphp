@@ -17,11 +17,16 @@ $state = SimpleSAML_Auth_State::loadState($id, 'consent:request');
 $resumeFrom = SimpleSAML_Module::getModuleURL('consent/getconsent.php');
 $resumeFrom = SimpleSAML_Utilities::addURLParameter($resumeFrom, array('StateId' => $id));
 
+if(isset($state['Destination']['url.about']) ){
+	$aboutService = $state['Destination']['url.about'];
+}
+
 $globalConfig = SimpleSAML_Configuration::getInstance();
 
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'consent:noconsent.php');
 $t->data['dstMetadata'] = $state['Destination'];
 $t->data['resumeFrom'] = $resumeFrom;
+$t->data['aboutService'] = $aboutService;
 $t->show();
 
 ?>
