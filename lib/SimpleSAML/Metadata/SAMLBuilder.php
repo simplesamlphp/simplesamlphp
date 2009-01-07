@@ -72,9 +72,10 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	
 	private function addExtensions($metadata) {
 		$extensions = $this->createElement('Extensions'); 
-#		$extensions->setAttribute('xmlns:saml', 'urn:oasis:names:tc:SAML:2.0:assertion');
+		$includeExtensions = FALSE;
 		
 		if (array_key_exists('tags', $metadata)) {
+			$includeExtensions = TRUE;
 			$attr = $this->createElement('saml:Attribute', 'urn:oasis:names:tc:SAML:2.0:assertion');
 			$attr->setAttribute('Name', 'tags');
 			foreach ($metadata['tags'] AS $tag) {
@@ -83,8 +84,17 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$extensions->appendChild($attr);
 		}
 		
-		
-		$this->entityDescriptor->appendChild($extensions);
+		if (array_key_exists('scope', $metadata)) {
+			$includeExtensions = TRUE;
+			foreach ($metadata['scope'] AS $scopetext) {
+				$scope = $this->createElement('shibmd:Scope', 'urn:mace:shibboleth:metadata:1.0');
+				$scope->setAttribute('regex', 'false');
+				$scope->appendChild($this->document->createTextNode($scopetext));
+				$extensions->appendChild($scope);
+			}
+
+		}
+		if ($includeExtensions) $this->entityDescriptor->appendChild($extensions);
 	}
 
 
