@@ -136,8 +136,6 @@ foreach ($this->data['noData'] as $name => $value) {
 ?>
 	<input type="submit" style="display: inline" name="no" id="nobutton" value="<?php echo htmlspecialchars($this->t('{consent:no}')) ?>" />
 
-</p>
-
 </form>
 
 <?php
@@ -186,10 +184,9 @@ foreach ($this->data['noData'] as $name => $value) {
 		$alternate = array('odd', 'even'); $i = 0;
 		
 		$parentStr = (strlen($nameParent) > 0)? strtolower($nameParent) . '_': '';
+		$str = (strlen($nameParent) > 0)? '<table class="attributes">': '<table id="table_with_attributes"  class="attributes">';
 
-		$str = '<table style="" id="table_with_attributes"  class="attributes">';
 		foreach ($attributes as $name => $value) {
-		
 			$nameraw = $name;
 			$nameTag = '{attributes:attribute_' . $parentStr . str_replace(":", "_", strtolower($name) ) . '}';
 			if ($t->getTag($nameTag) !== NULL) {
