@@ -60,6 +60,7 @@ $lang = array(
 		'en' => 'Consent about releasing personal information',
 		'sv' => 'Samtycke gällande överföring av personinformation',
 		'es' => 'Consentimiento para la liberación de información personal',
+		'sl' => 'Odločitev o privolitvi posredovanja vaših osebnih podatkov',
 	),
 	'consent_notice' => array (
 		'no' => 'Du er nå i ferd med å logge inn på tjenesten',
@@ -118,12 +119,14 @@ $lang = array(
 		'en' => 'Attributes that will be sent to service',
 		'sv' => 'Attribut som kommer att skickas till tjänsten',
 		'es' => 'Atributos que serán enviados al servicio',
+		'sl' => 'Atributi, ki bodo poslani SPju',
 	),
 	'show_attributes' => array (
 		'no' => 'Vis attributter',
 		'en' => 'Show attributes',
 		'sv' => 'Visa attribut',
 		'es' => 'Mostrar atributos',
+		'sl' => 'Prikaži atribute',
 	),
 	'login' => array (
 		'no' => 'innlogging',
@@ -259,6 +262,10 @@ $lang = array(
 		'hu' => 'Vissza az hozzájárulás-kezelő oldalra',
 		'pt' => 'Voltar à página de consentimento',
 		'pt-BR' => 'Retornar a página de consentimento',
+	),
+	'noconsent_goto_about' => array (
+		'no' => 'Gå til informasjonsside om tjenesten',
+		'en' => 'Go to information page for the service',
 	),
 
 );
