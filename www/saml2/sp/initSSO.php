@@ -42,7 +42,7 @@ try {
 /*
  * If no IdP can be resolved, send the user to the SAML 2.0 Discovery Service
  */
-if ($idpentityid == null) {
+if ($idpentityid === NULL) {
 
 	SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: No chosen or default IdP, go to SAML2disco');
 
