@@ -83,6 +83,18 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			}
 			$extensions->appendChild($attr);
 		}
+
+		if (array_key_exists('hint.cidr', $metadata)) {
+			$includeExtensions = TRUE;
+			$attr = $this->createElement('saml:Attribute', 'urn:oasis:names:tc:SAML:2.0:assertion');
+			$attr->setAttribute('Name', 'hint.cidr');
+			$hints = self::arrayize($metadata['hint.cidr']);
+			foreach ($hints AS $hint) {
+				$attr->appendChild($this->createTextElement('saml:AttributeValue', $hint));
+			}
+			$extensions->appendChild($attr);
+		}
+
 		
 		if (array_key_exists('scope', $metadata)) {
 			$includeExtensions = TRUE;
@@ -92,9 +104,16 @@ class SimpleSAML_Metadata_SAMLBuilder {
 				$scope->appendChild($this->document->createTextNode($scopetext));
 				$extensions->appendChild($scope);
 			}
-
 		}
 		if ($includeExtensions) $this->entityDescriptor->appendChild($extensions);
+	}
+	
+	public static function arrayize($data) {
+		if (is_array($data)) {
+			return $data;
+		} else {
+			return array($data);
+		}
 	}
 
 
@@ -308,6 +327,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		if (array_key_exists('redirect.sign', $metadata) && $metadata['redirect.sign']) {
 			$e->setAttribute('WantAuthnRequestSigned', 'true');
 		}
+		
+		$this->addExtensions($metadata);
 
 		$this->addCertificate($e, $metadata);
 
