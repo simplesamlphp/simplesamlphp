@@ -765,6 +765,7 @@ class SimpleSAML_Utilities {
 				'@saml1p' => 'urn:oasis:names:tc:SAML:1.0:protocol',
 				'@saml2' => 'urn:oasis:names:tc:SAML:2.0:assertion',
 				'@saml2p' => 'urn:oasis:names:tc:SAML:2.0:protocol',
+				'@shibmd' => 'urn:mace:shibboleth:metadata:1.0',
 				);
 
 			/* Check if it is a valid shortcut. */
