@@ -32,15 +32,16 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 		parent::__construct($config, $reserved);
 
 		assert('is_array($config)');
+		
 
 		foreach($config as $name) {
-
 			if(!is_string($name)) {
 				throw new Exception('Invalid attribute name: ' . var_export($name, TRUE));
 			}
-
 			$this->allowedAttributes[] = $name;
 		}
+		
+		
 	}
 
 
@@ -55,6 +56,18 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 		assert('is_array($request)');
 		assert('array_key_exists("Attributes", $request)');
 
+		if (empty($this->allowedAttributes)) {
+			if (array_key_exists('attributes', $request['Source'])) {
+				if (array_key_exists('attributes', $request['Destination'])) {
+					$this->allowedAttributes = array_intersect($request['Source']['attributes'], $request['Destination']['attributes']);
+				} else {
+					$this->allowedAttributes = $request['Source']['attributes'];
+				}
+			} else {
+				$this->allowedAttributes = $request['Destination']['attributes'];
+			}
+		}
+		
 		$attributes =& $request['Attributes'];
 
 		foreach($attributes as $name => $values) {
