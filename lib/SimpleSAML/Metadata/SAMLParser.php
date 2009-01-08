@@ -100,6 +100,10 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * the associative array is the language code, while the value is the URI.
 	 */
 	private $organizationURL = array();
+	
+	private $scopes;
+	private $attributes;
+	private $tags;
 
 
 	/**
@@ -180,6 +184,10 @@ class SimpleSAML_Metadata_SAMLParser {
 
 			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Organization', '@md') === TRUE) {
 				$this->processOrganization($child);
+			}
+			
+			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Extensions', '@md') === TRUE) {
+				$this->processExtensions($child);
 			}
 		}
 	}
@@ -403,6 +411,37 @@ class SimpleSAML_Metadata_SAMLParser {
 	}
 
 
+	private function getMetadataCommon() {
+		$ret = array();
+		$ret['entityid'] = $this->entityId;
+		$ret['entityDescriptor'] = $this->entityDescriptor;
+		
+		
+		/*
+		 * Add organizational metadata
+		 */
+		if(array_key_exists('en', $this->organizationName)) {
+			$ret['description'] = $this->organizationName['en'];
+		} elseif(count($this->organizationName) > 0) {
+			$languages = array_keys($this->organizationName);
+			$ret['description'] = $this->organizationName[$languages[0]];
+		}
+
+		if(array_key_exists('en', $this->organizationDisplayName)) {
+			$ret['name'] = $this->organizationDisplayName['en'];
+		} elseif(count($this->organizationDisplayName) > 0) {
+			$languages = array_keys($this->organizationDisplayName);
+			$ret['name'] = $this->organizationDisplayName[$languages[0]];
+		}
+		
+		
+		if (!empty($this->tags)) {
+			$ret['tags'] = $this->tags;
+		}
+		return $ret;
+	}
+
+
 	/**
 	 * This function returns the metadata for SAML 1.x SPs in the format simpleSAMLphp expects.
 	 * This is an associative array with the following fields:
@@ -417,10 +456,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 */
 	public function getMetadata1xSP() {
 
-		$ret = array();
-
-		$ret['entityid'] = $this->entityId;
-		$ret['entityDescriptor'] = $this->entityDescriptor;
+		$ret = $this->getMetadataCommon();
 
 
 		/* Find SP information which supports one of the SAML 1.x protocols. */
@@ -462,8 +498,6 @@ class SimpleSAML_Metadata_SAMLParser {
 			break;
 		}
 
-		/* Add organization info. */
-		$this->addOrganizationInfo($ret);
 
 		return $ret;
 	}
@@ -485,12 +519,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 */
 	public function getMetadata1xIdP() {
 
-		$ret = array();
-
-		$ret['entityid'] = $this->entityId;
-		$ret['entityDescriptor'] = $this->entityDescriptor;
-
-		$ret['name'] = $this->entityId;
+		$ret = $this->getMetadataCommon();
 
 		/* Find IdP information which supports the SAML 1.x protocol. */
 		$idp = $this->getIdPDescriptors(self::$SAML1xProtocols);
@@ -533,9 +562,6 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 
-		/* Add organization info. */
-		$this->addOrganizationInfo($ret);
-
 		return $ret;
 	}
 
@@ -556,10 +582,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 */
 	public function getMetadata20SP() {
 
-		$ret = array();
-
-		$ret['entityid'] = $this->entityId;
-		$ret['entityDescriptor'] = $this->entityDescriptor;
+		$ret = $this->getMetadataCommon();
 
 
 		/* Find SP information which supports the SAML 2.0 protocol. */
@@ -617,10 +640,6 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 
-		/* Add organization info. */
-		$this->addOrganizationInfo($ret);
-
-		
 
 		return $ret;
 	}
@@ -644,10 +663,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 */
 	public function getMetadata20IdP() {
 
-		$ret = array();
-
-		$ret['entityid'] = $this->entityId;
-		$ret['entityDescriptor'] = $this->entityDescriptor;
+		$ret = $this->getMetadataCommon();
 
 		$ret['name'] = $this->entityId;
 
@@ -665,6 +681,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		if (array_key_exists('expire', $idp)) {
 			$ret['expire'] = $idp['expire'];
 		}
+
 
 		/* Enable redirect.sign if WantAuthnRequestsSigned is enabled. */
 		if ($idp['wantAuthnRequestsSigned']) {
@@ -710,35 +727,10 @@ class SimpleSAML_Metadata_SAMLParser {
 			break;
 		}
 
-
-		/* Add organization info. */
-		$this->addOrganizationInfo($ret);
-
 		return $ret;
 	}
 
 
-	/**
-	 * Add organization info to returned SP/IdP information.
-	 *
-	 * @param &$ret  Array where the the organization info should be added.
-	 */
-	private function addOrganizationInfo(&$ret) {
-
-		if(array_key_exists('en', $this->organizationName)) {
-			$ret['description'] = $this->organizationName['en'];
-		} elseif(count($this->organizationName) > 0) {
-			$languages = array_keys($this->organizationName);
-			$ret['description'] = $this->organizationName[$languages[0]];
-		}
-
-		if(array_key_exists('en', $this->organizationDisplayName)) {
-			$ret['name'] = $this->organizationDisplayName['en'];
-		} elseif(count($this->organizationDisplayName) > 0) {
-			$languages = array_keys($this->organizationDisplayName);
-			$ret['name'] = $this->organizationDisplayName[$languages[0]];
-		}
-	}
 
 	/**
 	 * This function extracts metadata from a SSODescriptor element.
@@ -859,6 +851,49 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 		$this->idpDescriptors[] = $idp;
+	}
+
+
+	/**
+	 * Parse and process a Extensions element.
+	 *
+	 * @param $element  The DOMElement which represents the Organization element.
+	 */
+	private function processExtensions($element) {
+		assert('$element instanceof DOMElement');
+
+		for($i = 0; $i < $element->childNodes->length; $i++) {
+			$child = $element->childNodes->item($i);
+
+			/* Skip text nodes. */
+			if(!$child instanceof DOMElement) continue;
+			
+			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Scope', '@shibmd')) {
+				$text = SimpleSAML_Utilities::getDOMText($child);
+				if (!empty($text)) $this->scopes[] = $text;
+			}
+			
+			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Attribute', '@saml2')) {
+
+				if ($child->getAttribute('Name') === 'tags') {
+
+					for($j = 0; $j < $child->childNodes->length; $j++) {
+
+						$attributevalue = $child->childNodes->item($j);
+						if(SimpleSAML_Utilities::isDOMElementOfType($attributevalue, 'AttributeValue', '@saml2')) {
+
+							$tagname = SimpleSAML_Utilities::getDOMText($attributevalue);
+#														echo 'attribute tags: ' . $tagname; exit;
+							if (!empty($tagname)) $this->tags[] = $tagname;
+						}
+					}
+
+				}
+			
+			}
+			
+			
+		}
 	}
 
 
