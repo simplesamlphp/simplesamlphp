@@ -53,7 +53,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		}
 			
 		if ($this->maxCache !== NULL) 
-			$this->entityDescriptor->setAttribute('cacheDuration', $this->maxCache);
+			$this->entityDescriptor->setAttribute('cacheDuration', 'PT' . $this->maxCache . 'S');
 		if ($this->maxDuration !== NULL) 
 			$this->entityDescriptor->setAttribute('validUntil', SimpleSAML_Utilities::generateTimestamp(time() + $this->maxDuration));
 	}
@@ -99,7 +99,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$attr = $this->createElement('saml:Attribute', 'urn:oasis:names:tc:SAML:2.0:assertion');
 			$attr->setAttribute('Name', 'tags');
 			foreach ($metadata['tags'] AS $tag) {
-				$attr->appendChild($this->createTextElement('saml:AttributeValue', $tag));
+				$attr->appendChild($this->createTextElement('saml:AttributeValue', $tag, 'urn:oasis:names:tc:SAML:2.0:assertion'));
 			}
 			$extensions->appendChild($attr);
 		}
@@ -110,7 +110,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$attr->setAttribute('Name', 'hint.cidr');
 			$hints = self::arrayize($metadata['hint.cidr']);
 			foreach ($hints AS $hint) {
-				$attr->appendChild($this->createTextElement('saml:AttributeValue', $hint));
+				$attr->appendChild($this->createTextElement('saml:AttributeValue', $hint, 'urn:oasis:names:tc:SAML:2.0:assertion'));
 			}
 			$extensions->appendChild($attr);
 		}
@@ -565,11 +565,15 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	 * @param string $text  The text contained in the element.
 	 * @return DOMElement  The new DOMElement with a text node.
 	 */
-	private function createTextElement($name, $text) {
+	private function createTextElement($name, $text, $ns = NULL) {
 		assert('is_string($name)');
 		assert('is_string($text)');
 
-		$node = $this->createElement($name);
+		if ($ns !== NULL) {
+			$node = $this->createElement($name, $ns);
+		} else {
+			$node = $this->createElement($name);
+		}
 		$node->appendChild($this->document->createTextNode($text));
 
 		return $node;
