@@ -37,14 +37,14 @@ $config = array (
 	 * browser, and require the user to click the submit button. If debug is set to false,
 	 * Browser/POST SAML messages will be automaticly submitted.
 	 */
-	'debug'                 =>	false,
-	'showerrors'            =>	true,
+	'debug'                 =>	FALSE,
+	'showerrors'            =>	TRUE,
 
 	/**
 	 * This option allows you to enable validation of XML data against its
 	 * schemas. A warning will be written to the log if validation fails.
 	 */
-	'debug.validatexml' => false,
+	'debug.validatexml' => TRUE,
 
 	/**
 	 * This password must be kept secret, and modified from the default value 123.
@@ -219,7 +219,62 @@ $config = array (
 	 */
 	'saml20.signresponse' => FALSE,
 	'shib13.signresponse' => TRUE,
+	
+	
+	
+	/*
+	 * Authentication processing filters that will be executed for all IdPs
+	 * Both Shibboleth and SAML 2.0
+	 */
+	'authproc.idp' => array(
+		/* Enable the authproc filter below to add URN Prefixces to all attributes
+ 		10 => array(
+ 			'class' => 'core:AttributeMap', 'addurnprefix'
+ 		), */
+ 		/* Enable the authproc filter below to automatically generated eduPersonTargetedID. 
+ 		20 => 'core:TargetedID',
+ 		*/
 
+		/* When called without parameters, it will fallback to filter attributes ‹the old way›
+		 * by checking the 'attributes' parameter in metadata on IdP hosted and SP remote.
+		 */
+		50 => 'core:AttributeLimit', 
+		
+		/*
+		 * Consent module is enabled (with no permanent storage, using cookies).
+		 */
+		90 => array(
+			'class' 	=> 'consent:Consent', 
+			'store' 	=> 'consent:Cookie', 
+			'focus' 	=> 'yes', 
+			'checked' 	=> TRUE
+		),
+	),
+	/*
+	 * Authentication processing filters that will be executed for all IdPs
+	 * Both Shibboleth and SAML 2.0
+	 */
+	'authproc.sp' => array(
+		/*
+		10 => array(
+			'class' => 'core:AttributeMap', 'removeurnprefix'
+		),
+		*/
+
+		/* When called without parameters, it will fallback to filter attributes ‹the old way›
+		 * by checking the 'attributes' parameter in metadata on SP hosted and IdP remote.
+		 */
+		50 => 'core:AttributeLimit', 
+
+		/*
+		 * Generate the 'group' attribute populated from other variables, including eduPersonAffiliation.
+		 */
+ 		60 => array('class' => 'core:GenerateGroups', 'eduPersonAffiliation'),
+ 		// All users will be members of 'users' and 'members' 	
+ 		61 => array('class' => 'core:AttributeAdd', 'groups' => array('users', 'members')),
+	),
+	
+	
 
 	/*
 	 * Configuration of Consent storage used for attribute consent.
