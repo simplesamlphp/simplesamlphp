@@ -235,6 +235,10 @@ $config = array (
  		20 => 'core:TargetedID',
  		*/
 
+		/* Add a realm attribute from edupersonprincipalname
+		40 => 'core:AttributeRealm',
+		 */
+
 		/* When called without parameters, it will fallback to filter attributes ‹the old way›
 		 * by checking the 'attributes' parameter in metadata on IdP hosted and SP remote.
 		 */
