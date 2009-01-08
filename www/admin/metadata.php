@@ -58,7 +58,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
-				array('requireconsent', 'redirect.sign', 'redirect.validate', 'privatekey_pass', 'authority', 'attributemap', 'attributealter', 'userid.attribute', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.privatekey_pass', 'metadata.sign.certificate', 'AttributeNameFormat', 'name')
+				array('redirect.sign', 'redirect.validate', 'privatekey_pass', 'authority', 'attributemap', 'attributealter', 'userid.attribute', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.privatekey_pass', 'metadata.sign.certificate', 'AttributeNameFormat', 'name')
 			);
 		}
 		$et->data['metadata.saml20-idp-hosted'] = $results;
@@ -108,7 +108,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
-				array('name', 'requireconsent', 'authority', 'privatekey_pass', 'attributemap', 'attributealter', 'scopedattributes')
+				array('name', 'authority', 'privatekey_pass', 'attributemap', 'attributealter', 'scopedattributes')
 			);
 		}
 		$et->data['metadata.shib13-idp-hosted'] = $results;
