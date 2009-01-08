@@ -63,8 +63,10 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 				} else {
 					$this->allowedAttributes = $request['Source']['attributes'];
 				}
-			} else {
+			} elseif (array_key_exists('attributes', $request['Destination'])) {
 				$this->allowedAttributes = $request['Destination']['attributes'];
+			} else {
+				return;
 			}
 		}
 		
