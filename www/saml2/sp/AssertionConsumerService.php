@@ -146,7 +146,7 @@ try {
 
 	/* Begin module attribute processing */
 
-	$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata);
+	$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata, 'sp');
 
 	$authProcState = array(
 		'core:saml20-sp:NameID' => $authnResponse->getNameID(),

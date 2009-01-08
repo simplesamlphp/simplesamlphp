@@ -93,7 +93,7 @@ try {
 	$spmetadata = $metadata->getMetaData(NULL, 'shib13-sp-hosted');
 
 	/* Begin module attribute processing */
-	$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata);
+	$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata, 'sp');
 
 	$authProcState = array(
 		'core:shib13-sp:NameID' => $authnResponse->getNameID(),

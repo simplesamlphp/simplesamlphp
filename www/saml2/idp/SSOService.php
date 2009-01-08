@@ -285,7 +285,7 @@ if($needAuth && !$isPassive) {
 
 		} else {
 			/* Not processed. */
-			$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata);
+			$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata, 'idp');
 
 			$authProcState = array(
 				'core:saml20-idp:requestcache' => $requestcache,

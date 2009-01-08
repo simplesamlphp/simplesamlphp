@@ -202,7 +202,7 @@ if (!$session->isAuthenticated($authority) ) {
 
 		} else {
 			/* Not processed. */
-			$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata);
+			$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata, 'idp');
 
 			$authProcState = array(
 				'core:shib13-idp:requestcache' => $requestcache,

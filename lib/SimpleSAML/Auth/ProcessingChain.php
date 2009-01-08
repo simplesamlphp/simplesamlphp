@@ -46,11 +46,19 @@ class SimpleSAML_Auth_ProcessingChain {
 	 * @param array $idpMetadata  The metadata for the IdP.
 	 * @param array $spMetadata  The metadata for the SP.
 	 */
-	public function __construct($idpMetadata, $spMetadata) {
+	public function __construct($idpMetadata, $spMetadata, $mode = 'idp') {
 		assert('is_array($idpMetadata)');
 		assert('is_array($spMetadata)');
 
 		$this->filters = array();
+		
+		$config = SimpleSAML_Configuration::getInstance();
+		$configauthproc = $config->getValue('authproc.' . $mode);
+		
+		if (!empty($configauthproc) && is_array($configauthproc)) {
+			$configfilters = self::parseFilterList($configauthproc);
+			self::addFilters($this->filters, $configfilters);
+		}
 
 		if (array_key_exists('authproc', $idpMetadata)) {
 			$idpFilters = self::parseFilterList($idpMetadata['authproc']);
@@ -109,10 +117,10 @@ class SimpleSAML_Auth_ProcessingChain {
 
 		$parsedFilters = array();
 
-		foreach ($filterSrc as $filter) {
+		foreach ($filterSrc as $priority => $filter) {
 
 			if (is_string($filter)) {
-				$filter = array($filter);
+				$filter = array('class' => $filter);
 			}
 
 			if (!is_array($filter)) {
@@ -120,7 +128,7 @@ class SimpleSAML_Auth_ProcessingChain {
 					'One of the filters wasn\'t a string or an array.');
 			}
 
-			$parsedFilters[] = self::parseFilter($filter);
+			$parsedFilters[] = self::parseFilter($filter, $priority);
 		}
 
 		return $parsedFilters;
@@ -130,20 +138,20 @@ class SimpleSAML_Auth_ProcessingChain {
 	/**
 	 * Parse an authentication processing filter.
 	 *
-	 * @param array $config  Array with the authentication processing filter configuration.
+	 * @param array $config  	Array with the authentication processing filter configuration.
+	 * @param int $priority		The priority of the current filter, (not included in the filter 
+	 *							definition.)
 	 * @return SimpleSAML_Auth_ProcessingFilter  The parsed filter.
 	 */
-	private static function parseFilter($config) {
+	private static function parseFilter($config, $priority) {
 		assert('is_array($config)');
 
-		if (!array_key_exists(0, $config)) {
+		if (!array_key_exists('class', $config)) 
 			throw new Exception('Authentication processing filter without name given.');
-		}
 
-		$className = SimpleSAML_Module::resolveClass($config[0], 'Auth_Process',
-			'SimpleSAML_Auth_ProcessingFilter');
-
-		unset($config[0]);
+		$className = SimpleSAML_Module::resolveClass($config['class'], 'Auth_Process', 'SimpleSAML_Auth_ProcessingFilter');
+		$config['%priority'] = $priority;
+		unset($config['class']);
 		return new $className($config, NULL);
 	}
 
@@ -245,13 +253,12 @@ class SimpleSAML_Auth_ProcessingChain {
 
 		$uid = $state['Attributes'][$attributeName];
 		if (count($uid) === 0) {
-			SimpleSAML_Logger::warning('Empty user id attribute \'' . $attributeName . '\'.');
+			SimpleSAML_Logger::warning('Empty user id attribute [' . $attributeName . '].');
 			return;
 		}
 
 		if (count($uid) > 1) {
-			SimpleSAML_Logger::warning('Multiple attribute values for user id attribute \'' .
-				$attributeName . '\'.');
+			SimpleSAML_Logger::warning('Multiple attribute values for user id attribute [' . $attributeName . '].');
 		}
 
 		$uid = $uid[0];
