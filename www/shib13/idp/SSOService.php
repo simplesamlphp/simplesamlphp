@@ -54,7 +54,6 @@ if (isset($_GET['shire'])) {
 			'Issuer'    => $authnrequest->getIssuer(),
 			'shire'		=> $authnrequest->getShire(),
 			'RelayState' => $authnrequest->getRelayState(),
-			'ConsentCookie' => SimpleSAML_Utilities::generateID(),
 		);
 			
 		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incomming Shib authnRequest requestid: '.$requestid);
@@ -219,76 +218,7 @@ if (!$session->isAuthenticated($authority) ) {
 
 		$filteredattributes = $authProcState['Attributes'];
 
-		
-		/*
-		 * Dealing with attribute release consent.
-		 */
-		$requireconsent = false;
-		if (isset($idpmetadata['requireconsent'])) {
-			if (is_bool($idpmetadata['requireconsent'])) {
-				$requireconsent = $idpmetadata['requireconsent'];
-			} else {
-				throw new Exception('Shib1.3 IdP hosted metadata parameter [requireconsent] is in illegal format, must be a PHP boolean type.');
-			}
-		}
-		if ($requireconsent) {
-			
-			$consent = new SimpleSAML_Consent_Consent($config, $session, $spentityid, $idpentityid, $attributes, $filteredattributes, $requestcache['ConsentCookie']);
-			
-			if (!$consent->consent()) {
-				/* Save the request information. */
-				$authId = SimpleSAML_Utilities::generateID();
-				$session->setAuthnRequest('shib13', $authId, $requestcache);
-				
-				$t = new SimpleSAML_XHTML_Template($config, 'consent.php', 'attributes');
-				$t->data['header'] = 'Consent';
-				$t->data['sp_name'] = $sp_name;
-				$t->data['sp_description'] = (isset($spmetadata['description']) ? $spmetadata['description'] : "SP DESCRIPTION");
-				$t->data['idp_name'] = (isset($idpmetadata['name']) ? $idpmetadata['name'] : $idpentityid);
-				$t->data['spentityid'] = $spentityid;
-				$t->data['spmetadata'] = $spmetadata;
-				$t->data['attributes'] = $filteredattributes;
-				$t->data['consenturl'] = SimpleSAML_Utilities::selfURLNoQuery();
-				$t->data['requestid'] = $authId;
-				$t->data['consent_cookie'] = $requestcache['ConsentCookie'];
-				$t->data['usestorage'] = $consent->useStorage();
-				$t->data['noconsent'] = '/' . $config->getBaseURL() . 'noconsent.php';
-				$t->data['noconsent_data'] = array(
-					'sptype' => 'shib13-sp-remote',
-					'spentityid' => $spentityid,
-					'resumeFrom' => SimpleSAML_Utilities::selfURL(),
-					);
 
-				if (array_key_exists('privacypolicy', $spmetadata)) {
-					$privacypolicy = $spmetadata['privacypolicy'];
-				} elseif (array_key_exists('privacypolicy', $idpmetadata)) {
-					$privacypolicy = $idpmetadata['privacypolicy'];
-				} else {
-					$privacypolicy = FALSE;
-				}
-				if($privacypolicy !== FALSE) {
-					$privacypolicy = str_replace('%SPENTITYID%', urlencode($spentityid),
-						$privacypolicy);
-				}
-				$t->data['sppp'] = $privacypolicy;
-
-				switch($config->getValueValidate('consent_autofocus', array(NULL, 'yes', 'no'), NULL)) {
-				case NULL:
-					break;
-				case 'yes':
-					$t->data['autofocus'] = 'yesbutton';
-					break;
-				case 'no':
-					$t->data['autofocus'] = 'nobutton';
-					break;
-				}
-
-				$t->show();
-				exit;
-			}
-
-		}
-		// END ATTRIBUTE CONSENT CODE
 		
 		
 		// Generating a Shibboleth 1.3 Response.
