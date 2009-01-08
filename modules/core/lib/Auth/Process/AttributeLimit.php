@@ -6,7 +6,7 @@
  * Example - remove all attributes except 'cn' and 'mail':
  * <code>
  * 'authproc' => array(
- *   array('core:AttributeLimit', 'cn', 'mail'),
+ *   50 => array('class' => 'core:AttributeLimit', 'cn', 'mail'),
  *   ),
  * </code>
  *

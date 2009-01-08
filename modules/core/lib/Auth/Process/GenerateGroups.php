@@ -27,15 +27,15 @@
  * Example - generate from default set of attributes:
  * <code>
  * 'authproc' => array(
- *   array('core:GenerateGroups'),
+ * 		50 => 'core:GenerateGroups',
  *   ),
  * </code>
  *
  * Example - generate from only the eduPersonAffilitation attribute:
  * <code>
  * 'authproc' => array(
- *   array('core:GenerateGroups', 'eduPersonAffiliation'),
- *   ),
+ *   50 => array('class' => 'core:GenerateGroups', 'eduPersonAffiliation'),
+ *  ),
  * </code>
  *
  * @author Olav Morken, UNINETT AS.

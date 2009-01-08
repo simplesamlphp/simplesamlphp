@@ -14,15 +14,15 @@
  * Example - generate from user ID:
  * <code>
  * 'authproc' => array(
- *   array('core:TargetedID'),
- *   ),
+ *   50 => 'core:TargetedID',
+ * )
  * </code>
  *
  * Example - generate from mail-attribute:
  * <code>
  * 'authproc' => array(
- *   array('core:TargetedID' , 'attribute' => 'mail'),
- *   ),
+ *   50 => array('class' => 'core:TargetedID' , 'attribute' => 'mail'),
+ * ),
  * </code>
  *
  * @author Olav Morken, UNINETT AS.

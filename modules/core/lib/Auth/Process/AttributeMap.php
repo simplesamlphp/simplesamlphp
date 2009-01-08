@@ -6,14 +6,14 @@
  * Example 1 - apply map stored in attributemap/defaultmap.php:
  * <code>
  * 'authproc' => array(
- *   array('core:AttributeMap', 'defaultmaps'),
+ *   50 => array('class' => 'core:AttributeMap', 'defaultmaps'),
  *   ),
  * </code>
  *
  * Example 2 - rename attributes 'mail' and 'uid' to 'email' and 'user':
  * <code>
  * 'authproc' => array(
- *   array('core:AttributeMap', 'mail' => 'email', 'uid' => 'user'),
+ *   50 => array('class' => 'core:AttributeMap', 'mail' => 'email', 'uid' => 'user'),
  *   ),
  * </code>
  *
@@ -89,7 +89,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
 	 * @param array &$request  The current request
 	 */
 	public function process(&$request) {
-		assert('is_array($request');
+		assert('is_array($request)');
 		assert('array_key_exists("Attributes", $request)');
 
 		$attributes =& $request['Attributes'];

@@ -8,21 +8,21 @@
  * Example - add attribute, single value:
  * <code>
  * 'authproc' => array(
- *   array('core:AttributeAdd', 'source' => 'myidp'),
+ *   50 => array('class' => 'core:AttributeAdd', 'source' => 'myidp'),
  *   ),
  * </code>
  *
  * Examle - add attribute, multiple values:
  * <code>
  * 'authproc' => array(
- *   array('core:AttributeAdd', 'groups' => array('users', 'members')),
+ *   50 => array('class' => 'core:AttributeAdd', 'groups' => array('users', 'members')),
  *   ),
  * </code>
  *
  * Examle - replace attribute, single value:
  * <code>
  * 'authproc' => array(
- *   array('core:AttributeAdd', '%replace', 'uid' => array('guest')),
+ *   50 => array('class' => 'core:AttributeAdd', '%replace', 'uid' => array('guest')),
  *   ),
  * </code>
  *
