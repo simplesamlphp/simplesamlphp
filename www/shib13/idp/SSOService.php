@@ -157,38 +157,28 @@ if (!$session->isAuthenticated($authority) ) {
 	
 		$spentityid = $requestcache['Issuer'];
 		$spmetadata = $metadata->getMetaData($spentityid, 'shib13-sp-remote');
-
 		$sp_name = (isset($spmetadata['name']) ? $spmetadata['name'] : $spentityid);
 		
-		/*
-		 * Attribute handling
-		 */
 		$attributes = $session->getAttributes();
-		$afilter = new SimpleSAML_XML_AttributeFilter($config, $attributes);
-		$afilter->process($idpmetadata, $spmetadata);
-
+		
 		/**
 		 * Make a log entry in the statistics for this SSO login.
-		 */
-		$tempattr = $afilter->getAttributes();
-		$realmattr = $config->getValue('statistics.realmattr', null);
-		$realmstr = 'NA';
-		if (!empty($realmattr)) {
-			if (array_key_exists($realmattr, $tempattr) && is_array($tempattr[$realmattr]) ) {
-				$realmstr = $tempattr[$realmattr][0];
-			} else {
-				SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
-			}
-		} 
-		SimpleSAML_Logger::stats('shib13-idp-SSO ' . $spentityid . ' ' . $idpentityid . ' ' . $realmstr);
-		
-		/**
-		 * Filter away attributes that are not allowed for this SP.
-		 */
-		$afilter->processFilter($idpmetadata, $spmetadata);
-		
-		$filteredattributes = $afilter->getAttributes();
-		
+
+			Need to be replaced by a authproc
+			
+			$tempattr = $afilter->getAttributes();
+			$realmattr = $config->getValue('statistics.realmattr', null);
+			$realmstr = 'NA';
+			if (!empty($realmattr)) {
+				if (array_key_exists($realmattr, $tempattr) && is_array($tempattr[$realmattr]) ) {
+					$realmstr = $tempattr[$realmattr][0];
+				} else {
+					SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
+				}
+			} 
+		*/
+		SimpleSAML_Logger::stats('shib13-idp-SSO ' . $spentityid . ' ' . $idpentityid . ' NA');
+				
 
 		/* Authentication processing operations. */
 		if (array_key_exists('AuthProcState', $requestcache)) {
@@ -206,7 +196,7 @@ if (!$session->isAuthenticated($authority) ) {
 			$authProcState = array(
 				'core:shib13-idp:requestcache' => $requestcache,
 				'ReturnURL' => SimpleSAML_Utilities::selfURLNoQuery(),
-				'Attributes' => $filteredattributes,
+				'Attributes' => $attributes,
 				'Destination' => $spmetadata,
 				'Source' => $idpmetadata,
 				);
@@ -216,7 +206,7 @@ if (!$session->isAuthenticated($authority) ) {
 			$requestcache['AuthProcState'] = $authProcState;
 		}
 
-		$filteredattributes = $authProcState['Attributes'];
+		$attributes = $authProcState['Attributes'];
 
 
 		
@@ -224,7 +214,7 @@ if (!$session->isAuthenticated($authority) ) {
 		// Generating a Shibboleth 1.3 Response.
 		$ar = new SimpleSAML_XML_Shib13_AuthnResponse($config, $metadata);
 		$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'],
-			$requestcache['RequestID'], null, $filteredattributes);
+			$requestcache['RequestID'], null, $attributes);
 		
 		
 		#echo $authnResponseXML;

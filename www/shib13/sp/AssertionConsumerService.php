@@ -71,7 +71,9 @@ try {
 
 	/**
 	 * Make a log entry in the statistics for this SSO login.
-	 */
+
+		Need to be replaced by a auth proc
+
 	$tempattr = $authnResponse->getAttributes();
 	$realmattr = $config->getValue('statistics.realmattr', null);
 	$realmstr = 'NA';
@@ -82,7 +84,8 @@ try {
 			SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
 		}
 	}
-	SimpleSAML_Logger::stats('shib13-sp-SSO ' . $metadata->getMetaDataCurrentEntityID('shib13-sp-hosted') . ' ' . $idpmetadata['entityid'] . ' ' . $realmstr);
+	 */
+	SimpleSAML_Logger::stats('shib13-sp-SSO ' . $metadata->getMetaDataCurrentEntityID('shib13-sp-hosted') . ' ' . $idpmetadata['entityid'] . ' NA');
 
 
 	$relayState = $authnResponse->getRelayState();

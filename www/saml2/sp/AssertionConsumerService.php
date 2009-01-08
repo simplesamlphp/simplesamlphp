@@ -118,12 +118,12 @@ try {
 	 * Attribute handling
 	 */
 	$attributes = $authnResponse->getAttributes();
-	$afilter = new SimpleSAML_XML_AttributeFilter($config, $attributes);
-	$afilter->process($idpmetadata, $spmetadata);
-	
+
 	/**
 	 * Make a log entry in the statistics for this SSO login.
-	 */
+     *
+     * Needs to be replaced by auth proc
+     *
 	$tempattr = $authnResponse->getAttributes();
 	$realmattr = $config->getValue('statistics.realmattr', null);
 	$realmstr = 'NA';
@@ -134,14 +134,8 @@ try {
 			SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
 		}
 	} 
-	SimpleSAML_Logger::stats('saml20-sp-SSO ' . $metadata->getMetaDataCurrentEntityID() . ' ' . $idpentityid . ' ' . $realmstr);
-	
-	
-	$afilter->processFilter($idpmetadata, $spmetadata);
-			
-	$attributes = $afilter->getAttributes();
-
-	SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Completed attribute handling');
+	*/
+	SimpleSAML_Logger::stats('saml20-sp-SSO ' . $metadata->getMetaDataCurrentEntityID() . ' ' . $idpentityid . ' NA');
 	
 
 	/* Begin module attribute processing */

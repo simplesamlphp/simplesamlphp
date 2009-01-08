@@ -249,30 +249,22 @@ if($needAuth && !$isPassive) {
 		 * Attribute handling
 		 */
 		$attributes = $session->getAttributes();
-		$afilter = new SimpleSAML_XML_AttributeFilter($config, $attributes);
-		$afilter->process($idpmetadata, $spmetadata);
 		
-		/**
-		 * Make a log entry in the statistics for this SSO login.
-		 */
-		$tempattr = $afilter->getAttributes();
-		$realmattr = $config->getValue('statistics.realmattr', null);
-		$realmstr = 'NA';
-		if (!empty($realmattr)) {
-			if (array_key_exists($realmattr, $tempattr) && is_array($tempattr[$realmattr]) ) {
-				$realmstr = $tempattr[$realmattr][0];
-			} else {
-				SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
-			}
-		} 
-		SimpleSAML_Logger::stats('saml20-idp-SSO ' . $spentityid . ' ' . $idpentityid . ' ' . $realmstr);
+		/*
+			Need to be replaced by a auth proc filter that does the log entry....
+			
+			$realmattr = $config->getValue('statistics.realmattr', null);
+			$realmstr = 'NA';
+			if (!empty($realmattr)) {
+				if (array_key_exists($realmattr, $tempattr) && is_array($tempattr[$realmattr]) ) {
+					$realmstr = $tempattr[$realmattr][0];
+				} else {
+					SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
+				}
+			} 
+		*/
+		SimpleSAML_Logger::stats('saml20-idp-SSO ' . $spentityid . ' ' . $idpentityid . ' NA');
 		
-		
-		$afilter->processFilter($idpmetadata, $spmetadata);
-				
-		$filteredattributes = $afilter->getAttributes();
-		
-
 		/* Authentication processing operations. */
 		if (array_key_exists('AuthProcState', $requestcache)) {
 			/* Processed earlier, saved in requestcache. */
@@ -289,17 +281,17 @@ if($needAuth && !$isPassive) {
 			$authProcState = array(
 				'core:saml20-idp:requestcache' => $requestcache,
 				'ReturnURL' => SimpleSAML_Utilities::selfURLNoQuery(),
-				'Attributes' => $filteredattributes,
+				'Attributes' => $attributes,
 				'Destination' => $spmetadata,
 				'Source' => $idpmetadata,
-				);
+			);
 
 			$pc->processState($authProcState);
 
 			$requestcache['AuthProcState'] = $authProcState;
 		}
 
-		$filteredattributes = $authProcState['Attributes'];
+		$attributes = $authProcState['Attributes'];
 
 		
 		
@@ -310,7 +302,7 @@ if($needAuth && !$isPassive) {
 		
 		// Generate an SAML 2.0 AuthNResponse message
 		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-		$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestcache['RequestID'], null, $filteredattributes);
+		$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestcache['RequestID'], null, $attributes);
 	
 		// Sending the AuthNResponse using HTTP-Post SAML 2.0 binding
 		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
