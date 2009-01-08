@@ -243,10 +243,6 @@ if($needAuth && !$isPassive) {
 		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
 		
 		$sp_name = (isset($spmetadata['name']) ? $spmetadata['name'] : $spentityid);
-	
-		// Adding this service provider to the list of sessions.
-		// Right now the list is used for SAML 2.0 only.
-		$session->add_sp_session($spentityid);
 
 		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Sending back AuthnResponse to ' . $spentityid);
 		
@@ -378,6 +374,11 @@ if($needAuth && !$isPassive) {
 		}
 		// END ATTRIBUTE CONSENT CODE
 		
+		
+		
+		// Adding this service provider to the list of sessions.
+		// Right now the list is used for SAML 2.0 only.
+		$session->add_sp_session($spentityid);
 		
 		
 		// Generate an SAML 2.0 AuthNResponse message
