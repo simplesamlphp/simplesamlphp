@@ -100,7 +100,9 @@ foreach ($entities as $entity => $sets) {
 		$tmp->loadXML(base64_decode($entityDescriptor));
 		$entityDescriptor = $tmp->documentElement;
 	} else {
-		$tmp = new SimpleSAML_Metadata_SAMLBuilder($entity);
+		$tmp = new SimpleSAML_Metadata_SAMLBuilder($entity, 
+			$aggregatorConfig->getValue('maxCache', NULL), $aggregatorConfig->getValue('maxDuration', NULL));
+			
 		foreach ($sets as $set => $metadata) {
 			$tmp->addMetadata($set, $metadata);
 		}

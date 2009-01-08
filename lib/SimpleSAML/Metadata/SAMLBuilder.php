@@ -24,18 +24,38 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	private $entityDescriptor;
 
 
+	private $maxCache = NULL;
+	private $maxDuration = NULL;
+	
 	/**
 	 * Initialize the builder.
 	 *
 	 * @param string $entityId  The entity id of the entity.
 	 */
-	public function __construct($entityId) {
+	public function __construct($entityId, $maxCache = NULL, $maxDuration = NULL) {
 		assert('is_string($entityId)');
+
+		$this->maxCache = $maxCache;
+		$this->maxDuration = $maxDuration;
 
 		$this->document = new DOMDocument();
 		$this->entityDescriptor = $this->createElement('EntityDescriptor');
 		$this->entityDescriptor->setAttribute('entityID', $entityId);
+		
 		$this->document->appendChild($this->entityDescriptor);
+	}
+
+	private function setExpiration($metadata) {
+	
+		if (array_key_exists('expire', $metadata)) {
+			if ($metadata['expire'] - time() < $this->maxDuration)
+				$this->maxDuration = $metadata['expire'] - time();
+		}
+			
+		if ($this->maxCache !== NULL) 
+			$this->entityDescriptor->setAttribute('cacheDuration', $this->maxCache);
+		if ($this->maxDuration !== NULL) 
+			$this->entityDescriptor->setAttribute('validUntil', SimpleSAML_Utilities::generateTimestamp(time() + $this->maxDuration));
 	}
 
 
@@ -175,6 +195,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	public function addMetadata($set, $metadata) {
 		assert('is_string($set)');
 		assert('is_array($metadata)');
+		
+		$this->setExpiration($metadata);
 
 		switch ($set) {
 		case 'saml20-sp-remote':
@@ -193,7 +215,6 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			SimpleSAML_Logger::warning('Unable to generate metadata for unknown type \'' . $set . '\'.');
 		}
 	}
-
 
 	/**
 	 * Add SAML 2.0 SP metadata.

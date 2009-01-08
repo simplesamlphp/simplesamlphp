@@ -12,6 +12,9 @@ $config = array(
 		),
 	),
 
+	
+	'maxCache' 		=> 60*60*24, // 24 hour cache time
+	'maxDuration' 	=> 60*60*24*5, // Maximum 5 days duration on ValidUntil.
 
 	/* Whether metadata should be signed. */
 	'sign.enable' => FALSE,
