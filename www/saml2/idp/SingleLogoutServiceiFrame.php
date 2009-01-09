@@ -98,11 +98,13 @@ function updateslostatus() {
 
 	$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 	
-	$templistofsps = $session->get_sp_list(SimpleSAML_Session::STATE_LOGGEDOUT);
+	$templistofsps = $session->get_sp_list(SimpleSAML_Session::STATE_ONLINE);
 	$listofsps = array();
 	foreach ($templistofsps AS $spentityid) {
 		if (!empty($_COOKIE['spstate-' . sha1($spentityid)])) $listofsps[] = $spentityid;
 	}
+	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutServiceiFrame: templistofsps ' . var_export($templistofsps, TRUE));
+	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutServiceiFrame:     listofsps ' . var_export($listofsps, TRUE));
 
 
 	// Using template object to be able to translate name of service provider.
@@ -127,9 +129,9 @@ function updateslostatus() {
 
 	}
 	
-	if ($session->sp_logout_completed() === TRUE) {
+	if (count($templistofsps) === count($listofsps)) {
 
-		$templistofsps = $session->get_sp_list(SimpleSAML_Session::STATE_LOGGEDOUT);
+		$templistofsps = $session->get_sp_list(SimpleSAML_Session::STATE_ONLINE);
 		foreach ($templistofsps AS $spentityid) {
 			$session->set_sp_logout_completed($spentityid);
 		}
