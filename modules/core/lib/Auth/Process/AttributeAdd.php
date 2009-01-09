@@ -5,27 +5,6 @@
  *
  * This filter allows you to add attributes to the attribute set being processed.
  *
- * Example - add attribute, single value:
- * <code>
- * 'authproc' => array(
- *   50 => array('class' => 'core:AttributeAdd', 'source' => 'myidp'),
- *   ),
- * </code>
- *
- * Examle - add attribute, multiple values:
- * <code>
- * 'authproc' => array(
- *   50 => array('class' => 'core:AttributeAdd', 'groups' => array('users', 'members')),
- *   ),
- * </code>
- *
- * Examle - replace attribute, single value:
- * <code>
- * 'authproc' => array(
- *   50 => array('class' => 'core:AttributeAdd', '%replace', 'uid' => array('guest')),
- *   ),
- * </code>
- *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
  * @version $Id$

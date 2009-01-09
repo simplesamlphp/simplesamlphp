@@ -3,20 +3,6 @@
 /**
  * Attribute filter for renaming attributes.
  *
- * Example 1 - apply map stored in attributemap/defaultmap.php:
- * <code>
- * 'authproc' => array(
- *   50 => array('class' => 'core:AttributeMap', 'defaultmaps'),
- *   ),
- * </code>
- *
- * Example 2 - rename attributes 'mail' and 'uid' to 'email' and 'user':
- * <code>
- * 'authproc' => array(
- *   50 => array('class' => 'core:AttributeMap', 'mail' => 'email', 'uid' => 'user'),
- *   ),
- * </code>
- *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
  * @version $Id$

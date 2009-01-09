@@ -108,7 +108,8 @@ function updateslostatus() {
 
 	foreach ($listofsps AS $spentityid) {
 
-		error_log('Completed ' . $spentityid);
+		SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutServiceiFrame: Completed ' . $spentityid);
+		
 		// add a command to the response to assign the innerHTML attribute of
 		// the element with id="SomeElementId" to whatever the new content is
 		

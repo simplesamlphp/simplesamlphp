@@ -3,13 +3,6 @@
 /**
  * A filter for limiting which attributes are passed on.
  *
- * Example - remove all attributes except 'cn' and 'mail':
- * <code>
- * 'authproc' => array(
- *   50 => array('class' => 'core:AttributeLimit', 'cn', 'mail'),
- *   ),
- * </code>
- *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
  * @version $Id$

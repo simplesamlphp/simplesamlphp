@@ -21,7 +21,7 @@
  * Example - generate from mail-attribute:
  * <code>
  * 'authproc' => array(
- *   50 => array('class' => 'core:TargetedID' , 'attribute' => 'mail'),
+ *   50 => array('class' => 'core:TargetedID' , 'attributename' => 'mail'),
  * ),
  * </code>
  *
@@ -50,8 +50,8 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 
 		assert('is_array($config)');
 
-		if (array_key_exists('attribute', $config)) {
-			$this->attribute = $config['attribute'];
+		if (array_key_exists('attributename', $config)) {
+			$this->attribute = $config['attributename'];
 			if (!is_string($this->attribute)) {
 				throw new Exception('Invalid attribute name given to core:TargetedID filter.');
 			}
