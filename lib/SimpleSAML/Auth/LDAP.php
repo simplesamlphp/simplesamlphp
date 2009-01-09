@@ -155,9 +155,11 @@ class SimpleSAML_Auth_LDAP {
 		for ($i = 0; $i < $ldapAttributes['count']; $i++) {
 			$attributeName = $ldapAttributes[$i];
 
+			$base64encode = FALSE;
+			
 			/* Skip the 'jpegphoto' attribute. */
 			if (strtolower($attributeName) === 'jpegphoto') {
-				continue;
+				$base64encode = TRUE;
 			}
 
 			$attribute = $ldapAttributes[$attributeName];
@@ -165,7 +167,7 @@ class SimpleSAML_Auth_LDAP {
 
 			$values = array();
 			for ($j = 0; $j < $valueCount; $j++) {
-				$values[] = $attribute[$j];
+				$values[] = ($base64encode ? base64_encode($attribute[$j]) : $attribute[$j] );
 			}
 
 			$attributes[$attributeName] = $values;
