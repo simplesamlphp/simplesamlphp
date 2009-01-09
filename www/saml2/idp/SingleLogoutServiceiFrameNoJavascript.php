@@ -48,7 +48,21 @@ $session = SimpleSAML_Session::getInstance();
 $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 
 
-if ($session->sp_logout_completed() === TRUE) {
+
+$templistofsps = $session->get_sp_list(SimpleSAML_Session::STATE_ONLINE);
+$listofsps = array();
+foreach ($templistofsps AS $spentityid) {
+	if (!empty($_COOKIE['spstate-' . sha1($spentityid)])) $listofsps[] = $spentityid;
+}
+
+
+if (count($templistofsps) === count($listofsps)) {
+
+	$templistofsps = $session->get_sp_list(SimpleSAML_Session::STATE_ONLINE);
+	foreach ($templistofsps AS $spentityid) {
+		$session->set_sp_logout_completed($spentityid);
+		setcookie('spstate-' . sha1($spentityid) , '', time() - 3600); // Delete cookie
+	}
 
 
 	echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
