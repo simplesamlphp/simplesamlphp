@@ -202,7 +202,11 @@ foreach ($this->data['noData'] as $name => $value) {
 				if (sizeof($value) > 1) {
 					$str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue"><ul>';
 					foreach ($value AS $listitem) {
-						$str .= '<li>' . present_assoc($listitem) . '</li>';
+						if ($nameraw === 'jpegPhoto') {
+							$str .= '<li><img src="data:image/jpeg;base64,' . $listitem . '" /></li>';
+						} else {
+							$str .= '<li>' . present_assoc($listitem) . '</li>';
+						}
 					}
 					$str .= '</ul></td></tr>';
 				} elseif(isset($value[0])) {
