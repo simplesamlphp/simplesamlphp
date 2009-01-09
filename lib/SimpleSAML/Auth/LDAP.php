@@ -157,7 +157,6 @@ class SimpleSAML_Auth_LDAP {
 
 			$base64encode = FALSE;
 			
-			/* Skip the 'jpegphoto' attribute. */
 			if (strtolower($attributeName) === 'jpegphoto') {
 				$base64encode = TRUE;
 			}
