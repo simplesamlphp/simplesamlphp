@@ -54,4 +54,7 @@ table.attributes tr td {
 table#table_with_attributes tr:last-child td {
 	border-bottom: none;
 }
-
+td.attrvalue img {
+	border: 1px solid #777;
+	margin: 4px;
+}

@@ -206,7 +206,12 @@ foreach ($this->data['noData'] as $name => $value) {
 					}
 					$str .= '</ul></td></tr>';
 				} elseif(isset($value[0])) {
-					$str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue">' . htmlspecialchars($value[0]) . '</td></tr>';
+					$str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td>';
+					if ($nameraw === 'jpegPhoto') {
+						$str .= '<td class="attrvalue"><img src="data:image/jpeg;base64,' . htmlspecialchars($value[0]) . '" /></td></tr>';
+					} else {
+						$str .= '<td class="attrvalue">' . htmlspecialchars($value[0]) . '</td></tr>';
+					}
 				}
 			}
 			$str .= "\n";
