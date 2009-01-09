@@ -134,6 +134,7 @@ function updateslostatus() {
 		$templistofsps = $session->get_sp_list(SimpleSAML_Session::STATE_ONLINE);
 		foreach ($templistofsps AS $spentityid) {
 			$session->set_sp_logout_completed($spentityid);
+			setcookie('spstate-' . sha1($spentityid) , '', time() - 3600); // Delete cookie
 		}
 
 		$objResponse->addScriptCall('slocompleted');
