@@ -1,0 +1,345 @@
+Authentication Processing Filters in SimpleSAMLphp
+==================================================
+
+<!-- 
+	This file is written in Markdown syntax. 
+	For more information about how to use the Markdown syntax, read here:
+	http://daringfireball.net/projects/markdown/syntax
+-->
+
+In SimpleSAMLphp, there is an API where you can *do stuff* at the IdP after authentication is complete, and just before you are sent back to the SP. The same API is available on the SP, after you have received a successfull Authentication Response from the IdP and before you are sent back to the SP application.
+
+Examples of neat things to do using Authentication Processing Filters:
+
+  * Filter out a subset of available attributes that are sent to a SP.
+  * Mofify the name of attributes
+  * Generate new attributes that are composed of others. In example eduPersonTargetedID.
+  * Ask the user for consent, before the user is sent back to a service
+  * Implement basic Access Control on the IdP (not neccessarily a good idea), limiting access for some users to some SPs.
+
+Be aware that Authentication Proccessing Filters do replace some of the preivous features in simpleSAMLphp, named:
+
+  * `attributemap`
+  * `attributealter`
+  * attribute filter
+
+Later in this document, we will desribe in detail the alternative Authentication Proccessing Filters that will replicate these functionalities.
+
+How to configure Auth Proc Filters
+----------------------------------
+
+*Auth Proc Filters* can be set globally, or to be specific for only one SP or one IdP. That means there is three locations where you can configure *Auth Proc Filters*:
+
+  * Globally in `config.php`
+  * On the SP: Specific for only one hosted SP in `saml20-sp-hosted` or `shib13-sp-hosted`
+  * On the SP: Specific for only one remote IdP in `saml20-idp-remote` or `shib13-idp-remote`
+  * On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted` or `shib13-idp-hosted`
+  * On the IdP: Specific for only one remote SP in `saml20-sp-remote` or `shib13-sp-remote`
+
+The configuration of *Auth Proc Filters* is a list of filters with priority as *index*. Here is an example of *Auth Proc Filters* configured in `config.php`:
+
+	'authproc.idp' => array(
+		10 => array(
+			'class' => 'core:AttributeMap', 
+			'addurnprefix'
+		),
+		20 => 'core:TargetedID',
+		40 => 'core:AttributeRealm',
+		50 => 'core:AttributeLimit',
+		90 => array(
+			'class' 	=> 'consent:Consent', 
+			'store' 	=> 'consent:Cookie', 
+			'focus' 	=> 'yes', 
+			'checked' 	=> TRUE
+		),
+	),
+
+This configuration will execute *Auth Proc Filters* one by one, with the priority value in increasing order. When *Auth Proc Filters* is configured in multiple places, in example both globally, in the hosted IdP and remote SP metadata, then the list is interleaved sorted by priority.
+
+The most important parameter of each item on the list is the *class* of the *Auth Proc Filter*. The syntax of the class is `modulename:classname`. As an example the class definition `core:AttributeLimit` will be expanded to look for the class `sspmod_core_Auth_Process_AttributeLimit`. The location of this class file *must* then be: `modules/core/lib/Auth/Process/AttributeLimit.php`.
+
+You will see that a bunch of useful filters is included in the `core` module. In addition the `consent` module that is included in the simpleSAMLphp distribution implements a filter. Beyond that, you are encourage to create your own filters and share with the community. If you have created a cool *Auth Proc Filter* that do something useful, let us know, and we may share it from the [simpleSAMLphp web site][].
+
+[simpleSAMLphp web site]: http://rnd.feide.no/simplesamlphp
+
+When you know the class definition of a filter, and the priority, the simple way to configure the filter is:
+
+	20 => 'core:TargetedID',
+
+This is analogue to:
+
+	20 => array(
+		'class' => 'core:TargetedID'
+	),
+
+Some *Auth Proc Filters* have optional or required *parameters*. To send parameters to *Auth Proc Filters*, you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
+
+	90 => array(
+		'class' 	=> 'consent:Consent', 
+		'store' 	=> 'consent:Cookie', 
+		'focus' 	=> 'yes', 
+		'checked' 	=> TRUE
+	),
+
+
+### Filters in `config.php`
+
+Global *Auth Proc Filters* is configured in the `config.php` file. You will see that the config template already includes an example configuration.
+
+There is two config parameters:
+
+  * `authproc.idp` and
+  * `authproc.sp`
+
+The filters in `authproc.idp` will be executed at the IdP side regardless of which IdP and SP entity that is involved.
+
+The filters in `authproc.sp` will be executed at the SP side regardless of which SP and IdP entity that is involved.
+
+
+### Filters in metadata
+
+Filters can be added both in `hosted` and `remote` metadata. Here is an example of a filter added in a metadata file:
+
+	'__DYNAMIC:1__' => array(
+		'host'				=>	'__DEFAULT_',
+		'privatekey'		=>	'server.pem',
+		'certificate'		=>	'server.crt',
+		'auth'				=>	'feide',
+		'authproc' => array(
+			40 => 'core:AttributeRealm',
+		),
+	)
+
+The example above is in `saml20-idp-hosted`.
+
+
+
+Auth Proc Filters included in the simpleSAMLphp distribution
+------------------------------------------------------------
+
+Here is documentation on the *Auth Proc Filters* that is included in the simpleSAMLphp distribution.
+
+
+
+### Adding attributes (`core:AttributeAdd`)
+
+This filter allows you to add attributes to the attribute set being processed. 
+
+If the attribute already exists, the values added will be merged into a multi valued attribute. If you want to replace instead of merge attributes, you may add the `'%merge'` parameter.
+
+Add a single valued attributes:
+
+	'authproc' => array(
+		50 => array(
+			'class' => 'core:AttributeAdd', 
+			'source' => array('myidp')
+		),
+	),
+
+Add a multi valued attribute:
+
+	'authproc' => array(
+		50 => array(
+			'class' => 'core:AttributeAdd', 
+			'groups' => array('users', 'members')
+		),
+	),
+
+Replace an existing attributes
+
+	'authproc' => array(
+		50 => array(
+			'class' => 'core:AttributeAdd', 
+			'%replace',
+			'uid' => array('guest')
+		),
+	),
+
+
+
+
+### Filtering attributes (`core:AttributeFilter`)
+
+This *Auth Proc Filter* is backward compatible with the old way of filtering attributes. It operates in two modes:
+
+ 1. List of attributes added as configuration to the filter
+ 2. List of attributes specified in metadata (both SP and IdP) in the `attribute` parameter (as always)
+
+#### Attribute list added as a parameter
+
+Example configuration
+
+	'authproc' => array(
+		50 => array(
+			'class' => 'core:AttributeLimit',
+			'cn', 'mail'
+		),
+	),
+
+#### Attribute list in metadata
+
+If you do not add attributes as parameters to the filter, the filter will look up attributes in metadata.
+
+	'authproc' => array(
+		50 => 'core:AttributeLimit',
+	),
+
+Here is an example of how attribute liste is defined in metadata:
+
+	'__DYNAMIC:1__' => array(
+		'host'				=>	'dev11.andreas.feide.no',
+		'privatekey'		=>	'server.pem',
+		'certificate'		=>	'server.crt',
+		'auth'				=>	'example-static',
+		'logouttype'		=> 'iframe',
+		
+		'attributes' 		=> array('cn', 'mail', 'sn', 'eduPersonTargetedID'),
+	),	
+
+Attribute filtering can be done both on the IdP and the SP side. On the SP side, attribute lists is read from *sp-hosted* and *idp-remote*. On IdP side, attribute lists is read from *idp-hosted* and *sp-remote*.
+
+
+
+
+### Modifying attribute names (`core:AttributeMap`)
+
+This *Auth Proc Filter* is backward compatible with the old way of modifying attribute names. It operates in two modes:
+
+ 1. Attribute mapping table included as parameters to the filter.
+ 2. The filter gets a name of an attributemap file as a parameter
+
+#### Attribute maps embedded as parameters
+
+Here is an example:
+
+	'authproc' => array(
+		50 => array(
+			'class' => 'core:AttributeMap',
+			'mail' => 'email', 
+			'uid' => 'user'),
+	),
+
+#### Attribute maps in separate files
+
+Here is an example:
+
+	'authproc' => array(
+		50 => array(
+			'class' => 'core:AttributeMap',
+			'addurnprefix'
+		),
+	),
+
+The example above will look for this file: `simpesamlphp/attributemap/addurnprefix.php`. As you see this file is already included as an example. Copy `addurnprefix.php` and add the new file in the same directory to add new attributemaps.
+
+
+
+### Adding realm as an attribute (`core:AttributeRealm`)
+
+No parameters required:
+
+	40 => 'core:AttributeRealm',
+
+Alternatively, you can specify the attribute name that should be used instead of the default `realm`:
+
+	40 => array(
+		'class' 		=> 'core:AttributeRealm',
+		'attributename'	=> 'homedomain',
+	)
+
+This filter will look for the user ID on a format like `andreas@uninett.no`, and extract the part after the '`@`'-sign.
+
+*What is the User ID?*
+
+The User ID can be any attribute. The name of the User ID can be specified in the metadata as a `userid.attribute` parameter. Default value is `eduPersonPrincipalName`.
+
+**Important**: You have to make sure that the User ID attribute is available at the time this filter is executed. You can do that by setting a lower priority number on this filter, than the filter that filters attributes.
+
+
+### Automatically generated eduPersonTargetedID (`core:TargetedID`)
+
+*eduPersonTargetedID* is an anonymous user attribute that is unique for each combination IdP and SP. 
+
+Example configuration:
+
+	'authproc' => array(
+		50 => 'core:TargetedID',
+	)
+
+If you want to inject this new attribute with another name than the default `eduPersonTargetedID`:
+
+	'authproc' => array(
+		50 => array(
+			'class' => 'core:TargetedID',
+			'attributename' => 'anonymousID',
+		),
+	)
+
+The automatic generation of `eduPersonTargetedID` requires that the User ID attribute is available.
+
+*What is the User ID?*
+
+The User ID can be any attribute. The name of the User ID can be specified in the metadata as a `userid.attribute` parameter. Default value is `eduPersonPrincipalName`.
+
+**Important**: You have to make sure that the User ID attribute is available at the time this filter is executed. You can do that by setting a lower priority number on this filter, than the filter that filters attributes.
+
+The formula used for automatically calculating this value is (pseudo code):
+
+	sha1( 
+		'uidhashbase' + $secretSalt + 
+		strlen($idpEntityid) + ':' + $idpEntityid + 
+		strlen($spEntityid) + ':' + $spEntityid + 
+		strlen($userID) + ':' + $userID + 
+		$secretSalt
+	)
+
+In example that could mean:
+
+	sha1( 'uidhashbaseq8d76f8ds75f68d7s24:https://idp.example.org
+		23:https://sp.example.org19:andreas@uninett.noq8d76f8ds75f68d7s' )
+
+
+
+### Adding a group attribute (`core:GenerateGroups`)
+
+By default this filter will generate groups from the following set of attributes:
+ - `eduPersonAffiliation`
+ - `eduPersonOrgUnitDN`
+ - `eduPersonEntitlement`
+
+This can be overridden by specifying the names of the attributes in the configuration.
+
+It will attempt to determine a realm the user belongs to based on the User ID attribute, if it is present.
+
+The groups this filter generates are on the form: `<attribute name>-<attributevalue>` and `<attributename>-<realm>-<attributevalue>`.
+
+Note that this filter isn't a drop-in replacement for the groups attributealter function. The difference is that it uses the full attribute name, instead of shortening them to for example affiliation, and it escapes illegal characters in a style similar to urlencoding. It also generates groups both with and without a realm part. If no realm is determined, it will only generate attributes without a realm-part.
+
+Example - generate from default set of attributes:
+
+	'authproc' => array(
+		50 => 'core:GenerateGroups',
+	),
+
+Example - generate from only the `eduPersonAffilitation` attribute:
+
+	'authproc' => array(
+		50 => array(
+			'class' => 'core:GenerateGroups', 
+			'eduPersonAffiliation'
+		),
+	),
+
+
+
+
+
+
+
+Writing your own Auth Proc Filter
+---------------------------------
+
+For now look at the included *Auth Proc Filters* as examples. Copy the classes into your own module and start playing around.
+
+Don't hestitate to ask on the simpleSAMLphp mailinglist if you have problems or questions, or want to share your *Auth Proc Filter* with others.
+
