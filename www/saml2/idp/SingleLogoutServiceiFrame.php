@@ -98,7 +98,12 @@ function updateslostatus() {
 
 	$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 	
-	$listofsps = $session->get_sp_list(SimpleSAML_Session::STATE_LOGGEDOUT);
+	$templistofsps = $session->get_sp_list(SimpleSAML_Session::STATE_LOGGEDOUT);
+	$listofsps = array();
+	foreach ($templistofsps AS $spentityid) {
+		if (!empty($_COOKIE['spstate-' . sha1($spentityid)])) $listofsps[] = $spentityid;
+	}
+
 
 	// Using template object to be able to translate name of service provider.
 	$t = new SimpleSAML_XHTML_Template($config, 'logout-iframe.php');
@@ -123,6 +128,11 @@ function updateslostatus() {
 	}
 	
 	if ($session->sp_logout_completed() === TRUE) {
+
+		$templistofsps = $session->get_sp_list(SimpleSAML_Session::STATE_LOGGEDOUT);
+		foreach ($templistofsps AS $spentityid) {
+			$session->set_sp_logout_completed($spentityid);
+		}
 
 		$objResponse->addScriptCall('slocompleted');
 

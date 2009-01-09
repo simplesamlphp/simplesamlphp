@@ -44,7 +44,15 @@ if (isset($_GET['SAMLResponse'])) {
 	$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
 	$logoutresponse = $binding->decodeLogoutResponse($_GET);
 
-	$session->set_sp_logout_completed($logoutresponse->getIssuer());
+	/*
+	 * This would be the normal way to end SP sessions. But because we do not want concurrent 
+	 * updates on the session ojbect, we do set a cookie instead.
+	 *
+	 * $session->set_sp_logout_completed($logoutresponse->getIssuer());
+	 */
+	$sphash = sha1($logoutresponse->getIssuer());
+	setcookie('spstate-' . $sphash , '1'); // Duration: 2 hours
+	
 	
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutServiceiFrameResponse: Logging out completed');
 	
