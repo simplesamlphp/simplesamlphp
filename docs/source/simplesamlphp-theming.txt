@@ -7,6 +7,9 @@ Theming the user interface in SimpleSAMLphp
 	http://daringfireball.net/projects/markdown/syntax
 -->
 
+  * Version: `$Id$`
+
+
 In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the XHTML. SimpleSAMLphp comes with a default set of templates that presents a anonymous look.
 
 You may create your own theme, where you add one or more template files that will override the default ones. This document explains how to achieve that.
