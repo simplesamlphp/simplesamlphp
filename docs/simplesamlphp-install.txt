@@ -11,24 +11,17 @@ simpleSAMLphp Installation and Configuration
 
 
 
-simpleSAMLphp documentation
----------------------------
+simpleSAMLphp news and documentation
+------------------------------------
 
 This document is part of the simpleSAMLphp documentation suite.
 
-- [List of all simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+ * [List of all simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+ * [Latest news about simpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also conatins an RSS feed)
+ * [simpleSAMLphp homepage](http://rnd.feide.no/simplesamlphp)
 
-This document is the first step.
 
-News about simpleSAMLphp
-------------------------
 
-To get the latest news about simpleSAMLphp you can follow this url:
-[http://rnd.feide.no/taxonomy/term/4](http://rnd.feide.no/taxonomy/term/4).
-It also conatins an RSS feed.
-
-Here is the simpleSAMLphp homepage:
-[http://rnd.feide.no/simplesamlphp](http://rnd.feide.no/simplesamlphp)
 
 
 Prerequisites
@@ -44,12 +37,7 @@ simpleSAMLphp is has been tested most thoroughly on different Linux versions, Un
 Download and install simpleSAMLphp
 ----------------------------------
 
-The most recent relase of simpleSAMLphp is found at
-[code.google.com/p/simplesamlphp/.](http://code.google.com/p/simplesamlphp/)
-To obtain a stable version, you may download the zipped
-`simplesamlphp` zip file listed under Featured Dowloads, or you may
-check out the last version includeing the most recent updates from
-the subversion repository.
+The most recent relase of simpleSAMLphp is found at [code.google.com/p/simplesamlphp/.](http://code.google.com/p/simplesamlphp/) To obtain a stable version, you may download the zipped `simplesamlphp` zip file listed under Featured Dowloads, or you may check out the last version includeing the most recent updates from the subversion repository.
 
 ### Get a working copy of simpleSAMLphp from subversion
 
@@ -79,49 +67,22 @@ installation:
 *If you download and install the zipped version:*
 
 -   Make a backup of the `config` and the `metadata` directories.
-
 -   Delete all files from your current simpleSAMLphp directory .
-
 -   Unzip the new version in the simpleSAMLphp directory.
-
--  
-    Install the backups of `config` and the `metadata` directories in
-    the simpleSAMLphp directory.
+-  Install the backups of `config` and the `metadata` directories in the simpleSAMLphp directory.
 
 
-If the format of the config files or metadata has changed from your
-previous version of simpleSAMLphp (check the revision log), you may
-have to update your configuration and metadata after updating the
-simpleSAMLphp code:
+If the format of the config files or metadata has changed from your previous version of simpleSAMLphp (check the revision log), you may have to update your configuration and metadata after updating the simpleSAMLphp code:
 
 ### Upgrading configuration files
 
-A good approach is to run a `diff` between your preivous
-`config.php` file and the new `config.php` file located in
-`config-templates/config.php`, and apply relevant modifications to
-the new template. This will ensure that all new entries in the
-latest version of config.php are included, as well as preserve your
-local modifications.
+A good approach is to run a `diff` between your preivous `config.php` file and the new `config.php` file located in `config-templates/config.php`, and apply relevant modifications to the new template. This will ensure that all new entries in the latest version of config.php are included, as well as preserve your local modifications.
 
-There is a link to a configuration check utility from the frontpage
-of your simpleSAMLphp installation page. The name of the link is
-"simpleSAMLphp configuration check". Then you will get a list of
-all configuration files in your `config/` directory. Click through
-the files, and you will get a report on superfluous and missing
-entries in the configuration file. What is done under the hood is
-that simpleSAMLphp looks up the `config-templates/` directory and
-compares to your real config. Although not all option is required
-to have in the configuration files, it's a good thumb rule to
-include them nontheless, so you simply see what configuration is
-possible.
+There is a link to a configuration check utility from the frontpage of your simpleSAMLphp installation page. The name of the link is "simpleSAMLphp configuration check". Then you will get a list of all configuration files in your `config/` directory. Click through the files, and you will get a report on superfluous and missing entries in the configuration file. What is done under the hood is that simpleSAMLphp looks up the `config-templates/` directory and compares to your real config. Although not all option is required to have in the configuration files, it's a good thumb rule to include them nontheless, so you simply see what configuration is possible.
 
 ### Upgrading metadata files
 
-Most likely the metadata format is backwards compatible. If not,
-you should receive a very clear error message at startup indicating
-how and what you need to update. You should look through the
-metadata in the metadata-templates directory after the upgrade to
-see whether recommended defaults have been changed.
+Most likely the metadata format is backwards compatible. If not, you should receive a very clear error message at startup indicating how and what you need to update. You should look through the metadata in the metadata-templates directory after the upgrade to see whether recommended defaults have been changed.
 
 
 
@@ -131,19 +92,11 @@ Making configuration and metadata files
 
 ### Tip
 
-You do not need to read this section if you are upgrading
-simpleSAMLphp from an earlier version, then see
-[the section called “Upgrading from a previous version of simpleSAMLphp”](#sect.upgrading "Upgrading from a previous version of simpleSAMLphp").
+You do not need to read this section if you are upgrading simpleSAMLphp from an earlier version, then see the section called ‹Upgrading from a previous version of simpleSAMLphp›.
 
-Configuration and metadata files are distributed as templates; you
-should make local copies to directories `config` and `metadata` and
-edit these copies to suit your local requirements. When you later
-upgrade, through a subversion `svn     up` command or by installing
-a new zip file, your existing configuration data will not not be
-overwritten.
+Configuration and metadata files are distributed as templates; you should make local copies to directories `config` and `metadata` and edit these copies to suit your local requirements. When you later upgrade, through a subversion `svn     up` command or by installing a new zip file, your existing configuration data will not not be overwritten.
 
-Here are the steps you need to do to create local configuration
-files:
+Here are the steps you need to do to create local configuration files:
 
     cd /var/simplesamlphp
     cp -r config-templates/*.php config/
@@ -154,19 +107,11 @@ files:
 Configuring Apache
 ------------------
 
-Examples below assume that simpleSAMLphp is installed in the
-default location, `/var/simplesamlphp`. You may choose another
-location, but this requires a path update in a few files.
-[See Appendix A for details](#sect.altlocations "A. Installing simpleSAMLphp in alternative locations").
+Examples below assume that simpleSAMLphp is installed in the default location, `/var/simplesamlphp`. You may choose another location, but this requires a path update in a few files. See Appendix for details ‹Installing simpleSAMLphp in alternative locations›.
 
-The only subdirectories of `simpleSAMLphp` that needs to be
-accessible from the web is `www`. There are several ways of putting
-the simpleSAMLphp depending on the way web sites are structured on
-your apache web server. Here is what I believe is the best
-configuration.
+The only subdirectories of `simpleSAMLphp` that needs to be accessible from the web is `www`. There are several ways of putting the simpleSAMLphp depending on the way web sites are structured on your apache web server. Here is what I believe is the best configuration.
 
-Find the Apache configuration file for the virtual hosts where you
-want to run simpleSAMLphp. The configuration may look like this:
+Find the Apache configuration file for the virtual hosts where you want to run simpleSAMLphp. The configuration may look like this:
 
     <VirtualHost *>
             ServerName service.example.com
@@ -175,16 +120,7 @@ want to run simpleSAMLphp. The configuration may look like this:
             Alias /simplesaml /var/simplesamlphp/www
     </VirtualHost>
 
-Note the `Alias` directive, which gives control to simpleSAMLphp
-for all urls matching `http(s)://service.example.com/simplesaml/*`.
-simpleSAMLphp makes several SAML interfaces available on the web;
-all of them are included in the `www` subdirectory of your
-simpleSAMLphp installation. You can name the alias whatever you
-want, but the name must be specified in the `config.php` file of
-simpleSAML as described in
-[the section called “simpleSAMLphp configuration: config.php”](#sect.config "simpleSAMLphp configuration: config.php").
-Here is an example of how this configuration may look like in
-`config.php`:h
+Note the `Alias` directive, which gives control to simpleSAMLphp for all urls matching `http(s)://service.example.com/simplesaml/*`. simpleSAMLphp makes several SAML interfaces available on the web; all of them are included in the `www` subdirectory of your simpleSAMLphp installation. You can name the alias whatever you want, but the name must be specified in the `config.php` file of simpleSAML as described in [the section called “simpleSAMLphp configuration: config.php”](#sect.config "simpleSAMLphp configuration: config.php"). Here is an example of how this configuration may look like in `config.php`:
 
     $config = array (
     [...]
@@ -196,18 +132,11 @@ simpleSAMLphp configuration: config.php
 There is a few steps that you should edit in the main configuration
 file, `config.php`, right away:
 
--  
-    Set a administrator password. This is needed to access some of the
-    pages in your simpleSAMLphp installation web interface.
+-  Set a administrator password. This is needed to access some of the pages in your simpleSAMLphp installation web interface.
 
 		'auth.adminpassword'        => 'setnewpasswordhere',
 
--  
-    Set a secret salt. This should be a random string. Some parts of
-    the simpleSAMLphp needs this salt to generate cryptographically
-    secure hashes. SimpleSAMLphp will give an error if the salt is not
-    changed from the default value. The command below can help you to
-    generated a random string on (some) unix systems:
+-  Set a secret salt. This should be a random string. Some parts of the simpleSAMLphp needs this salt to generate cryptographically secure hashes. SimpleSAMLphp will give an error if the salt is not changed from the default value. The command below can help you to generated a random string on (some) unix systems:
 
 		tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
 
@@ -235,23 +164,14 @@ file, `config.php`, right away:
 Configure PHP to be able to send e-mails
 ----------------------------------------
 
-Some parts of simpleSAMLphp will allow you to send e-mails. In
-example sending error reports to technical admin, as well as
-sending in metadata to the federation administrators. If you want
-to make use of this functionality, you should make sure your PHP
-installation is configured to be able to send e-mails. It's a
-common problem that PHP is not configured to send e-mails properly.
-The configuration differs from system to system. On UNIX, PHP is
-using sendmail, on Windows SMTP.
+Some parts of simpleSAMLphp will allow you to send e-mails. In example sending error reports to technical admin, as well as sending in metadata to the federation administrators. If you want to make use of this functionality, you should make sure your PHP installation is configured to be able to send e-mails. It's a common problem that PHP is not configured to send e-mails properly. The configuration differs from system to system. On UNIX, PHP is using sendmail, on Windows SMTP.
 
 
 
 Enable modules
 --------------
 
-If you want to enable some of the modules that are installed with
-simpleSAMLphp, but are disabled by default, you should create an
-empty file in the module directory named `enable`.
+If you want to enable some of the modules that are installed with simpleSAMLphp, but are disabled by default, you should create an empty file in the module directory named `enable`.
 
     # Enabling the consent module
     cd modules
@@ -270,14 +190,11 @@ to `disable`.
 The simpleSAMLphp installation webpage
 --------------------------------------
 
-After installing simpleSAMLphp, you can access the homepage of your
-installation, which contains some information and a few links to
-the test services. The url of an installation can be e.g.:
+After installing simpleSAMLphp, you can access the homepage of your installation, which contains some information and a few links to the test services. The url of an installation can be e.g.:
 
-https://service.example.org/simplesaml/
+	https://service.example.org/simplesaml/
 
-The exact link depends on how you set it up with Apache, and off
-course on your hostname.
+The exact link depends on how you set it up with Apache, and off course on your hostname.
 
 ### Warning
 
@@ -292,35 +209,17 @@ like:
 
 ### Check your PHP environment
 
-At the bottom of the installation page are some green lights.
-simpleSAML runs some tests to see whether required and recommended
-prerequisites are met. If any of the lights are red, you may have
-to add some extensions or modules to PHP, e.g. you need the PHP
-LDAP extension to use the LDAP authentication module.
+At the bottom of the installation page are some green lights. simpleSAML runs some tests to see whether required and recommended prerequisites are met. If any of the lights are red, you may have to add some extensions or modules to PHP, e.g. you need the PHP LDAP extension to use the LDAP authentication module.
 
 ## Next steps
 
-You have now successfully installed simpleSAMLphp, and the next
-steps depends on whether you want to setup a service provider, to
-protect a website by authentication or if you want to setup an
-identity provider and connect it to a user catalog. Documentation
-on bridging between federation protocols is found in a separate
-document.
+You have now successfully installed simpleSAMLphp, and the next steps depends on whether you want to setup a service provider, to protect a website by authentication or if you want to setup an identity provider and connect it to a user catalog. Documentation on bridging between federation protocols is found in a separate document.
 
--  
-    [Setting up simpleSAMLphp as a service provider](http://rnd.feide.no/content/using-simplesamlphp-service-provider)
-
--  
-    [Setting up simpleSAMLphp as an identity provider](http://rnd.feide.no/content/using-simplesamlphp-identity-provider)
-
--  
-    [Setting up simpleSAMLphp with Google Apps for Eduation](http://rnd.feide.no/content/simplesamlphp-idp-google-apps-education)
-
--  
-    [Advanced simpleSAMLphp features](http://rnd.feide.no/content/simplesamlphp-advanced-features)
-
--  
-    [simpleSAMLphp maintenance and configuration](http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration)
+-  [Setting up simpleSAMLphp as a service provider](http://rnd.feide.no/content/using-simplesamlphp-service-provider)
+-  [Setting up simpleSAMLphp as an identity provider](http://rnd.feide.no/content/using-simplesamlphp-identity-provider)
+-  [Setting up simpleSAMLphp with Google Apps for Eduation](http://rnd.feide.no/content/simplesamlphp-idp-google-apps-education)
+-  [Advanced simpleSAMLphp features](http://rnd.feide.no/content/simplesamlphp-advanced-features)
+-  [simpleSAMLphp maintenance and configuration](http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration)
 
 
 Support
