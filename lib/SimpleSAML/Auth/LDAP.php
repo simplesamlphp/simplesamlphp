@@ -126,7 +126,7 @@ class SimpleSAML_Auth_LDAP {
 	/**
 	 * Search DN for attributes, and return associative array.
 	 */
-	public function getAttributes($dn, $attributes = null) {
+	public function getAttributes($dn, $attributes = NULL, $maxsize = NULL) {
 	
 		$searchtxt = (is_array($attributes) ? join(',', $attributes) : 'all attributes');
 		SimpleSAML_Logger::debug('Library - LDAP: Get attributes from ' . $dn . ' (' . $searchtxt . ')');
@@ -156,6 +156,7 @@ class SimpleSAML_Auth_LDAP {
 			$attributeName = $ldapAttributes[$i];
 
 			$base64encode = FALSE;
+			$include = FALSE;
 			
 			if (strtolower($attributeName) === 'jpegphoto') {
 				$base64encode = TRUE;
@@ -166,10 +167,17 @@ class SimpleSAML_Auth_LDAP {
 
 			$values = array();
 			for ($j = 0; $j < $valueCount; $j++) {
-				$values[] = ($base64encode ? base64_encode($attribute[$j]) : $attribute[$j] );
-			}
+				/*
+				SimpleSAML_Logger::debug('Library - attribute size of [' . $attributeName . '] (' . strlen($attribute[$j]) . ' of ' . 
+					(is_null($maxsize) ? 'NA'  : $maxsize) . ')');
+				*/
+				if (is_null($maxsize) or strlen($attribute[$j]) < $maxsize) {
+					$include = TRUE;
+					$values[] = ($base64encode ? base64_encode($attribute[$j]) : $attribute[$j] );
+				}
 
-			$attributes[$attributeName] = $values;
+			}
+			if ($include) $attributes[$attributeName] = $values;
 		}
 		
 		SimpleSAML_Logger::debug('Library - LDAP: Found attributes (' . join(',', array_keys($attributes)) . ')');
