@@ -194,7 +194,7 @@ $config = array (
 	// Disco service only accepts entities it knows.
 	'idpdisco.validate' => TRUE,
 	
-	'idpdisco.extDiscoveryStorage' => NULL, //'http://rnd.feide.no',
+	'idpdisco.extDiscoveryStorage' => NULL, 
 
 	/*
 	 * IdP Discovery service look configuration. 
@@ -235,6 +235,9 @@ $config = array (
  		20 => 'core:TargetedID',
  		*/
 
+		// Adopts language from attribute to use in UI
+ 		30 => 'core:LanguageAdaptor',
+ 		
 		/* Add a realm attribute from edupersonprincipalname
 		40 => 'core:AttributeRealm',
 		 */
@@ -253,6 +256,8 @@ $config = array (
 			'focus' 	=> 'yes', 
 			'checked' 	=> TRUE
 		),
+		// If language is set in Consent module it will be added as an attribute.
+ 		99 => 'core:LanguageAdaptor',
 	),
 	/*
 	 * Authentication processing filters that will be executed for all IdPs
@@ -276,6 +281,10 @@ $config = array (
  		60 => array('class' => 'core:GenerateGroups', 'eduPersonAffiliation'),
  		// All users will be members of 'users' and 'members' 	
  		61 => array('class' => 'core:AttributeAdd', 'groups' => array('users', 'members')),
+ 		
+		// Adopts language from attribute to use in UI
+ 		90 => 'core:LanguageAdaptor',
+
 	),
 	
 
