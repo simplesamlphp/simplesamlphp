@@ -174,6 +174,8 @@ class SimpleSAML_Auth_LDAP {
 				if (is_null($maxsize) or strlen($attribute[$j]) < $maxsize) {
 					$include = TRUE;
 					$values[] = ($base64encode ? base64_encode($attribute[$j]) : $attribute[$j] );
+				} else {
+					SimpleSAML_Logger::debug('Library - attribute size of [' . $attributeName . '] exceeded maximum limit of ' . $maxsize . ' - skipping attribute value');
 				}
 
 			}
