@@ -87,7 +87,7 @@ class SimpleSAML_XHTML_Template {
 	 * then it tries to calculate the preferred language from HTTP headers.
 	 * Last it returns the default language.
 	 */	
-	public function getLanguage() {
+	public function getLanguage($checkHTTP = TRUE, $defaultFallback = TRUE) {
 		
 		// Language is set in object
 		if (isset($this->language)) {
@@ -99,15 +99,20 @@ class SimpleSAML_XHTML_Template {
 			$this->language = $_COOKIE['language'];
 			return $this->language;
 		}
-
-		/* Check if we can find a good language from the Accept-Language http header. */
-		$httpLanguage = $this->getHTTPLanguage();
-		if ($httpLanguage !== NULL) {
-			return $httpLanguage;
+		
+		if ($checkHTTP) {
+			/* Check if we can find a good language from the Accept-Language http header. */
+			$httpLanguage = $this->getHTTPLanguage();
+			if ($httpLanguage !== NULL) {
+				return $httpLanguage;
+			}
 		}
 
 		// Language is not set, and we get the default language from the configuration.
-		return $this->getDefaultLanguage();
+		if ($defaultFallback) 
+			return $this->getDefaultLanguage();
+			
+		return NULL;
 	}
 
 
