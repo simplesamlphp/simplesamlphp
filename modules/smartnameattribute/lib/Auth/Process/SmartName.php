@@ -21,6 +21,11 @@ class sspmod_smartnameattribute_Auth_Process_SmartName extends SimpleSAML_Auth_P
 		if (isset($attributes['displayName']))
 			return $attributes['displayName'][0];
 		
+		if (isset($attributes['cn'])) {
+			if (count(explode(' ', $attributes['cn'][0])) > 1)
+				return $attributes['cn'][0];
+		}
+		
 		if (isset($attributes['sn']) && isset($attributes['givenName']))
 			return $attributes['givenName'][0] . ' ' . $attributes['sn'][0];
 
