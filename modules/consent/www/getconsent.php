@@ -8,6 +8,16 @@
  * @version $Id$
  */
 
+/*
+ * Explisit instruct consent page to send no-cache header to browsers 
+ * to make sure user attribute information is not store on client disk.
+ * 
+ * In an vanilla apache-php installation is the php variables set to:
+ * session.cache_limiter = nocache
+ * so this is just to make sure.
+ */
+session_cache_limiter('nocache');
+
 SimpleSAML_Logger::info('Consent - getconsent: Accessing consent interface');
 
 if (!array_key_exists('StateId', $_REQUEST)) {
@@ -132,8 +142,6 @@ if (array_key_exists('consent:store', $state)) {
 } else {
 	$t->data['usestorage'] = FALSE;
 }
-
-
 
 $t->show();
 exit;

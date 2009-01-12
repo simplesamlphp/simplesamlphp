@@ -6,6 +6,17 @@
  */
 require_once('../_include.php');
 
+/*
+ * Explisit instruct consent page to send no-cache header to browsers 
+ * to make sure user attribute information is not store on client disk.
+ * 
+ * In an vanilla apache-php installation is the php variables set to:
+ * session.cache_limiter = nocache
+ * so this is just to make sure.
+ */
+session_cache_limiter('nocache');
+
+
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
