@@ -653,6 +653,8 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$idpmd 	= $this->metadata->getMetaData($idpentityid, 'saml20-idp-hosted');
 		$spmd 	= $this->metadata->getMetaData($spentityid, 'saml20-sp-remote');
 		
+#		echo '<pre>'; print_r($idpmd); exit;
+		
 		$issuer = $idpentityid;
 		$destination = $spmd['AssertionConsumerService'];
 		
@@ -673,6 +675,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		/**
 		 * Handling attributes.
 		 */
+		
 		$base64 = isset($spmd['base64attributes']) ? $spmd['base64attributes'] : false;
 		$nameidformat = isset($spmd['NameIDFormat']) ? $spmd['NameIDFormat'] : 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
 		$spnamequalifier = isset($spmd['SPNameQualifier']) ? $spmd['SPNameQualifier'] : $spmd['entityid'];
@@ -684,31 +687,38 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		elseif (isset($idpmd['AttributeNameFormat']))
 			$attributeNameFormat = $idpmd['AttributeNameFormat'];
 
-		
-		$encodedattributes = '';
-		foreach ($attributes AS $name => $values) {
-			$encodedattributes .= self::enc_attribute($name, $values, $base64, $attributeNameFormat);
-		}
-		$attributestatement = '<saml:AttributeStatement>' . $encodedattributes . '</saml:AttributeStatement>';
-		
 		$sendattributes = isset($spmd['simplesaml.attributes']) ? $spmd['simplesaml.attributes'] : true;
-		
-		if (!$sendattributes) 
-			$attributestatement = '';
-		
+		$attributestatement = '';
+		if ($sendattributes && !is_null($attributes)) {
+			$encodedattributes = '';
+			foreach ($attributes AS $name => $values) {
+				$encodedattributes .= self::enc_attribute($name, $values, $base64, $attributeNameFormat);
+			}
+			$attributestatement = '<saml:AttributeStatement>' . $encodedattributes . '</saml:AttributeStatement>';
+		}		
+
 		
 		
 		/**
 		 * Handling NameID
 		 */
+		$nameIdValue = NULL;
 		if ( ($nameidformat == self::EMAIL) or ($nameidformat == self::PERSISTENT) ) {
-			$nameIdValue = $attributes[$spmd['simplesaml.nameidattribute']][0];
+			if (!is_null($attributes)) {
+				$nameIdValue = $attributes[$spmd['simplesaml.nameidattribute']][0];
+			}
 		} else {
 			$nameIdValue = SimpleSAML_Utilities::generateID();
 		}
-		$nameIdData = array('Format' => $nameidformat, 'value' => $nameIdValue);
-		$session->setSessionNameId('saml20-sp-remote', $spentityid, $nameIdData);
-		$nameid = $this->generateNameID($nameidformat, $nameIdValue, $spnamequalifier);
+		
+		$nameid = '';
+		if (!empty($nameIdValue)) {		
+			$nameIdData = array('Format' => $nameidformat, 'value' => $nameIdValue);
+			$session->setSessionNameId('saml20-sp-remote', $spentityid, $nameIdData);
+			$nameid = $this->generateNameID($nameidformat, $nameIdValue, $spnamequalifier);
+		}
+		
+
 
 		$assertion = "";
 		if ($status === 'Success') {

@@ -221,7 +221,7 @@ if($needAuth && !$isPassive) {
 		 * With statusCode: urn:oasis:names:tc:SAML:2.0:status:NoPassive
 		 */
 		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-		$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], null, array(), 'NoPassive');
+		$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], NULL, NULL, 'NoPassive');
 
 		/* Sending the AuthNResponse using HTTP-Post SAML 2.0 binding. */
 		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
