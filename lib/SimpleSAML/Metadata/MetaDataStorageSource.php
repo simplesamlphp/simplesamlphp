@@ -172,8 +172,19 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 
 		$metadataSet = $this->getMetadataSet($set);
 
-		foreach($metadataSet AS $index => $entry)
-			if ($entry['entityid'] === $entityId) return $index;
+		/* Check for hostname. */
+		$currenthost = SimpleSAML_Utilities::getSelfHost(); // sp.example.org
+		if(strpos($currenthost, ":") !== FALSE) {
+			$currenthostdecomposed = explode(":", $currenthost);
+			$currenthost = $currenthostdecomposed[0];
+		}
+		
+		foreach($metadataSet AS $index => $entry) {
+			if ($index === $entityId) return $index;
+			if ($entry['entityid'] === $entityId) {
+				if ($entry['host'] === '__DEFAULT__' || $entry['host'] === $currenthost) return $index;
+			}
+		}
 		
 		return NULL;
 	}
