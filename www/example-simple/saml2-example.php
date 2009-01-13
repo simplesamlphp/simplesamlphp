@@ -47,7 +47,14 @@ if (!$session->isValid('saml2') ) {
 	);
 }
 
+/* Prepare attributes for presentation 
+* and call a hook function for organizing the attribute array
+*/
 $attributes = $session->getAttributes();
+$para = array(
+	'attributes' => &$attributes
+);
+SimpleSAML_Module::callHooks('attributepresentation', $para);
 
 /*
  * The attributes variable now contains all the attributes. So this variable is basicly all you need to perform integration in 

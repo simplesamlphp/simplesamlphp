@@ -265,5 +265,35 @@ div.preferredidp {
 }
 
 
+/* Attribute presentation in example page */
+table.attributes {
+	width: 100%;
+	margin: 0px;
+	border: 0px;
+	border-collapse: collapse;
+}
+
+table.attributes td.attrname {
+	text-align: right;
+}
+
+table.attributes tr.even td {
+	background: #eee;
+}
+
+table.attributes tr td {
+	border-bottom: 1px solid #bbb; 
+	border-left: 0px;
+	border-right: 0px;	
+	background: #fff;
+	padding-top: 5px;
+	padding-left: 1em;
+	padding-right: 1em;
+	
+	vertical-align: top;
+}
+table#table_with_attributes tr:last-child td {
+	border-bottom: none;
+}
 
 
