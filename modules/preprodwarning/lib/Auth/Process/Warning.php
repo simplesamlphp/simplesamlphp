@@ -20,12 +20,6 @@ class sspmod_preprodwarning_Auth_Process_Warning extends SimpleSAML_Auth_Process
 	 */
 	public function process(&$state) {
 		assert('is_array($state)');
-		assert('array_key_exists("UserID", $state)');
-		assert('array_key_exists("Destination", $state)');
-		assert('array_key_exists("entityid", $state["Destination"])');
-		assert('array_key_exists("metadata-set", $state["Destination"])');		
-		assert('array_key_exists("entityid", $state["Source"])');
-		assert('array_key_exists("metadata-set", $state["Source"])');
 
 		/* Save state and redirect. */
 		$id = SimpleSAML_Auth_State::saveState($state, 'consent:request');
