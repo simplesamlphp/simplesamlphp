@@ -22,7 +22,7 @@ class sspmod_preprodwarning_Auth_Process_Warning extends SimpleSAML_Auth_Process
 		assert('is_array($state)');
 
 		/* Save state and redirect. */
-		$id = SimpleSAML_Auth_State::saveState($state, 'consent:request');
+		$id = SimpleSAML_Auth_State::saveState($state, 'warning:request');
 		$url = SimpleSAML_Module::getModuleURL('preprodwarning/showwarning.php');
 		SimpleSAML_Utilities::redirect($url, array('StateId' => $id));
 	}
