@@ -1,6 +1,6 @@
 <?php
 /**
- * The SSOService is part of the Shibboleth 1.3 IdP code, and it receives incomming Authentication Requests
+ * The SSOService is part of the Shibboleth 1.3 IdP code, and it receives incoming Authentication Requests
  * from a Shibboleth 1.3 SP, parses, and process it, and then authenticates the user and sends the user back
  * to the SP with an Authentication Response.
  *
@@ -30,7 +30,7 @@ try {
 }
 
 /*
- * If the shire query parameter is set, we got an incomming Authentication Request 
+ * If the shire query parameter is set, we got an incoming Authentication Request 
  * at this interface.
  *
  * In this case, what we should do is to process the request and set the neccessary information
@@ -56,7 +56,7 @@ if (isset($_GET['shire'])) {
 			'RelayState' => $authnrequest->getRelayState(),
 		);
 			
-		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incomming Shib authnRequest requestid: '.$requestid);
+		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incoming Shib authnRequest requestid: '.$requestid);
 	
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
@@ -64,7 +64,7 @@ if (isset($_GET['shire'])) {
 
 
 /*
- * If we did not get an incomming Authenticaiton Request, we need a RequestID parameter.
+ * If we did not get an incoming Authenticaiton Request, we need a RequestID parameter.
  *
  * The RequestID parameter is used to retrieve the information stored in the session object
  * related to the request that was received earlier. Usually the request is processed with 
@@ -80,7 +80,7 @@ if (isset($_GET['shire'])) {
 
 		$requestcache = $session->getAuthnRequest('shib13', $authId);
 		
-		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incomming RequestID: '. $authId);
+		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incoming RequestID: '. $authId);
 		
 		if (!$requestcache) {
 			throw new Exception('Could not retrieve cached RequestID = ' . $authId);

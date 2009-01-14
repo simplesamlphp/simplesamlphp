@@ -1,6 +1,6 @@
 <?php
 /**
- * The SSOService is part of the SAML 2.0 IdP code, and it receives incomming Authentication Requests
+ * The SSOService is part of the SAML 2.0 IdP code, and it receives incoming Authentication Requests
  * from a SAML 2.0 SP, parses, and process it, and then authenticates the user and sends the user back
  * to the SP with an Authentication Response.
  *
@@ -35,7 +35,7 @@ if (!$config->getValue('enable.saml20-idp', false))
 
 
 /*
- * If the SAMLRequest query parameter is set, we got an incomming Authentication Request 
+ * If the SAMLRequest query parameter is set, we got an incoming Authentication Request 
  * at this interface.
  *
  * In this case, what we should do is to process the request and set the neccessary information
@@ -114,7 +114,7 @@ if (isset($_GET['SAMLRequest'])) {
 	}
 
 /*
- * If we did not get an incomming Authenticaiton Request, we need a RequestID parameter.
+ * If we did not get an incoming Authenticaiton Request, we need a RequestID parameter.
  *
  * The RequestID parameter is used to retrieve the information stored in the session object
  * related to the request that was received earlier. Usually the request is processed with 
@@ -126,7 +126,7 @@ if (isset($_GET['SAMLRequest'])) {
 
 	try {
 	
-		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Got incomming authentication ID');
+		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Got incoming authentication ID');
 		
 		$authId = $_GET['RequestID'];
 		$requestcache = $session->getAuthnRequest('saml2', $authId);

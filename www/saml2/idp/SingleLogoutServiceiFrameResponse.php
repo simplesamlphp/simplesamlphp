@@ -2,7 +2,7 @@
 
 
 /**
- * This SAML 2.0 endpoint can receive incomming LogoutResponses. 
+ * This SAML 2.0 endpoint can receive incoming LogoutResponses. 
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp

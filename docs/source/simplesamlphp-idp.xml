@@ -1220,7 +1220,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
       <para>The authentication plugin should be placed in the
       <filename>auth</filename> directory.</para>
 
-      <para>The following parameters must be accepted in the incomming
+      <para>The following parameters must be accepted in the incoming
       URL:</para>
 
       <itemizedlist>
@@ -1230,7 +1230,7 @@ openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
         </listitem>
 
         <listitem>
-          <para><literal>RequestID</literal>: ID of an incomming
+          <para><literal>RequestID</literal>: ID of an incoming
           request.</para>
         </listitem>
       </itemizedlist>

@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST') {
  * POST fields will be added to the email in the order they appear here, and with the description
  * from the value in the array.
  *
- * DEPRECATED. Included as reference of incomming parameters.
+ * DEPRECATED. Included as reference of incoming parameters.
  */
 $mailFormat = array(
 	'email' => 'Email address of submitter',

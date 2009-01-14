@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This SAML 2.0 endpoint can receive incomming LogoutRequests. It will also send LogoutResponses, 
+ * This SAML 2.0 endpoint can receive incoming LogoutRequests. It will also send LogoutResponses, 
  * and LogoutRequests and also receive LogoutResponses. It is implemeting SLO at the SAML 2.0 IdP.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
@@ -82,7 +82,7 @@ function saveLogoutInfo($id) {
 
 
 /**
- * If we get an incomming LogoutRequest then we initiate the logout process.
+ * If we get an incoming LogoutRequest then we initiate the logout process.
  * in this case an SAML 2.0 SP is sending an request, which also is referred to as
  * SP initiated Single Logout.
  *
