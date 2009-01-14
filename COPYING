@@ -1,9 +1,18 @@
-Note that some of the embedded libraries may be using other licences.
-In example xmlseclibs uses BSD licence.
+Note that some of the embedded libraries may be using other licenses.
+In example xmlseclibs uses BSD license.
 
 If you will be using simpleSAMLphp in a commercial context, please do not use
-the embedded default template which contains some icons with licence that are limited
+the embedded default template which contains some icons with license that are limited
 to non-commercial use.
+
+There are some CC/GPL icons from the Gnome projects:
+http://jimmac.musichall.cz/icons.php
+
+And some Creative Commons icons NoCommercial from Mattahan (Paul Davey)
+http://www.iconarchive.com/category/application/buuf-icons-by-mattahan.html
+
+If you are going to use simpleSAMLphp in a commercial context, and you want to use the default template, ask on the mailinglist on how to remove the icons.
+
 --
 simpleSAMLphp is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
