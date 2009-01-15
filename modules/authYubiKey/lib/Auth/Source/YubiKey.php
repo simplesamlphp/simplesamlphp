@@ -8,7 +8,7 @@
  *
  * simpleSAMLphp is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
- * as published by the Free Software Foundation; either version 2.1 of
+ * as published by the Free Software Foundation; either version 3 of
  * the License, or (at your option) any later version.
  *
  * simpleSAMLphp is distributed in the hope that it will be useful,
@@ -98,16 +98,12 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends sspmod_core_Auth_UserPassBa
 			
 			$attributes = array('uid' => array($username), 'otp' => array($password));
 		} catch (Exception $e) {
-		  	SimpleSAML_Logger::info('YubiKey:' . $this->authId .
-				': Validation error, debug output from server: ' . $yubi->getLastResponse());
+		  	SimpleSAML_Logger::info('YubiKey:' . $this->authId . ': Validation error (user ' . $username . ' otp ' . $password . '), debug output: ' . $yubi->getLastResponse());
 
 			throw new SimpleSAML_Error_Error('WRONGUSERPASS', $e);
 		}
 
-		SimpleSAML_Logger::debug('YubiKey:' . $this->authId .
-			': YubiKey OTP validated successfully: ' . $yubi->getLastResponse());
-		SimpleSAML_Logger::info('YubiKey:' . $this->authId .
-			': Attributes: ' . implode(',', array_keys($attributes)));
+		SimpleSAML_Logger::info('YubiKey:' . $this->authId . ': YubiKey otp ' . $password . ' for user ' . $username . ' validated successfully: ' . $yubi->getLastResponse());
 
 		return $attributes;
 	}
