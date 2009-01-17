@@ -248,6 +248,7 @@ $lang = array(
 		'pt-BR' => 'XML incorreto na metadata. A URL passada foi "%URL%".',
 	),
 	'addpage_notentitydescriptor' => array (
+		'no' => 'Rotnoden i metadata-dokumentet var ikke en EntityDescriptor. URLen du oppgave var "%URL%".',
 		'nn' => 'Rotnoden for metadata var ikkje eit EntityDescriptor-element.  URLen du oppgav var "%URL%".',
 		'da' => 'Roden af metadata var ikke en \'EntityDescriptor\'. URL\'en du gav var "%URL%"',
 		'en' => 'The root node of the metadata was not an EntityDescriptor element. The URL you gave was "%URL%".',

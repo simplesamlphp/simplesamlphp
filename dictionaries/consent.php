@@ -266,6 +266,8 @@ $lang = array(
 	'noconsent_goto_about' => array (
 		'no' => 'Gå til informasjonsside om tjenesten',
 		'en' => 'Go to information page for the service',
+		'es' => 'Ir a la página de información del servicio',
+		'sl' => 'Pojdi na spletno stran z informacijami o storitvi',
 	),
 
 );
