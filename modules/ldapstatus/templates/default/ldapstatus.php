@@ -8,18 +8,18 @@ $this->includeAtTemplateBase('includes/header.php');
 
 <h2>LDAP test</h2>
 
-<table class="attributes" style="width: 100%; border: 1px solid #aaa">
+<table class="attributes" style="font-size: small; width: 100%; border: 1px solid #aaa">
 	<tr>
-	<th>Name of institusion</th>
-	<!-- th>Identifier</th -->
-	<th>Conf</th>
-	<th>Meta</th>
-	<th>Ping</th>
-	<th>Admin bind()</th>
-	<th>Search bogus</th>
-	<th>Search test</th>
-	<th>Bind test</th>
-	<th>GetAttr test</th>
+		<th>Name of institusion</th>
+		<th>Conf</th>
+		<th>Meta</th>
+		<th>Ping</th>
+		<th>Admin bind()</th>
+		<th>Search bogus</th>
+		<th>Search test</th>
+		<th>test</th>
+		<th>Bind test</th>
+		<th>GetAttr</th>
 	</tr>
 
 <?php
@@ -59,13 +59,13 @@ foreach($this->data['sortedOrgIndex'] as $orgkey) {
 	} else {
 		echo('<td><span style="color: #b4b4b4; font-size: x-small">NA</span> <tt>' . $orgkey . '</tt></td>');
 	}
-#	echo('<td><tt>' . htmlspecialchars($orgkey) . '</tt></td>');
 	showRes('config',  $res, $this);
 	showRes('configMeta',  $res, $this);
 	showRes('ping',  $res, $this);
 	showRes('adminBind',  $res, $this);
 	showRes('ldapSearchBogus',  $res, $this);
 	showRes('ldapSearchTestUser',  $res, $this);
+	showRes('configTest',  $res, $this);
 	showRes('ldapBindTestUser',  $res, $this);
 	showRes('ldapGetAttributesTestUser',  $res, $this);
 	echo('</tr>');

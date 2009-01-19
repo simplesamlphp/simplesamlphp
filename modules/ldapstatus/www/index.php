@@ -59,7 +59,8 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 	
 
 	$results[$orgkey]['config'] = checkConfig($orgconfig, array('description', 'searchbase', 'hostname'));
-	$results[$orgkey]['configMeta'] = checkConfig($orgconfig, array('enable_tls', 'testUser', 'testPassword', 'contactMail', 'contactURL'));
+	$results[$orgkey]['configMeta'] = checkConfig($orgconfig, array('enable_tls', 'contactMail', 'contactURL'));
+	$results[$orgkey]['configTest'] = checkConfig($orgconfig, array('testUser', 'testPassword'));
 
 	if (!$results[$orgkey]['config'][0]) continue;
 
@@ -149,7 +150,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 
 function resultCode($res) {
 	$code = '';
-	$columns = array('config', 'configMeta', 'ping', 'adminUser', 'ldapSearchBogus', 'ldapSearchTestUser', 'ldapBindTestUser', 'ldapGetAttributesTestUser');
+	$columns = array('config', 'configMeta', 'ping', 'adminUser', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'ldapGetAttributesTestUser');
 	foreach ($columns AS $c) {
 		if (array_key_exists($c, $res)) {
 			$code .= ($res[$c][0] ? '0' : '2');
