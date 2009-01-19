@@ -41,7 +41,7 @@ function checkConfig($conf, $req) {
 	foreach($req AS $r) {
 		if (!array_key_exists($r, $conf)) {
 			$err[] = $r;
-		} elseif (empty($conf[$r])) {
+		} elseif (empty($conf[$r]) && $conf[$r] !== FALSE) {
 			$err[] = 'empty:' . $r;
 		}
 	}
