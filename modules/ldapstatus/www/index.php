@@ -21,10 +21,29 @@ $orgs = $ldapconfig->getValue('orgldapconfig');
 
 #echo '<pre>'; print_r($orgs); exit;
 
+
+function phpping($host, $port) {
+
+	SimpleSAML_Logger::debug('ldapstatus phpping(): ping [' . $host . ':' . $port . ']' );
+
+	$timeout = 1.0;
+	$socket = @fsockopen($host, $port, $errno, $errstr, $timeout);
+	@fclose($socket);
+	if ($errno) {
+		return array(FALSE, $errno . ':' . $errstr);
+	} else {		
+		return array(TRUE,NULL);
+	}
+}
+
 function checkConfig($conf, $req) {
 	$err = array();
 	foreach($req AS $r) {
-		if (!array_key_exists($r, $conf)) $err[] = $r;
+		if (!array_key_exists($r, $conf)) {
+			$err[] = $r;
+		} elseif (empty($conf[$r])) {
+			$err[] = 'empty:' . $r;
+		}
 	}
 	if (count($err) > 0) {
 		return array(FALSE, 'Missing: ' . join(', ', $err));
@@ -39,28 +58,32 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 	$results[$orgkey] = array();
 	
 
-	$results[$orgkey]['config'] = checkConfig($orgconfig, array('description', 'searchbase', 'hostname', 'attributes'));
+	$results[$orgkey]['config'] = checkConfig($orgconfig, array('description', 'searchbase', 'hostname'));
 	$results[$orgkey]['configMeta'] = checkConfig($orgconfig, array('enable_tls', 'testUser', 'testPassword', 'contactMail', 'contactURL'));
-	
-	$url = parse_url($orgconfig['hostname']);
 
-	$pingreturn = NULL;
-	$pingoutput = NULL;
-	
-#	echo 'Ping command: ' . $pingcommand; exit;
-	
-	exec($pingcommand . ' ' . escapeshellcmd($url['host']), $pingoutput, $pingreturn);
+	if (!$results[$orgkey]['config'][0]) continue;
 
-#	echo $pingreturn; exit;
-
-	if ($pingreturn == '0') {
-		$results[$orgkey]['ping'] = array(TRUE,join("\r\n", $pingoutput));
-	} else {
-		$results[$orgkey]['ping'] = array(FALSE,join("\r\n", $pingoutput));
-		continue;
-	}
+	$urldef = explode(' ', $orgconfig['hostname']);
+	$url = parse_url($urldef[0]);
+	$port = 389;
+	if (!empty($url['port'])) $port = $url['port'];
 	
-	#continue;
+	SimpleSAML_Logger::debug('ldapstatus Url parse [' . $orgconfig['hostname'] . '] => [' . $url['host'] . ']:[' . $port . ']' );
+
+// 	$pingreturn = NULL;
+// 	$pingoutput = NULL;
+// 	exec($pingcommand . ' ' . escapeshellcmd($url['host']), $pingoutput, $pingreturn);
+// 	if ($pingreturn == '0') {
+// 		$results[$orgkey]['ping'] = array(TRUE,join("\r\n", $pingoutput));
+// 	} else {
+// 		$results[$orgkey]['ping'] = array(FALSE,join("\r\n", $pingoutput));
+// 		continue;
+// 	}
+
+	$results[$orgkey]['ping'] = phpping($url['host'], $port);
+
+	if (!$results[$orgkey]['ping'][0]) continue;
+
 	
 	// LDAP Connect
 	try {
@@ -106,7 +129,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 			continue;
 		}
 		
-		if ($ldap->bind($orgconfig['testUser'], $orgconfig['testPassword'])) {
+		if ($ldap->bind($dn, $orgconfig['testPassword'])) {
 			$results[$orgkey]['ldapBindTestUser'] = array(TRUE,NULL);
 			
 		} else {
@@ -124,9 +147,33 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 }
 #echo '<pre>'; print_r($results); exit;
 
+function resultCode($res) {
+	$code = '';
+	$columns = array('config', 'configMeta', 'ping', 'adminUser', 'ldapSearchBogus', 'ldapSearchTestUser', 'ldapBindTestUser', 'ldapGetAttributesTestUser');
+	foreach ($columns AS $c) {
+		if (array_key_exists($c, $res)) {
+			$code .= ($res[$c][0] ? '0' : '2');
+		} else {
+			$code .= '1';
+		}
+	}
+	return $code;
+}
+
+	
+	
+$ressortable = array();
+foreach ($results AS $key => $res) {
+	$ressortable[$key] = resultCode($res);
+}
+asort($ressortable);
+#echo '<pre>'; print_r($ressortable); exit;
+
+
 $t = new SimpleSAML_XHTML_Template($config, 'ldapstatus:ldapstatus.php');
 $t->data['results'] = $results;
 $t->data['orgconfig'] = $orgs;
+$t->data['sortedOrgIndex'] = array_keys($ressortable);
 $t->show();
 exit;
 

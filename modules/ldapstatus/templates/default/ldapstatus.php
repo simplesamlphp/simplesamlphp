@@ -11,6 +11,7 @@ $this->includeAtTemplateBase('includes/header.php');
 <table class="attributes" style="width: 100%; border: 1px solid #aaa">
 	<tr>
 	<th>Name of institusion</th>
+	<!-- th>Identifier</th -->
 	<th>Conf</th>
 	<th>Meta</th>
 	<th>Ping</th>
@@ -44,15 +45,21 @@ function showRes($key, $res, $template) {
 }
 
 
+
+
 $i = 0;
 $classes = array('odd', 'even');
-foreach($this->data['results'] as $orgkey => $res) {
+
+# $this->data['results']
+foreach($this->data['sortedOrgIndex'] as $orgkey) {
+	$res = $this->data['results'][$orgkey];
 	echo('<tr class="' . ($classes[($i++ % 2)]) . '">');
 	echo('<td>' . htmlspecialchars($this->getTranslation($this->data['orgconfig'][$orgkey]['description'])) . '</td>');
+#	echo('<td><tt>' . htmlspecialchars($orgkey) . '</tt></td>');
 	showRes('config',  $res, $this);
 	showRes('configMeta',  $res, $this);
 	showRes('ping',  $res, $this);
-	showRes('adminUser',  $res, $this);
+	showRes('adminBind',  $res, $this);
 	showRes('ldapSearchBogus',  $res, $this);
 	showRes('ldapSearchTestUser',  $res, $this);
 	showRes('ldapBindTestUser',  $res, $this);
