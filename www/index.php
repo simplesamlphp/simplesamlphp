@@ -33,26 +33,29 @@ if ($config->getValue('enable.saml20-sp') === true)
 if ($config->getValue('enable.shib13-sp') === true)
 	$links[] = array(
 		'href' => 'example-simple/shib13-example.php', 
-		'text' => 'link_shib13example');
+		'text' => 'link_shib13example'
+	);
 
 $links[] = array(
 	'href' => 'example-simple/hostnames.php?dummy=1', 
-	'text' => 'link_diagnostics');
+	'text' => 'link_diagnostics'
+);
 
 $links[] = array(
 	'href' => 'admin/phpinfo.php', 
-	'text' => 'link_phpinfo');
+	'text' => 'link_phpinfo'
+);
 
 $links[] = array(
 	'href' => 'admin/config.php',
 	'text' => 'link_configcheck',
-	);
+);
 
 if($config->getBoolean('idpdisco.enableremember', FALSE)) {
 	$links[] = array(
 		'href' => 'cleardiscochoices.php',
 		'text' => 'link_cleardiscochoices',
-		);
+	);
 }
 
 
@@ -63,18 +66,16 @@ if ($publishURL !== NULL) {
 		'saml20-sp' => 'saml2/sp/metadata.php',
 		'shib13-idp' => 'shib13/idp/metadata.php',
 		'shib13-sp' => 'shib13/sp/metadata.php',
-		);
+	);
 	foreach($metadataSources as $name => $url) {
-		if(!$config->getBoolean('enable.' . $name, FALSE)) {
-			continue;
-		}
+		if(!$config->getBoolean('enable.' . $name, FALSE)) continue;
 
 		$url = SimpleSAML_Utilities::resolveURL($url);
 		$linkTarget = SimpleSAML_Utilities::addURLparameter($publishURL, array('url' => $url));
 		$links[] = array(
 			'href' => $linkTarget,
 			'text' => 'link_publish_' . $name,
-			);
+		);
 	}
 }
 
