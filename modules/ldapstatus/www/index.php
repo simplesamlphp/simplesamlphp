@@ -31,12 +31,13 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 	$results[$orgkey]['configMeta'] = checkConfig($orgconfig, array('enable_tls', 'testUser', 'testPassword', 'contactMail', 'contactURL'));
 	
 	$url = parse_url($orgconfig['hostname']);
-// print_r($orgconfig['hostname']);
-// print_r($url); exit;
+
 	$pingreturn = NULL;
 	$pingoutput = NULL;
-	exec('ping -o -t 1 -c 1 ' . escapeshellcmd($url['host']), $pingoutput, $pingreturn);
+	exec('ping -W 1 -c 1  ' . escapeshellcmd($url['host']), $pingoutput, $pingreturn);
+
 #	echo $pingreturn; exit;
+
 	if ($pingreturn == '0') {
 		$results[$orgkey]['ping'] = array(TRUE,join("\r\n", $pingoutput));
 	} else {
