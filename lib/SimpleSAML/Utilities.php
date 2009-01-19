@@ -1658,6 +1658,17 @@ class SimpleSAML_Utilities {
 		return $doc->saveXML($root);
 	}
 
+	/*
+	 * Input is single value or array, returns an array.
+	 */
+	public static function arrayize($data) {
+		if (is_array($data)) {
+			return $data;
+		} else {
+			return array($data);
+		}
+	}
+
 }
 
 ?>
