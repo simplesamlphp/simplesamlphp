@@ -50,51 +50,25 @@ class SimpleSAML_Auth_LDAP {
 	}
 	
 	/**
-	 * Search for a DN. You specify an attribute name and an attribute value
-	 * and the function will return the DN of the result of the search.
+	 * Search for DN in one single base only
 	 *
 	 * @param $allowZeroHits Default is false. If set to true it will return NULL instead
 	 * 			of throwing an exception if no results was found.
 	 */
-	public function searchfordn($searchbase, $searchattr, $searchvalue, $allowZeroHits = FALSE) {
-	
+	public function searchfordnSingleBase($searchbase, $searchattr, $searchvalue, $allowZeroHits = FALSE) {
+
 		// Search for ePPN
 		$search = $this->generateSearchFilter($searchattr, $searchvalue);
-		
 		SimpleSAML_Logger::debug('Library - LDAP: Search for DN base:' . $searchbase . ' search: ' . $search);
+		$search_result = @ldap_search($this->ldap, $searchbase, $search, array() );
 
-		// Go through all searchbases if multiple
-		if (is_array($searchbase)) {
-			$num_results = 0;
-			foreach ($searchbase AS $base) {
-				$search_result = @ldap_search($this->ldap, $base, $search, array() );
-
-				if ($search_result === false) {
-					throw new Exception('Failed performing a LDAP search: ' . ldap_error($this->ldap) . ' search:' . $search);
-				}
-
-				if (!(@ldap_count_entries($this->ldap, $search_result) == 0)) {
-					$num_results++;
-					$result = $search_result;
-				}
-			}
-			if ($num_results > 1)
-				throw new Exception('Found hits in multiple bases for LDAP search: ' . ldap_error($this->ldap) . ' search:' . $search);
-			$search_result = $result;
-			$searchbase = join (" && ", $searchbase);
-		} else {
-			$search_result = @ldap_search($this->ldap, $searchbase, $search, array() );
-
-			if ($search_result === false) {
-				throw new Exception('Failed performing a LDAP search: ' . ldap_error($this->ldap) . ' search:' . $search);
-			}
-		}
+		if ($search_result === false)
+			throw new Exception('Failed performing a LDAP search: ' . ldap_error($this->ldap) . ' search:' . $search);
 
 		// Check number of entries. ePPN should be unique!
 		if (@ldap_count_entries($this->ldap, $search_result) > 1 )
 			throw new Exception("Found multiple entries in LDAP search: " . $search . ' base(s): ' . $searchbase);
 	
-
 		if (@ldap_count_entries($this->ldap, $search_result) == 0) {
 			if ($allowZeroHits) {
 				return NULL;
@@ -115,6 +89,47 @@ class SimpleSAML_Auth_LDAP {
 			throw new Exception('Error retrieving DN from search result.');
 			
 		return $dn;
+		
+	}
+	
+	
+	/**
+	 * Search for a DN. You specify an attribute name and an attribute value
+	 * and the function will return the DN of the result of the search.
+	 *
+	 * @param $allowZeroHits Default is false. If set to true it will return NULL instead
+	 * 			of throwing an exception if no results was found.
+	 */
+	public function searchfordn($searchbase, $searchattr, $searchvalue, $allowZeroHits = FALSE) {
+	
+
+		$searchbases = SimpleSAML_Utilities::arrayize($searchbase);
+
+		/**
+		 * Traverse all search bases. If DN was found, return the result.
+		 */
+		$result = NULL;
+		foreach($searchbases AS $sbase) {
+			try {
+				$result = $this->searchfordnSingleBase($sbase, $searchattr, $searchvalue, TRUE);
+				if (!empty($result)) return $result;
+			
+			// If LDAP search failed, log errors, but continue to look in the other base DNs.
+			} catch(Exception $e) {
+				SimpleSAML_Logger::warning('Library - LDAP: Search for DN failed for base:' . $sbase . ' exception: ' . 
+					$e->getMessage());
+			}
+		}
+
+		// If no DN was found after traversing all base DNs, return NULL or an exception.
+		if (@ldap_count_entries($this->ldap, $search_result) == 0) {
+			if ($allowZeroHits) {
+				return NULL;
+			} else {
+				throw new Exception('LDAP search returned zero entries: ' . $searchattr . '=' . $searchvalue . ' base(s): ' . 
+					join(',', $searchbase));
+			}
+		}		
 
 	}
 	
