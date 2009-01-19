@@ -56,19 +56,40 @@ class SimpleSAML_Auth_LDAP {
 		$search = $this->generateSearchFilter($searchattr, $searchvalue);
 		
 		SimpleSAML_Logger::debug('Library - LDAP: Search for DN base:' . $searchbase . ' search: ' . $search);
-		
-		$search_result = @ldap_search($this->ldap, $searchbase, $search, array() );
 
-		if ($search_result === false) {
-			throw new Exception('Failed performing a LDAP search: ' . ldap_error($this->ldap) . ' search:' . $search);
+		// Go through all searchbases if multiple
+		if (is_array($searchbase)) {
+			$num_results = 0;
+			foreach ($searchbase AS $base) {
+				$search_result = @ldap_search($this->ldap, $base, $search, array() );
+
+				if ($search_result === false) {
+					throw new Exception('Failed performing a LDAP search: ' . ldap_error($this->ldap) . ' search:' . $search);
+				}
+
+				if (!(@ldap_count_entries($this->ldap, $search_result) == 0)) {
+					$num_results++;
+					$result = $search_result;
+				}
+			}
+			if ($num_results > 1)
+				throw new Exception('Found hits in multiple bases for LDAP search: ' . ldap_error($this->ldap) . ' search:' . $search);
+			$search_result = $result;
+			$searchbase = join (" && ", $searchbase);
+		} else {
+			$search_result = @ldap_search($this->ldap, $searchbase, $search, array() );
+
+			if ($search_result === false) {
+				throw new Exception('Failed performing a LDAP search: ' . ldap_error($this->ldap) . ' search:' . $search);
+			}
 		}
 
 		// Check number of entries. ePPN should be unique!
-		if (@ldap_count_entries($this->ldap, $search_result) > 1 ) 
-			throw new Exception("Found multiple entries in LDAP search: " . $search . ' base: ' . $searchbase);
-		
+		if (@ldap_count_entries($this->ldap, $search_result) > 1 )
+			throw new Exception("Found multiple entries in LDAP search: " . $search . ' base(s): ' . $searchbase);
+	
 		if (@ldap_count_entries($this->ldap, $search_result) == 0) 
-			throw new Exception('LDAP search returned zero entries: ' . $search . ' base: ' . $searchbase);
+			throw new Exception('LDAP search returned zero entries: ' . $search . ' base(s): ' . $searchbase);
 		
 		// Authenticate user and fetch attributes
 		$entry = ldap_first_entry($this->ldap, $search_result);
