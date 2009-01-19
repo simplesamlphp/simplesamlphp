@@ -57,7 +57,7 @@ foreach($this->data['sortedOrgIndex'] as $orgkey) {
 	if (array_key_exists('description', $this->data['orgconfig'][$orgkey])) {
 		echo('<td>' . htmlspecialchars($this->getTranslation($this->data['orgconfig'][$orgkey]['description'])) . '</td>');
 	} else {
-		echo('<span style="color: #b4b4b4; font-size: x-small">NA</span>');
+		echo('<td><span style="color: #b4b4b4; font-size: x-small">NA</span> <tt>' . $orgkey . '</tt></td>');
 	}
 #	echo('<td><tt>' . htmlspecialchars($orgkey) . '</tt></td>');
 	showRes('config',  $res, $this);
