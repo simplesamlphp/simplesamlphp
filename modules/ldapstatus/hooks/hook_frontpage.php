@@ -1,6 +1,6 @@
 <?php
 /**
- * Hook to add the modinfo module to the frontpage.
+ * Hook to add the LDAP status module to the frontpage.
  *
  * @param array &$links  The links on the frontpage, split into sections.
  */
