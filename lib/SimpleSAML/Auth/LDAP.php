@@ -24,6 +24,9 @@ class SimpleSAML_Auth_LDAP {
 		SimpleSAML_Logger::debug('Library - LDAP __construct(): Setup LDAP with host [' . $hostname . '] and tls [' . var_export($enable_tls, true) . ']');
 
 		$this->ldap = @ldap_connect($hostname);
+#		ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, 2);
+		ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, 2);
+
 		if (empty($this->ldap)) 
 			throw new Exception('Error initializing LDAP connection with PHP LDAP library.');
 		
@@ -49,8 +52,11 @@ class SimpleSAML_Auth_LDAP {
 	/**
 	 * Search for a DN. You specify an attribute name and an attribute value
 	 * and the function will return the DN of the result of the search.
+	 *
+	 * @param $allowZeroHits Default is false. If set to true it will return NULL instead
+	 * 			of throwing an exception if no results was found.
 	 */
-	public function searchfordn($searchbase, $searchattr, $searchvalue) {
+	public function searchfordn($searchbase, $searchattr, $searchvalue, $allowZeroHits = FALSE) {
 	
 		// Search for ePPN
 		$search = $this->generateSearchFilter($searchattr, $searchvalue);
@@ -88,9 +94,15 @@ class SimpleSAML_Auth_LDAP {
 		if (@ldap_count_entries($this->ldap, $search_result) > 1 )
 			throw new Exception("Found multiple entries in LDAP search: " . $search . ' base(s): ' . $searchbase);
 	
-		if (@ldap_count_entries($this->ldap, $search_result) == 0) 
-			throw new Exception('LDAP search returned zero entries: ' . $search . ' base(s): ' . $searchbase);
-		
+
+		if (@ldap_count_entries($this->ldap, $search_result) == 0) {
+			if ($allowZeroHits) {
+				return NULL;
+			} else {
+				throw new Exception('LDAP search returned zero entries: ' . $search . ' base: ' . $searchbase);
+			}
+		}
+
 		// Authenticate user and fetch attributes
 		$entry = ldap_first_entry($this->ldap, $search_result);
 		
