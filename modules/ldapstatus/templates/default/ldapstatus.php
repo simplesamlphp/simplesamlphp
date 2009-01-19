@@ -8,7 +8,7 @@ $this->includeAtTemplateBase('includes/header.php');
 
 <h2>LDAP test</h2>
 
-<table style="width: 100%">
+<table class="attributes" style="width: 100%; border: 1px solid #aaa">
 	<tr>
 	<th>Name of institusion</th>
 	<th>Conf</th>
@@ -38,15 +38,16 @@ function showRes($key, $res, $template) {
 				/>';
 		}
 	} else {
-		echo('<span style="color: #eee;">NA</span>');
+		echo('<span style="color: #b4b4b4; font-size: x-small">NA</span>');
 	}
 	echo('</td>');
 }
 
 
+$i = 0;
+$classes = array('odd', 'even');
 foreach($this->data['results'] as $orgkey => $res) {
-	echo('<tr>');
-#	print_r($this->data['orgconfig']); exit;
+	echo('<tr class="' . ($classes[($i++ % 2)]) . '">');
 	echo('<td>' . htmlspecialchars($this->getTranslation($this->data['orgconfig'][$orgkey]['description'])) . '</td>');
 	showRes('config',  $res, $this);
 	showRes('configMeta',  $res, $this);

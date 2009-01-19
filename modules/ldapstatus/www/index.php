@@ -12,8 +12,9 @@ if (!$session->isValid('login-admin') ) {
 
 
 $ldapconfig = $config->copyFromBase('loginfeide', 'config-login-feide.php');
+$ldapStatusConfig = $config->copyFromBase('ldapstatus', 'module_ldapstatus.php');
 
-
+$pingcommand = $ldapStatusConfig->getValue('ping');
 
 
 $orgs = $ldapconfig->getValue('orgldapconfig');
@@ -45,7 +46,10 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 
 	$pingreturn = NULL;
 	$pingoutput = NULL;
-	exec('ping -W 1 -c 1  ' . escapeshellcmd($url['host']), $pingoutput, $pingreturn);
+	
+#	echo 'Ping command: ' . $pingcommand; exit;
+	
+	exec($pingcommand . ' ' . escapeshellcmd($url['host']), $pingoutput, $pingreturn);
 
 #	echo $pingreturn; exit;
 
