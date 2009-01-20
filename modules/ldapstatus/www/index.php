@@ -16,6 +16,7 @@ $ldapStatusConfig = $config->copyFromBase('ldapstatus', 'module_ldapstatus.php')
 
 $pingcommand = $ldapStatusConfig->getValue('ping');
 
+$debug = $ldapconfig->getValue('ldapDebug', FALSE);
 
 $orgs = $ldapconfig->getValue('orgldapconfig');
 
@@ -88,7 +89,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 	
 	// LDAP Connect
 	try {
-		$ldap = new SimpleSAML_Auth_LDAP($orgconfig['hostname'], (array_key_exists('enable_tls', $orgconfig) ? $orgconfig['enable_tls'] : FALSE));
+		$ldap = new SimpleSAML_Auth_LDAP($orgconfig['hostname'], (array_key_exists('enable_tls', $orgconfig) ? $orgconfig['enable_tls'] : FALSE), $debug);
 		$results[$orgkey]['connect'] = array(TRUE,NULL);
 	} catch (Exception $e) {
 		$results[$orgkey]['connect'] = array(FALSE,$e->getMessage());
