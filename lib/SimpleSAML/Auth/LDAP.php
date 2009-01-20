@@ -121,15 +121,13 @@ class SimpleSAML_Auth_LDAP {
 			}
 		}
 
-		// If no DN was found after traversing all base DNs, return NULL or an exception.
-		if (@ldap_count_entries($this->ldap, $search_result) == 0) {
-			if ($allowZeroHits) {
-				return NULL;
-			} else {
-				throw new Exception('LDAP search returned zero entries: ' . $searchattr . '=' . $searchvalue . ' base(s): ' . 
-					join(' & ', $searchbases));
-			}
-		}		
+		if ($allowZeroHits) {
+			return NULL;
+		} else {
+			throw new Exception('LDAP search returned zero entries: ' . $searchattr . '=' . $searchvalue . ' base(s): ' . 
+				join(' & ', $searchbases));
+		}
+
 
 	}
 	
