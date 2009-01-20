@@ -23,6 +23,7 @@ class SimpleSAML_Auth_LDAP {
 
 		SimpleSAML_Logger::debug('Library - LDAP __construct(): Setup LDAP with host [' . $hostname . '] and tls [' . var_export($enable_tls, true) . ']');
 
+		ldap_set_option(NULL, LDAP_OPT_DEBUG_LEVEL, 7);
 		$this->ldap = @ldap_connect($hostname);
 #		ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, 2);
 		ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, 2);

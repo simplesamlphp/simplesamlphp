@@ -88,7 +88,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 	
 	// LDAP Connect
 	try {
-		$ldap = new SimpleSAML_Auth_LDAP($orgconfig['hostname'], $orgconfig['enable_tls']);
+		$ldap = new SimpleSAML_Auth_LDAP($orgconfig['hostname'], (array_key_exists('enable_tls', $orgconfig) ? $orgconfig['enable_tls'] : FALSE));
 		$results[$orgkey]['connect'] = array(TRUE,NULL);
 	} catch (Exception $e) {
 		$results[$orgkey]['connect'] = array(FALSE,$e->getMessage());
@@ -98,8 +98,12 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 	// Bind as admin user
 	if (isset($orgconfig['adminUser'])) {
 		try {
-			$ldap->bind($orgconfig['adminUser'], $orgconfig['adminPassword']);
-			$results[$orgkey]['adminBind'] = array(TRUE,NULL);
+			$success = $ldap->bind($orgconfig['adminUser'], $orgconfig['adminPassword']);
+			if ($success) {
+				$results[$orgkey]['adminBind'] = array(TRUE,NULL);
+			} else {
+				$results[$orgkey]['adminBind'] = array(FALSE,'Could not bind()' );
+			}
 		} catch (Exception $e) {
 			$results[$orgkey]['adminBind'] = array(FALSE,$e->getMessage());
 			continue;
@@ -107,7 +111,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 	}
 	
 	
-	$eppn = 'test@feide.no';
+	$eppn = 'asdasdasdasd@feide.no';
 	// Search for bogus user
 	try {
 		$dn = $ldap->searchfordn($orgconfig['searchbase'], 'eduPersonPrincipalName', $eppn, TRUE);
@@ -123,7 +127,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 
 		// Try to search for DN of test account
 		try {
-			$dn = $ldap->searchfordn($orgconfig['searchbase'], 'eduPersonPrincipalName', $eppn);
+			$dn = $ldap->searchfordn($orgconfig['searchbase'], 'eduPersonPrincipalName', $orgconfig['testUser']);
 			$results[$orgkey]['ldapSearchTestUser'] = array(TRUE,NULL);
 		} catch (Exception $e) {
 			$results[$orgkey]['ldapSearchTestUser'] = array(FALSE,$e->getMessage());
