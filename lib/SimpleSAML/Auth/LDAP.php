@@ -165,7 +165,7 @@ class SimpleSAML_Auth_LDAP {
 			SimpleSAML_Logger::debug('Library - LDAP: Bind successfull with ' . $dn);
 			return true;
 		}
-		SimpleSAML_Logger::debug('Library - LDAP: Bind failed with ' . $dn);
+		SimpleSAML_Logger::debug('Library - LDAP: Bind failed with ' . $dn . ' (' . ldap_error($this->ldap) . ')'); 
 		return false;
 	}
 
