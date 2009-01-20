@@ -101,8 +101,8 @@ class SimpleSAML_Auth_LDAP {
 	 * 			of throwing an exception if no results was found.
 	 */
 	public function searchfordn($searchbase, $searchattr, $searchvalue, $allowZeroHits = FALSE) {
-	
 
+		SimpleSAML_Logger::debug('Library - LDAP: searchfordn() Search for entries');
 		$searchbases = SimpleSAML_Utilities::arrayize($searchbase);
 
 		/**
@@ -120,7 +120,8 @@ class SimpleSAML_Auth_LDAP {
 					$e->getMessage());
 			}
 		}
-
+		SimpleSAML_Logger::debug('Library - LDAP: searchfordn() Zero entries found');
+		
 		if ($allowZeroHits) {
 			return NULL;
 		} else {
