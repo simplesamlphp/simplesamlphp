@@ -12,14 +12,14 @@ $this->includeAtTemplateBase('includes/header.php');
 	<tr>
 		<th>Name of institusion</th>
 		<th>Conf</th>
-		<th>Meta</th>
 		<th>Ping</th>
 		<th>Admin bind()</th>
-		<th>Search bogus</th>
-		<th>Search test</th>
+		<th>S=bogus</th>
 		<th>test</th>
-		<th>Bind test</th>
-		<th>GetAttr</th>
+		<th>S=test</th>
+		<th>test bind()</th>
+		<th>attributes</th>
+		<th>Meta</th>
 	</tr>
 
 <?php
@@ -60,14 +60,14 @@ foreach($this->data['sortedOrgIndex'] as $orgkey) {
 		echo('<td><span style="color: #b4b4b4; font-size: x-small">NA</span> <tt>' . $orgkey . '</tt></td>');
 	}
 	showRes('config',  $res, $this);
-	showRes('configMeta',  $res, $this);
 	showRes('ping',  $res, $this);
 	showRes('adminBind',  $res, $this);
 	showRes('ldapSearchBogus',  $res, $this);
-	showRes('ldapSearchTestUser',  $res, $this);
 	showRes('configTest',  $res, $this);
+	showRes('ldapSearchTestUser',  $res, $this);
 	showRes('ldapBindTestUser',  $res, $this);
 	showRes('ldapGetAttributesTestUser',  $res, $this);
+	showRes('configMeta',  $res, $this);
 	echo('</tr>');
 }
 ?>

@@ -150,7 +150,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 
 function resultCode($res) {
 	$code = '';
-	$columns = array('config', 'configMeta', 'ping', 'adminUser', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'ldapGetAttributesTestUser');
+	$columns = array('config', 'ping', 'adminBind', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'ldapGetAttributesTestUser', 'configMeta');
 	foreach ($columns AS $c) {
 		if (array_key_exists($c, $res)) {
 			$code .= ($res[$c][0] ? '0' : '2');

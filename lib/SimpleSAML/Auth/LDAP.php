@@ -127,7 +127,7 @@ class SimpleSAML_Auth_LDAP {
 				return NULL;
 			} else {
 				throw new Exception('LDAP search returned zero entries: ' . $searchattr . '=' . $searchvalue . ' base(s): ' . 
-					join(',', $searchbases));
+					join(' &amp; ', $searchbases));
 			}
 		}		
 
