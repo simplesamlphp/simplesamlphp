@@ -507,16 +507,15 @@ class SimpleSAML_XHTML_Template {
 		if ($themeModule !== NULL) {
 			/* .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName> */
 
-			$filename = SimpleSAML_Module::getModuleDir($themeModule) . '/themes/' . $themeName . '/' .
-				$templateModule . '/' . $templateName;
+			$filename = SimpleSAML_Module::getModuleDir($themeModule) . '/themes/' . $themeName . '/' . $templateModule . '/' . $templateName;
+			
 		} elseif ($templateModule !== 'default') {
 			/* .../module/<templateModule>/templates/<themeName>/<templateName> */
-			$filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' .
-				$themeName . '/' . $templateName;
+			$filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' . $templateName;
+			
 		} else {
 			/* .../templates/<theme>/<templateName> */
-			$filename = $this->configuration->getPathValue('templatedir') . $themeName . '/' .
-				$templateName;
+			$filename = $this->configuration->getPathValue('templatedir') . $templateName;
 		}
 
 		if (file_exists($filename)) {
@@ -533,12 +532,11 @@ class SimpleSAML_XHTML_Template {
 		$baseTheme = $this->configuration->getValue('theme.base');
 		if ($templateModule !== 'default') {
 			/* .../module/<templateModule>/templates/<baseTheme>/<templateName> */
-			$filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' .
-				$baseTheme . '/' . $templateName;
+			$filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' . $templateName;
+			
 		} else {
 			/* .../templates/<baseTheme>/<templateName> */
-			$filename = $this->configuration->getPathValue('templatedir') . $baseTheme . '/' .
-				$templateName;
+			$filename = $this->configuration->getPathValue('templatedir') . '/' . $templateName;
 		}
 
 		if (file_exists($filename)) {

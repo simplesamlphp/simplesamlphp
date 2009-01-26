@@ -22,18 +22,17 @@ If you want to customize the UI, the right way to do that is to create a new **t
 
 ### Configuring which theme to use
 
-In `config.php` there is two configuration parameters that controls theming. Here is an example:
+In `config.php` there is a configuration option that controls theming. Here is an example:
 
-	'theme.use' 		=> 'fancytheme',
-	'theme.base' 		=> 'default',
+	'theme.use' 		=> 'fancymodule:fancytheme',
 
-The `theme.use` parameter points to which theme that will be used. If some functionality in simpleSAMLphp needs to present UI in example with the `logout.php` template, it will first look for `logout.php` in the `theme.use` theme, and if not found it will all fallback to look for the template in the `theme.base` theme. 
+The `theme.use` parameter points to which theme that will be used. If some functionality in simpleSAMLphp needs to present UI in example with the `logout.php` template, it will first look for `logout.php` in the `theme.use` theme, and if not found it will all fallback to look for the base templates. 
 
-All required templates SHOULD be available in the `theme.base` theme named `default`, and you SHOULD never change the base theme, or any templates within it. To customize UI, add a new theme that overrides the `default` base theme, instead of modifying it.
+All required templates SHOULD be available as a base in the `templates` folder, and you SHOULD never change the base templates. To customize UI, add a new theme within a module that overrides the base templates, instead of modifying it.
 
 ### Templates that includes other files
 
-A template file may *include* other files. In example all the default theme templates will include a header and footer. In example the `login.php` template will first include `includes/header.php` then present the login page, and then include `includes/footer.php`.
+A template file may *include* other files. In example all the default templates will include a header and footer. In example the `login.php` template will first include `includes/header.php` then present the login page, and then include `includes/footer.php`.
 
 SimpleSAMLphp allows themes to override the included templates files only, if needed. That means you can create a new theme `fancytheme` that includes only a header and footer. The header file refers to the CSS files, which means that a simple way of making a new look on simpleSAMLphp is to create a new theme, and copy the existing header, but point to your own CSS instead of the default CSS.
 
