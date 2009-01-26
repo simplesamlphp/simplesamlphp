@@ -40,17 +40,27 @@ SimpleSAMLphp allows themes to override the included templates files only, if ne
 Creating your first theme
 -------------------------
 
-Give your theme a name, in example `fancytheme`. Make sure simpleSAMLphp is configured to use your new theme in `config.php`:
+The first thing you need to do is having a simpleSAMLphp module to place your theme in. If you do not have a module already, create a new one:
 
-	'theme.use' 		=> 'fancytheme',
+	cd modules
+	mkdir mymodule
+	cd mymodule
+	touch default-enable
 
-Then create the directory `templates/fancytheme`.
+Then within this module, you can create a new theme named `fancytheme`.
 
-Next, we create `templates/fancytheme/includes`, and copies the header file from the base theme:
+	cd modules/mymodule
+	mkdir -p themes/fancytheme
 
-	cp templates/default/includes/header.php templates/fancytheme/includes/
+Now, configure simpleSAMLphp to use your new theme in `config.php`:
 
-In the `templates/fancytheme/includes/header.php` type in something and go to the simpleSAMLphp front page to see that your new theme is in use.
+	'theme.use' 		=> 'mymodule:fancytheme',
+
+Next, we create `themes/fancytheme/default/includes`, and copy the header file from the base theme:
+
+	cp templates/includes/header.php modules/mymodule/themes/fancytheme/default/includes/
+
+In the `modules/mymodule/themes/fancytheme/default/includes/header.php` type in something and go to the simpleSAMLphp front page to see that your new theme is in use.
 
 A good start is to modify the reference to the default CSS:
 
@@ -59,42 +69,30 @@ A good start is to modify the reference to the default CSS:
 to in example:
 
 	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/fancytheme/default.css" />
+
+
+Examples
+---------------------
+
+To override the frontpage body, add the file:
+
+	modules/mymodule/themes/fancytheme/default/frontpage.php
+
+In the path above `default` means that the frontpage template is not part of any modules. If you are replacing a template that is part of a module, then use the module name instead of `default`.
+
+In example, to override the `preprodwarning` template, (the file is located in `modules/preprodwarning/templates/warning.php`), you need to add a new file:
+
+	modules/mymodule/themes/fancytheme/preprodwarning/warning.php
+
+
+Say in a module `foomodule`, some code requests to present the `bar.php` template, simpleSAMLphp will:
+	
+ 1. first look in your theme for a replacement: `modules/mymodule/themes/fancytheme/foomodule/bar.php`.
+ 2. If not found, it will use the base template of that module: `modules/foomodule/templates/bar.php`
+
+
 Adding resource files
 ---------------------
 
-As discussed in the section above, you may want to point to a new CSS file, and resource files as images and CSS are *not* stored in the templates directory. Instead, use the `www/resources` directory. All files in the `www` directory is accessible by web.
-
-Notice how the `baseurlpath` is made generic in the template:
-
-	href="/<?php echo $this->data['baseurlpath']; ?>resources/default.css"
-
-If you add the file `www/resources/fancytheme/default.css` it will be accessible from a URL like this: `https://sp.example.org/simplesaml/resources/fancytheme/default.css`.
-
-
-Overriding templates inside modules
------------------------------------
-
-If you are using one or more modules, and want to override templates included in these modules, you have to edit files inside the `modules/somemodule/templates/fancytheme`.
-
-
-
-Including your new theme as a module
-------------------------------------
-
-If you create a theme that includes template files to override both core templates and templates inside modules, and also includes some resource files inside the `www/` directory, you may dislike the fact that your theme is distributed in several directories.
-
-To collect all theme specific files in one directory only, you need to create a module.
-
-In example create the following files:
-
-  * `modules/fancytheme/` - your module named `fancytheme`.
-  * `modules/fancytheme/default-enable` - An empty file to indicate that your module should be *enabled* by default.
-  * `modules/fancytheme/themes/fancygreen` - the folder including your new theme named `fancygreen`.
-  * `modules/fancytheme/themes/fancygreen/default` - the folder including template files to override the core templates. By core templates we mean templates that are included in the core simplesamlphp distribution and is not part of any module.
-  * `modules/fancytheme/themes/fancygreen/default/includes/header.php` - example of overriding the header file.
-  * `modules/fancytheme/themes/fancygreen/openid/consumer.php` - Here we override the template file `consumer.php` part of the `openid` module.
-  
-To configure the use of themes embedded modules, configure the `theme.use` parameter in `config.php` to contain both the module name and the theme name, in this example it would mean:
-
-	'theme.use' 		=> 'fancytheme:fancygreen',
+You can put resource files within the www folder of your module, to make your module completely independent with included css, icons etc.
 
