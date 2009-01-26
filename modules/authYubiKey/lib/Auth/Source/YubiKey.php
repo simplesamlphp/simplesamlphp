@@ -196,7 +196,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 			throw new SimpleSAML_Error_Error('WRONGUSERPASS', $e);
 		}
 
-		SimpleSAML_Logger::info('YubiKey:' . $this->authId . ': YubiKey otp ' . $password . ' validated successfully: ' . $yubi->getLastResponse());
+		SimpleSAML_Logger::info('YubiKey:' . $this->authId . ': YubiKey otp ' . $otp . ' validated successfully: ' . $yubi->getLastResponse());
 
 		return $attributes;
 	}
