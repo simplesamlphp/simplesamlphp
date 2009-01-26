@@ -46,7 +46,6 @@ if (array_key_exists('name', $this->data['dstMetadata'])) {
 	$dstName = $this->data['dstMetadata']['entityid'];
 }
 
-$spPurpose = 'unspecified';
 if (array_key_exists('descr_purpose', $this->data['dstMetadata'])) {
 	$spPurpose = $this->data['dstMetadata']['descr_purpose'];
 	if (is_array($spPurpose)) {
@@ -99,11 +98,16 @@ $this->includeAtTemplateBase('includes/header.php');
 ?>
 
 <p>
-<?php echo $this->t('{consent:consent_accept}', array(
-	'IDPNAME' => $srcName,
-	'SPNAME' => $dstName,
-	'SPDESC' => $spPurpose,
-)) ?>
+<?php
+  echo $this->t('{consent:consent_notice}', array( 'SPNAME' => $dstName ));
+  if ($spPurpose) echo '</p><p>' . $this->t('{consent:consent_purpose}', array( 'SPNAME' => $dstName, 'SPDESC' => $spPurpose ));
+?>
+</p>
+
+<p>
+<?php
+  echo $this->t('{consent:consent_accept}', array( 'SPNAME' => $dstName, 'IDPNAME' => $srcName ));
+?>
 </p>
 
 	<p style="margin: 1em">
