@@ -17,6 +17,14 @@ $lang = array(
 		'no' => 'Verktøy',
 		'en' => 'Tools',
 	),
+	'login_as_admin' => array (
+		'no' => 'Login som administrator',
+		'en' => 'Login as administrator',
+	),
+	'loggedin_as_admin' => array (
+		'no' => 'Du er logget inn som administrator',
+		'en' => 'You are logged in as administrator',
+	),
 	'show_metadata' => array (
 		'no' => 'Vis metadata',
 		'en' => 'Show metadata',
