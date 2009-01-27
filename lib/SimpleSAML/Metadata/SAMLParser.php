@@ -420,19 +420,8 @@ class SimpleSAML_Metadata_SAMLParser {
 		/*
 		 * Add organizational metadata
 		 */
-		if(array_key_exists('en', $this->organizationName)) {
-			$ret['description'] = $this->organizationName['en'];
-		} elseif(count($this->organizationName) > 0) {
-			$languages = array_keys($this->organizationName);
-			$ret['description'] = $this->organizationName[$languages[0]];
-		}
-
-		if(array_key_exists('en', $this->organizationDisplayName)) {
-			$ret['name'] = $this->organizationDisplayName['en'];
-		} elseif(count($this->organizationDisplayName) > 0) {
-			$languages = array_keys($this->organizationDisplayName);
-			$ret['name'] = $this->organizationDisplayName[$languages[0]];
-		}
+		$ret['name'] = $this->organizationDisplayName;
+		$ret['description'] = $this->organizationName;
 		
 		
 		if (!empty($this->tags)) {
