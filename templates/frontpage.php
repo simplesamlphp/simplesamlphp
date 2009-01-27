@@ -18,9 +18,9 @@ $(document).ready(function() {
 $this->includeAtTemplateBase('includes/header.php'); 
 	
 if ($this->data['isadmin']) {
-	echo '<p style="float: right">You are logged in as administrator</p>';
+	echo '<p style="float: right">' . $this->t('loggedin_as_admin') . '</p>';
 } else {
-	echo '<p style="float: right"><a href="' . $this->data['loginurl'] . '">Log in as administrator</a></p>';
+	echo '<p style="float: right"><a href="' . $this->data['loginurl'] . '">' . $this->t('login_as_admin') . '</a></p>';
 }
 
 ?>
