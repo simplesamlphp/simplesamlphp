@@ -16,8 +16,7 @@
 /*UI accordion*/
 .ui-accordion {
 	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	font-family: Verdana, Arial, sans-serif;
-	font-size: 1.1em;
+
 	border-bottom: 1px solid #d3d3d3;
 }
 .ui-accordion-group {
@@ -72,8 +71,6 @@
 /*UI tabs*/
 .ui-tabs-nav {
 	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	font-family: Verdana, Arial, sans-serif;
-	font-size: 1.1em;
 	float: left;
 	position: relative;
 	z-index: 1;
@@ -109,13 +106,11 @@
 }
 .ui-tabs-panel {
 	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	font-family: Verdana, Arial, sans-serif;
 	clear:left;
 	border: 1px solid #d3d3d3;
 	background: #ffffff url(images/ffffff_40x100_textures_01_flat_0.png) 0 0 repeat-x;
 	color: #222222;
 	padding: 1.5em 1.7em;	
-	font-size: 1.1em;
 }
 .ui-tabs-hide {
 	display: none;/* for accessible hiding: position: absolute; left: -99999999px*/;
@@ -128,8 +123,6 @@
 /*slider*/
 .ui-slider {
 	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	font-family: Verdana, Arial, sans-serif;
-	font-size: 1.1em;
 	background: #ffffff url(images/ffffff_40x100_textures_01_flat_0.png) 0 0 repeat-x;
 	border: 1px solid #dddddd;
 	height: .8em;
@@ -175,8 +168,6 @@
 /*dialog*/
 .ui-dialog {
 	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	font-family: Verdana, Arial, sans-serif;
-	font-size: 1.1em;
 	background: #ffffff url(images/ffffff_40x100_textures_01_flat_0.png) 0 0 repeat-x;
 	color: #222222;
 	border: 4px solid #dddddd;
@@ -328,9 +319,7 @@ body .ui-resizable-autohide .ui-resizable-handle { display: none; } /* use 'body
 /* Main Style Sheet for jQuery UI date picker */
 .ui-datepicker-div, .ui-datepicker-inline, #ui-datepicker-div {
 	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	font-family: Verdana, Arial, sans-serif;
 	background: #ffffff url(images/ffffff_40x100_textures_01_flat_0.png) 0 0 repeat-x;
-	font-size: 1.1em;
 	border: 4px solid #dddddd;
 /*	width: 15.5em; */
 	padding: 2.5em .5em .5em .5em;
@@ -472,8 +461,6 @@ table.ui-datepicker .ui-datepicker-title-row td a {
 */
 .ui-autocomplete-results {
 	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	font-family: Verdana, Arial, sans-serif;
-	font-size: 1.1em;
 	z-index: 9999;	
 }
 .ui-autocomplete-results ul, .ui-autocomplete-results li {
@@ -533,7 +520,6 @@ table.ui-datepicker .ui-datepicker-title-row td a {
 /*UI ProgressBar */
 .ui-progressbar {
 	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	font-family: Verdana, Arial, sans-serif;
 	font-size: 1.1em;
 	background: #ffffff url(images/ffffff_40x100_textures_01_flat_0.png) 0 0 repeat-x;
 	border: 1px solid #dddddd;
@@ -581,8 +567,6 @@ table.ui-datepicker .ui-datepicker-title-row td a {
 /*UI Colorpicker */
 .ui-colorpicker {
 	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	font-family: Verdana, Arial, sans-serif;
-	font-size: 1.1em;
 	background: #ffffff url(images/ffffff_40x100_textures_01_flat_0.png) 0 0 repeat-x;
 	border: 4px solid #dddddd;
 	padding: 5px;
@@ -723,8 +707,6 @@ Generic ThemeRoller Classes
 /*component global class*/
 .ui-component {
 	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	font-family: Verdana, Arial, sans-serif;
-	font-size: 1.1em;
 }
 /*component content styles*/
 .ui-component-content {
