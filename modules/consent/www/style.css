@@ -1,3 +1,13 @@
+fieldset {
+	padding: 0px;
+}
+fieldset legend {
+	cursor: pointer; cursor: hand;
+}
+fieldset legend:hover {
+	background: #eee;
+}
+
 fieldset div#addattributes {
 	text-align: right;
 	margin: 0px .5em .5em 1em;
