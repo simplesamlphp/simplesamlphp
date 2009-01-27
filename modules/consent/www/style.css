@@ -1,8 +1,3 @@
-fieldset {
-	margin: 2em 1em 1em 0px;
-	border: 1px solid #bbb;
-	padding: 0px;
-}
 fieldset div#addattributes {
 	text-align: right;
 	margin: 0px .5em .5em 1em;
@@ -16,16 +11,7 @@ fieldset div#addattributes a {
 fieldset div#addattributes a:hover,fieldset div.addattributes a:link {
 	border-bottom: 1px solid #bbb;
 }
-fieldset legend {
-	margin-left: 2em;
-	padding: 3px 2em 3px 2em;
-	border: 1px solid #bbb;
-	
-	cursor: pointer; cursor: hand;
-}
-fieldset legend:hover {
-	background: #eee;
-}
+
 table.attributes {
 	width: 100%;
 	margin: 0px;

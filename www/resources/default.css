@@ -177,7 +177,7 @@ dl dt {
 dl dd {
 	color: #666;
 	margin-left: 3em;
-	font-family: monospace;
+/*	font-family: monospace; */
 }
 
 .efieldlist {
@@ -296,4 +296,18 @@ table#table_with_attributes tr:last-child td {
 	border-bottom: none;
 }
 
-
+fieldset {
+	margin: 2em 1em 1em 0px;
+	border: 1px solid #bbb;
+	padding: 0px;
+}
+fieldset legend {
+	margin-left: 2em;
+	padding: 3px 2em 3px 2em;
+	border: 1px solid #bbb;
+	
+	cursor: pointer; cursor: hand;
+}
+fieldset legend:hover {
+	background: #eee;
+}
