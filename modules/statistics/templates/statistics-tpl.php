@@ -78,7 +78,6 @@ echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'res
 	</style>
 
 <?php
-echo('<div id="content">');
 echo('<h1>'. $this->data['available.rules'][$this->data['selected.rule']]['name'] . '</h1>');
 echo('<p>' . $this->data['available.rules'][$this->data['selected.rule']]['descr'] . '</p>');
 
