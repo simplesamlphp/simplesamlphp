@@ -33,15 +33,16 @@ class sspmod_metarefresh_MetaLoader {
 	public function loadSource($source) {
 
 		$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($source['src']);
-	
+		$ca = NULL;
 		foreach($entities as $entity) {
-			if($source['validateFingerprint'] !== NULL) {
+			if(array_key_exists('validateFingerprint', $source) && $source['validateFingerprint'] !== NULL) {
 				if(!$entity->validateFingerprint($source['validateFingerprint'])) {
 					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature.' . "\n");
 					continue;
 				}
 			}
 	
+			// TODO: $ca is always null
 			if($ca !== NULL) {
 				if(!$entity->validateCA($ca)) {
 					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify certificate.' . "\n");

@@ -681,7 +681,10 @@ class SimpleSAML_Metadata_SAMLParser {
 		if (array_key_exists('expire', $idp)) {
 			$ret['expire'] = $idp['expire'];
 		}
-
+		
+		if (array_key_exists('scopes', $idp))
+			$ret['scopes'] = $idp['scopes'];
+		
 
 		/* Enable redirect.sign if WantAuthnRequestsSigned is enabled. */
 		if ($idp['wantAuthnRequestsSigned']) {
@@ -769,6 +772,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 		$sd['protocols'] = self::getSupportedProtocols($element);
+		
 
 		/* Find all SingleLogoutService elements. */
 		$sd['singleLogoutServices'] = array();
@@ -836,6 +840,13 @@ class SimpleSAML_Metadata_SAMLParser {
 		assert('is_null($expireTime) || is_int($expireTime)');
 
 		$idp = self::parseSSODescriptor($element, $expireTime);
+		
+		$extensions = SimpleSAML_Utilities::getDOMChildren($element, 'Extensions', '@md');
+		if (!empty($extensions)) 
+			$this->processExtensions($extensions[0]);
+
+		if (!empty($this->scopes)) $idp['scopes'] = $this->scopes;
+		
 
 		/* Find all SingleSignOnService elements. */
 		$idp['singleSignOnServices'] = array();
@@ -861,7 +872,8 @@ class SimpleSAML_Metadata_SAMLParser {
 	 */
 	private function processExtensions($element) {
 		assert('$element instanceof DOMElement');
-
+		
+		
 		for($i = 0; $i < $element->childNodes->length; $i++) {
 			$child = $element->childNodes->item($i);
 
