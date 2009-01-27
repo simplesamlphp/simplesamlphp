@@ -46,14 +46,6 @@ if (array_key_exists('name', $this->data['dstMetadata'])) {
 	$dstName = $this->data['dstMetadata']['entityid'];
 }
 
-if (array_key_exists('descr_purpose', $this->data['dstMetadata'])) {
-	$spPurpose = $this->data['dstMetadata']['descr_purpose'];
-	if (is_array($spPurpose)) {
-		$spPurpose = $this->t($spPurpose);
-	}
-}
-
-
 
 $attributes = $this->data['attributes'];
 
@@ -89,18 +81,19 @@ $(document).ready(function() {
 ';
 
 
-
-
-
-
 $this->includeAtTemplateBase('includes/header.php');
 
 ?>
 
 <p>
 <?php
-  echo $this->t('{consent:consent_notice}', array( 'SPNAME' => $dstName ));
-  if ($spPurpose) echo '</p><p>' . $this->t('{consent:consent_purpose}', array( 'SPNAME' => $dstName, 'SPDESC' => $spPurpose ));
+	echo $this->t('{consent:consent_notice}', array( 'SPNAME' => $dstName ));
+	if (array_key_exists('descr_purpose', $this->data['dstMetadata'])) {
+		echo '</p><p>' . $this->t('{consent:consent_purpose}', array(
+			'SPNAME' => $dstName,
+			'SPDESC' => $this->getTranslation(SimpleSAML_Utilities::arrayize($this->data['dstMetadata']['descr_purpose'], 'en')),
+		));
+	}
 ?>
 </p>
 
