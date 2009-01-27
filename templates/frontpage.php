@@ -212,7 +212,7 @@ foreach($this->data['metaentries']['remote'] AS $setkey => $set) {
 
 
 
-<h2><?php echo $this->t('metadata_header'); ?></h2>
+<h2><?php echo $this->t('tools'); ?></h2>
 	<ul>
 	<?php
 	
