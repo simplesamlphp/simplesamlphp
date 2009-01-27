@@ -229,7 +229,7 @@ foreach ($this->data['noData'] as $name => $value) {
 	This fieldset is not expanded by default, but can be shown by clicking on the legend.
 	-->
 
-	<fieldset>
+	<fieldset class="fancyfieldset">
 		<legend id="attribute_switch"> » <?php echo $this->t('{consent:consent_attributes_header}'); ?></legend>
 	
 	<div id="addattributes"><a id="addattributesb"><?php echo $this->t('{consent:show_attributes}'); ?></a></div>

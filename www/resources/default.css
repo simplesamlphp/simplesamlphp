@@ -296,11 +296,11 @@ table#table_with_attributes tr:last-child td {
 	border-bottom: none;
 }
 
-fieldset {
+fieldset.fancyfieldset {
 	margin: 2em 1em 1em 0px;
 	border: 1px solid #bbb;
 }
-fieldset legend {
+fieldset.fancyfieldset legend {
 	margin-left: 2em;
 	padding: 3px 2em 3px 2em;
 	border: 1px solid #bbb;

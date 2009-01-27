@@ -188,7 +188,7 @@ echo '</dl>';
 if (is_array($this->data['metaentries']['remote']) && count($this->data['metaentries']['remote']) > 0)
 foreach($this->data['metaentries']['remote'] AS $setkey => $set) {
 	
-	echo '<fieldset><legend>' . $this->t(mtype($setkey)) . ' (Trusted)</legend>';
+	echo '<fieldset class="fancyfieldset"><legend>' . $this->t(mtype($setkey)) . ' (Trusted)</legend>';
 	echo '<ul>';
 	foreach($set AS $entry) {
 		echo '<li>';
