@@ -14,6 +14,9 @@ if ($config->getValue('admin.protectindexpage', false)) {
 		);
 	}
 }
+$loginurl = '/' . $config->getBaseURL() . 'auth/login-admin.php?RelayState=' . SimpleSAML_Utilities::selfURL();
+$isadmin = $session->isValid('login-admin');
+
 
 $warnings = array();
 
@@ -36,28 +39,12 @@ if ($config->getValue('enable.shib13-sp') === true)
 		'text' => 'link_shib13example'
 	);
 
-$links[] = array(
-	'href' => 'example-simple/hostnames.php?dummy=1', 
-	'text' => 'link_diagnostics'
-);
-
-$links[] = array(
-	'href' => 'admin/phpinfo.php', 
-	'text' => 'link_phpinfo'
-);
-
-$links[] = array(
-	'href' => 'admin/config.php',
-	'text' => 'link_configcheck',
-);
-
 if($config->getBoolean('idpdisco.enableremember', FALSE)) {
 	$links[] = array(
 		'href' => 'cleardiscochoices.php',
 		'text' => 'link_cleardiscochoices',
 	);
 }
-
 
 $publishURL = $config->getString('metashare.publishurl', NULL);
 if ($publishURL !== NULL) {
@@ -80,37 +67,100 @@ if ($publishURL !== NULL) {
 }
 
 
+
+$linksconf = array();
+
+$linksconf[] = array(
+	'href' => 'example-simple/hostnames.php?dummy=1', 
+	'text' => 'link_diagnostics'
+);
+
+$linksconf[] = array(
+	'href' => 'admin/phpinfo.php', 
+	'text' => 'link_phpinfo'
+);
+
+$linksconf[] = array(
+	'href' => 'admin/config.php',
+	'text' => 'link_configcheck',
+);
+
+
+
+
+
+
 $linksmeta = array();
 
 $linksmeta[] = array(
 	'href' => 'admin/metadata.php', 
 	'text' => 'link_meta_overview');
 
-if ($config->getValue('enable.saml20-sp') === true)
-	$linksmeta[] = array(
-		'href' => 'saml2/sp/metadata.php?output=xhtml', 
-		'text' => 'link_meta_saml2sphosted');
-
-if ($config->getValue('enable.saml20-idp') === true)
-	$linksmeta[] = array(
-		'href' => 'saml2/idp/metadata.php?output=xhtml', 
-		'text' => 'link_meta_saml2idphosted');
-
-if ($config->getValue('enable.shib13-sp') === true)
-	$linksmeta[] = array(
-		'href' => 'shib13/sp/metadata.php?output=xhtml', 
-		'text' => 'link_meta_shib13sphosted');
-
-if ($config->getValue('enable.shib13-idp') === true)
-	$linksmeta[] = array(
-		'href' => 'shib13/idp/metadata.php?output=xhtml', 
-		'text' => 'link_meta_shib13idphosted');
+// if ($config->getValue('enable.saml20-sp') === true)
+// 	$linksmeta[] = array(
+// 		'href' => 'saml2/sp/metadata.php?output=xhtml', 
+// 		'text' => 'link_meta_saml2sphosted');
+// 
+// if ($config->getValue('enable.saml20-idp') === true)
+// 	$linksmeta[] = array(
+// 		'href' => 'saml2/idp/metadata.php?output=xhtml', 
+// 		'text' => 'link_meta_saml2idphosted');
+// 
+// if ($config->getValue('enable.shib13-sp') === true)
+// 	$linksmeta[] = array(
+// 		'href' => 'shib13/sp/metadata.php?output=xhtml', 
+// 		'text' => 'link_meta_shib13sphosted');
+// 
+// if ($config->getValue('enable.shib13-idp') === true)
+// 	$linksmeta[] = array(
+// 		'href' => 'shib13/idp/metadata.php?output=xhtml', 
+// 		'text' => 'link_meta_shib13idphosted');
 
 
 $linksmeta[] = array(
 	'href' => 'admin/metadata-converter.php',
 	'text' => 'link_xmlconvert',
 	);
+
+
+$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+
+$metaentries = array('hosted' => array(), 'remote' => array() );
+if ($config->getValue('enable.saml20-sp') === true) {
+	try {
+		$metaentries['hosted']['saml20-sp'] = $metadata->getMetaDataCurrent('saml20-sp-hosted');
+		$metaentries['hosted']['saml20-sp']['metadata-url'] = '/' . $config->getBaseURL() . 'saml2/sp/metadata.php?output=xhtml';
+		if ($isadmin)
+			$metaentries['remote']['saml20-idp-remote'] = $metadata->getList('saml20-idp-remote');
+	} catch(Exception $e) {}
+}
+if ($config->getValue('enable.saml20-idp') === true) {
+	try {
+		$metaentries['hosted']['saml20-idp'] = $metadata->getMetaDataCurrent('saml20-idp-hosted');
+		$metaentries['hosted']['saml20-idp']['metadata-url'] = '/' . $config->getBaseURL() . 'saml2/idp/metadata.php?output=xhtml';
+		if ($isadmin)
+			$metaentries['remote']['saml20-sp-remote'] = $metadata->getList('saml20-sp-remote');
+	} catch(Exception $e) {}
+}
+if ($config->getValue('enable.shib13-sp') === true) {
+	try {
+		$metaentries['hosted']['shib13-sp'] = $metadata->getMetaDataCurrent('shib13-sp-hosted');
+		$metaentries['hosted']['shib13-sp']['metadata-url'] = '/' . $config->getBaseURL() . 'shib13/sp/metadata.php?output=xhtml';
+		if ($isadmin)
+			$metaentries['remote']['shib13-idp-remote'] = $metadata->getList('shib13-idp-remote');
+	} catch(Exception $e) {}
+}
+if ($config->getValue('enable.shib13-idp') === true) {
+	try {
+		$metaentries['hosted']['shib13-idp'] = $metadata->getMetaDataCurrent('shib13-idp-hosted');
+		$metaentries['hosted']['shib13-idp']['metadata-url'] = '/' . $config->getBaseURL() . 'shib13/idp/metadata.php?output=xhtml';
+		if ($isadmin)
+			$metaentries['remote']['shib13-sp-remote'] = $metadata->getList('shib13-sp-remote');
+	} catch(Exception $e) {}
+}
+
+#echo '<pre>'; print_r($metaentries); exit;
+
 
 
 
@@ -218,12 +268,17 @@ $funcmatrix[] = array(
 );
 
 $t = new SimpleSAML_XHTML_Template($config, 'frontpage.php', 'frontpage');
+$t->data['isadmin'] = $isadmin;
+$t->data['loginurl'] = $loginurl;
 $t->data['header'] = 'simpleSAMLphp installation page';
 $t->data['icon'] = 'compass_l.png';
 $t->data['warnings'] = $warnings;
 $t->data['links'] = $links;
 $t->data['links_meta'] = $linksmeta;
 $t->data['links_doc'] = $linksdoc;
+$t->data['links_conf'] = $linksconf;
+$t->data['metaentries'] = $metaentries;
+
 $t->data['enablematrix'] = $enablematrix;
 $t->data['funcmatrix'] = $funcmatrix;
 $t->data['version'] = $config->getVersion();
