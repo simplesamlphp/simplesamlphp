@@ -1661,11 +1661,11 @@ class SimpleSAML_Utilities {
 	/*
 	 * Input is single value or array, returns an array.
 	 */
-	public static function arrayize($data) {
+	public static function arrayize($data, $index = 0) {
 		if (is_array($data)) {
 			return $data;
 		} else {
-			return array($data);
+			return array($index => $data);
 		}
 	}
 
