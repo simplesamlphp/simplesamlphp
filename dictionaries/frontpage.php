@@ -1,6 +1,18 @@
 <?php
 
 $lang = array(
+	'welcome' => array (
+		'no' => 'Velkommen',
+		'en' => 'Welcome',
+	),
+	'configuration' => array (
+		'no' => 'Konfigurasjon',
+		'en' => 'Configuration',
+	),
+	'metadata' => array (
+		'no' => 'Metadata',
+		'en' => 'Metadata',
+	),
 	'intro' => array (
 		'no' => '<strong>Gratulerer</strong>, du har nå installert simpleSAMLphp. Dette er startsiden til din simpleSAMLphp installasjon, hvor du vil finne eksempler, diagnostikk, metadata og til og med lenker til relevant dokumentasjon.',
 		'nn' => '<strong>Gratulerer</strong>, du har installert simpleSAMLphp. Dette er startsida til simpleSAMLphp installasjonen din.  Her finn du døme, diagnostikk, metadata og lenker til relevant dokumentasjon.',
