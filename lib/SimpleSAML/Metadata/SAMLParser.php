@@ -420,9 +420,14 @@ class SimpleSAML_Metadata_SAMLParser {
 		/*
 		 * Add organizational metadata
 		 */
-		$ret['name'] = $this->organizationDisplayName;
-		$ret['description'] = $this->organizationName;
-		
+		if (!empty($this->organizationName)) {
+			$ret['name'] = $this->organizationName;
+			$ret['description'] = $this->organizationName;
+		}
+		if (!empty($this->organizationDisplayName)) {
+			$ret['name'] = $this->organizationDisplayName;
+		}
+
 		
 		if (!empty($this->tags)) {
 			$ret['tags'] = $this->tags;
@@ -654,8 +659,6 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		$ret = $this->getMetadataCommon();
 
-		$ret['name'] = $this->entityId;
-
 
 		/* Find IdP information which supports the SAML 2.0 protocol. */
 		$idp = $this->getIdPDescriptors(self::$SAML20Protocols);
@@ -692,11 +695,12 @@ class SimpleSAML_Metadata_SAMLParser {
 		$slo = $this->getDefaultEndpoint($idp['singleLogoutServices'], array(self::SAML_20_REDIRECT_BINDING));
 		if($slo !== NULL) {
 			$ret['SingleLogoutService'] = $slo['location'];
-		}
-
-		/* If the response location is set, include it in the returned metadata. */
-		if($slo['responseLocation']) {
-			$ret['SingleLogoutServiceResponse'] = $slo['responseLocation'];
+			
+			/* If the response location is set, include it in the returned metadata. */
+			if(array_key_exists('responseLocation', $slo)) {
+				$ret['SingleLogoutServiceResponse'] = $slo['responseLocation'];
+			}
+			
 		}
 
 

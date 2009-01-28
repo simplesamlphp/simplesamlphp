@@ -18,6 +18,8 @@ if (!is_null($cronconfig->getValue('allowed_tags'))) {
 	}
 }
 
+
+
 $summary = array(); 
 $croninfo = array(
 	'summary' => &$summary,
