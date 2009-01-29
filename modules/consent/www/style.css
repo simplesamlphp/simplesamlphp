@@ -8,20 +8,9 @@ fieldset legend:hover {
 	background: #eee;
 }
 
-fieldset div#addattributes {
-	text-align: right;
-	margin: 0px .5em .5em 1em;
+#addattributesb {
+	margin-right: .2em;
 }
-fieldset div#addattributes a {
-	text-decoration: none;
-	color: #888;
-	font-weight: normal;
-	border-bottom: 1px dotted #bbb;
-}
-fieldset div#addattributes a:hover,fieldset div.addattributes a:link {
-	border-bottom: 1px solid #bbb;
-}
-
 table.attributes {
 	width: 100%;
 	margin: 0px;
