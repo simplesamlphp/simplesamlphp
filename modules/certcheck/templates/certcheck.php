@@ -2,9 +2,7 @@
 $this->data['header'] = 'LDAP status page';
 $this->includeAtTemplateBase('includes/header.php');
 
-
 ?>
-<div id="content">
 
 <h2>Certificate check</h2>
 
