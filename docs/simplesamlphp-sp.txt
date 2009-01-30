@@ -1,4 +1,4 @@
-Theming the user interface in SimpleSAMLphp
+SimpleSAMLphp as a Service Provider
 ===========================================
 
 <!-- 
