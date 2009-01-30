@@ -53,7 +53,11 @@ foreach($this->data['sortedOrgIndex'] as $orgkey) {
 	$res = $this->data['results'][$orgkey];
 	echo('<tr class="' . ($classes[($i++ % 2)]) . '">');
 	if (array_key_exists('description', $this->data['orgconfig'][$orgkey])) {
-		echo('<td>' . htmlspecialchars($this->getTranslation($this->data['orgconfig'][$orgkey]['description'])) . '</td>');
+		echo('<td>' . htmlspecialchars(
+			$this->getTranslation(
+					SimpleSAML_Utilities::arrayize($this->data['orgconfig'][$orgkey]['description'], 'en')
+				)
+			) . '</td>');
 	} else {
 		echo('<td><span style="color: #b4b4b4; font-size: x-small">NA</span> <tt>' . $orgkey . '</tt></td>');
 	}
