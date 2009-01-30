@@ -7,7 +7,7 @@ simpleSAMLphp modules
 	http://daringfireball.net/projects/markdown/syntax
 -->
 
-  * Version: `$Id: simplesamlphp-authproc.txt 1132 2009-01-11 12:46:19Z andreassolberg@gmail.com $`
+  * Version: `$Id$`
 
 
 This document describes how the module system in simpleSAMLphp
