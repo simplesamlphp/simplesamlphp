@@ -331,6 +331,8 @@ class SimpleSAML_Metadata_SAMLParser {
 				try {
 					$entitiesValidator = new SimpleSAML_XML_Validator($element, 'ID');
 				} catch(Exception $e) {
+					SimpleSAML_Logger::warning('SAMLParser: Error creating XML Signature validator for XML document: ' . 
+						$e->getMessage());
 					$entitiesValidator = NULL;
 				}
 			}
