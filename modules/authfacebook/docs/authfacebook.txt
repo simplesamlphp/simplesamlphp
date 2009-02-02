@@ -1,0 +1,18 @@
+Using the Facebook authenticatio source with simpleSAMLphp
+==========================================================
+
+Remember to configure `authsources.php`, with both API key and secret.
+
+To get an API key and a secret, register the application at:
+
+ * <http://www.facebook.com/developers/>
+
+Set the callback URL to be:
+
+ * `http://idp.example.org/simplesaml/module.php/authfacebook/linkback.php?next=`
+
+Replace `idp.example.org` with your hostname.
+
+
+
+
