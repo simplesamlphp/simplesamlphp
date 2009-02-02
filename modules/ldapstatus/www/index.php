@@ -31,7 +31,7 @@ function phpping($host, $port) {
 	$socket = @fsockopen($host, $port, $errno, $errstr, $timeout);
 	@fclose($socket);
 	if ($errno) {
-		return array(FALSE, $errno . ':' . $errstr);
+		return array(FALSE, $errno . ':' . $errstr . ' [' . $host . ':' . $port . ']');
 	} else {		
 		return array(TRUE,NULL);
 	}
@@ -68,6 +68,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 	$urldef = explode(' ', $orgconfig['hostname']);
 	$url = parse_url($urldef[0]);
 	$port = 389;
+	if (!empty($url['scheme']) && $url['scheme'] === 'ldaps') $port = 636;
 	if (!empty($url['port'])) $port = $url['port'];
 	
 	SimpleSAML_Logger::debug('ldapstatus Url parse [' . $orgconfig['hostname'] . '] => [' . $url['host'] . ']:[' . $port . ']' );
