@@ -25,15 +25,43 @@ $config = array(
 	'example-userpass' => array(
 		'exampleauth:UserPass',
 		'student:studentpass' => array(
-			'uid' => 'student',
+			'uid' => array('test'),
 			'eduPersonAffiliation' => array('member', 'student'),
 		),
 		'employee:employeepass' => array(
-			'uid' => 'employee',
+			'uid' => array('employee'),
 			'eduPersonAffiliation' => array('member', 'employee'),
 		),
 	),
+	
+	'yubikey' => array(
+		'authYubiKey:YubiKey',
+ 		'id' => '000',
+// 		'key' => '012345678',
+	),
+	
+	'openid' => array(
+		'openid:OpenIDConsumer',
+	),
 
+	'feide' => array(
+		'feide:Feide',
+	),
+	
+	'papi' => array(
+		'authpapi:PAPI',
+	),
+	
+	'saml2' => array(
+		'saml2:SP',
+	),
+	
+	'facebook' => array(
+		'authfacebook:Facebook',
+		'api_key' => 'xxxxxxxxxxxxxxxx',
+		'secret' => 'xxxxxxxxxxxxxxxx',
+	),
+        
 );
 
 ?>
