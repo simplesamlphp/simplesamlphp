@@ -44,7 +44,7 @@ $config = array (
 	 * This option allows you to enable validation of XML data against its
 	 * schemas. A warning will be written to the log if validation fails.
 	 */
-	'debug.validatexml' => TRUE,
+	'debug.validatexml' => FALSE,
 
 	/**
 	 * This password must be kept secret, and modified from the default value 123.
@@ -108,6 +108,7 @@ $config = array (
 	/* Logging: file - Logfilename in the loggingdir from above.
 	 */
 	'logging.logfile'		=> 'simplesamlphp.log',
+	'logging.processname'	=> 'simplesamlphp-foodle',
 	
 	'statistics.realmattr'  => 'realm',
 	
@@ -190,6 +191,7 @@ $config = array (
 	 * Whether the discovery service should allow the user to save his choice of IdP.
 	 */
 	'idpdisco.enableremember' => TRUE,
+	'idpdisco.rememberchecked' => TRUE,
 	
 	// Disco service only accepts entities it knows.
 	'idpdisco.validate' => TRUE,
