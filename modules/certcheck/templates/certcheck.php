@@ -22,22 +22,36 @@ $classes = array('odd', 'even');
 foreach($this->data['results'] as $orgkey => $org) {
 	echo('<tr class="' . ($classes[($i++ % 2)]) . '">');
 	
-	echo '<td>' . $orgkey . '</td><td>' . $org . ' days</td><td>';
 	
-	if ($org < 30) {
-		echo '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" />';
-	} else {
-		echo '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" />';
-	}
-	echo '</td>';
-	echo '<td>';
-	if (array_key_exists('expire', $this->data['resultsm'][$orgkey])) echo $this->data['resultsm'][$orgkey]['expire'];
-	echo '</td>';
-	echo '<td>';
-	if (array_key_exists('issuer', $this->data['resultsm'][$orgkey])) echo $this->data['resultsm'][$orgkey]['issuer'];
-	echo '</td>';
+	if (array_key_exists('error', $this->data['resultsm'][$orgkey])) {
+	
+		
+		echo '<td colspan="2">' . $orgkey . '</td><td>';
+		echo '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" /></td>';
+		echo '<td colspan="2">' . $this->data['resultsm'][$orgkey]['error'];
+		echo '</td>';
 
+	
+	} else {
+		
+		echo '<td>' . $orgkey . '</td><td>' . $org . ' days</td><td>';
+		
+		if ($org < 30) {
+			echo '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" />';
+		} else {
+			echo '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" />';
+		}
+		echo '</td>';
+		echo '<td>';
+		if (array_key_exists('expire', $this->data['resultsm'][$orgkey])) echo $this->data['resultsm'][$orgkey]['expire'];
+		echo '</td>';
+		echo '<td>';
+		if (array_key_exists('issuer', $this->data['resultsm'][$orgkey])) echo $this->data['resultsm'][$orgkey]['issuer'];
+		echo '</td>';
+
+	}
 	echo('</tr>');
+	
 }
 ?>
 </table>

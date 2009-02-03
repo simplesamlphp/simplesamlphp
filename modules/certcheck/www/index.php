@@ -59,7 +59,11 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 	
 #	echo 'pinging ' . $host . ' port ' . $port;
 	$ping = phpping($host, $port);
-	if ($ping[0] === FALSE) continue;
+	if ($ping[0] === FALSE) {
+		$results[$host] = 0;
+		$resultsm[$host]['error'] = 'No connectivity (ping) [' . $host . ':' . $port . ']';
+		continue;
+	}
 	
 	
 	$cmd = 'echo "" | openssl s_client -connect ' . $host . ':' . $port . ' 2> /dev/null | openssl x509 -enddate -noout';
@@ -72,7 +76,14 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 // 		echo $output; exit;
 		if (preg_match('/issuer=(.{0,40})/', $output2, $matches) ) {
 			$resultsm[$host]['issuer'] = $matches[1];
+		} else {
+			$results[$host] = 0;
+			$resultsm[$host]['error'] = 'Did not find Issuer in response [' . $host . ':' . $port . ']';
+
 		}
+	} else {
+		$results[$host] = 0;
+		$resultsm[$host]['error'] = 'Empty output from s_client -connect [' . $host . ':' . $port . ']';
 	}
 
 	if (preg_match('/notAfter=(.*)/', $output, $matches) ) {
@@ -85,7 +96,6 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 		
 		$results[$host] = $days;
 		$resultsm[$host]['expire'] = date('jS F Y', strtotime($rawdate));		
-
 	}
 	
 }
