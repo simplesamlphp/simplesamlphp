@@ -4,7 +4,14 @@ $this->data['head'] = '<style>
 table.statustable td {
 	border-bottom: 1px solid #eee;
 }
-
+a {
+	color: #333;
+	text-decoration: none;
+	border-bottom: 1px dotted #aaa;
+}
+a:hover {
+	border-bottom: 1px solid #aaa;
+}
 </style>';
 $this->includeAtTemplateBase('includes/header.php');
 
@@ -60,11 +67,13 @@ foreach($this->data['sortedOrgIndex'] as $orgkey) {
 	$res = $this->data['results'][$orgkey];
 	echo('<tr class="' . ($classes[($i++ % 2)]) . '">');
 	if (array_key_exists('description', $this->data['orgconfig'][$orgkey])) {
-		echo('<td>' . htmlspecialchars(
+		echo('<td><a href="?orgtest=' . htmlentities($orgkey) . '">');
+		echo htmlspecialchars(
 			$this->getTranslation(
 					SimpleSAML_Utilities::arrayize($this->data['orgconfig'][$orgkey]['description'], 'en')
 				)
-			) . '</td>');
+			);
+		echo('</a></td>');
 	} else {
 		echo('<td><span style="color: #b4b4b4; font-size: x-small">NA</span> <tt>' . $orgkey . '</tt></td>');
 	}
