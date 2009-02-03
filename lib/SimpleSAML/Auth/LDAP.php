@@ -44,6 +44,11 @@ class SimpleSAML_Auth_LDAP {
 
 	}
 	
+	public function getLastError() {
+		if (ldap_errno($this->ldap) == 0) return NULL;
+		return ldap_error($this->ldap);
+	}
+	
 	/**
 	 * Set LDAP version 3 option on the connection handler. Will throw an error if not possible.
 	 */
