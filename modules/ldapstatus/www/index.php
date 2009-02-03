@@ -61,14 +61,12 @@ function checkConfig($conf, $req) {
 }
 
 $results = NULL;
-if (array_key_exists('reset', $_GET) && $_GET['reset'] === '1') {
+
+$results = $session->getData('module:ldapstatus', 'results');
+if (empty($results)) {
 	$results = array();
-} else {
-	if (array_key_exists('_ldapstatus_results', $_SESSION)) {
-		$results = $_SESSION['_ldapstatus_results'];
-	} else {
-		$results = array();
-	}
+} elseif (array_key_exists('reset', $_GET) && $_GET['reset'] === '1') {
+	$results = array();
 }
 
 #echo('<pre>'); print_r($results); exit;
@@ -88,7 +86,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 		SimpleSAML_Logger::debug('ldapstatus: Completing execution after maxtime [' .(microtime(TRUE) - $start) . ' of maxtime ' . $maxtime . ']');
 		break;
 	}
-	if (array_key_exists($orgkey, $_SESSION['_ldapstatus_results'])) {
+	if (array_key_exists($orgkey, $results)) {
 		SimpleSAML_Logger::debug('ldapstatus: Skipping org already tested [' .$orgkey. ']');
 		continue;
 	} else {
@@ -197,6 +195,8 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 }
 
 $_SESSION['_ldapstatus_results'] = $results;
+
+$session->setData('module:ldapstatus', 'results', $results);
 
 #echo '<pre>'; print_r($results); exit;
 
