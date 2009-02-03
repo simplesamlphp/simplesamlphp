@@ -23,6 +23,7 @@ $orgs = $ldapconfig->getValue('orgldapconfig');
 #echo '<pre>'; print_r($orgs); exit;
 
 
+
 function phpping($host, $port) {
 
 	SimpleSAML_Logger::debug('ldapstatus phpping(): ping [' . $host . ':' . $port . ']' );
@@ -37,13 +38,20 @@ function phpping($host, $port) {
 	}
 }
 
+function is_in_array($needles, $haystack) {
+	$needles = SimpleSAML_Utilities::arrayize($needles);
+	foreach($needles AS $needle) {
+		if (array_key_exists($needle, $haystack) && !empty($haystack[$needle])) return TRUE;
+	}
+	return FALSE;
+}
+
 function checkConfig($conf, $req) {
 	$err = array();
 	foreach($req AS $r) {
-		if (!array_key_exists($r, $conf)) {
-			$err[] = $r;
-		} elseif (empty($conf[$r]) && $conf[$r] !== FALSE) {
-			$err[] = 'empty:' . $r;
+		
+		if (!is_in_array($r, $conf)) {
+			$err[] = 'missing or empty: ' . join(', ', SimpleSAML_Utilities::arrayize($r));
 		}
 	}
 	if (count($err) > 0) {
@@ -52,18 +60,54 @@ function checkConfig($conf, $req) {
 	return array(TRUE, NULL);	
 }
 
-$results = array();
+$results = NULL;
+if (array_key_exists('reset', $_GET) && $_GET['reset'] === '1') {
+	$results = array();
+} else {
+	if (array_key_exists('_ldapstatus_results', $_SESSION)) {
+		$results = $_SESSION['_ldapstatus_results'];
+	} else {
+		$results = array();
+	}
+}
+
+#echo('<pre>'); print_r($results); exit;
+
+
+$start = microtime(TRUE);
+$previous = microtime(TRUE);
+
+$maxtime = $ldapStatusConfig->getValue('maxExecutionTime', 15); 
+
 
 foreach ($orgs AS $orgkey => $orgconfig) {
+	
+	$previous = microtime(TRUE);
+	
+	if ((microtime(TRUE) - $start) > $maxtime) {
+		SimpleSAML_Logger::debug('ldapstatus: Completing execution after maxtime [' .(microtime(TRUE) - $start) . ' of maxtime ' . $maxtime . ']');
+		break;
+	}
+	if (array_key_exists($orgkey, $_SESSION['_ldapstatus_results'])) {
+		SimpleSAML_Logger::debug('ldapstatus: Skipping org already tested [' .$orgkey. ']');
+		continue;
+	} else {
+		SimpleSAML_Logger::debug('ldapstatus: Not Skipping org: [' .$orgkey. ']');
+	}
+
+	SimpleSAML_Logger::debug('ldapstatus: Executing test on [' .$orgkey . ']');
+
 
 	$results[$orgkey] = array();
-	
 
 	$results[$orgkey]['config'] = checkConfig($orgconfig, array('description', 'searchbase', 'hostname'));
-	$results[$orgkey]['configMeta'] = checkConfig($orgconfig, array('enable_tls', 'contactMail', 'contactURL'));
+	$results[$orgkey]['configMeta'] = checkConfig($orgconfig, array(array('contactMail', 'contactURL')));
 	$results[$orgkey]['configTest'] = checkConfig($orgconfig, array('testUser', 'testPassword'));
 
-	if (!$results[$orgkey]['config'][0]) continue;
+	if (!$results[$orgkey]['config'][0]) {
+		$results[$orgkey]['time'] = microtime(TRUE) - $previous;
+		continue;
+	}
 
 	$urldef = explode(' ', $orgconfig['hostname']);
 	$url = parse_url($urldef[0]);
@@ -73,20 +117,13 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 	
 	SimpleSAML_Logger::debug('ldapstatus Url parse [' . $orgconfig['hostname'] . '] => [' . $url['host'] . ']:[' . $port . ']' );
 
-// 	$pingreturn = NULL;
-// 	$pingoutput = NULL;
-// 	exec($pingcommand . ' ' . escapeshellcmd($url['host']), $pingoutput, $pingreturn);
-// 	if ($pingreturn == '0') {
-// 		$results[$orgkey]['ping'] = array(TRUE,join("\r\n", $pingoutput));
-// 	} else {
-// 		$results[$orgkey]['ping'] = array(FALSE,join("\r\n", $pingoutput));
-// 		continue;
-// 	}
 
 	$results[$orgkey]['ping'] = phpping($url['host'], $port);
 
-	if (!$results[$orgkey]['ping'][0]) continue;
-
+	if (!$results[$orgkey]['ping'][0]) {
+		$results[$orgkey]['time'] = microtime(TRUE) - $previous;
+		continue;
+	}
 	
 	// LDAP Connect
 	try {
@@ -94,6 +131,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 		$results[$orgkey]['connect'] = array(TRUE,NULL);
 	} catch (Exception $e) {
 		$results[$orgkey]['connect'] = array(FALSE,$e->getMessage());
+		$results[$orgkey]['time'] = microtime(TRUE) - $previous;
 		continue;
 	}
 
@@ -108,6 +146,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 			}
 		} catch (Exception $e) {
 			$results[$orgkey]['adminBind'] = array(FALSE,$e->getMessage());
+			$results[$orgkey]['time'] = microtime(TRUE) - $previous;
 			continue;
 		}
 	}
@@ -120,6 +159,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 		$results[$orgkey]['ldapSearchBogus'] = array(TRUE,NULL);
 	} catch (Exception $e) {
 		$results[$orgkey]['ldapSearchBogus'] = array(FALSE,$e->getMessage());
+		$results[$orgkey]['time'] = microtime(TRUE) - $previous;
 		continue;
 	}
 
@@ -133,6 +173,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 			$results[$orgkey]['ldapSearchTestUser'] = array(TRUE,NULL);
 		} catch (Exception $e) {
 			$results[$orgkey]['ldapSearchTestUser'] = array(FALSE,$e->getMessage());
+			$results[$orgkey]['time'] = microtime(TRUE) - $previous;
 			continue;
 		}
 		
@@ -141,6 +182,7 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 			
 		} else {
 			$results[$orgkey]['ldapBindTestUser'] = array(FALSE,NULL);
+			$results[$orgkey]['time'] = microtime(TRUE) - $previous;
 			continue;
 		}
 
@@ -151,21 +193,38 @@ foreach ($orgs AS $orgkey => $orgconfig) {
 			$results[$orgkey]['ldapGetAttributesTestUser'] = array(FALSE,$e->getMessage());
 		}
 	}
+	$results[$orgkey]['time'] = microtime(TRUE) - $previous;
 }
+
+$_SESSION['_ldapstatus_results'] = $results;
+
 #echo '<pre>'; print_r($results); exit;
 
+$lightCounter = array(0,0,0);
+
 function resultCode($res) {
+	global $lightCounter;
 	$code = '';
 	$columns = array('config', 'ping', 'adminBind', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'ldapGetAttributesTestUser', 'configMeta');
 	foreach ($columns AS $c) {
 		if (array_key_exists($c, $res)) {
-			$code .= ($res[$c][0] ? '0' : '2');
+			if ($res[$c][0]) {
+				$code .= '0';
+				$lightCounter[0]++;
+			} else {
+				$code .= '2';
+				$lightCounter[2]++;
+			}
+			
 		} else {
 			$code .= '1';
+			$lightCounter[1]++;
 		}
 	}
 	return $code;
 }
+
+
 
 	
 	
@@ -178,8 +237,12 @@ asort($ressortable);
 
 
 $t = new SimpleSAML_XHTML_Template($config, 'ldapstatus:ldapstatus.php');
+
+$t->data['completeNo'] = count($results);
+$t->data['completeOf'] = count($orgs);
 $t->data['results'] = $results;
 $t->data['orgconfig'] = $orgs;
+$t->data['lightCounter'] = $lightCounter;
 $t->data['sortedOrgIndex'] = array_keys($ressortable);
 $t->show();
 exit;
