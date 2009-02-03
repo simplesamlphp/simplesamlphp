@@ -30,6 +30,7 @@ function myErrorHandler($errno, $errstr, $errfile, $errline) {
     	echo('<p>PHP_UNKNOWN : [' . $errno . '] ' . $errstr . '. Unknown error on line ' . $errline . ' in file ' . $errfile);        
         break;
     }
+    flush();
 
     /* Don't execute PHP internal error handler */
     return true;
