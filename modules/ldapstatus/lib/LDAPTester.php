@@ -112,7 +112,7 @@ class sspmod_ldapstatus_LDAPTester {
 			if ($ldap->getLastError()) throw new Exception('LDAP warning: ' . $ldap->getLastError());
 			$result['connect'] = array(TRUE,NULL);
 		} catch (Exception $e) {
-			$this->log('ldapstatus: Connect error() [' .$orgkey . ']: ' . $e->getMessage());
+			$this->log('ldapstatus: Connect error() [' .$this->orgconfig['hostname'] . ']: ' . $e->getMessage());
 			$result['connect'] = array(FALSE,$e->getMessage());
 			$result['time'] = microtime(TRUE) - $start;
 			return $result;
@@ -121,7 +121,7 @@ class sspmod_ldapstatus_LDAPTester {
 		// Bind as admin user
 		if (isset($this->orgconfig['adminUser'])) {
 			try {
-				$this->log('ldapstatus: Admin bind() [' .$orgkey . ']');
+				$this->log('ldapstatus: Admin bind() [' .$this->orgconfig['hostname'] . ']');
 				$success = $ldap->bind($this->orgconfig['adminUser'], $this->orgconfig['adminPassword']);
 				if ($ldap->getLastError()) throw new Exception('LDAP warning: ' . $ldap->getLastError());
 				if ($success) {
