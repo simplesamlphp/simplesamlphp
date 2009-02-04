@@ -144,6 +144,7 @@ asort($ressortable);
 
 $t = new SimpleSAML_XHTML_Template($config, 'ldapstatus:ldapstatus.php');
 
+$t->data['showcomments'] = array_key_exists('showcomments', $_REQUEST);
 $t->data['completeNo'] = count($results);
 $t->data['completeOf'] = count($orgs);
 $t->data['results'] = $results;

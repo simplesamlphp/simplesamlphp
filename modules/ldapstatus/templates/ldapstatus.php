@@ -88,6 +88,12 @@ foreach($this->data['sortedOrgIndex'] as $orgkey) {
 	showRes('configMeta',  $res, $this);
 	echo('<td style="text-align: right">' . ceil($res['time']*1000) . ' ms</td>');
 	echo('</tr>');
+	
+	if ($this->data['showcomments'] && array_key_exists('comment', $this->data['orgconfig'][$orgkey])) {
+		echo('<tr><td style="color: #400; padding-left: 5em; font-family: \'Arial Narrow\'; font-size: 85%" colspan="11">' . $this->data['orgconfig'][$orgkey]['comment'] . '</td></tr>');
+	}
+	
+	
 }
 ?>
 </table>
@@ -113,9 +119,12 @@ if ($sum > 0) {
 	echo('</table>');
 }
 if ($this->data['completeOf'] > $this->data['completeNo']) {
-	echo('<p>[ <a href="?reload=1">load more entries</a> | <a href="?reset=1">reset all entries</a> ]');
+	echo('<p>[ <a href="?">load more entries</a> | <a href="?reset=1">reset all entries</a> ]');
 } else {
 	echo('<p>[ <a href="?reset=1">reset all entries</a> ]');
+}
+if (!$this->data['showcomments']) {
+	echo('<p>[ <a href="?showcomments=1">show comments</a> ]');	
 }
 
 
