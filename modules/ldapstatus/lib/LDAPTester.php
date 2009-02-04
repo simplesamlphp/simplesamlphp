@@ -47,7 +47,7 @@ class sspmod_ldapstatus_LDAPTester {
 		if ($this->debugOutput) {
 			echo '<p>' . $str;
 		} else {
-			SimpleSAML_Logger::debug('ldapstatus phpping(): ping [' . $host . ':' . $port . ']' );
+			SimpleSAML_Logger::debug($str);
 		}
 		flush();
 	}
