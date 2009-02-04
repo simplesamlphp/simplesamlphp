@@ -213,6 +213,40 @@ class SimpleSAML_Auth_ProcessingChain {
 		SimpleSAML_Utilities::redirect($state['ReturnURL'], array(self::AUTHPARAM => $id));
 	}
 
+	/**
+	 * Process the given state passivly.
+	 *
+	 * Modules with user interaction are expected to throw an SimpleSAML_Error_NoPassive exception
+	 * which are silently ignored. Exceptions of other types are passed further up the call stack.
+	 *
+	 * This function will only return if processing completes.
+	 *
+	 * @param array &$state  The state we are processing.
+	 */
+	public function processStatePassive(&$state) {
+		assert('is_array($state)');
+		// Should not be set when calling this method
+		assert('!array_key_exists("ReturnURL", $state)');
+
+		// Notify filters about passive request
+		$state['isPassive'] = TRUE;
+
+		$state[self::FILTERS_INDEX] = $this->filters;
+
+		if (!array_key_exists('UserID', $state)) {
+			/* No unique user ID present. Attempt to add one. */
+			self::addUserID($state);
+		}
+
+		while (count($state[self::FILTERS_INDEX]) > 0) {
+			$filter = array_shift($state[self::FILTERS_INDEX]);
+			try {
+				$filter->process($state);
+
+			// Ignore SimpleSAML_Error_NoPassive exceptions
+			} catch (SimpleSAML_Error_NoPassive $e) { }
+		}
+	}
 
 	/**
 	 * Retrieve a state which has finished processing.

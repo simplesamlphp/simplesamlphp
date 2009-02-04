@@ -284,9 +284,32 @@ if($needAuth && !$isPassive) {
 				'Attributes' => $attributes,
 				'Destination' => $spmetadata,
 				'Source' => $idpmetadata,
+				'isPassive' => $isPassive,
 			);
 
-			$pc->processState($authProcState);
+			try {
+				$pc->processState($authProcState);
+			} catch (SimpleSAML_Error_NoPassive $e) {
+				/* Any user interaction is considered harmfull if isPassive is set to TRUE - even
+				 * giving consent.
+				 * If the user is authenticated but a processing filter needs user interaction 
+				 * we expect a SimpleSAML_Error_NoPassive exception to be thrown. We then send 
+				 * back the proper respons.
+				 */
+				try {
+					/* Generate an SAML 2.0 AuthNResponse message
+					 * With statusCode: urn:oasis:names:tc:SAML:2.0:status:NoPassive
+					 */
+					$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
+					$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], NULL, NULL, 'NoPassive');
+
+					/* Sending the AuthNResponse using HTTP-Post SAML 2.0 binding. */
+					$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
+					$httppost->sendResponse($authnResponseXML, $idpentityid, $requestcache['Issuer'], $requestcache['RelayState']);
+				} catch(Exception $exception) {
+					SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
+				}
+			}
 
 			$requestcache['AuthProcState'] = $authProcState;
 		}

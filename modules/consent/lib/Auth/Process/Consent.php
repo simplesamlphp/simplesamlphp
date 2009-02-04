@@ -163,6 +163,11 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 		$state['consent:focus'] = $this->focus;
 		$state['consent:checked'] = $this->checked;
 
+		/* User interaction nessesary. Throw exception on isPassive request */	
+		if (isset($state['isPassive']) && $state['isPassive'] == TRUE) {
+			throw new SimpleSAML_Error_NoPassive('noPassive');
+		}
+
 		/* Save state and redirect. */
 		$id = SimpleSAML_Auth_State::saveState($state, 'consent:request');
 		$url = SimpleSAML_Module::getModuleURL('consent/getconsent.php');
