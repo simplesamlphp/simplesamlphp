@@ -67,7 +67,7 @@ class sspmod_ldapstatus_LDAPTester {
 	
 		$timeout = 1.0;
 		$socket = @fsockopen($host, $port, $errno, $errstr, $timeout);
-		@fclose($socket);
+		if ($socket) @fclose($socket);
 		if ($errno) {
 			return array(FALSE, $errno . ':' . $errstr . ' [' . $host . ':' . $port . ']');
 		} else {		
