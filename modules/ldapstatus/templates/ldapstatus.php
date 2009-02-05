@@ -12,6 +12,9 @@ a {
 a:hover {
 	border-bottom: 1px solid #aaa;
 }
+div#content {
+	margin: .4em ! important;
+}
 </style>';
 $this->includeAtTemplateBase('includes/header.php');
 
