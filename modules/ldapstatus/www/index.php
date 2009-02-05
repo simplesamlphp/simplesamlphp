@@ -11,25 +11,39 @@ if (!$session->isValid('login-admin') ) {
 }
 
 
+function backtrace() {
+	return join(' - ', debug_backtrace());
+}
+
 function myErrorHandler($errno, $errstr, $errfile, $errline) {
 
-    switch ($errno) {
-    case E_USER_ERROR:
-    	echo('<p>PHP_ERROR   : [' . $errno . '] ' . $errstr . '. Fatal error on line ' . $errline . ' in file ' . $errfile);
-    	break;
 
-    case E_USER_WARNING:
-    	echo('<p>PHP_WARNING : [' . $errno . '] ' . $errstr . '. Warning on line ' . $errline . ' in file ' . $errfile);
-    	break;
-
-    case E_USER_NOTICE:
-    	echo('<p>PHP_WARNING : [' . $errno . '] ' . $errstr . '. Warning on line ' . $errline . ' in file ' . $errfile);        
-    	break;
-
-    default:
-    	echo('<p>PHP_UNKNOWN : [' . $errno . '] ' . $errstr . '. Unknown error on line ' . $errline . ' in file ' . $errfile);        
-        break;
+	echo('<div style="border: 1px dotted #ccc; margin: .3em; padding: .4em;">');
+	switch ($errno) {
+		case E_USER_ERROR:
+			echo('<p>PHP_ERROR   : [' . $errno . '] ' . $errstr . '. Fatal error on line ' . $errline . ' in file ' . $errfile);
+			break;
+	
+		case E_USER_WARNING:
+			echo('<p>PHP_WARNING : [' . $errno . '] ' . $errstr . '. Warning on line ' . $errline . ' in file ' . $errfile);
+			break;
+	
+		case E_USER_NOTICE:
+			echo('<p>PHP_WARNING : [' . $errno . '] ' . $errstr . '. Warning on line ' . $errline . ' in file ' . $errfile);        
+			break;
+	
+		default:
+			echo('<p>PHP_UNKNOWN : [' . $errno . '] ' . $errstr . '. Unknown error on line ' . $errline . ' in file ' . $errfile);        
+			break;
     }
+    
+#    echo('<div style="font-style:monospace; font-size: x-small; margin: 1em; color: #966"><li>' . join('</li><li>', debug_backtrace()) . '</li></div>');
+    echo('<pre style="font-style:monospace; font-size: small; margin: 1em; color: #966">');
+    echo(debug_print_backtrace()); 
+    echo('</pre>');
+	echo('</div>');
+
+    
     flush();
 
     /* Don't execute PHP internal error handler */

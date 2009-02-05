@@ -43,6 +43,15 @@ class sspmod_ldapstatus_LDAPTester {
 	}
 	
 	
+	private function checkParameter($conf, $req) {
+		$res = $this->checkConfig($conf, array($req));
+		if ($res[0]) {
+			return 'Parameter [' . $req . '] found';
+		} else {
+			return 'Parameter [' . $req . '] NOT found';
+		}
+	}
+	
 	private function log($str) {
 		if ($this->debugOutput) {
 			echo '<p>' . $str;
@@ -85,7 +94,12 @@ class sspmod_ldapstatus_LDAPTester {
 			$result['time'] = microtime(TRUE) - $start;
 			return $result;
 		}
-	
+		
+		$this->log($this->checkParameter($this->orgconfig, 'adminUser'));
+		$this->log($this->checkParameter($this->orgconfig, 'adminPassword'));
+		$this->log($this->checkParameter($this->orgconfig, 'testUser'));
+		$this->log($this->checkParameter($this->orgconfig, 'testPassword'));
+		
 		$urldef = explode(' ', $this->orgconfig['hostname']);
 		$url = parse_url($urldef[0]);
 		$port = 389;
@@ -93,6 +107,9 @@ class sspmod_ldapstatus_LDAPTester {
 		if (!empty($url['port'])) $port = $url['port'];
 		
 		$this->log('ldapstatus Url parse [' . $this->orgconfig['hostname'] . '] => [' . $url['host'] . ']:[' . $port . ']' );
+	
+	
+
 	
 	
 		$result['ping'] = $this->phpping($url['host'], $port);
