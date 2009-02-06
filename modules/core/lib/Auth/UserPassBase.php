@@ -60,7 +60,10 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
 
 		$url = SimpleSAML_Module::getModuleURL('core/loginuserpass.php');
-		SimpleSAML_Utilities::redirect($url, array('AuthState' => $id));
+		$params = array('AuthState' => $id);
+		if (array_key_exists('SessionLostURL', $state))
+			$params['SessionLostURL'] = $state['SessionLostURL'];
+		SimpleSAML_Utilities::redirect($url, $params);
 	}
 
 
@@ -91,16 +94,24 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	 * @param string $authStateId  The identifier of the authentication state.
 	 * @param string $username  The username the user wrote.
 	 * @param string $password  The password the user wrote.
-	 * @return string  Error code in the case of an error.
+	 * @return string Error code in the case of an error.
 	 */
 	public static function handleLogin($authStateId, $username, $password) {
 		assert('is_string($authStateId)');
 		assert('is_string($username)');
 		assert('is_string($password)');
 
-		/* Retrieve the authentication state. */
-		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
-
+		try {
+			/* Retrieve the authentication state. */
+			$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
+		} catch(Exception $e) {
+			if (array_key_exists('SessionLostURL', $_REQUEST)) {
+				SimpleSAML_Utilities::redirect($_REQUEST['SessionLostURL']);
+			} else {
+				throw $e;
+			}
+		}
+		
 		/* Find authentication source. */
 		assert('array_key_exists(self::AUTHID, $state)');
 		$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);

@@ -39,6 +39,8 @@ $t = new SimpleSAML_XHTML_Template($globalConfig, 'core:loginuserpass.php');
 $t->data['stateparams'] = array('AuthState' => $authStateId);
 $t->data['username'] = $username;
 $t->data['errorcode'] = $errorCode;
+if (array_key_exists('SessionLostURL', $_REQUEST)) 
+	$t->data['SessionLostURL'] = $_REQUEST['SessionLostURL'];
 $t->show();
 exit();
 

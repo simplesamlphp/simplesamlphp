@@ -216,7 +216,11 @@ if($needAuth && !$isPassive) {
 			'SPMetadata' => $metadata->getMetaData($requestcache['Issuer'], 'saml20-sp-remote'),
 			'IdPMetadata' => $idpmetadata,
 		);
-
+		$hints['SessionLostURL'] = SimpleSAML_Utilities::addURLparameter(
+			$metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted'), array(
+				'spentityid' => $requestcache['Issuer'],
+			)
+		);
 		SimpleSAML_Auth_Default::initLogin($idpmetadata['auth'], $redirectTo, NULL, $hints);
 	} else {
 		$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];
