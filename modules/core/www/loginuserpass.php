@@ -15,6 +15,15 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 }
 $authStateId = $_REQUEST['AuthState'];
 
+try {
+	/* Retrieve the authentication state. */
+	$state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_core_Auth_UserPassBase::STAGEID);
+} catch(Exception $e) {
+	if (array_key_exists('SessionLostURL', $_REQUEST)) {
+		SimpleSAML_Utilities::redirect($_REQUEST['SessionLostURL']);
+	}
+}
+
 if (array_key_exists('username', $_REQUEST)) {
 	$username = $_REQUEST['username'];
 } else {
