@@ -70,7 +70,8 @@ if (empty($_POST['SAMLResponse']))
 try {
 	
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-
+	$spmetadata = $metadata->getMetaDataCurrent();
+	
 	$binding = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
 	$authnResponse = $binding->decodeResponse($_POST);
 	
@@ -83,7 +84,12 @@ try {
 		/* Fall back to RelayState. */
 		$info = array();
 		$info['RelayState'] = $authnResponse->getRelayState();
-		if(!isset($info['RelayState'])) {
+		if(empty($info['RelayState'])) {
+			if (array_key_exists('RelayState', $spmetadata)) {
+				$info['RelayState'] = $spmetadata['RelayState'];
+			}
+		}
+		if(empty($info['RelayState'])) {
 			/* RelayState missing. */
 			SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
 		}
@@ -111,7 +117,7 @@ try {
 	$idpentityid = $authnResponse->getIssuer();
 	
 	$idpmetadata = $metadata->getMetaData($idpentityid, 'saml20-idp-remote');
-	$spmetadata = $metadata->getMetaDataCurrent();
+
 	
 	
 	/*

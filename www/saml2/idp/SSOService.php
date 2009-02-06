@@ -35,6 +35,11 @@ if (!$config->getValue('enable.saml20-idp', false))
 
 
 /*
+ * Initiate some variables
+ */
+$isPassive = FALSE;
+
+/*
  * If the SAMLRequest query parameter is set, we got an incoming Authentication Request 
  * at this interface.
  *
@@ -144,6 +149,19 @@ if (isset($_GET['SAMLRequest'])) {
 	$authProcId = $_REQUEST[SimpleSAML_Auth_ProcessingChain::AUTHPARAM];
 	$authProcState = SimpleSAML_Auth_ProcessingChain::fetchProcessedState($authProcId);
 	$requestcache = $authProcState['core:saml20-idp:requestcache'];
+
+/**
+ * If the spentityid parameter is provided, we will fallback to a unsolited response to the SP.
+ */
+} elseif(array_key_exists('spentityid', $_GET)) {
+	
+	/* Creating a request cache, even though there was no request, and adding the
+	 * information that is neccessary to be able to respond with an unsolited response
+	 */
+	$requestcache = array(
+		'Issuer' => $_GET['spentityid'],
+	);
+
 
 } else {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SSOSERVICEPARAMS');
@@ -322,14 +340,17 @@ if($needAuth && !$isPassive) {
 		// Right now the list is used for SAML 2.0 only.
 		$session->add_sp_session($spentityid);
 		
+		$requestID = NULL; $relayState = NULL;
+		if (array_key_exists('RequestID', $requestcache)) $requestID = $requestcache['RequestID'];
+		if (array_key_exists('RelayState', $requestcache)) $relayState = $requestcache['RelayState'];
 		
 		// Generate an SAML 2.0 AuthNResponse message
 		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-		$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestcache['RequestID'], null, $attributes);
+		$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestID, null, $attributes);
 	
 		// Sending the AuthNResponse using HTTP-Post SAML 2.0 binding
 		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
-		$httppost->sendResponse($authnResponseXML, $idmetaindex, $spentityid, $requestcache['RelayState']);
+		$httppost->sendResponse($authnResponseXML, $idmetaindex, $spentityid, $relayState);
 		
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);

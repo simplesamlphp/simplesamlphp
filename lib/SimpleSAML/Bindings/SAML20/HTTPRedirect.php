@@ -243,8 +243,6 @@ class SimpleSAML_Bindings_SAML20_HTTPRedirect {
 			SimpleSAML_Utilities::redirect($redirectURL);
 		
 		}
-
-		
 		
 	}
 

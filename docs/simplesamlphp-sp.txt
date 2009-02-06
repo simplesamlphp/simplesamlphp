@@ -165,6 +165,9 @@ idpdisco.url
     one is also unset, the builtin default discovery service will be
     used.
 
+RelayState
+:	This may be a relative or absolute URL on the Service Provider that the user should be redirected to after successful authentication. This parameter MUST be used if you are using an IdP-first setup with SAML 2.0, where no AuthNRequest is sent.
+
 privatekey
 :   File name of private key to be used for signing messages.
 

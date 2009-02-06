@@ -718,8 +718,9 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			$nameid = $this->generateNameID($nameidformat, $nameIdValue, $spnamequalifier);
 		}
 		
-
-
+		$inresponsetoText = '';
+		if (!empty($inresponseto)) $inresponsetoText = 'InResponseTo="' . htmlspecialchars($inresponseto). '" ';
+		
 		$assertion = "";
 		if ($status === 'Success') {
 			$assertion = '<saml:Assertion Version="2.0"
@@ -729,7 +730,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			' . $nameid . ' 
 			<saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
 				<saml:SubjectConfirmationData NotOnOrAfter="' . $assertionExpire . '"
-					InResponseTo="' . htmlspecialchars($inresponseto). '"
+					' . $inresponsetoText . '
 					Recipient="' . htmlspecialchars($destination) . '"/>
 			</saml:SubjectConfirmation>
 		</saml:Subject>
@@ -763,7 +764,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			xmlns:xs="http://www.w3.org/2001/XMLSchema"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			ID="' . $id . '"
-			InResponseTo="' . htmlspecialchars($inresponseto) . '" Version="2.0"
+			' . $inresponsetoText . ' Version="2.0"
 			IssueInstant="' . $issueInstant . '"
 			Destination="' . htmlspecialchars($destination) . '">
 			<saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' . htmlspecialchars($issuer) . '</saml:Issuer>
