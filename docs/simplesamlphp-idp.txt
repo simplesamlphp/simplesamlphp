@@ -767,6 +767,9 @@ Here is an example of such an url:
 
 	https://sp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=dev.andreas.feide.no
 
+When the IdP-first flow is used an extra parameter is needed in the `saml20-sp-hosted` metadata. This is the `RelayState` parameter that tells the SP which URL to redirect the user to after the user is successfully authenticated. This typically is the frontpage of your application. An example of this can be:
+
+	'RelayState' => '/',
 
 
 B. Writing your own authentication module
