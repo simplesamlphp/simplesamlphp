@@ -40,7 +40,8 @@ $this->includeAtTemplateBase('includes/header.php');
 				if (count($entity['leftovers']) > 0) $warning = TRUE;
 				if (count($entity['required.notfound']) > 0) $warning = TRUE;
 
-
+				$t->includeInlineTranslation('spname', $name);
+				$name = $t->t('spname', array(), false, true);
 
 				echo '<h4 style="padding-left: 2em; clear: both;" onclick="document.getElementById(\'metadatasection-' . $encodedEntityID . '\').style.display=\'block\';">' . htmlspecialchars($name) . '</h4>';
 				
@@ -52,7 +53,9 @@ $this->includeAtTemplateBase('includes/header.php');
 				echo '<div id="metadatasection-' . $encodedEntityID . '" style="display: none">';
 				
 				if (isset($entity['optional.found']['description'])) {
-					echo '<p>' . htmlspecialchars($entity['optional.found']['description']) . '</p>';
+					$t->includeInlineTranslation('spdescription', $entity['optional.found']['description']);
+					$description = $t->t('spdescription');
+					echo '<p>' . htmlspecialchars($description) . '</p>';
 				}
 				
 				echo '<div style="margin-left: 1em">';

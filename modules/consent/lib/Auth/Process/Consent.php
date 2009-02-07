@@ -133,6 +133,18 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 		assert('array_key_exists("entityid", $state["Source"])');
 		assert('array_key_exists("metadata-set", $state["Source"])');
 
+		$session = SimpleSAML_Session::getInstance(); 
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+
+		/* If the consent module is active on a bridge $session->getIdP() will contain
+		 * an entry id for the remote IdP. If $session->getIdP() is NULL, then the
+		 * consent module is active on a local IdP and nothing needs to be done.
+		 */
+		if($session->getIdP() != null) {
+			$idpmeta = $metadata->getMetaData($session->getIdP(), 'saml20-idp-remote');
+			$state['Source'] = $idpmeta;
+		}
+		
 		if ($this->store !== NULL) {
 
 			$source = $state['Source']['metadata-set'] . '|' . $state['Source']['entityid'];
@@ -141,8 +153,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 			SimpleSAML_Logger::debug('Consent - userid : ' . $state['UserID']);
 			SimpleSAML_Logger::debug('Consent - source : ' . $source);
 			SimpleSAML_Logger::debug('Consent - destination : ' . $destination);
-			
-
+	
 			$userId = self::getHashedUserID($state['UserID'], $source);
 			$targetedId = self::getTargetedID($state['UserID'], $source, $destination);
 			$attributeSet = self::getAttributeHash($state['Attributes'], $this->includeValues);

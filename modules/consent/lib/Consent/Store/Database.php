@@ -212,6 +212,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 		if ($st !== FALSE) {
 			SimpleSAML_Logger::debug('consent:Database - Saved new consent.');
 		}
+		return TRUE;
 	}
 
 
@@ -235,6 +236,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 
 		if ($st->rowCount() > 0) {
 			SimpleSAML_Logger::debug('consent:Database - Deleted consent.');
+			return $st->rowCount();
 		} else {
 			SimpleSAML_Logger::warning('consent:Database - Attempted to delete nonexistent consent');
 		}
@@ -254,14 +256,14 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 
 		$ret = array();
 
-		$st = $this->execute('SELECT service_id FROM ' . $this->table . ' WHERE hashed_user_id = ?',
+		$st = $this->execute('SELECT service_id, attribute FROM ' . $this->table . ' WHERE hashed_user_id = ?',
 			array($userId));
 		if ($st === FALSE) {
 			return array();
 		}
 
 		while ($row = $st->fetch(PDO::FETCH_NUM)) {
-			$ret[] = $row[0];
+			$ret[] = $row;
 		}
 
 		return $ret;
@@ -343,7 +345,6 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 	 * @return PDO|FALSE  Database handle, or FALSE if we fail to connect.
 	 */
 	private function getDB() {
-
 		if ($this->db !== NULL) {
 			return $this->db;
 		}
