@@ -140,7 +140,7 @@ function resultCode($res) {
 			}
 			
 		} else {
-			$code .= '1';
+			$code .= '0';
 			$lightCounter[1]++;
 		}
 	}
