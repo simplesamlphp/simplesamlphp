@@ -114,7 +114,7 @@ function sendResponse() {
 		
 		echo '<table id="slostatustable">';
 		
-		echo '<tr class="initiated" id="e' . sha1($spentityid) . '">' . "\n";
+		echo '<tr class="initiated" id="e_initiated">' . "\n";
 		echo '	<td><img style="float: left; margin: 3px" src="/' . $this->data['baseurlpath'] . 
 			'resources/icons/silk/accept.png" alt="Initiated from" /></td>' . "\n";
 		echo '	<td>' . $this->t('{logout:initiated}') . '</td>';
