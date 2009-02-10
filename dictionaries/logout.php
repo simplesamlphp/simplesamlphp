@@ -49,12 +49,23 @@ $lang = array(
 		'pt' => 'Voltar à página de instalação do simpleSAMLphp',
 		'pt-BR' => 'Voltar a instalação do simpleSAMLphp',
 	),
+	'loggedoutfrom' => array (
+	),
+	'also_from' => array (
+	),
+	'logout_all_question' => array (
+	),
+	'logout_all' => array (
+	),
+	'logout_only' => array (
+	),
 	'description' => array (
 		'no' => 'Du har startet en <strong>global utlogging</strong> fra tjenesten <strong>%REQUESTERNAME%</strong>. Global utlogging betyr at du vil bli logget ut fra alle tjenestene vist nedenfor.',
 		'en' => 'You have initiated a <strong>global logout</strong> from the service <strong>%REQUESTERNAME%</strong>. Global logout means you will be logged out from all of the services listed below.',
 		'sv' => 'Du har påbörjat en <strong>global utloggníng</strong> från tjänsten <strong>%REQUESTERNAME%</strong>. Global utloggnng betyder att du kan kommer att bli utloggad från alla nedanstående tjänste.',
 		'es' => 'Ha comenzado una <strong>desconexión global</strong> del servicio <strong>%REQUESTERNAME%</strong>. La desconexión global significa que será desconectado de todos los servicios listados a continuación.',
 		'sl' => 'Sprožili ste "<strong>globalno odjavo</strong>" s storitve <strong>%REQUESTERNAME%</strong>. ',
+		'hr' => 'Inicirali ste <strong>globalno odjavljivanje</strong> iz aplikacije <strong>%REQUESTERNAME%</strong>. To znači da ćete biti odjavljeni iz svih niže navedenih aplikacija.',
 	),
 	'initiated' => array (
 		'no' => 'Startet utlogging',
@@ -62,6 +73,7 @@ $lang = array(
 		'sv' => 'Påbörjad utloggning',
 		'es' => 'Logout iniciado',
 		'sl' => 'Odjava inicializirana.',
+		'hr' => 'Inicirana odjava',
 	),
 	'hold' => array (
 		'no' => 'På vent',
@@ -69,6 +81,7 @@ $lang = array(
 		'sv' => 'Vilande',
 		'es' => 'En espera',
 		'sl' => 'Na čakanju',
+		'hr' => 'Na čekanju',
 	),
 	'completed' => array (
 		'no' => 'Fullført',
@@ -76,6 +89,7 @@ $lang = array(
 		'sv' => 'Klar',
 		'es' => 'Terminado',
 		'sl' => 'Dokončano',
+		'hr' => 'Završeno',
 	),
 	'progress' => array (
 		'no' => 'Logger ut...',
@@ -83,6 +97,7 @@ $lang = array(
 		'sv' => 'Loggar ut...',
 		'es' => 'Desconectando...',
 		'sl' => 'Odjavljanje...',
+		'hr' => 'Odjava u tijeku...',
 	),
 	'failed' => array (
 		'no' => 'Utlogging feilet',
@@ -90,6 +105,7 @@ $lang = array(
 		'sv' => 'Utloggning misslyckades',
 		'es' => 'Proceso de desconexión fallido',
 		'sl' => 'Odjava je spodletela.',
+		'hr' => 'Odjava nije uspjela',
 	),
 	'continue' => array (
 		'no' => 'Ønsker du å fortsette global utlogging?',
@@ -97,6 +113,7 @@ $lang = array(
 		'sv' => 'Vill du fortsätta med den globala utloggningen?',
 		'es' => '¿Quieres continuar con el proceso de desconexión global?',
 		'sl' => 'Ali želite nadaljevati z globalno odjavo?',
+		'hr' => 'Želite li nastaviti s globalnim odjavljivanjem?',
 	),
 	'do_continue' => array (
 		'no' => 'Ja, fortsett utlogging',
@@ -104,6 +121,7 @@ $lang = array(
 		'sv' => 'Ja, fortsätt logga ut',
 		'es' => 'Sí, continúa con la desconexión',
 		'sl' => 'Da, nadaljuj z odjavo',
+		'hr' => 'Da, nastavi s odjavljivanjem',
 	),
 	'cancel' => array (
 		'no' => 'Avbryt utlogging',
@@ -111,6 +129,7 @@ $lang = array(
 		'sv' => 'Avbryt utloggningen',
 		'es' => 'Cancelar la desconexión',
 		'sl' => 'Prekliči odjavo',
+		'hr' => 'Otkaži odjavljivanje',
 	),
 	'respond_info' => array (
 		'no' => 'Dersom noen av tjenestene ikke svarer innen rimelig tid anbefales du å lukke din nettleser for å sikre at sesjonen avsluttes.',
@@ -118,6 +137,7 @@ $lang = array(
 		'sv' => 'Om någon tjänst inte svarar inom rimlig tid rekommenderas du att stänga webbläsaren för att garantera att du blir utloggad.',
 		'es' => 'Si algunos de los proveedores de servicio no responden en un tiempo razonable, se te invita a que cierres tu navegador para asegurar que todas las sesiones sean cerradas',
 		'sl' => 'V primeru, da se odjava poteka nerazumno dolgo vam svetujemo, da zaprete spletni brskalnik in s tem zagotovite zaključek seje.',
+		'hr' => 'Ako ne dobijete odgovor od nekih aplikacija u razumnom roku, preporučamo da zatvorite svoj web preglednik kako biste bili sigurni da ste se odjavili iz svih aplikacija.',
 	),
 	'return' => array (
 		'no' => 'Tilbake til tjenesten',
@@ -125,6 +145,7 @@ $lang = array(
 		'sv' => 'Åter till tjänsten',
 		'es' => 'Volver al servicio',
 		'sl' => 'Vrni se nazaj na storitev.',
+		'hr' => 'Povratak u aplikaciju',
 	),
 	'progress_bar' => array (
 		'no' => 'Status bar',
@@ -132,6 +153,7 @@ $lang = array(
 		'sv' => 'Förloppsindikator (utloggningsmätare)',
 		'es' => 'Barra de progreso',
 		'sl' => 'Stanje napredka',
+		'hr' => 'Napredak',
 	),
 	'logging_out' => array (
 		'no' => 'Vent... logger ut fra <strong>%SPNAME%</strong>.',
@@ -139,6 +161,7 @@ $lang = array(
 		'sv' => 'Vänta... loggar ut från <strong>%SPNAME%</strong>.',
 		'es' => 'Espere.. está desconectándose de <strong>%SPNAME%</strong>',
 		'sl' => 'Počakaj... odjava s <strong>%SPNAME%</strong> v teku.',
+		'hr' => 'Pričekajte... odjavljujem se iz <strong>%SPNAME%</strong>.',
 	),
 	'logged_out' => array (
 		'no' => 'Utlogging var startet fra %REQUESTERNAME%.',
@@ -146,6 +169,7 @@ $lang = array(
 		'sv' => 'Utloggning startades från %REQUESTERNAME%.',
 		'es' => 'Se ha iniciado la desconexión de %REQUESTERNAME%',
 		'sl' => 'Odjava je bila sprožena z %REQUESTERNAME%.',
+		'hr' => 'Odjavljivanje je pokrenuto iz %REQUESTERNAME%.',
 	),
 	'interrupt' => array (
 		'no' => 'Avbryt utloggingeng og g&aring; tilbake til tjenesten.',
@@ -153,6 +177,7 @@ $lang = array(
 		'sv' => 'Avbryt utloggningen och gå tillbaka till tjänsten.',
 		'es' => 'Detener la desconexión y retornar al servicio',
 		'sl' => 'Prekini odjavo in se vrni nazaj na storitev.',
+		'hr' => 'Prekini odjavljivanje i vrati se natrag u aplikaciju.',
 	),
 	'success' => array (
 		'no' => 'Du har n&aring; logget ut fra alle tjenestene listet ovenfor.',
@@ -160,6 +185,7 @@ $lang = array(
 		'sv' => 'Du har loggat ut från alla nedanstående tjänster.',
 		'es' => 'Ha sido correctamente desconectado de todo los servicios listados a continuación',
 		'sl' => 'Uspešno ste se odjavili z vseh naštetih storitev.',
+		'hr' => 'Uspješno ste se odjavili iz svih gore navedenih aplikacija.',
 	),
 	'finish' => array (
 		'no' => 'OK, fortsett tilbake til %REQUESTERNAME% for å fullføre utloggingsprosessen.',
@@ -167,6 +193,7 @@ $lang = array(
 		'sv' => 'Ok, fortsätt tillbaka till %REQUESTERNAME% för att avsluta utloggningen.',
 		'es' => 'OK, continuemos de nuevo en %REQUESTERNAME% para terminar el proceso de desconexión',
 		'sl' => 'OK, pojdi nazaj na %REQUESTERNAME%, da bo postopek odjave zaključen.',
+		'hr' => 'OK, vratite se natrag na %REQUESTERNAME% da biste završili proces odjave.',
 	),
 
 );

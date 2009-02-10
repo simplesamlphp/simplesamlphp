@@ -63,6 +63,7 @@ $lang = array(
 		'sv' => 'Samtycke gällande överföring av personinformation',
 		'es' => 'Consentimiento para la liberación de información personal',
 		'sl' => 'Odločitev o privolitvi posredovanja vaših osebnih podatkov',
+		'hr' => 'Dozvola za isporuku osobnih podataka',
 	),
 	'consent_notice' => array (
 		'no' => 'Du er nå i ferd med å logge inn på tjenesten SPNAME.',
@@ -88,6 +89,9 @@ $lang = array(
 		'da' => 'SPNAME har til formål at SPDESC',
 		'en' => 'The purpose of SPNAME is SPDESC',
 		'de' => 'Der Zweck von SPNAME ist SPDESC',
+		'sv' => 'Syftet med SPNAME är SPDESC',
+		'es' => 'El propósito de SPNAME es SPDESC',
+		'hr' => 'Svrha SPNAME je SPDESC',
 	),
 	'consent_accept' => array (
 		'no' => 'SPNAME krever at opplysningene nedenfor overføres fra IDPNAME. Aksepterer du dette?',
@@ -130,6 +134,7 @@ $lang = array(
 		'sv' => 'Attribut som kommer att skickas till tjänsten',
 		'es' => 'Atributos que serán enviados al servicio',
 		'sl' => 'Atributi, ki bodo poslani SPju',
+		'hr' => 'Atributi koji će biti poslani servisu',
 	),
 	'show_attributes' => array (
 		'no' => 'Vis attributter',
@@ -138,6 +143,7 @@ $lang = array(
 		'sv' => 'Visa attribut',
 		'es' => 'Mostrar atributos',
 		'sl' => 'Prikaži atribute',
+		'hr' => 'Prikaži atribute',
 	),
 	'login' => array (
 		'no' => 'innlogging',
@@ -281,6 +287,7 @@ $lang = array(
 		'sv' => 'Gå till tjänstens informationssida',
 		'es' => 'Ir a la página de información del servicio',
 		'sl' => 'Pojdi na spletno stran z informacijami o storitvi',
+		'hr' => 'Idi na stranicu s informacijama o servisu',
 	),
 
 );

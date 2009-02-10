@@ -700,6 +700,7 @@ $lang = array(
 		'es' => 'Distinguished name (DN) de la entrada del directorio que representa el identificador primario de la Unidad Organizativa.  ',
 		'nl' => 'Distinguished name (DN) van de organisatie hoofdafdeling waartoe de persoon behoort',
 		'sl' => 'Polno ime (DN) domačega oddelka, kateremu pripada oseba',
+		'hr' => 'DN organizacijske jedinice korisnika',
 		'pt' => 'DN da unidade orgânica',
 	),
 	'attribute_userpassword' => array (
@@ -711,6 +712,7 @@ $lang = array(
 		'es' => 'Clave o contraseña y método de encriptación utilizado  ',
 		'nl' => 'Password hash',
 		'sl' => 'Uporabnikovo zgoščeno geslo',
+		'hr' => 'Kriptirana korisnička zaporka',
 		'pt' => 'Senha do utilizador',
 	),
 	'attribute_edupersonorgdn_o' => array (
@@ -723,6 +725,7 @@ $lang = array(
 		'es' => 'Nombre de la Organización',
 		'nl' => 'Organisatie naam',
 		'sl' => 'Naziv organizacije',
+		'hr' => 'Naziv ustanove',
 		'pt' => 'Nome da organização',
 	),
 	'attribute_edupersonorgdn_l' => array (
@@ -735,6 +738,7 @@ $lang = array(
 		'es' => 'Ubicación de la Organización',
 		'nl' => 'Organisatie vestiging',
 		'sl' => 'Lokacija organizacije',
+		'hr' => 'Lokacija na kojoj se ustanova nalazi',
 		'pt' => 'Localização da Organização',
 	),
 	'attribute_edupersonorgdn_eduorghomepageuri' => array (
@@ -747,6 +751,7 @@ $lang = array(
 		'es' => 'Página web de la organización',
 		'nl' => 'Organisatie webadres',
 		'sl' => 'Spletna stran organizacije',
+		'hr' => 'Web stranice ustanove',
 		'pt' => 'Página web da Organização',
 	),
 	'attribute_edupersonorgdn_facsimiletelephonenumber' => array (
@@ -759,6 +764,7 @@ $lang = array(
 		'es' => 'Número de fax de la Organización',
 		'nl' => 'Organisatie fax nummer',
 		'sl' => 'Fax številka organizacije',
+		'hr' => 'Fax broj ustanove',
 		'pt' => 'Fax da Organização',
 	),
 	'attribute_edupersonorgdn_eduorglegalname' => array (
@@ -770,6 +776,7 @@ $lang = array(
 		'es' => 'Nombre legal de la Organización',
 		'nl' => 'Organisatie juridische naam',
 		'sl' => 'Polno ime organizacije',
+		'hr' => 'Službeni naziv ustanove',
 		'pt' => 'Nome legal da Organização',
 	),
 	'attribute_edupersonorgdn_postalcode' => array (
@@ -782,6 +789,7 @@ $lang = array(
 		'es' => 'Código postal de la Organización',
 		'nl' => 'Organisatie postcode',
 		'sl' => 'Poštna številka organizacije',
+		'hr' => 'Poštanski broj ustanove',
 		'pt' => 'Código postal da Organização',
 	),
 	'attribute_edupersonorgdn_noreduorgnin' => array (
@@ -793,6 +801,7 @@ $lang = array(
 		'es' => 'Número de la Organización',
 		'nl' => 'Organisatie nummer',
 		'sl' => 'Organizacijska številka',
+		'hr' => 'Brojčani identifikator ustanove',
 		'pt' => 'Número da Organização',
 	),
 	'attribute_edupersonorgdn_businesscategory' => array (
@@ -804,6 +813,7 @@ $lang = array(
 		'es' => 'Categoría empresarial de la organización',
 		'nl' => 'Organisatie classificatie',
 		'sl' => 'Kategorija organizacije',
+		'hr' => 'Vrsta ustanove',
 		'pt' => 'Categoria da Organização',
 	),
 	'attribute_edupersonorgdn_dc' => array (
@@ -815,6 +825,7 @@ $lang = array(
 		'es' => 'DC de la Organización',
 		'nl' => 'Domein component (DC) van de organisatie',
 		'sl' => 'Domenska komponenta (DC) organizacije',
+		'hr' => 'DC ustanove',
 		'pt' => 'Componente de domínio (DC) da organização',
 	),
 	'attribute_edupersonorgdn_description' => array (
@@ -827,6 +838,7 @@ $lang = array(
 		'es' => 'Descripción de la organización',
 		'nl' => 'Beschrijving van de organisatie',
 		'sl' => 'Opis organizacije',
+		'hr' => 'Opis ustanove',
 		'pt' => 'Descrição da Organização',
 	),
 	'attribute_edupersonorgdn_cn' => array (
@@ -838,6 +850,7 @@ $lang = array(
 		'es' => 'CN de la organización',
 		'nl' => 'Algemene naam van de organisatie',
 		'sl' => 'Polno ime (CN) organizacije',
+		'hr' => 'Jedinstveni naziv ustanove',
 		'pt' => 'Nome completo da Organização',
 	),
 	'attribute_edupersonorgdn_postaladdress' => array (
@@ -849,6 +862,7 @@ $lang = array(
 		'es' => 'Dirección postal de la Organización',
 		'nl' => 'Organisatie adres',
 		'sl' => 'Naslov organizacije',
+		'hr' => 'Poštanska adresa ustanove',
 		'pt' => 'Morada da Organização',
 	),
 	'attribute_edupersonorgdn_telephonenumber' => array (
@@ -861,6 +875,7 @@ $lang = array(
 		'es' => 'Número de teléfono de la Organización',
 		'nl' => 'Organisatie telefoon',
 		'sl' => 'Telefonska številka organizacije',
+		'hr' => 'Službeni telefonski broj ustanove',
 		'pt' => 'Número de telefone da Organização',
 	),
 	'attribute_edupersonorgdn_labeleduri' => array (
@@ -872,6 +887,7 @@ $lang = array(
 		'es' => 'URI etiquetado para la organización',
 		'nl' => 'Labeled URI van de organisatie',
 		'sl' => 'Označen URI organizacije',
+		'hr' => 'URI adresa ustanove',
 		'pt' => 'Página web da Organização',
 	),
 	'attribute_edupersonorgdn_street' => array (
@@ -883,6 +899,7 @@ $lang = array(
 		'es' => 'Dirección de la Organización',
 		'nl' => 'Organisatie adres',
 		'sl' => 'Ulica organizacije',
+		'hr' => 'Ulica i broj iz službene adrese ustanove',
 		'pt' => 'Rua da Organização',
 	),
 	'attribute_edupersonorgdn_noreduorgacronym' => array (
@@ -894,6 +911,7 @@ $lang = array(
 		'es' => 'Acrónimo de la Organización',
 		'nl' => 'Organisatie afkorting',
 		'sl' => 'Kratica organizacije',
+		'hr' => 'Akronim (skraćeni naziv) ustanove',
 		'pt' => 'Acrónimo da Organização',
 	),
 	'attribute_edupersonorgdn_eduorgwhitepagesuri' => array (
@@ -906,6 +924,7 @@ $lang = array(
 		'es' => 'URL del servicio de páginas blancas de la Organización',
 		'nl' => 'URL van de publieke telefoon/adres gids van de organisatie',
 		'sl' => 'URL do imeniške storitve "open white pages" organizacije',
+		'hr' => 'URL javno dostupnog imeničkog servisa ustanove',
 		'pt' => 'URL do serviço de directório da Organização',
 	),
 	'attribute_edupersonorgdn_noreduorgschemaversion' => array (
@@ -914,8 +933,10 @@ $lang = array(
 		'da' => 'Brugt version af NorEdu* specifikationen',
 		'en' => 'Version number of the norEdu* specification in use',
 		'sv' => 'Versionsnummer för vilken norEdu*-specifikation som används',
+		'es' => 'Versión de la especificación norEdu* en uso',
 		'nl' => 'Versienummer van de gebruikte norEdu* specificate',
 		'sl' => 'Uporabljena norEDU* verzija',
+		'hr' => 'Verzija hrEdu imeničke sheme',
 		'pt' => 'Versão da especificação norEdu*',
 	),
 	'attribute_edupersonorgunitdn_ou' => array (
@@ -924,8 +945,10 @@ $lang = array(
 		'da' => 'Personens Organisatoriske Enhed (OU)',
 		'en' => 'Person\'s Organizational Unit(s)',
 		'sv' => 'Personens organisatoriska enhet(er)',
+		'es' => 'Unidad Orgaizativa (OU) de la persona',
 		'nl' => 'Afdelingsnaam',
 		'sl' => 'Domači oddelek osebe',
+		'hr' => 'Organizacijska jedinica korisnika',
 		'pt' => 'Unidade Orgânica',
 	),
 	'attribute_edupersonorgunitdn_telephonenumber' => array (
@@ -937,6 +960,7 @@ $lang = array(
 		'es' => 'Número de teléfono de la Unidad Organizativa (OU)',
 		'nl' => 'Organisatie telefoonnummer',
 		'sl' => 'Telefonska številka oddelka',
+		'hr' => 'Broj telefona organizacijske jedinice',
 		'pt' => 'Número de telefone da Unidade Orgânica ',
 	),
 	'attribute_edupersonorgunitdn_noreduorgunituniqueidentifier' => array (
@@ -945,8 +969,10 @@ $lang = array(
 		'da' => 'Den Organisatoriske Enheds beskrivende identifikator',
 		'en' => 'Organizational unit(s) describing identifier',
 		'sv' => 'Organisationsenhetens/enheternas unika identifierare',
+		'es' => 'Decripción de la Unidad Organizativa (OU)',
 		'nl' => 'Afdelings identifier',
 		'sl' => 'Opis oddelka',
+		'hr' => 'Identifikator organizacijske jedinice',
 		'pt' => 'Identificador da Unidade Orgânica',
 	),
 	'attribute_edupersonorgunitdn_facsimiletelephonenumber' => array (
@@ -958,6 +984,7 @@ $lang = array(
 		'es' => 'Número de fax de la Unidad Organizativa',
 		'nl' => 'Afdelings faxnummer',
 		'sl' => 'Fax številka oddelka',
+		'hr' => 'Fax broj organizacijske jedinice',
 		'pt' => 'Número de Fax da Unidade Orgânica',
 	),
 	'attribute_edupersonorgunitdn_postalcode' => array (
@@ -966,8 +993,10 @@ $lang = array(
 		'da' => 'Den Organisatoriske Enheds postnummer',
 		'en' => 'Organizational Unit(s) postal service zones code',
 		'sv' => 'Organisationsenhetens/enheternas postnummer',
+		'es' => 'Código postal de la Unidad Organizativa (OU)',
 		'nl' => 'Afdelings postcode',
 		'sl' => 'Poštna številka oddelka',
+		'hr' => 'Poštanski broj organizacijske jedinice',
 		'pt' => 'Código postal da Unidade Orgânica',
 	),
 	'attribute_edupersonorgunitdn_cn' => array (
@@ -979,6 +1008,7 @@ $lang = array(
 		'es' => 'CN de la Unidad Organizativa',
 		'nl' => 'Afdeling algemene naam',
 		'sl' => 'Polno ime (CN) oddelka',
+		'hr' => 'Naziv organizacijske jedinice',
 		'pt' => 'Nome completo da Unidade Orgânica',
 	),
 	'attribute_edupersonorgunitdn_postaladdress' => array (
@@ -990,6 +1020,7 @@ $lang = array(
 		'es' => 'Dirección postal de la Unidad Organizativa (OU)',
 		'nl' => 'Afdeling postbus',
 		'sl' => 'Naslov oddelka',
+		'hr' => 'Poštanska adresa organizacijske jedinice',
 		'pt' => 'Morada da Unidade Orgânica',
 	),
 	'attribute_edupersonorgunitdn_street' => array (
@@ -1001,6 +1032,7 @@ $lang = array(
 		'es' => 'Calle de la Unidad Organizativa (OU)',
 		'nl' => 'Afdeling adres',
 		'sl' => 'Ulica oddelka',
+		'hr' => 'Ulica u kojoj se organizacijska jedinica nalazi',
 		'pt' => 'Rua da Unidade Orgânica',
 	),
 	'attribute_edupersonorgunitdn_l' => array (
@@ -1012,6 +1044,7 @@ $lang = array(
 		'es' => 'Nombre de la localidad de la Unidad Organizativa (OU)',
 		'nl' => 'Afdeling vestigingsplaats',
 		'sl' => 'Opis oddelka',
+		'hr' => 'Lokalitet organizacijske jedinice',
 		'pt' => 'Localidade da Unidade Orgânica',
 	),
 	'attribute_edupersonorgunitdn_noreduorgacronym' => array (
@@ -1023,6 +1056,7 @@ $lang = array(
 		'es' => 'Acrónimo de la Unidad Organizativa',
 		'nl' => 'Afkorting van de afdeling',
 		'sl' => 'Kratica oddelka',
+		'hr' => 'Akronim (kratica) organizacijske jedinice',
 		'pt' => 'Acrónimo da Unidade Orgânica',
 	),
 	'attribute_edupersonorgunitdn_mail' => array (
@@ -1034,6 +1068,7 @@ $lang = array(
 		'es' => 'Dirección de correo electrónico de la Unidad Organizativa (OU)',
 		'nl' => 'Afdeling e-mail adres',
 		'sl' => 'Elektronski naslov oddelka',
+		'hr' => 'Elektronička adresa organizacijske jedinice',
 		'hu' => 'x',
 		'pt' => 'Endereço de e-mail da Unidade Orgânica',
 	),
