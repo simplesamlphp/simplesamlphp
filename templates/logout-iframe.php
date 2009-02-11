@@ -81,17 +81,15 @@ function sendResponse() {
 	<div id="nojavascriptframe">
 		<iframe style="margin: 1em; width: 90%; height: 5em; border: 1px solid #eee" src="SingleLogoutServiceiFrameNoJavascript.php?response=<?php echo urlencode($this->data['logoutresponse']); ?>"></iframe>			
 	</div>
-
 <?php
-
 	foreach ($this->data['sparray'] AS $sp) {
 		echo '<iframe class="hiddeniframe" onload="xajax_updateslostatus()" style="border: 1px solid #888; width: 80%; height: 100px" 
 			src="' . htmlentities($sp['url']) . '" ></iframe>' . "\n";
 	}
-
 ?>
-
 </noscript>
+
+
 
 
 <div id="requirejavascript" style="display: none">
@@ -101,18 +99,26 @@ function sendResponse() {
 	$requestername = is_array($this->data['requesterName']) ? 
 		$this->getTranslation($this->data['requesterName']) : $this->data['requesterName'];
 
-	echo('<p>' . $this->t('{logout:description}', array('%REQUESTERNAME%' => $requestername)) . '</p>');
+	#echo('<p>' . $this->t('{logout:description}', array('%REQUESTERNAME%' => $requestername)) . '</p>');
 	
 	?>
 
 	<!-- <div class="loggedout"><?php echo($this->t('{logout:logged_out}', array('%REQUESTERNAME%' => $requestername))); ?></div> -->
 
 	<?php
-
-
+	
+		echo('<div><img style="float: left; margin-right: 12px" src="/' . $this->data['baseurlpath'] . 'resources/icons/gn/success-l.png" alt="Successful logout" />');
+		echo('<p style="padding-top: 16px; ">' . $this->t('{logout:loggedoutfrom}', array('%SP%' => '<strong>' .$requestername.'</strong>')) . '</p>');
+		echo('<p style="height: 0px; clear: left;"></p>');
+		echo('</div>');
 		
+
+		echo('<div style="margin-top: 3em; clear: both">');
+		echo('<p style="margin-bottom: .5em">' . $this->t('{logout:also_from}') . '</p>');
 		
 		echo '<table id="slostatustable">';
+
+/** Remove initiated from. showed above instead
 		
 		echo '<tr class="initiated" id="e_initiated">' . "\n";
 		echo '	<td><img style="float: left; margin: 3px" src="/' . $this->data['baseurlpath'] . 
@@ -121,15 +127,16 @@ function sendResponse() {
 		echo '	<td>' . $requestername . '</td>' ."\n";
 		echo '</tr>' . "\n";
 		
-		
+		*/
 
 
 		foreach ($this->data['sparrayNoLogout'] AS $spentityid => $sp) {
 			$spname = is_array($sp['name']) ? $this->getTranslation($sp['name']) : $sp['name'];
 			echo '<tr class="initiated" id="e' . sha1($spentityid) . '">' . "\n";
-			echo '	<td><img style="float: left; margin: 3px" src="/' . $this->data['baseurlpath'] . 
+			echo '	<td class="statustext">Logout not supported</td>';
+			echo '	<td ><img style="" src="/' . $this->data['baseurlpath'] . 
 				'resources/icons/silk/delete.png" alt="Initiated from" /></td>' . "\n";
-			echo '	<td>Logout not supported</td>';
+
 			echo '	<td>' . $spname . '</td>' ."\n";
 			echo '</tr>' . "\n";
 		}
@@ -140,19 +147,23 @@ function sendResponse() {
 			
 			echo '<tr class="ready onhold" id="e' . sha1($spentityid) . '">' . "\n";
 
+			echo '	<td class="statustext">';
+			echo '		<span class="completed">' . $this->t('{logout:completed}') . '</span>' . "\n";
+#			echo '		<span class="onhold">' . $this->t('{logout:hold}') . '</span>' . "\n";
+			echo '		<span class="onhold"></span>' . "\n";
+			echo '		<span class="inprogress">' . $this->t('{logout:progress}') . '</span>' . "\n";
+			echo '		<span class="failed">' . $this->t('{logout:failed}') . '</span>' . "\n";
+			echo '	</td>';
+
 			echo '	<td class="icons">';
 			echo '		<img class="completed"  src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/accept.png" alt="Completed" />' . "\n";
-			echo '		<img class="onhold"     src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/control_pause.png" alt="SP SLO on hold" />' . "\n";
+			echo '		<img class="onhold"     src="/' . $this->data['baseurlpath'] . 'resources/icons/service.png" alt="SP SLO on hold" />' . "\n";
 			echo '		<img class="inprogress" src="/' . $this->data['baseurlpath'] . 'resources/progress.gif" alt="Progress bar" />' . "\n";
 			echo '		<img class="failed"     src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/exclamation.png" alt="Failed" />' . "\n";
 			echo '	</td>' . "\n";
 			
-			echo '	<td class="statustext">';
-			echo '		<span class="completed">' . $this->t('{logout:completed}') . '</span>' . "\n";
-			echo '		<span class="onhold">' . $this->t('{logout:hold}') . '</span>' . "\n";
-			echo '		<span class="inprogress">' . $this->t('{logout:progress}') . '</span>' . "\n";
-			echo '		<span class="failed">' . $this->t('{logout:failed}') . '</span>' . "\n";
-			echo '	</td>';
+
+			
 			echo '	<td>' . $spname . '</td>' ."\n";
 			
 			echo '</tr>' . "\n";
@@ -170,9 +181,9 @@ function sendResponse() {
 
 	?>
 
-	<p id="confirmation" style="margin-top: 1em" ><?php echo $this->t('{logout:continue}'); ?> <br />
-		<input type="button" id="ok" name="ok" value="<?php echo $this->t('{logout:do_continue}'); ?>" />
-		<input type="button" id="cancel" name="cancel" value="<?php echo $this->t('{logout:cancel}'); ?>" />
+	<p id="confirmation" style="margin-top: 1em" ><?php echo $this->t('{logout:logout_all_question}'); ?> <br />
+		<input type="button" id="ok" name="ok" value="<?php echo $this->t('{logout:logout_all}'); ?>" />
+		<input type="button" id="cancel" name="cancel" value="<?php echo $this->t('{logout:logout_only}', array('%SP%' => $requestername)); ?>" />
 	</p>
 	
 	<div id="interrupt" style="margin-top: 1em; border: 1px solid #ccc; padding: 1em; background: #eaeaea" >

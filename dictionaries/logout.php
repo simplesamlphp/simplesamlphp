@@ -50,14 +50,24 @@ $lang = array(
 		'pt-BR' => 'Voltar a instalação do simpleSAMLphp',
 	),
 	'loggedoutfrom' => array (
+		'no' => 'Du er nå logget ut fra %SP%.',
+		'en' => 'You are now successfully logged out from %SP%.',
 	),
 	'also_from' => array (
+		'no' => 'Du er også logget inn på disse tjenestene:',
+		'en' => 'You are also logged in on these services:',
 	),
 	'logout_all_question' => array (
+		'no' => 'Vil du logge ut fra alle tjenestene ovenfor?',
+		'en' => 'Do you want to logout from all the services above?',
 	),
 	'logout_all' => array (
+		'no' => 'Ja, alle tjenestene over',
+		'en' => 'Yes, all services',
 	),
 	'logout_only' => array (
+		'no' => 'Nei, bare %SP%',
+		'en' => 'No, only %SP%',
 	),
 	'description' => array (
 		'no' => 'Du har startet en <strong>global utlogging</strong> fra tjenesten <strong>%REQUESTERNAME%</strong>. Global utlogging betyr at du vil bli logget ut fra alle tjenestene vist nedenfor.',

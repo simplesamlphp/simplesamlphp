@@ -359,7 +359,7 @@ if (array_key_exists('name', $spmeta)) $spname = $spmeta['name'];
 
 $et = new SimpleSAML_XHTML_Template($config, 'logout-iframe.php');
 
-$et->data['header'] = 'Global logout';
+$et->data['header'] = 'Logout';
 $et->data['sparray'] = $sparray;
 $et->data['sparrayNoLogout'] = $sparrayNoLogout;
 

@@ -1,9 +1,15 @@
 table#slostatustable {
-	width: 100%;
+/*	width: 100%; */
 	border-collapse: collapse;
+	margin-bottom: 1em;
 }
 table#slostatustable tr td {
-	border-top: 1px solid #ccc;
+/*	border-top: 1px solid #ccc; */
+	padding-left: 4px;
+	padding-right: 4px;
+}
+table#slostatustable tr td.statustext {
+	min-width: 5em;
 }
 
 
@@ -14,7 +20,7 @@ table#slostatustable tr.inprogress td.statustext span.inprogress { display: inli
 table#slostatustable tr.failed td.statustext span.failed { display: inline; }
 
 table#slostatustable tr td.icons img {
-	margin: 3px;
+/*	margin: 3px; */
 	display: none;
 }
 table#slostatustable tr.completed td.icons img.completed { display: inline; }
