@@ -62,6 +62,15 @@ foreach ($this->data['res'] AS $tag => $res) {
 #	echo ('failed: ' . $tag . '[' . $res[0] . ']'); }
 }
 
+if (array_key_exists('secretURL', $this->data)) {
+	
+	echo('<p>This page can be accessed by this secret URL:<br />');
+	echo('<pre  style="border: 1px solid #aaa; background: yellow; padding: .4em; margin: .2em;">');
+	echo(htmlentities($this->data['secretURL']));
+	echo('</pre></p>');
+	
+}
+
 echo('<p>Status:</p>');
 if ($ok) {
 	echo('<div class="inbox" style="border: 1px solid #aaa; background: yellow; padding: .4em; margin: .2em;">');

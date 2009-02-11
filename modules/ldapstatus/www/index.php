@@ -4,11 +4,39 @@
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
-if (!$session->isValid('login-admin') ) {
-	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
-		array('RelayState' => SimpleSAML_Utilities::selfURL())
+$isAdmin = FALSE;
+$secretURL = NULL;
+if (array_key_exists('orgtest', $_REQUEST)) {
+	$secretKey = sha1('ldapstatus|' . $config->getValue('secret') . '|' . $_REQUEST['orgtest']);
+	$secretURL = SimpleSAML_Utilities::addURLparameter(
+		SimpleSAML_Utilities::selfURLNoQuery(), array(
+			'orgtest' => $_REQUEST['orgtest'],
+			'key' => $secretKey,
+		)
 	);
+	if (array_key_exists('key', $_REQUEST) && $_REQUEST['key'] == $secretKey ) {
+		// OK Access
+	} else {
+		if (!$session->isValid('login-admin') ) {
+			SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
+				array('RelayState' => SimpleSAML_Utilities::selfURL())
+			);
+		}
+		$isAdmin = TRUE;
+	}
+
+} else {
+
+	// Require admin access to overview page...
+	if (!$session->isValid('login-admin') ) {
+		SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
+			array('RelayState' => SimpleSAML_Utilities::selfURL())
+		);
+	}
+	$isAdmin = TRUE;
+
 }
+
 
 
 function backtrace() {
@@ -95,6 +123,7 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 	
 	$t->data['res'] = $res;
 	$t->data['org'] = $orgs[$_REQUEST['orgtest']];
+	if ($isAdmin) $t->data['secretURL'] = $secretURL;
 	$t->show();
 	exit;
 
