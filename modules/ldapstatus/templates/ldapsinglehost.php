@@ -65,7 +65,7 @@ foreach ($this->data['res'] AS $tag => $res) {
 if (array_key_exists('secretURL', $this->data)) {
 	
 	echo('<p>This page can be accessed by this secret URL:<br />');
-	echo('<pre  style="border: 1px solid #aaa; background: #eee; color: #999; padding: .1em; margin: .2em;">');
+	echo('<pre  style="border: 1px solid #aaa; background: #eee; color: #999;c padding: .1em; margin: .2em;">');
 	echo(htmlentities($this->data['secretURL']));
 	echo('</pre></p>');
 	
