@@ -88,19 +88,16 @@ $maxtime = $ldapStatusConfig->getValue('maxExecutionTime', 15);
 if (array_key_exists('orgtest', $_REQUEST)) {
 	$old_error_handler = set_error_handler("myErrorHandler");
 	
-	echo('<html><head><style>
-	p {
-		font-family: monospace; color: #333;
-	}
-	
-	</style></head><body><h1>Test connection to [' . $_REQUEST['orgtest'] . ']</h1>');
-	$tester = new sspmod_ldapstatus_LDAPTester($orgs[$_REQUEST['orgtest']], $debug, TRUE);
+	$tester = new sspmod_ldapstatus_LDAPTester($orgs[$_REQUEST['orgtest']], $debug);
 	$res = $tester->test();
-	echo('<pre>');
-	print_r($res);
-	echo('</p>');
-	echo('</body>');
+
+	$t = new SimpleSAML_XHTML_Template($config, 'ldapstatus:ldapsinglehost.php');
+	
+	$t->data['res'] = $res;
+	$t->data['org'] = $orgs[$_REQUEST['orgtest']];
+	$t->show();
 	exit;
+
 }
 
 
@@ -128,7 +125,7 @@ $lightCounter = array(0,0,0);
 function resultCode($res) {
 	global $lightCounter;
 	$code = '';
-	$columns = array('config', 'ping', 'adminBind', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'ldapGetAttributesTestUser', 'configMeta');
+	$columns = array('configMeta', 'config', 'ping', 'adminBind', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'ldapGetAttributesTestUser', );
 	foreach ($columns AS $c) {
 		if (array_key_exists($c, $res)) {
 			if ($res[$c][0]) {
