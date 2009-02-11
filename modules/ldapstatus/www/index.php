@@ -114,7 +114,7 @@ $maxtime = $ldapStatusConfig->getValue('maxExecutionTime', 15);
 
 
 if (array_key_exists('orgtest', $_REQUEST)) {
-	$old_error_handler = set_error_handler("myErrorHandler");
+	#$old_error_handler = set_error_handler("myErrorHandler");
 	
 	$tester = new sspmod_ldapstatus_LDAPTester($orgs[$_REQUEST['orgtest']], $debug);
 	$res = $tester->test();

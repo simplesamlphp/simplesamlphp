@@ -39,7 +39,7 @@ class sspmod_ldapstatus_LDAPTester {
 		if (count($err) > 0) {
 			return array(FALSE, 'Missing: ' . join(', ', $err));
 		}
-		return array(TRUE, NULL);	
+		return array(TRUE, '');	
 	}
 	
 	
@@ -71,8 +71,12 @@ class sspmod_ldapstatus_LDAPTester {
 		if ($errno) {
 			return array(FALSE, $errno . ':' . $errstr . ' [' . $host . ':' . $port . ']');
 		} else {		
-			return array(TRUE,NULL);
+			return array(TRUE,'');
 		}
+	}
+	
+	public function getTimeText($time) {
+		return 'Operation took ' . ceil($time*1000) . ' ms';
 	}
 	
 	public function test() {
@@ -111,8 +115,9 @@ class sspmod_ldapstatus_LDAPTester {
 	
 
 	
-	
+		$laststart = microtime(TRUE);
 		$result['ping'] = $this->phpping($url['host'], $port);
+		$result['ping'][1] .= $this->getTimeText(microtime(TRUE) - $laststart); 
 	
 		if (!$result['ping'][0]) {
 			$result['time'] = microtime(TRUE) - $start;
@@ -122,12 +127,15 @@ class sspmod_ldapstatus_LDAPTester {
 		
 		// LDAP Connect
 		try {
+			$laststart = microtime(TRUE);
 			$ldap = new SimpleSAML_Auth_LDAP($this->orgconfig['hostname'], 
 				(array_key_exists('enable_tls', $this->orgconfig) ? $this->orgconfig['enable_tls'] : FALSE), 
 				$this->debug);
 			
 			if ($ldap->getLastError()) throw new Exception('LDAP warning: ' . $ldap->getLastError());
-			$result['connect'] = array(TRUE,NULL);
+			$result['connect'] = array(TRUE,'');
+			$result['connect'][1] .= $this->getTimeText(microtime(TRUE) - $laststart); 
+			
 		} catch (Exception $e) {
 			$this->log('ldapstatus: Connect error() [' .$this->orgconfig['hostname'] . ']: ' . $e->getMessage());
 			$result['connect'] = array(FALSE,$e->getMessage());
@@ -138,14 +146,16 @@ class sspmod_ldapstatus_LDAPTester {
 		// Bind as admin user
 		if (isset($this->orgconfig['adminUser'])) {
 			try {
+				$laststart = microtime(TRUE);
 				$this->log('ldapstatus: Admin bind() [' .$this->orgconfig['hostname'] . ']');
 				$success = $ldap->bind($this->orgconfig['adminUser'], $this->orgconfig['adminPassword']);
 				if ($ldap->getLastError()) throw new Exception('LDAP warning: ' . $ldap->getLastError());
 				if ($success) {
-					$result['adminBind'] = array(TRUE,NULL);
+					$result['adminBind'] = array(TRUE,'');
 				} else {
 					$result['adminBind'] = array(FALSE,'Could not bind()' );
 				}
+				$result['adminBind'][1] .= $this->getTimeText(microtime(TRUE) - $laststart); 
 			} catch (Exception $e) {
 				$this->log('admin Bind() error:' . $e->getMessage());
 				$result['adminBind'] = array(FALSE,$e->getMessage());
@@ -158,9 +168,11 @@ class sspmod_ldapstatus_LDAPTester {
 		$eppn = 'asdasdasdasd@feide.no';
 		// Search for bogus user
 		try {
+			$laststart = microtime(TRUE);
 			$dn = $ldap->searchfordn($this->orgconfig['searchbase'], 'eduPersonPrincipalName', $eppn, TRUE);
 			if ($ldap->getLastError()) throw new Exception('LDAP warning: ' . $ldap->getLastError());
-			$result['ldapSearchBogus'] = array(TRUE,NULL);
+			$result['ldapSearchBogus'] = array(TRUE,'');
+			$result['ldapSearchBogus'][1] .= $this->getTimeText(microtime(TRUE) - $laststart); 
 		} catch (Exception $e) {
 			$this->log('LDAP Search bogus:' . $e->getMessage());
 			$result['ldapSearchBogus'] = array(FALSE,$e->getMessage());
@@ -176,9 +188,11 @@ class sspmod_ldapstatus_LDAPTester {
 
 			// Try to search for DN of test account
 			try {
+				$laststart = microtime(TRUE);
 				$dn = $ldap->searchfordn($this->orgconfig['searchbase'], 'eduPersonPrincipalName', $this->orgconfig['testUser']);
 				if ($ldap->getLastError()) throw new Exception('LDAP warning: ' . $ldap->getLastError());
-				$result['ldapSearchTestUser'] = array(TRUE,NULL);
+				$result['ldapSearchTestUser'] = array(TRUE,'');
+				$result['ldapSearchTestUser'][1] .= $this->getTimeText(microtime(TRUE) - $laststart); 
 			} catch (Exception $e) {
 				$this->log('LDAP Search test account:' . $e->getMessage());
 				$result['ldapSearchTestUser'] = array(FALSE,$e->getMessage());
@@ -187,19 +201,21 @@ class sspmod_ldapstatus_LDAPTester {
 			}
 			
 			if ($ldap->bind($dn, $this->orgconfig['testPassword'])) {
-				$result['ldapBindTestUser'] = array(TRUE,NULL);
+				$result['ldapBindTestUser'] = array(TRUE,'');
 				
 			} else {
 				$this->log('LDAP Test user bind() failed...');
-				$result['ldapBindTestUser'] = array(FALSE,NULL);
+				$result['ldapBindTestUser'] = array(FALSE,'');
 				$result['time'] = microtime(TRUE) - $start;
 				return $result;
 			}
 	
 			try {
+				$laststart = microtime(TRUE);
 				$attributes = $ldap->getAttributes($dn, $this->orgconfig['attributes']);
 				if ($ldap->getLastError()) throw new Exception('LDAP warning: ' . $ldap->getLastError());
-				$result['ldapGetAttributesTestUser'] = array(TRUE,NULL);
+				$result['ldapGetAttributesTestUser'] = array(TRUE,'');
+				$result['ldapGetAttributesTestUser'][1] .= $this->getTimeText(microtime(TRUE) - $laststart); 
 			} catch(Exception $e) {
 				$this->log('LDAP Test user attributes failed:' . $e->getMessage());
 				$result['ldapGetAttributesTestUser'] = array(FALSE,$e->getMessage());

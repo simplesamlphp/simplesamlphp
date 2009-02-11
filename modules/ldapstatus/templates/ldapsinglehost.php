@@ -43,7 +43,7 @@ function presentRes($restag) {
 		$res = $t->data['res'][$restag];
 		if ($res[0]) {	
 			echo('<img style="float: right" src="/' . $t->data['baseurlpath'] . 'resources/icons/accept.png" />');
-			echo('OK');
+			echo('OK: ' . $res[1]);
 		} else {
 			echo('<img style="float: right" src="/' . $t->data['baseurlpath'] . 'resources/icons/gn/stop-l.png" />');
 			echo($res[1]);
