@@ -182,7 +182,10 @@ function sendResponse() {
 
 	?>
 
-	<div id="confirmation" style="margin-top: 1em" ><?php echo $this->t('{logout:logout_all_question}'); ?> <br />
+	<div id="confirmation" style="margin-top: 1em" >
+		<p>
+			<?php echo $this->t('{logout:logout_all_question}'); ?> <br />
+		</p>
 		<input type="button" id="ok" name="ok" value="<?php echo $this->t('{logout:logout_all}'); ?>" />
 		<input type="button" id="cancel" name="cancel" value="<?php echo $this->t('{logout:logout_only}', array('%SP%' => $requestername)); ?>" />
 		
