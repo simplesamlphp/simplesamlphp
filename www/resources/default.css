@@ -305,3 +305,13 @@ fieldset.fancyfieldset legend {
 	padding: 3px 2em 3px 2em;
 	border: 1px solid #bbb;
 }
+
+div#confirmation input {
+	margin-top: .5em;
+	margin-bottom: .5em;
+}
+div#confirmation {
+	border: 1px solid #aaa;
+	background: #eee;
+	padding: .6em 1em .1em 1em;
+}
