@@ -38,69 +38,69 @@ if ($this->data['isadmin']) {
 <div id="welcome">
 
 
-<div class="enablebox mini">
-	<table>
-	
-	<?php
-	$icon_enabled  = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="enabled" />';
-	$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="disabled" />';
-	?>
-	
-		<tr class="<?php echo $this->data['enablematrix']['saml20-sp'] ? 'enabled' : 'disabled'; ?>"><td>SAML 2.0 SP</td>
-			<td><?php echo $this->data['enablematrix']['saml20-sp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
-			
-		<tr class="<?php echo $this->data['enablematrix']['saml20-idp'] ? 'enabled' : 'disabled'; ?>"><td>SAML 2.0 IdP</td>
-			<td><?php echo $this->data['enablematrix']['saml20-idp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
-			
-		<tr class="<?php echo $this->data['enablematrix']['shib13-sp'] ? 'enabled' : 'disabled'; ?>"><td>Shib 1.3 SP</td>
-			<td><?php echo $this->data['enablematrix']['shib13-sp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
-			
-		<tr class="<?php echo $this->data['enablematrix']['shib13-idp'] ? 'enabled' : 'disabled'; ?>"><td>Shib 1.3 IdP</td>
-			<td><?php echo $this->data['enablematrix']['shib13-idp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
+	<div class="enablebox mini">
+		<table>
 		
-	</table>
-</div>
-
-
-<p><?php echo $this->t('intro'); ?></p>
-
-
-<h2><?php echo $this->t('useful_links_header'); ?></h2>
-	<ul>
-	<?php
+		<?php
+		$icon_enabled  = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="enabled" />';
+		$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="disabled" />';
+		?>
+		
+			<tr class="<?php echo $this->data['enablematrix']['saml20-sp'] ? 'enabled' : 'disabled'; ?>"><td>SAML 2.0 SP</td>
+				<td><?php echo $this->data['enablematrix']['saml20-sp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
+				
+			<tr class="<?php echo $this->data['enablematrix']['saml20-idp'] ? 'enabled' : 'disabled'; ?>"><td>SAML 2.0 IdP</td>
+				<td><?php echo $this->data['enablematrix']['saml20-idp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
+				
+			<tr class="<?php echo $this->data['enablematrix']['shib13-sp'] ? 'enabled' : 'disabled'; ?>"><td>Shib 1.3 SP</td>
+				<td><?php echo $this->data['enablematrix']['shib13-sp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
+				
+			<tr class="<?php echo $this->data['enablematrix']['shib13-idp'] ? 'enabled' : 'disabled'; ?>"><td>Shib 1.3 IdP</td>
+				<td><?php echo $this->data['enablematrix']['shib13-idp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
+			
+		</table>
+	</div>
 	
-		foreach ($this->data['links'] AS $link) {
-			echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . $this->t($link['text']) . '</a></li>';
-		}
-	?>
-	</ul>
-
-
-<h2><?php echo $this->t('doc_header'); ?></h2>
-	<ul>
-	<?php
 	
-		foreach ($this->data['links_doc'] AS $link) {
-			echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . $this->t($link['text']) . '</a></li>';
-		}
-	?>
-	</ul>
-
-<h2><?php echo $this->t('about_header'); ?></h2>
-	<p><?php echo $this->t('about_text'); ?></p>
+	<p><?php echo $this->t('intro'); ?></p>
+	
+	
+	<h2><?php echo $this->t('useful_links_header'); ?></h2>
+		<ul>
+		<?php
+		
+			foreach ($this->data['links'] AS $link) {
+				echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . $this->t($link['text']) . '</a></li>';
+			}
+		?>
+		</ul>
+	
+	
+	<h2><?php echo $this->t('doc_header'); ?></h2>
+		<ul>
+		<?php
+		
+			foreach ($this->data['links_doc'] AS $link) {
+				echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . $this->t($link['text']) . '</a></li>';
+			}
+		?>
+		</ul>
+	
+	<h2><?php echo $this->t('about_header'); ?></h2>
+		<p><?php echo $this->t('about_text'); ?></p>
 
 </div> <!-- #welcome -->
 
 
 <div id="configuration">
 
-<div>
-	<code style="background: white; border: 1px solid #ccc; padding: 1em; color: #555" ><?php 
-		echo $this->data['directory'] . ' (' . $this->data['version'] . ')'; 
-	?></code>
-</div>
-
-<h2><?php echo $this->t('configuration'); ?></h2>
+	<div>
+		<code style="background: white; border: 1px solid #ccc; padding: 1em; color: #555" ><?php 
+			echo $this->data['directory'] . ' (' . $this->data['version'] . ')'; 
+		?></code>
+	</div>
+	
+	<h2><?php echo $this->t('configuration'); ?></h2>
 	<ul>
 	<?php
 	
@@ -109,42 +109,40 @@ if ($this->data['isadmin']) {
 		}
 	?>
 	</ul>
-
-
-<?php
-	if (array_key_exists('warnings', $this->data) && is_array($this->data['warnings']) && !empty($this->data['warnings'])) {
-
-		echo '<h2>' . $this->t('warnings') . '</h2>';
-
-		foreach($this->data['warnings'] AS $warning) {
-			echo '<div class="caution">' . $this->t($warning) . '</div>';
+	
+	
+	<?php
+		if (array_key_exists('warnings', $this->data) && is_array($this->data['warnings']) && !empty($this->data['warnings'])) {
+	
+			echo '<h2>' . $this->t('warnings') . '</h2>';
+	
+			foreach($this->data['warnings'] AS $warning) {
+				echo '<div class="caution">' . $this->t($warning) . '</div>';
+			}
 		}
+	?>
+	<?php 
+	if ($this->data['isadmin']) {
+	
+		echo '<h2>'. $this->t('checkphp') . '</h2>';
+		echo '<div class="enablebox"><table>';
+		
+		
+		$icon_enabled  = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="enabled" />';
+		$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="disabled" />';
+		
+		
+		foreach ($this->data['funcmatrix'] AS $func) {
+			echo '<tr class="' . ($func['enabled'] ? 'enabled' : 'disabled') . '"><td>' . ($func['enabled'] ? $icon_enabled : $icon_disabled) . '</td>
+			<td>' . $this->t($func['required']) . '</td><td>' . $func['descr'] . '</td></tr>';
+		}
+		echo('</table></div>');
 	}
-?>
-<?php 
-if ($this->data['isadmin']) {
-
-	echo '<h2>'. $this->t('checkphp') . '</h2>';
-	echo '<div class="enablebox"><table>';
+	
+	?>
 	
 	
-	$icon_enabled  = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="enabled" />';
-	$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="disabled" />';
 	
-	
-	foreach ($this->data['funcmatrix'] AS $func) {
-		echo '<tr class="' . ($func['enabled'] ? 'enabled' : 'disabled') . '"><td>' . ($func['enabled'] ? $icon_enabled : $icon_disabled) . '</td>
-		<td>' . $this->t($func['required']) . '</td><td>' . $func['descr'] . '</td></tr>';
-	}
-
-}
-
-?>
-</table>
-</div>
-
-
-
 </div> <!-- #configuration -->
 
 <div id="metadata">
@@ -169,7 +167,7 @@ function mtype($set) {
 echo '<dl>';
 if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaentries']['hosted']) > 0)
 foreach ($this->data['metaentries']['hosted'] AS $hm) {
-	echo '<dt>' . $this->t(mtype($hm['metadata-set'])) . '</tt></dt>';
+	echo '<dt>' . $this->t(mtype($hm['metadata-set'])) . '</dt>';
 	echo '<dd>';
 	echo '<p>Entity ID: ' . $hm['entityid'];
 	if ($hm['entityid'] !== $hm['metadata-index']) 
@@ -221,10 +219,6 @@ foreach($this->data['metaentries']['remote'] AS $setkey => $set) {
 		}
 	?>
 	</ul>
-
-
-
-		
 
 
 

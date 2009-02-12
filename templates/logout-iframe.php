@@ -16,7 +16,7 @@
 
 	$this->data['head'] .= '
 <script type="text/javascript" language="JavaScript">
-
+<!--
 
 
 $(document).ready(function() {
@@ -36,7 +36,7 @@ $(document).ready(function() {
       sendResponse();
     });
     
-    ' . ($nologoutSPs ? '$("div#incapablesps").show();' : '$("div#incapablesps").hide();') . '
+    ' . ($nologoutSPs ? '$("#incapablesps").show();' : '$("#incapablesps").hide();') . '
 
 });
 
@@ -49,7 +49,7 @@ function startslo() {
 	$("#confirmation").hide();
 	$("#hiddeniframecontainer").html("' . str_replace('"', '\"', $iframehtml) . '");
 	$("table#slostatustable tr.onhold").removeClass("onhold").addClass("inprogress");
-	$("div.completedButWarnings").show(); 
+/*	$("div.completedButWarnings").show();  */
 	setTimeout("toolong()", 16000);
 }
 
@@ -70,6 +70,7 @@ function slocompleted() {
 function sendResponse() {
 	window.location = "' .  $this->data['logoutresponse'] . '";
 }
+// -->
 </script>';
 	
 	$this->includeAtTemplateBase('includes/header.php');
@@ -107,7 +108,7 @@ function sendResponse() {
 
 	<?php
 	
-		echo('<div><img style="float: left; margin-right: 12px" src="/' . $this->data['baseurlpath'] . 'resources/icons/gn/success-l.png" alt="Successful logout" />');
+		echo('<div><img style="float: left; margin-right: 12px" src="/' . $this->data['baseurlpath'] . 'resources/icons/checkmark48.png" alt="Successful logout" />');
 		echo('<p style="padding-top: 16px; ">' . $this->t('{logout:loggedoutfrom}', array('%SP%' => '<strong>' .$requestername.'</strong>')) . '</p>');
 		echo('<p style="height: 0px; clear: left;"></p>');
 		echo('</div>');
@@ -150,14 +151,14 @@ function sendResponse() {
 			echo '	<td class="statustext">';
 			echo '		<span class="completed">' . $this->t('{logout:completed}') . '</span>' . "\n";
 #			echo '		<span class="onhold">' . $this->t('{logout:hold}') . '</span>' . "\n";
-			echo '		<span class="onhold"></span>' . "\n";
+#			echo '		<span class="onhold"></span>' . "\n";
 			echo '		<span class="inprogress">' . $this->t('{logout:progress}') . '</span>' . "\n";
 			echo '		<span class="failed">' . $this->t('{logout:failed}') . '</span>' . "\n";
 			echo '	</td>';
 
 			echo '	<td class="icons">';
 			echo '		<img class="completed"  src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/accept.png" alt="Completed" />' . "\n";
-			echo '		<img class="onhold"     src="/' . $this->data['baseurlpath'] . 'resources/icons/service.png" alt="SP SLO on hold" />' . "\n";
+			echo '		<img class="onhold"     src="/' . $this->data['baseurlpath'] . 'resources/icons/bullet16_grey.png" alt="SP SLO on hold" />' . "\n";
 			echo '		<img class="inprogress" src="/' . $this->data['baseurlpath'] . 'resources/progress.gif" alt="Progress bar" />' . "\n";
 			echo '		<img class="failed"     src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/exclamation.png" alt="Failed" />' . "\n";
 			echo '	</td>' . "\n";
@@ -171,7 +172,7 @@ function sendResponse() {
 // 			echo '<div class="inprogress" id="e' . sha1($spentityid) . '">
 // 				<img style="float: left; margin: 3px" src="/' . $this->data['baseurlpath'] . 'resources/progress.gif" alt="Progress bar" />Wait... is logging out from <strong>' . $spname . '</strong></div>'  . "\n";
 		}
-		echo '</table>';
+		echo '</table></div>';
 
 		$completed = ' class="allcompleted"';
 		if (count($this->data['sparray']) > 0) {
@@ -181,14 +182,26 @@ function sendResponse() {
 
 	?>
 
-	<p id="confirmation" style="margin-top: 1em" ><?php echo $this->t('{logout:logout_all_question}'); ?> <br />
+	<div id="confirmation" style="margin-top: 1em" ><?php echo $this->t('{logout:logout_all_question}'); ?> <br />
 		<input type="button" id="ok" name="ok" value="<?php echo $this->t('{logout:logout_all}'); ?>" />
 		<input type="button" id="cancel" name="cancel" value="<?php echo $this->t('{logout:logout_only}', array('%SP%' => $requestername)); ?>" />
-	</p>
+		
+
+		<p id="incapablesps" >
+			<?php echo($this->t('{logout:incapablesps}')); ?>
+		</p>
+		
+		
+	</div>
+	
+
+	
+	
 	
 	<div id="interrupt" style="margin-top: 1em; border: 1px solid #ccc; padding: 1em; background: #eaeaea" >
 		<p style="margin: 0px; padding; 0px">
 			<img src="/<?php echo($this->data['baseurlpath']); ?>resources/icons/timeout.png" 
+				alt="Timeout"
 				style="float: left; margin: 0px 5px 0px 0px"
 				/>
 			<?php echo $this->t('{logout:respond_info}'); ?> <br />
@@ -196,24 +209,11 @@ function sendResponse() {
 		</p>
 	</div>
 	
-	<div id="incapablesps" style="margin-top: 1em; border: 1px solid #ccc; padding: 1em; background: #eaeaea" >
-		<p style="margin: 0px; padding; 0px">
-			<img src="/<?php echo($this->data['baseurlpath']); ?>resources/icons/caution.png" 
-				style="float: left; margin: 0px 5px 0px 0px"
-				/>
-			One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>.
-		</p>
-
-		<div class="completedButWarnings">
-			<input type="button" id="returnanyway" name="ok" value="<?php echo $this->t('{logout:return}'); ?>" />
-		</div>
-
-	</div>
 
 	<div id="hiddeniframecontainer" style="margin: 0px; padding: 0px;"></div>
 
 
-</div>
+</div> <!-- requirejavascript -->
 
 <!--
 <script type="text/javascript" language="JavaScript">

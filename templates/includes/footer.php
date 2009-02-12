@@ -8,9 +8,9 @@
 		
 		<br style="clear: right" />
 	
-	</div>
+	</div><!-- #content -->
 
-</div>
+</div><!-- #wrap -->
 
 </body>
 </html>
