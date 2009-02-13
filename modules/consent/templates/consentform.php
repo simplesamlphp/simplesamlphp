@@ -50,35 +50,9 @@ if (array_key_exists('name', $this->data['dstMetadata'])) {
 $attributes = $this->data['attributes'];
 
 
-$this->data['header'] = $this->t('{consent:consent_header}');
+$this->data['header'] = $this->t('{consent:consent:consent_header}');
 $this->data['head']  = '<link rel="stylesheet" type="text/css" href="/' . $this->data['baseurlpath'] . 'module.php/consent/style.css" />' . "\n";
-$this->data['head'] .= '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>
 
-	<script type="text/javascript">
-
-$(document).ready(function() {
-
-	$("table[id=table_with_attributes]").hide();
-
-	$("legend[@id=attribute_switch]").
-		click(function(event){
-			$("table[id=table_with_attributes]").toggle();
-			$("div[@id=addattributes]").toggle();
-		});
-
-	$("a[@id=addattributesb]").
-		click(function(event){
-			event.preventDefault();
-			$("table[id=table_with_attributes]").show();
-			$("div[@id=addattributes]").hide("fast");
-		});
-
-});
-
-	</script>
-
-
-';
 
 
 $this->includeAtTemplateBase('includes/header.php');
@@ -87,9 +61,10 @@ $this->includeAtTemplateBase('includes/header.php');
 
 <p>
 <?php
-	echo $this->t('{consent:consent_notice}', array( 'SPNAME' => $dstName ));
+	echo $this->t('{consent:consent:consent_accept}', array( 'SPNAME' => $dstName, 'IDPNAME' => $srcName ));
+	#echo $this->t('{consent:consent:consent_notice}', array( 'SPNAME' => $dstName ));
 	if (array_key_exists('descr_purpose', $this->data['dstMetadata'])) {
-		echo '</p><p>' . $this->t('{consent:consent_purpose}', array(
+		echo '</p><p>' . $this->t('{consent:consent:consent_purpose}', array(
 			'SPNAME' => $dstName,
 			'SPDESC' => $this->getTranslation(SimpleSAML_Utilities::arrayize($this->data['dstMetadata']['descr_purpose'], 'en')),
 		));
@@ -99,9 +74,18 @@ $this->includeAtTemplateBase('includes/header.php');
 
 <p>
 <?php
-  echo $this->t('{consent:consent_accept}', array( 'SPNAME' => $dstName, 'IDPNAME' => $srcName ));
+  
 ?>
 </p>
+
+<?php
+	if ($this->data['usestorage']) {
+		$checked = ($this->data['checked'] ? 'checked="checked"' : '');
+		echo('<input type="checkbox" name="saveconsent" ' . $checked . ' value="1" /> ' . $this->t('{consent:consent:remember}') . '');
+	}
+?>
+
+
 
 	<p style="margin: 1em">
 <form style="display: inline; margin: 0px; padding: 0px" action="<?php echo htmlspecialchars($this->data['yesTarget']); ?>">
@@ -112,14 +96,8 @@ $this->includeAtTemplateBase('includes/header.php');
 	}
 ?>
 
-		<input type="submit" name="yes" id="yesbutton" value="<?php echo htmlspecialchars($this->t('{consent:yes}')) ?>" />
+		<input type="submit" name="yes" id="yesbutton" value="<?php echo htmlspecialchars($this->t('{consent:consent:yes}')) ?>" />
 
-<?php
-	if ($this->data['usestorage']) {
-		$checked = ($this->data['checked'] ? 'checked="checked"' : '');
-		echo('<input type="checkbox" name="saveconsent" ' . $checked . ' value="1" /> ' . $this->t('{consent:remember}') . '');
-	}
-?>
 
 
 
@@ -131,13 +109,13 @@ foreach ($this->data['noData'] as $name => $value) {
         echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
 }
 ?>
-	<input type="submit" style="display: inline" name="no" id="nobutton" value="<?php echo htmlspecialchars($this->t('{consent:no}')) ?>" />
+	<input type="submit" style="display: inline" name="no" id="nobutton" value="<?php echo htmlspecialchars($this->t('{consent:consent:no}')) ?>" />
 
 </form>
 
 <?php
 if ($this->data['sppp'] !== FALSE) {
-	echo "<p>" . htmlspecialchars($this->t('{consent:consent_privacypolicy}')) . " ";
+	echo "<p>" . htmlspecialchars($this->t('{consent:consent:consent_privacypolicy}')) . " ";
 	echo "<a target='_new_window' href='" . htmlspecialchars($this->data['sppp']) . "'>" . htmlspecialchars($dstName) . "</a>";
 	echo "</p>";
 }
@@ -230,10 +208,15 @@ foreach ($this->data['noData'] as $name => $value) {
 	-->
 
 	<fieldset class="fancyfieldset">
-		<legend id="attribute_switch"> » <?php echo $this->t('{consent:consent_attributes_header}'); ?></legend>
+		<legend id="attribute_switch"><?php 
+			echo $this->t('{consent:consent:consent_attributes_header}',array( 'SPNAME' => $dstName, 'IDPNAME' => $srcName )); 
+		?></legend>
 	
-	<div id="addattributes"><a id="addattributesb" class="link"><?php echo $this->t('{consent:show_attributes}'); ?></a></div>
-	
+	<!-- 
+	<div id="addattributes">
+		<a id="addattributesb" class="link"><?php echo $this->t('{consent:consent:show_attributes}'); ?></a>
+	</div>
+	-->
 	<?php
 	
 		echo(present_attributes($this, $attributes, ''));
