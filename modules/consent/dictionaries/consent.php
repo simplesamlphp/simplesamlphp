@@ -38,7 +38,7 @@ $lang = array(
 		'pt-BR' => 'Não, não aceito',
 	),
 	'remember' => array (
-		'no' => 'Husk samtykke',
+		'no' => 'Godta også for fremtiden',
 		'nn' => 'Hugs samtykke',
 		'da' => 'Husk samtykke',
 		'en' => 'Remember',
