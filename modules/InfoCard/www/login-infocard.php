@@ -3,7 +3,7 @@
 /*
 * AUTHOR: Samuel Muñoz Hidalgo
 * EMAIL: samuel.mh@gmail.com
-* LAST REVISION: 22-DEC-08
+* LAST REVISION: 13-FEB-09
 * DESCRIPTION:
 *		User flow controller.
 *		Displays the template and request a non null xmlToken
@@ -52,7 +52,7 @@ SimpleSAML_Logger::debug('NO HAY XML TOKEN');
 unset($_POST); //Show the languages bar if reloaded
  
 //Login Page
-$t = new SimpleSAML_XHTML_Template($config, 'InfoCard:login-infocard.php', 'InfoCard:logininfocard'); //(configuracion, template, diccionario)
+$t = new SimpleSAML_XHTML_Template($config, 'InfoCard:temp-login.php', 'InfoCard:dict-InfoCard'); //(configuracion, template, diccionario)
 $t->data['header'] = 'simpleSAMLphp: Infocard login';
 $t->data['stateparams'] = array('AuthState' => $authStateId);
 $t->data['IClogo'] = $IClogo;

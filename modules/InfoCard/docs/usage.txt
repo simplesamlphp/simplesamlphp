@@ -9,8 +9,9 @@ Information cards module for simpleSAMLphp
 
 	AUTHOR: Samuel Muñoz Hidalgo
 	EMAIL: samuel.mh@gmail.com
-	LAST REVISION: 22-DEC-08
+	LAST REVISION: 13-FEB-09
 	DESCRIPTION: What you should read before starting doing things.
+
 
 	
 Introduction
@@ -25,7 +26,7 @@ RP
 : Acting as a Relying Party, you can accept user authentication through InfoCards comsumming tokens sent by aSTS.
 
 STS
-: Acting as a Secure Token Service you can provide information to a RP generating tokens. Currently, only user-password authentication is supported.
+: Acting as a Secure Token Service you can provide information to a RP generating tokens. Currently, only user password and self issued credentials are supported.
 
 InfoCard Generator
 : Your users could request their InfoCard filling a form with their username and password.

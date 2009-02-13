@@ -21,6 +21,7 @@
 	<p><?php echo $this->t('user_IC_text'); ?></p>
 	
 	<form name="ctl00" id="ctl00" method="post" action="?AuthState=<?php echo $this->data['stateparams']['AuthState']?>">
+
 <!--		<ic:informationCard xmlns:ic="<?php echo $this->data['InfoCard']['schema'] ?>" name="xmlToken" 
 			issuer="<?php echo $this->data['InfoCard']['issuer']; ?>"
 			<?php 
@@ -62,16 +63,12 @@
 	</form>
 	
 <!-- 	GET INFOCARD SECTION -->
-	<?php if (strcmp($this->data['CardGenerator'],'')>0) {
-	echo '<h2>'.$this->t('get_IC').'</h2>';
-	echo "<form action=\"". $this->data['CardGenerator'] ."\" method='post'>";
-		echo '<table border="0">';
-		echo "<tr><td>".$this->t('form_username').": </td><td><input type='text' name='username' value='usuario' /></td></tr>";
-		echo "<tr><td>".$this->t('form_password').": </td><td><input type='password' name='password' value='clave' /></td></tr>";
-		echo "<tr><td></td><td><input type='submit' name='get_button' value='".$this->t('get_button')."' /></td></tr>";
-	echo '</table>';
-	echo '</form>';
-	 } ?>
+	<?php
+		if (strcmp($this->data['CardGenerator'],'')>0) {
+			echo '<h2>'.$this->t('get_IC').'</h2>';
+			echo '<a href="'.$this->data['CardGenerator'].'?AuthState='.$this->data['stateparams']['AuthState'].'">'.$this->t('get_IC_link').'</a>';
+	 	}
+	?>
 	 
 <!-- 	 HELP SECTION -->
 	<h2><?php echo $this->t('help_header'); ?></h2>	
