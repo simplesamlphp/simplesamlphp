@@ -20,7 +20,7 @@ $lang = array(
 		'pt-BR' => 'Sim, Aceito',
 	),
 	'no' => array (
-		'no' => 'Nei, avbryt innlogging',
+		'no' => 'Nei, avbryt',
 		'nn' => 'Nei, eg aksepterer ikkje',
 		'da' => 'Nej, jeg accepterer ikke',
 		'en' => 'No, cancel',
