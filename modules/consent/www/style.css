@@ -43,3 +43,12 @@ td.attrvalue img {
 	border: 1px solid #777;
 	margin: 4px;
 }
+
+table#table_with_attributes td.attrname {
+	color: #555;
+	font-weight: light;
+	font-size: 90%;
+}
+table#table_with_attributes ul {
+	margin: 0px;
+}
