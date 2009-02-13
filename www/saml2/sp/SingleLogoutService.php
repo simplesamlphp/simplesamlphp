@@ -22,7 +22,8 @@ if (isset($session) ) {
 	$session->clean();
 }
 
-	sleep(max(0, rand(-3,5))*5);
+# sleep(max(0, rand(-3,5))*5);
+
 
 if (isset($_GET['SAMLRequest'])) {
 
