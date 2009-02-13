@@ -3,6 +3,7 @@
 $lang = array(
 	'welcome' => array (
 		'no' => 'Velkommen',
+		'nn' => 'Velkomen',
 		'da' => 'Velkommen',
 		'en' => 'Welcome',
 		'sv' => 'Välkommen',
@@ -11,6 +12,7 @@ $lang = array(
 	),
 	'configuration' => array (
 		'no' => 'Konfigurasjon',
+		'nn' => 'Konfigurasjon',
 		'da' => 'Konfiguration',
 		'en' => 'Configuration',
 		'sv' => 'Konfiguration',
@@ -19,6 +21,7 @@ $lang = array(
 	),
 	'metadata' => array (
 		'no' => 'Metadata',
+		'nn' => 'Metadata',
 		'da' => 'Metadata',
 		'en' => 'Metadata',
 		'sv' => 'Metadata',
@@ -27,6 +30,7 @@ $lang = array(
 	),
 	'tools' => array (
 		'no' => 'Verktøy',
+		'nn' => 'Verktøy',
 		'da' => 'Værktøjer',
 		'en' => 'Tools',
 		'sv' => 'Verktyg',
@@ -35,6 +39,7 @@ $lang = array(
 	),
 	'login_as_admin' => array (
 		'no' => 'Login som administrator',
+		'nn' => 'Innlogga som administrator',
 		'da' => 'Login som administrator',
 		'en' => 'Login as administrator',
 		'sv' => 'Logga in som administratör',
@@ -43,6 +48,7 @@ $lang = array(
 	),
 	'loggedin_as_admin' => array (
 		'no' => 'Du er logget inn som administrator',
+		'nn' => 'Du er logga inn som administrator',
 		'da' => 'Du er logget ind som administrator',
 		'en' => 'You are logged in as administrator',
 		'sv' => 'Du är inloggad som administratör',
@@ -51,6 +57,7 @@ $lang = array(
 	),
 	'show_metadata' => array (
 		'no' => 'Vis metadata',
+		'nn' => 'Vis metadata',
 		'da' => 'Vis metadata',
 		'en' => 'Show metadata',
 		'sv' => 'Visa metadata',

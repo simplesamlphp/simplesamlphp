@@ -51,35 +51,42 @@ $lang = array(
 	),
 	'loggedoutfrom' => array (
 		'no' => 'Du er nå logget ut fra %SP%.',
+		'nn' => 'Du er ferdig utlogga frå %SP%.',
 		'da' => 'Du er nu logget ud fra %SP%.',
 		'en' => 'You are now successfully logged out from %SP%.',
 	),
 	'also_from' => array (
 		'no' => 'Du er også logget inn på disse tjenestene:',
+		'nn' => 'Du er i tillegg logga inn på desse tenestene:',
 		'da' => 'Du er også logget ud fra disse services:',
 		'en' => 'You are also logged in on these services:',
 	),
 	'logout_all_question' => array (
 		'no' => 'Vil du logge ut fra alle tjenestene ovenfor?',
+		'nn' => 'Vil du logga ut frå alle tenestene?',
 		'da' => 'Vil du logge ud fra alle ovenstående services?',
 		'en' => 'Do you want to logout from all the services above?',
 	),
 	'logout_all' => array (
 		'no' => 'Ja, alle tjenestene over',
+		'nn' => 'Ja, logg ut frå alle',
 		'da' => 'Ja, alle services',
 		'en' => 'Yes, all services',
 	),
 	'logout_only' => array (
 		'no' => 'Nei, bare %SP%',
+		'nn' => 'Nei, logg berre ut frå %SP%',
 		'da' => 'Nej, kun %SP%',
 		'en' => 'No, only %SP%',
 	),
 	'incapablesps' => array (
 		'no' => 'En eller flere av tjenestene du er logget inn på <i>støtter ikke logout</i>. Lukk nettleseren, dersom du ønsker å logge ut fra disse tjenestene.',
+		'nn' => 'Ei eller fleire av tenestene du er innlogga på <i>støtter ikkje utlogging</i>.  Lukk weblesaren din for å sikra at alle sesjonar blir lukka',
 		'en' => 'One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>.',
 	),
 	'description' => array (
 		'no' => 'Du har startet en <strong>global utlogging</strong> fra tjenesten <strong>%REQUESTERNAME%</strong>. Global utlogging betyr at du vil bli logget ut fra alle tjenestene vist nedenfor.',
+		'nn' => 'Du har sett igang <strong>total utlogging</strong> frå tenesta <strong>%REQUESTERNAME%</strong>.  Total utlogging inneber at du blir logga ut frå alle webtenestene.',
 		'da' => 'Du har påbegyndt et <strong>globalt logout</strong> fra servicen <strong>%REQUESTERNAME%</strong>. Globalt logout betyder at du vil blive logget ud af alle services herunder.',
 		'en' => 'You have initiated a <strong>global logout</strong> from the service <strong>%REQUESTERNAME%</strong>. Global logout means you will be logged out from all of the services listed below.',
 		'sv' => 'Du har påbörjat en <strong>global utloggníng</strong> från tjänsten <strong>%REQUESTERNAME%</strong>. Global utloggnng betyder att du kan kommer att bli utloggad från alla nedanstående tjänste.',
@@ -89,6 +96,7 @@ $lang = array(
 	),
 	'initiated' => array (
 		'no' => 'Startet utlogging',
+		'nn' => 'Utlogging igangsett',
 		'da' => 'Påbegyndt logout',
 		'en' => 'Initiated logout',
 		'sv' => 'Påbörjad utloggning',
@@ -98,6 +106,7 @@ $lang = array(
 	),
 	'hold' => array (
 		'no' => 'På vent',
+		'nn' => 'Venter',
 		'da' => 'I kø',
 		'en' => 'On hold',
 		'sv' => 'Vilande',
@@ -107,6 +116,7 @@ $lang = array(
 	),
 	'completed' => array (
 		'no' => 'Fullført',
+		'nn' => 'Ferdig',
 		'da' => 'Færdig',
 		'en' => 'Completed',
 		'sv' => 'Klar',
@@ -116,6 +126,7 @@ $lang = array(
 	),
 	'progress' => array (
 		'no' => 'Logger ut...',
+		'nn' => 'Loggar ut...',
 		'da' => 'Logger ud...',
 		'en' => 'Logging out...',
 		'sv' => 'Loggar ut...',
@@ -125,6 +136,7 @@ $lang = array(
 	),
 	'failed' => array (
 		'no' => 'Utlogging feilet',
+		'nn' => 'Utlogging feila',
 		'da' => 'Logout fejlede',
 		'en' => 'Logout failed',
 		'sv' => 'Utloggning misslyckades',
@@ -134,6 +146,7 @@ $lang = array(
 	),
 	'continue' => array (
 		'no' => 'Ønsker du å fortsette global utlogging?',
+		'nn' => 'Vil du gå vidare med total utlogging?',
 		'da' => 'Vil du fortsætte en global logout?',
 		'en' => 'Do you want to continue global logout?',
 		'sv' => 'Vill du fortsätta med den globala utloggningen?',
@@ -143,6 +156,7 @@ $lang = array(
 	),
 	'do_continue' => array (
 		'no' => 'Ja, fortsett utlogging',
+		'nn' => 'Ja, logg meg ut',
 		'da' => 'Ja, fortsæt logout.',
 		'en' => 'Yes, continue logout',
 		'sv' => 'Ja, fortsätt logga ut',
@@ -152,6 +166,7 @@ $lang = array(
 	),
 	'cancel' => array (
 		'no' => 'Avbryt utlogging',
+		'nn' => 'Avlys utlogging',
 		'da' => 'Fortryd logout',
 		'en' => 'Cancel logout',
 		'sv' => 'Avbryt utloggningen',
@@ -161,6 +176,7 @@ $lang = array(
 	),
 	'respond_info' => array (
 		'no' => 'Dersom noen av tjenestene ikke svarer innen rimelig tid anbefales du å lukke din nettleser for å sikre at sesjonen avsluttes.',
+		'nn' => 'Lukk weblesaren din dersom det tar for lang tid å få utloggingssvar, dette lukker alle sesjonar',
 		'da' => 'Hvis nogle at serviceudbyderne ikke svare inden for rimelig tid, så opfordres du til at lukke din browser for at sikre at din session er lukket korrekt. ',
 		'en' => 'If some of the service providers do not respond in reasonable time, you are encouraged to close your browser to ensure sessions are closed.',
 		'sv' => 'Om någon tjänst inte svarar inom rimlig tid rekommenderas du att stänga webbläsaren för att garantera att du blir utloggad.',
@@ -170,6 +186,7 @@ $lang = array(
 	),
 	'return' => array (
 		'no' => 'Tilbake til tjenesten',
+		'nn' => 'Gå tilbake til tenesta',
 		'da' => 'Tilbage til service',
 		'en' => 'Return to service',
 		'sv' => 'Åter till tjänsten',
@@ -179,6 +196,7 @@ $lang = array(
 	),
 	'progress_bar' => array (
 		'no' => 'Status bar',
+		'nn' => 'Framdrift',
 		'da' => 'Statusbar',
 		'en' => 'Progress bar',
 		'sv' => 'Förloppsindikator (utloggningsmätare)',
@@ -188,6 +206,7 @@ $lang = array(
 	),
 	'logging_out' => array (
 		'no' => 'Vent... logger ut fra <strong>%SPNAME%</strong>.',
+		'nn' => 'Vent... utlogging skjer frå <strong>%SPNAME%</strong>.',
 		'da' => 'Vent... logger ud fra <strong>%SPNAME</strong>.',
 		'en' => 'Wait... is logging out from <strong>%SPNAME%</strong>.',
 		'sv' => 'Vänta... loggar ut från <strong>%SPNAME%</strong>.',
@@ -197,6 +216,7 @@ $lang = array(
 	),
 	'logged_out' => array (
 		'no' => 'Utlogging var startet fra %REQUESTERNAME%.',
+		'nn' => 'Utlogging starta frå %REQUESTERNAME%.',
 		'da' => 'Logout var started fra %REQUESTERNAME%.',
 		'en' => 'Logout was started from %REQUESTERNAME%.',
 		'sv' => 'Utloggning startades från %REQUESTERNAME%.',
@@ -206,6 +226,7 @@ $lang = array(
 	),
 	'interrupt' => array (
 		'no' => 'Avbryt utloggingeng og g&aring; tilbake til tjenesten.',
+		'nn' => 'Avbryt utlogging og gå tilbake til tenesta',
 		'da' => 'afbrudt logout. Returnere til service.',
 		'en' => 'Interrupt logging out and go back to service.',
 		'sv' => 'Avbryt utloggningen och gå tillbaka till tjänsten.',
@@ -215,6 +236,7 @@ $lang = array(
 	),
 	'success' => array (
 		'no' => 'Du har n&aring; logget ut fra alle tjenestene listet ovenfor.',
+		'nn' => 'Du er ferdig utlogga frå alle tenestene',
 		'da' => 'Du har logget ud fra alle overnævnte services. ',
 		'en' => 'You have successfully logged out from all services listed above.',
 		'sv' => 'Du har loggat ut från alla nedanstående tjänster.',
@@ -224,6 +246,7 @@ $lang = array(
 	),
 	'finish' => array (
 		'no' => 'OK, fortsett tilbake til %REQUESTERNAME% for å fullføre utloggingsprosessen.',
+		'nn' => 'OK, gå til %REQUESTERNAME% for å fullføra utlogginga',
 		'da' => 'OK, fortsæt tilbage til %REQUESTERNAME% for at afslutte logout proces.',
 		'en' => 'OK, continue back to %REQUESTERNAME% to complete the logout process.',
 		'sv' => 'Ok, fortsätt tillbaka till %REQUESTERNAME% för att avsluta utloggningen.',
