@@ -78,6 +78,10 @@ $this->includeAtTemplateBase('includes/header.php');
 ?>
 </p>
 
+
+<form style="display: inline; margin: 0px; padding: 0px" action="<?php echo htmlspecialchars($this->data['yesTarget']); ?>">
+<p style="margin: 1em">
+
 <?php
 	if ($this->data['usestorage']) {
 		$checked = ($this->data['checked'] ? 'checked="checked"' : '');
@@ -86,16 +90,13 @@ $this->includeAtTemplateBase('includes/header.php');
 ?>
 
 
-
-	<p style="margin: 1em">
-<form style="display: inline; margin: 0px; padding: 0px" action="<?php echo htmlspecialchars($this->data['yesTarget']); ?>">
 <?php
 	// Embed hidden fields...
 	foreach ($this->data['yesData'] as $name => $value) {
 		echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
 	}
 ?>
-
+</p>
 		<input type="submit" name="yes" id="yesbutton" value="<?php echo htmlspecialchars($this->t('{consent:consent:yes}')) ?>" />
 
 
