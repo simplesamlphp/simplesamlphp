@@ -58,6 +58,13 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 				}
 			} elseif (array_key_exists('attributes', $request['Destination'])) {
 				$this->allowedAttributes = $request['Destination']['attributes'];
+			} else {
+				/*
+				 * When no list of attributes is provided in filter config, and no
+				 * attributes is listed in the destionation metadata, no filtering
+				 * will be performed. Default behaviour is letting all attributes through
+				 */
+				return;
 			}
 		}
 		
