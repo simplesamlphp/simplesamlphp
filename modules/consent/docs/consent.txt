@@ -1,0 +1,39 @@
+Installing and configuring the consent module
+=============================================
+
+The consent module is implemented as an Authentication Processing Filter. That means it can be configured in the global config.php file or the SP remote or IdP hosted metadata.
+
+It is recommended to run the consent module at the IdP, and configure the filter to run after all attribute mangling filters is completed, to show the user the exact same attributes that are sent to the SP.
+
+Setting up a database
+---------------------
+
+Here is the initialization SQL script for PostgreSQL
+
+	CREATE TABLE consent (
+		consent_date TIMESTAMP NOT NULL,
+		usage_date TIMESTAMP NOT NULL,
+		hashed_user_id VARCHAR(80) NOT NULL,
+		service_id VARCHAR(255) NOT NULL,
+		attribute VARCHAR(80) NOT NULL,
+		UNIQUE (hashed_user_id, service_id)
+	);
+
+
+Configuring the processing filter
+---------------------------------
+
+Example config using PostgreSQL database:
+
+	90 => array(
+		'class' 	=> 'consent:Consent', 
+		'store' 	=> array(
+			'consent:Database', 
+			'dsn' => 'pgsql:host=sql.uninett.no;dbname=andreas_consent',
+			'username' => 'simplesaml',
+			'password' => 'sdfsdf',
+		),
+		'focus' 	=> 'yes', 
+		'checked' 	=> TRUE
+	),
+
