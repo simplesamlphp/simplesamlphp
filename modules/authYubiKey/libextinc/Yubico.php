@@ -127,13 +127,9 @@ class Auth_Yubico
 		/* Support https. */
 		$url = "https://api.yubico.com/wsapi/verify?" . $parameters;
 
-		$ch = curl_init($url);
-		curl_setopt($ch, CURLOPT_USERAGENT, "PEAR Auth_Yubico");
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		$this->_response = curl_exec($ch);
-		curl_close($ch);
+		$responseMsg = file_get_contents($url);
 		
-		if(!preg_match("/status=([a-zA-Z0-9_]+)/", $this->_response, $out)) {
+		if(!preg_match("/status=([a-zA-Z0-9_]+)/", $responseMsg, $out)) {
 			throw new Exception('Could not parse response');
 		}
 
@@ -141,7 +137,7 @@ class Auth_Yubico
 		
 		/* Verify signature. */
 		if($this->_key <> "") {
-			$rows = split("\r\n", $this->_response);
+			$rows = split("\r\n", $responseMsg);
 			while (list($key, $val) = each($rows)) {
 				// = is also used in BASE64 encoding so we only replace the first = by # which is not used in BASE64
 				$val = preg_replace('/=/', '#', $val, 1);
