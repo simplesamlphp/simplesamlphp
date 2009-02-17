@@ -19,17 +19,22 @@ class SimpleSAML_Auth_LDAP {
 	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
-	public function __construct($hostname, $enable_tls = TRUE, $debug = FALSE) {
+	public function __construct($hostname, $enable_tls = TRUE, $debug = FALSE, $timeout = 0) {
 
 		SimpleSAML_Logger::debug('Library - LDAP __construct(): Setup LDAP with ' .
-			'host [' . $hostname . '] and ' .
-			'tls [' . var_export($enable_tls, TRUE) . ']' . 
-			'debug [' . var_export($debug, TRUE) . ']');
+			'host "' . $hostname .
+			', tls=' . var_export($enable_tls, TRUE) .
+			', debug=' . var_export($debug, TRUE) .
+		    ', timeout=' . var_export($timeout, true));
 
 		if ($debug) ldap_set_option(NULL, LDAP_OPT_DEBUG_LEVEL, 7);
 		$this->ldap = @ldap_connect($hostname);
-#		ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, 2);
-#		ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, 2);
+		
+		// Set timeouts, if supported...
+		// (OpenLDAP 2.x.x or Netscape Directory SDK x.x needed).
+		if (!@ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, $timeout) or
+		    !@ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, $timeout))
+		    SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts to ' . var_export($timeout, true));
 
 		if (empty($this->ldap)) 
 			throw new Exception('Error initializing LDAP connection with PHP LDAP library.');
