@@ -110,6 +110,17 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store {
 		$this->setConsentCookie($name, NULL);
 
 	}
+	
+	/**
+	 * Delete consent.
+	 *
+	 * @param string $userId  The hash identifying the user at an IdP.
+	 */
+	public function deleteAllConsents($userId) {
+		assert('is_string($userId)');
+
+		throw new Exception('The cookie consent handler does not support to delete all consents...');
+	}
 
 
 	/**

@@ -61,6 +61,22 @@ abstract class sspmod_consent_Store {
 
 
 	/**
+	 * Delete all consents.
+	 *
+	 * Called when a user revokes all consents
+	 *
+	 * @param string $userId  The hash identifying the user at an IdP.
+	 */
+	public function deleteAllConsents($userId) {
+		throw new Exception('Not implemented: deleteAllConsents()');
+	}
+	
+	
+	public function getStatistics() {
+		throw new Exception('Not implemented: getStatistics()');
+	}
+
+	/**
 	 * Retrieve consents.
 	 *
 	 * This function should return a list of consents the user has saved.

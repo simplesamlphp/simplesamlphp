@@ -242,6 +242,25 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 		}
 	}
 
+	/**
+	 * Delete all consents.
+ 	 * 
+	 * @param string $userId  The hash identifying the user at an IdP.
+	 */
+	public function deleteAllConsents($userId) {
+		assert('is_string($userId)');
+
+		$st = $this->execute('DELETE FROM ' . $this->table . ' WHERE hashed_user_id = ?', array($userId));
+		if ($st === FALSE) return;
+
+		if ($st->rowCount() > 0) {
+			SimpleSAML_Logger::debug('consent:Database - Deleted (' . $st->rowCount() . ') consent(s).');
+			return $st->rowCount();
+		} else {
+			SimpleSAML_Logger::warning('consent:Database - Attempted to delete nonexistent consent');
+		}
+	}
+
 
 	/**
 	 * Retrieve consents.
@@ -307,6 +326,31 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 	}
 
 
+	/**
+	 * get statistics
+	 *
+	 */
+	public function getStatistics() {
+		$ret = array();
+
+		$st = $this->execute('select count(*) as no from consent', array());
+		if ($st === FALSE) return array(); 
+		if($row = $st->fetch(PDO::FETCH_NUM)) $ret['total'] = $row[0];
+
+		$st = $this->execute('select count(*) as no from (select distinct hashed_user_id from consent ) as foo', array());
+		if ($st === FALSE) return array(); 
+		if($row = $st->fetch(PDO::FETCH_NUM)) $ret['users'] = $row[0];
+
+		$st = $this->execute('select count(*) as no from (select distinct service_id from consent ) as foo', array());
+		if ($st === FALSE) return array();
+		if($row = $st->fetch(PDO::FETCH_NUM)) $ret['services'] = $row[0];
+
+		return $ret;
+	}
+	
+	
+	
+	
 	/**
 	 * Create consent table.
 	 *
