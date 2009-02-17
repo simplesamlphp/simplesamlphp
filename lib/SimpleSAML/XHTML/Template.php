@@ -328,7 +328,6 @@ class SimpleSAML_XHTML_Template {
 	 * @return string  The translated tag, or a placeholder value if the tag wasn't found.
 	 */
 	public function t($tag, $replacements = array(), $fallbackdefault = true, $oldreplacements = array(), $striptags = false) {
-
 		if(!is_array($replacements)) {
 
 			/* Old style call to t(...). Print warning to log. */
@@ -360,9 +359,10 @@ class SimpleSAML_XHTML_Template {
 
 		$translated = $this->getTranslation($tagData);
 
+#		if (!empty($replacements)){		echo('<pre> [' . $tag . ']'); print_r($replacements); exit; }
 		foreach ($replacements as $k => $v) {
 			/* try to translate if no replacement is given */
-			if (!$v) $v = $this->t($k);
+			if ($v == NULL) $v = $this->t($k);
 			$translated = str_replace($k, $v, $translated);
 		}
 		return $translated;
