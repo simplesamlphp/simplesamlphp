@@ -8,6 +8,7 @@ $lang = array(
 		'en' => 'Welcome',
 		'sv' => 'Välkommen',
 		'es' => 'Bienvenido',
+		'sl' => 'Dobrodošli',
 		'hr' => 'Dobro došli',
 	),
 	'configuration' => array (
@@ -17,6 +18,7 @@ $lang = array(
 		'en' => 'Configuration',
 		'sv' => 'Konfiguration',
 		'es' => 'Configuración',
+		'sl' => 'Nastavitve',
 		'hr' => 'Konfiguracija',
 	),
 	'metadata' => array (
@@ -26,6 +28,7 @@ $lang = array(
 		'en' => 'Metadata',
 		'sv' => 'Metadata',
 		'es' => 'Metadatos',
+		'sl' => 'Metadata',
 		'hr' => 'Metapodaci',
 	),
 	'tools' => array (
@@ -35,6 +38,7 @@ $lang = array(
 		'en' => 'Tools',
 		'sv' => 'Verktyg',
 		'es' => 'Herramientas',
+		'sl' => 'Orodja',
 		'hr' => 'Alati',
 	),
 	'login_as_admin' => array (
@@ -44,6 +48,7 @@ $lang = array(
 		'en' => 'Login as administrator',
 		'sv' => 'Logga in som administratör',
 		'es' => 'Entrar como administrador',
+		'sl' => 'Prijavi se kot administrator',
 		'hr' => 'Prijavite se kao administrator',
 	),
 	'loggedin_as_admin' => array (
@@ -53,6 +58,7 @@ $lang = array(
 		'en' => 'You are logged in as administrator',
 		'sv' => 'Du är inloggad som administratör',
 		'es' => 'Ha entrado com administrador',
+		'sl' => 'Prijavljeni ste v vlogi administratorja',
 		'hr' => 'Prijavljeni ste kao administrator',
 	),
 	'show_metadata' => array (
@@ -62,6 +68,7 @@ $lang = array(
 		'en' => 'Show metadata',
 		'sv' => 'Visa metadata',
 		'es' => 'Ver metadatos',
+		'sl' => 'Prikaži metadato',
 		'hr' => 'Prikaži metapodatke',
 	),
 	'intro' => array (
