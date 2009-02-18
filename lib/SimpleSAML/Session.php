@@ -760,12 +760,16 @@ class SimpleSAML_Session {
 	 * the data should be written back with setData.
 	 *
 	 * @param $type  The type of the data. This must match the type used when adding the data.
-	 * @param $id    The identifier of the data.
+	 * @param $id    The identifier of the data. Can be NULL, in which case NULL will be returned.
 	 * @return The data of the given type with the given id or NULL if the data doesn't exist in the data store.
 	 */
 	public function getData($type, $id) {
-		assert(is_string($type));
-		assert(is_string($id));
+		assert('is_string($type)');
+		assert('$id === NULL || is_string($id)');
+
+		if($id === NULL) {
+			return NULL;
+		}
 
 		$this->expireData();
 
