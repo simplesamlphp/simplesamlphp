@@ -212,15 +212,22 @@ if($needAuth && !$isPassive) {
 
 	if($authSource) {
 		/* Authenticate with an AuthSource. */
+
+		/* The user will be redirected to this URL if the session is lost. This will cause an
+		 * unsoliced authentication response to be sent to the SP.
+		 */
+		$sessionLostURL = SimpleSAML_Utilities::addURLparameter(
+			$metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted'),
+			array(
+				'spentityid' => $requestcache['Issuer'],
+			));
+
 		$hints = array(
 			'SPMetadata' => $metadata->getMetaData($requestcache['Issuer'], 'saml20-sp-remote'),
 			'IdPMetadata' => $idpmetadata,
+			SimpleSAML_Auth_State::RESTART => $sessionLostURL,
 		);
-		$hints['SessionLostURL'] = SimpleSAML_Utilities::addURLparameter(
-			$metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted'), array(
-				'spentityid' => $requestcache['Issuer'],
-			)
-		);
+
 		SimpleSAML_Auth_Default::initLogin($idpmetadata['auth'], $redirectTo, NULL, $hints);
 	} else {
 		$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];

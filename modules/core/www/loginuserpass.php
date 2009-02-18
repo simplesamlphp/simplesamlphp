@@ -15,14 +15,8 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 }
 $authStateId = $_REQUEST['AuthState'];
 
-try {
-	/* Retrieve the authentication state. */
-	$state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_core_Auth_UserPassBase::STAGEID);
-} catch(Exception $e) {
-	if (array_key_exists('SessionLostURL', $_REQUEST)) {
-		SimpleSAML_Utilities::redirect($_REQUEST['SessionLostURL']);
-	}
-}
+/* Retrieve the authentication state. */
+$state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_core_Auth_UserPassBase::STAGEID);
 
 if (array_key_exists('username', $_REQUEST)) {
 	$username = $_REQUEST['username'];
@@ -48,8 +42,6 @@ $t = new SimpleSAML_XHTML_Template($globalConfig, 'core:loginuserpass.php');
 $t->data['stateparams'] = array('AuthState' => $authStateId);
 $t->data['username'] = $username;
 $t->data['errorcode'] = $errorCode;
-if (array_key_exists('SessionLostURL', $_REQUEST)) 
-	$t->data['SessionLostURL'] = $_REQUEST['SessionLostURL'];
 $t->show();
 exit();
 

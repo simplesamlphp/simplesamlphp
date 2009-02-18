@@ -49,8 +49,9 @@ class SimpleSAML_Auth_Default {
 		if (array_key_exists('IdPMetadata', $hints)) {
 			$state['IdPMetadata'] = $hints['IdPMetadata'];
 		}
-		if (array_key_exists('SessionLostURL', $hints)) {
-			$state['SessionLostURL'] = $hints['SessionLostURL'];
+
+		if (array_key_exists(SimpleSAML_Auth_State::RESTART, $hints)) {
+			$state[SimpleSAML_Auth_State::RESTART] = $hints[SimpleSAML_Auth_State::RESTART];
 		}
 
 		$as = SimpleSAML_Auth_Source::getById($authId);

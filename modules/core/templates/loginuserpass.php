@@ -29,14 +29,6 @@ if ($this->data['errorcode'] !== NULL) {
 	<p><?php echo $this->t('{login:user_pass_text}'); ?></p>
 
 	<form action="?" method="post" name="f">
-<?php
-
-if (array_key_exists('SessionLostURL', $this->data)) {
-	echo('<input type="hidden" name="SessionLostURL" value="' . $this->data['SessionLostURL'] . '" />');
-}
-
-
-?>
 	<table>
 		<tr>
 			<td rowspan="2"><img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/pencil.png" alt="" /></td>
