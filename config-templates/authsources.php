@@ -12,7 +12,7 @@ $config = array(
 
 	'example-static' => array(
 		'exampleauth:Static',
-		'uid' => 'testuser',
+		'uid' => array('testuser'),
 		'eduPersonAffiliation' => array('member', 'employee'),
 		'cn' => array('Test User'),
 	),
