@@ -8,16 +8,25 @@ $lang = array(
 	),
 
 	'kalmar' => array (
-		'no' => 'Kalmar',
 		'en' => 'Kalmar',
+		'no' => 'Kalmar',
 	),
 
-	'haka' => array (
+	'finland' => array (
 		'no' => 'Finnland',
 		'en' => 'Finland',
 	),
+
+	'sweden' => array (
+		'no' => 'Sverige',
+		'en' => 'Sweden',
+	),
 	
-	'switch' => array (
+	'denmark' => array (
+		'no' => 'Danmark',
+		'en' => 'Denmark',
+	),
+	'switzerland' => array (
 		'no' => 'Sveits',
 		'en' => 'Switzerland',
 	),

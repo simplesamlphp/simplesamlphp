@@ -15,6 +15,11 @@ $config = array (
 	 * All other available tabs will be listed after the ones specified below.
 	 */
 	'taborder' => array('norway'),
+	/*
+	 * the 'tab' parameter allows you to limit the tabs to a specific list. (excluding unlisted tags)
+	 *
+	 * 'tabs' => array('norway', 'finland'),
+	 */
 
 );
 

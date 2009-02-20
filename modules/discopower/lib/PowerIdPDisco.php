@@ -58,12 +58,15 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 			}
 		}
 		
+		$enableTabs = $this->discoconfig->getValue('tabs', NULL);
+		
 		foreach($list AS $key => $val) {
 			$tags = array('misc');
 			if (array_key_exists('tags', $val)) {
 				$tags = $val['tags'];
 			}
 			foreach ($tags AS $tag) {
+				if (!empty($enableTabs) && !in_array($tag, $enableTabs)) continue;
 				$slist[$tag][$key] = $val;
 			}
 		}
