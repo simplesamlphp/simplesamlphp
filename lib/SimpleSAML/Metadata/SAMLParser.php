@@ -618,6 +618,9 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['NameIDFormat'] = $spd['nameIDFormats'][0];
 		}
 
+		if (array_key_exists('attributes', $spd)) {
+			$ret['attributes'] = $spd['attributes'];
+		}
 
 		/* Add certificate data. Only the first valid certificate will be added. */
 		foreach($spd['keys'] as $key) {
@@ -818,6 +821,13 @@ class SimpleSAML_Metadata_SAMLParser {
 			$sp['assertionConsumerServices'][] = self::parseAssertionConsumerService($child);
 		}
 
+		/* Find all the attributes and SP name... */
+		#$sp['attributes'] = array();
+		$attcs = SimpleSAML_Utilities::getDOMChildren($element, 'AttributeConsumingService', '@md');
+		if (count($attcs) > 0) {
+			self::parseAttributeConsumerService($attcs[0], &$sp);
+		}
+		
 
 		$this->spDescriptors[] = $sp;
 	}
@@ -970,6 +980,37 @@ class SimpleSAML_Metadata_SAMLParser {
 		assert('$element instanceof DOMElement');
 
 		return self::parseGenericEndpoint($element, TRUE);
+	}
+
+
+	/**
+	 * This function parses AttributeConsumerService elements.
+	 */
+	private static function parseAttributeConsumerService($element, &$sp) {
+		assert('$element instanceof DOMElement');
+		assert('is_array($sp)');
+				
+		$elements = SimpleSAML_Utilities::getDOMChildren($element, 'ServiceName', '@md');
+		foreach($elements AS $child) {
+			$language = $child->getAttributeNS('http://www.w3.org/XML/1998/namespace', 'lang');
+			if(empty($language)) $language = 'en';
+			$sp['name'][$language] = SimpleSAML_Utilities::getDOMText($child);
+		}
+		
+		$elements = SimpleSAML_Utilities::getDOMChildren($element, 'ServiceDescription', '@md');
+		foreach($elements AS $child) {
+			$language = $child->getAttributeNS('http://www.w3.org/XML/1998/namespace', 'lang');
+			if(empty($language)) $language = 'en';
+			$sp['description'][$language] = SimpleSAML_Utilities::getDOMText($child);
+		}
+		
+		$elements = SimpleSAML_Utilities::getDOMChildren($element, 'RequestedAttribute', '@md');
+		foreach($elements AS $child) {
+			$attrname = $child->getAttribute('Name');
+			if (!array_key_exists('attributes', $sp)) $sp['attributes'] = array();
+			$sp['attributes'][] = $attrname;
+		}	
+
 	}
 
 

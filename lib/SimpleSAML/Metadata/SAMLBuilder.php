@@ -39,7 +39,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		$this->maxDuration = $maxDuration;
 
 		$this->document = new DOMDocument();
+		
 		$this->entityDescriptor = $this->createElement('EntityDescriptor');
+#		$this->entityDescriptor->setAttribute('xmlns:xml', 'http://www.w3.org/XML/1998/namespace');
 		$this->entityDescriptor->setAttribute('entityID', $entityId);
 		
 		$this->document->appendChild($this->entityDescriptor);
@@ -228,9 +230,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:2.0:protocol');
 		
 		
-		$this->addExtensions($metadata);
+#		$this->addExtensions($metadata);
 
-		$this->addCertificate($e, $metadata);
+#		$this->addCertificate($e, $metadata);
 
 		if (array_key_exists('SingleLogoutService', $metadata)) {
 			$t = $this->createElement('SingleLogoutService');
@@ -258,7 +260,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$e->appendChild($t);
 		}
 
-		if (array_key_exists('name', $metadata) || array_key_exists('attributes', $metadata)) {
+
+		if ( array_key_exists('name', $metadata) || array_key_exists('attributes', $metadata)) {
 			/**
 			 * Add an AttributeConsumingService element with information as name and description and list
 			 * of requested attributes
@@ -308,7 +311,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$this->entityDescriptor->appendChild($e);
 		
-		$this->addOrganizationInfo($metadata);
+#		$this->addOrganizationInfo($metadata);
 		
 		if (array_key_exists('contacts', $metadata) && is_array($metadata['contacts']) ) {
 			foreach($metadata['contacts'] AS $contact) {
@@ -349,9 +352,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$e->setAttribute('WantAuthnRequestSigned', 'true');
 		}
 		
-		$this->addExtensions($metadata);
+#		$this->addExtensions($metadata);
 
-		$this->addCertificate($e, $metadata);
+#		$this->addCertificate($e, $metadata);
 
 		if (array_key_exists('SingleLogoutService', $metadata)) {
 			$t = $this->createElement('SingleLogoutService');
@@ -380,7 +383,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		
 		$this->entityDescriptor->appendChild($e);
 		
-		$this->addOrganizationInfo($metadata);
+#		$this->addOrganizationInfo($metadata);
 		
 		if (array_key_exists('contacts', $metadata) && is_array($metadata['contacts']) ) {
 			foreach($metadata['contacts'] AS $contact) {
@@ -415,7 +418,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		$e = $this->createElement('SPSSODescriptor');
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:1.1:protocol');
 
-		$this->addCertificate($e, $metadata);
+#		$this->addCertificate($e, $metadata);
 
 		if (array_key_exists('NameIDFormat', $metadata)) {
 			$t = $this->createElement('NameIDFormat');
@@ -446,7 +449,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		$e = $this->createElement('IDPSSODescriptor');
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:1.1:protocol');
 
-		$this->addCertificate($e, $metadata);
+#		$this->addCertificate($e, $metadata);
 
 		if (array_key_exists('NameIDFormat', $metadata)) {
 			$t = $this->createElement('NameIDFormat');

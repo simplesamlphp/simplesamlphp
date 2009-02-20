@@ -9,8 +9,7 @@ class sspmod_metarefresh_MetaLoader {
 
 	private $metadata;
 
-	private $maxcache;
-	private $maxduration;
+	private $expire;
 
 	/**
 	 * Constructor
@@ -18,9 +17,8 @@ class sspmod_metarefresh_MetaLoader {
 	 * @param array $sources 	Sources...
 	 * @param 
 	 */
-	public function __construct($maxcache = NULL, $maxduration = NULL) {
-		$this->maxcache = $maxcache;
-		$this->maxduration = $maxduration;
+	public function __construct($expire = NULL) {
+		$this->expire = $expire;
 		
 		$this->metadata = array();
 	}
@@ -41,7 +39,7 @@ class sspmod_metarefresh_MetaLoader {
 					continue;
 				}
 			}
-	
+			
 			// TODO: $ca is always null
 			if($ca !== NULL) {
 				if(!$entity->validateCA($ca)) {
@@ -52,12 +50,10 @@ class sspmod_metarefresh_MetaLoader {
 			$template = NULL;
 			if (array_key_exists('template', $source)) $template = $source['template'];
 			
-			$expireDuration = time() + min($this->maxcache, $this->maxduration);
-	
-			$this->addMetadata($source['src'], $entity->getMetadata1xSP(), 'shib13-sp-remote', $template, $expireDuration);
-			$this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template, $expireDuration);
-			$this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template, $expireDuration);
-			$this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template, $expireDuration);
+			$this->addMetadata($source['src'], $entity->getMetadata1xSP(), 'shib13-sp-remote', $template);
+			$this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template);
+			$this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template);
+			$this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template);
 		}
 	}
 
@@ -100,7 +96,7 @@ class sspmod_metarefresh_MetaLoader {
 	 * @param $metadata The metadata.
 	 * @param $type The metadata type.
 	 */
-	private function addMetadata($filename, $metadata, $type, $template = NULL, $expireDuration) {
+	private function addMetadata($filename, $metadata, $type, $template = NULL) {
 	
 		if($metadata === NULL) {
 			return;
@@ -118,12 +114,23 @@ class sspmod_metarefresh_MetaLoader {
 			$this->metadata[$type] = array();
 		}
 		
-		if (!array_key_exists('expire', $metadata)) {
-			$metadata['expire'] = $expireDuration;
-		} else {
-			if ($expireDuration < $metadata['expire'])
-				$metadata['expire'] = $expireDuration;				
+		// If expire is defined in constructor...
+		if (!empty($this->expire)) {
+			
+			// If expire is already in metadata
+			if (array_key_exists('expire', $metadata)) {
+			
+				// Override metadata expire with more restrictive global config-
+				if ($this->expire < $metadata['expire'])
+					$metadata['expire'] = $this->expire;		
+					
+			// If expire is not already in metadata use global config
+			} else {
+				$metadata['expire'] = $this->expire;			
+			}
 		}
+		
+
 	
 		$this->metadata[$type][] = array('filename' => $filename, 'metadata' => $metadata);
 	}

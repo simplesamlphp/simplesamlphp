@@ -23,10 +23,11 @@ function metarefresh_hook_cron(&$croninfo) {
 			if (!in_array($croninfo['tag'], $set['cron'])) continue;
 	
 			SimpleSAML_Logger::info('cron [metarefresh]: Executing set [' . $setkey . ']');
-	
-			$maxcache = NULL; if (array_key_exists('maxcache', $set)) $maxcache = $set['maxcache'];
-			$maxduration = NULL; if (array_key_exists('maxduration', $set)) $maxcache = $set['maxduration'];
-			$metaloader = new sspmod_metarefresh_MetaLoader($maxcache, $maxduration);		
+				
+			$expire = NULL;
+			if (array_key_exists('expireAfter', $set)) $expire = time() + $set['expireAfter'];
+			
+			$metaloader = new sspmod_metarefresh_MetaLoader($expire);		
 			
 			foreach($set['sources'] AS $source) {
 				SimpleSAML_Logger::debug('cron [metarefresh]: In set [' . $setkey . '] loading source ['  . $source['src'] . ']');
