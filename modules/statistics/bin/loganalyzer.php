@@ -1,7 +1,16 @@
 #!/usr/bin/env php
 <?php
 
-require_once( dirname(dirname(dirname(dirname(__FILE__)))) . '/www/_include.php');
+
+/* This is the base directory of the simpleSAMLphp installation. */
+$baseDir = dirname(dirname(dirname(dirname(__FILE__))));
+
+/* Add library autoloader. */
+require_once($baseDir . '/lib/_autoload.php');
+
+/* Initialize the configuration. */
+SimpleSAML_Configuration::init($baseDir . '/config');
+
 
 
 $progName = array_shift($argv);
