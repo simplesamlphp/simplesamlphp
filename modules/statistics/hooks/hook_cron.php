@@ -16,7 +16,8 @@ function statistics_hook_cron(&$croninfo) {
 	if ($statconfig->getValue('cron_tag', NULL) !== $croninfo['tag']) return;
 	
 	try {
-		require_once(SimpleSAML_Module::getModuleDir('statistics') . '/extlibs/loganalyzer.php');
+		$aggregator = new sspmod_statistics_Aggregator();
+		$results = $aggregator->aggregate();
 	} catch (Exception $e) {
 		$croninfo['summary'][] = 'Loganalyzer threw exception: ' . $e->getMessage();
 	}
