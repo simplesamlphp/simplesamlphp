@@ -1,0 +1,203 @@
+simpleSAMLphp Maintenance
+=========================
+
+<!-- 
+	This file is written in Markdown syntax. 
+	For more information about how to use the Markdown syntax, read here:
+	http://daringfireball.net/projects/markdown/syntax
+-->
+
+  * Version: `$Id$`
+
+
+
+simpleSAMLphp news and documentation
+------------------------------------
+
+This document is part of the simpleSAMLphp documentation suite.
+
+ * [List of all simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+ * [Latest news about simpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also conatins an RSS feed)
+ * [simpleSAMLphp homepage](http://rnd.feide.no/simplesamlphp)
+
+
+
+## Session management
+
+simpleSAMLphp has an abstraction layer for session management. That means it is possible to choose between different kind of session stores, as well as write new session store plugins.
+
+The `session.handler` configuration option in `config.php` allows you to select which session handler SimpleSAMLphp should use to store the session information. Currently, two session handlers are included in the distribution:
+
+  * `phpsession` uses the built in session management in PHP. This is the default, and is simplest to use. It will not work in a load-balanced environement.
+  * `memcache` uses the memcache software to cache sessions in memory. Sessions can be distributed and replicated among several memcache servers, enabling both load-balancing and fail-over.
+
+	'session.handler'       => 'phpsession',
+
+### Configuring memcache
+
+To use the memcache session handler, set the `session.handler` parameter in `config.php`:
+
+    'session.handler'       => 'memcache',
+
+memcache allows you to store multiple redudant copies of sessions on different memcache servers.
+
+The configuration parameter `memcache_store.servers` is an array of server groups. Every data item will be mirrored in every server group.
+
+Each server group is an array of servers. The data items will be load-balanced between all servers in each server group.
+
+Each server is an array of parameters for the server. The following options are available:
+
+`hostname`
+:   Host name or ip address of a memcache server runs. This is the
+    only required option.
+
+`port`
+:   Port number of the memcache server. If not set, the
+    `memcache.default_port` ini setting is used. This is 11211 by
+    default.
+
+`weight`
+:   Weight of this server in this server group.
+    [http://php.net/manual/en/function.Memcache-addServer.php](http://php.net/manual/en/function.Memcache-addServer.php)
+    has more information about the weight option.
+
+`timeout`
+:   Timeout for this server. By default, the timeout is 3
+    seconds.
+
+
+Here are two examples of configuration of memcache session handling:
+
+**Example&nbsp;1.&nbsp;Example of redudant configuration with load balancing**
+
+Example of redudant configuration with load balancing: This configuration makes it possible to lose both servers in the a-group or both servers in the b-group without losing any sessions. Note that sessions will be lost if one server is lost from both the a-group and the b-group.
+
+    'memcache_store.servers' => array(
+      array(
+        array('hostname' => 'mc_a1'),
+        array('hostname' => 'mc_a2'),
+      ),
+      array(
+        array('hostname' => 'mc_b1'),
+        array('hostname' => 'mc_b2'),
+      ),
+    ),
+
+**Example&nbsp;2.&nbsp;Example of simple configuration with only one memcache server**
+
+Example of simple configuration with only one memcache server, running on the same computer as the web server: Note that all sessions will be lost if the memcache server crashes.
+
+    'memcache_store.servers' => array(
+      array(
+        array('hostname' => 'localhost'),
+      ),
+    ),
+
+The expiration value (`memcache_store.expires`) is the duration for which data should be retained in memcache. Data are dropped from the memcache servers when this time expires. The time will be reset every time the data is written to the memcache servers.
+
+This value should always be larger than the `session.duration` option. Not doing this may result in the session being deleted from the memcache servers while it is still in use.
+
+Set this value to 0 if you don't want data to expire.
+
+### Note
+
+The oldest data will always be deleted if the memcache server runs
+out of storage space.
+
+**Example&nbsp;3.&nbsp;Example of configuration setting for session expiration**
+
+Here is an example of this configuration parameter:
+
+    'memcache_store.expires' =>  36 * (60*60), // 36 hours.
+
+#### Memcache PHP configuration
+
+Configure memcahce to not do internal failover. This parameter is
+configured in `php.ini`.
+
+    memcache.allow_failover = Off
+
+#### Environmental configuration
+
+Setup a firewall restricting access to the memcache server.
+
+Because simpleSAMLphp uses a timestamp to check which session is most recent in a fail-over setup, it is very important to run syncrhonized clocks on all webservers where you run simpleSAMLphp.
+
+## Load balancing and failover
+
+
+
+## Logging and statistics
+
+simpleSAMLphp supports standard `syslog` logging. As an
+alternative, you may log to flat files.
+
+## Apache configuration
+
+
+
+## PHP configuration
+
+Secure cookies (if you run HTTPS).
+
+Turn off PHPSESSID in query string.
+
+## Getting ready for production
+
+Here are some checkpoints
+
+ 1. Remove all entities in metadata files that you do not trust. It is easy to forget about some of the entities that were used for test. 
+ 2. If you during testing have been using a certificate that has been exposed (notably: the one found in the simpleSAMLphp distribution): Obtain and install a new one.
+ 3. Make sure you have installed the latest security upgrades for your OS.
+ 4. Make sure to use HTTPS rather than HTTP.
+ 5. Block access to your servers on anything except port 443. simpleSAMLphp only uses plain HTTP(S), so there is no need to open ports for SOAP or other communication.
+
+
+## Error handling, error reporting and metadata reporting
+
+SimpleSAMLphp supports allowing the user when encountering errors to send an e-mail to the administrator. You can turn off this feature in the config.php file.
+
+
+## Multi-language support
+
+To add support for a new language, add your new language to the `language.available` configuration parameter in `config.php`:
+
+	/*
+	 * Languages available and which language is default
+	 */
+	'language.available' => array('en', 'no', 'da', 'es', 'xx'),
+	'language.default'   => 'en',
+
+Please use the standarized two-character
+[language codes as specified in ISO-639-1](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+
+You also can set the default language. You should ensure that the default language is complete, as it is used as a fallback when a text is not available in the language selected by the user.
+
+Translation of simpleSAMLphp is done through the SimpleSAMLphp translation portal. To translate simpleSAMLphp to a new language, please contact the authors at the mailinglist, and the new language may be added to the translation portal.
+
+  * [Visit the SimpleSAMLphp translation portal](https://translation.rnd.feide.no/?aid=simplesamlphp)
+
+All strings that can be localized are found in the files `dictionaries/`. Add a new entry for each string, with your language code, like this:
+
+    'user_pass_header' => array(
+        'en' => 'Enter your username and password',
+        'no' => 'Skriv inn brukernavn og passord',
+        'xx' => 'Pooa jujjique jamba',
+      ),
+
+You can translate as many of the texts as you would like; a full translation is not required unless you want to make this the default language. From the end users point of view, it looks best if all text fragments used in a given screen or form is in one single language.
+
+## Customizing the web frontend with themes
+
+Documentation on theming is moved [to a separate document](http://rnd.feide.no/content/theming-simplesamlphp).
+
+
+Support
+-------
+
+If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
+
+-  [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
+-  [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+-  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
+-  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
