@@ -1,0 +1,101 @@
+The simpleSAMLphp statistics module
+===================================
+
+
+<!-- 
+	This file is written in Markdown syntax. 
+	For more information about how to use the Markdown syntax, read here:
+	http://daringfireball.net/projects/markdown/syntax
+-->
+
+  * Version: `$Id$`
+  * Andreas Åkre Solberg <andreas.solberg@uninett.no>
+
+
+## Configure your logs
+
+Reccomended to use syslog for logging. Then a separate loglevel is
+dedicated to statistics. You need to get all statistics log entries
+in one log file. Here is how I do it in syslog.conf:
+
+    # SimpleSAMLphp logging
+    local5.*                        /var/log/simplesamlphp.log
+    # Notice level is reserved for statistics only...
+    local5.=notice                  /var/log/simplesamlphp.stat
+
+Then make sure you have configured this correctly such that you
+have one log file like this:
+
+    # ls -la /var/log/simplesamlphp.stat
+    -rw-r--r-- 1 root root 76740 Nov 15 13:37 /var/log/simplesamlphp.stat
+
+With content that looks like this:
+
+    # tail /var/log/simplesamlphp.stat
+    Nov 15 12:01:49 www1 simplesamlphp-foodle[31960]: 5 STAT [77013b4b6e] saml20-sp-SSO urn:mace:feide.no:services:no.feide.foodle sam.feide.no andreas@uninett.no
+    Nov 15 13:01:14 www1 simplesamlphp-openwiki[2247]: 5 STAT [50292b9d04] saml20-sp-SSO urn:mace:feide.no:services:no.feide.openwikicore sam.feide.no NA
+    Nov 15 13:16:39 www1 simplesamlphp-openwiki[2125]: 5 STAT [3493d5d87f] saml20-sp-SSO urn:mace:feide.no:services:no.feide.openwikicore sam.feide.no NA
+    Nov 15 13:37:27 www1 simplesamlphp-foodle[3146]: 5 STAT [77013b4b6e] AUTH-login-admin OK
+
+Here you can see that I collect statistics in one file for several
+installations. You could easily separate each instance of
+simpleSAMLphp into separate files (your preference).
+
+## Configure the statistics module
+
+First enable the statistics module, as you enable any other
+module:
+
+    cd modules/statistics
+    touch enable
+
+Then take the configuration template:
+
+    cp modules/statistics/config-templats/*.php config/
+
+Configure the path of the log file:
+
+       'inputfile' => '/tmp/stat',
+
+and the syntax of the log file. You need to configure where the
+date starts (usually 0), and how long the date is (usually 15), and
+where the first columns starts (such that STAT is in column 3):
+
+       'datestart' => 1,
+        'datelength' => 15,
+        'offsetspan' => 21,
+
+Make sure the stat dir is writable. SimpleSAMLphp will write data
+here:
+
+       'statdir' => '/tmp/stats/',
+
+### Setup cron
+
+You also should setup the cron module:
+
+    cd modules/cron
+    touch enable
+
+### Alternatively to use the cron module
+
+Alternatively to use the cron module you can run the
+script`statistics/bin/loganalyzer.php`.
+
+## Presentation of the statistics
+
+At the installation page there will be a link "show statitics", go
+there and if simpleSAMLphp finds the statistics files in the
+`statdir` generated from cron or the script you will see
+statistics. Enjoy.
+
+Support
+-------
+
+If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
+
+-  [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
+-  [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+-  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
+-  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
+
