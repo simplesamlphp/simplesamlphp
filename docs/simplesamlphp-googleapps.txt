@@ -123,15 +123,9 @@ The LDAP module is found in `auth/login.php`.
 
 If you want to perform local authentication using this server, using the LDAP authenticaiton plugin, the following parameters should be configured in `config.php`:
 
--  
-    `auth.ldap.dnpattern`: Which DN to bind to. `%username%` is
-    replaced with with the user name typed in.
-
--   `auth.ldap.hostname`: Host name of the LDAP server
-
--  
-    `auth.ldap.attributes`: List of attributes retrieved from LDAP. Set
-    this option to `null` to retrieve all attributes available.
+ * `auth.ldap.dnpattern`: Which DN to bind to. `%username%` is replaced with with the user name typed in.
+ * `auth.ldap.hostname`: Host name of the LDAP server
+ * `auth.ldap.attributes`: List of attributes retrieved from LDAP. Set this option to `null` to retrieve all attributes available.
 
 
 ### Configuring the multi-LDAP authentication module
