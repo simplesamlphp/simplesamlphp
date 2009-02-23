@@ -1,7 +1,7 @@
 <?php
 
 $config = SimpleSAML_Configuration::getInstance();
-$statconfig = $config->copyFromBase('statconfig', 'statistics.php');
+$statconfig = $config->copyFromBase('statconfig', 'module_statistics.php');
 
 $statdir = $statconfig->getValue('statdir');
 $inputfile = $statconfig->getValue('inputfile');
