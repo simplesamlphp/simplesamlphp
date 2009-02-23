@@ -41,8 +41,7 @@ Here you can see that I collect statistics in one file for several installations
 
 ## Configure the statistics module
 
-First enable the statistics module, as you enable any other
-module:
+First enable the statistics module, as you enable any other module:
 
     cd modules/statistics
     touch enable
