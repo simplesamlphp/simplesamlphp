@@ -1,0 +1,58 @@
+Automated Metadata Management
+=============================
+
+<!-- 
+	This file is written in Markdown syntax. 
+	For more information about how to use the Markdown syntax, read here:
+	http://daringfireball.net/projects/markdown/syntax
+-->
+
+  * Version: `$Id$`
+
+
+Introduction
+------------
+
+If you want to connect an Identity Provider, or a Service Provider to a **federation**, you need to setup metadata for the entries that you trust. In many federation, in particular federations based upon the Shibboleth software, it is normal to setup automated distributed metadata using the SAML 2.0 Metadata XML Format.
+
+Some central administration or authority, provides a URL with a SAML 2.0 document including metadata for all entities in the federation.
+
+This document explains how to setup automated downloading and parsing of a metadata document on a specific URL.
+
+
+
+Preparations
+------------
+
+You need to enable the following modules:
+
+ 1. cron
+ 2. metarefresh
+
+The cron module allows you to do tasks regularly, by setting up a cronjob that calls a hook in simpleSAMLphp.
+
+The metarefresh module will download and parse the metadata document and store it in cached local metadata files.
+
+You also need to copy the `config-templates` files from the two modules above, into the global `config/` directory.
+
+
+
+Testing to parse the metadata document
+--------------------------------------
+
+We'll use the SWITCH AAI Test Federation as an example in this document. This federation provides metadata on this URL:
+
+	http://metadata.aai.switch.ch/metadata.aaitest.xml
+
+I reccomend to first test on the command line to parse the metadata URL.
+
+	cd modules/metarefresh/bin
+	./metarefresh.php -s http://metadata.aai.switch.ch/metadata.aaitest.xml
+
+We use the `-s` option to send output to console (for testing purposes). If the output makes sense, continue. If you get a lot of error messages, send an e-mail to the simpleSAMLphp list and ask for advice.
+
+
+
+
+
+
