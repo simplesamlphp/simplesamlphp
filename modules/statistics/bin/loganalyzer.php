@@ -16,11 +16,9 @@ echo 'Offset                 : ' . $offset . "\n";
 // 	}
 // }
 
-
 foreach ($results AS $slot => $val) {
-	 echo date($dateformat, ($slot*$granularity)-$offset) . "\t" . $slot . "\t";
 	 foreach ($val AS $sp => $no) {
-	 	echo $sp . " " . $no . " - ";
+	 	echo $sp . " " . count($no) . " - ";
 	 }
 	 echo "\n";
 }

@@ -6,6 +6,7 @@ $statconfig = $config->copyFromBase('statconfig', 'statistics.php');
 $statdir = $statconfig->getValue('statdir');
 $inputfile = $statconfig->getValue('inputfile');
 $statrules = $statconfig->getValue('statrules');
+$offset = $statconfig->getValue('offset', 0);
 
 if (!is_dir($statdir)) 
 	throw new Exception('Statistics module: output dir do not exists [' . $statdir . ']');
@@ -47,6 +48,9 @@ foreach ($logfile AS $logline) {
 		if (isset($rule['action']) && ($action !== $rule['action'])) continue;
 
 		$difcol = $content[$rule['col']]; // echo '[...' . $difcol . '...]';
+
+		if (!isset($results[$rulename][$fileslot][$timeslot]['_'])) $results[$rulename][$fileslot][$timeslot]['_'] = 0;
+		if (!isset($results[$rulename][$fileslot][$timeslot][$difcol])) $results[$rulename][$fileslot][$timeslot][$difcol] = 0;
 
 		$results[$rulename][$fileslot][$timeslot]['_']++;
 		$results[$rulename][$fileslot][$timeslot][$difcol]++;
