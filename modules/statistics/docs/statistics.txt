@@ -55,15 +55,15 @@ Then take the configuration template:
 
 Configure the path of the log file:
 
-       'inputfile' => '/tmp/stat',
+	'inputfile' => '/tmp/stat',
 
 and the syntax of the log file. You need to configure where the
 date starts (usually 0), and how long the date is (usually 15), and
 where the first columns starts (such that STAT is in column 3):
 
-       'datestart' => 1,
-        'datelength' => 15,
-        'offsetspan' => 21,
+	'datestart' => 1,
+	'datelength' => 15,
+	'offsetspan' => 21,
 
 Make sure the stat dir is writable. SimpleSAMLphp will write data
 here:
