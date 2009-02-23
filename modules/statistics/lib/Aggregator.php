@@ -67,7 +67,7 @@ class sspmod_statistics_Aggregator {
 			// Parse log, and extract epoch time and rest of content.
 			$epoch = $logparser->parseEpoch($logline);
 			$content = $logparser->parseContent($logline);
-			$action = $content[4];
+			$action = $content[5];
 			
 			if ($debug) {
 				echo("----------------------------------------\n");
@@ -81,11 +81,11 @@ class sspmod_statistics_Aggregator {
 			// Iterate all the statrules from config.
 			foreach ($this->statrules AS $rulename => $rule) {
 			
-				#echo 'Comparing action: [' . $rule['action'] . '] with [' . $action . ']';
+				// echo 'Comparing action: [' . $rule['action'] . '] with [' . $action . ']' . "\n";
 			
 				$timeslot = $datehandler->toSlot($epoch, $rule['slot']);
 				$fileslot = $datehandler->toSlot($epoch, $rule['fileslot']); //print_r($content);
-				if (isset($rule['action']) && ($action !== $rule['action'])) continue;
+				if (!isset($rule['action']) && ($action !== $rule['action'])) continue;
 		
 				$difcol = $content[$rule['col']]; // echo '[...' . $difcol . '...]';
 		
@@ -94,6 +94,7 @@ class sspmod_statistics_Aggregator {
 		
 				$results[$rulename][$fileslot][$timeslot]['_']++;
 				$results[$rulename][$fileslot][$timeslot][$difcol]++;
+				
 			}
 		}
 		return $results;		
@@ -101,6 +102,8 @@ class sspmod_statistics_Aggregator {
 	
 	
 	public function store($results) {
+	
+		$datehandler = new sspmod_statistics_DateHandler($this->offset);
 	
 		// Iterate the first level of results, which is per rule, as defined in the config.
 		foreach ($results AS $rulename => $ruleresults) {
@@ -121,7 +124,7 @@ class sspmod_statistics_Aggregator {
 				}
 				
 				// store file
-				file_put_contents($statdir . '/' . $rulename . '-' . $fileno . '.stat', serialize($filledresult), LOCK_EX );
+				file_put_contents($this->statdir . '/' . $rulename . '-' . $fileno . '.stat', serialize($filledresult), LOCK_EX );
 			}
 		}
 	
