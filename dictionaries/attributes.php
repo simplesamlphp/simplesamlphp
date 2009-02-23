@@ -22,7 +22,7 @@ $lang = array(
 	),
 	'attribute_dc' => array (
 		'no' => 'Navneledd (DC)',
-		'nn' => 'Domene-komponent',
+		'nn' => 'Namneledd (DC)',
 		'da' => 'Domænekomponent',
 		'en' => 'Domain component (DC)',
 		'de' => 'Domain-Komponente',
@@ -39,7 +39,7 @@ $lang = array(
 	),
 	'attribute_displayname' => array (
 		'no' => 'Navn som normalt vises',
-		'nn' => 'Namn på den forma brukaren sjølv ønskjer (t.d. JR Rawlings i staden for fullt namn)',
+		'nn' => 'Namn slik det normalt blir vist fram',
 		'da' => 'Visningsnavn',
 		'en' => 'Display name',
 		'de' => 'Anzeigename',
@@ -109,7 +109,7 @@ $lang = array(
 	),
 	'attribute_homepostaladdress' => array (
 		'no' => 'Postadresse hjemme',
-		'nn' => 'Heimepostadresse',
+		'nn' => 'Postadresse heime',
 		'da' => 'Privatadresse',
 		'en' => 'Home postal address',
 		'de' => 'Privatanschrift',
@@ -126,7 +126,7 @@ $lang = array(
 	),
 	'attribute_jpegphoto' => array (
 		'no' => 'JPEG-foto',
-		'nn' => 'Fotografi på JPEG-format',
+		'nn' => 'Foto på JPEG-format',
 		'da' => 'JPEG-foto',
 		'en' => 'JPEG Photo',
 		'de' => 'JPEG Foto',
@@ -160,7 +160,7 @@ $lang = array(
 	),
 	'attribute_labeleduri' => array (
 		'no' => 'URI med valgfri tilleggskommentar',
-		'nn' => 'URI med kommentar om bruksområde',
+		'nn' => 'URI med valfri tilleggskommentar',
 		'da' => 'Labeled URI',
 		'en' => 'Labeled URI',
 		'de' => 'URI mit zusätzlicher Kennzeichnung',
@@ -196,7 +196,7 @@ $lang = array(
 	),
 	'attribute_manager' => array (
 		'no' => 'Overordnet',
-		'nn' => 'Overordna sjef',
+		'nn' => 'Overordna',
 		'da' => 'Manager',
 		'en' => 'Manager',
 		'de' => 'Manager/in',
@@ -318,7 +318,7 @@ $lang = array(
 	),
 	'attribute_preferredlanguage' => array (
 		'no' => 'Foretrukket språk',
-		'nn' => 'Føretrekt språk eller språkform',
+		'nn' => 'Førsteval for språk eller målform',
 		'se' => 'Vuostta&#353;v&aacute;lljejuvvon giella dehe giellah&aacute;pmi',
 		'da' => 'Foretrukket sprog (evt. flere)',
 		'en' => 'Preferred language',
@@ -373,7 +373,7 @@ $lang = array(
 	),
 	'attribute_telephonenumber' => array (
 		'no' => 'Telefon',
-		'nn' => 'Telefonnummer',
+		'nn' => 'Telefon',
 		'da' => 'Telefonnummer',
 		'en' => 'Telephone number',
 		'de' => 'Telefonnummer',
@@ -516,7 +516,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn' => array (
 		'no' => 'Entydig navn (DN) for brukerens vertsorganisasjon',
-		'nn' => 'LDAP-peikar (DN) til heimeorganisasjon for personen',
+		'nn' => 'Eintydig namn (DN) til heimeorganisasjon for brukaren',
 		'da' => 'Din hjemmeorganisations \'distinguished name\' (DN)',
 		'en' => 'Distinguished name (DN) of person\'s home organization',
 		'de' => 'Distinguished name (DN) der Organisation',
@@ -533,7 +533,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgunitdn' => array (
 		'no' => 'Entydig navn (DN) for brukerens organisasjonsenhet',
-		'nn' => 'LDAP-peikar (DN) til organisasjonseining for personen',
+		'nn' => 'Eintydig namn (DN) til organisasjonseining for brukaren',
 		'da' => 'Din organisatoriske enheds \'distinguished name\' (DN)',
 		'en' => 'Distinguished name (DN) of the person\'s home organizational unit',
 		'de' => 'Distinguished name (DN) der Organisationseinheit',
@@ -586,7 +586,7 @@ $lang = array(
 	),
 	'attribute_edupersonscopedaffiliation' => array (
 		'no' => 'Gruppetilhørighet',
-		'nn' => 'Rolle hos ein organisasjon spesifisert i attributtverdien',
+		'nn' => 'Rolle hos organisasjonen ',
 		'se' => 'Rolla diehto organisa&#353;uvnnas, dehe dihto domenas.',
 		'da' => 'Gruppemedlemskab',
 		'en' => 'Affiliation at home organization',
@@ -693,7 +693,7 @@ $lang = array(
 	),
 	'attribute_edupersonprimaryorgunitdn' => array (
 		'no' => 'Entydig navn for organisasjonsenheten som brukeren primært er tilknyttet',
-		'nn' => 'LDAP-peikar (DN) til primær organisasjonseining for personen',
+		'nn' => 'Eintydig namn (DN) til primær organisasjonseining for personen',
 		'da' => 'Primær enhed/institution',
 		'en' => 'Distinguished name (DN) of person\'s primary Organizational Unit',
 		'sv' => 'LDAP-pekare (DN) till personens pimära organisationsenhet',
@@ -730,7 +730,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_l' => array (
 		'no' => 'Organisasjonens lokasjon',
-		'nn' => 'Stad for vertsorganisjon',
+		'nn' => 'Stad for organisjonen',
 		'da' => 'Institutionsted',
 		'en' => 'Organization\'s location',
 		'de' => 'Ort der Organisation',
@@ -743,7 +743,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_eduorghomepageuri' => array (
 		'no' => 'Organisasjonens hjemmeside',
-		'nn' => 'Webside for vertsorganisasjon',
+		'nn' => 'Heimeside for organisasjonen',
 		'da' => 'Institutionens hjemmeside',
 		'en' => 'Organization\'s web page',
 		'de' => 'Webseite der Organisation',
@@ -756,7 +756,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_facsimiletelephonenumber' => array (
 		'no' => 'Organisasjonen faksnummer',
-		'nn' => 'Faksnummer til vertsorganisasjon',
+		'nn' => 'Faksnummer til organisasjonen',
 		'da' => 'Institutionens fax-nummer',
 		'en' => 'Organization\'s fax number',
 		'de' => 'Fax Nummer der Organisation',
@@ -769,7 +769,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_eduorglegalname' => array (
 		'no' => 'Organisasjonen foretaksnavn',
-		'nn' => 'Formelt namn på vertsorganisasjon',
+		'nn' => 'Formelt namn på organisasjonen',
 		'da' => 'Institutionens officielle navn',
 		'en' => 'Organization\'s legal name',
 		'sv' => 'Organisationens offciella (legala) namn',
@@ -781,7 +781,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_postalcode' => array (
 		'no' => 'Organisasjonen postnummer',
-		'nn' => 'Postnummer til vertsorganisasjon',
+		'nn' => 'Postnummer til organisasjonen',
 		'da' => 'Institutionens postnummer',
 		'en' => 'Organization\'s postal code',
 		'de' => 'Postleitzahl der Organisation',
@@ -806,7 +806,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_businesscategory' => array (
 		'no' => 'Organisasjonen bransjetilhørighet',
-		'nn' => 'Forretningskategori',
+		'nn' => 'Forretningskategori for organisasjonen',
 		'da' => 'Institutionens forretnings kategori',
 		'en' => 'Organization business category',
 		'sv' => 'Organisationens bransch',
@@ -818,7 +818,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_dc' => array (
 		'no' => 'Navneledd (DC) for organisasjonen',
-		'nn' => 'Domenenamnskomponent (DC) for vertsorganisasjon',
+		'nn' => 'Namneledd (DC) for organisasjonen',
 		'da' => 'Institutionens Domain Component (DC)',
 		'en' => 'Domain component (DC) of organization',
 		'sv' => 'Domändel (DC) för organisationen',
@@ -830,7 +830,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_description' => array (
 		'no' => 'Beskrivelse av brukerens organisasjon',
-		'nn' => 'Omtale av vertsorganisasjon',
+		'nn' => 'Omtale av organisasjonen',
 		'da' => 'Beskrivelse af institutionen',
 		'en' => 'Description of the organization',
 		'de' => 'Beschreibung der Organisation',
@@ -843,7 +843,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_cn' => array (
 		'no' => 'Organisasjonens fulle navn',
-		'nn' => 'LDAP-peikar (DN) til organisasjonen',
+		'nn' => 'Organisasjonsnamn',
 		'da' => 'Institutionens kaldenavn',
 		'en' => 'Organization common name',
 		'sv' => 'Organisationens fullständiga namn',
@@ -855,7 +855,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_postaladdress' => array (
 		'no' => 'Organisasjonens postadresse',
-		'nn' => 'Postadresse for vertsorganisasjon',
+		'nn' => 'Postadresse for organisasjonen',
 		'da' => 'Institutionens postadresse',
 		'en' => 'Organization\'s postal address',
 		'sv' => 'Organisationens postadress',
@@ -867,7 +867,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_telephonenumber' => array (
 		'no' => 'Organisasjonens telefonnummer',
-		'nn' => 'Telefonnummer for vertsorganisasjon',
+		'nn' => 'Telefonnummer til organisasjonen',
 		'da' => 'Institutionens telefonnummer',
 		'en' => 'Organization\'s telephone number',
 		'de' => 'Telefonnummer der Organisation',
@@ -880,7 +880,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_labeleduri' => array (
 		'no' => 'Peker til organisasjonens nettsted',
-		'nn' => 'URI for organisasjonen med kommentar om bruksområde',
+		'nn' => 'Peikar til nettstad for organisasjonen ',
 		'da' => 'Institutionens labeled URI',
 		'en' => 'Labeled URI to organization',
 		'sv' => 'Adress (URI) inkl etikett för organisationen',
@@ -891,7 +891,7 @@ $lang = array(
 		'pt' => 'Página web da Organização',
 	),
 	'attribute_edupersonorgdn_street' => array (
-		'no' => 'Organisasjonens gate adresse',
+		'no' => 'Organisasjonens gateadresse',
 		'nn' => 'Gateadresse for vertsorganisasjon',
 		'da' => 'Institutionens gadenavn',
 		'en' => 'Organization street address',
@@ -904,7 +904,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_noreduorgacronym' => array (
 		'no' => 'Forkortelse for utdanningsorganisasjonen',
-		'nn' => 'Forkorting av namnet til vertsorganisasjon',
+		'nn' => 'Forkorting av namnet til organisasjonen',
 		'da' => 'Akronym for institutionen',
 		'en' => 'Acronym for the organization',
 		'sv' => 'Akronym för organisationen',
@@ -916,7 +916,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgdn_eduorgwhitepagesuri' => array (
 		'no' => 'Peker til katalogtjenesten for organisasjonen',
-		'nn' => 'URL til katalogoppslag (white pages) for organisasjonen',
+		'nn' => 'Peikar til katalogoppslag for organisasjonen',
 		'da' => 'Url til institutionens åbne elektroniske opslagsservice',
 		'en' => 'The URL of the open white pages directory service for the organization',
 		'de' => 'URL des öffentlichen Adressbuches der Organisation',
@@ -953,7 +953,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgunitdn_telephonenumber' => array (
 		'no' => 'Organisasjonsenheten(e)s telefonnummer',
-		'nn' => 'Telefonnummer til organisasjonseining',
+		'nn' => 'Telefonnummer til organisasjonseininga(ne)',
 		'da' => 'Den Organisatoriske Enheds telefonnummer',
 		'en' => 'Organizational Unit(s) phone number',
 		'sv' => 'Organisationsenhetens/enheternas telefonnummer',
@@ -964,8 +964,8 @@ $lang = array(
 		'pt' => 'Número de telefone da Unidade Orgânica ',
 	),
 	'attribute_edupersonorgunitdn_noreduorgunituniqueidentifier' => array (
-		'no' => 'Organisasjonsenheten(e)s lokale identifikasjons nummer',
-		'nn' => 'Unik identifikator for organisasjonseininga',
+		'no' => 'Organisasjonsenheten(e)s lokale identifikasjonsnummer',
+		'nn' => 'Unik lokal identifikator for organisasjonseininga(ne)',
 		'da' => 'Den Organisatoriske Enheds beskrivende identifikator',
 		'en' => 'Organizational unit(s) describing identifier',
 		'sv' => 'Organisationsenhetens/enheternas unika identifierare',
@@ -977,7 +977,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgunitdn_facsimiletelephonenumber' => array (
 		'no' => 'Organisasjonsenheten(e)s faksnummer',
-		'nn' => 'Faksnummer for organisasjonseininga',
+		'nn' => 'Faksnummer for organisasjonseininga(ne)',
 		'da' => 'Den Organisatoriske Enheds faxnummer',
 		'en' => 'Organizational Unit(s) fax number',
 		'sv' => 'Organisationsenhetens/enheternas faxnummer',
@@ -989,7 +989,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgunitdn_postalcode' => array (
 		'no' => 'Organisasjonsenheten(e)s postnummer',
-		'nn' => 'Postnummer for organisasjonseininga',
+		'nn' => 'Postnummer for organisasjonseininga(ne)',
 		'da' => 'Den Organisatoriske Enheds postnummer',
 		'en' => 'Organizational Unit(s) postal service zones code',
 		'sv' => 'Organisationsenhetens/enheternas postnummer',
@@ -1001,7 +1001,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgunitdn_cn' => array (
 		'no' => 'Organisasjonsenheten(e)s fulle navn',
-		'nn' => 'LDAP-kode (DN) for organisasjonseiningane',
+		'nn' => 'Namn på organisasjonseininga(ne)',
 		'da' => 'Den Organisatoriske Enheds common name (CN)',
 		'en' => 'Organizational Unit(s) common name',
 		'sv' => 'Organisationsenhetens/enheternas fullständiga namn',
@@ -1025,7 +1025,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgunitdn_street' => array (
 		'no' => 'Organisasjonsenheten(e)s gateadresse',
-		'nn' => 'Gateadresse til organisasjonseininga',
+		'nn' => 'Gateadresse til organisasjonseininga(ne)',
 		'da' => 'Den Organisatoriske Enheds gade',
 		'en' => 'Organizational Unit(s) street',
 		'sv' => 'Organisationsenhetens/enheternas gatuadress(er)',
@@ -1037,7 +1037,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgunitdn_l' => array (
 		'no' => 'Organisasjonsenheten(e)s steds navn',
-		'nn' => 'Stadsnamn for organisasjonseininga',
+		'nn' => 'Stadsnamn for organisasjonseininga(ne)',
 		'da' => 'Den Organisatoriske Enheds "locality"',
 		'en' => 'Organizational Unit(s) locality name',
 		'sv' => 'Organisationsenhetens/enheternas lokalisering',
@@ -1049,7 +1049,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgunitdn_noreduorgacronym' => array (
 		'no' => 'Forkortelse for organisasjonsenheten(e)',
-		'nn' => 'Forkorting for organisasjonseininga',
+		'nn' => 'Forkorting for organisasjonseininga(ne)',
 		'da' => 'Acronym for den Organisatoriske Enhed',
 		'en' => 'Acronym for Organizational Unit(s)',
 		'sv' => 'Akronym för Organisationsenheten/enheterna',
@@ -1061,7 +1061,7 @@ $lang = array(
 	),
 	'attribute_edupersonorgunitdn_mail' => array (
 		'no' => 'Organisasjonsenheten(e)s e-post adresse',
-		'nn' => 'Epostadresse til organisasjonseininga',
+		'nn' => 'Epostadresse til organisasjonseininga(ne)',
 		'da' => 'Den Organisatoriske Enheds emailadresse',
 		'en' => 'Organizational Unit(s) email address',
 		'sv' => 'Organisationsenhetens/enheternas e-postadress(er)',
@@ -1073,7 +1073,7 @@ $lang = array(
 		'pt' => 'Endereço de e-mail da Unidade Orgânica',
 	),
 	'attribute_schachomeorganization' => array (
-		'no' => 'Unik ID for vertsorganisasjon',
+		'no' => 'Unik ID for organisasjon',
 		'nn' => 'Unik ID for organisasjon',
 		'da' => 'Hjemmeorganisationens entydige ID (domænenavn)',
 		'en' => 'Home organization domain name',

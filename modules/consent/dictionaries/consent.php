@@ -3,7 +3,7 @@
 $lang = array(
 	'yes' => array (
 		'no' => 'Ja, fortsett',
-		'nn' => 'Ja, eg aksepterer',
+		'nn' => 'Ja, fortsett',
 		'da' => 'Ja, jeg accepterer',
 		'en' => 'Yes, continue',
 		'de' => 'Ja, ich stimmte zu',
@@ -21,7 +21,7 @@ $lang = array(
 	),
 	'no' => array (
 		'no' => 'Nei, avbryt',
-		'nn' => 'Nei, eg aksepterer ikkje',
+		'nn' => 'Nei, avbryt',
 		'da' => 'Nej, jeg accepterer ikke',
 		'en' => 'No, cancel',
 		'de' => 'Nein, ich stimmte nicht zu',
@@ -39,7 +39,7 @@ $lang = array(
 	),
 	'remember' => array (
 		'no' => 'Godta også for fremtiden',
-		'nn' => 'Hugs samtykke',
+		'nn' => 'Godta også for framtida',
 		'da' => 'Husk samtykke',
 		'en' => 'Remember',
 		'de' => 'Zustimmung merken',
@@ -67,7 +67,7 @@ $lang = array(
 	),
 	'consent_accept' => array (
 		'no' => 'For å fullføre innloggingen må du godta at opplysningene nedenfor sendes til SPNAME.',
-		'nn' => 'SPNAME krevjer at informasjonen nedanfor blir overført fra IDPNAME. Gjev du samtykke til slik overføring?',
+		'nn' => 'For å fullføra innlogginga må du godta at opplysningane under blir sende til SPNAME',
 		'da' => 'SPNAME kræver at nedenstående oplysninger overføres fra IDPNAME. Vil du acceptere dette?',
 		'en' => 'SPNAME requires that the information below is transferred.',
 		'de' => 'SPNAME erfordert die Übertragung untenstehender Information von IDPNAME. Akzeptieren Sie das?',
@@ -91,11 +91,12 @@ $lang = array(
 		'de' => 'Der Zweck von SPNAME ist SPDESC',
 		'sv' => 'Syftet med SPNAME är SPDESC',
 		'es' => 'El propósito de SPNAME es SPDESC',
+		'sl' => 'Namen %SPNAME%: %SPDESC%',
 		'hr' => 'Svrha SPNAME je SPDESC',
 	),
 	'consent_privacypolicy' => array (
 		'no' => 'Personvern for tjenesten',
-		'nn' => 'Personvernpolicy for tenesta',
+		'nn' => 'Personvern for tenesta',
 		'da' => 'Tjenestens politik vedrørende personoplysninger',
 		'en' => 'Privacypolicy for the service',
 		'de' => 'Datenschutzrichtlinie des Dienstes',
@@ -111,7 +112,7 @@ $lang = array(
 	),
 	'consent_attributes_header' => array (
 		'no' => 'Opplysninger som vil bli sendt til SPNAME',
-		'nn' => 'Opplysningar som blir sendt til tenesta',
+		'nn' => 'Opplysningar som blir sende til SPNAME',
 		'da' => 'Attributter som bliver sendt til tjenesten',
 		'en' => 'Information that will be sent to service',
 		'sv' => 'Attribut som kommer att skickas till tjänsten',
@@ -120,7 +121,7 @@ $lang = array(
 		'hr' => 'Atributi koji će biti poslani servisu',
 	),
 	'show_attributes' => array (
-		'no' => 'Vis attributter',
+		'no' => 'Vis opplysninger',
 		'nn' => 'Vis opplysingar',
 		'da' => 'Vis attributter',
 		'en' => 'Show attributes',
@@ -202,8 +203,8 @@ $lang = array(
 		'pt-BR' => 'Status do Consentimento',
 	),
 	'show_hide_attributes' => array (
-		'no' => 'Vis/skjul attributter',
-		'nn' => 'vis/skjul attributtar',
+		'no' => 'Vis/skjul opplysninger',
+		'nn' => 'Vis/skjul opplysningar',
 		'da' => 'vis/skjul attributter',
 		'en' => 'show/hide attributes',
 		'de' => 'zeige/verstecke Eigenschaften',
@@ -220,8 +221,8 @@ $lang = array(
 		'pt-BR' => 'mostra/esconder Atributos',
 	),
 	'noconsent_title' => array (
-		'no' => 'Ingen samtykke gitt',
-		'nn' => 'Utan samtykke',
+		'no' => 'Ikke akseptert overføring av informasjon',
+		'nn' => 'Ikkje akseptert overføring av informasjon',
 		'da' => 'Manglende samtykke',
 		'en' => 'No consent given',
 		'de' => 'Zustimmung verweigert',
@@ -235,8 +236,8 @@ $lang = array(
 		'pt-BR' => 'Nenhum consentimento dado',
 	),
 	'noconsent_text' => array (
-		'no' => 'Du har ikke gitt samtykke til å overlevere attributter til tjenesteleverandøren.',
-		'nn' => 'Du har ikkje gitt samtykke til at dine opplysingar (attibuttar) kan overførast til tenesteleverandøren',
+		'no' => 'Du har ikke akseptert å overlevere opplysninger til tjenesteleverandøren.',
+		'nn' => 'Du har ikkje akseptert til at dine opplysningar kan sendast til tenesteleverandøren',
 		'da' => 'Du har ikke givet samtykke til overleveringen af oplysninger til tjenesten',
 		'en' => 'You did not give consent for transfering your attributes to the service provider.',
 		'de' => 'Sie haben der Weitergabe ihrer Daten an den Service Provider nicht zugestimmt.',
@@ -250,8 +251,8 @@ $lang = array(
 		'pt-BR' => 'Você não deu o consentimento para a transferência de seus atributos para o provedor de serviços.',
 	),
 	'noconsent_return' => array (
-		'no' => 'Gå tilbake til siden for samtykke',
-		'nn' => 'Gå tilbake til samtykkesida',
+		'no' => 'Gå tilbake til aksept-siden med opplysninger',
+		'nn' => 'Gå tilbake til aksept-sida for overføring av opplysningar',
 		'da' => 'Gå tilbage',
 		'en' => 'Return to consent page',
 		'de' => 'Zurück',
