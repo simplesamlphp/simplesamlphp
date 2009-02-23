@@ -1,0 +1,297 @@
+Setting up a simpleSAMLphp SAML 2.0 IdP to use with Google Apps for Education
+============================================
+
+<!-- 
+	This file is written in Markdown syntax. 
+	For more information about how to use the Markdown syntax, read here:
+	http://daringfireball.net/projects/markdown/syntax
+-->
+
+  * Version: `$Id: simplesamlphp-install.txt 1297 2009-02-23 09:03:26Z andreassolberg $`
+
+
+
+simpleSAMLphp news and documentation
+------------------------------------
+
+This document is part of the simpleSAMLphp documentation suite.
+
+ * [List of all simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+ * [Latest news about simpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also conatins an RSS feed)
+ * [simpleSAMLphp homepage](http://rnd.feide.no/simplesamlphp)
+
+
+## Introduction
+
+This article assumes that you have already read the simpleSAMLphp
+installation manual, and installed a version of simpleSAMLphp at
+your server.
+
+In this example we will setup this server as an IdP for Google Apps
+for Education:
+
+dev2.andreas.feide.no
+
+## Enabling the Identity Provider functionality
+
+Edit `config.php`, and enable the SAML 2.0 IdP:
+
+    'enable.saml20-sp'  => false,
+    'enable.saml20-idp' => true,
+    'enable.shib13-sp'  => false,
+    'enable.shib13-idp' => false,
+
+## Setting up a SSL signing certificate
+
+For test purposes, you can skip this section, and use the
+certificate included in the simpleSAMLphp distribution.
+
+For a production system, you must generate a new certificate for
+your IdP.
+
+### Warning
+
+The certificate that follows the simpleSAMLphp distribution must *NEVER* be used in production, as the private key is also included in the package and can be downloaded by anyone.
+
+Here is an example of openssl commands to generate a new key and a self signed certificate to use for signing SAML messages:
+
+    openssl genrsa -des3 -out googleappsidp.key 1024 
+    openssl rsa -in googleappsidp.key -out googleappsidp.pem
+    openssl req -new -key googleappsidp.key -out googleappsidp.csr
+    openssl x509 -req -days 1095 -in googleappsidp.csr -signkey googleappsidp.key -out googleappsidp.crt
+
+The certificate above will be valid for 1095 days (3 years).
+
+Here is an example of typical user input when creating a
+certificate request:
+
+    Country Name (2 letter code) [AU]:NO
+    State or Province Name (full name) [Some-State]:Trondheim
+    Locality Name (eg, city) []:Trondheim
+    Organization Name (eg, company) [Internet Widgits Pty Ltd]:UNINETT
+    Organizational Unit Name (eg, section) []:
+    Common Name (eg, YOUR name) []:dev2.andreas.feide.no
+    Email Address []:
+    
+    Please enter the following 'extra' attributes
+    to be sent with your certificate request
+    A challenge password []:
+    An optional company name []:
+
+### Note
+
+simpleSAMLphp will only work with RSA and not DSA certificates.
+
+## Authentication modules
+
+The IdP must be connected to your existing user catalog. Authentication modules are provided for different user catalog technologies.
+
+The `www/auth` directory contains multiple files, each representing an authentication module. In the IdP hosted metadata configuration you specify which authentication module should be used for that specific IdP. You can implement your own authentication module, see the IdP documentation.
+
+These authentication modules are included in the simpleSAMLphp distribution:
+
+auth/login.php
+:   This is the standard LDAP backend authentication module. It
+    uses LDAP configuration from the `config.php` file.
+
+auth/login-ldapmulti.php
+:   This authentication module lets you connect to multiple LDAPs
+    depending on the home organization selected by the user.
+
+auth/login-feide.php
+:   A multi-LDAP module which looks up the users in LDAP, first
+    searching for `eduPersonPrincipalName`.
+
+auth/login-radius.php
+:   This authentication module will authenticate users against an
+    RADIUS server instead of LDAP.
+
+auth/login-auto.php
+:   This module will automatically login the user with some test
+    details. You can use this to test the IdP functionality if you do
+    not have
+
+:   This module is not completed yet. Work in progress.
+
+auth/login-cas-ldap.php
+:   Authentication via CAS, followed by attribute lookup in LDAP.
+
+
+### Configuring the LDAP authentication module
+
+The LDAP module is found in `auth/login.php`.
+
+If you want to perform local authentication using this server, using the LDAP authenticaiton plugin, the following parameters should be configured in `config.php`:
+
+-  
+    `auth.ldap.dnpattern`: Which DN to bind to. `%username%` is
+    replaced with with the user name typed in.
+
+-   `auth.ldap.hostname`: Host name of the LDAP server
+
+-  
+    `auth.ldap.attributes`: List of attributes retrieved from LDAP. Set
+    this option to `null` to retrieve all attributes available.
+
+
+### Configuring the multi-LDAP authentication module
+
+The module is found in `auth/login-ldapmulti.php`.
+
+### Note
+
+Documentation will be added later. For now, contact the author.
+
+## Configuring metadata for an SAML 2.0 IdP
+
+If you want to setup a SAML 2.0 IdP for Google Apps, you need to
+configure two metadata files: `saml20-idp-hosted.php` and
+`saml20-sp-remote.php`.
+
+### Configuring SAML 2.0 IdP Hosted metadata
+
+This is the configuration of the IdP itself. Here is some example
+config:
+
+      // The SAML entity ID is the index of this config.
+      'dev2.andreas.feide.no' => array(
+    
+        // The hostname of the server (VHOST) that this SAML entity will use.
+       'host'        => 'sp.example.org',
+    
+        // X.509 key and certificate. Relative to the cert directory.
+        'privatekey'   => 'googleappsidp.pem',
+        'certificate'  => 'googleappsidp.crt',
+    
+        // Authentication plugin to use. login.php is the default one that uses LDAP.
+        'auth'         => 'auth/login.php',
+        'authority'    => 'login'
+      )
+
+Parameter details:
+
+index (index of array)
+:   The entity ID of the IdP. In this example this value is set to:
+    `dev2.andreas.feide.no`.
+
+host
+:   The hostname of the server running this IdP, in this case:
+    `dev2.andreas.feide.no`.
+
+privatekey
+:   Name of private key file in PEM format, in the `certs`
+    directory. For key generation, see generation of the
+    `googleappsidp` key, above.
+
+certificate
+:   Name of certificate file in PEM format, in the `certs`
+    directory. For certificate generation, see generation of the
+    `googleappsidp` key, above.
+
+auth
+:   Which authentication module to use. Default:
+    `auth/login.php,`the LDAP authentication module. See the
+    [the section called “Authentication modules”](#sect.authmodule "Authentication modules")
+    for more information on the authentication modules.
+
+authority
+:   The ID of the authentication module you are using. Set this
+    value if you only allow one authentication module.
+
+
+### Configuring SAML 2.0 SP Remote metadata
+
+In the (saml20-sp-remote.php) file we will configure an entry for Google Apps for education. There is already an entry for Google Apps in the template, but we will change the domain name:
+
+      /*
+       * This example shows an example config that works with Google Apps for education.
+       * What is important is that you have an attribute in your IdP that maps to the local part of the email address
+       * at Google Apps. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you
+       * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.
+       */
+      'google.com' => array(
+        'AssertionConsumerService'   => 'https://www.google.com/a/g.feide.no/acs', 
+        'spNameQualifier'            => 'google.com',
+        'NameIDFormat'               => 'urn:oasis:names:tc:SAML:2.0:nameid-format:email',
+        'simplesaml.nameidattribute' => 'uid',
+        'simplesaml.attributes'      => false
+      );
+
+You must also map some attributes received from the authentication module into email field sent to Google Apps. In this example, the LDAP returns the `uid` attribute. The `uid` attribute contains the local part of the user name.
+
+You should modify the `AssertionConsumerService` to include your Google Apps domain name instead of `g.feide.no`.
+
+For an explanation of the parameters, see the
+[simpleSAMLphp IdP documentation](simplesamlphp-idp.html).
+
+## Configure Google Apps for education
+
+Start by logging in to our Google Apps for education account panel.
+Then select "Advanced tools":
+
+**Figure&nbsp;1.&nbsp;We go to advanced tools**
+
+![We go to advanced tools](http://rnd.feide.no/doc/resources/simplesamlphp-googleapps/googleapps-menu.png)
+
+Then select "Set up single sign-on (SSO)":
+
+**Figure&nbsp;2.&nbsp;We go to setup SSO**
+
+![We go to setup SSO](http://rnd.feide.no/doc/resources/simplesamlphp-googleapps/googleapps-sso.png)
+Upload a certificate, such as the googleappsidp.crt created above:
+
+**Figure&nbsp;3.&nbsp;Uploading certificate**
+
+![Uploading certificate](http://rnd.feide.no/doc/resources/simplesamlphp-googleapps/googleapps-cert.png)
+Fill out the remaining fields:
+
+The most important field is the Sign-in page URL. Set it to
+something similar to:
+
+	http://dev2.andreas.feide.no/simplesaml/saml2/idp/SSOService.php
+
+using the hostname of your IdP server.
+
+You must also configure the IdP initiated Single LogOut endpoint of your server. The RelayState parameter of the endpoint is the URL where the user is redirected after successfull logout. Recommended value:
+
+	http://dev2.andreas.feide.no/simplesaml/saml2/idp/initSLO.php?RelayState=/simplesaml/logout.php
+
+again, using the host name of your IdP server.
+
+The Sign-out page or change password url can be static pages on your server.
+
+The network mask determines which IP addresses will be asked for SSO login. IP addresses not matching this mask will be presented with the normal Google Apps login page. I think you can leave this field empty to enable authentication for all URLs.
+
+**Figure&nbsp;4.&nbsp;Fill out the remaining fields**
+
+![Fill out the remaining fields](http://rnd.feide.no/doc/resources/simplesamlphp-googleapps/googleapps-ssoconfig.png)
+
+### Add a user in Google Apps that is known to the IdP
+
+Before we can test login, a new user must be defined in Google Apps. This user must have a mail field matching the email prefix mapped from the attribute as described above in the metadata section.
+
+## Test to login to Google Apps for education
+
+Go to the URL of your mail account for this domain, the URL is similar to the following:
+
+	http://mail.google.com/a/yourgoogleappsdomain.com
+
+replacing the last part with your own google apps domain name.
+
+## Security Considerations
+
+Make sure that your IdP server runs HTTPS (SSL). The Apache documentation contains information for how to configure HTTPS.
+
+Make sure you have replaced the default certificate delivered with the simpleSAMLphp distribution with your own certificate.
+
+Support
+-------
+
+If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
+
+-  [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
+-  [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+-  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
+-  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
+
+
