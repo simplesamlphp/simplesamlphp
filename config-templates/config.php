@@ -110,8 +110,6 @@ $config = array (
 	'logging.logfile'		=> 'simplesamlphp.log',
 	'logging.processname'	=> 'simplesamlphp-foodle',
 	
-	'statistics.realmattr'  => 'realm',
-	
 	
 
 	/*
