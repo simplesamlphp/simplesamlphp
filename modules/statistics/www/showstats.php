@@ -92,7 +92,8 @@ if (isset($_REQUEST['d'])) {
 $maxvalue = 0;
 $maxvaluetime = 0;
 $debugdata = array();
-foreach($results AS $slot => $res) {
+foreach($results AS $slot => &$res) {
+	if (!array_key_exists($delimiter, $res)) $res[$delimiter] = 0;
 	if ($res[$delimiter] > $maxvalue) { 
 		$maxvaluetime = $datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra); 
 	}
@@ -167,6 +168,3 @@ $t->data['summaryDataset'] = $summaryDataset;
 $t->data['availdelimiters'] = array_keys($availdelimiters);
 $t->show();
 
-
-
-?>

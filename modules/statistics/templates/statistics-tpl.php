@@ -1,15 +1,6 @@
 <?php
 $this->data['header'] = 'SimpleSAMLphp Statistics';
 
-
-/*
-echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/js/tabs/addclasskillclass.js"></script>';
-echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/js/tabs/attachevent.js"></script>';
-echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/js/tabs/addcss.js"></script>';
-echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/js/tabs/tabtastic.js"></script>';
-*/
-
-
 $this->data['head']  = '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>';
 $this->data['head'] .= '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui.js"></script>';
 $this->data['head'] .= '<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 'resources/uitheme/jquery-ui-themeroller.css" />';
