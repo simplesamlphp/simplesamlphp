@@ -58,7 +58,25 @@ class SimpleSAML_Configuration {
 			echo '<p>This file was missing: [' . $filename . ']</p>';
 			exit;
 		}
-		require_once($filename);
+		require($filename);
+		
+		// Check that $config array is defined...
+		if (!isset($config) || !is_array($config))
+			throw new Exception('Configuration file [' . $this->configfilename . '] does not contain a valid $config array.');
+		
+		if(array_key_exists('override.host', $config)) {
+			foreach($config['override.host'] AS $host => $ofs) {
+				if (SimpleSAML_Utilities::getSelfHost() === $host) {
+					foreach(SimpleSAML_Utilities::arrayize($ofs) AS $of) {
+						$overrideFile = $this->configpath . '/' . $of;
+						if (!file_exists($overrideFile)) 
+							throw new Exception('Config file [' . $this->configfilename . '] requests override for host ' . $host . ' but file does not exists [' . $of . ']');
+						require($overrideFile);
+					}
+				}
+			}
+		}
+		
 		$this->configuration = $config;
 	}
 
