@@ -279,21 +279,6 @@ if($needAuth && !$isPassive) {
 		 */
 		$attributes = $session->getAttributes();
 		
-		/*
-			Need to be replaced by a auth proc filter that does the log entry....
-			
-			$realmattr = $config->getValue('statistics.realmattr', null);
-			$realmstr = 'NA';
-			if (!empty($realmattr)) {
-				if (array_key_exists($realmattr, $tempattr) && is_array($tempattr[$realmattr]) ) {
-					$realmstr = $tempattr[$realmattr][0];
-				} else {
-					SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
-				}
-			} 
-		*/
-		SimpleSAML_Logger::stats('saml20-idp-SSO ' . $spentityid . ' ' . $idpentityid . ' NA');
-		
 		/* Authentication processing operations. */
 		if (array_key_exists('AuthProcState', $requestcache)) {
 			/* Processed earlier, saved in requestcache. */
