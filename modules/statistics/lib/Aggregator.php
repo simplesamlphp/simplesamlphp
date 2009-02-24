@@ -85,7 +85,9 @@ class sspmod_statistics_Aggregator {
 			
 				$timeslot = $datehandler->toSlot($epoch, $rule['slot']);
 				$fileslot = $datehandler->toSlot($epoch, $rule['fileslot']); //print_r($content);
-				if (!isset($rule['action']) && ($action !== $rule['action'])) continue;
+				
+				if (isset($rule['action']) && ($action !== $rule['action'])) continue;
+				
 		
 				$difcol = $content[$rule['col']]; // echo '[...' . $difcol . '...]';
 		
