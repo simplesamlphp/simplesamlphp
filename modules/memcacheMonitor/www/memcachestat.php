@@ -1,6 +1,5 @@
 <?php
 
-require_once('../_include.php');
 
 try {
 
@@ -25,5 +24,3 @@ try {
 } catch(Exception $e) {
 	SimpleSAML_Utilities::fatalError('na', NULL, $e);
 }
-
-?>
