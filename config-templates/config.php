@@ -243,6 +243,11 @@ $config = array (
 		/* Add a realm attribute from edupersonprincipalname
 		40 => 'core:AttributeRealm',
 		 */
+		45 => array(
+			'class' => 'core:StatisticsWithAttribute',
+			'attributename' => 'realm',
+			'type' => 'saml20-idp-SSO',
+		),
 
 		/* When called without parameters, it will fallback to filter attributes ‹the old way›
 		 * by checking the 'attributes' parameter in metadata on IdP hosted and SP remote.
