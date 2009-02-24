@@ -1,55 +1,33 @@
 <?php
-$this->data['header'] = 'Statistics';
-$this->includeAtTemplateBase('includes/header.php');
+$this->data['header'] = 'SimpleSAMLphp Statistics';
 
+
+/*
 echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/js/tabs/addclasskillclass.js"></script>';
 echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/js/tabs/attachevent.js"></script>';
 echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/js/tabs/addcss.js"></script>';
 echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/js/tabs/tabtastic.js"></script>';
+*/
 
+
+$this->data['head']  = '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>';
+$this->data['head'] .= '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui.js"></script>';
+$this->data['head'] .= '<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 'resources/uitheme/jquery-ui-themeroller.css" />';
+
+$this->data['head'] .= '<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#tabdiv > ul").tabs();
+});
+</script>';
+
+
+$this->includeAtTemplateBase('includes/header.php');
 
 ?>
 
 	<style type="text/css" media="all">
-#content .tabset_tabs	{ 
-	margin:0; padding:0; 
-	list-style-type:none; position:relative; z-index:2; white-space:nowrap 
-}
-#content .tabset_tabs li	{ 
-	margin:0; 
-	padding: 0px; 
-	display:inline;
-	font-family: sans-serif; 
-	font-size: medium;
-	font-weight: normal;
-}
-#content .tabset_tabs a	{ 
-	color:#bbb ! important; 
-	background-color:#e8e8e8 ! important; 
-	border:1px solid #aaa; text-decoration:none; 
-	padding:0 2em;
-
-/*	border-left-width:1px;  */
-	border-bottom:none 
-}
-#content .tabset_tabs a:hover { 
-	color:#666; 
-	background-color:#eee; 
-}
-#content .tabset_tabs a.active { 
-	color:black ! important; background-color:white ! important; border-color:black; border-left-width:1px; cursor:default; border-bottom:white; padding-top:1px; padding-bottom:1px;
-}
-
-#content .tabset_tabs li.firstchild a	{ border-left-width:1px }
-
-#content .tabset_content	{ 
-	border:1px solid black; background-color:white; position:relative; z-index:1; padding:0.5em 1em; display:none;
-	top: -3px;
-}
-#content .tabset_label	{ display:none }
-
-#content .tabset_content_active	{ display:block }
-
+.ui-tabs-panel { padding: .5em }
 
 .tableview {
 	border-collapse: collapse;
@@ -81,7 +59,7 @@ echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'res
 echo('<h1>'. $this->data['available.rules'][$this->data['selected.rule']]['name'] . '</h1>');
 echo('<p>' . $this->data['available.rules'][$this->data['selected.rule']]['descr'] . '</p>');
 
-echo '<div class="selecttime" style="border: 1px solid #999; background: #ccc; margin: .5em; padding: .5em">';
+echo '<div class="selecttime" style="border: 1px solid #ccc; background: #eee; margin: 5px 0px; padding: .5em">';
 echo '<div style="display: inline">';
 echo '<form style="display: inline"><select onChange="submit();" name="rule">';
 foreach ($this->data['available.rules'] AS $key => $rule) {
@@ -131,26 +109,21 @@ echo '</select></form>';
 echo '</div>';
 
 
-echo '<br style="clear: both; height: 0px">';
+echo '<div style="clear: both; height: 0px"></div>';
 echo '</div>';
 
 
-echo '<ul class="tabset_tabs">
-   <li><a href="#graph" class="active">Graph</a></li>
+echo '<div id="tabdiv"><ul class="tabset_tabs">
+   <li><a href="#graph">Graph</a></li>
    <li><a href="#table">Table</a></li>
    <li><a href="#debug">Debug</a></li>
 </ul>';
 echo '
 
-<div id="graph" class="tabset_content">
-   <h2 class="tabset_label">Graph</h2>
-';
+<div id="graph" class="tabset_content">';
 
 
 echo '<img src="' . htmlspecialchars($this->data['imgurl']) . '" />';
-
-
-
 
 echo '</div>'; # end graph content.
 
@@ -161,7 +134,7 @@ echo '</div>'; # end graph content.
  */
 $classint = array('odd', 'even'); $i = 0;
 echo '<div id="table" class="tabset_content">
-   <h2 class="tabset_label">Table</h2>
+
 <table class="tableview"><tr><th class="value">Value</th><th class="category">Data range</th>';
 foreach ( $this->data['summaryDataset'] as $key => $value ) {
 	$clint = $classint[$i++ % 2];
@@ -180,9 +153,7 @@ echo '</table></div>';
  
 
 
-echo '<div id="debug" class="tabset_content" style="max-height: 400px; overflow-y: scroll">
-   <h2 class="tabset_label">Debug</h2>
-';
+echo '<div id="debug" >';
 
 
 
@@ -201,6 +172,7 @@ echo '</table>';
 
 
 echo '</div>'; # End debug tab content
+echo('</div>'); # End tab div
 
 
 
