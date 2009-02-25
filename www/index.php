@@ -267,6 +267,13 @@ $funcmatrix[] = array(
 	'enabled' => $password_ok
 );
 
+$funcmatrix[] = array(
+	'required' => 'required',
+	'descr' => 'Magic Quotes should be turned off',
+	'enabled' => (get_magic_quotes_runtime() === 0)
+);
+
+
 $t = new SimpleSAML_XHTML_Template($config, 'frontpage.php', 'frontpage');
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
