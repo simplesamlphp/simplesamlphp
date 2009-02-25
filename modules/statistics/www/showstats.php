@@ -25,6 +25,8 @@ foreach ($filelist AS $file) {
 		}
 	}
 }
+if (empty($available)) 
+	throw new Exception('No aggregated statistics files found in [' . $statdir . ']');
 
 /*
  * Create array with information about available rules..
@@ -62,7 +64,12 @@ if (array_key_exists('time', $_GET)) {
 }
 
 // Get file and extract results.
-$resultfile = file_get_contents($statdir . $rule . '-' . $fileslot . '.stat');
+$resultFileName = $statdir . $rule . '-' . $fileslot . '.stat';
+if (!file_exists($resultFileName))
+	throw new Exception('Aggregated statitics file [' . $resultFileName . '] not found.');
+if (!is_readable($resultFileName))
+	throw new Exception('Could not read statitics file [' . $resultFileName . ']. Bad file permissions?');
+$resultfile = file_get_contents($resultFileName);
 $results = unserialize($resultfile);
 
 
