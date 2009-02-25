@@ -55,8 +55,15 @@ $SIMPLESAML_INCPREFIX = new SimpleSAML_IncPrefixWarn();
 
 
 $configdir = dirname(dirname(__FILE__)) . '/config';
-SimpleSAML_Configuration::init($configdir);
+if (!file_exists($configdir . '/config.php')) {
+	header('Content-Type: text/plain');
+	echo("You have not yet created the simpleSAMLphp configuration files.\n");
+	echo("See: http://rnd.feide.no/content/installing-simplesamlphp#id434777\n");
+	exit(1);
+}
 
+SimpleSAML_Configuration::init($configdir);
+SimpleSAML_Configuration::setConfigDir($configdir, 'simplesaml');
 
 
 

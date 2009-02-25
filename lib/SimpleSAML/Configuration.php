@@ -14,71 +14,241 @@ class SimpleSAML_Configuration {
 	 */
 	const REQUIRED_OPTION = '___REQUIRED_OPTION___';
 
+
+	/**
+	 * Associative array with mappings from instance-names to configuration objects.
+	 */
 	private static $instance = array();
 
-	private $configpath = null;	
-	private $configfilename = null; 
-	private $configuration = null;
 
-	// private constructor restricts instantiaton to getInstance()
-	private function __construct($configpath, $configfilename = 'config.php') {
-		$this->configpath = $configpath;
-		$this->configfilename = $configfilename;
+	/**
+	 * Configration directories.
+	 *
+	 * This associative array contains the mappings from configuration sets to
+	 * configuration directories.
+	 */
+	private static $configDirs = array();
+
+
+	/**
+	 * Cache of loaded configuration files.
+	 *
+	 * The index in the array is the full path to the file.
+	 */
+	private static $loadedConfigs = array();
+
+
+	/**
+	 * The configuration array.
+	 */
+	private $configuration;
+
+
+	/**
+	 * The location which will be given when an error occurs.
+	 */
+	private $location;
+
+
+	/**
+	 * The file this configuration was loaded from.
+	 */
+	private $filename = NULL;
+
+
+
+	/**
+	 * Initializes a configuration from the given array.
+	 *
+	 * @param array $config  The configuration array.
+	 * @param string $location  The location which will be given when an error occurs.
+	 */
+	public function __construct($config, $location) {
+		assert('is_array($config)');
+		assert('is_string($location)');
+
+		$this->configuration = $config;
+		$this->location = $location;
 	}
-	
+
+
+	/**
+	 * Load the given configuration file.
+	 *
+	 * @param string $filename  The full path of the configuration file.
+	 * @return SimpleSAML_Configuration  The configuration file. An exception will be thrown if the
+	 *                                   configuration file is missing.
+	 */
+	private static function loadFromFile($filename) {
+		assert('is_string($filename)');
+
+		if (array_key_exists($filename, self::$loadedConfigs)) {
+			return self::$loadedConfigs[$filename];
+		}
+
+		if (!file_exists($filename)) {
+			throw new Exception('Missing configuration file: ' . $filename);
+		}
+
+		$config = 'UNINITIALIZED';
+
+		/* The file initializes a variable named '$config'. */
+		require_once($filename);
+
+		/* Check that $config is initialized to an array. */
+		if (!is_array($config)) {
+			throw new Exception('Invalid configuration file: ' . $filename);
+		}
+
+		if (array_key_exists('override.host', $config)) {
+			$host = SimpleSAML_Utilities::getSelfHost();
+			if (array_key_exists($host, $config['override.host'])) {
+				$ofs = $config['override.host'][$host];
+				foreach (SimpleSAML_Utilities::arrayize($ofs) AS $of) {
+					$overrideFile = dirname($filename) . '/' . $of;
+					if (!file_exists($overrideFile)) {
+						throw new Exception('Config file [' . $filename . '] requests override for host ' . $host . ' but file does not exists [' . $of . ']');
+					}
+					require($overrideFile);
+				}
+			}
+		}
+
+		$cfg = new SimpleSAML_Configuration($config, $filename);
+		$cfg->filename = $filename;
+
+		self::$loadedConfigs[$filename] = $cfg;
+
+		return $cfg;
+	}
+
+
+	/**
+	 * Set the directory for configuration files for the given configuration set.
+	 *
+	 * @param string $path  The directory which contains the configuration files.
+	 * @param string $configSet  The configuration set. Defaults to 'simplesaml'.
+	 */
+	public static function setConfigDir($path, $configSet = 'simplesaml') {
+		assert('is_string($path)');
+		assert('is_string($configSet)');
+
+		self::$configDirs[$configSet] = $path;
+	}
+
+
+	/**
+	 * Load a configuration file from a configuration set.
+	 *
+	 * @param string $filename  The name of the configuration file.
+	 * @param string $configSet  The configuration set. Optional, defaults to 'simplesaml'.
+	 */
+	public static function getConfig($filename = 'config.php', $configSet = 'simplesaml') {
+		assert('is_string($filename)');
+		assert('is_string($configSet)');
+
+		if (!array_key_exists($configSet, self::$configDirs)) {
+			throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
+		}
+
+		$dir = self::$configDirs[$configSet];
+		$filePath = $dir . '/' . $filename;
+		return self::loadFromFile($filePath);
+	}
+
+
+	/**
+	 * Loads a configuration from the given array.
+	 *
+	 * @param array $config  The configuration array.
+	 * @param string $location  The location which will be given when an error occurs. Optional.
+	 * @return SimpleSAML_Configuration  The configuration object.
+	 */
+	public static function loadFromArray($config, $location = '[ARRAY]') {
+		assert('is_array($config)');
+		assert('is_string($location)');
+
+		return new SimpleSAML_Configuration($config, $location);
+	}
+
+
+	/**
+	 * Get a configuration file by its instance name.
+	 *
+	 * This function retrieves a configuration file by its instance name. The instance
+	 * name is initialized by the init function, or by copyFromBase function.
+	 *
+	 * If no configuration file with the given instance name is found, an exception will
+	 * be thrown.
+	 *
+	 * @param string $instancename  The instance name of the configuration file. Depreceated.
+	 * @return SimpleSAML_Configuration  The configuration object.
+	 */
 	public static function getInstance($instancename = 'simplesaml') {
+		assert('is_string($instancename)');
+
+		if ($instancename === 'simplesaml') {
+			return self::getConfig();
+		}
+
 		if (!array_key_exists($instancename, self::$instance)) 
 			throw new Exception('Configuration with name ' . $instancename . ' is not initialized.');
 		return self::$instance[$instancename];
 	}
-	
+
+
+	/**
+	 * Initialize a instance name with the given configuration file.
+	 *
+	 * @see setConfigDir()
+	 * @depreceated  This function is superseeded by the setConfigDir function.
+	 */
 	public static function init($path, $instancename = 'simplesaml', $configfilename = 'config.php') {
+		assert('is_string($path)');
+		assert('is_string($instancename)');
+		assert('is_string($configfilename)');
+
+		if ($instancename === 'simplesaml') {
+			/* For backwards compatibility. */
+			self::setConfigDir($path, 'simplesaml');
+		}
+
 		/* Check if we already have loaded the given config - return the existing instance if we have. */
 		if(array_key_exists($instancename, self::$instance)) {
 			return self::$instance[$instancename];
 		}
 
-		self::$instance[$instancename] = new SimpleSAML_Configuration($path, $configfilename);
+		self::$instance[$instancename] = self::loadFromFile($path . '/' . $configfilename);
 	}
-	
+
+
+	/**
+	 * Load a configuration file which is located in the same directory as this configuration file.
+	 *
+	 * @see getConfig()
+	 * @depreceated  This function is superseeded by the getConfig() function.
+	 */
 	public function copyFromBase($instancename, $filename) {
+		assert('is_string($instancename)');
+		assert('is_string($filename)');
+		assert('$this->filename !== NULL');
+
 		/* Check if we already have loaded the given config - return the existing instance if we have. */
 		if(array_key_exists($instancename, self::$instance)) {
 			return self::$instance[$instancename];
 		}
 
-		self::$instance[$instancename] = new SimpleSAML_Configuration($this->configpath, $filename);
+		$dir = dirname($this->filename);
+
+		if ($instancename === 'simplesaml') {
+			/* For backwards compatibility. */
+			self::setConfigDir($path, 'simplesaml');
+		}
+
+		self::$instance[$instancename] = self::loadFromFile($dir . '/' . $filename);
 		return self::$instance[$instancename];
 	}
 
-	private function loadConfig() {
-		$filename = $this->configpath . '/' . $this->configfilename;
-		if (!file_exists($filename)) {
-			echo '<p>You have not yet created a configuration file. [ <a href="http://rnd.feide.no/content/installing-simplesamlphp#id434777">simpleSAMLphp installation manual</a> ]</p>';
-			echo '<p>This file was missing: [' . $filename . ']</p>';
-			exit;
-		}
-		require($filename);
-		
-		// Check that $config array is defined...
-		if (!isset($config) || !is_array($config))
-			throw new Exception('Configuration file [' . $this->configfilename . '] does not contain a valid $config array.');
-		
-		if(array_key_exists('override.host', $config)) {
-			foreach($config['override.host'] AS $host => $ofs) {
-				if (SimpleSAML_Utilities::getSelfHost() === $host) {
-					foreach(SimpleSAML_Utilities::arrayize($ofs) AS $of) {
-						$overrideFile = $this->configpath . '/' . $of;
-						if (!file_exists($overrideFile)) 
-							throw new Exception('Config file [' . $this->configfilename . '] requests override for host ' . $host . ' but file does not exists [' . $of . ']');
-						require($overrideFile);
-					}
-				}
-			}
-		}
-		
-		$this->configuration = $config;
-	}
 
 	public function getVersion($verbose = FALSE) {
 		return 'trunk post-1.3';
@@ -95,15 +265,12 @@ class SimpleSAML_Configuration {
 	 * @return  The configuration option with name $name, or $default if the option was not found.
 	 */
 	public function getValue($name, $default = NULL) {
-		if (!isset($this->configuration)) {
-			$this->loadConfig();
-		}
 
 		/* Return the default value if the option is unset. */
 		if (!array_key_exists($name, $this->configuration)) {
 			if($default === self::REQUIRED_OPTION) {
-				throw new Exception('Could not retrieve the required option \'' . $name .
-					'\' from \'' . $this->configfilename . '\'.');
+				throw new Exception($this->location . ': Could not retrieve the required option ' .
+					var_export($name, TRUE));
 			}
 			return $default;
 		}
@@ -166,9 +333,6 @@ class SimpleSAML_Configuration {
 	 *  the option was not found.
 	 */
 	public function getPathValue($name, $default = NULL) {
-		if (!isset($this->configuration)) {
-			$this->loadConfig();
-		}
 
 		/* Return the default value if the option is unset. */
 		if (!array_key_exists($name, $this->configuration)) {
@@ -251,8 +415,8 @@ class SimpleSAML_Configuration {
 		}
 
 		if(!is_bool($ret)) {
-			throw new Exception('The option \'' . $name . '\' in \'' . $this->configfilename .
-				'\' is not a valid boolean value.');
+			throw new Exception($this->location . ': The option ' . var_export($name, TRUE) .
+				' is not a valid boolean value.');
 		}
 
 		return $ret;
@@ -284,8 +448,8 @@ class SimpleSAML_Configuration {
 		}
 
 		if(!is_string($ret)) {
-			throw new Exception('The option \'' . $name . '\' in \'' . $this->configfilename .
-				'\' is not a valid string value.');
+			throw new Exception($this->location . ': The option ' . var_export($name, TRUE) .
+				' is not a valid string value.');
 		}
 
 		return $ret;
@@ -329,8 +493,8 @@ class SimpleSAML_Configuration {
 			}
 			$strValues = implode(', ', $strValues);
 
-			throw new Exception('Invalid value given for the option \'' . $name . '\' in \'' .
-				$this->configfilename . '\'. It should have one of the following values: ' .
+			throw new Exception($this->location . ': Invalid value given for the option ' .
+				var_export($name, TRUE) . '. It should have one of the following values: ' .
 				$strValues . '; but it had the following value: ' . var_export($ret, TRUE));
 		}
 
@@ -363,8 +527,8 @@ class SimpleSAML_Configuration {
 		}
 
 		if (!is_array($ret)) {
-			throw new Exception('The option \'' . $name . '\' in \'' . $this->configfilename .
-				'\' is not an array.');
+			throw new Exception($this->location . ': The option ' . var_export($name, TRUE) .
+				' is not an array.');
 		}
 
 		return $ret;
@@ -380,10 +544,6 @@ class SimpleSAML_Configuration {
 	 * @return array  Name of all options defined in this configuration file.
 	 */
 	public function getOptions() {
-
-		if (!isset($this->configuration)) {
-			$this->loadConfig();
-		}
 
 		return array_keys($this->configuration);
 	}
