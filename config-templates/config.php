@@ -108,7 +108,7 @@ $config = array (
 	/* Logging: file - Logfilename in the loggingdir from above.
 	 */
 	'logging.logfile'		=> 'simplesamlphp.log',
-	'logging.processname'	=> 'simplesamlphp-foodle',
+	'logging.processname'	=> 'simplesamlphp',
 	
 	
 
