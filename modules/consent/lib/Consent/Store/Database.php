@@ -275,7 +275,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store {
 
 		$ret = array();
 
-		$st = $this->execute('SELECT service_id, attribute FROM ' . $this->table . ' WHERE hashed_user_id = ?',
+		$st = $this->execute('SELECT service_id, attribute, consent_date, usage_date FROM ' . $this->table . ' WHERE hashed_user_id = ?',
 			array($userId));
 		if ($st === FALSE) {
 			return array();
