@@ -71,8 +71,8 @@ if (!is_readable($resultFileName))
 	throw new Exception('Could not read statitics file [' . $resultFileName . ']. Bad file permissions?');
 $resultfile = file_get_contents($resultFileName);
 $results = unserialize($resultfile);
-
-
+if (empty($results))
+	throw new Exception('Aggregated statistics in file [' . $resultFileName . '] was empty.');
 
 $dataset = array();
 $axis = array();
