@@ -153,8 +153,7 @@ $summaryDataset = array_reverse($summaryDataset, TRUE);
 
 
 $datasets = array();
-$axis = array();
-$axispos = array();
+
 #$max = 25;
 $availdelimiters = array();
 $xentries = count($results);
@@ -168,7 +167,10 @@ function getPercentValues($results, $delimiter) {
 
 	#echo('<pre>'); print_r($results); exit;
 
-	global $slot, $slotsize, $dateformat_intra, $axis, $axispos, $availdelimiters, $max, $datehandler, $axislabelint, $i, $xentries;
+	global $slot, $slotsize, $dateformat_intra, $axis, $lastslot, $axispos, $availdelimiters, $max, $datehandler, $axislabelint, $i, $xentries;
+	
+	$axis = array();
+	$axispos = array();
 
 	$dataset = array();
 	foreach($results AS $slot => $res) {
@@ -184,7 +186,7 @@ function getPercentValues($results, $delimiter) {
 		if ( $slot % $axislabelint == 0)  {
 			$axis[] =  $datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra);
 			$axispos[] = (($i)/($xentries-1));		
-			#echo 'set axis on [' . $slot . ']';
+			// echo 'set axis on [' . $slot . '] = [' . $datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra) . ']';
 		}
 		$lastslot = $slot;
 		$i++;
@@ -192,6 +194,8 @@ function getPercentValues($results, $delimiter) {
 
 	return $dataset;
 }
+
+
 
 
 $datasets[] = getPercentValues($results, '_');
@@ -205,6 +209,7 @@ if ($delimiter !== '_') {
 $axis[] =  $datehandler->prettyDateSlot($lastslot+1, $slotsize, $dateformat_intra); 
 #print_r($axis);
 
+#echo('<pre>'); print_r($axis); exit;
 
 
 $dimx = $statconfig->getValue('dimension.x', 800);
