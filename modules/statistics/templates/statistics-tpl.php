@@ -50,8 +50,15 @@ $this->includeAtTemplateBase('includes/header.php');
 echo('<h1>'. $this->data['available.rules'][$this->data['selected.rule']]['name'] . '</h1>');
 echo('<p>' . $this->data['available.rules'][$this->data['selected.rule']]['descr'] . '</p>');
 
-echo '<div class="selecttime" style="border: 1px solid #ccc; background: #eee; margin: 5px 0px; padding: .5em">';
-echo '<div style="display: inline">';
+
+
+
+// Report settings
+echo '<table class="selecttime" style="width: 100%; border: 1px solid #ccc; background: #eee; margin: 1px 0px; padding: 0px">';
+echo('<tr><td style="width: 50px; padding: 0px"><img style="margin: 0px" src="' . SimpleSAML_Module::getModuleURL("statistics/resources/report.png") . '" alt="Report settings" /></td>');
+
+// Select report
+echo '<td>';
 echo '<form style="display: inline"><select onChange="submit();" name="rule">';
 foreach ($this->data['available.rules'] AS $key => $rule) {
 	if ($key === $this->data['selected.rule']) {
@@ -61,28 +68,11 @@ foreach ($this->data['available.rules'] AS $key => $rule) {
 	}
 }
 echo '</select></form>';
-echo '</div>';
+echo '</td>';
 
 
-
-
-echo '<div style="display: inline">';
-echo '<form style="display: inline">';
-echo '<input type="hidden" name="rule" value="' . $this->data['selected.rule'] . '" />';
-echo '<select onChange="submit();" name="time">';
-foreach ($this->data['available.times'] AS $key => $timedescr) {
-	if ($key == $this->data['selected.time']) {
-		echo '<option selected="selected" value="' . $key . '">' . $timedescr . '</option>';
-	} else {
-		echo '<option  value="' . $key . '">' . $timedescr . '</option>';
-	}
-}
-echo '</select></form>';
-echo '</div>';
-
-
-
-echo '<div style="display: inline">';
+// Select delimiter
+echo '<td style="text-align: right">';
 echo '<form style="display: inline">';
 echo '<input type="hidden" name="rule" value="' . $this->data['selected.rule'] . '" />';
 echo '<input type="hidden" name="time" value="' . $this->data['selected.time'] . '" />';
@@ -97,11 +87,54 @@ foreach ($this->data['availdelimiters'] AS $key => $delim) {
 	}
 }
 echo '</select></form>';
-echo '</div>';
+echo '</td>';
+
+echo '</table>';
+
+// End report settings
 
 
-echo '<div style="clear: both; height: 0px"></div>';
-echo '</div>';
+
+
+// Select time and date
+echo '<table class="selecttime" style="width: 100%; border: 1px solid #ccc; background: #eee; margin: 1px 0px; padding: 0px">';
+echo('<tr><td style="width: 50px; padding: 0px"><img style="margin: 0px" src="' . SimpleSAML_Module::getModuleURL("statistics/resources/calendar.png") . '" alt="Select date and time" /></td>');
+
+if (isset($this->data['available.times.prev'])) {
+	echo('<td style=""><a href="showstats.php?rule=' . $this->data['selected.rule']. '&amp;time=' . $this->data['available.times.prev'] . '">« Previous</a></td>');
+} else {
+	echo('<td style="color: #ccc">« Previous</td>');
+}
+
+echo '<td style="text-align: center">';
+echo '<form style="display: inline">';
+echo '<input type="hidden" name="rule" value="' . $this->data['selected.rule'] . '" />';
+echo '<select onChange="submit();" name="time">';
+foreach ($this->data['available.times'] AS $key => $timedescr) {
+	if ($key == $this->data['selected.time']) {
+		echo '<option selected="selected" value="' . $key . '">' . $timedescr . '</option>';
+	} else {
+		echo '<option  value="' . $key . '">' . $timedescr . '</option>';
+	}
+}
+echo '</select></form>';
+echo '</td>';
+
+if (isset($this->data['available.times.next'])) {
+	echo('<td style="text-align: right; padding-right: 4px"><a href="showstats.php?rule=' . $this->data['selected.rule']. '&amp;time=' . $this->data['available.times.next'] . '">Next »</a></td>');
+} else {
+	echo('<td style="color: #ccc; text-align: right; padding-right: 4px">Next »</td>');
+}
+
+
+
+
+echo '</tr></table>';
+
+
+
+
+
 
 
 echo '<div id="tabdiv"><ul class="tabset_tabs">

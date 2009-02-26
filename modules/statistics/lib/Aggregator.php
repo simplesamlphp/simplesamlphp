@@ -58,10 +58,11 @@ class sspmod_statistics_Aggregator {
 		$i = 0;
 		// Parse through log file, line by line
 		foreach ($logfile AS $logline) {
-			$i++;
+
 			// Continue if STAT is not found on line.
 			if (!preg_match('/STAT/', $logline)) continue;
-		
+			$i++;
+			
 			// Parse log, and extract epoch time and rest of content.
 			$epoch = $logparser->parseEpoch($logline);
 			$content = $logparser->parseContent($logline);
@@ -72,7 +73,7 @@ class sspmod_statistics_Aggregator {
 				echo('Log line: ' . $logline . "\n");
 				echo('Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) . '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n");
 				print_r($content);
-				if ($i > 2) exit;
+				if ($i >= 13) exit;
 			}
 			
 			

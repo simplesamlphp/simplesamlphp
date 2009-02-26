@@ -63,6 +63,18 @@ if (array_key_exists('time', $_GET)) {
 	}
 }
 
+// Extract previous and next time slots...
+$available_times_prev = NULL; $available_times_next = NULL;
+$timeslots = array_keys($available_times);
+$timeslotindex = array_flip($timeslots);
+
+if ($timeslotindex[$fileslot] > 0) 
+	$available_times_prev = $timeslots[$timeslotindex[$fileslot]-1];
+if ($timeslotindex[$fileslot] < (count($timeslotindex)-1) ) 
+	$available_times_next = $timeslots[$timeslotindex[$fileslot]+1];
+
+
+
 // Get file and extract results.
 $resultFileName = $statdir . $rule . '-' . $fileslot . '.stat';
 if (!file_exists($resultFileName))
@@ -74,10 +86,6 @@ $results = unserialize($resultfile);
 if (empty($results))
 	throw new Exception('Aggregated statistics in file [' . $resultFileName . '] was empty.');
 
-$dataset = array();
-$axis = array();
-$axispos = array();
-$max = 15;
 
 
 /*
@@ -99,13 +107,20 @@ if (isset($_REQUEST['d'])) {
 $maxvalue = 0;
 $maxvaluetime = 0;
 $debugdata = array();
+
+
+$maxdelimiter = $delimiter;
+if (array_key_exists('graph.total', $statrules[$rule]) && $statrules[$rule]['graph.total'] === TRUE) {
+	$maxdelimiter = '_';
+}
+
 foreach($results AS $slot => &$res) {
-	if (!array_key_exists($delimiter, $res)) $res[$delimiter] = 0;
-	if ($res[$delimiter] > $maxvalue) { 
+	if (!array_key_exists($maxdelimiter, $res)) $res[$maxdelimiter] = 0;
+	if ($res[$maxdelimiter] > $maxvalue) { 
 		$maxvaluetime = $datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra); 
 	}
-	$maxvalue = max($res[$delimiter],$maxvalue);
-	$debugdata[] = array($datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra), $res[$delimiter] );
+	$maxvalue = max($res[$maxdelimiter],$maxvalue);
+	$debugdata[] = array($datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra), $res[$maxdelimiter] );
 }
 $max = sspmod_statistics_Graph_GoogleCharts::roof($maxvalue);
 
@@ -133,31 +148,64 @@ $summaryDataset = array_reverse($summaryDataset, TRUE);
 #echo '<pre>'; print_r($summaryDataset); exit;
 
 
-/*
- * Walk through dataset to get percent values from max into dataset[].
- */
+
+
+
+
+$datasets = array();
+$axis = array();
+$axispos = array();
+#$max = 25;
 $availdelimiters = array();
 $xentries = count($results);
 $lastslot = 0; $i = 0;
 
-foreach($results AS $slot => $res) {
 
-	$dataset[] = number_format(100*$res[$delimiter] / $max, 2);
-	foreach(array_keys($res) AS $nd) $availdelimiters[$nd] = 1;
+/*
+ * Walk through dataset to get percent values from max into dataset[].
+ */
+function getPercentValues($results, $delimiter) {
 
-	// check if there should be an axis here...
-	if ( $slot % $axislabelint == 0)  {
-		$axis[] =  $datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra);
-		$axispos[] = (($i)/($xentries-1));
-		
-		#echo 'set axis on [' . $slot . ']';
+	#echo('<pre>'); print_r($results); exit;
+
+	global $slot, $slotsize, $dateformat_intra, $axis, $axispos, $availdelimiters, $max, $datehandler, $axislabelint, $i, $xentries;
+
+	$dataset = array();
+	foreach($results AS $slot => $res) {
+		#echo ('<p>new value: ' . number_format(100*$res[$delimiter] / $max, 2));
+		if (array_key_exists($delimiter, $res)) {
+			$dataset[] = number_format(100*$res[$delimiter] / $max, 2);
+		} else {
+			$dataset[] = '0';
+		}
+		foreach(array_keys($res) AS $nd) $availdelimiters[$nd] = 1;
+	
+		// check if there should be an axis here...
+		if ( $slot % $axislabelint == 0)  {
+			$axis[] =  $datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra);
+			$axispos[] = (($i)/($xentries-1));		
+			#echo 'set axis on [' . $slot . ']';
+		}
+		$lastslot = $slot;
+		$i++;
 	}
-	$lastslot = $slot;
-	$i++;
+
+	return $dataset;
 }
+
+
+$datasets[] = getPercentValues($results, '_');
+if ($delimiter !== '_') {
+	if (array_key_exists('graph.total', $statrules[$rule]) && $statrules[$rule]['graph.total'] === TRUE) {
+		$datasets[] = getPercentValues($results, $delimiter);
+	}
+}
+
 #echo 'set axis on lastslot [' . $lastslot . ']';
 $axis[] =  $datehandler->prettyDateSlot($lastslot+1, $slotsize, $dateformat_intra); 
 #print_r($axis);
+
+
 
 $dimx = $statconfig->getValue('dimension.x', 800);
 $dimy = $statconfig->getValue('dimension.y', 350);
@@ -165,9 +213,11 @@ $grapher = new sspmod_statistics_Graph_GoogleCharts($dimx, $dimy);
 
 $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics-tpl.php');
 $t->data['header'] = 'stat';
-$t->data['imgurl'] = $grapher->show($axis, $axispos, $dataset, $max);
+$t->data['imgurl'] = $grapher->show($axis, $axispos, $datasets, $max);
 $t->data['available.rules'] = $available_rules;
 $t->data['available.times'] = $available_times;
+$t->data['available.times.prev'] = $available_times_prev;
+$t->data['available.times.next'] = $available_times_next;
 $t->data['selected.rule']= $rule;
 $t->data['selected.time'] = $fileslot;
 $t->data['debugdata'] = $debugdata;

@@ -28,9 +28,32 @@ class sspmod_statistics_Graph_GoogleCharts {
 	}
 
 	# t:10.0,58.0,95.0
-	private function encodedata($data) {
-		return 't:' . join(',', $data);
+	private function encodedata($datasets) {
+		$setstr = array();
+		foreach ($datasets AS $dataset) {
+			$setstr[] = join(',', $dataset);
+		}
+		return 't:' . join('|', $setstr);
 	}
+	
+	
+	
+	/**
+	 * Return colors between multiple graphs...
+	 */
+	private function getFillArea($datasets) {
+		if (count($datasets) < 2) return '';
+		
+		$colors = array('eeeeee', 'cccccc', 'aaaaaa', '99eecc');
+		$num = count($datasets) ;
+		$colstr = array();
+		for ($i = 0; $i < $num; $i++) {
+			$colstr[] = 'b' . ',' . $colors[$i] . ',' . ($i) . ',' . ($i+1) . ',0';
+		}
+		return '&chm=' . join('|', $colstr);
+	}
+	
+	
 	
 	/**
 	 * Generate a Google Charts URL which points to a generated image.
@@ -39,19 +62,23 @@ class sspmod_statistics_Graph_GoogleCharts {
 	 *
 	 * @param $axis		Axis
 	 * @param $axpis	Axis positions
-	 * @param $values	Dataset values
+	 * @param $datasets	Datasets values
 	 * @param $max		Max value. Will be the topmost value on the Y-axis.
 	 */
-	public function show($axis, $axispos, $values, $max) {
+	public function show($axis, $axispos, $datasets, $max) {
 	
-		$nv = count($values);
 		$url = 'http://chart.apis.google.com/chart?' .
 			
 			// Dimension of graph. Default is 800x350
 			'chs=' . $this->x . 'x' . $this->y . 
 			
 			// Dateset values.
-			'&chd=' . $this->encodedata($values) .
+			'&chd=' . $this->encodedata($datasets) .
+			
+			// Fill area...
+			$this->getFillArea($datasets) . 
+			
+			// chart type is linechart
 			'&cht=lc' .
 			'&chxt=x,y' .
 			'&chxl=0:|' . $this->encodeaxis($axis) . # . $'|1:||top' .
@@ -59,7 +86,7 @@ class sspmod_statistics_Graph_GoogleCharts {
 #			'&chxp=0,0.3,0.4' .
 			'&chxr=0,0,1|1,0,' . $max . 
 #			'&chm=R,CCCCCC,0,0.25,0.5' .
-			'&chg=' . (2400/(count($values)-1)) . ',20,3,3';   // lines
+			'&chg=' . (2400/(count($datasets[0])-1)) . ',20,3,3';   // lines
 		return $url;
 	}
 	
