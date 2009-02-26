@@ -17,7 +17,7 @@ if (!isset($session) || !$session->isValid('login-admin') ) {
 	);
 }
 
-$cronconfig = $config->copyFromBase('cron', 'module_cron.php');
+$cronconfig = SimpleSAML_Configuration::getConfig('module_cron.php');
 
 $key = $cronconfig->getValue('key', '');
 $tags = $cronconfig->getValue('allowed_tags');

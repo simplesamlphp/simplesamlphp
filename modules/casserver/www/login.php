@@ -31,7 +31,7 @@ if (array_key_exists('gateway', $_GET)) {
 
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
-$casconfig = $config->copyFromBase('casconfig', 'module_casserver.php');
+$casconfig = SimpleSAML_Configuration::getConfig('module_casserver.php');
 $session = SimpleSAML_Session::getInstance();
 
 

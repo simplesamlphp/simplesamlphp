@@ -9,8 +9,7 @@ function consentSimpleAdmin_hook_sanitycheck(&$hookinfo) {
 	assert('array_key_exists("info", $hookinfo)');
 
 	try {
-		$config = SimpleSAML_Configuration::getInstance();
-		$consentconfig = $config->copyFromBase('consentSimpleAdminConfig', 'module_consentSimpleAdmin.php');
+		$consentconfig = SimpleSAML_Configuration::getConfig('module_consentSimpleAdmin.php');
 	
 		// Parse consent config
 		$consent_storage = sspmod_consent_Store::parseStoreConfig($consentconfig->getValue('store'));

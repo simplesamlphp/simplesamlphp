@@ -9,7 +9,7 @@ $metadataSets = array(
 	);
 
 $globalConfig = SimpleSAML_Configuration::getInstance();
-$aggregatorConfig = $globalConfig->copyFromBase('aggregator', 'aggregator.php');
+$aggregatorConfig = SimpleSAML_Configuration::getConfig('aggregator.php');
 
 $aggregators = $aggregatorConfig->getArray('aggragators');
 

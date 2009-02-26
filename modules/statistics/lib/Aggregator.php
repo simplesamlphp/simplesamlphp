@@ -6,7 +6,6 @@
  */
 class sspmod_statistics_Aggregator {
 
-	private $config;
 	private $statconfig;
 	private $statdir;
 	private $inputfile;
@@ -18,8 +17,7 @@ class sspmod_statistics_Aggregator {
 	 */
 	public function __construct() {
 	
-		$this->config = SimpleSAML_Configuration::getInstance();
-		$this->statconfig = $this->config->copyFromBase('statconfig', 'module_statistics.php');
+		$this->statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
 		
 		$this->statdir = $this->statconfig->getValue('statdir');
 		$this->inputfile = $this->statconfig->getValue('inputfile');

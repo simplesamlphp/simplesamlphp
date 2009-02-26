@@ -21,7 +21,7 @@ require_once('../../www/_include.php');
 
 /* Load the configuration. */
 $config = SimpleSAML_Configuration::getInstance();
-$autoconfig = $config->copyFromBase('loginauto', 'config-login-auto.php');
+$autoconfig = SimpleSAML_Configuration::getConfig('config-login-auto.php');
 
 
 $enable = (bool)$autoconfig->getValue('auth.auto.enable');

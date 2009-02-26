@@ -6,7 +6,7 @@ require_once('../_include.php');
  * This page handles downloading of all metadata entries from the MetaShare.
  */
 
-$metaConfig = SimpleSAML_Configuration::getInstance()->copyFromBase('metashare', 'metashare.php');
+$metaConfig = SimpleSAML_Configuration::getConfig('metashare.php');
 
 if(!$metaConfig->getBoolean('metashare.enable', FALSE)) {
 	header('HTTP/1.0 401 Forbidden');

@@ -21,7 +21,7 @@
 require_once('../../www/_include.php');
 
 $config = SimpleSAML_Configuration::getInstance();
-$ldapconfig = $config->copyFromBase('loginfeide', 'config-login-feide.php');
+$ldapconfig = SimpleSAML_Configuration::getConfig('config-login-feide.php');
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance();
 

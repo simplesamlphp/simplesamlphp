@@ -24,8 +24,8 @@ function phpping($host, $port) {
 }
 
 
-$ldapconfig = $config->copyFromBase('loginfeide', 'config-login-feide.php');
-$ldapStatusConfig = $config->copyFromBase('ldapstatus', 'module_ldapstatus.php');
+$ldapconfig = SimpleSAML_Configuration::getConfig('config-login-feide.php');
+$ldapStatusConfig = SimpleSAML_Configuration::getConfig('module_ldapstatus.php');
 
 $pingcommand = $ldapStatusConfig->getValue('ping');
 

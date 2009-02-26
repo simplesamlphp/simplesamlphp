@@ -27,7 +27,7 @@ class SimpleSAML_MetaShare_Store {
 	 * singleton accessor.
 	 */
 	private function __construct() {
-		$metaConfig = SimpleSAML_Configuration::getInstance()->copyFromBase('metashare', 'metashare.php');
+		$metaConfig = SimpleSAML_Configuration::getConfig('metashare.php');
 		$this->metadataPath = $metaConfig->getString('metashare.path');
 		$this->metadataPath = SimpleSAML_Utilities::resolvePath($this->metadataPath);
 

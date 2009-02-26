@@ -40,9 +40,7 @@ class SimpleSAML_AuthMemCookie {
 	 */
 	private function __construct() {
 		/* Load Auth MemCookie configuration. */
-		$globalConfig = SimpleSAML_Configuration::getInstance();
-		SimpleSAML_Configuration::init($GLOBALS['configdir'], 'authmemcookie', 'authmemcookie.php');
-		$this->amcConfig = SimpleSAML_Configuration::getInstance('authmemcookie');
+		$this->amcConfig = SimpleSAML_Configuration::getConfig('authmemcookie.php');
 	}
 
 

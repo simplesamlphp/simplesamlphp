@@ -13,7 +13,7 @@ function metarefresh_hook_cron(&$croninfo) {
 
 	try {
 		$config = SimpleSAML_Configuration::getInstance();
-		$mconfig = $config->copyFromBase('mconfig', 'config-metarefresh.php');
+		$mconfig = SimpleSAML_Configuration::getConfig('config-metarefresh.php');
 		
 		$sets = $mconfig->getValue('sets');
 		if (count($sets) < 1) return; 

@@ -11,7 +11,7 @@ if (!$session->isValid('login-admin') ) {
 }
 
 
-$logpeekconfig = $config->copyFromBase('logpeek', 'module_logpeek.php');
+$logpeekconfig = SimpleSAML_Configuration::getConfig('module_logpeek.php');
 
 $logfile = $logpeekconfig->getValue('logfile', '/var/simplesamlphp.log');
 

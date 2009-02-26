@@ -163,8 +163,7 @@ abstract class SimpleSAML_Auth_Source {
 		assert('is_string($authId)');
 
 		/* For now - load and parse config file. */
-		$globalConfig = SimpleSAML_Configuration::getInstance();
-		$config = $globalConfig->copyFromBase('authsources', 'authsources.php');
+		$config = SimpleSAML_Configuration::getConfig('authsources.php');
 
 		$authConfig = $config->getValue($authId, NULL);
 		if ($authConfig === NULL) {

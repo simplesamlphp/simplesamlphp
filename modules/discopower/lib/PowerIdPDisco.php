@@ -27,7 +27,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 
 		parent::__construct($discoType);
 
-		$this->discoconfig = $this->config->copyFromBase('discopower', 'module_discopower.php');
+		$this->discoconfig = SimpleSAML_Configuration::getConfig('module_discopower.php');
 
 	}
 

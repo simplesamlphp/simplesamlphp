@@ -7,7 +7,7 @@ require_once('../_include.php');
  */
 
 $config = SimpleSAML_Configuration::getInstance();
-$metaConfig = $config->copyFromBase('metashare', 'metashare.php');
+$metaConfig = SimpleSAML_Configuration::getConfig('metashare.php');
 
 if(!$metaConfig->getBoolean('metashare.enable', FALSE)) {
 	header('HTTP/1.0 401 Forbidden');

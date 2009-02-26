@@ -81,8 +81,8 @@ function myErrorHandler($errno, $errstr, $errfile, $errline) {
 
 
 
-$ldapconfig = $config->copyFromBase('loginfeide', 'config-login-feide.php');
-$ldapStatusConfig = $config->copyFromBase('ldapstatus', 'module_ldapstatus.php');
+$ldapconfig = SimpleSAML_Configuration::getConfig('config-login-feide.php');
+$ldapStatusConfig = SimpleSAML_Configuration::getConfig('module_ldapstatus.php');
 
 $debug = $ldapconfig->getValue('ldapDebug', FALSE);
 $orgs = $ldapconfig->getValue('orgldapconfig');

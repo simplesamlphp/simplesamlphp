@@ -14,7 +14,7 @@ $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 require_once($baseDir . '/lib/_autoload.php');
 
 /* Initialize the configuration. */
-SimpleSAML_Configuration::init($baseDir . '/config');
+SimpleSAML_Configuration::setConfigDir($baseDir . '/config');
 
 /* $outputDir contains the directory we will store the generated metadata in. */
 $outputDir = $baseDir . '/metadata-generated';

@@ -62,8 +62,7 @@ if (!file_exists($configdir . '/config.php')) {
 	exit(1);
 }
 
-SimpleSAML_Configuration::init($configdir);
-SimpleSAML_Configuration::setConfigDir($configdir, 'simplesaml');
+SimpleSAML_Configuration::setConfigDir($configdir);
 
 
 

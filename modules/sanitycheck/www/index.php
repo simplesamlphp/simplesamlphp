@@ -2,7 +2,7 @@
 
 
 $config = SimpleSAML_Configuration::getInstance();
-$sconfig = $config->copyFromBase('sconfig', 'config-sanitycheck.php');
+$sconfig = SimpleSAML_Configuration::getConfig('config-sanitycheck.php');
 
 $info = array();
 $errors = array();

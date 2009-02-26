@@ -29,8 +29,7 @@ if (array_key_exists('renew', $_GET)) {
 
 try {
 	/* Load simpleSAMLphp, configuration and metadata */
-	$config = SimpleSAML_Configuration::getInstance();
-	$casconfig = $config->copyFromBase('casconfig', 'module_casserver.php');
+	$casconfig = SimpleSAML_Configuration::getConfig('module_casserver.php');
 	
 	
 	$path = $casconfig->resolvePath($casconfig->getValue('ticketcache', 'ticketcache'));
