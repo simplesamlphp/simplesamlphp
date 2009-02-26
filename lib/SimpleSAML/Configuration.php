@@ -536,6 +536,91 @@ class SimpleSAML_Configuration {
 
 
 	/**
+	 * Retrieve an array as a SimpleSAML_Configuration object.
+	 *
+	 * This function will load the value of an option into a SimpleSAML_Configuration
+	 * object. The option must contain an array.
+	 *
+	 * An exception will be thrown if this option isn't an array, or if this option
+	 * isn't found, and no default value is given.
+	 *
+	 * @param string $name  The name of the option.
+	 * @param mixed $default  A default value which will be returned if the option isn't found. The option will be
+	 *                        required if this parameter isn't given. The default value can be any value, including
+	 *                        NULL.
+	 * @return mixed  The option with the given name, or $default if the option isn't found and $default is specified.
+	 */
+	public function getConfigItem($name, $default = self::REQUIRED_OPTION) {
+		assert('is_string($name)');
+
+		$ret = $this->getValue($name, $default);
+
+		if ($ret === $default) {
+			/* The option wasn't found, or it matches the default value. In any case, return
+			 * this value.
+			 */
+			return $ret;
+		}
+
+		if (!is_array($ret)) {
+			throw new Exception($this->location . ': The option ' . var_export($name, TRUE) .
+				' is not an array.');
+		}
+
+		return self::loadFromArray($ret, $this->location . '[' . var_export($name, TRUE) . ']');
+	}
+
+
+	/**
+	 * Retrieve an array of arrays as an array of SimpleSAML_Configuration objects.
+	 *
+	 * This function will retrieve an option containing an array of arrays, and create an
+	 * array of SimpleSAML_Configuration objects from that array. The indexes in the new
+	 * array will be the same as the original indexes, but the values will be
+	 * SimpleSAML_Configuration objects.
+	 *
+	 * An exception will be thrown if this option isn't an array of arrays, or if this option
+	 * isn't found, and no default value is given.
+	 *
+	 * @param string $name  The name of the option.
+	 * @param string $location  Name of the items in the array.
+	 * @param mixed $default  A default value which will be returned if the option isn't found. The option will be
+	 *                        required if this parameter isn't given. The default value can be any value, including
+	 *                        NULL.
+	 * @return mixed  The option with the given name, or $default if the option isn't found and $default is specified.
+	 */
+	public function getConfigList($name, $default = self::REQUIRED_OPTION) {
+		assert('is_string($name)');
+
+		$ret = $this->getValue($name, $default);
+
+		if ($ret === $default) {
+			/* The option wasn't found, or it matches the default value. In any case, return
+			 * this value.
+			 */
+			return $ret;
+		}
+
+		if (!is_array($ret)) {
+			throw new Exception($this->location . ': The option ' . var_export($name, TRUE) .
+				' is not an array.');
+		}
+
+		$out = array();
+		foreach ($ret as $index => $config) {
+			$newLoc = $this->location . '[' . var_export($name, TRUE) . '][' .
+				var_export($index, TRUE) . ']';
+			if (!is_array($config)) {
+				throw new Exception($newLoc . ': The value of this element was expected to be an array.');
+			}
+			$out[$index] = self::loadFromArray($config, $newLoc);
+		}
+
+		return $out;
+	}
+
+
+	/**
 	 * Retrieve list of options.
 	 *
 	 * This function returns the name of all options which are defined in this
