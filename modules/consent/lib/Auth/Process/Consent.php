@@ -160,15 +160,21 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 
 			SimpleSAML_Logger::debug('Consent - hasConsent() : [' . $userId . '|' . $targetedId . '|' .  $attributeSet . ']');
 			if ($this->store->hasConsent($userId, $targetedId, $attributeSet)) {
+				
+				SimpleSAML_Logger::stats('consent found');
+				
 				/* Consent already given. */
 				return;
 			}
+			SimpleSAML_Logger::stats('consent notfound');
 
 			$state['consent:store'] = $this->store;
 			$state['consent:store.userId'] = $userId;
 			$state['consent:store.destination'] = $targetedId;
 			$state['consent:store.attributeSet'] = $attributeSet;
 			
+		} else {
+			SimpleSAML_Logger::stats('consent nostorage');
 		}
 
 		$state['consent:focus'] = $this->focus;
