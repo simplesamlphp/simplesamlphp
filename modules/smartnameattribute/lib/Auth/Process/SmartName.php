@@ -47,6 +47,7 @@ class sspmod_smartnameattribute_Auth_Process_SmartName extends SimpleSAML_Auth_P
 	}
 	
 	private function getLocalUser($userid) {
+		if (strpos($userid, '@') === FALSE) return NULL;
 		$decomposed = explode('@', $userid);
 		if(count($decomposed) === 2) {
 			return $decomposed[0];
