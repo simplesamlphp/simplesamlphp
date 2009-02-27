@@ -32,9 +32,10 @@ class SimpleSAML_Auth_LDAP {
 		
 		// Set timeouts, if supported...
 		// (OpenLDAP 2.x.x or Netscape Directory SDK x.x needed).
-		if (!@ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, $timeout) or
-		    !@ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, $timeout))
-		    SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts to ' . var_export($timeout, true));
+		if (!@ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, $timeout))
+		    SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts [LDAP_OPT_NETWORK_TIMEOUT]Êto ' . var_export($timeout, true));
+		if (!@ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, $timeout))
+		    SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts [LDAP_OPT_TIMELIMIT] to ' . var_export($timeout, true));
 
 		if (empty($this->ldap)) 
 			throw new Exception('Error initializing LDAP connection with PHP LDAP library.');
@@ -43,12 +44,25 @@ class SimpleSAML_Auth_LDAP {
 		
 		if (!preg_match("/ldaps:/i",$hostname) and $enable_tls) {
 			if (!@ldap_start_tls($this->ldap)) {
-				throw new Exception('Could not force LDAP into TLS-session. Please verify certificates and configuration. Could also be that PHP the LDAP library cannot connect to the LDAP server [' . $hostname . ']: ' . ldap_error($this->ldap) );
+				throw $this->getLDAPException('Could not force LDAP into TLS-session. Please verify certificates and configuration. Could also be that PHP the LDAP library cannot connect to the LDAP server [' . $hostname . ']: ');
 			}
 		}
 
 	}
 	
+	/**
+	 * 
+	 */
+	public function getLDAPException($message) {
+		if (ldap_errno($this->ldap) == 0) {
+			return new Exception($message);
+		}
+		return new SimpleSAML_Auth_LDAPException($message . ' [' . ldap_error($this->ldap) . ']', ldap_errno($this->ldap));
+	}
+	
+	/**
+	 * @DEPRECATED 2008-02-27
+	 */
 	public function getLastError() {
 		if (ldap_errno($this->ldap) == 0) return NULL;
 		return ldap_error($this->ldap);
@@ -60,7 +74,7 @@ class SimpleSAML_Auth_LDAP {
 	private function setV3() {
 		// Give error if LDAPv3 is not supported
 		if (!@ldap_set_option($this->ldap, LDAP_OPT_PROTOCOL_VERSION, 3)) 
-			throw new Exception('Failed to set LDAP Protocol version to 3: ' . ldap_error($this->ldap) );
+			throw $this->getLDAPException('Failed to set LDAP Protocol version to 3');
 	}
 	
 	/**
@@ -77,17 +91,17 @@ class SimpleSAML_Auth_LDAP {
 		$search_result = @ldap_search($this->ldap, $searchbase, $search, array() );
 
 		if ($search_result === false)
-			throw new Exception('Failed performing a LDAP search: ' . ldap_error($this->ldap) . ' search:' . $search);
+			throw $this->getLDAPException('Failed performing a LDAP search:' . $search);
 
 		// Check number of entries. ePPN should be unique!
 		if (@ldap_count_entries($this->ldap, $search_result) > 1 )
-			throw new Exception("Found multiple entries in LDAP search: " . $search . ' base(s): ' . $searchbase);
+			throw $this->getLDAPException("Found multiple entries in LDAP search: " . $search . ' base(s): ' . $searchbase);
 	
 		if (@ldap_count_entries($this->ldap, $search_result) == 0) {
 			if ($allowZeroHits) {
 				return NULL;
 			} else {
-				throw new Exception('LDAP search returned zero entries: ' . $search . ' base: ' . $searchbase);
+				throw $this->getLDAPException('LDAP search returned zero entries: ' . $search . ' base: ' . $searchbase);
 			}
 		}
 
@@ -95,16 +109,17 @@ class SimpleSAML_Auth_LDAP {
 		$entry = ldap_first_entry($this->ldap, $search_result);
 		
 		if (empty($entry))
-			throw new Exception('Could not retrieve result of LDAP search: ' . $search);
+			throw $this->getLDAPException('Could not retrieve result of LDAP search: ' . $search);
 		
 		$dn = @ldap_get_dn($this->ldap, $entry);
 		
 		if (empty($dn))
-			throw new Exception('Error retrieving DN from search result.');
+			throw $this->getLDAPException('Error retrieving DN from search result.');
 			
 		return $dn;
 		
 	}
+
 	
 	
 	/**
@@ -139,7 +154,7 @@ class SimpleSAML_Auth_LDAP {
 		if ($allowZeroHits) {
 			return NULL;
 		} else {
-			throw new Exception('LDAP search returned zero entries: ' . $searchattr . '=' . $searchvalue . ' base(s): ' . 
+			throw $this->getLDAPException('LDAP search returned zero entries: ' . $searchattr . '=' . $searchvalue . ' base(s): ' . 
 				join(' & ', $searchbases));
 		}
 
@@ -154,6 +169,9 @@ class SimpleSAML_Auth_LDAP {
 	 * @return A LDAP search filter.
 	 */
 	private function generateSearchFilter($searchattr, $searchvalue) {
+		$searchattr = self::escape_filter_value($searchattr);
+		$searchvalue = self::escape_filter_value($searchvalue);
+		
 		if (is_array($searchattr)) {
 			
 			$search = '';
@@ -165,7 +183,7 @@ class SimpleSAML_Auth_LDAP {
 		} elseif (is_string($searchattr)) {
 			return '(' . $searchattr . '=' . $searchvalue. ')';
 		} else {
-			throw new Exception('Search attribute is required to be an array or a string.');
+			throw $this->getLDAPException('Search attribute is required to be an array or a string.');
 		}
 	}
 	
@@ -176,10 +194,10 @@ class SimpleSAML_Auth_LDAP {
 	public function bind($dn, $password) {
 		if (@ldap_bind($this->ldap, $dn, $password)) {
 			SimpleSAML_Logger::debug('Library - LDAP: Bind successfull with ' . $dn);
-			return true;
+			return TRUE;
 		}
-		SimpleSAML_Logger::debug('Library - LDAP: Bind failed with ' . $dn . ' (' . ldap_error($this->ldap) . ')'); 
-		return false;
+		SimpleSAML_Logger::debug('Library - LDAP: Bind failed with [' . $dn . ']. LDAP error code [' . ldap_errno($this->ldap) . ']'); 
+		return FALSE;
 	}
 
 
@@ -197,18 +215,16 @@ class SimpleSAML_Auth_LDAP {
 			$sr = @ldap_read($this->ldap, $dn, 'objectClass=*');
 			
 		if ($sr === false) 
-			throw new Exception('Could not retrieve attributes for user: ' . ldap_error($this->ldap));
+			throw $this->getLDAPException('Could not retrieve attributes for user');
 
 		$ldapEntry = @ldap_first_entry($this->ldap, $sr);
 		if ($ldapEntry === false) {
-			throw new Exception('Could not retrieve attributes for user -' .
-				' could not select first entry: ' . ldap_error($this->ldap));
+			throw $this->getLDAPException('Could not retrieve attributes for user - could not select first entry');
 		}
 
 		$ldapAttributes = @ldap_get_attributes($this->ldap, $ldapEntry);
 		if ($ldapAttributes === false) {
-			throw new Exception('Could not retrieve attributes for user -' .
-				' error fetching attributes for select first entry: ' .	ldap_error($this->ldap));
+			throw $this->getLDAPException('Could not retrieve attributes for user - error fetching attributes for select first entry:');
 		}
 
 		$attributes = array();
@@ -258,7 +274,7 @@ class SimpleSAML_Auth_LDAP {
 		$password = addcslashes($password, ',+"\\<>;*');
 		
 		if (isset($config['priv_user_dn']) && !$this->bind($config['priv_user_dn'], $config['priv_user_pw']) ) {
-			throw new Exception('Could not bind with system user: ' . $config['priv_user_dn']);
+			throw $this->getLDAPException('Could not bind with system user: ' . $config['priv_user_dn']);
 		}
 		if (isset($config['dnpattern'])) {
 			$dn = str_replace('%username%', $username, $config['dnpattern']);
@@ -280,6 +296,75 @@ class SimpleSAML_Auth_LDAP {
 		return $attributes;
 		
 	}
+
+
+
+
+
+
+    /**
+     * Borrowed function from PEAR:LDAP.
+     *
+     * Escapes the given VALUES according to RFC 2254 so that they can be safely used in LDAP filters.
+     *
+     * Any control characters with an ACII code < 32 as well as the characters with special meaning in
+     * LDAP filters "*", "(", ")", and "\" (the backslash) are converted into the representation of a
+     * backslash followed by two hex digits representing the hexadecimal value of the character.
+     *
+     * @param array $values Array of values to escape
+     *
+     * @static
+     * @return array Array $values, but escaped
+     */
+    public static function escape_filter_value($values = array(), $singleValue = TRUE) {
+        // Parameter validation
+        if (!is_array($values)) {
+            $values = array($values);
+        }
+
+        foreach ($values as $key => $val) {
+            // Escaping of filter meta characters
+            $val = str_replace('\\', '\5c', $val);
+            $val = str_replace('*',  '\2a', $val);
+            $val = str_replace('(',  '\28', $val);
+            $val = str_replace(')',  '\29', $val);
+
+            // ASCII < 32 escaping
+            $val = self::asc2hex32($val);
+
+            if (null === $val) $val = '\0';  // apply escaped "null" if string is empty
+
+            $values[$key] = $val;
+        }
+		if ($singleValue) return $values[0];
+        return $values;
+    }
+
+    /**
+     * Borrowed function from PEAR:LDAP.
+     *
+     * Converts all ASCII chars < 32 to "\HEX"
+     *
+     * @param string $string String to convert
+     *
+     * @static
+     * @return string
+     */
+    public static function asc2hex32($string)
+    {
+        for ($i = 0; $i < strlen($string); $i++) {
+            $char = substr($string, $i, 1);
+            if (ord($char) < 32) {
+                $hex = dechex(ord($char));
+                if (strlen($hex) == 1) $hex = '0'.$hex;
+                $string = str_replace($char, '\\'.$hex, $string);
+            }
+        }
+        return $string;
+    }
+
+
+
 
 
 }
