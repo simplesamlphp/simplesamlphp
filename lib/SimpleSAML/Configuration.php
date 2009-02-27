@@ -278,6 +278,23 @@ class SimpleSAML_Configuration {
 		return $this->configuration[$name];
 	}
 	
+	
+	/**
+	 * Check whether an key in the configuration exists...
+	 */
+	public function hasValue($name) {
+		return array_key_exists($name, $this->configuration);
+	}
+	/**
+	 * Check whether an key in the configuration exists...
+	 */
+	public function hasValueOneOf($names) {
+		foreach($names AS $name) if ($this->hasValue($name)) return TRUE;
+		return FALSE;
+	}
+
+	
+	
 	public function getBaseURL() {
 		if (preg_match('/^\*(.*)$/', $this->getValue('baseurlpath', ''), $matches)) {
 			return SimpleSAML_Utilities::getFirstPathElement(false) . $matches[1];
