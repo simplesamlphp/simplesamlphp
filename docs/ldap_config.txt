@@ -1,0 +1,44 @@
+The LDAP configuration array
+============================
+
+
+The LDAP configuration array is used in all of the LDAP based authentication modules. 
+
+We distinguish between two modes of deciding the DN of the user.
+
+  1. Search for DN by userid attribute, usually `eduPersonPrincipalName`.
+  2. Decide the DN based on a known pattern and then filling in the username.
+
+
+Example configuration for DN search
+-----------------------------------
+
+TBA
+
+Example configuration for DN pattern
+------------------------------------
+
+TBA
+
+
+
+List of parameters
+------------------
+
+
+  * type which LDAP backend to use.
+  * testType A class that defines a test for it.
+  * hostname (required)
+  * enable_tls (optional)
+  * debugLDAP (optional)
+  * timeout (optional)  default: 20s
+  * adminUser (optional)
+  * adminPassword (required if adminUser is set)
+  * useridAttr (optional) default: eduPersonPrincipalName
+  * searchbase (required)
+  * dnpattern
+  * attributesize.max (optional) defualt: 
+  * debug
+  * contactMail
+  * contactUrl
+  * comment
