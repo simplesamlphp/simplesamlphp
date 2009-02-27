@@ -30,6 +30,12 @@ $state = SimpleSAML_Auth_State::loadState($id, 'consent:request');
 
 if (array_key_exists('yes', $_REQUEST)) {
 	/* The user has pressed the yes-button. */
+	
+	if (array_key_exists('saveconsent', $_REQUEST)) {
+		SimpleSAML_Logger::stats('consentResponse remember');		
+	} else {
+		SimpleSAML_Logger::stats('consentResponse rememberNot');
+	}
 
 	if (array_key_exists('consent:store', $state) && array_key_exists('saveconsent', $_REQUEST)
 		&& $_REQUEST['saveconsent'] === '1') {
