@@ -85,17 +85,10 @@ $ldapconfig = SimpleSAML_Configuration::getConfig('config-login-feide.php');
 $ldapStatusConfig = SimpleSAML_Configuration::getConfig('module_ldapstatus.php');
 
 $debug = $ldapconfig->getValue('ldapDebug', FALSE);
-$orgs = $ldapconfig->getValue('orgldapconfig');
-
-#echo '<pre>'; print_r($orgs); exit;
-
+$orgs = $ldapconfig->getValue('organizations');
+$locationTemplate = $ldapconfig->getValue('locationTemplate');
 
 
-
-
-
-
-$results = NULL;
 
 $results = $session->getData('module:ldapstatus', 'results');
 if (empty($results)) {
@@ -116,7 +109,17 @@ $maxtime = $ldapStatusConfig->getValue('maxExecutionTime', 15);
 if (array_key_exists('orgtest', $_REQUEST)) {
 	#$old_error_handler = set_error_handler("myErrorHandler");
 	
-	$tester = new sspmod_ldapstatus_LDAPTester($orgs[$_REQUEST['orgtest']], $debug);
+	$locindex = 0;
+	if (array_key_exists('locindex', $_REQUEST)) $locindex = $_REQUEST['locindex'];
+	
+	$orgconfig = SimpleSAML_Configuration::loadFromArray($orgs[$_REQUEST['orgtest']], 'org:[' . $_REQUEST['orgtest'] . ']');
+	$orgloc = $orgs[$_REQUEST['orgtest']]['locations'][$locindex];
+	$orgloc = mergeWithTemplate($orgloc, $locationTemplate);
+	$classname = SimpleSAML_Module::resolveClass($orgloc['testType'], 'Auth_Backend_Test');
+	$tester = new $classname(
+			SimpleSAML_Configuration::loadFromArray($orgloc, 'Location@[' . $_REQUEST['orgtest'] . ']'),
+			$orgconfig);
+			
 	$res = $tester->test();
 
 	$t = new SimpleSAML_XHTML_Template($config, 'ldapstatus:ldapsinglehost.php');
@@ -126,24 +129,37 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 	if ($isAdmin) $t->data['secretURL'] = $secretURL;
 	$t->show();
 	exit;
-
 }
 
+function mergeWithTemplate($location, $template) {
+	foreach($template AS $key => $value) {
+		if (!array_key_exists($key, $location)) $location[$key] = $value;
+	}
+	return $location;
+}
 
-// Traverse and execute tests for each entry...
-foreach ($orgs AS $orgkey => $orgconfig) {
+$start = microtime(TRUE);
+foreach($orgs AS $orgkey => $org) {
 	if (array_key_exists($orgkey, $results)) continue;
-
-	SimpleSAML_Logger::debug('ldapstatus: Executing test on ' . $orgkey);
-	
-	$tester = new sspmod_ldapstatus_LDAPTester($orgconfig, $debug);
-	$results[$orgkey] = $tester->test();
-	
+	$orgconfig = SimpleSAML_Configuration::loadFromArray($org, 'org:[' . $orgkey . ']');
+	$orglocs = $org['locations'];
+	$results[$orgkey] = array();
+	foreach($orglocs AS $orgloc) {
+		$orgloc = mergeWithTemplate($orgloc, $locationTemplate);
+		$classname = SimpleSAML_Module::resolveClass($orgloc['testType'], 'Auth_Backend_Test');
+		$tester = new $classname(
+			SimpleSAML_Configuration::loadFromArray($orgloc, 'Location@[' . $orgkey . ']'),
+			$orgconfig);
+		$results[$orgkey][] = $tester->test();
+	}
 	if ((microtime(TRUE) - $start) > $maxtime) {
 		SimpleSAML_Logger::debug('ldapstatus: Completing execution after maxtime [' .(microtime(TRUE) - $start) . ' of maxtime ' . $maxtime . ']');
 		break;
 	}
+	
 }
+
+
 
 $session->setData('module:ldapstatus', 'results', $results);
 
@@ -154,7 +170,7 @@ $lightCounter = array(0,0,0);
 function resultCode($res) {
 	global $lightCounter;
 	$code = '';
-	$columns = array('configMeta', 'config', 'ping', 'adminBind', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'ldapGetAttributesTestUser', );
+	$columns = array('configMeta', 'config', 'ping', 'adminBind', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'getTestOrg', );
 	foreach ($columns AS $c) {
 		if (array_key_exists($c, $res)) {
 			if ($res[$c][0]) {
@@ -176,7 +192,7 @@ function resultCode($res) {
 	
 $ressortable = array();
 foreach ($results AS $key => $res) {
-	$ressortable[$key] = resultCode($res);
+	$ressortable[$key] = resultCode($res[0]);
 }
 asort($ressortable);
 #echo '<pre>'; print_r($ressortable); exit;

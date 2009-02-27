@@ -32,7 +32,7 @@ $this->includeAtTemplateBase('includes/header.php');
 		<th>test</th>
 		<th>S=test</th>
 		<th>test bind()</th>
-		<th>attributes</th>
+		<th>Org-info</th>
 		<th>Meta</th>
 		<th>Time</th>
 	</tr>
@@ -67,35 +67,40 @@ $classes = array('odd', 'even');
 
 # $this->data['results']
 foreach($this->data['sortedOrgIndex'] as $orgkey) {
-	$res = $this->data['results'][$orgkey];
-	echo('<tr class="' . ($classes[($i++ % 2)]) . '">');
-	if (array_key_exists('description', $this->data['orgconfig'][$orgkey])) {
-		echo('<td><a href="?orgtest=' . htmlentities($orgkey) . '">');
-		echo htmlspecialchars(
-			$this->getTranslation(
-					SimpleSAML_Utilities::arrayize($this->data['orgconfig'][$orgkey]['description'], 'en')
-				)
-			);
-		echo('</a></td>');
-	} else {
-		echo('<td><span style="color: #b4b4b4; font-size: x-small">NA</span> <tt>' . $orgkey . '</tt></td>');
-	}
-	showRes('config',  $res, $this);
-	showRes('ping',  $res, $this);
-	showRes('adminBind',  $res, $this);
-	showRes('ldapSearchBogus',  $res, $this);
-	showRes('configTest',  $res, $this);
-	showRes('ldapSearchTestUser',  $res, $this);
-	showRes('ldapBindTestUser',  $res, $this);
-	showRes('ldapGetAttributesTestUser',  $res, $this);
-	showRes('configMeta',  $res, $this);
-	echo('<td style="text-align: right">' . ceil($res['time']*1000) . ' ms</td>');
-	echo('</tr>');
-	
-	if ($this->data['showcomments'] && array_key_exists('comment', $this->data['orgconfig'][$orgkey])) {
-		echo('<tr><td style="color: #400; padding-left: 5em; font-family: \'Arial Narrow\'; font-size: 85%" colspan="11">' . $this->data['orgconfig'][$orgkey]['comment'] . '</td></tr>');
-	}
-	
+	$ress = $this->data['results'][$orgkey];
+	foreach($ress AS $i => $res) {
+
+		echo('<tr class="' . ($classes[($i++ % 2)]) . '">');
+		if (array_key_exists('description', $this->data['orgconfig'][$orgkey])) {
+			echo('<td><a href="?orgtest=' . htmlentities($orgkey) . '">');
+			echo htmlspecialchars(
+				$this->getTranslation(
+						SimpleSAML_Utilities::arrayize($this->data['orgconfig'][$orgkey]['description'], 'en')
+					)
+				);
+			if(count($ress) > 1) {
+				echo(' (location ' . ($i) . ')');
+			}
+			echo('</a></td>');
+		} else {
+			echo('<td><span style="color: #b4b4b4; font-size: x-small">NA</span> <tt>' . $orgkey . '</tt></td>');
+		}
+		showRes('config',  $res, $this);
+		showRes('ping',  $res, $this);
+		showRes('adminBind',  $res, $this);
+		showRes('ldapSearchBogus',  $res, $this);
+		showRes('configTest',  $res, $this);
+		showRes('ldapSearchTestUser',  $res, $this);
+		showRes('ldapBindTestUser',  $res, $this);
+		showRes('getTestOrg',  $res, $this);
+		showRes('configMeta',  $res, $this);
+		echo('<td style="text-align: right">' . ceil($res['time']*1000) . ' ms</td>');
+		echo('</tr>');
+		
+		if ($this->data['showcomments'] && array_key_exists('comment', $this->data['orgconfig'][$orgkey])) {
+			echo('<tr><td style="color: #400; padding-left: 5em; font-family: \'Arial Narrow\'; font-size: 85%" colspan="11">' . $this->data['orgconfig'][$orgkey]['comment'] . '</td></tr>');
+		}
+	}	
 	
 }
 ?>

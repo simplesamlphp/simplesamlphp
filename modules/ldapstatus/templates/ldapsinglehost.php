@@ -109,8 +109,8 @@ if ($ok) {
 <p>Trying to bind() as the DN found when searching for the test user</p>
 <?php presentRes('ldapBindTestUser'); ?>
 
-<p>Getting attributes from the DN of the test user</p>
-<?php presentRes('ldapGetAttributesTestUser'); ?>
+<p>Getting attributes from referred eduOrgDN and eduOrgUnitDN (from test user)</p>
+<?php presentRes('getTestOrg'); ?>
 
 <p>Checking for additional contact addresss in configuration.</p>
 <?php presentRes('configMeta'); ?>
