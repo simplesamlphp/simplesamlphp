@@ -115,7 +115,7 @@ if (isset($_GET['SAMLRequest'])) {
 	$responder = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 	
 	
-	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer());
+	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $requester);
 	SimpleSAML_Logger::stats('saml20-idp-SLO spinit ' . $requester . ' ' . $responder);
 	
 	/* Check if we have a valid session. */

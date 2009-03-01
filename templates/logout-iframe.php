@@ -57,6 +57,7 @@ function startslo() {
 function slocompletesp($entityhash) {
 	$("table#slostatustable tr#" + $entityhash).filter(".inprogress").removeClass("inprogress").addClass("completed").
 		children().fadeOut("fast").fadeIn("fast");
+	alert("complete SP " + $entityhash );
 }
 
 
@@ -97,9 +98,10 @@ function sendResponse() {
 
 	<?php
 	
-	$requestername = is_array($this->data['requesterName']) ? 
-		$this->getTranslation($this->data['requesterName']) : $this->data['requesterName'];
-
+	if (array_key_exists('requestername', $this->data)) {
+		$requestername = is_array($this->data['requesterName']) ? 
+			$this->getTranslation($this->data['requesterName']) : $this->data['requesterName'];
+	}
 	#echo('<p>' . $this->t('{logout:description}', array('%REQUESTERNAME%' => $requestername)) . '</p>');
 	
 	?>
@@ -108,11 +110,12 @@ function sendResponse() {
 
 	<?php
 	
-		echo('<div><img style="float: left; margin-right: 12px" src="/' . $this->data['baseurlpath'] . 'resources/icons/checkmark48.png" alt="Successful logout" />');
-		echo('<p style="padding-top: 16px; ">' . $this->t('{logout:loggedoutfrom}', array('%SP%' => '<strong>' .$requestername.'</strong>')) . '</p>');
-		echo('<p style="height: 0px; clear: left;"></p>');
-		echo('</div>');
-		
+		if (array_key_exists('requestername', $this->data)) {
+			echo('<div><img style="float: left; margin-right: 12px" src="/' . $this->data['baseurlpath'] . 'resources/icons/checkmark48.png" alt="Successful logout" />');
+			echo('<p style="padding-top: 16px; ">' . $this->t('{logout:loggedoutfrom}', array('%SP%' => '<strong>' .$requestername.'</strong>')) . '</p>');
+			echo('<p style="height: 0px; clear: left;"></p>');
+			echo('</div>');
+		}
 
 		echo('<div style="margin-top: 3em; clear: both">');
 		echo('<p style="margin-bottom: .5em">' . $this->t('{logout:also_from}') . '</p>');
@@ -187,7 +190,16 @@ function sendResponse() {
 			<?php echo $this->t('{logout:logout_all_question}'); ?> <br />
 		</p>
 		<input type="button" id="ok" name="ok" value="<?php echo $this->t('{logout:logout_all}'); ?>" />
-		<input type="button" id="cancel" name="cancel" value="<?php echo $this->t('{logout:logout_only}', array('%SP%' => $requestername)); ?>" />
+		<?php
+			
+			if (array_key_exists('requestername', $this->data)) {
+				echo '<input type="button" id="cancel" name="cancel" value="' . $this->t('{logout:logout_only}', array('%SP%' => $requestername)) . '" />';
+			} else {
+				echo '<input type="button" id="cancel" name="cancel" value="' . $this->t('{logout:no}') . '" />';
+			}
+			
+		?>
+		
 		
 
 		<p id="incapablesps" >

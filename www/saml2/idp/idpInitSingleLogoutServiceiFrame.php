@@ -1,8 +1,7 @@
 <?php
 
 /**
- * This SAML 2.0 endpoint can receive incoming LogoutRequests. It will also send LogoutResponses, 
- * and LogoutRequests and also receive LogoutResponses. It is implemeting SLO at the SAML 2.0 IdP.
+ * IdP Initiated Single Log-Out. Requires one parameter: RelayState.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
@@ -15,7 +14,7 @@ $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance();
 
-SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutServiceiFrame: Accessing SAML 2.0 IdP endpoint SingleLogoutService (iFrame version)');
+SimpleSAML_Logger::info('SAML2.0 - IdP.idpInitSingleLogoutServiceiFrame: Accessing SAML 2.0 IdP endpoint SingleLogoutService (iFrame version)');
 
 SimpleSAML_Logger::debug('Initially; ' . join(',', $session->get_sp_list(SimpleSAML_Session::STATE_ONLINE)));
 
@@ -41,14 +40,8 @@ if ($logouttype !== 'iframe')
 
 
 
-/**
- * The $logoutInfo contains information about the current logout operation.
- * It can have the following attributes:
- * - 'RelayState' - The RelayState which should be returned to the SP which initiated the logout operation.
- * - 'Issuer' - The entity id of the SP which initiated the logout operation.
- * - 'RequestID' - The id of the LogoutRequest which initiated the logout operation.
- */
-$logoutInfo = array();
+
+
 
 
 /**
@@ -169,73 +162,14 @@ $xajax->processRequests();
 
 
 
-
-/*
- * If we get an LogoutRequest then we initiate the logout process.
+/**
+ * Which URL to send the user to after logout?
  */
-if (isset($_GET['SAMLRequest'])) {
+$relayState = NULL;
+if (array_key_exists('RelayState', $_REQUEST)) $relayState = $_REQUEST['RelayState'];
 
-	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: Got SAML reuqest');
-
-	$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-
-	try {
-		$logoutrequest = $binding->decodeLogoutRequest($_GET);
-
-		if ($binding->validateQuery($logoutrequest->getIssuer(),'IdP')) {
-			SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Valid signature found for '.$logoutrequest->getRequestID());
-		}
-
-	} catch(Exception $exception) {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTREQUEST', $exception);
-	}
-	
-	// Extract some parameters from the logout request
-	#$requestid = $logoutrequest->getRequestID();
-	$requester = $logoutrequest->getIssuer();
-	#$relayState = $logoutrequest->getRelayState();
-	$responder = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-	
-	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $logoutrequest->getIssuer());
-	SimpleSAML_Logger::stats('saml20-idp-SLO spinit ' . $requester . ' ' . $responder);
-	
-
-	$session->doLogout();
-
-
-	/* Fill in the $logoutInfo associative array with information about this logout request. */
-	$logoutInfo['Issuer'] = $logoutrequest->getIssuer();
-	$logoutInfo['RequestID'] = $logoutrequest->getRequestID();
-
-	$relayState = $logoutrequest->getRelayState();
-	if($relayState !== NULL) {
-		$logoutInfo['RelayState'] = $relayState;
-	}
-		
-	SimpleSAML_Logger::debug('SAML2.0 - IDP.SingleLogoutService: Setting cached request with issuer ' . $logoutrequest->getIssuer());
-	
-	$session->set_sp_logout_completed($logoutrequest->getIssuer());
-
-
-/*
- * We receive a Logout Response to a Logout Request that we have issued earlier.
- * If so, there is a misconfiguration.
- */
-} elseif (isset($_GET['SAMLResponse'])) {
-
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTRESPONSE', 
-		new Exception('The SP is likely to be misconfigured. The LogoutResponse is sent to wrong endpoint. This iFrame endpoint only accepts LogoutRequests, and the response is to be sent to a separate endpoint. Please revisit the IdP-Remote metadata on the SP.')
-	);
-
-} else {
-	/*
-	 * We have no idea what to do here. It is neither a logout request, a logout
-	 * response nor a response from bridged SLO.
-	 */
-	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: No request, response or bridge');
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS');
-}
-
+// Do logout from the IdP
+$session->doLogout();
 
 // Debug entries in the log about what services the user is logged into.
 $session->dump_sp_sessions();
@@ -287,76 +221,13 @@ SimpleSAML_Logger::debug('SAML2.0 - SP Counter. other SPs with SLO support (' . 
 
 
 
-
-
 /*
- * Logout procedure is done and we send a Logout Response back to the SP
+ * If the user is not logged into any other SPs.
  */
-
-try {
-
-	if(!$logoutInfo) SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTINFOLOST');
-	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: Found logout info with these keys: ' . join(',', array_keys($logoutInfo)));
-	
-	/*
-	 * Check if the Single Logout procedure is initated by an SP (alternatively IdP initiated SLO)
-	 */
-	if (array_key_exists('Issuer', $logoutInfo)) {
-		
-		/**
-		 * Create a Logot Response.
-		 */
-		$rg = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
-	
-		// generate($issuer, $receiver, $inresponseto, $mode )
-		$logoutResponseXML = $rg->generate($idpentityid, $logoutInfo['Issuer'], $logoutInfo['RequestID'], 'IdP');
-	
-		// Create a HTTP-REDIRECT Binding.
-		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-	
-		// Find the relaystate if cached.
-		$relayState = isset($logoutInfo['RelayState']) ? $logoutInfo['RelayState'] : null;
-	
-		$logoutresponse = NULL;
-		/*
-		 * If the user is not logged into any other SPs, send the LogoutResponse immediately
-		 */
-		if (count($sparray) === 0) {
-			$httpredirect->sendMessage($logoutResponseXML, $idpentityid, $logoutInfo['Issuer'], $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
-			exit;
-		} else {
-			$logoutresponse = $httpredirect->getRedirectURL($logoutResponseXML, $idpentityid, $logoutInfo['Issuer'], $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
-		}
-
-		
-	} elseif (array_key_exists('RelayState', $logoutInfo)) {
-
-		SimpleSAML_Utilities::redirect($logoutInfo['RelayState']);
-		exit;
-		
-	} else {
-	
-		echo 'You are logged out'; exit;
-	
-	}
-
-} catch(Exception $exception) {
-	
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATELOGOUTRESPONSE', $exception);
-	
-}
-
-
-
-
-$spmeta = $metadata->getMetaData($requester, 'saml20-sp-remote');
-$spname = $requester;
-if (array_key_exists('name', $spmeta)) $spname = $spmeta['name'];
-
-
-
-
-
+if (count($sparray) === 0) {
+	SimpleSAML_Utilities::redirect($relayState);
+	exit;
+} 
 
 
 $et = new SimpleSAML_XHTML_Template($config, 'logout-iframe.php');
@@ -365,9 +236,12 @@ $et->data['header'] = 'Logout';
 $et->data['sparray'] = $sparray;
 $et->data['sparrayNoLogout'] = $sparrayNoLogout;
 
-$et->data['logoutresponse'] = $logoutresponse;
+$et->data['logoutresponse'] = $relayState;
 $et->data['xajax'] = $xajax;
-$et->data['requesterName'] = $spname;
+
+#$et->data['idpInitRelayState'] = $relayState;
+
+# $et->data['requesterName'] = $spname;
 
 $et->data['head'] = $xajax->getJavascript();
 

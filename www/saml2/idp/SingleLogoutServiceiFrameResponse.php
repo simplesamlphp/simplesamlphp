@@ -70,7 +70,6 @@ if (isset($_GET['SAMLResponse'])) {
 
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS', 
 		new Exception('No valid SAMLResponse found? Probably some error in remote partys metadata that sends something to this endpoint that is not SAML LogoutResponses') );
-#	echo 'Not set: SAMLResponse';
 }
 
 ?>
