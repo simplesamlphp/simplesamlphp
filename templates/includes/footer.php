@@ -1,5 +1,15 @@
 
 
+<?php
+
+if(array_key_exists('htmlContentPost', $this->data)) {
+	foreach(array_reverse($this->data['htmlContentPost']) AS $c) {
+		echo $c;
+	}
+}
+?>
+
+
 
 		<hr />
 

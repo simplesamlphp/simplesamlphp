@@ -13,7 +13,28 @@ if(array_key_exists('header', $this->data)) {
 
 	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/default.css" />
 	<link rel="icon" type="image/icon" href="/<?php echo $this->data['baseurlpath']; ?>resources/icons/favicon.ico" />
-	<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+
+<?php
+
+if(array_key_exists('jquery', $this->data)) {
+	
+	#echo('<pre>'); print_r($this->data['jquery']); exit;
+	if (isset($this->data['jquery']['core']) && $this->data['jquery']['core'])
+		echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>');
+
+	if (isset($this->data['jquery']['ui']) && $this->data['jquery']['ui'])
+		echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui.js"></script>');
+
+	if (isset($this->data['jquery']['css']) && $this->data['jquery']['css'])
+		echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 'resources/uitheme/jquery-ui-themeroller.css" />');
+	
+}
+
+?>
+
+	
+	<meta name="robots" content="noindex, nofollow" />
+	
 
 <?php	
 if(array_key_exists('head', $this->data)) {
@@ -91,6 +112,19 @@ if($onLoad !== '') {
 		echo '</div>';
 
 	}
-	
+
+
+
 	?>
 	<div id="content">
+
+
+
+<?php
+if(array_key_exists('htmlContentPre', $this->data)) {
+	foreach($this->data['htmlContentPre'] AS $c) {
+		echo $c;
+	}
+}
+
+?>
