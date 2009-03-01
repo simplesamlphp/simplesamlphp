@@ -16,6 +16,9 @@ interface SimpleSAML_Logger_LoggingHandler {
 class SimpleSAML_Logger {
 	private static $loggingHandler = null;
 	private static $logLevel = null;
+	
+	private static $captureLog = FALSE;
+	private static $capturedLog = array();
 
 	/**
 	 * This constant defines the string we set the trackid to while we are fetching the
@@ -137,9 +140,19 @@ class SimpleSAML_Logger {
 		self::$loggingHandler = $sh;
 	}
 	
+	public static function setCaptureLog($val = TRUE) {
+		self::$captureLog = $val;
+	}
+	
+	public static function getCapturedLog() {
+		return self::$capturedLog;
+	}	
+	
 	static function log_internal($level,$string,$statsLog = false) {
 		if (self::$loggingHandler == null)
 			self::createLoggingHandler();
+		
+		if (self::$captureLog) self::$capturedLog[] = $string;
 		
 		if (self::$logLevel >= $level || $statsLog) {
 			if (is_array($string)) $string = implode(",",$string);
