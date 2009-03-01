@@ -1063,30 +1063,37 @@ $lang = array(
 	'attribute_schacuserprivateattribute' => array (
 		'no' => 'Private informasjonselement',
 		'en' => 'Private information elements',
+		'sv' => 'Information om vilka attribut som har skyddsbehov',
 	),
 	'attribute_edupersonorgdn_mail' => array (
 		'no' => 'Organisasjonens epost',
 		'en' => 'Organization\'s mail',
+		'sv' => 'Organisationens e-postadress',
 	),
 	'attribute_edupersonorgdn_eduorgidentityauthnpolicyuri' => array (
 		'no' => 'Lokasjon med organisasjonens rutiner for identifisering og autentisering',
 		'en' => 'Location of organization\'s policy regarding identification and authentication',
+		'sv' => 'Adressen till var organisationens policy om hur elektroniska identiteter hanteras',
 	),
 	'attribute_edupersonorgdn_noreduorguniqueidentifier' => array (
 		'no' => 'Organisasjonens unike identifikasjonsnummer',
 		'en' => 'Organization\'s unique identifier',
+		'sv' => 'Organisationens unika identifierare',
 	),
 	'attribute_edupersonorgdn_postofficebox' => array (
 		'no' => 'Organisasjonens postboks',
 		'en' => 'Organization\'s postal office box',
+		'sv' => 'Organisationens boxadress',
 	),
 	'attribute_edupersonorgunitdn_labeleduri' => array (
 		'no' => 'URI for organisasjonsenhet med valgfri tilleggskommentar',
 		'en' => 'Labeled URI to organizational unit',
+		'sv' => 'Organisationsenhetens hemsidesadress',
 	),
 	'attribute_edupersonorgunitdn_postofficebox' => array (
 		'no' => 'Organisasjonsenhetens postboks',
 		'en' => 'Organizational Unit\'s postal office box',
+		'sv' => 'Organisationsenhetens boxadress',
 	),
 	'attribute_schachomeorganization' => array (
 		'no' => 'Unik ID for organisasjon',
