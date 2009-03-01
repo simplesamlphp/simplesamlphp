@@ -33,7 +33,7 @@ class SimpleSAML_Auth_LDAP {
 		// Set timeouts, if supported...
 		// (OpenLDAP 2.x.x or Netscape Directory SDK x.x needed).
 		if (!@ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, $timeout))
-		    SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts [LDAP_OPT_NETWORK_TIMEOUT]Êto ' . var_export($timeout, true));
+		    SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts [LDAP_OPT_NETWORK_TIMEOUT] to ' . var_export($timeout, true));
 		if (!@ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, $timeout))
 		    SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts [LDAP_OPT_TIMELIMIT] to ' . var_export($timeout, true));
 
