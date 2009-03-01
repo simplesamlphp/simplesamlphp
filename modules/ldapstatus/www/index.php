@@ -112,6 +112,8 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 	$locindex = 0;
 	if (array_key_exists('locindex', $_REQUEST)) $locindex = $_REQUEST['locindex'];
 	
+	SimpleSAML_Logger::setCaptureLog();
+	
 	$orgconfig = SimpleSAML_Configuration::loadFromArray($orgs[$_REQUEST['orgtest']], 'org:[' . $_REQUEST['orgtest'] . ']');
 	$orgloc = $orgs[$_REQUEST['orgtest']]['locations'][$locindex];
 	$orgloc = mergeWithTemplate($orgloc, $locationTemplate);
@@ -126,6 +128,7 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 	
 	$t->data['res'] = $res;
 	$t->data['org'] = $orgs[$_REQUEST['orgtest']];
+	$t->data['debugLog'] = SimpleSAML_Logger::getCapturedLog();
 	if ($isAdmin) $t->data['secretURL'] = $secretURL;
 	$t->show();
 	exit;

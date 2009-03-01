@@ -150,7 +150,10 @@ if ($ok) {
 
 
 
-
+<h2>Debug log</h2>
+<pre style="background: #eee; border: 1px solid #aaa">
+<?php echo join("\n", $this->data['debugLog']); ?>
+</pre>
 
 
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>
