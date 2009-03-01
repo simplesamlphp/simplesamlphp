@@ -216,6 +216,12 @@ $dimx = $statconfig->getValue('dimension.x', 800);
 $dimy = $statconfig->getValue('dimension.y', 350);
 $grapher = new sspmod_statistics_Graph_GoogleCharts($dimx, $dimy);
 
+
+$htmlContentPre = array(); $htmlContentPost = array(); $htmlContentHead = array(); $jquery = array();
+$hookinfo = array('pre' => &$htmlContentPre, 'post' => &$htmlContentPost, 'head' => &$htmlContentHead, 'jquery' => &$jquery, 'page' => 'statistics');
+SimpleSAML_Module::callHooks('htmlinject', $hookinfo);
+
+
 $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics-tpl.php');
 $t->data['header'] = 'stat';
 $t->data['imgurl'] = $grapher->show($axis, $axispos, $datasets, $max);
@@ -223,6 +229,10 @@ $t->data['available.rules'] = $available_rules;
 $t->data['available.times'] = $available_times;
 $t->data['available.times.prev'] = $available_times_prev;
 $t->data['available.times.next'] = $available_times_next;
+$t->data['htmlContentPre'] = $htmlContentPre;
+$t->data['htmlContentPost'] = $htmlContentPost;
+$t->data['htmlContentHead'] = $htmlContentHead;
+$t->data['jquery'] = $jquery;
 $t->data['selected.rule']= $rule;
 $t->data['selected.time'] = $fileslot;
 $t->data['debugdata'] = $debugdata;
