@@ -18,10 +18,10 @@ $lang = array(
 		'pt-BR' => 'Desconectado',
 	),
 	'logged_out_text' => array (
-		'no' => 'Du er nå utlogget. Takk for at du benyttet denne tjenesten.',
+		'no' => 'Du er nå utlogget.',
 		'nn' => 'Du har blitt logga ut.  Takk for at du brukte denne tenesta.',
 		'da' => 'Du er blevet logget ud. Tak for fordi du brugte denne tjeneste.',
-		'en' => 'You have been logged out. Thank you for using this service.',
+		'en' => 'You have been logged out.',
 		'de' => 'Sie wurden abgemeldet. Danke, dass Sie diesen Dienst verwendet haben.',
 		'sv' => 'Du har blivit uloggad. Tack för att du använde denna tjänst.',
 		'es' => 'Ha sido desconectado. Gracias por usar este servicio.',
@@ -64,6 +64,10 @@ $lang = array(
 		'en' => 'You are also logged in on these services:',
 		'sv' => 'Du är även inloggad i följande tjänster:',
 		'sl' => 'Prijavljeni ste v naslednje storitve:',
+	),
+	'no' => array (
+		'no' => 'Nei',
+		'en' => 'No',
 	),
 	'logout_all_question' => array (
 		'no' => 'Vil du logge ut fra alle tjenestene ovenfor?',
