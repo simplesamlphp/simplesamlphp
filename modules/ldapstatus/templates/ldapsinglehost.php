@@ -55,6 +55,35 @@ function presentRes($restag) {
 	echo('</div>');
 }
 
+function presentCertRes($restag) {
+
+	global $t;
+	echo('<div class="inbox" style="border: 1px solid #aaa; background: #eee; padding: .4em; margin: .2em;">');
+	
+	if (array_key_exists($restag, $t->data['res'])) {
+		$res = $t->data['res'][$restag];
+		if ($res[0]) {	
+			echo('<img style="float: right" src="/' . $t->data['baseurlpath'] . 'resources/icons/accept.png" />');
+			echo('OK: ' . $res[1]);
+		} else {
+			echo('<img style="float: right" src="/' . $t->data['baseurlpath'] . 'resources/icons/gn/stop-l.png" />');
+			echo($res[1]);
+		}
+		
+		if (isset($res['expire'])) {
+			echo('<p>Certificate expires in ' . $res['expire'] . ' days</p>');
+		}
+		if (isset($res['expireText'])) {
+			echo('<p>Certificate expires on ' . $res['expireText'] . '</p>');
+		}
+		
+		echo('<div style="clear: both; height: 0px"></div>');
+	} else {
+		echo('<p style="color: #ccc">NA</p>');
+	}
+	echo('</div>');
+}
+
 $ok = TRUE;
 foreach ($this->data['res'] AS $tag => $res) {
 	if ($tag == 'time') continue;
@@ -93,6 +122,10 @@ if ($ok) {
 
 <p>Trying to setup a TCP socket against the LDAP host.</p>
 <?php presentRes('ping'); ?>
+
+<p>Check certificate.</p>
+<?php presentCertRes('cert'); ?>
+
 
 <p>Trying to bind() with the LDAP admin user.</p>
 <?php presentRes('adminBind'); ?>

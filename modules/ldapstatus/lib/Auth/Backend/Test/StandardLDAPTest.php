@@ -78,6 +78,9 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 		}
 		
 		
+		$result['cert'] = $this->certCheck();
+		
+		
 		// LDAP Connect
 		try {
 			$tester->tick('connect');
@@ -195,7 +198,57 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
     }
     
     
-    
+    private function certCheck() {
+	
+		$result = array(FALSE, '');
+	
+    	$tester = new sspmod_ldapstatus_Tester($this->location);
+    	$tester->tick('certcheck');
+    	
+		$hostname = $this->location->getValue('hostname');
+		$urldef = explode(' ', $hostname);
+		$url = parse_url($urldef[0]);
+		$port = 389;
+		if (!empty($url['scheme']) && $url['scheme'] === 'ldaps') $port = 636;
+		if (!empty($url['port'])) $port = $url['port'];	
+		$host = $url['host'];
+
+		$tester->log('ldapstatus Url parse [' . $hostname . '] => [' . $host . ']:[' . $port . ']' );
+		
+		$cmd = 'echo "" | openssl s_client -connect ' . $host . ':' . $port . ' 2> /dev/null | openssl x509 -enddate -noout';
+		$output = shell_exec($cmd);
+		
+		if (!empty($output)) {
+		
+			$cmd2 = 'echo "" | openssl s_client -connect ' . $host . ':' . $port . ' 2> /dev/null | openssl x509 -issuer -noout';
+			$output2 = shell_exec($cmd2);
+
+			if (preg_match('/issuer=(.{0,40})/', $output2, $matches) ) {
+				$result['issuer'] = $matches[1];
+				$result[1] .= ' ' . $output2;
+			} else {
+				$result[0] = FALSE;
+				$result[1] = 'Did not find Issuer in response [' . $host . ':' . $port . ']';
+				return $result;
+			}
+		} else {
+			$result[0] = FALSE;
+			$result[1] = 'Empty output from s_client -connect [' . $host . ':' . $port . ']';
+			return $result;
+		}
+	
+		if (preg_match('/notAfter=(.*)/', $output, $matches) ) {
+			$rawdate = $matches[1];
+			$date = strtotime($rawdate) - time();
+			$days = floor($date / (60*60*24));
+	#		echo '<p>expires in ' . $days . ' days';
+			
+			$result[0] = ($days > 20);
+			$result['expire'] = $days;
+			$result['expireText'] = date('Y-m-d', strtotime($rawdate));
+			return $result;
+		}
+    }
     
     
 }

@@ -15,6 +15,12 @@ a:hover {
 div#content {
 	margin: .4em ! important;
 }
+body {
+	padding: 0px ! important;
+}
+div.corner_t {
+    max-width: none ! important;
+}
 </style>';
 $this->includeAtTemplateBase('includes/header.php');
 
@@ -27,11 +33,12 @@ $this->includeAtTemplateBase('includes/header.php');
 		<th>Name of institusion</th>
 		<th>Conf</th>
 		<th>Ping</th>
-		<th>Admin bind()</th>
+		<th colspan="3">Cert</th>
+		<th>Admin</th>
 		<th>S=bogus</th>
 		<th>test</th>
 		<th>S=test</th>
-		<th>test bind()</th>
+		<th>T-bind()</th>
 		<th>Org-info</th>
 		<th>Meta</th>
 		<th>Time</th>
@@ -87,6 +94,19 @@ foreach($this->data['sortedOrgIndex'] as $orgkey) {
 		}
 		showRes('config',  $res, $this);
 		showRes('ping',  $res, $this);
+		
+		showRes('cert',  $res, $this);
+		
+		echo('<td>' . 
+			(isset($res['cert']['expire']) ? $res['cert']['expire'] . '' : 
+				'<span style="color: #b4b4b4; font-size: x-small">NA</span>'  ). 
+			'</td>');
+
+		echo('<td>' . 
+			(isset($res['cert']['expireText']) ? $res['cert']['expireText'] : 
+				'<span style="color: #b4b4b4; font-size: x-small">NA</span>'  ). 
+			'</td>');
+		
 		showRes('adminBind',  $res, $this);
 		showRes('ldapSearchBogus',  $res, $this);
 		showRes('configTest',  $res, $this);
@@ -94,7 +114,10 @@ foreach($this->data['sortedOrgIndex'] as $orgkey) {
 		showRes('ldapBindTestUser',  $res, $this);
 		showRes('getTestOrg',  $res, $this);
 		showRes('configMeta',  $res, $this);
-		echo('<td style="text-align: right">' . ceil($res['time']*1000) . ' ms</td>');
+		
+		
+		
+		echo('<td style="text-align: right">' . ceil($res['time']*1000) . '&nbsp;ms</td>');
 		echo('</tr>');
 		
 		if ($this->data['showcomments'] && array_key_exists('comment', $this->data['orgconfig'][$orgkey])) {
