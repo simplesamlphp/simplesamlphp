@@ -173,7 +173,7 @@ $lightCounter = array(0,0,0);
 function resultCode($res) {
 	global $lightCounter;
 	$code = '';
-	$columns = array('configMeta', 'config', 'ping', 'adminBind', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'getTestOrg', );
+	$columns = array('config', 'ping', 'cert', 'adminBind', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'getTestOrg', 'configMeta');
 	foreach ($columns AS $c) {
 		if (array_key_exists($c, $res)) {
 			if ($res[$c][0]) {
