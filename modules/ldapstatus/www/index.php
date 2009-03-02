@@ -197,7 +197,7 @@ $ressortable = array();
 foreach ($results AS $key => $res) {
 	$ressortable[$key] = resultCode($res[0]);
 }
-asort($ressortable);
+arsort($ressortable);
 #echo '<pre>'; print_r($ressortable); exit;
 
 
