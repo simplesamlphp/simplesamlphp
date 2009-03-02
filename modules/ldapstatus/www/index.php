@@ -170,10 +170,45 @@ $session->setData('module:ldapstatus', 'results', $results);
 
 $lightCounter = array(0,0,0);
 
-function resultCode($res) {
+
+
+function resultCode($res, $sortby = NULL) {
 	global $lightCounter;
 	$code = '';
 	$columns = array('config', 'ping', 'cert', 'adminBind', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'getTestOrg', 'configMeta');
+	
+	if (!empty($sortby) && in_array($sortby, $columns)) {
+		
+			
+		if (array_key_exists($sortby, $res)) {
+		
+			if ($res[$sortby][0]) {
+				$code .= '0';
+			} else {
+				$code .= '2';
+			}
+			
+		} else {
+			$code .= '1';
+		}
+		
+		if ($sortby == 'cert') {
+			if (array_key_exists($sortby, $res) && isset($res[$sortby]['expire'])) 
+				$code .= sprintf("%05s", (99999 - $res[$sortby]['expire']) );
+			else
+				$code .= '-----';
+		}
+		
+		$code .= '|';
+	}
+	if ($sortby === 'time') {
+		if (array_key_exists($sortby, $res)) 
+			$code .= sprintf("%05s", floor(1000*$res[$sortby]) );
+		else
+			$code .= '-----';
+		$code .= '|';
+	}
+	
 	foreach ($columns AS $c) {
 		if (array_key_exists($c, $res)) {
 			if ($res[$c][0]) {
@@ -195,7 +230,7 @@ function resultCode($res) {
 	
 $ressortable = array();
 foreach ($results AS $key => $res) {
-	$ressortable[$key] = resultCode($res[0]);
+	$ressortable[$key] = resultCode($res[0], (isset($_REQUEST['sort']) ? $_REQUEST['sort'] : NULL));
 }
 arsort($ressortable);
 #echo '<pre>'; print_r($ressortable); exit;

@@ -31,17 +31,17 @@ $this->includeAtTemplateBase('includes/header.php');
 <table class="attributes" style="font-size: small; width: 100%; border: 1px solid #aaa">
 	<tr>
 		<th>Name of institusion</th>
-		<th>Conf</th>
-		<th>Ping</th>
-		<th colspan="3">Cert</th>
-		<th>Admin</th>
-		<th>S=bogus</th>
-		<th>test</th>
-		<th>S=test</th>
-		<th>T-bind()</th>
-		<th>Org-info</th>
-		<th>Meta</th>
-		<th>Time</th>
+		<th><a href="?sort=conf">Conf</a></th>
+		<th><a href="?sort=ping">Ping</a></th>
+		<th colspan="3"><a href="?sort=cert">Cert</a></th>
+		<th><a href="?sort=adminBind">Admin</a></th>
+		<th><a href="?sort=ldapSearchBogus">S=bogus</a></th>
+		<th><a href="?sort=configTest">test</a></th>
+		<th><a href="?sort=ldapSearchTestUser">S=test</a></th>
+		<th><a href="?sort=ldapBindTestUser">T-bind()</a></th>
+		<th><a href="?sort=getTestOrg">Org-info</a></th>
+		<th><a href="?sort=configMeta">Meta</a></th>
+		<th><a href="?sort=time">Time</a></th>
 	</tr>
 
 <?php
@@ -116,8 +116,14 @@ foreach($this->data['sortedOrgIndex'] as $orgkey) {
 		showRes('configMeta',  $res, $this);
 		
 		
+		if ($res['time'] > 2.0) {
+			echo('<td style="text-align: right; color: #700">' . ceil($res['time']*1000) . '&nbsp;ms</td>');
+		} else if ($res['time'] > 0.3) {
+			echo('<td style="text-align: right">' . ceil($res['time']*1000) . '&nbsp;ms</td>');
+		} else {
+			echo('<td style="text-align: right; color: #060">' . ceil($res['time']*1000) . '&nbsp;ms</td>');
+		}
 		
-		echo('<td style="text-align: right">' . ceil($res['time']*1000) . '&nbsp;ms</td>');
 		echo('</tr>');
 		
 		if ($this->data['showcomments'] && array_key_exists('comment', $this->data['orgconfig'][$orgkey])) {
