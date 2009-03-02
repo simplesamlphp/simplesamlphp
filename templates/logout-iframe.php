@@ -57,7 +57,6 @@ function startslo() {
 function slocompletesp($entityhash) {
 	$("table#slostatustable tr#" + $entityhash).filter(".inprogress").removeClass("inprogress").addClass("completed").
 		children().fadeOut("fast").fadeIn("fast");
-	alert("complete SP " + $entityhash );
 }
 
 
