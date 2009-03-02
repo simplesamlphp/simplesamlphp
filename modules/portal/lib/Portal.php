@@ -51,7 +51,7 @@ class sspmod_portal_Portal {
 		$text = '';
 		
 		if (!empty($logininfo)) {
-			$text .= '<div class="logininfo" style="float: right">' . $logininfo . '</div>';
+			$text .= '<p class="logininfo" style="float: right">' . $logininfo . '</p>';
 		}
 		
 		$text .= '<ul class="ui-tabs-nav">';
