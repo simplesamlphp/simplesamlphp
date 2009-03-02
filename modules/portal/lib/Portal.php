@@ -29,6 +29,12 @@ class sspmod_portal_Portal {
 		return FALSE;
 	}
 	
+	function getLoginInfo($t, $thispage) {
+		$info = array('info' => '', 'template' => $t, 'thispage' => $thispage);
+		SimpleSAML_Module::callHooks('portalLoginInfo', $info);
+		return $info['info'];
+	}
+	
 	function getMenu($thispage) {
 	
 		$config = SimpleSAML_Configuration::getInstance();
@@ -39,7 +45,16 @@ class sspmod_portal_Portal {
 		#echo($thispage);
 		#echo('<pre>'); print_r($this->pages); exit;
 		
-		$text = '<ul>';
+		$logininfo = $this->getLoginInfo($t, $thispage);
+		#echo $logininfo; exit;
+		
+		$text = '';
+		
+		if (!empty($logininfo)) {
+			$text .= '<div class="logininfo" style="float: right">' . $logininfo . '</div>';
+		}
+		
+		$text .= '<ul class="ui-tabs-nav">';
 		foreach($this->pages AS $pageid => $page) {
 			
 			if (isset($tabset) && !in_array($pageid, $tabset, TRUE)) continue;

@@ -32,7 +32,7 @@ function portal_hook_htmlinject(&$hookinfo) {
 	// Header
 	$hookinfo['pre'][0]  = '
 <div id="portalmenu">
-	<ul class="ui-tabs-nav">' . $portal->getMenu($hookinfo['page']) . '</ul>
+	' . $portal->getMenu($hookinfo['page']) . '
 <div id="portalcontent" class="ui-tabs-panel" style="display: block;">';
 
 	// Footer
