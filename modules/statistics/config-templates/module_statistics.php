@@ -5,6 +5,18 @@
 
 $config = array (
 
+	// Access control on statistics page.
+	'protected' => FALSE,
+	
+	/*
+	 * Which authenticatino source should be used for authentication exception from admin module.
+	 * Set to NULL if only using admin auth.
+	 */
+	//'auth' => 'feide',
+	
+	'useridattr' => 'eduPersonPrincipalName',
+	'allowedUsers' => array('andreas@uninett.no', 'ola.normann@sp.example.org'),
+
 	'statdir' => '/tmp/stats/',
 	'inputfile' => '/var/log/simplesamlphp.stat',
 	'offset' => 60*60*2 + 60*60*24*3, // Two hours offset to match epoch and norwegian winter time.
