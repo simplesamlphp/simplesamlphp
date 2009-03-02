@@ -185,8 +185,9 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 				$tester->tick('getTestOrg');
 
 				// Get organization and organizationUnit data.
-				$this->getOrg(&$attributes, $this->location->getValue('testUser'));
-				$this->getOrgUnits(&$attributes, $this->location->getValue('testUser'));
+				$this->getOrg($attributes, $this->location->getValue('testUser'));
+				$this->getOrgUnits($attributes, $this->location->getValue('testUser'));
+				#echo('<pre>'); print_r($attributes); exit;
 				$result['getTestOrg'] = array(TRUE,$tester->tack('getTestOrg'));
 			} catch(Exception $e) {
 				$tester->log('LDAP Test user attributes failed:' . $e->getMessage());

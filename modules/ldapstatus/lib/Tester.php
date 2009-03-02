@@ -88,7 +88,7 @@ class sspmod_ldapstatus_Tester {
 		$this->log('ldapstatus phpping(): ping [' . $host . ':' . $port . ']' );
 	
 		$timeout = 1.0;
-		$socket = @fsockopen($host, $port, &$errno, $errstr, $timeout);
+		$socket = @fsockopen($host, $port, $errno, $errstr, $timeout);
 		if ($socket) @fclose($socket);
 		if ($errno) {
 			return array(FALSE, $errno . ':' . $errstr . ' [' . $host . ':' . $port . ']');
