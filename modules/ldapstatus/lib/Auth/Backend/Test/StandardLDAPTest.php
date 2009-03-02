@@ -110,7 +110,7 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 			try {
 				$tester->tick('adminBind');
 		
-				$this->adminBind($this->location->hasValue('adminUser'), $this->location->hasValue('adminPassword'));
+				$this->adminBind($this->location->getString('adminUser'), $this->location->getString('adminPassword'));
 				$result['adminBind'] = array(TRUE,$tester->tack('connect'));
 				
 			} catch (Exception $e) {
