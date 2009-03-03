@@ -142,45 +142,45 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	
 	private function addOrganizationInfo($metadata) {
 		if (array_key_exists('name', $metadata)) {
-			$org = $this->createElement('Organization'); 
-			
+			$org = $this->createElement('Organization');
+
 			if (is_array($metadata['name'])) {
-				foreach($metadata['name'] AS $lang => $localname) {
-					$orgname = $this->createTextElement('OrganizationName', $localname); 
-					$orgname->setAttribute('xml:lang', $lang);					
-					$org->appendChild($orgname);
-				}
+				$name = $metadata['name'];
 			} else {
-				$orgname = $this->createTextElement('OrganizationName', $metadata['name']); 
-				$orgname->setAttribute('xml:lang', 'en');
+				$name = array('en' => $metadata['name']);
+			}
+
+			foreach($name AS $lang => $localname) {
+				$orgname = $this->createTextElement('OrganizationName', $localname);
+				$orgname->setAttribute('xml:lang', $lang);
 				$org->appendChild($orgname);
 			}
 
-
-			if (is_array($metadata['name'])) {
-				foreach($metadata['name'] AS $lang => $localname) {
-					$orgname = $this->createTextElement('OrganizationDisplayName', $localname); 
-					$orgname->setAttribute('xml:lang', $lang);					
-					$org->appendChild($orgname);
-				}
-			} else {
-				$orgname = $this->createTextElement('OrganizationDisplayName', $metadata['name']); 
-				$orgname->setAttribute('xml:lang', 'en');
+			foreach($name AS $lang => $localname) {
+				$orgname = $this->createTextElement('OrganizationDisplayName', $localname);
+				$orgname->setAttribute('xml:lang', $lang);
 				$org->appendChild($orgname);
 			}
 
-			$url = '';
-			if (array_key_exists('url', $metadata)) {
+			if (!array_key_exists('url', $metadata)) {
+				/*
+				 * The specification requires an OrganizationURL element, but
+				 * we haven't got an URL. Insert an empty element instead.
+				 */
+				$url = array('en' => '');
+			} elseif (is_array($metadata['url'])) {
 				$url = $metadata['url'];
+			} else {
+				$url = array('en' => $metadata['url']);
 			}
-			$uel = $this->createTextElement('OrganizationURL', $url); 
-			$uel->setAttribute('xml:lang', 'en');
-			$org->appendChild($uel);
-			
-			$this->entityDescriptor->appendChild($org);
-			
-			
 
+			foreach($url AS $lang => $locallink) {
+				$uel = $this->createTextElement('OrganizationURL', $locallink);
+				$uel->setAttribute('xml:lang', $lang);
+				$org->appendChild($uel);
+			}
+
+			$this->entityDescriptor->appendChild($org);
 		}
 	}
 	
