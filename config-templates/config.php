@@ -254,13 +254,14 @@ $config = array (
 		
 		/*
 		 * Consent module is enabled (with no permanent storage, using cookies).
-		 */
+
 		90 => array(
 			'class' 	=> 'consent:Consent', 
 			'store' 	=> 'consent:Cookie', 
 			'focus' 	=> 'yes', 
 			'checked' 	=> TRUE
 		),
+		 */
 		// If language is set in Consent module it will be added as an attribute.
  		99 => 'core:LanguageAdaptor',
 	),
