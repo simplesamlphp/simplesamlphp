@@ -96,8 +96,8 @@ function sendResponse() {
 <div id="requirejavascript" style="display: none">
 
 	<?php
-	
-	if (array_key_exists('requestername', $this->data)) {
+	#echo('<pre>'); print_r($this->data); exit;
+	if (array_key_exists('requesterName', $this->data)) {
 		$requestername = is_array($this->data['requesterName']) ? 
 			$this->getTranslation($this->data['requesterName']) : $this->data['requesterName'];
 	}
@@ -109,9 +109,9 @@ function sendResponse() {
 
 	<?php
 	
-		if (array_key_exists('requestername', $this->data)) {
+		if (array_key_exists('requesterName', $this->data)) {
 			echo('<div><img style="float: left; margin-right: 12px" src="/' . $this->data['baseurlpath'] . 'resources/icons/checkmark48.png" alt="Successful logout" />');
-			echo('<p style="padding-top: 16px; ">' . $this->t('{logout:loggedoutfrom}', array('%SP%' => '<strong>' .$requestername.'</strong>')) . '</p>');
+			echo('<p style="padding-top: 16px; ">' . $this->t('{logout:loggedoutfrom}', array('%SP%' => '<strong>' .$requesterName.'</strong>')) . '</p>');
 			echo('<p style="height: 0px; clear: left;"></p>');
 			echo('</div>');
 		}
@@ -127,7 +127,7 @@ function sendResponse() {
 		echo '	<td><img style="float: left; margin: 3px" src="/' . $this->data['baseurlpath'] . 
 			'resources/icons/silk/accept.png" alt="Initiated from" /></td>' . "\n";
 		echo '	<td>' . $this->t('{logout:initiated}') . '</td>';
-		echo '	<td>' . $requestername . '</td>' ."\n";
+		echo '	<td>' . $requesterName . '</td>' ."\n";
 		echo '</tr>' . "\n";
 		
 		*/
@@ -191,8 +191,8 @@ function sendResponse() {
 		<input type="button" id="ok" name="ok" value="<?php echo $this->t('{logout:logout_all}'); ?>" />
 		<?php
 			
-			if (array_key_exists('requestername', $this->data)) {
-				echo '<input type="button" id="cancel" name="cancel" value="' . $this->t('{logout:logout_only}', array('%SP%' => $requestername)) . '" />';
+			if (array_key_exists('requesterName', $this->data)) {
+				echo '<input type="button" id="cancel" name="cancel" value="' . $this->t('{logout:logout_only}', array('%SP%' => $requesterName)) . '" />';
 			} else {
 				echo '<input type="button" id="cancel" name="cancel" value="' . $this->t('{logout:no}') . '" />';
 			}
