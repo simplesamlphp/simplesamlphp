@@ -33,8 +33,6 @@ try {
 	}
 
 	$metaArray = array(
-		'name' => 'Type in a name for this entity',
-		'description' => 'and a proper description that would help users know when to select this IdP.',
 		'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'shib13-idp-hosted'),
 		'certFingerprint' => $certFingerprint,
 	);
@@ -43,6 +41,15 @@ try {
 		$metaArray['NameIDFormat'] = $idpmeta['NameIDFormat'];
 	} else {
 		$metaArray['NameIDFormat'] = 'urn:mace:shibboleth:1.0:nameIdentifier';
+	}
+	if (array_key_exists('name', $idpmeta)) {
+		$metaArray['name'] = $idpmeta['name'];
+	}
+	if (array_key_exists('description', $idpmeta)) {
+		$metaArray['description'] = $idpmeta['description'];
+	}
+	if (array_key_exists('url', $idpmeta)) {
+		$metaArray['url'] = $idpmeta['url'];
 	}
 
 

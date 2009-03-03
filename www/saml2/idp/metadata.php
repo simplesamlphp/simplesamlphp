@@ -39,8 +39,6 @@ try {
 	$urlSLOr = $metadata->getGenerated('SingleLogoutServiceResponse', 'saml20-idp-hosted', array('logouttype' => $logouttype));
 
 	$metaArray = array(
-		'name' => 'Type in a name for this entity',
-		'description' => 'and a proper description that would help users know when to select this IdP.',
 		'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted', array()),
 		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted', array('logouttype' => $logouttype)),
 		'SingleLogoutServiceResponse'  => $metadata->getGenerated('SingleLogoutServiceResponse', 'saml20-idp-hosted', array('logouttype' => $logouttype)),
@@ -55,6 +53,15 @@ try {
 		$metaArray['NameIDFormat'] = $idpmeta['NameIDFormat'];
 	} else {
 		$metaArray['NameIDFormat'] = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+	}
+	if (array_key_exists('name', $idpmeta)) {
+		$metaArray['name'] = $idpmeta['name'];
+	}
+	if (array_key_exists('description', $idpmeta)) {
+		$metaArray['description'] = $idpmeta['description'];
+	}
+	if (array_key_exists('url', $idpmeta)) {
+		$metaArray['url'] = $idpmeta['url'];
 	}
 
 

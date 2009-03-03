@@ -41,6 +41,15 @@ try {
 	} else {
 		$metaArray['NameIDFormat'] = 'urn:mace:shibboleth:1.0:nameIdentifier';
 	}
+	if (array_key_exists('name', $spmeta)) {
+		$metaArray['name'] = $spmeta['name'];
+	}
+	if (array_key_exists('description', $spmeta)) {
+		$metaArray['description'] = $spmeta['description'];
+	}
+	if (array_key_exists('url', $spmeta)) {
+		$metaArray['url'] = $spmeta['url'];
+	}
 
 
 	$metaflat = var_export($spentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';

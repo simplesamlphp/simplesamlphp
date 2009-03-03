@@ -36,7 +36,15 @@ try {
 	} else {
 		$metaArray['NameIDFormat'] = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
 	}
-
+	if (array_key_exists('name', $spmeta)) {
+		$metaArray['name'] = $spmeta['name'];
+	}
+	if (array_key_exists('description', $spmeta)) {
+		$metaArray['description'] = $spmeta['description'];
+	}
+	if (array_key_exists('url', $spmeta)) {
+		$metaArray['url'] = $spmeta['url'];
+	}
 
 	$certInfo = SimpleSAML_Utilities::loadPublicKey($spmeta);
 	if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
