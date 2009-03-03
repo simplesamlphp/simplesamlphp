@@ -1,10 +1,8 @@
 fieldset {
 	padding: 0px;
 }
+
 fieldset legend {
-	cursor: pointer; cursor: hand;
-}
-fieldset legend:hover {
 	background: #eee;
 }
 
