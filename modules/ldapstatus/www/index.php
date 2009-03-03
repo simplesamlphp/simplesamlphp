@@ -4,6 +4,14 @@
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
+$ldapconfig = SimpleSAML_Configuration::getConfig('config-login-feide.php');
+$ldapStatusConfig = SimpleSAML_Configuration::getConfig('module_ldapstatus.php');
+
+$debug = $ldapconfig->getValue('ldapDebug', FALSE);
+$orgs = $ldapconfig->getValue('organizations');
+$locationTemplate = $ldapconfig->getValue('locationTemplate');
+
+
 $isAdmin = FALSE;
 $secretURL = NULL;
 if (array_key_exists('orgtest', $_REQUEST)) {
@@ -17,11 +25,72 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 	if (array_key_exists('key', $_REQUEST) && $_REQUEST['key'] == $secretKey ) {
 		// OK Access
 	} else {
-		if (!$session->isValid('login-admin') ) {
+		
+		
+		$useridattr = $ldapconfig->getString('useridattr', 'eduPersonPrincipalName');
+		$authsource = $ldapconfig->getString('ldapstatusAuth', NULL);
+
+		$allowedusers = $ldapconfig->getArray('adminAccess', array());		
+		if (isset($orgs[$_REQUEST['orgtest']]) && array_key_exists('adminAccess', $orgs[$_REQUEST['orgtest']]))
+			$allowedusers = array_merge($allowedusers, $orgs[$_REQUEST['orgtest']]['adminAccess']);
+	
+		if ($session->isValid('login-admin') ) {
+			// User logged in as admin. OK.
+			SimpleSAML_Logger::debug('LDAPStatus auth - logged in as admin, access granted');
+			
+		} elseif(isset($authsource) && $session->isValid($authsource) ) {
+		
+			// User logged in with auth source.
+			SimpleSAML_Logger::debug('LDAPStatus auth - valid login with auth source [' . $authsource . ']');
+			SimpleSAML_Logger::debug('LDAPStatus auth - allowed users [' . join(',', $allowedusers). ']');
+			
+			// Retrieving attributes
+			$attributes = $session->getAttributes();
+			
+			// Check if userid exists
+			if (!isset($attributes[$useridattr])) 
+				throw new Exception('User ID is missing');
+			
+			// Check if userid is allowed access..
+			if (!in_array($attributes[$useridattr][0], $allowedusers)) {
+				SimpleSAML_Logger::debug('LDAPStatus auth - User denied access by user ID [' . $attributes[$useridattr][0] . ']');
+				throw new Exception('Access denied for this user.');
+			}
+			SimpleSAML_Logger::debug('LDAPStatus auth - User granted access by user ID [' . $attributes[$useridattr][0] . ']');		
+			
+		} elseif(isset($authsource)) {
+			// If user is not logged in init login with authrouce if authsousrce is defined.
+			SimpleSAML_Auth_Default::initLogin($authsource, SimpleSAML_Utilities::selfURL());
+			
+		} else {
+			// If authsource is not defined, init admin login.
 			SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
 				array('RelayState' => SimpleSAML_Utilities::selfURL())
 			);
 		}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+// 		if (!$session->isValid('login-admin') ) {
+// 			SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
+// 				array('RelayState' => SimpleSAML_Utilities::selfURL())
+// 			);
+// 		}
 		$isAdmin = TRUE;
 	}
 
@@ -81,12 +150,7 @@ function myErrorHandler($errno, $errstr, $errfile, $errline) {
 
 
 
-$ldapconfig = SimpleSAML_Configuration::getConfig('config-login-feide.php');
-$ldapStatusConfig = SimpleSAML_Configuration::getConfig('module_ldapstatus.php');
 
-$debug = $ldapconfig->getValue('ldapDebug', FALSE);
-$orgs = $ldapconfig->getValue('organizations');
-$locationTemplate = $ldapconfig->getValue('locationTemplate');
 
 
 
