@@ -98,7 +98,7 @@ function sendResponse() {
 	<?php
 	#echo('<pre>'); print_r($this->data); exit;
 	if (array_key_exists('requesterName', $this->data)) {
-		$requestername = is_array($this->data['requesterName']) ? 
+		$requesterName = is_array($this->data['requesterName']) ? 
 			$this->getTranslation($this->data['requesterName']) : $this->data['requesterName'];
 	}
 	#echo('<p>' . $this->t('{logout:description}', array('%REQUESTERNAME%' => $requestername)) . '</p>');
