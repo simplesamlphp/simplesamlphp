@@ -122,7 +122,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$includeExtensions = TRUE;
 			foreach ($metadata['scope'] AS $scopetext) {
 				$scope = $this->createElement('shibmd:Scope', 'urn:mace:shibboleth:metadata:1.0');
-				$scope->setAttribute('regex', 'false');
+				$scope->setAttribute('regexp', 'false');
 				$scope->appendChild($this->document->createTextNode($scopetext));
 				$extensions->appendChild($scope);
 			}
