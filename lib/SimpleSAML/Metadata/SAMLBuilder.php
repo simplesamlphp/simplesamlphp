@@ -604,6 +604,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		$certData = $certInfo['certData'];
 
 		$keyDescriptor = $this->createElement('KeyDescriptor');
+		$keyDescriptor->setAttribute('use', 'signing');
 		$ssoDesc->appendChild($keyDescriptor);
 
 		$keyInfo = $this->document->createElementNS('http://www.w3.org/2000/09/xmldsig#', 'ds:KeyInfo');
