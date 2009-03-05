@@ -1,0 +1,170 @@
+LDAP module
+===========
+
+The LDAP module provides a method for authenticating users against a
+LDAP server. There are two seperate authentication modules:
+
+
+`ldap:LDAP`
+: Authenticate the user against a single LDAP server.
+
+`ldap:LDAPMulti`
+: Allow the user to chose one LDAP server to authenticate against.
+
+
+`ldap:LDAP`
+-----------
+
+This module is used when you have an organization with a single LDAP
+server with all the users. To create a LDAP authentication source, open
+`config/authsources.php` in a text editor, and add an entry for the
+authentication source:
+
+	'example-ldap' => array(
+		'ldap:LDAP',
+
+		/* The hostname of the LDAP server. */
+		'hostname' => 'ldap.example.org',
+
+		/* Whether SSL/TLS should be used when contacting the LDAP server. */
+		'enable_tls' => FALSE,
+
+		/*
+		 * Which attributes should be retrieved from the LDAP server.
+		 * This can be an array of attribute names, or NULL, in which case
+		 * all attributes are fetched.
+		 */
+		'attributes' => NULL,
+
+		/*
+		 * The pattern which should be used to create the users DN given the username.
+		 * %username% in this pattern will be replaced with the users username.
+		 *
+		 * This option is not used if the search.enable option is set to TRUE.
+		 */
+		'dnpattern' => 'uid=%username%,ou=people,dc=example,dc=org',
+
+		/*
+		 * As an alternative to specifying a pattern for the users DN, it is possible to
+		 * search for the username in a set of attributes. This is enabled by this option.
+		 */
+		'search.enable' => FALSE,
+
+		/*
+		 * The DN which will be used as a base for the search.
+		 * This can be a single string, in which case only that DN is searched, or an
+		 * array of strings, in which case they will be searched in the order given.
+		 */
+		'search.base' => 'ou=people,dc=example,dc=org',
+
+		/*
+		 * The attribute(s) the username should match against.
+		 *
+		 * This is an array with one or more attribute names. Any of the attributes in
+		 * the array may match the value the username.
+		 */
+		'search.attributes' => array('uid', 'mail'),
+
+		/*
+		 * The username & password the simpleSAMLphp should bind to before searching. If
+		 * this is left as NULL, no bind will be performed before searching.
+		 */
+		'search.username' => NULL,
+		'search.password' => NULL,
+	),
+
+
+You should update the name of this authentication source
+(`example-ldap`) to have a name which makes sense to your organization.
+You also need to update the `hostname` and `dnpattern` options. The
+`hostname` should be the hostname of your LDAP server, and the
+`dnpattern` should be a pattern which can be used to generate the `dn`
+of a user with a given username.
+
+All other options have default values, and are not required.
+
+### Searching for a user ###
+
+Sometimes you cannot generate the users `dn` from the username, or you
+may want to allow the user to authenticate with for example their email
+address as the username. In this case, you can configure the LDAP
+module to search for the users `dn` by searching for the username in
+one or more attributes.
+
+To enable searching, you must set the `search.enable` option to `TRUE`.
+You must then configure the `search.base` and the `search.attributes`
+options. The `search.base`-option must be the `dn` which should be used
+as the base/root of the search. The `search.attributes`-option is an
+array with attributes the username should be matched against.
+
+The `dnpattern` option will not be used if searching is enabled.
+
+Some LDAP servers may require authentication before a search can be
+performed. In this case, you should configure the `search.username`
+and `search.password` options. The `search.username` option is a `dn`
+which can be used to perform a search, and the `search.password` option
+is the password for that `dn`.
+
+
+
+`ldap:LDAPMulti`
+----------------
+
+This module can be used if your organization has seperate groups with
+seperate LDAP servers or seperate LDAP configurations. To use this
+authentication module, open `config/authsources.php` in a text editor,
+and add an entry which uses this module:
+
+	'example-ldapmulti' => array(
+		'ldap:LDAPMulti',
+
+		/*
+		 * A list of available LDAP servers. The index is only an identifier,
+		 * and can be any string. The value of each element is an array in the
+		 * same format as an LDAP authentication source.
+		 */
+		'employees' => array(
+			/*
+			 * A short name/description for this group. Will be shown in a dropdown list
+			 * when the user logs on.
+			 *
+			 * This option can be a string or an array with language => text mappings.
+			 */
+			'description' => 'Employees',
+
+			/*
+			 * The rest of the options are the same as those available for
+			 * the LDAP authentication source.
+			 */
+			'hostname' => 'ldap.employees.example.org',
+			'dnpattern' => 'uid=%username%,ou=employees,dc=example,dc=org',
+		),
+
+		'students' => array(
+			'description' => 'Students',
+
+			'hostname' => 'ldap.students.example.org',
+			'dnpattern' => 'uid=%username%,ou=students,dc=example,dc=org',
+		),
+
+	),
+
+The name of the authentication source (`example-ldapmulti`) should be
+changed to something that makes sense for your organization. Each entry
+in the configuration represents the configuration for one group of
+users. The `description`-option in each group is the name of the group,
+and will be shown to the user in a dropdown list on the login page.
+
+The `description`-option can also be an array with descriptions in
+different languages:
+
+	'description' => array(
+		'en' => 'Employees',
+		'no' => 'Ansatte',
+	),
+
+All options from the `ldap:LDAP` configuration can be used in each
+group, and you should refer to the documentation for that module for
+more information about available options.
+
+
