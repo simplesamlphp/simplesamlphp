@@ -109,6 +109,10 @@ class sspmod_statistics_Aggregator {
 		// Iterate the first level of results, which is per rule, as defined in the config.
 		foreach ($results AS $rulename => $ruleresults) {
 		
+			
+			$filenos = array_keys($ruleresults);
+			$lastfile = $filenos[count($filenos)-1];
+			
 			// Iterate the second level of results, which is the fileslot.
 			foreach ($ruleresults AS $fileno => $fileres) {
 			
@@ -129,10 +133,11 @@ class sspmod_statistics_Aggregator {
 						$filledresult[$slot] = $fileres[$slot];
 					} else {
 						#echo('SLot [' . $slot . '] of [' . $maxslot . ']' . "\n");
-						if ($slot > $maxslot) {
-							$filledresult[$slot] = array('_' => -1);
-						} else {
+						if ($lastfile == $fileno && $slot > $maxslot) {
+						#if ($slot > $maxslot) {
 							$filledresult[$slot] = array('_' => NULL);
+						} else {
+							$filledresult[$slot] = array('_' => 0);
 						}				
 					}
 					#print_r($filledresult[$slot]);

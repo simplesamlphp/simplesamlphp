@@ -73,17 +73,24 @@ echo '</td>';
 
 // Select delimiter
 echo '<td style="text-align: right">';
+
+#echo('<pre>here'); print_r($this->data['delimiterPresentation']); echo('</pre>');
+
 echo '<form style="display: inline">';
 echo '<input type="hidden" name="rule" value="' . $this->data['selected.rule'] . '" />';
 echo '<input type="hidden" name="time" value="' . $this->data['selected.time'] . '" />';
 echo '<select onChange="submit();" name="d">';
 foreach ($this->data['availdelimiters'] AS $key => $delim) {
+
+	$delimName = $delim;
+	if(array_key_exists($delim, $this->data['delimiterPresentation'])) $delimName = $this->data['delimiterPresentation'][$delim];
+
 	if ($key == '_') {
 		echo '<option value="_">Total</option>';
 	} elseif ($delim == $_REQUEST['d']) {
-		echo '<option selected="selected" value="' . $delim . '">' . $delim . '</option>';
+		echo '<option selected="selected" value="' . htmlentities($delim) . '">' . htmlentities($delimName) . '</option>';
 	} else {
-		echo '<option  value="' . $delim . '">' . $delim . '</option>';
+		echo '<option  value="' . htmlentities($delim) . '">' . htmlentities($delimName) . '</option>';
 	}
 }
 echo '</select></form>';

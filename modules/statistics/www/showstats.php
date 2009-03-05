@@ -92,6 +92,13 @@ if(array_key_exists('rule', $_GET)) {
 	}
 }
 
+
+
+
+
+
+
+
 /*
  * Get list of avaiable times in current file (rule)
  */
@@ -226,8 +233,11 @@ function getPercentValues($results, $delimiter) {
 	$dataset = array();
 	foreach($results AS $slot => $res) {
 		#echo ('<p>new value: ' . number_format(100*$res[$delimiter] / $max, 2));
+// 		echo('<hr><p>delimiter [<tt>' .$delimiter . '</tt>].');
+// 		echo('<p>Res <pre>'); print_r($res); echo( '</pre>');
+// 		echo('<p>return <pre>'); print_r(isset($res[$delimiter]) ? $res[$delimiter] : 'NO'); echo('</pre>');
 		if (array_key_exists($delimiter, $res)) {
-			if ($res[$delimiter] === -1) {
+			if ($res[$delimiter] === NULL) {
 				$dataset[] = -1;
 			} else {
 				$dataset[] = number_format(100*$res[$delimiter] / $max, 2);
@@ -253,12 +263,22 @@ function getPercentValues($results, $delimiter) {
 
 
 
-$datasets[] = getPercentValues($results, '_');
+$datasets[] = getPercentValues($results, $delimiter);
 if ($delimiter !== '_') {
 	if (array_key_exists('graph.total', $statrules[$rule]) && $statrules[$rule]['graph.total'] === TRUE) {
-		$datasets[] = getPercentValues($results, $delimiter);
+		$datasets[] = getPercentValues($results, '_');
 	}
 }
+
+
+
+
+
+
+
+
+
+
 
 #echo('<pre>'); print_r($datasets); exit;
 
@@ -280,6 +300,24 @@ SimpleSAML_Module::callHooks('htmlinject', $hookinfo);
 
 
 $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics-tpl.php');
+
+
+/*
+ * Create a delimiter presentation filter for this rule...
+ */
+$delimiterPresentation = NULL;
+if (array_key_exists('fieldPresentation', $statrules[$rule])) {
+	$classname = SimpleSAML_Module::resolveClass( $statrules[$rule]['fieldPresentation']['class'], 'Statistics_FieldPresentation');
+	if (!class_exists($classname))
+		throw new Exception('Could not find field presentation plugin [' . $classname . ']: No class found');
+	
+	$presentationHandler = new $classname(array_keys($availdelimiters), $statrules[$rule]['fieldPresentation']['config'], $t);
+	$delimiterPresentation = $presentationHandler->getPresentation();
+}
+
+
+
+
 $t->data['header'] = 'stat';
 $t->data['imgurl'] = $grapher->show($axis, $axispos, $datasets, $max);
 $t->data['available.rules'] = $available_rules;
@@ -295,5 +333,6 @@ $t->data['selected.time'] = $fileslot;
 $t->data['debugdata'] = $debugdata;
 $t->data['summaryDataset'] = $summaryDataset;
 $t->data['availdelimiters'] = array_keys($availdelimiters);
+$t->data['delimiterPresentation'] = $delimiterPresentation;
 $t->show();
 
