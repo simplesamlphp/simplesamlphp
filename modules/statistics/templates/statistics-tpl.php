@@ -169,10 +169,16 @@ echo '<div id="table" class="tabset_content">
 <table class="tableview"><tr><th class="value">Value</th><th class="category">Data range</th>';
 foreach ( $this->data['summaryDataset'] as $key => $value ) {
 	$clint = $classint[$i++ % 2];
+	
+	$keyName = $key;
+	if(array_key_exists($key, $this->data['delimiterPresentation'])) $keyName = $this->data['delimiterPresentation'][$key];
+
+	
+	
 	if ($key === '_') {
-	    echo '<tr class="total ' . $clint . '"><td  class="value">' . $value . '</td><td class="category">Total</td></tr>';
+	    echo '<tr class="total '  . $clint . '"><td  class="value">' . $value . '</td><td class="category">' . $keyName . '</td></tr>';
     } else {
-	    echo '<tr class="' . $clint . '"><td  class="value">' . $value . '</td><td class="category">' . $key . '</td></tr>';
+	    echo '<tr class="' . $clint . '"><td  class="value">' . $value . '</td><td class="category">' . $keyName . '</td></tr>';
     }
 }
 echo '</table></div>';
