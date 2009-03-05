@@ -113,16 +113,33 @@ class sspmod_statistics_Aggregator {
 			foreach ($ruleresults AS $fileno => $fileres) {
 			
 				$slotlist = array_keys($fileres);
+				
+				$maxslot = $slotlist[count($slotlist)-1];
+				#print_r($slotlist); 
 		
 				// Get start and end slot number within the file, based on the fileslot.
-				$start = $datehandler->toSlot($datehandler->fromSlot($fileno, $this->statrules[$rulename]['fileslot']), $this->statrules[$rulename]['slot']);
-				$end = $datehandler->toSlot($datehandler->fromSlot($fileno+1, $this->statrules[$rulename]['fileslot']), $this->statrules[$rulename]['slot']);
+				$start = (int)$datehandler->toSlot($datehandler->fromSlot($fileno, $this->statrules[$rulename]['fileslot']), $this->statrules[$rulename]['slot']);
+				$end = (int)$datehandler->toSlot($datehandler->fromSlot($fileno+1, $this->statrules[$rulename]['fileslot']), $this->statrules[$rulename]['slot']);
 		
 				// Fill in missing entries and sort file results
 				$filledresult = array();
 				for ($slot = $start; $slot < $end; $slot++) {
-					$filledresult[$slot] = (isset($fileres[$slot])) ? $fileres[$slot] : array('_' => 0);
+					#print_r(gettype($slot));
+					if (array_key_exists($slot,  $fileres)) {
+						$filledresult[$slot] = $fileres[$slot];
+					} else {
+						#echo('SLot [' . $slot . '] of [' . $maxslot . ']' . "\n");
+						if ($slot > $maxslot) {
+							$filledresult[$slot] = array('_' => -1);
+						} else {
+							$filledresult[$slot] = array('_' => NULL);
+						}				
+					}
+					#print_r($filledresult[$slot]);
+#					 = (isset($fileres[$slot])) ? $fileres[$slot] : array('_' => NULL);
 				}
+				
+				#print_r($filledresult); exit;
 				
 				// store file
 				file_put_contents($this->statdir . '/' . $rulename . '-' . $fileno . '.stat', serialize($filledresult), LOCK_EX );

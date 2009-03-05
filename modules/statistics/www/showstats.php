@@ -156,6 +156,10 @@ $maxvaluetime = 0;
 $debugdata = array();
 
 
+
+/*
+ * Search for maximum value in order to scale the Y-scale of the graph presentation.
+ */
 $maxdelimiter = $delimiter;
 if (array_key_exists('graph.total', $statrules[$rule]) && $statrules[$rule]['graph.total'] === TRUE) {
 	$maxdelimiter = '_';
@@ -223,7 +227,11 @@ function getPercentValues($results, $delimiter) {
 	foreach($results AS $slot => $res) {
 		#echo ('<p>new value: ' . number_format(100*$res[$delimiter] / $max, 2));
 		if (array_key_exists($delimiter, $res)) {
-			$dataset[] = number_format(100*$res[$delimiter] / $max, 2);
+			if ($res[$delimiter] === -1) {
+				$dataset[] = -1;
+			} else {
+				$dataset[] = number_format(100*$res[$delimiter] / $max, 2);
+			}
 		} else {
 			$dataset[] = '0';
 		}
@@ -251,6 +259,8 @@ if ($delimiter !== '_') {
 		$datasets[] = getPercentValues($results, $delimiter);
 	}
 }
+
+#echo('<pre>'); print_r($datasets); exit;
 
 #echo 'set axis on lastslot [' . $lastslot . ']';
 $axis[] =  $datehandler->prettyDateSlot($lastslot+1, $slotsize, $dateformat_intra); 
