@@ -1,17 +1,11 @@
 <?php
-$this->data['header'] = 'LDAP status page';
-$this->data['head'] = '<style>
+
+$this->data['header'] = 'LDAP status for ' . $this->getTranslation($this->data['org']['description']);
+$this->data['head'] = '<style type="text/css">
 table.statustable td {
 	border-bottom: 1px solid #eee;
 }
-a {
-	color: #333;
-	text-decoration: none;
-	border-bottom: 1px dotted #aaa;
-}
-a:hover {
-	border-bottom: 1px solid #aaa;
-}
+.ui-tabs-panel { padding: .5em }
 div#content {
 	margin: .4em ! important;
 }
@@ -20,69 +14,99 @@ p {
 }
 div.inbox p { margin: 0; }
 
-
+div#ldapstatus p {
+	margin: none;
+}
+div#ldapstatus .testtext p {
+	margin: 3px ! important; 
+	padding: 0px ;
+}
 </style>';
+
+$this->data['head'] .= '<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#tabs").tabs();
+	$("#tabdiv").tabs();
+	$("#ldapstatus").accordion({
+		header: "h3"
+	});
+});
+</script>';
+
+$this->data['jquery'] = array('version' => '1.6','core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
+
 $this->includeAtTemplateBase('includes/header.php');
 
 ?>
 
-<h2>LDAP test for <?php echo $this->getTranslation($this->data['org']['description']); ?></h2>
 
-<p>[ <a href="?">return to list of all organizations</a> ]</p>
+
+
+
+<p style="text-align: right; margin-bottom: 1em;">[ <a href="?">return to list of all organizations</a> ]</p>
 
 <?php
 
 $t = $this;
 
-function presentRes($restag) {
+function presentRes($restag, $header = 'na', $descr = '') {
 
 	global $t;
-	echo('<div class="inbox" style="border: 1px solid #aaa; background: #eee; padding: .4em; margin: .2em;">');
 	
+#	echo('<div>');
 	if (array_key_exists($restag, $t->data['res'])) {
 		$res = $t->data['res'][$restag];
 		if ($res[0]) {	
-			echo('<img style="float: right" src="/' . $t->data['baseurlpath'] . 'resources/icons/accept.png" />');
-			echo('OK: ' . $res[1]);
+			echo('<h3><a href="#">');
+			echo('<img style="display: inline; border: none; position: relative; top: 3px" src="/' . $t->data['baseurlpath'] . 'resources/icons/accept.png" />&nbsp;');
+			echo($header);
+			if (isset($res['time'])) {
+				if ($res['time'] > 0.7) {
+					echo('<span style="color: #a00; font-weight: bold"> (' . number_format(1000*$res['time'], 0) . ' ms)</span> slow response'); 
+				} else {
+					echo(' (' . number_format(1000*$res['time'], 0) . ' ms)'); 
+				}
+			}
+			echo('</a></h3>');
+			echo('<div class="testtext ok">');
+			if (!empty($descr))
+				echo('<p>' .  $descr . '</p>');
+			echo('<p>OK: ' . $res[1] . '</p>');
+			if (isset($res['expire'])) {
+				echo('<p>Certificate expires in ' . $res['expire'] . ' days</p>');
+			}
+			if (isset($res['expireText'])) {
+				echo('<p>Certificate expires on ' . $res['expireText'] . '</p>');
+			}
+			echo('</div>');
 		} else {
-			echo('<img style="float: right" src="/' . $t->data['baseurlpath'] . 'resources/icons/gn/stop-l.png" />');
-			echo($res[1]);
+			echo('<h3><a href="#">');
+			echo('<img style="display: inline; border: none; position: relative; top: 3px" src="/' . $t->data['baseurlpath'] . 'resources/icons/delete.png" />&nbsp;');
+			echo($header);
+			echo('</a></h3>');
+			echo('<div class="testtext failed">');
+			if (!empty($descr))
+				echo('<p>' .  $descr . '</p>');
+			echo('<p>' . $res[1] . '</p>');
+			if (isset($res['expire'])) {
+				echo('<p>Certificate expires in ' . $res['expire'] . ' days</p>');
+			}
+			if (isset($res['expireText'])) {
+				echo('<p>Certificate expires on ' . $res['expireText'] . '</p>');
+			}
+			echo('</div>');
 		}
-		echo('<div style="clear: both; height: 0px"></div>');
 	} else {
-		echo('<p style="color: #ccc">NA</p>');
+// 		echo('<h3><a href="#">');
+// 		echo('<img style="display: inline; position: relative; top: 3px" src="/' . $t->data['baseurlpath'] . 'resources/icons/bullet16_grey.png" />&nbsp;');
+// 		echo($header);
+// 		echo(' (NA)</a></h3>');
+// 		echo('<div>NA</div>');
 	}
-	echo('</div>');
+#	echo('</div>');
 }
 
-function presentCertRes($restag) {
-
-	global $t;
-	echo('<div class="inbox" style="border: 1px solid #aaa; background: #eee; padding: .4em; margin: .2em;">');
-	
-	if (array_key_exists($restag, $t->data['res'])) {
-		$res = $t->data['res'][$restag];
-		if ($res[0]) {	
-			echo('<img style="float: right" src="/' . $t->data['baseurlpath'] . 'resources/icons/accept.png" />');
-			echo('OK: ' . $res[1]);
-		} else {
-			echo('<img style="float: right" src="/' . $t->data['baseurlpath'] . 'resources/icons/gn/stop-l.png" />');
-			echo($res[1]);
-		}
-		
-		if (isset($res['expire'])) {
-			echo('<p>Certificate expires in ' . $res['expire'] . ' days</p>');
-		}
-		if (isset($res['expireText'])) {
-			echo('<p>Certificate expires on ' . $res['expireText'] . '</p>');
-		}
-		
-		echo('<div style="clear: both; height: 0px"></div>');
-	} else {
-		echo('<p style="color: #ccc">NA</p>');
-	}
-	echo('</div>');
-}
 
 $ok = TRUE;
 foreach ($this->data['res'] AS $tag => $res) {
@@ -91,69 +115,87 @@ foreach ($this->data['res'] AS $tag => $res) {
 #	echo ('failed: ' . $tag . '[' . $res[0] . ']'); }
 }
 
+
+
+echo('<div id="tabdiv">
+	<ul class="tabset_tabs">
+		<li><a href="#ldaptests">LDAP Tests</a></li>
+		<li><a href="#debug">Debug log</a></li>');
+
 if (array_key_exists('secretURL', $this->data)) {
-	
-	echo('<p>This page can be accessed by this secret URL:<br />');
-	echo('<pre  style="border: 1px solid #aaa; background: #eee; color: #999;c padding: .1em; margin: .2em;">');
-	echo(htmlentities($this->data['secretURL']));
-	echo('</pre></p>');
-	
+	echo('<li><a href="#access">Access URL</a></li>');
 }
 
-echo('<p>Status:</p>');
-if ($ok) {
-	echo('<div class="inbox" style="border: 1px solid #aaa; background: yellow; padding: .4em; margin: .2em;">');
-	echo('<img style="float: right" src="/' . $t->data['baseurlpath'] . 'resources/icons/gn/success-l.png" />');
-	echo('All checks was OK');
-	echo('<div style="clear: both; height: 0px"></div>');
-	echo('</div>');
-} else {
-	echo('<div class="inbox" style="border: 1px solid #aaa; background: yellow; padding: .4em; margin: .2em;">');
-	echo('<img style="float: right" src="/' . $t->data['baseurlpath'] . 'resources/icons/gn/stop-l.png" />');
-	echo('At least one test failed.');
-	echo('<div style="clear: both; height: 0px"></div>');
-	echo('</div>');	
-}
+echo ('</ul>');
+	
+echo '<div id="ldaptests" class="tabset_content">';
 
 
 ?>
-<p>Checking configuration if all parameters are set properly.</p>
-<?php presentRes('config'); ?>
-
-<p>Trying to setup a TCP socket against the LDAP host.</p>
-<?php presentRes('ping'); ?>
-
-<p>Check certificate.</p>
-<?php presentCertRes('cert'); ?>
-
-
-<p>Trying to bind() with the LDAP admin user.</p>
-<?php presentRes('adminBind'); ?>
-
-<p>Trying to search LDAP with a bogus user (should return zero results, and no error)</p>
-<?php presentRes('ldapSearchBogus'); ?>
-
-<p>Is a test user defined?</p>
-<?php presentRes('configTest'); ?>
-
-<p>Search LDAP for the DN of the test user given a specific eduPersonPrincipalName</p>
-<?php presentRes('ldapSearchTestUser'); ?>
-
-<p>Trying to bind() as the DN found when searching for the test user</p>
-<?php presentRes('ldapBindTestUser'); ?>
-
-<p>Getting attributes from referred eduOrgDN and eduOrgUnitDN (from test user)</p>
-<?php presentRes('getTestOrg'); ?>
-
-<p>Checking for additional contact addresss in configuration.</p>
-<?php presentRes('configMeta'); ?>
 
 
 
-<h2>Debug log</h2>
-<pre style="background: #eee; border: 1px solid #aaa">
-<?php echo join("\n", $this->data['debugLog']); ?>
-</pre>
 
 
-<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+<div id="ldapstatus">
+
+<?php
+if ($ok) {
+	echo('<h3><a href="#">');
+	echo('<img style="display: inline; position: relative; border: none; top: 3px" src="/' . $t->data['baseurlpath'] . 'resources/icons/accept.png" />&nbsp;');
+	echo('Overall status');
+	echo('</a></h3>');
+	echo('<div>All checks was OK</div>');
+} else {
+	echo('<h3><a href="#">');
+	echo('<img style="display: inline; position: relative; border: none; top: 3px" src="/' . $t->data['baseurlpath'] . 'resources/icons/delete.png" />&nbsp;');
+	echo('Overall status');
+	echo('</a></h3>');
+	echo('<div>At least one test failed.</div>');
+}
+
+presentRes('config', 'Check configuration', 'Checking configuration if all parameters are set properly'); 
+presentRes('ping', 'Ping', 'Trying to setup a TCP socket against the LDAP host.');
+presentRes('cert', 'Check certificate');
+presentRes('adminBind', 'Admin bind()', 'Trying to bind() with the LDAP admin user');
+presentRes('ldapSearchBogus', 'Bogus search', 'Trying to search LDAP with a bogus user (should return zero results, and no error)');
+presentRes('configTest', 'Test user configured', 'Check if test-user is configured.');
+presentRes('ldapSearchTestUser', 'Search for test user', 'Search LDAP for the DN of the test user given a specific eduPersonPrincipalName');
+presentRes('ldapBindTestUser', 'Test user bind()', 'Trying to bind() as the DN found when searching for the test user');
+presentRes('getTestOrg', 'Get organization attributes', 'Getting attributes from referred eduOrgDN and eduOrgUnitDN (from test user)');
+presentRes('configMeta', 'Contact information registered', 'Checking for additional contact addresss in configuration.');
+
+?>
+</div><!-- end ldap status -->
+
+</div><!-- end ldap test tab -->
+
+<?php
+echo '<div id="debug" class="tabset_content">';
+
+#echo('<h3><a href="#">Debug log</a></h3>');
+echo('<pre >');
+echo join("\n", $this->data['debugLog']);
+echo('</pre>');
+
+echo('</div><!-- end debug tab -->');
+
+
+if (array_key_exists('secretURL', $this->data)) {
+	
+	echo('<div id="access">');
+	echo('<p>This page can be accessed by this secret URL:<br />');
+#	echo('<pre  style="border: 1px solid #aaa; background: #eee; color: #999;c padding: .1em; margin: .2em;">');
+
+	echo('<input type="text" style="width: 95%" value="' . htmlentities($this->data['secretURL']) . '" />');
+#	echo('</pre>');
+	echo('</p></div>');
+	
+}
+
+echo('</div><!-- end all tabs -->');
+
+
+
+$this->includeAtTemplateBase('includes/footer.php'); 
+

@@ -68,6 +68,7 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 		$tester->tick('ping');
 		$result['ping'] = $tester->phpping($url['host'], $port);
 		$result['ping'][1] .= $tester->tack('ping'); 
+		$result['ping']['time'] = $tester->tack('ping', FALSE); 
 		
 	#	echo('<pre>'); print_r($result); exit;
 	
@@ -112,6 +113,8 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 		
 				$this->adminBind($this->location->getString('adminUser'), $this->location->getString('adminPassword'));
 				$result['adminBind'] = array(TRUE,$tester->tack('connect'));
+				$result['adminBind']['time'] = $tester->tack('connect', FALSE); 
+
 				
 			} catch (Exception $e) {
 				$tester->log('ldapstatus: Connect error() [' . $hostname . ']: ' . $e->getMessage());
@@ -127,6 +130,7 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 			$username = 'sd87f6ds8fsd87@feide.no';
 			$userDN = $this->searchForUser($username); 
 			$result['ldapSearchBogus'] = array(TRUE,$tester->tack('ldapSearchBogus'));
+			$result['ldapSearchBogus']['time'] = $tester->tack('ldapSearchBogus', FALSE); 
 			
 		} catch (sspmod_feide_Exception_UserNotFound $e) {
 			$result['ldapSearchBogus'] = array(TRUE,$tester->tack('ldapSearchBogus'));
@@ -154,6 +158,7 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 				
 				$userDN = $this->searchForUser($this->location->getValue('testUser')); 
 				$result['ldapSearchTestUser'] = array(TRUE,$tester->tack('ldapSearchTestUser'));
+				$result['ldapSearchTestUser']['time'] = $tester->tack('ldapSearchTestUser', FALSE); 
 			} catch (Exception $e) {
 				$tester->log('LDAP Search test account:' . $e->getMessage());
 				$result['ldapSearchTestUser'] = array(FALSE,$e->getMessage());
@@ -167,6 +172,7 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 						$userDN, 
 						$this->location->getValue('testPassword') )) {
 					$result['ldapBindTestUser'] = array(TRUE,$tester->tack('ldapBindTestUser'));
+					$result['ldapBindTestUser']['time'] = $tester->tack('ldapBindTestUser', FALSE); 
 				} else {
 					$tester->log('LDAP Test user bind() failed...');
 					$result['ldapBindTestUser'] = array(FALSE,'asdsad');
@@ -189,6 +195,7 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 				$this->getOrgUnits($attributes, $this->location->getValue('testUser'));
 				#echo('<pre>'); print_r($attributes); exit;
 				$result['getTestOrg'] = array(TRUE,$tester->tack('getTestOrg'));
+				$result['getTestOrg']['time'] = $tester->tack('getTestOrg', FALSE); 
 			} catch(Exception $e) {
 				$tester->log('LDAP Test user attributes failed:' . $e->getMessage());
 				$result['getTestOrg'] = array(FALSE,$e->getMessage());
