@@ -46,6 +46,10 @@ div#content {
 .tableview th.value, .tableview td.value {
 	text-align: right;
 }
+div.corner_t {
+    max-width: none ! important;
+}
+
 	</style>
 
 <?php
