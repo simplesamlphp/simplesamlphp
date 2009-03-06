@@ -45,7 +45,7 @@ class sspmod_statistics_Aggregator {
 		
 		
 		$file = fopen($this->inputfile, 'r');
-		$logfile = file($this->inputfile, FILE_IGNORE_NEW_LINES );
+		#$logfile = file($this->inputfile, FILE_IGNORE_NEW_LINES );
 		
 		
 		$logparser = new sspmod_statistics_LogParser(
@@ -57,8 +57,10 @@ class sspmod_statistics_Aggregator {
 		
 		$i = 0;
 		// Parse through log file, line by line
-		foreach ($logfile AS $logline) {
-
+		while (!feof($file)) {
+			
+			$logline = fgets($file, 4096);
+			
 			// Continue if STAT is not found on line.
 			if (!preg_match('/STAT/', $logline)) continue;
 			$i++;
@@ -66,9 +68,16 @@ class sspmod_statistics_Aggregator {
 			// Parse log, and extract epoch time and rest of content.
 			$epoch = $logparser->parseEpoch($logline);
 			$content = $logparser->parseContent($logline);
-			$action = $content[5];
+			$action = trim($content[5]);
+
+				if (($i % 10000) == 0) {
+					echo("Read line " . $i . "\n");
+				}
+
 			
 			if ($debug) {
+			
+			
 				echo("----------------------------------------\n");
 				echo('Log line: ' . $logline . "\n");
 				echo('Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) . '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n");
@@ -88,7 +97,7 @@ class sspmod_statistics_Aggregator {
 				if (isset($rule['action']) && ($action !== $rule['action'])) continue;
 				
 		
-				$difcol = $content[$rule['col']]; // echo '[...' . $difcol . '...]';
+				$difcol = trim($content[$rule['col']]); // echo '[...' . $difcol . '...]';
 		
 				if (!isset($results[$rulename][$fileslot][$timeslot]['_'])) $results[$rulename][$fileslot][$timeslot]['_'] = 0;
 				if (!isset($results[$rulename][$fileslot][$timeslot][$difcol])) $results[$rulename][$fileslot][$timeslot][$difcol] = 0;
