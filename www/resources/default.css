@@ -32,7 +32,7 @@ hr {
 
 /* LINKS */
 a, a:link, a:link, a:link, a:hover {
-	font-weight: bold;
+/*	font-weight: bold; */
 	background: transparent;
 	text-decoration: underline;
 	cursor: pointer;
