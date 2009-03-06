@@ -18,15 +18,30 @@ if(array_key_exists('header', $this->data)) {
 
 if(array_key_exists('jquery', $this->data)) {
 	
-	#echo('<pre>'); print_r($this->data['jquery']); exit;
-	if (isset($this->data['jquery']['core']) && $this->data['jquery']['core'])
-		echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>');
-
-	if (isset($this->data['jquery']['ui']) && $this->data['jquery']['ui'])
-		echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui.js"></script>');
-
-	if (isset($this->data['jquery']['css']) && $this->data['jquery']['css'])
-		echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 'resources/uitheme/jquery-ui-themeroller.css" />');
+	$version = '1.5';
+	if (array_key_exists('version', $this->data['jquery']))
+		$version = $this->data['jquery']['version'];
+		
+	if ($version == '1.5') {
+		if (isset($this->data['jquery']['core']) && $this->data['jquery']['core'])
+			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>' . "\n");
+	
+		if (isset($this->data['jquery']['ui']) && $this->data['jquery']['ui'])
+			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui.js"></script>' . "\n");
+	
+		if (isset($this->data['jquery']['css']) && $this->data['jquery']['css'])
+			echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 'resources/uitheme/jquery-ui-themeroller.css" />' . "\n");	
+			
+	} else if ($version == '1.6') {
+		if (isset($this->data['jquery']['core']) && $this->data['jquery']['core'])
+			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-16.js"></script>' . "\n");
+	
+		if (isset($this->data['jquery']['ui']) && $this->data['jquery']['ui'])
+			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui-16.js"></script>' . "\n");
+	
+		if (isset($this->data['jquery']['css']) && $this->data['jquery']['css'])
+			echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 'resources/uitheme16/ui.all.css" />' . "\n");	
+	}
 	
 }
 
