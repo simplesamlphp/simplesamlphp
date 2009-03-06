@@ -6,12 +6,12 @@
 // $this->data['head'] .= '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui.js"></script>';
 // $this->data['head'] .= '<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 'resources/uitheme/jquery-ui-themeroller.css" />';
 
-$this->data['jquery'] = array('core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
+$this->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 
 $this->data['head'] = '<script type="text/javascript">
 
 $(document).ready(function() {
-	$("#tabdiv > ul").tabs();
+	$("#tabdiv").tabs();
 });
 </script>';
 
@@ -19,11 +19,7 @@ $(document).ready(function() {
 
 $this->includeAtTemplateBase('includes/header.php'); 
 	
-if ($this->data['isadmin']) {
-	echo '<p style="float: right">' . $this->t('loggedin_as_admin') . '</p>';
-} else {
-	echo '<p style="float: right"><a href="' . $this->data['loginurl'] . '">' . $this->t('login_as_admin') . '</a></p>';
-}
+
 
 ?>
 
@@ -35,12 +31,18 @@ if ($this->data['isadmin']) {
 	<li><a href="#configuration"><?php echo $this->t('configuration'); ?></a></li>
 	<li><a href="#metadata"><?php echo $this->t('metadata'); ?></a></li>
 </ul>
+<?php
+if ($this->data['isadmin']) {
+	echo '<p style="float: right">' . $this->t('loggedin_as_admin') . '</p>';
+} else {
+	echo '<p style="float: right"><a href="' . $this->data['loginurl'] . '">' . $this->t('login_as_admin') . '</a></p>';
+}
+?>
+
+<div id="welcome" >
 
 
-<div id="welcome">
-
-
-	<div class="enablebox mini">
+	<div style="clear: both" class="enablebox mini">
 		<table>
 		
 		<?php
@@ -96,8 +98,8 @@ if ($this->data['isadmin']) {
 
 <div id="configuration">
 
-	<div>
-		<code style="background: white; border: 1px solid #ccc; padding: 1em; color: #555" ><?php 
+	<div style="margin-top: 1em;">
+		<code style="background: white; background: #f5f5f5; border: 1px dotted #bbb; padding: 1em;  color: #555" ><?php 
 			echo $this->data['directory'] . ' (' . $this->data['version'] . ')'; 
 		?></code>
 	</div>

@@ -141,5 +141,3 @@ if(array_key_exists('htmlContentPre', $this->data)) {
 		echo $c;
 	}
 }
-
-?>
