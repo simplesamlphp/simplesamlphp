@@ -1,14 +1,14 @@
 <?php
 $this->data['header'] = 'SimpleSAMLphp Statistics';
 
-$this->data['head']  = '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>';
-$this->data['head'] .= '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui.js"></script>';
-$this->data['head'] .= '<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 'resources/uitheme/jquery-ui-themeroller.css" />';
+$this->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 
+$this->data['hideLanguageBar'] = TRUE;
+
+$this->data['head'] ='';
 $this->data['head'] .= '<script type="text/javascript">
-
 $(document).ready(function() {
-	$("#tabdiv > ul").tabs();
+	$("#tabdiv").tabs();
 });
 </script>';
 
@@ -19,7 +19,9 @@ $this->includeAtTemplateBase('includes/header.php');
 
 	<style type="text/css" media="all">
 .ui-tabs-panel { padding: .5em }
-
+div#content {
+	margin: .4em ! important;
+}
 .tableview {
 	border-collapse: collapse;
 	border: 1px solid #ccc;
@@ -88,9 +90,9 @@ foreach ($this->data['availdelimiters'] AS $key => $delim) {
 	if ($key == '_') {
 		echo '<option value="_">Total</option>';
 	} elseif ($delim == $_REQUEST['d']) {
-		echo '<option selected="selected" value="' . htmlentities($delim) . '">' . htmlentities($delimName) . '</option>';
+		echo '<option selected="selected" value="' . htmlentities($delim) . '">' . htmlspecialchars($delimName) . '</option>';
 	} else {
-		echo '<option  value="' . htmlentities($delim) . '">' . htmlentities($delimName) . '</option>';
+		echo '<option  value="' . htmlentities($delim) . '">' . htmlspecialchars($delimName) . '</option>';
 	}
 }
 echo '</select></form>';
@@ -146,8 +148,8 @@ echo '</tr></table>';
 
 echo '<div id="tabdiv"><ul class="tabset_tabs">
    <li><a href="#graph">Graph</a></li>
-   <li><a href="#table">Table</a></li>
-   <li><a href="#debug">Debug</a></li>
+   <li><a href="#table">Summary table</a></li>
+   <li><a href="#debug">Time serie</a></li>
 </ul>';
 echo '
 
@@ -196,10 +198,7 @@ echo '<div id="debug" >';
 
 #echo $this->data['selected.time'];
 
-
-
-
-echo '<input style="width: 80%" value="' . htmlspecialchars($this->data['imgurl']) . '" />';
+#echo '<input style="width: 80%" value="' . htmlspecialchars($this->data['imgurl']) . '" />';
 
 echo '<table style="">';
 foreach ($this->data['debugdata'] AS $dd) {
@@ -213,26 +212,5 @@ echo('</div>'); # End tab div
 
 
 
-
-// 
-// if (count($this->data['sources']) === 0) {
-// 	echo('<p>' . $this->t('{aggregator:dict:no_aggregators}') . '</p>');
-// } else {
-// 
-// 	echo('<ul>');
-// 
-// 	foreach ($this->data['sources'] as $source) {
-// 		$encId = urlencode($source);
-// 		$encName = htmlspecialchars($source);
-// 		echo('<li>');
-// 		echo('<a href="?id=' . $encId . '">' . $encName . '</a>');
-// 		echo(' <a href="?id=' . $encId . '&amp;mimetype=text/plain">[' . $this->t('{aggregator:dict:text}') . ']</a>');
-// 		echo(' <a href="?id=' . $encId . '&amp;mimetype=application/xml">[xml]</a>');
-// 		echo('</li>');
-// 	}
-// 
-// 	echo('</ul>');
-// }
-
 $this->includeAtTemplateBase('includes/footer.php');
-?>
+
