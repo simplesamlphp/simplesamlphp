@@ -35,13 +35,16 @@ $(document).ready(function() {
 </script>';
 
 $this->data['jquery'] = array('version' => '1.6','core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
-
+$this->data['hideLanguageBar'] = TRUE;
 $this->includeAtTemplateBase('includes/header.php');
 
 ?>
 
 
+<?php
 
+echo('<h2>LDAP status for ' . $this->getTranslation($this->data['org']['description']) . '</h2>');
+?>
 
 
 <p style="text-align: right; margin-bottom: 1em;">[ <a href="?">return to list of all organizations</a> ]</p>
