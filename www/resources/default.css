@@ -32,22 +32,33 @@ hr {
 
 /* LINKS */
 a, a:link, a:link, a:link, a:hover {
-/*	font-weight: bold; */
-	background: transparent;
-	text-decoration: underline;
-	cursor: pointer;
+
+	text-decoration: none;
+	color: #777;
+	border-bottom: 1px dotted #ccc;
+	font-weight: normal;
 }
 
-a:link {
-	color: #c00;
-} 
 
+a:link, a:visited {
+	text-decoration: none;
+	color: #777;
+	border-bottom: 1px dotted #ccc;
+	font-weight: normal;
+}
+.ui-tabs-nav a {
+	border: none ! important;
+	text-decoration: none;
+}
 a:visited {
 	color: #999;
 } 
 
 a:hover, a:active {
 	color: #069;
+	text-decoration: none;
+	color: #333;
+	border-bottom: 1px solid #333;
 } 
 
 /* LISTS */
@@ -155,6 +166,7 @@ h6 {
 
 h1 a {
 	text-decoration: none;
+	border: none ! important;
 	color: white;
 }
 
