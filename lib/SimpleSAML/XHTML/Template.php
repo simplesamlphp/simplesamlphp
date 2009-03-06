@@ -327,7 +327,7 @@ class SimpleSAML_XHTML_Template {
 	 *                             values in the translated string.
 	 * @return string  The translated tag, or a placeholder value if the tag wasn't found.
 	 */
-	public function t($tag, $replacements = array(), $fallbackdefault = true, $oldreplacements = array(), $striptags = false) {
+	public function t($tag, $replacements = array(), $fallbackdefault = true, $oldreplacements = array(), $striptags = FALSE) {
 		if(!is_array($replacements)) {
 
 			/* Old style call to t(...). Print warning to log. */
@@ -353,7 +353,7 @@ class SimpleSAML_XHTML_Template {
 			if($tagData === NULL) {
 				/* Tag not found. */
 				SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not translated at all.');
-				return $this->t_not_translated($tag, TRUE);
+				return $this->t_not_translated($tag, $fallbackdefault);
 			}
 		}
 
@@ -379,7 +379,7 @@ class SimpleSAML_XHTML_Template {
 		if ($fallbacktag) {
 			return 'not translated (' . $tag . ')';
 		} else {
-			return NULL;
+			return $tag;
 		}
 	}
 	
