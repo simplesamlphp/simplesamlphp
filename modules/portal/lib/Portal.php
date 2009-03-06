@@ -50,11 +50,8 @@ class sspmod_portal_Portal {
 		
 		$text = '';
 		
-		if (!empty($logininfo)) {
-			$text .= '<p class="logininfo" style="float: right">' . $logininfo . '</p>';
-		}
 		
-		$text .= '<ul class="ui-tabs-nav">';
+		$text .= '<ul class="tabset_tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">';
 		foreach($this->pages AS $pageid => $page) {
 			
 			if (isset($tabset) && !in_array($pageid, $tabset, TRUE)) continue;
@@ -66,15 +63,19 @@ class sspmod_portal_Portal {
 			if (isset($page['shorttext'])) $name = $page['shorttext'];
 			
 			if (!isset($page['href'])) {
-				$text .= '<li class="ui-tabs-selected"><a href="#">' . $t->t($name) . '</a></li>';
+				$text .= '<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#">' . $t->t($name) . '</a></li>';
 			} else if($pageid === $thispage ) {
-				$text .= '<li class="ui-tabs-selected"><a href="#">' . $t->t($name) . '</a></li>';
+				$text .= '<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#">' . $t->t($name) . '</a></li>';
 			} else {
-				$text .= '<li><a href="' . $page['href'] . '">' . $t->t($name) . '</a></li>';
+				$text .= '<li class="ui-state-default ui-corner-top"><a href="' . $page['href'] . '">' . $t->t($name) . '</a></li>';
 			}
 			
 		}
 		$text .= '</ul>';
+		if (!empty($logininfo)) {
+			$text .= '<p class="logininfo" style="text-align: right; margin: 0px">' . $logininfo . '</p>';
+		}
+
 		return $text;
 	}
 	

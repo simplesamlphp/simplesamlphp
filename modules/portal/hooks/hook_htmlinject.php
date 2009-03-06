@@ -27,13 +27,13 @@ function portal_hook_htmlinject(&$hookinfo) {
 	#print_r($portal->getMenu($hookinfo['page'])); exit;
 
 	// Include jquery UI CSS files in header.
-	$hookinfo['jquery']['css'] = 1;
+	$hookinfo['jquery']['css'] = TRUE;
+	$hookinfo['jquery']['version'] = '1.6';
 
 	// Header
-	$hookinfo['pre'][0]  = '
-<div id="portalmenu">
-	' . $portal->getMenu($hookinfo['page']) . '
-<div id="portalcontent" class="ui-tabs-panel" style="display: block;">';
+	$hookinfo['pre'][0]  = '<div id="portalmenu" class="ui-tabs ui-widget ui-widget-content ui-corner-all">' . 
+		$portal->getMenu($hookinfo['page']) . 
+		'<div id="portalcontent" class="ui-tabs-panel ui-widget-content ui-corner-bottom">';
 
 	// Footer
 	$hookinfo['post'][0] = '</div></div>';
