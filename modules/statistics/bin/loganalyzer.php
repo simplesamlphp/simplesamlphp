@@ -51,7 +51,7 @@ foreach($argv as $a) {
 		}
 }
 
-$aggregator = new sspmod_statistics_Aggregator();
+$aggregator = new sspmod_statistics_Aggregator(TRUE);
 $aggregator->dumpConfig();
 $results = $aggregator->aggregate($debug);
 

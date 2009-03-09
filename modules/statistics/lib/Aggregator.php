@@ -12,11 +12,14 @@ class sspmod_statistics_Aggregator {
 	private $statrules;
 	private $offset;
 
+	private $fromcmdline;
+
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct($fromcmdline = FALSE) {
 	
+		$this->fromcmdline = $fromcmdline;
 		$this->statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
 		
 		$this->statdir = $this->statconfig->getValue('statdir');
@@ -70,9 +73,9 @@ class sspmod_statistics_Aggregator {
 			$content = $logparser->parseContent($logline);
 			$action = trim($content[5]);
 
-				if (($i % 10000) == 0) {
-					echo("Read line " . $i . "\n");
-				}
+			if ($this->fromcmdline && ($i % 10000) == 0) {
+				echo("Read line " . $i . "\n");
+			}
 
 			
 			if ($debug) {
