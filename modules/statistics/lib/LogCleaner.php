@@ -15,7 +15,7 @@ class sspmod_statistics_LogCleaner {
 	/**
 	 * Constructor
 	 */
-	public function __construct() {
+	public function __construct($inputfile = NULL) {
 	
 		$this->statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
 		
@@ -23,6 +23,8 @@ class sspmod_statistics_LogCleaner {
 		$this->inputfile = $this->statconfig->getValue('inputfile');
 		$this->statrules = $this->statconfig->getValue('statrules');
 		$this->offset = $this->statconfig->getValue('offset', 0);
+		
+		if (isset($inputfile)) $this->inputfile = $inputfile;
 	}
 	
 	public function dumpConfig() {

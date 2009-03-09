@@ -17,6 +17,7 @@ $progName = array_shift($argv);
 $debug = FALSE;
 $dryrun = FALSE;
 $output = '/tmp/simplesamlphp-new.log';
+$infile = NULL;
 
 foreach($argv as $a) {
 	if(strlen($a) === 0) continue;
@@ -45,6 +46,9 @@ foreach($argv as $a) {
 		case '--dry-run':
 			$dryrun = TRUE;
 			break;
+		case '--infile':
+			$infile = $v;
+			break;
 		case '--outfile':
 			$output = $v;
 			break;
@@ -55,7 +59,7 @@ foreach($argv as $a) {
 		}
 }
 
-$cleaner = new sspmod_statistics_LogCleaner();
+$cleaner = new sspmod_statistics_LogCleaner($infile);
 $cleaner->dumpConfig();
 $todelete = $cleaner->clean($debug);
 
@@ -80,6 +84,7 @@ The script deletes log lines related to sessions that produce more than 200 line
 Options:
 	-d, --debug			Used when configuring the log file syntax. See doc.
 	--dry-run			Aggregate but do not store the results.
+	--infile			File input.
 	--outfile			File to output the results.
 
 ');
