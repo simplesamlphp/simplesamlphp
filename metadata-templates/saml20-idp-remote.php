@@ -8,6 +8,10 @@
  
 $metadata = array();
 
+/**
+ * Guest IdP. allows users to sign up and register. Great for testing!
+ */
+
 $metadata['https://openidp.feide.no'] = array(
 	'name'                 => array(
 		'en' => 'Feide OpenIdP - guest users',
@@ -20,35 +24,44 @@ $metadata['https://openidp.feide.no'] = array(
 	'SingleLogoutService'  => 'https://openidp.feide.no/simplesaml/saml2/idp/SingleLogoutService.php',
 	'certFingerprint'      => 'c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb'
 );
-	
-$metadata['max.feide.no'] = array(
+
+
+/**
+ * Feide, the norwegian federatino. Test and production metadata. 
+ */
+$metadata['https://idp-test.feide.no'] = array(
 	'name'					=>	array(
 		'en' => 'Feide Test environment',
 		'no' => 'Feide testmiljø',
 	),
-	'description'			=> 'Feide test environment (max.feide.no). Authenticate with your identity from a school or university in Norway.',
+	'description'			=> 'Feide test environment (idp-test.feide.no). Authenticate with your identity from a school or university in Norway.',
 	'send_metadata_email' 	=> 'moria-support@uninett.no',
-	'SingleSignOnService'	=>	'https://max.feide.no/amserver/SSORedirect/metaAlias/idp',
-	'SingleLogoutService'	=>	'https://max.feide.no/amserver/IDPSloRedirect/metaAlias/idp',
-	'certFingerprint'		=>	'5dd3196bdb2fb7e75380fe234a3f4f2d1e8d6d84',
-	'base64attributes'		=>	TRUE,
+	'SingleSignOnService'   => 'https://idp-test.feide.no/simplesaml/saml2/idp/SSOService.php',
+	'SingleLogoutService'   => 'https://idp-test.feide.no/simplesaml/saml2/idp/SingleLogoutServiceiFrame.php',
+	'SingleLogoutServiceResponse' => 'https://idp-test.feide.no/simplesaml/saml2/idp/SingleLogoutServiceiFrameResponse.php',
+	'certFingerprint'       => 'fa982efdb69f26e8073c8f815a82a0c5885960a2',
 	'hint.cidr'				=> '158.38.0.0/16'
 );
 
-$metadata['sam.feide.no'] = array(
+$metadata['https://idp.feide.no'] = array(
 	'name'					=>	'Feide',
 	'description'			=> array(
 		'en' => 'Authenticate with your identity from a school or university in Norway.',
 		'no' => 'Logg inn med din identitet fra skolen eller universitetet du er tilknyttet (i Norge).',
 	),
 	'send_metadata_email' 	=> 'moria-support@uninett.no',
-	'SingleSignOnService'	=>	'https://sam.feide.no/amserver/SSORedirect/metaAlias/idp',
-	'SingleLogoutService'	=>	'https://sam.feide.no/amserver/IDPSloRedirect/metaAlias/idp',
-	'certFingerprint'		=>	'f6:72:c5:e7:04:fb:86:5e:93:6b:3b:cd:45:b0:49:2e:94:f5:f0:95',
-	'base64attributes'		=>	TRUE,
+	'SingleSignOnService'   => 'https://idp.feide.no/simplesaml/saml2/idp/SSOService.php',
+	'SingleLogoutService'   => 'https://idp.feide.no/simplesaml/saml2/idp/SingleLogoutServiceiFrame.php',
+	'SingleLogoutServiceResponse' => 'https://idp.feide.no/simplesaml/saml2/idp/SingleLogoutServiceiFrameResponse.php',
+	'certFingerprint'       => 'cde69e332fa7dd0eaa99ee0ddf06916e8942ac53',
 	'hint.cidr'				=> '158.38.0.0/16'
 );
 
+
+
+/**
+ * Wayf, the danish federation metadata.
+ */
 $metadata['https://wayf.wayf.dk'] = array(
 	'name'                 => array(
 		'en' => 'DK-WAYF Production server',
@@ -84,6 +97,3 @@ $metadata['https://testidp.wayf.dk'] = array(
 	'SingleLogoutService'  => 'https://testidp.wayf.dk/saml2/idp/SingleLogoutService.php',
 	'certFingerprint'      => '04b3b08bce004c27458b3e85b125273e67ef062b'
 );
-
-
-?>
