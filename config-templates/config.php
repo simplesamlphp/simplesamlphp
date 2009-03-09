@@ -251,7 +251,19 @@ $config = array (
 		 * by checking the 'attributes' parameter in metadata on IdP hosted and SP remote.
 		 */
 		50 => 'core:AttributeLimit', 
-		
+
+		/* 
+		 * Search attribute "distinguishedName" for pattern and replaces if found
+
+		60 => array(
+			'class'		=> 'core:AttributeAlter',
+			'pattern'	=> '/OU=studerende/',
+			'replacement'	=> 'Student',
+			'subject'	=> 'distinguishedName',
+			'%replace',	
+		),
+		 */
+
 		/*
 		 * Consent module is enabled (with no permanent storage, using cookies).
 
