@@ -10,7 +10,7 @@ function saml2debug_hook_frontpage(&$links) {
 
 	$links['links'][] = array(
 		'href' => SimpleSAML_Module::getModuleURL('saml2debug/debug.php'),
-		'text' => array('en' => 'SAML 2.0 Degbugger'),
+		'text' => array('en' => 'SAML 2.0 Debugger'),
 	);
 	
 }
