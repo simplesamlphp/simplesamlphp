@@ -83,7 +83,7 @@ This program parses and aggregates SimpleSAMLphp log files.
 
 Options:
 	-d, --debug			Used when configuring the log file syntax. See doc.
-	-dry-run			Aggregate but do not store the results.
+	--dry-run			Aggregate but do not store the results.
 
 ');
 }
