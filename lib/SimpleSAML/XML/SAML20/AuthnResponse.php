@@ -645,7 +645,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	 *
 	 *  @return AuthenticationResponse as string
 	 */
-	public function generate($idpentityid, $spentityid, $inresponseto, $nameid, $attributes, $status = 'Success') {
+	public function generate($idpentityid, $spentityid, $inresponseto, $nameid, $attributes, $status = 'Success', $sessionDuration = 3600) {
 		
 		/**
 		 * Retrieving metadata for the two specific entity IDs.
@@ -663,8 +663,15 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		 */
 		$id = SimpleSAML_Utilities::generateID();
 		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
-		$assertionExpire = SimpleSAML_Utilities::generateTimestamp(time() + 60 * 5);# 5 minutes
+		
+		// 30 seconds timeskew back in time to allow differing clocks.
 		$notBefore = SimpleSAML_Utilities::generateTimestamp(time() - 30);
+		// How long is the timeframe which which the consumer may consume the assertion
+		$assertionExpire = SimpleSAML_Utilities::generateTimestamp(time() + 60 * 5);# 5 minutes
+		// What is the max time frame which the consumer is allowed to hold a securtity context valid.
+		$sessionExpire = SimpleSAML_Utilities::generateTimestamp(time() + $sessionDuration);
+
+
 
 		$assertionid = SimpleSAML_Utilities::generateID();
 
@@ -734,7 +741,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 					Recipient="' . htmlspecialchars($destination) . '"/>
 			</saml:SubjectConfirmation>
 		</saml:Subject>
-		<saml:Conditions NotBefore="' . $notBefore. '" NotOnOrAfter="' . $assertionExpire. '">
+		<saml:Conditions NotBefore="' . $notBefore. '" NotOnOrAfter="' . $sessionExpire. '">
             <saml:AudienceRestriction>
                 <saml:Audience>' . htmlspecialchars($spentityid) . '</saml:Audience>
             </saml:AudienceRestriction>

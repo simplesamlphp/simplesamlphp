@@ -250,7 +250,7 @@ if($needAuth && !$isPassive) {
 		 * With statusCode: urn:oasis:names:tc:SAML:2.0:status:NoPassive
 		 */
 		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-		$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], NULL, NULL, 'NoPassive');
+		$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], NULL, NULL, 'NoPassive', $config->getValue('session.duration', 3600) );
 
 		/* Sending the AuthNResponse using HTTP-Post SAML 2.0 binding. */
 		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
@@ -315,7 +315,7 @@ if($needAuth && !$isPassive) {
 					 * With statusCode: urn:oasis:names:tc:SAML:2.0:status:NoPassive
 					 */
 					$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-					$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], NULL, NULL, 'NoPassive');
+					$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], NULL, NULL, 'NoPassive', $config->getValue('session.duration', 3600));
 
 					/* Sending the AuthNResponse using HTTP-Post SAML 2.0 binding. */
 					$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
@@ -342,7 +342,7 @@ if($needAuth && !$isPassive) {
 		
 		// Generate an SAML 2.0 AuthNResponse message
 		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-		$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestID, null, $attributes);
+		$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestID, NULL, $attributes, 'Success', $config->getValue('session.duration', 3600));
 	
 		// Sending the AuthNResponse using HTTP-Post SAML 2.0 binding
 		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
