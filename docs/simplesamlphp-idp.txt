@@ -1,4 +1,4 @@
-SimpleSAMLphp as an Identity Provider
+SimpleSAMLphp Identity Provider QuickStart
 ===========================================
 
 <!-- 
@@ -9,730 +9,242 @@ SimpleSAMLphp as an Identity Provider
 
   * Version: `$Id$`
 
-simpleSAMLphp documentation
----------------------------
+This guide will describe how to configure simpleSAMLphp as an
+identity provider (IdP). You should previously have installed
+simpleSAMLphp as described in [the simpleSAMLphp installation
+instructions](http://rnd.feide.no/content/installing-simplesamlphp)
 
-
-This document is part of the simpleSAMLphp documentation suite.
-
--  
-    [List of all simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
-
-
-This document assumes that you already have a installation of
-simpleSAMLphp. Before you continue, make sure all the required
-entries in the check list at the bottom is showing green light.
 
 Enabling the Identity Provider functionality
 --------------------------------------------
 
-Edit `config.php`, and enable either the SAML 2.0 IdP or the Shib
-1.3 IdP, depending on your needs. By default, SAML 2.0 SP IdP
-functionality is enabled. Here is an example of SAML 2.0 IdP
-enabled:
+The first that must be done is to enable the identity provider
+functionality. This is done by editing `config/config.php`. The options
+`enable.saml20-idp` and `enable.shib13-idp` controls whether SAML 2.0
+and Shibboleth 1.3 support is enabled. Enable one or both of those by
+assigning `true` to them:
 
     'enable.saml20-sp'  => false,
     'enable.saml20-idp' => true,
     'enable.shib13-sp'  => false,
-    'enable.shib13-idp' => false,
+    'enable.shib13-idp' => true,
 
-Authentication modules
-----------------------
 
-In the `www/auth` directory, each file represents an authentication
-module. The IdP hosted metadata configuration specifies which
-authentication module to use for that specific IdP. You can
-implement your own authentication module, see
-[Appendix&nbsp;A, *Writing your own authentication module*](#sect.customauth).
+Authentication module
+---------------------
 
-These authentication modules are included:
+The next step is to configure the way users authenticate on your IdP.
+Various modules in the `modules/` directory provides methods for
+authenticating your users. This is an overview of those that are included
+in the simpleSAMLphp distribution:
 
-auth/login.php
-:   This is the standard LDAP backend authentication module. It
-    uses LDAP configuration from the `config.php` file.
+`authfacebook:Facebook`
+: Authenticate with a Facebook ID.
 
-auth/login-ldapmulti.php
-:   This authentication module lets you connect to multiple LDAPs
-    depending on the home organization selected by the user.
+`authYubiKey:YubiKey`
+: Authenticate with an YubiKey.
 
-auth/login-feide.php
-:   A multi-LDAP module which looks up the users in LDAP, first
-    searching for `eduPersonPrincipalName`.
+`exampleauth:UserPass`
+: Authenticate against a list of usernames and passwords.
 
-auth/login-radius.php
-:   This authentication module will authenticate users against an
-    RADIUS server instead of LDAP.
+`exampleauth:Static`
+: Automatically log in as a user with a set of attributes.
+
+[`InfoCard:ICAuth`](http://rnd.feide.no/content/simplesamlphp-infocard-module-usage)
+: Authenticate with an InfoCard.
+
+[`ldap:LDAP`](ldap.txt)
+: Authenticates an user to a LDAP server.
+
+[`ldap:LDAPMulti`](ldap.txt)
+: Authenticates an user to one of several LDAP server.
+  The user can choose the LDAP server from a dropdown list.
+
+`openid:OpenIDConsumer`
+: Authenticate against an OpenID provider.
+
+`saml2:SP`
+: Authenticate against a SAML 2.0 IdP.
+
+`sqlauth:SQL`
+: Authenticate an user against a database.
+
+In this guide, we will use the `exampleauth:UserPass` authentication
+module. This module does not have any dependencies, and is therefore
+simple to set up.
+
+
+Configuring the authentication module
+-------------------------------------
+
+The `exampleauth:UserPass` authentication module is part of the
+`exampleauth` module. This module isn't enabled by default, so you
+will have to enable it. This is done by creating a file named `enable`
+in `modules/exampleauth/`.
+
+On unix, this can be done by running (from the simpleSAMLphp
+installation directory):
+
+    touch modules/exampleauth/enable
+
+The next step is to create an authentication source with this module.
+An authentication source is an authentication module with a specific
+configuration. Each authentication source has a name, which is used
+to refer to this specific configuration in the IdP configuration.
+Configuration for authentication sources can be found in
+`config/authsources.php`.
+
+In this setup, this file should contain a single entry:
+
+	<?php
+	$config = array(
+		'example-userpass' => array(
+			'exampleauth:UserPass',
+			'student:studentpass' => array(
+				'uid' => array('student'),
+				'eduPersonAffiliation' => array('member', 'student'),
+			),
+			'employee:employeepass' => array(
+				'uid' => array('employee'),
+				'eduPersonAffiliation' => array('member', 'employee'),
+			),
+		),
+	);
+	?>
 
-auth/login-auto.php
-:   This module will automatically login the user with some test
-    details. You can use this to test the IdP functionality if you do
-    not have
+This configuration creates two users - `student` and `employee`, with
+the passwords `studentpass` and `employeepass`. The username and
+password is stored in the array index (`student:studentpass` for
+the `student`-user. The attributes for each user is configured in the
+array referenced by the index. For the student user, these are:
 
-:   This module is not completed yet. Work in progress.
+	array(
+		'uid' => array('student'),
+		'eduPersonAffiliation' => array('member', 'student'),
+	),
 
-auth/login-cas-ldap.php
-:   Authentication via CAS, followed by attribute lookup in LDAP.
+The attributes will be returned by the IdP when the user logs on.
 
-auth/login-tlsclient.php
-:   Authentication via client certificates. (using the apache SSL
-    module)
 
+Configuring the IdP
+-------------------
 
-## Configuring the LDAP authentication module
+The IdP is configured by the metadata stored in
+`metadata/saml20-idp-hosted.php` and `metadata/shib13-idp-hosted.php`.
+This is a minimal configuration of a SAML 2.0 IdP:
 
-The LDAP module is found in `auth/login.php`.
+	<?php
+	$metadata = array(
+		'__DYNAMIC:1__' => array(
+			/*
+			 * The hostname for this IdP. This makes it possible to run multiple
+			 * IdPs from the same configuration. '__DEFAULT__' means that this one
+			 * should be used by default.
+			 */
+			'host' => '__DEFAULT__',
 
-If you want to perform local authentication using this server,
-using the LDAP authentication plugin, the following parameters
-should be configured in `config/ldap.php`:
+			/*
+			 * The private key and certificate to use when signing responses.
+			 * These are stored in the cert-directory.
+			 */
+			'privatekey' => 'server.pem',
+			'certificate' => 'server.crt',
 
--  
-    `auth.ldap.dnpattern`: Which DN to bind to. `%username%` is
-    replaced with the user name typed in.
+			/*
+			 * The authentication source which should be used to authenticate the
+			 * user. This must match one of the entries in config/authsources.php.
+			 */
+			'auth' => 'example-userpass',
+		),
+	);
+	?>
 
--   `auth.ldap.hostname`: Host name of the LDAP server
+For more information about available options in the idp-hosted metadata
+files, see the [IdP hosted reference](simplesamlphp-reference-idp-hosted.txt).
 
--  
-    `auth.ldap.attributes`: Search parameter to LDAP. List of
-    attributes to be extracted. Set this option to `null` to retrieve
-    all attributes available.
 
--  
-    `auth.ldap.enable_tls`: Will perform `ldap_start_tls()` after
-    creation the connectino to the LDAP server.
+Adding SPs to the IdP
+---------------------
 
+The identity provider you are configuring needs to know about the
+service providers you are going to connect to it. This is configured
+by metadata stored in `metadata/saml20-sp-remote.php` and
+`metadata/shib13-sp-remote.php`. This is a minimal example of a
+`metadata/saml20-sp-remote.php` metadata file:
 
-### Searching for the user's DN
+	<?php
+	$metadata = array(
+		'sp.example.org' => array(
+			'AssertionConsumerService' => 'https://sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php',
+			'SingleLogoutService'      => 'https://sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
+		),
+	);
+	?>
 
-It is possible to search for the DN of the user by matching the
-username provided by the user against one or more attributes. This
-feature is configured by the following options in
-`config/ldap.php`:
+If you have the metadata of the remote SP as an XML file, you can use
+the built-in XML to simpleSAMLphp metadata converter, which by default
+is available as `/admin/metadata-converter.php` in your simpleSAMLphp
+installation.
 
--  
-    `auth.ldap.search.enable`: Whether searching for the user's DN
-    should be enabled. Set this to `TRUE` to enable searching.
+For more information about available options in the sp-remote metadata
+files, see the [SP remote reference](simplesamlphp-reference-sp-remote.txt).
 
--  
-    `auth.ldap.search.base`: The DN we should search for the user in.
 
--  
-    `auth.ldap.search.attributes`: The attributes we shoule match the
-    username against. This can be a single attribute, in which case it
-    should be a string, or multiple attributes, in which case it should
-    be an array of strings.
+Creating a SSL self signed certificate
+--------------------------------------
 
-    If this is multiple attributes, they will be joined into a search
-    query with the following form:
-    `(|(<attr1>=<username>)(<attr2>=<username>)...)`
+For test purposes, you can skip this section, and use the certificate
+included in the simpleSAMLphp distribution.
 
--  
-    `auth.ldap.search.username`: The user we should authenticate to the
-    LDAP server as before searching. Leave this as `NULL` if it isn't
-    necessary to authenticate to the server before searching.
+Here is an example of `openssl`-commands which can be used to generate
+a new private key key and the corresponding self-signed certificate.
+This key and certificate can be used to sign SAML messages:
 
--  
-    `auth.ldap.search.password`: The password for the user selected
-    with the `auth.ldap.search.username` option.
+    openssl genrsa -out example.org.pem 1024
+    openssl req -new -key example.org.pem -out example.org.csr
+    openssl x509 -req -days 9999 -in example.org.csr -signkey example.org.pem -out example.org.crt
+    rm example.org.csr
 
+The certificate above will be valid for 9999 days.
 
-**Example&nbsp;1.&nbsp;Configuring LDAP for searching**
 
-    $config = array (
-      'auth.ldap.hostname' => 'ldap.example.org',
-      'auth.ldap.attributes' => NULL,
-      'auth.ldap.enable_tls' => FALSE,
-    
-      /* Enable searching. */
-      'auth.ldap.search.enable' => TRUE,
-    
-      /* The base DN for the search. */
-      'auth.ldap.search.base' => 'cn=users,dc=example,dc=org',
-    
-      /* The user can authenticate using the uid or the email address. */
-      'auth.ldap.search.attributes' => array('uid', 'mail'),
-    
-      'auth.ldap.search.username' => 'uid=authsearch,cn=server,dc=example,dc=org',
-      'auth.ldap.search.password' => 'secret',
-    );
-
-## Configure the tlsclient authenticaiton module
+### Note ###
 
-Configure apache like this:
+simpleSAMLphp will only work with RSA certificates. DSA certificates
+are not supported.
 
-     SSLEngine On
-        SSLCertificateFile    /etc/ssl/private/bridge.pem
-        SSLCertificateKeyFile /etc/ssl/private/bridge.key
-        SSLCertificateChainFile    /etc/ssl/certs/sureserverEDU.pem
-        SSLOptions +StdEnvVars +ExportCertData
-        KeepAliveTimeout 60
-        SSLCipherSuite ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP:+eNULL
-        
-        SSLCACertificateFile "/etc/ssl/private/tlsclienttest-ca.crt"
-        SSLVerifyClient optional
-        SSLVerifyDepth  1
-
-And, then configure the identity provider to use the authentication
-module: `auth/login-tlsclient.php`.
-
-## Configuring the multi-LDAP authenticaiton module
-
-The module is found in `auth/login-ldapmulti.php`.
-
-## Note
-
-Documentation will be added later. For now, contact the author.
-
-## Configuring the 'login-CAS-LDAP' module for authentication
-
-If you want to connect your identity provider using either CAS or
-CAS in combination with LDAP (for attribute retrieval), you may use
-the login-cas-ldap module. It is found in
-`auth/login-cas-ldap.php`.
-
-The following parameters should be configured in
-config/cas-ldap.php:
-
--  
-    make an entry for each identity provider using the identity ID as
-    key
-
--  
-    you should make a sub entry with 'cas' as key and the following
-    parameters:
-
-    login
-    :   the url of the login service of the CAS server
-
-
-
-We recomment you always use 'renew=true'v to be able to comply with
-a SAML2 'force-auth' request. In addition you may configure either
-a 'validate' or a 'serviceValdate' (simpleSAMLphp supports both CAS
-ver.1 and ver.2).
-
-'validate' is the CAS ver.1 YES/NO\\r\<username>style validation
-which only returns a user name to simpleSAMLphp and which requires
-subsequent use of LDAP to retrieve the attributes. The value of
-this parameter is the url of the validate service of the CAS
-server.
-
-'serviceValidate' is the url of the CAS servers' ver.2 validation.
-In some cases the CAS server returns attributes in non-standard XML
-format. The login-cas-ldap module allows you to map a list of
-attribute names to Xpath expressions which are returned to
-simpleSAMLphp from the auth-module. The list is named 'attributes'
-(see example for further information).
-
-If you want to use LDAP for retrieving attributes you should make
-sub entry with 'ldap' as key and the following parameters:
-
-servers
-:   a space separated list of urls in OpelLDAP format (see
-    example)
-
-starttls
-:   (set to true to secure (encrypt) the LDAP connection)
 
-searchbase
-:   the starting point for the LDAP search (simpleSAMLphp always
-    uses sub-tree search)
+### Warning ###
 
-searchattributes
-:   an array of attribute names to search for (when used in this
-    combination with CAS only one value is needed)
-
-dnpattern
-:   a pattern for a dn for the user where %username% is replaced
-    with the actual user name for constructing the dn of the users'
-    entry. If used no search for the user is performed and the
-    constructed dn is used in stead.
-
-attributes
-:   the list of attributes retrieved from the users' entry
-
-priv\_user\_dn (optional)
-:   the dn of a priviliged user who is allowed to search and read
-    the whole LDAP sub-tree for the user if anonynous search and read
-    is not allowed
-
-priv\_user\_pw (optional)
-:   the password of the priviiliged user
-
-
-Samle configuration:
-
-    $casldapconfig = array (
-        'idpentityid.example.org' => array(
-            'cas' => array(
-                'login' => 'https://idpentityid.example.org/cas/login',
-                'validate' => 'https://idpentityid.example.org/cas/validate',
-            ),
-            'ldap' => array(
-                'servers' => 'idpentityid.example.org',
-                'enable_tls' => false,
-                'searchbase' => 'dc=example,dc=org',
-                'searchattributes' => 'uid',
-                'attributes' => array('cn', 'mail'),
-            ),
-        ),
-        'idpentityid2.example.org' => array(
-            'cas' => array(
-                'login' => 'https://idpentityid2.example.org/login',
-                'validate' => 'https://idpentityid2.example.org/validate',
-            ),
-            'ldap' => array(
-                'servers' => 'ldap://idpentityid2.example.org',
-                'enable_tls' => false,
-                'searchbase' => 'ou=users,dc=example,dc=org',
-                'searchattributes' => array('uid', 'mail'), # array for being able to login with either uid or mail.
-                'attributes' => null,
-                'priv_user_dn' => 'uid=admin,ou=users,dc=example,dc=org',
-                'priv_user_pw' => 'xxxxx',
-            ),
-        ),
-    
-    );
-
-
-Setting up an SSL signing certificate
-------------------------------------
-
-For test purposes, you can skip this section, and use the
-certificate included in the simpleSAMLphp distribution.
-
-For a production system, you must generate a new certificate for
-your IdP.
-
-## Warning
-
-The certificate that follows the simpleSAMLphp distribution must
-*NEVER* be used in production, as the private key is also included
-in the package and can be downloaded by anyone.
-
-Here is an examples of openssl commands to generate a new key and a
-selfsigned certificate to use for signing SAML messages:
-
-    openssl genrsa -des3 -out server2.key 1024 
-    openssl rsa -in server2.key -out server2.pem
-    openssl req -new -key server2.key -out server2.csr
-    openssl x509 -req -days 60 -in server2.csr -signkey server2.key -out server2.crt
-
-The certificate above will be valid for 60 days.
-
-## Note
-
-simpleSAMLphp will only work with RSA and not DSA certificates.
-
-
-Configuring metadata for an SAML 2.0 IdP
-----------------------------------------
-
-To setup a SAML 2.0 IdP you must configure two metadata files:
-`saml20-idp-hosted.php` and `saml20-sp-remote.php`.
-
-## Configuring SAML 2.0 IdP Hosted metadata
-
-This is the configuration of the IdP itself. Here is some example
-config:
-
-    // The SAML entity ID is the index of this config.
-    'idp.example.org' => array(
-    
-     // The hostname of the server (VHOST) that this SAML entity will use.
-     'host'            => 'sp.example.org',
-     
-     // X.509 key and certificate. Relative to the cert directory.
-     'privatekey'      => 'server.pem',
-     'certificate'     => 'server.crt',
-     
-     // Authentication plugin to use. login.php is the default one that uses LDAP.
-     'auth'             => 'auth/login.php',
-     'authority'        => 'login',
-    ),
+The certificate that is included in the simpleSAMLphp distribution must
+**NEVER** be used in production, as the private key is also included in
+the package and can be downloaded by anyone.
 
-Parameter details:
 
-### Mandatory metadata fields
+Adding this IdP to other SPs
+----------------------------
 
-index in the `$metadata` array
-:   The entity ID of the IdP. In this example: `idp.example.org`.
+The method for adding this IdP to a SP varies between different types
+of SPs. In general, most SPs need some metadata from the IdP. This
+should be available from `/saml2/idp/metadata.php` and
+`/shib13/idp/metadata.php`.
 
-:   simpleSAMLphp supports dynamic entityIDs that matches a URL
-    where simpleSAMLphp automatically generates metadata for the hosted
-    entity. To enable this functionality, set the index to be
-    `__DYNAMIC:1__`. The index needs to be unique, so when you have
-    multiple entries, increase the integer after the colon. When the
-    index `__DYNAMIC:1__` is used, the resulting generated entity
-    becomes something like:
 
-:   https://sp.example.org/simplesaml/saml2/idp/metadata.php
+Testing the IdP
+---------------
 
-host
-:   Host name of the server running this IdP. One of your metadata
-    entries can have the value `__DEFAULT__`. A default entry will be
-    used when no other entry matches the current hostname.
-
-privatekey
-:   Name of private key file in PEM format, in the `certs`
-    directory.
+The simplest way to test the IdP is to configure a simpleSAMLphp SP
+on the same machine. See the instructions for
+[configuring simpleSAMLphp as an SP](http://rnd.feide.no/content/using-simplesamlphp-service-provider).
 
-certificate
-:   Name of certificate file in PEM format, in the `certs`
-    directory.
 
-auth
-:   Which authentication module to use. Default:
-    `auth/login.php,`the LDAP authentication module.
+### Note ###
 
+When running a simpleSAMLphp IdP and a simpleSAMLphp SP on the same
+computer, the SP and IdP **MUST** be configured with different hostnames.
+This prevents cookies from the SP to interfere with cookies
+from the IdP.
 
-### Optional metadata fields
-
-privatekey\_pass
-:   Passphrase for the private key.
-
-requireconsent
-:   Set to true if you want to require user's consent each time
-    attributes are sent to an SP.
-
-authority
-:   Who is authorized to create sessions for this IdP. Can be
-    `login` for LDAP login module, or `saml2` for SAML 2.0 SP.
-    Specifying this parameter is highly recommended.
-
-attributemap
-:   Mapping table for translating attribute names. For further
-    information, see the *Advances Features* document.
-
-attributealter
-:   Table of custom functions that injects or modifies attributes.
-    For further information, see the *Advances Features* document.
-
-userid.attribute
-:   The attribute name of an attribute which uniquely identifies
-    the user. This attribute is used if simpleSAMLphp needs to generate
-    a persistent unique identifier for the user. This option can be set
-    in both the IdP-hosted and the SP-remote metadata. The value in the
-    sp-remote metadata has the highest priority. The default value is
-    `eduPersonPrincipalName`.
-
-AttributeNameFormat
-:   What value will be set in the Format field of attribute
-    statements. This parameter can be configured multiple places, and
-    the actual value used is fetched from metadata by the following
-    priority:
-
-:   1.  SP Remote Metadata
-
-    2.  IdP Hosted Metadata
-
-    3. 
-        Default value:
-        `urn:oasis:names:tc:SAML:2.0:attrname-format:basic`
-
-
-:   Some examples of values specified in the SAML 2.0 Core
-    Specification:
-
-:   -   `urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified`
-
-    -  
-        `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` (Used as default
-        in Shibboleth 2.0)
-
-    -  
-        `urn:oasis:names:tc:SAML:2.0:attrname-format:basic` (Used as
-        default in Sun Access Manager)
-
-    -   You can define your own value.
-
-
-SingleSignOnService
-:   Override the default URL for the SingleSignOnService for this
-    IdP. This is an absolute URL. The default value is
-    `<simpleSAMLphp-root>/saml2/idp/SSOService.php`
-
-:   Note that this only changes the values in the generated
-    metadata and in the messages sent to others. You must also
-    configure your webserver to deliver this URL to the correct PHP
-    page.
-
-SingleLogoutService
-:   Override the default URL for the SingleLogoutService for this
-    IdP. This is an absolute URL. The default value is
-    `<simpleSAMLphp-root>/saml2/idp/SingleLogoutService.php`
-
-:   Note that this only changes the values in the generated
-    metadata and in the messages sent to others. You must also
-    configure your webserver to deliver this URL to the correct PHP
-    page.
-
-privacypolicy
-:   This is an absolute URL for where an user can find a
-    privacypolicy. If set, this will be shown on the consent page.
-    `%SPENTITYID%` in the URL will be replaced with the entity id of
-    the service the user is accessing.
-
-
-### Fields for signing and validating messages
-
-simpleSAMLphp only signs authentication responses by default.
-Signing of logout requests and logout responses can be enabled by
-setting the `redirect.sign` option. Validation of received messages
-can be enabled by the `redirect.validate` option.
-
-These options set the default for this IdP, but options for each SP
-can be set in `saml20-sp-remote`.
-
-redirect.sign
-:   Boolean, default `false`. To turn on signing of logout requests
-    and logout responses, set this flag to true.
-
-:   This option can be overridden by the `redirect.sign` option in
-    `saml20-sp-remote`.
-
-redirect.validate
-:   Boolean, default `false`. To turn on validation of received
-    authentication requests, logout requests and logout responses, set
-    this flag to true.
-
-:   This option can be overridden by the `redirect.validate` option
-    in `saml20-sp-remote`.
-
-
-**Example&nbsp;2.&nbsp;Example of configuration for signed messages**
-
-     'redirect.sign' => true,
-
-## Configuring SAML 2.0 SP Remote metadata
-
-In the file `saml20-sp-remote.php`, you configure all SPs that you
-trust. Here is an example:
-
-    /*
-     * Example simpleSAMLphp SAML 2.0 SP
-     */
-    'saml2sp.example.org' => array(
-     'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php', 
-     'SingleLogoutService'      => 'https://saml2sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
-     
-     'attributes'               => array('email', 'eduPersonPrincipalName'),
-     'name'                     => 'Example service provider',
-    ),
-
-Parameter details:
-
-### Mandatory metadata fields
-
-index in the `$metadata` array
-:   Entity ID of the given SP. Here: `saml2sp.example.org`.
-
-AssertionConsumerService
-:   URL of this SAML 2.0 endpoint. Ask the SP if you are uncertain.
-    You may find the endpoint URL in SAML 2.0 metadata received from
-    the SP.
-
-
-### Optional metadata fields
-
-SingleLogoutService
-:   URL of this SAML 2.0 endpoint. Ask the SP if you are uncertain.
-    You may find the endpoint URL in SAML 2.0 metadata received from
-    the SP.
-
-NameIDFormat
-:   Set it to the default: `transient`.
-
-SPNameQualifier
-:   SP NameQualifier for this SP. If not set, the IdP will set the
-    SPNameQualifier to be the SP entity ID.
-
-AttributeNameFormat
-:   What value will be set in the Format field of attribute
-    statements. This parameter can be configured multiple places, and
-    the actual value used is fetched from metadata by the following
-    priority:
-
-:   1.  SP Remote Metadata
-
-    2.  IdP Hosted Metadata
-
-    3. 
-        Default value:
-        `urn:oasis:names:tc:SAML:2.0:attrname-format:basic`
-
-
-:   Some examples of values specified in the SAML 2.0 Core
-    Specification:
-
-:   -   `urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified`
-
-    -  
-        `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` (Used as default
-        in Shibboleth 2.0)
-
-    -  
-        `urn:oasis:names:tc:SAML:2.0:attrname-format:basic` (Used as
-        default in Sun Access Manager)
-
-    -   You can define your own value.
-
-
-base64attributes
-:   Boolean, default `false`: Perform base64 encoding of attributes
-    sent to this SP. This parameter must be set according to what the
-    SP expects.
-
-simplesaml.nameidattribute
-:   If the `NameIDFormat` is set to `email`, then the email address
-    is extracted from the attribute with this name. E.g. if
-    `simplesaml.nameidattribute` is set to uid, and the authentcation
-    module provides an attribute named `uid`, this attribute value is
-    set as the NameID.
-
-attributemap
-:   Mapping table for translating attribute names. For further
-    information, see the *Advances Features* document.
-
-attributealter
-:   Table of custom functions that injects or modifies attributes.
-    For further information, see the *Advances Features* document.
-
-attributes
-:   Array of attributes sent to the SP. If this field is not set,
-    the SP receives all attributes available at the IdP.
-
-simplesaml.attributes
-:   Boolean, default `true`: Send an attribute statement to the
-    SP.
-
-name
-:   A descriptive name of the SP. This can be a string, or an
-    associative array with language code => translation pairs.
-
-description
-:   A longer description of the SP. This can be a string, or an
-    associative array with language code => translation pairs.
-
-certificate
-:   Name of certificate file for verifying the signature when
-    `redirect.validate` is set to `true`.
-
-ForceAuthn
-:   Set this `true` to force authentication when receiving
-    authentication requests from this SP. The default is `false`.
-
-assertion.enctyption
-:   Boolean, default `false`. Defines whether this IdP shoul
-    encrypt assertions to this SP.
-
-sharedkey
-:   Used for optional symmetric encryption of assertions. Currently
-    the algorithm is hardcoded to AES128\_CBC/RIJNDAEL\_128 which uses
-    up to 128 bit for the passphrase/key. If you want to use a
-    sessionkey which is encrypted by this idp's private key do not
-    specify a sharedkey.
-
-userid.attribute
-:   The attribute name of an attribute which uniquely identifies
-    the user. This attribute is used if simpleSAMLphp needs to generate
-    a persistent unique identifier for the user. This option can be set
-    in both the IdP-hosted and the SP-remote metadata. The value in the
-    sp-remote metadata has the highest priority. The default value is
-    `eduPersonPrincipalName`.
-
-signresponse
-:   The default behaviour of simpleSAMLphp is to sign the Assertion
-    element in the SAML 2.0 response sent to SPs. This option allows
-    you to override this behaviour on a per SP basis. Set this to
-    `TRUE` to sign the Response element. `FALSE` will make the SP sign
-    the Assertion. If this option is unset, the value from
-    `saml2.signresponse` in `config.php` will be used. That value is
-    `FALSE` by default.
-
-privacypolicy
-:   This is an absolute URL for where an user can find a
-    privacypolicy for this SP. If set, this will be shown on the
-    consent page. `%SPENTITYID%` in the URL will be replaced with the
-    entity id of this service provider.
-
-
-### Fields for signing and validating messages
-
-simpleSAMLphp only signs authentication responses by default.
-Signing of logout requests and logout responses can be enabled by
-setting the `redirect.sign` option. Validation of received messages
-can be enabled by the `redirect.validate` option.
-
-These options overrides the options set in `saml20-idp-hosted`.
-
-redirect.sign
-:   Boolean, default `false`. To turn on signing of logout requests
-    and logout responses, set this flag to true.
-
-:   This option overrides the `redirect.sign` option in
-    `saml20-idp-hosted`.
-
-redirect.validate
-:   Boolean, default `false`. To turn on validation of received
-    authentication requests, logout requests and logout responses, set
-    this flag to true.
-
-:   This option overrides the `redirect.validate` option in
-    `saml20-idp-hosted`.
-
-
-**Example&nbsp;3.&nbsp;Example of configuration for validating messages**
-
-    'redirect.validate' => true,
-    'certificate' => 'server.crt'
-
-
-
-
-
-Configuring metadata for a Shibboleth 1.3 IdP
----------------------------------------------
-
-In the file `shib13-idp-hosted.php`, you configure metadata for the
-Shibboleth 1.3 IdP. In the file `shib13-sp-remote.php`, you
-configurethe list of trusted SPs using the Shibboleth 1.3 protocol.
-This configuration is very similar to configuring SAML 2.0
-metadata; please find information in the previous chapter.
-
-## Scoped attributes
-
-It is possible to configure some attributes to be scoped, and
-include the Scope-attribute on the attribute values. This is
-enabled by setting the `scopedattributes`-option in either
-`shib13-sp-remote.php` or `shib13-idp-hosted.php`. If both are
-defined, the SP configuration is used.
-
-This option is an array of the names of attributes which should be
-treated as scoped. The matching is case-sensitive. A scoped
-attribute will be split on the first `@`-sign, and the first part
-will be used as the attribute value, while the last part will be
-used as the scope.
-
-    /*
-     * Example of scopedattributes option. Will use scoped attribute for eduPersonPrincipalName.
-     */
-    'scopedattributes' => array('eduPersonPrincipalName'),
-
-
-
-
-Test IdP
---------
-
-To test the IdP, it is best to configure two hosts with
-simpleSAMLphp, and use the SP demo example to test the IdP.
-
-## Tip
-
-To make the initial test up and running with minimal hassle, use
-the login-auto if you do not want to setup a user storage, and use
-the included certificate so you do not need to create a new one.
 
 Support
 -------
@@ -744,17 +256,13 @@ you are welcome to join! The forums are open for you to ask
 questions, contribute answers other further questions, request
 improvements or contribute with code or plugins of your own.
 
--  
-    [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
+- [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
 
--  
-    [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+- [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
 
--  
-    [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
+- [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
 
--  
-    [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
+- [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
 
 
 
@@ -770,59 +278,4 @@ Here is an example of such an url:
 When the IdP-first flow is used an extra parameter is needed in the `saml20-sp-hosted` metadata. This is the `RelayState` parameter that tells the SP which URL to redirect the user to after the user is successfully authenticated. This typically is the frontpage of your application. An example of this can be:
 
 	'RelayState' => '/',
-
-
-B. Writing your own authentication module
-----------------------------------------------
-
-You can write your own authentication module. Just copy one of the
-files in the www/auth directory and play with it, then configure an
-IdP to use that module with the auth parameter in the metadata. The
-file must support incoming URL parameters, massage the session
-object with login state information and return to the RelayState,
-and that is all you need to do!
-
-## Tip
-
-Instead of changing the code of the builtin authentication module,
-copy it into a new file and edit that. That way, your module will
-not be replaced or in conflict when you upgrade simpleSAMLphp to a
-newer version.
-
-## Authentication API
-
-The authentication plugin should be placed in the `auth`
-directory.
-
-The following parameters must be accepted in the incoming URL:
-
--  
-    `RelayState`: URL where the user is sent after authentication
-    within the plugin.
-
--   `RequestID`: ID of an incoming request.
-
-
-The initSSO.php takes in addition the following parameters:
-
--  
-    `idpentityid`: This is the entityid of the IdP to authenticate
-    with. This parameter is optional, if not set the default for this
-    host will be used.
-
--  
-    `spentityid`: This is which SP config to use. This parameter is
-    optional, if not set the default for this host will be used.
-
-
-In hosted IdP metadata there is a config parameter auth that will
-tell simpleSAML which authentication plugin that can beu sed.
-
-## Tip
-
-The authentication API is pretty basic. The easiest way to
-understand how it works is to look at one of the existing plugins
-that is located in the auth directory of your installation.
-
-
 
