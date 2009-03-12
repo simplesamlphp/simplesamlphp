@@ -1,21 +1,19 @@
 simpleSAMLphp changelog
 =======================
 
-Change log
-----------
 
 Here is changes between simpleSAMLphp versions. Look here if you
 are upgrading, to see if there are any changes to the config
 format.
 
-### Version 1.3
+## Version 1.3
 
 Released 2008-11-04. Revision 973.
 
 Configuration file `config.php` should not include significant
 changes, except one language added.
 
-#### New features
+### New features
 
   * Documentation update
   * Added new language. Now there are two different portugese
@@ -40,7 +38,7 @@ changes, except one language added.
   * iFrame AJAX SLO improved. Now with non-javascript failback
     handling.
 
-#### Bug fixes
+### Bug fixes
 
   * Fixed warning with XML validator.
   * Improved loading of private/public keys in XML/Signer.
@@ -48,7 +46,7 @@ changes, except one language added.
   * Fixed memcache stats.
 
 
-### Version 1.2
+## Version 1.2
 
 Released 2008-09-26. Revision 899.
 
@@ -68,7 +66,7 @@ parameters. It is backwardscompatible, but will write a warning to
 the log until updated. The backwards compatibility will be removed
 in a future version.
 
-#### New features
+### New features
 
   * Experimental support for modules. Currently modules can contain
     custom authentication sources, authentication processing filters
@@ -91,7 +89,7 @@ in a future version.
     of metadata.
 
 
-#### Bug fixes
+### Bug fixes
 
   * Fixed generated SAML 2.0 metadata to be correct.
   * Fixed logout for Auth MemCookie.
@@ -108,7 +106,7 @@ in a future version.
     requests.
 
 
-### Version 1.1
+## Version 1.1
 
 Released 2008-06-19. Revision 673.
 
@@ -130,7 +128,7 @@ New localizations in version 1.1: Sami, Svenska (swedish), Suomeksi
 (finnish), Nederlands, Luxembourgish, Slovenian, Hrvatski
 (Croatian), Magyar (Hungarian).
 
-#### New features
+### New features
 
   * Add support for saving the users choice of IdP in the IdP discovery
     service.
@@ -187,7 +185,7 @@ New localizations in version 1.1: Sami, Svenska (swedish), Suomeksi
   * Added fallback to base language if translation isn't found.
 
 
-#### Bug fixes
+### Bug fixes
 
   * Modified IdP discovery service to support Shibboleth 2.0 SP.
   * Fix setcookie warning for PHP version \< 5.2.
@@ -207,11 +205,11 @@ New localizations in version 1.1: Sami, Svenska (swedish), Suomeksi
     compatibility.
 
 
-### Version 1.0
+## Version 1.0
 
 Released 2008-03-28. Revision 470.
 
-### Version 0.5
+## Version 0.5
 
 Released 2007-10-15. Revision 28.
 
@@ -240,7 +238,7 @@ templates to understand the new format.
   * Fixed some minor bugs.
 
 
-### Version 0.4
+## Version 0.4
 
 Released 2007-09-14. Revision X.
 
