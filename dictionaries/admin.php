@@ -477,7 +477,7 @@ $lang = array(
 		'pt-BR' => 'Aqui está a metadata que o simpleSAMLphp gerou para você. Você pode enviar este documento metadata para parceiros confiáveis para a configuração de uma federação confiável.',
 	),
 	'metadata_xmlurl' => array (
-		'no' => 'Do kan nå <a href="%METAURL%">metadata i XML-format på en dedikert URL</a>:',
+		'no' => 'Du kan nå <a href="%METAURL%">metadata i XML-format på en dedikert URL</a>:',
 		'nn' => 'Du kan <a href="%METAURL%">få metadata i XML på ein URL</a>:',
 		'da' => 'Du kan få metadata-xml <a href="%METAURL%">her</a>:',
 		'en' => 'You can <a href="%METAURL%">get the metadata xml on a dedicated URL</a>:',

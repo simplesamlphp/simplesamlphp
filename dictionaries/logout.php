@@ -67,7 +67,10 @@ $lang = array(
 	),
 	'no' => array (
 		'no' => 'Nei',
+		'nn' => 'Nei',
 		'en' => 'No',
+		'sv' => 'Nej',
+		'sl' => 'Ne',
 	),
 	'logout_all_question' => array (
 		'no' => 'Vil du logge ut fra alle tjenestene ovenfor?',
