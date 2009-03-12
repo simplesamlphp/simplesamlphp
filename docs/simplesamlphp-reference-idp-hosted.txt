@@ -219,7 +219,7 @@ These are some examples of IdP metadata
             /* The authentication source for this IdP. Must be one
              * from config/authsources.php.
              */
-            'auth' => 'example-userpasse',
+            'auth' => 'example-userpass',
         ),
     );
     ?>
