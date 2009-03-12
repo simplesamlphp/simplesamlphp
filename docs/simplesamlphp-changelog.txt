@@ -6,12 +6,88 @@ Here is changes between simpleSAMLphp versions. Look here if you
 are upgrading, to see if there are any changes to the config
 format.
 
+## Version 1.4
+
+Released 2009-03-12. Revision 1405.
+
+Updates to `config.php`. Please check for updates in your local modified configuration.
+
+  * Language updates
+  * Documentation update. New authencation source API now default and documented.
+  * New authentication source (new API):
+    * LDAP
+    * LDAPMulti  
+	* YubiKey authentication source. (Separate module)  
+	* Facebook authentication source. (Separate module)
+  * New Authentication Processing Filter:
+    * AttributeAlter
+    * AttributeFilter
+    * AttributeMap
+    * Smartname. does it best to guess the full name of the user based on several attributes.
+    * Language adaptor: allow adopting UI by preferredLanguage SAML 2.0 Attribute both on the IdP and the SP. And if the user selects a lanauge, this can be sent to the SP as an attribute.
+  * New module: portal, allows you to created tabbed interface for custom pages within simpleSAMLphp. In example user consent management and attribute viewer.
+  * New module: ldapstatus. Used by Feide to monitor connections to a large list of LDAP connections. Contact Feide on details on how to use.
+  * ldapstatus also got certificate check capabilities.
+  * New module: MemcacheMonitor: Show statistics for memcache servers.
+  * New module: DiscoPower. A tabbed discovery service module with alot of functionality.
+  * New module: SAML 2.0 Debugginer. An improved version of the one found on rnd.feide.no earlier is not included in simpleSAMLphp allowing you to run it locally.
+  * New module: Simple Consent Amdin module that have one button to remove all consent for one user.
+  * New module: Consent Administration. Contribution from Wayf.
+  * We also have a consent adminstration module that we use in Feide that is not checked in to subversion.
+  * New module: logpeek. Lets administrator lookup loglines matching a TRackID.
+  * New module: PreprodWarning: Adding a warning to users that access a preprod system.
+  * New module: CAS Server
+  * New module: Aggregator: Aggregates metadata. Used in Kalmar Union.
+  * New module: Metarefresh, download, parses and consumes metadata.
+  * New module: SanityCheck. Checks if things looks good and reports bad configuration etc.
+  * New module: Cron. Will perform tasks regularly. 
+  * Module: SAML2.0. SAML 2.0 SP implemented as an module. Yet not documented how to use, but all SAML 2.0 SP functionality may be moved out to this module for better modularization.
+  * New module: statistics. Parses STAT log files, and aggregates based on a generic rule system. Output is stored in aggregated text files, and a frontend is included to present statistics with tables and graphs. Used sanitycheck and cron.
+  * Added support for IdP initiated SSO.
+  * Added support for IdP-initiated SLO with iFrame type logout.
+  * Major updates to iFrame AJAX SLO. Improved user experience.
+  * iFrame AJAX SLO is not safe against simulanous update of the session.
+  * Added support for bookmarking login pages. By adding enough information in the URL to be able to bootstrap a new IdP-initiated SSO and sending.
+  * Major updates to the infocard module.
+  * Added some handling of isPassive with authentication processing filters.
+  * More localized UI.
+  * New login as administrator link on frontpage.
+  * Tabbed frontpage. Restructured.
+  * Simplifications to the theming and updated documentation on theming simpleSAMLphp.
+  * Attribute presentation hook allows you to tweak attributes before presentation in the attribute viewers. Used by Feide to group orgUnit information in a hieararchy.
+  * Verification of the Receipient attribute in the response. Will improve security if for some reason an IdP is not includeding sufficient Audience restrictions.
+  * Added hook to let modules tell about themself moduleinfo hook.
+  * Improved cron mails
+  * Improved santity check exception handling
+  * Preserver line breaks in stack trace UI
+  * Improvements to WS-Federation support: dynamic realms, logout etc.
+  * Better handling of presentation of JPEG photos as attributes.
+  * Support limiting size of attribute retrieved from LDAP.
+  * Added notes about how to aggregate and consume metadata. Just a start.
+  * Large improvements to Configuration class, and config helper functions.
+  * STAT logging is moved into separate authenticaion processing filter.
+  * Fix for NoPassive responses to Google Apps with alternative NameIDFormats.  
+  * LDAP module allows to search multiple searchbases.
+  * All documentation is converted from docbook to markdown format.
+  * Added headers to not allow google to index pages.
+  * Added check on frontpage for magic quotes
+  * Added statistic loggging to Consent class.
+  * Improvements to Exception handler in LDAP class, and better logging.
+  * LDAP class supports turning on LDAP-debug logging.
+  * Much improvements to SAML 2.0 Metadata generation and parsing.
+  * Adding more recent jquery library.
+  * Generic interface for including jquery dependencies in template headers.
+  * Improved UI on default theme
+  * Fix for session duration in the Conditions element in the Assertion (SAML 2.0).
+  * Updated with new Feide IdP metadata in metadata-templates
+  
+
+
 ## Version 1.3
 
 Released 2008-11-04. Revision 973.
 
-Configuration file `config.php` should not include significant
-changes, except one language added.
+Configuration file `config.php` should not include significant changes, except one language added.
 
 ### New features
 
@@ -50,21 +126,11 @@ changes, except one language added.
 
 Released 2008-09-26. Revision 899.
 
-There are some changes in the configuration files from version 1.1
-to 1.2. `/simplesaml/admin/config.php` should be used to check what
-options have changed.
+There are some changes in the configuration files from version 1.1 to 1.2. `/simplesaml/admin/config.php` should be used to check what options have changed.
 
-When you upgrade from an previous version you should copy
-`authsources.php` from `config-templates` into `config` directory.
+When you upgrade from an previous version you should copy `authsources.php` from `config-templates` into `config` directory.
 
-There are also some changes to the templates. If you have any
-custom templates, they should be updated to match the ones
-included. Of notable changes is that the `t(...)`-functtes, they
-should be updated to match the ones included. Of notable changes is
-that the `t(...)`-function has been simplified, and takes far fewer
-parameters. It is backwardscompatible, but will write a warning to
-the log until updated. The backwards compatibility will be removed
-in a future version.
+There are also some changes to the templates. If you have any custom templates, they should be updated to match the ones included. Of notable changes is that the `t(...)`-functtes, they should be updated to match the ones included. Of notable changes is that the `t(...)`-function has been simplified, and takes far fewer parameters. It is backwardscompatible, but will write a warning to the log until updated. The backwards compatibility will be removed in a future version.
 
 ### New features
 
@@ -110,23 +176,11 @@ in a future version.
 
 Released 2008-06-19. Revision 673.
 
-When upgrading to version 1.1 from version 1.0, you should update
-the configuration files. Many options have been added, and some
-have moved or removed. The new configuration check page:
-`/simplesaml/admin/config.php` may be useful for determining what
-should be updated. Also note that the `language.available` option
-in `config.php` should be updated to reflect the new languages
-which have been added.
+When upgrading to version 1.1 from version 1.0, you should update the configuration files. Many options have been added, and some have moved or removed. The new configuration check page: `/simplesaml/admin/config.php` may be useful for determining what should be updated. Also note that the `language.available` option in `config.php` should be updated to reflect the new languages which have been added.
 
-There are also several changes to the template files. If you have
-done any customizations to these, you should test them to make sure
-that they still work. Some changes, such as allowing the users to
-save the IdP choice they make in the discovery service, will not
-work without updating the templates.
+There are also several changes to the template files. If you have done any customizations to these, you should test them to make sure that they still work. Some changes, such as allowing the users to save the IdP choice they make in the discovery service, will not work without updating the templates.
 
-New localizations in version 1.1: Sami, Svenska (swedish), Suomeksi
-(finnish), Nederlands, Luxembourgish, Slovenian, Hrvatski
-(Croatian), Magyar (Hungarian).
+New localizations in version 1.1: Sami, Svenska (swedish), Suomeksi (finnish), Nederlands, Luxembourgish, Slovenian, Hrvatski (Croatian), Magyar (Hungarian).
 
 ### New features
 
