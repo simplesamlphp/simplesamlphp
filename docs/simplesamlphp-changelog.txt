@@ -1,0 +1,267 @@
+simpleSAMLphp changelog
+=======================
+
+Change log
+----------
+
+Here is changes between simpleSAMLphp versions. Look here if you
+are upgrading, to see if there are any changes to the config
+format.
+
+### Version 1.3
+
+Released 2008-11-04. Revision 973.
+
+Configuration file `config.php` should not include significant
+changes, except one language added.
+
+#### New features
+
+  * Documentation update
+  * Added new language. Now there are two different portugese
+    dialects.
+  * Consent "module" modified. Now added support for preselecting the
+    checkbox by a configuration parameter. Consent module supports
+    including attributs values (possible to configure).
+  * CSS and look changed. Removed transparency to fix problem for some
+    browsers.
+  * The login-admin authentication module does not ask for username any
+    more.
+  * Added support for persistent NameID Format. (Added by Hans
+    ZAndbelt)
+  * Added experimental SAML 2.0 SP AuthSource module.
+  * More readable XML output formatting. In example metadata.
+  * Better support for choosing whether or not to sign authnrequest.
+    Possible to specify both at SP hosted and IdP remote.
+  * Adding more example metadata in metadata-templates.
+  * Improved e-mails sent from SimpleSAMLphp. Now both plain text and
+    html.
+  * Configuration class may return information about what version.
+  * iFrame AJAX SLO improved. Now with non-javascript failback
+    handling.
+
+#### Bug fixes
+
+  * Fixed warning with XML validator.
+  * Improved loading of private/public keys in XML/Signer.
+  * Improvements to CAS module.
+  * Fixed memcache stats.
+
+
+### Version 1.2
+
+Released 2008-09-26. Revision 899.
+
+There are some changes in the configuration files from version 1.1
+to 1.2. `/simplesaml/admin/config.php` should be used to check what
+options have changed.
+
+When you upgrade from an previous version you should copy
+`authsources.php` from `config-templates` into `config` directory.
+
+There are also some changes to the templates. If you have any
+custom templates, they should be updated to match the ones
+included. Of notable changes is that the `t(...)`-functtes, they
+should be updated to match the ones included. Of notable changes is
+that the `t(...)`-function has been simplified, and takes far fewer
+parameters. It is backwardscompatible, but will write a warning to
+the log until updated. The backwards compatibility will be removed
+in a future version.
+
+#### New features
+
+  * Experimental support for modules. Currently modules can contain
+    custom authentication sources, authentication processing filters
+    and themes.
+  * An generic SQL autentication module added for those who store their
+    users in an SQL database.
+  * Limited support for validating against a CA root certificate. The
+    current implementation only supports cases where the certificate is
+    directly signed by the CA.
+  * Allow an IdP to have multiple valid certificate fingerprints, to
+    allow for easier updating of certificates.
+  * Shibboleth 1.3 authentication for Auth MemCookie.
+  * Support for link to privacy policy on consent-pages.
+  * Customizable initial focus on consent-page.
+  * Almost all pages should be translateable.
+  * Allow SAML 2.0 SP to handle error replies from IdP.
+  * PostgreSQL support for consent storage.
+  * Add support for encrypted private keys.
+  * Proof-of-concept MetaShare service, for easy publishing and sharing
+    of metadata.
+
+
+#### Bug fixes
+
+  * Fixed generated SAML 2.0 metadata to be correct.
+  * Fixed logout for Auth MemCookie.
+  * Sign SAML 2.0 authentication response on failure (such as
+    NoPassive).
+  * Fixes for IsPassive in the SAML 2.0 IdP.
+  * Fix default syslog configuration on Windows.
+  * Fix order of signing and encryption of SAML 2.0 responses
+  * Fix generated metadata for Shib 1.3
+  * Fix order of elements in encrypted assertions to be schema
+    compliant.
+  * Fix session index sent to SAML 2.0 SPs.
+  * Remember SAML 2.0 NameID sent to SPs, and include it in logout
+    requests.
+
+
+### Version 1.1
+
+Released 2008-06-19. Revision 673.
+
+When upgrading to version 1.1 from version 1.0, you should update
+the configuration files. Many options have been added, and some
+have moved or removed. The new configuration check page:
+`/simplesaml/admin/config.php` may be useful for determining what
+should be updated. Also note that the `language.available` option
+in `config.php` should be updated to reflect the new languages
+which have been added.
+
+There are also several changes to the template files. If you have
+done any customizations to these, you should test them to make sure
+that they still work. Some changes, such as allowing the users to
+save the IdP choice they make in the discovery service, will not
+work without updating the templates.
+
+New localizations in version 1.1: Sami, Svenska (swedish), Suomeksi
+(finnish), Nederlands, Luxembourgish, Slovenian, Hrvatski
+(Croatian), Magyar (Hungarian).
+
+#### New features
+
+  * Add support for saving the users choice of IdP in the IdP discovery
+    service.
+  * Add a config option for whether the Response element or the
+    Assertion element in the response should be signed.
+  * Make it easier to add attribute alteration functions.
+  * Added support for multiple languages in metadata name and
+    description (for IdP discovery service).
+  * Added configuration checker for checking if configuration files
+    should be updated.
+  * Add support for icons in IdP discovery service.
+  * Add support for external IdP discovery services.
+  * Support password encrypted private keys.
+  * Added PHP autoloading as the preferred way of loading the
+    simpleSAMLphp library.
+  * New error report script which will report errors to the
+    `technicalcontact_email` address.
+  * Support lookup of the DN of the user who is logging in by searching
+    for an attribute when using the LDAP authentication module.
+  * Add support for fetching name and description of entities from XML
+    metadata files.
+  * Support for setting custom AttributeNameFormats.
+  * Support for signing generated metadata.
+  * Support for signature validation of metadata.
+  * Added consent support for Shib 1.3 logging.
+  * Added errorlog logging handler for logging to the default Apache
+    error log.
+  * Added support for WS-Federation single signon.
+  * Allow `session_save_path` to be overridden by setting the
+    `session.phpsession.savepath` option in `config.php`.
+  * Add support for overriding autogenerated metadata values, such as
+    the `AssertionConsumerService` address.
+  * Added IsPassive support in the SAML 2.0 IdP.
+  * Add attribute filter for generating eduPersonTargetedID attribute.
+  * Add support for validation of sent and received messages and
+    metadata.
+  * Add support for dynamic metadata loading with cache.
+  * Add support for dynamic generation of entityid and metadata.
+  * Added wayf.dk login module.
+  * Add support for encrypting and decrypting assertions.
+  * CAS authentication module: Add support for serviceValidate.
+  * CAS authentication module: Add support for getting attributes from
+    response by specifying XPath mappings.
+  * Add support for specifying a certificate in the `saml20-idp-remote`
+    metadata instead of a fingerprint.
+  * Add an attribute alter function for dynamic group generation.
+  * Add support for attribute processing in SAML 2 SP.
+  * Added tlsclient authentication module.
+  * Allow the templates to override the header and footer of pages.
+  * Major improvements to the Feide authentication module.
+  * Add support for ForceAuthn in the SAML 2.0 IdP.
+  * Choose language based on the languages the user has selected in the
+    web browser.
+  * Added fallback to base language if translation isn't found.
+
+
+#### Bug fixes
+
+  * Modified IdP discovery service to support Shibboleth 2.0 SP.
+  * Fix setcookie warning for PHP version \< 5.2.
+  * Fix logout not being performed for Auth MemCache sometimes.
+  * Preserve case of attribute names during LDAP attribute retrival.
+  * Fix IdP-initiated logout.
+  * Ensure that changed sessions with changed SP associations are
+    written to memcache.
+  * Prevent infinite recursion during logging.
+  * Don't send the relaystate from the SP which initiated the logout to
+    other SPs during logout.
+  * Prevent consent module from revealing DB password when an error
+    occurs.
+  * Fix logout with memcache session handler.
+  * Allow new session to be created in login modules.
+  * Removed the strict parameter from base64\_decode for PHP 5.1
+    compatibility.
+
+
+### Version 1.0
+
+Released 2008-03-28. Revision 470.
+
+### Version 0.5
+
+Released 2007-10-15. Revision 28.
+
+### Warning
+
+Both `config.php` and metadata format are changed. Look at the
+templates to understand the new format.
+
+  * Documentation is updated!
+  * Metadata files made tidier. Unused entries removed. Look at the new
+    templates on how to change your existing metadata.
+  * Support for sending metadata by mail to Feide. Automatically
+    detecting whether you have configured Feide as the default IdP or
+    not.
+  * Improved SAML 2.0 Metadata generation
+  * Added support for Shibboleth 1.3 IdP functionality (beta, contact
+    me if any problems)
+  * Added RADIUS authentication backend
+  * Added support for HTTP-Redirect debugging when enable `debug=true`
+  * SAML 2.0 SP example now contains a logout page.
+  * Added new authentication backend with support for multiple LDAP
+    based on which organization the user selects.
+  * Added SAML 2.0 Discovery Service
+  * Initial 'proof of concept' implementation of "User consent on
+    attribute release"
+  * Fixed some minor bugs.
+
+
+### Version 0.4
+
+Released 2007-09-14. Revision X.
+
+  * Improved documentation
+  * Authentication plugin API. Only LDAP authenticaiton plugin is
+    included, but it is now easier to implement your own plugin.
+  * Added support for SAML 2.0 IdP to work with Google Apps for
+    Education. Tested.
+  * Initial implementation of SAML 2.0 Single Log Out functionality
+    both for SP and IdP. Seems to work, but not yet well-tested.
+  * Added support for bridging SAML 2.0 to SAML 2.0.
+  * Added some time skew offset to the NotBefore timestamp on the
+    assertion, to allow some time skew between the SP and IdP.
+  * Fixed Browser/POST page to automaticly submit, and have fall back
+    functionality for user agents with no javascript support.
+  * Fixed some bug with warning traversing Shibboleth 1.3 Assertions.
+  * Fixed tabindex on the login page of the LDAP authentication module
+    to allow you to tab from username, to password and then to submit.
+  * Fixed bug on autodiscovering hostname in multihost environments.
+  * Cleaned out some debug messages, and added a debug option in the
+    configuration file. This debug option let's you turn on the
+    possibility of showing all SAML messages to users in the web
+    browser, and manually submit them.
+  * Several minor bugfixes.
