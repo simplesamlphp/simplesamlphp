@@ -9,20 +9,13 @@ SimpleSAMLphp Identity Provider QuickStart
 
   * Version: `$Id$`
 
-This guide will describe how to configure simpleSAMLphp as an
-identity provider (IdP). You should previously have installed
-simpleSAMLphp as described in [the simpleSAMLphp installation
-instructions](http://rnd.feide.no/content/installing-simplesamlphp)
+This guide will describe how to configure simpleSAMLphp as an identity provider (IdP). You should previously have installed simpleSAMLphp as described in [the simpleSAMLphp installation instructions](http://rnd.feide.no/content/installing-simplesamlphp)
 
 
 Enabling the Identity Provider functionality
 --------------------------------------------
 
-The first that must be done is to enable the identity provider
-functionality. This is done by editing `config/config.php`. The options
-`enable.saml20-idp` and `enable.shib13-idp` controls whether SAML 2.0
-and Shibboleth 1.3 support is enabled. Enable one or both of those by
-assigning `true` to them:
+The first that must be done is to enable the identity provider functionality. This is done by editing `config/config.php`. The options `enable.saml20-idp` and `enable.shib13-idp` controls whether SAML 2.0 and Shibboleth 1.3 support is enabled. Enable one or both of those by assigning `true` to them:
 
     'enable.saml20-sp'  => false,
     'enable.saml20-idp' => true,
@@ -33,10 +26,7 @@ assigning `true` to them:
 Authentication module
 ---------------------
 
-The next step is to configure the way users authenticate on your IdP.
-Various modules in the `modules/` directory provides methods for
-authenticating your users. This is an overview of those that are included
-in the simpleSAMLphp distribution:
+The next step is to configure the way users authenticate on your IdP. Various modules in the `modules/` directory provides methods for authenticating your users. This is an overview of those that are included in the simpleSAMLphp distribution:
 
 `authfacebook:Facebook`
 : Authenticate with a Facebook ID.
@@ -53,10 +43,10 @@ in the simpleSAMLphp distribution:
 [`InfoCard:ICAuth`](http://rnd.feide.no/content/simplesamlphp-infocard-module-usage)
 : Authenticate with an InfoCard.
 
-[`ldap:LDAP`](ldap.txt)
+[`ldap:LDAP`](https://rnd.feide.no/content/configuring-simplesamlphp-ldap-authentication-source)
 : Authenticates an user to a LDAP server.
 
-[`ldap:LDAPMulti`](ldap.txt)
+[`ldap:LDAPMulti`](https://rnd.feide.no/content/configuring-simplesamlphp-ldap-authentication-source)
 : Authenticates an user to one of several LDAP server.
   The user can choose the LDAP server from a dropdown list.
 
@@ -77,22 +67,14 @@ simple to set up.
 Configuring the authentication module
 -------------------------------------
 
-The `exampleauth:UserPass` authentication module is part of the
-`exampleauth` module. This module isn't enabled by default, so you
-will have to enable it. This is done by creating a file named `enable`
-in `modules/exampleauth/`.
+The `exampleauth:UserPass` authentication module is part of the `exampleauth` module. This module isn't enabled by default, so you will have to enable it. This is done by creating a file named `enable` in `modules/exampleauth/`.
 
 On unix, this can be done by running (from the simpleSAMLphp
 installation directory):
 
     touch modules/exampleauth/enable
 
-The next step is to create an authentication source with this module.
-An authentication source is an authentication module with a specific
-configuration. Each authentication source has a name, which is used
-to refer to this specific configuration in the IdP configuration.
-Configuration for authentication sources can be found in
-`config/authsources.php`.
+The next step is to create an authentication source with this module. An authentication source is an authentication module with a specific configuration. Each authentication source has a name, which is used to refer to this specific configuration in the IdP configuration. Configuration for authentication sources can be found in `config/authsources.php`.
 
 In this setup, this file should contain a single entry:
 
@@ -112,11 +94,7 @@ In this setup, this file should contain a single entry:
 	);
 	?>
 
-This configuration creates two users - `student` and `employee`, with
-the passwords `studentpass` and `employeepass`. The username and
-password is stored in the array index (`student:studentpass` for
-the `student`-user. The attributes for each user is configured in the
-array referenced by the index. For the student user, these are:
+This configuration creates two users - `student` and `employee`, with the passwords `studentpass` and `employeepass`. The username and password is stored in the array index (`student:studentpass` for the `student`-user. The attributes for each user is configured in the array referenced by the index. For the student user, these are:
 
 	array(
 		'uid' => array('student'),
@@ -160,17 +138,13 @@ This is a minimal configuration of a SAML 2.0 IdP:
 	?>
 
 For more information about available options in the idp-hosted metadata
-files, see the [IdP hosted reference](simplesamlphp-reference-idp-hosted.txt).
+files, see the [IdP hosted reference](https://rnd.feide.no/content/idp-hosted-metadata-reference).
 
 
 Adding SPs to the IdP
 ---------------------
 
-The identity provider you are configuring needs to know about the
-service providers you are going to connect to it. This is configured
-by metadata stored in `metadata/saml20-sp-remote.php` and
-`metadata/shib13-sp-remote.php`. This is a minimal example of a
-`metadata/saml20-sp-remote.php` metadata file:
+The identity provider you are configuring needs to know about the service providers you are going to connect to it. This is configured by metadata stored in `metadata/saml20-sp-remote.php` and `metadata/shib13-sp-remote.php`. This is a minimal example of a `metadata/saml20-sp-remote.php` metadata file:
 
 	<?php
 	$metadata = array(
@@ -181,13 +155,9 @@ by metadata stored in `metadata/saml20-sp-remote.php` and
 	);
 	?>
 
-If you have the metadata of the remote SP as an XML file, you can use
-the built-in XML to simpleSAMLphp metadata converter, which by default
-is available as `/admin/metadata-converter.php` in your simpleSAMLphp
-installation.
+If you have the metadata of the remote SP as an XML file, you can use the built-in XML to simpleSAMLphp metadata converter, which by default is available as `/admin/metadata-converter.php` in your simpleSAMLphp installation.
 
-For more information about available options in the sp-remote metadata
-files, see the [SP remote reference](simplesamlphp-reference-sp-remote.txt).
+For more information about available options in the sp-remote metadata files, see the [SP remote reference](https://rnd.feide.no/content/sp-remote-metadata-reference).
 
 
 Creating a SSL self signed certificate
@@ -216,18 +186,13 @@ are not supported.
 
 ### Warning ###
 
-The certificate that is included in the simpleSAMLphp distribution must
-**NEVER** be used in production, as the private key is also included in
-the package and can be downloaded by anyone.
+The certificate that is included in the simpleSAMLphp distribution must **NEVER** be used in production, as the private key is also included in the package and can be downloaded by anyone.
 
 
 Adding this IdP to other SPs
 ----------------------------
 
-The method for adding this IdP to a SP varies between different types
-of SPs. In general, most SPs need some metadata from the IdP. This
-should be available from `/saml2/idp/metadata.php` and
-`/shib13/idp/metadata.php`.
+The method for adding this IdP to a SP varies between different types of SPs. In general, most SPs need some metadata from the IdP. This should be available from `/saml2/idp/metadata.php` and `/shib13/idp/metadata.php`.
 
 
 Testing the IdP
@@ -240,28 +205,17 @@ on the same machine. See the instructions for
 
 ### Note ###
 
-When running a simpleSAMLphp IdP and a simpleSAMLphp SP on the same
-computer, the SP and IdP **MUST** be configured with different hostnames.
-This prevents cookies from the SP to interfere with cookies
-from the IdP.
+When running a simpleSAMLphp IdP and a simpleSAMLphp SP on the same computer, the SP and IdP **MUST** be configured with different hostnames. This prevents cookies from the SP to interfere with cookies from the IdP.
 
 
 Support
 -------
 
-If you need help to make this work, or want to discuss
-simpleSAMLphp with other users of the software, you are fortunate:
-Around simpleSAMLphp there is a great Open source community, and
-you are welcome to join! The forums are open for you to ask
-questions, contribute answers other further questions, request
-improvements or contribute with code or plugins of your own.
+If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
 - [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
-
 - [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
-
 - [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
-
 - [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
 
 
