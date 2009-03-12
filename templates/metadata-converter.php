@@ -11,7 +11,7 @@ $this->includeAtTemplateBase('includes/header.php');
 
 <p><?php echo($this->t('{admin:metaconv_xmlmetadata}')); ?></p>
 <p>
-<textarea rows="20" cols="75" name="xmldata"><?php echo htmlspecialchars($this->data['xmldata']); ?></textarea>
+<textarea rows="20" cols="120" name="xmldata"><?php echo htmlspecialchars($this->data['xmldata']); ?></textarea>
 </p>
 <p>
 <input type="submit" value="<?php echo $this->t('metaconv_parse'); ?>" />
@@ -32,7 +32,7 @@ if($output !== NULL) {
 		}
 
 		echo('<h3>' . htmlspecialchars($type) . '</h3>' . "\n");
-		echo('<pre>' . htmlspecialchars($text) . '</pre>' . "\n");
+		echo('<pre class="metadatabox">' . htmlspecialchars($text) . '</pre>' . "\n");
 	}
 }
 

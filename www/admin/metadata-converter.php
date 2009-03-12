@@ -39,8 +39,13 @@ try {
 					continue;
 				}
 
-				$text .= '$metadata[\'' . addslashes($entityId) . '\'] = ' .
-					var_export($entityMetadata, TRUE) . ';' . "\n";
+				/* Remove the entityDescriptor element because it is unused, and only
+				 * makes the output harder to read.
+				 */
+				unset($entityMetadata['entityDescriptor']);
+
+				$text .= var_export($entityId, TRUE) . ' => ' .
+					var_export($entityMetadata, TRUE) . ",\n";
 			}
 
 			$entities = $text;
