@@ -251,7 +251,8 @@ class SimpleSAML_Configuration {
 
 
 	public function getVersion($verbose = FALSE) {
-		return 'trunk post-1.3';
+		#return 'trunk post-1.3';
+		return 'trunk 1.4';
 	}
 
 
