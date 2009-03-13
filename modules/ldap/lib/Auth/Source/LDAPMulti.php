@@ -37,9 +37,25 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 		/* Call the parent constructor first, as required by the interface. */
 		parent::__construct($info, $config);
 
+		$cfgHelper = SimpleSAML_Configuration::loadFromArray($config,
+			'Authentication source ' . var_export($this->authId, TRUE));
+
+
 		$this->orgs = array();
 		$this->ldapOrgs = array();
-		foreach ($config as $orgId => $orgCfg) {
+		foreach ($config as $name => $value) {
+
+			if ($name === 'username_organization_method') {
+				$usernameOrgMethod = $cfgHelper->getValueValidate(
+					'username_organization_method',
+					array('none', 'allow', 'force'));
+				$this->setUsernameOrgMethod($usernameOrgMethod);
+				continue;
+			}
+
+			$orgCfg = $cfgHelper->getArray($name);
+			$orgId = $name;
+
 			if (array_key_exists('description', $orgCfg)) {
 				$this->orgs[$orgId] = $orgCfg['description'];
 			} else {
@@ -65,6 +81,7 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 	protected function login($username, $password, $org) {
 		assert('is_string($username)');
 		assert('is_string($password)');
+		assert('is_string($org)');
 
 		if (!array_key_exists($org, $this->ldapOrgs)) {
 			/* The user has selected an organization which doesn't exist anymore. */

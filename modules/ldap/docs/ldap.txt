@@ -119,9 +119,27 @@ and add an entry which uses this module:
 		'ldap:LDAPMulti',
 
 		/*
-		 * A list of available LDAP servers. The index is only an identifier,
-		 * and can be any string. The value of each element is an array in the
-		 * same format as an LDAP authentication source.
+		 * The way the organization as part of the username should be handled.
+		 * Three possible values:
+		 * - 'none':   No handling of the organization. Allows '@' to be part
+		 *             of the username.
+		 * - 'allow':  Will allow users to type 'username@organization'.
+		 * - 'force':  Force users to type 'username@organization'. The dropdown
+		 *             list will be hidden.
+		 *
+		 * The default is 'none'.
+		 */
+		'username_organization_method' => 'none',
+
+		/*
+		 * A list of available LDAP servers.
+		 *
+		 * The index is an identifier for the organization/group. When
+		 * 'username_organization_method' is set to something other than 'none',
+		 * the organization-part of the username is matched against the index.
+		 *
+		 * The value of each element is an array in the same format as an LDAP
+		 * authentication source.
 		 */
 		'employees' => array(
 			/*
@@ -166,5 +184,4 @@ different languages:
 All options from the `ldap:LDAP` configuration can be used in each
 group, and you should refer to the documentation for that module for
 more information about available options.
-
 

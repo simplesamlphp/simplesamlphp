@@ -121,8 +121,27 @@ $config = array(
 		'ldap:LDAPMulti',
 
 		/*
-		 * A list of available LDAP servers / user groups. The value of each element is
-		 * an array in the same format as an LDAP authentication source.
+		 * The way the organization as part of the username should be handled.
+		 * Three possible values:
+		 * - 'none':   No handling of the organization. Allows '@' to be part
+		 *             of the username.
+		 * - 'allow':  Will allow users to type 'username@organization'.
+		 * - 'force':  Force users to type 'username@organization'. The dropdown
+		 *             list will be hidden.
+		 *
+		 * The default is 'none'.
+		 */
+		'username_organization_method' => 'none',
+
+		/*
+		 * A list of available LDAP servers.
+		 *
+		 * The index is an identifier for the organization/group. When
+		 * 'username_organization_method' is set to something other than 'none',
+		 * the organization-part of the username is matched against the index.
+		 *
+		 * The value of each element is an array in the same format as an LDAP
+		 * authentication source.
 		 */
 		'employees' => array(
 			/*
