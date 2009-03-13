@@ -57,8 +57,8 @@ Below is the documentation provided by Nuno Gonçalves <nuno@fccn.pt>
 
 
 
-# ENABLING MODULE CRON 
-
+Enabling the cron module
+------------------------
 
 
 	[root@simplesamlphp] cd /var/simplesamlphp/modules/cron 
