@@ -52,7 +52,161 @@ I reccomend to first test on the command line to parse the metadata URL.
 We use the `-s` option to send output to console (for testing purposes). If the output makes sense, continue. If you get a lot of error messages, send an e-mail to the simpleSAMLphp list and ask for advice.
 
 
+Below is the documentation provided by Nuno Gonçalves <nuno@fccn.pt>
 
+
+
+
+# ENABLING MODULE CRON 
+
+
+
+	[root@simplesamlphp] cd /var/simplesamlphp/modules/cron 
+	[root@simplesamlphp cron] touch enable
+	[root@simplesamlphp cron] cp config-templates/*.php  ../../config/
+
+
+At `/var/simplesamlphp/config`
+
+	[root@simplesamlphp-teste config]# vi module_cron.php
+
+edit:
+
+	$config = array (
+	       'key' => 'kb10fu2sao',
+	       'allowed_tags' => array('daily', 'hourly', 'frequent'),
+	       'debug_message' => TRUE,
+	       'sendemail' => TRUE,
+	
+	);
+
+Then: With your browser go to => https://simplesamlphp_machine/simplesaml/module.php/cron/croninfo.php
+
+And copy the cron's sugestion: 
+
+	-------------------------------------------------------------------------------------------------------------------
+	Cron is a way to run things regularly on unix systems.
+	
+	Here is a suggestion for a crontab file:
+	
+	# Run cron [daily]
+	02 0 * * * curl --silent "https://simplesamlphp-teste.fccn.pt/simplesaml/module.php/cron/cron.php?key=kb10fu2sao&tag=daily" > /dev/null 2>&1
+	# Run cron [hourly]
+	01 * * * * curl --silent "https://simplesamlphp-teste.fccn.pt/simplesaml/module.php/cron/cron.php?key=kb10fu2sao&tag=hourly" > /dev/null 2>&1
+	# Run cron [frequent]
+	XXXXXXXXXX curl --silent "https://simplesamlphp-teste.fccn.pt/simplesaml/module.php/cron/cron.php?key=kb10fu2sao&tag=frequent" > /dev/null 2>&1
+		Click here to run the cron jobs: 
+	
+	Run cron [daily]
+	Run cron [hourly]
+	Run cron [frequent] 
+	-------------------------------------------------------------------------------------------------------------------
+
+Add to CRON with
+
+	[root@simplesamlphp config]# crontab -e
+
+
+
+Errors
+------
+
+Problem with sanitycheck module
+
+When executing [Run cron [daily]] ==> an error shows up 
+
+Cause : module sanitycheck  ==> It is active by default (`/var/simplesamlphp/modules/sanitycheck/default-enable`) 
+
+  * When executing Cron daily It will search all active modules and it executes the hook_cron.php for each one of them in :
+		`/var/simplesamlphp/modules/<nome_modulo>/hooks/hooks_cron.php`
+
+Meanwhile it is waiting that each module conf file exists in the folder: `/var/simplesamlphp/config/config-<nome_modulo>.php`
+
+It should exist one for the sanitycheck module => `config-sanitycheck.php` but it wasn't there and therefore the error showed up.
+
+Giving an error at this modules it aborted execution for the next active modules.
+
+
+
+ENABLE MODULE METAREFRESH 
+-------------------------
+
+  * Enable cron module
+
+
+At `/var/simplesamlphp/modules/metarefresh`
+
+
+	[root@simplesamlphp metarefresh] touch enable
+	[root@simplesamlphp metarefresh] cp config-templates/*.php  ../../config/
+
+
+
+At `/var/simplesamlphp/config/`
+
+
+	[root@simplesamlphp config]# vi config-metarefresh.php
+
+edit:
+
+	$config = array( 'sets' => array(
+	
+	       				'federation_name' => array(
+							               'cron'          => array('hourly'),
+							               'sources'       => array(
+											          array(
+	                               								'src' => 'http://metadata_server/Federation_metadata_file.xml'
+										                       ),
+	               									),
+							               'maxCache'              => 60*60*24*4, // Maximum 4 days cache time.
+							               'maxDuration'   => 60*60*24*10, // Maximum 10 days duration on ValidUntil.
+							               'outputDir'     => 'metadata/federation_name/',
+							       ),
+	
+			));
+
+
+
+	TEMPLATE FILE : /var/simplesamlphp/modules/metarefresh/config-templates/config-metarefresh.php
+
+
+	$config = array(
+	
+	       'kalmar' => array(
+	               'cron'          => array('hourly'),
+	               'sources'       => array(
+	                       array(
+	                               'src' => 'https://aitta.funet.fi/haka/haka_test_metadata_signed.xml',
+	                               'certFingerprint' => '22:1D:EA:E3:2C:EB:A3:2D:78:72:B6:F4:E9:52:F6:23:31:5A:A5:3D',
+	                               'template' => array(
+	                                       'tags'  => array('kalmar'),
+	                               ),
+	                       ),
+	               ),
+	               'maxCache'              => 60*60*24*4, // Maximum 4 days cache time.
+	               'maxDuration'   => 60*60*24*10, // Maximum 10 days duration on ValidUntil.
+	               'outputDir'     => 'metadata/metadata-kalmar-consuming/',
+	       ),
+	
+	);
+
+
+At the Element sources the CERTFINGERPRINT => is for signed metadata ?
+What is this variable for ?  TEMPLATE TAGS
+
+
+  * Add write permissions to apache in 'outputDir'
+
+
+
+Then configure your simpleSAMLphp installation to use the generated metadata: 
+
+In config.php: 
+
+	'metadata.sources' => array(
+		array('type' => 'flatfile'),
+		array('type' => 'flatfile', 'directory' => 'metadata/federation'),
+	),
 
 
 
