@@ -22,15 +22,13 @@ if (!$config->getValue('enable.shib13-idp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
 try {
-	$idpentityid = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted', 'entityid');
-	$idpmetaindex = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted', 'metaindex');
 	$idpmetadata = $metadata->getMetaDataCurrent('shib13-idp-hosted');
 } catch (Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
 }
 
 /*
- * If the shire query parameter is set, we got an incoming Authentication Request 
+ * If the shire query parameter is set, we got an incoming Authentication Request
  * at this interface.
  *
  * In this case, what we should do is to process the request and set the neccessary information
@@ -43,7 +41,7 @@ if (isset($_GET['shire'])) {
 	try {
 		$authnrequest = new SimpleSAML_XML_Shib13_AuthnRequest($config, $metadata);
 		$authnrequest->parseGet($_GET);
-		
+
 		$requestid = $authnrequest->getRequestID();
 
 		/*
@@ -55,9 +53,12 @@ if (isset($_GET['shire'])) {
 			'shire'		=> $authnrequest->getShire(),
 			'RelayState' => $authnrequest->getRelayState(),
 		);
-			
-		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incoming Shib authnRequest requestid: '.$requestid);
-	
+
+		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incoming Shib authnRequest requestid: ' . $requestid);
+
+		if (empty($requestcache['Issuer']))
+			throw new Exception('Could not retrieve issuer of the AuthNRequest (ProviderID)');
+
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
 	}
@@ -67,21 +68,21 @@ if (isset($_GET['shire'])) {
  * If we did not get an incoming Authenticaiton Request, we need a RequestID parameter.
  *
  * The RequestID parameter is used to retrieve the information stored in the session object
- * related to the request that was received earlier. Usually the request is processed with 
+ * related to the request that was received earlier. Usually the request is processed with
  * code above, then the user is redirected to some login module, and when successfully authenticated
- * the user isredirected back to this endpoint, and then the user will need to have the RequestID 
+ * the user isredirected back to this endpoint, and then the user will need to have the RequestID
  * parmeter attached.
  */
 } elseif(isset($_GET['RequestID'])) {
-	
+
 	try {
 
 		$authId = $_GET['RequestID'];
 
 		$requestcache = $session->getAuthnRequest('shib13', $authId);
-		
+
 		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Got incoming RequestID: '. $authId);
-		
+
 		if (!$requestcache) {
 			throw new Exception('Could not retrieve cached RequestID = ' . $authId);
 		}
@@ -89,7 +90,7 @@ if (isset($_GET['shire'])) {
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CACHEAUTHNREQUEST', $exception);
 	}
-	
+
 } elseif(isset($_REQUEST[SimpleSAML_Auth_ProcessingChain::AUTHPARAM])) {
 
 	/* Resume from authentication processing chain. */
@@ -99,6 +100,13 @@ if (isset($_GET['shire'])) {
 
 } else {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SSOSERVICEPARAMS');
+}
+
+/* Make sure that the issuer is a valid SP. */
+try {
+	$spmetadata = $metadata->getMetaData($requestcache['Issuer'], 'shib13-sp-remote');
+} catch (Exception $exception) {
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
 }
 
 /* Check whether we should authenticate with an AuthSource. Any time the auth-option matches a
@@ -132,7 +140,7 @@ if (!$session->isAuthenticated($authority) ) {
 	if($authSource) {
 		/* Authenticate with an AuthSource. */
 		$hints = array(
-			'SPMetadata' => $metadata->getMetaData($requestcache['Issuer'], 'shib13-sp-remote'),
+			'SPMetadata' => $spmetadata,
 			'IdPMetadata' => $idpmetadata,
 		);
 
@@ -146,97 +154,64 @@ if (!$session->isAuthenticated($authority) ) {
 			'protocol' => 'shib13',
 		));
 	}
-	
+}
+
 /*
  * We got an request, and we hav a valid session. Then we send an AuthenticationResponse back to the
  * service.
  */
-} else {
+try {
+	$spmetadata = $metadata->getMetaData($requestcache['Issuer'], 'shib13-sp-remote');
 
-	try {
-	
-		$spentityid = $requestcache['Issuer'];
-		$spmetadata = $metadata->getMetaData($spentityid, 'shib13-sp-remote');
-		$sp_name = (isset($spmetadata['name']) ? $spmetadata['name'] : $spentityid);
-		
-		$attributes = $session->getAttributes();
-		
-		/**
-		 * Make a log entry in the statistics for this SSO login.
-
-			Need to be replaced by a authproc
-			
-			$tempattr = $afilter->getAttributes();
-			$realmattr = $config->getValue('statistics.realmattr', null);
-			$realmstr = 'NA';
-			if (!empty($realmattr)) {
-				if (array_key_exists($realmattr, $tempattr) && is_array($tempattr[$realmattr]) ) {
-					$realmstr = $tempattr[$realmattr][0];
-				} else {
-					SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
-				}
-			} 
-		*/
-		SimpleSAML_Logger::stats('shib13-idp-SSO ' . $spentityid . ' ' . $idpentityid . ' NA');
-				
-
-		/* Authentication processing operations. */
-		if (array_key_exists('AuthProcState', $requestcache)) {
-			/* Processed earlier, saved in requestcache. */
-			$authProcState = $requestcache['AuthProcState'];
-
-		} elseif (isset($authProcState)) {
-			/* Returned from redirect during processing. */
-			$requestcache['AuthProcState'] = $authProcState;
-
-		} else {
-			/* Not processed. */
-			$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata, 'idp');
-
-			$authProcState = array(
-				'core:shib13-idp:requestcache' => $requestcache,
-				'ReturnURL' => SimpleSAML_Utilities::selfURLNoQuery(),
-				'Attributes' => $attributes,
-				'Destination' => $spmetadata,
-				'Source' => $idpmetadata,
-				);
-
-			$pc->processState($authProcState);
-
-			$requestcache['AuthProcState'] = $authProcState;
-		}
-
-		$attributes = $authProcState['Attributes'];
-
-
-		
-		
-		// Generating a Shibboleth 1.3 Response.
-		$ar = new SimpleSAML_XML_Shib13_AuthnResponse($config, $metadata);
-		$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'],
-			$requestcache['RequestID'], null, $attributes);
-		
-		
-		#echo $authnResponseXML;
-		#print_r($authnResponseXML);
-		
-		//sendResponse($response, $idpentityid, $spentityid, $relayState = null) {
-		$httppost = new SimpleSAML_Bindings_Shib13_HTTPPost($config, $metadata);
-		
-		//echo 'Relaystate[' . $authnrequest->getRelayState() . ']';
-		
-		$issuer = $requestcache['Issuer'];
-		$shire = $requestcache['shire'];
-		if ($issuer == null || $issuer == '')
-			throw new Exception('Could not retrieve issuer of the AuthNRequest (ProviderID)');
-		
-		$httppost->sendResponse($authnResponseXML, $idpmetaindex, $issuer, $requestcache['RelayState'], $shire);
-			
-	} catch(Exception $exception) {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
+	/* Validate the Shire the response should be sent to. */
+	$shire = $requestcache['shire'];
+	if (!array_key_exists('AssertionConsumerService', $spmetadata)) {
+		throw new Exception('Could not find [AssertionConsumerService] in Shib 1.3 Service Provider remote metadata.');
 	}
-	
-}
+	$foundACS = FALSE;
+	foreach (SimpleSAML_Utilities::arrayize($spmetadata['AssertionConsumerService']) as $acs) {
+		if ($acs === $shire) {
+			SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Found AssertionConsumerService: '. $acs);
+			$foundACS = TRUE;
+			break;
+		}
+	}
+	if (!$foundACS) {
+		throw new Exception('Invalid AssertionConsumerService for SP ' .
+			var_export($spmetadata['entityid'], TRUE) . ': ' . var_export($shire, TRUE));
+	}
 
+	$attributes = $session->getAttributes();
+
+	SimpleSAML_Logger::stats('shib13-idp-SSO ' . $spmetadata['entityid'] . ' ' . $idpmetadata['entiryid'] . ' NA');
+
+	/* Authentication processing operations. */
+	if (!isset($authProcState)) {
+		/* Not processed. */
+		$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata, 'idp');
+
+		$authProcState = array(
+			'core:shib13-idp:requestcache' => $requestcache,
+			'ReturnURL' => SimpleSAML_Utilities::selfURLNoQuery(),
+			'Attributes' => $attributes,
+			'Destination' => $spmetadata,
+			'Source' => $idpmetadata,
+			);
+
+		$pc->processState($authProcState);
+	}
+
+	$attributes = $authProcState['Attributes'];
+
+	/* Generate and send response. */
+	$ar = new SimpleSAML_XML_Shib13_AuthnResponse($config, $metadata);
+	$authnResponseXML = $ar->generate($idpmetadata, $spmetadata, $shire, $attributes);
+
+	$httppost = new SimpleSAML_Bindings_Shib13_HTTPPost($config, $metadata);
+	$httppost->sendResponse($authnResponseXML, $idpmetadata, $spmetadata, $requestcache['RelayState'], $shire);
+
+} catch(Exception $exception) {
+	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
+}
 
 ?>

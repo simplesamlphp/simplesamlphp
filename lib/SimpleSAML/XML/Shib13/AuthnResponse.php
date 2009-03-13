@@ -235,22 +235,29 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		return $nameID;
 
 	}
-	
 
-	// Not updated for response. from request.
-	public function generate($idpentityid, $spentityid, $inresponseto, $nameid, $attributes) {
-	
-		//echo 'idp:' . $idpentityid . ' sp:' . $spentityid .' inresponseto:' .  $inresponseto . ' namid:' . $nameid;
-	
-		$idpmd 	= $this->metadata->getMetaData($idpentityid, 'shib13-idp-hosted');
-		$spmd 	= $this->metadata->getMetaData($spentityid, 'shib13-sp-remote');
 
-		if (array_key_exists('scopedattributes', $spmd)) {
-			$scopedAttributes = $spmd['scopedattributes'];
-			$scopedAttributesSource = 'the shib13-sp-remote sp \'' . $spentityid . '\'';
-		} elseif (array_key_exists('scopedattributes', $idpmd)) {
-			$scopedAttributes = $idpmd['scopedattributes'];
-			$scopedAttributesSource = 'the shib13-idp-hosted idp \'' . $idpentityid . '\'';
+	/**
+	 * Build a authentication response.
+	 *
+	 * @param array $idp  Metadata for the IdP the response is sent from.
+	 * @param array $sp  Metadata for the SP the response is sent to.
+	 * @param string $shire  The endpoint on the SP the response is sent to.
+	 * @param array|NULL $attributes  The attributes which should be included in the response.
+	 * @return string  The response.
+	 */
+	public function generate($idp, $sp, $shire, $attributes) {
+		assert('is_array($idp)');
+		assert('is_array($sp)');
+		assert('is_string($shire)');
+		assert('$attributes === NULL || is_array($attributes)');
+
+		if (array_key_exists('scopedattributes', $sp)) {
+			$scopedAttributes = $sp['scopedattributes'];
+			$scopedAttributesSource = 'the shib13-sp-remote sp \'' . $sp['entityid'] . '\'';
+		} elseif (array_key_exists('scopedattributes', $idp)) {
+			$scopedAttributes = $idp['scopedattributes'];
+			$scopedAttributesSource = 'the shib13-idp-hosted idp \'' . $idp['entityid'] . '\'';
 		} else {
 			$scopedAttributes = array();
 		}
@@ -265,47 +272,45 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			}
 		}
 
-		
 		$id = SimpleSAML_Utilities::generateID();
 		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
 		$assertionExpire = SimpleSAML_Utilities::generateTimestamp(time() + 60 * 5);# 5 minutes
-		
 		$assertionid = SimpleSAML_Utilities::generateID();
-		
-		
-		if (is_null($nameid)) {
-			$nameid = SimpleSAML_Utilities::generateID();
-		}
 
-		$issuer = $idpentityid;
+		$audience = isset($sp['audience']) ? $sp['audience'] : $sp['entityid'];
+		$base64 = isset($sp['base64attributes']) ? $sp['base64attributes'] : false;
 
-		if (!array_key_exists('AssertionConsumerService', $spmd)) throw new Exception('Could not find [AssertionConsumerService] in Shib 1.3 Service Provider remote metadata.');
-		
-		$shire = $spmd['AssertionConsumerService'];
-		$audience = isset($spmd['audience']) ? $spmd['audience'] : $spentityid;
-		$base64 = isset($spmd['base64attributes']) ? $spmd['base64attributes'] : false;
-		
-		$namequalifier = isset($spmd['NameQualifier']) ? $spmd['NameQualifier'] : $spmd['entityid'];
-		
+		$namequalifier = isset($sp['NameQualifier']) ? $sp['NameQualifier'] : $sp['entityid'];
+		$nameid = SimpleSAML_Utilities::generateID();
+		$subjectNode =
+			'<Subject>' .
+			'<NameIdentifier' .
+			' Format="urn:mace:shibboleth:1.0:nameIdentifier"' .
+			' NameQualifier="' . htmlspecialchars($namequalifier) . '"' .
+			'>' .
+			htmlspecialchars($nameid) .
+			'</NameIdentifier>' .
+			'<SubjectConfirmation>' .
+			'<ConfirmationMethod>' .
+			'urn:oasis:names:tc:SAML:1.0:cm:bearer' .
+			'</ConfirmationMethod>' .
+			'</SubjectConfirmation>' .
+			'</Subject>';
+
 		$encodedattributes = '';
-		
+
 		if (is_array($attributes)) {
 
-			$encodedattributes .= '<AttributeStatement>
-				<Subject>
-					<NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier" NameQualifier="' . htmlspecialchars($namequalifier) . '">' . htmlspecialchars($nameid) . '</NameIdentifier>
-					<SubjectConfirmation><ConfirmationMethod>urn:oasis:names:tc:SAML:1.0:cm:bearer</ConfirmationMethod></SubjectConfirmation>
-				</Subject>';
-				
+			$encodedattributes .= '<AttributeStatement>';
+			$encodedattributes .= $subjectNode;
+
 			foreach ($attributes AS $name => $value) {
 				$encodedattributes .= $this->enc_attribute($name, $value, $base64, $scopedAttributes);
 			}
-			
+
 			$encodedattributes .= '</AttributeStatement>';
 		}
-		
-		
-		
+
 		/*
 		 * The SAML 1.1 response message
 		 */
@@ -314,40 +319,29 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
     xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" IssueInstant="' . $issueInstant. '"
     MajorVersion="1" MinorVersion="1"
-    Recipient="' . htmlspecialchars($shire) . '" 
-    ' . (isset($idpmd['edugainInResponseTo']) ? 'InResponseTo="' . $idpmd['edugainInResponseTo'] . '"' : '') . ' 
-    ResponseID="' . $id . '">
-	<Status>
-        <StatusCode Value="samlp:Success">
-            <StatusCode xmlns:code="urn:geant:edugain:protocol" Value="code:Accepted" />
-        </StatusCode>
-    </Status>    
+    Recipient="' . htmlspecialchars($shire) . '" ResponseID="' . $id . '">
+    <Status>
+        <StatusCode Value="samlp:Success" />
+    </Status>
     <Assertion xmlns="urn:oasis:names:tc:SAML:1.0:assertion"
         AssertionID="' . $assertionid . '" IssueInstant="' . $issueInstant. '"
-        Issuer="' . htmlspecialchars($issuer) . '" MajorVersion="1" MinorVersion="1">
+        Issuer="' . htmlspecialchars($idp['entityid']) . '" MajorVersion="1" MinorVersion="1">
         <Conditions NotBefore="' . $issueInstant. '" NotOnOrAfter="'. $assertionExpire . '">
             <AudienceRestrictionCondition>
                 <Audience>' . htmlspecialchars($audience) . '</Audience>
             </AudienceRestrictionCondition>
         </Conditions>
         <AuthenticationStatement AuthenticationInstant="' . $issueInstant. '"
-            AuthenticationMethod="urn:oasis:names:tc:SAML:1.0:am:unspecified">
-            <Subject>
-                <NameIdentifier Format="urn:mace:shibboleth:1.0:nameIdentifier" NameQualifier="' . htmlspecialchars($namequalifier) . '">' . htmlspecialchars($nameid) . '</NameIdentifier>
-                <SubjectConfirmation>
-                    <ConfirmationMethod>urn:oasis:names:tc:SAML:1.0:cm:bearer</ConfirmationMethod>
-                </SubjectConfirmation>
-            </Subject>
+            AuthenticationMethod="urn:oasis:names:tc:SAML:1.0:am:unspecified">' .
+			$subjectNode . '
         </AuthenticationStatement>
         ' . $encodedattributes . '
     </Assertion>
 </Response>';
-		  
+
 		return $response;
 	}
 
-
-	
 
 	/**
 	 * Format a shib13 attribute.
@@ -389,10 +383,10 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			$attr .= '<AttributeValue' . $scopePart . '>' . htmlspecialchars($value) . '</AttributeValue>';
 		}
 		$attr .= '</Attribute>';
-		
+
 		return $attr;
-	}	
-	
+	}
+
 }
 
 ?>
