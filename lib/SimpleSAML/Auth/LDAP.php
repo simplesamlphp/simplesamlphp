@@ -169,7 +169,7 @@ class SimpleSAML_Auth_LDAP {
 	 * @return A LDAP search filter.
 	 */
 	private function generateSearchFilter($searchattr, $searchvalue) {
-		$searchattr = self::escape_filter_value($searchattr);
+		$searchattr = self::escape_filter_value($searchattr, FALSE);
 		$searchvalue = self::escape_filter_value($searchvalue);
 		
 		if (is_array($searchattr)) {
