@@ -23,6 +23,11 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 	 */
 	private $ldapOrgs;
 
+	/**
+	 * Whether we should include the organization as part of the username.
+	 */
+	private $includeOrgInUsername;
+
 
 	/**
 	 * Constructor for this authentication source.
@@ -50,6 +55,12 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 					'username_organization_method',
 					array('none', 'allow', 'force'));
 				$this->setUsernameOrgMethod($usernameOrgMethod);
+				continue;
+			}
+
+			if ($name === 'include_organization_in_username') {
+				$this->includeOrgInUsername = $cfgHelper->getBoolean(
+					'include_organization_in_username', FALSE);
 				continue;
 			}
 
@@ -89,6 +100,10 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 				': Organization seems to have disappeared while the user logged in.' .
 				' Organization was ' . var_export($org, TRUE));
 			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+		}
+
+		if ($this->includeOrgInUsername) {
+			$username = $username . '@' . $org;
 		}
 
 		return $this->ldapOrgs[$org]->login($username, $password);

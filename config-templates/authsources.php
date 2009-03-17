@@ -134,6 +134,16 @@ $config = array(
 		'username_organization_method' => 'none',
 
 		/*
+		 * Whether the organization should be included as part of the username
+		 * when authenticating. If this is set to TRUE, the username will be on
+		 * the form <username>@<organization identifier>. If this is FALSE, the
+		 * username will be used as the user enters it.
+		 *
+		 * The default is FALSE.
+		 */
+		'include_organization_in_username' => FALSE,
+
+		/*
 		 * A list of available LDAP servers.
 		 *
 		 * The index is an identifier for the organization/group. When
