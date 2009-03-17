@@ -10,6 +10,7 @@ $lang = array(
 		'es' => 'Accede utilizando YubiKey',
 		'sl' => 'Prijavi se z YubiKey',
 		'hr' => 'Autenticirajte se pomoću YubiKey-a',
+		'pl' => 'Login z YubiKey',
 	),
 	'intro' => array (
 		'no' => 'En tjeneste har bedt om at du autentiserer deg. For å autentisere seg, trykk på knappen på din YubiKey. Feltet under vil da bli automatisk utfylt med et sikkert engangspassord.',
@@ -20,6 +21,7 @@ $lang = array(
 		'es' => 'Un servicio ha solicitado que se autentique. Para autenticarse, haga clic en el botón de su YubiKey. El campo situado debajo debería rellenarse automática con una clave de un único uso (OTP) segura',
 		'sl' => 'Nekatere storitve zahtevajo avtentikacijo, ki jo izvedete s klikom na gumb YoubiKey. V polju spodaj, se bo nato samodejno prikazalo geslo za enkratno uporabo.',
 		'hr' => 'Aplikacija zahtjeva autentikaciju. Za autentikaciju kliknite gumb na vašem YubiKey-u. Nakon toga bi u polje ispod trebala biti automatski upisana jednokratna zaporka.',
+		'pl' => 'Jakiś serwis zażądał uwierzytelnienia. W celu uwierzytelnienia naciśnij przycisk na Twoim YubiKey. Następnie poniższe pole powinno zostać automatycznie wypełnione bezpiecznym jednorazowym hasłem.',
 	),
 
 );
