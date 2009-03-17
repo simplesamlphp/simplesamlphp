@@ -104,12 +104,15 @@ if($onLoad !== '') {
 			'sv' => 'Svenska',
 			'fi' => 'Suomeksi',
 			'es' => 'Español',
+			'eu' => 'Euskara',
 			'fr' => 'Français',
 			'nl' => 'Nederlands',
 			'lb' => 'Luxembourgish', 
+			'cs' => 'Czech',
 			'sl' => 'Slovenščina', // Slovensk
 			'hr' => 'Hrvatski', // Croatian
 			'hu' => 'Magyar', // Hungarian
+			'pl' => 'Język polski', // Polish
 			'pt' => 'Português', // Portuguese
 			'pt-BR' => 'Português brasileiro', // Portuguese
 		);
