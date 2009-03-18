@@ -293,6 +293,16 @@ if($needAuth && !$isPassive) {
 				'isPassive' => $isPassive,
 			);
 
+			/*
+			 * Check whether the user has been authenticated to this SP previously
+			 * during this session. If the SP is authenticated earlier, we include
+			 * the timestamp to the authentication processing filters.
+			 */
+			$previousSSOTime = $session->getData('saml2-idp-ssotime', $spentityid);
+			if ($previousSSOTime !== NULL) {
+				$authProcState['PreviousSSOTimestamp'] = $previousSSOTime;
+			}
+
 			try {
 				$pc->processState($authProcState);
 			} catch (SimpleSAML_Error_NoPassive $e) {
@@ -324,6 +334,14 @@ if($needAuth && !$isPassive) {
 
 		
 		
+
+		/*
+		 * Save the time we authenticated to this SP. This can be used later to detect an
+		 * SP which reauthenticates a user very often.
+		 */
+		$session->setData('saml2-idp-ssotime', $spentityid, time(),
+			SimpleSAML_Session::DATA_TIMEOUT_LOGOUT);
+
 		// Adding this service provider to the list of sessions.
 		// Right now the list is used for SAML 2.0 only.
 		$session->add_sp_session($spentityid);
