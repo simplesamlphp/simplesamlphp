@@ -280,15 +280,7 @@ if($needAuth && !$isPassive) {
 		$attributes = $session->getAttributes();
 		
 		/* Authentication processing operations. */
-		if (array_key_exists('AuthProcState', $requestcache)) {
-			/* Processed earlier, saved in requestcache. */
-			$authProcState = $requestcache['AuthProcState'];
-
-		} elseif (isset($authProcState)) {
-			/* Returned from redirect during processing. */
-			$requestcache['AuthProcState'] = $authProcState;
-
-		} else {
+		if (!isset($authProcState)) {
 			/* Not processed. */
 			$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata, 'idp');
 
