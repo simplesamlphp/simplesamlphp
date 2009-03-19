@@ -168,6 +168,7 @@ function mtype($set) {
 	}
 }
 
+$now = time();
 echo '<dl>';
 if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaentries']['hosted']) > 0)
 foreach ($this->data['metaentries']['hosted'] AS $hm) {
@@ -180,6 +181,8 @@ foreach ($this->data['metaentries']['hosted'] AS $hm) {
 		echo '<br /><strong>' . $this->getTranslation(SimpleSAML_Utilities::arrayize($hm['name'], 'en')) . '</strong>';
 	if (array_key_exists('descr', $hm))
 		echo '<br /><strong>' . $this->getTranslation(SimpleSAML_Utilities::arrayize($hm['descr'], 'en')) . '</strong>';
+
+	
 	
 	echo '<br  />[ <a href="' . $hm['metadata-url'] . '">' . $this->t('show_metadata') . '</a> ]';
 	
@@ -198,6 +201,14 @@ foreach($this->data['metaentries']['remote'] AS $setkey => $set) {
 			echo $this->getTranslation(SimpleSAML_Utilities::arrayize($entry['name'], 'en'));
 		} else {
 			echo $entry['entityid'];
+		}
+		
+		if (array_key_exists('expire', $entry)) {
+			if ($entry['expire'] < $now) {
+				echo('<span style="color: #500; font-weight: bold"> (expired ' . number_format(($now - $entry['expire'])/3600, 1) . ' hours ago)</span>');
+			} else {
+				echo(' (expires in ' . number_format(($entry['expire'] - $now)/3600, 1) . ' hours)');
+			}
 		}
 		echo '</li>';
 	}
