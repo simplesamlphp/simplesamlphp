@@ -39,7 +39,7 @@ class sspmod_smartnameattribute_Auth_Process_SmartName extends SimpleSAML_Auth_P
 			return $attributes['givenName'][0];
 		
 		if (isset($attributes['eduPersonPrincipalName'])) {
-			$localname = $this->getLocalUser($attributes['eduPersonPrincipalName']);
+			$localname = $this->getLocalUser($attributes['eduPersonPrincipalName'][0]);
 			if (isset($localname)) return $localname;
 		}		
 		
