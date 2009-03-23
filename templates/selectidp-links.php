@@ -30,7 +30,7 @@ foreach ($this->data['idplist'] AS $idpentry) {
 		<p><?php
 		echo $this->t('selectidp_full');
 		if($this->data['rememberenabled']) {
-			echo('<br /><input type="checkbox" name="remember" value="1" />' . $this->t('remember'));
+			echo('<br /><input type="checkbox" name="remember" value="1" title="'.$this->t('remember').'" />' . $this->t('remember'));
 		}
 		?></p>
 
@@ -40,13 +40,13 @@ foreach ($this->data['idplist'] AS $idpentry) {
 		if (!empty($this->data['preferredidp']) && array_key_exists($this->data['preferredidp'], $this->data['idplist'])) {
 			$idpentry = $this->data['idplist'][$this->data['preferredidp']];
 			echo '<div class="preferredidp">';
-			echo '	<img src="/' . $this->data['baseurlpath'] .'resources/icons/star.png" style="float: right" />';
+			echo '	<img src="/' . $this->data['baseurlpath'] .'resources/icons/star.png" style="float: right" alt="'.$this->t('icon_prefered_idp').'" />';
 
 			if(array_key_exists('icon', $idpentry) && $idpentry['icon'] !== NULL) {
 				$iconUrl = SimpleSAML_Utilities::resolveURL($idpentry['icon']);
 				echo '<img style="float: left; margin: 1em; padding: 3px; border: 1px solid #999" src="' . htmlspecialchars($iconUrl) . '" />';
 			}
-			echo '<h3 style="margin-top: 8px">' . htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
+			echo "\n" . '	<h3 style="margin-top: 8px">' . htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
 
 			if (!empty($idpentry['description'])) {
 				echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
@@ -65,7 +65,7 @@ foreach ($this->data['idplist'] AS $idpentry) {
 					$iconUrl = SimpleSAML_Utilities::resolveURL($idpentry['icon']);
 					echo '<img style="clear: both; float: left; margin: 1em; padding: 3px; border: 1px solid #999" src="' . htmlspecialchars($iconUrl) . '" />';
 				}
-				echo '	<h3 style="margin-top: 8px">' . htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
+				echo "\n" . '	<h3 style="margin-top: 8px">' . htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
 
 				if (!empty($idpentry['description'])) {
 
