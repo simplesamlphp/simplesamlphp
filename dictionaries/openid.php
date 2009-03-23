@@ -90,6 +90,7 @@ $lang = array(
 		'pt-BR' => 'Entar',
 	),
 	'howtouse_cont' => array (
+		'no' => 'Konfigurer så denne tjeneren slik at du kan logge inn med denne URLen. Så snart du har konfigurert tjeneren, og markert din identitets URL, så kan du verifisere at det fungerer ved å bruke %SITE% %TOOL%:',
 		'nn' => 'Etterpå konfigurerer du denne tenaren slik at du kan logga inn til URLen.  Når du har konfiguerert tenaren og lagt inn identitetsURLen, kan du sjekka om alt fungerer ved å bruka',
 		'da' => 'Konfigurer denne server så du kan logge ind med URLen. Når du har konfigureret serveren og gemt din identitetsURL, kan du se at det virker ved at bruge %SITE% %TOOL%:',
 		'en' => 'Then configure this server so that you can log in with that URL. Once you have configured the server, and marked up your identity URL, you can verify that it is working by using the %SITE% %TOOL%:',
@@ -297,6 +298,7 @@ $lang = array(
 		'pt-BR' => 'Esquecer Tudo',
 	),
 	'trustlist_nosites' => array (
+		'no' => 'Ingen sites er husket for denne sesjonen. Når du autentiserer deg hos en site, kan du velge å legge den til denne listen ved å velge <q>Husk dette valget</q>.',
 		'nn' => 'Ingen tenester er lagra for denne sesjonen.  Når du logger inn på ei teneste, kan du velja å leggja ho inn på lista over tiltrudde partnarar ved å velja <q>Hugs denne avgjerda</q>.',
 		'da' => 'Der er ikke gemt  nogle sites i denne session. Når authenticater mod et site kan du vælge at gemme sitet i denne liste ved at vælge <q>Gem mit valg</q>',
 		'en' => 'No sites are remembered for this session. When you authenticate with a site, you can choose to add it to this list by choosing <q>Remember this decision</q>.',

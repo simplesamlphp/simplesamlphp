@@ -293,6 +293,14 @@ $lang = array(
 		'hr' => 'Idi na stranicu s informacijama o servisu',
 		'pl' => 'Przejdź do strony informacyjnej dla tego serwisu',
 	),
+	'table_caption' => array (
+		'no' => 'Bruker innformasjon',
+		'en' => 'User information',
+	),
+	'table_summary' => array (
+		'no' => 'Her listes den innformasjonen om deg som blir send til den tjenesten du er i ferd med å logge på',
+		'en' => 'List the information about you that is about to be transmittet to the service you are going to login to',
+	),
 
 );
 

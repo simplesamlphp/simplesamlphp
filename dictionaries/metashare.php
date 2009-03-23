@@ -47,6 +47,7 @@ $lang = array(
 		'pt-BR' => 'Adicionar entidade',
 	),
 	'add_desc' => array (
+		'no' => 'Legg til nytt eller oppdatert metadata ved å spesifisere URL-en til metadata. Denne URL-en må også matche entity ID-en til entiteten som metadata-dokumentet beskriver.',
 		'nn' => 'Legg til nye eller oppdaterte metadata ved å spesifisera URLen der du finn metadata.  Denne URLen må samsvara med entityID for entiteten i dei aktuelle metadata.',
 		'da' => 'Tilføj nyt eller opdaterert metadat ved at skrive den url der fører til metadata. Urlen skal matche entitets identificatoren for den entitet der er beskrevet i metadata',
 		'en' => 'Add new or updated metadata by specifying the URL of the metadata. This URL must match the entity identifier of the entity described in the metadata.',
@@ -90,6 +91,7 @@ $lang = array(
 		'pt-BR' => 'Adicionar',
 	),
 	'downloadall_desc' => array (
+		'no' => 'Det er mulig å laste ned alle metadata i en samlet XML fil. Denne filen inneholder en EntitiesDescriptor med alle entitetene som er lagt til denne MetaShare tjenesten. EntitiesDescriptor elementet kan signeres av MetaShare tjenesten hvis det er påslått i konfigurasjonen.',
 		'nn' => 'Du kan lasta ned alle metadata som ei felles XML-fil.  Denne fila inneheld ein enkelt EntitiesDescriptor som inneheld alle entitetane som er lagt til i MetaShare.  EntitiesDescriptor kan vera signert av denne MetaShare dersom dette er konfigurert inn.',
 		'da' => 'Det er muligt at downloade metadata som en enkelt XML-fil. Denne fil indeholder en enkelt Entitetsbeskrivelse som indeholder alle de entiteter som er tilføjet til det fælles metadatarepository. Entitetsbeskrivelsen kan være signeret af metadatrepositoryet, hvis det er tilføjet i konfigurationen ',
 		'en' => 'It is possible to download all the metadata as a single XML file. This file will contain a single EntitiesDescriptor which contains all the entities which are atted to this MetaShare. The EntitiesDescriptor may be signed by this MetaShare if that is enabled in the configuration.',
@@ -134,6 +136,7 @@ $lang = array(
 		'pt-BR' => 'Entidades',
 	),
 	'entities_desc' => array (
+		'no' => 'Dette er en liste over alle entiteter som nå er lagret i MetaShare tjenesten. Klikk på en link for å laste ned metadata for en gitt entitet.',
 		'nn' => 'Dette er ei liste over alle entitetar som lagra i MetaShare no.  Klikk på ein peikar for å lasta ned metadata for den aktuelle entiteten.',
 		'da' => 'Dette er en liste bestående af alle de entiteter der for indeværende er gemt i det fælles repository.',
 		'en' => 'This is a list of all the entities which are currently stored in this MetaShare. Click on a link to download the metadata of the given entity.',
@@ -221,6 +224,7 @@ $lang = array(
 		'pt-BR' => 'Não foi passado o parâmetro URL.',
 	),
 	'addpage_invalidurl' => array (
+		'no' => 'Ugyldig URL/entity ID for metadata. Entity ID-en må være en gyldig http: eller https: URL. URL-en du oppgav var "%URL%".',
 		'nn' => 'Ugyldig URL eller EntityID for metadata.  EntityID må vera ein gyldig http: eller https: URL.  URLen du oppgav var "%URL%".',
 		'da' => 'Ugyldig URL/entitet ID i metadata. Entiteten bør være på formen http: eller https:. URL\'en du gav var "%URL%".',
 		'en' => 'Invalid URL/entity id to metadata. The entity id should be a valid http: or https: URL. The URL you gave was "%URL%".',
@@ -234,6 +238,7 @@ $lang = array(
 		'pt-BR' => 'URL/Identificação da Entidade inválida para a metadata. A identificação da entidade deve ser um endereço http: ou https: válido. A URL passada foi "%URL%".',
 	),
 	'addpage_nodownload' => array (
+		'no' => 'Er ikke i stand til å laste ned metadata fra "%URL%".',
 		'nn' => 'Kunne ikkje lasta ned metadata frå "%URL%".',
 		'da' => 'Kunne ikke hente metadata fra "%URL%"',
 		'en' => 'Unable to download metadata from "%URL%".',
@@ -248,6 +253,7 @@ $lang = array(
 		'pt-BR' => 'Não foi possível baixar a metadata de "%URL%".',
 	),
 	'addpage_invalidxml' => array (
+		'no' => 'Feilformattert XML i metadata. URL-en som metadata befant seg på var "%URL%".',
 		'nn' => 'Feil format på XML i metadata.  URLen du oppgav var "%URL%".',
 		'da' => 'Ugyldig XML i metadata. URL\'en du gav var "%URL%".',
 		'en' => 'Malformed XML in metadata. The URL you gave was "%URL%".',

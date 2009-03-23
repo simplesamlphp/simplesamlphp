@@ -73,6 +73,10 @@ $lang = array(
 		'pt' => 'Lembrar esta escolha',
 		'pt-BR' => 'Lembrar minha escolha',
 	),
+	'icon_prefered_idp' => array (
+		'no' => '[Foretrukket valg]',
+		'en' => '[Preferred choice]',
+	),
 
 );
 

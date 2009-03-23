@@ -32,6 +32,7 @@ $lang = array(
 		'pt-BR' => 'Selecione o arquivo de configuração para verificar',
 	),
 	'cfg_check_notices' => array (
+		'no' => 'Notiser',
 		'nn' => 'Legg merke til',
 		'da' => 'Beskeder',
 		'en' => 'Notices',
