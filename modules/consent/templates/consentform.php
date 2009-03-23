@@ -54,10 +54,9 @@ $this->data['header'] = $this->t('{consent:consent:consent_header}');
 $this->data['head']  = '<link rel="stylesheet" type="text/css" href="/' . $this->data['baseurlpath'] . 'module.php/consent/style.css" />' . "\n";
 
 
-
 $this->includeAtTemplateBase('includes/header.php');
-
 ?>
+
 
 <p>
 <?php
@@ -72,12 +71,6 @@ $this->includeAtTemplateBase('includes/header.php');
 ?>
 </p>
 
-<p>
-<?php
-  
-?>
-</p>
-
 
 <form style="display: inline; margin: 0px; padding: 0px" action="<?php echo htmlspecialchars($this->data['yesTarget']); ?>">
 <p style="margin: 1em">
@@ -87,29 +80,26 @@ $this->includeAtTemplateBase('includes/header.php');
 		$checked = ($this->data['checked'] ? 'checked="checked"' : '');
 		echo('<input type="checkbox" name="saveconsent" ' . $checked . ' value="1" /> ' . $this->t('{consent:consent:remember}') . '');
 	}
-?>
-
-
-<?php
+	
 	// Embed hidden fields...
 	foreach ($this->data['yesData'] as $name => $value) {
 		echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
 	}
 ?>
+
 </p>
 		<input type="submit" name="yes" id="yesbutton" value="<?php echo htmlspecialchars($this->t('{consent:consent:yes}')) ?>" />
-
-
-
 
 </form>
 
 <form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noTarget']); ?>" method="get">
+
 <?php
 foreach ($this->data['noData'] as $name => $value) {
         echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
 }
 ?>
+
 	<input type="submit" style="display: inline" name="no" id="nobutton" value="<?php echo htmlspecialchars($this->t('{consent:consent:no}')) ?>" />
 
 </form>
@@ -117,7 +107,7 @@ foreach ($this->data['noData'] as $name => $value) {
 <?php
 if ($this->data['sppp'] !== FALSE) {
 	echo "<p>" . htmlspecialchars($this->t('{consent:consent:consent_privacypolicy}')) . " ";
-	echo "<a target='_new_window' href='" . htmlspecialchars($this->data['sppp']) . "'>" . htmlspecialchars($dstName) . "</a>";
+	echo "<a target='_blank' href='" . htmlspecialchars($this->data['sppp']) . "'>" . htmlspecialchars($dstName) . "</a>";
 	echo "</p>";
 }
 ?>
@@ -127,8 +117,6 @@ if ($this->data['sppp'] !== FALSE) {
 foreach ($this->data['noData'] as $name => $value) {
 	echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
 }
-?>
-<?php
 
 	function present_list($attr) {
 		if (is_array($attr) && count($attr) > 1) {
@@ -159,8 +147,15 @@ foreach ($this->data['noData'] as $name => $value) {
 	function present_attributes($t, $attributes, $nameParent) {
 		$alternate = array('odd', 'even'); $i = 0;
 		
-		$parentStr = (strlen($nameParent) > 0)? strtolower($nameParent) . '_': '';
-		$str = (strlen($nameParent) > 0)? '<table class="attributes">': '<table id="table_with_attributes"  class="attributes">';
+		if(strlen($nameParent) > 0){
+			$parentStr = strtolower($nameParent) . '_';
+			$str = '<table class="attributes">';
+		}else{
+			$parentStr = '';
+			$summary = 'summary="' . $t->t('{consent:consent:table_summary}') . '"';
+			$str = '<table id="table_with_attributes"  class="attributes" '. $summary .'>';
+			$str .= '<caption>' . $t->t('{consent:consent:table_caption}') . '</caption>';
+		}
 
 		foreach ($attributes as $name => $value) {
 			$nameraw = $name;
@@ -203,7 +198,6 @@ foreach ($this->data['noData'] as $name => $value) {
 
 ?>
 
-
 <!-- Show attributes that are sent to the service in a fieldset. 
 	This fieldset is not expanded by default, but can be shown by clicking on the legend.
 	-->
@@ -219,24 +213,12 @@ foreach ($this->data['noData'] as $name => $value) {
 	</div>
 	-->
 	<?php
-	
 		echo(present_attributes($this, $attributes, ''));
-
-	
 	?>
-	
 	</fieldset>
 <!-- end attribute view -->
-
-
-
-
-
-
 </form>
 
-
 <?php
-
 $this->includeAtTemplateBase('includes/footer.php');
 ?>
