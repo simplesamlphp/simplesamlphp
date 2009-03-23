@@ -5,10 +5,46 @@ The consent module is implemented as an Authentication Processing Filter. That m
 
 It is recommended to run the consent module at the IdP, and configure the filter to run after all attribute mangling filters is completed, to show the user the exact same attributes that are sent to the SP.
 
+  * [Read more about processing filters in simpleSAMLphp](/content/authentication-processing-filters-simplesamlphp)
+
+
+Configure the user ID
+---------------------
+
+In order to generate the privacy preserving hashes in the consent module, you need to name one attribute that always is available and that is unique to all users. An example of such an attribute is eduPersonPrincipalName.
+
+In your `saml20-idp-hosted.php` add the name of the user ID attribute:
+
+	'userid.attribute' => 'uid', 
+
+If the attribute defined above is not available for a user, an error message will be shown, and the user will not be allowed through the filter. So make sure that you select an attribute that is available to all users.
+
+
+The first step: consent module with cookie as storage
+-----------------------------------------------------
+
+We reccomend to try to enable the consent module with cookie as a storage, before setting up a database.
+
+To enable the consent module, touch an `enable` file, in the consent module:
+
+	touch modules/cosent/enable
+
+Then edit `config.php` and look for the `authproc.idp` configuration. Uncomment the followig filter configuration:
+
+	90 => array(
+		'class' 	=> 'consent:Consent', 
+		'store' 	=> 'consent:Cookie', 
+		'focus' 	=> 'yes', 
+		'checked' 	=> TRUE
+	),
+
+Then login through an SP and make sure that you are asked for consent.
+
+
 Setting up a database
 ---------------------
 
-Here is the initialization SQL script for PostgreSQL
+Here is the initialization SQL script for PostgreSQL:
 
 	CREATE TABLE consent (
 		consent_date TIMESTAMP NOT NULL,
