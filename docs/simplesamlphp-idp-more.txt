@@ -1,5 +1,5 @@
 SimpleSAMLphp Identity Provider Advanced Topics
-===========================================
+===============================================
 
 <!-- 
 	This file is written in Markdown syntax. 
@@ -25,4 +25,18 @@ Attribute Release Consent
 The attribute release consent is documented in a separate document.
 
   * [Documentation on the consent module](https://rnd.feide.no/content/consent-module)
+
+
+IdP-first flow
+--------------
+
+If you do not want to start the SSO flow at the SP, you may use the IdP-first setup. To do this, redirect the user to the SSOService endpoint on the IdP with one parameter `spentityid` that match the SP EntityId that the user should be logged into.
+
+Here is an example of such an url:
+
+	https://sp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=dev.andreas.feide.no
+
+When the IdP-first flow is used an extra parameter is needed in the `saml20-sp-hosted` metadata. This is the `RelayState` parameter that tells the SP which URL to redirect the user to after the user is successfully authenticated. This typically is the frontpage of your application. An example of this can be:
+
+	'RelayState' => '/',
 
