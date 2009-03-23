@@ -27,7 +27,7 @@ We reccomend to try to enable the consent module with cookie as a storage, befor
 
 To enable the consent module, touch an `enable` file, in the consent module:
 
-	touch modules/cosent/enable
+	touch modules/consent/enable
 
 Then edit `config.php` and look for the `authproc.idp` configuration. Uncomment the followig filter configuration:
 
