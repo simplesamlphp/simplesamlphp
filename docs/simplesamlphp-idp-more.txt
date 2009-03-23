@@ -1,0 +1,28 @@
+SimpleSAMLphp Identity Provider Advanced Topics
+===========================================
+
+<!-- 
+	This file is written in Markdown syntax. 
+	For more information about how to use the Markdown syntax, read here:
+	http://daringfireball.net/projects/markdown/syntax
+-->
+
+  * Version: `$Id$`
+
+
+AJAX iFrame Single Log-Out
+--------------------------
+
+If you have read about the AJAX iFrame Single Log-Out approach at Andreas' blog and want to enable it, edit your saml20-idp-hosted.php metadata, and add this configuration line for the IdP:
+
+	'logouttype' => 'iframe',
+
+Notice that when setting this option after already having shared metadata with Service Providers, you need to send new metadata. The automatically genereated metadata will change.
+
+Attribute Release Consent
+-------------------------
+
+The attribute release consent is documented in a separate document.
+
+  * [Documentation on the consent module](https://rnd.feide.no/content/consent-module)
+
