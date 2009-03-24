@@ -76,6 +76,7 @@ $lang = array(
 	'icon_prefered_idp' => array (
 		'no' => '[Foretrukket valg]',
 		'en' => '[Preferred choice]',
+		'sv' => 'Prioriterat val',
 	),
 
 );

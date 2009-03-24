@@ -296,10 +296,12 @@ $lang = array(
 	'table_caption' => array (
 		'no' => 'Bruker innformasjon',
 		'en' => 'User information',
+		'sv' => 'Användarinformation',
 	),
 	'table_summary' => array (
 		'no' => 'Her listes den innformasjonen om deg som blir send til den tjenesten du er i ferd med å logge på',
 		'en' => 'List the information about you that is about to be transmittet to the service you are going to login to',
+		'sv' => 'Visa den nformation om din användare som kommer att skickas till tjänsten som du är på väg att logga in i',
 	),
 
 );
