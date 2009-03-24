@@ -474,6 +474,79 @@ class SimpleSAML_Configuration {
 
 
 	/**
+	 * This function retrieves an integer configuration option.
+	 *
+	 * An exception will be thrown if this option isn't an integer, or if this option isn't found, and no
+	 * default value is given.
+	 *
+	 * @param $name  The name of the option.
+	 * @param $default  A default value which will be returned if the option isn't found. The option will be
+	 *                  required if this parameter isn't given. The default value can be any value, including
+	 *                  NULL.
+	 * @return  The option with the given name, or $default if the option isn't found and $default is specified.
+	 */
+	public function getInteger($name, $default = self::REQUIRED_OPTION) {
+		assert('is_string($name)');
+
+		$ret = $this->getValue($name, $default);
+
+		if($ret === $default) {
+			/* The option wasn't found, or it matches the default value. In any case, return
+			 * this value.
+			 */
+			return $ret;
+		}
+
+		if(!is_int($ret)) {
+			throw new Exception($this->location . ': The option ' . var_export($name, TRUE) .
+				' is not a valid string value.');
+		}
+
+		return $ret;
+	}
+
+
+	/**
+	 * This function retrieves an integer configuration option where the value must be in the specified range.
+	 *
+	 * An exception will be thrown if:
+	 * - the option isn't an integer
+	 * - the option isn't found, and no default value is given
+	 * - the value is outside of the allowed range
+	 *
+	 * @param $name  The name of the option.
+	 * @param $minimum  The smallest value which is allowed.
+	 * @param $maximum  The largest value which is allowed.
+	 * @param $default  A default value which will be returned if the option isn't found. The option will be
+	 *                  required if this parameter isn't given. The default value can be any value, including
+	 *                  NULL.
+	 * @return  The option with the given name, or $default if the option isn't found and $default is specified.
+	 */
+	public function getIntegerRange($name, $minimum, $maximum, $default = self::REQUIRED_OPTION) {
+		assert('is_string($name)');
+		assert('is_int($minimum)');
+		assert('is_int($maximum)');
+
+		$ret = $this->getInteger($name, $default);
+
+		if($ret === $default) {
+			/* The option wasn't found, or it matches the default value. In any case, return
+			 * this value.
+			 */
+			return $ret;
+		}
+
+		if ($ret < $minimum || $ret > $maximum) {
+			throw new Exception($this->location . ': Value of option ' . var_export($name, TRUE) .
+				' is out of range. Value is ' . $ret . ', allowed range is ['
+				. $minimum . ' - ' . $maximum . ']');
+		}
+
+		return $ret;
+	}
+
+
+	/**
 	 * Retrieve a configuration option with one of the given values.
 	 *
 	 * This will check that the configuration option matches one of the given values. The match will use
