@@ -325,24 +325,33 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * This function dumps a backtrace to the error log.
+	 * Format a backtrace from an exception.
 	 *
-	 * The log is in the following form:
-	 *  BT: (0) <filename>:<line> (<current function>)
-	 *  BT: (1) <filename>:<line> (<previous fucntion>)
+	 * This function formats a backtrace from an exception in a simple format
+	 * which doesn't include the variables passed to functions.
+	 *
+	 * The bactrace has the following format:
+	 *  0: <filename>:<line> (<current function>)
+	 *  1: <filename>:<line> (<previous fucntion>)
 	 *  ...
-	 *  BT: (N) <filename>:<line> (N/A)
+	 *  N: <filename>:<line> (N/A)
 	 *
-	 * The log starts at the function which calls logBacktrace().
+	 * @param Exception $e  The exception we should format the backtrace for.
+	 * @param int $startDepth  The first frame we should include in the backtrace.
+	 * @return string  The formatted backtrace.
 	 */
-	public static function logBacktrace() {
+	public static function formatBacktrace(Exception $e, $startDepth = 0) {
+		assert('$e instanceof Exception');
+		assert('is_int($startDepth)');
 
-		$e = new Exception();
+		$trace = '';
 
-		$bt = self::buildBackTrace($e, 1);
+		$bt = self::buildBacktrace($e, $startDepth);
 		foreach($bt as $depth => $t) {
-			error_log('BT: (' . $depth . ') ' . $t);
+			$trace .= $depth . ': ' . $t . "\n";
 		}
+
+		return $trace;
 	}
 
 
@@ -506,7 +515,7 @@ class SimpleSAML_Utilities {
 
 		// Get the exception message if there is any exception provided.
 		$emsg   = (empty($e) ? 'No exception available' : $e->getMessage());
-		$etrace = (empty($e) ? 'No exception available' : $e->getTraceAsString()); 
+		$etrace = (empty($e) ? 'No exception available' : self::formatBacktrace($e));
 
 		if(!empty($errorcode) && count($parameters) > 0) {
 			$reptext = array();
