@@ -7,7 +7,7 @@ fieldset legend {
 }
 
 h3#attributeheader {
-	background: #eee;
+	margin: 1.5em 0em 0.5em 0em;
 }
 
 table#table_with_attributes .attrname {
