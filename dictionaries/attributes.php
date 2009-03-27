@@ -1121,6 +1121,7 @@ $lang = array(
 		'nn' => 'Epost til organisasjonen',
 		'en' => 'Organization\'s mail',
 		'sv' => 'Organisationens e-postadress',
+		'sl' => 'E-poštni naslov organizacije',
 		'pl' => 'Adres email organizacji',
 	),
 	'attribute_edupersonorgdn_eduorgidentityauthnpolicyuri' => array (
@@ -1140,6 +1141,7 @@ $lang = array(
 		'nn' => 'Postboks for organisasjonen',
 		'en' => 'Organization\'s postal office box',
 		'sv' => 'Organisationens boxadress',
+		'sl' => 'Poštni predal organizacije',
 	),
 	'attribute_edupersonorgunitdn_labeleduri' => array (
 		'no' => 'URI for organisasjonsenhet med valgfri tilleggskommentar',
@@ -1152,6 +1154,7 @@ $lang = array(
 		'nn' => 'Postboks for organisasjonseininga',
 		'en' => 'Organizational Unit\'s postal office box',
 		'sv' => 'Organisationsenhetens boxadress',
+		'sl' => 'Poštni predal oddelka',
 	),
 	'attribute_schachomeorganization' => array (
 		'no' => 'Unik ID for organisasjon',

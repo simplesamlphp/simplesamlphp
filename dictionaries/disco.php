@@ -77,6 +77,7 @@ $lang = array(
 		'no' => '[Foretrukket valg]',
 		'en' => '[Preferred choice]',
 		'sv' => 'Prioriterat val',
+		'sl' => 'Preferirana izbira',
 	),
 
 );

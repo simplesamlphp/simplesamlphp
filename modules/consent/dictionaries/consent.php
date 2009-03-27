@@ -121,7 +121,7 @@ $lang = array(
 		'no' => 'Opplysninger som vil bli sendt til SPNAME',
 		'nn' => 'Opplysningar som blir sende til SPNAME',
 		'da' => 'Attributter som bliver sendt til tjenesten',
-		'en' => 'Information that will be sent to service',
+		'en' => 'Information that will be sent to SPNAME',
 		'sv' => 'Attribut som kommer att skickas till tjänsten',
 		'es' => 'Atributos que serán enviados al servicio',
 		'sl' => 'Atributi, ki bodo poslani SPju',
@@ -297,11 +297,13 @@ $lang = array(
 		'no' => 'Bruker innformasjon',
 		'en' => 'User information',
 		'sv' => 'Användarinformation',
+		'sl' => 'Podatki o uporabniku',
 	),
 	'table_summary' => array (
 		'no' => 'Her listes den innformasjonen om deg som blir send til den tjenesten du er i ferd med å logge på',
 		'en' => 'List the information about you that is about to be transmittet to the service you are going to login to',
 		'sv' => 'Visa den nformation om din användare som kommer att skickas till tjänsten som du är på väg att logga in i',
+		'sl' => 'Seznam podatkov o vas, ki bodo posredovani storitvi v katero se nameravate prijaviti',
 	),
 
 );
