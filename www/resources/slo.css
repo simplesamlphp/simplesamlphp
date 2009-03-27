@@ -10,6 +10,7 @@ table#slostatustable tr td {
 }
 table#slostatustable tr td.statustext {
 	min-width: 5em;
+	padding-left: 0px;
 }
 
 
