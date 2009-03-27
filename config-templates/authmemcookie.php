@@ -47,13 +47,14 @@ $config = array(
 	'groups' => NULL,
 
 	/*
-	 * This option contains the hostname of IP address of the memcache server where we should store the
-	 * authentication information. Thos option should match the address part of the
+	 * This option contains the hostnames or IP addresses of the memcache servers where we should store the
+	 * authentication information. Separator is a comma. This option should match the address part of the
 	 * Auth_memCookie_Memcached_AddrPort option in the Auth MemCookie configuration.
 	 *
 	 * Examples:
 	 *  'memcache.host' => '192.168.93.52',
 	 *  'memcache.host' => 'memcache.example.org',
+	 *  'memcache.host' => 'memcache1.example.org,memcache2.example.org'
 	 *
 	 * Default:
 	 *  'memcache.host' => '127.0.0.1',
