@@ -327,3 +327,7 @@ div#confirmation {
 	background: #eee;
 	padding: .6em 1em .1em 1em;
 }
+
+caption {
+	display: none;
+}

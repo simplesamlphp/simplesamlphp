@@ -6,47 +6,30 @@ fieldset legend {
 	background: #eee;
 }
 
-#addattributesb {
-	margin-right: .2em;
-}
-table.attributes {
-	width: 100%;
-	margin: 0px;
-	border: 0px;
-	border-collapse: collapse;
-}
-
-table.attributes td.attrname {
-	text-align: right;
-}
-table.attributes tr.even td {
+h3#attributeheader {
 	background: #eee;
 }
 
-table.attributes tr td {
-	border-bottom: 1px solid #bbb; 
-	border-left: 0px;
-	border-right: 0px;	
-	
-	padding-top: 5px;
-	padding-left: 1em;
-	padding-right: 1em;
-	
-	vertical-align: top;
+table#table_with_attributes .attrname {
+	text-align: right;
+	font-weight: bold;
 }
+
+table#table_with_attributes .attrvalue {
+	padding-left: 1em;
+	margin: 0.5em 0em;
+}
+
 table#table_with_attributes tr:last-child td {
 	border-bottom: none;
 }
-td.attrvalue img {
+
+table#table_with_attributes img {
 	border: 1px solid #777;
 	margin: 4px;
 }
 
-table#table_with_attributes td.attrname {
-	color: #555;
-	font-weight: light;
-	font-size: 90%;
-}
 table#table_with_attributes ul {
 	margin: 0px;
+	padding-left: 1em;
 }

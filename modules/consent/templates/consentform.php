@@ -61,7 +61,6 @@ $this->includeAtTemplateBase('includes/header.php');
 <p>
 <?php
 	echo $this->t('{consent:consent:consent_accept}', array( 'SPNAME' => $dstName, 'IDPNAME' => $srcName ));
-	#echo $this->t('{consent:consent:consent_notice}', array( 'SPNAME' => $dstName ));
 	if (array_key_exists('descr_purpose', $this->data['dstMetadata'])) {
 		echo '</p><p>' . $this->t('{consent:consent:consent_purpose}', array(
 			'SPNAME' => $dstName,
@@ -89,7 +88,6 @@ $this->includeAtTemplateBase('includes/header.php');
 
 </p>
 		<input type="submit" name="yes" id="yesbutton" value="<?php echo htmlspecialchars($this->t('{consent:consent:yes}')) ?>" />
-
 </form>
 
 <form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noTarget']); ?>" method="get">
@@ -112,12 +110,7 @@ if ($this->data['sppp'] !== FALSE) {
 }
 ?>
 
-<form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noTarget']); ?>" method="get">
 <?php
-foreach ($this->data['noData'] as $name => $value) {
-	echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
-}
-
 	function present_list($attr) {
 		if (is_array($attr) && count($attr) > 1) {
 			$str = '<ul><li>' . join('</li><li>', $attr) . '</li></ul>';
@@ -146,15 +139,15 @@ foreach ($this->data['noData'] as $name => $value) {
 
 	function present_attributes($t, $attributes, $nameParent) {
 		$alternate = array('odd', 'even'); $i = 0;
+		$summary = 'summary="' . $t->t('{consent:consent:table_summary}') . '"';
 		
 		if(strlen($nameParent) > 0){
 			$parentStr = strtolower($nameParent) . '_';
-			$str = '<table class="attributes">';
+			$str = '<table class="attributes"' . $summary . ' >';
 		}else{
 			$parentStr = '';
-			$summary = 'summary="' . $t->t('{consent:consent:table_summary}') . '"';
 			$str = '<table id="table_with_attributes"  class="attributes" '. $summary .'>';
-			$str .= '<caption>' . $t->t('{consent:consent:table_caption}') . '</caption>';
+			$str .= "\n" . '<caption>' . $t->t('{consent:consent:table_caption}') . '</caption>';
 		}
 
 		foreach ($attributes as $name => $value) {
@@ -165,59 +158,42 @@ foreach ($this->data['noData'] as $name => $value) {
 			}
 			
 			if (preg_match('/^child_/', $nameraw)) {
+				// Insert child table
 				$parentName = preg_replace('/^child_/', '', $nameraw);
 				foreach($value AS $child) {
-					$str .= '<tr class="odd"><td colspan="2" style="padding: 2em">' . present_attributes($t, $child, $parentName) . '</td></tr>';
+					$str .= "\n" . '<tr class="odd"><td style="padding: 2em">' . present_attributes($t, $child, $parentName) . '</td></tr>';
 				}
-			} else {	
+			} else {
+				// Insert values directly
+				$str .= "\n" . '<tr class="' . $alternate[($i++ % 2)] . '"><td><span class="attrname">' . htmlspecialchars($name) . '</span><div class="attrvalue">';
 				if (sizeof($value) > 1) {
-					$str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue"><ul>';
+					// We hawe several values
+					$str .= '<ul>';
 					foreach ($value AS $listitem) {
 						if ($nameraw === 'jpegPhoto') {
-							$str .= '<li><img src="data:image/jpeg;base64,' . $listitem . '" /></li>';
+							$str .= '<li><img src="data:image/jpeg;base64,' . $listitem . '" alt="User photo" /></li>';
 						} else {
 							$str .= '<li>' . present_assoc($listitem) . '</li>';
 						}
 					}
-					$str .= '</ul></td></tr>';
+					$str .= '</ul>';
 				} elseif(isset($value[0])) {
-					$str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td>';
+					// We hawe only one value
 					if ($nameraw === 'jpegPhoto') {
-						$str .= '<td class="attrvalue"><img src="data:image/jpeg;base64,' . htmlspecialchars($value[0]) . '" /></td></tr>';
+						$str .= '<img src="data:image/jpeg;base64,' . htmlspecialchars($value[0]) . '" alt="User photo" />';
 					} else {
-						$str .= '<td class="attrvalue">' . htmlspecialchars($value[0]) . '</td></tr>';
+						$str .= htmlspecialchars($value[0]);
 					}
-				}
-			}
-			$str .= "\n";
-		}
-		$str .= '</table>';
+				}	// end of if multivalue
+				$str .= '</div></td></tr>';
+			}	// end else: not child table
+		}	// end foreach
+		$str .= count($attributes)>1? '</table>':'';
 		return $str;
 	}
-
-
 ?>
-
-<!-- Show attributes that are sent to the service in a fieldset. 
-	This fieldset is not expanded by default, but can be shown by clicking on the legend.
-	-->
-
-	<fieldset class="fancyfieldset">
-		<legend id="attribute_switch"><?php 
-			echo $this->t('{consent:consent:consent_attributes_header}',array( 'SPNAME' => $dstName, 'IDPNAME' => $srcName )); 
-		?></legend>
-	
-	<!-- 
-	<div id="addattributes">
-		<a id="addattributesb" class="link"><?php echo $this->t('{consent:consent:show_attributes}'); ?></a>
-	</div>
-	-->
-	<?php
-		echo(present_attributes($this, $attributes, ''));
-	?>
-	</fieldset>
-<!-- end attribute view -->
-</form>
+	<h3 id="attributeheader"><?php echo $this->t('{consent:consent:consent_attributes_header}',array( 'SPNAME' => $dstName, 'IDPNAME' => $srcName )); ?></h3>
+	<?php echo(present_attributes($this, $attributes, '')); ?>
 
 <?php
 $this->includeAtTemplateBase('includes/footer.php');
