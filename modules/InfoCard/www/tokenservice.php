@@ -118,7 +118,7 @@ if ($authenticated){
 }
 
 
-Header('Content-length: '.strlen($buf)+1);
+Header('Content-length: '.strlen($response)+1);
 print($response);
 
 //LOG
