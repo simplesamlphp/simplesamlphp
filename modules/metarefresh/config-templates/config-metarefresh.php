@@ -20,6 +20,12 @@ $config = array(
 			),
 			'expireAfter' 		=> 60*60*24*4, // Maximum 4 days cache time.
 			'outputDir' 	=> 'metadata/metadata-kalmar-consuming/',
+
+			/*
+			 * Which output format the metadata should be saved as.
+			 * Can be 'flatfile' or 'serialize'. 'flatfile' is the default.
+			 */
+			'outputFormat' => 'flatfile',
 		),
 	),
 );

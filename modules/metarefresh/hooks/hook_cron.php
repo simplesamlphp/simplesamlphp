@@ -41,7 +41,16 @@ function metarefresh_hook_cron(&$croninfo) {
 			$outputDir = $set->getString('outputDir');
 			$outputDir = $config->resolvePath($outputDir);
 
-			$metaloader->writeMetadataFiles($outputDir);
+			$outputFormat = $set->getValueValidate('outputFormat', array('flatfile', 'serialize'), 'flatfile');
+			switch ($outputFormat) {
+			case 'flatfile':
+				$metaloader->writeMetadataFiles($outputDir);
+				break;
+			case 'serialize':
+				$metaloader->writeMetadataSerialize($outputDir);
+				break;
+			}
+
 		}
 
 	} catch (Exception $e) {

@@ -184,6 +184,49 @@ class sspmod_metarefresh_MetaLoader {
 		}
 	}
 
+
+	/**
+	 * Save metadata for loading with the 'serialize' metadata loader.
+	 *
+	 * @param string $outputDir  The directory we should save the metadata to.
+	 */
+	public function writeMetadataSerialize($outputDir) {
+		assert('is_string($outputDir)');
+
+		$metaHandler = new SimpleSAML_Metadata_MetaDataStorageHandlerSerialize(array('directory' => $outputDir));
+
+		/* First we add all the metadata entries to the metadata handler. */
+		foreach ($this->metadata as $set => $elements) {
+			foreach ($elements as $m) {
+				$entityId = $m['metadata']['entityid'];
+
+				SimpleSAML_Logger::debug('metarefresh: Add metadata entry ' .
+					var_export($entityId, TRUE) . ' in set ' . var_export($set, TRUE) . '.');
+				$metaHandler->saveMetadata($entityId, $set, $m['metadata']);
+			}
+		}
+
+		/* Then we delete old entries which should no longer exist. */
+		$ct = time();
+		foreach ($metaHandler->getMetadataSets() as $set) {
+			foreach ($metaHandler->getMetadataSet($set) as $entityId => $metadata) {
+				if (!array_key_exists('expire', $metadata)) {
+					SimpleSAML_Logger::warning('metarefresh: Metadata entry without expire ' .
+						'timestamp: ' . var_export($entityId, TRUE) . ' in set ' .
+						var_export($set, TRUE) . '.');
+				}
+				if ($metadata['expire'] > $ct) {
+					continue;
+				}
+
+				SimpleSAML_Logger::debug('metarefresh: Delete expired metadata entry ' .
+					var_export($entityId, TRUE) . ' in set ' . var_export($set, TRUE) . '.');
+				$metaHandler->deleteMetadata($entityId, $set);
+			}
+		}
+	}
+
+
 	private function getTime() {
 		/* The current date, as a string. */
 		date_default_timezone_set('UTC');
