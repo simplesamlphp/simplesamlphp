@@ -107,6 +107,10 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 	public function getEntityIdFromHostPath($hostPath, $set, $type = 'entityid') {
 
 		$metadataSet = $this->getMetadataSet($set);
+		if ($metadataSet === NULL) {
+			/* This metadata source does not have this metadata set. */
+			return NULL;
+		}
 
 		foreach($metadataSet AS $index => $entry) {
 
