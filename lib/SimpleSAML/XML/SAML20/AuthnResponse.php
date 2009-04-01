@@ -709,21 +709,16 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		/**
 		 * Handling NameID
 		 */
-		$nameIdValue = NULL;
-		if ( ($nameidformat == self::EMAIL) or ($nameidformat == self::PERSISTENT) ) {
-			if (!is_null($attributes)) {
-				$nameIdValue = $attributes[$spmd['simplesaml.nameidattribute']][0];
-			}
-		} else {
-			$nameIdValue = SimpleSAML_Utilities::generateID();
-		}
-		
-		$nameid = '';
+		$nameIdValue = self::getNameIDValue($nameidformat, $idpmd, $spmd, $attributes);
+
 		if (!empty($nameIdValue)) {		
 			$nameIdData = array('Format' => $nameidformat, 'value' => $nameIdValue);
 			$session->setSessionNameId('saml20-sp-remote', $spentityid, $nameIdData);
 			$nameid = $this->generateNameID($nameidformat, $nameIdValue, $spnamequalifier);
+		} else {
+			$nameid = '';
 		}
+
 		
 		$inresponsetoText = '';
 		if (!empty($inresponseto)) $inresponsetoText = 'InResponseTo="' . htmlspecialchars($inresponseto). '" ';
@@ -806,7 +801,55 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		
 	}
 
-	
+
+	/**
+	 * Retrieve/generate NameID value.
+	 *
+	 * This function attempts to find the value which should be used for the NameID attribute.
+	 *
+	 * @param string $format  NameID format.
+	 * @param array $idpmd  Service provider metadata.
+	 * @param array $spmd  Service provider metadata.
+	 * @param array|NULL $attributes  The attributes of the user.
+	 * @return string|NULL  NameID value, or NULL if we are unable to generate a value.
+	 */
+	private static function getNameIDValue($format, $idpmd, $spmd, $attributes) {
+		assert('is_string($format)');
+		assert('is_array($idpmd)');
+		assert('is_array($spmd)');
+		assert('is_null($attributes) || is_array($attributes)');
+
+		if ($format === self::TRANSIENT) {
+			return SimpleSAML_Utilities::generateID();
+		}
+
+		if (is_null($attributes)) {
+			SimpleSAML_Logger::warning('Unable to generate NameID Value without attributes.');
+			return NULL;
+		}
+
+
+		$attribute = NULL;
+
+		if (array_key_exists('simplesaml.nameidattribute', $idpmd)) {
+			$attribute = $idpmd['simplesaml.nameidattribute'];
+		} elseif (array_key_exists('simplesaml.nameidattribute', $spmd)) {
+			$attribute = $spmd['simplesaml.nameidattribute'];
+		} else {
+			SimpleSAML_Logger::error('simplesaml.nameidattribute not set in either SP metadata or IdP metadata');
+			return NULL;
+		}
+
+		if (!array_key_exists($attribute, $attributes)) {
+			SimpleSAML_Logger::error('Unable to add NameID: Missing ' . var_export($attribute, TRUE) .
+				' in the attributes of the user.');
+			return NULL;
+		}
+
+		return $attributes[$spmd['simplesaml.nameidattribute']][0];
+	}
+
+
 	/**
 	 * This function converts an array of attribute values into an
 	 * encoded saml:Attribute element which should go into the
