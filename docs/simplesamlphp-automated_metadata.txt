@@ -35,6 +35,12 @@ The metarefresh module will download and parse the metadata document and store i
 
 You also need to copy the `config-templates` files from the two modules above, into the global `config/` directory.
 
+	[root@simplesamlphp] cd /var/simplesamlphp
+	[root@simplesamlphp simplesamlphp] touch modules/cron/enable
+	[root@simplesamlphp simplesamlphp] cp modules/cron/config-templates/*.php config/
+	[root@simplesamlphp simplesamlphp] touch modules/metarefresh/enable
+	[root@simplesamlphp simplesamlphp] cp modules/metarefresh/config-templates/*.php config/
+
 
 
 Testing to parse the metadata document
@@ -57,13 +63,8 @@ Below is the documentation provided by Nuno Gonçalves <nuno@fccn.pt>
 
 
 
-Enabling the cron module
-------------------------
-
-
-	[root@simplesamlphp] cd /var/simplesamlphp/modules/cron 
-	[root@simplesamlphp cron] touch enable
-	[root@simplesamlphp cron] cp config-templates/*.php  ../../config/
+Configuring the cron module
+---------------------------
 
 
 At `/var/simplesamlphp/config`
@@ -128,18 +129,8 @@ Giving an error at this modules it aborted execution for the next active modules
 
 
 
-ENABLE MODULE METAREFRESH 
--------------------------
-
-  * Enable cron module
-
-
-At `/var/simplesamlphp/modules/metarefresh`
-
-
-	[root@simplesamlphp metarefresh] touch enable
-	[root@simplesamlphp metarefresh] cp config-templates/*.php  ../../config/
-
+Configuring the metarefresh module
+----------------------------------
 
 
 At `/var/simplesamlphp/config/`
@@ -150,54 +141,77 @@ At `/var/simplesamlphp/config/`
 edit:
 
 	$config = array( 'sets' => array(
-	
-	       				'federation_name' => array(
-							               'cron'          => array('hourly'),
-							               'sources'       => array(
-											          array(
-	                               								'src' => 'http://metadata_server/Federation_metadata_file.xml'
-										                       ),
-	               									),
-							               'maxCache'              => 60*60*24*4, // Maximum 4 days cache time.
-							               'maxDuration'   => 60*60*24*10, // Maximum 10 days duration on ValidUntil.
-							               'outputDir'     => 'metadata/federation_name/',
-							       ),
-	
-			));
 
+		'kalmar' => array(
+			'cron'		=> array('hourly'),
+			'sources'	=> array(
+				array(
+					'src' => 'https://kalmar.feide.no/simplesaml/module.php/aggregator/?id=kalmarcentral&mimetype=text/plain&exclude=norway',
+					'certFingerprint' => '591d4b4670463eeda91fcc816dc0af2a092aa801',
+					'template' => array(
+						'tags'	=> array('kalmar'),
+						'authproc' => array(
+							51 => array('class' => 'core:AttributeMap', 'oid2name'),
+						),
+					),
+				),
+			),
+			'expireAfter' 		=> 60*60*24*4, // Maximum 4 days cache time.
+			'outputDir' 	=> 'metadata/federation/',
 
+			/*
+			 * Which output format the metadata should be saved as.
+			 * Can be 'flatfile' or 'serialize'. 'flatfile' is the default.
+			 */
+			'outputFormat' => 'flatfile',
+		),
+	));
 
 	TEMPLATE FILE : /var/simplesamlphp/modules/metarefresh/config-templates/config-metarefresh.php
 
 
-	$config = array(
-	
-	       'kalmar' => array(
-	               'cron'          => array('hourly'),
-	               'sources'       => array(
-	                       array(
-	                               'src' => 'https://aitta.funet.fi/haka/haka_test_metadata_signed.xml',
-	                               'certFingerprint' => '22:1D:EA:E3:2C:EB:A3:2D:78:72:B6:F4:E9:52:F6:23:31:5A:A5:3D',
-	                               'template' => array(
-	                                       'tags'  => array('kalmar'),
-	                               ),
-	                       ),
-	               ),
-	               'maxCache'              => 60*60*24*4, // Maximum 4 days cache time.
-	               'maxDuration'   => 60*60*24*10, // Maximum 10 days duration on ValidUntil.
-	               'outputDir'     => 'metadata/metadata-kalmar-consuming/',
-	       ),
-	
-	);
+The configuration consists of one or more metadata sets. Each metadata
+set has its own configuration. The following options are available:
+
+`cron`
+:   Which of the cron tags will refresh this metadata set.
+
+`sources`
+:   An array of metadata sources which will be included in this
+    metadata set. The contents of this option will be described in more
+    detail later.
+
+`expireAfter`
+:   The maximum number of seconds a metadata entry will be valid.
+
+`outputDir`
+:   The directory where the generated metadata will be stored. The path
+    is relative to the simpleSAMLphp base directory.
+
+`outputFormat`
+:   The format of the generated metadata files. This must match the
+    metadata source added in `config.php`.
+
+Each metadata source has the following options:
+
+`src`
+:   The source URL where the metadata will be fetched from.
+
+`certFingerprint`
+:   The fingerprint of the certificate used to sign the metadata. You
+    don't need this option if you don't want to validate the signature
+    on the metadata.
+
+`template`
+:   This is an array which will be combined with the fetched metadata to
+    generate the final metadata array.
 
 
-At the Element sources the CERTFINGERPRINT => is for signed metadata ?
-What is this variable for ?  TEMPLATE TAGS
+After you have configured the metadata source, you need to give the
+web-server write access to the output directory. Depending on the
+platform, this may be done by a command similar to:
 
-
-  * Add write permissions to apache in 'outputDir'
-
-
+	chown www-data /var/simplesamlphp/metadata/metadata-federation/
 
 Then configure your simpleSAMLphp installation to use the generated metadata: 
 
