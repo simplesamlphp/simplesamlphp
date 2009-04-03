@@ -416,18 +416,11 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			}
 
 			if ($base64) {
-				
-				if ($name != 'jpegPhoto') {				
-					foreach(explode('_', $value) AS $v) {
-	
-							$this->attributes[$name][] = base64_decode($v);
-					}
 
-				} else {
-					$this->attributes[$name][] = $value;
-					file_put_contents('/tmp/image2.jpg', $value);
+				foreach(explode('_', $value) AS $v) {
+					$this->attributes[$name][] = base64_decode($v);
 				}
-				
+
 			} else {
 				$this->attributes[$name][] = $value;
 			}
