@@ -37,9 +37,10 @@ try {
 	$ticketcontent = retrieveTicket($ticket, $path);
 	
 	$usernamefield = $casconfig->getValue('attrname', 'eduPersonPrincipalName');
+	$dosendattributes = $casconfig->getValue('attributes', FALSE);;
 	
 	if (array_key_exists($usernamefield, $ticketcontent)) {
-		returnResponse('YES', $ticketcontent[$usernamefield][0]);
+		returnResponse('YES', $ticketcontent[$usernamefield][0], $dosendattributes ? $ticketcontent : array());
 	} else {
 		returnResponse('NO');
 	}
@@ -49,12 +50,21 @@ try {
 	returnResponse('NO', $e->getMessage());
 }
 
-function returnResponse($value, $content = '') {
+function returnResponse($value, $content = '', $attributes = array()) {
 	if ($value === 'YES') {
+		$attributesxml = "";
+		foreach ($attributes as $attributename => $attributelist) {
+			$attr = htmlentities($attributename);
+			foreach ($attributelist as $attributevalue) {
+				$attributesxml .= "<cas:$attr>" . htmlentities($attributevalue) . "</cas:$attr>";
+			}
+		}
+		if (sizeof($attributes)) $attributesxml = '<cas:attributes>' . $attributesxml . '</cas:attributes>';
 		echo '<cas:serviceResponse xmlns:cas="http://www.yale.edu/tp/cas">
     <cas:authenticationSuccess>
-	<cas:user>' . htmlentities($content) . '</cas:user>
-    </cas:authenticationSuccess>
+	<cas:user>' . htmlentities($content) . '</cas:user>' .
+	$attributesxml .
+    '</cas:authenticationSuccess>
 </cas:serviceResponse>';
 
 	} else {
