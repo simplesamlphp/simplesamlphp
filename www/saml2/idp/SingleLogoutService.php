@@ -358,7 +358,7 @@ try {
 		$relayState = isset($logoutInfo['RelayState']) ? $logoutInfo['RelayState'] : null;
 	
 		// Parameters: $request, $remoteentityid, $relayState = null, $endpoint = 'SingleLogoutService', $direction = 'SAMLRequest', $mode = 'SP'
-		$httpredirect->sendMessage($logoutResponseXML, $idpentityid, $logoutInfo['Issuer'], $relayState, 'SingleLogoutService', 'SAMLResponse', 'IdP');
+		$httpredirect->sendMessage($logoutResponseXML, $idpentityid, $logoutInfo['Issuer'], $relayState, 'SingleLogoutServiceResponse', 'SAMLResponse', 'IdP');
 		exit;
 		
 	} elseif (array_key_exists('RelayState', $logoutInfo)) {

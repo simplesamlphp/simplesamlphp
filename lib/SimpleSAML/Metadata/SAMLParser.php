@@ -609,6 +609,9 @@ class SimpleSAML_Metadata_SAMLParser {
 		$slo = $this->getDefaultEndpoint($spd['singleLogoutServices'], array(self::SAML_20_REDIRECT_BINDING));
 		if($slo !== NULL) {
 			$ret['SingleLogoutService'] = $slo['location'];
+			if (isset($slo['responseLocation']) && $slo['location'] != $slo['responseLocation']) {
+				$ret['SingleLogoutServiceResponse'] = $slo['responseLocation'];
+			}
 		}
 
 

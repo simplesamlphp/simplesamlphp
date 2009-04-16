@@ -3,7 +3,7 @@
 /**
  * Implementation of the SAML 2.0 LogoutResponse message.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Ã…kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
  */
@@ -117,6 +117,9 @@ class SimpleSAML_XML_SAML20_LogoutResponse {
 		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
 
 		$destination = $receivermd['SingleLogoutService'];
+		if (isset($receivermd['SingleLogoutServiceResponse'])) {
+			$destination = $receivermd['SingleLogoutServiceResponse'];
+		}
 		
 		$samlResponse = '<samlp:LogoutResponse 
     xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
