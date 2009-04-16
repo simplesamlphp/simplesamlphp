@@ -584,6 +584,37 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
+	 * Add a KeyDescriptor with an X509 certificate.
+	 *
+	 * @param DOMElement $ssoDesc  The IDPSSODescroptor or SPSSODecriptor the certificate
+	 *                             should be added to.
+	 * @param string|NULL $use  The value of the use-attribute.
+	 * @param string $x509data  The certificate data.
+	 */
+	private function addX509KeyDescriptor(DOMElement $ssoDesc, $use, $x509data) {
+		assert('in_array($use, array(NULL, "encryption", "signing"), TRUE)');
+		assert('is_string($x509data)');
+
+		$keyDescriptor = $this->createElement('KeyDescriptor');
+		if ($use !== NULL) {
+			$keyDescriptor->setAttribute('use', $use);
+		}
+		$ssoDesc->appendChild($keyDescriptor);
+
+		$keyInfo = $this->document->createElementNS('http://www.w3.org/2000/09/xmldsig#', 'ds:KeyInfo');
+		$keyDescriptor->appendChild($keyInfo);
+
+		$x509Data = $this->document->createElementNS('http://www.w3.org/2000/09/xmldsig#', 'ds:X509Data');
+		$keyInfo->appendChild($x509Data);
+
+		$x509Certificate = $this->document->createElementNS('http://www.w3.org/2000/09/xmldsig#', 'ds:X509Certificate');
+		$x509Data->appendChild($x509Certificate);
+
+		$x509Certificate->appendChild($this->document->createTextNode($x509data));
+	}
+
+
+	/**
 	 * Add certificate.
 	 *
 	 * Helper function for adding a certificate to the metadata.
@@ -603,20 +634,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$certData = $certInfo['certData'];
 
-		$keyDescriptor = $this->createElement('KeyDescriptor');
-		$keyDescriptor->setAttribute('use', 'signing');
-		$ssoDesc->appendChild($keyDescriptor);
-
-		$keyInfo = $this->document->createElementNS('http://www.w3.org/2000/09/xmldsig#', 'ds:KeyInfo');
-		$keyDescriptor->appendChild($keyInfo);
-
-		$x509Data = $this->document->createElementNS('http://www.w3.org/2000/09/xmldsig#', 'ds:X509Data');
-		$keyInfo->appendChild($x509Data);
-
-		$x509Certificate = $this->document->createElementNS('http://www.w3.org/2000/09/xmldsig#', 'ds:X509Certificate');
-		$x509Data->appendChild($x509Certificate);
-
-		$x509Certificate->appendChild($this->document->createTextNode($certData));
+		$this->addX509KeyDescriptor($ssoDesc, 'signing', $certData);
+		$this->addX509KeyDescriptor($ssoDesc, 'encryption', $certData);
 	}
 
 }
