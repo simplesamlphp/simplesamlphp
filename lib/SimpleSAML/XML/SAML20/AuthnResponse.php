@@ -690,9 +690,10 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$sendattributes = isset($spmd['simplesaml.attributes']) ? $spmd['simplesaml.attributes'] : true;
 		$attributestatement = '';
 		if ($sendattributes && !is_null($attributes)) {
+			$encodings = self::getAttributeEncodings($spmd, $attributes);
 			$encodedattributes = '';
 			foreach ($attributes AS $name => $values) {
-				$encodedattributes .= self::enc_attribute($name, $values, $base64, $attributeNameFormat);
+				$encodedattributes .= self::enc_attribute($name, $values, $encodings, $attributeNameFormat);
 			}
 			$attributestatement = '<saml:AttributeStatement>' . $encodedattributes . '</saml:AttributeStatement>';
 		}		
@@ -768,6 +769,31 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			'</samlp:Response>';
 
 		return $authnResponse;
+	}
+
+
+	private static function getAttributeEncodings($spmd, $attributes) {
+		$defaultEnc = 'string';
+		if (isset($spmd['base64attributes']) && $spmd['base64attributes']) {
+			$defaultEnc = 'base64';
+		}
+		if (isset($spmd['base64attributes']) || !isset($spmd['attributeencodings'])) {
+			$enc = array();
+			foreach ($attributes AS $name => $values) {
+				$enc[$name]	= $defaultEnc;
+			}
+			return $enc;
+		} elseif (isset($spmd['attributeencodings'])) {
+			$enc = array();
+			foreach ($attributes AS $name => $values) {
+				if (isset($spmd['attributeencodings'][$name])) {
+					$enc[$name] = $spmd['attributeencodings'][$name];
+				} else {
+					$enc[$name] = $defaultEnc;
+				}
+			}
+			return $enc;
+		}
 	}
 
 
@@ -856,24 +882,30 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	 *  @return String containing the encoded saml:attribute value for this
 	 *  attribute.
 	 */
-	private static function enc_attribute($name, $values, $base64 = false, $attributeNameFormat) {
+	private static function enc_attribute($name, $values, $encodings, $attributeNameFormat) {
 		assert(is_array($values));
 
 		// Default: urn:oasis:names:tc:SAML:2.0:attrname-format:basic
 		$ret = '<saml:Attribute NameFormat="' . htmlspecialchars($attributeNameFormat) . '"  Name="' . htmlspecialchars($name) . '">';
 
 		foreach($values as $value) {
-			if($base64) {
-				$text = base64_encode($value);
-			} else {
-				$text = htmlspecialchars($value);
+			$xsiType = '';
+			switch ($encodings[$name]) {
+				case 'string':
+					$text = htmlspecialchars($value);
+					$xsiType = ' xsi:type="xs:string"';
+					break;
+				case 'base64':
+					$text = base64_encode($value);
+					$xsiType = ' xsi:type="xs:string"';
+					break;
+				case 'raw':
+					$text = $value;
+					break;
+				default:
+					throw new Exception("Unknown encoding for attribute $name: $encodings[$name]");
 			}
 			
-			$xsiType = '';
-			if ($attributeNameFormat == 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic')
-				$xsiType = ' xsi:type="xs:string"';
-			
-
 			$ret .= '<saml:AttributeValue' . $xsiType . '>' . $text . '</saml:AttributeValue>';
 		}
 
