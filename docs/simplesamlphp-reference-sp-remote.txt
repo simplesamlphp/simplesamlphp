@@ -145,6 +145,11 @@ The following SAML 2.0 options are available:
     this SP. If the option isn't specified, this SP will not be logged
     out automatically when a single logout operation is initialized.
 
+`SingleLogoutServiceResponse`
+:   The URL logout responses to this SP should be sent. If this option
+    is unspecified, the `SingleLogoutService` endpoint will be used as
+    the recipient of logout responses.
+
 `SPNameQualifier`
 :   SP NameQualifier for this SP. If not set, the IdP will set the
     SPNameQualifier to be the SP entity ID.
@@ -176,6 +181,21 @@ The following SAML 2.0 options are available:
 `simplesaml.attributes`
 :   Whether the SP should receive any attributes from the IdP. The
     default value is `TRUE`.
+
+`attributeencodings`
+:   What encoding should be used for the different attributes. This is
+    an array which maps attribute names to attribute encodings. There
+    are three different encodings:
+
+:   -   `string`: Will include the attribute as a normal string. This is
+        the default.
+
+:   -   `base64`: Store the attribute as a base64 encoded string. This
+        is the default when the `base64attributes`-option is set to
+        `TRUE`.
+
+:   -   `raw`: Store the attribute without any modifications. This
+        makes it possible to include raw XML in the response.
 
 
 ### Encrypting assertions
