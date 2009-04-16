@@ -52,6 +52,7 @@ $attributemap = array(
 	'eduPersonPrimaryOrgUnitDN' => 'urn:mace:dir:attribute-def:eduPersonPrimaryOrgUnitDN',
 	'eduPersonPrincipalName' => 'urn:mace:dir:attribute-def:eduPersonPrincipalName',
 	'eduPersonScopedAffiliation' => 'urn:mace:dir:attribute-def:eduPersonScopedAffiliation',
+	'eduPersonTargetedID' => 'urn:mace:dir:attribute-def:eduPersonTargetedID',
 	'email' => 'urn:mace:dir:attribute-def:email',
 	'emailAddress' => 'urn:mace:dir:attribute-def:emailAddress',
 	'employeeNumber' => 'urn:mace:dir:attribute-def:employeeNumber',

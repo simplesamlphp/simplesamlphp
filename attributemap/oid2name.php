@@ -60,6 +60,7 @@ $attributemap = array(
 	'urn:oid:1.3.6.1.4.1.2428.90.1.9' => 'federationFeideSchemaVersion',
 	'urn:oid:1.3.6.1.4.1.250.1.57' => 'labeledURI',
 	'urn:oid:1.3.6.1.4.1.5923.1.1.1.1' => 'eduPersonAffiliation',
+	'urn:oid:1.3.6.1.4.1.5923.1.1.1.10' => 'eduPersonTargetedID',
 	'urn:oid:1.3.6.1.4.1.5923.1.1.1.2' => 'eduPersonNickname',
 	'urn:oid:1.3.6.1.4.1.5923.1.1.1.3' => 'eduPersonOrgDN',
 	'urn:oid:1.3.6.1.4.1.5923.1.1.1.4' => 'eduPersonOrgUnitDN',
