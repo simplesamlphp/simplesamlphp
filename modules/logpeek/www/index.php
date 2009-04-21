@@ -4,11 +4,7 @@
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
-if (!$session->isValid('login-admin') ) {
-	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
-		array('RelayState' => SimpleSAML_Utilities::selfURL())
-	);
-}
+SimpleSAML_Utilities::requireAdmin();
 
 
 $logpeekconfig = SimpleSAML_Configuration::getConfig('module_logpeek.php');

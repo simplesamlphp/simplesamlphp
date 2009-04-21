@@ -13,11 +13,7 @@ if (!$config->getValue('enable.saml20-sp', false))
 
 /* Check if valid local session exists.. */
 if ($config->getValue('admin.protectmetadata', false)) {
-	if (!isset($session) || !$session->isValid('login-admin') ) {
-		SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
-			array('RelayState' => SimpleSAML_Utilities::selfURL())
-		);
-	}
+	SimpleSAML_Utilities::requireAdmin();
 }
 
 try {
@@ -79,16 +75,12 @@ try {
 	}
 	
 	
-	$adminok = (isset($session) && $session->isValid('login-admin') );
-	$adminlogin = SimpleSAML_Utilities::addURLparameter(
-		'/' . $config->getBaseURL() . 'auth/login-admin.php', 
-		array('RelayState' => 
-			SimpleSAML_Utilities::addURLParameter(
-				SimpleSAML_Utilities::selfURLNoQuery(),
-				array('output' => 'xhtml')
-			)
-		)
-	);
+	$adminok = SimpleSAML_Utilities::isAdmin();
+	$adminlogin = SimpleSAML_Utilities::getAdminLoginURL(
+		SimpleSAML_Utilities::addURLParameter(
+			SimpleSAML_Utilities::selfURLNoQuery(),
+			array('output' => 'xhtml')
+		));
 	
 
 	$sentok = FALSE;

@@ -8,14 +8,10 @@ $session = SimpleSAML_Session::getInstance();
 
 /* Check if valid local session exists.. */
 if ($config->getValue('admin.protectindexpage', false)) {
-	if (!isset($session) || !$session->isValid('login-admin') ) {
-		SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
-			array('RelayState' => SimpleSAML_Utilities::selfURL())
-		);
-	}
+	SimpleSAML_Utilities::requireAdmin();
 }
-$loginurl = '/' . $config->getBaseURL() . 'auth/login-admin.php?RelayState=' . SimpleSAML_Utilities::selfURL();
-$isadmin = $session->isValid('login-admin');
+$loginurl = SimpleSAML_Utilities::getAdminLoginURL();
+$isadmin = SimpleSAML_Utilities::isAdmin();
 
 
 $warnings = array();

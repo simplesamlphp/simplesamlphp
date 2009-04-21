@@ -34,7 +34,7 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 		if (isset($orgs[$_REQUEST['orgtest']]) && array_key_exists('adminAccess', $orgs[$_REQUEST['orgtest']]))
 			$allowedusers = array_merge($allowedusers, $orgs[$_REQUEST['orgtest']]['adminAccess']);
 	
-		if ($session->isValid('login-admin') ) {
+		if (SimpleSAML_Utilities::isAdmin()) {
 			// User logged in as admin. OK.
 			SimpleSAML_Logger::debug('LDAPStatus auth - logged in as admin, access granted');
 			
@@ -64,9 +64,7 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 			
 		} else {
 			// If authsource is not defined, init admin login.
-			SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
-				array('RelayState' => SimpleSAML_Utilities::selfURL())
-			);
+			SimpleSAML_Utilities::requireAdmin();
 		}
 
 		
@@ -86,22 +84,14 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 		
 		
 		
-// 		if (!$session->isValid('login-admin') ) {
-// 			SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
-// 				array('RelayState' => SimpleSAML_Utilities::selfURL())
-// 			);
-// 		}
+// 		SimpleSAML_Utilities::requireAdmin();
 		$isAdmin = TRUE;
 	}
 
 } else {
 
 	// Require admin access to overview page...
-	if (!$session->isValid('login-admin') ) {
-		SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
-			array('RelayState' => SimpleSAML_Utilities::selfURL())
-		);
-	}
+	SimpleSAML_Utilities::requireAdmin();
 	$isAdmin = TRUE;
 
 }

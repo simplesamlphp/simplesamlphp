@@ -152,11 +152,7 @@ $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
 /* Check if the user is logged in with admin access. */
-if (!$session->isValid('login-admin') ) {
-	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
-		array('RelayState' => SimpleSAML_Utilities::selfURL())
-	);
-}
+SimpleSAML_Utilities::requireAdmin();
 
 /* Find config directories. */
 $configDir = $config->getBaseDir() . 'config/';

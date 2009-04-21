@@ -12,7 +12,7 @@ $useridattr = $statconfig->getString('useridattr', 'eduPersonPrincipalName');
 
 if ($protected) {
 
-	if ($session->isValid('login-admin') ) {
+	if (SimpleSAML_Utilities::isAdmin()) {
 		// User logged in as admin. OK.
 		SimpleSAML_Logger::debug('Statistics auth - logged in as admin, access granted');
 		
@@ -41,9 +41,7 @@ if ($protected) {
 		
 	} else {
 		// If authsource is not defined, init admin login.
-		SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
-			array('RelayState' => SimpleSAML_Utilities::selfURL())
-		);
+		SimpleSAML_Utilities::requireAdmin();
 	}
 }
 
