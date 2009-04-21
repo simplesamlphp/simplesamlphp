@@ -472,11 +472,11 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* Find the assertion consumer service endpoint. */
 		$acs = $this->getDefaultEndpoint($spd['assertionConsumerServices'], array(self::SAML_1X_POST_BINDING));
 		if($acs === NULL) {
-			throw new Exception('Could not find any valid AssertionConsumerService.' .
-				' simpleSAMLphp currently supports only the browser-post binding for SAML 1.x.');
+			SimpleSAML_Logger::warning('Could not find a supported SAML 1.x AssertionConsumerService endpoint for ' .
+				var_export($ret['entityid'], TRUE) . '.');
+		} else {
+			$ret['AssertionConsumerService'] = $acs['location'];
 		}
-
-		$ret['AssertionConsumerService'] = $acs['location'];
 
 		/* Add certificate data. Only the first valid certificate will be added. */
 		foreach($spd['keys'] as $key) {
@@ -534,9 +534,11 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* Find the SSO service endpoint. */
 		$sso = $this->getDefaultEndpoint($idp['singleSignOnServices'], array(self::SAML_1x_AUTHN_REQUEST));
 		if($sso === NULL) {
-			throw new Exception('Could not find any valid SingleSignOnService endpoint.');
+			SimpleSAML_Logger::warning('Could not find a supported SAML 1.x SingleSignOnService endpoint for ' .
+				var_export($ret['entityid'], TRUE) . '.');
+		} else {
+			$ret['SingleSignOnService'] = $sso['location'];
 		}
-		$ret['SingleSignOnService'] = $sso['location'];
 
 		/* Add certificate to metadata. Only the first valid certificate will be added. */
 		$ret['certFingerprint'] = array();
@@ -598,11 +600,11 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* Find the assertion consumer service endpoint. */
 		$acs = $this->getDefaultEndpoint($spd['assertionConsumerServices'], array(self::SAML_20_POST_BINDING));
 		if($acs === NULL) {
-			throw new Exception('Could not find any valid AssertionConsumerService.' .
-				' simpleSAMLphp currently supports only the http-post binding for SAML 2.0 assertions.');
+			SimpleSAML_Logger::warning('Could not find a supported SAML 2.0 AssertionConsumerService endpoint for ' .
+				var_export($ret['entityid'], TRUE) . '.');
+		} else {
+			$ret['AssertionConsumerService'] = $acs['location'];
 		}
-
-		$ret['AssertionConsumerService'] = $acs['location'];
 
 
 		/* Find the single logout service endpoint. */
@@ -694,9 +696,11 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* Find the SSO service endpoint. */
 		$sso = $this->getDefaultEndpoint($idp['singleSignOnServices'], array(self::SAML_20_REDIRECT_BINDING));
 		if($sso === NULL) {
-			throw new Exception('Could not find any valid SingleSignOnService endpoint.');
+			SimpleSAML_Logger::warning('Could not find a supported SAML 2.0 SingleSignOnService endpoint for ' .
+				var_export($ret['entityid'], TRUE) . '.');
+		} else {
+			$ret['SingleSignOnService'] = $sso['location'];
 		}
-		$ret['SingleSignOnService'] = $sso['location'];
 
 
 		/* Find the single logout service endpoint. */
