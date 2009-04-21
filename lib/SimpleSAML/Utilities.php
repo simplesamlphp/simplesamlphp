@@ -1678,6 +1678,56 @@ class SimpleSAML_Utilities {
 		}
 	}
 
+
+	/**
+	 * Check whether the current user is a admin user.
+	 *
+	 * @return bool  TRUE if the current user is a admin user, FALSE if not.
+	 */
+	public static function isAdmin() {
+
+		$session = SimpleSAML_Session::getInstance();
+
+		return $session->isValid('login-admin');
+	}
+
+
+	/**
+	 * Retrieve a admin login URL.
+	 *
+	 * @param string|NULL $returnTo  The URL the user should arrive on after admin authentication.
+	 * @return string  An URL which can be used for admin authentication.
+	 */
+	public static function getAdminLoginURL($returnTo = NULL) {
+		assert('is_string($returnTo) || is_null($returnTo)');
+
+		if ($returnTo === NULL) {
+			$returnTo = SimpleSAML_Utilities::selfURL();
+		}
+
+		return SimpleSAML_Module::getModuleURL('core/login-admin.php?ReturnTo=' . urlencode($returnTo));
+	}
+
+
+	/**
+	 * Require admin access for current page.
+	 *
+	 * This is a helper-function for limiting a page to admin access. It will redirect
+	 * the user to a login page if the current user doesn't have admin access.
+	 */
+	public static function requireAdmin() {
+
+		if (self::isAdmin()) {
+			return;
+		}
+
+		/* Not authenticated as admin user. Start authentication. */
+		$config = SimpleSAML_Configuration::getInstance();
+		SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
+			array('RelayState' => SimpleSAML_Utilities::selfURL())
+		);
+	}
+
 }
 
 ?>
