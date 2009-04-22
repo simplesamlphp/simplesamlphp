@@ -2,6 +2,17 @@
 
 $config = array(
 
+	/*
+	 * This is a authentication source which handles admin authentication.
+	 */
+	'admin' => array(
+		/*
+		 * The default is to use core:AdminPassword, but it can be replaced with
+		 * any authentication source.
+		 */
+		'core:AdminPassword',
+	),
+
 	'example-sql' => array(
 		'sqlauth:SQL',
 		'dsn' => 'pgsql:host=sql.example.org;port=5432;dbname=simplesaml',

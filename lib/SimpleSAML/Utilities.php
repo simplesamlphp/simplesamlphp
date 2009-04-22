@@ -1688,7 +1688,7 @@ class SimpleSAML_Utilities {
 
 		$session = SimpleSAML_Session::getInstance();
 
-		return $session->isValid('login-admin');
+		return $session->isValid('admin') || $session->isValid('login-admin');
 	}
 
 
@@ -1721,11 +1721,20 @@ class SimpleSAML_Utilities {
 			return;
 		}
 
+		$returnTo = SimpleSAML_Utilities::selfURL();
+
 		/* Not authenticated as admin user. Start authentication. */
-		$config = SimpleSAML_Configuration::getInstance();
-		SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
-			array('RelayState' => SimpleSAML_Utilities::selfURL())
-		);
+
+		if (SimpleSAML_Auth_Source::getById('admin') !== NULL) {
+			SimpleSAML_Auth_Default::initLogin('admin', $returnTo);
+		} else {
+			/* For backwards-compatibility. */
+
+			$config = SimpleSAML_Configuration::getInstance();
+			SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
+				array('RelayState' => $returnTo)
+						       );
+		}
 	}
 
 }
