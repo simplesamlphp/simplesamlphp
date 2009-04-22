@@ -7,7 +7,6 @@ $this->includeAtTemplateBase('includes/header.php');
 #$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="disabled" />';
 
 ?>
-<div id="content">
 
 <h2><?php echo($this->data['header']); ?></h2>
 

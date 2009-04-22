@@ -10,7 +10,6 @@ if (strlen($this->data['username']) > 0) {
 $this->includeAtTemplateBase('includes/header.php');
 
 ?>
-<div id="content">
 
 <?php
 if ($this->data['errorcode'] !== NULL) {

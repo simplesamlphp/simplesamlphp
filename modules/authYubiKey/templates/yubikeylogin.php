@@ -6,7 +6,6 @@ $this->data['autofocus'] = 'otp';
 $this->includeAtTemplateBase('includes/header.php');
 
 ?>
-<div id="content">
 
 <?php
 if ($this->data['errorcode'] !== NULL) {

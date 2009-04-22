@@ -2,7 +2,6 @@
 $this->data['header'] = $this->t('{aggregator:dict:aggregator_header}');
 $this->includeAtTemplateBase('includes/header.php');
 
-echo('<div id="content">');
 echo('<h1>'. $this->data['header'] . '</h1>');
 
 if (count($this->data['sources']) === 0) {

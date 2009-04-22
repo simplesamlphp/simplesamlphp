@@ -4,7 +4,6 @@ $this->includeAtTemplateBase('includes/header.php');
 
 
 ?>
-<div id="content">
 
 <h2>SimpleSAMLphp logs (admin utility)</h2>
 

@@ -4,7 +4,6 @@ $this->data['header'] = 'Cron information page';
 $this->includeAtTemplateBase('includes/header.php');
 
 ?>
-<div id="content">
 
 	<p>Cron is a way to run things regularly on unix systems.</p>
 	

@@ -53,7 +53,6 @@ span.showhide {
 }
 </style>
 	
-	<div id="content">
 
 		<!-- <h2><?php if (isset($this->data['header'])) { echo $this->t($this->data['header']); } else { echo "Some error occured"; } ?></h2> -->
 	    <h2><?php echo $this->t('consentadmin_header') ?></h2>	
