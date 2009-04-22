@@ -132,9 +132,14 @@ class SimpleSAML_Utilities {
 	public static function getRequestURI() {
 		
 		$requesturi = $_SERVER['REQUEST_URI'];
-		if (preg_match('|^/.*?(/.*)$|', $_SERVER['REQUEST_URI'], $matches)) {
-		#$requesturi = $matches[1];
+
+		if ($requesturi[0] !== '/') {
+			/* We probably have an url on the form: http://server/. */
+			if (preg_match('#^https?://[^/]*(/.*)#i', $requesturi, $matches)) {
+				$requesturi = $matches[1];
+			}
 		}
+
 		return $requesturi;
 	}
 
