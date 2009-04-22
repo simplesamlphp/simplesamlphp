@@ -32,6 +32,11 @@ if (array_key_exists('password', $_REQUEST)) {
 
 if (!empty($username) || !empty($password)) {
 	/* Either username or password set - attempt to log in. */
+
+	if (array_key_exists('forcedUsername', $state)) {
+		$username = $state['forcedUsername'];
+	}
+
 	$errorCode = sspmod_core_Auth_UserPassBase::handleLogin($authStateId, $username, $password);
 } else {
 	$errorCode = NULL;
@@ -40,7 +45,13 @@ if (!empty($username) || !empty($password)) {
 $globalConfig = SimpleSAML_Configuration::getInstance();
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'core:loginuserpass.php');
 $t->data['stateparams'] = array('AuthState' => $authStateId);
-$t->data['username'] = $username;
+if (array_key_exists('forcedUsername', $state)) {
+	$t->data['username'] = $state['forcedUsername'];
+	$t->data['forceUsername'] = TRUE;
+} else {
+	$t->data['username'] = $username;
+	$t->data['forceUsername'] = FALSE;
+}
 $t->data['errorcode'] = $errorCode;
 $t->show();
 exit();

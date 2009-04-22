@@ -33,7 +33,15 @@ if ($this->data['errorcode'] !== NULL) {
 		<tr>
 			<td rowspan="3"><img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/pencil.png" alt="" /></td>
 			<td style="padding: .3em;"><?php echo $this->t('{login:username}'); ?></td>
-			<td><input type="text" id="username" tabindex="1" name="username" value="<?php echo htmlspecialchars($this->data['username']); ?>" /></td>
+			<td>
+<?php
+if ($this->data['forceUsername']) {
+	echo '<strong style="font-size: medium">' . htmlspecialchars($this->data['username']) . '</strong>';
+} else {
+	echo '<input type="text" id="username" tabindex="1" name="username" value="' . htmlspecialchars($this->data['username']) . '" />';
+}
+?>
+			</td>
 			<td style="padding: .4em;" rowspan="3">
 				<input type="submit" tabindex="4" value="<?php echo $this->t('{login:login_button}'); ?>" />
 			</td>

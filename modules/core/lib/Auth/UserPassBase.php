@@ -26,6 +26,15 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 
 
 	/**
+	 * Username we should force.
+	 *
+	 * A forced username cannot be changed by the user.
+	 * If this is NULL, we won't force any username.
+	 */
+	private $forcedUsername;
+
+
+	/**
 	 * Constructor for this authentication source.
 	 *
 	 * All subclasses who implement their own constructor must call this constructor before
@@ -44,6 +53,17 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 
 
 	/**
+	 * Set forced username.
+	 *
+	 * @param string|NULL $forcedUsername  The forced username.
+	 */
+	public function setForcedUsername($forcedUsername) {
+		assert('is_string($forcedUsername) || is_null($forcedUsername)');
+		$this->forcedUsername = $forcedUsername;
+	}
+
+
+	/**
 	 * Initialize login.
 	 *
 	 * This function saves the information about the login, and redirects to a
@@ -56,6 +76,11 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 
 		/* We are going to need the authId in order to retrieve this authentication source later. */
 		$state[self::AUTHID] = $this->authId;
+
+		/* What username we should force, if any. */
+		if ($this->forcedUsername !== NULL) {
+			$state['forcedUsername'] = $this->forcedUsername;
+		}
 
 		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
 
