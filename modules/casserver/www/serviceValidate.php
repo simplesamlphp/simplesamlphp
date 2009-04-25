@@ -56,7 +56,7 @@ function returnResponse($value, $content = '', $attributes = array()) {
 		foreach ($attributes as $attributename => $attributelist) {
 			$attr = htmlentities($attributename);
 			foreach ($attributelist as $attributevalue) {
-				$attributesxml .= "<cas:$attr>" . htmlentities($attributevalue) . "</cas:$attr>";
+				$attributesxml .= "<cas:$attr>" . htmlentities($attributevalue) . "</cas:$attr>\n";
 			}
 		}
 		if (sizeof($attributes)) $attributesxml = '<cas:attributes>' . $attributesxml . '</cas:attributes>';
