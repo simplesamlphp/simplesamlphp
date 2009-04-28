@@ -8,14 +8,14 @@
  * The module relies on methods and functions from the Consent module and can
  * not be user without it.
  *
- * Author: Mads Freen - WAYF, Jacob Christiansen - WAYF
+ * Author: Mads Freen <freek@ruc.dk>, Jacob Christiansen <jach@wayf.dk>
  */
 
 /*
  * Runs the processingchain and ignores all filter which have user 
  * interaction.
  */
-function driveProcessingChain($idp_metadata, $source, $sp_metadata, $sp_entityid, $attributes, $userid) {
+function driveProcessingChain($idp_metadata, $source, $sp_metadata, $sp_entityid, $attributes, $userid, $hashAttributes = FALSE) {
 
 	/* 
 	 * Create a new processing chain 
@@ -47,7 +47,7 @@ function driveProcessingChain($idp_metadata, $source, $sp_metadata, $sp_entityid
 	$destination = $sp_metadata['metadata-set'] . '|' . $sp_entityid;
 
 	$targeted_id    = sspmod_consent_Auth_Process_Consent::getTargetedID($userid, $source, $destination);
-	$attribute_hash = sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes, false);
+	$attribute_hash = sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes, $hashAttributes);
 
 	SimpleSAML_Logger::info('consentAdmin: user: ' . $hashed_user_id);
 	SimpleSAML_Logger::info('consentAdmin: target: ' . $targeted_id);
@@ -59,6 +59,9 @@ function driveProcessingChain($idp_metadata, $source, $sp_metadata, $sp_entityid
 
 // Get config object
 $config = SimpleSAML_Configuration::getInstance();
+$cA_config = $config->copyFromBase('consentAdmin', 'module_consentAdmin.php');
+
+$hashAttributes = $cA_config->getValue('attributes.hash');
 
 // Get session object
 $session = SimpleSAML_Session::getInstance();
@@ -126,7 +129,7 @@ SimpleSAML_Logger::info('consentAdmin: '.$idp_entityid);
 $source = $idp_metadata['metadata-set'] . '|' . $idp_entityid;
 
 // Parse consent config
-$consent_storage = sspmod_consent_Store::parseStoreConfig($config->getValue('consentadmin'));
+$consent_storage = sspmod_consent_Store::parseStoreConfig($cA_config->getValue('consentadmin'));
 
 // Calc correct user ID hash
 $hashed_user_id = sspmod_consent_Auth_Process_Consent::getHashedUserID($userid, $source);
@@ -137,7 +140,7 @@ if ($action != null && $sp_entityid != null) {
 	$sp_metadata = $metadata->getMetaData($sp_entityid, 'saml20-sp-remote');
 
 	// Run AuthProc filters
-	list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain($idp_metadata, $source, $sp_metadata, $sp_entityid, $attributes, $userid);
+	list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain($idp_metadata, $source, $sp_metadata, $sp_entityid, $attributes, $userid, $hashAttributes);
 
 	// Add a consent (or update if attributes have changed and old consent for SP and IdP exists)
 	if($action == 'true') {
@@ -177,32 +180,13 @@ foreach ($user_consent_list as $c) {
 	$user_consent[$c[0]]=$c[1];
 }
 
-$sp_empty_name = array(
-	'en' => '(name not specified)',
-	'no' => '(namn ikke spesifisert)',
-	'nn' => '(name not specified)',
-	'da' => '(navn ikke angivet)',
-	'en' => '(name not specified)',
-	'fr' => '(name not specified)',
-	'de' => '(name nicht definiert)',
-	'nl' => '(name not specified)',
-	'lu' => '(name not specified)',
-	'sl' => '(name not specified)',
-); // TODO: Should be moved to language file
-$sp_empty_description = array(
-	'en' => '(no description)',
-	'no' => '(ingen beskrivelse)',
-	'nn' => '(no description)',
-	'da' => '(ingen beskrivelse)',
-	'es' => '(no description)',
-	'fr' => '(no description)',
-	'de' => '(no description)',
-	'nl' => '(no description)',
-	'lu' => '(no description)',
-	'sl' => '(no description)',
-); // TODO: Should be moved to language file
 
 $template_sp_content = array();
+
+// Init template
+$et = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
+$sp_empty_name = $et->getTag('sp_empty_name');
+$sp_empty_description = $et->getTag('sp_empty_description');
 
 // Process consents for all SP
 foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
@@ -210,7 +194,7 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
 	$sp_metadata = $metadata->getMetaData($sp_entityid, 'saml20-sp-remote');
 
 	// Run attribute filters
-	list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain($idp_metadata, $source, $sp_metadata, $sp_entityid, $attributes, $userid);
+	list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain($idp_metadata, $source, $sp_metadata, $sp_entityid, $attributes, $userid, $hashAttributes);
 
 	// Check if consent exists
 	if (array_key_exists($targeted_id, $user_consent)) {
@@ -252,10 +236,10 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
 	);
 }
 
-// Init template
-$et = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
+$relaystate = $cA_config->getValue('relaystate');
+
 $et->data['header'] = 'Consent Administration';
-$et->data['logout'] = '<p>[ <a href="/' . $config->getValue('baseurlpath') . 'saml2/sp/initSLO.php?RelayState=https://www.wayf.dk">Logout</a> ]'; // TODO: Fix RelayState. Should be set in config
+$et->data['logout'] = '<p>[ <a href="/' . $config->getValue('baseurlpath') . 'saml2/sp/initSLO.php?RelayState='. $relaystate .'">Logout</a> ]';
 $et->data['spList'] = $sp_list;
 $et->show();
 ?>
