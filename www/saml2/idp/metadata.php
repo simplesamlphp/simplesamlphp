@@ -59,6 +59,9 @@ try {
 	if (array_key_exists('url', $idpmeta)) {
 		$metaArray['url'] = $idpmeta['url'];
 	}
+	if (array_key_exists('scope', $idpmeta)) {
+		$metaArray['scope'] = $idpmeta['scope'];
+	}
 
 
 	$metaflat = var_export($idpentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
