@@ -76,8 +76,7 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		if (array_key_exists('entityId', $config)) {
 			$this->entityId = $config['entityId'];
 		} else {
-			$this->entityId = SimpleSAML_Module::getModuleURL('saml2/sp/metadata.php?source=' .
-				urlencode($this->authId));
+			$this->entityId = SimpleSAML_Module::getModuleURL('saml2/sp/metadata.php?source=' . urlencode($this->authId));
 		}
 
 		if (array_key_exists('idp', $config)) {
@@ -135,7 +134,7 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 	public function getNameIDFormat() {
 
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-		$spmeta = $metadata->getMetadata($this->entityID, 'saml20-sp-hosted');
+		$spmeta = $metadata->getMetadata($this->getEntityId(), 'saml20-sp-hosted');
 
 		if (array_key_exists('NameIDFormat', $spmeta)) {
 			return $spmeta['NameIDFormat'];
