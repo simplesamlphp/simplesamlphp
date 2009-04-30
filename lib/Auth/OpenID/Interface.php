@@ -9,8 +9,8 @@
  *
  * @package OpenID
  * @author JanRain, Inc. <openid@janrain.com>
- * @copyright 2005 Janrain, Inc.
- * @license http://www.gnu.org/copyleft/lesser.html LGPL
+ * @copyright 2005-2008 Janrain, Inc.
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
 /**
@@ -20,9 +20,9 @@
  * consumers.  If you want to create an SQL-driven store, please see
  * then {@link Auth_OpenID_SQLStore} class.
  *
- * Change: Version 2.0 removed the storeNonce and getAuthKey methods,
- * and changed the behavior of the useNonce method to support one-way
- * nonces.
+ * Change: Version 2.0 removed the storeNonce, getAuthKey, and isDumb
+ * methods, and changed the behavior of the useNonce method to support
+ * one-way nonces.
  *
  * @package OpenID
  * @author JanRain, Inc. <openid@janrain.com>
@@ -47,6 +47,60 @@ class Auth_OpenID_OpenIDStore {
                       "not implemented", E_USER_ERROR);
     }
 
+    /*
+     * Remove expired nonces from the store.
+     *
+     * Discards any nonce from storage that is old enough that its
+     * timestamp would not pass useNonce().
+     *
+     * This method is not called in the normal operation of the
+     * library.  It provides a way for store admins to keep their
+     * storage from filling up with expired data.
+     *
+     * @return the number of nonces expired
+     */
+    function cleanupNonces()
+    {
+        trigger_error("Auth_OpenID_OpenIDStore::cleanupNonces ".
+                      "not implemented", E_USER_ERROR);
+    }
+
+    /*
+     * Remove expired associations from the store.
+     *
+     * This method is not called in the normal operation of the
+     * library.  It provides a way for store admins to keep their
+     * storage from filling up with expired data.
+     *
+     * @return the number of associations expired.
+     */
+    function cleanupAssociations()
+    {
+        trigger_error("Auth_OpenID_OpenIDStore::cleanupAssociations ".
+                      "not implemented", E_USER_ERROR);
+    }
+
+    /*
+     * Shortcut for cleanupNonces(), cleanupAssociations().
+     *
+     * This method is not called in the normal operation of the
+     * library.  It provides a way for store admins to keep their
+     * storage from filling up with expired data.
+     */
+    function cleanup()
+    {
+        return array($this->cleanupNonces(),
+                     $this->cleanupAssociations());
+    }
+
+    /**
+     * Report whether this storage supports cleanup
+     */
+    function supportsCleanup()
+    {
+        return true;
+    }
+
     /**
      * This method returns an Association object from storage that
      * matches the server URL and, if specified, handle. It returns
@@ -56,7 +110,7 @@ class Auth_OpenID_OpenIDStore {
      * If no handle is specified, the store may return any association
      * which matches the server URL. If multiple associations are
      * valid, the recommended return value for this method is the one
-     * that will remain valid for the longest duration.
+     * most recently issued.
      *
      * This method is allowed (and encouraged) to garbage collect
      * expired associations when found. This method must not return
@@ -129,15 +183,6 @@ class Auth_OpenID_OpenIDStore {
     function useNonce($server_url, $timestamp, $salt)
     {
         trigger_error("Auth_OpenID_OpenIDStore::useNonce ".
-                      "not implemented", E_USER_ERROR);
-    }
-
-    /**
-     * Return all server URLs that have expired associations.
-     */
-    function getExpired()
-    {
-        trigger_error("Auth_OpenID_OpenIDStore::getExpired ".
                       "not implemented", E_USER_ERROR);
     }
 

@@ -10,8 +10,8 @@
  *
  * @package OpenID
  * @author JanRain, Inc. <openid@janrain.com>
- * @copyright 2005 Janrain, Inc.
- * @license http://www.gnu.org/copyleft/lesser.html LGPL
+ * @copyright 2005-2008 Janrain, Inc.
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
 /**
@@ -19,7 +19,8 @@
  */
 require_once 'Auth/OpenID.php';
 require_once 'Auth/OpenID/Interface.php';
-require_once 'Auth/OpenID/HMACSHA1.php';
+require_once 'Auth/OpenID/HMAC.php';
+require_once 'Auth/OpenID/Nonce.php';
 
 /**
  * This is a filesystem-based store for OpenID associations and
@@ -113,6 +114,28 @@ class Auth_OpenID_FileStore extends Auth_OpenID_OpenIDStore {
         } else {
             Auth_OpenID_FileStore::_removeIfPresent($name);
         }
+    }
+
+    function cleanupNonces()
+    {
+        global $Auth_OpenID_SKEW;
+
+        $nonces = Auth_OpenID_FileStore::_listdir($this->nonce_dir);
+        $now = time();
+
+        $removed = 0;
+        // Check all nonces for expiry
+        foreach ($nonces as $nonce_fname) {
+            $base = basename($nonce_fname);
+            $parts = explode('-', $base, 2);
+            $timestamp = $parts[0];
+            $timestamp = intval($timestamp, 16);
+            if (abs($timestamp - $now) > $Auth_OpenID_SKEW) {
+                Auth_OpenID_FileStore::_removeIfPresent($nonce_fname);
+                $removed += 1;
+            }
+        }
+        return $removed;
     }
 
     /**
@@ -231,16 +254,15 @@ class Auth_OpenID_FileStore extends Auth_OpenID_OpenIDStore {
             // strip off the path to do the comparison
             $name = basename($filename);
             foreach ($association_files as $association_file) {
-                if (strpos($association_file, $name) === 0) {
+                $base = basename($association_file);
+                if (strpos($base, $name) === 0) {
                     $matching_files[] = $association_file;
                 }
             }
 
             $matching_associations = array();
             // read the matching files and sort by time issued
-            foreach ($matching_files as $name) {
-                $full_name = $this->association_dir . DIRECTORY_SEPARATOR .
-                    $name;
+            foreach ($matching_files as $full_name) {
                 $association = $this->_getAssociation($full_name);
                 if ($association !== null) {
                     $matching_associations[] = array($association->issued,
@@ -337,9 +359,15 @@ class Auth_OpenID_FileStore extends Auth_OpenID_OpenIDStore {
      */
     function useNonce($server_url, $timestamp, $salt)
     {
+        global $Auth_OpenID_SKEW;
+
         if (!$this->active) {
             trigger_error("FileStore no longer active", E_USER_ERROR);
             return null;
+        }
+
+        if ( abs($timestamp - time()) > $Auth_OpenID_SKEW ) {
+            return False;
         }
 
         if ($server_url) {
@@ -435,18 +463,6 @@ class Auth_OpenID_FileStore extends Auth_OpenID_OpenIDStore {
         }
     }
 
-    function getExpired()
-    {
-        $urls = array();
-        foreach ($this->_allAssocs() as $pair) {
-            list($_, $assoc) = $pair;
-            if ($assoc->getExpiresIn() <= 0) {
-                $urls[] = $assoc->server_url;
-            }
-        }
-        return $urls;
-    }
-
     /**
      * @access private
      */
@@ -526,7 +542,7 @@ class Auth_OpenID_FileStore extends Auth_OpenID_OpenIDStore {
         $files = array();
         while (false !== ($filename = readdir($handle))) {
             if (!in_array($filename, array('.', '..'))) {
-                $files[] = $filename;
+                $files[] = $dir . DIRECTORY_SEPARATOR . $filename;
             }
         }
         return $files;
@@ -583,6 +599,19 @@ class Auth_OpenID_FileStore extends Auth_OpenID_OpenIDStore {
     function _removeIfPresent($filename)
     {
         return @unlink($filename);
+    }
+
+    function cleanupAssociations()
+    {
+        $removed = 0;
+        foreach ($this->_allAssocs() as $pair) {
+            list($assoc_filename, $assoc) = $pair;
+            if ($assoc->getExpiresIn() == 0) {
+                $this->_removeIfPresent($assoc_filename);
+                $removed += 1;
+            }
+        }
+        return $removed;
     }
 }
 

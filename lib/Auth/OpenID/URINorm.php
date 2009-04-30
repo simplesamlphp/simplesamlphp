@@ -5,8 +5,8 @@
  *
  * @package OpenID
  * @author JanRain, Inc. <openid@janrain.com>
- * @copyright 2005 Janrain, Inc.
- * @license http://www.gnu.org/copyleft/lesser.html LGPL
+ * @copyright 2005-2008 Janrain, Inc.
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
 require_once 'Auth/Yadis/Misc.php';
@@ -25,6 +25,17 @@ function Auth_OpenID_getAuthorityPattern()
 function Auth_OpenID_getEncodedPattern()
 {
     return '/%([0-9A-Fa-f]{2})/';
+}
+
+# gen-delims  = ":" / "/" / "?" / "#" / "[" / "]" / "@"
+#
+# sub-delims  = "!" / "$" / "&" / "'" / "(" / ")"
+#                  / "*" / "+" / "," / ";" / "="
+#
+# unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
+function Auth_OpenID_getURLIllegalCharRE()
+{
+    return "/([^-A-Za-z0-9:\/\?#\[\]@\!\$&'\(\)\*\+,;=\._~\%])/";
 }
 
 function Auth_OpenID_getUnreserved()
@@ -88,7 +99,7 @@ function Auth_OpenID_pct_encoded_replace($mo)
 function Auth_OpenID_remove_dot_segments($path)
 {
     $result_segments = array();
-    
+
     while ($path) {
         if (Auth_Yadis_startswith($path, '../')) {
             $path = substr($path, 3);
@@ -137,6 +148,13 @@ function Auth_OpenID_urinorm($uri)
         for ($i = count($uri_matches); $i <= 9; $i++) {
             $uri_matches[] = '';
         }
+    }
+
+    $illegal_matches = array();
+    preg_match(Auth_OpenID_getURLIllegalCharRE(),
+               $uri, $illegal_matches);
+    if ($illegal_matches) {
+        return null;
     }
 
     $scheme = $uri_matches[2];

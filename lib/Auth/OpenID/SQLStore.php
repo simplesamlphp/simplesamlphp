@@ -9,8 +9,8 @@
  *
  * @package OpenID
  * @author JanRain, Inc. <openid@janrain.com>
- * @copyright 2005 Janrain, Inc.
- * @license http://www.gnu.org/copyleft/lesser.html LGPL
+ * @copyright 2005-2008 Janrain, Inc.
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
 /**
@@ -27,11 +27,17 @@ $__Auth_OpenID_PEAR_AVAILABLE = @include_once 'DB.php';
  * @access private
  */
 require_once 'Auth/OpenID/Interface.php';
+require_once 'Auth/OpenID/Nonce.php';
 
 /**
  * @access private
  */
 require_once 'Auth/OpenID.php';
+
+/**
+ * @access private
+ */
+require_once 'Auth/OpenID/Nonce.php';
 
 /**
  * This is the parent class for the SQL stores, which contains the
@@ -161,8 +167,9 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
     function tableExists($table_name)
     {
         return !$this->isError(
-                      $this->connection->query("SELECT * FROM %s LIMIT 0",
-                                               $table_name));
+                      $this->connection->query(
+                          sprintf("SELECT * FROM %s LIMIT 0",
+                                  $table_name)));
     }
 
     /**
@@ -224,8 +231,7 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
                                    'set_assoc',
                                    'get_assoc',
                                    'get_assocs',
-                                   'remove_assoc',
-                                   'get_expired',
+                                   'remove_assoc'
                                    );
 
         foreach ($required_sql_keys as $key) {
@@ -248,7 +254,8 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
                               array(
                                     'value' => $this->nonces_table_name,
                                     'keys' => array('nonce_table',
-                                                    'add_nonce')
+                                                    'add_nonce',
+                                                    'clean_nonce')
                                     ),
                               array(
                                     'value' => $this->associations_table_name,
@@ -257,7 +264,7 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
                                                     'get_assoc',
                                                     'get_assocs',
                                                     'remove_assoc',
-                                                    'get_expired')
+                                                    'clean_assoc')
                                     )
                               );
 
@@ -399,20 +406,6 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
         return true;
     }
 
-    function getExpired()
-    {
-        $sql = $this->sql['get_expired'];
-        $result = $this->connection->getAll($sql, array(time()));
-
-        $expired = array();
-
-        foreach ($result as $row) {
-            $expired[] = $row['server_url'];
-        }
-
-        return $expired;
-    }
-
     function getAssociation($server_url, $handle = null)
     {
         if ($handle !== null) {
@@ -486,6 +479,12 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
 
     function useNonce($server_url, $timestamp, $salt)
     {
+        global $Auth_OpenID_SKEW;
+
+        if ( abs($timestamp - time()) > $Auth_OpenID_SKEW ) {
+            return False;
+        }
+
         return $this->_add_nonce($server_url, $timestamp, $salt);
     }
 
@@ -544,6 +543,26 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
         }
 
         return $result;
+    }
+
+    function cleanupNonces()
+    {
+        global $Auth_OpenID_SKEW;
+        $v = time() - $Auth_OpenID_SKEW;
+
+        $this->connection->query($this->sql['clean_nonce'], array($v));
+        $num = $this->connection->affectedRows();
+        $this->connection->commit();
+        return $num;
+    }
+
+    function cleanupAssociations()
+    {
+        $this->connection->query($this->sql['clean_assoc'],
+                                 array(time()));
+        $num = $this->connection->affectedRows();
+        $this->connection->commit();
+        return $num;
     }
 }
 

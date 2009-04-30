@@ -91,7 +91,7 @@ class Auth_Yadis_XMLParser {
      * @return array $node_list An array of matching opaque node
      * objects to be used with other methods of this parser class.
      */
-    function evalXPath($xpath, $node = null)
+    function &evalXPath($xpath, $node = null)
     {
         // Not implemented.
     }

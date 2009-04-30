@@ -44,7 +44,7 @@ class Auth_Yadis_ProxyResolver {
         foreach ($service_types as $service_type) {
             $url = $this->queryURL($xri, $service_type);
             $response = $this->fetcher->get($url);
-            if ($response->status != 200) {
+            if ($response->status != 200 and $response->status != 206) {
                 continue;
             }
             $xrds = Auth_Yadis_XRDS::parseXRDS($response->body);

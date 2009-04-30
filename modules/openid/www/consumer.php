@@ -146,9 +146,11 @@ function run_finish_auth() {
 	
 		$consumer = getConsumer();
 	
+		$return_to = SimpleSAML_Utilities::selfURL();
+
 		// Complete the authentication process using the server's
 		// response.
-		$response = $consumer->complete();
+		$response = $consumer->complete($return_to);
 	
 		// Check the response status.
 		if ($response->status == Auth_OpenID_CANCEL) {

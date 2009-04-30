@@ -96,7 +96,11 @@ function Auth_OpenID_mkNonce($when = null)
     $salt = Auth_OpenID_CryptUtil::randomString(
         6, Auth_OpenID_Nonce_CHRS);
     if ($when === null) {
-        $when = gmmktime();
+        // It's safe to call time() with no arguments; it returns a
+        // GMT unix timestamp on PHP 4 and PHP 5.  gmmktime() with no
+        // args returns a local unix timestamp on PHP 4, so don't use
+        // that.
+        $when = time();
     }
     $time_str = gmstrftime(Auth_OpenID_Nonce_TIME_FMT, $when);
     return $time_str . $salt;

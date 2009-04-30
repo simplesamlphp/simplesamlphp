@@ -9,8 +9,8 @@
  *
  * @package OpenID
  * @author JanRain, Inc. <openid@janrain.com>
- * @copyright 2005 Janrain, Inc.
- * @license http://www.gnu.org/copyleft/lesser.html LGPL
+ * @copyright 2005-2008 Janrain, Inc.
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
 /**
@@ -201,6 +201,36 @@ class Auth_Yadis_Service {
     function getElements($name)
     {
         return $this->parser->evalXPath($name, $this->element);
+    }
+}
+
+/*
+ * Return the expiration date of this XRD element, or None if no
+ * expiration was specified.
+ *
+ * @param $default The value to use as the expiration if no expiration
+ * was specified in the XRD.
+ */
+function Auth_Yadis_getXRDExpiration($xrd_element, $default=null)
+{
+    $expires_element = $xrd_element->$parser->evalXPath('/xrd:Expires');
+    if ($expires_element === null) {
+        return $default;
+    } else {
+        $expires_string = $expires_element->text;
+
+        // Will raise ValueError if the string is not the expected
+        // format
+        $t = strptime($expires_string, "%Y-%m-%dT%H:%M:%SZ");
+
+        if ($t === false) {
+            return false;
+        }
+
+        // [int $hour [, int $minute [, int $second [,
+        //  int $month [, int $day [, int $year ]]]]]]
+        return mktime($t['tm_hour'], $t['tm_min'], $t['tm_sec'],
+                      $t['tm_mon'], $t['tm_day'], $t['tm_year']);
     }
 }
 
