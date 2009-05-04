@@ -138,13 +138,13 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 			return FALSE;
 		}
 
-		$fa = $root->getAttribute('IsPassive');
-		if($fa === 'true') {
-			return TRUE;
-		} elseif($fa === 'false') {
+		$ispas = $root->getAttribute('IsPassive');
+		try{
+			return $this->isSamlBoolTrue($ispas);
+		}catch(Exception $e){
+			// ... I don't understand, default to false
 			return FALSE;
-		} else {
-			throw new Exception('Invalid value of IsPassive attribute in SAML2 AuthnRequest.');
+			// throw new Exception('Invalid value of IsPassive attribute in SAML2 AuthnRequest.');
 		}
 	}
 
@@ -168,12 +168,12 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		}
 
 		$fa = $root->getAttribute('ForceAuthn');
-		if($fa === 'true') {
-			return TRUE;
-		} elseif($fa === 'false') {
+		try{
+			return $this->isSamlBoolTrue($fa);
+		} catch(Exception $e){
+			// ... I don't understand, default to false
 			return FALSE;
-		} else {
-			throw new Exception('Invalid value of ForceAuthn attribute in SAML2 AuthnRequest.');
+			// throw new Exception('Invalid value of ForceAuthn attribute in SAML2 AuthnRequest.');
 		}
 	}
 
@@ -296,6 +296,25 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 	 */
 	public function getGeneratedID() {
 		return $this->id;
+	}
+	
+	
+	/**
+	 * Check if a saml attribute value is a legal bool and if it is true or false.
+	 * SAML legal bool values is true/false or 1/0.
+	 * 
+	 * @throws Exception when no legal bool value is found
+	 * @param string $boolSaml
+	 * @return bool TRUE or FALSE
+	 */
+	private function isSamlBoolTrue($boolSaml){
+		if($boolSaml === 'true' || $boolSaml === '1') {
+			return TRUE;
+		} elseif($boolSaml === 'false' || $boolSaml === '0') {
+			return FALSE;
+		} else {
+			throw new Exception('Invalid bool value of attribute in SAML2 AuthnRequest.');
+		}
 	}
 
 }
