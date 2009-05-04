@@ -5,7 +5,7 @@ the consentAdmin module is an addon to the consent module. This emans that
 you can not use the consentAdmin without the consent module. If you have not
 installed and configured the consent module, please do.
 
-  * [How to install and configure the consent module](/conotent/consent-module)
+  * [How to install and configure the consent module](/content/consent-module)
  
 The consentAdmin module only works when the consent module is using a 
 database to store the consents.
@@ -17,7 +17,7 @@ The first thing you need to do is to enable the consentAdmin module:
 
     touch modules/consentAdmin/enable
 
-Next you nedd to copy the module config file to the config directory:
+Next you need to copy the module config file to the config directory:
 
     cp modules/consentAdmin/config-templates/module_config.php config
 
@@ -46,7 +46,7 @@ module correctly, you need to set the configuration 'attributes.hash'
 according to the value of 'includeValues' configuration in the consent
 module.
 
-You should also set the 'relaystate' configuration in orde to pass on your
+You should also set the 'relaystate' configuration in order to pass on your
 users when the press the 'Logout' link.
 
 What does consentAdmin do
