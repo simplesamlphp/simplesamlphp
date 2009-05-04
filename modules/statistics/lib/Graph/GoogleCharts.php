@@ -90,6 +90,30 @@ class sspmod_statistics_Graph_GoogleCharts {
 		return $url;
 	}
 	
+	public function showPie($axis, $datasets) {
+		
+		// echo('<pre>axis:');
+		// print_r($axis);
+		// print_r($datasets);
+
+		
+		$url = 'http://chart.apis.google.com/chart?' .
+
+			// Dimension of graph. Default is 800x350
+			'chs=' . $this->x . 'x' . $this->y . 
+
+			// Dateset values.
+			'&chd=' . $this->encodedata(array($datasets)) .
+
+			// chart type is linechart
+			'&cht=p' .
+
+			'&chl=' . $this->encodeaxis($axis);
+		echo $url;
+		#	exit;
+		return $url;
+	}
+	
 	/**
 	 * Takes a input value, and generates a value that suits better as a max
 	 * value on the Y-axis. In example 37.6 will not make a good max value, instead

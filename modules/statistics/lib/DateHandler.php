@@ -15,14 +15,24 @@ class sspmod_statistics_DateHandler {
 	 */
 	public function __construct($offset) {
 		$this->offset = $offset;
+		
+
+	}
+	
+	private function getDST($timestamp) {
+		if (idate('I', $timestamp)) return 3600;
+		return 0;
 	}
 
 	public function toSlot($epoch, $slotsize) {
-		return floor( ($epoch + $this->offset) / $slotsize);
+		$dst = $this->getDST($epoch);
+		return floor( ($epoch + $this->offset + $dst) / $slotsize);
 	}
 
 	public function fromSlot($slot, $slotsize) {
-		return $slot*$slotsize - $this->offset;
+		$temp = $slot*$slotsize - $this->offset;
+		$dst = $this->getDST($temp);
+		return $slot*$slotsize - $this->offset - $dst;
 	}
 
 	public function prettyDateEpoch($epoch, $dateformat) {

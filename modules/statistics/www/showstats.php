@@ -83,15 +83,12 @@ foreach ($available AS $key => $av) {
 $availrulenames = array_keys($available_rules);
 
 // Get selected rulename....
-$rule = $availrulenames[0];
+$rule = $statconfig->getString('default', $availrulenames[0]);
 if(array_key_exists('rule', $_GET)) {
 	if (array_key_exists($_GET['rule'], $available_rules)) {
 		$rule = $_GET['rule'];
 	}
 }
-
-
-
 
 
 
@@ -176,7 +173,7 @@ foreach($results AS $slot => &$res) {
 		$maxvaluetime = $datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra); 
 	}
 	$maxvalue = max($res[$maxdelimiter],$maxvalue);
-	$debugdata[] = array($datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra), $res[$maxdelimiter] );
+	$debugdata[$slot] = array($datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra), $res[$maxdelimiter] );
 }
 $max = sspmod_statistics_Graph_GoogleCharts::roof($maxvalue);
 
@@ -189,7 +186,7 @@ $max = sspmod_statistics_Graph_GoogleCharts::roof($maxvalue);
 /**
  * Aggregate summary table from dataset. To be used in the table view.
  */
-$summaryDataset = array();
+$summaryDataset = array(); 
 foreach($results AS $slot => $res) {
 	foreach ($res AS $key => $value) {
 		if (array_key_exists($key, $summaryDataset)) {
@@ -201,11 +198,29 @@ foreach($results AS $slot => $res) {
 }
 asort($summaryDataset);
 $summaryDataset = array_reverse($summaryDataset, TRUE);
-#echo '<pre>'; print_r($summaryDataset); exit;
+// echo '<pre>'; print_r($summaryDataset); exit;
+
+/*
+ * Create a list of delimiter keys that has the highest total summary in this period.
+ */
+$topdelimiters = array();
+$maxdelimiters = 4; $i = 0;
+foreach($summaryDataset AS $key => $value) {
+	if ($key !== '_')
+		$topdelimiters[] = $key;
+	if ($i++ >= $maxdelimiters) break;
+}
+
+// echo('<pre>'); print_r($topdelimiters); exit;
 
 
 
-
+$piedata = array(); $sum = 0;
+foreach($topdelimiters AS $td) {
+	$sum += $summaryDataset[$td];
+	$piedata[] = number_format(100*$summaryDataset[$td] / $summaryDataset['_'], 2);
+}
+$piedata[] = number_format(100*($sum /$summaryDataset['_']), 2);
 
 
 $datasets = array();
@@ -314,10 +329,21 @@ if (array_key_exists('fieldPresentation', $statrules[$rule])) {
 }
 
 
+$pieaxis = array();
+foreach($topdelimiters AS $key)  {
+	$keyName = $key;
+	if(array_key_exists($key, $delimiterPresentation)) $keyName = $delimiterPresentation[$key];
+	$pieaxis[] = $keyName;	
+}
+$pieaxis[] = 'Others';
+
 
 
 $t->data['header'] = 'stat';
 $t->data['imgurl'] = $grapher->show($axis, $axispos, $datasets, $max);
+
+$t->data['pieimgurl'] = $grapher->showPie($pieaxis, $piedata);
+
 $t->data['available.rules'] = $available_rules;
 $t->data['available.times'] = $available_times;
 $t->data['available.times.prev'] = $available_times_prev;
@@ -329,7 +355,9 @@ $t->data['jquery'] = $jquery;
 $t->data['selected.rule']= $rule;
 $t->data['selected.time'] = $fileslot;
 $t->data['debugdata'] = $debugdata;
+$t->data['results'] = $results;
 $t->data['summaryDataset'] = $summaryDataset;
+$t->data['topdelimiters'] = $topdelimiters;
 $t->data['availdelimiters'] = array_keys($availdelimiters);
 $t->data['delimiterPresentation'] = $delimiterPresentation;
 $t->show();

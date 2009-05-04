@@ -14,6 +14,8 @@ $config = array (
 	 */
 	//'auth' => 'feide',
 	
+	'default' => 'sso_hoursweek',
+	
 	'useridattr' => 'eduPersonPrincipalName',
 	'allowedUsers' => array('andreas@uninett.no', 'ola.normann@sp.example.org'),
 
@@ -44,6 +46,10 @@ $config = array (
 		
 			'action' 	=> 'saml20-sp-SSO',
 			'col'		=> 6,				// Service Provider EntityID
+			'fieldPresentation' => array(
+				'class' => 'statistics:Entity',
+				'config' => 'saml20-sp-remote',
+			),
 			'slot'		=> 60*15,			// Slots of 15 minutes
 			'fileslot'	=> 60*60*24,		// One day (24 hours) file slots
 			'axislabelint' => 6*4,			// Number of slots per label. 4 per hour *6 = 6 hours 
@@ -57,6 +63,10 @@ $config = array (
 		
 			'action' 	=> 'saml20-sp-SSO',
 			'col'		=> 6,				// Service Provider EntityID
+			'fieldPresentation' => array(
+				'class' => 'statistics:Entity',
+				'config' => 'saml20-sp-remote',
+			),
 			'slot'		=> 60*60*24,		// Slots of 1 day (24 hours)
 			'fileslot'	=> 60*60*24*80,		// 80 days of data in each file
 			'axislabelint' => 7,			// Number of slots per label. 7 days => 1 week
@@ -70,6 +80,10 @@ $config = array (
 		
 			'action' 	=> 'saml20-idp-SSO',
 			'col'		=> 8,				// Service Provider EntityID
+			'fieldPresentation' => array(
+				'class' => 'statistics:Entity',
+				'config' => 'saml20-sp-remote',
+			),
 			'slot'		=> 60*60*24,		// Slots of 1 day (24 hours)
 			'fileslot'	=> 60*60*24*80,		// 80 days of data in each file
 			'axislabelint' => 7,			// Number of slots per label. 7 days => 1 week
@@ -86,6 +100,10 @@ $config = array (
 		
 			'action' 	=> 'saml20-sp-SSO',
 			'col'		=> 6,				// Service Provider EntityID
+			'fieldPresentation' => array(
+				'class' => 'statistics:Entity',
+				'config' => 'saml20-sp-remote',
+			),
 			'slot'		=> 60*60,			// Slots of one hour
 			'fileslot'	=> 60*60*24*7,		// 7 days of data in each file
 			'axislabelint' => 24,			// Number of slots per label. 24 is one each day
@@ -99,6 +117,10 @@ $config = array (
 		
 			'action' 	=> 'saml20-sp-SSO',
 			'col'		=> 6,				// Service Provider EntityID
+			'fieldPresentation' => array(
+				'class' => 'statistics:Entity',
+				'config' => 'saml20-sp-remote',
+			),
 			'slot'		=> 60*60*24,		// Slots of one day
 			'fileslot'	=> 60*60*24*30,		// 30 days of data in each file
 			'axislabelint' => 7,			// Number of slots per label. 7 days => 1 week
@@ -112,6 +134,10 @@ $config = array (
 		
 			'action' 	=> 'saml20-idp-SLO',
 			'col'		=> 7,				// Service Provider EntityID that initiated the logout.
+			'fieldPresentation' => array(
+				'class' => 'statistics:Entity',
+				'config' => 'saml20-sp-remote',
+			),
 			'slot'		=> 60*60*24,		// Slots of one day
 			'fileslot'	=> 60*60*24*30,		// 30 days of data in each file
 			'axislabelint' => 7,			// Number of slots per label. 7 days => 1 week

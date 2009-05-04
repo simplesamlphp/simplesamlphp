@@ -49,7 +49,15 @@ div#content {
 div.corner_t {
     max-width: none ! important;
 }
-
+table.timeseries tr.odd td {
+	background-color: #f4f4f4;
+}
+table.timeseries td {
+	padding-right: 2em; border: 1px solid #ccc
+}
+td.datacontent {
+	text-align: right;
+}
 	</style>
 
 <?php
@@ -170,43 +178,62 @@ echo '</div>'; # end graph content.
  * Handle table view - - - - - - 
  */
 $classint = array('odd', 'even'); $i = 0;
-echo '<div id="table" class="tabset_content">
+echo '<div id="table" class="tabset_content">';
 
-<table class="tableview"><tr><th class="value">Value</th><th class="category">Data range</th>';
+echo('<img src="' . $this->data['pieimgurl'] . '" />');
+
+echo '<table class="tableview"><tr><th class="value">Value</th><th class="category">Data range</th>';
+
 foreach ( $this->data['summaryDataset'] as $key => $value ) {
 	$clint = $classint[$i++ % 2];
 	
 	$keyName = $key;
 	if(array_key_exists($key, $this->data['delimiterPresentation'])) $keyName = $this->data['delimiterPresentation'][$key];
 
-	
-	
 	if ($key === '_') {
 	    echo '<tr class="total '  . $clint . '"><td  class="value">' . $value . '</td><td class="category">' . $keyName . '</td></tr>';
     } else {
 	    echo '<tr class="' . $clint . '"><td  class="value">' . $value . '</td><td class="category">' . $keyName . '</td></tr>';
     }
 }
+
 echo '</table></div>';
 //  - - - - - - - End table view - - - - - - - 
 
 
-
- 
- 
+// 
+//  echo('<pre>');
+// print_r($this->data['results']);
+// exit;
 
 
 echo '<div id="debug" >';
 
-
-
 #echo $this->data['selected.time'];
-
 #echo '<input style="width: 80%" value="' . htmlspecialchars($this->data['imgurl']) . '" />';
 
-echo '<table style="">';
-foreach ($this->data['debugdata'] AS $dd) {
-	echo '<tr><td style="padding-right: 2em; border: 1px solid #ccc">' . $dd[0] . '</td><td style="padding-right: 2em; border: 1px solid #ccc">' . $dd[1] . '</td></tr>';
+echo '<table class="timeseries" style="">';
+echo('<tr><th>Time</th><th>Total</th>');
+foreach($this->data['topdelimiters'] AS $key) {
+	$keyName = $key;
+	if(array_key_exists($key, $this->data['delimiterPresentation'])) $keyName = $this->data['delimiterPresentation'][$key];
+ 	echo('<th>' . $keyName . '</th>');
+}
+echo('</tr>');
+
+
+$i = 0;
+foreach ($this->data['debugdata'] AS $slot => $dd) {
+	echo('<tr class="' . ((++$i % 2) == 0 ? 'odd' : 'even') . '">');
+	echo('<td style="">' . $dd[0] . '</td>');	
+	echo('<td class="datacontent">' . $dd[1] . '</td>');
+
+	foreach($this->data['topdelimiters'] AS $key) {
+		echo('<td class="datacontent">' . 
+			(array_key_exists($key, $this->data['results'][$slot]) ? $this->data['results'][$slot][$key] : '&nbsp;') . 
+			'</td>');
+	}
+	echo('</tr>');
 }
 echo '</table>';
 
