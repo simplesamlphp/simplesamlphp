@@ -130,7 +130,7 @@ if(SimpleSAML_Auth_Source::getById($idpmetadata['auth']) !== NULL) {
  * endpoint - then the session is authenticated and set, and the user is redirected back with a RequestID
  * parameter so we can retrieve the cached information from the request.
  */
-if (!$session->isAuthenticated($authority) ) {
+if (!$session->isValid($authority) ) {
 
 	$authId = SimpleSAML_Utilities::generateID();
 	$session->setAuthnRequest('shib13', $authId, $requestcache);
