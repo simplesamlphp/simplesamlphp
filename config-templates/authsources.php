@@ -53,6 +53,8 @@ $config = array(
 	
 	'openid' => array(
 		'openid:OpenIDConsumer',
+		'attributes.required' => array('nickname'),
+		'attributes.optional' => array('fullname', 'email',),
 	),
 
 	'feide' => array(

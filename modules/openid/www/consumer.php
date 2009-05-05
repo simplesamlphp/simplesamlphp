@@ -88,6 +88,8 @@ function getTrustRoot() {
 }
 
 function run_try_auth() {
+    global $authSource;
+
     $openid = getOpenIDURL();
     $consumer = getConsumer();
 
@@ -100,8 +102,8 @@ function run_try_auth() {
     }
 
     $sreg_request = Auth_OpenID_SRegRequest::build(
-			array('nickname'), // Required
-			array('fullname', 'email')); // Optional
+			$authSource->getRequiredAttributes(),
+			$authSource->getOptionalAttributes());
 
     if ($sreg_request) {
         $auth_request->addExtension($sreg_request);
