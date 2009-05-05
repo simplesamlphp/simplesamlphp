@@ -183,8 +183,6 @@ try {
 
 	$attributes = $session->getAttributes();
 
-	SimpleSAML_Logger::stats('shib13-idp-SSO ' . $spmetadata['entityid'] . ' ' . $idpmetadata['entiryid'] . ' NA');
-
 	/* Authentication processing operations. */
 	if (!isset($authProcState)) {
 		/* Not processed. */
