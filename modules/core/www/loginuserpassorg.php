@@ -45,6 +45,7 @@ $globalConfig = SimpleSAML_Configuration::getInstance();
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'core:loginuserpass.php');
 $t->data['stateparams'] = array('AuthState' => $authStateId);
 $t->data['username'] = $username;
+$t->data['forceUsername'] = FALSE;
 $t->data['errorcode'] = $errorCode;
 
 if ($organizations !== NULL) {
