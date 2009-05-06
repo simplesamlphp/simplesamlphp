@@ -220,8 +220,7 @@ foreach($topdelimiters AS $td) {
 	$sum += $summaryDataset[$td];
 	$piedata[] = number_format(100*$summaryDataset[$td] / $summaryDataset['_'], 2);
 }
-$piedata[] = number_format(100*($sum /$summaryDataset['_']), 2);
-
+$piedata[] = number_format(100 - 100*($sum /$summaryDataset['_']), 2);
 
 $datasets = array();
 
