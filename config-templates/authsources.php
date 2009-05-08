@@ -74,6 +74,16 @@ $config = array(
 		'api_key' => 'xxxxxxxxxxxxxxxx',
 		'secret' => 'xxxxxxxxxxxxxxxx',
 	),
+
+	/* Twitter OAuth Authentication API.
+	 * Register your application to get an API key here:
+	 *  http://twitter.com/oauth_clients
+	 */
+	'twitter' => array(
+		'authtwitter:Twitter',
+		'key' => 'xxxxxxxxxxxxxxxx',
+		'secret' => 'xxxxxxxxxxxxxxxx',
+	),
         
 	/* Example of a LDAP authentication source. */
 	'example-ldap' => array(
