@@ -19,13 +19,17 @@ class sspmod_oauth_Consumer {
 		$this->signer = new OAuthSignatureMethod_HMAC_SHA1();
 	}
 	
+	// Used only to load the libextinc library early.
+	public static function dummy() {}
+	
 	public function getRequestToken($url) {
 		$req_req = OAuthRequest::from_consumer_and_token($this->consumer, NULL, "GET", $url, NULL);
 		$req_req->sign_request($this->signer, $this->consumer, NULL);
 
-		echo "Requesting a request token\n";
-		// echo 'go to url: ' . $req_req->to_url() . "\n"; exit;
 		$response_req = file_get_contents($req_req->to_url());
+		if ($response_req === FALSE) {
+			throw new Exception('Error contacting request_token endpoint on the OAuth Provider');
+		}
 
 		parse_str($response_req, $responseParsed);
 		
@@ -38,15 +42,16 @@ class sspmod_oauth_Consumer {
 		return new OAuthToken($requestToken, $requestTokenSecret);
 	}
 	
-	public function getAuthorizeRequest($url, $requestToken) {
+	public function getAuthorizeRequest($url, $requestToken, $redirect = TRUE, $callback = NULL) {
 		$authorizeURL = $url . '?oauth_token=' . $requestToken->key;
-
-		echo "Please go to this URL to authorize access: " . $authorizeURL . "\n";
-		system("open " . $authorizeURL);
-
-		echo "Waiting 15 seconds for you to authenticate. Usually you should let the user enter return or click a continue button.\n";
-
-		sleep(15);
+		if ($callback) {
+			$authorizeURL .= '&oauth_callback=' . urlencode($callback);
+		}
+		if ($redirect) {
+			SimpleSAML_Utilities::redirect($authorizeURL);
+			exit;
+		}	
+		return $authorizeURL;
 	}
 	
 	public function getAccessToken($url, $requestToken) {
@@ -55,6 +60,10 @@ class sspmod_oauth_Consumer {
 		$acc_req->sign_request($this->signer, $this->consumer, $requestToken);
 
 		$response_acc = file_get_contents($acc_req->to_url());
+		if ($response_acc === FALSE) {
+			throw new Exception('Error contacting request_token endpoint on the OAuth Provider');
+		}
+
 		
 		parse_str($response_acc, $accessResponseParsed);
 		

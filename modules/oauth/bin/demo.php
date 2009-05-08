@@ -22,7 +22,13 @@ $requestToken = $consumer->getRequestToken($baseurl . '/module.php/oauth/request
 echo "Got a request token from the OAuth service provider [" . $requestToken->key . "] with the secret [" . $requestToken->secret . "]\n";
 
 // Authorize the request token
-$consumer->getAuthorizeRequest($baseurl . '/module.php/oauth/authorize.php', $requestToken);
+$url = $consumer->getAuthorizeRequest($baseurl . '/module.php/oauth/authorize.php', $requestToken, FALSE);
+
+echo('Go to this URL to authenticate/authorize the request: ' . $url . "\n");
+system('open ' . $url);
+
+echo('Waiting 15 seconds for you to complete the authorization...' . "\n");
+sleep(15);
 
 // Replace the request token with an access token
 $accessToken = $consumer->getAccessToken( $baseurl . '/module.php/oauth/accessToken.php', $requestToken);
