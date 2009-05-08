@@ -7,7 +7,6 @@
 $oldErrLevel = error_reporting();
 error_reporting($oldErrLevel & ~E_STRICT);
 
-#require_once('../../_include.php');
 require_once('Auth/OpenID/SReg.php');
 require_once('Auth/OpenID/Server.php');
 require_once('Auth/OpenID/ServerRequest.php');
@@ -24,17 +23,17 @@ $state = SimpleSAML_Auth_State::loadState($_REQUEST['AuthState'], 'openid:state'
 $authState = $_REQUEST['AuthState'];
 $authSource = SimpleSAML_Auth_Source::getById($state['openid:AuthId']);
 if ($authSource === NULL) {
-	throw new SimpleSAML_Error_BadRequest('Invalid AuthId \'' . $state['feide:AuthId'] . '\' - not found.');
+	throw new SimpleSAML_Error_BadRequest('Invalid AuthId \'' . $state['openid:AuthId'] . '\' - not found.');
 }
 
 
 function displayError($message) {
-    $error = $message;
+	global $authState;
 
 	$config = SimpleSAML_Configuration::getInstance();
 	$t = new SimpleSAML_XHTML_Template($config, 'openid:consumer.php', 'openid');
-	$t->data['msg'] = $msg;
-	$t->data['error'] = $error;
+	$t->data['error'] = $message;
+	$t->data['AuthState'] = $authState;
 	$t->show();
 }
 
@@ -44,22 +43,6 @@ function getConsumer() {
 	global $state;
 	$store = new sspmod_openid_StateStore($state);
 	return new Auth_OpenID_Consumer($store);
-}
-
-function getOpenIDURL() {
-    // Render a default page if we got a submission without an openid
-    // value.
-    if (empty($_GET['openid_url'])) {
-        $error = "Expected an OpenID URL.";
-
-		$config = SimpleSAML_Configuration::getInstance();
-		$t = new SimpleSAML_XHTML_Template($config, 'openid:consumer.php', 'openid');
-		$t->data['msg'] = $msg;
-		$t->data['error'] = $error;
-		$t->show();
-    }
-
-    return $_GET['openid_url'];
 }
 
 function getReturnTo() {
@@ -76,7 +59,7 @@ function getTrustRoot() {
 function run_try_auth() {
     global $authSource;
 
-    $openid = getOpenIDURL();
+    $openid = $_GET['openid_url'];
     $consumer = getConsumer();
 
     // Begin the OpenID authentication process.
@@ -190,7 +173,7 @@ function run_finish_auth() {
 
 if (array_key_exists('returned', $_GET)) {
 	run_finish_auth();
-} elseif(array_key_exists('openid_url', $_GET)) {
+} elseif (!empty($_GET['openid_url'])) {
 	run_try_auth();
 } else {
 	$config = SimpleSAML_Configuration::getInstance();
