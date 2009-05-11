@@ -142,9 +142,9 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		try{
 			return $this->isSamlBoolTrue($ispas);
 		}catch(Exception $e){
-			// ... I don't understand, default to false
-			return FALSE;
-			// throw new Exception('Invalid value of IsPassive attribute in SAML2 AuthnRequest.');
+			// ... I don't understand ...
+			// return FALSE;
+			throw new Exception('Invalid value of IsPassive attribute in SAML2 AuthnRequest.');
 		}
 	}
 
@@ -171,9 +171,9 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		try{
 			return $this->isSamlBoolTrue($fa);
 		} catch(Exception $e){
-			// ... I don't understand, default to false
-			return FALSE;
-			// throw new Exception('Invalid value of ForceAuthn attribute in SAML2 AuthnRequest.');
+			// ... I don't understand ...
+			// return FALSE;
+			throw new Exception('Invalid value of ForceAuthn attribute in SAML2 AuthnRequest.');
 		}
 	}
 
@@ -308,6 +308,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 	 * @return bool TRUE or FALSE
 	 */
 	private function isSamlBoolTrue($boolSaml){
+		$boolSaml = strtolower($boolSaml);
 		if($boolSaml === 'true' || $boolSaml === '1') {
 			return TRUE;
 		} elseif($boolSaml === 'false' || $boolSaml === '0') {
