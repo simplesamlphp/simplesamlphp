@@ -832,7 +832,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		#$sp['attributes'] = array();
 		$attcs = SimpleSAML_Utilities::getDOMChildren($element, 'AttributeConsumingService', '@md');
 		if (count($attcs) > 0) {
-			self::parseAttributeConsumerService($attcs[0], &$sp);
+			self::parseAttributeConsumerService($attcs[0], $sp);
 		}
 		
 
