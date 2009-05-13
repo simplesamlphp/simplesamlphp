@@ -38,6 +38,14 @@ $config = array (
 	 *     'cron_tag' => NULL,
 	 */
 	'cron_tag' => 'daily',
+
+	/*
+	 * Set max running time for this script. This is also controlle by max_execution_time in php.ini
+	 * and is defalut set to 30 sec. Your web server can have other timeout configurations that may
+	 * also interrupt PHP execution. Apache has a Timeout directive and IIS has a
+	 * CGI timeout function. Both default to 300 seconds.
+	 */
+	'time_limit' => 300,
 	
 	'statrules' => array(
 		'sso_hoursday' => array(
