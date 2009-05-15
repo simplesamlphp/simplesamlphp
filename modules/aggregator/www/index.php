@@ -40,27 +40,35 @@ try {
 		var_export($id, TRUE) . ': ' . $e->getMessage());
 }
 
+$exclude = NULL;
+if (array_key_exists('exclude', $_REQUEST)) $exclude = $_REQUEST['exclude'];
+
+#echo $exclude; exit;
 /* Find list of all available entities. */
 $entities = array();
 foreach ($sources as $source) {
 	foreach ($metadataSets as $set) {
 		foreach ($source->getMetadataSet($set) as $entityId => $metadata) {
-			if (!array_key_exists($entityId, $entities)) {
-				$entities[$entityId] = array();
+			if (isset($exclude) && 
+					array_key_exists('tags', $metadata) && 
+					in_array($exclude, $metadata['tags'])) {
+				SimpleSAML_Logger::debug('Excluding entity ID [' . $entityId . '] becuase it is tagged with [' . $exclude . ']');
+				continue;
+			} else {
+				#echo('<pre>'); print_r($metadata); exit;
 			}
-
+			if (!array_key_exists($entityId, $entities)) 
+				$entities[$entityId] = array();
+				
 			if (array_key_exists($set, $entities[$entityId])) {
 				/* Entity already has metadata for the given set. */
 				continue;
 			}
-
+			
 			$entities[$entityId][$set] = $metadata;
 		}
 	}
 }
-
-
-
 
 $xml = new DOMDocument();
 $entitiesDescriptor = $xml->createElementNS('urn:oasis:names:tc:SAML:2.0:metadata', 'EntitiesDescriptor');
