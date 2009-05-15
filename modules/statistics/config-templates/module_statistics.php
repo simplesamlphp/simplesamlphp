@@ -5,14 +5,15 @@
 
 $config = array (
 
-	// Access control on statistics page.
 	'protected' => FALSE,
+	'auth' => 'admin',
+	'useridattr' => 'eduPersonPrincipalName',
 	
-	/*
-	 * Which authenticatino source should be used for authentication exception from admin module.
-	 * Set to NULL if only using admin auth.
-	 */
-	//'auth' => 'feide',
+	'default' => 'sso_hoursweek',
+	
+	'allowedUsers' => array(
+		'admin'
+	),
 	
 	'default' => 'sso_hoursweek',
 	

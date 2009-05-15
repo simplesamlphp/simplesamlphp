@@ -9,8 +9,11 @@ class sspmod_statistics_Statistics_FieldPresentation_Entity extends sspmod_stati
 		
 		$translation = array('_' => 'All services');
 		foreach($this->fields AS $field) {
-			if (array_key_exists($field, $metadata))
-				$translation[$field] = $this->template->t($metadata[$field]['name'], array(), FALSE);
+			if (array_key_exists($field, $metadata)) {
+				if (array_key_exists('name', $metadata[$field])) {
+					$translation[$field] = $this->template->t($metadata[$field]['name'], array(), FALSE);
+				}
+			}
 		}
 		return $translation;
 	}
