@@ -136,7 +136,36 @@ class sspmod_metarefresh_MetaLoader {
 	}
 
 
+	/**
+	 * This function writes the metadata to an ARP file
+	 */
+	function writeARPfile($config) {
+		
+		assert('is_a($config, \'SimpleSAML_Configuration\')');
+		
+		$arpfile = $config->getValue('arpfile');
+		$types = array('saml20-sp-remote');
+		
+		$md = array();
+		foreach($this->metadata as $category => $elements) {
+			if (!in_array($category, $types)) continue;
+			$md = array_merge($md, $elements);
+		}
+		
+		#$metadata, $attributemap, $prefix, $suffix
+		$arp = new sspmod_metarefresh_ARP($md, 
+			$config->getValue('attributemap', ''),  
+			$config->getValue('prefix', ''),  
+			$config->getValue('suffix', '')
+		);
+		
+		
+		$arpxml = $arp->getXML();
 
+		SimpleSAML_Logger::info('Writing ARP file: ' . $arpfile . "\n");
+		file_put_contents($arpfile, $arpxml);
+
+	}
 	
 	
 	/**

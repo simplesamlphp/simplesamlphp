@@ -51,6 +51,11 @@ function metarefresh_hook_cron(&$croninfo) {
 				break;
 			}
 
+			
+			if (array_key_exists('arp', $set)) {
+				$arpconfig = SimpleSAML_Configuration::loadFromArray($set['arp']);
+				$metaloader->writeARPfile($arpconfig);
+			}
 		}
 
 	} catch (Exception $e) {
