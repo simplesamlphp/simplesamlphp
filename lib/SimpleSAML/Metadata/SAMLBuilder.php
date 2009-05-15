@@ -91,8 +91,11 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		return $this->document->saveXML();
 	}
 	
-	
-	private function addExtensions($metadata) {
+	/**
+	 * @param $metadata Metadata array
+	 * @param $e Reference to the element where the Extensions element should be included.
+	 */
+	private function addExtensions($metadata, &$e = NULL) {
 		$extensions = $this->createElement('Extensions'); 
 		$includeExtensions = FALSE;
 		
@@ -127,7 +130,13 @@ class SimpleSAML_Metadata_SAMLBuilder {
 				$extensions->appendChild($scope);
 			}
 		}
-		if ($includeExtensions) $this->entityDescriptor->appendChild($extensions);
+		if ($includeExtensions) {
+			if (isset($e)) {
+				$e->appendChild($extensions);
+			} else {
+				$this->entityDescriptor->appendChild($extensions);
+			}
+		}
 	}
 	
 	public static function arrayize($data) {
@@ -230,7 +239,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:2.0:protocol');
 		
 		
-		$this->addExtensions($metadata);
+		$this->addExtensions($metadata, $e);
 
 		$this->addCertificate($e, $metadata);
 
@@ -352,7 +361,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$e->setAttribute('WantAuthnRequestSigned', 'true');
 		}
 		
-		$this->addExtensions($metadata);
+		$this->addExtensions($metadata, $e);
 
 		$this->addCertificate($e, $metadata);
 
