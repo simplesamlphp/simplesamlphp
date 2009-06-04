@@ -43,17 +43,16 @@ function metarefresh_hook_cron(&$croninfo) {
 
 			$outputFormat = $set->getValueValidate('outputFormat', array('flatfile', 'serialize'), 'flatfile');
 			switch ($outputFormat) {
-			case 'flatfile':
-				$metaloader->writeMetadataFiles($outputDir);
-				break;
-			case 'serialize':
-				$metaloader->writeMetadataSerialize($outputDir);
-				break;
+				case 'flatfile':
+					$metaloader->writeMetadataFiles($outputDir);
+					break;
+				case 'serialize':
+					$metaloader->writeMetadataSerialize($outputDir);
+					break;
 			}
 
-			
-			if (array_key_exists('arp', $set)) {
-				$arpconfig = SimpleSAML_Configuration::loadFromArray($set['arp']);
+			if ($set->hasValue('arp')) {
+				$arpconfig = SimpleSAML_Configuration::loadFromArray($set->getValue('arp'));
 				$metaloader->writeARPfile($arpconfig);
 			}
 		}
