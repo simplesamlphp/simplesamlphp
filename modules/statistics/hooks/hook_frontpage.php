@@ -13,6 +13,11 @@ function statistics_hook_frontpage(&$links) {
 		'text' => array('en' => 'Show statistics', 'no' => 'Vis statistikk'),
 		'shorttext' => array('en' => 'Statistics', 'no' => 'Statistikk'),
 	);
+	$links['links']['statisticsmeta'] = array(
+		'href' => SimpleSAML_Module::getModuleURL('statistics/statmeta.php'),
+		'text' => array('en' => 'Show statistics metadata', 'no' => 'Vis statistikk metadata'),
+		'shorttext' => array('en' => 'Statistics metadata', 'no' => 'Statistikk metadata'),
+	);
 
 }
 ?>

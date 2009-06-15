@@ -92,7 +92,6 @@ class sspmod_statistics_Graph_GoogleCharts {
 	
 	public function showPie($axis, $datasets) {
 		
-
 		$url = 'http://chart.apis.google.com/chart?' .
 
 			// Dimension of graph. Default is 800x350
@@ -105,7 +104,6 @@ class sspmod_statistics_Graph_GoogleCharts {
 			'&cht=p' .
 
 			'&chl=' . $this->encodeaxis($axis);
-
 		return $url;
 	}
 	

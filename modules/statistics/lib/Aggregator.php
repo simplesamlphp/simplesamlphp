@@ -11,8 +11,10 @@ class sspmod_statistics_Aggregator {
 	private $inputfile;
 	private $statrules;
 	private $offset;
-
+	private $metadata;
 	private $fromcmdline;
+	
+	private $starttime;
 
 	/**
 	 * Constructor
@@ -25,20 +27,48 @@ class sspmod_statistics_Aggregator {
 		$this->statdir = $this->statconfig->getValue('statdir');
 		$this->inputfile = $this->statconfig->getValue('inputfile');
 		$this->statrules = $this->statconfig->getValue('statrules');
+		$this->timeres = $this->statconfig->getValue('timeres');
 		$this->offset = $this->statconfig->getValue('offset', 0);
+		$this->metadata = NULL;
+		
+		$this->starttime = time();
 	}
 	
 	public function dumpConfig() {
-		
 		echo 'Statistics directory   : ' . $this->statdir . "\n";
 		echo 'Input file             : ' . $this->inputfile . "\n";
 		echo 'Offset                 : ' . $this->offset . "\n";
-		
 	}
 	
-
-
+	public function debugInfo() {
+		echo 'Memory usage           : ' . number_format(memory_get_usage() / (1024*1024), 2) . " MB\n";
+	}
+	
+	public function loadMetadata() {
+		$filename = $this->statdir . '/.stat.metadata';
+		$metadata = NULL;
+		if (file_exists($filename)) {
+			$metadata = unserialize(file_get_contents($filename));
+		}
+		$this->metadata = $metadata;
+	}
+	
+	public function getMetadata() {
+		return $this->metadata;
+	}
+	
+	public function saveMetadata() {
+		$this->metadata['time'] = time() - $this->starttime;
+		$this->metadata['memory'] = memory_get_usage();
+		$this->metadata['lastrun'] = time();
+		
+		$filename = $this->statdir . '/.stat.metadata';
+		file_put_contents($filename, serialize($this->metadata), LOCK_EX);
+	}
+	
 	public function aggregate($debug = FALSE) {
+		
+		$this->loadMetadata();
 		
 		if (!is_dir($this->statdir)) 
 			throw new Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
@@ -46,16 +76,26 @@ class sspmod_statistics_Aggregator {
 		if (!file_exists($this->inputfile)) 
 			throw new Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
 		
-		
 		$file = fopen($this->inputfile, 'r');
 		#$logfile = file($this->inputfile, FILE_IGNORE_NEW_LINES );
-		
 		
 		$logparser = new sspmod_statistics_LogParser(
 			$this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
 		);
-		$datehandler = new sspmod_statistics_DateHandler($this->offset);
+		$datehandler = array(
+			'default' => new sspmod_statistics_DateHandler($this->offset),
+			'month' => new  sspmod_statistics_DateHandlerMonth($this->offset),
+		);
 		
+		
+		$notBefore = 0; $lastRead = 0; $lastlinehash = '-';
+		if (isset($this->metadata)) {
+			$notBefore = $this->metadata['notBefore'];
+			$lastlinehash = $this->metadata['lastlinehash'];
+		}
+		
+		$lastlogline = 'sdfsdf'; 
+		$lastlineflip = FALSE;
 		$results = array();
 		
 		$i = 0;
@@ -66,7 +106,7 @@ class sspmod_statistics_Aggregator {
 			
 			// Continue if STAT is not found on line.
 			if (!preg_match('/STAT/', $logline)) continue;
-			$i++;
+			$i++; $lastlogline = $logline;
 			
 			// Parse log, and extract epoch time and rest of content.
 			$epoch = $logparser->parseEpoch($logline);
@@ -76,11 +116,8 @@ class sspmod_statistics_Aggregator {
 			if ($this->fromcmdline && ($i % 10000) == 0) {
 				echo("Read line " . $i . "\n");
 			}
-
 			
 			if ($debug) {
-			
-			
 				echo("----------------------------------------\n");
 				echo('Log line: ' . $logline . "\n");
 				echo('Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) . '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n");
@@ -88,84 +125,165 @@ class sspmod_statistics_Aggregator {
 				if ($i >= 13) exit;
 			}
 			
+			if ($epoch > $lastRead) $lastRead = $epoch;
+			if ($epoch === $notBefore) {
+				if(!$lastlineflip) {
+					if (sha1($logline) === $lastlinehash) { 
+						$lastlineflip = TRUE;
+					}
+					continue;
+				}
+			}
+			if ($epoch < $notBefore) continue;
 			
 			// Iterate all the statrules from config.
 			foreach ($this->statrules AS $rulename => $rule) {
 			
-				// echo 'Comparing action: [' . $rule['action'] . '] with [' . $action . ']' . "\n";
+				foreach($this->timeres AS $tres => $tresconfig ) {
 			
-				$timeslot = $datehandler->toSlot($epoch, $rule['slot']);
-				$fileslot = $datehandler->toSlot($epoch, $rule['fileslot']); //print_r($content);
+					// echo 'Comparing action: [' . $rule['action'] . '] with [' . $action . ']' . "\n";
+					$dh = 'default';
+					if (isset($tresconfig['customDateHandler'])) $dh = $tresconfig['customDateHandler'];
+			
+					$timeslot = $datehandler['default']->toSlot($epoch, $tresconfig['slot']);
+					$fileslot = $datehandler[$dh]->toSlot($epoch, $tresconfig['fileslot']); //print_r($content);
 				
-				if (isset($rule['action']) && ($action !== $rule['action'])) continue;
-				
+					if (isset($rule['action']) && ($action !== $rule['action'])) continue;
 		
-				$difcol = trim($content[$rule['col']]); // echo '[...' . $difcol . '...]';
+					#$difcol = trim($content[$rule['col']]); // echo '[...' . $difcol . '...]';
+					$difcol = self::getDifCol($content, $rule['col']);
 		
-				if (!isset($results[$rulename][$fileslot][$timeslot]['_'])) $results[$rulename][$fileslot][$timeslot]['_'] = 0;
-				if (!isset($results[$rulename][$fileslot][$timeslot][$difcol])) $results[$rulename][$fileslot][$timeslot][$difcol] = 0;
+					if (!isset($results[$rulename][$tres][$fileslot][$timeslot]['_'])) $results[$rulename][$tres][$fileslot][$timeslot]['_'] = 0;
+					if (!isset($results[$rulename][$tres][$fileslot][$timeslot][$difcol])) $results[$rulename][$tres][$fileslot][$timeslot][$difcol] = 0;
 		
-				$results[$rulename][$fileslot][$timeslot]['_']++;
-				$results[$rulename][$fileslot][$timeslot][$difcol]++;
-				
+					$results[$rulename][$tres][$fileslot][$timeslot]['_']++;
+					$results[$rulename][$tres][$fileslot][$timeslot][$difcol]++;
+				}
 			}
 		}
-		return $results;		
+		$this->metadata['notBefore'] = $lastRead;
+		$this->metadata['lastline'] = $lastlogline;
+		$this->metadata['lastlinehash'] = sha1($lastlogline);
+		return $results;
+	}
+	
+	private static function getDifCol($content, $colrule) {
+		if (is_string($colrule)) {
+			return trim($content[$colrule]);
+		} elseif(is_array($colrule)) {
+			$difcols = array();
+			foreach($colrule AS $cr) {
+				$difcols[] = trim($content[$cr]);
+			}
+			return join('|', $difcols);
+		} else {
+			return 'NA';
+		}
+	}
+	
+	private function cummulateData($previous, $newdata) {
+		$dataset = array();
+		foreach($previous AS $slot => $dataarray) {
+			if (!array_key_exists($slot, $dataset)) $dataset[$slot] = array();
+			foreach($dataarray AS $key => $data) {
+				if (!array_key_exists($key, $dataset[$slot])) $dataset[$slot][$key] = 0;
+				$dataset[$slot][$key] += $data;
+			}
+		}
+		foreach($newdata AS $slot => $dataarray) {
+			if (!array_key_exists($slot, $dataset)) $dataset[$slot] = array();
+			foreach($dataarray AS $key => $data) {
+				if (!array_key_exists($key, $dataset[$slot])) $dataset[$slot][$key] = 0;
+				$dataset[$slot][$key] += $data;
+			}
+		}
+		return $dataset;
 	}
 	
 	
 	public function store($results) {
 	
-		$datehandler = new sspmod_statistics_DateHandler($this->offset);
+		// print_r($results); // exit;
+	
+		$datehandler = array(
+			'default' => new sspmod_statistics_DateHandler($this->offset),
+			'month' => new  sspmod_statistics_DateHandlerMonth($this->offset),
+		);
 	
 		// Iterate the first level of results, which is per rule, as defined in the config.
-		foreach ($results AS $rulename => $ruleresults) {
+		foreach ($results AS $rulename => $timeresdata) {
 		
+			// $timeresl = array_keys($timeresdata);
+			// 
+			// print_r($timeresl); exit;
 			
-			$filenos = array_keys($ruleresults);
-			$lastfile = $filenos[count($filenos)-1];
+			// Iterate over time resolutions
+			foreach($timeresdata AS $tres => $resres) {
+
+				$dh = 'default';
+				if (isset($this->timeres[$tres]['customDateHandler'])) $dh = $this->timeres[$tres]['customDateHandler'];
 			
-			// Iterate the second level of results, which is the fileslot.
-			foreach ($ruleresults AS $fileno => $fileres) {
+				$filenos = array_keys($resres);
+				$lastfile = $filenos[count($filenos)-1];
 			
-				$slotlist = array_keys($fileres);
+				// Iterate the second level of results, which is the fileslot.
+				foreach ($resres AS $fileno => $fileres) {
+					
+					
+					// Slots that have data.
+					$slotlist = array_keys($fileres);
 				
-				$maxslot = $slotlist[count($slotlist)-1];
-				#print_r($slotlist); 
+					// The last slot.
+					$maxslot = $slotlist[count($slotlist)-1];
+					#print_r($slotlist); 
 		
-				// Get start and end slot number within the file, based on the fileslot.
-				$start = (int)$datehandler->toSlot($datehandler->fromSlot($fileno, $this->statrules[$rulename]['fileslot']), $this->statrules[$rulename]['slot']);
-				$end = (int)$datehandler->toSlot($datehandler->fromSlot($fileno+1, $this->statrules[$rulename]['fileslot']), $this->statrules[$rulename]['slot']);
-		
-				// Fill in missing entries and sort file results
-				$filledresult = array();
-				for ($slot = $start; $slot < $end; $slot++) {
-					#print_r(gettype($slot));
-					if (array_key_exists($slot,  $fileres)) {
-						$filledresult[$slot] = $fileres[$slot];
-					} else {
-						#echo('SLot [' . $slot . '] of [' . $maxslot . ']' . "\n");
-						if ($lastfile == $fileno && $slot > $maxslot) {
-						#if ($slot > $maxslot) {
-							$filledresult[$slot] = array('_' => NULL);
+					// Get start and end slot number within the file, based on the fileslot.
+					$start = (int)$datehandler['default']->toSlot(
+							$datehandler[$dh]->fromSlot($fileno, $this->timeres[$tres]['fileslot']), 
+							$this->timeres[$tres]['slot']);
+					$end = (int)$datehandler['default']->toSlot(
+							$datehandler[$dh]->fromSlot($fileno+1, $this->timeres[$tres]['fileslot']), 
+							$this->timeres[$tres]['slot']);
+					
+					// echo('from slot ' . $start . ' to slot ' . $end . ' maxslot ' . $maxslot . "\n");
+					// print_r($slotlist);
+					// 			exit;
+					
+					// Fill in missing entries and sort file results
+					$filledresult = array();
+					for ($slot = $start; $slot < $end; $slot++) {
+						if (array_key_exists($slot,  $fileres)) {
+							$filledresult[$slot] = $fileres[$slot];
 						} else {
-							$filledresult[$slot] = array('_' => 0);
-						}				
+							#echo('SLot [' . $slot . '] of [' . $maxslot . ']' . "\n");
+							if ($lastfile == $fileno && $slot > $maxslot) {
+								$filledresult[$slot] = array('_' => NULL);
+							} else {
+								$filledresult[$slot] = array('_' => 0);
+							}				
+						}
+						# print_r($filledresult[$slot]);
+						#  = (isset($fileres[$slot])) ? $fileres[$slot] : array('_' => NULL);
 					}
-					#print_r($filledresult[$slot]);
-#					 = (isset($fileres[$slot])) ? $fileres[$slot] : array('_' => NULL);
+					// print_r($filledresult); exit;
+					
+					$filename = $this->statdir . '/' . $rulename . '-' . $tres . '-' . $fileno . '.stat';
+					if (file_exists($filename)) {
+						echo('Reading existing file: ' . $filename . "\n");
+						$previousData = unserialize(file_get_contents($filename));
+						$filledresult = $this->cummulateData($previousData, $filledresult);	
+					}
+				
+					// store file
+					echo('Writing to file: ' . $filename . "\n");
+					file_put_contents($filename, serialize($filledresult), LOCK_EX);
 				}
 				
-				#print_r($filledresult); exit;
-				
-				// store file
-				file_put_contents($this->statdir . '/' . $rulename . '-' . $fileno . '.stat', serialize($filledresult), LOCK_EX );
 			}
+			
 		}
+		$this->saveMetadata();
 	
 	}
 
-
 }
-
-?>

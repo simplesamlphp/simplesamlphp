@@ -3,7 +3,7 @@ $this->data['header'] = 'SimpleSAMLphp Statistics';
 
 $this->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 
-$this->data['hideLanguageBar'] = TRUE;
+// $this->data['hideLanguageBar'] = TRUE;
 
 $this->data['head'] ='';
 $this->data['head'] .= '<script type="text/javascript">
@@ -12,8 +12,35 @@ $(document).ready(function() {
 });
 </script>';
 
-
 $this->includeAtTemplateBase('includes/header.php');
+
+
+function getBaseURL($t, $type = 'get', $key = NULL, $value = NULL) {
+	$vars = array(
+		'rule' => $t->data['selected.rule'],
+		'time' => $t->data['selected.time'],
+		'res' => $t->data['selected.timeres'],
+	);
+	if (isset($t->data['selected.delimiter'])) $vars['d'] = $t->data['selected.delimiter'];
+	
+	if (isset($key)) {
+		if (isset($vars[$key])) unset($vars[$key]);
+		if (isset($value)) $vars[$key] = $value;
+	}
+
+	if ($type === 'get') {
+		return 'showstats.php?' . http_build_query($vars, '', '&amp;');
+	} else {
+		$text = '';
+		foreach($vars AS $k => $v) {
+			$text .= '<input type="hidden" name="' . $k . '" value="'. htmlspecialchars($v) . '" />' . "\n";
+		}
+		return $text;
+	}
+	
+}
+
+
 
 ?>
 
@@ -64,7 +91,9 @@ td.datacontent {
 echo('<h1>'. $this->data['available.rules'][$this->data['selected.rule']]['name'] . '</h1>');
 echo('<p>' . $this->data['available.rules'][$this->data['selected.rule']]['descr'] . '</p>');
 
-
+// echo('<pre>');
+// print_r($this->data);
+// exit;
 
 
 // Report settings
@@ -73,7 +102,9 @@ echo('<tr><td style="width: 50px; padding: 0px"><img style="margin: 0px" src="' 
 
 // Select report
 echo '<td>';
-echo '<form style="display: inline"><select onChange="submit();" name="rule">';
+echo '<form style="display: inline">';
+echo getBaseURL($this, 'post', 'rule');
+echo '<select onChange="submit();" name="rule">';
 foreach ($this->data['available.rules'] AS $key => $rule) {
 	if ($key === $this->data['selected.rule']) {
 		echo '<option selected="selected" value="' . $key . '">' . $rule['name'] . '</option>';
@@ -91,8 +122,7 @@ echo '<td style="text-align: right">';
 #echo('<pre>here'); print_r($this->data['delimiterPresentation']); echo('</pre>');
 
 echo '<form style="display: inline">';
-echo '<input type="hidden" name="rule" value="' . $this->data['selected.rule'] . '" />';
-echo '<input type="hidden" name="time" value="' . $this->data['selected.time'] . '" />';
+echo getBaseURL($this, 'post', 'd');
 echo '<select onChange="submit();" name="d">';
 foreach ($this->data['availdelimiters'] AS $key => $delim) {
 
@@ -121,15 +151,39 @@ echo '</table>';
 echo '<table class="selecttime" style="width: 100%; border: 1px solid #ccc; background: #eee; margin: 1px 0px; padding: 0px">';
 echo('<tr><td style="width: 50px; padding: 0px"><img style="margin: 0px" src="' . SimpleSAML_Module::getModuleURL("statistics/resources/calendar.png") . '" alt="Select date and time" /></td>');
 
+
+
+
+
+
 if (isset($this->data['available.times.prev'])) {
-	echo('<td style=""><a href="showstats.php?rule=' . $this->data['selected.rule']. '&amp;time=' . $this->data['available.times.prev'] . '">« Previous</a></td>');
+
+	echo('<td style=""><a href="' . getBaseURL($this, 'get', 'time', $this->data['available.times.prev']) . '">« Previous</a></td>');
 } else {
 	echo('<td style="color: #ccc">« Previous</td>');
 }
 
-echo '<td style="text-align: center">';
+
+echo '<td style="text-align: right">';
 echo '<form style="display: inline">';
-echo '<input type="hidden" name="rule" value="' . $this->data['selected.rule'] . '" />';
+echo getBaseURL($this, 'post', 'res');
+// echo '<input type="hidden" name="rule" value="' . $this->data['selected.rule'] . '" />';
+echo '<select onChange="submit();" name="res">';
+foreach ($this->data['available.timeres'] AS $key => $timeresname) {
+	if ($key == $this->data['selected.timeres']) {
+		echo '<option selected="selected" value="' . $key . '">' . $timeresname . '</option>';
+	} else {
+		echo '<option  value="' . $key . '">' . $timeresname . '</option>';
+	}
+}
+echo '</select></form>';
+echo '</td>';
+
+
+echo '<td style="text-align: left">';
+echo '<form style="display: inline">';
+echo getBaseURL($this, 'post', 'time');
+// echo '<input type="hidden" name="rule" value="' . $this->data['selected.rule'] . '" />';
 echo '<select onChange="submit();" name="time">';
 foreach ($this->data['available.times'] AS $key => $timedescr) {
 	if ($key == $this->data['selected.time']) {
@@ -142,7 +196,7 @@ echo '</select></form>';
 echo '</td>';
 
 if (isset($this->data['available.times.next'])) {
-	echo('<td style="text-align: right; padding-right: 4px"><a href="showstats.php?rule=' . $this->data['selected.rule']. '&amp;time=' . $this->data['available.times.next'] . '">Next »</a></td>');
+	echo('<td style="text-align: right; padding-right: 4px"><a href="' . getBaseURL($this, 'get', 'time', $this->data['available.times.next']) . '">Next »</a></td>');
 } else {
 	echo('<td style="color: #ccc; text-align: right; padding-right: 4px">Next »</td>');
 }

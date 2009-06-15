@@ -53,7 +53,9 @@ foreach($argv as $a) {
 
 $aggregator = new sspmod_statistics_Aggregator(TRUE);
 $aggregator->dumpConfig();
+$aggregator->debugInfo();
 $results = $aggregator->aggregate($debug);
+$aggregator->debugInfo();
 
 if (!$dryrun) {
 	$aggregator->store($results);

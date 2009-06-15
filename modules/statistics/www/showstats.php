@@ -5,6 +5,9 @@ $statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
 $session = SimpleSAML_Session::getInstance();
 
 
+/**
+ * AUTHENTICATION and Authorization for access to the statistics.
+ */
 $protected = $statconfig->getBoolean('protected', FALSE);
 $authsource = $statconfig->getString('auth', NULL);
 $allowedusers = $statconfig->getValue('allowedUsers', NULL);
@@ -44,267 +47,61 @@ if ($protected) {
 		SimpleSAML_Utilities::requireAdmin();
 	}
 }
-
-
-
-
-$statdir = $statconfig->getValue('statdir');
-$inputfile = $statconfig->getValue('inputfile');
-$statrules = $statconfig->getValue('statrules');
-
-$datehandler = new sspmod_statistics_DateHandler($statconfig->getValue('offset', 0));
-
-
-
-/*
- * Walk through file lists, and get available [rule][fileslot]...
- */
-if (!is_dir($statdir))
-	throw new Exception('Statisics output directory [' . $statdir . '] does not exists.');
-$filelist = scandir($statdir);
-$available = array();
-foreach ($filelist AS $file) {
-	if (preg_match('/([a-z0-9_]+)-([0-9]+)\.stat/', $file, $matches)) {
-		if (array_key_exists($matches[1], $statrules)) {
-			$available[$matches[1]][] = $matches[2];
-		}
-	}
-}
-if (empty($available)) 
-	throw new Exception('No aggregated statistics files found in [' . $statdir . ']');
-
-/*
- * Create array with information about available rules..
- */
-$available_rules = array();
-foreach ($available AS $key => $av) {
-	$available_rules[$key] = array('name' => $statrules[$key]['name'], 'descr' => $statrules[$key]['descr']);
-}
-$availrulenames = array_keys($available_rules);
-
-// Get selected rulename....
-$rule = $statconfig->getString('default', $availrulenames[0]);
-if(array_key_exists('rule', $_GET)) {
-	if (array_key_exists($_GET['rule'], $available_rules)) {
-		$rule = $_GET['rule'];
-	}
-}
-
-
-
-
-
-/*
- * Get list of avaiable times in current file (rule)
- */
-$available_times = array(); 
-foreach ($available[$rule] AS $slot) {
-	$available_times[$slot] = $datehandler->prettyDateSlot($slot, $statrules[$rule]['fileslot'], $statrules[$rule]['dateformat-period']) . 
-		' to ' . $datehandler->prettyDateSlot($slot+1, $statrules[$rule]['fileslot'], $statrules[$rule]['dateformat-period']);
-}
-
-// Get which time (fileslot) to use.. First get a default, which is the most recent one.
-$fileslot = $available[$rule][count($available[$rule])-1];
-// Then check if the user have provided one.
-if (array_key_exists('time', $_GET)) {
-	if (in_array($_GET['time'], $available[$rule])) {
-		$fileslot = $_GET['time'];
-	}
-}
-
-// Extract previous and next time slots...
-$available_times_prev = NULL; $available_times_next = NULL;
-$timeslots = array_keys($available_times);
-$timeslotindex = array_flip($timeslots);
-
-if ($timeslotindex[$fileslot] > 0) 
-	$available_times_prev = $timeslots[$timeslotindex[$fileslot]-1];
-if ($timeslotindex[$fileslot] < (count($timeslotindex)-1) ) 
-	$available_times_next = $timeslots[$timeslotindex[$fileslot]+1];
-
-
-
-// Get file and extract results.
-$resultFileName = $statdir . $rule . '-' . $fileslot . '.stat';
-if (!file_exists($resultFileName))
-	throw new Exception('Aggregated statitics file [' . $resultFileName . '] not found.');
-if (!is_readable($resultFileName))
-	throw new Exception('Could not read statitics file [' . $resultFileName . ']. Bad file permissions?');
-$resultfile = file_get_contents($resultFileName);
-$results = unserialize($resultfile);
-if (empty($results))
-	throw new Exception('Aggregated statistics in file [' . $resultFileName . '] was empty.');
-
-
-
-/*
- * Get rule specific configuration from the configuration file.
- */
-$slotsize = $statrules[$rule]['slot'];
-$dateformat_period = $statrules[$rule]['dateformat-period'];
-$dateformat_intra = $statrules[$rule]['dateformat-intra'];
-$axislabelint = $statrules[$rule]['axislabelint'];
-
-$delimiter = '_';
-if (isset($_REQUEST['d'])) {
-	$delimiter = $_REQUEST['d'];
-}
-
-/*
- * Walk through dataset to get the max values.
- */
-$maxvalue = 0;
-$maxvaluetime = 0;
-$debugdata = array();
-
-
-
-/*
- * Search for maximum value in order to scale the Y-scale of the graph presentation.
- */
-$maxdelimiter = $delimiter;
-if (array_key_exists('graph.total', $statrules[$rule]) && $statrules[$rule]['graph.total'] === TRUE) {
-	$maxdelimiter = '_';
-}
-
-foreach($results AS $slot => &$res) {
-	if (!array_key_exists($maxdelimiter, $res)) $res[$maxdelimiter] = 0;
-	if ($res[$maxdelimiter] > $maxvalue) { 
-		$maxvaluetime = $datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra); 
-	}
-	$maxvalue = max($res[$maxdelimiter],$maxvalue);
-	$debugdata[$slot] = array($datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra), $res[$maxdelimiter] );
-}
-$max = sspmod_statistics_Graph_GoogleCharts::roof($maxvalue);
-
-#echo 'Maxvalue [' .  $maxvalue . '] at time ' . $maxvaluetime; exit;
-#echo '<pre>'; print_r($debugdata); exit;
-
-
-
-
 /**
- * Aggregate summary table from dataset. To be used in the table view.
+ * AUTHENTICATION and Authorization for access to the statistics.  ------
  */
-$summaryDataset = array(); 
-foreach($results AS $slot => $res) {
-	foreach ($res AS $key => $value) {
-		if (array_key_exists($key, $summaryDataset)) {
-			$summaryDataset[$key] += $value;
-		} else {
-			$summaryDataset[$key] = $value;
-		}
-	}
-}
-asort($summaryDataset);
-$summaryDataset = array_reverse($summaryDataset, TRUE);
-// echo '<pre>'; print_r($summaryDataset); exit;
+
+
 
 /*
- * Create a list of delimiter keys that has the highest total summary in this period.
+ * Check input parameters
  */
-$topdelimiters = array();
-$maxdelimiters = 4; $i = 0;
-foreach($summaryDataset AS $key => $value) {
-	if ($key !== '_')
-		$topdelimiters[] = $key;
-	if ($i++ >= $maxdelimiters) break;
-}
-
-// echo('<pre>'); print_r($topdelimiters); exit;
-
+$preferRule = NULL;
+$preferTime = NULL;
+$preferTimeRes = NULL;
+$delimiter = NULL;
+if(array_key_exists('rule', $_GET)) $preferRule = $_GET['rule'];
+if(array_key_exists('time', $_GET)) $preferTime = $_GET['time'];
+if(array_key_exists('res', $_GET)) $preferTimeRes = $_GET['res'];
+if(array_key_exists('d', $_GET)) $delimiter = $_GET['d'];
 
 
-$piedata = array(); $sum = 0;
-foreach($topdelimiters AS $td) {
-	$sum += $summaryDataset[$td];
-	$piedata[] = number_format(100*$summaryDataset[$td] / $summaryDataset['_'], 2);
-}
-$piedata[] = number_format(100 - 100*($sum /$summaryDataset['_']), 2);
+/*
+ * Create statistics data.
+ */
+$ruleset = new sspmod_statistics_Ruleset($statconfig);
+$statrule = $ruleset->getRule($preferRule);
+$rule = $statrule->getRuleID();
+
+$dataset = $statrule->getDataset($preferTimeRes, $preferTime);
+$dataset->setDelimiter($delimiter);
+
+$delimiter = $dataset->getDelimiter();
+
+$timeres = $dataset->getTimeRes();
+$fileslot = $dataset->getFileslot();
+$availableFileSlots = $statrule->availableFileSlots($timeres);
+
+$timeNavigation = $statrule->getTimeNavigation($timeres, $preferTime);
+
+$dataset->aggregateSummary();
+$dataset->calculateMax();
+
+
+
+
+$piedata = $dataset->getPieData();
 
 $datasets = array();
+$datasets[] = $dataset->getPercentValues();
 
-#$max = 25;
-$availdelimiters = array();
-$xentries = count($results);
-$lastslot = 0; $i = 0;
-
-
-/*
- * Walk through dataset to get percent values from max into dataset[].
- */
-function getPercentValues($results, $delimiter) {
-
-	#echo('<pre>'); print_r($results); exit;
-
-	global $slot, $slotsize, $dateformat_intra, $axis, $lastslot, $axispos, $availdelimiters, $max, $datehandler, $axislabelint, $i, $xentries;
-	
-	$axis = array();
-	$axispos = array();
-
-	$dataset = array();
-	foreach($results AS $slot => $res) {
-		#echo ('<p>new value: ' . number_format(100*$res[$delimiter] / $max, 2));
-// 		echo('<hr><p>delimiter [<tt>' .$delimiter . '</tt>].');
-// 		echo('<p>Res <pre>'); print_r($res); echo( '</pre>');
-// 		echo('<p>return <pre>'); print_r(isset($res[$delimiter]) ? $res[$delimiter] : 'NO'); echo('</pre>');
-		if (array_key_exists($delimiter, $res)) {
-			if ($res[$delimiter] === NULL) {
-				$dataset[] = -1;
-			} else {
-				$dataset[] = number_format(100*$res[$delimiter] / $max, 2);
-			}
-		} else {
-			$dataset[] = '0';
-		}
-		foreach(array_keys($res) AS $nd) $availdelimiters[$nd] = 1;
-	
-		// check if there should be an axis here...
-		if ( $slot % $axislabelint == 0)  {
-			$axis[] =  $datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra);
-			$axispos[] = (($i)/($xentries-1));		
-			// echo 'set axis on [' . $slot . '] = [' . $datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra) . ']';
-		}
-		$lastslot = $slot;
-		$i++;
-	}
-
-	return $dataset;
-}
-
-
-
-
-$datasets[] = getPercentValues($results, $delimiter);
-if ($delimiter !== '_') {
-	if (array_key_exists('graph.total', $statrules[$rule]) && $statrules[$rule]['graph.total'] === TRUE) {
-		$datasets[] = getPercentValues($results, '_');
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-#echo('<pre>'); print_r($datasets); exit;
-
-#echo 'set axis on lastslot [' . $lastslot . ']';
-$axis[] =  $datehandler->prettyDateSlot($lastslot+1, $slotsize, $dateformat_intra); 
-#print_r($axis);
-
-#echo('<pre>'); print_r($axis); exit;
+$axis = $dataset->getAxis();
+$max = $dataset->getMax();
 
 
 $dimx = $statconfig->getValue('dimension.x', 800);
 $dimy = $statconfig->getValue('dimension.y', 350);
 $grapher = new sspmod_statistics_Graph_GoogleCharts($dimx, $dimy);
-
 
 $htmlContentPre = array(); $htmlContentPost = array(); $htmlContentHead = array(); $jquery = array();
 $hookinfo = array('pre' => &$htmlContentPre, 'post' => &$htmlContentPost, 'head' => &$htmlContentHead, 'jquery' => &$jquery, 'page' => 'statistics');
@@ -312,52 +109,31 @@ SimpleSAML_Module::callHooks('htmlinject', $hookinfo);
 
 
 $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics-tpl.php');
-
-
-/*
- * Create a delimiter presentation filter for this rule...
- */
-$delimiterPresentation = NULL;
-if (array_key_exists('fieldPresentation', $statrules[$rule])) {
-	$classname = SimpleSAML_Module::resolveClass( $statrules[$rule]['fieldPresentation']['class'], 'Statistics_FieldPresentation');
-	if (!class_exists($classname))
-		throw new Exception('Could not find field presentation plugin [' . $classname . ']: No class found');
-	
-	$presentationHandler = new $classname(array_keys($availdelimiters), $statrules[$rule]['fieldPresentation']['config'], $t);
-	$delimiterPresentation = $presentationHandler->getPresentation();
-}
-
-
-$pieaxis = array();
-foreach($topdelimiters AS $key)  {
-	$keyName = $key;
-	if(array_key_exists($key, $delimiterPresentation)) $keyName = $delimiterPresentation[$key];
-	$pieaxis[] = $keyName;	
-}
-$pieaxis[] = 'Others';
-
-
-
 $t->data['header'] = 'stat';
-$t->data['imgurl'] = $grapher->show($axis, $axispos, $datasets, $max);
-
-$t->data['pieimgurl'] = $grapher->showPie($pieaxis, $piedata);
-
-$t->data['available.rules'] = $available_rules;
-$t->data['available.times'] = $available_times;
-$t->data['available.times.prev'] = $available_times_prev;
-$t->data['available.times.next'] = $available_times_next;
+$t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $max);
+$t->data['pieimgurl'] = $grapher->showPie( $dataset->getDelimiterPresentationPie(), $piedata);
+$t->data['available.rules'] = $ruleset->availableRulesNames();
+$t->data['available.times'] = $statrule->availableFileSlots($timeres);
+$t->data['available.timeres'] = $statrule->availableTimeRes();
+$t->data['available.times.prev'] = $timeNavigation['prev'];
+$t->data['available.times.next'] = $timeNavigation['next'];
 $t->data['htmlContentPre'] = $htmlContentPre;
 $t->data['htmlContentPost'] = $htmlContentPost;
 $t->data['htmlContentHead'] = $htmlContentHead;
 $t->data['jquery'] = $jquery;
 $t->data['selected.rule']= $rule;
 $t->data['selected.time'] = $fileslot;
-$t->data['debugdata'] = $debugdata;
-$t->data['results'] = $results;
-$t->data['summaryDataset'] = $summaryDataset;
-$t->data['topdelimiters'] = $topdelimiters;
-$t->data['availdelimiters'] = array_keys($availdelimiters);
-$t->data['delimiterPresentation'] = $delimiterPresentation;
+$t->data['selected.timeres'] = $timeres;
+$t->data['selected.delimiter'] = $delimiter;
+
+$t->data['debugdata'] = $dataset->getDebugData();
+$t->data['results'] = $dataset->getResults();
+$t->data['summaryDataset'] = $dataset->getSummary();
+$t->data['topdelimiters'] = $dataset->getTopDelimiters();
+$t->data['availdelimiters'] = $dataset->availDelimiters();
+
+
+
+$t->data['delimiterPresentation'] =  $dataset->getDelimiterPresentation();
 $t->show();
 
