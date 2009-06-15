@@ -168,7 +168,7 @@ class sspmod_statistics_Aggregator {
 	}
 	
 	private static function getDifCol($content, $colrule) {
-		if (is_string($colrule)) {
+		if (is_int($colrule)) {
 			return trim($content[$colrule]);
 		} elseif(is_array($colrule)) {
 			$difcols = array();
