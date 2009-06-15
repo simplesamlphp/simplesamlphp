@@ -269,13 +269,13 @@ class sspmod_statistics_Aggregator {
 					
 					$filename = $this->statdir . '/' . $rulename . '-' . $tres . '-' . $fileno . '.stat';
 					if (file_exists($filename)) {
-						echo('Reading existing file: ' . $filename . "\n");
+						// echo('Reading existing file: ' . $filename . "\n");
 						$previousData = unserialize(file_get_contents($filename));
 						$filledresult = $this->cummulateData($previousData, $filledresult);	
 					}
 				
 					// store file
-					echo('Writing to file: ' . $filename . "\n");
+					# echo('Writing to file: ' . $filename . "\n");
 					file_put_contents($filename, serialize($filledresult), LOCK_EX);
 				}
 				
