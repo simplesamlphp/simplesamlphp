@@ -47,8 +47,6 @@ $config = array (
 	 * CGI timeout function. Both default to 300 seconds.
 	 */
 	'time_limit' => 300,
-
-	'time_limit' => 300,
 	
 	'timeres' => array(
 		'day' => array(
