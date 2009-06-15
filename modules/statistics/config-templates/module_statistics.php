@@ -9,7 +9,7 @@ $config = array (
 	'auth' => 'admin',
 	'useridattr' => 'eduPersonPrincipalName',
 	
-	'default' => 'sso_hoursweek',
+	'default' => 'sso',
 	
 	'allowedUsers' => array(
 		'admin'
@@ -142,19 +142,19 @@ $config = array (
 		),
 	),
 	'statrules' => array(
-		'sloratio' => array(
-			'name' 		=> 'SSO to SLO ratio',
-			'descr'		=> 'ratio',
-		
-			'type' => 'ratio',
-			
-			'action' 	=> 'saml20-idp-SSO',
-			'col'		=> 6,				// Service Provider EntityID
-			'fieldPresentation' => array(
-				'class' => 'statistics:Entity',
-				'config' => 'saml20-sp-remote',
-			),
-		),
+// 		'sloratio' => array(
+// 			'name' 		=> 'SSO to SLO ratio',
+// 			'descr'		=> 'ratio',
+// 		
+// 			'type' => 'ratio',
+// 			
+// 			'action' 	=> 'saml20-idp-SSO',
+// 			'col'		=> 6,				// Service Provider EntityID
+// 			'fieldPresentation' => array(
+// 				'class' => 'statistics:Entity',
+// 				'config' => 'saml20-sp-remote',
+// 			),
+// 		),
 		'sso' => array(
 			'name' 		=> 'SSO to service',
 			'descr'		=> 'The number of logins at a Service Provider.',
@@ -225,6 +225,8 @@ $config = array (
 				'config' => 'saml20-sp-remote',
 			),
 		),
+		
+	),
 
 );
 
