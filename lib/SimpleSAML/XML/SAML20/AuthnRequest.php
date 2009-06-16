@@ -84,7 +84,7 @@ class SimpleSAML_XML_SAML20_AuthnRequest {
 		
 		if ($issuerNodes = $dom->getElementsByTagName('Issuer')) {
 			if ($issuerNodes->length > 0) {
-				$issuer = $issuerNodes->item(0)->textContent;
+				$issuer = trim($issuerNodes->item(0)->textContent);
 			}
 		}
 		return $issuer;
