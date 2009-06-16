@@ -131,7 +131,7 @@ foreach ($this->data['availdelimiters'] AS $key => $delim) {
 
 	if ($key == '_') {
 		echo '<option value="_">Total</option>';
-	} elseif ($delim == $_REQUEST['d']) {
+	} elseif (isset($_REQUEST['d']) && $delim == $_REQUEST['d']) {
 		echo '<option selected="selected" value="' . htmlentities($delim) . '">' . htmlspecialchars($delimName) . '</option>';
 	} else {
 		echo '<option  value="' . htmlentities($delim) . '">' . htmlspecialchars($delimName) . '</option>';
