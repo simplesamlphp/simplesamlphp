@@ -4,7 +4,7 @@
 $config = array(
 
 	/* List of aggregators. */
-	'aggragators' => array(
+	'aggregators' => array(
 		'example' => array(
 			array('type' => 'flatfile'),  /* Metadata from metadata-directory. */
 			array('type' => 'xml', 'url' => 'https://idp.example.org/Metadata'),

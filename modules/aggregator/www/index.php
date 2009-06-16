@@ -1,19 +1,31 @@
 <?php
 
-/* Types of metadata. */
-$metadataSets = array(
-	'saml20-idp-remote',
-	'saml20-sp-remote',
-	'shib13-idp-remote',
-	'shib13-sp-remote',
-	);
-
 $globalConfig = SimpleSAML_Configuration::getInstance();
 $aggregatorConfig = SimpleSAML_Configuration::getConfig('aggregator.php');
 
 
 $reconstruct = $aggregatorConfig->getBoolean('reconstruct', FALSE);
-$aggregators = $aggregatorConfig->getArray('aggragators');
+$aggregators = $aggregatorConfig->getArray('aggregators');
+
+$metadataSets = array('saml20-idp-remote', 'saml20-sp-remote', 'shib13-idp-remote', 'shib13-sp-remote');
+if ($aggregatorConfig->hasValue('default-set')) {
+	$metadataSets = $aggregatorConfig->getArray('default-set');
+}
+if (isset($_REQUEST['set'])) {
+	switch($_REQUEST) {
+		case 'saml2' :
+			$metadataSets = array('saml20-idp-remote', 'saml20-sp-remote'); break;
+		case 'shib13' :
+			$metadataSets = array('shib13-idp-remote', 'shib13-sp-remote'); break;
+		case 'idp' :
+			$metadataSets = array('saml20-idp-remote', 'shib13-idp-remote'); break;
+		case 'sp' :
+			$metadataSets = array('saml20-sp-remote', 'shib13-sp-remote'); break;
+		
+		default:
+			$metadataSets = array($_REQUEST['set']);
+	}
+}
 
 if (!array_key_exists('id', $_GET)) {
 	$t = new SimpleSAML_XHTML_Template($globalConfig, 'aggregator:list.php');

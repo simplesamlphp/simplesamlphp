@@ -29,8 +29,13 @@ class sspmod_metarefresh_MetaLoader {
 	 * @param $src  Filename of the metadata file.
 	 */
 	public function loadSource($source) {
-
-		$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($source['src']);
+		
+		$entities = array();
+		try {
+			$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($source['src']);
+		} catch(Exception $e) {
+			SimpleSAML_Logger::warning('metarefresh: Failed to retrieve metadata. ' . $e->getMessage());
+		}
 		$ca = NULL;
 		foreach($entities as $entity) {
 			if(array_key_exists('validateFingerprint', $source) && $source['validateFingerprint'] !== NULL) {
