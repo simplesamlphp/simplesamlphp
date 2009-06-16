@@ -12,7 +12,7 @@ if ($aggregatorConfig->hasValue('default-set')) {
 	$metadataSets = $aggregatorConfig->getArray('default-set');
 }
 if (isset($_REQUEST['set'])) {
-	switch($_REQUEST) {
+	switch($_REQUEST['set']) {
 		case 'saml2' :
 			$metadataSets = array('saml20-idp-remote', 'saml20-sp-remote'); break;
 		case 'shib13' :
@@ -26,6 +26,8 @@ if (isset($_REQUEST['set'])) {
 			$metadataSets = array($_REQUEST['set']);
 	}
 }
+
+// print_r($metadataSets); exit;
 
 if (!array_key_exists('id', $_GET)) {
 	$t = new SimpleSAML_XHTML_Template($globalConfig, 'aggregator:list.php');
