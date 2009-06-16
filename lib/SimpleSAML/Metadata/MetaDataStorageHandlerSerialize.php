@@ -106,6 +106,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
 		$ret = array();
 
 		$dir = $this->directory . '/' . rawurlencode($set);
+		if(!is_dir($dir)) return $ret;
 		$dh = opendir($dir);
 		if ($dh === FALSE) {
 			return NULL;
