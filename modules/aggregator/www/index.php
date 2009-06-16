@@ -112,10 +112,13 @@ foreach ($entities as $entity => $sets) {
 	} else {
 		$tmp = new SimpleSAML_Metadata_SAMLBuilder($entity, 
 			$aggregatorConfig->getValue('maxCache', NULL), $aggregatorConfig->getValue('maxDuration', NULL));
-			
+		
+		$orgmeta = NULL;
 		foreach ($sets as $set => $metadata) {
 			$tmp->addMetadata($set, $metadata);
+			$orgmeta = $metadata;
 		}
+		$tmp->addOrganizationInfo($orgmeta);
 		$entityDescriptor = $tmp->getEntityDescriptor();
 	}
 

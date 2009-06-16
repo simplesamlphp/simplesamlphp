@@ -149,7 +149,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	
-	private function addOrganizationInfo($metadata) {
+	public function addOrganizationInfo($metadata) {
 		if (array_key_exists('name', $metadata)) {
 			$org = $this->createElement('Organization');
 
@@ -225,6 +225,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		default:
 			SimpleSAML_Logger::warning('Unable to generate metadata for unknown type \'' . $set . '\'.');
 		}
+		
+		// $this->addOrganizationInfo($metadata);
 	}
 
 	/**
@@ -320,7 +322,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$this->entityDescriptor->appendChild($e);
 		
-		$this->addOrganizationInfo($metadata);
+
 		
 		if (array_key_exists('contacts', $metadata) && is_array($metadata['contacts']) ) {
 			foreach($metadata['contacts'] AS $contact) {
@@ -392,7 +394,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		
 		$this->entityDescriptor->appendChild($e);
 		
-		$this->addOrganizationInfo($metadata);
+
 		
 		if (array_key_exists('contacts', $metadata) && is_array($metadata['contacts']) ) {
 			foreach($metadata['contacts'] AS $contact) {
