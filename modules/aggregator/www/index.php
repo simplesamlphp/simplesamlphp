@@ -11,6 +11,8 @@ $metadataSets = array(
 $globalConfig = SimpleSAML_Configuration::getInstance();
 $aggregatorConfig = SimpleSAML_Configuration::getConfig('aggregator.php');
 
+
+$reconstruct = $aggregatorConfig->getBoolean('reconstruct', FALSE);
 $aggregators = $aggregatorConfig->getArray('aggragators');
 
 if (!array_key_exists('id', $_GET)) {
@@ -102,7 +104,7 @@ foreach ($entities as $entity => $sets) {
 		}
 	}
 
-	if (is_string($entityDescriptor)) {
+	if (is_string($entityDescriptor) && !$reconstruct) {
 		/* All metadata sets for the entity contain the same entity descriptor. Use that one. */
 		$tmp = new DOMDocument();
 		$tmp->loadXML(base64_decode($entityDescriptor));

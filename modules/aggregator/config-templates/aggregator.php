@@ -16,6 +16,10 @@ $config = array(
 	'maxCache' 		=> 60*60*24, // 24 hour cache time
 	'maxDuration' 	=> 60*60*24*5, // Maximum 5 days duration on ValidUntil.
 
+	// If base64 encoded for entity is already cached in the entity, should we
+	// reconstruct the XML or re-use.
+	'reconstruct' => TRUE,
+
 	/* Whether metadata should be signed. */
 	'sign.enable' => FALSE,
 
