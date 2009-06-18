@@ -23,12 +23,14 @@ function statistics_hook_cron(&$croninfo) {
 		$aggregator = new sspmod_statistics_Aggregator();
 		$results = $aggregator->aggregate();
 		if (empty($results)) {
-			$croninfo['summary'][] = 'Output from statistics aggregator was empty.';
+			SimpleSAML_Logger::notice('Output from statistics aggregator was empty.');
 		} else {
 			$aggregator->store($results);
 		}
 	} catch (Exception $e) {
-		$croninfo['summary'][] = 'Loganalyzer threw exception: ' . $e->getMessage();
+		$message = 'Loganalyzer threw exception: ' . $e->getMessage();
+		SimpleSAML_Logger::warning($message);
+		$croninfo['summary'][] = $message;
 	}
 }
 ?>
