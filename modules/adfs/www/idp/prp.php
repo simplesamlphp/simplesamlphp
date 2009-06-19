@@ -190,7 +190,12 @@ if (!$session->isValid($authority) ) {
 	
 		$spentityid = $requestcache['Issuer'];
 		$spmetadata = SimpleSAML_Configuration::getConfig('adfs-sp-remote.php');
-		$spmetadata = SimpleSAML_Configuration::loadFromArray($spmetadata->getValue($spentityid));
+		
+		$arr = $spmetadata->getValue($spentityid);
+		if (!isset($arr)) {
+			throw new Exception('Metadata for ADFS SP "' . $spentityid . '" could not be found in adfs-sp-remote.php!');
+		}
+		$spmetadata = SimpleSAML_Configuration::loadFromArray($arr);
 
 		$sp_name = $spmetadata->getValue('name', $spentityid);
 
@@ -241,8 +246,17 @@ if (!$session->isValid($authority) ) {
 		if (array_key_exists('RelayState', $requestcache)) $relayState = $requestcache['RelayState'];
 
 		$nameid = $session->getNameID();
+		$nameid = $nameid['value'];
+		
+		$nameidattribute = $spmetadata->getValue('simplesaml.nameidattribute');
+		if (isset($nameidattribute)) {
+			if (!array_key_exists($nameidattribute, $attributes)) {
+				throw new Exception('simplesaml.nameidattribute does not exist in resulting attribute set');
+			}
+			$nameid = $attributes[$nameidattribute][0];
+		}
 
-		$response = ADFS_GenerateResponse($idpentityid, $spentityid, $nameid['value'], $attributes);
+		$response = ADFS_GenerateResponse($idpentityid, $spentityid, $nameid, $attributes);
 		$wresult = ADFS_SignResponse($response, $config->getPathValue('certdir') . $adfsconfig->getValue('key'), $config->getPathValue('certdir') . $adfsconfig->getValue('cert'));
 
 		ADFS_PostResponse($spmetadata->getValue('prp'), $wresult, $relayState);
