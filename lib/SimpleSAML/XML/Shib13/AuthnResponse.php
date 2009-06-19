@@ -273,7 +273,13 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		}
 
 		$id = SimpleSAML_Utilities::generateID();
+		
 		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
+		
+		// 30 seconds timeskew back in time to allow differing clocks.
+		$notBefore = SimpleSAML_Utilities::generateTimestamp(time() - 30);
+		
+		
 		$assertionExpire = SimpleSAML_Utilities::generateTimestamp(time() + 60 * 5);# 5 minutes
 		$assertionid = SimpleSAML_Utilities::generateID();
 
@@ -326,7 +332,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
     <Assertion xmlns="urn:oasis:names:tc:SAML:1.0:assertion"
         AssertionID="' . $assertionid . '" IssueInstant="' . $issueInstant. '"
         Issuer="' . htmlspecialchars($idp['entityid']) . '" MajorVersion="1" MinorVersion="1">
-        <Conditions NotBefore="' . $issueInstant. '" NotOnOrAfter="'. $assertionExpire . '">
+        <Conditions NotBefore="' . $notBefore. '" NotOnOrAfter="'. $assertionExpire . '">
             <AudienceRestrictionCondition>
                 <Audience>' . htmlspecialchars($audience) . '</Audience>
             </AudienceRestrictionCondition>
