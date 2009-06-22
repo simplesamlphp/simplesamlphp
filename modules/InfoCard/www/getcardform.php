@@ -13,7 +13,7 @@
 
 /* Load the configuration. */
 $config = SimpleSAML_Configuration::getInstance();
-$autoconfig = SimpleSAML_Configuration::getConfig('config-login-infocard.php');
+$autoconfig = $config->copyFromBase('logininfocard', 'config-login-infocard.php');
 
 $Infocard =   $autoconfig->getValue('InfoCard');
 
@@ -78,6 +78,7 @@ if(array_key_exists('form', $_POST) && ($_POST['form']!=NULL)  ) {
 						$claims = $token->process($_POST['xmlToken']);
 						if(($claims->isValid()) && ($claims->privatepersonalidentifier!=NULL)) {
 							$ppid = $claims->privatepersonalidentifier;
+							SimpleSAML_Logger::debug("PPID = $ppid");
 							$ICconfig['InfoCard'] = $Infocard;
 							$ICconfig['InfoCard']['issuer'] = $autoconfig->getValue('tokenserviceurl');//sspmod_InfoCard_Utils::getIssuer($sts_crt);
 							$ICconfig['tokenserviceurl'] = $autoconfig->getValue('tokenserviceurl');

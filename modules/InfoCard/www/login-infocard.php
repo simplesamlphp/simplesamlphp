@@ -13,7 +13,7 @@
 
 /* Load the configuration. */
 $config = SimpleSAML_Configuration::getInstance();
-$autoconfig = SimpleSAML_Configuration::getConfig('config-login-infocard.php');
+$autoconfig = $config->copyFromBase('logininfocard', 'config-login-infocard.php');
 
 $server_key = $autoconfig->getValue('server_key');
 $server_crt = $autoconfig->getValue('server_crt');

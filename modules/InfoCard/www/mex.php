@@ -19,7 +19,8 @@ if ($method == "POST"){
 }
 
 
-$autoconfig = SimpleSAML_Configuration::getConfig('config-login-infocard.php');
+$config = SimpleSAML_Configuration::getInstance();
+$autoconfig = $config->copyFromBase('logininfocard', 'config-login-infocard.php');
 $ICconfig['tokenserviceurl'] = $autoconfig->getValue('tokenserviceurl');
 $ICconfig['certificates'] = $autoconfig->getValue('certificates');
 $ICconfig['UserCredential'] = $autoconfig->getValue('UserCredential');

@@ -45,7 +45,8 @@ class sspmod_InfoCard_Auth_Source_ICAuth extends SimpleSAML_Auth_Source {
 SimpleSAML_Logger::debug('ENTRA en icauth');
 		assert('is_string($authStateId)');		
 
-		$autoconfig = SimpleSAML_Configuration::getConfig('config-login-infocard.php');
+		$config = SimpleSAML_Configuration::getInstance();
+		$autoconfig = $config->copyFromBase('logininfocard', 'config-login-infocard.php');
 		$idp_key = $autoconfig->getValue('idp_key');
 		$sts_crt = $autoconfig->getValue('sts_crt');
 		$Infocard =   $autoconfig->getValue('InfoCard');
