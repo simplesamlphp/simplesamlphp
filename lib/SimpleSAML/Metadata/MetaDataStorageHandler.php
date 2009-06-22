@@ -295,7 +295,17 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 
 		foreach($this->sources as $source) {
 			$metadata = $source->getMetaData($index, $set);
+			
 			if($metadata !== NULL) {
+				
+				if (array_key_exists('expire', $metadata)) {
+					if ($metadata['expire'] < time()) {
+						throw new Exception('Metadata for the entity [' . $index . '] expired ' . 
+							(time() - $metadata['expire']) . ' seconds ago.'
+						);
+					}
+				}
+				
 				$metadata['metadata-index'] = $index;
 				$metadata['metadata-set'] = $set;
 				return $metadata;
