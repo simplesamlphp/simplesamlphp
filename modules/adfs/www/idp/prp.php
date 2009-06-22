@@ -207,9 +207,11 @@ if (!$session->isValid($authority) ) {
 
 			$idpap = $adfsconfig->getValue('authproc');
 			if ($idpap) $idpap = array('authproc' => $idpap); else $idpap = array();
+			$idpap['entityid'] = $idpentityid;
 			
 			$spap = $spmetadata->getValue('authproc');
 			if ($spap) $spap = array('authproc' => $spap); else $spap = array();
+			$spap['entityid'] = $spentityid;
 			
 			$pc = new SimpleSAML_Auth_ProcessingChain($idpap, $spap, 'idp');
 
