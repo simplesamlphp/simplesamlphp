@@ -18,6 +18,7 @@ $this->includeAtTemplateBase('includes/header.php');
 function getBaseURL($t, $type = 'get', $key = NULL, $value = NULL) {
 	$vars = array(
 		'rule' => $t->data['selected.rule'],
+		'rule2' => $t->data['selected.rule2'],
 		'time' => $t->data['selected.time'],
 		'res' => $t->data['selected.timeres'],
 	);
@@ -223,6 +224,22 @@ echo '
 
 
 echo '<img src="' . htmlspecialchars($this->data['imgurl']) . '" />';
+
+
+echo '<form style="display: inline">';
+echo('<p style="text-align: right">Compare with total from this dataset ');
+echo getBaseURL($this, 'post', 'rule2');
+echo '<select onChange="submit();" name="rule2">';
+echo '	<option value="_">None</option>';
+foreach ($this->data['available.rules'] AS $key => $rule) {
+	if ($key === $this->data['selected.rule2']) {
+		echo '<option selected="selected" value="' . $key . '">' . $rule['name'] . '</option>';
+	} else {
+		echo '<option value="' . $key . '">' . $rule['name'] . '</option>';
+	}
+}
+echo '</select></form>';
+
 
 echo '</div>'; # end graph content.
 

@@ -57,14 +57,17 @@ if ($protected) {
  * Check input parameters
  */
 $preferRule = NULL;
+$preferRule2 = NULL;
 $preferTime = NULL;
 $preferTimeRes = NULL;
 $delimiter = NULL;
-if(array_key_exists('rule', $_GET)) $preferRule = $_GET['rule'];
-if(array_key_exists('time', $_GET)) $preferTime = $_GET['time'];
-if(array_key_exists('res', $_GET)) $preferTimeRes = $_GET['res'];
-if(array_key_exists('d', $_GET)) $delimiter = $_GET['d'];
+if(array_key_exists('rule', $_REQUEST)) $preferRule = $_REQUEST['rule'];
+if(array_key_exists('rule2', $_REQUEST)) $preferRule2 = $_REQUEST['rule2'];
+if(array_key_exists('time', $_REQUEST)) $preferTime = $_REQUEST['time'];
+if(array_key_exists('res', $_REQUEST)) $preferTimeRes = $_REQUEST['res'];
+if(array_key_exists('d', $_REQUEST)) $delimiter = $_REQUEST['d'];
 
+if ($preferRule2 === '_') $preferRule2 = NULL;
 
 /*
  * Create statistics data.
@@ -96,7 +99,28 @@ $datasets = array();
 $datasets[] = $dataset->getPercentValues();
 
 $axis = $dataset->getAxis();
-$max = $dataset->getMax();
+
+$maxes = array();
+
+$maxes[] = $dataset->getMax();
+
+
+if (isset($preferRule2)) {
+	$statrule = $ruleset->getRule($preferRule2);
+#	$rule2 = $statrule->getRuleID();
+	$dataset2 = $statrule->getDataset($preferTimeRes, $preferTime);
+	$dataset2->aggregateSummary();
+	$dataset2->calculateMax();
+	
+	$datasets[] = $dataset2->getPercentValues();
+	$maxes[] = $dataset2->getMax();
+}
+
+
+
+
+
+
 
 
 $dimx = $statconfig->getValue('dimension.x', 800);
@@ -110,7 +134,7 @@ SimpleSAML_Module::callHooks('htmlinject', $hookinfo);
 
 $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics-tpl.php');
 $t->data['header'] = 'stat';
-$t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $max);
+$t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $maxes);
 if (isset($piedata)) {
 	$t->data['pieimgurl'] = $grapher->showPie( $dataset->getDelimiterPresentationPie(), $piedata);
 }
@@ -124,6 +148,7 @@ $t->data['htmlContentPost'] = $htmlContentPost;
 $t->data['htmlContentHead'] = $htmlContentHead;
 $t->data['jquery'] = $jquery;
 $t->data['selected.rule']= $rule;
+$t->data['selected.rule2']= $preferRule2;
 $t->data['selected.time'] = $fileslot;
 $t->data['selected.timeres'] = $timeres;
 $t->data['selected.delimiter'] = $delimiter;

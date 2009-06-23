@@ -31,11 +31,31 @@ class sspmod_statistics_Graph_GoogleCharts {
 	private function encodedata($datasets) {
 		$setstr = array();
 		foreach ($datasets AS $dataset) {
-			$setstr[] = join(',', $dataset);
+			$setstr[] = self::extEncode($dataset);
 		}
-		return 't:' . join('|', $setstr);
+		return 'e:' . join(',', $setstr);
 	}
 	
+	
+	public static function extEncode($values) { #}, $max = 4095, $min = 0){ 
+		$extended_table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.'; 
+		$chardata = ''; 
+		$delta = 4095;
+		$size = (strlen($extended_table)); 
+		
+		foreach($values as $k => $v){ 
+			if($v >= 0 && $v <= 100){ 
+				$first = substr($extended_table, round( ($delta*$v/100) / $size),1); 
+				$second = substr($extended_table, round( ($delta*$v/100) % $size), 1); 
+				$chardata .= "$first$second"; 
+				#echo '<p>encoding ' . $v . ' to ' . $first . ' ' . $second . '';
+			} else { 
+				$chardata .= '__'; // Value out of max range; 
+			} 
+		} 
+		#echo ' encoding ' . join(' ', $values) . ' to ' . $chardata; exit;
+		return($chardata); 
+	}
 	
 	
 	/**
@@ -65,8 +85,18 @@ class sspmod_statistics_Graph_GoogleCharts {
 	 * @param $datasets	Datasets values
 	 * @param $max		Max value. Will be the topmost value on the Y-axis.
 	 */
-	public function show($axis, $axispos, $datasets, $max) {
+	public function show($axis, $axispos, $datasets, $maxes) {
 	
+		$labeld = '&chxt=x,y' . '&chxr=0,0,1|1,0,' . $maxes[0];
+		if (count($datasets) > 1) {
+			if (count($datasets) !== count($maxes)) {
+				throw new Exception('Incorrect number of max calculations for graph plotting.');
+			}
+			$labeld = '&chxt=x,y,r' . 
+				'&chxr=0,0,1|1,0,' . $maxes[0] . '|2,0,' . $maxes[1];
+			
+		}
+ 	
 		$url = 'http://chart.apis.google.com/chart?' .
 			
 			// Dimension of graph. Default is 800x350
@@ -76,15 +106,16 @@ class sspmod_statistics_Graph_GoogleCharts {
 			'&chd=' . $this->encodedata($datasets) .
 			
 			// Fill area...
-			$this->getFillArea($datasets) . 
+#			$this->getFillArea($datasets) . 
+			'&chco=ff5c00,cca600' . 
+			'&chls=1,1,0|1,6,3' .
 			
 			// chart type is linechart
 			'&cht=lc' .
-			'&chxt=x,y' .
+			$labeld .
 			'&chxl=0:|' . $this->encodeaxis($axis) . # . $'|1:||top' .
 			'&chxp=0,' . join(',', $axispos) . 
 #			'&chxp=0,0.3,0.4' .
-			'&chxr=0,0,1|1,0,' . $max . 
 #			'&chm=R,CCCCCC,0,0.25,0.5' .
 			'&chg=' . (2400/(count($datasets[0])-1)) . ',20,3,3';   // lines
 		return $url;
