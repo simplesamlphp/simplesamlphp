@@ -48,11 +48,12 @@ SimpleSAML_Logger::debug('ENTRA en icauth');
 		$config = SimpleSAML_Configuration::getInstance();
 		$autoconfig = $config->copyFromBase('logininfocard', 'config-login-infocard.php');
 		$idp_key = $autoconfig->getValue('idp_key');
+		$idp_pass = $autoconfig->getValue('idp_key_pass', NULL);
 		$sts_crt = $autoconfig->getValue('sts_crt');
 		$Infocard =   $autoconfig->getValue('InfoCard');
 
 		$infocard = new sspmod_InfoCard_RP_InfoCard();
-		$infocard->addIDPKey($idp_key);
+		$infocard->addIDPKey($idp_key, $idp_key_pass);
 		$infocard->addSTSCertificate($sts_crt);	
 		if (!$xmlToken)     
 			SimpleSAML_Logger::debug("XMLtoken: ".$xmlToken);

@@ -120,10 +120,10 @@ SimpleSAML_Logger::debug('IC: secureToken');
     catch(Exception $e) {
 			SimpleSAML_Logger::debug('ProcSecToken '.$e);
       $retval->setError('Failed to extract assertion document');
-      throw new Exception('Failed to extract assertion document');
+      throw new Exception('Failed to extract assertion document: ' . $e->getMessage());
       $retval->setCode(Zend_InfoCard_Claims::RESULT_PROCESSING_FAILURE);
       return $retval;
-    }
+	}
 
     try {
       $assertions = self::getAssertions($decryptedToken);    
