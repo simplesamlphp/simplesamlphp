@@ -140,19 +140,28 @@ $config = array (
 		),
 	),
 	'statrules' => array(
-// 		'sloratio' => array(
-// 			'name' 		=> 'SSO to SLO ratio',
-// 			'descr'		=> 'ratio',
-// 		
-// 			'type' => 'ratio',
-// 			
-// 			'action' 	=> 'saml20-idp-SSO',
-// 			'col'		=> 6,				// Service Provider EntityID
-// 			'fieldPresentation' => array(
-// 				'class' => 'statistics:Entity',
-// 				'config' => 'saml20-sp-remote',
-// 			),
-// 		),
+		'sloratio' => array(
+			'name' 		=> 'SLO to SSO ratio',
+			'descr'		=> 'Comparison of the number of Single Log-Out compared to Single Sign-On. Graph shows how many logouts where initiated for each Single Sign-On.',
+			'type' => 'calculated',
+			'presenter' => 'statistics:Ratio',
+			'ref' => array('slo', 'sso'),
+			'fieldPresentation' => array(
+				'class' => 'statistics:Entity',
+				'config' => 'saml20-sp-remote',
+			),
+		),
+		'ssomulti' => array(
+			'name' 		=> 'Requests per session',
+			'descr'		=> 'Number of SSO request pairs exchanged between IdP and SP within the same IdP session. A high number indicates that the session at the SP is timing out faster than at the IdP.',
+			'type' => 'calculated',
+			'presenter' => 'statistics:Ratio',
+			'ref' => array('sso', 'ssofirst'),
+			'fieldPresentation' => array(
+				'class' => 'statistics:Entity',
+				'config' => 'saml20-sp-remote',
+			),
+		),
 		'sso' => array(
 			'name' 		=> 'SSO to service',
 			'descr'		=> 'The number of logins at a Service Provider.',
@@ -194,8 +203,8 @@ $config = array (
 			),
 		),
 		'slo' => array(
-			'name' 		=> 'Logout',
-			'descr'		=> 'The number of initated Sinlge Logout.',
+			'name' 		=> 'SLO initiated from service',
+			'descr'		=> 'The number of initated Sinlge Logout from each of the service providers.',
 			'action' 	=> 'saml20-idp-SLO',
 			'col'		=> 7,				// Service Provider EntityID that initiated the logout.
 			'fieldPresentation' => array(
@@ -223,7 +232,6 @@ $config = array (
 				'config' => 'saml20-sp-remote',
 			),
 		),
-		
 	),
 
 );

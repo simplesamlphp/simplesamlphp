@@ -47,11 +47,12 @@ class sspmod_statistics_Ruleset {
 		/*
 		 * Create array with information about available rules..
 		 */
+		$this->availrules = array_keys($statrules);
 		$available_rules = array();
-		foreach ($this->available AS $key => $av) {
+		foreach ($this->availrules AS $key) {
 			$available_rules[$key] = array('name' => $statrules[$key]['name'], 'descr' => $statrules[$key]['descr']);
 		}
-		$this->availrules = array_keys($available_rules);
+		// echo('<pre>'); print_r($available_rules); exit;
 		$this->availrulenames = $available_rules;
 		
 	}
@@ -81,7 +82,9 @@ class sspmod_statistics_Ruleset {
 		$rule = $this->resolveSelectedRule($preferRule);
 		$statrulesConfig = $this->statconfig->getConfigItem('statrules');
 		$statruleConfig = $statrulesConfig->getConfigItem($rule);
-		$statrule = new sspmod_statistics_StatRule($this->statconfig, $statruleConfig, $rule, $this->available[$rule]);
+		
+		$presenterClass = SimpleSAML_Module::resolveClass($statruleConfig->getValue('presenter', 'statistics:BaseRule'), 'Statistics_Rulesets');
+		$statrule = new $presenterClass($this->statconfig, $statruleConfig, $rule, $this->available);
 		return $statrule;
 	}
 

@@ -6,21 +6,21 @@
  */
 class sspmod_statistics_StatDataset {
 
-	private $statconfig;
-	private $ruleconfig;
-	private $timeresconfig;
-	private $ruleid;
+	protected $statconfig;
+	protected $ruleconfig;
+	protected $timeresconfig;
+	protected $ruleid;
 
-	private $fileslot;
-	private $timeres;
+	protected $fileslot;
+	protected $timeres;
 	
-	private $delimiter;
-	private $results;
-	private $summary;
-	private $max;
+	protected $delimiter;
+	protected $results;
+	protected $summary;
+	protected $max;
 	
-	private $datehandlerFile;
-	private $datehandlerTick;
+	protected $datehandlerFile;
+	protected $datehandlerTick;
 	
 	/**
 	 * Constructor
@@ -294,19 +294,29 @@ class sspmod_statistics_StatDataset {
 	public function loadData() {
 
 		$statdir = $this->statconfig->getValue('statdir');
+		$resarray = array();
+		$rules = SimpleSAML_Utilities::arrayize($this->ruleid);
+		foreach($rules AS $rule) {
+			// Get file and extract results.
+			$resultFileName = $statdir . '/' . $rule . '-' . $this->timeres . '-'. $this->fileslot . '.stat';
+			if (!file_exists($resultFileName))
+				throw new Exception('Aggregated statitics file [' . $resultFileName . '] not found.');
+			if (!is_readable($resultFileName))
+				throw new Exception('Could not read statitics file [' . $resultFileName . ']. Bad file permissions?');
+			$resultfile = file_get_contents($resultFileName);
+			$newres = unserialize($resultfile);
+			if (empty($newres))
+				throw new Exception('Aggregated statistics in file [' . $resultFileName . '] was empty.');
+			$resarray[] = $newres;
+		}
 
-		// Get file and extract results.
-		$resultFileName = $statdir . '/' . $this->ruleid . '-' . $this->timeres . '-'. $this->fileslot . '.stat';
-		if (!file_exists($resultFileName))
-			throw new Exception('Aggregated statitics file [' . $resultFileName . '] not found.');
-		if (!is_readable($resultFileName))
-			throw new Exception('Could not read statitics file [' . $resultFileName . ']. Bad file permissions?');
-		$resultfile = file_get_contents($resultFileName);
-		$this->results = unserialize($resultfile);
-		if (empty($this->results))
-			throw new Exception('Aggregated statistics in file [' . $resultFileName . '] was empty.');
-			
-		// echo('<pre>'); print_r($this->results); exit;
+		$combined = $resarray[0];
+		if(count($resarray) > 1) {
+			for($i = 1; $i < count($resarray); $i++) {
+				$combined = $this->combine($combined, $resarray[$i]);
+			}
+		}
+		$this->results = $combined;
 	}
 
 }

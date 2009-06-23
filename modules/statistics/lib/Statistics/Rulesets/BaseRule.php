@@ -4,13 +4,13 @@
  * @package simpleSAMLphp
  * @version $Id$
  */
-class sspmod_statistics_StatRule {
+class sspmod_statistics_Statistics_Rulesets_BaseRule {
 
-	private $statconfig;
-	private $ruleconfig;
-	private $ruleid;
-	private $available;
-	// private $datehandler;
+	protected $statconfig;
+	protected $ruleconfig;
+	protected $ruleid;
+	protected $available;
+
 	/**
 	 * Constructor
 	 */
@@ -20,10 +20,9 @@ class sspmod_statistics_StatRule {
 		$this->statconfig = $statconfig;
 		$this->ruleconfig = $ruleconfig;
 		$this->ruleid = $ruleid;
-		$this->available = $available;
-	
-		// $this->datehandlerFile = $datehandler;
-		// $this->datehandlerTick = $datehandler;
+		
+		$this->available = NULL;
+		if (array_key_exists($ruleid, $available)) $this->available = $available[$ruleid];	
 	}
 	
 	public function getRuleID() {
@@ -67,7 +66,7 @@ class sspmod_statistics_StatRule {
 		return $available_times;
 	}
 
-	private function resolveTimeRes($preferTimeRes) {
+	protected function resolveTimeRes($preferTimeRes) {
 		$timeresavailable = array_keys($this->available);
 		$timeres = $timeresavailable[0];
 
@@ -78,7 +77,7 @@ class sspmod_statistics_StatRule {
 		return $timeres;
 	}
 	
-	private function resolveFileSlot($timeres, $preferTime) {
+	protected function resolveFileSlot($timeres, $preferTime) {
 
 		// Get which time (fileslot) to use.. First get a default, which is the most recent one.
 		$fileslot = $this->available[$timeres][count($this->available[$timeres])-1];

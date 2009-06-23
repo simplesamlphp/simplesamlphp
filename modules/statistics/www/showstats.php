@@ -111,7 +111,9 @@ SimpleSAML_Module::callHooks('htmlinject', $hookinfo);
 $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics-tpl.php');
 $t->data['header'] = 'stat';
 $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $max);
-$t->data['pieimgurl'] = $grapher->showPie( $dataset->getDelimiterPresentationPie(), $piedata);
+if (isset($piedata)) {
+	$t->data['pieimgurl'] = $grapher->showPie( $dataset->getDelimiterPresentationPie(), $piedata);
+}
 $t->data['available.rules'] = $ruleset->availableRulesNames();
 $t->data['available.times'] = $statrule->availableFileSlots($timeres);
 $t->data['available.timeres'] = $statrule->availableTimeRes();

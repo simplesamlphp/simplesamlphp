@@ -234,8 +234,9 @@ echo '</div>'; # end graph content.
 $classint = array('odd', 'even'); $i = 0;
 echo '<div id="table" class="tabset_content">';
 
-echo('<img src="' . $this->data['pieimgurl'] . '" />');
-
+if (isset($this->data['pieimgurl'])) {
+	echo('<img src="' . $this->data['pieimgurl'] . '" />');
+}
 echo '<table class="tableview"><tr><th class="value">Value</th><th class="category">Data range</th>';
 
 foreach ( $this->data['summaryDataset'] as $key => $value ) {

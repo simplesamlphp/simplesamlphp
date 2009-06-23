@@ -138,7 +138,11 @@ class sspmod_statistics_Aggregator {
 			
 			// Iterate all the statrules from config.
 			foreach ($this->statrules AS $rulename => $rule) {
-			
+				
+				$type = 'aggregate';
+				if (array_key_exists('type', $rule)) $type = $rule['type'];
+				if ($type !== 'aggregate') continue;
+				
 				foreach($this->timeres AS $tres => $tresconfig ) {
 			
 					// echo 'Comparing action: [' . $rule['action'] . '] with [' . $action . ']' . "\n";
