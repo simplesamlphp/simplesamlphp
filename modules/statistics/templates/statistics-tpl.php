@@ -18,11 +18,11 @@ $this->includeAtTemplateBase('includes/header.php');
 function getBaseURL($t, $type = 'get', $key = NULL, $value = NULL) {
 	$vars = array(
 		'rule' => $t->data['selected.rule'],
-		'rule2' => $t->data['selected.rule2'],
 		'time' => $t->data['selected.time'],
 		'res' => $t->data['selected.timeres'],
 	);
 	if (isset($t->data['selected.delimiter'])) $vars['d'] = $t->data['selected.delimiter'];
+	if (!empty($t->data['selected.rule2']) && $t->data['selected.rule2'] !== '_') $vars['rule2'] = $t->data['selected.rule2'];
 	
 	if (isset($key)) {
 		if (isset($vars[$key])) unset($vars[$key]);
