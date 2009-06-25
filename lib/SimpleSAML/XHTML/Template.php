@@ -401,7 +401,7 @@ class SimpleSAML_XHTML_Template {
 			throw new Exception("Inline translation should be string or array. Is " . gettype($translation) . " now!");
 		}
 		
-		SimpleSAML_Logger::info('Template: Adding inline language translation for tag [' . $tag . ']');
+		SimpleSAML_Logger::debug('Template: Adding inline language translation for tag [' . $tag . ']');
 		$this->langtext[$tag] = $translation;
 	}
 	
@@ -425,7 +425,7 @@ class SimpleSAML_XHTML_Template {
 		
 
 		$lang = $this->readDictionaryFile($filebase . $file);
-		SimpleSAML_Logger::info('Template: Merging language array. Loading [' . $file . ']');
+		SimpleSAML_Logger::debug('Template: Merging language array. Loading [' . $file . ']');
 		$this->langtext = array_merge($this->langtext, $lang);
 	}
 
@@ -439,7 +439,7 @@ class SimpleSAML_XHTML_Template {
 	private function readDictionaryFile($filename) {
 		assert('is_string($filename)');
 
-		SimpleSAML_Logger::info('Template: Reading [' . $filename . ']');
+		SimpleSAML_Logger::debug('Template: Reading [' . $filename . ']');
 
 		if (!file_exists($filename)) {
 			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
@@ -524,7 +524,7 @@ class SimpleSAML_XHTML_Template {
 
 
 		/* Not found in current theme. */
-		SimpleSAML_Logger::info($_SERVER['PHP_SELF'].' - Template: Could not find template file [' .
+		SimpleSAML_Logger::debug($_SERVER['PHP_SELF'].' - Template: Could not find template file [' .
 			$template . '] at [' . $filename . '] - now trying the base template');
 
 
