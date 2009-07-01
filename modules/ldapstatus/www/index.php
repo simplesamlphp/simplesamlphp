@@ -177,6 +177,30 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 			$orgconfig);
 			
 	$res = $tester->test();
+	
+	if(array_key_exists('output', $_REQUEST) && $_REQUEST['output'] === 'text') {
+		
+		$ok = TRUE;
+		foreach ($res AS $tag => $resEntry) {
+			if ($tag == 'time') continue;
+			if ($resEntry[0] == 0) {
+				$ok = FALSE;
+				echo("Error (" . $tag . ") : " . $resEntry[1] . "\n");
+			}
+		}
+		
+		if ($ok) {
+			echo('OOOKKK');
+		}
+		
+		// print_r($res);
+		// print_r($orgs[$_REQUEST['orgtest']]);
+		
+		exit;
+		
+		
+	}
+	
 
 	$t = new SimpleSAML_XHTML_Template($config, 'ldapstatus:ldapsinglehost.php');
 	
