@@ -27,6 +27,18 @@ The attribute release consent is documented in a separate document.
   * [Documentation on the consent module](https://rnd.feide.no/content/consent-module)
 
 
+Support for bookmarking the login page
+--------------------------------------
+
+Most SAML software crash fatally when users bookmarks the login page and returns later when the cached session information is lost. This is natural as the login page happens in the middle of a SAML transaction, and the SAML software needs some references to the request in order to be able to produce the SAML Response.
+
+SimpleSAMLphp has implemented a graceful fallback to tackle this situation. When simpleSAMLphp is not able to lookup a session in the login process, it fall-backs to the *IdP-first flow*, described in next section, where the reference to the request is not needed.
+
+What happens in the IdP-first flow is that an *SAML unsolicited response* is sent back to the SP. An *unsolicited response* is a SAML Response with no reference to a SAML Request (no `InReplyTo` field). 
+
+When an SimpleSAMLphp IdP fall-back to IdP-first flow, the `RelayState` parameter sent from the SP in the SAML request is also lost. The RelayState information contain a reference key for the SP to lookup where to send the user after successfull authentication. The SimpleSAMLphp Service Provider supports configuring a static URL to redirect the user after a unsolicited response is received. See more information about the `RelayState` parameter in the next section: *IdP-first flow*.
+
+
 IdP-first flow
 --------------
 
