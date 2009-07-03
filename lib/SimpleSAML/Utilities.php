@@ -184,7 +184,7 @@ class SimpleSAML_Utilities {
 		}
 
 		$query = array_merge($oldQuery, $parameter);
-		$url .= http_build_query($query);
+		$url .= http_build_query($query, '', '&');
 
 		return $url;
 	}
