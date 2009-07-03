@@ -40,7 +40,7 @@ class sspmod_core_Auth_Process_WarnShortSSOInterval extends SimpleSAML_Auth_Proc
 			$entityId = 'UNKNOWN';
 		}
 
-		SimpleSAML_Logger::warn('WarnShortSSOInterval: Only ' . $timeDelta .
+		SimpleSAML_Logger::warning('WarnShortSSOInterval: Only ' . $timeDelta .
 			' seconds since last SSO for this user from the SP ' .
 			var_export($entityId, TRUE));
 
