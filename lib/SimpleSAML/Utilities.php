@@ -1764,6 +1764,32 @@ class SimpleSAML_Utilities {
 		exit(0);
 	}
 
+	/**
+	 * Create a link which will POST data.
+	 *
+	 * @param string $destination  The destination URL.
+	 * @param array $post  The name-value pairs which will be posted to the destination.
+	 * @return string  An URL which can be accessed to post the data.
+	 */
+	public static function createPostRedirectLink($destination, $post) {
+		assert('is_string($destination)');
+		assert('is_array($post)');
+
+		$id = SimpleSAML_Utilities::generateID();
+		$postData = array(
+			'post' => $post,
+			'url' => $destination,
+		);
+
+		$session = SimpleSAML_Session::getInstance();
+		$session->setData('core_postdatalink', $id, $postData);
+
+		return SimpleSAML_Utilities::addURLParameter(
+			SimpleSAML_Module::getModuleURL('core/postredirect.php'),
+			array('RedirId' => $id)
+			);
+	}
+
 }
 
 ?>
