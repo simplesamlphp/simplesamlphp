@@ -1742,6 +1742,28 @@ class SimpleSAML_Utilities {
 		}
 	}
 
+
+	/**
+	 * Do a POST redirect to a page.
+	 *
+	 * This function never returns.
+	 *
+	 * @param string $destination  The destination URL.
+	 * @param array $post  An array of name-value pairs which will be posted.
+	 */
+	public static function postRedirect($destination, $post) {
+		assert('is_string($destination)');
+		assert('is_array($post)');
+
+		$config = SimpleSAML_Configuration::getInstance();
+
+		$p = new SimpleSAML_XHTML_Template($config, 'post.php');
+		$p->data['destination'] = $destination;
+		$p->data['post'] = $post;
+		$p->show();
+		exit(0);
+	}
+
 }
 
 ?>
