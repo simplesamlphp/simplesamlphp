@@ -192,16 +192,10 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		
 		} else {
 
-			$p = new SimpleSAML_XHTML_Template($this->configuration, 'post.php');
-	
-			$p->data['RelayStateName'] = 'RelayState';
-			$p->data['RelayState'] = $relayState;
-			$p->data['destination'] = $destination;
-			$p->data['response'] = base64_encode($response);
-			
-			$p->show();
-
-		
+			SimpleSAML_Utilities::postRedirect($destination, array(
+				'RelayState' => $relayState,
+				'SAMLResponse' => base64_encode($response),
+			));
 		}
 		
 		
