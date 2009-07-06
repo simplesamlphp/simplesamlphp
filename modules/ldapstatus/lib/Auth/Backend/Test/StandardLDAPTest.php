@@ -132,7 +132,7 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 			$result['ldapSearchBogus'] = array(TRUE,$tester->tack('ldapSearchBogus'));
 			$result['ldapSearchBogus']['time'] = $tester->tack('ldapSearchBogus', FALSE); 
 			
-		} catch (sspmod_feide_Exception_UserNotFound $e) {
+		} catch (SimpleSAML_Error_UserNotFound $e) {
 			$result['ldapSearchBogus'] = array(TRUE,$tester->tack('ldapSearchBogus'));
 			
 		} catch (Exception $e) {
