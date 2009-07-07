@@ -39,7 +39,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
 		/* Resolve this directory relative to the simpleSAMLphp directory (unless it is
 		 * an absolute path).
 		 */
-		$this->directory = $globalConfig->resolvePath($this->directory) . '/';
+		$this->directory = $globalConfig->resolvePath($this->directory);
 	}
 
 
@@ -67,8 +67,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
 
 		$ret = array();
 
-		$dh = opendir($this->directory);
+		$dh = @opendir($this->directory);
 		if ($dh === FALSE) {
+			SimpleSAML_Logger::warning('Serialize metadata handler: Unable to open directory: ' . var_export($this->directory, TRUE));
 			return $ret;
 		}
 
@@ -82,6 +83,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
 			$path = $this->directory . '/' . $entry;
 
 			if (!is_dir($path)) {
+				SimpleSAML_Logger::warning('Serialize metadata handler: Metadata directory contained a file where only directories should exist: ' . var_export($path, TRUE));
 				continue;
 			}
 
@@ -106,10 +108,15 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
 		$ret = array();
 
 		$dir = $this->directory . '/' . rawurlencode($set);
-		if(!is_dir($dir)) return $ret;
-		$dh = opendir($dir);
+		if (!is_dir($dir)) {
+			/* Probably some code asked for a metadata set which wasn't available. */
+			return $ret;
+		}
+
+		$dh = @opendir($dir);
 		if ($dh === FALSE) {
-			return NULL;
+			SimpleSAML_Logger::warning('Serialize metadata handler: Unable to open directory: ' . var_export($dir, TRUE));
+			return $ret;
 		}
 
 		$extLen = strlen(self::EXTENSION);
@@ -156,14 +163,14 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
 			return NULL;
 		}
 
-		$data = file_get_contents($filePath);
+		$data = @file_get_contents($filePath);
 		if ($data === FALSE) {
 			SimpleSAML_Logger::warning('Error reading file ' . $filePath .
 				': ' . SimpleSAML_Utilities::getLastError());
 			return NULL;
 		}
 
-		$data = unserialize($data);
+		$data = @unserialize($data);
 		if ($data === FALSE) {
 			SimpleSAML_Logger::warning('Error deserializing file: ' . $filePath);
 			return NULL;
