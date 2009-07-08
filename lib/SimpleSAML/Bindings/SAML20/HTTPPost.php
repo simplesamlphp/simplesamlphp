@@ -192,10 +192,12 @@ class SimpleSAML_Bindings_SAML20_HTTPPost {
 		
 		} else {
 
-			SimpleSAML_Utilities::postRedirect($destination, array(
-				'RelayState' => $relayState,
-				'SAMLResponse' => base64_encode($response),
-			));
+			$data = array('SAMLResponse' => base64_encode($response));
+			if ($relayState !== NULL) {
+				$data['RelayState'] = $relayState;
+			}
+
+			SimpleSAML_Utilities::postRedirect($destination, $data);
 		}
 		
 		
