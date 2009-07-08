@@ -11,6 +11,7 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
     
     
     private $orgmeta = NULL;
+	private $cli = array();
     
     /**
      * @param $location Must be of class Configuration..
@@ -20,6 +21,11 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
     	$this->orgmeta = $orgmeta;
     }
     
+
+	public function getCLI() {
+		return $this->cli;
+	}
+
     
     /**
      * Perform a test of the LDAP. Used by the LDAP status page.
@@ -63,6 +69,11 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 		if (!empty($url['port'])) $port = $url['port'];
 		
 		$tester->log('ldapstatus Url parse [' . $hostname . '] => [' . $url['host'] . ']:[' . $port . ']' );
+		
+		$this->cli[] = array('Ping LDAP host', 'ping ' . $url['host']);
+		$this->cli[] = array('Traceroute LDAP host', 'traceroute ' . $url['host']);
+		$this->cli[] = array('TCPtraceroute connection', 'tcptraceroute ' . $url['host'] . ' ' . $port);
+		$this->cli[] = array('Check certificate', 'openssl s_client -host ' . $url['host'] . ' -port ' . $port);
     
     
 		$tester->tick('ping');
@@ -105,7 +116,7 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 			return $result;
 		}
 		
-
+		$cliAdminBind = '';
 		// Do an admin bind before searching?
 		if ($this->location->hasValue('adminUser')) {
 			try {
@@ -114,7 +125,13 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 				$this->adminBind($this->location->getString('adminUser'), $this->location->getString('adminPassword'));
 				$result['adminBind'] = array(TRUE,$tester->tack('connect'));
 				$result['adminBind']['time'] = $tester->tack('connect', FALSE); 
-
+				
+				$cliAdminBind = "-D '" . $this->location->getString('adminUser') . "' -W ";
+				$this->cli[] = array('Bind as admin (and read user base)', 
+					"ldapsearch -H " . $hostname . " -b '" . $this->location->getValue('searchbase') . "' " . 
+					"-s base -V -x " . 
+					$cliAdminBind
+				);
 				
 			} catch (Exception $e) {
 				$tester->log('ldapstatus: Connect error() [' . $hostname . ']: ' . $e->getMessage());
@@ -122,6 +139,11 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 				$result['time'] = $tester->tack('all', FALSE);
 				return $result;
 			}
+		} else {
+			$this->cli[] = array('Bind as anonymous (and read user base)', 
+				"ldapsearch -H " . $hostname . " -b '" . $this->location->getValue('searchbase') . "' " . 
+				"-s base -V -x "
+			);
 		}
 		
 		try {
@@ -131,7 +153,7 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 			$userDN = $this->searchForUser($username); 
 			$result['ldapSearchBogus'] = array(TRUE,$tester->tack('ldapSearchBogus'));
 			$result['ldapSearchBogus']['time'] = $tester->tack('ldapSearchBogus', FALSE); 
-			
+		
 		} catch (SimpleSAML_Error_UserNotFound $e) {
 			$result['ldapSearchBogus'] = array(TRUE,$tester->tack('ldapSearchBogus'));
 			
@@ -159,6 +181,26 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 				$userDN = $this->searchForUser($this->location->getValue('testUser')); 
 				$result['ldapSearchTestUser'] = array(TRUE,$tester->tack('ldapSearchTestUser'));
 				$result['ldapSearchTestUser']['time'] = $tester->tack('ldapSearchTestUser', FALSE); 
+				
+				$this->cli[] = array('Search for test user', 
+					"ldapsearch -H " . $hostname . " -b '" . $this->location->getValue('searchbase') . "' " . 
+					"-s sub -V -x " . 
+					$cliAdminBind . " '(|(eduPersonPrincipalName=" . $this->location->getValue('testUser') . "))'"
+				);
+
+				$this->cli[] = array('Read test user attributes (user bind)', 
+					"ldapsearch -H " . $hostname . " -b '" . $userDN . "' " . 
+					"-s base -V -x " . 
+					"-D '" . $userDN . "' -W "
+				);
+
+				$this->cli[] = array('Read test user attributes (as admin/anonymous)', 
+					"ldapsearch -H " . $hostname . " -b '" . $userDN . "' " . 
+					"-s base -V -x " . 
+					$cliAdminBind
+				);
+
+					
 			} catch (Exception $e) {
 				$tester->log('LDAP Search test account:' . $e->getMessage());
 				$result['ldapSearchTestUser'] = array(FALSE,$e->getMessage());
@@ -197,7 +239,7 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 				$result['getTestOrg'] = array(TRUE,$tester->tack('getTestOrg'));
 				$result['getTestOrg']['time'] = $tester->tack('getTestOrg', FALSE); 
 			} catch(Exception $e) {
-				$tester->log('LDAP Test user attributes failed:' . $e->getMessage());
+				$tester->log('LDAP Test user attributes failed: ' . $e->getMessage());
 				$result['getTestOrg'] = array(FALSE,$e->getMessage());
 			}
 		}

@@ -41,10 +41,6 @@ $this->includeAtTemplateBase('includes/header.php');
 ?>
 
 
-<?php
-
-echo('<h2>LDAP status for ' . $this->getTranslation($this->data['org']['description']) . '</h2>');
-?>
 
 
 <p style="text-align: right; margin-bottom: 1em;">[ <a href="?">return to list of all organizations</a> ]</p>
@@ -129,6 +125,8 @@ if (array_key_exists('secretURL', $this->data)) {
 	echo('<li><a href="#access">Access URL</a></li>');
 }
 
+	echo('<li><a href="#cli">Command line</a></li>');
+
 echo ('</ul>');
 	
 echo '<div id="ldaptests" class="tabset_content">';
@@ -140,7 +138,7 @@ echo '<div id="ldaptests" class="tabset_content">';
 
 
 
-<div id="ldapstatus">
+<div id="ldapstatus" >
 
 <?php
 if ($ok) {
@@ -170,10 +168,20 @@ presentRes('configMeta', 'Contact information registered', 'Checking for additio
 
 ?>
 </div><!-- end ldap status -->
-
 </div><!-- end ldap test tab -->
 
+
 <?php
+
+echo '<div id="cli" class="tabset_content">';
+foreach($this->data['cli'] AS $clientry) {
+	echo('<p>' . $clientry[0] . '</p>');
+	echo('<pre>' . $clientry[1] . '</pre>');
+}
+echo '</div>';
+
+
+
 echo '<div id="debug" class="tabset_content">';
 
 #echo('<h3><a href="#">Debug log</a></h3>');

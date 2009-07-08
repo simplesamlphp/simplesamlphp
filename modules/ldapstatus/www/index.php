@@ -12,6 +12,7 @@ $orgs = $ldapconfig->getValue('organizations');
 $locationTemplate = $ldapconfig->getValue('locationTemplate');
 
 
+
 $isAdmin = FALSE;
 $secretURL = NULL;
 if (array_key_exists('orgtest', $_REQUEST)) {
@@ -66,25 +67,7 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 			// If authsource is not defined, init admin login.
 			SimpleSAML_Utilities::requireAdmin();
 		}
-
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-// 		SimpleSAML_Utilities::requireAdmin();
 		$isAdmin = TRUE;
 	}
 
@@ -162,7 +145,7 @@ $maxtime = $ldapStatusConfig->getValue('maxExecutionTime', 15);
 
 if (array_key_exists('orgtest', $_REQUEST)) {
 	#$old_error_handler = set_error_handler("myErrorHandler");
-	
+	$cli = array();
 	$locindex = 0;
 	if (array_key_exists('locindex', $_REQUEST)) $locindex = $_REQUEST['locindex'];
 	
@@ -178,8 +161,8 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 			
 	$res = $tester->test();
 	
+	// Machine readable output
 	if(array_key_exists('output', $_REQUEST) && $_REQUEST['output'] === 'text') {
-		
 		$ok = TRUE;
 		foreach ($res AS $tag => $resEntry) {
 			if ($tag == 'time') continue;
@@ -187,24 +170,15 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 				$ok = FALSE;
 				echo("Error (" . $tag . ") : " . $resEntry[1] . "\n");
 			}
-		}
-		
-		if ($ok) {
-			echo('OOOKKK');
-		}
-		
-		// print_r($res);
-		// print_r($orgs[$_REQUEST['orgtest']]);
-		
+		}		
+		if ($ok) echo('OOOKKK');
 		exit;
-		
-		
 	}
 	
 
 	$t = new SimpleSAML_XHTML_Template($config, 'ldapstatus:ldapsinglehost.php');
-	
 	$t->data['res'] = $res;
+	$t->data['cli'] = $tester->getCLI();
 	$t->data['org'] = $orgs[$_REQUEST['orgtest']];
 	$t->data['debugLog'] = SimpleSAML_Logger::getCapturedLog();
 	if ($isAdmin) $t->data['secretURL'] = $secretURL;
