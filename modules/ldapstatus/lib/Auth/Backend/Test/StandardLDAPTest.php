@@ -240,7 +240,7 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 				$result['getTestOrg']['time'] = $tester->tack('getTestOrg', FALSE); 
 				
 				if (array_key_exists('eduPersonOrgDN:norEduOrgSchemaVersion', $attributes)) {
-					if ($attributes['eduPersonOrgDN:norEduOrgSchemaVersion'][0] == '1.4') {
+					if (version_compare($attributes['eduPersonOrgDN:norEduOrgSchemaVersion'][0], '1.4', '>=')) {
 						$result['schema'] = array(TRUE, 'Version: ' . $attributes['eduPersonOrgDN:norEduOrgSchemaVersion'][0]);
 					} else {
 						$result['schema'] = array(FALSE, 'Version: ' . $attributes['eduPersonOrgDN:norEduOrgSchemaVersion'][0]);
