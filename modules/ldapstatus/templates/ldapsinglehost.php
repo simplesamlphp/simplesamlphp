@@ -165,6 +165,7 @@ presentRes('ldapSearchTestUser', 'Search for test user', 'Search LDAP for the DN
 presentRes('ldapBindTestUser', 'Test user bind()', 'Trying to bind() as the DN found when searching for the test user');
 presentRes('getTestOrg', 'Get organization attributes', 'Getting attributes from referred eduOrgDN and eduOrgUnitDN (from test user)');
 presentRes('configMeta', 'Contact information registered', 'Checking for additional contact addresss in configuration.');
+presentRes('schema', 'Schema version', 'Checking if most recent version of the LDAP schema is used.');
 
 ?>
 </div><!-- end ldap status -->

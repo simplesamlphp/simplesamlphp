@@ -41,6 +41,7 @@ $this->includeAtTemplateBase('includes/header.php');
 		<th><a href="?sort=ldapBindTestUser">T-bind()</a></th>
 		<th><a href="?sort=getTestOrg">Org-info</a></th>
 		<th><a href="?sort=configMeta">Meta</a></th>
+		<th><a href="?sort=schema">Schema</a></th>
 		<th><a href="?sort=time">Time</a></th>
 	</tr>
 
@@ -114,6 +115,7 @@ foreach($this->data['sortedOrgIndex'] as $orgkey) {
 		showRes('ldapBindTestUser',  $res, $this);
 		showRes('getTestOrg',  $res, $this);
 		showRes('configMeta',  $res, $this);
+		showRes('schema',  $res, $this);
 		
 		
 		if ($res['time'] > 2.0) {

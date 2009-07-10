@@ -238,6 +238,18 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 
 				$result['getTestOrg'] = array(TRUE,$tester->tack('getTestOrg'));
 				$result['getTestOrg']['time'] = $tester->tack('getTestOrg', FALSE); 
+				
+				if (array_key_exists('eduPersonOrgDN:norEduOrgSchemaVersion', $attributes)) {
+					if ($attributes['eduPersonOrgDN:norEduOrgSchemaVersion'][0] == '1.4') {
+						$result['schema'] = array(TRUE, 'Version: ' . $attributes['eduPersonOrgDN:norEduOrgSchemaVersion'][0]);
+					} else {
+						$result['schema'] = array(FALSE, 'Version: ' . $attributes['eduPersonOrgDN:norEduOrgSchemaVersion'][0]);
+					}
+				} 
+				
+				$result['getTestOrg'] = array(TRUE,$tester->tack('getTestOrg'));
+				$result['getTestOrg']['time'] = $tester->tack('getTestOrg', FALSE);
+				
 			} catch(Exception $e) {
 				$tester->log('LDAP Test user attributes failed: ' . $e->getMessage());
 				$result['getTestOrg'] = array(FALSE,$e->getMessage());
