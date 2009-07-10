@@ -115,6 +115,7 @@ if($onLoad !== '') {
 			'pl' => 'Język polski', // Polish
 			'pt' => 'Português', // Portuguese
 			'pt-BR' => 'Português brasileiro', // Portuguese
+			'tr' => 'Türkçe',
 		);
 		
 		$textarray = array();

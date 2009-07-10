@@ -151,7 +151,7 @@ $config = array (
 	/*
 	 * Languages available and what language is default
 	 */
-	'language.available'	=> array('en', 'no', 'nn', 'se', 'fi', 'da', 'sv', 'de', 'es', 'fr', 'nl', 'lb', 'hr', 'hu', 'pl', 'sl', 'pt', 'pt-BR'),
+	'language.available'	=> array('en', 'no', 'nn', 'se', 'fi', 'da', 'sv', 'de', 'es', 'fr', 'nl', 'lb', 'hr', 'hu', 'pl', 'sl', 'pt', 'pt-BR', 'tr'),
 	'language.default'		=> 'en',
 	
 	/*
@@ -355,7 +355,7 @@ $config = array (
 	 */
 	'metadata.sources' => array(
 		array('type' => 'flatfile'),
-		),
+	),
 
 
 
