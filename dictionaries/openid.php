@@ -24,6 +24,7 @@ $lang = array(
 		'pl' => 'Lista zaufanych stron',
 		'pt' => 'Lista de sites confiáveis',
 		'pt-BR' => 'Lista de sites confiáveis',
+		'tr' => 'Güvenilir siteler listesi',
 	),
 	'about_link' => array (
 		'no' => 'Om simpleSAMLphp OpenID',
@@ -39,6 +40,7 @@ $lang = array(
 		'pl' => 'Informacje o simpleSAMLphp OpenID',
 		'pt' => 'Sobre o OpenID do simpleSAMLphp',
 		'pt-BR' => 'Sobre o simpleSAMLphp OpenID',
+		'tr' => 'simpleSAMLphp OpenID hakkında',
 	),
 	'welcome' => array (
 		'no' => 'Velkommen til simpleSAMLphp OpenID tilbyder',
@@ -54,6 +56,7 @@ $lang = array(
 		'pl' => 'Witaj w dostawcy simpleSAMLphp OpenID',
 		'pt' => 'Bem-vindo ao fornecedor OpenID do simpleSAMLphp',
 		'pt-BR' => 'Bem vindo ao Provedor OpenID simpleSAMLphp',
+		'tr' => 'simpleSAMLphp OpenID sağlayıcısına hoşgeldiniz.',
 	),
 	'howtouse' => array (
 		'no' => 'For å benytte denne autentiserings-tjeneren med OpenID, trenger du å benytte en URL som din identifikator. Sett inn følgende HTML markup i <code>&lt;head&gt;</code> på HTML dokumentet på URL-en som du vil skal være din OpenID identifikator.',
@@ -69,6 +72,7 @@ $lang = array(
 		'pl' => 'Aby używać ten serwer będziesz musiał ustawić URL, który będzię używany jako identyfikator. Wstaw następujący znacznik to <code>&lt;head&gt;</code> dokumentu HTML w tym URL:',
 		'pt' => 'Para usar este servidor, terá de configurar um URL a ser usado como identificador. Insira o seguinte código no elemento <code>&lt;head&gt;</code> do documento HTML presente nesse URL:',
 		'pt-BR' => 'Para utilizar este servidor, você terá que configurar uma URL para o uso como um identificador. Inserira o seguinte código na <code>&lt;head&gt;</code> do seu documento HTML em que se encontra a URL:',
+		'tr' => 'Bu sunucuyu kullanmak için, tanımlayıcı olarak kullanılan bir URL hazırlamak zorunda kalacaksınız. Şu etiketi, bu URL\'deki HTML dokümanına yerleştirin: <code>&lt;head&gt;</code>',
 	),
 	'loggedinas' => array (
 		'no' => 'Du er nå logget inn som %USERID%',
@@ -84,6 +88,7 @@ $lang = array(
 		'pl' => 'Jesteś zalogowany jako %USERID%',
 		'pt' => 'Efectuou a entrada com o identificador %USERID%',
 		'pt-BR' => 'Você está logado como %USERID%',
+		'tr' => 'Şimdi %USERID% olarak giriş yaptınız',
 	),
 	'login' => array (
 		'no' => 'Logg inn',
@@ -99,6 +104,7 @@ $lang = array(
 		'pl' => 'Login',
 		'pt' => 'Entrar',
 		'pt-BR' => 'Entar',
+		'tr' => 'Giriş',
 	),
 	'howtouse_cont' => array (
 		'no' => 'Konfigurer så denne tjeneren slik at du kan logge inn med denne URLen. Så snart du har konfigurert tjeneren, og markert din identitets URL, så kan du verifisere at det fungerer ved å bruke %SITE% %TOOL%:',
@@ -113,6 +119,7 @@ $lang = array(
 		'hu' => 'Ezután állítsa be a szervert, hogy be tudjon jelentkezni ezzel az URL-lel. Miután beállította a szervert és megjegyezte az azonosító URL-t, ellenőrizni tudja a működést a(z) %SITE% %TOOL% használatával:',
 		'pt' => 'De seguida, configure este servidor para efectuar a entrada com esse URL. Assim que tiver esta configuração feita, bem como a alteração anterior ao seu URL de identificação, pode verificar o seu correcto funcionamento utilizando %SITE% %TOOL%:',
 		'pt-BR' => 'Em seguida, configure este servidor de forma que você possa fazer login com a URL. Uma vez que você tenha configurado o servidor, e marcou a sua identidade URL, você pode verificar se ele está trabalhando pela utilização do %SITE% %TOOL%:',
+		'tr' => 'Sonra bu sunucuyu ayarlayın ve böylece bu URL ile giriş yapabilirsiniz. Bir kere sunucu düzenlenirse ve kimlik URL\'iniz belirlenirse, çalıştığını %SITE% %TOOL% kullanarak doğrulayabilirsiniz:',
 	),
 	'checkup_tool' => array (
 		'no' => 'OpenID test verktøy',
@@ -127,6 +134,7 @@ $lang = array(
 		'hu' => 'OpenID ellenőrző eszköz',
 		'pt' => 'Ferramenta de verificação OpenID',
 		'pt-BR' => 'Ferramenta de verificação do OpenID',
+		'tr' => 'OpenID Checkup aracı',
 	),
 	'openid_url' => array (
 		'no' => 'OpenID URL:',
@@ -142,6 +150,7 @@ $lang = array(
 		'pl' => 'OpenID URL:',
 		'pt' => 'URL OpenID',
 		'pt-BR' => 'URL do OpenID:',
+		'tr' => 'OpenID URL:',
 	),
 	'check' => array (
 		'no' => 'Sjekk',
@@ -157,6 +166,7 @@ $lang = array(
 		'pl' => 'Sprawdź',
 		'pt' => 'Verificar',
 		'pt-BR' => 'Checar',
+		'tr' => 'Kontrol et',
 	),
 	'confirm_question' => array (
 		'no' => 'Ønsker du å bekrefte din identitets-url (%OPENIDURL%) med %SITEURL%?',
@@ -172,6 +182,7 @@ $lang = array(
 		'pl' => 'Czy chcesz potwierdzić Twoj URL tożsamości (%OPENIDURL%) z %SITEURL%?',
 		'pt' => 'Deseja confirmar o seu URL de identificação  (%OPENIDURL%) em %SITEURL%?',
 		'pt-BR' => 'Você deseja confirmar sua URL de identidade (%OPENIDURL%) com %SITEURL%?',
+		'tr' => 'Kimlik URL\'inizi (%OPENIDURL%) %SITEURL% ile doğrulamak ister misiniz?',
 	),
 	'remember' => array (
 		'no' => 'Husk dette valget',
@@ -187,6 +198,7 @@ $lang = array(
 		'pl' => 'Zapamiętaj tą decyzję',
 		'pt' => 'Lembrar esta decisão',
 		'pt-BR' => 'Lembrar desta decisão',
+		'tr' => 'Kararımı hatırla',
 	),
 	'confirm' => array (
 		'no' => 'Bekreft',
@@ -202,6 +214,7 @@ $lang = array(
 		'pl' => 'Potwierdź',
 		'pt' => 'Confirmar',
 		'pt-BR' => 'Confirmar',
+		'tr' => 'Doğrula',
 	),
 	'notconfirm' => array (
 		'no' => 'Ikke bekreft',
@@ -217,6 +230,7 @@ $lang = array(
 		'pl' => 'Nie potwierdzaj',
 		'pt' => 'Não confirmar',
 		'pt-BR' => 'Não confirmar',
+		'tr' => 'Doğrulama',
 	),
 	'trustlist_desc' => array (
 		'no' => 'Disse avgjørelsene vil bli husket for denne sesjonen. Alle avgjørelser blir glemt etter at sesjonen ender.',
@@ -232,6 +246,7 @@ $lang = array(
 		'pl' => 'Decyzje będą pamiętane w tej sesji. Wszystkie decyzje zostaną zapomniane po zakończeniu sesji.',
 		'pt' => 'Esta decisão será lembrada durante esta sessão e esquecida quando a sessão terminar.',
 		'pt-BR' => 'Estas decisões serão lembradas durante esta sessão. Todas as decisões serão esquecidades no final da sessão.',
+		'tr' => 'Bu kararlar, bu oturum için hatırlandı. Oturum kapandığında tüm kararlar silinecektir.',
 	),
 	'trustlist_trustedsites' => array (
 		'no' => 'Klarerte websider',
@@ -247,6 +262,7 @@ $lang = array(
 		'pl' => 'Zaufane strony',
 		'pt' => 'Sites confiáveis',
 		'pt-BR' => 'Sites Confiáveis',
+		'tr' => 'Güvenilir Siteler',
 	),
 	'trustlist_untrustedsites' => array (
 		'no' => 'Ikke-klarerte websider',
@@ -262,6 +278,7 @@ $lang = array(
 		'pl' => 'Strony niezaufane',
 		'pt' => 'Sites não confiáveis',
 		'pt-BR' => 'Sites Não Confiáveis',
+		'tr' => 'Güvenilmeyen Siteler',
 	),
 	'trustlist_remove' => array (
 		'no' => 'Fjern valgte',
@@ -277,6 +294,7 @@ $lang = array(
 		'pl' => 'Usuń wybrane',
 		'pt' => 'Remover seleccionadas',
 		'pt-BR' => 'Remover Seleção',
+		'tr' => 'Seçileni Kaldır',
 	),
 	'trustlist_refresh' => array (
 		'no' => 'Oppdatér liste',
@@ -292,6 +310,7 @@ $lang = array(
 		'pl' => 'Odśwież listę',
 		'pt' => 'Actualizar lista',
 		'pt-BR' => 'Atualizar Lista',
+		'tr' => 'Listeyi Yenile',
 	),
 	'trustlist_forget' => array (
 		'no' => 'Glem alle',
@@ -307,6 +326,7 @@ $lang = array(
 		'pl' => 'Zapomnij wszystko',
 		'pt' => 'Esquecer tudo',
 		'pt-BR' => 'Esquecer Tudo',
+		'tr' => 'Hepsini Sil',
 	),
 	'trustlist_nosites' => array (
 		'no' => 'Ingen sites er husket for denne sesjonen. Når du autentiserer deg hos en site, kan du velge å legge den til denne listen ved å velge <q>Husk dette valget</q>.',
@@ -322,6 +342,7 @@ $lang = array(
 		'pl' => 'Brak stron zapamiętanych dla tej sesji. Kiedy się uwierzytelnisz, możesz zrobić to poprzez wybranie opcji dodania do listy <q> zapamiętanych decyzji</q>',
 		'pt' => 'Nenhum site será lembrado nesta sessão. Quando se autenticar num site pode escolher adicioná-lo a esta lista escolhendo <q>Lembrar esta decisão</q>',
 		'pt-BR' => 'Não há sites gravados para esta sessão. Quando você autenticar com um site, você pode escolher adicioná-lo nesta lista escolhendo a opção <q>Lembrar desta Decisão</q>',
+		'tr' => 'Bu oturumda hiçbir site hatırlanmamıştır. Bir site ile doğrulandığınızda, <q>Kararlarımı hatırla</q> seçeneği ile siteyi bu listeye eklemeyi tercih edebilirsiniz.',
 	),
 
 );

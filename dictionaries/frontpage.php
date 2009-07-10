@@ -25,6 +25,7 @@ $lang = array(
 		'hu' => 'Üdvözöljük',
 		'pl' => 'Witaj',
 		'pt' => 'Bem vindo',
+		'tr' => 'Hoşgeldiniz',
 	),
 	'configuration' => array (
 		'no' => 'Konfigurasjon',
@@ -41,6 +42,7 @@ $lang = array(
 		'hu' => 'Beállítások',
 		'pl' => 'Konfiguracja',
 		'pt' => 'Configuração',
+		'tr' => 'Konfigurasyon',
 	),
 	'metadata' => array (
 		'no' => 'Metadata',
@@ -57,6 +59,7 @@ $lang = array(
 		'hu' => 'Metaadatok',
 		'pl' => 'Metadane',
 		'pt' => 'Metadados',
+		'tr' => 'Üstveri (Metadata)',
 	),
 	'tools' => array (
 		'no' => 'Verktøy',
@@ -73,6 +76,7 @@ $lang = array(
 		'hu' => 'Eszközök',
 		'pl' => 'Narzędzia',
 		'pt' => 'Ferramentas',
+		'tr' => 'Araçlar',
 	),
 	'login_as_admin' => array (
 		'no' => 'Login som administrator',
@@ -89,6 +93,7 @@ $lang = array(
 		'hu' => 'Bejelentkezés adminisztrátorként',
 		'pl' => 'Zaloguj się jako administrator',
 		'pt' => 'Entrar como administrador',
+		'tr' => 'Yönetici olarak giriş',
 	),
 	'loggedin_as_admin' => array (
 		'no' => 'Du er logget inn som administrator',
@@ -105,6 +110,7 @@ $lang = array(
 		'hu' => 'Bejelentkezve adminisztrátorként',
 		'pl' => 'Jesteś zalogowany jako administrator',
 		'pt' => 'Está autenticado como administrador',
+		'tr' => 'Yönetici olarak girdiniz',
 	),
 	'show_metadata' => array (
 		'no' => 'Vis metadata',
@@ -121,6 +127,7 @@ $lang = array(
 		'hu' => 'Mutasd a metaadatokat',
 		'pl' => 'Wyświetl metadane',
 		'pt' => 'Mostrar meta-dados',
+		'tr' => 'Üstveri (Metadata) göster',
 	),
 	'intro' => array (
 		'no' => '<strong>Gratulerer</strong>, du har nå installert simpleSAMLphp. Dette er startsiden til din simpleSAMLphp installasjon, hvor du vil finne eksempler, diagnostikk, metadata og til og med lenker til relevant dokumentasjon.',
@@ -140,6 +147,7 @@ $lang = array(
 		'pl' => '<strong>Gratulacje</strong>, instalacja simpleSAMLphp przebiegła pomyślnie. To jest strona startowa Twojej instalacji, na której znajdziesz odnośniki do przykładów, narzędzi do diagnozowania, metadane a nawet linki do dokumentacji.',
 		'pt' => '<strong>Parabéns</strong>, o software simpleSAMLphp foi instalado com sucesso. Esta é a página inicial da sua instalação, onde encontrará ligações para páginas de teste, de diagnóstico, de metadados e de documentação relevante.    ',
 		'pt-BR' => '<strong>Parabéns</strong>, você instalou com sucesso o simpleSAMLphp. Esta é a página de introdução de sua instalação, onde você encontrará links para as páginas de teste, diagnóstico, metadata e para a documentação.',
+		'tr' => '<strong>Tebrikler</strong>, simpleSAMLphp\'i başarıyla yüklediniz. Bu sayfa, test örneklerine, kontrollere, üstveriye (metadata) ve hatta ilgili dokümanlara bağlantılar bulabileceğiniz, kurulumun başlangıç sayfasıdır.',
 	),
 	'useful_links_header' => array (
 		'no' => 'Nyttige lenker for denne installasjonen',
@@ -159,6 +167,7 @@ $lang = array(
 		'pl' => 'Przydatne linki dla Twojej instalacji',
 		'pt' => 'Ligações úteis da sua instalação',
 		'pt-BR' => 'Endereços úteis para sua instalação.',
+		'tr' => 'Kurulumunuz için faydalı linkler',
 	),
 	'metadata_header' => array (
 		'no' => 'Metadata',
@@ -178,6 +187,7 @@ $lang = array(
 		'pl' => 'Metadane',
 		'pt' => 'Metadados  ',
 		'pt-BR' => 'Metadata',
+		'tr' => 'Üstveri (Metadata)',
 	),
 	'doc_header' => array (
 		'no' => 'Dokumentasjon',
@@ -197,6 +207,7 @@ $lang = array(
 		'pl' => 'Dokumentacja',
 		'pt' => 'Documentação',
 		'pt-BR' => 'Documentação',
+		'tr' => 'Dokümantasyon',
 	),
 	'checkphp' => array (
 		'no' => 'Sjekker din PHP installasjon',
@@ -216,6 +227,7 @@ $lang = array(
 		'pl' => 'Sprawdzanie instalacji PHP',
 		'pt' => 'Verificação do seu ambiente PHP',
 		'pt-BR' => 'Checando sua instalação do PHP',
+		'tr' => 'PHP kurulumunuz kontrol ediliyor',
 	),
 	'about_header' => array (
 		'no' => 'Om simpleSAMLphp',
@@ -235,6 +247,7 @@ $lang = array(
 		'pl' => 'O simpleSAMLphp',
 		'pt' => 'Sobre o simpleSAMLphp',
 		'pt-BR' => 'Sobre o simpleSAMLphp',
+		'tr' => 'simpleSAMLphp hakkında',
 	),
 	'about_text' => array (
 		'no' => 'Yey! simpleSAMLphp virker jammen kult, hvor kan jeg finne ut mer om det? Du kan lese mer om simpleSAMLphp på <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp sin hjemmeside</a>.',
@@ -254,6 +267,7 @@ $lang = array(
 		'pl' => 'Ten simpleSAMLphp jest niezły, gdzie mogę poczytać o tym? Możesz znaleźć więcej informacji o <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp na blogu Feide RnD</a> oraz na stronie <a href="http://uninett.no">UNINETT</a>.',
 		'pt' => 'Pode encontrar mais informação sobre o <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp no blog da Feide RnD</a> em <a href="http://uninett.no">UNINETT</a>.',
 		'pt-BR' => 'Este simpleSAMLphp é uma coisa muito legal, onde posso ler mais sobre isso? Você pode encontrar mais informações sobre o <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp no blog de Feide RnD</a> durante a <a href="http://uninett.no">UNINETT</a>.',
+		'tr' => 'Bu simpleSAMLphp oldukça iyiymiş, daha fazla bilgiyi nereden okuyabilirim? <a href="http://uninett.no">UNINETT</a> üzerinde <a href="http://rnd.feide.no/simplesamlphp">Feide RnD blog\'unda simpleSAMLphp </a> hakkında daha fazlasını bulabilirsiniz.',
 	),
 	'required' => array (
 		'no' => 'Påkrevd',
@@ -273,6 +287,7 @@ $lang = array(
 		'pl' => 'Wymagane',
 		'pt' => 'Necessário',
 		'pt-BR' => 'Requerido',
+		'tr' => 'Gerekli',
 	),
 	'required_ldap' => array (
 		'no' => 'Påkrevd for LDAP',
@@ -292,6 +307,7 @@ $lang = array(
 		'pl' => 'Wymagane dla LDAP',
 		'pt' => 'Necessário para LDAP',
 		'pt-BR' => 'Requerido para o LDAP',
+		'tr' => 'LDAP için gerekli',
 	),
 	'required_radius' => array (
 		'no' => 'Påkrevd for Radius',
@@ -311,6 +327,7 @@ $lang = array(
 		'pl' => 'Wymagane dla Radius',
 		'pt' => 'Necessário para Radius',
 		'pt-BR' => 'Requerido para o Radius',
+		'tr' => 'Radius için gerekli',
 	),
 	'optional' => array (
 		'no' => 'Valgfritt',
@@ -330,6 +347,7 @@ $lang = array(
 		'pl' => 'Opcjonalne',
 		'pt' => 'Opcional',
 		'pt-BR' => 'Opcional',
+		'tr' => 'İsteğe bağlı',
 	),
 	'reccomended' => array (
 		'no' => 'Anbefalt',
@@ -349,6 +367,7 @@ $lang = array(
 		'pl' => 'Rekomendowane',
 		'pt' => 'Recomendado',
 		'pt-BR' => 'Recomendado',
+		'tr' => 'Tavsiye edilen',
 	),
 	'warnings' => array (
 		'no' => 'Advarsler',
@@ -368,6 +387,7 @@ $lang = array(
 		'pl' => 'Ostrzeżenia',
 		'pt' => 'Avisos',
 		'pt-BR' => 'Avisos',
+		'tr' => 'Uyarılar',
 	),
 	'warnings_https' => array (
 		'no' => '<strong>Du bruker ikke HTTPS</strong> - kryptert kommunikasjon med brukeren. HTTP fungerer utmerket til testformål, men  i et produksjonsmiljø anbefales sterkt å skru på sikker kommunikasjon med HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Les mer i dokumentet: simpleSAMLphp maintenance</a> ]',
@@ -387,6 +407,7 @@ $lang = array(
 		'pl' => '<strong>Nie używasz HTTPS</strong> - szyfrowana komunikacja z użytkownikiem. HTTP jest OK dla testów, ale na produkcji powinieneś używać tylko HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Przeczytaj więcej o zarządzaniu simpleSAMLphp</a> ]',
 		'pt' => '<strong>Não está a ser usado HTTPS</strong> - comunicação cifrada com o utilizador. Para ambientes de teste, ligações HTTP são suficientes, mas num ambiente de produção deve ser usado HTTPS. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Ler mais sobre manutenção do simpleSAMLphp</a> ]',
 		'pt-BR' => '<strong>Você não está utilizando HTTPS</strong> - comunicação encriptada com o usuário. HTTP funciona bem para testes, mas você deve utilizar HTTPS para produção. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">Leia mais sobre manutenção do simpleSAMLphp</a> ]',
+		'tr' => 'Kullanıcıyla şifreli iletişim -<strong>HTTPS kullanmıyorsunuz</strong>. HTTP test amaçlı olarak kullanılabilir, ancak üretim ortamında, HTTPS kullanmalısınız. [ <a href="http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration">simpleSAMLphp bakımı hakkında daha fazlasını okuyun</a> ]',
 	),
 	'link_saml2example' => array (
 		'no' => 'SAML 2.0 SP eksempel - test innlogging med SAML 2.0 via din IdP',
@@ -406,6 +427,7 @@ $lang = array(
 		'pl' => 'SAML 2.0 SP - przykład - test logowania przez Twoje IdP',
 		'pt' => 'Exemplo de um SP SAML 2.0 - Para testes de login pelo seu IdP',
 		'pt-BR' => 'SAML 2.0 SP exemplo - efetuar login na sua IDP',
+		'tr' => 'SAML 2.0 SP örneği - IdP\'nizden giriş yaparak test edin',
 	),
 	'link_shib13example' => array (
 		'no' => 'Shibboleth 1.3 SP eksempel - test innlogging med Shibboleth 1.3 via din IdP',
@@ -425,6 +447,7 @@ $lang = array(
 		'pl' => 'Shibboleth 1.3 SP - przykład - test logowania przez Twoje Shib IdP',
 		'pt' => 'Exemplo de um SP Shibboleth 1.3 - Para testes de login pelo seu IdP Shib',
 		'pt-BR' => 'Shibboleth 1.3 SP exemplo - efetuar login na sua Shib IDP',
+		'tr' => 'Shibboleth 1.3 SP örneği - Shib IdP\'nizden giriş yaparak test edin',
 	),
 	'link_openidprovider' => array (
 		'no' => 'OpenID Provider side - Alpha versjon (testkode)',
@@ -444,6 +467,7 @@ $lang = array(
 		'pl' => 'Strona Dostawcy OpenID - wersja Alpha (kod w fazie testów)  ',
 		'pt' => 'Site do provider OpenID - versão Alpha (código de teste)',
 		'pt-BR' => 'OpenID Provider site - Versão Alpha (Código de Teste)',
+		'tr' => 'OpenID Provider site - Alpha sürümü (test kodu)',
 	),
 	'link_diagnostics' => array (
 		'no' => 'Diagnostiser hostnavn, port og protokoll',
@@ -463,6 +487,7 @@ $lang = array(
 		'pl' => 'Diagnostyka na hoście, port i protokół',
 		'pt' => 'Diagnósticos: hostname, porto e protocolo',
 		'pt-BR' => 'Diagnósticos do host, porta e protocolo',
+		'tr' => 'Bilgisayar adı, port ve protokol üzerine kontroller',
 	),
 	'link_phpinfo' => array (
 		'no' => 'PHPinfo',
@@ -482,6 +507,7 @@ $lang = array(
 		'pl' => 'PHP info',
 		'pt' => 'PHP info',
 		'pt-BR' => 'Informações do PHP',
+		'tr' => 'PHP info',
 	),
 	'link_configcheck' => array (
 		'no' => 'Sjekk av simpleSAMLphp konfigurasjonsfiler',
@@ -500,6 +526,7 @@ $lang = array(
 		'pl' => 'sprawdzanie konfiguracji simpleSAMLphp',
 		'pt' => 'Teste da configuração do simpleSAMLphp',
 		'pt-BR' => 'Checar a configuração do simpleSAMLphp',
+		'tr' => 'simpleSAMLphp konfigürasyon kontrolü',
 	),
 	'link_meta_overview' => array (
 		'no' => 'Oversikt over metadata for din installasjon. Diagnostiser metadatafilene her.',
@@ -519,6 +546,7 @@ $lang = array(
 		'pl' => 'Przegląd Metadanych dla Twojej instalacji. Diagnose your metadata files',
 		'pt' => 'Diagnósticos: ficheiros de metadados, vista geral de metadados da sua instalação',
 		'pt-BR' => 'Metadados para sua instalação. Diagnosticar seus arquivos metadados',
+		'tr' => 'Kurulumunuz için üstveri (metadata) bilgisi. Üstveri dosyalarınızı kontrol edin.',
 	),
 	'link_meta_saml2sphosted' => array (
 		'no' => 'Hosted SAML 2.0 Service Provider Metadata (automatisk generert)',
@@ -538,6 +566,7 @@ $lang = array(
 		'pl' => 'Metadane - Lokalny SAML 2.0 Dostawca Serwisu (generowane automatycznie)',
 		'pt' => 'Metadados do fornecedor de serviço (SP) SAML 2.0 local (gerado automaticamente)',
 		'pt-BR' => 'Hospedado SAML 2.0 Service Provider Metadata (gerado automaticamente)',
+		'tr' => 'Sunulan SAML 2.0 Servis Sağlayıcı Üstverisi (metadata) (otomatik olarak üretilmiştir)',
 	),
 	'link_meta_saml2idphosted' => array (
 		'no' => 'Hosted SAML 2.0 Identity Provider Metadata (automatisk generert)',
@@ -557,6 +586,7 @@ $lang = array(
 		'pl' => 'Metadane - Lokalny SAML 2.0 Dostawca Tożsamości (generowane automatycznie)',
 		'pt' => 'Metadados do fornecedor de identidade (IdP) SAML 2.0 local (gerado automaticamente)',
 		'pt-BR' => 'Hospedado SAML 2.0 Identity Provider Metadata (gerado automaticamente)',
+		'tr' => 'Sunulan SAML 2.0 Kimlik Sağlayıcı Üstverisi (metadata) (otomatik olarak üretilmiştir)',
 	),
 	'link_meta_shib13sphosted' => array (
 		'no' => 'Hosted Shibboleth 1.3 Service Provider Metadata (automatisk generert)',
@@ -576,6 +606,7 @@ $lang = array(
 		'pl' => 'Metadane - Lokalny Shibboleth 1.3 Dostawca Serwisu (generowane automatycznie)',
 		'pt' => 'Metadados do fornecedor de serviço (SP) Shibboleth 1.3 local (gerado automaticamente)',
 		'pt-BR' => 'Hospedado Shibboleth 1.3 Service Provider Metadata (gerado automaticamente)',
+		'tr' => 'Sunulan Shibboleth 1.3 Servis Sağlayıcı Üstverisi (metadata) (otomatik olarak üretilmiştir)',
 	),
 	'link_meta_shib13idphosted' => array (
 		'no' => 'Hosted Shibboleth 1.3 Identity Provider Metadata (automatisk generert)',
@@ -595,6 +626,7 @@ $lang = array(
 		'pl' => 'Metadane - Lokalny Shibboleth 1.3 Dostawca Tożsamości (generowane automatycznie)',
 		'pt' => 'Metadados do fornecedor de identidade (IdP) Shibboleth 1.3 local (gerado automaticamente)',
 		'pt-BR' => 'Hospedado Shibboleth 1.3 Identity Provider Metadata (gerado automaticamente)',
+		'tr' => 'Sunulan Shibboleth 1.3 Kimlik Sağlayıcı Üstverisi (metadata) (otomatik olarak üretilmiştir)',
 	),
 	'link_cleardiscochoices' => array (
 		'no' => 'Slett mitt valg av IdP i IdP discovery tjenestene',
@@ -613,6 +645,7 @@ $lang = array(
 		'pl' => 'Usuń mój wybór domyślnych IdP w Discovery Services',
 		'pt' => 'Remover as minhas escolhas de IdP nos serviços de descoberta de IdP',
 		'pt-BR' => 'Excluir minhas escolhas de IdP no serviço de descoberta de IdP',
+		'tr' => 'IdP tanıtım servisleri arasındaki IdP seçimlerimi sil',
 	),
 	'link_xmlconvert' => array (
 		'no' => 'XML til simpleSAMLphp metadata-oversetter',
@@ -632,6 +665,7 @@ $lang = array(
 		'pl' => 'Konwerter metadanych z formatu XML do formatu simpleSAMLphp',
 		'pt' => 'Conversor de metadados de XML para simpleSAMLphp',
 		'pt-BR' => 'Conversor de XML para metadata do simpleSAMLphp',
+		'tr' => 'XML\'den simpleSAMLphp\'e üstveri (metadata) dönüştürücü',
 	),
 	'link_doc_install' => array (
 		'no' => 'Installerer simpleSAMLphp',
@@ -651,6 +685,7 @@ $lang = array(
 		'pl' => 'Instalowanie simpleSAMLphp',
 		'pt' => 'Instalar o simpleSAMLphp',
 		'pt-BR' => 'Instalando o simpleSAMLphp',
+		'tr' => 'simpleSAMLphp kuruluyor',
 	),
 	'link_doc_sp' => array (
 		'no' => 'Bruk simpleSAMLphp som Service Provider',
@@ -670,6 +705,7 @@ $lang = array(
 		'pl' => 'Użycie simpleSAMLphp jako Dostawca Serwisu',
 		'pt' => 'Usar o simpleSAMLphp como um fornecedor de serviço (SP)',
 		'pt-BR' => 'Usando o simpleSAMLphp como Provedor de Serviços',
+		'tr' => 'simpleSAMLphp\'i Servis Sağlayıcı (SP) olarak kullanmak',
 	),
 	'link_doc_idp' => array (
 		'no' => 'Bruk simpleSAMLphp som identitetstjeneste',
@@ -689,6 +725,7 @@ $lang = array(
 		'pl' => 'Użycie simpleSAMLphp jako Dostawca Tożsamości',
 		'pt' => 'Usar o simpleSAMLphp como um fornecedor de identidade (IdP)',
 		'pt-BR' => 'Usando o simpleSAMLphp como Provedor de Identidade',
+		'tr' => 'simpleSAMLphp\'i Kimlik Sağlayıcı (IdP) olarak kullanmak',
 	),
 	'link_doc_shibsp' => array (
 		'no' => 'Konfigurer Shibboleth 1.3 SP for å fungere sammen med simpleSAMLphp identitetstjeneste',
@@ -708,6 +745,7 @@ $lang = array(
 		'pl' => 'Konfiguruj Shibboleth 1.3 SP do współpracy z simpleSAMLphp IdP',
 		'pt' => 'Configurar um SP Shibboleth 1.3 para funcionar com um IdP simpleSAMLphp',
 		'pt-BR' => 'Configurando o Shibboleth 1.3 SP para trabalhar com o simpleSAMLphp Idp',
+		'tr' => 'Shibboleth 1.3 SP\'yi simpleSAMLphp IdP ile çalışması için düzenle',
 	),
 	'link_doc_googleapps' => array (
 		'no' => 'simpleSAMLphp som identitetstjeneste for Google Apps for Education',
@@ -727,6 +765,7 @@ $lang = array(
 		'pl' => 'simpleSAMLphp jako Dostawca Tożsamości dla Google Apps dla szkolnictwa',
 		'pt' => 'Configurar o simpleSAMLphp  para funcionar como um IdP para o Google Apps for Education',
 		'pt-BR' => 'simpleSAMLphp como um IdP para o Google Apps Educacional',
+		'tr' => '"Google Apps for Education" için kimlik sağlayıcı (IdP) olarak simpleSAMLphp ',
 	),
 	'link_doc_advanced' => array (
 		'no' => 'simpleSAMLphp avansert funksjonalitet',
@@ -746,6 +785,7 @@ $lang = array(
 		'pl' => 'Zaawansowane właściwości simpleSAMLphp',
 		'pt' => 'Funcionalidades avançadas do simpleSAMLphp',
 		'pt-BR' => 'Recursos avançados do simpleSAMLphp',
+		'tr' => 'simpleSAMLphp Gelişmiş Özellikler',
 	),
 	'link_doc_maintenance' => array (
 		'no' => 'simpleSAMLphp vedlikehold og konfigurasjon',
@@ -765,6 +805,7 @@ $lang = array(
 		'pl' => 'Konfiguracja i Prace administracyjne ',
 		'pt' => 'Configuração e manutenção do simpleSAMLphp',
 		'pt-BR' => 'Manutenção e Configuração do simpleSAMLphp',
+		'tr' => 'simpleSAMLphp Bakım ve Düzenleme',
 	),
 	'link_publish_saml20-idp' => array (
 		'no' => 'Publiser mine SAML 2.0 IdP metadata til den konfigurerte MetaShare',
@@ -782,6 +823,7 @@ $lang = array(
 		'pl' => 'Udostępnij moje metadane (SAML 2.0 IdP) skonfigurowanemu MetaShare',
 		'pt' => 'Publicar metadados do IdP SAML 2.0 no MetaShare configurado',
 		'pt-BR' => 'Publicar meu SAML 2.0 IdP metadata para o MetaShare configurado',
+		'tr' => 'SAML 2.0 IdP üstverimi (metadata) düzenlenmiş MetaShare\'e yayınla',
 	),
 	'link_publish_saml20-sp' => array (
 		'no' => 'Publiser mine SAML 2.0 SP metadata til den konfigurerte MetaShare',
@@ -799,6 +841,7 @@ $lang = array(
 		'pl' => 'Udostępnij moje metadane (SAML 2.0 SP) skonfigurowanemu MetaShare',
 		'pt' => 'Publicar metadados do SP SAML 2.0 no MetaShare configurado',
 		'pt-BR' => 'Publicar meu SAML 2.0 SP metadata para o MetaShare configurado',
+		'tr' => 'SAML 2.0 SP üstverimi (metadata) düzenlenmiş MetaShare\'e yayınla',
 	),
 	'link_publish_shib13-idp' => array (
 		'no' => 'Publiser mine Shibboleth 1.3 IdP metadata til den konfigurerte MetaShare',
@@ -816,6 +859,7 @@ $lang = array(
 		'pl' => 'Udostępnij moje metadane (Shib 1.3 IdP) skonfigurowanemu MetaShare',
 		'pt' => 'Publicar metadados de IdP Shib 1.3 no MetaShare configurado',
 		'pt-BR' => 'Publicar meu Shib 1.3 IdP metadata para o MetaShare configurado',
+		'tr' => 'Shib 1.3 IdP üstverimi (metadata) düzenlenmiş MetaShare\'e yayınla',
 	),
 	'link_publish_shib13-sp' => array (
 		'no' => 'Publiser mine Shibboleth 1.3 SP metadata til den konfigurerte MetaShare',
@@ -833,6 +877,7 @@ $lang = array(
 		'pl' => 'Udostępnij moje metadane (Shib 1.3 SP) skonfigurowanemu MetaShare',
 		'pt' => 'Publicar metadados de SP Shib 1.3 no MetaShare configurado',
 		'pt-BR' => 'Publicar meu Shib 1.3 SP metadata para o MetaShare configurado',
+		'tr' => 'Shib 1.3 SPP üstverimi (metadata) düzenlenmiş MetaShare\'e yayınla',
 	),
 
 );

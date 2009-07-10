@@ -22,6 +22,7 @@ $lang = array(
 		'hr' => 'Pristupate sustavu koji se nalazi u predprodukcijskoj fazi. Ove autentikacijske postavke služe za testiranje i provjeru ispravnosti rada predprodukcijskog sustava. Ako vam je netko poslao adresu koja pokazuje na ovu stranicu, a vi niste osoba zadužena za <i>testiranje</i>, vjerojatno ste <b>na ovu stranicu došli greškom</b>.',
 		'pl' => 'Korzystasz w tej chwili z wersji testowej systemu. To ustawienie uwierzytelniania jest tylko dla testów. Jeśli ktoś wysłał Ci link kierujący tutaj, a ty nie jesteś <i>testerem</i> to prawdopodobnie otrzymałeś błędny link i <b>nie powinieneś być tutaj</b>.',
 		'pt' => 'Está a aceder a um sistema em pré-produção. Este passo de autenticação servirá apenas para testes e verificações de pré-produção. Se alguém lhe enviou este endereço, e você não é um <i>testador</i>, então provavelmente recebeu um link errado, e <b>não deveria estar aqui</b>.',
+		'tr' => 'Şu anda tamamlanmamış bir sisteme giriyorsunuz. Bu doğrulama kurulumu sadece test ve tamamlanma öncesi onaylama amaçlıdır. Eğer birileri size burayı gösteren bir bağlantı gönderdiyse, ve siz <i>test edici</i> değilseniz, muhtemelen yanlış bir bağlantı aldınızı, ve şu anda <b>burada olmamalısınız</b>. ',
 	),
 	'warning_header' => array (
 		'no' => 'Advarsel om at dette er et test oppsett',
@@ -35,6 +36,7 @@ $lang = array(
 		'hr' => 'Upozorenje o pristupanju predprodukcijksom sustavu',
 		'pl' => 'Uwaga, korzystasz z wersji testowej systemu',
 		'pt' => 'Aviso ao aceder a sistema em pré-produção',
+		'tr' => 'Tamamlanmamış bir sisteme erişim hakkında uyarı',
 	),
 	'yes' => array (
 		'no' => 'Ja, jeg holder på å teste innlogging, og vet dette er et test-system.',
@@ -48,6 +50,7 @@ $lang = array(
 		'hr' => 'Da, znam da pristupam sustavu koji je u predprodukcijskoj fazi',
 		'pl' => 'Tak, wiem, że korzystam z wersji testowej.',
 		'pt' => 'Sim, eu sei que estou a aceder a um sistema em pré-produção',
+		'tr' => 'Evet, tamanlanmamış bir sisteme girdiğimin farkındayım.',
 	),
 
 );

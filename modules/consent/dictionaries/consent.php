@@ -28,6 +28,7 @@ $lang = array(
 		'pl' => 'Tak, akceptuję',
 		'pt' => 'Sim, Aceito',
 		'pt-BR' => 'Sim, Aceito',
+		'tr' => 'Evet, devam et',
 	),
 	'no' => array (
 		'no' => 'Nei, avbryt',
@@ -47,6 +48,7 @@ $lang = array(
 		'pl' => 'Nie, nie akceptuję',
 		'pt' => 'Não aceito',
 		'pt-BR' => 'Não, não aceito',
+		'tr' => 'Hayır, iptal et',
 	),
 	'remember' => array (
 		'no' => 'Godta også for fremtiden',
@@ -66,6 +68,7 @@ $lang = array(
 		'pl' => 'Pamiętaj moją zgodę',
 		'pt' => 'Lembrar a minha escolha',
 		'pt-BR' => 'Lembrar Consentimento',
+		'tr' => 'Hatırla',
 	),
 	'consent_header' => array (
 		'no' => 'Samtykke om overføring av personinformasjon',
@@ -80,6 +83,8 @@ $lang = array(
 		'hr' => 'Dozvola za isporuku osobnih podataka',
 		'hu' => 'Hozzájárulás személyes adatok kiadásához',
 		'pl' => 'Zgoda na wysłanie danych osobistych',
+		'pt' => 'Consentimento do envio de informação pessoal',
+		'tr' => 'Kişisel bilgilerin verilmesi hakkında onay',
 	),
 	'consent_accept' => array (
 		'no' => 'For å fullføre innloggingen må du godta at opplysningene nedenfor sendes til SPNAME.',
@@ -97,8 +102,9 @@ $lang = array(
 		'hr' => 'U tijeku je proces prijave za pristup servisu SPNAME. Servis zahtjeva da IDPNAME isporuči dolje navedene podatke. Slažete li se s time?',
 		'hu' => 'Ön azonosítja magát ehhez a szolgáltatáshoz SPNAME. Az azonosítás során IDPNAME az alábbi adatokat fogja küldeni a szolgáltatásnak. Engedélyezi?',
 		'pl' => 'SPNAME wymaga aby poniższa informacja została przesłana.',
-		'pt' => 'Está prestes a efectuar a entrada no serviço SPNAME. Este serviço é descrito como SPDESC e necessita que a informação apresentada abaixo seja transferida do IDPNAME. Aceita esta transferência de informação?',
+		'pt' => 'O serviço SPNAME necessita que a informação apresentada em baixo seja transferida.',
 		'pt-BR' => 'Você está prestes a acessar o serviço SPNAME. O serviço exige que as informações a seguir sejam transferidas do IDPNAME. Você aceita isso?',
+		'tr' => 'SPNAME aşağıdaki bilgilerin gönderilmesine ihtiyaç duyuyor.',
 	),
 	'consent_purpose' => array (
 		'no' => 'Formålet med SPNAME er SPDESC',
@@ -113,6 +119,8 @@ $lang = array(
 		'hr' => 'Svrha SPNAME je SPDESC',
 		'hu' => 'A szolgáltatás (SPNAME) ezt a célt szolgálja: SPDESC',
 		'pl' => 'Celem SPNAME jest SPDESC',
+		'pt' => 'O propósito de SPNAME é SPDESC',
+		'tr' => 'SPNAME\'in amacı SPDESC\'tir',
 	),
 	'consent_privacypolicy' => array (
 		'no' => 'Personvern for tjenesten',
@@ -130,6 +138,7 @@ $lang = array(
 		'pl' => 'Polityka prywatności dla serwisu',
 		'pt' => 'Política de privacidade do serviço',
 		'pt-BR' => 'Política de Privacidade deste serviço',
+		'tr' => 'Servis için gizlilik politikası',
 	),
 	'consent_attributes_header' => array (
 		'no' => 'Opplysninger som vil bli sendt til SPNAME',
@@ -144,6 +153,8 @@ $lang = array(
 		'hr' => 'Atributi koji će biti poslani servisu',
 		'hu' => 'A(z) SPNAME szolgáltatónak küldött adatok',
 		'pl' => 'Atrybuty, które zostaną przesłane do serwisu',
+		'pt' => 'Informação que irá ser enviada para SPNAME',
+		'tr' => 'SPNAME\'e gönderilecek bilgiler',
 	),
 	'show_attributes' => array (
 		'no' => 'Vis opplysninger',
@@ -158,6 +169,8 @@ $lang = array(
 		'hr' => 'Prikaži atribute',
 		'hu' => 'Mutasd az attribútumokat',
 		'pl' => 'Wyświetl atrybuty',
+		'pt' => 'Mostrar atributos',
+		'tr' => 'Özellikleri göster',
 	),
 	'login' => array (
 		'no' => 'innlogging',
@@ -177,6 +190,7 @@ $lang = array(
 		'pl' => 'login',
 		'pt' => 'Entrar',
 		'pt-BR' => 'login',
+		'tr' => 'Giriş',
 	),
 	'service_providers_for' => array (
 		'no' => 'Tjenesteleverandør for',
@@ -194,8 +208,9 @@ $lang = array(
 		'hr' => 'Davatelji usluge za',
 		'hu' => 'Alkalmazásszolgáltatók a következő számára',
 		'pl' => 'Dostawca Serwisu dla',
-		'pt' => 'fornecedores de serviço (SP) para',
+		'pt' => 'Fornecedores de Serviço (SP) para',
 		'pt-BR' => 'Provedor de serviços para',
+		'tr' => 'için Servis Sağlayıcılar',
 	),
 	'service_provider_header' => array (
 		'no' => 'Tjenesteleverandør',
@@ -213,8 +228,9 @@ $lang = array(
 		'hr' => 'Davatelj usluge',
 		'hu' => 'Alkalmazásszolgáltató',
 		'pl' => 'Dostawca serwisu',
-		'pt' => 'fornecedor de serviço (SP)',
+		'pt' => 'Fornecedor de Serviço (SP)',
 		'pt-BR' => 'Provedor de Serviços',
+		'tr' => 'Servis Sağlayıcı',
 	),
 	'status_header' => array (
 		'no' => 'Samtykke-status',
@@ -234,6 +250,7 @@ $lang = array(
 		'pl' => 'Status zgody',
 		'pt' => 'Consentimento',
 		'pt-BR' => 'Status do Consentimento',
+		'tr' => 'Onay durumu',
 	),
 	'show_hide_attributes' => array (
 		'no' => 'Vis/skjul opplysninger',
@@ -253,6 +270,7 @@ $lang = array(
 		'pl' => 'pokaż/ukryj atrybuty',
 		'pt' => 'Mostrar/Ocultar atributos',
 		'pt-BR' => 'mostra/esconder Atributos',
+		'tr' => 'bilgileri göster/gizle ',
 	),
 	'noconsent_title' => array (
 		'no' => 'Ikke akseptert overføring av informasjon',
@@ -270,6 +288,7 @@ $lang = array(
 		'pl' => 'Nie wyrażono zgody',
 		'pt' => 'Consentimento negado',
 		'pt-BR' => 'Nenhum consentimento dado',
+		'tr' => 'Onay verilmemiş',
 	),
 	'noconsent_text' => array (
 		'no' => 'Du har ikke akseptert å overlevere opplysninger til tjenesteleverandøren.',
@@ -287,6 +306,7 @@ $lang = array(
 		'pl' => 'Nie wyraziłeś zgody na przesłanie Twoich atrybutów do Dostawcy Serwisu.',
 		'pt' => 'Negou o consentimento para a transferência dos seus atributos para o fornecedor de serviço.',
 		'pt-BR' => 'Você não deu o consentimento para a transferência de seus atributos para o provedor de serviços.',
+		'tr' => 'Bilgilerinizin servis sağlayıcıya gönderilmesi için onay vermediniz.',
 	),
 	'noconsent_return' => array (
 		'no' => 'Gå tilbake til aksept-siden med opplysninger',
@@ -304,6 +324,7 @@ $lang = array(
 		'pl' => 'Powrót do strony wydania zezwolenia.',
 		'pt' => 'Voltar à página de consentimento',
 		'pt-BR' => 'Retornar a página de consentimento',
+		'tr' => 'Onay sayfasına geri dön',
 	),
 	'noconsent_goto_about' => array (
 		'no' => 'Gå til informasjonsside om tjenesten',
@@ -319,6 +340,7 @@ $lang = array(
 		'hu' => 'A szolgáltatás információs oldalára',
 		'pl' => 'Przejdź do strony informacyjnej dla tego serwisu',
 		'pt' => 'Ir para página de informação do serviço',
+		'tr' => 'Servis için bilgi sayfasına git',
 	),
 	'table_caption' => array (
 		'no' => 'Bruker innformasjon',
@@ -331,6 +353,7 @@ $lang = array(
 		'sl' => 'Podatki o uporabniku',
 		'hu' => 'Felhasználói információk',
 		'pt' => 'Informação do utilizador',
+		'tr' => 'Kullanıcı bilgisi',
 	),
 	'table_summary' => array (
 		'no' => 'Her listes den innformasjonen om deg som blir send til den tjenesten du er i ferd med å logge på',
@@ -342,6 +365,7 @@ $lang = array(
 		'sl' => 'Seznam podatkov o vas, ki bodo posredovani storitvi v katero se nameravate prijaviti',
 		'hu' => 'Ezeket az adatokat fogjuk elküldeni Önről annak a szolgáltatásnak, ahová be kíván jelentkezni',
 		'pt' => 'Listar a informação acerca de si que será enviada para o serviço no qual se está autenticar',
+		'tr' => 'Girmek istediğiniz servise gönderilecek bilginizi listeleyin',
 	),
 
 );

@@ -27,6 +27,7 @@ $lang = array(
 		'pl' => 'Przykładowe Demo SAML 2.0 SP',
 		'pt' => 'Exemplo de demonstração do SP SAML 2.0',
 		'pt-BR' => 'SAML 2.0 SP Exemplo',
+		'tr' => 'SAML 2.0 SP Demo Örneği',
 	),
 	'header_shib' => array (
 		'no' => 'Shibboleth Demo',
@@ -45,6 +46,7 @@ $lang = array(
 		'pl' => 'Demo Shibboleth',
 		'pt' => 'Exemplo de demonstração do SP Shibboleth 1.3',
 		'pt-BR' => 'Shibboleth Demo',
+		'tr' => 'Shibboleth demo',
 	),
 	'header_wsfed' => array (
 		'no' => 'WS-Fed SP Demo Eksempel',
@@ -63,6 +65,7 @@ $lang = array(
 		'pl' => 'Przykładowe Demo WS-Fed SP',
 		'pt' => 'Exemplo de demonstração do SP WS-Fed',
 		'pt-BR' => 'WS-Fed SP Exemplo',
+		'tr' => 'WS-Fed SP Demo Örneği',
 	),
 	'header_diagnostics' => array (
 		'no' => 'SimpleSAMLphp diagnostikk',
@@ -81,6 +84,7 @@ $lang = array(
 		'pl' => 'Diagnostyka SimpleSAMLphp',
 		'pt' => 'Diagnósticos do simpleSAMLphp',
 		'pt-BR' => 'Diagnósticos do SimpleSAMLphp',
+		'tr' => 'SimpleSAMLphp Kontroller',
 	),
 	'some_error_occured' => array (
 		'no' => 'En feil har oppstått',
@@ -99,6 +103,7 @@ $lang = array(
 		'pl' => 'Wystapił jakiś błąd',
 		'pt' => 'Ocorreu um erro',
 		'pt-BR' => 'Ocorreu algum erro',
+		'tr' => 'Hata oluştu',
 	),
 	'intro' => array (
 		'no' => 'Hei, dette er en statusside på simpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon.',
@@ -116,6 +121,7 @@ $lang = array(
 		'pl' => 'Hej, to jest status strony simpleSAMLphp. Tutaj możesz zaboaczyć, czy Twoja sesja jest nadal aktywna, jak długo pozostało czasu do zakończenia sesji i wszystkie atrybuty, które zostały załączone do sesji.  ',
 		'pt' => 'Está na página de status do simpleSAMLphp. Aqui poderá consultar informações sobre a sua sessão: o tempo de expiração e os seus atributos.',
 		'pt-BR' => 'Olá, esta é a página de status simpleSAMLphp. Aqui você pode ver é se a sua sessão expirou, o tempo que dura até ele expirar e todos os atributos que estão anexados à sua sessão.',
+		'tr' => 'Merhaba, bu simpleSAMLphp durum sayfasıdır. Oturumunuzun süresinin dolup dolmadığını, oturumunuzun ne kadar sürdüğünü ve oturumunuza ait tüm bilgileri buradan görebilirsiniz.',
 	),
 	'validfor' => array (
 		'no' => 'Din sesjon er gyldig i %SECONDS% sekunder fra nå.',
@@ -133,6 +139,7 @@ $lang = array(
 		'pl' => 'Twoja sesja jest jeszcze ważna przez %SECONDS% sekund',
 		'pt' => 'A sua sessão é válida por %SECONDS% segundos.',
 		'pt-BR' => 'Sua sessão é válida por %SECONDS% segundos a partir de agora.',
+		'tr' => 'Oturumunuz, şu andan itibaren %SECONDS% saniyeliğine geçerlidir.',
 	),
 	'sessionsize' => array (
 		'no' => 'Sesjons størrelse: %SIZE%',
@@ -150,6 +157,7 @@ $lang = array(
 		'pl' => 'Rozmiar sesji: %SIZE%',
 		'pt' => 'Tamanho da sessão: %SIZE%',
 		'pt-BR' => 'Tamanho da sessão: %SIZE%',
+		'tr' => 'Oturum büyüklüğü: %SIZE%',
 	),
 	'attributes_header' => array (
 		'no' => 'Dine attributter',
@@ -168,6 +176,7 @@ $lang = array(
 		'pl' => 'Twoje atrybuty',
 		'pt' => 'Os seus atributos',
 		'pt-BR' => 'Seus atributos',
+		'tr' => 'Bilgileriniz',
 	),
 	'logout' => array (
 		'no' => 'Logg ut',
@@ -186,6 +195,7 @@ $lang = array(
 		'pl' => 'Wyloguj',
 		'pt' => 'Sair',
 		'pt-BR' => 'Desconectar',
+		'tr' => 'Çıkış',
 	),
 
 );

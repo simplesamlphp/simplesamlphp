@@ -28,6 +28,7 @@ $lang = array(
 		'pl' => 'wybierz swojego Dostawcę Tożsamości.',
 		'pt' => 'Escolha o seu fornecedor de identidade (IdP)',
 		'pt-BR' => 'Selecione seu provedor de identidade',
+		'tr' => 'Kimlik sağlayıcınızı seçiniz.',
 	),
 	'selectidp_full' => array (
 		'no' => 'Vennligst velg hvilken identitetsleverandør du vil bruke for å logge inn:',
@@ -47,6 +48,7 @@ $lang = array(
 		'pl' => 'Proszę wybrać Dostawcę Tożsamości, przez którego  chcesz się uwierzytelnić:',
 		'pt' => 'Por favor, escolha o  fornecedor de identidade (IdP) que irá usar para se autenticar:',
 		'pt-BR' => 'Por favor selecione o provedor de identidade ao qual deseja se autenticar',
+		'tr' => 'Lütfen, kimlik doğrulaması yapacağınız kimlik sağlayıcıyı seçiniz: ',
 	),
 	'select' => array (
 		'no' => 'Velg',
@@ -66,6 +68,7 @@ $lang = array(
 		'pl' => 'Wybierz',
 		'pt' => 'Escolher',
 		'pt-BR' => 'Selecione',
+		'tr' => 'Seç',
 	),
 	'remember' => array (
 		'no' => 'Husk mitt valg',
@@ -85,6 +88,7 @@ $lang = array(
 		'pl' => 'Zapamiętaj mój wybór',
 		'pt' => 'Lembrar esta escolha',
 		'pt-BR' => 'Lembrar minha escolha',
+		'tr' => 'Seçimimi hatırla',
 	),
 	'icon_prefered_idp' => array (
 		'no' => '[Foretrukket valg]',
@@ -96,6 +100,8 @@ $lang = array(
 		'sl' => 'Preferirana izbira',
 		'hu' => '[Kívánt választás]',
 		'pl' => 'Preferowany wybór',
+		'pt' => 'Escolha preferida',
+		'tr' => '[Tercih edilen seçenek]',
 	),
 
 );

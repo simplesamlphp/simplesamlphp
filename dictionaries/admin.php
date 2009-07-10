@@ -24,6 +24,7 @@ $lang = array(
 		'pl' => 'Sprawdzenie konfiguracji',
 		'pt' => 'Verificação da configuração',
 		'pt-BR' => 'Verificar configuração',
+		'tr' => 'Konfigürasyon kontrolü',
 	),
 	'cfg_check_select_file' => array (
 		'no' => 'Velg hvilken konfigurasjonfil som skal sjekkes',
@@ -39,6 +40,7 @@ $lang = array(
 		'pl' => 'Wybierz plik konfiguracyjny do sprawdzenia:',
 		'pt' => 'Escolha o ficheiro de configuração a verificar:',
 		'pt-BR' => 'Selecione o arquivo de configuração para verificar',
+		'tr' => 'Kontrol edilecek konfigürasyon dosyasını seç:',
 	),
 	'cfg_check_notices' => array (
 		'no' => 'Notiser',
@@ -54,6 +56,7 @@ $lang = array(
 		'pl' => 'Uwagi',
 		'pt' => 'Observações',
 		'pt-BR' => 'Avisos',
+		'tr' => 'Notlar',
 	),
 	'cfg_check_missing' => array (
 		'no' => 'Mangler element i konfigurasjonsfilen',
@@ -69,6 +72,7 @@ $lang = array(
 		'pl' => 'Brakujące opcje z pliku konfiguracyjnego',
 		'pt' => 'Opções ausentes do ficheiro de configuração',
 		'pt-BR' => 'Opções faltando no arquivo de configuração',
+		'tr' => 'Config dosyasındaki tercihler eksik',
 	),
 	'cfg_check_superfluous' => array (
 		'no' => 'Overføldig element i konfigurasjonsfilen',
@@ -84,6 +88,7 @@ $lang = array(
 		'pl' => 'Zbędne opcje w pliku konfiguracyjnym',
 		'pt' => 'Opções supérfluas do ficheiro de configuração',
 		'pt-BR' => 'Opções supérfluas no arquivo de configuração',
+		'tr' => 'Config dosyasındaki gereksiz tercihler',
 	),
 	'cfg_check_noerrors' => array (
 		'no' => 'Ingen feil funnet',
@@ -99,6 +104,7 @@ $lang = array(
 		'pl' => 'Nie znaleziono błędów.',
 		'pt' => 'Não foram encontrados erros.',
 		'pt-BR' => 'Não foram encontrados erros.',
+		'tr' => 'Hata bulunmadı.',
 	),
 	'cfg_check_back' => array (
 		'no' => 'Gå tilbake til fil-listen',
@@ -114,6 +120,7 @@ $lang = array(
 		'pl' => 'Powrót do listy plików',
 		'pt' => 'Voltar à lista de ficheiros',
 		'pt-BR' => 'Voltar a lista de arquivos',
+		'tr' => 'Dosya listesine geri dön',
 	),
 	'metaover_header' => array (
 		'no' => 'Oversikt over metadata',
@@ -129,6 +136,7 @@ $lang = array(
 		'pl' => 'Przegląd metadanych',
 		'pt' => 'Vista geral dos metadados',
 		'pt-BR' => 'Visão geral da metadata',
+		'tr' => 'Üstveri (metada) genel görünümü',
 	),
 	'metaover_intro' => array (
 		'no' => 'For å se på detaljene i en SAML-entitet, klikk på SAML-entitet overskriften',
@@ -144,6 +152,7 @@ $lang = array(
 		'pl' => 'Kliknij na nagłówek końcówki aby wyświetlić szczegóły SAML.',
 		'pt' => 'Para obter detalhes sobre uma entidade SAML, clique no título da entidade.',
 		'pt-BR' => 'Para ver os detalhes da entidade SAML, clique ',
+		'tr' => 'Bir SAML elemanı hakkındaki detayları görmek için, SAML elemanı başlığına tıklayın.',
 	),
 	'metaover_errorentry' => array (
 		'no' => 'Feil i metadataoppføringen',
@@ -159,6 +168,7 @@ $lang = array(
 		'pl' => 'Błąd w metadanych',
 		'pt' => 'Erro nesta entrada de metadados',
 		'pt-BR' => 'Erro na entrada desta metadata',
+		'tr' => 'Üstveri (metadata) bilgisinde hata var',
 	),
 	'metaover_required_found' => array (
 		'no' => 'Obligatorisk felt',
@@ -174,6 +184,7 @@ $lang = array(
 		'pl' => 'Pola wymagane',
 		'pt' => 'Campos obrigatórios',
 		'pt-BR' => 'Campos requeridos',
+		'tr' => 'Gerekli alanlar',
 	),
 	'metaover_required_not_found' => array (
 		'no' => 'Følgende obligatoriske felter ble ikke funnet',
@@ -189,6 +200,7 @@ $lang = array(
 		'pl' => 'Nastepujące wymagane pola nie zostały znalezione',
 		'pt' => 'Os seguintes campos obrigatórios não foram encontrados',
 		'pt-BR' => 'Os seguintes campos requeridos não foram encontrados',
+		'tr' => 'Şu gerekli alanlar bulunamadı',
 	),
 	'metaover_optional_found' => array (
 		'no' => 'Valgbart felt',
@@ -204,6 +216,7 @@ $lang = array(
 		'pl' => 'Pola opcjonalne',
 		'pt' => 'Campos opcionais',
 		'pt-BR' => 'Campos opcionais',
+		'tr' => 'İsteğe bağlı alanlar',
 	),
 	'metaover_optional_not_found' => array (
 		'no' => 'Følgende valgbare felt ble ikke funnet',
@@ -219,6 +232,7 @@ $lang = array(
 		'pl' => 'Nastepujące pola opcjonalne nie zostały znalezione',
 		'pt' => 'Os seguintes campos opcionais não foram encontrados',
 		'pt-BR' => 'Os seguintes campos opcionais não foram encontrados',
+		'tr' => 'Şu isteğe bağlı alanlar bulunamadı',
 	),
 	'metaover_unknown_found' => array (
 		'no' => 'Følgende felt ble ikke gjenkjent',
@@ -234,6 +248,7 @@ $lang = array(
 		'pl' => 'Nastepujące pola nie zostały rozpoznane',
 		'pt' => 'Os seguintes campos não foram reconhecidos',
 		'pt-BR' => 'Os seguintes campos não foram reconhecidos',
+		'tr' => 'Şu alanlar tanınmadı',
 	),
 	'metaover_group_metadata.saml20-sp-hosted' => array (
 		'no' => 'SAML 2.0 tjenesteleverandør (intern)',
@@ -249,6 +264,7 @@ $lang = array(
 		'pl' => 'SAML 2.0 Dostawca Serwisu (Lokalny)',
 		'pt' => 'Fornecedor de serviço (SP) SAML 2.0 (Local)',
 		'pt-BR' => 'SAML 2.0 Service Provider (Local)',
+		'tr' => 'SAML 2.0 Servis Sağlayıcı (Bu sistemde sunulan)',
 	),
 	'metaover_group_metadata.saml20-sp-remote' => array (
 		'no' => 'SAML 2.0 Tjenesteleverandør (ekstern)',
@@ -264,6 +280,7 @@ $lang = array(
 		'pl' => 'SAML 2.0 Dostawca Serwisu (Zdalny)',
 		'pt' => 'Fornecedor de serviço (SP) SAML 2.0 (Remoto)',
 		'pt-BR' => 'SAML 2.0 Service Provider (Remoto)',
+		'tr' => 'SAML 2.0 Servis Sağlayıcı (Uzak sistemde sunulan)',
 	),
 	'metaover_group_metadata.saml20-idp-hosted' => array (
 		'no' => 'SAML 2.0 Identitetsleverandør (ekstern)',
@@ -279,6 +296,7 @@ $lang = array(
 		'pl' => 'SAML 2.0 Dostawca Tożsamości (Lokalny)',
 		'pt' => 'Fornecedor de identidade (IdP) SAML 2.0 (Local)',
 		'pt-BR' => 'SAML 2.0 Identity Provider (Local)',
+		'tr' => 'SAML 2.0 Kimlik Sağlayıcı (Bu sistemde sunulan)',
 	),
 	'metaover_group_metadata.saml20-idp-remote' => array (
 		'no' => 'SAML 2.0 Identitetsleverandør (ekstern)',
@@ -294,6 +312,7 @@ $lang = array(
 		'pl' => 'SAML 2.0 Dostawca Tożsamości (Zdalny)',
 		'pt' => 'Fornecedor de identidade (IdP) SAML 2.0 (Remoto)',
 		'pt-BR' => 'SAML 2.0 Identity Provider (Remoto)',
+		'tr' => 'SAML 2.0 Kimlik Sağlayıcı (Uzak sistemde sunulan)',
 	),
 	'metaover_group_metadata.shib13-sp-hosted' => array (
 		'no' => 'Shib 1.3 Tjenesteleverandør (intern)',
@@ -309,6 +328,7 @@ $lang = array(
 		'pl' => 'Shib 1.3 Dostawca Serwisu (Lokalny)',
 		'pt' => 'Fornecedor de serviço (SP) Shib 1.3 (Local)',
 		'pt-BR' => 'Shib 1.3 Service Provider (Local)',
+		'tr' => 'Shib 1.3 Servis Sağlayıcı (Bu sistemde sunulan)',
 	),
 	'metaover_group_metadata.shib13-sp-remote' => array (
 		'no' => 'Shib 1.3 Tjenesteleverandør (ekstern)',
@@ -324,6 +344,7 @@ $lang = array(
 		'pl' => 'Shib 1.3 Dostawca Serwisu (Zdalny)',
 		'pt' => 'Fornecedor de serviço (SP) SAML 2.0 (Remoto)',
 		'pt-BR' => 'Shib 1.3 Service Provider (Remoto)',
+		'tr' => 'Shib 1.3 Servis Sağlayıcı (Uzak sistemde sunulan)',
 	),
 	'metaover_group_metadata.shib13-idp-hosted' => array (
 		'no' => 'Shib 1.3 Identitetsleverandør (ekstern)',
@@ -339,6 +360,7 @@ $lang = array(
 		'pl' => 'Shib 1.3 Dostawca Tożsamości (Lokalny)',
 		'pt' => 'Fornecedor de identidade (IdP) Shib 1.3 (Local)',
 		'pt-BR' => 'Shib 1.3 Identity Provider (Local)',
+		'tr' => 'Shib 1.3 Kimlik Sağlayıcı (Bu sistemde sunulan)',
 	),
 	'metaover_group_metadata.shib13-idp-remote' => array (
 		'no' => 'Shib 1.3 Identitetsleverandør (ekstern) ',
@@ -354,6 +376,7 @@ $lang = array(
 		'pl' => 'Shib 1.3 Dostawca Tożsamości (Zdalny)',
 		'pt' => 'Fornecedor de identidade (IdP) Shib 1.3 (Remoto)',
 		'pt-BR' => 'Shib 1.3 Identity Provider (Remoto)',
+		'tr' => 'Shib 1.3 Kimlik Sağlayıcı (Uzak sistemde sunulan)',
 	),
 	'metaover_group_metadata.wsfed-sp-hosted' => array (
 		'no' => 'WS-Federation tjenesteleverandør (intern)',
@@ -369,6 +392,7 @@ $lang = array(
 		'pl' => 'WS-Federation Dostawca Serwisu (Lokalny)',
 		'pt' => 'Fornecedor de serviço (SP) WS-Federation (Local)',
 		'pt-BR' => 'WS-Federation Service Provider (Local)',
+		'tr' => 'WS-Federasyon Servis Sağlayıcı (Bu sistemde sunulan)',
 	),
 	'metaover_group_metadata.wsfed-idp-remote' => array (
 		'no' => 'WS-Federation identitetsleverandør (ekstern)',
@@ -384,6 +408,7 @@ $lang = array(
 		'pl' => 'WS-Federation Dostawca Tożsamości (Zdalny)',
 		'pt' => 'Fornecedor de identidade (IdP) WS-Federation (Remoto)',
 		'pt-BR' => 'WS-Federation Identity Provider (Remoto)',
+		'tr' => 'WS-Federasyon Kimlik Sağlayıcı (Uzak sistemde sunulan)',
 	),
 	'metaconv_title' => array (
 		'no' => 'Metadata parser',
@@ -399,6 +424,7 @@ $lang = array(
 		'pl' => 'Parser metadanych',
 		'pt' => 'Conversor de Metadados',
 		'pt-BR' => 'Parser Metadata',
+		'tr' => 'Üstveri (metadata) çözümleyici',
 	),
 	'metaconv_xmlmetadata' => array (
 		'no' => 'XML metadata',
@@ -414,6 +440,7 @@ $lang = array(
 		'pl' => 'XML Metadane',
 		'pt' => 'Metadados em XML',
 		'pt-BR' => 'Metadata XML',
+		'tr' => 'XML üstverisi (metadata)',
 	),
 	'metaconv_parse' => array (
 		'no' => 'Pars',
@@ -429,6 +456,7 @@ $lang = array(
 		'pl' => 'Przetwórz',
 		'pt' => 'Converter',
 		'pt-BR' => 'Parse',
+		'tr' => 'Çözümle',
 	),
 	'metaconv_converted' => array (
 		'no' => 'Konvertert metadata',
@@ -444,6 +472,7 @@ $lang = array(
 		'pl' => 'Skonwertowane metadane',
 		'pt' => 'Resultado da conversão de Metadados',
 		'pt-BR' => 'Metadata convetida',
+		'tr' => 'Dönüştürülmüş üstveri (metadata)',
 	),
 	'metadata_saml20-sp' => array (
 		'no' => 'SAML 2.0 SP metadata',
@@ -459,6 +488,7 @@ $lang = array(
 		'pl' => 'SAML 2.0 SP - Metadane',
 		'pt' => 'Metadados SAML 2.0 SP',
 		'pt-BR' => 'SAML 2.0 SP Metadata',
+		'tr' => 'SAML 2.0 SP Üstveri (Metadata)',
 	),
 	'metadata_saml20-idp' => array (
 		'no' => 'SAML 2.0 IdP metadata',
@@ -474,6 +504,7 @@ $lang = array(
 		'pl' => 'SAML 2.0 IdP - Metadane',
 		'pt' => 'Metadados SAML 2.0 IdP',
 		'pt-BR' => 'SAML 2.0 IdP Metadata',
+		'tr' => 'SAML 2.0 IdP Üstveri (Metadata)',
 	),
 	'metadata_shib13-sp' => array (
 		'no' => 'Shib 1.3 SP metadata',
@@ -489,6 +520,7 @@ $lang = array(
 		'pl' => 'Shib 1.3 SP - Metadane',
 		'pt' => 'Metadados Shib 1.3 SP',
 		'pt-BR' => 'Shib 1.3 SP Metadata',
+		'tr' => 'Shib 1.3 SP Üstveri (Metadata)',
 	),
 	'metadata_shib13-idp' => array (
 		'no' => 'Shib 1.3 IdP metadata',
@@ -504,6 +536,7 @@ $lang = array(
 		'pl' => 'Shib 1.3 IdP - Metadane',
 		'pt' => 'Metadados Shib 1.3 IdP',
 		'pt-BR' => 'Shib 1.3 IdP Metadata',
+		'tr' => 'Shib 1.3 IdP Üstveri (Metadata)',
 	),
 	'metadata_intro' => array (
 		'no' => 'Her er metadata som simpleSAMLphp har generert for deg. Du må utveksle metadata med de partene du stoler på for å sette opp en føderasjon.',
@@ -519,6 +552,7 @@ $lang = array(
 		'pl' => 'Tutaj sa metadane, które simpleSAMLphp wygenerował dla Ciebie. Możesz je wysłać zaufanym partnerom w celu stworzenia zaufanej federacji.',
 		'pt' => 'De seguida pode encontrar os metadados gerados pelo simpleSAMLphp. Pode enviar este documento de metadados aos seus parceiros para configurar uma federação.',
 		'pt-BR' => 'Aqui está a metadata que o simpleSAMLphp gerou para você. Você pode enviar este documento metadata para parceiros confiáveis para a configuração de uma federação confiável.',
+		'tr' => 'simpleSAMLphp\'nin sizin için ürettiği üstveri (metada). Bu üstveri dokümanını güvenilir bir federasyon kurmak için güvenilir paydaşlara gönderebilirsiniz.',
 	),
 	'metadata_xmlurl' => array (
 		'no' => 'Du kan nå <a href="%METAURL%">metadata i XML-format på en dedikert URL</a>:',
@@ -534,6 +568,7 @@ $lang = array(
 		'pl' => 'Możesz <a href="%METAURL%">pobrać metadane w formacie xml</a>:',
 		'pt' => 'Pode <a href="%METAURL%">obter os metadados em XML num URL dedicado</a>:',
 		'pt-BR' => 'Você pode obter as metadatas xml <a href="%METAURL%"> em uma URL dedicada</a>:',
+		'tr' => '<a href="%METAURL%">Üstveri xml\'ini bu bağlantıdan alabilirsiniz</a>:',
 	),
 	'metadata_metadata' => array (
 		'no' => 'Metadata',
@@ -549,6 +584,7 @@ $lang = array(
 		'pl' => 'Metadane',
 		'pt' => 'Metadados',
 		'pt-BR' => 'Metadata',
+		'tr' => 'Üstveri (metadata)',
 	),
 	'metadata_xmlformat' => array (
 		'no' => 'I SAML 2.0 Metadata XML Format:',
@@ -564,6 +600,7 @@ $lang = array(
 		'pl' => 'W formacie SAML 2.0 Metadata XML',
 		'pt' => 'Metadados no formato XML SAML 2.0',
 		'pt-BR' => 'Em formato SAML 2.0 Metadata XML',
+		'tr' => 'XML formatında SAML 2.0 SP Üstverisi (Metadata)',
 	),
 	'metadata_simplesamlformat' => array (
 		'no' => 'I simpleSAMLphp format - bruk denne dersom du benytter simpleSAMLphp i den andre enden:',
@@ -578,6 +615,7 @@ $lang = array(
 		'hu' => 'SimpleSAMLphp fájl formátumban - akkor használható, ha a másik oldalon simpleSAMLphp van:',
 		'pt' => 'Metadados no formato ficheiro de configuração do simpleSAMLphp. Use esta alternativa se usar uma entidade simpleSAMLphp no outro extremo:',
 		'pt-BR' => 'Em formato de arquivo plano simpleSAMLphp - use isso se você estiver usando uma entidade  simpleSAMLphp do outro lado:',
+		'tr' => 'Eğer diğer tarafta bir simpleSAMLphp elemanını kullanıyorsanız, düz simpleSAMLphp dosya biçiminde bunu kullanın:',
 	),
 	'metadata_send_success' => array (
 		'no' => 'Metadata er nå sendt på e-post til identitetsleverandøren.',
@@ -592,6 +630,7 @@ $lang = array(
 		'hu' => 'Sikerült a metaadatok küldése az azonosító kiszolgálónak(IdP).',
 		'pl' => 'Pomyślne wysłanie metadatanych do Dostawcy Tożsamości.',
 		'pt' => 'Metadados enviados com sucesso para o fornecedor de identidade.',
+		'tr' => 'Üstveri (metadata) Kimlik Sağlayıcıya başarıyla gönderildi.',
 	),
 	'metadata_send_title2' => array (
 		'no' => 'Send metadata til din identitetsleverandør',
@@ -606,6 +645,7 @@ $lang = array(
 		'hu' => 'Metaadat küldésa az IdP-nek',
 		'pl' => 'Wyślij Metadane do Twojego IdP',
 		'pt' => 'Enviar os metadados para o seu IdP',
+		'tr' => 'Üstveri\'yi (metadata) IdP\'nize gönderin',
 	),
 	'metadata_send_select' => array (
 		'no' => 'Velg en identitetsleverandør som metadata skal sendes til :',
@@ -620,6 +660,7 @@ $lang = array(
 		'hu' => 'Címzett IdP kiválasztása:',
 		'pl' => 'Wybierz Dostawcę Tożsamości do którego wysłać Metadane:',
 		'pt' => 'Escolha um fornecedor de identidade (IdP) a quem enviar os metadados:',
+		'tr' => 'Üstveri (metadata) göndereceğiniz bir Kimlik Sağlayıcı seçin: ',
 	),
 	'metadata_send_adminlogin' => array (
 		'no' => 'Logg inn som administrator for å få tilgang til å sende metadata til en identitetsleverandør',
@@ -634,6 +675,7 @@ $lang = array(
 		'hu' => 'Lépjen be adminisztrátorként, hogy elküldhesse a metaadatot az azonosító szolgáltatónak(IdP)',
 		'pl' => 'Zaloguj jako administrator i wyślij metadane do Dostawcy Tożsamości',
 		'pt' => 'Entre como administrador para enviar os metadados a um fornecedor de identidade (IdP)',
+		'tr' => 'Kimlik sağlayıcıya üstveri (metadata) göndermek için yönetici olarak giriş yapın',
 	),
 	'metadata_send_email2' => array (
 		'no' => 'Skriv inn din e-post adresse, slik at identitetsleverandøren kan komme i kontakt med deg:',
@@ -648,6 +690,7 @@ $lang = array(
 		'hu' => 'Adjon meg egy e-mail címet, amin az IdP adminisztrátora szükség eseten felveheti önnel a kapcsolatot:',
 		'pl' => 'Wprowadź swój adres email, na który administrator Dostawcy Tożsamości może kontaktować się z Tobą:',
 		'pt' => 'Preencha o seu endereço de e-mail para que o administrador do fornecedor de identidade (IdP) possa entrar em contacto consigo:',
+		'tr' => 'Kimlik Sağlayıcı yöneticisinin sizinle irtibat kurabileceği e-posta adresinizi girin:',
 	),
 	'metadata_send_sendbutton' => array (
 		'no' => 'Send metadata',
@@ -662,6 +705,7 @@ $lang = array(
 		'hu' => 'Metaadat küldése',
 		'pl' => 'Wyślij Metadane',
 		'pt' => 'Enviar os metadados',
+		'tr' => 'Üstveri (metadata) gönder',
 	),
 	'debug_sending_message_title' => array (
 		'no' => 'Sender melding',
@@ -677,6 +721,7 @@ $lang = array(
 		'pl' => 'Wysyłanie wiadomości',
 		'pt' => 'A enviar a mensagem',
 		'pt-BR' => 'Enviando a mensagem',
+		'tr' => 'Mesaj gönderiliyor',
 	),
 	'debug_sending_message_text_button' => array (
 		'no' => 'Du er i ferd med å sende en melding. Trykk knappen «Send melding» for å fortsette.',
@@ -691,6 +736,7 @@ $lang = array(
 		'hu' => 'Üzenetet küldhet. Kattintson az Üzenet küldése gombra a folytatáshoz.',
 		'pt' => 'Está prestes a enviar uma mensagem. Carregue no botão para continuar.',
 		'pt-BR' => 'Você está prestes a enviar uma mensagem. Aperte o botão enviar mensagem para continuar.',
+		'tr' => 'Mesaj göndermek üzeresiniz. Devam etmek için mesaj gönder butonuna tıklayın.',
 	),
 	'debug_sending_message_text_link' => array (
 		'no' => 'Du er i ferd med å sende en melding. Trykk på send melding knappen for å fortsette.',
@@ -705,6 +751,7 @@ $lang = array(
 		'hu' => 'Üzenetet küldhet. Kattintson az Üzenet küldése linkre a folytatáshoz.',
 		'pt' => 'Está prestes a enviar uma mensagem. Carregue na ligação para continuar.',
 		'pt-BR' => 'Você está prestes a enviar uma mensagem. Clique no link enviar a mensagem para continuar.',
+		'tr' => 'Mesaj göndermek üzeresiniz. Devam etmek için mesaj gönder linkine tıklayın.',
 	),
 	'debug_sending_message_send' => array (
 		'no' => 'Send melding',
@@ -720,6 +767,7 @@ $lang = array(
 		'pl' => 'Wyślij wiadomość',
 		'pt' => 'Enviar mensagem',
 		'pt-BR' => 'Enviar mensagem',
+		'tr' => 'Mesaj gönder',
 	),
 	'debug_sending_message_msg_title' => array (
 		'no' => 'Melding',
@@ -735,6 +783,7 @@ $lang = array(
 		'pl' => 'Wiadomość',
 		'pt' => 'Mensagem',
 		'pt-BR' => 'Mensagem',
+		'tr' => 'Mesaj',
 	),
 	'debug_sending_message_msg_text' => array (
 		'no' => 'Siden du er i debug modus kan du se innholdet i meldingene du sender.',
@@ -749,6 +798,7 @@ $lang = array(
 		'hu' => 'Mivel hibakereső módban van, láthatja az elküldendő üzenet tartalmát',
 		'pt' => 'Estando em modo debug, pode consultar o conteúdo da mensagem que está a enviar:',
 		'pt-BR' => 'Como você está no modo de debug, você pode ver o conteúdo da mensagem que você está enviando:',
+		'tr' => '"Debug" modda olduğunuz için, gönderdiğiniz mesajın içeriğini göreceksiniz.',
 	),
 	'debug_disable_debug_mode' => array (
 		'no' => 'Do kan skru av debug modus i den globale simpleSAMLphp konfigurasjonsfila <tt>config/config.php</tt>.',
@@ -764,6 +814,7 @@ $lang = array(
 		'pl' => 'Możesz wyłaczyć globalnie tryb debugowania w pliku  <tt>config/config.php</tt>.    ',
 		'pt' => 'Pode desligar o modo debug no ficheiro global de configuração <tt>config/config.php</tt> do simpleSAMLphp.',
 		'pt-BR' => 'Você pode desligar o modo de debug no arquivo de configuração global do simpleSAMLphp <tt>config/config.php</tt>.',
+		'tr' => '"Debug" modunu global simpleSAMLphp konfigürasyon dosyasında <tt>config/config.php</tt> kapatabilirsiniz.',
 	),
 
 );

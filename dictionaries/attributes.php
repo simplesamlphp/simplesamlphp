@@ -29,6 +29,7 @@ $lang = array(
 		'pl' => 'Nazwa (Common name)',
 		'pt' => 'Nome completo',
 		'pt-BR' => 'Nome Comum (CN)',
+		'tr' => 'Ortak ad',
 	),
 	'attribute_dc' => array (
 		'no' => 'Navneledd (DC)',
@@ -47,6 +48,7 @@ $lang = array(
 		'pl' => 'Składnik nazwy domenowej (DC)',
 		'pt' => 'Componente de domínio',
 		'pt-BR' => 'Componente do Domínio (DC)',
+		'tr' => 'Alan bileşeni',
 	),
 	'attribute_displayname' => array (
 		'no' => 'Navn som normalt vises',
@@ -65,6 +67,7 @@ $lang = array(
 		'pl' => 'Nazwa wyświetlana (Display name)',
 		'pt' => 'Nome de apresentação',
 		'pt-BR' => 'Nome a ser mostrado',
+		'tr' => 'Görüntülenen isim',
 	),
 	'attribute_facsimiletelephonenumber' => array (
 		'no' => 'Faksnummer',
@@ -83,6 +86,7 @@ $lang = array(
 		'pl' => 'Numer Faksu (Fax number)',
 		'pt' => 'Número de Fax',
 		'pt-BR' => 'Número do Fax',
+		'tr' => 'Faks numarası',
 	),
 	'attribute_givenname' => array (
 		'no' => 'Fornavn',
@@ -103,6 +107,7 @@ $lang = array(
 		'pl' => 'Imię (Given name)',
 		'pt' => 'Nome Próprio',
 		'pt-BR' => 'Nome',
+		'tr' => 'Verilen isim',
 	),
 	'attribute_homephone' => array (
 		'no' => 'Hjemmetelefon',
@@ -121,6 +126,7 @@ $lang = array(
 		'pl' => 'Telefon domowy (Home telephone)',
 		'pt' => 'Telefone de residência',
 		'pt-BR' => 'Telefone fixo',
+		'tr' => 'Ev telefonu',
 	),
 	'attribute_homepostaladdress' => array (
 		'no' => 'Postadresse hjemme',
@@ -139,6 +145,7 @@ $lang = array(
 		'pl' => 'Domowy address pocztowy',
 		'pt' => 'Morada de redidência',
 		'pt-BR' => 'Endereço residencial',
+		'tr' => 'Ev posta adresi',
 	),
 	'attribute_jpegphoto' => array (
 		'no' => 'JPEG-foto',
@@ -157,6 +164,7 @@ $lang = array(
 		'pl' => 'Fotografia JPEG',
 		'pt' => 'Foto JPEG',
 		'pt-BR' => 'Foto JPEG',
+		'tr' => 'JPEG fotoğraf',
 	),
 	'attribute_l' => array (
 		'no' => 'Sted',
@@ -175,6 +183,7 @@ $lang = array(
 		'pl' => 'Locality',
 		'pt' => 'Localidade',
 		'pt-BR' => 'Localidade',
+		'tr' => 'Bölge',
 	),
 	'attribute_labeleduri' => array (
 		'no' => 'URI med valgfri tilleggskommentar',
@@ -184,7 +193,7 @@ $lang = array(
 		'de' => 'URI mit zusätzlicher Kennzeichnung',
 		'sv' => 'Hemsida',
 		'fi' => 'Kotisivu',
-		'es' => 'URI etiquetada',
+		'es' => 'URI etiquetado',
 		'nl' => 'URI',
 		'lb' => 'Beschrëfteten URI',
 		'sl' => 'Označen URI',
@@ -193,6 +202,7 @@ $lang = array(
 		'pl' => 'Labeled URI',
 		'pt' => 'Página web',
 		'pt-BR' => 'URI rotulado',
+		'tr' => 'Etiketlenen URI',
 	),
 	'attribute_mail' => array (
 		'no' => 'E-post',
@@ -213,6 +223,7 @@ $lang = array(
 		'pl' => 'E-mail',
 		'pt' => 'E-mail',
 		'pt-BR' => 'E-mail',
+		'tr' => 'Posta',
 	),
 	'attribute_manager' => array (
 		'no' => 'Overordnet',
@@ -231,6 +242,7 @@ $lang = array(
 		'pl' => 'Menadżer (Manager)',
 		'pt' => 'Responsável hierárquico',
 		'pt-BR' => 'Administrador',
+		'tr' => 'Yönetici',
 	),
 	'attribute_mobile' => array (
 		'no' => 'Mobiltelefon',
@@ -251,6 +263,7 @@ $lang = array(
 		'pl' => 'Telefon komórkowy (Mobile)',
 		'pt' => 'Telemóvel',
 		'pt-BR' => 'Celular',
+		'tr' => 'Cep telefonu numarası',
 	),
 	'attribute_o' => array (
 		'no' => 'Navn på organisasjon',
@@ -270,6 +283,7 @@ $lang = array(
 		'pl' => 'Nazwa organizacji (Organization name)',
 		'pt' => 'Nome da organização',
 		'pt-BR' => 'Nome da Organização (O)',
+		'tr' => 'Organizasyon adı',
 	),
 	'attribute_ou' => array (
 		'no' => 'Organisasjonsenhet',
@@ -288,6 +302,7 @@ $lang = array(
 		'pl' => 'Jednostka organizacyjna (Organizational unit)',
 		'pt' => 'Unidade organizacional',
 		'pt-BR' => 'Unidade Organizacional (OU)',
+		'tr' => 'Organizasyonel birim',
 	),
 	'attribute_postaladdress' => array (
 		'no' => 'Postadresse',
@@ -306,6 +321,7 @@ $lang = array(
 		'pl' => 'Adres pocztowy (Postal address)',
 		'pt' => 'Morada',
 		'pt-BR' => 'Endereço',
+		'tr' => 'Posta adresi',
 	),
 	'attribute_postalcode' => array (
 		'no' => 'Postnummer',
@@ -324,6 +340,7 @@ $lang = array(
 		'pl' => 'Kod pocztowy',
 		'pt' => 'Código Postal',
 		'pt-BR' => 'CEP',
+		'tr' => 'Posta kodu',
 	),
 	'attribute_postofficebox' => array (
 		'no' => 'Postboks',
@@ -342,6 +359,7 @@ $lang = array(
 		'pl' => 'Skrzynka pocztowa (Post office box)',
 		'pt' => 'Apartado',
 		'pt-BR' => 'Caixa Postal',
+		'tr' => 'Posta kutusu',
 	),
 	'attribute_preferredlanguage' => array (
 		'no' => 'Foretrukket språk',
@@ -362,6 +380,7 @@ $lang = array(
 		'pl' => 'Preferowany język (Preferred language)',
 		'pt' => 'Idioma',
 		'pt-BR' => 'Linguagem preferida',
+		'tr' => 'Tercih edilen dil',
 	),
 	'attribute_sn' => array (
 		'no' => 'Etternavn',
@@ -382,6 +401,7 @@ $lang = array(
 		'pl' => 'Nazwisko (Surname)',
 		'pt' => 'Nome de família',
 		'pt-BR' => 'Sobrenome',
+		'tr' => 'Soyadı',
 	),
 	'attribute_street' => array (
 		'no' => 'Gate',
@@ -400,6 +420,7 @@ $lang = array(
 		'pl' => 'Ulica (Street)',
 		'pt' => 'Rua',
 		'pt-BR' => 'Rua',
+		'tr' => 'Sokak',
 	),
 	'attribute_telephonenumber' => array (
 		'no' => 'Telefon',
@@ -418,6 +439,7 @@ $lang = array(
 		'pl' => 'Numer telefonu (Telephone number)',
 		'pt' => 'Telefone',
 		'pt-BR' => 'Número de Telefone',
+		'tr' => 'Telefon numarası',
 	),
 	'attribute_title' => array (
 		'no' => 'Tittel',
@@ -437,6 +459,7 @@ $lang = array(
 		'pl' => 'Tytuł (Title)',
 		'pt' => 'Título',
 		'pt-BR' => 'Título',
+		'tr' => 'Başlık',
 	),
 	'attribute_uid' => array (
 		'no' => 'Bruker-ID',
@@ -457,6 +480,7 @@ $lang = array(
 		'pl' => 'ID użytkownika (User ID)',
 		'pt' => 'Identificação de utilizador',
 		'pt-BR' => 'Identificação (UID)',
+		'tr' => 'Kullanıcı ID',
 	),
 	'attribute_eduorghomepageuri' => array (
 		'no' => 'Organisasjonens hjemmeside',
@@ -475,6 +499,7 @@ $lang = array(
 		'pl' => 'Strona domowa organizacji',
 		'pt' => 'Página web da organização de origem',
 		'pt-BR' => 'Site da organização',
+		'tr' => 'Kurumsal websayfası',
 	),
 	'attribute_eduorglegalname' => array (
 		'no' => 'Foretaksnavn',
@@ -493,6 +518,7 @@ $lang = array(
 		'pl' => 'Zarejestrowana nazwa organizacji',
 		'pt' => 'Nome legal da organização de origem',
 		'pt-BR' => 'Nome legal da Organização',
+		'tr' => 'Organizasyonu\'un resmi adı',
 	),
 	'attribute_edupersonaffiliation' => array (
 		'no' => 'Tilhørighet',
@@ -513,6 +539,7 @@ $lang = array(
 		'pl' => 'Przynależność (Affiliation)',
 		'pt' => 'Afiliação com a organização de origem',
 		'pt-BR' => 'Filiação',
+		'tr' => 'Bağlantı',
 	),
 	'attribute_edupersonentitlement' => array (
 		'no' => 'Rettighet',
@@ -533,6 +560,7 @@ $lang = array(
 		'pl' => 'Uprawnienie dotyczące serwisu',
 		'pt' => 'Direitos oferecidos pela organização de origem',
 		'pt-BR' => 'Titularidade sobre o serviço',
+		'tr' => 'Servise göre yetki',
 	),
 	'attribute_edupersonnickname' => array (
 		'no' => 'Kallenavn',
@@ -551,6 +579,7 @@ $lang = array(
 		'pl' => 'Ksywka (Nickname)',
 		'pt' => 'Alcunha',
 		'pt-BR' => 'Apelido',
+		'tr' => 'Takma ad',
 	),
 	'attribute_edupersonorgdn' => array (
 		'no' => 'Entydig navn (DN) for brukerens vertsorganisasjon',
@@ -569,6 +598,7 @@ $lang = array(
 		'pl' => 'Distinguished name (DN) macierzystej organizacji osoby',
 		'pt' => 'DN da organização de origem',
 		'pt-BR' => 'Nome distinto (DN) da sua organização principal',
+		'tr' => 'Kişinin bağlı olduğu kuruluşun belirgin adı',
 	),
 	'attribute_edupersonorgunitdn' => array (
 		'no' => 'Entydig navn (DN) for brukerens organisasjonsenhet',
@@ -587,6 +617,7 @@ $lang = array(
 		'pl' => 'Distinguished name (DN) macierzystej jednostki organizacyjnej osoby',
 		'pt' => 'DN da unidade orgânica na organização de origem',
 		'pt-BR' => 'Nome distinto (DN) da sua unidade organizacional principal',
+		'tr' => 'Kişinin bağlı olduğu birimin belirgin adı',
 	),
 	'attribute_edupersonprimaryaffiliation' => array (
 		'no' => 'Primær tilknytning til organisasjon',
@@ -605,6 +636,7 @@ $lang = array(
 		'pl' => 'Główna przynależność (Primary affiliation)',
 		'pt' => 'Afiliação principal com a organização de origem',
 		'pt-BR' => 'Filiação Primária',
+		'tr' => 'Öncelikli bağlantı',
 	),
 	'attribute_edupersonprincipalname' => array (
 		'no' => 'Personlig ID hos organisasjonen',
@@ -624,6 +656,7 @@ $lang = array(
 		'hu' => 'Állandó azonosító a saját intézményben',
 		'pt' => 'Nome de utilizador na organização de origem',
 		'pt-BR' => 'Diretor da organização principal',
+		'tr' => 'Kişinin bağlı olduğu kuruluştaki asıl adı',
 	),
 	'attribute_edupersonscopedaffiliation' => array (
 		'no' => 'Gruppetilhørighet',
@@ -644,6 +677,7 @@ $lang = array(
 		'pl' => 'Przynależność w macierzystej organizacji',
 		'pt' => 'Afiliação com a organização de origem (com contexto)',
 		'pt-BR' => 'Filiação na organização principal',
+		'tr' => 'Bağlı olunan kuruluşla bağlantı',
 	),
 	'attribute_edupersontargetedid' => array (
 		'no' => 'Persistent anonym ID',
@@ -662,6 +696,7 @@ $lang = array(
 		'hu' => 'Állandó anonim azonosító',
 		'pt' => 'Identificação persistente tipo pseudónimo',
 		'pt-BR' => 'Apelido persistente ID',
+		'tr' => 'Kalıcı takma adı ID',
 	),
 	'attribute_noreduorgnin' => array (
 		'no' => 'Organisasjonsnummer',
@@ -680,6 +715,7 @@ $lang = array(
 		'pl' => 'Numer organizacji',
 		'pt' => 'Número de Organização',
 		'pt-BR' => 'Número Organizacional',
+		'tr' => 'Kurumsal numara',
 	),
 	'attribute_noredupersonbirthdate' => array (
 		'no' => 'Fødselsdato',
@@ -698,6 +734,7 @@ $lang = array(
 		'pl' => 'Data urodzenia (Date of birth)',
 		'pt' => 'Data de nascimento',
 		'pt-BR' => 'Data de Nascimento',
+		'tr' => 'Doğum tarihi',
 	),
 	'attribute_noredupersonlin' => array (
 		'no' => 'Lokalt ID-nummer',
@@ -716,6 +753,7 @@ $lang = array(
 		'pl' => 'Local identity number',
 		'pt' => 'Número de Identificação local',
 		'pt-BR' => 'Número de Identificação Local',
+		'tr' => 'Yerel kimlik numarası',
 	),
 	'attribute_noredupersonnin' => array (
 		'no' => 'Fødselsnummer',
@@ -736,6 +774,7 @@ $lang = array(
 		'pl' => 'Numer tożsamości wydany przez administrację publiczną',
 		'pt' => 'Número de Identificação atribuído por autoridades públicas',
 		'pt-BR' => 'Número de identificação atribuído pelas autoridades públicas',
+		'tr' => 'Kamu yetkilileri tarafından belirlenmiş kimlik numarası',
 	),
 	'attribute_edupersonprimaryorgunitdn' => array (
 		'no' => 'Entydig navn for organisasjonsenheten som brukeren primært er tilknyttet',
@@ -749,6 +788,7 @@ $lang = array(
 		'hr' => 'DN organizacijske jedinice korisnika',
 		'hu' => 'A személy elsődleges szervezeti egységének azonosító neve (DN-je)',
 		'pt' => 'DN da unidade orgânica',
+		'tr' => 'Kişinin öncelikli Kurumsal Birimi\'nin belirgin adı',
 	),
 	'attribute_userpassword' => array (
 		'no' => 'Hash av brukerens passord',
@@ -765,6 +805,7 @@ $lang = array(
 		'hu' => 'A felhasználó jelszava (kódolva)',
 		'pl' => 'Zakodowane hasło użytkownika',
 		'pt' => 'Senha do utilizador',
+		'tr' => 'Kullanıcının şifre karması',
 	),
 	'attribute_edupersonorgdn_o' => array (
 		'no' => 'Navn på organisasjon',
@@ -781,6 +822,7 @@ $lang = array(
 		'hu' => 'Szervezet neve',
 		'pl' => 'Nazwa organizacji (Organization name)',
 		'pt' => 'Nome da organização',
+		'tr' => 'Kuruluş isim',
 	),
 	'attribute_edupersonorgdn_l' => array (
 		'no' => 'Organisasjonens lokasjon',
@@ -797,6 +839,7 @@ $lang = array(
 		'hu' => 'Szervezet címe',
 		'pl' => 'Miejsce organizacji (Organization\'s location)',
 		'pt' => 'Localização da Organização',
+		'tr' => 'Kuruluşun yerleşkesi',
 	),
 	'attribute_edupersonorgdn_eduorghomepageuri' => array (
 		'no' => 'Organisasjonens hjemmeside',
@@ -813,9 +856,10 @@ $lang = array(
 		'hu' => 'Szervezet weboldala',
 		'pl' => 'Strona organizacji',
 		'pt' => 'Página web da Organização',
+		'tr' => 'Kuruluşun web sayfası',
 	),
 	'attribute_edupersonorgdn_facsimiletelephonenumber' => array (
-		'no' => 'Organisasjonen faksnummer',
+		'no' => 'Organisasjonens faksnummer',
 		'nn' => 'Faksnummer til organisasjonen',
 		'da' => 'Institutionens fax-nummer',
 		'en' => 'Organization\'s fax number',
@@ -829,9 +873,10 @@ $lang = array(
 		'hu' => 'Szervezet fax száma',
 		'pl' => 'Numer faksu organizacji',
 		'pt' => 'Fax da Organização',
+		'tr' => 'Kuruluşun fax numarası',
 	),
 	'attribute_edupersonorgdn_eduorglegalname' => array (
-		'no' => 'Organisasjonen foretaksnavn',
+		'no' => 'Organisasjonens foretaksnavn',
 		'nn' => 'Formelt namn på organisasjonen',
 		'da' => 'Institutionens officielle navn',
 		'en' => 'Organization\'s legal name',
@@ -844,9 +889,10 @@ $lang = array(
 		'hu' => 'Szervezet hivatalos neve',
 		'pl' => 'Nazwa zarejestrowana organizacji',
 		'pt' => 'Nome legal da Organização',
+		'tr' => 'Kuruluşun resmi adı',
 	),
 	'attribute_edupersonorgdn_postalcode' => array (
-		'no' => 'Organisasjonen postnummer',
+		'no' => 'Organisasjonens postnummer',
 		'nn' => 'Postnummer til organisasjonen',
 		'da' => 'Institutionens postnummer',
 		'en' => 'Organization\'s postal code',
@@ -860,6 +906,7 @@ $lang = array(
 		'hu' => 'Szervezet irányítószáma',
 		'pl' => 'Kod pocztowy organizacji',
 		'pt' => 'Código postal da Organização',
+		'tr' => 'Kuruluşun posta kodu',
 	),
 	'attribute_edupersonorgdn_noreduorgnin' => array (
 		'no' => 'Organisasjonsnummer',
@@ -873,9 +920,10 @@ $lang = array(
 		'hr' => 'Brojčani identifikator ustanove',
 		'pl' => 'Numer organizacyjny',
 		'pt' => 'Número da Organização',
+		'tr' => 'Kuruluş numarası',
 	),
 	'attribute_edupersonorgdn_businesscategory' => array (
-		'no' => 'Organisasjonen bransjetilhørighet',
+		'no' => 'Organisasjonens bransjetilhørighet',
 		'nn' => 'Forretningskategori for organisasjonen',
 		'da' => 'Institutionens forretnings kategori',
 		'en' => 'Organization business category',
@@ -886,6 +934,7 @@ $lang = array(
 		'hr' => 'Vrsta ustanove',
 		'hu' => 'Szervezet kategóriája',
 		'pt' => 'Categoria da Organização',
+		'tr' => 'Kuruluşun iş kategorisi',
 	),
 	'attribute_edupersonorgdn_dc' => array (
 		'no' => 'Navneledd (DC) for organisasjonen',
@@ -899,6 +948,7 @@ $lang = array(
 		'hr' => 'DC ustanove',
 		'hu' => 'Szervezet domain-je (DC)',
 		'pt' => 'Componente de domínio (DC) da organização',
+		'tr' => 'Kuruluşun alan bileşeni',
 	),
 	'attribute_edupersonorgdn_description' => array (
 		'no' => 'Beskrivelse av brukerens organisasjon',
@@ -914,6 +964,7 @@ $lang = array(
 		'hu' => 'Szervezet leírása',
 		'pl' => 'Opis organizacji',
 		'pt' => 'Descrição da Organização',
+		'tr' => 'Kuruluşun tanımı',
 	),
 	'attribute_edupersonorgdn_cn' => array (
 		'no' => 'Organisasjonens fulle navn',
@@ -928,6 +979,7 @@ $lang = array(
 		'hu' => 'Szervezet neve',
 		'pl' => 'Nazwa Organizacji',
 		'pt' => 'Nome completo da Organização',
+		'tr' => 'Kuruluşun ortak adı',
 	),
 	'attribute_edupersonorgdn_postaladdress' => array (
 		'no' => 'Organisasjonens postadresse',
@@ -942,6 +994,7 @@ $lang = array(
 		'hu' => 'Szervezet postacíme',
 		'pl' => 'Kod pocztowy organizacji',
 		'pt' => 'Morada da Organização',
+		'tr' => 'Kuruluşun adresi',
 	),
 	'attribute_edupersonorgdn_telephonenumber' => array (
 		'no' => 'Organisasjonens telefonnummer',
@@ -957,6 +1010,7 @@ $lang = array(
 		'hu' => 'Szervezet telefonszáma',
 		'pl' => 'Numer telefonu organizacji',
 		'pt' => 'Número de telefone da Organização',
+		'tr' => 'Kuruluşun telefon numarası',
 	),
 	'attribute_edupersonorgdn_labeleduri' => array (
 		'no' => 'Peker til organisasjonens nettsted',
@@ -969,6 +1023,7 @@ $lang = array(
 		'sl' => 'Označen URI organizacije',
 		'hr' => 'URI adresa ustanove',
 		'pt' => 'Página web da Organização',
+		'tr' => 'Kuruluşun etikenlenmiş URI\'si',
 	),
 	'attribute_edupersonorgdn_street' => array (
 		'no' => 'Organisasjonens gateadresse',
@@ -983,6 +1038,7 @@ $lang = array(
 		'hu' => 'Szervezet postacíme',
 		'pl' => 'Nazwa ulicy, gdzie mieści sie organizacja',
 		'pt' => 'Rua da Organização',
+		'tr' => 'Kuruluşun sokak adresi',
 	),
 	'attribute_edupersonorgdn_noreduorgacronym' => array (
 		'no' => 'Forkortelse for utdanningsorganisasjonen',
@@ -997,6 +1053,7 @@ $lang = array(
 		'hu' => 'Szervezet nevének rövidítése',
 		'pl' => 'Skrót dla organizacji',
 		'pt' => 'Acrónimo da Organização',
+		'tr' => 'Kuruluşun diğer adı',
 	),
 	'attribute_edupersonorgdn_eduorgwhitepagesuri' => array (
 		'no' => 'Peker til katalogtjenesten for organisasjonen',
@@ -1011,6 +1068,7 @@ $lang = array(
 		'hr' => 'URL javno dostupnog imeničkog servisa ustanove',
 		'hu' => 'Szervezet publikus telefonkönyvének elérhetősége',
 		'pt' => 'URL do serviço de directório da Organização',
+		'tr' => 'Kuruluş için açık beyaz sayfalar klasör servisinin URL\'i',
 	),
 	'attribute_edupersonorgdn_noreduorgschemaversion' => array (
 		'no' => 'Versjonsnummer for norEdu* spesifikasjonen i bruk',
@@ -1024,6 +1082,7 @@ $lang = array(
 		'hr' => 'Verzija hrEdu imeničke sheme',
 		'hu' => 'Használatban levő norEdu* specifikáció verziója',
 		'pt' => 'Versão da especificação norEdu*',
+		'tr' => 'Kullanımdaki norEdu* özelliklerinin sürüm numarası ',
 	),
 	'attribute_edupersonorgunitdn_ou' => array (
 		'no' => 'Organisasjonsenheter brukeren er medlem av',
@@ -1031,13 +1090,14 @@ $lang = array(
 		'da' => 'Personens Organisatoriske Enhed (OU)',
 		'en' => 'Person\'s Organizational Unit(s)',
 		'sv' => 'Personens organisatoriska enhet(er)',
-		'es' => 'Unidad Orgaizativa (OU) de la persona',
+		'es' => 'Unidad Organizativa (OU) de la persona',
 		'nl' => 'Afdelingsnaam',
 		'sl' => 'Domači oddelek osebe',
 		'hr' => 'Organizacijska jedinica korisnika',
 		'hu' => 'A személy szervezeti egység(ei)',
 		'pl' => 'Jednostka organizacyjna.',
 		'pt' => 'Unidade Orgânica',
+		'tr' => 'Kişinin Kurumsal Birim(ler)i',
 	),
 	'attribute_edupersonorgunitdn_telephonenumber' => array (
 		'no' => 'Organisasjonsenhetens telefonnummer',
@@ -1052,6 +1112,7 @@ $lang = array(
 		'hu' => 'Szervezeti egység telefonszáma',
 		'pl' => 'Telefon Jednostki Organizacyjnej',
 		'pt' => 'Número de telefone da Unidade Orgânica ',
+		'tr' => 'Kurumsal Birim\'in telefon numarası',
 	),
 	'attribute_edupersonorgunitdn_noreduorgunituniqueidentifier' => array (
 		'no' => 'Organisasjonsenhetens unike identifikasjonsnummer',
@@ -1059,12 +1120,13 @@ $lang = array(
 		'da' => 'Den Organisatoriske Enheds beskrivende identifikator',
 		'en' => 'Organizational Unit\'s unique identifier',
 		'sv' => 'Organisationsenhetens/enheternas unika identifierare',
-		'es' => 'Decripción de la Unidad Organizativa (OU)',
+		'es' => 'Descripción de la Unidad Organizativa (OU)',
 		'nl' => 'Afdelings identifier',
 		'sl' => 'Opis oddelka',
 		'hr' => 'Identifikator organizacijske jedinice',
 		'hu' => 'Szervezeti egység egyedi azonosítója',
 		'pt' => 'Identificador da Unidade Orgânica',
+		'tr' => 'Kurumsal Birim\'in biricik (unique) tanımlayıcısı',
 	),
 	'attribute_edupersonorgunitdn_facsimiletelephonenumber' => array (
 		'no' => 'Organisasjonsenhetens faksnummer',
@@ -1079,6 +1141,7 @@ $lang = array(
 		'hu' => 'Szervezeti egység fax száma',
 		'pl' => 'Faks Jednostki Organizacyjnej',
 		'pt' => 'Número de Fax da Unidade Orgânica',
+		'tr' => 'Kurumsal Birim\'in faz numarası',
 	),
 	'attribute_edupersonorgunitdn_postalcode' => array (
 		'no' => 'Organisasjonsenhetens postnummer',
@@ -1092,6 +1155,7 @@ $lang = array(
 		'hr' => 'Poštanski broj organizacijske jedinice',
 		'hu' => 'Szervezeti egység irányítószáma',
 		'pt' => 'Código postal da Unidade Orgânica',
+		'tr' => 'Kurumsal Birim(ler)\'in posta servisi bölgeler kodu',
 	),
 	'attribute_edupersonorgunitdn_cn' => array (
 		'no' => 'Organisasjonsenhetens fulle navn',
@@ -1099,12 +1163,13 @@ $lang = array(
 		'da' => 'Den Organisatoriske Enheds common name (CN)',
 		'en' => 'Organizational Unit\'s common name',
 		'sv' => 'Organisationsenhetens/enheternas fullständiga namn',
-		'es' => 'CN de la Unidad Organizativa',
+		'es' => 'Nombre común (CN) de la Unidad Organizativa',
 		'nl' => 'Afdeling algemene naam',
 		'sl' => 'Polno ime (CN) oddelka',
 		'hr' => 'Naziv organizacijske jedinice',
 		'hu' => 'Szervezeti egység neve',
 		'pt' => 'Nome completo da Unidade Orgânica',
+		'tr' => 'Kurumsal Birim\'in ortak adı',
 	),
 	'attribute_edupersonorgunitdn_postaladdress' => array (
 		'no' => 'Organisasjonsenhetens postadresse',
@@ -1119,6 +1184,7 @@ $lang = array(
 		'hu' => 'Szervezeti egység postacíme',
 		'pl' => 'Adres pocztowy Jednostki Organizacyjnej',
 		'pt' => 'Morada da Unidade Orgânica',
+		'tr' => 'Kurumsal Birim\'in posta adresi',
 	),
 	'attribute_edupersonorgunitdn_street' => array (
 		'no' => 'Organisasjonsenhetens gateadresse',
@@ -1131,6 +1197,7 @@ $lang = array(
 		'sl' => 'Ulica oddelka',
 		'hr' => 'Ulica u kojoj se organizacijska jedinica nalazi',
 		'pt' => 'Rua da Unidade Orgânica',
+		'tr' => 'Kurumsal Birim\'in sokağı',
 	),
 	'attribute_edupersonorgunitdn_l' => array (
 		'no' => 'Organisasjonsenhetens stedsnavn',
@@ -1143,6 +1210,7 @@ $lang = array(
 		'sl' => 'Opis oddelka',
 		'hr' => 'Lokalitet organizacijske jedinice',
 		'pt' => 'Localidade da Unidade Orgânica',
+		'tr' => 'Kurumsal Birim\'in yerel adı',
 	),
 	'attribute_edupersonorgunitdn_mail' => array (
 		'no' => 'Organisasjonsenhetens epost',
@@ -1157,6 +1225,7 @@ $lang = array(
 		'hu' => 'Szervezeti egység e-mail címe',
 		'pl' => 'Mail jednostki organizacyjnej',
 		'pt' => 'Endereço de e-mail da Unidade Organizacional',
+		'tr' => 'Kurumsal Birim\'in postası',
 	),
 	'attribute_schacuserprivateattribute' => array (
 		'no' => 'Private informasjonselement',
@@ -1169,6 +1238,7 @@ $lang = array(
 		'hu' => 'Védett adatokat tartalmazó attribútumok',
 		'pl' => 'Poufne atrybuty',
 		'pt' => 'Elementos privados de informação',
+		'tr' => 'Özel bilgi elemanları',
 	),
 	'attribute_edupersonorgdn_mail' => array (
 		'no' => 'Organisasjonens epost',
@@ -1181,6 +1251,7 @@ $lang = array(
 		'hu' => 'Szervezet e-mail címe',
 		'pl' => 'Adres email organizacji',
 		'pt' => 'Endereço de e-mail da Organização',
+		'tr' => 'Kuruluşun postası',
 	),
 	'attribute_edupersonorgdn_eduorgidentityauthnpolicyuri' => array (
 		'no' => 'Lokasjon med organisasjonens rutiner for identifisering og autentisering',
@@ -1188,8 +1259,11 @@ $lang = array(
 		'da' => 'Placeringen af organisationens politik omkring identifikation og autentificering',
 		'en' => 'Location of organization\'s policy regarding identification and authentication',
 		'sv' => 'Adressen till var organisationens policy om hur elektroniska identiteter hanteras',
+		'es' => 'URI de la política de identificación y autenticación de la organización',
 		'sl' => 'Lokacija pravil identifikacije in avtentikacije v organizaciji.',
 		'hu' => 'A szervezet felhasználókezelési és azonosítási szabályzatának elérhetősége',
+		'pt' => 'Localização da política da Organização referente a identificação e autenticação',
+		'tr' => 'Kimlik belirleme ve doğrulama açısından kuruluşun politikasının yeri',
 	),
 	'attribute_edupersonorgdn_noreduorguniqueidentifier' => array (
 		'no' => 'Organisasjonens unike identifikasjonsnummer',
@@ -1201,6 +1275,7 @@ $lang = array(
 		'sl' => 'Enolični identifikator organizacije',
 		'hu' => 'Szervezet egyedi azonosítója',
 		'pt' => 'Identificador único da Organização',
+		'tr' => 'Kuruluşun biricik (unique) tanımlayıcısı',
 	),
 	'attribute_edupersonorgdn_postofficebox' => array (
 		'no' => 'Organisasjonens postboks',
@@ -1211,6 +1286,8 @@ $lang = array(
 		'es' => 'Apartado de correos de la organización',
 		'sl' => 'Poštni predal organizacije',
 		'hu' => 'Szervezet postafiók címe',
+		'pt' => 'Caixa de endereço postal da Organização',
+		'tr' => 'Kuruluşun posta kutusu',
 	),
 	'attribute_edupersonorgunitdn_labeleduri' => array (
 		'no' => 'URI for organisasjonsenhet med valgfri tilleggskommentar',
@@ -1218,7 +1295,9 @@ $lang = array(
 		'da' => 'Mærket URI til organisatorisk enheds',
 		'en' => 'Labeled URI to organizational unit',
 		'sv' => 'Organisationsenhetens hemsidesadress',
+		'es' => 'URI etiquetado de la Unidad Organizativa (OU)',
 		'sl' => 'Označen URI oddelka',
+		'tr' => 'Kurumsal birime etiketlenmiş URI',
 	),
 	'attribute_edupersonorgunitdn_postofficebox' => array (
 		'no' => 'Organisasjonsenhetens postboks',
@@ -1229,6 +1308,8 @@ $lang = array(
 		'es' => 'Apartado de correos de la Unidad Organizativa (OU)',
 		'sl' => 'Poštni predal oddelka',
 		'hu' => 'Szervezeti egység postafiókcíme',
+		'pt' => 'Caixa de endereço postal da Unidade Organizacional',
+		'tr' => 'Kurumsal Birim\'in posta kutusu',
 	),
 	'attribute_schachomeorganization' => array (
 		'no' => 'Unik ID for organisasjon',
@@ -1248,6 +1329,7 @@ $lang = array(
 		'pl' => 'Nazwa domeny organizacji macierzystej',
 		'pt' => 'Nome de domínio da Organização de origem',
 		'pt-BR' => 'Nome de domínio da organização principal',
+		'tr' => 'Ana kuruluş alan adı',
 	),
 	'attribute_organisationname' => array (
 		'no' => 'Navn på organisasjon',
@@ -1268,6 +1350,7 @@ $lang = array(
 		'pl' => 'Nazwa organizacji (Organization name)',
 		'pt' => 'Nome da Organização',
 		'pt-BR' => 'Nome da Organização',
+		'tr' => 'Kuruluş adı',
 	),
 
 );

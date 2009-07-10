@@ -28,6 +28,7 @@ $lang = array(
 		'pl' => 'błąd simpleSAMLphp',
 		'pt' => 'Erro no simpleSAMLphp',
 		'pt-BR' => 'Erro do simpleSAMLphp',
+		'tr' => 'simpleSAMLphp hatası',
 	),
 	'report_trackid' => array (
 		'no' => 'Hvis vil rapportere denne feilen, send også med denne sporings-IDen. Den gjør det enklere for systemadministratorene å finne ut hva som gikk galt:',
@@ -47,6 +48,7 @@ $lang = array(
 		'pl' => 'Jeśli zgłaszasz ten bląd, podaj także ID zdarzenia, który umożliwi administratorowi zlokalizować Twoją sesje w logach:  ',
 		'pt' => 'Se comunicar este erro ao administrador de sistemas inclua o seguinte identificador que possibilita a localização da sua sessão nos registos do serviço:',
 		'pt-BR' => 'Se informar sobre esse erro, por favor, também informe este ID do relatório de monitoramento que torna possível localizar a sua sessão nos registros disponíveis para o administrador do sistema:',
+		'tr' => 'Bu hatayı bildirirseniz, lütfen, sistem yöneticisi tarafından incelebilen kayıtlardan oturumunuzun belirlenebilmesini sağlayan izleme ID\'sini de bildirin.',
 	),
 	'debuginfo_header' => array (
 		'no' => 'Detaljer for feilsøking',
@@ -66,6 +68,7 @@ $lang = array(
 		'pl' => 'Informacja debugger\'a',
 		'pt' => 'Informação de debug',
 		'pt-BR' => 'Informação do Debug',
+		'tr' => 'Hata ayıklama bilgisi',
 	),
 	'debuginfo_text' => array (
 		'no' => 'Detaljene nedenfor kan være av interesse for administratoren / brukerstøtte:',
@@ -85,6 +88,7 @@ $lang = array(
 		'pl' => 'Poniższa informacja debugger\'a  może być przydatna dla administara / helpdesk:  ',
 		'pt' => 'A informação de debug abaixo pode ter interesse para o administrador / apoio ao utilizador:',
 		'pt-BR' => 'A informação a seguir é importante para seu administrador / Central de Dúvidas',
+		'tr' => 'Aşağıdaki hata ayıklama bilgisi yöneticinin/yardım masasının ilgisini çekebilir:',
 	),
 	'report_header' => array (
 		'no' => 'Rapporter feil',
@@ -104,6 +108,7 @@ $lang = array(
 		'pl' => 'Raport błędów',
 		'pt' => 'Reportar um erro',
 		'pt-BR' => 'Reportar erros',
+		'tr' => 'Hataları bildir',
 	),
 	'report_text' => array (
 		'no' => 'Hvis du ønsker at brukerstøtte skal kunne kontakte deg igjen i forbindelse med denne feilen, må du oppgi e-postadressen din nedenfor:',
@@ -123,6 +128,7 @@ $lang = array(
 		'pl' => 'Możesz podać swój adres email, jeśli chcesz umożliwić administratorowi skontaktować się z Tobą w razie dalszych pytań związanych z Twoim problemem.',
 		'pt' => 'Opcionalmente, pode introduzir o seu email para o administrador de sistemas entrar em contacto consigo, caso tenha alguma questão relativamente ao seu problema.',
 		'pt-BR' => 'Opcionalmente digite o seu endereço de e-mail para que os administradores possam contatá-lo para mais perguntas sobre o seu problema:',
+		'tr' => 'Durumunuz hakkında ileride ortaya çıkabilecek sorularla ilgili yöneticilerin iletişim kurabilmesi için, isteğe bağlı olarak e-posta adresinizi girin.',
 	),
 	'report_email' => array (
 		'no' => 'E-postadresse:',
@@ -143,6 +149,7 @@ $lang = array(
 		'pl' => 'Adres e-mail',
 		'pt' => 'Endereço de email:',
 		'pt-BR' => 'Endereço de e-mail:',
+		'tr' => 'E-posta adresi:',
 	),
 	'report_explain' => array (
 		'no' => 'Forklar hva du gjorde da feilen oppsto...',
@@ -162,6 +169,7 @@ $lang = array(
 		'pl' => 'Opisz, co zrobiłeś kiedy wystąpił błąd...',
 		'pt' => 'Introduza uma breve explicação do sucedido...',
 		'pt-BR' => 'Explique o que você estava fazendo quando aconteceu o erro...',
+		'tr' => 'Bu hatanın neden oluştuğunu açıklayın...',
 	),
 	'report_submit' => array (
 		'no' => 'Send feilrapport',
@@ -181,6 +189,7 @@ $lang = array(
 		'pl' => 'Wyśllij raport o błędzie',
 		'pt' => 'Enviar o relatório de erro',
 		'pt-BR' => 'Enviar o relatório de erro',
+		'tr' => 'Hata raporu gönder',
 	),
 	'errorreport_header' => array (
 		'no' => 'Feilrapport sent',
@@ -199,6 +208,7 @@ $lang = array(
 		'pl' => 'Raport o błędzie wysłany',
 		'pt' => 'Relatório de erro enviado',
 		'pt-BR' => 'Relatório de erro enviado',
+		'tr' => 'Hata raporu gönderildi',
 	),
 	'errorreport_text' => array (
 		'no' => 'Feilrapport er sent til administrator.',
@@ -217,6 +227,7 @@ $lang = array(
 		'pl' => 'Raport o błędzie został wysłany do administratorów.',
 		'pt' => 'O relatório de erro foi enviado aos administradores',
 		'pt-BR' => 'O relatório de erro foi enviado com sucesso para os administradores.',
+		'tr' => 'Hata raporu yöneticilere gönderildi',
 	),
 	'howto_header' => array (
 		'no' => 'Hvordan få hjelp',
@@ -236,6 +247,7 @@ $lang = array(
 		'pl' => 'Jak otrzymać pomoc.',
 		'pt' => 'Como obter ajuda',
 		'pt-BR' => 'Como conseguir ajuda',
+		'tr' => 'Nasıl yardım alınır',
 	),
 	'howto_text' => array (
 		'no' => 'Denne feilen skyldes sannsynligvis feil i oppsettet av simpleSAMLphp eller den er en følge av en uforutsett hendelse. Kontakt administratoren av denne tjenesten og rapporter så mye som mulig angående feilen.',
@@ -255,6 +267,7 @@ $lang = array(
 		'pl' => 'Błąd ten wystąpił w związku z nieprzewidzianą sytuacją lub błędną konfigurację simpleSAMLphp. Skontaktuj się z administratorem tego serwisu i wyślij mu powyższy błąd.  ',
 		'pt' => 'Este erro ocorreu provavelmente devido a um comportamento inesperado ou uma má configuração do simpleSAMLphp. Contacte o administrador deste serviço de login, e comunique a mensagem de erro.',
 		'pt-BR' => 'Esse erro é provavelmente devido a algum imprevisto no comportamento do simpleSAMLphp. Contate o administrador deste serviço de login e envie-lhe a mensagem de erro acima.',
+		'tr' => 'Bu hata beklenmeyen bir durum ya da simpleSAMLphp\'nin yanlış düzenlenmesi ndeniyle oluşmuş olabilir. Bu oturum açma servisinin yöneticisi ile iletişim kurun ve yukarıdaki hata mesajını gönderin.',
 	),
 	'title_CACHEAUTHNREQUEST' => array (
 		'no' => 'Feil ved fellesinnlogging',
@@ -1413,6 +1426,14 @@ $lang = array(
 		'hr' => 'OpenID je od vas tražio provjeru identiteta, a vi ste prijavljeni s drugim identitetom.',
 		'hu' => 'Az OpenID egy identitás ellenőrzését kívánta, de ön egy másik identitás nevében van bejelentkezve.',
 		'pt' => 'O OpenID pediu a verificação de uma identidade, mas você está autenticado com outra identidade',
+	),
+	'title_RESPONSESTATUSNOSUCCESS' => array (
+		'no' => 'Feilmelding mottatt fra innloggingstjenesten',
+		'en' => 'Error received from Identity Provider',
+	),
+	'descr_RESPONSESTATUSNOSUCCESS' => array (
+		'no' => 'Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-svaret var noe annet enn OK)',
+		'en' => 'The Identity Provider responded with an error. (The status code in the SAML Response was not success)',
 	),
 
 );

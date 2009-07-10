@@ -27,6 +27,7 @@ $lang = array(
 		'pl' => 'Wylogowano',
 		'pt' => 'Saída efectuada com sucesso',
 		'pt-BR' => 'Desconectado',
+		'tr' => 'Çıktınız',
 	),
 	'logged_out_text' => array (
 		'no' => 'Du er nå utlogget.',
@@ -45,6 +46,7 @@ $lang = array(
 		'pl' => 'Zostałeś wylogowany. Dziękuję za skorzystanie z serwisu.',
 		'pt' => 'Saída efectuada com sucesso. Obrigado por ter usado este serviço.',
 		'pt-BR' => 'Você foi desconectado. Obrigado por usar este serviço.',
+		'tr' => 'Çıktınız',
 	),
 	'default_link_text' => array (
 		'no' => 'Gå tilbake til simpleSAMLphp installasjonen sin startside.',
@@ -63,6 +65,7 @@ $lang = array(
 		'pl' => 'Wróc do strony "instalacja simpleSAMLphp"',
 		'pt' => 'Voltar à página de instalação do simpleSAMLphp',
 		'pt-BR' => 'Voltar a instalação do simpleSAMLphp',
+		'tr' => 'simpleSAMLphp kurulum sayfasına geri dön',
 	),
 	'loggedoutfrom' => array (
 		'no' => 'Du er nå logget ut fra %SP%.',
@@ -77,6 +80,7 @@ $lang = array(
 		'hu' => 'Sikeresen kilépett a(z) %SP% szolgáltatásból',
 		'pl' => 'Zostałeś pomyślnie wylogowany z %SP%.',
 		'pt' => 'Saiu com sucesso de %SP%.',
+		'tr' => '%SP%\'den başarıyla çıktınız.',
 	),
 	'also_from' => array (
 		'no' => 'Du er også logget inn på disse tjenestene:',
@@ -91,6 +95,7 @@ $lang = array(
 		'hu' => 'Ezen alkalmazásokban van még bejelentkezve:',
 		'pl' => 'Jesteś także zalogowany w nastepujących serwisach:',
 		'pt' => 'Está também autenticado nos seguintes serviços:',
+		'tr' => 'Ayrıca şu servislere giriş yaptınız:',
 	),
 	'no' => array (
 		'no' => 'Nei',
@@ -105,6 +110,7 @@ $lang = array(
 		'hu' => 'Nem',
 		'pl' => 'Nie',
 		'pt' => 'Não',
+		'tr' => 'Hayır',
 	),
 	'logout_all_question' => array (
 		'no' => 'Vil du logge ut fra alle tjenestene ovenfor?',
@@ -118,6 +124,7 @@ $lang = array(
 		'hu' => 'Ki akar jelentkezni az összes fenti alkalmazásból?',
 		'pl' => 'Czy chcesz zostać wylogowany z powyższych serwisów?',
 		'pt' => 'Deseja sair de todos os serviços listados em cima?',
+		'tr' => 'Yukarıdaki tüm servislerden çıkmak istiyor musunuz?',
 	),
 	'logout_all' => array (
 		'no' => 'Ja, alle tjenestene over',
@@ -132,6 +139,7 @@ $lang = array(
 		'hu' => 'Igen, minden alkalmazásból',
 		'pl' => 'Tak, wszystkie serwisy',
 		'pt' => 'Sim, todos os serviços',
+		'tr' => 'Evet, tüm servisler.',
 	),
 	'logout_only' => array (
 		'no' => 'Nei, bare %SP%',
@@ -146,6 +154,7 @@ $lang = array(
 		'hu' => 'Nem, csak innen: %SP%',
 		'pl' => 'Nie, tylko %SP%',
 		'pt' => 'Não, apenas %SP%',
+		'tr' => 'Hayır, sadece %SP%',
 	),
 	'incapablesps' => array (
 		'no' => 'En eller flere av tjenestene du er logget inn på <i>støtter ikke logout</i>. Lukk nettleseren, dersom du ønsker å logge ut fra disse tjenestene.',
@@ -159,6 +168,7 @@ $lang = array(
 		'hu' => 'Egy vagy több alkalmazás <i>nem támogatja a kijelenkezést</i>. Hogy biztosítani lehessen, hogy nem maradt bejelentkezve, kérjük, <i>lépjen ki a böngészőből!</i>',
 		'pl' => 'Jeden lub więcej serwisów , w których jesteś zalogowany <i>nie obsługuje procesu wylogowania</i>. W celu upewnienia się, że wszystkie sesje są zakończone, zalecane jest abyś <i>zamknął przeglądarkę</i>',
 		'pt' => 'Um ou mais dos serviços onde se encontra autenticado <i>não suporta(m) a saída</i>. Para garantir que todas as sessões são encerradas, deverá <i>encerrar o seu navegador Web</i>.',
+		'tr' => 'Giriş yaptığınız bir yada daha fazla servis <i>çıkışı desteklemiyor</i>. Tüm oturumlarınızın kapatıldığından emin olmak için, <i>tarayıcınızı kapatmanız</i> önerilir.',
 	),
 	'description' => array (
 		'no' => 'Du har startet en <strong>global utlogging</strong> fra tjenesten <strong>%REQUESTERNAME%</strong>. Global utlogging betyr at du vil bli logget ut fra alle tjenestene vist nedenfor.',
@@ -173,6 +183,7 @@ $lang = array(
 		'hu' => '<strong>Teljes kijelentkezési folyamatot</strong> indított ebből az alkalmazásból: <strong>%REQUESTERNAME%</strong>. A teljes kijelentkezés azt jelenti, hogy az alábbi összes alkalmazásból kijelentkezik.',
 		'pl' => 'Zainicjowałeś <strong>globalne wylogowanie</strong> z serwisu <strong>%REQUESTERNAME%</strong>.  Globalne wylogowanie oznacza, że zostaniesz wylogowany ze wszystkich z poniższej listy serwisów.',
 		'pt' => 'Iniciou uma <strong>saída global</strong> do serviço <strong>%REQUESTERNAME%</strong>. Uma saída global significa que irá sair de todos os serviços listados em baixo.',
+		'tr' => '<strong>%REQUESTERNAME%</strong> adlı servisten <strong>genel çıkış</strong> başlattınız. Genel çıkış aşağıda listelenen tüm servislerden çıkacağınız anlamına gelmektedir.',
 	),
 	'initiated' => array (
 		'no' => 'Startet utlogging',
@@ -187,6 +198,7 @@ $lang = array(
 		'hu' => 'Kijelentkezés elindítva',
 		'pl' => 'Wylogowanie zaincjowane',
 		'pt' => 'Saída iniciada',
+		'tr' => 'Başlatılmış çıkış',
 	),
 	'hold' => array (
 		'no' => 'På vent',
@@ -201,6 +213,7 @@ $lang = array(
 		'hu' => 'Felfüggesztve',
 		'pl' => 'W zawieszeniu',
 		'pt' => 'Em espera',
+		'tr' => 'Beklemede',
 	),
 	'completed' => array (
 		'no' => 'Fullført',
@@ -216,6 +229,7 @@ $lang = array(
 		'hu' => 'Befejezve',
 		'pl' => 'Zakończono',
 		'pt' => 'Completa',
+		'tr' => 'Tamamlandı',
 	),
 	'progress' => array (
 		'no' => 'Logger ut...',
@@ -231,6 +245,7 @@ $lang = array(
 		'hu' => 'Kijelentkezés...',
 		'pl' => 'Wylogowywanie...',
 		'pt' => 'A sair...',
+		'tr' => 'Çıkıyor',
 	),
 	'failed' => array (
 		'no' => 'Utlogging feilet',
@@ -246,6 +261,7 @@ $lang = array(
 		'hu' => 'Kijelentkezés nem sikerült',
 		'pl' => 'Wystąpił bład podczas wylogowania',
 		'pt' => 'Saída falhada',
+		'tr' => 'Çıkış başarılamadı',
 	),
 	'continue' => array (
 		'no' => 'Ønsker du å fortsette global utlogging?',
@@ -260,6 +276,7 @@ $lang = array(
 		'hu' => 'Kívánja folytatni a teljes kijelentkezést?',
 		'pl' => 'Czy chcesz kontynuować globalne wylogowanie?',
 		'pt' => 'Deseja continuar a saída global?',
+		'tr' => 'Genel çıkışa devam etmek istiyor musunuz?',
 	),
 	'do_continue' => array (
 		'no' => 'Ja, fortsett utlogging',
@@ -274,6 +291,7 @@ $lang = array(
 		'hu' => 'Igen, kijelentkezés folyatatása',
 		'pl' => 'Tak, wyloguj',
 		'pt' => 'Sim, continuar saída',
+		'tr' => 'Evet, çıkışa devam',
 	),
 	'cancel' => array (
 		'no' => 'Avbryt utlogging',
@@ -288,6 +306,7 @@ $lang = array(
 		'hu' => 'Kijelentkezés megszakítása',
 		'pl' => 'Anuluj wylogowanie',
 		'pt' => 'Cancelar saída',
+		'tr' => 'Çıkıştan vazgeç',
 	),
 	'respond_info' => array (
 		'no' => 'Dersom noen av tjenestene ikke svarer innen rimelig tid anbefales du å lukke din nettleser for å sikre at sesjonen avsluttes.',
@@ -302,6 +321,7 @@ $lang = array(
 		'hu' => 'Ha valamelyik tartalomszolgáltató nem válaszol értelmes időn belül, kérjük, lépjen ki a böngészőjéből, hogy biztosan kilépjen az összes alkalmazásból.',
 		'pl' => 'Jeśli jakiś z dostawców serwisu nie odpowie w przyzwoitym czasie, zostaniesz zachęcony do zamknięcia przegladarki w celu zamknięcia sesji.',
 		'pt' => 'Se algum dos fornecedores de serviço (SP) não responder num intervalo de tempo razoável, é aconselhado encerrar o seu navegador Web para garantir que as suas sessões são encerradas.',
+		'tr' => 'Eğer servis sağlayıcılardan bir kısmı makul bir zaman içinde cevap vermiyorsa, oturumların kapatıldığından emin olmak için tarayıcınızı kapatmanız önerilir.',
 	),
 	'return' => array (
 		'no' => 'Tilbake til tjenesten',
@@ -317,6 +337,7 @@ $lang = array(
 		'hu' => 'Vissza a szolgáltatáshoz',
 		'pl' => 'Powrót do serwisu',
 		'pt' => 'Regressar ao serviço',
+		'tr' => 'Servise geri dön',
 	),
 	'progress_bar' => array (
 		'no' => 'Status bar',
@@ -331,6 +352,7 @@ $lang = array(
 		'hu' => 'Folyamatjelző',
 		'pl' => 'Pasek stanu',
 		'pt' => 'Barra de progresso',
+		'tr' => 'İlerleme çubuğu',
 	),
 	'logging_out' => array (
 		'no' => 'Vent... logger ut fra <strong>%SPNAME%</strong>.',
@@ -345,6 +367,7 @@ $lang = array(
 		'hu' => 'Várjon... kijelentkeztetés a(z) <strong>%SPNAME%</strong> alkalmazásból.',
 		'pl' => 'Czekaj... trwa wylogowywanie z <strong>%SPNAME%</strong>.',
 		'pt' => 'Espere... está a sair de <strong>%SPNAME%</strong>.',
+		'tr' => 'Bekleyin... <strong>%SPNAME%</strong>\'den çıkıyor.',
 	),
 	'logged_out' => array (
 		'no' => 'Utlogging var startet fra %REQUESTERNAME%.',
@@ -358,6 +381,8 @@ $lang = array(
 		'hr' => 'Odjavljivanje je pokrenuto iz %REQUESTERNAME%.',
 		'hu' => 'Kijelentkezési folyamat elindítva innen: %REQUESTERNAME%.',
 		'pl' => 'Wylogowywanie rozpoczęto z %REQUESTERNAME%.',
+		'pt' => 'A Saída foi iniciada por %REQUESTERNAME%.',
+		'tr' => 'Çıkış, %REQUESTERNAME%\'den/dan başlatıldı.',
 	),
 	'interrupt' => array (
 		'no' => 'Avbryt utloggingeng og g&aring; tilbake til tjenesten.',
@@ -372,6 +397,7 @@ $lang = array(
 		'hu' => 'Kijelentkezés megszakítása és vissza a szolgálatatáshoz.',
 		'pl' => 'Przerwij wylogowanie i wróć do serwisu.',
 		'pt' => 'Interromper saída e regressar ao serviço.',
+		'tr' => 'Çıkma işlemini durdur ve servise geri dön.',
 	),
 	'success' => array (
 		'no' => 'Du har n&aring; logget ut fra alle tjenestene listet ovenfor.',
@@ -386,6 +412,7 @@ $lang = array(
 		'hu' => 'Sikeresen kijelentkezett az fent felsorolt összes alkalmazásból.',
 		'pl' => 'Zostałeś pomyślnie wylogowany ze wszystkich powyższych serwisów.',
 		'pt' => 'Saiu com sucesso de todos os serviços listados em cima.',
+		'tr' => 'Yukarıda listelenen tüm servislerden başarıyla çıktınız.',
 	),
 	'finish' => array (
 		'no' => 'OK, fortsett tilbake til %REQUESTERNAME% for å fullføre utloggingsprosessen.',
@@ -400,6 +427,7 @@ $lang = array(
 		'hu' => 'OK, vissza %REQUESTERNAME% oldalára, hogy befejeződjön a kijelentkezési folyamat.',
 		'pl' => 'OK, kontynuuj powrót do %REQUESTERNAME% w celu zakończenia procesu wylogowywania.',
 		'pt' => 'OK, continue de volta a %REQUESTERNAME% para completar o processo de saída.',
+		'tr' => 'Tamam, çıkış işlemini tamamlamak için %REQUESTERNAME%\'e tekrar devam et.',
 	),
 
 );

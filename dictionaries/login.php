@@ -28,6 +28,7 @@ $lang = array(
 		'pl' => 'Błąd',
 		'pt' => 'Erro',
 		'pt-BR' => 'Erro',
+		'tr' => 'Hata',
 	),
 	'user_pass_header' => array (
 		'no' => 'Skriv inn brukernavn og passord',
@@ -47,6 +48,7 @@ $lang = array(
 		'pl' => 'Wprowadź nazwę uzytkownika i hasło',
 		'pt' => 'Introduza o seu nome de utilizador e senha',
 		'pt-BR' => 'Digite seu usuário e senha',
+		'tr' => 'Kullanıcı adı ve şifrenizi giriniz',
 	),
 	'user_pass_text' => array (
 		'no' => 'En tjeneste har bedt om bekreftelse på din identitet. Skriv inn ditt brukernavn og passord for å autentisere deg.',
@@ -66,6 +68,7 @@ $lang = array(
 		'pl' => 'Serwis zażądał autentykacji. Proszę w poniższym formularzu wprowadzić nazwę uzytkownika oraz hasło.',
 		'pt' => 'Foi pedida a sua autenticação por um serviço. Por favor, introduza o seu nome de utilizador e senha nos campos seguintes.',
 		'pt-BR' => 'Um serviço que você pediu necessita que você se autentique. Digite seu nome de usuário e senha no formulário abaixo.',
+		'tr' => 'Bir servis kendinizi yetkilendirmenizi istedi. Lütfen aşağıdaki forma kullanıcı adınızı ve şifrenizi giriniz.',
 	),
 	'login_button' => array (
 		'no' => 'Logg inn',
@@ -86,6 +89,7 @@ $lang = array(
 		'pl' => 'Login',
 		'pt' => 'Entrar',
 		'pt-BR' => 'Acessar',
+		'tr' => 'Giriş',
 	),
 	'username' => array (
 		'no' => 'Brukernavn',
@@ -106,6 +110,7 @@ $lang = array(
 		'pl' => 'Nazwa użytkownika',
 		'pt' => 'Nome de utilizador',
 		'pt-BR' => 'Usuário',
+		'tr' => 'Kullanıcı adı',
 	),
 	'organization' => array (
 		'no' => 'Organisasjon',
@@ -126,6 +131,7 @@ $lang = array(
 		'pl' => 'Organizacja',
 		'pt' => 'Organização',
 		'pt-BR' => 'Organização',
+		'tr' => 'Organizasyon',
 	),
 	'password' => array (
 		'no' => 'Passord',
@@ -146,6 +152,7 @@ $lang = array(
 		'pl' => 'Hasło',
 		'pt' => 'Senha',
 		'pt-BR' => 'Senha',
+		'tr' => 'Şifre',
 	),
 	'help_header' => array (
 		'no' => 'Hjelp! Jeg har glemt passordet mitt.',
@@ -165,6 +172,7 @@ $lang = array(
 		'pl' => 'Pomocy! Nie pamiętam hasła.',
 		'pt' => 'Não me lembro da minha senha',
 		'pt-BR' => 'Ajude-me! Não lembro minha senha.',
+		'tr' => 'Yardım! Şifremi hatırlamıyorum.',
 	),
 	'help_text' => array (
 		'no' => 'Synd! - Uten riktig brukernavn og passord kan du ikke autentisere deg. Det kan være noen som kan hjelpe deg. Forsøk å kontakt brukerstøtte ved din vertsorganisasjon.',
@@ -184,6 +192,7 @@ $lang = array(
 		'pl' => 'Niedobrze! - Bez nazwy użytkownika i/lub hasła nie możesz zostać uwierzytelniony dla tego serwisu. Może jest ktoś, kto może Ci pomóc. Skonsultuj się z działem pomocy technicznej na Twojej uczelni.',
 		'pt' => 'Sem o seu nome de utilizador e senha não se pode autenticar para acesso ao serviço. Para obter ajuda, consulte o seu serviço de apoio ao utilizador.',
 		'pt-BR' => 'Muito mal! - Sem o seu nome de usuário e a senha você não pode autenticar-se para acessar o serviço. Pode haver alguém que possa lhe ajudar. Consulte a central de dúvidas!',
+		'tr' => 'Çok kötü! - Kullanıcı adınız ve şifreniz olmadan bu servisi kullanamazsınız. Size yardımcı olabilecek birileri olabilir. Kuruluşunuza danışın. ',
 	),
 	'error_nopassword' => array (
 		'no' => 'Du kontaktet loginsiden, men passordet ble ikke sendt med. Forsøk igjen.',
@@ -203,6 +212,7 @@ $lang = array(
 		'pl' => 'Wysłałeś "coś" do strony logowania, ale z jakiś powodów hasło nie zostało wysłane. Spróbuj jeszcze raz.',
 		'pt' => 'A senha não foi enviada no seu pedido. Por favor tente de novo.',
 		'pt-BR' => 'Você enviou alguma coisa para a página de login, mas por alguma razão a senha não foi enviada. Por favor tente novamente.  ',
+		'tr' => 'Giriş sayfasına birşeyler gönderdiniz, fakat bazı nedenlerden dolayı şifreniz gönderilemedi. Lütfen tekrar deneyiniz.',
 	),
 	'error_wrongpassword' => array (
 		'no' => 'Feil brukernavn eller passord.',
@@ -223,6 +233,7 @@ $lang = array(
 		'pl' => 'Nieprawidłowa nazwa użytkownika lub hasło.',
 		'pt' => 'Nome de utilizador ou senha incorrecta.',
 		'pt-BR' => 'Nome de usuário ou senha incorretos.',
+		'tr' => 'Kullanıcı adı ve/veya şifre yanlış.',
 	),
 	'select_home_org' => array (
 		'no' => 'Velg vertsorganisasjon',
@@ -241,6 +252,7 @@ $lang = array(
 		'pl' => 'Wybierz swoją domową organizację',
 		'pt' => 'Escolha a sua organização de origem',
 		'pt-BR' => 'Escolha a sua organização principal',
+		'tr' => 'Organizasyonunuzu seçiniz',
 	),
 	'next' => array (
 		'no' => 'Fortsett',
@@ -259,6 +271,7 @@ $lang = array(
 		'pl' => 'Następny',
 		'pt' => 'Seguinte',
 		'pt-BR' => 'Próximo',
+		'tr' => 'Sıradaki',
 	),
 	'change_home_org_title' => array (
 		'no' => 'Endre din vertsorganisasjon',
@@ -277,6 +290,7 @@ $lang = array(
 		'pl' => 'Zmień swoją domową organizację',
 		'pt' => 'Alterar a sua organização de origem',
 		'pt-BR' => 'Mudar a organização principal',
+		'tr' => 'Organizasyonunuzu değiştirin',
 	),
 	'change_home_org_text' => array (
 		'no' => 'Du har valgt <b>%HOMEORG%</b> som din vertsorganisasjon. Dersom dette er feil kan du velge en annen.',
@@ -295,6 +309,7 @@ $lang = array(
 		'pl' => 'Wybrałeś <b>%HOMEORG%</b> jako swoją domową organizację. Jeśli nieprawidłowa możesz wybrać inną.',
 		'pt' => 'Escolheu <b>%HOMEORG%</b> como a sua organização de origem. Se não estiver correcto, pode escolher outra.',
 		'pt-BR' => 'Você escolheu <b>%HOMEORG%</b> como sua organização pessoal. Se isto estiver incorreto você pode escolher outra.',
+		'tr' => '<b>%HOMEORG%</b>\'u organizasyonunuz olarak seçtiniz. Eğer yanlış ise, başka bir tanesini seçebilirsiniz.',
 	),
 	'change_home_org_button' => array (
 		'no' => 'Velg vertsorganisasjon',
@@ -313,6 +328,7 @@ $lang = array(
 		'pl' => 'Wybierz domową organizację',
 		'pt' => 'Escolha a sua organização de origem',
 		'pt-BR' => 'Escolher uma organização principal',
+		'tr' => 'Organizasyon seçiniz',
 	),
 	'help_desk_link' => array (
 		'no' => 'Hjemmesiden til brukerstøtte',
@@ -331,6 +347,7 @@ $lang = array(
 		'pl' => 'Strona domowa pomocy technicznej (Helpdesk)',
 		'pt' => 'Página do serviço de apoio ao utilizador',
 		'pt-BR' => 'Central de Ajuda',
+		'tr' => 'Yardım anasayfası',
 	),
 	'help_desk_email' => array (
 		'no' => 'Send e-post til brukerstøtte',
@@ -349,6 +366,7 @@ $lang = array(
 		'pl' => 'wyślij e-mail do helpdesku',
 		'pt' => 'Enviar um e-mail para o serviço de apoio ao utilizador',
 		'pt-BR' => 'Envie um e-mail para a Central de Ajuda.',
+		'tr' => 'Yardım\'a e-posta gönderin',
 	),
 	'contact_info' => array (
 		'no' => 'Kontaktinformasjon:',
@@ -367,6 +385,7 @@ $lang = array(
 		'pl' => 'Informacje kontaktowe:',
 		'pt' => 'Contactos:',
 		'pt-BR' => 'Informações de Contato',
+		'tr' => 'İletişim bilgileri:',
 	),
 
 );
