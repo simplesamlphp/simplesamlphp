@@ -227,7 +227,7 @@ $lightCounter = array(0,0,0);
 function resultCode($res, $sortby = NULL) {
 	global $lightCounter;
 	$code = '';
-	$columns = array('config', 'ping', 'cert', 'adminBind', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'getTestOrg', 'configMeta');
+	$columns = array('config', 'ping', 'cert', 'adminBind', 'ldapSearchBogus', 'configTest', 'ldapSearchTestUser', 'ldapBindTestUser', 'getTestOrg', 'configMeta', 'schema');
 	
 	if (!empty($sortby) && in_array($sortby, $columns)) {
 		
