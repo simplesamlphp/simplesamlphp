@@ -639,7 +639,20 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	 *  @return AuthenticationResponse as string
 	 */
 	public function generate($idpentityid, $spentityid, $inresponseto, $nameid, $attributes, $status = 'Success', $sessionDuration = 3600) {
-		
+
+		assert('is_string($status) || $status instanceof sspmod_saml2_Error');
+		if (is_string($status)) {
+			if ($status === 'Success') {
+				/* Not really an error, but it makes the code simpler. */
+				$status = new sspmod_saml2_Error(sspmod_saml2_Const::STATUS_SUCCESS);
+			} else {
+				$status = new sspmod_saml2_Error(
+					sspmod_saml2_Const::STATUS_SUCCESS,
+					'urn:oasis:names:tc:SAML:2.0:status:' . $status
+					);
+			}
+		}
+
 		/**
 		 * Retrieving metadata for the two specific entity IDs.
 		 */
@@ -718,7 +731,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		if (!empty($inresponseto)) $inresponsetoText = 'InResponseTo="' . htmlspecialchars($inresponseto). '" ';
 		
 		$assertion = "";
-		if ($status === 'Success') {
+		if ($status->getStatus() === sspmod_saml2_Const::STATUS_SUCCESS) {
 			$assertion = '<saml:Assertion Version="2.0"
 		ID="' . $assertionid . '" IssueInstant="' . $issueInstant . '">
 		<saml:Issuer>' . htmlspecialchars($issuer) . '</saml:Issuer>
@@ -743,14 +756,9 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
         </saml:AuthnStatement>
         ' . $attributestatement. '
     </saml:Assertion>';
-			$statusCode = '<samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>';
-		} else {
-			$statusCode = '<samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Responder">
-				<samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:' . $status . '"/>
-				</samlp:StatusCode>';
 		}
-		
-		
+		$statusCode = self::generateStatusCode($status);
+
 		/**
 		 * Generating the response.
 		 */
@@ -913,8 +921,28 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 		return $ret;
 	}
-	
-	
+
+
+	/**
+	 * Generate a SAML 2 StatusCode element from an instance of sspmod_saml2_Error.
+	 *
+	 * @param sspmod_saml2_Error $status  The status code.
+	 * @return string  The StatusCode element.
+	 */
+	private static function generateStatusCode(sspmod_saml2_Error $status) {
+
+		$statusCode = '<samlp:StatusCode Value="' . htmlspecialchars($status->getStatus()) . '">';
+		if ($status->getSubStatus() !== NULL) {
+			$statusCode .= '<samlp:StatusCode Value="' . htmlspecialchars($status->getSubstatus()) . '"/>';
+		}
+		if ($status->getStatusMessage() !== NULL) {
+			$statusCode .= '<samlp:StatusMessage>' . htmlspecialchars($status->getStatusMessage()) . '</samlp:StatusMessage>';
+		}
+		$statusCode .= '</samlp:StatusCode>';
+
+		return $statusCode;
+	}
+
 }
 
 ?>
