@@ -93,6 +93,96 @@ class SimpleSAML_Error_Exception extends Exception {
 
 
 	/**
+	 * Format this exception for logging.
+	 *
+	 * Create an array with lines for logging.
+	 *
+	 * @return array  Log lines which should be written out.
+	 */
+	public function format() {
+
+		$ret = array();
+
+		$e = $this;
+		do {
+			$err = get_class($e) . ': ' . $e->getMessage();
+			if ($e === $this) {
+				$ret[] = $err;
+			} else {
+				$ret[] = 'Caused by: ' . $err;
+			}
+
+			$ret[] = 'Backtrace:';
+
+			$depth = count($e->backtrace);
+			foreach ($e->backtrace as $i => $trace) {
+				$ret[] = ($depth - $i - 1) . ' ' . $trace;
+			}
+
+			$e = $e->cause;
+		} while ($e !== NULL);
+
+		return $ret;
+	}
+
+
+	/**
+	 * Print the exception to the log with log level error.
+	 *
+	 * This function will write this exception to the log, including a full backtrace.
+	 */
+	public function logError() {
+
+		$lines = $this->format();
+		foreach ($lines as $line) {
+			SimpleSAML_Logger::error($line);
+		}
+	}
+
+
+	/**
+	 * Print the exception to the log with log level warning.
+	 *
+	 * This function will write this exception to the log, including a full backtrace.
+	 */
+	public function logWarning() {
+
+		$lines = $this->format();
+		foreach ($lines as $line) {
+			SimpleSAML_Logger::warning($line);
+		}
+	}
+
+
+	/**
+	 * Print the exception to the log with log level info.
+	 *
+	 * This function will write this exception to the log, including a full backtrace.
+	 */
+	public function logInfo() {
+
+		$lines = $this->format();
+		foreach ($lines as $line) {
+			SimpleSAML_Logger::debug($line);
+		}
+	}
+
+
+	/**
+	 * Print the exception to the log with log level debug.
+	 *
+	 * This function will write this exception to the log, including a full backtrace.
+	 */
+	public function logDebug() {
+
+		$lines = $this->format();
+		foreach ($lines as $line) {
+			SimpleSAML_Logger::debug($line);
+		}
+	}
+
+
+	/**
 	 * Function for serialization.
 	 *
 	 * This function builds a list of all variables which should be serialized.
