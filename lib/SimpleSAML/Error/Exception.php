@@ -23,17 +23,37 @@ class SimpleSAML_Error_Exception extends Exception {
 
 
 	/**
+	 * The cause of this exception.
+	 *
+	 * @var SimpleSAML_Error_Exception
+	 */
+	private $cause;
+
+
+	/**
 	 * Constructor for this error.
+	 *
+	 * Note that the cause will be converted to a SimpleSAML_Error_UnserializableException
+	 * unless it is a subclass of SimpleSAML_Error_Exception.
 	 *
 	 * @param string $message Exception message
 	 * @param int $code Error code
+	 * @param Exception|NULL $cause  The cause of this exception.
 	 */
-	public function __construct($message, $code = 0) {
-		assert('is_string($message) || is_int($code)');
+	public function __construct($message, $code = 0, Exception $cause = NULL) {
+		assert('is_string($message)');
+		assert('is_int($code)');
 
 		parent::__construct($message, $code);
 
 		$this->backtrace = SimpleSAML_Utilities::buildBacktrace($this);
+
+		if ($cause !== NULL) {
+			if (!($cause instanceof SimpleSAML_Error_Exception)) {
+				$cause = new SimpleSAML_Error_UnserializableException($cause);
+			}
+			$this->cause = $cause;
+		}
 	}
 
 
@@ -59,6 +79,16 @@ class SimpleSAML_Error_Exception extends Exception {
 		assert('is_array($backtrace)');
 
 		$this->backtrace = $backtrace;
+	}
+
+
+	/**
+	 * Retrieve the cause of this exception.
+	 *
+	 * @return SimpleSAML_Error_Exception|NULL  The cause of this exception.
+	 */
+	public function getCause() {
+		return $this->cause;
 	}
 
 
