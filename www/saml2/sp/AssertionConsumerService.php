@@ -105,7 +105,7 @@ try {
 		} else {
 			/* We don't have an error handler. Show an error page. */
 			SimpleSAML_Utilities::fatalError($session->getTrackID(), 'RESPONSESTATUSNOSUCCESS',
-				new Exception("Status = " . $statusCode));
+				$authnResponse->getStatus());
 		}
 	}
 
