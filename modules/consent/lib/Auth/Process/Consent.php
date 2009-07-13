@@ -182,7 +182,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 
 		/* User interaction nessesary. Throw exception on isPassive request */	
 		if (isset($state['isPassive']) && $state['isPassive'] == TRUE) {
-			throw new SimpleSAML_Error_NoPassive('noPassive');
+			throw new SimpleSAML_Error_NoPassive('Unable to give consent on passive request.');
 		}
 
 		/* Save state and redirect. */
