@@ -163,6 +163,15 @@ class SimpleSAML_Auth_ProcessingChain {
 	 * a page to the user, we will redirect to the URL set in $state['ReturnURL'] after processing is
 	 * completed.
 	 *
+	 * If an exception is thrown during processing, it should be handled by the caller of
+	 * this function. If the user has redirected to a different page, the exception will be
+	 * returned through the exception handler defined on the state array. See
+	 * SimpleSAML_Auth_State for more information.
+	 *
+	 * @see SimpleSAML_Auth_State
+	 * @see SimpleSAML_Auth_State::EXCEPTION_HANDLER_URL
+	 * @see SimpleSAML_Auth_State::EXCEPTION_HANDLER_FUNC
+	 *
 	 * @param array &$state  The state we are processing.
 	 */
 	public function processState(&$state) {
@@ -171,14 +180,27 @@ class SimpleSAML_Auth_ProcessingChain {
 
 		$state[self::FILTERS_INDEX] = $this->filters;
 
-		if (!array_key_exists('UserID', $state)) {
-			/* No unique user ID present. Attempt to add one. */
-			self::addUserID($state);
-		}
+		try {
 
-		while (count($state[self::FILTERS_INDEX]) > 0) {
-			$filter = array_shift($state[self::FILTERS_INDEX]);
-			$filter->process($state);
+			if (!array_key_exists('UserID', $state)) {
+				/* No unique user ID present. Attempt to add one. */
+				self::addUserID($state);
+			}
+
+			while (count($state[self::FILTERS_INDEX]) > 0) {
+				$filter = array_shift($state[self::FILTERS_INDEX]);
+				$filter->process($state);
+			}
+
+		} catch (SimpleSAML_Error_Exception $e) {
+			/* No need to convert the exception. */
+			throw $e;
+		} catch (Exception $e) {
+			/*
+			 * To be consistent with the exception we return after an redirect,
+			 * we convert this exception before returning it.
+			 */
+			throw new SimpleSAML_Error_UnserializableException($e);
 		}
 
 		/* Completed. */
@@ -191,8 +213,8 @@ class SimpleSAML_Auth_ProcessingChain {
 	 * This function is used to resume processing by filters which for example needed to show
 	 * a page to the user.
 	 *
-	 * This function will never return. In the case of an exception, exception handling should
-	 * be left to the main simpleSAMLphp exception handler.
+	 * This function will never return. Exceptions thrown during processing will be passed
+	 * to whatever exception handler is defined in the state array.
 	 *
 	 * @param array $state  The state we are processing.
 	 */
@@ -201,7 +223,14 @@ class SimpleSAML_Auth_ProcessingChain {
 
 		while (count($state[self::FILTERS_INDEX]) > 0) {
 			$filter = array_shift($state[self::FILTERS_INDEX]);
-			$filter->process($state);
+			try {
+				$filter->process($state);
+			} catch (SimpleSAML_Error_Exception $e) {
+				SimpleSAML_Auth_State::throwException($state, $e);
+			} catch (Exception $e) {
+				$e = new SimpleSAML_Error_UnserializableException($e);
+				SimpleSAML_Auth_State::throwException($state, $e);
+			}
 		}
 
 		assert('array_key_exists("ReturnURL", $state)');
