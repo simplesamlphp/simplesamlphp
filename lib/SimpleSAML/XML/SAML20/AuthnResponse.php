@@ -679,7 +679,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 				$status = new sspmod_saml2_Error(sspmod_saml2_Const::STATUS_SUCCESS);
 			} else {
 				$status = new sspmod_saml2_Error(
-					sspmod_saml2_Const::STATUS_SUCCESS,
+					sspmod_saml2_Const::STATUS_RESPONDER,
 					'urn:oasis:names:tc:SAML:2.0:status:' . $status
 					);
 			}
