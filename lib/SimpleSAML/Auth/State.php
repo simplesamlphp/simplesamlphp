@@ -18,6 +18,12 @@
  * The $stage parameter must be a unique string. To maintain uniqueness, it must be on the form
  * "<classname>.<identifier>" or "<module>:<identifier>".
  *
+ * There is also support for passing exceptions through the state.
+ * By defining an exception handler when creating the state array, users of the state
+ * array can call throwException with the state and the exception. This exception will
+ * be passed to the handler defined by the EXCEPTION_HANDLER_URL or EXCEPTION_HANDLER_FUNC
+ * elements of the state array.
+ *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
  * @version $Id$
@@ -41,6 +47,36 @@ class SimpleSAML_Auth_State {
 	 * The index in the state array which contains the restart URL.
 	 */
 	const RESTART = 'SimpleSAML_Auth_State.restartURL';
+
+
+	/**
+	 * The index in the state array which contains the exception handler URL.
+	 */
+	const EXCEPTION_HANDLER_URL = 'SimpleSAML_Auth_State.exceptionURL';
+
+
+	/**
+	 * The index in the state array which contains the exception handler function.
+	 */
+	const EXCEPTION_HANDLER_FUNC = 'SimpleSAML_Auth_State.exceptionFunc';
+
+
+	/**
+	 * The index in the state array which contains the exception data.
+	 */
+	const EXCEPTION_DATA = 'SimpleSAML_Auth_State.exceptionData';
+
+
+	/**
+	 * The stage of a state with an exception.
+	 */
+	const EXCEPTION_STAGE = 'SimpleSAML_Auth_State.exceptionStage';
+
+
+	/**
+	 * The URL parameter which contains the exception state id.
+	 */
+	const EXCEPTION_PARAM = 'SimpleSAML_Auth_State_exceptionId';
 
 
 	/**
@@ -164,6 +200,63 @@ class SimpleSAML_Auth_State {
 
 		$session = SimpleSAML_Session::getInstance();
 		$session->deleteData('SimpleSAML_Auth_State', $state[self::ID]);
+	}
+
+
+	/**
+	 * Throw exception to the state exception handler.
+	 *
+	 * @param array $state  The state array.
+	 * @param SimpleSAML_Error_Exception $exception  The exception.
+	 */
+	public static function throwException($state, SimpleSAML_Error_Exception $exception) {
+		assert('is_array($state)');
+
+		if (array_key_exists(self::EXCEPTION_HANDLER_URL, $state)) {
+
+			/* Save the exception. */
+			$state[self::EXCEPTION_DATA] = $exception;
+			$id = self::saveState($state, self::EXCEPTION_STAGE);
+
+			/* Redirect to the exception handler. */
+			SimpleSAML_Utilities::redirect($state[self::EXCEPTION_HANDLER_URL], array(self::EXCEPTION_PARAM => $id));
+
+		} elseif (array_key_exists(self::EXCEPTION_HANDLER_FUNC, $state)) {
+			/* Call the exception handler. */
+			$func = $state[self::EXCEPTION_HANDLER_FUNC];
+			assert('is_callable($func)');
+
+			call_user_func($func, $exception, $state);
+			assert(FALSE);
+
+		} else {
+			/*
+			 * No exception handler is defined for the current state.
+			 */
+			throw $exception;
+		}
+
+	}
+
+
+	/**
+	 * Retrieve an exception state.
+	 *
+	 * @param string|NULL $id  The exception id. Can be NULL, in which case it will be retrieved from the request.
+	 * @return array  The state array with the exception.
+	 */
+	public static function loadExceptionState($id = NULL) {
+		assert('is_string($id) || is_null($id)');
+
+		if ($id === NULL) {
+			assert('array_key_exists(self::EXCEPTION_PARAM, $_REQUEST)');
+			$id = $_REQUEST[self::EXCEPTION_PARAM];
+		}
+
+		$state = self::loadState($id, self::EXCEPTION_STAGE);
+		assert('array_key_exists(self::EXCEPTION_DATA, $state)');
+
+		return $state;
 	}
 
 }
