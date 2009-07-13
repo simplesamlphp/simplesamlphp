@@ -34,6 +34,57 @@ if (!$config->getValue('enable.saml20-idp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
 
+/**
+ * Helper function for handling exception/errors.
+ *
+ * This function will send an error response to the SP which contacted this IdP.
+ *
+ * @param Exception $exception  The exception.
+ */
+function handleError(Exception $exception) {
+
+	global $requestcache, $config, $metadata, $idpentityid;
+	assert('is_array($requestcache)');
+
+	assert('array_key_exists("Issuer", $requestcache)');
+	$issuer = $requestcache['Issuer'];
+
+	if (array_key_exists('RequestID', $requestcache)) {
+		$requestID = $requestcache['RequestID'];
+	} else {
+		$requestID = NULL;
+	}
+
+	if (array_key_exists('RelayState', $requestcache)) {
+		$relayState = $requestcache['RelayState'];
+	} else {
+		$relayState = NULL;
+	}
+
+	$error = sspmod_saml2_Error::fromException($exception);
+
+	SimpleSAML_Logger::warning('Returning error to sp: ' . var_export($issuer, TRUE));
+	$error->logWarning();
+
+	try {
+
+		/* Generate an SAML 2.0 AuthNResponse message
+		 * With statusCode: urn:oasis:names:tc:SAML:2.0:status:NoPassive
+		 */
+		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
+		$authnResponseXML = $ar->generate($idpentityid, $issuer, $requestID, NULL, NULL, $error, $config->getValue('session.duration', 3600) );
+
+		/* Sending the AuthNResponse using HTTP-Post SAML 2.0 binding. */
+		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
+		$httppost->sendResponse($authnResponseXML, $idpentityid, $issuer, $relayState);
+		exit();
+	} catch(Exception $e) {
+		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $e);
+	}
+
+}
+
+
 /*
  * Initiate some variables
  */
@@ -117,6 +168,36 @@ if (isset($_GET['SAMLRequest'])) {
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
 	}
+
+} elseif(isset($_REQUEST[SimpleSAML_Auth_State::EXCEPTION_PARAM])) {
+	/*
+	 * We have received an exception. It can either be from the authentication module,
+	 * or from the authentication processing filters.
+	 */
+
+	$state = SimpleSAML_Auth_State::loadExceptionState();
+	if (array_key_exists('core:saml20-idp:requestcache', $state)) {
+		/* This was from a processing chain. */
+		$requestcache = $state['core:saml20-idp:requestcache'];
+
+	} elseif (array_key_exists('RequestID', $_REQUEST)) {
+		/* This was from an authentication module. */
+		$authId = $_REQUEST['RequestId'];
+		$requestcache = $session->getAuthnRequest('saml2', $authId);
+		if (!$requestcache) {
+			throw new Exception('Could not retrieve saved request while handling exceptions. RequestId=' . var_export($authId, TRUE));
+		}
+
+	} else {
+		/* We have no idea where this comes from. We have received a bad request. */
+		throw new Exception('Bad request to exception handing code.');
+	}
+
+	assert('array_key_exists(SimpleSAML_Auth_State::EXCEPTION_DATA, $state)');
+	$exception = $state[SimpleSAML_Auth_State::EXCEPTION_DATA];
+
+	handleError($exception);
+
 
 /*
  * If we did not get an incoming Authenticaiton Request, we need a RequestID parameter.
@@ -228,7 +309,7 @@ if($needAuth && !$isPassive) {
 			SimpleSAML_Auth_State::RESTART => $sessionLostURL,
 		);
 
-		SimpleSAML_Auth_Default::initLogin($idpmetadata['auth'], $redirectTo, NULL, $hints);
+		SimpleSAML_Auth_Default::initLogin($idpmetadata['auth'], $redirectTo, $redirectTo, $hints);
 	} else {
 		$authurl = '/' . $config->getBaseURL() . $idpmetadata['auth'];
 
@@ -244,20 +325,7 @@ if($needAuth && !$isPassive) {
 	 * the user didn't have a valid session.
 	 */
 
-	try {
-
-		/* Generate an SAML 2.0 AuthNResponse message
-		 * With statusCode: urn:oasis:names:tc:SAML:2.0:status:NoPassive
-		 */
-		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-		$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], NULL, NULL, 'NoPassive', $config->getValue('session.duration', 3600) );
-
-		/* Sending the AuthNResponse using HTTP-Post SAML 2.0 binding. */
-		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
-		$httppost->sendResponse($authnResponseXML, $idpentityid, $requestcache['Issuer'], $requestcache['RelayState']);
-	} catch(Exception $exception) {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
-	}
+	handleError(new SimpleSAML_Error_NoPassive('Passive authentication requested, but no session available.'));
 
 /**
  * We got an request, and we have a valid session. Then we send an AuthnResponse back to the
@@ -291,6 +359,7 @@ if($needAuth && !$isPassive) {
 				'Destination' => $spmetadata,
 				'Source' => $idpmetadata,
 				'isPassive' => $isPassive,
+				SimpleSAML_Auth_State::EXCEPTION_HANDLER_URL => SimpleSAML_Utilities::selfURLNoQuery(),
 			);
 
 			/*
@@ -305,26 +374,8 @@ if($needAuth && !$isPassive) {
 
 			try {
 				$pc->processState($authProcState);
-			} catch (SimpleSAML_Error_NoPassive $e) {
-				/* Any user interaction is considered harmfull if isPassive is set to TRUE - even
-				 * giving consent.
-				 * If the user is authenticated but a processing filter needs user interaction 
-				 * we expect a SimpleSAML_Error_NoPassive exception to be thrown. We then send 
-				 * back the proper respons.
-				 */
-				try {
-					/* Generate an SAML 2.0 AuthNResponse message
-					 * With statusCode: urn:oasis:names:tc:SAML:2.0:status:NoPassive
-					 */
-					$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-					$authnResponseXML = $ar->generate($idpentityid, $requestcache['Issuer'], $requestcache['RequestID'], NULL, NULL, 'NoPassive', $config->getValue('session.duration', 3600));
-
-					/* Sending the AuthNResponse using HTTP-Post SAML 2.0 binding. */
-					$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
-					$httppost->sendResponse($authnResponseXML, $idpentityid, $requestcache['Issuer'], $requestcache['RelayState']);
-				} catch(Exception $exception) {
-					SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
-				}
+			} catch (Exception $e) {
+				handleException($e);
 			}
 
 			$requestcache['AuthProcState'] = $authProcState;
