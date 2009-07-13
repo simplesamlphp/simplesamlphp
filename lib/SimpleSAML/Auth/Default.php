@@ -36,7 +36,6 @@ class SimpleSAML_Auth_Default {
 			'SimpleSAML_Auth_Default.ReturnURL' => $returnURL,
 			'SimpleSAML_Auth_Default.ErrorURL' => $errorURL,
 			'LoginCompletedHandler' => array(get_class(), 'loginCompleted'),
-			'LoginFailedHandler' => array(get_class(), 'loginFailed'),
 			'LogoutCallback' => array(get_class(), 'logoutCallback'),
 			'LogoutCallbackState' => array(
 				'SimpleSAML_Auth_Default.logoutSource' => $authId,
@@ -92,34 +91,6 @@ class SimpleSAML_Auth_Default {
 
 		/* Redirect... */
 		SimpleSAML_Utilities::redirect($returnURL);
-	}
-
-
-	/**
-	 * Called when a login operation fails.
-	 *
-	 * @param array $state  The state array.
-	 * @param string $statusCode  A status code, in the form of an URI, which indicates why the login failed.
-	 * @param string $statusMessage  A text which describes why the login failed.
-	 */
-	public static function loginFailed($state, $statusCode, $statusMessage) {
-		assert('is_array($state)');
-		assert('array_key_exists("SimpleSAML_Auth_Default.ErrorURL", $state)');
-		assert('is_string($statusCode)');
-		assert('is_string($statusMessage)');
-
-		$url = $state['SimpleSAML_Auth_Default.ErrorURL'];
-		if ($url === NULL) {
-			/* We don't have an error handler. Show an error page. */
-			SimpleSAML_Utilities::fatalError($session->getTrackID(), 'RESPONSESTATUSNOSUCCESS',
-				new Exception('StatusCode = \'' . $statusCode . '\'; StatusMessage = \'' .
-					$statusMessage . '\';'));
-		}
-
-		$info = array('StatusCode' => $statusCode, 'StatusMessage' => $statusMessage);
-
-		/* Redirect... */
-		SimpleSAML_Utilities::redirect($url, $info);
 	}
 
 
