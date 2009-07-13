@@ -15,9 +15,16 @@
 class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 	/**
-	 * The string used to identify our states.
+	 * The identifier for the stage where we have sent a discovery service request.
+	 */
+	const STAGE_DISCO = 'saml2:SP-DiscoSent';
+
+
+	/**
+	 * The identifier for the stage where we have sent a SSO request.
 	 */
 	const STAGE_SENT = 'saml2:SP-SSOSent';
+
 
 	/**
 	 * The string used to identify our logout state.
@@ -82,7 +89,7 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		if (array_key_exists('idp', $config)) {
 			$this->idp = $config['idp'];
 		} else {
-			throw new Exception('TODO: Add support for IdP discovery.');
+			$this->idp = NULL;
 		}
 	}
 
@@ -100,17 +107,65 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		/* We are going to need the authId in order to retrieve this authentication source later. */
 		$state[self::AUTHID] = $this->authId;
 
+		if ($this->idp === NULL) {
+			$this->initDisco($state);
+		}
+
+		$this->initSSO($this->idp, $state);
+	}
+
+
+	/**
+	 * Send authentication request to specified IdP.
+	 *
+	 * @param string $idp  The IdP we should send the request to.
+	 * @param array $state  Our state array.
+	 */
+	public function initDisco($state) {
+		assert('is_array($state)');
+
+		$id = SimpleSAML_Auth_State::saveState($state, self::STAGE_DISCO);
+
+		$config = SimpleSAML_Configuration::getInstance();
+
+		$discoURL = $config->getString('idpdisco.url.saml20', NULL);
+		if ($discoURL === NULL) {
+			/* Fallback to internal discovery service. */
+			$discoURL = SimpleSAML_Module::getModuleURL('saml2/disco.php');
+		}
+
+		$returnTo = SimpleSAML_Module::getModuleURL('saml2/sp/discoresp.php');
+		$returnTo = SimpleSAML_Utilities::addURLparameter($returnTo, array('AuthID' => $id));
+
+		SimpleSAML_Utilities::redirect($discoURL, array(
+			'entityID' => $this->entityId,
+			'return' => $returnTo,
+			'returnIDParam' => 'idpentityid')
+			);
+	}
+
+
+	/**
+	 * Send authentication request to specified IdP.
+	 *
+	 * @param string $idp  The IdP we should send the request to.
+	 * @param array $state  Our state array.
+	 */
+	public function initSSO($idp, $state) {
+		assert('is_string($idp)');
+		assert('is_array($state)');
+
 		$id = SimpleSAML_Auth_State::saveState($state, self::STAGE_SENT);
 
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-		$idpMetadata = $metadata->getMetaData($this->idp, 'saml20-idp-remote');
+		$idpMetadata = $metadata->getMetaData($idp, 'saml20-idp-remote');
 
 		$config = SimpleSAML_Configuration::getInstance();
 		$sr = new SimpleSAML_XML_SAML20_AuthnRequest($config, $metadata);
 		$req = $sr->generate($this->entityId, $idpMetadata['SingleSignOnService']);
 
 		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-		$httpredirect->sendMessage($req, $this->entityId, $this->idp, $id);
+		$httpredirect->sendMessage($req, $this->entityId, $idp, $id);
 		exit(0);
 	}
 
