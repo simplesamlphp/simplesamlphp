@@ -2,13 +2,26 @@
 
 /**
  * Baseclass for simpleSAML Exceptions
- * 
+ *
+ * This class tries to make sure that every exception is serializable.
+ *
  * @author Thomas Graff <thomas.graff@uninett.no>
  * @package simpleSAMLphp_base
  * @version $Id$
  */
 class SimpleSAML_Error_Exception extends Exception {
-	
+
+	/**
+	 * The backtrace for this exception.
+	 *
+	 * We need to save the backtrace, since we cannot rely on
+	 * serializing the Exception::trace-variable.
+	 *
+	 * @var string
+	 */
+	private $backtrace;
+
+
 	/**
 	 * Constructor for this error.
 	 *
@@ -17,32 +30,61 @@ class SimpleSAML_Error_Exception extends Exception {
 	 */
 	public function __construct($message, $code = 0) {
 		assert('is_string($message) || is_int($code)');
-		
+
 		parent::__construct($message, $code);
+
+		$this->backtrace = SimpleSAML_Utilities::buildBacktrace($this);
 	}
-	
-	
+
+
 	/**
-	 * Set the HTTP return code for this error.
+	 * Retrieve the backtrace.
 	 *
-	 * This should be overridden by subclasses who want a different return code than 500 Internal Server Error.
+	 * @return array  An array where each function call is a single item.
 	 */
-	protected function setHTTPCode() {
-		header('HTTP/1.0 500 Internal Server Error');
+	public function getBacktrace() {
+		return $this->backtrace;
 	}
-	
-	
+
+
 	/**
-	 * Display this error.
+	 * Replace the backtrace.
 	 *
-	 * This method displays a standard simpleSAMLphp error page and exits.
+	 * This function is meant for subclasses which needs to replace the backtrace
+	 * of this exception, such as the SimpleSAML_Error_Unserializable class.
+	 *
+	 * @param array $backtrace  The new backtrace.
 	 */
-	public function show() {
-		$this->setHTTPCode();
-		$session = SimpleSAML_Session::getInstance();
-		$e = $this;
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), $this->errorCode, $e);
+	protected function setBacktrace($backtrace) {
+		assert('is_array($backtrace)');
+
+		$this->backtrace = $backtrace;
 	}
+
+
+	/**
+	 * Function for serialization.
+	 *
+	 * This function builds a list of all variables which should be serialized.
+	 * It will serialize all variables except the Exception::trace variable.
+	 *
+	 * @return array  Array with the variables which should be serialized.
+	 */
+	public function __sleep() {
+
+		$ret = array();
+
+		$ret = array_keys((array)$this);
+
+		foreach ($ret as $i => $e) {
+			if ($e === "\0Exception\0trace") {
+				unset($ret[$i]);
+			}
+		}
+
+		return $ret;
+	}
+
 }
 
 ?>
