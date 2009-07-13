@@ -34,8 +34,7 @@ $result = $authnResponse->process();
 /* Check status code. */
 if($result === FALSE) {
 	/* Not successful. */
-	$statusCode = $authnResponse->findstatus();
-	throw new Exception('Error authenticating: ' . $statusCode);
+	SimpleSAML_Auth_State::throwException($state, $authnResponse->getStatus()->toException());
 }
 
 /* The response should include the entity id of the IdP. */
