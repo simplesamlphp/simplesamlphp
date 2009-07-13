@@ -53,6 +53,10 @@ class SimpleSAML_Auth_Default {
 			$state[SimpleSAML_Auth_State::RESTART] = $hints[SimpleSAML_Auth_State::RESTART];
 		}
 
+		if ($errorURL !== NULL) {
+			$state[SimpleSAML_Auth_State::EXCEPTION_HANDLER_URL] = $errorURL;
+		}
+
 		$as = SimpleSAML_Auth_Source::getById($authId);
 		if ($as === NULL) {
 			throw new Exception('Invalid authentication source: ' . $authId);
