@@ -35,17 +35,6 @@ class SimpleSAML_Error_Assertion extends SimpleSAML_Error_Error {
 
 
 	/**
-	 * Retrieve backtrace from where the assert-function was called.
-	 *
-	 * @return array  Array with a backtrace. Each element is a string which identifies a position
-	 *                in the source.
-	 */
-	public function getAssertionBacktrace() {
-		return SimpleSAML_Utilities::buildBacktrace($this, 2);
-	}
-
-
-	/**
 	 * Retrieve the assertion which failed.
 	 *
 	 * @return string|NULL  The assertion which failed, or NULL if the assert-function was called with an expression.
