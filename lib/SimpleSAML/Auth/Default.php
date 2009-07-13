@@ -62,7 +62,14 @@ class SimpleSAML_Auth_Default {
 			throw new Exception('Invalid authentication source: ' . $authId);
 		}
 
-		$as->authenticate($state);
+		try {
+			$as->authenticate($state);
+		} catch (SimpleSAML_Error_Exception $e) {
+			SimpleSAML_Auth_State::throwException($state, $e);
+		} catch (Exception $e) {
+			$e = new SimpleSAML_Error_UnserializableException($e);
+			SimpleSAML_Auth_State::throwException($state, $e);
+		}
 		self::loginCompleted($state);
 	}
 
