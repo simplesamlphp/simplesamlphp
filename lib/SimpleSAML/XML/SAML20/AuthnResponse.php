@@ -132,6 +132,38 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 
 
 	/**
+	 * Retrieve the response status as an error object.
+	 *
+	 * @return sspmod_saml2_Error  The status code of the response.
+	 */
+	public function getStatus() {
+
+		$status = $this->doXPathQuery('/samlp:Response/samlp:Status')->item(0);
+		if ($status === NULL) {
+			throw new SimpleSAML_Error_Exception('Unable to determine the status of this SAML2 AuthnResponse message.: ' . $this->getXML());
+		}
+
+		$statusCode = $this->doXPathQuery('samlp:StatusCode', $status)->item(0);
+		if ($statusCode === NULL) {
+			throw new SimpleSAML_Error_Exception('Missing StatusCode element in Status element.');
+		}
+
+		$subStatus = $this->doXPathQuery('samlp:StatusCode', $statusCode)->item(0);
+		$message = $this->doXPathQuery('samlp:StatusMessage', $status)->item(0);
+
+		$statusCode = $statusCode->getAttribute('Value');
+		if ($subStatus !== NULL) {
+			$subStatus = $subStatus->getAttribute('Value');
+		}
+		if ($message !== NULL) {
+			$message = SimpleSAML_Utilities::getDOMText($message);
+		}
+
+		return new sspmod_saml2_Error($statusCode, $subStatus, $message);
+	}
+
+
+	/**
 	 * This function finds the status of this response.
 	 */
 	public function findstatus() {
@@ -757,7 +789,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
         ' . $attributestatement. '
     </saml:Assertion>';
 		}
-		$statusCode = self::generateStatusCode($status);
+		$statusElement = self::generateStatus($status);
 
 		/**
 		 * Generating the response.
@@ -772,8 +804,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			IssueInstant="' . $issueInstant . '"
 			Destination="' . htmlspecialchars($destination) . '">
 			<saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">' . htmlspecialchars($issuer) . '</saml:Issuer>
-			<samlp:Status>' . $statusCode .	'</samlp:Status>'
-			. $assertion . 
+			' . $statusElement . $assertion .
 			'</samlp:Response>';
 
 		return $authnResponse;
@@ -929,18 +960,20 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	 * @param sspmod_saml2_Error $status  The status code.
 	 * @return string  The StatusCode element.
 	 */
-	private static function generateStatusCode(sspmod_saml2_Error $status) {
+	private static function generateStatus(sspmod_saml2_Error $status) {
 
-		$statusCode = '<samlp:StatusCode Value="' . htmlspecialchars($status->getStatus()) . '">';
+		$statusElement = '<samlp:Status>';
+		$statusElement .= '<samlp:StatusCode Value="' . htmlspecialchars($status->getStatus()) . '">';
 		if ($status->getSubStatus() !== NULL) {
-			$statusCode .= '<samlp:StatusCode Value="' . htmlspecialchars($status->getSubstatus()) . '"/>';
+			$statusElement .= '<samlp:StatusCode Value="' . htmlspecialchars($status->getSubstatus()) . '"/>';
 		}
+		$statusElement .= '</samlp:StatusCode>';
 		if ($status->getStatusMessage() !== NULL) {
-			$statusCode .= '<samlp:StatusMessage>' . htmlspecialchars($status->getStatusMessage()) . '</samlp:StatusMessage>';
+			$statusElement .= '<samlp:StatusMessage>' . htmlspecialchars($status->getStatusMessage()) . '</samlp:StatusMessage>';
 		}
-		$statusCode .= '</samlp:StatusCode>';
+		$statusElement .= '</samlp:Status>';
 
-		return $statusCode;
+		return $statusElement;
 	}
 
 }
