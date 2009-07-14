@@ -32,6 +32,13 @@ set_exception_handler('SimpleSAML_exception_handler');
 /* Log full backtrace on errors and warnings. */
 function SimpleSAML_error_handler($errno, $errstr, $errfile = NULL, $errline = 0, $errcontext = NULL) {
 
+	static $limit = 5;
+	$limit -= 1;
+	if ($limit < 0) {
+		/* We have reached the limit in the number of backtraces we will log. */
+		return FALSE;
+	}
+
 	/* Show an error with a full backtrace. */
 	$e = new SimpleSAML_Error_Exception('Error ' . $errno . ' - ' . $errstr);
 	$e->logError();
