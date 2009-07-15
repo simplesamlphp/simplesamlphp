@@ -210,7 +210,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		if ($attr = $nodelist->item(0)) {
 			return $attr->value;
 		} else {
-			throw Exception('Could not find Issuer field in Authentication response');
+			throw new Exception('Could not find Issuer field in Authentication response');
 		}
 
 	}
