@@ -282,12 +282,16 @@ class sspmod_ldapstatus_Auth_Backend_Test_StandardLDAPTest extends sspmod_feide_
 		
 		if (!empty($output)) {
 		
-			$cmd2 = 'echo "" | openssl s_client -connect ' . $host . ':' . $port . ' 2> /dev/null | openssl x509 -issuer -noout';
+			$cmd2 = 'echo "" | openssl s_client -connect ' . $host . ':' . $port . ' 2> /dev/null | openssl x509 -issuer -subject -noout';
 			$output2 = shell_exec($cmd2);
 
 			if (preg_match('/issuer=(.{0,40})/', $output2, $matches) ) {
-				$result['issuer'] = $matches[1];
+				$result['issuer'] = trim($matches[1]);
 				$result[1] .= ' ' . $output2;
+				
+				if (preg_match('/subject=(.{0,40})/', $output2, $matches) ) {
+					$result['subject'] = trim($matches[1]);
+				}
 			} else {
 				$result[0] = FALSE;
 				$result[1] = 'Did not find Issuer in response [' . $host . ':' . $port . ']';

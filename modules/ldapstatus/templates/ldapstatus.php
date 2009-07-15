@@ -33,7 +33,7 @@ $this->includeAtTemplateBase('includes/header.php');
 		<th>Name of institusion</th>
 		<th><a href="?sort=conf">Conf</a></th>
 		<th><a href="?sort=ping">Ping</a></th>
-		<th colspan="3"><a href="?sort=cert">Cert</a></th>
+		<th colspan="4"><a href="?sort=cert">Cert</a></th>
 		<th><a href="?sort=adminBind">Admin</a></th>
 		<th><a href="?sort=ldapSearchBogus">S=bogus</a></th>
 		<th><a href="?sort=configTest">test</a></th>
@@ -107,6 +107,23 @@ foreach($this->data['sortedOrgIndex'] as $orgkey) {
 			(isset($res['cert']['expireText']) ? $res['cert']['expireText'] : 
 				'<span style="color: #b4b4b4; font-size: x-small">NA</span>'  ). 
 			'</td>');
+			
+		echo('<td>');
+		if (isset($res['cert']['issuer']) && isset($res['cert']['subject'])) {
+			if ($res['cert']['subject'] === $res['cert']['issuer']) {
+				echo ('<a title="' . htmlspecialchars($res['cert']['issuer']) . '">S</a>');
+			} elseif (in_array($res['cert']['issuer'], array(
+					'/C=BE/O=Cybertrust/OU=Educational CA/CN',
+					's',
+				))) {
+				echo ('<a title="' . htmlspecialchars($res['cert']['issuer']) . '">C</a>');
+			} else {
+				echo ('<a title="' . htmlspecialchars($res['cert']['issuer']) . '">U</a>');
+			}
+		} else {
+			echo('<span style="color: #b4b4b4; font-size: x-small">NA</span>');	
+		}
+		echo('</td>');
 		
 		showRes('adminBind',  $res, $this);
 		showRes('ldapSearchBogus',  $res, $this);
