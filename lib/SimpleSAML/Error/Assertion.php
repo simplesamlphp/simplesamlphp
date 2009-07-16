@@ -7,7 +7,7 @@
  * @package simpleSAMLphp
  * @version $Id$
  */
-class SimpleSAML_Error_Assertion extends SimpleSAML_Error_Error {
+class SimpleSAML_Error_Assertion extends SimpleSAML_Error_Exception {
 
 
 	/**
@@ -28,7 +28,8 @@ class SimpleSAML_Error_Assertion extends SimpleSAML_Error_Error {
 	public function __construct($assertion = NULL) {
 		assert('is_null($assertion) || is_string($assertion)');
 
-		parent::__construct(array('ASSERTFAIL', '%ASSERTION%' => var_export($assertion, TRUE)));
+		$msg = 'Assertion failed: ' . var_export($assertion, TRUE);
+		parent::__construct($msg);
 
 		$this->assertion = $assertion;
 	}
