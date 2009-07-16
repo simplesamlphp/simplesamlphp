@@ -139,18 +139,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 			/* Attempt to log in. */
 			$attributes = $source->login($username, $password);
 		} catch (SimpleSAML_Error_Error $e) {
-			/* An error occured during login. Check if it is because of the wrong
-			 * username/password - if it is, we pass that error up to the login form,
-			 * if not, we let the generic error handler deal with it.
-			 */
-			if ($e->getErrorCode() === 'WRONGUSERPASS') {
-				return 'WRONGUSERPASS';
-			}
-
-			/* Some other error occured. Rethrow exception and let the generic error
-			 * handler deal with it.
-			 */
-			throw $e;
+			return $e->getErrorCode();
 		}
 
 		$state['Attributes'] = $attributes;
