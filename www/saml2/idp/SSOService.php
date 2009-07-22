@@ -375,7 +375,7 @@ if($needAuth && !$isPassive) {
 			try {
 				$pc->processState($authProcState);
 			} catch (Exception $e) {
-				handleException($e);
+				handleError($e);
 			}
 
 			$requestcache['AuthProcState'] = $authProcState;
