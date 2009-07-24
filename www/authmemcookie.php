@@ -103,7 +103,8 @@ try {
 
 
 	$memcache = $amc->getMemcache();
-	$memcache->set($sessionID, $data);
+	$expirationTime = $session->remainingTime();
+	$memcache->set($sessionID, $data, 0, $expirationTime);
 
 	/* Register logout handler. */
 	$session->registerLogoutHandler('SimpleSAML_AuthMemCookie', 'logoutHandler');
@@ -113,5 +114,3 @@ try {
 } catch(Exception $e) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CONFIG', $e);
 }
-
-?>
