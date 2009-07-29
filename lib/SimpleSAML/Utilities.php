@@ -15,7 +15,15 @@ class SimpleSAML_Utilities {
 	 */
 	public static function getSelfHost() {
 	
-		$currenthost = $_SERVER['HTTP_HOST'];
+		if (array_key_exists('HTTP_HOST', $_SERVER)) {
+			$currenthost = $_SERVER['HTTP_HOST'];
+		} elseif (array_key_exists('SERVER_NAME', $_SERVER)) {
+			$currenthost = $_SERVER['SERVER_NAME'];
+		} else {
+			/* Almost certainly not what you want, but ... */
+			$currenthost = 'localhost';
+		}
+
 		if(strstr($currenthost, ":")) {
 				$currenthostdecomposed = explode(":", $currenthost);
 				$currenthost = $currenthostdecomposed[0];
