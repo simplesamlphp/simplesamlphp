@@ -9,6 +9,17 @@
 class SAML2_Const {
 
 	/**
+	 * Password authentication context.
+	 */
+	const AC_PASSWORD = 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password';
+
+	/**
+	 * Unspecified authentication context.
+	 */
+	const AC_UNSPECIFIED = 'urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified';
+
+
+	/**
 	 * The URN for the HTTP-POST binding.
 	 */
 	const BINDING_HTTP_POST = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST';
