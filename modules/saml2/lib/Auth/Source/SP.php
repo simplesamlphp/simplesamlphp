@@ -244,16 +244,20 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$nameId = $state[self::LOGOUT_NAMEID];
 		$sessionIndex = $state[self::LOGOUT_SESSIONINDEX];
 
-		$config = SimpleSAML_Configuration::getInstance();
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$spMetadata = $metadata->getMetaDataConfig($this->getEntityId(), 'saml20-sp-hosted');
+		$idpMetadata = $metadata->getMetaDataConfig($idp, 'saml20-idp-remote');
 
-		$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
-		$req = $lr->generate($this->entityId, $idp, $nameId, $sessionIndex, 'SP');
+		$lr = sspmod_saml2_Message::buildLogoutRequest($spMetadata, $idpMetadata);
+		$lr->setNameId($nameId);
+		$lr->setSessionIndex($sessionIndex);
+		$lr->setRelayState($id);
 
-		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-		$httpredirect->sendMessage($req, $this->entityId, $idp, $id, 'SingleLogoutService', 'SAMLRequest', 'SP');
+		$b = new SAML2_HTTPRedirect();
+		$b->setDestination(sspmod_SAML2_Message::getDebugDestination());
+		$b->send($lr);
 
-		exit(0);
+		assert('FALSE');
 	}
 
 

@@ -100,6 +100,25 @@ class sspmod_saml2_Message {
 		return $ar;
 	}
 
+
+	/**
+	 * Build a logout request based on information in the metadata.
+	 *
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.
+	 * @param SimpleSAML_Configuration $dstpMetadata  The metadata of the recipient.
+	 */
+	public static function buildLogoutRequest(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata) {
+
+		$lr = new SAML2_LogoutRequest();
+
+		$lr->setIssuer($srcMetadata->getString('entityid'));
+		$lr->setDestination($dstMetadata->getString('SingleLogoutService'));
+
+		self::addSign($srcMetadata, $dstMetadata, $lr);
+
+		return $lr;
+	}
+
 }
 
 ?>

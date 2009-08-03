@@ -46,10 +46,18 @@ if (!$source->isIdPValid($idp)) {
 		'. The IdP was ' . var_export($idp, TRUE));
 }
 
+/*
+ * Retrieve the name identifier. We also convert it to the format used by the
+ * logout request handler.
+ */
+$nameId = $authnResponse->getNameID();
+$nameId['Value'] = $nameId['value'];
+unset($nameId['value']);
+
 /* We need to save the NameID and SessionIndex for logout. */
 $logoutState = array(
 	sspmod_saml2_Auth_Source_SP::LOGOUT_IDP => $idp,
-	sspmod_saml2_Auth_Source_SP::LOGOUT_NAMEID => $authnResponse->getNameID(),
+	sspmod_saml2_Auth_Source_SP::LOGOUT_NAMEID => $nameId,
 	sspmod_saml2_Auth_Source_SP::LOGOUT_SESSIONINDEX => $authnResponse->getSessionIndex(),
 	);
 $state['LogoutState'] = $logoutState;
