@@ -17,57 +17,54 @@ if ($source === NULL) {
 	throw new Exception('Could not find authentication source with id ' . $sourceId);
 }
 
+$binding = SAML2_Binding::getCurrentBinding();
+$message = $binding->receive();
 
-$config = SimpleSAML_Configuration::getInstance();
+$idpEntityId = $message->getIssuer();
+if ($idpEntityId === NULL) {
+	/* Without an issuer we have no way to respond to the message. */
+	throw new SimpleSAML_Error_BadRequest('Received message on logout endpoint without issuer.');
+}
+
+$spEntityId = $source->getEntityId();
+
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-remote');
+$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-hosted');
 
-if (array_key_exists('SAMLResponse', $_GET)) {
+sspmod_saml2_Message::validateMessage($idpMetadata, $spMetadata, $message);
 
-	$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-	$response = $binding->decodeLogoutResponse($_GET);
+if ($message instanceof SAML2_LogoutResponse) {
 
-	if ($binding->validateQuery($response->getIssuer(), 'SP', 'SAMLResponse')) {
-		SimpleSAML_Logger::debug('module/saml2/sp/logout: Valid signature found on response');
-	}
-
-	if (!array_key_exists('RelayState', $_REQUEST)) {
+	$relayState = $message->getRelayState();
+	if ($relayState === NULL) {
+		/* Somehow, our RelayState has been lost. */
 		throw new SimpleSAML_Error_BadRequest('Missing RelayState in logout response.');
 	}
 
-	$stateId = $_REQUEST['RelayState'];
-	$state = SimpleSAML_Auth_State::loadState($_REQUEST['RelayState'], sspmod_saml2_Auth_Source_SP::STAGE_LOGOUTSENT);
-
-
-	SimpleSAML_Auth_Source::completeLogout($state);
-
-} elseif (array_key_exists('SAMLRequest', $_GET)) {
-
-	$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-
-	$request = $binding->decodeLogoutRequest($_GET);
-
-	$requestId = $request->getRequestID();
-	$idpEntityId = $request->getIssuer();
-	$relayState = $request->getRelayState();
-
-	if ($binding->validateQuery($idpEntityId, 'SP')) {
-		SimpleSAML_Logger::debug('module/saml2/sp/logout: Valid signature found on request');
+	if (!$message->isSuccess()) {
+		SimpleSAML_Logger::warning('Unsuccessful logout. Status was: ' . sspmod_saml2_Message::getResponseError($message));
 	}
 
+	$state = SimpleSAML_Auth_State::loadState($relayState, sspmod_saml2_Auth_Source_SP::STAGE_LOGOUTSENT);
+	SimpleSAML_Auth_Source::completeLogout($state);
 
-	$spEntityId = $source->getEntityId();
+} elseif ($message instanceof SAML2_LogoutRequest) {
 
-	SimpleSAML_Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId . ' with request id ' . $requestId);
+	SimpleSAML_Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
 	SimpleSAML_Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
 
 	/* Notify source of logout, so that it may call logout callbacks. */
 	$source->onLogout($idpEntityId);
 
 	/* Create an send response. */
-	$lr = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
-	$responseXML = $lr->generate($spEntityId, $idpEntityId, $requestId, 'SP');
-	$binding->sendMessage($responseXML, $spEntityId, $idpEntityId, $relayState, 'SingleLogoutServiceResponse', 'SAMLResponse');
+	$lr = sspmod_saml2_Message::buildLogoutResponse($spMetadata, $idpMetadata);
+	$lr->setRelayState($message->getRelayState());
+	$lr->setInResponseTo($message->getId());
 
+	$binding = new SAML2_HTTPRedirect();
+	$binding->setDestination(sspmod_SAML2_Message::getDebugDestination());
+	$binding->send($lr);
 } else {
-	throw new SimpleSAML_Error_BadRequest('Missing request or response to logout endpoint');
+	throw new SimpleSAML_Error_BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
 }

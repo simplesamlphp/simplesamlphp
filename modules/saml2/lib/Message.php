@@ -182,6 +182,34 @@ class sspmod_saml2_Message {
 
 
 	/**
+	 * Check signature on a SAML2 message if enabled.
+	 *
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.
+	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient.
+	 * @param SAML2_Message $message  The message we should check the signature on.
+	 */
+	public static function validateMessage(
+		SimpleSAML_Configuration $srcMetadata,
+		SimpleSAML_Configuration $dstMetadata,
+		SAML2_Message $message
+		) {
+
+		$enabled = $srcMetadata->getBoolean('redirect.validate', NULL);
+		if ($enabled === NULL) {
+			$enabled = $dstMetadata->getBoolean('redirect.validate', FALSE);
+		}
+
+		if (!$enabled) {
+			return;
+		}
+
+		if (!self::checkSign($srcMetadata, $message)) {
+			throw new SimpleSAML_Error_Exception('Validation of received messages enabled, but no signature found on message.');
+		}
+	}
+
+
+	/**
 	 * Decrypt an assertion.
 	 *
 	 * This function takes in a SAML2_Assertion and decrypts it if it is encrypted.
@@ -286,6 +314,30 @@ class sspmod_saml2_Message {
 
 		$lr->setIssuer($srcMetadata->getString('entityid'));
 		$lr->setDestination($dstMetadata->getString('SingleLogoutService'));
+
+		self::addSign($srcMetadata, $dstMetadata, $lr);
+
+		return $lr;
+	}
+
+
+	/**
+	 * Build a logout response based on information in the metadata.
+	 *
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.
+	 * @param SimpleSAML_Configuration $dstpMetadata  The metadata of the recipient.
+	 */
+	public static function buildLogoutResponse(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata) {
+
+		$lr = new SAML2_LogoutResponse();
+
+		$lr->setIssuer($srcMetadata->getString('entityid'));
+
+		$dst = $dstMetadata->getString('SingleLogoutServiceResponse', NULL);
+		if ($dst === NULL) {
+			$dst = $dstMetadata->getString('SingleLogoutService');
+		}
+		$lr->setDestination($dst);
 
 		self::addSign($srcMetadata, $dstMetadata, $lr);
 
