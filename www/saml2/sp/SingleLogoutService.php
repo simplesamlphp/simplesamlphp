@@ -17,96 +17,68 @@ if (!$config->getValue('enable.saml20-sp', false))
 
 
 // Destroy local session if exists.
-if (isset($session) ) {
-	$session->doLogout();
-	$session->clean();
+$session->doLogout();
+$session->clean();
+
+$binding = SAML2_Binding::getCurrentBinding();
+$message = $binding->receive();
+
+$idpEntityId = $message->getIssuer();
+if ($idpEntityId === NULL) {
+	/* Without an issuer we have no way to respond to the message. */
+	throw new SimpleSAML_Error_BadRequest('Received message on logout endpoint without issuer.');
 }
 
-# sleep(max(0, rand(-3,5))*5);
+$spEntityId = $metadata->getMetaDataCurrentEntityId('saml20-sp-hosted');
 
+$idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-remote');
+$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-hosted');
 
-if (isset($_GET['SAMLRequest'])) {
+sspmod_saml2_Message::validateMessage($idpMetadata, $spMetadata, $message);
 
-	// Create a HTTPRedirect binding
-	$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
+if ($message instanceof SAML2_LogoutRequest) {
+
 	try {
-		// Decode the LogoutRequest using the HTTP Redirect binding.
-		$logoutrequest = $binding->decodeLogoutRequest($_GET);
-
-		if ($binding->validateQuery($logoutrequest->getIssuer(),'SP')) {
-			SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: Valid signature found for '.$requestid);
-		}
-
 		// Extract some parameters from the logout request
-		$requestid = $logoutrequest->getRequestID();
-		$requester = $logoutrequest->getIssuer();
-		$relayState = $logoutrequest->getRelayState();
+		$requestid = $message->getId();
 
-		//$responder = $config->getValue('saml2-hosted-sp');
-		$responder = $metadata->getMetaDataCurrentEntityID();
-	
-		SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: IdP (' . $requester . ') is sending logout request to me SP (' . $responder . ') requestid '.$requestid);
-		SimpleSAML_Logger::stats('saml20-idp-SLO idpinit ' . $responder . ' ' . $requester);
-	
-		// Create a logout response
-		$lr = new SimpleSAML_XML_SAML20_LogoutResponse($config, $metadata);
-		$logoutResponseXML = $lr->generate($responder, $requester, $requestid, 'SP');
-	
-	
-		// Create a HTTP Redirect binding.
-		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-	
-	
-		SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: SP me (' . $responder . ') is sending logout response to IdP (' . $requester . ')');
-	
-		// Send the Logout response using HTTP POST binding.
-		$httpredirect->sendMessage($logoutResponseXML, $responder, $requester, $logoutrequest->getRelayState(), 'SingleLogoutServiceResponse', 'SAMLResponse');
-	
-	} catch(Exception $exception) {
+		SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: IdP (' . $idpEntityId .
+			') is sending logout request to me SP (' . $spEntityId . ') requestid '.$requestid);
+		SimpleSAML_Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
 
+		/* Create response. */
+		$lr = sspmod_saml2_Message::buildLogoutResponse($spMetadata, $idpMetadata);
+		$lr->setRelayState($message->getRelayState());
+		$lr->setInResponseTo($message->getId());
+
+		SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: SP me (' . $spEntityId . ') is sending logout response to IdP (' . $idpEntityId . ')');
+
+		/* Send response. */
+		$binding = new SAML2_HTTPRedirect();
+		$binding->setDestination(sspmod_SAML2_Message::getDebugDestination());
+		$binding->send($lr);
+	} catch (Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTREQUEST', $exception);
-
 	}
 
-} elseif(isset($_GET['SAMLResponse'])) {
+} elseif ($message instanceof SAML2_LogoutResponse) {
 
-	// Create a HTTPRedirect binding
-	$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-	
-	try {
-		// Decode the LogoutResponse using the HTTP Redirect binding.
-		$logoutresponse = $binding->decodeLogoutResponse($_GET);
+	SimpleSAML_Logger::stats('saml20-sp-SLO spinit ' . $spEntityId . ' ' . $idpEntityId);
 
-		if ($binding->validateQuery($logoutresponse->getIssuer(),'SP','SAMLResponse')) {
-			SimpleSAML_Logger::info('SAML2.0  - SP.SingleLogoutService: Valid signature found');
-		}
-
-	} catch(Exception $exception) {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTRESPONSE', $exception);
+	$id = $message->getRelayState();
+	if (empty($id)) {
+		/* For backwardscompatibility. */
+		$id = $message->getInResponseTo();
 	}
 
-
-	// Extract some parameters from the logout request
-	#$requestid = $logoutrequest->getRequestID();
-	$responder = $logoutresponse->getIssuer();
-	#$relayState = $logoutrequest->getRelayState();
-
-	//$responder = $config->getValue('saml2-hosted-sp');
-	$requester = $metadata->getMetaDataCurrentEntityID('saml20-sp-hosted');
-
-	SimpleSAML_Logger::stats('saml20-sp-SLO spinit ' . $requester . ' ' . $responder);
-
-	$id = $logoutresponse->getInResponseTo();
 	$returnTo = $session->getData('spLogoutReturnTo', $id);
-
-	if(empty($returnTo)) {
+	if (empty($returnTo)) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTINFOLOST');
 	}
 
 	SimpleSAML_Utilities::redirect($returnTo);
 
 } else {
-	
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS');
 }
 
