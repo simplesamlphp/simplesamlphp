@@ -104,15 +104,28 @@ $isPassive = FALSE;
  * from the request into the session object to be used later.
  *
  */
-if (isset($_GET['SAMLRequest'])) {
+if (isset($_REQUEST['SAMLRequest'])) {
 
 	try {
-		$binding = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-		$authnrequest = $binding->decodeRequest($_GET);
+		$binding = SAML2_Binding::getCurrentBinding();
+		$authnrequest = $binding->receive();
 
-		$requestid = $authnrequest->getRequestID();
+		if (!($authnrequest instanceof SAML2_AuthnRequest)) {
+			throw new SimpleSAML_Error_BadRequest('Message received on authentication request endpoint wasn\'t an authentication request.');
+		}
+
+		$requestid = $authnrequest->getId();
 		$issuer = $authnrequest->getIssuer();
-		
+		if ($issuer === NULL) {
+			throw new SimpleSAML_Error_BadRequest('Received message on authentication request endpoint without issuer.');
+		}
+
+
+		sspmod_saml2_Message::validateMessage(
+			$metadata->getMetaDataConfig($issuer, 'saml20-sp-remote'),
+			$metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted'),
+			$authnrequest);
+
 		/*
 		 * Create an assoc array of the request to store in the session cache.
 		 */
@@ -165,9 +178,6 @@ if (isset($_GET['SAMLRequest'])) {
 			$requestcache['NeedAuthentication'] = TRUE;
 		}
 
-		if ($binding->validateQuery($issuer, 'IdP')) {
-			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Valid signature found for ' . $requestid);
-		}
 		
 		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '.$issuer.' id '.$requestid);
 	
