@@ -346,6 +346,25 @@ class sspmod_saml2_Message {
 
 
 	/**
+	 * Build a authentication response based on information in the metadata.
+	 *
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
+	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
+	 */
+	public static function buildResponse(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata) {
+
+		$r = new SAML2_Response();
+
+		$r->setIssuer($srcMetadata->getString('entityid'));
+		$r->setDestination($dstMetadata->getString('AssertionConsumerService'));
+
+		self::addSign($srcMetadata, $dstMetadata, $r);
+
+		return $r;
+	}
+
+
+	/**
 	 * Process a response message.
 	 *
 	 * If the response is an error response, we will throw a sspmod_saml2_Error

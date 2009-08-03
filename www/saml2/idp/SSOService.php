@@ -67,17 +67,23 @@ function handleError(Exception $exception) {
 	$error->logWarning();
 
 	try {
+		$idpMetadata = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
+		$spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');
 
-		/* Generate an SAML 2.0 AuthNResponse message
-		 * With statusCode: urn:oasis:names:tc:SAML:2.0:status:NoPassive
-		 */
-		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-		$authnResponseXML = $ar->generate($idpentityid, $issuer, $requestID, NULL, NULL, $error, $config->getValue('session.duration', 3600) );
+		$ar = sspmod_saml2_Message::buildResponse($idpMetadata, $spMetadata);
+		$ar->setInResponseTo($requestID);
+		$ar->setRelayState($relayState);
 
-		/* Sending the AuthNResponse using HTTP-Post SAML 2.0 binding. */
-		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
-		$httppost->sendResponse($authnResponseXML, $idpentityid, $issuer, $relayState);
-		exit();
+		$ar->setStatus(array(
+			'Code' => $error->getStatus(),
+			'SubCode' => $error->getSubStatus(),
+			'Message' => $error->getStatusMessage(),
+			));
+
+		$binding = new SAML2_HTTPPost();
+		$binding->setDestination(sspmod_SAML2_Message::getDebugDestination());
+		$binding->send($ar);
+
 	} catch(Exception $e) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $e);
 	}
