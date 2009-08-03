@@ -9,6 +9,71 @@
 class SAML2_Const {
 
 	/**
+	 * The URN for the HTTP-POST binding.
+	 */
+	const BINDING_HTTP_POST = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST';
+
+	/**
+	 * The URN for the HTTP-Redirect binding.
+	 */
+	const BINDING_HTTP_REDIRECT = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect';
+
+
+	/**
+	 * Bearer subject confirmation method.
+	 */
+	const CM_BEARER = 'urn:oasis:names:tc:SAML:2.0:cm:bearer';
+
+
+	/**
+	 * The URN for the unspecified attribute NameFormat.
+	 */
+	const NAMEFORMAT_UNSPECIFIED = 'urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified';
+
+
+	/**
+	 * Unspecified NameID format.
+	 */
+	const NAMEID_UNSPECIFIED = 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified';
+
+	/**
+	 * Persistent NameID format.
+	 */
+	const NAMEID_PERSISTENT = 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent';
+
+	/**
+	 * Transient NameID format.
+	 */
+	const NAMEID_TRANSIENT = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
+
+	/**
+	 * Encrypted NameID format.
+	 */
+	const NAMEID_ENCRYPTED = 'urn:oasis:names:tc:SAML:2.0:nameid-format:encrypted';
+
+
+	/**
+	 * The namespace for the SAML 2 protocol.
+	 */
+	const NS_SAMLP = 'urn:oasis:names:tc:SAML:2.0:protocol';
+
+	/**
+	 * The namespace for the SAML 2 assertions.
+	 */
+	const NS_SAML = 'urn:oasis:names:tc:SAML:2.0:assertion';
+
+	/**
+	 * The namespace fox XML schema.
+	 */
+	const NS_XS = 'http://www.w3.org/2001/XMLSchema';
+
+	/**
+	 * The namespace for XML schema instance.
+	 */
+	const NS_XSI = 'http://www.w3.org/2001/XMLSchema-instance';
+
+
+	/**
 	 * Top-level status code indicating successful processing of the request.
 	 */
 	const STATUS_SUCCESS = 'urn:oasis:names:tc:SAML:2.0:status:Success';
