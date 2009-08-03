@@ -308,6 +308,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 				
 				$metadata['metadata-index'] = $index;
 				$metadata['metadata-set'] = $set;
+				assert('array_key_exists("entityid", $metadata)');
 				return $metadata;
 			}
 		}
