@@ -316,6 +316,24 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 		throw new Exception('Unable to locate metadata for \'' . $index . '\' in set \'' . $set . '\'.');
 	}
 
+
+	/**
+	 * Retrieve the metadata as a configuration object.
+	 *
+	 * This function will throw an exception if it is unable to locate the metadata.
+	 *
+	 * @param string $entityId  The entity ID we are looking up.
+	 * @param string $set  The metadata set we are searching.
+	 * @return SimpleSAML_Configuration  The configuration object representing the metadata.
+	 */
+	public function getMetaDataConfig($entityId, $set) {
+		assert('is_string($entityId)');
+		assert('is_string($set)');
+
+		$metadata = $this->getMetaData($entityId, $set);
+		return SimpleSAML_Configuration::loadFromArray($metadata, $set . '/' . var_export($entityId, TRUE));
+	}
+
 }
 
 ?>
