@@ -88,27 +88,31 @@ if ($idpentityid === NULL) {
  */
 try {
 
-	$sr = new SimpleSAML_XML_SAML20_AuthnRequest($config, $metadata);
+	$spMetadata = $metadata->getMetaDataConfig($spentityid, 'saml20-sp-hosted');
+	$idpMetadata = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-remote');
 
-	if (isset($_GET['IsPassive'])) { 
-		$sr->setIsPassive($_GET['IsPassive']);
-	};
-	$md = $metadata->getMetaData($idpentityid, 'saml20-idp-remote');
-	$req = $sr->generate($spentityid, $md['SingleSignOnService']);
+	$ar = sspmod_saml2_Message::buildAuthnRequest($spMetadata, $idpMetadata);
 
-	$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-	
-	SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: SP (' . $spentityid . ') is sending AuthNRequest to IdP (' . $idpentityid . ')');
-	
-	$httpredirect->sendMessage($req, $spentityid, $idpentityid, $_GET['RelayState']);
+	$assertionConsumerServiceURL = $metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted');
+	$ar->setAssertionConsumerServiceURL($assertionConsumerServiceURL);
+	$ar->setProtocolBinding(SAML2_Const::BINDING_HTTP_POST);
+	$ar->setRelayState($_REQUEST['RelayState']);
+
+	if (isset($_GET['IsPassive'])) {
+		$ar->setIsPassive($_GET['IsPassive']);
+	}
 
 	/* Save request information. */
 	$info = array();
-	$info['RelayState'] = $_GET['RelayState'];
+	$info['RelayState'] = $_REQUEST['RelayState'];
 	if(array_key_exists('OnError', $_REQUEST)) {
 		$info['OnError'] = $_REQUEST['OnError'];
 	}
-	$session->setData('SAML2:SP:SSO:Info', $sr->getGeneratedID(), $info);
+	$session->setData('SAML2:SP:SSO:Info', $ar->getId(), $info);
+
+	$b = new SAML2_HTTPRedirect();
+	$b->setDestination(sspmod_SAML2_Message::getDebugDestination());
+	$b->send($ar);
 
 } catch(Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CREATEREQUEST', $exception);
