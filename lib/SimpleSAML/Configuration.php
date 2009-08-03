@@ -723,6 +723,17 @@ class SimpleSAML_Configuration {
 		return array_keys($this->configuration);
 	}
 
+
+	/**
+	 * Convert this configuration object back to an array.
+	 *
+	 * @return array  An associative array with all configuration options and values.
+	 */
+	public function toArray() {
+
+		return $this->configuration;
+	}
+
 }
 
 ?>
