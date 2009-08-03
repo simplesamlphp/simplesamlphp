@@ -416,15 +416,28 @@ if($needAuth && !$isPassive) {
 		$requestID = NULL; $relayState = NULL;
 		if (array_key_exists('RequestID', $requestcache)) $requestID = $requestcache['RequestID'];
 		if (array_key_exists('RelayState', $requestcache)) $relayState = $requestcache['RelayState'];
-		
-		// Generate an SAML 2.0 AuthNResponse message
-		$ar = new SimpleSAML_XML_SAML20_AuthnResponse($config, $metadata);
-		$authnResponseXML = $ar->generate($idpentityid, $spentityid, $requestID, NULL, $attributes, 'Success', $config->getValue('session.duration', 3600));
-	
-		// Sending the AuthNResponse using HTTP-Post SAML 2.0 binding
-		$httppost = new SimpleSAML_Bindings_SAML20_HTTPPost($config, $metadata);
-		$httppost->sendResponse($authnResponseXML, $idmetaindex, $spentityid, $relayState);
-		
+
+
+		/* Begin by creating the assertion. */
+		$idpMetadata = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
+		$spMetadata = $metadata->getMetaDataConfig($spentityid, 'saml20-sp-remote');
+
+		$assertion = sspmod_saml2_Message::buildAssertion($idpMetadata, $spMetadata, $attributes);
+		$assertion->setInResponseTo($requestID);
+
+		/* Maybe encrypt the assertion. */
+		$assertion = sspmod_saml2_Message::encryptAssertion($idpMetadata, $spMetadata, $assertion);
+
+		/* Create the response. */
+		$ar = sspmod_saml2_Message::buildResponse($idpMetadata, $spMetadata);
+		$ar->setInResponseTo($requestID);
+		$ar->setRelayState($relayState);
+		$ar->setAssertions(array($assertion));
+
+		$binding = new SAML2_HTTPPost();
+		$binding->setDestination(sspmod_SAML2_Message::getDebugDestination());
+		$binding->send($ar);
+
 	} catch(Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
 	}

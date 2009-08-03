@@ -210,6 +210,55 @@ class sspmod_saml2_Message {
 
 
 	/**
+	 * Encrypt an assertion.
+	 *
+	 * This function takes in a SAML2_Assertion and encrypts it if encryption of
+	 * assertions are enabled in the metadata.
+	 *
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
+	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
+	 * @param SAML2_Assertion $assertion  The assertion we are encrypting.
+	 * @return SAML2_Assertion|SAML2_EncryptedAssertion  The assertion.
+	 */
+	public static function encryptAssertion(SimpleSAML_Configuration $srcMetadata,
+		SimpleSAML_Configuration $dstMetadata, SAML2_Assertion $assertion) {
+
+		$encryptAssertion = $dstMetadata->getBoolean('assertion.encryption', NULL);
+		if ($encryptAssertion === NULL) {
+			$encryptAssertion = $srcMetadata->getBoolean('assertion.encryption', FALSE);
+		}
+		if (!$encryptAssertion) {
+			/* We are _not_ encrypting this assertion, and are therefore done. */
+			return $assertion;
+		}
+
+
+		$sharedKey = $dstMetadata->getString('sharedkey', NULL);
+		if ($sharedKey !== NULL) {
+			$key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
+			$key->loadKey($sharedKey);
+		} else {
+			/* Find the certificate that we should use to encrypt messages to this SP. */
+			$certArray = SimpleSAML_Utilities::loadPublicKey($dstMetadata->toArray(), TRUE);
+			if (!array_key_exists('PEM', $certArray)) {
+				throw new Exception('Unable to locate key we should use to encrypt the assertionst ' .
+					'to the SP: ' . var_export($dstMetadata->getString('entityid'), TRUE) . '.');
+			}
+
+			$pemCert = $certArray['PEM'];
+
+			/* Extract the public key from the certificate for encryption. */
+			$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'public'));
+			$key->loadKey($pemCert);
+		}
+
+		$ea = new SAML2_EncryptedAssertion();
+		$ea->setAssertion($assertion, $key);
+		return $ea;
+	}
+
+
+	/**
 	 * Decrypt an assertion.
 	 *
 	 * This function takes in a SAML2_Assertion and decrypts it if it is encrypted.
@@ -342,6 +391,109 @@ class sspmod_saml2_Message {
 		self::addSign($srcMetadata, $dstMetadata, $lr);
 
 		return $lr;
+	}
+
+
+	/**
+	 * Calculate the NameID value that should be used.
+	 *
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
+	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
+	 * @param array $attributes  The attributes of the user
+	 * @return string  The NameID value.
+	 */
+	private static function generateNameIdValue(SimpleSAML_Configuration $srcMetadata,
+		SimpleSAML_Configuration $dstMetadata, array $attributes) {
+
+		$attribute = $dstMetadata->getString('simplesaml.nameidattribute', NULL);
+		if ($attribute === NULL) {
+			$attribute = $srcMetadata->getString('simplesaml.nameidattribute', NULL);
+			if ($attribute === NULL) {
+				SimpleSAML_Logger::error('simplesaml.nameidattribute not set in either SP metadata or IdP metadata');
+				return SimpleSAML_Utilities::generateID();
+			}
+		}
+
+		if (!array_key_exists($attribute, $attributes)) {
+			SimpleSAML_Logger::error('Unable to add NameID: Missing ' . var_export($attribute, TRUE) .
+				' in the attributes of the user.');
+			return SimpleSAML_Utilities::generateID();
+		}
+
+		$value = $attributes[$attribute][0];
+	}
+
+
+	/**
+	 * Build an assertion based on information in the metadata.
+	 *
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
+	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
+	 * @param array $attributes  The attributes of the user
+	 * @return SAML2_Assertion  The assertion.
+	 */
+	public static function buildAssertion(SimpleSAML_Configuration $srcMetadata,
+		SimpleSAML_Configuration $dstMetadata, array $attributes) {
+
+		$config = SimpleSAML_Configuration::getInstance();
+
+		$a = new SAML2_Assertion();
+		$a->setIssuer($srcMetadata->getString('entityid'));
+		$a->setDestination($dstMetadata->getString('AssertionConsumerService'));
+		$a->setValidAudiences(array($dstMetadata->getString('entityid')));
+
+		$a->setNotBefore(time());
+
+		$assertionLifetime = $dstMetadata->getInteger('assertion.lifetime', NULL);
+		if ($assertionLifetime === NULL) {
+			$assertionLifetime = $srcMetadata->getInteger('assertion.lifetime', 300);
+		}
+		$a->setNotOnOrAfter(time() + $assertionLifetime);
+
+		$a->setAuthnContext(SAML2_Const::AC_PASSWORD);
+
+		$sessionLifetime = $config->getInteger('session.duration', 3600);
+		$a->setSessionNotOnOrAfter(time() + $sessionLifetime);
+
+		$session = SimpleSAML_Session::getInstance();
+		$sessionIndex = $session->getSessionIndex();
+		$a->setSessionIndex($sessionIndex);
+
+		/* Add attributes. */
+
+		if ($dstMetadata->getBoolean('simplesaml.attributes', TRUE)) {
+			$attributeNameFormat = $dstMetadata->getString('AttributeNameFormat', NULL);
+			if ($attributeNameFormat === NULL) {
+				$attributeNameFormat = $srcMetadata->getString('AttributeNameFormat',
+					'urn:oasis:names:tc:SAML:2.0:attrname-format:basic');
+			}
+			$a->setAttributeNameFormat($attributeNameFormat);
+			$a->setAttributes($attributes);
+		}
+
+
+		/* Generate the NameID for the assertion. */
+
+		$nameIdFormat = $dstMetadata->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
+
+		$spNameQualifier = $dstMetadata->getString('SPNameQualifier', NULL);
+		if ($spNameQualifier === NULL) {
+			$spNameQualifier = $dstMetadata->getString('entityid');
+		}
+
+		if ($nameIdFormat === SAML2_Const::NAMEID_TRANSIENT) {
+			$nameIdValue = SimpleSAML_Utilities::generateID();
+		} else {
+			$nameIdValue = self::generateNameIdValue($srcMetadata, $dstMetadata, $attributes);
+		}
+
+		$a->setNameId(array(
+			'Format' => $nameIdFormat,
+			'Value' => $nameIdValue,
+			'SPNameQualifier' => $spNameQualifier,
+			));
+
+		return $a;
 	}
 
 
