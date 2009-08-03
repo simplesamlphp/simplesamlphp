@@ -1456,7 +1456,9 @@ class SimpleSAML_Utilities {
 
 		if (array_key_exists($prefix . 'certData', $metadata)) {
 			/* Full certificate data available from metadata. */
-			$ret['certData'] = $metadata[$prefix . 'certData'];
+			$certData = $metadata[$prefix . 'certData'];
+			$certData = str_replace(array("\r", "\n", "\t", ' '), '', $certData);
+			$ret['certData'] = $certData;
 
 			/* Recreate PEM-encoded certificate. */
 			$ret['PEM'] = "-----BEGIN CERTIFICATE-----\n" .
