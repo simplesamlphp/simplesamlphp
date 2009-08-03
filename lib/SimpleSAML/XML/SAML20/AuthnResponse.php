@@ -676,10 +676,10 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		if (is_string($status)) {
 			if ($status === 'Success') {
 				/* Not really an error, but it makes the code simpler. */
-				$status = new sspmod_saml2_Error(sspmod_saml2_Const::STATUS_SUCCESS);
+				$status = new sspmod_saml2_Error(SAML2_Const::STATUS_SUCCESS);
 			} else {
 				$status = new sspmod_saml2_Error(
-					sspmod_saml2_Const::STATUS_RESPONDER,
+					SAML2_Const::STATUS_RESPONDER,
 					'urn:oasis:names:tc:SAML:2.0:status:' . $status
 					);
 			}
@@ -763,7 +763,7 @@ class SimpleSAML_XML_SAML20_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		if (!empty($inresponseto)) $inresponsetoText = 'InResponseTo="' . htmlspecialchars($inresponseto). '" ';
 		
 		$assertion = "";
-		if ($status->getStatus() === sspmod_saml2_Const::STATUS_SUCCESS) {
+		if ($status->getStatus() === SAML2_Const::STATUS_SUCCESS) {
 			$assertion = '<saml:Assertion Version="2.0"
 		ID="' . $assertionid . '" IssueInstant="' . $issueInstant . '">
 		<saml:Issuer>' . htmlspecialchars($issuer) . '</saml:Issuer>

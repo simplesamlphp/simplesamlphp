@@ -107,15 +107,15 @@ class sspmod_saml2_Error extends SimpleSAML_Error_Exception {
 
 		} elseif ($exception instanceof SimpleSAML_Error_NoPassive) {
 			$e = new self(
-				sspmod_saml2_Const::STATUS_RESPONDER,
-				sspmod_saml2_Const::STATUS_NO_PASSIVE,
+				SAML2_Const::STATUS_RESPONDER,
+				SAML2_Const::STATUS_NO_PASSIVE,
 				$exception->getMessage(),
 				$exception
 				);
 
 		} else {
 			$e = new self(
-				sspmod_saml2_Const::STATUS_RESPONDER,
+				SAML2_Const::STATUS_RESPONDER,
 				NULL,
 				get_class($exception) . ': ' . $exception->getMessage(),
 				$exception
@@ -148,9 +148,9 @@ class sspmod_saml2_Error extends SimpleSAML_Error_Exception {
 		$e = NULL;
 
 		switch ($this->status) {
-		case sspmod_saml2_Const::STATUS_RESPONDER:
+		case SAML2_Const::STATUS_RESPONDER:
 			switch ($this->subStatus) {
-			case sspmod_saml2_Const::STATUS_NO_PASSIVE:
+			case SAML2_Const::STATUS_NO_PASSIVE:
 				$e = new SimpleSAML_Error_NoPassive($this->statusMessage, 0, $this);
 				break;
 			}
