@@ -276,97 +276,6 @@ class SimpleSAML_XML_Validator {
 
 
 	/**
-	 * Validate the certificate used to sign the XML against a CA file, by using the builtin
-	 * openssl_x509_checkpurpose function
-	 *
-	 * This function throws an exception if unable to validate against the given CA file.
-	 *
-	 * @param $caFile  File with trusted certificates, in PEM-format.
-	 * @return  TRUE on success, or a string with error messages if it failed.
-	 */
-	private function validateCABuiltIn($caFile) {
-
-		/* Clear openssl errors. */
-		while(openssl_error_string() !== FALSE);
-
-		$res = openssl_x509_checkpurpose($this->x509Certificate, X509_PURPOSE_ANY, array($caFile));
-
-		$errors = '';
-		/* Log errors. */
-		while( ($error = openssl_error_string()) !== FALSE) {
-			$errors .= ' [' . $error . ']';
-		}
-
-		if($res === -1) {
-			return $errors;
-		}
-
-
-		if($res !== TRUE) {
-			return $errors;
-		}
-
-		return TRUE;
-	}
-
-
-	/**
-	 * Validate the certificate used to sign the XML against a CA file, by using the "openssl verify" command.
-	 *
-	 * This function uses the openssl verify command to verify a certificate, to work around limitations
-	 * on the openssl_x509_checkpurpose function. That function will not work on certificates without a purpose
-	 * set.
-	 *
-	 * @param $caFile  File with trusted certificates, in PEM-format.
-	 * @return  TRUE on success, a string with error messages on failure.
-	 */
-	private function validateCAExec($caFile) {
-
-		$command = array(
-			'openssl', 'verify',
-			'-CAfile', $caFile,
-			'-purpose', 'any',
-			);
-
-		$cmdline = '';
-		foreach($command as $c) {
-			$cmdline .= escapeshellarg($c) . ' ';
-		}
-
-		$cmdline .= '2>&1';
-		$descSpec = array(
-			0 => array('pipe', 'r'),
-			1 => array('pipe', 'w'),
-			);
-		$process = proc_open($cmdline, $descSpec, $pipes);
-		if(!is_resource($process)) {
-			throw new Exception('Failed to execute verification command: ' . $cmdline . "\n");
-		}
-
-		if(fwrite($pipes[0], $this->x509Certificate) === FALSE) {
-			throw new Exception('Failed to write certificate for verification.' . "\n");
-		}
-		fclose($pipes[0]);
-
-		$out = '';
-		while(!feof($pipes[1])) {
-			$line = trim(fgets($pipes[1]));
-			if(strlen($line) > 0) {
-				$out .= ' [' . $line . ']';
-			}
-		}
-		fclose($pipes[1]);
-
-		$status = proc_close($process);
-		if($status !== 0 || $out !== ' [stdin: OK]') {
-			return $out;
-		}
-
-		return TRUE;
-	}
-
-
-	/**
 	 * Validate the certificate used to sign the XML against a CA file.
 	 *
 	 * This function throws an exception if unable to validate against the given CA file.
@@ -377,24 +286,11 @@ class SimpleSAML_XML_Validator {
 
 		assert('is_string($caFile)');
 
-		if(!file_exists($caFile)) {
-			throw new Exception('Could not load CA file: ' . $caFile);
-		}
-
 		if($this->x509Certificate === NULL) {
 			throw new Exception('Key used to sign the message was not an X509 certificate.');
 		}
 
-		$resBuiltIn = $this->validateCABuiltIn($caFile);
-		if($resBuiltIn !== TRUE) {
-			$resExternal = $this->validateCAExec($caFile);
-			if($resExternal !== TRUE) {
-				$certFingerprint = self::calculateX509Fingerprint($this->x509Certificate);
-				throw new Exception('Could not verify certificate with fingerprint ' . $certFingerprint .
-					' against CA file "' . $caFile . '". Internal result:' . $resBuiltIn .
-					' External result:' . $resExternal);
-			}
-		}
+		SimpleSAML_Utilities::validateCA($this->x509Certificate, $caFile);
 	}
 
 }
