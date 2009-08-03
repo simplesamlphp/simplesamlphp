@@ -23,6 +23,7 @@ if (!$config->getValue('enable.saml20-idp', false))
 
 try {
 	$idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+	$idpMetadata = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 } catch (Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
 }
@@ -190,18 +191,22 @@ foreach ($listofsps AS $spentityid) {
 		$nameId = $session->getNameID();
 	}
 
+	/* Convert to new-style NameId format. */
+	$nameId['Value'] = $nameId['value'];
+	unset($nameId['value']);
 
-	$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
-	$name = array_key_exists('name', $spmetadata) ? $spmetadata['name'] : $spentityid;
+
+	$spMetadata = $metadata->getMetaDataConfig($spentityid, 'saml20-sp-remote');
+	$name = $spMetadata->getValue('name', $spentityid);
 
 	try {	
-		$lr = new SimpleSAML_XML_SAML20_LogoutRequest($config, $metadata);
-		$req = $lr->generate($idpentityid, $spentityid, $nameId, $session->getSessionIndex(), 'IdP');
-		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-		// $request, $localentityid, $remoteentityid, $relayState = null, $endpoint = 'SingleSignOnService', $direction = 'SAMLRequest', $mode = 'SP'
-		$url = $httpredirect->getRedirectURL($req, $idpentityid, $spentityid, NULL, 'SingleLogoutService', 'SAMLRequest', 'IdP');
+		$lr = sspmod_saml2_Message::buildLogoutRequest($idpMetadata, $spMetadata);
+		$lr->setSessionIndex($session->getSessionIndex());
+		$lr->setNameId($nameId);
 
-	
+		$httpredirect = new SAML2_HTTPRedirect();
+		$url = $httpredirect->getRedirectURL($lr);
+
 		$sparray[$spentityid] = array('url' => $url, 'name' => $name);
 		
 	} catch (Exception $e) {
