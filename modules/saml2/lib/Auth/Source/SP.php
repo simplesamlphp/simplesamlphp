@@ -155,18 +155,24 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		assert('is_string($idp)');
 		assert('is_array($state)');
 
-		$id = SimpleSAML_Auth_State::saveState($state, self::STAGE_SENT);
-
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-		$idpMetadata = $metadata->getMetaData($idp, 'saml20-idp-remote');
 
-		$config = SimpleSAML_Configuration::getInstance();
-		$sr = new SimpleSAML_XML_SAML20_AuthnRequest($config, $metadata);
-		$req = $sr->generate($this->entityId, $idpMetadata['SingleSignOnService']);
+		$spMetadata = $metadata->getMetaDataConfig($this->getEntityId(), 'saml20-sp-hosted');
+		$idpMetadata = $metadata->getMetaDataConfig($idp, 'saml20-idp-remote');
 
-		$httpredirect = new SimpleSAML_Bindings_SAML20_HTTPRedirect($config, $metadata);
-		$httpredirect->sendMessage($req, $this->entityId, $idp, $id);
-		exit(0);
+		$ar = sspmod_saml2_Message::buildAuthnRequest($spMetadata, $idpMetadata);
+
+		$ar->setAssertionConsumerServiceURL(SimpleSAML_Module::getModuleURL('saml2/sp/acs.php'));
+		$ar->setProtocolBinding(SAML2_Const::BINDING_HTTP_POST);
+
+		$id = SimpleSAML_Auth_State::saveState($state, self::STAGE_SENT);
+		$ar->setRelayState($id);
+
+		$b = new SAML2_HTTPRedirect();
+		$b->setDestination(sspmod_SAML2_Message::getDebugDestination());
+		$b->send($ar);
+
+		assert('FALSE');
 	}
 
 
