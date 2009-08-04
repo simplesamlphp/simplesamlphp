@@ -1065,7 +1065,15 @@ class SAML2_Assertion implements SAML2_SignedElement {
 				if ($type !== NULL) {
 					$attributeValue->setAttributeNS(SAML2_Const::NS_XSI, 'xsi:type', $type);
 				}
-				$attributeValue->appendChild($document->createTextNode($value));
+
+				if ($value instanceof DOMNodeList) {
+					for ($i = 0; $i < $value->length; $i++) {
+						$node = $document->importNode($value->item($i), TRUE);
+						$attributeValue->appendChild($node);
+					}
+				} else {
+					$attributeValue->appendChild($document->createTextNode($value));
+				}
 			}
 		}
 	}
