@@ -31,21 +31,13 @@ class sspmod_saml2_Message {
 
 
 	/**
-	 * Add signature key and and senders certificate to message.
+	 * Add signature key and and senders certificate to an element (Message or Assertion).
 	 *
-	 * @param SAML2_Message $message  The message we should add the data to.
-	 * @param SimpleSAML_Configuration $metadata  The metadata of the sender.
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.
+	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient.
+	 * @param SAML2_Message $element  The element we should add the data to.
 	 */
-	private static function addSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_message $message) {
-
-		$signingEnabled = $dstMetadata->getBoolean('redirect.sign', NULL);
-		if ($signingEnabled === NULL) {
-			$signingEnabled = $srcMetadata->getBoolean('redirect.sign', FALSE);
-		}
-		if (!$signingEnabled) {
-			return;
-		}
-
+	private static function addSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_SignedElement $element) {
 
 		$srcMetadata = $srcMetadata->toArray();
 
@@ -58,7 +50,7 @@ class sspmod_saml2_Message {
 		}
 		$privateKey->loadKey($keyArray['PEM'], FALSE);
 
-		$message->setSignatureKey($privateKey);
+		$element->setSignatureKey($privateKey);
 
 		if ($certArray === NULL) {
 			/* We don't have a certificate to add. */
@@ -70,7 +62,28 @@ class sspmod_saml2_Message {
 			return;
 		}
 
-		$message->setCertificates(array($certArray['PEM']));
+		$element->setCertificates(array($certArray['PEM']));
+	}
+
+
+	/**
+	 * Add signature key and and senders certificate to message.
+	 *
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.
+	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient.
+	 * @param SAML2_Message $message  The message we should add the data to.
+	 */
+	private static function addRedirectSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_message $message) {
+
+		$signingEnabled = $dstMetadata->getBoolean('redirect.sign', NULL);
+		if ($signingEnabled === NULL) {
+			$signingEnabled = $srcMetadata->getBoolean('redirect.sign', FALSE);
+		}
+		if (!$signingEnabled) {
+			return;
+		}
+
+		self::addSign($srcMetadata, $dstMetadata, $message);
 	}
 
 
@@ -345,7 +358,7 @@ class sspmod_saml2_Message {
 		$ar->setForceAuthn($spMetadata->getBoolean('ForceAuthn', FALSE));
 		$ar->setIsPassive($spMetadata->getBoolean('IsPassive', FALSE));
 
-		self::addSign($spMetadata, $idpMetadata, $ar);
+		self::addRedirectSign($spMetadata, $idpMetadata, $ar);
 
 		return $ar;
 	}
@@ -364,7 +377,7 @@ class sspmod_saml2_Message {
 		$lr->setIssuer($srcMetadata->getString('entityid'));
 		$lr->setDestination($dstMetadata->getString('SingleLogoutService'));
 
-		self::addSign($srcMetadata, $dstMetadata, $lr);
+		self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
 
 		return $lr;
 	}
@@ -388,7 +401,7 @@ class sspmod_saml2_Message {
 		}
 		$lr->setDestination($dst);
 
-		self::addSign($srcMetadata, $dstMetadata, $lr);
+		self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
 
 		return $lr;
 	}
@@ -492,6 +505,7 @@ class sspmod_saml2_Message {
 		$config = SimpleSAML_Configuration::getInstance();
 
 		$a = new SAML2_Assertion();
+		self::addSign($srcMetadata, $dstMetadata, $a);
 		$a->setIssuer($srcMetadata->getString('entityid'));
 		$a->setDestination($dstMetadata->getString('AssertionConsumerService'));
 		$a->setValidAudiences(array($dstMetadata->getString('entityid')));
