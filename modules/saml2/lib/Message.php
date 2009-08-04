@@ -667,6 +667,23 @@ class sspmod_saml2_Message {
 		}
 
 		/* As far as we can tell, the assertion is valid. */
+
+
+		/* Maybe we need to base64 decode the attributes in the assertion? */
+		if ($idpMetadata->getBoolean('base64attributes', FALSE)) {
+			$attributes = $assertion->getAttributes();
+			$newAttributes = array();
+			foreach ($attributes as $name => $values) {
+				$newAttributes[$name] = array();
+				foreach ($values as $value) {
+					foreach(explode('_', $value) AS $v) {
+						$newAttributes[$name][] = base64_decode($v);
+					}
+				}
+			}
+			$assertion->setAttributes($newAttributes);
+		}
+
 		return $assertion;
 	}
 
