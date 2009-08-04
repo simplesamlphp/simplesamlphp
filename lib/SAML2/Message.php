@@ -147,13 +147,19 @@ abstract class SAML2_Message implements SAML2_SignedElement {
 
 
 		/* Validate the signature element of the message. */
-		$sig = SAML2_Utils::validateElement($xml);
-		if ($sig !== FALSE) {
-			$this->certificates = $sig['Certificates'];
-			$this->validators[] = array(
-				'Function' => array('SAML2_Utils', 'validateSignature'),
-				'Data' => $sig,
-				);
+		try {
+			$sig = SAML2_Utils::validateElement($xml);
+
+			if ($sig !== FALSE) {
+				$this->certificates = $sig['Certificates'];
+				$this->validators[] = array(
+					'Function' => array('SAML2_Utils', 'validateSignature'),
+					'Data' => $sig,
+					);
+			}
+
+		} catch (Exception $e) {
+			/* Ignore signature validation errors. */
 		}
 
 	}
