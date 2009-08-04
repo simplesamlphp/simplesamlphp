@@ -442,7 +442,7 @@ class sspmod_saml2_Message {
 		$a->setDestination($dstMetadata->getString('AssertionConsumerService'));
 		$a->setValidAudiences(array($dstMetadata->getString('entityid')));
 
-		$a->setNotBefore(time());
+		$a->setNotBefore(time() - 30);
 
 		$assertionLifetime = $dstMetadata->getInteger('assertion.lifetime', NULL);
 		if ($assertionLifetime === NULL) {
