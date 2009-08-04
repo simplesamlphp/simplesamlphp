@@ -425,6 +425,60 @@ class sspmod_saml2_Message {
 
 
 	/**
+	 * Helper function for encoding attributes.
+	 *
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
+	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
+	 * @param array $attributes  The attributes of the user
+	 * @return array  The encoded attributes.
+	 */
+	private static function encodeAttributes(SimpleSAML_Configuration $srcMetadata,
+		SimpleSAML_Configuration $dstMetadata, array $attributes) {
+
+		$base64Attributes = $dstMetadata->getBoolean('base64attributes', FALSE);
+		if ($base64Attributes) {
+			$defaultEncoding = 'base64';
+		} else {
+			$defaultEncoding = 'string';
+		}
+
+		$encodings = $dstMetadata->getArray('attributeencodings', array());
+
+		$ret = array();
+		foreach ($attributes as $name => $values) {
+			$ret[$name] = array();
+			if (array_key_exists($name, $encodings)) {
+				$encoding = $encodings[$name];
+			} else {
+				$encoding = $defaultEncoding;
+			}
+
+			foreach ($values as $value) {
+				switch ($encoding) {
+				case 'string':
+					$value = (string)$value;
+					break;
+				case 'base64':
+					$value = base64_encode($value);
+					break;
+				case 'raw':
+					$doc = new DOMDocument();
+					$doc->loadXML('<root>' . $value . '</root>');
+					$value = $doc->firstChild->childNodes;
+					break;
+				default:
+					throw new SimpleSAML_Error_Exception('Invalid encoding for attribute ' .
+						var_export($name, TRUE) . ': ' . var_export($encoding, TRUE));
+				}
+				$ret[$name][] = $value;
+			}
+		}
+
+		return $ret;
+	}
+
+
+	/**
 	 * Build an assertion based on information in the metadata.
 	 *
 	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
@@ -468,6 +522,7 @@ class sspmod_saml2_Message {
 					'urn:oasis:names:tc:SAML:2.0:attrname-format:basic');
 			}
 			$a->setAttributeNameFormat($attributeNameFormat);
+			$attributes = self::encodeAttributes($srcMetadata, $dstMetadata, $attributes);
 			$a->setAttributes($attributes);
 		}
 
