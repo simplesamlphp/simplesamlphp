@@ -74,19 +74,35 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	public function authenticate(&$state) {
 		assert('is_array($state)');
 
-		/* We are going to need the authId in order to retrieve this authentication source later. */
+		/*
+		 * Save the identifier of this authentication source, so that we can
+		 * retrieve it later. This allows us to call the login()-function on
+		 * the current object.
+		 */
 		$state[self::AUTHID] = $this->authId;
 
 		/* What username we should force, if any. */
 		if ($this->forcedUsername !== NULL) {
+			/*
+			 * This is accessed by the login form, to determine if the user
+			 * is allowed to change the username.
+			 */
 			$state['forcedUsername'] = $this->forcedUsername;
 		}
 
+		/* Save the $state-array, so that we can restore it after a redirect. */
 		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
 
+		/*
+		 * Redirect to the login form. We include the identifier of the saved
+		 * state array as a parameter to the login form.
+		 */
 		$url = SimpleSAML_Module::getModuleURL('core/loginuserpass.php');
 		$params = array('AuthState' => $id);
 		SimpleSAML_Utilities::redirect($url, $params);
+
+		/* The previous function never returns, so this code is never executed. */
+		assert('FALSE');
 	}
 
 
@@ -110,9 +126,8 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	 * Handle login request.
 	 *
 	 * This function is used by the login form (core/www/loginuserpass.php) when the user
-	 * enters a username and password. On success, it will not return. On wrong
-	 * username/password failure, it will return the error code. Other failures will throw an
-	 * exception.
+	 * enters a username and password. On success, it will not return. If an error occurs,
+	 * it will return the error code.
 	 *
 	 * @param string $authStateId  The identifier of the authentication state.
 	 * @param string $username  The username the user wrote.
@@ -124,25 +139,37 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		assert('is_string($username)');
 		assert('is_string($password)');
 
-		/* Retrieve the authentication state. */
+		/* Here we retrieve the state array we saved in the authenticate-function. */
 		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
 
-		/* Find authentication source. */
+		/* Retrieve the authentication source we are executing. */
 		assert('array_key_exists(self::AUTHID, $state)');
 		$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
 		if ($source === NULL) {
 			throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
 		}
 
+		/*
+		 * $source now contains the authentication source on which authenticate()
+		 * was called. We should call login() on the same authentication source.
+		 */
 
 		try {
 			/* Attempt to log in. */
 			$attributes = $source->login($username, $password);
 		} catch (SimpleSAML_Error_Error $e) {
+			/*
+			 * Login failed. Return the error code to the login form, so that it
+			 * can display an error message to the user.
+			 */
 			return $e->getErrorCode();
 		}
 
+		/* Save the attributes we received from the login-function in the $state-array. */
+		assert('is_array($attributes)');
 		$state['Attributes'] = $attributes;
+
+		/* Return control to simpleSAMLphp after successful authentication. */
 		SimpleSAML_Auth_Source::completeAuth($state);
 	}
 
