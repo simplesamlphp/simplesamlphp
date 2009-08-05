@@ -146,50 +146,9 @@ To use this authentication source in a SAML 2.0 IdP, set the
 
 ### Creating authentication sources
 
-Authentication sources are implemented by creating a class which is a subclass of the `SimpleSAML_Auth_Source`-class. They must implement at least one function - `authenticate`. This function may can either update the `$state`-array it receives with the attributes of the user and return, or it may save the state and redirect the user to another page for authentication. It redirects, it should later retrieve the state array, update it with the attributes and call `SimpleSAML_Source_Auth::completeAuth($state)`.
+This is described in a separate document:
 
-There is also a simpler way to implement many authentication sources. If the authentication source only needs a username and password from the user, it may subclass `sspmod_core_Auth_UserPassBase`, and implement a single function - `login($username, $password)`. This function receives the username and password the user gives, and should return an associative array with the attributes of the user. If the username or password is incorrect, it should throw an exception: `SimpleSAML_Error_Error('WRONGUSERPASS')`
-
-Requirements for an authentication source:
-
--   Must be derived from the `SimpleSAML_Auth_Source`-class.
-
--  
-    If a constructor is implemented, it must first call the parent
-    constructor, passing along all parameters, before accessing any of
-    the parameters. In general, only the $config parameter should be
-    accessed.
-
--  
-    The `authenticate(&$state)`-function must be implemented. If this
-    function completes, it is assumed that the user is authenticated,
-    and that the $state array has been updated with the user's
-    attributes.
-
--  
-    If the `authenticate`-function does not return, it must at a later
-    time call `SimpleSAML_Auth_Source::completeAuth` with the new
-    state. The state must be an update of the array passed to the
-    `authenticate`-function.
-
--  
-    No pages may be shown to the user from the `authenticate`-function.
-    Instead, the state should be saved, and the user should be
-    redirected to a new page. This must be done to prevent
-    unpredictable events if the user for example reloads the page.
-
--  
-    No state information about any authentication should be stored in
-    the authentication source object. It must instead be stored in the
-    state array. Any changes to variables in the authentication source
-    object may be lost.
-
--  
-    The authentication source object must be serializable. It may be
-    serializes between being constructed and the call to the
-    `authenticate`-function. This means that, for example, no database
-    connections should be created in the constructor and later used in
-    the `authenticate`-function.
+  * [Creating authentication sources](http://code.google.com/p/simplesamlphp/source/browse/trunk/docs/simplesamlphp-authsource.txt)
 
 
 Authentication processing filters
