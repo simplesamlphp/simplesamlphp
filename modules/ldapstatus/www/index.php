@@ -11,11 +11,13 @@ $debug = $ldapconfig->getValue('ldapDebug', FALSE);
 $orgs = $ldapconfig->getValue('organizations');
 $locationTemplate = $ldapconfig->getValue('locationTemplate');
 
-
-
-$isAdmin = FALSE;
-$secretURL = NULL;
 if (array_key_exists('orgtest', $_REQUEST)) {
+	$orgtest = $_REQUEST['orgtest'];
+	if (!array_key_exists($orgtest, $orgs)) {
+		throw new SimpleSAML_Error_NotFound('The organization ' . var_export($orgtest, TRUE) . ' could not be found.');
+	}
+	$orgConfig = SimpleSAML_Configuration::loadFromArray($orgs[$orgtest], 'org:[' . $orgtest . ']');
+
 	$secretKey = sha1('ldapstatus|' . $config->getValue('secret') . '|' . $_REQUEST['orgtest']);
 	$secretURL = SimpleSAML_Utilities::addURLparameter(
 		SimpleSAML_Utilities::selfURLNoQuery(), array(
@@ -23,60 +25,149 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 			'key' => $secretKey,
 		)
 	);
-	if (array_key_exists('key', $_REQUEST) && $_REQUEST['key'] == $secretKey ) {
-		// OK Access
-	} else {
-		
-		
-		$useridattr = $ldapconfig->getString('useridattr', 'eduPersonPrincipalName');
-		$authsource = $ldapconfig->getString('ldapstatusAuth', NULL);
 
-		$allowedusers = $ldapconfig->getArray('adminAccess', array());		
-		if (isset($orgs[$_REQUEST['orgtest']]) && array_key_exists('adminAccess', $orgs[$_REQUEST['orgtest']]))
-			$allowedusers = array_merge($allowedusers, $orgs[$_REQUEST['orgtest']]['adminAccess']);
-	
-		if (SimpleSAML_Utilities::isAdmin()) {
-			// User logged in as admin. OK.
-			SimpleSAML_Logger::debug('LDAPStatus auth - logged in as admin, access granted');
-			
-		} elseif(isset($authsource) && $session->isValid($authsource) ) {
-		
-			// User logged in with auth source.
-			SimpleSAML_Logger::debug('LDAPStatus auth - valid login with auth source [' . $authsource . ']');
-			SimpleSAML_Logger::debug('LDAPStatus auth - allowed users [' . join(',', $allowedusers). ']');
-			
-			// Retrieving attributes
-			$attributes = $session->getAttributes();
-			
-			// Check if userid exists
-			if (!isset($attributes[$useridattr])) 
-				throw new Exception('User ID is missing');
-			
-			// Check if userid is allowed access..
-			if (!in_array($attributes[$useridattr][0], $allowedusers)) {
-				SimpleSAML_Logger::debug('LDAPStatus auth - User denied access by user ID [' . $attributes[$useridattr][0] . ']');
-				throw new Exception('Access denied for this user.');
-			}
-			SimpleSAML_Logger::debug('LDAPStatus auth - User granted access by user ID [' . $attributes[$useridattr][0] . ']');		
-			
-		} elseif(isset($authsource)) {
-			// If user is not logged in init login with authrouce if authsousrce is defined.
-			SimpleSAML_Auth_Default::initLogin($authsource, SimpleSAML_Utilities::selfURL());
-			
-		} else {
-			// If authsource is not defined, init admin login.
-			SimpleSAML_Utilities::requireAdmin();
-		}
-		
+} else {
+	$orgtest = NULL;
+	$orgConfig = NULL;
+
+	$secretKey = NULL;
+	$secretURL = NULL;
+}
+
+$authsource = $ldapconfig->getString('ldapstatusAuth', NULL);
+if ($session->isValid($authsource)) {
+	$attributes = $session->getAttributes();
+} else {
+	$attributes = array();
+}
+
+$useridattr = $ldapconfig->getString('useridattr', 'eduPersonPrincipalName');
+if (isset($attributes[$useridattr][0])) {
+	$userId = $attributes[$useridattr][0];
+} else {
+	$userId = NULL;
+}
+
+
+$globalAllowedUsers = $ldapconfig->getArray('adminAccess', array());
+$globalAdminACL = $ldapconfig->getValue('adminACL');
+if (!is_null($globalAdminACL) && !is_string($globalAdminACL) && !is_array($globalAdminACL)) {
+	throw new SimpleSAML_Error_Exception('The \'adminACL\' option must be either a string or an array.');
+}
+
+
+/* First check for global admin access. */
+$isAdmin = SimpleSAML_Utilities::isAdmin();
+if ($isAdmin) {
+	SimpleSAML_Logger::debug('LDAPStatus auth - logged in as admin, access granted');
+}
+
+/* Global admin user list. */
+if (!$isAdmin && !empty($globalAllowedUsers)) {
+	if ($authsource === NULL) {
+		throw new SimpleSAML_Error_Exception('The \'ldapstatusAuth\' option must be set if the \'adminAccess\' option is set.');
+	}
+
+	if (!$session->isValid($authsource)) {
+		SimpleSAML_Logger::debug('LDAPStatus auth - global adminAccess: Not logged in with authsource ' . var_export($authsource, TRUE));
+	} elseif (is_null($userId)) {
+		throw new Exception('User ID is missing');
+	} else if (!in_array($userId, $globalAllowedUsers)) {
+		SimpleSAML_Logger::debug('LDAPStatus auth - global adminAccess: User ' . var_export($userId, TRUE) . ' not in allowed user list.');
+	} else {
+		$isAdmin = TRUE;
+		SimpleSAML_Logger::debug('LDAPStatus auth - global adminAccess: User ' . var_export($userId, TRUE) . ' granted access by allowed user list.');
+	}
+} elseif (!$isAdmin) {
+	SimpleSAML_Logger::debug('LDAPStatus auth - global adminAccess: Not configured.');
+}
+
+/* Global admin ACL list. */
+if (!$isAdmin && !is_null($globalAdminACL)) {
+	$globalAdminACL = new sspmod_core_ACL($globalAdminACL);
+
+	if ($authsource === NULL) {
+		throw new SimpleSAML_Error_Exception('The \'ldapstatusAuth\' option must be set if the \'adminACL\' option is set.');
+	}
+
+	if (!$session->isValid($authsource)) {
+		SimpleSAML_Logger::debug('LDAPStatus auth - global ACL: Not logged in with authsource ' . var_export($authsource, TRUE));
+	} elseif (!$globalAdminACL->allows($attributes)) {
+		SimpleSAML_Logger::debug('LDAPStatus auth - global ACL: ACL does not grant this user global admin access.');
+	} else {
+		$isAdmin = TRUE;
+		SimpleSAML_Logger::debug('LDAPStatus auth - global ACL: Admin access granted.');
+	}
+} elseif (!$isAdmin) {
+	SimpleSAML_Logger::debug('LDAPStatus auth - global ACL: Not configured.');
+}
+
+
+if (!$isAdmin && !is_null($orgConfig)) {
+
+	$orgAllowedUsers = $orgConfig->getArray('adminAccess', array());
+	$orgAdminACL = $orgConfig->getValue('adminACL');
+	if (!is_null($orgAdminACL) && !is_string($orgAdminACL) && !is_array($orgAdminACL)) {
+		throw new SimpleSAML_Error_Exception('The organization\'s \'adminACL\' option must be either a string or an array.');
+	}
+
+	if (array_key_exists('key', $_REQUEST) && $_REQUEST['key'] == $secretKey ) {
+		SimpleSAML_Logger::debug('LDAPStatus auth - org secretKey: Allowed access.');
 		$isAdmin = TRUE;
 	}
 
-} else {
+	/* Organization admin user list. */
+	if (!$isAdmin && !empty($orgAllowedUsers)) {
+		if ($authsource === NULL) {
+			throw new SimpleSAML_Error_Exception('The \'ldapstatusAuth\' option must be set if the \'adminAccess\' option is set.');
+		}
 
-	// Require admin access to overview page...
-	SimpleSAML_Utilities::requireAdmin();
-	$isAdmin = TRUE;
+		if (!$session->isValid($authsource)) {
+			SimpleSAML_Logger::debug('LDAPStatus auth - org adminAccess: Not logged in with authsource ' . var_export($authsource, TRUE));
+		} elseif (is_null($userId)) {
+			throw new Exception('User ID is missing');
+		} else if (!in_array($userId, $orgAllowedUsers)) {
+			SimpleSAML_Logger::debug('LDAPStatus auth - org adminAccess: User ' . var_export($userId, TRUE) . ' not in allowed user list.');
+		} else {
+			$isAdmin = TRUE;
+			SimpleSAML_Logger::debug('LDAPStatus auth - org adminAccess: User ' . var_export($userId, TRUE) . ' granted access by allowed user list.');
+		}
+	} elseif (!$isAdmin) {
+		SimpleSAML_Logger::debug('LDAPStatus auth - org adminAccess: Not configured.');
+	}
 
+	/* Organization admin ACL list. */
+	if (!$isAdmin && !is_null($orgAdminACL)) {
+		$orgAdminACL = new sspmod_core_ACL($orgAdminACL);
+
+		if ($authsource === NULL) {
+			throw new SimpleSAML_Error_Exception('The \'ldapstatusAuth\' option must be set if the \'adminACL\' option is set.');
+		}
+
+		if (!$session->isValid($authsource)) {
+			SimpleSAML_Logger::debug('LDAPStatus auth - org ACL: Not logged in with authsource ' . var_export($authsource, TRUE));
+		} elseif (!$orgAdminACL->allows($attributes)) {
+			SimpleSAML_Logger::debug('LDAPStatus auth - org ACL: ACL does not grant this user access.');
+		} else {
+			$isAdmin = TRUE;
+			SimpleSAML_Logger::debug('LDAPStatus auth - org ACL: Admin access granted.');
+		}
+	} elseif (!$isAdmin) {
+		SimpleSAML_Logger::debug('LDAPStatus auth - org ACL: Not configured.');
+	}
+}
+
+if (!$isAdmin) {
+	if ($authsource === NULL) {
+		/* No authsource configured - attempt global admin login. */
+		SimpleSAML_Utilities::requireAdmin();
+		$isAdmin = TRUE;
+	} elseif ($session->isValid($authsource)) {
+		throw new SimpleSAML_Error_Exception('Access denied to current user.');
+	} else {
+		/* Attempt to authenticate with the authsource. */
+		SimpleSAML_Auth_Default::initLogin($authsource, SimpleSAML_Utilities::selfURL());
+	}
 }
 
 
