@@ -5,20 +5,24 @@
 
 $config = array (
 
+	/* Authentication & authorization for statistics. */
+
+	/* Whether the statistics require authentication before use. */
 	'protected' => FALSE,
+
+	/* The authentication source that should be used. */
 	'auth' => 'admin',
-	'useridattr' => 'eduPersonPrincipalName',
-	
-	'default' => 'sso',
-	
-	'allowedUsers' => array(
-		'admin'
-	),
-	
+
+	/* Alternative 1: List of allowed users. */
+	//'useridattr' => 'eduPersonPrincipalName',
+	//'allowedUsers' => array('andreas@uninett.no', 'ola.normann@sp.example.org'),
+
+	/* Alternative 2: External ACL list. */
+	//'acl' => 'adminlist',
+
+
+
 	'default' => 'sso_hoursweek',
-	
-	'useridattr' => 'eduPersonPrincipalName',
-	'allowedUsers' => array('andreas@uninett.no', 'ola.normann@sp.example.org'),
 
 	'statdir' => '/tmp/stats/',
 	'inputfile' => '/var/log/simplesamlphp.stat',
