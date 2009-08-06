@@ -73,9 +73,7 @@ class SAML2_Response extends SAML2_StatusResponse {
 		$root = parent::toUnsignedXML();
 
 		foreach ($this->assertions as $assertion) {
-			$node = $assertion->toXML();
-			$node = $root->ownerDocument->importNode($node, TRUE);
-			$root->appendChild($node);
+			$node = $assertion->toXML($root);
 		}
 
 		return $root;

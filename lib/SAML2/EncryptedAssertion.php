@@ -143,14 +143,20 @@ class SAML2_EncryptedAssertion {
 	/**
 	 * Convert this encrypted assertion to an XML element.
 	 *
+	 * @param DOMNode|NULL $parentElement  The DOM node the assertion should be created in.
 	 * @return DOMElement  This encrypted assertion.
 	 */
-	public function toXML() {
+	public function toXML(DOMNode $parentElement = NULL) {
 
-		$document = new DOMDocument();
+		if ($parentElement === NULL) {
+			$document = new DOMDocument();
+			$parentElement = $document;
+		} else {
+			$document = $parentElement->ownerDocument;
+		}
 
 		$root = $document->createElementNS(SAML2_Const::NS_SAML, 'saml:' . 'EncryptedAssertion');
-		$document->appendChild($root);
+		$parentElement->appendChild($root);
 
 		$root->appendChild($document->importNode($this->encryptedData, TRUE));
 
