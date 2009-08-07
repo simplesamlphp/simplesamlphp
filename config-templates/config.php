@@ -90,7 +90,6 @@ $config = array (
 	 */
 	'logging.level'         => LOG_NOTICE,
 	'logging.handler'       => 'syslog',
-	'logging.processname'   => 'simpleSAMLphp',
 
 	/*
 	 * Choose which facility should be used when logging with syslog.
@@ -105,10 +104,15 @@ $config = array (
 	 */
 	'logging.facility' => defined('LOG_LOCAL5') ? constant('LOG_LOCAL5') : LOG_USER,
 
+	/*
+	 * The process name that should be used when logging to syslog.
+	 * The value is also written out by the other logging handlers.
+	 */
+	'logging.processname' => 'simplesamlphp',
+
 	/* Logging: file - Logfilename in the loggingdir from above.
 	 */
 	'logging.logfile'		=> 'simplesamlphp.log',
-	'logging.processname'	=> 'simplesamlphp',
 	
 	
 
