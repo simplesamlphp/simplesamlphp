@@ -27,9 +27,7 @@ function SimpleSAML_exception_handler(Exception $exception) {
 	$e = new SimpleSAML_Error_Error('UNHANDLEDEXCEPTION', $exception);
 	$e->show();
 }
-/* Disabled; see issue #176.
- * set_exception_handler('SimpleSAML_exception_handler');
- */
+set_exception_handler('SimpleSAML_exception_handler');
 
 /* Log full backtrace on errors and warnings. */
 function SimpleSAML_error_handler($errno, $errstr, $errfile = NULL, $errline = 0, $errcontext = NULL) {
@@ -48,9 +46,7 @@ function SimpleSAML_error_handler($errno, $errstr, $errfile = NULL, $errline = 0
 	/* Resume normal error processing. */
 	return FALSE;
 }
-/* Disabled; see issue #176.
- * set_error_handler('SimpleSAML_error_handler');
- */
+set_error_handler('SimpleSAML_error_handler');
 
 
 $path_extra = dirname(dirname(__FILE__)) . '/lib';
