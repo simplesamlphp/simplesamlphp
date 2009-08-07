@@ -97,32 +97,17 @@ class SimpleSAML_Logger {
 	
 	public static function createLoggingHandler() {
 	
-		global $SIMPLESAML_INCPREFIX;
-	
 		/* Get the configuration. */
 		$config = SimpleSAML_Configuration::getInstance();
 		assert($config instanceof SimpleSAML_Configuration);
 
 		/* Get the metadata handler option from the configuration. */
-		$handler = $config->getValue('logging.handler','syslog');
+		$handler = $config->getString('logging.handler', 'syslog');
 
 		/*
 		 * setting minimum log_level
 		 */
 		self::$logLevel = $config->getValue('logging.level',LOG_INFO);
-
-		/* If 'logging.handler' is NULL or unset, then we want
-		 * to fall back to the default logging handler.
-		 */
-		if(is_null($handler)) {
-			$handler = 'syslog';
-		}
-
-
-		/* The session handler must be a string. */
-		if(!is_string($handler)) {
-			throw new Exception('Invalid setting for the [logging.handler] configuration option. This option should be set to a valid string.');
-		}
 
 		$handler = strtolower($handler);
 
