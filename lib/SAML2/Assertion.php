@@ -948,9 +948,6 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$scd = $root->ownerDocument->createElementNS(SAML2_Const::NS_SAML, 'saml:SubjectConfirmationData');
 		$sc->appendChild($scd);
 
-		if ($this->notBefore !== NULL) {
-			$scd->setAttribute('NotBefore', gmdate('Y-m-d\TH:i:s\Z', $this->notBefore));
-		}
 		if ($this->notOnOrAfter !== NULL) {
 			$scd->setAttribute('NotOnOrAfter', gmdate('Y-m-d\TH:i:s\Z', $this->notOnOrAfter));
 		}
