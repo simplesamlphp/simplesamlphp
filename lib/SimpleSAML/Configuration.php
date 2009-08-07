@@ -93,7 +93,7 @@ class SimpleSAML_Configuration {
 		$config = 'UNINITIALIZED';
 
 		/* The file initializes a variable named '$config'. */
-		require_once($filename);
+		require($filename);
 
 		/* Check that $config is initialized to an array. */
 		if (!is_array($config)) {
