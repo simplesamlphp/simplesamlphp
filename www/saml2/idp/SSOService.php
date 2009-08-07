@@ -425,6 +425,10 @@ if($needAuth && !$isPassive) {
 		$assertion = sspmod_saml2_Message::buildAssertion($idpMetadata, $spMetadata, $attributes);
 		$assertion->setInResponseTo($requestID);
 
+		$nameId = $assertion->getNameId();
+		$nameId['value'] = $nameId['Value'];
+		$session->setSessionNameId('saml20-sp-remote', $spentityid, $nameId);
+
 		/* Maybe encrypt the assertion. */
 		$assertion = sspmod_saml2_Message::encryptAssertion($idpMetadata, $spMetadata, $assertion);
 
