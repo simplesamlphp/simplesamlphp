@@ -51,12 +51,19 @@ abstract class SAML2_Binding {
 	public static function getCurrentBinding() {
 		switch ($_SERVER['REQUEST_METHOD']) {
 		case 'GET':
-			return new SAML2_HTTPRedirect();
+			if (array_key_exists('SAMLRequest', $_REQUEST) || array_key_exists('SAMLResponse', $_REQUEST)) {
+				return new SAML2_HTTPRedirect();
+			}
+			break;
+
 		case 'POST':
-			return new SAML2_HTTPPost();
-		default:
-			throw new Exception('Unable to find the current binding.');
+			if (array_key_exists('SAMLRequest', $_REQUEST) || array_key_exists('SAMLResponse', $_REQUEST)) {
+				return new SAML2_HTTPPost();
+			}
+			break;
 		}
+
+		throw new Exception('Unable to find the current binding.');
 	}
 
 
