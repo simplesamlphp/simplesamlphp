@@ -461,6 +461,8 @@ abstract class SAML2_Message implements SAML2_SignedElement {
 		}
 
 		switch ($xml->localName) {
+		case 'AttributeQuery':
+			return new SAML2_AttributeQuery($xml);
 		case 'AuthnRequest':
 			return new SAML2_AuthnRequest($xml);
 		case 'LogoutResponse':
