@@ -429,7 +429,9 @@ class SimpleSAML_Metadata_SAMLParser {
 		if (!empty($this->organizationDisplayName)) {
 			$ret['name'] = $this->organizationDisplayName;
 		}
-
+		if (!empty($this->organizationURL)) {
+			$ret['url'] = $this->organizationURL;
+		}
 		
 		if (!empty($this->tags)) {
 			$ret['tags'] = $this->tags;
