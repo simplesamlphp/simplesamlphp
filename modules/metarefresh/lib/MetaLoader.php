@@ -8,7 +8,6 @@ class sspmod_metarefresh_MetaLoader {
 
 
 	private $metadata;
-
 	private $expire;
 
 	/**
@@ -18,8 +17,7 @@ class sspmod_metarefresh_MetaLoader {
 	 * @param 
 	 */
 	public function __construct($expire = NULL) {
-		$this->expire = $expire;
-		
+		$this->expire = $expire;	
 		$this->metadata = array();
 	}
 
@@ -183,6 +181,7 @@ class sspmod_metarefresh_MetaLoader {
 		}
 	
 		if(!file_exists($outputDir)) {
+			if (!is_writable($outputDir)) throw new Exception('Permission denied creating directory: ' . $outputDir);
 			SimpleSAML_Logger::info('Creating directory: ' . $outputDir . "\n");
 			mkdir($outputDir, 0777, TRUE);
 		}
@@ -245,16 +244,15 @@ class sspmod_metarefresh_MetaLoader {
 		foreach ($metaHandler->getMetadataSets() as $set) {
 			foreach ($metaHandler->getMetadataSet($set) as $entityId => $metadata) {
 				if (!array_key_exists('expire', $metadata)) {
-					SimpleSAML_Logger::warning('metarefresh: Metadata entry without expire ' .
-						'timestamp: ' . var_export($entityId, TRUE) . ' in set ' .
-						var_export($set, TRUE) . '.');
+					SimpleSAML_Logger::warning('metarefresh: Metadata entry without expire timestamp: ' . var_export($entityId, TRUE) . 
+						' in set ' . var_export($set, TRUE) . '.');
 				}
 				if ($metadata['expire'] > $ct) {
 					continue;
 				}
-
+				SimpleSAML_Logger::debug('metarefresh: ' . $entityId . ' expired ' . date('l jS \of F Y h:i:s A', $metadata['expire']) );
 				SimpleSAML_Logger::debug('metarefresh: Delete expired metadata entry ' .
-					var_export($entityId, TRUE) . ' in set ' . var_export($set, TRUE) . '.');
+					var_export($entityId, TRUE) . ' in set ' . var_export($set, TRUE) . '. (' . ($ct - $metadata['expire']) . ' sec)');
 				$metaHandler->deleteMetadata($entityId, $set);
 			}
 		}
