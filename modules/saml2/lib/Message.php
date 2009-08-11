@@ -37,7 +37,7 @@ class sspmod_saml2_Message {
 	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient.
 	 * @param SAML2_Message $element  The element we should add the data to.
 	 */
-	private static function addSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_SignedElement $element) {
+	public static function addSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_SignedElement $element) {
 
 		$srcMetadata = $srcMetadata->toArray();
 
@@ -127,7 +127,7 @@ class sspmod_saml2_Message {
 	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.
 	 * @param SAML2_SignedElement $element  Either a SAML2_Response or a SAML2_Assertion.
 	 */
-	private static function checkSign(SimpleSAML_Configuration $srcMetadata, SAML2_SignedElement $element) {
+	public static function checkSign(SimpleSAML_Configuration $srcMetadata, SAML2_SignedElement $element) {
 
 		$certificates = $element->getCertificates();
 		SimpleSAML_Logger::debug('Found ' . count($certificates) . ' certificates in ' . get_class($element));
