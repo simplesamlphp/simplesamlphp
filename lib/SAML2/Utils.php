@@ -176,13 +176,13 @@ class SAML2_Utils {
 		$xml = $node->ownerDocument->createElementNS(SAML2_Const::NS_SAML, 'saml:NameID');
 		$node->appendChild($xml);
 
-		if (array_key_exists('NameQualifier', $nameId)) {
+		if (array_key_exists('NameQualifier', $nameId) && $nameId['NameQualifier'] !== NULL) {
 			$xml->setAttribute('NameQualifier', $nameId['NameQualifier']);
 		}
-		if (array_key_exists('SPNameQualifier', $nameId)) {
+		if (array_key_exists('SPNameQualifier', $nameId) && $nameId['SPNameQualifier'] !== NULL) {
 			$xml->setAttribute('SPNameQualifier', $nameId['SPNameQualifier']);
 		}
-		if (array_key_exists('Format', $nameId)) {
+		if (array_key_exists('Format', $nameId) && $nameId['Format'] !== NULL) {
 			$xml->setAttribute('Format', $nameId['Format']);
 		}
 
