@@ -20,12 +20,8 @@ function sendQuery($dataId, $url, $nameId) {
 	$query->setIssuer($GLOBALS['spEntityId']);
 	$query->setNameId($nameId);
 
-	$xml = $query->toUnsignedXML();
-	SimpleSAML_Utilities::formatDOMElement($xml);
-	$xml = $xml->ownerDocument->saveXML($xml);
-	error_log($xml);
-
 	$binding = new SAML2_HTTPRedirect();
+	$binding->setDestination(sspmod_saml2_Message::getDebugDestination());
 	$binding->send($query);
 }
 
