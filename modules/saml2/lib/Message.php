@@ -502,10 +502,18 @@ class sspmod_saml2_Message {
 	public static function buildAssertion(SimpleSAML_Configuration $srcMetadata,
 		SimpleSAML_Configuration $dstMetadata, array $attributes) {
 
+		$signAssertion = $dstMetadata->getBoolean('saml20.sign.assertion', NULL);
+		if ($signAssertion === NULL) {
+			$signAssertion = $srcMetadata->getBoolean('saml20.sign.assertion', TRUE);
+		}
+
 		$config = SimpleSAML_Configuration::getInstance();
 
 		$a = new SAML2_Assertion();
-		self::addSign($srcMetadata, $dstMetadata, $a);
+		if ($signAssertion) {
+			self::addSign($srcMetadata, $dstMetadata, $a);
+		}
+
 		$a->setIssuer($srcMetadata->getString('entityid'));
 		$a->setDestination($dstMetadata->getString('AssertionConsumerService'));
 		$a->setValidAudiences(array($dstMetadata->getString('entityid')));
@@ -574,12 +582,19 @@ class sspmod_saml2_Message {
 	 */
 	public static function buildResponse(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata) {
 
+		$signResponse = $dstMetadata->getBoolean('saml20.sign.response', NULL);
+		if ($signResponse === NULL) {
+			$signResponse = $srcMetadata->getBoolean('saml20.sign.response', TRUE);
+		}
+
 		$r = new SAML2_Response();
 
 		$r->setIssuer($srcMetadata->getString('entityid'));
 		$r->setDestination($dstMetadata->getString('AssertionConsumerService'));
 
-		self::addSign($srcMetadata, $dstMetadata, $r);
+		if ($signResponse) {
+			self::addSign($srcMetadata, $dstMetadata, $r);
+		}
 
 		return $r;
 	}

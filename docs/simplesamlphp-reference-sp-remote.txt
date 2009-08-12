@@ -161,14 +161,19 @@ The following SAML 2.0 options are available:
     (if `assertion.encryption` is set to TRUE and `sharedkey` is
     unset.)
 
-`signresponse`
-:   The default behaviour of simpleSAMLphp is to sign the Assertion
-    element in the SAML 2.0 response sent to SPs. This option allows
-    you to override this behaviour on a per SP basis. Set this to
-    `TRUE` to sign the Response element. `FALSE` will make the SP sign
-    the Assertion. If this option is unset, the value from
-    `saml2.signresponse` in `config.php` will be used. That value is
-    `FALSE` by default.
+`saml20.sign.response`
+:   Whether `<samlp:Response> messages should be signed.
+    Defaults to `TRUE`.
+
+:   Note that this option also exists in the IdP-hosted metadata.
+    The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+
+`saml20.sign.assertion`
+:   Whether `<saml:Assertion> elements should be signed.
+    Defaults to `TRUE`.
+
+:   Note that this option also exists in the IdP-hosted metadata.
+    The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
 
 `simplesaml.nameidattribute`
 :   When the value of the `NameIDFormat`-option is set to either

@@ -140,6 +140,22 @@ The following SAML 2.0 options are available:
     configure your webserver to deliver this URL to the correct PHP
     page.
 
+`saml20.sign.response`
+:   Whether `<samlp:Response> messages should be signed.
+    Defaults to `TRUE`.
+
+:   Note that this option also exists in the SP-remote metadata, and
+    any value in the SP-remote metadata overrides the one configured
+    in the IdP metadata.
+
+`saml20.sign.assertion`
+:   Whether `<saml:Assertion> elements should be signed.
+    Defaults to `TRUE`.
+
+:   Note that this option also exists in the SP-remote metadata, and
+    any value in the SP-remote metadata overrides the one configured
+    in the IdP metadata.
+
 
 ### Fields for signing and validating messages
 
