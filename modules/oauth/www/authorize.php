@@ -33,16 +33,23 @@ $attributes = $session->getAttributes();
 
 $store->authorize($requestToken, $attributes);
 
-$t = new SimpleSAML_XHTML_Template($config, 'oauth:authorized.php');
+if (isset($_REQUEST['oauth_callback'])) {
+	
+	SimpleSAML_Utilities::redirect($_REQUEST['oauth_callback']);
+	
+} else {
 
-$t->data['header'] = '{status:header_saml20_sp}';
-$t->data['remaining'] = $session->remainingTime();
-$t->data['sessionsize'] = $session->getSize();
-$t->data['attributes'] = $attributes;
-$t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
-$t->data['icon'] = 'bino.png';
-$t->show();
 
+	$t = new SimpleSAML_XHTML_Template($config, 'oauth:authorized.php');
+
+	$t->data['header'] = '{status:header_saml20_sp}';
+	$t->data['remaining'] = $session->remainingTime();
+	$t->data['sessionsize'] = $session->getSize();
+	$t->data['attributes'] = $attributes;
+	$t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
+	$t->data['icon'] = 'bino.png';
+	$t->show();
+}
 
 
 
