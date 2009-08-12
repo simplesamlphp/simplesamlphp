@@ -248,7 +248,7 @@ if (!$session->isValid($authority) ) {
 		if (array_key_exists('RelayState', $requestcache)) $relayState = $requestcache['RelayState'];
 
 		$nameid = $session->getNameID();
-		$nameid = $nameid['value'];
+		$nameid = $nameid['Value'];
 		
 		$nameidattribute = $spmetadata->getValue('simplesaml.nameidattribute');
 		if (isset($nameidattribute)) {

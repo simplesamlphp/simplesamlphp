@@ -234,10 +234,6 @@ if ($spEntityId) {
 			$nameId = $session->getNameID();
 		}
 
-		/* Convert to new-style NameId format. */
-		$nameId['Value'] = $nameId['value'];
-		unset($nameId['value']);
-
 		$lr = sspmod_saml2_Message::buildLogoutRequest($idpMetadata, $spMetadata);
 		$lr->setSessionIndex($session->getSessionIndex());
 		$lr->setNameId($nameId);

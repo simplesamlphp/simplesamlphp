@@ -36,10 +36,7 @@ try {
 	$spEntityId = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 	$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-hosted');
 
-	/* Convert NameId to new style. */
 	$nameId = $session->getNameId();
-	$nameId['Value'] = $nameId['value'];
-	unset($nameId['value']);
 
 	$lr = sspmod_saml2_Message::buildLogoutRequest($spMetadata, $idpMetadata);
 	$lr->setNameId($nameId);

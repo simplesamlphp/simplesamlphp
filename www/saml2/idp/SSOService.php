@@ -426,7 +426,6 @@ if($needAuth && !$isPassive) {
 		$assertion->setInResponseTo($requestID);
 
 		$nameId = $assertion->getNameId();
-		$nameId['value'] = $nameId['Value'];
 		$session->setSessionNameId('saml20-sp-remote', $spentityid, $nameId);
 
 		/* Maybe encrypt the assertion. */

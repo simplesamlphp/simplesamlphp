@@ -244,6 +244,17 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$nameId = $state[self::LOGOUT_NAMEID];
 		$sessionIndex = $state[self::LOGOUT_SESSIONINDEX];
 
+		if (array_key_exists('value', $nameId)) {
+			/*
+			 * This session was saved by an old version of simpleSAMLphp.
+			 * Convert to the new NameId format.
+			 *
+			 * TODO: Remove this conversion once every session should use the new format.
+			 */
+			$nameId['Value'] = $nameId['value'];
+			unset($nameId['value']);
+		}
+
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$spMetadata = $metadata->getMetaDataConfig($this->getEntityId(), 'saml20-sp-hosted');
 		$idpMetadata = $metadata->getMetaDataConfig($idp, 'saml20-idp-remote');

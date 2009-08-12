@@ -145,10 +145,7 @@ try {
 	SimpleSAML_Logger::stats('saml20-sp-SSO ' . $metadataHandler->getMetaDataCurrentEntityID() . ' ' . $idp . ' NA');
 	
 
-	/* Convert the NameId array to the old style. */
 	$nameId = $assertion->getNameId();
-	$nameId['value'] = $nameId['Value'];
-	unset($nameId['Value']);
 
 	/* Begin module attribute processing */
 

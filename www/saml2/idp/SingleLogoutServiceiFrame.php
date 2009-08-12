@@ -265,10 +265,6 @@ foreach ($listofsps AS $spentityid) {
 		$nameId = $session->getNameID();
 	}
 
-	/* Convert to new-style NameId format. */
-	$nameId['Value'] = $nameId['value'];
-	unset($nameId['value']);
-
 	$spMetadata = $metadata->getMetaDataConfig($spentityid, 'saml20-sp-remote');
 	$name = $spMetadata->getValue('name', $spentityid);
 

@@ -227,7 +227,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			$query = '/mysamlp:Response/mysaml:Assertion/mysaml:AuthenticationStatement/mysaml:Subject/mysaml:NameIdentifier';
 			$nodelist = $xPath->query($query);
 			if ($node = $nodelist->item(0)) {
-				$nameID["value"] = $node->nodeValue;
+				$nameID["Value"] = $node->nodeValue;
 				$nameID["Format"] = $node->getAttribute('Format');
 				//$nameID["NameQualifier"] = $node->getAttribute('NameQualifier');
 			}

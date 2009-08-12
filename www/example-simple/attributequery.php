@@ -69,12 +69,7 @@ if (empty($defNameId)) {
 	$defNameId = array();
 }
 if (!array_key_exists('Value', $defNameId)) {
-	if (array_key_exists('value', $defNameId)) {
-		/* For backwards compatibility. */
-		$defNameId['Value'] = $defNameId['value'];
-	} else {
-		$defNameId['Value'] = SimpleSAML_Utilities::generateID();
-	}
+	$defNameId['Value'] = SimpleSAML_Utilities::generateID();
 }
 if (!array_key_exists('Format', $defNameId)) {
 	$defNameId['Format'] = SAML2_Const::NAMEID_TRANSIENT;
