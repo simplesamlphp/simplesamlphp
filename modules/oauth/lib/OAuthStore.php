@@ -17,10 +17,10 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore {
 			
 		if (!file_exists($path)) {
 			mkdir($path);
-		} else {
-			if (!is_dir($path)) 
-				throw new Exception('OAuth Storage Path [' . $path . '] is not a valid directory');
 		}
+		if (!is_dir($path)) 
+			throw new Exception('OAuth Storage Path [' . $path . '] is not a valid directory');
+			
 		$this->path = $path;
     }
 
