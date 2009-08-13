@@ -33,7 +33,7 @@ if ($idp === NULL) {
 
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $idpMetadata = $metadata->getMetaDataConfig($idp, 'saml20-idp-remote');
-$spMetadata = $metadata->getMetaDataConfig($source->getEntityId(), 'saml20-sp-hosted');
+$spMetadata = $source->getMetadata();
 
 /* Check if the IdP is allowed to authenticate users for this authentication source. */
 if (!$source->isIdPValid($idp)) {

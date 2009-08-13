@@ -30,7 +30,7 @@ $spEntityId = $source->getEntityId();
 
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-remote');
-$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-hosted');
+$spMetadata = $source->getMetadata();
 
 sspmod_saml2_Message::validateMessage($idpMetadata, $spMetadata, $message);
 

@@ -56,6 +56,14 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 
 	/**
+	 * The metadata for this SP.
+	 *
+	 * @var SimpleSAML_Configuration
+	 */
+	private $metadata;
+
+
+	/**
 	 * The entity id of this SP.
 	 */
 	private $entityId;
@@ -80,17 +88,28 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		/* Call the parent constructor first, as required by the interface. */
 		parent::__construct($info, $config);
 
+		/* For compatibility with code that assumes that $metadata->getString('entityid') gives the entity id. */
 		if (array_key_exists('entityId', $config)) {
-			$this->entityId = $config['entityId'];
+			$config['entityid'] = $config['entityId'];
 		} else {
-			$this->entityId = SimpleSAML_Module::getModuleURL('saml2/sp/metadata.php?source=' . urlencode($this->authId));
+			$config['entityid'] = SimpleSAML_Module::getModuleURL('saml2/sp/metadata.php?source=' . urlencode($this->authId));
 		}
 
-		if (array_key_exists('idp', $config)) {
-			$this->idp = $config['idp'];
-		} else {
-			$this->idp = NULL;
-		}
+		/* For backwards-compatibility with configuration in saml20-sp-hosted. */
+		try {
+			$metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+			$oldMetadata = $metadataHandler->getMetaData($config['entityid'], 'saml20-sp-hosted');
+
+			SimpleSAML_Logger::warning('Depreceated metadata for ' . var_export($config['entityid'], TRUE) .
+				' in saml20-sp-hosted. The metadata in should be moved into authsources.php.');
+
+			$config = array_merge($oldMetadata, $config);
+		} catch (Exception $e) {};
+
+		$this->metadata = SimpleSAML_Configuration::loadFromArray($config, 'authsources[' . var_export($this->authId, TRUE) . ']');
+
+		$this->entityId = $this->metadata->getString('entityid');
+		$this->idp = $this->metadata->getString('idp', NULL);
 	}
 
 
@@ -157,10 +176,9 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-		$spMetadata = $metadata->getMetaDataConfig($this->getEntityId(), 'saml20-sp-hosted');
 		$idpMetadata = $metadata->getMetaDataConfig($idp, 'saml20-idp-remote');
 
-		$ar = sspmod_saml2_Message::buildAuthnRequest($spMetadata, $idpMetadata);
+		$ar = sspmod_saml2_Message::buildAuthnRequest($this->metadata, $idpMetadata);
 
 		$ar->setAssertionConsumerServiceURL(SimpleSAML_Module::getModuleURL('saml2/sp/acs.php'));
 		$ar->setProtocolBinding(SAML2_Const::BINDING_HTTP_POST);
@@ -188,20 +206,24 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 
 	/**
+	 * Retrieve the metadata for this SP.
+	 *
+	 * @return SimpleSAML_Configuration  The metadata, as a configuration object.
+	 */
+	public function getMetadata() {
+
+		return $this->metadata;
+	}
+
+
+	/**
 	 * Retrieve the NameIDFormat used by this SP.
 	 *
 	 * @return string  NameIDFormat used by this SP.
 	 */
 	public function getNameIDFormat() {
 
-		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-		$spmeta = $metadata->getMetadata($this->getEntityId(), 'saml20-sp-hosted');
-
-		if (array_key_exists('NameIDFormat', $spmeta)) {
-			return $spmeta['NameIDFormat'];
-		} else {
-			return 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
-		}
+		return $this->metadata->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
 	}
 
 
@@ -256,10 +278,9 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		}
 
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-		$spMetadata = $metadata->getMetaDataConfig($this->getEntityId(), 'saml20-sp-hosted');
 		$idpMetadata = $metadata->getMetaDataConfig($idp, 'saml20-idp-remote');
 
-		$lr = sspmod_saml2_Message::buildLogoutRequest($spMetadata, $idpMetadata);
+		$lr = sspmod_saml2_Message::buildLogoutRequest($this->metadata, $idpMetadata);
 		$lr->setNameId($nameId);
 		$lr->setSessionIndex($sessionIndex);
 		$lr->setRelayState($id);
