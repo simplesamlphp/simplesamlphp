@@ -333,7 +333,7 @@ class sspmod_saml2_Message {
 	public static function getResponseError(SAML2_StatusResponse $response) {
 
 		$status = $response->getStatus();
-		new sspmod_saml2_Error($status['Code'], $status['SubCode'], $status['Message']);
+		return new sspmod_saml2_Error($status['Code'], $status['SubCode'], $status['Message']);
 	}
 
 
