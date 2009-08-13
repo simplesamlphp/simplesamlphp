@@ -25,7 +25,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host'),
-				array('redirect.sign','redirect.validate','certificate','privatekey', 'privatekey_pass', 'NameIDFormat', 'ForceAuthn', 'AuthnContextClassRef', 'SPNameQualifier', 'attributes', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.privatekey_pass', 'metadata.sign.certificate', 'idpdisco.url', 'authproc')
+				array('redirect.sign','redirect.validate','certificate','privatekey', 'privatekey_pass', 'NameIDFormat', 'ForceAuthn', 'AuthnContextClassRef', 'SPNameQualifier', 'attributes', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.privatekey_pass', 'metadata.sign.certificate', 'idpdisco.url', 'authproc', 'certData')
 			);
 		}
 		$et->data['metadata.saml20-sp-hosted'] = $results;
@@ -35,7 +35,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'SingleSignOnService', 'SingleLogoutService', 'certFingerprint'),
-				array('name', 'description', 'base64attributes', 'certificate', 'hint.cidr', 'saml2.relaxvalidation', 'SingleLogoutServiceResponse', 'redirect.sign', 'redirect.validate', 'sharedkey', 'assertion.encryption', 'icon', 'authproc')
+				array('name', 'description', 'base64attributes', 'certificate', 'hint.cidr', 'saml2.relaxvalidation', 'SingleLogoutServiceResponse', 'redirect.sign', 'redirect.validate', 'sharedkey', 'assertion.encryption', 'icon', 'authproc', 'certData')
 			);
 			$index = array_search('certFingerprint', $results[$entityid]['required.notfound']);
 			if ($index !== FALSE) {
@@ -54,7 +54,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'host', 'privatekey', 'certificate', 'auth'),
-				array('redirect.sign', 'redirect.validate', 'privatekey_pass', 'authority', 'userid.attribute', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.privatekey_pass', 'metadata.sign.certificate', 'AttributeNameFormat', 'name', 'authproc', 'saml20.sign.assertion', 'saml20.sign.response')
+				array('redirect.sign', 'redirect.validate', 'privatekey_pass', 'authority', 'userid.attribute', 'metadata.sign.enable', 'metadata.sign.privatekey', 'metadata.sign.privatekey_pass', 'metadata.sign.certificate', 'AttributeNameFormat', 'name', 'authproc', 'saml20.sign.assertion', 'saml20.sign.response', 'certData')
 			);
 		}
 		$et->data['metadata.saml20-idp-hosted'] = $results;
@@ -64,7 +64,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'AssertionConsumerService'),
-				array('SingleLogoutService', 'NameIDFormat', 'SPNameQualifier', 'base64attributes', 'simplesaml.nameidattribute', 'simplesaml.attributes', 'attributes', 'name', 'description', 'redirect.sign', 'redirect.validate', 'certificate', 'ForceAuthn', 'sharedkey', 'assertion.encryption', 'userid.attribute', 'AttributeNameFormat', 'authproc', 'saml20.sign.assertion', 'saml20.sign.response')
+				array('SingleLogoutService', 'NameIDFormat', 'SPNameQualifier', 'base64attributes', 'simplesaml.nameidattribute', 'simplesaml.attributes', 'attributes', 'name', 'description', 'redirect.sign', 'redirect.validate', 'certificate', 'ForceAuthn', 'sharedkey', 'assertion.encryption', 'userid.attribute', 'AttributeNameFormat', 'authproc', 'saml20.sign.assertion', 'saml20.sign.response', 'certData')
 			);
 		}
 		$et->data['metadata.saml20-sp-remote'] = $results;
