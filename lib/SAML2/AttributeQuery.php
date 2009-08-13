@@ -82,7 +82,7 @@ class SAML2_AttributeQuery extends SAML2_SubjectQuery {
 
 			$values = SAML2_Utils::xpQuery($attribute, './saml:AttributeValue');
 			foreach ($values as $value) {
-				$this->attributes[$name][] = $value->textContent;
+				$this->attributes[$name][] = trim($value->textContent);
 			}
 		}
 	}

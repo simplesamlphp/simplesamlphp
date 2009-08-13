@@ -45,7 +45,7 @@ class SAML2_LogoutRequest extends SAML2_Request {
 
 		$sessionIndex = SAML2_Utils::xpQuery($xml, './samlp:SessionIndex');
 		if (!empty($sessionIndex)) {
-			$this->sessionIndex = $sessionIndex[0]->textContent;
+			$this->sessionIndex = trim($sessionIndex[0]->textContent);
 		}
 	}
 

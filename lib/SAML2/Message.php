@@ -142,7 +142,7 @@ abstract class SAML2_Message implements SAML2_SignedElement {
 
 		$issuer = SAML2_Utils::xpQuery($xml, './saml:Issuer');
 		if (!empty($issuer)) {
-			$this->issuer = $issuer[0]->textContent;
+			$this->issuer = trim($issuer[0]->textContent);
 		}
 
 

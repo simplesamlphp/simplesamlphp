@@ -83,7 +83,7 @@ abstract class SAML2_StatusResponse extends SAML2_Message {
 
 		$message = SAML2_Utils::xpQuery($status, './samlp:StatusMessage');
 		if (!empty($message)) {
-			$this->status['Message'] = $message[0]->textContent;
+			$this->status['Message'] = trim($message[0]->textContent);
 		}
 	}
 

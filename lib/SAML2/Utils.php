@@ -68,7 +68,7 @@ class SAML2_Utils {
 		/* Now we extract all available X509 certificates in the signature element. */
 		$certificates = array();
 		foreach (self::xpQuery($signatureElement, './ds:KeyInfo/ds:X509Data/ds:X509Certificate') as $certNode) {
-			$certData = $certNode->textContent;
+			$certData = trim($certNode->textContent);
 			$certData = str_replace(array("\r", "\n", "\t", ' '), '', $certData);
 			$certificates[] = $certData;
 		}
@@ -198,7 +198,7 @@ class SAML2_Utils {
 	 */
 	public static function parseNameId(DOMElement $xml) {
 
-		$ret = array('Value' => $xml->textContent);
+		$ret = array('Value' => trim($xml->textContent));
 
 		foreach (array('NameQualifier', 'SPNameQualifier', 'Format') as $attr) {
 			if ($xml->hasAttribute($attr)) {

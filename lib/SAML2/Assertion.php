@@ -194,7 +194,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		if (empty($issuer)) {
 			throw new Exception('Missing <saml:Issuer> in assertion.');
 		}
-		$this->issuer = $issuer[0]->textContent;
+		$this->issuer = trim($issuer[0]->textContent);
 
 		$this->parseSubject($xml);
 		$this->parseConditions($xml);
@@ -316,7 +316,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 			case 'AudienceRestriction':
 				$audiences = SAML2_Utils::xpQuery($node, './saml:Audience');
 				foreach ($audiences as &$audience) {
-					$audience = $audience->textContent;
+					$audience = trim($audience->textContent);
 				}
 				if ($this->validAudiences === NULL) {
 					/* The first (and probably last) AudienceRestriction element. */
@@ -388,7 +388,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		}
 		$accr = $accr[0];
 
-		$this->authnContext = $accr->textContent;
+		$this->authnContext = trim($accr->textContent);
 	}
 
 
@@ -428,7 +428,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 			$values = SAML2_Utils::xpQuery($attribute, './saml:AttributeValue');
 			foreach ($values as $value) {
-				$this->attributes[$name][] = $value->textContent;
+				$this->attributes[$name][] = trim($value->textContent);
 			}
 		}
 	}
