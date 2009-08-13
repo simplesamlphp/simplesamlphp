@@ -294,20 +294,6 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 
 	/**
-	 * Called when we are logged in.
-	 *
-	 * @param string $idpEntityId  Entity id of the IdP.
-	 * @param array $state  The state of the authentication operation.
-	 */
-	public function onLogin($idpEntityId, $state) {
-		assert('is_string($idpEntityId)');
-		assert('is_array($state)');
-
-		$this->addLogoutCallback($idpEntityId, $state);
-	}
-
-
-	/**
 	 * Called when we receive a logout request.
 	 *
 	 * @param string $idpEntityId  Entity id of the IdP.
@@ -316,6 +302,31 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		assert('is_string($idpEntityId)');
 
 		$this->callLogoutCallback($idpEntityId);
+	}
+
+
+	/**
+	 * Called when we have completed the procssing chain.
+	 *
+	 * @param array $authProcState  The processing chain state.
+	 */
+	public static function onProcessingCompleted(array $authProcState) {
+		assert('array_key_exists("saml2:sp:IdP", $authProcState)');
+		assert('array_key_exists("saml2:sp:State", $authProcState)');
+		assert('array_key_exists("Attributes", $authProcState)');
+
+		$idp = $authProcState['saml2:sp:IdP'];
+		$state = $authProcState['saml2:sp:State'];
+
+		$sourceId = $state[sspmod_saml2_Auth_Source_SP::AUTHID];
+		$source = SimpleSAML_Auth_Source::getById($sourceId);
+		if ($source === NULL) {
+			throw new Exception('Could not find authentication source with id ' . $sourceId);
+		}
+
+		$source->addLogoutCallback($idp, $state);
+		$state['Attributes'] = $authProcState['Attributes'];
+		SimpleSAML_Auth_Source::completeAuth($state);
 	}
 
 }

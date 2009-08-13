@@ -61,9 +61,24 @@ $logoutState = array(
 	);
 $state['LogoutState'] = $logoutState;
 
-$source->onLogin($idp, $state);
 
-$state['Attributes'] = $assertion->getAttributes();
-SimpleSAML_Auth_Source::completeAuth($state);
+$spMetadataArray = $spMetadata->toArray();
+$idpMetadataArray = $idpMetadata->toArray();
+
+$pc = new SimpleSAML_Auth_ProcessingChain($idpMetadataArray, $spMetadataArray, 'sp');
+
+$authProcState = array(
+	'saml2:sp:IdP' => $idp,
+	'saml2:sp:State' => $state,
+	'ReturnCall' => array('sspmod_saml2_Auth_Source_SP', 'onProcessingCompleted'),
+
+	'Attributes' => $assertion->getAttributes(),
+	'Destination' => $spMetadataArray,
+	'Source' => $idpMetadataArray,
+);
+
+$pc->processState($authProcState);
+
+sspmod_saml2_Auth_Source_SP::onProcessingCompleted($authProcState);
 
 ?>
