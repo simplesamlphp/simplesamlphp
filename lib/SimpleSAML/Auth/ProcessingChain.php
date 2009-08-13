@@ -160,8 +160,10 @@ class SimpleSAML_Auth_ProcessingChain {
 	 * Process the given state.
 	 *
 	 * This function will only return if processing completes. If processing requires showing
-	 * a page to the user, we will redirect to the URL set in $state['ReturnURL'] after processing is
-	 * completed.
+	 * a page to the user, we will not be able to return from this function. There are two ways
+	 * this can be handled:
+	 * - Redirect to an URL: We will redirect to the URL set in $state['ReturnURL'].
+	 * - Call a function: We will call the function set in $state['ReturnCall'].
 	 *
 	 * If an exception is thrown during processing, it should be handled by the caller of
 	 * this function. If the user has redirected to a different page, the exception will be
@@ -176,7 +178,8 @@ class SimpleSAML_Auth_ProcessingChain {
 	 */
 	public function processState(&$state) {
 		assert('is_array($state)');
-		assert('array_key_exists("ReturnURL", $state)');
+		assert('array_key_exists("ReturnURL", $state) || array_key_exists("ReturnCall", $state)');
+		assert('!array_key_exists("ReturnURL", $state) || !array_key_exists("ReturnCall", $state)');
 
 		$state[self::FILTERS_INDEX] = $this->filters;
 
@@ -233,14 +236,33 @@ class SimpleSAML_Auth_ProcessingChain {
 			}
 		}
 
-		assert('array_key_exists("ReturnURL", $state)');
+		/* Completed. */
 
-		/* Completed. Save state information, and redirect to the URL specified
-		 * in $state['ReturnURL'].
-		 */
-		$id = SimpleSAML_Auth_State::saveState($state, self::COMPLETED_STAGE);
-		SimpleSAML_Utilities::redirect($state['ReturnURL'], array(self::AUTHPARAM => $id));
+		assert('array_key_exists("ReturnURL", $state) || array_key_exists("ReturnCall", $state)');
+		assert('!array_key_exists("ReturnURL", $state) || !array_key_exists("ReturnCall", $state)');
+
+
+		if (array_key_exists('ReturnURL', $state)) {
+			/*
+			 * Save state information, and redirect to the URL specified
+			 * in $state['ReturnURL'].
+			 */
+			$id = SimpleSAML_Auth_State::saveState($state, self::COMPLETED_STAGE);
+			SimpleSAML_Utilities::redirect($state['ReturnURL'], array(self::AUTHPARAM => $id));
+		} else {
+			/* Pass the state to the function defined in $state['ReturnCall']. */
+
+			/* We are done with the state array in the session. Delete it. */
+			SimpleSAML_Auth_State::deleteState($state);
+
+			$func = $state['ReturnCall'];
+			assert('is_callable($func)');
+
+			call_user_func($func, $state);
+			assert(FALSE);
+		}
 	}
+
 
 	/**
 	 * Process the given state passivly.
