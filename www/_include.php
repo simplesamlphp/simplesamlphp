@@ -3,7 +3,7 @@
 /* Remove magic quotes. */
 if(get_magic_quotes_gpc()) {
 	foreach(array('_GET', '_POST', '_COOKIE', '_REQUEST') as $a) {
-		if (is_array($$a)) {
+		if (isset($$a) && is_array($$a)) {
 			foreach($$a as &$v) {
 				/* We don't use array-parameters anywhere.
 				 * Ignore any that may appear.
