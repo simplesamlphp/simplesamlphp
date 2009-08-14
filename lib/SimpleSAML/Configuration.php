@@ -627,6 +627,71 @@ class SimpleSAML_Configuration {
 
 
 	/**
+	 * This function retrieves an array configuration option.
+	 *
+	 * If the configuration option isn't an array, it will be converted to an array.
+	 *
+	 * @param string $name  The name of the option.
+	 * @param mixed $default  A default value which will be returned if the option isn't found. The option will be
+	 *                       required if this parameter isn't given. The default value can be any value, including
+	 *                       NULL.
+	 * @return array  The option with the given name, or $default if the option isn't found and $default is specified.
+	 */
+	public function getArrayize($name, $default = self::REQUIRED_OPTION) {
+		assert('is_string($name)');
+
+		$ret = $this->getValue($name, $default);
+
+		if ($ret === $default) {
+			/* The option wasn't found, or it matches the default value. In any case, return
+			 * this value.
+			 */
+			return $ret;
+		}
+
+		if (!is_array($ret)) {
+			$ret = array($ret);
+		}
+
+		return $ret;
+	}
+
+
+	/**
+	 * This function retrieves a configuration option with a string or an array of strings.
+	 *
+	 * If the configuration option is a string, it will be converted to an array with a single string
+	 *
+	 * @param string $name  The name of the option.
+	 * @param mixed $default  A default value which will be returned if the option isn't found. The option will be
+	 *                       required if this parameter isn't given. The default value can be any value, including
+	 *                       NULL.
+	 * @return array  The option with the given name, or $default if the option isn't found and $default is specified.
+	 */
+	public function getArrayizeString($name, $default = self::REQUIRED_OPTION) {
+		assert('is_string($name)');
+
+		$ret = $this->getArrayize($name, $default);
+
+		if ($ret === $default) {
+			/* The option wasn't found, or it matches the default value. In any case, return
+			 * this value.
+			 */
+			return $ret;
+		}
+
+		foreach ($ret as $value) {
+			if (!is_string($value)) {
+				throw new Exception($this->location . ': The option ' . var_export($name, TRUE) .
+					' must be a string or an array of strings.');
+			}
+		}
+
+		return $ret;
+	}
+
+
+	/**
 	 * Retrieve an array as a SimpleSAML_Configuration object.
 	 *
 	 * This function will load the value of an option into a SimpleSAML_Configuration
