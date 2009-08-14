@@ -272,7 +272,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		$doc = new DOMDocument();
 
-		$res = @$doc->load($file);
+		$res = $doc->load($file);
 		if($res !== TRUE) {
 			throw new Exception('Failed to read XML from file: ' . $file);
 		}
