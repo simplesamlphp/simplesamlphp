@@ -22,7 +22,7 @@ class sspmod_saml2_Message {
 	public static function getDebugDestination() {
 
 		$globalConfig = SimpleSAML_Configuration::getInstance();
-		if (!$globalConfig->getValue('debug')) {
+		if (!$globalConfig->getBoolean('debug', FALSE)) {
 			return NULL;
 		}
 
@@ -165,7 +165,7 @@ class sspmod_saml2_Message {
 					var_export($srcMetadata->getString('entityid'), TRUE));
 			}
 			$globalConfig = SimpleSAML_Configuration::getInstance();
-			$caFile = $globalConfig->getPathValue('certdir') . $caFile;
+			$caFile = $globalConfig->getPathValue('certdir', 'cert/') . $caFile;
 
 			if (count($certificates) === 0) {
 				/* We need the full certificate in order to check it against the CA file. */
@@ -528,7 +528,7 @@ class sspmod_saml2_Message {
 
 		$a->setAuthnContext(SAML2_Const::AC_PASSWORD);
 
-		$sessionLifetime = $config->getInteger('session.duration', 3600);
+		$sessionLifetime = $config->getInteger('session.duration', 8*60*60);
 		$a->setSessionNotOnOrAfter(time() + $sessionLifetime);
 
 		$session = SimpleSAML_Session::getInstance();

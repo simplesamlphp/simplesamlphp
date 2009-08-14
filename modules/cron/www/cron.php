@@ -39,7 +39,7 @@ if ($cronconfig->getValue('sendemail', TRUE) && count($summary) > 0) {
 		'<p>URL: <tt>' . SimpleSAML_Utilities::selfURL() . '</tt></p>' .
 		'<p>Tag: ' . $_REQUEST['tag'] . "</p>\n\n" . $statustext;
 
-	$toaddress = $config->getValue('technicalcontact_email', 'na@example.org');
+	$toaddress = $config->getString('technicalcontact_email', 'na@example.org');
 	if($toaddress == 'na@example.org') {		
 		SimpleSAML_Logger::error('Cron - Could not send email. [technicalcontact_email] not set in config.');
 	} else {

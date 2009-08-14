@@ -296,10 +296,11 @@ class SimpleSAML_Configuration {
 	
 	
 	public function getBaseURL() {
-		if (preg_match('/^\*(.*)$/', $this->getValue('baseurlpath', ''), $matches)) {
+		if (preg_match('/^\*(.*)$/', $this->getString('baseurlpath', 'simplesaml/'), $matches)) {
 			return SimpleSAML_Utilities::getFirstPathElement(false) . $matches[1];
 		}
-		return $this->getValue('baseurlpath', '');
+
+		return $this->getString('baseurlpath', 'simplesaml/');
 	}
 
 
@@ -375,7 +376,7 @@ class SimpleSAML_Configuration {
 		/* Check if a directory is configured in the configuration
 		 * file.
 		 */
-		$dir = $this->getValue('basedir');
+		$dir = $this->getString('basedir', NULL);
 		if($dir !== NULL) {
 			/* Add trailing slash if it is missing. */
 			if(substr($dir, -1) !== '/') {

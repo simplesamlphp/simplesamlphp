@@ -83,7 +83,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 
 		$response = $responsedom->saveXML();
 
-		if ($this->configuration->getValue('debug')) {
+		if ($this->configuration->getBoolean('debug', FALSE)) {
 			$p = new SimpleSAML_XHTML_Template($this->configuration, 'post-debug.php');
 			$p->data['header'] = 'SAML (Shibboleth 1.3) Response Debug-mode';
 			$p->data['RelayStateName'] = 'TARGET';

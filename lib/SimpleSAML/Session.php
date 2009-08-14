@@ -95,7 +95,7 @@ class SimpleSAML_Session {
 	private function __construct() {
 		
 		$configuration = SimpleSAML_Configuration::getInstance();
-		$this->sessionduration = $configuration->getValue('session.duration');
+		$this->sessionduration = $configuration->getInteger('session.duration', 8*60*60);
 		
 		$this->trackid = SimpleSAML_Utilities::generateTrackID();
 
@@ -736,16 +736,16 @@ class SimpleSAML_Session {
 
 			$configuration = SimpleSAML_Configuration::getInstance();
 
-			$timeout = $configuration->getValue('session.datastore.timeout', NULL);
+			$timeout = $configuration->getInteger('session.datastore.timeout', NULL);
 			if($timeout !== NULL) {
-				if(!is_int($timeout) || $timeout <= 0) {
+				if ($timeout <= 0) {
 					throw new Exception('The value of the session.datastore.timeout' .
 						' configuration option should be a positive integer.');
 				}
 			} else {
 				/* For backwards compatibility. */
-				$timeout = $configuration->getValue('session.requestcache', 4*(60*60));
-				if(!is_int($timeout) || $timeout <= 0) {
+				$timeout = $configuration->getInteger('session.requestcache', 4*(60*60));
+				if ($timeout <= 0) {
 					throw new Exception('The value of the session.requestcache' .
 						' configuration option should be a positive integer.');
 				}

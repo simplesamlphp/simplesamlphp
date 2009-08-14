@@ -33,13 +33,13 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 		if(session_id() === '') {
 			$config = SimpleSAML_Configuration::getInstance();
 			
-			$cookiepath = ($config->getValue('session.phpsession.limitedpath', FALSE) ? '/' . $config->getValue('baseurlpath') : '/');
+			$cookiepath = ($config->getBoolean('session.phpsession.limitedpath', FALSE) ? '/' . $config->getBaseURL() : '/');
 			session_set_cookie_params(0, $cookiepath, NULL, SimpleSAML_Utilities::isHTTPS());
 			
-			$cookiename = $config->getValue('session.phpsession.cookiename', NULL);
+			$cookiename = $config->getString('session.phpsession.cookiename', NULL);
 			if (!empty($cookiename)) session_name($cookiename);
 
-			$savepath = $config->getValue('session.phpsession.savepath', NULL);
+			$savepath = $config->getString('session.phpsession.savepath', NULL);
 			if(!empty($savepath)) {
 				session_save_path($savepath);
 			}

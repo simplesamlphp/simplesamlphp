@@ -18,7 +18,7 @@ try {
 	$session = SimpleSAML_Session::getInstance();
 
 	/* Check if this module is enabled. */
-	if(!$globalConfig->getValue('enable.authmemcookie', FALSE)) {
+	if(!$globalConfig->getBoolean('enable.authmemcookie', FALSE)) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 	}
 

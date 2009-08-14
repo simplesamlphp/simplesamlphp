@@ -46,8 +46,8 @@ class SimpleSAML_Metadata_Signer {
 		}
 
 		/* Then we look for default values in the global configuration. */
-		$privatekey = $config->getValue('metadata.sign.privatekey', NULL);
-		$certificate = $config->getValue('metadata.sign.certificate', NULL);
+		$privatekey = $config->getString('metadata.sign.privatekey', NULL);
+		$certificate = $config->getString('metadata.sign.certificate', NULL);
 		if($privatekey !== NULL || $certificate !== NULL) {
 			if($privatekey === NULL || $certificate === NULL) {
 				throw new Exception('Missing either the "metadata.sign.privatekey" or the' .
@@ -57,7 +57,7 @@ class SimpleSAML_Metadata_Signer {
 			}
 			$ret = array('privatekey' => $privatekey, 'certificate' => $certificate);
 
-			$privatekey_pass = $config->getValue('metadata.sign.privatekey_pass', NULL);
+			$privatekey_pass = $config->getString('metadata.sign.privatekey_pass', NULL);
 			if($privatekey_pass !== NULL) {
 				$ret['privatekey_pass'] = $privatekey_pass;
 			}
@@ -115,11 +115,7 @@ class SimpleSAML_Metadata_Signer {
 			return $entityMetadata['metadata.sign.enable'];
 		}
 
-		$enabled = $config->getValue('metadata.sign.enable', FALSE);
-		if(!is_bool($enabled)) {
-			throw new Exception('Invalid value for the "metadata.sign.enable" configuration option.' .
-				' This option should be a boolean.');
-		}
+		$enabled = $config->getBoolean('metadata.sign.enable', FALSE);
 
 		return $enabled;
 	}
@@ -147,13 +143,13 @@ class SimpleSAML_Metadata_Signer {
 
 		$keyCertFiles = self::findKeyCert($config, $entityMetadata, $type);
 
-		$keyFile = $config->getPathValue('certdir') . $keyCertFiles['privatekey'];
+		$keyFile = $config->getPathValue('certdir', 'cert/') . $keyCertFiles['privatekey'];
 		if (!file_exists($keyFile)) {
 			throw new Exception('Could not find private key file [' . $keyFile . '], which is needed to sign the metadata');
 		}
 		$keyData = file_get_contents($keyFile);
 
-		$certFile = $config->getPathValue('certdir') . $keyCertFiles['certificate'];
+		$certFile = $config->getPathValue('certdir', 'cert/') . $keyCertFiles['certificate'];
 		if (!file_exists($certFile)) {
 			throw new Exception('Could not find certificate file [' . $certFile . '], which is needed to sign the metadata');
 		}

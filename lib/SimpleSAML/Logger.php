@@ -119,7 +119,7 @@ class SimpleSAML_Logger {
 		/*
 		 * setting minimum log_level
 		 */
-		self::$logLevel = $config->getValue('logging.level',LOG_INFO);
+		self::$logLevel = $config->getInteger('logging.level',LOG_INFO);
 
 		$handler = strtolower($handler);
 

@@ -30,7 +30,7 @@ try {
 
 SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
-if (!$config->getValue('enable.saml20-idp', false))
+if (!$config->getBoolean('enable.saml20-idp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
 

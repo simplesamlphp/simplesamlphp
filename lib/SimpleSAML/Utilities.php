@@ -556,10 +556,10 @@ class SimpleSAML_Utilities {
 		$t->data['errorcode'] = $errorcode;
 		$t->data['parameters'] = $parameters;
 
-		$t->data['showerrors'] = $config->getValue('showerrors', true);
+		$t->data['showerrors'] = $config->getBoolean('showerrors', true);
 
 		/* Check if there is a valid technical contact email address. */
-		if($config->getValue('technicalcontact_email', 'na@example.org') !== 'na@example.org') {
+		if($config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org') {
 			/* Enable error reporting. */
 			$baseurl = SimpleSAML_Utilities::selfURLhost() . '/' . $config->getBaseURL();
 			$t->data['errorreportaddress'] = $baseurl . 'errorreport.php';
@@ -583,7 +583,7 @@ class SimpleSAML_Utilities {
 		
 		$t->data['trackid'] = $trackid;
 		
-		$t->data['version'] = $config->getValue('version', 'na');
+		$t->data['version'] = $config->getString('version', 'na');
 		$t->data['url'] = self::selfURLNoQuery();
 		
 		$t->show();
@@ -1005,18 +1005,13 @@ class SimpleSAML_Utilities {
 			throw new Exception('XML contained a doctype declaration.');
 		}
 
-		$enabled = SimpleSAML_Configuration::getInstance()->getValue('debug.validatexml', NULL);
+		$enabled = SimpleSAML_Configuration::getInstance()->getBoolean('debug.validatexml', NULL);
 		if($enabled === NULL) {
 			/* Fall back to old configuration option. */
-			$enabled = SimpleSAML_Configuration::getInstance()->getValue('debug.validatesamlmessages', NULL);
+			$enabled = SimpleSAML_Configuration::getInstance()->getBoolean('debug.validatesamlmessages', NULL);
 			if($enabled === NULL) {
 				/* Fall back to even older configuration option. */
-				$enabled = SimpleSAML_Configuration::getInstance()->getValue('debug.validatesaml2messages', FALSE);
-				if(!is_bool($enabled)) {
-					throw new Exception('Expected "debug.validatesaml2messages" to be set to a boolean value.');
-				}
-			} elseif(!is_bool($enabled)) {
-				throw new Exception('Expected "debug.validatexml" to be set to a boolean value.');
+				$enabled = SimpleSAML_Configuration::getInstance()->getBoolean('debug.validatesaml2messages', FALSE);
 			}
 		}
 
@@ -1468,7 +1463,7 @@ class SimpleSAML_Utilities {
 		} elseif (array_key_exists($prefix . 'certificate', $metadata)) {
 			/* Reference to certificate file. */
 			$config = SimpleSAML_Configuration::getInstance();
-			$file = $config->getPathValue('certdir') . $metadata[$prefix . 'certificate'];
+			$file = $config->getPathValue('certdir', 'cert/') . $metadata[$prefix . 'certificate'];
 			$data = @file_get_contents($file);
 			if ($data === FALSE) {
 				throw new Exception('Unable to load certificate/public key from file "' . $file . '"');
@@ -1555,7 +1550,7 @@ class SimpleSAML_Utilities {
 		}
 
 		$config = SimpleSAML_Configuration::getInstance();
-		$file = $config->getPathValue('certdir') . $metadata[$prefix . 'privatekey'];
+		$file = $config->getPathValue('certdir', 'cert/') . $metadata[$prefix . 'privatekey'];
 		$data = @file_get_contents($file);
 		if ($data === FALSE) {
 			throw new Exception('Unable to load private key from file "' . $file . '"');

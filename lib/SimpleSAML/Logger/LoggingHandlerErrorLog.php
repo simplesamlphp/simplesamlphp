@@ -29,7 +29,7 @@ class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_Logg
 	function log_internal($level, $string) {
 		$config = SimpleSAML_Configuration::getInstance();
         assert($config instanceof SimpleSAML_Configuration);
-        $processname = $config->getValue('logging.processname','simpleSAMLphp');
+        $processname = $config->getString('logging.processname','simpleSAMLphp');
 		
 		if(array_key_exists($level, self::$levelNames)) {
 			$levelName = self::$levelNames[$level];

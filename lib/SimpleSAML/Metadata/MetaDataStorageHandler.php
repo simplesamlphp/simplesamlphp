@@ -49,19 +49,12 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 
 		$config = SimpleSAML_Configuration::getInstance();
 
-		$sourcesConfig = $config->getValue('metadata.sources', NULL);
+		$sourcesConfig = $config->getArray('metadata.sources', NULL);
 
 		/* For backwards compatibility, and to provide a default configuration. */
 		if($sourcesConfig === NULL) {
-			$type = $config->getValue('metadata.handler', 'flatfile');
+			$type = $config->getString('metadata.handler', 'flatfile');
 			$sourcesConfig = array(array('type' => $type));
-		}
-
-		if(!is_array($sourcesConfig)) {
-			throw new Exception(
-				'Invalid configuration of the \'metadata.sources\' configuration option.' .
-				' This option should be an array.'
-				);
 		}
 
 		try {

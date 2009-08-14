@@ -55,7 +55,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
 		if(array_key_exists('directory', $config)) {
 			$this->directory = $config['directory'];
 		} else {
-			$this->directory = $globalConfig->getValue('metadatadir', 'metadata/');
+			$this->directory = $globalConfig->getString('metadatadir', 'metadata/');
 		}
 
 		/* Resolve this directory relative to the simpleSAMLphp directory (unless it is

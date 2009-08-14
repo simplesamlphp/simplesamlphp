@@ -39,7 +39,7 @@ function finishLogin($authProcState) {
 
 SimpleSAML_Logger::info('Shib1.3 - SP.AssertionConsumerService: Accessing Shibboleth 1.3 SP endpoint AssertionConsumerService');
 
-if (!$config->getValue('enable.shib13-sp', false))
+if (!$config->getBoolean('enable.shib13-sp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
 if (array_key_exists(SimpleSAML_Auth_ProcessingChain::AUTHPARAM, $_REQUEST)) {

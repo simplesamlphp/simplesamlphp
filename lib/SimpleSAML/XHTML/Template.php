@@ -123,7 +123,7 @@ class SimpleSAML_XHTML_Template {
 	 *         languages in the header were available.
 	 */
 	private function getHTTPLanguage() {
-		$availableLanguages = $this->configuration->getValue('language.available');
+		$availableLanguages = $this->configuration->getArray('language.available', array('en'));
 		$languageScore = SimpleSAML_Utilities::getAcceptLanguage();
 
 		/* For now we only use the default language map. We may use a configurable language map
@@ -172,14 +172,14 @@ class SimpleSAML_XHTML_Template {
 	 * Returns the language default (from configuration)
 	 */
 	private function getDefaultLanguage() {
-		return $this->configuration->getValue('language.default', 'en');
+		return $this->configuration->getString('language.default', 'en');
 	}
 
 	/**
 	 * Returns a list of all available languages.
 	 */
 	private function getLanguageList() {
-		$availableLanguages = $this->configuration->getValue('language.available');
+		$availableLanguages = $this->configuration->getArray('language.available', array('en'));
 		$thisLang = $this->getLanguage();
 		$lang = array();
 		foreach ($availableLanguages AS $nl) {
@@ -221,7 +221,7 @@ class SimpleSAML_XHTML_Template {
 				$fileName = substr($name, $sepPos + 1);
 				$dictDir = SimpleSAML_Module::getModuleDir($module) . '/dictionaries/';
 			} else {
-				$dictDir = $this->configuration->getPathValue('dictionarydir');
+				$dictDir = $this->configuration->getPathValue('dictionarydir', 'dictionaries/');
 				$fileName = $name;
 			}
 			$this->dictionaries[$name] = $this->readDictionaryFile($dictDir . $fileName . '.php');
@@ -418,9 +418,9 @@ class SimpleSAML_XHTML_Template {
 		
 		$filebase = null;
 		if (!empty($otherConfig)) {
-			$filebase = $otherConfig->getPathValue('dictionarydir');
+			$filebase = $otherConfig->getPathValue('dictionarydir', 'dictionaries/');
 		} else {
-			$filebase = $this->configuration->getPathValue('dictionarydir');
+			$filebase = $this->configuration->getPathValue('dictionarydir', 'dictionaries/');
 		}
 		
 
@@ -493,7 +493,7 @@ class SimpleSAML_XHTML_Template {
 			$templateName = $tmp[0];
 		}
 
-		$tmp = explode(':', $this->configuration->getValue('theme.use'), 2);
+		$tmp = explode(':', $this->configuration->getString('theme.use', 'default'), 2);
 		if (count($tmp) === 2) {
 			$themeModule = $tmp[0];
 			$themeName = $tmp[1];
@@ -515,7 +515,7 @@ class SimpleSAML_XHTML_Template {
 			
 		} else {
 			/* .../templates/<theme>/<templateName> */
-			$filename = $this->configuration->getPathValue('templatedir') . $templateName;
+			$filename = $this->configuration->getPathValue('templatedir', 'templates/') . $templateName;
 		}
 
 		if (file_exists($filename)) {
@@ -529,14 +529,14 @@ class SimpleSAML_XHTML_Template {
 
 
 		/* Try default theme. */
-		$baseTheme = $this->configuration->getValue('theme.base');
+		$baseTheme = $this->configuration->getString('theme.base', 'default');
 		if ($templateModule !== 'default') {
 			/* .../module/<templateModule>/templates/<baseTheme>/<templateName> */
 			$filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' . $templateName;
 			
 		} else {
 			/* .../templates/<baseTheme>/<templateName> */
-			$filename = $this->configuration->getPathValue('templatedir') . '/' . $templateName;
+			$filename = $this->configuration->getPathValue('templatedir', 'templates/') . '/' . $templateName;
 		}
 
 		if (file_exists($filename)) {

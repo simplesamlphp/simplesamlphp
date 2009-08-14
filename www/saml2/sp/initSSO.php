@@ -9,7 +9,7 @@ $session = SimpleSAML_Session::getInstance();
 
 SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: Accessing SAML 2.0 SP initSSO script');
 
-if (!$config->getValue('enable.saml20-sp', false))
+if (!$config->getBoolean('enable.saml20-sp', TRUE))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
 /*
@@ -26,7 +26,7 @@ if (empty($_GET['RelayState'])) {
 
 try {
 
-	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getValue('default-saml20-idp') ;
+	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getString('default-saml20-idp', NULL) ;
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 
 	if($idpentityid === NULL) {
@@ -51,15 +51,15 @@ if ($idpentityid === NULL) {
 	 */
 	if(array_key_exists('idpdisco.url', $spmetadata)) {
 		$discourl = $spmetadata['idpdisco.url'];
-	} elseif($config->getValue('idpdisco.url.saml20', NULL) !== NULL) {
-		$discourl = $config->getValue('idpdisco.url.saml20', NULL);
+	} elseif($config->getString('idpdisco.url.saml20', NULL) !== NULL) {
+		$discourl = $config->getString('idpdisco.url.saml20');
 	} else {
 		$discourl = SimpleSAML_Utilities::selfURLhost() . '/' . $config->getBaseURL() . 'saml2/sp/idpdisco.php';
 	}
 
-	if ($config->getValue('idpdisco.extDiscoveryStorage', NULL) != NULL) {
+	if ($config->getBoolean('idpdisco.extDiscoveryStorage', NULL) != NULL) {
 		
-		$extDiscoveryStorage = $config->getValue('idpdisco.extDiscoveryStorage');
+		$extDiscoveryStorage = $config->getBoolean('idpdisco.extDiscoveryStorage');
 		
 		SimpleSAML_Utilities::redirect($extDiscoveryStorage, array(
 			'entityID' => $spentityid,

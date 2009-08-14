@@ -17,7 +17,7 @@ $session = SimpleSAML_Session::getInstance();
 
 SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutServiceiFrame: Accessing SAML 2.0 IdP endpoint SingleLogoutService (iFrame version)');
 
-if (!$config->getValue('enable.saml20-idp', false))
+if (!$config->getBoolean('enable.saml20-idp', false))
 	SimpleSAML_Utilities::fatalError(isset($session) ? $session->getTrackID() : null, 'NOACCESS');
 
 try {

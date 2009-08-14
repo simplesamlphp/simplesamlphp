@@ -16,9 +16,9 @@ class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_Loggin
     function __construct() {
         $config = SimpleSAML_Configuration::getInstance();
         assert($config instanceof SimpleSAML_Configuration);
-        $facility = $config->getValue('logging.facility');
+        $facility = $config->getInteger('logging.facility', defined('LOG_LOCAL5') ? constant('LOG_LOCAL5') : LOG_USER);
 
-        $processname = $config->getValue('logging.processname','simpleSAMLphp');
+        $processname = $config->getString('logging.processname','simpleSAMLphp');
         /*
          * OS Check 
          * Setting facility to LOG_USER (only valid in Windows), enable log level rewrite on windows systems.

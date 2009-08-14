@@ -8,7 +8,7 @@ $session = SimpleSAML_Session::getInstance();
 
 SimpleSAML_Logger::info('WS-Fed - SP.initSLO: Accessing WS-Fed SP initSLO script');
 
-if (!$config->getValue('enable.wsfed-sp', false))
+if (!$config->getBoolean('enable.wsfed-sp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
 

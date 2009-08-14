@@ -18,7 +18,7 @@ try {
 	$et = new SimpleSAML_XHTML_Template($config, 'admin-metadatalist.php', 'admin');
 
 
-	if ($config->getValue('enable.saml20-sp') === true) {
+	if ($config->getBoolean('enable.saml20-sp', TRUE) === true) {
 		$results = array();	
 		
 		$metalist = $metadata->getList('saml20-sp-hosted');
@@ -48,7 +48,7 @@ try {
 		
 	}
 	
-	if ($config->getValue('enable.saml20-idp') === true) {
+	if ($config->getBoolean('enable.saml20-idp', FALSE) === true) {
 		$results = array();	
 		$metalist = $metadata->getList('saml20-idp-hosted');
 		foreach ($metalist AS $entityid => $mentry) {
@@ -74,7 +74,7 @@ try {
 
 
 
-	if ($config->getValue('enable.shib13-sp') === true) {
+	if ($config->getBoolean('enable.shib13-sp', FALSE) === true) {
 		$results = array();	
 
 		$metalist = $metadata->getList('shib13-sp-hosted');
@@ -98,7 +98,7 @@ try {
 		
 	}
 	
-	if ($config->getValue('enable.shib13-idp') === true) {
+	if ($config->getBoolean('enable.shib13-idp', FALSE) === true) {
 		$results = array();	
 		$metalist = $metadata->getList('shib13-idp-hosted');
 		foreach ($metalist AS $entityid => $mentry) {
@@ -121,7 +121,7 @@ try {
 		
 	}
 
-	if ($config->getValue('enable.wsfed-sp') === true) {
+	if ($config->getBoolean('enable.wsfed-sp', FALSE) === true) {
 		$results = array();
 		$metalist = $metadata->getList('wsfed-sp-hosted');
 		foreach ($metalist AS $entityid => $mentry) {

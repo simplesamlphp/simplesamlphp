@@ -28,8 +28,8 @@ $metaBuilder->addMetadataSP20($metaArray);
 
 $config = SimpleSAML_Configuration::getInstance();
 $metaBuilder->addContact('technical', array(
-	'emailAddress' => $config->getValue('technicalcontact_email'),
-	'name' => $config->getValue('technicalcontact_name'),
+	'emailAddress' => $config->getString('technicalcontact_email', NULL),
+	'name' => $config->getString('technicalcontact_name', NULL),
 	));
 
 $xml = $metaBuilder->getEntityDescriptorText();

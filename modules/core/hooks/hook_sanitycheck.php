@@ -11,13 +11,13 @@ function core_hook_sanitycheck(&$hookinfo) {
 
 	$config = SimpleSAML_Configuration::getInstance();
 	
-	if($config->getValue('auth.adminpassword', '123') === '123') {
+	if($config->getString('auth.adminpassword', '123') === '123') {
 		$hookinfo['errors'][] = '[core] Password in config.php is not set properly';
 	} else {
 		$hookinfo['info'][] = '[core] Password in config.php is set properly';
 	}
 
-	if($config->getValue('technicalcontact_email', 'na@example.org') === 'na@example.org') {
+	if($config->getString('technicalcontact_email', 'na@example.org') === 'na@example.org') {
 		$hookinfo['errors'][] = '[core] In config.php technicalcontact_email is not set properly';
 	} else {
 		$hookinfo['info'][] = '[core] In config.php technicalcontact_email is set properly';

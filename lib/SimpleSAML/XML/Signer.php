@@ -60,7 +60,7 @@ class SimpleSAML_XML_Signer {
 
 		if(self::$certDir === FALSE) {
 			$config = SimpleSAML_Configuration::getInstance();
-			self::$certDir = $config->getPathValue('certdir');
+			self::$certDir = $config->getPathValue('certdir', 'cert/');
 		}
 
 		$this->idAttrName = FALSE;

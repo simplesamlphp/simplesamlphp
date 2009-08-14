@@ -399,8 +399,8 @@ class SimpleSAML_XHTML_IdPDisco {
 		$idp = $this->getTargetIdp();
 		if($idp !== NULL) {
 		
-			if ($this->config->getValue('idpdisco.extDiscoveryStorage', NULL) != NULL) {
-				$extDiscoveryStorage = $this->config->getValue('idpdisco.extDiscoveryStorage');
+			if ($this->config->getBoolean('idpdisco.extDiscoveryStorage', NULL) != NULL) {
+				$extDiscoveryStorage = $this->config->getBoolean('idpdisco.extDiscoveryStorage');
 				$this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
 				SimpleSAML_Utilities::redirect($extDiscoveryStorage, array(
 //					$this->returnIdParam => $idp,

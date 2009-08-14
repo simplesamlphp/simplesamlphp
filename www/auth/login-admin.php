@@ -28,7 +28,7 @@ if (!array_key_exists('RelayState', $_REQUEST)) {
 
 $relaystate = $_REQUEST['RelayState'];
 
-$correctpassword = $config->getValue('auth.adminpassword', '123');
+$correctpassword = $config->getString('auth.adminpassword', '123');
 
 if (empty($correctpassword) or $correctpassword === '123') {
 	SimpleSAML_Utilities::fatalError(

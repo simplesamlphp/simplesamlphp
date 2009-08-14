@@ -239,7 +239,7 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
 $relaystate = $cA_config->getValue('relaystate');
 
 $et->data['header'] = 'Consent Administration';
-$et->data['logout'] = '<p>[ <a href="/' . $config->getValue('baseurlpath') . 'saml2/sp/initSLO.php?RelayState='. $relaystate .'">Logout</a> ]';
+$et->data['logout'] = '<p>[ <a href="/' . $config->getBaseURL() . 'saml2/sp/initSLO.php?RelayState='. $relaystate .'">Logout</a> ]';
 $et->data['spList'] = $sp_list;
 $et->show();
 ?>

@@ -19,7 +19,7 @@ $session = SimpleSAML_Session::getInstance();
 
 SimpleSAML_Logger::info('WS-Fed - SP.initSSO: Accessing WS-Fed SP initSSO script');
 
-if (!$config->getValue('enable.wsfed-sp', false))
+if (!$config->getBoolean('enable.wsfed-sp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
 if (empty($_GET['RelayState'])) {

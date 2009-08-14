@@ -53,7 +53,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
 	 */
 	private function loadMapFile($fileName) {
 		$config = SimpleSAML_Configuration::getInstance();
-		$filePath = $config->getPathValue('attributenamemapdir') . $fileName . '.php';
+		$filePath = $config->getPathValue('attributenamemapdir', 'attributemap/') . $fileName . '.php';
 
 		if(!file_exists($filePath)) {
 			throw new Exception('Could not find attributemap file: ' . $filePath);

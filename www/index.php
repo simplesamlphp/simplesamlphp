@@ -7,7 +7,7 @@ $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
 /* Check if valid local session exists.. */
-if ($config->getValue('admin.protectindexpage', false)) {
+if ($config->getBoolean('admin.protectindexpage', false)) {
 	SimpleSAML_Utilities::requireAdmin();
 }
 $loginurl = SimpleSAML_Utilities::getAdminLoginURL();
@@ -24,12 +24,12 @@ if (SimpleSAML_Utilities::getSelfProtocol() != 'https') {
 $links = array();
 
 
-if ($config->getValue('enable.saml20-sp') === true)
+if ($config->getBoolean('enable.saml20-sp', TRUE) === true)
 	$links[] = array(
 		'href' => 'example-simple/saml2-example.php', 
 		'text' => 'link_saml2example');
 
-if ($config->getValue('enable.shib13-sp') === true)
+if ($config->getBoolean('enable.shib13-sp', FALSE) === true)
 	$links[] = array(
 		'href' => 'example-simple/shib13-example.php', 
 		'text' => 'link_shib13example'
@@ -122,7 +122,7 @@ $linksmeta[] = array(
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 $metaentries = array('hosted' => array(), 'remote' => array() );
-if ($config->getValue('enable.saml20-sp') === true) {
+if ($config->getBoolean('enable.saml20-sp', TRUE) === true) {
 	try {
 		$metaentries['hosted']['saml20-sp'] = $metadata->getMetaDataCurrent('saml20-sp-hosted');
 		$metaentries['hosted']['saml20-sp']['metadata-url'] = '/' . $config->getBaseURL() . 'saml2/sp/metadata.php?output=xhtml';
@@ -130,7 +130,7 @@ if ($config->getValue('enable.saml20-sp') === true) {
 			$metaentries['remote']['saml20-idp-remote'] = $metadata->getList('saml20-idp-remote');
 	} catch(Exception $e) {}
 }
-if ($config->getValue('enable.saml20-idp') === true) {
+if ($config->getBoolean('enable.saml20-idp', FALSE) === true) {
 	try {
 		$metaentries['hosted']['saml20-idp'] = $metadata->getMetaDataCurrent('saml20-idp-hosted');
 		$metaentries['hosted']['saml20-idp']['metadata-url'] = '/' . $config->getBaseURL() . 'saml2/idp/metadata.php?output=xhtml';
@@ -138,7 +138,7 @@ if ($config->getValue('enable.saml20-idp') === true) {
 			$metaentries['remote']['saml20-sp-remote'] = $metadata->getList('saml20-sp-remote');
 	} catch(Exception $e) {}
 }
-if ($config->getValue('enable.shib13-sp') === true) {
+if ($config->getBoolean('enable.shib13-sp', FALSE) === true) {
 	try {
 		$metaentries['hosted']['shib13-sp'] = $metadata->getMetaDataCurrent('shib13-sp-hosted');
 		$metaentries['hosted']['shib13-sp']['metadata-url'] = '/' . $config->getBaseURL() . 'shib13/sp/metadata.php?output=xhtml';
@@ -146,7 +146,7 @@ if ($config->getValue('enable.shib13-sp') === true) {
 			$metaentries['remote']['shib13-idp-remote'] = $metadata->getList('shib13-idp-remote');
 	} catch(Exception $e) {}
 }
-if ($config->getValue('enable.shib13-idp') === true) {
+if ($config->getBoolean('enable.shib13-idp', FALSE) === true) {
 	try {
 		$metaentries['hosted']['shib13-idp'] = $metadata->getMetaDataCurrent('shib13-idp-hosted');
 		$metaentries['hosted']['shib13-idp']['metadata-url'] = '/' . $config->getBaseURL() . 'shib13/idp/metadata.php?output=xhtml';
@@ -166,22 +166,22 @@ $linksdoc[] = array(
 	'href' => 'http://rnd.feide.no/content/installing-simplesamlphp', 
 	'text' => 'link_doc_install');
 
-if ($config->getValue('enable.saml20-sp', false ) || $config->getValue('enable.shib13-sp', false))
+if ($config->getBoolean('enable.saml20-sp', TRUE) || $config->getBoolean('enable.shib13-sp', false))
 	$linksdoc[] = array(
 		'href' => 'http://rnd.feide.no/content/using-simplesamlphp-service-provider', 
 		'text' => 'link_doc_sp');
 
-if ($config->getValue('enable.saml20-idp', false ) || $config->getValue('enable.shib13-idp', false))
+if ($config->getBoolean('enable.saml20-idp', false ) || $config->getBoolean('enable.shib13-idp', false))
 	$linksdoc[] = array(
 		'href' => 'http://rnd.feide.no/content/using-simplesamlphp-identity-provider', 
 		'text' => 'link_doc_idp');
 
-if ($config->getValue('enable.shib13-idp', false))
+if ($config->getBoolean('enable.shib13-idp', false))
 	$linksdoc[] = array(
 		'href' => 'http://rnd.feide.no/content/configure-shibboleth-13-sp-work-simplesamlphp-idp', 
 		'text' => 'link_doc_shibsp');
 
-if ($config->getValue('enable.saml20-idp', false ))
+if ($config->getBoolean('enable.saml20-idp', false ))
 	$linksdoc[] = array(
 		'href' => 'http://rnd.feide.no/content/simplesamlphp-idp-google-apps-education', 
 		'text' => 'link_doc_googleapps');
@@ -207,10 +207,10 @@ $allLinks = array(
 SimpleSAML_Module::callHooks('frontpage', $allLinks);
 
 $enablematrix = array(
-	'saml20-sp' => $config->getValue('enable.saml20-sp', false),
-	'saml20-idp' => $config->getValue('enable.saml20-idp', false),
-	'shib13-sp' => $config->getValue('enable.shib13-sp', false),
-	'shib13-idp' => $config->getValue('enable.shib13-idp', false),
+	'saml20-sp' => $config->getBoolean('enable.saml20-sp', TRUE),
+	'saml20-idp' => $config->getBoolean('enable.saml20-idp', false),
+	'shib13-sp' => $config->getBoolean('enable.shib13-sp', false),
+	'shib13-idp' => $config->getBoolean('enable.shib13-idp', false),
 );
 
 
@@ -242,7 +242,7 @@ foreach ($functionchecks AS $func => $descr) {
 
 /* Some basic configuration checks */
 
-if($config->getValue('technicalcontact_email', 'na@example.org') === 'na@example.org') {
+if($config->getString('technicalcontact_email', 'na@example.org') === 'na@example.org') {
 	$mail_ok = FALSE;
 } else {
 	$mail_ok = TRUE;
@@ -252,7 +252,7 @@ $funcmatrix[] = array(
 	'descr' => 'technicalcontact_email option set',
 	'enabled' => $mail_ok
 	);
-if($config->getValue('auth.adminpassword', '123') === '123') {
+if($config->getString('auth.adminpassword', '123') === '123') {
 	$password_ok = FALSE;
 } else {
 	$password_ok = TRUE;

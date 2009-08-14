@@ -19,7 +19,7 @@ SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutServiceiFrame: Accessing SAML
 
 SimpleSAML_Logger::debug('Initially; ' . join(',', $session->get_sp_list(SimpleSAML_Session::STATE_ONLINE)));
 
-if (!$config->getValue('enable.saml20-idp', false))
+if (!$config->getBoolean('enable.saml20-idp', false))
 	SimpleSAML_Utilities::fatalError(isset($session) ? $session->getTrackID() : null, 'NOACCESS');
 
 try {
@@ -145,12 +145,12 @@ function updateslostatus() {
 		/**
 		 * Clean up session object to save storage.
 		 */
-		if ($config->getValue('debug', false)) 
+		if ($config->getBoolean('debug', false))
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Session Size before cleaning: ' . $session->getSize());
 			
 		$session->clean();
 		
-		if ($config->getValue('debug', false)) 
+		if ($config->getBoolean('debug', false))
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: Session Size after cleaning: ' . $session->getSize());
 
 	} else {

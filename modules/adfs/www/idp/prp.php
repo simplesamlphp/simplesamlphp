@@ -259,7 +259,7 @@ if (!$session->isValid($authority) ) {
 		}
 
 		$response = ADFS_GenerateResponse($idpentityid, $spentityid, $nameid, $attributes);
-		$wresult = ADFS_SignResponse($response, $config->getPathValue('certdir') . $adfsconfig->getValue('key'), $config->getPathValue('certdir') . $adfsconfig->getValue('cert'));
+		$wresult = ADFS_SignResponse($response, $config->getPathValue('certdir', 'cert/') . $adfsconfig->getValue('key'), $config->getPathValue('certdir', 'cert/') . $adfsconfig->getValue('cert'));
 
 		ADFS_PostResponse($spmetadata->getValue('prp'), $wresult, $relayState);
 		

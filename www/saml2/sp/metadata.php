@@ -8,11 +8,11 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $session = SimpleSAML_Session::getInstance();
 
 
-if (!$config->getValue('enable.saml20-sp', false))
+if (!$config->getValue('enable.saml20-sp', TRUE))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
 /* Check if valid local session exists.. */
-if ($config->getValue('admin.protectmetadata', false)) {
+if ($config->getBoolean('admin.protectmetadata', false)) {
 	SimpleSAML_Utilities::requireAdmin();
 }
 
@@ -52,8 +52,8 @@ try {
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($spentityid);
 	$metaBuilder->addMetadataSP20($metaArray);
 	$metaBuilder->addContact('technical', array(
-		'emailAddress' => $config->getValue('technicalcontact_email'),
-		'name' => $config->getValue('technicalcontact_name'),
+		'emailAddress' => $config->getString('technicalcontact_email', NULL),
+		'name' => $config->getString('technicalcontact_name', NULL),
 		));
 	$metaxml = $metaBuilder->getEntityDescriptorText();
 
@@ -142,7 +142,7 @@ try {
 	
 
 	if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
-		$defaultidp = $config->getValue('default-saml20-idp');
+		$defaultidp = $config->getString('default-saml20-idp', NULL);
 		
 		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
 	
@@ -156,9 +156,9 @@ try {
 		$t->data['adminok'] = $adminok;
 		$t->data['adminlogin'] = $adminlogin;
 		
-		$t->data['techemail'] = $config->getValue('technicalcontact_email', NULL);
+		$t->data['techemail'] = $config->getString('technicalcontact_email', NULL);
 		
-// 		$t->data['version'] = $config->getValue('version', 'na');
+// 		$t->data['version'] = $config->getString('version', 'na');
 // 		$t->data['defaultidp'] = $defaultidp;
 		
 		$t->show();

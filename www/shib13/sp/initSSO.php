@@ -20,13 +20,13 @@ $session = SimpleSAML_Session::getInstance();
 
 SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: Accessing Shib 1.3 SP initSSO script');
 
-if (!$config->getValue('enable.shib13-sp', false))
+if (!$config->getBoolean('enable.shib13-sp', false))
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
 
 
 try {
 
-	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getValue('default-shib13-idp') ;
+	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getString('default-shib13-idp', NULL) ;
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID('shib13-sp-hosted');
 
 	if($idpentityid === NULL) {
@@ -52,8 +52,8 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 		 */
 		if(array_key_exists('idpdisco.url', $spmetadata)) {
 			$discservice = $spmetadata['idpdisco.url'];
-		} elseif($config->getValue('idpdisco.url.shib13', NULL) !== NULL) {
-			$discservice = $config->getValue('idpdisco.url.shib13', NULL);
+		} elseif($config->getString('idpdisco.url.shib13', NULL) !== NULL) {
+			$discservice = $config->getString('idpdisco.url.shib13');
 		} else {
 			$discservice = '/' . $config->getBaseURL() . 'shib13/sp/idpdisco.php';
 		}
