@@ -99,7 +99,7 @@ class sspmod_ldap_ConfigHelper {
 				$this->searchPassword = $config->getString('search.password');
 			}
 
-			$this->searchBase = $config->getString('search.base');
+			$this->searchBase = $config->getArrayizeString('search.base');
 			$this->searchAttributes = $config->getArray('search.attributes');
 
 		} else {
