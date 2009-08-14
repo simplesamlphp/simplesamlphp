@@ -28,7 +28,6 @@ $config = array (
 	'certdir'               => 'cert/',
 	'dictionarydir'         => 'dictionaries/',
 	'loggingdir'            => 'log/',
-	'libextinc'				=> 'libextinc/',
 	
 	'version'				=>	'trunk',
 	
@@ -128,7 +127,6 @@ $config = array (
 	'enable.shib13-sp'		=> false,
 	'enable.shib13-idp'		=> false,
 	'enable.wsfed-sp'		=> false,
-	'enable.openid-provider'=> false,
 	'enable.authmemcookie' => false,
 
 	/* 
