@@ -472,12 +472,15 @@ class sspmod_saml2_Message {
 					$value = (string)$value;
 					break;
 				case 'base64':
-					$value = base64_encode($value);
+					$value = base64_encode((string)$value);
 					break;
 				case 'raw':
-					$doc = new DOMDocument();
-					$doc->loadXML('<root>' . $value . '</root>');
-					$value = $doc->firstChild->childNodes;
+					if (is_string($value)) {
+						$doc = new DOMDocument();
+						$doc->loadXML('<root>' . $value . '</root>');
+						$value = $doc->firstChild->childNodes;
+					}
+					assert('$value instanceof DOMNodeList');
 					break;
 				default:
 					throw new SimpleSAML_Error_Exception('Invalid encoding for attribute ' .
