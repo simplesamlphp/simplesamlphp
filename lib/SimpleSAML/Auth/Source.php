@@ -165,13 +165,9 @@ abstract class SimpleSAML_Auth_Source {
 		/* For now - load and parse config file. */
 		$config = SimpleSAML_Configuration::getConfig('authsources.php');
 
-		$authConfig = $config->getValue($authId, NULL);
+		$authConfig = $config->getArray($authId, NULL);
 		if ($authConfig === NULL) {
 			return NULL;
-		}
-
-		if (!is_array($authConfig)) {
-			throw new Exception('Invalid configuration for authentication source \'' . $authId . '\'.');
 		}
 
 		return self::parseAuthSource($authId, $authConfig);
