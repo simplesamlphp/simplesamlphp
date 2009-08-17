@@ -448,14 +448,25 @@ class sspmod_saml2_Message {
 	private static function encodeAttributes(SimpleSAML_Configuration $srcMetadata,
 		SimpleSAML_Configuration $dstMetadata, array $attributes) {
 
-		$base64Attributes = $dstMetadata->getBoolean('base64attributes', FALSE);
+		$base64Attributes = $dstMetadata->getBoolean('base64attributes', NULL);
+		if ($base64Attributes === NULL) {
+			$base64Attributes = $srcMetadata->getBoolean('base64attributes', FALSE);
+		}
+
 		if ($base64Attributes) {
 			$defaultEncoding = 'base64';
 		} else {
 			$defaultEncoding = 'string';
 		}
 
-		$encodings = $dstMetadata->getArray('attributeencodings', array());
+		$srcEncodings = $srcMetadata->getArray('attributeencodings', array());
+		$dstEncodings = $dstMetadata->getArray('attributeencodings', array());
+
+		/*
+		 * Merge the two encoding arrays. Encodings specified in the target metadata
+		 * takes precedence over the source metadata.
+		 */
+		$encodings = array_merge($srcEncodings, $dstEncodings);
 
 		$ret = array();
 		foreach ($attributes as $name => $values) {
