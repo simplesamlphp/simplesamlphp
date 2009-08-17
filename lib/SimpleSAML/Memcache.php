@@ -225,10 +225,10 @@ class SimpleSAML_Memcache {
 	 * This function takes in a list of servers belonging to a group and
 	 * creates a Memcache object from the servers in the group.
 	 *
-	 * @param $group  Array of servers which should be created as a group.
+	 * @param array $group  Array of servers which should be created as a group.
 	 * @return A Memcache object of the servers in the group.
 	 */
-	private static function loadMemcacheServerGroup($group) {
+	private static function loadMemcacheServerGroup(array $group) {
 		/* Create the Memcache object. */
 		$memcache = new Memcache();
 		if($memcache == NULL) {
@@ -283,20 +283,9 @@ class SimpleSAML_Memcache {
 
 		/* Load the configuration. */
 		$config = SimpleSAML_Configuration::getInstance();
-		assert($config instanceof SimpleSAML_Configuration);
 
 
-		$groups = $config->getValue('memcache_store.servers');
-
-		/* Validate the 'memcache_store.servers' configuration option. */
-		if(is_null($groups)) {
-			throw new Exception('Unable to get value of the \'memcache_store.servers\'' .
-				' configuration option.');
-		}
-		if(!is_array($groups)) {
-			throw new Exception('The value of the \'memcache_store.servers\' configuration' .
-				' option is supposed to be an array.');
-		}
+		$groups = $config->getArray('memcache_store.servers');
 
 		/* Iterate over all the groups in the 'memcache_store.servers' configuration option. */
 		foreach($groups as $index => $group) {
@@ -345,20 +334,7 @@ class SimpleSAML_Memcache {
 		assert($config instanceof SimpleSAML_Configuration);
 
 		/* Get the expire-value from the configuration. */
-		$expire = $config->getValue('memcache_store.expires');
-
-		/* If 'memcache_store.expires' isn't defined in the
-		 * configuration, then we will use 0 as the expire parameter.
-		 */
-		if($expire === NULL) {
-			return 0;
-		}
-
-		/* The 'memcache_store.expires' option must be an integer. */
-		if(!is_integer($expire)) {
-			throw new Exception('The value of \'memcache_store.expires\' in the' .
-				' configuration must be a valid integer.');
-		}
+		$expire = $config->getInteger('memcache_store.expires', 0);
 
 		/* It must be a positive integer. */
 		if($expire < 0) {
