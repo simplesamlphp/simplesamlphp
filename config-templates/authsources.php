@@ -96,6 +96,18 @@ $config = array(
 		'enable_tls' => FALSE,
 
 		/*
+		 * Whether debug output from the LDAP library should be enabled.
+		 * Default is FALSE.
+		 */
+		'debug' => FALSE,
+
+		/*
+		 * The timeout for accessing the LDAP server, in seconds.
+		 * The default is 0, which means no timeout.
+		 */
+		'timeout' => 0,
+
+		/*
 		 * Which attributes should be retrieved from the LDAP server.
 		 * This can be an array of attribute names, or NULL, in which case
 		 * all attributes are fetched.

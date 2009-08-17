@@ -32,6 +32,22 @@ class sspmod_ldap_ConfigHelper {
 
 
 	/**
+	 * Whether debug output is enabled.
+	 *
+	 * @var bool
+	 */
+	private $debug;
+
+
+	/**
+	 * The timeout for accessing the LDAP server.
+	 *
+	 * @var int
+	 */
+	private $timeout;
+
+
+	/**
 	 * Whether we need to search for the users DN.
 	 */
 	private $searchEnable;
@@ -108,6 +124,8 @@ class sspmod_ldap_ConfigHelper {
 
 		$this->hostname = $config->getString('hostname');
 		$this->enableTLS = $config->getBoolean('enable_tls', FALSE);
+		$this->debug = $config->getBoolean('debug', FALSE);
+		$this->timeout = $config->getInteger('timeout', 0);
 		$this->searchEnable = $config->getBoolean('search.enable', FALSE);
 		$this->privRead = $config->getBoolean('priv.read', FALSE);
 
@@ -148,7 +166,7 @@ class sspmod_ldap_ConfigHelper {
 		assert('is_string($username)');
 		assert('is_string($password)');
 
-		$ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS);
+		$ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debug, $this->timeout);
 
 		if (!$this->searchEnable) {
 			$ldapusername = addcslashes($username, ',+"\\<>;*');
