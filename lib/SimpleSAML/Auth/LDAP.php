@@ -71,10 +71,12 @@ class SimpleSAML_Auth_LDAP {
 		// (OpenLDAP 2.x.x or Netscape Directory SDK x.x needed).
 		// TODO: Should these be moved to before ldap_connect() above?
 		$this->timeout = $timeout;
-		if (!@ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, $timeout))
-			SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_NETWORK_TIMEOUT) to ' . $timeout);
-		if (!@ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, $timeout))
-			SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_TIMELIMIT) to ' . $timeout);
+		if ($timeout > 0) {
+			if (!@ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, $timeout))
+				SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_NETWORK_TIMEOUT) to ' . $timeout);
+			if (!@ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, $timeout))
+				SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_TIMELIMIT) to ' . $timeout);
+		}
 
 		// Enable TLS, if needed.
 		if (!preg_match("/ldaps:/i", $hostname) and $enable_tls)
