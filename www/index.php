@@ -92,27 +92,6 @@ $linksmeta[] = array(
 	'href' => 'admin/metadata.php', 
 	'text' => 'link_meta_overview');
 
-// if ($config->getValue('enable.saml20-sp') === true)
-// 	$linksmeta[] = array(
-// 		'href' => 'saml2/sp/metadata.php?output=xhtml', 
-// 		'text' => 'link_meta_saml2sphosted');
-// 
-// if ($config->getValue('enable.saml20-idp') === true)
-// 	$linksmeta[] = array(
-// 		'href' => 'saml2/idp/metadata.php?output=xhtml', 
-// 		'text' => 'link_meta_saml2idphosted');
-// 
-// if ($config->getValue('enable.shib13-sp') === true)
-// 	$linksmeta[] = array(
-// 		'href' => 'shib13/sp/metadata.php?output=xhtml', 
-// 		'text' => 'link_meta_shib13sphosted');
-// 
-// if ($config->getValue('enable.shib13-idp') === true)
-// 	$linksmeta[] = array(
-// 		'href' => 'shib13/idp/metadata.php?output=xhtml', 
-// 		'text' => 'link_meta_shib13idphosted');
-
-
 $linksmeta[] = array(
 	'href' => 'admin/metadata-converter.php',
 	'text' => 'link_xmlconvert',
