@@ -107,8 +107,8 @@ if (isset($_GET['wa'])) {
 		try {
 			// accomodate for disfunctional $_GET "windows" slash decoding in PHP
 			$wctx = $_GET['wctx'];
-			foreach (split('&', $_SERVER['REQUEST_URI']) as $e) {
-				$a = split('=', $e);
+			foreach (explode('&', $_SERVER['REQUEST_URI']) as $e) {
+				$a = explode('=', $e);
 				if ($a[0] == 'wctx') $wctx = urldecode($a[1]);
 			}
 			$requestid = $wctx;

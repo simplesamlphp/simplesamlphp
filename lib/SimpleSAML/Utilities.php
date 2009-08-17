@@ -596,7 +596,7 @@ class SimpleSAML_Utilities {
 	 */
 	static function ipCIDRcheck($cidr, $ip = null) {
 		if ($ip == null) $ip = $_SERVER['REMOTE_ADDR'];
-		list ($net, $mask) = split ("/", $cidr);
+		list ($net, $mask) = explode('/', $cidr);
 		
 		$ip_net = ip2long ($net);
 		$ip_mask = ~((1 << (32 - $mask)) - 1);
@@ -1309,8 +1309,8 @@ class SimpleSAML_Utilities {
 		assert('is_string($query_string)');
 
 		$res = array();
-		foreach(split('&', $query_string) as $param) {
-			$param = split('=', $param);
+		foreach(explode('&', $query_string) as $param) {
+			$param = explode('=', $param);
 			$name = urldecode($param[0]);
 			if(count($param) === 1) {
 				$value = '';

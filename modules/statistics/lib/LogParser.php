@@ -32,7 +32,7 @@ class sspmod_statistics_LogParser {
 
 	public function parseContent($line) {
 		$contentstr = substr($line, $this->offset);
-		$content = split(' ', $contentstr);
+		$content = explode(' ', $contentstr);
 		return $content;
 	}
 	

@@ -114,7 +114,7 @@ class SimpleSAML_AuthMemCookie {
 
 		$memcache = new Memcache;
 
-		foreach (split(",",$memcacheHost) as $memcacheHost) {
+		foreach (explode(',', $memcacheHost) as $memcacheHost) {
 			$memcache->addServer($memcacheHost, $memcachePort);
 		}
 
