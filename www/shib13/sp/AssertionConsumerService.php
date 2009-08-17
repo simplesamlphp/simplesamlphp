@@ -69,22 +69,6 @@ try {
 	SimpleSAML_Logger::info('Shib1.3 - SP.AssertionConsumerService: Successful authentication to IdP ' . $idpmetadata['entityid']);
 
 
-	/**
-	 * Make a log entry in the statistics for this SSO login.
-
-		Need to be replaced by a auth proc
-
-	$tempattr = $authnResponse->getAttributes();
-	$realmattr = $config->getValue('statistics.realmattr', null);
-	$realmstr = 'NA';
-	if (!empty($realmattr)) {
-		if (array_key_exists($realmattr, $tempattr) && is_array($tempattr[$realmattr]) ) {
-			$realmstr = $tempattr[$realmattr][0];
-		} else {
-			SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
-		}
-	}
-	 */
 	SimpleSAML_Logger::stats('shib13-sp-SSO ' . $metadata->getMetaDataCurrentEntityID('shib13-sp-hosted') . ' ' . $idpmetadata['entityid'] . ' NA');
 
 

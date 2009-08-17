@@ -126,22 +126,6 @@ try {
 	 */
 	$attributes = $assertion->getAttributes();
 
-	/**
-	 * Make a log entry in the statistics for this SSO login.
-     *
-     * Needs to be replaced by auth proc
-     *
-	$tempattr = $authnResponse->getAttributes();
-	$realmattr = $config->getValue('statistics.realmattr', null);
-	$realmstr = 'NA';
-	if (!empty($realmattr)) {
-		if (array_key_exists($realmattr, $tempattr) && is_array($tempattr[$realmattr]) ) {
-			$realmstr = $tempattr[$realmattr][0];
-		} else {
-			SimpleSAML_Logger::warning('Could not get realm attribute to log [' . $realmattr. ']');
-		}
-	} 
-	*/
 	SimpleSAML_Logger::stats('saml20-sp-SSO ' . $metadataHandler->getMetaDataCurrentEntityID() . ' ' . $idp . ' NA');
 	
 
