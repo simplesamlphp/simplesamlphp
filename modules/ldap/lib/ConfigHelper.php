@@ -73,6 +73,23 @@ class sspmod_ldap_ConfigHelper {
 	private $attributes;
 
 
+	/**
+	 * The user cannot get all attributes, privileged reader required
+	 */
+	private $privRead;
+
+
+	/**
+	 * The DN we should bind with before we can get the attributes.
+	 */
+	private $privUsername;
+
+
+	/**
+	 * The password we should bind with before we can get the attributes.
+	 */
+	private $privPassword;
+
 
 	/**
 	 * Constructor for this configuration parser.
@@ -92,6 +109,7 @@ class sspmod_ldap_ConfigHelper {
 		$this->hostname = $config->getString('hostname');
 		$this->enableTLS = $config->getBoolean('enable_tls', FALSE);
 		$this->searchEnable = $config->getBoolean('search.enable', FALSE);
+		$this->privRead = $config->getBoolean('priv.read', FALSE);
 
 		if ($this->searchEnable) {
 			$this->searchUsername = $config->getString('search.username', NULL);
@@ -104,6 +122,12 @@ class sspmod_ldap_ConfigHelper {
 
 		} else {
 			$this->dnPattern = $config->getString('dnpattern');
+		}
+
+		/* Are privs needed to get to the attributes? */
+		if ($this->privRead) {
+			$this->privUsername = $config->getString('priv.username');
+			$this->privPassword = $config->getString('priv.password');
 		}
 
 		$this->attributes = $config->getArray('attributes', NULL);
@@ -147,6 +171,14 @@ class sspmod_ldap_ConfigHelper {
 		if (!$ldap->bind($dn, $password)) {
 			SimpleSAML_Logger::info($this->location . ': '. $username . ' failed to authenticate. DN=' . $dn);
 			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+		}
+
+		/* Are privs needed to get the attributes? */
+		if ($this->privRead) {
+			/* Yes, rebind with privs */
+			if(!$ldap->bind($this->privUsername, $this->privPassword)) {
+				throw new Exception('Error authenticating using privileged DN & password.');
+			}
 		}
 
 		return $ldap->getAttributes($dn, $this->attributes);

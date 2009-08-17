@@ -137,6 +137,23 @@ $config = array(
 		 */
 		'search.username' => NULL,
 		'search.password' => NULL,
+
+		/*
+		 * If the directory uses privilege separation,
+		 * the authenticated user may not be able to retrieve
+		 * all required attribures, a privileged entity is required
+		 * to get them. This is enabled with this option.
+		 */
+		'priv.read' => FALSE,
+
+		/*
+		 * The DN & password the simpleSAMLphp should bind to before
+		 * retrieving attributes. These options are required if
+		 * 'priv.read' is set to TRUE.
+		 */
+		'priv.username' => NULL,
+		'priv.password' => NULL,
+
 	),
 
 	/* Example of an LDAPMulti authentication source. */
