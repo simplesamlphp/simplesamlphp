@@ -82,36 +82,34 @@ abstract class SimpleSAML_SessionHandler {
 	abstract public function get($key);
 
 
-	/* This function creates an instance of the session handler which is
+	/**
+	 * Initialize the session handler.
+	 *
+	 * This function creates an instance of the session handler which is
 	 * selected in the 'session.handler' configuration directive. If no
 	 * session handler is selected, then we will fall back to the default
 	 * PHP session handler.
 	 */
-	public static function createSessionHandler() {
-		
-		global $SIMPLESAML_INCPREFIX;
-		
+	private static function createSessionHandler() {
+
 		/* Get the configuration. */
 		$config = SimpleSAML_Configuration::getInstance();
 		assert($config instanceof SimpleSAML_Configuration);
 
 		/* Get the session handler option from the configuration. */
-		$handler = $config->getValue('session.handler', 'phpsession');
-
-		assert('is_string($handler)');
-
+		$handler = $config->getString('session.handler', 'phpsession');
 		$handler = strtolower($handler);
 
-		if($handler === 'phpsession') {
+		switch ($handler) {
+		case 'phpsession':
 			$sh = new SimpleSAML_SessionHandlerPHP();
-		} else if($handler === 'memcache') {
+			break;
+		case 'memcache':
 			$sh = new SimpleSAML_SessionHandlerMemcache();
-		} else {
-			$e = 'Invalid value for the \'session.handler\'' .
-			     ' configuration option. Unknown session' .
-			     ' handler: ' . $handler;
-			error_log($e);
-			die($e);
+			break;
+		default:
+			throw new SimpleSAML_Error_Exception(
+				'Invalid session handler specified in the \'session.handler\'-option.');
 		}
 
 		/* Set the session handler. */
