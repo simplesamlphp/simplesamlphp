@@ -303,6 +303,39 @@ In example that could mean:
 		23:https://sp.example.org19:andreas@uninett.noq8d76f8ds75f68d7s' )
 
 
+#### Internet2 compatible `eduPersontargetedID` ####
+
+Internet2 uses an `<AttributeValue>` element with a `<NameID>` element to represent the `edupersonTargetedID`:
+
+    <saml2:AttributeValue>
+        <saml2:NameID Format="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"
+           NameQualifier="https://idp.example.org/shibboleth"
+           SPNameQualifier="https://sp.example.org/shibboleth"
+           >1234567890</saml2:NameID>
+    </saml2:AttributeValue>
+
+This format is documented in the [MACE-Dir SAML Attribute Profiles](http://middleware.internet2.edu/dir/docs/internet2-mace-dir-saml-attributes-200604.pdf) document.
+
+To make simpleSAMLphp generate this kind of `eduPersonTargetedID`, you need to set the `nameId`-option to TRUE.
+You also need to change the encoding of the `eduPersonTargetedID` attribute to `raw`.
+
+Example:
+
+    $metadata['__DYNAMIC:1__'] = array(
+        'host' => '__DEFAULT__',
+        'auth' => 'example-static',
+
+        'authproc' => array(
+            60 => array(
+                'class' => 'core:TargetedID',
+                'nameId' => TRUE,
+            ),
+        ),
+        'attributeencodings' => array(
+            'eduPersonTargetedID' => 'raw',
+        ),
+    );
+
 
 ### Adding a group attribute (`core:GenerateGroups`)
 
