@@ -53,9 +53,9 @@ class SimpleSAML_Auth_ProcessingChain {
 		$this->filters = array();
 		
 		$config = SimpleSAML_Configuration::getInstance();
-		$configauthproc = $config->getValue('authproc.' . $mode);
+		$configauthproc = $config->getArray('authproc.' . $mode, NULL);
 		
-		if (!empty($configauthproc) && is_array($configauthproc)) {
+		if (!empty($configauthproc)) {
 			$configfilters = self::parseFilterList($configauthproc);
 			self::addFilters($this->filters, $configfilters);
 		}
