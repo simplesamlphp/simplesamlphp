@@ -54,26 +54,36 @@ class SimpleSAML_Auth_LDAP {
 			', debug=' . var_export($debug, true) .
 			', timeout=' . var_export($timeout, true));
 
-		// Set debug level and protocol version, if supported.
-		// (OpenLDAP 2.x.x or Netscape Directory SDK x.x needed).
+		/*
+		 * Set debug level before calling connect. Note that this passes
+		 * NULL to ldap_set_option, which is an undocumented feature.
+		 *
+		 * OpenLDAP 2.x.x or Netscape Directory SDK x.x needed for this option.
+		 */
 		if ($debug && !ldap_set_option(NULL, LDAP_OPT_DEBUG_LEVEL, 7))
 			SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set debug level (LDAP_OPT_DEBUG_LEVEL) to 7');
-		if (!@ldap_set_option($this->ldap, LDAP_OPT_PROTOCOL_VERSION, 3))
-			// TODO: Should this be a warning instead?
-			throw $this->makeException('Library - LDAP __construct(): Failed to set LDAP Protocol version (LDAP_OPT_PROTOCOL_VERSION) to 3', ERR_INTERNAL);
 
-		// Connect.
+		/*
+		 * Prepare a connection for to this LDAP server. Note that this function
+		 * doesn't actually connect to the server.
+		 */
 		$this->ldap = @ldap_connect($hostname);
 		if ($this->ldap == FALSE)
 			throw new $this->makeException('Library - LDAP __construct(): Unable to connect to \'' . $hostname . '\'', ERR_INTERNAL);
 
+		/* Enable LDAP protocol version 3. */
+		if (!@ldap_set_option($this->ldap, LDAP_OPT_PROTOCOL_VERSION, 3))
+			throw $this->makeException('Library - LDAP __construct(): Failed to set LDAP Protocol version (LDAP_OPT_PROTOCOL_VERSION) to 3', ERR_INTERNAL);
+
 		// Set timeouts, if supported.
 		// (OpenLDAP 2.x.x or Netscape Directory SDK x.x needed).
-		// TODO: Should these be moved to before ldap_connect() above?
 		$this->timeout = $timeout;
 		if ($timeout > 0) {
-			if (!@ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, $timeout))
-				SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_NETWORK_TIMEOUT) to ' . $timeout);
+			if (defined('LDAP_OPT_NETWORK_TIMEOUT')) {
+				/* This option isn't present before PHP 5.3. */
+				if (!@ldap_set_option($this->ldap, constant('LDAP_OPT_NETWORK_TIMEOUT'), $timeout))
+					SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_NETWORK_TIMEOUT) to ' . $timeout);
+			}
 			if (!@ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, $timeout))
 				SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_TIMELIMIT) to ' . $timeout);
 		}
