@@ -94,4 +94,7 @@ SimpleSAML_Configuration::setConfigDir($configdir);
 /* Make sure that the session is initialized before any output. */
 SimpleSAML_Session::getInstance();
 
+/* Set the timezone. */
+SimpleSAML_Utilities::initTimezone();
+
 ?>

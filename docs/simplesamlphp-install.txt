@@ -166,6 +166,13 @@ file, `config.php`, right away:
 
 		'language.default'      => 'no',
 
+-  
+    Set the timezone which you use:
+
+        'timezone' => 'Europe/Oslo',
+
+    * [List of Supported Timezones at php.net](http://php.net/manual/en/timezones.php)
+
 
 Configuring PHP
 ---------------
@@ -173,18 +180,6 @@ Configuring PHP
 ### Sending e-mails from PHP
 
 Some parts of simpleSAMLphp will allow you to send e-mails. In example sending error reports to technical admin, as well as sending in metadata to the federation administrators. If you want to make use of this functionality, you should make sure your PHP installation is configured to be able to send e-mails. It's a common problem that PHP is not configured to send e-mails properly. The configuration differs from system to system. On UNIX, PHP is using sendmail, on Windows SMTP.
-
-
-### Configuring time zone in PHP
-
-Some default installations of PHP does not include a timezone setting. The result is that a lot of warnings is thrown in the log files, which may be annoying. Therefore we reccomend to always set a timezone in the `php.ini` configuration file. In example like this:
-
-	[Date]
-	; Defines the default timezone used by the date functions
-	date.timezone = Europe/Oslo
-
-
-  * [List of Supported Timezones at php.net](http://php.net/manual/en/timezones.php)
 
 
 Enable modules

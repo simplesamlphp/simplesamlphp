@@ -1920,6 +1920,50 @@ class SimpleSAML_Utilities {
 		SimpleSAML_Logger::debug('Successfully validated certificate.');
 	}
 
+
+	/**
+	 * Initialize the timezone.
+	 *
+	 * This function should be called before any calls to date().
+	 */
+	public static function initTimezone() {
+		static $initialized = FALSE;
+
+		if ($initialized) {
+			return;
+		}
+
+		$initialized = TRUE;
+
+		$globalConfig = SimpleSAML_Configuration::getInstance();
+
+		$timezone = $globalConfig->getString('timezone', NULL);
+		if ($timezone !== NULL) {
+			if (!date_default_timezone_set($timezone)) {
+				throw new SimpleSAML_Error_Exception('Invalid timezone set in the \'timezone\'-option in config.php.');
+			}
+			return;
+		}
+
+		/* We don't have a timezone configured. */
+
+		/*
+		 * The date_default_timezone_get()-function is likely to cause a warning.
+		 * Since we have a custom error handler which logs the errors with a backtrace,
+		 * this error will be logged even if we prefix the function call with '@'.
+		 * Instead we temporarily replace the error handler.
+		 */
+		function ignoreError() {
+			/* Don't do anything with this error. */
+			return TRUE;
+		}
+		set_error_handler('ignoreError');
+		$serverTimezone = date_default_timezone_get();
+		restore_error_handler();
+
+		/* Set the timezone to the default. */
+		date_default_timezone_set($serverTimezone);
+	}
 }
 
 ?>

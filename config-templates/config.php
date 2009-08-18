@@ -71,7 +71,16 @@ $config = array (
 	 */
 	'technicalcontact_name'     => 'Administrator',
 	'technicalcontact_email'    => 'na@example.org',
-	
+
+	/*
+	 * The timezone of the server. This option should be set to the timezone you want
+	 * simpleSAMLphp to report the time in. The default is to guess the timezone based
+	 * on your system timezone.
+	 *
+	 * See this page for a list of valid timezones: http://php.net/manual/en/timezones.php
+	 */
+	'timezone' => NULL,
+
 	/*
 	 * Logging.
 	 * 
