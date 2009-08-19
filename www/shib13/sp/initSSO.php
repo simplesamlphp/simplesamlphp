@@ -67,7 +67,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 	
 	
 	try {
-		$ar = new SimpleSAML_XML_Shib13_AuthnRequest($config, $metadata);
+		$ar = new SimpleSAML_XML_Shib13_AuthnRequest();
 		$ar->setIssuer($spentityid);	
 		if(isset($_GET['RelayState'])) 
 			$ar->setRelayState($_GET['RelayState']);

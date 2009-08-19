@@ -10,7 +10,6 @@
  */
 class SimpleSAML_XML_Shib13_AuthnRequest {
 
-	private $configuration = null;
 	private $metadata = null;
 	
 	private $issuer = null;
@@ -23,9 +22,7 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	const PROTOCOL = 'shib13';
 
 
-	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore) {
-		$this->configuration = $configuration;
-		$this->metadata = $metadatastore;
+	function __construct() {
 		
 		$this->requestid = SimpleSAML_Utilities::generateID();
 	}
@@ -76,16 +73,19 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	}
 
 	
-	public function createRedirect($destination) {
-		$idpmetadata = $this->metadata->getMetaData($destination, 'shib13-idp-remote');
-		$spmetadata = $this->metadata->getMetaData($this->getIssuer(), 'shib13-sp-hosted');
-	
+	public function createRedirect($destination, $shire = NULL) {
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$idpmetadata = $metadata->getMetaData($destination, 'shib13-idp-remote');
+
+		if ($shire === NULL) {
+			$shire = $metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted');
+		}
+
 		if (!isset($idpmetadata['SingleSignOnService'])) {
 			throw new Exception('Could not find the SingleSignOnService parameter in the Shib 1.3 IdP Remote metadata. This parameter has changed name from an earlier version of simpleSAMLphp, when it was called SingleSignOnUrl. Please check your shib13-sp-remote.php configuration the IdP with entity id ' . $destination . ' and make sure the SingleSignOnService parameter is set.');
 		}
 		
 		$desturl = $idpmetadata['SingleSignOnService'];
-		$shire = $this->metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted');
 		$target = $this->getRelayState();
 		
 		$url = $desturl . '?' .
