@@ -433,7 +433,7 @@ class sspmod_saml2_Message {
 			return SimpleSAML_Utilities::generateID();
 		}
 
-		$value = $attributes[$attribute][0];
+		return $attributes[$attribute][0];
 	}
 
 
