@@ -19,17 +19,29 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	const SHIB_ASSERT_NS = 'urn:oasis:names:tc:SAML:1.0:assertion';
 
 
-	private $message = null;
+	/**
+	 * The DOMDocument which represents this message.
+	 *
+	 * @var DOMDocument
+	 */
 	private $dom;
+
+	/**
+	 * The relaystate which is associated with this response.
+	 *
+	 * @var string|NULL
+	 */
 	private $relayState = null;
 
 
 	public function setXML($xml) {
-		$this->message = $xml;
-	}
+		assert('is_string($xml)');
 
-	public function getXML() {
-		return $this->message;
+		$this->dom = new DOMDocument();
+		$ok = $this->dom->loadXML(str_replace ("\r", "", $xml));
+		if (!$ok) {
+			throw new Exception('Unable to parse AuthnResponse XML.');
+		}
 	}
 
 	public function setRelayState($relayState) {
@@ -40,36 +52,11 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		return $this->relayState;
 	}
 
-	public function getDOM() {
-		if (isset($this->message) ) {
-
-			if (isset($this->dom)) {
-				return $this->dom;
-			}
-
-			$token = new DOMDocument();
-			$token->loadXML(str_replace ("\r", "", $this->message));
-			if (empty($token)) {
-				throw new Exception("Unable to load token");
-			}
-			$this->dom = $token;
-			return $this->dom;
-
-		}
-
-		return null;
-	}
-
-
-	function __construct() {
-	}
-
 	public function validate() {
-	
-		$dom = $this->getDOM();
+		assert('$this->dom instanceof DOMDocument');
 
 		/* Validate the signature. */
-		$this->validator = new SimpleSAML_XML_Validator($dom, array('ResponseID', 'AssertionID'));
+		$this->validator = new SimpleSAML_XML_Validator($this->dom, array('ResponseID', 'AssertionID'));
 
 		// Get the issuer of the response.
 		$issuer = $this->getIssuer();
@@ -127,40 +114,35 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	 */
 	private function doXPathQuery($query, $node = NULL) {
 		assert('is_string($query)');
-
-		$dom = $this->getDOM();
-		assert('$dom instanceof DOMDocument');
+		assert('$this->dom instanceof DOMDocument');
 
 		if($node === NULL) {
-			$node = $dom->documentElement;
+			$node = $this->dom->documentElement;
 		}
 
 		assert('$node instanceof DOMNode');
 
-		$xPath = new DOMXpath($dom);
+		$xPath = new DOMXpath($this->dom);
 		$xPath->registerNamespace('shibp', self::SHIB_PROTOCOL_NS);
 		$xPath->registerNamespace('shib', self::SHIB_ASSERT_NS);
 
 		return $xPath->query($query, $node);
 	}
 
-	/* This function is only included because it is in the base class. Will be removed in the future. */
-	public function createSession() { throw new Exception('Removed');}
-	
-	//TODO
+	/**
+	 * Retrieve the session index of this response.
+	 *
+	 * @return string|NULL  The session index of this response.
+	 */
 	function getSessionIndex() {
-		$token = $this->getDOM();
-		if ($token instanceof DOMDocument) {
-			$xPath = new DOMXpath($token);
-			$xPath->registerNamespace('mysamlp', self::SHIB_PROTOCOL_NS);
-			$xPath->registerNamespace('mysaml', self::SHIB_ASSERT_NS);
-			
-			$query = '/mysamlp:Response/mysaml:Assertion/mysaml:AuthnStatement';
-			$nodelist = $xPath->query($query);
-			if ($node = $nodelist->item(0)) {
-				return $node->getAttribute('SessionIndex');
-			}
+		assert('$this->dom instanceof DOMDocument');
+
+		$query = '/shibp:Response/shib:Assertion/shib:AuthnStatement';
+		$nodelist = $this->doXPathQuery($query);
+		if ($node = $nodelist->item(0)) {
+			return $node->getAttribute('SessionIndex');
 		}
+
 		return NULL;
 	}
 
@@ -171,7 +153,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		$md = $metadata->getMetadata($this->getIssuer(), 'shib13-idp-remote');
 		$base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 
-		if (! ($this->getDOM() instanceof DOMDocument) ) {
+		if (! ($this->dom instanceof DOMDocument) ) {
 			return array();
 		}
 
@@ -236,14 +218,9 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 
 	
 	public function getIssuer() {
-	
-		$token = $this->getDOM();
-		$xPath = new DOMXpath($token);
-		$xPath->registerNamespace('mysamlp', self::SHIB_PROTOCOL_NS);
-		$xPath->registerNamespace('mysaml', self::SHIB_ASSERT_NS);
 
-		$query = '/mysamlp:Response/mysaml:Assertion/@Issuer';
-		$nodelist = $xPath->query($query);
+		$query = '/shibp:Response/shib:Assertion/@Issuer';
+		$nodelist = $this->doXPathQuery($query);
 
 		if ($attr = $nodelist->item(0)) {
 			return $attr->value;
@@ -252,26 +229,20 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		}
 
 	}
-	
-	public function getNameID() {
-				
-		$token = $this->getDOM();
-		$nameID = array();
-		if ($token instanceof DOMDocument) {
-			$xPath = new DOMXpath($token);
-			$xPath->registerNamespace('mysamlp', self::SHIB_PROTOCOL_NS);
-			$xPath->registerNamespace('mysaml', self::SHIB_ASSERT_NS);
-	
-			$query = '/mysamlp:Response/mysaml:Assertion/mysaml:AuthenticationStatement/mysaml:Subject/mysaml:NameIdentifier';
-			$nodelist = $xPath->query($query);
-			if ($node = $nodelist->item(0)) {
-				$nameID["Value"] = $node->nodeValue;
-				$nameID["Format"] = $node->getAttribute('Format');
-				//$nameID["NameQualifier"] = $node->getAttribute('NameQualifier');
-			}
-		}
-		return $nameID;
 
+	public function getNameID() {
+
+		$nameID = array();
+
+		$query = '/shibp:Response/shib:Assertion/shib:AuthenticationStatement/shib:Subject/shib:NameIdentifier';
+		$nodelist = $this->doXPathQuery($query);
+
+		if ($node = $nodelist->item(0)) {
+			$nameID["Value"] = $node->nodeValue;
+			$nameID["Format"] = $node->getAttribute('Format');
+		}
+
+		return $nameID;
 	}
 
 
