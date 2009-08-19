@@ -69,6 +69,34 @@ $config = array(
 		'saml2:SP',
 	),
 	
+
+	/*
+	 * An authentication source which can authenticate against both SAML 2.0
+	 * and Shibboleth 1.3 IdPs.
+	 */
+	'example-saml' => array(
+
+		/*
+		 * The entity ID of this SP.
+		 * Can be NULL/unset, in which case an entity ID is generated based on the metadata URL.
+		 */
+		'entityId' => NULL,
+
+		/*
+		 * The entity ID of the IdP this should SP should contact.
+		 * Can be NULL/unset, in which case the user will be shown a list of available IdPs.
+		 */
+		'idp' => NULL,
+
+		/*
+		 * The URL to the discovery service.
+		 * Can be NULL/unset, in which case a builtin discovery service will be used.
+		 */
+		'discoURL' => NULL,
+
+	),
+
+
 	'facebook' => array(
 		'authfacebook:Facebook',
 		'api_key' => 'xxxxxxxxxxxxxxxx',
