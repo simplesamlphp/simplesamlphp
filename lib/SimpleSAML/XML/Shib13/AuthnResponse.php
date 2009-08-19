@@ -18,9 +18,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	const SHIB_PROTOCOL_NS = 'urn:oasis:names:tc:SAML:1.0:protocol';
 	const SHIB_ASSERT_NS = 'urn:oasis:names:tc:SAML:1.0:assertion';
 
-	function __construct(SimpleSAML_Configuration $configuration, SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore) {
-		$this->configuration = $configuration;
-		$this->metadata = $metadatastore;
+	function __construct() {
 	}
 	
 	// Inhereted public function setXML($xml) {
@@ -40,7 +38,8 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 		$issuer = $this->getIssuer();
 
 		/* Get the metadata of the issuer. */
-		$md = $this->metadata->getMetaData($issuer, 'shib13-idp-remote');
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$md = $metadata->getMetaData($issuer, 'shib13-idp-remote');
 
 		if(array_key_exists('certFingerprint', $md)) {
 			/* Get fingerprint for the certificate of the issuer. */
@@ -50,7 +49,8 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 			$this->validator->validateFingerprint($issuerFingerprint);
 		} elseif(array_key_exists('caFile', $md)) {
 			/* Validate against CA. */
-			$this->validator->validateCA($this->configuration->getPathValue('certdir', 'cert/') . $md['caFile']);
+			$globalConfig = SimpleSAML_Configuration::getInstance();
+			$this->validator->validateCA($globalConfig->getPathValue('certdir', 'cert/') . $md['caFile']);
 		} else {
 			throw new Exception('Required field [certFingerprint] or [caFile] in Shibboleth 1.3 IdP Remote metadata was not found for identity provider [' . $issuer . ']. Please add a fingerprint and try again. You can add a dummy fingerprint first, and then an error message will be printed with the real fingerprint.');
 		}
@@ -130,7 +130,8 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	
 	public function getAttributes() {
 
-		$md = $this->metadata->getMetadata($this->getIssuer(), 'shib13-idp-remote');
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$md = $metadata->getMetadata($this->getIssuer(), 'shib13-idp-remote');
 		$base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 
 		if (! ($this->getDOM() instanceof DOMDocument) ) {

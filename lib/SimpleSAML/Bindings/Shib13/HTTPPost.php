@@ -120,7 +120,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 
 		SimpleSAML_Utilities::validateXMLDocument($samlResponseXML, 'saml11');
 
-		$samlResponse = new SimpleSAML_XML_Shib13_AuthnResponse($this->configuration, $this->metadata);
+		$samlResponse = new SimpleSAML_XML_Shib13_AuthnResponse();
 		$samlResponse->setXML($samlResponseXML);
 
 		if (array_key_exists('TARGET', $post)) {

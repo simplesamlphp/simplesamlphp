@@ -202,7 +202,7 @@ try {
 	$attributes = $authProcState['Attributes'];
 
 	/* Generate and send response. */
-	$ar = new SimpleSAML_XML_Shib13_AuthnResponse($config, $metadata);
+	$ar = new SimpleSAML_XML_Shib13_AuthnResponse();
 	$authnResponseXML = $ar->generate($idpmetadata, $spmetadata, $shire, $attributes);
 
 	$httppost = new SimpleSAML_Bindings_Shib13_HTTPPost($config, $metadata);
