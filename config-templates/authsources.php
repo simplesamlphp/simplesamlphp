@@ -75,6 +75,7 @@ $config = array(
 	 * and Shibboleth 1.3 IdPs.
 	 */
 	'example-saml' => array(
+		'saml:SP',
 
 		/*
 		 * The entity ID of this SP.
