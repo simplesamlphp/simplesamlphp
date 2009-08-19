@@ -9,7 +9,7 @@ $config = array(
 			'sources'	=> array(
 				array(
 					'src' => 'https://kalmar.feide.no/simplesaml/module.php/aggregator/?id=kalmarcentral&mimetype=text/plain&exclude=norway',
-					'certFingerprint' => '591d4b4670463eeda91fcc816dc0af2a092aa801',
+					'validateFingerprint' => '591d4b4670463eeda91fcc816dc0af2a092aa801',
 					'template' => array(
 						'tags'	=> array('kalmar'),
 						'authproc' => array(
