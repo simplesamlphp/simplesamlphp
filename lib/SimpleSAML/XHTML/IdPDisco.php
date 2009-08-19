@@ -15,25 +15,16 @@
 class SimpleSAML_XHTML_IdPDisco {
 
 	/**
-	 * The various discovery services we can host.
-	 */
-	protected static $discoTypes = array(
-		'saml20' => array(
-			'metadata' => 'saml20-idp-remote',
-			),
-		'shib13' => array(
-			'metadata' => 'shib13-idp-remote',
-			),
-		'wsfed' => array(
-			'metadata' => 'wsfed-idp-remote',
-			),
-		);
-
-
-	/**
 	 * An instance of the configuration class.
 	 */
 	protected $config;
+
+	/**
+	 * The identifier of this discovery service.
+	 *
+	 * @var string
+	 */
+	protected $instance;
 
 
 	/**
@@ -49,9 +40,11 @@ class SimpleSAML_XHTML_IdPDisco {
 
 
 	/**
-	 * Our discovery service type.
+	 * The metadata sets we find allowed entities in, in prioritized order.
+	 *
+	 * @var array
 	 */
-	protected $discoType;
+	protected $metadataSets;
 
 
 	/**
@@ -90,22 +83,18 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * The constructor does the parsing of the request. If this is an invalid request, it will
 	 * throw an exception.
 	 *
-	 * @param $discoType  String which identifies the type of discovery service.
+	 * @param array $metadataSets  Array with metadata sets we find remote entities in.
+	 * @param string $instance  The name of this instance of the discovery service.
 	 */
-	public function __construct($discoType) {
+	public function __construct(array $metadataSets, $instance) {
+		assert('is_string($instance)');
 
 		/* Initialize standard classes. */
 		$this->config = SimpleSAML_Configuration::getInstance();
 		$this->metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$this->session = SimpleSAML_Session::getInstance();
-
-
-		if(!array_key_exists($discoType, self::$discoTypes)) {
-			throw new Exception('Unknown discovery service type: ' . $discoType);
-		}
-
-		$this->discoType = self::$discoTypes[$discoType];
-		$this->discoType['type'] = $discoType;
+		$this->instance = $instance;
+		$this->metadataSets = $metadataSets;
 
 		$this->log('Accessing discovery service.');
 
@@ -156,7 +145,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * @param $message  The message which should be logged.
 	 */
 	protected function log($message) {
-		SimpleSAML_Logger::info('idpDisco.' . $this->discoType['type'] . ': ' . $message);
+		SimpleSAML_Logger::info('idpDisco.' . $this->instance . ': ' . $message);
 	}
 
 
@@ -170,7 +159,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * @return  The value of the cookie with the given name, or NULL if no cookie with that name exists.
 	 */
 	protected function getCookie($name) {
-		$prefixedName = 'idpdisco_' . $this->discoType['type'] . '_' . $name;
+		$prefixedName = 'idpdisco_' . $this->instance . '_' . $name;
 		if(array_key_exists($prefixedName, $_COOKIE)) {
 			return $_COOKIE[$prefixedName];
 		} else {
@@ -189,7 +178,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * @param $value  The value of the cookie.
 	 */
 	protected function setCookie($name, $value) {
-		$prefixedName = 'idpdisco_' . $this->discoType['type'] . '_' . $name;
+		$prefixedName = 'idpdisco_' . $this->instance . '_' . $name;
 
 		/* We save the cookies for 90 days. */
 		$saveUntil = time() + 60*60*24*90;
@@ -219,14 +208,16 @@ class SimpleSAML_XHTML_IdPDisco {
 			return $idp;
 		}
 
-		try {
-			$this->metadata->getMetaData($idp, $this->discoType['metadata']);
-			return $idp;
-		} catch(Exception $e) {
-			$this->log('Unable to validate IdP entity id [' . $idp . '].');
-			/* The entity id wasn't valid. */
-			return NULL;
+		foreach ($this->metadataSets AS $metadataSet) {
+			try {
+				$this->metadata->getMetaData($idp, $metadataSet);
+				return $idp;
+			} catch(Exception $e) { }
 		}
+
+		$this->log('Unable to validate IdP entity id [' . $idp . '].');
+		/* The entity id wasn't valid. */
+		return NULL;
 	}
 
 
@@ -306,6 +297,24 @@ class SimpleSAML_XHTML_IdPDisco {
 
 
 	/**
+	 * Retrieve a recommended IdP based on the IP address of the client.
+	 *
+	 * @return string|NULL  The entity ID of the IdP if one is found, or NULL if not.
+	 */
+	protected function getFromCIDRhint() {
+
+		foreach ($this->metadataSets as $metadataSet) {
+			$idp = $this->metadata->getPreferredEntityIdFromCIDRhint($metadataSet, $_SERVER['REMOTE_ADDR']);
+			if (!empty($idp)) {
+				return $idp;
+			}
+		}
+
+		return NULL;
+	}
+
+
+	/**
 	 * Try to determine which IdP the user should most likely use.
 	 *
 	 * This function will first look at the previous IdP the user has chosen. If the user
@@ -321,8 +330,7 @@ class SimpleSAML_XHTML_IdPDisco {
 			return $idp;
 		}
 
-		$idp = $this->metadata->getPreferredEntityIdFromCIDRhint(
-			$this->discoType['metadata'], $_SERVER['REMOTE_ADDR']);
+		$idp = $this->getFromCIDRhint();
 
 		if(!empty($idp)) {
 			$this->log('Preferred IdP from CIDR hint [' . $idp . '].');
@@ -390,6 +398,28 @@ class SimpleSAML_XHTML_IdPDisco {
 
 
 	/**
+	 * Retrieve the list of IdPs which are stored in the metadata.
+	 *
+	 * @return array  Array with entityid=>metadata mappings.
+	 */
+	protected function getIdPList() {
+
+		$idpList = array();
+		foreach ($this->metadataSets AS $metadataSet) {
+			$newList = $this->metadata->getList($metadataSet);
+			/*
+			 * Note that we merge the entities in reverse order. This ensuers
+			 * that it is the entity in the first metadata set that "wins" if
+			 * two metadata sets have the same entity.
+			 */
+			$idpList = array_merge($newList, $idpList);
+		}
+
+		return $idpList;
+	}
+
+
+	/**
 	 * Handles a request to this discovery service.
 	 *
 	 * The IdP disco parameters should be set before calling this function.
@@ -427,7 +457,7 @@ class SimpleSAML_XHTML_IdPDisco {
 
 		/* No choice made. Show discovery service page. */
 
-		$idpList = $this->metadata->getList($this->discoType['metadata']);
+		$idpList = $this->getIdPList();
 		$preferredIdP = $this->getRecommendedIdP();
 
 		/*

@@ -21,11 +21,12 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	 * The constructor does the parsing of the request. If this is an invalid request, it will
 	 * throw an exception.
 	 *
-	 * @param $discoType  String which identifies the type of discovery service.
+	 * @param array $metadataSets  Array with metadata sets we find remote entities in.
+	 * @param string $instance  The name of this instance of the discovery service.
 	 */
-	public function __construct($discoType) {
+	public function __construct(array $metadataSets, $instance) {
 
-		parent::__construct($discoType);
+		parent::__construct($metadataSets, $instance);
 
 		$this->discoconfig = SimpleSAML_Configuration::getConfig('module_discopower.php');
 
@@ -41,7 +42,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	 * @param $message  The message which should be logged.
 	 */
 	protected function log($message) {
-		SimpleSAML_Logger::info('PowerIdPDisco.' . $this->discoType['type'] . ': ' . $message);
+		SimpleSAML_Logger::info('PowerIdPDisco.' . $this->instance . ': ' . $message);
 	}
 
 	/*
@@ -159,8 +160,8 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 		}
 
 		/* No choice made. Show discovery service page. */
-
-		$idpList = $this->idplistStructured($this->filterList($this->metadata->getList($this->discoType['metadata'])));
+		$idpList = $this->getIdPList();
+		$idpList = $this->idplistStructured($this->filterList($idpList));
 		$preferredIdP = $this->getRecommendedIdP();
 
 		$t = new SimpleSAML_XHTML_Template($this->config, 'discopower:disco-tpl.php', 'disco');
