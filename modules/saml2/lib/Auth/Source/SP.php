@@ -301,6 +301,7 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 	public function onLogout($idpEntityId) {
 		assert('is_string($idpEntityId)');
 
+		/* Call the logout callback we registered in onProcessingCompleted(). */
 		$this->callLogoutCallback($idpEntityId);
 	}
 
@@ -324,7 +325,9 @@ class sspmod_saml2_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			throw new Exception('Could not find authentication source with id ' . $sourceId);
 		}
 
+		/* Register a callback that we can call if we receive a logout request from the IdP. */
 		$source->addLogoutCallback($idp, $state);
+
 		$state['Attributes'] = $authProcState['Attributes'];
 		SimpleSAML_Auth_Source::completeAuth($state);
 	}
