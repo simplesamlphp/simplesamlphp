@@ -7,7 +7,7 @@
  * @package simpleSAMLphp
  * @version $Id$
  */
-class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
+class SimpleSAML_XML_Shib13_AuthnResponse {
 
 	/**
 	 * This variable contains an XML validator for this message.
@@ -18,15 +18,52 @@ class SimpleSAML_XML_Shib13_AuthnResponse extends SimpleSAML_XML_AuthnResponse {
 	const SHIB_PROTOCOL_NS = 'urn:oasis:names:tc:SAML:1.0:protocol';
 	const SHIB_ASSERT_NS = 'urn:oasis:names:tc:SAML:1.0:assertion';
 
+
+	private $message = null;
+	private $dom;
+	private $relayState = null;
+
+
+	public function setXML($xml) {
+		$this->message = $xml;
+	}
+
+	public function getXML() {
+		return $this->message;
+	}
+
+	public function setRelayState($relayState) {
+		$this->relayState = $relayState;
+	}
+
+	public function getRelayState() {
+		return $this->relayState;
+	}
+
+	public function getDOM() {
+		if (isset($this->message) ) {
+
+			if (isset($this->dom)) {
+				return $this->dom;
+			}
+
+			$token = new DOMDocument();
+			$token->loadXML(str_replace ("\r", "", $this->message));
+			if (empty($token)) {
+				throw new Exception("Unable to load token");
+			}
+			$this->dom = $token;
+			return $this->dom;
+
+		}
+
+		return null;
+	}
+
+
 	function __construct() {
 	}
-	
-	// Inhereted public function setXML($xml) {
-	// Inhereted public function getXML() {
-	// Inhereted public function setRelayState($relayState) {
-	// Inhereted public function getRelayState() {
 
-	
 	public function validate() {
 	
 		$dom = $this->getDOM();
