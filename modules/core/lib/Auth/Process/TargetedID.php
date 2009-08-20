@@ -142,7 +142,7 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 			$doc->appendChild($root);
 
 			SAML2_Utils::addNameId($root, $nameId);
-			$uid = $root->childNodes;
+			$uid = $doc->saveXML($root->firstChild);
 		}
 
 		$state['Attributes']['eduPersonTargetedID'] = array($uid);
