@@ -382,13 +382,18 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 		$accr = SAML2_Utils::xpQuery($ac, './saml:AuthnContextClassRef');
 		if (empty($accr)) {
-			throw new Exception('Missing almost-required <saml:AuthnContextClassRef> in <saml:AuthnContext>.');
+			$acdr = SAML2_Utils::xpQuery($ac, './saml:AuthnContextDeclRef');
+			if (empty($acdr)) {
+				throw new Exception('Neither <saml:AuthnContextClassRef> nor <saml:AuthnContextDeclRef> found in <saml:AuthnContext>.');
+			} elseif (count($accr) > 1) {
+				throw new Exception('More than one <saml:AuthnContextDeclRef> in <saml:AuthnContext>.');
+			}
+			$this->authnContext = trim($acdr[0]->textContent);
 		} elseif (count($accr) > 1) {
 			throw new Exception('More than one <saml:AuthnContextClassRef> in <saml:AuthnContext>.');
+		} else {
+			$this->authnContext = trim($accr[0]->textContent);
 		}
-		$accr = $accr[0];
-
-		$this->authnContext = trim($accr->textContent);
 	}
 
 
