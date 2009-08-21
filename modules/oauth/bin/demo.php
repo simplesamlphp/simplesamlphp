@@ -1,6 +1,12 @@
 #!/usr/bin/env php
 <?php
 
+
+function readline($prompt = '') {
+    echo $prompt;
+    return rtrim( fgets( STDIN ), "\n" );
+}
+
 /* This is the base directory of the simpleSAMLphp installation. */
 $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 
@@ -27,8 +33,7 @@ $url = $consumer->getAuthorizeRequest($baseurl . '/module.php/oauth/authorize.ph
 echo('Go to this URL to authenticate/authorize the request: ' . $url . "\n");
 system('open ' . $url);
 
-echo('Waiting 15 seconds for you to complete the authorization...' . "\n");
-sleep(15);
+readline('Click enter when you have completed the authorization step using your web browser...');
 
 // Replace the request token with an access token
 $accessToken = $consumer->getAccessToken( $baseurl . '/module.php/oauth/accessToken.php', $requestToken);
