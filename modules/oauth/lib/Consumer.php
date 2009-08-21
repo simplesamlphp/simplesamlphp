@@ -36,6 +36,8 @@ class sspmod_oauth_Consumer {
 		if(array_key_exists('error', $responseParsed))
 			throw new Exception('Error getting request token: ') . $responseParsed['error'];
 		
+#		echo('<pre>'); print_r($response_req); exit;
+		
 		$requestToken = $responseParsed['oauth_token'];
 		$requestTokenSecret = $responseParsed['oauth_token_secret'];
 		
@@ -82,7 +84,7 @@ class sspmod_oauth_Consumer {
 		$data_req->sign_request($this->signer, $this->consumer, $accessToken);
 
 		$data = file_get_contents($data_req->to_url());
-		// print_r($data);
+		#print_r($data);
 
 		$dataDecoded = json_decode($data, TRUE);
 		return $dataDecoded;
