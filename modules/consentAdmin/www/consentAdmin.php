@@ -69,7 +69,7 @@ $session = SimpleSAML_Session::getInstance();
 /* Check if valid local session exists */
 if (!isset($session) || !$session->isValid('saml2') ) {
 	// Set idpentity to force a specific IdP
-	SimpleSAML_Utilities::redirect('/saml2/sp/initSSO.php',
+	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . '/saml2/sp/initSSO.php',
 		array('RelayState'  => SimpleSAML_Utilities::selfURL())
 	);
 }
