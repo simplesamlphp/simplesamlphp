@@ -51,6 +51,7 @@ function ADFS_GenerateResponse($issuer, $target, $nameid, $attributes) {
            <saml:NameIdentifier Format="' . $nameidFormat . '">' . $nameid . '</saml:NameIdentifier>
          </saml:Subject>';
 	foreach ($attributes as $name => $values) {
+		if ((!is_array($values)) || (count($values) == 0)) continue;
 		$result .= '<saml:Attribute AttributeNamespace="http://schemas.xmlsoap.org/claims" AttributeName="' . $name .'">';
 		foreach ($values as $value) {
 			$result .= '<saml:AttributeValue>' . $value . '</saml:AttributeValue>';
