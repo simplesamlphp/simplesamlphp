@@ -43,20 +43,24 @@ function ADFS_GenerateResponse($issuer, $target, $nameid, $attributes) {
        </saml:Conditions>
        <saml:AuthenticationStatement AuthenticationMethod="urn:oasis:names:tc:SAML:1.0:am:unspecified" AuthenticationInstant="' . $issueInstant . '">
          <saml:Subject>
-           <saml:NameIdentifier Format="' . $nameidFormat . '">' . $nameid . '</saml:NameIdentifier>
+           <saml:NameIdentifier Format="' . $nameidFormat . '">' . htmlspecialchars($nameid) . '</saml:NameIdentifier>
          </saml:Subject>
        </saml:AuthenticationStatement>
        <saml:AttributeStatement>
          <saml:Subject>
-           <saml:NameIdentifier Format="' . $nameidFormat . '">' . $nameid . '</saml:NameIdentifier>
+           <saml:NameIdentifier Format="' . $nameidFormat . '">' . htmlspecialchars($nameid) . '</saml:NameIdentifier>
          </saml:Subject>';
 	foreach ($attributes as $name => $values) {
 		if ((!is_array($values)) || (count($values) == 0)) continue;
-		$result .= '<saml:Attribute AttributeNamespace="http://schemas.xmlsoap.org/claims" AttributeName="' . $name .'">';
+		$hasValue = FALSE;
+		$r = '<saml:Attribute AttributeNamespace="http://schemas.xmlsoap.org/claims" AttributeName="' . htmlspecialchars($name) .'">';
 		foreach ($values as $value) {
-			$result .= '<saml:AttributeValue>' . $value . '</saml:AttributeValue>';
+			if (isset($value) or ($value !== '')) continue;
+			$r .= '<saml:AttributeValue>' . htmlspecialchars($value) . '</saml:AttributeValue>';
+			$hasValue = TRUE;
 		}
-		$result .= '</saml:Attribute>';
+		$r .= '</saml:Attribute>';
+		if ($hasValue) $result .= $r;
 	}
 	$result .= '
        </saml:AttributeStatement>
