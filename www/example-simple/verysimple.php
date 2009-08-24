@@ -14,10 +14,6 @@
  */
 require_once('../../lib/_autoload.php');
 
-/* We need to tell simpleSAMLphp where the configuration is located. */
-SimpleSAML_Configuration::setConfigDir('../../config');
-
-
 
 /* This handles logout requests. */
 if (array_key_exists('logout', $_REQUEST)) {

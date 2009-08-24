@@ -148,7 +148,11 @@ class SimpleSAML_Configuration {
 		assert('is_string($configSet)');
 
 		if (!array_key_exists($configSet, self::$configDirs)) {
-			throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
+			if ($configSet !== 'simplesaml') {
+				throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
+			} else {
+				self::$configDirs['simplesaml'] = dirname(dirname(dirname(__FILE__))) . '/config';
+			}
 		}
 
 		$dir = self::$configDirs[$configSet];

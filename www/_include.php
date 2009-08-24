@@ -89,8 +89,6 @@ if (!file_exists($configdir . '/config.php')) {
 	exit(1);
 }
 
-SimpleSAML_Configuration::setConfigDir($configdir);
-
 /* Make sure that the session is initialized before any output. */
 SimpleSAML_Session::getInstance();
 
