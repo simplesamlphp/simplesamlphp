@@ -94,7 +94,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 			$p->show();
 
 		} else {
-			SimpleSAML_Utilities::postRedirect($destination, array(
+			SimpleSAML_Utilities::postRedirect($shire, array(
 				'TARGET' => $relayState,
 				'SAMLResponse' => base64_encode($response),
 			));
