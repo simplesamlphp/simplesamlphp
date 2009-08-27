@@ -76,28 +76,36 @@ class SimpleSAML_Configuration {
 	 * Load the given configuration file.
 	 *
 	 * @param string $filename  The full path of the configuration file.
+	 * @param bool @required  Whether the file is required.
 	 * @return SimpleSAML_Configuration  The configuration file. An exception will be thrown if the
 	 *                                   configuration file is missing.
 	 */
-	private static function loadFromFile($filename) {
+	private static function loadFromFile($filename, $required) {
 		assert('is_string($filename)');
+		assert('is_bool($required)');
 
 		if (array_key_exists($filename, self::$loadedConfigs)) {
 			return self::$loadedConfigs[$filename];
 		}
 
-		if (!file_exists($filename)) {
+		if (file_exists($filename)) {
+			$config = 'UNINITIALIZED';
+
+			/* The file initializes a variable named '$config'. */
+			require($filename);
+
+			/* Check that $config is initialized to an array. */
+			if (!is_array($config)) {
+				throw new Exception('Invalid configuration file: ' . $filename);
+			}
+
+		} elseif ($required) {
+			/* File does not exist, but is required. */
 			throw new Exception('Missing configuration file: ' . $filename);
-		}
 
-		$config = 'UNINITIALIZED';
-
-		/* The file initializes a variable named '$config'. */
-		require($filename);
-
-		/* Check that $config is initialized to an array. */
-		if (!is_array($config)) {
-			throw new Exception('Invalid configuration file: ' . $filename);
+		} else {
+			/* File does not exist, but is optional. */
+			$config = array();
 		}
 
 		if (array_key_exists('override.host', $config)) {
@@ -157,7 +165,34 @@ class SimpleSAML_Configuration {
 
 		$dir = self::$configDirs[$configSet];
 		$filePath = $dir . '/' . $filename;
-		return self::loadFromFile($filePath);
+		return self::loadFromFile($filePath, TRUE);
+	}
+
+
+	/**
+	 * Load a configuration file from a configuration set.
+	 *
+	 * This function will return a configuration object even if the file does not exist.
+	 *
+	 * @param string $filename  The name of the configuration file.
+	 * @param string $configSet  The configuration set. Optional, defaults to 'simplesaml'.
+	 * @return SimpleSAML_Configuration  A configuration object.
+	 */
+	public static function getOptionalConfig($filename = 'config.php', $configSet = 'simplesaml') {
+		assert('is_string($filename)');
+		assert('is_string($configSet)');
+
+		if (!array_key_exists($configSet, self::$configDirs)) {
+			if ($configSet !== 'simplesaml') {
+				throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
+			} else {
+				self::$configDirs['simplesaml'] = dirname(dirname(dirname(__FILE__))) . '/config';
+			}
+		}
+
+		$dir = self::$configDirs[$configSet];
+		$filePath = $dir . '/' . $filename;
+		return self::loadFromFile($filePath, FALSE);
 	}
 
 
@@ -222,7 +257,7 @@ class SimpleSAML_Configuration {
 			return self::$instance[$instancename];
 		}
 
-		self::$instance[$instancename] = self::loadFromFile($path . '/' . $configfilename);
+		self::$instance[$instancename] = self::loadFromFile($path . '/' . $configfilename, TRUE);
 	}
 
 
@@ -249,7 +284,7 @@ class SimpleSAML_Configuration {
 			self::setConfigDir($path, 'simplesaml');
 		}
 
-		self::$instance[$instancename] = self::loadFromFile($dir . '/' . $filename);
+		self::$instance[$instancename] = self::loadFromFile($dir . '/' . $filename, TRUE);
 		return self::$instance[$instancename];
 	}
 
