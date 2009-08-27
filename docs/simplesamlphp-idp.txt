@@ -150,7 +150,7 @@ The identity provider you are configuring needs to know about the service provid
 
 	<?php
 	$metadata = array(
-		'sp.example.org' => array(
+		'https://sp.example.org' => array(
 			'AssertionConsumerService' => 'https://sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php',
 			'SingleLogoutService'      => 'https://sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
 		),
