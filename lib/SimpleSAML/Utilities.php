@@ -1122,7 +1122,11 @@ class SimpleSAML_Utilities {
 		assert('is_int($length)');
 
 		if($fp === NULL) {
-			$fp = @fopen('/dev/urandom', 'rb');
+			if (file_exists('/dev/urandom')) {
+				$fp = fopen('/dev/urandom', 'rb');
+			} else {
+				$fp = FALSE;
+			}
 		}
 
 		if($fp !== FALSE) {
