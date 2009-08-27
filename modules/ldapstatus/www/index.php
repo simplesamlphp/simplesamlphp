@@ -254,8 +254,15 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 	
 	// Machine readable output
 	if(array_key_exists('output', $_REQUEST) && $_REQUEST['output'] === 'text') {
+		
+		$ignores = array();
+		if(array_key_exists('ignore', $_REQUEST)) {
+			$ignores = explode(',', $_REQUEST['ignore']);
+		}
+		
 		$ok = TRUE;
 		foreach ($res AS $tag => $resEntry) {
+			if (in_array($tag, $ignores)) continue;
 			if ($tag == 'time') continue;
 			if ($resEntry[0] == 0) {
 				$ok = FALSE;
