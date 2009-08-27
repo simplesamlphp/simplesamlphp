@@ -97,7 +97,7 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 					'\', which is needed to generate the targeted ID.');
 			}
 
-			$userID = $state['Attributes'][$this->attribute];
+			$userID = $state['Attributes'][$this->attribute][0];
 		}
 
 
