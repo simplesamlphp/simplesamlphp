@@ -18,7 +18,7 @@ if (array_key_exists('orgtest', $_REQUEST)) {
 	}
 	$orgConfig = SimpleSAML_Configuration::loadFromArray($orgs[$orgtest], 'org:[' . $orgtest . ']');
 
-	$secretKey = sha1('ldapstatus|' . $config->getValue('secret') . '|' . $_REQUEST['orgtest']);
+	$secretKey = sha1('ldapstatus|' . SimpleSAML_Utilities::getSecretSalt() . '|' . $_REQUEST['orgtest']);
 	$secretURL = SimpleSAML_Utilities::addURLparameter(
 		SimpleSAML_Utilities::selfURLNoQuery(), array(
 			'orgtest' => $_REQUEST['orgtest'],

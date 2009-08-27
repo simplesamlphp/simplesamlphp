@@ -4,7 +4,7 @@
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
-$authTokenContactsSP = sha1('ldapstatus:hobbit|' . $config->getValue('secret'));
+$authTokenContactsSP = sha1('ldapstatus:hobbit|' . SimpleSAML_Utilities::getSecretSalt());
 
 
 if (isset($_REQUEST['getToken'])) {
@@ -43,7 +43,7 @@ $ignore = '';
 if (array_key_exists('ignore', $_REQUEST)) $ignore = '&ignore=' . $_REQUEST['ignore'];
 
 
-$secretKey = sha1('ldapstatus|' . $config->getValue('secret') . '|hobbit');
+$secretKey = sha1('ldapstatus|' . SimpleSAML_Utilities::getSecretSalt() . '|hobbit');
 $secretURL = SimpleSAML_Utilities::addURLparameter(
 	SimpleSAML_Utilities::selfURLNoQuery(), array(
 		'key' => $secretKey,
