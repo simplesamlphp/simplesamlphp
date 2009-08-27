@@ -1,4 +1,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+
+
+
+/**
+ * Support the htmlinject hook, which allows modules to change header, pre and post body on all pages.
+ */
+$htmlContentPre = array(); $htmlContentPost = array(); $htmlContentHead = array(); 
+
+$jquery = array();
+if (array_key_exists('jquery', $this->data)) $jquery = $this->data['jquery'];
+
+
+if (array_key_exists('pageid', $this->data)) {
+	$hookinfo = array('pre' => &$htmlContentPre, 'post' => &$htmlContentPost, 'head' => &$htmlContentHead, 'jquery' => &$jquery, 'page' => $this->data['pageid']);
+	SimpleSAML_Module::callHooks('htmlinject', $hookinfo);	
+}
+// - o - o - o - o - o - o - o - o - o - o - o - o -
+
+
+
+
+?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -16,34 +39,36 @@ if(array_key_exists('header', $this->data)) {
 
 <?php
 
-if(array_key_exists('jquery', $this->data)) {
-	
+if(!empty($jquery)) {
 	$version = '1.5';
-	if (array_key_exists('version', $this->data['jquery']))
-		$version = $this->data['jquery']['version'];
+	if (array_key_exists('version', $jquery))
+		$version = $jquery['version'];
 		
 	if ($version == '1.5') {
-		if (isset($this->data['jquery']['core']) && $this->data['jquery']['core'])
+		if (isset($jquery['core']) && $jquery['core'])
 			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>' . "\n");
 	
-		if (isset($this->data['jquery']['ui']) && $this->data['jquery']['ui'])
+		if (isset($jquery['ui']) && $jquery['ui'])
 			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui.js"></script>' . "\n");
 	
-		if (isset($this->data['jquery']['css']) && $this->data['jquery']['css'])
-			echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 'resources/uitheme/jquery-ui-themeroller.css" />' . "\n");	
+		if (isset($jquery['css']) && $jquery['css'])
+			echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 
+				'resources/uitheme/jquery-ui-themeroller.css" />' . "\n");	
 			
 	} else if ($version == '1.6') {
-		if (isset($this->data['jquery']['core']) && $this->data['jquery']['core'])
+		if (isset($jquery['core']) && $jquery['core'])
 			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-16.js"></script>' . "\n");
 	
-		if (isset($this->data['jquery']['ui']) && $this->data['jquery']['ui'])
+		if (isset($jquery['ui']) && $jquery['ui'])
 			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui-16.js"></script>' . "\n");
 	
-		if (isset($this->data['jquery']['css']) && $this->data['jquery']['css'])
-			echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 'resources/uitheme16/ui.all.css" />' . "\n");	
+		if (isset($jquery['css']) && $jquery['css'])
+			echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 
+				'resources/uitheme16/ui.all.css" />' . "\n");	
 	}
-	
 }
+
+
 
 ?>
 
@@ -140,8 +165,9 @@ if($onLoad !== '') {
 
 
 <?php
-if(array_key_exists('htmlContentPre', $this->data)) {
-	foreach($this->data['htmlContentPre'] AS $c) {
+
+if(isset($htmlContentPre)) {
+	foreach($htmlContentPre AS $c) {
 		echo $c;
 	}
 }

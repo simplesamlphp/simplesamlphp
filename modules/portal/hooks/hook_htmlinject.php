@@ -16,11 +16,18 @@ function portal_hook_htmlinject(&$hookinfo) {
 
 #	echo('<pre>');	print_r($links); exit;
 
-	$portalConfig = SimpleSAML_Configuration::getConfig('module_portal.php');
+	$portalConfig = SimpleSAML_Configuration::getOptionalConfig('module_portal.php');
 	
+	$allLinks = array();
+	foreach($links AS $ls) {
+		$allLinks = array_merge($allLinks, $ls);
+	}
 
-
-	$portal = new sspmod_portal_Portal($links['links'], $portalConfig->getValue('pagesets') );
+	$portal = new sspmod_portal_Portal($allLinks,
+		$portalConfig->getValue('pagesets', array(
+			array('frontpage_welcome', 'frontpage_config', 'frontpage_auth', 'frontpage_federation'),
+		)) 
+	);
 	
 	if (!$portal->isPortalized($hookinfo['page'])) return;
 

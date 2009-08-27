@@ -23,16 +23,9 @@ if (isset($_REQUEST['output']) && $_REQUEST['output'] == 'text') {
 	exit;
 }
 
-$htmlContentPre = array(); $htmlContentPost = array(); $htmlContentHead = array(); $jquery = array();
-$hookinfo = array('pre' => &$htmlContentPre, 'post' => &$htmlContentPost, 'head' => &$htmlContentHead, 'jquery' => &$jquery, 'page' => 'santitycheck');
-SimpleSAML_Module::callHooks('htmlinject', $hookinfo);
-
-
 $t = new SimpleSAML_XHTML_Template($config, 'sanitycheck:check-tpl.php');
+$t->data['pageid'] = 'statistics';
 $t->data['errors'] = $errors;
 $t->data['info'] = $info;
-$t->data['htmlContentPre'] = $htmlContentPre;
-$t->data['htmlContentPost'] = $htmlContentPost;
-$t->data['htmlContentHead'] = $htmlContentHead;
 $t->data['jquery'] = $jquery;
 $t->show();

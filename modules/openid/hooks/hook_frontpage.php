@@ -8,7 +8,7 @@ function openid_hook_frontpage(&$links) {
 	assert('is_array($links)');
 	assert('array_key_exists("links", $links)');
 
-	$links['links'][] = array(
+	$links['auth'][] = array(
 		'href' => SimpleSAML_Module::getModuleURL('openid/openidtest.php'),
 		'text' => '{openid:dictopenid:openidtestpage}',
 	);

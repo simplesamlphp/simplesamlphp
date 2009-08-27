@@ -1,10 +1,6 @@
 <?php
 
-/**
- * The _include script registers a autoloader for the simpleSAMLphp libraries. It also
- * initializes the simpleSAMLphp config class with the correct path.
- */
-require_once('../_include.php');
+
 
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
@@ -51,6 +47,3 @@ $t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
 $t->data['icon'] = 'bino.png';
 $t->show();
 
-
-
-?>

@@ -154,12 +154,23 @@ $dimx = $statconfig->getValue('dimension.x', 800);
 $dimy = $statconfig->getValue('dimension.y', 350);
 $grapher = new sspmod_statistics_Graph_GoogleCharts($dimx, $dimy);
 
-$htmlContentPre = array(); $htmlContentPost = array(); $htmlContentHead = array(); $jquery = array();
-$hookinfo = array('pre' => &$htmlContentPre, 'post' => &$htmlContentPost, 'head' => &$htmlContentHead, 'jquery' => &$jquery, 'page' => 'statistics');
-SimpleSAML_Module::callHooks('htmlinject', $hookinfo);
+if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] === 'csv') {
+
+	header('Content-type: text/csv');
+	header('Content-Disposition: attachment; filename="simplesamlphp-data.csv"');
+	$data = $dataset->getDebugData();
+	foreach($data AS $de) {
+		if (isset($de[1])) {
+			echo('"' . $de[0] . '",' . $de[1] . "\n");
+		}
+	}
+	exit;
+}
+
 
 
 $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics-tpl.php');
+$t->data['pageid'] = 'statistics';
 $t->data['header'] = 'stat';
 $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $maxes);
 if (isset($piedata)) {
@@ -170,10 +181,7 @@ $t->data['available.times'] = $statrule->availableFileSlots($timeres);
 $t->data['available.timeres'] = $statrule->availableTimeRes();
 $t->data['available.times.prev'] = $timeNavigation['prev'];
 $t->data['available.times.next'] = $timeNavigation['next'];
-$t->data['htmlContentPre'] = $htmlContentPre;
-$t->data['htmlContentPost'] = $htmlContentPost;
-$t->data['htmlContentHead'] = $htmlContentHead;
-$t->data['jquery'] = $jquery;
+
 $t->data['selected.rule']= $rule;
 $t->data['selected.rule2']= $preferRule2;
 $t->data['selected.time'] = $fileslot;
@@ -185,8 +193,6 @@ $t->data['results'] = $dataset->getResults();
 $t->data['summaryDataset'] = $dataset->getSummary();
 $t->data['topdelimiters'] = $dataset->getTopDelimiters();
 $t->data['availdelimiters'] = $dataset->availDelimiters();
-
-
 
 $t->data['delimiterPresentation'] =  $dataset->getDelimiterPresentation();
 $t->show();

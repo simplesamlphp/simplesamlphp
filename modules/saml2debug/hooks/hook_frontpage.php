@@ -8,7 +8,7 @@ function saml2debug_hook_frontpage(&$links) {
 	assert('is_array($links)');
 	assert('array_key_exists("links", $links)');
 
-	$links['links'][] = array(
+	$links['federation'][] = array(
 		'href' => SimpleSAML_Module::getModuleURL('saml2debug/debug.php'),
 		'text' => array('en' => 'SAML 2.0 Debugger'),
 	);

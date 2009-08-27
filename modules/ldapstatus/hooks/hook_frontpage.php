@@ -8,7 +8,7 @@ function ldapstatus_hook_frontpage(&$links) {
 	assert('is_array($links)');
 	assert('array_key_exists("links", $links)');
 
-	$links['links'][] = array(
+	$links['auth'][] = array(
 		'href' => SimpleSAML_Module::getModuleURL('ldapstatus/'),
 		'text' => array('en' => 'LDAP Status page', 'no' => 'LDAP statusoversikt'),
 	);

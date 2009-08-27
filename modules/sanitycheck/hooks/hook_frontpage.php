@@ -8,7 +8,7 @@ function sanitycheck_hook_frontpage(&$links) {
 	assert('is_array($links)');
 	assert('array_key_exists("links", $links)');
 
-	$links['links']['santitycheck'] = array(
+	$links['config']['santitycheck'] = array(
 		'href' => SimpleSAML_Module::getModuleURL('sanitycheck/index.php'),
 		'text' => array('en' => 'Sanity check of your simpleSAMLphp setup'),
 		'shorttext' => array('en' => 'SanityCheck'),
