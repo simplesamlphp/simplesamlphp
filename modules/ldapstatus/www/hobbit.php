@@ -4,7 +4,7 @@
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
-$authTokenContactsSP = sha1('feide:contacts-sp|' . $config->getValue('secret'));
+$authTokenContactsSP = sha1('ldapstatus:hobbit|' . $config->getValue('secret'));
 
 
 if (isset($_REQUEST['getToken'])) {
