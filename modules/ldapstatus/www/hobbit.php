@@ -67,7 +67,7 @@ foreach($orgs AS $orgkey => $org) {
 		SimpleSAML_Utilities::selfURLhost() . SimpleSAML_Utilities::getFirstPathElement() . '/module.php/ldapstatus/', array(
 			'orgtest' => $orgkey,
 			'output' => 'text',
-			'key' => generateSecret($config->getValue('secret'), $orgkey)
+			'key' => generateSecret(SimpleSAML_Utilities::getSecretSalt(), $orgkey)
 		)
 	);
 	
