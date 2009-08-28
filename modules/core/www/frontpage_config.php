@@ -34,17 +34,17 @@ $links_federation = array();
 
 
 $links_config[] = array(
-	'href' => 'example-simple/hostnames.php?dummy=1', 
+	'href' => SimpleSAML_Utilities::getBaseURL() . 'example-simple/hostnames.php?dummy=1',
 	'text' => '{core:frontpage:link_diagnostics}'
 );
 
 $links_config[] = array(
-	'href' => 'admin/phpinfo.php', 
+	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/phpinfo.php',
 	'text' => '{core:frontpage:link_phpinfo}'
 );
 
 $links_config[] = array(
-	'href' => 'admin/config.php',
+	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/config.php',
 	'text' => '{core:frontpage:link_configcheck}',
 );
 

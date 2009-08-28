@@ -46,7 +46,7 @@ if ($publishURL !== NULL) {
 	foreach($metadataSources as $name => $url) {
 		if(!$config->getBoolean('enable.' . $name, FALSE)) continue;
 
-		$url = SimpleSAML_Utilities::resolveURL($url);
+		$url = SimpleSAML_Utilities::getBaseURL() . $url;
 		$linkTarget = SimpleSAML_Utilities::addURLparameter($publishURL, array('url' => $url));
 		$links_federation[] = array(
 			'href' => $linkTarget,
@@ -57,12 +57,12 @@ if ($publishURL !== NULL) {
 
 
 $links_federation[] = array(
-	'href' => 'admin/metadata.php', 
+	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/metadata.php',
 	'text' => '{core:frontpage:link_meta_overview}'
 );
 
 $links_federation[] = array(
-	'href' => 'admin/metadata-converter.php',
+	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/metadata-converter.php',
 	'text' => '{core:frontpage:link_xmlconvert}',
 );
 
