@@ -77,7 +77,9 @@ class SimpleSAML_XHTML_Template {
 		$this->language = $language;
 		// setcookie ( string $name [, string $value [, int $expire [, string $path [, string $domain [, bool $secure [, bool $httponly ]]]]]] )
 		// time()+60*60*24*900 expires 900 days from now.
-		setcookie('language', $language, time()+60*60*24*900, '/');
+		if (!headers_sent()) {
+			setcookie('language', $language, time()+60*60*24*900, '/');
+		}
 	}
 
 	/**
