@@ -153,6 +153,29 @@ class SimpleSAML_Utilities {
 
 
 	/**
+	 * Retrieve the absolute base URL for the simpleSAMLphp installation.
+	 *
+	 * This function will return the absolute base URL for the simpleSAMLphp
+	 * installation. For example: https://idp.example.org/simplesaml/
+	 *
+	 * The URL will always end with a '/'.
+	 *
+	 * @return string  The absolute base URL for the simpleSAMLphp installation.
+	 */
+	public static function getBaseURL() {
+
+		$globalConfig = SimpleSAML_Configuration::getInstance();
+		$ret = SimpleSAML_Utilities::selfURLhost() . '/' . $globalConfig->getBaseURL();
+		if (substr($ret, -1) !== '/') {
+			throw new SimpleSAML_Error_Exception('Invalid value of \'baseurl\' in ' .
+				'config.php. It must end with a \'/\'.');
+		}
+
+		return $ret;
+	}
+
+
+	/**
 	 * Add one or more query parameters to the given URL.
 	 *
 	 * @param $url  The URL the query parameters should be added to.
