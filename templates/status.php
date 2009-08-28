@@ -108,7 +108,7 @@ if (isset($this->data['logouturl'])) {
 }
 ?>
 
-	<h2><?php echo $this->t('{frontpage:about_header}'); ?></h2>
-	<p><?php echo $this->t('{frontpage:about_text}'); ?></p>
+	<h2><?php echo $this->t('{core:frontpage:about_header}'); ?></h2>
+	<p><?php echo $this->t('{core:frontpage:about_text}'); ?></p>
 	
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>
