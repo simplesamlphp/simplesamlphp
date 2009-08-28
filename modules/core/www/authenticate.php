@@ -26,7 +26,11 @@ if (array_key_exists(SimpleSAML_Auth_State::EXCEPTION_PARAM, $_REQUEST)) {
 }
 
 if(!array_key_exists('as', $_REQUEST)) {
-	throw new Exception('No authentication source chosen.');
+	$t = new SimpleSAML_XHTML_Template($config, 'core:authsource_list.tpl.php');
+
+	$t->data['sources'] = SimpleSAML_Auth_Source::getSources();
+	$t->show();
+	exit();
 }
 
 $as = $_REQUEST['as'];
