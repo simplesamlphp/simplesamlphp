@@ -248,6 +248,20 @@ abstract class SimpleSAML_Auth_Source {
 		call_user_func($callback, $callbackState);
 	}
 
+
+	/**
+	 * Retrieve list of authentication sources.
+	 *
+	 * @param string $authId  The authentication source identifier.
+	 * @return array  The id of all authentication sources.
+	 */
+	public static function getSources() {
+
+		$config = SimpleSAML_Configuration::getOptionalConfig('authsources.php');
+
+		return $config->getOptions();
+	}
+
 }
 
 ?>
