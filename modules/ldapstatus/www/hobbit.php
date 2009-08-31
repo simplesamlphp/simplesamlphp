@@ -71,7 +71,7 @@ foreach($orgs AS $orgkey => $org) {
 		)
 	);
 	
-	echo("0.0.0.0 " . $orgkey . " # noconn  cont=sl;" . $url . $ignore . ";OOOKKK\n");
+	echo("0.0.0.0 " . $orgkey . " # noconn  feidesjekk:" . $url . $ignore . ";OOOKKK\n");
 	
 }
 
