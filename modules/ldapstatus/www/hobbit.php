@@ -57,9 +57,7 @@ function generateSecret($salt, $orgtest) {
 
 
 
-echo('<pre>');
-
-
+header('Content-Type: text/plain');
 
 foreach($orgs AS $orgkey => $org) {
 	
