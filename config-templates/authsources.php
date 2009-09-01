@@ -74,7 +74,7 @@ $config = array(
 	 * An authentication source which can authenticate against both SAML 2.0
 	 * and Shibboleth 1.3 IdPs.
 	 */
-	'example-saml' => array(
+	'saml' => array(
 		'saml:SP',
 
 		/*
