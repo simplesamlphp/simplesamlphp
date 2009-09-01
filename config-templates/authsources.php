@@ -81,7 +81,7 @@ $config = array(
 		 * The entity ID of this SP.
 		 * Can be NULL/unset, in which case an entity ID is generated based on the metadata URL.
 		 */
-		'entityId' => NULL,
+		'entityid' => NULL,
 
 		/*
 		 * The entity ID of the IdP this should SP should contact.
