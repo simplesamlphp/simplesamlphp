@@ -264,8 +264,18 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		}
 
 		if (array_key_exists('AssertionConsumerService', $metadata)) {
+			$index = 0;
+			if (array_key_exists('AssertionConsumerService.artifact', $metadata)) {
+				$t = $this->createElement('AssertionConsumerService');
+				$t->setAttribute('index', (string)$index);
+				$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact');
+				$t->setAttribute('Location', $metadata['AssertionConsumerService.artifact']);
+				$e->appendChild($t);
+				$index++;
+			}
+
 			$t = $this->createElement('AssertionConsumerService');
-			$t->setAttribute('index', '0');
+			$t->setAttribute('index', (string)$index);
 			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST');
 			$t->setAttribute('Location', $metadata['AssertionConsumerService']);
 			$e->appendChild($t);
@@ -438,8 +448,19 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		}
 
 		if (array_key_exists('AssertionConsumerService', $metadata)) {
+
+			$index = 0;
+			if (array_key_exists('AssertionConsumerService.artifact', $metadata)) {
+				$t = $this->createElement('AssertionConsumerService');
+				$t->setAttribute('index', (string)$index);
+				$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01');
+				$t->setAttribute('Location', $metadata['AssertionConsumerService.artifact']);
+				$e->appendChild($t);
+				$index++;
+			}
+			
 			$t = $this->createElement('AssertionConsumerService');
-			$t->setAttribute('index', '0');
+			$t->setAttribute('index', (string)$index);
 			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post');
 			$t->setAttribute('Location', $metadata['AssertionConsumerService']);
 			$e->appendChild($t);
