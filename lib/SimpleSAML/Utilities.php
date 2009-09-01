@@ -792,11 +792,15 @@ class SimpleSAML_Utilities {
 	 * @param $nsURI The namespaceURI the element should have.
 	 * @return TRUE if both namespace and localname matches, FALSE otherwise.
 	 */
-	public static function isDOMElementOfType($element, $name, $nsURI) {
-		assert('$element instanceof DOMElement');
+	public static function isDOMElementOfType(DOMNode $element, $name, $nsURI) {
 		assert('is_string($name)');
 		assert('is_string($nsURI)');
 		assert('strlen($nsURI) > 0');
+
+		if (!($element instanceof DOMElement)) {
+			/* Most likely a comment-node. */
+			return FALSE;
+		}
 
 		/* Check if the namespace is a shortcut, and expand it if it is. */
 		if($nsURI[0] == '@') {
