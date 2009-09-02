@@ -123,7 +123,17 @@ function updateslostatus() {
 		// add a command to the response to assign the innerHTML attribute of
 		// the element with id="SomeElementId" to whatever the new content is
 		
-		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
+		try {
+			$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
+		} catch (Exception $e) {
+			/*
+			 * For some reason, the metadata for this SP is no longer available. Most
+			 * likely it was deleted from the IdP while the user had a session to it.
+			 * In any case - skip this SP.
+			 */
+			continue;
+		}
+
 		$name = array_key_exists('name', $spmetadata) ? $spmetadata['name'] : $spentityid;
 		
 		$spname = is_array($name) ? $t->getTranslation($name) : $name;
@@ -265,7 +275,17 @@ foreach ($listofsps AS $spentityid) {
 		$nameId = $session->getNameID();
 	}
 
-	$spMetadata = $metadata->getMetaDataConfig($spentityid, 'saml20-sp-remote');
+	try {
+		$spMetadata = $metadata->getMetaDataConfig($spentityid, 'saml20-sp-remote');
+	} catch (Exception $e) {
+		/*
+		 * For some reason, the metadata for this SP is no longer available. Most
+		 * likely it was deleted from the IdP while the user had a session to it.
+		 * In any case - skip this SP.
+		 */
+		continue;
+	}
+
 	$name = $spMetadata->getValue('name', $spentityid);
 
 	try {
