@@ -16,17 +16,14 @@ if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
 }
 
 $entityId = $source->getEntityId();
-
 $metaArray11 = array(
 	'AssertionConsumerService' => SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php'),
 );
 
 $spconfig = $source->getMetadata();
-
 if ($spconfig->getBoolean('saml11.binding.artifact.enable', FALSE)) {
 	$metaArray11['AssertionConsumerService.artifact'] = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/artifact');
 }
-
 
 
 $metaArray20 = array(
@@ -35,7 +32,7 @@ $metaArray20 = array(
 );
 	
 if ($spconfig->getBoolean('saml20.binding.artifact.enable', FALSE)) {
-	$metaArray20['AssertionConsumerService.artifact'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/artifact');
+	$metaArray20['AssertionConsumerService.artifact'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php');
 }
 
 
