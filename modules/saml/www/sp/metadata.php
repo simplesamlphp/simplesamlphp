@@ -35,6 +35,12 @@ if ($spconfig->getBoolean('saml20.binding.artifact.enable', FALSE)) {
 	$metaArray20['AssertionConsumerService.artifact'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php');
 }
 
+$certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig->toArray());
+if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
+	$certData = $certInfo['certData'];
+	$metaArray11['certData'] = $certData;
+	$metaArray20['certData'] = $certData;
+}
 
 
 
