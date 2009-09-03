@@ -72,6 +72,17 @@ abstract class SimpleSAML_Auth_Source {
 
 
 	/**
+	 * Retrieve the ID of this authentication source.
+	 *
+	 * @return string  The ID of this authentication source.
+	 */
+	public function getAuthId() {
+
+		return $this->authId;
+	}
+
+
+	/**
 	 * Process a request.
 	 *
 	 * If an authentication source returns from this function, it is assumed to have
