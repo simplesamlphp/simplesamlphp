@@ -51,13 +51,24 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		if (array_key_exists('entityId', $config)) {
 			$config['entityid'] = $config['entityId'];
 		} else {
-			$config['entityid'] = SimpleSAML_Module::getModuleURL('saml/sp/metadata.php/' . urlencode($this->authId));
+			$config['entityid'] = $this->getMetadataURL();
 		}
 
 		$this->metadata = SimpleSAML_Configuration::loadFromArray($config, 'authsources[' . var_export($this->authId, TRUE) . ']');
 		$this->entityId = $this->metadata->getString('entityid');
 		$this->idp = $this->metadata->getString('idp', NULL);
 		$this->discoURL = $this->metadata->getString('discoURL', NULL);
+	}
+
+
+	/**
+	 * Retrieve the URL to the metadata of this SP.
+	 *
+	 * @return string  The metadata URL.
+	 */
+	public function getMetadataURL() {
+
+		return SimpleSAML_Module::getModuleURL('saml/sp/metadata.php/' . urlencode($this->authId));
 	}
 
 
