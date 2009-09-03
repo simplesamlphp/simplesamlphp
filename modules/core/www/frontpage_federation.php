@@ -79,7 +79,8 @@ $allLinks = array(
 SimpleSAML_Module::callHooks('frontpage', $allLinks);
 
 
-
+$metadataHosted = array();
+SimpleSAML_Module::callHooks('metadata_hosted', $metadataHosted);
 
 
 
@@ -91,7 +92,7 @@ SimpleSAML_Module::callHooks('frontpage', $allLinks);
 
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-$metaentries = array('hosted' => array(), 'remote' => array() );
+$metaentries = array('hosted' => $metadataHosted, 'remote' => array() );
 if ($config->getBoolean('enable.saml20-sp', TRUE) === true) {
 	try {
 		$metaentries['hosted']['saml20-sp'] = $metadata->getMetaDataCurrent('saml20-sp-hosted');
