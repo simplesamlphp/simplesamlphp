@@ -39,6 +39,39 @@ abstract class SimpleSAML_Auth_Source {
 
 
 	/**
+	 * Get sources of a specific type.
+	 *
+	 * @param string $type  The type of the authentication source.
+	 * @return array  Array of SimpleSAML_Auth_Source objects of the specified type.
+	 */
+	public static function getSourcesOfType($type) {
+		assert('is_string($type)');
+
+		$config = SimpleSAML_Configuration::getConfig('authsources.php');
+
+		$ret = array();
+
+		$sources = $config->getOptions();
+		foreach ($sources as $id) {
+			$source = $config->getArray($id);
+
+			if (!array_key_exists(0, $source) || !is_string($source[0])) {
+				throw new Exception('Invalid authentication source \'' . $authId .
+					'\': First element must be a string which identifies the authentication source.');
+			}
+
+			if ($source[0] !== $type) {
+				continue;
+			}
+
+			$ret[] = self::parseAuthSource($id, $source);
+		}
+
+		return $ret;
+	}
+
+
+	/**
 	 * Process a request.
 	 *
 	 * If an authentication source returns from this function, it is assumed to have
