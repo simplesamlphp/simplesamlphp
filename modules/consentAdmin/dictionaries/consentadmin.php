@@ -194,7 +194,10 @@ WAYF foretager behandlinger af personoplysninger i henhold til persondataloven (
 		'en' => 'show/hide attributes',
         'da' => 'vis/skjul attributter',		
 		),
-		
+    'consentadmin_purpose' => array(
+        'en' => 'The purpose of the service is',
+        'da' => 'Formålet med tjenesten er',
+    ),        
 );
 
 

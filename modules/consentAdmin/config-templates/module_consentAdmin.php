@@ -22,4 +22,7 @@ $config = array(
 
 	// Where to direct the user after logout
 	'relaystate' => 'www.wayf.dk',
+
+    // Shows description of the services if set to true (defaults to true)
+    'showDesription' => true, 
 );

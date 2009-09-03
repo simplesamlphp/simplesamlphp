@@ -75,8 +75,8 @@ span.showhide {
 			foreach ($spList AS $spName => $spValues) {
 				$this->includeInlineTranslation('spname', $spValues['name']);
 				$this->includeInlineTranslation('spdescription', $spValues['description']);
-				$htmlSpName = htmlspecialchars($this->t('spname', array(), false, true) );
-				$spDescription = htmlspecialchars($this->t('spdescription',array(), false, true));
+				$htmlSpName = $this->t('spname', array(), false, true);
+				$spDescription = $this->t('spdescription',array(), false, true);
 				$checkedAttr = $spValues['consentStatus'] == 'ok' ? "checked='yes'" : "";
 				$consentValue = $spValues['consentValue'];
 				$consentText = $spValues['consentStatus'] == 'changed' ? "attributes has changed" : "";
@@ -90,7 +90,10 @@ span.showhide {
 	  <tr><td colspan="2" class="caAttributes"><div id="attributes_$show_spid" style="display: none;">
 TRSTART;
 				$attributes = $spValues['attributes_by_sp'];
-				echo "\n<ul>\n";
+				if ($this->data['showDescription']) {
+                    echo '<p>' . $this->t('consentadmin_purpose') . ' ' . $spDescription . '</p>';
+                }
+                echo "\n<ul>\n";
 				foreach ($attributes AS $name => $value) {
 
 				if (isset($this->data['attribute_' . htmlspecialchars(strtolower($name)) ])) {

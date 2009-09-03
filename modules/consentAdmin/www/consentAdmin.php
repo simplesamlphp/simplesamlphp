@@ -241,5 +241,6 @@ $relaystate = $cA_config->getValue('relaystate');
 $et->data['header'] = 'Consent Administration';
 $et->data['logout'] = '<p>[ <a href="/' . $config->getBaseURL() . 'saml2/sp/initSLO.php?RelayState='. $relaystate .'">Logout</a> ]';
 $et->data['spList'] = $sp_list;
+$et->data['showDescription'] = $cA_config->getValue('showDescription');
 $et->show();
 ?>
