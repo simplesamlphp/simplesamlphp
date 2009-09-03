@@ -56,6 +56,26 @@ $metaBuilder->addContact('technical', array(
 
 $xml = $metaBuilder->getEntityDescriptorText();
 
-echo($xml);
+if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
+
+	$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
+
+	$t->data['header'] = 'saml20-sp';
+	$t->data['metadata'] = htmlspecialchars($xml);
+	$t->data['metadataflat'] = NULL;
+	$t->data['metaurl'] = $source->getMetadataURL();
+
+	$t->data['idpsend'] = array();
+	$t->data['sentok'] = FALSE;
+	$t->data['adminok'] = FALSE;
+	$t->data['adminlogin'] = NULL;
+
+	$t->data['techemail'] = $config->getString('technicalcontact_email', NULL);
+
+	$t->show();
+} else {
+	header('Content-Type: application/samlmetadata+xml');
+	echo($xml);
+}
 
 ?>
