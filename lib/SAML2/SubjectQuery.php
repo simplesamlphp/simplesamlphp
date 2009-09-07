@@ -48,7 +48,7 @@ abstract class SAML2_SubjectQuery extends SAML2_Request {
 	 */
 	private function parseSubject(DOMElement $xml) {
 
-		$subject = SAML2_Utils::xpQuery($xml, './saml:Subject');
+		$subject = SAML2_Utils::xpQuery($xml, './saml_assertion:Subject');
 		if (empty($subject)) {
 			/* No Subject node. */
 			throw new Exception('Missing subject in subject query.');
@@ -57,7 +57,7 @@ abstract class SAML2_SubjectQuery extends SAML2_Request {
 		}
 		$subject = $subject[0];
 
-		$nameId = SAML2_Utils::xpQuery($subject, './saml:NameID');
+		$nameId = SAML2_Utils::xpQuery($subject, './saml_assertion:NameID');
 		if (empty($nameId)) {
 			throw new Exception('Missing <saml:NameID> in <saml:Subject>.');
 		} elseif (count($nameId) > 1) {

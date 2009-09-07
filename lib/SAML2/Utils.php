@@ -115,8 +115,8 @@ class SAML2_Utils {
 
 		if ($xpCache === NULL || !$xpCache->document->isSameNode($node->ownerDocument)) {
 			$xpCache = new DOMXPath($node->ownerDocument);
-			$xpCache->registerNamespace('samlp', SAML2_Const::NS_SAMLP);
-			$xpCache->registerNamespace('saml', SAML2_Const::NS_SAML);
+			$xpCache->registerNamespace('saml_protocol', SAML2_Const::NS_SAMLP);
+			$xpCache->registerNamespace('saml_assertion', SAML2_Const::NS_SAML);
 			$xpCache->registerNamespace('ds', XMLSecurityDSig::XMLDSIGNS);
 			$xpCache->registerNamespace('xenc', XMLSecEnc::XMLENCNS);
 		}
@@ -173,7 +173,7 @@ class SAML2_Utils {
 	public static function addNameId(DOMElement $node, array $nameId) {
 		assert('array_key_exists("Value", $nameId)');
 
-		$xml = $node->ownerDocument->createElementNS(SAML2_Const::NS_SAML, 'saml:NameID');
+		$xml = $node->ownerDocument->createElementNS(SAML2_Const::NS_SAML, 'saml_assertion:NameID');
 		$node->appendChild($xml);
 
 		if (array_key_exists('NameQualifier', $nameId) && $nameId['NameQualifier'] !== NULL) {

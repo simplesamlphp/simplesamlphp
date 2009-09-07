@@ -37,13 +37,13 @@ class SAML2_LogoutRequest extends SAML2_Request {
 			return;
 		}
 
-		$nameId = SAML2_Utils::xpQuery($xml, './saml:NameID');
+		$nameId = SAML2_Utils::xpQuery($xml, './saml_assertion:NameID');
 		if (empty($nameId)) {
 			throw new Exception('Missing NameID in logout request.');
 		}
 		$this->nameId = SAML2_Utils::parseNameId($nameId[0]);
 
-		$sessionIndex = SAML2_Utils::xpQuery($xml, './samlp:SessionIndex');
+		$sessionIndex = SAML2_Utils::xpQuery($xml, './saml_protocol:SessionIndex');
 		if (!empty($sessionIndex)) {
 			$this->sessionIndex = trim($sessionIndex[0]->textContent);
 		}

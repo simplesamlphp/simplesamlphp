@@ -54,7 +54,7 @@ class SAML2_AttributeQuery extends SAML2_SubjectQuery {
 		}
 
 		$firstAttribute = TRUE;
-		$attributes = SAML2_Utils::xpQuery($xml, './saml:Attribute');
+		$attributes = SAML2_Utils::xpQuery($xml, './saml_assertion:Attribute');
 		foreach ($attributes as $attribute) {
 			if (!$attribute->hasAttribute('Name')) {
 				throw new Exception('Missing name on <saml:Attribute> element.');
@@ -80,7 +80,7 @@ class SAML2_AttributeQuery extends SAML2_SubjectQuery {
 				$this->attributes[$name] = array();
 			}
 
-			$values = SAML2_Utils::xpQuery($attribute, './saml:AttributeValue');
+			$values = SAML2_Utils::xpQuery($attribute, './saml_assertion:AttributeValue');
 			foreach ($values as $value) {
 				$this->attributes[$name][] = trim($value->textContent);
 			}

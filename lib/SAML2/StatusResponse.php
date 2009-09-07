@@ -62,13 +62,13 @@ abstract class SAML2_StatusResponse extends SAML2_Message {
 			$this->inResponseTo = $xml->getAttribute('InResponseTo');
 		}
 
-		$status = SAML2_Utils::xpQuery($xml, './samlp:Status');
+		$status = SAML2_Utils::xpQuery($xml, './saml_protocol:Status');
 		if (empty($status)) {
 			throw new Exception('Missing status code on response.');
 		}
 		$status = $status[0];
 
-		$statusCode = SAML2_Utils::xpQuery($status, './samlp:StatusCode');
+		$statusCode = SAML2_Utils::xpQuery($status, './saml_protocol:StatusCode');
 		if (empty($statusCode)) {
 			throw new Exception('Missing status code in status element.');
 		}
@@ -76,12 +76,12 @@ abstract class SAML2_StatusResponse extends SAML2_Message {
 
 		$this->status['Code'] = $statusCode->getAttribute('Value');
 
-		$subCode = SAML2_Utils::xpQuery($statusCode, './samlp:StatusCode');
+		$subCode = SAML2_Utils::xpQuery($statusCode, './saml_protocol:StatusCode');
 		if (!empty($subCode)) {
 			$this->status['SubCode'] = $subCode[0]->getAttribute('Value');
 		}
 
-		$message = SAML2_Utils::xpQuery($status, './samlp:StatusMessage');
+		$message = SAML2_Utils::xpQuery($status, './saml_protocol:StatusMessage');
 		if (!empty($message)) {
 			$this->status['Message'] = trim($message[0]->textContent);
 		}

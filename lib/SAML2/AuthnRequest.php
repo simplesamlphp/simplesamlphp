@@ -74,7 +74,7 @@ class SAML2_AuthnRequest extends SAML2_Request {
 			$this->protocolBinding = $xml->getAttribute('ProtocolBinding');
 		}
 
-		$nameIdPolicy = SAML2_Utils::xpQuery($xml, './samlp:NameIDPolicy');
+		$nameIdPolicy = SAML2_Utils::xpQuery($xml, './saml_protocol:NameIDPolicy');
 		if (!empty($nameIdPolicy)) {
 			$nameIdPolicy = $nameIdPolicy[0];
 			if ($nameIdPolicy->hasAttribute('Format')) {

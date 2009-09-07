@@ -190,7 +190,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 		$this->issueInstant = SimpleSAML_Utilities::parseSAML2Time($xml->getAttribute('IssueInstant'));
 
-		$issuer = SAML2_Utils::xpQuery($xml, './saml:Issuer');
+		$issuer = SAML2_Utils::xpQuery($xml, './saml_assertion:Issuer');
 		if (empty($issuer)) {
 			throw new Exception('Missing <saml:Issuer> in assertion.');
 		}
@@ -211,7 +211,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 	 */
 	private function parseSubject(DOMElement $xml) {
 
-		$subject = SAML2_Utils::xpQuery($xml, './saml:Subject');
+		$subject = SAML2_Utils::xpQuery($xml, './saml_assertion:Subject');
 		if (empty($subject)) {
 			/* No Subject node. */
 			return;
@@ -220,7 +220,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		}
 		$subject = $subject[0];
 
-		$nameId = SAML2_Utils::xpQuery($subject, './saml:NameID');
+		$nameId = SAML2_Utils::xpQuery($subject, './saml_assertion:NameID');
 		if (empty($nameId)) {
 			throw new Exception('Missing <saml:NameID> in <saml:Subject>.');
 		} elseif (count($nameId) > 1) {
@@ -229,7 +229,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$nameId = $nameId[0];
 		$this->nameId = SAML2_Utils::parseNameId($nameId);
 
-		$subjectConfirmation = SAML2_Utils::xpQuery($subject, './saml:SubjectConfirmation');
+		$subjectConfirmation = SAML2_Utils::xpQuery($subject, './saml_assertion:SubjectConfirmation');
 		if (empty($subjectConfirmation)) {
 			throw new Exception('Missing <saml:SubjectConfirmation> in <saml:Subject>.');
 		} elseif (count($subjectConfirmation) > 1) {
@@ -246,7 +246,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 			throw new Exception('Unsupported subject confirmation method: ' . var_export($method, TRUE));
 		}
 
-		$confirmationData = SAML2_Utils::xpQuery($subjectConfirmation, './saml:SubjectConfirmationData');
+		$confirmationData = SAML2_Utils::xpQuery($subjectConfirmation, './saml_assertion:SubjectConfirmationData');
 		if (empty($confirmationData)) {
 			return;
 		} elseif (count($confirmationData) > 1) {
@@ -282,7 +282,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 	 */
 	private function parseConditions(DOMElement $xml) {
 
-		$conditions = SAML2_Utils::xpQuery($xml, './saml:Conditions');
+		$conditions = SAML2_Utils::xpQuery($xml, './saml_assertion:Conditions');
 		if (empty($conditions)) {
 			/* No <saml:Conditions> node. */
 			return;
@@ -314,7 +314,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 			}
 			switch ($node->localName) {
 			case 'AudienceRestriction':
-				$audiences = SAML2_Utils::xpQuery($node, './saml:Audience');
+				$audiences = SAML2_Utils::xpQuery($node, './saml_assertion:Audience');
 				foreach ($audiences as &$audience) {
 					$audience = trim($audience->textContent);
 				}
@@ -351,7 +351,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 	 */
 	private function parseAuthnStatement(DOMElement $xml) {
 
-		$as = SAML2_Utils::xpQuery($xml, './saml:AuthnStatement');
+		$as = SAML2_Utils::xpQuery($xml, './saml_assertion:AuthnStatement');
 		if (empty($as)) {
 			return;
 		} elseif (count($as) > 1) {
@@ -372,7 +372,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 			$this->sessionIndex = $as->getAttribute('SessionIndex');
 		}
 
-		$ac = SAML2_Utils::xpQuery($as, './saml:AuthnContext');
+		$ac = SAML2_Utils::xpQuery($as, './saml_assertion:AuthnContext');
 		if (empty($ac)) {
 			throw new Exception('Missing required <saml:AuthnContext> in <saml:AuthnStatement>.');
 		} elseif (count($ac) > 1) {
@@ -380,9 +380,9 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		}
 		$ac = $ac[0];
 
-		$accr = SAML2_Utils::xpQuery($ac, './saml:AuthnContextClassRef');
+		$accr = SAML2_Utils::xpQuery($ac, './saml_assertion:AuthnContextClassRef');
 		if (empty($accr)) {
-			$acdr = SAML2_Utils::xpQuery($ac, './saml:AuthnContextDeclRef');
+			$acdr = SAML2_Utils::xpQuery($ac, './saml_assertion:AuthnContextDeclRef');
 			if (empty($acdr)) {
 				throw new Exception('Neither <saml:AuthnContextClassRef> nor <saml:AuthnContextDeclRef> found in <saml:AuthnContext>.');
 			} elseif (count($accr) > 1) {
@@ -405,7 +405,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 	private function parseAttributes(DOMElement $xml) {
 
 		$firstAttribute = TRUE;
-		$attributes = SAML2_Utils::xpQuery($xml, './saml:AttributeStatement/saml:Attribute');
+		$attributes = SAML2_Utils::xpQuery($xml, './saml_assertion:AttributeStatement/saml_assertion:Attribute');
 		foreach ($attributes as $attribute) {
 			if (!$attribute->hasAttribute('Name')) {
 				throw new Exception('Missing name on <saml:Attribute> element.');
@@ -431,7 +431,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 				$this->attributes[$name] = array();
 			}
 
-			$values = SAML2_Utils::xpQuery($attribute, './saml:AttributeValue');
+			$values = SAML2_Utils::xpQuery($attribute, './saml_assertion:AttributeValue');
 			foreach ($values as $value) {
 				$this->attributes[$name][] = trim($value->textContent);
 			}
