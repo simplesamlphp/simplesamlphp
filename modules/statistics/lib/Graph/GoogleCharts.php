@@ -45,8 +45,8 @@ class sspmod_statistics_Graph_GoogleCharts {
 		
 		foreach($values as $k => $v){ 
 			if($v >= 0 && $v <= 100){ 
-				$first = substr($extended_table, round( ($delta*$v/100) / $size),1); 
-				$second = substr($extended_table, round( ($delta*$v/100) % $size), 1); 
+				$first = substr($extended_table, intval( ($delta*$v/100) / $size),1);
+				$second = substr($extended_table, intval( ($delta*$v/100) % $size), 1);
 				$chardata .= "$first$second"; 
 				#echo '<p>encoding ' . $v . ' to ' . $first . ' ' . $second . '';
 			} else { 
