@@ -141,6 +141,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$idpEntityId = $idpMetadata->getString('entityid');
 
+		$state['saml:idp'] = $idpEntityId;
+
 		$ar = new SimpleSAML_XML_Shib13_AuthnRequest();
 		$ar->setIssuer($this->entityId);
 

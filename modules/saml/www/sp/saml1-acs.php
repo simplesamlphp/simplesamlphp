@@ -23,6 +23,8 @@ if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
 	throw new SimpleSAML_Error_Exception('Source type changed?');
 }
 
+$idpEntityId = $state['saml:idp'];
+$idpMetadata = $source->getIdPMetadata($idpEntityId);
 
 $responseXML = $_REQUEST['SAMLResponse'];
 $responseXML = base64_decode($responseXML);
@@ -32,15 +34,19 @@ $response->setXML($responseXML);
 
 $response->validate();
 
-$idp = $response->getIssuer();
+$responseIssuer = $response->getIssuer();
 $attributes = $response->getAttributes();
+
+if ($responseIssuer !== $idpEntityId) {
+	throw new SimpleSAML_Error_Exception('The issuer of the response wasn\'t the destination of the request.');
+}
 
 $logoutState = array(
 	'saml:logout:Type' => 'saml1'
 	);
 $state['LogoutState'] = $logoutState;
 
-$source->handleResponse($state, $idp, $attributes);
+$source->handleResponse($state, $idpEntityId, $attributes);
 assert('FALSE');
 
 ?>
