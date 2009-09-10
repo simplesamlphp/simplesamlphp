@@ -63,7 +63,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This is an array with the processed SPSSODescriptor elements we have found in this
 	 * metadata file.
 	 * Each element in the array is an associative array with the elements from parseSSODescriptor and:
-	 * - 'assertionConsumerServices': Array with the SP's assertion consumer services.
+	 * - 'AssertionConsumerService': Array with the SP's assertion consumer services.
 	 *   Each assertion consumer service is stored as an associative array with the
 	 *   elements that parseGenericEndpoint returns.
 	 */
@@ -73,7 +73,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * This is an array with the processed IDPSSODescriptor elements we have found.
 	 * Each element in the array is an associative array with the elements from parseSSODescriptor and:
-	 * - 'singleSignOnServices': Array with the IdP's single signon service endpoints. Each endpoint is stored
+	 * - 'SingleSignOnService': Array with the IdP's single signon service endpoints. Each endpoint is stored
 	 *   as an associative array with the elements that parseGenericEndpoint returns.
 	 */
 	private $idpDescriptors;
@@ -472,12 +472,12 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 		/* Find the assertion consumer service endpoint. */
-		$acs = $this->getDefaultEndpoint($spd['assertionConsumerServices'], array(self::SAML_1X_POST_BINDING));
+		$acs = $this->getDefaultEndpoint($spd['AssertionConsumerService'], array(self::SAML_1X_POST_BINDING));
 		if($acs === NULL) {
 			SimpleSAML_Logger::warning('Could not find a supported SAML 1.x AssertionConsumerService endpoint for ' .
 				var_export($ret['entityid'], TRUE) . '.');
 		} else {
-			$ret['AssertionConsumerService'] = $acs['location'];
+			$ret['AssertionConsumerService'] = $acs['Location'];
 		}
 
 		/* Add certificate data. Only the first valid certificate will be added. */
@@ -534,12 +534,12 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 		/* Find the SSO service endpoint. */
-		$sso = $this->getDefaultEndpoint($idp['singleSignOnServices'], array(self::SAML_1x_AUTHN_REQUEST));
+		$sso = $this->getDefaultEndpoint($idp['SingleSignOnService'], array(self::SAML_1x_AUTHN_REQUEST));
 		if($sso === NULL) {
 			SimpleSAML_Logger::warning('Could not find a supported SAML 1.x SingleSignOnService endpoint for ' .
 				var_export($ret['entityid'], TRUE) . '.');
 		} else {
-			$ret['SingleSignOnService'] = $sso['location'];
+			$ret['SingleSignOnService'] = $sso['Location'];
 		}
 
 		/* Add certificate to metadata. Only the first valid certificate will be added. */
@@ -600,21 +600,21 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 		/* Find the assertion consumer service endpoint. */
-		$acs = $this->getDefaultEndpoint($spd['assertionConsumerServices'], array(self::SAML_20_POST_BINDING));
+		$acs = $this->getDefaultEndpoint($spd['AssertionConsumerService'], array(self::SAML_20_POST_BINDING));
 		if($acs === NULL) {
 			SimpleSAML_Logger::warning('Could not find a supported SAML 2.0 AssertionConsumerService endpoint for ' .
 				var_export($ret['entityid'], TRUE) . '.');
 		} else {
-			$ret['AssertionConsumerService'] = $acs['location'];
+			$ret['AssertionConsumerService'] = $acs['Location'];
 		}
 
 
 		/* Find the single logout service endpoint. */
-		$slo = $this->getDefaultEndpoint($spd['singleLogoutServices'], array(self::SAML_20_REDIRECT_BINDING));
+		$slo = $this->getDefaultEndpoint($spd['SingleLogoutService'], array(self::SAML_20_REDIRECT_BINDING));
 		if($slo !== NULL) {
-			$ret['SingleLogoutService'] = $slo['location'];
-			if (isset($slo['responseLocation']) && $slo['location'] != $slo['responseLocation']) {
-				$ret['SingleLogoutServiceResponse'] = $slo['responseLocation'];
+			$ret['SingleLogoutService'] = $slo['Location'];
+			if (isset($slo['ResponseLocation']) && $slo['Location'] != $slo['ResponseLocation']) {
+				$ret['SingleLogoutServiceResponse'] = $slo['ResponseLocation'];
 			}
 		}
 
@@ -691,28 +691,28 @@ class SimpleSAML_Metadata_SAMLParser {
 		
 
 		/* Enable redirect.sign if WantAuthnRequestsSigned is enabled. */
-		if ($idp['wantAuthnRequestsSigned']) {
+		if ($idp['WantAuthnRequestsSigned']) {
 			$ret['redirect.sign'] = TRUE;
 		}
 
 		/* Find the SSO service endpoint. */
-		$sso = $this->getDefaultEndpoint($idp['singleSignOnServices'], array(self::SAML_20_REDIRECT_BINDING));
+		$sso = $this->getDefaultEndpoint($idp['SingleSignOnService'], array(self::SAML_20_REDIRECT_BINDING));
 		if($sso === NULL) {
 			SimpleSAML_Logger::warning('Could not find a supported SAML 2.0 SingleSignOnService endpoint for ' .
 				var_export($ret['entityid'], TRUE) . '.');
 		} else {
-			$ret['SingleSignOnService'] = $sso['location'];
+			$ret['SingleSignOnService'] = $sso['Location'];
 		}
 
 
 		/* Find the single logout service endpoint. */
-		$slo = $this->getDefaultEndpoint($idp['singleLogoutServices'], array(self::SAML_20_REDIRECT_BINDING));
+		$slo = $this->getDefaultEndpoint($idp['SingleLogoutService'], array(self::SAML_20_REDIRECT_BINDING));
 		if($slo !== NULL) {
-			$ret['SingleLogoutService'] = $slo['location'];
+			$ret['SingleLogoutService'] = $slo['Location'];
 			
 			/* If the response location is set, include it in the returned metadata. */
-			if(array_key_exists('responseLocation', $slo)) {
-				$ret['SingleLogoutServiceResponse'] = $slo['responseLocation'];
+			if(array_key_exists('ResponseLocation', $slo)) {
+				$ret['SingleLogoutServiceResponse'] = $slo['ResponseLocation'];
 			}
 			
 		}
@@ -747,7 +747,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 *
 	 * The returned associative array has the following elements:
 	 * - 'protocols': Array with the protocols this SSODescriptor supports.
-	 * - 'singleLogoutServices': Array with the single logout service endpoints. Each endpoint is stored
+	 * - 'SingleLogoutService': Array with the single logout service endpoints. Each endpoint is stored
 	 *   as an associative array with the elements that parseGenericEndpoint returns.
 	 * - 'nameIDFormats': The NameIDFormats supported by this SSODescriptor. This may be an empty array.
 	 * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor:
@@ -782,10 +782,10 @@ class SimpleSAML_Metadata_SAMLParser {
 		
 
 		/* Find all SingleLogoutService elements. */
-		$sd['singleLogoutServices'] = array();
+		$sd['SingleLogoutService'] = array();
 		$sls = SimpleSAML_Utilities::getDOMChildren($element, 'SingleLogoutService', '@md');
 		foreach($sls as $child) {
-			$sd['singleLogoutServices'][] = self::parseSingleLogoutService($child);
+			$sd['SingleLogoutService'][] = self::parseSingleLogoutService($child);
 		}
 
 		/* Process NameIDFormat elements. */
@@ -824,10 +824,10 @@ class SimpleSAML_Metadata_SAMLParser {
 		$sp = self::parseSSODescriptor($element, $expireTime);
 
 		/* Find all AssertionConsumerService elements. */
-		$sp['assertionConsumerServices'] = array();
+		$sp['AssertionConsumerServices'] = array();
 		$acs = SimpleSAML_Utilities::getDOMChildren($element, 'AssertionConsumerService', '@md');
 		foreach($acs as $child) {
-			$sp['assertionConsumerServices'][] = self::parseAssertionConsumerService($child);
+			$sp['AssertionConsumerService'][] = self::parseAssertionConsumerService($child);
 		}
 
 		/* Find all the attributes and SP name... */
@@ -863,16 +863,16 @@ class SimpleSAML_Metadata_SAMLParser {
 		
 
 		/* Find all SingleSignOnService elements. */
-		$idp['singleSignOnServices'] = array();
+		$idp['SingleSignOnService'] = array();
 		$acs = SimpleSAML_Utilities::getDOMChildren($element, 'SingleSignOnService', '@md');
 		foreach($acs as $child) {
-			$idp['singleSignOnServices'][] = self::parseSingleSignOnService($child);
+			$idp['SingleSignOnService'][] = self::parseSingleSignOnService($child);
 		}
 
 		if ($element->getAttribute('WantAuthnRequestsSigned') === 'true') {
-			$idp['wantAuthnRequestsSigned'] = TRUE;
+			$idp['WantAuthnRequestsSigned'] = TRUE;
 		} else {
-			$idp['wantAuthnRequestsSigned'] = FALSE;
+			$idp['WantAuthnRequestsSigned'] = FALSE;
 		}
 
 		$this->idpDescriptors[] = $idp;
@@ -1066,9 +1066,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This function is a generic endpoint element parser.
 	 *
 	 * The returned associative array has the following elements:
-	 * - 'binding': The binding this endpoint uses.
-	 * - 'location': The URL to this endpoint.
-	 * - 'responseLocation': The URL where responses should be sent. This may not exist.
+	 * - 'Binding': The binding this endpoint uses.
+	 * - 'Location': The URL to this endpoint.
+	 * - 'ResponseLocation': The URL where responses should be sent. This may not exist.
 	 * - 'index': The index of this endpoint. This attribute is only for indexed endpoints.
 	 * - 'isDefault': Whether this endpoint is the default endpoint for this type. This attribute may not exist.
 	 *
@@ -1087,15 +1087,15 @@ class SimpleSAML_Metadata_SAMLParser {
 		if(!$element->hasAttribute('Binding')) {
 			throw new Exception($name . ' missing required Binding attribute.');
 		}
-		$ep['binding'] = $element->getAttribute('Binding');
+		$ep['Binding'] = $element->getAttribute('Binding');
 
 		if(!$element->hasAttribute('Location')) {
 			throw new Exception($name . ' missing required Location attribute.');
 		}
-		$ep['location'] = $element->getAttribute('Location');
+		$ep['Location'] = $element->getAttribute('Location');
 
 		if($element->hasAttribute('ResponseLocation')) {
-			$ep['responseLocation'] = $element->getAttribute('ResponseLocation');
+			$ep['ResponseLocation'] = $element->getAttribute('ResponseLocation');
 		}
 
 		if($isIndexed) {
@@ -1198,7 +1198,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 			foreach($endpoints as $ep) {
 				/* Add it to the list of valid ACSs if it has one of the supported bindings. */
-				if(in_array($ep['binding'], $acceptedBindings, TRUE)) {
+				if(in_array($ep['Binding'], $acceptedBindings, TRUE)) {
 					$newEndpoints[] = $ep;
 				}
 			}
