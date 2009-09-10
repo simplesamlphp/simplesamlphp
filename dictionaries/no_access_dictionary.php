@@ -27,6 +27,7 @@ $lang = array(
 		'pl' => 'Dostęp zabroniony',
 		'pt' => 'Não tem acesso a este serviço',
 		'pt-BR' => 'Você não possui acesso a este serviço',
+		'tr' => 'Bu servise giriş izniniz yok.',
 	),
 	'no_access_to' => array (
 		'no' => 'Du har ikke tilgang til følgende tjeneste:',
@@ -45,6 +46,7 @@ $lang = array(
 		'pl' => 'Nie masz dostępu to tego serwisu:',
 		'pt' => 'Não tem acesso ao serviço:',
 		'pt-BR' => 'Você não possui acesso a este serviço',
+		'tr' => 'Bu servise giriş izniniz yok.',
 	),
 	'contact_home' => array (
 		'no' => 'Hvilke tjenester du har tilgang til er bestemt av din vertsorganisasjon. Ta kontakt med din lokale brukerstøtte for spørsmål.',
@@ -63,6 +65,7 @@ $lang = array(
 		'pl' => 'Dostęp do serwisu jest kontrolowany przez Twoją organizację macierzystą. W sprawie pytań prosze skontaktować się z pomocą techniczną w Twojej organizacji.',
 		'pt' => 'O acesso a serviços é controlado pela sua organização de origem. Para obter ajuda, contacte o serviço de apoio ao utilizador da sua organização.',
 		'pt-BR' => 'O acesso a estes serviços é controlado pela sua organização principal. Entre em contato com a equipe local de suporte para ajudá-lo.',
+		'tr' => 'Servislere erişim organizasyonunuz tarafından kontrol edilmektedir. Lütfen sorularınız için yerel ilgilerle iletişime geçiniz.',
 	),
 
 );

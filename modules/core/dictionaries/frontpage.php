@@ -881,15 +881,24 @@ $lang = array(
 	),
 	'auth' => array (
 		'no' => 'Autentisering',
+		'da' => 'Autentificering',
 		'en' => 'Authentication',
+		'es' => 'Autenticación',
+		'tr' => 'Kimlik Doğrulama',
 	),
 	'federation' => array (
 		'no' => 'Føderasjon',
+		'da' => 'Føderation',
 		'en' => 'Federation',
+		'es' => 'Federación',
+		'tr' => 'Federasyon',
 	),
 	'authtest' => array (
 		'no' => 'Test konfigurerte autentiseringskilder',
+		'da' => 'Test konfigureret autentificeringskilde',
 		'en' => 'Test configured authentication sources ',
+		'es' => 'Probar las fuentes para la autentificación ya configuradas',
+		'tr' => 'Düzenlenmiş kimlik doğrulama kaynaklarını test et',
 	),
 
 );

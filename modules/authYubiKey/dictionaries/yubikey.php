@@ -24,6 +24,7 @@ $lang = array(
 		'hu' => 'YubiKey bejelentkezés',
 		'pl' => 'Login z YubiKey',
 		'pt' => 'Entrar com YubiKey',
+		'tr' => 'YubiKey ile giriş',
 	),
 	'intro' => array (
 		'no' => 'En tjeneste har bedt om at du autentiserer deg. For å autentisere seg, trykk på knappen på din YubiKey. Feltet under vil da bli automatisk utfylt med et sikkert engangspassord.',
@@ -39,6 +40,7 @@ $lang = array(
 		'hu' => 'Egy szolgáltatás azonosítást kért. Kérjük, nyomja meg a gombot a YubiKey-n! Az alábbi mező automatikusan ki kell, hogy töltődjön egy biztonságos egyszerhasználatos jelszóval.',
 		'pl' => 'Jakiś serwis zażądał uwierzytelnienia. W celu uwierzytelnienia naciśnij przycisk na Twoim YubiKey. Następnie poniższe pole powinno zostać automatycznie wypełnione bezpiecznym jednorazowym hasłem.',
 		'pt' => 'Um serviço necessita de autenticação. Para se autenticar, clique no botão da sua YubiKey. O campo em baixo deverá ser automaticamente preenchido com uma palavra-passe segura que funcionará apenas uma vez.',
+		'tr' => 'Bazı servisler kimlik doğrulama istedi. Kimlik doğrulamak için, YubiKey\'iniz üzerindeki düğmeyi tıklayınız. Ondan sonra, güvenli bir tek kullanımlık şifre aşağıdaki alanda otomatik olarak belirecektir.',
 	),
 
 );

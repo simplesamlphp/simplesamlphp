@@ -20,6 +20,7 @@ $lang = array(
 		'sl' => 'Preklic privolitve',
 		'hu' => 'Hozzájárulás visszavonása',
 		'pt' => 'Remover Consentimento',
+		'tr' => 'Onaydan vazgeçme',
 	),
 	'granted' => array (
 		'no' => 'Du har tidligere gitt samtykke %NO% ganger til %OF% forskjellige tjenester.',
@@ -31,6 +32,7 @@ $lang = array(
 		'sl' => 'Potrdili ste %NO% privolitev za %OF% različnih storitev.',
 		'hu' => '%NO% db. hozzájárulást adott %OF% különböző szolgáltatásnak.',
 		'pt' => 'Você tem %NO% consentimentos definidos anteriormente para %OF% serviços diferentes.',
+		'tr' => 'Daha önce %NO% onaylarını %OF% farklı servisler için garanti ettiniz.',
 	),
 	'info' => array (
 		'no' => 'Dersom du trekker tilbake alle tidligere gitte samtykker, så vil du hver gang du besøker en tjeneste på nytt bli spurt om du aksepterer at en gitt liste med personlig informasjon blir overført til tjenesten.',
@@ -42,6 +44,7 @@ $lang = array(
 		'sl' => 'V primeru preklica vseh privolitev, boste ob dostopu do storitev ponovno pozvani k privolitvi posredovanja osebnih podatkov storitvi.',
 		'hu' => 'Ha visszavonja az összes hozzájárulást, akkor minden alkalommal, amikor egy új szolgáltatást kíván igénybe venni, hozzá kell járulnia személyes adatainak kiadásához.',
 		'pt' => 'Se remover os consentimentos definidos, ir-lhe-á ser perguntado se aceita o envio de informação pessoal de cada vez que aceder a um novo serviço.',
+		'tr' => 'Verilen tüm onaylamalardan vazgeçerseniz, verilen bir kişisel bilgi kümesinin aktarılmasını kabul etmeyi isteseniz istemeseniz de, yeni bir servise her girdiğinizde tekrar sorgulanacaksınız',
 	),
 	'withdraw' => array (
 		'no' => 'Trekk tilbake alle tidligere gitte samtykker',
@@ -53,6 +56,7 @@ $lang = array(
 		'sl' => 'Prekliči vse privolitve.',
 		'hu' => 'Az összes hozzájárulás visszavonása',
 		'pt' => 'Remover todos os Consentimentos definidos',
+		'tr' => 'Verilen tüm onaylardan vazgeç',
 	),
 	'headerstats' => array (
 		'no' => 'Samtykke statistikk',
@@ -64,6 +68,7 @@ $lang = array(
 		'sl' => 'Statistika privolitev',
 		'hu' => 'Hozzájárulás tároló statisztikák',
 		'pt' => 'Estatísticas do armazenamento de Consentimentos',
+		'tr' => 'Onay Depolama İstatistikleri',
 	),
 	'stattotal' => array (
 		'no' => 'Samtykkelageret inneholder %NO% innslag.',
@@ -75,6 +80,7 @@ $lang = array(
 		'sl' => 'Privolitvena stran vsebuje %NO% zapisov.',
 		'hu' => 'A hozzájárulás tároló %NO% bejegyzést tartalmaz.',
 		'pt' => 'O armazenamento de consentimentos contém %NO% entradas.',
+		'tr' => 'Onay depolama %NO% elemanları içermektedir',
 	),
 	'statusers' => array (
 		'no' => '%NO% unike brukere har avgitt samtykke.',
@@ -86,6 +92,7 @@ $lang = array(
 		'sl' => 'Privolitev je dalo %NO% različnih uporabnikov.',
 		'hu' => '%NO% különböző felhasználó adott hozzájárulást.',
 		'pt' => '%NO" utilizador distintos deram o seu consentimento.',
+		'tr' => '%NO% biricik (unique) kullanıcılar onay verdi.',
 	),
 	'statservices' => array (
 		'no' => 'Samtykke er avgitt til %NO% unike tjenester.',
@@ -97,6 +104,7 @@ $lang = array(
 		'sl' => '%NO% različnih storitev je dobilo privolitev.',
 		'hu' => '%NO% különböző szolgáltatáshoz adtak hozzájárulást.',
 		'pt' => 'Estão definidos consentimentos para %NO% serviços distintos.',
+		'tr' => 'Onay %NO% biricik (unique) servislere veriliyor.',
 	),
 
 );

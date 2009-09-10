@@ -25,6 +25,7 @@ $lang = array(
 		'pl' => 'MetaShare',
 		'pt' => 'MetaShare',
 		'pt-BR' => 'MetaShare',
+		'tr' => 'MetaShare',
 	),
 	'front_desc' => array (
 		'no' => 'Dette er en metadata distribusjonstjeneste. Den tillater deg å legge til dyamisk generert metadata til et delt lager.',
@@ -41,6 +42,7 @@ $lang = array(
 		'pl' => 'To jest serwis udostępniania metadanych. Pozwala Tobie dodać dynamicznie wygenerowane metadane do udostępnianych zasobów.',
 		'pt' => 'Está na página do serviço de partilha de metadados. Esta página permite-lhe adicionar metadados gerados dinamicamente a um repositório comum de dados.',
 		'pt-BR' => 'Este é um serviço de compartilhamento de metadata. Ele permite que você adicione metadatas geradas dinamicamente, armazene-as e compartilhe-as.',
+		'tr' => 'Bu üstveri (metadata) paylaşım servisi. Bu servis, dinamik olarak oluşturulmuş üstveriyi, paylaşılan bir depoya eklemenize izin verir.',
 	),
 	'add_title' => array (
 		'no' => 'Legg til entitet',
@@ -57,6 +59,7 @@ $lang = array(
 		'pl' => 'Dodaj jednostkę (SP lub IdP)',
 		'pt' => 'Adicionar entidade',
 		'pt-BR' => 'Adicionar entidade',
+		'tr' => 'Birim ekle',
 	),
 	'add_desc' => array (
 		'no' => 'Legg til nytt eller oppdatert metadata ved å spesifisere URL-en til metadata. Denne URL-en må også matche entity ID-en til entiteten som metadata-dokumentet beskriver.',
@@ -73,6 +76,7 @@ $lang = array(
 		'pl' => 'Dodaj nowe lub zaktualizowane metadane poprzez określenie adresu URL pliku metadanych.',
 		'pt' => 'Adicionar metadados novos ou actualizados especificando o URL dos metadados. Este URL tem de coincidir com o identificador de entidade (entityID) descrito nos metadados',
 		'pt-BR' => 'Adicionar novo ou atualizar metadata, especificando a URL da metadata. Essa URL deve corresponder a entidade identificadora da entidade descrita na metadata.',
+		'tr' => 'Üstverinin URL\'ini belirterek yeni ya da değiştirilmiş üstveri ekle. Bu URL üstveride tanımlanan birimin tanımlayıcısı ile eşleşmelidir.',
 	),
 	'add_entityid' => array (
 		'no' => 'EntityID for tjenesten:',
@@ -89,6 +93,7 @@ $lang = array(
 		'pl' => 'Identyfikator jednostki',
 		'pt' => 'Identificador de entidade',
 		'pt-BR' => 'Entidade identificador da entidade:',
+		'tr' => 'Birimin tanımlayıcısı:',
 	),
 	'add_do' => array (
 		'no' => 'Legg til',
@@ -105,6 +110,7 @@ $lang = array(
 		'pl' => 'Dodaj',
 		'pt' => 'Adicionar',
 		'pt-BR' => 'Adicionar',
+		'tr' => 'Ekle',
 	),
 	'downloadall_desc' => array (
 		'no' => 'Det er mulig å laste ned alle metadata i en samlet XML fil. Denne filen inneholder en EntitiesDescriptor med alle entitetene som er lagt til denne MetaShare tjenesten. EntitiesDescriptor elementet kan signeres av MetaShare tjenesten hvis det er påslått i konfigurasjonen.',
@@ -120,6 +126,7 @@ $lang = array(
 		'pl' => 'Jest możliwe ściągniecie wszystkich metadanych jako pojedynczy plik XML. Plik ten bedzie zawierał pojedynczy EntitiesDescriptor tag, który zawiera wszystkic  h dostawców, które mają być w tym Metashare. EntitiesDescriptor może być podpisany przez ten MetaShare jeśli jest to włączone w konfiguracji.  ',
 		'pt' => 'É possível efectuar o dowload de todos os metadados num único ficheiro XML. Este ficheiro irá conter um único elemento EntitiesDescriptor com todas as entidades presentes neste MetaShare. O elemento EntitiesDescriptor pode ser assinado por este serviço de MetaShare se esta opção estiver activa na configuração.',
 		'pt-BR' => 'É possível fazer download de todas as metadatas como um único arquivo XML. Esse arquivo irá conter um único EntitiesDescriptor que contém todas as entidades que estão vinculadas para este MetaShare. O EntitiesDescriptor pode ser assinado por este MetaShare se isto está ativado na configuração.',
+		'tr' => 'Tüm üstveriyi tek bir XML dosyası olarak indirmek mümkün. Bu dosya MetaShare\'e eklenen tüm birimlerin bulunduğu tek bir EntitiesDescriptor içerecektir. Bu EntitiesDescriptor, eğer yapılandırma içinde etkinleştirilmişse MetaShare tarafından imzalanmış olabilir.',
 	),
 	'downloadall_link' => array (
 		'no' => 'Last ned all metadata ',
@@ -136,6 +143,7 @@ $lang = array(
 		'pl' => 'Ściągnij wszystkie Metadane',
 		'pt' => 'Efectuar o download de todos os metadados',
 		'pt-BR' => 'Baixar toda metadata',
+		'tr' => 'Tüm üstveriyi indir',
 	),
 	'entities_title' => array (
 		'no' => 'Entiteter',
@@ -152,6 +160,7 @@ $lang = array(
 		'pl' => 'Jednostki',
 		'pt' => 'Entidades',
 		'pt-BR' => 'Entidades',
+		'tr' => 'Birimler',
 	),
 	'entities_desc' => array (
 		'no' => 'Dette er en liste over alle entiteter som nå er lagret i MetaShare tjenesten. Klikk på en link for å laste ned metadata for en gitt entitet.',
@@ -167,6 +176,7 @@ $lang = array(
 		'pl' => 'To jest lista wszystkich jednostek, które aktualnie są zapisane w Metashare. Kliknij na link aby ściągnąć metadane wybranej jednostki.',
 		'pt' => 'Apresenta-se de seguida uma lista de todas as entidades presentes neste serviço de MetaShare. Siga uma das ligações para efectuar o download dos metadados da entidade correspondente.',
 		'pt-BR' => 'Esta é uma lista de todas as entidades que estão atualmente guardadas nesta MetaShare. Clique em um link para baixar as metadata das determinadas entidades.',
+		'tr' => 'Bu MetaShare\'de halihazırda depolanan tüm birimlerin bir listesidir. Verilen bir birimin üstverisini indirmek için bağlantıya tıklayın.',
 	),
 	'entities_empty' => array (
 		'no' => 'Ingen tjenester er for øyeblikket lagret i denne MetaShare installasjonen.',
@@ -182,6 +192,7 @@ $lang = array(
 		'pl' => 'Aktualnie brak jednostek zapisanych w Metashare.',
 		'pt' => 'Não existem entidades presentes neste serviço de MetaShare.',
 		'pt-BR' => 'Não há entidades atualmente guardadas nesta MetaShare.',
+		'tr' => 'Şu anda MetaShare\'de depolanan birim bulunmamaktadır.',
 	),
 	'text' => array (
 		'no' => 'Tekst',
@@ -198,6 +209,7 @@ $lang = array(
 		'pl' => 'tekst',
 		'pt' => 'Texto',
 		'pt-BR' => 'texto',
+		'tr' => 'metin',
 	),
 	'addpage_header' => array (
 		'no' => 'Legg til metadata',
@@ -214,6 +226,7 @@ $lang = array(
 		'pl' => 'Dodaj Metadane',
 		'pt' => 'Adicionar metadados',
 		'pt-BR' => 'Adicionar metadata',
+		'tr' => 'Üstveri ekle',
 	),
 	'addpage_ok' => array (
 		'no' => 'Metadata fra "%URL" ble lagt til vellykket.',
@@ -230,6 +243,7 @@ $lang = array(
 		'pl' => 'Metadane z  "%URL%" zostały pomyślnie dodane.',
 		'pt' => 'Foram adicionados com sucesso os metadados disponíveis em "%URL%" ',
 		'pt-BR' => 'A metadata de "%URL%" foi adicionada com sucesso.',
+		'tr' => '"%URL%"den gelen üstveri başarıyla eklendi.',
 	),
 	'addpage_nourl' => array (
 		'no' => 'Mangler URL parameter.',
@@ -246,6 +260,7 @@ $lang = array(
 		'pl' => 'Nie podano parametru URL.',
 		'pt' => 'Não foi fornecido nenhum URL',
 		'pt-BR' => 'Não foi passado o parâmetro URL.',
+		'tr' => 'URL parametresi verilmemiş.',
 	),
 	'addpage_invalidurl' => array (
 		'no' => 'Ugyldig URL/entity ID for metadata. Entity ID-en må være en gyldig http: eller https: URL. URL-en du oppgav var "%URL%".',
@@ -261,6 +276,7 @@ $lang = array(
 		'pl' => 'Niepoprawny URL/id jednostki. Identyfikator jednostki powinien być poprawny http: lub https: URL. URL, który podałeś był "%URL%".',
 		'pt' => 'URL inválido. O identificador de entidade (entityID) deve ser um URL válido do tipo http: ou https:. O URL fornecido foi "%URL%".',
 		'pt-BR' => 'URL/Identificação da Entidade inválida para a metadata. A identificação da entidade deve ser um endereço http: ou https: válido. A URL passada foi "%URL%".',
+		'tr' => 'Üstveriye geçersiz URL/Birim kimlik nosu. Birim kimlik nosu geçerli bir http: ya da https: URL\'i olmalıdır. Verdiğiniz URL "%URL%" idi.',
 	),
 	'addpage_nodownload' => array (
 		'no' => 'Er ikke i stand til å laste ned metadata fra "%URL%".',
@@ -276,6 +292,7 @@ $lang = array(
 		'pl' => 'Nie można ściagnąć metadanych z adresu "%URL%".',
 		'pt' => 'Não foi possível efectuar o download dos metadados a partir de "%URL%".',
 		'pt-BR' => 'Não foi possível baixar a metadata de "%URL%".',
+		'tr' => '"%URL%"den üstveri indirilemiyor.',
 	),
 	'addpage_invalidxml' => array (
 		'no' => 'Feilformattert XML i metadata. URL-en som metadata befant seg på var "%URL%".',
@@ -291,6 +308,7 @@ $lang = array(
 		'pl' => 'Nieprawidłowy XML w metadanych. URL, który podałeś był "%URL%".',
 		'pt' => 'Metadados com XML mal formatado. O URL fornecido foi "%URL%".',
 		'pt-BR' => 'XML incorreto na metadata. A URL passada foi "%URL%".',
+		'tr' => 'Üstveride kusurlu XML. Verdiğiniz URL "%URL%" idi.',
 	),
 	'addpage_notentitydescriptor' => array (
 		'no' => 'Rotnoden i metadata-dokumentet var ikke en EntityDescriptor. URLen du oppgave var "%URL%".',
@@ -305,6 +323,7 @@ $lang = array(
 		'hu' => 'A metaadatok gyökéreleme nem EntityDescriptor volt. Az URL az alábbi volt: "%URL%".',
 		'pt' => 'O elemento raiz dos metadados não é um elemento do tipo EntityDescriptor. O URL fornecido foi "%URL%".',
 		'pt-BR' => 'O nó raiz da metadata não era um elemento EntityDescriptor. A URL passada foi "%URL%".',
+		'tr' => 'Üstverinin kök düğümü, EntityDescriptor elemanı değildi. Verdiğiniz URL "%URL%" idi.',
 	),
 	'addpage_entityid' => array (
 		'no' => 'EntityID i metadataene stemmer ikke overens med URL-en til metadata dokumentet ("%URL%").',
@@ -319,6 +338,7 @@ $lang = array(
 		'hu' => 'A entitás azonosító nem egyezik a metaadatok elérhetőségének URL-jével ("%URL%").',
 		'pt' => 'O identificador de entidade (entityID) nos metadados não corresponde ao URL dos metadados ("%URL%").',
 		'pt-BR' => 'A entidade identificadora na metadata não corresponde a url da metadata ("%URL%").',
+		'tr' => 'Üstverideki birim tanımlayıcısı üstverinin URL\'i ile eşleşmedi ("%URL%").',
 	),
 	'addpage_validation' => array (
 		'no' => 'XML validering av metadata from "%URL%" feilet:',
@@ -335,6 +355,7 @@ $lang = array(
 		'pl' => 'Weryfikacja XML metadanych z "%URL%" zakończona błędem:',
 		'pt' => 'Falhou a validação XML dos metadados do URL "%URL%".',
 		'pt-BR' => 'A validação do XML para a metadata da URL "%URL%" falhou.',
+		'tr' => '"%URL%"den üstverinin XML doğrulaması başarısız:',
 	),
 	'addpage_gofront' => array (
 		'no' => 'Gå til metadata liste',
@@ -351,6 +372,7 @@ $lang = array(
 		'pl' => 'Idź do listy Metadanych',
 		'pt' => 'Voltar à lista de metadados',
 		'pt-BR' => 'Ir para a lista de metadata',
+		'tr' => 'Üstveri listesine git',
 	),
 
 );
