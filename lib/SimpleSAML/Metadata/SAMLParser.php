@@ -40,6 +40,11 @@ class SimpleSAML_Metadata_SAMLParser {
 	 */
 	const SAML_1X_POST_BINDING = 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
 
+	/**
+	 * This is the SAML 1.0 SOAP binding.
+	 */
+	const SAML_1X_SOAP_BINDING = 'urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding';
+
 
 	/**
 	 * This is the binding used for HTTP-POST in SAML 2.0.
@@ -542,6 +547,12 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['SingleSignOnService'] = $sso['Location'];
 		}
 
+		/* Find the ArtifactResolutionService endpoint. */
+		$artifactResolutionService = $this->getDefaultEndpoint($idp['ArtifactResolutionService'], array(self::SAML_1X_SOAP_BINDING));
+		if ($artifactResolutionService !== NULL) {
+			$ret['ArtifactResolutionService'] = $artifactResolutionService['Location'];
+		}
+
 		/* Add certificate to metadata. Only the first valid certificate will be added. */
 		$ret['certFingerprint'] = array();
 		foreach($idp['keys'] as $key) {
@@ -717,6 +728,12 @@ class SimpleSAML_Metadata_SAMLParser {
 			
 		}
 
+		/* Find the ArtifactResolutionService endpoint. */
+		$artifactResolutionService = $this->getDefaultEndpoint($idp['ArtifactResolutionService'], array(SAML2_Const::BINDING_SOAP));
+		if ($artifactResolutionService !== NULL) {
+			$ret['ArtifactResolutionService'] = $artifactResolutionService['Location'];
+		}
+
 
 		/* Add certificate to metadata. Only the first valid certificate will be added. */
 		$ret['certFingerprint'] = array();
@@ -787,6 +804,14 @@ class SimpleSAML_Metadata_SAMLParser {
 		foreach($sls as $child) {
 			$sd['SingleLogoutService'][] = self::parseSingleLogoutService($child);
 		}
+
+		/* Find all ArtifactResolutionService elements. */
+		$sd['ArtifactResolutionService'] = array();
+		$acs = SimpleSAML_Utilities::getDOMChildren($element, 'ArtifactResolutionService', '@md');
+		foreach($acs as $child) {
+			$sd['ArtifactResolutionService'][] = self::parseArtifactResolutionService($child);
+		}
+
 
 		/* Process NameIDFormat elements. */
 		$sd['nameIDFormats'] = array();
@@ -1046,6 +1071,19 @@ class SimpleSAML_Metadata_SAMLParser {
 		assert('$element instanceof DOMElement');
 
 		return self::parseGenericEndpoint($element, FALSE);
+	}
+
+
+	/**
+	 * This function parses ArtifactResolutionService elements.
+	 *
+	 * @param $element The element which should be parsed.
+	 * @return Associative array with the data we have extracted from the ArtifactResolutionService element.
+	 */
+	private static function parseArtifactResolutionService($element) {
+		assert('$element instanceof DOMElement');
+
+		return self::parseGenericEndpoint($element, TRUE);
 	}
 
 
