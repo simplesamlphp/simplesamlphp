@@ -29,6 +29,11 @@ class SAML2_Const {
 	 */
 	const BINDING_HTTP_REDIRECT = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect';
 
+	/**
+	 * The URN for the SOAP binding.
+	 */
+	const BINDING_SOAP = 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP';
+
 
 	/**
 	 * Bearer subject confirmation method.
