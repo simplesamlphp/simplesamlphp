@@ -1995,6 +1995,38 @@ class SimpleSAML_Utilities {
 		/* Set the timezone to the default. */
 		date_default_timezone_set($serverTimezone);
 	}
+
+
+	/**
+	 * Atomically write a file.
+	 *
+	 * This is a helper function for safely writing file data atomically.
+	 * It does this by writing the file data to a temporary file, and then
+	 * renaming this to the correct name.
+	 *
+	 * @param string $filename  The name of the file.
+	 * @param string $data  The data we should write to the file.
+	 */
+	public static function writeFile($filename, $data) {
+		assert('is_string($filename)');
+		assert('is_string($data)');
+
+		$tmpFile = $filename . '.new.' . getmypid() . '.' . php_uname('n');
+
+		$res = file_put_contents($tmpFile, $data);
+		if ($res === FALSE) {
+			throw new SimpleSAML_Error_Exception('Error saving file ' . $tmpFile .
+				': ' . SimpleSAML_Utilities::getLastError());
+		}
+
+		$res = rename($tmpFile, $filename);
+		if ($res === FALSE) {
+			unlink($tmpFile);
+			throw new SimpleSAML_Error_Exception('Error renaming ' . $tmpFile . ' to ' .
+				$filename . ': ' . SimpleSAML_Utilities::getLastError());
+		}
+	}
+
 }
 
 ?>
