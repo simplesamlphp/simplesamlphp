@@ -78,15 +78,24 @@ class sspmod_ldapstatus_Tester {
 	
 	/**
 	 * TCP ping implemented in php.
-	 * Warning: Will return Success if hostname is illegal. should be fixed.
 	 *
-	 * @param $host Hostname
-	 * @param $port Port number (TCP)
+	 * @param string $host Hostname
+	 * @param int $port Port number (TCP)
 	 */
 	public function phpping($host, $port) {
-	
+		assert('is_string($host)');
+		assert('is_int($port)');
+
 		$this->log('ldapstatus phpping(): ping [' . $host . ':' . $port . ']' );
-	
+
+		$ips = gethostbynamel($host);
+		if ($ips === FALSE) {
+			return array(FALSE, 'Unable to look up hostname ' . $host . '.');
+		}
+		if (count($ips) === 0) {
+			return array(FALSE, 'No IP address found for host ' . $host . '.');
+		}
+
 		$timeout = 1.0;
 		$socket = @fsockopen($host, $port, $errno, $errstr, $timeout);
 		if ($socket) @fclose($socket);
