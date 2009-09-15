@@ -96,14 +96,25 @@ class sspmod_ldapstatus_Tester {
 			return array(FALSE, 'No IP address found for host ' . $host . '.');
 		}
 
-		$timeout = 1.0;
-		$socket = @fsockopen($host, $port, $errno, $errstr, $timeout);
-		if ($socket) @fclose($socket);
-		if ($errno) {
-			return array(FALSE, $errno . ':' . $errstr . ' [' . $host . ':' . $port . ']');
-		} else {		
-			return array(TRUE,'');
+		$errors = array();
+		foreach ($ips as $ip) {
+			$timeout = 1.0;
+			$socket = @fsockopen($ip, $port, $errno, $errstr, $timeout);
+			if ($errno) {
+				$errors[] = $errno . ':' . $errstr . ' (' . $host . '[' . $ip . ']:' . $port . ')';
+			} elseif ($socket === FALSE) {
+				$errors[] = '[Unknown error, check log] (' . $host . '[' . $ip . ']:' . $port . ')';
+			} else {
+				@fclose($socket);
+			}
 		}
+
+		if (count($errors) === 0) {
+			return array(TRUE, count($ips) . ' LDAP servers working.');
+		}
+
+		$error = count($errors) . ' of ' . count($ips) . ' failed: '. implode(';', $errors);
+		return array(FALSE, $error);
 	}
 	
 
