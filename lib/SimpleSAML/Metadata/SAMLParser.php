@@ -485,6 +485,11 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['AssertionConsumerService'] = $acs['Location'];
 		}
 
+		/* Add the list of attributes the SP should receive. */
+		if (array_key_exists('attributes', $spd)) {
+			$ret['attributes'] = $spd['attributes'];
+		}
+
 		/* Add certificate data. Only the first valid certificate will be added. */
 		foreach($spd['keys'] as $key) {
 			if($key['type'] !== 'X509Certificate') {
@@ -636,6 +641,7 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['NameIDFormat'] = $spd['nameIDFormats'][0];
 		}
 
+		/* Add the list of attributes the SP should receive. */
 		if (array_key_exists('attributes', $spd)) {
 			$ret['attributes'] = $spd['attributes'];
 		}
