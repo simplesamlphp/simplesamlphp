@@ -58,7 +58,8 @@ class SAML2_EncryptedAssertion {
 			$symmetricKey = $key;
 			break;
 
-		case  XMLSecurityKey::RSA_1_5:
+		case XMLSecurityKey::RSA_1_5:
+		case XMLSecurityKey::RSA_OAEP_MGF1P:
 			$symmetricKey = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
 			$symmetricKey->generateSessionKey();
 
@@ -97,13 +98,26 @@ class SAML2_EncryptedAssertion {
 			throw new Exception('Could not locate <dsig:KeyInfo> for the encrypted key.');
 		}
 
+		$inputKeyAlgo = $inputKey->getAlgorith();
 		if ($symmetricKeyInfo->isEncrypted) {
-			/* Make sure that the input key  format is the same as the one used to encrypt the key. */
-			if ($inputKey->getAlgorith() !== $symmetricKeyInfo->getAlgorith()) {
+			$symKeyInfoAlgo = $symmetricKeyInfo->getAlgorith();
+
+			if ($symKeyInfoAlgo === XMLSecurityKey::RSA_OAEP_MGF1P && $inputKeyAlgo === XMLSecurityKey::RSA_1_5) {
+				/*
+				 * The RSA key formats are equal, so loading an RSA_1_5 key
+				 * into an RSA_OAEP_MGF1P key can be done without problems.
+				 * We therefore pretend that the input key is an
+				 * RSA_OAEP_MGF1P key.
+				 */
+				$inputKeyAlgo = XMLSecurityKey::RSA_OAEP_MGF1P;
+			}
+
+			/* Make sure that the input key format is the same as the one used to encrypt the key. */
+			if ($inputKeyAlgo !== $symKeyInfoAlgo) {
 				throw new Exception('Algorithm mismatch between input key and key used to encrypt ' .
 					' the symmetric key for the message. Key was: ' .
-					var_export($inputKey->getAlgorith(), TRUE) . '; message was: ' .
-					var_export($symmetricKeyInfo->getAlgorith(), TRUE));
+					var_export($inputKeyAlgo, TRUE) . '; message was: ' .
+					var_export($symKeyInfoAlgo, TRUE));
 			}
 
 			$encKey = $symmetricKeyInfo->encryptedCtx;
@@ -111,11 +125,12 @@ class SAML2_EncryptedAssertion {
 			$key = $encKey->decryptKey($symmetricKeyInfo);
 			$symmetricKey->loadkey($key);
 		} else {
+			$symKeyAlgo = $symmetricKey->getAlgorith();
 			/* Make sure that the input key has the correct format. */
-			if ($inputKey->getAlgorith() !== $symmetricKey->getAlgorith()) {
+			if ($inputKeyAlgo !== $symKeyAlgo) {
 				throw new Exception('Algorithm mismatch between input key and key in message. ' .
-					'Key was: ' . var_export($inputKey->getAlgorith(), TRUE) . '; message was: ' .
-					var_export($symmetricKey->getAlgorith(), TRUE));
+					'Key was: ' . var_export($inputKeyAlgo, TRUE) . '; message was: ' .
+					var_export($symKeyAlgo, TRUE));
 			}
 			$symmetricKey = $inputKey;
 		}
