@@ -128,6 +128,41 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 
 
 	/**
+	 * Create a database connection.
+	 *
+	 * @return PDO  The database connection.
+	 */
+	private function connect() {
+		try {
+			$db = new PDO($this->dsn, $this->username, $this->password);
+		} catch (PDOException $e) {
+			throw new Exception('sqlauth:' . $this->authId . ': - Failed to connect to \'' .
+				$this->dsn . '\': '. $e->getMessage());
+		}
+
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+		$driver = explode(':', $this->dsn, 2);
+		$driver = strtolower($driver[0]);
+
+		/* Driver specific initialization. */
+		switch ($driver) {
+		case 'mysql':
+			/* Use UTF-8. */
+			$db->exec("SET NAMES 'utf8'");
+			break;
+		case 'pgsql':
+			/* Use UTF-8. */
+			$db->exec("SET NAMES 'UTF8'");
+			break;
+		}
+
+		return $db;
+	}
+
+
+	/**
 	 * Attempt to log in using the given username and password.
 	 *
 	 * On a successful login, this function should return the users attributes. On failure,
@@ -144,14 +179,7 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 		assert('is_string($username)');
 		assert('is_string($password)');
 
-		try {
-			$db = new PDO($this->dsn, $this->username, $this->password);
-		} catch (PDOException $e) {
-			throw new Exception('sqlauth:' . $this->authId . ': - Failed to connect to \'' .
-				$this->dsn . '\': '. $e->getMessage());
-		}
-
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$db = $this->connect();
 
 		try {
 			$sth = $db->prepare($this->query);
