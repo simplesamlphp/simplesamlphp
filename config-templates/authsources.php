@@ -13,6 +13,21 @@ $config = array(
 		'core:AdminPassword',
 	),
 
+
+	/*
+	 * This is the default SAML SP, used in examples.
+	 */
+	'default-sp' => array(
+		'saml:SP',
+
+		/*
+		 * The entity ID of the IdP this should SP should contact.
+		 * Can be NULL/unset, in which case the user will be shown a list of available IdPs.
+		 */
+		'idp' => NULL,
+	),
+
+
 	'example-sql' => array(
 		'sqlauth:SQL',
 		'dsn' => 'pgsql:host=sql.example.org;port=5432;dbname=simplesaml',
