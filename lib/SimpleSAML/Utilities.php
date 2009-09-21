@@ -2027,6 +2027,36 @@ class SimpleSAML_Utilities {
 		}
 	}
 
+
+	/**
+	 * Get temp directory path.
+	 *
+	 * This function retrieves the path to a directory where
+	 * temporary files can be saved.
+	 *
+	 * @return string  Path to temp directory, without a trailing '/'.
+	 */
+	public static function getTempDir() {
+
+		$globalConfig = SimpleSAML_Configuration::getInstance();
+
+		$tempDir = $globalConfig->getString('tempdir', '/tmp/simplesaml');
+
+		while (substr($tempDir, -1) === '/') {
+			$tempDir = substr($tempDir, 0, -1);
+		}
+
+		if (!is_dir($tempDir)) {
+			$ret = mkdir($tempDir, 0700, TRUE);
+			if (!$ret) {
+				throw new SimpleSAML_Error_Exception('Error creating temp dir ' .
+					var_export($tempDir, TRUE) . ': ' . SimpleSAML_Utilities::getLastError());
+			}
+		}
+
+		return $tempDir;
+	}
+
 }
 
 ?>
