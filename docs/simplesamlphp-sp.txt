@@ -13,45 +13,33 @@ SimpleSAMLphp Service Provider QuickStart
 This guide will describe how to configure simpleSAMLphp as a service provider (SP). You should previously have installed simpleSAMLphp as described in [the simpleSAMLphp installation instructions](http://rnd.feide.no/content/installing-simplesamlphp).
 
 
-Enabling the Service Provider functionality
---------------------------------------------
-
-The first that must be done is to enable the service provider functionality. This is done by editing `config/config.php`. The options `enable.saml20-sp` and `enable.shib13-sp` controls whether SAML 2.0 and Shibboleth 1.3 support is enabled. Enable one or both of those by assigning `true` to them:
-
-    'enable.saml20-sp'  => true,
-    'enable.saml20-idp' => false,
-    'enable.shib13-sp'  => true,
-    'enable.shib13-idp' => false,
-
 
 Configuring the SP
 ------------------
 
-The SP is configured by the metadata stored in `metadata/saml20-sp-hosted.php` and `metadata/shib13-sp-hosted.php`. Which of the two files you need to edit depends on what protocol you wish to use. This is a minimal configuration for a SP:
+The SP is configured by an entry in config/authsources.php.
+After your initial setup, you should 
+
+This is a minimal authsources.php for a SP:
 
     <?php
-    $metadata = array(
-        /*
-         * Dynamically generated entity id. Will use the address where metadata can be downloaded.
-         */
-        '__DYNAMIC:1__' => array(
-            /*
-             * The hostname for this SP. This makes it possible to run multiple
-             * SPs from the same configuration. '__DEFAULT__' means that this one
-             * should be used by default.
-             */
-            'host' => '__DEFAULT__',
+    $config = array(
+
+        /* This is the name of this authentication source, and will be used to access it later. */
+        'default-sp' => array(
+            'saml:SP',
         ),
     );
     ?>
 
-For more information about available options in the sp-hosted metadata files, see the [SP hosted reference](https://rnd.feide.no/content/sp-hosted-metadata-reference).
+For more information about additional options available for the SP, see the [SP hosted reference](https://rnd.feide.no/content/sp-hosted-metadata-reference).
 
 
 Adding IdPs to the SP
 ---------------------
 
-The service provider you are configuring needs to know about the identity providers you are going to connect to it. This is configured by metadata stored in `metadata/saml20-idp-remote.php` and `metadata/shib13-sp-remote.php`. This is a minimal example of a `metadata/saml20-idp-remote.php` metadata file:
+The service provider you are configuring needs to know about the identity providers you are going to connect to it. This is configured by metadata stored in `metadata/saml20-idp-remote.php` and `metadata/shib13-sp-remote.php`.
+This is a minimal example of a `metadata/saml20-idp-remote.php` metadata file:
 
     <?php
     $metadata = array(
@@ -73,29 +61,33 @@ Note that the idp-remote file lists all IdPs you trust. You should remove all Id
 Setting the default IdP
 -----------------------
 
-The global configuration (`config.php`) holds a parameter to set the default IdP to use. Alternatively you can specify which IdP to use in a parameter to the initSSO.php script when you initiate logon in your application.
+An option in the authentication source allows you to configure which IdP should be used.
+This is the `idp` option.
 
-Here is an example from `config.php`:
+    <?php
+    $config = array(
 
-	'default-saml20-idp' => 'https://openidp.feide.no',
+        'default-sp' => array(
+            'saml:SP',
 
-There is also a `default-shib13-idp`, which configures the same for Shibboleth 1.3 SPs.
-
-
-### Using the discovery service
-
-If you want end users to be able to select one of several specified entries in IdP remote metadata, set the default IdP to be `NULL`. simpleSAMLphp will then use its builtin IdP discovery service to let the user select IdP. Here is the neccessary configuration from `config.php`:
-
-     'default-saml20-idp' => NULL,
-     'default-shib13-idp' => NULL,
+            /*
+             * The entity ID of the IdP this should SP should contact.
+             * Can be NULL/unset, in which case the user will be shown a list of available IdPs.
+             */
+            'idp' => 'https://openidp.feide.no',
+        ),
+    );
+    ?>
 
 
 Exchange metadata with the IdP
 ------------------------------
 
-If you do not have setup an IdP yourself, you could use the Feide OpenIdP to verify your Service Provider setup. The metadata for Feide OpenIdP is already included in the metadata distributed with simpleSAMLphp, so you can copy the metadata from `metadata-templates` where Feide OpenIdP is included.
+If you do not have setup an IdP yourself, you could use the Feide OpenIdP to verify your Service Provider setup.
+The metadata for Feide OpenIdP is already included in the metadata distributed with simpleSAMLphp, so you can copy the metadata from `metadata-templates` where Feide OpenIdP is included.
 
-But, in order to complete the connection between your SP and Feide OpenIdP, it is not sufficient that you have configured metadata for Feide OpenIdP. Feide OpenIdP also needs to add metadata for your SP.
+But, in order to complete the connection between your SP and Feide OpenIdP, it is not sufficient that you have configured metadata for Feide OpenIdP.
+Feide OpenIdP also needs to add metadata for your SP.
 
 Copy the SAML 2.0 XML Metadata document automcatically generated by simpleSAMLphp (as described below), and go to the OpenIdP Metadata Self-Service Registry:
 
@@ -103,28 +95,21 @@ Copy the SAML 2.0 XML Metadata document automcatically generated by simpleSAMLph
 
 You need to login with an OpenIdP account to authenticate (you can create a new account if you do not have one already). Next, click the link 'Add from SAML 2.0 XML metadata', and paste in your SAML 2.0 XML Metadata, give it a proper name and description and click 'save'. Now you can test the SAML 2.0 Example on your SP, and try to login with Feide OpenIdP.
 
-<!-- If you are testing against `openidp.feide.no`, you can skip this step. You must however make sure that OpenIdP can download your metadata. This means that if you are installing on `sp.example.org`, and simpleSAMLphp is installed under `https://sp.example.org/simplesaml`, you must make sure that this URL is accessible from the Internet.
- -->
-
-Before you can run the test examples, you need the people running the IdP to load the metadata for your SP. This metadata can be generated automatically. Links to the generated metadata can be found under the `Metadata`-tab on the front page.
-
-Send this metadata document to the IdP and ask them to load it.
-
-![image](http://rnd.feide.no/files/saml2metadata.png) 
-
-If you are connected to Feide, and put one of Feides entity IDs as default IdP, you will see an additional section on this page:
-
-![image](http://rnd.feide.no/files/saml2metadata-feide.png) 
-
-Enter your email address and click the button "Send my metadata to Feide". Remeber to get in contact with Feide to discuss your new service, and how you can be connected to Feide's test environment. To test your service, you must have a valid Feide login name. If you are not affiliated with a Feide host institution, you may obtain a test user identity from Feide.
+Before you can run the test examples, you need the people running the IdP to load the metadata for your SP.
+This metadata can be generated automatically.
+Links to the generated metadata can be found under the `Metadata`-tab on the front page.
 
 
-Test the SAML 2.0 SP examples
+Test the SP
 -----------------------------
 
-After the metadata is is configured on the IdP, you should be able to test the configuration. The installation page of simpleSAMLphp has a link to a Shibboleth 1.3 and a SAML 2.0 sample service. When you click the link, you should be automatically redirected to the IdP. Login, and you should be sent back and shown all the attributes sent form the IdP.
+After the metadata is is configured on the IdP, you should be able to test the configuration.
+The installation page of simpleSAMLphp has a link to test authentication sources.
+When you click the link, you should receive a list of authentication sources, including the one you have created for the SP.
 
-**Figure&nbsp;1.&nbsp;Screenshot of the status page after an user have succesfully authenticated**
+After you click the link for that authentication source, you will be redirected to the IdP.
+After entering your credentials, you should be redirected back to the test page.
+The test page should contain a list of your attributes:
 
 ![Screenshot of the status page after an user have succesfully authenticated](http://rnd.feide.no/files/screenshot-example.png)
 
@@ -135,51 +120,32 @@ Integrating authentication with your own application
 For those web resources you want to protect, you must add a few
 lines of PHP code:
 
--   Check whether the user is already authenticated.
+-   Register the simpleSAMLphp classes with the PHP autoloader.
 
 -  
-    If the user is not authenticated, but should be for this resource,
-    redirect him to the `initSSO.php` script with the appropriate
-    parameters. Note particularly the `RelayState` specifying the
-    return URL after login.
+    Require authentication of the user for those places it is required.
 
 -  
-    If authentication is successful, but you need to determine the
-    user's authorization, read the user attributes supplied by the IdP
-    from the session object. If you need user attributes beyond those
-    supplied by the IdP, you may maintain an exteded user description
-    in you own database, using the (authenticated) user ID as a key.
+    Access the users attributes.
 
+Example code:
 
-Sample code:
+We start off with loading a file which registers the simpleSAMLphp classes with the autoloader.
 
-We start off with including a common file \_include.php. This will add the simpleSAMLphp libraries to the PHP class autoloader.
+    require_once('../../lib/_autoload.php');
 
-    require_once('../_include.php');
+We select our authentication source:
 
-We load the current simpleSAMLphp session object:
+    $as = new SimpleSAML_Auth_Simple('default-sp');
 
-    /* Load simpleSAMLphp configuration and session. */
-    $config = SimpleSAML_Configuration::getInstance();
-    $session = SimpleSAML_Session::getInstance();
+We then require authentication:
 
-Then check whether the session is valid. If not, redirect the user to the IdP, specifying the `initSSO.php` script (for SAML 2.0 or Shibboleth 1.3, respectively). adding the current URL as a `RelayState` parameter. The user will leave your web page temporarily. When he returns after successful authentication, there will be a valid session, and the body of the `if` statement is skipped.
+    $as->requireAuth();
 
-    /* Check if valid local session exists. */
-    if (!$session->isValid('saml2') ) {
-      /* Redirect to the IdP for authentication. */
-      SimpleSAML_Utilities::redirect(
-        '/' . $config->getBaseURL() . 'saml2/sp/initSSO.php',
-        array('RelayState' => SimpleSAML_Utilities::selfURL())
-        );
-    }
+And print the attributes:
 
-After successful athentication, user attributes supplied by the IdP are available in session object. To take a closer look at the attributes array, you may print it out...
-
-    $attributes = $session->getAttributes();
+    $attributes = $as->getAttributes();
     print_r($attributes);
-
-(Obviously, printing out all attributes this way would be done in a test phase only!)
 
 Each attribute name can be used as an index into $attributes to obtain the value. Every attribute value is an array - a single-valued attribute is an array of a single element.
 
