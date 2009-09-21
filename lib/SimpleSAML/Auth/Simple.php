@@ -3,13 +3,30 @@
 /**
  * Helper class for simple authentication applications.
  *
- * This class will use the authentication source specified in the
- * 'default-authsource' option in 'config.php'.
- *
  * @package simpleSAMLphp
  * @version $Id$
  */
 class SimpleSAML_Auth_Simple {
+
+	/**
+	 * The id of the authentication source we are accessing.
+	 *
+	 * @var string
+	 */
+	private $authSource;
+
+
+	/**
+	 * Create an instance with the specified authsource.
+	 *
+	 * @param string $authSource  The id of the authentication source.
+	 */
+	public function __construct($authSource) {
+		assert('is_string($authSource)');
+
+		$this->authSource = $authSource;
+	}
+
 
 	/**
 	 * Check if the user is authenticated.
@@ -20,13 +37,10 @@ class SimpleSAML_Auth_Simple {
 	 *
 	 * @return bool  TRUE if the user is authenticated, FALSE if not.
 	 */
-	public static function isAuthenticated() {
-		$config = SimpleSAML_Configuration::getInstance();
+	public function isAuthenticated() {
 		$session = SimpleSAML_Session::getInstance();
 
-		$as = $config->getString('default-authsource');
-
-		return $session->isValid($as);
+		return $session->isValid($this->authSource);
 	}
 
 
@@ -45,15 +59,12 @@ class SimpleSAML_Auth_Simple {
 	 *
 	 * @param bool $allowPost  Whether POST requests will be preserved. The default is to preserve POST requests.
 	 */
-	public static function requireAuth($allowPost = TRUE) {
+	public function requireAuth($allowPost = TRUE) {
 		assert('is_bool($allowPost)');
 
-		$config = SimpleSAML_Configuration::getInstance();
 		$session = SimpleSAML_Session::getInstance();
 
-		$as = $config->getString('default-authsource');
-
-		if ($session->isValid($as)) {
+		if ($session->isValid($this->authSource)) {
 			/* Already authenticated. */
 			return;
 		}
@@ -63,7 +74,7 @@ class SimpleSAML_Auth_Simple {
 			$url = SimpleSAML_Utilities::createPostRedirectLink($url, $_POST);
 		}
 
-		SimpleSAML_Auth_Default::initLogin($as, $url);
+		SimpleSAML_Auth_Default::initLogin($this->authSource, $url);
 	}
 
 
@@ -77,11 +88,18 @@ class SimpleSAML_Auth_Simple {
 	 * @param string|NULL $url  The url the user should be redirected to after logging out.
 	 *                          Defaults to the current page.
 	 */
-	public static function logout($url = NULL) {
+	public function logout($url = NULL) {
 		assert('is_string($url) || is_null($url)');
 
 		if ($url === NULL) {
 			$url = SimpleSAML_Utilities::selfURL();
+		}
+
+		$session = SimpleSAML_Session::getInstance();
+		if (!$session->isValid($this->authSource)) {
+			/* Not authenticated to this authentication source. */
+			SimpleSAML_Utilities::redirect($url);
+			assert('FALSE');
 		}
 
 		SimpleSAML_Auth_Default::initLogout($url);
@@ -97,9 +115,9 @@ class SimpleSAML_Auth_Simple {
 	 *
 	 * @return array  The users attributes.
 	 */
-	public static function getAttributes() {
+	public function getAttributes() {
 
-		if (!self::isAuthenticated()) {
+		if (!$this->isAuthenticated()) {
 			/* Not authenticated. */
 			return array();
 		}

@@ -14,6 +14,10 @@
  */
 require_once('../../lib/_autoload.php');
 
+/*
+ * We use the default-sp authentication source.
+ */
+$as = new SimpleSAML_Auth_Simple('default-sp');
 
 /* This handles logout requests. */
 if (array_key_exists('logout', $_REQUEST)) {
@@ -22,7 +26,7 @@ if (array_key_exists('logout', $_REQUEST)) {
 	 * avoids a redirect loop, since otherwise it will access the logout
 	 * endpoint again.
 	 */
-	SimpleSAML_Auth_Simple::logout(SimpleSAML_Utilities::selfURLNoQuery());
+	$as->logout(SimpleSAML_Utilities::selfURLNoQuery());
 	/* The previous function will never return. */
 }
 
@@ -34,7 +38,7 @@ if (array_key_exists('login', $_REQUEST)) {
 	 * Note that the requireAuth-function will preserve all GET-parameters
 	 * and POST-parameters by default.
 	 */
-	SimpleSAML_Auth_Simple::requireAuth();
+	$as->requireAuth();
 	/* The previous function will only return if the user is authenticated. */
 }
 
@@ -46,7 +50,7 @@ if (array_key_exists('message', $_POST)) {
 	 * Since POST parameters are preserved during requireAuth-processing,
 	 * the message will be presented to the user after the authentication.
 	 */
-	SimpleSAML_Auth_Simple::requireAuth();
+	$as->requireAuth();
 	$message = $_POST['message'];
 } else {
 	$message = NULL;
@@ -57,14 +61,14 @@ if (array_key_exists('message', $_POST)) {
  * This allows us to show the user a login link or a logout link depending
  * on the authentication state.
  */
-$isAuth = SimpleSAML_Auth_Simple::isAuthenticated();
+$isAuth = $as->isAuthenticated();
 
 
 /*
  * Retrieve the users attributes. We will list them if the user
  * is authenticated.
  */
-$attributes = SimpleSAML_Auth_Simple::getAttributes();
+$attributes = $as->getAttributes();
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
