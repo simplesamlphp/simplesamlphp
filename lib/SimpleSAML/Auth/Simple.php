@@ -57,9 +57,9 @@ class SimpleSAML_Auth_Simple {
 	 * preserved. If $allowPost is FALSE, the user will be returned to the
 	 * current page with a GET request.
 	 *
-	 * @param bool $allowPost  Whether POST requests will be preserved. The default is to preserve POST requests.
+	 * @param array $options  Various options to the authentication request.
 	 */
-	public function requireAuth($allowPost = TRUE) {
+	public function requireAuth(array $options = array()) {
 		assert('is_bool($allowPost)');
 
 		$session = SimpleSAML_Session::getInstance();
@@ -69,12 +69,23 @@ class SimpleSAML_Auth_Simple {
 			return;
 		}
 
-		$url = SimpleSAML_Utilities::selfURL();
-		if ($allowPost && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$url = SimpleSAML_Utilities::createPostRedirectLink($url, $_POST);
+		if (array_key_exists('KeepPost', $options)) {
+			$keepPost = (bool)$options['KeepPost'];
+		} else {
+			$keepPost = TRUE;
 		}
 
-		SimpleSAML_Auth_Default::initLogin($this->authSource, $url);
+		if (array_key_exists('ReturnTo', $options)) {
+			$returnTo = (string)$options['ReturnTo'];
+		} else {
+			$returnTo = SimpleSAML_Utilities::selfURL();
+		}
+
+		if ($keepPost && $_SERVER['REQUEST_METHOD'] === 'POST') {
+			$returnTo = SimpleSAML_Utilities::createPostRedirectLink($returnTo, $_POST);
+		}
+
+		SimpleSAML_Auth_Default::initLogin($this->authSource, $returnTo);
 	}
 
 
