@@ -30,6 +30,12 @@ class SAML2_AuthnRequest extends SAML2_Request {
 	 */
 	private $isPassive;
 
+	/**
+	 * The list of providerIDs in this request's scoping element
+	 *
+	 * @var array
+	*/
+	private $IDPList = array();
 
 	/**
 	 * The URL of the asertion consumer service where the response should be delivered.
@@ -75,6 +81,7 @@ class SAML2_AuthnRequest extends SAML2_Request {
 		}
 
 		$nameIdPolicy = SAML2_Utils::xpQuery($xml, './saml_protocol:NameIDPolicy');
+
 		if (!empty($nameIdPolicy)) {
 			$nameIdPolicy = $nameIdPolicy[0];
 			if ($nameIdPolicy->hasAttribute('Format')) {
@@ -86,6 +93,15 @@ class SAML2_AuthnRequest extends SAML2_Request {
 			if ($nameIdPolicy->hasAttribute('AllowCreate')) {
 				$this->nameIdPolicy['AllowCreate'] = SAML2_Utils::parseBoolean($nameIdPolicy, 'AllowCreate', FALSE);
 			}
+		}
+		
+		$idpEntries = SAML2_Utils::xpQuery($xml, './saml_protocol:Scoping/saml_protocol:IDPList/saml_protocol:IDPEntry');
+
+		foreach($idpEntries as $idpEntry) {
+			if (!$idpEntry->hasAttribute('ProviderID')) {
+				throw new Exception("Could not get ProviderID from Scoping/IDPEntry element in AuthnRequest object");
+			}
+			$this->IDPList[] = $idpEntry->getAttribute('ProviderID');
 		}
 	}
 
@@ -162,6 +178,31 @@ class SAML2_AuthnRequest extends SAML2_Request {
 
 
 	/**
+	 * This function sets the scoping for the request
+	 * See Core 3.4.1.2 for the definition of scoping
+	 * Currently we only support an IDPList of idpEntries
+	 * and only the required ProviderID in an IDPEntry
+	 * $providerIDs is an array of Entity Identifiers
+	 *
+	 */
+	public function setIDPList($IDPList) {
+		assert('is_array($IDPList)');
+		$this->IDPList = $IDPList;
+	}
+
+
+	/**
+	 * This function retrieves the list of providerIDs from this authentication request.
+	 * Currently we only support a list of ipd ientity id's.
+	 * @return The list of idpidentityids from the request
+	 */
+	 
+	public function getIDPList() {
+		return $this->IDPList;
+	}
+
+
+	/**
 	 * Retrieve the value of the AssertionConsumerServiceURL attribute.
 	 *
 	 * @return string|NULL  The AssertionConsumerServiceURL attribute.
@@ -228,6 +269,18 @@ class SAML2_AuthnRequest extends SAML2_Request {
 
 		if ($this->protocolBinding !== NULL) {
 			$root->setAttribute('ProtocolBinding', $this->protocolBinding);
+		}
+
+		if (count($this->IDPList) > 0) {
+			$scoping = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'Scoping');
+			$idplist = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'IDPList');
+			foreach ($this->IDPList as $provider) {
+				$idpEntry = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'IDPEntry');
+				$idpEntry->setAttribute('ProviderID', $provider);
+				$idplist->appendChild($idpEntry);
+			}
+			$scoping->appendChild($idplist);
+			$root->appendChild($scoping);
 		}
 
 		if (!empty($this->nameIdPolicy)) {

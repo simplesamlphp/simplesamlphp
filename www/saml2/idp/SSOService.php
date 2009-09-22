@@ -94,7 +94,9 @@ function handleError(Exception $exception) {
 /*
  * Initiate some variables
  */
-$isPassive = FALSE;
+$isPassive = $forceAuthn = FALSE;
+
+$IDPList = array(); 
 
 /*
  * If the SAMLRequest query parameter is set, we got an incoming Authentication Request 
@@ -136,6 +138,17 @@ if (isset($_REQUEST['SAMLRequest'])) {
 		);
 			
 
+		$spentityid = $requestcache['Issuer'];
+		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
+
+		$IDPList = $authnrequest->getIDPList();
+
+		if(array_key_exists('IDPList', $spmetadata)) {
+			$IDPList = array_unique(array_merge($IDPList, $spmetadata['IDPList']));
+		}
+		
+		$requestcache['IDPList'] = $IDPList;
+		
 		/*
 		 * Handle the ForceAuthn option.
 		 */
@@ -143,8 +156,6 @@ if (isset($_REQUEST['SAMLRequest'])) {
 		/* The default value is FALSE. */
 		$forceAuthn = FALSE;
 
-		$spentityid = $requestcache['Issuer'];
-		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
 		if(array_key_exists('ForceAuthn', $spmetadata)) {
 			/* The ForceAuthn flag is set in the metadata for this SP. */
 			$forceAuthn = $spmetadata['ForceAuthn'];
@@ -177,8 +188,9 @@ if (isset($_REQUEST['SAMLRequest'])) {
 			 */
 			$requestcache['NeedAuthentication'] = TRUE;
 		}
+		$requestcache['IsPassive'] = $isPassive;
+		$requestcache['ForceAuthn'] = $forceAuthn;
 
-		
 		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '.$issuer.' id '.$requestid);
 	
 	} catch(Exception $exception) {
@@ -287,11 +299,15 @@ if(SimpleSAML_Auth_Source::getById($idpmetadata['auth']) !== NULL) {
  * endpoint - then the session is authenticated and set, and the user is redirected back with a RequestID
  * parameter so we can retrieve the cached information from the request.
  */
+ 
 if (!isset($session) || !$session->isValid($authority) ) {
 	/* We don't have a valid session. */
 	$needAuth = TRUE;
 } elseif (array_key_exists('NeedAuthentication', $requestcache) && $requestcache['NeedAuthentication']) {
 	/* We have a valid session, but ForceAuthn is on. */
+	$needAuth = TRUE;
+} elseif ((sizeof($IDPList) > 0 && $session->getidp() !== null && !in_array($session->getidp(), $IDPList))) {
+	/* we do have a valid session but not with one of the scoped idps. */
 	$needAuth = TRUE;
 } else {
 	/* We have a valid session. */
@@ -400,7 +416,14 @@ if($needAuth && !$isPassive) {
 		$attributes = $authProcState['Attributes'];
 
 		
-		
+		$host = SimpleSAML_Utilities::getSelfHost();;
+		preg_match("/^(\w+)/", $host, $d);
+		if ($d[1] && $d[1] != 'wayf') {
+			setcookie($d[1], "ok", 0, "/", ".wayf.ruc.dk");
+			setcookie('current', $d[1], 0, "/", ".wayf.ruc.dk");
+		}
+
+
 
 		/*
 		 * Save the time we authenticated to this SP. This can be used later to detect an

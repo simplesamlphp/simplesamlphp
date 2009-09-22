@@ -70,7 +70,13 @@ class SimpleSAML_XHTML_IdPDisco {
 	 */
 	protected $returnIdParam;
 
-
+	/**
+	 * The list of scoped idp's. The intersection between the metadata idpList
+	 * and scopedIDPList (given as a $_GET IDPList[] parameter) is presented to
+	 * the user. If the intersection is empty the metadata idpList is used.
+	 */
+	protected $scopedIDPList = array();
+	
 	/**
 	 * The URL the user should be redirected to after choosing an IdP.
 	 */
@@ -131,6 +137,10 @@ class SimpleSAML_XHTML_IdPDisco {
 			$this->setIdPentityID = $_GET['IdPentityID'];
 		} else {
 			$this->setIdPentityID = NULL;
+		}
+
+		if (array_key_exists('IDPList', $_GET)) {
+			$this->scopedIDPList = $_GET['IDPList'];
 		}
 
 	}
@@ -418,7 +428,15 @@ class SimpleSAML_XHTML_IdPDisco {
 		return $idpList;
 	}
 
-
+	/**
+	 * Return the list of scoped idp
+	 *
+	 * @return array  Array of idp entities
+	 */
+	protected function getScopedIDPList() {
+		return $this->scopedIDPList;
+	}
+	
 	/**
 	 * Handles a request to this discovery service.
 	 *
@@ -459,6 +477,11 @@ class SimpleSAML_XHTML_IdPDisco {
 
 		$idpList = $this->getIdPList();
 		$preferredIdP = $this->getRecommendedIdP();
+
+		$idpintersection = array_intersect(array_keys($idpList), $this->getScopedIDPlist());
+		if (sizeof($idpintersection) > 0) {
+			$idpList = array_intersect_key($idpList, array_fill_keys($idpintersection, NULL));
+		}
 
 		/*
 		 * Make use of an XHTML template to present the select IdP choice to the user.
