@@ -75,12 +75,15 @@ foreach($this->data['metaentries']['remote'] AS $setkey => $set) {
 	echo '<ul>';
 	foreach($set AS $entry) {
 		echo '<li>';
+		echo ('<a href="' . 
+			SimpleSAML_Module::getModuleURL('core/show_metadata.php?entityid=' . urlencode($entry['entityid']) . '&amp;set=' . urlencode($setkey) ) . 
+			'">');
 		if (array_key_exists('name', $entry)) {
 			echo $this->getTranslation(SimpleSAML_Utilities::arrayize($entry['name'], 'en'));
 		} else {
 			echo $entry['entityid'];
 		}
-		
+		echo '</a>';
 		if (array_key_exists('expire', $entry)) {
 			if ($entry['expire'] < $now) {
 				echo('<span style="color: #500; font-weight: bold"> (expired ' . number_format(($now - $entry['expire'])/3600, 1) . ' hours ago)</span>');
@@ -112,13 +115,39 @@ foreach($this->data['metaentries']['remote'] AS $setkey => $set) {
 ?>
 </ul>
 
+<?php
 
+if ($this->data['isadmin']) {
 
+?>
 
+<fieldset class="fancyfieldset"><legend>Lookup metadata</legend>
+	<form action="<?php echo SimpleSAML_Module::getModuleURL('core/show_metadata.php'); ?>" method="get" >
+		<p style="margin: 1em 2em ">Look up metadata for entity:
+			<select name="set">
+				
+				<?php
+					if (is_array($this->data['metaentries']['remote']) && count($this->data['metaentries']['remote']) > 0) {
+						foreach($this->data['metaentries']['remote'] AS $setkey => $set) {
+							echo '<option value="' . htmlspecialchars($setkey) . '">' . $this->t(mtype($setkey)) . '</option>';
+						}
+					}
+				
+				?>
+				
+				
+			</select>
+			<input type="text" name="entityid">
+			<input type="submit" value="Lookup">
+		</p>
+	</form>
+</fieldset>
 
+<?php
 
+}
 
-
+?>
 
 
 
