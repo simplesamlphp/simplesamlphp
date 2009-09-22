@@ -71,7 +71,7 @@ foreach ($this->data['idplist'] AS $idpentry) {
 
 					echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
 				}
-				echo('<input id="preferredidp" type="submit" name="idp_' .
+				echo('<input type="submit" name="idp_' .
 					htmlspecialchars($idpentry['entityid']) . '" value="' .
 					$this->t('select') . '" /></p>');
 			}
