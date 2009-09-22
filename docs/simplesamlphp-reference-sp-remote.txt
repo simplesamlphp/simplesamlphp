@@ -247,6 +247,19 @@ These options overrides the options set in `saml20-idp-hosted`.
     'redirect.validate' => TRUE,
     'certificate' => 'server.crt',
 
+### Fields for scoping
+
+Only relevant if you are a proxy/bridge and wants to limit the idps this
+sp can use.
+
+`IDPList`
+: The list of scoped idps ie. the list of entityids for idps that are
+relevant for this sp. The final list is the concatenation of the list
+given as parameter to InitSSO (at the sp), the list configured at the
+sp and the list configured at the ipd (here) for this sp. The intersection
+of the final list and the idps configured at the at this idp will be
+presented to the user at the discovery service if neccessary. If only one 
+idp is in the intersection the discoveryservice will go directly to the idp.
 
 Shibboleth 1.3 options
 ----------------------

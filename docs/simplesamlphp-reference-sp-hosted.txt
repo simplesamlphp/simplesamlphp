@@ -128,6 +128,19 @@ These options set the default for this SP, but options for each IdP can be set i
 
      'redirect.sign' => true,
 
+### Fields for scoping
+
+Only relevant if you are a sp connected to a proxy/bridge.
+
+`IDPList`
+: The list of scoped idps ie. the list of entityids for idps that
+are relevant for this sp. The final list is the concatenation of the
+list given as parameter to InitSSO, the list configured at the sp
+(here) and the list configured at the ipd for this sp. The
+intersection of the final list and the idps configured at the
+proxy/bridge will be presented to the user at the discovery service
+if neccessary. If only one idp is in the intersection the
+discoveryservice will go directly to the idp.
 
 Shibboleth 1.3 SP options
 ----------------------
