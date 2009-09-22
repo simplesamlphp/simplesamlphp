@@ -99,7 +99,7 @@ try {
 	$ar->setRelayState($_REQUEST['RelayState']);
 
 	if (isset($_GET['IsPassive'])) {
-		$ar->setIsPassive($_GET['IsPassive']);
+		$ar->setIsPassive((bool)$_GET['IsPassive']);
 	}
 
 	/* Save request information. */
