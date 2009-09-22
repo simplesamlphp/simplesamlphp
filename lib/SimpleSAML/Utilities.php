@@ -690,6 +690,11 @@ class SimpleSAML_Utilities {
 			/* Encode the parameter. */
 			if($value === NULL) {
 				$param = urlencode($name);
+			} elseif (is_array($value)) {
+				$param = "";
+				foreach ($value as $val) {
+					$param .= urlencode($name) . "[]=" . urlencode($val) . '&';				
+				}
 			} else {
 				$param = urlencode($name) . '=' .
 					urlencode($value);
