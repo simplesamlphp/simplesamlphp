@@ -551,6 +551,7 @@ class SimpleSAML_Session {
 		$this->nameid = null;
 	
 		$this->sp_at_idpsessions = array();	
+		$this->dirty = TRUE;
 	}
 	 
 	/**
