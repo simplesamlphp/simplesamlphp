@@ -86,21 +86,23 @@ try {
 		throw new SimpleSAML_Error_BadRequest('Requested URL contained \'./\'.');
 	}
 
-	$path = SimpleSAML_Module::getModuleDir($module) . '/www/' . $url;
+	$moduleDir = SimpleSAML_Module::getModuleDir($module) . '/www/';
+	$path = $moduleDir . $url;
 
 	/* Check for '.php/' in the path, the presence of which indicates that another php-script
 	 * should handle the request.
 	 */
-	for ($phpPos = strpos($path, '.php/'); $phpPos !== FALSE; $phpPos = strpos($path, '.php/', $phpPos + 1)) {
+	for ($phpPos = strpos($url, '.php/'); $phpPos !== FALSE; $phpPos = strpos($url, '.php/', $phpPos + 1)) {
 
-		$newPath = substr($path, 0, $phpPos + 4);
-		$paramPath = substr($path, $phpPos + 4);
+		$newPath = substr($url, 0, $phpPos + 4);
+		$paramPath = substr($url, $phpPos + 4);
 
-		if (is_file($newPath)) {
+		if (is_file($moduleDir . $newPath)) {
 			/* $newPath points to a normal file. Point execution to that file, and
 			 * save the remainder of the path in PATH_INFO.
 			 */
-			$path = $newPath;
+			$path = $moduleDir . $newPath;
+			$_SERVER['SCRIPT_NAME'] .= '/' . $module . '/' . $newPath;
 			$_SERVER['PATH_INFO'] = $paramPath;
 			break;
 		}
