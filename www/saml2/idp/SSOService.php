@@ -210,10 +210,10 @@ if (isset($_REQUEST['SAMLRequest'])) {
 
 	} elseif (array_key_exists('RequestID', $_REQUEST)) {
 		/* This was from an authentication module. */
-		$authId = $_REQUEST['RequestId'];
+		$authId = $_REQUEST['RequestID'];
 		$requestcache = $session->getAuthnRequest('saml2', $authId);
 		if (!$requestcache) {
-			throw new Exception('Could not retrieve saved request while handling exceptions. RequestId=' . var_export($authId, TRUE));
+			throw new Exception('Could not retrieve saved request while handling exceptions. RequestID=' . var_export($authId, TRUE));
 		}
 
 	} else {
