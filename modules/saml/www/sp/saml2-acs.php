@@ -14,16 +14,21 @@ if (!($response instanceof SAML2_Response)) {
 }
 
 $relayState = $response->getRelayState();
-if (empty($relayState)) {
-	throw new SimpleSAML_Error_BadRequest('Missing relaystate in message received on AssertionConsumerService endpoint.');
-}
+if (!empty($relayState)) {
+	/* This is a response to a request we sent earlier. */
+	$state = SimpleSAML_Auth_State::loadState($relayState, 'saml:sp:ssosent-saml2');
 
-$state = SimpleSAML_Auth_State::loadState($relayState, 'saml:sp:ssosent-saml2');
-
-/* Check that the authentication source is correct. */
-assert('array_key_exists("saml:sp:AuthId", $state)');
-if ($state['saml:sp:AuthId'] !== $sourceId) {
-	throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
+	/* Check that the authentication source is correct. */
+	assert('array_key_exists("saml:sp:AuthId", $state)');
+	if ($state['saml:sp:AuthId'] !== $sourceId) {
+		throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
+	}
+} else {
+	/* This is an unsoliced response. */
+	$state = array(
+		'saml:sp:isUnsoliced' => TRUE,
+		'saml:sp:AuthId' => $sourceId,
+	);
 }
 
 

@@ -384,6 +384,12 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$source->addLogoutCallback($idp, $state);
 
 		$state['Attributes'] = $authProcState['Attributes'];
+
+		if (isset($state['saml:sp:isUnsoliced']) && (bool)$state['saml:sp:isUnsoliced']) {
+			$redirectTo = $source->getMetadata()->getString('RelayState', '/');
+			SimpleSAML_Auth_Default::handleUnsolicedAuth($sourceId, $state, $redirectTo);
+		}
+
 		SimpleSAML_Auth_Source::completeAuth($state);
 	}
 
