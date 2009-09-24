@@ -21,7 +21,10 @@ $lang = array(
 		'no' => 'Sverige',
 		'en' => 'Sweden',
 	),
-	
+	'iceland' => array(
+		'no' => 'Island',
+		'en' => 'Iceland',
+	),
 	'denmark' => array (
 		'no' => 'Danmark',
 		'en' => 'Denmark',
@@ -37,7 +40,7 @@ $lang = array(
 	'misc' => array (
 		'no' => 'Andre',
 		'en' => 'Miscellaneous',
-	),	
+	),
 	
 );
 
