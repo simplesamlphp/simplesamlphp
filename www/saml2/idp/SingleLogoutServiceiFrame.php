@@ -344,7 +344,7 @@ try {
 		/*
 		 * If the user is not logged into any other SPs, send the LogoutResponse immediately
 		 */
-		if (count($sparray) === 0) {
+		if (count($sparray) + count($sparrayNoLogout) === 0) {
 			$httpredirect->setDestination(sspmod_SAML2_Message::getDebugDestination());
 			$httpredirect->send($rg);
 		} else {
