@@ -4,6 +4,9 @@
  * Assertion consumer service handler for SAML 2.0 SP authentication client.
  */
 
+$sourceId = substr($_SERVER['PATH_INFO'], 1);
+$source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
+
 $b = SAML2_Binding::getCurrentBinding();
 $response = $b->receive();
 if (!($response instanceof SAML2_Response)) {
@@ -17,16 +20,10 @@ if (empty($relayState)) {
 
 $state = SimpleSAML_Auth_State::loadState($relayState, 'saml:sp:ssosent-saml2');
 
-/* Find authentication source. */
+/* Check that the authentication source is correct. */
 assert('array_key_exists("saml:sp:AuthId", $state)');
-$sourceId = $state['saml:sp:AuthId'];
-
-$source = SimpleSAML_Auth_Source::getById($sourceId);
-if ($source === NULL) {
-	throw new Exception('Could not find authentication source with id ' . $sourceId);
-}
-if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
-	throw new SimpleSAML_Error_Exception('Source type changed?');
+if ($state['saml:sp:AuthId'] !== $sourceId) {
+	throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
 }
 
 

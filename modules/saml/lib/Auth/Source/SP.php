@@ -149,7 +149,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:ssosent-saml1');
 		$ar->setRelayState($id);
 
-		$url = $ar->createRedirect($idpEntityId, SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php'));
+		$url = $ar->createRedirect($idpEntityId, SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->authId));
 
 		SimpleSAML_Logger::debug('Starting SAML 1 SSO to ' . var_export($idpEntityId, TRUE) .
 			' from ' . var_export($this->entityId, TRUE) . '.');
@@ -167,7 +167,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$ar = sspmod_saml2_Message::buildAuthnRequest($this->metadata, $idpMetadata);
 
-		$ar->setAssertionConsumerServiceURL(SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php'));
+		$ar->setAssertionConsumerServiceURL(SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId));
 		$ar->setProtocolBinding(SAML2_Const::BINDING_HTTP_POST);
 
 		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:ssosent-saml2');

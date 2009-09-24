@@ -8,19 +8,22 @@ if (!array_key_exists('TARGET', $_REQUEST)) {
 	throw new SimpleSAML_Error_BadRequest('Missing TARGET parameter.');
 }
 
+$sourceId = $_SERVER['PATH_INFO'];
+$end = strpos($sourceId, '/', 1);
+if ($end === FALSE) {
+	$end = strlen($sourceId);
+}
+$sourceId = substr($sourceId, 1, $end - 1);
+
+$source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
+
 
 $state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:ssosent-saml1');
 
-/* Find authentication source. */
+/* Check that the authentication source is correct. */
 assert('array_key_exists("saml:sp:AuthId", $state)');
-$sourceId = $state['saml:sp:AuthId'];
-
-$source = SimpleSAML_Auth_Source::getById($sourceId);
-if ($source === NULL) {
-	throw new SimpleSAML_Error_Exception('Could not find authentication source with id ' . $sourceId);
-}
-if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
-	throw new SimpleSAML_Error_Exception('Source type changed?');
+if ($state['saml:sp:AuthId'] !== $sourceId) {
+	throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
 }
 
 $idpEntityId = $state['saml:idp'];
