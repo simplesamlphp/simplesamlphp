@@ -178,6 +178,44 @@ class SimpleSAML_Auth_Default {
 		$session->doLogout();
 	}
 
+
+	/**
+	 * Handle a unsoliced login operations.
+	 *
+	 * This function creates a session from the received information. It
+	 * will then redirect to the given URL.
+	 *
+	 * This is used to handle IdP initiated SSO.
+	 *
+	 * @param string $authId  The id of the authentication source that received the request.
+	 * @param array $state  A state array.
+	 * @param string $redirectTo  The URL we should redirect the user to after
+	 *                            updating the session.
+	 */
+	public static function handleUnsolicedAuth($authId, array $state, $redirectTo) {
+		assert('is_string($authId)');
+		assert('is_string($redirectTo)');
+
+		$session = SimpleSAML_Session::getInstance();
+		$session->doLogin($authId);
+
+		if (array_key_exists('Attributes', $state)) {
+			$session->setAttributes($state['Attributes']);
+		} else {
+			$session->setAttributes(array());
+		}
+
+		if(array_key_exists('Expires', $state)) {
+			$session->setSessionDuration($state['Expires'] - time());
+		}
+
+		if (array_key_exists('LogoutState', $state)) {
+			$session->setLogoutState($state['LogoutState']);
+		}
+
+		SimpleSAML_Utilities::redirect($redirectTo);
+	}
+
 }
 
 ?>
