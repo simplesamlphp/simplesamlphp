@@ -414,16 +414,7 @@ if($needAuth && !$isPassive) {
 		}
 
 		$attributes = $authProcState['Attributes'];
-
 		
-		$host = SimpleSAML_Utilities::getSelfHost();;
-		preg_match("/^(\w+)/", $host, $d);
-		if ($d[1] && $d[1] != 'wayf') {
-			setcookie($d[1], "ok", 0, "/", ".wayf.ruc.dk");
-			setcookie('current', $d[1], 0, "/", ".wayf.ruc.dk");
-		}
-
-
 
 		/*
 		 * Save the time we authenticated to this SP. This can be used later to detect an
