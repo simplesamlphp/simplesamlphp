@@ -17,8 +17,8 @@ require_once($baseDir . '/lib/_autoload.php');
 require_once(dirname(dirname(__FILE__)) . '/libextinc/OAuth.php');
 
 $baseurl = (isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : 'https://foodle.feide.no/simplesaml');
-$key = (isset($_SERVER['argv'][2]) ? $_SERVER['argv'][1] : 'key');
-$secret = (isset($_SERVER['argv'][3]) ? $_SERVER['argv'][1] : 'secret');
+$key = (isset($_SERVER['argv'][2]) ? $_SERVER['argv'][2] : 'key');
+$secret = (isset($_SERVER['argv'][3]) ? $_SERVER['argv'][3] : 'secret');
 
 echo 'Welcome to the OAuth CLI client' . "\n";
 $consumer = new sspmod_oauth_Consumer($key, $secret);
