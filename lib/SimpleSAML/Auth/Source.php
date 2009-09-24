@@ -197,24 +197,44 @@ abstract class SimpleSAML_Auth_Source {
 	 * Retrieve authentication source.
 	 *
 	 * This function takes an id of an authentication source, and returns the
-	 * AuthSource object.
+	 * AuthSource object. If no authentication source with the given id can be found,
+	 * NULL will be returned.
+	 *
+	 * If the $type parameter is specified, this function will return an
+	 * authentication source of the given type. If no authentication source or if an
+	 * authentication source of a different type is found, an exception will be thrown.
 	 *
 	 * @param string $authId  The authentication source identifier.
+	 * @param string|NULL $type  The type of authentication source. If NULL, any type will be accepted.
 	 * @return SimpleSAML_Auth_Source|NULL  The AuthSource object, or NULL if no authentication
 	 *     source with the given identifier is found.
 	 */
-	public static function getById($authId) {
+	public static function getById($authId, $type = NULL) {
 		assert('is_string($authId)');
+		assert('is_null($type) || is_string($type)');
 
 		/* For now - load and parse config file. */
 		$config = SimpleSAML_Configuration::getConfig('authsources.php');
 
 		$authConfig = $config->getArray($authId, NULL);
 		if ($authConfig === NULL) {
+			if ($type !== NULL) {
+				throw new SimpleSAML_Error_Exception('No authentication source with id ' .
+					var_export($authId, TRUE) . ' found.');
+			}
 			return NULL;
 		}
 
-		return self::parseAuthSource($authId, $authConfig);
+		$ret = self::parseAuthSource($authId, $authConfig);
+
+		if ($type === NULL || $ret instanceof $type) {
+			return $ret;
+		}
+
+		/* The authentication source doesn't have the correct type. */
+		throw new SimpleSAML_Error_Exception('Invalid type of authentication source ' .
+			var_export($authId, TRUE) . '. Was ' . var_export(get_class($ret), TRUE) .
+			', should be ' . var_export($type, TRUE) . '.');
 	}
 
 
