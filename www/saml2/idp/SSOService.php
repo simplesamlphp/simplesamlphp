@@ -271,6 +271,9 @@ if (isset($_REQUEST['SAMLRequest'])) {
 		'Issuer' => $_GET['spentityid'],
 	);
 
+	if (isset($_GET['RelayState'])) {
+		$requestcache['RelayState'] = $_GET['RelayState'];
+	}
 
 } else {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SSOSERVICEPARAMS');
@@ -329,11 +332,16 @@ if($needAuth && !$isPassive) {
 		/* The user will be redirected to this URL if the session is lost. This will cause an
 		 * unsoliced authentication response to be sent to the SP.
 		 */
+		$sessionLostParams = array(
+			'spentityid' => $requestcache['Issuer'],
+			);
+		if (isset($requestcache['RelayState'])) {
+			$sessionLostParams['RelayState'] = $requestcache['RelayState'];
+		}
+
 		$sessionLostURL = SimpleSAML_Utilities::addURLparameter(
 			$metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted'),
-			array(
-				'spentityid' => $requestcache['Issuer'],
-			));
+			$sessionLostParams);
 
 		$hints = array(
 			'SPMetadata' => $metadata->getMetaData($requestcache['Issuer'], 'saml20-sp-remote'),
