@@ -27,7 +27,7 @@ $metadata['https://openidp.feide.no'] = array(
 
 
 /**
- * Feide, the norwegian federatino. Test and production metadata. 
+ * Feide, the norwegian federation. Test and production metadata. 
  */
 $metadata['https://idp-test.feide.no'] = array(
 	'name'					=>	array(
