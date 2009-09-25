@@ -170,6 +170,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$ar->setAssertionConsumerServiceURL(SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId));
 		$ar->setProtocolBinding(SAML2_Const::BINDING_HTTP_POST);
 
+		if (isset($state['SimpleSAML_Auth_Default.ReturnURL'])) {
+			$ar->setRelayState($state['SimpleSAML_Auth_Default.ReturnURL']);
+		}
+
 		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:ssosent-saml2');
 		$ar->setId($id);
 
@@ -386,7 +390,11 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$state['Attributes'] = $authProcState['Attributes'];
 
 		if (isset($state['saml:sp:isUnsoliced']) && (bool)$state['saml:sp:isUnsoliced']) {
-			$redirectTo = $source->getMetadata()->getString('RelayState', '/');
+			if (isset($state['saml:sp:RelayState'])) {
+				$redirectTo = $state['saml:sp:RelayState'];
+			} else {
+				$redirectTo = $source->getMetadata()->getString('RelayState', '/');
+			}
 			SimpleSAML_Auth_Default::handleUnsolicedAuth($sourceId, $state, $redirectTo);
 		}
 

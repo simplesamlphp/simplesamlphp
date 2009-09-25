@@ -28,6 +28,7 @@ if (!empty($stateId)) {
 	$state = array(
 		'saml:sp:isUnsoliced' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
+		'saml:sp:RelayState' => $response->getRelayState(),
 	);
 }
 
