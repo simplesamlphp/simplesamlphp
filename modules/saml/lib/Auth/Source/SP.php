@@ -171,7 +171,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$ar->setProtocolBinding(SAML2_Const::BINDING_HTTP_POST);
 
 		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:ssosent-saml2');
-		$ar->setRelayState($id);
+		$ar->setId($id);
 
 		$b = new SAML2_HTTPRedirect();
 		$b->setDestination(sspmod_SAML2_Message::getDebugDestination());
