@@ -83,6 +83,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 		/* Check if key exists first to avoid notice-messages in the
 		 * log.
 		 */
+		if (!isset($_SESSION)) return NULL;
 		if(!array_key_exists($key, $_SESSION)) {
 			/* We should return NULL if we don't have that
 			 * key in the session.
