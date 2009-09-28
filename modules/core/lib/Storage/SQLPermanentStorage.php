@@ -18,7 +18,7 @@ class sspmod_core_Storage_SQLPermanentStorage {
 		if (is_null($config))
 			$config = SimpleSAML_Configuration::getInstance();
 		
-		$datadir = $config->getPathValue('datadir');
+		$datadir = $config->getPathValue('datadir', 'data/');
 		
 		if (!is_dir($datadir))
 			throw new Exception('Data directory [' . $datadir. '] does not exist');
