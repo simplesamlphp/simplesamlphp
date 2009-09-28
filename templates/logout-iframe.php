@@ -50,6 +50,7 @@ function startslo() {
 	$("#hiddeniframecontainer").html("' . str_replace('"', '\"', $iframehtml) . '");
 	$("table#slostatustable tr.onhold").removeClass("onhold").addClass("inprogress");
 /*	$("div.completedButWarnings").show();  */
+' . ($iframehtml === '' ? 'sendResponse();' : '') . '
 	setTimeout("toolong()", 16000);
 }
 
@@ -64,7 +65,7 @@ function slocompletesp($entityhash) {
 function slocompleted() {
 /*	$("div.completedButWarnings").show(); */
 	$("div#interrupt").hide();
-' . ($nologoutSPs ? ' ' : 'setTimeout("sendResponse()", 2000);') . '
+        setTimeout("sendResponse()", 2000);
 }
 
 function sendResponse() {

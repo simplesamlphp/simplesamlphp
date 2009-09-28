@@ -97,7 +97,30 @@ function updateslostatus() {
 	$templistofsps = $session->get_sp_list(SimpleSAML_Session::STATE_ONLINE);
 	$listofsps = array();
 	foreach ($templistofsps AS $spentityid) {
-		if (!empty($_COOKIE['spstate-' . sha1($spentityid)])) $listofsps[] = $spentityid;
+		if (!empty($_COOKIE['spstate-' . sha1($spentityid)])) {
+			$listofsps[] = $spentityid;
+			continue;
+		}
+
+		try {
+			$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
+		} catch (Exception $e) {
+			/*
+			 * For some reason, the metadata for this SP is no longer available. Most
+			 * likely it was deleted from the IdP while the user had a session to it.
+			 * In any case - skip this SP.
+			 */
+			$listofsps[] = $spentityid;
+			continue;
+		}
+
+		if (!isset($spmetadata['SingleLogoutService'])) {
+			/* No logout endpoint. */
+			$listofsps[] = $spentityid;
+			continue;
+		}
+
+		/* This SP isn't ready yet. */
 	}
 	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutServiceiFrame: templistofsps ' . join(',', $templistofsps));
 	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutServiceiFrame:     listofsps ' . join(',', $listofsps));
@@ -224,7 +247,7 @@ SimpleSAML_Logger::debug('SAML2.0 - SP Counter. other SPs with SLO support (' . 
 /*
  * If the user is not logged into any other SPs.
  */
-if (count($sparray) === 0) {
+if (count($sparray) + count($sparrayNoLogout) === 0) {
 	SimpleSAML_Utilities::redirect($relayState);
 	exit;
 } 
