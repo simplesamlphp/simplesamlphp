@@ -12,12 +12,17 @@ $server->add_signature_method($hmac_method);
 $server->add_signature_method($plaintext_method);
 
 $req = OAuthRequest::from_request();
+
+
 $requestToken = $req->get_parameter('oauth_token');
+
 
 
 if (!$store->isAuthorized($requestToken)) {
 	throw new Exception('Your request was not authorized. Request token [' . $requestToken . '] not found.');
 }
+
+
 
 $accessToken = $server->fetch_access_token($req);
 

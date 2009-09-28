@@ -206,7 +206,7 @@ class OAuthRequest {/*{{{*/
       // next check for the auth header, we need to do some extra stuff
       // if that is the case, namely suck in the parameters from GET or POST
       // so that we can include them in the signature
-      if (@substr($request_headers['Authorization'], 0, 6) == "OAuth ") {
+      if (array_key_exists('Authorization', $request_headers) &&  substr($request_headers['Authorization'], 0, 6) == "OAuth ") {
         $header_parameters = OAuthRequest::split_header($request_headers['Authorization']);
         $parameters = array_merge($req_parameters, $header_parameters);
         $req = new OAuthRequest($http_method, $http_url, $parameters);
@@ -589,6 +589,16 @@ class OAuthServer {/*{{{*/
    */
   private function get_token(&$request, $consumer, $token_type="access") {/*{{{*/
     $token_field = @$request->get_parameter('oauth_token');
+
+	// SimpleSAML_Logger::info('request: ' . var_export($request, TRUE));
+	// SimpleSAML_Logger::info('token_type: ' . var_export($token_type, TRUE));
+	// SimpleSAML_Logger::info('token_field: ' . var_export($token_field, TRUE));
+	// 
+	// $bt = SimpleSAML_Utilities::buildBacktrace(new Exception());
+	// foreach ($bt AS $t) {
+	// 	SimpleSAML_Logger::info('   ' . $t);
+	// }
+
     $token = $this->data_store->lookup_token(
       $consumer, $token_type, $token_field
     );
@@ -612,7 +622,7 @@ class OAuthServer {/*{{{*/
 
     $signature_method = $this->get_signature_method($request);
 
-    $signature = $request->get_parameter('oauth_signature');    
+    $signature = $request->get_parameter('oauth_signature'); 
     $valid_sig = $signature_method->check_signature(
       $request, 
       $consumer, 
@@ -677,74 +687,6 @@ class OAuthDataStore {/*{{{*/
 
 }/*}}}*/
 
-
-/*  A very naive dbm-based oauth storage
- */
-class SimpleOAuthDataStore extends OAuthDataStore {/*{{{*/
-  private $dbh;
-
-  function __construct($path = "oauth.gdbm") {/*{{{*/
-    $this->dbh = dba_popen($path, 'c', 'gdbm');
-  }/*}}}*/
-
-  function __destruct() {/*{{{*/
-    dba_close($this->dbh);
-  }/*}}}*/
-
-  function lookup_consumer($consumer_key) {/*{{{*/
-    $rv = dba_fetch("consumer_$consumer_key", $this->dbh);
-    if ($rv === FALSE) {
-      return NULL;
-    }
-    $obj = unserialize($rv);
-    if (!($obj instanceof OAuthConsumer)) {
-      return NULL;
-    }
-    return $obj;
-  }/*}}}*/
-
-  function lookup_token($consumer, $token_type, $token) {/*{{{*/
-    $rv = dba_fetch("${token_type}_${token}", $this->dbh);
-    if ($rv === FALSE) {
-      return NULL;
-    }
-    $obj = unserialize($rv);
-    if (!($obj instanceof OAuthToken)) {
-      return NULL;
-    }
-    return $obj;
-  }/*}}}*/
-
-  function lookup_nonce($consumer, $token, $nonce, $timestamp) {/*{{{*/
-    if (dba_exists("nonce_$nonce", $this->dbh)) {
-      return TRUE;
-    } else {
-      dba_insert("nonce_$nonce", "1", $this->dbh);
-      return FALSE;
-    }
-  }/*}}}*/
-
-  function new_token($consumer, $type="request") {/*{{{*/
-    $key = md5(time());
-    $secret = time() + time();
-    $token = new OAuthToken($key, md5(md5($secret)));
-    if (!dba_insert("${type}_$key", serialize($token), $this->dbh)) {
-      throw new OAuthException("doooom!");
-    }
-    return $token;
-  }/*}}}*/
-
-  function new_request_token($consumer) {/*{{{*/
-    return $this->new_token($consumer, "request");
-  }/*}}}*/
-
-  function new_access_token($token, $consumer) {/*{{{*/
-
-    $token = $this->new_token($consumer, 'access');
-    dba_delete("request_" . $token->key, $this->dbh);
-    return $token;
-  }/*}}}*/
-}/*}}}*/
 
 class OAuthUtil {/*{{{*/
   public static function urlencode_rfc3986($input) {/*{{{*/

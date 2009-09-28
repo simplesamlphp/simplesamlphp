@@ -35,7 +35,7 @@ class sspmod_oauth_Consumer {
 		
 		if(array_key_exists('error', $responseParsed))
 			throw new Exception('Error getting request token: ') . $responseParsed['error'];
-		
+			
 #		echo('<pre>'); print_r($response_req); exit;
 		
 		$requestToken = $responseParsed['oauth_token'];
@@ -66,6 +66,7 @@ class sspmod_oauth_Consumer {
 			throw new Exception('Error contacting request_token endpoint on the OAuth Provider');
 		}
 
+		SimpleSAML_Logger::info('   ==== RESPONSE: '. $response_acc);
 		
 		parse_str($response_acc, $accessResponseParsed);
 		
