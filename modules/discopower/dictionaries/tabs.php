@@ -41,6 +41,8 @@ $lang = array(
 		'no' => 'Andre',
 		'en' => 'Miscellaneous',
 	),
+	'incommon' => array('en' => 'InCommon'),
+	'ukacessfederation' => array('en' => 'UK Access Federation'),
 	
 );
 

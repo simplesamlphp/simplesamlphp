@@ -44,12 +44,21 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	protected function log($message) {
 		SimpleSAML_Logger::info('PowerIdPDisco.' . $this->instance . ': ' . $message);
 	}
+	
+	
+	public static function mcmp($a, $b) {
+#		echo 'aort'; exit;
+	    if ($a['name']['en'] == $b['name']['en']) {
+	        return 0;
+	    }
+	    return ($a['name']['en'] < $b['name']['en']) ? -1 : 1;
+	}
 
 	/*
 	 * This function will structure the idp list in a hierarchy based upon the tags.
 	 */
 	protected function idplistStructured($list) {
-#		echo '<pre>'; print_r($list); exit;
+		# echo '<pre>'; print_r($list); exit;
 		$slist = array();
 		
 		$order = $this->discoconfig->getValue('taborder');
@@ -71,6 +80,11 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 				$slist[$tag][$key] = $val;
 			}
 		}
+		
+		foreach($slist AS $tab => $tbslist) {
+			uasort($slist[$tab], array('sspmod_discopower_PowerIdPDisco', 'mcmp'));
+		}
+		
 		return $slist;
 	}
 	

@@ -1,0 +1,53 @@
+.inlinesearch:hover {
+
+}
+.inlinesearch {
+	float: right;
+	margin: 0em 3px .5em 1em;
+	
+/*	padding: .3em;*/
+}
+.inlinesearch p {
+	font-size: 94%;
+	color: #aaa;
+
+}
+.inlinesearch input {
+	background-image:url('icons/magnify.png');
+	background-repeat:no-repeat;
+	background-position:center left;
+	border: 1px solid #ccc;
+	padding: 2px 2px 2px 20px;
+	margin: 0px 2px 0px 0px;
+}
+.inlinesearch * {
+	margin: 0px; 
+	padding: 0px;
+}
+ul.metalist {
+	clear: both;
+	list-style: none;
+	margin: 1em 2px .5em 2px;
+	padding: 0px;
+}
+li.metaentry {
+	border: 1px solid #ccc;
+	margin: 0px 0px -1px 0px;
+	padding: .2em 1em .2em 20px;
+	cursor: pointer;
+	cursor: hand;
+}
+li.metaentry.favourite {
+	background-image:url('icons/heart.png');
+	background-repeat:no-repeat;
+	background-position:center left;
+
+}
+li.metaentry:hover {
+	border: 1px solid #ccc;
+	background: #eee;
+
+	background-image:url('icons/star.png');
+	background-repeat:no-repeat;
+	background-position:center left;
+}

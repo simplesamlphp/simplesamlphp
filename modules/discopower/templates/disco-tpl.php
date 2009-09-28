@@ -4,24 +4,36 @@ if(!array_key_exists('header', $this->data)) {
 	$this->data['header'] = 'selectidp';
 }
 $this->data['header'] = $this->t($this->data['header']);
+$this->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 
-$this->data['head']  = '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>';
-$this->data['head'] .= '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui.js"></script>';
-$this->data['head'] .= '<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 'resources/uitheme/jquery-ui-themeroller.css" />';
+$this->data['head'] .= '<link rel="stylesheet" media="screen" type="text/css" href="' . SimpleSAML_Module::getModuleUrl('discopower/style.css')  . '" />';
+
+$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML_Module::getModuleUrl('discopower/js/jquery.livesearch.js')  . '"></script>';
+$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML_Module::getModuleUrl('discopower/js/quicksilver.js')  . '"></script>';
 
 $this->data['head'] .= '<script type="text/javascript">
 
 $(document).ready(function() {
-	$("#discotabs > ul").tabs({ selected: ' . $this->data['defaulttab'] . ' });
-	/*
-		$("#foodledescr").resizable({ 
-			handles: "all" 
-		});
-	*/
+	$("#discotabs").tabs({ selected: ' . $this->data['defaulttab'] . ' }); ';
+$i = 0;
+foreach ($this->data['idplist'] AS $tab => $slist) {
+	$this->data['head'] .= '$("#query_' . $tab . '").liveUpdate("#list_' . $tab . '")' .
+		($i++ == 0 ? '.focus()' : '') .
+		';';
+}
+
+$this->data['head'] .= '
 });
+
+	function chooseidp(idp) {
+		$("#chosenidp").attr(\'name\', \'idp_\' + idp);
+		$("#idpselectform").submit();
+	}
+
+
 </script>';
 
-$this->data['autofocus'] = 'preferredidp';
+# $this->data['autofocus'] = 'preferredidp';
 
 $this->includeAtTemplateBase('includes/header.php');
 
@@ -35,16 +47,55 @@ foreach ($this->data['idplist'] AS $slist) {
 }
 
 
+
+function showEntry($t, $metadata, $favourite = FALSE) {
+	$extra = ($favourite ? ' favourite' : '');
+	$html = '<li class="metaentry' . $extra . '" onclick="chooseidp(\'' . htmlspecialchars($metadata['entityid']) . '\')">';
+	
+	$html .= '' . htmlspecialchars($t->t('idpname_' . $metadata['entityid'])) . '';
+
+	#print_r($metadata['scopes']); 
+
+	// if (!empty($idpentry['description'])) {
+	// 	$html .= '	<p>' . htmlspecialchars($t->t('idpdesc_' . $metadata['entityid'])) . '<br />';
+	// }
+	
+	if(array_key_exists('icon', $metadata) && $metadata['icon'] !== NULL) {
+		$iconUrl = SimpleSAML_Utilities::resolveURL($metadata['icon']);
+		$html .= '<img style="clear: both; float: left; margin: 1em; padding: 3px; border: 1px solid #999" src="' . htmlspecialchars($iconUrl) . '" />';
+	}
+	
+	// $html .= '<input id="preferredidp" type="submit" name="idp_' .
+	// 	htmlspecialchars($metadata['entityid']) . '" value="' .
+	// 	$t->t('select') . '" /></p>';
+	
+	$html .= '</li>';
+	
+	return $html;
+}
+
+
+
+
 ?>
 
 
-	<h2><?php echo $this->data['header']; ?></h2>
 
-	<form method="get" action="<?php echo $this->data['urlpattern']; ?>">
+
+
+
+
+
+	<!-- <h2><?php echo $this->data['header']; ?></h2> -->
+
+	<form id="idpselectform" method="get" action="<?php echo $this->data['urlpattern']; ?>">
 	<input type="hidden" name="entityID" value="<?php echo htmlspecialchars($this->data['entityID']); ?>" />
 	<input type="hidden" name="return" value="<?php echo htmlspecialchars($this->data['return']); ?>" />
 	<input type="hidden" name="returnIDParam" value="<?php echo htmlspecialchars($this->data['returnIDParam']); ?>" />
 	
+	<input id="chosenidp" type="hidden" name="<?php echo htmlspecialchars($this->data['returnIDParam']); ?>" value="1" />
+	<!-- <input type="submit" style="" name="formsubmit" id="formsubmit" value="Submit" /> -->
+	</form>
 	<p><?php
 	
 	$checked = '';
@@ -60,7 +111,7 @@ foreach ($this->data['idplist'] AS $slist) {
 
 <div id="discotabs"> 
 
-    <ul>     
+    <ul class="tabset_tabs">     
     	<?php
     	
     		$tabs = array_keys( $this->data['idplist']);
@@ -75,49 +126,37 @@ foreach ($this->data['idplist'] AS $slist) {
 		<?php
 
 
+
+
 	foreach( $this->data['idplist'] AS $tab => $slist) {
 
 		echo '<div id="' . $tab . '">';
 
-		
-		if (!empty($this->data['preferredidp']) && array_key_exists($this->data['preferredidp'], $slist)) {
-			$idpentry = $slist[$this->data['preferredidp']];
-			echo '<div class="preferredidp">';
-			echo '	<img src="/' . $this->data['baseurlpath'] .'resources/icons/star.png" style="float: right" />';
+		if (!empty($slist)) {
+			
+			// echo 'Favourite :: ' . $this->data['preferredidp']; 
+			// echo '<pre>';
+			// print_r($slist); exit;
+			
 
-			if(array_key_exists('icon', $idpentry) && $idpentry['icon'] !== NULL) {
-				$iconUrl = SimpleSAML_Utilities::resolveURL($idpentry['icon']);
-				echo '<img style="float: left; margin: 1em; padding: 3px; border: 1px solid #999" src="' . htmlspecialchars($iconUrl) . '" />';
+
+			echo('	<div class="inlinesearch">');
+			echo('	<p>Incremental search...</p>');
+			echo('	<input class="inlinesearchf" type="text" value="" name="query_' . $tab . '" id="query_' . $tab . '" />');
+			echo('	</div>');
+		
+			echo('	<ul class="metalist" id="list_' . $tab  . '">');
+			if (!empty($this->data['preferredidp']) && array_key_exists($this->data['preferredidp'], $slist)) {
+				$idpentry = $slist[$this->data['preferredidp']];
+				echo (showEntry($this, $idpentry, TRUE));
 			}
-			echo '<h3 style="margin-top: 8px">' . htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
 
-			if (!empty($idpentry['description'])) {
-				echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
-			}
-			echo('<input id="preferredidp" type="submit" name="idp_' .
-				htmlspecialchars($idpentry['entityid']) . '" value="' .
-				$this->t('select') . '" /></p>');
-			echo '</div>';
-		}
-		
-		
-		foreach ($slist AS $idpentry) {
-			if ($idpentry['entityid'] != $this->data['preferredidp']) {
-
-				if(array_key_exists('icon', $idpentry) && $idpentry['icon'] !== NULL) {
-					$iconUrl = SimpleSAML_Utilities::resolveURL($idpentry['icon']);
-					echo '<img style="clear: both; float: left; margin: 1em; padding: 3px; border: 1px solid #999" src="' . htmlspecialchars($iconUrl) . '" />';
+			foreach ($slist AS $idpentry) {
+				if ($idpentry['entityid'] != $this->data['preferredidp']) {
+					echo (showEntry($this, $idpentry));
 				}
-				echo '	<h3 style="margin-top: 8px">' . htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
-
-				if (!empty($idpentry['description'])) {
-
-					echo '	<p>' . htmlspecialchars($this->t('idpdesc_' . $idpentry['entityid'])) . '<br />';
-				}
-				echo('<input id="preferredidp" type="submit" name="idp_' .
-					htmlspecialchars($idpentry['entityid']) . '" value="' .
-					$this->t('select') . '" /></p>');
 			}
+			echo('	</ul>');
 		}
 		echo '</div>';
 	
@@ -128,7 +167,6 @@ foreach ($this->data['idplist'] AS $slist) {
 
 
 </div>
-		
-		</form>
+
 		
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>
