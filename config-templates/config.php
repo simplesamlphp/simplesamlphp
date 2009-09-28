@@ -28,14 +28,15 @@ $config = array (
 	'certdir'               => 'cert/',
 	'dictionarydir'         => 'dictionaries/',
 	'loggingdir'            => 'log/',
-
+	'datadir'				=> 'data/',
+		
 	/*
 	 * A directory where simpleSAMLphp can save temporary files.
 	 *
 	 * SimpleSAMLphp will attempt to create this directory if it doesn't exist.
 	 */
 	'tempdir'               => '/tmp/simplesaml',
-
+	
 	'version'				=>	'trunk',
 	
 	/**
