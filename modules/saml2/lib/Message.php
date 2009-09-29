@@ -347,10 +347,18 @@ class sspmod_saml2_Message {
 
 		$ar = new SAML2_AuthnRequest();
 
-		$ar->setNameIdPolicy(array(
-			'Format' => $spMetadata->getString('NameIDFormat', SAML2_Const::NAMEID_TRANSIENT),
-			'AllowCreate' => TRUE,
+		if ($spMetadata->hasValue('NameIDPolicy')) {
+			$nameIdPolicy = $spMetadata->getString('NameIDPolicy', NULL);
+		} else {
+			$nameIdPolicy = $spMetadata->getString('NameIDFormat', SAML2_Const::NAMEID_TRANSIENT);
+		}
+
+		if ($nameIdPolicy !== NULL) {
+			$ar->setNameIdPolicy(array(
+				'Format' => $nameIdPolicy,
+				'AllowCreate' => TRUE,
 			));
+		}
 
 		$ar->setIssuer($spMetadata->getString('entityid'));
 		$ar->setDestination($idpMetadata->getString('SingleSignOnService'));
