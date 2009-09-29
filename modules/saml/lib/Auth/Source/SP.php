@@ -48,8 +48,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		parent::__construct($info, $config);
 
 		/* For compatibility with code that assumes that $metadata->getString('entityid') gives the entity id. */
-		if (array_key_exists('entityId', $config)) {
-			$config['entityid'] = $config['entityId'];
+		if (array_key_exists('entityID', $config)) {
+			$config['entityid'] = $config['entityID'];
 		} else {
 			$config['entityid'] = $this->getMetadataURL();
 		}
