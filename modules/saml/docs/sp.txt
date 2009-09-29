@@ -1,0 +1,156 @@
+`saml:SP`
+=========
+
+This authentication source is used to authenticate against SAML 1 and SAML 2 IdPs.
+
+
+Metadata
+--------
+
+The metadata for your SP will be available from the federation page on your simpleSAMLphp installation.
+
+
+Examples
+--------
+
+Here we will list some example configurations for this authentication source.
+
+### Minimal
+
+    'example-minimal' => array(
+        'saml:SP',
+    ),
+
+### Connecting to a specific IdP
+
+    'example' => array(
+        'saml:SP',
+        'idp' => 'https://idp.example.net/',
+    ),
+
+### Using a specific entity ID
+
+    'example' => array(
+        'saml:SP',
+        'entityID' => 'https://sp.example.net',
+    ),
+
+### Encryption and signing
+
+    This SP will accept encrypted assertions, and will sign and validate all messages.
+
+    'example-enc' => array(
+        'saml:SP',
+
+        'certificate' => 'example.crt',
+        'privatekey' => 'example.key',
+        'privatekey_pass' => 'secretpassword',
+        'redirect.sign' => TRUE,
+        'redirect.validate' => TRUE,
+    ),
+
+
+Options
+-------
+
+`AuthnContextClassRef`
+:   The SP can request authentication with a specific authentication context class.
+    One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.
+
+:   *Note*: SAML 2 specific.
+
+`certData`
+:   Base64 encoded certificate data. Can be used instead of the `certificate` option.
+
+`certificate`
+:   File name of certificate for this SP. This certificate will be included in generated metadata.
+
+`description`
+:   A description of this SP. Will be added to the generated metadata.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated description:
+
+        'description' => array(
+            'en' => 'A service',
+            'no' => 'En tjeneste',
+        ),
+
+`discoURL`
+:   Set which IdP discovery service this SP should use.
+    If this is unset, the IdP discovery service specified in the global option `idpdisco.url.{saml20|shib13}` in `config/config.php` will be used.
+    If that one is also unset, the builtin default discovery service will be used.
+
+
+`entityID`
+:   The entity ID this SP should use.
+
+:   If this option is unset, a default entity ID will be generated.
+    The generated entity ID will be a URL where the metadata of this SP can be downloaded.
+
+`ForceAuthn`
+:   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
+
+:   *Note*: SAML 2 specific.
+
+`idp`
+:   The entity ID this SP should connect to.
+
+:   If this option is unset, an IdP discovery service page will be shown.
+
+`IsPassive`
+:   IsPassive allows you to enable passive authentication by default for this SP.
+
+:   *Note*: SAML 2 specific.
+
+`name`
+:   The name of this SP. Will be added to the generated metadata.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+
+        'name' => array(
+            'en' => 'A service',
+            'no' => 'En tjeneste',
+        ),
+
+`NameIDPolicy`
+:   The format of the NameID we request from the IdP.
+    Defaults to the transient format if unspecified.
+
+:   *Note 1*: This option replaces the `NameIDFormat` option found in `saml20-sp-hosted`.
+
+:   *Note 2*: SAML 2 specific.
+
+`privatekey`
+:   File name of private key to be used for signing messages and decrypting messages from the IdP. This option is only required if you use encrypted assertions or if you enable signing of messages.
+
+:   *Note*: SAML 2 specific.
+
+`privatekey_pass`
+:   The passphrase for the private key, if it is encrypted. If the private key is unencrypted, this can be left out.
+
+:   *Note*: SAML 2 specific.
+
+`redirect.sign`
+:   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is `FALSE`.
+
+:   *Note*: SAML 2 specific.
+
+`redirect.validate`
+:   Whether logout requests and logout responses received received by this SP should be validated. The default is `FALSE`.
+
+:   *Note*: SAML 2 specific.
+
+`RelayState`
+:   The page the user should be redirected to after an IdP initiated SSO.
+
+:   *Note*: SAML 2 specific.
+
+`url`
+:   An URL to your service provider. Will be added as an OrganizationURL-element in the metadata.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to language-specific URL:
+
+        'url' => array(
+            'en' => 'http://sp.example.net/en/info.html',
+            'no' => 'http://sp.example.net/no/info.html',
+        ),
