@@ -79,11 +79,6 @@ $config = array(
 	'papi' => array(
 		'authpapi:PAPI',
 	),
-	
-	'saml2' => array(
-		'saml2:SP',
-	),
-	
 
 	/*
 	 * An authentication source which can authenticate against both SAML 2.0

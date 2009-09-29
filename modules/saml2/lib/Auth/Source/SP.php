@@ -3,6 +3,9 @@
 /**
  * SAML 2.0 SP authentication client.
  *
+ * Note: This authentication source is depreceated. You should
+ * use saml:sp instead.
+ *
  * Example:
  * 'example-openidp' => array(
  *   'saml2:SP',

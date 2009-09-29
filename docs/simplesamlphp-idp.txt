@@ -51,8 +51,8 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 `openid:OpenIDConsumer`
 : Authenticate against an OpenID provider.
 
-`saml2:SP`
-: Authenticate against a SAML 2.0 IdP. Can be used for bridging.
+`saml:SP`
+: Authenticate against a SAML IdP. Can be used for bridging.
 
 `authYubiKey:YubiKey`
 : Authenticate with [an YubiKey](http://www.yubico.com/products/yubikey/).
