@@ -17,9 +17,7 @@ Enabling the Identity Provider functionality
 
 The first that must be done is to enable the identity provider functionality. This is done by editing `config/config.php`. The options `enable.saml20-idp` and `enable.shib13-idp` controls whether SAML 2.0 and Shibboleth 1.3 support is enabled. Enable one or both of those by assigning `true` to them:
 
-    'enable.saml20-sp'  => false,
     'enable.saml20-idp' => true,
-    'enable.shib13-sp'  => false,
     'enable.shib13-idp' => true,
 
 

@@ -68,9 +68,7 @@ SimpleSAML_Module::callHooks('frontpage', $allLinks);
 
 
 $enablematrix = array(
-	'saml20-sp' => $config->getBoolean('enable.saml20-sp', TRUE),
 	'saml20-idp' => $config->getBoolean('enable.saml20-idp', false),
-	'shib13-sp' => $config->getBoolean('enable.shib13-sp', false),
 	'shib13-idp' => $config->getBoolean('enable.shib13-idp', false),
 );
 

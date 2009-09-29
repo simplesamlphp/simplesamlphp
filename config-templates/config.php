@@ -139,9 +139,7 @@ $config = array (
 	 * one of the functionalities below, but in some cases you could run multiple functionalities.
 	 * In example when you are setting up a federation bridge.
 	 */
-	'enable.saml20-sp'		=> true,
 	'enable.saml20-idp'		=> false,
-	'enable.shib13-sp'		=> false,
 	'enable.shib13-idp'		=> false,
 	'enable.wsfed-sp'		=> false,
 	'enable.authmemcookie' => false,
