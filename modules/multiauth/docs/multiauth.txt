@@ -1,0 +1,54 @@
+MultiAuth module
+================
+
+The MultiAuth module provides a method for authenticating users agains
+a list of authentication sources. There is only one authentication
+module:
+
+`multiauth:MultiAuth`
+: Authenticate the user against a list of authentication sources.
+
+
+`multiauth:MultiAuth`
+---------------------
+
+This module is useful when you want to let the users decide which
+authentication source fits better their needs at any scenario. For
+example, they can choose the `saml` authentication source in most
+cases and then switch to the `admin` authentication source when
+'saml' is down for some reason.
+
+To create a MultiAuth authentication source, open
+`config/authsources.php` in a text editor, and add an entry for the
+authentication source:
+
+    'example-multi' => array(
+        'multiauth:MultiAuth',
+
+        /*
+         * The available authentication sources.
+         * They must be defined in this authsources.php file.
+         */
+        'sources' => array('example-saml', 'example-admin'),
+    ),
+
+    'example-saml' => array(
+        'saml:SP',
+        'entityId' => 'my-entity-id',
+        'idp' => 'my-idp',
+    ),
+
+    'example-admin' => array(
+        'core:AdminPassword',
+    ),
+
+You should update the name of this authentication source
+(`example-multi`), and the authentication sources it references,
+to have a name which makes sense to your organization.
+
+The MultiAuth authentication sources only has an option: the
+`sources` option, and it is required. It is an array of other
+authentication sources defined in the `config/authsources.php`
+file. The order in this array does not matter since the user
+is the one that decides which one to use.
+
