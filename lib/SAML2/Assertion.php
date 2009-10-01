@@ -43,6 +43,16 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	/**
+	 * The encrypted NameId of the subject.
+	 *
+	 * If this is not NULL, the NameId needs decryption before it can be accessed.
+	 *
+	 * @var DOMElement|NULL
+	 */
+	private $encryptedNameId;
+
+
+	/**
 	 * The earliest time this assertion is valid, as an UNIX timestamp.
 	 *
 	 * @var int
@@ -220,14 +230,19 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		}
 		$subject = $subject[0];
 
-		$nameId = SAML2_Utils::xpQuery($subject, './saml_assertion:NameID');
+		$nameId = SAML2_Utils::xpQuery($subject, './saml_assertion:NameID | ./saml_assertion:EncryptedID/xenc:EncryptedData');
 		if (empty($nameId)) {
-			throw new Exception('Missing <saml:NameID> in <saml:Subject>.');
+			throw new Exception('Missing <saml:NameID> or <saml:EncryptedID> in <saml:Subject>.');
 		} elseif (count($nameId) > 1) {
-			throw new Exception('More than one <saml:NameID> in <saml:Subject>.');
+			throw new Exception('More than one <saml:NameID> or <saml:EncryptedD> in <saml:Subject>.');
 		}
 		$nameId = $nameId[0];
-		$this->nameId = SAML2_Utils::parseNameId($nameId);
+		if ($nameId->localName === 'EncryptedData') {
+			/* The NameID element is encrypted. */
+			$this->encryptedNameId = $nameId;
+		} else {
+			$this->nameId = SAML2_Utils::parseNameId($nameId);
+		}
 
 		$subjectConfirmation = SAML2_Utils::xpQuery($subject, './saml_assertion:SubjectConfirmation');
 		if (empty($subjectConfirmation)) {
@@ -553,6 +568,11 @@ class SAML2_Assertion implements SAML2_SignedElement {
 	 * @return array|NULL  The name identifier of the assertion.
 	 */
 	public function getNameId() {
+
+		if ($this->encryptedNameId !== NULL) {
+			throw new Exception('Attempted to retrieve encrypted NameID without decrypting it first.');
+		}
+
 		return $this->nameId;
 	}
 
@@ -569,6 +589,40 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		assert('is_array($nameId) || is_null($nameId)');
 
 		$this->nameId = $nameId;
+	}
+
+
+	/**
+	 * Check whether the NameId is encrypted.
+	 *
+	 * @return TRUE if the NameId is encrypted, FALSE if not.
+	 */
+	public function isNameIdEncrypted() {
+
+		if ($this->encryptedNameId !== NULL) {
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
+
+	/**
+	 * Decrypt the NameId of the subject in the assertion.
+	 *
+	 * @param XMLSecurityKey $key  The decryption key.
+	 */
+	public function decryptNameId(XMLSecurityKey $key) {
+
+		if ($this->encryptedNameId === NULL) {
+			/* No NameID to decrypt. */
+			return;
+		}
+
+		$nameId = SAML2_Utils::decryptElement($this->encryptedNameId, $key);
+		$this->nameId = SAML2_Utils::parseNameId($nameId);
+
+		$this->encryptedNameId = NULL;
 	}
 
 
