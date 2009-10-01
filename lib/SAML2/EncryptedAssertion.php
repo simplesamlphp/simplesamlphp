@@ -83,74 +83,7 @@ class SAML2_EncryptedAssertion {
 	 */
 	public function getAssertion(XMLSecurityKey $inputKey) {
 
-		$enc = new XMLSecEnc();
-
-		$enc->setNode($this->encryptedData);
-		$enc->type = $this->encryptedData->getAttribute("Type");
-
-		$symmetricKey = $enc->locateKey($this->encryptedData);
-		if (!$symmetricKey) {
-			throw new Exception('Could not locate key algorithm in encrypted data.');
-		}
-
-		$symmetricKeyInfo = $enc->locateKeyInfo($symmetricKey);
-		if (!$symmetricKeyInfo) {
-			throw new Exception('Could not locate <dsig:KeyInfo> for the encrypted key.');
-		}
-
-		$inputKeyAlgo = $inputKey->getAlgorith();
-		if ($symmetricKeyInfo->isEncrypted) {
-			$symKeyInfoAlgo = $symmetricKeyInfo->getAlgorith();
-
-			if ($symKeyInfoAlgo === XMLSecurityKey::RSA_OAEP_MGF1P && $inputKeyAlgo === XMLSecurityKey::RSA_1_5) {
-				/*
-				 * The RSA key formats are equal, so loading an RSA_1_5 key
-				 * into an RSA_OAEP_MGF1P key can be done without problems.
-				 * We therefore pretend that the input key is an
-				 * RSA_OAEP_MGF1P key.
-				 */
-				$inputKeyAlgo = XMLSecurityKey::RSA_OAEP_MGF1P;
-			}
-
-			/* Make sure that the input key format is the same as the one used to encrypt the key. */
-			if ($inputKeyAlgo !== $symKeyInfoAlgo) {
-				throw new Exception('Algorithm mismatch between input key and key used to encrypt ' .
-					' the symmetric key for the message. Key was: ' .
-					var_export($inputKeyAlgo, TRUE) . '; message was: ' .
-					var_export($symKeyInfoAlgo, TRUE));
-			}
-
-			$encKey = $symmetricKeyInfo->encryptedCtx;
-			$symmetricKeyInfo->key = $inputKey->key;
-			$key = $encKey->decryptKey($symmetricKeyInfo);
-			$symmetricKey->loadkey($key);
-		} else {
-			$symKeyAlgo = $symmetricKey->getAlgorith();
-			/* Make sure that the input key has the correct format. */
-			if ($inputKeyAlgo !== $symKeyAlgo) {
-				throw new Exception('Algorithm mismatch between input key and key in message. ' .
-					'Key was: ' . var_export($inputKeyAlgo, TRUE) . '; message was: ' .
-					var_export($symKeyAlgo, TRUE));
-			}
-			$symmetricKey = $inputKey;
-		}
-
-		$decrypted = $enc->decryptNode($symmetricKey, FALSE);
-
-		/*
-		 * This is a workaround for the case where only a subset of the XML
-		 * tree was serialized for encryption. In that case, we may miss the
-		 * namespaces needed to parse the XML.
-		 */
-		$xml = '<root xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'.$decrypted.'</root>';
-		$newDoc = new DOMDocument();
-		if (!$newDoc->loadXML($xml)) {
-			throw new Exception('Failed to parse decrypted XML. Maybe the wrong sharedkey was used?');
-		}
-		$assertionXML = $newDoc->firstChild->firstChild;
-		if ($assertionXML === NULL) {
-			throw new Exception('Missing encrypted assertion within <saml:EncryptedAssertion>.');
-		}
+		$assertionXML = SAML2_Utils::decryptElement($this->encryptedData, $inputKey);
 		return new SAML2_Assertion($assertionXML);
 	}
 
