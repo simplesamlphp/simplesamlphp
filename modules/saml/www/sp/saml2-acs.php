@@ -50,7 +50,7 @@ try {
 	SimpleSAML_Auth_State::throwException($state, $e);
 }
 
-$nameId = $assertion->getNameID();
+$nameId = $assertion->getNameId();
 $sessionIndex = $assertion->getSessionIndex();
 
 /* We need to save the NameID and SessionIndex for logout. */
