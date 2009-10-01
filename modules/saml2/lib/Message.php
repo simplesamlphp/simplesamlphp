@@ -223,6 +223,39 @@ class sspmod_saml2_Message {
 
 
 	/**
+	 * Retrieve the decryption key from metadata.
+	 *
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
+	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
+	 * @return XMLSecurityKey  The decryption key.
+	 */
+	private static function getDecryptionKey(SimpleSAML_Configuration $srcMetadata,
+		SimpleSAML_Configuration $dstMetadata) {
+
+		$sharedKey = $srcMetadata->getString('sharedkey', NULL);
+		if ($sharedKey !== NULL) {
+			$key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
+			$key->loadKey($sharedKey);
+		} else {
+			/* Find the private key we should use to decrypt messages to this SP. */
+			$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata->toArray(), TRUE);
+			if (!array_key_exists('PEM', $keyArray)) {
+				throw new Exception('Unable to locate key we should use to decrypt the message.');
+			}
+
+			/* Extract the public key from the certificate for encryption. */
+			$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'private'));
+			if (array_key_exists('password', $keyArray)) {
+				$key->passphrase = $keyArray['password'];
+			}
+			$key->loadKey($keyArray['PEM']);
+		}
+
+		return $key;
+	}
+
+
+	/**
 	 * Encrypt an assertion.
 	 *
 	 * This function takes in a SAML2_Assertion and encrypts it if encryption of
@@ -300,24 +333,10 @@ class sspmod_saml2_Message {
 			return $assertion;
 		}
 
-
-		$sharedKey = $srcMetadata->getString('sharedkey', NULL);
-		if ($sharedKey !== NULL) {
-			$key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
-			$key->loadKey($sharedKey);
-		} else {
-			/* Find the private key we should use to decrypt messages to this SP. */
-			$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata->toArray(), TRUE);
-			if (!array_key_exists('PEM', $keyArray)) {
-				throw new Exception('Unable to locate key we should use to decrypt the assertion.');
-			}
-
-			/* Extract the public key from the certificate for encryption. */
-			$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'private'));
-			if (array_key_exists('password', $keyArray)) {
-				$key->passphrase = $keyArray['password'];
-			}
-			$key->loadKey($keyArray['PEM']);
+		try {
+			$key = self::getDecryptionKey($srcMetadata, $dstMetadata);
+		} catch (Exception $e) {
+			throw new SimpleSAML_Error_Exception('Error decrypting assertion: ' . $e->getMessage());
 		}
 
 		return $assertion->getAssertion($key);
