@@ -478,7 +478,7 @@ class SimpleSAML_XHTML_IdPDisco {
 		$idpList = $this->getIdPList();
 		$preferredIdP = $this->getRecommendedIdP();
 
-		$idpintersection = array_intersect(array_keys($idpList), $this->getScopedIDPlist());
+		$idpintersection = array_intersect(array_keys($idpList), $this->getScopedIDPList());
 		if (sizeof($idpintersection) > 0) {
 			$idpList = array_intersect_key($idpList, array_fill_keys($idpintersection, NULL));
 		}
