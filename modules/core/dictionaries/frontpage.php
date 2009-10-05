@@ -900,6 +900,9 @@ $lang = array(
 		'es' => 'Probar las fuentes para la autentificación ya configuradas',
 		'tr' => 'Düzenlenmiş kimlik doğrulama kaynaklarını test et',
 	),
+	'deprecated' => array (
+		'en' => 'Deprecated',
+	),
 
 );
 

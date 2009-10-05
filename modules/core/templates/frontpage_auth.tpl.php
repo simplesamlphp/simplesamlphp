@@ -18,7 +18,11 @@ if ($this->data['isadmin']) {
 <ul>
 <?php
 	foreach ($this->data['links_auth'] AS $link) {
-		echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . $this->t($link['text']) . '</a></li>';
+		echo '<li><a href="' . htmlspecialchars($link['href']) . '">' . $this->t($link['text']) . '</a>';
+		if (isset($link['deprecated']) && $link['deprecated']) {
+			echo ' <b>' . $this->t('{core:frontpage:deprecated}') . '</b>';
+		}
+		echo '</li>';
 	}
 ?>
 </ul>
