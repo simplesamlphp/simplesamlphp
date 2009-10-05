@@ -52,6 +52,7 @@ class SimpleSAML_AuthMemCookie {
 	public function getLoginMethod() {
 		$loginMethod = $this->amcConfig->getString('loginmethod', 'saml2');
 		$supportedLogins = array(
+			'authsource',
 			'saml2',
 			'shib13',
 			);
@@ -60,6 +61,17 @@ class SimpleSAML_AuthMemCookie {
 		}
 
 		return $loginMethod;
+	}
+
+
+	/**
+	 * Retrieve the authentication source that should be used to authenticate the user.
+	 *
+	 * @return string  The login type which should be used for Auth MemCookie.
+	 */
+	public function getAuthSource() {
+
+		return $this->amcConfig->getString('authsource');
 	}
 
 

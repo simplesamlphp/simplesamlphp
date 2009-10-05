@@ -28,6 +28,12 @@ try {
 	/* Check if the user is authorized. We attempt to authenticate the user if not. */
 	$loginMethod = $amc->getLoginMethod();
 	switch($loginMethod) {
+	case 'authsource':
+		/* The default now. */
+		$sourceId = $amc->getAuthSource();
+		$s = new SimpleSAML_Auth_Simple($sourceId);
+		$s->requireAuth();
+		break;
 	case 'saml2':
 		if (!$session->isValid('saml2') ) {
 			SimpleSAML_Utilities::redirect(

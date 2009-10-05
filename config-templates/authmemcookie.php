@@ -7,10 +7,20 @@
 $config = array(
 
 	/*
-	 * What type of login Auth MemCookie will use. Can be either 'saml2' or 'shib13'.
-	 * The default value is 'saml2'.
+	 * What type of login Auth MemCookie will use.
+	 * Can be either 'authsource', 'saml2' or 'shib13'.
+	 *
+	 * For backwards compatibility, the default value if unset is 'saml2'.
+	 * New installations should use 'authsource'.
 	 */
-	'loginmethod' => 'saml2',
+	'loginmethod' => 'authsource',
+
+	/*
+	 * The authentication source that should be used.
+	 *
+	 * This must be one of the authentication sources configured in config/authsources.php.
+	 */
+	'authsource' => 'default-sp',
 
 	/*
 	 * This is the name of the cookie we should save the session id in. The value of this option must match the
