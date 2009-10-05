@@ -541,7 +541,7 @@ class sspmod_saml2_Message {
 	 * @return SAML2_Assertion  The assertion.
 	 */
 	public static function buildAssertion(SimpleSAML_Configuration $srcMetadata,
-		SimpleSAML_Configuration $dstMetadata, array $attributes) {
+		SimpleSAML_Configuration $dstMetadata, array $attributes, $consumerURL) {
 
 		$signAssertion = $dstMetadata->getBoolean('saml20.sign.assertion', NULL);
 		if ($signAssertion === NULL) {
@@ -556,7 +556,7 @@ class sspmod_saml2_Message {
 		}
 
 		$a->setIssuer($srcMetadata->getString('entityid'));
-		$a->setDestination($dstMetadata->getString('AssertionConsumerService'));
+		$a->setDestination($consumerURL);
 		$a->setValidAudiences(array($dstMetadata->getString('entityid')));
 
 		$a->setNotBefore(time() - 30);
@@ -621,7 +621,7 @@ class sspmod_saml2_Message {
 	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
 	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
 	 */
-	public static function buildResponse(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata) {
+	public static function buildResponse(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, $consumerURL) {
 
 		$signResponse = $dstMetadata->getBoolean('saml20.sign.response', NULL);
 		if ($signResponse === NULL) {
@@ -631,7 +631,7 @@ class sspmod_saml2_Message {
 		$r = new SAML2_Response();
 
 		$r->setIssuer($srcMetadata->getString('entityid'));
-		$r->setDestination($dstMetadata->getString('AssertionConsumerService'));
+		$r->setDestination($consumerURL);
 
 		if ($signResponse) {
 			self::addSign($srcMetadata, $dstMetadata, $r);

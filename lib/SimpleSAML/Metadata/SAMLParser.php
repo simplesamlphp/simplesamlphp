@@ -615,13 +615,24 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['expire'] = $spd['expire'];
 		}
 
-		/* Find the assertion consumer service endpoint. */
-		$acs = $this->getDefaultEndpoint($spd['AssertionConsumerService'], array(self::SAML_20_POST_BINDING));
-		if($acs === NULL) {
+		/* Find the assertion consumer service endpoints. */
+		$defaultACS = $this->getDefaultEndpoint($spd['AssertionConsumerService'], array(self::SAML_20_POST_BINDING));
+		if($defaultACS === NULL) {
 			SimpleSAML_Logger::warning('Could not find a supported SAML 2.0 AssertionConsumerService endpoint for ' .
 				var_export($ret['entityid'], TRUE) . '.');
 		} else {
-			$ret['AssertionConsumerService'] = $acs['Location'];
+			$defaultACS = $defaultACS['Location'];
+			$retACS = array($defaultACS);
+
+			$allACS = $this->getEndpoints($spd['AssertionConsumerService'], array(self::SAML_20_POST_BINDING));
+			foreach ($allACS as $acs) {
+				$acs = $acs['Location'];
+				if ($acs !== $defaultACS) {
+					$retACS[] = $acs;
+				}
+			}
+
+			$ret['AssertionConsumerService'] = $retACS;
 		}
 
 
@@ -1225,6 +1236,28 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
+	 * This function attempts to locate all endpoints which supports one of the given bindings.
+	 *
+	 */
+	private function getEndpoints($endpoints, $acceptedBindings = NULL) {
+
+		assert('$acceptedBindings === NULL || is_array($acceptedBindings)');
+
+		/* Filter the list of endpoints if $acceptedBindings !== NULL. */
+		if($acceptedBindings === NULL) return $endpoints;
+
+		$newEndpoints = array();
+		foreach($endpoints as $ep) {
+			/* Add it to the list of valid ACSs if it has one of the supported bindings. */
+			if(in_array($ep['Binding'], $acceptedBindings, TRUE)) {
+				$newEndpoints[] = $ep;
+			}
+		}
+		return $newEndpoints;
+	}
+
+
+	/**
 	 * This function attempts to locate the default endpoint which supports one of the given bindings.
 	 *
 	 * @param $endpoints Array with endpoints in the format returned by parseGenericEndpoint.
@@ -1234,22 +1267,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 */
 	private function getDefaultEndpoint($endpoints, $acceptedBindings = NULL) {
 
-		assert('$acceptedBindings === NULL || is_array($acceptedBindings)');
-
-		/* Filter the list of endpoints if $acceptedBindings !== NULL. */
-		if($acceptedBindings !== NULL) {
-			$newEndpoints = array();
-
-			foreach($endpoints as $ep) {
-				/* Add it to the list of valid ACSs if it has one of the supported bindings. */
-				if(in_array($ep['Binding'], $acceptedBindings, TRUE)) {
-					$newEndpoints[] = $ep;
-				}
-			}
-
-			$endpoints = $newEndpoints;
-		}
-
+		$endpoints = $this->getEndpoints($endpoints, $acceptedBindings);
 
 		/* First we look for the endpoint with isDefault set to true. */
 		foreach($endpoints as $ep) {

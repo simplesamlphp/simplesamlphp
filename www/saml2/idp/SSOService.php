@@ -70,7 +70,14 @@ function handleError(Exception $exception) {
 		$idpMetadata = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 		$spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');
 
-		$ar = sspmod_saml2_Message::buildResponse($idpMetadata, $spMetadata);
+		if (array_key_exists('ConsumerURL', $requestcache)) {
+			$consumerURL = $requestcache['ConsumerURL'];
+		} else {
+			$urlArray = $spMetadata->getArrayizeString('AssertionConsumerService');
+			$consumerURL = $urlArray[0];
+		}
+
+		$ar = sspmod_saml2_Message::buildResponse($idpMetadata, $spMetadata, $consumerURL);
 		$ar->setInResponseTo($requestID);
 		$ar->setRelayState($relayState);
 
@@ -140,6 +147,10 @@ if (isset($_REQUEST['SAMLRequest'])) {
 
 		$spentityid = $requestcache['Issuer'];
 		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
+
+		$consumerURL = $authnrequest->getAssertionConsumerServiceURL();
+		$consumerArray = SimpleSAML_Utilities::arrayize($spmetadata['AssertionConsumerService']);
+		if (($consumerURL != NULL) && (array_search($consumerURL, $consumerArray) !== FALSE)) $requestcache['ConsumerURL'] = $consumerURL;
 
 		$IDPList = $authnrequest->getIDPList();
 
@@ -443,8 +454,14 @@ if($needAuth && !$isPassive) {
 		/* Begin by creating the assertion. */
 		$idpMetadata = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 		$spMetadata = $metadata->getMetaDataConfig($spentityid, 'saml20-sp-remote');
+		if (array_key_exists('ConsumerURL', $requestcache)) {
+			$consumerURL = $requestcache['ConsumerURL'];
+		} else {
+			$urlArray = $spMetadata->getArrayizeString('AssertionConsumerService');
+			$consumerURL = $urlArray[0];
+		}
 
-		$assertion = sspmod_saml2_Message::buildAssertion($idpMetadata, $spMetadata, $attributes);
+		$assertion = sspmod_saml2_Message::buildAssertion($idpMetadata, $spMetadata, $attributes, $consumerURL);
 		$assertion->setInResponseTo($requestID);
 
 		$nameId = $assertion->getNameId();
@@ -454,7 +471,7 @@ if($needAuth && !$isPassive) {
 		$assertion = sspmod_saml2_Message::encryptAssertion($idpMetadata, $spMetadata, $assertion);
 
 		/* Create the response. */
-		$ar = sspmod_saml2_Message::buildResponse($idpMetadata, $spMetadata);
+		$ar = sspmod_saml2_Message::buildResponse($idpMetadata, $spMetadata, $consumerURL);
 		$ar->setInResponseTo($requestID);
 		$ar->setRelayState($relayState);
 		$ar->setAssertions(array($assertion));
