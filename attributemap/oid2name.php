@@ -74,6 +74,7 @@ $attributemap = array(
 	'urn:oid:1.3.6.1.4.1.5923.1.2.1.4' => 'eduOrgLegalName',
 	'urn:oid:1.3.6.1.4.1.5923.1.2.1.5' => 'eduOrgSuperiorURI',
 	'urn:oid:1.3.6.1.4.1.5923.1.2.1.6' => 'eduOrgWhitePagesURI',
+	'urn:oid:1.3.6.1.4.1.5923.1.5.1.1' => 'isMemberOf',
 	'urn:oid:2.16.840.1.113730.3.1.1' => 'carLicense',
 	'urn:oid:2.16.840.1.113730.3.1.2' => 'departmentNumber',
 	'urn:oid:2.16.840.1.113730.3.1.216' => 'userPKCS12',
