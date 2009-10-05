@@ -60,7 +60,6 @@ class SimpleSAML_Auth_Simple {
 	 * @param array $options  Various options to the authentication request.
 	 */
 	public function requireAuth(array $options = array()) {
-		assert('is_bool($allowPost)');
 
 		$session = SimpleSAML_Session::getInstance();
 
