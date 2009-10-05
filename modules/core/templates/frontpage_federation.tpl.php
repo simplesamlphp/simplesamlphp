@@ -55,6 +55,8 @@ foreach ($this->data['metaentries']['hosted'] AS $hm) {
 	echo '<dt>' . $this->t(mtype($hm['metadata-set'])) . '</dt>';
 	echo '<dd>';
 	echo '<p>Entity ID: ' . $hm['entityid'];
+	if (isset($hm['deprecated']) && $hm['deprecated'])
+		echo '<br /><b>Deprecated</b>';
 	if ($hm['entityid'] !== $hm['metadata-index']) 
 		echo '<br />Index: ' . $hm['metadata-index'];
 	if (array_key_exists('name', $hm))
