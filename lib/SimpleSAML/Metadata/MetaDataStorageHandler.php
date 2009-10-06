@@ -145,11 +145,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 				case 'SingleSignOnService' : 
 					return $baseurl . 'shib13/idp/SSOService.php';			
 			}
-		} elseif($set == 'openid-provider') {
-			switch ($property) {				
-				case 'server' : 
-					return $baseurl . 'openid/provider/server.php';			
-			}
 		}
 		
 		throw new Exception('Could not generate metadata property ' . $property . ' for set ' . $set . '.');
