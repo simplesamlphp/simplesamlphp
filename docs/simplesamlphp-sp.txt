@@ -32,7 +32,7 @@ This is a minimal authsources.php for a SP:
     );
     ?>
 
-For more information about additional options available for the SP, see the [SP hosted reference](https://rnd.feide.no/content/sp-hosted-metadata-reference).
+For more information about additional options available for the SP, see the [`saml:SP` reference](https://rnd.feide.no/content/saml-service-provider-configuration-reference).
 
 
 Adding IdPs to the SP
