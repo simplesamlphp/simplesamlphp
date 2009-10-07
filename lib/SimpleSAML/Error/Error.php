@@ -36,6 +36,21 @@ class SimpleSAML_Error_Error extends Exception {
 
 		assert('is_string($errorCode) || is_array($errorCode)');
 
+		if (is_array($errorCode)) {
+			$msg = $errorCode[0] . '(';
+			foreach ($errorCode as $k => $v) {
+				if ($k === 0) {
+					continue;
+				}
+
+				$msg .= var_export($k, TRUE) . ' => ' . var_export($v, TRUE) . ', ';
+			}
+			$msg = substr($msg, 0, -2) . ')';
+		} else {
+			$msg = $errorCode;
+		}
+		parent::__construct($msg);
+
 		$this->errorCode = $errorCode;
 		$this->cause = $cause;
 	}
