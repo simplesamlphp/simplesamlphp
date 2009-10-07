@@ -3,6 +3,9 @@
 /**
  * This file defines a webpage that can be used to test interaction between this SP and a selected IdP.
  *
+ * Note: This page is deprecated in favor of the autotest module. It will be
+ * removed in a future version of simpleSAMLphp.
+ *
  * It has several query parameters:
  * - 'op': The operation.
  *   - 'login' Initialize login.
