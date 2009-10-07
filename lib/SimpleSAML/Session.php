@@ -482,16 +482,25 @@ class SimpleSAML_Session {
 	/*
 	 * Is the session representing an authenticated user, and is the session still alive.
 	 * This function will return false after the user has timed out.
+	 *
+	 * @param string $authority  The authentication source that the user should be authenticated with.
+	 * @return TRUE if the user has a valid session, FALSE if not.
 	 */
-	public function isValid($authority = null) {
+	public function isValid($authority) {
+		assert('is_string($authority)');
+
 		SimpleSAML_Logger::debug('Library - Session: Check if session is valid.' .
-			' checkauthority:' . (isset($authority) ? $authority : 'null') . 
+			' checkauthority:' . $authority .
 			' thisauthority:' . (isset($this->authority) ? $this->authority : 'null') .
 			' isauthenticated:' . ($this->isAuthenticated() ? 'yes' : 'no') . 
 			' remainingtime:' . $this->remainingTime());
 			
 		if (!$this->isAuthenticated()) return false;
-		if (!empty($authority) && ($authority != $this->authority) ) return false;
+
+		if ($authority !== $this->authority) {
+			return FALSE;
+		}
+
 		return $this->remainingTime() > 0;
 	}
 	
