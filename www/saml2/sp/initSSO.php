@@ -137,8 +137,12 @@ try {
 	$ar->setProtocolBinding(SAML2_Const::BINDING_HTTP_POST);
 	$ar->setRelayState($_REQUEST['RelayState']);
 
-	$ar->setIsPassive($isPassive);
-	$ar->setForceAuthn($forceAuthn);
+	if ($isPassive) {
+		$ar->setIsPassive(TRUE);
+	}
+	if ($forceAuthn) {
+		$ar->setForceAuthn(TRUE);
+	}
 
 	if(array_key_exists('IDPList', $spmetadata)) {
 		$IDPList = array_unique(array_merge($IDPList, $spmetadata['IDPList']));
