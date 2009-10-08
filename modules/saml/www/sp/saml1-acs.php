@@ -1,7 +1,7 @@
 <?php
 
-if (!array_key_exists('SAMLResponse', $_REQUEST)) {
-	throw new SimpleSAML_Error_BadRequest('Missing SAMLResponse parameter.');
+if (!array_key_exists('SAMLResponse', $_REQUEST) && !array_key_exists('SAMLart', $_REQUEST)) {
+	throw new SimpleSAML_Error_BadRequest('Missing SAMLResponse or SAMLart parameter.');
 }
 
 if (!array_key_exists('TARGET', $_REQUEST)) {
@@ -26,15 +26,26 @@ if ($state['saml:sp:AuthId'] !== $sourceId) {
 	throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
 }
 
+$spMetadata = $source->getMetadata();
+
 $idpEntityId = $state['saml:idp'];
 $idpMetadata = $source->getIdPMetadata($idpEntityId);
 
-$responseXML = $_REQUEST['SAMLResponse'];
-$responseXML = base64_decode($responseXML);
+if (array_key_exists('SAMLart', $_REQUEST)) {
+	$responseXML = SimpleSAML_Bindings_Shib13_Artifact::receive($spMetadata, $idpMetadata);
+	$isValidated = TRUE; /* Artifact binding validated with ssl certificate. */
+} elseif (array_key_exists('SAMLResponse', $_REQUEST)) {
+	$responseXML = $_REQUEST['SAMLResponse'];
+	$responseXML = base64_decode($responseXML);
+	$isValidated = FALSE; /* Must check signature on response. */
+} else {
+	assert('FALSE');
+}
 
 $response = new SimpleSAML_XML_Shib13_AuthnResponse();
 $response->setXML($responseXML);
 
+$response->setMessageValidated($isValidated);
 $response->validate();
 
 $responseIssuer = $response->getIssuer();

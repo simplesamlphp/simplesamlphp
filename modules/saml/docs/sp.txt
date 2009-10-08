@@ -130,6 +130,14 @@ Options
 
 :   *Note*: SAML 2 specific.
 
+`saml1.useartifact`
+:   Request that the IdP returns the result to the artifact binding.
+    The default is to use the POST binding, set this option to TRUE to use the artifact binding instead.
+
+:   This option can also be set in the `shib13-idp-remote` metadata, in which case the setting in `shib13-idp-remote` takes precedence.
+
+:   *Note*: SAML 1 specific.
+
 `redirect.sign`
 :   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is `FALSE`.
 

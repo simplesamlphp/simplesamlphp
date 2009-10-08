@@ -15,6 +15,14 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	private $validator = null;
 
 
+	/**
+	 * Whether this response was validated by some external means (e.g. SSL).
+	 *
+	 * @var bool
+	 */
+	private $messageValidated = FALSE;
+
+
 	const SHIB_PROTOCOL_NS = 'urn:oasis:names:tc:SAML:1.0:protocol';
 	const SHIB_ASSERT_NS = 'urn:oasis:names:tc:SAML:1.0:assertion';
 
@@ -32,6 +40,18 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	 * @var string|NULL
 	 */
 	private $relayState = null;
+
+
+	/**
+	 * Set whether this message was validated externally.
+	 *
+	 * @param bool $messageValidated  TRUE if the message is already validated, FALSE if not.
+	 */
+	public function setMessageValidated($messageValidated) {
+		assert('is_bool($messageValidated)');
+
+		$this->messageValidated = $messageValidated;
+	}
 
 
 	public function setXML($xml) {
@@ -54,6 +74,11 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 
 	public function validate() {
 		assert('$this->dom instanceof DOMDocument');
+
+		if ($this->messageValidated) {
+			/* This message was validated externally. */
+			return TRUE;
+		}
 
 		/* Validate the signature. */
 		$this->validator = new SimpleSAML_XML_Validator($this->dom, array('ResponseID', 'AssertionID'));
@@ -89,6 +114,11 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	 *  TRUE if the node is validated or FALSE if not.
 	 */
 	private function isNodeValidated($node) {
+
+		if ($this->messageValidated) {
+			/* This message was validated externally. */
+			return TRUE;
+		}
 
 		if($this->validator === NULL) {
 			return FALSE;

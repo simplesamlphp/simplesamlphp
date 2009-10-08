@@ -149,7 +149,18 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:ssosent-saml1');
 		$ar->setRelayState($id);
 
-		$url = $ar->createRedirect($idpEntityId, SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->authId));
+		$useArtifact = $idpMetadata->getBoolean('saml1.useartifact', NULL);
+		if ($useArtifact === NULL) {
+			$useArtifact = $this->metadata->getBoolean('saml1.useartifact', FALSE);
+		}
+
+		if ($useArtifact) {
+			$shire = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->authId . '/artifact');
+		} else {
+			$shire = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->authId);
+		}
+
+		$url = $ar->createRedirect($idpEntityId, $shire);
 
 		SimpleSAML_Logger::debug('Starting SAML 1 SSO to ' . var_export($idpEntityId, TRUE) .
 			' from ' . var_export($this->entityId, TRUE) . '.');
