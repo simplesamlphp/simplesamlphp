@@ -336,19 +336,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		
 		if (array_key_exists('contacts', $metadata) && is_array($metadata['contacts']) ) {
 			foreach($metadata['contacts'] AS $contact) {
-				if (array_key_exists('contactType', $contact) && array_key_exists('EmailAddress', $contact)) {
-					$t = $this->createElement('ContactPerson');
-					$t->setAttribute('contactType', $contact['contactType']);
-					
-					if (array_key_exists('SurName', $contact)) {
-						$surname = $this->createTextElement('SurName', $contact['SurName']);
-						$t->appendChild($surname);
-					}
-					
-					$email = $this->createTextElement('EmailAddress', $contact['EmailAddress']);
-					$t->appendChild($email);
-					
-					$this->entityDescriptor->appendChild($t);
+				if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
+                    $this->addContact($contact['contactType'], $contact);
 				}
 			}
 		}
@@ -408,19 +397,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		
 		if (array_key_exists('contacts', $metadata) && is_array($metadata['contacts']) ) {
 			foreach($metadata['contacts'] AS $contact) {
-				if (array_key_exists('contactType', $contact) && array_key_exists('EmailAddress', $contact)) {
-					$t = $this->createElement('ContactPerson');
-					$t->setAttribute('contactType', $contact['contactType']);
-					
-					if (array_key_exists('SurName', $contact)) {
-						$surname = $this->createTextElement('SurName', $contact['SurName']);
-						$t->appendChild($surname);
-					}
-					
-					$email = $this->createTextElement('EmailAddress', $contact['EmailAddress']);
-					$t->appendChild($email);
-					
-					$this->entityDescriptor->appendChild($t);
+				if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
+                    $this->addContact($contact['contactType'], $contact);
 				}
 			}
 		}
