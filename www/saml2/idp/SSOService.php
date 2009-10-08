@@ -149,8 +149,16 @@ if (isset($_REQUEST['SAMLRequest'])) {
 		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
 
 		$consumerURL = $authnrequest->getAssertionConsumerServiceURL();
-		$consumerArray = SimpleSAML_Utilities::arrayize($spmetadata['AssertionConsumerService']);
-		if (($consumerURL != NULL) && (array_search($consumerURL, $consumerArray) !== FALSE)) $requestcache['ConsumerURL'] = $consumerURL;
+		if ($consumerURL !== NULL) {
+			$consumerArray = SimpleSAML_Utilities::arrayize($spmetadata['AssertionConsumerService']);
+			if (in_array($consumerURL, $consumerArray, TRUE)) {
+				$requestcache['ConsumerURL'] = $consumerURL;
+			} else {
+				SimpleSAML_Logger::warning('Authentication request from ' . var_export($spentityid, TRUE) .
+					' contains invalid AssertionConsumerService URL. Was ' .
+					var_export($consumerURL, TRUE) . ', could be ' . var_export($consumerArray, TRUE) . '.');
+			}
+		}
 
 		$IDPList = $authnrequest->getIDPList();
 
