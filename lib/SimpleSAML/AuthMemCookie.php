@@ -149,9 +149,11 @@ class SimpleSAML_AuthMemCookie {
 		$sessionID = $_COOKIE[$cookieName];
 
 		/* Delete the session from memcache. */
-
 		$memcache = $this->getMemcache();
 		$memcache->delete($sessionID);
+
+		/* Delete the session cookie. */
+		setcookie($cookieName, '', 1, '/', NULL, SimpleSAML_Utilities::isHTTPS(), TRUE);
 	}
 
 
