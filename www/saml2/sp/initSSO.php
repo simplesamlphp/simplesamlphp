@@ -24,6 +24,8 @@ if (empty($_GET['RelayState'])) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
 }
 
+$reachableIDPs = array();
+
 try {
 
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $config->getString('default-saml20-idp', NULL) ;
