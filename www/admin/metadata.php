@@ -35,7 +35,7 @@ try {
 		foreach ($metalist AS $entityid => $mentry) {
 			$results[$entityid] = SimpleSAML_Utilities::checkAssocArrayRules($mentry,
 				array('entityid', 'SingleSignOnService', 'SingleLogoutService', 'certFingerprint'),
-				array('name', 'description', 'base64attributes', 'certificate', 'hint.cidr', 'saml2.relaxvalidation', 'SingleLogoutServiceResponse', 'redirect.sign', 'redirect.validate', 'sharedkey', 'assertion.encryption', 'icon', 'authproc', 'certData')
+				array('name', 'description', 'base64attributes', 'certificate', 'hint.cidr', 'saml2.relaxvalidation', 'SingleLogoutServiceResponse', 'redirect.sign', 'redirect.validate', 'sharedkey', 'assertion.encryption', 'icon', 'authproc', 'certData', 'send_metadata_email')
 			);
 			$index = array_search('certFingerprint', $results[$entityid]['required.notfound']);
 			if ($index !== FALSE) {
