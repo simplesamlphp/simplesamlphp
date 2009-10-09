@@ -4,17 +4,14 @@ IdP remote metadata reference
 This is a reference for metadata options available for `metadata/saml20-idp-remote.php` and `metadata/shib13-idp-remote.php`. Both files have the following format:
 
     <?php
-    $metadata = array(
-        /* The index of the array is the entity ID of this IdP. */
-        'entity-id-1' => array(
-            /* Configuration options for the first IdP. */
-        ),
-        'entity-id-2' => array(
-            /* Configuration options for the second IdP. */
-        ),
-        /* ... */
+    /* The index of the array is the entity ID of this IdP. */
+    $metadata['entity-id-1'] = array(
+        /* Configuration options for the first IdP. */
     );
-    ?>
+    $metadata['entity-id-2'] = array(
+        /* Configuration options for the second IdP. */
+    );
+    /* ... */
 
 
 Common options
@@ -138,7 +135,6 @@ Examples
 ### Configuration for openidp.feide.no ###
 
     <?php
-    $metadata = array();
     $metadata['https://openidp.feide.no'] = array(
         'name'                 => array(
             'en' => 'Feide OpenIdP - guest users',
@@ -149,7 +145,6 @@ Examples
         'SingleLogoutService'  => 'https://openidp.feide.no/simplesaml/saml2/idp/SingleLogoutService.php',
         'certFingerprint'      => 'c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb',
     );
-    ?>
 
 
 Calculating the fingerprint of a certificate

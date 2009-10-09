@@ -6,17 +6,14 @@ This is a reference for metadata options available for
 Both files have the following format:
 
     <?php
-    $metadata = array(
-        /* The index of the array is the entity ID of this SP. */
-        'entity-id-1' => array(
-            /* Configuration options for the first SP. */
-        ),
-        'entity-id-2' => array(
-            /* Configuration options for the second SP. */
-        ),
-        /* ... */
+    /* The index of the array is the entity ID of this SP. */
+    $metadata['entity-id-1'] = array(
+        /* Configuration options for the first SP. */
     );
-    ?>
+    $metadata['entity-id-2'] = array(
+        /* Configuration options for the second SP. */
+    );
+    /* ... */
 
 
 Common options
