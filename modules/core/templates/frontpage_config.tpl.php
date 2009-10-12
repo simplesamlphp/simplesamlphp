@@ -43,14 +43,8 @@ if ($this->data['isadmin']) {
 	$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="disabled" />';
 	?>
 	
-		<tr class="<?php echo $this->data['enablematrix']['saml20-sp'] ? 'enabled' : 'disabled'; ?>"><td>SAML 2.0 SP</td>
-			<td><?php echo $this->data['enablematrix']['saml20-sp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
-			
 		<tr class="<?php echo $this->data['enablematrix']['saml20-idp'] ? 'enabled' : 'disabled'; ?>"><td>SAML 2.0 IdP</td>
 			<td><?php echo $this->data['enablematrix']['saml20-idp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
-			
-		<tr class="<?php echo $this->data['enablematrix']['shib13-sp'] ? 'enabled' : 'disabled'; ?>"><td>Shib 1.3 SP</td>
-			<td><?php echo $this->data['enablematrix']['shib13-sp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
 			
 		<tr class="<?php echo $this->data['enablematrix']['shib13-idp'] ? 'enabled' : 'disabled'; ?>"><td>Shib 1.3 IdP</td>
 			<td><?php echo $this->data['enablematrix']['shib13-idp'] ? $icon_enabled : $icon_disabled; ?></td></tr>
