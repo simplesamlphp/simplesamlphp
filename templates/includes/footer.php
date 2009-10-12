@@ -1,12 +1,14 @@
-
-
 <?php
 
-if(isset($htmlContentPost)) {
-	foreach($htmlContentPost AS $c) {
+
+
+if(!empty($this->data['htmlinject']['htmlContentPost'])) {
+	foreach($this->data['htmlinject']['htmlContentPost'] AS $c) {
 		echo $c;
 	}
 }
+
+
 ?>
 
 
