@@ -47,15 +47,15 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		/* Call the parent constructor first, as required by the interface. */
 		parent::__construct($info, $config);
 
-		/* For compatibility with code that assumes that $metadata->getString('entityid') gives the entity id. */
-		if (array_key_exists('entityID', $config)) {
-			$config['entityid'] = $config['entityID'];
-		} else {
-			$config['entityid'] = $this->getMetadataURL();
+		if (!array_key_exists('entityID', $config)) {
+			$config['entityID'] = $this->getMetadataURL();
 		}
 
+		/* For compatibility with code that assumes that $metadata->getString('entityid') gives the entity id. */
+		$config['entityid'] = $config['entityID'];
+
 		$this->metadata = SimpleSAML_Configuration::loadFromArray($config, 'authsources[' . var_export($this->authId, TRUE) . ']');
-		$this->entityId = $this->metadata->getString('entityid');
+		$this->entityId = $this->metadata->getString('entityID');
 		$this->idp = $this->metadata->getString('idp', NULL);
 		$this->discoURL = $this->metadata->getString('discoURL', NULL);
 	}
