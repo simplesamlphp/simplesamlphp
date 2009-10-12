@@ -92,7 +92,6 @@ In this setup, this file should contain a single entry:
 			),
 		),
 	);
-	?>
 
 This configuration creates two users - `student` and `employee`, with the passwords `studentpass` and `employeepass`. The username and password is stored in the array index (`student:studentpass` for the `student`-user. The attributes for each user is configured in the array referenced by the index. For the student user, these are:
 
@@ -111,31 +110,28 @@ The IdP is configured by the metadata stored in
 `metadata/saml20-idp-hosted.php` and `metadata/shib13-idp-hosted.php`.
 This is a minimal configuration of a SAML 2.0 IdP:
 
-	<?php
-	$metadata = array(
-		'__DYNAMIC:1__' => array(
-			/*
-			 * The hostname for this IdP. This makes it possible to run multiple
-			 * IdPs from the same configuration. '__DEFAULT__' means that this one
-			 * should be used by default.
-			 */
-			'host' => '__DEFAULT__',
+    <?php
+    $metadata['__DYNAMIC:1__'] = array(
+        /*
+         * The hostname for this IdP. This makes it possible to run multiple
+         * IdPs from the same configuration. '__DEFAULT__' means that this one
+         * should be used by default.
+         */
+        'host' => '__DEFAULT__',
 
-			/*
-			 * The private key and certificate to use when signing responses.
-			 * These are stored in the cert-directory.
-			 */
-			'privatekey' => 'server.pem',
-			'certificate' => 'server.crt',
+        /*
+         * The private key and certificate to use when signing responses.
+         * These are stored in the cert-directory.
+         */
+        'privatekey' => 'server.pem',
+        'certificate' => 'server.crt',
 
-			/*
-			 * The authentication source which should be used to authenticate the
-			 * user. This must match one of the entries in config/authsources.php.
-			 */
-			'auth' => 'example-userpass',
-		),
-	);
-	?>
+        /*
+         * The authentication source which should be used to authenticate the
+         * user. This must match one of the entries in config/authsources.php.
+         */
+        'auth' => 'example-userpass',
+    );
 
 For more information about available options in the idp-hosted metadata
 files, see the [IdP hosted reference](https://rnd.feide.no/content/idp-hosted-metadata-reference).
@@ -146,14 +142,11 @@ Adding SPs to the IdP
 
 The identity provider you are configuring needs to know about the service providers you are going to connect to it. This is configured by metadata stored in `metadata/saml20-sp-remote.php` and `metadata/shib13-sp-remote.php`. This is a minimal example of a `metadata/saml20-sp-remote.php` metadata file:
 
-	<?php
-	$metadata = array(
-		'https://sp.example.org' => array(
-			'AssertionConsumerService' => 'https://sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php',
-			'SingleLogoutService'      => 'https://sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
-		),
-	);
-	?>
+    <?php
+    $metadata['https://sp.example.org'] = array(
+        'AssertionConsumerService' => 'https://sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php',
+        'SingleLogoutService'      => 'https://sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
+    );
 
 If you have the metadata of the remote SP as an XML file, you can use the built-in XML to simpleSAMLphp metadata converter, which by default is available as `/admin/metadata-converter.php` in your simpleSAMLphp installation.
 

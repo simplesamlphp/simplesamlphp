@@ -30,7 +30,6 @@ This is a minimal authsources.php for a SP:
             'saml:SP',
         ),
     );
-    ?>
 
 For more information about additional options available for the SP, see the [`saml:SP` reference](https://rnd.feide.no/content/saml-service-provider-configuration-reference).
 
@@ -42,14 +41,11 @@ The service provider you are configuring needs to know about the identity provid
 This is a minimal example of a `metadata/saml20-idp-remote.php` metadata file:
 
     <?php
-    $metadata = array(
-        'https://openidp.feide.no' => array(
-            'SingleSignOnService'  => 'https://openidp.feide.no/simplesaml/saml2/idp/SSOService.php',
-            'SingleLogoutService'  => 'https://openidp.feide.no/simplesaml/saml2/idp/SingleLogoutService.php',
-            'certFingerprint'      => 'c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb',
-        ),
+    $metadata['https://openidp.feide.no'] = array(
+        'SingleSignOnService'  => 'https://openidp.feide.no/simplesaml/saml2/idp/SSOService.php',
+        'SingleLogoutService'  => 'https://openidp.feide.no/simplesaml/saml2/idp/SingleLogoutService.php',
+        'certFingerprint'      => 'c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb',
     );
-    ?>
 
 For more information about available options in the idp-remote metadata files, see the [IdP remote reference](https://rnd.feide.no/content/idp-remote-metadata-reference).
 
@@ -77,7 +73,6 @@ This is the `idp` option.
             'idp' => 'https://openidp.feide.no',
         ),
     );
-    ?>
 
 
 Exchange metadata with the IdP
