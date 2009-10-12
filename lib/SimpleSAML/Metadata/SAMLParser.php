@@ -866,7 +866,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$sp = self::parseSSODescriptor($element, $expireTime);
 
 		/* Find all AssertionConsumerService elements. */
-		$sp['AssertionConsumerServices'] = array();
+		$sp['AssertionConsumerService'] = array();
 		$acs = SimpleSAML_Utilities::getDOMChildren($element, 'AssertionConsumerService', '@md');
 		foreach($acs as $child) {
 			$sp['AssertionConsumerService'][] = self::parseAssertionConsumerService($child);
