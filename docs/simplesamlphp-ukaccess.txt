@@ -1,0 +1,136 @@
+QuickStart: Connecting SimpleSAMLphp as SP to UK Access Federation and InCommon
+===============================================================================
+
+<!-- 
+	This file is written in Markdown syntax. 
+	For more information about how to use the Markdown syntax, read here:
+	http://daringfireball.net/projects/markdown/syntax
+-->
+
+  * Version: `$Id$`
+
+
+This guide will describe how to configure simpleSAMLphp as a service provider (SP) supporting SAML 1.1 (shib1.3) and SAML 2.0 connecting it to a federation such as **UK Access Federation** or **InCommon**.
+
+You should previously have installed simpleSAMLphp as described in [the simpleSAMLphp installation instructions](http://rnd.feide.no/content/installing-simplesamlphp).
+
+
+Configuring the SP
+------------------
+
+The SP is configured by an entry in `config/authsources.php`. If you copy the `authsources.php` configuration from `config-templates`, it should work out of the box without any need for changes.
+
+
+Further details on configuring an SP:
+
+  * [Service Provider QuickStart](https://rnd.feide.no/content/using-simplesamlphp-service-provider)
+  * [Configuration Reference](https://rnd.feide.no/content/saml-service-provider-configuration-reference)
+
+
+Consuming Federation Metadata
+-----------------------------
+
+In order to enable the functionality to automatically download and parse metadata from a remtote URL, enable the `metarefresh` and `cron` modules:
+
+	touch modules/metarefresh/enable
+	cp modules/metarefresh/config-templates/*.php config/
+	touch modules/cron/enable
+	cp modules/cron/config-templates/*.php config/
+
+Create a directory to cache the downloaded federation metadata:
+
+	mkdir metadata/metarefresh-ukaccess
+	chmod go+rw metadata/metarefresh-ukaccess
+
+The module `metarefresh` is responsible for getting metadata from a preconfigured URL, and then parse and validate it and cache it for use with the SAML SP module.
+
+Edit the `config/config-metarefresh.php`:
+
+
+	<?php
+	$config = array(
+		'sets' => array(
+			'uk' => array(
+				'cron'		=> array('hourly'),
+				'sources'	=> array(
+					array(
+						'src' => 'http://metadata.ukfederation.org.uk/ukfederation-metadata.xml',
+						'validateFingerprint' => 'D0:E8:40:25:F0:B1:2A:CC:74:22:ED:C3:87:04:BC:29:BB:7B:9A:40',
+					),
+				),
+				'expireAfter' 		=> 60*60*24*4, // Maximum 4 days cache time.
+				'outputDir' 	=> 'metadata/metarefresh-ukaccess/',
+				'outputFormat' => 'serialize',
+			),
+		),
+	);
+
+The example above is from **UK Acces Federation**. If you instead would like to get metadata from **InCommon**, use the following URL and fingerprint:
+
+	'src' => 'http://wayf.incommonfederation.org/InCommon/InCommon-metadata.xml',
+	'validateFingerprint' => '3afcb44382c142439a01da958aef7494892f7e98',
+
+Notice that the configuration points the `outputDir` to the directory we created earlier. Now, we configure the SAML SP to use the cached `outputDir` as one of its metadata sources. Edit `config.php`:
+
+	'metadata.sources' => array(
+		array('type' => 'flatfile'),
+		array('type' => 'serialize', 'directory' => 'metadata/metarefresh-ukaccess'),
+	),
+
+Now, go to the frontpage of your simpleSAMLphp installation, and: 
+
+1. **Configuration** › **Cron module information page**. 
+2. You then would need to enter that admin password that you did set in `config.php` during installation.
+3. **Run cron [hourly]**
+
+Then the page should load for a while and show no errors, only a white page. (These URLs are meant to run from *cron*, hence no output). If this operation seems to run fine, navigate to the **SimpleSAMLphp Front page** › **Federation**. Here you should see a list of all trusted Identity Providers. The Identity Providers that are downloaded are listed with information about the valid cache duration, such as *(expires in 96.0 hours)*.
+
+For more details on how to configure automateed metadata:
+
+  * [Automated Metadata Management](https://rnd.feide.no/content/automated-metadata-distribution-with-simplesamlphp)
+
+For information on how to configure *remote metadata* manually (possibly in combination with automated metadata as described here):
+
+  * [Service Provider QuickStart](https://rnd.feide.no/content/using-simplesamlphp-service-provider)
+
+
+
+
+
+Exchange metadata with the Federation
+-------------------------------------
+
+In order to connect your Service Provider to the IdPs of the federations, the IdPs will need to trust your Service Provider. The prodecure for managing trust in federations differ, but the common part is that you would need to prepare *SAML 2.0 metadata for your SP*, and register that with the federation administration.
+
+SimpleSAMLphp will automatically suggest metadata for your SP. Go to the **SimpleSAMLphp Front page** › **Federation**. Here you will see an entry with *SAML 2.0 SP Metadata*. If you follow the link **[ Show metadata ]**, you will see a page listing metadata for your entity. You may copy and paste the SAML 2.0 metadata document, or send a link to this page to the federation administration.
+
+
+
+Test the SP
+-----------
+
+After the metadata is is configured on the IdP, you should be able to test your SP.
+
+Go to the **SimpleSAMLphp Front Page** › **Authentication** › **Test configured authentication sources**. You will then see a list of authentication sources that you may test. Select the authentication source ID for your SAML 2.0 SP. If you have not modified the `authsources.php` template, the ID is `default-sp`. When you click that link you should see a discovery service list of all Identity Providers.
+
+For a better looking more advanced Discovery Service with tabs and live search, you should use the `discopower` module in simpleSAMLphp that is part of the official simpleSAMLphp release.
+
+  * [Blog entry about the DiscoPower module](https://rnd.feide.no/content/improved-discovery-service-live-search)
+
+
+Integrating authentication with your own application
+----------------------------------------------------
+
+
+  * [Service Provider QuickStart](https://rnd.feide.no/content/using-simplesamlphp-service-provider)
+
+
+Support
+-------
+
+If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
+
+-  [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
+-  [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+-  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
+-  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
