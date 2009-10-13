@@ -1,5 +1,5 @@
-QuickStart: Connecting SimpleSAMLphp as SP to UK Access Federation and InCommon
-===============================================================================
+Connecting SimpleSAMLphp SP to UK Access Federation and InCommon
+================================================================
 
 <!-- 
 	This file is written in Markdown syntax. 
@@ -18,13 +18,33 @@ You should previously have installed simpleSAMLphp as described in [the simpleSA
 Configuring the SP
 ------------------
 
-The SP is configured by an entry in `config/authsources.php`. If you copy the `authsources.php` configuration from `config-templates`, it should work out of the box without any need for changes.
-
+The SP is configured by an entry in `config/authsources.php`. If you copy the `authsources.php` configuration from `config-templates`, it contains a decent default setup.
 
 Further details on configuring an SP:
 
   * [Service Provider QuickStart](https://rnd.feide.no/content/using-simplesamlphp-service-provider)
   * [Configuration Reference](https://rnd.feide.no/content/saml-service-provider-configuration-reference)
+
+### Enablig a certificate for your Service Provider
+
+UK Access Federation and InCommon probably requires that you enable a certificate for your SP. Other federations do not always require that you do.
+
+If you enable a certificate for your Service Provider, it may be able to sign requests and response sent to the Identity Provider, as well as receiving encrypted responses.
+
+Create a self-signed certificate in the `cert/` directory.
+
+	cd cert
+	openssl req -new -x509 -days 3652 -nodes -out saml.crt -keyout saml.pem
+
+
+Then edit your `authsources.php` entry, and add references to your certificate:
+
+	'default-sp' => array(
+	    'saml:SP',
+	    'privatekey' => 'saml.pem',
+	    'certificate' => 'saml.crt',
+	),
+
 
 
 Consuming Federation Metadata
@@ -116,6 +136,7 @@ Go to the **SimpleSAMLphp Front Page** › **Authentication** › **Test configu
 For a better looking more advanced Discovery Service with tabs and live search, you should use the `discopower` module in simpleSAMLphp that is part of the official simpleSAMLphp release.
 
   * [Blog entry about the DiscoPower module](https://rnd.feide.no/content/improved-discovery-service-live-search)
+  * Dedicated documentation for DiscoPower module, TBD.
 
 
 Integrating authentication with your own application
@@ -123,6 +144,31 @@ Integrating authentication with your own application
 
 
   * [Service Provider QuickStart](https://rnd.feide.no/content/using-simplesamlphp-service-provider)
+
+
+Caveat
+------
+
+In federations like UK Access Federations different aspects of the SAML protocol is in use, and here follows some information about what should work with SimpleSAMLphp and what will not work.
+
+SimpleSAMLphp SP supports *SAML 1.1*, compatible with Shibboleth 1.3:
+
+  * SimpleSAMLphp supports Shibboleth Binding for authentication request.
+  * SimpleSAMLphp does not support SAML 1.1 Attribute Queries, but it supports attribute push (embedded attributes in Response).
+  * SimpleSAMLphp supports SAML 1.1 Artifact Binding for Response.
+
+SimpleSAMLphp SP supports *SAML 2.0*, compatible with Shibboleth 2.X:
+
+  * SimpleSAMLphp uses the SAML 2.0 HTTP-REDIRECT binding for authentication request.
+  * SimpleSAMLphp by default sends unsigned authentication request, may be enabled by configuring a certificate.
+  * SimpleSAMLphp supports the SAML 2.0 HTTP-POST binding for Response.
+  * SimpleSAMLphp do not support the SAML 2.0 Artifact binding for Response. Estimated to be available in SimpleSAMLphp 1.6.
+  * SimpleSAMLphp supports SAML 2.0 Attribute Queries, but these are not sent automatically during SSO.
+  * SimpleSAMLphp supports receiving and decrypting EncryptedAssertions.
+  * SimpleSAMLphp supports receiving and decrypting NameID, as enabled by default by Shibboleth 2.0 - 2.1.
+  * SimpleSAMLphp supports SAML 2.0 Single Logout Profile using HTTP-REDIRECT binding. Warning: not yet supported by Shibboleth 2.x IdP.
+
+**Important about certificates**: SimpleSAMLphp as an SP requires that Identity Providers have embedded certificates in metadata. Most federations use emebedded certificates, and others are migrating to use embedded certificates. Some federations though are using PKI, relying on a list of trusted CAs and no embedded certificates in metadata - this setup is *not* supported by simpleSAMLphp.
 
 
 Support
@@ -134,3 +180,11 @@ If you need help to make this work, or want to discuss simpleSAMLphp with other 
 -  [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
 -  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
 -  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
+
+More information about the federations:
+
+- [UK Access Federation](http://www.ukfederation.org.uk/)
+- [InCommon](http://www.incommonfederation.org/)
+
+If your questions are not related to simpleSAMLphp, but instead to procedures on how to deal with a specific federation, the support channels specific for that federation.
+
