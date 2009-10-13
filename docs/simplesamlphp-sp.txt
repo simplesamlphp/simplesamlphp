@@ -17,10 +17,9 @@ This guide will describe how to configure simpleSAMLphp as a service provider (S
 Configuring the SP
 ------------------
 
-The SP is configured by an entry in config/authsources.php.
-After your initial setup, you should 
+The SP is configured by an entry in `config/authsources.php`.
 
-This is a minimal authsources.php for a SP:
+This is a minimal `authsources.php` for a SP:
 
     <?php
     $config = array(
@@ -32,6 +31,17 @@ This is a minimal authsources.php for a SP:
     );
 
 For more information about additional options available for the SP, see the [`saml:SP` reference](https://rnd.feide.no/content/saml-service-provider-configuration-reference).
+
+If you want mulitple Service Providers in the same site and installation, you can add more entries in the `authsources.php` configuration. If so remember to set the EntityID explicitly. Here is an example:
+
+	'sp1' => array(
+	    'saml:SP',
+		'entityID' => 'https://sp1.example.org/,
+	),
+	'sp2' => array(
+	    'saml:SP',
+		'entityID' => 'https://sp2.example.org/,
+	),
 
 
 Adding IdPs to the SP
