@@ -224,7 +224,7 @@ $config = array (
 	 * Options: [links,dropdown]
 	 * 
 	 */
-	'idpdisco.layout' => 'links',
+	'idpdisco.layout' => 'dropdown',
 
 	/*
 	 * Whether simpleSAMLphp should sign the response or the assertion in SAML 1.1 authentication
