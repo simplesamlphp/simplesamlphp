@@ -137,6 +137,31 @@ class SimpleSAML_Auth_Simple {
 		return $session->getAttributes();
 	}
 
+
+	/**
+	 * Retrieve an URL that can be used to log the user in.
+	 *
+	 * @param string|NULL $returnTo
+	 *   The page the user should be returned to afterwards. If this parameter
+	 *   is NULL, the user will be returned to the current page.
+	 * @return string
+	 *   An URL which is suitable for use in link-elements.
+	 */
+	public function getLoginURL($returnTo = NULL) {
+
+		if ($returnTo === NULL) {
+			$returnTo = SimpleSAML_Utilities::selfURL();
+		}
+
+		$login = SimpleSAML_Module::getModuleURL('core/as_login.php');
+		$login = SimpleSAML_Utilities::addURLparameter($login, array(
+			'AuthId' => $this->authSource,
+			'ReturnTo' => $returnTo,
+		));
+
+		return $login;
+	}
+
 }
 
 ?>
