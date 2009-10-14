@@ -9,3 +9,33 @@ function SimpleSAML_focus(id) {
     element.focus();
   }
 }
+
+
+/**
+ * Show the given DOM element.
+ *
+ * @param id  The id of the element which should be shown.
+ */
+function SimpleSAML_show(id) {
+  element = document.getElementById(id);
+  if (element == null) {
+    return;
+  }
+
+  element.style.display = 'block';
+}
+
+
+/**
+ * Hide the given DOM element.
+ *
+ * @param id  The id of the element which should be hidden.
+ */
+function SimpleSAML_hide(id) {
+  element = document.getElementById(id);
+  if (element == null) {
+    return;
+  }
+
+  element.style.display = 'none';
+}
