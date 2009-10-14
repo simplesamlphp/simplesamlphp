@@ -177,10 +177,10 @@ function present_attributes($t, $attributes, $nameParent) {
 
 			if ($isHidden) {
 				$str .= '<div class="attrvalue consent_showattribute" id="visible_' . $hiddenId . '">';
-				$str .= '... (';
+				$str .= '... ';
 				$str .= '<a class="consent_showattributelink" href="javascript:SimpleSAML_show(\'hidden_' . $hiddenId . '\'); SimpleSAML_hide(\'visible_' . $hiddenId . '\');">';
 				$str .= $t->t('{consent:consent:show_attribute}');
-				$str .= '</a>)';
+				$str .= '</a>';
 				$str .= '</div>';
 			}
 

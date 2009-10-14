@@ -173,10 +173,10 @@ $lang = array(
 		'tr' => 'Özellikleri göster',
 	),
 	'show_attribute' => array (
-		'no' => 'Vis',
-		'nn' => 'Vis',
-		'da' => 'Vis',
-		'en' => 'Show',
+		'no' => 'Vis innhold',
+		'nn' => 'Vis innhald',
+		'da' => 'Vis indhold',
+		'en' => 'Show content',
 	),
 	'login' => array (
 		'no' => 'innlogging',
