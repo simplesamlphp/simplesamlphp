@@ -23,6 +23,7 @@ assert('is_array($this->data["yesData"])');
 assert('is_string($this->data["noTarget"])');
 assert('is_array($this->data["noData"])');
 assert('is_array($this->data["attributes"])');
+assert('is_array($this->data["hiddenAttributes"])');
 assert('$this->data["sppp"] === FALSE || is_string($this->data["sppp"])');
 
 
@@ -48,7 +49,6 @@ if (array_key_exists('name', $this->data['dstMetadata'])) {
 
 
 $attributes = $this->data['attributes'];
-
 
 $this->data['header'] = $this->t('{consent:consent:consent_header}');
 $this->data['head']  = '<link rel="stylesheet" type="text/css" href="/' . $this->data['baseurlpath'] . 'module.php/consent/style.css" />' . "\n";
@@ -120,7 +120,7 @@ function present_attributes($t, $attributes, $nameParent) {
 	
 	if(strlen($nameParent) > 0){
 		$parentStr = strtolower($nameParent) . '_';
-		$str = '<table class="attributes"' . $summary . ' >';
+		$str = '<table class="attributes" ' . $summary . '>';
 	}else{
 		$parentStr = '';
 		$str = '<table id="table_with_attributes"  class="attributes" '. $summary .'>';
@@ -142,7 +142,18 @@ function present_attributes($t, $attributes, $nameParent) {
 			}
 		} else {
 			// Insert values directly
-			$str .= "\n" . '<tr class="' . $alternate[($i++ % 2)] . '"><td><span class="attrname">' . htmlspecialchars($name) . '</span><div class="attrvalue">';
+
+			$str .= "\n" . '<tr class="' . $alternate[($i++ % 2)] . '"><td><span class="attrname">' . htmlspecialchars($name) . '</span>';
+
+			$isHidden = in_array($nameraw, $t->data['hiddenAttributes'], TRUE);
+			if ($isHidden) {
+				$hiddenId = SimpleSAML_Utilities::generateID();
+
+				$str .= '<div class="attrvalue" style="display: none;" id="hidden_' . $hiddenId . '">';
+			} else {
+				$str .= '<div class="attrvalue">';
+			}
+
 			if (sizeof($value) > 1) {
 				// We hawe several values
 				$str .= '<ul>';
@@ -162,7 +173,18 @@ function present_attributes($t, $attributes, $nameParent) {
 					$str .= htmlspecialchars($value[0]);
 				}
 			}	// end of if multivalue
-			$str .= '</div></td></tr>';
+			$str .= '</div>';
+
+			if ($isHidden) {
+				$str .= '<div class="attrvalue consent_showattribute" id="visible_' . $hiddenId . '">';
+				$str .= '... (';
+				$str .= '<a class="consent_showattributelink" href="javascript:SimpleSAML_show(\'hidden_' . $hiddenId . '\'); SimpleSAML_hide(\'visible_' . $hiddenId . '\');">';
+				$str .= $t->t('{consent:consent:show_attribute}');
+				$str .= '</a>)';
+				$str .= '</div>';
+			}
+
+			$str .= '</td></tr>';
 		}	// end else: not child table
 	}	// end foreach
 	$str .= isset($attributes)? '</table>':'';

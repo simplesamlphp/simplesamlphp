@@ -144,6 +144,11 @@ if (array_key_exists('consent:store', $state)) {
 } else {
 	$t->data['usestorage'] = FALSE;
 }
+if (array_key_exists('consent:hiddenAttributes', $state)) {
+	$t->data['hiddenAttributes'] = $state['consent:hiddenAttributes'];
+} else {
+	$t->data['hiddenAttributes'] = array();
+}
 
 $t->show();
 exit;

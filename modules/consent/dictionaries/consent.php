@@ -172,6 +172,12 @@ $lang = array(
 		'pt' => 'Mostrar atributos',
 		'tr' => 'Özellikleri göster',
 	),
+	'show_attribute' => array (
+		'no' => 'Vis',
+		'nn' => 'Vis',
+		'da' => 'Vis',
+		'en' => 'Show',
+	),
 	'login' => array (
 		'no' => 'innlogging',
 		'nn' => 'Logg inn',

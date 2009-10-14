@@ -73,6 +73,14 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 
 
 	/**
+	 * List of attributes where the value should be hidden by default.
+	 *
+	 * @var array
+	 */
+	private $hiddenAttributes;
+
+
+	/**
 	 * Initialize consent filter.
 	 *
 	 * This is the constructor for the consent filter. It validates and parses the configuration.
@@ -111,7 +119,12 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 				SimpleSAML_Logger::error('Consent - constructor() : Could not create consent storage: ' . $e->getMessage());
 			}
 		} 
-		
+
+		if (array_key_exists('hiddenAttributes', $config)) {
+			$this->hiddenAttributes = $config['hiddenAttributes'];
+		} else {
+			$this->hiddenAttributes = array();
+		}
 
 	}
 
@@ -179,6 +192,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 
 		$state['consent:focus'] = $this->focus;
 		$state['consent:checked'] = $this->checked;
+		$state['consent:hiddenAttributes'] = $this->hiddenAttributes;
 
 		/* User interaction nessesary. Throw exception on isPassive request */	
 		if (isset($state['isPassive']) && $state['isPassive'] == TRUE) {
