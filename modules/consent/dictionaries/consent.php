@@ -373,6 +373,12 @@ $lang = array(
 		'pt' => 'Listar a informação acerca de si que será enviada para o serviço no qual se está autenticar',
 		'tr' => 'Girmek istediğiniz servise gönderilecek bilginizi listeleyin',
 	),
+	'show_attribute' => array (
+		'no' => 'Vis innhold',
+		'nn' => 'Vis innhald',
+		'da' => 'Vis indhold',
+		'en' => 'Show content',
+	),
 
 );
 
