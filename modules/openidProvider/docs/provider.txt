@@ -1,0 +1,56 @@
+OpenID provider support
+=======================
+
+simpleSAMLphp can act as an OpenID provider.
+This allows you to integrate OpenID into an existing IdP, or to add a bridge between OpenID and SAML 2.0.
+
+To use it, you need to enable the OpenID provider module:
+
+    touch modules/openidProvider/enable
+
+You must also edit the configuration file:
+
+    cp modules/openidProvider/config-template/module_openidProvider.php config/
+    "$EDITOR" config/module_openidProvider.php
+
+
+Options
+-------
+
+The following options must be set in the configuration file:
+
+`auth`
+:   The authentication source that should be used to authenticate users who access the OpenID endpoint.
+    This can be any authentication source configured in `config/authsources.php`.
+
+:   To configure this as a bridge, set up a `saml` authentication source, and use that one.
+
+`username_attribute`
+:   The name of the attribute that contains the username of the user.
+
+
+`filestore`
+:   A path to a directory where the OpenID provider can save data.
+    This directory must be writeable by the web server.
+
+
+Testing
+-------
+
+To test your provider, go to the authentication tab on the frontpage.
+There you will find a link to the OpenID provider.
+Click that link and log in.
+
+Once you are logged in, the OpenID identifier for your user will be displayed.
+Use that identifier with an OpenID consumer to test authentication.
+
+
+Delegation
+----------
+
+The OpenID identifier created by the simpleSAMLphp OpenID provider is quite long and hard to type.
+To use a simpler identifier, you can delegate accesses from the simple identifier to the OpenID provider.
+Your OpenID page will list two `<link>`-elements that you can add to any web page in order to turn it into your OpenID identifier.
+
+For example, to use `myid.example.org` as your OpeNID identifier, add the `<link>`-elements to the web page which handles `http://myid.example.org/`.
+
