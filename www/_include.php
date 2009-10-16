@@ -32,6 +32,11 @@ set_exception_handler('SimpleSAML_exception_handler');
 /* Log full backtrace on errors and warnings. */
 function SimpleSAML_error_handler($errno, $errstr, $errfile = NULL, $errline = 0, $errcontext = NULL) {
 
+	if ($errno & SimpleSAML_Utilities::$logMask) {
+		/* Masked error. */
+		return FALSE;
+	}
+
 	static $limit = 5;
 	$limit -= 1;
 	if ($limit < 0) {
