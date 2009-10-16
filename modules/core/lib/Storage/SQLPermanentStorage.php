@@ -152,7 +152,7 @@ class sspmod_core_Storage_SQLPermanentStorage {
 	public function removeExpired() {
 		$query = "DELETE FROM data WHERE expire NOT NULL AND expire < " . time();
 		$this->db->arrayQuery($query, SQLITE_ASSOC);
-		$changes = $this->db>changes;
+		$changes = $this->db->changes();
 		return $changes;
 	}
 	
