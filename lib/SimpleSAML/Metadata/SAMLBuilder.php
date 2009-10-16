@@ -287,7 +287,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		}
 
 
-		if ( array_key_exists('name', $metadata) || array_key_exists('attributes', $metadata)) {
+		if ( array_key_exists('name', $metadata) && array_key_exists('attributes', $metadata)) {
 			/**
 			 * Add an AttributeConsumingService element with information as name and description and list
 			 * of requested attributes

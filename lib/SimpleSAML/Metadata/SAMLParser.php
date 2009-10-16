@@ -481,6 +481,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		if($acs === NULL) {
 			SimpleSAML_Logger::warning('Could not find a supported SAML 1.x AssertionConsumerService endpoint for ' .
 				var_export($ret['entityid'], TRUE) . '.');
+			return;
 		} else {
 			$ret['AssertionConsumerService'] = $acs['Location'];
 		}
@@ -505,7 +506,6 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['certData'] = preg_replace('/\s+/', '', str_replace(array("\r", "\n"), '', $key['X509Certificate']));
 			break;
 		}
-
 
 		return $ret;
 	}
@@ -548,6 +548,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		if($sso === NULL) {
 			SimpleSAML_Logger::warning('Could not find a supported SAML 1.x SingleSignOnService endpoint for ' .
 				var_export($ret['entityid'], TRUE) . '.');
+			return;
 		} else {
 			$ret['SingleSignOnService'] = $sso['Location'];
 		}
@@ -877,8 +878,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$attcs = SimpleSAML_Utilities::getDOMChildren($element, 'AttributeConsumingService', '@md');
 		if (count($attcs) > 0) {
 			self::parseAttributeConsumerService($attcs[0], $sp);
-		}
-		
+		}	
 
 		$this->spDescriptors[] = $sp;
 	}
