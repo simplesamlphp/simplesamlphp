@@ -52,11 +52,8 @@ try {
 
 	/* Clear the PATH_INFO option, so that a script can detect whether it is called
 	 * with anything following the '.php'-ending.
-	 *
-	 * Commented out by Andreas on december 3rd 2008. this conflicts with the helper methods
-	 * in Utilities to get URL right.
 	 */
-#	unset($_SERVER['PATH_INFO']);
+	unset($_SERVER['PATH_INFO']);
 
 	$modEnd = strpos($url, '/', 1);
 	if ($modEnd === FALSE) {
@@ -87,26 +84,26 @@ try {
 	}
 
 	$moduleDir = SimpleSAML_Module::getModuleDir($module) . '/www/';
-	$path = $moduleDir . $url;
 
 	/* Check for '.php/' in the path, the presence of which indicates that another php-script
 	 * should handle the request.
 	 */
 	for ($phpPos = strpos($url, '.php/'); $phpPos !== FALSE; $phpPos = strpos($url, '.php/', $phpPos + 1)) {
 
-		$newPath = substr($url, 0, $phpPos + 4);
-		$paramPath = substr($url, $phpPos + 4);
+		$newURL = substr($url, 0, $phpPos + 4);
+		$param = substr($url, $phpPos + 4);
 
-		if (is_file($moduleDir . $newPath)) {
+		if (is_file($moduleDir . $newURL)) {
 			/* $newPath points to a normal file. Point execution to that file, and
 			 * save the remainder of the path in PATH_INFO.
 			 */
-			$path = $moduleDir . $newPath;
-			$_SERVER['SCRIPT_NAME'] .= '/' . $module . '/' . $newPath;
-			$_SERVER['PATH_INFO'] = $paramPath;
+			$url = $newURL;
+			$_SERVER['PATH_INFO'] = $param;
 			break;
 		}
 	}
+
+	$path = $moduleDir . $url;
 
 	if ($path[strlen($path)-1] === '/') {
 		/* Path ends with a slash - directory reference. Attempt to find index file
@@ -136,6 +133,7 @@ try {
 
 	if (preg_match('#\.php$#', $path)) {
 		/* PHP file - attempt to run it. */
+		$_SERVER['SCRIPT_NAME'] .= '/' . $module . '/' . $url;
 		require($path);
 		exit();
 	}
