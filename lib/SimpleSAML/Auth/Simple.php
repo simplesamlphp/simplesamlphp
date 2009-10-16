@@ -148,6 +148,7 @@ class SimpleSAML_Auth_Simple {
 	 *   An URL which is suitable for use in link-elements.
 	 */
 	public function getLoginURL($returnTo = NULL) {
+		assert('is_null($returnTo) || is_string($returnTo)');
 
 		if ($returnTo === NULL) {
 			$returnTo = SimpleSAML_Utilities::selfURL();
