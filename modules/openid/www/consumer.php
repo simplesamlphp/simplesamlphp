@@ -4,8 +4,7 @@
  * Disable strict error reporting, since the OpenID library
  * used is PHP4-compatible, and not PHP5 strict-standards compatible.
  */
-$oldErrLevel = error_reporting();
-error_reporting($oldErrLevel & ~E_STRICT);
+SimpleSAML_Utilities::maskErrors(E_STRICT);
 
 require_once('Auth/OpenID/SReg.php');
 require_once('Auth/OpenID/Server.php');
