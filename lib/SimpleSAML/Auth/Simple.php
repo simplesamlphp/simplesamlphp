@@ -163,6 +163,32 @@ class SimpleSAML_Auth_Simple {
 		return $login;
 	}
 
+
+	/**
+	 * Retrieve an URL that can be used to log the user out.
+	 *
+	 * @param string|NULL $returnTo
+	 *   The page the user should be returned to afterwards. If this parameter
+	 *   is NULL, the user will be returned to the current page.
+	 * @return string
+	 *   An URL which is suitable for use in link-elements.
+	 */
+	public function getLogoutURL($returnTo = NULL) {
+		assert('is_null($returnTo) || is_string($returnTo)');
+
+		if ($returnTo === NULL) {
+			$returnTo = SimpleSAML_Utilities::selfURL();
+		}
+
+		$logout = SimpleSAML_Module::getModuleURL('core/as_logout.php');
+		$logout = SimpleSAML_Utilities::addURLparameter($logout, array(
+			'AuthId' => $this->authSource,
+			'ReturnTo' => $returnTo,
+		));
+
+		return $logout;
+	}
+
 }
 
 ?>
