@@ -160,9 +160,10 @@ class sspmod_ldap_ConfigHelper {
 	 *
 	 * @param string $username  The username the user wrote.
 	 * @param string $password  The password the user wrote.
+	 * @param arrray $sasl_args  Array of SASL options for LDAP bind.
 	 * @return array  Associative array with the users attributes.
 	 */
-	public function login($username, $password) {
+	public function login($username, $password, array $sasl_args = NULL) {
 		assert('is_string($username)');
 		assert('is_string($password)');
 
@@ -186,10 +187,14 @@ class sspmod_ldap_ConfigHelper {
 			}
 		}
 
-		if (!$ldap->bind($dn, $password)) {
+		if (!$ldap->bind($dn, $password, $sasl_args)) {
 			SimpleSAML_Logger::info($this->location . ': '. $username . ' failed to authenticate. DN=' . $dn);
 			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
 		}
+
+		/* In case of SASL bind, authenticated and authorized DN may differ */
+		if (isset($sasl_args))
+			$dn = $ldap->whoami($this->searchBase, $this->searchAttributes);
 
 		/* Are privs needed to get the attributes? */
 		if ($this->privRead) {

@@ -30,6 +30,11 @@ class SimpleSAML_Auth_LDAP {
 	private $ldap = null;
 
 	/**
+	 * LDAP user: authz_id if SASL is in use, binding dn otherwise
+	 */
+	private $authz_id = null;
+
+	/**
 	 * Timeout value, in seconds.
 	 *
 	 * @var int
@@ -294,25 +299,57 @@ class SimpleSAML_Auth_LDAP {
 	 * The DN used.
 	 * @param string $password
 	 * The password used.
+	 * @param array $sasl_args
+	 * Array of SASL options for SASL bind
 	 * @return bool
-	 * Returns TRUE if successful, FALSE if LDAP_INVALID_CREDENTIALS.
+	 * Returns TRUE if successful, FALSE if
+	 * LDAP_INVALID_CREDENTIALS, LDAP_X_PROXY_AUTHZ_FAILURE,
+	 * LDAP_INAPPROPRIATE_AUTH, LDAP_INSUFFICIENT_ACCESS
 	 * @throws SimpleSAML_Error_Exception on other errors
 	 */
-	public function bind($dn, $password) {
+	public function bind($dn, $password, array $sasl_args = NULL) {
+		$authz_id = null;
 
-		// Bind, with error handling.
-		if (@ldap_bind($this->ldap, $dn, $password)) {
+		if ($sasl_args != NULL) {
+			if (!function_exists(ldap_sasl_bind)) {
+				$ex_msg = 'Library - missing SASL support';
+				throw $this->makeException($ex_msg);
+			}
 
+			// SASL Bind, with error handling.
+			$authz_id = $sasl_args['authz_id'];
+			$error = @ldap_sasl_bind($this->ldap, $dn, $password,
+						 $sasl_args['mech'],
+						 $sasl_args['realm'],
+						 $sasl_args['authc_id'],
+						 $sasl_args['authz_id'],
+						 $sasl_args['props']);
+		} else {
+			// Simple Bind, with error handling.
+			$authz_id = $dn;
+			$error = @ldap_bind($this->ldap, $dn, $password);
+		}
+
+		if ($error === TRUE) {
 			// Good.
+			$this->authz_id = $authz_id;
 			SimpleSAML_Logger::debug('Library - LDAP bind(): Bind successful with DN \'' . $dn . '\'');
 			return TRUE;
 
 		}
 
-		/* Handle invalid DN/password.
-		 * LDAP_INVALID_CREDENTIALS */
-		if (ldap_errno($this->ldap) === 49) {
+		/* Handle errors
+		 * LDAP_INVALID_CREDENTIALS
+		 * LDAP_INSUFFICIENT_ACCESS */
+		switch(ldap_errno($this->ldap)) {
+		case 47:	/* LDAP_X_PROXY_AUTHZ_FAILURE */
+		case 48:	/* LDAP_INAPPROPRIATE_AUTH */
+		case 49:	/* LDAP_INVALID_CREDENTIALS */
+		case 50:	/* LDAP_INSUFFICIENT_ACCESS */
 			return FALSE;
+			break;
+		default;
+			break;
 		}
 
 		// Bad.
@@ -501,6 +538,47 @@ class SimpleSAML_Auth_LDAP {
 			}
 		}
 		return $string;
+	}
+
+	/**
+	 * Convert SASL authz_id into a DN
+	 */
+	private  function authzid_to_dn($searchBase, $searchAttributes, $authz_id) {
+		if (preg_match("/^dn:/", $authz_id))
+			return preg_replace("/^dn:/", "", $authz_id);
+
+		if (preg_match("/^u:/", $authz_id))
+			return $this->searchfordn($searchBase, $searchAttributes,
+			                          preg_replace("/^u:/", "", $authz_id));
+
+		return $authz_id;
+	}
+
+	/**
+	 * ldap_exop_whoami accessor, if available. Use requested authz_id
+	 * otherwise.
+	 *
+	 * ldap_exop_whoami is not yet included in PHP. For reference, the
+	 * feature request: http://bugs.php.net/bug.php?id=42060
+	 * And the patch against lastest PHP release:
+	 * http://cvsweb.netbsd.org/bsdweb.cgi/pkgsrc/databases/php-ldap/files/ldap-ctrl-exop.patch
+	 */
+	public  function whoami($searchBase, $searchAttributes) {
+		$authz_id = '';
+
+		if (function_exists('ldap_exop_whoami')) {
+			if (ldap_exop_whoami($this->ldap, $authz_id) !== true)
+			    throw $this->getLDAPException('LDAP whoami exop failure');
+		} else {
+			$authz_id = $this->authz_id;
+		}
+
+		$dn = $this->authzid_to_dn($searchBase, $searchAttributes, $authz_id);
+
+		if (!isset($dn) || ($dn == ''))
+			throw $this->getLDAPException('Cannot figure userID');
+
+		return $dn;
 	}
 
 }
