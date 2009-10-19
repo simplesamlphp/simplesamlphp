@@ -2,12 +2,13 @@
 =================
 
 This module provides an interface to do automatic testing of authentication sources.
-To enable it, create a file named "enable" in modules/autotest.
+To enable it, create a file named "`enable`" in `modules/autotest`.
 
 It provides three webpages:
-- https://.../simplesaml/module.php/autotest/login.php
-- https://.../simplesaml/module.php/autotest/logout.php
-- https://.../simplesaml/module.php/autotest/attributes.php
+
+- `https://.../simplesaml/module.php/autotest/login.php`
+- `https://.../simplesaml/module.php/autotest/logout.php`
+- `https://.../simplesaml/module.php/autotest/attributes.php`
 
 All the webpages have a mandatory paremeter 'SourceID', which is the name of the authentication source.
 
