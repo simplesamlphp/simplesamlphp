@@ -208,6 +208,26 @@ If you want to return to a specific URL after logging out, you should include th
     $as->logout('https://example.org/');
 
 
+#### Login link
+
+If you have any links to the initSSO-script, those links must be replaced with links to a new script.
+The URL to the new script is `https://.../simplesaml/module.php/core/as_login.php`.
+It has two mandatory parameters:
+
+  * `AuthId`: The id of the authentication source.
+  * `ReturnTo`: The URL the user should be redirected to after authentication.
+
+
+#### Logout link
+
+Any links to the initSLO-script must be replaced with links to a new script.
+The URL to the new script is `https://.../simplesaml/module.php/core/as_logout.php`.
+It has two mandatory parameters:
+
+  * `AuthId`: The id of the authentication source.
+  * `ReturnTo`: The URL the user should be redirected to after logout.
+
+
 Test the application
 --------------------
 
