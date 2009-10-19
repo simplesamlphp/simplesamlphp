@@ -4,6 +4,123 @@ simpleSAMLphp changelog
 
 Here is changes between simpleSAMLphp versions. Look here if you are upgrading, to see if there are any changes to the config format.
 
+## Version 1.5
+
+Released TBD. Revision TBD.
+
+  * New API for SP authentication.
+  * Make use of the portal module on the frontpage.
+  * SQL datastore.
+  * Support for setting timezone in config (instead of php.ini).
+  * Logging of PHP errors and notices to simpleSAMLphp log file.
+  * Improve handling of unhandled errors and exceptions.
+  * Admin authentication through authentication sources.
+  * Various bugfixes & cleanups.
+  * Translation updates.
+  * Set the dropdown list as default for built in disco service.
+
+### New modules:
+
+  * `adfs`
+  * [`authorize`](http://rnd.feide.no/content/simplesamlphp-authorization)
+  * `authtwitter`
+  * [`autotest`](http://rnd.feide.no/content/simplesamlphp-module-autotest)
+  * `exampleattributeserver`
+  * `metaedit`
+  * [`multiauth`](http://rnd.feide.no/content/simplesamlphp-module-multiauth)
+  * `oauth`
+  * [`openidProvider`](http://rnd.feide.no/content/openid-provider-documentation)
+  * [`radius`](https://rnd.feide.no/content/radius-authentication-module)
+  * [`saml`](https://rnd.feide.no/content/saml-service-provider-configuration-reference)
+
+### `aggregator`:
+
+  * Add support for reconstructing XML where XML for an entity is already cached.
+  * Add support for excluding tags in metadata aggregator.
+
+### `AuthMemCookie`:
+
+  * Delete the session cookie when deleting the session.
+  * Support for authentication sources.
+  * Set expiry time of session data when saving to memcache.
+  * Support multiple memcache servers.
+
+### `cas`:
+
+  * Added support for attributes in <cas:serviceResponse>.
+
+### `consent`:
+
+  * Support for hiding some attribute values.
+
+### `consentAdmin`:
+
+  * Added config option to display description.
+
+### `core`:
+
+  * New WarnShortSSOInterval filter.
+
+### `discopower`:
+
+  * Live search in discopower-module.
+
+### `ldap`:
+
+  * Support for proxy authentication.
+  * Add 'debug' and 'timeout' options.
+  * Privilege separation for LDAP attribute retrieval.
+  * Allow search.base to be an array.
+  * (LDAPMulti) Add support for including the organization as part of the username.
+
+### `ldapstatus`:
+
+  * Do a connect-test to all ip-addresses for a hostname.
+  * Check wheter hostname exists before attempting to connect.
+  * hobbit output.
+  * Check schema version.
+  * Add command line tab to single LDAP status page for easier debugging.
+
+### `logpeek`:
+
+  * Blockwise reading of logfile for faster execution.
+
+### `metarefresh`:
+
+  * Adding support for generating Shibboleth ARP files.
+  * Add 'serialize' metadata format.
+
+### `preprodwarning`:
+
+  * Don't show warning in passive request.
+  * Focus on continue-button.
+
+### SAML:
+
+  * Support for multiple AssertionConsumerService endpoints.
+  * SAML 1 artifact support on the SP side.
+  * New SAML authentication module.
+  * Deprecation of www/saml2/sp & www/shib13/sp.
+  * Support for encrypted NameID.
+  * NameIDPolicy replaces NameIDFormat.
+  * Better support for IdP initiated SSO and bookmarked login pages.
+  * Improvements to iframe logout page.
+  * Scoping support.
+  * New library for SAML 2 messages.
+  * Support for transporting errors from the IdP to the SP.
+  * Sign both the assertion and the response element by default.
+  * Support for sending XML attribute values from the IdP.
+
+### `statistics`:
+
+  * Extended Google chart encoding... Add option of alternative compare plot in graph...
+  * Added support for Ratio type reports in the statistics module..
+  * Changed default rule to sso.
+  * Added incremental aggregation, independent time resolution from rule def, combined coldefs and more.
+  * Add DST support in date handler. Added summary columns per delimiter. Added pie chart. +++
+  * Log first SSO to a service during a session.
+
+
 ## Version 1.4
 
 Released 2009-03-12. Revision 1405.
