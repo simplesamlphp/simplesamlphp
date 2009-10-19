@@ -390,14 +390,6 @@ $config = array (
 	'auth.radius.vendor'          => '23735',
 	'auth.radius.vendor-attr'     => '4',
 
-	
-	/*
-	 * These parameters are only relevant if you setup an OpenID Provider.
-	 */
-	'openid.userid_attributename' => 'eduPersonPrincipalName',
-	'openid.delegation_prefix'    => 'https://openid.feide.no/',
-	'openid.filestore'            => '/tmp/openidstore',
-	
 
 	/*
 	 * This configuration option allows you to select which session handler
