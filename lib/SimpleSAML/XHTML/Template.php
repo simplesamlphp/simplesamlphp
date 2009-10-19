@@ -531,13 +531,12 @@ class SimpleSAML_XHTML_Template {
 
 
 		/* Try default theme. */
-		$baseTheme = $this->configuration->getString('theme.base', 'default');
 		if ($templateModule !== 'default') {
-			/* .../module/<templateModule>/templates/<baseTheme>/<templateName> */
+			/* .../module/<templateModule>/templates/<templateName> */
 			$filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' . $templateName;
 			
 		} else {
-			/* .../templates/<baseTheme>/<templateName> */
+			/* .../templates/<templateName> */
 			$filename = $this->configuration->getPathValue('templatedir', 'templates/') . '/' . $templateName;
 		}
 

@@ -172,10 +172,9 @@ $config = array (
 	'language.default'		=> 'en',
 	
 	/*
-	 * Which theme directory should be used? The base is fallback (leave it to default).
+	 * Which theme directory should be used?
 	 */
 	'theme.use' 		=> 'default',
-	'theme.base' 		=> 'default',
 
 	
 	/*
