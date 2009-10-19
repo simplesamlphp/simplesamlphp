@@ -910,6 +910,7 @@ $lang = array(
 		'tr' => 'Düzenlenmiş kimlik doğrulama kaynaklarını test et',
 	),
 	'deprecated' => array (
+		'no' => 'Utdatert',
 		'en' => 'Deprecated',
 	),
 
