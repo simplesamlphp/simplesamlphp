@@ -7,15 +7,11 @@ authorize Module
 	http://daringfireball.net/projects/markdown/syntax
 -->
 
-	* Version: `$Id$`
-	* Author: Ernesto Revilla <erny@yaco.es>, Yaco Sistemas
-	* Package simpleSAMLphp
+  * Version: `$Id$`
+  * Author: Ernesto Revilla <erny@yaco.es>, Yaco Sistemas
+  * Package: simpleSAMLphp
 
-
-This module provides an user authorization filter based on regular
-expressions for those applications that do not cleanly separate
-authentication from authorization and set some default permissions
-for authenticated users.
+This module provides an user authorization filter based on regular expressions for those applications that do not cleanly separate authentication from authorization and set some default permissions for authenticated users.
 
 
 `authorize:Authorize`
@@ -25,22 +21,20 @@ for authenticated users.
 `authorize:Authorize`
 ---------------------
 
-For each attribute you can specify a regular expression
-string or array of strings. If one of those attributes matches (OR operator)
-one of the regular expression, the user is authorized successfully.
+For each attribute you can specify a regular expression string or array of strings. If one of those attributes matches (OR operator) one of the regular expression, the user is authorized successfully.
 
-You must use the preg_match format, i.e. you have to enclose it with
-a delimiter that does not appear inside the regex
-(e.g. slash (/), at sign (@), number sign (#) or underscore (_)).
+You must use the preg_match format, i.e. you have to enclose it with a delimiter that does not appear inside the regex (e.g. slash (/), at sign (@), number sign (#) or underscore (`_`)).
 
 The users not authorized will be shown a 403 Forbidden page.
 
 Problems:
+
  * Once you get the forbidden page, you can't logout at the IdP directly,
    (as far as I know), you have to close the browser.
 
 
 To use this filter configure it in `config/config.php`:
+
 	'authproc.sp' => array(
 		60 => array(
 			'class' => 'authorize:Authorize',
