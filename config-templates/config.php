@@ -179,28 +179,9 @@ $config = array (
 
 	
 	/*
-	 * Default IdPs. If you do not enter an idpentityid in the SSO initialization endpoints,
-	 * the default IdP configured here will be used.
-	 *
-	 * To enable the SAML 2.0 IdP Discovery service for a SAML 2.0 SP, you need to set the
-	 * default-saml20-idp to be null, like this:
-	 *
-	 * 		'default-saml20-idp' => NULL,
-	 *
+	 * Default IdP for WS-Fed.
 	 */
-	'default-saml20-idp' => NULL,
-	'default-shib13-idp' => NULL,
 	'default-wsfed-idp'	=> 'urn:federation:pingfederate:localhost',
-
-	/*
-	 * Default IdP discovery service urls.
-	 * This option sets the default IdP discovery service URLs for the SPs in this installation. These
-	 * URLs can be overridden on a per SP basis by setting this option in the metadata for the SP.
-	 *
-	 * By default simpleSAMLphp will use its builtin IdP discovery service.
-	 */
-	'idpdisco.url.shib13' => NULL,
-	'idpdisco.url.saml20' => NULL,
 
 	/*
 	 * Whether the discovery service should allow the user to save his choice of IdP.
