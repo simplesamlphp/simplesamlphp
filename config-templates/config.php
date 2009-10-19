@@ -374,23 +374,6 @@ $config = array (
 	),
 
 
-
-	
-	/*
-	 * Radius authentication. This is only relevant if you use the Radius authentication plugin.
-	 * user attributes are expected to be stored in a Vendor-Specific RADIUS string attribute and have
-	 * the form aai-attribute=value
-	 * vendor and vendor-attr below indicate in which RADIUS attribute the AAI attributes are in.
-	 * multiple occurences of that RADIUS attribute are supported
-	 */
-	'auth.radius.hostname'        => 'radius.example.org',
-	'auth.radius.port'            => '1812',
-	'auth.radius.secret'          => 'topsecret',
-	'auth.radius.URNForUsername'  => 'urn:mace:dir:attribute-def:eduPersonPrincipalName',
-	'auth.radius.vendor'          => '23735',
-	'auth.radius.vendor-attr'     => '4',
-
-
 	/*
 	 * This configuration option allows you to select which session handler
 	 * SimpleSAMLPHP should use to store the session information. Currently
