@@ -625,7 +625,7 @@ class SimpleSAML_Utilities {
 		
 		$t->data['trackid'] = $trackid;
 		
-		$t->data['version'] = $config->getString('version', 'na');
+		$t->data['version'] = $config->getVersion();
 		$t->data['url'] = self::selfURLNoQuery();
 		
 		$t->show();

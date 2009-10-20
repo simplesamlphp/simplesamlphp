@@ -37,8 +37,7 @@ $config = array (
 	 */
 	'tempdir'               => '/tmp/simplesaml',
 	
-	'version'				=>	'trunk',
-	
+
 	/**
 	 * If you set the debug parameter to true, all SAML messages will be visible in the
 	 * browser, and require the user to click the submit button. If debug is set to false,
