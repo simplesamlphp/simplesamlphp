@@ -8,28 +8,14 @@
 $config = array (
 
 	/**
-	 * This option configures the base directory for this simpleSAMLphp
-	 * installation. Under most circumstances this option is optional,
-	 * and can be left unset.
-	 *
-	 * Example:
-	 *  'basedir' => '/var/simplesamlphp/',
-	 */
-	'basedir' => NULL,
-
-	/**
 	 * Setup the following parameters to match the directory of your installation.
 	 * See the user manual for more details.
 	 */
 	'baseurlpath'           => 'simplesaml/',
-	'templatedir'           => 'templates/',
-	'metadatadir'           => 'metadata/',
-	'attributenamemapdir'   => 'attributemap/',
 	'certdir'               => 'cert/',
-	'dictionarydir'         => 'dictionaries/',
 	'loggingdir'            => 'log/',
-	'datadir'				=> 'data/',
-		
+	'datadir'               => 'data/',
+
 	/*
 	 * A directory where simpleSAMLphp can save temporary files.
 	 *
