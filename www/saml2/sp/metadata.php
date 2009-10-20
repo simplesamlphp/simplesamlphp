@@ -142,8 +142,6 @@ try {
 	
 
 	if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
-		$defaultidp = $config->getString('default-saml20-idp', NULL);
-		
 		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
 	
 		$t->data['header'] = 'saml20-sp';
@@ -157,9 +155,6 @@ try {
 		$t->data['adminlogin'] = $adminlogin;
 		
 		$t->data['techemail'] = $config->getString('technicalcontact_email', NULL);
-		
-// 		$t->data['version'] = $config->getString('version', 'na');
-// 		$t->data['defaultidp'] = $defaultidp;
 		
 		$t->show();
 		

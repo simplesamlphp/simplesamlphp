@@ -65,27 +65,12 @@ try {
 	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $spmeta, 'Shib 1.3 SP');
 
 	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
-		$defaultidp = $config->getString('default-shib13-idp', NULL);
-		
 		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
-		
-	
 		$t->data['header'] = 'shib13-sp';
 		$t->data['metadata'] = htmlspecialchars($metaxml);
 		$t->data['metadataflat'] = htmlspecialchars($metaflat);
 		$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), array('output' => 'xml'));
-		
-		/*
-		if (array_key_exists($defaultidp, $send_metadata_to_idp)) {
-			$et->data['sendmetadatato'] = $send_metadata_to_idp[$defaultidp]['address'];
-			$et->data['federationname'] = $send_metadata_to_idp[$defaultidp]['name'];
-		}
-		*/
-	
 		$t->data['techemail'] = $config->getString('technicalcontact_email', 'na');
-		$t->data['version'] = $config->getString('version', 'na');
-		$t->data['defaultidp'] = $defaultidp;
-		
 		$t->show();
 		
 	} else {	
