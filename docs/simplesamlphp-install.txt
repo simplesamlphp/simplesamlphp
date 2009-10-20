@@ -105,8 +105,8 @@ Configuration and metadata files are distributed as templates; you should make l
 Here are the steps you need to do to create local configuration files:
 
     cd /var/simplesamlphp
-    cp -r config-templates/*.php config/
-    cp -r metadata-templates/*.php metadata/
+    cp -r config-templates/ config/
+    cp -r metadata-templates/ metadata/
 
 
 
