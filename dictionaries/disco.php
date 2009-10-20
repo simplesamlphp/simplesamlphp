@@ -104,6 +104,14 @@ $lang = array(
 		'pt' => 'Escolha preferida',
 		'tr' => '[Tercih edilen seçenek]',
 	),
+	'previous_auth' => array (
+		'no' => 'Du har tidligere valg å autentisere deg hos',
+		'en' => 'You have previously chosen to authenticate at',
+	),
+	'login_at' => array (
+		'no' => 'Logg inn hos',
+		'en' => 'Login at',
+	),
 
 );
 
