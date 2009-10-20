@@ -15,21 +15,18 @@ $this->data['head'] .= '<script type="text/javascript">
 
 $(document).ready(function() {
 	$("#discotabs").tabs({ selected: ' . $this->data['defaulttab'] . ' }); ';
+	
 $i = 0;
 foreach ($this->data['idplist'] AS $tab => $slist) {
-	$this->data['head'] .= '$("#query_' . $tab . '").liveUpdate("#list_' . $tab . '")' .
+	$this->data['head'] .= "\n" . '$("#query_' . $tab . '").liveUpdate("#list_' . $tab . '")' .
 		($i++ == 0 ? '.focus()' : '') .
 		';';
+
+
 }
 
 $this->data['head'] .= '
 });
-
-	function chooseidp(idp) {
-		$("#chosenidp").attr(\'name\', \'idp_\' + idp);
-		$("#idpselectform").submit();
-	}
-
 
 </script>';
 
@@ -37,22 +34,28 @@ $this->data['head'] .= '
 
 $this->includeAtTemplateBase('includes/header.php');
 
-foreach ($this->data['idplist'] AS $slist) {
-	foreach ($slist AS $idpentry) {
-		if (isset($idpentry['name']))
-			$this->includeInlineTranslation('idpname_' . $idpentry['entityid'], $idpentry['name']);
-		if (isset($idpentry['description']))
-			$this->includeInlineTranslation('idpdesc_' . $idpentry['entityid'], $idpentry['description']);
-	}
-}
-
+// foreach ($this->data['idplist'] AS $slist) {
+// 	foreach ($slist AS $idpentry) {
+// 		if (isset($idpentry['name']))
+// 			$this->includeInlineTranslation('idpname_' . $idpentry['entityid'], $idpentry['name']);
+// 		if (isset($idpentry['description']))
+// 			$this->includeInlineTranslation('idpdesc_' . $idpentry['entityid'], $idpentry['description']);
+// 	}
+// }
+// 
 
 
 function showEntry($t, $metadata, $favourite = FALSE) {
-	$extra = ($favourite ? ' favourite' : '');
-	$html = '<li class="metaentry' . $extra . '" onclick="chooseidp(\'' . htmlspecialchars($metadata['entityid']) . '\')">';
 	
-	$html .= '' . htmlspecialchars($t->t('idpname_' . $metadata['entityid'])) . '';
+	$basequerystring = '?' . 
+		'entityID=' . urlencode($t->data['entityID']) . '&amp;' . 
+		'return=' . urlencode($t->data['return']) . '&amp;' . 
+		'returnIDParam=' . urlencode($t->data['returnIDParam']) . '&amp;idpentityid=';
+	
+	$extra = ($favourite ? ' favourite' : '');
+	$html = '<a class="metaentry' . $extra . '" href="' . $basequerystring . urlencode($metadata['entityid']) . '">';
+	
+	$html .= '' . htmlspecialchars(getTranslatedName($t, $metadata)) . '';
 
 	#print_r($metadata['scopes']); 
 
@@ -62,19 +65,63 @@ function showEntry($t, $metadata, $favourite = FALSE) {
 	
 	if(array_key_exists('icon', $metadata) && $metadata['icon'] !== NULL) {
 		$iconUrl = SimpleSAML_Utilities::resolveURL($metadata['icon']);
-		$html .= '<img style="clear: both; float: left; margin: 1em; padding: 3px; border: 1px solid #999" src="' . htmlspecialchars($iconUrl) . '" />';
+		$html .= '<img alt="Icon for identity provider" class="entryicon" src="' . htmlspecialchars($iconUrl) . '" />';
 	}
 	
 	// $html .= '<input id="preferredidp" type="submit" name="idp_' .
 	// 	htmlspecialchars($metadata['entityid']) . '" value="' .
 	// 	$t->t('select') . '" /></p>';
 	
-	$html .= '</li>';
+	$html .= '</a>';
 	
 	return $html;
 }
 
+?>
 
+
+
+
+<?php
+
+function getTranslatedName($t, $metadata) {
+#	if (is_null($metadata)) throw new Exception();
+	if (array_key_exists('name', $metadata)) {
+		if (is_array($metadata['name'])) {
+			return $t->getTranslation($metadata['name']);
+		} else {
+			return $metadata['name'];
+		}
+	}
+	return $metadata['entityid'];
+}
+
+
+$faventry = NULL;
+foreach( $this->data['idplist'] AS $tab => $slist) {
+	if (!empty($this->data['preferredidp']) && array_key_exists($this->data['preferredidp'], $slist))
+		$faventry = $slist[$this->data['preferredidp']];
+}
+
+
+if (!empty($faventry)) {
+
+
+	echo('<div class="favourite">');
+	echo($this->t('previous_auth'));
+	echo(' <strong>' . getTranslatedName($this, $faventry) . '</strong>');
+	echo('
+	<form id="idpselectform" method="get" action="' . $this->data['urlpattern'] . '">
+		<input type="hidden" name="entityID" value="' . htmlspecialchars($this->data['entityID']) . '" />
+		<input type="hidden" name="return" value="' . htmlspecialchars($this->data['return']) . '" />
+		<input type="hidden" name="returnIDParam" value="' . htmlspecialchars($this->data['returnIDParam']) . '" />
+		<input type="hidden" name="idpentityid" value="' . htmlspecialchars($faventry['entityid']) . '" />
+
+		<input type="submit" style="" name="formsubmit" id="formsubmit" value="' . $this->t('login_at') . ' ' . getTranslatedName($this, $faventry) . '" /> 
+	</form>');
+
+	echo('</div>');
+}
 
 
 ?>
@@ -82,31 +129,6 @@ function showEntry($t, $metadata, $favourite = FALSE) {
 
 
 
-
-
-
-
-	<!-- <h2><?php echo $this->data['header']; ?></h2> -->
-
-	<form id="idpselectform" method="get" action="<?php echo $this->data['urlpattern']; ?>">
-	<input type="hidden" name="entityID" value="<?php echo htmlspecialchars($this->data['entityID']); ?>" />
-	<input type="hidden" name="return" value="<?php echo htmlspecialchars($this->data['return']); ?>" />
-	<input type="hidden" name="returnIDParam" value="<?php echo htmlspecialchars($this->data['returnIDParam']); ?>" />
-	
-	<input id="chosenidp" type="hidden" name="<?php echo htmlspecialchars($this->data['returnIDParam']); ?>" value="1" />
-	<!-- <input type="submit" style="" name="formsubmit" id="formsubmit" value="Submit" /> -->
-	</form>
-	<p><?php
-	
-	$checked = '';
-	if ($this->data['rememberchecked']) {
-		$checked = ' checked="checked"';
-	}
-	echo $this->t('selectidp_full');
-	if($this->data['rememberenabled']) {
-		echo('<br /><input type="checkbox"' . $checked . ' name="remember" value="1" /> ' . $this->t('remember'));
-	}
-	?></p>
 
 
 <div id="discotabs"> 
@@ -123,47 +145,45 @@ function showEntry($t, $metadata, $favourite = FALSE) {
     </ul> 
     
 
-		<?php
+<?php
 
 
 
 
-	foreach( $this->data['idplist'] AS $tab => $slist) {
+foreach( $this->data['idplist'] AS $tab => $slist) {
 
-		echo '<div id="' . $tab . '">';
+	echo '<div id="' . $tab . '">';
 
-		if (!empty($slist)) {
-			
-			// echo 'Favourite :: ' . $this->data['preferredidp']; 
-			// echo '<pre>';
-			// print_r($slist); exit;
-			
-
-
-			echo('	<div class="inlinesearch">');
-			echo('	<p>Incremental search...</p>');
-			echo('	<input class="inlinesearchf" type="text" value="" name="query_' . $tab . '" id="query_' . $tab . '" />');
-			echo('	</div>');
+	if (!empty($slist)) {
 		
-			echo('	<ul class="metalist" id="list_' . $tab  . '">');
-			if (!empty($this->data['preferredidp']) && array_key_exists($this->data['preferredidp'], $slist)) {
-				$idpentry = $slist[$this->data['preferredidp']];
-				echo (showEntry($this, $idpentry, TRUE));
-			}
+		// echo 'Favourite :: ' . $this->data['preferredidp']; 
+		// echo '<pre>';
+		// print_r($slist); exit;
 
-			foreach ($slist AS $idpentry) {
-				if ($idpentry['entityid'] != $this->data['preferredidp']) {
-					echo (showEntry($this, $idpentry));
-				}
-			}
-			echo('	</ul>');
+		echo('	<div class="inlinesearch">');
+		echo('	<p>Incremental search...</p>');
+		echo('	<form id="idpselectform" action="?" method="get"><input class="inlinesearchf" type="text" value="" name="query_' . $tab . '" id="query_' . $tab . '" /></form>');
+		echo('	</div>');
+	
+		echo('	<div class="metalist" id="list_' . $tab  . '">');
+		if (!empty($this->data['preferredidp']) && array_key_exists($this->data['preferredidp'], $slist)) {
+			$idpentry = $slist[$this->data['preferredidp']];
+			echo (showEntry($this, $idpentry, TRUE));
 		}
-		echo '</div>';
-	
+
+		foreach ($slist AS $idpentry) {
+			if ($idpentry['entityid'] != $this->data['preferredidp']) {
+				echo (showEntry($this, $idpentry));
+			}
+		}
+		echo('	</div>');
 	}
+	echo '</div>';
+
+}
 	
-		?>
-		
+?>
+
 
 
 </div>

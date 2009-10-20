@@ -24,30 +24,53 @@
 	margin: 0px; 
 	padding: 0px;
 }
-ul.metalist {
+div.metalist {
 	clear: both;
 	list-style: none;
 	margin: 1em 2px .5em 2px;
 	padding: 0px;
 }
-li.metaentry {
+a.metaentry {
+	display: block;
 	border: 1px solid #ccc;
 	margin: 0px 0px -1px 0px;
 	padding: .2em 1em .2em 20px;
 	cursor: pointer;
 	cursor: hand;
 }
-li.metaentry.favourite {
+a.metaentry.favourite {
 	background-image:url('icons/heart.png');
 	background-repeat:no-repeat;
 	background-position:center left;
 
 }
-li.metaentry:hover {
+a.metaentry:hover {
 	border: 1px solid #ccc;
 	background: #eee;
 
 	background-image:url('icons/star.png');
 	background-repeat:no-repeat;
 	background-position:center left;
+}
+a.metaentry img.entryicon {
+	display: none;
+}
+a.metaentry:hover img.entryicon {
+	display: inline;
+	top: 0px;
+	bottom: 0px;
+	clear: both; 
+	float: right; 
+	margin: 1em; 
+	padding: 3px; 
+	border: 1px solid #999;
+}
+
+div.favourite {
+
+	margin: 1em 0px;
+	padding: 1em;
+	border: 1px solid #ccc;
+	background-color: #eee;
+
 }

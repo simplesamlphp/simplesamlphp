@@ -2,7 +2,7 @@ jQuery.fn.liveUpdate = function(list){
 	list = jQuery(list);
 
 	if ( list.length ) {
-		var rows = list.children('li'),
+		var rows = list.children('a'),
 			cache = rows.map(function(){
 				return jQuery(this).text().toLowerCase();
 			});
