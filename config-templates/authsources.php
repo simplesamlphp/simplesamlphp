@@ -2,45 +2,35 @@
 
 $config = array(
 
-	/*
-	 * This is a authentication source which handles admin authentication.
-	 */
+	// This is a authentication source which handles admin authentication.
 	'admin' => array(
-		/*
-		 * The default is to use core:AdminPassword, but it can be replaced with
-		 * any authentication source.
-		 */
+		// The default is to use core:AdminPassword, but it can be replaced with
+		// any authentication source.
+
 		'core:AdminPassword',
 	),
 
 
-	/*
-	 * An authentication source which can authenticate against both SAML 2.0
-	 * and Shibboleth 1.3 IdPs.
-	 */
+	// An authentication source which can authenticate against both SAML 2.0
+	// and Shibboleth 1.3 IdPs.
 	'default-sp' => array(
 		'saml:SP',
 
-		/*
-		 * The entity ID of this SP.
-		 * Can be NULL/unset, in which case an entity ID is generated based on the metadata URL.
-		 */
+		// The entity ID of this SP.
+		// Can be NULL/unset, in which case an entity ID is generated based on the metadata URL.
 		'entityID' => NULL,
 
-		/*
-		 * The entity ID of the IdP this should SP should contact.
-		 * Can be NULL/unset, in which case the user will be shown a list of available IdPs.
-		 */
+		// The entity ID of the IdP this should SP should contact.
+		// Can be NULL/unset, in which case the user will be shown a list of available IdPs.
 		'idp' => NULL,
 
-		/*
-		 * The URL to the discovery service.
-		 * Can be NULL/unset, in which case a builtin discovery service will be used.
-		 */
+		// The URL to the discovery service.
+		// Can be NULL/unset, in which case a builtin discovery service will be used.
 		'discoURL' => NULL,
 	),
 
 
+	/*
 	'example-sql' => array(
 		'sqlauth:SQL',
 		'dsn' => 'pgsql:host=sql.example.org;port=5432;dbname=simplesaml',
@@ -48,19 +38,18 @@ $config = array(
 		'password' => 'secretpassword',
 		'query' => 'SELECT "username", "name", "email" FROM "users" WHERE "username" = :username AND "password" = :password',
 	),
+	*/
 
+	/*
 	'example-static' => array(
 		'exampleauth:Static',
 		'uid' => array('testuser'),
 		'eduPersonAffiliation' => array('member', 'employee'),
 		'cn' => array('Test User'),
 	),
-	
-	// Requires you to enable the OpenID module.
-	'openid' => array(
-		'openid:OpenIDConsumer',
-	),
+	*/
 
+	/*
 	'example-userpass' => array(
 		'exampleauth:UserPass',
 		'student:studentpass' => array(
@@ -72,179 +61,156 @@ $config = array(
 			'eduPersonAffiliation' => array('member', 'employee'),
 		),
 	),
-	
+	*/
+
+	/*
 	'yubikey' => array(
 		'authYubiKey:YubiKey',
  		'id' => '000',
-// 		'key' => '012345678',
+		// 'key' => '012345678',
 	),
-	
+	*/
+
+	/*
 	'openid' => array(
 		'openid:OpenIDConsumer',
 		'attributes.required' => array('nickname'),
 		'attributes.optional' => array('fullname', 'email',),
 	),
+	*/
 
-	'feide' => array(
-		'feide:Feide',
-	),
-	
+	/*
 	'papi' => array(
 		'authpapi:PAPI',
 	),
+	*/
 
 
-
-
+	/*
 	'facebook' => array(
 		'authfacebook:Facebook',
 		'api_key' => 'xxxxxxxxxxxxxxxx',
 		'secret' => 'xxxxxxxxxxxxxxxx',
 	),
+	*/
 
-	/* Twitter OAuth Authentication API.
-	 * Register your application to get an API key here:
-	 *  http://twitter.com/oauth_clients
-	 */
+	/*
+	// Twitter OAuth Authentication API.
+	// Register your application to get an API key here:
+	//  http://twitter.com/oauth_clients
 	'twitter' => array(
 		'authtwitter:Twitter',
 		'key' => 'xxxxxxxxxxxxxxxx',
 		'secret' => 'xxxxxxxxxxxxxxxx',
 	),
-        
-	/* Example of a LDAP authentication source. */
+	*/
+
+	/*
+	// Example of a LDAP authentication source.
 	'example-ldap' => array(
 		'ldap:LDAP',
 
-		/* The hostname of the LDAP server. */
+		// The hostname of the LDAP server.
 		'hostname' => 'ldap.example.org',
 
-		/* Whether SSL/TLS should be used when contacting the LDAP server. */
+		// Whether SSL/TLS should be used when contacting the LDAP server.
 		'enable_tls' => FALSE,
 
-		/*
-		 * Whether debug output from the LDAP library should be enabled.
-		 * Default is FALSE.
-		 */
+		// Whether debug output from the LDAP library should be enabled.
+		// Default is FALSE.
 		'debug' => FALSE,
 
-		/*
-		 * The timeout for accessing the LDAP server, in seconds.
-		 * The default is 0, which means no timeout.
-		 */
+		// The timeout for accessing the LDAP server, in seconds.
+		// The default is 0, which means no timeout.
 		'timeout' => 0,
 
-		/*
-		 * Which attributes should be retrieved from the LDAP server.
-		 * This can be an array of attribute names, or NULL, in which case
-		 * all attributes are fetched.
-		 */
+		// Which attributes should be retrieved from the LDAP server.
+		// This can be an array of attribute names, or NULL, in which case
+		// all attributes are fetched.
 		'attributes' => NULL,
 
-		/*
-		 * The pattern which should be used to create the users DN given the username.
-		 * %username% in this pattern will be replaced with the users username.
-		 *
-		 * This option is not used if the search.enable option is set to TRUE.
-		 */
+		// The pattern which should be used to create the users DN given the username.
+		// %username% in this pattern will be replaced with the users username.
+		//
+		// This option is not used if the search.enable option is set to TRUE.
 		'dnpattern' => 'uid=%username%,ou=people,dc=example,dc=org',
 
-		/*
-		 * As an alternative to specifying a pattern for the users DN, it is possible to
-		 * search for the username in a set of attributes. This is enabled by this option.
-		 */
+		// As an alternative to specifying a pattern for the users DN, it is possible to
+		// search for the username in a set of attributes. This is enabled by this option.
 		'search.enable' => FALSE,
 
-		/*
-		 * The DN which will be used as a base for the search.
-		 * This can be a single string, in which case only that DN is searched, or an
-		 * array of strings, in which case they will be searched in the order given.
-		 */
+		// The DN which will be used as a base for the search.
+		// This can be a single string, in which case only that DN is searched, or an
+		// array of strings, in which case they will be searched in the order given.
 		'search.base' => 'ou=people,dc=example,dc=org',
 
-		/*
-		 * The attribute(s) the username should match against.
-		 *
-		 * This is an array with one or more attribute names. Any of the attributes in
-		 * the array may match the value the username.
-		 */
+		// The attribute(s) the username should match against.
+		//
+		// This is an array with one or more attribute names. Any of the attributes in
+		// the array may match the value the username.
 		'search.attributes' => array('uid', 'mail'),
 
-		/*
-		 * The username & password the simpleSAMLphp should bind to before searching. If
-		 * this is left as NULL, no bind will be performed before searching.
-		 */
+		// The username & password the simpleSAMLphp should bind to before searching. If
+		// this is left as NULL, no bind will be performed before searching.
 		'search.username' => NULL,
 		'search.password' => NULL,
 
-		/*
-		 * If the directory uses privilege separation,
-		 * the authenticated user may not be able to retrieve
-		 * all required attribures, a privileged entity is required
-		 * to get them. This is enabled with this option.
-		 */
+		// If the directory uses privilege separation,
+		// the authenticated user may not be able to retrieve
+		// all required attribures, a privileged entity is required
+		// to get them. This is enabled with this option.
 		'priv.read' => FALSE,
 
-		/*
-		 * The DN & password the simpleSAMLphp should bind to before
-		 * retrieving attributes. These options are required if
-		 * 'priv.read' is set to TRUE.
-		 */
+		// The DN & password the simpleSAMLphp should bind to before
+		// retrieving attributes. These options are required if
+		// 'priv.read' is set to TRUE.
 		'priv.username' => NULL,
 		'priv.password' => NULL,
 
 	),
+	*/
 
-	/* Example of an LDAPMulti authentication source. */
+	/*
+	// Example of an LDAPMulti authentication source.
 	'example-ldapmulti' => array(
 		'ldap:LDAPMulti',
 
-		/*
-		 * The way the organization as part of the username should be handled.
-		 * Three possible values:
-		 * - 'none':   No handling of the organization. Allows '@' to be part
-		 *             of the username.
-		 * - 'allow':  Will allow users to type 'username@organization'.
-		 * - 'force':  Force users to type 'username@organization'. The dropdown
-		 *             list will be hidden.
-		 *
-		 * The default is 'none'.
-		 */
+		// The way the organization as part of the username should be handled.
+		// Three possible values:
+		// - 'none':   No handling of the organization. Allows '@' to be part
+		//             of the username.
+		// - 'allow':  Will allow users to type 'username@organization'.
+		// - 'force':  Force users to type 'username@organization'. The dropdown
+		//             list will be hidden.
+		//
+		// The default is 'none'.
 		'username_organization_method' => 'none',
 
-		/*
-		 * Whether the organization should be included as part of the username
-		 * when authenticating. If this is set to TRUE, the username will be on
-		 * the form <username>@<organization identifier>. If this is FALSE, the
-		 * username will be used as the user enters it.
-		 *
-		 * The default is FALSE.
-		 */
+		// Whether the organization should be included as part of the username
+		// when authenticating. If this is set to TRUE, the username will be on
+		// the form <username>@<organization identifier>. If this is FALSE, the
+		// username will be used as the user enters it.
+		//
+		// The default is FALSE.
 		'include_organization_in_username' => FALSE,
 
-		/*
-		 * A list of available LDAP servers.
-		 *
-		 * The index is an identifier for the organization/group. When
-		 * 'username_organization_method' is set to something other than 'none',
-		 * the organization-part of the username is matched against the index.
-		 *
-		 * The value of each element is an array in the same format as an LDAP
-		 * authentication source.
-		 */
+		// A list of available LDAP servers.
+		//
+		// The index is an identifier for the organization/group. When
+		// 'username_organization_method' is set to something other than 'none',
+		// the organization-part of the username is matched against the index.
+		//
+		// The value of each element is an array in the same format as an LDAP
+		// authentication source.
 		'employees' => array(
-			/*
-			 * A short name/description for this group. Will be shown in a dropdown list
-			 * when the user logs on.
-			 *
-			 * This option can be a string or an array with language => text mappings.
-			 */
+			// A short name/description for this group. Will be shown in a dropdown list
+			// when the user logs on.
+			//
+			// This option can be a string or an array with language => text mappings.
 			'description' => 'Employees',
 
-			/*
-			 * The rest of the options are the same as those available for
-			 * the LDAP authentication source.
-			 */
+			// The rest of the options are the same as those available for
+			// the LDAP authentication source.
 			'hostname' => 'ldap.employees.example.org',
 			'dnpattern' => 'uid=%username%,ou=employees,dc=example,dc=org',
 		),
@@ -257,7 +223,6 @@ $config = array(
 		),
 
 	),
+	*/
 
 );
-
-?>
