@@ -178,7 +178,7 @@ if (!$session->isValid($authority) ) {
 
 	if($authSource) {
 
-		SimpleSAML_Auth_Default::initLogin($adfsconfig->getValue('auth'), $redirectTo, NULL, NULL);
+		SimpleSAML_Auth_Default::initLogin($adfsconfig->getValue('auth'), $redirectTo);
 	} else {
 		$authurl = '/' . $config->getBaseURL() . $adfsconfig->getValue('auth');
 
