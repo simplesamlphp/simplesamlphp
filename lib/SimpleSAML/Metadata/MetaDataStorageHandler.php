@@ -167,6 +167,16 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 		foreach($this->sources as $source) {
 			$srcList = $source->getMetadataSet($set);
 
+			foreach($srcList AS $key => $le) {
+				if (array_key_exists('expire', $le)) {
+					if ($le['expire'] < time()) {
+						unset($srcList[$key]);
+					}
+				}
+			}
+
+
+
 			/* $result is the last argument to array_merge because we want the content already
 			 * in $result to have precedence.
 			 */
