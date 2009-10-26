@@ -35,6 +35,8 @@ Released TBD. Revision TBD.
 
 ### `aggregator`:
 
+  * Add ARP + ARP signing functionality to the aggregator.
+  * Improvements to the aggregator module. Added documentation, and re-written more OO-oriented.
   * Add support for reconstructing XML where XML for an entity is already cached.
   * Add support for excluding tags in metadata aggregator.
 
