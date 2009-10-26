@@ -15,3 +15,6 @@ Upgrade notes for simpleSAMLphp 1.5
     The old methods will still be supported for a while, but new code should probably use the new code.
 
     See the [migration guide](http://rnd.feide.no/content/migration-modularized-saml-service-provider) for more information about this.
+
+  * The `request.signing` option has been removed.
+    That option was replaced with the `redirect.sign` and `redirect.validate` options, and has been depreceated for one year.
