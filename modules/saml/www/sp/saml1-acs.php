@@ -18,13 +18,19 @@ $sourceId = substr($sourceId, 1, $end - 1);
 $source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
 
 
-$state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:ssosent-saml1');
+$state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
 
 /* Check that the authentication source is correct. */
 assert('array_key_exists("saml:sp:AuthId", $state)');
 if ($state['saml:sp:AuthId'] !== $sourceId) {
 	throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
 }
+
+if (!isset($state['saml:idp'])) {
+	/* We seem to have received a response without sending a request. */
+	throw new SimpleSAML_Error_Exception('SAML 1 response received before SAML 1 request.');
+}
+
 
 $spMetadata = $source->getMetadata();
 

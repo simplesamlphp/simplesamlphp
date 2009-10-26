@@ -146,7 +146,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$ar = new SimpleSAML_XML_Shib13_AuthnRequest();
 		$ar->setIssuer($this->entityId);
 
-		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:ssosent-saml1');
+		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso');
 		$ar->setRelayState($id);
 
 		$useArtifact = $idpMetadata->getBoolean('saml1.useartifact', NULL);
@@ -185,7 +185,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$ar->setRelayState($state['SimpleSAML_Auth_Default.ReturnURL']);
 		}
 
-		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:ssosent-saml2');
+		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso');
 		$ar->setId($id);
 
 		$b = new SAML2_HTTPRedirect();
@@ -229,7 +229,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 	 */
 	private function startDisco(array $state) {
 
-		$id = SimpleSAML_Auth_State::saveState($state, 'saml:disco');
+		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso');
 
 		$config = SimpleSAML_Configuration::getInstance();
 
