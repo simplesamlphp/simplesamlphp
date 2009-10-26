@@ -73,7 +73,6 @@ class sspmod_openidProvider_Server {
 
 		$this->authSource = new SimpleSAML_Auth_Simple($config->getString('auth'));
 		$this->usernameAttribute = $config->getString('username_attribute');
-		$this->delegationPrefix = $config->getString('delegation_prefix');
 
 		SimpleSAML_Utilities::maskErrors(E_WARNING | E_STRICT);
 		try {
