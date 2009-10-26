@@ -1,0 +1,90 @@
+aggregator Module
+=================
+
+<!--
+	This file is written in Markdown syntax.
+	For more information about how to use the Markdown syntax, read here:
+	http://daringfireball.net/projects/markdown/syntax
+-->
+
+  * Version: `$Id$`
+  * Author: Andreas Åkre Solberg <andreas.solberg@uninett.no>, UNINETT AS
+  * Package: simpleSAMLphp
+
+This module, aggregates a set of metadata of SAML entities to SAML 2.0 documents with an `EntitiesDescriptor` with multiple entities inside.
+
+Multiple aggregates can be configured.
+
+
+
+The configuration file: module_aggregate.php
+--------------------------------------------
+
+The configuration file includes an option `aggregators`, which includes a indexed list of different aggregator configurations that all can be accessed independently. The structure is as follows:
+
+	'aggregators' => array(
+		'aggr1' => array(
+			'sources' => [...]
+			[...local params...]
+		),
+		'aggr2' => ...
+	)
+	[...global params...]
+
+All of the global parameters can be overriden for each aggregator. Here is a list of the available (global) paramters:
+
+`set`
+: By default all SAML types are available, including: `array('saml20-idp-remote', 'saml20-sp-remote', 'shib13-idp-remote', 'shib13-sp-remote')`. This list can be reduced by specifying one of the following values:
+
+  * `saml20-idp-remote`
+  * `saml20-sp-remote`
+  * `shib13-idp-remote`
+  * `shib13-sp-remote`
+  * `saml2`
+  * `shib13`
+
+`foo`
+: sldkfjdslkjf
+
+`reconstruct`
+: Whether simpleSAMLphp should regenerate the metadata XML (TRUE) or pass-through the input metadata XML (FALSE).
+
+`maxDuration`
+: Max validity of metadata (duration) in seconds.
+
+`sign.enable`
+: Enable signing of metadata document
+
+`sign.privatekey`
+: Private key to use when signing
+
+`sign.privatekey_pass`
+: Optionally a passphrase to the private key
+
+`sign.certificate`
+: Certificate to embed, corresponding to the private key.
+
+
+Accessing the aggregate
+-----------------------
+
+On the SimpleSAMLphp frontpage on the federation tab, there is a link to the aggregator named *Metadata aggregator*.
+
+When accessing the aggregator endpoint without specifying an aggregate ID, a list of available aggregators will be presented, with different options for mime-type presenting the result.
+
+The endpoint supports the following query parameter:
+
+`id`
+: The ID of the aggregator (From configuration file)
+
+`set`
+: Subset the available types of SAML entities. Similar to the `set` parameter described over in the configuration file description.
+
+`exclude`
+: Specify a `tag` that will be excluded from the metadata set. Useful for leaving out your own federation metadata.
+
+`mimetype`
+: Select Mime-Type that will be used. Default is `application/samlmetadata+xml`.
+
+
+

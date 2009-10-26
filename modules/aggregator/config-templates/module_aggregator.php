@@ -6,19 +6,28 @@ $config = array(
 	/* List of aggregators. */
 	'aggregators' => array(
 		'example' => array(
-			array('type' => 'flatfile'),  /* Metadata from metadata-directory. */
-			array('type' => 'xml', 'url' => 'https://idp.example.org/Metadata'),
-			array('type' => 'xml', 'file' => 'static-metadata.xml'),
+			'source' => array(
+				array('type' => 'flatfile'),  /* Metadata from metadata-directory. */
+				array('type' => 'xml', 'url' => 'https://idp.example.org/Metadata'),
+				array('type' => 'xml', 'file' => 'static-metadata.xml'),
+			),
 		),
+		'example2' => array(
+			'source' => array(
+				array('type' => 'xml', 'url' => 'https://idp.example.org/Metadata2'),
+			),
+			'set' => 'saml2',
+			'sign.privatekey' => 'server2.key',
+			'sign.certificate' => 'server2.crt',
+		)
 	),
 
 	
-	'maxCache' 		=> 60*60*24, // 24 hour cache time
 	'maxDuration' 	=> 60*60*24*5, // Maximum 5 days duration on ValidUntil.
 
 	// If base64 encoded for entity is already cached in the entity, should we
 	// reconstruct the XML or re-use.
-	'reconstruct' => TRUE,
+	'reconstruct' => FALSE,
 
 	/* Whether metadata should be signed. */
 	'sign.enable' => FALSE,
@@ -34,4 +43,3 @@ $config = array(
 
 );
 
-?>
