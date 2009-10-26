@@ -36,7 +36,11 @@ if(!array_key_exists('as', $_REQUEST)) {
 $as = $_REQUEST['as'];
 
 if (!$session->isValid($as)) {
-	SimpleSAML_Auth_Default::initLogin($as, SimpleSAML_Utilities::selfURL(), SimpleSAML_Utilities::selfURL());
+	$url = SimpleSAML_Utilities::selfURL();
+	$hints = array(
+		SimpleSAML_Auth_State::RESTART => $url,
+	);
+	SimpleSAML_Auth_Default::initLogin($as, $url, $url, $hints);
 }
 
 $attributes = $session->getAttributes();
