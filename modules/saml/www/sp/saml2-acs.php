@@ -16,7 +16,7 @@ if (!($response instanceof SAML2_Response)) {
 $stateId = $response->getInResponseTo();
 if (!empty($stateId)) {
 	/* This is a response to a request we sent earlier. */
-	$state = SimpleSAML_Auth_State::loadState($stateId, 'saml:sp:ssosent-saml2');
+	$state = SimpleSAML_Auth_State::loadState($stateId, 'saml:sp:sso');
 
 	/* Check that the authentication source is correct. */
 	assert('array_key_exists("saml:sp:AuthId", $state)');
