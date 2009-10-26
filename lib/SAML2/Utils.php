@@ -173,7 +173,7 @@ class SAML2_Utils {
 	public static function addNameId(DOMElement $node, array $nameId) {
 		assert('array_key_exists("Value", $nameId)');
 
-		$xml = $node->ownerDocument->createElementNS(SAML2_Const::NS_SAML, 'saml_assertion:NameID');
+		$xml = $node->ownerDocument->createElementNS(SAML2_Const::NS_SAML, 'saml:NameID');
 		$node->appendChild($xml);
 
 		if (array_key_exists('NameQualifier', $nameId) && $nameId['NameQualifier'] !== NULL) {
