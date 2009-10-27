@@ -140,6 +140,8 @@ The test page should contain a list of your attributes:
 Integrating authentication with your own application
 ----------------------------------------------------
 
+The API is documented in [the SP API reference](http://rnd.feide.no/content/simplesamlphp-sp-api-reference).
+
 For those web resources you want to protect, you must add a few
 lines of PHP code:
 
