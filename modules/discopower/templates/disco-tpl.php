@@ -1,5 +1,17 @@
 <?php
 
+
+$faventry = NULL;
+foreach( $this->data['idplist'] AS $tab => $slist) {
+	if (!empty($this->data['preferredidp']) && array_key_exists($this->data['preferredidp'], $slist))
+		$faventry = $slist[$this->data['preferredidp']];
+}
+
+
+
+
+
+
 if(!array_key_exists('header', $this->data)) {
 	$this->data['header'] = 'selectidp';
 }
@@ -19,7 +31,7 @@ $(document).ready(function() {
 $i = 0;
 foreach ($this->data['idplist'] AS $tab => $slist) {
 	$this->data['head'] .= "\n" . '$("#query_' . $tab . '").liveUpdate("#list_' . $tab . '")' .
-		($i++ == 0 ? '.focus()' : '') .
+		(($i++ == 0) && (empty($faventry)) ? '.focus()' : '') .
 		';';
 
 
@@ -30,7 +42,11 @@ $this->data['head'] .= '
 
 </script>';
 
-# $this->data['autofocus'] = 'preferredidp';
+
+
+
+
+if (!empty($faventry)) $this->data['autofocus'] = 'favouritesubmit';
 
 $this->includeAtTemplateBase('includes/header.php');
 
@@ -97,11 +113,6 @@ function getTranslatedName($t, $metadata) {
 }
 
 
-$faventry = NULL;
-foreach( $this->data['idplist'] AS $tab => $slist) {
-	if (!empty($this->data['preferredidp']) && array_key_exists($this->data['preferredidp'], $slist))
-		$faventry = $slist[$this->data['preferredidp']];
-}
 
 
 if (!empty($faventry)) {
@@ -117,7 +128,7 @@ if (!empty($faventry)) {
 		<input type="hidden" name="returnIDParam" value="' . htmlspecialchars($this->data['returnIDParam']) . '" />
 		<input type="hidden" name="idpentityid" value="' . htmlspecialchars($faventry['entityid']) . '" />
 
-		<input type="submit" style="" name="formsubmit" id="formsubmit" value="' . $this->t('login_at') . ' ' . getTranslatedName($this, $faventry) . '" /> 
+		<input type="submit" name="formsubmit" id="favouritesubmit" value="' . $this->t('login_at') . ' ' . getTranslatedName($this, $faventry) . '" /> 
 	</form>');
 
 	echo('</div>');
