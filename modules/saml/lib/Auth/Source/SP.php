@@ -185,7 +185,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$ar->setRelayState($state['SimpleSAML_Auth_Default.ReturnURL']);
 		}
 
-		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso');
+		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso', TRUE);
 		$ar->setId($id);
 
 		$b = new SAML2_HTTPRedirect();
