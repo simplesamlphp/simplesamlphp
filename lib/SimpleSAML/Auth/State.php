@@ -87,11 +87,13 @@ class SimpleSAML_Auth_State {
 	 *
 	 * @param array &$state  The login request state.
 	 * @param string $stage  The current stage in the login process.
+	 * @param bool $rawId  Return a raw ID, without a restart URL.
 	 * @return string  Identifier which can be used to retrieve the state later.
 	 */
-	public static function saveState(&$state, $stage) {
+	public static function saveState(&$state, $stage, $rawId = FALSE) {
 		assert('is_array($state)');
 		assert('is_string($stage)');
+		assert('is_bool($rawId)');
 
 		/* Save stage. */
 		$state[self::STAGE] = $stage;
@@ -103,7 +105,7 @@ class SimpleSAML_Auth_State {
 		$id = $state[self::ID];
 
 		/* Embed the restart URL in the state identifier, if it is available. */
-		if (array_key_exists(self::RESTART, $state)) {
+		if (array_key_exists(self::RESTART, $state) && !$rawId) {
 			assert('is_string($state[self::RESTART])');
 			$return = $id . ':' . $state[self::RESTART];
 		} else {
