@@ -84,7 +84,17 @@ class SimpleSAML_Auth_Simple {
 			$returnTo = SimpleSAML_Utilities::createPostRedirectLink($returnTo, $_POST);
 		}
 
-		SimpleSAML_Auth_Default::initLogin($this->authSource, $returnTo);
+		/*
+		 * An URL to restart the authentication, in case the user bookmarks
+		 * something, e.g. the discovery service page.
+		 */
+		$restartURL = $this->getLoginURL($returnTo);
+
+		$hints = array(
+			SimpleSAML_Auth_State::RESTART => $restartURL,
+		);
+
+		SimpleSAML_Auth_Default::initLogin($this->authSource, $returnTo, NULL, $hints);
 	}
 
 
