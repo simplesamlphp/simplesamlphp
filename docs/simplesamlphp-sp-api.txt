@@ -1,0 +1,186 @@
+simpleSAMLphp SP API reference
+==============================
+
+This document describes the SimpleSAML_Auth_Simple API.
+This is the preferred API for integrating simpleSAMLphp with other applications.
+
+Constructor
+-----------
+
+    new SimpleSAML_Auth_Simple(string $authSource)
+
+The constructor initializes a SimpleSAML_Auth_Simple object.
+
+### Parameters
+
+It has a single parameter, which is the ID of the authentication source that should be used.
+This authentication source must exist in `config/authsources.php`.
+
+### Example
+
+    $auth = new SimpleSAML_Auth_Simple('default-sp');
+
+
+`isAuthenticated`
+-----------------
+
+    bool isAuthenticated()
+
+Check whether the user is authenticated with this authentication source.
+`TRUE` is returned if the user is authenticated, `FALSE` if not.
+
+### Example
+
+    if (!$auth->isAuthenticated()) {
+        /* Show login link. */
+        print('<a href="/login">Login</a>');
+    }
+
+
+`requireAuth`
+-------------
+
+    void requireAuth(array $options = array())
+
+Make sure that the user is authenticated.
+This function will only return if the user is authenticated.
+If the user isn't authenticated, this function will start the authentication process.
+
+### Parameters
+
+`$options` is an associative array with named parameters for this function.
+The following named parameters are supported:
+
+`KeepPost` (`bool`)
+
+:   If set to `TRUE`, the current POST data will be submittet again after authentication.
+    The default is `TRUE`.
+
+`ReturnTo` (`string`)
+
+:   The URL the user should be returned to after authentication.
+    The default is to return the user to the current page.
+
+### Example 1
+
+    $auth->requireAuth();
+    print("Hello, authenticated user!");
+
+### Example 2
+
+    /*
+     * Return the user to the frontpage after authentication, don't post
+     * the current POST data.
+     */
+    $auth->requireAuth(array(
+        'ReturnTo' => 'https://sp.example.org/',
+        'KeepPost' => FALSE,
+    ));
+    print("Hello, authenticated user!");
+
+
+
+`logout`
+--------
+
+    void logout(string $url = NULL)
+
+Log the user out, and return to the given URL.
+If the user isn't authenticated, the user will be redirected to the URL.
+If the user is authenticated with an IdP, the user will be sent to the IdP for logout.
+This function never returns.
+
+### Parameters
+
+`$url`
+:   The URL the user should be sent to after logout.
+    The default is the URL of the current page.
+
+### Example
+
+    $auth->logout('https://sp.example.org/');
+
+
+`getAttributes`
+---------------
+
+    array getAttributes()
+
+Retrieve the attributes of the current user.
+If the user isn't authenticated, an empty array will be returned.
+
+The attributes will be returned as an associative array with the name of the attribute as the key and the value as an array of one or more strings:
+
+    array(
+        'uid' => array('testuser'),
+        'eduPersonAffiliation' => array('student', 'member'),
+    )
+
+
+### Example
+
+    $attrs = $auth->getAttributes();
+    if (!isset($attrs['displayName'][0])) {
+        throw new Exception('displayName attribute missing.');
+    }
+    $name = $attrs['displayName'][0];
+
+    print('Hello, ' . htmlspecialchars($name));
+
+
+`getLoginURL`
+-------------
+
+    string getLoginURL(string $returnTo = NULL)
+
+Retrieve an URL that can be used to start authentication.
+
+### Parameters
+
+`$returnTo`
+
+:   The URL the user should be returned to after authentication.
+    The default is the current page.
+
+### Example
+
+    $url = $auth->getLoginURL();
+
+    print('<a href="' . htmlspecialchars($url) . '">Login</a>');
+
+### Note
+
+The URL returned by this function is static, and will not change.
+You can easily create your own links without using this function.
+The URL should be:
+
+     .../simplesaml/module.php/core/as_login.php?AuthId=<authentication source>&ReturnTo=<return URL>
+
+
+`getLogoutURL`
+--------------
+
+    string getLogoutURL(string $returnTo = NULL)
+
+Retrieve an URL that can be used to trigger logout.
+
+### Parameters
+
+`$returnTo`
+
+:   The URL the user should be returned to after logout.
+    The default is the current page.
+
+### Example
+
+    $url = $auth->getLogoutURL();
+
+    print('<a href="' . htmlspecialchars($url) . '">Logout</a>');
+
+### Note
+
+The URL returned by this function is static, and will not change.
+You can easily create your own links without using this function.
+The URL should be:
+
+     .../simplesaml/module.php/core/as_logout.php?AuthId=<authentication source>&ReturnTo=<return URL>
