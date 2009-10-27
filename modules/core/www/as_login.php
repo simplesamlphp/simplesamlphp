@@ -17,7 +17,7 @@ if (!is_string($_REQUEST['AuthId'])) {
 
 $as = new SimpleSAML_Auth_Simple($_REQUEST['AuthId']);
 $as->requireAuth(array(
-	'url' => $_REQUEST['ReturnTo'],
+	'ReturnTo' => $_REQUEST['ReturnTo'],
 ));
 
 SimpleSAML_Utilities::redirect($_REQUEST['ReturnTo']);
