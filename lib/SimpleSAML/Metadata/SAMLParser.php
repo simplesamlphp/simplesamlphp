@@ -1406,6 +1406,14 @@ class SimpleSAML_Metadata_SAMLParser {
 		$entityDescriptor = $element->parentNode;
 		assert('$entityDescriptor instanceof DOMElement');
 
+		/*
+		 * Make a copy of the entity descriptor, so that the validator can
+		 * change the DOM tree in any way it wants.
+		 */
+		$doc = new DOMDocument();
+		$entityDescriptor = $doc->importNode($entityDescriptor, TRUE);
+		$doc->appendChild($entityDescriptor);
+
 		/* Attempt to check the signature. */
 		try {
 			$validator = new SimpleSAML_XML_Validator($entityDescriptor, 'ID');
