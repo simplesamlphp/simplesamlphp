@@ -60,13 +60,13 @@ class sspmod_oauth_Consumer {
 
 		$acc_req = OAuthRequest::from_consumer_and_token($this->consumer, $requestToken, "GET", $url, NULL);
 		$acc_req->sign_request($this->signer, $this->consumer, $requestToken);
-
+		
 		$response_acc = file_get_contents($acc_req->to_url());
 		if ($response_acc === FALSE) {
 			throw new Exception('Error contacting request_token endpoint on the OAuth Provider');
 		}
 
-		SimpleSAML_Logger::info('   ==== RESPONSE: '. $response_acc);
+		SimpleSAML_Logger::debug('oauth: Reponse to get access token: '. $response_acc);
 		
 		parse_str($response_acc, $accessResponseParsed);
 		
