@@ -60,6 +60,8 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 [`authfacebook:Facebook`](https://rnd.feide.no/content/using-facebook-authentication-source)
 : Authenticate with a Facebook ID.
 
+[`authtwitter:Twitter`](https://rnd.feide.no/content/twitter-authentication-module)
+: Authenticate with your Twitter account using the Twitter OAuth API.
 
 In this guide, we will use the `exampleauth:UserPass` authentication module. This module does not have any dependencies, and is therefore simple to set up.
 
