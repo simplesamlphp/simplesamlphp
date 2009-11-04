@@ -236,6 +236,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	 */
 	public function addMetadataSP20($metadata) {
 		assert('is_array($metadata)');
+		assert('isset($metadata["entityid"])');
+		assert('isset($metadata["metadata-set"])');
 
 		$e = $this->createElement('SPSSODescriptor');
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:2.0:protocol');
@@ -359,6 +361,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	 */
 	public function addMetadataIdP20($metadata) {
 		assert('is_array($metadata)');
+		assert('isset($metadata["entityid"])');
+		assert('isset($metadata["metadata-set"])');
 
 		$e = $this->createElement('IDPSSODescriptor');
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:2.0:protocol');
@@ -418,6 +422,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	 */
 	public function addMetadataSP11($metadata) {
 		assert('is_array($metadata)');
+		assert('isset($metadata["entityid"])');
+		assert('isset($metadata["metadata-set"])');
 
 		$e = $this->createElement('SPSSODescriptor');
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:1.1:protocol');
@@ -464,6 +470,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	 */
 	public function addMetadataIdP11($metadata) {
 		assert('is_array($metadata)');
+		assert('isset($metadata["entityid"])');
+		assert('isset($metadata["metadata-set"])');
 
 		$e = $this->createElement('IDPSSODescriptor');
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:1.1:protocol');
