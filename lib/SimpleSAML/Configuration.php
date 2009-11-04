@@ -944,6 +944,32 @@ class SimpleSAML_Configuration {
 		return $eps;
 	}
 
+
+	/**
+	 * Find the default endpoint of the given type.
+	 *
+	 * @param string $endpointType  The endpoint type.
+	 * @param array $bindings  Array with acceptable bindings. Can be NULL if any binding is allowed.
+	 * @param mixed $default  The default value to return if no matching endpoint is found. If no default is provided, an exception will be thrown.
+	 * @return  array|NULL  The default endpoint, or NULL if no acceptable endpoints are used.
+	 */
+	public function getDefaultEndpoint($endpointType, array $bindings = NULL, $default = self::REQUIRED_OPTION) {
+		assert('is_string($endpointType)');
+
+		$endpoints = $this->getEndpoints($endpointType);
+		$defaultEndpoint = SimpleSAML_Utilities::getDefaultEndpoint($endpoints, $bindings);
+		if ($defaultEndpoint !== NULL) {
+			return $defaultEndpoint;
+		}
+
+		if ($default === self::REQUIRED_OPTION) {
+			$loc = $this->location . '[' . var_export($endpointType, TRUE) . ']:';
+			throw new Exception($loc . 'Could not find a supported ' . $endpointType . ' endpoint.');
+		}
+
+		return $default;
+	}
+
 }
 
 ?>
