@@ -104,7 +104,7 @@ if (isset($_GET['shire'])) {
 
 /* Make sure that the issuer is a valid SP. */
 try {
-	$spmetadata = $metadata->getMetaData($requestcache['Issuer'], 'shib13-sp-remote');
+	$spMetadata = $metadata->getMetaDataConfig($requestcache['Issuer'], 'shib13-sp-remote');
 } catch (Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
 }
@@ -140,7 +140,7 @@ if (!$session->isValid($authority) ) {
 	if($authSource) {
 		/* Authenticate with an AuthSource. */
 		$hints = array(
-			'SPMetadata' => $spmetadata,
+			'SPMetadata' => $spMetadata->toArray(),
 			'IdPMetadata' => $idpmetadata,
 		);
 
@@ -161,15 +161,14 @@ if (!$session->isValid($authority) ) {
  * service.
  */
 try {
-	$spmetadata = $metadata->getMetaData($requestcache['Issuer'], 'shib13-sp-remote');
 
 	/* Validate the Shire the response should be sent to. */
 	$shire = $requestcache['shire'];
-	if (!array_key_exists('AssertionConsumerService', $spmetadata)) {
+	if (!$spMetadata->hasValue('AssertionConsumerService')) {
 		throw new Exception('Could not find [AssertionConsumerService] in Shib 1.3 Service Provider remote metadata.');
 	}
 	$foundACS = FALSE;
-	foreach (SimpleSAML_Utilities::arrayize($spmetadata['AssertionConsumerService']) as $acs) {
+	foreach ($spMetadata->getArrayizeString('AssertionConsumerService') as $acs) {
 		if ($acs === $shire) {
 			SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Found AssertionConsumerService: '. $acs);
 			$foundACS = TRUE;
@@ -178,7 +177,7 @@ try {
 	}
 	if (!$foundACS) {
 		throw new Exception('Invalid AssertionConsumerService for SP ' .
-			var_export($spmetadata['entityid'], TRUE) . ': ' . var_export($shire, TRUE));
+			var_export($spMetadata->getString('entityid'), TRUE) . ': ' . var_export($shire, TRUE));
 	}
 
 	$attributes = $session->getAttributes();
@@ -186,13 +185,13 @@ try {
 	/* Authentication processing operations. */
 	if (!isset($authProcState)) {
 		/* Not processed. */
-		$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata, 'idp');
+		$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spMetadata->toArray(), 'idp');
 
 		$authProcState = array(
 			'core:shib13-idp:requestcache' => $requestcache,
 			'ReturnURL' => SimpleSAML_Utilities::selfURLNoQuery(),
 			'Attributes' => $attributes,
-			'Destination' => $spmetadata,
+			'Destination' => $spMetadata->toArray(),
 			'Source' => $idpmetadata,
 			);
 
@@ -203,10 +202,10 @@ try {
 
 	/* Generate and send response. */
 	$ar = new SimpleSAML_XML_Shib13_AuthnResponse();
-	$authnResponseXML = $ar->generate($idpmetadata, $spmetadata, $shire, $attributes);
+	$authnResponseXML = $ar->generate($idpmetadata, $spMetadata->toArray(), $shire, $attributes);
 
 	$httppost = new SimpleSAML_Bindings_Shib13_HTTPPost($config, $metadata);
-	$httppost->sendResponse($authnResponseXML, $idpmetadata, $spmetadata, $requestcache['RelayState'], $shire);
+	$httppost->sendResponse($authnResponseXML, $idpmetadata, $spMetadata->toArray(), $requestcache['RelayState'], $shire);
 
 } catch(Exception $exception) {
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
