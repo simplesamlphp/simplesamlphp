@@ -92,38 +92,37 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	}
 	
 	/**
-	 * @param $metadata Metadata array
+	 * @param SimpleSAML_Configuration $metadata  Metadata.
 	 * @param $e Reference to the element where the Extensions element should be included.
 	 */
-	private function addExtensions($metadata, &$e = NULL) {
+	private function addExtensions(SimpleSAML_Configuration $metadata, &$e = NULL) {
 		$extensions = $this->createElement('Extensions'); 
 		$includeExtensions = FALSE;
 		
-		if (array_key_exists('tags', $metadata)) {
+		if ($metadata->hasValue('tags')) {
 			$includeExtensions = TRUE;
 			$attr = $this->createElement('saml:Attribute', 'urn:oasis:names:tc:SAML:2.0:assertion');
 			$attr->setAttribute('Name', 'tags');
-			foreach ($metadata['tags'] AS $tag) {
+			foreach ($metadata->getArray('tags') as $tag) {
 				$attr->appendChild($this->createTextElement('saml:AttributeValue', $tag, 'urn:oasis:names:tc:SAML:2.0:assertion'));
 			}
 			$extensions->appendChild($attr);
 		}
 
-		if (array_key_exists('hint.cidr', $metadata)) {
+		if ($metadata->hasValue('hint.cidr')) {
 			$includeExtensions = TRUE;
 			$attr = $this->createElement('saml:Attribute', 'urn:oasis:names:tc:SAML:2.0:assertion');
 			$attr->setAttribute('Name', 'hint.cidr');
-			$hints = self::arrayize($metadata['hint.cidr']);
-			foreach ($hints AS $hint) {
+			foreach ($metadata->getArrayizeString('hint.cidr') as $hint) {
 				$attr->appendChild($this->createTextElement('saml:AttributeValue', $hint, 'urn:oasis:names:tc:SAML:2.0:assertion'));
 			}
 			$extensions->appendChild($attr);
 		}
 
 		
-		if (array_key_exists('scope', $metadata)) {
+		if ($metadata->hasValue('scope')) {
 			$includeExtensions = TRUE;
-			foreach ($metadata['scope'] AS $scopetext) {
+			foreach ($metadata->getArray('scope') as $scopetext) {
 				$scope = $this->createElement('shibmd:Scope', 'urn:mace:shibboleth:metadata:1.0');
 				$scope->setAttribute('regexp', 'false');
 				$scope->appendChild($this->document->createTextNode($scopetext));
@@ -239,118 +238,101 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		assert('isset($metadata["entityid"])');
 		assert('isset($metadata["metadata-set"])');
 
+		$metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
+
 		$e = $this->createElement('SPSSODescriptor');
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:2.0:protocol');
-		
-		
+
+
 		$this->addExtensions($metadata, $e);
 
 		$this->addCertificate($e, $metadata);
 
-		if (array_key_exists('SingleLogoutService', $metadata)) {
+		if ($metadata->hasValue('SingleLogoutService')) {
 			$t = $this->createElement('SingleLogoutService');
 			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect');
-			$t->setAttribute('Location', $metadata['SingleLogoutService']);
+			$t->setAttribute('Location', $metadata->getString('SingleLogoutService'));
 
-			if (array_key_exists('SingleLogoutServiceResponse', $metadata)) {
-				$t->setAttribute('ResponseLocation', $metadata['SingleLogoutServiceResponse']);
+			if ($metadata->hasValue('SingleLogoutServiceResponse')) {
+				$t->setAttribute('ResponseLocation', $metadata->getString('SingleLogoutServiceResponse'));
 			}
 
 			$e->appendChild($t);
 		}
 
-		if (array_key_exists('NameIDFormat', $metadata)) {
+		if ($metadata->hasValue('NameIDFormat')) {
 			$t = $this->createElement('NameIDFormat');
-			$t->appendChild($this->document->createTextNode($metadata['NameIDFormat']));
+			$t->appendChild($this->document->createTextNode($metadata->getString('NameIDFormat')));
 			$e->appendChild($t);
 		}
 
 		$acsIndex = 0;
-		if (array_key_exists('AssertionConsumerService', $metadata)) {
-			foreach (SimpleSAML_Utilities::arrayize($metadata['AssertionConsumerService']) as $acs) {
-				$t = $this->createElement('AssertionConsumerService');
-				$t->setAttribute('index', (string)$acsIndex);
-				$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST');
-				$t->setAttribute('Location', $acs);
-				$e->appendChild($t);
-				$acsIndex += 1;
-			}
+		foreach ($metadata->getArrayizeString('AssertionConsumerService', array()) as $acs) {
+			$t = $this->createElement('AssertionConsumerService');
+			$t->setAttribute('index', (string)$acsIndex);
+			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST');
+			$t->setAttribute('Location', $acs);
+			$e->appendChild($t);
+			$acsIndex += 1;
 		}
-		if (array_key_exists('AssertionConsumerService.artifact', $metadata)) {
-			foreach (SimpleSAML_Utilities::arrayize($metadata['AssertionConsumerService.artifact']) as $acs) {
-				$t = $this->createElement('AssertionConsumerService');
-				$t->setAttribute('index', (string)$acsIndex);
-				$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact');
-				$t->setAttribute('Location', $acs);
-				$e->appendChild($t);
-				$acsIndex += 1;
-			}
-
+		foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', array()) as $acs) {
+			$t = $this->createElement('AssertionConsumerService');
+			$t->setAttribute('index', (string)$acsIndex);
+			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact');
+			$t->setAttribute('Location', $acs);
+			$e->appendChild($t);
+			$acsIndex += 1;
 		}
 
-
-		if ( array_key_exists('name', $metadata) && array_key_exists('attributes', $metadata)) {
-			/**
+		$attributes = $metadata->getArray('attributes', array());
+		if ( $metadata->hasValue('name') && count($attributes) > 0 ) {
+			/*
 			 * Add an AttributeConsumingService element with information as name and description and list
 			 * of requested attributes
 			 */
 			$attributeconsumer = $this->createElement('AttributeConsumingService');
 			$attributeconsumer->setAttribute('index', '0');
-			
-			if (array_key_exists('name', $metadata)) {	
-				if (is_array($metadata['name'])) {
-					foreach($metadata['name'] AS $lang => $localname) {
-						$t = $this->createTextElement('ServiceName', $localname); 
-						$t->setAttribute('xml:lang', $lang);					
-						$attributeconsumer->appendChild($t);
-					}
-				} else {
-					$t = $this->createTextElement('ServiceName', $metadata['name']); 
-					$t->setAttribute('xml:lang', 'en');
-					$attributeconsumer->appendChild($t);
+
+			$name = $metadata->getArrayizeString('name');
+			foreach($name AS $lang => $localname) {
+				if ($lang === 0) {
+					/* We use 'en' as the default language. */
+					$lang = 'en';
 				}
+				$t = $this->createTextElement('ServiceName', $localname);
+				$t->setAttribute('xml:lang', $lang);
+				$attributeconsumer->appendChild($t);
 			}
-			
-			
-			
-			if (array_key_exists('description', $metadata)) {	
-				if (is_array($metadata['description'])) {
-					foreach($metadata['description'] AS $lang => $localname) {
-						$t = $this->createTextElement('ServiceDescription', $localname); 
-						$t->setAttribute('xml:lang', $lang);					
-						$attributeconsumer->appendChild($t);
-					}
-				} else {
-					$t = $this->createTextElement('ServiceDescription', $metadata['description']); 
-					$t->setAttribute('xml:lang', 'en');
-					$attributeconsumer->appendChild($t);
+
+			$description = $metadata->getArrayizeString('description', array());
+			foreach($metadata['description'] AS $lang => $localname) {
+				if ($lang === 0) {
+					/* We use 'en' as the default language. */
+					$lang = 'en';
 				}
+				$t = $this->createTextElement('ServiceDescription', $localname);
+				$t->setAttribute('xml:lang', $lang);
+				$attributeconsumer->appendChild($t);
 			}
-			
-			if (array_key_exists('attributes', $metadata) && is_array($metadata['attributes'])) {
-				foreach ($metadata['attributes'] AS $attribute) {
-					$t = $this->createElement('RequestedAttribute'); 
-					$t->setAttribute('Name', $attribute);
-					$attributeconsumer->appendChild($t);
-				}
+
+
+			foreach ($attributes as $attribute) {
+				$t = $this->createElement('RequestedAttribute');
+				$t->setAttribute('Name', $attribute);
+				$attributeconsumer->appendChild($t);
 			}
+
 			$e->appendChild($attributeconsumer);
 		}
 
 		$this->entityDescriptor->appendChild($e);
-		
 
-		
-		if (array_key_exists('contacts', $metadata) && is_array($metadata['contacts']) ) {
-			foreach($metadata['contacts'] AS $contact) {
-				if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
-                    $this->addContact($contact['contactType'], $contact);
-				}
+		foreach ($metadata->getArray('contacts', array()) as $contact) {
+			if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
+				$this->addContact($contact['contactType'], $contact);
 			}
 		}
-		
-		
-		
+
 	}
 
 
@@ -364,51 +346,49 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		assert('isset($metadata["entityid"])');
 		assert('isset($metadata["metadata-set"])');
 
+		$metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
+
 		$e = $this->createElement('IDPSSODescriptor');
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:2.0:protocol');
 
-		if (array_key_exists('redirect.sign', $metadata) && $metadata['redirect.sign']) {
+		if ($metadata->getBoolean('redirect.sign', FALSE)) {
 			$e->setAttribute('WantAuthnRequestSigned', 'true');
 		}
-		
+
 		$this->addExtensions($metadata, $e);
 
 		$this->addCertificate($e, $metadata);
 
-		if (array_key_exists('SingleLogoutService', $metadata)) {
+		if ($metadata->hasValue('SingleLogoutService')) {
 			$t = $this->createElement('SingleLogoutService');
 			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect');
-			$t->setAttribute('Location', $metadata['SingleLogoutService']);
+			$t->setAttribute('Location', $metadata->getString('SingleLogoutService'));
 
-			if (array_key_exists('SingleLogoutServiceResponse', $metadata)) {
-				$t->setAttribute('ResponseLocation', $metadata['SingleLogoutServiceResponse']);
+			if ($metadata->hasValue('SingleLogoutServiceResponse')) {
+				$t->setAttribute('ResponseLocation', $metadata->getString('SingleLogoutServiceResponse'));
 			}
 
 			$e->appendChild($t);
 		}
 
-		if (array_key_exists('NameIDFormat', $metadata)) {
+		if ($metadata->hasValue('NameIDFormat')) {
 			$t = $this->createElement('NameIDFormat');
-			$t->appendChild($this->document->createTextNode($metadata['NameIDFormat']));
+			$t->appendChild($this->document->createTextNode($metadata->getString('NameIDFormat')));
 			$e->appendChild($t);
 		}
 
-		if (array_key_exists('SingleSignOnService', $metadata)) {
+		if ($metadata->hasValue('SingleSignOnService')) {
 			$t = $this->createElement('SingleSignOnService');
 			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect');
-			$t->setAttribute('Location', $metadata['SingleSignOnService']);
+			$t->setAttribute('Location', $metadata->getString('SingleSignOnService'));
 			$e->appendChild($t);
 		}
-		
-		$this->entityDescriptor->appendChild($e);
-		
 
-		
-		if (array_key_exists('contacts', $metadata) && is_array($metadata['contacts']) ) {
-			foreach($metadata['contacts'] AS $contact) {
-				if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
-                    $this->addContact($contact['contactType'], $contact);
-				}
+		$this->entityDescriptor->appendChild($e);
+
+		foreach ($metadata->getArray('contacts', array()) as $contact) {
+			if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
+				$this->addContact($contact['contactType'], $contact);
 			}
 		}
 
@@ -425,38 +405,35 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		assert('isset($metadata["entityid"])');
 		assert('isset($metadata["metadata-set"])');
 
+		$metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
+
 		$e = $this->createElement('SPSSODescriptor');
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:1.1:protocol');
 
 		$this->addCertificate($e, $metadata);
 
-		if (array_key_exists('NameIDFormat', $metadata)) {
+		if ($metadata->hasValue('NameIDFormat')) {
 			$t = $this->createElement('NameIDFormat');
-			$t->appendChild($this->document->createTextNode($metadata['NameIDFormat']));
+			$t->appendChild($this->document->createTextNode($metadata->getString('NameIDFormat')));
 			$e->appendChild($t);
 		}
 
 		$acsIndex = 0;
-		if (array_key_exists('AssertionConsumerService', $metadata)) {
-			foreach (SimpleSAML_Utilities::arrayize($metadata['AssertionConsumerService']) as $acs) {
-				$t = $this->createElement('AssertionConsumerService');
-				$t->setAttribute('index', (string)$acsIndex);
-				$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post');
-				$t->setAttribute('Location', $acs);
-				$e->appendChild($t);
-				$acsIndex += 1;
-			}
+		foreach ($metadata->getArrayizeString('AssertionConsumerService', array()) as $acs) {
+			$t = $this->createElement('AssertionConsumerService');
+			$t->setAttribute('index', (string)$acsIndex);
+			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post');
+			$t->setAttribute('Location', $acs);
+			$e->appendChild($t);
+			$acsIndex += 1;
 		}
-		if (array_key_exists('AssertionConsumerService.artifact', $metadata)) {
-			foreach (SimpleSAML_Utilities::arrayize($metadata['AssertionConsumerService.artifact']) as $acs) {
-				$t = $this->createElement('AssertionConsumerService');
-				$t->setAttribute('index', (string)$acsIndex);
-				$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01');
-				$t->setAttribute('Location', $acs);
-				$e->appendChild($t);
-				$acsIndex += 1;
-			}
-
+		foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', array()) as $acs) {
+			$t = $this->createElement('AssertionConsumerService');
+			$t->setAttribute('index', (string)$acsIndex);
+			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01');
+			$t->setAttribute('Location', $acs);
+			$e->appendChild($t);
+			$acsIndex += 1;
 		}
 
 		$this->entityDescriptor->appendChild($e);
@@ -473,21 +450,23 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		assert('isset($metadata["entityid"])');
 		assert('isset($metadata["metadata-set"])');
 
+		$metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
+
 		$e = $this->createElement('IDPSSODescriptor');
 		$e->setAttribute('protocolSupportEnumeration', 'urn:oasis:names:tc:SAML:1.1:protocol');
 
 		$this->addCertificate($e, $metadata);
 
-		if (array_key_exists('NameIDFormat', $metadata)) {
+		if ($metadata->hasValue('NameIDFormat')) {
 			$t = $this->createElement('NameIDFormat');
-			$t->appendChild($this->document->createTextNode($metadata['NameIDFormat']));
+			$t->appendChild($this->document->createTextNode($metadata->getString('NameIDFormat')));
 			$e->appendChild($t);
 		}
 
-		if (array_key_exists('SingleSignOnService', $metadata)) {
+		if ($metadata->hasValue('SingleSignOnService')) {
 			$t = $this->createElement('SingleSignOnService');
 			$t->setAttribute('Binding', 'urn:mace:shibboleth:1.0:profiles:AuthnRequest');
-			$t->setAttribute('Location', $metadata['SingleSignOnService']);
+			$t->setAttribute('Location', $metadata->getString('SingleSignOnService'));
 			$e->appendChild($t);
 		}
 
@@ -648,12 +627,11 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	 *
 	 * @param DOMElement $ssoDesc  The IDPSSODescroptor or SPSSODecriptor the certificate
 	 *                             should be added to.
-	 * @param array $metadata  The metadata for the entity.
+	 * @param SimpleSAML_Configuration $metadata  The metadata for the entity.
 	 */
-	private function addCertificate(DOMElement $ssoDesc, $metadata) {
-		assert('is_array($metadata)');
+	private function addCertificate(DOMElement $ssoDesc, SimpleSAML_Configuration $metadata) {
 
-		$certInfo = SimpleSAML_Utilities::loadPublicKey($metadata);
+		$certInfo = SimpleSAML_Utilities::loadPublicKey($metadata->toArray());
 		if ($certInfo === NULL || !array_key_exists('certData', $certInfo)) {
 			/* No certificate to add. */
 			return;
