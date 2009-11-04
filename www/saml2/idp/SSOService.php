@@ -129,9 +129,10 @@ if (isset($_REQUEST['SAMLRequest'])) {
 			throw new SimpleSAML_Error_BadRequest('Received message on authentication request endpoint without issuer.');
 		}
 
+		$spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');
 
 		sspmod_saml2_Message::validateMessage(
-			$metadata->getMetaDataConfig($issuer, 'saml20-sp-remote'),
+			$spMetadata,
 			$metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted'),
 			$authnrequest);
 
@@ -145,49 +146,27 @@ if (isset($_REQUEST['SAMLRequest'])) {
 		);
 			
 
-		$spentityid = $requestcache['Issuer'];
-		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
 
 		$consumerURL = $authnrequest->getAssertionConsumerServiceURL();
 		if ($consumerURL !== NULL) {
-			$consumerArray = SimpleSAML_Utilities::arrayize($spmetadata['AssertionConsumerService']);
+			$consumerArray = $spMetadata->getArrayizeString('AssertionConsumerService');
 			if (in_array($consumerURL, $consumerArray, TRUE)) {
 				$requestcache['ConsumerURL'] = $consumerURL;
 			} else {
-				SimpleSAML_Logger::warning('Authentication request from ' . var_export($spentityid, TRUE) .
+				SimpleSAML_Logger::warning('Authentication request from ' . var_export($issuer, TRUE) .
 					' contains invalid AssertionConsumerService URL. Was ' .
 					var_export($consumerURL, TRUE) . ', could be ' . var_export($consumerArray, TRUE) . '.');
 			}
 		}
 
 		$IDPList = $authnrequest->getIDPList();
-
-		if(array_key_exists('IDPList', $spmetadata)) {
-			$IDPList = array_unique(array_merge($IDPList, $spmetadata['IDPList']));
-		}
-		
+		$IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', array())));
 		$requestcache['IDPList'] = $IDPList;
-		
+
 		/*
 		 * Handle the ForceAuthn option.
 		 */
-
-		/* The default value is FALSE. */
-		$forceAuthn = FALSE;
-
-		if(array_key_exists('ForceAuthn', $spmetadata)) {
-			/* The ForceAuthn flag is set in the metadata for this SP. */
-			$forceAuthn = $spmetadata['ForceAuthn'];
-			if(!is_bool($spmetadata['ForceAuthn'])) {
-				throw new Exception('The ForceAuthn option in the metadata for the sp [' . $spentityid . '] is not a boolean.');
-			}
-
-			if($spmetadata['ForceAuthn']) {
-				/* ForceAuthn enabled in the metadata for the SP. */
-				$forceAuthn = TRUE;
-			}
-		}
-
+		$forceAuthn = $spMetadata->getBoolean('ForceAuthn', FALSE);
 		if($authnrequest->getForceAuthn()) {
 			/* The ForceAuthn flag was set to true in the authentication request. */
 			$forceAuthn = TRUE;
@@ -395,10 +374,8 @@ if($needAuth && !$isPassive) {
 	try {
 	
 		$spentityid = $requestcache['Issuer'];
-		$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
+		$spMetadata = $metadata->getMetaDataConfig($spentityid, 'saml20-sp-remote');
 		
-		$sp_name = (isset($spmetadata['name']) ? $spmetadata['name'] : $spentityid);
-
 		SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Sending back AuthnResponse to ' . $spentityid);
 		
 		/*
@@ -409,13 +386,13 @@ if($needAuth && !$isPassive) {
 		/* Authentication processing operations. */
 		if (!isset($authProcState)) {
 			/* Not processed. */
-			$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spmetadata, 'idp');
+			$pc = new SimpleSAML_Auth_ProcessingChain($idpmetadata, $spMetadata->toArray(), 'idp');
 
 			$authProcState = array(
 				'core:saml20-idp:requestcache' => $requestcache,
 				'ReturnURL' => SimpleSAML_Utilities::selfURLNoQuery(),
 				'Attributes' => $attributes,
-				'Destination' => $spmetadata,
+				'Destination' => $spMetadata->toArray(),
 				'Source' => $idpmetadata,
 				'isPassive' => $isPassive,
 				SimpleSAML_Auth_State::EXCEPTION_HANDLER_URL => SimpleSAML_Utilities::selfURLNoQuery(),
@@ -461,7 +438,6 @@ if($needAuth && !$isPassive) {
 
 		/* Begin by creating the assertion. */
 		$idpMetadata = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
-		$spMetadata = $metadata->getMetaDataConfig($spentityid, 'saml20-sp-remote');
 		if (array_key_exists('ConsumerURL', $requestcache)) {
 			$consumerURL = $requestcache['ConsumerURL'];
 		} else {
