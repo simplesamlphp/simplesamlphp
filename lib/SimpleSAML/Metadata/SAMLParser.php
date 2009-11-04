@@ -477,15 +477,8 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['expire'] = $spd['expire'];
 		}
 
-		/* Find the assertion consumer service endpoint. */
-		$acs = $this->getDefaultEndpoint($spd['AssertionConsumerService'], array(self::SAML_1X_POST_BINDING));
-		if($acs === NULL) {
-			SimpleSAML_Logger::warning('Could not find a supported SAML 1.x AssertionConsumerService endpoint for ' .
-				var_export($ret['entityid'], TRUE) . '.');
-			return;
-		} else {
-			$ret['AssertionConsumerService'] = $acs['Location'];
-		}
+		/* Find the assertion consumer service endpoints. */
+		$ret['AssertionConsumerService'] = $spd['AssertionConsumerService'];
 
 		/* Add the list of attributes the SP should receive. */
 		if (array_key_exists('attributes', $spd)) {
@@ -545,21 +538,11 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['expire'] = $idp['expire'];
 		}
 
-		/* Find the SSO service endpoint. */
-		$sso = $this->getDefaultEndpoint($idp['SingleSignOnService'], array(self::SAML_1x_AUTHN_REQUEST));
-		if($sso === NULL) {
-			SimpleSAML_Logger::warning('Could not find a supported SAML 1.x SingleSignOnService endpoint for ' .
-				var_export($ret['entityid'], TRUE) . '.');
-			return;
-		} else {
-			$ret['SingleSignOnService'] = $sso['Location'];
-		}
+		/* Find the SSO service endpoints. */
+		$ret['SingleSignOnService'] = $idp['SingleSignOnService'];
 
 		/* Find the ArtifactResolutionService endpoint. */
-		$artifactResolutionService = $this->getDefaultEndpoint($idp['ArtifactResolutionService'], array(self::SAML_1X_SOAP_BINDING));
-		if ($artifactResolutionService !== NULL) {
-			$ret['ArtifactResolutionService'] = $artifactResolutionService['Location'];
-		}
+		$ret['ArtifactResolutionService'] = $idp['ArtifactResolutionService'];
 
 		/* Add certificate to metadata. Only the first valid certificate will be added. */
 		$ret['certFingerprint'] = array();
@@ -620,34 +603,11 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 		/* Find the assertion consumer service endpoints. */
-		$defaultACS = $this->getDefaultEndpoint($spd['AssertionConsumerService'], array(self::SAML_20_POST_BINDING));
-		if($defaultACS === NULL) {
-			SimpleSAML_Logger::warning('Could not find a supported SAML 2.0 AssertionConsumerService endpoint for ' .
-				var_export($ret['entityid'], TRUE) . '.');
-		} else {
-			$defaultACS = $defaultACS['Location'];
-			$retACS = array($defaultACS);
-
-			$allACS = $this->getEndpoints($spd['AssertionConsumerService'], array(self::SAML_20_POST_BINDING));
-			foreach ($allACS as $acs) {
-				$acs = $acs['Location'];
-				if ($acs !== $defaultACS) {
-					$retACS[] = $acs;
-				}
-			}
-
-			$ret['AssertionConsumerService'] = $retACS;
-		}
+		$ret['AssertionConsumerService'] = $spd['AssertionConsumerService'];
 
 
 		/* Find the single logout service endpoint. */
-		$slo = $this->getDefaultEndpoint($spd['SingleLogoutService'], array(self::SAML_20_REDIRECT_BINDING));
-		if($slo !== NULL) {
-			$ret['SingleLogoutService'] = $slo['Location'];
-			if (isset($slo['ResponseLocation']) && $slo['Location'] != $slo['ResponseLocation']) {
-				$ret['SingleLogoutServiceResponse'] = $slo['ResponseLocation'];
-			}
-		}
+		$ret['SingleLogoutService'] = $spd['SingleLogoutService'];
 
 
 		/* Find the NameIDFormat. This may not exists. */
@@ -729,32 +689,14 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 		/* Find the SSO service endpoint. */
-		$sso = $this->getDefaultEndpoint($idp['SingleSignOnService'], array(self::SAML_20_REDIRECT_BINDING));
-		if($sso === NULL) {
-			SimpleSAML_Logger::warning('Could not find a supported SAML 2.0 SingleSignOnService endpoint for ' .
-				var_export($ret['entityid'], TRUE) . '.');
-		} else {
-			$ret['SingleSignOnService'] = $sso['Location'];
-		}
+		$ret['SingleSignOnService'] = $idp['SingleSignOnService'];
 
 
 		/* Find the single logout service endpoint. */
-		$slo = $this->getDefaultEndpoint($idp['SingleLogoutService'], array(self::SAML_20_REDIRECT_BINDING));
-		if($slo !== NULL) {
-			$ret['SingleLogoutService'] = $slo['Location'];
-			
-			/* If the response location is set, include it in the returned metadata. */
-			if(array_key_exists('ResponseLocation', $slo)) {
-				$ret['SingleLogoutServiceResponse'] = $slo['ResponseLocation'];
-			}
-			
-		}
+		$ret['SingleLogoutService'] = $idp['SingleLogoutService'];
 
 		/* Find the ArtifactResolutionService endpoint. */
-		$artifactResolutionService = $this->getDefaultEndpoint($idp['ArtifactResolutionService'], array(SAML2_Const::BINDING_SOAP));
-		if ($artifactResolutionService !== NULL) {
-			$ret['ArtifactResolutionService'] = $artifactResolutionService['Location'];
-		}
+		$ret['ArtifactResolutionService'] = $idp['ArtifactResolutionService'];
 
 
 		/* Add certificate to metadata. Only the first valid certificate will be added. */
