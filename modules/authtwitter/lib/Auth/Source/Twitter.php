@@ -1,5 +1,7 @@
 <?php
 
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/libextinc/OAuth.php');
+
 /**
  * Authenticate using Twitter.
  *
@@ -74,7 +76,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
 		$oauthState = array(
-			'requestToken' => $requestToken,
+			'requestToken' => serialize($requestToken),
 			'stateid' => $stateID,
 		);
 		$session = SimpleSAML_Session::getInstance();
@@ -89,15 +91,25 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 	
 	public function finalStep(&$state) {
 		
-		$requestToken = $state['requestToken'];
+		
+		
+		
+		$requestToken = unserialize($state['requestToken']);
+		
+		#echo '<pre>'; print_r($requestToken); exit;
 		
 		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
+		
+		SimpleSAML_Logger::debug("oauth: Using this request token [" . 
+			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
 		// Replace the request token with an access token
 		$accessToken = $consumer->getAccessToken('http://twitter.com/oauth/access_token', $requestToken);
 		SimpleSAML_Logger::debug("Got an access token from the OAuth service provider [" . 
 			$accessToken->key . "] with the secret [" . $accessToken->secret . "]");
+			
 
+		
 		$userdata = $consumer->getUserInfo('http://twitter.com/account/verify_credentials.json', $accessToken);
 		
 		$attributes = array();
