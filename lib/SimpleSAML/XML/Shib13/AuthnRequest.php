@@ -75,17 +75,15 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	
 	public function createRedirect($destination, $shire = NULL) {
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-		$idpmetadata = $metadata->getMetaData($destination, 'shib13-idp-remote');
+		$idpmetadata = $metadata->getMetaDataConfig($destination, 'shib13-idp-remote');
 
 		if ($shire === NULL) {
 			$shire = $metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted');
 		}
 
-		if (!isset($idpmetadata['SingleSignOnService'])) {
-			throw new Exception('Could not find the SingleSignOnService parameter in the Shib 1.3 IdP Remote metadata. This parameter has changed name from an earlier version of simpleSAMLphp, when it was called SingleSignOnUrl. Please check your shib13-sp-remote.php configuration the IdP with entity id ' . $destination . ' and make sure the SingleSignOnService parameter is set.');
-		}
-		
-		$desturl = $idpmetadata['SingleSignOnService'];
+		$desturl = $idpmetadata->getDefaultEndpoint('SingleSignOnService', array('urn:mace:shibboleth:1.0:profiles:AuthnRequest'));
+		$desturl = $desturl['Location'];
+
 		$target = $this->getRelayState();
 		
 		$url = $desturl . '?' .

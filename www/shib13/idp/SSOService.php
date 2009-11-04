@@ -164,16 +164,18 @@ try {
 
 	/* Validate the Shire the response should be sent to. */
 	$shire = $requestcache['shire'];
-	if (!$spMetadata->hasValue('AssertionConsumerService')) {
-		throw new Exception('Could not find [AssertionConsumerService] in Shib 1.3 Service Provider remote metadata.');
-	}
 	$foundACS = FALSE;
-	foreach ($spMetadata->getArrayizeString('AssertionConsumerService') as $acs) {
-		if ($acs === $shire) {
-			SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Found AssertionConsumerService: '. $acs);
-			$foundACS = TRUE;
-			break;
+	foreach ($spMetadata->getEndpoints('AssertionConsumerService') as $acs) {
+		if ($acs['Binding'] !== 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post') {
+			continue;
 		}
+		if ($acs['Location'] !== $shire) {
+			continue;
+		}
+
+		SimpleSAML_Logger::info('Shib1.3 - IdP.SSOService: Found AssertionConsumerService: '. $acs);
+		$foundACS = TRUE;
+		break;
 	}
 	if (!$foundACS) {
 		throw new Exception('Invalid AssertionConsumerService for SP ' .

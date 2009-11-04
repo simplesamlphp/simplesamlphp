@@ -122,8 +122,8 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 		$artifacts = self::getArtifacts();
 		$request = self::buildRequest($artifacts);
 
-		$url = 'https://skjak.uninett.no:1245/test...';
-		$url = $idpMetadata->getString('ArtifactResolutionService');
+		$url = $idpMetadata->getDefaultEndpoint('ArtifactResolutionService', array('urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding'));
+		$url = $url['Location'];
 
 		$certData = SimpleSAML_Utilities::loadPublicKey($idpMetadata->toArray(), TRUE);
 		if (!array_key_exists('PEM', $certData)) {
