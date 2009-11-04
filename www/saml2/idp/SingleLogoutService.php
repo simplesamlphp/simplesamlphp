@@ -211,9 +211,9 @@ while (TRUE) {
 		continue;
 	}
 
-	$singleLogoutService = $spMetadata->getString('SingleLogoutService', NULL);
+	$singleLogoutService = $spMetadata->getDefaultEndpoint('SingleLogoutService', array(SAML2_Const::BINDING_HTTP_REDIRECT), NULL);
 	if ($singleLogoutService === NULL) {
-		SimpleSAML_Logger::info('SAML2.0 - IDP.SingleLogoutService: No SingleLogoutService for ' .
+		SimpleSAML_Logger::info('SAML2.0 - IDP.SingleLogoutService: No supported SingleLogoutService for ' .
 			$spEntityId . '; looking for more SPs.');
 		continue;
 	}

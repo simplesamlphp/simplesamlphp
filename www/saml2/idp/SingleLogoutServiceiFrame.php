@@ -110,7 +110,7 @@ function updateslostatus() {
 		}
 
 		try {
-			$spmetadata = $metadata->getMetaData($spentityid, 'saml20-sp-remote');
+			$spMetadata = $metadata->getMetaDataConfig($spentityid, 'saml20-sp-remote');
 		} catch (Exception $e) {
 			/*
 			 * For some reason, the metadata for this SP is no longer available. Most
@@ -121,7 +121,8 @@ function updateslostatus() {
 			continue;
 		}
 
-		if (!isset($spmetadata['SingleLogoutService'])) {
+		$singleLogoutService = $spMetadata->getDefaultEndpoint('SingleLogoutService', array(SAML2_Const::BINDING_HTTP_REDIRECT), NULL);
+		if ($singleLogoutService === NULL) {
 			/* No logout endpoint. */
 			$listofsps[] = $spentityid;
 			continue;

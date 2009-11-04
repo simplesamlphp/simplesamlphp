@@ -28,8 +28,9 @@ try {
 		SimpleSAML_Utilities::redirect($returnTo);
 	}
 	$idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-remote');
-	if (!$idpMetadata->hasValue('SingleLogoutService')) {
-		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: No SingleLogoutService endpoint in IdP.');
+	$SLOendpoint = $idpMetadata->getDefaultEndpoint('SingleLogoutService', array(SAML2_Const::BINDING_HTTP_REDIRECT), NULL);
+	if ($SLOendpoint === NULL) {
+		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: No supported SingleLogoutService endpoint in IdP.');
 		SimpleSAML_Utilities::redirect($returnTo);
 	}
 

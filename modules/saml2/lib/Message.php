@@ -379,8 +379,11 @@ class sspmod_saml2_Message {
 			));
 		}
 
+		$dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(SAML2_Const::BINDING_HTTP_REDIRECT));
+		$dst = $dst['Location'];
+
 		$ar->setIssuer($spMetadata->getString('entityid'));
-		$ar->setDestination($idpMetadata->getString('SingleSignOnService'));
+		$ar->setDestination($dst);
 
 		$ar->setForceAuthn($spMetadata->getBoolean('ForceAuthn', FALSE));
 		$ar->setIsPassive($spMetadata->getBoolean('IsPassive', FALSE));
@@ -399,10 +402,13 @@ class sspmod_saml2_Message {
 	 */
 	public static function buildLogoutRequest(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata) {
 
+		$dst = $dstMetadata->getDefaultEndpoint('SingleLogoutService', array(SAML2_Const::BINDING_HTTP_REDIRECT));
+		$dst = $dst['Location'];
+
 		$lr = new SAML2_LogoutRequest();
 
 		$lr->setIssuer($srcMetadata->getString('entityid'));
-		$lr->setDestination($dstMetadata->getString('SingleLogoutService'));
+		$lr->setDestination($dst);
 
 		self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
 
@@ -418,14 +424,16 @@ class sspmod_saml2_Message {
 	 */
 	public static function buildLogoutResponse(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata) {
 
+		$dst = $dstMetadata->getDefaultEndpoint('SingleLogoutService', array(SAML2_Const::BINDING_HTTP_REDIRECT));
+		if (isset($dst['ResponseLocation'])) {
+			$dst = $dst['ResponseLocation'];
+		} else {
+			$dst = $dst['Location'];
+		}
+
 		$lr = new SAML2_LogoutResponse();
 
 		$lr->setIssuer($srcMetadata->getString('entityid'));
-
-		$dst = $dstMetadata->getString('SingleLogoutServiceResponse', NULL);
-		if ($dst === NULL) {
-			$dst = $dstMetadata->getString('SingleLogoutService');
-		}
 		$lr->setDestination($dst);
 
 		self::addRedirectSign($srcMetadata, $dstMetadata, $lr);

@@ -73,8 +73,8 @@ function handleError(Exception $exception) {
 		if (array_key_exists('ConsumerURL', $requestcache)) {
 			$consumerURL = $requestcache['ConsumerURL'];
 		} else {
-			$urlArray = $spMetadata->getArrayizeString('AssertionConsumerService');
-			$consumerURL = $urlArray[0];
+			$consumerURL = $spMetadata->getDefaultEndpoint('AssertionConsumerService', array(SAML2_Const::BINDING_HTTP_POST));
+			$consumerURL = $consumerURL['Location'];
 		}
 
 		$ar = sspmod_saml2_Message::buildResponse($idpMetadata, $spMetadata, $consumerURL);
@@ -149,13 +149,22 @@ if (isset($_REQUEST['SAMLRequest'])) {
 
 		$consumerURL = $authnrequest->getAssertionConsumerServiceURL();
 		if ($consumerURL !== NULL) {
-			$consumerArray = $spMetadata->getArrayizeString('AssertionConsumerService');
-			if (in_array($consumerURL, $consumerArray, TRUE)) {
+			$found = FALSE;
+			foreach ($spMetadata->getEndpoints('AssertionConsumerService') as $ep) {
+				if ($ep['Binding'] !== SAML2_Const::BINDING_HTTP_POST) {
+					continue;
+				}
+				if ($ep['Location'] !== $consumerURL) {
+					continue;
+				}
 				$requestcache['ConsumerURL'] = $consumerURL;
-			} else {
+				break;
+			}
+
+			if (!$found) {
 				SimpleSAML_Logger::warning('Authentication request from ' . var_export($issuer, TRUE) .
 					' contains invalid AssertionConsumerService URL. Was ' .
-					var_export($consumerURL, TRUE) . ', could be ' . var_export($consumerArray, TRUE) . '.');
+					var_export($consumerURL, TRUE) . '.');
 			}
 		}
 
@@ -441,8 +450,8 @@ if($needAuth && !$isPassive) {
 		if (array_key_exists('ConsumerURL', $requestcache)) {
 			$consumerURL = $requestcache['ConsumerURL'];
 		} else {
-			$urlArray = $spMetadata->getArrayizeString('AssertionConsumerService');
-			$consumerURL = $urlArray[0];
+			$consumerURL = $spMetadata->getDefaultEndpoint('AssertionConsumerService', array(SAML2_Const::BINDING_HTTP_POST));
+			$consumerURL = $consumerURL['Location'];
 		}
 
 		$assertion = sspmod_saml2_Message::buildAssertion($idpMetadata, $spMetadata, $attributes, $consumerURL);
