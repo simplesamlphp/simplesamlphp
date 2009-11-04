@@ -1157,7 +1157,7 @@ class SimpleSAML_Metadata_SAMLParser {
 			if(!$element->hasAttribute('index')) {
 				throw new Exception($name . ' missing required index attribute.');
 			}
-			$ep['index'] = $element->getAttribute('index');
+			$ep['index'] = (int)$element->getAttribute('index');
 
 			if($element->hasAttribute('isDefault')) {
 				$t = $element->getAttribute('isDefault');
