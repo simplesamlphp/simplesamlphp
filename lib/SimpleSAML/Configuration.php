@@ -839,6 +839,111 @@ class SimpleSAML_Configuration {
 		return $this->configuration;
 	}
 
+
+	/**
+	 * Retrieve the default binding for the given endpoint type.
+	 *
+	 * This function combines the current metadata type (saml 2 / saml 1.1)
+	 * with the endpoint type to determine which binding is the default.
+	 *
+	 * @param string $endpointType  The endpoint type.
+	 * @return string  The default binding.
+	 */
+	private function getDefaultBinding($endpointType) {
+		assert('is_string($endpointType)');
+
+		$set = $this->getString('metadata-set');
+		switch ($set.':'.$endpointType) {
+		case 'saml20-idp-remote:SingleSignOnService':
+		case 'saml20-idp-remote:SingleLogoutService':
+		case 'saml20-sp-remote:SingleLogoutService':
+			return SAML2_Const::BINDING_HTTP_REDIRECT;
+		case 'saml20-sp-remote:AssertionConsumerService':
+			return SAML2_Const::BINDING_HTTP_POST;
+		case 'shib13-idp-remote:SingleSignOnService':
+			return 'urn:mace:shibboleth:1.0:profiles:AuthnRequest';
+		case 'shib13-sp-remote:AssertionConsumerService':
+			return 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
+		default:
+			throw new Exception('Missing default binding for ' . $endpointType . ' in ' . $set);
+		}
+	}
+
+
+	/**
+	 * Helper function for dealing with metadata endpoints.
+	 *
+	 * @param string $endpointType  The endpoint type.
+	 * @return array  Array of endpoints of the given type.
+	 */
+	public function getEndpoints($endpointType) {
+		assert('is_string($endpointType)');
+
+		$loc = $this->location . '[' . var_export($endpointType, TRUE) . ']:';
+
+		if (!array_key_exists($endpointType, $this->configuration)) {
+			/* No endpoints of the given type. */
+			return array();
+		}
+
+
+		$eps = $this->configuration[$endpointType];
+		if (is_string($eps)) {
+			/* For backwards-compatibility. */
+			$eps = array($eps);
+		} elseif (!is_array($eps)) {
+			throw new Exception($loc . ': Expected array or string.');
+		}
+
+
+		foreach ($eps as $i => &$ep) {
+			$iloc = $loc . '[' . var_export($i, TRUE) . ']';
+
+			if (is_string($ep)) {
+				/* For backwards-compatibility. */
+				$ep = array(
+					'Location' => $ep,
+					'Binding' => $this->getDefaultBinding($endpointType),
+				);
+				$responseLocation = $this->getString($endpointType . 'Response', NULL);
+				if ($responseLocation !== NULL) {
+					$ep['ResponseLocation'] = $responseLocation;
+				}
+			} elseif (!is_array($ep)) {
+				throw new Exception($iloc . ': Expected a string or an array.');
+			}
+
+			if (!array_key_exists('Location', $ep)) {
+				throw new Exception($iloc . ': Missing Location.');
+			}
+			if (!is_string($ep['Location'])) {
+				throw new Exception($iloc . ': Location must be a string.');
+			}
+
+			if (!array_key_exists('Binding', $ep)) {
+				throw new Exception($iloc . ': Missing Binding.');
+			}
+			if (!is_string($ep['Binding'])) {
+				throw new Exception($iloc . ': Binding must be a string.');
+			}
+
+			if (array_key_exists('ResponseLocation', $ep)) {
+				if (!is_string($ep['ResponseLocation'])) {
+					throw new Exception($iloc . ': ResponseLocation must be a string.');
+				}
+			}
+
+			if (array_key_exists('index', $ep)) {
+				if (!is_int($ep['index'])) {
+					throw new Exception($iloc . ': index must be an integer.');
+				}
+			}
+
+		}
+
+		return $eps;
+	}
+
 }
 
 ?>
