@@ -17,6 +17,8 @@ if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
 
 $entityId = $source->getEntityId();
 $metaArray11 = array(
+	'metadata-set' => 'shib13-sp-remote',
+	'entityid' => $entityId,
 	'AssertionConsumerService' => SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId),
 );
 
@@ -27,6 +29,8 @@ if ($spconfig->getBoolean('saml11.binding.artifact.enable', FALSE)) {
 
 
 $metaArray20 = array(
+	'metadata-set' => 'saml20-sp-remote',
+	'entityid' => $entityId,
 	'AssertionConsumerService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId),
 	'SingleLogoutService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId),
 );

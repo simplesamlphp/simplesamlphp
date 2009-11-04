@@ -23,6 +23,8 @@ try {
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 	
 	$metaArray = array(
+		'metadata-set' => 'saml20-sp-remote',
+		'entityid' => $spentityid,
 		'AssertionConsumerService' => $metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted'),
 		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted'),
 	);

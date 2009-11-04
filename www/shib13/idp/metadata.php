@@ -29,6 +29,8 @@ try {
 	}
 
 	$metaArray = array(
+		'metadata-set' => 'shib13-idp-remote',
+		'entityid' => $idpentityid,
 		'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'shib13-idp-hosted'),
 		'certFingerprint' => $certFingerprint,
 	);

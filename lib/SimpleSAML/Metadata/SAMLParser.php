@@ -460,6 +460,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	public function getMetadata1xSP() {
 
 		$ret = $this->getMetadataCommon();
+		$ret['metadata-set'] = 'shib13-sp-remote';
 
 
 		/* Find SP information which supports one of the SAML 1.x protocols. */
@@ -528,6 +529,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	public function getMetadata1xIdP() {
 
 		$ret = $this->getMetadataCommon();
+		$ret['metadata-set'] = 'shib13-idp-remote';
 
 		/* Find IdP information which supports the SAML 1.x protocol. */
 		$idp = $this->getIdPDescriptors(self::$SAML1xProtocols);
@@ -600,6 +602,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	public function getMetadata20SP() {
 
 		$ret = $this->getMetadataCommon();
+		$ret['metadata-set'] = 'saml20-sp-remote';
 
 
 		/* Find SP information which supports the SAML 2.0 protocol. */
@@ -699,6 +702,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	public function getMetadata20IdP() {
 
 		$ret = $this->getMetadataCommon();
+		$ret['metadata-set'] = 'saml20-idp-remote';
 
 
 		/* Find IdP information which supports the SAML 2.0 protocol. */
