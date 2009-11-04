@@ -193,6 +193,68 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	}
 	
 
+	/**
+	 * Add endpoint list to metadata.
+	 *
+	 * @param DOMElement $ssoDesc  The *SSODescriptor element.
+	 * @param string $endpointType  The endpoint type (e.g. 'SingleLogoutService').
+	 * @param array $endpoints  The endpoints.
+	 */
+	private function addEndpoints(DOMElement $ssoDesc, $endpointType, array $endpoints) {
+		assert('is_string($endpointType)');
+
+		switch ($endpointType) {
+		case 'ArtifactResolutionService':
+		case 'AssertionConsumerService':
+			$indexed = TRUE;
+			break;
+		case 'AssertionIDRequestService':
+		case 'AttributeService':
+		case 'AuthnQueryService':
+		case 'AuthzService':
+		case 'ManageNameIDService':
+		case 'NameIDMappingService':
+		case 'SingleLogoutService':
+		case 'SingleSignOnService':
+			$indexed = FALSE;
+			break;
+		default:
+			throw new SimpleSAML_Error_Exception('TODO: Add endpoint type: ' . var_export($endpointType, TRUE));
+		}
+
+		foreach ($endpoints as &$ep) {
+			$t = $this->createElement($endpointType);
+			$t->setAttribute('Binding', $ep['Binding']);
+			$t->setAttribute('Location', $ep['Location']);
+			if (isset($ep['ResponseLocation'])) {
+				$t->setAttribute('ResponseLocation', $ep['ResponseLocation']);
+			}
+
+			if ($indexed) {
+				if (!isset($ep['index'])) {
+					/* Find the maximum index. */
+					$maxIndex = -1;
+					foreach ($endpoints as $ep) {
+						if (!isset($ep['index'])) {
+							continue;
+						}
+
+						if ($ep['index'] > $maxIndex) {
+							$maxIndex = $ep['index'];
+						}
+					}
+
+					$ep['index'] = $maxIndex + 1;
+				}
+
+				$t->setAttribute('index', (string)$ep['index']);
+			}
+
+			$ssoDesc->appendChild($t);
+		}
+
+	}
+
 
 	/**
 	 * Add metadata set for entity.
@@ -248,17 +310,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$this->addCertificate($e, $metadata);
 
-		if ($metadata->hasValue('SingleLogoutService')) {
-			$t = $this->createElement('SingleLogoutService');
-			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect');
-			$t->setAttribute('Location', $metadata->getString('SingleLogoutService'));
-
-			if ($metadata->hasValue('SingleLogoutServiceResponse')) {
-				$t->setAttribute('ResponseLocation', $metadata->getString('SingleLogoutServiceResponse'));
-			}
-
-			$e->appendChild($t);
-		}
+		$this->addEndpoints($e, 'SingleLogoutService', $metadata->getEndpoints('SingleLogoutService'));
 
 		if ($metadata->hasValue('NameIDFormat')) {
 			$t = $this->createElement('NameIDFormat');
@@ -266,23 +318,14 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$e->appendChild($t);
 		}
 
-		$acsIndex = 0;
-		foreach ($metadata->getArrayizeString('AssertionConsumerService', array()) as $acs) {
-			$t = $this->createElement('AssertionConsumerService');
-			$t->setAttribute('index', (string)$acsIndex);
-			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST');
-			$t->setAttribute('Location', $acs);
-			$e->appendChild($t);
-			$acsIndex += 1;
-		}
+		$endpoints = $metadata->getEndpoints('AssertionConsumerService');
 		foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', array()) as $acs) {
-			$t = $this->createElement('AssertionConsumerService');
-			$t->setAttribute('index', (string)$acsIndex);
-			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact');
-			$t->setAttribute('Location', $acs);
-			$e->appendChild($t);
-			$acsIndex += 1;
+			$endpoints[] = array(
+				'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
+				'Location' => $acs,
+			);
 		}
+		$this->addEndpoints($e, 'AssertionConsumerService', $endpoints);
 
 		$attributes = $metadata->getArray('attributes', array());
 		if ( $metadata->hasValue('name') && count($attributes) > 0 ) {
@@ -359,17 +402,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$this->addCertificate($e, $metadata);
 
-		if ($metadata->hasValue('SingleLogoutService')) {
-			$t = $this->createElement('SingleLogoutService');
-			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect');
-			$t->setAttribute('Location', $metadata->getString('SingleLogoutService'));
-
-			if ($metadata->hasValue('SingleLogoutServiceResponse')) {
-				$t->setAttribute('ResponseLocation', $metadata->getString('SingleLogoutServiceResponse'));
-			}
-
-			$e->appendChild($t);
-		}
+		$this->addEndpoints($e, 'SingleLogoutService', $metadata->getEndpoints('SingleLogoutService'));
 
 		if ($metadata->hasValue('NameIDFormat')) {
 			$t = $this->createElement('NameIDFormat');
@@ -377,12 +410,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$e->appendChild($t);
 		}
 
-		if ($metadata->hasValue('SingleSignOnService')) {
-			$t = $this->createElement('SingleSignOnService');
-			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect');
-			$t->setAttribute('Location', $metadata->getString('SingleSignOnService'));
-			$e->appendChild($t);
-		}
+		$this->addEndpoints($e, 'SingleSignOnService', $metadata->getEndpoints('SingleSignOnService'));
 
 		$this->entityDescriptor->appendChild($e);
 
@@ -418,23 +446,14 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$e->appendChild($t);
 		}
 
-		$acsIndex = 0;
-		foreach ($metadata->getArrayizeString('AssertionConsumerService', array()) as $acs) {
-			$t = $this->createElement('AssertionConsumerService');
-			$t->setAttribute('index', (string)$acsIndex);
-			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post');
-			$t->setAttribute('Location', $acs);
-			$e->appendChild($t);
-			$acsIndex += 1;
-		}
+		$endpoints = $metadata->getEndpoints('AssertionConsumerService');
 		foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', array()) as $acs) {
-			$t = $this->createElement('AssertionConsumerService');
-			$t->setAttribute('index', (string)$acsIndex);
-			$t->setAttribute('Binding', 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01');
-			$t->setAttribute('Location', $acs);
-			$e->appendChild($t);
-			$acsIndex += 1;
+			$endpoints[] = array(
+				'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
+				'Location' => $acs,
+			);
 		}
+		$this->addEndpoints($e, 'AssertionConsumerService', $endpoints);
 
 		$this->entityDescriptor->appendChild($e);
 	}
@@ -463,12 +482,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$e->appendChild($t);
 		}
 
-		if ($metadata->hasValue('SingleSignOnService')) {
-			$t = $this->createElement('SingleSignOnService');
-			$t->setAttribute('Binding', 'urn:mace:shibboleth:1.0:profiles:AuthnRequest');
-			$t->setAttribute('Location', $metadata->getString('SingleSignOnService'));
-			$e->appendChild($t);
-		}
+		$this->addEndpoints($e, 'SingleSignOnService', $metadata->getEndpoints('SingleSignOnService'));
 
 		$this->entityDescriptor->appendChild($e);
 	}
