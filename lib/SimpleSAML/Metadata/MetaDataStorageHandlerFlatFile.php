@@ -12,16 +12,6 @@
 class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Metadata_MetaDataStorageSource {
 
 	/**
-	 * This is the valid metadata sets we know about.
-	 */
-	private static $validSets = array(
-		'saml20-sp-hosted', 'saml20-sp-remote','saml20-idp-hosted', 'saml20-idp-remote',
-		'shib13-sp-hosted', 'shib13-sp-remote', 'shib13-idp-hosted', 'shib13-idp-remote',
-		'wsfed-sp-hosted', 'wsfed-idp-remote',
-		);
-
-
-	/**
 	 * This is the directory we will load metadata files from. The path will always end
 	 * with a '/'.
 	 */
@@ -100,7 +90,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
 	 *         key is the entity id.
 	 */
 	public function getMetadataSet($set) {
-		assert('in_array($set, self::$validSets)');
 
 		if(array_key_exists($set, $this->cachedMetadata)) {
 			return $this->cachedMetadata[$set];
