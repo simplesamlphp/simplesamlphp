@@ -292,6 +292,12 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$idpMetadata = $this->getIdPMetadata($idp);
 
+		$endpoint = $idpMetadata->getString('SingleLogoutService', FALSE);
+		if ($endpoint === FALSE) {
+			SimpleSAML_Logger::info('No logout endpoint for IdP ' . var_export($idp, TRUE) . '.');
+			return;
+		}
+
 		$lr = sspmod_saml2_Message::buildLogoutRequest($this->metadata, $idpMetadata);
 		$lr->setNameId($nameId);
 		$lr->setSessionIndex($sessionIndex);
@@ -321,7 +327,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			return;
 		case 'saml2':
 			$this->startSLO2($state);
-			assert('FALSE');
+			return;
 		default:
 			/* Should never happen. */
 			assert('FALSE');
