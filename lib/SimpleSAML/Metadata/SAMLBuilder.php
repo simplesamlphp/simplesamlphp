@@ -283,6 +283,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		case 'shib13-idp-remote':
 			$this->addMetadataIdP11($metadata);
 			break;
+		case 'attributeauthority-remote':
+			$this->addAttributeAuthority($metadata);
+			break;
 		default:
 			SimpleSAML_Logger::warning('Unable to generate metadata for unknown type \'' . $set . '\'.');
 		}
@@ -483,6 +486,37 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		}
 
 		$this->addEndpoints($e, 'SingleSignOnService', $metadata->getEndpoints('SingleSignOnService'));
+
+		$this->entityDescriptor->appendChild($e);
+	}
+
+
+	/**
+	 * Add a AttributeAuthorityDescriptor.
+	 *
+	 * @param array $metadata  The AttributeAuthorityDescriptor, in the format returned by SAMLParser.
+	 */
+	public function addAttributeAuthority(array $metadata) {
+		assert('is_array($metadata)');
+		assert('isset($metadata["entityid"])');
+		assert('isset($metadata["metadata-set"])');
+
+		$metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
+
+		$e = $this->createElement('AttributeAuthorityDescriptor');
+		$e->setAttribute('protocolSupportEnumeration', implode(' ', $metadata->getArray('protocols', array())));
+
+		$this->addExtensions($metadata, $e);
+		$this->addCertificate($e, $metadata);
+
+		$this->addEndpoints($e, 'AttributeService', $metadata->getEndpoints('AttributeService'));
+		$this->addEndpoints($e, 'AssertionIDRequestService', $metadata->getEndpoints('AssertionIDRequestService'));
+
+		foreach ($metadata->getArray('NameIDFormat', array()) as $format) {
+			$t = $this->createElement('NameIDFormat');
+			$t->appendChild($this->document->createTextNode($format));
+			$e->appendChild($t);
+		}
 
 		$this->entityDescriptor->appendChild($e);
 	}
