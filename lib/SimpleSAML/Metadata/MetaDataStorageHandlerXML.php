@@ -43,6 +43,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
 		$IdP1x = array();
 		$SP20 = array();
 		$IdP20 = array();
+		$AAD = array();
 
 		$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($src);
 		foreach($entities as $entityId => $entity) {
@@ -67,6 +68,10 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
 				$IdP20[$entityId] = $md;
 			}
 
+			$md = $entity->getAttributeAuthorities();
+			if (count($md) > 0) {
+				$AAD[$entityId] = $md[0];
+			}
 		}
 
 		$this->metadata = array(
@@ -74,6 +79,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
 			'shib13-idp-remote' => $IdP1x,
 			'saml20-sp-remote' => $SP20,
 			'saml20-idp-remote' => $IdP20,
+			'attributeauthority-remote' => $AAD,
 			);
 
 	}
