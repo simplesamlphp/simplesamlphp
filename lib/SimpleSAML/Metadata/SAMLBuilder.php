@@ -351,7 +351,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			}
 
 			$description = $metadata->getArrayizeString('description', array());
-			foreach($metadata['description'] AS $lang => $localname) {
+			foreach ($description as $lang => $localname) {
 				if ($lang === 0) {
 					/* We use 'en' as the default language. */
 					$lang = 'en';
