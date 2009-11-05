@@ -904,6 +904,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		assert('is_null($expireTime) || is_int($expireTime)');
 
 		$aad = self::parseRoleDescriptorType($element, $expireTime);
+		$aad['entityid'] = $this->entityId;
 		$aad['metadata-set'] = 'attributeauthority-remote';
 
 		$extensions = SimpleSAML_Utilities::getDOMChildren($element, 'Extensions', '@md');
