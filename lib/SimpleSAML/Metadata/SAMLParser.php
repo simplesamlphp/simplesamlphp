@@ -85,6 +85,14 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
+	 * List of attribute authorities we have found.
+	 *
+	 * @var array
+	 */
+	private $attributeAuthorityDescriptors = array();
+
+
+	/**
 	 * This is an associative array with the organization name for this entity. The key of
 	 * the associative array is the language code, while the value is a string with the
 	 * organization name.
@@ -185,6 +193,10 @@ class SimpleSAML_Metadata_SAMLParser {
 
 			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'IDPSSODescriptor', '@md') === TRUE) {
 				$this->processIDPSSODescriptor($child, $expireTime);
+			}
+
+			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'AttributeAuthorityDescriptor', '@md') === TRUE) {
+				$this->processAttributeAuthorityDescriptor($child, $expireTime);
 			}
 
 			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Organization', '@md') === TRUE) {
@@ -723,6 +735,17 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
+	 * Retrieve AttributeAuthorities from the metadata.
+	 *
+	 * @return array  Array of AttributeAuthorityDescriptor entries.
+	 */
+	public function getAttributeAuthorities() {
+
+		return $this->attributeAuthorityDescriptors;
+	}
+
+
+	/**
 	 * Parse a RoleDescriptorType element.
 	 *
 	 * The returned associative array has the following elements:
@@ -867,6 +890,36 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 		$this->idpDescriptors[] = $idp;
+	}
+
+
+	/**
+	 * This function extracts metadata from a AttributeAuthorityDescriptor element.
+	 *
+	 * @param DOMElement $element The element which should be parsed.
+	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
+	 *                              NULL if unknwon.
+	 */
+	private function processAttributeAuthorityDescriptor(DOMElement $element, $expireTime) {
+		assert('is_null($expireTime) || is_int($expireTime)');
+
+		$aad = self::parseRoleDescriptorType($element, $expireTime);
+		$aad['metadata-set'] = 'attributeauthority-remote';
+
+		$extensions = SimpleSAML_Utilities::getDOMChildren($element, 'Extensions', '@md');
+		if (!empty($extensions))
+			$this->processExtensions($extensions[0]);
+
+		if (!empty($this->scopes)) $aad['scopes'] = $this->scopes;
+
+		$aad['AttributeService'] = self::extractEndpoints($element, 'AttributeService', FALSE);
+		$aad['AssertionIDRequestService'] = self::extractEndpoints($element, 'AssertionIDRequestService', FALSE);
+		$aad['NameIDFormat'] = array_map(
+			array('SimpleSAML_Utilities', 'getDOMText'),
+			SimpleSAML_Utilities::getDOMChildren($element, 'NameIDFormat', '@md')
+		);
+
+		$this->attributeAuthorityDescriptors[] = $aad;
 	}
 
 
