@@ -57,7 +57,11 @@ class sspmod_metarefresh_MetaLoader {
 			$this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template);
 			$this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template);
 			$this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template);
-			$this->addMetadata($source['src'], $entity->getAttributeAuthorities(), 'attributeauthority-remote', $template);
+			$attributeAuthorities = $entity->getAttributeAuthorities();
+			if (!empty($attributeAuthorities)) {
+				$this->addMetadata($source['src'], $attributeAuthorities[0], 'attributeauthority-remote', $template);				
+			}
+
 		}
 	}
 
