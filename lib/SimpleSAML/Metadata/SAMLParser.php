@@ -722,6 +722,54 @@ class SimpleSAML_Metadata_SAMLParser {
 	}
 
 
+	/**
+	 * Parse a RoleDescriptorType element.
+	 *
+	 * The returned associative array has the following elements:
+	 * - 'protocols': Array with the protocols supported.
+         * - 'expire': Timestamp for when this descriptor expires.
+	 * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor.
+	 *
+	 * @param DOMElement $element  The element we should extract metadata from.
+	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
+	 *                              NULL if unknwon.
+	 * @return Associative array with metadata we have extracted from this element.
+	 */
+	private static function parseRoleDescriptorType(DOMElement $element, $expireTime) {
+		assert('is_null($expireTime) || is_int($expireTime)');
+
+		$ret = array();
+
+		if ($expireTime === NULL) {
+			/* No expiry time defined by a parent element. Check if this element defines
+			 * one.
+			 */
+			$expireTime = self::getExpireTime($element);
+		}
+
+
+		if ($expireTime !== NULL) {
+			/* We have got an expire timestamp, either from this element, or one of the
+			 * parent elements.
+			 */
+			$ret['expire'] = $expireTime;
+		}
+
+		$ret['protocols'] = self::getSupportedProtocols($element);
+
+		/* Process KeyDescriptor elements. */
+		$ret['keys'] = array();
+		$keys = SimpleSAML_Utilities::getDOMChildren($element, 'KeyDescriptor', '@md');
+		foreach($keys as $kd) {
+			$key = self::parseKeyDescriptor($kd);
+			if($key !== NULL) {
+				$ret['keys'][] = $key;
+			}
+		}
+
+		return $ret;
+	}
+
 
 	/**
 	 * This function extracts metadata from a SSODescriptor element.
@@ -742,25 +790,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		assert('$element instanceof DOMElement');
 		assert('is_null($expireTime) || is_int($expireTime)');
 
-		if ($expireTime === NULL) {
-			/* No expiry time defined by a parent element. Check if this element defines
-			 * one.
-			 */
-			$expireTime = self::getExpireTime($element);
-		}
-
-
-		$sd = array();
-
-		if ($expireTime !== NULL) {
-			/* We have got an expire timestamp, either from this element, or one of the
-			 * parent elements.
-			 */
-			$sd['expire'] = $expireTime;
-		}
-
-		$sd['protocols'] = self::getSupportedProtocols($element);
-		
+		$sd = self::parseRoleDescriptorType($element, $expireTime);
 
 		/* Find all SingleLogoutService elements. */
 		$sd['SingleLogoutService'] = array();
@@ -783,17 +813,6 @@ class SimpleSAML_Metadata_SAMLParser {
 		if(count($nif) > 0) {
 			$sd['nameIDFormats'][] = self::parseNameIDFormat($nif[0]);
 		}
-
-		/* Process KeyDescriptor elements. */
-		$sd['keys'] = array();
-		$keys = SimpleSAML_Utilities::getDOMChildren($element, 'KeyDescriptor', '@md');
-		foreach($keys as $kd) {
-			$key = self::parseKeyDescriptor($kd);
-			if($key !== NULL) {
-				$sd['keys'][] = $key;
-			}
-		}
-
 
 		return $sd;
 	}
