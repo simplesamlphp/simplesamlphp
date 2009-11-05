@@ -20,9 +20,14 @@ $config = array(
 	// Hash attributes including values or not
 	'attributes.hash' => TRUE,
 
-	// Where to direct the user after logout
-	'relaystate' => 'www.wayf.dk',
+	// Where to direct the user after logout.
+    // REMEMBER to prefix with http:// otherwise the relaystate is only appended 
+    // to saml2 logout URL
+	'returnURL' => 'http://www.wayf.dk',
 
     // Shows description of the services if set to true (defaults to true)
     'showDesription' => true, 
+
+    // Set authority
+    'authority' => 'saml2',
 );

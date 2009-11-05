@@ -129,6 +129,6 @@ TRSTART;
 		
 		<h2>Logout</h2>
 
-			<p><?php echo $this->data['logout']; ?></p>
+			<p><a href="<?php echo SimpleSAML_Utilities::selfURL() . '?logout'; ?>">Logout</a></p>
 		
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>
