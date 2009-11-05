@@ -793,18 +793,10 @@ class SimpleSAML_Metadata_SAMLParser {
 		$sd = self::parseRoleDescriptorType($element, $expireTime);
 
 		/* Find all SingleLogoutService elements. */
-		$sd['SingleLogoutService'] = array();
-		$sls = SimpleSAML_Utilities::getDOMChildren($element, 'SingleLogoutService', '@md');
-		foreach($sls as $child) {
-			$sd['SingleLogoutService'][] = self::parseSingleLogoutService($child);
-		}
+		$sd['SingleLogoutService'] = self::extractEndpoints($element, 'SingleLogoutService', FALSE);
 
 		/* Find all ArtifactResolutionService elements. */
-		$sd['ArtifactResolutionService'] = array();
-		$acs = SimpleSAML_Utilities::getDOMChildren($element, 'ArtifactResolutionService', '@md');
-		foreach($acs as $child) {
-			$sd['ArtifactResolutionService'][] = self::parseArtifactResolutionService($child);
-		}
+		$sd['ArtifactResolutionService'] = self::extractEndpoints($element, 'ArtifactResolutionService', TRUE);
 
 
 		/* Process NameIDFormat elements. */
@@ -832,11 +824,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$sp = self::parseSSODescriptor($element, $expireTime);
 
 		/* Find all AssertionConsumerService elements. */
-		$sp['AssertionConsumerService'] = array();
-		$acs = SimpleSAML_Utilities::getDOMChildren($element, 'AssertionConsumerService', '@md');
-		foreach($acs as $child) {
-			$sp['AssertionConsumerService'][] = self::parseAssertionConsumerService($child);
-		}
+		$sp['AssertionConsumerService'] = self::extractEndpoints($element, 'AssertionConsumerService', TRUE);
 
 		/* Find all the attributes and SP name... */
 		#$sp['attributes'] = array();
@@ -870,11 +858,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		
 
 		/* Find all SingleSignOnService elements. */
-		$idp['SingleSignOnService'] = array();
-		$acs = SimpleSAML_Utilities::getDOMChildren($element, 'SingleSignOnService', '@md');
-		foreach($acs as $child) {
-			$idp['SingleSignOnService'][] = self::parseSingleSignOnService($child);
-		}
+		$idp['SingleSignOnService'] = self::extractEndpoints($element, 'SingleSignOnService', FALSE);
 
 		if ($element->getAttribute('WantAuthnRequestsSigned') === 'true') {
 			$idp['WantAuthnRequestsSigned'] = TRUE;
@@ -987,19 +971,6 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
-	 * This function parses AssertionConsumerService elements.
-	 *
-	 * @param $element The element which should be parsed.
-	 * @return Associative array with the data we have extracted from the AssertionConsumerService element.
-	 */
-	private static function parseAssertionConsumerService($element) {
-		assert('$element instanceof DOMElement');
-
-		return self::parseGenericEndpoint($element, TRUE);
-	}
-
-
-	/**
 	 * This function parses AttributeConsumerService elements.
 	 */
 	private static function parseAttributeConsumerService($element, &$sp) {
@@ -1027,45 +998,6 @@ class SimpleSAML_Metadata_SAMLParser {
 			$sp['attributes'][] = $attrname;
 		}	
 
-	}
-
-
-	/**
-	 * This function parses SingleLogoutService elements.
-	 *
-	 * @param $element The element which should be parsed.
-	 * @return Associative array with the data we have extracted from the SingleLogoutService element.
-	 */
-	private static function parseSingleLogoutService($element) {
-		assert('$element instanceof DOMElement');
-
-		return self::parseGenericEndpoint($element, FALSE);
-	}
-
-
-	/**
-	 * This function parses SingleSignOnService elements.
-	 *
-	 * @param $element The element which should be parsed.
-	 * @return Associative array with the data we have extracted from the SingleLogoutService element.
-	 */
-	private static function parseSingleSignOnService($element) {
-		assert('$element instanceof DOMElement');
-
-		return self::parseGenericEndpoint($element, FALSE);
-	}
-
-
-	/**
-	 * This function parses ArtifactResolutionService elements.
-	 *
-	 * @param $element The element which should be parsed.
-	 * @return Associative array with the data we have extracted from the ArtifactResolutionService element.
-	 */
-	private static function parseArtifactResolutionService($element) {
-		assert('$element instanceof DOMElement');
-
-		return self::parseGenericEndpoint($element, TRUE);
 	}
 
 
@@ -1138,6 +1070,28 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 		return $ep;
+	}
+
+
+	/**
+	 * Extract generic endpoints.
+	 *
+	 * @param DOMElement $element  The element we should extract an endpoint list from.
+	 * @param string $name  The name of the elements.
+	 * @param bool $isIndexed  Whether the endpoints are indexed.
+	 * @return array  Array of parsed endpoints.
+	 */
+	private static function extractEndpoints(DOMElement $element, $name, $isIndexed) {
+		assert('is_bool($isIndexed)');
+		assert('is_string($name)');
+
+		$ret = array();
+		$endpoints = SimpleSAML_Utilities::getDOMChildren($element, $name, '@md');
+		foreach ($endpoints as $ep) {
+			$ret[] = self::parseGenericEndpoint($ep, $isIndexed);
+		}
+
+		return $ret;
 	}
 
 
