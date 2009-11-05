@@ -2164,6 +2164,40 @@ class SimpleSAML_Utilities {
 		return $firstAllowed;
 	}
 
+
+	/**
+	 * Retrieve the authority for the given IdP metadata.
+	 *
+	 * This function provides backwards-compatibility with
+	 * previous versions of simpleSAMLphp.
+	 *
+	 * @param array $idpmetadata  The IdP metadata.
+	 * @return string  The authority that should be used to validate the session.
+	 */
+	public static function getAuthority(array $idpmetadata) {
+
+		if (isset($idpmetadata['authority'])) {
+			return $idpmetadata['authority'];
+		}
+
+		$candidates = array(
+			'auth/login-admin.php' => 'login-admin',
+			'auth/login-auto.php' => 'login-auto',
+			'auth/login-cas-ldap' => 'login-cas-ldap',
+			'auth/login-feide.php' => 'login-feide',
+			'auth/login-ldapmulti.php' => 'login-ldapmulti',
+			'auth/login-radius.php' => 'login-radius',
+			'auth/login-tlsclient.php' => 'tlsclient',
+			'auth/login-wayf-ldap' => 'login-wayf-ldap',
+			'auth/login.php' => 'login',
+		);
+		if (isset($candidates[$idpmetadata['auth']])) {
+			return $candidates[$idpmetadata['auth']];
+		}
+		throw new SimpleSAML_Error_Exception('You need to set \'authority\' in the metadata for ' .
+			var_export($idpmetadata['entityid'], TRUE) . '.');
+	}
+
 }
 
 ?>
