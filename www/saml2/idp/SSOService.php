@@ -308,7 +308,7 @@ if(SimpleSAML_Auth_Source::getById($idpmetadata['auth']) !== NULL) {
 	$authority = $idpmetadata['auth'];
 } else {
 	$authSource = FALSE;
-	$authority = isset($idpmetadata['authority']) ? $idpmetadata['authority'] : NULL;
+	$authority = SimpleSAML_Utilities::getAuthority($idpmetadata);
 }
 
 
