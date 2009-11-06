@@ -927,43 +927,31 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * Parse and process a Extensions element.
 	 *
-	 * @param $element  The DOMElement which represents the Organization element.
+	 * @param DOMElement $element  The DOMElement which represents the Extensions element.
 	 */
-	private function processExtensions($element) {
-		assert('$element instanceof DOMElement');
-		
-		
-		for($i = 0; $i < $element->childNodes->length; $i++) {
-			$child = $element->childNodes->item($i);
+	private function processExtensions(DOMElement $element) {
 
-			/* Skip text nodes. */
-			if(!$child instanceof DOMElement) continue;
-			
-			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Scope', '@shibmd')) {
-				$text = SimpleSAML_Utilities::getDOMText($child);
-				if (!empty($text)) $this->scopes[] = $text;
+		foreach (SimpleSAML_Utilities::getDOMChildren($element, 'Scope', '@shibmd') as $scope) {
+			$scope = SimpleSAML_Utilities::getDOMText($scope);
+			if (!empty($scope)) {
+				$this->scopes[] = $scope;
 			}
-			
-			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Attribute', '@saml2')) {
+		}
 
-				if ($child->getAttribute('Name') === 'tags') {
+		foreach (SimpleSAML_Utilities::getDOMChildren($element, 'Attribute', '@saml2') as $attribute) {
+			$name = $attribute->getAttribute('Name');
+			$values = array_map(
+				array('SimpleSAML_Utilities', 'getDOMText'),
+				SimpleSAML_Utilities::getDOMChildren($attribute, 'AttributeValue', '@saml2')
+			);
 
-					for($j = 0; $j < $child->childNodes->length; $j++) {
-
-						$attributevalue = $child->childNodes->item($j);
-						if(SimpleSAML_Utilities::isDOMElementOfType($attributevalue, 'AttributeValue', '@saml2')) {
-
-							$tagname = SimpleSAML_Utilities::getDOMText($attributevalue);
-#														echo 'attribute tags: ' . $tagname; exit;
-							if (!empty($tagname)) $this->tags[] = $tagname;
-						}
+			if ($name === 'tags') {
+				foreach ($values as $tagname) {
+					if (!empty($tagname)) {
+						$this->tags[] = $tagname;
 					}
-
 				}
-			
 			}
-			
-			
 		}
 	}
 
