@@ -124,7 +124,14 @@ if($session->getIdP() != null) {
 	$idp_entityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 	$idp_metadata = $metadata->getMetaData($idp_entityid, 'saml20-idp-hosted');
 }
- 
+
+// Remove services, whitch have consent disabled
+foreach($idp_metadata['consent.disable'] AS $disable) {
+    if(array_key_exists($disable, $all_sp_metadata)) {
+        unset($all_sp_metadata[$disable]);
+    }
+}
+
 SimpleSAML_Logger::info('consentAdmin: '.$idp_entityid);
 
 // Calc correct source
