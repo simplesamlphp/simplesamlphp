@@ -46,7 +46,7 @@ module correctly, you need to set the configuration 'attributes.hash'
 according to the value of 'includeValues' configuration in the consent
 module.
 
-You should also set the 'relaystate' configuration in order to pass on your
+You should also set the 'returnURL' configuration in order to pass on your
 users when the press the 'Logout' link.
 
 What does consentAdmin do
@@ -59,6 +59,8 @@ whether the user has given consent to the given service. By clicking the
 released to the service, when the user is accessing that service.
 consentAdmin are running the processing filters that have been defined for
 each service.
+ConsentAdmin will not show services that consent has been disabled for in
+the consent module.
 
 Processing filters
 ------------------
@@ -68,6 +70,6 @@ no filter is allowed to make userinteraction.
 
 It is up to the developers of the filters to respect the isPassive request.
 The prefered thing to do is to make your setup so that only filters that
-modify attributes is run. Othervise it is recommended that tha developers of
+modify attributes is run. Othervise it is recommended that developers of
 filters to throw a 'NoPassive' exception, if the filter can not run without
 userinteraction.

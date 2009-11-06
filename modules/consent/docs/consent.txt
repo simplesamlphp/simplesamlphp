@@ -73,3 +73,19 @@ Example config using PostgreSQL database:
 		'checked' 	=> TRUE
 	),
 
+Disabling consent
+-----------------
+
+It is possible to disable consent for a given service. You can add an option
+in the matadata og the IdP, that wil disable consent for det given service.
+Add 'consent.disable' array option and enter the entityids of the services,
+that you do not want consent for.
+
+Example:
+
+    'consent.disable' => array(
+        'sp.example.com',
+        'sp2.example.com',
+        ...
+    ),
+
