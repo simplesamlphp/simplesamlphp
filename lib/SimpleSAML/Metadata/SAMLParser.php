@@ -176,6 +176,11 @@ class SimpleSAML_Metadata_SAMLParser {
 			$this->validator[] = $entitiesValidator;
 		}
 
+		/* Process Extensions element, if it exists. */
+		$ext = self::processExtensions($entityElement);
+		$this->scopes = $ext['scopes'];
+		$this->tags = $ext['tags'];
+
 		/* Look over the child nodes for any known element types. */
 		for($i = 0; $i < $entityElement->childNodes->length; $i++) {
 			$child = $entityElement->childNodes->item($i);
@@ -202,11 +207,10 @@ class SimpleSAML_Metadata_SAMLParser {
 			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Organization', '@md') === TRUE) {
 				$this->processOrganization($child);
 			}
-			
-			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Extensions', '@md') === TRUE) {
-				$this->processExtensions($child);
-			}
+
 		}
+
+
 	}
 
 
@@ -449,11 +453,30 @@ class SimpleSAML_Metadata_SAMLParser {
 		if (!empty($this->organizationURL)) {
 			$ret['url'] = $this->organizationURL;
 		}
-		
-		if (!empty($this->tags)) {
-			$ret['tags'] = $this->tags;
-		}
+
 		return $ret;
+	}
+
+
+	/**
+	 * Add data parsed from extensions to metadata.
+	 *
+	 * @param array &$metadata  The metadata that should be updated.
+	 * @param array $roleDescriptor  The parsed role desciptor.
+	 */
+	private function addExtensions(array &$metadata, array $roleDescriptor) {
+		assert('array_key_exists("scopes", $roleDescriptor)');
+		assert('array_key_exists("tags", $roleDescriptor)');
+
+		$scopes = array_merge($this->scopes, array_diff($roleDescriptor['scopes'], $this->scopes));
+		if (!empty($scopes)) {
+			$metadata['scopes'] = $scopes;
+		}
+
+		$tags = array_merge($this->tags, array_diff($roleDescriptor['tags'], $this->tags));
+		if (!empty($tags)) {
+			$metadata['tags'] = $tags;
+		}
 	}
 
 
@@ -512,6 +535,9 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['certData'] = preg_replace('/\s+/', '', str_replace(array("\r", "\n"), '', $key['X509Certificate']));
 			break;
 		}
+
+		/* Add extensions. */
+		$this->addExtensions($ret, $spd);
 
 		return $ret;
 	}
@@ -575,6 +601,8 @@ class SimpleSAML_Metadata_SAMLParser {
 			break;
 		}
 
+		/* Add extensions. */
+		$this->addExtensions($ret, $idp);
 
 		return $ret;
 	}
@@ -650,6 +678,8 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 
+		/* Add extensions. */
+		$this->addExtensions($ret, $spd);
 
 		return $ret;
 	}
@@ -690,10 +720,6 @@ class SimpleSAML_Metadata_SAMLParser {
 		if (array_key_exists('expire', $idp)) {
 			$ret['expire'] = $idp['expire'];
 		}
-		
-		if (array_key_exists('scopes', $idp))
-			$ret['scopes'] = $idp['scopes'];
-		
 
 		/* Enable redirect.sign if WantAuthnRequestsSigned is enabled. */
 		if ($idp['WantAuthnRequestsSigned']) {
@@ -729,6 +755,9 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['certFingerprint'][] = sha1($certData);
 			break;
 		}
+
+		/* Add extensions. */
+		$this->addExtensions($ret, $idp);
 
 		return $ret;
 	}
@@ -789,6 +818,10 @@ class SimpleSAML_Metadata_SAMLParser {
 				$ret['keys'][] = $key;
 			}
 		}
+
+		$ext = self::processExtensions($element);
+		$ret['scopes'] = $ext['scopes'];
+		$ret['tags'] = $ext['tags'];
 
 		return $ret;
 	}
@@ -872,13 +905,6 @@ class SimpleSAML_Metadata_SAMLParser {
 		assert('is_null($expireTime) || is_int($expireTime)');
 
 		$idp = self::parseSSODescriptor($element, $expireTime);
-		
-		$extensions = SimpleSAML_Utilities::getDOMChildren($element, 'Extensions', '@md');
-		if (!empty($extensions)) 
-			$this->processExtensions($extensions[0]);
-
-		if (!empty($this->scopes)) $idp['scopes'] = $this->scopes;
-		
 
 		/* Find all SingleSignOnService elements. */
 		$idp['SingleSignOnService'] = self::extractEndpoints($element, 'SingleSignOnService', FALSE);
@@ -907,12 +933,6 @@ class SimpleSAML_Metadata_SAMLParser {
 		$aad['entityid'] = $this->entityId;
 		$aad['metadata-set'] = 'attributeauthority-remote';
 
-		$extensions = SimpleSAML_Utilities::getDOMChildren($element, 'Extensions', '@md');
-		if (!empty($extensions))
-			$this->processExtensions($extensions[0]);
-
-		if (!empty($this->scopes)) $aad['scopes'] = $this->scopes;
-
 		$aad['AttributeService'] = self::extractEndpoints($element, 'AttributeService', FALSE);
 		$aad['AssertionIDRequestService'] = self::extractEndpoints($element, 'AssertionIDRequestService', FALSE);
 		$aad['NameIDFormat'] = array_map(
@@ -925,16 +945,29 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
-	 * Parse and process a Extensions element.
+	 * Parse an Extensions element.
 	 *
-	 * @param DOMElement $element  The DOMElement which represents the Extensions element.
+	 * @param DOMElement $element  The DOMElement which contains the Extensions element.
 	 */
-	private function processExtensions(DOMElement $element) {
+	private static function processExtensions(DOMElement $element) {
 
+		$ret = array(
+			'scopes' => array(),
+			'tags' => array(),
+		);
+
+		$extensions = SimpleSAML_Utilities::getDOMChildren($element, 'Extensions', '@md');
+		if (empty($extensions)) {
+			/* No extension element. */
+			return $ret;
+		}
+		$element = $extensions[0];
+
+		/* See: https://spaces.internet2.edu/display/SHIB/ShibbolethMetadataProfile */
 		foreach (SimpleSAML_Utilities::getDOMChildren($element, 'Scope', '@shibmd') as $scope) {
 			$scope = SimpleSAML_Utilities::getDOMText($scope);
 			if (!empty($scope)) {
-				$this->scopes[] = $scope;
+				$ret['scopes'][] = $scope;
 			}
 		}
 
@@ -948,11 +981,13 @@ class SimpleSAML_Metadata_SAMLParser {
 			if ($name === 'tags') {
 				foreach ($values as $tagname) {
 					if (!empty($tagname)) {
-						$this->tags[] = $tagname;
+						$ret['tags'][] = $tagname;
 					}
 				}
 			}
 		}
+
+		return $ret;
 	}
 
 
