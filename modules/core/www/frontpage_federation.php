@@ -56,10 +56,10 @@ if ($publishURL !== NULL) {
 }
 
 
-$links_federation[] = array(
-	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/metadata.php',
-	'text' => '{core:frontpage:link_meta_overview}'
-);
+// $links_federation[] = array(
+// 	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/metadata.php',
+// 	'text' => '{core:frontpage:link_meta_overview}'
+// );
 
 $links_federation[] = array(
 	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/metadata-converter.php',
