@@ -2128,7 +2128,7 @@ class SimpleSAML_Utilities {
 
 		/* Look through the endpoint list for acceptable endpoints. */
 		foreach ($endpoints as $i => $ep) {
-			if ($bindings !== NULL && !in_array($ep['Binding'], $ep, TRUE)) {
+			if ($bindings !== NULL && !in_array($ep['Binding'], $bindings, TRUE)) {
 				/* Unsupported binding. Skip it. */
 				continue;
 			}
