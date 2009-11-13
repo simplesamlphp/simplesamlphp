@@ -271,18 +271,6 @@ class SAML2_AuthnRequest extends SAML2_Request {
 			$root->setAttribute('ProtocolBinding', $this->protocolBinding);
 		}
 
-		if (count($this->IDPList) > 0) {
-			$scoping = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'Scoping');
-			$idplist = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'IDPList');
-			foreach ($this->IDPList as $provider) {
-				$idpEntry = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'IDPEntry');
-				$idpEntry->setAttribute('ProviderID', $provider);
-				$idplist->appendChild($idpEntry);
-			}
-			$scoping->appendChild($idplist);
-			$root->appendChild($scoping);
-		}
-
 		if (!empty($this->nameIdPolicy)) {
 			$nameIdPolicy = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'NameIDPolicy');
 			if (array_key_exists('Format', $this->nameIdPolicy)) {
@@ -295,6 +283,18 @@ class SAML2_AuthnRequest extends SAML2_Request {
 				$nameIdPolicy->setAttribute('AllowCreate', 'true');
 			}
 			$root->appendChild($nameIdPolicy);
+		}
+
+		if (count($this->IDPList) > 0) {
+			$scoping = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'Scoping');
+			$idplist = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'IDPList');
+			foreach ($this->IDPList as $provider) {
+				$idpEntry = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'IDPEntry');
+				$idpEntry->setAttribute('ProviderID', $provider);
+				$idplist->appendChild($idpEntry);
+			}
+			$scoping->appendChild($idplist);
+			$root->appendChild($scoping);
 		}
 
 		return $root;
