@@ -342,6 +342,7 @@ class SimpleSAML_Auth_LDAP {
 		 * LDAP_INVALID_CREDENTIALS
 		 * LDAP_INSUFFICIENT_ACCESS */
 		switch(ldap_errno($this->ldap)) {
+		case 32:	/* LDAP_NO_SUCH_OBJECT */
 		case 47:	/* LDAP_X_PROXY_AUTHZ_FAILURE */
 		case 48:	/* LDAP_INAPPROPRIATE_AUTH */
 		case 49:	/* LDAP_INVALID_CREDENTIALS */
