@@ -6,7 +6,7 @@ Here is changes between simpleSAMLphp versions. Look here if you are upgrading, 
 
 ## Version 1.5
 
-Released TBD. Revision TBD.
+Released 2009-11-05. Revision 1937.
 
   * New API for SP authentication.
   * Make use of the portal module on the frontpage.
