@@ -167,6 +167,11 @@ class sspmod_ldap_ConfigHelper {
 		assert('is_string($username)');
 		assert('is_string($password)');
 
+		if (empty($password)) {
+			SimpleSAML_Logger::info($this->location . ': Login with empty password disallowed.');
+			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+		}
+
 		$ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debug, $this->timeout);
 
 		if (!$this->searchEnable) {
