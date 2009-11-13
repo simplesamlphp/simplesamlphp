@@ -385,6 +385,11 @@ class sspmod_saml2_Message {
 		$ar->setForceAuthn($spMetadata->getBoolean('ForceAuthn', FALSE));
 		$ar->setIsPassive($spMetadata->getBoolean('IsPassive', FALSE));
 
+		if ($spMetadata->hasValue('AuthnContextClassRef')) {
+			$accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
+			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr));
+		}
+
 		self::addRedirectSign($spMetadata, $idpMetadata, $ar);
 
 		return $ar;
