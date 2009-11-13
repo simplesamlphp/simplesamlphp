@@ -54,6 +54,18 @@ class SAML2_AuthnRequest extends SAML2_Request {
 
 
 	/**
+	 * What authentication context was requested.
+	 *
+	 * Array with the following elements.
+	 * - AuthnContextClassRef (required)
+	 * - Comparison (optinal)
+	 *
+	 * @var array
+	 */
+	private $requestedAuthnContext;
+
+
+	/**
 	 * Constructor for SAML 2 authentication request messages.
 	 *
 	 * @param DOMElement|NULL $xml  The input message.
@@ -94,7 +106,28 @@ class SAML2_AuthnRequest extends SAML2_Request {
 				$this->nameIdPolicy['AllowCreate'] = SAML2_Utils::parseBoolean($nameIdPolicy, 'AllowCreate', FALSE);
 			}
 		}
-		
+
+		$requestedAuthnContext = SAML2_Utils::xpQuery($xml, './saml_protocol:RequestedAuthnContext');
+		if (!empty($requestedAuthnContext)) {
+			$requestedAuthnContext = $requestedAuthnContext[0];
+
+			$rac = array(
+				'AuthnContextClassRef' => array(),
+				'Comparison' => 'exact',
+			);
+
+			$accr = SAML2_Utils::xpQuery($requestedAuthnContext, './saml_assertion:AuthnContextClassRef');
+			foreach ($accr as $i) {
+				$rac['AuthnContextClassRef'][] = trim($i->textContent);
+			}
+
+			if ($requestedAuthnContext->hasAttribute('Comparison')) {
+				$rac['Comparison'] = $requestedAuthnContext->getAttribute('Comparison');
+			}
+
+			$this->requestedAuthnContext = $rac;
+		}
+
 		$idpEntries = SAML2_Utils::xpQuery($xml, './saml_protocol:Scoping/saml_protocol:IDPList/saml_protocol:IDPEntry');
 
 		foreach($idpEntries as $idpEntry) {
@@ -247,6 +280,28 @@ class SAML2_AuthnRequest extends SAML2_Request {
 
 
 	/**
+	 * Retrieve the RequestedAuthnContext.
+	 *
+	 * @return array|NULL  The RequestedAuthnContext.
+	 */
+	public function getRequestedAuthnContext() {
+		return $this->requestedAuthnContext;
+	}
+
+
+	/**
+	 * Set the RequestedAuthnContext.
+	 *
+	 * @param array|NULL $requestedAuthnContext  The RequestedAuthnContext.
+	 */
+	public function setRequestedAuthnContext($requestedAuthnContext) {
+		assert('is_array($requestedAuthnContext) || is_null($requestedAuthnContext)');
+
+		$this->requestedAuthnContext = $requestedAuthnContext;
+	}
+
+
+	/**
 	 * Convert this authentication request to an XML element.
 	 *
 	 * @return DOMElement  This authentication request.
@@ -283,6 +338,20 @@ class SAML2_AuthnRequest extends SAML2_Request {
 				$nameIdPolicy->setAttribute('AllowCreate', 'true');
 			}
 			$root->appendChild($nameIdPolicy);
+		}
+
+		$rac = $this->requestedAuthnContext;
+		if (!empty($rac) && !empty($rac['AuthnContextClassRef'])) {
+			$e = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'RequestedAuthnContext');
+			$root->appendChild($e);
+			if (isset($rac['Comparison']) && $rac['Comparison'] !== 'exact') {
+				$e->setAttribute('Comparison', $rac['Comparison']);
+			}
+			foreach ($rac['AuthnContextClassRef'] as $accr) {
+				$i = $this->document->createElementNS(SAML2_Const::NS_SAML, 'AuthnContextClassRef');
+				$i->appendChild($this->document->createTextNode($accr));
+				$e->appendChild($i);
+			}
 		}
 
 		if (count($this->IDPList) > 0) {
