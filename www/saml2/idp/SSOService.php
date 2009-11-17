@@ -158,6 +158,7 @@ if (isset($_REQUEST['SAMLRequest'])) {
 					continue;
 				}
 				$requestcache['ConsumerURL'] = $consumerURL;
+				$found = TRUE;
 				break;
 			}
 
