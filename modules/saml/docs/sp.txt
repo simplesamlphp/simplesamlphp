@@ -9,11 +9,43 @@ Metadata
 
 The metadata for your SP will be available from the federation page on your simpleSAMLphp installation.
 
+Options
+-------
+
+These are options that can be used at runtime to control the authentication.
+All these options override the equivalent option from the configuration.
+
+`saml:AuthnContextClassRef`
+:   The AuthnContextClassRef that will be sent in the login request.
+
+:   *Note*: SAML 2 specific.
+
+
+`saml:ForceAuthn`
+:   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
+
+:   *Note*: SAML 2 specific.
+
+`saml:idp`
+:   The entity ID this SP should connect to.
+
+`saml:IsPassive`
+:   IsPassive allows you to enable passive authentication by default for this SP.
+
+:   *Note*: SAML 2 specific.
+
+`saml:NameIDPolicy`
+:   The format of the NameID we request from the IdP.
+    Defaults to the transient format if unspecified.
+
+:   *Note*: SAML 2 specific.
+
+
 
 Examples
 --------
 
-Here we will list some example configurations for this authentication source.
+Here we will list some examples for this authentication source.
 
 ### Minimal
 
@@ -48,6 +80,12 @@ Here we will list some example configurations for this authentication source.
         'redirect.sign' => TRUE,
         'redirect.validate' => TRUE,
     ),
+
+
+### Requesting passive authentication
+
+$auth = new SimpleSAML_Auth_Simple('default-sp');
+$auth->login(array('saml:IsPassive' => TRUE));
 
 
 Options

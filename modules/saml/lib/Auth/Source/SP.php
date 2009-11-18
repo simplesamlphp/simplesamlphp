@@ -185,6 +185,27 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$ar->setRelayState($state['SimpleSAML_Auth_Default.ReturnURL']);
 		}
 
+		if (isset($state['saml:AuthnContextClassRef'])) {
+			$accr = SimpleSAML_Utilities::arrayize($state['saml:AuthnContextClassRef']);
+			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr));
+		}
+
+		if (isset($state['saml:ForceAuthn'])) {
+			$ar->setForceAuthn((bool)$state['saml:ForceAuthn']);
+		}
+
+		if (isset($state['saml:IsPassive'])) {
+			$ar->setIsPassive((bool)$state['saml:IsPassive']);
+		}
+
+		if (isset($state['saml:NameIDPolicy'])) {
+			$ar->setNameIdPolicy(array(
+				'Format' => (string)$state['saml:NameIDPolicy'],
+				'AllowCreate' => TRUE,
+			));
+		}
+
+
 		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso', TRUE);
 		$ar->setId($id);
 
@@ -263,12 +284,18 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		/* We are going to need the authId in order to retrieve this authentication source later. */
 		$state['saml:sp:AuthId'] = $this->authId;
 
-		if ($this->idp === NULL) {
+		$idp = $this->idp;
+
+		if (isset($state['saml:idp'])) {
+			$idp = (string)$state['saml:idp'];
+		}
+
+		if ($idp === NULL) {
 			$this->startDisco($state);
 			assert('FALSE');
 		}
 
-		$this->startSSO($this->idp, $state);
+		$this->startSSO($idp, $state);
 		assert('FALSE');
 	}
 
