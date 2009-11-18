@@ -79,6 +79,7 @@ class SimpleSAML_Auth_Simple {
 	 * This function accepts an array $params, which controls some parts of
 	 * the authentication. The accepted parameters depends on the authentication
 	 * source being used. Some parameters are generic:
+	 *  - 'ErrorURL': An URL that should receive errors from the authentication.
 	 *  - 'KeepPost': If the current request is a POST request, keep the POST
 	 *    data until after the authentication.
 	 *  - 'ReturnTo': The URL the user should be returned to after authentication.
@@ -103,6 +104,13 @@ class SimpleSAML_Auth_Simple {
 			$returnTo = SimpleSAML_Utilities::createPostRedirectLink($returnTo, $_POST);
 		}
 
+		if (array_key_exists('ErrorURL', $params)) {
+			$errorURL = (string)$params['ErrorURL'];
+		} else {
+			$errorURL = NULL;
+		}
+
+
 		/*
 		 * An URL to restart the authentication, in case the user bookmarks
 		 * something, e.g. the discovery service page.
@@ -111,7 +119,7 @@ class SimpleSAML_Auth_Simple {
 
 		$params[SimpleSAML_Auth_State::RESTART] = $restartURL;
 
-		SimpleSAML_Auth_Default::initLogin($this->authSource, $returnTo, NULL, $params);
+		SimpleSAML_Auth_Default::initLogin($this->authSource, $returnTo, $errorURL, $params);
 		assert('FALSE');
 	}
 
