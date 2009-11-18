@@ -245,13 +245,16 @@ class SimpleSAML_Auth_State {
 	 * Retrieve an exception state.
 	 *
 	 * @param string|NULL $id  The exception id. Can be NULL, in which case it will be retrieved from the request.
-	 * @return array  The state array with the exception.
+	 * @return array|NULL  The state array with the exception, or NULL if no exception was thrown.
 	 */
 	public static function loadExceptionState($id = NULL) {
 		assert('is_string($id) || is_null($id)');
 
 		if ($id === NULL) {
-			assert('array_key_exists(self::EXCEPTION_PARAM, $_REQUEST)');
+			if (!array_key_exists(self::EXCEPTION_PARAM, $_REQUEST)) {
+				/* No exception. */
+				return NULL;
+			}
 			$id = $_REQUEST[self::EXCEPTION_PARAM];
 		}
 
