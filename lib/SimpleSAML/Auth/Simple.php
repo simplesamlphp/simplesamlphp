@@ -54,11 +54,7 @@ class SimpleSAML_Auth_Simple {
 	 * current page.
 	 *
 	 * This function accepts an array $params, which controls some parts of
-	 * the authentication. The accepted parameters depends on the authentication
-	 * source being used. Some parameters are generic:
-	 *  - 'KeepPost': If the current request is a POST request, keep the POST
-	 *    data until after the authentication.
-	 *  - 'ReturnTo': The URL the user should be returned to after authentication.
+	 * the authentication. See the login()-function for a description.
 	 *
 	 * @param array $params  Various options to the authentication request.
 	 */
@@ -70,6 +66,26 @@ class SimpleSAML_Auth_Simple {
 			/* Already authenticated. */
 			return;
 		}
+
+		$this->login($params);
+	}
+
+
+	/**
+	 * Start an authentication process.
+	 *
+	 * This function never returns.
+	 *
+	 * This function accepts an array $params, which controls some parts of
+	 * the authentication. The accepted parameters depends on the authentication
+	 * source being used. Some parameters are generic:
+	 *  - 'KeepPost': If the current request is a POST request, keep the POST
+	 *    data until after the authentication.
+	 *  - 'ReturnTo': The URL the user should be returned to after authentication.
+	 *
+	 * @param array $params  Various options to the authentication request.
+	 */
+	public function login(array $params = array()) {
 
 		if (array_key_exists('KeepPost', $params)) {
 			$keepPost = (bool)$params['KeepPost'];
@@ -96,6 +112,7 @@ class SimpleSAML_Auth_Simple {
 		$params[SimpleSAML_Auth_State::RESTART] = $restartURL;
 
 		SimpleSAML_Auth_Default::initLogin($this->authSource, $returnTo, NULL, $params);
+		assert('FALSE');
 	}
 
 
