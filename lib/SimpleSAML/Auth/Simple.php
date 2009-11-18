@@ -53,13 +53,16 @@ class SimpleSAML_Auth_Simple {
 	 * user with the authentication source, and then return the user to the
 	 * current page.
 	 *
-	 * If $allowPost is set to TRUE, any POST data to the current page is
-	 * preserved. If $allowPost is FALSE, the user will be returned to the
-	 * current page with a GET request.
+	 * This function accepts an array $params, which controls some parts of
+	 * the authentication. The accepted parameters depends on the authentication
+	 * source being used. Some parameters are generic:
+	 *  - 'KeepPost': If the current request is a POST request, keep the POST
+	 *    data until after the authentication.
+	 *  - 'ReturnTo': The URL the user should be returned to after authentication.
 	 *
-	 * @param array $options  Various options to the authentication request.
+	 * @param array $params  Various options to the authentication request.
 	 */
-	public function requireAuth(array $options = array()) {
+	public function requireAuth(array $params = array()) {
 
 		$session = SimpleSAML_Session::getInstance();
 
@@ -68,14 +71,14 @@ class SimpleSAML_Auth_Simple {
 			return;
 		}
 
-		if (array_key_exists('KeepPost', $options)) {
-			$keepPost = (bool)$options['KeepPost'];
+		if (array_key_exists('KeepPost', $params)) {
+			$keepPost = (bool)$params['KeepPost'];
 		} else {
 			$keepPost = TRUE;
 		}
 
-		if (array_key_exists('ReturnTo', $options)) {
-			$returnTo = (string)$options['ReturnTo'];
+		if (array_key_exists('ReturnTo', $params)) {
+			$returnTo = (string)$params['ReturnTo'];
 		} else {
 			$returnTo = SimpleSAML_Utilities::selfURL();
 		}
@@ -90,11 +93,9 @@ class SimpleSAML_Auth_Simple {
 		 */
 		$restartURL = $this->getLoginURL($returnTo);
 
-		$hints = array(
-			SimpleSAML_Auth_State::RESTART => $restartURL,
-		);
+		$params[SimpleSAML_Auth_State::RESTART] = $restartURL;
 
-		SimpleSAML_Auth_Default::initLogin($this->authSource, $returnTo, NULL, $hints);
+		SimpleSAML_Auth_Default::initLogin($this->authSource, $returnTo, NULL, $params);
 	}
 
 
