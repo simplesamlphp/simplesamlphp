@@ -22,16 +22,15 @@ class SimpleSAML_Auth_Default {
 	 * @param string $returnURL  The URL we should direct the user to after authentication.
 	 * @param string|NULL $errorURL  The URL we should direct the user to after failed authentication.
 	 *                               Can be NULL, in which case a standard error page will be shown.
-	 * @param array $hints  Extra information about the login. Different authentication requestors may
-	 *                      provide different information. Optional, will default to an empty array.
+	 * @param array $params  Extra information about the login. Different authentication requestors may
+	 *                       provide different information. Optional, will default to an empty array.
 	 */
-	public static function initLogin($authId, $returnURL, $errorURL = NULL, $hints = array()) {
+	public static function initLogin($authId, $returnURL, $errorURL = NULL, array $params = array()) {
 		assert('is_string($authId)');
 		assert('is_string($returnURL)');
 		assert('is_string($errorURL) || is_null($errorURL)');
-		assert('is_array($hints)');
 
-		$state = array(
+		$state = array_merge($params, array(
 			'SimpleSAML_Auth_Default.id' => $authId,
 			'SimpleSAML_Auth_Default.ReturnURL' => $returnURL,
 			'SimpleSAML_Auth_Default.ErrorURL' => $errorURL,
@@ -39,19 +38,8 @@ class SimpleSAML_Auth_Default {
 			'LogoutCallback' => array(get_class(), 'logoutCallback'),
 			'LogoutCallbackState' => array(
 				'SimpleSAML_Auth_Default.logoutSource' => $authId,
-				),
-			);
-
-		if (array_key_exists('SPMetadata', $hints)) {
-			$state['SPMetadata'] = $hints['SPMetadata'];
-		}
-		if (array_key_exists('IdPMetadata', $hints)) {
-			$state['IdPMetadata'] = $hints['IdPMetadata'];
-		}
-
-		if (array_key_exists(SimpleSAML_Auth_State::RESTART, $hints)) {
-			$state[SimpleSAML_Auth_State::RESTART] = $hints[SimpleSAML_Auth_State::RESTART];
-		}
+			),
+		));
 
 		if ($errorURL !== NULL) {
 			$state[SimpleSAML_Auth_State::EXCEPTION_HANDLER_URL] = $errorURL;
