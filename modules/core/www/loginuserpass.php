@@ -20,6 +20,8 @@ $state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_core_Auth_UserPas
 
 if (array_key_exists('username', $_REQUEST)) {
 	$username = $_REQUEST['username'];
+} elseif (isset($state['core:username'])) {
+	$username = (string)$state['core:username'];
 } else {
 	$username = '';
 }
@@ -30,7 +32,7 @@ if (array_key_exists('password', $_REQUEST)) {
 	$password = '';
 }
 
-if (!empty($username) || !empty($password)) {
+if (!empty($_REQUEST['username']) || !empty($password)) {
 	/* Either username or password set - attempt to log in. */
 
 	if (array_key_exists('forcedUsername', $state)) {

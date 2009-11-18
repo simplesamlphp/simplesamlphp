@@ -18,6 +18,8 @@ $organizations = sspmod_core_Auth_UserPassOrgBase::listOrganizations($authStateI
 
 if (array_key_exists('username', $_REQUEST)) {
 	$username = $_REQUEST['username'];
+} elseif (isset($state['core:username'])) {
+	$username = (string)$state['core:username'];
 } else {
 	$username = '';
 }
@@ -30,6 +32,8 @@ if (array_key_exists('password', $_REQUEST)) {
 
 if (array_key_exists('organization', $_REQUEST)) {
 	$organization = $_REQUEST['organization'];
+} elseif (isset($state['core:organization'])) {
+	$organization = (string)$state['core:organization'];
 } else {
 	$organization = '';
 }
