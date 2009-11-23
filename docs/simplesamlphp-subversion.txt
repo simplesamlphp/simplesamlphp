@@ -17,8 +17,8 @@ Then do a subversion checkout:
 Initialize configuration and metadata:
 
     cd /var/simplesamlphp
-    cp -r config-templates/ config/
-    cp -r metadata-templates/ metadata/
+    cp -r config-templates/* config/
+    cp -r metadata-templates/* metadata/
 
 
 Upgrading
