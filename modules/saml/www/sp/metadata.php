@@ -66,7 +66,7 @@ if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
 
 	$t->data['header'] = 'saml20-sp';
 	$t->data['metadata'] = htmlspecialchars($xml);
-	$t->data['metadataflat'] = var_export($entityId, TRUE) . ' => ' . var_export($metaArray20, TRUE) . ',';
+	$t->data['metadataflat'] = '$metadata[' . var_export($entityId, TRUE) . '] = ' . var_export($metaArray20, TRUE) . ';';
 	$t->data['metaurl'] = $source->getMetadataURL();
 
 	$t->data['idpsend'] = array();
