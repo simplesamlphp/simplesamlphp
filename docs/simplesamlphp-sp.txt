@@ -36,11 +36,11 @@ If you want mulitple Service Providers in the same site and installation, you ca
 
 	'sp1' => array(
 	    'saml:SP',
-		'entityID' => 'https://sp1.example.org/,
+		'entityID' => 'https://sp1.example.org/',
 	),
 	'sp2' => array(
 	    'saml:SP',
-		'entityID' => 'https://sp2.example.org/,
+		'entityID' => 'https://sp2.example.org/',
 	),
 
 ### Enablig a certificate for your Service Provider
