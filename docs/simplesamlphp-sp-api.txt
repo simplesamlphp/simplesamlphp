@@ -40,7 +40,7 @@ Check whether the user is authenticated with this authentication source.
 `requireAuth`
 -------------
 
-    void requireAuth(array $options = array())
+    void requireAuth(array $params = array())
 
 Make sure that the user is authenticated.
 This function will only return if the user is authenticated.
@@ -48,18 +48,9 @@ If the user isn't authenticated, this function will start the authentication pro
 
 ### Parameters
 
-`$options` is an associative array with named parameters for this function.
-The following named parameters are supported:
+`$params` is an associative array with named parameters for this function.
+See the documentation for the `login`-function for a description of the parameters.
 
-`KeepPost` (`bool`)
-
-:   If set to `TRUE`, the current POST data will be submittet again after authentication.
-    The default is `TRUE`.
-
-`ReturnTo` (`string`)
-
-:   The URL the user should be returned to after authentication.
-    The default is to return the user to the current page.
 
 ### Example 1
 
@@ -78,6 +69,43 @@ The following named parameters are supported:
     ));
     print("Hello, authenticated user!");
 
+
+`login`
+-------------
+
+    void login(array $params = array())
+
+Start a login operation.
+This function will always start a new authentication process.
+
+### Parameters
+
+The following global parameters are supported:
+
+`ErrorURL` (`string`)
+
+:   An URL to a page which will receive errors that may occur during authentication.
+
+`KeepPost` (`bool`)
+
+:   If set to `TRUE`, the current POST data will be submitted again after authentication.
+    The default is `TRUE`.
+
+`ReturnTo` (`string`)
+
+:   The URL the user should be returned to after authentication.
+    The default is to return the user to the current page.
+
+The [`saml:SP`](https://rnd.feide.no/content/saml-service-provider-configuration-reference) authentication source also defines some parameters.
+
+
+### Example
+
+    # Send a passive authentication request.
+    $auth->login(array(
+        'saml:IsPassive' => TRUE,
+        'ErrorURL' => 'https://.../error_handler.php',
+    ));
 
 
 `logout`

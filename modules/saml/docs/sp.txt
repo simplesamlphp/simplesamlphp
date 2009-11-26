@@ -9,11 +9,12 @@ Metadata
 
 The metadata for your SP will be available from the federation page on your simpleSAMLphp installation.
 
-Options
+
+Parameters
 -------
 
-These are options that can be used at runtime to control the authentication.
-All these options override the equivalent option from the configuration.
+These are parameters that can be used at runtime to control the authentication.
+All these parameters override the equivalent option from the configuration.
 
 `saml:AuthnContextClassRef`
 :   The AuthnContextClassRef that will be sent in the login request.
@@ -27,10 +28,10 @@ All these options override the equivalent option from the configuration.
 :   *Note*: SAML 2 specific.
 
 `saml:idp`
-:   The entity ID this SP should connect to.
+:   The entity ID of the IdP we should send an authentication request to.
 
 `saml:IsPassive`
-:   IsPassive allows you to enable passive authentication by default for this SP.
+:   Send a passive authentication request.
 
 :   *Note*: SAML 2 specific.
 
@@ -82,10 +83,12 @@ Here we will list some examples for this authentication source.
     ),
 
 
-### Requesting passive authentication
+### Requesting a specific authentication method.
 
-$auth = new SimpleSAML_Auth_Simple('default-sp');
-$auth->login(array('saml:IsPassive' => TRUE));
+    $auth = new SimpleSAML_Auth_Simple('default-sp');
+    $auth->login(array(
+        'saml:AuthnContextClassRef' => 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
+    ));
 
 
 Options
