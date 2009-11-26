@@ -869,14 +869,15 @@ class SimpleSAML_Utilities {
 	 *
 	 * This function accepts the same shortcuts for namespaces as the isDOMElementOfType function.
 	 *
-	 * @param $element The element we should look in.
-	 * @param $localName The name the element should have.
-	 * @param $namespaceURI The namespace the element should have.
-	 * @return Array with the matching elements in the order they are found. An empty array is
+	 * @param DOMElement $element  The element we should look in.
+	 * @param string $localName  The name the element should have.
+	 * @param string $namespaceURI  The namespace the element should have.
+	 * @return array  Array with the matching elements in the order they are found. An empty array is
 	 *         returned if no elements match.
 	 */
-	public static function getDOMChildren($element, $localName, $namespaceURI) {
-		assert('$element instanceof DOMElement');
+	public static function getDOMChildren(DOMElement $element, $localName, $namespaceURI) {
+		assert('is_string($localName)');
+		assert('is_string($namespaceURI)');
 
 		$ret = array();
 
