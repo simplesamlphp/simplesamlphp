@@ -19,24 +19,49 @@ $entityId = $source->getEntityId();
 $metaArray11 = array(
 	'metadata-set' => 'shib13-sp-remote',
 	'entityid' => $entityId,
-	'AssertionConsumerService' => SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId),
+	'AssertionConsumerService' => array(
+		array(
+			'index' => 0,
+			'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
+			'Location' => SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId),
+		),
+	),
 );
 
 $spconfig = $source->getMetadata();
 if ($spconfig->getBoolean('saml11.binding.artifact.enable', FALSE)) {
-	$metaArray11['AssertionConsumerService.artifact'] = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId . '/artifact');
+	$metaArray11['AssertionConsumerService'][] = array(
+		'index' => 1,
+		'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
+		'Location' => SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId . '/artifact'),
+	);
 }
 
 
 $metaArray20 = array(
 	'metadata-set' => 'saml20-sp-remote',
 	'entityid' => $entityId,
-	'AssertionConsumerService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId),
-	'SingleLogoutService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId),
+	'AssertionConsumerService' => array(
+		array(
+			'index' => 0,
+			'Binding' => SAML2_Const::BINDING_HTTP_POST,
+			'Location' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId),
+		),
+	),
+	'SingleLogoutService' => array(
+		array(
+			'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+			'Location' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId),
+		),
+	),
 );
-	
+
 if ($spconfig->getBoolean('saml20.binding.artifact.enable', FALSE)) {
-	$metaArray20['AssertionConsumerService.artifact'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
+	$metaArray20['AssertionConsumerService'][] = array(
+		'index' => 1,
+		'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
+		'Location' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId),
+	);
 }
 
 $certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig->toArray());
