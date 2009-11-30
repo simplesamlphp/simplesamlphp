@@ -1,36 +1,36 @@
 <?php
 
-$this->data['header'] = 'Cron information page';
+$this->data['header'] = $this->t('cron_header');
 $this->includeAtTemplateBase('includes/header.php');
 
+$run_text = $this->t('run_text');
 ?>
 
-	<p>Cron is a way to run things regularly on unix systems.</p>
-	
-	<p>Here is a suggestion for a crontab file:</p>
+	<p><?php echo $this->t('cron_info') ?></p>
+
+	<p><?php echo $this->t('cron_suggestion') ?></p>
 	<pre style="font-size: x-small; color: #444; padding: 1em; border: 1px solid #eee; margin: .4em "><code><?php
 		
 		foreach ($this->data['urls'] AS $url ) {
-			echo "# " . $url['title'] . "\n";
+			echo "# " . $run_text. ' [' .$url['tag']. ']' . "\n";
 			echo "" . $url['int'] . " curl --silent \"" . $url['href'] . "\" > /dev/null 2>&1\n";
 		}
 		
 		?>
 	</code></pre>
-	
-	<p>Click here to run the cron jobs:
+
+	<br><p><?php echo $this->t('cron_execution') ?></p>
 	<ul>
 		<?php
-		
+
 		foreach ($this->data['urls'] AS $url ) {
-			echo '<li><a href="' . $url['href'] . '">' . $url['title'] . '</a></li>';
+			echo '<li><a href="' . $url['href'] . '&amp;output=xhtml">' . $run_text. ' [' .$url['tag']. ']' . '</a></li>';
 		}
-		
+
 		?>
 		
 	</ul>
 
-    
 </div>
 
 <?php
