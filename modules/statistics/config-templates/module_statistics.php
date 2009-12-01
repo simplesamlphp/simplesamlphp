@@ -186,26 +186,6 @@ $config = array (
 				'config' => 'saml20-sp-remote',
 			),
 		),
-		'ssoservicerealm' => array(
-			'name' 		=> 'SSO to service and realm',
-			'descr'		=> 'The number of logins per realm and service provider.',
-			'action' 	=> 'saml20-idp-SSO',
-			'col'		=> array(6,8),				// Service Provider EntityID, realm
-			'fieldPresentation' => array(
-				'class' => 'feide:SPandOrg',
-				'config' => 'saml20-sp-remote',
-			),
-		),
-		'ssorealm' => array(
-			'name' 		=> 'SSO by realm',
-			'descr'		=> 'The number of logins at a Service Provider divided into slots of one day. Each file contains data for 80 days',
-			'action' 	=> 'saml20-idp-SSO',
-			'col'		=> 8,				// Realm
-			'fieldPresentation' => array(
-				'class' => 'feide:Org',
-				'config' => 'saml20-sp-remote',
-			),
-		),
 		'slo' => array(
 			'name' 		=> 'SLO initiated from service',
 			'descr'		=> 'The number of initated Sinlge Logout from each of the service providers.',
