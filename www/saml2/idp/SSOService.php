@@ -271,7 +271,18 @@ if (isset($_REQUEST['SAMLRequest'])) {
  * If the spentityid parameter is provided, we will fallback to a unsolited response to the SP.
  */
 } elseif(array_key_exists('spentityid', $_GET)) {
-	
+
+	if (isset($_REQUEST['cookieTime'])) {
+		$cookieTime = (int)$_REQUEST['cookieTime'];
+		if ($cookieTime + 3 > time()) {
+			/*
+			 * Less than three seconds has passed since we were
+			 * here the last time. Cookies are probably disabled.
+			 */
+			SimpleSAML_Utilities::checkCookie(SimpleSAML_Utilities::selfURL());
+		}
+	}
+
 	/* Creating a request cache, even though there was no request, and adding the
 	 * information that is neccessary to be able to respond with an unsolited response
 	 */
@@ -342,6 +353,7 @@ if($needAuth && !$isPassive) {
 		 */
 		$sessionLostParams = array(
 			'spentityid' => $requestcache['Issuer'],
+			'cookieTime' => time(),
 			);
 		if (isset($requestcache['RelayState'])) {
 			$sessionLostParams['RelayState'] = $requestcache['RelayState'];
