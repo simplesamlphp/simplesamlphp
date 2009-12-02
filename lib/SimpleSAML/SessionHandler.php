@@ -115,6 +115,20 @@ abstract class SimpleSAML_SessionHandler {
 		/* Set the session handler. */
 		self::$sessionHandler = $sh;
 	}
+
+
+	/**
+	 * Check whether the session cookie is set.
+	 *
+	 * This function will only return FALSE if is is certain that the cookie isn't set.
+	 *
+	 * @return bool  TRUE if it was set, FALSE if not.
+	 */
+	public function hasSessionCookie() {
+
+		return TRUE;
+	}
+
 }
 
 ?>

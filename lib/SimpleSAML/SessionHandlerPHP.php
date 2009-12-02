@@ -93,6 +93,21 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 
 		return $_SESSION[$key];
 	}
+
+
+	/**
+	 * Check whether the session cookie is set.
+	 *
+	 * This function will only return FALSE if is is certain that the cookie isn't set.
+	 *
+	 * @return bool  TRUE if it was set, FALSE if not.
+	 */
+	public function hasSessionCookie() {
+
+		$cookieName = session_name();
+		return array_key_exists($cookieName, $_COOKIE);
+	}
+
 }
 
 ?>

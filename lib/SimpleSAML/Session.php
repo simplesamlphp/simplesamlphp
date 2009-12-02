@@ -940,6 +940,20 @@ class SimpleSAML_Session {
 		return $this->logoutState;
 	}
 
+
+	/**
+	 * Check whether the session cookie is set.
+	 *
+	 * This function will only return FALSE if is is certain that the cookie isn't set.
+	 *
+	 * @return bool  TRUE if it was set, FALSE if not.
+	 */
+	public function hasSessionCookie() {
+
+		$sh = SimpleSAML_SessionHandler::getSessionHandler();
+		return $sh->hasSessionCookie();
+	}
+
 }
 
 ?>
