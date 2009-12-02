@@ -2199,6 +2199,29 @@ class SimpleSAML_Utilities {
 			var_export($idpmetadata['entityid'], TRUE) . '.');
 	}
 
+
+	/**
+	 * Check for session cookie, and show missing-cookie page if it is missing.
+	 *
+	 * @param string|NULL $retryURL  The URL the user should access to retry the operation.
+	 */
+	public static function checkCookie($retryURL = NULL) {
+		assert('is_string($retryURL) || is_null($retryURL)');
+
+		$session = SimpleSAML_Session::getInstance();
+		if ($session->hasSessionCookie()) {
+			return;
+		}
+
+		/* We didn't have a session cookie. Redirect to the no-cookie page. */
+
+		$url = SimpleSAML_Module::getModuleURL('core/no_cookie.php');
+		if ($retryURL !== NULL) {
+			$url = SimpleSAML_Utilities::addURLParameter($url, array('retryURL' => $retryURL));
+		}
+		SimpleSAML_Utilities::redirect($url);
+	}
+
 }
 
 ?>
