@@ -970,6 +970,48 @@ class SimpleSAML_Configuration {
 		return $default;
 	}
 
+
+	/**
+	 * Retrieve a string which may be localized into many languages.
+	 *
+	 * The default language returned is always 'en'.
+	 * @param string $name  The name of the option.
+	 * @param mixed $default  The default value. If no default is given, and the option isn't found, an exception will be thrown.
+	 * @return array  Associative array with language=>string pairs.
+	 */
+	public function getLocalizedString($name, $default = self::REQUIRED_OPTION) {
+		assert('is_string($name)');
+
+		$ret = $this->getValue($name, $default);
+		if($ret === $default) {
+			/* The option wasn't found, or it matches the default value. In any case, return
+			 * this value.
+			 */
+			return $ret;
+		}
+
+		$loc = $this->location . '[' . var_export($name, TRUE) . ']';
+
+		if (is_string($ret)) {
+			$ret = array('en' => $ret,);
+		}
+
+		if (!is_array($ret)) {
+			throw new Exception($loc . ': Must be an array or a string.');
+		}
+
+		foreach ($ret as $k => $v) {
+			if (!is_string($k)) {
+				throw new Exception($loc . ': Invalid language code: ' . var_export($k, TRUE));
+			}
+			if (!is_string($v)) {
+				throw new Exception($loc . '[' . var_export($v, TRUE) . ']: Must be a string.');
+			}
+		}
+
+		return $ret;
+	}
+
 }
 
 ?>
