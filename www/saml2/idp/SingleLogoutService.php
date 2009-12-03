@@ -114,8 +114,6 @@ if (isset($_REQUEST['SAMLRequest'])) {
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $spEntityId);
 	SimpleSAML_Logger::stats('saml20-idp-SLO spinit ' . $spEntityId . ' ' . $idpEntityId);
 
-	$session->doLogout();
-
 	/* Fill in the $logoutInfo associative array with information about this logout request. */
 	$logoutInfo['Issuer'] = $spEntityId;
 	$logoutInfo['RequestID'] = $logoutRequest->getId();
@@ -183,6 +181,29 @@ if (isset($_REQUEST['SAMLRequest'])) {
 	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: No request, response or bridge');
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS');
 }
+
+/* First, log out of the current authentication source. */
+$authority = $session->getAuthority();
+if ($authority !== NULL) {
+	/* We are logged in. */
+
+	$bridgedId = SimpleSAML_Utilities::generateID();
+	$returnTo = SimpleSAML_Utilities::selfURLNoQuery() . '?LogoutID=' . $bridgedId;
+
+	/* Save the $logoutInfo until we return from the SP. */
+	saveLogoutInfo($bridgedId);
+
+	if ($authority === $idpMetadata->getString('auth')) {
+		/* This is probably an authentication source. */
+		SimpleSAML_Auth_Default::initLogoutReturn($returnTo);
+	} elseif ($authority === 'saml2') {
+		/* SAML 2 SP which isn't an authentication source. */
+		SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'saml2/sp/initSLO.php',
+			array('RelayState' => $returnTo)
+		);
+	}
+}
+
 
 /*
  * Find the next SP we should log out from. We will search through the list of
@@ -254,6 +275,19 @@ if ($config->getBoolean('debug', false))
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: LogoutService: All SPs done ');
 
 
+
+/* Check whether we should authenticate with an AuthSource. Any time the auth-option matches a
+ * valid AuthSource, we assume that this is the case.
+ */
+$auth = $idpMetadata->getString('auth');
+if(SimpleSAML_Auth_Source::getById($idpMetadata->getString('auth')) !== NULL) {
+	/* Authenticate with an AuthSource. */
+	$authSource = TRUE;
+	$authority = $idpmetadata['auth'];
+} else {
+	$authSource = FALSE;
+	$authority = SimpleSAML_Utilities::getAuthority($idpmetadata);
+}
 
 /**
  * If there exists a local valid session with the SAML 2.0 module as an authority, 
