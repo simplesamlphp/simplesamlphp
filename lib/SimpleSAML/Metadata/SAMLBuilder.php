@@ -137,15 +137,6 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			}
 		}
 	}
-	
-	public static function arrayize($data) {
-		if (is_array($data)) {
-			return $data;
-		} else {
-			return array($data);
-		}
-	}
-
 
 	
 	public function addOrganizationInfo($metadata) {
