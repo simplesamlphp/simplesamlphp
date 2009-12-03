@@ -330,23 +330,15 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$attributeconsumer = $this->createElement('AttributeConsumingService');
 			$attributeconsumer->setAttribute('index', '0');
 
-			$name = $metadata->getArrayizeString('name');
+			$name = $metadata->getLocalizedString('name');
 			foreach($name AS $lang => $localname) {
-				if ($lang === 0) {
-					/* We use 'en' as the default language. */
-					$lang = 'en';
-				}
 				$t = $this->createTextElement('ServiceName', $localname);
 				$t->setAttribute('xml:lang', $lang);
 				$attributeconsumer->appendChild($t);
 			}
 
-			$description = $metadata->getArrayizeString('description', array());
+			$description = $metadata->getLocalizedString('description', array());
 			foreach ($description as $lang => $localname) {
-				if ($lang === 0) {
-					/* We use 'en' as the default language. */
-					$lang = 'en';
-				}
 				$t = $this->createTextElement('ServiceDescription', $localname);
 				$t->setAttribute('xml:lang', $lang);
 				$attributeconsumer->appendChild($t);
