@@ -276,46 +276,6 @@ if ($config->getBoolean('debug', false))
 
 
 
-/* Check whether we should authenticate with an AuthSource. Any time the auth-option matches a
- * valid AuthSource, we assume that this is the case.
- */
-$auth = $idpMetadata->getString('auth');
-if(SimpleSAML_Auth_Source::getById($idpMetadata->getString('auth')) !== NULL) {
-	/* Authenticate with an AuthSource. */
-	$authSource = TRUE;
-	$authority = $idpmetadata['auth'];
-} else {
-	$authSource = FALSE;
-	$authority = SimpleSAML_Utilities::getAuthority($idpmetadata);
-}
-
-/**
- * If there exists a local valid session with the SAML 2.0 module as an authority, 
- * initiate SAML 2.0 SP Single LogOut, with the RelayState equal this URL.
- */
-if ($session->getAuthority() == 'saml2') {
-
-	$bridgedId = SimpleSAML_Utilities::generateID();
-	$returnTo = SimpleSAML_Utilities::selfURLNoQuery() . '?LogoutID=' . $bridgedId;
-
-	/* Save the $logoutInfo until we return from the SP. */
-	saveLogoutInfo($bridgedId);
-
-	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'saml2/sp/initSLO.php',
-		array('RelayState' => $returnTo)
-	);
-}
-
-if ($session->getAuthority() == 'shib13') {
-	/**
-	 * TODO: Show warning to inform the user that he is logged on through an Shibboleth 1.3 IdP that
-	 * do not support logout.
-	 */
-}
-
-
-
-
 /*
  * Logout procedure is done and we send a Logout Response back to the SP
  */
