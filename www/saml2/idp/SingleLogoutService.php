@@ -201,6 +201,9 @@ if ($authority !== NULL) {
 		SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'saml2/sp/initSLO.php',
 			array('RelayState' => $returnTo)
 		);
+	} else {
+		/* A different old-style authentication file. */
+		$session->doLogout();
 	}
 }
 
