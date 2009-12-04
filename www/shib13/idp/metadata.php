@@ -49,7 +49,7 @@ try {
 	}
 
 
-	$metaflat = var_export($idpentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
+	$metaflat = '$metadata[' . var_export($idpentityid, TRUE) . '] = ' . var_export($metaArray, TRUE) . ';';
 	
 	$metaArray['certData'] = $certInfo['certData'];
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);

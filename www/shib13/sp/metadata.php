@@ -48,7 +48,7 @@ try {
 	}
 
 
-	$metaflat = var_export($spentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
+	$metaflat = '$metadata[' . var_export($spentityid, TRUE) . '] = ' . var_export($metaArray, TRUE) . ';';
 
 	if (array_key_exists('certificate', $spmeta)) {
 		$metaArray['certificate'] = $spmeta['certificate'];
