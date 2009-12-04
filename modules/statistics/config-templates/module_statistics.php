@@ -22,7 +22,7 @@ $config = array (
 
 
 
-	'default' => 'sso_hoursweek',
+	'default' => 'sso',
 
 	'statdir' => '/tmp/stats/',
 	'inputfile' => '/var/log/simplesamlphp.stat',
