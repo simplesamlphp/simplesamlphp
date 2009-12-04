@@ -444,6 +444,7 @@ class SimpleSAML_Session {
 		$this->authority = NULL;
 		$this->attributes = NULL;
 		$this->logoutState = NULL;
+		$this->idp = NULL;
 
 		/* Delete data which expires on logout. */
 		$this->expireDataLogout();
