@@ -27,5 +27,4 @@ $t = new SimpleSAML_XHTML_Template($config, 'sanitycheck:check-tpl.php');
 $t->data['pageid'] = 'sanitycheck';
 $t->data['errors'] = $errors;
 $t->data['info'] = $info;
-$t->data['jquery'] = $jquery;
 $t->show();
