@@ -114,8 +114,6 @@ if (isset($_REQUEST['SAMLRequest'])) {
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: got Logoutrequest from ' . $spEntityId);
 	SimpleSAML_Logger::stats('saml20-idp-SLO spinit ' . $spEntityId . ' ' . $idpEntityId);
 
-	$session->doLogout();
-
 	/* Fill in the $logoutInfo associative array with information about this logout request. */
 	$logoutInfo['Issuer'] = $spEntityId;
 	$logoutInfo['RequestID'] = $logoutRequest->getId();
@@ -183,6 +181,32 @@ if (isset($_REQUEST['SAMLRequest'])) {
 	SimpleSAML_Logger::debug('SAML2.0 - IdP.SingleLogoutService: No request, response or bridge');
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS');
 }
+
+/* First, log out of the current authentication source. */
+$authority = $session->getAuthority();
+if ($authority !== NULL) {
+	/* We are logged in. */
+
+	$bridgedId = SimpleSAML_Utilities::generateID();
+	$returnTo = SimpleSAML_Utilities::selfURLNoQuery() . '?LogoutID=' . $bridgedId;
+
+	/* Save the $logoutInfo until we return from the SP. */
+	saveLogoutInfo($bridgedId);
+
+	if ($authority === $idpMetadata->getString('auth')) {
+		/* This is probably an authentication source. */
+		SimpleSAML_Auth_Default::initLogoutReturn($returnTo);
+	} elseif ($authority === 'saml2') {
+		/* SAML 2 SP which isn't an authentication source. */
+		SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'saml2/sp/initSLO.php',
+			array('RelayState' => $returnTo)
+		);
+	} else {
+		/* A different old-style authentication file. */
+		$session->doLogout();
+	}
+}
+
 
 /*
  * Find the next SP we should log out from. We will search through the list of
@@ -252,33 +276,6 @@ if ($spEntityId) {
 
 if ($config->getBoolean('debug', false))
 	SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutService: LogoutService: All SPs done ');
-
-
-
-/**
- * If there exists a local valid session with the SAML 2.0 module as an authority, 
- * initiate SAML 2.0 SP Single LogOut, with the RelayState equal this URL.
- */
-if ($session->getAuthority() == 'saml2') {
-
-	$bridgedId = SimpleSAML_Utilities::generateID();
-	$returnTo = SimpleSAML_Utilities::selfURLNoQuery() . '?LogoutID=' . $bridgedId;
-
-	/* Save the $logoutInfo until we return from the SP. */
-	saveLogoutInfo($bridgedId);
-
-	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'saml2/sp/initSLO.php',
-		array('RelayState' => $returnTo)
-	);
-}
-
-if ($session->getAuthority() == 'shib13') {
-	/**
-	 * TODO: Show warning to inform the user that he is logged on through an Shibboleth 1.3 IdP that
-	 * do not support logout.
-	 */
-}
-
 
 
 
