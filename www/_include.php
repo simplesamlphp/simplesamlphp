@@ -22,6 +22,9 @@ if(get_magic_quotes_gpc()) {
 /* Initialize the autoloader. */
 require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
 
+/* Enable assertion handler for all pages. */
+SimpleSAML_Error_Assertion::installHandler();
+
 /* Show error page on unhandled exceptions. */
 function SimpleSAML_exception_handler(Exception $exception) {
 	$e = new SimpleSAML_Error_Error('UNHANDLEDEXCEPTION', $exception);

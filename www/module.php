@@ -12,8 +12,6 @@
 
 require_once('_include.php');
 
-SimpleSAML_Error_Assertion::installHandler();
-
 /* Index pages - filenames to attempt when accessing directories. */
 $indexFiles = array('index.php', 'index.html', 'index.htm', 'index.txt');
 
