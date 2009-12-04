@@ -47,7 +47,7 @@ try {
 		$metaArray['certData'] = $certInfo['certData'];
 	}
 
-	$metaflat = var_export($spentityid, TRUE) . ' => ' . var_export($metaArray, TRUE) . ',';
+	$metaflat = '$metadata[' . var_export($spentityid, TRUE) . '] = ' . var_export($metaArray, TRUE) . ';';
 
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($spentityid);
 	$metaBuilder->addMetadataSP20($metaArray);
