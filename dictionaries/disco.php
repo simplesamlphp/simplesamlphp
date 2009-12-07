@@ -21,7 +21,7 @@ $lang = array(
 		'fi' => 'Valitse identiteettillähteeis',
 		'es' => 'Seleccione su proveedor de identidad',
 		'fr' => 'Séléctionnez votre fournisseur d\'identité',
-		'nl' => 'Kies je Identiy Provider',
+		'nl' => 'Kies je Identity Provider',
 		'sl' => 'Izberite IdP domače organizacije',
 		'hr' => 'Odaberite vašeg davatelja elektroničkih identiteta',
 		'hu' => 'Válasszon személyazonosság-szolgáltatót (IdP)',
@@ -98,6 +98,7 @@ $lang = array(
 		'sv' => 'Prioriterat val',
 		'fi' => '[Oletusvalinta]',
 		'es' => '[Opción preference]',
+		'nl' => '[Voorkeurskeuze]',
 		'sl' => 'Prioritetna izbira',
 		'hu' => '[Kívánt választás]',
 		'pl' => 'Preferowany wybór',
@@ -107,10 +108,18 @@ $lang = array(
 	'previous_auth' => array (
 		'no' => 'Du har tidligere valg å autentisere deg hos',
 		'en' => 'You have previously chosen to authenticate at',
+		'sv' => 'Du har  tidigare valt att logga in med',
+		'es' => 'Previamente solicitó autenticarse en',
+		'nl' => 'Je hebt eerder gekozen voor authenticatie bij',
+		'sl' => 'Predhodnje ste se prijavljali že pri',
 	),
 	'login_at' => array (
 		'no' => 'Logg inn hos',
 		'en' => 'Login at',
+		'sv' => 'Logga in med',
+		'es' => 'Identificarse en',
+		'nl' => 'Inloggen bij',
+		'sl' => 'Prijavi se pri',
 	),
 
 );
