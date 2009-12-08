@@ -8,6 +8,7 @@ Here is changes between simpleSAMLphp versions. Look here if you are upgrading, 
 
 Released TBD.
 
+  * statistics: Handle new year wraparound.
   * Dictionary updates.
   * Fix bridged logout.
   * Some documentation updates.
