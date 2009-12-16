@@ -136,14 +136,19 @@ class SimpleSAML_Module {
 	 * This function creates an absolute URL to a resource stored under ".../modules/<module>/www/".
 	 *
 	 * @param string $resource  Resource path, on the form "<module name>/<resource>"
+	 * @param array $parameters  Extra parameters which should be added to the URL. Optional.
 	 * @return string  The absolute URL to the given resource.
 	 */
-	public static function getModuleURL($resource) {
+	public static function getModuleURL($resource, array $parameters = array()) {
 		assert('is_string($resource)');
 		assert('$resource[0] !== "/"');
 
 		$config = SimpleSAML_Configuration::getInstance();
-		return SimpleSAML_Utilities::selfURLhost() . '/' . $config->getBaseURL() . 'module.php/' . $resource;
+		$url = SimpleSAML_Utilities::selfURLhost() . '/' . $config->getBaseURL() . 'module.php/' . $resource;
+		if (!empty($parameters)) {
+			$url = SimpleSAML_Utilities::addURLparameter($url, $parameters);
+		}
+		return $url;
 	}
 
 
