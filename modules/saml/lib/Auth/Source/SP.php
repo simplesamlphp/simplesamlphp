@@ -260,8 +260,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$discoURL = SimpleSAML_Module::getModuleURL('saml/disco.php');
 		}
 
-		$returnTo = SimpleSAML_Module::getModuleURL('saml/sp/discoresp.php');
-		$returnTo = SimpleSAML_Utilities::addURLparameter($returnTo, array('AuthID' => $id));
+		$returnTo = SimpleSAML_Module::getModuleURL('saml/sp/discoresp.php', array('AuthID' => $id));
 
 		SimpleSAML_Utilities::redirect($discoURL, array(
 			'entityID' => $this->entityId,

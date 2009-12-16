@@ -78,7 +78,7 @@ foreach($this->data['metaentries']['remote'] AS $setkey => $set) {
 	foreach($set AS $entry) {
 		echo '<li>';
 		echo ('<a href="' . 
-			SimpleSAML_Module::getModuleURL('core/show_metadata.php?entityid=' . urlencode($entry['entityid']) . '&amp;set=' . urlencode($setkey) ) . 
+			htmlspecialchars(SimpleSAML_Module::getModuleURL('core/show_metadata.php', array('entityid' => $entry['entityid'], 'set' => $setkey ))) .
 			'">');
 		if (array_key_exists('name', $entry)) {
 			echo $this->getTranslation(SimpleSAML_Utilities::arrayize($entry['name'], 'en'));

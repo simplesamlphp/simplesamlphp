@@ -190,8 +190,7 @@ class SimpleSAML_Auth_Simple {
 			$returnTo = SimpleSAML_Utilities::selfURL();
 		}
 
-		$login = SimpleSAML_Module::getModuleURL('core/as_login.php');
-		$login = SimpleSAML_Utilities::addURLparameter($login, array(
+		$login = SimpleSAML_Module::getModuleURL('core/as_login.php', array(
 			'AuthId' => $this->authSource,
 			'ReturnTo' => $returnTo,
 		));
@@ -216,8 +215,7 @@ class SimpleSAML_Auth_Simple {
 			$returnTo = SimpleSAML_Utilities::selfURL();
 		}
 
-		$logout = SimpleSAML_Module::getModuleURL('core/as_logout.php');
-		$logout = SimpleSAML_Utilities::addURLparameter($logout, array(
+		$logout = SimpleSAML_Module::getModuleURL('core/as_logout.php', array(
 			'AuthId' => $this->authSource,
 			'ReturnTo' => $returnTo,
 		));

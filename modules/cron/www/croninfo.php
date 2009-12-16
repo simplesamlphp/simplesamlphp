@@ -28,7 +28,7 @@ $def = array(
 $urls = array();
 foreach ($tags AS $tag) {
 	$urls[] = array(
-		'href' => SimpleSAML_Module::getModuleURL('cron/cron.php?key=' . $key . '&amp;tag=' . $tag),
+		'href' => SimpleSAML_Module::getModuleURL('cron/cron.php', array('key' => $key, 'tag' => $tag)),
 		'tag' => $tag,
 		'int' => (array_key_exists($tag, $def) ? $def[$tag] : $def['default']),
 	);

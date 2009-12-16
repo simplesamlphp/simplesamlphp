@@ -1771,7 +1771,7 @@ class SimpleSAML_Utilities {
 			$returnTo = SimpleSAML_Utilities::selfURL();
 		}
 
-		return SimpleSAML_Module::getModuleURL('core/login-admin.php?ReturnTo=' . urlencode($returnTo));
+		return SimpleSAML_Module::getModuleURL('core/login-admin.php', array('ReturnTo' => $returnTo));
 	}
 
 
@@ -1845,10 +1845,7 @@ class SimpleSAML_Utilities {
 		$session = SimpleSAML_Session::getInstance();
 		$session->setData('core_postdatalink', $id, $postData);
 
-		return SimpleSAML_Utilities::addURLParameter(
-			SimpleSAML_Module::getModuleURL('core/postredirect.php'),
-			array('RedirId' => $id)
-			);
+		return SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirId' => $id));
 	}
 
 
