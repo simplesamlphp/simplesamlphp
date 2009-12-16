@@ -141,7 +141,9 @@ class SimpleSAML_Auth_Default {
 		assert('is_string($returnURL)');
 
 		self::initLogoutReturn($returnURL);
-		self::logoutCompleted($state);
+
+		/* Redirect... */
+		SimpleSAML_Utilities::redirect($returnURL);
 	}
 
 
