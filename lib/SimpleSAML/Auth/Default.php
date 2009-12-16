@@ -42,7 +42,7 @@ class SimpleSAML_Auth_Default {
 		));
 
 		if (is_string($return)) {
-			$state['SimpleSAML_Auth_Default.Return'] = $return;
+			$state['SimpleSAML_Auth_Default.ReturnURL'] = $return;
 		}
 
 		if ($errorURL !== NULL) {
