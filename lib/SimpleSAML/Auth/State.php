@@ -117,6 +117,8 @@ class SimpleSAML_Auth_State {
 		$session = SimpleSAML_Session::getInstance();
 		$session->setData('SimpleSAML_Auth_State', $id, $serializedState, 60*60);
 
+		SimpleSAML_Logger::debug('Saved state: ' . var_export($return, TRUE));
+
 		return $return;
 	}
 
@@ -135,6 +137,8 @@ class SimpleSAML_Auth_State {
 	public static function loadState($id, $stage) {
 		assert('is_string($id)');
 		assert('is_string($stage)');
+
+		SimpleSAML_Logger::debug('Loading state: ' . var_export($id, TRUE));
 
 		$tmp = explode(':', $id, 2);
 		$id = $tmp[0];
@@ -199,6 +203,8 @@ class SimpleSAML_Auth_State {
 			/* This state hasn't been saved. */
 			return;
 		}
+
+		SimpleSAML_Logger::debug('Deleting state: ' . var_export($state[self::ID], TRUE));
 
 		$session = SimpleSAML_Session::getInstance();
 		$session->deleteData('SimpleSAML_Auth_State', $state[self::ID]);
