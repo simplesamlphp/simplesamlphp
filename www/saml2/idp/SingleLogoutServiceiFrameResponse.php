@@ -55,6 +55,21 @@ $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
 sspmod_saml2_Message::validateMessage($spMetadata, $idpMetadata, $logoutResponse);
 
+/*
+ * Check the logout response against the logout request, and log
+ * warnings if there is a mismatch.
+ */
+$requestInfo = $session->getData('slo-request-info', $spEntityId);
+if ($requestInfo !== NULL) {
+	if ($logoutResponse->getInResponseTo() !== $requestInfo['ID']) {
+		SimpleSAML_Logger::warning('Wrong InResponseTo in LogoutResponse from ' .
+			var_export($spEntityId, TRUE) . '.');
+	}
+	if ($logoutResponse->getRelayState() !== $requestInfo['RelayState']) {
+		SimpleSAML_Logger::warning('Wrong RelayState in LogoutResponse from ' .
+			var_export($spEntityId, TRUE) . '.');
+	}
+}
 
 $sphash = sha1($spEntityId);
 setcookie('spstate-' . $sphash , '1'); // Duration: 2 hours

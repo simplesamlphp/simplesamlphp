@@ -227,7 +227,14 @@ foreach ($listofsps AS $spentityid) {
 		$url = $httpredirect->getRedirectURL($lr);
 
 		$sparray[$spentityid] = array('url' => $url, 'name' => $name);
-		
+
+		/* Add the SP logout request information to the session so that we can check it later. */
+		$requestInfo = array(
+			'ID' => $lr->getId(),
+			'RelayState' => $lr->getRelayState(),
+		);
+		$session->setData('slo-request-info', $spentityid, $requestInfo, 15*60);
+
 	} catch (Exception $e) {
 		
 		$sparrayNoLogout[$spentityid] = array('name' => $name);
