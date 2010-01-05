@@ -520,6 +520,14 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['attributes'] = $spd['attributes'];
 		}
 
+		/* Add name & description. */
+		if (array_key_exists('name', $spd)) {
+			$ret['name'] = $spd['name'];
+		}
+		if (array_key_exists('description', $spd)) {
+			$ret['description'] = $spd['description'];
+		}
+
 		/* Add certificate data. Only the first valid certificate will be added. */
 		foreach($spd['keys'] as $key) {
 			if($key['type'] !== 'X509Certificate') {
@@ -659,6 +667,14 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* Add the list of attributes the SP should receive. */
 		if (array_key_exists('attributes', $spd)) {
 			$ret['attributes'] = $spd['attributes'];
+		}
+
+		/* Add name & description. */
+		if (array_key_exists('name', $spd)) {
+			$ret['name'] = $spd['name'];
+		}
+		if (array_key_exists('description', $spd)) {
+			$ret['description'] = $spd['description'];
 		}
 
 		/* Add certificate data. Only the first valid certificate will be added. */
