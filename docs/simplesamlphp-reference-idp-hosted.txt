@@ -87,6 +87,12 @@ SAML 2.0 options
 
 The following SAML 2.0 options are available:
 
+`assertion.encryption`
+:   Whether assertions sent from this IdP should be encrypted. The default
+    value is `FALSE`.
+
+:   Note that this option can be set for each SP in the SP-remote metadata.
+
 `AttributeNameFormat`
 :   What value will be set in the Format field of attribute
     statements. This parameter can be configured multiple places, and

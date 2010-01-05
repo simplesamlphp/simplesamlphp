@@ -94,6 +94,14 @@ Here we will list some examples for this authentication source.
 Options
 -------
 
+`assertion.encryption`
+:   Whether assertions received by this SP must be encrypted. The default value is `FALSE`.
+    If this option is set to `TRUE`, unencrypted assertions will be rejected.
+
+:   Note that this option can be overridden for a specific IdP in saml20-idp-remote.
+
+:   *Note*: SAML 2 specific.
+
 `AuthnContextClassRef`
 :   The SP can request authentication with a specific authentication context class.
     One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.

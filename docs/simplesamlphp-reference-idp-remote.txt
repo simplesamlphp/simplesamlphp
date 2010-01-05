@@ -92,7 +92,11 @@ It is possible to decrypt the assertions received from an IdP. Currently the onl
 There are two modes of encryption supported by simpleSAMLphp. One is symmetric encryption, in which case both the SP and the IdP needs to share a key. The other mode is the use of public key encryption. In that mode, the public key of the SP is extracted from the certificate of the SP.
 
 `assertion.encryption`
-:   Whether assertions received from this IdP are encrypted. The default value is `FALSE`.
+:   Whether assertions received from this IdP must be encrypted. The default value is `FALSE`.
+    If this option is set to `TRUE`, assertions from the IdP must be encrypted.
+    Unencrypted assertions will be rejected.
+
+:   Note that this option overrides the option with the same name in the SP configuration.
 
 `sharedkey`
 :   Symmetric key which should be used for decryption. This should be a 128-bit key. If this option is not specified, public key encryption will be used instead.

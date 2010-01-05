@@ -215,6 +215,10 @@ of the SP.
 :   Whether assertions sent to this SP should be encrypted. The default
     value is `FALSE`.
 
+:   Note that this option also exists in the IdP-hosted metadata. This
+    entry in the SP-remote metadata overrides the option in the
+    IdP-hosted metadata.
+
 `sharedkey`
 :   Symmetric key which should be used for encryption. This should be a
     128-bit key. If this option is not specified, public key encryption
