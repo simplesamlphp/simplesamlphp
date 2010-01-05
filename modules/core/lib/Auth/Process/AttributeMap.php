@@ -37,7 +37,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
 				throw new Exception('Invalid attribute name: ' . var_export($origName, TRUE));
 			}
 
-			if(!is_string($newName)) {
+			if(!is_string($newName) && !is_array($newName)) {
 				throw new Exception('Invalid attribute name: ' . var_export($newName, TRUE));
 			}
 
@@ -82,8 +82,14 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
 
 		foreach($attributes as $name => $values) {
 			if(array_key_exists($name, $this->map)) {
-				$attributes[$this->map[$name]] = $values;
 				unset($attributes[$name]);
+				if(!is_array($this->map[$name])) {
+					$attributes[$this->map[$name]] = $values;
+				} else {
+					foreach($this->map[$name] as $to_map) {
+						$attributes[$to_map] = $values;
+					}
+				}
 			}
 		}
 
