@@ -56,17 +56,6 @@ function SimpleSAML_error_handler($errno, $errstr, $errfile = NULL, $errline = 0
 }
 set_error_handler('SimpleSAML_error_handler');
 
-
-$path_extra = dirname(dirname(__FILE__)) . '/lib';
-
-
-/** + start modify include path + */
-$path = ini_get('include_path');
-$path = $path_extra . PATH_SEPARATOR . $path;
-ini_set('include_path', $path);
-/** + end modify include path + */
-
-
 /**
  * Class which should print a warning every time a reference to $SIMPLESAML_INCPREFIX is made.
  */
