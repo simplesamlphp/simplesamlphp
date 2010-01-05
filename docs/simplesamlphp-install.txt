@@ -296,12 +296,10 @@ Now, we need to make a few configuration changes. First, let's edit
 Change the two lines from:
 
     require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
-    $path_extra = dirname(dirname(__FILE__)) . '/lib';
 
 to something like:
 
     require_once('/home/andreas/simplesamlphp/lib/_autoload.php');
-    $path_extra = '/home/andreas/simplesamlphp/lib';
 
 And then at the end of the file, you need to change another line
 from:
