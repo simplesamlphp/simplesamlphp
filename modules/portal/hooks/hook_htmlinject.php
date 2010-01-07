@@ -38,11 +38,11 @@ function portal_hook_htmlinject(&$hookinfo) {
 	$hookinfo['jquery']['version'] = '1.6';
 
 	// Header
-	$hookinfo['pre'][0]  = '<div id="portalmenu" class="ui-tabs ui-widget ui-widget-content ui-corner-all">' . 
+	$hookinfo['pre'][]  = '<div id="portalmenu" class="ui-tabs ui-widget ui-widget-content ui-corner-all">' . 
 		$portal->getMenu($hookinfo['page']) . 
 		'<div id="portalcontent" class="ui-tabs-panel ui-widget-content ui-corner-bottom">';
 
 	// Footer
-	$hookinfo['post'][0] = '</div></div>';
+	$hookinfo['post'][] = '</div></div>';
 	
 }
