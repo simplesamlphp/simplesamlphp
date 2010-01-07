@@ -17,13 +17,22 @@ class sspmod_metaedit_MetaEditor {
 			if (isset($metadata[$key])) unset($metadata[$key]);
 		}
 	}
+	
+	protected function getEndpointField($request, &$metadata, $key) {
+		if (array_key_exists('field_' . $key, $request)) {
+			$e = array('Binding' => SAML2_Const::BINDING_HTTP_REDIRECT, 'Location' => $request['field_' . $key], 'index' => '0');
+			$metadata[$key] = $e;
+		} else {
+			if (isset($metadata[$key])) unset($metadata[$key]);
+		}
+	}
 
 	public function formToMeta($request, $metadata = array(), $override = NULL) {
 		$this->getStandardField($request, $metadata, 'entityid');
 		$this->getStandardField($request, $metadata, 'name');
 		$this->getStandardField($request, $metadata, 'description');
-		$this->getStandardField($request, $metadata, 'AssertionConsumerService');
-		$this->getStandardField($request, $metadata, 'SingleLogoutService');
+		$this->getEndpointField($request, $metadata, 'AssertionConsumerService');
+		$this->getEndpointField($request, $metadata, 'SingleLogoutService');
 		// $this->getStandardField($request, $metadata, 'certFingerprint');
 		$metadata['updated'] = time();
 		
@@ -106,6 +115,23 @@ class sspmod_metaedit_MetaEditor {
 			
 		}
 	}
+	
+	protected function endpointField($metadata, $key, $name, $textarea = FALSE) {
+		$value = '';
+		if (array_key_exists($key, $metadata)) {
+			$value = htmlspecialchars($metadata[$key]['Location']);
+		}
+		
+		if ($textarea) {
+			return '<tr><td class="name">' . $name . '</td><td class="data">
+			<textarea name="field_' . $key . '" rows="5" cols="50">' . $value . '</textarea></td></tr>';
+			
+		} else {
+			return '<tr><td class="name">' . $name . '</td><td class="data">
+			<input type="text" size="60" name="field_' . $key . '" value="' . $value . '" /></td></tr>';
+			
+		}
+	}
 
 	public function metaToForm($metadata) {
 		$this->flattenLanguageField($metadata, 'name');
@@ -133,8 +159,8 @@ class sspmod_metaedit_MetaEditor {
 				$this->readonlyDateField($metadata, 'expire', 'Expire') .
 
 			'</table></div><div id="saml"><table class="formtable">' .
-				$this->standardField($metadata, 'AssertionConsumerService', 'AssertionConsumerService endpoint') .
-				$this->standardField($metadata, 'SingleLogoutService', 'SingleLogoutService endpoint') .
+				$this->endpointField($metadata, 'AssertionConsumerService', 'AssertionConsumerService endpoint') .
+				$this->endpointField($metadata, 'SingleLogoutService', 'SingleLogoutService endpoint') .
 				// $this->standardField($metadata, 'certFingerprint', 'Certificate Fingerprint') .			
 				
 			'</table></div>' .
