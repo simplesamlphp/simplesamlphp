@@ -33,7 +33,7 @@ if ($result[0]){
 pg_close($dbconn);
 
 
-// $handle = fopen('/tmp/prueba2.txt','w');
+// $handle = fopen(SimpleSAML_Utilities::getTempDir() . '/prueba2.txt','w');
 // fwrite($handle, 'prueba');
 // fclose ($handle);
 
