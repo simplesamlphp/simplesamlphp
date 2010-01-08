@@ -107,6 +107,7 @@ $lang = array(
 	),
 	'previous_auth' => array (
 		'no' => 'Du har tidligere valg å autentisere deg hos',
+		'da' => 'Du har tidligere valgt at logge ind hos',
 		'en' => 'You have previously chosen to authenticate at',
 		'sv' => 'Du har  tidigare valt att logga in med',
 		'es' => 'Previamente solicitó autenticarse en',
@@ -115,6 +116,7 @@ $lang = array(
 	),
 	'login_at' => array (
 		'no' => 'Logg inn hos',
+		'da' => 'Login hos',
 		'en' => 'Login at',
 		'sv' => 'Logga in med',
 		'es' => 'Identificarse en',
