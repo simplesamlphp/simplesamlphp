@@ -921,6 +921,7 @@ $lang = array(
 	),
 	'deprecated' => array (
 		'no' => 'Utdatert',
+		'da' => 'Under udfasning',
 		'en' => 'Deprecated',
 		'sv' => 'Ej längre giltig',
 		'es' => 'Obsoleto',
