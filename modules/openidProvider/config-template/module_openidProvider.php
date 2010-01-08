@@ -12,6 +12,6 @@ $config = array(
 	'username_attribute' => 'uid',
 
 	/* The directory where OpenID data is stored. */
-	'filestore' => '/tmp/ssp-openid-provider',
+	'filestore' => '/var/lib/simplesamlphp-openid-provider',
 
 );
