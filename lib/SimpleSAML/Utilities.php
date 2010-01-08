@@ -2076,6 +2076,14 @@ class SimpleSAML_Utilities {
 				throw new SimpleSAML_Error_Exception('Error creating temp dir ' .
 					var_export($tempDir, TRUE) . ': ' . SimpleSAML_Utilities::getLastError());
 			}
+		} elseif (function_exists('posix_getuid')) {
+
+			/* Check that the owner of the temp diretory is the current user. */
+			$stat = lstat($tempDir);
+			if ($stat['uid'] !== posix_getuid()) {
+				throw new SimpleSAML_Error_Exception('Temp directory (' . var_export($tempDir, TRUE) .
+					') not owned by current user.');
+			}
 		}
 
 		return $tempDir;
