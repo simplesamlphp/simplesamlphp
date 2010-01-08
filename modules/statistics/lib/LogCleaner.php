@@ -125,7 +125,13 @@ class sspmod_statistics_LogCleaner {
 		$file = fopen($this->inputfile, 'r');
 		#$logfile = file($this->inputfile, FILE_IGNORE_NEW_LINES );
 		
-		$outfile = fopen($outputfile, 'w');
+		/* Open the output file in a way that guarantees that we will not overwrite a random file. */
+		if (file_exists($outputfile)) {
+			/* Delete existing output file. */
+			unlink($outputfile);
+		}
+		$outfile = fopen($outputfile, 'x'); /* Create the output file. */
+
 		
 		$logparser = new sspmod_statistics_LogParser(
 			$this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
