@@ -6,8 +6,14 @@ Here is changes between simpleSAMLphp versions. Look here if you are upgrading, 
 
 ## Version 1.5.1
 
-Released TBD.
+Released 2010-01-08.
 
+  * Fix security vulnerability due to insecure temp file creation:
+    * statistics: The logcleaner script outputs to a file in /tmp.
+    * InfoCard: Saves state directly in /tmp. Changed to the simpleSAMLphp temp directory.
+    * openidProvider: Default configuration saves state information in /tmp.
+      Changed to '/var/lib/simplesamlphp-openid-provider'.
+    * SAML 1 artifact support: Saves certificates temporarily in '/tmp/simplesaml', but directory creation was insecure.
   * statistics: Handle new year wraparound.
   * Dictionary updates.
   * Fix bridged logout.
