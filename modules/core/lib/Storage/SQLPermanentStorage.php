@@ -105,12 +105,14 @@ class sspmod_core_Storage_SQLPermanentStorage {
 		return $results;
 	}
 
-	public function get($type, $key1, $key2) {
-		$query = "SELECT * FROM data WHERE " . 
-			"key1 = '" . sqlite_escape_string($key1) . "' AND " . 
-			"key2 = '" . sqlite_escape_string($key2) . "' AND " . 
-			"type = '" . sqlite_escape_string($type) . "'";
+	public function get($type = NULL, $key1 = NULL, $key2 = NULL) {
+		
+		$condition = self::getCondition($type, $key1, $key2);
+		$query = "SELECT * FROM data WHERE " . $condition;
 		$results = $this->db->arrayQuery($query, SQLITE_ASSOC);
+		
+#		echo '<pre>type: ' . $type . ' key1:' . $key1 . '   ' . $query; print_r($results); exit;
+		
 		if (count($results) !== 1) return NULL;
 		
 		$res = $results[0];
@@ -140,6 +142,27 @@ class sspmod_core_Storage_SQLPermanentStorage {
 		return $results;
 	}
 	
+	public function getKeys($type = NULL, $key1 = NULL, $key2 = NULL, $whichKey = 'type') {
+
+		if (!in_array($whichKey, array('key1', 'key2', 'type')))
+			throw new Exception('Invalid key type');
+			
+		$condition = self::getCondition($type, $key1, $key2);
+		
+		$query = "SELECT DISTINCT " . $whichKey . " FROM data WHERE " . $condition;
+		$results = $this->db->arrayQuery($query, SQLITE_ASSOC);
+
+		if (count($results) == 0) return NULL;
+		
+		$resarray = array();
+		foreach($results AS $key => $value) {
+			$resarray[] = $value[$whichKey];
+		}
+		
+		return $resarray;
+	}
+	
+	
 	public function remove($type, $key1, $key2) {
 		$query = "DELETE FROM data WHERE " . 
 			"key1 = '" . sqlite_escape_string($key1) . "' AND " . 
@@ -165,7 +188,7 @@ class sspmod_core_Storage_SQLPermanentStorage {
 		
 		if (!is_null($type)) $conditions[] = "type = '" . sqlite_escape_string($type) . "'";
 		if (!is_null($key1)) $conditions[] = "key1 = '" . sqlite_escape_string($key1) . "'";
-		if (!is_null($key2)) $conditions[] = "type = '" . sqlite_escape_string($key2) . "'";
+		if (!is_null($key2)) $conditions[] = "key2 = '" . sqlite_escape_string($key2) . "'";
 		
 		if (count($conditions) === 0) return '1';
 		
