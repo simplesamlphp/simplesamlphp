@@ -587,6 +587,13 @@ class SimpleSAML_Utilities {
 
 		// Log a error message
 		SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - UserError: ErrCode:' . $error . ': ' . urlencode($emsg) );
+		if (!empty($e)) {
+			SimpleSAML_Logger::error('Exception: ' . get_class($e));
+			SimpleSAML_Logger::error('Backtrace:');
+			foreach (explode("\n", $etrace) as $line) {
+				SimpleSAML_Logger::error($line);
+			}
+		}
 		
 		$languagefile = null;
 		if (isset($errorcode)) $languagefile = 'errors';
