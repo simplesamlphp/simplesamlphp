@@ -2,6 +2,8 @@
 
 require_once(dirname(dirname(__FILE__)) . '/libextinc/OAuth.php');
 
+$oauthconfig = SimpleSAML_Configuration::getOptionalConfig('module_oauth.php');
+
 if(!array_key_exists('oauth_token', $_REQUEST)) {
 	throw new Exception('Required URL parameter [oauth_token] is missing.');
 }
@@ -22,7 +24,7 @@ $server->add_signature_method($plaintext_method);
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
-$as = 'saml2';
+$as = $oauthconfig->getString('auth');
 if (!$session->isValid($as)) {
 	SimpleSAML_Auth_Default::initLogin($as, SimpleSAML_Utilities::selfURL());
 }
