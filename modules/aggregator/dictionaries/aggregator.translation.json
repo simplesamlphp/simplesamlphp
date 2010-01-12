@@ -1,2 +1,14 @@
 {
+	"frontpage_link": {
+		"no": "Metadata aggregator"
+	},
+	"aggregator_header": {
+		"no": "Aggregatorer"
+	},
+	"no_aggregators": {
+		"no": "Ingen aggregator definert i konfigurasjonen"
+	},
+	"text": {
+		"no": "tekst"
+	}
 }

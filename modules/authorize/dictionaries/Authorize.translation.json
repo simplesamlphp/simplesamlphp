@@ -1,8 +1,10 @@
 {
 	"403_header": {
-		"es": "Acceso denegado"
+		"es": "Acceso denegado",
+		"no": "Ingen tilgang"
 	},
 	"403_text": {
-		"es": "No tiene los privilegios necesarios para acceder a esta aplicaci\u00f3n. Si considera que esto no es correcto, consulte el administrador."
+		"es": "No tiene los privilegios necesarios para acceder a esta aplicaci\u00f3n. Si considera que esto no es correcto, consulte el administrador.",
+		"no": "Du har ikke de n\u00f8dvendige rettighetene til \u00e5 n\u00e5 denne siden. Vennligst kontakt administratoren dersom du mener dette ikke stemmer."
 	}
 }
