@@ -1,2 +1,17 @@
 {
+	"modlist_header": {
+		"no": "Tilgjengelige moduler"
+	},
+	"modlist_name": {
+		"no": "Navn"
+	},
+	"modlist_status": {
+		"no": "Status"
+	},
+	"modlist_enabled": {
+		"no": "P\u00e5sl\u00e5tt"
+	},
+	"modlist_disabled": {
+		"no": "Avsl\u00e5tt"
+	}
 }
