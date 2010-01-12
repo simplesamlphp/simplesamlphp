@@ -1,0 +1,17 @@
+{
+	"modlist_header": {
+		"en": "Available modules"
+	},
+	"modlist_name": {
+		"en": "Name"
+	},
+	"modlist_status": {
+		"en": "Status"
+	},
+	"modlist_enabled": {
+		"en": "Enabled"
+	},
+	"modlist_disabled": {
+		"en": "Disabled"
+	}
+}

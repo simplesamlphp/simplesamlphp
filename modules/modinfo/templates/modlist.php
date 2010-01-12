@@ -1,5 +1,5 @@
 <?php
-$this->data['header'] = $this->t('{modinfo:dict:modlist_header}');
+$this->data['header'] = $this->t('{modinfo:modinfo:modlist_header}');
 $this->includeAtTemplateBase('includes/header.php');
 
 #$icon_enabled  = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="' .
@@ -12,8 +12,8 @@ $this->includeAtTemplateBase('includes/header.php');
 
 <table>
 <tr>
-<th><?php echo($this->t('{modinfo:dict:modlist_name}')); ?></th>
-<th><?php echo($this->t('{modinfo:dict:modlist_status}')); ?></th>
+<th><?php echo($this->t('{modinfo:modinfo:modlist_name}')); ?></th>
+<th><?php echo($this->t('{modinfo:modinfo:modlist_status}')); ?></th>
 </tr>
 <?php
 foreach($this->data['modules'] as $id => $info) {
@@ -21,10 +21,10 @@ foreach($this->data['modules'] as $id => $info) {
 	echo('<td>' . htmlspecialchars($id) . '</td>');
 	if($info['enabled']) {
 		echo('<td><img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="' .
-			htmlspecialchars($this->t('{modinfo:dict:modlist_enabled}')) . '" /></td>');
+			htmlspecialchars($this->t('{modinfo:modinfo:modlist_enabled}')) . '" /></td>');
 	} else {
 		echo('<td><img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="' .
-			htmlspecialchars($this->t('{modinfo:dict:modlist_disabled}')) . '" /></td>');
+			htmlspecialchars($this->t('{modinfo:modinfo:modlist_disabled}')) . '" /></td>');
 	}
 	echo('</tr>');
 }

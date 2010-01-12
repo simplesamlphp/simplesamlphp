@@ -226,7 +226,8 @@ class SimpleSAML_XHTML_Template {
 				$dictDir = $this->configuration->getPathValue('dictionarydir', 'dictionaries/');
 				$fileName = $name;
 			}
-			$this->dictionaries[$name] = $this->readDictionaryFile($dictDir . $fileName . '.php');
+			
+			$this->dictionaries[$name] = $this->readDictionaryFile($dictDir . $fileName);
 		}
 
 		return $this->dictionaries[$name];
@@ -440,21 +441,48 @@ class SimpleSAML_XHTML_Template {
 	 */
 	private function readDictionaryFile($filename) {
 		assert('is_string($filename)');
+		
+		$definitionFile = $filename . '.definition.json';
+		$translationFile = $filename . '.translation.json';
 
 		SimpleSAML_Logger::debug('Template: Reading [' . $filename . ']');
 
-		if (!file_exists($filename)) {
-			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
+		if (!file_exists($definitionFile)) {
+			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $definitionFile . ']');
+					
 			return array();
 		}
-
-		$lang = NULL;
-		include($filename);
-		if (isset($lang)) {
-			return $lang;
+		
+		$fileContent = file_get_contents($definitionFile);
+		$fileArray = json_decode($fileContent, TRUE);
+		
+		if (empty($fileArray)) {
+			SimpleSAML_Logger::error('Invalid dictionary definition file [' . $definitionFile . ']');
+			return array();
 		}
+		
+		$lang = json_decode($fileContent, TRUE);
 
-		return array();
+		$moreTrans = NULL;
+		if (file_exists($translationFile)) {
+			$fileContent = file_get_contents($translationFile);
+			$moreTrans = json_decode($fileContent, TRUE);
+
+		}
+		if (!empty($moreTrans))
+			$lang = self::lang_merge($lang, $moreTrans);
+
+		// echo '<pre>'; print_r($lang); exit;
+
+		return $lang;
+	}
+	
+	// Merge two translation arrays.
+	public static function lang_merge($def, $lang) {
+		foreach($def AS $key => $value) {
+			$def[$key] = array_merge($value, $lang[$key]);
+		}
+		return $def;
 	}
 
 

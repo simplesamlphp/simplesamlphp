@@ -1,0 +1,26 @@
+{
+	"header": {
+		"en": "Consent withdrawal"
+	},
+	"granted": {
+		"en": "You have earlier granted %NO% consents to %OF% different services."
+	},
+	"info": {
+		"en": "If you withdraw all consents given, you will be asked again each time you visit a new service, whether or not you would like to accept that a given set of personal information are transferred."
+	},
+	"withdraw": {
+		"en": "Withdraw all consent given"
+	},
+	"headerstats": {
+		"en": "Consent Storage Statistics"
+	},
+	"statusers": {
+		"en": "%NO% unique users have given consent."
+	},
+	"statservices": {
+		"en": "Consent is given to %NO% unique services."
+	},
+	"stattotal": {
+		"en": "Consent storage contains %NO% entries."
+	}
+}

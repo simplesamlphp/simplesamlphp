@@ -1,0 +1,50 @@
+{
+	"title_no_user": {
+		"en": "OpenID provider"
+	},
+	"title_user": {
+		"en": "OpenID for %USERID%"
+	},
+	"user_page_for": {
+		"en": "This is the OpenID user page for <code>%USERID%<\/code>."
+	},
+	"view_own_page": {
+		"en": "View your own OpenID page."
+	},
+	"login_view_own_page": {
+		"en": "Log in to view your own OpenID page."
+	},
+	"your_identifier": {
+		"en": "To log in with your OpenID identifier, use the following identifier:"
+	},
+	"howto_delegate": {
+		"en": "You can also delegate a different identifier to use this OpenID provider. To do that, you need to add the following to the <code>&lt;head&gt;<\/code>-element on the webpage of that identifier:"
+	},
+	"logout_title": {
+		"en": "Log out"
+	},
+	"logout": {
+		"en": "Click here to log out of your OpenID user."
+	},
+	"confirm_question": {
+		"en": "Do you wish to log on to %SITEURL%?"
+	},
+	"remember": {
+		"en": "Remember this decision"
+	},
+	"confirm": {
+		"en": "Confirm"
+	},
+	"notconfirm": {
+		"en": "Do not confirm"
+	},
+	"trustlist_trustedsites": {
+		"en": "Trusted Sites"
+	},
+	"trustlist_remove": {
+		"en": "Remove"
+	},
+	"trustlist_nosites": {
+		"en": "No sites are trusted. When you authenticate with a site, you can choose to add it to this list by choosing <q>Remember this decision<\/q>."
+	}
+}

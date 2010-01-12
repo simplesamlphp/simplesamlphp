@@ -1,0 +1,14 @@
+{
+	"frontpage_link": {
+		"en": "Metadata aggregator"
+	},
+	"aggregator_header": {
+		"en": "Aggregators"
+	},
+	"no_aggregators": {
+		"en": "No aggregators defined in configuration."
+	},
+	"text": {
+		"en": "text"
+	}
+}
