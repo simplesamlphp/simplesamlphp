@@ -69,7 +69,7 @@ switch($action) {
 		throw new Exception('Unknown action [' . $action . ']');
 }
 
-function readline($prompt = '') {
+function ssp_readline($prompt = '') {
     echo $prompt;
     return rtrim( fgets( STDIN ), "\n" );
 }
@@ -122,7 +122,7 @@ function push($file, $fileWithoutExt, $aid) {
 		echo('Go to this URL to authenticate/authorize the request: ' . $url . "\n");
 		system('open ' . $url);
 
-		readline('Click enter when you have completed the authorization step using your web browser...');
+		ssp_readline('Click enter when you have completed the authorization step using your web browser...');
 
 		// Replace the request token with an access token
 		$accessToken = $consumer->getAccessToken( $baseurl . '/module.php/oauth/accessToken.php', $requestToken);
