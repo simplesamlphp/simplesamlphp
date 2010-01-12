@@ -23,7 +23,7 @@ $translationconfig = SimpleSAML_Configuration::getConfig('translation.php');
 $application = $translationconfig->getString('application', 'simplesamlphp');
 $base = $translationconfig->getString('baseurl') . '/module.php/translationportal/';
 
-if (!preg_match('/^(.*?)(\.definition|translation)?\.(json|php)/', $file, $match)) 
+if (!preg_match('/^(.*?)(\.definition|\.translation)?\.(json|php)/', $file, $match)) 
 	throw new Exception('Illlegal file name. Must end on (definition|translation).json');
 $fileWithoutExt = $match[1];
 
