@@ -480,7 +480,8 @@ class SimpleSAML_XHTML_Template {
 	// Merge two translation arrays.
 	public static function lang_merge($def, $lang) {
 		foreach($def AS $key => $value) {
-			$def[$key] = array_merge($value, $lang[$key]);
+			if (array_key_exists($key, $lang))
+				$def[$key] = array_merge($value, $lang[$key]);
 		}
 		return $def;
 	}
