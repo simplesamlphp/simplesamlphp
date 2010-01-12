@@ -99,5 +99,11 @@
 		"nn": "Ingen tenester er lagra.  N\u00e5r du logger inn p\u00e5 ei teneste, kan du velja \u00e5 leggja ho inn p\u00e5 lista over tiltrudde partnarar ved \u00e5 velja <q>Hugs denne avgjerda<\/q>.",
 		"da": "Der er ikke gemt nogle sites. N\u00e5r authenticater mod et site kan du v\u00e6lge at gemme sitet i denne liste ved at v\u00e6lge <q>Gem mit valg<\/q>",
 		"sv": "Inga sajter \u00e4r sparade. N\u00e4r du loggar in p\u00e5 en sajt kan du v\u00e4lja om du ska l\u00e4gga den i listan genom att v\u00e4lja <q>Spara detta beslut<\/q>."
+	},
+	"your_identifier": {
+		"no": "For \u00e5 logge inn med din OpenID, bruk f\u00f8lgende ID:"
+	},
+	"howto_delegate": {
+		"no": "Du kan ogs\u00e5 delegere en annen OpenID til \u00e5 benytte denne OpenID tilbyderen. For \u00e5 gj\u00f8re det, m\u00e5 du legge til f\u00f8lgende <code>&lt;head&gt;<\/code>-element p\u00e5 websiden til denne OpenID-en du vil delegere."
 	}
 }
