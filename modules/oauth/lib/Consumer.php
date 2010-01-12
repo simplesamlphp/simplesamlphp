@@ -36,8 +36,6 @@ class sspmod_oauth_Consumer {
 		if(array_key_exists('error', $responseParsed))
 			throw new Exception('Error getting request token: ') . $responseParsed['error'];
 			
-#		echo('<pre>'); print_r($response_req); exit;
-		
 		$requestToken = $responseParsed['oauth_token'];
 		$requestTokenSecret = $responseParsed['oauth_token_secret'];
 		
@@ -77,6 +75,33 @@ class sspmod_oauth_Consumer {
 		$accessTokenSecret = $accessResponseParsed['oauth_token_secret'];
 
 		return new OAuthToken($accessToken, $accessTokenSecret);
+	}
+	
+	public function postRequest($url, $accessToken, $parameters) {
+		$data_req = OAuthRequest::from_consumer_and_token($this->consumer, $accessToken, "POST", $url, $parameters);
+		$data_req->sign_request($this->signer, $this->consumer, $accessToken);
+		$postdata = $data_req->to_postdata();
+
+		$opts = array(
+			'ssl' => array(
+				'verify_peer' => FALSE,
+				// 'cafile' => $file,
+				// 'local_cert' => $spKeyCertFile,
+				'capture_peer_cert' => TRUE,
+				'capture_peer_chain' => TRUE,
+			),
+			'http' => array(
+				'method' => 'POST',
+				'content' => $postdata,
+				'header' => 'Content-Type: application/x-www-form-urlencoded',
+			),
+		);
+		$context = stream_context_create($opts);
+		$response = file_get_contents($url, FALSE, $context);
+		if ($response === FALSE) {
+			throw new SimpleSAML_Error_Exception('Failed to push definition file to ' . $pushURL);
+		}
+		return $response;
 	}
 	
 	public function getUserInfo($url, $accessToken) {
