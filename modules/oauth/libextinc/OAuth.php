@@ -326,7 +326,6 @@ class OAuthRequest {/*{{{*/
   public function get_normalized_http_url() {/*{{{*/
     $parts = parse_url($this->http_url);
 
-	if (!isset($parts['port'])) $parts['port'] = '80';
 	if (!isset($parts['path'])) $parts['part'] = '';
 
     $port = @$parts['port'];
