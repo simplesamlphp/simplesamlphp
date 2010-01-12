@@ -1,1 +1,8 @@
-{"select_source_header":{"no":"Velg en autentiseringskilde"},"select_source_text":{"no":"Den valgte autentiseringskilden vil bli brukt til \u00e5 autentisere brukeren og deretter etablere en gyldig sesjon."}}
+{
+	"select_source_header": {
+		"no": "Velg en autentiseringskilde"
+	},
+	"select_source_text": {
+		"no": "Den valgte autentiseringskilden vil bli brukt til \u00e5 autentisere brukeren og deretter etablere en gyldig sesjon."
+	}
+}
