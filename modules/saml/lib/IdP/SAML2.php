@@ -39,6 +39,8 @@ class sspmod_saml_IdP_SAML2 {
 		$assertion = sspmod_saml2_Message::buildAssertion($idpMetadata, $spMetadata, $attributes, $consumerURL);
 		$assertion->setInResponseTo($requestId);
 
+		$nameId = $assertion->getNameId();
+
 		/* Maybe encrypt the assertion. */
 		$assertion = sspmod_saml2_Message::encryptAssertion($idpMetadata, $spMetadata, $assertion);
 
@@ -51,7 +53,7 @@ class sspmod_saml_IdP_SAML2 {
 		/* Add the session association (for logout). */
 		$session = SimpleSAML_Session::getInstance();
 		$session->add_sp_session($spEntityId);
-		$session->setSessionNameId('saml20-sp-remote', $spEntityId, $assertion->getNameId());
+		$session->setSessionNameId('saml20-sp-remote', $spEntityId, $nameId);
 
 		/* Send the response. */
 		$binding = new SAML2_HTTPPost();
