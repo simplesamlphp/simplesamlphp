@@ -32,7 +32,7 @@ Prerequisites
 -------------
 
  * Some webserver capable of executing PHP scripts.
- * PHP version >= 5.2.0 if you are using simpleSAMLphp as an SP connected to a Shibboleth IdP; PHP version >= 5.1.2 if not.
+ * PHP version >= 5.2.0.
  * Suppoort for the following PHP extensions:
    * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`
    * When encrypting assertions: `mcrypt`
