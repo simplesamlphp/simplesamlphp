@@ -20,7 +20,6 @@ $t->data['header'] = '{status:header_wsfed}';
 $t->data['remaining'] = $session->remainingTime();
 $t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;
-$t->data['icon'] = 'bino.png';
 $t->data['logouturl'] = '/' . $config->getBaseURL() . 'wsfed/sp/initSLO.php?RelayState=/' . $config->getBaseURL() . 'logout.php';
 $t->show();
 

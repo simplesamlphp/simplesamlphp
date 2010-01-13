@@ -140,7 +140,6 @@ $t->data['pageid'] = 'frontpage_federation';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
 $t->data['header'] = 'simpleSAMLphp installation page';
-$t->data['icon'] = 'compass_l.png';
 
 
 $t->data['links'] = $links;

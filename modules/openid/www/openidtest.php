@@ -24,7 +24,6 @@ $t->data['header'] = '{openid:dictopenid:openidtestpage}';
 $t->data['remaining'] = $session->remainingTime();
 $t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;
-$t->data['icon'] = 'bino.png';
 $t->data['logouturl'] = NULL;
 $t->show();
 

@@ -52,6 +52,5 @@ $t->data['remaining'] = $session->remainingTime();
 $t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;
 $t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
-$t->data['icon'] = 'bino.png';
 $t->show();
 

@@ -1,7 +1,6 @@
 <?php
 
 $this->data['header'] = 'OpenID Login';
-$this->data['icon'] = 'openid.png';
 $this->data['autofocus'] = 'openid-identifier';
 $this->includeAtTemplateBase('includes/header.php');
 

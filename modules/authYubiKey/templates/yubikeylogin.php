@@ -1,5 +1,4 @@
 <?php
-$this->data['icon'] = 'lock.png';
 $this->data['header'] = $this->t('{authYubiKey:yubikey:header}');
 $this->data['autofocus'] = 'otp';
 

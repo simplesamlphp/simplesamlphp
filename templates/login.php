@@ -1,5 +1,4 @@
 <?php 
-	if (!array_key_exists('icon', $this->data)) $this->data['icon'] = 'lock.png';
 	if (!isset($this->data['autofocus'])) {
 		$this->data['autofocus'] = 'username';
 	}

@@ -74,7 +74,6 @@ $t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;
 $t->data['attributes'] = $session->getAttributes();
 $t->data['logout'] = null;
-$et->data['icon'] = 'bino.png';
 $t->show();
 
 

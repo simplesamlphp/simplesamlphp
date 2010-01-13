@@ -1,6 +1,5 @@
 <?php 
 	$this->data['header'] = $this->t('error_header');
-	$this->data['icon'] = 'bomb_l.png';
 	
 	$this->data['head'] = '
 <meta name="robots" content="noindex, nofollow" />

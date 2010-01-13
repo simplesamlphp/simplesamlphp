@@ -1,5 +1,4 @@
 <?php
-$this->data['icon'] = 'lock.png';
 $this->data['header'] = $this->t('{login:user_pass_header}');
 
 if (strlen($this->data['username']) > 0) {

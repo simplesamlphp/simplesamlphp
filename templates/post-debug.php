@@ -1,5 +1,4 @@
 <?php 
-	$this->data['icon'] = 'debug.png';
 	$this->data['autofocus'] = 'sendbutton';
 	$this->includeAtTemplateBase('includes/header.php'); 
 

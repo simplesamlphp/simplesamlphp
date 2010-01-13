@@ -1,5 +1,4 @@
 <?php
-$this->data['icon'] = 'lock.png';
 $this->data['header'] = $this->t('{multiauth:multiauth:select_source_header}');
 
 $this->includeAtTemplateBase('includes/header.php');

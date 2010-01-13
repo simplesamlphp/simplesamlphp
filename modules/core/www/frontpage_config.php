@@ -134,7 +134,6 @@ $t->data['pageid'] = 'frontpage_config';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
 $t->data['header'] = 'simpleSAMLphp installation page';
-$t->data['icon'] = 'compass_l.png';
 $t->data['warnings'] = $warnings;
 
 

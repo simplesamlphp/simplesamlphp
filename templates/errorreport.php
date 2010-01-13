@@ -1,6 +1,5 @@
 <?php
 	$this->data['header'] = $this->t('errorreport_header');
-	$this->data['icon'] = 'bomb_l.png';
 	$this->includeAtTemplateBase('includes/header.php');
 ?>
 

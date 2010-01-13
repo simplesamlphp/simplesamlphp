@@ -1,6 +1,5 @@
 <?php
 $this->data['header'] = $this->t('metaover_header');
-$this->data['icon'] = 'bino.png';
 
 $this->includeAtTemplateBase('includes/header.php');
 ?>

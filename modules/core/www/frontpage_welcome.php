@@ -52,7 +52,6 @@ $t->data['pageid'] = 'frontpage_welcome';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
 $t->data['header'] = 'simpleSAMLphp installation page';
-$t->data['icon'] = 'compass_l.png';
 
 $t->data['links'] = $links;
 $t->data['links_welcome'] = $links_welcome;
