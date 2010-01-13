@@ -28,7 +28,7 @@ echo '</div>';
 if (count($this->data['info']) > 0) {
 ?>
 <div style="border: 1px solid #ccc; background: #eee; margin: 1em; padding: .5em">
-<p><?php echo '<img style="float: right" src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="OK" />'; ?>	
+<p><?php echo '<img style="float: right" src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/accept.png" alt="OK" />'; ?>	
 These checks succeeded:</p>
 <?php
 	echo '<ul>';

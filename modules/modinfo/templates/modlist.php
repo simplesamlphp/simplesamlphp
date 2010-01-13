@@ -2,7 +2,7 @@
 $this->data['header'] = $this->t('{modinfo:modinfo:modlist_header}');
 $this->includeAtTemplateBase('includes/header.php');
 
-#$icon_enabled  = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="' .
+#$icon_enabled  = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/accept.png" alt="' .
 #htmlspecialchars($this->t(...)" />';
 #$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/delete.png" alt="disabled" />';
 
@@ -20,7 +20,7 @@ foreach($this->data['modules'] as $id => $info) {
 	echo('<tr>');
 	echo('<td>' . htmlspecialchars($id) . '</td>');
 	if($info['enabled']) {
-		echo('<td><img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="' .
+		echo('<td><img src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/accept.png" alt="' .
 			htmlspecialchars($this->t('{modinfo:modinfo:modlist_enabled}')) . '" /></td>');
 	} else {
 		echo('<td><img src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/delete.png" alt="' .
