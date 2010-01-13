@@ -4,7 +4,7 @@ $this->includeAtTemplateBase('includes/header.php');
 
 #$icon_enabled  = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="' .
 #htmlspecialchars($this->t(...)" />';
-#$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="disabled" />';
+#$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/delete.png" alt="disabled" />';
 
 ?>
 
@@ -23,7 +23,7 @@ foreach($this->data['modules'] as $id => $info) {
 		echo('<td><img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="' .
 			htmlspecialchars($this->t('{modinfo:modinfo:modlist_enabled}')) . '" /></td>');
 	} else {
-		echo('<td><img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="' .
+		echo('<td><img src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/delete.png" alt="' .
 			htmlspecialchars($this->t('{modinfo:modinfo:modlist_disabled}')) . '" /></td>');
 	}
 	echo('</tr>');

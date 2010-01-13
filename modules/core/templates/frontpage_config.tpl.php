@@ -40,7 +40,7 @@ if ($this->data['isadmin']) {
 	
 	<?php
 	$icon_enabled  = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="enabled" />';
-	$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="disabled" />';
+	$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/delete.png" alt="disabled" />';
 	?>
 	
 		<tr class="<?php echo $this->data['enablematrix']['saml20-idp'] ? 'enabled' : 'disabled'; ?>"><td>SAML 2.0 IdP</td>
@@ -82,7 +82,7 @@ if ($this->data['isadmin']) {
 	
 	
 	$icon_enabled  = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/accept.png" alt="enabled" />';
-	$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="disabled" />';
+	$icon_disabled = '<img src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/delete.png" alt="disabled" />';
 	
 	
 	foreach ($this->data['funcmatrix'] AS $func) {

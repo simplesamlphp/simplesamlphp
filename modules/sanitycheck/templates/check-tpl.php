@@ -10,7 +10,7 @@ $this->includeAtTemplateBase('includes/header.php');
 if (count($this->data['errors']) > 0) {
 ?>
 <div style="border: 1px solid #800; background: #caa; margin: 1em; padding: .5em">
-<p><?php echo '<img style="float: right" src="/' . $this->data['baseurlpath'] . 'resources/icons/delete.png" alt="Failed" />'; ?>	
+<p><?php echo '<img style="float: right" src="/' . $this->data['baseurlpath'] . 'resources/icons/silk/delete.png" alt="Failed" />'; ?>	
 These checks failed:</p>
 <?php
 
