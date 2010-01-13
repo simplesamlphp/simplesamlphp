@@ -10,7 +10,7 @@ function modinfo_hook_frontpage(&$links) {
 
 	$links['config'][] = array(
 		'href' => SimpleSAML_Module::getModuleURL('modinfo/'),
-		'text' => '{modinfo:dict:modlist_header}',
+		'text' => '{modinfo:modinfo:modlist_header}',
 		);
 
 }
