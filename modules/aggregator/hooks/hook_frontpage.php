@@ -10,7 +10,7 @@ function aggregator_hook_frontpage(&$links) {
 
 	$links['federation'][] = array(
 		'href' => SimpleSAML_Module::getModuleURL('aggregator/'),
-		'text' => '{aggregator:dict:frontpage_link}',
+		'text' => '{aggregator:aggregator:frontpage_link}',
 		);
 
 }

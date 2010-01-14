@@ -1,5 +1,5 @@
 <?php
-$this->data['header'] = $this->t('{aggregator:dict:aggregator_header}');
+$this->data['header'] = $this->t('{aggregator:aggregator:aggregator_header}');
 $this->includeAtTemplateBase('includes/header.php');
 
 echo('<h1>Metarefresh fetch</h1>');
