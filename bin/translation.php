@@ -60,8 +60,10 @@ switch($action) {
 	case 'convert':
 
 		include($file);
-		$encoded = json_format(convert($lang));
-		file_put_contents($fileWithoutExt . '.definition.json' , $encoded);
+		$definition = json_format(convert_definition($lang));
+		$translation = json_format(convert_translation($lang)) . "\n";
+		file_put_contents($fileWithoutExt . '.definition.json' , $definition);
+		file_put_contents($fileWithoutExt . '.translation.json' , $translation);
 		break;
 
 	
@@ -74,12 +76,19 @@ function ssp_readline($prompt = '') {
     return rtrim( fgets( STDIN ), "\n" );
 }
 
-function convert($data) {
+function convert_definition($data) {
 	$new = array();
 	foreach($data AS $key => $value) {
 		$new[$key] = array('en' => $value['en']);
 	}
 	return $new;
+}
+
+function convert_translation($data) {
+	foreach ($data as &$value) {
+		unset($value['en']);
+	}
+	return $data;
 }
 
 function push($file, $fileWithoutExt, $aid) {
