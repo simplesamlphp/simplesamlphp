@@ -143,6 +143,12 @@ The following SAML 2.0 options are available:
     configure your webserver to deliver this URL to the correct PHP
     page.
 
+`saml20.sendartifact`
+:   Set to `TRUE` to enable the IdP to send responses with the HTTP-Artifact binding.
+    Defaults to `FALSE`.
+
+:   Note that this requires a configured memcache server.
+
 `saml20.sign.response`
 :   Whether `<samlp:Response> messages should be signed.
     Defaults to `TRUE`.

@@ -32,6 +32,8 @@ abstract class SAML2_Binding {
 			return new SAML2_HTTPPost();
 		case SAML2_Const::BINDING_HTTP_REDIRECT:
 			return new SAML2_HTTPRedirect();
+		case SAML2_Const::BINDING_HTTP_ARTIFACT:
+			return new SAML2_HTTPArtifact();
 		default:
 			throw new Exception('Unsupported binding: ' . var_export($urn, TRUE));
 		}
@@ -53,12 +55,16 @@ abstract class SAML2_Binding {
 		case 'GET':
 			if (array_key_exists('SAMLRequest', $_REQUEST) || array_key_exists('SAMLResponse', $_REQUEST)) {
 				return new SAML2_HTTPRedirect();
+			} elseif (array_key_exists('SAMLart', $_REQUEST) ){
+				return new SAML2_HTTPArtifact();
 			}
 			break;
 
 		case 'POST':
 			if (array_key_exists('SAMLRequest', $_REQUEST) || array_key_exists('SAMLResponse', $_REQUEST)) {
 				return new SAML2_HTTPPost();
+			} elseif (array_key_exits('CONTENT_TYPE', $_SERVER) && $_SERVER['CONTENT_TYPE'] === 'text/xml'){
+				return new SAML2_SOAP();
 			}
 			break;
 		}

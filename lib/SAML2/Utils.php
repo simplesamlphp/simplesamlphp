@@ -115,6 +115,7 @@ class SAML2_Utils {
 
 		if ($xpCache === NULL || !$xpCache->document->isSameNode($node->ownerDocument)) {
 			$xpCache = new DOMXPath($node->ownerDocument);
+			$xpCache->registerNamespace('soap-env', SAML2_Const::NS_SOAP);
 			$xpCache->registerNamespace('saml_protocol', SAML2_Const::NS_SAMLP);
 			$xpCache->registerNamespace('saml_assertion', SAML2_Const::NS_SAML);
 			$xpCache->registerNamespace('ds', XMLSecurityDSig::XMLDSIGNS);

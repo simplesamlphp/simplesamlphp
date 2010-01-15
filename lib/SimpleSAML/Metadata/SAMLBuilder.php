@@ -396,6 +396,10 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$e->appendChild($t);
 		}
 
+		if ($metadata->hasValue('ArtifactResolutionService')){
+			$this->addEndpoints($e, 'ArtifactResolutionService', $metadata->getEndpoints('ArtifactResolutionService'));
+		}
+
 		$this->addEndpoints($e, 'SingleSignOnService', $metadata->getEndpoints('SingleSignOnService'));
 
 		$this->entityDescriptor->appendChild($e);

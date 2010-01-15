@@ -471,6 +471,10 @@ abstract class SAML2_Message implements SAML2_SignedElement {
 			return new SAML2_LogoutRequest($xml);
 		case 'Response':
 			return new SAML2_Response($xml);
+		case 'ArtifactResponse':
+			return new SAML2_ArtifactResponse($xml);
+		case 'ArtifactResolve':
+			return new SAML2_ArtifactResolve($xml);
 		default:
 			throw new Exception('Unknown SAML message: ' . var_export($xml->localName, TRUE));
 		}

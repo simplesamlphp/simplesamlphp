@@ -860,6 +860,8 @@ class SimpleSAML_Configuration {
 			return SAML2_Const::BINDING_HTTP_REDIRECT;
 		case 'saml20-sp-remote:AssertionConsumerService':
 			return SAML2_Const::BINDING_HTTP_POST;
+		case 'saml20-idp-remote:ArtifactResolutionService':
+			return SAML2_Const::BINDING_SOAP;
 		case 'shib13-idp-remote:SingleSignOnService':
 			return 'urn:mace:shibboleth:1.0:profiles:AuthnRequest';
 		case 'shib13-sp-remote:AssertionConsumerService':

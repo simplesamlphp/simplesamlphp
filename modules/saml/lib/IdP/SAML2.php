@@ -32,6 +32,16 @@ class sspmod_saml_IdP_SAML2 {
 		$relayState = $state['saml:RelayState'];
 		$consumerURL = $state['saml:ConsumerURL'];
 
+		if (isset($state['saml:Binding'])) {
+			$protocolBinding = $state['saml:Binding'];
+		} else {
+			/*
+			 * To allow for upgrading while people are logging in.
+			 * Should be removed in 1.7.
+			 */
+			$protocolBinding = SAML2_Const::BINDING_HTTP_POST;
+		}
+
 		$idp = SimpleSAML_IdP::getByState($state);
 
 		$idpMetadata = $idp->getConfig();
@@ -56,7 +66,7 @@ class sspmod_saml_IdP_SAML2 {
 		$session->setSessionNameId('saml20-sp-remote', $spEntityId, $nameId);
 
 		/* Send the response. */
-		$binding = new SAML2_HTTPPost();
+		$binding = SAML2_Binding::getBinding($protocolBinding);
 		$binding->setDestination(sspmod_SAML2_Message::getDebugDestination());
 		$binding->send($ar);
 	}
@@ -83,6 +93,16 @@ class sspmod_saml_IdP_SAML2 {
 		$relayState = $state['saml:RelayState'];
 		$consumerURL = $state['saml:ConsumerURL'];
 
+		if (isset($state['saml:Binding'])) {
+			$protocolBinding = $state['saml:Binding'];
+		} else {
+			/*
+			 * To allow for upgrading while people are logging in.
+			 * Should be removed in 1.7.
+			 */
+			$protocolBinding = SAML2_Const::BINDING_HTTP_POST;
+		}
+
 		$idp = SimpleSAML_IdP::getByState($state);
 
 		$idpMetadata = $idp->getConfig();
@@ -102,7 +122,7 @@ class sspmod_saml_IdP_SAML2 {
 			'Message' => $error->getStatusMessage(),
 		));
 
-		$binding = new SAML2_HTTPPost();
+		$binding = SAML2_Binding::getBinding($protocolBinding);
 		$binding->setDestination(sspmod_SAML2_Message::getDebugDestination());
 		$binding->send($ar);
 	}
@@ -117,6 +137,11 @@ class sspmod_saml_IdP_SAML2 {
 
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $idp->getConfig();
+
+		$supportedBindings = array(SAML2_Const::BINDING_HTTP_POST);
+		if ($idpMetadata->getBoolean('saml20.sendartifact', FALSE)) {
+			$supportedBindings[] = SAML2_Const::BINDING_HTTP_ARTIFACT;
+		}
 
 		if (isset($_REQUEST['spentityid'])) {
 			/* IdP initiated authentication. */
@@ -141,6 +166,11 @@ class sspmod_saml_IdP_SAML2 {
 				$relayState = NULL;
 			}
 
+			if (isset($_REQUEST['binding'])){
+				$protocolBinding = (string)$_REQUEST['binding'];
+			} else {
+				$protocolBinding = NULL;
+			}
 			$requestId = NULL;
 			$IDPList = array();
 			$forceAuthn = FALSE;
@@ -171,6 +201,7 @@ class sspmod_saml_IdP_SAML2 {
 			$requestId = $requestCache['RequestID'];
 			$forceAuthn = $requestCache['ForceAuthn'];
 			$isPassive = $requestCache['IsPassive'];
+			$protocolBinding = SAML2_Const::BINDING_HTTP_POST; /* HTTP-POST was the only supported binding before 1.6. */
 
 			if (isset($requestCache['IDPList'])) {
 				$IDPList = $requestCache['IDPList'];
@@ -208,15 +239,23 @@ class sspmod_saml_IdP_SAML2 {
 			$forceAuthn = $request->getForceAuthn();
 			$isPassive = $request->getIsPassive();
 			$consumerURL = $request->getAssertionConsumerServiceURL();
+			$protocolBinding = $request->getProtocolBinding();
 
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '. var_export($spEntityId, TRUE));
 		}
 
+		if ($protocolBinding === NULL || !in_array($protocolBinding, $supportedBindings, TRUE)) {
+			/*
+			 * No binding specified or unsupported binding requested - default to HTTP-POST.
+			 * TODO: Select any supported binding based on default endpoint?
+			 */
+			$protocolBinding = SAML2_Const::BINDING_HTTP_POST;
+		}
 
 		if ($consumerURL !== NULL) {
 			$found = FALSE;
 			foreach ($spMetadata->getEndpoints('AssertionConsumerService') as $ep) {
-				if ($ep['Binding'] !== SAML2_Const::BINDING_HTTP_POST) {
+				if ($ep['Binding'] !== $protocolBinding) {
 					continue;
 				}
 				if ($ep['Location'] !== $consumerURL) {
@@ -235,7 +274,7 @@ class sspmod_saml_IdP_SAML2 {
 		}
 		if ($consumerURL === NULL) {
 			/* Not specified or invalid. Use default. */
-			$consumerURL = $spMetadata->getDefaultEndpoint('AssertionConsumerService', array(SAML2_Const::BINDING_HTTP_POST));
+			$consumerURL = $spMetadata->getDefaultEndpoint('AssertionConsumerService', array($protocolBinding));
 			$consumerURL = $consumerURL['Location'];
 		}
 
@@ -248,7 +287,7 @@ class sspmod_saml_IdP_SAML2 {
 		$sessionLostParams = array(
 			'spentityid' => $spEntityId,
 			'cookieTime' => time(),
-			);
+		);
 		if ($relayState !== NULL) {
 			$sessionLostParams['RelayState'] = $relayState;
 		}
@@ -269,6 +308,7 @@ class sspmod_saml_IdP_SAML2 {
 			'ForceAuthn' => $forceAuthn,
 			'isPassive' => $isPassive,
 			'saml:ConsumerURL' => $consumerURL,
+			'saml:Binding' => $protocolBinding,
 		);
 
 		$idp->handleAuthenticationRequest($state);

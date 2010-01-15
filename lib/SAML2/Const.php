@@ -30,6 +30,11 @@ class SAML2_Const {
 	const BINDING_HTTP_REDIRECT = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect';
 
 	/**
+	 * The URN for the HTTP-ARTIFACT binding.
+	 */
+	const BINDING_HTTP_ARTIFACT = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact';
+
+	/**
 	 * The URN for the SOAP binding.
 	 */
 	const BINDING_SOAP = 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP';
@@ -67,6 +72,11 @@ class SAML2_Const {
 	 */
 	const NAMEID_ENCRYPTED = 'urn:oasis:names:tc:SAML:2.0:nameid-format:encrypted';
 
+
+	/**
+	 * The namespace for the SOAP protocol.
+	 */
+	const NS_SOAP = 'http://schemas.xmlsoap.org/soap/envelope/';
 
 	/**
 	 * The namespace for the SAML 2 protocol.

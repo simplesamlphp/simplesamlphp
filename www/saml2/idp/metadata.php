@@ -27,10 +27,10 @@ try {
 		/* Only one valid certificate. */
 		$certFingerprint = $certFingerprint[0];
 	}
-	
+
 	$logouttype = 'traditional';
 	if (array_key_exists('logouttype', $idpmeta)) $logouttype = $idpmeta['logouttype'];
-	
+
 	$urlSLO = $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted', array('logouttype' => $logouttype));
 	$urlSLOr = $metadata->getGenerated('SingleLogoutServiceResponse', 'saml20-idp-hosted', array('logouttype' => $logouttype));
 
@@ -45,6 +45,15 @@ try {
 
 	if ($metaArray['SingleLogoutServiceResponse'] === $metaArray['SingleLogoutService']) {
 		unset($metaArray['SingleLogoutServiceResponse']);
+	}
+
+	if (isset($idpmeta['saml20.sendartifact']) && $idpmeta['saml20.sendartifact'] === TRUE) {
+		/* Artifact sending enabled. */
+		$metaArray['ArtifactResolutionService'][] = array(
+			'index' => 0,
+			'Location' => SimpleSAML_Utilities::getBaseURL() . 'saml2/idp/ArtifactResolutionService.php',
+			'Binding' => SAML2_Const::BINDING_SOAP,
+		);
 	}
 
 	if (array_key_exists('NameIDFormat', $idpmeta)) {
@@ -74,7 +83,7 @@ try {
 	$metaBuilder->addContact('technical', array(
 		'emailAddress' => $config->getString('technicalcontact_email', NULL),
 		'name' => $config->getString('technicalcontact_name', NULL),
-		));
+	));
 	$metaxml = $metaBuilder->getEntityDescriptorText();
 
 	/* Sign the metadata if enabled. */
@@ -82,30 +91,30 @@ try {
 
 	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
 		$defaultidp = $config->getString('default-saml20-idp', NULL);
-		
+
 		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
-		
-	
+
+
 		$t->data['header'] = 'saml20-idp';
 		$t->data['metaurl'] = SimpleSAML_Utilities::selfURLNoQuery();
 		$t->data['metadata'] = htmlentities($metaxml);
 		$t->data['metadataflat'] = htmlentities($metaflat);
 		$t->data['defaultidp'] = $defaultidp;
 		$t->show();
-			
+
 	} else {
-	
+
 		header('Content-Type: application/xml');
-		
+
 		echo $metaxml;
 		exit(0);
 
 	}
 
 
-	
+
 } catch(Exception $exception) {
-	
+
 	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
 
 }
