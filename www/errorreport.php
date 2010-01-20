@@ -95,9 +95,9 @@ if(array_key_exists('email', $_POST)) {
 
 /* Send the email. */
 $toaddress = $config->getString('technicalcontact_email', 'na@example.org');
-if($email !== 'na@example.org') {
+if ($toaddress !== 'na@example.org') {
 	
-	$email = new SimpleSAML_XHTML_EMail($email, 'simpleSAMLphp error report', $from);
+	$email = new SimpleSAML_XHTML_EMail($toaddress, 'simpleSAMLphp error report', $from);
 	$email->setBody($message);
 	$email->send();
 }
