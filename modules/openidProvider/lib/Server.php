@@ -1,5 +1,8 @@
 <?php
 
+/* Add the OpenID library search path. */
+set_include_path(get_include_path() . PATH_SEPARATOR . dirname(dirname(dirname(dirname(__FILE__)))) . '/lib');
+
 /**
  * Helper class for the OpenID provider code.
  *

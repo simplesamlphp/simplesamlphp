@@ -6,6 +6,9 @@
  */
 SimpleSAML_Utilities::maskErrors(E_STRICT);
 
+/* Add the OpenID library search path. */
+set_include_path(get_include_path() . PATH_SEPARATOR . dirname(dirname(dirname(dirname(__FILE__)))) . '/lib');
+
 require_once('Auth/OpenID/SReg.php');
 require_once('Auth/OpenID/Server.php');
 require_once('Auth/OpenID/ServerRequest.php');
