@@ -7,17 +7,17 @@ $this->includeAtTemplateBase('includes/header.php');
 $params = array(
 	'%SITEURL%' => '<code>' . htmlspecialchars($this->data['trustRoot']) . '</code>',
 	);
-echo('<p>' . $this->t('{openidProvider:op:confirm_question}', $params) . '</p>');
+echo('<p>' . $this->t('{openidProvider:openidProvider:confirm_question}', $params) . '</p>');
 ?>
 <form method="post" action="?">
 <input type="hidden" name="StateID" value="<?php echo $this->data['StateID']; ?>" />
 
 <input type="checkbox" name="TrustRemember" value="on" id="remember" />
-<label for="TrustRemember"><?php echo($this->t('{openidProvider:op:remember}')); ?></label>
+<label for="TrustRemember"><?php echo($this->t('{openidProvider:openidProvider:remember}')); ?></label>
 <br />
 
-<input type="submit" name="TrustYes" value="<?php echo($this->t('{openidProvider:op:confirm}')); ?>" />
-<input type="submit" name="TrustNo" value="<?php echo($this->t('{openidProvider:op:notconfirm}')); ?>" />
+<input type="submit" name="TrustYes" value="<?php echo($this->t('{openidProvider:openidProvider:confirm}')); ?>" />
+<input type="submit" name="TrustNo" value="<?php echo($this->t('{openidProvider:openidProvider:notconfirm}')); ?>" />
 
 </form>
 </div>
