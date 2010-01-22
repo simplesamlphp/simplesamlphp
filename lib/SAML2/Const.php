@@ -125,6 +125,11 @@ class SAML2_Const {
 	 */
 	const STATUS_NO_PASSIVE = 'urn:oasis:names:tc:SAML:2.0:status:NoPassive';
 
+	/**
+	 * Second-level status code for PartialLogout.
+	 */
+	const STATUS_PARTIAL_LOGOUT = 'urn:oasis:names:tc:SAML:2.0:status:PartialLogout';
+
 }
 
 ?>
