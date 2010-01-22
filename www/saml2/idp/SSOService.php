@@ -13,11 +13,6 @@ require_once('../../../www/_include.php');
 
 SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
-$config = SimpleSAML_Configuration::getInstance();
-if (!$config->getBoolean('enable.saml20-idp', FALSE)) {
-	throw new SimpleSAML_Error_Error('NOACCESS');
-}
-
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idp = SimpleSAML_IdP::getById('saml2:' . $idpEntityId);

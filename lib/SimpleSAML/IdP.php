@@ -45,9 +45,17 @@ class SimpleSAML_IdP {
 		$this->id = $id;
 
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$globalConfig = SimpleSAML_Configuration::getInstance();
+
 		if (substr($id, 0, 6) === 'saml2:') {
+			if (!$globalConfig->getBoolean('enable.saml20-idp', FALSE)) {
+				throw new SimpleSAML_Error_Exception('enable.saml20-idp disabled in config.php.');
+			}
 			$this->config = $metadata->getMetaDataConfig(substr($id, 6), 'saml20-idp-hosted');
 		} elseif (substr($id, 0, 6) === 'saml1:') {
+			if (!$globalConfig->getBoolean('enable.shib13-idp', FALSE)) {
+				throw new SimpleSAML_Error_Exception('enable.shib13-idp disabled in config.php.');
+			}
 			$this->config = $metadata->getMetaDataConfig(substr($id, 6), 'shib13-idp-hosted');
 		} else {
 			assert(FALSE);
