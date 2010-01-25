@@ -136,9 +136,9 @@ class SimpleSAML_IdP {
 	/**
 	 * Called after authproc has run.
 	 *
-	 * @param array &$state  The authentication request state array.
+	 * @param array $state  The authentication request state array.
 	 */
-	public static function postAuthProc(array &$state) {
+	public static function postAuthProc(array $state) {
 		assert('is_callable($state["Responder"])');
 
 		if (isset($state['core:SP'])) {
@@ -155,9 +155,9 @@ class SimpleSAML_IdP {
 	/**
 	 * The user is authenticated.
 	 *
-	 * @param array &$state  The authentication request state arrray.
+	 * @param array $state  The authentication request state arrray.
 	 */
-	public static function postAuth(array &$state) {
+	public static function postAuth(array $state) {
 
 		$idp = SimpleSAML_IdP::getByState($state);
 
