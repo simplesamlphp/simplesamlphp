@@ -8,7 +8,7 @@ $baseDir = dirname(dirname(__FILE__));
 require_once($baseDir . '/lib/_autoload.php');
 
 if (count($argv) !== 3) {
-	echo "Wrong number of parameters. Run:   " . $argv[0] . " [pulldef,pushdef,pulltranslation] filename\n"; exit;
+	echo "Wrong number of parameters. Run:   " . $argv[0] . " [pulldef,push,pull] filename\n"; exit;
 }
 
 // Needed in order to make session_start to be called before output is printed.
