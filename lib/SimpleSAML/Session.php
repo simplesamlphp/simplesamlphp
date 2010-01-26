@@ -518,6 +518,20 @@ class SimpleSAML_Session {
 	public function isAuthenticated() {
 		return $this->authenticated;
 	}
+
+
+	/**
+	 * Retrieve the time the user was authenticated.
+	 *
+	 * @return int|NULL  The timestamp for when the user was authenticated. NULL if the user hasn't authenticated.
+	 */
+	public function getAuthnInstant() {
+		if (!$this->isAuthenticated()) {
+			return NULL;
+		}
+
+		return $this->sessionstarted;
+	}
 	
 	
 	// *** Attributes ***
