@@ -117,6 +117,14 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	/**
+	 * The timestamp the user was authenticated, as an UNIX timestamp.
+	 *
+	 * @var int
+	 */
+	private $authnInstant;
+
+
+	/**
 	 * The authentication context for this assertion.
 	 *
 	 * @var string|NULL
@@ -180,6 +188,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$this->id = SimpleSAML_Utilities::generateID();
 		$this->issueInstant = time();
 		$this->issuer = '';
+		$this->authnInstant = time();
 		$this->attributes = array();
 		$this->nameFormat = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
 		$this->certificates = array();
@@ -378,6 +387,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		if (!$as->hasAttribute('AuthnInstant')) {
 			throw new Exception('Missing required AuthnInstant attribute on <saml:AuthnStatement>.');
 		}
+		$this->authnInstant = SimpleSAML_Utilities::parseSAML2Time($as->getAttribute('AuthnInstant'));
 
 		if ($as->hasAttribute('SessionNotOnOrAfter')) {
 			$this->sessionNotOnOrAfter = SimpleSAML_Utilities::parseSAML2Time($as->getAttribute('SessionNotOnOrAfter'));
@@ -762,6 +772,29 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	/**
+	 * Retrieve the AuthnInstant of the assertion.
+	 *
+	 * @return int  The timestamp the user was authenticated.
+	 */
+	public function getAuthnInstant() {
+
+		return $this->authnInstant;
+	}
+
+
+	/**
+	 * Set the AuthnInstant of the assertion.
+	 *
+	 * @param int $authnInstant  The timestamp the user was authenticated.
+	 */
+	public function setAuthnInstant($authnInstant) {
+		assert('is_int($authnInstant)');
+
+		$this->authnInstant = $authnInstant;
+	}
+
+
+	/**
 	 * Retrieve the session expiration timestamp.
 	 *
 	 * This function returns NULL if there are no restrictions on the
@@ -1069,7 +1102,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$as = $document->createElementNS(SAML2_Const::NS_SAML, 'saml:AuthnStatement');
 		$root->appendChild($as);
 
-		$as->setAttribute('AuthnInstant', gmdate('Y-m-d\TH:i:s\Z', $this->issueInstant));
+		$as->setAttribute('AuthnInstant', gmdate('Y-m-d\TH:i:s\Z', $this->authnInstant));
 
 		if ($this->sessionNotOnOrAfter !== NULL) {
 			$as->setAttribute('SessionNotOnOrAfter', gmdate('Y-m-d\TH:i:s\Z', $this->sessionNotOnOrAfter));
