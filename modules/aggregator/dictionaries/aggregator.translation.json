@@ -1,14 +1,22 @@
 {
 	"frontpage_link": {
-		"no": "Metadata aggregator"
+		"no": "Metadata aggregator",
+		"de": "Metadaten-Aggregator",
+		"sl": "Agregator metapodatkov"
 	},
 	"aggregator_header": {
-		"no": "Aggregatorer"
+		"no": "Aggregatorer",
+		"de": "Aggregatoren",
+		"sl": "Agregatorji"
 	},
 	"no_aggregators": {
-		"no": "Ingen aggregator definert i konfigurasjonen"
+		"no": "Ingen aggregator definert i konfigurasjonen",
+		"de": "Keine Aggregatoren in der Konfiguration definiert.",
+		"sl": "V nastavitvah ni definiran noben agregator."
 	},
 	"text": {
-		"no": "tekst"
+		"no": "tekst",
+		"de": "Text",
+		"sl": "Besedilo"
 	}
 }

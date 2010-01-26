@@ -1,8 +1,14 @@
 {
 	"select_source_header": {
-		"no": "Velg en autentiseringskilde"
+		"no": "Velg en autentiseringskilde",
+		"de": "W\u00e4hlen Sie eine Authentifizierungsquelle",
+		"fi": "Valitse todentamisl\u00e4hde",
+		"sl": "Izberite avtentikacijski vir"
 	},
 	"select_source_text": {
-		"no": "Den valgte autentiseringskilden vil bli brukt til \u00e5 autentisere brukeren og deretter etablere en gyldig sesjon."
+		"no": "Den valgte autentiseringskilden vil bli brukt til \u00e5 autentisere brukeren og deretter etablere en gyldig sesjon.",
+		"de": "Die gew\u00e4hlte Authentifizierungsquelle wird verwenden werden, um Sie zu authentifizieren und eine g\u00fcltige Sitzung zu erzeugen.",
+		"fi": "Valittua todentamisl\u00e4hdett\u00e4 k\u00e4ytet\u00e4\u00e4n tunnistamiseen ja uuden istunnon luomiseen.",
+		"sl": "Izbrani avtentikacijski vir bo uporabljen pri va\u0161i prijavi"
 	}
 }

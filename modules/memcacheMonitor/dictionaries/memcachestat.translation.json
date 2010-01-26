@@ -1,59 +1,78 @@
 {
 	"pid": {
-		"no": "Prosess ID"
+		"no": "Prosess ID",
+		"de": "Prozess-ID"
 	},
 	"uptime": {
-		"no": "Oppetid"
+		"no": "Oppetid",
+		"de": "Verf\u00fcgbarkeit"
 	},
 	"time": {
-		"no": "Tid n\u00e5"
+		"no": "Tid n\u00e5",
+		"de": "Jetziger Zeitpunkt"
 	},
 	"version": {
-		"no": "Versjon"
+		"no": "Versjon",
+		"de": "Version"
 	},
 	"rusage_user": {
-		"no": "CPU Sekunder (bruker)"
+		"no": "CPU Sekunder (bruker)",
+		"de": "CPU-Sekunden (Benutzer"
 	},
 	"rusage_system": {
-		"no": "CPU Sekunder (system)"
+		"no": "CPU Sekunder (system)",
+		"de": "CPU-Sekunden (System)"
 	},
 	"curr_items": {
-		"no": "N\u00e5v\u00e6rende antall elementer"
+		"no": "N\u00e5v\u00e6rende antall elementer",
+		"de": "Derzeitige Anzahl von Elementen"
 	},
 	"total_items": {
-		"no": "Antall elementer for alltid"
+		"no": "Antall elementer for alltid",
+		"de": "Elemente zu allen Zeiten insgesamt"
 	},
 	"bytes": {
-		"no": "Totalt antall bytes i bruk n\u00e5"
+		"no": "Totalt antall bytes i bruk n\u00e5",
+		"de": "Insgesamt derzeit verwendete Bytes"
 	},
 	"curr_connections": {
-		"no": "Antall \u00e5pne forbindelser n\u00e5"
+		"no": "Antall \u00e5pne forbindelser n\u00e5",
+		"de": "Derzeitige offene Verbindungen"
 	},
 	"total_connections": {
-		"no": "Totalt antall forbindelser"
+		"no": "Totalt antall forbindelser",
+		"de": "Verbindungen insgesamt"
 	},
 	"connection_structures": {
-		"no": "Tilkoblings-strukturer"
+		"no": "Tilkoblings-strukturer",
+		"de": "Verbindungsstrukturen"
 	},
 	"cmd_get": {
-		"no": "Totalt antall GET kommandoer"
+		"no": "Totalt antall GET kommandoer",
+		"de": "GET Befehle insgesamt"
 	},
 	"cmd_set": {
-		"no": "Totalt antall SET kommandoer"
+		"no": "Totalt antall SET kommandoer",
+		"de": "SET Befehle insgesamt"
 	},
 	"get_hits": {
-		"no": "Totalt antall GET kommandoer (OK)"
+		"no": "Totalt antall GET kommandoer (OK)",
+		"de": "GET Befehle insgesamt (erfolgreich)"
 	},
 	"get_misses": {
-		"no": "Totalt antall GET kommandoer (feilet)"
+		"no": "Totalt antall GET kommandoer (feilet)",
+		"de": "GET Befehle insgesamt (fehlgeschlagen)"
 	},
 	"bytes_read": {
-		"no": "Antall bytes inn til tjeneren"
+		"no": "Antall bytes inn til tjeneren",
+		"de": "Am Server eingetroffene Bytes"
 	},
 	"bytes_written": {
-		"no": "Antall bytes skrevet av tjeneren"
+		"no": "Antall bytes skrevet av tjeneren",
+		"de": "Zum Server geschriebene Bytes"
 	},
 	"limit_maxbytes": {
-		"no": "Total lagring tilgjengelig"
+		"no": "Total lagring tilgjengelig",
+		"de": "Insgesamt verf\u00fcgbarer Speicher"
 	}
 }

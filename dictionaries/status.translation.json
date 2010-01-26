@@ -1,6 +1,5 @@
 {
 	"header_saml20_sp": {
-		"en": "SAML 2.0 SP Demo Example",
 		"no": "SAML 2.0 SP Demo Eksempel",
 		"nn": "Demonstrasjon av SAML 2.0 SP",
 		"sv": "SAML 2.0 SP demoexempel",
@@ -19,7 +18,6 @@
 		"tr": "SAML 2.0 SP Demo \u00d6rne\u011fi"
 	},
 	"header_shib": {
-		"en": "Shibboleth demo",
 		"no": "Shibboleth Demo",
 		"nn": "Demonstrasjon av Shibboleth",
 		"sv": "Shibboleth demoexempel",
@@ -38,7 +36,6 @@
 		"tr": "Shibboleth demo"
 	},
 	"header_wsfed": {
-		"en": "WS-Fed SP Demo Example",
 		"no": "WS-Fed SP Demo Eksempel",
 		"nn": "Demonstrasjon av WS-Federation SP",
 		"sv": "WS-Fed SP demoexempel",
@@ -57,7 +54,6 @@
 		"tr": "WS-Fed SP Demo \u00d6rne\u011fi"
 	},
 	"header_diagnostics": {
-		"en": "SimpleSAMLphp Diagnostics",
 		"no": "SimpleSAMLphp diagnostikk",
 		"nn": "Feils\u00f8king av simpleSAMLphp",
 		"sv": "SimpleSAMLphp diagnostik ",
@@ -76,7 +72,6 @@
 		"tr": "SimpleSAMLphp Kontroller"
 	},
 	"some_error_occured": {
-		"en": "Some error occured",
 		"no": "En feil har oppst\u00e5tt",
 		"nn": "Ein feilsituasjon oppsto",
 		"sv": "Ett fel har intr\u00e4ffat",
@@ -95,7 +90,6 @@
 		"tr": "Hata olu\u015ftu"
 	},
 	"intro": {
-		"en": "Hi, this is the status page of simpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that is attached to your session.",
 		"no": "Hei, dette er en statusside p\u00e5 simpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon.",
 		"nn": "Hei, dette er statussida for simpleSAMLphp.  Her kan du sj\u00e5 om sesjonen din er gyldig, kor lenge han varer og du kan sj\u00e5 alle attributt som blir brukte i sesjonen din.",
 		"sv": "Detta \u00e4r stutussidan f\u00f6r simpleSAMLphp. H\u00e4r kan du se om sessions giltig har g\u00e5tt ut, hur l\u00e4nge det dr\u00f6jer innan den g\u00e5r ut samt alla attribut som tillh\u00f6r sessionen.",
@@ -114,7 +108,6 @@
 		"tr": "Merhaba, bu simpleSAMLphp durum sayfas\u0131d\u0131r. Oturumunuzun s\u00fcresinin dolup dolmad\u0131\u011f\u0131n\u0131, oturumunuzun ne kadar s\u00fcrd\u00fc\u011f\u00fcn\u00fc ve oturumunuza ait t\u00fcm bilgileri buradan g\u00f6rebilirsiniz."
 	},
 	"validfor": {
-		"en": "Your session is valid for %SECONDS% seconds from now.",
 		"no": "Din sesjon er gyldig i %SECONDS% sekunder fra n\u00e5.",
 		"nn": "Din sesjon er gyldig i %SECONDS% sekund fr\u00e5 no.",
 		"sv": "Din session \u00e4r giltig f\u00f6r %SECONDS% sekunder fr\u00e5n nu.",
@@ -133,7 +126,6 @@
 		"tr": "Oturumunuz, \u015fu andan itibaren %SECONDS% saniyeli\u011fine ge\u00e7erlidir."
 	},
 	"sessionsize": {
-		"en": "Session size: %SIZE%",
 		"no": "Sesjons st\u00f8rrelse: %SIZE%",
 		"nn": "Sesjonsstorleik: %SIZE%",
 		"sv": "Sessionsstorlek: %SIZE%",
@@ -152,7 +144,6 @@
 		"tr": "Oturum b\u00fcy\u00fckl\u00fc\u011f\u00fc: %SIZE%"
 	},
 	"attributes_header": {
-		"en": "Your attributes",
 		"no": "Dine attributter",
 		"nn": "Dine attributtar",
 		"sv": "Dina attribut",
@@ -171,7 +162,6 @@
 		"tr": "Bilgileriniz"
 	},
 	"logout": {
-		"en": "Logout",
 		"no": "Logg ut",
 		"nn": "Logg ut",
 		"sv": "Logga ut",

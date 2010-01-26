@@ -1,6 +1,5 @@
 {
 	"header": {
-		"en": "Login with YubiKey",
 		"no": "Login med YubiKey",
 		"nn": "Logg inn med YubiKey",
 		"sv": "Logga in med YubiKey",
@@ -17,7 +16,6 @@
 		"tr": "YubiKey ile giri\u015f"
 	},
 	"intro": {
-		"en": "Some service requested authentication. To authenticate, click the button on your YubiKey. The field below should then automatically be filled out with a secure one-time-password.",
 		"no": "En tjeneste har bedt om at du autentiserer deg. For \u00e5 autentisere seg, trykk p\u00e5 knappen p\u00e5 din YubiKey. Feltet under vil da bli automatisk utfylt med et sikkert engangspassord.",
 		"nn": "Ei webteneste har spurt om at du loggar inn.  For \u00e5 logga inn, klikk p\u00e5 knappen p\u00e5 din YubiKey.  Feltet nedanfor blir automatisk fylt ut med eit sikkert eingongspassord n\u00e5r du trykker p\u00e5 YubiKey.",
 		"sv": "En tj\u00e4nst vill att du ska logga in. F\u00f6r att logga in tryck p\u00e5 knappen p\u00e5 din YubiKey. F\u00e4ltet nedan ska n\u00e4r du trycker bli ifyllt med ett s\u00e4kert eng\u00e5ngsl\u00f6senord.",

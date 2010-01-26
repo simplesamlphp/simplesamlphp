@@ -1,6 +1,5 @@
 {
 	"error_header": {
-		"en": "simpleSAMLphp error",
 		"no": "simpleSAMLphp-feil",
 		"nn": "simpleSAMLphp feil",
 		"sv": "simpleSAMLphp fel",
@@ -20,7 +19,6 @@
 		"tr": "simpleSAMLphp hatas\u0131"
 	},
 	"report_trackid": {
-		"en": "If you report this error, please also report this tracking ID which makes it possible to locate your session in the logs available to the system administrator:",
 		"no": "Hvis vil rapportere denne feilen, send ogs\u00e5 med denne sporings-IDen. Den gj\u00f8r det enklere for systemadministratorene \u00e5 finne ut hva som gikk galt:",
 		"nn": "Send med sporings-ID dersom du vil rapportera feilen. ID gjer det enklare for systemadministratorane \u00e5 finna ut kva som er problemet:",
 		"sv": "Om du rapporterar felet b\u00f6r du ocks\u00e5 skicka med detta sp\u00e5rnings-ID. Det g\u00f6r det enklare f\u00f6r den som sk\u00f6ter systemet att fels\u00f6ka problemet:",
@@ -40,7 +38,6 @@
 		"tr": "Bu hatay\u0131 bildirirseniz, l\u00fctfen, sistem y\u00f6neticisi taraf\u0131ndan incelebilen kay\u0131tlardan oturumunuzun belirlenebilmesini sa\u011flayan izleme ID'sini de bildirin."
 	},
 	"debuginfo_header": {
-		"en": "Debug information",
 		"no": "Detaljer for feils\u00f8king",
 		"nn": "Detaljar for feils\u00f8king",
 		"sv": "Detaljer f\u00f6r fels\u00f6kning",
@@ -60,7 +57,6 @@
 		"tr": "Hata ay\u0131klama bilgisi"
 	},
 	"debuginfo_text": {
-		"en": "The debug information below may be of interest to the administrator \/ help desk:",
 		"no": "Detaljene nedenfor kan v\u00e6re av interesse for administratoren \/ brukerst\u00f8tte:",
 		"nn": "Detaljane under kan vera av interesse for administrator eller hjelpetenesta",
 		"sv": "Detaljerna nedan kan vara av intresse f\u00f6r helpdesk eller de som sk\u00f6ter systemet:",
@@ -80,7 +76,6 @@
 		"tr": "A\u015fa\u011f\u0131daki hata ay\u0131klama bilgisi y\u00f6neticinin\/yard\u0131m masas\u0131n\u0131n ilgisini \u00e7ekebilir:"
 	},
 	"report_header": {
-		"en": "Report errors",
 		"no": "Rapporter feil",
 		"nn": "Rapporter feil",
 		"sv": "Rapportera fel",
@@ -100,7 +95,6 @@
 		"tr": "Hatalar\u0131 bildir"
 	},
 	"report_text": {
-		"en": "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:",
 		"no": "Hvis du \u00f8nsker at brukerst\u00f8tte skal kunne kontakte deg igjen i forbindelse med denne feilen, m\u00e5 du oppgi e-postadressen din nedenfor:",
 		"nn": "Om du vil at hjelpetenesta skal kontakta deg i samband med denne feilen, m\u00e5 du oppgi epostadressa di:",
 		"sv": "Om du anger din e-postadress kan den som sk\u00f6ter systemet kontakta dig f\u00f6r fler fr\u00e5gor om ditt problem:",
@@ -120,7 +114,6 @@
 		"tr": "Durumunuz hakk\u0131nda ileride ortaya \u00e7\u0131kabilecek sorularla ilgili y\u00f6neticilerin ileti\u015fim kurabilmesi i\u00e7in, iste\u011fe ba\u011fl\u0131 olarak e-posta adresinizi girin."
 	},
 	"report_email": {
-		"en": "E-mail address:",
 		"no": "E-postadresse:",
 		"nn": "Epostadresse:",
 		"sv": "E-postadress",
@@ -141,7 +134,6 @@
 		"tr": "E-posta adresi:"
 	},
 	"report_explain": {
-		"en": "Explain what you did when this error occured...",
 		"no": "Forklar hva du gjorde da feilen oppsto...",
 		"nn": "Forklar kva du gjorde og korleis feilen oppsto...",
 		"sv": "F\u00f6rklara hur felet uppstod...",
@@ -161,7 +153,6 @@
 		"tr": "Bu hatan\u0131n neden olu\u015ftu\u011funu a\u00e7\u0131klay\u0131n..."
 	},
 	"report_submit": {
-		"en": "Send error report",
 		"no": "Send feilrapport",
 		"nn": "Send feilrapport",
 		"sv": "Skicka felrapporten",
@@ -181,7 +172,6 @@
 		"tr": "Hata raporu g\u00f6nder"
 	},
 	"howto_header": {
-		"en": "How to get help",
 		"no": "Hvordan f\u00e5 hjelp",
 		"nn": "Send feilrapport",
 		"sv": "Hur f\u00e5r du hj\u00e4lp",
@@ -201,7 +191,6 @@
 		"tr": "Nas\u0131l yard\u0131m al\u0131n\u0131r"
 	},
 	"howto_text": {
-		"en": "This error probably is due to some unexpected behaviour or to misconfiguration of simpleSAMLphp. Contact the administrator of this login service, and send them the error message above.",
 		"no": "Denne feilen skyldes sannsynligvis feil i oppsettet av simpleSAMLphp eller den er en f\u00f8lge av en uforutsett hendelse. Kontakt administratoren av denne tjenesten og rapporter s\u00e5 mye som mulig ang\u00e5ende feilen.",
 		"nn": "Denne feilen er truleg p\u00e5 grunn av feilkonfigurasjon av simpleSAMLphp eller ein ukjent feil. Kontakt administrator av tenesta og rapporter detaljar om feilen.",
 		"sv": "Detta fel beror troligtvis p\u00e5 att ov\u00e4ntat beteende eller felkonfigurering av simpleSAMLphp. Kontakta den som sk\u00f6ter inloggningtj\u00e4nsten f\u00f6r att meddela dem ovanst\u00e5ende felmeddelande.",
@@ -221,7 +210,6 @@
 		"tr": "Bu hata beklenmeyen bir durum ya da simpleSAMLphp'nin yanl\u0131\u015f d\u00fczenlenmesi ndeniyle olu\u015fmu\u015f olabilir. Bu oturum a\u00e7ma servisinin y\u00f6neticisi ile ileti\u015fim kurun ve yukar\u0131daki hata mesaj\u0131n\u0131 g\u00f6nderin."
 	},
 	"title_CACHEAUTHNREQUEST": {
-		"en": "Error making single sign-on to service",
 		"no": "Feil ved fellesinnlogging",
 		"nn": "Feil under Single Sign-On til webtenesta",
 		"sv": "Fel vid single sign-on till tj\u00e4nsten",
@@ -241,7 +229,6 @@
 		"tr": "Servise tek \u015fifreli giri\u015f yapmada hata"
 	},
 	"descr_CACHEAUTHNREQUEST": {
-		"en": "You were authenticated and ready to go back to the service requesting authentication, but we could not find your cached authentication request. The request is only cached for a limited amount of time. Leaving your browser open for hours before entering your username and password might be the cause of the problem. If this could be the case in your situation, try to go back to the service you want to access, and start a new login process. If the problem persists, please report it.",
 		"no": "Autentiseringen er bekreftet, og klar til \u00e5 sendes tilbake til tjenesten som ba om den, men n\u00e5 finner vi ikke foresp\u00f8rselen. Vi holder p\u00e5 foresp\u00f8rsler bare en viss tid, og hvis du venter lenge f\u00f8r du oppgir brukernavn og passord kan slike feil som dette oppst\u00e5. Hvis dette kan v\u00e6re en mulig forklaring, pr\u00f8v \u00e5 koble deg opp p\u00e5 nytt til tjenesten for \u00e5 starte innloggingen p\u00e5 nytt. Hvis dette ikke l\u00f8ser problemet, rapporter det som en feil.",
 		"nn": "Du blir autentisert og skal sendast tilbake til webtenesta som treng innlogginga, men vi finn ikke bufferet med innloggingsinformasjonen din.  Pr\u00f8v \u00e5 g\u00e5 tilbake til tenesta og logg inn igjen. Bufferet blir lagra i kort tid p\u00e5 grunn av tryggleiken din.  Dersom du har latt webklienten din st\u00e5 lenge f\u00f8r du skreiv brukarnamn og passord, kan dette v\u00e6re ei forklaring p\u00e5 problemet.  Om problemet oppst\u00e5r flere gonger, rapporter feilsituasjonen.",
 		"sv": "Du \u00e4r inloggad och det \u00e4r klart f\u00f6r att skicka dig tillbaka till den tj\u00e4nst som beg\u00e4rde inloggningen men det g\u00e5r inte att hitta den lagrade inloggningsf\u00f6rfr\u00e5gan. F\u00f6rfr\u00e5gan \u00e4r bara lagrad under en kort tid. En orsak kan vara att du l\u00e4mnat din webbl\u00e4sare \u00f6pen i flera timmar f\u00f6re du angav dina inloggningsuppgifter. Om s\u00e5 \u00e4r fallet g\u00e5 tillbaka till tj\u00e4nsten som du ville logga in i och f\u00f6rs\u00f6k igen. Om problemet kvarst\u00e5r b\u00f6r du rapportera problemet.",
@@ -261,7 +248,6 @@
 		"tr": "Kimli\u011finiz do\u011fruland\u0131 ve kimlik do\u011frulama isteyen servise g\u00f6nderilmeye haz\u0131rs\u0131n\u0131z, ancak \u00f6nbelleklenmi\u015f kimlik do\u011frulama iste\u011fini bulamad\u0131k. \u0130stek, yaln\u0131zca belirli bir s\u00fcre i\u00e7in \u00f6nbelleklenir. Kullan\u0131c\u0131 ad\u0131 ve \u015fifreyi girmeden \u00f6nce taray\u0131c\u0131n\u0131z\u0131 saatlerce a\u00e7\u0131k b\u0131rakman\u0131z bu problemin sebebi olabilir. E\u011fer durum buysa, eri\u015fmek istedi\u011finiz servise geri d\u00f6nmeyi deneyin, ve yeni bir giri\u015f i\u015flemine ba\u015flay\u0131n. E\u011fer sorun devam ederse l\u00fctfen bildirin."
 	},
 	"title_CREATEREQUEST": {
-		"en": "Error creating request",
 		"no": "Feil i laging av foresp\u00f8rselen",
 		"nn": "Feil under oppretting av SAML-sp\u00f8rsm\u00e5l",
 		"sv": "Fel vid skapandet av f\u00f6rfr\u00e5gan",
@@ -281,7 +267,6 @@
 		"tr": "\u0130stek olu\u015fturmada hata"
 	},
 	"descr_CREATEREQUEST": {
-		"en": "An error occured when trying to create the SAML request.",
 		"no": "En feil oppstod da SAML-foresp\u00f8rselen skulle lages.",
 		"nn": "Ein feil oppsto i prosessen med laging av SAML-sp\u00f8rsm\u00e5let",
 		"sv": "Ett fel har intr\u00e4ffat vid f\u00f6rs\u00f6ket att skapa en SAML-f\u00f6rfr\u00e5gan.",
@@ -301,7 +286,6 @@
 		"tr": "SAML iste\u011fi olu\u015fturmaya \u00e7al\u0131\u015f\u0131rken bir hata meydana geldi"
 	},
 	"title_DISCOPARAMS": {
-		"en": "Bad request to discovery service",
 		"no": "Ugyldig foresp\u00f8rsel til SAML 2.0 Discovery-tjenesten",
 		"nn": "Feilforma sp\u00f8rsm\u00e5l til Discovery Service",
 		"sv": "Ogiltig f\u00f6rfr\u00e5gan till lokaliseringstj\u00e4nsten (Discovery Service)",
@@ -321,7 +305,6 @@
 		"tr": "Tan\u0131ma servisine giden hatal\u0131 istek"
 	},
 	"descr_DISCOPARAMS": {
-		"en": "The parameters sent to the discovery service were not according to specifications.",
 		"no": "Parametere sendt til discovery-tjenesten var ikke i korrekt format.",
 		"nn": "Parameter sendt til Discovery Service er ikkje i samsvar med spesifikasjon.",
 		"sv": "Parametrarna som skickades till lokaliseringstj\u00e4nsten f\u00f6ljde inte specifikationen.",
@@ -340,7 +323,6 @@
 		"tr": "Tan\u0131ma servisine g\u00f6nderilen parametreler tan\u0131mlananlara g\u00f6re de\u011fildi."
 	},
 	"title_GENERATEAUTHNRESPONSE": {
-		"en": "Could not create authentication response",
 		"no": "Fikk ikke svart p\u00e5 autentiserings-foresp\u00f8rsel",
 		"nn": "Kunne ikkje laga svar p\u00e5 autentiseringssp\u00f8rsm\u00e5l",
 		"sv": "Kunde inte skapa inloggingssvaret",
@@ -360,7 +342,6 @@
 		"tr": "Kimlik do\u011frulama cevab\u0131 olu\u015fturulamad\u0131"
 	},
 	"descr_GENERATEAUTHNRESPONSE": {
-		"en": "When this identity provider tried to create an authentication response, an error occured.",
 		"no": "En feil oppsto da innloggingstjenesten pr\u00f8vde \u00e5 lage et svar p\u00e5 autentiserings-foresp\u00f8rselen.",
 		"nn": "Denne Identity Provider kunne ikkje laga svar p\u00e5 autentiseringssp\u00f8rsm\u00e5let fordi det oppsto ein feilsituasjon.",
 		"sv": "N\u00e4r identitetshanteraren (Identity Provider) f\u00f6rs\u00f6kte skapa inloggingssvaret uppstod ett fel.",
@@ -380,7 +361,6 @@
 		"tr": "Bu kimlik sa\u011flay\u0131c\u0131 bir kimlik do\u011frulama cevab\u0131 olu\u015fturuken hata olu\u015ftu."
 	},
 	"title_GENERATELOGOUTRESPONSE": {
-		"en": "Could not create logout response",
 		"no": "Fikk ikke laget svar p\u00e5 en logout-foresp\u00f8rsel",
 		"nn": "Kunne ikkje laga svar p\u00e5 sp\u00f8rsm\u00e5l om utlogging",
 		"sv": "Kunde skapa ett utloggningssvar",
@@ -400,7 +380,6 @@
 		"tr": "\u00c7\u0131k\u0131\u015f cevab\u0131 olu\u015fturulamad\u0131"
 	},
 	"descr_GENERATELOGOUTRESPONSE": {
-		"en": "When this SAML entity tried to create an logout response, an error occured.",
 		"no": "Det oppsto en feil da denne SAML-entiteten fors\u00f8kte \u00e5 gi svar p\u00e5 en logout-foresp\u00f8rsel.",
 		"nn": "Utlogging ikkje stadfesta.  Sp\u00f8rsm\u00e5l om utlogging er ikkje handtert ferdig fordi det oppsto ein feil",
 		"sv": "N\u00e4r SAML-entiteten f\u00f6rs\u00f6kte skapa ett utloggningssvar uppstod ett fel.",
@@ -420,7 +399,6 @@
 		"tr": "Bu SAML birimi bir \u00e7\u0131k\u0131\u015f cevab\u0131 olu\u015ftururken hata olu\u015ftu."
 	},
 	"title_LDAPERROR": {
-		"en": "LDAP Error",
 		"no": "LDAP-feil",
 		"nn": "LDAP-feil",
 		"sv": "LDAP-fel",
@@ -440,7 +418,6 @@
 		"tr": "LDAP hatas\u0131"
 	},
 	"descr_LDAPERROR": {
-		"en": "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occured when we tried it this time.",
 		"no": "LDAP er brukerkatalogen, og n\u00e5r du fors\u00f8ker \u00e5 logge inn pr\u00f8ver vi \u00e5 kontakten en LDAP-katalog. Da vi fors\u00f8kte det denne gangen, oppsto en feil.",
 		"nn": "LDAP er brukardatabase din.  N\u00e5r du pr\u00f8ver \u00e5 logga inn m\u00e5 vi kontakta LDAP-basen.  Denne gongen fekk vi ikkje kontakt p\u00e5 grunn av ein feil.",
 		"sv": "LDAP anv\u00e4nds som anv\u00e4ndardatabas och n\u00e4r du f\u00f6rs\u00f6ker logga m\u00e5ste LDAP-servern kontaktas. Vid f\u00f6rs\u00f6ket att kontakta LDAP-servern uppstod ett fel.",
@@ -460,7 +437,6 @@
 		"tr": "LDAP kullan\u0131c\u0131 veritaban\u0131 ve siz giri\u015f yapmaya \u00e7al\u0131\u015f\u0131rken, LDAP veritaban\u0131na ba\u011flanmam\u0131z gerekiyor. Bu seferlik denerken bir sorun olu\u015ftu."
 	},
 	"title_LOGOUTREQUEST": {
-		"en": "Error processing the Logout Request",
 		"no": "Feil i behandling av logout-foresp\u00f8rselen",
 		"nn": "Feil under prosessering av utloggingssp\u00f8rsm\u00e5l",
 		"sv": "Fel vid utloggningsf\u00f6rfr\u00e5gan",
@@ -480,7 +456,6 @@
 		"tr": "\u00c7\u0131k\u0131\u015f \u0130ste\u011fini i\u015flerken hata olu\u015ftu"
 	},
 	"descr_LOGOUTREQUEST": {
-		"en": "An error occured when trying to process the Logout Request.",
 		"no": "En feil oppsto i behandlingen av logout-foresp\u00f8rselen.",
 		"nn": "Handteringa av sp\u00f8rsm\u00e5l om utlogging er ikkje ferdig, det oppsto ein feil.",
 		"sv": "Ett fel uppstod n\u00e4r utloggningsf\u00f6rfr\u00e5gan skulle bearbetas.",
@@ -500,7 +475,6 @@
 		"tr": "\u00c7\u0131k\u0131\u015f \u0130ste\u011fini i\u015flemeye \u00e7al\u0131\u015f\u0131rken bir hata olu\u015ftu"
 	},
 	"title_GENERATELOGOUTREQUEST": {
-		"en": "Could not create the Logout Request",
 		"no": "Fikk ikke laget logout-foresp\u00f8rselen",
 		"nn": "Kan ikkje laga sp\u00f8rsm\u00e5l om utlogging",
 		"sv": "Kunde inte skapa utloggningsf\u00f6rfr\u00e5gan",
@@ -520,7 +494,6 @@
 		"tr": "\u00c7\u0131k\u0131\u015f \u0130ste\u011fi olu\u015fturulamad\u0131"
 	},
 	"descr_GENERATELOGOUTREQUEST": {
-		"en": "When this SAML entity tried to create a Logout Request, an error occured.",
 		"no": "En feil oppsto da denne SAML-entiteten fors\u00f8ke \u00e5 lage en logout-foresp\u00f8rsel.",
 		"nn": "Det oppsto ein feil med svaret p\u00e5 utloggingssp\u00f8rsm\u00e5let.  Denne SAML-tenaren kan ikkje stadfesta utlogging",
 		"sv": "N\u00e4r SAML-entiteten f\u00f6rs\u00f6kte skapa en utloggningsf\u00f6rfr\u00e5gan uppstod ett fel.",
@@ -539,7 +512,6 @@
 		"tr": "Bu SAML birimi bir \u00c7\u0131k\u0131\u015f \u0130ste\u011fi olu\u015ftururken hata olu\u015ftu."
 	},
 	"title_LOGOUTRESPONSE": {
-		"en": "Error processing the Logout Response",
 		"no": "Feil i behandlingen av logout-responsen",
 		"nn": "Feil under handtering av utloggingssp\u00f8rsm\u00e5l",
 		"sv": "Fel vid utloggningssvar",
@@ -559,7 +531,6 @@
 		"tr": "\u00c7\u0131k\u0131\u015f Cevab\u0131n\u0131n i\u015flenmesi s\u0131ras\u0131nda hata"
 	},
 	"descr_LOGOUTRESPONSE": {
-		"en": "An error occured when trying to process the Logout Response.",
 		"no": "En feil oppsto i behandlingen av logout-responsen.",
 		"nn": "Ein feil oppsto under prosessering av utloggingssp\u00f8rsm\u00e5l.",
 		"sv": "Ett fel uppstod n\u00e4r utloggningssvaret skulle bearbetas.",
@@ -578,7 +549,6 @@
 		"tr": "\u00c7\u0131k\u0131\u015f Cevab\u0131 i\u015flenirken hata olu\u015ftu"
 	},
 	"title_METADATA": {
-		"en": "Error loading metadata",
 		"no": "Feil ved lasting av metadata",
 		"nn": "Feil under lasting av metadata",
 		"sv": "Fel vi laddandet av metadata",
@@ -598,7 +568,6 @@
 		"tr": "\u00dcstveri (metadata) y\u00fcklenmesinde hata"
 	},
 	"descr_METADATA": {
-		"en": "There is some misconfiguration of your simpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup.",
 		"no": "Det er en feil i oppsettet for din simpleSAMLphp-installasjon. Hvis du er administrator for tjenesten, b\u00f8r du kontrollere at metadata er satt opp riktig.",
 		"nn": "Installasjonen av simpleSAMLphp er feilkonfigurert.  Dersom du er administrator m\u00e5 du sjekka metadata-konfigurasjonen.  Dersom du ikkje er administrator, ta kontakt med henne.",
 		"sv": "Det finns n\u00e5got fel i konfigurationen i installation av simpleSAMLphp. Om du \u00e4r adminstrat\u00f6r av tj\u00e4nsten ska du kontrollera om konfigurationen av metadata \u00e4r r\u00e4tt konfigurerad.",
@@ -617,7 +586,6 @@
 		"tr": "simpleSAMLphp kurulumunuzda baz\u0131 yanl\u0131\u015f ayarlamalar s\u00f6zkonusu. E\u011fer bu servisin y\u00f6neticisi sizseniz, \u00fcstveri (metadata) ayarlar\u0131n\u0131z\u0131n d\u00fczg\u00fcn bir \u015fekilde yap\u0131ld\u0131\u011f\u0131ndan emin olun."
 	},
 	"title_NOACCESS": {
-		"en": "No access",
 		"no": "Ingen tilgang",
 		"nn": "Ingen tilgang",
 		"sv": "Ingen \u00e5tkomst",
@@ -637,7 +605,6 @@
 		"tr": "Giri\u015f yok"
 	},
 	"descr_NOACCESS": {
-		"en": "This endpoint is not enabled. Check the enable options in your configuration of simpleSAMLphp.",
 		"no": "Dette endepunktet er ikke aktivert. Sjekk aktiveringsopsjonene i ditt simpleSAMLphp-oppsett.",
 		"nn": "Endepunktet er ikkje skrudd p\u00e5. Sjekk Enable Options i konfigurasjonen av simpleSAMLphp.",
 		"sv": "Denna \u00e4ndpunkt \u00e4r inte aktiverad. Kontrollera aktiveringsinst\u00e4llningarna i konfigurationen av simpleSAMLphp.",
@@ -656,7 +623,6 @@
 		"tr": "Bu k\u0131s\u0131m kullan\u0131mda de\u011fil. simpleSAMLphp ayarlar\u0131n\u0131z\u0131n etkinle\u015ftirme se\u00e7eneklerini kontrol edin."
 	},
 	"title_NORELAYSTATE": {
-		"en": "No RelayState",
 		"no": "Spesifikasjon av RelayState mangler",
 		"nn": "Ingen RelayState",
 		"sv": "Ingen RelayState definierad",
@@ -675,7 +641,6 @@
 		"tr": "RelayState verilmemi\u015f."
 	},
 	"descr_NORELAYSTATE": {
-		"en": "The initiator of this request did not provide a RelayState parameter indicating where to go next.",
 		"no": "Kilden til denne foresp\u00f8rselen har ikke angitt noen RelayState-parameter som angir hvor vi skal fortsette etterp\u00e5.",
 		"nn": "Opphavsmann til denne meldinga har ikkje sendt med RelayState-parameter. D\u00e5 veit vi ikke kvar vi skal, og det blir feil.",
 		"sv": "Avs\u00e4ndaren av denna f\u00f6rfr\u00e5gan hade ingen parameter f\u00f6r RelayState vilket medf\u00f6r att n\u00e4sta plats inte \u00e4r definierad.",
@@ -694,7 +659,6 @@
 		"tr": "Bu iste\u011fin ba\u015flat\u0131c\u0131s\u0131, bir sonraki gidi\u015f yerini bildiren RelayState parametresini sa\u011flamam\u0131\u015f."
 	},
 	"title_NOSESSION": {
-		"en": "No session found",
 		"no": "Ingen informasjon om arbeids\u00f8kta",
 		"nn": "Fann ikkje sesjon",
 		"sv": "Ingen session hittad",
@@ -714,7 +678,6 @@
 		"tr": "Oturum bulunamad\u0131."
 	},
 	"descr_NOSESSION": {
-		"en": "Unfortunately, we could not obtain your session information. This could be because your browser does not support cookies, or cookie handling is disabled. Alternately, your session timed out because you let the browser open for a long time.",
 		"no": "Dessverre finner vi ingen informasjon om arbeids\u00f8kta di. Det kan skyldes at du har sl\u00e5tt av handtering av informasjonskapsler (cookies) i nettleseren din, eller at nettleseren har v\u00e6rt \u00e5pen s\u00e5 lenge at maksimaltiden er overskredet.",
 		"nn": "Vi var ikkje i stand til \u00e5 finna sesjonen din.  Det kan vera fordi du mangler Cookies i webklienten din, eller dei er skrudd av hos deg.  Eller det kan vera fordi sesjonen din er blitt for gammel, noko som skjer dersom webklienten har st\u00e5tt open lenge.",
 		"sv": "Tyv\u00e4rr kunde inte din session hittas. Detta kan bero p\u00e5 att din webbl\u00e4sare inte kan hantera webbl\u00e4sarkakor (cookies) eller att de inte till\u00e5ts. Men det kan ocks\u00e5 vara s\u00e5 att webbl\u00e4saren har varit startad s\u00e5 l\u00e4nge att maxtiden sessionen har uppn\u00e5tts.",
@@ -733,7 +696,6 @@
 		"tr": "Ne yaz\u0131k ki oturum bilgilerinizi alamad\u0131k. Bu, taray\u0131c\u0131n\u0131z\u0131n \u00e7erez (cookie) desteklememesi ya da \u00e7erez deste\u011finin devre d\u0131\u015f\u0131 b\u0131rak\u0131lmas\u0131 nedeniyle olu\u015fmu\u015f olabilir. Ba\u015fka bir olas\u0131l\u0131k, taray\u0131c\u0131n\u0131z\u0131n uzun s\u00fcre a\u00e7\u0131k kalmas\u0131 sebebiyle oturumunuzun s\u00fcresinin dolmas\u0131d\u0131r."
 	},
 	"title_PROCESSASSERTION": {
-		"en": "Error processing response from Identity Provider",
 		"no": "Feil i behandling av svar fra innloggingstjenesten",
 		"nn": "Feil under handtering av svar fr\u00e5 IdP",
 		"sv": "Fel vid bearbetning av svar fr\u00e5n IdP",
@@ -753,7 +715,6 @@
 		"tr": "Kimlik sa\u011flay\u0131c\u0131dan gelen cevab\u0131 i\u015flerken hata"
 	},
 	"descr_PROCESSASSERTION": {
-		"en": "We did not accept the response sent from the Identity Provider.",
 		"no": "Svaret mottatt fra innloggingstjenesten kan ikke aksepteres.",
 		"nn": "Svaret fr\u00e5 IdP var ikkje akseptabelt for oss",
 		"sv": "Svaret fr\u00e5n identitetshanteraren (Identity Provider) \u00e4r inte accepterat.",
@@ -773,7 +734,6 @@
 		"tr": "Kimlik Sa\u011flay\u0131c\u0131'dan gelen cevab\u0131 kabul etmedik."
 	},
 	"title_PROCESSAUTHNRESPONSE": {
-		"en": "Error processing response from Identity Provider",
 		"no": "Feil i behandling av svar fra innloggingstjenesten",
 		"nn": "Feil under handtering av svar fr\u00e5 IdP om autentisering",
 		"sv": "Fel vid bearbetning av svar fr\u00e5n IdP",
@@ -793,7 +753,6 @@
 		"tr": "Kimlik Sa\u011flay\u0131c\u0131'dan gelen cevab\u0131 i\u015flerken hata"
 	},
 	"descr_PROCESSAUTHNRESPONSE": {
-		"en": "This SP received an authentication response from an identity provider, but an error occured when trying to process the response.",
 		"no": "Tjenesten mottok respons fra innloggingstjenesten, men en feil oppsto i behandling av responsen.",
 		"nn": "Denne tenesteleverand\u00f8ren (SP) mottok autentiseringssvar fr\u00e5 ein identitetsleverand\u00f8r (IdP), men det oppsto ein feil n\u00e5r svaret skulle brukast",
 		"sv": "Tj\u00e4nsteleveran\u00f6tren (Service Provider) har tagit mot ett svar fr\u00e5n en identitetshanterare (Identity Provider) men ett fel uppstod n\u00e4r det bearbetades.",
@@ -812,7 +771,6 @@
 		"tr": "Bu Servis Sa\u011flay\u0131c\u0131 bir kimlik sa\u011flay\u0131c\u0131dan kimlik do\u011frulama cevab\u0131 ald\u0131, ancak bu cevab\u0131 i\u015flemeye \u00e7al\u0131\u015f\u0131rken bir hata olu\u015ftu."
 	},
 	"title_PROCESSAUTHNREQUEST": {
-		"en": "Error processing request from Service Provider",
 		"no": "Feil ved behandling av foresp\u00f8rsel fra SP",
 		"nn": "Feil under handtering av svar fr\u00e5 tenesteleverand\u00f8r (SP)",
 		"sv": "Fel vid bearbetning av f\u00f6rfr\u00e5gan fr\u00e5n en tj\u00e4nsteleverant\u00f6r (Service Provider)",
@@ -832,7 +790,6 @@
 		"tr": "Servis Sa\u011flay\u0131c\u0131'dan gelen iste\u011fi i\u015flerken hata"
 	},
 	"descr_PROCESSAUTHNREQUEST": {
-		"en": "This Identity Provider received an Authentication Request from a Service Provider, but an error occured when trying to process the request.",
 		"no": "Innloggingstjenesten mottok en autentiserings-foresp\u00f8rsel fra en tjeneste, men en feil oppsto i behandling av foresp\u00f8rselen.",
 		"nn": "Denne identitetsleverand\u00f8ren (IdP) mottok ei autentiseringsmelding fr\u00e5 ein tenesteleverand\u00f8r (SP), men det oppsto ein feil under handteringa av meldinga",
 		"sv": "Identitetshanteraren (Identity Provider) har tagit emot en f\u00f6rfr\u00e5gan fr\u00e5n en tj\u00e4nsteleverant\u00f6r (Service Provider) men ett fel uppstod vid bearbetningen av f\u00f6rfr\u00e5gan.",
@@ -851,7 +808,6 @@
 		"tr": "Bu Kimlik Sa\u011flay\u0131c\u0131 bir Servis Sa\u011flay\u0131c\u0131'dan kimlik do\u011frulama iste\u011fi ald\u0131, ancak bu iste\u011fi i\u015flemeye \u00e7al\u0131\u015f\u0131rken bir hata olu\u015ftu."
 	},
 	"title_SSOSERVICEPARAMS": {
-		"en": "Incorrect parameters provided",
 		"no": "Feil i parametere",
 		"nn": "Mottok feil parameter",
 		"sv": "Fel parametrar tillhandah\u00f6lls",
@@ -870,7 +826,6 @@
 		"tr": "Do\u011fru olmayan parametreler verildi"
 	},
 	"descr_SSOSERVICEPARAMS": {
-		"en": "You must either provide a SAML Request message or a RequestID on this interface.",
 		"no": "Du m\u00e5 enten angi en SAML Request-melding eller en RequestID til dette grensesnittet.",
 		"nn": "Du m\u00e5 senda melding med SAML Request eller RequestID via dette grensesnittet",
 		"sv": "En SAML-f\u00f6rfr\u00e5gan eller ett f\u00f6rfr\u00e5gningsid m\u00e5ste anges mot detta gr\u00e4nssnitt.",
@@ -889,7 +844,6 @@
 		"tr": "Bu aray\u00fczde, bir SAML Request mesaj\u0131 ya da RequestID sa\u011flamak zorundas\u0131n\u0131z."
 	},
 	"title_SLOSERVICEPARAMS": {
-		"en": "No SAML message provided",
 		"no": "Ingen SAML-melding angitt",
 		"nn": "Fann ikkje SAML-melding",
 		"sv": "Inget SAML-meddelande tillhandah\u00f6lls",
@@ -908,7 +862,6 @@
 		"tr": "SAML mesaj\u0131 verilmemi\u015f"
 	},
 	"descr_SLOSERVICEPARAMS": {
-		"en": "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse.",
 		"no": "Du brukte SingleLogoutService-grensesnittet uten \u00e5 angi enten en SAML LogoutRequest eller en LogoutResponse.",
 		"nn": "Du har bruk utloggingstenesta (SingleLogoutService), men har ikkje sendt utloggingsmelding (SAML LogoutRequest) eller utloggingssvar (SAML LogoutResponse)",
 		"sv": "Du har anroppat tj\u00e4nsten f\u00f6r Single Sing-Out utan att skicka med n\u00e5gon SAML LogoutRequest eller LogoutResponse.",
@@ -927,7 +880,6 @@
 		"tr": "Tekli\u00c7\u0131k\u0131\u015fServis (SingleLogoutService) aray\u00fcz\u00fcne giri\u015f yapt\u0131n\u0131z, ancak bir SAML \u00c7\u0131k\u0131\u015f\u0130ste\u011fi ya da \u00c7\u0131k\u0131\u015fCevab\u0131 sa\u011flamad\u0131n\u0131z."
 	},
 	"title_ACSPARAMS": {
-		"en": "No SAML response provided",
 		"no": "Ingen SAML-respons angitt",
 		"nn": "Fann ikkje SAML-svar",
 		"sv": "Inget SAML-svar tillhandah\u00f6lls",
@@ -946,7 +898,6 @@
 		"tr": "SAML cevab\u0131 verilmemi\u015f"
 	},
 	"descr_ACSPARAMS": {
-		"en": "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response.",
 		"no": "Du brukte AssertionConsumerService-grensesnittet uten \u00e5 angi en SAML AuthenticationResponse.",
 		"nn": "Du har brukt grensesnittet for mottak av meldingar (Assertion Consumer Service), men utan \u00e5 senda SAML autentiseringssvar (Authentication Response)",
 		"sv": "Du har anropat gr\u00e4nssnittet f\u00f6r Assertion Consumer Service utan att skicka med n\u00e5gon SAML Authentication Responce.",
@@ -965,7 +916,6 @@
 		"tr": "Onay Al\u0131c\u0131 Servis (Assertion Consumer Service) aray\u00fcz\u00fcne giri\u015f yapt\u0131n\u0131z, ancak SAML Kimlik Do\u011frulama Cevab\u0131 sa\u011flamad\u0131n\u0131z."
 	},
 	"title_CASERROR": {
-		"en": "CAS Error",
 		"no": "CAS-feil",
 		"nn": "CAS-feil",
 		"sv": "CAS-error",
@@ -985,7 +935,6 @@
 		"tr": "CAS Hatas\u0131"
 	},
 	"descr_CASERROR": {
-		"en": "Error when communicating with the CAS server.",
 		"no": "Feil i kommunikasjonen med CAS-tjeneren.",
 		"nn": "Feil under kommunikasjon med CAS-tenaren",
 		"sv": "Ett fel uppstod vid kommunikation med CAS-servern.",
@@ -1004,7 +953,6 @@
 		"tr": "CAS sunucusu ile ileti\u015fim kurarken hata"
 	},
 	"title_CONFIG": {
-		"en": "Configuration error",
 		"no": "Feil i oppsettet",
 		"nn": "Konfigurasjonsfeil",
 		"sv": "Konfigurationsfel",
@@ -1024,7 +972,6 @@
 		"tr": "Yap\u0131land\u0131rma hatas\u0131"
 	},
 	"descr_CONFIG": {
-		"en": "simpleSAMLphp appears to be misconfigured.",
 		"no": "Det virker som det er en feil i oppsettet av simpleSAMLphp.",
 		"nn": "simpleSAMLphp ser ut til \u00e5 vera feilkonfigurert",
 		"sv": "Det f\u00f6rfaller som simpleSAMLphp \u00e4r felkonfigurerat.",
@@ -1043,48 +990,7 @@
 		"pl": "wydaje si\u0119, \u017ce simpleSAMLphp jest b\u0142\u0119dnie skonfigurowany.",
 		"tr": "simpleSAMLphp do\u011fru yap\u0131land\u0131r\u0131lm\u0131\u015f gibi g\u00f6r\u00fcnm\u00fcyor."
 	},
-	"title_NOTVALIDCERT": {
-		"en": "Invalid certificate",
-		"no": "Ugyldig sertifikat",
-		"nn": "Ugyldig sertifikat",
-		"sv": "Felaktigt certifikat",
-		"es": "Certificado no v\u00e1lido",
-		"fr": "Certificat invalide",
-		"de": "Ung\u00fcltiges Zertifikat",
-		"nl": "Ongeldig certificaat",
-		"lb": "Ong\u00fcltegen Zertifikat",
-		"sl": "Napa\u010den certifikat",
-		"da": "Ugyldigt Certifikat",
-		"hr": "Neva\u017ee\u0107i certifikat",
-		"hu": "\u00c9rv\u00e9nytelen tan\u00fas\u00edtv\u00e1ny",
-		"fi": "Ep\u00e4kelvollinen sertifikaatti",
-		"pt-BR": "Certificado inv\u00e1lido",
-		"pt": "Certificado inv\u00e1lido",
-		"pl": "Nieprawid\u0142owy certyfikat",
-		"tr": "Ge\u00e7erli olmayan sertifika"
-	},
-	"descr_NOTVALIDCERT": {
-		"en": "You did not present a valid certificate.",
-		"no": "Du presenterte ikke et gyldig sertifikat",
-		"nn": "Du har ikkje brukt eit gyldig sertifikat i kommunikasjonen din",
-		"sv": "Du tillhandah\u00f6ll inget godk\u00e4nt certifikat",
-		"es": "No se ha podido validar el certificado recibido",
-		"fr": "Vous n'avez pas pr\u00e9sent\u00e9 de certificat valide",
-		"de": "Sie haben kein g\u00fcltiges Zertifikat benutzt.",
-		"nl": "Je hebt geen geldig certificaat meegegeven",
-		"lb": "Dir hud keen g\u00fcltegen Zertifikat",
-		"sl": "Posredovan certifikat je neveljaven",
-		"da": "Du har ikke valgt et gyldigt certifikat",
-		"hr": "Niste predo\u010dili valjani certifikat.",
-		"hu": "Nem tal\u00e1lhat\u00f3 hiteles tan\u00fas\u00edtv\u00e1ny",
-		"fi": "Et tarjonnut voimassaolevaa sertifikaattia",
-		"pt-BR": "Voc\u00ea n\u00e3o possui um certificado v\u00e1lido",
-		"pt": "N\u00e3o foi apresentado um certificado v\u00e1lido.",
-		"pl": "Nie przedstawi\u0142e\u015b prawid\u0142owego certyfikaty",
-		"tr": "Ge\u00e7erli bir sertifika sa\u011flamad\u0131n\u0131z. "
-	},
 	"title_NOTSET": {
-		"en": "Password not set",
 		"no": "Passordet er ikke satt",
 		"nn": "Finn ikkje passord",
 		"sv": "L\u00f6senord \u00e4r inte satt",
@@ -1104,7 +1010,6 @@
 		"tr": "\u015eifre atanmad\u0131"
 	},
 	"descr_NOTSET": {
-		"en": "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file.",
 		"no": "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til noe annet enn default verdien. Bytt passord i config.php.",
 		"nn": "Passordet i konfigurasjonen din (auth.adminpassword) er ikkje endra fr\u00e5 opprinneleg verdi, dette er usikkert.  G\u00e5 inn i konfigurasjonen og bytt passord.",
 		"sv": "Konfigurationsl\u00f6senordet (auth.adminpassword) \u00e4r inte \u00e4ndrat fr\u00e5n standardv\u00e4rdet. Uppdatera kongiruationen med ett nytt l\u00f6senord!",
@@ -1122,8 +1027,45 @@
 		"pt": "A password presente na configura\u00e7\u00e3o (auth.adminpassword) tem o valor de omiss\u00e3o. Por favor altere esta password no ficheiro de configura\u00e7\u00e3o.",
 		"tr": "Yap\u0131land\u0131rmadaki (auth.adminpassword) \u015fifrenin \u00f6ntan\u0131ml\u0131 de\u011feri de\u011fi\u015fmedi. L\u00fctfen yap\u0131land\u0131rma dosyas\u0131n\u0131 d\u00fczeltin."
 	},
+	"title_NOTVALIDCERT": {
+		"no": "Ugyldig sertifikat",
+		"nn": "Ugyldig sertifikat",
+		"sv": "Felaktigt certifikat",
+		"es": "Certificado no v\u00e1lido",
+		"fr": "Certificat invalide",
+		"de": "Ung\u00fcltiges Zertifikat",
+		"nl": "Ongeldig certificaat",
+		"lb": "Ong\u00fcltegen Zertifikat",
+		"sl": "Napa\u010den certifikat",
+		"da": "Ugyldigt Certifikat",
+		"hr": "Neva\u017ee\u0107i certifikat",
+		"hu": "\u00c9rv\u00e9nytelen tan\u00fas\u00edtv\u00e1ny",
+		"fi": "Ep\u00e4kelvollinen sertifikaatti",
+		"pt-BR": "Certificado inv\u00e1lido",
+		"pt": "Certificado inv\u00e1lido",
+		"pl": "Nieprawid\u0142owy certyfikat",
+		"tr": "Ge\u00e7erli olmayan sertifika"
+	},
+	"descr_NOTVALIDCERT": {
+		"no": "Du presenterte ikke et gyldig sertifikat",
+		"nn": "Du har ikkje brukt eit gyldig sertifikat i kommunikasjonen din",
+		"sv": "Du tillhandah\u00f6ll inget godk\u00e4nt certifikat",
+		"es": "No se ha podido validar el certificado recibido",
+		"fr": "Vous n'avez pas pr\u00e9sent\u00e9 de certificat valide",
+		"de": "Sie haben kein g\u00fcltiges Zertifikat benutzt.",
+		"nl": "Je hebt geen geldig certificaat meegegeven",
+		"lb": "Dir hud keen g\u00fcltegen Zertifikat",
+		"sl": "Posredovan certifikat je neveljaven",
+		"da": "Du har ikke valgt et gyldigt certifikat",
+		"hr": "Niste predo\u010dili valjani certifikat.",
+		"hu": "Nem tal\u00e1lhat\u00f3 hiteles tan\u00fas\u00edtv\u00e1ny",
+		"fi": "Et tarjonnut voimassaolevaa sertifikaattia",
+		"pt-BR": "Voc\u00ea n\u00e3o possui um certificado v\u00e1lido",
+		"pt": "N\u00e3o foi apresentado um certificado v\u00e1lido.",
+		"pl": "Nie przedstawi\u0142e\u015b prawid\u0142owego certyfikaty",
+		"tr": "Ge\u00e7erli bir sertifika sa\u011flamad\u0131n\u0131z. "
+	},
 	"errorreport_header": {
-		"en": "Error report sent",
 		"no": "Feilrapport sent",
 		"nn": "Feilrapport sendt",
 		"sv": "Felrapport skickad",
@@ -1142,7 +1084,6 @@
 		"tr": "Hata raporu g\u00f6nderildi"
 	},
 	"errorreport_text": {
-		"en": "The error report has been sent to the administrators.",
 		"no": "Feilrapport er sent til administrator.",
 		"nn": "Feilrapport har blitt sendt til administrator",
 		"sv": "Felrapporten \u00e4r skickad till den som sk\u00f6ter systemet.",
@@ -1161,7 +1102,6 @@
 		"tr": "Hata raporu y\u00f6neticilere g\u00f6nderildi"
 	},
 	"title_READCONFIGTEMPLATES": {
-		"en": "Error reading config-templates directory",
 		"no": "Feil ved lesing av config-templates katalogen",
 		"nn": "Feil under lesing av konfigurasjonsmal-katalog",
 		"sv": "Fel vid l\u00e4sning av konfigurationsmallkatalogen",
@@ -1179,7 +1119,6 @@
 		"tr": "\"config-templates\" klas\u00f6r\u00fcn\u00fc okurken hata"
 	},
 	"descr_READCONFIGTEMPLATES": {
-		"en": "An error occured while simpleSAMLphp was attempting to find the available files in the config-templates directory.",
 		"no": "En feil oppstod mens simpleSAMLphp pr\u00f8vde \u00e5 finne tilgjengelige filer i config-templates katalogen.",
 		"nn": "Det oppsto ein feil d\u00e5 simpleSAMLphp pr\u00f8ved \u00e5 finna filene som skulle vore tilgjengelege i konfigurasjonsmal-katalogen",
 		"sv": "Ett fel uppstod n\u00e4r simpleSAMLphp f\u00f6rs\u00f6kte uppt\u00e4cka tillg\u00e4ngliga filer i konfigurationsmallkatalogen.",
@@ -1197,7 +1136,6 @@
 		"tr": "simpleSAMLphp \"config-templates\" klas\u00f6r\u00fcnde bulunan kullan\u0131mda olan dosyalar\u0131 bulmaya \u00e7al\u0131\u015f\u0131rken bir hata olu\u015ftu. "
 	},
 	"title_LOGOUTINFOLOST": {
-		"en": "Logout information lost",
 		"no": "Informasjon om utlogging er tapt",
 		"nn": "Mista utloggingsinformasjon",
 		"sv": "Utloggningsinformation \u00e4r borta",
@@ -1215,7 +1153,6 @@
 		"tr": "\u00c7\u0131k\u0131\u015f bilgisi kaybedildi"
 	},
 	"descr_LOGOUTINFOLOST": {
-		"en": "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amout of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider.",
 		"no": "Informasjonen om den n\u00e5v\u00e6rende utloggingen har g\u00e5tt tapt. Du b\u00f8r g\u00e5 tilbake til den opprinnelige tjesesten og pr\u00f8ve \u00e5 logge ut p\u00e5 nytt. Informasjon om utloggingsoperasjoner er kun lagret i en begrenset tid - vanligvis noen timer. Dette er lengere tid enn en vanlig utlogging skal ta, s\u00e5 denne feilen kan tyde p\u00e5 at noe er galt med oppsettet. Ta kontakt med tjenesteyteren hvis problemet gjentar seg.",
 		"nn": "Informasjon om utlogginga di har blitt borte.  Du b\u00f8r g\u00e5 tilbake til tenesta du pr\u00f8ver \u00e5 logga ut av, og pr\u00f8va ein gong til.  Feilen kan vera fordi utlogginga gjekk ut p\u00e5 tid.  Utloggingsinformasjon er lagra i eit kort tidsrom (vanlegvis nokre f\u00e5 timar), og dersom utlogging tar lengre tid kan det vera feil i andre deler av konfigurasjonen p\u00e5 webstaden du var innlogga p\u00e5.  Dersom problemet ikkje blir borte, ta kontakt med webstaden du var innlogga p\u00e5.",
 		"sv": "Informationen om aktuell utloggning har f\u00f6rsvunnit. Du b\u00f6r \u00e5terv\u00e4nda till tj\u00e4nsten som du f\u00f6rs\u00f6kte logga ut fr\u00e5n och f\u00f6rs\u00f6ka logga ut p\u00e5 nytt. Detta fel kan intr\u00e4ffa om informationen om utloggningen \u00e4r f\u00f6r gammal. Utloggningsinformationen sparas en begr\u00e4nsad tid, oftas n\u00e5gra timmar. Det \u00e4r l\u00e4ngre \u00e4n vad utloggning b\u00f6r ta s\u00e5 felet kan indikera n\u00e5got fel med konfigurationen. Om problemet kvarst\u00e5r kontakta leverant\u00f6ren f\u00f6r den tj\u00e4nst du f\u00f6rs\u00f6kte logga ut fr\u00e5n.",
@@ -1233,7 +1170,6 @@
 		"tr": "Y\u00fcr\u00fcrl\u00fckteki \u00e7\u0131k\u0131\u015f i\u015flemi ile ilgili bilgi kayboldu. \u00c7\u0131kmak istedi\u011finiz servise geri d\u00f6n\u00fcn ve yeniden \u00e7\u0131kmay\u0131 denyin. Bu hata, \u00e7\u0131k\u0131\u015f bilgisinin s\u00fcresi doldu\u011fu i\u00e7in olu\u015fmu\u015f olabilir. \u00c7\u0131k\u0131\u015f bilgisi belirli bir s\u00fcre i\u00e7in tutulur - genellikle birka\u00e7 saat. Bu s\u00fcre normal bir \u00e7\u0131k\u0131\u015f i\u015fleminin tutaca\u011f\u0131ndan daha fazla bir s\u00fcredir; bu hata yap\u0131land\u0131rma ile ilgili ba\u015fka bir hatay\u0131 i\u015faret ediyor olabilir. E\u011fer sorun devam ederse, servis sa\u011flay\u0131c\u0131n\u0131zla ileti\u015fime ge\u00e7iniz."
 	},
 	"title_ASSERTFAIL": {
-		"en": "Assertion failure",
 		"no": "Feil knyttet til validering av SAML-beskjed",
 		"nn": "Feil knytta til SAML Assertion",
 		"sv": "Fel vid f\u00f6rs\u00e4kran",
@@ -1250,7 +1186,6 @@
 		"tr": "Onaylama ba\u015far\u0131s\u0131z"
 	},
 	"descr_ASSERTFAIL": {
-		"en": "An assertion in the code failed. The assertion was: %ASSERTION%",
 		"no": "En p\u00e5stand i koden feilet. P\u00e5standen var: %ASSERTION%",
 		"nn": "Feil med ein SAML assertion i koden.  Aktuell assertion var: %ASSERTION%",
 		"sv": "En f\u00f6rs\u00e4kran i koden fungerade inte. Aktuella f\u00f6rs\u00e4kran: %ASSERTION%",
@@ -1267,7 +1202,6 @@
 		"tr": "Koddaki bir onaylama ba\u015far\u0131lamad\u0131. Onaylama %ASSERTION% idi"
 	},
 	"title_UNHANDLEDEXCEPTION": {
-		"en": "Unhandled exception",
 		"no": "Uh\u00e5ndtert feil",
 		"nn": "Feilsituasjon som ikkje er riktig handtert",
 		"sv": "Ohanterat undantag",
@@ -1284,7 +1218,6 @@
 		"tr": "Beklenmeyen durum"
 	},
 	"descr_UNHANDLEDEXCEPTION": {
-		"en": "An unhandled exception was thrown.",
 		"no": "En uventet feilsituasjon oppstod",
 		"nn": "Programvaren gjev melding om uventa feilsituasjon",
 		"sv": "Ett ohanterat undatag har intr\u00e4ffat. ",
@@ -1301,7 +1234,6 @@
 		"tr": "Bir beklenmeyen durum g\u00f6nderildi."
 	},
 	"title_NOTFOUND": {
-		"en": "Page not found",
 		"no": "Kan ikke finne siden",
 		"nn": "Fann ikkje sida",
 		"sv": "Sidan finns inte",
@@ -1320,7 +1252,6 @@
 		"tr": "Sayfa bulunamad\u0131"
 	},
 	"descr_NOTFOUND": {
-		"en": "The given page was not found. The URL was: %URL%",
 		"no": "Den angitte siden finnes ike. URLen var: %URL%",
 		"nn": "Fann ikkje den aktuelle sida.  URL var: %URL%",
 		"sv": "Den angivna sidan finns inte. URL: %URL%",
@@ -1339,7 +1270,6 @@
 		"tr": "Verilen sayfa bulunamad\u0131. URL %URL% idi."
 	},
 	"title_NOTFOUNDREASON": {
-		"en": "Page not found",
 		"no": "Kan ikke finne siden",
 		"nn": "Fann ikkje sida",
 		"sv": "Sidan finns inte",
@@ -1358,7 +1288,6 @@
 		"tr": "Sayfa bulunamad\u0131"
 	},
 	"descr_NOTFOUNDREASON": {
-		"en": "The given page was not found. The reason was: %REASON%  The URL was: %URL%",
 		"no": "Den angitte siden finnes ikke. Grunnen er: %REASON%. URLen var: %URL%",
 		"nn": "Fann ikkje den aktuelle sida p\u00e5 grunn av %REASON%.  URLen var %URL%",
 		"sv": "Den angivna sidan finns inte. Orsak: %REASON% URL: %URL%",
@@ -1377,7 +1306,6 @@
 		"tr": "Verilen sayfa bulunamad\u0131. Nedeni %REASON% idi. URL %URL% idi."
 	},
 	"title_BADREQUEST": {
-		"en": "Bad request received",
 		"no": "Feil foresp\u00f8rsel motatt",
 		"nn": "Feil sp\u00f8rsm\u00e5l mottatt",
 		"sv": "Felaktigt anrop",
@@ -1392,10 +1320,10 @@
 		"pt-BR": "A solicita\u00e7\u00e3o recebida \u00e9 inv\u00e1lida",
 		"pt": "Pedido inv\u00e1lido recebido",
 		"pl": "Otrzymano nieprawid\u0142owe \u017cadanie",
-		"tr": "Hatal\u0131 istek al\u0131nd\u0131"
+		"tr": "Hatal\u0131 istek al\u0131nd\u0131",
+		"fi": "V\u00e4\u00e4r\u00e4nlainen pyynt\u00f6 vastaanotettu"
 	},
 	"descr_BADREQUEST": {
-		"en": "There is an error in the request to this page. The reason was: %REASON%",
 		"no": "En feil oppsto i foresp\u00f8rselen til denne siden. Grunnen var: %REASON%",
 		"nn": "Det er ein feil i sp\u00f8rringa etter denne sida.  Grunnen til dette er %REASON%",
 		"sv": "Det \u00e4r ett fel i anropet till denna sida. Orsak: %REASON%",
@@ -1412,7 +1340,6 @@
 		"tr": "Bu sayfaya yap\u0131lan istekte bir hata var. Nedeni %REASON% idi."
 	},
 	"title_WRONGUSERPASS": {
-		"en": "Incorrect username or password",
 		"no": "Feil brukernavn og passord",
 		"nn": "Feil brukarnamn eller passord",
 		"sv": "Felaktig anv\u00e4ndaridentitet eller l\u00f6senord",
@@ -1431,7 +1358,6 @@
 		"tr": "Ge\u00e7ersiz kullan\u0131c\u0131 ad\u0131 yada \u015fifre"
 	},
 	"descr_WRONGUSERPASS": {
-		"en": "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again.",
 		"no": "Enten var brukernavnet, eller kombinasjonen med brukernavn og passord feil. Sjekk brukernavn og passord og pr\u00f8v igjen.",
 		"nn": "Fann ingen brukar med det brukarnamnet du oppgav, eller passordet var feil.  Sjekk brukarnamn og pr\u00f8v igjen.",
 		"sv": "Antingen finns det ingen anv\u00e4ndare med angiven anv\u00e4ndaridentitet eller s\u00e5 har du angivit fel l\u00f6senord. F\u00f6rs\u00f6k igen.",
@@ -1448,7 +1374,6 @@
 		"tr": "Ya bu kullan\u0131c\u0131 ad\u0131nda bir kullan\u0131c\u0131 bulunamad\u0131, yada \u015fifreniz yanl\u0131\u015f. L\u00fctfen kullan\u0131c\u0131 ad\u0131n\u0131 kontrol edin ve yeniden deneyin."
 	},
 	"title_OPENIDWRONG": {
-		"en": "Wrong identity for OpenID",
 		"no": "Feil identitet for OpenID",
 		"nn": "Feil identitet for OpenID",
 		"sv": "Fel identitet f\u00f6r OpenID",
@@ -1462,10 +1387,10 @@
 		"hu": "Hib\u00e1s OpenID identit\u00e1s",
 		"pt": "Erro de Identidade OpenID",
 		"pl": "B\u0142\u0119dna to\u017csamo\u015bc dla OpenID",
-		"tr": "OpenID i\u00e7in ge\u00e7ersiz kimlik."
+		"tr": "OpenID i\u00e7in ge\u00e7ersiz kimlik.",
+		"fi": "V\u00e4\u00e4r\u00e4 identiteetti OpenID:st\u00e4"
 	},
 	"descr_OPENIDWRONG": {
-		"en": "The OpenID requested you to verify an identity, and you are logged in with another identity.",
 		"no": "OpenID-en som ble etterspurt stemmer ikke overens med identiteten du er logget inn med.",
 		"nn": "OpenID sjekka om du hadde riktig identiete, men du var logga inn p\u00e5 ein annan konto.",
 		"sv": "OepnID f\u00f6rs\u00f6ker verfiera dig med en identitet men du \u00e4r inloggad med en annan.",
@@ -1478,26 +1403,29 @@
 		"hr": "OpenID je od vas tra\u017eio provjeru identiteta, a vi ste prijavljeni s drugim identitetom.",
 		"hu": "Az OpenID egy identit\u00e1s ellen\u0151rz\u00e9s\u00e9t k\u00edv\u00e1nta, de \u00f6n egy m\u00e1sik identit\u00e1s nev\u00e9ben van bejelentkezve.",
 		"pt": "O OpenID pediu a verifica\u00e7\u00e3o de uma identidade, mas voc\u00ea est\u00e1 autenticado com outra identidade",
-		"tr": "OpenID sizden bir kimlik do\u011frulamak i\u00e7in istekte bulundu, ve siz ba\u015fka bir kimlikle giri\u015f yapt\u0131n\u0131z."
+		"tr": "OpenID sizden bir kimlik do\u011frulamak i\u00e7in istekte bulundu, ve siz ba\u015fka bir kimlikle giri\u015f yapt\u0131n\u0131z.",
+		"fi": "OpenID pyynt\u00f6si sinulle varmistaaksesi identiteettisi kun olet kirjautunut toisella identiteetill\u00e4si."
 	},
 	"title_RESPONSESTATUSNOSUCCESS": {
-		"en": "Error received from Identity Provider",
 		"no": "Feilmelding mottatt fra innloggingstjenesten",
 		"sv": "Fel mottaget fr\u00e5n IdP",
 		"es": "Hubo un error por parte del IdP",
 		"nl": "Foutmelding ontvangen van Identity Provider",
 		"sl": "Napaka na IdP",
 		"da": "Fejl modtaget fra institution",
-		"tr": "Kimlik Sa\u011flay\u0131c\u0131dan hata al\u0131nd\u0131."
+		"tr": "Kimlik Sa\u011flay\u0131c\u0131dan hata al\u0131nd\u0131.",
+		"de": "Fehlermeldung vom Identity Provider erhalten",
+		"fi": "Virhe vastaanotettu Identiteetintarjoajalta."
 	},
 	"descr_RESPONSESTATUSNOSUCCESS": {
-		"en": "The Identity Provider responded with an error. (The status code in the SAML Response was not success)",
 		"no": "Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-svaret var noe annet enn OK)",
 		"sv": "Identitetshanteraren (Identity Provider) svarade med ett felmeddelande. (Statusmeddelandet i SAML-svaret var ett felmeddelande)",
 		"es": "El IdP respondi\u00f3 a la solicitud con un error. (El c\u00f3digo de estado en la respuesta SAML no fue exitoso)",
 		"nl": "De Identity Provider antwoordde met een fout. (De statuscode in de SAML Response was niet success)",
 		"sl": "Odziv IdP vsebuje napako (\"SAML-Response\" ni uspel)! ",
 		"da": "Institutionen har sendt en fejl. (Status koden i SAML responset var ikke succes)",
-		"tr": "Kimlik Sa\u011flay\u0131c\u0131 hatal\u0131 cevap verdi. (SAML Cevab\u0131'ndaki durum kodu ba\u015far\u0131lamad\u0131)"
+		"tr": "Kimlik Sa\u011flay\u0131c\u0131 hatal\u0131 cevap verdi. (SAML Cevab\u0131'ndaki durum kodu ba\u015far\u0131lamad\u0131)",
+		"de": "Der Identity Provider gab einen Fehler zur\u00fcck (Der Statuscode in der SAML-Antwort war nicht \"Erfolg\")",
+		"fi": "Identiteetintarjoaja vastasi virheell\u00e4. ( Tilakoodi SAML vastauksessa oli ep\u00e4onnistunut)"
 	}
 }

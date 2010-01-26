@@ -1,17 +1,22 @@
 {
 	"modlist_header": {
-		"no": "Tilgjengelige moduler"
+		"no": "Tilgjengelige moduler",
+		"de": "Verf\u00fcgbare Module"
 	},
 	"modlist_name": {
-		"no": "Navn"
+		"no": "Navn",
+		"de": "Name"
 	},
 	"modlist_status": {
-		"no": "Status"
+		"no": "Status",
+		"de": "Status"
 	},
 	"modlist_enabled": {
-		"no": "P\u00e5sl\u00e5tt"
+		"no": "P\u00e5sl\u00e5tt",
+		"de": "Aktiviert"
 	},
 	"modlist_disabled": {
-		"no": "Avsl\u00e5tt"
+		"no": "Avsl\u00e5tt",
+		"de": "Deaktiviert"
 	}
 }

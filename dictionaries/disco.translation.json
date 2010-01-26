@@ -1,6 +1,5 @@
 {
 	"selectidp": {
-		"en": "Select your identity provider",
 		"no": "Velg din identitetsleverand\u00f8r",
 		"nn": "Vel innloggingsteneste",
 		"sv": "V\u00e4lj din identitetsleverant\u00f6r",
@@ -20,7 +19,6 @@
 		"tr": "Kimlik sa\u011flay\u0131c\u0131n\u0131z\u0131 se\u00e7iniz."
 	},
 	"selectidp_full": {
-		"en": "Please select the identity provider where you want to authenticate:",
 		"no": "Vennligst velg hvilken identitetsleverand\u00f8r du vil bruke for \u00e5 logge inn:",
 		"nn": "Vel innloggingsteneste (IdP) der du \u00f8nskjer \u00e5 logga inn.",
 		"sv": "V\u00e4lj vilken identitetsleverant\u00f6r du vill logga in med:",
@@ -40,7 +38,6 @@
 		"tr": "L\u00fctfen, kimlik do\u011frulamas\u0131 yapaca\u011f\u0131n\u0131z kimlik sa\u011flay\u0131c\u0131y\u0131 se\u00e7iniz: "
 	},
 	"select": {
-		"en": "Select",
 		"no": "Velg",
 		"nn": "Vel",
 		"sv": "V\u00e4lj",
@@ -60,7 +57,6 @@
 		"tr": "Se\u00e7"
 	},
 	"remember": {
-		"en": "Remember my choice",
 		"no": "Husk mitt valg",
 		"nn": "Hugs mitt val",
 		"sv": "Kom ih\u00e5g mitt val",
@@ -80,11 +76,10 @@
 		"tr": "Se\u00e7imimi hat\u0131rla"
 	},
 	"icon_prefered_idp": {
-		"en": "[Preferred choice]",
 		"no": "[Foretrukket valg]",
 		"sv": "Prioriterat val",
 		"es": "[Opci\u00f3n preference]",
-		"de": "Bevorzugte Auswahl",
+		"de": "[Bevorzugte Auswahl]",
 		"nl": "[Voorkeurskeuze]",
 		"sl": "Prioritetna izbira",
 		"da": "Foretrukket valg",
@@ -95,21 +90,23 @@
 		"tr": "[Tercih edilen se\u00e7enek]"
 	},
 	"previous_auth": {
-		"en": "You have previously chosen to authenticate at",
 		"no": "Du har tidligere valg \u00e5 autentisere deg hos",
 		"sv": "Du har  tidigare valt att logga in med",
 		"es": "Previamente solicit\u00f3 autenticarse en",
 		"nl": "Je hebt eerder gekozen voor authenticatie bij",
 		"sl": "Predhodnje ste se prijavljali \u017ee pri",
-		"da": "Du har tidligere valgt at logge ind hos"
+		"da": "Du har tidligere valgt at logge ind hos",
+		"de": "Sie haben sich zu einem fr\u00fcheren Zeitpunkt entschieden, sich zu authentifizieren bei ",
+		"fi": "Olet aikaisemmin valinnut identiteettil\u00e4hteeksesi"
 	},
 	"login_at": {
-		"en": "Login at",
 		"no": "Logg inn hos",
 		"sv": "Logga in med",
 		"es": "Identificarse en",
 		"nl": "Inloggen bij",
 		"sl": "Prijavi se pri",
-		"da": "Login hos"
+		"da": "Login hos",
+		"de": "Login bei",
+		"fi": "Kirjaudu"
 	}
 }

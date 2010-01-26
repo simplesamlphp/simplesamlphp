@@ -1,6 +1,5 @@
 {
 	"title": {
-		"en": "Logged out",
 		"no": "Utlogget",
 		"nn": "Utlogga",
 		"sv": "Utloggad",
@@ -19,7 +18,6 @@
 		"tr": "\u00c7\u0131kt\u0131n\u0131z"
 	},
 	"logged_out_text": {
-		"en": "You have been logged out.",
 		"no": "Du er n\u00e5 utlogget.",
 		"nn": "Du har blitt logga ut.  Takk for at du brukte denne tenesta.",
 		"sv": "Du har blivit uloggad. Tack f\u00f6r att du anv\u00e4nde denna tj\u00e4nst.",
@@ -38,7 +36,6 @@
 		"tr": "\u00c7\u0131kt\u0131n\u0131z"
 	},
 	"default_link_text": {
-		"en": "Go back to simpleSAMLphp installation page",
 		"no": "G\u00e5 tilbake til simpleSAMLphp installasjonen sin startside.",
 		"nn": "G\u00e5 tilbake til simpleSAMLphp installasjonssida",
 		"sv": "\u00c5ter till installationssidan f\u00f6r simpleSAMLphp",
@@ -57,7 +54,6 @@
 		"tr": "simpleSAMLphp kurulum sayfas\u0131na geri d\u00f6n"
 	},
 	"description": {
-		"en": "You have initiated a <strong>global logout<\/strong> from the service <strong>%REQUESTERNAME%<\/strong>. Global logout means you will be logged out from all of the services listed below.",
 		"no": "Du har startet en <strong>global utlogging<\/strong> fra tjenesten <strong>%REQUESTERNAME%<\/strong>. Global utlogging betyr at du vil bli logget ut fra alle tjenestene vist nedenfor.",
 		"nn": "Du har sett igang <strong>total utlogging<\/strong> fr\u00e5 tenesta <strong>%REQUESTERNAME%<\/strong>.  Total utlogging inneber at du blir logga ut fr\u00e5 alle webtenestene.",
 		"sv": "Du har p\u00e5b\u00f6rjat en <strong>global utloggn\u00edng<\/strong> fr\u00e5n tj\u00e4nsten <strong>%REQUESTERNAME%<\/strong>. Global utloggnng betyder att du kan kommer att bli utloggad fr\u00e5n alla nedanst\u00e5ende tj\u00e4nste.",
@@ -70,10 +66,11 @@
 		"hu": "<strong>Teljes kijelentkez\u00e9si folyamatot<\/strong> ind\u00edtott ebb\u0151l az alkalmaz\u00e1sb\u00f3l: <strong>%REQUESTERNAME%<\/strong>. A teljes kijelentkez\u00e9s azt jelenti, hogy az al\u00e1bbi \u00f6sszes alkalmaz\u00e1sb\u00f3l kijelentkezik.",
 		"pt": "Iniciou uma <strong>sa\u00edda global<\/strong> do servi\u00e7o <strong>%REQUESTERNAME%<\/strong>. Uma sa\u00edda global significa que ir\u00e1 sair de todos os servi\u00e7os listados em baixo.",
 		"pl": "Zainicjowa\u0142e\u015b <strong>globalne wylogowanie<\/strong> z serwisu <strong>%REQUESTERNAME%<\/strong>.Globalne wylogowanie oznacza, \u017ce zostaniesz wylogowany ze wszystkich z poni\u017cszej listy serwis\u00f3w.",
-		"tr": "<strong>%REQUESTERNAME%<\/strong> adl\u0131 servisten <strong>genel \u00e7\u0131k\u0131\u015f<\/strong> ba\u015flatt\u0131n\u0131z. Genel \u00e7\u0131k\u0131\u015f a\u015fa\u011f\u0131da listelenen t\u00fcm servislerden \u00e7\u0131kaca\u011f\u0131n\u0131z anlam\u0131na gelmektedir."
+		"tr": "<strong>%REQUESTERNAME%<\/strong> adl\u0131 servisten <strong>genel \u00e7\u0131k\u0131\u015f<\/strong> ba\u015flatt\u0131n\u0131z. Genel \u00e7\u0131k\u0131\u015f a\u015fa\u011f\u0131da listelenen t\u00fcm servislerden \u00e7\u0131kaca\u011f\u0131n\u0131z anlam\u0131na gelmektedir.",
+		"de": "Sie haben eine <strong>generelle Abmeldung<\/strong> vom Dienst <strong>%REQUESTERNAME%<\/strong> initiiert. Eine generelle Abmeldung bedeutet, dass Sie von allen unten angef\u00fchrten Diensten ausgeloggt werden.",
+		"fi": "Olet k\u00e4ynnist\u00e4nyt <strong>globaalin uloskirjautumisen<\/strong> seuraavasta <storng>%REQUESTERNAME%<\/strong> palvelusta. Globaali uloskirjautuminen tarkoittaa, ett\u00e4 uloskirjaudut seuraavista palveluista, jotka ovat lueteltu alla."
 	},
 	"initiated": {
-		"en": "Initiated logout",
 		"no": "Startet utlogging",
 		"nn": "Utlogging igangsett",
 		"sv": "P\u00e5b\u00f6rjad utloggning",
@@ -87,10 +84,10 @@
 		"hu": "Kijelentkez\u00e9s elind\u00edtva",
 		"pt": "Sa\u00edda iniciada",
 		"pl": "Wylogowanie zaincjowane",
-		"tr": "Ba\u015flat\u0131lm\u0131\u015f \u00e7\u0131k\u0131\u015f"
+		"tr": "Ba\u015flat\u0131lm\u0131\u015f \u00e7\u0131k\u0131\u015f",
+		"fi": "K\u00e4ynistetty uloskirjautuminen"
 	},
 	"hold": {
-		"en": "On hold",
 		"no": "P\u00e5 vent",
 		"nn": "Venter",
 		"sv": "Vilande",
@@ -103,10 +100,11 @@
 		"hu": "Felf\u00fcggesztve",
 		"pt": "Em espera",
 		"pl": "W zawieszeniu",
-		"tr": "Beklemede"
+		"tr": "Beklemede",
+		"de": "In der Wartschleife",
+		"fi": "Odota"
 	},
 	"completed": {
-		"en": "Completed",
 		"no": "Fullf\u00f8rt",
 		"nn": "Ferdig",
 		"sv": "Klar",
@@ -124,7 +122,6 @@
 		"tr": "Tamamland\u0131"
 	},
 	"progress": {
-		"en": "Logging out...",
 		"no": "Logger ut...",
 		"nn": "Loggar ut...",
 		"sv": "Loggar ut...",
@@ -142,7 +139,6 @@
 		"tr": "\u00c7\u0131k\u0131yor"
 	},
 	"failed": {
-		"en": "Logout failed",
 		"no": "Utlogging feilet",
 		"nn": "Utlogging feila",
 		"sv": "Utloggning misslyckades",
@@ -160,7 +156,6 @@
 		"tr": "\u00c7\u0131k\u0131\u015f ba\u015far\u0131lamad\u0131"
 	},
 	"continue": {
-		"en": "Do you want to continue global logout?",
 		"no": "\u00d8nsker du \u00e5 fortsette global utlogging?",
 		"nn": "Vil du g\u00e5 vidare med total utlogging?",
 		"sv": "Vill du forts\u00e4tta med den globala utloggningen?",
@@ -174,10 +169,10 @@
 		"hu": "K\u00edv\u00e1nja folytatni a teljes kijelentkez\u00e9st?",
 		"pt": "Deseja continuar a sa\u00edda global?",
 		"pl": "Czy chcesz kontynuowa\u0107 globalne wylogowanie?",
-		"tr": "Genel \u00e7\u0131k\u0131\u015fa devam etmek istiyor musunuz?"
+		"tr": "Genel \u00e7\u0131k\u0131\u015fa devam etmek istiyor musunuz?",
+		"fi": "Haluatko jatkaa globaalia uloskirjautumista?"
 	},
 	"do_continue": {
-		"en": "Yes, continue logout",
 		"no": "Ja, fortsett utlogging",
 		"nn": "Ja, logg meg ut",
 		"sv": "Ja, forts\u00e4tt logga ut",
@@ -195,7 +190,6 @@
 		"tr": "Evet, \u00e7\u0131k\u0131\u015fa devam"
 	},
 	"cancel": {
-		"en": "Cancel logout",
 		"no": "Avbryt utlogging",
 		"nn": "Avlys utlogging",
 		"sv": "Avbryt utloggningen",
@@ -213,7 +207,6 @@
 		"tr": "\u00c7\u0131k\u0131\u015ftan vazge\u00e7"
 	},
 	"respond_info": {
-		"en": "If some of the service providers do not respond in reasonable time, you are encouraged to close your browser to ensure sessions are closed.",
 		"no": "Dersom noen av tjenestene ikke svarer innen rimelig tid anbefales du \u00e5 lukke din nettleser for \u00e5 sikre at sesjonen avsluttes.",
 		"nn": "Lukk weblesaren din dersom det tar for lang tid \u00e5 f\u00e5 utloggingssvar, dette lukker alle sesjonar",
 		"sv": "Om n\u00e5gon tj\u00e4nst inte svarar inom rimlig tid rekommenderas du att st\u00e4nga webbl\u00e4saren f\u00f6r att garantera att du blir utloggad.",
@@ -226,10 +219,11 @@
 		"hu": "Ha valamelyik tartalomszolg\u00e1ltat\u00f3 nem v\u00e1laszol \u00e9rtelmes id\u0151n bel\u00fcl, k\u00e9rj\u00fck, l\u00e9pjen ki a b\u00f6ng\u00e9sz\u0151j\u00e9b\u0151l, hogy biztosan kil\u00e9pjen az \u00f6sszes alkalmaz\u00e1sb\u00f3l.",
 		"pt": "Se algum dos fornecedores de servi\u00e7o (SP) n\u00e3o responder num intervalo de tempo razo\u00e1vel, \u00e9 aconselhado encerrar o seu navegador Web para garantir que as suas sess\u00f5es s\u00e3o encerradas.",
 		"pl": "Je\u015bli jaki\u015b z dostawc\u00f3w serwisu nie odpowie w przyzwoitym czasie, zostaniesz zach\u0119cony do zamkni\u0119cia przegladarki w celu zamkni\u0119cia sesji.",
-		"tr": "E\u011fer servis sa\u011flay\u0131c\u0131lardan bir k\u0131sm\u0131 makul bir zaman i\u00e7inde cevap vermiyorsa, oturumlar\u0131n kapat\u0131ld\u0131\u011f\u0131ndan emin olmak i\u00e7in taray\u0131c\u0131n\u0131z\u0131 kapatman\u0131z \u00f6nerilir."
+		"tr": "E\u011fer servis sa\u011flay\u0131c\u0131lardan bir k\u0131sm\u0131 makul bir zaman i\u00e7inde cevap vermiyorsa, oturumlar\u0131n kapat\u0131ld\u0131\u011f\u0131ndan emin olmak i\u00e7in taray\u0131c\u0131n\u0131z\u0131 kapatman\u0131z \u00f6nerilir.",
+		"de": "Falls einige der Diensteanbieter nicht in angemessener Zeit reagieren, so wird empfohlen den Browser zu beenden, damit alle Sitzungen geschlossen werden.",
+		"fi": "Jos jonkin palvelun tuottaja ei vastaa kohtuullisessa ajassa, olet velvollinen huolehtimaan sulkemalla selain avoimet istunnot."
 	},
 	"return": {
-		"en": "Return to service",
 		"no": "Tilbake til tjenesten",
 		"nn": "G\u00e5 tilbake til tenesta",
 		"sv": "\u00c5ter till tj\u00e4nsten",
@@ -247,7 +241,6 @@
 		"tr": "Servise geri d\u00f6n"
 	},
 	"progress_bar": {
-		"en": "Progress bar",
 		"no": "Status bar",
 		"nn": "Framdrift",
 		"sv": "F\u00f6rloppsindikator (utloggningsm\u00e4tare)",
@@ -260,10 +253,11 @@
 		"hu": "Folyamatjelz\u0151",
 		"pt": "Barra de progresso",
 		"pl": "Pasek stanu",
-		"tr": "\u0130lerleme \u00e7ubu\u011fu"
+		"tr": "\u0130lerleme \u00e7ubu\u011fu",
+		"de": "Fortschrittsbalken",
+		"fi": "Esitystymispalkki"
 	},
 	"logging_out": {
-		"en": "Wait... is logging out from <strong>%SPNAME%<\/strong>.",
 		"no": "Vent... logger ut fra <strong>%SPNAME%<\/strong>.",
 		"nn": "Vent... utlogging skjer fr\u00e5 <strong>%SPNAME%<\/strong>.",
 		"sv": "V\u00e4nta... loggar ut fr\u00e5n <strong>%SPNAME%<\/strong>.",
@@ -276,10 +270,11 @@
 		"hu": "V\u00e1rjon... kijelentkeztet\u00e9s a(z) <strong>%SPNAME%<\/strong> alkalmaz\u00e1sb\u00f3l.",
 		"pt": "Espere... est\u00e1 a sair de <strong>%SPNAME%<\/strong>.",
 		"pl": "Czekaj... trwa wylogowywanie z <strong>%SPNAME%<\/strong>.",
-		"tr": "Bekleyin... <strong>%SPNAME%<\/strong>'den \u00e7\u0131k\u0131yor."
+		"tr": "Bekleyin... <strong>%SPNAME%<\/strong>'den \u00e7\u0131k\u0131yor.",
+		"de": "Bitte warten... melde Sie von <strong>%SPNAME%<\/strong> ab.",
+		"fi": "Odota... uloskirjautuminen <strong>%SPNAME%<\/strong>:sta."
 	},
 	"logged_out": {
-		"en": "Logout was started from %REQUESTERNAME%.",
 		"no": "Utlogging var startet fra %REQUESTERNAME%.",
 		"nn": "Utlogging starta fr\u00e5 %REQUESTERNAME%.",
 		"sv": "Utloggning startades fr\u00e5n %REQUESTERNAME%.",
@@ -292,10 +287,11 @@
 		"hu": "Kijelentkez\u00e9si folyamat elind\u00edtva innen: %REQUESTERNAME%.",
 		"pt": "A Sa\u00edda foi iniciada por %REQUESTERNAME%.",
 		"pl": "Wylogowywanie rozpocz\u0119to z %REQUESTERNAME%.",
-		"tr": "\u00c7\u0131k\u0131\u015f, %REQUESTERNAME%'den\/dan ba\u015flat\u0131ld\u0131."
+		"tr": "\u00c7\u0131k\u0131\u015f, %REQUESTERNAME%'den\/dan ba\u015flat\u0131ld\u0131.",
+		"de": "Abmeldung wurde gestartet von %REQUESTERNAME%.",
+		"fi": "Uloskirjautuminen aloitettu %REQUESTERNAME%:sta."
 	},
 	"interrupt": {
-		"en": "Interrupt logging out and go back to service.",
 		"no": "Avbryt utloggingeng og g&aring; tilbake til tjenesten.",
 		"nn": "Avbryt utlogging og g\u00e5 tilbake til tenesta",
 		"sv": "Avbryt utloggningen och g\u00e5 tillbaka till tj\u00e4nsten.",
@@ -308,10 +304,11 @@
 		"hu": "Kijelentkez\u00e9s megszak\u00edt\u00e1sa \u00e9s vissza a szolg\u00e1latat\u00e1shoz.",
 		"pt": "Interromper sa\u00edda e regressar ao servi\u00e7o.",
 		"pl": "Przerwij wylogowanie i wr\u00f3\u0107 do serwisu.",
-		"tr": "\u00c7\u0131kma i\u015flemini durdur ve servise geri d\u00f6n."
+		"tr": "\u00c7\u0131kma i\u015flemini durdur ve servise geri d\u00f6n.",
+		"de": "Unterbreche Abmeldung und gehe zur\u00fcck zum Dienst.",
+		"fi": "Keskeyt\u00e4 uloskirjautuminen ja palaa palveluun."
 	},
 	"success": {
-		"en": "You have successfully logged out from all services listed above.",
 		"no": "Du har n&aring; logget ut fra alle tjenestene listet ovenfor.",
 		"nn": "Du er ferdig utlogga fr\u00e5 alle tenestene",
 		"sv": "Du har loggat ut fr\u00e5n alla nedanst\u00e5ende tj\u00e4nster.",
@@ -329,7 +326,6 @@
 		"tr": "Yukar\u0131da listelenen t\u00fcm servislerden ba\u015far\u0131yla \u00e7\u0131kt\u0131n\u0131z."
 	},
 	"finish": {
-		"en": "OK, continue back to %REQUESTERNAME% to complete the logout process.",
 		"no": "OK, fortsett tilbake til %REQUESTERNAME% for \u00e5 fullf\u00f8re utloggingsprosessen.",
 		"nn": "OK, g\u00e5 til %REQUESTERNAME% for \u00e5 fullf\u00f8ra utlogginga",
 		"sv": "Ok, forts\u00e4tt tillbaka till %REQUESTERNAME% f\u00f6r att avsluta utloggningen.",
@@ -343,10 +339,10 @@
 		"fi": "OK, palaa takaisin %REQUESTERNAME% p\u00e4\u00e4tt\u00e4\u00e4ksesi uloskirjautumisprosessin.",
 		"pt": "OK, continue de volta a %REQUESTERNAME% para completar o processo de sa\u00edda.",
 		"pl": "OK, kontynuuj powr\u00f3t do %REQUESTERNAME% w celu zako\u0144czenia procesu wylogowywania.",
-		"tr": "Tamam, \u00e7\u0131k\u0131\u015f i\u015flemini tamamlamak i\u00e7in %REQUESTERNAME%'e tekrar devam et."
+		"tr": "Tamam, \u00e7\u0131k\u0131\u015f i\u015flemini tamamlamak i\u00e7in %REQUESTERNAME%'e tekrar devam et.",
+		"de": "OK, fahre fort bei %REQUESTERNAME% um den Abmeldungsprozess zu Ende zu bringen."
 	},
 	"loggedoutfrom": {
-		"en": "You are now successfully logged out from %SP%.",
 		"no": "Du er n\u00e5 logget ut fra %SP%.",
 		"nn": "Du er ferdig utlogga fr\u00e5 %SP%.",
 		"sv": "Du har nu loggat ut fr\u00e5n %SP%.",
@@ -363,7 +359,6 @@
 		"tr": "%SP%'den ba\u015far\u0131yla \u00e7\u0131kt\u0131n\u0131z."
 	},
 	"also_from": {
-		"en": "You are also logged in on these services:",
 		"no": "Du er ogs\u00e5 logget inn p\u00e5 disse tjenestene:",
 		"nn": "Du er i tillegg logga inn p\u00e5 desse tenestene:",
 		"sv": "Du \u00e4r \u00e4ven inloggad i f\u00f6ljande tj\u00e4nster:",
@@ -380,7 +375,6 @@
 		"tr": "Ayr\u0131ca \u015fu servislere giri\u015f yapt\u0131n\u0131z:"
 	},
 	"logout_all_question": {
-		"en": "Do you want to logout from all the services above?",
 		"no": "Vil du logge ut fra alle tjenestene ovenfor?",
 		"nn": "Vil du logga ut fr\u00e5 alle tenestene?",
 		"sv": "Vill du logga ut fr\u00e5n alla ovanst\u00e5ende tj\u00e4nster?",
@@ -393,10 +387,10 @@
 		"hu": "Ki akar jelentkezni az \u00f6sszes fenti alkalmaz\u00e1sb\u00f3l?",
 		"pt": "Deseja sair de todos os servi\u00e7os listados em cima?",
 		"pl": "Czy chcesz zosta\u0107 wylogowany z powy\u017cszych serwis\u00f3w?",
-		"tr": "Yukar\u0131daki t\u00fcm servislerden \u00e7\u0131kmak istiyor musunuz?"
+		"tr": "Yukar\u0131daki t\u00fcm servislerden \u00e7\u0131kmak istiyor musunuz?",
+		"fi": "Haluatko uloskirjautua edell\u00e4mainituista palveluista?"
 	},
 	"logout_all": {
-		"en": "Yes, all services",
 		"no": "Ja, alle tjenestene over",
 		"nn": "Ja, logg ut fr\u00e5 alle",
 		"sv": "Ja, alla tj\u00e4nster",
@@ -413,7 +407,6 @@
 		"tr": "Evet, t\u00fcm servisler."
 	},
 	"logout_only": {
-		"en": "No, only %SP%",
 		"no": "Nei, bare %SP%",
 		"nn": "Nei, logg berre ut fr\u00e5 %SP%",
 		"sv": "Nej, endast %SP%",
@@ -430,7 +423,6 @@
 		"tr": "Hay\u0131r, sadece %SP%"
 	},
 	"incapablesps": {
-		"en": "One or more of the services you are logged into <i>do not support logout<\/i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser<\/i>.",
 		"no": "En eller flere av tjenestene du er logget inn p\u00e5 <i>st\u00f8tter ikke logout<\/i>. Lukk nettleseren, dersom du \u00f8nsker \u00e5 logge ut fra disse tjenestene.",
 		"nn": "Ei eller fleire av tenestene du er innlogga p\u00e5 <i>st\u00f8tter ikkje utlogging<\/i>.  Lukk weblesaren din for \u00e5 sikra at alle sesjonar blir lukka",
 		"sv": "En eller flera av tj\u00e4nsterna du \u00e4r inloggad i <i>kan inte hantera utloggning<\/i>. F\u00f6r att s\u00e4kerst\u00e4lla att du inte l\u00e4ngre \u00e4r inloggad i n\u00e5gon tj\u00e4nst ska du <i>st\u00e4nga din webbl\u00e4sare<\/i>.",
@@ -443,10 +435,10 @@
 		"hu": "Egy vagy t\u00f6bb alkalmaz\u00e1s <i>nem t\u00e1mogatja a kijelenkez\u00e9st<\/i>. Hogy biztos\u00edtani lehessen, hogy nem maradt bejelentkezve, k\u00e9rj\u00fck, <i>l\u00e9pjen ki a b\u00f6ng\u00e9sz\u0151b\u0151l!<\/i>",
 		"pt": "Um ou mais dos servi\u00e7os onde se encontra autenticado <i>n\u00e3o suporta(m) a sa\u00edda<\/i>. Para garantir que todas as sess\u00f5es s\u00e3o encerradas, dever\u00e1 <i>encerrar o seu navegador Web<\/i>.",
 		"pl": "Jeden lub wi\u0119cej serwis\u00f3w , w kt\u00f3rych jeste\u015b zalogowany <i>nie obs\u0142uguje procesu wylogowania<\/i>. W celu upewnienia si\u0119, \u017ce wszystkie sesje s\u0105 zako\u0144czone, zalecane jest aby\u015b <i>zamkn\u0105\u0142 przegl\u0105dark\u0119<\/i>",
-		"tr": "Giri\u015f yapt\u0131\u011f\u0131n\u0131z bir yada daha fazla servis <i>\u00e7\u0131k\u0131\u015f\u0131 desteklemiyor<\/i>. T\u00fcm oturumlar\u0131n\u0131z\u0131n kapat\u0131ld\u0131\u011f\u0131ndan emin olmak i\u00e7in, <i>taray\u0131c\u0131n\u0131z\u0131 kapatman\u0131z<\/i> \u00f6nerilir."
+		"tr": "Giri\u015f yapt\u0131\u011f\u0131n\u0131z bir yada daha fazla servis <i>\u00e7\u0131k\u0131\u015f\u0131 desteklemiyor<\/i>. T\u00fcm oturumlar\u0131n\u0131z\u0131n kapat\u0131ld\u0131\u011f\u0131ndan emin olmak i\u00e7in, <i>taray\u0131c\u0131n\u0131z\u0131 kapatman\u0131z<\/i> \u00f6nerilir.",
+		"fi": "Yksi tai useampi palvelu johon olet kirjautunut <i>ei tue uloskirjautumista<\/i>. Varmistaaksesi, ett\u00e4 kaikki istuntosi sulkeutuvat, olet velvollinen <i>sulkemaan web-selaimsesi<\/i>."
 	},
 	"no": {
-		"en": "No",
 		"no": "Nei",
 		"nn": "Nei",
 		"sv": "Nej",

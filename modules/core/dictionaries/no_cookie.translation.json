@@ -1,11 +1,17 @@
 {
 	"header": {
-		"no": "Mangler informasjonskapsel"
+		"no": "Mangler informasjonskapsel",
+		"de": "Cookie fehlt",
+		"fi": "Puuttuva ev\u00e4ste"
 	},
 	"description": {
-		"no": "Du ser ut til \u00e5 ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og pr\u00f8v igjen."
+		"no": "Du ser ut til \u00e5 ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og pr\u00f8v igjen.",
+		"de": "Sie scheinen Cookies in Ihrem Browser deaktiviert zu haben. Bitte \u00fcberpr\u00fcfen Sie die Einstellungen in Ihrem Browser und versuchen Sie es erneut.",
+		"fi": "N\u00e4ytt\u00e4\u00e4, ett\u00e4 olet kielt\u00e4nyt ev\u00e4steiden k\u00e4yt\u00f6n selaimessasi. Ole hyv\u00e4 ja salli ev\u00e4steet selaimestasi ja yrit\u00e4 uudelleen."
 	},
 	"retry": {
-		"no": "Pr\u00f8v igjen"
+		"no": "Pr\u00f8v igjen",
+		"de": "Erneut versuchen",
+		"fi": "Uudestaan"
 	}
 }

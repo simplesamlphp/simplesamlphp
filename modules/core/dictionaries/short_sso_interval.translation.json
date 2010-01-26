@@ -1,11 +1,14 @@
 {
 	"warning": {
-		"no": "Vi har detektert at det er bare noen f\u00e5 sekunder siden du sist ble autentisert p\u00e5 denne tjenesten, og derfor antar vi at det er et problem med oppsettet av denne tjenesten."
+		"no": "Vi har detektert at det er bare noen f\u00e5 sekunder siden du sist ble autentisert p\u00e5 denne tjenesten, og derfor antar vi at det er et problem med oppsettet av denne tjenesten.",
+		"de": "Wir haben festgestellt, dass seit Ihrer letzten Anmeldung bei diesem Diensteanbieter nur wenige Sekunden vergangen sind. Deswegen gehen wir davon aus, dass es ein Problem mit diesem Anbieter gibt."
 	},
 	"warning_header": {
-		"no": "For kort intervall i mellom innloggingsforesp\u00f8rsler"
+		"no": "For kort intervall i mellom innloggingsforesp\u00f8rsler",
+		"de": "Zu kurzes Intervall zwischen generellen Anmeldeereignissen."
 	},
 	"retry": {
-		"no": "Fors\u00f8k \u00e5 logg inn p\u00e5 nytt"
+		"no": "Fors\u00f8k \u00e5 logg inn p\u00e5 nytt",
+		"de": "Versuche Anmeldung erneut"
 	}
 }

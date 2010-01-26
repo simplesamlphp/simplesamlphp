@@ -1,6 +1,5 @@
 {
 	"intro": {
-		"en": "<strong>Congratulations<\/strong>, you have successfully installed simpleSAMLphp. This is the start page of your installation, where you will find links to test examples, diagnostics, metadata and even links to relevant documentation.",
 		"no": "<strong>Gratulerer<\/strong>, du har n\u00e5 installert simpleSAMLphp. Dette er startsiden til din simpleSAMLphp installasjon, hvor du vil finne eksempler, diagnostikk, metadata og til og med lenker til relevant dokumentasjon.",
 		"nn": "<strong>Gratulerer<\/strong>, du har installert simpleSAMLphp. Dette er startsida til simpleSAMLphp installasjonen din.  Her finn du d\u00f8me, diagnostikk, metadata og lenker til relevant dokumentasjon.",
 		"sv": "<strong>Gratulerar<\/strong>, du har framg\u00e5ngsrikt installerat simpleSAMLphp. Detta \u00e4r grundinstallationens startsida d\u00e4r du t.ex. hittar l\u00e4nkar till exempel, diagnostik och metadata men \u00e4ven l\u00e4nkar till relevant dokumentation.",
@@ -20,7 +19,6 @@
 		"tr": "<strong>Tebrikler<\/strong>, simpleSAMLphp'i ba\u015far\u0131yla y\u00fcklediniz. Bu sayfa, test \u00f6rneklerine, kontrollere, \u00fcstveriye (metadata) ve hatta ilgili dok\u00fcmanlara ba\u011flant\u0131lar bulabilece\u011finiz, kurulumun ba\u015flang\u0131\u00e7 sayfas\u0131d\u0131r."
 	},
 	"useful_links_header": {
-		"en": "Useful links for your installation",
 		"no": "Nyttige lenker for denne installasjonen",
 		"nn": "Nyttige lenker for denne installasjonen",
 		"sv": "Nyttiga l\u00e4nkar g\u00e4llande installationen",
@@ -40,7 +38,6 @@
 		"tr": "Kurulumunuz i\u00e7in faydal\u0131 linkler"
 	},
 	"metadata_header": {
-		"en": "Metadata",
 		"no": "Metadata",
 		"nn": "Metadata",
 		"sv": "Metadata",
@@ -60,7 +57,6 @@
 		"tr": "\u00dcstveri (Metadata)"
 	},
 	"doc_header": {
-		"en": "Documentation",
 		"no": "Dokumentasjon",
 		"nn": "Dokumentasjon",
 		"sv": "Dokumentation",
@@ -80,7 +76,6 @@
 		"tr": "Dok\u00fcmantasyon"
 	},
 	"checkphp": {
-		"en": "Checking your PHP installation",
 		"no": "Sjekker din PHP installasjon",
 		"nn": "Sjekker din PHP installasjon",
 		"sv": "Kontrollerar PHP-installationen",
@@ -100,7 +95,6 @@
 		"tr": "PHP kurulumunuz kontrol ediliyor"
 	},
 	"about_header": {
-		"en": "About simpleSAMLphp",
 		"no": "Om simpleSAMLphp",
 		"nn": "Om simpleSAMLphp",
 		"sv": "Om simpleSAMLphp",
@@ -120,7 +114,6 @@
 		"tr": "simpleSAMLphp hakk\u0131nda"
 	},
 	"about_text": {
-		"en": "This simpleSAMLphp thing is pretty cool, where can I read more about it? You can find more information about <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp at the Feide RnD blog<\/a> over at <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"no": "Yey! simpleSAMLphp virker jammen kult, hvor kan jeg finne ut mer om det? Du kan lese mer om simpleSAMLphp p\u00e5 <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp sin hjemmeside<\/a>.",
 		"nn": "Yey! simpleSAMLphp er jammen kult, kvar finn eg ut meir? Du kan lesa meir om simpleSAMLphp p\u00e5 <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">heimesida til simpleSAMLphp<\/a>.",
 		"sv": "simpleSAMLphp \u00e4r cool, var kan jag l\u00e4sa mer om det? Du kan hitta mer information om <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp p\u00e5 Feide RnD blogg<\/a> hos <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
@@ -140,7 +133,6 @@
 		"tr": "Bu simpleSAMLphp olduk\u00e7a iyiymi\u015f, daha fazla bilgiyi nereden okuyabilirim? <a href=\"http:\/\/uninett.no\">UNINETT<\/a> \u00fczerinde <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">Feide RnD blog'unda simpleSAMLphp <\/a> hakk\u0131nda daha fazlas\u0131n\u0131 bulabilirsiniz."
 	},
 	"required": {
-		"en": "Required",
 		"no": "P\u00e5krevd",
 		"nn": "Naudsynt",
 		"sv": "Obligatoriskt",
@@ -160,7 +152,6 @@
 		"tr": "Gerekli"
 	},
 	"required_ldap": {
-		"en": "Required for LDAP",
 		"no": "P\u00e5krevd for LDAP",
 		"nn": "Naudsynt for LDAP",
 		"sv": "Obligatoriskt f\u00f6r LDAP",
@@ -180,7 +171,6 @@
 		"tr": "LDAP i\u00e7in gerekli"
 	},
 	"required_radius": {
-		"en": "Required for Radius",
 		"no": "P\u00e5krevd for Radius",
 		"nn": "Naudsynt for Radius",
 		"sv": "Obligatoriskt f\u00f6r Radius",
@@ -200,7 +190,6 @@
 		"tr": "Radius i\u00e7in gerekli"
 	},
 	"optional": {
-		"en": "Optional",
 		"no": "Valgfritt",
 		"nn": "Valfritt",
 		"sv": "Valfri",
@@ -220,7 +209,6 @@
 		"tr": "\u0130ste\u011fe ba\u011fl\u0131"
 	},
 	"reccomended": {
-		"en": "Recommended",
 		"no": "Anbefalt",
 		"nn": "Tilr\u00e5dd",
 		"sv": "Rekommenderad",
@@ -240,7 +228,6 @@
 		"tr": "Tavsiye edilen"
 	},
 	"warnings": {
-		"en": "Warnings",
 		"no": "Advarsler",
 		"nn": "\u00c5tvaring",
 		"sv": "Varningar",
@@ -260,7 +247,6 @@
 		"tr": "Uyar\u0131lar"
 	},
 	"warnings_https": {
-		"en": "<strong>You are not using HTTPS<\/strong> - encrypted communication with the user. HTTP works fine for test purposes, but in a production environment, you should use HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Read more about simpleSAMLphp maintenance<\/a> ]",
 		"no": "<strong>Du bruker ikke HTTPS<\/strong> - kryptert kommunikasjon med brukeren. HTTP fungerer utmerket til testform\u00e5l, men  i et produksjonsmilj\u00f8 anbefales sterkt \u00e5 skru p\u00e5 sikker kommunikasjon med HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Les mer i dokumentet: simpleSAMLphp maintenance<\/a> ]",
 		"nn": "<strong>Du bruker ikkje HTTPS<\/strong> - kryptert kommunikasjon med brukaren. Du kan bruka simpleSAMLphp uten HTTPS til testform\u00e5l, men dersom du skal bruka simpleSAMLphp i eit produksjonsmilj\u00f8, vil vi sterkt tilr\u00e5 \u00e5 skru p\u00e5 sikker kommunikasjon med HTTPS. [ Les meir i dokumentet: <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">simpleSAMLphp maintenance<\/a> ]",
 		"sv": "<strong>Du anv\u00e4nder inte HTTPS<\/strong> - krypterad kommunikation med anv\u00e4ndaren. HTTP fungerar bra under test men i produktion ska du anv\u00e4nda HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">L\u00e4s mer i dokumentet simpleSAMLphp maintenance<\/a> ]",
@@ -280,7 +266,6 @@
 		"tr": "Kullan\u0131c\u0131yla \u015fifreli ileti\u015fim -<strong>HTTPS kullanm\u0131yorsunuz<\/strong>. HTTP test ama\u00e7l\u0131 olarak kullan\u0131labilir, ancak \u00fcretim ortam\u0131nda, HTTPS kullanmal\u0131s\u0131n\u0131z. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">simpleSAMLphp bak\u0131m\u0131 hakk\u0131nda daha fazlas\u0131n\u0131 okuyun<\/a> ]"
 	},
 	"link_saml2example": {
-		"en": "SAML 2.0 SP example - test logging in through your IdP",
 		"no": "SAML 2.0 SP eksempel - test innlogging med SAML 2.0 via din IdP",
 		"nn": "SAML 2.0 SP eksempel - testinnlogging med SAML 2.0 via din IdP",
 		"sv": "SAML 2.0 SP exempel - testinloggning med SAML 2.0 via din IdP",
@@ -300,7 +285,6 @@
 		"tr": "SAML 2.0 SP \u00f6rne\u011fi - IdP'nizden giri\u015f yaparak test edin"
 	},
 	"link_shib13example": {
-		"en": "Shibboleth 1.3 SP example - test logging in through your Shib IdP",
 		"no": "Shibboleth 1.3 SP eksempel - test innlogging med Shibboleth 1.3 via din IdP",
 		"nn": "Shibboleth 1.3 SP eksempel - testinnlogging med Shibboleth 1.3 via din IdP",
 		"sv": "Shibboleth 1.3 SP exempel - testinloggning med SAML 2.0 via din IdP",
@@ -320,7 +304,6 @@
 		"tr": "Shibboleth 1.3 SP \u00f6rne\u011fi - Shib IdP'nizden giri\u015f yaparak test edin"
 	},
 	"link_openidprovider": {
-		"en": "OpenID Provider site - Alpha version (test code)",
 		"no": "OpenID Provider side - Alpha versjon (testkode)",
 		"nn": "OpenID Provider side - Alpha versjon (testkode)",
 		"sv": "OpenID Provider sida - Alfa version (testkod)",
@@ -340,7 +323,6 @@
 		"tr": "OpenID Provider site - Alpha s\u00fcr\u00fcm\u00fc (test kodu)"
 	},
 	"link_diagnostics": {
-		"en": "Diagnostics on hostname, port and protocol",
 		"no": "Diagnostiser hostnavn, port og protokoll",
 		"nn": "Diagnostiser hostnavn, port og protokoll",
 		"sv": "Diagnosera v\u00e4rdnamn, port och protokoll",
@@ -360,7 +342,6 @@
 		"tr": "Bilgisayar ad\u0131, port ve protokol \u00fczerine kontroller"
 	},
 	"link_phpinfo": {
-		"en": "PHP info",
 		"no": "PHPinfo",
 		"nn": "PHPinfo",
 		"sv": "PHPinfo",
@@ -380,7 +361,6 @@
 		"tr": "PHP info"
 	},
 	"link_meta_overview": {
-		"en": "Metadata overview for your installation. Diagnose your metadata files",
 		"no": "Oversikt over metadata for din installasjon. Diagnostiser metadatafilene her.",
 		"nn": "Oversikt over metadata for din installasjon. Diagnostiser metadatafilene her.",
 		"sv": "\u00d6versikt \u00f6ver metadata i installationen. Diagnosera metadatafilerna",
@@ -400,7 +380,6 @@
 		"tr": "Kurulumunuz i\u00e7in \u00fcstveri (metadata) bilgisi. \u00dcstveri dosyalar\u0131n\u0131z\u0131 kontrol edin."
 	},
 	"link_meta_saml2sphosted": {
-		"en": "Hosted SAML 2.0 Service Provider Metadata (automatically generated)",
 		"no": "Hosted SAML 2.0 Service Provider Metadata (automatisk generert)",
 		"nn": "Hosted SAML 2.0 Service Provider Metadata (automatisk generert)",
 		"sv": "Lokala SAML 2.0 Service Provider Metadata (automatiskt genererat)",
@@ -420,7 +399,6 @@
 		"tr": "Sunulan SAML 2.0 Servis Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)"
 	},
 	"link_meta_saml2idphosted": {
-		"en": "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)",
 		"no": "Hosted SAML 2.0 Identity Provider Metadata (automatisk generert)",
 		"nn": "Hosted SAML 2.0 Identity Provider Metadata (automatisk generert)",
 		"sv": "Lokala SAML 2.0 Identity Provider Metadata (automatiskt genererat)",
@@ -440,7 +418,6 @@
 		"tr": "Sunulan SAML 2.0 Kimlik Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)"
 	},
 	"link_meta_shib13sphosted": {
-		"en": "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)",
 		"no": "Hosted Shibboleth 1.3 Service Provider Metadata (automatisk generert)",
 		"nn": "Hosted Shibboleth 1.3 Service Provider Metadata (automatisk generert)",
 		"sv": "Lokala Shibboleth 1.3 Service Provider Metadata (automatiskt genererat)",
@@ -460,7 +437,6 @@
 		"tr": "Sunulan Shibboleth 1.3 Servis Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)"
 	},
 	"link_meta_shib13idphosted": {
-		"en": "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)",
 		"no": "Hosted Shibboleth 1.3 Identity Provider Metadata (automatisk generert)",
 		"nn": "Hosted Shibboleth 1.3 Identity Provider Metadata (automatisk generert)",
 		"sv": "Lokala Shibboleth 1.3 Identity Provider Metadata (automatiskt genererat)",
@@ -480,7 +456,6 @@
 		"tr": "Sunulan Shibboleth 1.3 Kimlik Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)"
 	},
 	"link_xmlconvert": {
-		"en": "XML to simpleSAMLphp metadata converter",
 		"no": "XML til simpleSAMLphp metadata-oversetter",
 		"nn": "Oversetter fra XML til simpleSAMLphp metadata",
 		"sv": "XML till simpleSAMLphp metadata\u00f6vers\u00e4ttare",
@@ -500,7 +475,6 @@
 		"tr": "XML'den simpleSAMLphp'e \u00fcstveri (metadata) d\u00f6n\u00fc\u015ft\u00fcr\u00fcc\u00fc"
 	},
 	"link_doc_install": {
-		"en": "Installing simpleSAMLphp",
 		"no": "Installerer simpleSAMLphp",
 		"nn": "Installerer simpleSAMLphp",
 		"sv": "Installerar simpleSAMLphp",
@@ -520,7 +494,6 @@
 		"tr": "simpleSAMLphp kuruluyor"
 	},
 	"link_doc_sp": {
-		"en": "Using simpleSAMLphp as a Service Provider",
 		"no": "Bruk simpleSAMLphp som Service Provider",
 		"nn": "Bruk simpleSAMLphp som Service Provider",
 		"sv": "Anv\u00e4nda simpleSAMLphp som Service Provider",
@@ -540,7 +513,6 @@
 		"tr": "simpleSAMLphp'i Servis Sa\u011flay\u0131c\u0131 (SP) olarak kullanmak"
 	},
 	"link_doc_idp": {
-		"en": "Using simpleSAMLphp as an Identity Provider",
 		"no": "Bruk simpleSAMLphp som identitetstjeneste",
 		"nn": "Bruk simpleSAMLphp som Identity Provider",
 		"sv": "Anv\u00e4nda simpleSAMLphp som Identity Provider",
@@ -560,7 +532,6 @@
 		"tr": "simpleSAMLphp'i Kimlik Sa\u011flay\u0131c\u0131 (IdP) olarak kullanmak"
 	},
 	"link_doc_shibsp": {
-		"en": "Configure Shibboleth 1.3 SP to work with simpleSAMLphp IdP",
 		"no": "Konfigurer Shibboleth 1.3 SP for \u00e5 fungere sammen med simpleSAMLphp identitetstjeneste",
 		"nn": "Konfigurer Shibboleth 1.3 SP for \u00e5 fungere sammen med simpleSAMLphp IdP",
 		"sv": "Konfigurera Shibboleth 1.3 SP f\u00f6r att fungera tillsammans med simpleSAMLphp IdP",
@@ -580,7 +551,6 @@
 		"tr": "Shibboleth 1.3 SP'yi simpleSAMLphp IdP ile \u00e7al\u0131\u015fmas\u0131 i\u00e7in d\u00fczenle"
 	},
 	"link_doc_googleapps": {
-		"en": "simpleSAMLphp as an IdP for Google Apps for Education",
 		"no": "simpleSAMLphp som identitetstjeneste for Google Apps for Education",
 		"nn": "simpleSAMLphp som IdP for Google Apps for Education",
 		"sv": "simpleSAMLphp som IdP f\u00f6r Google Apps for Education",
@@ -600,7 +570,6 @@
 		"tr": "\"Google Apps for Education\" i\u00e7in kimlik sa\u011flay\u0131c\u0131 (IdP) olarak simpleSAMLphp "
 	},
 	"link_doc_advanced": {
-		"en": "simpleSAMLphp Advanced Features",
 		"no": "simpleSAMLphp avansert funksjonalitet",
 		"nn": "simpleSAMLphp avansert funksjonalitet",
 		"sv": "simpleSAMLphp avancerade funktioner",
@@ -620,7 +589,6 @@
 		"tr": "simpleSAMLphp Geli\u015fmi\u015f \u00d6zellikler"
 	},
 	"link_doc_maintenance": {
-		"en": "simpleSAMLphp Maintenance and Configuration",
 		"no": "simpleSAMLphp vedlikehold og konfigurasjon",
 		"nn": "simpleSAMLphp vedlikehold og konfigurasjon",
 		"sv": "simpleSAMLphp sk\u00f6tsel och konfiguration",
@@ -640,7 +608,6 @@
 		"tr": "simpleSAMLphp Bak\u0131m ve D\u00fczenleme"
 	},
 	"link_configcheck": {
-		"en": "simpleSAMLphp configuration check",
 		"no": "Sjekk av simpleSAMLphp konfigurasjonsfiler",
 		"nn": "simpleSAMLphp konfigurasjonssjekk",
 		"sv": "Konfigurationskontroll av simpleSAMLphp",
@@ -659,7 +626,6 @@
 		"tr": "simpleSAMLphp konfig\u00fcrasyon kontrol\u00fc"
 	},
 	"link_cleardiscochoices": {
-		"en": "Delete my choices of IdP in the IdP discovery services",
 		"no": "Slett mitt valg av IdP i IdP discovery tjenestene",
 		"nn": "La meg velja kvar eg kjem ifr\u00e5 p\u00e5 nytt.  Slett mitt val av identitetsleverand\u00f8r (IdP) hos IdP-oppdagingstenesta ",
 		"sv": "Ta bort mina val av identitetsleverant\u00f6r i listan \u00f6ver identitetsleverant\u00f6rer",
@@ -678,7 +644,6 @@
 		"tr": "IdP tan\u0131t\u0131m servisleri aras\u0131ndaki IdP se\u00e7imlerimi sil"
 	},
 	"link_publish_saml20-idp": {
-		"en": "Publish my SAML 2.0 IdP metadata to the configured MetaShare",
 		"no": "Publiser mine SAML 2.0 IdP metadata til den konfigurerte MetaShare",
 		"nn": "Publiser ut mine SAML 2.0 IdP metadata til MetaShare som konfigurert",
 		"sv": "Publisera SAML 2.0 IdP-metadata till den konfigurerade MetaShare",
@@ -696,7 +661,6 @@
 		"tr": "SAML 2.0 IdP \u00fcstverimi (metadata) d\u00fczenlenmi\u015f MetaShare'e yay\u0131nla"
 	},
 	"link_publish_saml20-sp": {
-		"en": "Publish my SAML 2.0 SP metadata to the configured MetaShare",
 		"no": "Publiser mine SAML 2.0 SP metadata til den konfigurerte MetaShare",
 		"nn": "Publiser ut mine SAML 2.0 SP metadata til MetaShare som konfigurert",
 		"sv": "Publisera SAML 2.0 SP-metadata till den konfigurerade MetaShare",
@@ -714,7 +678,6 @@
 		"tr": "SAML 2.0 SP \u00fcstverimi (metadata) d\u00fczenlenmi\u015f MetaShare'e yay\u0131nla"
 	},
 	"link_publish_shib13-idp": {
-		"en": "Publish my Shib 1.3 IdP metadata to the configured MetaShare",
 		"no": "Publiser mine Shibboleth 1.3 IdP metadata til den konfigurerte MetaShare",
 		"nn": "Publiser ut mine Shibboleth 1.3 IdP metadata til MetaShare som konfigurert",
 		"sv": "Publisera Shib 1.3 IdP-metadata till den konfigurerade MetaShare",
@@ -732,7 +695,6 @@
 		"tr": "Shib 1.3 IdP \u00fcstverimi (metadata) d\u00fczenlenmi\u015f MetaShare'e yay\u0131nla"
 	},
 	"link_publish_shib13-sp": {
-		"en": "Publish my Shib 1.3 SP metadata to the configured MetaShare",
 		"no": "Publiser mine Shibboleth 1.3 SP metadata til den konfigurerte MetaShare",
 		"nn": "Publiser ut mine Shibboleth 1.3 SP metadata til MetaShare som konfigurert",
 		"sv": "Publisera Shib 1.3 SP-metadata till den konfigurerade MetaShare",
@@ -750,7 +712,6 @@
 		"tr": "Shib 1.3 SPP \u00fcstverimi (metadata) d\u00fczenlenmi\u015f MetaShare'e yay\u0131nla"
 	},
 	"welcome": {
-		"en": "Welcome",
 		"no": "Velkommen",
 		"nn": "Velkomen",
 		"sv": "V\u00e4lkommen",
@@ -768,7 +729,6 @@
 		"tr": "Ho\u015fgeldiniz"
 	},
 	"configuration": {
-		"en": "Configuration",
 		"no": "Konfigurasjon",
 		"nn": "Konfigurasjon",
 		"sv": "Konfiguration",
@@ -786,7 +746,6 @@
 		"tr": "Konfigurasyon"
 	},
 	"metadata": {
-		"en": "Metadata",
 		"no": "Metadata",
 		"nn": "Metadata",
 		"sv": "Metadata",
@@ -804,7 +763,6 @@
 		"tr": "\u00dcstveri (Metadata)"
 	},
 	"tools": {
-		"en": "Tools",
 		"no": "Verkt\u00f8y",
 		"nn": "Verkt\u00f8y",
 		"sv": "Verktyg",
@@ -822,7 +780,6 @@
 		"tr": "Ara\u00e7lar"
 	},
 	"show_metadata": {
-		"en": "Show metadata",
 		"no": "Vis metadata",
 		"nn": "Vis metadata",
 		"sv": "Visa metadata",
@@ -840,7 +797,6 @@
 		"tr": "\u00dcstveri (Metadata) g\u00f6ster"
 	},
 	"login_as_admin": {
-		"en": "Login as administrator",
 		"no": "Login som administrator",
 		"nn": "Innlogga som administrator",
 		"sv": "Logga in som administrat\u00f6r",
@@ -858,7 +814,6 @@
 		"tr": "Y\u00f6netici olarak giri\u015f"
 	},
 	"loggedin_as_admin": {
-		"en": "You are logged in as administrator",
 		"no": "Du er logget inn som administrator",
 		"nn": "Du er logga inn som administrator",
 		"sv": "Du \u00e4r inloggad som administrat\u00f6r",
@@ -876,7 +831,6 @@
 		"tr": "Y\u00f6netici olarak girdiniz"
 	},
 	"auth": {
-		"en": "Authentication",
 		"no": "Autentisering",
 		"sv": "Autentisering",
 		"es": "Autenticaci\u00f3n",
@@ -884,10 +838,10 @@
 		"sl": "Avtentikacija",
 		"da": "Autentificering",
 		"fi": "Tunnistautuminen",
-		"tr": "Kimlik Do\u011frulama"
+		"tr": "Kimlik Do\u011frulama",
+		"de": "Authentifizierung"
 	},
 	"federation": {
-		"en": "Federation",
 		"no": "F\u00f8derasjon",
 		"sv": "Federation",
 		"es": "Federaci\u00f3n",
@@ -895,10 +849,10 @@
 		"sl": "Federacija",
 		"da": "F\u00f8deration",
 		"fi": "Federaatio",
-		"tr": "Federasyon"
+		"tr": "Federasyon",
+		"de": "F\u00f6deration"
 	},
 	"authtest": {
-		"en": "Test configured authentication sources ",
 		"no": "Test konfigurerte autentiseringskilder",
 		"sv": "Testa konfigurerade autentiserings k\u00e4llor",
 		"es": "Probar las fuentes para la autentificaci\u00f3n ya configuradas",
@@ -906,15 +860,17 @@
 		"sl": "Preveri izbrani avtentikacijski mehanizem ",
 		"da": "Test konfigureret autentificeringskilde",
 		"fi": "Testaa m\u00e4\u00e4ritettyj\u00e4 tunnistusl\u00e4hteit\u00e4",
-		"tr": "D\u00fczenlenmi\u015f kimlik do\u011frulama kaynaklar\u0131n\u0131 test et"
+		"tr": "D\u00fczenlenmi\u015f kimlik do\u011frulama kaynaklar\u0131n\u0131 test et",
+		"de": "Teste die konfigurierten Authentifizierungsquellen"
 	},
 	"deprecated": {
-		"en": "Deprecated",
 		"no": "Utdatert",
 		"sv": "Ej l\u00e4ngre giltig",
 		"es": "Obsoleto",
 		"nl": "Verouderd",
 		"sl": "Neustrezen",
-		"da": "Under udfasning"
+		"da": "Under udfasning",
+		"de": "Veraltet",
+		"fi": "Vanhentunut"
 	}
 }

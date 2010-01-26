@@ -1,6 +1,5 @@
 {
 	"error_header": {
-		"en": "Error",
 		"no": "Feil",
 		"nn": "Feil",
 		"sv": "Fel",
@@ -20,7 +19,6 @@
 		"tr": "Hata"
 	},
 	"user_pass_header": {
-		"en": "Enter your username and password",
 		"no": "Skriv inn brukernavn og passord",
 		"nn": "Skriv inn brukarnamn og passord",
 		"sv": "Ange ditt anv\u00e4ndarnamn och l\u00f6senord",
@@ -40,7 +38,6 @@
 		"tr": "Kullan\u0131c\u0131 ad\u0131 ve \u015fifrenizi giriniz"
 	},
 	"user_pass_text": {
-		"en": "A service has requested you to authenticate yourself. Please enter your username and password in the form below.",
 		"no": "En tjeneste har bedt om bekreftelse p\u00e5 din identitet. Skriv inn ditt brukernavn og passord for \u00e5 autentisere deg.",
 		"nn": "Ei webteneste har spurt etter autentisering av deg. Skriv inn brukarnamnet ditt og passordet ditt for \u00e5 autentisera deg.",
 		"sv": "En webbtj\u00e4nst har beg\u00e4rt att du ska logga in. Detta betyder att du beh\u00f6ver ange ditt anv\u00e4ndarnamn och ditt l\u00f6senord i formul\u00e4ret nedan.",
@@ -60,7 +57,6 @@
 		"tr": "Bir servis kendinizi yetkilendirmenizi istedi. L\u00fctfen a\u015fa\u011f\u0131daki forma kullan\u0131c\u0131 ad\u0131n\u0131z\u0131 ve \u015fifrenizi giriniz."
 	},
 	"login_button": {
-		"en": "Login",
 		"no": "Logg inn",
 		"nn": "Logg inn",
 		"sv": "Logga in",
@@ -81,7 +77,6 @@
 		"tr": "Giri\u015f"
 	},
 	"username": {
-		"en": "Username",
 		"no": "Brukernavn",
 		"nn": "Brukarnamn",
 		"sv": "Anv\u00e4ndarnamn",
@@ -102,7 +97,6 @@
 		"tr": "Kullan\u0131c\u0131 ad\u0131"
 	},
 	"organization": {
-		"en": "Organization",
 		"no": "Organisasjon",
 		"nn": "Organisasjon",
 		"sv": "Organisation",
@@ -123,7 +117,6 @@
 		"tr": "Organizasyon"
 	},
 	"password": {
-		"en": "Password",
 		"no": "Passord",
 		"nn": "Passord",
 		"sv": "L\u00f6senord",
@@ -144,7 +137,6 @@
 		"tr": "\u015eifre"
 	},
 	"help_header": {
-		"en": "Help! I don't remember my password.",
 		"no": "Hjelp! Jeg har glemt passordet mitt.",
 		"nn": "Hjelp! Eg har gl\u00f8ymd passordet mitt",
 		"sv": "Hj\u00e4lp! Jag kommer inte ih\u00e5g mitt l\u00f6senord.",
@@ -164,7 +156,6 @@
 		"tr": "Yard\u0131m! \u015eifremi hat\u0131rlam\u0131yorum."
 	},
 	"help_text": {
-		"en": "Too bad! - Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your university!",
 		"no": "Synd! - Uten riktig brukernavn og passord kan du ikke autentisere deg. Det kan v\u00e6re noen som kan hjelpe deg. Fors\u00f8k \u00e5 kontakt brukerst\u00f8tte ved din vertsorganisasjon.",
 		"nn": "Synd! - Utan riktig brukarnamn og passord kan du ikkje autentisera deg.  Ta kontakt med brukarst\u00f8tte hos din organisasjon.",
 		"sv": "Tyv\u00e4rr kan du inte logga in i tj\u00e4nsten om du inte har ditt anv\u00e4ndarnamn och ditt l\u00f6senord. Ta kontakt med din organisations support eller helpdesk f\u00f6r att f\u00e5 hj\u00e4lp.",
@@ -184,7 +175,6 @@
 		"tr": "\u00c7ok k\u00f6t\u00fc! - Kullan\u0131c\u0131 ad\u0131n\u0131z ve \u015fifreniz olmadan bu servisi kullanamazs\u0131n\u0131z. Size yard\u0131mc\u0131 olabilecek birileri olabilir. Kurulu\u015funuza dan\u0131\u015f\u0131n. "
 	},
 	"error_nopassword": {
-		"en": "You sent something to the login page, but for some reason the password was not sent. Try again please.",
 		"no": "Du kontaktet loginsiden, men passordet ble ikke sendt med. Fors\u00f8k igjen.",
 		"nn": "Passordet blei ikkje sendt. Pr\u00f8v p\u00e5 nytt.",
 		"sv": "Du skicka in en inloggningsf\u00f6rfr\u00e5gan men det verkar som om ditt l\u00f6senord inte fanns med i f\u00f6rfr\u00e5gan. F\u00f6rs\u00f6k igen!",
@@ -204,7 +194,6 @@
 		"tr": "Giri\u015f sayfas\u0131na bir\u015feyler g\u00f6nderdiniz, fakat baz\u0131 nedenlerden dolay\u0131 \u015fifreniz g\u00f6nderilemedi. L\u00fctfen tekrar deneyiniz."
 	},
 	"error_wrongpassword": {
-		"en": "Incorrect username or password.",
 		"no": "Feil brukernavn eller passord.",
 		"nn": "Feil brukarnamn eller passord.",
 		"sv": "Fel anv\u00e4ndarnamn eller l\u00f6senord.",
@@ -224,8 +213,25 @@
 		"pl": "Nieprawid\u0142owa nazwa u\u017cytkownika lub has\u0142o.",
 		"tr": "Kullan\u0131c\u0131 ad\u0131 ve\/veya \u015fifre yanl\u0131\u015f."
 	},
+	"contact_info": {
+		"no": "Kontaktinformasjon:",
+		"nn": "Kontaktinformasjon:",
+		"sv": "Kontaktinformation:",
+		"es": "Informaci\u00f3n de contacto:",
+		"fr": "Coordonn\u00e9es:",
+		"de": "Kontakt",
+		"nl": "Contactinformatie",
+		"sl": "Kontakt",
+		"da": "Kontaktoplysninger",
+		"hr": "Kontakt podaci",
+		"hu": "El\u00e9r\u00e9si inform\u00e1ci\u00f3k",
+		"fi": "Yhteystiedot",
+		"pt-BR": "Informa\u00e7\u00f5es de Contato",
+		"pt": "Contactos:",
+		"pl": "Informacje kontaktowe:",
+		"tr": "\u0130leti\u015fim bilgileri:"
+	},
 	"select_home_org": {
-		"en": "Choose your home organization",
 		"no": "Velg vertsorganisasjon",
 		"nn": "Vel vertsorganisasjon",
 		"sv": "V\u00e4lj vilken organisation du kommer ifr\u00e5n",
@@ -243,27 +249,7 @@
 		"pl": "Wybierz swoj\u0105 domow\u0105 organizacj\u0119",
 		"tr": "Organizasyonunuzu se\u00e7iniz"
 	},
-	"next": {
-		"en": "Next",
-		"no": "Fortsett",
-		"nn": "Neste",
-		"sv": "N\u00e4sta",
-		"es": "Siguiente",
-		"fr": "Suivant",
-		"de": "Weiter",
-		"nl": "Volgende",
-		"sl": "Naprej",
-		"da": "N\u00e6ste",
-		"hr": "Dalje",
-		"hu": "K\u00f6vetkez\u0151",
-		"fi": "Seuraava",
-		"pt-BR": "Pr\u00f3ximo",
-		"pt": "Seguinte",
-		"pl": "Nast\u0119pny",
-		"tr": "S\u0131radaki"
-	},
 	"change_home_org_title": {
-		"en": "Change your home organization",
 		"no": "Endre din vertsorganisasjon",
 		"nn": "Endra vertsorganisasjon",
 		"sv": "\u00c4ndra vilken organisation du kommer ifr\u00e5n",
@@ -282,7 +268,6 @@
 		"tr": "Organizasyonunuzu de\u011fi\u015ftirin"
 	},
 	"change_home_org_text": {
-		"en": "You have chosen <b>%HOMEORG%<\/b> as your home organization. If this is wrong you may choose another one.",
 		"no": "Du har valgt <b>%HOMEORG%<\/b> som din vertsorganisasjon. Dersom dette er feil kan du velge en annen.",
 		"nn": "Du har vald <b>%HOMEORG%<\/b> som din vertsorganisasjon.  Dersom dette er feil, kan du velja ein annan organisasjon fr\u00e5 menyen.",
 		"sv": "Du har valt <b>%HOMEORG%<\/b> som organisation du kommer ifr\u00e5n. Om detta \u00e4r fel s\u00e5 kan du v\u00e4lja en annan.",
@@ -301,7 +286,6 @@
 		"tr": "<b>%HOMEORG%<\/b>'u organizasyonunuz olarak se\u00e7tiniz. E\u011fer yanl\u0131\u015f ise, ba\u015fka bir tanesini se\u00e7ebilirsiniz."
 	},
 	"change_home_org_button": {
-		"en": "Choose home organization",
 		"no": "Velg vertsorganisasjon",
 		"nn": "Vel vertsorganisasjon",
 		"sv": "\u00c4ndra organisation",
@@ -320,7 +304,6 @@
 		"tr": "Organizasyon se\u00e7iniz"
 	},
 	"help_desk_link": {
-		"en": "Help desk homepage",
 		"no": "Hjemmesiden til brukerst\u00f8tte",
 		"nn": "Heimeside for brukarst\u00f8tte",
 		"sv": "Hemsida f\u00f6r helpdesk",
@@ -339,7 +322,6 @@
 		"tr": "Yard\u0131m anasayfas\u0131"
 	},
 	"help_desk_email": {
-		"en": "Send e-mail to help desk",
 		"no": "Send e-post til brukerst\u00f8tte",
 		"nn": "Send epost til brukarst\u00f8tte",
 		"sv": "Skicka e-post till helpdesk",
@@ -357,23 +339,22 @@
 		"pl": "wy\u015blij e-mail do helpdesku",
 		"tr": "Yard\u0131m'a e-posta g\u00f6nderin"
 	},
-	"contact_info": {
-		"en": "Contact information:",
-		"no": "Kontaktinformasjon:",
-		"nn": "Kontaktinformasjon:",
-		"sv": "Kontaktinformation:",
-		"es": "Informaci\u00f3n de contacto:",
-		"fr": "Coordonn\u00e9es:",
-		"de": "Kontakt",
-		"nl": "Contactinformatie",
-		"sl": "Kontakt",
-		"da": "Kontaktoplysninger",
-		"hr": "Kontakt podaci",
-		"hu": "El\u00e9r\u00e9si inform\u00e1ci\u00f3k",
-		"fi": "Yhteystiedot",
-		"pt-BR": "Informa\u00e7\u00f5es de Contato",
-		"pt": "Contactos:",
-		"pl": "Informacje kontaktowe:",
-		"tr": "\u0130leti\u015fim bilgileri:"
+	"next": {
+		"no": "Fortsett",
+		"nn": "Neste",
+		"sv": "N\u00e4sta",
+		"es": "Siguiente",
+		"fr": "Suivant",
+		"de": "Weiter",
+		"nl": "Volgende",
+		"sl": "Naprej",
+		"da": "N\u00e6ste",
+		"hr": "Dalje",
+		"hu": "K\u00f6vetkez\u0151",
+		"fi": "Seuraava",
+		"pt-BR": "Pr\u00f3ximo",
+		"pt": "Seguinte",
+		"pl": "Nast\u0119pny",
+		"tr": "S\u0131radaki"
 	}
 }

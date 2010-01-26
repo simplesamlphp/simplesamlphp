@@ -1,27 +1,35 @@
 {
 	"title_no_user": {
-		"no": "OpenID tilbyder"
+		"no": "OpenID tilbyder",
+		"de": "OpenID-Anbieter"
 	},
 	"title_user": {
-		"no": "OpenID for %USERID%"
+		"no": "OpenID for %USERID%",
+		"de": "OpenID f\u00fcr %USERID%"
 	},
 	"user_page_for": {
-		"no": "Dette er OpenID brukersiden for <code>%USERID%<\/code>."
+		"no": "Dette er OpenID brukersiden for <code>%USERID%<\/code>.",
+		"de": "Dies ist die OpenID Nutzerseite f\u00fcr <code>%USERID%<\/code>"
 	},
 	"view_own_page": {
-		"no": "Se p\u00e5 din egen OpenID side."
+		"no": "Se p\u00e5 din egen OpenID side.",
+		"de": "Zeigen Sie Ihren OpenID-Seite an."
 	},
 	"login_view_own_page": {
-		"no": "Logg p\u00e5 for \u00e5 se p\u00e5 din egen OpenID side."
+		"no": "Logg p\u00e5 for \u00e5 se p\u00e5 din egen OpenID side.",
+		"de": "Melden Sie sich an, um Ihre eigene OpenID-Seite zu betrachten."
 	},
 	"logout_title": {
-		"no": "Logg av"
+		"no": "Logg av",
+		"de": "Abmelden"
 	},
 	"logout": {
-		"no": "Trykk her for \u00e5 logge ut av din OpenID bruker."
+		"no": "Trykk her for \u00e5 logge ut av din OpenID bruker.",
+		"de": "Klicken Sie hier, um sich von Ihrem OpenID-Benutzer abzumelden."
 	},
 	"confirm_question": {
-		"no": "\u00d8nsker du \u00e5 logge p\u00e5 %SITEURL%?"
+		"no": "\u00d8nsker du \u00e5 logge p\u00e5 %SITEURL%?",
+		"de": "M\u00f6chten Sie sich auf %SITEURL% anmelden?"
 	},
 	"remember": {
 		"no": "Husk dette valget",
@@ -59,7 +67,7 @@
 		"no": "Ikke bekreft",
 		"nn": "Stadfesting ikkje",
 		"da": "Bekr\u00e6ft ikke",
-		"de": "Nicht Best\u00e4tigen",
+		"de": "Nicht best\u00e4tigen",
 		"sv": "Bekr\u00e4fta inte",
 		"es": "No confirmar",
 		"nl": "Weiger",
@@ -75,7 +83,7 @@
 		"no": "Klarerte websider",
 		"nn": "Tiltrudde partnarar",
 		"da": "Hjemmesider du har tillid til",
-		"de": "Vertraute Seiten",
+		"de": "Vertrauensw\u00fcrdige Sites",
 		"sv": "Godk\u00e4nda sajter",
 		"es": "Sitios de confianza",
 		"nl": "Trusted Sites",
@@ -91,19 +99,22 @@
 		"no": "Fjern",
 		"nn": "Ta vekk",
 		"da": "Fjern",
-		"de": "Ausgew\u00e4hlte l\u00f6schen",
+		"de": "L\u00f6schen",
 		"sv": "Ta bort"
 	},
 	"trustlist_nosites": {
 		"no": "Ingen sites er husket. N\u00e5r du autentiserer deg hos en site, kan du velge \u00e5 legge den til denne listen ved \u00e5 velge <q>Husk dette valget<\/q>.",
 		"nn": "Ingen tenester er lagra.  N\u00e5r du logger inn p\u00e5 ei teneste, kan du velja \u00e5 leggja ho inn p\u00e5 lista over tiltrudde partnarar ved \u00e5 velja <q>Hugs denne avgjerda<\/q>.",
 		"da": "Der er ikke gemt nogle sites. N\u00e5r authenticater mod et site kan du v\u00e6lge at gemme sitet i denne liste ved at v\u00e6lge <q>Gem mit valg<\/q>",
-		"sv": "Inga sajter \u00e4r sparade. N\u00e4r du loggar in p\u00e5 en sajt kan du v\u00e4lja om du ska l\u00e4gga den i listan genom att v\u00e4lja <q>Spara detta beslut<\/q>."
+		"sv": "Inga sajter \u00e4r sparade. N\u00e4r du loggar in p\u00e5 en sajt kan du v\u00e4lja om du ska l\u00e4gga den i listan genom att v\u00e4lja <q>Spara detta beslut<\/q>.",
+		"de": "Keine Site ist vertrauensw\u00fcrdig. Wenn Sie sich auf einer Site authentifizieren, k\u00f6nnen Sie sie dieser List hinzuf\u00fcgen, indem Sie <q>Diese Entscheidung merken<\/q> anw\u00e4hlen."
 	},
 	"your_identifier": {
-		"no": "For \u00e5 logge inn med din OpenID, bruk f\u00f8lgende ID:"
+		"no": "For \u00e5 logge inn med din OpenID, bruk f\u00f8lgende ID:",
+		"de": "Um sich mit Ihren OpenID-Bezeichner anzumelden, verwenden Sie den folgenden Bezeichner:"
 	},
 	"howto_delegate": {
-		"no": "Du kan ogs\u00e5 delegere en annen OpenID til \u00e5 benytte denne OpenID tilbyderen. For \u00e5 gj\u00f8re det, m\u00e5 du legge til f\u00f8lgende <code>&lt;head&gt;<\/code>-element p\u00e5 websiden til denne OpenID-en du vil delegere."
+		"no": "Du kan ogs\u00e5 delegere en annen OpenID til \u00e5 benytte denne OpenID tilbyderen. For \u00e5 gj\u00f8re det, m\u00e5 du legge til f\u00f8lgende <code>&lt;head&gt;<\/code>-element p\u00e5 websiden til denne OpenID-en du vil delegere.",
+		"de": "Sie k\u00f6nnen auch einen anderen Bezeichner bevollm\u00e4chtigen, diesen OpenID-Anbieter zu verwenden. Um dies zu tun, m\u00fcssen Sie das folgende <code>&lt;head&gt;<\/code>-Element auf der Webseite dieses Bezeichners hinzuf\u00fcgen:"
 	}
 }
