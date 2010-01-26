@@ -124,6 +124,10 @@ if (array_key_exists('privacypolicy', $state['Destination'])) {
 } else {
 	$privacypolicy = FALSE;
 }
+if($privacypolicy !== FALSE) {
+	$privacypolicy = str_replace('%SPENTITYID%', urlencode($spentityid),
+		$privacypolicy);
+}
 $t->data['sppp'] = $privacypolicy;
 
 
