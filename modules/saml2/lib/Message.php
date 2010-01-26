@@ -582,10 +582,13 @@ class sspmod_saml2_Message {
 
 		$a->setAuthnContext(SAML2_Const::AC_PASSWORD);
 
+		$session = SimpleSAML_Session::getInstance();
+
+		$a->setAuthnInstant($session->getAuthnInstant());
+
 		$sessionLifetime = $config->getInteger('session.duration', 8*60*60);
 		$a->setSessionNotOnOrAfter(time() + $sessionLifetime);
 
-		$session = SimpleSAML_Session::getInstance();
 		$sessionIndex = $session->getSessionIndex();
 		$a->setSessionIndex($sessionIndex);
 
