@@ -314,4 +314,126 @@ class sspmod_saml_IdP_SAML2 {
 		$idp->handleAuthenticationRequest($state);
 	}
 
+
+	/**
+	 * Send a logout response.
+	 *
+	 * @param array &$state  The logout state array.
+	 */
+	public static function sendLogoutResponse(SimpleSAML_IdP $idp, array $state) {
+		assert('isset($state["saml:SPEntityId"])');
+		assert('isset($state["saml:RequestId"])');
+		assert('array_key_exists("saml:RelayState", $state)'); // Can be NULL.
+
+		$spEntityId = $state['saml:SPEntityId'];
+
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$idpMetadata = $idp->getConfig();
+		$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
+
+		$lr = sspmod_saml2_Message::buildLogoutResponse($idpMetadata, $spMetadata);
+		$lr->setInResponseTo($state['saml:RequestId']);
+		$lr->setRelayState($state['saml:RelayState']);
+
+		if (isset($state['core:Failed']) && $state['core:Failed']) {
+			$lr->setStatus(array(
+				'Code' => SAML2_Const::STATUS_SUCCESS,
+				'SubCode' => SAML2_Const::STATUS_PARTIAL_LOGOUT,
+			));
+			SimpleSAML_Logger::info('Sending logout response for partial logout to SP ' . var_export($spEntityId, TRUE));
+		} else {
+			SimpleSAML_Logger::debug('Sending logout response to SP ' . var_export($spEntityId, TRUE));
+		}
+
+		$binding = new SAML2_HTTPRedirect();
+		$binding->setDestination(sspmod_SAML2_Message::getDebugDestination());
+		$binding->send($lr);
+	}
+
+
+	/**
+	 * Receive a logout message.
+	 *
+	 * @param SimpleSAML_IdP $idp  The IdP we are receiving it for.
+	 */
+	public static function receiveLogoutMessage(SimpleSAML_IdP $idp) {
+
+		$binding = SAML2_Binding::getCurrentBinding();
+		$message = $binding->receive();
+
+		$spEntityId = $message->getIssuer();
+		if ($spEntityId === NULL) {
+			/* Without an issuer we have no way to respond to the message. */
+			throw new SimpleSAML_Error_BadRequest('Received message on logout endpoint without issuer.');
+		}
+
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$idpMetadata = $idp->getConfig();
+		$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
+
+		sspmod_saml2_Message::validateMessage($idpMetadata, $spMetadata, $message);
+
+		if ($message instanceof SAML2_LogoutResponse) {
+
+			$spEntityId = $message->getIssuer();
+			if ($spEntityId === NULL) {
+				throw new SimpleSAML_Error_Exception('Missing <Issuer> in LogoutResponse.');
+			}
+
+			$relayState = $message->getRelayState();
+
+			if (!$message->isSuccess()) {
+				$logoutError = sspmod_saml2_Message::getResponseError($message);
+				SimpleSAML_Logger::warning('Unsuccessful logout. Status was: ' . $logoutError);
+			} else {
+				$logoutError = NULL;
+			}
+
+			$assocId = 'saml:' . $spEntityId;
+
+			$idp->handleLogoutResponse($assocId, $relayState, $logoutError);
+
+
+		} elseif ($message instanceof SAML2_LogoutRequest) {
+
+			$state = array(
+				'Responder' => array('sspmod_saml_IdP_SAML2', 'sendLogoutResponse'),
+				'saml:SPEntityId' => $spEntityId,
+				'saml:RelayState' => $message->getRelayState(),
+				'saml:RequestId' => $message->getId(),
+			);
+
+			$assocId = 'saml:' . $spEntityId;
+			$idp->handleLogoutRequest($state, $assocId);
+
+		} else {
+			throw new SimpleSAML_Error_BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
+		}
+
+	}
+
+
+	/**
+	 * Retrieve a logout URL for a given logout association.
+	 *
+	 * @param SimpleSAML_IdP $idp  The IdP we are sending a logout request from.
+	 * @param array $association  The association that should be terminated.
+	 * @param string|NULL $relayState  An id that should be carried across the logout.
+	 */
+	public static function getLogoutURL(SimpleSAML_IdP $idp, array $association, $relayState) {
+		assert('is_string($relayState) || is_null($relayState)');
+
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$idpMetadata = $idp->getConfig();
+		$spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
+
+		$lr = sspmod_saml2_Message::buildLogoutRequest($idpMetadata, $spMetadata);
+		$lr->setRelayState($relayState);
+		$lr->setSessionIndex($association['saml:SessionIndex']);
+		$lr->setNameId($association['saml:NameID']);
+
+		$binding = new SAML2_HTTPRedirect();
+		return $binding->getRedirectURL($lr);
+	}
+
 }
