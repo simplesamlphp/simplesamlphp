@@ -574,7 +574,6 @@ class SimpleSAML_Session {
 		$this->sessionindex = null;
 		$this->nameid = null;
 	
-		$this->sp_at_idpsessions = array();	
 		$this->dirty = TRUE;
 	}
 	 
