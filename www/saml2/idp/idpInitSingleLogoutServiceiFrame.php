@@ -1,13 +1,11 @@
 <?php
 
-/**
- * IdP Initiated Single Log-Out. Requires one parameter: RelayState.
+/*
+ * This endpoint is provided for backwards compatibility,
+ * and should not be used.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
- * @version $Id$
+ * Use SingleLogoutService.php?ReturnTo=... instead.
  */
-
 require_once('../../_include.php');
 
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();

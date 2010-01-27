@@ -17,7 +17,6 @@ If you have read about the AJAX iFrame Single Log-Out approach at Andreas' blog 
 
 	'logouttype' => 'iframe',
 
-Notice that when setting this option after already having shared metadata with Service Providers, you need to send new metadata. The automatically genereated metadata will change.
 
 Attribute Release Consent
 -------------------------

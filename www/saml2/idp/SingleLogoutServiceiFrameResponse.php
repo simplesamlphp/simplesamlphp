@@ -1,14 +1,11 @@
 <?php
 
-
-/**
- * This SAML 2.0 endpoint can receive incoming LogoutResponses. 
+/*
+ * This endpoint is provided for backwards compatibility,
+ * and should not be used.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
- * @version $Id$
+ * Use SingleLogoutService.php instead.
  */
-
 require_once('../../_include.php');
 
 SimpleSAML_Logger::info('SAML2.0 - IdP.SingleLogoutServiceiFrameResponse: Accessing SAML 2.0 IdP endpoint SingleLogoutServiceResponse (iFrame version)');

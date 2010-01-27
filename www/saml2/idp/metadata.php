@@ -28,24 +28,13 @@ try {
 		$certFingerprint = $certFingerprint[0];
 	}
 
-	$logouttype = 'traditional';
-	if (array_key_exists('logouttype', $idpmeta)) $logouttype = $idpmeta['logouttype'];
-
-	$urlSLO = $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted', array('logouttype' => $logouttype));
-	$urlSLOr = $metadata->getGenerated('SingleLogoutServiceResponse', 'saml20-idp-hosted', array('logouttype' => $logouttype));
-
 	$metaArray = array(
 		'metadata-set' => 'saml20-idp-remote',
 		'entityid' => $idpentityid,
-		'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted', array()),
-		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted', array('logouttype' => $logouttype)),
-		'SingleLogoutServiceResponse'  => $metadata->getGenerated('SingleLogoutServiceResponse', 'saml20-idp-hosted', array('logouttype' => $logouttype)),
+		'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted'),
+		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted'),
 		'certFingerprint' => $certFingerprint,
 	);
-
-	if ($metaArray['SingleLogoutServiceResponse'] === $metaArray['SingleLogoutService']) {
-		unset($metaArray['SingleLogoutServiceResponse']);
-	}
 
 	if (isset($idpmeta['saml20.sendartifact']) && $idpmeta['saml20.sendartifact'] === TRUE) {
 		/* Artifact sending enabled. */
