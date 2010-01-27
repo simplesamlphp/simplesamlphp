@@ -108,6 +108,84 @@ class SimpleSAML_IdP {
 
 
 	/**
+	 * Get SP name.
+	 *
+	 * @param string $assocId  The association identifier.
+	 * @return array|NULL  The name of the SP, as an associative array of language=>text, or NULL if this isn't an SP.
+	 */
+	public function getSPName($assocId) {
+		assert('is_string($assocId)');
+
+		if (substr($assocId, 0, 5) !== 'saml:') {
+			return NULL;
+		}
+
+		$spEntityId = substr($assocId, 5);
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		try {
+			$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
+		} catch (Exception $e) {
+			try {
+				$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'shib13-sp-remote');
+			} catch (Exception $e) {
+				return NULL;
+			}
+		}
+
+		return $spMetadata->getLocalizedString('name', array('en' => $spEntityId));
+	}
+
+
+	/**
+	 * Retrieve list of SP associations.
+	 *
+	 * @return array  List of SP associations.
+	 */
+	public function getAssociations() {
+
+		$session = SimpleSAML_Session::getInstance();
+
+		$associations = array();
+
+		foreach ($session->get_sp_list() as $spEntityId) {
+
+			$nameId = $session->getSessionNameId('saml20-sp-remote', $spEntityId);
+			if($nameId === NULL) {
+				$nameId = $this->getNameID();
+			}
+
+			$id = 'saml:' . $spEntityId;
+
+			$associations[$id] = array(
+				'id' => $id,
+				'Handler' => 'sspmod_saml_IdP_SAML2',
+				'saml:entityID' => $spEntityId,
+				'saml:NameID' => $nameId,
+				'saml:SessionIndex' => $session->getSessionIndex(),
+			);
+		}
+
+		return $associations;
+	}
+
+
+	/**
+	 * Remove an SP association.
+	 *
+	 * @param string $assocId  The association id.
+	 */
+	public function terminateAssociation($assocId) {
+		assert('is_string($assocId)');
+
+		$session = SimpleSAML_Session::getInstance();
+
+		if (substr($assocId, 0, 5) === 'saml:') {
+			$session->set_sp_logout_completed(substr($assocId, 5));
+		}
+	}
+
+
+	/**
 	 * Is the current user authenticated?
 	 *
 	 * @return bool  TRUE if the user is authenticated, FALSE if not.
@@ -277,6 +355,151 @@ class SimpleSAML_IdP {
 			$e = new SimpleSAML_Error_UnserializableException($e);
 			SimpleSAML_Auth_State::throwException($state, $e);
 		}
+	}
+
+
+	/**
+	 * Find the logout handler of this IdP.
+	 *
+	 * @return string  The logout handler class.
+	 */
+	public function getLogoutHandler() {
+
+		/* Find the logout handler. */
+		$logouttype = $this->getConfig()->getString('logouttype', 'traditional');
+		switch ($logouttype) {
+		case 'traditional':
+			$handler = 'SimpleSAML_IdP_LogoutTraditional';
+			break;
+		case 'iframe':
+			$handler = 'SimpleSAML_IdP_LogoutIFrame';
+			break;
+		default:
+			throw new SimpleSAML_Error_Exception('Unknown logout handler: ' . var_export($logouttype, TRUE));
+		}
+
+		return new $handler($this);
+
+	}
+
+
+	/**
+	 * Finish the logout operation.
+	 *
+	 * This function will never return.
+	 *
+	 * @param array &$state  The logout request state.
+	 */
+	public function finishLogout(array &$state) {
+		assert('isset($state["Responder"])');
+
+		call_user_func($state['Responder'], $this, $state);
+		assert('FALSE');
+	}
+
+
+	/**
+	 * Process a logout request.
+	 *
+	 * This function will never return.
+	 *
+	 * @param array &$state  The logout request state.
+	 * @param string|NULL $assocId  The association we received the logout request from, or NULL if there was no association.
+	 */
+	public function handleLogoutRequest(array &$state, $assocId) {
+		assert('isset($state["Responder"])');
+		assert('is_string($assocId) || is_null($assocId)');
+
+		$state['core:IdP'] = $this->id;
+		$state['core:TerminatedAssocId'] = $assocId;
+
+		if ($assocId !== NULL) {
+			$this->terminateAssociation($assocId);
+		}
+
+		/* Terminate the local session. */
+		$session = SimpleSAML_Session::getInstance();
+		$authority = $session->getAuthority();
+		if ($authority !== NULL) {
+			/* We are logged in. */
+
+			$id = SimpleSAML_Auth_State::saveState($state, 'core:Logout:afterbridge');
+			$returnTo = SimpleSAML_Module::getModuleURL('core/idp/resumelogout.php',
+				array('id' => $id)
+			);
+
+			if ($authority === $this->config->getString('auth')) {
+				/* This is probably an authentication source. */
+				SimpleSAML_Auth_Default::initLogoutReturn($returnTo);
+			} elseif ($authority === 'saml2') {
+				/* SAML 2 SP which isn't an authentication source. */
+				SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'saml2/sp/initSLO.php',
+					array('RelayState' => $returnTo)
+				);
+			} else {
+				/* A different old-style authentication file. */
+				$session->doLogout();
+			}
+		}
+
+		$handler = $this->getLogoutHandler();
+		$handler->startLogout($state, $assocId);
+		assert('FALSE');
+	}
+
+
+	/**
+	 * Process a logout response.
+	 *
+	 * This function will never return.
+	 *
+	 * @param string $assocId  The association that is terminated.
+	 * @param string|NULL $relayState  The RelayState from the start of the logout.
+	 * @param SimpleSAML_Error_Exception|NULL $error  The error that occured during session termination (if any).
+	 */
+	public function handleLogoutResponse($assocId, $relayState, SimpleSAML_Error_Exception $error = NULL) {
+		assert('is_string($assocId)');
+		assert('is_string($relayState) || is_null($relayState)');
+
+		$handler = $this->getLogoutHandler();
+		$handler->onResponse($assocId, $relayState, $error);
+
+		assert('FALSE');
+	}
+
+
+	/**
+	 * Log out, then redirect to an URL.
+	 *
+	 * This function never returns.
+	 *
+	 * @param string $url  The URL the user should be returned to after logout.
+	 */
+	public function doLogoutRedirect($url) {
+		assert('is_string($url)');
+
+		$state = array(
+			'Responder' => array('SimpleSAML_IdP', 'finishLogoutRedirect'),
+			'core:Logout:URL' => $url,
+		);
+
+		$this->handleLogoutRequest($state, NULL);
+		assert('FALSE');
+	}
+
+
+	/**
+	 * Redirect to an URL after logout.
+	 *
+	 * This function never returns.
+	 *
+	 * @param array &$state  The logout state from doLogoutRedirect().
+	 */
+	public static function finishLogoutRedirect(SimpleSAML_IdP $idp, array $state) {
+		assert('isset($state["core:Logout:URL"])');
+
+		SimpleSAML_Utilities::redirect($state['core:Logout:URL']);
+		assert('FALSE');
 	}
 
 }

@@ -79,5 +79,11 @@
 	},
 	"no": {
 		"en": "No"
+	},
+	"logging_out_from": {
+		"en": "Logging out of the following services:"
+	},
+	"failedsps": {
+		"en": "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser<\/i>."
 	}
 }
