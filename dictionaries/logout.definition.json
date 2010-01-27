@@ -8,12 +8,6 @@
 	"default_link_text": {
 		"en": "Go back to simpleSAMLphp installation page"
 	},
-	"description": {
-		"en": "You have initiated a <strong>global logout<\/strong> from the service <strong>%REQUESTERNAME%<\/strong>. Global logout means you will be logged out from all of the services listed below."
-	},
-	"initiated": {
-		"en": "Initiated logout"
-	},
 	"hold": {
 		"en": "On hold"
 	},
@@ -26,38 +20,11 @@
 	"failed": {
 		"en": "Logout failed"
 	},
-	"continue": {
-		"en": "Do you want to continue global logout?"
-	},
-	"do_continue": {
-		"en": "Yes, continue logout"
-	},
-	"cancel": {
-		"en": "Cancel logout"
-	},
-	"respond_info": {
-		"en": "If some of the service providers do not respond in reasonable time, you are encouraged to close your browser to ensure sessions are closed."
-	},
 	"return": {
 		"en": "Return to service"
 	},
-	"progress_bar": {
-		"en": "Progress bar"
-	},
-	"logging_out": {
-		"en": "Wait... is logging out from <strong>%SPNAME%<\/strong>."
-	},
-	"logged_out": {
-		"en": "Logout was started from %REQUESTERNAME%."
-	},
-	"interrupt": {
-		"en": "Interrupt logging out and go back to service."
-	},
 	"success": {
 		"en": "You have successfully logged out from all services listed above."
-	},
-	"finish": {
-		"en": "OK, continue back to %REQUESTERNAME% to complete the logout process."
 	},
 	"loggedoutfrom": {
 		"en": "You are now successfully logged out from %SP%."
