@@ -589,8 +589,7 @@ class sspmod_saml2_Message {
 		$sessionLifetime = $config->getInteger('session.duration', 8*60*60);
 		$a->setSessionNotOnOrAfter(time() + $sessionLifetime);
 
-		$sessionIndex = $session->getSessionIndex();
-		$a->setSessionIndex($sessionIndex);
+		$a->setSessionIndex(SimpleSAML_Utilities::generateID());
 
 		/* Add attributes. */
 
