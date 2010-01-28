@@ -174,6 +174,14 @@ And print the attributes:
 
 Each attribute name can be used as an index into $attributes to obtain the value. Every attribute value is an array - a single-valued attribute is an array of a single element.
 
+We can also request authentication with a specific IdP:
+
+    $as->login(array(
+        'saml:idp' => 'https://idp.example.org/',
+    ));
+
+Other options are also available.
+Take a look in the documentation for the [SP module](https://rnd.feide.no/content/saml-service-provider-configuration-reference) for a list of all parameters.
 
 Support
 -------
