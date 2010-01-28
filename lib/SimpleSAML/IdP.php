@@ -137,6 +137,20 @@ class SimpleSAML_IdP {
 
 
 	/**
+	 * Add an SP association.
+	 *
+	 * @param array  The SP association.
+	 */
+	public function addAssociation(array $association) {
+		assert('isset($association["id"])');
+		assert('isset($association["Handler"])');
+
+		$session = SimpleSAML_Session::getInstance();
+		$session->addAssociation($this->id, $association);
+	}
+
+
+	/**
 	 * Retrieve list of SP associations.
 	 *
 	 * @return array  List of SP associations.
@@ -144,28 +158,7 @@ class SimpleSAML_IdP {
 	public function getAssociations() {
 
 		$session = SimpleSAML_Session::getInstance();
-
-		$associations = array();
-
-		foreach ($session->get_sp_list() as $spEntityId) {
-
-			$nameId = $session->getSessionNameId('saml20-sp-remote', $spEntityId);
-			if($nameId === NULL) {
-				$nameId = $this->getNameID();
-			}
-
-			$id = 'saml:' . $spEntityId;
-
-			$associations[$id] = array(
-				'id' => $id,
-				'Handler' => 'sspmod_saml_IdP_SAML2',
-				'saml:entityID' => $spEntityId,
-				'saml:NameID' => $nameId,
-				'saml:SessionIndex' => $session->getSessionIndex(),
-			);
-		}
-
-		return $associations;
+		return $session->getAssociations($this->id);
 	}
 
 
@@ -178,10 +171,7 @@ class SimpleSAML_IdP {
 		assert('is_string($assocId)');
 
 		$session = SimpleSAML_Session::getInstance();
-
-		if (substr($assocId, 0, 5) === 'saml:') {
-			$session->set_sp_logout_completed(substr($assocId, 5));
-		}
+		$session->terminateAssociation($this->id, $assocId);
 	}
 
 

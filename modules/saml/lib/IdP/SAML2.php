@@ -49,7 +49,15 @@ class sspmod_saml_IdP_SAML2 {
 		$assertion = sspmod_saml2_Message::buildAssertion($idpMetadata, $spMetadata, $attributes, $consumerURL);
 		$assertion->setInResponseTo($requestId);
 
-		$nameId = $assertion->getNameId();
+		/* Create the session association (for logout). */
+		$association = array(
+			'id' => 'saml:' . $spEntityId,
+			'Handler' => 'sspmod_saml_IdP_SAML2',
+			'Expires' => $assertion->getSessionNotOnOrAfter(),
+			'saml:entityID' => $spEntityId,
+			'saml:NameID' => $assertion->getNameId(),
+			'saml:SessionIndex' => $assertion->getSessionIndex(),
+		);
 
 		/* Maybe encrypt the assertion. */
 		$assertion = sspmod_saml2_Message::encryptAssertion($idpMetadata, $spMetadata, $assertion);
@@ -60,10 +68,8 @@ class sspmod_saml_IdP_SAML2 {
 		$ar->setRelayState($relayState);
 		$ar->setAssertions(array($assertion));
 
-		/* Add the session association (for logout). */
-		$session = SimpleSAML_Session::getInstance();
-		$session->add_sp_session($spEntityId);
-		$session->setSessionNameId('saml20-sp-remote', $spEntityId, $nameId);
+		/* Register the session association with the IdP. */
+		$idp->addAssociation($association);
 
 		/* Send the response. */
 		$binding = SAML2_Binding::getBinding($protocolBinding);

@@ -14,10 +14,6 @@
  */
 class SimpleSAML_Session {
 
-	const STATE_ONLINE = 1;
-	const STATE_LOGOUTINPROGRESS = 2;
-	const STATE_LOGGEDOUT = 3;
-
 	/**
 	 * This is a timeout value for setData, which indicates that the data should be deleted
 	 * on logout.
@@ -87,6 +83,17 @@ class SimpleSAML_Session {
 	 * Logout state when authenticated with authentication sources.
 	 */
 	private $logoutState;
+
+
+	/**
+	 * The list of IdP-SP associations.
+	 *
+	 * This is an associative array with the IdP id as the key, and the list of
+	 * associations as the value.
+	 *
+	 * @var array
+	 */
+	private $associations = array();
 
 
 	/**
@@ -176,73 +183,8 @@ class SimpleSAML_Session {
 	public function getAuthority() {
 		return $this->authority;
 	}
-	
-	
-	
-	// *** SP list to be used with SAML 2.0 SLO ***
-	// *** *** *** *** *** *** *** *** *** *** ***
-	
-	public function add_sp_session($entityid) {
-		SimpleSAML_Logger::debug('Library - Session: Adding SP session: ' . $entityid);
-		$this->dirty = TRUE;
-		$this->sp_at_idpsessions[$entityid] = self::STATE_ONLINE;
-	}
-	
-	public function get_next_sp_logout() {
-		
-		if (!$this->sp_at_idpsessions) return null;
-
-		$this->dirty = TRUE;
-		
-		foreach ($this->sp_at_idpsessions AS $entityid => $sp) {
-			if ($sp == self::STATE_ONLINE) {
-				$this->sp_at_idpsessions[$entityid] = self::STATE_LOGOUTINPROGRESS;
-				return $entityid;
-			}
-		}
-		return null;
-	}
-	
-	public function get_sp_list($state = self::STATE_ONLINE) {
-		
-		$list = array();
-		if (!$this->sp_at_idpsessions) return $list;
-		
-		foreach ($this->sp_at_idpsessions AS $entityid => $sp) {
-			if ($sp == $state) {
-				$list[] = $entityid;
-			}
-		}
-		return $list;
-	}
-	
-	public function sp_logout_completed() {
-
-		if (!$this->sp_at_idpsessions) return TRUE;
-		
-		foreach ($this->sp_at_idpsessions AS $entityid => $sp) {
-			if ($sp != self::STATE_LOGGEDOUT) return FALSE;
-		}
-		return TRUE;
-	}
-	
-	
-	public function set_sp_logout_completed($entityid) {
-		SimpleSAML_Logger::debug('Library - Session: Setting SP state completed for : ' . $entityid);
-		$this->dirty = true;
-		$this->sp_at_idpsessions[$entityid] = self::STATE_LOGGEDOUT;
-	}
-	
-	public function dump_sp_sessions() {
-		foreach ($this->sp_at_idpsessions AS $entityid => $sp) {
-			SimpleSAML_Logger::debug('Dump sp sessions: ' . $entityid . ' status: ' . $sp);
-		}
-	}
-	// *** --- ***
 
 
-	
-	
 	/**
 	 * This method retrieves from session a cache of a specific Authentication Request
 	 * The complete request is not stored, instead the values that will be needed later
@@ -336,31 +278,9 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Set the NameID of the users session to the specified entity.
-	 *
-	 * @param string $entityType  The type of the entity (saml20-sp-remote, shib13-sp-remote, ...).
-	 * @param string $entityId  The entity id.
-	 * @param array $nameId  The name identifier.
-	 */
-	public function setSessionNameId($entityType, $entityId, $nameId) {
-		assert('is_string($entityType)');
-		assert('is_string($entityId)');
-		assert('is_array($nameId)');
-
-		if(!is_array($this->sessionNameId)) {
-			$this->sessionNameId = array();
-		}
-
-		if(!array_key_exists($entityType, $this->sessionNameId)) {
-			$this->sessionNameId[$entityType] = array();
-		}
-
-		$this->sessionNameId[$entityType][$entityId] = $nameId;
-	}
-
-
-	/**
 	 * Get the NameID of the users session to the specified entity.
+	 *
+	 * Deprecated, remove in version 1.7.
 	 *
 	 * @param string $entityType  The type of the entity (saml20-sp-remote, shib13-sp-remote, ...).
 	 * @param string $entityId  The entity id.
@@ -965,6 +885,150 @@ class SimpleSAML_Session {
 
 		$sh = SimpleSAML_SessionHandler::getSessionHandler();
 		return $sh->hasSessionCookie();
+	}
+
+
+	/**
+	 * Upgrade the association list to the new format.
+	 *
+	 * Should be removed in version 1.7.
+	 *
+	 * @param string $idp  The IdP we should add the associations to.
+	 */
+	private function upgradeAssociations($idp) {
+		assert('is_string($idp)');
+
+		$sp_at_idpsessions = $this->sp_at_idpsessions;
+		$this->sp_at_idpsessions = NULL;
+		$this->dirty = TRUE;
+
+		$globalConfig = SimpleSAML_Configuration::getInstance();
+		$sessionLifetime = time() + $globalConfig->getInteger('session.duration', 8*60*60);
+
+		foreach ($sp_at_idpsessions as $spEntityId => $state) {
+
+			if ($state !== 1) { /* 1 == STATE_ONLINE */
+				continue;
+			}
+
+			$nameId = $this->getSessionNameId('saml20-sp-remote', $spEntityId);
+			if($nameId === NULL) {
+				$nameId = $this->getNameID();
+			}
+
+			$id = 'saml:' . $spEntityId;
+
+			$this->addAssociation($idp, array(
+				'id' => $id,
+				'Handler' => 'sspmod_saml_IdP_SAML2',
+				'Expires' => $sessionLifetime,
+				'saml:entityID' => $spEntityId,
+				'saml:NameID' => $nameId,
+				'saml:SessionIndex' => $this->getSessionIndex(),
+			));
+		}
+	}
+
+
+	/**
+	 * Add an SP association for an IdP.
+	 *
+	 * This function is only for use by the SimpleSAML_IdP class.
+	 *
+	 * @param string $idp  The IdP id.
+	 * @param array $association  The association we should add.
+	 */
+	public function addAssociation($idp, array $association) {
+		assert('is_string($idp)');
+		assert('isset($association["id"])');
+		assert('isset($association["Handler"])');
+
+		if (substr($idp, 0, 6) === 'saml2:' && !empty($this->sp_at_idpsessions)) {
+			/* Remove in 1.7. */
+			$this->upgradeAssociations($idp);
+		}
+
+		if (!isset($this->associations)) {
+			$this->associations = array();
+		}
+
+		if (!isset($this->associations[$idp])) {
+			$this->associations[$idp] = array();
+		}
+
+		$this->associations[$idp][$association['id']] = $association;
+
+		$this->dirty = TRUE;
+	}
+
+
+	/**
+	 * Retrieve the associations for an IdP.
+	 *
+	 * This function is only for use by the SimpleSAML_IdP class.
+	 *
+	 * @param string $idp  The IdP id.
+	 * @return array  The IdP associations.
+	 */
+	public function getAssociations($idp) {
+		assert('is_string($idp)');
+
+		if (substr($idp, 0, 6) === 'saml2:' && !empty($this->sp_at_idpsessions)) {
+			/* Remove in 1.7. */
+			$this->upgradeAssociations($idp);
+		}
+
+		if (!isset($this->associations)) {
+			$this->associations = array();
+		}
+
+		if (!isset($this->associations[$idp])) {
+			return array();
+		}
+
+		foreach ($this->associations[$idp] as $id => $assoc) {
+			if (!isset($assoc['Expires'])) {
+				continue;
+			}
+			if ($assoc['Expires'] >= time()) {
+				continue;
+			}
+
+			unset($this->associations[$idp][$id]);
+		}
+
+		return $this->associations[$idp];
+	}
+
+
+	/**
+	 * Remove an SP association for an IdP.
+	 *
+	 * This function is only for use by the SimpleSAML_IdP class.
+	 *
+	 * @param string $idp  The IdP id.
+	 * @param string $associationId  The id of the association.
+	 */
+	public function terminateAssociation($idp, $associationId) {
+		assert('is_string($idp)');
+		assert('is_string($associationId)');
+
+		if (substr($idp, 0, 6) === 'saml2:' && !empty($this->sp_at_idpsessions)) {
+			/* Remove in 1.7. */
+			$this->upgradeAssociations($idp);
+		}
+
+		if (!isset($this->associations)) {
+			return;
+		}
+
+		if (!isset($this->associations[$idp])) {
+			return;
+		}
+
+		unset($this->associations[$idp][$associationId]);
+
+		$this->dirty = TRUE;
 	}
 
 }
