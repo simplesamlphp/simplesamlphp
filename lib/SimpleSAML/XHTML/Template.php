@@ -434,6 +434,57 @@ class SimpleSAML_XHTML_Template {
 
 
 	/**
+	 * Read a dictionary file in json format.
+	 *
+	 * @param string $filename  The absolute path to the dictionary file, minus the .definition.json ending.
+	 * @return array  The translation array from the file.
+	 */
+	private function readDictionaryJSON($filename) {
+		$definitionFile = $filename . '.definition.json';
+		assert('file_exists($definitionFile)');
+
+		$fileContent = file_get_contents($definitionFile);
+		$lang = json_decode($fileContent, TRUE);
+
+		if (empty($lang)) {
+			SimpleSAML_Logger::error('Invalid dictionary definition file [' . $definitionFile . ']');
+			return array();
+		}
+
+		$translationFile = $filename . '.translation.json';
+		if (file_exists($translationFile)) {
+			$fileContent = file_get_contents($translationFile);
+			$moreTrans = json_decode($fileContent, TRUE);
+			if (!empty($moreTrans)) {
+				$lang = self::lang_merge($lang, $moreTrans);
+			}
+		}
+
+		return $lang;
+	}
+
+
+	/**
+	 * Read a dictionary file in PHP format.
+	 *
+	 * @param string $filename  The absolute path to the dictionary file.
+	 * @return array  The translation array from the file.
+	 */
+	private function readDictionaryPHP($filename) {
+		$phpFile = $filename . '.php';
+		assert('file_exists($phpFile)');
+
+		$lang = NULL;
+		include($phpFile);
+		if (isset($lang)) {
+			return $lang;
+		}
+
+		return array();
+	}
+
+
+	/**
 	 * Read a dictionary file.
 	 *
 	 * @param $filename  The absolute path to the dictionary file.
@@ -441,42 +492,25 @@ class SimpleSAML_XHTML_Template {
 	 */
 	private function readDictionaryFile($filename) {
 		assert('is_string($filename)');
-		
-		$definitionFile = $filename . '.definition.json';
-		$translationFile = $filename . '.translation.json';
 
 		SimpleSAML_Logger::debug('Template: Reading [' . $filename . ']');
 
-		if (!file_exists($definitionFile)) {
-			SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $definitionFile . ']');
-					
-			return array();
+		$jsonFile = $filename . '.definition.json';
+		if (file_exists($jsonFile)) {
+			return $this->readDictionaryJSON($filename);
 		}
-		
-		$fileContent = file_get_contents($definitionFile);
-		$fileArray = json_decode($fileContent, TRUE);
-		
-		if (empty($fileArray)) {
-			SimpleSAML_Logger::error('Invalid dictionary definition file [' . $definitionFile . ']');
-			return array();
+
+
+		$phpFile = $filename . '.php';
+		if (file_exists($phpFile)) {
+			return $this->readDictionaryPHP($filename);
 		}
-		
-		$lang = json_decode($fileContent, TRUE);
 
-		$moreTrans = NULL;
-		if (file_exists($translationFile)) {
-			$fileContent = file_get_contents($translationFile);
-			$moreTrans = json_decode($fileContent, TRUE);
-
-		}
-		if (!empty($moreTrans))
-			$lang = self::lang_merge($lang, $moreTrans);
-
-		// echo '<pre>'; print_r($lang); exit;
-
-		return $lang;
+		SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
+		return array();
 	}
-	
+
+
 	// Merge two translation arrays.
 	public static function lang_merge($def, $lang) {
 		foreach($def AS $key => $value) {
