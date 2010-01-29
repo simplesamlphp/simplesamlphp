@@ -130,13 +130,13 @@ if ($type === 'init') {
 <div id="confirmation" style="margin-top: 1em" >
 <p><?php echo $this->t('{logout:logout_all_question}'); ?> <br /></p>
 
-<form id="startform" method="get" action="logout-iframe.php">
+<form id="startform" method="get" style="display:inline;" action="logout-iframe.php">
 <input type="hidden" name="id" value="<?php echo $id; ?>" />
 <input type="hidden" id="logout-type-selector" name="type" value="nojs" />
 <input type="submit" id="logout-all" name="ok" value="<?php echo $this->t('{logout:logout_all}'); ?>" />
 </form>
 
-<form method="get" action="logout-iframe-done.php">
+<form method="get" style="display:inline;" action="logout-iframe-done.php">
 <input type="hidden" name="id" value="<?php echo $id; ?>" />
 <input type="submit" name="cancel" value="<?php echo $logoutCancelText; ?>" />
 </form>
