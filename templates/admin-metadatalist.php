@@ -45,7 +45,7 @@ $this->includeAtTemplateBase('includes/header.php');
 				echo '<h4 style="padding-left: 2em; clear: both;" onclick="document.getElementById(\'metadatasection-' . $encodedEntityID . '\').style.display=\'block\';">' . htmlspecialchars($name) . '</h4>';
 				
 				if ($warning) {
-					echo '<div><img src="/' . $baseurl . 'resources/icons/caution.png" style="float: left; margin-right: 1em" />';
+					echo '<div><img src="/' . $baseurl . 'resources/icons/experience/gtk-dialog-warning.48x48.png" style="float: left; margin-right: 1em" />';
 					echo $t->t('metaover_errorentry') . '</div>';
 				}
 				

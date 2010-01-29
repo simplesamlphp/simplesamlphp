@@ -47,7 +47,7 @@
 if ($this->data['errorcode'] !== NULL) {
 ?>
 	<div style="border: 1px solid #500;  background: #880b17; ">
-		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/bomb.png" style="float: left; margin: 15px " />
+		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" style="float: left; margin: 15px " />
 		<h2><?php echo $this->t('{login:error_header}'); ?></h2>
 		<p><b><?php echo $this->t('{errors:title_' . $this->data['errorcode'] . '}'); ?></b></p>
 		<p><?php echo $this->t('{errors:descr_' . $this->data['errorcode'] . '}'); ?></p>
@@ -59,7 +59,7 @@ if ($this->data['errorcode'] !== NULL) {
 <!--
 	<?php if (isset($this->data['error'])) { ?>
 		<div style="border: 1px solid #500;  background: #880b17; ">
-		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/bomb.png" style="float: left; margin: 15px " />
+		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" style="float: left; margin: 15px " />
 		<h2><?php echo $this->t('{error:error_header}'); ?></h2>
 		
 		<p style="padding: .2em"><?php echo $this->t($this->data['error']); ?> </p>
@@ -72,7 +72,7 @@ if ($this->data['errorcode'] !== NULL) {
 if ($this->data['errorcode'] !== NULL) {
 ?>
 	<div style="border-left: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; background: #f5f5f5">
-		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/bomb.png" style="float: left; margin: 15px " />
+		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" style="float: left; margin: 15px " />
 		<h2><?php echo $this->t('{login:error_header}'); ?></h2>
 		<p><b><?php echo $this->t('{errors:title_' . $this->data['errorcode'] . '}'); ?></b></p>
 		<p><?php echo $this->t('{errors:descr_' . $this->data['errorcode'] . '}'); ?></p>

@@ -40,7 +40,7 @@ foreach ($this->data['idplist'] AS $idpentry) {
 		if (!empty($this->data['preferredidp']) && array_key_exists($this->data['preferredidp'], $this->data['idplist'])) {
 			$idpentry = $this->data['idplist'][$this->data['preferredidp']];
 			echo '<div class="preferredidp">';
-			echo '	<img src="/' . $this->data['baseurlpath'] .'resources/icons/star.png" style="float: right" alt="'.$this->t('icon_prefered_idp').'" />';
+			echo '	<img src="/' . $this->data['baseurlpath'] .'resources/icons/experience/gtk-about.64x64.png" style="float: right" alt="'.$this->t('icon_prefered_idp').'" />';
 
 			if(array_key_exists('icon', $idpentry) && $idpentry['icon'] !== NULL) {
 				$iconUrl = SimpleSAML_Utilities::resolveURL($idpentry['icon']);

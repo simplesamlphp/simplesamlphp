@@ -72,7 +72,7 @@ if ($type === 'embed') {
 
 if ($from !== NULL) {
 
-	echo('<div><img style="float: left; margin-right: 12px" src="/' . $this->data['baseurlpath'] . 'resources/icons/checkmark48.png" alt="Successful logout" />');
+	echo('<div><img style="float: left; margin-right: 12px" src="/' . $this->data['baseurlpath'] . 'resources/icons/checkmark.48x48.png" alt="Successful logout" />');
 	echo('<p style="padding-top: 16px; ">' . $this->t('{logout:loggedoutfrom}', array('%SP%' => '<strong>' .htmlspecialchars($from).'</strong>')) . '</p>');
 	echo('<p style="height: 0px; clear: left;"></p>');
 	echo('</div>');
@@ -156,7 +156,7 @@ if ($nFailed > 0) {
 	$displayStyle = 'display: none;';
 }
 echo('<div id="logout-failed-message" style="margin-top: 1em; border: 1px solid #ccc; padding: 1em; background: #eaeaea;' . $displayStyle . '">');
-echo('<img src="/' . $this->data['baseurlpath'] . 'resources/icons/caution.png" alt="" style="float: left; margin-right: 5px;" />');
+echo('<img src="/' . $this->data['baseurlpath'] . 'resources/icons/experience/gtk-dialog-warning.48x48.png" alt="" style="float: left; margin-right: 5px;" />');
 echo('<p>' . $this->t('{logout:failedsps}') . '</p>');
 echo('<form method="get" action="logout-iframe-done.php" target="_top">');
 echo('<input type="hidden" name="id" value="' . $id . '" />');

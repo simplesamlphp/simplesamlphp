@@ -99,7 +99,7 @@ echo('<p>' . $this->data['available.rules'][$this->data['selected.rule']]['descr
 
 // Report settings
 echo '<table class="selecttime" style="width: 100%; border: 1px solid #ccc; background: #eee; margin: 1px 0px; padding: 0px">';
-echo('<tr><td style="width: 50px; padding: 0px"><img style="margin: 0px" src="' . SimpleSAML_Module::getModuleURL("statistics/resources/report.png") . '" alt="Report settings" /></td>');
+echo('<tr><td style="width: 50px; padding: 0px"><img style="margin: 0px" src="../../resources/icons/crystal_project/kchart.32x32.png" alt="Report settings" /></td>');
 
 // Select report
 echo '<td>';
@@ -150,7 +150,7 @@ echo '</table>';
 
 // Select time and date
 echo '<table class="selecttime" style="width: 100%; border: 1px solid #ccc; background: #eee; margin: 1px 0px; padding: 0px">';
-echo('<tr><td style="width: 50px; padding: 0px"><img style="margin: 0px" src="' . SimpleSAML_Module::getModuleURL("statistics/resources/calendar.png") . '" alt="Select date and time" /></td>');
+echo('<tr><td style="width: 50px; padding: 0px"><img style="margin: 0px" src="../../resources/icons/crystal_project/date.32x32.png" alt="Select date and time" /></td>');
 
 
 
