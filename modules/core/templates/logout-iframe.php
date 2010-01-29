@@ -105,6 +105,8 @@ foreach ($SPs AS $assocId => $sp) {
 
 	echo '<tr>';
 
+	echo '<td style="width: 3em;"></td>';
+
 	echo '<td>';
 	echo '<img class="logoutstatusimage" id="statusimage-' . $spId . '"  src="' . htmlspecialchars($stateImage[$spState]) . '" alt="' . htmlspecialchars($stateText[$spState]) . '"/>';
 	echo '</td>';
