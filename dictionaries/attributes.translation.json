@@ -1283,7 +1283,8 @@
 		"nl": "Labeled URI naar het organisatieonderdeel",
 		"sl": "Ozna\u010den URI oddelka",
 		"da": "M\u00e6rket URI til organisatorisk enheds",
-		"tr": "Kurumsal birime etiketlenmi\u015f URI"
+		"tr": "Kurumsal birime etiketlenmi\u015f URI",
+		"pt": "P\u00e1gina web da Unidade Organizacional"
 	},
 	"attribute_edupersonorgunitdn_postofficebox": {
 		"no": "Organisasjonsenhetens postboks",

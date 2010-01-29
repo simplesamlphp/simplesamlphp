@@ -3,12 +3,16 @@
 		"es": "Acceso denegado",
 		"no": "Ingen tilgang",
 		"de": "Zugriff verboten",
-		"fi": "P\u00e4\u00e4sy estetty."
+		"fi": "P\u00e4\u00e4sy estetty.",
+		"sl": "Dostop zavrnjen",
+		"pt": "Acesso negado"
 	},
 	"403_text": {
 		"es": "No tiene los privilegios necesarios para acceder a esta aplicaci\u00f3n. Si considera que esto no es correcto, consulte el administrador.",
 		"no": "Du har ikke de n\u00f8dvendige rettighetene til \u00e5 n\u00e5 denne siden. Vennligst kontakt administratoren dersom du mener dette ikke stemmer.",
 		"de": "Sie haben nicht die erforderlichen Berechtigungen um auf diese Anwendung zuzugreifen. Bitte kontaktieren Sie einen Administrator, wenn Sie dies ungerechtfertigt finden.",
-		"fi": "Sinulla ei ole tarvittavia oikeuksia k\u00e4ytt\u00e4\u00e4 t\u00e4t\u00e4 sovellusta. Ota yhteytt\u00e4 yll\u00e4pitoon, jos huomaat t\u00e4m\u00e4n olevan virheellinen."
+		"fi": "Sinulla ei ole tarvittavia oikeuksia k\u00e4ytt\u00e4\u00e4 t\u00e4t\u00e4 sovellusta. Ota yhteytt\u00e4 yll\u00e4pitoon, jos huomaat t\u00e4m\u00e4n olevan virheellinen.",
+		"sl": "Za dostop do spletne storitve nima ustreznih pravic. Obrnite se na administratorja va\u0161ega IdP.",
+		"pt": "N\u00e3o tem privil\u00e9gios para aceder a esta aplica\u00e7\u00e3o. Contacte o administrador caso ache necess\u00e1rio."
 	}
 }

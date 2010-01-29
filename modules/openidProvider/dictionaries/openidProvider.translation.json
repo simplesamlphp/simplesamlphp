@@ -1,35 +1,51 @@
 {
 	"title_no_user": {
 		"no": "OpenID tilbyder",
-		"de": "OpenID-Anbieter"
+		"de": "OpenID-Anbieter",
+		"sl": "OpenID ponudnik",
+		"pt": "Fornecedor de Identidades OpenID"
 	},
 	"title_user": {
 		"no": "OpenID for %USERID%",
-		"de": "OpenID f\u00fcr %USERID%"
+		"de": "OpenID f\u00fcr %USERID%",
+		"sl": "OpenID za %USERID%",
+		"pt": "OpenID para %USERID%"
 	},
 	"user_page_for": {
 		"no": "Dette er OpenID brukersiden for <code>%USERID%<\/code>.",
-		"de": "Dies ist die OpenID Nutzerseite f\u00fcr <code>%USERID%<\/code>"
+		"de": "Dies ist die OpenID Nutzerseite f\u00fcr <code>%USERID%<\/code>",
+		"sl": "To je OpenID stran uporabnika <code>%USERID%<\/code>.",
+		"pt": "Est\u00e1 na p\u00e1gina de OpenID do utilizador <code>%USERID%<\/code>"
 	},
 	"view_own_page": {
 		"no": "Se p\u00e5 din egen OpenID side.",
-		"de": "Zeigen Sie Ihren OpenID-Seite an."
+		"de": "Zeigen Sie Ihren OpenID-Seite an.",
+		"sl": "Poglejte svojo OpenID stran.",
+		"pt": "Ver a sua p\u00e1gina de OpenID."
 	},
 	"login_view_own_page": {
 		"no": "Logg p\u00e5 for \u00e5 se p\u00e5 din egen OpenID side.",
-		"de": "Melden Sie sich an, um Ihre eigene OpenID-Seite zu betrachten."
+		"de": "Melden Sie sich an, um Ihre eigene OpenID-Seite zu betrachten.",
+		"sl": "Prijavite se in poglejte svojo OpenID stran.",
+		"pt": "Efectue a entrada para ver a sua p\u00e1gina de OpenID."
 	},
 	"logout_title": {
 		"no": "Logg av",
-		"de": "Abmelden"
+		"de": "Abmelden",
+		"sl": "Odjava",
+		"pt": "Sair"
 	},
 	"logout": {
 		"no": "Trykk her for \u00e5 logge ut av din OpenID bruker.",
-		"de": "Klicken Sie hier, um sich von Ihrem OpenID-Benutzer abzumelden."
+		"de": "Klicken Sie hier, um sich von Ihrem OpenID-Benutzer abzumelden.",
+		"sl": "Kliknite tukaj za odjavo OpenID uporabnika.",
+		"pt": "Carregue aqui para sair desta p\u00e1gina de utilizador OpenID."
 	},
 	"confirm_question": {
 		"no": "\u00d8nsker du \u00e5 logge p\u00e5 %SITEURL%?",
-		"de": "M\u00f6chten Sie sich auf %SITEURL% anmelden?"
+		"de": "M\u00f6chten Sie sich auf %SITEURL% anmelden?",
+		"sl": "Ali se \u017eelite prijaviti v %SITEURL%?",
+		"pt": "Pretende efectuar a entrada em %SITEURL%?"
 	},
 	"remember": {
 		"no": "Husk dette valget",
@@ -100,21 +116,29 @@
 		"nn": "Ta vekk",
 		"da": "Fjern",
 		"de": "L\u00f6schen",
-		"sv": "Ta bort"
+		"sv": "Ta bort",
+		"sl": "Odstrani",
+		"pt": "Remover"
 	},
 	"trustlist_nosites": {
 		"no": "Ingen sites er husket. N\u00e5r du autentiserer deg hos en site, kan du velge \u00e5 legge den til denne listen ved \u00e5 velge <q>Husk dette valget<\/q>.",
 		"nn": "Ingen tenester er lagra.  N\u00e5r du logger inn p\u00e5 ei teneste, kan du velja \u00e5 leggja ho inn p\u00e5 lista over tiltrudde partnarar ved \u00e5 velja <q>Hugs denne avgjerda<\/q>.",
 		"da": "Der er ikke gemt nogle sites. N\u00e5r authenticater mod et site kan du v\u00e6lge at gemme sitet i denne liste ved at v\u00e6lge <q>Gem mit valg<\/q>",
 		"sv": "Inga sajter \u00e4r sparade. N\u00e4r du loggar in p\u00e5 en sajt kan du v\u00e4lja om du ska l\u00e4gga den i listan genom att v\u00e4lja <q>Spara detta beslut<\/q>.",
-		"de": "Keine Site ist vertrauensw\u00fcrdig. Wenn Sie sich auf einer Site authentifizieren, k\u00f6nnen Sie sie dieser List hinzuf\u00fcgen, indem Sie <q>Diese Entscheidung merken<\/q> anw\u00e4hlen."
+		"de": "Keine Site ist vertrauensw\u00fcrdig. Wenn Sie sich auf einer Site authentifizieren, k\u00f6nnen Sie sie dieser List hinzuf\u00fcgen, indem Sie <q>Diese Entscheidung merken<\/q> anw\u00e4hlen.",
+		"sl": "Nobeno spletno mestno ni zaupanja vredno. Med prijavo lahko dodate spletno mesto na ta seznam z izbiro <q>Zapomni si to odlo\u010ditev<\/q>.",
+		"pt": "Lista de sites confi\u00e1veis vazia. Quando se autenticar num site, pode adicion\u00e1-lo a esta lista escolhendo <q>Lembrar esta decis\u00e3o<\/q>."
 	},
 	"your_identifier": {
 		"no": "For \u00e5 logge inn med din OpenID, bruk f\u00f8lgende ID:",
-		"de": "Um sich mit Ihren OpenID-Bezeichner anzumelden, verwenden Sie den folgenden Bezeichner:"
+		"de": "Um sich mit Ihren OpenID-Bezeichner anzumelden, verwenden Sie den folgenden Bezeichner:",
+		"sl": "Za prijavo z va\u0161im OpenID identifikatorjem uporabite naslednje:",
+		"pt": "Para efectuar a entrada com OpenID, utilize o seguinte identificador:"
 	},
 	"howto_delegate": {
 		"no": "Du kan ogs\u00e5 delegere en annen OpenID til \u00e5 benytte denne OpenID tilbyderen. For \u00e5 gj\u00f8re det, m\u00e5 du legge til f\u00f8lgende <code>&lt;head&gt;<\/code>-element p\u00e5 websiden til denne OpenID-en du vil delegere.",
-		"de": "Sie k\u00f6nnen auch einen anderen Bezeichner bevollm\u00e4chtigen, diesen OpenID-Anbieter zu verwenden. Um dies zu tun, m\u00fcssen Sie das folgende <code>&lt;head&gt;<\/code>-Element auf der Webseite dieses Bezeichners hinzuf\u00fcgen:"
+		"de": "Sie k\u00f6nnen auch einen anderen Bezeichner bevollm\u00e4chtigen, diesen OpenID-Anbieter zu verwenden. Um dies zu tun, m\u00fcssen Sie das folgende <code>&lt;head&gt;<\/code>-Element auf der Webseite dieses Bezeichners hinzuf\u00fcgen:",
+		"sl": "Lahko dolo\u010dite drug identifikator za prijavo na tem OpenID ponudniku. To storite tako da, naslednje dodate v element <code>&lt;head&gt;<\/code> v spletne strani tega identifikatorja.",
+		"pt": "Pode tamb\u00e9m delegar este fornecedor de Identidades OpenID noutro identificador. Para o fazer, necessita de adicionar o seguinte texto no elemento <code>&lt;head&gt;<\/code> da p\u00e1gina web desse novo identificador."
 	}
 }

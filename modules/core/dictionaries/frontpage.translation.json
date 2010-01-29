@@ -839,7 +839,8 @@
 		"da": "Autentificering",
 		"fi": "Tunnistautuminen",
 		"tr": "Kimlik Do\u011frulama",
-		"de": "Authentifizierung"
+		"de": "Authentifizierung",
+		"pt": "Autentica\u00e7\u00e3o"
 	},
 	"federation": {
 		"no": "F\u00f8derasjon",
@@ -850,7 +851,8 @@
 		"da": "F\u00f8deration",
 		"fi": "Federaatio",
 		"tr": "Federasyon",
-		"de": "F\u00f6deration"
+		"de": "F\u00f6deration",
+		"pt": "Federa\u00e7\u00e3o"
 	},
 	"authtest": {
 		"no": "Test konfigurerte autentiseringskilder",
@@ -861,7 +863,8 @@
 		"da": "Test konfigureret autentificeringskilde",
 		"fi": "Testaa m\u00e4\u00e4ritettyj\u00e4 tunnistusl\u00e4hteit\u00e4",
 		"tr": "D\u00fczenlenmi\u015f kimlik do\u011frulama kaynaklar\u0131n\u0131 test et",
-		"de": "Teste die konfigurierten Authentifizierungsquellen"
+		"de": "Teste die konfigurierten Authentifizierungsquellen",
+		"pt": "Testar fontes de autentica\u00e7\u00e3o configuradas"
 	},
 	"deprecated": {
 		"no": "Utdatert",
@@ -871,6 +874,7 @@
 		"sl": "Neustrezen",
 		"da": "Under udfasning",
 		"de": "Veraltet",
-		"fi": "Vanhentunut"
+		"fi": "Vanhentunut",
+		"pt": "Descontinuado"
 	}
 }

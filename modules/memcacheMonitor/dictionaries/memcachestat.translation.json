@@ -1,78 +1,116 @@
 {
 	"pid": {
 		"no": "Prosess ID",
-		"de": "Prozess-ID"
+		"de": "Prozess-ID",
+		"sl": "ID procesa",
+		"pt": "ID do processo"
 	},
 	"uptime": {
 		"no": "Oppetid",
-		"de": "Verf\u00fcgbarkeit"
+		"de": "Verf\u00fcgbarkeit",
+		"sl": "Neprekinjeno delovanje",
+		"pt": "Tempo de funcionamento"
 	},
 	"time": {
 		"no": "Tid n\u00e5",
-		"de": "Jetziger Zeitpunkt"
+		"de": "Jetziger Zeitpunkt",
+		"sl": "To\u010den \u010das",
+		"pt": "Tempo actual"
 	},
 	"version": {
 		"no": "Versjon",
-		"de": "Version"
+		"de": "Version",
+		"sl": "Razli\u010dica",
+		"pt": "Vers\u00e3o"
 	},
 	"rusage_user": {
 		"no": "CPU Sekunder (bruker)",
-		"de": "CPU-Sekunden (Benutzer"
+		"de": "CPU-Sekunden (Benutzer",
+		"sl": "CPE sekunde (uporabnik)",
+		"pt": "Segundos de CPU (Utilizador)"
 	},
 	"rusage_system": {
 		"no": "CPU Sekunder (system)",
-		"de": "CPU-Sekunden (System)"
+		"de": "CPU-Sekunden (System)",
+		"sl": "CPE sekunde (sistem)",
+		"pt": "Segundos de CPU (Sistema)"
 	},
 	"curr_items": {
 		"no": "N\u00e5v\u00e6rende antall elementer",
-		"de": "Derzeitige Anzahl von Elementen"
+		"de": "Derzeitige Anzahl von Elementen",
+		"sl": "Trenutno \u0161tevilo elementov",
+		"pt": "N\u00famero de \u00edtems actual"
 	},
 	"total_items": {
 		"no": "Antall elementer for alltid",
-		"de": "Elemente zu allen Zeiten insgesamt"
+		"de": "Elemente zu allen Zeiten insgesamt",
+		"sl": "Vseh elementov skupaj",
+		"pt": "Total de \u00edtems"
 	},
 	"bytes": {
 		"no": "Totalt antall bytes i bruk n\u00e5",
-		"de": "Insgesamt derzeit verwendete Bytes"
+		"de": "Insgesamt derzeit verwendete Bytes",
+		"sl": "Skupno v uporabi bajtov",
+		"pt": "Total de bytes actuais"
 	},
 	"curr_connections": {
 		"no": "Antall \u00e5pne forbindelser n\u00e5",
-		"de": "Derzeitige offene Verbindungen"
+		"de": "Derzeitige offene Verbindungen",
+		"sl": "Trenutno odprtih povezav",
+		"pt": "Liga\u00e7\u00f5es abertas actuais"
 	},
 	"total_connections": {
 		"no": "Totalt antall forbindelser",
-		"de": "Verbindungen insgesamt"
+		"de": "Verbindungen insgesamt",
+		"sl": "Skupno \u0161tevilo povezav",
+		"pt": "Total de liga\u00e7\u00f5es"
 	},
 	"connection_structures": {
 		"no": "Tilkoblings-strukturer",
-		"de": "Verbindungsstrukturen"
+		"de": "Verbindungsstrukturen",
+		"sl": "Struktura povezav",
+		"pt": "Estruturas de liga\u00e7\u00f5es"
 	},
 	"cmd_get": {
 		"no": "Totalt antall GET kommandoer",
-		"de": "GET Befehle insgesamt"
+		"de": "GET Befehle insgesamt",
+		"sl": "Skupno \u0161tevilo zahtevkov GET ",
+		"pt": "Total de comandos GET"
 	},
 	"cmd_set": {
 		"no": "Totalt antall SET kommandoer",
-		"de": "SET Befehle insgesamt"
+		"de": "SET Befehle insgesamt",
+		"sl": "Skupno \u0161tevilo zahtevkov SET ",
+		"pt": "Total de comandos SET"
 	},
 	"get_hits": {
 		"no": "Totalt antall GET kommandoer (OK)",
-		"de": "GET Befehle insgesamt (erfolgreich)"
+		"de": "GET Befehle insgesamt (erfolgreich)",
+		"sl": "Skupno \u0161tevilo uspe\u0161nih zahtevkov GET ",
+		"pt": "Total de comandos GET (sucesso)"
 	},
 	"get_misses": {
 		"no": "Totalt antall GET kommandoer (feilet)",
-		"de": "GET Befehle insgesamt (fehlgeschlagen)"
+		"de": "GET Befehle insgesamt (fehlgeschlagen)",
+		"sl": "Skupno \u0161tevilo neuspe\u0161nih zahtevkov GET ",
+		"pt": "Total de comandos GET (falhados)"
 	},
 	"bytes_read": {
 		"no": "Antall bytes inn til tjeneren",
-		"de": "Am Server eingetroffene Bytes"
+		"de": "Am Server eingetroffene Bytes",
+		"sl": "Prene\u0161enih bajtov v smeri stre\u017enika",
+		"pt": "Bytes de entrada no servidor"
 	},
 	"bytes_written": {
 		"no": "Antall bytes skrevet av tjeneren",
-		"de": "Zum Server geschriebene Bytes"
+		"de": "Zum Server geschriebene Bytes",
+		"sl": "Bajtov zapisanih na stre\u017eniku",
+		"pt": "Bytes de sa\u00edda no servidor"
 	},
 	"limit_maxbytes": {
 		"no": "Total lagring tilgjengelig",
-		"de": "Insgesamt verf\u00fcgbarer Speicher"
+		"de": "Insgesamt verf\u00fcgbarer Speicher",
+		"sl": "Razpolo\u017eljiv prostor skupno:",
+		"pt": "Total de espa\u00e7o dispon\u00edvel"
 	}
 }

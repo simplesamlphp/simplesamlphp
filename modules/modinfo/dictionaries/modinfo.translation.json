@@ -1,22 +1,32 @@
 {
 	"modlist_header": {
 		"no": "Tilgjengelige moduler",
-		"de": "Verf\u00fcgbare Module"
+		"de": "Verf\u00fcgbare Module",
+		"sl": "Razpolo\u017eljivi moduli",
+		"pt": "M\u00f3dulos dispon\u00edveis"
 	},
 	"modlist_name": {
 		"no": "Navn",
-		"de": "Name"
+		"de": "Name",
+		"sl": "Ime",
+		"pt": "Nome"
 	},
 	"modlist_status": {
 		"no": "Status",
-		"de": "Status"
+		"de": "Status",
+		"sl": "Status",
+		"pt": "Estado"
 	},
 	"modlist_enabled": {
 		"no": "P\u00e5sl\u00e5tt",
-		"de": "Aktiviert"
+		"de": "Aktiviert",
+		"sl": "Vklopljen",
+		"pt": "Activo"
 	},
 	"modlist_disabled": {
 		"no": "Avsl\u00e5tt",
-		"de": "Deaktiviert"
+		"de": "Deaktiviert",
+		"sl": "Izklopljen",
+		"pt": "Inactivo"
 	}
 }

@@ -3,48 +3,64 @@
 		"da": "Cron resultat side",
 		"es": "P\u00e1gina de resultado del cron",
 		"no": "Cron resultatside",
-		"de": "Cron Ergebnisseite"
+		"de": "Cron Ergebnisseite",
+		"sl": "Stran z rezultati cron opravil",
+		"pt": "P\u00e1gina de resultados do sistema cron"
 	},
 	"cron_result_title": {
 		"da": "Her er resultatet for opgaven udf\u00f8relse:",
 		"es": "Aqui est\u00e1n los resultados de las tareas en la ejecuci\u00f3n del cron:",
 		"no": "Her er resultatene fra kj\u00f8ring av cron-jobben:",
-		"de": "Hier sind die Ergebnisse f\u00fcr die Ausf\u00fchrung des cron-jobs:"
+		"de": "Hier sind die Ergebnisse f\u00fcr die Ausf\u00fchrung des cron-jobs:",
+		"sl": "Rezultat cron opravila:",
+		"pt": "Resultados da execu\u00e7\u00e3o do sistema cron:"
 	},
 	"cron_info": {
 		"da": "Cron er en m\u00e5de at k\u00f8re tingene regelm\u00e6ssigt p\u00e5 UNIX-systemer.",
 		"es": "Cron es una forma de ejecutar tareas periodicas en los sistemas UNIX.",
 		"no": "Cron er en m\u00e5te \u00e5 kj\u00f8re regul\u00e6re jobber p\u00e5 unix-systemer.",
-		"de": "Cron ist ein Weg, Dinge regelm\u00e4\u00dfig auf Unix-Systemen auszuf\u00fchren."
+		"de": "Cron ist ein Weg, Dinge regelm\u00e4\u00dfig auf Unix-Systemen auszuf\u00fchren.",
+		"sl": "Cron je orodje za periodi\u010dno izvajanje opravil. ",
+		"pt": "O sistema cron serve para executar trabalhos regulares em sistemas unix."
 	},
 	"cron_suggestion": {
 		"da": "Her er et forslag til en crontab fil:",
 		"es": "He aqu\u00ed una sugerencia de un archivo crontab:",
 		"no": "Her er et forslag til en crontab fil:",
-		"de": "Hier ist ein Vorschlag f\u00fcr eine crontab-Datei:"
+		"de": "Hier ist ein Vorschlag f\u00fcr eine crontab-Datei:",
+		"sl": "Primer crontab datoteke:",
+		"pt": "Sugest\u00e3o de ficheiro crontab:"
 	},
 	"cron_execution": {
 		"da": "Klik her for at k\u00f8re cron job:",
 		"es": "Haga clic aqu\u00ed para ejecutar las tareas de cron:",
 		"no": "Klikk her for \u00e5 kj\u00f8re cron-jobbene:",
-		"de": "Klicken Sie hier um die cron-jobs auszuf\u00fchren:"
+		"de": "Klicken Sie hier um die cron-jobs auszuf\u00fchren:",
+		"sl": "S klikom za\u017eeni cron opravila:",
+		"pt": "Carregue aqui para executar os cron jobs:"
 	},
 	"run_text": {
 		"da": "Run cron:",
 		"es": "Ejecutar cron:",
 		"no": "Kj\u00f8r cron:",
-		"de": "F\u00fchre cron aus:"
+		"de": "F\u00fchre cron aus:",
+		"sl": "Za\u017eeni cron:",
+		"pt": "Executar o cron:"
 	},
 	"ran_text": {
 		"da": "Cron l\u00f8b p\u00e5",
 		"es": "Cron ejecutado el",
 		"no": "Cron kj\u00f8rte",
-		"de": "Cron ausgef\u00fchrt um"
+		"de": "Cron ausgef\u00fchrt um",
+		"sl": "Cron je bil zagnan ob:",
+		"pt": "Cron executado em"
 	},
 	"cron_report_title": {
 		"da": "Cron rapport",
 		"es": "Informe del cron",
 		"no": "Cron rapport",
-		"de": "Cron-Bericht"
+		"de": "Cron-Bericht",
+		"sl": "Cron poro\u010dilo",
+		"pt": "Relat\u00f3rio cron"
 	}
 }

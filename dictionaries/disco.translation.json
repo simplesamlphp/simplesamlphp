@@ -97,7 +97,8 @@
 		"sl": "Predhodnje ste se prijavljali \u017ee pri",
 		"da": "Du har tidligere valgt at logge ind hos",
 		"de": "Sie haben sich zu einem fr\u00fcheren Zeitpunkt entschieden, sich zu authentifizieren bei ",
-		"fi": "Olet aikaisemmin valinnut identiteettil\u00e4hteeksesi"
+		"fi": "Olet aikaisemmin valinnut identiteettil\u00e4hteeksesi",
+		"pt": "Escolheu autenticar-se anteriormente em"
 	},
 	"login_at": {
 		"no": "Logg inn hos",
@@ -107,6 +108,7 @@
 		"sl": "Prijavi se pri",
 		"da": "Login hos",
 		"de": "Login bei",
-		"fi": "Kirjaudu"
+		"fi": "Kirjaudu",
+		"pt": "Entrar em"
 	}
 }

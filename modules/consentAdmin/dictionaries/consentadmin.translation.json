@@ -2,116 +2,148 @@
 	"sp_empty_name": {
 		"da": "(navn ikke angivet)",
 		"no": "(navn ikke spesifisert)",
-		"de": "(Name nicht angegeben)"
+		"de": "(Name nicht angegeben)",
+		"sl": "(brez naziva)",
+		"pt": "(nome n\u00e3o especificado)"
 	},
 	"sp_empty_description": {
 		"da": "(ingen beskrivelse)",
 		"no": "(ingen beskrivelse)",
-		"de": "(keine Beschreibung)"
+		"de": "(keine Beschreibung)",
+		"sl": "(brez opisa)",
+		"pt": "(sem descri\u00e7\u00e3o)"
 	},
 	"attribute_org": {
 		"da": "Organisation",
 		"no": "Organisasjon",
 		"de": "Organisation",
-		"sl": "Organizacija"
+		"sl": "Organizacija",
+		"pt": "Organiza\u00e7\u00e3o"
 	},
 	"added": {
 		"da": "Samtykke givet",
 		"no": "Samtykke gitt",
 		"de": "Einverst\u00e4ndnis hinzugef\u00fcgt",
-		"sl": "Privolitev dodana"
+		"sl": "Privolitev dodana",
+		"pt": "Consentimento adicionado"
 	},
 	"removed": {
 		"da": "Samtykke slettet",
 		"no": "Samtykke trukket tilbake",
 		"de": "Einverst\u00e4ndnis entfernt",
-		"sl": "Privolitev razveljavljena"
+		"sl": "Privolitev razveljavljena",
+		"pt": "Consentimento removido"
 	},
 	"updated": {
 		"da": "Samtykke Opdateret",
 		"no": "Samtykke oppdatert",
 		"de": "Einverst\u00e4ndnis aktualisiert",
-		"sl": "Privolitev posodobljena"
+		"sl": "Privolitev posodobljena",
+		"pt": "Consentimento actualizado"
 	},
 	"unknown": {
 		"da": "Ukendt ...",
 		"no": "Ukjent...",
-		"de": "Unbekannt..."
+		"de": "Unbekannt...",
+		"sl": "Neznan...",
+		"pt": "Desconhecido ..."
 	},
 	"attribute_id": {
 		"da": "Identitet",
 		"no": "Identitet",
 		"de": "Identit\u00e4t",
-		"sl": "Identiteta"
+		"sl": "Identiteta",
+		"pt": "Identidade"
 	},
 	"attribute_injected": {
 		"da": "Injiceret attribut",
 		"no": "Persondata lagt til",
 		"de": "Eingekoppeltes Attribut",
-		"sl": "Vrinjen atribut"
+		"sl": "Vrinjen atribut",
+		"pt": "Atributo injectado"
 	},
 	"show": {
 		"da": "Vis",
 		"no": "Vis",
 		"de": "Zeige an",
-		"sl": "Prika\u017ei"
+		"sl": "Prika\u017ei",
+		"pt": "Mostrar"
 	},
 	"hide": {
 		"da": "Skjul",
 		"no": "Skjul",
 		"de": "Verstecke",
-		"sl": "Skrij"
+		"sl": "Skrij",
+		"pt": "Esconder"
 	},
 	"attributes_text": {
 		"da": "attributter",
 		"no": "persondata",
 		"de": "Attribute",
-		"sl": "atributi"
+		"sl": "atributi",
+		"pt": "atributos"
 	},
 	"consentadmin_header": {
 		"da": "Administrer dine samtykker",
 		"no": "Samtykkeadministrasjon",
-		"de": "Verwaltung von Einverst\u00e4ndniserkl\u00e4rungen"
+		"de": "Verwaltung von Einverst\u00e4ndniserkl\u00e4rungen",
+		"sl": "Upravljanje s privolitvami",
+		"pt": "Administra\u00e7\u00e3o de Consentimento"
 	},
 	"consentadmin_description1": {
 		"da": "WAYF videregiver kun oplysninger til eksterne tjenester, hvis du giver dit samtykke til det. Hvilke oplysninger det drejer sig om, varierer alt efter hvad tjenesteudbyderen har behov for. Det kan for eksempel v\u00e6re:<ul><li>Dit navn<li>Din e-mail-adresse<li>Din institution<li>Etc.<\/ul>Hvis du s\u00e6tter et flueben ud for <b>Husk dette samtykke<\/b>, vil du ikke blive spurgt, n\u00e6ste gang du bes\u00f8ger tjenesteudbyderen. S\u00e5 husker WAYF, at du allerede har givet samtykke til at videregive oplysninger til tjenesteudbyderen. <p>Nedenfor er opf\u00f8rt de tjenester, som du for \u00f8jeblikket har givet l\u00f8bende samtykke til:<\/a>",
 		"no": "Her kan du se og endre dine samtykker for tjenester.",
-		"de": "Hier k\u00f6nnen Sie Ihre Einverst\u00e4ndniserkl\u00e4rungen f\u00fcr die Diensteanbieter anzeigen und bearbeiten."
+		"de": "Hier k\u00f6nnen Sie Ihre Einverst\u00e4ndniserkl\u00e4rungen f\u00fcr die Diensteanbieter anzeigen und bearbeiten.",
+		"sl": "Pregled in urejanje privolitev za posamezen SP.",
+		"pt": "Nesta p\u00e1gina pode ver e editar o seu consentimento dado aos Fornecedores de Servi\u00e7os."
 	},
 	"consentadmin_description2": {
 		"da": "<h3>S\u00e5dan sletter du et samtykke<\/h3>Fjern fluebenet ud for tjenesten, samtykket tilh\u00f8rer.<h3>Hvilke data gemmer WAYF om dig?<\/h3><ul><li>N\u00e5r du giver dit samtykke, henter WAYF dine oplysninger fra din institution og sender de relevante videre til tjenesteudbyderen<li>Ingen af oplysningerne gemmes af WAYF<li>Hvis du har bedt WAYF huske dit samtykke, gemmes personhenf\u00f8rbare data heller ikke hos WAYF. Oplysningen om, at du har givet dit samtykke, gemmes p\u00e5 en ikke-personhenf\u00f8rbar m\u00e5de<\/ul><h3>Hvilke rettigheder har du?<\/h3>Du har ret til at tr\u00e6kke et samtykke tilbage.<h3>Hvor l\u00e6nge gemmes dine samtykker?<\/h3>Et samtykke slettes tre \u00e5r efter, at du sidst har benyttet det.<h3>Hvordan beskyttes mine oplysninger?<\/h3>WAYF foretager behandlinger af personoplysninger i henhold til persondataloven (lov nr. 429 af 31. maj 2000 med senere \u00e6ndringer). Du kan l\u00e6se n\u00e6rmere om registreredes rettigheder i persondatalovens afsnit III.<a href=\"http:\/\/www.datatilsynet.dk\/lovgivning\/persondataloven\/\">Persondataloven<\/a><h3>Links<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li><\/ul>",
 		"no": "<h3>Hvordan trekke samtykke tilbake<\/h3> Fjern haken i boksen for gitte tjenestetilbyder <h3>Lenker<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">Ofte stilte sp\u00f8rsm\u00e5l<\/a> <\/li> <\/ul> ",
-		"de": "<h3>Wie Sie Ihre Einverst\u00e4ndniserkl\u00e4rung l\u00f6schen<\/h3> Entfernen Sie das H\u00e4kchen von der Box des jeweiligen Diensteanbieters<h3>Links<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul> "
+		"de": "<h3>Wie Sie Ihre Einverst\u00e4ndniserkl\u00e4rung l\u00f6schen<\/h3> Entfernen Sie das H\u00e4kchen von der Box des jeweiligen Diensteanbieters<h3>Links<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul> ",
+		"sl": "<h3>Kako razveljavim dano privolitev?<\/h3> Odstranite kljukico pred SPjem, za katerega \u017eelite razveljaviti dano privolitev<h3>Povezave<\/h3> <ul> <li><a href=\"https:\/\/aai.arnes.si\">Start<\/a> <\/li> <li><a href=\"https:\/\/aai.arnes.si\">FAQ<\/a> <\/li> <\/ul>",
+		"pt": "<h3>Como remover o seu consentimento<\/h3> Retire a marca correspondente ao fornecedor de servi\u00e7o que pretende remover."
 	},
 	"login": {
 		"da": "login",
 		"no": "login",
 		"de": "Anmeldung",
-		"sl": "Prijava"
+		"sl": "Prijava",
+		"pt": "Entrar"
 	},
 	"service_providers_for": {
 		"da": "Service Providers for",
 		"no": "Tjenesteleverand\u00f8rer for",
-		"de": "Diensteanbieter f\u00fcr"
+		"de": "Diensteanbieter f\u00fcr",
+		"sl": "Ponudniki storitev za",
+		"pt": "Fornecedores de Servi\u00e7os para"
 	},
 	"service_provider_header": {
 		"da": "Service Provider",
 		"no": "Tjenesteleverand\u00f8r",
-		"de": "Diensteanbieter"
+		"de": "Diensteanbieter",
+		"sl": "Ponudnik storitve",
+		"pt": "Fornecedor de Servi\u00e7o"
 	},
 	"status_header": {
 		"da": "Samtykke status",
 		"no": "Samtykke status",
-		"de": "Status der Einverst\u00e4ndniserkl\u00e4rung"
+		"de": "Status der Einverst\u00e4ndniserkl\u00e4rung",
+		"sl": "Status privolitve",
+		"pt": "Consentimento"
 	},
 	"show_hide_attributes": {
 		"da": "vis\/skjul attributter",
 		"no": "vis\/skjul persondata",
-		"de": "Attribute anzeigen\/verstecken"
+		"de": "Attribute anzeigen\/verstecken",
+		"sl": "Prika\u017ei\/Skrij atribute",
+		"pt": "mostrar\/esconder atributos"
 	},
 	"consentadmin_purpose": {
 		"da": "Form\u00e5let med tjenesten er",
 		"no": "Hensikten med denne tjenesten er",
-		"de": "Der Zweck dieses Dienstes ist"
+		"de": "Der Zweck dieses Dienstes ist",
+		"sl": "Namen storitve: ",
+		"pt": "Este servi\u00e7o destina-se a"
 	}
 }
