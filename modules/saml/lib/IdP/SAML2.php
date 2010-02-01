@@ -402,6 +402,8 @@ class sspmod_saml_IdP_SAML2 {
 
 		} elseif ($message instanceof SAML2_LogoutRequest) {
 
+			SimpleSAML_Logger::stats('saml20-idp-SLO spinit ' . $spEntityId . ' ' . $idpMetadata->getString('entityid'));
+
 			$state = array(
 				'Responder' => array('sspmod_saml_IdP_SAML2', 'sendLogoutResponse'),
 				'saml:SPEntityId' => $spEntityId,
