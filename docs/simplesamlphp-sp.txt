@@ -43,7 +43,7 @@ If you want mulitple Service Providers in the same site and installation, you ca
 		'entityID' => 'https://sp2.example.org/',
 	),
 
-### Enablig a certificate for your Service Provider
+### Enabling a certificate for your Service Provider
 
 Some Identity Providers / Federations may require that your Service Providers holds a certificate. If you enable a certificate for your Service Provider, it may be able to sign requests and response sent to the Identity Provider, as well as receiving encrypted responses.
 
