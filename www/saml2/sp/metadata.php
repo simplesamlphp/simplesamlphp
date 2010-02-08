@@ -53,6 +53,7 @@ try {
 
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($spentityid);
 	$metaBuilder->addMetadataSP20($metaArray);
+	$metaBuilder->addOrganizationInfo($metaArray);
 	$metaBuilder->addContact('technical', array(
 		'emailAddress' => $config->getString('technicalcontact_email', NULL),
 		'name' => $config->getString('technicalcontact_name', NULL),
