@@ -22,7 +22,7 @@
 
 	<table>
 		<tr>
-			<td rowspan="2"><img src="/<?php echo $this->data['baseurlpath']; ?>resources/experience/gtk-dialog-authentication.48x48.png" /></td>
+			<td rowspan="2"><img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-authentication.48x48.png" /></td>
 			<td style="padding: .3em;"><?php echo $this->t('username'); ?></td>
 			
 			
