@@ -71,7 +71,21 @@ if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$metaArray20['certData'] = $certData;
 }
 
+$name = $spconfig->getLocalizedString('name', NULL);
+$attributes = $spconfig->getArray('attributes', array());
+if ($name !== NULL && !empty($attributes)) {
+	/* We have everything necessary to add an AttributeConsumingService. */
 
+	$metaArray20['name'] = $name;
+
+	$description = $spconfig->getLocalizedString('description', NULL);
+	if ($description !== NULL) {
+		$metaArray20['description'] = $description;
+	}
+
+	$metaArray20['attributes'] = $attributes;
+	$metaArray20['attributes.NameFormat'] = $spconfig->getString('attributes.NameFormat', SAML2_Const::NAMEFORMAT_UNSPECIFIED);
+}
 
 $metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
 $metaBuilder->addMetadataSP11($metaArray11);

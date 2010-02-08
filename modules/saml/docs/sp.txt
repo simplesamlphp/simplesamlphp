@@ -102,6 +102,18 @@ Options
 
 :   *Note*: SAML 2 specific.
 
+`attributes`
+:   List of attributes this SP requests from the IdP.
+    This list will be added to the generated metadata.
+
+:   The attributes will be added without a `NameFormat` by default.
+    Use the `attributes.NameFormat` option to specify the `NameFormat` for the attributes.
+
+:   *Note*: This list will only be added to the metadata if the `name`-option is also specified.
+
+`attributes.NameFormat`
+:   The `NameFormat` for the requested attributes.
+
 `AuthnContextClassRef`
 :   The SP can request authentication with a specific authentication context class.
     One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.
@@ -115,7 +127,8 @@ Options
 :   File name of certificate for this SP. This certificate will be included in generated metadata.
 
 `description`
-:   A description of this SP. Will be added to the generated metadata.
+:   A description of this SP.
+    Will be added to the generated metadata, in an AttributeConsumingService element.
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated description:
 
@@ -123,6 +136,8 @@ Options
             'en' => 'A service',
             'no' => 'En tjeneste',
         ),
+
+:   *Note*: For this to be added to the metadata, you must also specify the `attributes` and `name` options.
 
 `discoURL`
 :   Set which IdP discovery service this SP should use.
@@ -152,7 +167,8 @@ Options
 :   *Note*: SAML 2 specific.
 
 `name`
-:   The name of this SP. Will be added to the generated metadata.
+:   The name of this SP.
+    Will be added to the generated metadata, in an AttributeConsumingService element.
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
@@ -160,6 +176,8 @@ Options
             'en' => 'A service',
             'no' => 'En tjeneste',
         ),
+
+:   *Note*: You must also specify at least one attribute in the `attributes` option for this element to be added to the metadata.
 
 `NameIDPolicy`
 :   The format of the NameID we request from the IdP.
