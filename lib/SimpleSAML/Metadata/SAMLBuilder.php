@@ -138,10 +138,44 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		}
 	}
 
+
+	/**
+	 * Add Organization element.
+	 *
+	 * This function adds an organization element to the metadata.
+	 *
+	 * @param array $orgName  An array with the localized OrganizatioName.
+	 * @param array $orgDisplayName  An array with the localized OrganizatioDisplayName.
+	 * @param array $orgURL  An array with the localized OrganizatioURL.
+	 */
+	public function addOrganization(array $orgName, array $orgDisplayName, array $orgURL) {
+
+		$org = $this->createElement('Organization');
+
+		foreach ($orgName AS $lang => $localname) {
+			$e = $this->createTextElement('OrganizationName', $localname);
+			$e->setAttribute('xml:lang', $lang);
+			$org->appendChild($e);
+		}
+
+		foreach ($orgDisplayName AS $lang => $localname) {
+			$e = $this->createTextElement('OrganizationDisplayName', $localname);
+			$e->setAttribute('xml:lang', $lang);
+			$org->appendChild($e);
+		}
+
+		foreach ($orgURL AS $lang => $locallink) {
+			$e = $this->createTextElement('OrganizationURL', $locallink);
+			$e->setAttribute('xml:lang', $lang);
+			$org->appendChild($e);
+		}
+
+		$this->entityDescriptor->appendChild($org);
+	}
+
 	
 	public function addOrganizationInfo($metadata) {
 		if (array_key_exists('name', $metadata)) {
-			$org = $this->createElement('Organization');
 
 			if (is_array($metadata['name'])) {
 				$name = $metadata['name'];
@@ -149,17 +183,6 @@ class SimpleSAML_Metadata_SAMLBuilder {
 				$name = array('en' => $metadata['name']);
 			}
 
-			foreach($name AS $lang => $localname) {
-				$orgname = $this->createTextElement('OrganizationName', $localname);
-				$orgname->setAttribute('xml:lang', $lang);
-				$org->appendChild($orgname);
-			}
-
-			foreach($name AS $lang => $localname) {
-				$orgname = $this->createTextElement('OrganizationDisplayName', $localname);
-				$orgname->setAttribute('xml:lang', $lang);
-				$org->appendChild($orgname);
-			}
 
 			if (!array_key_exists('url', $metadata)) {
 				/*
@@ -173,13 +196,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 				$url = array('en' => $metadata['url']);
 			}
 
-			foreach($url AS $lang => $locallink) {
-				$uel = $this->createTextElement('OrganizationURL', $locallink);
-				$uel->setAttribute('xml:lang', $lang);
-				$org->appendChild($uel);
-			}
-
-			$this->entityDescriptor->appendChild($org);
+			$this->addOrganization($name, $name, $url);
 		}
 	}
 	
@@ -281,7 +298,6 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			SimpleSAML_Logger::warning('Unable to generate metadata for unknown type \'' . $set . '\'.');
 		}
 		
-		// $this->addOrganizationInfo($metadata);
 	}
 
 	/**
