@@ -360,10 +360,14 @@ class SimpleSAML_Metadata_SAMLBuilder {
 				$attributeconsumer->appendChild($t);
 			}
 
+			$nameFormat = $metadata->getString('attributes.NameFormat', SAML2_Const::NAMEFORMAT_UNSPECIFIED);
 
 			foreach ($attributes as $attribute) {
 				$t = $this->createElement('RequestedAttribute');
 				$t->setAttribute('Name', $attribute);
+				if ($nameFormat !== SAML2_Const::NAMEFORMAT_UNSPECIFIED) {
+					$t->setAttribute('NameFormat', $nameFormat);
+				}
 				$attributeconsumer->appendChild($t);
 			}
 
