@@ -77,6 +77,24 @@ $metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
 $metaBuilder->addMetadataSP11($metaArray11);
 $metaBuilder->addMetadataSP20($metaArray20);
 
+
+$orgName = $spconfig->getLocalizedString('OrganizationName', NULL);
+if ($orgName !== NULL) {
+
+	$orgDisplayName = $spconfig->getLocalizedString('OrganizationDisplayName', NULL);
+	if ($orgDisplayName === NULL) {
+		$orgDisplayName = $orgName;
+	}
+
+	$orgURL = $spconfig->getLocalizedString('OrganizationURL', NULL);
+	if ($orgURL === NULL) {
+		throw new SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
+	}
+
+
+	$metaBuilder->addOrganization($orgName, $orgDisplayName, $orgURL);
+}
+
 $config = SimpleSAML_Configuration::getInstance();
 $metaBuilder->addContact('technical', array(
 	'emailAddress' => $config->getString('technicalcontact_email', NULL),
