@@ -37,6 +37,7 @@ function displayError($message) {
 	$t->data['error'] = $message;
 	$t->data['AuthState'] = $authState;
 	$t->show();
+	exit(0);
 }
 
 
