@@ -50,6 +50,11 @@ if ($ownPage) {
 
 $userBase = SimpleSAML_Module::getModuleURL('openidProvider/user.php');
 
+$xrds = SimpleSAML_Module::getModuleURL('openidProvider/xrds.php');
+if ($userId !== FALSE) {
+	$xrds = SimpleSAML_Utilities::addURLparameter($xrds, array('user' => $userId));
+}
+
 $as = $server->getAuthSource();
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'openidProvider:user.tpl.php');
 $t->data['identity'] = $identity;
@@ -61,5 +66,7 @@ $t->data['serverURL'] = $server->getServerURL();
 $t->data['trustedSites'] = $trustedSites;
 $t->data['userId'] = $userId;
 $t->data['userIdURL'] = $userBase . '/' . $userId;
+$t->data['xrdsURL'] = $xrds;
+
 $t->show();
 exit(0);

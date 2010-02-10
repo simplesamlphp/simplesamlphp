@@ -8,6 +8,9 @@ $serverURL = $this->data['serverURL'];
 $trustedSites = $this->data['trustedSites'];
 $userId = $this->data['userId'];
 $userIdURL = $this->data['userIdURL'];
+$xrdsURL = $this->data['xrdsURL'];
+
+header('X-XRDS-Location: ' . $xrdsURL);
 
 if ($userId !== FALSE) {
 	$title = $this->t('{openidProvider:openidProvider:title_user}', array('%USERID%' => htmlspecialchars($userId)));
