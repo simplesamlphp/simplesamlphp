@@ -53,6 +53,35 @@ Common options
     set to `__DEFAULT__`, and that IdP will be used when no other
     entries in the metadata matches.
 
+`OrganizationName`
+:   The name of the organization responsible for this IdP.
+    This name does not need to be suitable for display to end users.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+
+        'OrganizationName' => array(
+            'en' => 'Example organization',
+            'no' => 'Eksempel organisation',
+        ),
+
+:   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
+
+`OrganizationDisplayName`
+:   The name of the organization responsible for this IdP.
+    This name must be suitable for display to end users.
+    If this option isn't specified, `OrganizationName` will be used instead.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
+
+:   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
+
+`OrganizationURL`
+:   An URL the end user can access for more information about the organization.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
+
+:   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
+
 `privacypolicy`
 :   This is an absolute URL for where an user can find a
     privacypolicy. If set, this will be shown on the consent page.

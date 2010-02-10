@@ -45,7 +45,9 @@ and Shibboleth 1.3 protocol:
 
 `name`
 :   The name of this SP. Will be used by various modules when they need
-    to show a name of the SP to the user.</p>
+    to show a name of the SP to the user.
+
+:   If this option is unset, the organization name will be used instead (if it is available).
 
 :   This option can be translated into multiple languages by specifying
     the value as an array of language-code to translated name:
@@ -54,6 +56,35 @@ and Shibboleth 1.3 protocol:
             'en' => 'A service',
             'no' => 'En tjeneste',
         ),
+
+`OrganizationName`
+:   The name of the organization responsible for this SPP.
+    This name does not need to be suitable for display to end users.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+
+        'OrganizationName' => array(
+            'en' => 'Example organization',
+            'no' => 'Eksempel organisation',
+        ),
+
+:   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
+
+`OrganizationDisplayName`
+:   The name of the organization responsible for this IdP.
+    This name must be suitable for display to end users.
+    If this option isn't specified, `OrganizationName` will be used instead.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
+
+:   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
+
+`OrganizationURL`
+:   An URL the end user can access for more information about the organization.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
+
+:   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
 
 `privacypolicy`
 :   This is an absolute URL for where an user can find a privacypolicy

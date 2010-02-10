@@ -220,10 +220,12 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
 	}
 
 	// Set name of SP
-	if(empty($sp_values['name']) || !is_array($sp_values['name'])) {
-		$sp_name = $sp_empty_name;
-	} else {
+	if(isset($sp_values['name']) && is_array($sp_values['name'])) {
 		$sp_name = $sp_metadata['name'];
+	} elseif(isset($sp_values['OrganizationDisplayName']) && is_array($sp_values['OrganizationDisplayName'])) {
+		$sp_name = $sp_metadata['OrganizationDisplayName'];
+	} else {
+		$sp_name = $sp_empty_name;
 	}
 
 	// Set description of SP

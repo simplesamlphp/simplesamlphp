@@ -40,14 +40,20 @@ try {
 	} else {
 		$metaArray['NameIDFormat'] = 'urn:mace:shibboleth:1.0:nameIdentifier';
 	}
-	if (array_key_exists('name', $idpmeta)) {
-		$metaArray['name'] = $idpmeta['name'];
-	}
-	if (array_key_exists('description', $idpmeta)) {
-		$metaArray['description'] = $idpmeta['description'];
-	}
-	if (array_key_exists('url', $idpmeta)) {
-		$metaArray['url'] = $idpmeta['url'];
+
+	if (!empty($idpmeta['OrganizationName'])) {
+		$metaArray['OrganizationName'] = $idpmeta['OrganizationName'];
+
+		if (!empty($idpmeta['OrganizationDisplayName'])) {
+			$metaArray['OrganizationDisplayName'] = $idpmeta['OrganizationDisplayName'];
+		} else {
+			$metaArray['OrganizationDisplayName'] = $idpmeta['OrganizationName'];
+		}
+
+		if (empty($idpmeta['OrganizationURL'])) {
+			throw new SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
+		}
+		$metaArray['OrganizationURL'] = $idpmeta['OrganizationURL'];
 	}
 
 
@@ -56,6 +62,7 @@ try {
 	$metaArray['certData'] = $certInfo['certData'];
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
 	$metaBuilder->addMetadataIdP11($metaArray);
+	$metaBuilder->addOrganizationInfo($metaArray);
 	$metaBuilder->addContact('technical', array(
 		'emailAddress' => $config->getString('technicalcontact_email', NULL),
 		'name' => $config->getString('technicalcontact_name', NULL),

@@ -39,14 +39,27 @@ try {
 	} else {
 		$metaArray['NameIDFormat'] = 'urn:mace:shibboleth:1.0:nameIdentifier';
 	}
+
+	if (!empty($spmeta['OrganizationName'])) {
+		$metaArray['OrganizationName'] = $spmeta['OrganizationName'];
+
+		if (!empty($spmeta['OrganizationDisplayName'])) {
+			$metaArray['OrganizationDisplayName'] = $spmeta['OrganizationDisplayName'];
+		} else {
+			$metaArray['OrganizationDisplayName'] = $spmeta['OrganizationName'];
+		}
+
+		if (empty($spmeta['OrganizationURL'])) {
+			throw new SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
+		}
+		$metaArray['OrganizationURL'] = $spmeta['OrganizationURL'];
+	}
+
 	if (array_key_exists('name', $spmeta)) {
 		$metaArray['name'] = $spmeta['name'];
 	}
 	if (array_key_exists('description', $spmeta)) {
 		$metaArray['description'] = $spmeta['description'];
-	}
-	if (array_key_exists('url', $spmeta)) {
-		$metaArray['url'] = $spmeta['url'];
 	}
 
 

@@ -108,6 +108,12 @@ function getTranslatedName($t, $metadata) {
 		} else {
 			return $metadata['name'];
 		}
+	} elseif (array_key_exists('OrganizationDisplayName', $metadata)) {
+		if (is_array($metadata['OrganizationDisplayName'])) {
+			return $t->getTranslation($metadata['OrganizationDisplayName']);
+		} else {
+			return $metadata['OrganizationDisplayName'];
+		}
 	}
 	return $metadata['entityid'];
 }

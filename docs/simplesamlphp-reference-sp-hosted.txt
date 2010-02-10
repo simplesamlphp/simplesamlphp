@@ -53,6 +53,35 @@ Common options
 `idpdisco.url`
 :   Set which IdP discovery service this SP should use. If this is unset, the IdP discovery service specified in the global option `idpdisco.url.{saml20|shib13}` in `config/config.php` will be used. If that one is also unset, the builtin default discovery service will be used.
 
+`OrganizationName`
+:   The name of the organization responsible for this SPP.
+    This name does not need to be suitable for display to end users.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+
+        'OrganizationName' => array(
+            'en' => 'Example organization',
+            'no' => 'Eksempel organisation',
+        ),
+
+:   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
+
+`OrganizationDisplayName`
+:   The name of the organization responsible for this SPP.
+    This name must be suitable for display to end users.
+    If this option isn't specified, `OrganizationName` will be used instead.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
+
+:   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
+
+`OrganizationURL`
+:   An URL the end user can access for more information about the organization.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
+
+:   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
+
 `name`
 :   The name of this SP. Will be added to the generated metadata.
 

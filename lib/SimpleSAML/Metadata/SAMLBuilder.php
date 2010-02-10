@@ -173,33 +173,30 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		$this->entityDescriptor->appendChild($org);
 	}
 
-	
-	public function addOrganizationInfo($metadata) {
-		if (array_key_exists('name', $metadata)) {
 
-			if (is_array($metadata['name'])) {
-				$name = $metadata['name'];
-			} else {
-				$name = array('en' => $metadata['name']);
-			}
+	/**
+	 * Add organization element based on metadata array.
+	 *
+	 * @param array $metadata  The metadata we should extract the organization information from.
+	 */
+	public function addOrganizationInfo(array $metadata) {
 
-
-			if (!array_key_exists('url', $metadata)) {
-				/*
-				 * The specification requires an OrganizationURL element, but
-				 * we haven't got an URL. Insert an empty element instead.
-				 */
-				$url = array('en' => '');
-			} elseif (is_array($metadata['url'])) {
-				$url = $metadata['url'];
-			} else {
-				$url = array('en' => $metadata['url']);
-			}
-
-			$this->addOrganization($name, $name, $url);
+		if (
+			empty($metadata['OrganizationName']) ||
+			empty($metadata['OrganizationDisplayName']) ||
+			empty($metadata['OrganizationURL'])
+		    ) {
+			/* Empty or incomplete organization information. */
+			return;
 		}
+
+		$orgName = SimpleSAML_Utilities::arrayize($metadata['OrganizationName'], 'en');
+		$orgDisplayName = SimpleSAML_Utilities::arrayize($metadata['OrganizationDisplayName'], 'en');
+		$orgURL = SimpleSAML_Utilities::arrayize($metadata['OrganizationURL'], 'en');
+
+		$this->addOrganization($orgName, $orgDisplayName, $orgURL);
 	}
-	
+
 
 	/**
 	 * Add endpoint list to metadata.

@@ -31,20 +31,26 @@ assert('$this->data["sppp"] === FALSE || is_string($this->data["sppp"])');
 
 if (array_key_exists('name', $this->data['srcMetadata'])) {
 	$srcName = $this->data['srcMetadata']['name'];
-	if (is_array($srcName)) {
-		$srcName = $this->t($srcName);
-	}
+} elseif (array_key_exists('OrganizationDisplayName', $this->data['srcMetadata'])) {
+	$srcName = $this->data['srcMetadata']['OrganizationDisplayName'];
 } else {
 	$srcName = $this->data['srcMetadata']['entityid'];
 }
 
+if (is_array($srcName)) {
+	$srcName = $this->t($srcName);
+}
+
 if (array_key_exists('name', $this->data['dstMetadata'])) {
 	$dstName = $this->data['dstMetadata']['name'];
-	if (is_array($dstName)) {
-		$dstName = $this->t($dstName);
-	}
+} elseif (array_key_exists('OrganizationDisplayName', $this->data['dstMetadata'])) {
+	$dstName = $this->data['dstMetadata']['OrganizationDisplayName'];
 } else {
 	$dstName = $this->data['dstMetadata']['entityid'];
+}
+
+if (is_array($dstName)) {
+	$dstName = $this->t($dstName);
 }
 
 

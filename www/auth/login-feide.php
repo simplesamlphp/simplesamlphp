@@ -288,6 +288,8 @@ if(array_key_exists('description', $spmetadata)) {
 }
 if(array_key_exists('name', $spmetadata)) {
 	$t->data['spname'] = $spmetadata['name'];
+} elseif(array_key_exists('OrganizationDisplayName', $spmetadata)) {
+	$t->data['spname'] = $spmetadata['OrganizationDisplayName'];
 } else {
 	$t->data['spname'] = NULL;
 }

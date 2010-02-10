@@ -132,7 +132,13 @@ class SimpleSAML_IdP {
 			}
 		}
 
-		return $spMetadata->getLocalizedString('name', array('en' => $spEntityId));
+		if ($spMetadata->hasValue('name')) {
+			return $spMetadata->getLocalizedString('name');
+		} elseif ($spMetadata->hasValue('OrganizationDisplayName')) {
+			return $spMetadata->getLocalizedString('OrganizationDisplayName');
+		} else {
+			return array('en' => $spEntityId);
+		}
 	}
 
 

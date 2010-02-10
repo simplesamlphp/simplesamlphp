@@ -16,6 +16,9 @@ function saml_hook_metadata_hosted(&$metadataHosted) {
 
 		$name = $metadata->getValue('name', NULL);
 		if ($name === NULL) {
+			$name = $metadata->getValue('OrganizationDisplayName', NULL);
+		}
+		if ($name === NULL) {
 			$name = $source->getAuthID();
 		}
 

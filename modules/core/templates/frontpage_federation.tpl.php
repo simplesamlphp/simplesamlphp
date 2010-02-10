@@ -82,6 +82,8 @@ foreach($this->data['metaentries']['remote'] AS $setkey => $set) {
 			'">');
 		if (array_key_exists('name', $entry)) {
 			echo $this->getTranslation(SimpleSAML_Utilities::arrayize($entry['name'], 'en'));
+		} elseif (array_key_exists('OrganizationDisplayName', $entry)) {
+			echo $this->getTranslation(SimpleSAML_Utilities::arrayize($entry['OrganizationDisplayName'], 'en'));
 		} else {
 			echo $entry['entityid'];
 		}

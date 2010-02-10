@@ -202,8 +202,6 @@ if (!$session->isValid($authority) ) {
 		}
 		$spmetadata = SimpleSAML_Configuration::loadFromArray($arr);
 
-		$sp_name = $spmetadata->getValue('name', $spentityid);
-
 		SimpleSAML_Logger::info('ADFS - IdP.SSOService: Sending back AuthnResponse to ' . $spentityid);
 		
 		$attributes = $session->getAttributes();
