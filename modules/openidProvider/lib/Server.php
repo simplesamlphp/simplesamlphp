@@ -80,7 +80,7 @@ class sspmod_openidProvider_Server {
 		SimpleSAML_Utilities::maskErrors(E_WARNING | E_STRICT);
 		try {
 			$store = new Auth_OpenID_FileStore($config->getString('filestore'));
-			$this->server = new Auth_OpenID_Server($store);
+			$this->server = new Auth_OpenID_Server($store, $this->getServerURL());
 		} catch (Exception $e) {
 			SimpleSAML_Utilities::popErrorMask();
 			throw $e;
@@ -378,7 +378,9 @@ class sspmod_openidProvider_Server {
 		}
 
 		$identity = $this->getIdentity();
-		if ($identity !== $request->identity) {
+		assert('$identity !== FALSE'); /* Should always be logged in here. */
+
+		if (!$request->idSelect() && $identity !== $request->identity) {
 			/* The identity in the request doesn't match the one of the logged in user. */
 			throw new SimpleSAML_Error_Exception('Logged in as different user than the one requested.');
 		}
@@ -403,7 +405,7 @@ class sspmod_openidProvider_Server {
 		}
 
 		/* The user is authenticated, and trusts this site. */
-		$this->sendResponse($request->answer(TRUE));
+		$this->sendResponse($request->answer(TRUE, NULL, $identity));
 	}
 
 

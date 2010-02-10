@@ -15,8 +15,10 @@ if ($userId !== FALSE) {
 	$title = $this->t('{openidProvider:openidProvider:title_no_user}');
 }
 
-$serverLink = '<link rel="openid.server" href="' . htmlspecialchars($serverURL) . '" />';
-$delegateLink = '<link rel="openid.delegate" href="' . htmlspecialchars($userIdURL) . '" />';
+$serverLink = '<link rel="openid.server" href="' . htmlspecialchars($serverURL) . '" />' . "\n";
+$serverLink .= '<link rel="openid2.provider" href="' . htmlspecialchars($serverURL) . '" />';
+$delegateLink = '<link rel="openid.delegate" href="' . htmlspecialchars($userIdURL) . '" />' . "\n";
+$delegateLink .= '<link rel="openid2.local_id" href="' . htmlspecialchars($userIdURL) . '" />';
 
 $this->data['header'] = $title;
 $this->data['head'] = $serverLink;
