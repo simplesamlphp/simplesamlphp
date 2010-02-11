@@ -17,6 +17,8 @@ $sourceId = substr($sourceId, 1, $end - 1);
 
 $source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
 
+SimpleSAML_Logger::debug('Received SAML1 response');
+
 
 $state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
 

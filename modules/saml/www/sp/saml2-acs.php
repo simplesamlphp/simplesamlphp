@@ -38,6 +38,8 @@ if ($idp === NULL) {
 	throw new Exception('Missing <saml:Issuer> in message delivered to AssertionConsumerService.');
 }
 
+SimpleSAML_Logger::debug('Received SAML2 Response from ' . var_export($idp, TRUE) . '.');
+
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $idpMetadata = $source->getIdPmetadata($idp);
 $spMetadata = $source->getMetadata();
