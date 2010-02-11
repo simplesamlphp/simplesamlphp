@@ -20,6 +20,10 @@ if (isset($_REQUEST['timeout'])) {
 	$timeout = time() + 10;
 }
 
+if ($type !== 'embed' && $type !== 'async') {
+	SimpleSAML_Logger::stats('slo-iframe ' . $type);
+}
+
 $state = SimpleSAML_Auth_State::loadState($id, 'core:Logout-IFrame');
 $idp = SimpleSAML_IdP::getByState($state);
 

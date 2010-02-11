@@ -216,6 +216,22 @@ $config = array (
 				'config' => 'saml20-sp-remote',
 			),
 		),
+		'slopages' => array(
+			'name' 		=> 'SLO iframe pages',
+			'descr'		=> 'The varioust IFrame SLO pages a user visits',
+			'action' 	=> 'slo-iframe',
+			'col'		=> 6,				// Page the user visits.
+		),
+		'slofail' => array(
+			'name' 		=> 'Failed iframe IdP-init SLOs',
+			'descr'		=> 'The number of logout failures from various SPs',
+			'action' 	=> 'slo-iframe-fail',
+			'col'		=> 6,				// Service Provider EntityID that wasn't logged out.
+			'fieldPresentation' => array(
+				'class' => 'statistics:Entity',
+				'config' => 'saml20-sp-remote',
+			),
+		),
 	),
 
 );

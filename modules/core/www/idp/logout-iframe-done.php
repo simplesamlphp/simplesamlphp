@@ -9,7 +9,16 @@ $state = SimpleSAML_Auth_State::loadState($id, 'core:Logout-IFrame');
 $idp = SimpleSAML_IdP::getByState($state);
 
 $associations = $idp->getAssociations();
-$SPs = $state['core:Logout-IFrame:Associations'];
+
+if (!isset($_REQUEST['cancel'])) {
+	SimpleSAML_Logger::stats('slo-iframe done');
+	$SPs = $state['core:Logout-IFrame:Associations'];
+} else {
+	/* User skipped global logout. */
+	SimpleSAML_Logger::stats('slo-iframe skip');
+	$SPs = array(); /* No SPs should have been logged out. */
+	$state['core:Failed'] = TRUE; /* Mark as partial logout. */
+}
 
 $globalConfig = SimpleSAML_Configuration::getInstance();
 $cookiePath = '/' . $globalConfig->getBaseURL();
@@ -42,6 +51,12 @@ foreach ($SPs as $assocId => $sp) {
 		$idp->terminateAssociation($assocId);
 	} else {
 		SimpleSAML_Logger::warning('Unable to terminate association with ' . var_export($assocId, TRUE) . '.');
+		if (isset($sp['saml:entityID'])) {
+			$spId = $sp['saml:entityID'];
+		} else {
+			$spId = $assocId;
+		}
+		SimpleSAML_Logger::stats('slo-iframe-fail ' . $spId);
 		$state['core:Failed'] = TRUE;
 	}
 
