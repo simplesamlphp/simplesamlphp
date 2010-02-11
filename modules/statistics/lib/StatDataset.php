@@ -272,7 +272,7 @@ class sspmod_statistics_StatDataset {
 			return $presentationHandler->getPresentation();
 		}
 
-		return NULL;
+		return array();
 	}
 	
 	public function getDelimiterPresentationPie() {
