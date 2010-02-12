@@ -262,6 +262,56 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
+	 * Add an AttributeConsumingService element to the metadata.
+	 *
+	 * @param DOMElement $spDesc  The SPSSODescriptor element.
+	 * @param SimpleSAML_Configuration $metadata  The metadata.
+	 */
+	private function addAttributeConsumingService(DOMElement $spDesc, SimpleSAML_Configuration $metadata) {
+		$attributes = $metadata->getArray('attributes', array());
+		$name = $metadata->getLocalizedString('name', NULL);
+
+		if ($name === NULL || count($attributes) == 0) {
+			/* We cannot add an AttributeConsumingService without name and attributes. */
+			return;
+		}
+
+		/*
+		 * Add an AttributeConsumingService element with information as name and description and list
+		 * of requested attributes
+		 */
+		$attributeconsumer = $this->createElement('AttributeConsumingService');
+		$attributeconsumer->setAttribute('index', '0');
+
+		foreach($name AS $lang => $localname) {
+			$t = $this->createTextElement('ServiceName', $localname);
+			$t->setAttribute('xml:lang', $lang);
+			$attributeconsumer->appendChild($t);
+		}
+
+		$description = $metadata->getLocalizedString('description', array());
+		foreach ($description as $lang => $localname) {
+			$t = $this->createTextElement('ServiceDescription', $localname);
+			$t->setAttribute('xml:lang', $lang);
+			$attributeconsumer->appendChild($t);
+		}
+
+		$nameFormat = $metadata->getString('attributes.NameFormat', SAML2_Const::NAMEFORMAT_UNSPECIFIED);
+
+		foreach ($attributes as $attribute) {
+			$t = $this->createElement('RequestedAttribute');
+			$t->setAttribute('Name', $attribute);
+			if ($nameFormat !== SAML2_Const::NAMEFORMAT_UNSPECIFIED) {
+				$t->setAttribute('NameFormat', $nameFormat);
+			}
+			$attributeconsumer->appendChild($t);
+		}
+
+		$spDesc->appendChild($attributeconsumer);
+	}
+
+
+	/**
 	 * Add metadata set for entity.
 	 *
 	 * This function is used to add a metadata array to the entity.
@@ -334,42 +384,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		}
 		$this->addEndpoints($e, 'AssertionConsumerService', $endpoints);
 
-		$attributes = $metadata->getArray('attributes', array());
-		if ( $metadata->hasValue('name') && count($attributes) > 0 ) {
-			/*
-			 * Add an AttributeConsumingService element with information as name and description and list
-			 * of requested attributes
-			 */
-			$attributeconsumer = $this->createElement('AttributeConsumingService');
-			$attributeconsumer->setAttribute('index', '0');
-
-			$name = $metadata->getLocalizedString('name');
-			foreach($name AS $lang => $localname) {
-				$t = $this->createTextElement('ServiceName', $localname);
-				$t->setAttribute('xml:lang', $lang);
-				$attributeconsumer->appendChild($t);
-			}
-
-			$description = $metadata->getLocalizedString('description', array());
-			foreach ($description as $lang => $localname) {
-				$t = $this->createTextElement('ServiceDescription', $localname);
-				$t->setAttribute('xml:lang', $lang);
-				$attributeconsumer->appendChild($t);
-			}
-
-			$nameFormat = $metadata->getString('attributes.NameFormat', SAML2_Const::NAMEFORMAT_UNSPECIFIED);
-
-			foreach ($attributes as $attribute) {
-				$t = $this->createElement('RequestedAttribute');
-				$t->setAttribute('Name', $attribute);
-				if ($nameFormat !== SAML2_Const::NAMEFORMAT_UNSPECIFIED) {
-					$t->setAttribute('NameFormat', $nameFormat);
-				}
-				$attributeconsumer->appendChild($t);
-			}
-
-			$e->appendChild($attributeconsumer);
-		}
+		$this->addAttributeConsumingService($e, $metadata);
 
 		$this->entityDescriptor->appendChild($e);
 
@@ -461,6 +476,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			);
 		}
 		$this->addEndpoints($e, 'AssertionConsumerService', $endpoints);
+
+		$this->addAttributeConsumingService($e, $metadata);
 
 		$this->entityDescriptor->appendChild($e);
 	}
