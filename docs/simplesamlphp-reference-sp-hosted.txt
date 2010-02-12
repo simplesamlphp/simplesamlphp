@@ -28,6 +28,18 @@ Common options
 
 :   Note that this only changes the values in the generated metadata and in the messages sent to others. You must also configure your webserver to deliver this URL to the correct PHP page.
 
+`attributes`
+:   List of attributes this SP requests from the IdP.
+    This list will be added to the generated metadata.
+
+:   The attributes will be added without a `NameFormat` by default.
+    Use the `attributes.NameFormat` option to specify the `NameFormat` for the attributes.
+
+:   *Note*: This list will only be added to the metadata if the `name`-option is also specified.
+
+`attributes.NameFormat`
+:   The `NameFormat` for the requested attributes.
+
 `authproc`
 :   Used to manipulate attributes, and limit access for each SP. See the [authentication processing filter manual](http://rnd.feide.no/content/authentication-processing-filters-simplesamlphp).
 
@@ -46,6 +58,8 @@ Common options
             'en' => 'A service',
             'no' => 'En tjeneste',
         ),
+
+:   *Note*: For this to be added to the metadata, you must also specify the `attributes` and `name` options.
 
 `host`
 :   The hostname for this SP. One SP can also have the `host`-option set to `__DEFAULT__`, and that SP will be used when no other entries in the metadata matches.
@@ -92,21 +106,12 @@ Common options
             'no' => 'En tjeneste',
         ),
 
+:   *Note*: You must also specify at least one attribute in the `attributes` option for this element to be added to the metadata.
+
 `NameIDFormat`
 :   Override the default NameIDFormat in the generated metadata and in the authentication request.
 
 :   The default value for SAML 2.0 is `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`, while the default for Shibboleth 1.3 is `urn:mace:shibboleth:1.0:nameIdentifier`. If you set the value to `NULL`, the `samlp:NameIDPolicy` element is removed from the authentication request.
-
-
-`url`
-:   A URL to your service provider. Will be added as a OrganizationURL-element in the metadata.
-
-:   This option can be translated into multiple languages by specifying the value as an array of language-code to language-specific URL:
-
-        'url' => array(
-            'en' => 'http://sp.example.net/en/info.html',
-            'no' => 'http://sp.example.net/no/info.html',
-        ),
 
 
 SAML 2.0 options

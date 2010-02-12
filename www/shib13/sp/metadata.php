@@ -55,6 +55,12 @@ try {
 		$metaArray['OrganizationURL'] = $spmeta['OrganizationURL'];
 	}
 
+	if (array_key_exists('attributes', $spmeta)) {
+		$metaArray['attributes'] = $spmeta['attributes'];
+	}
+	if (array_key_exists('attributes.NameFormat', $spmeta)) {
+		$metaArray['attributes.NameFormat'] = $spmeta['attributes.NameFormat'];
+	}
 	if (array_key_exists('name', $spmeta)) {
 		$metaArray['name'] = $spmeta['name'];
 	}
