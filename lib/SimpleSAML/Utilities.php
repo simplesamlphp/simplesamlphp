@@ -2196,12 +2196,12 @@ class SimpleSAML_Utilities {
 		$candidates = array(
 			'auth/login-admin.php' => 'login-admin',
 			'auth/login-auto.php' => 'login-auto',
-			'auth/login-cas-ldap' => 'login-cas-ldap',
+			'auth/login-cas-ldap.php' => 'login-cas-ldap',
 			'auth/login-feide.php' => 'login-feide',
 			'auth/login-ldapmulti.php' => 'login-ldapmulti',
 			'auth/login-radius.php' => 'login-radius',
 			'auth/login-tlsclient.php' => 'tlsclient',
-			'auth/login-wayf-ldap' => 'login-wayf-ldap',
+			'auth/login-wayf-ldap.php' => 'login-wayf-ldap',
 			'auth/login.php' => 'login',
 		);
 		if (isset($candidates[$idpmetadata['auth']])) {
