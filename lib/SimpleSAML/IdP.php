@@ -294,6 +294,19 @@ class SimpleSAML_IdP {
 				'State' => $state,
 			);
 
+			if (isset($state['saml:RequestId'])) {
+				$authnRequest['RequestID'] = $state['saml:RequestId'];
+			}
+			if (isset($state['SPMetadata']['entityid'])) {
+				$authnRequest['Issuer'] = $state['SPMetadata']['entityid'];
+			}
+			if (isset($state['saml:RelayState'])) {
+				$authnRequest['RelayState'] = $state['saml:RelayState'];
+			}
+			if (isset($state['saml:IDPList'])) {
+				$authnRequest['IDPList'] = $state['saml:IDPList'];
+			}
+
 			$authId = SimpleSAML_Utilities::generateID();
 			$session = SimpleSAML_Session::getInstance();
 			$session->setAuthnRequest('saml2', $authId, $authnRequest);
