@@ -120,6 +120,10 @@ Options
 
 :   *Note*: SAML 2 specific.
 
+`authproc`
+:   Processing filters that should be run after SP authentication.
+    See the [authentication processing filter manual](http://rnd.feide.no/content/authentication-processing-filters-simplesamlphp).
+
 `certData`
 :   Base64 encoded certificate data. Can be used instead of the `certificate` option.
 
