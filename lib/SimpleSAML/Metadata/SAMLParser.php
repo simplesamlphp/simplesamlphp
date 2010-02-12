@@ -518,6 +518,9 @@ class SimpleSAML_Metadata_SAMLParser {
 		if (array_key_exists('attributes', $spd)) {
 			$ret['attributes'] = $spd['attributes'];
 		}
+		if (array_key_exists('attributes.NameFormat', $spd)) {
+			$ret['attributes.NameFormat'] = $spd['attributes.NameFormat'];
+		}
 
 		/* Add name & description. */
 		if (array_key_exists('name', $spd)) {
@@ -666,6 +669,9 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* Add the list of attributes the SP should receive. */
 		if (array_key_exists('attributes', $spd)) {
 			$ret['attributes'] = $spd['attributes'];
+		}
+		if (array_key_exists('attributes.NameFormat', $spd)) {
+			$ret['attributes.NameFormat'] = $spd['attributes.NameFormat'];
 		}
 
 		/* Add name & description. */
@@ -1083,12 +1089,39 @@ class SimpleSAML_Metadata_SAMLParser {
 			$sp['description'][$language] = SimpleSAML_Utilities::getDOMText($child);
 		}
 		
+
+		$format = NULL;
 		$elements = SimpleSAML_Utilities::getDOMChildren($element, 'RequestedAttribute', '@md');
+		$sp['attributes'] = array();
 		foreach($elements AS $child) {
 			$attrname = $child->getAttribute('Name');
-			if (!array_key_exists('attributes', $sp)) $sp['attributes'] = array();
 			$sp['attributes'][] = $attrname;
-		}	
+
+			if ($child->hasAttribute('NameFormat')) {
+				$attrformat = $child->getAttribute('NameFormat');
+			} else {
+				$attrformat = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
+			}
+
+			if ($format === NULL) {
+				$format = $attrformat;
+			} elseif ($format !== $attrformat) {
+				$format = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
+			}
+
+		}
+
+		if (empty($sp['attributes'])) {
+			/*
+			 * Really an invalid configuration - all AttributeConsumingServices
+			 * should have one or more attributes.
+			 */
+			unset($sp['attributes']);
+		}
+
+		if ($format !== SAML2_Const::NAMEFORMAT_UNSPECIFIED && $format !== NULL) {
+			$sp['attributes.NameFormat'] = $format;
+		}
 
 	}
 
