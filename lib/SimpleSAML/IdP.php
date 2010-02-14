@@ -57,6 +57,11 @@ class SimpleSAML_IdP {
 				throw new SimpleSAML_Error_Exception('enable.shib13-idp disabled in config.php.');
 			}
 			$this->config = $metadata->getMetaDataConfig(substr($id, 6), 'shib13-idp-hosted');
+		} elseif (substr($id, 0, 5) === 'adfs:') {
+			if (!$globalConfig->getBoolean('enable.adfs-idp', FALSE)) {
+				throw new SimpleSAML_Error_Exception('enable.adfs-idp disabled in config.php.');
+			}
+			$this->config = $metadata->getMetaDataConfig(substr($id, 5), 'adfs-idp-hosted');
 		} else {
 			assert(FALSE);
 		}

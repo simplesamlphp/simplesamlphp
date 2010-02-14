@@ -130,6 +130,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
 			return $baseurl . 'shib13/sp/metadata.php';
 		} elseif($set === 'wsfed-sp-hosted') {
 			return 'urn:federation:' . SimpleSAML_Utilities::getSelfHost();
+		} elseif($set === 'adfs-idp-hosted') {
+			return 'urn:federation:' . SimpleSAML_Utilities::getSelfHost() . ':idp';
 		} else {
 			throw new Exception('Can not generate dynamic EntityID for metadata of this type: [' . $set . ']');
 		}
