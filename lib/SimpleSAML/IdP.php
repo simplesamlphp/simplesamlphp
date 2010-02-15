@@ -27,6 +27,17 @@ class SimpleSAML_IdP {
 
 
 	/**
+	 * The "association group" for this IdP.
+	 *
+	 * We use this to support cross-protocol logout until
+	 * we implement a cross-protocol IdP.
+	 *
+	 * @var string
+	 */
+	private $associationGroup;
+
+
+	/**
 	 * The configuration for this IdP.
 	 *
 	 * @var SimpleSAML_Configuration
@@ -62,8 +73,21 @@ class SimpleSAML_IdP {
 				throw new SimpleSAML_Error_Exception('enable.adfs-idp disabled in config.php.');
 			}
 			$this->config = $metadata->getMetaDataConfig(substr($id, 5), 'adfs-idp-hosted');
+
+			try {
+				/* This makes the ADFS IdP use the same SP associations as the SAML 2.0 IdP. */
+				$saml2EntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+				$this->associationGroup = 'saml2:' . $saml2EntityId;
+								
+			} catch (Exception $e) {
+				/* Probably no SAML 2 IdP configured for this host. Ignore the error. */
+			}
 		} else {
 			assert(FALSE);
+		}
+
+		if ($this->associationGroup === NULL) {
+			$this->associationGroup = $this->id;
 		}
 
 	}
@@ -157,7 +181,7 @@ class SimpleSAML_IdP {
 		assert('isset($association["Handler"])');
 
 		$session = SimpleSAML_Session::getInstance();
-		$session->addAssociation($this->id, $association);
+		$session->addAssociation($this->associationGroup, $association);
 	}
 
 
@@ -169,7 +193,7 @@ class SimpleSAML_IdP {
 	public function getAssociations() {
 
 		$session = SimpleSAML_Session::getInstance();
-		return $session->getAssociations($this->id);
+		return $session->getAssociations($this->associationGroup);
 	}
 
 
@@ -182,7 +206,7 @@ class SimpleSAML_IdP {
 		assert('is_string($assocId)');
 
 		$session = SimpleSAML_Session::getInstance();
-		$session->terminateAssociation($this->id, $assocId);
+		$session->terminateAssociation($this->associationGroup, $assocId);
 	}
 
 
