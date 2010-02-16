@@ -335,7 +335,7 @@ class SimpleSAML_Configuration {
 	
 	
 	public function getBaseURL() {
-		if (preg_match('/^\*(.*)$/', $this->getString('baseurlpath', 'simplesaml/'), $matches)) {
+		if (preg_match('/^\*(.*)$/D', $this->getString('baseurlpath', 'simplesaml/'), $matches)) {
 			return SimpleSAML_Utilities::getFirstPathElement(false) . $matches[1];
 		}
 

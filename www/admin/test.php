@@ -67,7 +67,7 @@ if (array_key_exists('protocol', $_GET)) {
 $attr_test = array();
 
 foreach ($_GET as $k => $v) {
-	if(preg_match('/^attr_test(?:_\d+)?$/', $k)) {
+	if(preg_match('/^attr_test(?:_\d+)?$/D', $k)) {
 		$pos = strpos($v, ':');
 		if($pos === FALSE) {
 			error('Invalid attribute test: $v');

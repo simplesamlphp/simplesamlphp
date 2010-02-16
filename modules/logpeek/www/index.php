@@ -1,7 +1,7 @@
 <?php
 
 function logFilter($objFile, $tag, $cut){
-	if (!preg_match('/^[a-f0-9]{10}$/', $tag)) throw new Exception('Invalid search tag');
+	if (!preg_match('/^[a-f0-9]{10}$/D', $tag)) throw new Exception('Invalid search tag');
 	
 	$i = 0;
 	$results = array();

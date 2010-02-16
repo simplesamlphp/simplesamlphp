@@ -129,7 +129,7 @@ try {
 		throw new SimpleSAML_Error_NotFound('The URL wasn\'t found in the module.');
 	}
 
-	if (preg_match('#\.php$#', $path)) {
+	if (preg_match('#\.php$#D', $path)) {
 		/* PHP file - attempt to run it. */
 		$_SERVER['SCRIPT_NAME'] .= '/' . $module . '/' . $url;
 		require($path);
@@ -140,7 +140,7 @@ try {
 
 	/* Find MIME type for file, based on extension. */
 	$contentType = NULL;
-	if (preg_match('#\.([^/]+)$#', $path, $type)) {
+	if (preg_match('#\.([^/]+)$#D', $path, $type)) {
 		$type = strtolower($type[1]);
 		if (array_key_exists($type, $mimeTypes)) {
 			$contentType = $mimeTypes[$type];

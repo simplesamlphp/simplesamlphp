@@ -252,7 +252,7 @@ class SimpleSAML_XHTML_Template {
 		}
 
 		/* Check whether we should use the default dictionary or a dictionary specified in the tag. */
-		if(substr($tag, 0, 1) === '{' && preg_match('/^{((?:\w+:)?\w+?):(.*)}$/', $tag, $matches)) {
+		if(substr($tag, 0, 1) === '{' && preg_match('/^{((?:\w+:)?\w+?):(.*)}$/D', $tag, $matches)) {
 			$dictionary = $matches[1];
 			$tag = $matches[2];
 		} else {

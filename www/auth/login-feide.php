@@ -121,7 +121,7 @@ if (isset($_REQUEST['username'])) {
 		/*
 		 * Checking username parameter for illegal characters.
 		 */
-		if (!preg_match('/^[a-z0-9._]+(@[a-z0-9._]+)?$/', $requestedUser) ) 
+		if (!preg_match('/^[a-z0-9._]+(@[a-z0-9._]+)?$/D', $requestedUser) ) 
 			throw new Exception('Illegal characters in (or empty) username.');
 		
 		/*
@@ -143,7 +143,7 @@ if (isset($_REQUEST['username'])) {
 			$requestedOrg = strtolower($_REQUEST['org']);
 		}
 
-		if (!preg_match('/^[a-z0-9.]*$/', $requestedOrg) ) 
+		if (!preg_match('/^[a-z0-9.]*$/D', $requestedOrg) ) 
 			throw new Exception('Illegal characters in organization.');
 
 		if (!array_key_exists($requestedOrg, $ldaporgconfig))
@@ -159,7 +159,7 @@ if (isset($_REQUEST['username'])) {
 		
 		$password = $_REQUEST['password'];
 		
-		if (!preg_match('/^[a-zA-Z0-9.]+$/', $password) ) 
+		if (!preg_match('/^[a-zA-Z0-9.]+$/D', $password) ) 
 			throw new Exception('Illegal characters in password.');
 		
 		/*
