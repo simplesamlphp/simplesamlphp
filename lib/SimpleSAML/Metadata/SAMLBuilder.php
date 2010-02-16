@@ -420,16 +420,16 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$this->addCertificate($e, $metadata);
 
+		if ($metadata->hasValue('ArtifactResolutionService')){
+			$this->addEndpoints($e, 'ArtifactResolutionService', $metadata->getEndpoints('ArtifactResolutionService'));
+		}
+
 		$this->addEndpoints($e, 'SingleLogoutService', $metadata->getEndpoints('SingleLogoutService'));
 
 		if ($metadata->hasValue('NameIDFormat')) {
 			$t = $this->createElement('NameIDFormat');
 			$t->appendChild($this->document->createTextNode($metadata->getString('NameIDFormat')));
 			$e->appendChild($t);
-		}
-
-		if ($metadata->hasValue('ArtifactResolutionService')){
-			$this->addEndpoints($e, 'ArtifactResolutionService', $metadata->getEndpoints('ArtifactResolutionService'));
 		}
 
 		$this->addEndpoints($e, 'SingleSignOnService', $metadata->getEndpoints('SingleSignOnService'));
