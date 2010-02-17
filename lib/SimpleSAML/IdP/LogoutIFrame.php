@@ -24,7 +24,8 @@ class SimpleSAML_IdP_LogoutIFrame extends SimpleSAML_IdP_LogoutHandler {
 		}
 
 		foreach ($associations as $id => &$association) {
-			$association['core:Logout-IFrame:Name'] = $this->idp->getSPName($id);
+			$idp = SimpleSAML_IdP::getByState($association);
+			$association['core:Logout-IFrame:Name'] = $idp->getSPName($id);
 			$association['core:Logout-IFrame:State'] = 'onhold';
 		}
 		$state['core:Logout-IFrame:Associations'] = $associations;

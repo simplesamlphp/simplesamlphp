@@ -145,20 +145,24 @@ class SimpleSAML_IdP {
 	public function getSPName($assocId) {
 		assert('is_string($assocId)');
 
-		if (substr($assocId, 0, 5) !== 'saml:') {
-			return NULL;
-		}
-
-		$spEntityId = substr($assocId, 5);
+		$prefix = substr($assocId, 0, 4);
+		$spEntityId = substr($assocId, strlen($prefix) + 1);
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-		try {
-			$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
-		} catch (Exception $e) {
+
+		if ($prefix === 'saml') {
 			try {
-				$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'shib13-sp-remote');
+				$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 			} catch (Exception $e) {
-				return NULL;
+				try {
+					$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'shib13-sp-remote');
+				} catch (Exception $e) {
+					return NULL;
+				}
 			}
+		} else if ($prefix === 'adfs') {
+			$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'adfs-sp-remote');
+		} else {
+			return NULL;
 		}
 
 		if ($spMetadata->hasValue('name')) {
@@ -180,6 +184,8 @@ class SimpleSAML_IdP {
 		assert('isset($association["id"])');
 		assert('isset($association["Handler"])');
 
+		$association['core:IdP'] = $this->id;
+		
 		$session = SimpleSAML_Session::getInstance();
 		$session->addAssociation($this->associationGroup, $association);
 	}
@@ -431,7 +437,8 @@ class SimpleSAML_IdP {
 	public function finishLogout(array &$state) {
 		assert('isset($state["Responder"])');
 
-		call_user_func($state['Responder'], $this, $state);
+		$idp = SimpleSAML_IdP::getByState($state);
+		call_user_func($state['Responder'], $idp, $state);
 		assert('FALSE');
 	}
 
