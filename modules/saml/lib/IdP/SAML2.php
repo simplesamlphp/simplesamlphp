@@ -377,7 +377,7 @@ class sspmod_saml_IdP_SAML2 {
 		$idpMetadata = $idp->getConfig();
 		$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-		sspmod_saml2_Message::validateMessage($idpMetadata, $spMetadata, $message);
+		sspmod_saml2_Message::validateMessage($spMetadata, $idpMetadata, $message);
 
 		if ($message instanceof SAML2_LogoutResponse) {
 
