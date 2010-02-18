@@ -147,7 +147,7 @@ edit:
 			'sources'	=> array(
 				array(
 					'src' => 'https://kalmar.feide.no/simplesaml/module.php/aggregator/?id=kalmarcentral&mimetype=text/plain&exclude=norway',
-					'certFingerprint' => '591d4b4670463eeda91fcc816dc0af2a092aa801',
+					'validateFingerprint' => '591d4b4670463eeda91fcc816dc0af2a092aa801',
 					'template' => array(
 						'tags'	=> array('kalmar'),
 						'authproc' => array(
@@ -197,7 +197,7 @@ Each metadata source has the following options:
 `src`
 :   The source URL where the metadata will be fetched from.
 
-`certFingerprint`
+`validateFingerprint`
 :   The fingerprint of the certificate used to sign the metadata. You
     don't need this option if you don't want to validate the signature
     on the metadata.
