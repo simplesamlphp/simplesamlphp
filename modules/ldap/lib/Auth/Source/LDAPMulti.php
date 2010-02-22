@@ -89,7 +89,7 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 	 * @param string $org  The organization the user chose.
 	 * @return array  Associative array with the users attributes.
 	 */
-	protected function login($username, $password, $org) {
+	protected function login($username, $password, $org, array $sasl_args = NULL) {
 		assert('is_string($username)');
 		assert('is_string($password)');
 		assert('is_string($org)');
@@ -106,7 +106,7 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 			$username = $username . '@' . $org;
 		}
 
-		return $this->ldapOrgs[$org]->login($username, $password);
+		return $this->ldapOrgs[$org]->login($username, $password, $sasl_args);
 	}
 
 
