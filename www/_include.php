@@ -91,9 +91,6 @@ if (!file_exists($configdir . '/config.php')) {
 	exit(1);
 }
 
-/* Make sure that the session is initialized before any output. */
-SimpleSAML_Session::getInstance();
-
 /* Set the timezone. */
 SimpleSAML_Utilities::initTimezone();
 
