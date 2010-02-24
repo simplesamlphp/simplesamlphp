@@ -99,11 +99,18 @@ class SimpleSAML_Session {
 	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
-	private function __construct() {
+	private function __construct($transient = FALSE) {
+
 		
 		$configuration = SimpleSAML_Configuration::getInstance();
 		$this->sessionduration = $configuration->getInteger('session.duration', 8*60*60);
 		
+
+		if ($transient) {
+			$this->trackid = 'XXXXXXXXXX';
+			return;
+		}
+
 		$this->trackid = SimpleSAML_Utilities::generateTrackID();
 
 		$this->dirty = TRUE;
@@ -149,6 +156,23 @@ class SimpleSAML_Session {
 		$sh->set('SimpleSAMLphp_SESSION', self::$instance);
 
 		return self::$instance;
+	}
+
+
+	/**
+	 * Use a transient session.
+	 *
+	 * Create a session that should not be saved at the end of the request.
+	 * Subsequent calls to getInstance() will return this transient session.
+	 */
+	public static function useTransientSession() {
+
+		if (isset(self::$instance)) {
+			/* We already have a session. Don't bother with a transient session. */
+			return;
+		}
+
+		self::$instance = new SimpleSAML_Session(TRUE);
 	}
 
 
