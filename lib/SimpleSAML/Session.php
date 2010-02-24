@@ -142,7 +142,14 @@ class SimpleSAML_Session {
 		/* Check if we have stored a session stored with the session
 		 * handler.
 		 */
-		self::$instance = self::loadSession();
+		try {
+			self::$instance = self::loadSession();
+		} catch (Exception $e) {
+			/* For some reason, we were unable to initialize this session. Use a transient session instead. */
+			self::useTransientSession();
+			return self::$instance;
+		}
+
 		if(self::$instance !== NULL) {
 			return self::$instance;
 		}

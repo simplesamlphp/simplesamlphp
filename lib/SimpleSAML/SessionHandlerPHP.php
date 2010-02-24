@@ -46,6 +46,11 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 			}
 
 			if(!array_key_exists(session_name(), $_COOKIE)) {
+
+				if (headers_sent()) {
+					throw new SimpleSAML_Error_Exception('Cannot create new session - headers already sent.');
+				}
+
 				/* Session cookie unset - session id not set. Generate new (secure) session id. */
 				session_id(SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16)));
 			}

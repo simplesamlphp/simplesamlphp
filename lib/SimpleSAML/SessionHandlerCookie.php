@@ -36,6 +36,12 @@ extends SimpleSAML_SessionHandler {
 			$this->session_id = $_COOKIE['SimpleSAMLSessionID'];
 		}
 
+		/* We need to create a new session. */
+
+		if (headers_sent()) {
+			throw new SimpleSAML_Error_Exception('Cannot create new session - headers already sent.');
+		}
+
 		/* Check if we have a valid session id. */
 		if(self::isValidSessionID($this->session_id)) {
 			/* We are done now if it was valid. */
