@@ -381,11 +381,6 @@ class sspmod_saml_IdP_SAML2 {
 
 		if ($message instanceof SAML2_LogoutResponse) {
 
-			$spEntityId = $message->getIssuer();
-			if ($spEntityId === NULL) {
-				throw new SimpleSAML_Error_Exception('Missing <Issuer> in LogoutResponse.');
-			}
-
 			SimpleSAML_Logger::info('Received SAML 2.0 LogoutResponse from: '. var_export($spEntityId, TRUE));
 
 			$relayState = $message->getRelayState();
