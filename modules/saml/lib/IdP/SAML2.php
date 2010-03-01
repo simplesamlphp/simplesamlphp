@@ -386,6 +386,8 @@ class sspmod_saml_IdP_SAML2 {
 				throw new SimpleSAML_Error_Exception('Missing <Issuer> in LogoutResponse.');
 			}
 
+			SimpleSAML_Logger::info('Received SAML 2.0 LogoutResponse from: '. var_export($spEntityId, TRUE));
+
 			$relayState = $message->getRelayState();
 
 			if (!$message->isSuccess()) {
@@ -402,6 +404,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		} elseif ($message instanceof SAML2_LogoutRequest) {
 
+			SimpleSAML_Logger::info('Received SAML 2.0 LogoutRequest from: '. var_export($spEntityId, TRUE));
 			SimpleSAML_Logger::stats('saml20-idp-SLO spinit ' . $spEntityId . ' ' . $idpMetadata->getString('entityid'));
 
 			$state = array(
@@ -430,6 +433,8 @@ class sspmod_saml_IdP_SAML2 {
 	 */
 	public static function getLogoutURL(SimpleSAML_IdP $idp, array $association, $relayState) {
 		assert('is_string($relayState) || is_null($relayState)');
+
+		SimpleSAML_Logger::info('Sending SAML 2.0 LogoutRequest to: '. var_export($association['saml:entityID'], TRUE));
 
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $idp->getConfig();
