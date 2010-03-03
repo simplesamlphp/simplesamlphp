@@ -21,7 +21,7 @@ $this->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => TRUE, 
 $this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" href="' . SimpleSAML_Module::getModuleUrl('discopower/style.css')  . '" />';
 
 $this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML_Module::getModuleUrl('discopower/js/jquery.livesearch.js')  . '"></script>';
-$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML_Module::getModuleUrl('discopower/js/quicksilver.js')  . '"></script>';
+$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML_Module::getModuleUrl('discopower/js/' . $this->data['score'] . '.js')  . '"></script>';
 
 $this->data['head'] .= '<script type="text/javascript">
 
@@ -107,12 +107,6 @@ function getTranslatedName($t, $metadata) {
 			return $t->getTranslation($metadata['name']);
 		} else {
 			return $metadata['name'];
-		}
-	} elseif (array_key_exists('OrganizationDisplayName', $metadata)) {
-		if (is_array($metadata['OrganizationDisplayName'])) {
-			return $t->getTranslation($metadata['OrganizationDisplayName']);
-		} else {
-			return $metadata['OrganizationDisplayName'];
 		}
 	}
 	return $metadata['entityid'];

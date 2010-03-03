@@ -188,6 +188,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 		$t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', FALSE);
 		$t->data['rememberchecked'] = $this->config->getBoolean('idpdisco.rememberchecked', FALSE);
 		$t->data['defaulttab'] = $this->discoconfig->getValue('defaulttab', 0);
+		$t->data['score'] = $this->discoconfig->getValue('score', 'quicksilver');
 		$t->show();
 	}
 }
