@@ -25,7 +25,7 @@ $config = array (
 	  * If you want to change the scoring algorithm to a more google suggest like one
 	  * (filters by start of words) uncomment this ... 
 	  *
-	  * 'score' => 'suggest',
+	  * 'score' => 'suggest', 
 	  */
 
 );
