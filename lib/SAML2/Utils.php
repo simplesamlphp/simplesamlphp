@@ -324,6 +324,28 @@ class SAML2_Utils {
 		return $decryptedElement;
 	}
 
-}
 
-?>
+	/**
+	 * Extract localized strings from a set of nodes.
+	 *
+	 * @param DOMElement $parent  The element we should rund the XPath query on.
+	 * @param string $query  The XPath query we should use to retrieve the nodes.
+	 * @return array  Localized strings.
+	 */
+	public static function extractLocalizedStrings(DOMElement $parent, $query) {
+		assert('is_string($query)');
+
+		$ret = array();
+		foreach (self::xpQuery($parent, $query) as $node) {
+			if ($node->hasAttribute('xml:lang')) {
+				$language = $node->getAttribute('xml:lang');
+			} else {
+				$language = 'en';
+			}
+			$ret[$language] = trim($node->textContent);
+		}
+
+		return $ret;
+	}
+
+}
