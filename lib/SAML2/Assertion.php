@@ -1070,12 +1070,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 			$ar = $document->createElementNS(SAML2_Const::NS_SAML, 'saml:AudienceRestriction');
 			$conditions->appendChild($ar);
 
-			foreach ($this->validAudiences as $audience) {
-				$a = $document->createElementNS(SAML2_Const::NS_SAML, 'saml:Audience');
-				$ar->appendChild($a);
-
-				$a->appendChild($document->createTextNode($audience));
-			}
+			SAML2_Utils::addStrings($ar, SAML2_Const::NS_SAML, 'saml:Audience', FALSE, $this->validAudiences);
 		}
 	}
 

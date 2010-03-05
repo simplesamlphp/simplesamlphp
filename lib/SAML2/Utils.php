@@ -388,4 +388,31 @@ class SAML2_Utils {
 		return $n;
 	}
 
+
+	/**
+	 * Append string elements.
+	 *
+	 * @param DOMElement $parent  The parent element we should append the new nodes to.
+	 * @param string $namespace  The namespace of the created elements
+	 * @param string $name  The name of the created elements
+	 * @param bool $localized  Whether the strings are localized, and should include the xml:lang attribute.
+	 * @param array $values  The values we should create the elements from.
+	 */
+	public static function addStrings(DOMElement $parent, $namespace, $name, $localized, array $values) {
+		assert('is_string($namespace)');
+		assert('is_string($name)');
+		assert('is_bool($localized)');
+
+		$doc = $parent->ownerDocument;
+
+		foreach ($values as $index => $value) {
+			$n = $doc->createElementNS($namespace, $name);
+			$n->appendChild($doc->createTextNode($value));
+			if ($localized) {
+				$n->setAttribute('xml:lang', $index);
+			}
+			$parent->appendChild($n);
+		}
+	}
+
 }
