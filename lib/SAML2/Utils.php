@@ -118,6 +118,7 @@ class SAML2_Utils {
 			$xpCache->registerNamespace('soap-env', SAML2_Const::NS_SOAP);
 			$xpCache->registerNamespace('saml_protocol', SAML2_Const::NS_SAMLP);
 			$xpCache->registerNamespace('saml_assertion', SAML2_Const::NS_SAML);
+			$xpCache->registerNamespace('saml_metadata', SAML2_Const::NS_MD);
 			$xpCache->registerNamespace('ds', XMLSecurityDSig::XMLDSIGNS);
 			$xpCache->registerNamespace('xenc', XMLSecEnc::XMLENCNS);
 		}

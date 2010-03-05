@@ -89,6 +89,11 @@ class SAML2_Const {
 	const NS_SAML = 'urn:oasis:names:tc:SAML:2.0:assertion';
 
 	/**
+	 * The namespace for the SAML 2 metadata.
+	 */
+	const NS_MD = 'urn:oasis:names:tc:SAML:2.0:metadata';
+
+	/**
 	 * The namespace fox XML schema.
 	 */
 	const NS_XS = 'http://www.w3.org/2001/XMLSchema';
