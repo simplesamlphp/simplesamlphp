@@ -109,9 +109,7 @@ class SAML2_LogoutRequest extends SAML2_Request {
 		SAML2_Utils::addNameId($root, $this->nameId);
 
 		if ($this->sessionIndex !== NULL) {
-			$sessionIndex = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'SessionIndex');
-			$sessionIndex->appendChild($this->document->createTextNode($this->sessionIndex));
-			$root->appendChild($sessionIndex);
+			SAML2_Utils::addString($root, SAML2_Const::NS_SAMLP, 'SessionIndex', $this->sessionIndex);
 		}
 
 		return $root;

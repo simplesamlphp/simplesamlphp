@@ -348,9 +348,7 @@ class SAML2_AuthnRequest extends SAML2_Request {
 				$e->setAttribute('Comparison', $rac['Comparison']);
 			}
 			foreach ($rac['AuthnContextClassRef'] as $accr) {
-				$i = $this->document->createElementNS(SAML2_Const::NS_SAML, 'AuthnContextClassRef');
-				$i->appendChild($this->document->createTextNode($accr));
-				$e->appendChild($i);
+				SAML2_Utils::addString($e, SAML2_Const::NS_SAML, 'AuthnContextClassRef', $accr);
 			}
 		}
 

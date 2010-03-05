@@ -181,9 +181,7 @@ abstract class SAML2_StatusResponse extends SAML2_Message {
 		}
 
 		if (!is_null($this->status['Message'])) {
-			$statusMessage = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'StatusMessage');
-			$statusMessage->appendChild($this->document->createTextNode($this->status['Message']));
-			$status->appendChild($statusMessage);
+			SAML2_Utils::addString($status, SAML2_Const::NS_SAMLP, 'StatusMessage', $this->status['Message']);
 		}
 
 		return $root;

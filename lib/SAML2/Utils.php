@@ -175,8 +175,7 @@ class SAML2_Utils {
 	public static function addNameId(DOMElement $node, array $nameId) {
 		assert('array_key_exists("Value", $nameId)');
 
-		$xml = $node->ownerDocument->createElementNS(SAML2_Const::NS_SAML, 'saml:NameID');
-		$node->appendChild($xml);
+		$xml = SAML2_Utils::addString($node, SAML2_Const::NS_SAML, 'saml:NameID', $nameId['Value']);
 
 		if (array_key_exists('NameQualifier', $nameId) && $nameId['NameQualifier'] !== NULL) {
 			$xml->setAttribute('NameQualifier', $nameId['NameQualifier']);
@@ -187,8 +186,6 @@ class SAML2_Utils {
 		if (array_key_exists('Format', $nameId) && $nameId['Format'] !== NULL) {
 			$xml->setAttribute('Format', $nameId['Format']);
 		}
-
-		$xml->appendChild($node->ownerDocument->createTextNode($nameId['Value']));
 	}
 
 
@@ -365,6 +362,30 @@ class SAML2_Utils {
 		}
 
 		return $ret;
+	}
+
+
+	/**
+	 * Append string element.
+	 *
+	 * @param DOMElement $parent  The parent element we should append the new nodes to.
+	 * @param string $namespace  The namespace of the created element.
+	 * @param string $name  The name of the created element.
+	 * @param string $value  The value of the element.
+	 * @return DOMElement  The generated element.
+	 */
+	public static function addString(DOMElement $parent, $namespace, $name, $value) {
+		assert('is_string($namespace)');
+		assert('is_string($name)');
+		assert('is_string($value)');
+
+		$doc = $parent->ownerDocument;
+
+		$n = $doc->createElementNS($namespace, $name);
+		$n->appendChild($doc->createTextNode($value));
+		$parent->appendChild($n);
+
+		return $n;
 	}
 
 }

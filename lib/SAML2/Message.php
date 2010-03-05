@@ -357,9 +357,7 @@ abstract class SAML2_Message implements SAML2_SignedElement {
 		}
 
 		if ($this->issuer !== NULL) {
-			$issuer = $this->document->createElementNS(SAML2_Const::NS_SAML, 'saml:Issuer');
-			$issuer->appendChild($this->document->createTextNode($this->issuer));
-			$root->appendChild($issuer);
+			SAML2_Utils::addString($root, SAML2_Const::NS_SAML, 'saml:Issuer', $this->issuer);
 		}
 
 		return $root;

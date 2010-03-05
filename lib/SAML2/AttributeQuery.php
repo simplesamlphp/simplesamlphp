@@ -162,12 +162,10 @@ class SAML2_AttributeQuery extends SAML2_SubjectQuery {
 					$type = NULL;
 				}
 
-				$attributeValue = $root->ownerDocument->createElementNS(SAML2_Const::NS_SAML, 'saml:AttributeValue');
-				$attribute->appendChild($attributeValue);
+				$attributeValue = SAML2_Utils::addString($attribute, SAML2_Const::NS_SAML, 'saml:AttributeValue', $value);
 				if ($type !== NULL) {
 					$attributeValue->setAttributeNS(SAML2_Const::NS_XSI, 'xsi:type', $type);
 				}
-				$attributeValue->appendChild($root->ownerDocument->createTextNode($value));
 			}
 		}
 

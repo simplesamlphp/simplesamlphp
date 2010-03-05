@@ -995,9 +995,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$root->setAttribute('Version', '2.0');
 		$root->setAttribute('IssueInstant', gmdate('Y-m-d\TH:i:s\Z', $this->issueInstant));
 
-		$issuer = $document->createElementNS(SAML2_Const::NS_SAML, 'saml:Issuer');
-		$issuer->appendChild($document->createTextNode($this->issuer));
-		$root->appendChild($issuer);
+		$issuer = SAML2_Utils::addString($root, SAML2_Const::NS_SAML, 'saml:Issuer', $this->issuer);
 
 		$this->addSubject($root);
 		$this->addConditions($root);
@@ -1111,10 +1109,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$ac = $document->createElementNS(SAML2_Const::NS_SAML, 'saml:AuthnContext');
 		$as->appendChild($ac);
 
-		$accr = $document->createElementNS(SAML2_Const::NS_SAML, 'saml:AuthnContextClassRef');
-		$ac->appendChild($accr);
-
-		$accr->appendChild($document->createTextNode($this->authnContext));
+		SAML2_Utils::addString($ac, SAML2_Const::NS_SAML, 'saml:AuthnContextClassRef', $this->authnContext);
 	}
 
 
