@@ -338,10 +338,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 			}
 			switch ($node->localName) {
 			case 'AudienceRestriction':
-				$audiences = SAML2_Utils::xpQuery($node, './saml_assertion:Audience');
-				foreach ($audiences as &$audience) {
-					$audience = trim($audience->textContent);
-				}
+				$audiences = SAML2_Utils::extractStrings($node, './saml_assertion:Audience');
 				if ($this->validAudiences === NULL) {
 					/* The first (and probably last) AudienceRestriction element. */
 					$this->validAudiences = $audiences;

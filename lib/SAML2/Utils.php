@@ -348,4 +348,23 @@ class SAML2_Utils {
 		return $ret;
 	}
 
+
+	/**
+	 * Extract strings from a set of nodes.
+	 *
+	 * @param DOMElement $parent  The element we should rund the XPath query on.
+	 * @param string $query  The XPath query we should use to retrieve the nodes.
+	 * @return array  The string values of the various nodes.
+	 */
+	public static function extractStrings(DOMElement $parent, $query) {
+		assert('is_string($query)');
+
+		$ret = array();
+		foreach (self::xpQuery($parent, $query) as $node) {
+			$ret[] = trim($node->textContent);
+		}
+
+		return $ret;
+	}
+
 }
