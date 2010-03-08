@@ -11,7 +11,7 @@ SimpleSAMLphp Service Provider QuickStart
 
 <!-- {{TOC}} -->
 
-This guide will describe how to configure simpleSAMLphp as a service provider (SP). You should previously have installed simpleSAMLphp as described in [the simpleSAMLphp installation instructions](http://rnd.feide.no/content/installing-simplesamlphp).
+This guide will describe how to configure simpleSAMLphp as a service provider (SP). You should previously have installed simpleSAMLphp as described in [the simpleSAMLphp installation instructions](simplesamlphp-install).
 
 
 
@@ -31,7 +31,7 @@ This is a minimal `authsources.php` for a SP:
         ),
     );
 
-For more information about additional options available for the SP, see the [`saml:SP` reference](https://rnd.feide.no/content/saml-service-provider-configuration-reference).
+For more information about additional options available for the SP, see the [`saml:SP` reference](./saml:sp).
 
 If you want mulitple Service Providers in the same site and installation, you can add more entries in the `authsources.php` configuration. If so remember to set the EntityID explicitly. Here is an example:
 
@@ -76,7 +76,7 @@ This is a minimal example of a `metadata/saml20-idp-remote.php` metadata file:
         'certFingerprint'      => 'c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb',
     );
 
-For more information about available options in the idp-remote metadata files, see the [IdP remote reference](https://rnd.feide.no/content/idp-remote-metadata-reference).
+For more information about available options in the idp-remote metadata files, see the [IdP remote reference](simplesamlphp-reference-idp-remote).
 
 If you have the metadata of the remote IdP as an XML file, you can use the built-in XML to simpleSAMLphp metadata converter, which by default is available as `/admin/metadata-converter.php` in your simpleSAMLphp installation.
 
@@ -141,7 +141,7 @@ The test page should contain a list of your attributes:
 Integrating authentication with your own application
 ----------------------------------------------------
 
-The API is documented in [the SP API reference](http://rnd.feide.no/content/simplesamlphp-sp-api-reference).
+The API is documented in [the SP API reference](simplesamlphp-sp-api-reference).
 
 For those web resources you want to protect, you must add a few
 lines of PHP code:
@@ -182,7 +182,7 @@ We can also request authentication with a specific IdP:
     ));
 
 Other options are also available.
-Take a look in the documentation for the [SP module](https://rnd.feide.no/content/saml-service-provider-configuration-reference) for a list of all parameters.
+Take a look in the documentation for the [SP module](./saml:sp) for a list of all parameters.
 
 Support
 -------
@@ -190,6 +190,6 @@ Support
 If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
 -  [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
--  [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+-  [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/)
 -  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
 -  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)

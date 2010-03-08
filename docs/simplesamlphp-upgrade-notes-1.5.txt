@@ -14,7 +14,7 @@ Upgrade notes for simpleSAMLphp 1.5
     Relating to this change, we have also deprecated the `initSSO`-scripts for SAML 1.1 and SAML 2.0 authentication.
     The old methods will still be supported for a while, but new code should probably use the new code.
 
-    See the [migration guide](http://rnd.feide.no/content/migration-modularized-saml-service-provider) for more information about this.
+    See the [migration guide](simplesamlphp-sp-migration) for more information about this.
 
   * The `request.signing` option has been removed.
     That option was replaced with the `redirect.sign` and `redirect.validate` options, and has been depreceated for one year.

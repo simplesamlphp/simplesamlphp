@@ -16,7 +16,7 @@ simpleSAMLphp news and documentation
 
 This document is part of the simpleSAMLphp documentation suite.
 
- * [List of all simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+ * [List of all simpleSAMLphp documentation](http://simplesamlphp.org/docs)
  * [Latest news about simpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also conatins an RSS feed)
  * [simpleSAMLphp homepage](http://rnd.feide.no/simplesamlphp)
 
@@ -189,7 +189,7 @@ You can translate as many of the texts as you would like; a full translation is 
 
 ## Customizing the web frontend with themes
 
-Documentation on theming is moved [to a separate document](http://rnd.feide.no/content/theming-simplesamlphp).
+Documentation on theming is moved [to a separate document](simplesamlphp-theming).
 
 
 Support
@@ -198,6 +198,6 @@ Support
 If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
 -  [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
--  [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+-  [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/)
 -  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
 -  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)

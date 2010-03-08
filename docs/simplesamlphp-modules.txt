@@ -149,7 +149,7 @@ To use this authentication source in a SAML 2.0 IdP, set the
 
 This is described in a separate document:
 
-  * [Creating authentication sources](http://code.google.com/p/simplesamlphp/source/browse/trunk/docs/simplesamlphp-authsource.txt)
+  * [Creating authentication sources](simplesamlphp-authsource)
 
 
 Authentication processing filters
@@ -157,7 +157,7 @@ Authentication processing filters
 
 *Authentication processing filters* is explained in a separate document:
 
-  * [Authentication processing filters](http://rnd.feide.no/content/authentication-processing-filters-simplesamlphp)
+  * [Authentication processing filters](simplesamlphp-authproc)
 
 
 

@@ -13,7 +13,7 @@ Connecting SimpleSAMLphp SP to UK Access Federation and InCommon
 
 This guide will describe how to configure simpleSAMLphp as a service provider (SP) supporting SAML 1.1 (shib1.3) and SAML 2.0 connecting it to a federation such as **UK Access Federation** or **InCommon**.
 
-You should previously have installed simpleSAMLphp as described in [the simpleSAMLphp installation instructions](http://rnd.feide.no/content/installing-simplesamlphp).
+You should previously have installed simpleSAMLphp as described in [the simpleSAMLphp installation instructions](simplesamlphp-install).
 
 
 Configuring the SP
@@ -23,8 +23,8 @@ The SP is configured by an entry in `config/authsources.php`. If you copy the `a
 
 Further details on configuring an SP:
 
-  * [Service Provider QuickStart](https://rnd.feide.no/content/using-simplesamlphp-service-provider)
-  * [Configuration Reference](https://rnd.feide.no/content/saml-service-provider-configuration-reference)
+  * [Service Provider QuickStart](simplesamlphp-sp)
+  * [Configuration Reference](./saml:sp)
 
 ### Enablig a certificate for your Service Provider
 
@@ -108,11 +108,11 @@ Then the page should load for a while and show no errors, only a white page. (Th
 
 For more details on how to configure automateed metadata:
 
-  * [Automated Metadata Management](https://rnd.feide.no/content/automated-metadata-distribution-with-simplesamlphp)
+  * [Automated Metadata Management](simplesamlphp-automated_metadata)
 
 For information on how to configure *remote metadata* manually (possibly in combination with automated metadata as described here):
 
-  * [Service Provider QuickStart](https://rnd.feide.no/content/using-simplesamlphp-service-provider)
+  * [Service Provider QuickStart](simplesamlphp-sp)
 
 
 
@@ -144,7 +144,7 @@ Integrating authentication with your own application
 ----------------------------------------------------
 
 
-  * [Service Provider QuickStart](https://rnd.feide.no/content/using-simplesamlphp-service-provider)
+  * [Service Provider QuickStart](simplesamlphp-sp)
 
 
 Caveat
@@ -178,7 +178,7 @@ Support
 If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
 -  [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
--  [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+-  [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/)
 -  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
 -  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
 

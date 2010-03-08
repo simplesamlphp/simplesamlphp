@@ -17,7 +17,7 @@ simpleSAMLphp news and documentation
 
 This document is part of the simpleSAMLphp documentation suite.
 
- * [List of all simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+ * [List of all simpleSAMLphp documentation](http://simplesamlphp.org/docs)
  * [Latest news about simpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also conatins an RSS feed)
  * [simpleSAMLphp homepage](http://rnd.feide.no/simplesamlphp)
 
@@ -26,7 +26,7 @@ Development version
 --------------------
 
 This document is about the latest stable version of simpleSAMLphp.
-If you want to install the development version, look at the instructions for [installing simpleSAMLphp from Subversion](http://rnd.feide.no/content/installing-simplesamlphp-subversion).
+If you want to install the development version, look at the instructions for [installing simpleSAMLphp from Subversion](simplesamlphp-subversion).
 
 
 Prerequisites
@@ -214,11 +214,17 @@ At the bottom of the installation page are some green lights. simpleSAML runs so
 
 You have now successfully installed simpleSAMLphp, and the next steps depends on whether you want to setup a service provider, to protect a website by authentication or if you want to setup an identity provider and connect it to a user catalog. Documentation on bridging between federation protocols is found in a separate document.
 
--  [Setting up simpleSAMLphp as a service provider](http://rnd.feide.no/content/using-simplesamlphp-service-provider)
--  [Setting up simpleSAMLphp as an identity provider](http://rnd.feide.no/content/using-simplesamlphp-identity-provider)
--  [Setting up simpleSAMLphp with Google Apps for Eduation](http://rnd.feide.no/content/simplesamlphp-idp-google-apps-education)
--  [Advanced simpleSAMLphp features](http://rnd.feide.no/content/simplesamlphp-advanced-features)
--  [simpleSAMLphp maintenance and configuration](http://rnd.feide.no/content/simplesamlphp-maintenance-and-configuration)
+ * [Using simpleSAMLphp as a SAML Service Provider](simplesamlphp-sp)
+  * [Hosted SP Configuration Reference](./saml:sp)
+  * [IdP remote reference](simplesamlphp-reference-idp-remote)
+  * [Connecting SimpleSAMLphp as a SP to UK Access Federation or InCommon](simplesamlphp-ukaccess)
+  * [Upgrading - migration to use the SAML authentication source](simplesamlphp-sp-migration)
+ * [Identity Provider QuickStart](simplesamlphp-idp)
+  * [IdP hosted reference](simplesamlphp-reference-idp-hosted)
+  * [SP remote reference](simplesamlphp-reference-sp-remote)
+  * [Use case: Setting up an IdP for Google Apps](simplesamlphp-googleapps)
+  * [Identity Provider Advanced Topics](simplesamlphp-idp-more)
+ * [Automated Metadata Management](simplesamlphp-automated_metadata)
 
 
 Support
@@ -227,7 +233,7 @@ Support
 If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
 -  [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
--  [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+-  [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/)
 -  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
 -  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
 

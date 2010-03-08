@@ -23,16 +23,16 @@ Released 2009-11-05. Revision 1937.
 ### New modules:
 
   * `adfs`
-  * [`authorize`](http://rnd.feide.no/content/simplesamlphp-authorization)
+  * [`authorize`](./authorize:authorize)
   * `authtwitter`
-  * [`autotest`](http://rnd.feide.no/content/simplesamlphp-module-autotest)
+  * [`autotest`](./autotest:test)
   * `exampleattributeserver`
   * `metaedit`
-  * [`multiauth`](http://rnd.feide.no/content/simplesamlphp-module-multiauth)
+  * [`multiauth`](./multiauth:multiauth)
   * `oauth`
-  * [`openidProvider`](http://rnd.feide.no/content/openid-provider-documentation)
-  * [`radius`](https://rnd.feide.no/content/radius-authentication-module)
-  * [`saml`](https://rnd.feide.no/content/saml-service-provider-configuration-reference)
+  * [`openidProvider`](./openidProvider:provider)
+  * [`radius`](./radius:radius)
+  * [`saml`](./saml:sp)
 
 ### `aggregator`:
 
