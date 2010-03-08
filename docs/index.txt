@@ -6,7 +6,7 @@ SimpleSAMLphp Documentation
     * [Upgrading SimpleSAMLphp to version 1.5](simplesamlphp-upgrade-notes-1.5)
     * [Changelog](simplesamlphp-changelog)
  * [Using simpleSAMLphp as a SAML Service Provider](simplesamlphp-sp)
-  * [Hosted SP Configuration Reference](saml:sp)
+  * [Hosted SP Configuration Reference](./saml:sp)
   * [IdP remote reference](simplesamlphp-reference-idp-remote)
   * [Connecting SimpleSAMLphp as a SP to UK Access Federation or InCommon](simplesamlphp-ukaccess)
   * [Upgrading - migration to use the SAML authentication source](simplesamlphp-sp-migration)
@@ -25,14 +25,14 @@ SimpleSAMLphp Documentation
 
 Documentation on specific simpleSAMLphp modules:
  
- * [Consent module](consent:consent)
- * [Installing and configuring the consentAdmin module](consentAdmin:consentAdmin)
- * [OpenId Provider Module](openidProvider:provider)
- * [Authorization](authorize:authorize)
- * [InfoCard Module](InfoCard:usage)
- * [autotest Module](autotest:test)
- * [Statistics](statistics:statistics)
- * [Aggregator](aggregator:aggregator)
+ * [Consent module](./consent:consent)
+ * [Installing and configuring the consentAdmin module](./consentAdmin:consentAdmin)
+ * [OpenId Provider Module](./openidProvider:provider)
+ * [Authorization](./authorize:authorize)
+ * [InfoCard Module](./InfoCard:usage)
+ * [autotest Module](./autotest:test)
+ * [Statistics](./statistics:statistics)
+ * [Aggregator](./aggregator:aggregator)
 
 Documentation for simpleSAMLphp developers:
 
