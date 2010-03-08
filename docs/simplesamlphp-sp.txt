@@ -9,6 +9,7 @@ SimpleSAMLphp Service Provider QuickStart
 
   * Version: `$Id$`
 
+<!-- {{TOC}} -->
 
 This guide will describe how to configure simpleSAMLphp as a service provider (SP). You should previously have installed simpleSAMLphp as described in [the simpleSAMLphp installation instructions](http://rnd.feide.no/content/installing-simplesamlphp).
 

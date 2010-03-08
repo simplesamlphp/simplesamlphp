@@ -9,6 +9,8 @@ SimpleSAMLphp Translation Portal
 
   * Version: `$Id$`
 
+<!-- {{TOC}} -->
+
 SimpleSAMLphp supports multiple languages. 
 
   * The SimpleSAMLphp Translation Portal

@@ -10,6 +10,7 @@ simpleSAMLphp Installation and Configuration
   * Version: `$Id$`
 
 
+<!-- {{TOC}} -->
 
 simpleSAMLphp news and documentation
 ------------------------------------

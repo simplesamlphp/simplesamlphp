@@ -9,6 +9,8 @@ SimpleSAMLphp Features
 
   * Version: `$Id`
 
+<!-- {{TOC}} -->
+
 ## Automatic Metadata Retrieval
 
 SimpleSAMLphp supports regurlarly downloading SAML metadata form a HTTP location, optionally validating the signature on the metadata, and then cache the metadata to be used by a SP or IdP. Shibboleth introduced this functionality, and SimpleSAMLphp implements it in a compatible way.

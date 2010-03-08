@@ -9,6 +9,7 @@ SimpleSAMLphp Identity Provider Advanced Topics
 
   * Version: `$Id$`
 
+<!-- {{TOC}} -->
 
 AJAX iFrame Single Log-Out
 --------------------------

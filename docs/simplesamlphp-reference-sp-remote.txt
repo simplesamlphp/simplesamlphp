@@ -1,6 +1,8 @@
 SP remote metadata reference
 ============================
 
+<!-- {{TOC}} -->
+
 This is a reference for metadata options available for
 `metadata/saml20-sp-remote.php` and `metadata/shib13-sp-remote.php`.
 Both files have the following format:

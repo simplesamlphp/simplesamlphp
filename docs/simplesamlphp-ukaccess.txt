@@ -9,6 +9,7 @@ Connecting SimpleSAMLphp SP to UK Access Federation and InCommon
 
   * Version: `$Id$`
 
+<!-- {{TOC}} -->
 
 This guide will describe how to configure simpleSAMLphp as a service provider (SP) supporting SAML 1.1 (shib1.3) and SAML 2.0 connecting it to a federation such as **UK Access Federation** or **InCommon**.
 
