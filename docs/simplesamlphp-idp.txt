@@ -11,7 +11,7 @@ SimpleSAMLphp Identity Provider QuickStart
 
 <!-- {{TOC}} -->
 
-This guide will describe how to configure simpleSAMLphp as an identity provider (IdP). You should previously have installed simpleSAMLphp as described in [the simpleSAMLphp installation instructions](http://rnd.feide.no/content/installing-simplesamlphp)
+This guide will describe how to configure simpleSAMLphp as an identity provider (IdP). You should previously have installed simpleSAMLphp as described in [the simpleSAMLphp installation instructions](simplesamlphp-install)
 
 
 Enabling the Identity Provider functionality
@@ -34,35 +34,35 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 `exampleauth:Static`
 : Automatically log in as a user with a set of attributes.
 
-[`ldap:LDAP`](https://rnd.feide.no/content/configuring-simplesamlphp-ldap-authentication-source)
+[`ldap:LDAP`](./ldap:ldap)
 : Authenticates an user to a LDAP server.
 
-[`ldap:LDAPMulti`](https://rnd.feide.no/content/configuring-simplesamlphp-ldap-authentication-source)
+[`ldap:LDAPMulti`](./ldap:ldap)
 : Authenticates an user to one of several LDAP server.
   The user can choose the LDAP server from a dropdown list.
   
 `sqlauth:SQL`
 : Authenticate an user against a database.
 
-[`radius:Radius`](https://rnd.feide.no/content/radius-authentication-module)
+[`radius:Radius`](./radius:radius)
 : Authenticates an user to a Radius server.
 
-[`InfoCard:ICAuth`](http://rnd.feide.no/content/simplesamlphp-infocard-module-usage)
+[`InfoCard:ICAuth`](./InfoCard:usage)
 : Authenticate with an InfoCard.
 
 `openid:OpenIDConsumer`
 : Authenticate against an OpenID provider.
 
-[`saml:SP`](https://rnd.feide.no/content/saml-service-provider-configuration-reference)
+[`saml:SP`](./saml:sp)
 : Authenticate against a SAML IdP. Can be used for bridging.
 
 `authYubiKey:YubiKey`
 : Authenticate with [an YubiKey](http://www.yubico.com/products/yubikey/).
 
-[`authfacebook:Facebook`](https://rnd.feide.no/content/using-facebook-authentication-source)
+[`authfacebook:Facebook`](./authfacebook:authfacebook)
 : Authenticate with a Facebook ID.
 
-[`authtwitter:Twitter`](https://rnd.feide.no/content/twitter-authentication-module)
+[`authtwitter:Twitter`](./authtwitter:authtwitter)
 : Authenticate with your Twitter account using the Twitter OAuth API.
 
 In this guide, we will use the `exampleauth:UserPass` authentication module. This module does not have any dependencies, and is therefore simple to set up.
@@ -138,7 +138,7 @@ This is a minimal configuration of a SAML 2.0 IdP:
     );
 
 For more information about available options in the idp-hosted metadata
-files, see the [IdP hosted reference](https://rnd.feide.no/content/idp-hosted-metadata-reference).
+files, see the [IdP hosted reference](simplesamlphp-reference-idp-hosted).
 
 
 Adding SPs to the IdP
@@ -154,7 +154,7 @@ The identity provider you are configuring needs to know about the service provid
 
 If you have the metadata of the remote SP as an XML file, you can use the built-in XML to simpleSAMLphp metadata converter, which by default is available as `/admin/metadata-converter.php` in your simpleSAMLphp installation.
 
-For more information about available options in the sp-remote metadata files, see the [SP remote reference](https://rnd.feide.no/content/sp-remote-metadata-reference).
+For more information about available options in the sp-remote metadata files, see the [SP remote reference](simplesamlphp-reference-sp-remote).
 
 
 Creating a SSL self signed certificate
@@ -192,7 +192,7 @@ Testing the IdP
 
 The simplest way to test the IdP is to configure a simpleSAMLphp SP
 on the same machine. See the instructions for
-[configuring simpleSAMLphp as an SP](http://rnd.feide.no/content/using-simplesamlphp-service-provider).
+[configuring simpleSAMLphp as an SP](simplesamlphp-sp).
 
 
 ### Note ###
@@ -206,7 +206,7 @@ Support
 If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
 - [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
-- [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+- [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/)
 - [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
 - [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
 

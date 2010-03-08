@@ -22,7 +22,7 @@ Common options
 The following options are common between both the SAML 2.0 protocol and Shibboleth 1.3 protocol:
 
 `authproc`
-:   Used to manipulate attributes, and limit access for each IdP. See the [authentication processing filter manual](http://rnd.feide.no/content/authentication-processing-filters-simplesamlphp).
+:   Used to manipulate attributes, and limit access for each IdP. See the [authentication processing filter manual](simplesamlphp-authproc).
 
 `base64attributes`
 :   Whether attributes received from this IdP should be base64 decoded. The default is `FALSE`.

@@ -61,7 +61,7 @@ To ease migration, you probably want the entity ID on the new SP to be different
 This makes it possible to have both the old and the new SP active on the IdP at the same time.
 
 You can also add other options this authentication source.
-See the [`saml:SP`](https://rnd.feide.no/content/saml-service-provider-configuration-reference) documentation for more information.
+See the [`saml:SP`](./saml:sp) documentation for more information.
 
 
 Add the metadata for this authentication source to the IdP

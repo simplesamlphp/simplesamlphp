@@ -32,7 +32,7 @@ and Shibboleth 1.3 protocol:
 
 `authproc`
 :   Used to manipulate attributes, and limit access for each SP. See
-    the [authentication processing filter manual](http://rnd.feide.no/content/authentication-processing-filters-simplesamlphp).
+    the [authentication processing filter manual](simplesamlphp-authproc).
 
 `base64attributes`
 :   Whether attributes sent to this SP should be base64 encoded. The

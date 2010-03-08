@@ -25,7 +25,7 @@ Attribute Release Consent
 
 The attribute release consent is documented in a separate document.
 
-  * [Documentation on the consent module](https://rnd.feide.no/content/consent-module)
+  * [Documentation on the consent module](./consent:consent)
 
 
 Support for bookmarking the login page

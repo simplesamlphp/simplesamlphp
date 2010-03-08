@@ -31,7 +31,7 @@ Common options
 :   Note that this only changes the values in the generated metadata and in the messages sent to others. You must also configure your webserver to deliver this URL to the correct PHP page.
 
 `authproc`
-:   Used to manipulate attributes, and limit access for each SP. See the [authentication processing filter manual](http://rnd.feide.no/content/authentication-processing-filters-simplesamlphp).
+:   Used to manipulate attributes, and limit access for each SP. See the [authentication processing filter manual](simplesamlphp-authproc).
 
 `certData`
 :   Base64 encoded certificate data. Can be used instead of the `certificate` option.

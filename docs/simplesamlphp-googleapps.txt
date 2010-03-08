@@ -17,7 +17,7 @@ simpleSAMLphp news and documentation
 
 This document is part of the simpleSAMLphp documentation suite.
 
- * [List of all simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+ * [List of all simpleSAMLphp documentation](http://simplesamlphp.org/docs)
  * [Latest news about simpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also conatins an RSS feed)
  * [simpleSAMLphp homepage](http://rnd.feide.no/simplesamlphp)
 
@@ -83,10 +83,10 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 `exampleauth:Static`
 : Automatically log in as a user with a set of attributes.
 
-[`ldap:LDAP`](https://rnd.feide.no/content/configuring-simplesamlphp-ldap-authentication-source)
+[`ldap:LDAP`](./ldap:ldap)
 : Authenticates an user to a LDAP server.
 
-For more authentication modules, see [SimpleSAMLphp Identity Provider QuickStart](https://rnd.feide.no/content/using-simplesamlphp-identity-provider).
+For more authentication modules, see [SimpleSAMLphp Identity Provider QuickStart](simplesamlphp-idp).
 
 
 In this guide, we will use the `exampleauth:UserPass` authentication module. This module does not have any dependencies, and is therefore simple to set up.
@@ -179,7 +179,7 @@ For an e-mail address `student@g.feide.no`, the `uid` should be set to `student`
 You should modify the `AssertionConsumerService` to include your Google Apps domain name instead of `g.feide.no`.
 
 For an explanation of the parameters, see the
-[SimpleSAMLphp Identity Provider QuickStart](http://rnd.feide.no/content/using-simplesamlphp-identity-provider).
+[SimpleSAMLphp Identity Provider QuickStart](simplesamlphp-idp).
 
 ## Configure Google Apps for education
 
@@ -247,7 +247,7 @@ Support
 If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
 -  [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
--  [List of all available simpleSAMLphp documentation](http://rnd.feide.no/view/simplesamlphpdocs)
+-  [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/)
 -  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
 -  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
 
