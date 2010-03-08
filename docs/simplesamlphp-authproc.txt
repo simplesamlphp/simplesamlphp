@@ -9,6 +9,9 @@ Authentication Processing Filters in SimpleSAMLphp
 
   * Version: `$Id$`
 
+<!-- {{TOC}} -->
+
+
 In SimpleSAMLphp, there is an API where you can *do stuff* at the IdP after authentication is complete, and just before you are sent back to the SP. The same API is available on the SP, after you have received a successfull Authentication Response from the IdP and before you are sent back to the SP application.
 
 Authentication processing filters postprocesses authentication information received from authentication sources. It is possible to use this for additional authentication checks, requesting the users consent before delivering attributes to the user, modifying the users attributes, and other things which should be performed before returning the user to the service provider he came from.

@@ -9,7 +9,7 @@ simpleSAMLphp Maintenance
 
   * Version: `$Id$`
 
-
+<!-- {{TOC}} -->
 
 simpleSAMLphp news and documentation
 ------------------------------------

@@ -1,6 +1,8 @@
 Migrating to the `saml` module
 ==============================
 
+<!-- {{TOC}} -->
+
 This document describes how you can migrate your code to use the `saml` module for authentication against SAML 2.0 and SAML 1.1 IdPs.
 It assumes that you have previously set up a SP by using redirects to `saml2/sp/initSSO.php`.
 
