@@ -7,10 +7,9 @@ SimpleSAMLphp as a Service Provider
 	http://daringfireball.net/projects/markdown/syntax
 -->
 
-  * Version: `$Id$`
 
-simpleSAMLphp documentation
----------------------------
+<!-- {{TOC}} -->
+
 
 This document is part of the simpleSAMLphp documentation suite.
 

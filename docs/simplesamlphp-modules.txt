@@ -9,6 +9,7 @@ simpleSAMLphp modules
 
   * Version: `$Id$`
 
+<!-- {{TOC}} -->
 
 This document describes how the module system in simpleSAMLphp
 works. It descibes what types of modules there are, how they are

@@ -1,6 +1,7 @@
 simpleSAMLphp changelog
 =======================
 
+<!-- {{TOC}} -->
 
 Here is changes between simpleSAMLphp versions. Look here if you
 are upgrading, to see if there are any changes to the config

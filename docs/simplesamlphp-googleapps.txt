@@ -10,6 +10,7 @@ Setting up a simpleSAMLphp SAML 2.0 IdP to use with Google Apps for Education
   * Version: `$Id: simplesamlphp-install.txt 1297 2009-02-23 09:03:26Z andreassolberg $`
 
 
+<!-- {{TOC}} -->
 
 simpleSAMLphp news and documentation
 ------------------------------------

@@ -10,6 +10,8 @@ simpleSAMLphp Advanced Features
   * Version: `$Id$`
 
 
+<!-- {{TOC}} -->
+
 simpleSAMLphp documentation
 ---------------------------
 

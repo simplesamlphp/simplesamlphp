@@ -9,6 +9,7 @@ Automated Metadata Management
 
   * Version: `$Id$`
 
+<!-- {{TOC}} -->
 
 Introduction
 ------------
