@@ -47,7 +47,7 @@ Common options
 
 `authproc`
 :   Used to manipulate attributes, and limit access for each SP. See
-    the [authentication processing filter manual](http://rnd.feide.no/content/authentication-processing-filters-simplesamlphp).
+    the [authentication processing filter manual](simplesamlphp-authproc).
 
 `certificate`
 :   Certificate file which should be used by this IdP, in PEM format.
