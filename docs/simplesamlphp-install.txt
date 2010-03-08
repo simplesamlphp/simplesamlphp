@@ -22,11 +22,11 @@ This document is part of the simpleSAMLphp documentation suite.
  * [simpleSAMLphp homepage](http://rnd.feide.no/simplesamlphp)
 
 
-Developement version
+Development version
 --------------------
 
 This document is about the latest stable version of simpleSAMLphp.
-If you want to install the developement version, look at the instructions for [installing simpleSAMLphp from Subversion](http://rnd.feide.no/content/installing-simplesamlphp-subversion).
+If you want to install the development version, look at the instructions for [installing simpleSAMLphp from Subversion](http://rnd.feide.no/content/installing-simplesamlphp-subversion).
 
 
 Prerequisites
