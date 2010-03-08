@@ -1,0 +1,37 @@
+SimpleSAMLphp Documentation
+===========================
+
+ * [Installing simpleSAMLphp](simplesamlphp-install)
+    * [Changelog](simplesamlphp-changelog)
+ * [Using simpleSAMLphp as a SAML Service Provider](simplesamlphp-sp)
+ * [Identity Provider QuickStart](simplesamlphp-idp)
+  * [IdP hosted reference](simplesamlphp-reference-idp-hosted)
+  * [SP remote reference](simplesamlphp-reference-sp-remote)
+  * [Use case: Setting up an IdP for Google Apps](simplesamlphp-googleapps)
+ * [Automated Metadata Management](simplesamlphp-automated_metadata)
+ * [Maintenance and configuration](simplesamlphp-maintenance) - covers session handling, php configuration etc.
+ * [Authentication Processing Filters](simplesamlphp-authproc) - attribute filtering, attribute mapping, consent, group generation etc.
+ * [Advanced features](simplesamlphp-advancedfeatures) - covers bridging protocols, attribute filtering, etc.
+ * [Theming simpleSAMLphp](simplesamlphp-theming)
+ * [simpleSAMLphp Modules](simplesamlphp-modules) - how to create own customized modules
+
+Documentation on specific simpleSAMLphp modules:
+ 
+ * [Consent module](./consent:consent)
+ * [InfoCard Module](./InfoCard:usage)
+ * [Statistics](./statistics:statistics)
+
+
+## Externally contributed documentation
+
+  * [Notes on using SimpleSAMLphp SP and Shibboleth IdP using SAML 2.0](http://www.zeitoun.net/articles/configure-simplesaml-1.3-sp-and-shibboleth-2.1-idp/start)
+
+## Video tutorials
+
+ * [Installation, configuration and test login with Feide (approx 8 minutes)](http://rnd.feide.no/content/video-tutorial-installing-and-configuring-simplesamlphp)
+
+## Community help and support
+
+ * [Please join the mailinglist](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
+ * [The simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start) contains information about different setup of simpleSAMLphp. In example eduGAIN setup, common errors, linux setup, shibboleth installation etc.
+
