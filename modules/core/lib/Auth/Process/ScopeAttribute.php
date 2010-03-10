@@ -42,7 +42,7 @@ class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_Processing
 		parent::__construct($config, $reserved);
 		assert('is_array($config)');
 
-		$config = SimpleSAML_Configuration::loadFromArray($config, 'ScopedAttributes');
+		$config = SimpleSAML_Configuration::loadFromArray($config, 'ScopeAttribute');
 
 		$this->scopeAttribute = $config->getString('scopeAttribute');
 		$this->sourceAttribute = $config->getString('sourceAttribute');
@@ -51,7 +51,7 @@ class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_Processing
 
 
 	/**
-	 * Apply filter to rename attributes.
+	 * Apply this filter to the request.
 	 *
 	 * @param array &$request  The current request
 	 */
