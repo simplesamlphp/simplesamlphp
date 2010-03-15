@@ -13,5 +13,15 @@
 	},
 	"modlist_disabled": {
 		"en": "Disabled"
+	},
+	"latest_version" : {
+		"en" : "Updated"
+	},
+	"update_exists" : {
+		"en" : "Update available"
+	},
+	"version" : {
+		"en" : "Version"
 	}
+
 }

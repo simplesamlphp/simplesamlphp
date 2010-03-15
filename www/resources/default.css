@@ -276,6 +276,15 @@ div.preferredidp {
 	padding: 2px 2em 2px 2em;	
 }
 
+table.modules {
+	border-collapse: collapse;
+}
+table.modules tr td {
+	border-bottom: 1px solid #ddd;
+}
+table.modules tr.even td {
+	background: #f0f0f0;
+}
 
 /* Attribute presentation in example page */
 table.attributes {
