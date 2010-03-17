@@ -104,6 +104,7 @@ class sspmod_metaedit_MetaEditor {
 		if (array_key_exists($key, $metadata)) {
 			$value = htmlspecialchars($metadata[$key]);
 		}
+		#echo '<tr><td><pre>'; print_r($metadata); echo '</pre></td></tr>';
 		
 		if ($textarea) {
 			return '<tr><td class="name">' . $name . '</td><td class="data">
@@ -119,7 +120,12 @@ class sspmod_metaedit_MetaEditor {
 	protected function endpointField($metadata, $key, $name, $textarea = FALSE) {
 		$value = '';
 		if (array_key_exists($key, $metadata)) {
-			$value = htmlspecialchars($metadata[$key]['Location']);
+			if (is_array($metadata[$key])) {
+				$value = htmlspecialchars($metadata[$key]['Location']);	
+			} else {
+				$value = htmlspecialchars($metadata[$key]);	
+			}
+			
 		}
 		
 		if ($textarea) {
