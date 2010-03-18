@@ -62,7 +62,7 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 [`authfacebook:Facebook`](./authfacebook:authfacebook)
 : Authenticate with a Facebook ID.
 
-[`authtwitter:Twitter`](./authtwitter:authtwitter)
+[`authtwitter:Twitter`](./authtwitter:oauthtwitter)
 : Authenticate with your Twitter account using the Twitter OAuth API.
 
 In this guide, we will use the `exampleauth:UserPass` authentication module. This module does not have any dependencies, and is therefore simple to set up.
