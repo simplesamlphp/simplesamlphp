@@ -217,7 +217,7 @@ You must also map some attributes received from the authentication module into e
 You should modify the `AssertionConsumerService` to include your Google Apps domain name instead of `g.feide.no`.
 
 For an explanation of the parameters, see the
-[simpleSAMLphp IdP documentation](simplesamlphp-idp.html).
+[simpleSAMLphp IdP documentation](simplesamlphp-idp).
 
 ## Configure Google Apps for education
 
