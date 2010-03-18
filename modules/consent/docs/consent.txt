@@ -5,7 +5,7 @@ The consent module is implemented as an Authentication Processing Filter. That m
 
 It is recommended to run the consent module at the IdP, and configure the filter to run after all attribute mangling filters is completed, to show the user the exact same attributes that are sent to the SP.
 
-  * [Read more about processing filters in simpleSAMLphp](/content/authentication-processing-filters-simplesamlphp)
+  * [Read more about processing filters in simpleSAMLphp](simplesamlphp-authproc)
 
 
 Configure the user ID
