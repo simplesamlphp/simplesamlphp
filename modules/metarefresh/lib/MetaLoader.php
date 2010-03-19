@@ -186,9 +186,11 @@ class sspmod_metarefresh_MetaLoader {
 		}
 	
 		if(!file_exists($outputDir)) {
-			if (!is_writable($outputDir)) throw new Exception('Permission denied creating directory: ' . $outputDir);
 			SimpleSAML_Logger::info('Creating directory: ' . $outputDir . "\n");
-			mkdir($outputDir, 0777, TRUE);
+			$res = @mkdir($outputDir, 0777, TRUE);
+			if ($res === FALSE) {
+				throw new Exception('Error creating directory: ' . $outputDir);
+			}
 		}
 	
 		foreach($this->metadata as $category => $elements) {
