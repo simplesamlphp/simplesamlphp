@@ -105,7 +105,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		assert('is_string($entityId)');
 
 		if ($this->idp !== NULL && $this->idp !== $entityId) {
-			throw new SimpleSAML_Error_Exception('Cannot retrieve metadata for IdP ' . var_export($idp, TRUE) .
+			throw new SimpleSAML_Error_Exception('Cannot retrieve metadata for IdP ' . var_export($this->idp, TRUE) .
 				' because it isn\'t a valid IdP for this SP.');
 		}
 
