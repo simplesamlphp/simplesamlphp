@@ -126,9 +126,11 @@ if($session->getIdP() != null) {
 }
 
 // Remove services, whitch have consent disabled
-foreach($idp_metadata['consent.disable'] AS $disable) {
-    if(array_key_exists($disable, $all_sp_metadata)) {
-        unset($all_sp_metadata[$disable]);
+if(isset($idp_metadata['consent.disable'])) {
+    foreach($idp_metadata['consent.disable'] AS $disable) {
+        if(array_key_exists($disable, $all_sp_metadata)) {
+            unset($all_sp_metadata[$disable]);
+        }
     }
 }
 
