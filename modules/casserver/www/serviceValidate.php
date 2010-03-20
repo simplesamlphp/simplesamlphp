@@ -91,7 +91,7 @@ function storeTicket($ticket, $path, &$value ) {
 
 function retrieveTicket($ticket, $path) {
 
-	if (!preg_match('/^_?[a-zA-Z0-9]+$/D', $ticket)) throw new Exception('Invalid characters in ticket');
+	if (!preg_match('/^ST-?[a-zA-Z0-9]+$/D', $ticket)) throw new Exception('Invalid characters in ticket');
 
 	if (!is_dir($path)) 
 		throw new Exception('Directory for CAS Server ticket storage [' . $path . '] does not exists. ');

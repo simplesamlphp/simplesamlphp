@@ -52,7 +52,7 @@ if (!$session->isValid($auth) ) {
 $attributes = $session->getAttributes();
 
 $path = $casconfig->resolvePath($casconfig->getValue('ticketcache', 'ticketcache'));
-$ticket = SimpleSAML_Utilities::generateID();
+$ticket = str_replace( '_', 'ST-', SimpleSAML_Utilities::generateID() );
 storeTicket($ticket, $path, $attributes);
 
 // $test = retrieveTicket($ticket, $path);
