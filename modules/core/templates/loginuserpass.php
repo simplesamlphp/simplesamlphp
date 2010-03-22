@@ -93,6 +93,18 @@ foreach ($this->data['stateparams'] as $name => $value) {
 	</form>
 
 <?php
+
+if(!empty($this->data['links'])) {
+	echo '<ul class="links" style="margin-top: 2em">';
+	foreach($this->data['links'] AS $l) {
+		echo '<li><a href="' . htmlspecialchars($l['href']) . '">' . htmlspecialchars($this->t($l['text'])) . '</a></li>';
+	}
+	echo '</ul>';
+}
+
+
+
+
 echo('<h2>' . $this->t('{login:help_header}') . '</h2>');
 echo('<p>' . $this->t('{login:help_text}') . '</p>');
 

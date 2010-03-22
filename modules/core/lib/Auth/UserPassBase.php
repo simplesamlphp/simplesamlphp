@@ -32,6 +32,12 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	 * If this is NULL, we won't force any username.
 	 */
 	private $forcedUsername;
+	
+	/**
+	 * Links to pages from login page. 
+	 * From configuration
+	 */
+	protected $loginLinks;
 
 
 	/**
@@ -46,6 +52,10 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	public function __construct($info, &$config) {
 		assert('is_array($info)');
 		assert('is_array($config)');
+		
+		if (isset($config['core:loginpage_links'])) {
+			$this->loginLinks = $config['core:loginpage_links'];
+		}
 
 		/* Call the parent constructor first, as required by the interface. */
 		parent::__construct($info, $config);
@@ -60,6 +70,13 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	public function setForcedUsername($forcedUsername) {
 		assert('is_string($forcedUsername) || is_null($forcedUsername)');
 		$this->forcedUsername = $forcedUsername;
+	}
+
+	/**
+	 * Return login links from configuration
+	 */
+	public function getLoginLinks() {
+		return $this->loginLinks;
 	}
 
 

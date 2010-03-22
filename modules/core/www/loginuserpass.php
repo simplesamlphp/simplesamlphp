@@ -18,6 +18,13 @@ $authStateId = $_REQUEST['AuthState'];
 /* Retrieve the authentication state. */
 $state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_core_Auth_UserPassBase::STAGEID);
 
+
+$source = SimpleSAML_Auth_Source::getById($state[sspmod_core_Auth_UserPassBase::AUTHID]);
+if ($source === NULL) {
+	throw new Exception('Could not find authentication source with id ' . $state[sspmod_core_Auth_UserPassBase::AUTHID]);
+}
+
+
 if (array_key_exists('username', $_REQUEST)) {
 	$username = $_REQUEST['username'];
 } elseif (isset($state['core:username'])) {
@@ -54,6 +61,7 @@ if (array_key_exists('forcedUsername', $state)) {
 	$t->data['username'] = $username;
 	$t->data['forceUsername'] = FALSE;
 }
+$t->data['links'] = $source->getLoginLinks();
 $t->data['errorcode'] = $errorCode;
 $t->show();
 exit();
