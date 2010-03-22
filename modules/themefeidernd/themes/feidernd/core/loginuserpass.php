@@ -4,13 +4,9 @@
 	<title><?php echo $this->t('{login:user_pass_header}'); ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-	<link rel='stylesheet' href="/<?php echo $this->data['baseurlpath']; ?>resources/feidernd.css" type='text/css' />
+	<link rel='stylesheet' href="<?php echo SimpleSAML_Module::getModuleURL('themefeidernd/feidernd.css'); ?>" type='text/css' />
 	<!--[if IE]><style type="text/css">#login h1 a { margin-top: 35px; } #login #login_error { margin-bottom: 10px; }</style><![endif]--><!-- Curse you, IE! -->
-	<style>
-		input {
-			border: 1px solid #005;
-		}
-	</style>
+
 	<script type="text/javascript">
 		function focusit() {
 			document.getElementById('username').focus();
@@ -19,12 +15,13 @@
 	</script>
 </head>
 <body class="login">
+
 <div id="login">
-	<h1>
-		<a href="http://feide.no/" title="Go to Feide.no">Feide</a>
-	</h1>
 
 	<form name="loginform" id="loginform" action="?" method="post">
+		
+			<img alt="logo" src="<?php echo SimpleSAML_Module::getModuleURL('themefeidernd/ssplogo-fish-only-s.png') ?>" style="float: right" />
+		
 		<p>
 			<label><?php echo $this->t('{login:username}'); ?><br />
 			<input type="text" name="username" id="username" class="input" <?php if (isset($this->data['username'])) {
@@ -46,19 +43,33 @@
 <?php
 if ($this->data['errorcode'] !== NULL) {
 ?>
-	<div style="border: 1px solid #500;  background: #880b17; ">
-		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" style="float: left; margin: 15px " />
+	<div id="error">
+		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" style="float: right; margin: 15px " />
 		<h2><?php echo $this->t('{login:error_header}'); ?></h2>
-		<p><b><?php echo $this->t('{errors:title_' . $this->data['errorcode'] . '}'); ?></b></p>
+		<p style="clear: both"><b><?php echo $this->t('{errors:title_' . $this->data['errorcode'] . '}'); ?></b></p>
 		<p><?php echo $this->t('{errors:descr_' . $this->data['errorcode'] . '}'); ?></p>
 	</div>
 <?php
 }
+
+
+
+if(!empty($this->data['links'])) {
+	echo '<ul class="links" style="margin-top: 2em">';
+	foreach($this->data['links'] AS $l) {
+		echo '<li><a href="' . htmlspecialchars($l['href']) . '">' . htmlspecialchars($this->t($l['text'])) . '</a></li>';
+	}
+	echo '</ul>';
+}
+
+
+
 ?>
+
 
 <!--
 	<?php if (isset($this->data['error'])) { ?>
-		<div style="border: 1px solid #500;  background: #880b17; ">
+		<div id="error">
 		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" style="float: left; margin: 15px " />
 		<h2><?php echo $this->t('{error:error_header}'); ?></h2>
 		
@@ -71,9 +82,9 @@ if ($this->data['errorcode'] !== NULL) {
 <?php
 if ($this->data['errorcode'] !== NULL) {
 ?>
-	<div style="border-left: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; background: #f5f5f5">
+	<div id="error">
 		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" style="float: left; margin: 15px " />
-		<h2><?php echo $this->t('{login:error_header}'); ?></h2>
+		<h2><?php echo $this->t('{login:error_header}'); ?>sdfsdf</h2>
 		<p><b><?php echo $this->t('{errors:title_' . $this->data['errorcode'] . '}'); ?></b></p>
 		<p><?php echo $this->t('{errors:descr_' . $this->data['errorcode'] . '}'); ?></p>
 	</div>
@@ -97,15 +108,69 @@ foreach ($this->data['stateparams'] as $name => $value) {
 </div>
 
 
+<?php
 
-<ul>
-	<li><a href="http://rnd.feide.no/" title="Feide RnD">» Feide RnD</a></li>
-</ul>
-<!--
-		<h2><?php echo $this->t('help_header'); ?></h2>
+
+	$includeLanguageBar = TRUE;
+	if (!empty($_POST)) 
+		$includeLanguageBar = FALSE;
+	if (isset($this->data['hideLanguageBar']) && $this->data['hideLanguageBar'] === TRUE) 
+		$includeLanguageBar = FALSE;
+	
+	if ($includeLanguageBar) {
+		
+
+		echo '<div id="languagebar">';		
+		
+		// echo '<form action="' . SimpleSAML_Utilities::selfURL() . '" method="get">';
+		// echo '<select name="language">';
+		// echo '</select>';
+		// echo '</form>';
 		
 		
-		<p><?php echo $this->t('help_text'); ?></p>
--->
+
+		$languages = $this->getLanguageList();
+		$langnames = array(
+			'no' => 'Bokmål',
+			'nn' => 'Nynorsk',
+			'se' => 'Sámi',
+			'da' => 'Dansk',
+			'en' => 'English',
+			'de' => 'Deutsch',
+			'sv' => 'Svenska',
+			'fi' => 'Suomeksi',
+			'es' => 'Español',
+			'eu' => 'Euskara',
+			'fr' => 'Français',
+			'nl' => 'Nederlands',
+			'lb' => 'Luxembourgish', 
+			'cs' => 'Czech',
+			'sl' => 'Slovenščina', // Slovensk
+			'hr' => 'Hrvatski', // Croatian
+			'hu' => 'Magyar', // Hungarian
+			'pl' => 'Język polski', // Polish
+			'pt' => 'Português', // Portuguese
+			'pt-BR' => 'Português brasileiro', // Portuguese
+			'tr' => 'Türkçe',
+		);
+		
+		$textarray = array();
+		foreach ($languages AS $lang => $current) {
+			if ($current) {
+				$textarray[] = $langnames[$lang];
+			} else {
+				$textarray[] = '<a href="' . htmlspecialchars(
+						SimpleSAML_Utilities::addURLparameter(
+							SimpleSAML_Utilities::selfURL(), array('language' => $lang)
+						)
+				) . '">' . $langnames[$lang] . '</a>';
+			}
+		}
+		echo join(' | ', $textarray);
+		echo '</div>';
+	}
+
+?>
+
 </body>
 </html>
