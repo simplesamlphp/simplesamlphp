@@ -1,5 +1,12 @@
 <?php
 
+
+/**
+ * Perform installation and updates on simpleSAMLphp modules
+ * based on information found in a module definition.
+ *
+ * @Author	Andreas Åkre Solberg, <andreas.solberg@uninett.no>
+ */
 class sspmod_core_ModuleInstaller {
 	
 	public $module;

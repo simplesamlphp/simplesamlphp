@@ -1,5 +1,12 @@
 <?php
 
+
+/**
+ * Represents a definitino of a module.
+ * Is usually read and parsed from a JSON definition file.
+ *
+ * @Author	Andreas Åkre Solberg, <andreas.solberg@uninett.no>
+ */
 class sspmod_core_ModuleDefinition {
 	
 	public $def;

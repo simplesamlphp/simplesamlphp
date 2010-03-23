@@ -22,6 +22,7 @@ SimpleSAMLphp Documentation
  * [SimpleSAMLphp Dictionaries and Translation](simplesamlphp-translation)
  * [Theming simpleSAMLphp](simplesamlphp-theming)
  * [simpleSAMLphp Modules](simplesamlphp-modules) - how to create own customized modules
+ * [Installing third party modules with the pack.php tool](pack)
 
 Documentation on specific simpleSAMLphp modules:
  
