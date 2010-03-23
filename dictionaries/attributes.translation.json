@@ -11,7 +11,7 @@
 		"sl": "Vloga uporabnika",
 		"da": "Brugerens tilknytning til hjemmeorganisationen",
 		"se": "Du doaibma organisa&#353;uvnnas",
-		"hr": "Pripadnost",
+		"hr": "Povezanost s ustanovovm",
 		"hu": "Viszony",
 		"fi": "Suhde organisaatioon",
 		"pt-BR": "Filia\u00e7\u00e3o",
@@ -170,7 +170,7 @@
 		"sl": "\u017delen jezik",
 		"da": "Foretrukket sprog (evt. flere)",
 		"se": "Vuostta&#353;v&aacute;lljejuvvon giella dehe giellah&aacute;pmi",
-		"hr": "Prioritetni jezik",
+		"hr": "Preferirani jezik",
 		"hu": "Els\u0151dleges nyelv",
 		"fi": "Ensisijainen kieli",
 		"pt-BR": "Linguagem preferida",
@@ -190,7 +190,7 @@
 		"sl": "Mati\u010dna \u0161tevilka",
 		"da": "CPR-nummer",
 		"se": "Riegadannummir",
-		"hr": "Broj\u010dani identifikator osobe (JMBG, JMBAG, MBZ ili PASSPORT_NO)",
+		"hr": "Broj\u010dani identifikator osobe",
 		"hu": "T\u00e1rsadalombiztos\u00edt\u00e1si azonos\u00edt\u00f3 sz\u00e1m",
 		"fi": "Henkil\u00f6tunnus",
 		"pt-BR": "N\u00famero de identifica\u00e7\u00e3o atribu\u00eddo pelas autoridades p\u00fablicas",
@@ -361,7 +361,7 @@
 		"lb": "Ugewisenen Numm",
 		"sl": "Prikazno ime",
 		"da": "Visningsnavn",
-		"hr": "Ime koje se prikazuje",
+		"hr": "Prika\u017ei ime",
 		"hu": "Megjelen\u00edthet\u0151 n\u00e9v",
 		"fi": "N\u00e4ytt\u00f6nimi",
 		"pt-BR": "Nome a ser mostrado",
@@ -595,7 +595,7 @@
 		"lb": "Organisatiouns Websait",
 		"sl": "Spletna stran organizacije",
 		"da": "Hjemmeside",
-		"hr": "Slu\u017ebene web stranice (URL adresa) ustanove",
+		"hr": "Slu\u017ebene web stranice ustanove",
 		"hu": "Szervezet weboldala",
 		"fi": "Organisaation kotisivu",
 		"pt-BR": "Site da organiza\u00e7\u00e3o",
@@ -928,7 +928,7 @@
 		"nl": "Domein component (DC) van de organisatie",
 		"sl": "Domenska komponenta (DC) organizacije",
 		"da": "Institutionens Domain Component (DC)",
-		"hr": "DC ustanove",
+		"hr": "Domenska komponenta (DC) ustanove",
 		"hu": "Szervezet domain-je (DC)",
 		"pt": "Componente de dom\u00ednio (DC) da organiza\u00e7\u00e3o",
 		"tr": "Kurulu\u015fun alan bile\u015feni"
@@ -987,7 +987,7 @@
 		"nl": "Organisatie telefoon",
 		"sl": "Telefonska \u0161tevilka organizacije",
 		"da": "Institutionens telefonnummer",
-		"hr": "Slu\u017ebeni telefonski broj ustanove",
+		"hr": "Telefonski broj ustanove",
 		"hu": "Szervezet telefonsz\u00e1ma",
 		"pt": "N\u00famero de telefone da Organiza\u00e7\u00e3o",
 		"pl": "Numer telefonu organizacji",
@@ -1103,7 +1103,7 @@
 		"nl": "Afdelings identifier",
 		"sl": "Opis oddelka",
 		"da": "Den Organisatoriske Enheds beskrivende identifikator",
-		"hr": "Identifikator organizacijske jedinice",
+		"hr": "Jedinstveni identifikator organizacijske jedinice",
 		"hu": "Szervezeti egys\u00e9g egyedi azonos\u00edt\u00f3ja",
 		"pt": "Identificador da Unidade Org\u00e2nica",
 		"tr": "Kurumsal Birim'in biricik (unique) tan\u0131mlay\u0131c\u0131s\u0131"
@@ -1233,7 +1233,8 @@
 		"hu": "Szervezet e-mail c\u00edme",
 		"pt": "Endere\u00e7o de e-mail da Organiza\u00e7\u00e3o",
 		"pl": "Adres email organizacji",
-		"tr": "Kurulu\u015fun postas\u0131"
+		"tr": "Kurulu\u015fun postas\u0131",
+		"hr": "Elektroni\u010dka adresa ustanove"
 	},
 	"attribute_edupersonorgdn_eduorgidentityauthnpolicyuri": {
 		"no": "Lokasjon med organisasjonens rutiner for identifisering og autentisering",
@@ -1246,7 +1247,8 @@
 		"da": "Placeringen af organisationens politik omkring identifikation og autentificering",
 		"hu": "A szervezet felhaszn\u00e1l\u00f3kezel\u00e9si \u00e9s azonos\u00edt\u00e1si szab\u00e1lyzat\u00e1nak el\u00e9rhet\u0151s\u00e9ge",
 		"pt": "Localiza\u00e7\u00e3o da pol\u00edtica da Organiza\u00e7\u00e3o referente a identifica\u00e7\u00e3o e autentica\u00e7\u00e3o",
-		"tr": "Kimlik belirleme ve do\u011frulama a\u00e7\u0131s\u0131ndan kurulu\u015fun politikas\u0131n\u0131n yeri"
+		"tr": "Kimlik belirleme ve do\u011frulama a\u00e7\u0131s\u0131ndan kurulu\u015fun politikas\u0131n\u0131n yeri",
+		"hr": "Adresa slu\u017ebene politike ustanove vezane uz identifikaciju i autentikaciju"
 	},
 	"attribute_edupersonorgdn_noreduorguniqueidentifier": {
 		"no": "Organisasjonens unike identifikasjonsnummer",
@@ -1259,7 +1261,8 @@
 		"da": "Organisationens unikke id",
 		"hu": "Szervezet egyedi azonos\u00edt\u00f3ja",
 		"pt": "Identificador \u00fanico da Organiza\u00e7\u00e3o",
-		"tr": "Kurulu\u015fun biricik (unique) tan\u0131mlay\u0131c\u0131s\u0131"
+		"tr": "Kurulu\u015fun biricik (unique) tan\u0131mlay\u0131c\u0131s\u0131",
+		"hr": "Jedinstveni identifikator ustanove"
 	},
 	"attribute_edupersonorgdn_postofficebox": {
 		"no": "Organisasjonens postboks",
@@ -1272,7 +1275,8 @@
 		"da": "Organisationens postboks",
 		"hu": "Szervezet postafi\u00f3k c\u00edme",
 		"pt": "Caixa de endere\u00e7o postal da Organiza\u00e7\u00e3o",
-		"tr": "Kurulu\u015fun posta kutusu"
+		"tr": "Kurulu\u015fun posta kutusu",
+		"hr": "Broj po\u0161tanskog pretinca ustanove"
 	},
 	"attribute_edupersonorgunitdn_labeleduri": {
 		"no": "URI for organisasjonsenhet med valgfri tilleggskommentar",
@@ -1297,6 +1301,7 @@
 		"da": "Organisatorisk enheds postboks",
 		"hu": "Szervezeti egys\u00e9g postafi\u00f3kc\u00edme",
 		"pt": "Caixa de endere\u00e7o postal da Unidade Organizacional",
-		"tr": "Kurumsal Birim'in posta kutusu"
+		"tr": "Kurumsal Birim'in posta kutusu",
+		"hr": "Broj po\u0161tanskog pretinca organizacijske jedinice"
 	}
 }
