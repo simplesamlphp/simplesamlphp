@@ -120,6 +120,15 @@ class sspmod_core_Storage_SQLPermanentStorage {
 		return $res;
 	}
 	
+	/*
+	 * Return the value directly (not in a container)
+	 */
+	public function getValue($type = NULL, $key1 = NULL, $key2 = NULL) {
+		$res = $this->get($type, $key1, $key2);
+		if ($res === NULL) return NULL;
+		return $res['value'];
+	}
+	
 	public function exists($type, $key1, $key2) {
 		$query = "SELECT * FROM data WHERE " . 
 			"key1 = '" . sqlite_escape_string($key1) . "' AND " . 
