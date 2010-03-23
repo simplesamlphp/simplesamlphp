@@ -3,49 +3,57 @@
 		"no": "OpenID tilbyder",
 		"de": "OpenID-Anbieter",
 		"sl": "OpenID ponudnik",
-		"pt": "Fornecedor de Identidades OpenID"
+		"pt": "Fornecedor de Identidades OpenID",
+		"sv": "OpenID-leverant\u00f6r"
 	},
 	"title_user": {
 		"no": "OpenID for %USERID%",
 		"de": "OpenID f\u00fcr %USERID%",
 		"sl": "OpenID za %USERID%",
-		"pt": "OpenID para %USERID%"
+		"pt": "OpenID para %USERID%",
+		"sv": "OpenID f\u00f6r %USERID%"
 	},
 	"user_page_for": {
 		"no": "Dette er OpenID brukersiden for <code>%USERID%<\/code>.",
 		"de": "Dies ist die OpenID Nutzerseite f\u00fcr <code>%USERID%<\/code>",
 		"sl": "To je OpenID stran uporabnika <code>%USERID%<\/code>.",
-		"pt": "Est\u00e1 na p\u00e1gina de OpenID do utilizador <code>%USERID%<\/code>"
+		"pt": "Est\u00e1 na p\u00e1gina de OpenID do utilizador <code>%USERID%<\/code>",
+		"sv": "Detta \u00e4r OpenID-anv\u00e4ndarsida f\u00f6r <code>%USERID%<\/code>."
 	},
 	"view_own_page": {
 		"no": "Se p\u00e5 din egen OpenID side.",
 		"de": "Zeigen Sie Ihren OpenID-Seite an.",
 		"sl": "Poglejte svojo OpenID stran.",
-		"pt": "Ver a sua p\u00e1gina de OpenID."
+		"pt": "Ver a sua p\u00e1gina de OpenID.",
+		"sv": "Visa din egen OpenID-sida."
 	},
 	"login_view_own_page": {
 		"no": "Logg p\u00e5 for \u00e5 se p\u00e5 din egen OpenID side.",
 		"de": "Melden Sie sich an, um Ihre eigene OpenID-Seite zu betrachten.",
 		"sl": "Prijavite se in poglejte svojo OpenID stran.",
-		"pt": "Efectue a entrada para ver a sua p\u00e1gina de OpenID."
+		"pt": "Efectue a entrada para ver a sua p\u00e1gina de OpenID.",
+		"sv": "Logga in f\u00f6r att se din egen OpenID-sida."
 	},
 	"logout_title": {
 		"no": "Logg av",
 		"de": "Abmelden",
 		"sl": "Odjava",
-		"pt": "Sair"
+		"pt": "Sair",
+		"sv": "Logga ut"
 	},
 	"logout": {
 		"no": "Trykk her for \u00e5 logge ut av din OpenID bruker.",
 		"de": "Klicken Sie hier, um sich von Ihrem OpenID-Benutzer abzumelden.",
 		"sl": "Kliknite tukaj za odjavo OpenID uporabnika.",
-		"pt": "Carregue aqui para sair desta p\u00e1gina de utilizador OpenID."
+		"pt": "Carregue aqui para sair desta p\u00e1gina de utilizador OpenID.",
+		"sv": "Klicka h\u00e4r f\u00f6r att logga ut fr\u00e5n din OpenID-anv\u00e4ndare."
 	},
 	"confirm_question": {
 		"no": "\u00d8nsker du \u00e5 logge p\u00e5 %SITEURL%?",
 		"de": "M\u00f6chten Sie sich auf %SITEURL% anmelden?",
 		"sl": "Ali se \u017eelite prijaviti v %SITEURL%?",
-		"pt": "Pretende efectuar a entrada em %SITEURL%?"
+		"pt": "Pretende efectuar a entrada em %SITEURL%?",
+		"sv": "Vill du logga in p\u00e5 %SITEURL%?"
 	},
 	"remember": {
 		"no": "Husk dette valget",
@@ -133,12 +141,14 @@
 		"no": "For \u00e5 logge inn med din OpenID, bruk f\u00f8lgende ID:",
 		"de": "Um sich mit Ihren OpenID-Bezeichner anzumelden, verwenden Sie den folgenden Bezeichner:",
 		"sl": "Za prijavo z va\u0161im OpenID identifikatorjem uporabite naslednje:",
-		"pt": "Para efectuar a entrada com OpenID, utilize o seguinte identificador:"
+		"pt": "Para efectuar a entrada com OpenID, utilize o seguinte identificador:",
+		"sv": "F\u00f6r att logga in med din OpenID-leverant\u00f6r anv\u00e4nd f\u00f6ljande identifierare:"
 	},
 	"howto_delegate": {
 		"no": "Du kan ogs\u00e5 delegere en annen OpenID til \u00e5 benytte denne OpenID tilbyderen. For \u00e5 gj\u00f8re det, m\u00e5 du legge til f\u00f8lgende <code>&lt;head&gt;<\/code>-element p\u00e5 websiden til denne OpenID-en du vil delegere.",
 		"de": "Sie k\u00f6nnen auch einen anderen Bezeichner bevollm\u00e4chtigen, diesen OpenID-Anbieter zu verwenden. Um dies zu tun, m\u00fcssen Sie das folgende <code>&lt;head&gt;<\/code>-Element auf der Webseite dieses Bezeichners hinzuf\u00fcgen:",
 		"sl": "Lahko dolo\u010dite drug identifikator za prijavo na tem OpenID ponudniku. To storite tako da, naslednje dodate v element <code>&lt;head&gt;<\/code> v spletne strani tega identifikatorja.",
-		"pt": "Pode tamb\u00e9m delegar este fornecedor de Identidades OpenID noutro identificador. Para o fazer, necessita de adicionar o seguinte texto no elemento <code>&lt;head&gt;<\/code> da p\u00e1gina web desse novo identificador."
+		"pt": "Pode tamb\u00e9m delegar este fornecedor de Identidades OpenID noutro identificador. Para o fazer, necessita de adicionar o seguinte texto no elemento <code>&lt;head&gt;<\/code> da p\u00e1gina web desse novo identificador.",
+		"sv": "Du kan ocks\u00e5 delegera till en annan identifierare att anv\u00e4nda denna OpenID-leverant\u00f6r. F\u00f6r att g\u00f6ra detta m\u00e5ste du l\u00e4gga till f\u00f6ljande till <code>&lt;head&gt;<\/code>-elementet p\u00e5 webbsidan f\u00f6r den identifieraren:"
 	}
 }

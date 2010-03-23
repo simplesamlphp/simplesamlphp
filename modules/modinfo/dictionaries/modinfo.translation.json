@@ -3,30 +3,35 @@
 		"no": "Tilgjengelige moduler",
 		"de": "Verf\u00fcgbare Module",
 		"sl": "Razpolo\u017eljivi moduli",
-		"pt": "M\u00f3dulos dispon\u00edveis"
+		"pt": "M\u00f3dulos dispon\u00edveis",
+		"sv": "Tillg\u00e4ngliga moduler"
 	},
 	"modlist_name": {
 		"no": "Navn",
 		"de": "Name",
 		"sl": "Ime",
-		"pt": "Nome"
+		"pt": "Nome",
+		"sv": "Namn"
 	},
 	"modlist_status": {
 		"no": "Status",
 		"de": "Status",
 		"sl": "Status",
-		"pt": "Estado"
+		"pt": "Estado",
+		"sv": "Status"
 	},
 	"modlist_enabled": {
 		"no": "P\u00e5sl\u00e5tt",
 		"de": "Aktiviert",
 		"sl": "Vklopljen",
-		"pt": "Activo"
+		"pt": "Activo",
+		"sv": "Aktiv"
 	},
 	"modlist_disabled": {
 		"no": "Avsl\u00e5tt",
 		"de": "Deaktiviert",
 		"sl": "Izklopljen",
-		"pt": "Inactivo"
+		"pt": "Inactivo",
+		"sv": "Ej aktiv"
 	}
 }

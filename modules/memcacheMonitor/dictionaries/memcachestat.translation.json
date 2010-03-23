@@ -3,114 +3,133 @@
 		"no": "Prosess ID",
 		"de": "Prozess-ID",
 		"sl": "ID procesa",
-		"pt": "ID do processo"
+		"pt": "ID do processo",
+		"sv": "Processid"
 	},
 	"uptime": {
 		"no": "Oppetid",
 		"de": "Verf\u00fcgbarkeit",
 		"sl": "Neprekinjeno delovanje",
-		"pt": "Tempo de funcionamento"
+		"pt": "Tempo de funcionamento",
+		"sv": "Upptid"
 	},
 	"time": {
 		"no": "Tid n\u00e5",
 		"de": "Jetziger Zeitpunkt",
 		"sl": "To\u010den \u010das",
-		"pt": "Tempo actual"
+		"pt": "Tempo actual",
+		"sv": "Aktuell tid"
 	},
 	"version": {
 		"no": "Versjon",
 		"de": "Version",
 		"sl": "Razli\u010dica",
-		"pt": "Vers\u00e3o"
+		"pt": "Vers\u00e3o",
+		"sv": "Version"
 	},
 	"rusage_user": {
 		"no": "CPU Sekunder (bruker)",
 		"de": "CPU-Sekunden (Benutzer",
 		"sl": "CPE sekunde (uporabnik)",
-		"pt": "Segundos de CPU (Utilizador)"
+		"pt": "Segundos de CPU (Utilizador)",
+		"sv": "CPU-sekunder (User)"
 	},
 	"rusage_system": {
 		"no": "CPU Sekunder (system)",
 		"de": "CPU-Sekunden (System)",
 		"sl": "CPE sekunde (sistem)",
-		"pt": "Segundos de CPU (Sistema)"
+		"pt": "Segundos de CPU (Sistema)",
+		"sv": "CPU-sekunder (System)"
 	},
 	"curr_items": {
 		"no": "N\u00e5v\u00e6rende antall elementer",
 		"de": "Derzeitige Anzahl von Elementen",
 		"sl": "Trenutno \u0161tevilo elementov",
-		"pt": "N\u00famero de \u00edtems actual"
+		"pt": "N\u00famero de \u00edtems actual",
+		"sv": "Aktuell antal"
 	},
 	"total_items": {
 		"no": "Antall elementer for alltid",
 		"de": "Elemente zu allen Zeiten insgesamt",
 		"sl": "Vseh elementov skupaj",
-		"pt": "Total de \u00edtems"
+		"pt": "Total de \u00edtems",
+		"sv": "Totalt antal anv\u00e4nda poster"
 	},
 	"bytes": {
 		"no": "Totalt antall bytes i bruk n\u00e5",
 		"de": "Insgesamt derzeit verwendete Bytes",
 		"sl": "Skupno v uporabi bajtov",
-		"pt": "Total de bytes actuais"
+		"pt": "Total de bytes actuais",
+		"sv": "Totalt antal anv\u00e4nda byte f\u00f6rn\u00e4rvarande"
 	},
 	"curr_connections": {
 		"no": "Antall \u00e5pne forbindelser n\u00e5",
 		"de": "Derzeitige offene Verbindungen",
 		"sl": "Trenutno odprtih povezav",
-		"pt": "Liga\u00e7\u00f5es abertas actuais"
+		"pt": "Liga\u00e7\u00f5es abertas actuais",
+		"sv": "Aktiva och \u00f6ppna f\u00f6rbindelser"
 	},
 	"total_connections": {
 		"no": "Totalt antall forbindelser",
 		"de": "Verbindungen insgesamt",
 		"sl": "Skupno \u0161tevilo povezav",
-		"pt": "Total de liga\u00e7\u00f5es"
+		"pt": "Total de liga\u00e7\u00f5es",
+		"sv": "Totalt antal f\u00f6rbindelser"
 	},
 	"connection_structures": {
 		"no": "Tilkoblings-strukturer",
 		"de": "Verbindungsstrukturen",
 		"sl": "Struktura povezav",
-		"pt": "Estruturas de liga\u00e7\u00f5es"
+		"pt": "Estruturas de liga\u00e7\u00f5es",
+		"sv": "F\u00f6rbindelsestrukturer"
 	},
 	"cmd_get": {
 		"no": "Totalt antall GET kommandoer",
 		"de": "GET Befehle insgesamt",
 		"sl": "Skupno \u0161tevilo zahtevkov GET ",
-		"pt": "Total de comandos GET"
+		"pt": "Total de comandos GET",
+		"sv": "Totalt antal GET-kommandon"
 	},
 	"cmd_set": {
 		"no": "Totalt antall SET kommandoer",
 		"de": "SET Befehle insgesamt",
 		"sl": "Skupno \u0161tevilo zahtevkov SET ",
-		"pt": "Total de comandos SET"
+		"pt": "Total de comandos SET",
+		"sv": "Totalt antal SET-kommandon"
 	},
 	"get_hits": {
 		"no": "Totalt antall GET kommandoer (OK)",
 		"de": "GET Befehle insgesamt (erfolgreich)",
 		"sl": "Skupno \u0161tevilo uspe\u0161nih zahtevkov GET ",
-		"pt": "Total de comandos GET (sucesso)"
+		"pt": "Total de comandos GET (sucesso)",
+		"sv": "Totalt antal lyckade GET-kommandon"
 	},
 	"get_misses": {
 		"no": "Totalt antall GET kommandoer (feilet)",
 		"de": "GET Befehle insgesamt (fehlgeschlagen)",
 		"sl": "Skupno \u0161tevilo neuspe\u0161nih zahtevkov GET ",
-		"pt": "Total de comandos GET (falhados)"
+		"pt": "Total de comandos GET (falhados)",
+		"sv": "Totalt antal misslyckade GET-kommandon"
 	},
 	"bytes_read": {
 		"no": "Antall bytes inn til tjeneren",
 		"de": "Am Server eingetroffene Bytes",
 		"sl": "Prene\u0161enih bajtov v smeri stre\u017enika",
-		"pt": "Bytes de entrada no servidor"
+		"pt": "Bytes de entrada no servidor",
+		"sv": "Mottagna bytes till servern"
 	},
 	"bytes_written": {
 		"no": "Antall bytes skrevet av tjeneren",
 		"de": "Zum Server geschriebene Bytes",
 		"sl": "Bajtov zapisanih na stre\u017eniku",
-		"pt": "Bytes de sa\u00edda no servidor"
+		"pt": "Bytes de sa\u00edda no servidor",
+		"sv": "Skirva bytes av servern"
 	},
 	"limit_maxbytes": {
 		"no": "Total lagring tilgjengelig",
 		"de": "Insgesamt verf\u00fcgbarer Speicher",
 		"sl": "Razpolo\u017eljiv prostor skupno:",
-		"pt": "Total de espa\u00e7o dispon\u00edvel"
+		"pt": "Total de espa\u00e7o dispon\u00edvel",
+		"sv": "Totalt lagringsutrymme"
 	}
 }

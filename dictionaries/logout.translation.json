@@ -27,7 +27,7 @@
 		"nl": "U bent uitgelogd. Dank u voor het gebruiken van deze dienst.",
 		"sl": "Odjava je bila uspe\u0161na. Hvala, ker uporabljate to storitev.",
 		"da": "Du er blevet logget ud. Tak for fordi du brugte denne tjeneste.",
-		"hr": "Odjavili ste se. Hvala \u0161to ste koristili ovaj servis.",
+		"hr": "Uspje\u0161no ste odjavljeni.",
 		"hu": "Sikeresen kijelentkezett. K\u00f6sz\u00f6nj\u00fck, hogy haszn\u00e1lta a szolg\u00e1ltat\u00e1st.",
 		"fi": "Olet kirjautunut ulos",
 		"pt-BR": "Voc\u00ea foi desconectado. Obrigado por usar este servi\u00e7o.",
@@ -148,7 +148,7 @@
 		"nl": "Je bent succesvol uitgelogd van de bovenvermelde services.",
 		"sl": "Uspe\u0161no ste se odjavili z vseh na\u0161tetih storitev.",
 		"da": "Du har logget ud fra alle overn\u00e6vnte services. ",
-		"hr": "Uspje\u0161no ste se odjavili iz svih gore navedenih aplikacija.",
+		"hr": "Uspje\u0161no ste se odjavili iz svih gore navedenih servisa.",
 		"hu": "Sikeresen kijelentkezett az fent felsorolt \u00f6sszes alkalmaz\u00e1sb\u00f3l.",
 		"fi": "Olet onnistuneesti kirjautunut ulos kaikista yll\u00e4 listatuista palveluista.",
 		"pt": "Saiu com sucesso de todos os servi\u00e7os listados em cima.",
@@ -169,7 +169,8 @@
 		"fi": "Olet kirjautunut ulos palvelusta %SP%.",
 		"pt": "Saiu com sucesso de %SP%.",
 		"pl": "Zosta\u0142e\u015b pomy\u015blnie wylogowany z %SP%.",
-		"tr": "%SP%'den ba\u015far\u0131yla \u00e7\u0131kt\u0131n\u0131z."
+		"tr": "%SP%'den ba\u015far\u0131yla \u00e7\u0131kt\u0131n\u0131z.",
+		"hr": "Uspje\u0161no ste se odjavili iz %SP%."
 	},
 	"also_from": {
 		"no": "Du er ogs\u00e5 logget inn p\u00e5 disse tjenestene:",
@@ -185,7 +186,8 @@
 		"fi": "Olet kirjautunut seuraaviin palveluihin:",
 		"pt": "Est\u00e1 tamb\u00e9m autenticado nos seguintes servi\u00e7os:",
 		"pl": "Jeste\u015b tak\u017ce zalogowany w nastepuj\u0105cych serwisach:",
-		"tr": "Ayr\u0131ca \u015fu servislere giri\u015f yapt\u0131n\u0131z:"
+		"tr": "Ayr\u0131ca \u015fu servislere giri\u015f yapt\u0131n\u0131z:",
+		"hr": "Tako\u0111er ste prijavljeni u sljede\u0107im servisima:"
 	},
 	"logout_all_question": {
 		"no": "Vil du logge ut fra alle tjenestene ovenfor?",
@@ -201,7 +203,8 @@
 		"pt": "Deseja sair de todos os servi\u00e7os listados em cima?",
 		"pl": "Czy chcesz zosta\u0107 wylogowany z powy\u017cszych serwis\u00f3w?",
 		"tr": "Yukar\u0131daki t\u00fcm servislerden \u00e7\u0131kmak istiyor musunuz?",
-		"fi": "Haluatko uloskirjautua edell\u00e4mainituista palveluista?"
+		"fi": "Haluatko uloskirjautua edell\u00e4mainituista palveluista?",
+		"hr": "\u017delite li se odjaviti iz svih gore navedenih servisa?"
 	},
 	"logout_all": {
 		"no": "Ja, alle tjenestene over",
@@ -217,7 +220,8 @@
 		"fi": "Kyll\u00e4, kaikista palveluista",
 		"pt": "Sim, todos os servi\u00e7os",
 		"pl": "Tak, wszystkie serwisy",
-		"tr": "Evet, t\u00fcm servisler."
+		"tr": "Evet, t\u00fcm servisler.",
+		"hr": "Da, iz svih servisa"
 	},
 	"logout_only": {
 		"no": "Nei, bare %SP%",
@@ -233,7 +237,8 @@
 		"fi": "Ei, vain %SP%",
 		"pt": "N\u00e3o, apenas %SP%",
 		"pl": "Nie, tylko %SP%",
-		"tr": "Hay\u0131r, sadece %SP%"
+		"tr": "Hay\u0131r, sadece %SP%",
+		"hr": "Ne, samo iz %SP%"
 	},
 	"incapablesps": {
 		"no": "En eller flere av tjenestene du er logget inn p\u00e5 <i>st\u00f8tter ikke logout<\/i>. Lukk nettleseren, dersom du \u00f8nsker \u00e5 logge ut fra disse tjenestene.",
@@ -241,7 +246,7 @@
 		"sv": "En eller flera av tj\u00e4nsterna du \u00e4r inloggad i <i>kan inte hantera utloggning<\/i>. F\u00f6r att s\u00e4kerst\u00e4lla att du inte l\u00e4ngre \u00e4r inloggad i n\u00e5gon tj\u00e4nst ska du <i>st\u00e4nga din webbl\u00e4sare<\/i>.",
 		"es": "Uno o m\u00e1s de los servicios en los que est\u00e1 autenticado <i>no permite desconexi\u00f3n<\/i>. Para asegurarse de que todas sus sesiones se cierran, se le recomienda que <i>cierre todas las ventanas de su navegador<\/i>.",
 		"fr": "Un ou plusieurs des services auxquels vous \u00eates connect\u00e9 <i>ne g\u00e8rent pas la d\u00e9connextion<\/i>. Pout terminer les sessions sur ces services, vous devrez <i>fermer votre navigateur<\/i>.",
-		"de": "Einer oder mehrere Dienste an denen Sie angemeldet sind, <i>unterst\u00fctzen keine Abmeldung<\/i>. Damit Sie sicherlich abgemeldet sind, <i>schliessen Sie bitte Ihren Webbrowser<\/i>.",
+		"de": "Einer oder mehrere Dienste an denen Sie angemeldet sind, <i>unterst\u00fctzen keine Abmeldung<\/i>. Um sicherzustellen, dass Sie abgemeldet sind, <i>schlie\u00dfen Sie bitte Ihren Webbrowser<\/i>.",
 		"nl": "Een of meer diensten waarop je bent inlogd hebben <i>geen ondersteuning voor uitloggen<\/i>. Om er zeker van te zijn dat al je sessies zijn be\u00ebindigd, kun je het beste <i>je webbrowser afsluiten<\/i>.",
 		"sl": "Ena ali ve\u010d storitev, v katere ste prijavljeni, <i>ne omogo\u010da odjave<\/i>. Odjavo iz teh storitev izvedete tako, da <i>zaprete spletni brskalnik<\/i>.",
 		"da": "En eller flere services som du er logget ind hos <i>underst\u00f8tter ikke log ou<\/i>. For at sikre at alle dine forbindelser er lukket, bedes du <i>lukke din browser<\/i>.",
@@ -249,7 +254,8 @@
 		"pt": "Um ou mais dos servi\u00e7os onde se encontra autenticado <i>n\u00e3o suporta(m) a sa\u00edda<\/i>. Para garantir que todas as sess\u00f5es s\u00e3o encerradas, dever\u00e1 <i>encerrar o seu navegador Web<\/i>.",
 		"pl": "Jeden lub wi\u0119cej serwis\u00f3w , w kt\u00f3rych jeste\u015b zalogowany <i>nie obs\u0142uguje procesu wylogowania<\/i>. W celu upewnienia si\u0119, \u017ce wszystkie sesje s\u0105 zako\u0144czone, zalecane jest aby\u015b <i>zamkn\u0105\u0142 przegl\u0105dark\u0119<\/i>",
 		"tr": "Giri\u015f yapt\u0131\u011f\u0131n\u0131z bir yada daha fazla servis <i>\u00e7\u0131k\u0131\u015f\u0131 desteklemiyor<\/i>. T\u00fcm oturumlar\u0131n\u0131z\u0131n kapat\u0131ld\u0131\u011f\u0131ndan emin olmak i\u00e7in, <i>taray\u0131c\u0131n\u0131z\u0131 kapatman\u0131z<\/i> \u00f6nerilir.",
-		"fi": "Yksi tai useampi palvelu johon olet kirjautunut <i>ei tue uloskirjautumista<\/i>. Varmistaaksesi, ett\u00e4 kaikki istuntosi sulkeutuvat, olet velvollinen <i>sulkemaan web-selaimsesi<\/i>."
+		"fi": "Yksi tai useampi palvelu johon olet kirjautunut <i>ei tue uloskirjautumista<\/i>. Varmistaaksesi, ett\u00e4 kaikki istuntosi sulkeutuvat, olet velvollinen <i>sulkemaan web-selaimsesi<\/i>.",
+		"hr": "Jedan ili vi\u0161e servisa na koje ste prijavljeni <i>ne podr\u017eava odjavljivanje<\/i>. Da biste bili sigurni da ste odjavljeni iz svih aplikacija, preporu\u010damo da <i>zatvorite web preglednik<\/i>."
 	},
 	"no": {
 		"no": "Nei",
@@ -265,7 +271,8 @@
 		"fi": "Ei",
 		"pt": "N\u00e3o",
 		"pl": "Nie",
-		"tr": "Hay\u0131r"
+		"tr": "Hay\u0131r",
+		"hr": "Ne"
 	},
 	"logging_out_from": {
 		"sl": "Odjava iz naslednjih storitev:",
@@ -273,7 +280,9 @@
 		"pt": "A sair dos servi\u00e7os seguintes:",
 		"sv": "Loggar ut fr\u00e5n f\u00f6ljande tj\u00e4nster:",
 		"no": "Logger ut fra f\u00f8lgende tjenester:",
-		"nn": "Logger ut fr\u00e5 f\u00f8lgende tenester:"
+		"nn": "Logger ut fr\u00e5 f\u00f8lgende tenester:",
+		"de": "Melde Sie von den folgenden Diensten ab:",
+		"hr": "Odjavljujete se iz sljede\u0107ih servisa:"
 	},
 	"failedsps": {
 		"sl": "Odjava z ene ali ve\u010d storitev ni uspela. Odjavo dokon\u010dajte tako, da <i>zaprete spletni brskalnik<\/i>.",
@@ -281,6 +290,8 @@
 		"pt": "N\u00e3o foi poss\u00edvel sair de um ou mais servi\u00e7os. Para garantir que todas as suas sess\u00f5es s\u00e3o fechadas, \u00e9 recomendado <i>fechar o seu browser<\/i>.",
 		"sv": "Kan inte logga ut fr\u00e5n eller flera tj\u00e4nster. F\u00f6r att vara s\u00e4ker p\u00e5 att du fortfarande inte \u00e4r inloggad ska du <i>st\u00e4nga igen alla dina webbl\u00e4sarf\u00f6nster<\/i>.",
 		"no": "Greide ikke \u00e5 logge ut fra en eller flere tjenester. For \u00e5 forsikre deg om at du blir logget ut, oppfordrer vi deg til \u00e5 <i>lukke nettleseren din<\/i>.",
-		"nn": "Greide ikkje \u00e5 logge ut fr\u00e5 ein eller fleire tenester. For \u00e5 sikre deg at du blir logga ut, oppfordrar vi deg til \u00e5 <i>lukke nettlesaren din<\/i>."
+		"nn": "Greide ikkje \u00e5 logge ut fr\u00e5 ein eller fleire tenester. For \u00e5 sikre deg at du blir logga ut, oppfordrar vi deg til \u00e5 <i>lukke nettlesaren din<\/i>.",
+		"de": "Abmelden von einem oder mehreren Diensten schlug fehl. Um sicherzustellen, dass alle Ihre Sitzungen geschlossen sind, wird Ihnen empfohlen, <i>Ihren Webbrowser zu schlie\u00dfen<\/i>.",
+		"hr": "Odjavljivanje iz jednog ili vi\u0161e servisa nije uspjelo. Da biste bili sigurni da su sve va\u0161e sjednice zavr\u0161ene, preporu\u010damo da <i>zatvorite web preglednik<\/i>."
 	}
 }

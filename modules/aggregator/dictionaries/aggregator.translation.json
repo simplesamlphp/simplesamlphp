@@ -4,27 +4,31 @@
 		"de": "Metadaten-Aggregator",
 		"sl": "Agregator metapodatkov",
 		"pt": "Agregador de Metadados",
-		"sv": "Metadatasammanst\u00e4llare"
+		"sv": "Metadatasammanst\u00e4llare",
+		"hr": "Agregator metapodataka"
 	},
 	"aggregator_header": {
 		"no": "Aggregatorer",
 		"de": "Aggregatoren",
 		"sl": "Agregatorji",
 		"pt": "Agregadores",
-		"sv": "Sammanst\u00e4llare"
+		"sv": "Sammanst\u00e4llare",
+		"hr": "Agregatori"
 	},
 	"no_aggregators": {
 		"no": "Ingen aggregator definert i konfigurasjonen",
 		"de": "Keine Aggregatoren in der Konfiguration definiert.",
 		"sl": "V nastavitvah ni definiran noben agregator.",
 		"pt": "N\u00e3o foram definidos agregadores na configura\u00e7\u00e3o.",
-		"sv": "Inga sammanst\u00e4llare (aggregators) definierade i konfigurationen."
+		"sv": "Inga sammanst\u00e4llare (aggregators) definierade i konfigurationen.",
+		"hr": "U konfiguraciji nije definiran niti jedan agregator."
 	},
 	"text": {
 		"no": "tekst",
 		"de": "Text",
 		"sl": "Besedilo",
 		"pt": "Texto",
-		"sv": "Text"
+		"sv": "Text",
+		"hr": "Tekst"
 	}
 }
