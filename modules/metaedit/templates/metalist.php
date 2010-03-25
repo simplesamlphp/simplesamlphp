@@ -21,8 +21,8 @@ $i = 0; $rows = array('odd', 'even');
 foreach($this->data['metadata']['mine'] AS $md ) {
 	$i++; 
 	echo('<tr class="' . $rows[$i % 2] . '">
-		<td>' . $md['name'] . '</td>
-		<td><tt>' . $md['entityid'] . '</tt></td>
+		<td>' . htmlspecialchars($md['name']) . '</td>
+		<td><tt>' . htmlspecialchars($md['entityid']) . '</tt></td>
 		<td>
 			<a href="edit.php?entityid=' . urlencode($md['entityid']) . '">edit</a>
 			<a href="index.php?delete=' . urlencode($md['entityid']) . '">delete</a>
@@ -41,9 +41,9 @@ $i = 0; $rows = array('odd', 'even');
 foreach($this->data['metadata']['others'] AS $md ) {
 	$i++; 
 	echo('<tr class="' . $rows[$i % 2] . '">
-		<td>' . $md['name'] . '</td>
-		<td><tt>' . $md['entityid'] . '</tt></td>
-		<td>' . (isset($md['owner']) ? $md['owner'] : 'No owner') . '
+		<td>' . htmlspecialchars($md['name']) . '</td>
+		<td><tt>' . htmlspecialchars($md['entityid']) . '</tt></td>
+		<td>' . (isset($md['owner']) ? htmlspecialchars($md['owner']) : 'No owner') . '
 		</td></tr>');
 }
 if ($i == 0) {
