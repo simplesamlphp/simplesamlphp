@@ -461,8 +461,10 @@ class sspmod_saml2_Message {
 		if ($attribute === NULL) {
 			$attribute = $srcMetadata->getString('simplesaml.nameidattribute', NULL);
 			if ($attribute === NULL) {
-				SimpleSAML_Logger::error('simplesaml.nameidattribute not set in either SP metadata or IdP metadata');
-				return SimpleSAML_Utilities::generateID();
+	                       /* generate a stable id */
+	                       return SimpleSAML_Utilities::generateUserIdentifier($srcMetadata->getString( 'entityid' ),
+			               $dstMetadata->getString( 'entityid' ),
+			               $attributes );
 			}
 		}
 
@@ -614,8 +616,11 @@ class sspmod_saml2_Message {
 		}
 
 		if ($nameIdFormat === SAML2_Const::NAMEID_TRANSIENT) {
+		        /* generate a random id */
 			$nameIdValue = SimpleSAML_Utilities::generateID();
 		} else {
+		        /* this code will end up generating either a fixed assigned id (via nameid.attribute)
+			   or random id if not assigned/configured */
 			$nameIdValue = self::generateNameIdValue($srcMetadata, $dstMetadata, $attributes);
 		}
 
