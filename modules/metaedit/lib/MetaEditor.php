@@ -18,9 +18,9 @@ class sspmod_metaedit_MetaEditor {
 		}
 	}
 	
-	protected function getEndpointField($request, &$metadata, $key) {
+	protected function getEndpointField($request, &$metadata, $key, $binding) {
 		if (array_key_exists('field_' . $key, $request)) {
-			$e = array('Binding' => SAML2_Const::BINDING_HTTP_REDIRECT, 'Location' => $request['field_' . $key], 'index' => '0');
+			$e = array(array('Binding' => $binding, 'Location' => $request['field_' . $key], 'index' => '0'));
 			$metadata[$key] = $e;
 		} else {
 			if (isset($metadata[$key])) unset($metadata[$key]);
@@ -31,8 +31,8 @@ class sspmod_metaedit_MetaEditor {
 		$this->getStandardField($request, $metadata, 'entityid');
 		$this->getStandardField($request, $metadata, 'name');
 		$this->getStandardField($request, $metadata, 'description');
-		$this->getEndpointField($request, $metadata, 'AssertionConsumerService');
-		$this->getEndpointField($request, $metadata, 'SingleLogoutService');
+		$this->getEndpointField($request, $metadata, 'AssertionConsumerService', SAML2_Const::BINDING_HTTP_POST);
+		$this->getEndpointField($request, $metadata, 'SingleLogoutService', SAML2_Const::BINDING_HTTP_REDIRECT);
 		// $this->getStandardField($request, $metadata, 'certFingerprint');
 		$metadata['updated'] = time();
 		
