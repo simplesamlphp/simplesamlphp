@@ -5,7 +5,9 @@
 		"fi": "Puuttuva ev\u00e4ste",
 		"sl": "Pi\u0161kotek (\"cookie\") ne obstaja!",
 		"pt": "Cookie n\u00e3o encontrado",
-		"sv": "Saknar webbl\u00e4sarkaka (cookie)"
+		"sv": "Saknar webbl\u00e4sarkaka (cookie)",
+		"hr": "Nedostaje cookie",
+		"da": "Mangler cookie"
 	},
 	"description": {
 		"no": "Du ser ut til \u00e5 ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og pr\u00f8v igjen.",
@@ -13,7 +15,9 @@
 		"fi": "N\u00e4ytt\u00e4\u00e4, ett\u00e4 olet kielt\u00e4nyt ev\u00e4steiden k\u00e4yt\u00f6n selaimessasi. Ole hyv\u00e4 ja salli ev\u00e4steet selaimestasi ja yrit\u00e4 uudelleen.",
 		"sl": "Va\u0161 spletni brskalnik ima onemogo\u010dene pi\u0161kotke (\"cookies\"). Omogo\u010dite to nastavitev in poskusite ponovno.",
 		"pt": "Provavelmente desligou o suporte de cookies no seu browser. Por favor verifique se tem o suporte de cookies ligado e tente de novo.",
-		"sv": "Det verkar som om du har st\u00e4ngt av m\u00f6jligheten till kakor (cookies) i din webbl\u00e4sare. Kontrollera inst\u00e4llningarna i webbl\u00e4saren och f\u00f6rs\u00f6k igen."
+		"sv": "Det verkar som om du har st\u00e4ngt av m\u00f6jligheten till kakor (cookies) i din webbl\u00e4sare. Kontrollera inst\u00e4llningarna i webbl\u00e4saren och f\u00f6rs\u00f6k igen.",
+		"hr": "Izgleda da ste onemogu\u0107ili kola\u010di\u0107e (cookies) u va\u0161em web pregledniku. Molimo provjerite postavke va\u0161eg web preglednika i poku\u0161ajte ponovo.",
+		"da": "Det ser ud til at du har sl\u00e5et cookies fra i din browser. Tjek dine browserinstillinger og pr\u00f8v igen."
 	},
 	"retry": {
 		"no": "Pr\u00f8v igjen",
@@ -21,6 +25,8 @@
 		"fi": "Uudestaan",
 		"sl": "Poskusi ponovno",
 		"pt": "Tentar de novo",
-		"sv": "F\u00f6rs\u00f6k igen"
+		"sv": "F\u00f6rs\u00f6k igen",
+		"hr": "Poku\u0161aj ponovo",
+		"da": "Fors\u00f8g igen"
 	}
 }

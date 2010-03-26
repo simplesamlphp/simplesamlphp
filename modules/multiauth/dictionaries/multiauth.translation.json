@@ -5,7 +5,8 @@
 		"fi": "Valitse todentamisl\u00e4hde",
 		"sl": "Izberite avtentikacijski vir",
 		"pt": "Escolha uma fonte de autentica\u00e7\u00e3o",
-		"sv": "V\u00e4lj inloggningsk\u00e4lla"
+		"sv": "V\u00e4lj inloggningsk\u00e4lla",
+		"da": "V\u00e6lg en authentifiseringskilde"
 	},
 	"select_source_text": {
 		"no": "Den valgte autentiseringskilden vil bli brukt til \u00e5 autentisere brukeren og deretter etablere en gyldig sesjon.",
@@ -13,6 +14,7 @@
 		"fi": "Valittua todentamisl\u00e4hdett\u00e4 k\u00e4ytet\u00e4\u00e4n tunnistamiseen ja uuden istunnon luomiseen.",
 		"sl": "Izbrani avtentikacijski vir bo uporabljen pri va\u0161i prijavi",
 		"pt": "A fonte de autentica\u00e7\u00e3o escolhida ser\u00e1 usada para o autenticar e criar uma sess\u00e3o v\u00e1lida.",
-		"sv": "Den valda inloggningsk\u00e4llan kommer att anv\u00e4ndas f\u00f6r din inloggning och f\u00f6r att skapa giltig inloggningssession."
+		"sv": "Den valda inloggningsk\u00e4llan kommer att anv\u00e4ndas f\u00f6r din inloggning och f\u00f6r att skapa giltig inloggningssession.",
+		"da": "Den valgte authentifiseringskilde vil blive brugt til at authentifisere dig og give dig en gyldig session."
 	}
 }

@@ -4,56 +4,71 @@
 		"de": "OpenID-Anbieter",
 		"sl": "OpenID ponudnik",
 		"pt": "Fornecedor de Identidades OpenID",
-		"sv": "OpenID-leverant\u00f6r"
+		"sv": "OpenID-leverant\u00f6r",
+		"hr": "Davatelj OpenID identiteta",
+		"da": "OpenID udbyder"
 	},
 	"title_user": {
 		"no": "OpenID for %USERID%",
 		"de": "OpenID f\u00fcr %USERID%",
 		"sl": "OpenID za %USERID%",
 		"pt": "OpenID para %USERID%",
-		"sv": "OpenID f\u00f6r %USERID%"
+		"sv": "OpenID f\u00f6r %USERID%",
+		"hr": "OpenID za %USERID%",
+		"da": "OpenID for %USERID%"
 	},
 	"user_page_for": {
 		"no": "Dette er OpenID brukersiden for <code>%USERID%<\/code>.",
 		"de": "Dies ist die OpenID Nutzerseite f\u00fcr <code>%USERID%<\/code>",
 		"sl": "To je OpenID stran uporabnika <code>%USERID%<\/code>.",
 		"pt": "Est\u00e1 na p\u00e1gina de OpenID do utilizador <code>%USERID%<\/code>",
-		"sv": "Detta \u00e4r OpenID-anv\u00e4ndarsida f\u00f6r <code>%USERID%<\/code>."
+		"sv": "Detta \u00e4r OpenID-anv\u00e4ndarsida f\u00f6r <code>%USERID%<\/code>.",
+		"hr": "Ovo je OpenID stranica za korisnika <code>%USERID%<\/code>.",
+		"da": "Dette er OpenID brugersiden for <code>%USERID%<\/code>."
 	},
 	"view_own_page": {
 		"no": "Se p\u00e5 din egen OpenID side.",
 		"de": "Zeigen Sie Ihren OpenID-Seite an.",
 		"sl": "Poglejte svojo OpenID stran.",
 		"pt": "Ver a sua p\u00e1gina de OpenID.",
-		"sv": "Visa din egen OpenID-sida."
+		"sv": "Visa din egen OpenID-sida.",
+		"hr": "Pogledaj vlastitu OpenID stranicu.",
+		"da": "Se din egen OpenID side."
 	},
 	"login_view_own_page": {
 		"no": "Logg p\u00e5 for \u00e5 se p\u00e5 din egen OpenID side.",
 		"de": "Melden Sie sich an, um Ihre eigene OpenID-Seite zu betrachten.",
 		"sl": "Prijavite se in poglejte svojo OpenID stran.",
 		"pt": "Efectue a entrada para ver a sua p\u00e1gina de OpenID.",
-		"sv": "Logga in f\u00f6r att se din egen OpenID-sida."
+		"sv": "Logga in f\u00f6r att se din egen OpenID-sida.",
+		"hr": "Prijavite se za pristup vlastitoj OpenID stranici.",
+		"da": "Log ind for at se dine egen OpenID side."
 	},
 	"logout_title": {
 		"no": "Logg av",
 		"de": "Abmelden",
 		"sl": "Odjava",
 		"pt": "Sair",
-		"sv": "Logga ut"
+		"sv": "Logga ut",
+		"hr": "Odjavi se",
+		"da": "Log ud"
 	},
 	"logout": {
 		"no": "Trykk her for \u00e5 logge ut av din OpenID bruker.",
 		"de": "Klicken Sie hier, um sich von Ihrem OpenID-Benutzer abzumelden.",
 		"sl": "Kliknite tukaj za odjavo OpenID uporabnika.",
 		"pt": "Carregue aqui para sair desta p\u00e1gina de utilizador OpenID.",
-		"sv": "Klicka h\u00e4r f\u00f6r att logga ut fr\u00e5n din OpenID-anv\u00e4ndare."
+		"sv": "Klicka h\u00e4r f\u00f6r att logga ut fr\u00e5n din OpenID-anv\u00e4ndare.",
+		"da": "Klik her for at logge din OpenID bruger ud."
 	},
 	"confirm_question": {
 		"no": "\u00d8nsker du \u00e5 logge p\u00e5 %SITEURL%?",
 		"de": "M\u00f6chten Sie sich auf %SITEURL% anmelden?",
 		"sl": "Ali se \u017eelite prijaviti v %SITEURL%?",
 		"pt": "Pretende efectuar a entrada em %SITEURL%?",
-		"sv": "Vill du logga in p\u00e5 %SITEURL%?"
+		"sv": "Vill du logga in p\u00e5 %SITEURL%?",
+		"hr": "\u017delite li se prijaviti za pristup stranici %SITEURL%?",
+		"da": "Vil du logge ind til %SITEURL%?"
 	},
 	"remember": {
 		"no": "Husk dette valget",
@@ -126,7 +141,8 @@
 		"de": "L\u00f6schen",
 		"sv": "Ta bort",
 		"sl": "Odstrani",
-		"pt": "Remover"
+		"pt": "Remover",
+		"hr": "Ukloni"
 	},
 	"trustlist_nosites": {
 		"no": "Ingen sites er husket. N\u00e5r du autentiserer deg hos en site, kan du velge \u00e5 legge den til denne listen ved \u00e5 velge <q>Husk dette valget<\/q>.",
@@ -142,7 +158,8 @@
 		"de": "Um sich mit Ihren OpenID-Bezeichner anzumelden, verwenden Sie den folgenden Bezeichner:",
 		"sl": "Za prijavo z va\u0161im OpenID identifikatorjem uporabite naslednje:",
 		"pt": "Para efectuar a entrada com OpenID, utilize o seguinte identificador:",
-		"sv": "F\u00f6r att logga in med din OpenID-leverant\u00f6r anv\u00e4nd f\u00f6ljande identifierare:"
+		"sv": "F\u00f6r att logga in med din OpenID-leverant\u00f6r anv\u00e4nd f\u00f6ljande identifierare:",
+		"hr": "Da biste se prijavili va\u0161im OpenID identifikatorom, koristite sljede\u0107i identifikator:"
 	},
 	"howto_delegate": {
 		"no": "Du kan ogs\u00e5 delegere en annen OpenID til \u00e5 benytte denne OpenID tilbyderen. For \u00e5 gj\u00f8re det, m\u00e5 du legge til f\u00f8lgende <code>&lt;head&gt;<\/code>-element p\u00e5 websiden til denne OpenID-en du vil delegere.",
