@@ -127,7 +127,7 @@ class sspmod_metaedit_MetaEditor {
 		$value = '';
 		if (array_key_exists($key, $metadata)) {
 			if (is_array($metadata[$key])) {
-				$value = htmlspecialchars($metadata[$key]['Location']);	
+				$value = htmlspecialchars($metadata[$key][0]['Location']);
 			} else {
 				$value = htmlspecialchars($metadata[$key]);	
 			}
