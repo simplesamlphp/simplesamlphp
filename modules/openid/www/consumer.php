@@ -13,7 +13,19 @@ require_once('Auth/OpenID/SReg.php');
 require_once('Auth/OpenID/Server.php');
 require_once('Auth/OpenID/ServerRequest.php');
 
-session_start();
+/*
+ * The OpenID library uses the $_SESSION variable, so we may need to
+ * initialize the session.
+ *
+ * We first initialize the SimpleSAML_Session object, to allow its configuration to
+ * take precedence. If the SimpleSAML_Session object doesn't use the PHP session, we
+ * will initialize the PHP session with default settings.
+ */
+SimpleSAML_Session::getInstance();
+if(session_id() === '') {
+	/* PHP session not initialized - start session. */
+	session_start();
+}
 
 $config = SimpleSAML_Configuration::getInstance();
 
