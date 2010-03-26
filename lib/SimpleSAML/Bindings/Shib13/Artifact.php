@@ -137,8 +137,7 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 			SimpleSAML_Utilities::writeFile($file, $certData);
 		}
 
-		$globalConfig = SimpleSAML_Configuration::getInstance();
-		$spKeyCertFile = $globalConfig->getPathValue('certdir', 'cert/') . $spMetadata->getString('privatekey');
+		$spKeyCertFile = SimpleSAML_Utilities::resolveCert($spMetadata->getString('privatekey'));
 
 		$opts = array(
 			'ssl' => array(

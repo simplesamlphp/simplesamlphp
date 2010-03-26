@@ -1479,6 +1479,21 @@ class SimpleSAML_Utilities {
 
 
 	/**
+	 * Resolves a path that may be relative to the cert-directory.
+	 *
+	 * @param string $path  The (possibly relative) path to the file.
+	 * @return string  The file path.
+	 */
+	public static function resolveCert($path) {
+		assert('is_string($path)');
+
+		$globalConfig = SimpleSAML_Configuration::getInstance();
+		$base = $globalConfig->getPathValue('certdir', 'cert/');
+		return SimpleSAML_Utilities::resolvePath($path, $base);
+	}
+
+
+	/**
 	 * Get public key or certificate from metadata.
 	 *
 	 * This function implements a function to retrieve the public key or certificate from
@@ -1525,8 +1540,7 @@ class SimpleSAML_Utilities {
 
 		} elseif (array_key_exists($prefix . 'certificate', $metadata)) {
 			/* Reference to certificate file. */
-			$config = SimpleSAML_Configuration::getInstance();
-			$file = $config->getPathValue('certdir', 'cert/') . $metadata[$prefix . 'certificate'];
+			$file = SimpleSAML_Utilities::resolveCert($metadata[$prefix . 'certificate']);
 			$data = @file_get_contents($file);
 			if ($data === FALSE) {
 				throw new Exception('Unable to load certificate/public key from file "' . $file . '"');
@@ -1612,8 +1626,7 @@ class SimpleSAML_Utilities {
 			}
 		}
 
-		$config = SimpleSAML_Configuration::getInstance();
-		$file = $config->getPathValue('certdir', 'cert/') . $metadata[$prefix . 'privatekey'];
+		$file = SimpleSAML_Utilities::resolveCert($metadata[$prefix . 'privatekey']);
 		$data = @file_get_contents($file);
 		if ($data === FALSE) {
 			throw new Exception('Unable to load private key from file "' . $file . '"');

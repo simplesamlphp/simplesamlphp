@@ -143,13 +143,13 @@ class SimpleSAML_Metadata_Signer {
 
 		$keyCertFiles = self::findKeyCert($config, $entityMetadata, $type);
 
-		$keyFile = $config->getPathValue('certdir', 'cert/') . $keyCertFiles['privatekey'];
+		$keyFile = SimpleSAML_Utilities::resolveCert($keyCertFiles['privatekey']);
 		if (!file_exists($keyFile)) {
 			throw new Exception('Could not find private key file [' . $keyFile . '], which is needed to sign the metadata');
 		}
 		$keyData = file_get_contents($keyFile);
 
-		$certFile = $config->getPathValue('certdir', 'cert/') . $keyCertFiles['certificate'];
+		$certFile = SimpleSAML_Utilities::resolveCert($keyCertFiles['certificate']);
 		if (!file_exists($certFile)) {
 			throw new Exception('Could not find certificate file [' . $certFile . '], which is needed to sign the metadata');
 		}

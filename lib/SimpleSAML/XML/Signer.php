@@ -13,11 +13,6 @@ class SimpleSAML_XML_Signer {
 
 
 	/**
-	 * The path to the simpleSAMLphp cert dir.
-	 */
-	private static $certDir = FALSE;
-
-	/**
 	 * The name of the ID attribute.
 	 */
 	private $idAttrName;
@@ -57,11 +52,6 @@ class SimpleSAML_XML_Signer {
 	 */
 	public function __construct($options = array()) {
 		assert('is_array($options)');
-
-		if(self::$certDir === FALSE) {
-			$config = SimpleSAML_Configuration::getInstance();
-			self::$certDir = $config->getPathValue('certdir', 'cert/');
-		}
 
 		$this->idAttrName = FALSE;
 		$this->privateKey = FALSE;
@@ -128,7 +118,7 @@ class SimpleSAML_XML_Signer {
 		assert('is_string($file)');
 		assert('is_string($pass) || is_null($pass)');
 
-		$keyFile = self::$certDir . $file;
+		$keyFile = SimpleSAML_Utilities::resolveCert($file);
 		if (!file_exists($keyFile)) {
 			throw new Exception('Could not find private key file "' . $keyFile . '".');
 		}
@@ -178,7 +168,7 @@ class SimpleSAML_XML_Signer {
 	public function loadCertificate($file) {
 		assert('is_string($file)');
 
-		$certFile = self::$certDir . $file;
+		$certFile = SimpleSAML_Utilities::resolveCert($file);
 		if (!file_exists($certFile)) {
 			throw new Exception('Could not find certificate file "' . $certFile . '".');
 		}
@@ -213,7 +203,7 @@ class SimpleSAML_XML_Signer {
 	public function addCertificate($file) {
 		assert('is_string($file)');
 
-		$certFile = self::$certDir . $file;
+		$certFile = SimpleSAML_Utilities::resolveCert($file);
 		if (!file_exists($certFile)) {
 			throw new Exception('Could not find extra certificate file "' . $certFile . '".');
 		}

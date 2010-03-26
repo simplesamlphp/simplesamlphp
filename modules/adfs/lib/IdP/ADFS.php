@@ -156,9 +156,9 @@ class sspmod_adfs_IdP_ADFS {
 		
 		$response = sspmod_adfs_IdP_ADFS::ADFS_GenerateResponse($idpEntityId, $spEntityId, $nameid, $attributes);
 
-		$config = SimpleSAML_Configuration::getInstance();
-		$certdir = $config->getPathValue('certdir', 'cert/');		
-		$wresult = sspmod_adfs_IdP_ADFS::ADFS_SignResponse($response, $certdir . $idpMetadata->getString('privatekey'), $certdir . $idpMetadata->getString('certificate'));
+		$privateKeyFile = SimpleSAML_Utilities::resolveCert($idpMetadata->getString('privatekey'));
+		$certificateFile = SimpleSAML_Utilities::resolveCert($idpMetadata->getString('certificate'));
+		$wresult = sspmod_adfs_IdP_ADFS::ADFS_SignResponse($response, $privateKeyFile, $certificateFile);
 
 		$wctx = $state['adfs:wctx'];
 		sspmod_adfs_IdP_ADFS::ADFS_PostResponse($spMetadata->getValue('prp'), $wresult, $wctx);

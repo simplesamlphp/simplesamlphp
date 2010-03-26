@@ -98,8 +98,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 			$this->validator->validateFingerprint($issuerFingerprint);
 		} elseif(array_key_exists('caFile', $md)) {
 			/* Validate against CA. */
-			$globalConfig = SimpleSAML_Configuration::getInstance();
-			$this->validator->validateCA($globalConfig->getPathValue('certdir', 'cert/') . $md['caFile']);
+			$this->validator->validateCA(SimpleSAML_Utilities::resolveCert($md['caFile']));
 		} else {
 			throw new Exception('Required field [certFingerprint] or [caFile] in Shibboleth 1.3 IdP Remote metadata was not found for identity provider [' . $issuer . ']. Please add a fingerprint and try again. You can add a dummy fingerprint first, and then an error message will be printed with the real fingerprint.');
 		}

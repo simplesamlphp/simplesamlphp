@@ -164,8 +164,7 @@ class sspmod_saml2_Message {
 					'Missing certificate in metadata for ' .
 					var_export($srcMetadata->getString('entityid'), TRUE));
 			}
-			$globalConfig = SimpleSAML_Configuration::getInstance();
-			$caFile = $globalConfig->getPathValue('certdir', 'cert/') . $caFile;
+			$caFile = SimpleSAML_Utilities::resolveCert($caFile);
 
 			if (count($certificates) === 0) {
 				/* We need the full certificate in order to check it against the CA file. */
