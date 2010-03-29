@@ -1,9 +1,8 @@
 <?php
-
 /**
- * Filter to modify attributes.
+ * Filter to modify attributes using regular expressions
  *
- * This filter can modify attributes given a regular expression.
+ * This filter can modify or replace attributes given a regular expression.
  *
  * @author Jacob Christiansen, WAYF
  * @package simpleSAMLphp
@@ -17,7 +16,7 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
 	private $replace = FALSE;
 	
 	/**
-	 * Pattern to besearch for.
+	 * Pattern to be search for.
 	 */
 	private $pattern = '';
 	
@@ -27,10 +26,15 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
 	private $replacement = '';
 	
 	/**
-	 * Attribute to search in.
+	 * Attribute to search in
 	 */
 	private $subject = '';
 
+	/**
+	 * Attribute to place result in.
+	 */
+	private $target = '';
+	
 	/**
 	 * Initialize this filter.
 	 *
@@ -38,11 +42,11 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
 	 * @param mixed $reserved  For future use.
 	 */
 	public function __construct($config, $reserved) {
-		parent::__construct($config, $reserved);
-
 		assert('is_array($config)');
 
-		
+		parent::__construct($config, $reserved);
+
+		// Parse filter configuration		
 		foreach($config as $name => $value) {
 			// Is %replace set?
 			if(is_int($name)) {
@@ -53,25 +57,33 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
 				}
 				continue;
 			}
+			
 			// Unknown flag
 			if(!is_string($name)) {
 				throw new Exception('Unknown flag : ' . var_export($name, TRUE));
 			}
+			
 			// Set pattern
 			if($name == 'pattern') {
 				$this->pattern = $value;
 			}
+			
 			// Set replacement
 			if($name == 'replacement') {
 				$this->replacement = $value;
 			}
+			
 			// Set subject
 			if($name == 'subject') {
 				$this->subject = $value;
 			}
+			
+			// Set target
+			if($name == 'target') {
+				$this->target = $value;
+			}
 		}
 	}
-
 
 	/**
 	 * Apply filter to modify attributes.
@@ -84,31 +96,38 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
 		assert('is_array($request)');
 		assert('array_key_exists("Attributes", $request)');
 
-		/**
-		 * Get attributes from request
-		 */
+		// Get attributes from request
 		$attributes =& $request['Attributes'];
 
+		// Check that all required params are set in config
 		if(empty($this->pattern) || empty($this->subject)) {
 			throw new Exception("Not all params set in config.");
 		}
 
-		/**
-		 * Check if attributes contains subject attribute
-		 */
-		if (array_key_exists($this->subject,$attributes)) {
-			// Replace is TRUE
+		if(!$this->replace && empty($this->replacement)) {
+			throw new Exception("'replacement' must be set if '%replace' is not set");
+		}
+
+		// Use subject as taget if target is not set
+		if(empty($this->target)) {
+			$this->target = $this->subject;		
+		}
+	
+		// Check if attributes contains subject and target attribute
+		if (array_key_exists($this->subject, $attributes) && array_key_exists($this->target, $attributes)) {
 			if($this->replace == TRUE) {
+				$matches = array();
 				// Try to match pattern
-				if(preg_match($this->pattern, $attributes[$this->subject][0])) {
-					$attributes[$this->subject] = array($this->replacement);
+				if(preg_match($this->pattern, $attributes[$this->subject][0], $matches) > 0) {
+					if(empty($this->replacement)) {
+						$attributes[$this->target][0] = $matches[0];	
+					} else {
+						$attributes[$this->target][0] = $this->replacement;
+					}
 				}
-			} else {
-				// Try to match pattern
-				$attributes[$this->subject] = preg_replace($this->pattern, $this->replacement, $attributes[$this->subject]);
+			} else {	
+				$attributes[$this->target] = preg_replace($this->pattern, $this->replacement, $attributes[$this->subject]);
 			}		
 		}
 	}
 }
-
-?>
