@@ -221,7 +221,16 @@ Here is an example of such an url:
 
 	https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org
 
-When the IdP-first flow is used an extra parameter is needed in the `saml20-sp-hosted` metadata. This is the `RelayState` parameter that tells the SP which URL to redirect the user to after the user is successfully authenticated. This typically is the frontpage of your application. An example of this can be:
+If the SP is a simpleSAMLphp SP, you must also specify a `RelayState` parameter for the SP.
+This must be set to an URL the user should be redirected to after authentication.
+The `RelayState` parameter can be specified in the [SP configuration](saml:sp), or it can be sent from the IdP.
+To send the RelayState parameter from a simpleSAMLphp IdP, specify it in the query string to SSOService.php:
 
-	'RelayState' => '/',
+    https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org&RelayState=https://sp.example.org/welcome.php
 
+To set it in the SP configuration, add it to `authsources.php`:
+
+    'default-sp' => array(
+        'saml:SP',
+        'RelayState' => 'https://sp.example.org/welcome.php',
+    ),
