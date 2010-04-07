@@ -1,5 +1,6 @@
 <?php 
 
+$this->data['header'] = $this->t('{core:frontpage:page_title}');
 $this->includeAtTemplateBase('includes/header.php'); 
 
 ?>

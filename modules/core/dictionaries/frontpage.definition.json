@@ -1,4 +1,7 @@
 {
+	"page_title": {
+		"en": "simpleSAMLphp installation page"
+	},
 	"intro": {
 		"en": "<strong>Congratulations<\/strong>, you have successfully installed simpleSAMLphp. This is the start page of your installation, where you will find links to test examples, diagnostics, metadata and even links to relevant documentation."
 	},

@@ -139,7 +139,6 @@ $t = new SimpleSAML_XHTML_Template($config, 'core:frontpage_federation.tpl.php')
 $t->data['pageid'] = 'frontpage_federation';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
-$t->data['header'] = 'simpleSAMLphp installation page';
 
 
 $t->data['links'] = $links;

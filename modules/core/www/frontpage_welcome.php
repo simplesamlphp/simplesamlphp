@@ -51,7 +51,6 @@ $t = new SimpleSAML_XHTML_Template($config, 'core:frontpage_welcome.tpl.php');
 $t->data['pageid'] = 'frontpage_welcome';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
-$t->data['header'] = 'simpleSAMLphp installation page';
 
 $t->data['links'] = $links;
 $t->data['links_welcome'] = $links_welcome;
