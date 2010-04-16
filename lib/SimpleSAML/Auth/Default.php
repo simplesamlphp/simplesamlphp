@@ -233,6 +233,12 @@ class SimpleSAML_Auth_Default {
 			$session->setLogoutState($state['LogoutState']);
 		}
 
+		if (array_key_exists('IdP', $state)) {
+			$session->setIdP($state['IdP']);
+		} else {
+			$session->setIdP(NULL);
+		}
+
 		SimpleSAML_Utilities::redirect($redirectTo);
 	}
 
