@@ -44,6 +44,8 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
         {
             if (!@touch($this->logFile))  throw new Exception("Could not create logfile: ".$this->logFile." Loggingdir is not writeable for the webserver user.");
         }
+
+	SimpleSAML_Utilities::initTimezone();
     }
 
     function log_internal($level, $string) {
