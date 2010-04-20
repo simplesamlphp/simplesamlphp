@@ -59,8 +59,21 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 		$dest = 'NA';
 
 		if (array_key_exists($this->attribute, $state['Attributes'])) $logAttribute = $state['Attributes'][$this->attribute][0];		
-		if (array_key_exists('Source', $state)) $source = $state['Source']['entityid'];
-		if (array_key_exists('Destination', $state)) $dest = $state['Destination']['entityid'];
+		if (array_key_exists('Source', $state)) {
+			if (isset($state['Source']['core:statistics-id'])) {
+				$source = $state['Source']['core:statistics-id'];
+			} else {
+				$source = $state['Source']['entityid'];
+			}
+		}
+
+		if (array_key_exists('Destination', $state)) {
+			if (isset($state['Destination']['core:statistics-id'])) {
+				$dest = $state['Destination']['core:statistics-id'];
+			} else {
+				$dest = $state['Destination']['entityid'];
+			}
+		}
 
 		if (!array_key_exists('PreviousSSOTimestamp', $state)) {
 			/* The user hasn't authenticated with this SP earlier in this session. */
