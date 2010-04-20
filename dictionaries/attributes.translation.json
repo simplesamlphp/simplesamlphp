@@ -1303,5 +1303,9 @@
 		"pt": "Caixa de endere\u00e7o postal da Unidade Organizacional",
 		"tr": "Kurumsal Birim'in posta kutusu",
 		"hr": "Broj po\u0161tanskog pretinca organizacijske jedinice"
+	},
+	"attribute_noredupersonlegalname": {
+		"no": "Folkeregistrert navn",
+		"nn": "Namn registrert i Folkeregisteret"
 	}
 }

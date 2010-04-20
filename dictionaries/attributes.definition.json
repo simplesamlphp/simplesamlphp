@@ -101,6 +101,9 @@
 	"attribute_eduorglegalname": {
 		"en": "Organization's legal name"
 	},
+	"attribute_edupersonassurance": {
+		"en": "Identity assurance profile"
+	},
 	"attribute_edupersonnickname": {
 		"en": "Nickname"
 	},
@@ -118,6 +121,9 @@
 	},
 	"attribute_noredupersonbirthdate": {
 		"en": "Date of birth"
+	},
+	"attribute_noredupersonlegalname": {
+		"en": "Legal name"
 	},
 	"attribute_noredupersonlin": {
 		"en": "Local identity number"
