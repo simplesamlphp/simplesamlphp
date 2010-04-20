@@ -59,6 +59,10 @@ class SAML2_Utils {
 			if ($signedNode->isSameNode($root)) {
 				$rootSigned = TRUE;
 				break;
+			} elseif ($root->parentNode instanceof DOMDocument && $signedNode->isSameNode($root->ownerDocument)) {
+				/* $root is the root element of a signed document. */
+				$rootSigned = TRUE;
+				break;
 			}
 		}
 		if (!$rootSigned) {
