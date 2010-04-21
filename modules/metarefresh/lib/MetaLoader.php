@@ -34,7 +34,6 @@ class sspmod_metarefresh_MetaLoader {
 		} catch(Exception $e) {
 			SimpleSAML_Logger::warning('metarefresh: Failed to retrieve metadata. ' . $e->getMessage());
 		}
-		$ca = NULL;
 		foreach($entities as $entity) {
 			if(array_key_exists('validateFingerprint', $source) && $source['validateFingerprint'] !== NULL) {
 				if(!$entity->validateFingerprint($source['validateFingerprint'])) {
@@ -43,13 +42,6 @@ class sspmod_metarefresh_MetaLoader {
 				}
 			}
 			
-			// TODO: $ca is always null
-			if($ca !== NULL) {
-				if(!$entity->validateCA($ca)) {
-					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify certificate.' . "\n");
-					continue;
-				}
-			}
 			$template = NULL;
 			if (array_key_exists('template', $source)) $template = $source['template'];
 			

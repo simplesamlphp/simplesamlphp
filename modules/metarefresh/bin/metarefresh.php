@@ -31,10 +31,6 @@ $toStdOut = FALSE;
  */
 $validateFingerprint = NULL;
 
-/* $CA contains a path to a PEM file with certificates which are trusted,
- * or NULL if we don't want to verify certificates this way.
- */
-$ca = NULL;
 
 /* This variable contains the files we will parse. */
 $files = array();
@@ -80,14 +76,6 @@ foreach($argv as $a) {
 			exit(1);
 		}
 		$validateFingerprint = $v;
-		break;
-	case '--ca':
-		if($v === NULL || strlen($v) === 0) {
-			echo('The --ca option requires an parameter.' . "\n");
-			echo('Please run `' . $progName . ' --help` for usage information.' . "\n");
-			exit(1);
-		}
-		$ca = $v;
 		break;
 	case '--help':
 		printHelp();
@@ -152,8 +140,6 @@ function printHelp() {
 	echo('                              Check the signature of the metadata,' . "\n");
 	echo('                              and check the fingerprint of the' . "\n");
 	echo('                              certificate against <FINGERPRINT>.' . "\n");
-	echo('     --ca=<PEM file>          Use the given PEM file as a source of' . "\n");
-	echo('                              trusted root certificates.' . "\n");
 	echo(' -h, --help                   Print this help.' . "\n");
 	echo(' -o=<DIR>, --out-dir=<DIR>    Write the output to this directory. The' . "\n");
 	echo('                              default directory is metadata-generated/' . "\n");
