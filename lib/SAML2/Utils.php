@@ -117,8 +117,14 @@ class SAML2_Utils {
 		assert('is_string($query)');
 		static $xpCache = NULL;
 
-		if ($xpCache === NULL || !$xpCache->document->isSameNode($node->ownerDocument)) {
-			$xpCache = new DOMXPath($node->ownerDocument);
+		if ($node instanceof DOMDocument) {
+			$doc = $node;
+		} else {
+			$doc = $node->ownerDocument;
+		}
+
+		if ($xpCache === NULL || !$xpCache->document->isSameNode($doc)) {
+			$xpCache = new DOMXPath($doc);
 			$xpCache->registerNamespace('soap-env', SAML2_Const::NS_SOAP);
 			$xpCache->registerNamespace('saml_protocol', SAML2_Const::NS_SAMLP);
 			$xpCache->registerNamespace('saml_assertion', SAML2_Const::NS_SAML);
