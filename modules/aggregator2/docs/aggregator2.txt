@@ -1,0 +1,113 @@
+aggregator2 Module
+==================
+
+This is an experimental module for aggregating metadata.
+It is designed to preserve most of the common metadata items, and also attempt to preserve unknown elements.
+
+*Note*: This aggregator only works on XML metadata, and does its work independently of the of other parts of simpleSAMLphp, such as the `metarefresh` module.
+
+
+Configuration
+-------------
+
+This module is configured through the `config/module_aggregator2.php` configuration file.
+An example file is available in `modules/aggregator2/config-templates/`:
+
+    cd /var/simplesaml
+    cp modules/aggregator2/config-templates/module_aggregator2.php config/
+
+The configuration file contains one or more aggregators in the configuration array.
+The index in the configuration array gives the identifier of the aggregator.
+
+
+### Aggregator entry configuration
+
+The aggregator can be configured with the following options:
+
+`sources`
+:   Array which describes which metadata we should download.
+
+`cron.tag`
+:   Can be used to periodically run an update.
+    Only useful when you have enabled caching of metadata.
+
+`cache.directory`
+:   A path to a directory where the aggregator will cache downloaded and generated metadata.
+    This directory must be writeable by the webserver.
+
+`cache.generated`
+:   The number of seconds generated metadata should be cached.
+    If this option is unset, the generated metadata will not be cached.
+
+`valid.length`
+:   The number of seconds the generated metadata should be valid.
+    This is used to set the validUntil attribute on the generated metadata.
+    The default is one week.
+
+:   *Note*: The `cache.generated` option must be smaller than this option, otherwise you will end up returning outdated metadata.
+
+`ssl.cafile`
+:   This option enables validation of the server certificate when fetching metadata over https.
+    It must be set to a path to a PEM-file which contains one or more valid CA certificates.
+    The path can be absolute, or it can be relative to the `cert`-directory.
+
+:   *Note*: This option can be overridden for each metadata source.
+
+`sign.privatekey`
+:   The private key that should be used to sign the metadata, in PEM format.
+    The path to the private key can be absolute, or it can be relative to the `cert`-directory.
+
+`sign.privatekey_pass`
+:   The password for the private key.
+    If this option is unset, the private key is assumed to be unencrypted.
+
+`sign.certificate`
+:   The certificate which contains the public key corresponding to the private key, in PEM format.
+    This certificate is included in the generated metadata.
+    The path to the certificate can be absolute, or it can be relative to the `cert`-directory.
+
+
+### Aggregator source configuration
+
+`url`
+:   The URL the metadata should be fetched from.
+
+`ssl.cafile`
+:   This option enables validation of the server certificate when fetching metadata over https.
+    It must be the path to a PEM-file which contains one or more valid CA certificates.
+    The path can be absolute, or it can be relative to the `cert`-directory.
+
+:   *Note*: This option overrides the aggregator option.
+
+`cert`
+:   Check the signature on the metadata against the specified certificate.
+    The path to the certificate can be absolute, or it can be relative to the `cert`-directory.
+
+:   *Note*: This can not be a CA certificate.
+    Validation against a CA certificate is not supported.
+
+
+Retrieving aggregated metadata
+------------------------------
+
+The metadata can be downloaded from the following location:
+
+    http://<server>/simplesaml/modules.php/aggregator2/get.php?id=<aggregator id>
+
+
+Asynchronous metadata updates
+-----------------------------
+
+By default, the `aggregator2` module will update the metadata when receiving a request.
+For performance reasons, it is recommended to run the updates asynchronously.
+By doing this, the aggregated metadata will be generated in the background.
+
+To enable this, you must configure a cache directory with the `cache.directory` option.
+This directory must be writeable by the web server.
+You can then enable caching of generated metadata by setting the `cache.generated` option to the number of seconds the metadata can be cached.
+
+You will now have a configuration that caches both downloaded and generated metadata.
+It will however still update the metadata when the user accesses the aggregator endpoint
+To update the generated metadata in the background, you must add a `cron.tag` option.
+This option must reference a cron tag entry configured in `module_cron.php`.
+Once this is done, your aggregated metadata will be updated everytime that cron entry is executed.
