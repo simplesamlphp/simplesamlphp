@@ -1437,29 +1437,6 @@ class SimpleSAML_Metadata_SAMLParser {
 		return FALSE;
 	}
 
-
-	/**
-	 * Retrieve the X509 certificate(s) which was used to sign the metadata.
-	 *
-	 * This function will return all X509 certificates which validates this entity.
-	 * The certificates will be returned as an array with strings with PEM-encoded certificates.
-	 *
-	 * @return  Array with PEM-encoded certificates. This may be an empty array if no
-	 *          certificates sign this entity.
-	 */
-	public function getX509Certificates() {
-		$ret = array();
-
-		foreach($this->validator as $validator) {
-			$cert = $validator->getX509Certificate();
-			if($cert !== NULL) {
-				$ret[] = $cert;
-			}
-		}
-
-		return $ret;
-	}
-
 }
 
 ?>
