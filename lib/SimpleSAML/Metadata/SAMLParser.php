@@ -31,34 +31,6 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
-	 * This is the binding used to send authentication requests in SAML 1.x.
-	 */
-	const SAML_1x_AUTHN_REQUEST = 'urn:mace:shibboleth:1.0:profiles:AuthnRequest';
-
-	/**
-	 * This is the binding used for browser post in SAML 1.x.
-	 */
-	const SAML_1X_POST_BINDING = 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
-
-	/**
-	 * This is the SAML 1.0 SOAP binding.
-	 */
-	const SAML_1X_SOAP_BINDING = 'urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding';
-
-
-	/**
-	 * This is the binding used for HTTP-POST in SAML 2.0.
-	 */
-	const SAML_20_POST_BINDING = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST';
-
-
-	/**
-	 * This is the binding used for HTTP-REDIRECT in SAML 2.0.
-	 */
-	const SAML_20_REDIRECT_BINDING = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect';
-
-
-	/**
 	 * This is the entity id we find in the metadata.
 	 */
 	private $entityId;
@@ -120,11 +92,11 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
-	 * This is an array of SimpleSAML_XML_Validator classes. If this EntityDescriptor is signed, one of the
-	 * validators should be able to verify the fingerprint of the certificate which was used to sign
-	 * this EntityDescriptor.
+	 * This is an array of elements that may be sued to validate this element.
+	 *
+	 * @var array
 	 */
-	private $validator = array();
+	private $validators = array();
 
 
 	/**
@@ -136,81 +108,47 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * This is the constructor for the SAMLParser class.
 	 *
-	 * @param $entityElement The DOMElement which represents the EntityDescriptor-element.
-	 * @param $entitiesValidator  A Validator instance for a signature element in the EntitiesDescriptor,
-	 *                            or NULL if this EntityDescriptor isn't a child of an EntitiesDescriptor
-	 *                            with a Signature element.
-	 * @param int|NULL $expireTime  The unix timestamp for when this entity should expire, or NULL if unknwon.
+	 * @param SAML2_XML_md_EntityDescriptor $entityElement  The EntityDescriptor.
+	 * @param int|NULL $maxExpireTime  The unix timestamp for when this entity should expire, or NULL if unknwon.
+	 * @param array $validators  An array of parent elements that may validate this element.
 	 */
-	private function __construct(DOMElement $entityElement,	$entitiesValidator, $expireTime) {
-		assert('is_null($entitiesValidator) || $entitiesValidator instanceof SimpleSAML_XML_Validator');
-		assert('is_null($expireTime) || is_int($expireTime)');
+	private function __construct(SAML2_XML_md_EntityDescriptor $entityElement, $maxExpireTime, array $validators = array()) {
+		assert('is_null($maxExpireTime) || is_int($maxExpireTime)');
 
 		$this->spDescriptors = array();
 		$this->idpDescriptors = array();
 
-		$tmpDoc = new DOMDocument();
-		$tmpDoc->appendChild($tmpDoc->importNode($entityElement, TRUE));
-		$this->entityDescriptor = base64_encode($tmpDoc->saveXML());
+		$e = $entityElement->toXML();
+		$e = $e->ownerDocument->saveXML($e);
+		$this->entityDescriptor = base64_encode($e);
+		$this->entityId = $entityElement->entityID;
 
-		/* Extract the entity id from the EntityDescriptor element. This is a required
-		 * attribute, so we throw an exception if it isn't found.
-		 */
-		if(!$entityElement->hasAttribute('entityID')) {
-			throw new Exception('EntityDescriptor missing required entityID attribute.');
-		}
-		$this->entityId = $entityElement->getAttribute('entityID');
+		$expireTime = self::getExpireTime($entityElement, $maxExpireTime);
 
-		if ($expireTime === NULL) {
-			/* No expiry time defined by a parent element. Check if this element defines
-			 * one.
-			 */
-			$expireTime = self::getExpireTime($entityElement);
-		}
+		$this->validators = $validators;
+		$this->validators[] = $entityElement;
 
-
-		/* Check if the Signature element from the EntitiesDescriptor can be used to verify this
-		 * EntityDescriptor, and add it to the list of validators if it is.
-		 */
-		if($entitiesValidator !== NULL && $entitiesValidator->isNodeValidated($entityElement)) {
-			$this->validator[] = $entitiesValidator;
-		}
 
 		/* Process Extensions element, if it exists. */
 		$ext = self::processExtensions($entityElement);
 		$this->scopes = $ext['scopes'];
 		$this->tags = $ext['tags'];
 
-		/* Look over the child nodes for any known element types. */
-		for($i = 0; $i < $entityElement->childNodes->length; $i++) {
-			$child = $entityElement->childNodes->item($i);
+		/* Look over the RoleDescriptors. */
+		foreach ($entityElement->RoleDescriptor as $child) {
 
-			// Unless the child is a DOMElement, skip.
-			if ( !($child instanceof DOMelement) ) continue;
-
-			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Signature', '@ds') === TRUE) {
-				$this->processSignature($child);
-			}
-
-			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'SPSSODescriptor', '@md') === TRUE) {
+			if ($child instanceof SAML2_XML_md_SPSSODescriptor) {
 				$this->processSPSSODescriptor($child, $expireTime);
-			}
-
-			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'IDPSSODescriptor', '@md') === TRUE) {
+			} elseif ($child instanceof SAML2_XML_md_IDPSSODescriptor) {
 				$this->processIDPSSODescriptor($child, $expireTime);
-			}
-
-			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'AttributeAuthorityDescriptor', '@md') === TRUE) {
+			} elseif ($child instanceof SAML2_XML_md_AttributeAuthorityDescriptor) {
 				$this->processAttributeAuthorityDescriptor($child, $expireTime);
 			}
-
-			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'Organization', '@md') === TRUE) {
-				$this->processOrganization($child);
-			}
-
 		}
 
-
+		if ($entityElement->Organization) {
+			$this->processOrganization($entityElement->Organization);
+		}
 	}
 
 
@@ -328,48 +266,55 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This function parses a DOMElement which represents either an EntityDescriptor element or an
 	 * EntitiesDescriptor element. It will return an associative array of SAMLParser instances in both cases.
 	 *
-	 * @param $element  The DOMElement which contains the EntityDescriptor element or the EntitiesDescriptor
-	 *                  element.
+	 * @param DOMElement|NULL $element  The DOMElement which contains the EntityDescriptor element or the EntitiesDescriptor element.
 	 * @return An associative array of SAMLParser instances. The key of the array will be the entity id.
 	 */
-	public static function parseDescriptorsElement($element) {
+	public static function parseDescriptorsElement(DOMElement $element = NULL) {
 
 		if($element === NULL) {
 			throw new Exception('Document was empty.');
 		}
 
 		assert('$element instanceof DOMElement');
-		
-		$entitiesValidator = NULL;
 
 		if(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntityDescriptor', '@md') === TRUE) {
-			$elements = array($element);
-			$expireTime = NULL;
+			return self::processDescriptorsElement(new SAML2_XML_md_EntityDescriptor($element));
 		} elseif(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntitiesDescriptor', '@md') === TRUE) {
-
-			/* Check if there is a signature element in the EntitiesDescriptor. */
-			if(count(SimpleSAML_Utilities::getDOMChildren($element, 'Signature', '@ds')) > 0) {
-				try {
-					$entitiesValidator = new SimpleSAML_XML_Validator($element, 'ID');
-				} catch(Exception $e) {
-					SimpleSAML_Logger::warning('SAMLParser: Error creating XML Signature validator for XML document: ' . 
-						$e->getMessage());
-					$entitiesValidator = NULL;
-				}
-			}
-
-			$expireTime = self::getExpireTime($element);
-
-			$elements = SimpleSAML_Utilities::getDOMChildren($element, 'EntityDescriptor', '@md');
+			return self::processDescriptorsElement(new SAML2_XML_md_EntitiesDescriptor($element));
 		} else {
 			throw new Exception('Unexpected root node: [' . $element->namespaceURI . ']:' .
 				$element->localName);
 		}
 
+		return $ret;
+	}
+
+
+	/**
+	 *
+	 * @param SAML2_XML_md_EntityDescriptor|SAML2_XML_md_EntitiesDescriptor $element  The element we should process.
+	 * @param int|NULL $maxExpireTime  The maximum expiration time of the entitites.
+	 * @param array $validators  The parent-elements that may be signed.
+	 * @return array  Array of SAMLParser instances.
+	 */
+	private static function processDescriptorsElement($element, $maxExpireTime = NULL, array $validators = array()) {
+		assert('is_null($maxExpireTime) || is_int($maxExpireTime)');
+
+		if ($element instanceof SAML2_XML_md_EntityDescriptor) {
+			$ret = new SimpleSAML_Metadata_SAMLParser($element, $maxExpireTime, $validators);
+			return array($ret->getEntityId() => $ret);
+		}
+
+		assert('$element instanceof SAML2_XML_md_EntitiesDescriptor');
+
+
+		$expTime = self::getExpireTime($element, $maxExpireTime);
+
+		$validators[] = $element;
+
 		$ret = array();
-		foreach($elements as $e) {
-			$entity = new SimpleSAML_Metadata_SAMLParser($e, $entitiesValidator, $expireTime);
-			$ret[$entity->getEntityId()] = $entity;
+		foreach ($element->children as $child) {
+			$ret += self::processDescriptorsElement($child, $expTime, $validators);
 		}
 
 		return $ret;
@@ -385,42 +330,29 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * If both the 'cacheDuration' and 'validUntil' attributes are present, the shorter of them
 	 * will be returned.
 	 *
-	 * @param DOMElement $element  The element we should determine the expiry time of.
+	 * @param mixed $element  The element we should determine the expiry time of.
+	 * @param int|NULL $maxExpireTime  The maximum expiration time.
 	 * @return int  The unix timestamp for when the element should expire. Will be NULL if no
 	 *              limit is set for the element.
 	 */
-	private static function getExpireTime(DOMElement $element) {
+	private static function getExpireTime($element, $maxExpireTime) {
 
-		if ($element->hasAttribute('cacheDuration')) {
-			$cacheDuration = $element->getAttribute('cacheDuration');
-			$cacheDuration = SimpleSAML_Utilities::parseDuration($cacheDuration, time());
-		} else {
-			$cacheDuration = NULL;
-		}
-
-		if ($element->hasAttribute('validUntil')) {
-			$validUntil = $element->getAttribute('validUntil');
-			$validUntil = SimpleSAML_Utilities::parseSAML2Time($validUntil);
-		} else {
-			$validUntil = NULL;
-		}
-
-		if ($cacheDuration !== NULL && $validUntil !== NULL) {
-			/* Both are given. Return the shortest. */
-
-			if($cacheDuration < $validUntil) {
-				return $cacheDuration;
-			} else {
-				return $validUntil;
+		if ($element->cacheDuration !== NULL) {
+			$expire = SimpleSAML_Utilities::parseDuration($element->cacheDuration, time());
+			if ($maxExpireTime !== NULL && $maxExpireTime < $expire) {
+				$expire = $maxExpireTime;
 			}
-
-		} elseif ($cacheDuration !== NULL) {
-			return $cacheDuration;
-		} elseif ($validUntil !== NULL) {
-			return $validUntil;
 		} else {
-			return NULL;
+			$expire = $maxExpireTime;
 		}
+
+		if ($element->validUntil !== NULL) {
+			if ($expire === NULL || $expire > $element->validUntil) {
+				$expire = $element->validUntil;
+			}
+		}
+
+		return $expire;
 	}
 
 
@@ -803,23 +735,17 @@ class SimpleSAML_Metadata_SAMLParser {
          * - 'expire': Timestamp for when this descriptor expires.
 	 * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor.
 	 *
-	 * @param DOMElement $element  The element we should extract metadata from.
+	 * @param SAML2_XML_md_RoleDescriptor $element  The element we should extract metadata from.
 	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
 	 *                              NULL if unknwon.
 	 * @return Associative array with metadata we have extracted from this element.
 	 */
-	private static function parseRoleDescriptorType(DOMElement $element, $expireTime) {
+	private static function parseRoleDescriptorType(SAML2_XML_md_RoleDescriptor $element, $expireTime) {
 		assert('is_null($expireTime) || is_int($expireTime)');
 
 		$ret = array();
 
-		if ($expireTime === NULL) {
-			/* No expiry time defined by a parent element. Check if this element defines
-			 * one.
-			 */
-			$expireTime = self::getExpireTime($element);
-		}
-
+		$expireTime = self::getExpireTime($element, $expireTime);
 
 		if ($expireTime !== NULL) {
 			/* We have got an expire timestamp, either from this element, or one of the
@@ -828,12 +754,11 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['expire'] = $expireTime;
 		}
 
-		$ret['protocols'] = self::getSupportedProtocols($element);
+		$ret['protocols'] = $element->protocolSupportEnumeration;
 
 		/* Process KeyDescriptor elements. */
 		$ret['keys'] = array();
-		$keys = SimpleSAML_Utilities::getDOMChildren($element, 'KeyDescriptor', '@md');
-		foreach($keys as $kd) {
+		foreach ($element->KeyDescriptor as $kd) {
 			$key = self::parseKeyDescriptor($kd);
 			if($key !== NULL) {
 				$ret['keys'][] = $key;
@@ -858,30 +783,25 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * - 'nameIDFormats': The NameIDFormats supported by this SSODescriptor. This may be an empty array.
 	 * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor:
 	 *
-	 * @param $element The element we should extract metadata from.
+	 * @param SAML2_XML_md_SSODescriptorType $element The element we should extract metadata from.
 	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
 	 *                              NULL if unknwon.
 	 * @return Associative array with metadata we have extracted from this element.
 	 */
-	private static function parseSSODescriptor($element, $expireTime) {
-		assert('$element instanceof DOMElement');
+	private static function parseSSODescriptor(SAML2_XML_md_SSODescriptorType $element, $expireTime) {
 		assert('is_null($expireTime) || is_int($expireTime)');
 
 		$sd = self::parseRoleDescriptorType($element, $expireTime);
 
 		/* Find all SingleLogoutService elements. */
-		$sd['SingleLogoutService'] = self::extractEndpoints($element, 'SingleLogoutService', FALSE);
+		$sd['SingleLogoutService'] = self::extractEndpoints($element->SingleLogoutService);
 
 		/* Find all ArtifactResolutionService elements. */
-		$sd['ArtifactResolutionService'] = self::extractEndpoints($element, 'ArtifactResolutionService', TRUE);
+		$sd['ArtifactResolutionService'] = self::extractEndpoints($element->ArtifactResolutionService);
 
 
 		/* Process NameIDFormat elements. */
-		$sd['nameIDFormats'] = array();
-		$nif = SimpleSAML_Utilities::getDOMChildren($element, 'NameIDFormat', '@md');
-		if(count($nif) > 0) {
-			$sd['nameIDFormats'][] = self::parseNameIDFormat($nif[0]);
-		}
+		$sd['nameIDFormats'] = $element->NameIDFormat;
 
 		return $sd;
 	}
@@ -890,25 +810,23 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * This function extracts metadata from a SPSSODescriptor element.
 	 *
-	 * @param $element The element which should be parsed.
+	 * @param SAML2_XML_md_SPSSODescriptor $element The element which should be parsed.
 	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
 	 *                              NULL if unknwon.
 	 */
-	private function processSPSSODescriptor($element, $expireTime) {
-		assert('$element instanceof DOMElement');
+	private function processSPSSODescriptor(SAML2_XML_md_SPSSODescriptor $element, $expireTime) {
 		assert('is_null($expireTime) || is_int($expireTime)');
 
 		$sp = self::parseSSODescriptor($element, $expireTime);
 
 		/* Find all AssertionConsumerService elements. */
-		$sp['AssertionConsumerService'] = self::extractEndpoints($element, 'AssertionConsumerService', TRUE);
+		$sp['AssertionConsumerService'] = self::extractEndpoints($element->AssertionConsumerService);
 
 		/* Find all the attributes and SP name... */
-		#$sp['attributes'] = array();
-		$attcs = SimpleSAML_Utilities::getDOMChildren($element, 'AttributeConsumingService', '@md');
+		$attcs = $element->AttributeConsumingService;
 		if (count($attcs) > 0) {
 			self::parseAttributeConsumerService($attcs[0], $sp);
-		}	
+		}
 
 		$this->spDescriptors[] = $sp;
 	}
@@ -917,20 +835,19 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * This function extracts metadata from a IDPSSODescriptor element.
 	 *
-	 * @param $element The element which should be parsed.
+	 * @param SAML2_XML_md_IDPSSODescriptor $element The element which should be parsed.
 	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
 	 *                              NULL if unknwon.
 	 */
-	private function processIDPSSODescriptor($element, $expireTime) {
-		assert('$element instanceof DOMElement');
+	private function processIDPSSODescriptor(SAML2_XML_md_IDPSSODescriptor $element, $expireTime) {
 		assert('is_null($expireTime) || is_int($expireTime)');
 
 		$idp = self::parseSSODescriptor($element, $expireTime);
 
 		/* Find all SingleSignOnService elements. */
-		$idp['SingleSignOnService'] = self::extractEndpoints($element, 'SingleSignOnService', FALSE);
+		$idp['SingleSignOnService'] = self::extractEndpoints($element->SingleSignOnService);
 
-		if ($element->getAttribute('WantAuthnRequestsSigned') === 'true') {
+		if ($element->WantAuthnRequestsSigned) {
 			$idp['WantAuthnRequestsSigned'] = TRUE;
 		} else {
 			$idp['WantAuthnRequestsSigned'] = FALSE;
@@ -943,23 +860,20 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * This function extracts metadata from a AttributeAuthorityDescriptor element.
 	 *
-	 * @param DOMElement $element The element which should be parsed.
+	 * @param SAML2_XML_md_AttributeAuthorityDescriptor $element The element which should be parsed.
 	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
 	 *                              NULL if unknwon.
 	 */
-	private function processAttributeAuthorityDescriptor(DOMElement $element, $expireTime) {
+	private function processAttributeAuthorityDescriptor(SAML2_XML_md_AttributeAuthorityDescriptor $element, $expireTime) {
 		assert('is_null($expireTime) || is_int($expireTime)');
 
 		$aad = self::parseRoleDescriptorType($element, $expireTime);
 		$aad['entityid'] = $this->entityId;
 		$aad['metadata-set'] = 'attributeauthority-remote';
 
-		$aad['AttributeService'] = self::extractEndpoints($element, 'AttributeService', FALSE);
-		$aad['AssertionIDRequestService'] = self::extractEndpoints($element, 'AssertionIDRequestService', FALSE);
-		$aad['NameIDFormat'] = array_map(
-			array('SimpleSAML_Utilities', 'getDOMText'),
-			SimpleSAML_Utilities::getDOMChildren($element, 'NameIDFormat', '@md')
-		);
+		$aad['AttributeService'] = self::extractEndpoints($element->AttributeService);
+		$aad['AssertionIDRequestService'] = self::extractEndpoints($element->AssertionIDRequestService);
+		$aad['NameIDFormat'] = $element->NameIDFormat;
 
 		$this->attributeAuthorityDescriptors[] = $aad;
 	}
@@ -968,41 +882,40 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * Parse an Extensions element.
 	 *
-	 * @param DOMElement $element  The DOMElement which contains the Extensions element.
+	 * @param mixed $element  The element which contains the Extensions element.
 	 */
-	private static function processExtensions(DOMElement $element) {
+	private static function processExtensions($element) {
 
 		$ret = array(
 			'scopes' => array(),
 			'tags' => array(),
 		);
 
-		$extensions = SimpleSAML_Utilities::getDOMChildren($element, 'Extensions', '@md');
-		if (empty($extensions)) {
-			/* No extension element. */
-			return $ret;
-		}
-		$element = $extensions[0];
+		foreach ($element->Extensions as $e) {
 
-		/* See: https://spaces.internet2.edu/display/SHIB/ShibbolethMetadataProfile */
-		foreach (SimpleSAML_Utilities::getDOMChildren($element, 'Scope', '@shibmd') as $scope) {
-			$scope = SimpleSAML_Utilities::getDOMText($scope);
-			if (!empty($scope)) {
-				$ret['scopes'][] = $scope;
+			if ($e instanceof SAML2_XML_shibmd_Scope) {
+				$ret['scopes'][] = $e->scope;
+				continue;
 			}
-		}
 
-		foreach (SimpleSAML_Utilities::getDOMChildren($element, 'Attribute', '@saml2') as $attribute) {
-			$name = $attribute->getAttribute('Name');
-			$values = array_map(
-				array('SimpleSAML_Utilities', 'getDOMText'),
-				SimpleSAML_Utilities::getDOMChildren($attribute, 'AttributeValue', '@saml2')
-			);
+			if (!($e instanceof SAML2_XML_Chunk)) {
+				continue;
+			}
 
-			if ($name === 'tags') {
-				foreach ($values as $tagname) {
-					if (!empty($tagname)) {
-						$ret['tags'][] = $tagname;
+			if ($e->localName === 'Attribute' && $e->namespaceURI === SAML2_Const::NS_SAML) {
+				$attribute = $e->getXML();
+
+				$name = $attribute->getAttribute('Name');
+				$values = array_map(
+					array('SimpleSAML_Utilities', 'getDOMText'),
+					SimpleSAML_Utilities::getDOMChildren($attribute, 'AttributeValue', '@saml2')
+				);
+
+				if ($name === 'tags') {
+					foreach ($values as $tagname) {
+						if (!empty($tagname)) {
+							$ret['tags'][] = $tagname;
+						}
 					}
 				}
 			}
@@ -1015,90 +928,33 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * Parse and process a Organization element.
 	 *
-	 * @param $element  The DOMElement which represents the Organization element.
+	 * @param SAML2_XML_md_Organization $element  The Organization element.
 	 */
-	private function processOrganization($element) {
-		assert('$element instanceof DOMElement');
+	private function processOrganization(SAML2_XML_md_Organization $element) {
 
-		for($i = 0; $i < $element->childNodes->length; $i++) {
-			$child = $element->childNodes->item($i);
-
-			/* Skip text nodes. */
-			if($child instanceof DOMText) {
-				continue;
-			}
-
-			/* Determine the type. */
-			if(SimpleSAML_Utilities::isDOMElementOfType($child, 'OrganizationName', '@md')) {
-				$type = 'organizationName';
-			} elseif(SimpleSAML_Utilities::isDOMElementOfType($child, 'OrganizationDisplayName', '@md')) {
-				$type = 'organizationDisplayName';
-			} elseif(SimpleSAML_Utilities::isDOMElementOfType($child, 'OrganizationURL', '@md')) {
-				$type = 'organizationURL';
-			} else {
-				/* Skip unknown/unhandled elements. */
-				continue;
-			}
-
-			/* Extract the text. */
-			$text = SimpleSAML_Utilities::getDOMText($child);
-
-			/* Skip nodes without text. */
-			if(empty($text)) {
-				continue;
-			}
-
-			/* Find the language of the text. This should be stored in the xml:lang attribute. */
-			$language = $child->getAttributeNS('http://www.w3.org/XML/1998/namespace', 'lang');
-			//$language = $child->getAttributeNS('xml', 'lang');
-			if(empty($language)) {
-				/* No language given, assume 'en'. */
-				$language = 'en';
-			}
-
-			/* Add the result to the appropriate list. */
-			if($type === 'organizationName') {
-				$this->organizationName[$language] = $text;
-			} elseif($type === 'organizationDisplayName') {
-				$this->organizationDisplayName[$language] = $text;
-			} elseif($type === 'organizationURL') {
-				$this->organizationURL[$language] = $text;
-			}
-		}
+		$this->organizationName = $element->OrganizationName;
+		$this->organizationDisplayName = $element->OrganizationDisplayName;
+		$this->organizationURL = $element->OrganizationURL;
 	}
 
 
 	/**
 	 * This function parses AttributeConsumerService elements.
 	 */
-	private static function parseAttributeConsumerService($element, &$sp) {
-		assert('$element instanceof DOMElement');
+	private static function parseAttributeConsumerService(SAML2_XML_md_AttributeConsumingService $element, &$sp) {
 		assert('is_array($sp)');
-				
-		$elements = SimpleSAML_Utilities::getDOMChildren($element, 'ServiceName', '@md');
-		foreach($elements AS $child) {
-			$language = $child->getAttributeNS('http://www.w3.org/XML/1998/namespace', 'lang');
-			if(empty($language)) $language = 'en';
-			$sp['name'][$language] = SimpleSAML_Utilities::getDOMText($child);
-		}
-		
-		$elements = SimpleSAML_Utilities::getDOMChildren($element, 'ServiceDescription', '@md');
-		foreach($elements AS $child) {
-			$language = $child->getAttributeNS('http://www.w3.org/XML/1998/namespace', 'lang');
-			if(empty($language)) $language = 'en';
-			$sp['description'][$language] = SimpleSAML_Utilities::getDOMText($child);
-		}
-		
+
+		$sp['name'] = $element->ServiceName;
+		$sp['description'] = $element->ServiceDescription;
 
 		$format = NULL;
-		$elements = SimpleSAML_Utilities::getDOMChildren($element, 'RequestedAttribute', '@md');
 		$sp['attributes'] = array();
-		foreach($elements AS $child) {
-			$attrname = $child->getAttribute('Name');
+		foreach ($element->RequestedAttribute AS $child) {
+			$attrname = $child->Name;
 			$sp['attributes'][] = $attrname;
 
-			if ($child->hasAttribute('NameFormat')) {
-				$attrformat = $child->getAttribute('NameFormat');
+			if ($child->NameFormat !== NULL) {
+				$attrformat = $child->NameFormat;
 			} else {
 				$attrformat = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
 			}
@@ -1108,7 +964,6 @@ class SimpleSAML_Metadata_SAMLParser {
 			} elseif ($format !== $attrformat) {
 				$format = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
 			}
-
 		}
 
 		if (empty($sp['attributes'])) {
@@ -1122,20 +977,6 @@ class SimpleSAML_Metadata_SAMLParser {
 		if ($format !== SAML2_Const::NAMEFORMAT_UNSPECIFIED && $format !== NULL) {
 			$sp['attributes.NameFormat'] = $format;
 		}
-
-	}
-
-
-	/**
-	 * This function parses NameIDFormat elements.
-	 *
-	 * @param $element The element which should be parsed.
-	 * @return URN with the supported NameIDFormat.
-	 */
-	private static function parseNameIDFormat($element) {
-		assert('$element instanceof DOMElement');
-
-		return SimpleSAML_Utilities::getDOMText($element);
 	}
 
 
@@ -1150,47 +991,24 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * - 'isDefault': Whether this endpoint is the default endpoint for this type. This attribute may not exist.
 	 *
 	 * @param $element The element which should be parsed.
-	 * @param $isIndexed Wheter the endpoint is an indexed endpoint (and may have the index and isDefault attributes.).
 	 * @return Associative array with the data we have extracted from the element.
 	 */
-	private static function parseGenericEndpoint($element, $isIndexed) {
-		assert('$element instanceof DOMElement');
-		assert('is_bool($isIndexed)');
-
-		$name = $element->localName;
+	private static function parseGenericEndpoint(SAML2_XML_md_EndpointType $element) {
 
 		$ep = array();
 
-		if(!$element->hasAttribute('Binding')) {
-			throw new Exception($name . ' missing required Binding attribute.');
-		}
-		$ep['Binding'] = $element->getAttribute('Binding');
+		$ep['Binding'] = $element->Binding;
+		$ep['Location'] = $element->Location;
 
-		if(!$element->hasAttribute('Location')) {
-			throw new Exception($name . ' missing required Location attribute.');
-		}
-		$ep['Location'] = $element->getAttribute('Location');
-
-		if($element->hasAttribute('ResponseLocation')) {
-			$ep['ResponseLocation'] = $element->getAttribute('ResponseLocation');
+		if ($element->ResponseLocation !== NULL) {
+			$ep['ResponseLocation'] = $element->ResponseLocation;
 		}
 
-		if($isIndexed) {
-			if(!$element->hasAttribute('index')) {
-				throw new Exception($name . ' missing required index attribute.');
-			}
-			$ep['index'] = (int)$element->getAttribute('index');
+		if ($element instanceof SAML2_XML_md_IndexedEndpointType) {
+			$ep['index'] = $element->index;
 
-			if($element->hasAttribute('isDefault')) {
-				$t = $element->getAttribute('isDefault');
-				if($t === 'false') {
-					$ep['isDefault'] = FALSE;
-				} elseif($t === 'true') {
-					$ep['isDefault'] = TRUE;
-				} else {
-					throw new Exception('Invalid value for isDefault attribute on ' .
-						$name . ' element: ' . $t);
-				}
+			if ($element->isDefault !== NULL) {
+				$ep['isDefault'] = $element->isDefault;
 			}
 		}
 
@@ -1201,19 +1019,14 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * Extract generic endpoints.
 	 *
-	 * @param DOMElement $element  The element we should extract an endpoint list from.
-	 * @param string $name  The name of the elements.
-	 * @param bool $isIndexed  Whether the endpoints are indexed.
+	 * @param array $endpoints  The endpoints we should parse.
 	 * @return array  Array of parsed endpoints.
 	 */
-	private static function extractEndpoints(DOMElement $element, $name, $isIndexed) {
-		assert('is_bool($isIndexed)');
-		assert('is_string($name)');
+	private static function extractEndpoints(array $endpoints) {
 
 		$ret = array();
-		$endpoints = SimpleSAML_Utilities::getDOMChildren($element, $name, '@md');
 		foreach ($endpoints as $ep) {
-			$ret[] = self::parseGenericEndpoint($ep, $isIndexed);
+			$ret[] = self::parseGenericEndpoint($ep);
 		}
 
 		return $ret;
@@ -1230,52 +1043,39 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * - 'type: The type of the key. 'X509Certificate' is the only key type we support.
 	 * - 'X509Certificate': The contents of the first X509Certificate element (if the type is 'X509Certificate ').
 	 *
-	 * @param $kd  The KeyDescriptor element.
+	 * @param SAML2_XML_md_KeyDescriptor $kd  The KeyDescriptor element.
 	 * @return Associative array describing the key, or NULL if this is an unsupported key.
 	 */
-	private static function parseKeyDescriptor($kd) {
-		assert('$kd instanceof DOMElement');
+	private static function parseKeyDescriptor(SAML2_XML_md_KeyDescriptor $kd) {
 
 		$r = array();
 
-		if($kd->hasAttribute('use')) {
-			$use = $kd->getAttribute('use');
-			if($use === 'encryption') {
-				$r['encryption'] = TRUE;
-				$r['signing'] = FALSE;
-			} elseif($use === 'signing') {
-				$r['encryption'] = FALSE;
-				$r['signing'] = TRUE;
-			} else {
-				throw new Exception('Invalid use-value for KeyDescriptor: ' . $use);
-			}
+		if ($kd->use === 'encryption') {
+			$r['encryption'] = TRUE;
+			$r['signing'] = FALSE;
+		} elseif($kd->use === 'signing') {
+			$r['encryption'] = FALSE;
+			$r['signing'] = TRUE;
 		} else {
 			$r['encryption'] = TRUE;
 			$r['signing'] = TRUE;
 		}
 
-		$keyInfo = SimpleSAML_Utilities::getDOMChildren($kd, 'KeyInfo', '@ds');
-		if(count($keyInfo) === 0) {
-			throw new Exception('Missing required KeyInfo field for KeyDescriptor.');
+		$keyInfo = $kd->KeyInfo;
+
+		foreach ($keyInfo->info as $i) {
+			if ($i instanceof SAML2_XML_ds_X509Data) {
+				foreach ($i->data as $d) {
+					if ($d instanceof SAML2_XML_ds_X509Certificate) {
+						$r['type'] = 'X509Certificate';
+						$r['X509Certificate'] = $d->certificate;
+						return $r;
+					}
+				}
+			}
 		}
-		$keyInfo = $keyInfo[0];
 
-		$X509Data = SimpleSAML_Utilities::getDOMChildren($keyInfo, 'X509Data', '@ds');
-		if(count($X509Data) === 0) {
-			return NULL;
-		}
-		$X509Data = $X509Data[0];
-
-		$X509Certificate = SimpleSAML_Utilities::getDOMChildren($X509Data, 'X509Certificate', '@ds');
-		if(count($X509Certificate) === 0) {
-			return NULL;
-		}
-		$X509Certificate = $X509Certificate[0];
-
-		$r['type'] = 'X509Certificate';
-		$r['X509Certificate'] = SimpleSAML_Utilities::getDOMText($X509Certificate);
-
-		return $r;
+		return NULL;
 	}
 
 
@@ -1349,68 +1149,7 @@ class SimpleSAML_Metadata_SAMLParser {
 			throw new Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
 		}
 
-		return $ed;
-	}
-
-
-	/**
-	 * This function extracts a list of supported protocols from a SPSSODescriptor or IDPSSODescriptor element.
-	 *
-	 * @param $element The SPSSODescriptor or IDPSSODescriptor element.
-	 * @return Array with the supported protocols.
-	 */
-	private static function getSupportedProtocols($element) {
-		assert('$element instanceof DOMElement');
-
-		/* The protocolSupportEnumeration is a required attribute. */
-		if(!$element->hasAttribute('protocolSupportEnumeration')) {
-			throw new Exception($element->tagName . ' is missing the required protocolSupportEnumeration attribute.');
-		}
-
-		/* The attribute is a space seperated list of supported protocols. */
-		$supProt = $element->getAttribute('protocolSupportEnumeration');
-		$supProt = explode(' ', $supProt);
-
-		return $supProt;
-	}
-
-
-	/**
-	 * This function processes a signature element in an EntityDescriptor element.
-	 *
-	 * It will attempt to validate the EntityDescriptor element using the signature. If the signature
-	 * is good, it will and will store the fingerprint the certificate in the $validatedFingerprint variable.
-	 *
-	 * @param $element  The ds:Signature element.
-	 */
-	private function processSignature($element) {
-		assert('$element instanceof DOMElement');
-
-		/* We want to validate the EntityDescriptor which contains the signature. */
-		$entityDescriptor = $element->parentNode;
-		assert('$entityDescriptor instanceof DOMElement');
-
-		/*
-		 * Make a copy of the entity descriptor, so that the validator can
-		 * change the DOM tree in any way it wants.
-		 */
-		$doc = new DOMDocument();
-		$entityDescriptor = $doc->importNode($entityDescriptor, TRUE);
-		$doc->appendChild($entityDescriptor);
-
-		/* Attempt to check the signature. */
-		try {
-			$validator = new SimpleSAML_XML_Validator($entityDescriptor, 'ID');
-
-			if($validator->isNodeValidated($entityDescriptor)) {
-				/* The EntityDescriptor is signed. Store the validator in $this->validator, so
-				 * that it can be used to verify the fingerprint of the certificate later.
-				 */
-				$this->validator[] = $validator;
-			}
-		} catch(Exception $e) {
-			/* Ignore validation errors and pretend that this EntityDescriptor is unsigned. */
-		}
+		return new SAML2_XML_md_EntityDescriptor($ed);
 	}
 
 
@@ -1424,13 +1163,12 @@ class SimpleSAML_Metadata_SAMLParser {
 	 */
 	public function validateFingerprint($fingerprint) {
 
-		foreach($this->validator as $validator) {
-			try {
-				$validator->validateFingerprint($fingerprint);
-				return TRUE;
-			} catch(Exception $e) {
-				/* Validation with this validator failed. */
-				SimpleSAML_Logger::debug('Validation of fingerprint failed: ' . $e->getMessage());
+		foreach ($this->validators as $validator) {
+			foreach ($validator->getValidatingCertificates() as $cert) {
+				$fp = strtolower(sha1(base64_decode($cert)));
+				if ($fp === $fingerprint) {
+					return TRUE;
+				}
 			}
 		}
 
@@ -1438,5 +1176,3 @@ class SimpleSAML_Metadata_SAMLParser {
 	}
 
 }
-
-?>
