@@ -1460,27 +1460,6 @@ class SimpleSAML_Metadata_SAMLParser {
 		return $ret;
 	}
 
-
-	/**
-	 * Validate the EntityDescriptor against a CA.
-	 *
-	 * @param $caFile  A file with trusted certificates, in PEM format.
-	 * @return  TRUE if this CA can validate the EntityDescriptor, FALSE if not.
-	 */
-	public function validateCA($caFile) {
-
-		foreach($this->validator as $validator) {
-			try {
-				$validator->validateCA($caFile);
-				return TRUE;
-			} catch(Exception $e) {
-				/* Validation with this validator failed. */
-			}
-		}
-
-		return FALSE;
-	}
-
 }
 
 ?>
