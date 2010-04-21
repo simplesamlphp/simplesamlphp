@@ -138,6 +138,50 @@ class SAML2_Utils {
 
 
 	/**
+	 * Make an exact copy the specific DOMElement.
+	 *
+	 * @param DOMElement $element  The element we should copy.
+	 * @param DOMElement|NULL $parent  The target parent element.
+	 * @return DOMElement  The copied element.
+	 */
+	public static function copyElement(DOMElement $element, DOMElement $parent = NULL) {
+
+		if ($parent === NULL) {
+			$document = new DOMDocument();
+		} else {
+			$document = $parent->ownerDocument;
+		}
+
+		$namespaces = array();
+		for ($e = $element; $e !== NULL; $e = $e->parentNode) {
+			foreach (SAML2_Utils::xpQuery($e, './namespace::*') as $ns) {
+				$prefix = $ns->localName;
+				if ($prefix === 'xml' || $prefix === 'xmlns') {
+					continue;
+				}
+				$uri = $ns->nodeValue;
+				if (!isset($namespaces[$prefix])) {
+					$namespaces[$prefix] = $uri;
+				}
+			}
+		}
+
+		$newElement = $document->importNode($element, TRUE);
+		if ($parent !== NULL) {
+			/* We need to append the child to the parent before we add the namespaces. */
+			$parent->appendChild($newElement);
+		}
+
+		foreach ($namespaces as $prefix => $uri) {
+			$newElement->setAttributeNS($uri, $prefix . ':__ns_workaround__', 'tmp');
+			$newElement->removeAttributeNS($uri, '__ns_workaround__');
+		}
+
+		return $newElement;
+	}
+
+
+	/**
 	 * Parse a boolean attribute.
 	 *
 	 * @param DOMElement $node  The element we should fetch the attribute from.
