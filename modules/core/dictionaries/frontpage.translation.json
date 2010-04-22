@@ -876,5 +876,10 @@
 		"de": "Veraltet",
 		"fi": "Vanhentunut",
 		"pt": "Descontinuado"
+	},
+	"page_title": {
+		"sv": "Installationssida f\u00f6r simpleSAMLphp",
+		"sl": "Namestitvena stran simpleSAMLphp",
+		"de": "simpleSAMLphp Installationsseite"
 	}
 }

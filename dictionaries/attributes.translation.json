@@ -1307,5 +1307,9 @@
 	"attribute_noredupersonlegalname": {
 		"no": "Folkeregistrert navn",
 		"nn": "Namn registrert i Folkeregisteret"
+	},
+	"attribute_edupersonassurance": {
+		"no": "Tillitsniv\u00e5 for autentisering",
+		"nn": "Tillitsniv\u00e5 for autentisering"
 	}
 }
