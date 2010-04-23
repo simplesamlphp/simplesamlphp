@@ -542,7 +542,7 @@ class SimpleSAML_Utilities {
 	}
 
 
-	/** 
+	/**
 	 * Show and log fatal error message.
 	 *
 	 * This function logs a error message to the error log and shows the
@@ -551,19 +551,20 @@ class SimpleSAML_Utilities {
 	 * The error code comes from the errors-dictionary. It can optionally include parameters, which
 	 * will be substituted into the output string.
 	 *
-	 * @param string $trackid  The trackid of the user, from $session->getTrackID().
-	 * @param mixed $errorcode  Either a string with the error code, or an array with the error code and
+	 * @param string $trackId  The trackid of the user, from $session->getTrackID().
+	 * @param mixed $errorCode  Either a string with the error code, or an array with the error code and
 	 *                          additional parameters.
 	 * @param Exception $e  The exception which caused the error.
 	 */
-	public static function fatalError($trackid = 'na', $errorcode = null, Exception $e = null) {
-	
-		$config = SimpleSAML_Configuration::getInstance();
+	public static function fatalError($trackId = 'na', $errorCode = null, Exception $e = null) {
 
-		if(is_array($errorcode)) {
-			$parameters = $errorcode;
+		$config = SimpleSAML_Configuration::getInstance();
+		$session = SimpleSAML_Session::getInstance();
+
+		if (is_array($errorCode)) {
+			$parameters = $errorCode;
 			unset($parameters[0]);
-			$errorcode = $errorcode[0];
+			$errorCode = $errorCode[0];
 		} else {
 			$parameters = array();
 		}
@@ -572,15 +573,15 @@ class SimpleSAML_Utilities {
 		$emsg   = (empty($e) ? 'No exception available' : $e->getMessage());
 		$etrace = (empty($e) ? 'No exception available' : self::formatBacktrace($e));
 
-		if(!empty($errorcode) && count($parameters) > 0) {
+		if (!empty($errorCode) && count($parameters) > 0) {
 			$reptext = array();
 			foreach($parameters as $k => $v) {
 				$reptext[] = '"' . $k . '"' . ' => "' . $v . '"';
 			}
 			$reptext = '(' . implode(', ', $reptext) . ')';
-			$error = $errorcode . $reptext;
-		} elseif(!empty($errorcode)) {
-			$error = $errorcode;
+			$error = $errorCode . $reptext;
+		} elseif(!empty($errorCode)) {
+			$error = $errorCode;
 		} else {
 			$error = 'na';
 		}
@@ -594,52 +595,46 @@ class SimpleSAML_Utilities {
 				SimpleSAML_Logger::error($line);
 			}
 		}
-		
-		$languagefile = null;
-		if (isset($errorcode)) $languagefile = 'errors';
-		
-		// Initialize a template
-		$t = new SimpleSAML_XHTML_Template($config, 'error.php', $languagefile);
-		
-		
-		$t->data['errorcode'] = $errorcode;
-		$t->data['parameters'] = $parameters;
 
+		$reportId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(4));
+		SimpleSAML_Logger::error('Error report with id ' . $reportId . ' generated.');
+
+		$errorData = array(
+			'exceptionMsg' => $emsg,
+			'exceptionTrace' => $etrace,
+			'reportId' => $reportId,
+			'trackId' => $trackId,
+			'url' => self::selfURLNoQuery(),
+			'version' => $config->getVersion(),
+		);
+		$session->setData('core:errorreport', $reportId, $errorData);
+
+		$t = new SimpleSAML_XHTML_Template($config, 'error.php', 'errors');
 		$t->data['showerrors'] = $config->getBoolean('showerrors', true);
+		$t->data['error'] = $errorData;
+		$t->data['errorCode'] = $errorCode;
+		$t->data['parameters'] = $parameters;
 
 		/* Check if there is a valid technical contact email address. */
 		if($config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org') {
 			/* Enable error reporting. */
 			$baseurl = SimpleSAML_Utilities::selfURLhost() . '/' . $config->getBaseURL();
-			$t->data['errorreportaddress'] = $baseurl . 'errorreport.php';
-
-		} else {
-			/* Disable error reporting. */
-			$t->data['errorreportaddress'] = NULL;
+			$t->data['errorReportAddress'] = $baseurl . 'errorreport.php';
 		}
 
-		$session = SimpleSAML_Session::getInstance();
 		$attributes = $session->getAttributes();
-		if(is_array($attributes) && array_key_exists('mail', $attributes) && count($attributes['mail']) > 0) {
+		if (is_array($attributes) && array_key_exists('mail', $attributes) && count($attributes['mail']) > 0) {
 			$email = $attributes['mail'][0];
 		} else {
 			$email = '';
 		}
 		$t->data['email'] = $email;
 
-		$t->data['exceptionmsg'] = $emsg;
-		$t->data['exceptiontrace'] = $etrace;
-		
-		$t->data['trackid'] = $trackid;
-		
-		$t->data['version'] = $config->getVersion();
-		$t->data['url'] = self::selfURLNoQuery();
-		
 		$t->show();
-		
 		exit;
 	}
-	
+
+
 	/**
 	 * Check whether an IP address is part of an CIDR.
 	 */
