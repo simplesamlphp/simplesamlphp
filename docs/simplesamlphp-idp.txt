@@ -144,14 +144,17 @@ files, see the [IdP hosted reference](simplesamlphp-reference-idp-hosted).
 Adding SPs to the IdP
 ---------------------
 
-The identity provider you are configuring needs to know about the service providers you are going to connect to it. This is configured by metadata stored in `metadata/saml20-sp-remote.php` and `metadata/shib13-sp-remote.php`. This is a minimal example of a `metadata/saml20-sp-remote.php` metadata file:
+The identity provider you are configuring needs to know about the service providers you are going to connect to it.
+This is configured by metadata stored in `metadata/saml20-sp-remote.php` and `metadata/shib13-sp-remote.php`.
+This is a minimal example of a `metadata/saml20-sp-remote.php` metadata file for a simpleSAMLphp SP:
 
     <?php
-    $metadata['https://sp.example.org'] = array(
-        'AssertionConsumerService' => 'https://sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php',
-        'SingleLogoutService'      => 'https://sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
+    $metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'] = array(
+        'AssertionConsumerService' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+        'SingleLogoutService'      => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
     );
 
+Note that the URI in the entityID and the URLs to the AssertionConsumerService and SingleLogoutService endpoints change between different service providers.
 If you have the metadata of the remote SP as an XML file, you can use the built-in XML to simpleSAMLphp metadata converter, which by default is available as `/admin/metadata-converter.php` in your simpleSAMLphp installation.
 
 For more information about available options in the sp-remote metadata files, see the [SP remote reference](simplesamlphp-reference-sp-remote).
