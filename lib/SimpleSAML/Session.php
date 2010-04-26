@@ -86,6 +86,14 @@ class SimpleSAML_Session {
 
 
 	/**
+	 * Persistent authentication state.
+	 *
+	 * @array
+	 */
+	private $authState;
+
+
+	/**
 	 * The list of IdP-SP associations.
 	 *
 	 * This is an associative array with the IdP id as the key, and the list of
@@ -354,9 +362,10 @@ class SimpleSAML_Session {
 	 *
 	 * If the user already has logged in, the user will be logged out first.
 	 *
-	 * @param @authority  The authority the user logged in with.
+	 * @param string $authority  The authority the user logged in with.
+	 * @param array|NULL $authState  The persistent auth state for this authority.
 	 */
-	public function doLogin($authority) {
+	public function doLogin($authority, array $authState = NULL) {
 		assert('is_string($authority)');
 
 		SimpleSAML_Logger::debug('Session: doLogin("' . $authority . '")');
@@ -370,6 +379,7 @@ class SimpleSAML_Session {
 
 		$this->authenticated = TRUE;
 		$this->authority = $authority;
+		$this->authState = $authState;
 
 		$this->sessionstarted = time();
 
@@ -395,6 +405,7 @@ class SimpleSAML_Session {
 		$this->authority = NULL;
 		$this->attributes = NULL;
 		$this->logoutState = NULL;
+		$this->authState = NULL;
 		$this->idp = NULL;
 
 		/* Delete data which expires on logout. */
@@ -902,6 +913,25 @@ class SimpleSAML_Session {
 		}
 
 		return $this->logoutState;
+	}
+
+
+	/**
+	 * Get the current persistent authentication state.
+	 *
+	 * @return array  The current persistent authentication state, or NULL if not authenticated.
+	 */
+	public function getAuthState() {
+		if (!$this->isAuthenticated()) {
+			return NULL;
+		}
+
+		if (!isset($this->authState)) {
+			/* No AuthState for this login handler. */
+			return array();
+		}
+
+		return $this->authState;
 	}
 
 

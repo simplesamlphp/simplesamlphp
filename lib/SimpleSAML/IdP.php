@@ -400,6 +400,11 @@ class SimpleSAML_IdP {
 			if ($needAuth) {
 				$this->authenticate($state);
 				assert('FALSE');
+			} else {
+				$session = SimpleSAML_Session::getInstance();
+				foreach ($session->getAuthState() as $k => $v) {
+					$state[$k] = $v;
+				}
 			}
 			$this->postAuth($state);
 		} catch (SimpleSAML_Error_Exception $e) {

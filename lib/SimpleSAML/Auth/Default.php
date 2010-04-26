@@ -67,6 +67,28 @@ class SimpleSAML_Auth_Default {
 
 
 	/**
+	 * Extract the persistent authentication state from the state array.
+	 *
+	 * @param array $state  The state after the login.
+	 * @return array  The persistent authentication state.
+	 */
+	private static function extractPersistentAuthState(array &$state) {
+
+		/* Save persistent authentication data. */
+		$persistentAuthState = array();
+		if (isset($state['PersistentAuthData'])) {
+			foreach ($state['PersistentAuthData'] as $key) {
+				if (isset($state[$key])) {
+					$persistentAuthState[$key] = $state[$key];
+				}
+			}
+		}
+
+		return $persistentAuthState;
+	}
+
+
+	/**
 	 * Called when a login operation has finished.
 	 *
 	 * @param array $state  The state after the login.
@@ -82,7 +104,7 @@ class SimpleSAML_Auth_Default {
 
 		/* Save session state. */
 		$session = SimpleSAML_Session::getInstance();
-		$session->doLogin($state['SimpleSAML_Auth_Default.id']);
+		$session->doLogin($state['SimpleSAML_Auth_Default.id'], self::extractPersistentAuthState($state));
 		$session->setAttributes($state['Attributes']);
 		if(array_key_exists('Expires', $state)) {
 			$session->setSessionDuration($state['Expires'] - time());
@@ -217,7 +239,7 @@ class SimpleSAML_Auth_Default {
 		assert('is_string($redirectTo)');
 
 		$session = SimpleSAML_Session::getInstance();
-		$session->doLogin($authId);
+		$session->doLogin($authId, self::extractPersistentAuthState($state));
 
 		if (array_key_exists('Attributes', $state)) {
 			$session->setAttributes($state['Attributes']);
