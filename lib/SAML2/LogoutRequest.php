@@ -91,7 +91,7 @@ class SAML2_LogoutRequest extends SAML2_Request {
 	 * @param string|NULL $sessionIndex The sesion index of the session that should be terminated.
 	 */
 	public function setSessionIndex($sessionIndex) {
-		assert('is_string($sessionIndex)');
+		assert('is_string($sessionIndex) || is_null($sessionIndex)');
 
 		$this->sessionIndex = $sessionIndex;
 	}
