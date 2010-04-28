@@ -382,9 +382,6 @@ class SimpleSAML_Session {
 		$this->authState = $authState;
 
 		$this->sessionstarted = time();
-
-		/* Clear NeedAuthentication flags. This flag is used to implement ForceAuthn. */
-		$this->clearNeedAuthFlag();
 	}
 
 
@@ -593,30 +590,6 @@ class SimpleSAML_Session {
 
 		/* We require the logout handlers to register themselves again if they want to be called later. */
 		$this->logout_handlers = array();
-	}
-
-
-	/**
-	 * This function iterates over all current authentication requests, and removes any 'NeedAuthentication' flags
-	 * from them.
-	 */
-	private function clearNeedAuthFlag() {
-
-		foreach(array('AuthnRequest-saml2', 'AuthnRequest-shib13') as $type) {
-			foreach($this->getDataOfType($type) as $id => $request) {
-
-				if(!array_key_exists('NeedAuthentication', $request)) {
-					continue;
-				}
-
-				if($request['NeedAuthentication'] === FALSE) {
-					continue;
-				}
-
-				$request['NeedAuthentication'] = FALSE;
-				$this->setData($type, $id, $request);
-			}
-		}
 	}
 
 
