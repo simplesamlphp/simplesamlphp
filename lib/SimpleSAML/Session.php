@@ -192,23 +192,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Initializes a session with the specified authentication state.
-	 *
-	 * @param $authenticated  TRUE if this session is authenticated, FALSE if not.
-	 * @param $authority      The authority which authenticated the session.
-	 * @deprecated  Replace with getInstance() and doLogin(...) / doLogout().
-	 */
-	public static function init($authenticated = false, $authority = null) {
-		$session = self::getInstance(TRUE);
-		$session->clean();
-		$session->setAuthenticated($authenticated, $authority);
-	}
-	
-	
-	
-	
-	
-	/**
 	 * Get a unique ID that will be permanent for this session.
 	 * Used for debugging and tracing log files related to a session.
 	 */
@@ -410,28 +393,6 @@ class SimpleSAML_Session {
 	}
 
 
-	/**
-	 * Sets the current authentication state of the user.
-	 *
-	 * @param $auth       The current authentication state of the user.
-	 * @param $authority  The authority (if the user is authenticated).
-	 * @deprecated  Replaced with doLogin(...) and doLogout().
-	 */
-	public function setAuthenticated($auth, $authority = null) {
-		
-		SimpleSAML_Logger::debug('Library - Session: Set authenticated ' . ($auth ? 'yes': 'no'). ' authority:' . 
-			(isset($authority) ? $authority : 'null'));
-
-		if ($auth) {	
-			if(!is_string($authority)) {
-				$authority = 'null';
-			}
-			$this->doLogin($authority);
-		} else {
-			$this->doLogout();
-		}
-	}
-	
 	public function setSessionDuration($duration) {
 		SimpleSAML_Logger::debug('Library - Session: Set session duration ' . $duration);
 		$this->dirty = true;
