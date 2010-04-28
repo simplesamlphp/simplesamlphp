@@ -10,5 +10,10 @@ $requestcache = $session->getAuthnRequest('saml2', (string)$_REQUEST['RequestID'
 if (!$requestcache) {
 	throw new Exception('Could not retrieve cached RequestID = ' . $authId);
 }
+
+if ($requestcache['ForceAuthn'] && $requestcache['core:prevSession'] === $session->getAuthnInstant()) {
+	throw new Exception('ForceAuthn set, but timestamp not updated.');
+}
+
 $state = $requestcache['State'];
 SimpleSAML_IdP::postAuth($state);

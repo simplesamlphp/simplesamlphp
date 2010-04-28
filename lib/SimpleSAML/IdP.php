@@ -329,6 +329,7 @@ class SimpleSAML_IdP {
 		$auth = $this->config->getString('auth');
 		$authSource = SimpleSAML_Auth_Source::getById($auth);
 		if ($authSource === NULL) {
+			$session = SimpleSAML_Session::getInstance();
 			$config = SimpleSAML_Configuration::getInstance();
 			$authurl = '/' . $config->getBaseURL() . $auth;
 
@@ -336,6 +337,7 @@ class SimpleSAML_IdP {
 				'IsPassive' => isset($state['isPassive']) ? $state['isPassive'] : FALSE,
 				'ForceAuthn' => isset($state['ForceAuthn']) ? $state['ForceAuthn'] : FALSE,
 				'State' => $state,
+				'core:prevSession' => $session->getAuthnInstant(),
 			);
 
 			if (isset($state['saml:RequestId'])) {
@@ -352,7 +354,6 @@ class SimpleSAML_IdP {
 			}
 
 			$authId = SimpleSAML_Utilities::generateID();
-			$session = SimpleSAML_Session::getInstance();
 			$session->setAuthnRequest('saml2', $authId, $authnRequest);
 
 			$relayState = SimpleSAML_Module::getModuleURL('core/idp/resumeauth.php', array('RequestID' => $authId));
