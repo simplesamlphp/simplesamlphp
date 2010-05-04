@@ -40,8 +40,8 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 [`ldap:LDAPMulti`](./ldap:ldap)
 : Authenticates an user to one of several LDAP server.
   The user can choose the LDAP server from a dropdown list.
-  
-`sqlauth:SQL`
+
+[`sqlauth:SQL`](./sqlauth:sql)
 : Authenticate an user against a database.
 
 [`radius:Radius`](./radius:radius)
