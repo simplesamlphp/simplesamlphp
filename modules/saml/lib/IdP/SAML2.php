@@ -48,6 +48,10 @@ class sspmod_saml_IdP_SAML2 {
 
 		$assertion = sspmod_saml2_Message::buildAssertion($idpMetadata, $spMetadata, $attributes, $consumerURL);
 		$assertion->setInResponseTo($requestId);
+		
+		if (isset($state['saml:AuthenticatingAuthority'])) {
+			$assertion->setAuthenticatingAuthority($state['saml:AuthenticatingAuthority']);
+		}
 
 		/* Create the session association (for logout). */
 		$association = array(
@@ -242,6 +246,9 @@ class sspmod_saml_IdP_SAML2 {
 
 			$requestId = $request->getId();
 			$IDPList = $request->getIDPList();
+			$ProxyCount = $request->getProxyCount();
+			if ($ProxyCount !== null) $ProxyCount--;
+			$RequesterID = $request->getRequesterID();
 			$forceAuthn = $request->getForceAuthn();
 			$isPassive = $request->getIsPassive();
 			$consumerURL = $request->getAssertionConsumerServiceURL();
@@ -285,6 +292,7 @@ class sspmod_saml_IdP_SAML2 {
 		}
 
 		$IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', array())));
+		if ($ProxyCount == null) $ProxyCount = $spMetadata->getInteger('ProxyCount', null);
 
 		if (!$forceAuthn) {
 			$forceAuthn = $spMetadata->getBoolean('ForceAuthn', FALSE);
@@ -311,7 +319,9 @@ class sspmod_saml_IdP_SAML2 {
 			'saml:RelayState' => $relayState,
 			'saml:RequestId' => $requestId,
 			'saml:IDPList' => $IDPList,
-			'ForceAuthn' => $forceAuthn,
+			'saml:ProxyCount' => $ProxyCount,
+			'saml:RequesterID' => $RequesterID,
+			'ForceAuthnn' => $forceAuthn,
 			'isPassive' => $isPassive,
 			'saml:ConsumerURL' => $consumerURL,
 			'saml:Binding' => $protocolBinding,

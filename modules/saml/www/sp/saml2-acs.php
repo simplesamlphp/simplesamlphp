@@ -32,7 +32,6 @@ if (!empty($stateId)) {
 	);
 }
 
-
 $idp = $response->getIssuer();
 if ($idp === NULL) {
 	throw new Exception('Missing <saml:Issuer> in message delivered to AssertionConsumerService.');
@@ -63,6 +62,9 @@ $logoutState = array(
 	'saml:logout:SessionIndex' => $sessionIndex,
 	);
 $state['LogoutState'] = $logoutState;
+$state['saml:AuthenticatingAuthority'] = $assertion->getAuthenticatingAuthority();
+$state['saml:AuthenticatingAuthority'][] = $idp;
+$state['PersistentAuthData'][] = 'saml:AuthenticatingAuthority';
 
 $source->handleResponse($state, $idp, $assertion->getAttributes());
 assert('FALSE');

@@ -38,6 +38,21 @@ class SAML2_AuthnRequest extends SAML2_Request {
 	private $IDPList = array();
 
 	/**
+	 * The ProxyCount in this request's scoping element
+	 *
+	 * @var int
+	*/
+	private $ProxyCount = null;
+
+	/**
+	 * The RequesterID list in this request's scoping element
+	 *
+	 * @var array
+	*/
+
+	private $RequesterID = array();
+	
+	/**
 	 * The URL of the asertion consumer service where the response should be delivered.
 	 *
 	 * @var string|NULL
@@ -128,13 +143,27 @@ class SAML2_AuthnRequest extends SAML2_Request {
 			$this->requestedAuthnContext = $rac;
 		}
 
-		$idpEntries = SAML2_Utils::xpQuery($xml, './saml_protocol:Scoping/saml_protocol:IDPList/saml_protocol:IDPEntry');
-
-		foreach($idpEntries as $idpEntry) {
-			if (!$idpEntry->hasAttribute('ProviderID')) {
-				throw new Exception("Could not get ProviderID from Scoping/IDPEntry element in AuthnRequest object");
+		$scoping = SAML2_Utils::xpQuery($xml, './saml_protocol:Scoping');
+		if (!empty($scoping)) {
+			$scoping =$scoping[0];
+			
+			if ($scoping->hasAttribute('ProxyCount')) {
+				$this->ProxyCount = (int)$scoping->getAttribute('ProxyCount');
 			}
-			$this->IDPList[] = $idpEntry->getAttribute('ProviderID');
+			$idpEntries = SAML2_Utils::xpQuery($scoping, './saml_protocol:IDPList/saml_protocol:IDPEntry');
+
+			foreach($idpEntries as $idpEntry) {
+				if (!$idpEntry->hasAttribute('ProviderID')) {
+					throw new Exception("Could not get ProviderID from Scoping/IDPEntry element in AuthnRequest object");
+				}
+				$this->IDPList[] = $idpEntry->getAttribute('ProviderID');
+			}
+		
+			$requesterIDs = SAML2_Utils::xpQuery($scoping, './saml_protocol:RequesterID');
+			foreach ($requesterIDs as $requesterID) {
+				$this->RequesterID[] = trim($requesterID->textContent);
+			}
+
 		}
 	}
 
@@ -234,6 +263,22 @@ class SAML2_AuthnRequest extends SAML2_Request {
 		return $this->IDPList;
 	}
 
+	public function setProxyCount($ProxyCount) {
+		assert('is_int($ProxyCount)');
+		$this->ProxyCount = $ProxyCount;
+	}
+
+	public function getProxyCount() {
+		return $this->ProxyCount;
+	}
+	
+	public function setRequesterID(array $RequesterID) {
+		$this->RequesterID = $RequesterID;
+	}
+
+	public function getRequesterID() {
+		return $this->RequesterID;
+	}
 
 	/**
 	 * Retrieve the value of the AssertionConsumerServiceURL attribute.
@@ -352,16 +397,25 @@ class SAML2_AuthnRequest extends SAML2_Request {
 			}
 		}
 
-		if (count($this->IDPList) > 0) {
+
+		if ($this->ProxyCount !== null || count($this->IDPList) > 0 || count($this->RequesterID) > 0) {
 			$scoping = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'Scoping');
-			$idplist = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'IDPList');
-			foreach ($this->IDPList as $provider) {
-				$idpEntry = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'IDPEntry');
-				$idpEntry->setAttribute('ProviderID', $provider);
-				$idplist->appendChild($idpEntry);
+			if ($this->ProxyCount !== null) {
+				$scoping->setAttribute('ProxyCount', $this->ProxyCount);
 			}
-			$scoping->appendChild($idplist);
-			$root->appendChild($scoping);
+			if (count($this->IDPList) > 0) {
+				$idplist = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'IDPList');
+				foreach ($this->IDPList as $provider) {
+					$idpEntry = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'IDPEntry');
+					$idpEntry->setAttribute('ProviderID', $provider);
+					$idplist->appendChild($idpEntry);
+				}
+				$scoping->appendChild($idplist);
+				$root->appendChild($scoping);
+			}
+			if (count($this->RequesterID) > 0) {
+				SAML2_Utils::addStrings($scoping, SAML2_Const::NS_SAMLP, 'RequesterID', FALSE, $this->RequesterID);
+			}
 		}
 
 		return $root;

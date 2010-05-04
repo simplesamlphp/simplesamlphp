@@ -131,6 +131,13 @@ class SAML2_Assertion implements SAML2_SignedElement {
 	 */
 	private $authnContext;
 
+	/**
+	 * The list of AuthenticatingAuthorities for this assertion.
+	 *
+	 * @var array
+	 */
+	private $AuthenticatingAuthority;
+
 
 	/**
 	 * The attributes, as an associative array.
@@ -192,6 +199,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$this->attributes = array();
 		$this->nameFormat = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
 		$this->certificates = array();
+		$this->AuthenticatingAuthority = array();
 
 		if ($xml === NULL) {
 			return;
@@ -416,6 +424,8 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		} else {
 			$this->authnContext = trim($accr[0]->textContent);
 		}
+		
+		$this->AuthenticatingAuthority = SAML2_Utils::extractStrings($ac, './saml_assertion:AuthenticatingAuthority');		
 	}
 
 
@@ -875,6 +885,29 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	/**
+	 * Retrieve the AuthenticatingAuthority.
+	 *
+	 *
+	 * @return array
+	 */
+	public function getAuthenticatingAuthority() {
+
+		return $this->AuthenticatingAuthority;
+	}
+
+
+	/**
+	 * Set the AuthenticatingAuthority
+	 *
+	 *
+	 * @param array.
+	 */
+	public function setAuthenticatingAuthority($AuthenticatingAuthority) {
+		$this->AuthenticatingAuthority = $AuthenticatingAuthority;
+	}
+
+
+	/**
 	 * Retrieve all attributes.
 	 *
 	 * @return array  All attributes, as an associative array.
@@ -1105,6 +1138,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$as->appendChild($ac);
 
 		SAML2_Utils::addString($ac, SAML2_Const::NS_SAML, 'saml:AuthnContextClassRef', $this->authnContext);
+		SAML2_Utils::addStrings($ac, SAML2_Const::NS_SAML, 'saml:AuthenticatingAuthority', false, $this->AuthenticatingAuthority);
 	}
 
 

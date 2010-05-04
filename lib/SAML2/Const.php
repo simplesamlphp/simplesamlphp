@@ -135,6 +135,12 @@ class SAML2_Const {
 	 */
 	const STATUS_PARTIAL_LOGOUT = 'urn:oasis:names:tc:SAML:2.0:status:PartialLogout';
 
+	/**
+	 * Second-level status code for ProxyCountExceeded.
+	 */
+	const STATUS_PROXY_COUNT_EXCEEDED = 'urn:oasis:names:tc:SAML:2.0:status:ProxyCountExceeded';
+	
+
 }
 
 ?>

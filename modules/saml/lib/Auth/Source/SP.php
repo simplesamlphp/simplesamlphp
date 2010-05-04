@@ -175,6 +175,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 	 * @param array $state  The state array for the current authentication.
 	 */
 	private function startSSO2(SimpleSAML_Configuration $idpMetadata, array $state) {
+	
+		if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
+			SimpleSAML_Auth_State::throwException($state, new SimpleSAML_Error_ProxyCountExceeded("ProxyCountExceeded"));
+		}
 
 		$ar = sspmod_saml2_Message::buildAuthnRequest($this->metadata, $idpMetadata);
 
@@ -190,12 +194,12 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr));
 		}
 
-		if (isset($state['saml:ForceAuthn'])) {
-			$ar->setForceAuthn((bool)$state['saml:ForceAuthn']);
+		if (isset($state['ForceAuthnn'])) {
+			$ar->setForceAuthn((bool)$state['ForceAuthn']);
 		}
 
-		if (isset($state['saml:IsPassive'])) {
-			$ar->setIsPassive((bool)$state['saml:IsPassive']);
+		if (isset($state['isPassive'])) {
+			$ar->setIsPassive((bool)$state['isPassive']);
 		}
 
 		if (isset($state['saml:NameIDPolicy'])) {
@@ -205,12 +209,37 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			));
 		}
 
-
+		if (isset($state['saml:IDPList'])) {
+			$IDPList = $state['saml:IDPList'];
+		}
+		
+		$ar->setIDPList(array_unique(array_merge($this->metadata->getArray('IDPList', array()), 
+												$idpMetadata->getArray('IDPList', array()),
+												(array) $IDPList)));
+		
+		if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] !== null) {
+			$ar->setProxyCount($state['saml:ProxyCount']);
+		} elseif ($idpMetadata->getInteger('ProxyCount', null) !== null) {
+			$ar->setProxyCount($idpMetadata->getInteger('ProxyCount', null));
+		} elseif ($this->metadata->getInteger('ProxyCount', null) !== null) {
+			$ar->setProxyCount($this->metadata->getInteger('ProxyCount', null));
+		}
+		
+		$requesterID = array();
+		if (isset($state['saml:RequesterID'])) {
+			$requesterID = $state['saml:RequesterID'];
+		}
+		
+		if (isset($state['core:SP'])) {
+			$requesterID[] = $state['core:SP'];
+		}
+		
+		$ar->setRequesterID($requesterID);
+		
 		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso', TRUE);
 		$ar->setId($id);
 
 		SimpleSAML_Logger::debug('Sending SAML 2 AuthnRequest to ' . var_export($idpMetadata->getString('entityid'), TRUE));
-
 		$b = new SAML2_HTTPRedirect();
 		$b->setDestination(sspmod_SAML2_Message::getDebugDestination());
 		$b->send($ar);
@@ -289,6 +318,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		if (isset($state['saml:idp'])) {
 			$idp = (string)$state['saml:idp'];
+		}
+
+		if ($idp === NULL && isset($state['saml:IDPList']) && sizeof($state['saml:IDPList']) == 1) {
+			$idp = $state['saml:IDPList'][0];
 		}
 
 		if ($idp === NULL) {
@@ -374,7 +407,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		assert('is_string($idp)');
 		assert('array_key_exists("LogoutState", $state)');
 		assert('array_key_exists("saml:logout:Type", $state["LogoutState"])');
-
+		
 		$idpMetadata = $this->getIdpMetadata($idp);
 
 		$spMetadataArray = $this->metadata->toArray();

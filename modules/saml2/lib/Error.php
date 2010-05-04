@@ -112,6 +112,13 @@ class sspmod_saml2_Error extends SimpleSAML_Error_Exception {
 				$exception->getMessage(),
 				$exception
 				);
+		} elseif ($exception instanceof SimpleSAML_Error_ProxyCountExceeded) {
+			$e = new self(
+				SAML2_Const::STATUS_RESPONDER,
+				SAML2_Const::STATUS_PROXY_COUNT_EXCEEDED,
+				$exception->getMessage(),
+				$exception
+				);
 
 		} else {
 			$e = new self(

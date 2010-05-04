@@ -105,7 +105,7 @@ The [`saml:SP`](./saml:sp) authentication source also defines some parameters.
 
     # Send a passive authentication request.
     $auth->login(array(
-        'saml:IsPassive' => TRUE,
+        'isPassive' => TRUE,
         'ErrorURL' => 'https://.../error_handler.php',
     ));
 

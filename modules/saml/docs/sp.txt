@@ -22,7 +22,7 @@ All these parameters override the equivalent option from the configuration.
 :   *Note*: SAML 2 specific.
 
 
-`saml:ForceAuthn`
+`ForceAuthnn`
 :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
 
 :   *Note*: SAML 2 specific.
@@ -30,7 +30,7 @@ All these parameters override the equivalent option from the configuration.
 `saml:idp`
 :   The entity ID of the IdP we should send an authentication request to.
 
-`saml:IsPassive`
+`isPassive`
 :   Send a passive authentication request.
 
 :   *Note*: SAML 2 specific.
