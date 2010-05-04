@@ -3,41 +3,6 @@
 /**
  * Filter to generate a groups attribute based on many of the attributes of the user.
  *
- * By default this filter will generate groups from the following set of attributes:
- * - 'eduPersonAffiliation'
- * - 'eduPersonOrgUnitDN'
- * - 'eduPersonEntitlement'
- *
- * This can be overridden by specifying the names of the attributes in the configuration.
- *
- * It will attempt to determine a realm the user belongs to based on the eduPersonPrincipalName
- * attribute, if it is present.
- *
- * The groups this filter generates are on the form:
- * <attribute name>-<attributevalue> and <attributename>-<realm>-<attributevalue>.
- *
- *
- * Note that this filter isn't a drop-in replacement for the groups attributealter function. The
- * difference is that it uses the full attribute name, instead of shortening them to for example
- * affiliation, and it escapes illegal characters in a style similar to urlencoding. It also generates
- * groups both with and without a realm part. If no realm is determined, it will only generate attributes
- * without a realm-part.
- *
- *
- * Example - generate from default set of attributes:
- * <code>
- * 'authproc' => array(
- * 		50 => 'core:GenerateGroups',
- *   ),
- * </code>
- *
- * Example - generate from only the eduPersonAffilitation attribute:
- * <code>
- * 'authproc' => array(
- *   50 => array('class' => 'core:GenerateGroups', 'eduPersonAffiliation'),
- *  ),
- * </code>
- *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
  * @version $Id$

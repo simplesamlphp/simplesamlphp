@@ -1,0 +1,34 @@
+`core:AttributeLimit`
+=====================
+
+Filter that limits the attributes that is sent to a user.
+
+If the configuration is empty, the filter will use the attributes configured in the 'attributes' option in the SP metadata.
+
+The configuration is a list of which attributes should be allowed.
+
+Examples
+--------
+
+Limit to the `cn` and `mail` attribute:
+
+    'authproc' => array(
+        50 => array(
+            'class' => 'core:AttributeLimit',
+            'cn', 'mail'
+        ),
+    ),
+
+An attribute list in metadata:
+
+    'authproc' => array(
+        50 => 'core:AttributeLimit',
+    ),
+
+And in saml20-sp-remote.php:
+
+    $metadata['https://saml2sp.example.org'] = array(
+        'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+        'SingleLogoutService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
+        'attributes' => array('cn', 'mail'),
+    );

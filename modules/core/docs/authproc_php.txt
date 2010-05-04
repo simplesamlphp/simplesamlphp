@@ -1,7 +1,7 @@
 `core:PHP`
 ==========
 
-This is a filter which makes it possible to run arbitrary PHP code to motidy the attributes of an user.
+This is a filter which makes it possible to run arbitrary PHP code to modify the attributes of an user.
 
 Parameters
 ----------

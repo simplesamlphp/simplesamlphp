@@ -1,0 +1,31 @@
+`core:AttributeMap`
+===================
+
+Filter to change attribute names.
+
+This filter can either contain the name of a map file or a set of name => value pairs describing the transformation.
+If configuration references a map file, the file must be located in the `attributemap/`-directory.
+
+Examples
+--------
+
+Attribute maps embedded as parameters:
+
+    'authproc' => array(
+        50 => array(
+            'class' => 'core:AttributeMap',
+            'mail' => 'email',
+            'uid' => 'user'
+        ),
+    ),
+
+Attribute map in separate file:
+
+    'authproc' => array(
+        50 => array(
+            'class' => 'core:AttributeMap',
+            'name2oid',
+        ),
+    ),
+
+This filter will use the map file from `simpesamlphp/attributemap/name2oid.php`.
