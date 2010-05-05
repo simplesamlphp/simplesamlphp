@@ -2,15 +2,15 @@
 /**
  * SAML 2.0 remote SP metadata for simpleSAMLphp.
  *
- * See: https://rnd.feide.no/content/sp-remote-metadata-reference
+ * See: http://simplesamlphp.org/docs/trunk/simplesamlphp-reference-sp-remote
  */
 
 /*
  * Example simpleSAMLphp SAML 2.0 SP
  */
 $metadata['https://saml2sp.example.org'] = array(
-	'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php',
-	'SingleLogoutService' => 'https://saml2sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
+	'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+	'SingleLogoutService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
 );
 
 /*
