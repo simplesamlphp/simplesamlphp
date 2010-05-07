@@ -1507,7 +1507,7 @@ class SimpleSAML_Utilities {
 	 * 'certFingerprint'  Array of valid certificate fingerprints. (Only present
 	 *                    if this is a certificate.)
 	 *
-	 * @param array $metadata  The metadata array.
+	 * @param SimpleSAML_Configuration $metadata  The metadata.
 	 * @param bool $required  Whether the private key is required. If this is TRUE, a
 	 *                        missing key will cause an exception. Default is FALSE.
 	 * @param string $prefix  The prefix which should be used when reading from the metadata
@@ -1515,16 +1515,15 @@ class SimpleSAML_Utilities {
 	 * @return array|NULL  Public key or certificate data, or NULL if no public key or
 	 *                     certificate was found.
 	 */
-	public static function loadPublicKey($metadata, $required = FALSE, $prefix = '') {
-		assert('is_array($metadata)');
+	public static function loadPublicKey(SimpleSAML_Configuration $metadata, $required = FALSE, $prefix = '') {
 		assert('is_bool($required)');
 		assert('is_string($prefix)');
 
 		$ret = array();
 
-		if (array_key_exists($prefix . 'certData', $metadata)) {
+		if ($metadata->hasValue($prefix . 'certData')) {
 			/* Full certificate data available from metadata. */
-			$certData = $metadata[$prefix . 'certData'];
+			$certData = $metadata->getString($prefix . 'certData');
 			$certData = str_replace(array("\r", "\n", "\t", ' '), '', $certData);
 			$ret['certData'] = $certData;
 
@@ -1533,9 +1532,9 @@ class SimpleSAML_Utilities {
 				chunk_split($ret['certData'], 64) .
 				"-----END CERTIFICATE-----\n";
 
-		} elseif (array_key_exists($prefix . 'certificate', $metadata)) {
+		} elseif ($metadata->hasValue($prefix . 'certificate')) {
 			/* Reference to certificate file. */
-			$file = SimpleSAML_Utilities::resolveCert($metadata[$prefix . 'certificate']);
+			$file = SimpleSAML_Utilities::resolveCert($metadata->getString($prefix . 'certificate'));
 			$data = @file_get_contents($file);
 			if ($data === FALSE) {
 				throw new Exception('Unable to load certificate/public key from file "' . $file . '"');
@@ -1549,13 +1548,9 @@ class SimpleSAML_Utilities {
 				$ret['certData'] = str_replace(array("\r", "\n"), '', $matches[1]);
 			}
 
-		} elseif (array_key_exists($prefix . 'certFingerprint', $metadata)) {
+		} elseif ($metadata->hasValue($prefix . 'certFingerprint')) {
 			/* We only have a fingerprint available. */
-			$fps = $metadata[$prefix . 'certFingerprint'];
-
-			if (!is_array($fps)) {
-				$fps = array($fps);
-			}
+			$fps = $metadata->getArrayizeString($prefix . 'certFingerprint');
 
 			/* Normalize fingerprint(s) - lowercase and no colons. */
 			foreach($fps as &$fp) {

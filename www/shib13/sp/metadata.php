@@ -28,7 +28,7 @@ try {
 		'AssertionConsumerService' => $metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted'),
 	);
 
-	$certInfo = SimpleSAML_Utilities::loadPublicKey($spmeta->toArray());
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($spmeta);
 	if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 		$metaArray['certData'] = $certInfo['certData'];
 	}

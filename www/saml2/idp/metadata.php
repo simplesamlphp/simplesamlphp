@@ -20,7 +20,7 @@ try {
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 	$idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 
-	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta->toArray(), TRUE);
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE);
 	$certFingerprint = $certInfo['certFingerprint'];
 	if (count($certFingerprint) === 1) {
 		/* Only one valid certificate. */

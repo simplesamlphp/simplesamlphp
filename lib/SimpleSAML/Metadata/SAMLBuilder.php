@@ -596,7 +596,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	 */
 	private function addCertificate(SAML2_XML_md_RoleDescriptor $rd, SimpleSAML_Configuration $metadata) {
 
-		$certInfo = SimpleSAML_Utilities::loadPublicKey($metadata->toArray());
+		$certInfo = SimpleSAML_Utilities::loadPublicKey($metadata);
 		if ($certInfo === NULL || !array_key_exists('certData', $certInfo)) {
 			/* No certificate to add. */
 			return;

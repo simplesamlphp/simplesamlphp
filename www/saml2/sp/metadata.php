@@ -55,7 +55,7 @@ try {
 		$metaArray['description'] = $spmeta->getLocalizedString('description');
 	}
 
-	$certInfo = SimpleSAML_Utilities::loadPublicKey($spmeta->toArray());
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($spmeta);
 	if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 		$metaArray['certData'] = $certInfo['certData'];
 	}

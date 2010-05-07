@@ -39,9 +39,7 @@ class sspmod_saml2_Message {
 	 */
 	public static function addSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_SignedElement $element) {
 
-		$srcMetadata = $srcMetadata->toArray();
-
-		$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata, TRUE);
+		$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata->toArray(), TRUE);
 		$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);
 
 		$privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
@@ -133,7 +131,7 @@ class sspmod_saml2_Message {
 		SimpleSAML_Logger::debug('Found ' . count($certificates) . ' certificates in ' . get_class($element));
 
 		/* Find the certificate that should verify signatures by this entity. */
-		$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata->toArray(), FALSE);
+		$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);
 		if ($certArray !== NULL) {
 			if (array_key_exists('PEM', $certArray)) {
 				$pemCert = $certArray['PEM'];
@@ -284,7 +282,7 @@ class sspmod_saml2_Message {
 			$key->loadKey($sharedKey);
 		} else {
 			/* Find the certificate that we should use to encrypt messages to this SP. */
-			$certArray = SimpleSAML_Utilities::loadPublicKey($dstMetadata->toArray(), TRUE);
+			$certArray = SimpleSAML_Utilities::loadPublicKey($dstMetadata, TRUE);
 			if (!array_key_exists('PEM', $certArray)) {
 				throw new Exception('Unable to locate key we should use to encrypt the assertionst ' .
 					'to the SP: ' . var_export($dstMetadata->getString('entityid'), TRUE) . '.');

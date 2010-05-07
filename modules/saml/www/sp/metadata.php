@@ -64,7 +64,7 @@ if ($spconfig->getBoolean('saml20.binding.artifact.enable', FALSE)) {
 	);
 }
 
-$certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig->toArray());
+$certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig);
 if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$certData = $certInfo['certData'];
 	$metaArray11['certData'] = $certData;
