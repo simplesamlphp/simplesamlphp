@@ -21,17 +21,17 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 	 * Send an authenticationResponse using HTTP-POST.
 	 *
 	 * @param string $response  The response which should be sent.
-	 * @param array $idpmd  The metadata of the IdP which is sending the response.
-	 * @param array $spmd  The metadata of the SP which is receiving the response.
+	 * @param SimpleSAML_Configuration $idpmd  The metadata of the IdP which is sending the response.
+	 * @param SimpleSAML_Configuration $spmd  The metadata of the SP which is receiving the response.
 	 * @param string|NULL $relayState  The relaystate for the SP.
 	 * @param string $shire  The shire which should receive the response.
 	 */
-	public function sendResponse($response, $idpmd, $spmd, $relayState, $shire) {
+	public function sendResponse($response, SimpleSAML_Configuration $idpmd, SimpleSAML_Configuration $spmd, $relayState, $shire) {
 
 		SimpleSAML_Utilities::validateXMLDocument($response, 'saml11');
 
-		$privatekey = SimpleSAML_Utilities::loadPrivateKey($idpmd, TRUE);
-		$publickey = SimpleSAML_Utilities::loadPublicKey($idpmd, TRUE);
+		$privatekey = SimpleSAML_Utilities::loadPrivateKey($idpmd->toArray(), TRUE);
+		$publickey = SimpleSAML_Utilities::loadPublicKey($idpmd->toArray(), TRUE);
 
 		$responsedom = new DOMDocument();
 		$responsedom->loadXML(str_replace ("\r", "", $response));
@@ -44,12 +44,8 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		 * SP metadata or 'saml20.signresponse' in the global configuration.
 		 */
 		$signResponse = FALSE;
-		if (array_key_exists('signresponse', $spmd) && $spmd['signresponse'] !== NULL) {
-			$signResponse = $spmd['signresponse'];
-			if(!is_bool($signResponse)) {
-				throw new Exception('Expected the \'signresponse\' option in the metadata of the' .
-					' SP \'' . $spmd['entityid'] . '\' to be a boolean value.');
-			}
+		if ($spmd->hasValue('signresponse')) {
+			$signResponse = $spmd->getBoolean['signresponse'];
 		} else {
 			$signResponse = $this->configuration->getBoolean('shib13.signresponse', TRUE);
 		}
@@ -65,8 +61,8 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 			'id' => ($signResponse ? 'ResponseID' : 'AssertionID') ,
 			));
 
-		if (array_key_exists('certificatechain', $idpmd)) {
-			$signer->addCertificate($idpmd['certificatechain']);
+		if ($idpmd->hasValue('certificatechain')) {
+			$signer->addCertificate($idpmd->getString('certificatechain'));
 		}
 
 		if ($signResponse) {

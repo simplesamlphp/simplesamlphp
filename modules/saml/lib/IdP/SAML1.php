@@ -21,6 +21,8 @@ class sspmod_saml_IdP_SAML1 {
 
 		$spMetadata = $state["SPMetadata"];
 		$spEntityId = $spMetadata['entityid'];
+		$spMetadata = SimpleSAML_Configuration::loadFromArray($spMetadata,
+			'$metadata[' . var_export($spEntityId, TRUE) . ']');
 
 		SimpleSAML_Logger::info('Sending SAML 1.1 Response to ' . var_export($spEntityId, TRUE));
 
@@ -30,7 +32,7 @@ class sspmod_saml_IdP_SAML1 {
 
 		$idp = SimpleSAML_IdP::getByState($state);
 
-		$idpMetadata = $idp->getConfig()->toArray();
+		$idpMetadata = $idp->getConfig();
 
 		$config = SimpleSAML_Configuration::getInstance();
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();

@@ -284,30 +284,16 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	 * @param array|NULL $attributes  The attributes which should be included in the response.
 	 * @return string  The response.
 	 */
-	public function generate($idp, $sp, $shire, $attributes) {
-		assert('is_array($idp)');
-		assert('is_array($sp)');
+	public function generate(SimpleSAML_Configuration $idp, SimpleSAML_Configuration $sp, $shire, $attributes) {
 		assert('is_string($shire)');
 		assert('$attributes === NULL || is_array($attributes)');
 
-		if (array_key_exists('scopedattributes', $sp)) {
-			$scopedAttributes = $sp['scopedattributes'];
-			$scopedAttributesSource = 'the shib13-sp-remote sp \'' . $sp['entityid'] . '\'';
-		} elseif (array_key_exists('scopedattributes', $idp)) {
-			$scopedAttributes = $idp['scopedattributes'];
-			$scopedAttributesSource = 'the shib13-idp-hosted idp \'' . $idp['entityid'] . '\'';
+		if ($sp->hasValue('scopedattributes')) {
+			$scopedAttributes = $sp->getArray('scopedattributes');
+		} elseif ($idp->hasValue('scopedattributes')) {
+			$scopedAttributes = $idp->getArray('scopedattributes');
 		} else {
 			$scopedAttributes = array();
-		}
-		if (!is_array($scopedAttributes)) {
-			throw new Exception('The \'scopedattributes\' option in ' . $scopedAttributesSource .
-				' should be an array of attribute names.');
-		}
-		foreach ($scopedAttributes as $an) {
-			if (!is_string($an)) {
-				throw new Exception('Invalid attribute name in the \'scopedattributes\' option in ' .
-					$scopedAttributesSource . ': ' . var_export($an, TRUE));
-			}
 		}
 
 		$id = SimpleSAML_Utilities::generateID();
@@ -321,10 +307,12 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		$assertionExpire = SimpleSAML_Utilities::generateTimestamp(time() + 60 * 5);# 5 minutes
 		$assertionid = SimpleSAML_Utilities::generateID();
 
-		$audience = isset($sp['audience']) ? $sp['audience'] : $sp['entityid'];
-		$base64 = isset($sp['base64attributes']) ? $sp['base64attributes'] : false;
+		$spEntityId = $sp->getString('entityid');
 
-		$namequalifier = isset($sp['NameQualifier']) ? $sp['NameQualifier'] : $sp['entityid'];
+		$audience = $sp->getString('audience', $spEntityId);
+		$base64 = $sp->getBoolean('base64attributes', FALSE);
+
+		$namequalifier = $sp->getString('NameQualifier', $spEntityId);
 		$nameid = SimpleSAML_Utilities::generateID();
 		$subjectNode =
 			'<Subject>' .
@@ -369,7 +357,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
     </Status>
     <Assertion xmlns="urn:oasis:names:tc:SAML:1.0:assertion"
         AssertionID="' . $assertionid . '" IssueInstant="' . $issueInstant. '"
-        Issuer="' . htmlspecialchars($idp['entityid']) . '" MajorVersion="1" MinorVersion="1">
+        Issuer="' . htmlspecialchars($idp->getString('entityid')) . '" MajorVersion="1" MinorVersion="1">
         <Conditions NotBefore="' . $notBefore. '" NotOnOrAfter="'. $assertionExpire . '">
             <AudienceRestrictionCondition>
                 <Audience>' . htmlspecialchars($audience) . '</Audience>
