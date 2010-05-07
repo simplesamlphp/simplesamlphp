@@ -1595,19 +1595,19 @@ class SimpleSAML_Utilities {
 	 * 'PEM'  Data for the private key, in PEM-format
 	 * 'password'  Password for the private key.
 	 *
-	 * @param array $metadata  The metadata array the private key should be loaded from.
+	 * @param SimpleSAML_Configuration $metadata  The metadata array the private key should be loaded from.
 	 * @param bool $required  Whether the private key is required. If this is TRUE, a
 	 *                        missing key will cause an exception. Default is FALSE.
 	 * @param string $prefix  The prefix which should be used when reading from the metadata
 	 *                        array. Defaults to ''.
 	 * @return array|NULL  Extracted private key, or NULL if no private key is present.
 	 */
-	public static function loadPrivateKey($metadata, $required = FALSE, $prefix = '') {
-		assert('is_array($metadata)');
+	public static function loadPrivateKey(SimpleSAML_Configuration $metadata, $required = FALSE, $prefix = '') {
 		assert('is_bool($required)');
 		assert('is_string($prefix)');
 
-		if (!array_key_exists($prefix . 'privatekey', $metadata)) {
+		$file = $metadata->getString($prefix . 'privatekey', NULL);
+		if ($file === NULL) {
 			/* No private key found. */
 			if ($required) {
 				throw new Exception('No private key found in metadata.');
@@ -1616,7 +1616,7 @@ class SimpleSAML_Utilities {
 			}
 		}
 
-		$file = SimpleSAML_Utilities::resolveCert($metadata[$prefix . 'privatekey']);
+		$file = SimpleSAML_Utilities::resolveCert($file);
 		$data = @file_get_contents($file);
 		if ($data === FALSE) {
 			throw new Exception('Unable to load private key from file "' . $file . '"');
@@ -1626,8 +1626,8 @@ class SimpleSAML_Utilities {
 			'PEM' => $data,
 		);
 
-		if (array_key_exists($prefix . 'privatekey_pass', $metadata)) {
-			$ret['password'] = $metadata[$prefix . 'privatekey_pass'];
+		if ($metadata->hasValue($prefix . 'privatekey_pass')) {
+			$ret['password'] = $metadata->getString($prefix . 'privatekey_pass');
 		}
 
 		return $ret;

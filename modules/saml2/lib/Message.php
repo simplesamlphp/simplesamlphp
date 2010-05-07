@@ -39,7 +39,7 @@ class sspmod_saml2_Message {
 	 */
 	public static function addSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_SignedElement $element) {
 
-		$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata->toArray(), TRUE);
+		$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata, TRUE);
 		$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);
 
 		$privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
@@ -235,7 +235,7 @@ class sspmod_saml2_Message {
 			$key->loadKey($sharedKey);
 		} else {
 			/* Find the private key we should use to decrypt messages to this SP. */
-			$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata->toArray(), TRUE);
+			$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, TRUE);
 			if (!array_key_exists('PEM', $keyArray)) {
 				throw new Exception('Unable to locate key we should use to decrypt the message.');
 			}
