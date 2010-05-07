@@ -17,11 +17,10 @@ if ($config->getBoolean('admin.protectmetadata', false)) {
 
 
 try {
-
-	$idpmeta = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $metadata->getMetaDataCurrent('saml20-idp-hosted');
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+	$idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 
-	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE);
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta->toArray(), TRUE);
 	$certFingerprint = $certInfo['certFingerprint'];
 	if (count($certFingerprint) === 1) {
 		/* Only one valid certificate. */
@@ -36,7 +35,7 @@ try {
 		'certFingerprint' => $certFingerprint,
 	);
 
-	if (isset($idpmeta['saml20.sendartifact']) && $idpmeta['saml20.sendartifact'] === TRUE) {
+	if ($idpmeta->getBoolean('saml20.sendartifact', FALSE)) {
 		/* Artifact sending enabled. */
 		$metaArray['ArtifactResolutionService'][] = array(
 			'index' => 0,
@@ -45,29 +44,20 @@ try {
 		);
 	}
 
-	if (array_key_exists('NameIDFormat', $idpmeta)) {
-		$metaArray['NameIDFormat'] = $idpmeta['NameIDFormat'];
-	} else {
-		$metaArray['NameIDFormat'] = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
-	}
+	$metaArray['NameIDFormat'] = $idpmeta->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
 
-	if (!empty($idpmeta['OrganizationName'])) {
-		$metaArray['OrganizationName'] = $idpmeta['OrganizationName'];
+	if ($idpmeta->hasValue('OrganizationName')) {
+		$metaArray['OrganizationName'] = $idpmeta->getLocalizedString('OrganizationName');
+		$metaArray['OrganizationDisplayName'] = $idpmeta->getLocalizedString('OrganizationDisplayName', $metaArray['OrganizationName']);
 
-		if (!empty($idpmeta['OrganizationDisplayName'])) {
-			$metaArray['OrganizationDisplayName'] = $idpmeta['OrganizationDisplayName'];
-		} else {
-			$metaArray['OrganizationDisplayName'] = $idpmeta['OrganizationName'];
-		}
-
-		if (empty($idpmeta['OrganizationURL'])) {
+		if (!$idpmeta->hasValue('OrganizationURL')) {
 			throw new SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
 		}
-		$metaArray['OrganizationURL'] = $idpmeta['OrganizationURL'];
+		$metaArray['OrganizationURL'] = $idpmeta->getLocalizedString('OrganizationURL');
 	}
 
-	if (array_key_exists('scope', $idpmeta)) {
-		$metaArray['scope'] = $idpmeta['scope'];
+	if ($idpmeta->hasValue('scope')) {
+		$metaArray['scope'] = $idpmeta->getArray('scope');
 	}
 
 
@@ -84,7 +74,7 @@ try {
 	$metaxml = $metaBuilder->getEntityDescriptorText();
 
 	/* Sign the metadata if enabled. */
-	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta, 'SAML 2 IdP');
+	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta->toArray(), 'SAML 2 IdP');
 
 	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
 		$defaultidp = $config->getString('default-saml20-idp', NULL);

@@ -19,8 +19,8 @@ if ($config->getBoolean('admin.protectmetadata', false)) {
 try {
 	
 
-	$spmeta = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrent();
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
+	$spmeta = $metadata->getMetaDataConfig($spentityid, 'saml20-sp-hosted');
 	
 	$metaArray = array(
 		'metadata-set' => 'saml20-sp-remote',
@@ -29,42 +29,33 @@ try {
 		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted'),
 	);
 
-	if (array_key_exists('NameIDFormat', $spmeta)) {
-		$metaArray['NameIDFormat'] = $spmeta['NameIDFormat'];
-	} else {
-		$metaArray['NameIDFormat'] = 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient';
-	}
+	$metaArray['NameIDFormat'] = $spmeta->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
 
-	if (!empty($spmeta['OrganizationName'])) {
-		$metaArray['OrganizationName'] = $spmeta['OrganizationName'];
+	if ($spmeta->hasValue('OrganizationName')) {
+		$metaArray['OrganizationName'] = $spmeta->getLocalizedString('OrganizationName');
+		$metaArray['OrganizationDisplayName'] = $spmeta->getLocalizedString('OrganizationDisplayName', $metaArray['OrganizationName']);
 
-		if (!empty($spmeta['OrganizationDisplayName'])) {
-			$metaArray['OrganizationDisplayName'] = $spmeta['OrganizationDisplayName'];
-		} else {
-			$metaArray['OrganizationDisplayName'] = $spmeta['OrganizationName'];
-		}
-
-		if (empty($spmeta['OrganizationURL'])) {
+		if (!$spmeta->hasValue('OrganizationURL')) {
 			throw new SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
 		}
-		$metaArray['OrganizationURL'] = $spmeta['OrganizationURL'];
+		$metaArray['OrganizationURL'] = $spmeta->getLocalizedString('OrganizationURL');
 	}
 
 
-	if (array_key_exists('attributes', $spmeta)) {
-		$metaArray['attributes'] = $spmeta['attributes'];
+	if ($spmeta->hasValue('attributes')) {
+		$metaArray['attributes'] = $spmeta->getArray('attributes');
 	}
-	if (array_key_exists('attributes.NameFormat', $spmeta)) {
-		$metaArray['attributes.NameFormat'] = $spmeta['attributes.NameFormat'];
+	if ($spmeta->hasValue('attributes.NameFormat')) {
+		$metaArray['attributes.NameFormat'] = $spmeta->getString('attributes.NameFormat');
 	}
-	if (array_key_exists('name', $spmeta)) {
-		$metaArray['name'] = $spmeta['name'];
+	if ($spmeta->hasValue('name')) {
+		$metaArray['name'] = $spmeta->getLocalizedString('name');
 	}
-	if (array_key_exists('description', $spmeta)) {
-		$metaArray['description'] = $spmeta['description'];
+	if ($spmeta->hasValue('description')) {
+		$metaArray['description'] = $spmeta->getLocalizedString('description');
 	}
 
-	$certInfo = SimpleSAML_Utilities::loadPublicKey($spmeta);
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($spmeta->toArray());
 	if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 		$metaArray['certData'] = $certInfo['certData'];
 	}
@@ -81,7 +72,7 @@ try {
 	$metaxml = $metaBuilder->getEntityDescriptorText();
 
 	/* Sign the metadata if enabled. */
-	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $spmeta, 'SAML 2 SP');
+	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $spmeta->toArray(), 'SAML 2 SP');
 	
 	
 	

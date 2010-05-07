@@ -19,9 +19,8 @@ if ($config->getBoolean('admin.protectmetadata', false)) {
 
 try {
 
-	$spmeta = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrent('shib13-sp-hosted');
 	$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID('shib13-sp-hosted');
-	
+	$spmeta = $metadata->getMetaDataConfig($spentityid, 'shib13-sp-hosted');
 
 	$metaArray = array(
 		'metadata-set' => 'shib13-sp-remote',
@@ -29,50 +28,41 @@ try {
 		'AssertionConsumerService' => $metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted'),
 	);
 
-	$certInfo = SimpleSAML_Utilities::loadPublicKey($spmeta);
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($spmeta->toArray());
 	if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 		$metaArray['certData'] = $certInfo['certData'];
 	}
 
-	if (array_key_exists('NameIDFormat', $spmeta)) {
-		$metaArray['NameIDFormat'] = $spmeta['NameIDFormat'];
-	} else {
-		$metaArray['NameIDFormat'] = 'urn:mace:shibboleth:1.0:nameIdentifier';
-	}
+	$metaArray['NameIDFormat'] = $spmeta->getString('NameIDFormat', 'urn:mace:shibboleth:1.0:nameIdentifier');
 
-	if (!empty($spmeta['OrganizationName'])) {
-		$metaArray['OrganizationName'] = $spmeta['OrganizationName'];
+	if ($spmeta->hasValue('OrganizationName')) {
+		$metaArray['OrganizationName'] = $spmeta->getLocalizedString('OrganizationName');
+		$metaArray['OrganizationDisplayName'] = $spmeta->getLocalizedString('OrganizationDisplayName', $metaArray['OrganizationName']);
 
-		if (!empty($spmeta['OrganizationDisplayName'])) {
-			$metaArray['OrganizationDisplayName'] = $spmeta['OrganizationDisplayName'];
-		} else {
-			$metaArray['OrganizationDisplayName'] = $spmeta['OrganizationName'];
-		}
-
-		if (empty($spmeta['OrganizationURL'])) {
+		if (!$spmeta->hasValue('OrganizationURL')) {
 			throw new SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
 		}
-		$metaArray['OrganizationURL'] = $spmeta['OrganizationURL'];
+		$metaArray['OrganizationURL'] = $spmeta->getLocalizedString('OrganizationURL');
 	}
 
-	if (array_key_exists('attributes', $spmeta)) {
-		$metaArray['attributes'] = $spmeta['attributes'];
+	if ($spmeta->hasValue('attributes')) {
+		$metaArray['attributes'] = $spmeta->getArray('attributes');
 	}
-	if (array_key_exists('attributes.NameFormat', $spmeta)) {
-		$metaArray['attributes.NameFormat'] = $spmeta['attributes.NameFormat'];
+	if ($spmeta->hasValue('attributes.NameFormat')) {
+		$metaArray['attributes.NameFormat'] = $spmeta->getString('attributes.NameFormat');
 	}
-	if (array_key_exists('name', $spmeta)) {
-		$metaArray['name'] = $spmeta['name'];
+	if ($spmeta->hasValue('name')) {
+		$metaArray['name'] = $spmeta->getLocalizedString('name');
 	}
-	if (array_key_exists('description', $spmeta)) {
-		$metaArray['description'] = $spmeta['description'];
+	if ($spmeta->hasValue('description')) {
+		$metaArray['description'] = $spmeta->getLocalizedString('description');
 	}
 
 
 	$metaflat = '$metadata[' . var_export($spentityid, TRUE) . '] = ' . var_export($metaArray, TRUE) . ';';
 
-	if (array_key_exists('certificate', $spmeta)) {
-		$metaArray['certificate'] = $spmeta['certificate'];
+	if ($spmeta->hasValue('certificate')) {
+		$metaArray['certificate'] = $spmeta->getString('certificate');
 	}
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($spentityid);
 	$metaBuilder->addMetadataSP11($metaArray);
@@ -84,7 +74,7 @@ try {
 	$metaxml = $metaBuilder->getEntityDescriptorText();
 
 	/* Sign the metadata if enabled. */
-	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $spmeta, 'Shib 1.3 SP');
+	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $spmeta->toArray(), 'Shib 1.3 SP');
 
 	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
 		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
