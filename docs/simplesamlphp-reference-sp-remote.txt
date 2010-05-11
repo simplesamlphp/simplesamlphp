@@ -121,6 +121,8 @@ The following SAML 2.0 options are available:
     This option is required - without it you will not be able to send
     responses back to the SP.
 
+:   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
+
 `AttributeNameFormat`
 :   What value will be set in the Format field of attribute
     statements. This parameter can be configured multiple places, and
@@ -176,6 +178,8 @@ The following SAML 2.0 options are available:
     This option is required if you want to implement single logout for
     this SP. If the option isn't specified, this SP will not be logged
     out automatically when a single logout operation is initialized.
+
+:   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
 
 `SingleLogoutServiceResponse`
 :   The URL logout responses to this SP should be sent. If this option
@@ -313,6 +317,8 @@ The following options for Shibboleth 1.3 SP's are avaiblable:
     `urn:oasis:names:tc:SAML:1.0:profiles:browser-post` encoding.
     This option is required - without it you will not be able to send
     responses back to the SP.
+
+:   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
 
 `NameQualifier`
 :   What the value of the `NameQualifier`-attribute of the
