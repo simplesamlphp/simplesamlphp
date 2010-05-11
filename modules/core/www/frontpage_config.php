@@ -43,11 +43,6 @@ $links_config[] = array(
 	'text' => '{core:frontpage:link_phpinfo}'
 );
 
-$links_config[] = array(
-	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/config.php',
-	'text' => '{core:frontpage:link_configcheck}',
-);
-
 
 
 
