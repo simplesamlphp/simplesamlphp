@@ -8,6 +8,10 @@
  */
  
  
-list($function) = preg_split('/[\/?]/', $_SERVER['PATH_INFO'], 0, PREG_SPLIT_NO_EMPTY);
+$validFunctions = array('login', 'validate', 'serviceValidate');
+$function = substr($_SERVER['PATH_INFO'], 1);
+if (!in_array($function, $validFunctions, TRUE)) {
+	throw new SimpleSAML_Error_NotFound('Not a valid function for cas.php.');
+}
 
 include($function.".php");
