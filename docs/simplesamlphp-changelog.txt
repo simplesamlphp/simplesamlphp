@@ -5,6 +5,31 @@ simpleSAMLphp changelog
 
 Here is changes between simpleSAMLphp versions. Look here if you are upgrading, to see if there are any changes to the config format.
 
+
+## Version 1.5.1
+
+Released 2010-01-08.
+
+  * Fix security vulnerability due to insecure temp file creation:
+    * statistics: The logcleaner script outputs to a file in /tmp.
+    * InfoCard: Saves state directly in /tmp. Changed to the simpleSAMLphp temp directory.
+    * openidProvider: Default configuration saves state information in /tmp.
+      Changed to '/var/lib/simplesamlphp-openid-provider'.
+    * SAML 1 artifact support: Saves certificates temporarily in '/tmp/simplesaml', but directory creation was insecure.
+  * statistics: Handle new year wraparound.
+  * Dictionary updates.
+  * Fix bridged logout.
+  * Some documentation updates.
+  * Fix all metadata to use assignments to arrays.
+  * Fix $session->getIdP().
+  * Support AuthnContextClassRef in saml-module.
+  * Do not attempt to send logout request to an IdP that does not support logout.
+  * LDAP: Disallow bind with empty password.
+  * LDAP: Assume that LDAP_NO_SUCH_OBJECT is an error due to invalid username/password.
+  * statistics: Fix configuration template.
+  * Handle missing authority in idp-hosted metadata better.
+
+
 ## Version 1.5
 
 Released 2009-11-05. Revision 1937.
