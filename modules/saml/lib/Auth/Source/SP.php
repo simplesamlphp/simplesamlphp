@@ -211,8 +211,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		if (isset($state['saml:IDPList'])) {
 			$IDPList = $state['saml:IDPList'];
+		} else {
+			$IDPList = array();
 		}
-		
+
 		$ar->setIDPList(array_unique(array_merge($this->metadata->getArray('IDPList', array()), 
 												$idpMetadata->getArray('IDPList', array()),
 												(array) $IDPList)));
