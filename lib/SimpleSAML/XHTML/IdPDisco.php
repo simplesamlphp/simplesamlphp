@@ -482,6 +482,11 @@ class SimpleSAML_XHTML_IdPDisco {
 		if (sizeof($idpintersection) > 0) {
 			$idpList = array_intersect_key($idpList, array_fill_keys($idpintersection, NULL));
 		}
+        
+        if(sizeof($idpintersection)  == 1) {
+            $this->log('Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' . $this->returnIdParam . ')');
+            SimpleSAML_Utilities::redirect($this->returnURL, array($this->returnIdParam => $idpintersection[0]));
+        }
 
 		/*
 		 * Make use of an XHTML template to present the select IdP choice to the user.
