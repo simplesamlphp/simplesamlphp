@@ -569,20 +569,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		assert('in_array($use, array("encryption", "signing"), TRUE)');
 		assert('is_string($x509data)');
 
-		$keyDescriptor = new SAML2_XML_md_KeyDescriptor();
+		$keyDescriptor = SAML2_Utils::createKeyDescriptor($x509data);
 		$keyDescriptor->use = $use;
 		$rd->KeyDescriptor[] = $keyDescriptor;
-
-		$keyInfo = new SAML2_XML_ds_KeyInfo();
-		$keyDescriptor->KeyInfo = $keyInfo;
-
-		$x509Data = new SAML2_XML_ds_X509Data();
-		$keyInfo->info[] = $x509Data;
-
-		$x509Certificate = new SAML2_XML_ds_X509Certificate();
-		$x509Data->data[] = $x509Certificate;
-
-		$x509Certificate->certificate = $x509data;
 	}
 
 
