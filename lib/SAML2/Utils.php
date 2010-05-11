@@ -469,4 +469,29 @@ class SAML2_Utils {
 		}
 	}
 
+
+	/**
+	 * Create a KeyDescriptor with the given certificate.
+	 *
+	 * @param string $x509Data  The certificate, as a base64-encoded DER data.
+	 * @return SAML2_XML_md_KeyDescriptor  The keydescriptor.
+	 */
+	public static function createKeyDescriptor($x509Data) {
+		assert('is_string($x509Data)');
+
+		$x509Certificate = new SAML2_XML_ds_X509Certificate();
+		$x509Certificate->certificate = $x509Data;
+
+		$x509Data = new SAML2_XML_ds_X509Data();
+		$x509Data->data[] = $x509Certificate;
+
+		$keyInfo = new SAML2_XML_ds_KeyInfo();
+		$keyInfo->info[] = $x509Data;
+
+		$keyDescriptor = new SAML2_XML_md_KeyDescriptor();
+		$keyDescriptor->KeyInfo = $keyInfo;
+
+		return $keyDescriptor;
+	}
+
 }
