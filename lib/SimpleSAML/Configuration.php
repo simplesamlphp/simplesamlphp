@@ -361,10 +361,12 @@ class SimpleSAML_Configuration {
 
 		assert('is_string($path)');
 
-		/* Prepend path with basedir if it doesn't start with
-                 * a slash. We assume getBaseDir ends with a slash.
+		/* Prepend path with basedir if it doesn't start with a slash or a Windows
+		 * drive letter (e.g. "C:\"). We assume getBaseDir ends with a slash.
 		 */
-		if ($path[0] !== '/') $path = $this->getBaseDir() . $path;
+		if ($path[0] !== '/' &&
+		    !(preg_match('@^[a-z]:[\\\\/]@i', $path, $matches) && is_dir($matches[0])))
+			$path = $this->getBaseDir() . $path;
 
 		/* Remove trailing slashes. */
 		while (substr($path, -1) === '/') {
