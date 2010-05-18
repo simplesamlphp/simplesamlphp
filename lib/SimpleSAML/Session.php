@@ -165,11 +165,6 @@ class SimpleSAML_Session {
 
 		/* Create a new session. */
 		self::$instance = new SimpleSAML_Session();
-
-		/* Save the new session with the session handler. */
-		$sh = SimpleSAML_SessionHandler::getSessionHandler();
-		$sh->set('SimpleSAMLphp_SESSION', self::$instance);
-
 		return self::$instance;
 	}
 
