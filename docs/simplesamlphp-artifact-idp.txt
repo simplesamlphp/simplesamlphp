@@ -1,0 +1,55 @@
+Adding HTTP-Artifact support to the IdP
+=======================================
+
+This document describes the necessary steps to enable support for the HTTP-Artifact binding on a simpleSAMLphp IdP:
+
+1.  Configure simpleSAMLphp to use memcache to store the session.
+2.  Enable support for sending artifacts in `saml20-idp-hosted`.
+3.  Add the webserver certificate to the generated metadata.
+
+
+Memcache
+--------
+
+To enable memcache, you must first install and configure memcache on the server hosting your IdP.
+You need both a memcache server and a the PHP memcache client.
+How this is done depends on the distribution.
+If you are running Debian Lenny, you can install both by running:
+
+    aptitude install memcached php5-memcache
+
+*Note*: For security, you must make sure that the memcache server is inaccessible to other hosts.
+The default configuration on Debian Lenny is for the memcache server to be accessible to only the local host.
+
+
+Once the memcache server is configured, you can configure simplesamlphp to use it to store sessions.
+You can do this by setting the `session.handler` option in `config.php` to `memcache`.
+If you are running memcache on a different server than the IdP, you must also change the `memcache_store.servers` option in `config.php`.
+
+
+Enabling artifact on the IdP
+----------------------------
+
+To enable the IdP to send artifacts, you must add the `saml20.sendartifact` option to the `saml20-idp-hosted` metadata file:
+
+    $metadata['__DYNAMIC:1__'] = array(
+        [....]
+        'auth' => 'example-userpass',
+        'saml20.sendartifact' => TRUE,
+    );
+
+
+Certificate in metadata
+-----------------------
+
+Some SPs validates the SSL certificate on the ArtifactResolutionService using the certificates in the metadata.
+You may therefore have to add the webserver certificate to the metadata that your IdP generates.
+To do this, you need to set the `https.certificate` option in the `saml20-idp-hosted` metadata file.
+That option should refer to a file containing the webserver certificate.
+
+    $metadata['__DYNAMIC:1__'] = array(
+        [....]
+        'auth' => 'example-userpass',
+        'saml20.sendartifact' => TRUE,
+        'https.certificate' => '/etc/apache2/webserver.crt',
+    );
