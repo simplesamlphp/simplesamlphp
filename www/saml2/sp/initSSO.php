@@ -136,7 +136,6 @@ try {
 
 	$assertionConsumerServiceURL = $metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted');
 	$ar->setAssertionConsumerServiceURL($assertionConsumerServiceURL);
-	$ar->setProtocolBinding(SAML2_Const::BINDING_HTTP_POST);
 	$ar->setRelayState($_REQUEST['RelayState']);
 
 	if ($isPassive) {

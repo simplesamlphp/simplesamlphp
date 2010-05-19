@@ -385,6 +385,15 @@ class sspmod_saml2_Message {
 		$ar->setForceAuthn($spMetadata->getBoolean('ForceAuthn', FALSE));
 		$ar->setIsPassive($spMetadata->getBoolean('IsPassive', FALSE));
 
+		$protbind = $spMetadata->getValueValidate('ProtocolBinding', array(
+				SAML2_Const::BINDING_HTTP_POST,
+				SAML2_Const::BINDING_HTTP_ARTIFACT,
+				SAML2_Const::BINDING_HTTP_REDIRECT,
+			), SAML2_Const::BINDING_HTTP_POST);
+
+		/* Shoaib - setting the appropriate binding based on parameter in sp-metadata defaults to HTTP_POST */
+		$ar->setProtocolBinding($protbind);
+
 		if ($spMetadata->hasValue('AuthnContextClassRef')) {
 			$accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
 			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr));

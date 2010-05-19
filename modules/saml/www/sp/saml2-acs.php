@@ -6,8 +6,13 @@
 
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
 $source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
+$spMetadata = $source->getMetadata();
 
 $b = SAML2_Binding::getCurrentBinding();
+if ($b instanceof SAML2_HTTPArtifact) {
+	$b->setSPMetadata($spMetadata);
+}
+
 $response = $b->receive();
 if (!($response instanceof SAML2_Response)) {
 	throw new SimpleSAML_Error_BadRequest('Invalid message received to AssertionConsumerService endpoint.');
@@ -40,7 +45,6 @@ if ($idp === NULL) {
 SimpleSAML_Logger::debug('Received SAML2 Response from ' . var_export($idp, TRUE) . '.');
 
 $idpMetadata = $source->getIdPmetadata($idp);
-$spMetadata = $source->getMetadata();
 
 try {
 	$assertion = sspmod_saml2_Message::processResponse($spMetadata, $idpMetadata, $response);

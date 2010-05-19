@@ -307,6 +307,34 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 		return SimpleSAML_Configuration::loadFromArray($metadata, $set . '/' . var_export($entityId, TRUE));
 	}
 
+	public function	getMetaDataConfigForSha1($sha1, $set) {
+		assert('is_string($sha1)');
+		assert('is_string($set)');
+
+
+		$result = array();
+
+		foreach($this->sources as $source) {
+			$srcList = $source->getMetadataSet($set);
+
+
+			/* $result is the last argument to array_merge because we want the content already
+			 * in $result to have precedence.
+			 */
+			$result = array_merge($srcList, $result);
+		}
+		foreach($result as $remote_provider ){
+
+			if(sha1($remote_provider['entityid'])==$sha1){
+				$remote_provider['metadata-set'] = $set;
+
+				return SimpleSAML_Configuration::loadFromArray($remote_provider, $set . '/' . var_export($remote_provider['entityid'], TRUE));
+			}
+		}
+
+		return null;
+	}
+
 }
 
 ?>

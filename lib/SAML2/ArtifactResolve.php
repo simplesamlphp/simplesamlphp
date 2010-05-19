@@ -42,7 +42,7 @@ class SAML2_ArtifactResolve extends SAML2_Request {
 	 * @param String  The $artifact.
 	 */
 	public function setArtifact($artifact) {
-
+		assert('is_string($artifact)');
 		$this->artifact = $artifact;
 	}
 
@@ -53,7 +53,10 @@ class SAML2_ArtifactResolve extends SAML2_Request {
 	 */
 	public function toUnsignedXML() {
 
-		throw new Exception('Not SUPPORTED');
+		$root = parent::toUnsignedXML();
+		$artifactelement = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'Artifact', $this->artifact);
+		$root->appendChild($artifactelement);
+		return $root;
 	}
 
 

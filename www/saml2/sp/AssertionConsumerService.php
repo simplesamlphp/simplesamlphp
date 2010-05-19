@@ -63,13 +63,16 @@ if (array_key_exists(SimpleSAML_Auth_ProcessingChain::AUTHPARAM, $_REQUEST)) {
 }
 
 
-if (empty($_REQUEST['SAMLResponse']))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'ACSPARAMS', $exception);
-
-	
 try {
+	$metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+	$sp = $metadataHandler->getMetaDataCurrentEntityID();
+	$spMetadata = $metadataHandler->getMetaDataConfig($sp, 'saml20-sp-hosted');
 
 	$b = SAML2_Binding::getCurrentBinding();
+	if ($b instanceof SAML2_HTTPArtifact) {
+		$b->setSPMetadata($spMetadata);
+	}
+
 	$response = $b->receive();
 	if (!($response instanceof SAML2_Response)) {
 		throw new SimpleSAML_Error_BadRequest('Invalid message received to AssertionConsumerService endpoint.');
@@ -80,11 +83,8 @@ try {
 		throw new Exception('Missing <saml:Issuer> in message delivered to AssertionConsumerService.');
 	}
 
-	$metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-	$sp = $metadataHandler->getMetaDataCurrentEntityID();
 
 	$idpMetadata = $metadataHandler->getMetaDataConfig($idp, 'saml20-idp-remote');
-	$spMetadata = $metadataHandler->getMetaDataConfig($sp, 'saml20-sp-hosted');
 
 	/* Fetch the request information if it exists, fall back to RelayState if not. */
 	$requestId = $response->getInResponseTo();

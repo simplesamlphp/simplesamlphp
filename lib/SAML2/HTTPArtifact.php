@@ -10,6 +10,8 @@
  */
 class SAML2_HTTPArtifact extends SAML2_Binding {
 
+	private $spMetadata;
+
 	/**
 	 * Create the redirect URL for a message.
 	 *
@@ -50,7 +52,7 @@ class SAML2_HTTPArtifact extends SAML2_Binding {
 
 
 	/**
-	 * Receive a SAMLart.
+	 * Receive a SAML 2 message sent using the HTTP-Artifact binding.
 	 *
 	 * Throws an exception if it is unable receive the message.
 	 *
@@ -58,7 +60,81 @@ class SAML2_HTTPArtifact extends SAML2_Binding {
 	 */
 	public function receive() {
 
-		throw new Exception('Receiving SAML2 Artifact messages not supported.');
+		if (array_key_exists('SAMLart', $_REQUEST)) {
+			$artifact = base64_decode($_REQUEST['SAMLart']);
+			$endpointIndex =  bin2hex(substr($artifact,2,2));
+			$sourceId = bin2hex(substr($artifact,4,20));
+
+		}else{
+			throw new Execption('Missing SAMLArt parameter.');
+		}
+
+		$metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+
+		$idpmetadata = $metadataHandler->getMetaDataConfigForSha1($sourceId, 'saml20-idp-remote');
+
+
+		$endpoint = NULL;
+		foreach ($idpmetadata->getEndpoints('ArtifactResolutionService') as $ep) {
+			if ($ep['index'] ===  hexdec($endpointIndex)) {
+				$endpoint = $ep;
+				break;
+			}
+		}
+
+		if ($endpoint === NULL) {
+			throw new Exception('No ArtifactResolutionService with the correct index.');
+		}
+
+		SimpleSAML_Logger::debug("ArtifactResolutionService endpoint being used is := " . $endpoint['Location']);
+
+		//Construct the ArtifactResolve Request
+		$ar = new SAML2_ArtifactResolve();
+
+		/* Set the request attributes */
+
+		$ar->setIssuer($this->spMetadata->getString('entityid'));
+		$ar->setArtifact($_REQUEST['SAMLart']);
+		$ar->setDestination($endpoint['Location']);
+
+		/* Sign the request */
+		sspmod_saml2_Message::addSign($this->spMetadata, $idpmetadata, $ar); // Shoaib - moved from the SOAPClient.
+
+		$soap = new SAML2_SOAPClient();
+
+		// Send message through SoapClient
+		$artifactResponse = $soap->send($ar, $this->spMetadata);
+
+		if (!$artifactResponse->isSuccess()) {
+			throw new Exception('Received error from ArtifactResolutionService.');
+		}
+
+		$xml = $artifactResponse->getAny();
+		$samlresponse = SAML2_Message::fromXML($xml);
+		$samlresponse->addValidator(array(get_class($this), 'validateSignature'), $artifactResponse);
+
+
+		if (isset($_REQUEST['RelayState'])) {
+			$samlresponse->setRelayState($_REQUEST['RelayState']);
+		}
+
+		return $samlresponse;
+	}
+
+
+	public function setSPMetadata($sp){
+		$this->spMetadata = $sp;
+	}
+
+
+	/**
+	 * A validator which returns TRUE if the ArtifactResponse was signed with the given key
+	 *
+	 * @return TRUE
+	 */
+	public static function validateSignature(SAML2_ArtifactResponse $message, XMLSecurityKey $key) {
+
+		return $message->validate($key);
 	}
 
 }
