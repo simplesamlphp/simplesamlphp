@@ -114,7 +114,7 @@ try {
 
 <p>Metadata was sent to you from a simpleSAMLphp SAML 2.0 Service Provider. The service provider requests to connect to the following Identity Provider: 
 	<ul>
-		<li><tt>' . htmlentities($_POST['sendtoidp']) . '</tt></li>
+		<li><tt>' . htmlspecialchars($_POST['sendtoidp']) . '</tt></li>
 	</ul>
 </p>
 
@@ -123,16 +123,16 @@ try {
 
 <p>Links to metadata at service provider
 <ul>
-	<li><a href="' . htmlentities(SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), array('output' => 'xhtml'))) . '">SimpleSAMLphp Metadata page</a></li>
-	<li><a href="' . htmlentities(SimpleSAML_Utilities::selfURLNoQuery()) . '">SimpleSAMLphp Metadata (XML only)</a></li>
+	<li><a href="' . htmlspecialchars(SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), array('output' => 'xhtml'))) . '">SimpleSAMLphp Metadata page</a></li>
+	<li><a href="' . htmlspecialchars(SimpleSAML_Utilities::selfURLNoQuery()) . '">SimpleSAMLphp Metadata (XML only)</a></li>
 </ul>
 </p>
 
 <p>SAML 2.0 XML Metadata :</p>
-<pre>' . htmlentities($metaxml) . '</pre>
+<pre>' . htmlspecialchars($metaxml) . '</pre>
 
 <p>Metadata in SimpleSAMLphp format :</p>
-<pre>' . htmlentities($metaflat) . '</pre>
+<pre>' . htmlspecialchars($metaflat) . '</pre>
 
 <p>SimpleSAMLphp version: ' . $config->getVersion() . '</p>
 
@@ -159,8 +159,8 @@ try {
 		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
 	
 		$t->data['header'] = 'saml20-sp';
-		$t->data['metadata'] = htmlentities($metaxml);
-		$t->data['metadataflat'] = htmlentities($metaflat);
+		$t->data['metadata'] = htmlspecialchars($metaxml);
+		$t->data['metadataflat'] = htmlspecialchars($metaflat);
 		$t->data['metaurl'] = SimpleSAML_Utilities::selfURLNoQuery();
 		
 		$t->data['idpsend'] = $idpsend;

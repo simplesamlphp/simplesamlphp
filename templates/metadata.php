@@ -68,7 +68,7 @@ $this->includeAtTemplateBase('includes/header.php');
 			} else {
 				
 				echo '<div style="border: 1px solid #444; margin: .5em 2em .5em 2em; padding: .5em 1em 1em 1em; background: #FFFFCC">';
-				echo '	<a href="' . htmlentities($this->data['adminlogin']) . '">';
+				echo '	<a href="' . htmlspecialchars($this->data['adminlogin']) . '">';
 				echo $this->t('metadata_send_adminlogin');
 				echo '	</a>';
 				echo '</div>';

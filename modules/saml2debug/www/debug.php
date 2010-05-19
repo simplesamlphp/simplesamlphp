@@ -32,7 +32,7 @@ function decode($raw) {
 	if ($gzinflated != FALSE) {
 		$base64decoded = $gzinflated;
 	}
-	$decoded = htmlentities($base64decoded);
+	$decoded = htmlspecialchars($base64decoded);
 	return $decoded;
 }
 

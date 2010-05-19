@@ -7,7 +7,7 @@ $this->includeAtTemplateBase('includes/header.php');
 
 echo('<pre style="font-size: 110%">');
 
-echo(htmlentities(var_export($this->data['m'])));
+echo(htmlspecialchars(var_export($this->data['m'])));
 
 echo('</pre>');
 

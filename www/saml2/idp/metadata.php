@@ -84,8 +84,8 @@ try {
 
 		$t->data['header'] = 'saml20-idp';
 		$t->data['metaurl'] = SimpleSAML_Utilities::selfURLNoQuery();
-		$t->data['metadata'] = htmlentities($metaxml);
-		$t->data['metadataflat'] = htmlentities($metaflat);
+		$t->data['metadata'] = htmlspecialchars($metaxml);
+		$t->data['metadataflat'] = htmlspecialchars($metaflat);
 		$t->data['defaultidp'] = $defaultidp;
 		$t->show();
 

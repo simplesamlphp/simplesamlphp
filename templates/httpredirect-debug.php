@@ -7,7 +7,7 @@
 
 	<p><?php echo($this->t('{admin:debug_sending_message_text_link}')); ?></p>
 	
-	<p>[ <a id="sendlink" href="<?php echo htmlentities($this->data['url']); ?>"><?php echo($this->t('{admin:debug_sending_message_send}')); ?></a> ]</p>
+	<p>[ <a id="sendlink" href="<?php echo htmlspecialchars($this->data['url']); ?>"><?php echo($this->t('{admin:debug_sending_message_send}')); ?></a> ]</p>
 	
 	<h2><?php echo($this->t('{admin:debug_sending_message_msg_title}')); ?></h2>
 	

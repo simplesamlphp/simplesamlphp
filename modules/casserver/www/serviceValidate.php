@@ -54,15 +54,15 @@ function returnResponse($value, $content = '', $attributes = array()) {
 	if ($value === 'YES') {
 		$attributesxml = "";
 		foreach ($attributes as $attributename => $attributelist) {
-			$attr = htmlentities($attributename);
+			$attr = htmlspecialchars($attributename);
 			foreach ($attributelist as $attributevalue) {
-				$attributesxml .= "<cas:$attr>" . htmlentities($attributevalue) . "</cas:$attr>\n";
+				$attributesxml .= "<cas:$attr>" . htmlspecialchars($attributevalue) . "</cas:$attr>\n";
 			}
 		}
 		if (sizeof($attributes)) $attributesxml = '<cas:attributes>' . $attributesxml . '</cas:attributes>';
 		echo '<cas:serviceResponse xmlns:cas="http://www.yale.edu/tp/cas">
     <cas:authenticationSuccess>
-	<cas:user>' . htmlentities($content) . '</cas:user>' .
+	<cas:user>' . htmlspecialchars($content) . '</cas:user>' .
 	$attributesxml .
     '</cas:authenticationSuccess>
 </cas:serviceResponse>';
