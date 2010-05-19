@@ -586,15 +586,15 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	private function addCertificate(SAML2_XML_md_RoleDescriptor $rd, SimpleSAML_Configuration $metadata) {
 
 		$certInfo = SimpleSAML_Utilities::loadPublicKey($metadata);
-		if ($certInfo === NULL || !array_key_exists('certData', $certInfo)) {
-			/* No certificate to add. */
-			return;
+		if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
+			$certData = $certInfo['certData'];
+			$this->addX509KeyDescriptor($rd, 'signing', $certData);
+			$this->addX509KeyDescriptor($rd, 'encryption', $certData);
 		}
 
-		$certData = $certInfo['certData'];
-
-		$this->addX509KeyDescriptor($rd, 'signing', $certData);
-		$this->addX509KeyDescriptor($rd, 'encryption', $certData);
+		if ($metadata->hasValue('https.certData')) {
+			$this->addX509KeyDescriptor($rd, 'signing', $metadata->getString('https.certData'));
+		}
 	}
 
 }

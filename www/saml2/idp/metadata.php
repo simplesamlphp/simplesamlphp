@@ -60,6 +60,12 @@ try {
 		$metaArray['scope'] = $idpmeta->getArray('scope');
 	}
 
+	if ($idpmeta->hasValue('https.certificate')) {
+		$httpsCert = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE, 'https.');
+		assert('isset($httpsCert["certData"])');
+		$metaArray['https.certData'] = $httpsCert['certData'];
+	}
+
 
 	$metaflat = '$metadata[' . var_export($idpentityid, TRUE) . '] = ' . var_export($metaArray, TRUE) . ';';
 

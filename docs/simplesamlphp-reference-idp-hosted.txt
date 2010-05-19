@@ -156,6 +156,11 @@ The following SAML 2.0 options are available:
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
 
+`https.certificate`
+:   The certificate used by the webserver when handling connections.
+    This certificate will be added to the generated metadata of the IdP,
+    which is required by some SPs when using the HTTP-Artifact binding.
+
 `SingleSignOnService`
 :   Override the default URL for the SingleSignOnService for this
     IdP. This is an absolute URL. The default value is
