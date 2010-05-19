@@ -47,21 +47,17 @@ $acs->Binding = 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
 $acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId);
 $sp->AssertionConsumerService[] = $acs;
 
-if ($spconfig->getBoolean('saml20.binding.artifact.enable', FALSE)) {
-	$metaArray20['AssertionConsumerService'][] = array(
-		'index' => 2,
-		'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
-		'Location' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId),
-	);
-}
+$acs = new SAML2_XML_md_IndexedEndpointType();
+$acs->index = 2;
+$acs->Binding = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact';
+$acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
+$sp->AssertionConsumerService[] = $acs;
 
-if ($spconfig->getBoolean('saml11.binding.artifact.enable', FALSE)) {
-	$acs = new SAML2_XML_md_IndexedEndpointType();
-	$acs->index = 3;
-	$acs->Binding = 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01';
-	$acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId . '/artifact');
-	$sp->AssertionConsumerService[] = $acs;
-}
+$acs = new SAML2_XML_md_IndexedEndpointType();
+$acs->index = 3;
+$acs->Binding = 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01';
+$acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId . '/artifact');
+$sp->AssertionConsumerService[] = $acs;
 
 $certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig);
 if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
