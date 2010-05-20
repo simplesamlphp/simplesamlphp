@@ -186,7 +186,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 		$attributes = array();
 
 		try {
-			$yubi = &new Auth_Yubico($this->yubi_id, $this->yubi_key);
+			$yubi = new Auth_Yubico($this->yubi_id, $this->yubi_key);
 			$auth = $yubi->verify($otp);
 			$uid = self::getYubiKeyPrefix($otp);
 			$attributes = array('uid' => array($uid));
