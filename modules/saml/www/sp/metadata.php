@@ -69,6 +69,8 @@ if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$kd = SAML2_Utils::createKeyDescriptor($certData);
 	$kd->use = 'encryption';
 	$sp->KeyDescriptor[] = $kd;
+} else {
+	$certData = NULL;
 }
 
 $name = $spconfig->getLocalizedString('name', NULL);
