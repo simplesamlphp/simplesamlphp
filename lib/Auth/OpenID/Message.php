@@ -143,7 +143,7 @@ class Auth_OpenID_Mapping {
      * Returns true if $thing is an Auth_OpenID_Mapping object; false
      * if not.
      */
-    function isA($thing)
+    static function isA($thing)
     {
         return (is_object($thing) &&
                 strtolower(get_class($thing)) == 'auth_openid_mapping');
@@ -442,7 +442,7 @@ class Auth_OpenID_Message {
         return $this->getOpenIDNamespace() == Auth_OpenID_OPENID2_NS;
     }
 
-    function fromPostArgs($args)
+    static function fromPostArgs($args)
     {
         // Construct a Message containing a set of POST arguments
         $obj = new Auth_OpenID_Message();
@@ -477,7 +477,7 @@ class Auth_OpenID_Message {
         }
     }
 
-    function fromOpenIDArgs($openid_args)
+    static function fromOpenIDArgs($openid_args)
     {
         // Takes an array.
 
@@ -594,7 +594,7 @@ class Auth_OpenID_Message {
         return $this->_openid_ns_uri;
     }
 
-    function fromKVForm($kvform_string)
+    static function fromKVForm($kvform_string)
     {
         // Create a Message from a KVForm string
         return Auth_OpenID_Message::fromOpenIDArgs(
@@ -917,4 +917,4 @@ class Auth_OpenID_Message {
     }
 }
 
-?>
+

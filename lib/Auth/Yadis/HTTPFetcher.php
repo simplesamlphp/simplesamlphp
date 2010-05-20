@@ -115,12 +115,40 @@ class Auth_Yadis_HTTPFetcher {
     /**
      * @access private
      */
-    function _findRedirect($headers)
+    function _findRedirect($headers, $url)
     {
         foreach ($headers as $line) {
             if (strpos(strtolower($line), "location: ") === 0) {
                 $parts = explode(" ", $line, 2);
-                return $parts[1];
+                $loc = $parts[1];
+                $ppos = strpos($loc, "://");
+                if ($ppos === false || $ppos > strpos($loc, "/")) {
+                  /* no host; add it */
+                  $hpos = strpos($url, "://");
+                  $prt = substr($url, 0, $hpos+3);
+                  $url = substr($url, $hpos+3);
+                  if (substr($loc, 0, 1) == "/") {
+                    /* absolute path */
+                    $fspos = strpos($url, "/");
+                    if ($fspos) $loc = $prt.substr($url, 0, $fspos).$loc;
+                    else $loc = $prt.$url.$loc;
+                  } else {
+                    /* relative path */
+                    $pp = $prt;
+                    while (1) {
+                      $xpos = strpos($url, "/");
+                      if ($xpos === false) break;
+                      $apos = strpos($url, "?");
+                      if ($apos !== false && $apos < $xpos) break;
+                      $apos = strpos($url, "&");
+                      if ($apos !== false && $apos < $xpos) break;
+                      $pp .= substr($url, 0, $xpos+1);
+                      $url = substr($url, $xpos+1);
+                    }
+                    $loc = $pp.$loc;
+                  }
+                }
+                return $loc;
             }
         }
         return null;
@@ -144,4 +172,3 @@ class Auth_Yadis_HTTPFetcher {
     }
 }
 
-?>

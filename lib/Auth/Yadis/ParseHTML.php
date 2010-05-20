@@ -256,4 +256,3 @@ class Auth_Yadis_ParseHTML {
     }
 }
 
-?>
