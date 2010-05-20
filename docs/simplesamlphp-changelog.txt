@@ -3,7 +3,106 @@ simpleSAMLphp changelog
 
 <!-- {{TOC}} -->
 
-Here is changes between simpleSAMLphp versions. Look here if you are upgrading, to see if there are any changes to the config format.
+This document lists the changes between versions of simpleSAMLphp.
+See the upgrade notes for specific information about upgrading.
+
+
+## Version 1.6
+
+Released 2010-05-XX.
+
+[Upgrade notes](./simplesamlphp-upgrade-notes-1.6)
+
+  * Detection of cookies disabled on the IdP.
+  * New IdP core, which makes it simpler to share code between different IdPs, e.g. between SAML 1.1 and SAML 2.0.
+  * Dictionaries moved to JSON format.
+  * New authentication module: [`cas:CAS`](./cas:cas).
+  * All images that doesn't permit non-commercial use have been replaced.
+  * Better support for OrganizationName, OrganizationDisplayName and OrganizationURL in metadata.
+  * Cookie secure flag no longer automatically set.
+  * Cross-protocol logout between ADFS and SAML 2.
+  * New experimental module for aggregating metadata: [`aggregator2`](./aggregator2:aggregator2)
+  * Metadata support for multiple endpoints with [multiple bindings](./simplesamlphp-metadata-endpoints).
+  * The metadata generation is using a new set of classes.
+    As a result, all generated metadata elements now have a `md:`-prefix.
+  * The deprecated functions `init(...)` and `setAuthenticated(...) in the `SimpleSAML_Session` class have been removed.
+  * Configuration check and metadata check was removed, as they were often wrong.
+
+### SAML 2 SP
+
+  * SAML 2.0 HTTP-Artifact support on the [SP](./simplesamlphp-artifact-sp).
+
+### SAML 2 IdP
+
+  * SAML 2.0 HTTP-Artifact support on the [IdP](./simplesamlphp-artifact-idp).
+  * Support for sending PartialLogout status code in logout response.
+  * Set AuthnInstant to the timestamp for authentication.
+  * Combine normal and iframe versions of the logout handlers into a single endpoint.
+  * The SessionIndex is now unique per SP.
+  * Statistics for logout failures.
+  * Better generation of persistent NameID when `nameid.attribute` isn't specified.
+
+### The SP API
+
+  * Support for handling errors from the IdP.
+  * Support for passing parameters to the authentication module.
+    This can be used to specify SAML 2 parameters, such as isPassive and ForceAuthn.
+
+### `adfs`
+
+  * Move to new IdP core.
+
+
+### `casserver`
+
+  * Collect all endpoints in a single file.
+  * Fix prefix on the tickets.
+
+### `consent`
+
+  * Support for deactivating consent for specific services.
+
+### `consentAdmin`
+
+  * Support for the SAML SP module.
+
+### `core`
+
+  * New filter: [`core:PHP`](./core:authproc_php), which allows processing of attributes with arbitrary PHP code.
+  * Support for multiple target attributes in [`core:AttributeMap`](./core:authproc_attributemap).
+  * New filter: [`core:ScopeFromAttribute`](./core:authproc_scopefromattribute), which allows the creation an attribute based on the scope of another attribute.
+  * Support for a target attribute in [`core:AttributeAlter`](./core:authproc_attributealter).
+
+### `discoPower`
+
+  * Support for new scoring algorithm.
+
+### `ldap`
+
+  * SASL support in LDAPMulti
+
+### `ldapstatus`
+
+  * This module was removed, as it was very specific for Feide.
+
+### `multiauth`
+
+  * Support for specifying the target authentication source through a request parameter.
+
+### `oauth`
+
+  * Configurable which authentication source should be used.
+
+### `openidProvider`
+
+  * OpenID 2.0 support.
+  * XRDS generation support.
+
+### `saml`
+
+  * Support for specifying parameters for authentication request.
+  * Add AttributeConsumingService to generated metadata.
+  * The two SPSSODescriptor elements in the metadata has been merged.
 
 
 ## Version 1.5.1
