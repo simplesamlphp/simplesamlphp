@@ -10,10 +10,12 @@ SimpleSAMLphp Documentation
   * [IdP remote reference](simplesamlphp-reference-idp-remote)
   * [Connecting SimpleSAMLphp as a SP to UK Access Federation or InCommon](simplesamlphp-ukaccess)
   * [Upgrading - migration to use the SAML authentication source](simplesamlphp-sp-migration)
+  * [Configuring HTTP-Artifact](./simplesamlphp-artifact-sp)
  * [Identity Provider QuickStart](simplesamlphp-idp)
   * [IdP hosted reference](simplesamlphp-reference-idp-hosted)
   * [SP remote reference](simplesamlphp-reference-sp-remote)
   * [Use case: Setting up an IdP for Google Apps](simplesamlphp-googleapps)
+  * [Configuring HTTP-Artifact](./simplesamlphp-artifact-idp)
   * [Identity Provider Advanced Topics](simplesamlphp-idp-more)
  * [Automated Metadata Management](simplesamlphp-automated_metadata)
  * [Maintenance and configuration](simplesamlphp-maintenance) - covers session handling, php configuration etc.
