@@ -142,13 +142,13 @@ class Auth_Yubico
 				// = is also used in BASE64 encoding so we only replace the first = by # which is not used in BASE64
 				$val = preg_replace('/=/', '#', $val, 1);
 				$row = split("#", $val);
-				$response[$row[0]] = $row[1];
+				$response[$row[0]] = (isset($row[1])) ? $row[1] : "";
 			}
 
-			$check = 'status=' . $response[status] . '&t='. $response[t];
+			$check = 'status=' . $response['status'] . '&t='. $response['t'];
 			$checksignature = base64_encode(hash_hmac('sha1', $check, $this->_key, true));
 			
-			if($response[h] != $checksignature) {
+			if($response['h'] != $checksignature) {
 				throw new Exception('Checked Signature failed');
 			}
 		}
