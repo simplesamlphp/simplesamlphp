@@ -230,6 +230,20 @@ Options
 
 :   *Note*: SAML 2 specific.
 
+`ProtocolBinding`
+:   The binding that should be used for SAML2 authentication responses.
+    This option controls the binding that is requested through the AuthnRequest message to the IdP.
+    By default the HTTP-Redirect binding is used.
+
+:   *Note*: SAML 2 specific.
+
+`saml.SOAPClient.certificate`
+:   A file with a certificate _and_ private key that should be used when issuing SOAP requests from this SP.
+    If this option isn't specified, the SP private key and certificate will be used.
+
+`saml.SOAPClient.privatekey_pass`
+:   The passphrase of the privatekey in `saml.SOAPClient.certificate`.
+
 `saml1.useartifact`
 :   Request that the IdP returns the result to the artifact binding.
     The default is to use the POST binding, set this option to TRUE to use the artifact binding instead.

@@ -136,8 +136,20 @@ The following SAML 2.0 SP options are available:
 `privatekey_pass`
 :   The passphrase for the private key, if it is encrypted. If the private key is unencrypted, this can be left out.
 
+`ProtocolBinding`
+:   The binding that should be used for SAML2 authentication responses.
+    This option controls the binding that is requested through the AuthnRequest message to the IdP.
+    By default the HTTP-Redirect binding is used.
+
 `RelayState`
 :   The page the user should be redirected to after an IdP initiated SSO.
+
+`saml.SOAPClient.certificate`
+:   A file with a certificate _and_ private key that should be used when issuing SOAP requests from this SP.
+    If this option isn't specified, the SP private key and certificate will be used.
+
+`saml.SOAPClient.privatekey_pass`
+:   The passphrase of the privatekey in `saml.SOAPClient.certificate`.
 
 `SingleLogoutService`
 :   Override the default URL for the SingleLogoutService for this SP. This is an absolute URL. The default value is `<simpleSAMLphp-root>/saml2/sp/SingleLogoutService.php`.
