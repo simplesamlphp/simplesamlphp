@@ -119,7 +119,7 @@ try {
 </p>
 
 <p>SAML 2.0 Service Provider EntityID :</p>
-<pre>' . htmlentities($spentityid) . '</pre>
+<pre>' . htmlspecialchars($spentityid) . '</pre>
 
 <p>Links to metadata at service provider
 <ul>
