@@ -85,9 +85,8 @@ If the format of the config files or metadata has changed from your previous ver
 
 ### Upgrading configuration files
 
-A good approach is to run a `diff` between your preivous `config.php` file and the new `config.php` file located in `config-templates/config.php`, and apply relevant modifications to the new template. This will ensure that all new entries in the latest version of config.php are included, as well as preserve your local modifications.
-
-There is a link to a configuration check utility from the frontpage of your simpleSAMLphp installation page. The name of the link is "simpleSAMLphp configuration check". Then you will get a list of all configuration files in your `config/` directory. Click through the files, and you will get a report on superfluous and missing entries in the configuration file. What is done under the hood is that simpleSAMLphp looks up the `config-templates/` directory and compares to your real config. Although not all option is required to have in the configuration files, it's a good thumb rule to include them nontheless, so you simply see what configuration is possible.
+A good approach is to run a `diff` between your previous `config.php` file and the new `config.php` file located in `config-templates/config.php`, and apply relevant modifications to the new template.
+This will ensure that all new entries in the latest version of config.php are included, as well as preserve your local modifications.
 
 
 ### Upgrading metadata files
