@@ -1162,6 +1162,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * @return TRUE if it was signed with the certificate with the given fingerprint, FALSE otherwise.
 	 */
 	public function validateFingerprint($fingerprint) {
+		assert('is_string($fingerprint)');
+
+		$fingerprint = strtolower(str_replace(":", "", $fingerprint));
 
 		foreach ($this->validators as $validator) {
 			foreach ($validator->getValidatingCertificates() as $cert) {
