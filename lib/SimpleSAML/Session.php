@@ -1039,7 +1039,7 @@ class SimpleSAML_Session {
 			$idp = SimpleSAML_IdP::getById('saml2:' . $idpEntityId);
 		} catch (Exception $e) {
 			/* No SAML 2 IdP configured? */
-			return arrray();
+			return array();
 		}
 
 		$ret = array();
