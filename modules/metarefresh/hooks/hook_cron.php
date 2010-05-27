@@ -13,9 +13,14 @@ function metarefresh_hook_cron(&$croninfo) {
 
 	try {
 		$config = SimpleSAML_Configuration::getInstance();
-		$mconfig = SimpleSAML_Configuration::getConfig('config-metarefresh.php');
+		try {
+			$mconfig = SimpleSAML_Configuration::getConfig('config-metarefresh.php');
+		} catch (Exception $e) {
+			SimpleSAML_Logger::info('cron [metarefresh]: Could not open configuration file for module - skipping.');
+			return;
+		}
 
-		$sets = $mconfig->getConfigList('sets');
+		$sets = $mconfig->getConfigList('sets', array());
 
 		foreach ($sets AS $setkey => $set) {
 			// Only process sets where cron matches the current cron tag.
