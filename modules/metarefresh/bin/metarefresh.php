@@ -13,6 +13,13 @@ $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 /* Add library autoloader. */
 require_once($baseDir . '/lib/_autoload.php');
 
+if(!SimpleSAML_Module::isModuleEnabled('metarefresh')) {
+	echo("You need to enable the metarefresh module before this script can be used.\n");
+	echo("You can enable it by running the following command:\n");
+	echo('  echo >"' . $baseDir . '/modules/metarefresh/enable' . "\"\n");
+	exit(1);
+}
+
 /* Initialize the configuration. */
 SimpleSAML_Configuration::setConfigDir($baseDir . '/config');
 
