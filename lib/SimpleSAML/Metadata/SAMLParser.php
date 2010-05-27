@@ -376,12 +376,16 @@ class SimpleSAML_Metadata_SAMLParser {
 		 * Add organizational metadata
 		 */
 		if (!empty($this->organizationName)) {
+			$ret['name'] = $this->organizationName;
+			$ret['description'] = $this->organizationName;
 			$ret['OrganizationName'] = $this->organizationName;
 		}
 		if (!empty($this->organizationDisplayName)) {
+			$ret['name'] = $this->organizationDisplayName;
 			$ret['OrganizationDisplayName'] = $this->organizationDisplayName;
 		}
 		if (!empty($this->organizationURL)) {
+			$ret['url'] = $this->organizationURL;
 			$ret['OrganizationURL'] = $this->organizationURL;
 		}
 
