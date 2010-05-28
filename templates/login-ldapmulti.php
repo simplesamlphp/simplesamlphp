@@ -4,7 +4,7 @@
 
 
 		<?php if (isset($this->data['error'])) { ?>
-		<div style="border-left: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; background: #f5f5f5"
+		<div style="border-left: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; background: #f5f5f5">
 		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" style="float: left; margin: 15px " />
 		<h2><?php echo $this->t('error_header'); ?></h2>
 		
