@@ -1,14 +1,14 @@
 <?php
 
 $config = SimpleSAML_Configuration::getInstance();
-$mconfig = SimpleSAML_Configuration::getConfig('config-metarefresh.php');
+$mconfig = SimpleSAML_Configuration::getOptionalConfig('config-metarefresh.php');
 
 SimpleSAML_Utilities::requireAdmin();
 
 SimpleSAML_Logger::setCaptureLog(TRUE);
 
 
-$sets = $mconfig->getConfigList('sets');
+$sets = $mconfig->getConfigList('sets', array());
 
 foreach ($sets AS $setkey => $set) {
 

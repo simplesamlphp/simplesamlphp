@@ -13,12 +13,7 @@ function metarefresh_hook_cron(&$croninfo) {
 
 	try {
 		$config = SimpleSAML_Configuration::getInstance();
-		try {
-			$mconfig = SimpleSAML_Configuration::getConfig('config-metarefresh.php');
-		} catch (Exception $e) {
-			SimpleSAML_Logger::info('cron [metarefresh]: Could not open configuration file for module - skipping.');
-			return;
-		}
+		$mconfig = SimpleSAML_Configuration::getOptionalConfig('config-metarefresh.php');
 
 		$sets = $mconfig->getConfigList('sets', array());
 
