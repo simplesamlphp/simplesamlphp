@@ -193,7 +193,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr));
 		}
 
-		if (isset($state['ForceAuthnn'])) {
+		if (isset($state['ForceAuthn'])) {
 			$ar->setForceAuthn((bool)$state['ForceAuthn']);
 		}
 

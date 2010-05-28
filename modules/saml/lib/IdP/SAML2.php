@@ -321,7 +321,7 @@ class sspmod_saml_IdP_SAML2 {
 			'saml:IDPList' => $IDPList,
 			'saml:ProxyCount' => $ProxyCount,
 			'saml:RequesterID' => $RequesterID,
-			'ForceAuthnn' => $forceAuthn,
+			'ForceAuthn' => $forceAuthn,
 			'isPassive' => $isPassive,
 			'saml:ConsumerURL' => $consumerURL,
 			'saml:Binding' => $protocolBinding,

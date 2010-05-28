@@ -22,7 +22,7 @@ All these parameters override the equivalent option from the configuration.
 :   *Note*: SAML 2 specific.
 
 
-`ForceAuthnn`
+`ForceAuthn`
 :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
 
 :   *Note*: SAML 2 specific.
