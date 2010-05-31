@@ -14,7 +14,8 @@
 		"pt": "MetaShare",
 		"pl": "MetaShare",
 		"tr": "MetaShare",
-		"de": "MetaShare"
+		"de": "MetaShare",
+		"fr": "MetaShare"
 	},
 	"add_title": {
 		"no": "Legg til entitet",
@@ -31,7 +32,8 @@
 		"pt": "Adicionar entidade",
 		"pl": "Dodaj jednostk\u0119 (SP lub IdP)",
 		"tr": "Birim ekle",
-		"de": "Datensatz hinzuf\u00fcgen"
+		"de": "Datensatz hinzuf\u00fcgen",
+		"fr": "Ajouter une entit\u00e9"
 	},
 	"add_do": {
 		"no": "Legg til",
@@ -48,7 +50,8 @@
 		"pt": "Adicionar",
 		"pl": "Dodaj",
 		"tr": "Ekle",
-		"de": "Hinzuf\u00fcgen"
+		"de": "Hinzuf\u00fcgen",
+		"fr": "Ajouter"
 	},
 	"entities_title": {
 		"no": "Entiteter",
@@ -65,7 +68,8 @@
 		"pt": "Entidades",
 		"pl": "Jednostki",
 		"tr": "Birimler",
-		"de": "Datens\u00e4tze"
+		"de": "Datens\u00e4tze",
+		"fr": "Entit\u00e9s"
 	},
 	"text": {
 		"no": "Tekst",
@@ -82,7 +86,8 @@
 		"pt": "Texto",
 		"pl": "tekst",
 		"tr": "metin",
-		"de": "Text"
+		"de": "Text",
+		"fr": "texte"
 	},
 	"addpage_header": {
 		"no": "Legg til metadata",
@@ -99,7 +104,8 @@
 		"pt": "Adicionar metadados",
 		"pl": "Dodaj Metadane",
 		"tr": "\u00dcstveri ekle",
-		"de": "Metadaten hinzuf\u00fcgen"
+		"de": "Metadaten hinzuf\u00fcgen",
+		"fr": "Ajouter des m\u00e9tadonn\u00e9es"
 	},
 	"addpage_nourl": {
 		"no": "Mangler URL parameter.",
@@ -116,7 +122,8 @@
 		"pt": "N\u00e3o foi fornecido nenhum URL",
 		"pl": "Nie podano parametru URL.",
 		"tr": "URL parametresi verilmemi\u015f.",
-		"de": "Kein URL-Parameter angegeben."
+		"de": "Kein URL-Parameter angegeben.",
+		"fr": "Aucune URL n'a \u00e9t\u00e9 fournie."
 	},
 	"addpage_gofront": {
 		"no": "G\u00e5 til metadata liste",
@@ -133,7 +140,8 @@
 		"pt": "Voltar \u00e0 lista de metadados",
 		"pl": "Id\u017a do listy Metadanych",
 		"tr": "\u00dcstveri listesine git",
-		"de": "Gehe zur Metadatenliste"
+		"de": "Gehe zur Metadatenliste",
+		"fr": "Allez \u00e0 la liste des m\u00e9tadonn\u00e9es"
 	},
 	"front_desc": {
 		"no": "Dette er en metadata distribusjonstjeneste. Den tillater deg \u00e5 legge til dyamisk generert metadata til et delt lager.",
@@ -150,7 +158,8 @@
 		"pt": "Est\u00e1 na p\u00e1gina do servi\u00e7o de partilha de metadados. Esta p\u00e1gina permite-lhe adicionar metadados gerados dinamicamente a um reposit\u00f3rio comum de dados.",
 		"pl": "To jest serwis udost\u0119pniania metadanych. Pozwala Tobie doda\u0107 dynamicznie wygenerowane metadane do udost\u0119pnianych zasob\u00f3w.",
 		"tr": "Bu \u00fcstveri (metadata) payla\u015f\u0131m servisi. Bu servis, dinamik olarak olu\u015fturulmu\u015f \u00fcstveriyi, payla\u015f\u0131lan bir depoya eklemenize izin verir.",
-		"de": "Dies ist ein Service zum Teilen von Metadaten. Er erlaubt Ihnen, dynamisch generierte Metadaten einem gemeinsamen Speicher hinzuzuf\u00fcgen."
+		"de": "Dies ist ein Service zum Teilen von Metadaten. Er erlaubt Ihnen, dynamisch generierte Metadaten einem gemeinsamen Speicher hinzuzuf\u00fcgen.",
+		"fr": "Ceci est un service de partage de m\u00e9tadonn\u00e9es. Il vous permet d'ajouter des m\u00e9tadonn\u00e9es g\u00e9n\u00e9r\u00e9es dynamiquement \u00e0 un d\u00e9p\u00f4t partag\u00e9."
 	},
 	"add_entityid": {
 		"no": "EntityID for tjenesten:",
@@ -167,7 +176,8 @@
 		"pt": "Identificador de entidade",
 		"pl": "Identyfikator jednostki",
 		"tr": "Birimin tan\u0131mlay\u0131c\u0131s\u0131:",
-		"de": "Datensatzbezeichner des Datensatzes:"
+		"de": "Datensatzbezeichner des Datensatzes:",
+		"fr": "Identifiant d'entit\u00e9:"
 	},
 	"downloadall_link": {
 		"no": "Last ned all metadata ",
@@ -184,7 +194,8 @@
 		"pt": "Efectuar o download de todos os metadados",
 		"pl": "\u015aci\u0105gnij wszystkie Metadane",
 		"tr": "T\u00fcm \u00fcstveriyi indir",
-		"de": "Alle Metadaten herunterladen"
+		"de": "Alle Metadaten herunterladen",
+		"fr": "T\u00e9l\u00e9charger toutes les m\u00e9tadonn\u00e9es"
 	},
 	"entities_empty": {
 		"no": "Ingen tjenester er for \u00f8yeblikket lagret i denne MetaShare installasjonen.",
@@ -200,7 +211,8 @@
 		"pt": "N\u00e3o existem entidades presentes neste servi\u00e7o de MetaShare.",
 		"pl": "Aktualnie brak jednostek zapisanych w Metashare.",
 		"tr": "\u015eu anda MetaShare'de depolanan birim bulunmamaktad\u0131r.",
-		"de": "Derzeit sind keine Datens\u00e4tze in diesem MetaShare gespeichert."
+		"de": "Derzeit sind keine Datens\u00e4tze in diesem MetaShare gespeichert.",
+		"fr": "Aucune entit\u00e9 n'est actuellement stock\u00e9e dans ce d\u00e9p\u00f4t MetaShare."
 	},
 	"addpage_ok": {
 		"no": "Metadata fra \"%URL\" ble lagt til vellykket.",
@@ -217,7 +229,8 @@
 		"pt": "Foram adicionados com sucesso os metadados dispon\u00edveis em \"%URL%\" ",
 		"pl": "Metadane z  \"%URL%\" zosta\u0142y pomy\u015blnie dodane.",
 		"tr": "\"%URL%\"den gelen \u00fcstveri ba\u015far\u0131yla eklendi.",
-		"de": "Die Metadaten von \"%URL%\" wurden erfolgreich hinzugef\u00fcgt."
+		"de": "Die Metadaten von \"%URL%\" wurden erfolgreich hinzugef\u00fcgt.",
+		"fr": "R\u00e9ussite de l'import des m\u00e9tadonn\u00e9es depuis \"%URL%\"."
 	},
 	"addpage_entityid": {
 		"no": "EntityID i metadataene stemmer ikke overens med URL-en til metadata dokumentet (\"%URL%\").",
@@ -232,7 +245,8 @@
 		"pt-BR": "A entidade identificadora na metadata n\u00e3o corresponde a url da metadata (\"%URL%\").",
 		"pt": "O identificador de entidade (entityID) nos metadados n\u00e3o corresponde ao URL dos metadados (\"%URL%\").",
 		"tr": "\u00dcstverideki birim tan\u0131mlay\u0131c\u0131s\u0131 \u00fcstverinin URL'i ile e\u015fle\u015fmedi (\"%URL%\").",
-		"de": "Der Datensatzbezeichner in den Metadaten passte nicht zur URL der Metadaten (\"%URL%\")."
+		"de": "Der Datensatzbezeichner in den Metadaten passte nicht zur URL der Metadaten (\"%URL%\").",
+		"fr": "L'identifiant d'identit\u00e9 dans les m\u00e9tadonn\u00e9es ne corresponds pas \u00e0 l'URL des m\u00e9tadonn\u00e9es (\"%UEL\")."
 	},
 	"addpage_validation": {
 		"no": "XML validering av metadata from \"%URL%\" feilet:",
@@ -249,7 +263,8 @@
 		"pt": "Falhou a valida\u00e7\u00e3o XML dos metadados do URL \"%URL%\".",
 		"pl": "Weryfikacja XML metadanych z \"%URL%\" zako\u0144czona b\u0142\u0119dem:",
 		"tr": "\"%URL%\"den \u00fcstverinin XML do\u011frulamas\u0131 ba\u015far\u0131s\u0131z:",
-		"de": "XML-Validierung der Metadaten von \"%URL%\" fehlgeschlagen:"
+		"de": "XML-Validierung der Metadaten von \"%URL%\" fehlgeschlagen:",
+		"fr": "Echec de la validation XML des m\u00e9tadonn\u00e9es en provenance de \"%URL%\":"
 	},
 	"addpage_notentitydescriptor": {
 		"no": "Rotnoden i metadata-dokumentet var ikke en EntityDescriptor. URLen du oppgave var \"%URL%\".",
@@ -264,7 +279,8 @@
 		"pt-BR": "O n\u00f3 raiz da metadata n\u00e3o era um elemento EntityDescriptor. A URL passada foi \"%URL%\".",
 		"pt": "O elemento raiz dos metadados n\u00e3o \u00e9 um elemento do tipo EntityDescriptor. O URL fornecido foi \"%URL%\".",
 		"tr": "\u00dcstverinin k\u00f6k d\u00fc\u011f\u00fcm\u00fc, EntityDescriptor eleman\u0131 de\u011fildi. Verdi\u011finiz URL \"%URL%\" idi.",
-		"de": "Der Wurzelknoten der Metadaten war kein EntityDescriptor Element. Die URL, die Sie angegeben haben, war \"%URL%\"."
+		"de": "Der Wurzelknoten der Metadaten war kein EntityDescriptor Element. Die URL, die Sie angegeben haben, war \"%URL%\".",
+		"fr": "Le n\u0153eud racine des m\u00e9tadonn\u00e9es n'est pas un \u00e9l\u00e9ment <i>EntityDescriptor<\/i>. L'URL que vous avez indiqu\u00e9 est \"%URL%\"."
 	},
 	"add_desc": {
 		"no": "Legg til nytt eller oppdatert metadata ved \u00e5 spesifisere URL-en til metadata. Denne URL-en m\u00e5 ogs\u00e5 matche entity ID-en til entiteten som metadata-dokumentet beskriver.",
@@ -281,7 +297,8 @@
 		"pt": "Adicionar metadados novos ou actualizados especificando o URL dos metadados. Este URL tem de coincidir com o identificador de entidade (entityID) descrito nos metadados",
 		"pl": "Dodaj nowe lub zaktualizowane metadane poprzez okre\u015blenie adresu URL pliku metadanych.",
 		"tr": "\u00dcstverinin URL'ini belirterek yeni ya da de\u011fi\u015ftirilmi\u015f \u00fcstveri ekle. Bu URL \u00fcstveride tan\u0131mlanan birimin tan\u0131mlay\u0131c\u0131s\u0131 ile e\u015fle\u015fmelidir.",
-		"de": "F\u00fcgen Sie neue oder aktualisierte Metadaten hinzu, indem Sie die URL der Metadaten angeben. Diese URL muss gleich dem Datensatzbezeichner des in den Metadaten beschriebenen Datensatzes sein."
+		"de": "F\u00fcgen Sie neue oder aktualisierte Metadaten hinzu, indem Sie die URL der Metadaten angeben. Diese URL muss gleich dem Datensatzbezeichner des in den Metadaten beschriebenen Datensatzes sein.",
+		"fr": "Ajoutez ou mettez \u00e0 jour des m\u00e9tadonn\u00e9es en indiquant l'URL de l'identifiant de l'entit\u00e9 (attribue <i>providerId<\/i> dans les m\u00e9tadonn\u00e9es)."
 	},
 	"downloadall_desc": {
 		"no": "Det er mulig \u00e5 laste ned alle metadata i en samlet XML fil. Denne filen inneholder en EntitiesDescriptor med alle entitetene som er lagt til denne MetaShare tjenesten. EntitiesDescriptor elementet kan signeres av MetaShare tjenesten hvis det er p\u00e5sl\u00e5tt i konfigurasjonen.",
@@ -297,7 +314,8 @@
 		"pt": "\u00c9 poss\u00edvel efectuar o dowload de todos os metadados num \u00fanico ficheiro XML. Este ficheiro ir\u00e1 conter um \u00fanico elemento EntitiesDescriptor com todas as entidades presentes neste MetaShare. O elemento EntitiesDescriptor pode ser assinado por este servi\u00e7o de MetaShare se esta op\u00e7\u00e3o estiver activa na configura\u00e7\u00e3o.",
 		"pl": "Jest mo\u017cliwe \u015bci\u0105gniecie wszystkich metadanych jako pojedynczy plik XML. Plik ten bedzie zawiera\u0142 pojedynczy EntitiesDescriptor tag, kt\u00f3ry zawiera wszystkich dostawc\u00f3w, kt\u00f3re maj\u0105 by\u0107 w tym Metashare. EntitiesDescriptor mo\u017ce by\u0107 podpisany przez ten MetaShare je\u015bli jest to w\u0142\u0105czone w konfiguracji.",
 		"tr": "T\u00fcm \u00fcstveriyi tek bir XML dosyas\u0131 olarak indirmek m\u00fcmk\u00fcn. Bu dosya MetaShare'e eklenen t\u00fcm birimlerin bulundu\u011fu tek bir EntitiesDescriptor i\u00e7erecektir. Bu EntitiesDescriptor, e\u011fer yap\u0131land\u0131rma i\u00e7inde etkinle\u015ftirilmi\u015fse MetaShare taraf\u0131ndan imzalanm\u0131\u015f olabilir.",
-		"de": "Es ist m\u00f6glich, alle Metadaten in einer XML-Datei herunterzuladen. Diese Datei wird einen einzelnen EntitiesDescriptor enthalten, der alle Datens\u00e4tze enth\u00e4lt, die diesem MetaShare hinzugef\u00fcgt werden. Der EntitiesDescriptor kann durch diesen MetaShare unterzeichnet werden, falls Sie dies in Ihrer Konfiguration aktiviert haben."
+		"de": "Es ist m\u00f6glich, alle Metadaten in einer XML-Datei herunterzuladen. Diese Datei wird einen einzelnen EntitiesDescriptor enthalten, der alle Datens\u00e4tze enth\u00e4lt, die diesem MetaShare hinzugef\u00fcgt werden. Der EntitiesDescriptor kann durch diesen MetaShare unterzeichnet werden, falls Sie dies in Ihrer Konfiguration aktiviert haben.",
+		"fr": "Vous pouvez t\u00e9l\u00e9charger toutes les m\u00e9tadonn\u00e9es dans un fichier XML unique. Ce fichier contiendra un \u00e9l\u00e9ment <i>EntitiesDescriptor<\/i> englobant toutes les entit\u00e9s enregistr\u00e9es dans ce d\u00e9p\u00f4t MetaShare. Si la configuration le sp\u00e9cifie, cet \u00e9l\u00e9ment <i>EntitiesDescriptor<\/i> peut \u00eatre sign\u00e9."
 	},
 	"entities_desc": {
 		"no": "Dette er en liste over alle entiteter som n\u00e5 er lagret i MetaShare tjenesten. Klikk p\u00e5 en link for \u00e5 laste ned metadata for en gitt entitet.",
@@ -313,7 +331,8 @@
 		"pt": "Apresenta-se de seguida uma lista de todas as entidades presentes neste servi\u00e7o de MetaShare. Siga uma das liga\u00e7\u00f5es para efectuar o download dos metadados da entidade correspondente.",
 		"pl": "To jest lista wszystkich jednostek, kt\u00f3re aktualnie s\u0105 zapisane w Metashare. Kliknij na link aby \u015bci\u0105gn\u0105\u0107 metadane wybranej jednostki.",
 		"tr": "Bu MetaShare'de halihaz\u0131rda depolanan t\u00fcm birimlerin bir listesidir. Verilen bir birimin \u00fcstverisini indirmek i\u00e7in ba\u011flant\u0131ya t\u0131klay\u0131n.",
-		"de": "Dies ist eine Liste aller Datens\u00e4tze, die derzeit in diesem MetaShare gespeichert sind. Klicken Sie auf einen Link um die Metadaten des jeweiligen Datensatzes herunterzuladen."
+		"de": "Dies ist eine Liste aller Datens\u00e4tze, die derzeit in diesem MetaShare gespeichert sind. Klicken Sie auf einen Link um die Metadaten des jeweiligen Datensatzes herunterzuladen.",
+		"fr": "Voici une liste des entit\u00e9s stock\u00e9es dans le d\u00e9p\u00f4t MetaShare. Cliquez sur un lien pour t\u00e9l\u00e9charger les m\u00e9tadonn\u00e9es de l'entit\u00e9 correspondante."
 	},
 	"addpage_invalidurl": {
 		"no": "Ugyldig URL\/entity ID for metadata. Entity ID-en m\u00e5 v\u00e6re en gyldig http: eller https: URL. URL-en du oppgav var \"%URL%\".",
@@ -329,7 +348,8 @@
 		"pt": "URL inv\u00e1lido. O identificador de entidade (entityID) deve ser um URL v\u00e1lido do tipo http: ou https:. O URL fornecido foi \"%URL%\".",
 		"pl": "Niepoprawny URL\/id jednostki. Identyfikator jednostki powinien by\u0107 poprawny http: lub https: URL. URL, kt\u00f3ry poda\u0142e\u015b by\u0142 \"%URL%\".",
 		"tr": "\u00dcstveriye ge\u00e7ersiz URL\/Birim kimlik nosu. Birim kimlik nosu ge\u00e7erli bir http: ya da https: URL'i olmal\u0131d\u0131r. Verdi\u011finiz URL \"%URL%\" idi.",
-		"de": "Ung\u00fcltige URL\/entity-ID zu den Metadaten. Die entity-ID sollte eine g\u00fcltige http: oder https: URL sein. Die URL, die Sie angegeben haben war \"%URL%\"."
+		"de": "Ung\u00fcltige URL\/entity-ID zu den Metadaten. Die entity-ID sollte eine g\u00fcltige http: oder https: URL sein. Die URL, die Sie angegeben haben war \"%URL%\".",
+		"fr": "URL ou identifiant d'identit\u00e9 invalide. Un identifiant d'identit\u00e9 doit \u00eatre une URL valide en <i>http:\/\/<\/i> ou <i>https:\/\/<\/i>. L'URL que vous avez indiqu\u00e9 est \"%URL%\"."
 	},
 	"addpage_nodownload": {
 		"no": "Er ikke i stand til \u00e5 laste ned metadata fra \"%URL%\".",
@@ -345,7 +365,8 @@
 		"pt": "N\u00e3o foi poss\u00edvel efectuar o download dos metadados a partir de \"%URL%\".",
 		"pl": "Nie mo\u017cna \u015bciagn\u0105\u0107 metadanych z adresu \"%URL%\".",
 		"tr": "\"%URL%\"den \u00fcstveri indirilemiyor.",
-		"de": "Nicht in der Lage, Metadaten von \"%URL%\" herunterzuladen."
+		"de": "Nicht in der Lage, Metadaten von \"%URL%\" herunterzuladen.",
+		"fr": "Impossible d'obtenir les m\u00e9tadonn\u00e9es depuis \"%URL%\"."
 	},
 	"addpage_invalidxml": {
 		"no": "Feilformattert XML i metadata. URL-en som metadata befant seg p\u00e5 var \"%URL%\".",
@@ -361,6 +382,7 @@
 		"pt": "Metadados com XML mal formatado. O URL fornecido foi \"%URL%\".",
 		"pl": "Nieprawid\u0142owy XML w metadanych. URL, kt\u00f3ry poda\u0142e\u015b by\u0142 \"%URL%\".",
 		"tr": "\u00dcstveride kusurlu XML. Verdi\u011finiz URL \"%URL%\" idi.",
-		"de": "Ung\u00fcltiges XML in den Metadaten. Die URL, die Sie angegeben haben war \"%URL%\"."
+		"de": "Ung\u00fcltiges XML in den Metadaten. Die URL, die Sie angegeben haben war \"%URL%\".",
+		"fr": "XML mal form\u00e9 dans les m\u00e9tadonn\u00e9es. L'URL que vous avez indiqu\u00e9 est \"%URL%\". "
 	}
 }

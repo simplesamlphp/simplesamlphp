@@ -10,7 +10,8 @@
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s visszavon\u00e1sa",
 		"pt": "Remover Consentimento",
 		"tr": "Onaydan vazge\u00e7me",
-		"hr": "Povla\u010denje odobrenja"
+		"hr": "Povla\u010denje odobrenja",
+		"fr": "R\u00e9vocation du consentement"
 	},
 	"granted": {
 		"no": "Du har tidligere gitt samtykke %NO% ganger til %OF% forskjellige tjenester.",
@@ -23,7 +24,8 @@
 		"hu": "%NO% db. hozz\u00e1j\u00e1rul\u00e1st adott %OF% k\u00fcl\u00f6nb\u00f6z\u0151 szolg\u00e1ltat\u00e1snak.",
 		"pt": "Voc\u00ea tem %NO% consentimentos definidos anteriormente para %OF% servi\u00e7os diferentes.",
 		"tr": "Daha \u00f6nce %NO% onaylar\u0131n\u0131 %OF% farkl\u0131 servisler i\u00e7in garanti ettiniz.",
-		"hr": "Do sada ste dali %NO% odobrenja za %OF% razli\u010ditih servisa."
+		"hr": "Do sada ste dali %NO% odobrenja za %OF% razli\u010ditih servisa.",
+		"fr": "Vous aviez pr\u00e9c\u00e9demment donn\u00e9 %NO% consentements \u00e0 %OF% services diff\u00e9rents."
 	},
 	"info": {
 		"no": "Dersom du trekker tilbake alle tidligere gitte samtykker, s\u00e5 vil du hver gang du bes\u00f8ker en tjeneste p\u00e5 nytt bli spurt om du aksepterer at en gitt liste med personlig informasjon blir overf\u00f8rt til tjenesten.",
@@ -36,7 +38,8 @@
 		"hu": "Ha visszavonja az \u00f6sszes hozz\u00e1j\u00e1rul\u00e1st, akkor minden alkalommal, amikor egy \u00faj szolg\u00e1ltat\u00e1st k\u00edv\u00e1n ig\u00e9nybe venni, hozz\u00e1 kell j\u00e1rulnia szem\u00e9lyes adatainak kiad\u00e1s\u00e1hoz.",
 		"pt": "Se remover os consentimentos definidos, ir-lhe-\u00e1 ser perguntado se aceita o envio de informa\u00e7\u00e3o pessoal de cada vez que aceder a um novo servi\u00e7o.",
 		"tr": "Verilen t\u00fcm onaylamalardan vazge\u00e7erseniz, verilen bir ki\u015fisel bilgi k\u00fcmesinin aktar\u0131lmas\u0131n\u0131 kabul etmeyi isteseniz istemeseniz de, yeni bir servise her girdi\u011finizde tekrar sorgulanacaks\u0131n\u0131z",
-		"hr": "Ako povu\u010dete sva dosada\u0161nja odobrenja, svaki put kad pristupite novom servisu aplikacija \u0107e od vas tra\u017eiti odobrenje za isporu\u010divanje odgovaraju\u0107eg skupa osobnih podataka."
+		"hr": "Ako povu\u010dete sva dosada\u0161nja odobrenja, svaki put kad pristupite novom servisu aplikacija \u0107e od vas tra\u017eiti odobrenje za isporu\u010divanje odgovaraju\u0107eg skupa osobnih podataka.",
+		"fr": "Si vous r\u00e9voquez tous les consentements donn\u00e9s, il vous sera demand\u00e9 \u00e0 chaque acc\u00e8s sur un nouveau service si vous acceptez que vos donn\u00e9es personnelles soient transmises ou non."
 	},
 	"withdraw": {
 		"no": "Trekk tilbake alle tidligere gitte samtykker",
@@ -49,7 +52,8 @@
 		"hu": "Az \u00f6sszes hozz\u00e1j\u00e1rul\u00e1s visszavon\u00e1sa",
 		"pt": "Remover todos os Consentimentos definidos",
 		"tr": "Verilen t\u00fcm onaylardan vazge\u00e7",
-		"hr": "Povuci sva odobrenja"
+		"hr": "Povuci sva odobrenja",
+		"fr": "R\u00e9voquer tous les consentements donn\u00e9s"
 	},
 	"headerstats": {
 		"no": "Samtykke statistikk",
@@ -62,7 +66,8 @@
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s t\u00e1rol\u00f3 statisztik\u00e1k",
 		"pt": "Estat\u00edsticas do armazenamento de Consentimentos",
 		"tr": "Onay Depolama \u0130statistikleri",
-		"hr": "Statistike odobrenja"
+		"hr": "Statistike odobrenja",
+		"fr": "Statistiques du d\u00e9p\u00f4t de consentement"
 	},
 	"stattotal": {
 		"no": "Samtykkelageret inneholder %NO% innslag.",
@@ -75,7 +80,8 @@
 		"hu": "A hozz\u00e1j\u00e1rul\u00e1s t\u00e1rol\u00f3 %NO% bejegyz\u00e9st tartalmaz.",
 		"pt": "O armazenamento de consentimentos cont\u00e9m %NO% entradas.",
 		"tr": "Onay depolama %NO% elemanlar\u0131 i\u00e7ermektedir",
-		"hr": "Arhiva odobrenja sadr\u017ei %NO% zapisa."
+		"hr": "Arhiva odobrenja sadr\u017ei %NO% zapisa.",
+		"fr": "Le d\u00e9p\u00f4t de consentements contient %NO% \u00e9l\u00e9ments. "
 	},
 	"statusers": {
 		"no": "%NO% unike brukere har avgitt samtykke.",
@@ -88,7 +94,8 @@
 		"hu": "%NO% k\u00fcl\u00f6nb\u00f6z\u0151 felhaszn\u00e1l\u00f3 adott hozz\u00e1j\u00e1rul\u00e1st.",
 		"pt": "%NO\" utilizador distintos deram o seu consentimento.",
 		"tr": "%NO% biricik (unique) kullan\u0131c\u0131lar onay verdi.",
-		"hr": "%NO% pojedina\u010dnih korisnika je dalo odobrenje."
+		"hr": "%NO% pojedina\u010dnih korisnika je dalo odobrenje.",
+		"fr": "%NO% usagers distincts ont donn\u00e9 un consentement."
 	},
 	"statservices": {
 		"no": "Samtykke er avgitt til %NO% unike tjenester.",
@@ -101,6 +108,7 @@
 		"hu": "%NO% k\u00fcl\u00f6nb\u00f6z\u0151 szolg\u00e1ltat\u00e1shoz adtak hozz\u00e1j\u00e1rul\u00e1st.",
 		"pt": "Est\u00e3o definidos consentimentos para %NO% servi\u00e7os distintos.",
 		"tr": "Onay %NO% biricik (unique) servislere veriliyor.",
-		"hr": "Odobrenje je dano za %NO% razli\u010ditih servisa."
+		"hr": "Odobrenje je dano za %NO% razli\u010ditih servisa.",
+		"fr": "Un consentement a \u00e9t\u00e9 donn\u00e9 \u00e0 %NO% services diff\u00e9rents."
 	}
 }

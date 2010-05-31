@@ -349,7 +349,8 @@
 		"pt-BR": "Componente do Dom\u00ednio (DC)",
 		"pt": "Componente de dom\u00ednio",
 		"pl": "Sk\u0142adnik nazwy domenowej (DC)",
-		"tr": "Alan bile\u015feni"
+		"tr": "Alan bile\u015feni",
+		"fr": "Fragment de domaine (DC)"
 	},
 	"attribute_displayname": {
 		"no": "Navn som normalt vises",
@@ -367,7 +368,8 @@
 		"pt-BR": "Nome a ser mostrado",
 		"pt": "Nome de apresenta\u00e7\u00e3o",
 		"pl": "Nazwa wy\u015bwietlana (Display name)",
-		"tr": "G\u00f6r\u00fcnt\u00fclenen isim"
+		"tr": "G\u00f6r\u00fcnt\u00fclenen isim",
+		"fr": "Nom pour affichage"
 	},
 	"attribute_facsimiletelephonenumber": {
 		"no": "Faksnummer",
@@ -385,7 +387,8 @@
 		"pt-BR": "N\u00famero do Fax",
 		"pt": "N\u00famero de Fax",
 		"pl": "Numer Faksu (Fax number)",
-		"tr": "Faks numaras\u0131"
+		"tr": "Faks numaras\u0131",
+		"fr": "Num\u00e9ro de fax"
 	},
 	"attribute_homephone": {
 		"no": "Hjemmetelefon",
@@ -403,7 +406,8 @@
 		"pt-BR": "Telefone fixo",
 		"pt": "Telefone de resid\u00eancia",
 		"pl": "Telefon domowy (Home telephone)",
-		"tr": "Ev telefonu"
+		"tr": "Ev telefonu",
+		"fr": "T\u00e9l\u00e9phone personnel"
 	},
 	"attribute_homepostaladdress": {
 		"no": "Postadresse hjemme",
@@ -421,7 +425,8 @@
 		"pt-BR": "Endere\u00e7o residencial",
 		"pt": "Morada de redid\u00eancia",
 		"pl": "Domowy address pocztowy",
-		"tr": "Ev posta adresi"
+		"tr": "Ev posta adresi",
+		"fr": "Adresse postale personnelle"
 	},
 	"attribute_jpegphoto": {
 		"no": "JPEG-foto",
@@ -439,7 +444,8 @@
 		"pt-BR": "Foto JPEG",
 		"pt": "Foto JPEG",
 		"pl": "Fotografia JPEG",
-		"tr": "JPEG foto\u011fraf"
+		"tr": "JPEG foto\u011fraf",
+		"fr": "Photo JPEG"
 	},
 	"attribute_l": {
 		"no": "Sted",
@@ -457,7 +463,8 @@
 		"pt-BR": "Localidade",
 		"pt": "Localidade",
 		"pl": "Locality",
-		"tr": "B\u00f6lge"
+		"tr": "B\u00f6lge",
+		"fr": "Lieu"
 	},
 	"attribute_labeleduri": {
 		"no": "URI med valgfri tilleggskommentar",
@@ -475,7 +482,8 @@
 		"pt-BR": "URI rotulado",
 		"pt": "P\u00e1gina web",
 		"pl": "Labeled URI",
-		"tr": "Etiketlenen URI"
+		"tr": "Etiketlenen URI",
+		"fr": "URI"
 	},
 	"attribute_ou": {
 		"no": "Organisasjonsenhet",
@@ -493,7 +501,8 @@
 		"pt-BR": "Unidade Organizacional (OU)",
 		"pt": "Unidade organizacional",
 		"pl": "Jednostka organizacyjna (Organizational unit)",
-		"tr": "Organizasyonel birim"
+		"tr": "Organizasyonel birim",
+		"fr": "Section"
 	},
 	"attribute_postaladdress": {
 		"no": "Postadresse",
@@ -511,7 +520,8 @@
 		"pt-BR": "Endere\u00e7o",
 		"pt": "Morada",
 		"pl": "Adres pocztowy (Postal address)",
-		"tr": "Posta adresi"
+		"tr": "Posta adresi",
+		"fr": "Adresse postale"
 	},
 	"attribute_postalcode": {
 		"no": "Postnummer",
@@ -529,7 +539,8 @@
 		"pt-BR": "CEP",
 		"pt": "C\u00f3digo Postal",
 		"pl": "Kod pocztowy",
-		"tr": "Posta kodu"
+		"tr": "Posta kodu",
+		"fr": "Code postal"
 	},
 	"attribute_postofficebox": {
 		"no": "Postboks",
@@ -547,7 +558,8 @@
 		"pt-BR": "Caixa Postal",
 		"pt": "Apartado",
 		"pl": "Skrzynka pocztowa (Post office box)",
-		"tr": "Posta kutusu"
+		"tr": "Posta kutusu",
+		"fr": "Boite postale"
 	},
 	"attribute_street": {
 		"no": "Gate",
@@ -565,7 +577,8 @@
 		"pt-BR": "Rua",
 		"pt": "Rua",
 		"pl": "Ulica (Street)",
-		"tr": "Sokak"
+		"tr": "Sokak",
+		"fr": "Rue"
 	},
 	"attribute_telephonenumber": {
 		"no": "Telefon",
@@ -583,7 +596,8 @@
 		"pt-BR": "N\u00famero de Telefone",
 		"pt": "Telefone",
 		"pl": "Numer telefonu (Telephone number)",
-		"tr": "Telefon numaras\u0131"
+		"tr": "Telefon numaras\u0131",
+		"fr": "Num\u00e9ro de t\u00e9l\u00e9phone"
 	},
 	"attribute_eduorghomepageuri": {
 		"no": "Organisasjonens hjemmeside",
@@ -601,7 +615,8 @@
 		"pt-BR": "Site da organiza\u00e7\u00e3o",
 		"pt": "P\u00e1gina web da organiza\u00e7\u00e3o de origem",
 		"pl": "Strona domowa organizacji",
-		"tr": "Kurumsal websayfas\u0131"
+		"tr": "Kurumsal websayfas\u0131",
+		"fr": "Site web institutionel"
 	},
 	"attribute_eduorglegalname": {
 		"no": "Foretaksnavn",
@@ -619,7 +634,8 @@
 		"pt-BR": "Nome legal da Organiza\u00e7\u00e3o",
 		"pt": "Nome legal da organiza\u00e7\u00e3o de origem",
 		"pl": "Zarejestrowana nazwa organizacji",
-		"tr": "Organizasyonu'un resmi ad\u0131"
+		"tr": "Organizasyonu'un resmi ad\u0131",
+		"fr": "Nom l\u00e9gal de l'institution"
 	},
 	"attribute_edupersonnickname": {
 		"no": "Kallenavn",
@@ -637,7 +653,8 @@
 		"pt-BR": "Apelido",
 		"pt": "Alcunha",
 		"pl": "Ksywka (Nickname)",
-		"tr": "Takma ad"
+		"tr": "Takma ad",
+		"fr": "Pseudonyme"
 	},
 	"attribute_edupersonorgdn": {
 		"no": "Entydig navn (DN) for brukerens vertsorganisasjon",
@@ -655,7 +672,8 @@
 		"pt-BR": "Nome distinto (DN) da sua organiza\u00e7\u00e3o principal",
 		"pt": "DN da organiza\u00e7\u00e3o de origem",
 		"pl": "Distinguished name (DN) macierzystej organizacji osoby",
-		"tr": "Ki\u015finin ba\u011fl\u0131 oldu\u011fu kurulu\u015fun belirgin ad\u0131"
+		"tr": "Ki\u015finin ba\u011fl\u0131 oldu\u011fu kurulu\u015fun belirgin ad\u0131",
+		"fr": "Nom unique (DN) de l'institution d'origine"
 	},
 	"attribute_edupersonorgunitdn": {
 		"no": "Entydig navn (DN) for brukerens organisasjonsenhet",
@@ -673,7 +691,8 @@
 		"pt-BR": "Nome distinto (DN) da sua unidade organizacional principal",
 		"pt": "DN da unidade org\u00e2nica na organiza\u00e7\u00e3o de origem",
 		"pl": "Distinguished name (DN) macierzystej jednostki organizacyjnej osoby",
-		"tr": "Ki\u015finin ba\u011fl\u0131 oldu\u011fu birimin belirgin ad\u0131"
+		"tr": "Ki\u015finin ba\u011fl\u0131 oldu\u011fu birimin belirgin ad\u0131",
+		"fr": "Nom unique (DN) de la section d'origine"
 	},
 	"attribute_edupersonprimaryaffiliation": {
 		"no": "Prim\u00e6r tilknytning til organisasjon",
@@ -691,7 +710,8 @@
 		"pt-BR": "Filia\u00e7\u00e3o Prim\u00e1ria",
 		"pt": "Afilia\u00e7\u00e3o principal com a organiza\u00e7\u00e3o de origem",
 		"pl": "G\u0142\u00f3wna przynale\u017cno\u015b\u0107 (Primary affiliation)",
-		"tr": "\u00d6ncelikli ba\u011flant\u0131"
+		"tr": "\u00d6ncelikli ba\u011flant\u0131",
+		"fr": "Affiliation primaire"
 	},
 	"attribute_noreduorgnin": {
 		"no": "Organisasjonsnummer",
@@ -709,7 +729,8 @@
 		"pt-BR": "N\u00famero Organizacional",
 		"pt": "N\u00famero de Organiza\u00e7\u00e3o",
 		"pl": "Numer organizacji",
-		"tr": "Kurumsal numara"
+		"tr": "Kurumsal numara",
+		"fr": "Immatriculation de l'institution"
 	},
 	"attribute_noredupersonbirthdate": {
 		"no": "F\u00f8dselsdato",
@@ -727,7 +748,8 @@
 		"pt-BR": "Data de Nascimento",
 		"pt": "Data de nascimento",
 		"pl": "Data urodzenia (Date of birth)",
-		"tr": "Do\u011fum tarihi"
+		"tr": "Do\u011fum tarihi",
+		"fr": "Date de naissance"
 	},
 	"attribute_noredupersonlin": {
 		"no": "Lokalt ID-nummer",
@@ -745,7 +767,8 @@
 		"pt-BR": "N\u00famero de Identifica\u00e7\u00e3o Local",
 		"pt": "N\u00famero de Identifica\u00e7\u00e3o local",
 		"pl": "Local identity number",
-		"tr": "Yerel kimlik numaras\u0131"
+		"tr": "Yerel kimlik numaras\u0131",
+		"fr": "Immatriculation territoriale"
 	},
 	"attribute_manager": {
 		"no": "Overordnet",
@@ -763,7 +786,8 @@
 		"pt-BR": "Administrador",
 		"pt": "Respons\u00e1vel hier\u00e1rquico",
 		"pl": "Menad\u017cer (Manager)",
-		"tr": "Y\u00f6netici"
+		"tr": "Y\u00f6netici",
+		"fr": "Gestionnaire"
 	},
 	"attribute_userpassword": {
 		"no": "Hash av brukerens passord",
@@ -779,7 +803,8 @@
 		"fi": "K\u00e4ytt\u00e4j\u00e4n salasanatiiviste",
 		"pt": "Senha do utilizador",
 		"pl": "Zakodowane has\u0142o u\u017cytkownika",
-		"tr": "Kullan\u0131c\u0131n\u0131n \u015fifre karmas\u0131"
+		"tr": "Kullan\u0131c\u0131n\u0131n \u015fifre karmas\u0131",
+		"fr": "Mot de passe chiffr\u00e9"
 	},
 	"attribute_edupersonorgdn_facsimiletelephonenumber": {
 		"no": "Organisasjonens faksnummer",
@@ -795,7 +820,8 @@
 		"fi": "Organisaation faksinumero",
 		"pt": "Fax da Organiza\u00e7\u00e3o",
 		"pl": "Numer faksu organizacji",
-		"tr": "Kurulu\u015fun fax numaras\u0131"
+		"tr": "Kurulu\u015fun fax numaras\u0131",
+		"fr": "Num\u00e9ro de fax de l'institution"
 	},
 	"attribute_edupersonorgdn_postalcode": {
 		"no": "Organisasjonens postnummer",
@@ -811,7 +837,8 @@
 		"fi": "Organisaation postinumero",
 		"pt": "C\u00f3digo postal da Organiza\u00e7\u00e3o",
 		"pl": "Kod pocztowy organizacji",
-		"tr": "Kurulu\u015fun posta kodu"
+		"tr": "Kurulu\u015fun posta kodu",
+		"fr": "Code postal de l'institution"
 	},
 	"attribute_edupersonprimaryorgunitdn": {
 		"no": "Entydig navn for organisasjonsenheten som brukeren prim\u00e6rt er tilknyttet",
@@ -825,7 +852,8 @@
 		"hr": "DN organizacijske jedinice korisnika",
 		"hu": "A szem\u00e9ly els\u0151dleges szervezeti egys\u00e9g\u00e9nek azonos\u00edt\u00f3 neve (DN-je)",
 		"pt": "DN da unidade org\u00e2nica",
-		"tr": "Ki\u015finin \u00f6ncelikli Kurumsal Birimi'nin belirgin ad\u0131"
+		"tr": "Ki\u015finin \u00f6ncelikli Kurumsal Birimi'nin belirgin ad\u0131",
+		"fr": "Nom unique (DN) de la section d'origine"
 	},
 	"attribute_edupersonorgdn_o": {
 		"no": "Navn p\u00e5 organisasjon",
@@ -841,7 +869,8 @@
 		"fi": "Organisaation nimi",
 		"pt": "Nome da organiza\u00e7\u00e3o",
 		"pl": "Nazwa organizacji (Organization name)",
-		"tr": "Kurulu\u015f isim"
+		"tr": "Kurulu\u015f isim",
+		"fr": "Nom de l'institution"
 	},
 	"attribute_edupersonorgdn_l": {
 		"no": "Organisasjonens lokasjon",
@@ -857,7 +886,8 @@
 		"fi": "Organisaation sijainti",
 		"pt": "Localiza\u00e7\u00e3o da Organiza\u00e7\u00e3o",
 		"pl": "Miejsce organizacji (Organization's location)",
-		"tr": "Kurulu\u015fun yerle\u015fkesi"
+		"tr": "Kurulu\u015fun yerle\u015fkesi",
+		"fr": "Localisation de l'institution"
 	},
 	"attribute_edupersonorgdn_eduorghomepageuri": {
 		"no": "Organisasjonens hjemmeside",
@@ -873,12 +903,13 @@
 		"fi": "Organisaation verkkosivu",
 		"pt": "P\u00e1gina web da Organiza\u00e7\u00e3o",
 		"pl": "Strona organizacji",
-		"tr": "Kurulu\u015fun web sayfas\u0131"
+		"tr": "Kurulu\u015fun web sayfas\u0131",
+		"fr": "Site web de l'institution"
 	},
 	"attribute_edupersonorgdn_eduorglegalname": {
 		"no": "Organisasjonens foretaksnavn",
 		"nn": "Formelt namn p\u00e5 organisasjonen",
-		"sv": "Organisationens offciella (legala) namn",
+		"sv": "Organisationens officiella (legala) namn",
 		"es": "Nombre legal de la Organizaci\u00f3n",
 		"de": "Rechtsg\u00fcltiger Name der Organisation",
 		"nl": "Organisatie juridische naam",
@@ -889,7 +920,8 @@
 		"fi": "Organisaation virallinen nimi",
 		"pt": "Nome legal da Organiza\u00e7\u00e3o",
 		"pl": "Nazwa zarejestrowana organizacji",
-		"tr": "Kurulu\u015fun resmi ad\u0131"
+		"tr": "Kurulu\u015fun resmi ad\u0131",
+		"fr": "Nom l\u00e9gal de l'institution"
 	},
 	"attribute_edupersonorgdn_noreduorgnin": {
 		"no": "Organisasjonsnummer",
@@ -903,7 +935,8 @@
 		"hr": "Broj\u010dani identifikator ustanove",
 		"pt": "N\u00famero da Organiza\u00e7\u00e3o",
 		"pl": "Numer organizacyjny",
-		"tr": "Kurulu\u015f numaras\u0131"
+		"tr": "Kurulu\u015f numaras\u0131",
+		"fr": "Immatriculation de l'institution"
 	},
 	"attribute_edupersonorgdn_businesscategory": {
 		"no": "Organisasjonens bransjetilh\u00f8righet",
@@ -917,7 +950,8 @@
 		"hr": "Vrsta ustanove",
 		"hu": "Szervezet kateg\u00f3ri\u00e1ja",
 		"pt": "Categoria da Organiza\u00e7\u00e3o",
-		"tr": "Kurulu\u015fun i\u015f kategorisi"
+		"tr": "Kurulu\u015fun i\u015f kategorisi",
+		"fr": "Secteur d'activit\u00e9 de l'institution"
 	},
 	"attribute_edupersonorgdn_dc": {
 		"no": "Navneledd (DC) for organisasjonen",
@@ -931,7 +965,8 @@
 		"hr": "Domenska komponenta (DC) ustanove",
 		"hu": "Szervezet domain-je (DC)",
 		"pt": "Componente de dom\u00ednio (DC) da organiza\u00e7\u00e3o",
-		"tr": "Kurulu\u015fun alan bile\u015feni"
+		"tr": "Kurulu\u015fun alan bile\u015feni",
+		"fr": "Fragment de domaine (DC) de l'institution"
 	},
 	"attribute_edupersonorgdn_description": {
 		"no": "Beskrivelse av brukerens organisasjon",
@@ -946,7 +981,8 @@
 		"hu": "Szervezet le\u00edr\u00e1sa",
 		"pt": "Descri\u00e7\u00e3o da Organiza\u00e7\u00e3o",
 		"pl": "Opis organizacji",
-		"tr": "Kurulu\u015fun tan\u0131m\u0131"
+		"tr": "Kurulu\u015fun tan\u0131m\u0131",
+		"fr": "Description de l'institution"
 	},
 	"attribute_edupersonorgdn_cn": {
 		"no": "Organisasjonens fulle navn",
@@ -961,7 +997,8 @@
 		"hu": "Szervezet neve",
 		"pt": "Nome completo da Organiza\u00e7\u00e3o",
 		"pl": "Nazwa Organizacji",
-		"tr": "Kurulu\u015fun ortak ad\u0131"
+		"tr": "Kurulu\u015fun ortak ad\u0131",
+		"fr": "Nom usuel de l'institution"
 	},
 	"attribute_edupersonorgdn_postaladdress": {
 		"no": "Organisasjonens postadresse",
@@ -976,7 +1013,8 @@
 		"hu": "Szervezet postac\u00edme",
 		"pt": "Morada da Organiza\u00e7\u00e3o",
 		"pl": "Kod pocztowy organizacji",
-		"tr": "Kurulu\u015fun adresi"
+		"tr": "Kurulu\u015fun adresi",
+		"fr": "Adresse postale de l'institution"
 	},
 	"attribute_edupersonorgdn_telephonenumber": {
 		"no": "Organisasjonens telefonnummer",
@@ -991,7 +1029,8 @@
 		"hu": "Szervezet telefonsz\u00e1ma",
 		"pt": "N\u00famero de telefone da Organiza\u00e7\u00e3o",
 		"pl": "Numer telefonu organizacji",
-		"tr": "Kurulu\u015fun telefon numaras\u0131"
+		"tr": "Kurulu\u015fun telefon numaras\u0131",
+		"fr": "Num\u00e9ro de t\u00e9l\u00e9phone de l'institution"
 	},
 	"attribute_edupersonorgdn_labeleduri": {
 		"no": "Peker til organisasjonens nettsted",
@@ -1004,7 +1043,8 @@
 		"da": "Institutionens labeled URI",
 		"hr": "URI adresa ustanove",
 		"pt": "P\u00e1gina web da Organiza\u00e7\u00e3o",
-		"tr": "Kurulu\u015fun etikenlenmi\u015f URI'si"
+		"tr": "Kurulu\u015fun etikenlenmi\u015f URI'si",
+		"fr": "URI de l'institution"
 	},
 	"attribute_edupersonorgdn_street": {
 		"no": "Organisasjonens gateadresse",
@@ -1019,7 +1059,8 @@
 		"hu": "Szervezet postac\u00edme",
 		"pt": "Rua da Organiza\u00e7\u00e3o",
 		"pl": "Nazwa ulicy, gdzie mie\u015bci sie organizacja",
-		"tr": "Kurulu\u015fun sokak adresi"
+		"tr": "Kurulu\u015fun sokak adresi",
+		"fr": "Adresse de l'institution"
 	},
 	"attribute_edupersonorgdn_noreduorgacronym": {
 		"no": "Forkortelse for utdanningsorganisasjonen",
@@ -1034,7 +1075,8 @@
 		"hu": "Szervezet nev\u00e9nek r\u00f6vid\u00edt\u00e9se",
 		"pt": "Acr\u00f3nimo da Organiza\u00e7\u00e3o",
 		"pl": "Skr\u00f3t dla organizacji",
-		"tr": "Kurulu\u015fun di\u011fer ad\u0131"
+		"tr": "Kurulu\u015fun di\u011fer ad\u0131",
+		"fr": "Acronyme de l'instutition"
 	},
 	"attribute_edupersonorgdn_eduorgwhitepagesuri": {
 		"no": "Peker til katalogtjenesten for organisasjonen",
@@ -1048,7 +1090,8 @@
 		"hr": "URL javno dostupnog imeni\u010dkog servisa ustanove",
 		"hu": "Szervezet publikus telefonk\u00f6nyv\u00e9nek el\u00e9rhet\u0151s\u00e9ge",
 		"pt": "URL do servi\u00e7o de direct\u00f3rio da Organiza\u00e7\u00e3o",
-		"tr": "Kurulu\u015f i\u00e7in a\u00e7\u0131k beyaz sayfalar klas\u00f6r servisinin URL'i"
+		"tr": "Kurulu\u015f i\u00e7in a\u00e7\u0131k beyaz sayfalar klas\u00f6r servisinin URL'i",
+		"fr": "URL de l'annuaire public de l'institution"
 	},
 	"attribute_edupersonorgdn_noreduorgschemaversion": {
 		"no": "Versjonsnummer for norEdu* spesifikasjonen i bruk",
@@ -1062,7 +1105,8 @@
 		"hr": "Verzija hrEdu imeni\u010dke sheme",
 		"hu": "Haszn\u00e1latban lev\u0151 norEdu* specifik\u00e1ci\u00f3 verzi\u00f3ja",
 		"pt": "Vers\u00e3o da especifica\u00e7\u00e3o norEdu*",
-		"tr": "Kullan\u0131mdaki norEdu* \u00f6zelliklerinin s\u00fcr\u00fcm numaras\u0131 "
+		"tr": "Kullan\u0131mdaki norEdu* \u00f6zelliklerinin s\u00fcr\u00fcm numaras\u0131 ",
+		"fr": "Num\u00e9ro de version de la sp\u00e9cification norEdu* utilis\u00e9e"
 	},
 	"attribute_edupersonorgunitdn_ou": {
 		"no": "Organisasjonsenheter brukeren er medlem av",
@@ -1077,7 +1121,8 @@
 		"hu": "A szem\u00e9ly szervezeti egys\u00e9g(ei)",
 		"pt": "Unidade Org\u00e2nica",
 		"pl": "Jednostka organizacyjna.",
-		"tr": "Ki\u015finin Kurumsal Birim(ler)i"
+		"tr": "Ki\u015finin Kurumsal Birim(ler)i",
+		"fr": "Section(s) de la personne"
 	},
 	"attribute_edupersonorgunitdn_telephonenumber": {
 		"no": "Organisasjonsenhetens telefonnummer",
@@ -1092,7 +1137,8 @@
 		"hu": "Szervezeti egys\u00e9g telefonsz\u00e1ma",
 		"pt": "N\u00famero de telefone da Unidade Org\u00e2nica ",
 		"pl": "Telefon Jednostki Organizacyjnej",
-		"tr": "Kurumsal Birim'in telefon numaras\u0131"
+		"tr": "Kurumsal Birim'in telefon numaras\u0131",
+		"fr": "Num\u00e9ro de t\u00e9l\u00e9phone de la section"
 	},
 	"attribute_edupersonorgunitdn_noreduorgunituniqueidentifier": {
 		"no": "Organisasjonsenhetens unike identifikasjonsnummer",
@@ -1106,7 +1152,8 @@
 		"hr": "Jedinstveni identifikator organizacijske jedinice",
 		"hu": "Szervezeti egys\u00e9g egyedi azonos\u00edt\u00f3ja",
 		"pt": "Identificador da Unidade Org\u00e2nica",
-		"tr": "Kurumsal Birim'in biricik (unique) tan\u0131mlay\u0131c\u0131s\u0131"
+		"tr": "Kurumsal Birim'in biricik (unique) tan\u0131mlay\u0131c\u0131s\u0131",
+		"fr": "Immatriculation de la section"
 	},
 	"attribute_edupersonorgunitdn_facsimiletelephonenumber": {
 		"no": "Organisasjonsenhetens faksnummer",
@@ -1121,7 +1168,8 @@
 		"hu": "Szervezeti egys\u00e9g fax sz\u00e1ma",
 		"pt": "N\u00famero de Fax da Unidade Org\u00e2nica",
 		"pl": "Faks Jednostki Organizacyjnej",
-		"tr": "Kurumsal Birim'in faz numaras\u0131"
+		"tr": "Kurumsal Birim'in faz numaras\u0131",
+		"fr": "Num\u00e9ro de fax de la section"
 	},
 	"attribute_edupersonorgunitdn_postalcode": {
 		"no": "Organisasjonsenhetens postnummer",
@@ -1135,7 +1183,8 @@
 		"hr": "Po\u0161tanski broj organizacijske jedinice",
 		"hu": "Szervezeti egys\u00e9g ir\u00e1ny\u00edt\u00f3sz\u00e1ma",
 		"pt": "C\u00f3digo postal da Unidade Org\u00e2nica",
-		"tr": "Kurumsal Birim(ler)'in posta servisi b\u00f6lgeler kodu"
+		"tr": "Kurumsal Birim(ler)'in posta servisi b\u00f6lgeler kodu",
+		"fr": "Code postal de la section"
 	},
 	"attribute_edupersonorgunitdn_cn": {
 		"no": "Organisasjonsenhetens fulle navn",
@@ -1149,7 +1198,8 @@
 		"hr": "Naziv organizacijske jedinice",
 		"hu": "Szervezeti egys\u00e9g neve",
 		"pt": "Nome completo da Unidade Org\u00e2nica",
-		"tr": "Kurumsal Birim'in ortak ad\u0131"
+		"tr": "Kurumsal Birim'in ortak ad\u0131",
+		"fr": "Nom usuel de la section"
 	},
 	"attribute_edupersonorgunitdn_postaladdress": {
 		"no": "Organisasjonsenhetens postadresse",
@@ -1164,7 +1214,8 @@
 		"hu": "Szervezeti egys\u00e9g postac\u00edme",
 		"pt": "Morada da Unidade Org\u00e2nica",
 		"pl": "Adres pocztowy Jednostki Organizacyjnej",
-		"tr": "Kurumsal Birim'in posta adresi"
+		"tr": "Kurumsal Birim'in posta adresi",
+		"fr": "Adresse postale de la section"
 	},
 	"attribute_edupersonorgunitdn_street": {
 		"no": "Organisasjonsenhetens gateadresse",
@@ -1177,7 +1228,8 @@
 		"da": "Den Organisatoriske Enheds gade",
 		"hr": "Ulica u kojoj se organizacijska jedinica nalazi",
 		"pt": "Rua da Unidade Org\u00e2nica",
-		"tr": "Kurumsal Birim'in soka\u011f\u0131"
+		"tr": "Kurumsal Birim'in soka\u011f\u0131",
+		"fr": "Adresse de la section"
 	},
 	"attribute_edupersonorgunitdn_l": {
 		"no": "Organisasjonsenhetens stedsnavn",
@@ -1190,7 +1242,8 @@
 		"da": "Den Organisatoriske Enheds \"locality\"",
 		"hr": "Lokalitet organizacijske jedinice",
 		"pt": "Localidade da Unidade Org\u00e2nica",
-		"tr": "Kurumsal Birim'in yerel ad\u0131"
+		"tr": "Kurumsal Birim'in yerel ad\u0131",
+		"fr": "Localit\u00e9 de r\u00e9sidence de la section"
 	},
 	"attribute_edupersonorgunitdn_mail": {
 		"no": "Organisasjonsenhetens epost",
@@ -1205,7 +1258,8 @@
 		"hu": "Szervezeti egys\u00e9g e-mail c\u00edme",
 		"pt": "Endere\u00e7o de e-mail da Unidade Organizacional",
 		"pl": "Mail jednostki organizacyjnej",
-		"tr": "Kurumsal Birim'in postas\u0131"
+		"tr": "Kurumsal Birim'in postas\u0131",
+		"fr": "Adresse \u00e9lectronique de la section"
 	},
 	"attribute_schacuserprivateattribute": {
 		"no": "Private informasjonselement",
@@ -1219,7 +1273,8 @@
 		"hu": "V\u00e9dett adatokat tartalmaz\u00f3 attrib\u00fatumok",
 		"pt": "Elementos privados de informa\u00e7\u00e3o",
 		"pl": "Poufne atrybuty",
-		"tr": "\u00d6zel bilgi elemanlar\u0131"
+		"tr": "\u00d6zel bilgi elemanlar\u0131",
+		"fr": "Elements d'informations priv\u00e9es"
 	},
 	"attribute_edupersonorgdn_mail": {
 		"no": "Organisasjonens epost",
@@ -1234,7 +1289,8 @@
 		"pt": "Endere\u00e7o de e-mail da Organiza\u00e7\u00e3o",
 		"pl": "Adres email organizacji",
 		"tr": "Kurulu\u015fun postas\u0131",
-		"hr": "Elektroni\u010dka adresa ustanove"
+		"hr": "Elektroni\u010dka adresa ustanove",
+		"fr": "Adresse \u00e9lectronique de l'institution"
 	},
 	"attribute_edupersonorgdn_eduorgidentityauthnpolicyuri": {
 		"no": "Lokasjon med organisasjonens rutiner for identifisering og autentisering",
@@ -1248,7 +1304,8 @@
 		"hu": "A szervezet felhaszn\u00e1l\u00f3kezel\u00e9si \u00e9s azonos\u00edt\u00e1si szab\u00e1lyzat\u00e1nak el\u00e9rhet\u0151s\u00e9ge",
 		"pt": "Localiza\u00e7\u00e3o da pol\u00edtica da Organiza\u00e7\u00e3o referente a identifica\u00e7\u00e3o e autentica\u00e7\u00e3o",
 		"tr": "Kimlik belirleme ve do\u011frulama a\u00e7\u0131s\u0131ndan kurulu\u015fun politikas\u0131n\u0131n yeri",
-		"hr": "Adresa slu\u017ebene politike ustanove vezane uz identifikaciju i autentikaciju"
+		"hr": "Adresa slu\u017ebene politike ustanove vezane uz identifikaciju i autentikaciju",
+		"fr": "Emplacement de la politique d'identification et d'authentification de l'institution"
 	},
 	"attribute_edupersonorgdn_noreduorguniqueidentifier": {
 		"no": "Organisasjonens unike identifikasjonsnummer",
@@ -1262,7 +1319,8 @@
 		"hu": "Szervezet egyedi azonos\u00edt\u00f3ja",
 		"pt": "Identificador \u00fanico da Organiza\u00e7\u00e3o",
 		"tr": "Kurulu\u015fun biricik (unique) tan\u0131mlay\u0131c\u0131s\u0131",
-		"hr": "Jedinstveni identifikator ustanove"
+		"hr": "Jedinstveni identifikator ustanove",
+		"fr": "Immatriculation de l'institution"
 	},
 	"attribute_edupersonorgdn_postofficebox": {
 		"no": "Organisasjonens postboks",
@@ -1276,7 +1334,8 @@
 		"hu": "Szervezet postafi\u00f3k c\u00edme",
 		"pt": "Caixa de endere\u00e7o postal da Organiza\u00e7\u00e3o",
 		"tr": "Kurulu\u015fun posta kutusu",
-		"hr": "Broj po\u0161tanskog pretinca ustanove"
+		"hr": "Broj po\u0161tanskog pretinca ustanove",
+		"fr": "Boite postale de l'institution"
 	},
 	"attribute_edupersonorgunitdn_labeleduri": {
 		"no": "URI for organisasjonsenhet med valgfri tilleggskommentar",
@@ -1288,7 +1347,8 @@
 		"sl": "Ozna\u010den URI oddelka",
 		"da": "M\u00e6rket URI til organisatorisk enheds",
 		"tr": "Kurumsal birime etiketlenmi\u015f URI",
-		"pt": "P\u00e1gina web da Unidade Organizacional"
+		"pt": "P\u00e1gina web da Unidade Organizacional",
+		"fr": "URI de la section"
 	},
 	"attribute_edupersonorgunitdn_postofficebox": {
 		"no": "Organisasjonsenhetens postboks",
@@ -1302,15 +1362,21 @@
 		"hu": "Szervezeti egys\u00e9g postafi\u00f3kc\u00edme",
 		"pt": "Caixa de endere\u00e7o postal da Unidade Organizacional",
 		"tr": "Kurumsal Birim'in posta kutusu",
-		"hr": "Broj po\u0161tanskog pretinca organizacijske jedinice"
+		"hr": "Broj po\u0161tanskog pretinca organizacijske jedinice",
+		"fr": "Boite postale de la section"
 	},
 	"attribute_noredupersonlegalname": {
 		"no": "Folkeregistrert navn",
 		"nn": "Namn registrert i Folkeregisteret",
-		"sl": "Uradno ime"
+		"sl": "Uradno ime",
+		"sv": "Officiellt (legalt) namn",
+		"fr": "Etat civil"
 	},
 	"attribute_edupersonassurance": {
 		"no": "Tillitsniv\u00e5 for autentisering",
-		"nn": "Tillitsniv\u00e5 for autentisering"
+		"nn": "Tillitsniv\u00e5 for autentisering",
+		"sv": "Identitetens tillf\u00f6rlitlighetsprofil",
+		"sl": "Stopnja zanesljivosti",
+		"fr": "Profil d'assertion d'identit\u00e9"
 	}
 }

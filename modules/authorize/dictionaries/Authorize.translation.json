@@ -8,7 +8,8 @@
 		"pt": "Acesso negado",
 		"sv": "F\u00f6rbjuden access",
 		"hr": "Pristup zabranjen",
-		"da": "Adgang forbudt"
+		"da": "Adgang forbudt",
+		"fr": "Acc\u00e8s refus\u00e9"
 	},
 	"403_text": {
 		"es": "No tiene los privilegios necesarios para acceder a esta aplicaci\u00f3n. Si considera que esto no es correcto, consulte el administrador.",
@@ -19,6 +20,7 @@
 		"pt": "N\u00e3o tem privil\u00e9gios para aceder a esta aplica\u00e7\u00e3o. Contacte o administrador caso ache necess\u00e1rio.",
 		"sv": "Du har inte tillr\u00e4ckliga r\u00e4ttigheter f\u00f6r att anv\u00e4nda denna applikation. Ta kontakt med administrat\u00f6ren om detta inte st\u00e4mmer.",
 		"hr": "Nemate potrebne ovlasti za pristup ovoj aplikaciji. Molimo kontaktirajte administratora aplikacije ako smatrate da bi vam pristup aplikaciji trebao biti omogu\u0107en.",
-		"da": "Du har ikke de n\u00f8dvendige privilegier til at tilg\u00e5 applikationen. Kontakt administratoren hvis du mener at dette ikke er korrekt."
+		"da": "Du har ikke de n\u00f8dvendige privilegier til at tilg\u00e5 applikationen. Kontakt administratoren hvis du mener at dette ikke er korrekt.",
+		"fr": "Vos privil\u00e8ges sont insuffisants pour acc\u00e9der \u00e0 cette application. Contactez vous administrateur si cette situation est anormale."
 	}
 }

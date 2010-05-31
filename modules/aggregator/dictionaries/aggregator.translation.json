@@ -6,7 +6,8 @@
 		"pt": "Agregador de Metadados",
 		"sv": "Metadatasammanst\u00e4llare",
 		"hr": "Agregator metapodataka",
-		"da": "Metadata aggregator"
+		"da": "Metadata aggregator",
+		"fr": "Agr\u00e9gateur de m\u00e9tadonn\u00e9es"
 	},
 	"aggregator_header": {
 		"no": "Aggregatorer",
@@ -15,7 +16,8 @@
 		"pt": "Agregadores",
 		"sv": "Sammanst\u00e4llare",
 		"hr": "Agregatori",
-		"da": "Aggregatorer"
+		"da": "Aggregatorer",
+		"fr": "Agr\u00e9gateurs"
 	},
 	"no_aggregators": {
 		"no": "Ingen aggregator definert i konfigurasjonen",
@@ -24,7 +26,8 @@
 		"pt": "N\u00e3o foram definidos agregadores na configura\u00e7\u00e3o.",
 		"sv": "Inga sammanst\u00e4llare (aggregators) definierade i konfigurationen.",
 		"hr": "U konfiguraciji nije definiran niti jedan agregator.",
-		"da": "Ingen aggregator defineret i konfigurationen"
+		"da": "Ingen aggregator defineret i konfigurationen",
+		"fr": "Aucun agr\u00e9gateur n'a \u00e9t\u00e9 d\u00e9fini dans la configuration."
 	},
 	"text": {
 		"no": "tekst",
@@ -33,6 +36,7 @@
 		"pt": "Texto",
 		"sv": "Text",
 		"hr": "Tekst",
-		"da": "tekst"
+		"da": "tekst",
+		"fr": "texte"
 	}
 }

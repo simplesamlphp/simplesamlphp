@@ -6,7 +6,8 @@
 		"pt": "Foi detectada uma repeti\u00e7\u00e3o de autentica\u00e7\u00e3o neste servi\u00e7o em poucos segundos. Este SP pode ter um problema.",
 		"sv": "Vi har uppt\u00e4ckt att det bara vara n\u00e5gra f\u00e5 sekunder sedan du senast loggade in mot denna tj\u00e4nst (service provider) och d\u00e4rf\u00f6r antar vi att det \u00e4r ett problem med denna tj\u00e4nst.",
 		"hr": "Sustav je utvrdio da je pro\u0161lo tek nekoliko sekundi otkad ste se zadnji put autenticirali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem u radu aplikacije.",
-		"da": "Vi har opdaget at det kun er f\u00e5 sekunder siden du sidst autentificerede dig op mod denne service. Vi antager derfor at der er et problem med services."
+		"da": "Vi har opdaget at det kun er f\u00e5 sekunder siden du sidst autentificerede dig op mod denne service. Vi antager derfor at der er et problem med services.",
+		"fr": "Il ne s'est \u00e9coul\u00e9 que quelques secondes depuis votre authentification pr\u00e9c\u00e9dente, ce qui est la marque d'un dysfonctionnement de ce SP."
 	},
 	"warning_header": {
 		"no": "For kort intervall i mellom innloggingsforesp\u00f8rsler",
@@ -15,7 +16,8 @@
 		"pt": "Intervalo entre eventos de single sign on demasiado curto.",
 		"sv": "F\u00f6r kort intervall mellan inloggningar.",
 		"hr": "Prekratak interval izme\u0111u uzastopnih SSO autentikacija.",
-		"da": "For kort interval mellem single sign on h\u00e6ndelse."
+		"da": "For kort interval mellem single sign on h\u00e6ndelse.",
+		"fr": "Connexions uniques trop proches dans le temps."
 	},
 	"retry": {
 		"no": "Fors\u00f8k \u00e5 logg inn p\u00e5 nytt",
@@ -24,6 +26,7 @@
 		"pt": "Tentar de novo",
 		"sv": "F\u00f6rs\u00f6k med inloggningen igen",
 		"hr": "Poku\u0161aj se ponovo autenticirati",
-		"da": "Login igen"
+		"da": "Login igen",
+		"fr": "R\u00e9-essayez de vous connecter"
 	}
 }

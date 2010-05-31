@@ -1416,7 +1416,8 @@
 		"tr": "Kimlik Sa\u011flay\u0131c\u0131dan hata al\u0131nd\u0131.",
 		"de": "Fehlermeldung vom Identity Provider erhalten",
 		"fi": "Virhe vastaanotettu Identiteetintarjoajalta.",
-		"pt": "Erro recebido do Fornecedor de Identidade"
+		"pt": "Erro recebido do Fornecedor de Identidade",
+		"fr": "Erreur lev\u00e9e par le fournisseur d'identit\u00e9"
 	},
 	"descr_RESPONSESTATUSNOSUCCESS": {
 		"no": "Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-svaret var noe annet enn OK)",
@@ -1428,6 +1429,7 @@
 		"tr": "Kimlik Sa\u011flay\u0131c\u0131 hatal\u0131 cevap verdi. (SAML Cevab\u0131'ndaki durum kodu ba\u015far\u0131lamad\u0131)",
 		"de": "Der Identity Provider gab einen Fehler zur\u00fcck (Der Statuscode in der SAML-Antwort war nicht \"Erfolg\")",
 		"fi": "Identiteetintarjoaja vastasi virheell\u00e4. ( Tilakoodi SAML vastauksessa oli ep\u00e4onnistunut)",
-		"pt": "O Fornecedor de Identidade respondeu com um erro. (A resposta SAML cont\u00e9m um c\u00f3digo de insucesso)"
+		"pt": "O Fornecedor de Identidade respondeu com um erro. (A resposta SAML cont\u00e9m um c\u00f3digo de insucesso)",
+		"fr": "Le fournisseur d'identit\u00e9 a renvoy\u00e9 une erreur (le code de statut de la r\u00e9ponse SAML n'indiquait pas le succ\u00e8s)"
 	}
 }

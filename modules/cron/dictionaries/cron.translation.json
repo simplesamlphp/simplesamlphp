@@ -6,7 +6,9 @@
 		"de": "Cron Ergebnisseite",
 		"sl": "Stran z rezultati cron opravil",
 		"pt": "P\u00e1gina de resultados do sistema cron",
-		"sv": "Resultat sida f\u00f6r cron"
+		"sv": "Resultat sida f\u00f6r cron",
+		"hr": "Cron rezultati",
+		"fr": "Page de r\u00e9sultats de cron"
 	},
 	"cron_result_title": {
 		"da": "Her er resultatet for opgaven udf\u00f8relse:",
@@ -15,7 +17,9 @@
 		"de": "Hier sind die Ergebnisse f\u00fcr die Ausf\u00fchrung des cron-jobs:",
 		"sl": "Rezultat cron opravila:",
 		"pt": "Resultados da execu\u00e7\u00e3o do sistema cron:",
-		"sv": "H\u00e4r \u00e4r k\u00f6rningsresultatet av cronjobbet:"
+		"sv": "H\u00e4r \u00e4r k\u00f6rningsresultatet av cronjobbet:",
+		"hr": "U nastavku su navedeni rezultati izvr\u0161avanja cron zadataka:",
+		"fr": "Voici les r\u00e9sultats d'ex\u00e9cution des t\u00e2ches cron:"
 	},
 	"cron_info": {
 		"da": "Cron er en m\u00e5de at k\u00f8re tingene regelm\u00e6ssigt p\u00e5 UNIX-systemer.",
@@ -24,7 +28,9 @@
 		"de": "Cron ist ein Weg, Dinge regelm\u00e4\u00dfig auf Unix-Systemen auszuf\u00fchren.",
 		"sl": "Cron je orodje za periodi\u010dno izvajanje opravil. ",
 		"pt": "O sistema cron serve para executar trabalhos regulares em sistemas unix.",
-		"sv": "Cron \u00e4r ett s\u00e4tt att regelbundet k\u00f6ra olika saker p\u00e5 unixsystem."
+		"sv": "Cron \u00e4r ett s\u00e4tt att regelbundet k\u00f6ra olika saker p\u00e5 unixsystem.",
+		"hr": "Cron je mehanizam za periodi\u010dko pokretanje procesa na Unix operacijskim sustavima.",
+		"fr": "Cron est un utilitaire permettant d'ex\u00e9cuter r\u00e9guli\u00e8rement des t\u00e2ches sur un syst\u00e8me Unix."
 	},
 	"cron_suggestion": {
 		"da": "Her er et forslag til en crontab fil:",
@@ -33,7 +39,9 @@
 		"de": "Hier ist ein Vorschlag f\u00fcr eine crontab-Datei:",
 		"sl": "Primer crontab datoteke:",
 		"pt": "Sugest\u00e3o de ficheiro crontab:",
-		"sv": "H\u00e4r ett f\u00f6rslag g\u00e4llande crontabfil:"
+		"sv": "H\u00e4r ett f\u00f6rslag g\u00e4llande crontabfil:",
+		"hr": "U nastavku je prijedlog sadr\u017eaja crontab datoteke:",
+		"fr": "Voici un exemple de fichier crontab:"
 	},
 	"cron_execution": {
 		"da": "Klik her for at k\u00f8re cron job:",
@@ -42,7 +50,9 @@
 		"de": "Klicken Sie hier um die cron-jobs auszuf\u00fchren:",
 		"sl": "S klikom za\u017eeni cron opravila:",
 		"pt": "Carregue aqui para executar os cron jobs:",
-		"sv": "Klicka h\u00e4r f\u00f6r att k\u00f6ra cronjobb:"
+		"sv": "Klicka h\u00e4r f\u00f6r att k\u00f6ra cronjobb:",
+		"hr": "Kliknite ovdje da biste pokrenuli izvr\u0161avanje cron zadataka:",
+		"fr": "Cliquez ici pour ex\u00e9cuter les t\u00e2ches cron:"
 	},
 	"run_text": {
 		"da": "Run cron:",
@@ -51,7 +61,9 @@
 		"de": "F\u00fchre cron aus:",
 		"sl": "Za\u017eeni cron:",
 		"pt": "Executar o cron:",
-		"sv": "K\u00f6r cron:"
+		"sv": "K\u00f6r cron:",
+		"hr": "Pokreni cron:",
+		"fr": "Ex\u00e9cuter cron:"
 	},
 	"ran_text": {
 		"da": "Cron l\u00f8b p\u00e5",
@@ -60,7 +72,9 @@
 		"de": "Cron ausgef\u00fchrt um",
 		"sl": "Cron je bil zagnan ob:",
 		"pt": "Cron executado em",
-		"sv": "Cron k\u00f6rde"
+		"sv": "Cron k\u00f6rde",
+		"hr": "Cron je pokrenut u",
+		"fr": "Cron s'est ex\u00e9cut\u00e9 \u00e0"
 	},
 	"cron_report_title": {
 		"da": "Cron rapport",
@@ -69,6 +83,8 @@
 		"de": "Cron-Bericht",
 		"sl": "Cron poro\u010dilo",
 		"pt": "Relat\u00f3rio cron",
-		"sv": "Cronrapport"
+		"sv": "Cronrapport",
+		"hr": "Cron izvje\u0161taj",
+		"fr": "Rapport de cron"
 	}
 }
