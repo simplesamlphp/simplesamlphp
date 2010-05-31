@@ -9,7 +9,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.6
 
-Released 2010-05-XX.
+Released 2010-05-31.
 
 [Upgrade notes](./simplesamlphp-upgrade-notes-1.6)
 
@@ -51,7 +51,6 @@ Released 2010-05-XX.
 ### `adfs`
 
   * Move to new IdP core.
-
 
 ### `casserver`
 
