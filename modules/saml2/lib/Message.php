@@ -617,7 +617,16 @@ class sspmod_saml2_Message {
 
 		/* Generate the NameID for the assertion. */
 
-		$nameIdFormat = $dstMetadata->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
+		if (isset($state['saml:NameIDFormat'])) {
+			$nameIdFormat = $state['saml:NameIDFormat'];
+		} else {
+			$nameIdFormat = NULL;
+		}
+
+		if ($nameIdFormat === NULL || !isset($state['saml:NameID'][$nameIdFormat])) {
+			/* Either not set in request, or not set to a format we supply. Fall back to old generation method. */
+			$nameIdFormat = $dstMetadata->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
+		}
 
 		if (isset($state['saml:NameID'][$nameIdFormat])) {
 			$nameId = $state['saml:NameID'][$nameIdFormat];

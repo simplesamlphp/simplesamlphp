@@ -180,6 +180,13 @@ class sspmod_saml_IdP_SAML2 {
 			} else {
 				$protocolBinding = NULL;
 			}
+
+			if (isset($_REQUEST['NameIDFormat'])) {
+				$nameIDFormat = (string)$_REQUEST['NameIDFormat'];
+			} else {
+				$nameIDFormat = NULL;
+			}
+
 			$requestId = NULL;
 			$IDPList = array();
 			$forceAuthn = FALSE;
@@ -253,6 +260,12 @@ class sspmod_saml_IdP_SAML2 {
 			$consumerURL = $request->getAssertionConsumerServiceURL();
 			$protocolBinding = $request->getProtocolBinding();
 
+			$nameIdPolicy = $request->getNameIdPolicy();
+			if (isset($nameIdPolicy['Format'])) {
+				$nameIDFormat = $nameIdPolicy['Format'];
+			} else {
+				$nameIDFormat = NULL;
+			}
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '. var_export($spEntityId, TRUE));
 		}
 
@@ -324,6 +337,7 @@ class sspmod_saml_IdP_SAML2 {
 			'isPassive' => $isPassive,
 			'saml:ConsumerURL' => $consumerURL,
 			'saml:Binding' => $protocolBinding,
+			'saml:NameIDFormat' => $nameIDFormat,
 		);
 
 		$idp->handleAuthenticationRequest($state);
