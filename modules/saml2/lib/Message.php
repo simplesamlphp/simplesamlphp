@@ -619,25 +619,32 @@ class sspmod_saml2_Message {
 
 		$nameIdFormat = $dstMetadata->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
 
-		$spNameQualifier = $dstMetadata->getString('SPNameQualifier', NULL);
-		if ($spNameQualifier === NULL) {
-			$spNameQualifier = $dstMetadata->getString('entityid');
-		}
-
-		if ($nameIdFormat === SAML2_Const::NAMEID_TRANSIENT) {
-		        /* generate a random id */
-			$nameIdValue = SimpleSAML_Utilities::generateID();
+		if (isset($state['saml:NameID'][$nameIdFormat])) {
+			$nameId = $state['saml:NameID'][$nameIdFormat];
+			$nameId['Format'] = $nameIdFormat;
 		} else {
-		        /* this code will end up generating either a fixed assigned id (via nameid.attribute)
-			   or random id if not assigned/configured */
-			$nameIdValue = self::generateNameIdValue($srcMetadata, $dstMetadata, $state['Attributes']);
+			$spNameQualifier = $dstMetadata->getString('SPNameQualifier', NULL);
+			if ($spNameQualifier === NULL) {
+				$spNameQualifier = $dstMetadata->getString('entityid');
+			}
+
+			if ($nameIdFormat === SAML2_Const::NAMEID_TRANSIENT) {
+				/* generate a random id */
+				$nameIdValue = SimpleSAML_Utilities::generateID();
+			} else {
+				/* this code will end up generating either a fixed assigned id (via nameid.attribute)
+				   or random id if not assigned/configured */
+				$nameIdValue = self::generateNameIdValue($srcMetadata, $dstMetadata, $state['Attributes']);
+			}
+
+			$nameId = array(
+				'Format' => $nameIdFormat,
+				'Value' => $nameIdValue,
+				'SPNameQualifier' => $spNameQualifier,
+			);
 		}
 
-		$a->setNameId(array(
-			'Format' => $nameIdFormat,
-			'Value' => $nameIdValue,
-			'SPNameQualifier' => $spNameQualifier,
-			));
+		$a->setNameId($nameId);
 
 		return $a;
 	}
