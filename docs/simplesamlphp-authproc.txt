@@ -142,6 +142,9 @@ The following filters are included in the simpleSAMLphp distribution:
 - [`core:TargetedID`](./core:authproc_targetedid): Generate the `eduPersonTargetedID` attribute.
 - [`core:WarnShortSSOInterval`](./core:authproc_warnshortssointerval): Give a warning if the user logs into the same SP twice within a few seconds.
 - [`preprodwarning:Warning`](./preprodwarning:warning): Warn the user about accessing a test IdP.
+- [`saml:AttributeNameID`](./saml:nameid): Generate custon NameID with the value of an attribute.
+- [`saml:PersistentNameID`](./saml:nameid): Generate persistent NameID from an attribute.
+- [`saml:TransientNameID`](./saml:nameid): Generate transient NameID.
 
 
 
