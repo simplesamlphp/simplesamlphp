@@ -17,7 +17,7 @@ if (isset($_REQUEST['type'])) {
 if (isset($_REQUEST['timeout'])) {
 	$timeout = (int)$_REQUEST['timeout'];
 } else {
-	$timeout = time() + 10;
+	$timeout = time() + 5;
 }
 
 if ($type !== 'embed' && $type !== 'async') {
