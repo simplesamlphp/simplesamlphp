@@ -289,7 +289,12 @@ class SimpleSAML_Configuration {
 	}
 
 
-	public function getVersion($verbose = FALSE) {
+	/**
+	 * Retrieve the current version of simpleSAMLphp.
+	 *
+	 * @return string
+	 */
+	public function getVersion() {
 		return 'trunk';
 	}
 
