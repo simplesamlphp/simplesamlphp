@@ -27,7 +27,6 @@ class sspmod_saml_IdP_SAML2 {
 
 		SimpleSAML_Logger::info('Sending SAML 2.0 Response to ' . var_export($spEntityId, TRUE));
 
-		$attributes = $state['Attributes'];
 		$requestId = $state['saml:RequestId'];
 		$relayState = $state['saml:RelayState'];
 		$consumerURL = $state['saml:ConsumerURL'];
@@ -46,7 +45,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		$idpMetadata = $idp->getConfig();
 
-		$assertion = sspmod_saml2_Message::buildAssertion($idpMetadata, $spMetadata, $attributes, $consumerURL);
+		$assertion = sspmod_saml2_Message::buildAssertion($idpMetadata, $spMetadata, $state);
 		$assertion->setInResponseTo($requestId);
 		
 		if (isset($state['saml:AuthenticatingAuthority'])) {
