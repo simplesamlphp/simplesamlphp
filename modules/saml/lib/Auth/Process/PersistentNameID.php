@@ -66,7 +66,7 @@ class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGe
 
 		$secretSalt = SimpleSAML_Utilities::getSecretSalt();
 
-		$uidData = 'saml:PersistentNameID:' . $secretSalt;
+		$uidData = 'uidhashbase' . $secretSalt;
 		$uidData .= strlen($idpEntityId) . ':' . $idpEntityId;
 		$uidData .= strlen($spEntityId) . ':' . $spEntityId;
 		$uidData .= strlen($uid) . ':' . $uid;
