@@ -468,17 +468,22 @@ class sspmod_saml2_Message {
 		if ($attribute === NULL) {
 			$attribute = $srcMetadata->getString('simplesaml.nameidattribute', NULL);
 			if ($attribute === NULL) {
-	                       /* generate a stable id */
-	                       return SimpleSAML_Utilities::generateUserIdentifier($srcMetadata->getString( 'entityid' ),
-			               $dstMetadata->getString( 'entityid' ),
-			               $attributes );
+				/* generate a stable id */
+				try {
+					return SimpleSAML_Utilities::generateUserIdentifier($srcMetadata->getString( 'entityid' ),
+						$dstMetadata->getString( 'entityid' ),
+						$attributes );
+				} catch (Exception $e) {
+					SimpleSAML_Logger::error('Unable to generate NameID: ' . $e->getMessage());
+					return NULL;
+				}
 			}
 		}
 
 		if (!array_key_exists($attribute, $attributes)) {
 			SimpleSAML_Logger::error('Unable to add NameID: Missing ' . var_export($attribute, TRUE) .
 				' in the attributes of the user.');
-			return SimpleSAML_Utilities::generateID();
+			return NULL;
 		}
 
 		return $attributes[$attribute][0];
@@ -644,6 +649,11 @@ class sspmod_saml2_Message {
 				/* this code will end up generating either a fixed assigned id (via nameid.attribute)
 				   or random id if not assigned/configured */
 				$nameIdValue = self::generateNameIdValue($srcMetadata, $dstMetadata, $state['Attributes']);
+				if ($nameIdValue === NULL) {
+					SimpleSAML_Logger::warning('Falling back to transient NameID.');
+					$nameIdFormat = SAML2_Const::NAMEID_TRANSIENT;
+					$nameIdValue = SimpleSAML_Utilities::generateID();
+				}
 			}
 
 			$nameId = array(
