@@ -53,6 +53,16 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	/**
+	 * The encrypted Attributes.
+	 *
+	 * If this is not NULL, the Attributes needs decryption before it can be accessed.
+	 *
+	 * @var array|NULL
+	 */
+	 private $encryptedAttribute;
+
+
+	 /**
 	 * The earliest time this assertion is valid, as an UNIX timestamp.
 	 *
 	 * @var int
@@ -184,6 +194,14 @@ class SAML2_Assertion implements SAML2_SignedElement {
 	private $signatureData;
 
 
+	/**
+	 * Boolean that indicates if attributes are encrypted in the
+	 * assertion or not.
+	 *
+	 * @var boolean
+	 */
+	private $requiredEncAttributes;
+
 
 	/**
 	 * Constructor for SAML 2 assertions.
@@ -227,6 +245,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$this->parseConditions($xml);
 		$this->parseAuthnStatement($xml);
 		$this->parseAttributes($xml);
+		$this->parseEncryptedAttributes($xml);
 		$this->parseSignature($xml);
 	}
 
@@ -472,6 +491,17 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	/**
+	 * Parse encrypted attribute statements in assertion.
+	 *
+	 * @param DOMElement $xml  The XML element with the assertion.
+	 */
+	private function parseEncryptedAttributes(DOMElement $xml) {
+
+		$this->encryptedAttribute = SAML2_Utils::xpQuery($xml, './saml_assertion:AttributeStatement/saml_assertion:EncryptedAttribute');
+	}
+
+
+	/**
 	 * Parse signature on assertion.
 	 *
 	 * @param DOMElement $xml  The assertion XML element.
@@ -643,6 +673,47 @@ class SAML2_Assertion implements SAML2_SignedElement {
 	}
 
 
+	public function decryptAttributes($key){
+		if($this->encryptedAttribute === null){
+			return;
+		}
+		$attributes = $this->encryptedAttribute;
+		foreach ($attributes as $attributeEnc) {
+			/*Decrypt node <EncryptedAttribute>*/
+			$attribute = SAML2_Utils::decryptElement($attributeEnc->getElementsByTagName('EncryptedData')->item(0), $key);
+
+			if (!$attribute->hasAttribute('Name')) {
+				throw new Exception('Missing name on <saml:Attribute> element.');
+			}
+			$name = $attribute->getAttribute('Name');
+
+			if ($attribute->hasAttribute('NameFormat')) {
+				$nameFormat = $attribute->getAttribute('NameFormat');
+			} else {
+				$nameFormat = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
+			}
+
+			if ($firstAttribute) {
+				$this->nameFormat = $nameFormat;
+				$firstAttribute = FALSE;
+			} else {
+				if ($this->nameFormat !== $nameFormat) {
+					$this->nameFormat = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
+				}
+			}
+
+			if (!array_key_exists($name, $this->attributes)) {
+				$this->attributes[$name] = array();
+			}
+
+			$values = SAML2_Utils::xpQuery($attribute, './saml_assertion:AttributeValue');
+			foreach ($values as $value) {
+				$this->attributes[$name][] = trim($value->textContent);
+			}
+		}
+	}
+
+
 	/**
 	 * Retrieve the earliest timestamp this assertion is valid.
 	 *
@@ -722,6 +793,16 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		assert('is_string($destination) || is_null($destination)');
 
 		$this->destination = $destination;
+	}
+
+
+	/**
+	 * Set $EncryptedAttributes if attributes will send encrypted
+	 *
+	 * @param boolean $ea  TRUE to encrypt attributes in the assertion.
+	 */
+	public function setEncryptedAttributes($ea) {
+		$this->requiredEncAttributes = $ea;
 	}
 
 
@@ -977,6 +1058,28 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	/**
+	 * Return the key we should use to encrypt the assertion.
+	 *
+	 * @return XMLSecurityKey|NULL The key, or NULL if no key is specified..
+	 *
+	 */
+
+
+	public function getEncryptionKey() {
+		return $this->encryptionKey;
+	}
+
+
+	/**
+	 * Set the private key we should use to encrypt the attributes.
+	 *
+	 * @param XMLSecurityKey|NULL $key
+	 */
+	public function setEncryptionKey(XMLSecurityKey $Key = NULL) {
+		$this->encryptionKey = $Key;
+	}
+
+	/**
 	 * Set the certificates that should be included in the assertion.
 	 *
 	 * The certificates should be strings with the PEM encoded data.
@@ -1033,7 +1136,10 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$this->addSubject($root);
 		$this->addConditions($root);
 		$this->addAuthnStatement($root);
-		$this->addAttributeStatement($root);
+		if($this->requiredEncAttributes == false)
+			$this->addAttributeStatement($root);
+		else
+			$this->addEncryptedAttributeStatement($root);
 
 		if ($this->signatureKey !== NULL) {
 			SAML2_Utils::insertSignature($this->signatureKey, $this->certificates, $root, $issuer->nextSibling);
@@ -1194,6 +1300,74 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		}
 	}
 
-}
 
-?>
+	/**
+	 * Add an EncryptedAttribute Statement-node to the assertion.
+	 *
+	 * @param DOMElement $root  The assertion element we should add the Encrypted Attribute Statement to.
+	 */
+	private function addEncryptedAttributeStatement(DOMElement $root) {
+
+		if ($this->requiredEncAttributes == FALSE)
+			return;
+
+		$document = $root->ownerDocument;
+
+		$attributeStatement = $document->createElementNS(SAML2_Const::NS_SAML, 'saml:AttributeStatement');
+		$root->appendChild($attributeStatement);
+
+		foreach ($this->attributes as $name => $values) {
+			$document2 = new DOMDocument();
+			$attribute = $document2->createElementNS(SAML2_Const::NS_SAML, 'saml:Attribute');
+			$attribute->setAttribute('Name', $name);
+			$document2->appendChild($attribute);
+
+			if ($this->nameFormat !== SAML2_Const::NAMEFORMAT_UNSPECIFIED) {
+				$attribute->setAttribute('NameFormat', $this->nameFormat);
+			}
+
+			foreach ($values as $value) {
+				if (is_string($value)) {
+					$type = 'xs:string';
+				} elseif (is_int($value)) {
+					$type = 'xs:integer';
+				} else {
+					$type = NULL;
+				}
+
+				$attributeValue = $document2->createElementNS(SAML2_Const::NS_SAML, 'saml:AttributeValue');
+				$attribute->appendChild($attributeValue);
+				if ($type !== NULL) {
+					$attributeValue->setAttributeNS(SAML2_Const::NS_XSI, 'xsi:type', $type);
+				}
+
+				if ($value instanceof DOMNodeList) {
+					for ($i = 0; $i < $value->length; $i++) {
+						$node = $document2->importNode($value->item($i), TRUE);
+						$attributeValue->appendChild($node);
+					}
+				} else {
+					$attributeValue->appendChild($document2->createTextNode($value));
+				}
+			}
+			/*Once the attribute nodes are built, the are encrypted*/
+			$EncAssert = new XMLSecEnc();
+			$EncAssert->setNode($document2->documentElement);
+			$EncAssert->type = 'http://www.w3.org/2001/04/xmlenc#Element';
+			/*
+			 * Attributes are encrypted with a session key and this one with
+			 * $EncryptionKey
+			 */
+			$symmetricKey = new XMLSecurityKey(XMLSecurityKey::AES256_CBC);
+			$symmetricKey->generateSessionKey();
+			$EncAssert->encryptKey($this->encryptionKey, $symmetricKey);
+			$EncrNode = $EncAssert->encryptNode($symmetricKey);
+
+			$EncAttribute = $document->createElementNS(SAML2_Const::NS_SAML, 'saml:EncryptedAttribute');
+			$attributeStatement->appendChild($EncAttribute);
+			$n = $document->importNode($EncrNode,true);
+			$EncAttribute->appendChild($n);
+		}
+	}
+
+}
