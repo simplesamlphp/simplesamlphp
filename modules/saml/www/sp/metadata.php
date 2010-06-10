@@ -144,7 +144,7 @@ $xml = $xml->ownerDocument->saveXML($xml);
 
 $metaArray20 = array(
 	'AssertionConsumerService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId),
-	'SingleLogoutService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId),
+	'SingleLogoutService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId),
 );
 if ($certData !== NULL) {
 	$metaArray20['certData'] = $certData;
