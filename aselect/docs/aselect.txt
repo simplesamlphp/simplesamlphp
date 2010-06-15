@@ -1,0 +1,64 @@
+Using the A-Select authentication source with simpleSAMLphp
+===========================================================
+
+This authentication source for A-Select is based on the a-select
+handler by Hans Zandbelt. The original source combines the possibility
+to use an A-Select server as an authentication source and the possibility
+to use simpleSAMLphp as an A-Select server. This module only acts as a
+authentication source. Signing is not (yet) supported.
+
+The structure applied follows the structure of the CAS authentication source.
+
+
+Setting up the A-Select authentication module
+----------------------------------------------
+
+The first thing you need to do is to enable the aselect module:
+
+    touch modules/aselect/enable
+
+The A-Select authentication module has two modes of operation.
+
+1. The module can act to the A-Select server as an application.
+
+Configuration in A-Select:
+
+        <application id="app1" level="30">
+            <attribute_policy>policyA</attribute_policy>
+            <forced_authenticate>false</forced_authenticate>
+        </application>
+
+Configuration in authsources.php
+
+    'example-aselect' => array(
+        'aselect:aselect',
+        'serverurl'            => 'http://a-select.dev.han.nl:8080/aselectserver/server',
+        'serverid'             => 'hanaselect',
+        'type'                 => 'app',                   # type = app/cross
+        'app_id'               => 'app1',                  # only if type = app
+    ),
+
+2. The module can act to the A-Select server as cross A-Select.
+
+Configuration in A-Select:
+
+    <cross_aselect>
+        <local_servers require_signing="false">
+            <organization id="simpleSAMLphp" server="sso.testorg.com" attribute_policy="policyA">
+            </organization>
+        </local_servers>
+    </cross_aselect>
+
+
+Configuration in authsources.php
+
+    'example-aselect' => array(
+        'aselect:aselect',
+        'serverurl'            => 'http://a-select.dev.han.nl:8080/aselectserver/server',
+        'serverid'             => 'hanaselect',
+        'type'                 => 'cross',                 # type = app/cross
+        'local_organization'   => 'simpleSAMLphp',         # only if type = fed
+        'required_level'       => 10,                      # only if type = fed, defaults to 10
+    ),
+
+
