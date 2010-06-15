@@ -482,6 +482,8 @@ class SimpleSAML_XHTML_IdPDisco {
 		if (sizeof($idpintersection) > 0) {
 			$idpList = array_intersect_key($idpList, array_fill_keys($idpintersection, NULL));
 		}
+
+        $idpintersection = array_values($idpintersection); 
         
         if(sizeof($idpintersection)  == 1) {
             $this->log('Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' . $this->returnIdParam . ')');
