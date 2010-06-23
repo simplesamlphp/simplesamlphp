@@ -558,11 +558,13 @@ class sspmod_saml2_Message {
 	 *
 	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
 	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
-	 * @param array $attributes  The attributes of the user
+	 * @param array &$state  The state array with information about the request.
 	 * @return SAML2_Assertion  The assertion.
 	 */
 	public static function buildAssertion(SimpleSAML_Configuration $srcMetadata,
-		SimpleSAML_Configuration $dstMetadata, array $attributes, $consumerURL) {
+		SimpleSAML_Configuration $dstMetadata, array &$state) {
+		assert('isset($state["Attributes"])');
+		assert('isset($state["saml:ConsumerURL"])');
 
 		$signAssertion = $dstMetadata->getBoolean('saml20.sign.assertion', NULL);
 		if ($signAssertion === NULL) {
@@ -577,7 +579,7 @@ class sspmod_saml2_Message {
 		}
 
 		$a->setIssuer($srcMetadata->getString('entityid'));
-		$a->setDestination($consumerURL);
+		$a->setDestination($state['saml:ConsumerURL']);
 		$a->setValidAudiences(array($dstMetadata->getString('entityid')));
 
 		$a->setNotBefore(time() - 30);
@@ -608,7 +610,7 @@ class sspmod_saml2_Message {
 					'urn:oasis:names:tc:SAML:2.0:attrname-format:basic');
 			}
 			$a->setAttributeNameFormat($attributeNameFormat);
-			$attributes = self::encodeAttributes($srcMetadata, $dstMetadata, $attributes);
+			$attributes = self::encodeAttributes($srcMetadata, $dstMetadata, $state['Attributes']);
 			$a->setAttributes($attributes);
 		}
 
@@ -628,7 +630,7 @@ class sspmod_saml2_Message {
 		} else {
 		        /* this code will end up generating either a fixed assigned id (via nameid.attribute)
 			   or random id if not assigned/configured */
-			$nameIdValue = self::generateNameIdValue($srcMetadata, $dstMetadata, $attributes);
+			$nameIdValue = self::generateNameIdValue($srcMetadata, $dstMetadata, $state['Attributes']);
 		}
 
 		$a->setNameId(array(
