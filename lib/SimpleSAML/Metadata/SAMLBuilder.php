@@ -438,6 +438,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$e = new SAML2_XML_md_IDPSSODescriptor();
 		$e->protocolSupportEnumeration[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
+		$e->protocolSupportEnumeration[] = 'urn:mace:shibboleth:1.0';
 
 		$this->addCertificate($e, $metadata);
 
