@@ -212,7 +212,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	public static function parseElement($entityElement) {
 		assert('$entityElement instanceof DOMElement');
 
-		return new SimpleSAML_Metadata_SAMLParser($entityElement, NULL, NULL);
+		return new SimpleSAML_Metadata_SAMLParser($entityElement, NULL);
 	}
 
 
