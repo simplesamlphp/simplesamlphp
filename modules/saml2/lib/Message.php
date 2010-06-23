@@ -462,7 +462,7 @@ class sspmod_saml2_Message {
 	 * @return string  The NameID value.
 	 */
 	private static function generateNameIdValue(SimpleSAML_Configuration $srcMetadata,
-		SimpleSAML_Configuration $dstMetadata, array $attributes) {
+		SimpleSAML_Configuration $dstMetadata, array &$state) {
 
 		$attribute = $dstMetadata->getString('simplesaml.nameidattribute', NULL);
 		if ($attribute === NULL) {
@@ -471,10 +471,11 @@ class sspmod_saml2_Message {
 	                       /* generate a stable id */
 	                       return SimpleSAML_Utilities::generateUserIdentifier($srcMetadata->getString( 'entityid' ),
 			               $dstMetadata->getString( 'entityid' ),
-			               $attributes );
+			               $state );
 			}
 		}
 
+		$attributes = $state['Attributes'];
 		if (!array_key_exists($attribute, $attributes)) {
 			SimpleSAML_Logger::error('Unable to add NameID: Missing ' . var_export($attribute, TRUE) .
 				' in the attributes of the user.');
@@ -630,7 +631,7 @@ class sspmod_saml2_Message {
 		} else {
 		        /* this code will end up generating either a fixed assigned id (via nameid.attribute)
 			   or random id if not assigned/configured */
-			$nameIdValue = self::generateNameIdValue($srcMetadata, $dstMetadata, $state['Attributes']);
+			$nameIdValue = self::generateNameIdValue($srcMetadata, $dstMetadata, $state);
 		}
 
 		$a->setNameId(array(

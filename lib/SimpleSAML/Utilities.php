@@ -1106,37 +1106,40 @@ class SimpleSAML_Utilities {
 	 * @param $sppset       Allows to select another metadata set. (to support both saml2 or shib13)
 	 * @return A non-reversible unique identifier for the user.
 	 */
-	public static function generateUserIdentifier($idpEntityId, $spEntityId, $attributes, $idpset = 'saml20-idp-hosted', $spset = 'saml20-sp-remote') {
+	public static function generateUserIdentifier($idpEntityId, $spEntityId, array &$state, $idpset = 'saml20-idp-hosted', $spset = 'saml20-sp-remote') {
 	
 		$metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $metadataHandler->getMetaData($idpEntityId, $idpset);
 		$spMetadata = $metadataHandler->getMetaData($spEntityId, $spset);
 
-		if(array_key_exists('userid.attribute', $spMetadata)) {
-			$attributeName = $spMetadata['userid.attribute'];
-		} elseif(array_key_exists('userid.attribute', $idpMetadata)) {
-			$attributeName = $idpMetadata['userid.attribute'];
+		if (isset($state['UserID'])) {
+			$attributeValue = $state['UserID'];
 		} else {
-			$attributeName = 'eduPersonPrincipalName';
-		}
+			if(array_key_exists('userid.attribute', $spMetadata)) {
+				$attributeName = $spMetadata['userid.attribute'];
+			} elseif(array_key_exists('userid.attribute', $idpMetadata)) {
+				$attributeName = $idpMetadata['userid.attribute'];
+			} else {
+				$attributeName = 'eduPersonPrincipalName';
+			}
 
-		if(!array_key_exists($attributeName, $attributes)) {
-			throw new Exception('Missing attribute "' . $attributeName . '" for user. Cannot' .
-			                    ' generate user id.');
-		}
+			if(!array_key_exists($attributeName, $attributes)) {
+				throw new Exception('Missing attribute "' . $attributeName . '" for user. Cannot' .
+					' generate user id.');
+			}
 
-		$attributeValue = $attributes[$attributeName];
-		if(count($attributeValue) !== 1) {
-			throw new Exception('Attribute "' . $attributeName . '" for user did not contain exactly' .
-			                    ' one value. Cannot generate user id.');
-		}
+			$attributeValue = $attributes[$attributeName];
+			if(count($attributeValue) !== 1) {
+				throw new Exception('Attribute "' . $attributeName . '" for user did not contain exactly' .
+					' one value. Cannot generate user id.');
+			}
 
-		$attributeValue = $attributeValue[0];
-		if(empty($attributeValue)) {
-			throw new Exception('Attribute "' . $attributeName . '" for user was empty. Cannot' .
-			                    ' generate user id.');
+			$attributeValue = $attributeValue[0];
+			if(empty($attributeValue)) {
+				throw new Exception('Attribute "' . $attributeName . '" for user was empty. Cannot' .
+					' generate user id.');
+			}
 		}
-
 
 		$secretSalt = self::getSecretSalt();
 
