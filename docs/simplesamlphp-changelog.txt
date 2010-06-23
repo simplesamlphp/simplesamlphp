@@ -6,6 +6,18 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.6.1
+
+Released 2010-06-??.
+
+### Bugfixes
+
+  * saml:SP: Fix SingleLogoutService endpoint in SSP-format metadata array.
+  * Shib13:IdP: Add urn:mace:shibboleth:1.0 to supported protocols.
+  * Fix SAMLParser::parseElement().
+  * SAML2:IdP: Fix persistent NameID generation.
+  * Fix scoping on IdP discovery page.
+
 
 ## Version 1.6
 
