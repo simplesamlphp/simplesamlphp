@@ -9,7 +9,7 @@
 		"nl": "Uitgelogd",
 		"sl": "Odjavljen",
 		"da": "Du er logget ud",
-		"hr": "Odjavili ste se",
+		"hr": "Odjavljeni ste",
 		"hu": "Sikeres kil\u00e9p\u00e9s",
 		"fi": "Uloskirjautunut",
 		"pt-BR": "Desconectado",
@@ -27,7 +27,7 @@
 		"nl": "U bent uitgelogd. Dank u voor het gebruiken van deze dienst.",
 		"sl": "Odjava je bila uspe\u0161na. Hvala, ker uporabljate to storitev.",
 		"da": "Du er blevet logget ud. Tak for fordi du brugte denne tjeneste.",
-		"hr": "Uspje\u0161no ste odjavljeni.",
+		"hr": "Uspje\u0161no ste se odjavili.",
 		"hu": "Sikeresen kijelentkezett. K\u00f6sz\u00f6nj\u00fck, hogy haszn\u00e1lta a szolg\u00e1ltat\u00e1st.",
 		"fi": "Olet kirjautunut ulos",
 		"pt-BR": "Voc\u00ea foi desconectado. Obrigado por usar este servi\u00e7o.",
@@ -170,7 +170,7 @@
 		"pt": "Saiu com sucesso de %SP%.",
 		"pl": "Zosta\u0142e\u015b pomy\u015blnie wylogowany z %SP%.",
 		"tr": "%SP%'den ba\u015far\u0131yla \u00e7\u0131kt\u0131n\u0131z.",
-		"hr": "Uspje\u0161no ste se odjavili iz %SP%."
+		"hr": "Uspje\u0161no ste odjavljeni iz %SP%."
 	},
 	"also_from": {
 		"no": "Du er ogs\u00e5 logget inn p\u00e5 disse tjenestene:",
@@ -255,7 +255,7 @@
 		"pl": "Jeden lub wi\u0119cej serwis\u00f3w , w kt\u00f3rych jeste\u015b zalogowany <i>nie obs\u0142uguje procesu wylogowania<\/i>. W celu upewnienia si\u0119, \u017ce wszystkie sesje s\u0105 zako\u0144czone, zalecane jest aby\u015b <i>zamkn\u0105\u0142 przegl\u0105dark\u0119<\/i>",
 		"tr": "Giri\u015f yapt\u0131\u011f\u0131n\u0131z bir yada daha fazla servis <i>\u00e7\u0131k\u0131\u015f\u0131 desteklemiyor<\/i>. T\u00fcm oturumlar\u0131n\u0131z\u0131n kapat\u0131ld\u0131\u011f\u0131ndan emin olmak i\u00e7in, <i>taray\u0131c\u0131n\u0131z\u0131 kapatman\u0131z<\/i> \u00f6nerilir.",
 		"fi": "Yksi tai useampi palvelu johon olet kirjautunut <i>ei tue uloskirjautumista<\/i>. Varmistaaksesi, ett\u00e4 kaikki istuntosi sulkeutuvat, olet velvollinen <i>sulkemaan web-selaimsesi<\/i>.",
-		"hr": "Jedan ili vi\u0161e servisa na koje ste prijavljeni <i>ne podr\u017eava odjavljivanje<\/i>. Da biste bili sigurni da ste odjavljeni iz svih aplikacija, preporu\u010damo da <i>zatvorite web preglednik<\/i>."
+		"hr": "Jedan ili vi\u0161e servisa na koje ste prijavljeni <i>ne podr\u017eava odjavljivanje<\/i>. Da biste bili sigurni da su sve va\u0161e sjednice zavr\u0161ene, preporu\u010damo da <i>zatvorite web preglednik<\/i>."
 	},
 	"no": {
 		"no": "Nei",

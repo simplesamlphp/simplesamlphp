@@ -50,7 +50,7 @@
 		"sl": "Uporabni\u0161ko ime",
 		"da": "Brugernavn",
 		"se": "Namahus",
-		"hr": "Identifikator korisnika u ustanovi",
+		"hr": "Identifikator korisnika",
 		"hu": "Felhaszn\u00e1l\u00f3i azonos\u00edt\u00f3",
 		"fi": "uid",
 		"pt-BR": "Identifica\u00e7\u00e3o (UID)",
@@ -229,7 +229,7 @@
 		"sl": "Ime organizacije",
 		"da": "Hjemmeorganisationens kaldenavn",
 		"se": "Organisa&#353;uvdna",
-		"hr": "Naziv mati\u010dne ustanove",
+		"hr": "Naziv ustanove",
 		"hu": "Szervezet neve",
 		"fi": "Organisaation nimi",
 		"pt-BR": "Nome da Organiza\u00e7\u00e3o",
@@ -269,7 +269,7 @@
 		"sl": "Vloga v organizaciji",
 		"da": "Gruppemedlemskab",
 		"se": "Rolla diehto organisa&#353;uvnnas, dehe dihto domenas.",
-		"hr": "Povezanost s ustanovom",
+		"hr": "Povezanost s mati\u010dnom ustanovom",
 		"hu": "Saj\u00e1t int\u00e9zm\u00e9nyhez val\u00f3 viszony",
 		"fi": "Henkil\u00f6n rooli kotiorganisaatiossa",
 		"pt-BR": "Filia\u00e7\u00e3o na organiza\u00e7\u00e3o principal",
@@ -288,7 +288,7 @@
 		"lb": "Persistent anonym ID",
 		"sl": "Trajni anonimni ID",
 		"da": "Pseudonymt bruger-ID",
-		"hr": "Trajni anonimni ID",
+		"hr": "Trajni anonimni identifikator",
 		"hu": "\u00c1lland\u00f3 anonim azonos\u00edt\u00f3",
 		"fi": "Pseudonyymi-identiteetti",
 		"pt-BR": "Apelido persistente ID",
@@ -666,7 +666,7 @@
 		"lb": "Distinguished name (DN) of person's home organization",
 		"sl": "Ime doma\u010de organizacije (DN)",
 		"da": "Din hjemmeorganisations 'distinguished name' (DN)",
-		"hr": "DN korisnikove mati\u010dne ustanove",
+		"hr": "Jedinstveni naziv (DN) korisnikove mati\u010dne ustanove",
 		"hu": "A felhaszn\u00e1l\u00f3 munkahely\u00e9nek azonos\u00edt\u00f3 neve (DN-je)",
 		"fi": "DN-osio organisaation nimest\u00e4",
 		"pt-BR": "Nome distinto (DN) da sua organiza\u00e7\u00e3o principal",
@@ -685,7 +685,7 @@
 		"lb": "Distinguished name (DN) of the person's home organizational unit",
 		"sl": "Ime oddelka doma\u010de organizacije (DN)",
 		"da": "Din organisatoriske enheds 'distinguished name' (DN)",
-		"hr": "DN korisnikove organizacijske jedinice u mati\u010dnoj ustanovi",
+		"hr": "Jedinstveni naziv (DN) korisnikove organizacijske jedinice",
 		"hu": "A felhaszn\u00e1l\u00f3 szervezeti egys\u00e9g azonos\u00edt\u00f3 neve (DN-je)",
 		"fi": "DN-osio organisaatioyksik\u00f6n nimest\u00e4",
 		"pt-BR": "Nome distinto (DN) da sua unidade organizacional principal",
@@ -780,7 +780,7 @@
 		"lb": "Manager",
 		"sl": "Mened\u017eer",
 		"da": "Manager",
-		"hr": "Menad\u017eer",
+		"hr": "Voditelj",
 		"hu": "Manager",
 		"fi": "Manager",
 		"pt-BR": "Administrador",
@@ -849,7 +849,7 @@
 		"nl": "Distinguished name (DN) van de organisatie hoofdafdeling waartoe de persoon behoort",
 		"sl": "Ime (DN) oddelka v doma\u010di organizaciji",
 		"da": "Prim\u00e6r enhed\/institution",
-		"hr": "DN organizacijske jedinice korisnika",
+		"hr": "Jedinstveni naziv (DN) korisnikove primarne organizacijske jedinice",
 		"hu": "A szem\u00e9ly els\u0151dleges szervezeti egys\u00e9g\u00e9nek azonos\u00edt\u00f3 neve (DN-je)",
 		"pt": "DN da unidade org\u00e2nica",
 		"tr": "Ki\u015finin \u00f6ncelikli Kurumsal Birimi'nin belirgin ad\u0131",
@@ -881,7 +881,7 @@
 		"nl": "Organisatie vestiging",
 		"sl": "Lokacija organizacije",
 		"da": "Institutionsted",
-		"hr": "Lokacija na kojoj se ustanova nalazi",
+		"hr": "Mjesto (lokalitet) gdje se ustanova nalazi",
 		"hu": "Szervezet c\u00edme",
 		"fi": "Organisaation sijainti",
 		"pt": "Localiza\u00e7\u00e3o da Organiza\u00e7\u00e3o",
@@ -993,7 +993,7 @@
 		"nl": "Algemene naam van de organisatie",
 		"sl": "Ime (CN) organizacije",
 		"da": "Institutionens kaldenavn",
-		"hr": "Jedinstveni naziv ustanove",
+		"hr": "Naziv ustanove",
 		"hu": "Szervezet neve",
 		"pt": "Nome completo da Organiza\u00e7\u00e3o",
 		"pl": "Nazwa Organizacji",
@@ -1102,7 +1102,7 @@
 		"nl": "Versienummer van de gebruikte norEdu* specificate",
 		"sl": "Uporabljena norEDU* razli\u010dica",
 		"da": "Brugt version af NorEdu* specifikationen",
-		"hr": "Verzija hrEdu imeni\u010dke sheme",
+		"hr": "Verzija aktualne hrEdu* imeni\u010dke sheme",
 		"hu": "Haszn\u00e1latban lev\u0151 norEdu* specifik\u00e1ci\u00f3 verzi\u00f3ja",
 		"pt": "Vers\u00e3o da especifica\u00e7\u00e3o norEdu*",
 		"tr": "Kullan\u0131mdaki norEdu* \u00f6zelliklerinin s\u00fcr\u00fcm numaras\u0131 ",
@@ -1240,7 +1240,7 @@
 		"nl": "Afdeling vestigingsplaats",
 		"sl": "Opis oddelka",
 		"da": "Den Organisatoriske Enheds \"locality\"",
-		"hr": "Lokalitet organizacijske jedinice",
+		"hr": "Mjesto (lokalitet) gdje se organizacijska jedinica nalazi",
 		"pt": "Localidade da Unidade Org\u00e2nica",
 		"tr": "Kurumsal Birim'in yerel ad\u0131",
 		"fr": "Localit\u00e9 de r\u00e9sidence de la section"
@@ -1274,7 +1274,8 @@
 		"pt": "Elementos privados de informa\u00e7\u00e3o",
 		"pl": "Poufne atrybuty",
 		"tr": "\u00d6zel bilgi elemanlar\u0131",
-		"fr": "Elements d'informations priv\u00e9es"
+		"fr": "Elements d'informations priv\u00e9es",
+		"hr": "Zahtjevana razina privatnosti"
 	},
 	"attribute_edupersonorgdn_mail": {
 		"no": "Organisasjonens epost",
@@ -1348,7 +1349,8 @@
 		"da": "M\u00e6rket URI til organisatorisk enheds",
 		"tr": "Kurumsal birime etiketlenmi\u015f URI",
 		"pt": "P\u00e1gina web da Unidade Organizacional",
-		"fr": "URI de la section"
+		"fr": "URI de la section",
+		"hr": "URI adresa organizacijske jedinice"
 	},
 	"attribute_edupersonorgunitdn_postofficebox": {
 		"no": "Organisasjonsenhetens postboks",
@@ -1370,13 +1372,17 @@
 		"nn": "Namn registrert i Folkeregisteret",
 		"sl": "Uradno ime",
 		"sv": "Officiellt (legalt) namn",
-		"fr": "Etat civil"
+		"fr": "Etat civil",
+		"hr": "Slu\u017ebeni naziv",
+		"da": "Officielt navn"
 	},
 	"attribute_edupersonassurance": {
 		"no": "Tillitsniv\u00e5 for autentisering",
 		"nn": "Tillitsniv\u00e5 for autentisering",
 		"sv": "Identitetens tillf\u00f6rlitlighetsprofil",
 		"sl": "Stopnja zanesljivosti",
-		"fr": "Profil d'assertion d'identit\u00e9"
+		"fr": "Profil d'assertion d'identit\u00e9",
+		"hr": "Razina pouzdanosti davatelja elektroni\u010dkih identiteta",
+		"da": "Tillidsniveau for autentifisering"
 	}
 }

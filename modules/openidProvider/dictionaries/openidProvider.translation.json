@@ -5,7 +5,7 @@
 		"sl": "OpenID ponudnik",
 		"pt": "Fornecedor de Identidades OpenID",
 		"sv": "OpenID-leverant\u00f6r",
-		"hr": "Ustanova koja izdaje OpenID identitete",
+		"hr": "Ustanova koja izdaje OpenID elektroni\u010dke identitete",
 		"da": "OpenID udbyder",
 		"fr": "Fournisseur OpenID"
 	},
@@ -139,7 +139,7 @@
 		"es": "Sitios de confianza",
 		"nl": "Trusted Sites",
 		"sl": "Zaupanja vredne strani",
-		"hr": "Web sjedi\u0161ta kojima vjerujete",
+		"hr": "Web stranice kojima vjerujete",
 		"hu": "Megb\u00edzhat\u00f3 oldalak",
 		"pl": "Zaufane strony",
 		"pt": "Sites confi\u00e1veis",
@@ -166,7 +166,7 @@
 		"de": "Keine Site ist vertrauensw\u00fcrdig. Wenn Sie sich auf einer Site authentifizieren, k\u00f6nnen Sie sie dieser List hinzuf\u00fcgen, indem Sie <q>Diese Entscheidung merken<\/q> anw\u00e4hlen.",
 		"sl": "Nobeno spletno mestno ni zaupanja vredno. Med prijavo lahko dodate spletno mesto na ta seznam z izbiro <q>Zapomni si to odlo\u010ditev<\/q>.",
 		"pt": "Lista de sites confi\u00e1veis vazia. Quando se autenticar num site, pode adicion\u00e1-lo a esta lista escolhendo <q>Lembrar esta decis\u00e3o<\/q>.",
-		"hr": "Trenutno ne vjerujete niti jednom web sjedi\u0161tu. Prilikom autentikacije za pristup nekom web sjedi\u0161tu, mo\u017eete ga postaviti na popis web stranica kojima vjerujete odabirom opcije <q>Zapamti ovu odluku<\/q>.",
+		"hr": "Trenutno ne vjerujete niti jednoj web stranici. Prilikom autentikacije za pristup nekoj web stranici mo\u017eete ju postaviti na popis stranica kojima vjerujete odabirom opcije <q>Zapamti ovu odluku<\/q>.",
 		"fr": "Aucun site de confiance. Quand vous vous authentifiez sur un site, vous pouvez d\u00e9cider de l'ajouter \u00e0 cette liste en s\u00e9lectionnant <q>Retenir cette d\u00e9cision<\/q>."
 	},
 	"your_identifier": {
@@ -175,8 +175,9 @@
 		"sl": "Za prijavo z va\u0161im OpenID identifikatorjem uporabite naslednje:",
 		"pt": "Para efectuar a entrada com OpenID, utilize o seguinte identificador:",
 		"sv": "F\u00f6r att logga in med din OpenID-leverant\u00f6r anv\u00e4nd f\u00f6ljande identifierare:",
-		"hr": "Da biste se prijavili va\u0161im OpenID korisni\u010dkim ra\u010dunom, koristite sljede\u0107i identifikator:",
-		"fr": "Pour vous connecter avec votre identifiant OpenID, utilisez l'identifiant suivant:"
+		"hr": "Da biste se prijavili s va\u0161im OpenID elektroni\u010dkim identitetom, koristite sljede\u0107i identifikator:",
+		"fr": "Pour vous connecter avec votre identifiant OpenID, utilisez l'identifiant suivant:",
+		"da": "For at logge ind med OpenID, brug f\u00f8lgende ID:"
 	},
 	"howto_delegate": {
 		"no": "Du kan ogs\u00e5 delegere en annen OpenID til \u00e5 benytte denne OpenID tilbyderen. For \u00e5 gj\u00f8re det, m\u00e5 du legge til f\u00f8lgende <code>&lt;head&gt;<\/code>-element p\u00e5 websiden til denne OpenID-en du vil delegere.",
@@ -184,7 +185,8 @@
 		"sl": "Lahko dolo\u010dite drug identifikator za prijavo na tem OpenID ponudniku. To storite tako da, naslednje dodate v element <code>&lt;head&gt;<\/code> v spletne strani tega identifikatorja.",
 		"pt": "Pode tamb\u00e9m delegar este fornecedor de Identidades OpenID noutro identificador. Para o fazer, necessita de adicionar o seguinte texto no elemento <code>&lt;head&gt;<\/code> da p\u00e1gina web desse novo identificador.",
 		"sv": "Du kan ocks\u00e5 delegera till en annan identifierare att anv\u00e4nda denna OpenID-leverant\u00f6r. F\u00f6r att g\u00f6ra detta m\u00e5ste du l\u00e4gga till f\u00f6ljande till <code>&lt;head&gt;<\/code>-elementet p\u00e5 webbsidan f\u00f6r den identifieraren:",
-		"hr": "Ovom davatelju OpenID identiteta mo\u017eete dodijeliti i druga\u010diji identifikator. Da biste to napravili, morate dodati sljede\u0107i sadr\u017eaj u <code>&lt;head&gt;<\/code> element zaglavlja web stranice tog identifikatora:",
-		"fr": "Vous pouvez aussi utiliser un identifiant d\u00e9l\u00e9gu\u00e9 diff\u00e9rent pour ce fournisseur OpenID. Pour ce faire, ajoutez l'\u00e9l\u00e9ment <code>&lt;head&gt;<\/code> sur la page web de l'identifiant:"
+		"hr": "Ovom davatelju OpenID elektroni\u010dkih identiteta mo\u017eete dodijeliti i druga\u010diji identifikator. Da biste to napravili, morate dodati sljede\u0107i sadr\u017eaj u <code>&lt;head&gt;<\/code> element zaglavlja web stranice tog identifikatora:",
+		"fr": "Vous pouvez aussi utiliser un identifiant d\u00e9l\u00e9gu\u00e9 diff\u00e9rent pour ce fournisseur OpenID. Pour ce faire, ajoutez l'\u00e9l\u00e9ment <code>&lt;head&gt;<\/code> sur la page web de l'identifiant:",
+		"da": "Du kan ogs\u00e5 bruge et andet ID til denne OpenID udbyder. For at g\u00f8re dette, skal du tilf\u00f8je f\u00f8lgende til <code>&lt;head&gt;<\/code>-element p\u00e5 websiden for dette ID:"
 	}
 }

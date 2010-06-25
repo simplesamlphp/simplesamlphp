@@ -10,7 +10,7 @@
 		"sl": "Izberite IdP doma\u010de organizacije",
 		"da": "V\u00e6lg institution (identitetsudbyder)",
 		"se": "V\u00e1lasszon szem\u00e9lyazonoss\u00e1g-szolg\u00e1ltat\u00f3t (IdP)",
-		"hr": "Odaberite va\u0161eg davatelja elektroni\u010dkih identiteta",
+		"hr": "Odaberite va\u0161 autentikacijski servis",
 		"hu": "V\u00e1lasszon szem\u00e9lyazonoss\u00e1g-szolg\u00e1ltat\u00f3t (IdP)",
 		"fi": "Valitse identiteettill\u00e4hteeis",
 		"pt-BR": "Selecione seu provedor de identidade",
@@ -29,7 +29,7 @@
 		"sl": "Izberite IdP, na katerem se boste avtenticirali:",
 		"da": "V\u00e6lg institutionen (identitetsudbyderen) hvor du vil logge ind",
 		"se": "K\u00e9rj\u00fck, v\u00e1lasszon szem\u00e9lyazonoss\u00e1g szolg\u00e1ltat\u00f3t (IdP), amely \u00d6nt azonos\u00edtani tudja!",
-		"hr": "Molimo odaberite davatelja elektroni\u010dkih identiteta kod kojeg se \u017eelite autenticirati:",
+		"hr": "Molimo odaberite autentikacijski servis preko kojeg se \u017eelite autenticirati:",
 		"hu": "K\u00e9rj\u00fck, v\u00e1lassza ki azt a szem\u00e9lyazonoss\u00e1g-szolg\u00e1ltat\u00f3t (IdP), ahol azonos\u00edtani k\u00edv\u00e1nja mag\u00e1t:",
 		"fi": "Valitse identiteettil\u00e4hteesi jossa haluat kirjautua",
 		"pt-BR": "Por favor selecione o provedor de identidade ao qual deseja se autenticar",
@@ -88,7 +88,8 @@
 		"pt": "Escolha preferida",
 		"pl": "Preferowany wyb\u00f3r",
 		"tr": "[Tercih edilen se\u00e7enek]",
-		"fr": "[Choix pr\u00e9f\u00e9r\u00e9]"
+		"fr": "[Choix pr\u00e9f\u00e9r\u00e9]",
+		"hr": "[Prvenstveni odabir]"
 	},
 	"previous_auth": {
 		"no": "Du har tidligere valg \u00e5 autentisere deg hos",
@@ -100,7 +101,8 @@
 		"de": "Sie haben sich zu einem fr\u00fcheren Zeitpunkt entschieden, sich zu authentifizieren bei ",
 		"fi": "Olet aikaisemmin valinnut identiteettil\u00e4hteeksesi",
 		"pt": "Escolheu autenticar-se anteriormente em",
-		"fr": "Pr\u00e9c\u00e9demment, vous aviez choisi de vous authentifier sur"
+		"fr": "Pr\u00e9c\u00e9demment, vous aviez choisi de vous authentifier sur",
+		"hr": "Prethodno ste odabrali autentikaciju kroz"
 	},
 	"login_at": {
 		"no": "Logg inn hos",
@@ -112,6 +114,7 @@
 		"de": "Login bei",
 		"fi": "Kirjaudu",
 		"pt": "Entrar em",
-		"fr": "S'authentifier sur"
+		"fr": "S'authentifier sur",
+		"hr": "Prijavi se kroz"
 	}
 }
