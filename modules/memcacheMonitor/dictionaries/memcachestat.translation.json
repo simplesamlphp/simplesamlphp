@@ -65,7 +65,7 @@
 		"sl": "Trenutno \u0161tevilo elementov",
 		"pt": "N\u00famero de \u00edtems actual",
 		"sv": "Aktuell antal",
-		"hr": "Trenutni broj zapisa",
+		"hr": "Trenutni broj elemenata",
 		"da": "Aktuelt antal enheder",
 		"fr": "El\u00e9ment utilis\u00e9s actuellement"
 	},
@@ -75,7 +75,7 @@
 		"sl": "Vseh elementov skupaj",
 		"pt": "Total de \u00edtems",
 		"sv": "Totalt antal anv\u00e4nda poster",
-		"hr": "Ukupno zapisa od po\u010detka",
+		"hr": "Ukupno elemenata od po\u010detka",
 		"da": "Total antal enheder",
 		"fr": "Total d'\u00e9l\u00e9ments depuis le d\u00e9marrage"
 	},
@@ -165,7 +165,7 @@
 		"sl": "Prene\u0161enih bajtov v smeri stre\u017enika",
 		"pt": "Bytes de entrada no servidor",
 		"sv": "Mottagna bytes till servern",
-		"hr": "Pro\u010ditanih bajtova od strane poslu\u017eitelja",
+		"hr": "Bajtova poslanih poslu\u017eitelju",
 		"da": "Bytes in i serveren",
 		"fr": "Octets sur le serveur"
 	},
