@@ -8,16 +8,16 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.6.1
 
-Released 2010-06-??.
-
-### Bugfixes
+Released 2010-06-25.
 
   * saml:SP: Fix SingleLogoutService endpoint in SSP-format metadata array.
   * Shib13:IdP: Add urn:mace:shibboleth:1.0 to supported protocols.
   * Fix SAMLParser::parseElement().
   * SAML2:IdP: Fix persistent NameID generation.
   * Fix scoping on IdP discovery page.
-
+  * metaedit: Fix endpoints parsed from XML.
+  * Dictionary update.
+  * Documentation fixes.
 
 ## Version 1.6
 
