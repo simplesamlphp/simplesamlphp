@@ -16,6 +16,14 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 
 
 	/**
+	 * Whether the 'attributes' option in the metadata takes precedence.
+	 *
+	 * @var bool
+	 */
+	private $isDefault = FALSE;
+
+
+	/**
 	 * Initialize this filter.
 	 *
 	 * @param array $config  Configuration information about this filter.
@@ -25,16 +33,39 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 		parent::__construct($config, $reserved);
 
 		assert('is_array($config)');
-		
 
-		foreach($config as $name) {
-			if(!is_string($name)) {
-				throw new Exception('Invalid attribute name: ' . var_export($name, TRUE));
+		foreach($config as $index => $value) {
+			if ($index === 'default') {
+				$this->isDefault = (bool)$value;
+			} elseif (is_int($index)) {
+				if(!is_string($value)) {
+					throw new SimpleSAML_Error_Exception('AttributeLimit: Invalid attribute name: ' . var_export($value, TRUE));
+				}
+				$this->allowedAttributes[] = $value;
+			} else {
+				throw new SimpleSAML_Error_Exception('AttributeLimit: Invalid option: ' . var_export($index, TRUE));
 			}
-			$this->allowedAttributes[] = $name;
 		}
-		
-		
+	}
+
+
+	/**
+	 * Get list of allowed from the SP/IdP config.
+	 *
+	 * @param array &$request  The current request.
+	 * @return array|NULL  Array with attribute names, or NULL if no limit is placed.
+	 */
+	private static function getSPIdPAllowed(array &$request) {
+
+		if (array_key_exists('attributes', $request['Destination'])) {
+			/* SP Config. */
+			return $request['Destination']['attributes'];
+		}
+		if (array_key_exists('attributes', $request['Source'])) {
+			/* IdP Config. */
+			return $request['Source']['attributes'];
+		}
+		return NULL;
 	}
 
 
@@ -49,29 +80,24 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 		assert('is_array($request)');
 		assert('array_key_exists("Attributes", $request)');
 
-		if (empty($this->allowedAttributes)) {
-			if (array_key_exists('attributes', $request['Source'])) {
-				if (array_key_exists('attributes', $request['Destination'])) {
-					$this->allowedAttributes = array_intersect($request['Source']['attributes'], $request['Destination']['attributes']);
-				} else {
-					$this->allowedAttributes = $request['Source']['attributes'];
-				}
-			} elseif (array_key_exists('attributes', $request['Destination'])) {
-				$this->allowedAttributes = $request['Destination']['attributes'];
-			} else {
-				/*
-				 * When no list of attributes is provided in filter config, and no
-				 * attributes is listed in the destionation metadata, no filtering
-				 * will be performed. Default behaviour is letting all attributes through
-				 */
-				return;
+		if ($this->isDefault) {
+			$allowedAttributes = self::getSPIdPAllowed($request);
+			if ($allowedAttributes === NULL) {
+				$allowedAttributes = $this->allowedAttributes;
+			}
+		} elseif (!empty($this->allowedAttributes)) {
+			$allowedAttributes = $this->allowedAttributes;
+		} else {
+			$allowedAttributes = self::getSPIdPAllowed($request);
+			if ($allowedAttributes === NULL) {
+				return; /* No limit on attributes. */
 			}
 		}
-		
+
 		$attributes =& $request['Attributes'];
-		
+
 		foreach($attributes as $name => $values) {
-			if(!in_array($name, $this->allowedAttributes, TRUE)) {
+			if(!in_array($name, $allowedAttributes, TRUE)) {
 				unset($attributes[$name]);
 			}
 		}

@@ -19,6 +19,25 @@ Limit to the `cn` and `mail` attribute:
         ),
     ),
 
+Allow `eduPersonTargetedID` and `eduPersonAffiliation` by default, but allow metadata to override.
+
+    'authproc' => array(
+        50 => array(
+            'class' => 'core:AttributeLimit',
+	    'default' => TRUE,
+            'eduPersonTargetedID', 'eduPersonAffiliation',
+        ),
+    ),
+
+Don't allow any attributes by default, but allow metadata to override.
+
+    'authproc' => array(
+        50 => array(
+            'class' => 'core:AttributeLimit',
+	    'default' => TRUE,
+        ),
+    ),
+
 An attribute list in metadata:
 
     'authproc' => array(
