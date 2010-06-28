@@ -23,11 +23,11 @@ function portal_hook_htmlinject(&$hookinfo) {
 		$allLinks = array_merge($allLinks, $ls);
 	}
 
-	$portal = new sspmod_portal_Portal($allLinks,
-		$portalConfig->getValue('pagesets', array(
-			array('frontpage_welcome', 'frontpage_config', 'frontpage_auth', 'frontpage_federation'),
-		)) 
-	);
+	$pagesets = $portalConfig->getValue('pagesets', array(
+		array('frontpage_welcome', 'frontpage_config', 'frontpage_auth', 'frontpage_federation'),
+	));
+	SimpleSAML_Module::callHooks('portalextras', $pagesets);
+	$portal = new sspmod_portal_Portal($allLinks, $pagesets);
 	
 	if (!$portal->isPortalized($hookinfo['page'])) return;
 
