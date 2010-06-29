@@ -48,7 +48,7 @@ $idpMetadata = $source->getIdPmetadata($idp);
 
 try {
 	$assertion = sspmod_saml_Message::processResponse($spMetadata, $idpMetadata, $response);
-} catch (sspmod_saml2_Error $e) {
+} catch (sspmod_saml_Error $e) {
 	/* The status of the response wasn't "success". */
 	$e = $e->toException();
 	SimpleSAML_Auth_State::throwException($state, $e);

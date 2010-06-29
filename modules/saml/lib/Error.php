@@ -6,7 +6,7 @@
  * @package simpleSAMLphp
  * @version $Id$
  */
-class sspmod_saml2_Error extends SimpleSAML_Error_Exception {
+class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 
 	/**
 	 * The top-level status code.
@@ -97,11 +97,11 @@ class sspmod_saml2_Error extends SimpleSAML_Error_Exception {
 	 * status codes from an arbitrary exception.
 	 *
 	 * @param Exception $exception  The original exception.
-	 * @return sspmod_saml2_Error  The new exception.
+	 * @return sspmod_saml_Error  The new exception.
 	 */
 	public static function fromException(Exception $exception) {
 
-		if ($exception instanceof sspmod_saml2_Error) {
+		if ($exception instanceof sspmod_saml_Error) {
 			/* Return the original exception unchanged. */
 			return $exception;
 
@@ -140,7 +140,7 @@ class sspmod_saml2_Error extends SimpleSAML_Error_Exception {
 	 * If it is unable to create a more specific exception, it will return the current
 	 * object.
 	 *
-	 * @see sspmod_saml2_Error::fromException()
+	 * @see sspmod_saml_Error::fromException()
 	 *
 	 * @return SimpleSAML_Error_Exception  An exception representing this error.
 	 */

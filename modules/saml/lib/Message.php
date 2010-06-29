@@ -341,15 +341,15 @@ class sspmod_saml_Message {
 
 
 	/**
-	 * Retrieve the status code of a response as a sspmod_saml2_error.
+	 * Retrieve the status code of a response as a sspmod_saml_Error.
 	 *
 	 * @param SAML2_StatusResponse $response  The response.
-	 * @return sspmod_saml2_Error  The error.
+	 * @return sspmod_saml_Error  The error.
 	 */
 	public static function getResponseError(SAML2_StatusResponse $response) {
 
 		$status = $response->getStatus();
-		return new sspmod_saml2_Error($status['Code'], $status['SubCode'], $status['Message']);
+		return new sspmod_saml_Error($status['Code'], $status['SubCode'], $status['Message']);
 	}
 
 
@@ -699,7 +699,7 @@ class sspmod_saml_Message {
 	/**
 	 * Process a response message.
 	 *
-	 * If the response is an error response, we will throw a sspmod_saml2_Error
+	 * If the response is an error response, we will throw a sspmod_saml_Error
 	 * exception with the error.
 	 *
 	 * @param SimpleSAML_Configuration $spMetadata  The metadata of the service provider.

@@ -116,7 +116,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		$idpMetadata = $idp->getConfig();
 
-		$error = sspmod_saml2_Error::fromException($exception);
+		$error = sspmod_saml_Error::fromException($exception);
 
 		SimpleSAML_Logger::warning('Returning error to sp: ' . var_export($spEntityId, TRUE));
 		$error->logWarning();
