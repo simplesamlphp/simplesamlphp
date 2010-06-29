@@ -34,7 +34,7 @@ $spEntityId = $metadata->getMetaDataCurrentEntityId('saml20-sp-hosted');
 $idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-remote');
 $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-hosted');
 
-sspmod_saml2_Message::validateMessage($idpMetadata, $spMetadata, $message);
+sspmod_saml_Message::validateMessage($idpMetadata, $spMetadata, $message);
 
 if ($message instanceof SAML2_LogoutRequest) {
 
@@ -47,7 +47,7 @@ if ($message instanceof SAML2_LogoutRequest) {
 		SimpleSAML_Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
 
 		/* Create response. */
-		$lr = sspmod_saml2_Message::buildLogoutResponse($spMetadata, $idpMetadata);
+		$lr = sspmod_saml_Message::buildLogoutResponse($spMetadata, $idpMetadata);
 		$lr->setRelayState($message->getRelayState());
 		$lr->setInResponseTo($message->getId());
 
@@ -55,7 +55,7 @@ if ($message instanceof SAML2_LogoutRequest) {
 
 		/* Send response. */
 		$binding = new SAML2_HTTPRedirect();
-		$binding->setDestination(sspmod_SAML2_Message::getDebugDestination());
+		$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 		$binding->send($lr);
 	} catch (Exception $exception) {
 		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTREQUEST', $exception);

@@ -72,7 +72,7 @@ $assertion->setInResponseTo($query->getId());
 $assertion->setValidAudiences(array($spEntityId));
 $assertion->setAttributes($returnAttributes);
 $assertion->setAttributeNameFormat($attributeNameFormat);
-sspmod_saml2_Message::addSign($idpMetadata, $spMetadata, $assertion);
+sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $assertion);
 
 $response = new SAML2_Response();
 $response->setRelayState($query->getRelayState());
@@ -80,8 +80,8 @@ $response->setDestination($endpoint);
 $response->setIssuer($idpEntityId);
 $response->setInResponseTo($query->getId());
 $response->setAssertions(array($assertion));
-sspmod_saml2_Message::addSign($idpMetadata, $spMetadata, $response);
+sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $response);
 
 $binding = new SAML2_HTTPPost();
-$binding->setDestination(sspmod_saml2_Message::getDebugDestination());
+$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 $binding->send($response);

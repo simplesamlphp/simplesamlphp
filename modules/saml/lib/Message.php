@@ -8,7 +8,7 @@
  * @package simpleSAMLphp
  * @version $Id$
  */
-class sspmod_saml2_Message {
+class sspmod_saml_Message {
 
 	/**
 	 * Retrieve the destination we should send the message to.

@@ -40,7 +40,7 @@ try {
 
 	$nameId = $session->getNameId();
 
-	$lr = sspmod_saml2_Message::buildLogoutRequest($spMetadata, $idpMetadata);
+	$lr = sspmod_saml_Message::buildLogoutRequest($spMetadata, $idpMetadata);
 	$lr->setNameId($nameId);
 	$lr->setSessionIndex($session->getSessionIndex());
 
@@ -52,7 +52,7 @@ try {
 	SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: SP (' . $spEntityId . ') is sending logout request to IdP (' . $idpEntityId . ')');
 
 	$b = new SAML2_HTTPRedirect();
-	$b->setDestination(sspmod_SAML2_Message::getDebugDestination());
+	$b->setDestination(sspmod_saml_Message::getDebugDestination());
 	$b->send($lr);
 
 

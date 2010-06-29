@@ -45,7 +45,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		$idpMetadata = $idp->getConfig();
 
-		$assertion = sspmod_saml2_Message::buildAssertion($idpMetadata, $spMetadata, $state);
+		$assertion = sspmod_saml_Message::buildAssertion($idpMetadata, $spMetadata, $state);
 		$assertion->setInResponseTo($requestId);
 		
 		if (isset($state['saml:AuthenticatingAuthority'])) {
@@ -63,10 +63,10 @@ class sspmod_saml_IdP_SAML2 {
 		);
 
 		/* Maybe encrypt the assertion. */
-		$assertion = sspmod_saml2_Message::encryptAssertion($idpMetadata, $spMetadata, $assertion);
+		$assertion = sspmod_saml_Message::encryptAssertion($idpMetadata, $spMetadata, $assertion);
 
 		/* Create the response. */
-		$ar = sspmod_saml2_Message::buildResponse($idpMetadata, $spMetadata, $consumerURL);
+		$ar = sspmod_saml_Message::buildResponse($idpMetadata, $spMetadata, $consumerURL);
 		$ar->setInResponseTo($requestId);
 		$ar->setRelayState($relayState);
 		$ar->setAssertions(array($assertion));
@@ -76,7 +76,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		/* Send the response. */
 		$binding = SAML2_Binding::getBinding($protocolBinding);
-		$binding->setDestination(sspmod_SAML2_Message::getDebugDestination());
+		$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 		$binding->send($ar);
 	}
 
@@ -121,7 +121,7 @@ class sspmod_saml_IdP_SAML2 {
 		SimpleSAML_Logger::warning('Returning error to sp: ' . var_export($spEntityId, TRUE));
 		$error->logWarning();
 
-		$ar = sspmod_saml2_Message::buildResponse($idpMetadata, $spMetadata, $consumerURL);
+		$ar = sspmod_saml_Message::buildResponse($idpMetadata, $spMetadata, $consumerURL);
 		$ar->setInResponseTo($requestId);
 		$ar->setRelayState($relayState);
 
@@ -132,7 +132,7 @@ class sspmod_saml_IdP_SAML2 {
 		));
 
 		$binding = SAML2_Binding::getBinding($protocolBinding);
-		$binding->setDestination(sspmod_SAML2_Message::getDebugDestination());
+		$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 		$binding->send($ar);
 	}
 
@@ -246,7 +246,7 @@ class sspmod_saml_IdP_SAML2 {
 			}
 			$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-			sspmod_saml2_Message::validateMessage($spMetadata, $idpMetadata, $request);
+			sspmod_saml_Message::validateMessage($spMetadata, $idpMetadata, $request);
 
 			$relayState = $request->getRelayState();
 
@@ -360,7 +360,7 @@ class sspmod_saml_IdP_SAML2 {
 		$idpMetadata = $idp->getConfig();
 		$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-		$lr = sspmod_saml2_Message::buildLogoutResponse($idpMetadata, $spMetadata);
+		$lr = sspmod_saml_Message::buildLogoutResponse($idpMetadata, $spMetadata);
 		$lr->setInResponseTo($state['saml:RequestId']);
 		$lr->setRelayState($state['saml:RelayState']);
 
@@ -375,7 +375,7 @@ class sspmod_saml_IdP_SAML2 {
 		}
 
 		$binding = new SAML2_HTTPRedirect();
-		$binding->setDestination(sspmod_SAML2_Message::getDebugDestination());
+		$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 		$binding->send($lr);
 	}
 
@@ -400,7 +400,7 @@ class sspmod_saml_IdP_SAML2 {
 		$idpMetadata = $idp->getConfig();
 		$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-		sspmod_saml2_Message::validateMessage($spMetadata, $idpMetadata, $message);
+		sspmod_saml_Message::validateMessage($spMetadata, $idpMetadata, $message);
 
 		if ($message instanceof SAML2_LogoutResponse) {
 
@@ -409,7 +409,7 @@ class sspmod_saml_IdP_SAML2 {
 			$relayState = $message->getRelayState();
 
 			if (!$message->isSuccess()) {
-				$logoutError = sspmod_saml2_Message::getResponseError($message);
+				$logoutError = sspmod_saml_Message::getResponseError($message);
 				SimpleSAML_Logger::warning('Unsuccessful logout. Status was: ' . $logoutError);
 			} else {
 				$logoutError = NULL;
@@ -460,7 +460,7 @@ class sspmod_saml_IdP_SAML2 {
 		$idpMetadata = $idp->getConfig();
 		$spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
-		$lr = sspmod_saml2_Message::buildLogoutRequest($idpMetadata, $spMetadata);
+		$lr = sspmod_saml_Message::buildLogoutRequest($idpMetadata, $spMetadata);
 		$lr->setRelayState($relayState);
 		$lr->setSessionIndex($association['saml:SessionIndex']);
 		$lr->setNameId($association['saml:NameID']);

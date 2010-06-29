@@ -35,7 +35,7 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $idpMetadata = $source->getIdPMetadata($idpEntityId);
 $spMetadata = $source->getMetadata();
 
-sspmod_saml2_Message::validateMessage($idpMetadata, $spMetadata, $message);
+sspmod_saml_Message::validateMessage($idpMetadata, $spMetadata, $message);
 
 if ($message instanceof SAML2_LogoutResponse) {
 
@@ -46,7 +46,7 @@ if ($message instanceof SAML2_LogoutResponse) {
 	}
 
 	if (!$message->isSuccess()) {
-		SimpleSAML_Logger::warning('Unsuccessful logout. Status was: ' . sspmod_saml2_Message::getResponseError($message));
+		SimpleSAML_Logger::warning('Unsuccessful logout. Status was: ' . sspmod_saml_Message::getResponseError($message));
 	}
 
 	$state = SimpleSAML_Auth_State::loadState($relayState, 'saml:slosent');
@@ -61,12 +61,12 @@ if ($message instanceof SAML2_LogoutResponse) {
 	$source->handleLogout($idpEntityId);
 
 	/* Create an send response. */
-	$lr = sspmod_saml2_Message::buildLogoutResponse($spMetadata, $idpMetadata);
+	$lr = sspmod_saml_Message::buildLogoutResponse($spMetadata, $idpMetadata);
 	$lr->setRelayState($message->getRelayState());
 	$lr->setInResponseTo($message->getId());
 
 	$binding = new SAML2_HTTPRedirect();
-	$binding->setDestination(sspmod_SAML2_Message::getDebugDestination());
+	$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 	$binding->send($lr);
 } else {
 	throw new SimpleSAML_Error_BadRequest('Unknown message received on logout endpoint: ' . get_class($message));

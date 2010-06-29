@@ -104,7 +104,7 @@ try {
 
 
 	try {
-		$assertion = sspmod_saml2_Message::processResponse($spMetadata, $idpMetadata, $response);
+		$assertion = sspmod_saml_Message::processResponse($spMetadata, $idpMetadata, $response);
 	} catch (sspmod_saml2_Error $e) {
 		/* The status of the response wasn't "success". */
 

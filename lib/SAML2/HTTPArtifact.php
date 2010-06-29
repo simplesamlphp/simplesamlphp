@@ -98,7 +98,7 @@ class SAML2_HTTPArtifact extends SAML2_Binding {
 		$ar->setDestination($endpoint['Location']);
 
 		/* Sign the request */
-		sspmod_saml2_Message::addSign($this->spMetadata, $idpmetadata, $ar); // Shoaib - moved from the SOAPClient.
+		sspmod_saml_Message::addSign($this->spMetadata, $idpmetadata, $ar); // Shoaib - moved from the SOAPClient.
 
 		$soap = new SAML2_SOAPClient();
 

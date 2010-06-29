@@ -132,7 +132,7 @@ try {
 	$spMetadata = $metadata->getMetaDataConfig($spentityid, 'saml20-sp-hosted');
 	$idpMetadata = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-remote');
 
-	$ar = sspmod_saml2_Message::buildAuthnRequest($spMetadata, $idpMetadata);
+	$ar = sspmod_saml_Message::buildAuthnRequest($spMetadata, $idpMetadata);
 
 	$assertionConsumerServiceURL = $metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted');
 	$ar->setAssertionConsumerServiceURL($assertionConsumerServiceURL);
@@ -165,7 +165,7 @@ try {
 	$session->setData('SAML2:SP:SSO:Info', $ar->getId(), $info);
 
 	$b = new SAML2_HTTPRedirect();
-	$b->setDestination(sspmod_SAML2_Message::getDebugDestination());
+	$b->setDestination(sspmod_saml_Message::getDebugDestination());
 	$b->send($ar);
 
 } catch(Exception $exception) {
