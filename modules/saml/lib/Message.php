@@ -26,7 +26,7 @@ class sspmod_saml_Message {
 			return NULL;
 		}
 
-		return SimpleSAML_Module::getModuleURL('saml2/debug.php');
+		return SimpleSAML_Module::getModuleURL('saml/debug.php');
 	}
 
 
