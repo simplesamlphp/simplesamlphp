@@ -75,7 +75,7 @@ This example makes three NameIDs available:
         ),
         3 => array(
             'class' => 'saml:AttributeNameID',
-            'attribute' => 'eduPersonPrincipalName',
+            'attribute' => 'mail',
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
         ),
     ),
