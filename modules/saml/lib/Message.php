@@ -468,15 +468,22 @@ class sspmod_saml_Message {
 		if ($attribute === NULL) {
 			$attribute = $srcMetadata->getString('simplesaml.nameidattribute', NULL);
 			if ($attribute === NULL) {
-				/* generate a stable id */
-				try {
-					return SimpleSAML_Utilities::generateUserIdentifier($srcMetadata->getString( 'entityid' ),
-						$dstMetadata->getString( 'entityid' ),
-						$state);
-				} catch (Exception $e) {
-					SimpleSAML_Logger::error('Unable to generate NameID: ' . $e->getMessage());
-					return NULL;
+				if (!isset($state['UserID'])) {
+					SimpleSAML_Logger::error('Unable to generate NameID. Check the userid.attribute option.');
 				}
+				$attributeValue = $state['UserID'];
+				$idpEntityId = $srcMetadata->getString('entityid');
+				$spEntityId = $dstMetadata->getString('entityid');
+
+				$secretSalt = SimpleSAML_Utilities::getSecretSalt();
+
+				$uidData = 'uidhashbase' . $secretSalt;
+				$uidData .= strlen($idpEntityId) . ':' . $idpEntityId;
+				$uidData .= strlen($spEntityId) . ':' . $spEntityId;
+				$uidData .= strlen($attributeValue) . ':' . $attributeValue;
+				$uidData .= $secretSalt;
+
+				return hash('sha1', $uidData);
 			}
 		}
 

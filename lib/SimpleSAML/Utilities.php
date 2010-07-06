@@ -1093,39 +1093,6 @@ class SimpleSAML_Utilities {
 	}
 
 
-	/**
-	 * This function is used to generate a non-revesible unique identifier for a user.
-	 * The identifier should be persistent (unchanging) for a given SP-IdP federation.
-	 * The identifier can be shared between several different SPs connected to the same IdP, or it
-	 * can be unique for each SP.
-	 *
-	 * @param $idpEntityId  The entity id of the IdP.
-	 * @param $spEntityId   The entity id of the SP.
-	 * @param $attributes   The attributes of the user.
-	 * @param $idpset       Allows to select another metadata set. (to support both saml2 or shib13)
-	 * @param $sppset       Allows to select another metadata set. (to support both saml2 or shib13)
-	 * @return A non-reversible unique identifier for the user.
-	 */
-	public static function generateUserIdentifier($idpEntityId, $spEntityId, array &$state, $idpset = 'saml20-idp-hosted', $spset = 'saml20-sp-remote') {
-
-		if (!isset($state['UserID'])) {
-			throw new SimpleSAML_Error_Exception('Missing UserID. Please set the userid.attribute metadata option.');
-		}
-		$attributeValue = $state['UserID'];
-
-		$secretSalt = self::getSecretSalt();
-
-		$uidData = 'uidhashbase' . $secretSalt;
-		$uidData .= strlen($idpEntityId) . ':' . $idpEntityId;
-		$uidData .= strlen($spEntityId) . ':' . $spEntityId;
-		$uidData .= strlen($attributeValue) . ':' . $attributeValue;
-		$uidData .= $secretSalt;
-
-		$userid = hash('sha1', $uidData);
-
-		return $userid;
-	}
-
 	public static function generateRandomBytesMTrand($length) {
 	
 		/* Use mt_rand to generate $length random bytes. */
