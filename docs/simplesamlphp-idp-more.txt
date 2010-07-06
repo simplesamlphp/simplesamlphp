@@ -52,3 +52,12 @@ When the IdP-first flow is used an extra parameter is needed in the `saml20-sp-h
 
 	'RelayState' => '/',
 
+
+IdP-initiated logout
+--------------------
+
+IdP-initiated logout can be initiated by visiting the URL:
+
+    https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php?ReturnTo=<URL to return to after logout>
+
+It will send a logout request to each SP, and afterwards return the user to the URL specified in the `ReturnTo` parameter.
