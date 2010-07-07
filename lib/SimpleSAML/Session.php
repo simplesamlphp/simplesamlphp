@@ -163,6 +163,12 @@ class SimpleSAML_Session {
 		try {
 			self::$instance = self::loadSession();
 		} catch (Exception $e) {
+			if ($e instanceof SimpleSAML_Error_Exception) {
+				SimpleSAML_Logger::error('Error loading session:');
+				$e->logError();
+			} else {
+				SimpleSAML_Logger::error('Error loading session: ' . $e->getMessage());
+			}
 			/* For some reason, we were unable to initialize this session. Use a transient session instead. */
 			self::useTransientSession();
 			return self::$instance;
