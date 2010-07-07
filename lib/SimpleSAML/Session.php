@@ -105,6 +105,16 @@ class SimpleSAML_Session {
 
 
 	/**
+	 * The authentication token.
+	 *
+	 * This token is used to prevent session fixation attacks.
+	 *
+	 * @var string|NULL
+	 */
+	private $authToken;
+
+
+	/**
 	 * private constructor restricts instantiaton to getInstance()
 	 */
 	private function __construct($transient = FALSE) {
@@ -360,6 +370,10 @@ class SimpleSAML_Session {
 		$this->authState = $authState;
 
 		$this->sessionstarted = time();
+
+		$this->authToken = SimpleSAML_Utilities::generateID();
+		$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
+		$sessionHandler->setCookie('SimpleSAMLAuthToken', $this->authToken);
 	}
 
 
@@ -783,6 +797,17 @@ class SimpleSAML_Session {
 		if(!($sessionData instanceof self)) {
 			SimpleSAML_Logger::warning('Retrieved and deserialized session data was not a session.');
 			return NULL;
+		}
+
+		if ($sessionData->authToken !== NULL) {
+			if (!isset($_COOKIE['SimpleSAMLAuthToken'])) {
+				SimpleSAML_Logger::warning('Missing AuthToken cookie.');
+				return NULL;
+			}
+			if ($_COOKIE['SimpleSAMLAuthToken'] !== $sessionData->authToken) {
+				SimpleSAML_Logger::warning('Invalid AuthToken cookie.');
+				return NULL;
+			}
 		}
 
 		return $sessionData;
