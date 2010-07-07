@@ -129,6 +129,53 @@ abstract class SimpleSAML_SessionHandler {
 		return TRUE;
 	}
 
-}
 
-?>
+	/**
+	 * Get the cookie parameters that should be used for session cookies.
+	 *
+	 * @return array
+	 * @link http://www.php.net/manual/en/function.session-get-cookie-params.php
+	 */
+	public function getCookieParams() {
+
+		$config = SimpleSAML_Configuration::getInstance();
+
+		return array(
+			'lifetime' => $config->getInteger('session.cookie.lifetime', 0),
+			'path' => $config->getString('session.cookie.path', '/'),
+			'domain' => $config->getString('session.cookie.domain', NULL),
+			'secure' => $config->getBoolean('session.cookie.secure', FALSE),
+			'httponly' => TRUE,
+		);
+	}
+
+
+	/**
+	 * Set a session cookie.
+	 *
+	 * @param string $name  The name of the session cookie.
+	 * @param string|NULL $value  The value of the cookie. Set to NULL to delete the cookie.
+	 */
+	public function setCookie($name, $value) {
+		assert('is_string($name)');
+		assert('is_string($value) || is_null($value)');
+
+		$params = $this->getCookieParams();
+
+		if ($value === NULL) {
+			$expire = time() - 365*24*60*60;
+		} elseif ($params['lifetime'] === 0) {
+			$expire = 0;
+		} else {
+			$expire = time() + $params['lifetime'];;
+		}
+
+		$version = explode('.', PHP_VERSION);
+		if ((int)$version[0] === 5 && (int)$version[1] < 2) {
+			setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure']);
+		} else {
+			setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+		}
+	}
+
+}

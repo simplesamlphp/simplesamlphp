@@ -51,9 +51,7 @@ extends SimpleSAML_SessionHandler {
 		/* We don't have a valid session. Create a new session id. */
 		$this->session_id = self::createSessionID();
 
-		$config = SimpleSAML_Configuration::getInstance();
-		$secureFlag = $config->getBoolean('session.cookie.secure', FALSE);
-		setcookie('SimpleSAMLSessionID', $this->session_id, 0, '/', NULL, $secureFlag);
+		$this->setCookie('SimpleSAMLSessionID', $this->session_id);
 	}
 
 

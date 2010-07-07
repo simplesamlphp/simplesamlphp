@@ -32,11 +32,16 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 		 */
 		if(session_id() === '') {
 			$config = SimpleSAML_Configuration::getInstance();
-			
-			$cookiepath = ($config->getBoolean('session.phpsession.limitedpath', FALSE) ? '/' . $config->getBaseURL() : '/');
-			$secureFlag = $config->getBoolean('session.cookie.secure', FALSE);
-			session_set_cookie_params(0, $cookiepath, NULL, $secureFlag);
-			
+
+			$params = $this->getCookieParams();
+
+			$version = explode('.', PHP_VERSION);
+			if ((int)$version[0] === 5 && (int)$version[1] < 2) {
+				session_set_cookie_params($params['lifetime'], $params['path'], $params['domain'], $params['secure']);
+			} else {
+				session_set_cookie_params($params['lifetime'], $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+			}
+
 			$cookiename = $config->getString('session.phpsession.cookiename', NULL);
 			if (!empty($cookiename)) session_name($cookiename);
 
@@ -114,6 +119,30 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 		return array_key_exists($cookieName, $_COOKIE);
 	}
 
-}
 
-?>
+	/**
+	 * Get the cookie parameters that should be used for session cookies.
+	 *
+	 * This function contains some adjustments from the default to provide backwards-compatibility.
+	 *
+	 * @return array
+	 * @link http://www.php.net/manual/en/function.session-get-cookie-params.php
+	 */
+	public function getCookieParams() {
+
+		$config = SimpleSAML_Configuration::getInstance();
+
+		$ret = parent::getCookieParams();
+
+		if ($config->hasValue('session.phpsession.limitedpath') && $config->hasValue('session.cookie.path')) {
+			throw new SimpleSAML_Error_Exception('You cannot set both the session.phpsession.limitedpath and session.cookie.path options.');
+		} elseif ($config->hasValue('session.phpsession.limitedpath')) {
+			$ret['path'] = $config->getBoolean('session.phpsession.limitedpath', FALSE) ? '/' . $config->getBaseURL() : '/';
+		}
+
+		$ret['httponly'] = $config->getBoolean('session.phpsession.httponly', FALSE);
+
+		return $ret;
+	}
+
+}

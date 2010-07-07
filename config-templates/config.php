@@ -146,6 +146,36 @@ $config = array (
 	
 
 	/*
+	 * Expiration time for the session cookie, in seconds.
+	 *
+	 * Defaults to 0, which means that the cookie expires when the browser is closed.
+	 *
+	 * Example:
+	 *  'session.cookie.lifetime' => 30*60,
+	 */
+	'session.cookie.lifetime' => 0,
+
+	/*
+	 * Limit the path of the cookies.
+	 *
+	 * Can be used to limit the path of the cookies to a specific subdirectory.
+	 *
+	 * Example:
+	 *  'session.cookie.path' => '/simplesaml/',
+	 */
+	'session.cookie.path' => '/',
+
+	/*
+	 * Cookie domain.
+	 *
+	 * Can be used to make the session cookie available to several domains.
+	 *
+	 * Example:
+	 *  'session.cookie.domain' => '.example.org',
+	 */
+	'session.cookie.domain' => NULL,
+
+	/*
 	 * Set the secure flag in the cookie.
 	 *
 	 * Set this to TRUE if the user only accesses your service
@@ -158,8 +188,8 @@ $config = array (
 	 * Options to override the default settings for php sessions.
 	 */
 	'session.phpsession.cookiename'  => null,
-	'session.phpsession.limitedpath' => false,
 	'session.phpsession.savepath'    => null,
+	'session.phpsession.httponly'    => FALSE,
 	
 	/*
 	 * Languages available and what language is default
