@@ -226,6 +226,49 @@ class SimpleSAML_IdP {
 
 
 	/**
+	 * Retrieve the authority for the given IdP metadata.
+	 *
+	 * This function provides backwards-compatibility with
+	 * previous versions of simpleSAMLphp.
+	 *
+	 * @param array $idpmetadata  The IdP metadata.
+	 * @return string  The authority that should be used to validate the session.
+	 */
+	private function getAuthority() {
+
+		if ($this->config->hasValue('authority')) {
+			return $this->config->getString('authority');
+		}
+
+		$candidates = array(
+			'auth/login-admin.php' => 'login-admin',
+			'auth/login-auto.php' => 'login-auto',
+			'auth/login-cas-ldap.php' => 'login-cas-ldap',
+			'auth/login-feide.php' => 'login-feide',
+			'auth/login-ldapmulti.php' => 'login-ldapmulti',
+			'auth/login-radius.php' => 'login-radius',
+			'auth/login-tlsclient.php' => 'tlsclient',
+			'auth/login-wayf-ldap.php' => 'login-wayf-ldap',
+			'auth/login.php' => 'login',
+		);
+
+		$auth = $this->config->getString('auth');
+
+		if (isset($candidates[$auth])) {
+			return $candidates[$auth];
+		}
+		if (strpos($auth, '/') !== FALSE) {
+			/* Probably a file. */
+			throw new SimpleSAML_Error_Exception('You need to set \'authority\' in the metadata for ' .
+				var_export($this->id, TRUE) . '.');
+		} else {
+			throw new SimpleSAML_Error_Exception('Unknown authsource ' .
+				var_export($auth, TRUE) . '.');
+		}
+	}
+
+
+	/**
 	 * Is the current user authenticated?
 	 *
 	 * @return bool  TRUE if the user is authenticated, FALSE if not.
@@ -246,7 +289,7 @@ class SimpleSAML_IdP {
 		}
 
 		/* It wasn't an authentication source. */
-		$authority = SimpleSAML_Utilities::getAuthority($this->config->toArray());
+		$authority = $this->getAuthority();
 		return $session->isValid($authority);
 	}
 

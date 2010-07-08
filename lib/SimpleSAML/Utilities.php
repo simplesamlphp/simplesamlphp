@@ -2124,46 +2124,6 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Retrieve the authority for the given IdP metadata.
-	 *
-	 * This function provides backwards-compatibility with
-	 * previous versions of simpleSAMLphp.
-	 *
-	 * @param array $idpmetadata  The IdP metadata.
-	 * @return string  The authority that should be used to validate the session.
-	 */
-	public static function getAuthority(array $idpmetadata) {
-
-		if (isset($idpmetadata['authority'])) {
-			return $idpmetadata['authority'];
-		}
-
-		$candidates = array(
-			'auth/login-admin.php' => 'login-admin',
-			'auth/login-auto.php' => 'login-auto',
-			'auth/login-cas-ldap.php' => 'login-cas-ldap',
-			'auth/login-feide.php' => 'login-feide',
-			'auth/login-ldapmulti.php' => 'login-ldapmulti',
-			'auth/login-radius.php' => 'login-radius',
-			'auth/login-tlsclient.php' => 'tlsclient',
-			'auth/login-wayf-ldap.php' => 'login-wayf-ldap',
-			'auth/login.php' => 'login',
-		);
-		if (isset($candidates[$idpmetadata['auth']])) {
-			return $candidates[$idpmetadata['auth']];
-		}
-		if (strpos($idpmetadata['auth'], '/') !== FALSE) {
-			/* Probably a file. */
-			throw new SimpleSAML_Error_Exception('You need to set \'authority\' in the metadata for ' .
-				var_export($idpmetadata['entityid'], TRUE) . '.');
-		} else {
-			throw new SimpleSAML_Error_Exception('Unknown authsource ' .
-				var_export($idpmetadata['auth'], TRUE) . '.');
-		}
-	}
-
-
-	/**
 	 * Check for session cookie, and show missing-cookie page if it is missing.
 	 *
 	 * @param string|NULL $retryURL  The URL the user should access to retry the operation.
