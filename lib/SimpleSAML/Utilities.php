@@ -2152,8 +2152,14 @@ class SimpleSAML_Utilities {
 		if (isset($candidates[$idpmetadata['auth']])) {
 			return $candidates[$idpmetadata['auth']];
 		}
-		throw new SimpleSAML_Error_Exception('You need to set \'authority\' in the metadata for ' .
-			var_export($idpmetadata['entityid'], TRUE) . '.');
+		if (strpos($idpmetadata['auth'], '/') !== FALSE) {
+			/* Probably a file. */
+			throw new SimpleSAML_Error_Exception('You need to set \'authority\' in the metadata for ' .
+				var_export($idpmetadata['entityid'], TRUE) . '.');
+		} else {
+			throw new SimpleSAML_Error_Exception('Unknown authsource ' .
+				var_export($idpmetadata['auth'], TRUE) . '.');
+		}
 	}
 
 
