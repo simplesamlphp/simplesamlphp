@@ -473,24 +473,24 @@ class sspmod_saml_IdP_SAML2 {
 	/**
 	 * Calculate the NameID value that should be used.
 	 *
-	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
-	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
-	 * @param array $attributes  The attributes of the user
+	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
+	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the SP.
+	 * @param array &$state  The authentication state of the user.
 	 * @return string  The NameID value.
 	 */
-	private static function generateNameIdValue(SimpleSAML_Configuration $srcMetadata,
-		SimpleSAML_Configuration $dstMetadata, array &$state) {
+	private static function generateNameIdValue(SimpleSAML_Configuration $idpMetadata,
+		SimpleSAML_Configuration $spMetadata, array &$state) {
 
-		$attribute = $dstMetadata->getString('simplesaml.nameidattribute', NULL);
+		$attribute = $spMetadata->getString('simplesaml.nameidattribute', NULL);
 		if ($attribute === NULL) {
-			$attribute = $srcMetadata->getString('simplesaml.nameidattribute', NULL);
+			$attribute = $idpMetadata->getString('simplesaml.nameidattribute', NULL);
 			if ($attribute === NULL) {
 				if (!isset($state['UserID'])) {
 					SimpleSAML_Logger::error('Unable to generate NameID. Check the userid.attribute option.');
 				}
 				$attributeValue = $state['UserID'];
-				$idpEntityId = $srcMetadata->getString('entityid');
-				$spEntityId = $dstMetadata->getString('entityid');
+				$idpEntityId = $idpMetadata->getString('entityid');
+				$spEntityId = $spMetadata->getString('entityid');
 
 				$secretSalt = SimpleSAML_Utilities::getSecretSalt();
 
@@ -518,17 +518,17 @@ class sspmod_saml_IdP_SAML2 {
 	/**
 	 * Helper function for encoding attributes.
 	 *
-	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
-	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
+	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
+	 * @param SimpleSAML_Configuration $spMetadata  The metadata of the SP.
 	 * @param array $attributes  The attributes of the user
 	 * @return array  The encoded attributes.
 	 */
-	private static function encodeAttributes(SimpleSAML_Configuration $srcMetadata,
-		SimpleSAML_Configuration $dstMetadata, array $attributes) {
+	private static function encodeAttributes(SimpleSAML_Configuration $idpMetadata,
+		SimpleSAML_Configuration $spMetadata, array $attributes) {
 
-		$base64Attributes = $dstMetadata->getBoolean('base64attributes', NULL);
+		$base64Attributes = $spMetadata->getBoolean('base64attributes', NULL);
 		if ($base64Attributes === NULL) {
-			$base64Attributes = $srcMetadata->getBoolean('base64attributes', FALSE);
+			$base64Attributes = $idpMetadata->getBoolean('base64attributes', FALSE);
 		}
 
 		if ($base64Attributes) {
@@ -537,8 +537,8 @@ class sspmod_saml_IdP_SAML2 {
 			$defaultEncoding = 'string';
 		}
 
-		$srcEncodings = $srcMetadata->getArray('attributeencodings', array());
-		$dstEncodings = $dstMetadata->getArray('attributeencodings', array());
+		$srcEncodings = $idpMetadata->getArray('attributeencodings', array());
+		$dstEncodings = $spMetadata->getArray('attributeencodings', array());
 
 		/*
 		 * Merge the two encoding arrays. Encodings specified in the target metadata
@@ -586,37 +586,37 @@ class sspmod_saml_IdP_SAML2 {
 	/**
 	 * Build an assertion based on information in the metadata.
 	 *
-	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
-	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
+	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
+	 * @param SimpleSAML_Configuration $spMetadata  The metadata of the SP.
 	 * @param array &$state  The state array with information about the request.
 	 * @return SAML2_Assertion  The assertion.
 	 */
-	private static function buildAssertion(SimpleSAML_Configuration $srcMetadata,
-		SimpleSAML_Configuration $dstMetadata, array &$state) {
+	private static function buildAssertion(SimpleSAML_Configuration $idpMetadata,
+		SimpleSAML_Configuration $spMetadata, array &$state) {
 		assert('isset($state["Attributes"])');
 		assert('isset($state["saml:ConsumerURL"])');
 
-		$signAssertion = $dstMetadata->getBoolean('saml20.sign.assertion', NULL);
+		$signAssertion = $spMetadata->getBoolean('saml20.sign.assertion', NULL);
 		if ($signAssertion === NULL) {
-			$signAssertion = $srcMetadata->getBoolean('saml20.sign.assertion', TRUE);
+			$signAssertion = $idpMetadata->getBoolean('saml20.sign.assertion', TRUE);
 		}
 
 		$config = SimpleSAML_Configuration::getInstance();
 
 		$a = new SAML2_Assertion();
 		if ($signAssertion) {
-			sspmod_saml_Message::addSign($srcMetadata, $dstMetadata, $a);
+			sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $a);
 		}
 
-		$a->setIssuer($srcMetadata->getString('entityid'));
+		$a->setIssuer($idpMetadata->getString('entityid'));
 		$a->setDestination($state['saml:ConsumerURL']);
-		$a->setValidAudiences(array($dstMetadata->getString('entityid')));
+		$a->setValidAudiences(array($spMetadata->getString('entityid')));
 
 		$a->setNotBefore(time() - 30);
 
-		$assertionLifetime = $dstMetadata->getInteger('assertion.lifetime', NULL);
+		$assertionLifetime = $spMetadata->getInteger('assertion.lifetime', NULL);
 		if ($assertionLifetime === NULL) {
-			$assertionLifetime = $srcMetadata->getInteger('assertion.lifetime', 300);
+			$assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
 		}
 		$a->setNotOnOrAfter(time() + $assertionLifetime);
 
@@ -633,14 +633,14 @@ class sspmod_saml_IdP_SAML2 {
 
 		/* Add attributes. */
 
-		if ($dstMetadata->getBoolean('simplesaml.attributes', TRUE)) {
-			$attributeNameFormat = $dstMetadata->getString('AttributeNameFormat', NULL);
+		if ($spMetadata->getBoolean('simplesaml.attributes', TRUE)) {
+			$attributeNameFormat = $spMetadata->getString('AttributeNameFormat', NULL);
 			if ($attributeNameFormat === NULL) {
-				$attributeNameFormat = $srcMetadata->getString('AttributeNameFormat',
+				$attributeNameFormat = $idpMetadata->getString('AttributeNameFormat',
 					'urn:oasis:names:tc:SAML:2.0:attrname-format:basic');
 			}
 			$a->setAttributeNameFormat($attributeNameFormat);
-			$attributes = self::encodeAttributes($srcMetadata, $dstMetadata, $state['Attributes']);
+			$attributes = self::encodeAttributes($idpMetadata, $spMetadata, $state['Attributes']);
 			$a->setAttributes($attributes);
 		}
 
@@ -655,16 +655,16 @@ class sspmod_saml_IdP_SAML2 {
 
 		if ($nameIdFormat === NULL || !isset($state['saml:NameID'][$nameIdFormat])) {
 			/* Either not set in request, or not set to a format we supply. Fall back to old generation method. */
-			$nameIdFormat = $dstMetadata->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
+			$nameIdFormat = $spMetadata->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
 		}
 
 		if (isset($state['saml:NameID'][$nameIdFormat])) {
 			$nameId = $state['saml:NameID'][$nameIdFormat];
 			$nameId['Format'] = $nameIdFormat;
 		} else {
-			$spNameQualifier = $dstMetadata->getString('SPNameQualifier', NULL);
+			$spNameQualifier = $spMetadata->getString('SPNameQualifier', NULL);
 			if ($spNameQualifier === NULL) {
-				$spNameQualifier = $dstMetadata->getString('entityid');
+				$spNameQualifier = $spMetadata->getString('entityid');
 			}
 
 			if ($nameIdFormat === SAML2_Const::NAMEID_TRANSIENT) {
@@ -673,7 +673,7 @@ class sspmod_saml_IdP_SAML2 {
 			} else {
 				/* this code will end up generating either a fixed assigned id (via nameid.attribute)
 				   or random id if not assigned/configured */
-				$nameIdValue = self::generateNameIdValue($srcMetadata, $dstMetadata, $state);
+				$nameIdValue = self::generateNameIdValue($idpMetadata, $spMetadata, $state);
 				if ($nameIdValue === NULL) {
 					SimpleSAML_Logger::warning('Falling back to transient NameID.');
 					$nameIdFormat = SAML2_Const::NAMEID_TRANSIENT;
@@ -700,17 +700,17 @@ class sspmod_saml_IdP_SAML2 {
 	 * This function takes in a SAML2_Assertion and encrypts it if encryption of
 	 * assertions are enabled in the metadata.
 	 *
-	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
-	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
+	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
+	 * @param SimpleSAML_Configuration $spMetadata  The metadata of the SP.
 	 * @param SAML2_Assertion $assertion  The assertion we are encrypting.
 	 * @return SAML2_Assertion|SAML2_EncryptedAssertion  The assertion.
 	 */
-	private static function encryptAssertion(SimpleSAML_Configuration $srcMetadata,
-		SimpleSAML_Configuration $dstMetadata, SAML2_Assertion $assertion) {
+	private static function encryptAssertion(SimpleSAML_Configuration $idpMetadata,
+		SimpleSAML_Configuration $spMetadata, SAML2_Assertion $assertion) {
 
-		$encryptAssertion = $dstMetadata->getBoolean('assertion.encryption', NULL);
+		$encryptAssertion = $spMetadata->getBoolean('assertion.encryption', NULL);
 		if ($encryptAssertion === NULL) {
-			$encryptAssertion = $srcMetadata->getBoolean('assertion.encryption', FALSE);
+			$encryptAssertion = $idpMetadata->getBoolean('assertion.encryption', FALSE);
 		}
 		if (!$encryptAssertion) {
 			/* We are _not_ encrypting this assertion, and are therefore done. */
@@ -718,16 +718,16 @@ class sspmod_saml_IdP_SAML2 {
 		}
 
 
-		$sharedKey = $dstMetadata->getString('sharedkey', NULL);
+		$sharedKey = $spMetadata->getString('sharedkey', NULL);
 		if ($sharedKey !== NULL) {
 			$key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
 			$key->loadKey($sharedKey);
 		} else {
 			/* Find the certificate that we should use to encrypt messages to this SP. */
-			$certArray = SimpleSAML_Utilities::loadPublicKey($dstMetadata, TRUE);
+			$certArray = SimpleSAML_Utilities::loadPublicKey($spMetadata, TRUE);
 			if (!array_key_exists('PEM', $certArray)) {
 				throw new Exception('Unable to locate key we should use to encrypt the assertionst ' .
-					'to the SP: ' . var_export($dstMetadata->getString('entityid'), TRUE) . '.');
+					'to the SP: ' . var_export($spMetadata->getString('entityid'), TRUE) . '.');
 			}
 
 			$pemCert = $certArray['PEM'];
@@ -746,23 +746,24 @@ class sspmod_saml_IdP_SAML2 {
 	/**
 	 * Build a authentication response based on information in the metadata.
 	 *
-	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
-	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
+	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
+	 * @param SimpleSAML_Configuration $spMetadata  The metadata of the SP.
+	 * @param string $consumerURL  The Destination URL of the response.
 	 */
-	private static function buildResponse(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, $consumerURL) {
+	private static function buildResponse(SimpleSAML_Configuration $idpMetadata, SimpleSAML_Configuration $spMetadata, $consumerURL) {
 
-		$signResponse = $dstMetadata->getBoolean('saml20.sign.response', NULL);
+		$signResponse = $spMetadata->getBoolean('saml20.sign.response', NULL);
 		if ($signResponse === NULL) {
-			$signResponse = $srcMetadata->getBoolean('saml20.sign.response', TRUE);
+			$signResponse = $idpMetadata->getBoolean('saml20.sign.response', TRUE);
 		}
 
 		$r = new SAML2_Response();
 
-		$r->setIssuer($srcMetadata->getString('entityid'));
+		$r->setIssuer($idpMetadata->getString('entityid'));
 		$r->setDestination($consumerURL);
 
 		if ($signResponse) {
-			sspmod_saml_Message::addSign($srcMetadata, $dstMetadata, $r);
+			sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $r);
 		}
 
 		return $r;
