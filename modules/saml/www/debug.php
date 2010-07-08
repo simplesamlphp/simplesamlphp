@@ -10,6 +10,8 @@
  * @version $Id$
  */
 
+SimpleSAML_Session::useTransientSession();
+
 $globalConfig = SimpleSAML_Configuration::getInstance();
 
 if (array_key_exists('SAMLRequest', $_REQUEST)) {
