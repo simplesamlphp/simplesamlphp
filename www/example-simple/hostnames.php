@@ -22,7 +22,6 @@ $attributes['SERVER_PROTOCOL'] = array($_SERVER['SERVER_PROTOCOL']);
 $attributes['SERVER_PORT'] = array($_SERVER['SERVER_PORT']);
 
 $attributes['Utilities_getSelfHost()'] = array(SimpleSAML_Utilities::getSelfHost());
-$attributes['Utilities_getSelfProtocol()'] = array(SimpleSAML_Utilities::getSelfProtocol());
 $attributes['Utilities_selfURLhost()'] = array(SimpleSAML_Utilities::selfURLhost());
 $attributes['Utilities_selfURLNoQuery()'] = array(SimpleSAML_Utilities::selfURLNoQuery());
 $attributes['Utilities_getScriptName()'] = array(SimpleSAML_Utilities::getScriptName());

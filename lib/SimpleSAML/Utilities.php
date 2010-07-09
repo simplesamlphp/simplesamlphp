@@ -50,17 +50,6 @@ class SimpleSAML_Utilities {
 		return $currenthost;# . self::getFirstPathElement() ;
 	}
 
-	/**
-	 * Will return https
-	 */
-	public static function getSelfProtocol() {
-		$s = empty($_SERVER["HTTPS"]) ? ''
-			: ($_SERVER["HTTPS"] == "on") ? 's'
-			: '';
-		if ( empty($_SERVER["HTTPS"]) && $_SERVER["SERVER_PORT"] == 443) $s = 's';
-		$protocol = self::strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/").$s;
-		return $protocol;
-	}
 
 	/**
 	 * Will return https://sp.example.org
@@ -68,8 +57,12 @@ class SimpleSAML_Utilities {
 	public static function selfURLhost() {
 	
 		$currenthost = self::getSelfHost();
-	
-		$protocol = self::getSelfProtocol();
+
+		if (SimpleSAML_Utilities::isHTTPS()) {
+			$protocol = 'https';
+		} else {
+			$protocol = 'http';
+		}
 		
 		$portnumber = $_SERVER["SERVER_PORT"];
 		$port = ':' . $portnumber;
