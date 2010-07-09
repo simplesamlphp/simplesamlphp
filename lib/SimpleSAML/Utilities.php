@@ -222,10 +222,6 @@ class SimpleSAML_Utilities {
 	}
 
 
-	public static function strleft($s1, $s2) {
-		return substr($s1, 0, strpos($s1, $s2));
-	}
-	
 	public static function checkDateConditions($start=NULL, $end=NULL) {
 		$currentTime = time();
 	
@@ -272,49 +268,7 @@ class SimpleSAML_Utilities {
 		$uniqueid = substr(md5(uniqid(rand(), true)), 0, 10);
 		return $uniqueid;
 	}
-	
-	public static function array_values_equals($array, $equalsvalue) {
-		$foundkeys = array();
-		foreach ($array AS $key => $value) {
-			if ($value === $equalsvalue) $foundkeys[] = $key;
-		}
-		return $foundkeys;
-	}
-	
-	public static function checkAssocArrayRules($target, $required, $optional = array()) {
 
-		$results = array(
-			'required.found' 		=> array(),
-			'required.notfound'		=> array(),
-			'optional.found'		=> array(),
-			'optional.notfound'		=> array(),
-			'leftovers'				=> array()
-		);
-		
-		foreach ($target AS $key => $value) {
-			if(in_array($key, $required)) {
-				$results['required.found'][$key] = $value;
-			} elseif (in_array($key, $optional)) {
-				$results['optional.found'][$key] = $value;
-			} else {
-				$results['leftovers'][$key] = $value;
-			}
-		}
-		
-		foreach ($required AS $key) {
-			if (!array_key_exists($key, $target)) {
-				$results['required.notfound'][] = $key;
-			}
-		}
-		
-		foreach ($optional AS $key) {
-			if (!array_key_exists($key, $target)) {
-				$results['optional.notfound'][] = $key;
-			}
-		}
-		return $results;
-	}
-	
 
 	/**
 	 * Build a backtrace.
