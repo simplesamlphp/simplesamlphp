@@ -259,11 +259,6 @@ class SimpleSAML_Utilities {
 		}
 		return gmdate('Y-m-d\TH:i:s\Z', $instant);
 	}
-	
-	public static function generateTrackID() {		
-		$uniqueid = substr(md5(uniqid(rand(), true)), 0, 10);
-		return $uniqueid;
-	}
 
 
 	/**

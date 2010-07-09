@@ -129,7 +129,7 @@ class SimpleSAML_Session {
 			return;
 		}
 
-		$this->trackid = SimpleSAML_Utilities::generateTrackID();
+		$this->trackid = substr(md5(uniqid(rand(), true)), 0, 10);
 
 		$this->dirty = TRUE;
 		$this->addShutdownFunction();
