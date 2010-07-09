@@ -104,21 +104,15 @@ class SimpleSAML_Utilities {
 	public static function selfURLNoQuery() {
 	
 		$selfURLhost = self::selfURLhost();
-		return $selfURLhost . self::getScriptName();
-	
-	}
-	
-	public static function getScriptName() {
-		$scriptname = $_SERVER['SCRIPT_NAME'];
-		if (preg_match('|^/.*?(/.*)$|', $_SERVER['SCRIPT_NAME'], $matches)) {
-			#$scriptname = $matches[1];
+		$selfURLhost .= $_SERVER['SCRIPT_NAME'];
+		if (isset($_SERVER['PATH_INFO'])) {
+			$selfURLhost .= $_SERVER['PATH_INFO'];
 		}
-		if (array_key_exists('PATH_INFO', $_SERVER)) $scriptname .= $_SERVER['PATH_INFO'];
-		
-		return $scriptname;
+		return $selfURLhost;
+	
 	}
-	
-	
+
+
 	/**
 	 * Will return sp.example.org/foo
 	 */
