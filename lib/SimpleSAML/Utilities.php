@@ -618,7 +618,7 @@ class SimpleSAML_Utilities {
 		/* Check if there is a valid technical contact email address. */
 		if($config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org') {
 			/* Enable error reporting. */
-			$baseurl = SimpleSAML_Utilities::selfURLhost() . '/' . $config->getBaseURL();
+			$baseurl = SimpleSAML_Utilities::getBaseURL();
 			$t->data['errorReportAddress'] = $baseurl . 'errorreport.php';
 		}
 
@@ -1229,8 +1229,7 @@ class SimpleSAML_Utilities {
 	 */
 	public static function resolveURL($url, $base = NULL) {
 		if($base === NULL) {
-			$config = SimpleSAML_Configuration::getInstance();
-			$base = self::selfURLhost() . '/' . $config->getBaseURL();
+			$base = SimpleSAML_Utilities::getBaseURL();
 		}
 
 

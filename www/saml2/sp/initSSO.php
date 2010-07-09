@@ -89,7 +89,7 @@ if ($idpentityid === NULL) {
 	} elseif($config->getString('idpdisco.url.saml20', NULL) !== NULL) {
 		$discourl = $config->getString('idpdisco.url.saml20');
 	} else {
-		$discourl = SimpleSAML_Utilities::selfURLhost() . '/' . $config->getBaseURL() . 'saml2/sp/idpdisco.php';
+		$discourl = SimpleSAML_Utilities::getBaseURL() . 'saml2/sp/idpdisco.php';
 	}
 
 	if ($config->getBoolean('idpdisco.extDiscoveryStorage', NULL) != NULL) {
