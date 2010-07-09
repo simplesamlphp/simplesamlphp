@@ -31,6 +31,7 @@ See the upgrade notes for specific information about upgrading.
   * Removed bin/test.php and www/admin/test.php.
   * Removed metashare.
   * Removed www/auth/login-auto.php.
+  * Removed www/auth/login-feide.php.
 
 ### SAML 2 IdP
 
