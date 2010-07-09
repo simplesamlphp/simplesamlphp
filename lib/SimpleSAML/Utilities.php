@@ -140,21 +140,16 @@ class SimpleSAML_Utilities {
 
 	public static function selfURL() {
 		$selfURLhost = self::selfURLhost();
-		return $selfURLhost . self::getRequestURI();	
-	}
-	
-	public static function getRequestURI() {
-		
-		$requesturi = $_SERVER['REQUEST_URI'];
 
-		if ($requesturi[0] !== '/') {
+		$requestURI = $_SERVER['REQUEST_URI'];
+		if ($requestURI[0] !== '/') {
 			/* We probably have an url on the form: http://server/. */
-			if (preg_match('#^https?://[^/]*(/.*)#i', $requesturi, $matches)) {
-				$requesturi = $matches[1];
+			if (preg_match('#^https?://[^/]*(/.*)#i', $requestURI, $matches)) {
+				$requestURI = $matches[1];
 			}
 		}
 
-		return $requesturi;
+		return $selfURLhost . $requestURI;
 	}
 
 

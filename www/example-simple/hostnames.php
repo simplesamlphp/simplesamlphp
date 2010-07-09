@@ -27,7 +27,6 @@ $attributes['Utilities_selfURLNoQuery()'] = array(SimpleSAML_Utilities::selfURLN
 $attributes['Utilities_getSelfHostWithPath()'] = array(SimpleSAML_Utilities::getSelfHostWithPath());
 $attributes['Utilities_getFirstPathElement()'] = array(SimpleSAML_Utilities::getFirstPathElement());
 $attributes['Utilities_selfURL()'] = array(SimpleSAML_Utilities::selfURL());
-$attributes['Utilities_getRequestURI()'] = array(SimpleSAML_Utilities::getRequestURI());
 
 
 
