@@ -242,7 +242,6 @@ class SimpleSAML_IdP {
 
 		$candidates = array(
 			'auth/login-admin.php' => 'login-admin',
-			'auth/login-auto.php' => 'login-auto',
 			'auth/login-cas-ldap.php' => 'login-cas-ldap',
 			'auth/login-feide.php' => 'login-feide',
 			'auth/login-ldapmulti.php' => 'login-ldapmulti',

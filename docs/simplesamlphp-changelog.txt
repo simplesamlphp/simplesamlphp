@@ -30,6 +30,7 @@ See the upgrade notes for specific information about upgrading.
   * Removed metadata send functionality from old SP code.
   * Removed bin/test.php and www/admin/test.php.
   * Removed metashare.
+  * Removed www/auth/login-auto.php.
 
 ### SAML 2 IdP
 
