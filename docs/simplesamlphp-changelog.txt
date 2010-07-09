@@ -22,6 +22,7 @@ See the upgrade notes for specific information about upgrading.
       * `SimpleSAML_Utilities::getRequestURI`
       * `SimpleSAML_Utilities::getScriptName`
       * `SimpleSAML_Utilities::getSelfProtocol`
+      * `SimpleSAML_Utilities::cert_fingerprint`
       * `SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta`
   * Moved function from Utilities-class to more appropriate locations.
       * `getAuthority` to `SimpleSAML_IdP`
