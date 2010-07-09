@@ -133,23 +133,5 @@
 	},
 	"metaconv_xmlmetadata": {
 		"en": "XML metadata"
-	},
-	"metadata_send_title2": {
-		"en": "Send Metadata to your IdP"
-	},
-	"metadata_send_select": {
-		"en": "Select an Identity Provider to send metadata to :"
-	},
-	"metadata_send_email2": {
-		"en": "Enter your e-mail address, such that the Identity Provider administrator may get in contact with you:"
-	},
-	"metadata_send_sendbutton": {
-		"en": "Send metadata"
-	},
-	"metadata_send_adminlogin": {
-		"en": "Login as administrator to send metadata to an Identity Provider"
-	},
-	"metadata_send_success": {
-		"en": "Successfully sent metadata to Identity Provider."
 	}
 }

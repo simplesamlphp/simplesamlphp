@@ -158,14 +158,6 @@ if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
 	$t->data['metadata'] = htmlspecialchars($xml);
 	$t->data['metadataflat'] = '$metadata[' . var_export($entityId, TRUE) . '] = ' . var_export($metaArray20, TRUE) . ';';
 	$t->data['metaurl'] = $source->getMetadataURL();
-
-	$t->data['idpsend'] = array();
-	$t->data['sentok'] = FALSE;
-	$t->data['adminok'] = FALSE;
-	$t->data['adminlogin'] = NULL;
-
-	$t->data['techemail'] = $config->getString('technicalcontact_email', NULL);
-
 	$t->show();
 } else {
 	header('Content-Type: application/samlmetadata+xml');

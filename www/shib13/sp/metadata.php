@@ -82,7 +82,6 @@ try {
 		$t->data['metadata'] = htmlspecialchars($metaxml);
 		$t->data['metadataflat'] = htmlspecialchars($metaflat);
 		$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), array('output' => 'xml'));
-		$t->data['techemail'] = $config->getString('technicalcontact_email', 'na');
 		$t->show();
 		
 	} else {	

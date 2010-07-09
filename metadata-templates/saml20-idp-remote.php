@@ -32,7 +32,6 @@ $metadata['https://idp-test.feide.no'] = array(
 		'no' => 'Feide testmiljø',
 	),
 	'description'                  => 'Feide test environment (idp-test.feide.no). Authenticate with your identity from a school or university in Norway.',
-	'send_metadata_email'          => 'moria-support@uninett.no',
 
 	'SingleSignOnService'          => 'https://idp-test.feide.no/simplesaml/saml2/idp/SSOService.php',
 	'SingleLogoutService'          => 'https://idp-test.feide.no/simplesaml/saml2/idp/SingleLogoutServiceiFrame.php',
@@ -48,7 +47,6 @@ $metadata['https://idp.feide.no'] = array(
 		'en' => 'Authenticate with your identity from a school or university in Norway.',
 		'no' => 'Logg inn med din identitet fra skolen eller universitetet du er tilknyttet (i Norge).',
 	),
-	'send_metadata_email'          => 'moria-support@uninett.no',
 	'SingleSignOnService'          => 'https://idp.feide.no/simplesaml/saml2/idp/SSOService.php',
 	'SingleLogoutService'          => 'https://idp.feide.no/simplesaml/saml2/idp/SingleLogoutServiceiFrame.php',
 	'SingleLogoutServiceResponse'  => 'https://idp.feide.no/simplesaml/saml2/idp/SingleLogoutServiceiFrameResponse.php',
@@ -67,7 +65,6 @@ $metadata['https://wayf.wayf.dk'] = array(
 		'da' => 'DK-WAYF Produktionsmiljøet',
 	),
 	'description'          => 'Login with your identity from a danish school, university or library.',
-	'send_metadata_email'  => 'sekretariat@wayf.dk',
 	'SingleSignOnService'  => 'https://wayf.wayf.dk/saml2/idp/SSOService.php',
 	'SingleLogoutService'  => 'https://wayf.wayf.dk/saml2/idp/SingleLogoutService.php',
 	'certFingerprint'      => 'c215d7bf9d51c7805055239f66b957d9a72ff44b'
@@ -79,7 +76,6 @@ $metadata['https://betawayf.wayf.dk'] = array(
 		'da' => 'DK-WAYF Quality Assurance miljøet',
 	),
 	'description'          => 'Login with your identity from a danish school, university or library.',
-	'send_metadata_email'  => 'sekretariat@wayf.dk',
 	'SingleSignOnService'  => 'https://betawayf.wayf.dk/saml2/idp/SSOService.php',
 	'SingleLogoutService'  => 'https://betawayf.wayf.dk/saml2/idp/SingleLogoutService.php',
 	'certFingerprint'      => 'c215d7bf9d51c7805055239f66b957d9a72ff44b'
@@ -91,7 +87,6 @@ $metadata['https://testidp.wayf.dk'] = array(
 		'da' => 'DK-WAYF Test Miljøet',
 	),
 	'description'          => 'Login with your identity from a danish school, university or library.',
-	'send_metadata_email'  => 'sekretariat@wayf.dk',
 	'SingleSignOnService'  => 'https://testidp.wayf.dk/saml2/idp/SSOService.php',
 	'SingleLogoutService'  => 'https://testidp.wayf.dk/saml2/idp/SingleLogoutService.php',
 	'certFingerprint'      => '04b3b08bce004c27458b3e85b125273e67ef062b'
