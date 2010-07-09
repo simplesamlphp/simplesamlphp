@@ -35,26 +35,6 @@ if($config->getBoolean('idpdisco.enableremember', FALSE)) {
 	);
 }
 
-$publishURL = $config->getString('metashare.publishurl', NULL);
-if ($publishURL !== NULL) {
-	$metadataSources = array(
-		'saml20-idp' => 'saml2/idp/metadata.php',
-		'saml20-sp' => 'saml2/sp/metadata.php',
-		'shib13-idp' => 'shib13/idp/metadata.php',
-		'shib13-sp' => 'shib13/sp/metadata.php',
-	);
-	foreach($metadataSources as $name => $url) {
-		if(!$config->getBoolean('enable.' . $name, FALSE)) continue;
-
-		$url = SimpleSAML_Utilities::getBaseURL() . $url;
-		$linkTarget = SimpleSAML_Utilities::addURLparameter($publishURL, array('url' => $url));
-		$links_federation[] = array(
-			'href' => $linkTarget,
-			'text' => '{core:frontpage:link_publish_' . $name . '}',
-		);
-	}
-}
-
 
 $links_federation[] = array(
 	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/metadata-converter.php',

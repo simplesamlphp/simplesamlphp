@@ -104,18 +104,6 @@
 	"link_cleardiscochoices": {
 		"en": "Delete my choices of IdP in the IdP discovery services"
 	},
-	"link_publish_saml20-idp": {
-		"en": "Publish my SAML 2.0 IdP metadata to the configured MetaShare"
-	},
-	"link_publish_saml20-sp": {
-		"en": "Publish my SAML 2.0 SP metadata to the configured MetaShare"
-	},
-	"link_publish_shib13-idp": {
-		"en": "Publish my Shib 1.3 IdP metadata to the configured MetaShare"
-	},
-	"link_publish_shib13-sp": {
-		"en": "Publish my Shib 1.3 SP metadata to the configured MetaShare"
-	},
 	"welcome": {
 		"en": "Welcome"
 	},
