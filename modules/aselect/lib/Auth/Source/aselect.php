@@ -158,6 +158,9 @@ class sspmod_aselect_Auth_Source_aselect extends SimpleSAML_Auth_Source {
 			foreach (explode('&', $decoded) as $parm) {
 				$tuple = explode('=', $parm);
 				$name = urldecode($tuple[0]);
+				if (preg_match('/\[\]$/',$name)) {
+					$name = substr($name, 0 ,-2);
+				}
 				if (!array_key_exists($name, $attributes)) {
 					$attributes[$name] = array();
 				}
