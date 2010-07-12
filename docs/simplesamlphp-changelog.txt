@@ -32,6 +32,7 @@ See the upgrade notes for specific information about upgrading.
   * Removed metashare.
   * Removed www/auth/login-auto.php.
   * Removed www/auth/login-feide.php.
+  * Removed optional parameters from `SimpleSAML_XHTML_Template::getLanguage()`.
 
 ### SAML 2 IdP
 
