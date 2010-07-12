@@ -163,13 +163,7 @@ class SimpleSAML_XHTML_Template {
 		return $bestLanguage;
 	}
 
-	/**
-	 * Returns the language base (from configuration)
-	 */
-	private function getBaseLanguage() {
-		return 'en';
-	}
-	
+
 	/**
 	 * Returns the language default (from configuration)
 	 */
@@ -293,10 +287,9 @@ class SimpleSAML_XHTML_Template {
 			return $translations[$default_language];
 		}
 
-		/* Look up translation of tag in the base language. */
-		$base_language = $this->getBaseLanguage();
-		if(array_key_exists($base_language, $translations)) {
-			return $translations[$base_language];
+		/* Check for english translation. */
+		if(array_key_exists('en', $translations)) {
+			return $translations['en'];
 		}
 
 		/* Pick the first translation available. */
@@ -399,7 +392,7 @@ class SimpleSAML_XHTML_Template {
 	public function includeInlineTranslation($tag, $translation) {
 		
 		if (is_string($translation)) {
-			$translation = array($this->getBaseLanguage() => $translation);
+			$translation = array('en' => $translation);
 		} elseif (!is_array($translation)) {
 			throw new Exception("Inline translation should be string or array. Is " . gettype($translation) . " now!");
 		}
