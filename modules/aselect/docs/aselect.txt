@@ -57,8 +57,8 @@ Configuration in authsources.php
         'serverurl'            => 'http://a-select.dev.han.nl:8080/aselectserver/server',
         'serverid'             => 'hanaselect',
         'type'                 => 'cross',                 # type = app/cross
-        'local_organization'   => 'simpleSAMLphp',         # only if type = fed
-        'required_level'       => 10,                      # only if type = fed, defaults to 10
+        'local_organization'   => 'simpleSAMLphp',         # only if type = cross
+        'required_level'       => 10,                      # only if type = cross, defaults to 10
     ),
 
 
