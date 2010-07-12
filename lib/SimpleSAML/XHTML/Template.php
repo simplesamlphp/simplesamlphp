@@ -75,11 +75,7 @@ class SimpleSAML_XHTML_Template {
 	 */
 	public function setLanguage($language) {
 		$this->language = $language;
-		// setcookie ( string $name [, string $value [, int $expire [, string $path [, string $domain [, bool $secure [, bool $httponly ]]]]]] )
-		// time()+60*60*24*900 expires 900 days from now.
-		if (!headers_sent()) {
-			setcookie('language', $language, time()+60*60*24*900, '/');
-		}
+		SimpleSAML_XHTML_Template::setLanguageCookie($language);
 	}
 
 	/**
@@ -97,9 +93,10 @@ class SimpleSAML_XHTML_Template {
 		}
 
 		// Language is provided in a stored COOKIE
-		if (isset($_COOKIE['language'])) {
-			$this->language = $_COOKIE['language'];
-			return $this->language;
+		$languageCookie = SimpleSAML_XHTML_Template::getLanguageCookie();
+		if ($languageCookie !== NULL) {
+			$this->language = $languageCookie;
+			return $languageCookie;
 		}
 		
 		if ($checkHTTP) {
@@ -606,6 +603,35 @@ class SimpleSAML_XHTML_Template {
 		SimpleSAML_Logger::critical($_SERVER['PHP_SELF'] . ' - ' . $error);
 
 		throw new Exception($error);
+	}
+
+
+	/**
+	 * Retrieve the user-selected language from a cookie.
+	 *
+	 * @return string|NULL  The language, or NULL if unset.
+	 */
+	public static function getLanguageCookie() {
+
+		if (!isset($_COOKIE['language'])) {
+			return NULL;
+		}
+		return (string)$_COOKIE['language'];
+	}
+
+
+	/**
+	 * Set the user-selected language in a cookie.
+	 *
+	 * @param string $language  The language.
+	 */
+	public static function setLanguageCookie($language) {
+		assert('is_string($language)');
+
+		if (headers_sent()) {
+			return;
+		}
+		setcookie('language', $language, time()+60*60*24*900, '/');
 	}
 
 }
