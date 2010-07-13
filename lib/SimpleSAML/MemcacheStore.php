@@ -10,34 +10,16 @@
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
  * @version $Id$
+ * @deprecated This class will be removed in version 1.8 of simpleSAMLphp.
  */
 class SimpleSAML_MemcacheStore {
 
 
 	/**
-	 * This variable contains the id for this data.
-	 *
-	 * This variable is serialized.
-	 */
-	private $id = NULL;
-
-
-	/**
 	 * This variable contains an array with all key-value pairs stored
 	 * in this object.
-	 *
-	 * This variable is serialized.
 	 */
 	private $data = NULL;
-
-
-	/**
-	 * This variable indicates whether our shutdown function has been registered.
-	 *
-	 * This variable isn't serialized.
-	 */
-	private $shutdownFunctionRegistered = FALSE;
-
 
 
 	/**
@@ -68,36 +50,6 @@ class SimpleSAML_MemcacheStore {
 
 
 	/**
-	 * This constructor is used to create a new storage object. The storage object will be created with the
-	 * specified id and the initial content passed in the data argument.
-	 *
-	 * If there exists a storage object with the specified id, then it will be overwritten.
-	 *
-	 * @param $id    The id of the storage object.
-	 * @param $data  An array containing the initial data of the storage object.
-	 */
-	public function __construct($id, $data = array()) {
-		/* Validate arguments. */
-		assert(self::isValidID($id));
-		assert(is_array($data));
-
-		$this->id = $id;
-		$this->data = $data;
-	}
-
-
-	/**
-	 * This magic function is called on serialization of this class. It returns a list of the names of the
-	 * variables which should be serialized.
-	 *
-	 * @return List of variables which should be serialized.
-	 */
-	private function __sleep() {
-		return array('id', 'data');
-	}
-
-
-	/**
 	 * This function retrieves the specified key from this storage object.
 	 *
 	 * @param $key  The key we should retrieve the value of.
@@ -109,32 +61,6 @@ class SimpleSAML_MemcacheStore {
 		}
 
 		return $this->data[$key];
-	}
-
-
-	/**
-	 * This function sets the specified key to the specified value in this
-	 * storage object.
-	 *
-	 * @param $key    The key we should set.
-	 * @param $value  The value we should set the key to.
-	 */
-	public function set($key, $value) {
-		$this->data[$key] = $value;
-
-		/* Register the shutdown function if it isn't registered yet. */
-		if(!$this->shutdownFunctionRegistered) {
-			$this->registerShutdownFunction();
-		}
-	}
-
-
-	/**
-	 * This function stores this storage object to the memcache servers.
-	 */
-	public function save() {
-		/* Write to the memcache servers. */
-		SimpleSAML_Memcache::set($this->id, serialize($this));
 	}
 
 
@@ -162,25 +88,4 @@ class SimpleSAML_MemcacheStore {
 		return TRUE;
 	}
 
-
-	/**
-	 * Register our shutdown function.
-	 */
-	private function registerShutdownFunction() {
-		register_shutdown_function(array($this, 'shutdown'));
-		$this->shutdownFunctionRegistered = TRUE;
-	}
-
-
-	/**
-	 * Shutdown function. Calls save and updates flag indicating that the function has been called.
-	 *
-	 * This function is only public because this is a requirement of the way callbacks work in PHP.
-	 */
-	public function shutdown() {
-		$this->save();
-		$this->shutdownFunctionRegistered = FALSE;
-	}
-
 }
-?>
