@@ -55,31 +55,20 @@ abstract class SimpleSAML_SessionHandler {
 	abstract public function getSessionId();
 
 
-	/* This function is used to store data in this session object.
+	/**
+	 * Save the session.
 	 *
-	 * Note: You are allowed to store a reference to an object in the
-	 * session. We will store the latest value the object has on script
-	 * termination.
-	 *
-	 * Parameters:
-	 *  $key    The key we are going to set the value of. This key must
-	 *          be an alphanumeric string.
-	 *  $value  The value the key should have.
+	 * @param SimpleSAML_Session $session  The session object we should save.
 	 */
-	abstract public function set($key, $value);
+	abstract public function saveSession(SimpleSAML_Session $session);
 
 
-	/* This function retrieves a value from this session object.
+	/**
+	 * Load the session.
 	 *
-	 * Parameters:
-	 *  $key    The key we are going to retrieve the value of. This key
-	 *          must be an alphanumeric string.
-	 *
-	 * Returns:
-	 *  The value of the key, or NULL if no value is associated with
-	 *  this key.
+	 * @return SimpleSAML_Session|NULL  The session object, or NULL if it doesn't exist.
 	 */
-	abstract public function get($key);
+	abstract public function loadSession();
 
 
 	/**

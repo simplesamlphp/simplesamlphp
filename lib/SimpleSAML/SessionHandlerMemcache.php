@@ -47,24 +47,35 @@ extends SimpleSAML_SessionHandlerCookie {
 	}
 
 
-	/* This function is used to store data in this session object.
+	/**
+	 * Save the current session to the PHP session array.
 	 *
-	 * See the information in SimpleSAML_SessionHandler::set(...) for
-	 * more information.
+	 * @param SimpleSAML_Session $session  The session object we should save.
 	 */
-	public function set($key, $value) {
-		$this->store->set($key, $value);
+	public function saveSession(SimpleSAML_Session $session) {
+
+		$this->store->set('SimpleSAMLphp_SESSION', serialize($session));
 	}
 
 
-	/* This function retrieves a value from this session object.
+	/**
+	 * Load the session from the PHP session array.
 	 *
-	 * See the information in SimpleSAML_SessionHandler::get(...) for
-	 * more information.
+	 * @return SimpleSAML_Session|NULL  The session object, or NULL if it doesn't exist.
 	 */
-	public function get($key) {
-		return $this->store->get($key);
+	public function loadSession() {
+
+		$session = $this->store->get('SimpleSAMLphp_SESSION');
+		if ($session === NULL) {
+			return NULL;
+		}
+
+		assert('is_string($session)');
+
+		$session = unserialize($session);
+		assert('$session instanceof SimpleSAML_Session');
+
+		return $session;
 	}
+
 }
-
-?>

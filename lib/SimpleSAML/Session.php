@@ -789,34 +789,26 @@ class SimpleSAML_Session {
 	private static function loadSession() {
 
 		$sh = SimpleSAML_SessionHandler::getSessionHandler();
-		$sessionData = $sh->get('SimpleSAMLphp_SESSION');
-		if($sessionData == NULL) {
+
+		$session = $sh->loadSession();
+		if($session === NULL) {
 			return NULL;
 		}
 
-		if(!is_string($sessionData)) {
-			return NULL;
-		}
+		assert('$session instanceof self');
 
-		$sessionData = unserialize($sessionData);
-
-		if(!($sessionData instanceof self)) {
-			SimpleSAML_Logger::warning('Retrieved and deserialized session data was not a session.');
-			return NULL;
-		}
-
-		if ($sessionData->authToken !== NULL) {
+		if ($session->authToken !== NULL) {
 			if (!isset($_COOKIE['SimpleSAMLAuthToken'])) {
 				SimpleSAML_Logger::warning('Missing AuthToken cookie.');
 				return NULL;
 			}
-			if ($_COOKIE['SimpleSAMLAuthToken'] !== $sessionData->authToken) {
+			if ($_COOKIE['SimpleSAMLAuthToken'] !== $session->authToken) {
 				SimpleSAML_Logger::warning('Invalid AuthToken cookie.');
 				return NULL;
 			}
 		}
 
-		return $sessionData;
+		return $session;
 	}
 
 
@@ -833,10 +825,9 @@ class SimpleSAML_Session {
 		}
 
 		$this->dirty = FALSE;
-		$sessionData = serialize($this);
 
 		$sh = SimpleSAML_SessionHandler::getSessionHandler();
-		$sh->set('SimpleSAMLphp_SESSION', $sessionData);
+		$sh->saveSession($this);
 	}
 
 

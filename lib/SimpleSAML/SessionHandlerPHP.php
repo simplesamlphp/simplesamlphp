@@ -75,34 +75,35 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 	}
 
 
-	/* This function is used to store data in this session object.
+	/**
+	 * Save the current session to the PHP session array.
 	 *
-	 * See the information in SimpleSAML_SessionHandler::set(...) for
-	 * more information.
+	 * @param SimpleSAML_Session $session  The session object we should save.
 	 */
-	public function set($key, $value) {
-		$_SESSION[$key] = $value;
+	public function saveSession(SimpleSAML_Session $session) {
+
+		$_SESSION['SimpleSAMLphp_SESSION'] = serialize($session);
 	}
 
 
-	/* This function retrieves a value from this session object.
+	/**
+	 * Load the session from the PHP session array.
 	 *
-	 * See the information in SimpleSAML_SessionHandler::get(...) for
-	 * more information.
+	 * @return SimpleSAML_Session|NULL  The session object, or NULL if it doesn't exist.
 	 */
-	public function get($key) {
-		/* Check if key exists first to avoid notice-messages in the
-		 * log.
-		 */
-		if (!isset($_SESSION)) return NULL;
-		if(!array_key_exists($key, $_SESSION)) {
-			/* We should return NULL if we don't have that
-			 * key in the session.
-			 */
+	public function loadSession() {
+
+		if (!isset($_SESSION['SimpleSAMLphp_SESSION'])) {
 			return NULL;
 		}
 
-		return $_SESSION[$key];
+		$session = $_SESSION['SimpleSAMLphp_SESSION'];
+		assert('is_string($session)');
+
+		$session = unserialize($session);
+		assert('$session instanceof SimpleSAML_Session');
+
+		return $session;
 	}
 
 
