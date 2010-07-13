@@ -14,14 +14,6 @@
 class SimpleSAML_SessionHandlerMemcache
 extends SimpleSAML_SessionHandlerCookie {
 
-
-	/* This variable contains a reference to the MemcacheStore object
-	 * which contains the session data.
-	 */
-	private $store = NULL;
-
-
-
 	/* Initialize the memcache session handling. This constructor is
 	 * protected because it should only be called from
 	 * SimpleSAML_SessionHandler::createSessionHandler(...).
@@ -32,18 +24,6 @@ extends SimpleSAML_SessionHandlerCookie {
 		 * id.
 		 */
 		parent::__construct();
-
-		/* Load the session object if it already exists. */
-		$this->store = SimpleSAML_MemcacheStore::find($this->session_id);
-
-		if($this->store === NULL) {
-			/* We didn't find the session. This may be because the
-			 * session has expired, or it could be because this is
-			 * a new session. In any case we create a new session.
-			 */
-			$this->store = new SimpleSAML_MemcacheStore(
-				$this->session_id);
-		}
 	}
 
 
@@ -54,7 +34,7 @@ extends SimpleSAML_SessionHandlerCookie {
 	 */
 	public function saveSession(SimpleSAML_Session $session) {
 
-		$this->store->set('SimpleSAMLphp_SESSION', serialize($session));
+		SimpleSAML_Memcache::set('simpleSAMLphp.session.' . $this->session_id, $session);
 	}
 
 
@@ -65,7 +45,19 @@ extends SimpleSAML_SessionHandlerCookie {
 	 */
 	public function loadSession() {
 
-		$session = $this->store->get('SimpleSAMLphp_SESSION');
+		$session = SimpleSAML_Memcache::get('simpleSAMLphp.session.' . $this->session_id);
+		if ($session !== NULL) {
+			assert('$session instanceof SimpleSAML_Session');
+			return $session;
+		}
+
+		/* For backwards compatibility, check the MemcacheStore object. */
+		$store = SimpleSAML_MemcacheStore::find($this->session_id);
+		if ($store === NULL) {
+			return NULL;
+		}
+
+		$session = $store->get('SimpleSAMLphp_SESSION');
 		if ($session === NULL) {
 			return NULL;
 		}
