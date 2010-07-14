@@ -28,7 +28,7 @@ extends SimpleSAML_SessionHandlerCookie {
 
 
 	/**
-	 * Save the current session to the PHP session array.
+	 * Save the current session to memcache.
 	 *
 	 * @param SimpleSAML_Session $session  The session object we should save.
 	 */
@@ -39,7 +39,7 @@ extends SimpleSAML_SessionHandlerCookie {
 
 
 	/**
-	 * Load the session from the PHP session array.
+	 * Load the session from memcache.
 	 *
 	 * @return SimpleSAML_Session|NULL  The session object, or NULL if it doesn't exist.
 	 */
