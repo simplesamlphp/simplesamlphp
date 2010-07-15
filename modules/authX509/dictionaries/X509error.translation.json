@@ -1,0 +1,8 @@
+{
+	"certificate_header": {
+		"fr": "Authentification par certificat X509"
+	},
+	"certificate_text": {
+		"fr": "Un certificat X509 est requis pour acc\u00e9der \u00e0 ce service."
+	}
+}

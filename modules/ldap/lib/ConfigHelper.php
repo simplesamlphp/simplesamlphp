@@ -212,7 +212,52 @@ class sspmod_ldap_ConfigHelper {
 		return $ldap->getAttributes($dn, $this->attributes);
 	}
 
+
+	/**
+	 * Search for a DN.
+	 *
+	 * @param string|array $attribute
+	 * The attribute name(s) searched for. If set to NULL, values from
+	 * configuration is used.
+	 * @param string $value
+	 * The attribute value searched for.
+	 * @param bool $allowZeroHits
+	 * Determines if the method will throw an exception if no
+	 * hits are found. Defaults to FALSE.
+	 * @return string
+	 * The DN of the matching element, if found. If no element was
+	 * found and $allowZeroHits is set to FALSE, an exception will
+	 * be thrown; otherwise NULL will be returned.
+	 * @throws SimpleSAML_Error_AuthSource if:
+	 * - LDAP search encounter some problems when searching cataloge
+	 * - Not able to connect to LDAP server
+	 * @throws SimpleSAML_Error_UserNotFound if:
+	 * - $allowZeroHits er TRUE and no result is found
+	 *
+	 */
+	public function searchfordn($attribute, $value, $allowZeroHits) {
+		$ldap = new SimpleSAML_Auth_LDAP($this->hostname,
+			$this->enableTLS,
+			$this->debug,
+			$this->timeout);
+
+		if ($attribute == NULL)
+			$attribute = $this->searchAttributes;
+
+		return $ldap->searchfordn($this->searchBase, $attribute,
+			$value, $allowZeroHits);
+	}
+
+	public function getAttributes($dn, $attributes = NULL) {
+		if ($attributes == NULL)
+			$attributes = $this->attributes;
+
+		$ldap = new SimpleSAML_Auth_LDAP($this->hostname,
+			$this->enableTLS,
+			$this->debug,
+			$this->timeout);
+
+		return $ldap->getAttributes($dn, $attributes);
+	}
+
 }
-
-
-?>

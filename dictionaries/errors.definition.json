@@ -235,5 +235,23 @@
 	},
 	"descr_RESPONSESTATUSNOSUCCESS": {
 		"en": "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
+	},
+	"title_NOCERT": {
+		"en": "No certificate"
+	},
+	"descr_NOCERT": {
+		"en": "Authentication failed: your browser did not send any certificate"
+	},
+	"title_INVALIDCERT": {
+		"en": "Invalid certificate"
+	},
+	"descr_INVALIDCERT": {
+		"en": "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+	},
+	"title_UNKNOWNCERT": {
+		"en": "Unknown certificate"
+	},
+	"descr_UNKNOWNCERT": {
+		"en": "Authentication failed: the certificate your browser sent is unknown"
 	}
 }
