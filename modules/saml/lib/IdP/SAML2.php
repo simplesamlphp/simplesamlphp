@@ -171,6 +171,8 @@ class sspmod_saml_IdP_SAML2 {
 
 			$requestId = NULL;
 			$IDPList = array();
+			$ProxyCount = NULL;
+			$RequesterID = NULL;
 			$forceAuthn = FALSE;
 			$isPassive = FALSE;
 			$consumerURL = NULL;
