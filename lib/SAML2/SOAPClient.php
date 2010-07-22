@@ -14,16 +14,16 @@ class SAML2_SOAPClient {
 	/**
 	 * This function sends the SOAP message to the service location and returns SOAP response
 	 *
-	 * @param $ar SAML2_ArtifactResolve object.
-	 * @return $soapresponse string
+	 * @param SAML2_Message $m  The request that should be sent.
+	 * @return SAML2_Message  The response we received.
 	 */
-	public function send(SAML2_ArtifactResolve $ar, SimpleSAML_Configuration $spMetadata) {
+	public function send(SAML2_Message $msg, SimpleSAML_Configuration $spMetadata) {
 
-		$issuer = $ar->getIssuer();
+		$issuer = $msg->getIssuer();
 
 		$options = array(
 			'uri' => $issuer,
-			'location' => $ar->getDestination(),
+			'location' => $msg->getDestination(),
 		);
 
 		// Determine if we are going to do a MutualSSL connection between the IdP and SP  - Shoaib
@@ -52,12 +52,12 @@ class SAML2_SOAPClient {
 		$x = new SoapClient(NULL, $options);
 
 		// Add soap-envelopes
-		$request = $ar->toSignedXML();
+		$request = $msg->toSignedXML();
 		$request = self::START_SOAP_ENVELOPE . $request->ownerDocument->saveXML($request) . self::END_SOAP_ENVELOPE;
 
 		$action = 'http://www.oasis-open.org/committees/security';
 		$version = '1.1';
-		$destination = $ar->getDestination();
+		$destination = $msg->getDestination();
 
 
 		/* Perform SOAP Request over HTTP */
