@@ -15,9 +15,10 @@ class SAML2_SOAPClient {
 	 * This function sends the SOAP message to the service location and returns SOAP response
 	 *
 	 * @param SAML2_Message $m  The request that should be sent.
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the issuer of the message.
 	 * @return SAML2_Message  The response we received.
 	 */
-	public function send(SAML2_Message $msg, SimpleSAML_Configuration $spMetadata) {
+	public function send(SAML2_Message $msg, SimpleSAML_Configuration $srcMetadata) {
 
 		$issuer = $msg->getIssuer();
 
@@ -27,15 +28,15 @@ class SAML2_SOAPClient {
 		);
 
 		// Determine if we are going to do a MutualSSL connection between the IdP and SP  - Shoaib
-		if ($spMetadata->hasValue('saml.SOAPClient.certificate')) {
-			$options['local_cert'] = SimpleSAML_Utilities::resolveCert($spMetadata->getString('saml.SOAPClient.certificate'));
-			if ($spMetadata->hasValue('saml.SOAPClient.privatekey_pass')) {
-				$options['passphrase'] = $spMetadata->getString('saml.SOAPClient.privatekey_pass');
+		if ($srcMetadata->hasValue('saml.SOAPClient.certificate')) {
+			$options['local_cert'] = SimpleSAML_Utilities::resolveCert($srcMetadata->getString('saml.SOAPClient.certificate'));
+			if ($srcMetadata->hasValue('saml.SOAPClient.privatekey_pass')) {
+				$options['passphrase'] = $srcMetadata->getString('saml.SOAPClient.privatekey_pass');
 			}
 		} else {
 			/* Use the SP certificate and privatekey if it is configured. */
-			$privateKey = SimpleSAML_Utilities::loadPrivateKey($spMetadata);
-			$publicKey = SimpleSAML_Utilities::loadPublicKey($spMetadata);
+			$privateKey = SimpleSAML_Utilities::loadPrivateKey($srcMetadata);
+			$publicKey = SimpleSAML_Utilities::loadPublicKey($srcMetadata);
 			if ($privateKey !== NULL && $publicKey !== NULL && isset($publicKey['PEM'])) {
 				$keyCertData = $privateKey['PEM'] . $publicKey['PEM'];
 				$file = SimpleSAML_Utilities::getTempDir() . '/' . sha1($keyCertData) . '.pem';
