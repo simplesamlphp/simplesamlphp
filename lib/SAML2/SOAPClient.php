@@ -80,7 +80,7 @@ class SAML2_SOAPClient {
 		$samlresponse = SAML2_Message::fromXML($samlresponse[0]);
 
 
-		simpleSAML_Logger::debug("Valid ArtifactResponse received from IdP");
+		SimpleSAML_Logger::debug("Valid ArtifactResponse received from IdP");
 
 		return $samlresponse;
 
