@@ -44,15 +44,31 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	protected function log($message) {
 		SimpleSAML_Logger::info('PowerIdPDisco.' . $this->instance . ': ' . $message);
 	}
-	
-	
-	public static function mcmp($a, $b) {
-#		echo 'aort'; exit;
-	    if ($a['name']['en'] == $b['name']['en']) {
-	        return 0;
-	    }
-	    return ($a['name']['en'] < $b['name']['en']) ? -1 : 1;
+
+
+	/**
+	 * Compare two entities.
+	 *
+	 * This function is used to sort the entity list. It sorts based on english name,
+	 * and will always put IdP's with names configured before those with only an
+	 * entityID.
+	 *
+	 * @param array $a  The metadata of the first entity.
+	 * @param array $b  The metadata of the second entity.
+	 * @return int  How $a compares to $b.
+	 */
+	public static function mcmp(array $a, array $b) {
+		if (isset($a['name']['en']) && isset($b['name']['en'])) {
+			return strcasecmp($a['name']['en'], $b['name']['en']);
+		} elseif (isset($a['name']['en'])) {
+			return -1; /* Place name before entity ID. */
+		} elseif (isset($b['name']['en'])) {
+			return 1; /* Place entity ID after name. */
+		} else {
+			return strcasecmp($a['entityid'], $b['entityid']);
+		}
 	}
+
 
 	/*
 	 * This function will structure the idp list in a hierarchy based upon the tags.
