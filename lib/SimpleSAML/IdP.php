@@ -199,16 +199,7 @@ class SimpleSAML_IdP {
 	public function getAssociations() {
 
 		$session = SimpleSAML_Session::getInstance();
-
-		$associations = $session->getAssociations($this->associationGroup);
-
-		foreach ($associations as &$a) {
-			if (!isset($a['core:IdP'])) {
-				$a['core:IdP'] = $this->id;
-			}
-		}
-
-		return $associations;
+		return $session->getAssociations($this->associationGroup);
 	}
 
 

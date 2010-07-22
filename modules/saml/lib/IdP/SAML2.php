@@ -30,16 +30,7 @@ class sspmod_saml_IdP_SAML2 {
 		$requestId = $state['saml:RequestId'];
 		$relayState = $state['saml:RelayState'];
 		$consumerURL = $state['saml:ConsumerURL'];
-
-		if (isset($state['saml:Binding'])) {
-			$protocolBinding = $state['saml:Binding'];
-		} else {
-			/*
-			 * To allow for upgrading while people are logging in.
-			 * Should be removed in 1.7.
-			 */
-			$protocolBinding = SAML2_Const::BINDING_HTTP_POST;
-		}
+		$protocolBinding = $state['saml:Binding'];
 
 		$idp = SimpleSAML_IdP::getByState($state);
 
@@ -101,16 +92,7 @@ class sspmod_saml_IdP_SAML2 {
 		$requestId = $state['saml:RequestId'];
 		$relayState = $state['saml:RelayState'];
 		$consumerURL = $state['saml:ConsumerURL'];
-
-		if (isset($state['saml:Binding'])) {
-			$protocolBinding = $state['saml:Binding'];
-		} else {
-			/*
-			 * To allow for upgrading while people are logging in.
-			 * Should be removed in 1.7.
-			 */
-			$protocolBinding = SAML2_Const::BINDING_HTTP_POST;
-		}
+		$protocolBinding = $state['saml:Binding'];
 
 		$idp = SimpleSAML_IdP::getByState($state);
 
@@ -194,42 +176,6 @@ class sspmod_saml_IdP_SAML2 {
 			$consumerURL = NULL;
 
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: IdP initiated authentication: '. var_export($spEntityId, TRUE));
-
-		} elseif (isset($_REQUEST['RequestID'])) {
-			/*
-			 * To allow for upgrading while people are logging in.
-			 * Should be removed in 1.7.
-			 */
-
-			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: RequestID received.');
-
-			$session = SimpleSAML_Session::getInstance();
-
-			$requestCache = $session->getAuthnRequest('saml2', (string)$_REQUEST['RequestID']);
-			if (!$requestCache) {
-				throw new Exception('Could not retrieve cached request...');
-			}
-
-			$spEntityId = $requestCache['Issuer'];
-			$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
-
-			$relayState = $requestCache['RelayState'];
-			$requestId = $requestCache['RequestID'];
-			$forceAuthn = $requestCache['ForceAuthn'];
-			$isPassive = $requestCache['IsPassive'];
-			$protocolBinding = SAML2_Const::BINDING_HTTP_POST; /* HTTP-POST was the only supported binding before 1.6. */
-
-			if (isset($requestCache['IDPList'])) {
-				$IDPList = $requestCache['IDPList'];
-			} else {
-				$IDPList = array();
-			}
-
-			if (isset($requestCache['ConsumerURL'])) {
-				$consumerURL = $requestCache['ConsumerURL'];
-			} else {
-				$consumerURL = NULL;
-			}
 
 		} else {
 

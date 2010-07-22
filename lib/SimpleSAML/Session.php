@@ -41,8 +41,6 @@ class SimpleSAML_Session {
 	private $sessionindex = null;
 	private $nameid = null;
 	
-	private $sp_at_idpsessions = array();
-	
 	private $authority = null;
 	
 	// Session duration parameters
@@ -307,47 +305,6 @@ class SimpleSAML_Session {
 		}
 
 		return $this->nameid;
-	}
-
-
-	/**
-	 * Get the NameID of the users session to the specified entity.
-	 *
-	 * Deprecated, remove in version 1.7.
-	 *
-	 * @param string $entityType  The type of the entity (saml20-sp-remote, shib13-sp-remote, ...).
-	 * @param string $entityId  The entity id.
-	 * @return array  The name identifier, or NULL if no name identifier is associated with this session.
-	 */
-	public function getSessionNameId($entityType, $entityId) {
-		assert('is_string($entityType)');
-		assert('is_string($entityId)');
-
-		if(!is_array($this->sessionNameId)) {
-			return NULL;
-		}
-
-		if(!array_key_exists($entityType, $this->sessionNameId)) {
-			return NULL;
-		}
-
-		if(!array_key_exists($entityId, $this->sessionNameId[$entityType])) {
-			return NULL;
-		}
-
-		$nameId = $this->sessionNameId[$entityType][$entityId];
-		if (array_key_exists('value', $nameId)) {
-			/*
-			 * This session was saved by an old version of simpleSAMLphp.
-			 * Convert to the new NameId format.
-			 *
-			 * TODO: Remove this conversion once every session should use the new format.
-			 */
-			$nameId['Value'] = $nameId['value'];
-			unset($nameId['value']);
-		}
-
-		return $nameId;
 	}
 
 
@@ -901,48 +858,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Upgrade the association list to the new format.
-	 *
-	 * Should be removed in version 1.7.
-	 *
-	 * @param string $idp  The IdP we should add the associations to.
-	 */
-	private function upgradeAssociations($idp) {
-		assert('is_string($idp)');
-
-		$sp_at_idpsessions = $this->sp_at_idpsessions;
-		$this->sp_at_idpsessions = NULL;
-		$this->dirty = TRUE;
-
-		$globalConfig = SimpleSAML_Configuration::getInstance();
-		$sessionLifetime = time() + $globalConfig->getInteger('session.duration', 8*60*60);
-
-		foreach ($sp_at_idpsessions as $spEntityId => $state) {
-
-			if ($state !== 1) { /* 1 == STATE_ONLINE */
-				continue;
-			}
-
-			$nameId = $this->getSessionNameId('saml20-sp-remote', $spEntityId);
-			if($nameId === NULL) {
-				$nameId = $this->getNameID();
-			}
-
-			$id = 'saml:' . $spEntityId;
-
-			$this->addAssociation($idp, array(
-				'id' => $id,
-				'Handler' => 'sspmod_saml_IdP_SAML2',
-				'Expires' => $sessionLifetime,
-				'saml:entityID' => $spEntityId,
-				'saml:NameID' => $nameId,
-				'saml:SessionIndex' => $this->getSessionIndex(),
-			));
-		}
-	}
-
-
-	/**
 	 * Add an SP association for an IdP.
 	 *
 	 * This function is only for use by the SimpleSAML_IdP class.
@@ -954,11 +869,6 @@ class SimpleSAML_Session {
 		assert('is_string($idp)');
 		assert('isset($association["id"])');
 		assert('isset($association["Handler"])');
-
-		if (substr($idp, 0, 6) === 'saml2:' && !empty($this->sp_at_idpsessions)) {
-			/* Remove in 1.7. */
-			$this->upgradeAssociations($idp);
-		}
 
 		if (!isset($this->associations)) {
 			$this->associations = array();
