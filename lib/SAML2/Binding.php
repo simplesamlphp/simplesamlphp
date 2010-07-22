@@ -61,17 +61,19 @@ abstract class SAML2_Binding {
 			break;
 
 		case 'POST':
+			if (isset($_SERVER['CONTENT_TYPE'])) {
+				$contentType = $_SERVER['CONTENT_TYPE'];
+				$contentType = explode(';', $contentType);
+				$contentType = $contentType[0]; /* Remove charset. */
+			} else {
+				$contentType = NULL;
+			}
 			if (array_key_exists('SAMLRequest', $_REQUEST) || array_key_exists('SAMLResponse', $_REQUEST)) {
 				return new SAML2_HTTPPost();
-			} elseif (array_key_exists('CONTENT_TYPE', $_SERVER) && substr($_SERVER['CONTENT_TYPE'], 0, 8) === 'text/xml'){
+			} elseif ($contentType === 'text/xml') {
 				return new SAML2_SOAP();
 			}
 			break;
-		}
-
-		$s = var_export($_SERVER, TRUE);
-		foreach (explode("\n", $s) as $l) {
-			error_log($l);
 		}
 
 		throw new Exception('Unable to find the current binding.');
