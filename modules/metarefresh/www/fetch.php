@@ -14,32 +14,42 @@ foreach ($sets AS $setkey => $set) {
 
 	SimpleSAML_Logger::info('[metarefresh]: Executing set [' . $setkey . ']');
 
-	$expireAfter = $set->getInteger('expireAfter', NULL);
-	if ($expireAfter !== NULL) {
-		$expire = time() + $expireAfter;
-	} else {
-		$expire = NULL;
+	try {
+		
+
+		$expireAfter = $set->getInteger('expireAfter', NULL);
+		if ($expireAfter !== NULL) {
+			$expire = time() + $expireAfter;
+		} else {
+			$expire = NULL;
+		}
+
+		$metaloader = new sspmod_metarefresh_MetaLoader($expire);
+
+		foreach($set->getArray('sources') AS $source) {
+			SimpleSAML_Logger::debug('[metarefresh]: In set [' . $setkey . '] loading source ['  . $source['src'] . ']');
+			$metaloader->loadSource($source);
+		}
+
+		$outputDir = $set->getString('outputDir');
+		$outputDir = $config->resolvePath($outputDir);
+
+		$outputFormat = $set->getValueValidate('outputFormat', array('flatfile', 'serialize'), 'flatfile');
+		switch ($outputFormat) {
+			case 'flatfile':
+				$metaloader->writeMetadataFiles($outputDir);
+				break;
+			case 'serialize':
+				$metaloader->writeMetadataSerialize($outputDir);
+				break;
+		}
+	} catch (Exception $e) {
+		if (! $e instanceof SimpleSAML_Error_Exception) {
+			$e = new SimpleSAML_Error_UnserializableException($e);
+		}
+		$e->logWarning();
 	}
-
-	$metaloader = new sspmod_metarefresh_MetaLoader($expire);
-
-	foreach($set->getArray('sources') AS $source) {
-		SimpleSAML_Logger::debug('[metarefresh]: In set [' . $setkey . '] loading source ['  . $source['src'] . ']');
-		$metaloader->loadSource($source);
-	}
-
-	$outputDir = $set->getString('outputDir');
-	$outputDir = $config->resolvePath($outputDir);
-
-	$outputFormat = $set->getValueValidate('outputFormat', array('flatfile', 'serialize'), 'flatfile');
-	switch ($outputFormat) {
-		case 'flatfile':
-			$metaloader->writeMetadataFiles($outputDir);
-			break;
-		case 'serialize':
-			$metaloader->writeMetadataSerialize($outputDir);
-			break;
-	}
+	
 
 }
 
