@@ -32,12 +32,6 @@
 	"howto_text": {
 		"en": "This error probably is due to some unexpected behaviour or to misconfiguration of simpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 	},
-	"title_CACHEAUTHNREQUEST": {
-		"en": "Error making single sign-on to service"
-	},
-	"descr_CACHEAUTHNREQUEST": {
-		"en": "You were authenticated and ready to go back to the service requesting authentication, but we could not find your cached authentication request. The request is only cached for a limited amount of time. Leaving your browser open for hours before entering your username and password might be the cause of the problem. If this could be the case in your situation, try to go back to the service you want to access, and start a new login process. If the problem persists, please report it."
-	},
 	"title_CREATEREQUEST": {
 		"en": "Error creating request"
 	},
@@ -56,12 +50,6 @@
 	"descr_GENERATEAUTHNRESPONSE": {
 		"en": "When this identity provider tried to create an authentication response, an error occured."
 	},
-	"title_GENERATELOGOUTRESPONSE": {
-		"en": "Could not create logout response"
-	},
-	"descr_GENERATELOGOUTRESPONSE": {
-		"en": "When this SAML entity tried to create an logout response, an error occured."
-	},
 	"title_LDAPERROR": {
 		"en": "LDAP Error"
 	},
@@ -73,18 +61,6 @@
 	},
 	"descr_LOGOUTREQUEST": {
 		"en": "An error occured when trying to process the Logout Request."
-	},
-	"title_GENERATELOGOUTREQUEST": {
-		"en": "Could not create the Logout Request"
-	},
-	"descr_GENERATELOGOUTREQUEST": {
-		"en": "When this SAML entity tried to create a Logout Request, an error occured."
-	},
-	"title_LOGOUTRESPONSE": {
-		"en": "Error processing the Logout Response"
-	},
-	"descr_LOGOUTRESPONSE": {
-		"en": "An error occured when trying to process the Logout Response."
 	},
 	"title_METADATA": {
 		"en": "Error loading metadata"
@@ -116,23 +92,11 @@
 	"descr_PROCESSASSERTION": {
 		"en": "We did not accept the response sent from the Identity Provider."
 	},
-	"title_PROCESSAUTHNRESPONSE": {
-		"en": "Error processing response from Identity Provider"
-	},
-	"descr_PROCESSAUTHNRESPONSE": {
-		"en": "This SP received an authentication response from an identity provider, but an error occured when trying to process the response."
-	},
 	"title_PROCESSAUTHNREQUEST": {
 		"en": "Error processing request from Service Provider"
 	},
 	"descr_PROCESSAUTHNREQUEST": {
 		"en": "This Identity Provider received an Authentication Request from a Service Provider, but an error occured when trying to process the request."
-	},
-	"title_SSOSERVICEPARAMS": {
-		"en": "Incorrect parameters provided"
-	},
-	"descr_SSOSERVICEPARAMS": {
-		"en": "You must either provide a SAML Request message or a RequestID on this interface."
 	},
 	"title_SLOSERVICEPARAMS": {
 		"en": "No SAML message provided"
@@ -176,23 +140,11 @@
 	"errorreport_text": {
 		"en": "The error report has been sent to the administrators."
 	},
-	"title_READCONFIGTEMPLATES": {
-		"en": "Error reading config-templates directory"
-	},
-	"descr_READCONFIGTEMPLATES": {
-		"en": "An error occured while simpleSAMLphp was attempting to find the available files in the config-templates directory."
-	},
 	"title_LOGOUTINFOLOST": {
 		"en": "Logout information lost"
 	},
 	"descr_LOGOUTINFOLOST": {
 		"en": "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amout of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
-	},
-	"title_ASSERTFAIL": {
-		"en": "Assertion failure"
-	},
-	"descr_ASSERTFAIL": {
-		"en": "An assertion in the code failed. The assertion was: %ASSERTION%"
 	},
 	"title_UNHANDLEDEXCEPTION": {
 		"en": "Unhandled exception"
@@ -223,12 +175,6 @@
 	},
 	"descr_WRONGUSERPASS": {
 		"en": "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
-	},
-	"title_OPENIDWRONG": {
-		"en": "Wrong identity for OpenID"
-	},
-	"descr_OPENIDWRONG": {
-		"en": "The OpenID requested you to verify an identity, and you are logged in with another identity."
 	},
 	"title_RESPONSESTATUSNOSUCCESS": {
 		"en": "Error received from Identity Provider"
