@@ -10,7 +10,7 @@ $params = array(
 echo('<p>' . $this->t('{openidProvider:openidProvider:confirm_question}', $params) . '</p>');
 ?>
 <form method="post" action="?">
-<input type="hidden" name="StateID" value="<?php echo $this->data['StateID']; ?>" />
+<input type="hidden" name="StateID" value="<?php echo htmlspecialchars($this->data['StateID']); ?>" />
 
 <input type="checkbox" name="TrustRemember" value="on" id="remember" />
 <label for="TrustRemember"><?php echo($this->t('{openidProvider:openidProvider:remember}')); ?></label>
