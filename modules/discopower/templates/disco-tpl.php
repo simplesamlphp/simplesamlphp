@@ -120,7 +120,7 @@ if (!empty($faventry)) {
 
 	echo('<div class="favourite">');
 	echo($this->t('previous_auth'));
-	echo(' <strong>' . getTranslatedName($this, $faventry) . '</strong>');
+	echo(' <strong>' . htmlspecialchars(getTranslatedName($this, $faventry)) . '</strong>');
 	echo('
 	<form id="idpselectform" method="get" action="' . $this->data['urlpattern'] . '">
 		<input type="hidden" name="entityID" value="' . htmlspecialchars($this->data['entityID']) . '" />
@@ -128,7 +128,7 @@ if (!empty($faventry)) {
 		<input type="hidden" name="returnIDParam" value="' . htmlspecialchars($this->data['returnIDParam']) . '" />
 		<input type="hidden" name="idpentityid" value="' . htmlspecialchars($faventry['entityid']) . '" />
 
-		<input type="submit" name="formsubmit" id="favouritesubmit" value="' . $this->t('login_at') . ' ' . getTranslatedName($this, $faventry) . '" /> 
+		<input type="submit" name="formsubmit" id="favouritesubmit" value="' . $this->t('login_at') . ' ' . htmlspecialchars(getTranslatedName($this, $faventry)) . '" /> 
 	</form>');
 
 	echo('</div>');
