@@ -97,13 +97,10 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
 	 * @param array &$state  Information about the current authentication.
 	 */
 	public function authFailed(&$state) {
-		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
-		$params = array('AuthState' => $id);
 		$config = SimpleSAML_Configuration::getInstance();
 
 		$t = new SimpleSAML_XHTML_Template($config,
 			'authX509:X509error.php');
-		$t->data['stateparams'] = $params;
 		$t->data['errorcode'] = $state['authX509.error'];
 
 		$t->show();
