@@ -75,8 +75,8 @@ span.showhide {
 			foreach ($spList AS $spName => $spValues) {
 				$this->includeInlineTranslation('spname', $spValues['name']);
 				$this->includeInlineTranslation('spdescription', $spValues['description']);
-				$htmlSpName = $this->t('spname', array(), false, true);
-				$spDescription = $this->t('spdescription',array(), false, true);
+				$htmlSpName = htmlspecialchars($this->t('spname', array(), false, true));
+				$spDescription = htmlspecialchars($this->t('spdescription',array(), false, true));
 				$checkedAttr = $spValues['consentStatus'] == 'ok' ? "checked='yes'" : "";
 				$consentValue = $spValues['consentValue'];
 				$consentText = $spValues['consentStatus'] == 'changed' ? "attributes has changed" : "";
