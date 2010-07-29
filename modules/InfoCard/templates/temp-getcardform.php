@@ -22,7 +22,7 @@
 		
 			if(strcmp($this->data['form'],"validate")==0){
 				echo '<h2>'.$this->t('getcardform_title').'</h2>';
-				echo '<form action = ?AuthState='.$this->data['stateparams']['AuthState']." method='post'>";
+				echo '<form action = ?AuthState='.htmlspecialchars($this->data['stateparams']['AuthState'])." method='post'>";
 					echo '<table border="0">';
 					echo "<tr><td>".$this->t('form_username').": </td><td><input type='text' name='username' value='usuario' /></td></tr>";
 					echo "<tr><td>".$this->t('form_password').": </td><td><input type='password' name='password' value='clave' /></td></tr>";
@@ -34,7 +34,7 @@
 			} else if(strcmp($this->data['form'],"selfIssued")==0){ //ASK FOR A SELF-ISSUED CARD
 				echo '<h2>'.$this->t('getcardform_self_title').'</h2>';
 				echo '<p>'.$this->t('getcardform_self_text').'</p>';
-				echo	'<form name="ctl00" id="ctl00" method="post" action="?AuthState='.$this->data['stateparams']['AuthState'].'">';
+				echo	'<form name="ctl00" id="ctl00" method="post" action="?AuthState='.htmlspecialchars($this->data['stateparams']['AuthState']).'">';
 					echo	'<OBJECT type="application/x-informationCard" name="xmlToken">';
 						echo '<PARAM Name="issuer" Value="http://schemas.xmlsoap.org/ws/2005/05/identity/issuer/self" />';
 						if ($this->data['InfoCard']['issuerPolicy']!='') echo '<PARAM Name="issuerPolicy" Value="'.$this->data['InfoCard']['issuerPolicy']."\">\n";
@@ -43,15 +43,15 @@
 						if ($this->data['InfoCard']['privacyVersion']!='')echo '<PARAM Name="privacyVersion" Value="'.$this->data['InfoCard']['privacyVersion']."\">\n";
 						echo '<PARAM Name="requiredClaims" Value="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/privatepersonalidentifier">';
 					echo '</OBJECT>';
-					echo "<input type='hidden' name='username' value='".$this->data['username']."'/>";
-					echo "<input type='hidden' name='password' value='".$this->data['password']."'/>";
+					echo "<input type='hidden' name='username' value='".htmlspecialchars($this->data['username'])."'/>";
+					echo "<input type='hidden' name='password' value='".htmlspecialchars($this->data['password'])."'/>";
 					echo "<input type='hidden' name='form' value='".$this->data['form']."'/>";
 					echo "<input type='image' src='resources/infocard_self_114x80.png' style='cursor:pointer' />";
 				echo '</form>';
 			} else {
 				echo '<h2>'.$this->t('getcardform_finished_title').'</h2>';
 				echo '<p>'.$this->t('getcardform_finished_text').'</p>';
-				echo '<p> <a href="login-infocard.php?AuthState='.$this->data['stateparams']['AuthState'].'">LOGIN</a></p>';
+				echo '<p> <a href="login-infocard.php?AuthState='.htmlspecialchars($this->data['stateparams']['AuthState']).'">LOGIN</a></p>';
 			}
 		}
   ?>

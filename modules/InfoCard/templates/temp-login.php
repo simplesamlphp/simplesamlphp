@@ -19,7 +19,7 @@
 	
 	<p><?php echo $this->t('user_IC_text'); ?></p>
 	
-	<form name="ctl00" id="ctl00" method="post" action="?AuthState=<?php echo $this->data['stateparams']['AuthState']?>">
+	<form name="ctl00" id="ctl00" method="post" action="?AuthState=<?php echo htmlspecialchars($this->data['stateparams']['AuthState'])?>">
 
 <!--		<ic:informationCard xmlns:ic="<?php echo $this->data['InfoCard']['schema'] ?>" name="xmlToken" 
 			issuer="<?php echo $this->data['InfoCard']['issuer']; ?>"
