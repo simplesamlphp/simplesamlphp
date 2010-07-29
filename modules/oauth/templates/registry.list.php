@@ -13,7 +13,7 @@ $this->includeAtTemplateBase('includes/header.php');
 
 echo('<h1>OAuth Client Registry</h1>');
 
-echo('<p>Here you can register new OAuth Clients. You are successfully logged in as ' . $this->data['userid'] . '</p>');
+echo('<p>Here you can register new OAuth Clients. You are successfully logged in as ' . htmlspecialchars($this->data['userid']) . '</p>');
 
 echo('<h2>Your clients</h2>');
 echo('<table class="metalist" style="width: 100%">');
@@ -22,8 +22,8 @@ foreach($this->data['entries']['mine'] AS $entryc ) {
 	$entry = $entryc['value'];
 	$i++; 
 	echo('<tr class="' . $rows[$i % 2] . '">
-		<td>' . $entry['name'] . '</td>
-		<td><tt>' . $entry['key'] . '</tt></td>
+		<td>' . htmlspecialchars($entry['name']) . '</td>
+		<td><tt>' . htmlspecialchars($entry['key']) . '</tt></td>
 		<td>
 			<a href="registry.edit.php?editkey=' . urlencode($entry['key']) . '">edit</a>
 			<a href="registry.php?delete=' . urlencode($entry['key']) . '">delete</a>
@@ -43,9 +43,9 @@ foreach($this->data['entries']['others'] AS $entryc ) {
 	$entry = $entryc['value'];
 	$i++; 
 	echo('<tr class="' . $rows[$i % 2] . '">
-		<td>' . $entry['name'] . '</td>
-		<td><tt>' . $entry['key'] . '</tt></td>
-		<td>' . (isset($entry['owner']) ? $entry['owner'] : 'No owner') . '
+		<td>' . htmlspecialchars($entry['name']) . '</td>
+		<td><tt>' . htmlspecialchars($entry['key']) . '</tt></td>
+		<td>' . (isset($entry['owner']) ? htmlspecialchars($entry['owner']) : 'No owner') . '
 		</td></tr>');
 }
 if ($i == 0) {
