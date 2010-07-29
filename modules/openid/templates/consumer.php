@@ -50,7 +50,7 @@ div.error {
 			Identity&nbsp;URL:
 			<input type="hidden" name="action" value="verify" />
 			<input id="openid-identifier" class="openid-identifier" type="text" name="openid_url" value="http://" />
-			<input type="hidden" name="AuthState" value="<?php echo $this->data['AuthState']; ?>" />
+			<input type="hidden" name="AuthState" value="<?php echo htmlspecialchars($this->data['AuthState']); ?>" />
 			<input type="submit" value="Login with OpenID" />
 		</fieldset>
 	</form>
