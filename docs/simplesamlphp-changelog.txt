@@ -48,6 +48,12 @@ See the upgrade notes for specific information about upgrading.
   * `core:AttributeLimit`: Make it possible to specify a default set of attributes.
 
 
+## Version 1.6.2
+
+Released 2010-07-29.
+
+  * Various security fixes.
+
 ## Version 1.6.1
 
 Released 2010-06-25.
