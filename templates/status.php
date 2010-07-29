@@ -28,7 +28,11 @@ $attributes = $this->data['attributes'];
 
 function present_list($attr) {
 	if (is_array($attr) && count($attr) > 1) {
-		$str = '<ul><li>' . join('</li><li>', $attr) . '</li></ul>';
+		$str = '<ul>';
+		foreach ($attr as $value) {
+			$str .= '<li>' . htmlspecialchars($attr) . '</li>';
+		}
+		$str .= '</ul>';
 		return $str;
 	} else {
 		return htmlspecialchars($attr[0]);
@@ -73,7 +77,7 @@ function present_attributes($t, $attributes, $nameParent) {
 				$str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue"><ul>';
 				foreach ($value AS $listitem) {
 					if ($nameraw === 'jpegPhoto') {
-						$str .= '<li><img src="data:image/jpeg;base64,' . $listitem . '" /></li>';
+						$str .= '<li><img src="data:image/jpeg;base64,' . htmlspecialchars($listitem) . '" /></li>';
 					} else {
 						$str .= '<li>' . present_assoc($listitem) . '</li>';
 					}
