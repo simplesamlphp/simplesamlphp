@@ -78,11 +78,11 @@ foreach($this->data['metaentries']['remote'] AS $setkey => $set) {
 			htmlspecialchars(SimpleSAML_Module::getModuleURL('core/show_metadata.php', array('entityid' => $entry['entityid'], 'set' => $setkey ))) .
 			'">');
 		if (array_key_exists('name', $entry)) {
-			echo $this->getTranslation(SimpleSAML_Utilities::arrayize($entry['name'], 'en'));
+			echo htmlspecialchars($this->getTranslation(SimpleSAML_Utilities::arrayize($entry['name'], 'en')));
 		} elseif (array_key_exists('OrganizationDisplayName', $entry)) {
-			echo $this->getTranslation(SimpleSAML_Utilities::arrayize($entry['OrganizationDisplayName'], 'en'));
+			echo htmlspecialchars($this->getTranslation(SimpleSAML_Utilities::arrayize($entry['OrganizationDisplayName'], 'en')));
 		} else {
-			echo $entry['entityid'];
+			echo htmlspecialchars($entry['entityid']);
 		}
 		echo '</a>';
 		if (array_key_exists('expire', $entry)) {
