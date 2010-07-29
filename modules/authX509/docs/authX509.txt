@@ -45,7 +45,7 @@ Then you must add it as an authentication source. Here is an
 example authsource.php
 
     'x509' => array(
-        'authX509:authX509userCert',
+        'authX509:X509userCert',
         'hostname' => 'ldaps://ldap.example.net',
         'enable_tls' => FALSE,
         'attributes' => array("cn", "uid", "mail", "ou", "sn"),
