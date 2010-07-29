@@ -53,6 +53,8 @@ if (is_array($dstName)) {
 	$dstName = $this->t($dstName);
 }
 
+$srcName = htmlspecialchars($srcName);
+$dstName = htmlspecialchars($dstName);
 
 $attributes = $this->data['attributes'];
 
@@ -111,7 +113,7 @@ foreach ($this->data['noData'] as $name => $value) {
 <?php
 if ($this->data['sppp'] !== FALSE) {
 	echo "<p>" . htmlspecialchars($this->t('{consent:consent:consent_privacypolicy}')) . " ";
-	echo "<a target='_blank' href='" . htmlspecialchars($this->data['sppp']) . "'>" . htmlspecialchars($dstName) . "</a>";
+	echo "<a target='_blank' href='" . htmlspecialchars($this->data['sppp']) . "'>" . $dstName . "</a>";
 	echo "</p>";
 }
 ?>
@@ -165,7 +167,7 @@ function present_attributes($t, $attributes, $nameParent) {
 				$str .= '<ul>';
 				foreach ($value AS $listitem) {
 					if ($nameraw === 'jpegPhoto') {
-						$str .= '<li><img src="data:image/jpeg;base64,' . $listitem . '" alt="User photo" /></li>';
+						$str .= '<li><img src="data:image/jpeg;base64,' . htmlspecialchars($listitem) . '" alt="User photo" /></li>';
 					} else {
 						$str .= '<li>' . htmlspecialchars($listitem) . '</li>';
 					}
