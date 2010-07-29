@@ -13,7 +13,7 @@ $this->includeAtTemplateBase('includes/header.php');
 
 echo('<h1>Metadata Registry</h1>');
 
-echo('<p>Here you can register new SAML entities. You are successfully logged in as ' . $this->data['userid'] . '</p>');
+echo('<p>Here you can register new SAML entities. You are successfully logged in as ' . htmlspecialchars($this->data['userid']) . '</p>');
 
 echo('<h2>Your entries</h2>');
 echo('<table class="metalist" style="width: 100%">');
