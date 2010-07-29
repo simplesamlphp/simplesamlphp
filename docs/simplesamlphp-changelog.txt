@@ -6,6 +6,12 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.6.2
+
+Released 2010-07-29.
+
+  * Various security fixes.
+
 ## Version 1.6.1
 
 Released 2010-06-25.
