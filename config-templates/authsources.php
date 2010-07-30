@@ -64,6 +64,16 @@ $config = array(
 	*/
 
 	/*
+	// This authentication source serves as an example of integration with an
+	// external authentication engine. Take a look at the comment in the beginning
+	// of modules/exampleauth/lib/Auth/Source/External.php for a description of
+	// how to adjust it to your own site.
+	'example-external' => array(
+		'exampleauth:External',
+	),
+	*/
+
+	/*
 	'yubikey' => array(
 		'authYubiKey:YubiKey',
  		'id' => '000',
