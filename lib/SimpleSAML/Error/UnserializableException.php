@@ -19,6 +19,12 @@ class SimpleSAML_Error_UnserializableException extends SimpleSAML_Error_Exceptio
 
 		$msg = get_class($original) . ': ' . $original->getMessage();
 		$code = $original->getCode();
+
+		if (!is_int($code)) {
+			/* PDOException uses a string as the code. Filter it out here. */
+			$code = -1;
+		}
+
 		parent::__construct($msg, $code);
 
 		$this->setBacktrace(SimpleSAML_Utilities::buildBacktrace($original));
