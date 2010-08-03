@@ -20,9 +20,6 @@ $Infocard =   $autoconfig->getValue('InfoCard');
 
 /* Load the session of the current user. */
 $session = SimpleSAML_Session::getInstance();
-if($session == NULL) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOSESSION');
-}
 
 if (!array_key_exists('AuthState', $_REQUEST)) {
 SimpleSAML_Logger::debug('NO AUTH STATE');

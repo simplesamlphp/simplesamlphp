@@ -80,12 +80,6 @@
 	"descr_NORELAYSTATE": {
 		"en": "The initiator of this request did not provide a RelayState parameter indicating where to go next."
 	},
-	"title_NOSESSION": {
-		"en": "No session found"
-	},
-	"descr_NOSESSION": {
-		"en": "Unfortunately, we could not obtain your session information. This could be because your browser does not support cookies, or cookie handling is disabled. Alternately, your session timed out because you let the browser open for a long time."
-	},
 	"title_PROCESSASSERTION": {
 		"en": "Error processing response from Identity Provider"
 	},

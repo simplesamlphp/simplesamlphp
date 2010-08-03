@@ -13,9 +13,6 @@ require_once($ldapconfigfile);
 
 SimpleSAML_Logger::info('AUTH - ldap-multi: Accessing auth endpoint login-ldapmulti');
 
-if (empty($session))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOSESSION');
-
 $error = null;
 $attributes = array();
 
