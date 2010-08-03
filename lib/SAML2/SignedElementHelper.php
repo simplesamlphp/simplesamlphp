@@ -185,9 +185,13 @@ class SAML2_SignedElementHelper implements SAML2_SignedElement {
 			$key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
 			$key->loadKey($pemCert);
 
-			/* Check the signature. */
-			if ($this->validate($key)) {
-				$ret[] = $cert;
+			try {
+				/* Check the signature. */
+				if ($this->validate($key)) {
+					$ret[] = $cert;
+				}
+			} catch (Exception $e) {
+				/* This certificate does not sign this element. */
 			}
 		}
 
