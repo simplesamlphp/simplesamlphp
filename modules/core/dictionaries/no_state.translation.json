@@ -1,0 +1,46 @@
+{
+	"header": {
+		"no": "Tilstandsinformasjon tapt",
+		"nn": "Tilstandsinformasjon tapt"
+	},
+	"description": {
+		"no": "Vi kunne ikke finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
+		"nn": "Vi kunne ikkje finne tilstandsinformasjonen for denne foresp\u00f8rselen."
+	},
+	"suggestions": {
+		"no": "Forslag for \u00e5 l\u00f8se dette problemet:",
+		"nn": "Forslag for \u00e5 l\u00f8yse dette problemet:"
+	},
+	"suggestion_goback": {
+		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
+		"nn": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt."
+	},
+	"suggestion_closebrowser": {
+		"no": "Lukk nettleseren, og pr\u00f8v p\u00e5 nytt.",
+		"nn": "Lukk nettlesaren, og pr\u00f8v p\u00e5 nytt."
+	},
+	"causes": {
+		"no": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
+		"nn": "Denne feilen kan v\u00e6re for\u00e5rsaket av:"
+	},
+	"cause_backforward": {
+		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
+		"nn": "Bruk av \"fram\"- og \"attende\"-knappane i nettlesaren."
+	},
+	"cause_openbrowser": {
+		"no": "Starte nettleseren med faner lagret fra forrige gang.",
+		"nn": "Starte nettlesaren med faner lagret fra forrige gong."
+	},
+	"cause_nocookie": {
+		"no": "At informasjonskapsler ikke er aktivert i nettleseren.",
+		"nn": "At informasjonskapsler ikkje er aktivert i nettlesaren."
+	},
+	"report_header": {
+		"no": "Rapporter denne feilen",
+		"nn": "Rapporter denne feilen"
+	},
+	"report_text": {
+		"no": "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene.",
+		"nn": "Om problemet vedvarar, kan du rapportere det til systemadministratorane."
+	}
+}

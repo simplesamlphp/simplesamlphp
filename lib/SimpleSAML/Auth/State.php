@@ -155,7 +155,7 @@ class SimpleSAML_Auth_State {
 			/* Could not find saved data. Attempt to restart. */
 
 			if ($restartURL === NULL) {
-				throw new Exception('State information lost, and no way to restart the request.');
+				throw new SimpleSAML_Error_NoState();
 			}
 
 			SimpleSAML_Utilities::redirect($restartURL);
