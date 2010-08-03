@@ -27,19 +27,19 @@ class SimpleSAML_Auth_LDAP {
 	 *
 	 * @var resource
 	 */
-	private $ldap = null;
+	protected $ldap = null;
 
 	/**
 	 * LDAP user: authz_id if SASL is in use, binding dn otherwise
 	 */
-	private $authz_id = null;
+	protected $authz_id = null;
 
 	/**
 	 * Timeout value, in seconds.
 	 *
 	 * @var int
 	 */
-	private $timeout = 0;
+	protected $timeout = 0;
 
 	/**
 	 * Private constructor restricts instantiation to getInstance().
