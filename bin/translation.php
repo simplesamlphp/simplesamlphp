@@ -11,10 +11,6 @@ if (count($argv) !== 3) {
 	echo "Wrong number of parameters. Run:   " . $argv[0] . " [pulldef,push,pull] filename\n"; exit;
 }
 
-// Needed in order to make session_start to be called before output is printed.
-$session = SimpleSAML_Session::getInstance();
-
-
 $action = $argv[1];
 $file = $argv[2];
 
