@@ -7,7 +7,7 @@
  * @package simpleSAMLphp
  * @version $Id$
  */
-class SimpleSAML_Error_Error extends Exception {
+class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 
 
 	/**
@@ -108,5 +108,3 @@ class SimpleSAML_Error_Error extends Exception {
 	}
 
 }
-
-?>
