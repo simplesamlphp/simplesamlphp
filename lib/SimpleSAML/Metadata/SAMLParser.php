@@ -472,6 +472,10 @@ class SimpleSAML_Metadata_SAMLParser {
 				continue;
 			}
 
+			if ($key['signing'] !== TRUE) {
+				continue;
+			}
+
 			$certData = base64_decode($key['X509Certificate']);
 			if($certData === FALSE) {
 				/* Empty/invalid certificate. */
@@ -532,6 +536,10 @@ class SimpleSAML_Metadata_SAMLParser {
 		$ret['certFingerprint'] = array();
 		foreach($idp['keys'] as $key) {
 			if($key['type'] !== 'X509Certificate') {
+				continue;
+			}
+
+			if ($key['signing'] !== TRUE) {
 				continue;
 			}
 
@@ -624,6 +632,10 @@ class SimpleSAML_Metadata_SAMLParser {
 				continue;
 			}
 
+			if ($key['signing'] !== TRUE) {
+				continue;
+			}
+
 			$certData = base64_decode($key['X509Certificate']);
 			if($certData === FALSE) {
 				/* Empty/invalid certificate. */
@@ -698,6 +710,10 @@ class SimpleSAML_Metadata_SAMLParser {
 		$ret['certFingerprint'] = array();
 		foreach($idp['keys'] as $key) {
 			if($key['type'] !== 'X509Certificate') {
+				continue;
+			}
+
+			if ($key['signing'] !== TRUE) {
 				continue;
 			}
 
