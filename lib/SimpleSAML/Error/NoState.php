@@ -29,24 +29,9 @@ class SimpleSAML_Error_NoState extends SimpleSAML_Error_Error {
 
 		header('HTTP/1.0 500 Internal Server Error');
 
-		$globalConfig = SimpleSAML_Configuration::getInstance();
-
-		$reportId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(4));
-		SimpleSAML_Logger::error('Error report with id ' . $reportId . ' generated.');
+		$errorData = $this->saveError();
 
 		$session = SimpleSAML_Session::getInstance();
-
-		$errorData = array(
-			'exceptionMsg' => $this->getMessage(),
-			'exceptionTrace' => implode("\n", $this->format()),
-			'reportId' => $reportId,
-			'trackId' => $session->getTrackID(),
-			'url' => SimpleSAML_Utilities::selfURLNoQuery(),
-			'version' => $globalConfig->getVersion(),
-		);
-		$session->setData('core:errorreport', $reportId, $errorData);
-
-
 		$attributes = $session->getAttributes();
 		if (isset($attributes['mail'][0])) {
 			$email = $attributes['mail'][0];
@@ -55,6 +40,7 @@ class SimpleSAML_Error_NoState extends SimpleSAML_Error_Error {
 		}
 
 
+		$globalConfig = SimpleSAML_Configuration::getInstance();
 		$t = new SimpleSAML_XHTML_Template($globalConfig, 'core:no_state.tpl.php');
 
 		/* Enable error reporting if we have a valid technical contact email. */
@@ -62,7 +48,7 @@ class SimpleSAML_Error_NoState extends SimpleSAML_Error_Error {
 			/* Enable error reporting. */
 			$baseurl = SimpleSAML_Utilities::getBaseURL();
 			$t->data['errorReportAddress'] = $baseurl . 'errorreport.php';
-			$t->data['reportId'] = $reportId;
+			$t->data['reportId'] = $errorData['reportId'];
 			$t->data['email'] = $email;
 		}
 
