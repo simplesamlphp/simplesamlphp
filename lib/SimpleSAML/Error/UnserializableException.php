@@ -40,8 +40,7 @@ class SimpleSAML_Error_UnserializableException extends SimpleSAML_Error_Exceptio
 		}
 
 		parent::__construct($msg, $code);
-
-		$this->setBacktrace(SimpleSAML_Utilities::buildBacktrace($original));
+		$this->initBacktrace($original);
 	}
 
 

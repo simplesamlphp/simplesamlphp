@@ -46,7 +46,7 @@ class SimpleSAML_Error_Exception extends Exception {
 
 		parent::__construct($message, $code);
 
-		$this->backtrace = SimpleSAML_Utilities::buildBacktrace($this);
+		$this->initBacktrace($this);
 
 		if ($cause !== NULL) {
 			$this->cause = SimpleSAML_Error_Exception::fromException($cause);
@@ -70,27 +70,44 @@ class SimpleSAML_Error_Exception extends Exception {
 
 
 	/**
+	 * Load the backtrace from the given exception.
+	 *
+	 * @param Exception $exception  The exception we should fetch the backtrace from.
+	 */
+	protected function initBacktrace(Exception $exception) {
+
+		$this->backtrace = array();
+
+		/* Position in the top function on the stack. */
+		$pos = $exception->getFile() . ':' . $exception->getLine();
+
+		foreach($exception->getTrace() as $t) {
+
+			$function = $t['function'];
+			if(array_key_exists('class', $t)) {
+				$function = $t['class'] . '::' . $function;
+			}
+
+			$this->backtrace[] = $pos . ' (' . $function . ')';
+
+			if(array_key_exists('file', $t)) {
+				$pos = $t['file'] . ':' . $t['line'];
+			} else {
+				$pos = '[builtin]';
+			}
+		}
+
+		$this->backtrace[] = $pos . ' (N/A)';
+	}
+
+
+	/**
 	 * Retrieve the backtrace.
 	 *
 	 * @return array  An array where each function call is a single item.
 	 */
 	public function getBacktrace() {
 		return $this->backtrace;
-	}
-
-
-	/**
-	 * Replace the backtrace.
-	 *
-	 * This function is meant for subclasses which needs to replace the backtrace
-	 * of this exception, such as the SimpleSAML_Error_Unserializable class.
-	 *
-	 * @param array $backtrace  The new backtrace.
-	 */
-	protected function setBacktrace($backtrace) {
-		assert('is_array($backtrace)');
-
-		$this->backtrace = $backtrace;
 	}
 
 

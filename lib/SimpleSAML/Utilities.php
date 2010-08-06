@@ -261,51 +261,6 @@ class SimpleSAML_Utilities {
 	}
 
 
-	/**
-	 * Build a backtrace.
-	 *
-	 * This function takes in an exception and optionally a start depth, and
-	 * builds a backtrace from that depth. The backtrace is returned as an
-	 * array of strings, where each string represents one level in the stack.
-	 *
-	 * @param Exception $exception  The exception.
-	 * @param int $startDepth  The depth we should print the backtrace from.
-	 * @return array  The backtrace as an array of strings.
-	 */
-	public static function buildBacktrace(Exception $exception, $startDepth = 0) {
-
-		assert('is_int($startDepth)');
-
-		$bt = array();
-
-		/* Position in the top function on the stack. */
-		$pos = $exception->getFile() . ':' . $exception->getLine();
-
-		foreach($exception->getTrace() as $t) {
-
-			$function = $t['function'];
-			if(array_key_exists('class', $t)) {
-				$function = $t['class'] . '::' . $function;
-			}
-
-			$bt[] = $pos . ' (' . $function . ')';
-
-			if(array_key_exists('file', $t)) {
-				$pos = $t['file'] . ':' . $t['line'];
-			} else {
-				$pos = '[builtin]';
-			}
-		}
-
-		$bt[] = $pos . ' (N/A)';
-
-		/* Remove $startDepth elements from the top of the backtrace. */
-		$bt = array_slice($bt, $startDepth);
-
-		return $bt;
-	}
-
-
 	/* This function converts a SAML2 timestamp on the form
 	 * yyyy-mm-ddThh:mm:ss(\.s+)?Z to a UNIX timestamp. The sub-second
 	 * part is ignored.
