@@ -306,37 +306,6 @@ class SimpleSAML_Utilities {
 	}
 
 
-	/**
-	 * Format a backtrace from an exception.
-	 *
-	 * This function formats a backtrace from an exception in a simple format
-	 * which doesn't include the variables passed to functions.
-	 *
-	 * The bactrace has the following format:
-	 *  0: <filename>:<line> (<current function>)
-	 *  1: <filename>:<line> (<previous fucntion>)
-	 *  ...
-	 *  N: <filename>:<line> (N/A)
-	 *
-	 * @param Exception $e  The exception we should format the backtrace for.
-	 * @param int $startDepth  The first frame we should include in the backtrace.
-	 * @return string  The formatted backtrace.
-	 */
-	public static function formatBacktrace(Exception $e, $startDepth = 0) {
-		assert('$e instanceof Exception');
-		assert('is_int($startDepth)');
-
-		$trace = '';
-
-		$bt = self::buildBacktrace($e, $startDepth);
-		foreach($bt as $depth => $t) {
-			$trace .= $depth . ': ' . $t . "\n";
-		}
-
-		return $trace;
-	}
-
-
 	/* This function converts a SAML2 timestamp on the form
 	 * yyyy-mm-ddThh:mm:ss(\.s+)?Z to a UNIX timestamp. The sub-second
 	 * part is ignored.
