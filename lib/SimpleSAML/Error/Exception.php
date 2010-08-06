@@ -93,6 +93,16 @@ class SimpleSAML_Error_Exception extends Exception {
 
 
 	/**
+	 * Retrieve the class of this exception.
+	 *
+	 * @return string  The classname.
+	 */
+	public function getClass() {
+		return get_class($this);
+	}
+
+
+	/**
 	 * Format this exception for logging.
 	 *
 	 * Create an array with lines for logging.
@@ -105,7 +115,7 @@ class SimpleSAML_Error_Exception extends Exception {
 
 		$e = $this;
 		do {
-			$err = get_class($e) . ': ' . $e->getMessage();
+			$err = $e->getClass() . ': ' . $e->getMessage();
 			if ($e === $this) {
 				$ret[] = $err;
 			} else {
