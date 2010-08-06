@@ -595,11 +595,6 @@ class OAuthServer {/*{{{*/
 	// SimpleSAML_Logger::info('request: ' . var_export($request, TRUE));
 	// SimpleSAML_Logger::info('token_type: ' . var_export($token_type, TRUE));
 	// SimpleSAML_Logger::info('token_field: ' . var_export($token_field, TRUE));
-	// 
-	// $bt = SimpleSAML_Utilities::buildBacktrace(new Exception());
-	// foreach ($bt AS $t) {
-	// 	SimpleSAML_Logger::info('   ' . $t);
-	// }
 
     $token = $this->data_store->lookup_token(
       $consumer, $token_type, $token_field
