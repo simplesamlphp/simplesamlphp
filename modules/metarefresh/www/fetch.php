@@ -44,9 +44,7 @@ foreach ($sets AS $setkey => $set) {
 				break;
 		}
 	} catch (Exception $e) {
-		if (! $e instanceof SimpleSAML_Error_Exception) {
-			$e = new SimpleSAML_Error_UnserializableException($e);
-		}
+		$e = SimpleSAML_Error_Exception::fromException($e);
 		$e->logWarning();
 	}
 	

@@ -49,11 +49,23 @@ class SimpleSAML_Error_Exception extends Exception {
 		$this->backtrace = SimpleSAML_Utilities::buildBacktrace($this);
 
 		if ($cause !== NULL) {
-			if (!($cause instanceof SimpleSAML_Error_Exception)) {
-				$cause = new SimpleSAML_Error_UnserializableException($cause);
-			}
-			$this->cause = $cause;
+			$this->cause = SimpleSAML_Error_Exception::fromException($cause);
 		}
+	}
+
+
+	/**
+	 * Convert any exception into a SimpleSAML_Error_Exception.
+	 *
+	 * @param Exception $e  The exception.
+	 * @return SimpleSAML_Error_Exception  The new exception.
+	 */
+	public static function fromException(Exception $e) {
+
+		if ($e instanceof SimpleSAML_Error_Exception) {
+			return $e;
+		}
+		return new SimpleSAML_Error_UnserializableException($e);
 	}
 
 
