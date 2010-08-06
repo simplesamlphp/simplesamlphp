@@ -482,83 +482,11 @@ class SimpleSAML_Utilities {
 	 * @param mixed $errorCode  Either a string with the error code, or an array with the error code and
 	 *                          additional parameters.
 	 * @param Exception $e  The exception which caused the error.
+	 * @deprecated
 	 */
 	public static function fatalError($trackId = 'na', $errorCode = null, Exception $e = null) {
 
-		$config = SimpleSAML_Configuration::getInstance();
-		$session = SimpleSAML_Session::getInstance();
-
-		if (is_array($errorCode)) {
-			$parameters = $errorCode;
-			unset($parameters[0]);
-			$errorCode = $errorCode[0];
-		} else {
-			$parameters = array();
-		}
-
-		// Get the exception message if there is any exception provided.
-		$emsg   = (empty($e) ? 'No exception available' : $e->getMessage());
-		$etrace = (empty($e) ? 'No exception available' : self::formatBacktrace($e));
-
-		if (!empty($errorCode) && count($parameters) > 0) {
-			$reptext = array();
-			foreach($parameters as $k => $v) {
-				$reptext[] = '"' . $k . '"' . ' => "' . $v . '"';
-			}
-			$reptext = '(' . implode(', ', $reptext) . ')';
-			$error = $errorCode . $reptext;
-		} elseif(!empty($errorCode)) {
-			$error = $errorCode;
-		} else {
-			$error = 'na';
-		}
-
-		// Log a error message
-		SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - UserError: ErrCode:' . $error . ': ' . urlencode($emsg) );
-		if (!empty($e)) {
-			SimpleSAML_Logger::error('Exception: ' . get_class($e));
-			SimpleSAML_Logger::error('Backtrace:');
-			foreach (explode("\n", $etrace) as $line) {
-				SimpleSAML_Logger::error($line);
-			}
-		}
-
-		$reportId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(4));
-		SimpleSAML_Logger::error('Error report with id ' . $reportId . ' generated.');
-
-		$errorData = array(
-			'exceptionMsg' => $emsg,
-			'exceptionTrace' => $etrace,
-			'reportId' => $reportId,
-			'trackId' => $trackId,
-			'url' => self::selfURLNoQuery(),
-			'version' => $config->getVersion(),
-		);
-		$session->setData('core:errorreport', $reportId, $errorData);
-
-		$t = new SimpleSAML_XHTML_Template($config, 'error.php', 'errors');
-		$t->data['showerrors'] = $config->getBoolean('showerrors', true);
-		$t->data['error'] = $errorData;
-		$t->data['errorCode'] = $errorCode;
-		$t->data['parameters'] = $parameters;
-
-		/* Check if there is a valid technical contact email address. */
-		if($config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org') {
-			/* Enable error reporting. */
-			$baseurl = SimpleSAML_Utilities::getBaseURL();
-			$t->data['errorReportAddress'] = $baseurl . 'errorreport.php';
-		}
-
-		$attributes = $session->getAttributes();
-		if (is_array($attributes) && array_key_exists('mail', $attributes) && count($attributes['mail']) > 0) {
-			$email = $attributes['mail'][0];
-		} else {
-			$email = '';
-		}
-		$t->data['email'] = $email;
-
-		$t->show();
-		exit;
+		throw new SimpleSAML_Error_Error($errorCode, $e);
 	}
 
 
