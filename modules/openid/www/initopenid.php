@@ -12,7 +12,7 @@ $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
 if (empty($_REQUEST['RelayState'])) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
 
 if (! $session->isValid('openid') ) {

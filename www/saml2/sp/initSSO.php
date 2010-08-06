@@ -10,7 +10,7 @@ $session = SimpleSAML_Session::getInstance();
 SimpleSAML_Logger::info('SAML2.0 - SP.initSSO: Accessing SAML 2.0 SP initSSO script');
 
 if (!$config->getBoolean('enable.saml20-sp', TRUE))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+	throw new SimpleSAML_Error_Error('NOACCESS');
 
 /*
  * Incomming URL parameters
@@ -21,7 +21,7 @@ if (!$config->getBoolean('enable.saml20-sp', TRUE))
  */		
 
 if (empty($_GET['RelayState'])) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
 
 $reachableIDPs = array();
@@ -70,7 +70,7 @@ try {
 	
 
 } catch (Exception $exception) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
+	throw new SimpleSAML_Error_Error('METADATA', $exception);
 }
 
 /*
@@ -169,7 +169,7 @@ try {
 	$b->send($ar);
 
 } catch(Exception $exception) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CREATEREQUEST', $exception);
+	throw new SimpleSAML_Error_Error('CREATEREQUEST', $exception);
 }
 
 ?>

@@ -52,7 +52,7 @@ function finishLogin($authProcState) {
 SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Accessing SAML 2.0 SP endpoint AssertionConsumerService');
 
 if (!$config->getBoolean('enable.saml20-sp', TRUE))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+	throw new SimpleSAML_Error_Error('NOACCESS');
 
 if (array_key_exists(SimpleSAML_Auth_ProcessingChain::AUTHPARAM, $_REQUEST)) {
 	/* We have returned from the authentication processing filters. */
@@ -98,7 +98,7 @@ try {
 		}
 		if(empty($info['RelayState'])) {
 			/* RelayState missing. */
-			SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+			throw new SimpleSAML_Error_Error('NORELAYSTATE');
 		}
 	}
 
@@ -115,7 +115,7 @@ try {
 		}
 
 		/* We don't have an error handler. Show an error page. */
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'RESPONSESTATUSNOSUCCESS', $e);
+		throw new SimpleSAML_Error_Error('RESPONSESTATUSNOSUCCESS', $e);
 	}
 
 
@@ -156,7 +156,7 @@ try {
 	finishLogin($authProcState);
 
 } catch(Exception $exception) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSASSERTION', $exception);
+	throw new SimpleSAML_Error_Error('PROCESSASSERTION', $exception);
 }
 
 

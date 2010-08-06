@@ -12,7 +12,7 @@ $session = SimpleSAML_Session::getInstance();
 SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: Accessing SAML 2.0 SP endpoint SingleLogoutService');
 
 if (!$config->getBoolean('enable.saml20-sp', TRUE))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+	throw new SimpleSAML_Error_Error('NOACCESS');
 
 
 
@@ -58,7 +58,7 @@ if ($message instanceof SAML2_LogoutRequest) {
 		$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 		$binding->send($lr);
 	} catch (Exception $exception) {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTREQUEST', $exception);
+		throw new SimpleSAML_Error_Error('LOGOUTREQUEST', $exception);
 	}
 
 } elseif ($message instanceof SAML2_LogoutResponse) {
@@ -73,13 +73,13 @@ if ($message instanceof SAML2_LogoutRequest) {
 
 	$returnTo = $session->getData('spLogoutReturnTo', $id);
 	if (empty($returnTo)) {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'LOGOUTINFOLOST');
+		throw new SimpleSAML_Error_Error('LOGOUTINFOLOST');
 	}
 
 	SimpleSAML_Utilities::redirect($returnTo);
 
 } else {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'SLOSERVICEPARAMS');
+	throw new SimpleSAML_Error_Error('SLOSERVICEPARAMS');
 }
 
 

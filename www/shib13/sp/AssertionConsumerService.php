@@ -40,7 +40,7 @@ function finishLogin($authProcState) {
 SimpleSAML_Logger::info('Shib1.3 - SP.AssertionConsumerService: Accessing Shibboleth 1.3 SP endpoint AssertionConsumerService');
 
 if (!$config->getBoolean('enable.shib13-sp', false))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+	throw new SimpleSAML_Error_Error('NOACCESS');
 
 if (array_key_exists(SimpleSAML_Auth_ProcessingChain::AUTHPARAM, $_REQUEST)) {
 	/* We have returned from the authentication processing filters. */
@@ -51,7 +51,7 @@ if (array_key_exists(SimpleSAML_Auth_ProcessingChain::AUTHPARAM, $_REQUEST)) {
 }
 
 if (empty($_POST['SAMLResponse'])) 
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'ACSPARAMS', $exception);
+	throw new SimpleSAML_Error_Error('ACSPARAMS', $exception);
 
 try {
 
@@ -74,7 +74,7 @@ try {
 
 	$relayState = $authnResponse->getRelayState();
 	if (!isset($relayState)) {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+		throw new SimpleSAML_Error_Error('NORELAYSTATE');
 	}
 
 	$spmetadata = $metadata->getMetaData(NULL, 'shib13-sp-hosted');
@@ -100,7 +100,7 @@ try {
 	finishLogin($authProcState);
 
 } catch(Exception $exception) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'GENERATEAUTHNRESPONSE', $exception);
+	throw new SimpleSAML_Error_Error('GENERATEAUTHNRESPONSE', $exception);
 }
 
 

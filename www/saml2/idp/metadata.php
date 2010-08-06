@@ -5,10 +5,9 @@ require_once('../../_include.php');
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-$session = SimpleSAML_Session::getInstance();
 
 if (!$config->getBoolean('enable.saml20-idp', false))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+	throw new SimpleSAML_Error_Error('NOACCESS');
 
 /* Check if valid local session exists.. */
 if ($config->getBoolean('admin.protectmetadata', false)) {
@@ -108,7 +107,7 @@ try {
 
 } catch(Exception $exception) {
 
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
+	throw new SimpleSAML_Error_Error('METADATA', $exception);
 
 }
 

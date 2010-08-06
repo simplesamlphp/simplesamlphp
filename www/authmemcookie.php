@@ -19,7 +19,7 @@ try {
 
 	/* Check if this module is enabled. */
 	if(!$globalConfig->getBoolean('enable.authmemcookie', FALSE)) {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+		throw new SimpleSAML_Error_Error('NOACCESS');
 	}
 
 	/* Load Auth MemCookie configuration. */
@@ -120,5 +120,5 @@ try {
 	/* Redirect the user back to this page to signal that the login is completed. */
 	SimpleSAML_Utilities::redirect(SimpleSAML_Utilities::selfURL());
 } catch(Exception $e) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CONFIG', $e);
+	throw new SimpleSAML_Error_Error('CONFIG', $e);
 }

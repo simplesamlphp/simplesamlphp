@@ -20,7 +20,7 @@ $attributes = array();
  * we should redirect the user to after a successful authentication.
  */
 if (!array_key_exists('RelayState', $_REQUEST)) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
 
 if (isset($_POST['username'])) {

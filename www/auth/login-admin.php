@@ -17,10 +17,7 @@ $username = null;
  * we should redirect the user to after a successful authentication.
  */
 if (!array_key_exists('RelayState', $_REQUEST)) {
-	SimpleSAML_Utilities::fatalError(
-		$session->getTrackID(),
-		'NORELAYSTATE'
-		);
+	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
 
 $relaystate = $_REQUEST['RelayState'];
@@ -28,10 +25,7 @@ $relaystate = $_REQUEST['RelayState'];
 $correctpassword = $config->getString('auth.adminpassword', '123');
 
 if (empty($correctpassword) or $correctpassword === '123') {
-	SimpleSAML_Utilities::fatalError(
-		$session->getTrackID(),
-		'NOTSET'
-	);
+	throw new SimpleSAML_Error_Error('NOTSET');
 }
 
 

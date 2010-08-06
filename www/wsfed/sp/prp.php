@@ -21,7 +21,7 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 SimpleSAML_Logger::info('WS-Fed - SP.AssertionConsumerService: Accessing WS-Fed SP endpoint AssertionConsumerService');
 
 if (!$config->getBoolean('enable.wsfed-sp', false))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+	throw new SimpleSAML_Error_Error('NOACCESS');
 
 if (!empty($_GET['wa']) and ($_GET['wa'] == 'wsignoutcleanup1.0')) {
 	print 'Logged Out';
@@ -40,7 +40,7 @@ try {
 		throw new Exception('Missing wctx parameter');
 	}
 } catch(Exception $exception) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'ACSPARAMS', $exception);
+	throw new SimpleSAML_Error_Error('ACSPARAMS', $exception);
 }
 
 
@@ -143,7 +143,7 @@ try {
 	SimpleSAML_Utilities::redirect($wctx);
 
 } catch(Exception $exception) {		
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSASSERTION', $exception);
+	throw new SimpleSAML_Error_Error('PROCESSASSERTION', $exception);
 }
 
 ?>

@@ -21,7 +21,7 @@ $session = SimpleSAML_Session::getInstance();
 SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: Accessing Shib 1.3 SP initSSO script');
 
 if (!$config->getBoolean('enable.shib13-sp', false))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+	throw new SimpleSAML_Error_Error('NOACCESS');
 
 
 try {
@@ -36,7 +36,7 @@ try {
 
 
 } catch (Exception $exception) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
+	throw new SimpleSAML_Error_Error('METADATA', $exception);
 }
 
 
@@ -78,7 +78,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 		SimpleSAML_Utilities::redirect($url);
 	
 	} catch(Exception $exception) {		
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CREATEREQUEST', $exception);
+		throw new SimpleSAML_Error_Error('CREATEREQUEST', $exception);
 	}
 
 } else {
@@ -90,7 +90,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 		SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: Already Authenticated, Go back to RelayState');
 		SimpleSAML_Utilities::redirect($relaystate);
 	} else {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+		throw new SimpleSAML_Error_Error('NORELAYSTATE');
 	}
 
 }

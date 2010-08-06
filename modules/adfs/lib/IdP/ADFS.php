@@ -25,7 +25,7 @@ class sspmod_adfs_IdP_ADFS {
 			SimpleSAML_Logger::info('ADFS - IdP.prp: Incoming Authentication request: '.$issuer.' id '.$requestid);
 	
 		} catch(Exception $exception) {
-			SimpleSAML_Utilities::fatalError($session->getTrackID(), 'PROCESSAUTHNREQUEST', $exception);
+			throw new SimpleSAML_Error_Error('PROCESSAUTHNREQUEST', $exception);
 		}
 		
 		$sessionLostURL = NULL; // TODO?

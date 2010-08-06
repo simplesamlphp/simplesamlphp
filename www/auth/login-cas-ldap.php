@@ -33,7 +33,7 @@ try {
 	
 	
 } catch (Exception $exception) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'METADATA', $exception);
+	throw new SimpleSAML_Error_Error('METADATA', $exception);
 }
 
 /*
@@ -41,7 +41,7 @@ try {
  * we should redirect the user to after a successful authentication.
  */
 if (!array_key_exists('RelayState', $_REQUEST)) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
 
 
@@ -135,7 +135,7 @@ try {
 	SimpleSAML_Utilities::redirect($relaystate);
 
 } catch(Exception $exception) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CASERROR', $exception);
+	throw new SimpleSAML_Error_Error('CASERROR', $exception);
 }
 
 

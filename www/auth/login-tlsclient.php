@@ -20,7 +20,7 @@ $username = null;
  * we should redirect the user to after a successful authentication.
  */
 if (!array_key_exists('RelayState', $_REQUEST)) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
 
 $relaystate = $_REQUEST['RelayState'];
@@ -35,7 +35,7 @@ try {
 		throw new Exception('Apache header variable SSL_CLIENT_VERIFY was not available. Recheck your apache configuration.');
 	
 	if (strcmp($_SERVER['SSL_CLIENT_VERIFY'], "SUCCESS") != 0) {
-		SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOTVALIDCERT', $e);
+		throw new SimpleSAML_Error_Error('NOTVALIDCERT', $e);
 	}
 	
 	$userid = $_SERVER['SSL_CLIENT_S_DN'];
@@ -73,7 +73,7 @@ try {
 	
 	
 } catch (Exception $e) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CONFIG', $e);
+	throw new SimpleSAML_Error_Error('CONFIG', $e);
 
 }
 

@@ -9,13 +9,13 @@ $session = SimpleSAML_Session::getInstance();
 SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: Accessing SAML 2.0 SP initSLO script');
 
 if (!$config->getBoolean('enable.saml20-sp', TRUE))
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NOACCESS');
+	throw new SimpleSAML_Error_Error('NOACCESS');
 
 
 if (isset($_REQUEST['RelayState'])) {
 	$returnTo = $_REQUEST['RelayState'];
 } else {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'NORELAYSTATE');
+	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
 
 
@@ -57,7 +57,7 @@ try {
 
 
 } catch(Exception $exception) {
-	SimpleSAML_Utilities::fatalError($session->getTrackID(), 'CREATEREQUEST', $exception);
+	throw new SimpleSAML_Error_Error('CREATEREQUEST', $exception);
 }
 
 
