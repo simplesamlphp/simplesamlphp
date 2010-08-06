@@ -49,7 +49,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 		} else {
 			$msg = $errorCode;
 		}
-		parent::__construct($msg);
+		parent::__construct($msg, -1, $cause);
 
 		$this->errorCode = $errorCode;
 		$this->cause = $cause;
@@ -63,16 +63,6 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 	 */
 	public function getErrorCode() {
 		return $this->errorCode;
-	}
-
-
-	/**
-	 * Retrieve the exception which caused this error.
-	 *
-	 * @return Exception  The exception which caused this error, or NULL if no exception caused this error.
-	 */
-	public function getCause() {
-		return $this->cause;
 	}
 
 
