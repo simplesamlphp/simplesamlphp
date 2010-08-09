@@ -54,6 +54,26 @@ try {
 	SimpleSAML_Auth_State::throwException($state, $e);
 }
 
+/* Check for duplicate assertion (replay attack). */
+$store = SimpleSAML_Store::getInstance();
+if ($store !== NULL) {
+	$aID = $assertion->getId();
+	if ($store->get('saml.AssertionReceived', $aID) !== NULL) {
+		$e = new SimpleSAML_Error_Exception('Received duplicate assertion.');
+		SimpleSAML_Auth_State::throwException($state, $e);
+	}
+
+	$notOnOrAfter = $assertion->getNotOnOrAfter();
+	if ($notOnOrAfter === NULL) {
+		$notOnOrAfter = time() + 24*60*60;
+	} else {
+		$notOnOrAfter += 60; /* We allow 60 seconds clock skew, so add it here also. */
+	}
+
+	$store->set('saml.AssertionReceived', $aID, TRUE, $notOnOrAfter);
+}
+
+
 $nameId = $assertion->getNameId();
 $sessionIndex = $assertion->getSessionIndex();
 
