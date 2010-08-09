@@ -22,6 +22,16 @@ class SimpleSAML_Session {
 
 
 	/**
+	 * The list of loaded session objects.
+	 *
+	 * This is an associative array indexed with the session id.
+	 *
+	 * @var array
+	 */
+	private static $sessions = array();
+
+
+	/**
 	 * This variable holds the instance of the session - Singleton approach.
 	 */
 	private static $instance = null;
@@ -171,7 +181,7 @@ class SimpleSAML_Session {
 		 * handler.
 		 */
 		try {
-			self::$instance = self::loadSession();
+			self::$instance = self::getSession();
 		} catch (Exception $e) {
 			if ($e instanceof SimpleSAML_Error_Exception) {
 				SimpleSAML_Logger::error('Error loading session:');
@@ -764,13 +774,27 @@ class SimpleSAML_Session {
 	/**
 	 * Load a session from the session handler.
 	 *
+	 * @param string|NULL $sessionId  The session we should load, or NULL to load the current session.
 	 * @return The session which is stored in the session handler, or NULL if the session wasn't found.
 	 */
-	private static function loadSession() {
+	public static function getSession($sessionId = NULL) {
+		assert('is_string($sessionId) || is_null($sessionId)');
 
 		$sh = SimpleSAML_SessionHandler::getSessionHandler();
 
-		$session = $sh->loadSession();
+		if ($sessionId === NULL) {
+			$checkToken = TRUE;
+			$sessionId = $sh->getCookieSessionId();
+		} else {
+			$checkToken = FALSE;
+		}
+
+		if (isset(self::$sessions[$sessionId])) {
+			return self::$sessions[$sessionId];
+		}
+
+
+		$session = $sh->loadSession($sessionId);
 		if($session === NULL) {
 			return NULL;
 		}
@@ -782,7 +806,7 @@ class SimpleSAML_Session {
 			$session->sessionId = $sh->getCookieSessionId();
 		}
 
-		if ($session->authToken !== NULL) {
+		if ($checkToken && $session->authToken !== NULL) {
 			if (!isset($_COOKIE['SimpleSAMLAuthToken'])) {
 				SimpleSAML_Logger::warning('Missing AuthToken cookie.');
 				return NULL;
@@ -792,6 +816,8 @@ class SimpleSAML_Session {
 				return NULL;
 			}
 		}
+
+		self::$sessions[$sessionId] = $session;
 
 		return $session;
 	}
