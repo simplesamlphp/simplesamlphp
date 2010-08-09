@@ -67,11 +67,13 @@ class SimpleSAML_SessionHandlerStore extends SimpleSAML_SessionHandlerCookie {
 	 */
 	public function saveSession(SimpleSAML_Session $session) {
 
+		$sessionId = $session->getSessionId();
+
 		$config = SimpleSAML_Configuration::getInstance();
 		$sessionDuration = $config->getInteger('session.duration', 8*60*60);
 		$expire = time() + $sessionDuration;
 
-		$this->store->set('session', $this->session_id, $session, $expire);
+		$this->store->set('session', $sessionId, $session, $expire);
 	}
 
 }
