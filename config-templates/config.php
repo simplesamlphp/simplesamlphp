@@ -381,16 +381,16 @@ $config = array (
 
 
 	/*
-	 * This configuration option allows you to select which session handler
-	 * SimpleSAMLPHP should use to store the session information. Currently
-	 * we have two session handlers:
-	 * - 'phpsession': The default PHP session handler.
-	 * - 'memcache': Stores the session information in one or more
-	 *   memcache servers by using the MemcacheStore class.
+	 * Configure the datastore for simpleSAMLphp.
 	 *
-	 * The default session handler is 'phpsession'.
+	 * - 'phpsession': Limited datastore, which uses the PHP session.
+	 * - 'memcache': Key-value datastore, based on memcache.
+	 *
+	 * The default datastore is 'phpsession'.
+	 *
+	 * (This option replaces the old 'session.handler'-option.)
 	 */
-	'session.handler'       => 'phpsession',
+	'store.type' => 'phpsession',
 
 
 	/*
