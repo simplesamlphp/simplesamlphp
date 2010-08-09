@@ -66,9 +66,10 @@ abstract class SimpleSAML_SessionHandler {
 	/**
 	 * Load the session.
 	 *
+	 * @param string|NULL $sessionId  The ID of the session we should load, or NULL to use the default.
 	 * @return SimpleSAML_Session|NULL  The session object, or NULL if it doesn't exist.
 	 */
-	abstract public function loadSession();
+	abstract public function loadSession($sessionId = NULL);
 
 
 	/**

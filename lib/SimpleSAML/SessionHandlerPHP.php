@@ -89,9 +89,15 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 	/**
 	 * Load the session from the PHP session array.
 	 *
+	 * @param string|NULL $sessionId  The ID of the session we should load, or NULL to use the default.
 	 * @return SimpleSAML_Session|NULL  The session object, or NULL if it doesn't exist.
 	 */
-	public function loadSession() {
+	public function loadSession($sessionId = NULL) {
+		assert('is_string($sessionId) || is_null($sessionId)');
+
+		if ($sessionId !== NULL && $sessionId !== session_id()) {
+			throw new SimpleSAML_Error_Exception('Cannot load PHP session with a specific ID.');
+		}
 
 		if (!isset($_SESSION['SimpleSAMLphp_SESSION'])) {
 			return NULL;

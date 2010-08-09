@@ -26,11 +26,17 @@ class SimpleSAML_SessionHandlerStore extends SimpleSAML_SessionHandlerCookie {
 	/**
 	 * Load the session from the datastore.
 	 *
+	 * @param string|NULL $sessionId  The ID of the session we should load, or NULL to use the default.
 	 * @return SimpleSAML_Session|NULL  The session object, or NULL if it doesn't exist.
 	 */
-	public function loadSession() {
+	public function loadSession($sessionId = NULL) {
+		assert('is_string($sessionId) || is_null($sessionId)');
 
-		$session = $this->store->get('session', $this->session_id);
+		if ($sessionId === NULL) {
+			$sessionId = $this->session_id;
+		}
+
+		$session = $this->store->get('session', $sessionId);
 		if ($session !== NULL) {
 			assert('$session instanceof SimpleSAML_Session');
 			return $session;
