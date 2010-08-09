@@ -20,11 +20,18 @@ class SAML2_HTTPArtifact extends SAML2_Binding {
 	 */
 	public function getRedirectURL(SAML2_Message $message) {
 
+		$store = SimpleSAML_Store::getInstance();
+		if ($store === FALSE) {
+			throw new Exception('Unable to send artifact without a datastore configured.');
+		}
+
 		$generatedId = pack('H*', ((string)  SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(20))));
 		$artifact = base64_encode("\x00\x04\x00\x00" . sha1($message->getIssuer(), TRUE) . $generatedId) ;
 		$artifactData = $message->toUnsignedXML();
 		$artifactDataString = $artifactData->ownerDocument->saveXML($artifactData);
-		SimpleSAML_Memcache::set('artifact:' . $artifact, $artifactDataString);
+
+		$store->set('artifact', $artifact, $artifactDataString, time() + 15*60);
+
 		$params = array(
 			'SAMLart' => $artifact,
 		);
