@@ -57,6 +57,15 @@ if ($message instanceof SAML2_LogoutResponse) {
 	SimpleSAML_Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
 	SimpleSAML_Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
 
+	if ($message->isNameIdEncrypted()) {
+		try {
+			$key = self::getDecryptionKey($idpMetadata, $spMetadata);
+		} catch (Exception $e) {
+			throw new SimpleSAML_Error_Exception('Error decrypting NameID: ' . $e->getMessage());
+		}
+		$message->decryptNameId($key);
+	}
+
 	$nameId = $message->getNameId();
 	$sessionIndexes = $message->getSessionIndexes();
 
