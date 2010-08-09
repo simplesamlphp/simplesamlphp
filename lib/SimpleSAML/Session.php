@@ -26,6 +26,15 @@ class SimpleSAML_Session {
 	 */
 	private static $instance = null;
 	
+
+	/**
+	 * The session ID of this session.
+	 *
+	 * @var string|NULL
+	 */
+	private $sessionId;
+
+
 	/**
 	 * The track id is a new random unique identifier that is generate for each session.
 	 * This is used in the debug logs and error messages to easily track more information
@@ -127,6 +136,9 @@ class SimpleSAML_Session {
 			return;
 		}
 
+		$sh = SimpleSAML_SessionHandler::getSessionHandler();
+		$this->sessionId = $sh->getCookieSessionId();
+
 		$this->trackid = substr(md5(uniqid(rand(), true)), 0, 10);
 
 		$this->dirty = TRUE;
@@ -197,6 +209,17 @@ class SimpleSAML_Session {
 		}
 
 		self::$instance = new SimpleSAML_Session(TRUE);
+	}
+
+
+	/**
+	 * Retrieve the session ID of this session.
+	 *
+	 * @return string|NULL  The session ID, or NULL if this is a transient session.
+	 */
+	public function getSessionId() {
+
+		return $this->sessionId;
 	}
 
 
@@ -753,6 +776,11 @@ class SimpleSAML_Session {
 		}
 
 		assert('$session instanceof self');
+
+		/* For backwardscompatibility. Remove after 1.7. */
+		if ($session->sessionId === NULL) {
+			$session->sessionId = $sh->getCookieSessionId();
+		}
 
 		if ($session->authToken !== NULL) {
 			if (!isset($_COOKIE['SimpleSAMLAuthToken'])) {
