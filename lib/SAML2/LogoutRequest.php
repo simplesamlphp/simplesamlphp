@@ -18,11 +18,11 @@ class SAML2_LogoutRequest extends SAML2_Request {
 
 
 	/**
-	 * The session index of the session that should be terminated.
+	 * The SessionIndexes of the sessions that should be terminated.
 	 *
-	 * @var string|NULL
+	 * @var array
 	 */
-	private $sessionIndex;
+	private $sessionIndexes;
 
 
 	/**
@@ -32,6 +32,8 @@ class SAML2_LogoutRequest extends SAML2_Request {
 	 */
 	public function __construct(DOMElement $xml = NULL) {
 		parent::__construct('LogoutRequest', $xml);
+
+		$this->sessionIndexes = array();
 
 		if ($xml === NULL) {
 			return;
@@ -43,9 +45,9 @@ class SAML2_LogoutRequest extends SAML2_Request {
 		}
 		$this->nameId = SAML2_Utils::parseNameId($nameId[0]);
 
-		$sessionIndex = SAML2_Utils::xpQuery($xml, './saml_protocol:SessionIndex');
-		if (!empty($sessionIndex)) {
-			$this->sessionIndex = trim($sessionIndex[0]->textContent);
+		$sessionIndexes = SAML2_Utils::xpQuery($xml, './saml_protocol:SessionIndex');
+		foreach ($sessionIndexes as $sessionIndex) {
+			$this->sessionIndexes[] = trim($sessionIndex->textContent);
 		}
 	}
 
@@ -76,12 +78,37 @@ class SAML2_LogoutRequest extends SAML2_Request {
 
 
 	/**
+	 * Retrieve the SessionIndexes of the sessions that should be terminated.
+	 *
+	 * @return array  The SessionIndexes, or an empty array if all sessions should be terminated.
+	 */
+	public function getSessionIndexes() {
+		return $this->sessionIndexes;
+	}
+
+
+	/**
+	 * Set the SessionIndexes of the sessions that should be terminated.
+	 *
+	 * @param array $sessionIndexes  The SessionIndexes, or an empty array if all sessions should be terminated.
+	 */
+	public function setSessionIndexes(array $sessionIndexes) {
+		$this->sessionIndexes = $sessionIndexes;
+	}
+
+
+	/**
 	 * Retrieve the sesion index of the session that should be terminated.
 	 *
 	 * @return string|NULL  The sesion index of the session that should be terminated.
 	 */
 	public function getSessionIndex() {
-		return $this->sessionIndex;
+
+		if (empty($this->sessionIndexes)) {
+			return NULL;
+		}
+
+		return $this->sessionIndexes[0];
 	}
 
 
@@ -93,7 +120,11 @@ class SAML2_LogoutRequest extends SAML2_Request {
 	public function setSessionIndex($sessionIndex) {
 		assert('is_string($sessionIndex) || is_null($sessionIndex)');
 
-		$this->sessionIndex = $sessionIndex;
+		if (is_null($sessionIndex)) {
+			$this->sessionIndexes = array();
+		} else {
+			$this->sessionIndexes = array($sessionIndex);
+		}
 	}
 
 
@@ -108,8 +139,8 @@ class SAML2_LogoutRequest extends SAML2_Request {
 
 		SAML2_Utils::addNameId($root, $this->nameId);
 
-		if ($this->sessionIndex !== NULL) {
-			SAML2_Utils::addString($root, SAML2_Const::NS_SAMLP, 'SessionIndex', $this->sessionIndex);
+		foreach ($this->sessionIndexes as $sessionIndex) {
+			SAML2_Utils::addString($root, SAML2_Const::NS_SAMLP, 'SessionIndex', $sessionIndex);
 		}
 
 		return $root;
