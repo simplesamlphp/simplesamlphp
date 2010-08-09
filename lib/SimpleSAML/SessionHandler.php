@@ -47,12 +47,12 @@ abstract class SimpleSAML_SessionHandler {
 	}
 
 
-	/* This function retrieves the session id of the current session.
+	/**
+	 * Retrieve the session id of saved in the session cookie.
 	 *
-	 * Returns:
-	 *  The session id of the current session.
+	 * @return string  The session id saved in the cookie.
 	 */
-	abstract public function getSessionId();
+	abstract public function getCookieSessionId();
 
 
 	/**

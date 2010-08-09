@@ -65,12 +65,12 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 	}
 
 
-	/* This function retrieves the session id of the current session.
+	/**
+	 * Retrieve the session id of saved in the session cookie.
 	 *
-	 * Returns:
-	 *  The session id of the current session.
+	 * @return string  The session id saved in the cookie.
 	 */
-	public function getSessionId() {
+	public function getCookieSessionId() {
 		return session_id();
 	}
 
