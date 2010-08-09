@@ -838,7 +838,16 @@ class SimpleSAML_Session {
 		$this->dirty = FALSE;
 
 		$sh = SimpleSAML_SessionHandler::getSessionHandler();
-		$sh->saveSession($this);
+
+		try {
+			$sh->saveSession($this);
+		} catch (Exception $e) {
+			if (!($e instanceof SimpleSAML_Error_Exception)) {
+				$e = new SimpleSAML_Error_UnserializableException($e);
+			}
+			SimpleSAML_Logger::error('Unable to save session.');
+			$e->logError();
+		}
 	}
 
 
