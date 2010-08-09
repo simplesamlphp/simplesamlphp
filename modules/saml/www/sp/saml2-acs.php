@@ -57,6 +57,15 @@ try {
 $nameId = $assertion->getNameId();
 $sessionIndex = $assertion->getSessionIndex();
 
+$expire = $assertion->getSessionNotOnOrAfter();
+if ($expire === NULL) {
+	/* Just expire the logout associtaion 24 hours into the future. */
+	$expire = time() + 24*60*60;
+}
+
+/* Register this session in the logout store. */
+sspmod_saml_SP_LogoutStore::addSession($sourceId, $nameId, $sessionIndex, $expire);
+
 /* We need to save the NameID and SessionIndex for logout. */
 $logoutState = array(
 	'saml:logout:Type' => 'saml2',

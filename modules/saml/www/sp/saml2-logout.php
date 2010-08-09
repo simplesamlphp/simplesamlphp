@@ -57,8 +57,13 @@ if ($message instanceof SAML2_LogoutResponse) {
 	SimpleSAML_Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
 	SimpleSAML_Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
 
-	/* Notify source of logout, so that it may call logout callbacks. */
-	$source->handleLogout($idpEntityId);
+	$nameId = $message->getNameId();
+	$sessionIndexes = $message->getSessionIndexes();
+
+	if (!sspmod_saml_SP_LogoutStore::logoutSessions($sourceId, $nameId, $sessionIndexes)) {
+		/* This type of logout was unsupported. Use the old method. */
+		$source->handleLogout($idpEntityId);
+	}
 
 	/* Create an send response. */
 	$lr = sspmod_saml_Message::buildLogoutResponse($spMetadata, $idpMetadata);
