@@ -94,6 +94,16 @@ class SimpleSAML_IdP {
 
 
 	/**
+	 * Retrieve the ID of this IdP.
+	 *
+	 * @return string  The ID of this IdP.
+	 */
+	public function getId() {
+		return $this->id;
+	}
+
+
+	/**
 	 * Retrieve an IdP by ID.
 	 *
 	 * @param string $id  The identifier of the IdP.
