@@ -44,6 +44,9 @@ abstract class SimpleSAML_Store {
 		case 'memcache':
 			self::$instance = new SimpleSAML_Store_Memcache();
 			break;
+		case 'sql':
+			self::$instance = new SimpleSAML_Store_SQL();
+			break;
 		default:
 			throw new SimpleSAML_Error_Exception('Unknown datastore type: ' . var_export($storeType, TRUE));
 		}
