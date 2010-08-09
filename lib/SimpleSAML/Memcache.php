@@ -138,6 +138,21 @@ class SimpleSAML_Memcache {
 
 
 	/**
+	 * Delete a key-value pair from the memcache servers.
+	 *
+	 * @param string $key  The key we should delete.
+	 */
+	public static function delete($key) {
+		assert('is_string($key)');
+
+		/* Store this object to all groups of memcache servers. */
+		foreach(self::getMemcacheServers() as $server) {
+			$server->delete($key);
+		}
+	}
+
+
+	/**
 	 * This function adds a server from the 'memcache_store.servers'
 	 * configuration option to a Memcache object.
 	 *
