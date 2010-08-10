@@ -53,36 +53,32 @@ class SAML2_SOAPClient {
 
 		// do peer certificate verification
 		if ($dstMetadata !== NULL) {
-			$peerPublicKey = SimpleSAML_Utilities::loadPublicKey($dstMetadata);
-			if ($peerPublicKey !== NULL) {
-				$certData = $peerPublicKey['PEM'];
-				$peerCertFile = SimpleSAML_Utilities::getTempDir() . '/' . sha1($certData) . '.pem';
-				if (!file_exists($peerCertFile)) {
-					SimpleSAML_Utilities::writeFile($peerCertFile, $certData);
-				}
-				// create ssl context
-				$ctxOpts = array(
-					'ssl' => array(
-						'verify_peer' => TRUE,
-						'verify_depth' => 1,
-						'cafile' => $peerCertFile
-						));
-				if (isset($options['local_cert'])) {
-					$ctxOpts['ssl']['local_cert'] = $options['local_cert'];
-					unset($options['local_cert']);
-				}
-				if (isset($options['passhprase'])) {
-					$ctxOpts['ssl']['passphrase'] = $options['passphrase'];
-					unset($options['passphrase']);
-				}
-				$context = stream_context_create($ctxOpts);
-				if ($context === NULL) {
-					throw new Exception('Unable to create SSL stream context');
-				}
-				$options['stream_context'] = $context;
-			} else {
-				throw new Exception('IdP metadata was supplied, but no certData present');
+			$peerPublicKey = SimpleSAML_Utilities::loadPublicKey($dstMetadata, TRUE);
+			$certData = $peerPublicKey['PEM'];
+			$peerCertFile = SimpleSAML_Utilities::getTempDir() . '/' . sha1($certData) . '.pem';
+			if (!file_exists($peerCertFile)) {
+				SimpleSAML_Utilities::writeFile($peerCertFile, $certData);
 			}
+			// create ssl context
+			$ctxOpts = array(
+				'ssl' => array(
+					'verify_peer' => TRUE,
+					'verify_depth' => 1,
+					'cafile' => $peerCertFile
+					));
+			if (isset($options['local_cert'])) {
+				$ctxOpts['ssl']['local_cert'] = $options['local_cert'];
+				unset($options['local_cert']);
+			}
+			if (isset($options['passhprase'])) {
+				$ctxOpts['ssl']['passphrase'] = $options['passphrase'];
+				unset($options['passphrase']);
+			}
+			$context = stream_context_create($ctxOpts);
+			if ($context === NULL) {
+				throw new Exception('Unable to create SSL stream context');
+			}
+			$options['stream_context'] = $context;
 		}
 
 		$x = new SoapClient(NULL, $options);
