@@ -1239,35 +1239,28 @@ class SimpleSAML_Utilities {
 		assert('is_bool($required)');
 		assert('is_string($prefix)');
 
-		$ret = array();
+		$keys = $metadata->getPublicKeys(NULL, FALSE, $prefix);
+		if ($keys !== NULL) {
+			foreach ($keys as $key) {
+				if ($key['type'] !== 'X509Certificate') {
+					continue;
+				}
+				if ($key['signing'] !== TRUE) {
+					continue;
+				}
+				$certData = $key['X509Certificate'];
+				$pem = "-----BEGIN CERTIFICATE-----\n" .
+					chunk_split($certData, 64) .
+					"-----END CERTIFICATE-----\n";
+				$certFingerprint = strtolower(sha1(base64_decode($certData)));
 
-		if ($metadata->hasValue($prefix . 'certData')) {
-			/* Full certificate data available from metadata. */
-			$certData = $metadata->getString($prefix . 'certData');
-			$certData = str_replace(array("\r", "\n", "\t", ' '), '', $certData);
-			$ret['certData'] = $certData;
-
-			/* Recreate PEM-encoded certificate. */
-			$ret['PEM'] = "-----BEGIN CERTIFICATE-----\n" .
-				chunk_split($ret['certData'], 64) .
-				"-----END CERTIFICATE-----\n";
-
-		} elseif ($metadata->hasValue($prefix . 'certificate')) {
-			/* Reference to certificate file. */
-			$file = SimpleSAML_Utilities::resolveCert($metadata->getString($prefix . 'certificate'));
-			$data = @file_get_contents($file);
-			if ($data === FALSE) {
-				throw new Exception('Unable to load certificate/public key from file "' . $file . '"');
+				return array(
+					'certData' => $certData,
+					'PEM' => $pem,
+					'certFingerprint' => array($certFingerprint),
+				);
 			}
-			$ret['PEM'] = $data;
-
-			/* Extract certificate data (if this is a certificate). */
-			$pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
-			if (preg_match($pattern, $data, $matches)) {
-				/* We have a certificate. */
-				$ret['certData'] = str_replace(array("\r", "\n"), '', $matches[1]);
-			}
-
+			/* No valid key found. */
 		} elseif ($metadata->hasValue($prefix . 'certFingerprint')) {
 			/* We only have a fingerprint available. */
 			$fps = $metadata->getArrayizeString($prefix . 'certFingerprint');
@@ -1282,24 +1275,14 @@ class SimpleSAML_Utilities {
 			 * return an array with only the fingerprint(s) immediately.
 			 */
 			return array('certFingerprint' => $fps);
+		}
 
+		/* No public key/certificate available. */
+		if ($required) {
+			throw new Exception('No public key / certificate found in metadata.');
 		} else {
-			/* No public key/certificate available. */
-			if ($required) {
-				throw new Exception('No public key / certificate found in metadata.');
-			} else {
-				return NULL;
-			}
+			return NULL;
 		}
-
-		if (array_key_exists('certData', $ret)) {
-			/* This is a certificate - calculate the fingerprint. */
-			$ret['certFingerprint'] = array(
-				strtolower(sha1(base64_decode($ret['certData'])))
-			);
-		}
-
-		return $ret;
 	}
 
 
