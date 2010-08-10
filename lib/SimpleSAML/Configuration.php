@@ -1048,9 +1048,10 @@ class SimpleSAML_Configuration {
 				$ret[] = $key;
 
 			}
-		}
-
-		if ($this->hasValue($prefix . 'certData')) {
+			if (!empty($ret)) {
+				return $ret;
+			}
+		} elseif ($this->hasValue($prefix . 'certData')) {
 			$certData = $this->getString($prefix . 'certData');
 			$certData = preg_replace('/\s+/', '', $certData);
 			return array(
@@ -1061,9 +1062,7 @@ class SimpleSAML_Configuration {
 					'X509Certificate' => $certData,
 				),
 			);
-		}
-
-		if ($this->hasValue($prefix . 'certificate')) {
+		} elseif ($this->hasValue($prefix . 'certificate')) {
 			$file = $this->getString($prefix . 'certificate');
 			$file = SimpleSAML_Utilities::resolveCert($file);
 			$data = @file_get_contents($file);

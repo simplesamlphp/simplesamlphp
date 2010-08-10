@@ -127,33 +127,44 @@ class sspmod_saml_Message {
 	 */
 	public static function checkSign(SimpleSAML_Configuration $srcMetadata, SAML2_SignedElement $element) {
 
-		$certificates = $element->getCertificates();
-		SimpleSAML_Logger::debug('Found ' . count($certificates) . ' certificates in ' . get_class($element));
-
-		/* Find the certificate that should verify signatures by this entity. */
-		$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);
-		if ($certArray !== NULL) {
-			if (array_key_exists('PEM', $certArray)) {
-				$pemCert = $certArray['PEM'];
-			} else {
-				/*
-				 * We don't have the full certificate stored. Try to find it
-				 * in the message or the assertion instead.
-				 */
-				if (count($certificates) === 0) {
-					/* We need the full certificate in order to match it against the fingerprint. */
-					SimpleSAML_Logger::debug('No certificate in message when validating against fingerprint.');
-					return FALSE;
+		/* Find the public key that should verify signatures by this entity. */
+		$keys = $srcMetadata->getPublicKeys('signing');
+		if ($keys !== NULL) {
+			$pemKeys = array();
+			foreach ($keys as $key) {
+				switch ($key['type']) {
+				case 'X509Certificate':
+					$pemKeys[] = "-----BEGIN CERTIFICATE-----\n" .
+						chunk_split($key['X509Certificate'], 64) .
+						"-----END CERTIFICATE-----\n";
+					break;
+				default:
+					SimpleSAML_Logger::debug('Skipping unknown key type: ' . $key['type']);
 				}
-
-				$certFingerprints = $certArray['certFingerprint'];
-				if (count($certFingerprints) === 0) {
-					/* For some reason, we have a certFingerprint entry without any fingerprints. */
-					throw new SimpleSAML_Error_Exception('certFingerprint array was empty.');
-				}
-
-				$pemCert = self::findCertificate($certFingerprints, $certificates);
 			}
+
+		} elseif ($srcMetadata->hasValue('certFingerprint')) {
+			$certFingerPrint = $srcMetadata->getArrayizeString('certFingerprint');
+			foreach ($certFingerprint as &$fp) {
+				$fp = strtolower(str_replace(':', '', $fp));
+			}
+
+			$certificates = $element->getCertificates();
+
+			/*
+			 * We don't have the full certificate stored. Try to find it
+			 * in the message or the assertion instead.
+			 */
+			if (count($certificates) === 0) {
+				/* We need the full certificate in order to match it against the fingerprint. */
+				SimpleSAML_Logger::debug('No certificate in message when validating against fingerprint.');
+				return FALSE;
+			} else {
+				SimpleSAML_Logger::debug('Found ' . count($certificates) . ' certificates in ' . get_class($element));
+			}
+
+			$pemCert = self::findCertificate($certFingerprints, $certificates);
+			$pemKeys = array($pemCert);
 		} else {
 			/* Attempt CA validation. */
 			$caFile = $srcMetadata->getString('caFile', NULL);
@@ -176,18 +187,39 @@ class sspmod_saml_Message {
 				"-----END CERTIFICATE-----\n";
 
 			SimpleSAML_Utilities::validateCA($pemCert, $caFile);
+			$pemKeys = array($pemCert);
 		}
 
+		SimpleSAML_Logger::debug('Has ' . count($pemKeys) . ' candidate keys for validation.');
 
-		/* Extract the public key from the certificate for validation. */
-		$key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
-		$key->loadKey($pemCert);
+		$lastException = NULL;
+		foreach ($pemKeys as $i => $pem) {
+			$key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
+			$key->loadKey($pem);
 
-		/*
-		 * Make sure that we have a valid signature on either the response
-		 * or the assertion.
-		 */
-		return $element->validate($key);
+			try {
+				/*
+				 * Make sure that we have a valid signature on either the response
+				 * or the assertion.
+				 */
+				$res = $element->validate($key);
+				if ($res) {
+					SimpleSAML_Logger::debug('Validation with key #' . $i . ' succeeded.');
+					return TRUE;
+				}
+				SimpleSAML_Logger::debug('Validation with key #' . $i . ' failed without exception.');
+			} catch (Exception $e) {
+				SimpleSAML_Logger::debug('Validation with key #' . $i . ' failed with exception: ' . $e->getMessage());
+				$lastException = $e;
+			}
+		}
+
+		/* We were unable to validate the signature with any of our keys. */
+		if ($lastException !== NULL) {
+			throw $lastException;
+		} else {
+			return FALSE;
+		}
 	}
 
 
