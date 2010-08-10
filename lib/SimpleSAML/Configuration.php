@@ -1021,6 +1021,79 @@ class SimpleSAML_Configuration {
 		return $ret;
 	}
 
-}
+	/**
+	 * Get public key from metadata.
+	 *
+	 * @param string|NULL $use  The purpose this key can be used for. (encryption or signing).
+	 * @param bool $required  Whether the public key is required. If this is TRUE, a
+	 *                        missing key will cause an exception. Default is FALSE.
+	 * @param string $prefix  The prefix which should be used when reading from the metadata
+	 *                        array. Defaults to ''.
+	 * @return array|NULL  Public key data, or NULL if no public key or was found.
+	 */
+	public function getPublicKeys($use = NULL, $required = FALSE, $prefix = '') {
+		assert('is_bool($required)');
+		assert('is_string($prefix)');
 
-?>
+		if ($this->hasValue($prefix . 'keys')) {
+			$ret = array();
+			foreach ($this->getArray($prefix . 'keys') as $key) {
+				if ($use !== NULL && isset($key[$use]) && !$key[$use]) {
+					continue;
+				}
+				if (isset($key['X509Certificate'])) {
+					/* Strip whitespace from key. */
+					$key['X509Certificate'] = preg_replace('/\s+/', '', $key['X509Certificate']);
+				}
+				$ret[] = $key;
+
+			}
+		}
+
+		if ($this->hasValue($prefix . 'certData')) {
+			$certData = $this->getString($prefix . 'certData');
+			$certData = preg_replace('/\s+/', '', $certData);
+			return array(
+				array(
+					'encryption' => TRUE,
+					'signing' => TRUE,
+					'type' => 'X509Certificate',
+					'X509Certificate' => $certData,
+				),
+			);
+		}
+
+		if ($this->hasValue($prefix . 'certificate')) {
+			$file = $this->getString($prefix . 'certificate');
+			$file = SimpleSAML_Utilities::resolveCert($file);
+			$data = @file_get_contents($file);
+
+			if ($data === FALSE) {
+				throw new Exception($this->location . ': Unable to load certificate/public key from file "' . $file . '".');
+			}
+
+			/* Extract certificate data (if this is a certificate). */
+			$pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
+			if (!preg_match($pattern, $data, $matches)) {
+				throw new SimpleSAML_Error_Exception($this->location . ': Could not find PEM encoded certificate in "' . $file . '".');
+			}
+			$certData = preg_replace('/\s+/', '', $matches[1]);
+
+			return array(
+				array(
+					'encryption' => TRUE,
+					'signing' => TRUE,
+					'type' => 'X509Certificate',
+					'X509Certificate' => $certData,
+				),
+			);
+		}
+
+		if ($required) {
+			throw new SimpleSAML_Error_Exception($this->location . ': Missing certificate in metadata.');
+		} else {
+			return NULL;
+		}
+	}
+
+}
