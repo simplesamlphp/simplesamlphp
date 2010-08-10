@@ -53,8 +53,16 @@ class SAML2_SOAPClient {
 
 		// do peer certificate verification
 		if ($dstMetadata !== NULL) {
-			$peerPublicKey = SimpleSAML_Utilities::loadPublicKey($dstMetadata, TRUE);
-			$certData = $peerPublicKey['PEM'];
+			$peerPublicKeys = $dstMetadata->getPublicKeys('signing', TRUE);
+			$certData = '';
+			foreach ($peerPublicKeys as $key) {
+				if ($key['type'] !== 'X509Certificate') {
+					continue;
+				}
+				$certData .= "-----BEGIN CERTIFICATE-----\n" .
+					chunk_split($key['X509Certificate'], 64) .
+					"-----END CERTIFICATE-----\n";
+			}
 			$peerCertFile = SimpleSAML_Utilities::getTempDir() . '/' . sha1($certData) . '.pem';
 			if (!file_exists($peerCertFile)) {
 				SimpleSAML_Utilities::writeFile($peerCertFile, $certData);
