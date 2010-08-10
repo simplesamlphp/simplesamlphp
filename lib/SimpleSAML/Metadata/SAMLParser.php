@@ -466,24 +466,9 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['description'] = $spd['description'];
 		}
 
-		/* Add certificate data. Only the first valid certificate will be added. */
-		foreach($spd['keys'] as $key) {
-			if($key['type'] !== 'X509Certificate') {
-				continue;
-			}
-
-			if ($key['signing'] !== TRUE) {
-				continue;
-			}
-
-			$certData = base64_decode($key['X509Certificate']);
-			if($certData === FALSE) {
-				/* Empty/invalid certificate. */
-				continue;
-			}
-
-			$ret['certData'] = preg_replace('/\s+/', '', str_replace(array("\r", "\n"), '', $key['X509Certificate']));
-			break;
+		/* Add public keys. */
+		if (!empty($spd['keys'])) {
+			$ret['keys'] = $spd['keys'];
 		}
 
 		/* Add extensions. */
@@ -532,27 +517,9 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* Find the ArtifactResolutionService endpoint. */
 		$ret['ArtifactResolutionService'] = $idp['ArtifactResolutionService'];
 
-		/* Add certificate to metadata. Only the first valid certificate will be added. */
-		$ret['certFingerprint'] = array();
-		foreach($idp['keys'] as $key) {
-			if($key['type'] !== 'X509Certificate') {
-				continue;
-			}
-
-			if ($key['signing'] !== TRUE) {
-				continue;
-			}
-
-			$certData = base64_decode($key['X509Certificate']);
-			if($certData === FALSE) {
-				/* Empty/invalid certificate. */
-				continue;
-			}
-
-			/* Add the certificate data to the metadata. Only the first certificate will be added. */
-			$ret['certData'] = preg_replace('/\s+/', '', str_replace(array("\r", "\n"), '', $key['X509Certificate']));
-			$ret['certFingerprint'][] = sha1($certData);
-			break;
+		/* Add public keys. */
+		if (!empty($idp['keys'])) {
+			$ret['keys'] = $idp['keys'];
 		}
 
 		/* Add extensions. */
@@ -626,24 +593,9 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['description'] = $spd['description'];
 		}
 
-		/* Add certificate data. Only the first valid certificate will be added. */
-		foreach($spd['keys'] as $key) {
-			if($key['type'] !== 'X509Certificate') {
-				continue;
-			}
-
-			if ($key['signing'] !== TRUE) {
-				continue;
-			}
-
-			$certData = base64_decode($key['X509Certificate']);
-			if($certData === FALSE) {
-				/* Empty/invalid certificate. */
-				continue;
-			}
-
-			$ret['certData'] = preg_replace('/\s+/', '', str_replace(array("\r", "\n"), '', $key['X509Certificate']));
-			break;
+		/* Add public keys. */
+		if (!empty($spd['keys'])) {
+			$ret['keys'] = $spd['keys'];
 		}
 
 
@@ -706,27 +658,9 @@ class SimpleSAML_Metadata_SAMLParser {
 		$ret['ArtifactResolutionService'] = $idp['ArtifactResolutionService'];
 
 
-		/* Add certificate to metadata. Only the first valid certificate will be added. */
-		$ret['certFingerprint'] = array();
-		foreach($idp['keys'] as $key) {
-			if($key['type'] !== 'X509Certificate') {
-				continue;
-			}
-
-			if ($key['signing'] !== TRUE) {
-				continue;
-			}
-
-			$certData = base64_decode($key['X509Certificate']);
-			if($certData === FALSE) {
-				/* Empty/invalid certificate. */
-				continue;
-			}
-
-			/* Add the certificate data to the metadata. Only the first certificate will be added. */
-			$ret['certData'] = preg_replace('/\s+/', '', str_replace(array("\r", "\n"), '', $key['X509Certificate']));
-			$ret['certFingerprint'][] = sha1($certData);
-			break;
+		/* Add public keys. */
+		if (!empty($idp['keys'])) {
+			$ret['keys'] = $idp['keys'];
 		}
 
 		/* Add extensions. */
