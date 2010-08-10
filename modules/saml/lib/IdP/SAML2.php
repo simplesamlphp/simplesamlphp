@@ -671,18 +671,21 @@ class sspmod_saml_IdP_SAML2 {
 			$key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
 			$key->loadKey($sharedKey);
 		} else {
-			/* Find the certificate that we should use to encrypt messages to this SP. */
-			$certArray = SimpleSAML_Utilities::loadPublicKey($spMetadata, TRUE);
-			if (!array_key_exists('PEM', $certArray)) {
-				throw new Exception('Unable to locate key we should use to encrypt the assertionst ' .
-					'to the SP: ' . var_export($spMetadata->getString('entityid'), TRUE) . '.');
+			$keys = $spMetadata->getPublicKeys('encryption', TRUE);
+			$key = $keys[0];
+			switch ($key['type']) {
+			case 'X509Certificate':
+				$pemKey = "-----BEGIN CERTIFICATE-----\n" .
+					chunk_split($key['X509Certificate'], 64) .
+					"-----END CERTIFICATE-----\n";
+				break;
+			default:
+				throw new SimpleSAML_Error_Exception('Unsupported encryption key type: ' . $key['type']);
 			}
-
-			$pemCert = $certArray['PEM'];
 
 			/* Extract the public key from the certificate for encryption. */
 			$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'public'));
-			$key->loadKey($pemCert);
+			$key->loadKey($pemKey);
 		}
 
 		$ea = new SAML2_EncryptedAssertion();
