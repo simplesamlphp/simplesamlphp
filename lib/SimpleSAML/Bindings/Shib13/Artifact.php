@@ -125,12 +125,16 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 		$url = $idpMetadata->getDefaultEndpoint('ArtifactResolutionService', array('urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding'));
 		$url = $url['Location'];
 
-		$certData = SimpleSAML_Utilities::loadPublicKey($idpMetadata, TRUE);
-		if (!array_key_exists('PEM', $certData)) {
-			throw new SimpleSAML_Error_Exception('Missing one of certData or certificate in metadata for '
-				. var_export($idpMetadata->getString('entityid'), TRUE));
+		$peerPublicKeys = $idpMetadata->getPublicKeys('signing', TRUE);
+		$certData = '';
+		foreach ($peerPublicKeys as $key) {
+			if ($key['type'] !== 'X509Certificate') {
+				continue;
+			}
+			$certData .= "-----BEGIN CERTIFICATE-----\n" .
+				chunk_split($key['X509Certificate'], 64) .
+				"-----END CERTIFICATE-----\n";
 		}
-		$certData = $certData['PEM'];
 
 		$file = SimpleSAML_Utilities::getTempDir() . '/' . sha1($certData) . '.crt';
 		if (!file_exists($file)) {
