@@ -1,0 +1,22 @@
+{
+	"header": {
+		"no": "Kunne ikke finne metadata",
+		"nn": "Kunne ikkje finne metadata"
+	},
+	"not_found_for": {
+		"no": "Vi fant ikke metadataene for:",
+		"nn": "Vi fann ikkje metadataene for:"
+	},
+	"config_problem": {
+		"no": "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverand\u00f8ren eller identitetsleverand\u00f8ren.",
+		"nn": "Dette er sannsynlegvis eit problem med oppsettet hj\u00e5 anten tenesteleverand\u00f8ren eller identitetsleverand\u00f8ren."
+	},
+	"suggestion_user_link": {
+		"no": "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link p\u00e5 en nettside, s\u00e5 b\u00f8r du rapportere denne feilen til eieren av den nettsiden.",
+		"nn": "Om du er ein brukar som mottok denne feilen etter at du f\u00f8lgde ei lenke p\u00e5 ei nettside, s\u00e5 b\u00f8r du melde denne feilen til eigaren av den nettsida."
+	},
+	"suggestion_developer": {
+		"no": "Hvis du er en utvikler som setter opp en \"single sign-on\" l\u00f8sning, s\u00e5 har du et problem med metadataoppsettet. Kontroller at metadata er riktig konfigurert hos b\u00e5de identitetsleverand\u00f8ren og tjenesteleverand\u00f8ren.",
+		"nn": "Om du er ein utviklar som set opp ei \"single sign-on\" l\u00f8ysing, s\u00e5 har du eit problem med metadataoppsettet. Kontroller at metadata er rett satt opp hj\u00e5 b\u00e5de identitetsleverand\u00f8ren og tenesteleverand\u00f8ren."
+	}
+}

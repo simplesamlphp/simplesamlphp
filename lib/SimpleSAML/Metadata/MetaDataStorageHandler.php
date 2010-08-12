@@ -286,7 +286,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 			}
 		}
 
-		throw new Exception('Unable to locate metadata for \'' . $index . '\' in set \'' . $set . '\'.');
+		throw new SimpleSAML_Error_MetadataNotFound($index);
 	}
 
 
