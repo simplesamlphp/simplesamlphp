@@ -464,7 +464,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
 
-		$e = new SAMl2_AttributeAuthorityDescriptor();
+		$e = new SAML2_XML_md_AttributeAuthorityDescriptor();
 		$e->protocolSupportEnumeration = $metadata->getArray('protocols', array());
 
 		$this->addExtensions($metadata, $e);
