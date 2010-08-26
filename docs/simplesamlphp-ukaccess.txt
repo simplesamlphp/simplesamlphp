@@ -89,7 +89,11 @@ Edit the `config/config-metarefresh.php`:
 The example above is from **UK Acces Federation**. If you instead would like to get metadata from **InCommon**, use the following URL and fingerprint:
 
 	'src' => 'http://wayf.incommonfederation.org/InCommon/InCommon-metadata.xml',
-	'validateFingerprint' => '3afcb44382c142439a01da958aef7494892f7e98',
+	'validateFingerprint' => '74278f967cf1bfcaaa1b41afb6336448a2150eb4',	
+
+
+* [Updated information about access endpoints and trust anchors for InCommon](http://www.incommonfederation.org/metadata.html)
+
 
 Notice that the configuration points the `outputDir` to the directory we created earlier. Now, we configure the SAML SP to use the cached `outputDir` as one of its metadata sources. Edit `config.php`:
 
