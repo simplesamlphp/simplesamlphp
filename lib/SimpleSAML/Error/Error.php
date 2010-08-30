@@ -50,7 +50,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 			unset($this->parameters[0]);
 			$this->errorCode = $errorCode[0];
 		} else {
-			$parameters = array();
+			$this->parameters = array();
 			$this->errorCode = $errorCode;
 		}
 
