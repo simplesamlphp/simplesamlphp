@@ -39,6 +39,45 @@ To enable the IdP to send artifacts, you must add the `saml20.sendartifact` opti
     );
 
 
+Add new metadata to SPs
+-----------------------
+
+After enabling the Artifact binding, your IdP metadata will change to add a ArtifactResolutionService endpoint.
+You therefore need to update the metadata for your IdP at your SPs.
+`saml20-idp-remote` metadata for simpleSAMLphp SPs should contain something like:
+
+    'ArtifactResolutionService' => array(
+        array(
+            'index' => 0,
+            'Location' => 'https://idp.example.org/simplesaml/saml2/idp/ArtifactResolutionService.php',
+            'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
+        ),
+    ),
+
+
+SP metadata on the IdP
+----------------------
+
+An SP using the HTTP-Artifact binding must have an AssertionConsumerService endpoint supporting that binding.
+This means that you must use the complex endpoint format in `saml20-sp-remote` metadata.
+In general, that should look something like:
+
+    'AssertionConsumerService' => array (
+        array(
+            'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+            'Location' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+            'index' => 0,
+        ),
+        array(
+            'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
+            'Location' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+            'index' => 2,
+        ),
+    ),
+
+(The specific values of the various fields will vary depending on the SP.)
+
+
 Certificate in metadata
 -----------------------
 
