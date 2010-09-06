@@ -53,6 +53,9 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 [`InfoCard:ICAuth`](./InfoCard:usage)
 : Authenticate with an InfoCard.
 
+[`multiauth:MultiAuth`](./multiauth:multiauth)
+: Allow the user to select from a list of authentication sources.
+
 `openid:OpenIDConsumer`
 : Authenticate against an OpenID provider.
 
