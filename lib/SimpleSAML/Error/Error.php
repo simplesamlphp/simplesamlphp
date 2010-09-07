@@ -27,12 +27,6 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 
 
 	/**
-	 * The exception which caused this error.
-	 */
-	private $cause;
-
-
-	/**
 	 * Constructor for this error.
 	 *
 	 * The error can either be given as a string, or as an array. If it is an array, the
@@ -68,8 +62,6 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 			$msg = $this->errorCode;
 		}
 		parent::__construct($msg, -1, $cause);
-
-		$this->cause = $cause;
 	}
 
 
