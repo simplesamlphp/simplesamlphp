@@ -102,6 +102,10 @@ Common options
 :   Passphrase for the private key. Leave this option out if the
     private key is unencrypted.
 
+`scope`
+:   An array with scopes for this IdP.
+    The scopes will be added to the generated XML metadata.
+
 `userid.attribute`
 :   The attribute name of an attribute which uniquely identifies
     the user. This attribute is used if simpleSAMLphp needs to generate
