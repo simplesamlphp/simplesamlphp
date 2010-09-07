@@ -144,7 +144,7 @@ class sspmod_saml_Message {
 			}
 
 		} elseif ($srcMetadata->hasValue('certFingerprint')) {
-			$certFingerPrint = $srcMetadata->getArrayizeString('certFingerprint');
+			$certFingerprint = $srcMetadata->getArrayizeString('certFingerprint');
 			foreach ($certFingerprint as &$fp) {
 				$fp = strtolower(str_replace(':', '', $fp));
 			}
@@ -163,7 +163,7 @@ class sspmod_saml_Message {
 				SimpleSAML_Logger::debug('Found ' . count($certificates) . ' certificates in ' . get_class($element));
 			}
 
-			$pemCert = self::findCertificate($certFingerprints, $certificates);
+			$pemCert = self::findCertificate($certFingerprint, $certificates);
 			$pemKeys = array($pemCert);
 		} else {
 			/* Attempt CA validation. */
