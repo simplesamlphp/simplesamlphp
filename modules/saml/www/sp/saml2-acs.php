@@ -56,7 +56,7 @@ try {
 
 /* Check for duplicate assertion (replay attack). */
 $store = SimpleSAML_Store::getInstance();
-if ($store !== NULL) {
+if ($store !== FALSE) {
 	$aID = $assertion->getId();
 	if ($store->get('saml.AssertionReceived', $aID) !== NULL) {
 		$e = new SimpleSAML_Error_Exception('Received duplicate assertion.');
