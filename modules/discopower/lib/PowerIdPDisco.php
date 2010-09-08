@@ -15,6 +15,16 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 
 	private $discoconfig;
 
+
+	/**
+	 * The domain to use when saving common domain cookies.
+	 * This is NULL if support for common domain cookies is disabled.
+	 *
+	 * @var string|NULL
+	 */
+	private $cdcDomain;
+
+
 	/**
 	 * Initializes this discovery service.
 	 *
@@ -30,6 +40,11 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 
 		$this->discoconfig = SimpleSAML_Configuration::getConfig('module_discopower.php');
 
+		$this->cdcDomain = $this->discoconfig->getString('cdc.domain', NULL);
+		if ($this->cdcDomain !== NULL && $this->cdcDomain[0] !== '.') {
+			/* Ensure that the CDC domain starts with a dot ('.') as required by the spec. */
+			$this->cdcDomain = '.' . $this->cdcDomain;
+		}
 	}
 
 
@@ -207,6 +222,105 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 		$t->data['score'] = $this->discoconfig->getValue('score', 'quicksilver');
 		$t->show();
 	}
+
+
+	/**
+	 * Get the IdP entities saved in the common domain cookie.
+	 *
+	 * @return array  List of IdP entities.
+	 */
+	private function getCDC() {
+
+		if (!isset($_COOKIE['_saml_idp'])) {
+			return array();
+		}
+
+		$ret = (string)$_COOKIE['_saml_idp'];
+		$ret = explode(' ', $ret);
+		foreach ($ret as &$idp) {
+			$idp = base64_decode($idp);
+			if ($idp === FALSE) {
+				/* Not properly base64 encoded. */
+				return array();
+			}
+		}
+
+		return $ret;
+	}
+
+
+	/**
+	 * Save the current IdP choice to a cookie.
+	 *
+	 * This function overrides the corresponding function in the parent class,
+	 * to add support for common domain cookie.
+	 *
+	 * @param string $idp  The entityID of the IdP.
+	 */
+	protected function setPreviousIdP($idp) {
+		assert('is_string($idp)');
+
+		if ($this->cdcDomain === NULL) {
+			parent::setPreviousIdP($idp);
+			return;
+		}
+
+		$list = $this->getCDC();
+
+		$prevIndex = array_search($idp, $list, TRUE);
+		if ($prevIndex !== FALSE) {
+			unset($list[$prevIndex]);
+		}
+		$list[] = $idp;
+
+		foreach ($list as &$value) {
+			$value = base64_encode($value);
+		}
+		$newCookie = implode(' ', $list);
+
+		while (strlen($newCookie) > 4000) {
+			/* The cookie is too long. Remove the oldest elements until it is short enough. */
+			$tmp = explode(' ', $newCookie, 2);
+			if (count($tmp) === 1) {
+				/*
+				 * We are left with a single entityID whose base64
+				 * representation is too long to fit in a cookie.
+				 */
+				break;
+			}
+			$newCookie = $tmp[1];
+		}
+
+		setcookie('_saml_idp', $newCookie, time() + 180*24*60*60, '/', $this->cdcDomain, TRUE);
+	}
+
+
+	/**
+	 * Retrieve the previous IdP the user used.
+	 *
+	 * This function overrides the corresponding function in the parent class,
+	 * to add support for common domain cookie.
+	 *
+	 * @return string|NULL  The entity id of the previous IdP the user used, or NULL if this is the first time.
+	 */
+	protected function getPreviousIdP() {
+
+		if ($this->cdcDomain === NULL) {
+			return parent::getPreviousIdP();
+		}
+
+		$prevIdPs = $this->getCDC();
+		while (count($prevIdPs) > 0) {
+			$idp = array_pop($prevIdPs);
+			$idp = $this->validateIdP($idp);
+			if ($idp !== NULL) {
+				return $idp;
+			}
+		}
+
+		return NULL;
+	}
+
 }
 
 ?>

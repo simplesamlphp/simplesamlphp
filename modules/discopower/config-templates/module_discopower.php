@@ -28,6 +28,14 @@ $config = array (
 	  * 'score' => 'suggest', 
 	  */
 
+	/*
+	 * The domain to use for common domain cookie support.
+	 * This must be a parent domain of the domain hosting the discovery service.
+	 *
+	 * If this is NULL (the default), common domain cookie support will be disabled.
+	 */
+	'cdc.domain' => NULL,
+
 );
 
 ?>
