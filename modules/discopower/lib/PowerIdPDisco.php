@@ -26,6 +26,15 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 
 
 	/**
+	 * The lifetime of the CDC cookie, in seconds.
+	 * If set to NULL, it will only be valid until the browser is closed.
+	 *
+	 * @var int|NULL
+	 */
+	private $cdcLifetime;
+
+
+	/**
 	 * Initializes this discovery service.
 	 *
 	 * The constructor does the parsing of the request. If this is an invalid request, it will
@@ -45,6 +54,8 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 			/* Ensure that the CDC domain starts with a dot ('.') as required by the spec. */
 			$this->cdcDomain = '.' . $this->cdcDomain;
 		}
+
+		$this->cdcLifetime = $this->discoconfig->getInteger('cdc.lifetime', NULL);
 	}
 
 
@@ -291,7 +302,13 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 			$newCookie = $tmp[1];
 		}
 
-		setcookie('_saml_idp', $newCookie, time() + 180*24*60*60, '/', $this->cdcDomain, TRUE);
+		if ($this->cdcLifetime === NULL) {
+			$expire = 0;
+		} else {
+			$expire = time() + $this->cdcLifetime;
+		}
+
+		setcookie('_saml_idp', $newCookie, $expire, '/', $this->cdcDomain, TRUE);
 	}
 
 

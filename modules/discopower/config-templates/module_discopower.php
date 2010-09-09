@@ -36,6 +36,15 @@ $config = array (
 	 */
 	'cdc.domain' => NULL,
 
+	/*
+	 * The lifetime of the common domain cookie, in seconds.
+	 *
+	 * If this is NULL (the default), the common domain cookie will be deleted when the browser closes.
+	 *
+	 * Example: 'cdc.lifetime' => 180*24*60*60, // 180 days.
+	 */
+	'cdc.lifetime' => NULL,
+
 );
 
 ?>
