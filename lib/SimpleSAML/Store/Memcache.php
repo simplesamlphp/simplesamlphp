@@ -57,7 +57,7 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store {
 		assert('is_string($type)');
 		assert('is_string($key)');
 
-		SimpleSAML_Memcache::delete('simpleSAMLphp.' . $type . '.' . $key, $value, $expire);
+		SimpleSAML_Memcache::delete('simpleSAMLphp.' . $type . '.' . $key);
 	}
 
 }
