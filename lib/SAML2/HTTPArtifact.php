@@ -117,6 +117,11 @@ class SAML2_HTTPArtifact extends SAML2_Binding {
 		}
 
 		$xml = $artifactResponse->getAny();
+		if ($xml === NULL) {
+			/* Empty ArtifactResponse - possibly because of Artifact replay? */
+			return NULL;
+		}
+
 		$samlresponse = SAML2_Message::fromXML($xml);
 		$samlresponse->addValidator(array(get_class($this), 'validateSignature'), $artifactResponse);
 
