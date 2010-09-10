@@ -55,7 +55,6 @@ if ($message instanceof SAML2_LogoutRequest) {
 
 		/* Send response. */
 		$binding = new SAML2_HTTPRedirect();
-		$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 		$binding->send($lr);
 	} catch (Exception $exception) {
 		throw new SimpleSAML_Error_Error('LOGOUTREQUEST', $exception);

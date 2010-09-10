@@ -165,7 +165,6 @@ try {
 	$session->setData('SAML2:SP:SSO:Info', $ar->getId(), $info);
 
 	$b = new SAML2_HTTPRedirect();
-	$b->setDestination(sspmod_saml_Message::getDebugDestination());
 	$b->send($ar);
 
 } catch(Exception $exception) {

@@ -67,7 +67,6 @@ class sspmod_saml_IdP_SAML2 {
 
 		/* Send the response. */
 		$binding = SAML2_Binding::getBinding($protocolBinding);
-		$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 		$binding->send($ar);
 	}
 
@@ -114,7 +113,6 @@ class sspmod_saml_IdP_SAML2 {
 		));
 
 		$binding = SAML2_Binding::getBinding($protocolBinding);
-		$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 		$binding->send($ar);
 	}
 
@@ -323,7 +321,6 @@ class sspmod_saml_IdP_SAML2 {
 		}
 
 		$binding = new SAML2_HTTPRedirect();
-		$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 		$binding->send($lr);
 	}
 

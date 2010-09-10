@@ -81,22 +81,10 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 
 		SimpleSAML_Utilities::debugMessage($response, 'out');
 
-		if ($this->configuration->getBoolean('debug', FALSE)) {
-			$p = new SimpleSAML_XHTML_Template($this->configuration, 'post-debug.php');
-			$p->data['header'] = 'SAML (Shibboleth 1.3) Response Debug-mode';
-			$p->data['RelayStateName'] = 'TARGET';
-			$p->data['RelayState'] = $relayState;
-			$p->data['destination'] = $shire;
-			$p->data['response'] = str_replace("\n", "", base64_encode($response));
-			$p->data['responseHTML'] = htmlspecialchars(SimpleSAML_Utilities::formatXMLString($response));
-			$p->show();
-
-		} else {
-			SimpleSAML_Utilities::postRedirect($shire, array(
-				'TARGET' => $relayState,
-				'SAMLResponse' => base64_encode($response),
-			));
-		}
+		SimpleSAML_Utilities::postRedirect($shire, array(
+			'TARGET' => $relayState,
+			'SAMLResponse' => base64_encode($response),
+		));
 
 	}
 

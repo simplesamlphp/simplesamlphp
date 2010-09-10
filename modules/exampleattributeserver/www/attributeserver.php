@@ -83,5 +83,4 @@ $response->setAssertions(array($assertion));
 sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $response);
 
 $binding = new SAML2_HTTPPost();
-$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 $binding->send($response);

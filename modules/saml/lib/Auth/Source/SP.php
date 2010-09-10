@@ -242,7 +242,6 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		SimpleSAML_Logger::debug('Sending SAML 2 AuthnRequest to ' . var_export($idpMetadata->getString('entityid'), TRUE));
 		$b = new SAML2_HTTPRedirect();
-		$b->setDestination(sspmod_saml_Message::getDebugDestination());
 		$b->send($ar);
 
 		assert('FALSE');
@@ -372,7 +371,6 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$lr->setRelayState($id);
 
 		$b = new SAML2_HTTPRedirect();
-		$b->setDestination(sspmod_saml_Message::getDebugDestination());
 		$b->send($lr);
 
 		assert('FALSE');

@@ -21,7 +21,6 @@ function sendQuery($dataId, $url, $nameId) {
 	$query->setNameId($nameId);
 
 	$binding = new SAML2_HTTPRedirect();
-	$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 	$binding->send($query);
 }
 

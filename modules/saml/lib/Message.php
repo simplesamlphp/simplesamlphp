@@ -11,26 +11,6 @@
 class sspmod_saml_Message {
 
 	/**
-	 * Retrieve the destination we should send the message to.
-	 *
-	 * This will return a debug endpoint if we have debug enabled. If debug
-	 * is disabled, NULL is returned, in which case the default destination
-	 * will be used.
-	 *
-	 * @return string|NULL  The destination the message should be delivered to.
-	 */
-	public static function getDebugDestination() {
-
-		$globalConfig = SimpleSAML_Configuration::getInstance();
-		if (!$globalConfig->getBoolean('debug', FALSE)) {
-			return NULL;
-		}
-
-		return SimpleSAML_Module::getModuleURL('saml/debug.php');
-	}
-
-
-	/**
 	 * Add signature key and and senders certificate to an element (Message or Assertion).
 	 *
 	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.

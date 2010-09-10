@@ -52,7 +52,6 @@ try {
 	SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: SP (' . $spEntityId . ') is sending logout request to IdP (' . $idpEntityId . ')');
 
 	$b = new SAML2_HTTPRedirect();
-	$b->setDestination(sspmod_saml_Message::getDebugDestination());
 	$b->send($lr);
 
 
