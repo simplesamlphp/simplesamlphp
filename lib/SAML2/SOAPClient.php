@@ -23,16 +23,16 @@ class SAML2_SOAPClient {
 
 		$issuer = $msg->getIssuer();
 
-		$options = array(
-			'uri' => $issuer,
-			'location' => $msg->getDestination(),
+		$ctxOpts = array(
+			'ssl' => array(
+			),
 		);
 
 		// Determine if we are going to do a MutualSSL connection between the IdP and SP  - Shoaib
 		if ($srcMetadata->hasValue('saml.SOAPClient.certificate')) {
-			$options['local_cert'] = SimpleSAML_Utilities::resolveCert($srcMetadata->getString('saml.SOAPClient.certificate'));
+			$ctxOpts['ssl']['local_cert'] = SimpleSAML_Utilities::resolveCert($srcMetadata->getString('saml.SOAPClient.certificate'));
 			if ($srcMetadata->hasValue('saml.SOAPClient.privatekey_pass')) {
-				$options['passphrase'] = $srcMetadata->getString('saml.SOAPClient.privatekey_pass');
+				$ctxOpts['ssl']['passphrase'] = $srcMetadata->getString('saml.SOAPClient.privatekey_pass');
 			}
 		} else {
 			/* Use the SP certificate and privatekey if it is configured. */
@@ -44,9 +44,9 @@ class SAML2_SOAPClient {
 				if (!file_exists($file)) {
 					SimpleSAML_Utilities::writeFile($file, $keyCertData);
 				}
-				$options['local_cert'] = $file;
+				$ctxOpts['ssl']['local_cert'] = $file;
 				if (isset($privateKey['password'])) {
-					$options['passphrase'] = $privateKey['password'];
+					$ctxOpts['ssl']['passphrase'] = $privateKey['password'];
 				}
 			}
 		}
@@ -68,26 +68,21 @@ class SAML2_SOAPClient {
 				SimpleSAML_Utilities::writeFile($peerCertFile, $certData);
 			}
 			// create ssl context
-			$ctxOpts = array(
-				'ssl' => array(
-					'verify_peer' => TRUE,
-					'verify_depth' => 1,
-					'cafile' => $peerCertFile
-					));
-			if (isset($options['local_cert'])) {
-				$ctxOpts['ssl']['local_cert'] = $options['local_cert'];
-				unset($options['local_cert']);
-			}
-			if (isset($options['passhprase'])) {
-				$ctxOpts['ssl']['passphrase'] = $options['passphrase'];
-				unset($options['passphrase']);
-			}
-			$context = stream_context_create($ctxOpts);
-			if ($context === NULL) {
-				throw new Exception('Unable to create SSL stream context');
-			}
-			$options['stream_context'] = $context;
+			$ctxOpts['ssl']['verify_peer'] = TRUE;
+			$ctxOpts['ssl']['verify_depth'] = 1;
+			$ctxOpts['ssl']['cafile'] = $peerCertFile;
 		}
+
+		$context = stream_context_create($ctxOpts);
+		if ($context === NULL) {
+			throw new Exception('Unable to create SSL stream context');
+		}
+
+		$options = array(
+			'uri' => $issuer,
+			'location' => $msg->getDestination(),
+			'stream_context' => $context,
+		);
 
 		$x = new SoapClient(NULL, $options);
 
