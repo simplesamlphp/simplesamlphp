@@ -24,12 +24,16 @@ $config = array (
 	'tempdir'               => '/tmp/simplesaml',
 	
 
-	/**
-	 * If you set the debug parameter to true, all SAML messages will be visible in the
-	 * browser, and require the user to click the submit button. If debug is set to false,
-	 * Browser/POST SAML messages will be automaticly submitted.
+	/*
+	 * If you enable this option, simpleSAMLphp will log all sent and received messages
+	 * to the log file.
+	 *
+	 * Note: The messages are logged with the DEBUG log level, so you also need to set
+	 * the 'logging.level' option to LOG_DEBUG.
 	 */
-	'debug'                 =>	FALSE,
+	'debug' => FALSE,
+
+
 	'showerrors'            =>	TRUE,
 
 	/**
