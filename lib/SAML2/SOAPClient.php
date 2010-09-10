@@ -25,6 +25,7 @@ class SAML2_SOAPClient {
 
 		$ctxOpts = array(
 			'ssl' => array(
+				'capture_peer_cert' => TRUE,
 			),
 		);
 
@@ -116,11 +117,75 @@ class SAML2_SOAPClient {
 		$samlresponse = SAML2_Utils::xpQuery($dom->firstChild, '/soap-env:Envelope/soap-env:Body/*[1]');
 		$samlresponse = SAML2_Message::fromXML($samlresponse[0]);
 
+		/* Add validator to message which uses the SSL context. */
+		self::addSSLValidator($samlresponse, $context);
 
 		SimpleSAML_Logger::debug("Valid ArtifactResponse received from IdP");
 
 		return $samlresponse;
 
+	}
+
+
+	/**
+	 * Add a signature validator based on a SSL context.
+	 *
+	 * @param SAML2_Message $msg  The message we should add a validator to.
+	 * @param resource $context  The stream context.
+	 */
+	private static function addSSLValidator(SAML2_Message $msg, $context) {
+		$options = stream_context_get_options($context);
+		if (!isset($options['ssl']['peer_certificate'])) {
+			return;
+		}
+
+		//$out = '';
+		//openssl_x509_export($options['ssl']['peer_certificate'], $out);
+
+		$key = openssl_pkey_get_public($options['ssl']['peer_certificate']);
+		if ($key === FALSE) {
+			SimpleSAML_Logger::warning('Unable to get public key from peer certificate.');
+			return;
+		}
+
+		$keyInfo = openssl_pkey_get_details($key);
+		if ($keyInfo === FALSE) {
+			SimpleSAML_Logger::warning('Unable to get key details from public key.');
+			return;
+		}
+
+		if (!isset($keyInfo['key'])) {
+			SimpleSAML_Logger::warning('Missing key in public key details.');
+			return;
+		}
+
+		$msg->addValidator(array('SAML2_SOAPClient', 'validateSSL'), $keyInfo['key']);
+	}
+
+
+	/**
+	 * Validate a SOAP message against the certificate on the SSL connection.
+	 *
+	 * @param string $data  The public key that was used on the connection.
+	 * @param XMLSecurityKey $key  The key we should validate the certificate against.
+	 */
+	public static function validateSSL($data, XMLSecurityKey $key) {
+		assert('is_string($data)');
+
+		$keyInfo = openssl_pkey_get_details($key->key);
+		if ($keyInfo === FALSE) {
+			throw new Exception('Unable to get key details from XMLSecurityKey.');
+		}
+
+		if (!isset($keyInfo['key'])) {
+			throw new Exception('Missing key in public key details.');
+		}
+
+		if ($keyInfo['key'] !== $data) {
+			throw new Exception('Key on SSL connection did not match key we validated against.');
+		}
+
+		SimpleSAML_Logger::debug('Message validated based on SSL certificate.');
 	}
 
 
