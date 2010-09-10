@@ -91,6 +91,8 @@ class SAML2_SOAPClient {
 		$request = $msg->toSignedXML();
 		$request = self::START_SOAP_ENVELOPE . $request->ownerDocument->saveXML($request) . self::END_SOAP_ENVELOPE;
 
+		SimpleSAML_Utilities::debugMessage($request, 'out');
+
 		$action = 'http://www.oasis-open.org/committees/security';
 		$version = '1.1';
 		$destination = $msg->getDestination();
@@ -101,6 +103,8 @@ class SAML2_SOAPClient {
 		if ($soapresponsexml === NULL || $soapresponsexml === "") {
 			throw new Exception('Empty SOAP response, check peer certificate.');
 		}
+
+		SimpleSAML_Utilities::debugMessage($soapresponsexml, 'in');
 
 		// Convert to SAML2_Message (DOMElement)
 		$dom = new DOMDocument();

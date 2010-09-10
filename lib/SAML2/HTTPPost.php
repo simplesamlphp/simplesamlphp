@@ -26,6 +26,9 @@ class SAML2_HTTPPost extends SAML2_Binding {
 
 		$msgStr = $message->toSignedXML();
 		$msgStr = $msgStr->ownerDocument->saveXML($msgStr);
+
+		SimpleSAML_Utilities::debugMessage($msgStr, 'out');
+
 		$msgStr = base64_encode($msgStr);
 		$msgStr = htmlspecialchars($msgStr);
 
@@ -85,6 +88,8 @@ END;
 		}
 
 		$msg = base64_decode($msg);
+
+		SimpleSAML_Utilities::debugMessage($msg, 'in');
 
 		$document = new DOMDocument();
 		$document->loadXML($msg);

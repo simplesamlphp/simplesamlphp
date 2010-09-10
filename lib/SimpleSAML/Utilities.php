@@ -1906,6 +1906,35 @@ class SimpleSAML_Utilities {
 		SimpleSAML_Utilities::redirect($url);
 	}
 
+
+	/**
+	 * Helper function to log messages that we send or receive.
+	 *
+	 * @param string $message  The message, as an XML string.
+	 * @param string $type  Whether this message is sent or received.
+	 */
+	public static function debugMessage($message, $type) {
+		assert('is_string($message)');
+		assert('$type === "out" || $type === "in"');
+
+		$globalConfig = SimpleSAML_Configuration::getInstance();
+		if (!$globalConfig->getBoolean('debug', FALSE)) {
+			/* Message debug disabled. */
+			return;
+		}
+
+		if ($type === 'in') {
+			SimpleSAML_Logger::debug('Received message:');
+		} else {
+			SimpleSAML_Logger::debug('Sending message:');
+		}
+
+		$str = self::formatXMLString($message);
+		foreach (explode("\n", $str) as $line) {
+			SimpleSAML_Logger::debug($line);
+		}
+	}
+
 }
 
 ?>

@@ -79,6 +79,8 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 
 		$response = $responsedom->saveXML();
 
+		SimpleSAML_Utilities::debugMessage($response, 'out');
+
 		if ($this->configuration->getBoolean('debug', FALSE)) {
 			$p = new SimpleSAML_XHTML_Template($this->configuration, 'post-debug.php');
 			$p->data['header'] = 'SAML (Shibboleth 1.3) Response Debug-mode';
@@ -113,6 +115,8 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		}
 		$rawResponse = $post['SAMLResponse'];
 		$samlResponseXML = base64_decode($rawResponse);
+
+		SimpleSAML_Utilities::debugMessage($samlResponseXML, 'in');
 
 		SimpleSAML_Utilities::validateXMLDocument($samlResponseXML, 'saml11');
 
