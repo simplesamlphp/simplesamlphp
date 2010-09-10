@@ -28,6 +28,8 @@ $config = array (
 	 * If you enable this option, simpleSAMLphp will log all sent and received messages
 	 * to the log file.
 	 *
+	 * This option also enables logging of the messages that are encrypted and decrypted.
+	 *
 	 * Note: The messages are logged with the DEBUG log level, so you also need to set
 	 * the 'logging.level' option to LOG_DEBUG.
 	 */

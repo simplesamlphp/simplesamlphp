@@ -1911,11 +1911,10 @@ class SimpleSAML_Utilities {
 	 * Helper function to log messages that we send or receive.
 	 *
 	 * @param string $message  The message, as an XML string.
-	 * @param string $type  Whether this message is sent or received.
+	 * @param string $type  Whether this message is sent or received, encrypted or decrypted.
 	 */
 	public static function debugMessage($message, $type) {
 		assert('is_string($message)');
-		assert('$type === "out" || $type === "in"');
 
 		$globalConfig = SimpleSAML_Configuration::getInstance();
 		if (!$globalConfig->getBoolean('debug', FALSE)) {
@@ -1923,10 +1922,21 @@ class SimpleSAML_Utilities {
 			return;
 		}
 
-		if ($type === 'in') {
+		switch ($type) {
+		case 'in':
 			SimpleSAML_Logger::debug('Received message:');
-		} else {
+			break;
+		case 'out':
 			SimpleSAML_Logger::debug('Sending message:');
+			break;
+		case 'decrypt':
+			SimpleSAML_Logger::debug('Decrypted message:');
+			break;
+		case 'encrypt':
+			SimpleSAML_Logger::debug('Encrypted message:');
+			break;
+		default:
+			assert(FALSE);
 		}
 
 		$str = self::formatXMLString($message);
