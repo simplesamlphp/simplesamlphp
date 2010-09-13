@@ -1910,16 +1910,20 @@ class SimpleSAML_Utilities {
 	/**
 	 * Helper function to log messages that we send or receive.
 	 *
-	 * @param string $message  The message, as an XML string.
+	 * @param string|DOMElement $message  The message, as an XML string or an XML element.
 	 * @param string $type  Whether this message is sent or received, encrypted or decrypted.
 	 */
 	public static function debugMessage($message, $type) {
-		assert('is_string($message)');
+		assert('is_string($message) || $message instanceof DOMElement');
 
 		$globalConfig = SimpleSAML_Configuration::getInstance();
 		if (!$globalConfig->getBoolean('debug', FALSE)) {
 			/* Message debug disabled. */
 			return;
+		}
+
+		if ($message instanceof DOMElement) {
+			$message = $message->ownerDocument->saveXML($message);
 		}
 
 		switch ($type) {
