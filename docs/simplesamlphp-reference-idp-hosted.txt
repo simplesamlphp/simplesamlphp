@@ -207,6 +207,13 @@ The following SAML 2.0 options are available:
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
 
+`sign.logout`
+:   Whether to sign logout messages sent from this IdP.
+
+:   Note that this option also exists in the SP-remote metadata, and
+    any value in the SP-remote metadata overrides the one configured
+    in the IdP metadata.
+
 `validate.authnrequest`
 :   Whether we require signatures on authentication requests sent to this IdP.
 

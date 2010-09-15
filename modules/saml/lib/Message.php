@@ -53,9 +53,23 @@ class sspmod_saml_Message {
 	 */
 	private static function addRedirectSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_message $message) {
 
-		$signingEnabled = $dstMetadata->getBoolean('redirect.sign', NULL);
+		if ($message instanceof SAML2_LogoutRequest || $message instanceof SAML2_LogoutResponse) {
+			$signingEnabled = $srcMetadata->getBoolean('sign.logout', NULL);
+			if ($signingEnabled === NULL) {
+				$signingEnabled = $dstMetadata->getBoolean('sign.logout', NULL);
+			}
+		} elseif ($message instanceof SAML2_AuthnRequest) {
+			$signingEnabled = $srcMetadata->getBoolean('sign.authnrequest', NULL);
+			if ($signingEnabled === NULL) {
+				$signingEnabled = $dstMetadata->getBoolean('sign.authnrequest', NULL);
+			}
+		}
+
 		if ($signingEnabled === NULL) {
-			$signingEnabled = $srcMetadata->getBoolean('redirect.sign', FALSE);
+			$signingEnabled = $dstMetadata->getBoolean('redirect.sign', NULL);
+			if ($signingEnabled === NULL) {
+				$signingEnabled = $srcMetadata->getBoolean('redirect.sign', FALSE);
+			}
 		}
 		if (!$signingEnabled) {
 			return;

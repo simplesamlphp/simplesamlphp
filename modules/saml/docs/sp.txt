@@ -252,6 +252,24 @@ Options
 
 :   *Note*: SAML 1 specific.
 
+`sign.authnrequest`
+:   Whether to sign authentication requests sent from this SP.
+
+:   Note that this option also exists in the IdP-remote metadata, and
+    any value in the IdP-remote metadata overrides the one configured
+    in the SP configuration.
+
+:   *Note*: SAML 2 specific.
+
+`sign.logout`
+:   Whether to sign logout messages sent from this SP.
+
+:   Note that this option also exists in the IdP-remote metadata, and
+    any value in the IdP-remote metadata overrides the one configured
+    in the SP configuration.
+
+:   *Note*: SAML 2 specific.
+
 `redirect.sign`
 :   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is `FALSE`.
 

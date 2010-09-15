@@ -110,6 +110,18 @@ The following SAML 2.0 options are available:
     -   `noauthnstatement` - Ignore missing &lt;AuthnStatement&gt; in &lt;Assertion&gt;.
     -   `noattributestatement` - Ignore missing &lt;AttributeStatement&gt; in &lt;Assertion&gt;.
 
+`sign.authnrequest`
+:   Whether to sign authentication requests sent to this IdP.
+
+:   Note that this option also exists in the SP configuration.
+    This value in the IdP remote metadata overrides the value in the SP configuration.
+
+`sign.logout`
+:   Whether to sign logout messages sent to this IdP.
+
+:   Note that this option also exists in the SP configuration.
+    This value in the IdP remote metadata overrides the value in the SP configuration.
+
 `SingleLogoutService`
 :   Endpoint URL for logout requests and responses. You should obtain this from the IdP. Users who log out from your service is redirected to this URL with the LogoutRequest using HTTP-REDIRECT.
 

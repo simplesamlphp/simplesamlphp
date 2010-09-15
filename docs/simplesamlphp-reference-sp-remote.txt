@@ -238,6 +238,12 @@ The following SAML 2.0 options are available:
 :   -   `raw`: Store the attribute without any modifications. This
         makes it possible to include raw XML in the response.
 
+`sign.logout`
+:   Whether to sign logout messages sent to this SP.
+
+:   Note that this option also exists in the IdP-hosted metadata.
+    The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+
 `validate.authnrequest`
 :   Whether we require signatures on authentication requests sent from this SP.
 
