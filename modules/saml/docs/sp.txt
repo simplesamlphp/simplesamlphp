@@ -276,3 +276,12 @@ Options
             'en' => 'http://sp.example.net/en/info.html',
             'no' => 'http://sp.example.net/no/info.html',
         ),
+
+`validate.logout`
+:   Whether we require signatures on logout messages sent to this SP.
+
+:   Note that this option also exists in the IdP-remote metadata, and
+    any value in the IdP-remote metadata overrides the one configured
+    in the IdP metadata.
+
+:   *Note*: SAML 2 specific.

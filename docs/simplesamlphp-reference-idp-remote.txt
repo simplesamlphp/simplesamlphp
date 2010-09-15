@@ -121,6 +121,12 @@ The following SAML 2.0 options are available:
 `SPNameQualifier`
 :   This corresponds to the SPNameQualifier in the SAML 2.0 specification. It allows to give subjects a SP specific namespace. This option is rarely used, so if you don't need it, leave it out. When left out, simpleSAMLphp assumes the entityID of your SP as the SPNameQualifier.
 
+`validate.logout`
+:   Whether we require signatures on logout messages sent from this IdP.
+
+:   Note that this option also exists in the SP configuration.
+    This value in the IdP remote metadata overrides the value in the SP configuration.
+
 
 ### Decrypting assertions
 

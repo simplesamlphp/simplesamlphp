@@ -216,9 +216,23 @@ class sspmod_saml_Message {
 		SAML2_Message $message
 		) {
 
-		$enabled = $srcMetadata->getBoolean('redirect.validate', NULL);
+		if ($message instanceof SAML2_LogoutRequest || $message instanceof SAML2_LogoutResponse) {
+			$enabled = $srcMetadata->getBoolean('validate.logout', NULL);
+			if ($enabled === NULL) {
+				$enabled = $dstMetadata->getBoolean('validate.logout', NULL);
+			}
+		} elseif ($message instanceof SAML2_AuthnRequest) {
+			$enabled = $srcMetadata->getBoolean('validate.authnrequest', NULL);
+			if ($enabled === NULL) {
+				$enabled = $dstMetadata->getBoolean('validate.authnrequest', NULL);
+			}
+		}
+
 		if ($enabled === NULL) {
-			$enabled = $dstMetadata->getBoolean('redirect.validate', FALSE);
+			$enabled = $srcMetadata->getBoolean('redirect.validate', NULL);
+			if ($enabled === NULL) {
+				$enabled = $dstMetadata->getBoolean('redirect.validate', FALSE);
+			}
 		}
 
 		if (!$enabled) {
