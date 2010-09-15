@@ -143,6 +143,7 @@ The following filters are included in the simpleSAMLphp distribution:
 - [`core:WarnShortSSOInterval`](./core:authproc_warnshortssointerval): Give a warning if the user logs into the same SP twice within a few seconds.
 - [`preprodwarning:Warning`](./preprodwarning:warning): Warn the user about accessing a test IdP.
 - [`saml:AttributeNameID`](./saml:nameid): Generate custom NameID with the value of an attribute.
+- [`saml:NameIDAttribute`](./saml:nameidattribute): Create an attribute based on the NameID we receive from the IdP.
 - [`saml:PersistentNameID`](./saml:nameid): Generate persistent NameID from an attribute.
 - [`saml:TransientNameID`](./saml:nameid): Generate transient NameID.
 
