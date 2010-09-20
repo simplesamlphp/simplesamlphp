@@ -34,6 +34,14 @@ $slo->Binding = SAML2_Const::BINDING_HTTP_REDIRECT;
 $slo->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId);
 $sp->SingleLogoutService[] = $slo;
 
+$store = SimpleSAML_Store::getInstance();
+if ($store instanceof SimpleSAML_Store_SQL) {
+	/* We can properly support SOAP logout. */
+	$slo = new SAML2_XML_md_EndpointType();
+	$slo->Binding = SAML2_Const::BINDING_SOAP;
+	$slo->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId);
+	$sp->SingleLogoutService[] = $slo;
+}
 
 $acs = new SAML2_XML_md_IndexedEndpointType();
 $acs->index = 0;

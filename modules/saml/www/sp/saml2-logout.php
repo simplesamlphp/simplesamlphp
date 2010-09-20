@@ -84,8 +84,6 @@ if ($message instanceof SAML2_LogoutResponse) {
 	$lr->setRelayState($message->getRelayState());
 	$lr->setInResponseTo($message->getId());
 
-	$binding = new SAML2_HTTPRedirect();
-	$binding->setDestination(sspmod_saml_Message::getDebugDestination());
 	$binding->send($lr);
 } else {
 	throw new SimpleSAML_Error_BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
