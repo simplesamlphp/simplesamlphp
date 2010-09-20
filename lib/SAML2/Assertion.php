@@ -287,41 +287,34 @@ class SAML2_Assertion implements SAML2_SignedElement {
 			throw new Exception('More than one <saml:SubjectConfirmation> in <saml:Subject>.');
 		}
 		$subjectConfirmation = $subjectConfirmation[0];
+		$subjectConfirmation = new SAML2_XML_saml_SubjectConfirmation($subjectConfirmation);
 
-		if (!$subjectConfirmation->hasAttribute('Method')) {
-			throw new Exception('Missing required attribute "Method" on <saml:SubjectConfirmation>-node.');
-		}
-		$method = $subjectConfirmation->getAttribute('Method');
-
-		if ($method !== SAML2_Const::CM_BEARER) {
+		if ($subjectConfirmation->Method !== SAML2_Const::CM_BEARER) {
 			throw new Exception('Unsupported subject confirmation method: ' . var_export($method, TRUE));
 		}
 
-		$confirmationData = SAML2_Utils::xpQuery($subjectConfirmation, './saml_assertion:SubjectConfirmationData');
-		if (empty($confirmationData)) {
+		$confirmationData = $subjectConfirmation->SubjectConfirmationData;
+		if ($confirmationData === NULL) {
 			return;
-		} elseif (count($confirmationData) > 1) {
-			throw new Exception('More than one <saml:SubjectConfirmationData> in <saml:SubjectConfirmation> is currently unsupported.');
 		}
-		$confirmationData = $confirmationData[0];
 
-		if ($confirmationData->hasAttribute('NotBefore')) {
-			$notBefore = SimpleSAML_Utilities::parseSAML2Time($confirmationData->getAttribute('NotBefore'));
+		if ($confirmationData->NotBefore !== NULL) {
+			$notBefore = $confirmationData->NotBefore;
 			if ($this->notBefore === NULL || $this->notBefore < $notBefore) {
 				$this->notBefore = $notBefore;
 			}
 		}
-		if ($confirmationData->hasAttribute('NotOnOrAfter')) {
-			$notOnOrAfter = SimpleSAML_Utilities::parseSAML2Time($confirmationData->getAttribute('NotOnOrAfter'));
+		if ($confirmationData->NotOnOrAfter !== NULL) {
+			$notOnOrAfter = $confirmationData->NotOnOrAfter;
 			if ($this->notOnOrAfter === NULL || $this->notOnOrAfter > $notOnOrAfter) {
 				$this->notOnOrAfter = $notOnOrAfter;
 			}
 		}
-		if ($confirmationData->hasAttribute('InResponseTo')) {
-			$this->inResponseTo = $confirmationData->getAttribute('InResponseTo');;
+		if ($confirmationData->InResponseTo !== NULL) {
+			$this->inResponseTo = $confirmationData->InResponseTo;
 		}
-		if ($confirmationData->hasAttribute('Recipient')) {
-			$this->destination = $confirmationData->getAttribute('Recipient');;
+		if ($confirmationData->Recipient !== NULL) {
+			$this->destination = $confirmationData->Recipient;
 		}
 	}
 
@@ -1166,23 +1159,22 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 		SAML2_Utils::addNameId($subject, $this->nameId);
 
-		$sc = $root->ownerDocument->createElementNS(SAML2_Const::NS_SAML, 'saml:SubjectConfirmation');
-		$subject->appendChild($sc);
-
-		$sc->setAttribute('Method', SAML2_Const::CM_BEARER);
-
-		$scd = $root->ownerDocument->createElementNS(SAML2_Const::NS_SAML, 'saml:SubjectConfirmationData');
-		$sc->appendChild($scd);
+		$sc = new SAML2_XML_saml_SubjectConfirmation();
+		$sc->Method = SAML2_Const::CM_BEARER;
+		$sc->SubjectConfirmationData = new SAML2_XML_saml_SubjectConfirmationData();
+		$sc->SubjectConfirmationData->Recipient = $this->destination;
 
 		if ($this->notOnOrAfter !== NULL) {
-			$scd->setAttribute('NotOnOrAfter', gmdate('Y-m-d\TH:i:s\Z', $this->notOnOrAfter));
+			$sc->SubjectConfirmationData->NotOnOrAfter = $this->notOnOrAfter;
 		}
 		if ($this->destination !== NULL) {
-			$scd->setAttribute('Recipient', $this->destination);
+			$sc->SubjectConfirmationData->Recipient = $this->destination;
 		}
 		if ($this->inResponseTo !== NULL) {
-			$scd->setAttribute('InResponseTo', $this->inResponseTo);
+			$sc->SubjectConfirmationData->InResponseTo = $this->inResponseTo;
 		}
+
+		$sc->toXML($subject);
 	}
 
 
