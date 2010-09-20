@@ -497,12 +497,13 @@ class sspmod_saml_Message {
 			}
 		}
 
-		$asrtDestination = $assertion->getDestination();
+		/* Validate Response-element destination. */
+
+		$currentURL = SimpleSAML_Utilities::selfURLNoQuery();
 		$msgDestination = $response->getDestination();
-		if ($asrtDestination !== NULL && $msgDestination !== NULL) {
-			if ($asrtDestination !== $msgDestination) {
-				throw new SimpleSAML_Error_Exception('Destination in assertion did not match Destination in message.');
-			}
+		if ($msgDestination !== $currentURL) {
+			throw new Exception('Destination in response doesn\'t match the current URL. Destination is "' .
+				$msgDestination . '", current URL is "' . $currentURL . '".');
 		}
 
 
@@ -524,7 +525,6 @@ class sspmod_saml_Message {
 		}
 
 		$destination = $assertion->getDestination();
-		$currentURL = SimpleSAML_Utilities::selfURLNoQuery();
 		if ($destination !== $currentURL) {
 			throw new Exception('Recipient in assertion doesn\'t match the current URL. Recipient is "' .
 				$destination . '", current URL is "' . $currentURL . '".');
