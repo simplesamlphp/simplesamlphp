@@ -37,7 +37,6 @@ class sspmod_saml_IdP_SAML2 {
 		$idpMetadata = $idp->getConfig();
 
 		$assertion = self::buildAssertion($idpMetadata, $spMetadata, $state);
-		$assertion->setInResponseTo($requestId);
 		
 		if (isset($state['saml:AuthenticatingAuthority'])) {
 			$assertion->setAuthenticatingAuthority($state['saml:AuthenticatingAuthority']);
@@ -554,7 +553,6 @@ class sspmod_saml_IdP_SAML2 {
 		}
 
 		$a->setIssuer($idpMetadata->getString('entityid'));
-		$a->setDestination($state['saml:ConsumerURL']);
 		$a->setValidAudiences(array($spMetadata->getString('entityid')));
 
 		$a->setNotBefore(time() - 30);
@@ -575,6 +573,14 @@ class sspmod_saml_IdP_SAML2 {
 		$a->setSessionNotOnOrAfter(time() + $sessionLifetime);
 
 		$a->setSessionIndex(SimpleSAML_Utilities::generateID());
+
+		$sc = new SAML2_XML_saml_SubjectConfirmation();
+		$sc->Method = SAML2_Const::CM_BEARER;
+		$sc->SubjectConfirmationData = new SAML2_XML_saml_SubjectConfirmationData();
+		$sc->SubjectConfirmationData->NotOnOrAfter = time() + $assertionLifetime;
+		$sc->SubjectConfirmationData->Recipient = $state['saml:ConsumerURL'];
+		$sc->SubjectConfirmationData->InResponseTo = $state['saml:RequestId'];
+		$a->setSubjectConfirmation(array($sc));
 
 		/* Add attributes. */
 

@@ -79,24 +79,6 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	/**
-	 * The destination URL for this assertion.
-	 *
-	 * @var string|NULL
-	 */
-	private $destination;
-
-
-	/**
-	 * The id of the request this assertion is sent as a response to.
-	 *
-	 * This should be NULL if this isn't a response to a request.
-	 *
-	 * @var string|NULL
-	 */
-	private $inResponseTo;
-
-
-	/**
 	 * The set of audiences that are allowed to receive this assertion.
 	 *
 	 * This is an array of valid service providers.
@@ -204,6 +186,14 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	/**
+	 * The SubjectConfirmation elements of the Subject in the assertion.
+	 *
+	 * @var array  Array of SAML2_XML_saml_SubjectConfirmation elements.
+	 */
+	private $SubjectConfirmation;
+
+
+	/**
 	 * Constructor for SAML 2 assertions.
 	 *
 	 * @param DOMElement|NULL $xml  The input assertion.
@@ -218,6 +208,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$this->nameFormat = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
 		$this->certificates = array();
 		$this->AuthenticatingAuthority = array();
+		$this->SubjectConfirmation = array();
 
 		if ($xml === NULL) {
 			return;
@@ -283,38 +274,10 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$subjectConfirmation = SAML2_Utils::xpQuery($subject, './saml_assertion:SubjectConfirmation');
 		if (empty($subjectConfirmation)) {
 			throw new Exception('Missing <saml:SubjectConfirmation> in <saml:Subject>.');
-		} elseif (count($subjectConfirmation) > 1) {
-			throw new Exception('More than one <saml:SubjectConfirmation> in <saml:Subject>.');
-		}
-		$subjectConfirmation = $subjectConfirmation[0];
-		$subjectConfirmation = new SAML2_XML_saml_SubjectConfirmation($subjectConfirmation);
-
-		if ($subjectConfirmation->Method !== SAML2_Const::CM_BEARER) {
-			throw new Exception('Unsupported subject confirmation method: ' . var_export($method, TRUE));
 		}
 
-		$confirmationData = $subjectConfirmation->SubjectConfirmationData;
-		if ($confirmationData === NULL) {
-			return;
-		}
-
-		if ($confirmationData->NotBefore !== NULL) {
-			$notBefore = $confirmationData->NotBefore;
-			if ($this->notBefore === NULL || $this->notBefore < $notBefore) {
-				$this->notBefore = $notBefore;
-			}
-		}
-		if ($confirmationData->NotOnOrAfter !== NULL) {
-			$notOnOrAfter = $confirmationData->NotOnOrAfter;
-			if ($this->notOnOrAfter === NULL || $this->notOnOrAfter > $notOnOrAfter) {
-				$this->notOnOrAfter = $notOnOrAfter;
-			}
-		}
-		if ($confirmationData->InResponseTo !== NULL) {
-			$this->inResponseTo = $confirmationData->InResponseTo;
-		}
-		if ($confirmationData->Recipient !== NULL) {
-			$this->destination = $confirmationData->Recipient;
+		foreach ($subjectConfirmation as $sc) {
+			$this->SubjectConfirmation[] = new SAML2_XML_saml_SubjectConfirmation($sc);
 		}
 	}
 
@@ -764,65 +727,12 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	/**
-	 * Retrieve the destination URL of this assertion.
-	 *
-	 * This function returns NULL if there are no restrictions on which URL can
-	 * receive the assertion.
-	 *
-	 * @return string|NULL  The destination URL of this assertion.
-	 */
-	public function getDestination() {
-
-		return $this->destination;
-	}
-
-
-	/**
-	 * Set the destination URL of this assertion.
-	 *
-	 * @return string|NULL  The destination URL of this assertion.
-	 */
-	public function setDestination($destination) {
-		assert('is_string($destination) || is_null($destination)');
-
-		$this->destination = $destination;
-	}
-
-
-	/**
 	 * Set $EncryptedAttributes if attributes will send encrypted
 	 *
 	 * @param boolean $ea  TRUE to encrypt attributes in the assertion.
 	 */
 	public function setEncryptedAttributes($ea) {
 		$this->requiredEncAttributes = $ea;
-	}
-
-
-	/**
-	 * Retrieve the request this assertion is sent in response to.
-	 *
-	 * Can be NULL, in which case this assertion isn't sent in response to a specific request.
-	 *
-	 * @return string|NULL  The id of the request this assertion is sent in response to.
-	 */
-	public function getInResponseTo() {
-
-		return $this->inResponseTo;
-	}
-
-
-	/**
-	 * Set the request this assertion is sent in response to.
-	 *
-	 * Can be set to NULL, in which case this assertion isn't sent in response to a specific request.
-	 *
-	 * @param string|NULL $inResponseTo  The id of the request this assertion is sent in response to.
-	 */
-	public function setInResponseTo($inResponseTo) {
-		assert('is_string($inResponseTo) || is_null($inResponseTo)');
-
-		$this->inResponseTo = $inResponseTo;
 	}
 
 
@@ -1029,6 +939,27 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	/**
+	 * Retrieve the SubjectConfirmation elements we have in our Subject element.
+	 *
+	 * @return array  Array of SAML2_XML_saml_SubjectConfirmation elements.
+	 */
+	public function getSubjectConfirmation() {
+		return $this->SubjectConfirmation;
+	}
+
+
+	/**
+	 * Set the SubjectConfirmation elements that should be included in the assertion.
+	 *
+	 * @param array $SubjectConfirmation Array of SAML2_XML_saml_SubjectConfirmation elements.
+	 */
+	public function setSubjectConfirmation(array $SubjectConfirmation) {
+
+		$this->SubjectConfirmation = $SubjectConfirmation;
+	}
+
+
+	/**
 	 * Retrieve the private key we should use to sign the assertion.
 	 *
 	 * @return XMLSecurityKey|NULL The key, or NULL if no key is specified.
@@ -1159,22 +1090,9 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 		SAML2_Utils::addNameId($subject, $this->nameId);
 
-		$sc = new SAML2_XML_saml_SubjectConfirmation();
-		$sc->Method = SAML2_Const::CM_BEARER;
-		$sc->SubjectConfirmationData = new SAML2_XML_saml_SubjectConfirmationData();
-		$sc->SubjectConfirmationData->Recipient = $this->destination;
-
-		if ($this->notOnOrAfter !== NULL) {
-			$sc->SubjectConfirmationData->NotOnOrAfter = $this->notOnOrAfter;
+		foreach ($this->SubjectConfirmation as $sc) {
+			$sc->toXML($subject);
 		}
-		if ($this->destination !== NULL) {
-			$sc->SubjectConfirmationData->Recipient = $this->destination;
-		}
-		if ($this->inResponseTo !== NULL) {
-			$sc->SubjectConfirmationData->InResponseTo = $this->inResponseTo;
-		}
-
-		$sc->toXML($subject);
 	}
 
 

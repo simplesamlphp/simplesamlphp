@@ -487,16 +487,6 @@ class sspmod_saml_Message {
 		/* At least one valid signature found. */
 
 
-		/* Make sure that some fields in the assertion matches the same fields in the message. */
-
-		$asrtInResponseTo = $assertion->getInResponseTo();
-		$msgInResponseTo = $response->getInResponseTo();
-		if ($asrtInResponseTo !== NULL && $msgInResponseTo !== NULL) {
-			if ($asrtInResponseTo !== $msgInResponseTo) {
-				throw new SimpleSAML_Error_Exception('InResponseTo in assertion did not match InResponseTo in message.');
-			}
-		}
-
 		/* Validate Response-element destination. */
 
 		$currentURL = SimpleSAML_Utilities::selfURLNoQuery();
@@ -524,12 +514,6 @@ class sspmod_saml_Message {
 			throw new SimpleSAML_Error_Exception('Received an assertion with a session that has expired. Check clock synchronization on IdP and SP.');
 		}
 
-		$destination = $assertion->getDestination();
-		if ($destination !== $currentURL) {
-			throw new Exception('Recipient in assertion doesn\'t match the current URL. Recipient is "' .
-				$destination . '", current URL is "' . $currentURL . '".');
-		}
-
 		$validAudiences = $assertion->getValidAudiences();
 		if ($validAudiences !== NULL) {
 			$spEntityId = $spMetadata->getString('entityid');
@@ -537,6 +521,39 @@ class sspmod_saml_Message {
 				$candidates = '[' . implode('], [', $validAudiences) . ']';
 				throw new SimpleSAML_Error_Exception('This SP [' . $spEntityId . ']  is not a valid audience for the assertion. Candidates were: ' . $candidates);
 			}
+		}
+
+		$found = FALSE;
+		$lastError = 'No SubjectConfirmation element in Subject.';
+		foreach ($assertion->getSubjectConfirmation() as $sc) {
+			if ($sc->Method !== SAML2_Const::CM_BEARER) {
+				$lastError = 'Invalid Method on SubjectConfirmation: ' . var_export($sc->Method, TRUE);
+				continue;
+			}
+			$scd = $sc->SubjectConfirmationData;
+			if ($scd->NotBefore && $scd->NotBefore > time() + 60) {
+				$lastError = 'NotBefore in SubjectConfirmationData is in the future: ' . $scd->NotBefore;
+				continue;
+			}
+			if ($scd->NotOnOrAfter && $scd->NotOnOrAfter <= time() - 60) {
+				$lastError = 'NotOnOrAfter in SubjectConfirmationData is in the past: ' . $scd->NotOnOrAfter;
+				continue;
+			}
+			if ($scd->Recipient !== NULL && $scd->Recipient !== $currentURL) {
+				$lastError = 'Recipient in SubjectConfirmationData does not match the current URL. Recipient is ' .
+					var_export($scd->Recipient, TRUE) . ', current URL is ' . var_export($currentURL, TRUE) . '.';
+				continue;
+			}
+			if ($scd->InResponseTo !== NULL && $response->getInResponseTo() !== NULL && $scd->InResponseTo !== $response->getInResponseTo()) {
+				$lastError = 'InResponseTo in SubjectConfirmationData does not match the Response. Response has ' .
+					var_export($response->getInResponseTo(), TRUE) . ', SubjectConfirmationData has ' . var_export($scd->InResponseTo, TRUE) . '.';
+				continue;
+			}
+			$found = TRUE;
+			break;
+		}
+		if (!$found) {
+			throw new SimpleSAML_Error_Exception('Error validating SubjectConfirmation in Assertion: ' . $lastError);
 		}
 
 		/* As far as we can tell, the assertion is valid. */

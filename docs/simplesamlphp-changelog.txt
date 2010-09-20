@@ -34,6 +34,8 @@ See the upgrade notes for specific information about upgrading.
   * Removed www/auth/login-auto.php.
   * Removed www/auth/login-feide.php.
   * Removed optional parameters from `SimpleSAML_XHTML_Template::getLanguage()`.
+  * Removed functions from `SAML2_Assertion`: `get/setDestination`, `get/setInResponseTo`.
+    Replaced with `setSubjectConfirmation`.
 
 ### SAML 2 IdP
 

@@ -63,15 +63,22 @@ if (count($returnAttributes) === 0) {
 
 /* $returnAttributes contains the attributes we should return. Send them. */
 $assertion = new SAML2_Assertion();
-$assertion->setDestination($endpoint);
 $assertion->setIssuer($idpEntityId);
 $assertion->setNameId($query->getNameId());
 $assertion->setNotBefore(time());
 $assertion->setNotOnOrAfter(time() + 5*60);
-$assertion->setInResponseTo($query->getId());
 $assertion->setValidAudiences(array($spEntityId));
 $assertion->setAttributes($returnAttributes);
 $assertion->setAttributeNameFormat($attributeNameFormat);
+
+$sc = new SAML2_XML_saml_SubjectConfirmation();
+$sc->Method = SAML2_Const::CM_BEARER;
+$sc->SubjectConfirmationData = new SAML2_XML_saml_SubjectConfirmationData();
+$sc->SubjectConfirmationData->NotOnOrAfter = time() + 5*60;
+$sc->SubjectConfirmationData->Recipient = $endpoint;
+$sc->SubjectConfirmationData->InResponseTo = $query->getId();
+$assertion->setSubjectConfirmation(array($sc));
+
 sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $assertion);
 
 $response = new SAML2_Response();
