@@ -464,6 +464,16 @@ class sspmod_saml_Message {
 			throw self::getResponseError($response);
 		}
 
+		/* Validate Response-element destination. */
+		$currentURL = SimpleSAML_Utilities::selfURLNoQuery();
+		$msgDestination = $response->getDestination();
+		if ($msgDestination !== $currentURL) {
+			throw new Exception('Destination in response doesn\'t match the current URL. Destination is "' .
+				$msgDestination . '", current URL is "' . $currentURL . '".');
+		}
+
+		$responseSigned = self::checkSign($idpMetadata, $response);
+
 		/*
 		 * When we get this far, the response itself is valid.
 		 * We only need to check signatures and conditions of the response.
@@ -477,24 +487,39 @@ class sspmod_saml_Message {
 		}
 		$assertion = $assertion[0];
 
+		return self::processAssertion($spMetadata, $idpMetadata, $response, $assertion, $responseSigned);
+	}
+
+
+	/**
+	 * Process an assertion in a response.
+	 *
+	 * Will throw an exception if it is invalid.
+	 *
+	 * @param SimpleSAML_Configuration $spMetadata  The metadata of the service provider.
+	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the identity provider.
+	 * @param SAML2_Response $response  The response containing the assertion.
+	 * @param SAML2_Assertion|SAML2_EncryptedAssertion $assertion  The assertion.
+	 * @param bool $responseSigned  Whether the response is signed.
+	 * @return SAML2_Assertion  The assertion, if it is valid.
+	 */
+	private static function processAssertion(
+		SimpleSAML_Configuration $spMetadata, SimpleSAML_Configuration $idpMetadata,
+		SAML2_Response $response, $assertion, $responseSigned
+		) {
+		assert('$assertion instanceof SAML2_Assertion || $assertion instanceof SAML2_EncryptedAssertion');
+		assert('is_bool($responseSigned)');
+
 		$assertion = self::decryptAssertion($idpMetadata, $spMetadata, $assertion);
 
 		if (!self::checkSign($idpMetadata, $assertion)) {
-			if (!self::checkSign($idpMetadata, $response)) {
+			if (!$responseSigned) {
 				throw new SimpleSAML_Error_Exception('Neither the assertion nor the response was signed.');
 			}
 		}
 		/* At least one valid signature found. */
 
-
-		/* Validate Response-element destination. */
-
 		$currentURL = SimpleSAML_Utilities::selfURLNoQuery();
-		$msgDestination = $response->getDestination();
-		if ($msgDestination !== $currentURL) {
-			throw new Exception('Destination in response doesn\'t match the current URL. Destination is "' .
-				$msgDestination . '", current URL is "' . $currentURL . '".');
-		}
 
 
 		/* Check various properties of the assertion. */
@@ -589,7 +614,4 @@ class sspmod_saml_Message {
 		return $assertion;
 	}
 
-
 }
-
-?>
