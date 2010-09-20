@@ -453,7 +453,7 @@ class sspmod_saml_Message {
 	 * @param SimpleSAML_Configuration $spMetadata  The metadata of the service provider.
 	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the identity provider.
 	 * @param SAML2_Response $response  The response.
-	 * @return SAML2_Assertion  The assertion in the response, if it is valid.
+	 * @return array  Array with SAML2_Assertion objects, containing valid assertions from the response.
 	 */
 	public static function processResponse(
 		SimpleSAML_Configuration $spMetadata, SimpleSAML_Configuration $idpMetadata,
@@ -482,12 +482,14 @@ class sspmod_saml_Message {
 		$assertion = $response->getAssertions();
 		if (empty($assertion)) {
 			throw new SimpleSAML_Error_Exception('No assertions found in response from IdP.');
-		} elseif (count($assertion) > 1) {
-			throw new SimpleSAML_Error_Exception('More than one assertion found in response from IdP.');
 		}
-		$assertion = $assertion[0];
 
-		return self::processAssertion($spMetadata, $idpMetadata, $response, $assertion, $responseSigned);
+		$ret = array();
+		foreach ($assertion as $a) {
+			$ret[] = self::processAssertion($spMetadata, $idpMetadata, $response, $a, $responseSigned);
+		}
+
+		return $ret;
 	}
 
 

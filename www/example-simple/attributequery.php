@@ -47,6 +47,10 @@ function handleResponse() {
 	$spMetadata =  $GLOBALS['metadata']->getMetaDataConfig($GLOBALS['spEntityId'], 'saml20-sp-hosted');
 
 	$assertion = sspmod_saml_Message::processResponse($spMetadata, $idpMetadata, $response);
+	if (count($assertion) > 1) {
+		throw new SimpleSAML_Error_Exception('More than one assertion in received response.');
+	}
+	$assertion = $assertion[0];
 
 	$dataId = $response->getRelayState();
 	if ($dataId === NULL) {

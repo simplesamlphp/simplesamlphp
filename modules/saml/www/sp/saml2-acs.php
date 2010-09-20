@@ -48,6 +48,10 @@ $idpMetadata = $source->getIdPmetadata($idp);
 
 try {
 	$assertion = sspmod_saml_Message::processResponse($spMetadata, $idpMetadata, $response);
+	if (count($assertion) > 1) {
+		throw new SimpleSAML_Error_Exception('More than one assertion in received response.');
+	}
+	$assertion = $assertion[0];
 } catch (sspmod_saml_Error $e) {
 	/* The status of the response wasn't "success". */
 	$e = $e->toException();
