@@ -102,6 +102,19 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 		$config = SimpleSAML_Configuration::getInstance();
 		$session = SimpleSAML_Session::getInstance();
 
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			$referer = $_SERVER['HTTP_REFERER'];
+			/*
+			 * Remove anything after the first '?' or ';', just
+			 * in case it contains any sensitive data.
+			 */
+			$referer = explode('?', $referer, 2);
+			$referer = $referer[0];
+			$referer = explode(';', $referer, 2);
+			$referer = $referer[0];
+		} else {
+			$referer = 'unknown';
+		}
 		$errorData = array(
 			'exceptionMsg' => $emsg,
 			'exceptionTrace' => $etrace,
@@ -109,6 +122,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 			'trackId' => $session->getTrackID(),
 			'url' => SimpleSAML_Utilities::selfURLNoQuery(),
 			'version' => $config->getVersion(),
+			'referer' => $referer,
 		);
 		$session->setData('core:errorreport', $reportId, $errorData);
 
