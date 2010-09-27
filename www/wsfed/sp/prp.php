@@ -78,7 +78,7 @@ try {
 
 	/* Find the certificate used by the IdP. */
 	if(array_key_exists('certificate', $idpMetadata)) {
-		SimpleSAML_Utilities::resolveCert($idpMetadata['certificate']);
+		$certFile = SimpleSAML_Utilities::resolveCert($idpMetadata['certificate']);
 	} else {
 		throw new Exception('Missing \'certificate\' metadata option in the \'wsfed-idp-remote\' metadata' .
 			' for the IdP \'' .  $idpEntityId . '\'.');
