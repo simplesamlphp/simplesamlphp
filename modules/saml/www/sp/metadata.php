@@ -19,6 +19,11 @@ if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
 $entityId = $source->getEntityId();
 $spconfig = $source->getMetadata();
 
+$metaArray20 = array(
+	'AssertionConsumerService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId),
+	'SingleLogoutService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId),
+);
+
 $ed = new SAML2_XML_md_EntityDescriptor();
 $ed->entityID = $entityId;
 
@@ -104,6 +109,15 @@ if ($name !== NULL && !empty($attributes)) {
 		$acs->RequestedAttribute[] = $a;
 	}
 
+	$metaArray20['name'] = $name;
+	if ($description !== NULL) {
+		$metaArray20['description'] = $description;
+	}
+
+	$metaArray20['attributes'] = $attributes;
+	if ($nameFormat !== NULL) {
+		$metaArray20['attributes.NameFormat'] = $nameFormat;
+	}
 }
 
 $orgName = $spconfig->getLocalizedString('OrganizationName', NULL);
@@ -122,6 +136,10 @@ if ($orgName !== NULL) {
 	}
 
 	$ed->Organization = $o;
+
+	$metaArray20['OrganizationName'] = $orgName;
+	$metaArray20['OrganizationDisplayName'] = $o->OrganizationDisplayName;
+	$metaArray20['OrganizationURL'] = $o->OrganizationURL;
 }
 
 $c = new SAML2_XML_md_ContactPerson();
@@ -150,10 +168,6 @@ $xml = $ed->toXML();
 SimpleSAML_Utilities::formatDOMElement($xml);
 $xml = $xml->ownerDocument->saveXML($xml);
 
-$metaArray20 = array(
-	'AssertionConsumerService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId),
-	'SingleLogoutService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId),
-);
 if ($certData !== NULL) {
 	$metaArray20['certData'] = $certData;
 }
