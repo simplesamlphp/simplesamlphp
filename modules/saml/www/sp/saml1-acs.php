@@ -28,18 +28,18 @@ if ($state['saml:sp:AuthId'] !== $sourceId) {
 	throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
 }
 
-if (!isset($state['saml:idp'])) {
-	/* We seem to have received a response without sending a request. */
-	throw new SimpleSAML_Error_Exception('SAML 1 response received before SAML 1 request.');
-}
+assert('isset($state["saml:idp"])');
 
 
 $spMetadata = $source->getMetadata();
 
-$idpEntityId = $state['saml:idp'];
-$idpMetadata = $source->getIdPMetadata($idpEntityId);
-
 if (array_key_exists('SAMLart', $_REQUEST)) {
+	if (!isset($state['saml:idp'])) {
+		/* Unsolicited response. */
+		throw new SimpleSAML_Error_Exception('IdP initiated authentication not supported with the SAML 1.1 SAMLart protocol.');
+	}
+	$idpMetadata = $source->getIdPMetadata($state['saml:idp']);
+
 	$responseXML = SimpleSAML_Bindings_Shib13_Artifact::receive($spMetadata, $idpMetadata);
 	$isValidated = TRUE; /* Artifact binding validated with ssl certificate. */
 } elseif (array_key_exists('SAMLResponse', $_REQUEST)) {
@@ -59,7 +59,7 @@ $response->validate();
 $responseIssuer = $response->getIssuer();
 $attributes = $response->getAttributes();
 
-if ($responseIssuer !== $idpEntityId) {
+if (isset($state['saml:idp']) && $responseIssuer !== $state['saml:idp']) {
 	throw new SimpleSAML_Error_Exception('The issuer of the response wasn\'t the destination of the request.');
 }
 
@@ -68,7 +68,7 @@ $logoutState = array(
 	);
 $state['LogoutState'] = $logoutState;
 
-$source->handleResponse($state, $idpEntityId, $attributes);
+$source->handleResponse($state, $responseIssuer, $attributes);
 assert('FALSE');
 
 ?>
