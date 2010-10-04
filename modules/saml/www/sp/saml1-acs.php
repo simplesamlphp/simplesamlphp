@@ -20,16 +20,25 @@ $source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP
 SimpleSAML_Logger::debug('Received SAML1 response');
 
 
-$state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
+$target = (string)$_REQUEST['TARGET'];
+if (preg_match('@^https?://@i', $target)) {
+	/* Unsolicited response. */
+	$state = array(
+		'saml:sp:isUnsoliced' => TRUE,
+		'saml:sp:AuthId' => $sourceId,
+		'saml:sp:RelayState' => $target,
+	);
+} else {
+	$state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
 
-/* Check that the authentication source is correct. */
-assert('array_key_exists("saml:sp:AuthId", $state)');
-if ($state['saml:sp:AuthId'] !== $sourceId) {
-	throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
+	/* Check that the authentication source is correct. */
+	assert('array_key_exists("saml:sp:AuthId", $state)');
+	if ($state['saml:sp:AuthId'] !== $sourceId) {
+		throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
+	}
+
+	assert('isset($state["saml:idp"])');
 }
-
-assert('isset($state["saml:idp"])');
-
 
 $spMetadata = $source->getMetadata();
 
