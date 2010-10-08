@@ -22,4 +22,14 @@ $metadata['__DYNAMIC:1__'] = array(
 	 * 'config/authsources.php'.
 	 */
 	'auth' => 'example-userpass',
+
+	/* Uncomment the following to use the uri NameFormat on attributes. */
+	/*
+	'AttributeNameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+	'authproc' => array(
+		// Convert LDAP names to oids.
+		100 => array('class' => 'core:AttributeMap', 'name2oid'),
+	),
+	*/
+
 );
