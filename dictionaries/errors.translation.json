@@ -19,8 +19,8 @@
 		"tr": "simpleSAMLphp hatas\u0131"
 	},
 	"report_trackid": {
-		"no": "Hvis vil rapportere denne feilen, send ogs\u00e5 med denne sporings-IDen. Den gj\u00f8r det enklere for systemadministratorene \u00e5 finne ut hva som gikk galt:",
-		"nn": "Send med sporings-ID dersom du vil rapportera feilen. ID gjer det enklare for systemadministratorane \u00e5 finna ut kva som er problemet:",
+		"no": "Hvis vil rapportere denne feilen, send ogs\u00e5 med dette sporingsnummeret. Det gj\u00f8r det enklere for systemadministratorene \u00e5 finne ut hva som gikk galt:",
+		"nn": "Send med sporingsnummeret dersom du vil rapportera feilen. Sporingsnummeret gjer det enklare for systemadministratorane \u00e5 finna ut kva som er problemet:",
 		"sv": "Om du rapporterar felet b\u00f6r du ocks\u00e5 skicka med detta sp\u00e5rnings-ID. Det g\u00f6r det enklare f\u00f6r den som sk\u00f6ter systemet att fels\u00f6ka problemet:",
 		"es": "Por favor, si informa de este error, mantenga el <emph>tracking ID<\/emph> que permite encontrar su sesi&oacute;n en los registros de que dispone el administrador del sistema:",
 		"fr": "Si vous signalez cette erreur, veuillez aussi signaler l'identifiant de suivi qui permet de trouver votre session dans les logs accessibles \u00e0 l'administrateur syst\u00e8me :",
