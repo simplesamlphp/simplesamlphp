@@ -105,6 +105,31 @@ and `search.password` options. The `search.username` option is a `dn`
 which can be used to perform a search, and the `search.password` option
 is the password for that `dn`.
 
+### Configuring failover ###
+
+You can configure multiple LDAP servers in the hostname option by separating the individual hosts with space.
+This enables the builtin LDAP failover in OpenLDAP.
+
+Note that OpenLDAP waits for a timeout from the first server before attempting to connect to the other.
+To avoid a very long wait, it is recommended to change the timeouts.
+This can be done in the system-wide ldap configuration file.
+
+    NETWORK_TIMEOUT 10
+    TIMELIMIT       15
+    TIMEOUT         20
+
+In this case, if we are unable to connect to the first LDAP server within 10 seconds, we will attempt the next.
+(Note: the NETWORK_TIMEOUT option was introduced with OpenLDAP version 2.4.)
+
+#### Example ####
+
+    /* Configuration that uses two ldap servers. */
+    'example-ldap' => array(
+        'ldap:LDAP',
+        /* The hostname of the LDAP server. */
+        'hostname' => 'ldaps://ldap1.example.org ldaps://ldap2.example.org',
+        'dnpattern' => 'uid=%username%,ou=people,dc=example,dc=org',
+    ),
 
 
 `ldap:LDAPMulti`
