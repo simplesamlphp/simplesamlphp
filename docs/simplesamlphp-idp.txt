@@ -144,6 +144,19 @@ For more information about available options in the idp-hosted metadata
 files, see the [IdP hosted reference](simplesamlphp-reference-idp-hosted).
 
 
+Using the `uri` NameFormat on attributes
+----------------------------------------
+
+It is generally recommended to use the `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` attribute NameFormat in new installations.
+This can be done by adding the following to the saml20-idp-hosted configuration:
+
+    'AttributeNameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+    'authproc' => array(
+        // Convert LDAP names to oids.
+        100 => array('class' => 'core:AttributeMap', 'name2oid'),
+    ),
+
+
 Adding SPs to the IdP
 ---------------------
 
