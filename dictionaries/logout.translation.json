@@ -210,7 +210,7 @@
 		"no": "Ja, alle tjenestene over",
 		"nn": "Ja, logg ut fr\u00e5 alle",
 		"sv": "Ja, alla tj\u00e4nster",
-		"es": "Yes, de todos los servicios",
+		"es": "Si, todos los servicios",
 		"fr": "Oui, de tous les services",
 		"de": "Ja, alle Dienste",
 		"nl": "Ja, alle diensten",
@@ -283,7 +283,8 @@
 		"nn": "Logger ut fr\u00e5 f\u00f8lgende tenester:",
 		"de": "Melde Sie von den folgenden Diensten ab:",
 		"hr": "Odjavljujete se iz sljede\u0107ih servisa:",
-		"fr": "D\u00e9connexion des services suivants:"
+		"fr": "D\u00e9connexion des services suivants:",
+		"es": "Desconectarse de los siguientes servicios:"
 	},
 	"failedsps": {
 		"sl": "Odjava z ene ali ve\u010d storitev ni uspela. Odjavo dokon\u010dajte tako, da <i>zaprete spletni brskalnik<\/i>.",
@@ -294,6 +295,7 @@
 		"nn": "Greide ikkje \u00e5 logge ut fr\u00e5 ein eller fleire tenester. For \u00e5 sikre deg at du blir logga ut, oppfordrar vi deg til \u00e5 <i>lukke nettlesaren din<\/i>.",
 		"de": "Abmelden von einem oder mehreren Diensten schlug fehl. Um sicherzustellen, dass alle Ihre Sitzungen geschlossen sind, wird Ihnen empfohlen, <i>Ihren Webbrowser zu schlie\u00dfen<\/i>.",
 		"hr": "Odjavljivanje iz jednog ili vi\u0161e servisa nije uspjelo. Da biste bili sigurni da su sve va\u0161e sjednice zavr\u0161ene, preporu\u010damo da <i>zatvorite web preglednik<\/i>.",
-		"fr": "Impossible de se d\u00e9connecter d'un ou plusieurs services. Pour \u00eatre certain de clore vos sessions, il vous est recommand\u00e9 de <i>fermer votre navigateur<\/i>."
+		"fr": "Impossible de se d\u00e9connecter d'un ou plusieurs services. Pour \u00eatre certain de clore vos sessions, il vous est recommand\u00e9 de <i>fermer votre navigateur<\/i>.",
+		"es": "Imposible desconectarse de uno o m\u00e1s servicios. Para asegurar que todas sus sesiones han sido cerradas, se recomienda que <i>cierre su navegador web<\/i>."
 	}
 }

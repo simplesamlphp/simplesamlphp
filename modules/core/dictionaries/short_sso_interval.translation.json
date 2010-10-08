@@ -7,26 +7,32 @@
 		"sv": "Vi har uppt\u00e4ckt att det bara vara n\u00e5gra f\u00e5 sekunder sedan du senast loggade in mot denna tj\u00e4nst (service provider) och d\u00e4rf\u00f6r antar vi att det \u00e4r ett problem med denna tj\u00e4nst.",
 		"hr": "Sustav je utvrdio da je pro\u0161lo tek nekoliko sekundi otkad ste se zadnji put autenticirali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davatelja usluge.",
 		"da": "Vi har opdaget at det kun er f\u00e5 sekunder siden du sidst autentificerede dig op mod denne service. Vi antager derfor at der er et problem med services.",
-		"fr": "Il ne s'est \u00e9coul\u00e9 que quelques secondes depuis votre authentification pr\u00e9c\u00e9dente, ce qui est la marque d'un dysfonctionnement de ce SP."
+		"fr": "Il ne s'est \u00e9coul\u00e9 que quelques secondes depuis votre authentification pr\u00e9c\u00e9dente, ce qui est la marque d'un dysfonctionnement de ce SP.",
+		"es": "Se ha detectado que han transcurrido solo unos segundos desde que fue autenticado por \u00faltima vez en este servicio, por lo que se asumir\u00e1 que existe un problema con este SP.",
+		"nn": "Hemos detectado que hace s\u00f3lo unos segundos desde que te autenticaste por \u00faltima vez con este proveedor de servicio por lo que asumimos que puede existir un problema con este SP"
 	},
 	"warning_header": {
-		"no": "For kort intervall i mellom innloggingsforesp\u00f8rsler",
+		"no": "For kort intervall imellom innloggingsforesp\u00f8rsler",
 		"de": "Zu kurzes Intervall zwischen generellen Anmeldeereignissen.",
 		"sl": "Prekratek interval med dogodki enotne prijave.",
 		"pt": "Intervalo entre eventos de single sign on demasiado curto.",
 		"sv": "F\u00f6r kort intervall mellan inloggningar.",
 		"hr": "Prekratak interval izme\u0111u uzastopnih SSO autentikacija.",
 		"da": "For kort interval mellem single sign on h\u00e6ndelse.",
-		"fr": "Connexions uniques trop proches dans le temps."
+		"fr": "Connexions uniques trop proches dans le temps.",
+		"es": "Intervalo de tiempo muy corto entre eventos de sesi\u00f3n \u00fanica.",
+		"nn": "Intervalo demasiado corto entre dos eventos de SSO"
 	},
 	"retry": {
-		"no": "Fors\u00f8k \u00e5 logg inn p\u00e5 nytt",
+		"no": "Fors\u00f8k \u00e5 logge inn p\u00e5 nytt",
 		"de": "Versuche Anmeldung erneut",
 		"sl": "Ponovna prijava",
 		"pt": "Tentar de novo",
 		"sv": "F\u00f6rs\u00f6k med inloggningen igen",
 		"hr": "Poku\u0161aj se prijaviti ponovo",
 		"da": "Login igen",
-		"fr": "R\u00e9-essayez de vous connecter"
+		"fr": "R\u00e9-essayez de vous connecter",
+		"es": "Reintente autenticaci\u00f3n",
+		"nn": "Reintente el acceso"
 	}
 }

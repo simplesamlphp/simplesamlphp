@@ -7,7 +7,8 @@
 		"sv": "Tillg\u00e4ngliga moduler",
 		"hr": "Raspolo\u017eivi moduli",
 		"da": "Tilg\u00e6ngelige moduler",
-		"fr": "Modules disponibles"
+		"fr": "Modules disponibles",
+		"es": "M\u00f3dulos disponibles"
 	},
 	"modlist_name": {
 		"no": "Navn",
@@ -17,7 +18,8 @@
 		"sv": "Namn",
 		"hr": "Naziv",
 		"da": "Navn",
-		"fr": "Nom"
+		"fr": "Nom",
+		"es": "Nombre"
 	},
 	"modlist_status": {
 		"no": "Status",
@@ -27,7 +29,8 @@
 		"sv": "Status",
 		"hr": "Status",
 		"da": "Status",
-		"fr": "Statut"
+		"fr": "Statut",
+		"es": "Estado"
 	},
 	"modlist_enabled": {
 		"no": "P\u00e5sl\u00e5tt",
@@ -37,7 +40,8 @@
 		"sv": "Aktiv",
 		"hr": "Omogu\u0107en",
 		"da": "Sl\u00e5et til",
-		"fr": "Activ\u00e9"
+		"fr": "Activ\u00e9",
+		"es": "Habilitado"
 	},
 	"modlist_disabled": {
 		"no": "Avsl\u00e5tt",
@@ -47,6 +51,7 @@
 		"sv": "Ej aktiv",
 		"hr": "Onemogu\u0107en",
 		"da": "Sl\u00e5et fra",
-		"fr": "D\u00e9sactiv\u00e9"
+		"fr": "D\u00e9sactiv\u00e9",
+		"es": "Deshabilitado"
 	}
 }

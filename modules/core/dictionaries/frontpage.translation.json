@@ -22,7 +22,7 @@
 		"no": "Nyttige lenker for denne installasjonen",
 		"nn": "Nyttige lenker for denne installasjonen",
 		"sv": "Nyttiga l\u00e4nkar g\u00e4llande installationen",
-		"es": "Enalces &uacute;tiles para su instalaci&oacute;n",
+		"es": "Enlaces &uacute;tiles para su instalaci&oacute;n",
 		"fr": "Liens utiles pour votre installation",
 		"de": "N\u00fctzliche Links f\u00fcr ihre Installation",
 		"nl": "Nuttige links",
@@ -774,7 +774,8 @@
 		"de": "Authentifizierung",
 		"pt": "Autentica\u00e7\u00e3o",
 		"fr": "Authentification",
-		"hr": "Autentikacija"
+		"hr": "Autentikacija",
+		"nn": "Autentisering"
 	},
 	"federation": {
 		"no": "F\u00f8derasjon",
@@ -788,7 +789,8 @@
 		"de": "F\u00f6deration",
 		"pt": "Federa\u00e7\u00e3o",
 		"fr": "F\u00e9d\u00e9ration",
-		"hr": "Federacija"
+		"hr": "Federacija",
+		"nn": "F\u00f8derasjon"
 	},
 	"authtest": {
 		"no": "Test konfigurerte autentiseringskilder",
@@ -802,7 +804,8 @@
 		"de": "Teste die konfigurierten Authentifizierungsquellen",
 		"pt": "Testar fontes de autentica\u00e7\u00e3o configuradas",
 		"fr": "Tester les sources d'authentification configur\u00e9es",
-		"hr": "Isprobajte iskonfigurirane autentikacijske servise"
+		"hr": "Isprobajte iskonfigurirane autentikacijske servise",
+		"nn": "Autentiseringskjelder sett opp for testing"
 	},
 	"deprecated": {
 		"no": "Utdatert",
@@ -815,7 +818,8 @@
 		"fi": "Vanhentunut",
 		"pt": "Descontinuado",
 		"fr": "D\u00e9pr\u00e9ci\u00e9",
-		"hr": "Zastarjelo"
+		"hr": "Zastarjelo",
+		"nn": "Utfasa"
 	},
 	"page_title": {
 		"sv": "Installationssida f\u00f6r simpleSAMLphp",
@@ -824,6 +828,8 @@
 		"fr": "Page d'installation de simpleSAMLphp",
 		"no": "simpleSAMLphp installasjonsside",
 		"hr": "simpleSAMLphp instalacijska stranica",
-		"da": "simpleSAMLphp installations side"
+		"da": "simpleSAMLphp installations side",
+		"nn": "simpleSAMLphp installasjons-side",
+		"es": "P\u00e1gina de instalaci\u00f3n de simpleSAMLphp"
 	}
 }

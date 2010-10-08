@@ -1,46 +1,79 @@
 {
 	"header": {
 		"no": "Tilstandsinformasjon tapt",
-		"nn": "Tilstandsinformasjon tapt"
+		"nn": "Tilstandsinformasjon tapt",
+		"sv": "Tillst\u00e5ndsinformation \u00e4r f\u00f6rlorad",
+		"sl": "Informacije o stanju zahtevka niso na voljo.",
+		"es": "Informaci\u00f3n de estado perdida"
 	},
 	"description": {
 		"no": "Vi kunne ikke finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
-		"nn": "Vi kunne ikkje finne tilstandsinformasjonen for denne foresp\u00f8rselen."
+		"nn": "Vi kunne ikkje finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
+		"sv": "Hittar inte tillst\u00e5ndsinformationen f\u00f6r aktuell f\u00f6rfr\u00e5gan.",
+		"sl": "Informacije o stanju trenutne zahteve ni bilo mo\u010d najti.",
+		"es": "No podemos encontrar la informaci\u00f3n de estado para la solicitud actual"
 	},
 	"suggestions": {
 		"no": "Forslag for \u00e5 l\u00f8se dette problemet:",
-		"nn": "Forslag for \u00e5 l\u00f8yse dette problemet:"
+		"nn": "Forslag for \u00e5 l\u00f8yse dette problemet:",
+		"sv": "F\u00f6rslag f\u00f6r att \u00e5tg\u00e4rda detta problem:",
+		"sl": "Predloga za razre\u0161itev nastale te\u017eave:",
+		"es": "Sugerencias para resolver este problema"
 	},
 	"suggestion_goback": {
 		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
-		"nn": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt."
+		"nn": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
+		"sv": "G\u00e5 tillbaka till f\u00f6reg\u00e5ende sida och f\u00f6rs\u00f6k igen.",
+		"sl": "Pojdite nazaj na prej\u0161njo stran in poskusite znova.",
+		"es": "Regrese a la p\u00e1gina anterior y pruebe de nuevo"
 	},
 	"suggestion_closebrowser": {
 		"no": "Lukk nettleseren, og pr\u00f8v p\u00e5 nytt.",
-		"nn": "Lukk nettlesaren, og pr\u00f8v p\u00e5 nytt."
+		"nn": "Lukk nettlesaren, og pr\u00f8v p\u00e5 nytt.",
+		"sv": "St\u00e4ng din webbl\u00e4sare och f\u00f6rs\u00f6k igen.",
+		"sl": "Zaprite spletni brskalnik in poskusite znova.",
+		"es": "Cierre el navegador y pruebe de nuevo"
 	},
 	"causes": {
 		"no": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
-		"nn": "Denne feilen kan v\u00e6re for\u00e5rsaket av:"
+		"nn": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
+		"sv": "Detta fel kan bero p\u00e5:",
+		"sl": "Vzrok za to napako je lahko:",
+		"es": "Este error puede ser causado por"
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
-		"nn": "Bruk av \"fram\"- og \"attende\"-knappane i nettlesaren."
+		"nn": "Bruk av \"fram\"- og \"attende\"-knappane i nettlesaren.",
+		"sv": "Anv\u00e4ndning av fram\u00e5t- och bak\u00e5tknappar i webbl\u00e4saren.",
+		"sl": "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku.",
+		"es": "Usando los botones atr\u00e1s y adelante de su navegador web."
 	},
 	"cause_openbrowser": {
 		"no": "Starte nettleseren med faner lagret fra forrige gang.",
-		"nn": "Starte nettlesaren med faner lagret fra forrige gong."
+		"nn": "Starte nettlesaren med faner lagret fra forrige gong.",
+		"sv": "\u00d6ppnande av webbl\u00e4saren med sparade flikar fr\u00e5n tidigare anv\u00e4ndning.",
+		"sl": "Spletni brskalnik je odprl spletno stan s (poteklimi) podatki iz prej\u0161nje seje.",
+		"es": "Abri\u00f3 su navegador web con pesta\u00f1as guardadas de la sesi\u00f3n previa."
 	},
 	"cause_nocookie": {
 		"no": "At informasjonskapsler ikke er aktivert i nettleseren.",
-		"nn": "At informasjonskapsler ikkje er aktivert i nettlesaren."
+		"nn": "At informasjonskapsler ikkje er aktivert i nettlesaren.",
+		"sv": "Webbkakor (Cookies) \u00e4r avst\u00e4ngt i webbl\u00e4saren.",
+		"sl": "Spletni brskalnik ima izklopjeno podporo za pi\u0161kotke.",
+		"es": "Las cookies pueden estar deshabilitadas en el navegador"
 	},
 	"report_header": {
 		"no": "Rapporter denne feilen",
-		"nn": "Rapporter denne feilen"
+		"nn": "Rapporter denne feilen",
+		"sv": "Rapportera detta fel",
+		"sl": "Prijavite to napako",
+		"es": "Informar de este error"
 	},
 	"report_text": {
 		"no": "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene.",
-		"nn": "Om problemet vedvarar, kan du rapportere det til systemadministratorane."
+		"nn": "Om problemet vedvarar, kan du rapportere det til systemadministratorane.",
+		"sv": "Om problemet kvarst\u00e5r kan du rapportera det till systemadministrat\u00f6rerna.",
+		"sl": "\u010ce se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema.",
+		"es": "Si el problema persiste, puede reportarlo a los administradores del sistema"
 	}
 }

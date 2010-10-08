@@ -8,7 +8,8 @@
 		"sv": "V\u00e4lj inloggningsk\u00e4lla",
 		"da": "V\u00e6lg en authentifiseringskilde",
 		"fr": "S\u00e9lectionnez une source d'authentification",
-		"hr": "Odaberite servis preko kojeg se \u017eelite autenticirati"
+		"hr": "Odaberite servis preko kojeg se \u017eelite autenticirati",
+		"es": "Seleccione una fuente para autenticarse"
 	},
 	"select_source_text": {
 		"no": "Den valgte autentiseringskilden vil bli brukt til \u00e5 autentisere brukeren og deretter etablere en gyldig sesjon.",
@@ -19,6 +20,7 @@
 		"sv": "Den valda inloggningsk\u00e4llan kommer att anv\u00e4ndas f\u00f6r din inloggning och f\u00f6r att skapa giltig inloggningssession.",
 		"da": "Den valgte authentifiseringskilde vil blive brugt til at authentifisere dig og give dig en gyldig session.",
 		"fr": "La source d'authentification s\u00e9lectionn\u00e9e sera utilis\u00e9e pour vous authentifier et cr\u00e9er une session.",
-		"hr": "Odabrani autentikacijski servis bit \u0107e iskori\u0161ten za va\u0161u autentikaciju i kreiranje valjane sjednice."
+		"hr": "Odabrani autentikacijski servis bit \u0107e iskori\u0161ten za va\u0161u autentikaciju i kreiranje valjane sjednice.",
+		"es": "La fuente para autenticarse seleccionada ser\u00e1 utilizada para autenticarlo y crear una sesi\u00f3n v\u00e1lida"
 	}
 }

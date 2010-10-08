@@ -1,22 +1,38 @@
 {
 	"header": {
 		"no": "Kunne ikke finne metadata",
-		"nn": "Kunne ikkje finne metadata"
+		"nn": "Kunne ikkje finne metadata",
+		"de": "Keine Metadaten gefunden",
+		"sv": "Metadata saknas",
+		"sl": "Metapodatkov ni bilo mo\u010d najti.",
+		"es": "Metadatos no encontrados"
 	},
 	"not_found_for": {
 		"no": "Vi fant ikke metadataene for:",
-		"nn": "Vi fann ikkje metadataene for:"
+		"nn": "Vi fann ikkje metadataene for:",
+		"sv": "Metadata f\u00f6r enehten hittades inte:",
+		"sl": "Metapodatkov za to entiteto ni bilo mo\u010d najti.",
+		"es": "Fue imposible localizar los metadatos para la entidad:"
 	},
 	"config_problem": {
 		"no": "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverand\u00f8ren eller identitetsleverand\u00f8ren.",
-		"nn": "Dette er sannsynlegvis eit problem med oppsettet hj\u00e5 anten tenesteleverand\u00f8ren eller identitetsleverand\u00f8ren."
+		"nn": "Dette er sannsynlegvis eit problem med oppsettet hj\u00e5 anten tenesteleverand\u00f8ren eller identitetsleverand\u00f8ren.",
+		"sv": "Detta beror oftast p\u00e5 ett konfigurationsfel antingen i tj\u00e4nsteleverant\u00f6ren eller identitetsutgivaren.",
+		"sl": "Najverjetneje gre za te\u017eavo z nastavitvami bodisi ponudnika storitve (SP) bodisi ponudnika identitet (IdP).",
+		"es": "Esto es posiblemente un problema de configuraci\u00f3n en el proveedor de servicios o en el proveedor de identidad."
 	},
 	"suggestion_user_link": {
 		"no": "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link p\u00e5 en nettside, s\u00e5 b\u00f8r du rapportere denne feilen til eieren av den nettsiden.",
-		"nn": "Om du er ein brukar som mottok denne feilen etter at du f\u00f8lgde ei lenke p\u00e5 ei nettside, s\u00e5 b\u00f8r du melde denne feilen til eigaren av den nettsida."
+		"nn": "Om du er ein brukar som mottok denne feilen etter at du f\u00f8lgde ei lenke p\u00e5 ei nettside, s\u00e5 b\u00f8r du melde denne feilen til eigaren av den nettsida.",
+		"sv": "Om du \u00e4r en anv\u00e4ndare och fick detta fel n\u00e4r du klickade p\u00e5 en l\u00e4nk b\u00f6r du rapportera felet till den som hanterar webbplatsen med l\u00e4nken.",
+		"sl": "\u010ce ste na to te\u017eavo naleteli po kliku povezave te spletne strani, prijavite te\u017eavo skrbniku te spletne strani.",
+		"es": "Si usted es un usuario que recibe este error luego de seguir un v\u00ednculo en un sitio, debe reportar el error al due\u00f1o del sitio."
 	},
 	"suggestion_developer": {
 		"no": "Hvis du er en utvikler som setter opp en \"single sign-on\" l\u00f8sning, s\u00e5 har du et problem med metadataoppsettet. Kontroller at metadata er riktig konfigurert hos b\u00e5de identitetsleverand\u00f8ren og tjenesteleverand\u00f8ren.",
-		"nn": "Om du er ein utviklar som set opp ei \"single sign-on\" l\u00f8ysing, s\u00e5 har du eit problem med metadataoppsettet. Kontroller at metadata er rett satt opp hj\u00e5 b\u00e5de identitetsleverand\u00f8ren og tenesteleverand\u00f8ren."
+		"nn": "Om du er ein utviklar som set opp ei \"single sign-on\" l\u00f8ysing, s\u00e5 har du eit problem med metadataoppsettet. Kontroller at metadata er rett satt opp hj\u00e5 b\u00e5de identitetsleverand\u00f8ren og tenesteleverand\u00f8ren.",
+		"sv": "Om du \u00e4r en utvecklare som drifts\u00e4tter en l\u00f6sning med single-on har du problem med metadatakonfigurationen. Kontrollera att metadata \u00e4r korrekt konfigurerade b\u00e5de i identitetsutgivare och tj\u00e4nsteleverant\u00f6ren.",
+		"sl": "\u010ce ste razvijalec, ki razvija SSO re\u0161itev preverite, ali so nastavitve metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na strani ponudnika storitve (SP).",
+		"es": "Si usted es un desarrollador que est\u00e1 desplegando una soluci\u00f3n de inicio \u00fanico, tiene un problema con la configuraci\u00f3n de sus metadatos. Verifique que los metadatos est\u00e1n configurados correctamente en el proveedor de identidad y en el proveedor de servicios"
 	}
 }

@@ -1374,7 +1374,8 @@
 		"sv": "Officiellt (legalt) namn",
 		"fr": "Etat civil",
 		"hr": "Slu\u017ebeni naziv",
-		"da": "Officielt navn"
+		"da": "Officielt navn",
+		"es": "Nombre legal"
 	},
 	"attribute_edupersonassurance": {
 		"no": "Tillitsniv\u00e5 for autentisering",

@@ -7,7 +7,9 @@
 		"sv": "Metadatasammanst\u00e4llare",
 		"hr": "Agregator metapodataka",
 		"da": "Metadata aggregator",
-		"fr": "Agr\u00e9gateur de m\u00e9tadonn\u00e9es"
+		"fr": "Agr\u00e9gateur de m\u00e9tadonn\u00e9es",
+		"nn": "Oppsamling av metadata",
+		"es": "Agregador de metadatos"
 	},
 	"aggregator_header": {
 		"no": "Aggregatorer",
@@ -17,7 +19,9 @@
 		"sv": "Sammanst\u00e4llare",
 		"hr": "Agregatori",
 		"da": "Aggregatorer",
-		"fr": "Agr\u00e9gateurs"
+		"fr": "Agr\u00e9gateurs",
+		"nn": "Aggregering",
+		"es": "Agregadores"
 	},
 	"no_aggregators": {
 		"no": "Ingen aggregator definert i konfigurasjonen",
@@ -27,7 +31,9 @@
 		"sv": "Inga sammanst\u00e4llare (aggregators) definierade i konfigurationen.",
 		"hr": "U konfiguraciji nije definiran niti jedan agregator.",
 		"da": "Ingen aggregator defineret i konfigurationen",
-		"fr": "Aucun agr\u00e9gateur n'a \u00e9t\u00e9 d\u00e9fini dans la configuration."
+		"fr": "Aucun agr\u00e9gateur n'a \u00e9t\u00e9 d\u00e9fini dans la configuration.",
+		"nn": "Aggregrering er ikkje definert i konfigurasjonen.",
+		"es": "No ha sido definido ning\u00fan agregador en la configuraci\u00f3n."
 	},
 	"text": {
 		"no": "tekst",
@@ -37,6 +43,8 @@
 		"sv": "Text",
 		"hr": "tekst",
 		"da": "tekst",
-		"fr": "texte"
+		"fr": "texte",
+		"nn": "Tekst",
+		"es": "texto"
 	}
 }

@@ -115,7 +115,7 @@
 	},
 	"report_email": {
 		"no": "E-postadresse:",
-		"nn": "Epostadresse:",
+		"nn": "E-postadresse:",
 		"sv": "E-postadress",
 		"es": "Correo-e:",
 		"fr": "Adresse de courriel :",
@@ -1059,7 +1059,8 @@
 		"fi": "Virhe vastaanotettu Identiteetintarjoajalta.",
 		"pt": "Erro recebido do Fornecedor de Identidade",
 		"fr": "Erreur lev\u00e9e par le fournisseur d'identit\u00e9",
-		"hr": "Sustav jedinstvene autentikacije poslao je poruku o gre\u0161ki"
+		"hr": "Sustav jedinstvene autentikacije poslao je poruku o gre\u0161ki",
+		"nn": "Feil fr\u00e5 vertsorganisasjonen (IdP)"
 	},
 	"descr_RESPONSESTATUSNOSUCCESS": {
 		"no": "Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-svaret var noe annet enn OK)",
@@ -1073,24 +1074,64 @@
 		"fi": "Identiteetintarjoaja vastasi virheell\u00e4. ( Tilakoodi SAML vastauksessa oli ep\u00e4onnistunut)",
 		"pt": "O Fornecedor de Identidade respondeu com um erro. (A resposta SAML cont\u00e9m um c\u00f3digo de insucesso)",
 		"fr": "Le fournisseur d'identit\u00e9 a renvoy\u00e9 une erreur (le code de statut de la r\u00e9ponse SAML n'indiquait pas le succ\u00e8s)",
-		"hr": "Sustav jedinstvene autentikacije poslao je odgovor koji sadr\u017ei informaciju o pojavi gre\u0161ke. (\u0160ifra statusa dostavljena u SAML odgovoru ne odgovara \u0161ifri uspje\u0161no obra\u0111enog zahtjeva)"
+		"hr": "Sustav jedinstvene autentikacije poslao je odgovor koji sadr\u017ei informaciju o pojavi gre\u0161ke. (\u0160ifra statusa dostavljena u SAML odgovoru ne odgovara \u0161ifri uspje\u0161no obra\u0111enog zahtjeva)",
+		"nn": "Vertsorganisasjonen din (IdP) gav feilmelding (SAML-svaret hadde statuskode som varsla om feil)"
 	},
 	"title_NOCERT": {
-		"fr": "Aucun certificat pr\u00e9sent\u00e9"
+		"fr": "Aucun certificat pr\u00e9sent\u00e9",
+		"sl": "Ni digitalnega potrdila",
+		"da": "Intet certifikat",
+		"de": "Kein Zertifikat",
+		"nn": "Manglar sertifikat",
+		"sv": "Inget certfikat",
+		"no": "Ikke noe sertifikat mottatt",
+		"es": "No certificado"
 	},
 	"descr_NOCERT": {
-		"fr": "Echec de l'authentification: votre navigateur n'a pas pr\u00e9sent\u00e9 de certificat"
+		"fr": "Echec de l'authentification: votre navigateur n'a pas pr\u00e9sent\u00e9 de certificat",
+		"sl": "Avtentikacija je spodletela: va\u0161 spletni brskalnik ni posredoval digitalnega potrdila!",
+		"da": "Login fejlede - din browser sendte ikke noget certifikat",
+		"de": "Authentifizierung fehlgeschlagen: ihr Browser hat kein Zertifikat gesandt",
+		"nn": "Feil autentisering: din browser sender ikkje sertifikat",
+		"sv": "Inloggning mislyckades: Din webbl\u00e4sare skickade inget certifikat",
+		"no": "Autentisering feilet: nettleseren din sendte ikke noe klient-sertifikat",
+		"es": "Fallo de autenticaci\u00f3n: su navegador no envi\u00f3 ning\u00fan certificado"
 	},
 	"title_INVALIDCERT": {
-		"fr": "Certificat invalide"
+		"fr": "Certificat invalide",
+		"sl": "Neveljavno digitalno potrdilo",
+		"da": "Ugyldigt certifikat",
+		"de": "Ung\u00fcltiges Zertifikat",
+		"nn": "Ugyldig sertifikat",
+		"sv": "Felaktigt certifikat",
+		"no": "Ugyldig sertifikat",
+		"es": "Certificado inv\u00e1lido"
 	},
 	"descr_INVALIDCERT": {
-		"fr": "Echec de l'authentification: le certificat pr\u00e9sent\u00e9 par votre navigateur est invalide ou illisible"
+		"fr": "Echec de l'authentification: le certificat pr\u00e9sent\u00e9 par votre navigateur est invalide ou illisible",
+		"sl": "Avtentikacija je spodletela: va\u0161 spletni brskalnik je posredoval neveljavno digitalno potrdilo ali pa ga ni mo\u010d prebrati!",
+		"de": "Authentifizierung fehlgeschlagen: das von ihrem Browser gesandte Zertifikat ist ung\u00fcltig oder kann nicht gelesen werden",
+		"nn": "Feil autentisering: sertifikatet fr\u00e5 browsaren din er ugyldig eller uleseleg",
+		"sv": "Inloggning mislyckades: Certfikatet som din webbl\u00e4sare skickade var felaktigt eller kunde inte l\u00e4sas",
+		"no": "Autentisering feilet: sertifikatet nettleseren din sendte er ugyldig, og kan ikke leses",
+		"es": "Fallo de autenticaci\u00f3n: El certificado enviado por su navegador es inv\u00e1lido o no puede ser le\u00eddo"
 	},
 	"title_UNKNOWNCERT": {
-		"fr": "Certificat inconnu"
+		"fr": "Certificat inconnu",
+		"sl": "Nepoznano digitalno potrdilo",
+		"de": "Unbekanntes Zertifikat",
+		"nn": "Ukjent sertifikat",
+		"sv": "Ok\u00e4nt certfikat",
+		"no": "Ukjent sertifikat",
+		"es": "Certificado desconocido"
 	},
 	"descr_UNKNOWNCERT": {
-		"fr": "Echec de l'authentification: le certificat pr\u00e9sent\u00e9 par votre navigateur n'est pas connu"
+		"fr": "Echec de l'authentification: le certificat pr\u00e9sent\u00e9 par votre navigateur n'est pas connu",
+		"sl": "Avtentikacija je spodletela: va\u0161 spletni brskalnik je posredoval nepoznano digitalno potrdilo",
+		"de": "Authentifizierung fehlgeschlagen: das von ihrem Browser gesandte Zertifikat ist unbekannt",
+		"nn": "Feil autentisering: ukjent sertifikat mottatt fr\u00e5 din browser",
+		"sv": "Inloggning mislyckades: Certifikatet som din webbl\u00e4sare skickade \u00e4r ok\u00e4nt",
+		"no": "Authentisering feilet: sertifikatet nettleseren din sendte er ukjent",
+		"es": "Fallo de autenticaci\u00f3n:el certificado enviado por su navegador es desconocido"
 	}
 }

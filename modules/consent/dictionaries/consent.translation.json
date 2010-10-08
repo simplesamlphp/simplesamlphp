@@ -340,7 +340,8 @@
 		"pt": "Informa\u00e7\u00e3o do utilizador",
 		"tr": "Kullan\u0131c\u0131 bilgisi",
 		"fr": "Information sur l'usager",
-		"hr": "Informacije o korisniku"
+		"hr": "Informacije o korisniku",
+		"nn": "Brukarinformasjon"
 	},
 	"table_summary": {
 		"no": "Her listes den innformasjonen om deg som blir send til den tjenesten du er i ferd med \u00e5 logge p\u00e5",
@@ -355,7 +356,8 @@
 		"tr": "Girmek istedi\u011finiz servise g\u00f6nderilecek bilginizi listeleyin",
 		"de": "Zeige die Information \u00fcber Sie, die an den Service, auf dem Sie sich einloggen werden, \u00fcbermittelt werden",
 		"fr": "Liste des informations vous concernant qui seront envoy\u00e9es au service auquel vous allez vous connecter",
-		"hr": "Prika\u017ei popis va\u0161ih podataka koji \u0107e biti proslje\u0111eni servisu kojem \u017eelite pristupiti"
+		"hr": "Prika\u017ei popis va\u0161ih podataka koji \u0107e biti proslje\u0111eni servisu kojem \u017eelite pristupiti",
+		"nn": "List informasjon om deg som blir overf\u00f8rt til tenesta du skal logga inn p\u00e5"
 	},
 	"show_attribute": {
 		"no": "Vis innhold",

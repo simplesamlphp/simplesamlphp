@@ -89,7 +89,8 @@
 		"pl": "Preferowany wyb\u00f3r",
 		"tr": "[Tercih edilen se\u00e7enek]",
 		"fr": "[Choix pr\u00e9f\u00e9r\u00e9]",
-		"hr": "[Prvenstveni odabir]"
+		"hr": "[Prvenstveni odabir]",
+		"nn": "Beste val"
 	},
 	"previous_auth": {
 		"no": "Du har tidligere valg \u00e5 autentisere deg hos",
@@ -102,7 +103,8 @@
 		"fi": "Olet aikaisemmin valinnut identiteettil\u00e4hteeksesi",
 		"pt": "Escolheu autenticar-se anteriormente em",
 		"fr": "Pr\u00e9c\u00e9demment, vous aviez choisi de vous authentifier sur",
-		"hr": "Prethodno ste odabrali autentikaciju kroz"
+		"hr": "Prethodno ste odabrali autentikaciju kroz",
+		"nn": "Du har tidlegare logga inn ved"
 	},
 	"login_at": {
 		"no": "Logg inn hos",
@@ -115,6 +117,7 @@
 		"fi": "Kirjaudu",
 		"pt": "Entrar em",
 		"fr": "S'authentifier sur",
-		"hr": "Prijavi se kroz"
+		"hr": "Prijavi se kroz",
+		"nn": "Logg inn ved"
 	}
 }

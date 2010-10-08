@@ -8,7 +8,9 @@
 		"sv": "Saknar webbl\u00e4sarkaka (cookie)",
 		"hr": "Nedostaje <i>cookie<\/i>",
 		"da": "Mangler cookie",
-		"fr": "Cookie introuvable"
+		"fr": "Cookie introuvable",
+		"nn": "Manglar informasjonskapsel",
+		"es": "No se encuentra cookie"
 	},
 	"description": {
 		"no": "Du ser ut til \u00e5 ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og pr\u00f8v igjen.",
@@ -19,7 +21,9 @@
 		"sv": "Det verkar som om du har st\u00e4ngt av m\u00f6jligheten till kakor (cookies) i din webbl\u00e4sare. Kontrollera inst\u00e4llningarna i webbl\u00e4saren och f\u00f6rs\u00f6k igen.",
 		"hr": "Izgleda da ste onemogu\u0107ili kola\u010di\u0107e (<i>cookies<\/i>) u va\u0161em web pregledniku. Molimo provjerite postavke va\u0161eg web preglednika i poku\u0161ajte ponovo.",
 		"da": "Det ser ud til at du har sl\u00e5et cookies fra i din browser. Tjek dine browserinstillinger og pr\u00f8v igen.",
-		"fr": "Il semble que votre navigateur refuse les cookies. Merci de v\u00e9rifier les r\u00e9glages de votre navigateur, puis de r\u00e9-essayer."
+		"fr": "Il semble que votre navigateur refuse les cookies. Merci de v\u00e9rifier les r\u00e9glages de votre navigateur, puis de r\u00e9-essayer.",
+		"nn": "Det ser ut til at informasjonskapslar er avsl\u00e5tt i nettlesaren din. V\u00e6r vennleg og sjekk instillingane i nettlesaren din, og pr\u00f8v p\u00e5 nytt.",
+		"es": "Al parecer ha deshabilitado las cookies de su navegador. Por favor revise las preferencias de su navegador y reintente."
 	},
 	"retry": {
 		"no": "Pr\u00f8v igjen",
@@ -30,6 +34,8 @@
 		"sv": "F\u00f6rs\u00f6k igen",
 		"hr": "Poku\u0161aj ponovo",
 		"da": "Fors\u00f8g igen",
-		"fr": "R\u00e9-essayer"
+		"fr": "R\u00e9-essayer",
+		"nn": "Pr\u00f8v p\u00e5 nytt",
+		"es": "Reintentar"
 	}
 }

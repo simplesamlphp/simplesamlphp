@@ -7,7 +7,8 @@
 		"sv": "Processid",
 		"hr": "Identifikator procesa",
 		"da": "Proces ID",
-		"fr": "Identifiant de proc\u00e9ssus (PID)"
+		"fr": "Identifiant de proc\u00e9ssus (PID)",
+		"es": "Id de Proceso"
 	},
 	"uptime": {
 		"no": "Oppetid",
@@ -17,7 +18,8 @@
 		"sv": "Upptid",
 		"hr": "Ukupno vrijeme rada",
 		"da": "Oppetid",
-		"fr": "Temps de fonctionnement"
+		"fr": "Temps de fonctionnement",
+		"es": "Tiempo transcurrido"
 	},
 	"time": {
 		"no": "Tid n\u00e5",
@@ -27,7 +29,8 @@
 		"sv": "Aktuell tid",
 		"hr": "Trenutno vrijeme",
 		"da": "Aktuel tid",
-		"fr": "Date courante"
+		"fr": "Date courante",
+		"es": "Tiempo actual"
 	},
 	"version": {
 		"no": "Versjon",
@@ -37,7 +40,8 @@
 		"sv": "Version",
 		"hr": "Verzija",
 		"da": "Version",
-		"fr": "Version"
+		"fr": "Version",
+		"es": "Versi\u00f3n"
 	},
 	"rusage_user": {
 		"no": "CPU Sekunder (bruker)",
@@ -47,7 +51,8 @@
 		"sv": "CPU-sekunder (User)",
 		"hr": "CPU sekundi (korisnik)",
 		"da": "CPU sekunder (Bruger)",
-		"fr": "Temps de calcul (mode utilisateur)"
+		"fr": "Temps de calcul (mode utilisateur)",
+		"es": "Segundos de CPU (Usuario)"
 	},
 	"rusage_system": {
 		"no": "CPU Sekunder (system)",
@@ -57,7 +62,8 @@
 		"sv": "CPU-sekunder (System)",
 		"hr": "CPU sekundi (sustav)",
 		"da": "CPU sekunder (System)",
-		"fr": "Temps de calcul (mode syst\u00e8me)"
+		"fr": "Temps de calcul (mode syst\u00e8me)",
+		"es": "Segundos de CPU (Sistema)"
 	},
 	"curr_items": {
 		"no": "N\u00e5v\u00e6rende antall elementer",
@@ -67,7 +73,8 @@
 		"sv": "Aktuell antal",
 		"hr": "Trenutni broj elemenata",
 		"da": "Aktuelt antal enheder",
-		"fr": "El\u00e9ment utilis\u00e9s actuellement"
+		"fr": "El\u00e9ment utilis\u00e9s actuellement",
+		"es": "N\u00famero actual de \u00edtems"
 	},
 	"total_items": {
 		"no": "Antall elementer for alltid",
@@ -77,7 +84,8 @@
 		"sv": "Totalt antal anv\u00e4nda poster",
 		"hr": "Ukupno elemenata od po\u010detka",
 		"da": "Total antal enheder",
-		"fr": "Total d'\u00e9l\u00e9ments depuis le d\u00e9marrage"
+		"fr": "Total d'\u00e9l\u00e9ments depuis le d\u00e9marrage",
+		"es": "N\u00famero total de \u00edtems"
 	},
 	"bytes": {
 		"no": "Totalt antall bytes i bruk n\u00e5",
@@ -87,7 +95,8 @@
 		"sv": "Totalt antal anv\u00e4nda byte f\u00f6rn\u00e4rvarande",
 		"hr": "Trenutno ukupno kori\u0161teno bajtova",
 		"da": "Total antal bytes brugt aktuelt",
-		"fr": "Octets utilis\u00e9s actuellement"
+		"fr": "Octets utilis\u00e9s actuellement",
+		"es": "Cantidad total de bytes en uso actualmente"
 	},
 	"curr_connections": {
 		"no": "Antall \u00e5pne forbindelser n\u00e5",
@@ -97,7 +106,8 @@
 		"sv": "Aktiva och \u00f6ppna f\u00f6rbindelser",
 		"hr": "Trenutno otvorene konekcije",
 		"da": "Nuv\u00e6rende \u00e5bne forbindelser",
-		"fr": "Connexions ouvertes"
+		"fr": "Connexions ouvertes",
+		"es": "Conexiones abiertas actualmente"
 	},
 	"total_connections": {
 		"no": "Totalt antall forbindelser",
@@ -107,7 +117,8 @@
 		"sv": "Totalt antal f\u00f6rbindelser",
 		"hr": "Ukupno konekcija",
 		"da": "Total antal forbindelser",
-		"fr": "Connexions totales"
+		"fr": "Connexions totales",
+		"es": "Total de conexiones"
 	},
 	"connection_structures": {
 		"no": "Tilkoblings-strukturer",
@@ -117,7 +128,8 @@
 		"sv": "F\u00f6rbindelsestrukturer",
 		"hr": "Struktura konekcija",
 		"da": "Forbindelses strukturer",
-		"fr": "Structures de connexion"
+		"fr": "Structures de connexion",
+		"es": "Estructuras de conexi\u00f3n"
 	},
 	"cmd_get": {
 		"no": "Totalt antall GET kommandoer",
@@ -127,7 +139,8 @@
 		"sv": "Totalt antal GET-kommandon",
 		"hr": "Ukupno GET naredbi",
 		"da": "Total antal GET kommandoer",
-		"fr": "Commandes GET"
+		"fr": "Commandes GET",
+		"es": "Total de comandos GET"
 	},
 	"cmd_set": {
 		"no": "Totalt antall SET kommandoer",
@@ -137,7 +150,8 @@
 		"sv": "Totalt antal SET-kommandon",
 		"hr": "Ukupno SET naredbi",
 		"da": "Total antal SET kommandoer",
-		"fr": "Commandes SET"
+		"fr": "Commandes SET",
+		"es": "Total de comandos SET"
 	},
 	"get_hits": {
 		"no": "Totalt antall GET kommandoer (OK)",
@@ -147,7 +161,8 @@
 		"sv": "Totalt antal lyckade GET-kommandon",
 		"hr": "Ukupno GET naredbi (uspje\u0161no izvr\u0161enih)",
 		"da": "Total antal GET kommandoer (success)",
-		"fr": "Commandes GET valides"
+		"fr": "Commandes GET valides",
+		"es": "Total de comandos GET (exitosos)"
 	},
 	"get_misses": {
 		"no": "Totalt antall GET kommandoer (feilet)",
@@ -157,7 +172,8 @@
 		"sv": "Totalt antal misslyckade GET-kommandon",
 		"hr": "Ukupno GET naredbi (neuspje\u0161nih)",
 		"da": "Total antal GET kommandoer (fejl)",
-		"fr": "Commandes GET invalides"
+		"fr": "Commandes GET invalides",
+		"es": "Total de comandos GET (fallidos)"
 	},
 	"bytes_read": {
 		"no": "Antall bytes inn til tjeneren",
@@ -167,7 +183,8 @@
 		"sv": "Mottagna bytes till servern",
 		"hr": "Bajtova poslanih poslu\u017eitelju",
 		"da": "Bytes in i serveren",
-		"fr": "Octets sur le serveur"
+		"fr": "Octets sur le serveur",
+		"es": "Bytes en el servidor"
 	},
 	"bytes_written": {
 		"no": "Antall bytes skrevet av tjeneren",
@@ -177,7 +194,8 @@
 		"sv": "Skirva bytes av servern",
 		"hr": "Bajtova zapisanih od strane poslu\u017eitelja",
 		"da": "Bytes skrevet af serveren",
-		"fr": "Octets \u00e9crits par le serveur"
+		"fr": "Octets \u00e9crits par le serveur",
+		"es": "Bytes escritos por el servidor"
 	},
 	"limit_maxbytes": {
 		"no": "Total lagring tilgjengelig",
@@ -187,6 +205,7 @@
 		"sv": "Totalt lagringsutrymme",
 		"hr": "Ukupno raspolo\u017eivo memorijskog prostora",
 		"da": "Total plads udnyttet",
-		"fr": "Espace de stockage disponible"
+		"fr": "Espace de stockage disponible",
+		"es": "Almacenamiento total aprovechado"
 	}
 }
