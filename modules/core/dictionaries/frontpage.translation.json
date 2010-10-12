@@ -16,7 +16,9 @@
 		"pt-BR": "<strong>Parab\u00e9ns<\/strong>, voc\u00ea instalou com sucesso o simpleSAMLphp. Esta \u00e9 a p\u00e1gina de introdu\u00e7\u00e3o de sua instala\u00e7\u00e3o, onde voc\u00ea encontrar\u00e1 links para as p\u00e1ginas de teste, diagn\u00f3stico, metadata e para a documenta\u00e7\u00e3o.",
 		"pt": "<strong>Parab\u00e9ns<\/strong>, o software simpleSAMLphp foi instalado com sucesso. Esta \u00e9 a p\u00e1gina inicial da sua instala\u00e7\u00e3o, onde encontrar\u00e1 liga\u00e7\u00f5es para p\u00e1ginas de teste, de diagn\u00f3stico, de metadados e de documenta\u00e7\u00e3o relevante.",
 		"pl": "<strong>Gratulacje<\/strong>, instalacja simpleSAMLphp przebieg\u0142a pomy\u015blnie. To jest strona startowa Twojej instalacji, na kt\u00f3rej znajdziesz odno\u015bniki do przyk\u0142ad\u00f3w, narz\u0119dzi do diagnozowania, metadane a nawet linki do dokumentacji.",
-		"tr": "<strong>Tebrikler<\/strong>, simpleSAMLphp'i ba\u015far\u0131yla y\u00fcklediniz. Bu sayfa, test \u00f6rneklerine, kontrollere, \u00fcstveriye (metadata) ve hatta ilgili dok\u00fcmanlara ba\u011flant\u0131lar bulabilece\u011finiz, kurulumun ba\u015flang\u0131\u00e7 sayfas\u0131d\u0131r."
+		"cs": "<strong>Blahop\u0159ejeme<\/strong>, m\u00e1te spr\u00e1vn\u011b nainstalovan simpleSAMLphp. Toto je startovac\u00ed str\u00e1nka va\u0161\u00ed instalace, kde najde linky na testovac\u00ed uk\u00e1zky, diagnostiku, metadata a relevantn\u00ed literaturu.",
+		"tr": "<strong>Tebrikler<\/strong>, simpleSAMLphp'i ba\u015far\u0131yla y\u00fcklediniz. Bu sayfa, test \u00f6rneklerine, kontrollere, \u00fcstveriye (metadata) ve hatta ilgili dok\u00fcmanlara ba\u011flant\u0131lar bulabilece\u011finiz, kurulumun ba\u015flang\u0131\u00e7 sayfas\u0131d\u0131r.",
+		"it": "<strong>Congratulazioni<\/strong>, hai installato simpleSAMLphp con successo. Questa &egrave; la pagina di riferimento della tua installazione, qui puoi trovare i link ad esempi di test, diagnostiche, metadati e alla documentazione relativa."
 	},
 	"useful_links_header": {
 		"no": "Nyttige lenker for denne installasjonen",
@@ -35,7 +37,9 @@
 		"pt-BR": "Endere\u00e7os \u00fateis para sua instala\u00e7\u00e3o.",
 		"pt": "Liga\u00e7\u00f5es \u00fateis da sua instala\u00e7\u00e3o",
 		"pl": "Przydatne linki dla Twojej instalacji",
-		"tr": "Kurulumunuz i\u00e7in faydal\u0131 linkler"
+		"cs": "Linky pro va\u0161i instalaci",
+		"tr": "Kurulumunuz i\u00e7in faydal\u0131 linkler",
+		"it": "Link utili per la tua installazione"
 	},
 	"metadata_header": {
 		"no": "Metadata",
@@ -54,7 +58,9 @@
 		"pt-BR": "Metadata",
 		"pt": "Metadados",
 		"pl": "Metadane",
-		"tr": "\u00dcstveri (Metadata)"
+		"cs": "Metadata",
+		"tr": "\u00dcstveri (Metadata)",
+		"it": "Metadati"
 	},
 	"doc_header": {
 		"no": "Dokumentasjon",
@@ -73,7 +79,9 @@
 		"pt-BR": "Documenta\u00e7\u00e3o",
 		"pt": "Documenta\u00e7\u00e3o",
 		"pl": "Dokumentacja",
-		"tr": "Dok\u00fcmantasyon"
+		"cs": "Dokumentace",
+		"tr": "Dok\u00fcmantasyon",
+		"it": "Documentazione"
 	},
 	"checkphp": {
 		"no": "Sjekker din PHP installasjon",
@@ -92,7 +100,9 @@
 		"pt-BR": "Checando sua instala\u00e7\u00e3o do PHP",
 		"pt": "Verifica\u00e7\u00e3o do seu ambiente PHP",
 		"pl": "Sprawdzanie instalacji PHP",
-		"tr": "PHP kurulumunuz kontrol ediliyor"
+		"cs": "Test va\u0161\u00ed PHP instalace",
+		"tr": "PHP kurulumunuz kontrol ediliyor",
+		"it": "Controllo dell'installazione di PHP"
 	},
 	"about_header": {
 		"no": "Om simpleSAMLphp",
@@ -111,7 +121,9 @@
 		"pt-BR": "Sobre o simpleSAMLphp",
 		"pt": "Sobre o simpleSAMLphp",
 		"pl": "O simpleSAMLphp",
-		"tr": "simpleSAMLphp hakk\u0131nda"
+		"cs": " ",
+		"tr": "simpleSAMLphp hakk\u0131nda",
+		"it": "A proposito di simpleSAMLphp"
 	},
 	"about_text": {
 		"no": "Yey! simpleSAMLphp virker jammen kult, hvor kan jeg finne ut mer om det? Du kan lese mer om simpleSAMLphp p\u00e5 <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp sin hjemmeside<\/a>.",
@@ -130,7 +142,9 @@
 		"pt-BR": "Este simpleSAMLphp \u00e9 uma coisa muito legal, onde posso ler mais sobre isso? Voc\u00ea pode encontrar mais informa\u00e7\u00f5es sobre o <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp no blog de Feide RnD<\/a> durante a <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"pt": "Pode encontrar mais informa\u00e7\u00e3o sobre o <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp no blog da Feide RnD<\/a> em <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"pl": "Ten simpleSAMLphp jest niez\u0142y, gdzie mog\u0119 poczyta\u0107 o tym? Mo\u017cesz znale\u017a\u0107 wi\u0119cej informacji o <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp na blogu Feide RnD<\/a> oraz na stronie <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
-		"tr": "Bu simpleSAMLphp olduk\u00e7a iyiymi\u015f, daha fazla bilgiyi nereden okuyabilirim? <a href=\"http:\/\/uninett.no\">UNINETT<\/a> \u00fczerinde <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">Feide RnD blog'unda simpleSAMLphp <\/a> hakk\u0131nda daha fazlas\u0131n\u0131 bulabilirsiniz."
+		"cs": " ",
+		"tr": "Bu simpleSAMLphp olduk\u00e7a iyiymi\u015f, daha fazla bilgiyi nereden okuyabilirim? <a href=\"http:\/\/uninett.no\">UNINETT<\/a> \u00fczerinde <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">Feide RnD blog'unda simpleSAMLphp <\/a> hakk\u0131nda daha fazlas\u0131n\u0131 bulabilirsiniz.",
+		"it": "Questo simpleSAMLphp &egrave; davvero un bel prodotto, dove trovo ulteriori informazioni a riguardo? Puoi trovare maggiori informazioni su <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp nel Blog di Feide RnD<\/a> oltre che <a href=\"http:\/\/uninett.no\">UNINETT<\/a>."
 	},
 	"required": {
 		"no": "P\u00e5krevd",
@@ -149,7 +163,9 @@
 		"pt-BR": "Requerido",
 		"pt": "Necess\u00e1rio",
 		"pl": "Wymagane",
-		"tr": "Gerekli"
+		"cs": "Po\u017eadov\u00e1no",
+		"tr": "Gerekli",
+		"it": "Obbligatorio"
 	},
 	"required_ldap": {
 		"no": "P\u00e5krevd for LDAP",
@@ -168,7 +184,9 @@
 		"pt-BR": "Requerido para o LDAP",
 		"pt": "Necess\u00e1rio para LDAP",
 		"pl": "Wymagane dla LDAP",
-		"tr": "LDAP i\u00e7in gerekli"
+		"cs": "Po\u017eadov\u00e1no pro LDAP",
+		"tr": "LDAP i\u00e7in gerekli",
+		"it": "Obbligatorio per LDAP"
 	},
 	"required_radius": {
 		"no": "P\u00e5krevd for Radius",
@@ -187,7 +205,9 @@
 		"pt-BR": "Requerido para o Radius",
 		"pt": "Necess\u00e1rio para Radius",
 		"pl": "Wymagane dla Radius",
-		"tr": "Radius i\u00e7in gerekli"
+		"cs": "Po\u017eadov\u00e1no pro Radius",
+		"tr": "Radius i\u00e7in gerekli",
+		"it": "Obbligatorio per Radius"
 	},
 	"optional": {
 		"no": "Valgfritt",
@@ -206,7 +226,9 @@
 		"pt-BR": "Opcional",
 		"pt": "Opcional",
 		"pl": "Opcjonalne",
-		"tr": "\u0130ste\u011fe ba\u011fl\u0131"
+		"cs": "Voliteln\u00e9",
+		"tr": "\u0130ste\u011fe ba\u011fl\u0131",
+		"it": "Facoltativo"
 	},
 	"reccomended": {
 		"no": "Anbefalt",
@@ -225,7 +247,9 @@
 		"pt-BR": "Recomendado",
 		"pt": "Recomendado",
 		"pl": "Rekomendowane",
-		"tr": "Tavsiye edilen"
+		"cs": "Doporu\u010den\u00e9",
+		"tr": "Tavsiye edilen",
+		"it": "Raccomandato"
 	},
 	"warnings": {
 		"no": "Advarsler",
@@ -244,7 +268,9 @@
 		"pt-BR": "Avisos",
 		"pt": "Avisos",
 		"pl": "Ostrze\u017cenia",
-		"tr": "Uyar\u0131lar"
+		"cs": "Varov\u00e1n\u00ed",
+		"tr": "Uyar\u0131lar",
+		"it": "Avvertenze"
 	},
 	"warnings_https": {
 		"no": "<strong>Du bruker ikke HTTPS<\/strong> - kryptert kommunikasjon med brukeren. HTTP fungerer utmerket til testform\u00e5l, men  i et produksjonsmilj\u00f8 anbefales sterkt \u00e5 skru p\u00e5 sikker kommunikasjon med HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Les mer i dokumentet: simpleSAMLphp maintenance<\/a> ]",
@@ -263,7 +289,9 @@
 		"pt-BR": "<strong>Voc\u00ea n\u00e3o est\u00e1 utilizando HTTPS<\/strong> - comunica\u00e7\u00e3o encriptada com o usu\u00e1rio. HTTP funciona bem para testes, mas voc\u00ea deve utilizar HTTPS para produ\u00e7\u00e3o. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Leia mais sobre manuten\u00e7\u00e3o do simpleSAMLphp<\/a> ]",
 		"pt": "<strong>N\u00e3o est\u00e1 a ser usado HTTPS<\/strong> - comunica\u00e7\u00e3o cifrada com o utilizador. Para ambientes de teste, liga\u00e7\u00f5es HTTP s\u00e3o suficientes, mas num ambiente de produ\u00e7\u00e3o deve ser usado HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Ler mais sobre manuten\u00e7\u00e3o do simpleSAMLphp<\/a> ]",
 		"pl": "<strong>Nie u\u017cywasz HTTPS<\/strong> - szyfrowana komunikacja z u\u017cytkownikiem. HTTP jest OK dla test\u00f3w, ale na produkcji powiniene\u015b u\u017cywa\u0107 tylko HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Przeczytaj wi\u0119cej o zarz\u0105dzaniu simpleSAMLphp<\/a> ]",
-		"tr": "Kullan\u0131c\u0131yla \u015fifreli ileti\u015fim -<strong>HTTPS kullanm\u0131yorsunuz<\/strong>. HTTP test ama\u00e7l\u0131 olarak kullan\u0131labilir, ancak \u00fcretim ortam\u0131nda, HTTPS kullanmal\u0131s\u0131n\u0131z. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">simpleSAMLphp bak\u0131m\u0131 hakk\u0131nda daha fazlas\u0131n\u0131 okuyun<\/a> ]"
+		"cs": "<strong>Nepou\u017e\u00edv\u00e1te HTTPS<\/strong> - \u0161ivrovanou komunikaci s u\u017eivatelem. HTTP je vhodn\u00e9 jen k testovac\u00edm \u00fa\u010del\u016fm, pro produk\u010dn\u00ed \u00fa\u010dely pou\u017eijte HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">\u010ctete v\u00edce o \u00fadr\u017eb\u011b simpleSAMLphp<\/a> ]",
+		"tr": "Kullan\u0131c\u0131yla \u015fifreli ileti\u015fim -<strong>HTTPS kullanm\u0131yorsunuz<\/strong>. HTTP test ama\u00e7l\u0131 olarak kullan\u0131labilir, ancak \u00fcretim ortam\u0131nda, HTTPS kullanmal\u0131s\u0131n\u0131z. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">simpleSAMLphp bak\u0131m\u0131 hakk\u0131nda daha fazlas\u0131n\u0131 okuyun<\/a> ]",
+		"it": "<strong>Non stai usando HTTPS<\/strong> - comunicazione cifrata con l'utente. HTTP pu&ograve; funzionare per i test, ma in un ambiente di produzione si dovrebbe usare HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Maggiori informazioni sulla manutenzione di simpleSAMLphp<\/a> ]"
 	},
 	"link_saml2example": {
 		"no": "SAML 2.0 SP eksempel - test innlogging med SAML 2.0 via din IdP",
@@ -282,7 +310,9 @@
 		"pt-BR": "SAML 2.0 SP exemplo - efetuar login na sua IDP",
 		"pt": "Exemplo de um SP SAML 2.0 - Para testes de login pelo seu IdP",
 		"pl": "SAML 2.0 SP - przyk\u0142ad - test logowania przez Twoje IdP",
-		"tr": "SAML 2.0 SP \u00f6rne\u011fi - IdP'nizden giri\u015f yaparak test edin"
+		"cs": "SAML 2.0 SP \u00fak\u00e1zka - testovac\u00ed p\u0159ihl\u00e1\u0161en\u00ed pomoc\u00ed va\u0161\u00ed IdP",
+		"tr": "SAML 2.0 SP \u00f6rne\u011fi - IdP'nizden giri\u015f yaparak test edin",
+		"it": "Esempio di SAML 2.0 SP - prova l'autenticazione tramite il tuo IdP"
 	},
 	"link_shib13example": {
 		"no": "Shibboleth 1.3 SP eksempel - test innlogging med Shibboleth 1.3 via din IdP",
@@ -301,7 +331,9 @@
 		"pt-BR": "Shibboleth 1.3 SP exemplo - efetuar login na sua Shib IDP",
 		"pt": "Exemplo de um SP Shibboleth 1.3 - Para testes de login pelo seu IdP Shib",
 		"pl": "Shibboleth 1.3 SP - przyk\u0142ad - test logowania przez Twoje Shib IdP",
-		"tr": "Shibboleth 1.3 SP \u00f6rne\u011fi - Shib IdP'nizden giri\u015f yaparak test edin"
+		"cs": "Shibboleth 1.3 SP uk\u00e1zka - testovac\u00ed p\u0159ihl\u00e1\u0161en\u00ed pomoc\u00ed va\u0161\u00ed Shib IdP",
+		"tr": "Shibboleth 1.3 SP \u00f6rne\u011fi - Shib IdP'nizden giri\u015f yaparak test edin",
+		"it": "Esempio di Shibboleth 1.3 SP - prova l'autenticazione tramite il tuo IdP Shibboleth"
 	},
 	"link_openidprovider": {
 		"no": "OpenID Provider side - Alpha versjon (testkode)",
@@ -320,7 +352,9 @@
 		"pt-BR": "OpenID Provider site - Vers\u00e3o Alpha (C\u00f3digo de Teste)",
 		"pt": "Site do provider OpenID - vers\u00e3o Alpha (c\u00f3digo de teste)",
 		"pl": "Strona Dostawcy OpenID - wersja Alpha (kod w fazie test\u00f3w)",
-		"tr": "OpenID Provider site - Alpha s\u00fcr\u00fcm\u00fc (test kodu)"
+		"cs": "Str\u00e1nka OpenID poskytovatele - alfa version (testovac\u00ed k\u00f3d)",
+		"tr": "OpenID Provider site - Alpha s\u00fcr\u00fcm\u00fc (test kodu)",
+		"it": "OpenID Provider site - versione Alpha (codice di test)"
 	},
 	"link_diagnostics": {
 		"no": "Diagnostiser hostnavn, port og protokoll",
@@ -339,7 +373,9 @@
 		"pt-BR": "Diagn\u00f3sticos do host, porta e protocolo",
 		"pt": "Diagn\u00f3sticos: hostname, porto e protocolo",
 		"pl": "Diagnostyka na ho\u015bcie, port i protok\u00f3\u0142",
-		"tr": "Bilgisayar ad\u0131, port ve protokol \u00fczerine kontroller"
+		"cs": "Diagnoza jm\u00e9na po\u010d\u00edta\u010de, portu a protokolu",
+		"tr": "Bilgisayar ad\u0131, port ve protokol \u00fczerine kontroller",
+		"it": "Diagnostica su nome dell'host, porta e protocollo"
 	},
 	"link_phpinfo": {
 		"no": "PHPinfo",
@@ -358,7 +394,9 @@
 		"pt-BR": "Informa\u00e7\u00f5es do PHP",
 		"pt": "PHP info",
 		"pl": "PHP info",
-		"tr": "PHP info"
+		"cs": "PHP info",
+		"tr": "PHP info",
+		"it": "PHP info"
 	},
 	"link_meta_overview": {
 		"no": "Oversikt over metadata for din installasjon. Diagnostiser metadatafilene her.",
@@ -377,7 +415,9 @@
 		"pt-BR": "Metadados para sua instala\u00e7\u00e3o. Diagnosticar seus arquivos metadados",
 		"pt": "Diagn\u00f3sticos: ficheiros de metadados, vista geral de metadados da sua instala\u00e7\u00e3o",
 		"pl": "Przegl\u0105d Metadanych dla Twojej instalacji. Diagnose your metadata files",
-		"tr": "Kurulumunuz i\u00e7in \u00fcstveri (metadata) bilgisi. \u00dcstveri dosyalar\u0131n\u0131z\u0131 kontrol edin."
+		"cs": "P\u0159ehled metadat va\u0161\u00ed instalace a jejich diagn\u00f3za.",
+		"tr": "Kurulumunuz i\u00e7in \u00fcstveri (metadata) bilgisi. \u00dcstveri dosyalar\u0131n\u0131z\u0131 kontrol edin.",
+		"it": "Panoramica dei metadati della tua installazione. Diagnostica dei file dei metadati"
 	},
 	"link_meta_saml2sphosted": {
 		"no": "Hosted SAML 2.0 Service Provider Metadata (automatisk generert)",
@@ -396,7 +436,9 @@
 		"pt-BR": "Hospedado SAML 2.0 Service Provider Metadata (gerado automaticamente)",
 		"pt": "Metadados do fornecedor de servi\u00e7o (SP) SAML 2.0 local (gerado automaticamente)",
 		"pl": "Metadane - Lokalny SAML 2.0 Dostawca Serwisu (generowane automatycznie)",
-		"tr": "Sunulan SAML 2.0 Servis Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)"
+		"cs": "Metada look\u00e1ln\u00edho (hosted) SAML 2.0 poskytovatele slu\u017eby (SP) (automaticky generovan\u00e9)",
+		"tr": "Sunulan SAML 2.0 Servis Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)",
+		"it": "Metadati del Service Provider SAML 2.0 Locale (generati automaticamente)"
 	},
 	"link_meta_saml2idphosted": {
 		"no": "Hosted SAML 2.0 Identity Provider Metadata (automatisk generert)",
@@ -415,7 +457,9 @@
 		"pt-BR": "Hospedado SAML 2.0 Identity Provider Metadata (gerado automaticamente)",
 		"pt": "Metadados do fornecedor de identidade (IdP) SAML 2.0 local (gerado automaticamente)",
 		"pl": "Metadane - Lokalny SAML 2.0 Dostawca To\u017csamo\u015bci (generowane automatycznie)",
-		"tr": "Sunulan SAML 2.0 Kimlik Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)"
+		"cs": "Metada look\u00e1ln\u00edho (hosted) SAML 2.0 poskytovatele identity (IdP) (automaticky generovan\u00e9)",
+		"tr": "Sunulan SAML 2.0 Kimlik Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)",
+		"it": "Metadati dell'Identity Provider SAML 2.0 Locale (generati automaticamente)"
 	},
 	"link_meta_shib13sphosted": {
 		"no": "Hosted Shibboleth 1.3 Service Provider Metadata (automatisk generert)",
@@ -434,7 +478,9 @@
 		"pt-BR": "Hospedado Shibboleth 1.3 Service Provider Metadata (gerado automaticamente)",
 		"pt": "Metadados do fornecedor de servi\u00e7o (SP) Shibboleth 1.3 local (gerado automaticamente)",
 		"pl": "Metadane - Lokalny Shibboleth 1.3 Dostawca Serwisu (generowane automatycznie)",
-		"tr": "Sunulan Shibboleth 1.3 Servis Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)"
+		"cs": "Metada look\u00e1ln\u00edho (hosted) Shibboleth 1.3 poskytovatele slu\u017eby (SP) (automaticky generovan\u00e9)",
+		"tr": "Sunulan Shibboleth 1.3 Servis Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)",
+		"it": "Metadati del Service Provider Shibboleth 1.3 Locale (generati automaticamente)"
 	},
 	"link_meta_shib13idphosted": {
 		"no": "Hosted Shibboleth 1.3 Identity Provider Metadata (automatisk generert)",
@@ -453,7 +499,9 @@
 		"pt-BR": "Hospedado Shibboleth 1.3 Identity Provider Metadata (gerado automaticamente)",
 		"pt": "Metadados do fornecedor de identidade (IdP) Shibboleth 1.3 local (gerado automaticamente)",
 		"pl": "Metadane - Lokalny Shibboleth 1.3 Dostawca To\u017csamo\u015bci (generowane automatycznie)",
-		"tr": "Sunulan Shibboleth 1.3 Kimlik Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)"
+		"cs": "Metada look\u00e1ln\u00edho (hosted) Shibboleth 1.3 poskytovatele slu\u017eby (IdP) (automaticky generovan\u00e9)",
+		"tr": "Sunulan Shibboleth 1.3 Kimlik Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)",
+		"it": "Metadati dell'Identity Provider Shibboleth 1.3 Locale (generati automaticamente)"
 	},
 	"link_xmlconvert": {
 		"no": "XML til simpleSAMLphp metadata-oversetter",
@@ -472,7 +520,9 @@
 		"pt-BR": "Conversor de XML para metadata do simpleSAMLphp",
 		"pt": "Conversor de metadados de XML para simpleSAMLphp",
 		"pl": "Konwerter metadanych z formatu XML do formatu simpleSAMLphp",
-		"tr": "XML'den simpleSAMLphp'e \u00fcstveri (metadata) d\u00f6n\u00fc\u015ft\u00fcr\u00fcc\u00fc"
+		"cs": "Konverze XML metadat do simpleSAMLPHP",
+		"tr": "XML'den simpleSAMLphp'e \u00fcstveri (metadata) d\u00f6n\u00fc\u015ft\u00fcr\u00fcc\u00fc",
+		"it": "Convertitore di metadati dal formato XML al formato simpleSAMLphp "
 	},
 	"link_doc_install": {
 		"no": "Installerer simpleSAMLphp",
@@ -491,7 +541,9 @@
 		"pt-BR": "Instalando o simpleSAMLphp",
 		"pt": "Instalar o simpleSAMLphp",
 		"pl": "Instalowanie simpleSAMLphp",
-		"tr": "simpleSAMLphp kuruluyor"
+		"cs": "Instalace simpleSAMLphp",
+		"tr": "simpleSAMLphp kuruluyor",
+		"it": "Installazione di simpleSAMLphp"
 	},
 	"link_doc_sp": {
 		"no": "Bruk simpleSAMLphp som Service Provider",
@@ -510,7 +562,9 @@
 		"pt-BR": "Usando o simpleSAMLphp como Provedor de Servi\u00e7os",
 		"pt": "Usar o simpleSAMLphp como um fornecedor de servi\u00e7o (SP)",
 		"pl": "U\u017cycie simpleSAMLphp jako Dostawca Serwisu",
-		"tr": "simpleSAMLphp'i Servis Sa\u011flay\u0131c\u0131 (SP) olarak kullanmak"
+		"cs": "Pou\u017eit\u00ed simpleSAMLphp jako SP",
+		"tr": "simpleSAMLphp'i Servis Sa\u011flay\u0131c\u0131 (SP) olarak kullanmak",
+		"it": "Usare simpleSAMLphp come Service Provider"
 	},
 	"link_doc_idp": {
 		"no": "Bruk simpleSAMLphp som identitetstjeneste",
@@ -529,7 +583,9 @@
 		"pt-BR": "Usando o simpleSAMLphp como Provedor de Identidade",
 		"pt": "Usar o simpleSAMLphp como um fornecedor de identidade (IdP)",
 		"pl": "U\u017cycie simpleSAMLphp jako Dostawca To\u017csamo\u015bci",
-		"tr": "simpleSAMLphp'i Kimlik Sa\u011flay\u0131c\u0131 (IdP) olarak kullanmak"
+		"cs": "Pou\u017eit\u00ed simpleSAMLphp jako IdP",
+		"tr": "simpleSAMLphp'i Kimlik Sa\u011flay\u0131c\u0131 (IdP) olarak kullanmak",
+		"it": "Usare simpleSAMLphp come Identity Provider"
 	},
 	"link_doc_shibsp": {
 		"no": "Konfigurer Shibboleth 1.3 SP for \u00e5 fungere sammen med simpleSAMLphp identitetstjeneste",
@@ -548,7 +604,9 @@
 		"pt-BR": "Configurando o Shibboleth 1.3 SP para trabalhar com o simpleSAMLphp Idp",
 		"pt": "Configurar um SP Shibboleth 1.3 para funcionar com um IdP simpleSAMLphp",
 		"pl": "Konfiguruj Shibboleth 1.3 SP do wsp\u00f3\u0142pracy z simpleSAMLphp IdP",
-		"tr": "Shibboleth 1.3 SP'yi simpleSAMLphp IdP ile \u00e7al\u0131\u015fmas\u0131 i\u00e7in d\u00fczenle"
+		"cs": "Konfigurace Shibboleth 1.3 SP pro pr\u00e1ci s simpleSAMLphp IdP",
+		"tr": "Shibboleth 1.3 SP'yi simpleSAMLphp IdP ile \u00e7al\u0131\u015fmas\u0131 i\u00e7in d\u00fczenle",
+		"it": "Configurare un SP Shibboleth 1.3 per funzionare con un IdP simpleSAMLphp"
 	},
 	"link_doc_googleapps": {
 		"no": "simpleSAMLphp som identitetstjeneste for Google Apps for Education",
@@ -567,7 +625,9 @@
 		"pt-BR": "simpleSAMLphp como um IdP para o Google Apps Educacional",
 		"pt": "Configurar o simpleSAMLphp  para funcionar como um IdP para o Google Apps for Education",
 		"pl": "simpleSAMLphp jako Dostawca To\u017csamo\u015bci dla Google Apps dla szkolnictwa",
-		"tr": "\"Google Apps for Education\" i\u00e7in kimlik sa\u011flay\u0131c\u0131 (IdP) olarak simpleSAMLphp "
+		"cs": "simpleSAMLphp jako IdP pro Google Apps for Education",
+		"tr": "\"Google Apps for Education\" i\u00e7in kimlik sa\u011flay\u0131c\u0131 (IdP) olarak simpleSAMLphp ",
+		"it": "simpleSAMLphp come IdP per Google Apps for Education"
 	},
 	"link_doc_advanced": {
 		"no": "simpleSAMLphp avansert funksjonalitet",
@@ -586,7 +646,9 @@
 		"pt-BR": "Recursos avan\u00e7ados do simpleSAMLphp",
 		"pt": "Funcionalidades avan\u00e7adas do simpleSAMLphp",
 		"pl": "Zaawansowane w\u0142a\u015bciwo\u015bci simpleSAMLphp",
-		"tr": "simpleSAMLphp Geli\u015fmi\u015f \u00d6zellikler"
+		"cs": "simpleSAMLphp nadstandartn\u00ed vlastnosti",
+		"tr": "simpleSAMLphp Geli\u015fmi\u015f \u00d6zellikler",
+		"it": "Funzioni avanzate di simpleSAMLphp "
 	},
 	"link_doc_maintenance": {
 		"no": "simpleSAMLphp vedlikehold og konfigurasjon",
@@ -605,7 +667,9 @@
 		"pt-BR": "Manuten\u00e7\u00e3o e Configura\u00e7\u00e3o do simpleSAMLphp",
 		"pt": "Configura\u00e7\u00e3o e manuten\u00e7\u00e3o do simpleSAMLphp",
 		"pl": "Konfiguracja i Prace administracyjne ",
-		"tr": "simpleSAMLphp Bak\u0131m ve D\u00fczenleme"
+		"cs": "simpleSAMLphp udr\u017eba a konfigurace",
+		"tr": "simpleSAMLphp Bak\u0131m ve D\u00fczenleme",
+		"it": "Manutenzione e configurazione di simpleSAMLphp "
 	},
 	"link_configcheck": {
 		"no": "Sjekk av simpleSAMLphp konfigurasjonsfiler",
@@ -623,7 +687,9 @@
 		"pt-BR": "Checar a configura\u00e7\u00e3o do simpleSAMLphp",
 		"pt": "Teste da configura\u00e7\u00e3o do simpleSAMLphp",
 		"pl": "sprawdzanie konfiguracji simpleSAMLphp",
-		"tr": "simpleSAMLphp konfig\u00fcrasyon kontrol\u00fc"
+		"cs": "Test konfigurace simpleSAMLphp",
+		"tr": "simpleSAMLphp konfig\u00fcrasyon kontrol\u00fc",
+		"it": "Controllo configurazione simpleSAMLphp"
 	},
 	"link_cleardiscochoices": {
 		"no": "Slett mitt valg av IdP i IdP discovery tjenestene",
@@ -641,7 +707,9 @@
 		"pt-BR": "Excluir minhas escolhas de IdP no servi\u00e7o de descoberta de IdP",
 		"pt": "Remover as minhas escolhas de IdP nos servi\u00e7os de descoberta de IdP",
 		"pl": "Usu\u0144 m\u00f3j wyb\u00f3r domy\u015blnych IdP w Discovery Services",
-		"tr": "IdP tan\u0131t\u0131m servisleri aras\u0131ndaki IdP se\u00e7imlerimi sil"
+		"cs": "Zapomenout moje volby poskytovatel\u016f identit a v\u00fdb\u011bru poskytovatel\u016f identit",
+		"tr": "IdP tan\u0131t\u0131m servisleri aras\u0131ndaki IdP se\u00e7imlerimi sil",
+		"it": "Dimentica la mia scelta di IdP di default"
 	},
 	"welcome": {
 		"no": "Velkommen",
@@ -658,7 +726,9 @@
 		"fi": "Tervetuloa",
 		"pt": "Bem vindo",
 		"pl": "Witaj",
-		"tr": "Ho\u015fgeldiniz"
+		"cs": "V\u00edtejte",
+		"tr": "Ho\u015fgeldiniz",
+		"it": "Benvenuto"
 	},
 	"configuration": {
 		"no": "Konfigurasjon",
@@ -675,7 +745,9 @@
 		"fi": "Asetukset",
 		"pt": "Configura\u00e7\u00e3o",
 		"pl": "Konfiguracja",
-		"tr": "Konfigurasyon"
+		"cs": "Konfigurace",
+		"tr": "Konfigurasyon",
+		"it": "Configurazione"
 	},
 	"metadata": {
 		"no": "Metadata",
@@ -692,7 +764,9 @@
 		"fi": "Metatiedot",
 		"pt": "Metadados",
 		"pl": "Metadane",
-		"tr": "\u00dcstveri (Metadata)"
+		"cs": "Metadata",
+		"tr": "\u00dcstveri (Metadata)",
+		"it": "Metadati"
 	},
 	"tools": {
 		"no": "Verkt\u00f8y",
@@ -709,7 +783,9 @@
 		"fi": "Ty\u00f6kalut",
 		"pt": "Ferramentas",
 		"pl": "Narz\u0119dzia",
-		"tr": "Ara\u00e7lar"
+		"cs": "N\u00e1stroje",
+		"tr": "Ara\u00e7lar",
+		"it": "Strumenti"
 	},
 	"show_metadata": {
 		"no": "Vis metadata",
@@ -726,7 +802,9 @@
 		"fi": "N\u00e4yt\u00e4 metatiedot",
 		"pt": "Mostrar meta-dados",
 		"pl": "Wy\u015bwietl metadane",
-		"tr": "\u00dcstveri (Metadata) g\u00f6ster"
+		"cs": "Zobraz metadata",
+		"tr": "\u00dcstveri (Metadata) g\u00f6ster",
+		"it": "Mostra metadati"
 	},
 	"login_as_admin": {
 		"no": "Login som administrator",
@@ -743,7 +821,9 @@
 		"fi": "Kirjaudu yll\u00e4pit\u00e4j\u00e4n\u00e4",
 		"pt": "Entrar como administrador",
 		"pl": "Zaloguj si\u0119 jako administrator",
-		"tr": "Y\u00f6netici olarak giri\u015f"
+		"cs": "P\u0159\u00edhl\u00e1sit se jako administr\u00e1tor",
+		"tr": "Y\u00f6netici olarak giri\u015f",
+		"it": "Accedi come amministratore"
 	},
 	"loggedin_as_admin": {
 		"no": "Du er logget inn som administrator",
@@ -760,7 +840,9 @@
 		"fi": "Olet kirjautunut yll\u00e4pit\u00e4j\u00e4n\u00e4",
 		"pt": "Est\u00e1 autenticado como administrador",
 		"pl": "Jeste\u015b zalogowany jako administrator",
-		"tr": "Y\u00f6netici olarak girdiniz"
+		"cs": "Jste p\u0159ihl\u00e1\u0161en jako administrator",
+		"tr": "Y\u00f6netici olarak girdiniz",
+		"it": "Sei connesso come amministratore"
 	},
 	"auth": {
 		"no": "Autentisering",
@@ -771,6 +853,7 @@
 		"da": "Autentificering",
 		"fi": "Tunnistautuminen",
 		"tr": "Kimlik Do\u011frulama",
+		"it": "Autenticazione",
 		"de": "Authentifizierung",
 		"pt": "Autentica\u00e7\u00e3o",
 		"fr": "Authentification",
@@ -786,6 +869,7 @@
 		"da": "F\u00f8deration",
 		"fi": "Federaatio",
 		"tr": "Federasyon",
+		"it": "Federazione",
 		"de": "F\u00f6deration",
 		"pt": "Federa\u00e7\u00e3o",
 		"fr": "F\u00e9d\u00e9ration",
@@ -801,6 +885,7 @@
 		"da": "Test konfigureret autentificeringskilde",
 		"fi": "Testaa m\u00e4\u00e4ritettyj\u00e4 tunnistusl\u00e4hteit\u00e4",
 		"tr": "D\u00fczenlenmi\u015f kimlik do\u011frulama kaynaklar\u0131n\u0131 test et",
+		"it": "Prova le fonti di autenticazione configurate",
 		"de": "Teste die konfigurierten Authentifizierungsquellen",
 		"pt": "Testar fontes de autentica\u00e7\u00e3o configuradas",
 		"fr": "Tester les sources d'authentification configur\u00e9es",
@@ -814,6 +899,7 @@
 		"nl": "Verouderd",
 		"sl": "Neustrezen",
 		"da": "Under udfasning",
+		"it": "Deprecato",
 		"de": "Veraltet",
 		"fi": "Vanhentunut",
 		"pt": "Descontinuado",
@@ -830,6 +916,7 @@
 		"hr": "simpleSAMLphp instalacijska stranica",
 		"da": "simpleSAMLphp installations side",
 		"nn": "simpleSAMLphp installasjons-side",
+		"it": "Pagina di installazione di simpleSAMLphp",
 		"es": "P\u00e1gina de instalaci\u00f3n de simpleSAMLphp"
 	}
 }

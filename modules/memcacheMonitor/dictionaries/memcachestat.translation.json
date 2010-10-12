@@ -8,6 +8,7 @@
 		"hr": "Identifikator procesa",
 		"da": "Proces ID",
 		"fr": "Identifiant de proc\u00e9ssus (PID)",
+		"it": "ID del Processo",
 		"es": "Id de Proceso"
 	},
 	"uptime": {
@@ -19,6 +20,7 @@
 		"hr": "Ukupno vrijeme rada",
 		"da": "Oppetid",
 		"fr": "Temps de fonctionnement",
+		"it": "Uptime",
 		"es": "Tiempo transcurrido"
 	},
 	"time": {
@@ -30,6 +32,7 @@
 		"hr": "Trenutno vrijeme",
 		"da": "Aktuel tid",
 		"fr": "Date courante",
+		"it": "Ora corrente",
 		"es": "Tiempo actual"
 	},
 	"version": {
@@ -41,6 +44,7 @@
 		"hr": "Verzija",
 		"da": "Version",
 		"fr": "Version",
+		"it": "Versione",
 		"es": "Versi\u00f3n"
 	},
 	"rusage_user": {
@@ -52,6 +56,7 @@
 		"hr": "CPU sekundi (korisnik)",
 		"da": "CPU sekunder (Bruger)",
 		"fr": "Temps de calcul (mode utilisateur)",
+		"it": "Secondi di CPU (User)",
 		"es": "Segundos de CPU (Usuario)"
 	},
 	"rusage_system": {
@@ -63,6 +68,7 @@
 		"hr": "CPU sekundi (sustav)",
 		"da": "CPU sekunder (System)",
 		"fr": "Temps de calcul (mode syst\u00e8me)",
+		"it": "Secondi di CPU (System)",
 		"es": "Segundos de CPU (Sistema)"
 	},
 	"curr_items": {
@@ -74,6 +80,7 @@
 		"hr": "Trenutni broj elemenata",
 		"da": "Aktuelt antal enheder",
 		"fr": "El\u00e9ment utilis\u00e9s actuellement",
+		"it": "Attuale numero di elementi",
 		"es": "N\u00famero actual de \u00edtems"
 	},
 	"total_items": {
@@ -85,6 +92,7 @@
 		"hr": "Ukupno elemenata od po\u010detka",
 		"da": "Total antal enheder",
 		"fr": "Total d'\u00e9l\u00e9ments depuis le d\u00e9marrage",
+		"it": "Numero totale di elementi",
 		"es": "N\u00famero total de \u00edtems"
 	},
 	"bytes": {
@@ -96,6 +104,7 @@
 		"hr": "Trenutno ukupno kori\u0161teno bajtova",
 		"da": "Total antal bytes brugt aktuelt",
 		"fr": "Octets utilis\u00e9s actuellement",
+		"it": "Byte attualmente utilizzati",
 		"es": "Cantidad total de bytes en uso actualmente"
 	},
 	"curr_connections": {
@@ -107,6 +116,7 @@
 		"hr": "Trenutno otvorene konekcije",
 		"da": "Nuv\u00e6rende \u00e5bne forbindelser",
 		"fr": "Connexions ouvertes",
+		"it": "Numero di connessioni aperte",
 		"es": "Conexiones abiertas actualmente"
 	},
 	"total_connections": {
@@ -118,6 +128,7 @@
 		"hr": "Ukupno konekcija",
 		"da": "Total antal forbindelser",
 		"fr": "Connexions totales",
+		"it": "Connessioni totali",
 		"es": "Total de conexiones"
 	},
 	"connection_structures": {
@@ -129,6 +140,7 @@
 		"hr": "Struktura konekcija",
 		"da": "Forbindelses strukturer",
 		"fr": "Structures de connexion",
+		"it": "Strutture di connessione",
 		"es": "Estructuras de conexi\u00f3n"
 	},
 	"cmd_get": {
@@ -140,6 +152,7 @@
 		"hr": "Ukupno GET naredbi",
 		"da": "Total antal GET kommandoer",
 		"fr": "Commandes GET",
+		"it": "Totale dei comandi GET",
 		"es": "Total de comandos GET"
 	},
 	"cmd_set": {
@@ -151,6 +164,7 @@
 		"hr": "Ukupno SET naredbi",
 		"da": "Total antal SET kommandoer",
 		"fr": "Commandes SET",
+		"it": "Totale dei comandi SET",
 		"es": "Total de comandos SET"
 	},
 	"get_hits": {
@@ -162,6 +176,7 @@
 		"hr": "Ukupno GET naredbi (uspje\u0161no izvr\u0161enih)",
 		"da": "Total antal GET kommandoer (success)",
 		"fr": "Commandes GET valides",
+		"it": "Totale dei comandi GET (con successo)",
 		"es": "Total de comandos GET (exitosos)"
 	},
 	"get_misses": {
@@ -173,6 +188,7 @@
 		"hr": "Ukupno GET naredbi (neuspje\u0161nih)",
 		"da": "Total antal GET kommandoer (fejl)",
 		"fr": "Commandes GET invalides",
+		"it": "Totale dei comandi GET (falliti)",
 		"es": "Total de comandos GET (fallidos)"
 	},
 	"bytes_read": {
@@ -184,6 +200,7 @@
 		"hr": "Bajtova poslanih poslu\u017eitelju",
 		"da": "Bytes in i serveren",
 		"fr": "Octets sur le serveur",
+		"it": "Byte nel server",
 		"es": "Bytes en el servidor"
 	},
 	"bytes_written": {
@@ -195,6 +212,7 @@
 		"hr": "Bajtova zapisanih od strane poslu\u017eitelja",
 		"da": "Bytes skrevet af serveren",
 		"fr": "Octets \u00e9crits par le serveur",
+		"it": "Byte scritti dal server",
 		"es": "Bytes escritos por el servidor"
 	},
 	"limit_maxbytes": {
@@ -206,6 +224,7 @@
 		"hr": "Ukupno raspolo\u017eivo memorijskog prostora",
 		"da": "Total plads udnyttet",
 		"fr": "Espace de stockage disponible",
+		"it": "Totale dello spazio disponibile",
 		"es": "Almacenamiento total aprovechado"
 	}
 }

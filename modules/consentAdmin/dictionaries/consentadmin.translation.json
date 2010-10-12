@@ -9,6 +9,7 @@
 		"fr": "(nom non indiqu\u00e9)",
 		"hr": "(naziv nije specificiran)",
 		"hu": "(nincs n\u00e9v)",
+		"it": "(nome non specificato)",
 		"es": "(nombre no especificado)"
 	},
 	"sp_empty_description": {
@@ -21,6 +22,7 @@
 		"fr": "(pas de description)",
 		"hr": "(nema opisa)",
 		"hu": "(nincs le\u00edr\u00e1s)",
+		"it": "(nessuna descrizione)",
 		"es": "(sin descripci\u00f3n)"
 	},
 	"attribute_org": {
@@ -33,6 +35,7 @@
 		"fr": "Institution",
 		"hr": "Ustanova",
 		"hu": "Int\u00e9zm\u00e9ny",
+		"it": "Organizzazione",
 		"es": "Organizaci\u00f3n"
 	},
 	"added": {
@@ -45,6 +48,7 @@
 		"fr": "Consentement ajout\u00e9",
 		"hr": "Dozvola dodana",
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s r\u00f6gz\u00edtve",
+		"it": "Consenso Aggiunto",
 		"es": "Consentimiento a\u00f1adido"
 	},
 	"removed": {
@@ -57,6 +61,7 @@
 		"fr": "Consentement r\u00e9voqu\u00e9",
 		"hr": "Dozvola uklonjena",
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s visszavonva",
+		"it": "Consenso Rimosso",
 		"es": "Consentimiento eliminado"
 	},
 	"updated": {
@@ -69,6 +74,7 @@
 		"fr": "Consentement mis ) jour",
 		"hr": "Dozvola a\u017eurirana",
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s friss\u00edtve",
+		"it": "Consenso Aggiornato",
 		"es": "Consentimiento actualizado"
 	},
 	"unknown": {
@@ -81,6 +87,7 @@
 		"fr": "Inconnu ...",
 		"hr": "Nepoznato ...",
 		"hu": "Ismeretlen ...",
+		"it": "Sconosciuto...",
 		"es": "Desconocido ..."
 	},
 	"attribute_id": {
@@ -93,6 +100,7 @@
 		"fr": "Identit\u00e9",
 		"hr": "Identitet",
 		"hu": "Azonoss\u00e1g",
+		"it": "Identit\u00e0",
 		"es": "Identidad"
 	},
 	"attribute_injected": {
@@ -105,6 +113,7 @@
 		"fr": "Attribut ajout\u00e9",
 		"hr": "Uba\u010deni atribut",
 		"hu": "Attrib\u00fatum besz\u00far\u00e1sa",
+		"it": "Attributo inserito",
 		"es": "Atributo inyectado"
 	},
 	"show": {
@@ -117,6 +126,7 @@
 		"fr": "Voir",
 		"hr": "Prika\u017ei",
 		"hu": "Attrib\u00fatumok megjelen\u00edt\u00e9se",
+		"it": "Mostra",
 		"es": "Mostrar"
 	},
 	"hide": {
@@ -129,6 +139,7 @@
 		"fr": "Cacher",
 		"hr": "Sakrij",
 		"hu": "Attrib\u00fatumok rejt\u00e9se",
+		"it": "Nascondi",
 		"es": "Ocultar"
 	},
 	"attributes_text": {
@@ -141,6 +152,7 @@
 		"fr": "attributs",
 		"hr": "atributi",
 		"hu": ".",
+		"it": "attributi",
 		"es": "Atributos"
 	},
 	"consentadmin_header": {
@@ -153,6 +165,7 @@
 		"fr": "Administration des consentements",
 		"hr": "Administracija dozvola",
 		"hu": "Adatkezel\u00e9si hozz\u00e1j\u00e1rul\u00e1sok kezel\u00e9se",
+		"it": "Amministrazione del consenso",
 		"es": "Administraci\u00f3n de consentimiento"
 	},
 	"consentadmin_description1": {
@@ -165,6 +178,7 @@
 		"fr": "Vous pouvez ici voir et modifier les consentements donn\u00e9s pour les fournisseurs de service.",
 		"hr": "Ovdje mo\u017eete pregledati i mijenjati va\u0161e dozvole davateljima usluga.",
 		"hu": "Ezen az oldalon lehet szolg\u00e1ltat\u00f3nk\u00e9nt (SP) az adakezel\u00e9si hozz\u00e1j\u00e1rul\u00e1sokat megtekinteni \u00e9s m\u00f3dos\u00edtani.",
+		"it": "Qui \u00e8 possibile vedere e modificare i consensi per i vari Service Provider.",
 		"es": "Aqu\u00ed puedes visualizar y editar tu consentimiento para los proveedores de servicio"
 	},
 	"consentadmin_description2": {
@@ -177,6 +191,7 @@
 		"fr": "<h3>Comment r\u00e9voquer un consentement<\/h3>D\u00e9cochez la case correspondante au fournisseur de service <h3>Liens<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Commencer<\/a><li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a><\/li><\/ul> ",
 		"hr": "<h3>Kako obrisati dozvolu<\/h3> Maknite kva\u010dicu iz polja koje se odnosi na davatelja usluge <h3>Poveznice<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Po\u010detna stranica<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">Pitanja i odgovori<\/a> <\/li> <\/ul> ",
 		"hu": "<h3>Hogyan kell visszavonni egy hozz\u00e1j\u00e1rul\u00e1st?<\/h3> A szolg\u00e1ltat\u00f3hoz tartoz\u00f3 jel\u00f6l\u0151n\u00e9gyzetben sz\u00fcntesse meg a kijel\u00f6l\u00e9st!",
+		"it": "<h3>Come rimuovere il consenso><\/h3> Togliere il segno di spunta al corrispondente service provider<h3>Collegamenti<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Inizio<\/a><\/li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a><\/li><\/ul>",
 		"es": "<h3>Como eliminar su consentimiento<\/h3> Desmarque la opci\u00f3n correspondiente al proveedor de servicios <h3>V\u00ednculos<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Inicio<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul>"
 	},
 	"login": {
@@ -189,6 +204,7 @@
 		"fr": "COnnexion",
 		"hr": "Prijavi se",
 		"hu": "Bel\u00e9p\u00e9s",
+		"it": "connessione",
 		"es": "entrar"
 	},
 	"service_providers_for": {
@@ -201,6 +217,7 @@
 		"fr": "Fournisseurs de service pour",
 		"hr": "Davatelji usluga za",
 		"hu": "Szolg\u00e1ltat\u00f3",
+		"it": "Service provider per",
 		"es": "Proveedores de servicio para"
 	},
 	"service_provider_header": {
@@ -213,6 +230,7 @@
 		"fr": "Fournisseurs de service",
 		"hr": "Davatelj usluge",
 		"hu": "Szolg\u00e1ltat\u00f3",
+		"it": "Service Provider",
 		"es": "Proveedor de servicio"
 	},
 	"status_header": {
@@ -225,6 +243,7 @@
 		"fr": "Statut du consentement",
 		"hr": "Stanje dozvola",
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s \u00e1llapota",
+		"it": "Stato del consenso",
 		"es": "Estado del consentimiento"
 	},
 	"show_hide_attributes": {
@@ -237,6 +256,7 @@
 		"fr": "voir\/cacher les attributs",
 		"hr": "prika\u017ei\/sakrij atribute",
 		"hu": "Attrib\u00fatumok megjelen\u00edt\u00e9se\/rejt\u00e9se",
+		"it": "Mostra\/nascondi attributi",
 		"es": "Mostrar\/ocultar atributos"
 	},
 	"consentadmin_purpose": {
@@ -249,6 +269,7 @@
 		"fr": "L'objet de ce service est",
 		"hr": "Namjena ovog servisa je",
 		"hu": "A szolg\u00e1ltat\u00e1s le\u00edr\u00e1sa",
+		"it": "Lo scopo di questo servizio \u00e8",
 		"es": "El prop\u00f3sito del servicio es"
 	}
 }

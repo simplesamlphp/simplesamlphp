@@ -9,7 +9,9 @@
 		"sv": "F\u00f6rbjuden access",
 		"hr": "Pristup zabranjen",
 		"da": "Adgang forbudt",
-		"fr": "Acc\u00e8s refus\u00e9"
+		"fr": "Acc\u00e8s refus\u00e9",
+		"lt": "Pri\u0117jimas u\u017edraustas",
+		"it": "Accesso vietato"
 	},
 	"403_text": {
 		"es": "No tiene los privilegios necesarios para acceder a esta aplicaci\u00f3n. Si considera que esto no es correcto, consulte el administrador.",
@@ -21,6 +23,8 @@
 		"sv": "Du har inte tillr\u00e4ckliga r\u00e4ttigheter f\u00f6r att anv\u00e4nda denna applikation. Ta kontakt med administrat\u00f6ren om detta inte st\u00e4mmer.",
 		"hr": "Nemate potrebne ovlasti za pristup ovoj aplikaciji. Molimo kontaktirajte administratora aplikacije ako smatrate da bi vam pristup aplikaciji trebao biti omogu\u0107en.",
 		"da": "Du har ikke de n\u00f8dvendige privilegier til at tilg\u00e5 applikationen. Kontakt administratoren hvis du mener at dette ikke er korrekt.",
-		"fr": "Vos privil\u00e8ges sont insuffisants pour acc\u00e9der \u00e0 cette application. Contactez vous administrateur si cette situation est anormale."
+		"fr": "Vos privil\u00e8ges sont insuffisants pour acc\u00e9der \u00e0 cette application. Contactez vous administrateur si cette situation est anormale.",
+		"lt": "J\u016bs neturite reikiam\u0173 teisi\u0173, kad pasiektum\u0117te \u0161i\u0105 aplikacij\u0105. Pra\u0161ome susisiekti su administratoriumi, jei manote, kad taip netur\u0117t\u0173 b\u016bti.",
+		"it": "Non si dispone dei privilegi per accedere a questa applicazione. Contattare l'amministratore se si ritiene che si tratti di un errore."
 	}
 }

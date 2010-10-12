@@ -4,76 +4,98 @@
 		"nn": "Tilstandsinformasjon tapt",
 		"sv": "Tillst\u00e5ndsinformation \u00e4r f\u00f6rlorad",
 		"sl": "Informacije o stanju zahtevka niso na voljo.",
-		"es": "Informaci\u00f3n de estado perdida"
+		"it": "Informazioni di stato perse",
+		"es": "Informaci\u00f3n de estado perdida",
+		"lt": "B\u016bsenos informacia prarasta"
 	},
 	"description": {
 		"no": "Vi kunne ikke finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
 		"nn": "Vi kunne ikkje finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
 		"sv": "Hittar inte tillst\u00e5ndsinformationen f\u00f6r aktuell f\u00f6rfr\u00e5gan.",
 		"sl": "Informacije o stanju trenutne zahteve ni bilo mo\u010d najti.",
-		"es": "No podemos encontrar la informaci\u00f3n de estado para la solicitud actual"
+		"it": "Non \u00e8 stato possibile localizzare le informazioni di stato per la richiesta corrente.",
+		"es": "No podemos encontrar la informaci\u00f3n de estado para la solicitud actual",
+		"lt": "Nepavyko nustatyti b\u016bsenos informacijos \u0161iai u\u017eklausai."
 	},
 	"suggestions": {
 		"no": "Forslag for \u00e5 l\u00f8se dette problemet:",
 		"nn": "Forslag for \u00e5 l\u00f8yse dette problemet:",
 		"sv": "F\u00f6rslag f\u00f6r att \u00e5tg\u00e4rda detta problem:",
 		"sl": "Predloga za razre\u0161itev nastale te\u017eave:",
-		"es": "Sugerencias para resolver este problema"
+		"it": "Suggerimenti per risolvere questo problema:",
+		"es": "Sugerencias para resolver este problema",
+		"lt": "Pasi\u016blymai spr\u0119sti \u0161i\u0105 problem\u0105:"
 	},
 	"suggestion_goback": {
 		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
 		"nn": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
 		"sv": "G\u00e5 tillbaka till f\u00f6reg\u00e5ende sida och f\u00f6rs\u00f6k igen.",
 		"sl": "Pojdite nazaj na prej\u0161njo stran in poskusite znova.",
-		"es": "Regrese a la p\u00e1gina anterior y pruebe de nuevo"
+		"it": "Tornare alla pagina precedente e provare di nuovo.",
+		"es": "Regrese a la p\u00e1gina anterior y pruebe de nuevo",
+		"lt": "Gr\u012f\u017ekite \u012f ankstesn\u012f puslap\u012f ir pabandykite dar kart\u0105."
 	},
 	"suggestion_closebrowser": {
 		"no": "Lukk nettleseren, og pr\u00f8v p\u00e5 nytt.",
 		"nn": "Lukk nettlesaren, og pr\u00f8v p\u00e5 nytt.",
 		"sv": "St\u00e4ng din webbl\u00e4sare och f\u00f6rs\u00f6k igen.",
 		"sl": "Zaprite spletni brskalnik in poskusite znova.",
-		"es": "Cierre el navegador y pruebe de nuevo"
+		"it": "Chiudere il browser web e quindi provare di nuovo.",
+		"es": "Cierre el navegador y pruebe de nuevo",
+		"lt": "U\u017edarykite interneto nar\u0161ykl\u0119 ir pabandykite dar kart\u0105."
 	},
 	"causes": {
 		"no": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
 		"nn": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
 		"sv": "Detta fel kan bero p\u00e5:",
 		"sl": "Vzrok za to napako je lahko:",
-		"es": "Este error puede ser causado por"
+		"it": "Questo errore potrebbe essere causato da:",
+		"es": "Este error puede ser causado por",
+		"lt": "\u0160i\u0105 klaid\u0105 gal\u0117jo sukelti:"
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
 		"nn": "Bruk av \"fram\"- og \"attende\"-knappane i nettlesaren.",
 		"sv": "Anv\u00e4ndning av fram\u00e5t- och bak\u00e5tknappar i webbl\u00e4saren.",
 		"sl": "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku.",
-		"es": "Usando los botones atr\u00e1s y adelante de su navegador web."
+		"it": "Utilizzo i pulsanti avanti ed indietro del browser web.",
+		"es": "Usando los botones atr\u00e1s y adelante de su navegador web.",
+		"lt": "Back (Atgal) ir Forward (Pirmyn) mygtuk\u0173 naudojimas interneto nar\u0161ykl\u0117je"
 	},
 	"cause_openbrowser": {
 		"no": "Starte nettleseren med faner lagret fra forrige gang.",
 		"nn": "Starte nettlesaren med faner lagret fra forrige gong.",
 		"sv": "\u00d6ppnande av webbl\u00e4saren med sparade flikar fr\u00e5n tidigare anv\u00e4ndning.",
 		"sl": "Spletni brskalnik je odprl spletno stan s (poteklimi) podatki iz prej\u0161nje seje.",
-		"es": "Abri\u00f3 su navegador web con pesta\u00f1as guardadas de la sesi\u00f3n previa."
+		"it": "Il browser web \u00e8 stato aperto e le finestre (tab) sono state ripristinate dalla sessione precedente.",
+		"es": "Abri\u00f3 su navegador web con pesta\u00f1as guardadas de la sesi\u00f3n previa.",
+		"lt": "Atidaryta interneto nar\u0161ykl\u0117 su kortel\u0117mis, i\u0161saugotomis i\u0161 ankstesn\u0117s sesijos."
 	},
 	"cause_nocookie": {
 		"no": "At informasjonskapsler ikke er aktivert i nettleseren.",
 		"nn": "At informasjonskapsler ikkje er aktivert i nettlesaren.",
 		"sv": "Webbkakor (Cookies) \u00e4r avst\u00e4ngt i webbl\u00e4saren.",
 		"sl": "Spletni brskalnik ima izklopjeno podporo za pi\u0161kotke.",
-		"es": "Las cookies pueden estar deshabilitadas en el navegador"
+		"it": "I cookies potrebbe essere disabilitati.",
+		"es": "Las cookies pueden estar deshabilitadas en el navegador",
+		"lt": "Interneto nar\u0161ykl\u0117je gali b\u016bti i\u0161jungti slapukai (cookies)."
 	},
 	"report_header": {
 		"no": "Rapporter denne feilen",
 		"nn": "Rapporter denne feilen",
 		"sv": "Rapportera detta fel",
 		"sl": "Prijavite to napako",
-		"es": "Informar de este error"
+		"it": "Riportare questo errore.",
+		"es": "Informar de este error",
+		"lt": "Prane\u0161ti apie \u0161i\u0105 klaid\u0105"
 	},
 	"report_text": {
 		"no": "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene.",
 		"nn": "Om problemet vedvarar, kan du rapportere det til systemadministratorane.",
 		"sv": "Om problemet kvarst\u00e5r kan du rapportera det till systemadministrat\u00f6rerna.",
 		"sl": "\u010ce se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema.",
-		"es": "Si el problema persiste, puede reportarlo a los administradores del sistema"
+		"it": "Se questo problema persiste, \u00e8 possibile segnalarlo agli amministratori di sistema.",
+		"es": "Si el problema persiste, puede reportarlo a los administradores del sistema",
+		"lt": "Jei \u0161i problema i\u0161liks, galite prane\u0161ti apie tai sistemos administratoriui."
 	}
 }

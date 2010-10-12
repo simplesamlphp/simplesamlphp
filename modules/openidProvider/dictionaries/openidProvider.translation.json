@@ -8,6 +8,7 @@
 		"hr": "Ustanova koja izdaje OpenID elektroni\u010dke identitete",
 		"da": "OpenID udbyder",
 		"fr": "Fournisseur OpenID",
+		"it": "Provider OpenID",
 		"es": "Proveedor OpenID"
 	},
 	"title_user": {
@@ -19,6 +20,7 @@
 		"hr": "OpenID za %USERID%",
 		"da": "OpenID for %USERID%",
 		"fr": "OpenID pour %USERID%",
+		"it": "OpenID per %USERID%",
 		"es": "OpenID para %USERID%"
 	},
 	"user_page_for": {
@@ -30,6 +32,7 @@
 		"hr": "Ovo je OpenID stranica za korisnika <code>%USERID%<\/code>.",
 		"da": "Dette er OpenID brugersiden for <code>%USERID%<\/code>.",
 		"fr": "Ceci est la page OpenID pour <code>%USERID%<\/code>.",
+		"it": "Questa \u00e8 la pagina utente OpenID per <code>%USERID%<code>.",
 		"es": "Esta es la p\u00e1gina OpenID de usuario para <code>%USERID%<\/code>"
 	},
 	"view_own_page": {
@@ -41,6 +44,7 @@
 		"hr": "Pogledaj vlastitu OpenID stranicu.",
 		"da": "Se din egen OpenID side.",
 		"fr": "Voir votre propre page OpenID.",
+		"it": "Visualizza la tua pagina OpenID.",
 		"es": "Visuarlizar tu propia p\u00e1gina OpenID"
 	},
 	"login_view_own_page": {
@@ -52,6 +56,7 @@
 		"hr": "Prijavite se da biste vidjeli va\u0161u OpenID stranicu.",
 		"da": "Log ind for at se dine egen OpenID side.",
 		"fr": "Connexion pour acc\u00e9der \u00e0 votre propre page OpenID.",
+		"it": "Collegati per visualizzare la tua pagina OpenID.",
 		"es": "Accede para ver tu p\u00e1gina OpenID"
 	},
 	"logout_title": {
@@ -63,6 +68,7 @@
 		"hr": "Odjavi se",
 		"da": "Log ud",
 		"fr": "Se d\u00e9connecter",
+		"it": "Disconnessione",
 		"es": "Cerrar sesi\u00f3n"
 	},
 	"logout": {
@@ -74,6 +80,7 @@
 		"da": "Klik her for at logge din OpenID bruger ud.",
 		"hr": "Kliknite ovdje da biste se odjavili.",
 		"fr": "Cliquez ici pour clore votre session OpenID.",
+		"it": "Clicca qui per disconnetterti come utente OpenID.",
 		"es": "Pincha aqu\u00ed para salir de tu usuario OpenID"
 	},
 	"confirm_question": {
@@ -85,6 +92,7 @@
 		"hr": "\u017delite li se prijaviti za pristup stranici %SITEURL%?",
 		"da": "Vil du logge ind til %SITEURL%?",
 		"fr": "Voulez vous vous connecter sur %SITEURL%?",
+		"it": "Vuoi collegarti a %SITEURL% ?",
 		"es": "\u00bfDeseas acceder a %SITEURL%?"
 	},
 	"remember": {
@@ -102,7 +110,8 @@
 		"pt": "Lembrar esta decis\u00e3o",
 		"pt-BR": "Lembrar desta decis\u00e3o",
 		"tr": "Karar\u0131m\u0131 hat\u0131rla",
-		"fr": "Retenir cette d\u00e9cision"
+		"fr": "Retenir cette d\u00e9cision",
+		"it": "Ricordati questa decisione"
 	},
 	"confirm": {
 		"no": "Bekreft",
@@ -119,7 +128,8 @@
 		"pt": "Confirmar",
 		"pt-BR": "Confirmar",
 		"tr": "Do\u011frula",
-		"fr": "Confirmer"
+		"fr": "Confirmer",
+		"it": "Confermo"
 	},
 	"notconfirm": {
 		"no": "Ikke bekreft",
@@ -136,7 +146,8 @@
 		"pt": "N\u00e3o confirmar",
 		"pt-BR": "N\u00e3o confirmar",
 		"tr": "Do\u011frulama",
-		"fr": "Ne pas confirmer"
+		"fr": "Ne pas confirmer",
+		"it": "Non confermo"
 	},
 	"trustlist_trustedsites": {
 		"no": "Klarerte websider",
@@ -153,7 +164,8 @@
 		"pt": "Sites confi\u00e1veis",
 		"pt-BR": "Sites Confi\u00e1veis",
 		"tr": "G\u00fcvenilir Siteler",
-		"fr": "Sites de confiance"
+		"fr": "Sites de confiance",
+		"it": "Siti affidabili"
 	},
 	"trustlist_remove": {
 		"no": "Fjern",
@@ -165,6 +177,7 @@
 		"pt": "Remover",
 		"hr": "Ukloni",
 		"fr": "Supprimer",
+		"it": "Rimuovere",
 		"es": "Eliminar"
 	},
 	"trustlist_nosites": {
@@ -177,6 +190,7 @@
 		"pt": "Lista de sites confi\u00e1veis vazia. Quando se autenticar num site, pode adicion\u00e1-lo a esta lista escolhendo <q>Lembrar esta decis\u00e3o<\/q>.",
 		"hr": "Trenutno ne vjerujete niti jednoj web stranici. Prilikom autentikacije za pristup nekoj web stranici mo\u017eete ju postaviti na popis stranica kojima vjerujete odabirom opcije <q>Zapamti ovu odluku<\/q>.",
 		"fr": "Aucun site de confiance. Quand vous vous authentifiez sur un site, vous pouvez d\u00e9cider de l'ajouter \u00e0 cette liste en s\u00e9lectionnant <q>Retenir cette d\u00e9cision<\/q>.",
+		"it": "Non ci sono siti affidabili. Quando ti autentichi con un sito, puoi scegliere di aggiungerlo a tale list selezionando <q>Ricordati questa decisione<\/q>.",
 		"es": "No hay sitios de confianza. Cuando te autentiques en un sitio puede elegir a\u00f1adirlo a a esta lista seleccionando <q>Recordar esta decisi\u00f3n<\/q>"
 	},
 	"your_identifier": {
@@ -188,6 +202,7 @@
 		"hr": "Da biste se prijavili s va\u0161im OpenID elektroni\u010dkim identitetom, koristite sljede\u0107i identifikator:",
 		"fr": "Pour vous connecter avec votre identifiant OpenID, utilisez l'identifiant suivant:",
 		"da": "For at logge ind med OpenID, brug f\u00f8lgende ID:",
+		"it": "Per collegarsi con il proprio identificatore OpenID, usa il seguente:",
 		"es": "Para acceder con tu identificador OpenID, usa el siguiente identificador"
 	},
 	"howto_delegate": {
@@ -199,6 +214,7 @@
 		"hr": "Ovom davatelju OpenID elektroni\u010dkih identiteta mo\u017eete dodijeliti i druga\u010diji identifikator. Da biste to napravili, morate dodati sljede\u0107i sadr\u017eaj u <code>&lt;head&gt;<\/code> element zaglavlja web stranice tog identifikatora:",
 		"fr": "Vous pouvez aussi utiliser un identifiant d\u00e9l\u00e9gu\u00e9 diff\u00e9rent pour ce fournisseur OpenID. Pour ce faire, ajoutez l'\u00e9l\u00e9ment <code>&lt;head&gt;<\/code> sur la page web de l'identifiant:",
 		"da": "Du kan ogs\u00e5 bruge et andet ID til denne OpenID udbyder. For at g\u00f8re dette, skal du tilf\u00f8je f\u00f8lgende til <code>&lt;head&gt;<\/code>-element p\u00e5 websiden for dette ID:",
+		"it": "E' possibile delegare un altro identificatore perch\u00e9 sia usato con questo provider OpenID. Per far questo, occorre aggiungere il seguente <code>&lh;head&gt;<code> elemento nella pagina web dell'identificatore:",
 		"es": "Puede adem\u00e1s utilizar un identificador diferente para utilizar este proveedor OpenID. Para hacerlo debe agregar el elemento <code>&lt;head&gt;<\/code> a la p\u00e1gina del identificador:"
 	}
 }

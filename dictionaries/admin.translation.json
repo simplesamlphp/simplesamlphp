@@ -12,9 +12,11 @@
 		"pt-BR": "Verificar configura\u00e7\u00e3o",
 		"pt": "Verifica\u00e7\u00e3o da configura\u00e7\u00e3o",
 		"pl": "Sprawdzenie konfiguracji",
+		"cs": "Verifikace konfigurace",
 		"tr": "Konfig\u00fcrasyon kontrol\u00fc",
 		"de": "Konfigurationscheck",
-		"fr": "V\u00e9rification de la configuration"
+		"fr": "V\u00e9rification de la configuration",
+		"it": "Verifica della configurazione"
 	},
 	"cfg_check_select_file": {
 		"no": "Velg hvilken konfigurasjonfil som skal sjekkes",
@@ -29,9 +31,11 @@
 		"pt-BR": "Selecione o arquivo de configura\u00e7\u00e3o para verificar",
 		"pt": "Escolha o ficheiro de configura\u00e7\u00e3o a verificar:",
 		"pl": "Wybierz plik konfiguracyjny do sprawdzenia:",
+		"cs": "Vyber konfiguracniho souboru k verifikaci:",
 		"tr": "Kontrol edilecek konfig\u00fcrasyon dosyas\u0131n\u0131 se\u00e7:",
 		"de": "W\u00e4hlen Sie die Konfigurationsdatei, die gecheckt werden soll:",
-		"fr": "S\u00e9lectionnez le fichier de configuration \u00e0 v\u00e9rifier:"
+		"fr": "S\u00e9lectionnez le fichier de configuration \u00e0 v\u00e9rifier:",
+		"it": "Selezionare il file di configurazione da verificare:"
 	},
 	"cfg_check_missing": {
 		"no": "Mangler element i konfigurasjonsfilen",
@@ -46,9 +50,11 @@
 		"pt-BR": "Op\u00e7\u00f5es faltando no arquivo de configura\u00e7\u00e3o",
 		"pt": "Op\u00e7\u00f5es ausentes do ficheiro de configura\u00e7\u00e3o",
 		"pl": "Brakuj\u0105ce opcje z pliku konfiguracyjnego",
+		"cs": "Chybejici polozky v konfiguracnim souboru",
 		"tr": "Config dosyas\u0131ndaki tercihler eksik",
 		"de": "Optionen, die in der Konfigurationsdatei fehlen",
-		"fr": "Options manquantes dans le fichier de configuration"
+		"fr": "Options manquantes dans le fichier de configuration",
+		"it": "Opzioni mancanti dal file di configurazione"
 	},
 	"cfg_check_superfluous": {
 		"no": "Overf\u00f8ldig element i konfigurasjonsfilen",
@@ -63,9 +69,11 @@
 		"pt-BR": "Op\u00e7\u00f5es sup\u00e9rfluas no arquivo de configura\u00e7\u00e3o",
 		"pt": "Op\u00e7\u00f5es sup\u00e9rfluas do ficheiro de configura\u00e7\u00e3o",
 		"pl": "Zb\u0119dne opcje w pliku konfiguracyjnym",
+		"cs": "Nadbyte\u010dn\u00e9 polo\u017eky v konfigura\u010dn\u00edm souboru",
 		"tr": "Config dosyas\u0131ndaki gereksiz tercihler",
 		"de": "\u00dcberfl\u00fcssige Optionen in der Konfigurationsdatei",
-		"fr": "Options superflues dans le fichier de configuration"
+		"fr": "Options superflues dans le fichier de configuration",
+		"it": "Opzioni superflue nel file di configurazione"
 	},
 	"cfg_check_noerrors": {
 		"no": "Ingen feil funnet",
@@ -80,9 +88,11 @@
 		"pt-BR": "N\u00e3o foram encontrados erros.",
 		"pt": "N\u00e3o foram encontrados erros.",
 		"pl": "Nie znaleziono b\u0142\u0119d\u00f3w.",
+		"cs": "Nenalezeny \u017e\u00e1dn\u00e9 chyby",
 		"tr": "Hata bulunmad\u0131.",
 		"de": "Keine Fehler gefunden.",
-		"fr": "Aucune erreur."
+		"fr": "Aucune erreur.",
+		"it": "Nessun errore trovato."
 	},
 	"cfg_check_back": {
 		"no": "G\u00e5 tilbake til fil-listen",
@@ -97,9 +107,11 @@
 		"pt-BR": "Voltar a lista de arquivos",
 		"pt": "Voltar \u00e0 lista de ficheiros",
 		"pl": "Powr\u00f3t do listy plik\u00f3w",
+		"cs": "Zp\u00e1tky na seznam soubor\u016f",
 		"tr": "Dosya listesine geri d\u00f6n",
 		"de": "Gehe zur\u00fcck zur Dateiliste",
-		"fr": "Retour \u00e0 la liste des fichiers"
+		"fr": "Retour \u00e0 la liste des fichiers",
+		"it": "Tornare indietro alla lista dei file"
 	},
 	"metaover_header": {
 		"no": "Oversikt over metadata",
@@ -114,9 +126,11 @@
 		"pt-BR": "Vis\u00e3o geral da metadata",
 		"pt": "Vista geral dos metadados",
 		"pl": "Przegl\u0105d metadanych",
+		"cs": "P\u0159ehled metadat",
 		"tr": "\u00dcstveri (metada) genel g\u00f6r\u00fcn\u00fcm\u00fc",
 		"de": "Metadaten-\u00dcberblick",
-		"fr": "Vue d'ensemble des m\u00e9tadonn\u00e9es"
+		"fr": "Vue d'ensemble des m\u00e9tadonn\u00e9es",
+		"it": "Visione generale dei metadati"
 	},
 	"metaover_intro": {
 		"no": "For \u00e5 se p\u00e5 detaljene i en SAML-entitet, klikk p\u00e5 SAML-entitet overskriften",
@@ -131,9 +145,11 @@
 		"pt-BR": "Para ver os detalhes da entidade SAML, clique ",
 		"pt": "Para obter detalhes sobre uma entidade SAML, clique no t\u00edtulo da entidade.",
 		"pl": "Kliknij na nag\u0142\u00f3wek ko\u0144c\u00f3wki aby wy\u015bwietli\u0107 szczeg\u00f3\u0142y SAML.",
+		"cs": "Pro zobrazen\u00ed detailu SAML entity, klikni na hlavi\u010dku entity",
 		"tr": "Bir SAML eleman\u0131 hakk\u0131ndaki detaylar\u0131 g\u00f6rmek i\u00e7in, SAML eleman\u0131 ba\u015fl\u0131\u011f\u0131na t\u0131klay\u0131n.",
 		"de": "Um sich Details f\u00fcr eine SAML-Entit\u00e4t anzusehen, klicken Sie auf die Kopfzeile der SAML-Entit\u00e4t.",
-		"fr": "Pour examiner les d\u00e9tails d'une entit\u00e9 SAML, cliquez sur son en-t\u00eate."
+		"fr": "Pour examiner les d\u00e9tails d'une entit\u00e9 SAML, cliquez sur son en-t\u00eate.",
+		"it": "Per visualizzare i dettagli di una entit\u00e0 SAML, cliccare sull'header SAML dell'entit\u00e0."
 	},
 	"metaover_errorentry": {
 		"no": "Feil i metadataoppf\u00f8ringen",
@@ -149,8 +165,10 @@
 		"pt-BR": "Erro na entrada desta metadata",
 		"pt": "Erro nesta entrada de metadados",
 		"pl": "B\u0142\u0105d w metadanych",
+		"cs": "Chyba v t\u00e9to polo\u017ece metadat",
 		"tr": "\u00dcstveri (metadata) bilgisinde hata var",
-		"fr": "Erreur dans les m\u00e9tadonn\u00e9es de cet \u00e9l\u00e9ment"
+		"fr": "Erreur dans les m\u00e9tadonn\u00e9es de cet \u00e9l\u00e9ment",
+		"it": "Errore in questo elemento dei metadati"
 	},
 	"metaover_required_found": {
 		"no": "Obligatorisk felt",
@@ -166,8 +184,10 @@
 		"pt-BR": "Campos requeridos",
 		"pt": "Campos obrigat\u00f3rios",
 		"pl": "Pola wymagane",
+		"cs": "Po\u017eadovan\u00e1 pole",
 		"tr": "Gerekli alanlar",
-		"fr": "Champs requis"
+		"fr": "Champs requis",
+		"it": "Campi richiesti"
 	},
 	"metaover_required_not_found": {
 		"no": "F\u00f8lgende obligatoriske felter ble ikke funnet",
@@ -183,8 +203,10 @@
 		"pt-BR": "Os seguintes campos requeridos n\u00e3o foram encontrados",
 		"pt": "Os seguintes campos obrigat\u00f3rios n\u00e3o foram encontrados",
 		"pl": "Nastepuj\u0105ce wymagane pola nie zosta\u0142y znalezione",
+		"cs": "N\u00e1sleduj\u00edc\u00ed po\u017eadovan\u00e1 pole nenalezena",
 		"tr": "\u015eu gerekli alanlar bulunamad\u0131",
-		"fr": "Les champs suivants n'existent pas et sont requis"
+		"fr": "Les champs suivants n'existent pas et sont requis",
+		"it": "I seguenti campi, richiesti, non sono stati trovati"
 	},
 	"metaover_optional_found": {
 		"no": "Valgbart felt",
@@ -200,8 +222,10 @@
 		"pt-BR": "Campos opcionais",
 		"pt": "Campos opcionais",
 		"pl": "Pola opcjonalne",
+		"cs": "Voliteln\u00e1 pole",
 		"tr": "\u0130ste\u011fe ba\u011fl\u0131 alanlar",
-		"fr": "Champs optionnels"
+		"fr": "Champs optionnels",
+		"it": "Campi opzionali"
 	},
 	"metaover_optional_not_found": {
 		"no": "F\u00f8lgende valgbare felt ble ikke funnet",
@@ -217,8 +241,10 @@
 		"pt-BR": "Os seguintes campos opcionais n\u00e3o foram encontrados",
 		"pt": "Os seguintes campos opcionais n\u00e3o foram encontrados",
 		"pl": "Nastepuj\u0105ce pola opcjonalne nie zosta\u0142y znalezione",
+		"cs": "asleduj\u00edc\u00ed voliteln\u00e1 pole nenalezena",
 		"tr": "\u015eu iste\u011fe ba\u011fl\u0131 alanlar bulunamad\u0131",
-		"fr": "Les champs optionnels suivants n'ont pas \u00e9t\u00e9 trouv\u00e9s"
+		"fr": "Les champs optionnels suivants n'ont pas \u00e9t\u00e9 trouv\u00e9s",
+		"it": "I seguenti campi, opzionali, non sono stati trovati"
 	},
 	"metaover_unknown_found": {
 		"no": "F\u00f8lgende felt ble ikke gjenkjent",
@@ -234,8 +260,10 @@
 		"pt-BR": "Os seguintes campos n\u00e3o foram reconhecidos",
 		"pt": "Os seguintes campos n\u00e3o foram reconhecidos",
 		"pl": "Nastepuj\u0105ce pola nie zosta\u0142y rozpoznane",
+		"cs": "N\u00e1sleduj\u00edc\u00ed pole nebyla rozpozn\u00e1na",
 		"tr": "\u015eu alanlar tan\u0131nmad\u0131",
-		"fr": "Les champs suivants n'ont pas \u00e9t\u00e9 reconnus"
+		"fr": "Les champs suivants n'ont pas \u00e9t\u00e9 reconnus",
+		"it": "I seguenti campi non sono stati riconosciuti"
 	},
 	"metadata_metadata": {
 		"no": "Metadata",
@@ -250,9 +278,11 @@
 		"pt-BR": "Metadata",
 		"pt": "Metadados",
 		"pl": "Metadane",
+		"cs": "Metadata",
 		"tr": "\u00dcstveri (metadata)",
 		"de": "Metadaten",
-		"fr": "M\u00e9tadonn\u00e9es"
+		"fr": "M\u00e9tadonn\u00e9es",
+		"it": "Metadati"
 	},
 	"metadata_xmlformat": {
 		"no": "I SAML 2.0 Metadata XML Format:",
@@ -267,9 +297,11 @@
 		"pt-BR": "Em formato SAML 2.0 Metadata XML",
 		"pt": "Metadados no formato XML SAML 2.0",
 		"pl": "W formacie SAML 2.0 Metadata XML",
+		"cs": "Ve SAML 2.0 metadata xml form\u00e1tu:",
 		"tr": "XML format\u0131nda SAML 2.0 SP \u00dcstverisi (Metadata)",
 		"de": "Im SAML 2.0 Metadaten-XML Format:",
-		"fr": "Au format XML de m\u00e9tadonn\u00e9es SAML 2.0"
+		"fr": "Au format XML de m\u00e9tadonn\u00e9es SAML 2.0",
+		"it": "Metadati SAML 2.0 in formato XML:"
 	},
 	"debug_sending_message_text_link": {
 		"no": "Du er i ferd med \u00e5 sende en melding. Trykk p\u00e5 send melding knappen for \u00e5 fortsette.",
@@ -283,9 +315,11 @@
 		"hu": "\u00dczenetet k\u00fcldhet. Kattintson az \u00dczenet k\u00fcld\u00e9se linkre a folytat\u00e1shoz.",
 		"pt-BR": "Voc\u00ea est\u00e1 prestes a enviar uma mensagem. Clique no link enviar a mensagem para continuar.",
 		"pt": "Est\u00e1 prestes a enviar uma mensagem. Carregue na liga\u00e7\u00e3o para continuar.",
+		"cs": "M\u016f\u017eete poslat zpr\u00e1vu. Klikn\u011bte na odkaz pro pokra\u010dov\u00e1n\u00ed.",
 		"tr": "Mesaj g\u00f6ndermek \u00fczeresiniz. Devam etmek i\u00e7in mesaj g\u00f6nder linkine t\u0131klay\u0131n.",
 		"de": "Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den Nachricht senden Link um fortzufahren.",
-		"fr": "Vous allez envoyer un message. Cliquez sur le lien d'envoi pour continuer."
+		"fr": "Vous allez envoyer un message. Cliquez sur le lien d'envoi pour continuer.",
+		"it": "Si sta per inviare un messaggio. Premere il pulsante di invio per continuare."
 	},
 	"debug_sending_message_send": {
 		"no": "Send melding",
@@ -300,9 +334,11 @@
 		"pt-BR": "Enviar mensagem",
 		"pt": "Enviar mensagem",
 		"pl": "Wy\u015blij wiadomo\u015b\u0107",
+		"cs": "Poslat zpr\u00e1vu",
 		"tr": "Mesaj g\u00f6nder",
 		"de": "Nachricht senden",
-		"fr": "Envoi du message"
+		"fr": "Envoi du message",
+		"it": "Invio messaggio"
 	},
 	"debug_sending_message_msg_title": {
 		"no": "Melding",
@@ -317,9 +353,11 @@
 		"pt-BR": "Mensagem",
 		"pt": "Mensagem",
 		"pl": "Wiadomo\u015b\u0107",
+		"cs": "Zpr\u00e1va",
 		"tr": "Mesaj",
 		"de": "Nachricht",
-		"fr": "Message"
+		"fr": "Message",
+		"it": "Messaggio"
 	},
 	"debug_sending_message_msg_text": {
 		"no": "Siden du er i debug modus kan du se innholdet i meldingene du sender.",
@@ -333,9 +371,11 @@
 		"hu": "Mivel hibakeres\u0151 m\u00f3dban van, l\u00e1thatja az elk\u00fcldend\u0151 \u00fczenet tartalm\u00e1t",
 		"pt-BR": "Como voc\u00ea est\u00e1 no modo de debug, voc\u00ea pode ver o conte\u00fado da mensagem que voc\u00ea est\u00e1 enviando:",
 		"pt": "Estando em modo debug, pode consultar o conte\u00fado da mensagem que est\u00e1 a enviar:",
+		"cs": "Pokud jste v debug m\u00f3du, m\u016f\u017eete videt obsah zpr\u00e1vy, kterou pos\u00edl\u00e1te:",
 		"tr": "\"Debug\" modda oldu\u011funuz i\u00e7in, g\u00f6nderdi\u011finiz mesaj\u0131n i\u00e7eri\u011fini g\u00f6receksiniz.",
 		"de": "Da Sie sich im Debug-Modus befinden, sehen Sie den Inhalt der Nachricht, die Sie senden:",
-		"fr": "Le mode de d\u00e9bogage est activ\u00e9, le contenu du message envoy\u00e9 est affich\u00e9:"
+		"fr": "Le mode de d\u00e9bogage est activ\u00e9, le contenu du message envoy\u00e9 est affich\u00e9:",
+		"it": "Poich\u00e8 ci si trova in modalit\u00e0 di debug, si pu\u00f2 vedere il contenuto del messaggio che si sta per inviare:"
 	},
 	"metaover_group_metadata.saml20-sp-remote": {
 		"no": "SAML 2.0 Tjenesteleverand\u00f8r (ekstern)",
@@ -350,9 +390,11 @@
 		"pt-BR": "SAML 2.0 Service Provider (Remoto)",
 		"pt": "Fornecedor de servi\u00e7o (SP) SAML 2.0 (Remoto)",
 		"pl": "SAML 2.0 Dostawca Serwisu (Zdalny)",
+		"cs": "SAML 2.O Service Provider (Remote - vzd\u00e1len\u00fd)",
 		"tr": "SAML 2.0 Servis Sa\u011flay\u0131c\u0131 (Uzak sistemde sunulan)",
 		"de": "SAML 2.0 Service Provider (entfernt)",
-		"fr": "Fournisseur de service SAML 2.0 distant"
+		"fr": "Fournisseur de service SAML 2.0 distant",
+		"it": "SAML 2.0 Service Provider (Remoto)"
 	},
 	"metaover_group_metadata.saml20-idp-hosted": {
 		"no": "SAML 2.0 Identitetsleverand\u00f8r (ekstern)",
@@ -367,9 +409,11 @@
 		"pt-BR": "SAML 2.0 Identity Provider (Local)",
 		"pt": "Fornecedor de identidade (IdP) SAML 2.0 (Local)",
 		"pl": "SAML 2.0 Dostawca To\u017csamo\u015bci (Lokalny)",
+		"cs": "SAML 2.0 Identity Provider (Hosted - lok\u00e1ln\u00ed)",
 		"tr": "SAML 2.0 Kimlik Sa\u011flay\u0131c\u0131 (Bu sistemde sunulan)",
 		"de": "SAML 2.0 Identity Provider (gehosted)",
-		"fr": "Fournisseur d'identit\u00e9 SAML 2.0 local"
+		"fr": "Fournisseur d'identit\u00e9 SAML 2.0 local",
+		"it": "SAML 2.o Identity Provider (Hosted)"
 	},
 	"metaover_group_metadata.saml20-idp-remote": {
 		"no": "SAML 2.0 Identitetsleverand\u00f8r (ekstern)",
@@ -384,9 +428,11 @@
 		"pt-BR": "SAML 2.0 Identity Provider (Remoto)",
 		"pt": "Fornecedor de identidade (IdP) SAML 2.0 (Remoto)",
 		"pl": "SAML 2.0 Dostawca To\u017csamo\u015bci (Zdalny)",
+		"cs": "SAML 2.0 Identity Provider (Remote - vzd\u00e1len\u00fd)",
 		"tr": "SAML 2.0 Kimlik Sa\u011flay\u0131c\u0131 (Uzak sistemde sunulan)",
 		"de": "SAML 2.0 Identity Provider (entfernt)",
-		"fr": "Fournisseur d'identit\u00e9 SAML 2.0 distant"
+		"fr": "Fournisseur d'identit\u00e9 SAML 2.0 distant",
+		"it": "SAML 2.0 Identity Provider (Remoto)"
 	},
 	"metaover_group_metadata.shib13-sp-hosted": {
 		"no": "Shib 1.3 Tjenesteleverand\u00f8r (intern)",
@@ -401,9 +447,11 @@
 		"pt-BR": "Shib 1.3 Service Provider (Local)",
 		"pt": "Fornecedor de servi\u00e7o (SP) Shib 1.3 (Local)",
 		"pl": "Shib 1.3 Dostawca Serwisu (Lokalny)",
+		"cs": "Shib 1.3 Service Provider (Hosted - lok\u00e1ln\u00ed)",
 		"tr": "Shib 1.3 Servis Sa\u011flay\u0131c\u0131 (Bu sistemde sunulan)",
 		"de": "Shib 1.3 Service Provider (gehosted)",
-		"fr": "Fournisseur de service Shib 1.3 local"
+		"fr": "Fournisseur de service Shib 1.3 local",
+		"it": "Shib 1.3 Service Provider (Hosted)"
 	},
 	"metaover_group_metadata.shib13-sp-remote": {
 		"no": "Shib 1.3 Tjenesteleverand\u00f8r (ekstern)",
@@ -418,9 +466,11 @@
 		"pt-BR": "Shib 1.3 Service Provider (Remoto)",
 		"pt": "Fornecedor de servi\u00e7o (SP) SAML 2.0 (Remoto)",
 		"pl": "Shib 1.3 Dostawca Serwisu (Zdalny)",
+		"cs": "Shib 1.3 Service Provider (Remote - vzd\u00e1len\u00fd)",
 		"tr": "Shib 1.3 Servis Sa\u011flay\u0131c\u0131 (Uzak sistemde sunulan)",
 		"de": "Shib 1.3 Service Provider (entfernt)",
-		"fr": "Fournisseur de service Shib 1.3 distant"
+		"fr": "Fournisseur de service Shib 1.3 distant",
+		"it": "Shib 1.3 Service Provider (Remoto)"
 	},
 	"metaover_group_metadata.shib13-idp-hosted": {
 		"no": "Shib 1.3 Identitetsleverand\u00f8r (ekstern)",
@@ -435,9 +485,11 @@
 		"pt-BR": "Shib 1.3 Identity Provider (Local)",
 		"pt": "Fornecedor de identidade (IdP) Shib 1.3 (Local)",
 		"pl": "Shib 1.3 Dostawca To\u017csamo\u015bci (Lokalny)",
+		"cs": "Shib 1.3 Identity Provider (Hosted - lok\u00e1ln\u00ed)",
 		"tr": "Shib 1.3 Kimlik Sa\u011flay\u0131c\u0131 (Bu sistemde sunulan)",
 		"de": "Shib 1.3 Identity Provider (gehosted)",
-		"fr": "Fournisseur d'identit\u00e9 Shib 1.3 local"
+		"fr": "Fournisseur d'identit\u00e9 Shib 1.3 local",
+		"it": "Shib 1.3 Identity Provider (Hosted)"
 	},
 	"metaover_group_metadata.shib13-idp-remote": {
 		"no": "Shib 1.3 Identitetsleverand\u00f8r (ekstern) ",
@@ -452,9 +504,11 @@
 		"pt-BR": "Shib 1.3 Identity Provider (Remoto)",
 		"pt": "Fornecedor de identidade (IdP) Shib 1.3 (Remoto)",
 		"pl": "Shib 1.3 Dostawca To\u017csamo\u015bci (Zdalny)",
+		"cs": "Shib 1.3 Identity Provider (Remote - vzd\u00e1len\u00fd)",
 		"tr": "Shib 1.3 Kimlik Sa\u011flay\u0131c\u0131 (Uzak sistemde sunulan)",
 		"de": "Shib 1.3 Identity Provider (entfernt)",
-		"fr": "Fournisseur d'identit\u00e9 Shib 1.3 distant"
+		"fr": "Fournisseur d'identit\u00e9 Shib 1.3 distant",
+		"it": "Shib 1.3 Identity Provider (Remoto)"
 	},
 	"metaover_group_metadata.wsfed-sp-hosted": {
 		"no": "WS-Federation tjenesteleverand\u00f8r (intern)",
@@ -469,9 +523,11 @@
 		"pt-BR": "WS-Federation Service Provider (Local)",
 		"pt": "Fornecedor de servi\u00e7o (SP) WS-Federation (Local)",
 		"pl": "WS-Federation Dostawca Serwisu (Lokalny)",
+		"cs": "WS-Federation Service Provider (Hosted - lok\u00e1ln\u00ed)",
 		"tr": "WS-Federasyon Servis Sa\u011flay\u0131c\u0131 (Bu sistemde sunulan)",
 		"de": "WS-Federation Service Provider (gehosted)",
-		"fr": "Fournisseur de service WS-federation local"
+		"fr": "Fournisseur de service WS-federation local",
+		"it": "WS-Federation Service Provider (Hosted)"
 	},
 	"metaover_group_metadata.wsfed-idp-remote": {
 		"no": "WS-Federation identitetsleverand\u00f8r (ekstern)",
@@ -486,9 +542,11 @@
 		"pt-BR": "WS-Federation Identity Provider (Remoto)",
 		"pt": "Fornecedor de identidade (IdP) WS-Federation (Remoto)",
 		"pl": "WS-Federation Dostawca To\u017csamo\u015bci (Zdalny)",
+		"cs": "WS-Federation Identity Provider (Remote - vzd\u00e1len\u00fd)",
 		"tr": "WS-Federasyon Kimlik Sa\u011flay\u0131c\u0131 (Uzak sistemde sunulan)",
 		"de": "WS-Federation Identity Provider (entfernt)",
-		"fr": "Fournisseur d'identit\u00e9 Shib 1.3 distant"
+		"fr": "Fournisseur d'identit\u00e9 Shib 1.3 distant",
+		"it": "WS-Federation Identity Provider (Remoto)"
 	},
 	"metaconv_title": {
 		"no": "Metadata parser",
@@ -503,9 +561,11 @@
 		"pt-BR": "Parser Metadata",
 		"pt": "Conversor de Metadados",
 		"pl": "Parser metadanych",
+		"cs": "Metadata parser",
 		"tr": "\u00dcstveri (metadata) \u00e7\u00f6z\u00fcmleyici",
 		"de": "Metadaten-Parser",
-		"fr": "Analyseur de m\u00e9tadonn\u00e9es"
+		"fr": "Analyseur de m\u00e9tadonn\u00e9es",
+		"it": "Parser dei metadati"
 	},
 	"metaconv_xmlmetadata": {
 		"no": "XML metadata",
@@ -520,9 +580,11 @@
 		"pt-BR": "Metadata XML",
 		"pt": "Metadados em XML",
 		"pl": "XML Metadane",
+		"cs": "XML Metadata",
 		"tr": "XML \u00fcstverisi (metadata)",
 		"de": "XML-Metadaten",
-		"fr": "M\u00e9tadonn\u00e9es XML"
+		"fr": "M\u00e9tadonn\u00e9es XML",
+		"it": "Metadati XML"
 	},
 	"metaconv_parse": {
 		"no": "Pars",
@@ -537,9 +599,11 @@
 		"pt-BR": "Parse",
 		"pt": "Converter",
 		"pl": "Przetw\u00f3rz",
+		"cs": "Anal\u00fdza",
 		"tr": "\u00c7\u00f6z\u00fcmle",
 		"de": "Parse",
-		"fr": "Analyser"
+		"fr": "Analyser",
+		"it": "Analisi"
 	},
 	"metaconv_converted": {
 		"no": "Konvertert metadata",
@@ -554,9 +618,11 @@
 		"pt-BR": "Metadata convetida",
 		"pt": "Resultado da convers\u00e3o de Metadados",
 		"pl": "Skonwertowane metadane",
+		"cs": "Konvertovan\u00e1 metadata",
 		"tr": "D\u00f6n\u00fc\u015ft\u00fcr\u00fclm\u00fc\u015f \u00fcstveri (metadata)",
 		"de": "Konvertierte Metadaten",
-		"fr": "M\u00e9tadonn\u00e9es converties"
+		"fr": "M\u00e9tadonn\u00e9es converties",
+		"it": "Metadati convertiti"
 	},
 	"metadata_saml20-sp": {
 		"no": "SAML 2.0 SP metadata",
@@ -571,9 +637,11 @@
 		"pt-BR": "SAML 2.0 SP Metadata",
 		"pt": "Metadados SAML 2.0 SP",
 		"pl": "SAML 2.0 SP - Metadane",
+		"cs": "SAML 2.0 SP Metadata",
 		"tr": "SAML 2.0 SP \u00dcstveri (Metadata)",
 		"de": "SAML 2.0 SP Metadaten",
-		"fr": "M\u00e9tadonn\u00e9es de SP SAML 2.0"
+		"fr": "M\u00e9tadonn\u00e9es de SP SAML 2.0",
+		"it": "Metadati SAML 2.0 SP"
 	},
 	"metadata_saml20-idp": {
 		"no": "SAML 2.0 IdP metadata",
@@ -588,9 +656,11 @@
 		"pt-BR": "SAML 2.0 IdP Metadata",
 		"pt": "Metadados SAML 2.0 IdP",
 		"pl": "SAML 2.0 IdP - Metadane",
+		"cs": "SAML 2.0 IdP Metadata",
 		"tr": "SAML 2.0 IdP \u00dcstveri (Metadata)",
 		"de": "SAML 2.0 IdP Metadaten",
-		"fr": "M\u00e9tadonn\u00e9es d'IdP SAML 2.0"
+		"fr": "M\u00e9tadonn\u00e9es d'IdP SAML 2.0",
+		"it": "Metadati SAML 2.0 IdP"
 	},
 	"metadata_shib13-sp": {
 		"no": "Shib 1.3 SP metadata",
@@ -605,9 +675,11 @@
 		"pt-BR": "Shib 1.3 SP Metadata",
 		"pt": "Metadados Shib 1.3 SP",
 		"pl": "Shib 1.3 SP - Metadane",
+		"cs": "Shib 1.3 SP Metadata",
 		"tr": "Shib 1.3 SP \u00dcstveri (Metadata)",
 		"de": "Shib 1.3 SP Metadaten",
-		"fr": "M\u00e9tadonn\u00e9es de SP Shib 1.3"
+		"fr": "M\u00e9tadonn\u00e9es de SP Shib 1.3",
+		"it": "Metadati Shib 1.3 SP"
 	},
 	"metadata_shib13-idp": {
 		"no": "Shib 1.3 IdP metadata",
@@ -622,9 +694,11 @@
 		"pt-BR": "Shib 1.3 IdP Metadata",
 		"pt": "Metadados Shib 1.3 IdP",
 		"pl": "Shib 1.3 IdP - Metadane",
+		"cs": "Shib 1.3 IdP Metadata",
 		"tr": "Shib 1.3 IdP \u00dcstveri (Metadata)",
 		"de": "Shib 1.3 IdP Metadaten",
-		"fr": "M\u00e9tadonn\u00e9es d'IdP Shib 1.3"
+		"fr": "M\u00e9tadonn\u00e9es d'IdP Shib 1.3",
+		"it": "Metadati Shib 1.3 IdP"
 	},
 	"metadata_intro": {
 		"no": "Her er metadata som simpleSAMLphp har generert for deg. Du m\u00e5 utveksle metadata med de partene du stoler p\u00e5 for \u00e5 sette opp en f\u00f8derasjon.",
@@ -639,9 +713,11 @@
 		"pt-BR": "Aqui est\u00e1 a metadata que o simpleSAMLphp gerou para voc\u00ea. Voc\u00ea pode enviar este documento metadata para parceiros confi\u00e1veis para a configura\u00e7\u00e3o de uma federa\u00e7\u00e3o confi\u00e1vel.",
 		"pt": "De seguida pode encontrar os metadados gerados pelo simpleSAMLphp. Pode enviar este documento de metadados aos seus parceiros para configurar uma federa\u00e7\u00e3o.",
 		"pl": "Tutaj sa metadane, kt\u00f3re simpleSAMLphp wygenerowa\u0142 dla Ciebie. Mo\u017cesz je wys\u0142a\u0107 zaufanym partnerom w celu stworzenia zaufanej federacji.",
+		"cs": "Zde jsou metadata, kter\u00e1 pro v\u00e1s simpleSAMLphp generuje. M\u016f\u017eete zaslat tento dokument sv\u00fdm d\u016fv\u011bryhodn\u00fdm partner\u016fm a zalo\u017eit tak federaci.",
 		"tr": "simpleSAMLphp'nin sizin i\u00e7in \u00fcretti\u011fi \u00fcstveri (metada). Bu \u00fcstveri dok\u00fcman\u0131n\u0131 g\u00fcvenilir bir federasyon kurmak i\u00e7in g\u00fcvenilir payda\u015flara g\u00f6nderebilirsiniz.",
 		"de": "Hier finden Sie die Metadaten, die simpleSAMLphp f\u00fcr Sie erzeugt hat. Sie k\u00f6nnen dieses Metadaten-Dokument zu Partnern schicken, denen Sie vertrauen, um eine vertrauensbasierte F\u00f6deration aufzusetzen.",
-		"fr": "Voice les m\u00e9tadonn\u00e9es g\u00e9n\u00e9r\u00e9es par simpleSAMLphp. Vous pouvez les envoyer \u00e0 vos partenaires de confiances pour construire une f\u00e9d\u00e9ration d'identit\u00e9."
+		"fr": "Voice les m\u00e9tadonn\u00e9es g\u00e9n\u00e9r\u00e9es par simpleSAMLphp. Vous pouvez les envoyer \u00e0 vos partenaires de confiances pour construire une f\u00e9d\u00e9ration d'identit\u00e9.",
+		"it": "Questi sono i metadati che simpleSAMLphp ha generato e che possono essere inviati ai partner fidati per creare una federazione tra siti."
 	},
 	"metadata_xmlurl": {
 		"no": "Du kan n\u00e5 <a href=\"%METAURL%\">metadata i XML-format p\u00e5 en dedikert URL<\/a>:",
@@ -656,9 +732,11 @@
 		"pt-BR": "Voc\u00ea pode obter as metadatas xml <a href=\"%METAURL%\"> em uma URL dedicada<\/a>:",
 		"pt": "Pode <a href=\"%METAURL%\">obter os metadados em XML num URL dedicado<\/a>:",
 		"pl": "Mo\u017cesz <a href=\"%METAURL%\">pobra\u0107 metadane w formacie xml<\/a>:",
+		"cs": "<a href=\"%METAURL%\">Z\u00edskejte metadata v XML form\u00e1tu na dedikovan\u00e9 adrese<\/a>",
 		"tr": "<a href=\"%METAURL%\">\u00dcstveri xml'ini bu ba\u011flant\u0131dan alabilirsiniz<\/a>:",
 		"de": "Sie k\u00f6nnen <a href=\"%METAURL%\">das Metadaten-XML auf dieser URL erhalten:<\/a>:",
-		"fr": "Vous pouvez <a href=\"%METAURL%\">obtenir ces m\u00e9tadonn\u00e9es XML depuis une URL d\u00e9di\u00e9e<\/a>:"
+		"fr": "Vous pouvez <a href=\"%METAURL%\">obtenir ces m\u00e9tadonn\u00e9es XML depuis une URL d\u00e9di\u00e9e<\/a>:",
+		"it": "Si possono <a href=\"%METAURL%\">ottenere i metadati in XML dall'URL dedicata<\/a>:"
 	},
 	"metadata_simplesamlformat": {
 		"no": "I simpleSAMLphp format - bruk denne dersom du benytter simpleSAMLphp i den andre enden:",
@@ -672,9 +750,11 @@
 		"hu": "SimpleSAMLphp f\u00e1jl form\u00e1tumban - akkor haszn\u00e1lhat\u00f3, ha a m\u00e1sik oldalon simpleSAMLphp van:",
 		"pt-BR": "Em formato de arquivo plano simpleSAMLphp - use isso se voc\u00ea estiver usando uma entidade  simpleSAMLphp do outro lado:",
 		"pt": "Metadados no formato ficheiro de configura\u00e7\u00e3o do simpleSAMLphp. Use esta alternativa se usar uma entidade simpleSAMLphp no outro extremo:",
+		"cs": "Ve simpleSAMLphp souborov\u00e9m form\u00e1tu (flat-file) - pou\u017eijte je, pokud pot\u0159ebujete pou\u017e\u00edvat simpleSAMLphp na druh\u00e9 stran\u011b:",
 		"tr": "E\u011fer di\u011fer tarafta bir simpleSAMLphp eleman\u0131n\u0131 kullan\u0131yorsan\u0131z, d\u00fcz simpleSAMLphp dosya bi\u00e7iminde bunu kullan\u0131n:",
 		"de": "Im simpleSAMLphp flat-file Format - verwenden Sie das, falls auf der Gegenseite eine simpleSAMLphp-Entit\u00e4t zum Einsatz kommt:",
-		"fr": "Au format \u00e0 plat simpleSAMLpgp - \u00e0 utiliser si vous avez une installation simpleSAMLphp sur la partie adverse:"
+		"fr": "Au format \u00e0 plat simpleSAMLpgp - \u00e0 utiliser si vous avez une installation simpleSAMLphp sur la partie adverse:",
+		"it": "In formato flat per simpleSAMLphp - da utilizzare se dall'altra parte c'\u00e8 un'entit\u00e0 che utilizza simpleSAMLphp"
 	},
 	"debug_sending_message_title": {
 		"no": "Sender melding",
@@ -689,9 +769,11 @@
 		"pt-BR": "Enviando a mensagem",
 		"pt": "A enviar a mensagem",
 		"pl": "Wysy\u0142anie wiadomo\u015bci",
+		"cs": "Pos\u00edl\u00e1m zpr\u00e1vu",
 		"tr": "Mesaj g\u00f6nderiliyor",
 		"de": "Sende Nachricht",
-		"fr": "Envoi du message"
+		"fr": "Envoi du message",
+		"it": "Invio del messaggio"
 	},
 	"debug_sending_message_text_button": {
 		"no": "Du er i ferd med \u00e5 sende en melding. Trykk knappen \u00abSend melding\u00bb for \u00e5 fortsette.",
@@ -705,9 +787,11 @@
 		"hu": "\u00dczenetet k\u00fcldhet. Kattintson az \u00dczenet k\u00fcld\u00e9se gombra a folytat\u00e1shoz.",
 		"pt-BR": "Voc\u00ea est\u00e1 prestes a enviar uma mensagem. Aperte o bot\u00e3o enviar mensagem para continuar.",
 		"pt": "Est\u00e1 prestes a enviar uma mensagem. Carregue no bot\u00e3o para continuar.",
+		"cs": "M\u016f\u017eete poslat zpr\u00e1vu. Po\u017eijte tla\u010d\u00edtko k pokra\u010dov\u00e1n\u00ed.",
 		"tr": "Mesaj g\u00f6ndermek \u00fczeresiniz. Devam etmek i\u00e7in mesaj g\u00f6nder butonuna t\u0131klay\u0131n.",
 		"de": "Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den Nachricht senden Knopf um fortzufahren.",
-		"fr": "Vous allez envoyer un message. Cliquez sur le bouton d'envoi pour continuer."
+		"fr": "Vous allez envoyer un message. Cliquez sur le bouton d'envoi pour continuer.",
+		"it": "Si sta per inviare un messaggio. Premere il pulsante di invio per continuare."
 	},
 	"debug_disable_debug_mode": {
 		"no": "Do kan skru av debug modus i den globale simpleSAMLphp konfigurasjonsfila <tt>config\/config.php<\/tt>.",
@@ -722,9 +806,11 @@
 		"pt-BR": "Voc\u00ea pode desligar o modo de debug no arquivo de configura\u00e7\u00e3o global do simpleSAMLphp <tt>config\/config.php<\/tt>.",
 		"pt": "Pode desligar o modo debug no ficheiro global de configura\u00e7\u00e3o <tt>config\/config.php<\/tt> do simpleSAMLphp.",
 		"pl": "Mo\u017cesz wy\u0142aczy\u0107 globalnie tryb debugowania w pliku  <tt>config\/config.php<\/tt>.",
+		"cs": "M\u016f\u017eete vypnout debug m\u00f3d v globaln\u00ed konfiguraci simpleSAMLphp <tt>config\/config.php<\/tt>.",
 		"tr": "\"Debug\" modunu global simpleSAMLphp konfig\u00fcrasyon dosyas\u0131nda <tt>config\/config.php<\/tt> kapatabilirsiniz.",
 		"de": "Sie k\u00f6nnen den Debug-Modus in der globalen simpleSAMLphp Konfigurationsdatei <tt>config\/config.php<\/tt> ausschalten.",
-		"fr": "Vous pouvez d\u00e9sactivez le mode d\u00e9bogage dans le fichier de configuration globale de simpleSAMLphp (<tt>config\/config.php<\/tt>)."
+		"fr": "Vous pouvez d\u00e9sactivez le mode d\u00e9bogage dans le fichier de configuration globale de simpleSAMLphp (<tt>config\/config.php<\/tt>).",
+		"it": "E' possibile disabilitare la modalit\u00e0 di debug nel file di configurazione globale di simpleSAMLphp, <tt>config\/config.php<\/tt>."
 	},
 	"metaover_group_metadata.saml20-sp-hosted": {
 		"no": "SAML 2.0 tjenesteleverand\u00f8r (intern)",
@@ -739,9 +825,11 @@
 		"pt-BR": "SAML 2.0 Service Provider (Local)",
 		"pt": "Fornecedor de servi\u00e7o (SP) SAML 2.0 (Local)",
 		"pl": "SAML 2.0 Dostawca Serwisu (Lokalny)",
+		"cs": "SAML 2.0 Service Provider (Hosted - lok\u00e1ln\u00ed)",
 		"tr": "SAML 2.0 Servis Sa\u011flay\u0131c\u0131 (Bu sistemde sunulan)",
 		"de": "SAML 2.0 Service Provider (gehosted)",
-		"fr": "Fournisseur de service SAML 2.0 local"
+		"fr": "Fournisseur de service SAML 2.0 local",
+		"it": "SAML 2.0 Service Provider (Hosted)"
 	},
 	"cfg_check_notices": {
 		"no": "Notiser",
@@ -756,8 +844,10 @@
 		"pt-BR": "Avisos",
 		"pt": "Observa\u00e7\u00f5es",
 		"pl": "Uwagi",
+		"cs": "Poznamky",
 		"tr": "Notlar",
 		"de": "Anmerkungen",
-		"fr": "A noter"
+		"fr": "A noter",
+		"it": "Notifiche"
 	}
 }

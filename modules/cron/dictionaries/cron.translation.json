@@ -8,7 +8,9 @@
 		"pt": "P\u00e1gina de resultados do sistema cron",
 		"sv": "Resultat sida f\u00f6r cron",
 		"hr": "Cron rezultati",
-		"fr": "Page de r\u00e9sultats de cron"
+		"fr": "Page de r\u00e9sultats de cron",
+		"it": "Pagina di risultato per cron",
+		"lt": "Crin rezultat\u0173 puslapis"
 	},
 	"cron_result_title": {
 		"da": "Her er resultatet for opgaven udf\u00f8relse:",
@@ -19,7 +21,9 @@
 		"pt": "Resultados da execu\u00e7\u00e3o do sistema cron:",
 		"sv": "H\u00e4r \u00e4r k\u00f6rningsresultatet av cronjobbet:",
 		"hr": "U nastavku su navedeni rezultati izvr\u0161avanja cron zadataka:",
-		"fr": "Voici les r\u00e9sultats d'ex\u00e9cution des t\u00e2ches cron:"
+		"fr": "Voici les r\u00e9sultats d'ex\u00e9cution des t\u00e2ches cron:",
+		"it": "Questi sono i risultati dell'esecuzione del job di cron:",
+		"lt": "\u0160tai cron funkcij\u0173 vykdymo rezultatas:"
 	},
 	"cron_info": {
 		"da": "Cron er en m\u00e5de at k\u00f8re tingene regelm\u00e6ssigt p\u00e5 UNIX-systemer.",
@@ -30,7 +34,9 @@
 		"pt": "O sistema cron serve para executar trabalhos regulares em sistemas unix.",
 		"sv": "Cron \u00e4r ett s\u00e4tt att regelbundet k\u00f6ra olika saker p\u00e5 unixsystem.",
 		"hr": "Cron je mehanizam za periodi\u010dko pokretanje procesa na Unix operacijskim sustavima.",
-		"fr": "Cron est un utilitaire permettant d'ex\u00e9cuter r\u00e9guli\u00e8rement des t\u00e2ches sur un syst\u00e8me Unix."
+		"fr": "Cron est un utilitaire permettant d'ex\u00e9cuter r\u00e9guli\u00e8rement des t\u00e2ches sur un syst\u00e8me Unix.",
+		"it": "Cron \u00e8 un sistema per eseguire attivit\u00e0 schedulate sui sistemi Unix.",
+		"lt": "Cron yra b\u016bdas taisyklingai tvarkyti reikalus unix sistemose."
 	},
 	"cron_suggestion": {
 		"da": "Her er et forslag til en crontab fil:",
@@ -41,7 +47,9 @@
 		"pt": "Sugest\u00e3o de ficheiro crontab:",
 		"sv": "H\u00e4r ett f\u00f6rslag g\u00e4llande crontabfil:",
 		"hr": "U nastavku je prijedlog sadr\u017eaja crontab datoteke:",
-		"fr": "Voici un exemple de fichier crontab:"
+		"fr": "Voici un exemple de fichier crontab:",
+		"it": "Questo \u00e8 un esempio di un file di crontab:",
+		"lt": "\u0160tai pasi\u016blymas crontab failui:"
 	},
 	"cron_execution": {
 		"da": "Klik her for at k\u00f8re cron job:",
@@ -52,7 +60,9 @@
 		"pt": "Carregue aqui para executar os cron jobs:",
 		"sv": "Klicka h\u00e4r f\u00f6r att k\u00f6ra cronjobb:",
 		"hr": "Kliknite ovdje da biste pokrenuli izvr\u0161avanje cron zadataka:",
-		"fr": "Cliquez ici pour ex\u00e9cuter les t\u00e2ches cron:"
+		"fr": "Cliquez ici pour ex\u00e9cuter les t\u00e2ches cron:",
+		"it": "Cliccare qui per eseguire i job di cron:",
+		"lt": "Spragtelkite \u010dia prad\u0117ti cron funkcij\u0173 vykdym\u0105:"
 	},
 	"run_text": {
 		"da": "Run cron:",
@@ -63,7 +73,9 @@
 		"pt": "Executar o cron:",
 		"sv": "K\u00f6r cron:",
 		"hr": "Pokreni cron:",
-		"fr": "Ex\u00e9cuter cron:"
+		"fr": "Ex\u00e9cuter cron:",
+		"it": "Esegui cron:",
+		"lt": "Vykdyti cron:"
 	},
 	"ran_text": {
 		"da": "Cron l\u00f8b p\u00e5",
@@ -74,7 +86,9 @@
 		"pt": "Cron executado em",
 		"sv": "Cron k\u00f6rde",
 		"hr": "Cron je pokrenut u",
-		"fr": "Cron s'est ex\u00e9cut\u00e9 \u00e0"
+		"fr": "Cron s'est ex\u00e9cut\u00e9 \u00e0",
+		"it": "Cron \u00e8 stato eseguito alle",
+		"lt": "Cron vydytas"
 	},
 	"cron_report_title": {
 		"da": "Cron rapport",
@@ -85,6 +99,8 @@
 		"pt": "Relat\u00f3rio cron",
 		"sv": "Cronrapport",
 		"hr": "Cron izvje\u0161taj",
-		"fr": "Rapport de cron"
+		"fr": "Rapport de cron",
+		"it": "Rapporto di cron",
+		"lt": "Cron ataskaita"
 	}
 }

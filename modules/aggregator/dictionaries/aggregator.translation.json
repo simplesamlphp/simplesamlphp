@@ -9,7 +9,9 @@
 		"da": "Metadata aggregator",
 		"fr": "Agr\u00e9gateur de m\u00e9tadonn\u00e9es",
 		"nn": "Oppsamling av metadata",
-		"es": "Agregador de metadatos"
+		"it": "Aggregatore dei metadati",
+		"es": "Agregador de metadatos",
+		"lt": "Metaduomen\u0173 surink\u0117jas"
 	},
 	"aggregator_header": {
 		"no": "Aggregatorer",
@@ -21,7 +23,9 @@
 		"da": "Aggregatorer",
 		"fr": "Agr\u00e9gateurs",
 		"nn": "Aggregering",
-		"es": "Agregadores"
+		"it": "Aggregatori",
+		"es": "Agregadores",
+		"lt": "Surink\u0117jai"
 	},
 	"no_aggregators": {
 		"no": "Ingen aggregator definert i konfigurasjonen",
@@ -33,7 +37,9 @@
 		"da": "Ingen aggregator defineret i konfigurationen",
 		"fr": "Aucun agr\u00e9gateur n'a \u00e9t\u00e9 d\u00e9fini dans la configuration.",
 		"nn": "Aggregrering er ikkje definert i konfigurasjonen.",
-		"es": "No ha sido definido ning\u00fan agregador en la configuraci\u00f3n."
+		"it": "Non ci sono aggregatori definiti nella configurazione.",
+		"es": "No ha sido definido ning\u00fan agregador en la configuraci\u00f3n.",
+		"lt": "Konfig\u016bracijoje nenurodyti jokie surink\u0117jai."
 	},
 	"text": {
 		"no": "tekst",
@@ -45,6 +51,8 @@
 		"da": "tekst",
 		"fr": "texte",
 		"nn": "Tekst",
-		"es": "texto"
+		"it": "testo",
+		"es": "texto",
+		"lt": "Tekstas"
 	}
 }

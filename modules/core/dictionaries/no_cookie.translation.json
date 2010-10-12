@@ -10,6 +10,8 @@
 		"da": "Mangler cookie",
 		"fr": "Cookie introuvable",
 		"nn": "Manglar informasjonskapsel",
+		"lt": "Slapukas nerastas",
+		"it": "Cookie mancante",
 		"es": "No se encuentra cookie"
 	},
 	"description": {
@@ -23,6 +25,8 @@
 		"da": "Det ser ud til at du har sl\u00e5et cookies fra i din browser. Tjek dine browserinstillinger og pr\u00f8v igen.",
 		"fr": "Il semble que votre navigateur refuse les cookies. Merci de v\u00e9rifier les r\u00e9glages de votre navigateur, puis de r\u00e9-essayer.",
 		"nn": "Det ser ut til at informasjonskapslar er avsl\u00e5tt i nettlesaren din. V\u00e6r vennleg og sjekk instillingane i nettlesaren din, og pr\u00f8v p\u00e5 nytt.",
+		"lt": "Atrodo J\u016bs\u0173 nar\u0161ykl\u0117 nepalaiko slapuk\u0173. Patikrinkite nar\u0161ykl\u0117s nustatymus ir bandykite dar kart\u0105.",
+		"it": "Sembra che i cookie siano disabilitati nel browser. Si prega di verificare e quindi riprovare.",
 		"es": "Al parecer ha deshabilitado las cookies de su navegador. Por favor revise las preferencias de su navegador y reintente."
 	},
 	"retry": {
@@ -36,6 +40,8 @@
 		"da": "Fors\u00f8g igen",
 		"fr": "R\u00e9-essayer",
 		"nn": "Pr\u00f8v p\u00e5 nytt",
+		"lt": "Bandyti dar kart\u0105",
+		"it": "Riprovare",
 		"es": "Reintentar"
 	}
 }

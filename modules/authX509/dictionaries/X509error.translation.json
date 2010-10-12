@@ -3,6 +3,8 @@
 		"fr": "Authentification par certificat X509",
 		"sl": "Avtentikacija z X509 digitalnim potrdilom",
 		"sv": "Inloggning med X509-certifikat",
+		"lt": "X509 sertifikato autentikacija",
+		"it": "Autenticazione con certificato X509",
 		"no": "X509 sertifikatautentisering",
 		"es": "Autenticaci\u00f3n mediante certificado X509"
 	},
@@ -10,6 +12,8 @@
 		"fr": "Un certificat X509 est requis pour acc\u00e9der \u00e0 ce service.",
 		"sl": "Avtentikacija z X509 digitalnim potrdilom je zahtevana za dostop do izbrane storitve.",
 		"sv": "Inloggning med X509-certifikat kr\u00e4vs f\u00f6r att f\u00e5 tillg\u00e5ng till denna tj\u00e4nst.",
+		"lt": "X509 sertifikato autentikacija yra reikalinga norint pasiekti \u0161i\u0105 paslaug\u0105.",
+		"it": "Una autenticazione con certificato X509 \u00e8 richiesta per accedere a questo servizio.",
 		"no": "X509 sertifikatautentisering er p\u00e5krevd for \u00e5 aksessere denne tjenesten.",
 		"es": "Se requiere autenticaci\u00f3n mediante certificado X509 para acceder a este servicio"
 	}

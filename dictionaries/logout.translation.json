@@ -15,7 +15,10 @@
 		"pt-BR": "Desconectado",
 		"pt": "Sa\u00edda efectuada com sucesso",
 		"pl": "Wylogowano",
-		"tr": "\u00c7\u0131kt\u0131n\u0131z"
+		"cs": "Odhl\u00e1\u0161en",
+		"tr": "\u00c7\u0131kt\u0131n\u0131z",
+		"it": "Disconnesso",
+		"lt": "Atsijungta"
 	},
 	"logged_out_text": {
 		"no": "Du er n\u00e5 utlogget.",
@@ -33,7 +36,10 @@
 		"pt-BR": "Voc\u00ea foi desconectado. Obrigado por usar este servi\u00e7o.",
 		"pt": "Sa\u00edda efectuada com sucesso. Obrigado por ter usado este servi\u00e7o.",
 		"pl": "Zosta\u0142e\u015b wylogowany. Dzi\u0119kuj\u0119 za skorzystanie z serwisu.",
-		"tr": "\u00c7\u0131kt\u0131n\u0131z"
+		"cs": "Jste odhl\u00e1\u0161en. D\u011bkujeme za pou\u017eit\u00ed t\u00e9to slu\u017eby.",
+		"tr": "\u00c7\u0131kt\u0131n\u0131z",
+		"it": "Sei stato disconnesso",
+		"lt": "J\u016bs buvote atjungtas nuo sistemos."
 	},
 	"default_link_text": {
 		"no": "G\u00e5 tilbake til simpleSAMLphp installasjonen sin startside.",
@@ -51,7 +57,10 @@
 		"pt-BR": "Voltar a instala\u00e7\u00e3o do simpleSAMLphp",
 		"pt": "Voltar \u00e0 p\u00e1gina de instala\u00e7\u00e3o do simpleSAMLphp",
 		"pl": "Wr\u00f3c do strony \"instalacja simpleSAMLphp\"",
-		"tr": "simpleSAMLphp kurulum sayfas\u0131na geri d\u00f6n"
+		"cs": "Zp\u00e1tky na simpleSAMLphp instala\u010dn\u00ed str\u00e1nku",
+		"tr": "simpleSAMLphp kurulum sayfas\u0131na geri d\u00f6n",
+		"it": "Torna alla pagine di installazione di simpleSAMLphp",
+		"lt": "Gr\u012f\u017eti atgal \u012f simpleSAMLphp diegimo puslap\u012f"
 	},
 	"hold": {
 		"no": "P\u00e5 vent",
@@ -66,9 +75,12 @@
 		"hu": "Felf\u00fcggesztve",
 		"pt": "Em espera",
 		"pl": "W zawieszeniu",
+		"cs": "\u010cek\u00e1m",
 		"tr": "Beklemede",
 		"de": "In der Wartschleife",
-		"fi": "Odota"
+		"fi": "Odota",
+		"lt": "Pra\u0161ome palaukti",
+		"it": "In attesa"
 	},
 	"completed": {
 		"no": "Fullf\u00f8rt",
@@ -85,7 +97,10 @@
 		"fi": "Valmis",
 		"pt": "Completa",
 		"pl": "Zako\u0144czono",
-		"tr": "Tamamland\u0131"
+		"cs": "Dokon\u010deno",
+		"tr": "Tamamland\u0131",
+		"lt": "Atlikta",
+		"it": "Completato"
 	},
 	"progress": {
 		"no": "Logger ut...",
@@ -102,7 +117,10 @@
 		"fi": "Kirjautuu ulos...",
 		"pt": "A sair...",
 		"pl": "Wylogowywanie...",
-		"tr": "\u00c7\u0131k\u0131yor"
+		"cs": "Odhla\u0161uji...",
+		"tr": "\u00c7\u0131k\u0131yor",
+		"lt": "Atjungiama...",
+		"it": "Disconnessione..."
 	},
 	"failed": {
 		"no": "Utlogging feilet",
@@ -119,7 +137,10 @@
 		"fi": "Uloskirjautuminen ep\u00e4onnistunut",
 		"pt": "Sa\u00edda falhada",
 		"pl": "Wyst\u0105pi\u0142 b\u0142ad podczas wylogowania",
-		"tr": "\u00c7\u0131k\u0131\u015f ba\u015far\u0131lamad\u0131"
+		"cs": "Odhla\u0161en\u00ed selhalo",
+		"tr": "\u00c7\u0131k\u0131\u015f ba\u015far\u0131lamad\u0131",
+		"lt": "Atsijungimas nepavyko",
+		"it": "Disconnessione fallita"
 	},
 	"return": {
 		"no": "Tilbake til tjenesten",
@@ -136,7 +157,10 @@
 		"fi": "Palaa palveluun",
 		"pt": "Regressar ao servi\u00e7o",
 		"pl": "Powr\u00f3t do serwisu",
-		"tr": "Servise geri d\u00f6n"
+		"cs": "Zp\u00e1tky na slu\u017ebu",
+		"tr": "Servise geri d\u00f6n",
+		"lt": "Gr\u012f\u017eti \u012f paslaug\u0105",
+		"it": "Ritornare al servizio"
 	},
 	"success": {
 		"no": "Du har n&aring; logget ut fra alle tjenestene listet ovenfor.",
@@ -153,7 +177,10 @@
 		"fi": "Olet onnistuneesti kirjautunut ulos kaikista yll\u00e4 listatuista palveluista.",
 		"pt": "Saiu com sucesso de todos os servi\u00e7os listados em cima.",
 		"pl": "Zosta\u0142e\u015b pomy\u015blnie wylogowany ze wszystkich powy\u017cszych serwis\u00f3w.",
-		"tr": "Yukar\u0131da listelenen t\u00fcm servislerden ba\u015far\u0131yla \u00e7\u0131kt\u0131n\u0131z."
+		"cs": "\u00dasp\u011b\u0161n\u011b jste se odhl\u00e1sili z n\u00e1sleduj\u00edc\u00edch slu\u017eeb.",
+		"tr": "Yukar\u0131da listelenen t\u00fcm servislerden ba\u015far\u0131yla \u00e7\u0131kt\u0131n\u0131z.",
+		"lt": "J\u016bs s\u0117kmingai buvote atjungtas nuo vis\u0173 \u017eemiau i\u0161vardint\u0173 paslaug\u0173.",
+		"it": "Sei stato disconnesso da tutti i servizi sopra elencati."
 	},
 	"loggedoutfrom": {
 		"no": "Du er n\u00e5 logget ut fra %SP%.",
@@ -169,8 +196,11 @@
 		"fi": "Olet kirjautunut ulos palvelusta %SP%.",
 		"pt": "Saiu com sucesso de %SP%.",
 		"pl": "Zosta\u0142e\u015b pomy\u015blnie wylogowany z %SP%.",
+		"cs": "Zah\u00e1jil jste <strong>glob\u00e1ln\u00ed odhl\u00e1\u0161en\u00ed<\/strong> z slu\u017eby <strong>%REQUESTERNAME%<\/strong>. Glob\u00e1ln\u00ed odhl\u00e1\u0161en\u00ed znamen\u00e1, \u017ee budete odhl\u00e1\u0161en z v\u0161ech n\u00e1sleduj\u00edc\u00ed slu\u017eeb.",
 		"tr": "%SP%'den ba\u015far\u0131yla \u00e7\u0131kt\u0131n\u0131z.",
-		"hr": "Uspje\u0161no ste odjavljeni iz %SP%."
+		"it": "Adesso sei correttamente disconnesso da %SP%",
+		"hr": "Uspje\u0161no ste odjavljeni iz %SP%.",
+		"lt": "J\u016bs s\u0117kmingai buvote atjungtas i\u0161 %SP%."
 	},
 	"also_from": {
 		"no": "Du er ogs\u00e5 logget inn p\u00e5 disse tjenestene:",
@@ -186,8 +216,11 @@
 		"fi": "Olet kirjautunut seuraaviin palveluihin:",
 		"pt": "Est\u00e1 tamb\u00e9m autenticado nos seguintes servi\u00e7os:",
 		"pl": "Jeste\u015b tak\u017ce zalogowany w nastepuj\u0105cych serwisach:",
+		"cs": "Jste je\u0161te p\u0159ihl\u00e1\u0161en na tyto slu\u017eby:",
 		"tr": "Ayr\u0131ca \u015fu servislere giri\u015f yapt\u0131n\u0131z:",
-		"hr": "Tako\u0111er ste prijavljeni u sljede\u0107im servisima:"
+		"it": "Attualmente sei anche connesso ai seguenti servizi:",
+		"hr": "Tako\u0111er ste prijavljeni u sljede\u0107im servisima:",
+		"lt": "J\u016bs taip pat esate prisijung\u0119s prie:"
 	},
 	"logout_all_question": {
 		"no": "Vil du logge ut fra alle tjenestene ovenfor?",
@@ -202,9 +235,12 @@
 		"hu": "Ki akar jelentkezni az \u00f6sszes fenti alkalmaz\u00e1sb\u00f3l?",
 		"pt": "Deseja sair de todos os servi\u00e7os listados em cima?",
 		"pl": "Czy chcesz zosta\u0107 wylogowany z powy\u017cszych serwis\u00f3w?",
+		"cs": "Chcete se odhl\u00e1sit ze v\u0161ech t\u011bchto slu\u017eeb?",
 		"tr": "Yukar\u0131daki t\u00fcm servislerden \u00e7\u0131kmak istiyor musunuz?",
+		"it": "Vuoi disconnetterti da tutti i servizi qui sopra riportati?",
 		"fi": "Haluatko uloskirjautua edell\u00e4mainituista palveluista?",
-		"hr": "\u017delite li se odjaviti iz svih gore navedenih servisa?"
+		"hr": "\u017delite li se odjaviti iz svih gore navedenih servisa?",
+		"lt": "Ar norite atsijungti nuo vis\u0173 \u017eemiau i\u0161vardint\u0173 paslaug\u0173?"
 	},
 	"logout_all": {
 		"no": "Ja, alle tjenestene over",
@@ -220,8 +256,11 @@
 		"fi": "Kyll\u00e4, kaikista palveluista",
 		"pt": "Sim, todos os servi\u00e7os",
 		"pl": "Tak, wszystkie serwisy",
+		"cs": "Ano, v\u0161echny slu\u017eby",
 		"tr": "Evet, t\u00fcm servisler.",
-		"hr": "Da, iz svih servisa"
+		"it": "Si, da tutti i servizi",
+		"hr": "Da, iz svih servisa",
+		"lt": "Taip, vis\u0173 paslaug\u0173"
 	},
 	"logout_only": {
 		"no": "Nei, bare %SP%",
@@ -237,8 +276,11 @@
 		"fi": "Ei, vain %SP%",
 		"pt": "N\u00e3o, apenas %SP%",
 		"pl": "Nie, tylko %SP%",
+		"cs": "Ne, jen %SP%",
 		"tr": "Hay\u0131r, sadece %SP%",
-		"hr": "Ne, samo iz %SP%"
+		"it": "No, solo da %SP%",
+		"hr": "Ne, samo iz %SP%",
+		"lt": "Ne, tik %SP%"
 	},
 	"incapablesps": {
 		"no": "En eller flere av tjenestene du er logget inn p\u00e5 <i>st\u00f8tter ikke logout<\/i>. Lukk nettleseren, dersom du \u00f8nsker \u00e5 logge ut fra disse tjenestene.",
@@ -253,9 +295,12 @@
 		"hu": "Egy vagy t\u00f6bb alkalmaz\u00e1s <i>nem t\u00e1mogatja a kijelenkez\u00e9st<\/i>. Hogy biztos\u00edtani lehessen, hogy nem maradt bejelentkezve, k\u00e9rj\u00fck, <i>l\u00e9pjen ki a b\u00f6ng\u00e9sz\u0151b\u0151l!<\/i>",
 		"pt": "Um ou mais dos servi\u00e7os onde se encontra autenticado <i>n\u00e3o suporta(m) a sa\u00edda<\/i>. Para garantir que todas as sess\u00f5es s\u00e3o encerradas, dever\u00e1 <i>encerrar o seu navegador Web<\/i>.",
 		"pl": "Jeden lub wi\u0119cej serwis\u00f3w , w kt\u00f3rych jeste\u015b zalogowany <i>nie obs\u0142uguje procesu wylogowania<\/i>. W celu upewnienia si\u0119, \u017ce wszystkie sesje s\u0105 zako\u0144czone, zalecane jest aby\u015b <i>zamkn\u0105\u0142 przegl\u0105dark\u0119<\/i>",
+		"cs": "Jedna, nebo v\u00edce slu\u017eeb, do kter\u00fdch jste p\u0159ihla\u0161en, nepodporuje odhla\u0161en\u00ed. Pokud se chcete odhl\u00e1sit, mus\u00edte ukon\u010dit v\u00e1\u0161 webov\u00fd prohl\u00ed\u017ee\u010d.",
 		"tr": "Giri\u015f yapt\u0131\u011f\u0131n\u0131z bir yada daha fazla servis <i>\u00e7\u0131k\u0131\u015f\u0131 desteklemiyor<\/i>. T\u00fcm oturumlar\u0131n\u0131z\u0131n kapat\u0131ld\u0131\u011f\u0131ndan emin olmak i\u00e7in, <i>taray\u0131c\u0131n\u0131z\u0131 kapatman\u0131z<\/i> \u00f6nerilir.",
+		"it": "Uno o pi&ugrave; servizi a cui sei connesso <i>non supportano la disconnessione<\/i>. Per assicurarsi di chiudere tutte le sessioni si consiglia di <i>chiudere il browser<\/i>",
 		"fi": "Yksi tai useampi palvelu johon olet kirjautunut <i>ei tue uloskirjautumista<\/i>. Varmistaaksesi, ett\u00e4 kaikki istuntosi sulkeutuvat, olet velvollinen <i>sulkemaan web-selaimsesi<\/i>.",
-		"hr": "Jedan ili vi\u0161e servisa na koje ste prijavljeni <i>ne podr\u017eava odjavljivanje<\/i>. Da biste bili sigurni da su sve va\u0161e sjednice zavr\u0161ene, preporu\u010damo da <i>zatvorite web preglednik<\/i>."
+		"hr": "Jedan ili vi\u0161e servisa na koje ste prijavljeni <i>ne podr\u017eava odjavljivanje<\/i>. Da biste bili sigurni da su sve va\u0161e sjednice zavr\u0161ene, preporu\u010damo da <i>zatvorite web preglednik<\/i>.",
+		"lt": "Viena ar daugiau paslaug\u0173, prie kuri\u0173 esate prisijung\u0119s <i>nepalaiko atsijungimo<\/i>. Siekiant u\u017etikrinti s\u0117kming\u0105 darbo pabaig\u0105, rekomenduojame <i>u\u017edaryti nar\u0161ykl\u0119<\/i>."
 	},
 	"no": {
 		"no": "Nei",
@@ -271,8 +316,11 @@
 		"fi": "Ei",
 		"pt": "N\u00e3o",
 		"pl": "Nie",
+		"cs": "Ne",
 		"tr": "Hay\u0131r",
-		"hr": "Ne"
+		"it": "No",
+		"hr": "Ne",
+		"lt": "Ne"
 	},
 	"logging_out_from": {
 		"sl": "Odjava iz naslednjih storitev:",
@@ -284,6 +332,8 @@
 		"de": "Melde Sie von den folgenden Diensten ab:",
 		"hr": "Odjavljujete se iz sljede\u0107ih servisa:",
 		"fr": "D\u00e9connexion des services suivants:",
+		"lt": "Vyksta atjungimas nuo \u0161i\u0173 paslaug\u0173:",
+		"it": "Disconnessione in corso dai seguenti servizi:",
 		"es": "Desconectarse de los siguientes servicios:"
 	},
 	"failedsps": {
@@ -296,6 +346,8 @@
 		"de": "Abmelden von einem oder mehreren Diensten schlug fehl. Um sicherzustellen, dass alle Ihre Sitzungen geschlossen sind, wird Ihnen empfohlen, <i>Ihren Webbrowser zu schlie\u00dfen<\/i>.",
 		"hr": "Odjavljivanje iz jednog ili vi\u0161e servisa nije uspjelo. Da biste bili sigurni da su sve va\u0161e sjednice zavr\u0161ene, preporu\u010damo da <i>zatvorite web preglednik<\/i>.",
 		"fr": "Impossible de se d\u00e9connecter d'un ou plusieurs services. Pour \u00eatre certain de clore vos sessions, il vous est recommand\u00e9 de <i>fermer votre navigateur<\/i>.",
+		"lt": "Nepavyksta atsijungti nuo vienos ar daugiau paslaug\u0173. Siekiant u\u017etikrinti s\u0117kming\u0105 darbo pabaig\u0105, rekomenduojame <i>u\u017edaryti nar\u0161ykl\u0119<\/i>.",
+		"it": "Impossibile disconnettersi da uno o pi\u00f9 servizi. Per assicurarsi di chiudere tutte le sessioni si consiglia di <i>chiudere il browser<\/i>",
 		"es": "Imposible desconectarse de uno o m\u00e1s servicios. Para asegurar que todas sus sesiones han sido cerradas, se recomienda que <i>cierre su navegador web<\/i>."
 	}
 }

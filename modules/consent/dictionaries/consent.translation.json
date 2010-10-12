@@ -16,7 +16,9 @@
 		"pt-BR": "Sim, Aceito",
 		"pt": "Sim, Aceito",
 		"pl": "Tak, akceptuj\u0119",
-		"tr": "Evet, devam et"
+		"cs": "Ano, akceptuji",
+		"tr": "Evet, devam et",
+		"it": "S\u00ec, continuare"
 	},
 	"no": {
 		"no": "Nei, avbryt",
@@ -35,7 +37,9 @@
 		"pt-BR": "N\u00e3o, n\u00e3o aceito",
 		"pt": "N\u00e3o aceito",
 		"pl": "Nie, nie akceptuj\u0119",
-		"tr": "Hay\u0131r, iptal et"
+		"cs": "Ne, neakceptuji",
+		"tr": "Hay\u0131r, iptal et",
+		"it": "No, cancellare"
 	},
 	"remember": {
 		"no": "Godta ogs\u00e5 for fremtiden",
@@ -54,7 +58,9 @@
 		"pt-BR": "Lembrar Consentimento",
 		"pt": "Lembrar a minha escolha",
 		"pl": "Pami\u0119taj moj\u0105 zgod\u0119",
-		"tr": "Hat\u0131rla"
+		"cs": "Zapamatuj",
+		"tr": "Hat\u0131rla",
+		"it": "Ricordare"
 	},
 	"consent_accept": {
 		"no": "For \u00e5 fullf\u00f8re innloggingen m\u00e5 du godta at opplysningene nedenfor sendes til SPNAME.",
@@ -73,7 +79,9 @@
 		"pt-BR": "Voc\u00ea est\u00e1 prestes a acessar o servi\u00e7o SPNAME. O servi\u00e7o exige que as informa\u00e7\u00f5es a seguir sejam transferidas do IDPNAME. Voc\u00ea aceita isso?",
 		"pt": "O servi\u00e7o SPNAME necessita que a informa\u00e7\u00e3o apresentada em baixo seja transferida.",
 		"pl": "SPNAME wymaga aby poni\u017csza informacja zosta\u0142a przes\u0142ana.",
-		"tr": "SPNAME a\u015fa\u011f\u0131daki bilgilerin g\u00f6nderilmesine ihtiya\u00e7 duyuyor."
+		"cs": "M\u016f\u017eete se p\u0159ihl\u00e1sit do slu\u017eby SPNAME",
+		"tr": "SPNAME a\u015fa\u011f\u0131daki bilgilerin g\u00f6nderilmesine ihtiya\u00e7 duyuyor.",
+		"it": "SPNAME richiede che l'informazione sotto riportata sia trasferita."
 	},
 	"login": {
 		"no": "innlogging",
@@ -92,7 +100,9 @@
 		"pt-BR": "login",
 		"pt": "Entrar",
 		"pl": "login",
-		"tr": "Giri\u015f"
+		"cs": "Login",
+		"tr": "Giri\u015f",
+		"it": "connessione"
 	},
 	"service_providers_for": {
 		"no": "Tjenesteleverand\u00f8r for",
@@ -111,7 +121,9 @@
 		"pt-BR": "Provedor de servi\u00e7os para",
 		"pt": "Fornecedores de Servi\u00e7o (SP) para",
 		"pl": "Dostawca Serwisu dla",
-		"tr": "i\u00e7in Servis Sa\u011flay\u0131c\u0131lar"
+		"cs": "Poskytovatel slu\u017eby pro",
+		"tr": "i\u00e7in Servis Sa\u011flay\u0131c\u0131lar",
+		"it": "Service Provider per"
 	},
 	"service_provider_header": {
 		"no": "Tjenesteleverand\u00f8r",
@@ -130,7 +142,9 @@
 		"pt-BR": "Provedor de Servi\u00e7os",
 		"pt": "Fornecedor de Servi\u00e7o (SP)",
 		"pl": "Dostawca serwisu",
-		"tr": "Servis Sa\u011flay\u0131c\u0131"
+		"cs": "Poskytovatel slu\u017eby",
+		"tr": "Servis Sa\u011flay\u0131c\u0131",
+		"it": "Service Provider"
 	},
 	"status_header": {
 		"no": "Samtykke-status",
@@ -149,7 +163,9 @@
 		"pt-BR": "Status do Consentimento",
 		"pt": "Consentimento",
 		"pl": "Status zgody",
-		"tr": "Onay durumu"
+		"cs": "Status souhlasu",
+		"tr": "Onay durumu",
+		"it": "Stato del consenso"
 	},
 	"show_hide_attributes": {
 		"no": "Vis\/skjul opplysninger",
@@ -168,7 +184,9 @@
 		"pt-BR": "mostra\/esconder Atributos",
 		"pt": "Mostrar\/Ocultar atributos",
 		"pl": "poka\u017c\/ukryj atrybuty",
-		"tr": "bilgileri g\u00f6ster\/gizle "
+		"cs": "zobraz\/skryj atributy",
+		"tr": "bilgileri g\u00f6ster\/gizle ",
+		"it": "Mostra\/nascondi attributi"
 	},
 	"consent_privacypolicy": {
 		"no": "Personvern for tjenesten",
@@ -185,8 +203,10 @@
 		"pt-BR": "Pol\u00edtica de Privacidade deste servi\u00e7o",
 		"pt": "Pol\u00edtica de privacidade do servi\u00e7o",
 		"pl": "Polityka prywatno\u015bci dla serwisu",
+		"cs": "Bezpe\u010dnostn\u00ed politika slu\u017eby",
 		"tr": "Servis i\u00e7in gizlilik politikas\u0131",
-		"fr": "Politique de confidentialit\u00e9 pour ce service"
+		"fr": "Politique de confidentialit\u00e9 pour ce service",
+		"it": "Politica della privacy per il servizio"
 	},
 	"noconsent_title": {
 		"no": "Ikke akseptert overf\u00f8ring av informasjon",
@@ -203,8 +223,10 @@
 		"pt-BR": "Nenhum consentimento dado",
 		"pt": "Consentimento negado",
 		"pl": "Nie wyra\u017cono zgody",
+		"cs": "Souhlas nebyl vyd\u00e1n",
 		"tr": "Onay verilmemi\u015f",
-		"fr": "Aucun consentement n'a \u00e9t\u00e9 donn\u00e9"
+		"fr": "Aucun consentement n'a \u00e9t\u00e9 donn\u00e9",
+		"it": "Nessun consenso dato"
 	},
 	"noconsent_text": {
 		"no": "Du har ikke akseptert \u00e5 overlevere opplysninger til tjenesteleverand\u00f8ren.",
@@ -221,8 +243,10 @@
 		"pt-BR": "Voc\u00ea n\u00e3o deu o consentimento para a transfer\u00eancia de seus atributos para o provedor de servi\u00e7os.",
 		"pt": "Negou o consentimento para a transfer\u00eancia dos seus atributos para o fornecedor de servi\u00e7o.",
 		"pl": "Nie wyrazi\u0142e\u015b zgody na przes\u0142anie Twoich atrybut\u00f3w do Dostawcy Serwisu.",
+		"cs": "Nedal jste souhlas pro zasl\u00e1n\u00ed sv\u00fdch atribut\u016f poskytovateli slu\u017eeb.",
 		"tr": "Bilgilerinizin servis sa\u011flay\u0131c\u0131ya g\u00f6nderilmesi i\u00e7in onay vermediniz.",
-		"fr": "Vous n'avez pas donn\u00e9 votre consentement \u00e0 la divulgation de vos attributs pour ce fournisseur de service."
+		"fr": "Vous n'avez pas donn\u00e9 votre consentement \u00e0 la divulgation de vos attributs pour ce fournisseur de service.",
+		"it": "Non hai dato il consenso per trasferire i tuoi attributi al service provider."
 	},
 	"noconsent_return": {
 		"no": "G\u00e5 tilbake til aksept-siden med opplysninger",
@@ -239,8 +263,10 @@
 		"pt-BR": "Retornar a p\u00e1gina de consentimento",
 		"pt": "Voltar \u00e0 p\u00e1gina de consentimento",
 		"pl": "Powr\u00f3t do strony wydania zezwolenia.",
+		"cs": "Zp\u00e1tky na str\u00e1nku pro souhlas",
 		"tr": "Onay sayfas\u0131na geri d\u00f6n",
-		"fr": "Retour \u00e0 la page de consentement"
+		"fr": "Retour \u00e0 la page de consentement",
+		"it": "Torna alla pagina del consenso"
 	},
 	"consent_header": {
 		"no": "Samtykke om overf\u00f8ring av personinformasjon",
@@ -256,8 +282,10 @@
 		"fi": "Henkil\u00f6tietojen luovutuksen hyv\u00e4ksynt\u00e4",
 		"pt": "Consentimento do envio de informa\u00e7\u00e3o pessoal",
 		"pl": "Zgoda na wys\u0142anie danych osobistych",
+		"cs": "Obsah odes\u00edlan\u00fdch osobn\u00edch informac\u00ed",
 		"tr": "Ki\u015fisel bilgilerin verilmesi hakk\u0131nda onay",
-		"fr": "Consentement pour la divulgation d'informations personnelles"
+		"fr": "Consentement pour la divulgation d'informations personnelles",
+		"it": "Consenso al rilascio delle informazioni personali"
 	},
 	"consent_attributes_header": {
 		"no": "Opplysninger som vil bli sendt til SPNAME",
@@ -273,8 +301,10 @@
 		"fi": "Tiedot l\u00e4hetet\u00e4\u00e4n palvelulle SPNAME",
 		"pt": "Informa\u00e7\u00e3o que ir\u00e1 ser enviada para SPNAME",
 		"pl": "Atrybuty, kt\u00f3re zostan\u0105 przes\u0142ane do serwisu",
+		"cs": "Atributy, kter\u00e9 mohou b\u00fdt zasl\u00e1ny slu\u017eb\u011b",
 		"tr": "SPNAME'e g\u00f6nderilecek bilgiler",
-		"fr": "Informations qui seront envoy\u00e9es \u00e0 SPNAME"
+		"fr": "Informations qui seront envoy\u00e9es \u00e0 SPNAME",
+		"it": "Informazioni che saranno inviate a SPNAME"
 	},
 	"show_attributes": {
 		"no": "Vis opplysninger",
@@ -290,8 +320,10 @@
 		"fi": "N\u00e4yt\u00e4 henkil\u00f6tiedot",
 		"pt": "Mostrar atributos",
 		"pl": "Wy\u015bwietl atrybuty",
+		"cs": "Zobraz atributy",
 		"tr": "\u00d6zellikleri g\u00f6ster",
-		"fr": "Montrer les attributs"
+		"fr": "Montrer les attributs",
+		"it": "Mostra attributi"
 	},
 	"noconsent_goto_about": {
 		"no": "G\u00e5 til informasjonsside om tjenesten",
@@ -307,8 +339,10 @@
 		"fi": "Siirry palvelun tiedot -sivulle",
 		"pt": "Ir para p\u00e1gina de informa\u00e7\u00e3o do servi\u00e7o",
 		"pl": "Przejd\u017a do strony informacyjnej dla tego serwisu",
+		"cs": "Jdi na str\u00e1nku s informacemi o slu\u017eb\u011b",
 		"tr": "Servis i\u00e7in bilgi sayfas\u0131na git",
-		"fr": "Aller \u00e0 la page d'information sur ce service"
+		"fr": "Aller \u00e0 la page d'information sur ce service",
+		"it": "Vai alla pagina di informazioni per il servizio"
 	},
 	"consent_purpose": {
 		"no": "Form\u00e5let med SPNAME er SPDESC",
@@ -324,8 +358,10 @@
 		"fi": "Palvelun SPNAME k\u00e4ytt\u00f6tarkoitus on SPDESC",
 		"pt": "O prop\u00f3sito de SPNAME \u00e9 SPDESC",
 		"pl": "Celem SPNAME jest SPDESC",
+		"cs": "C\u00edl SPNAME v SPDESC",
 		"tr": "SPNAME'in amac\u0131 SPDESC'tir",
-		"fr": "L'objet de SPNAME est SPDESC"
+		"fr": "L'objet de SPNAME est SPDESC",
+		"it": "Lo scopo di SPNAME \u00e8 SPDESC"
 	},
 	"table_caption": {
 		"no": "Bruker innformasjon",
@@ -341,7 +377,8 @@
 		"tr": "Kullan\u0131c\u0131 bilgisi",
 		"fr": "Information sur l'usager",
 		"hr": "Informacije o korisniku",
-		"nn": "Brukarinformasjon"
+		"nn": "Brukarinformasjon",
+		"it": "Informazioni utente"
 	},
 	"table_summary": {
 		"no": "Her listes den innformasjonen om deg som blir send til den tjenesten du er i ferd med \u00e5 logge p\u00e5",
@@ -357,7 +394,8 @@
 		"de": "Zeige die Information \u00fcber Sie, die an den Service, auf dem Sie sich einloggen werden, \u00fcbermittelt werden",
 		"fr": "Liste des informations vous concernant qui seront envoy\u00e9es au service auquel vous allez vous connecter",
 		"hr": "Prika\u017ei popis va\u0161ih podataka koji \u0107e biti proslje\u0111eni servisu kojem \u017eelite pristupiti",
-		"nn": "List informasjon om deg som blir overf\u00f8rt til tenesta du skal logga inn p\u00e5"
+		"nn": "List informasjon om deg som blir overf\u00f8rt til tenesta du skal logga inn p\u00e5",
+		"it": "Mostra le informazioni su di te che stanno per essere trasferire al servizio a cui ti vuoi collegare"
 	},
 	"show_attribute": {
 		"no": "Vis innhold",
@@ -370,6 +408,7 @@
 		"de": "Zeige Inhalt",
 		"pt": "Mostrar conte\u00fado",
 		"fr": "Montrer le contenu",
-		"hr": "Prika\u017ei sadr\u017eaj"
+		"hr": "Prika\u017ei sadr\u017eaj",
+		"it": "Mostra contenuto"
 	}
 }

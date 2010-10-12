@@ -11,9 +11,12 @@
 		"fi": "Olet siirtym\u00e4ss\u00e4 testij\u00e4rjestelm\u00e4\u00e4n. K\u00e4ytt\u00e4j\u00e4tunnistus on tarkoitettu vain testaukseen. Jos sait linkin j\u00e4rjestelm\u00e4\u00e4n ja et ole <i>testik\u00e4ytt\u00e4j\u00e4<\/i>, sait todenn\u00e4k\u00f6isesti v\u00e4\u00e4r\u00e4n linkin ja sinun ei pit\u00e4isi <b>olla t\u00e4\u00e4ll\u00e4<\/b>.",
 		"pt": "Est\u00e1 a aceder a um sistema em pr\u00e9-produ\u00e7\u00e3o. Este passo de autentica\u00e7\u00e3o servir\u00e1 apenas para testes e verifica\u00e7\u00f5es de pr\u00e9-produ\u00e7\u00e3o. Se algu\u00e9m lhe enviou este endere\u00e7o, e voc\u00ea n\u00e3o \u00e9 um <i>testador<\/i>, ent\u00e3o provavelmente recebeu um link errado, e <b>n\u00e3o deveria estar aqui<\/b>.",
 		"pl": "Korzystasz w tej chwili z wersji testowej systemu. To ustawienie uwierzytelniania jest tylko dla test\u00f3w. Je\u015bli kto\u015b wys\u0142a\u0142 Ci link kieruj\u0105cy tutaj, a ty nie jeste\u015b <i>testerem<\/i> to prawdopodobnie otrzyma\u0142e\u015b b\u0142\u0119dny link i <b>nie powiniene\u015b by\u0107 tutaj<\/b>.",
+		"cs": "Pr\u00e1v\u011b p\u0159istupujete k testovac\u00edmu syst\u00e9mu. Pokud nejste administr\u00e1tor, nebo tester, m\u00e1te pravd\u011bpodobn\u011b \u0161patn\u00fd link.",
 		"tr": "\u015eu anda tamamlanmam\u0131\u015f bir sisteme giriyorsunuz. Bu do\u011frulama kurulumu sadece test ve tamamlanma \u00f6ncesi onaylama ama\u00e7l\u0131d\u0131r. E\u011fer birileri size buray\u0131 g\u00f6steren bir ba\u011flant\u0131 g\u00f6nderdiyse, ve siz <i>test edici<\/i> de\u011filseniz, muhtemelen yanl\u0131\u015f bir ba\u011flant\u0131 ald\u0131n\u0131z\u0131, ve \u015fu anda <b>burada olmamal\u0131s\u0131n\u0131z<\/b>. ",
 		"de": "Sie greifen jetzt auf ein System im Pilotbetrieb zu. Diese Authentifizierungs-Konfiguration dient nur zum Testen und zur \u00dcberpr\u00fcfung des Pilotbetriebes. Falls Ihnen jemand einen Link gesendet hat, der Sie hierher gef\u00fchrt hat und Sie sind kein <i>Tester<\/i>, so war der Link vermutlich falsch und Sie sollten <b>nicht hier sein<\/b>. ",
-		"fr": "Ceci est un syst\u00e8me en pr\u00e9-production. La configuration d'authentification n'est destin\u00e9e qu'aux tests. Si vous n'\u00eates pas un testeur, <b>vous ne devriez pas \u00eatre l\u00e0<\/b>."
+		"fr": "Ceci est un syst\u00e8me en pr\u00e9-production. La configuration d'authentification n'est destin\u00e9e qu'aux tests. Si vous n'\u00eates pas un testeur, <b>vous ne devriez pas \u00eatre l\u00e0<\/b>.",
+		"it": "Si sta per accedere ad un sistema di pre-produzione. Questa configurazione di autenticazione \u00e8 solo allo scopo di test. Se si \u00e8 arrivati qui a seguito di link fornito da qualcuno, e non si sta operando come <i>tester<\/i>, probabilmente si \u00e8 seguito un link sbagliato visto che <b> non si dovrebbe essere qui<\/b>.",
+		"lt": "\u0160iuo metu J\u016bs kreipiat\u0117s \u012f nebaigt\u0105 diegti sistem\u0105. \u0160ie autenti\u0161kumo patvirtinimo nustatymai skirti tik testavimui ir sistemos veikimo tikrinimui. Jei ka\u017ekas Jums atsiunt\u0117 nuorod\u0105, vedan\u010di\u0105 \u010dia, ir J\u016bs nesate <i>testuotojas<\/i>, J\u016bs grei\u010diausiai gavote neteising\u0105 nuorod\u0105 ir <b>netur\u0117tum\u0117te \u010dia b\u016bti<\/b>."
 	},
 	"warning_header": {
 		"no": "Advarsel om at dette er et test oppsett",
@@ -27,9 +30,12 @@
 		"fi": "Varoitus testij\u00e4rjestelm\u00e4\u00e4 siirtymisest\u00e4",
 		"pt": "Aviso ao aceder a sistema em pr\u00e9-produ\u00e7\u00e3o",
 		"pl": "Uwaga, korzystasz z wersji testowej systemu",
+		"cs": "Varov\u00e1n\u00ed p\u0159ed p\u0159\u00edstupem do testovac\u00edho syst\u00e9mu",
 		"tr": "Tamamlanmam\u0131\u015f bir sisteme eri\u015fim hakk\u0131nda uyar\u0131",
 		"de": "Warnung beim Zugriff auf ein Pilotsystem",
-		"fr": "Avertissement sur l'acc\u00e8s \u00e0 un syst\u00e8me en pr\u00e9-production"
+		"fr": "Avertissement sur l'acc\u00e8s \u00e0 un syst\u00e8me en pr\u00e9-production",
+		"it": "Attenzione, si sta accedendo ad un sistema di pre-produzione",
+		"lt": "\u012esp\u0117jimas apie kreipim\u0105si \u012f nebaigt\u0105 diegti sistem\u0105."
 	},
 	"yes": {
 		"no": "Ja, jeg holder p\u00e5 \u00e5 teste innlogging, og vet dette er et test-system.",
@@ -43,8 +49,11 @@
 		"fi": "Hyv\u00e4ksyn siirtyv\u00e4ni testij\u00e4rjestelm\u00e4\u00e4n",
 		"pt": "Sim, eu sei que estou a aceder a um sistema em pr\u00e9-produ\u00e7\u00e3o",
 		"pl": "Tak, wiem, \u017ce korzystam z wersji testowej.",
+		"cs": "Ano, j\u00e1 v\u00edm, \u017ee p\u0159istupuj\u00ed k testovac\u00edmu syst\u00e9mu",
 		"tr": "Evet, tamanlanmam\u0131\u015f bir sisteme girdi\u011fimin fark\u0131nday\u0131m.",
 		"de": "Ja, mir ist klar dass ich auf ein System im Pilotbetrieb zugreife",
-		"fr": "Oui, je sais que j'utilise un syst\u00e8me en pr\u00e9-producion"
+		"fr": "Oui, je sais que j'utilise un syst\u00e8me en pr\u00e9-producion",
+		"it": "S\u00ec, sono consapevole che sto accedendo ad un sistema di pre-produzione",
+		"lt": "Taip, a\u0161 \u017einau, kad kreipiuosi \u012f nebaigt\u0105 diegti sistem\u0105."
 	}
 }

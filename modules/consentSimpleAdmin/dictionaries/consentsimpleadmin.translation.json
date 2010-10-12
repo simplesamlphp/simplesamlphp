@@ -11,7 +11,9 @@
 		"pt": "Remover Consentimento",
 		"tr": "Onaydan vazge\u00e7me",
 		"hr": "Povla\u010denje odobrenja",
-		"fr": "R\u00e9vocation du consentement"
+		"fr": "R\u00e9vocation du consentement",
+		"it": "Ritirare il consenso",
+		"lt": "Leidimo at\u0161aukimas"
 	},
 	"granted": {
 		"no": "Du har tidligere gitt samtykke %NO% ganger til %OF% forskjellige tjenester.",
@@ -25,7 +27,9 @@
 		"pt": "Voc\u00ea tem %NO% consentimentos definidos anteriormente para %OF% servi\u00e7os diferentes.",
 		"tr": "Daha \u00f6nce %NO% onaylar\u0131n\u0131 %OF% farkl\u0131 servisler i\u00e7in garanti ettiniz.",
 		"hr": "Do sada ste dali %NO% odobrenja za %OF% razli\u010ditih servisa.",
-		"fr": "Vous aviez pr\u00e9c\u00e9demment donn\u00e9 %NO% consentements \u00e0 %OF% services diff\u00e9rents."
+		"fr": "Vous aviez pr\u00e9c\u00e9demment donn\u00e9 %NO% consentements \u00e0 %OF% services diff\u00e9rents.",
+		"it": "Hai precedentemente dato %NO% consensi a %OF% diversi servizi.",
+		"lt": "J\u016bs anks\u010diau suteik\u0117te %NO% ledimus %OF% \u012fvairioms paslaugoms."
 	},
 	"info": {
 		"no": "Dersom du trekker tilbake alle tidligere gitte samtykker, s\u00e5 vil du hver gang du bes\u00f8ker en tjeneste p\u00e5 nytt bli spurt om du aksepterer at en gitt liste med personlig informasjon blir overf\u00f8rt til tjenesten.",
@@ -39,7 +43,9 @@
 		"pt": "Se remover os consentimentos definidos, ir-lhe-\u00e1 ser perguntado se aceita o envio de informa\u00e7\u00e3o pessoal de cada vez que aceder a um novo servi\u00e7o.",
 		"tr": "Verilen t\u00fcm onaylamalardan vazge\u00e7erseniz, verilen bir ki\u015fisel bilgi k\u00fcmesinin aktar\u0131lmas\u0131n\u0131 kabul etmeyi isteseniz istemeseniz de, yeni bir servise her girdi\u011finizde tekrar sorgulanacaks\u0131n\u0131z",
 		"hr": "Ako povu\u010dete sva dosada\u0161nja odobrenja, svaki put kad pristupite novom servisu aplikacija \u0107e od vas tra\u017eiti odobrenje za isporu\u010divanje odgovaraju\u0107eg skupa osobnih podataka.",
-		"fr": "Si vous r\u00e9voquez tous les consentements donn\u00e9s, il vous sera demand\u00e9 \u00e0 chaque acc\u00e8s sur un nouveau service si vous acceptez que vos donn\u00e9es personnelles soient transmises ou non."
+		"fr": "Si vous r\u00e9voquez tous les consentements donn\u00e9s, il vous sera demand\u00e9 \u00e0 chaque acc\u00e8s sur un nouveau service si vous acceptez que vos donn\u00e9es personnelles soient transmises ou non.",
+		"it": "Se ritiri tutti i consensi forniti, ogni volta che visiterai un nuovo servizio, ti verr\u00e0 chiesto se vorrai trasferire un insieme di informazioni personali.",
+		"lt": "Jei at\u0161auksime visus suteiktus leidimus, kiekvien\u0105 kart\u0105 kai lankysite nauj\u0105 paslaug\u0105  v\u0117l b\u016bsite klausiamas, ar sutinkate, kad b\u016bt\u0173 perduodamas duotasis asmenin\u0117s informacijos rinkinys."
 	},
 	"withdraw": {
 		"no": "Trekk tilbake alle tidligere gitte samtykker",
@@ -53,7 +59,9 @@
 		"pt": "Remover todos os Consentimentos definidos",
 		"tr": "Verilen t\u00fcm onaylardan vazge\u00e7",
 		"hr": "Povuci sva odobrenja",
-		"fr": "R\u00e9voquer tous les consentements donn\u00e9s"
+		"fr": "R\u00e9voquer tous les consentements donn\u00e9s",
+		"it": "Ritira tutti i consensi forniti",
+		"lt": "At\u0161aukti visus suteiktus leidimus"
 	},
 	"headerstats": {
 		"no": "Samtykke statistikk",
@@ -67,7 +75,9 @@
 		"pt": "Estat\u00edsticas do armazenamento de Consentimentos",
 		"tr": "Onay Depolama \u0130statistikleri",
 		"hr": "Statistike odobrenja",
-		"fr": "Statistiques du d\u00e9p\u00f4t de consentement"
+		"fr": "Statistiques du d\u00e9p\u00f4t de consentement",
+		"it": "Statistiche sui consensi memorizzati",
+		"lt": "Leidim\u0173 Saugyklos Statistika"
 	},
 	"stattotal": {
 		"no": "Samtykkelageret inneholder %NO% innslag.",
@@ -81,7 +91,9 @@
 		"pt": "O armazenamento de consentimentos cont\u00e9m %NO% entradas.",
 		"tr": "Onay depolama %NO% elemanlar\u0131 i\u00e7ermektedir",
 		"hr": "Arhiva odobrenja sadr\u017ei %NO% zapisa.",
-		"fr": "Le d\u00e9p\u00f4t de consentements contient %NO% \u00e9l\u00e9ments. "
+		"fr": "Le d\u00e9p\u00f4t de consentements contient %NO% \u00e9l\u00e9ments. ",
+		"it": "Immagazzinati consensi per %NO% voci.",
+		"lt": "Leidim\u0173 saugyklose yra %NO% \u012fra\u0161\u0173."
 	},
 	"statusers": {
 		"no": "%NO% unike brukere har avgitt samtykke.",
@@ -95,7 +107,9 @@
 		"pt": "%NO\" utilizador distintos deram o seu consentimento.",
 		"tr": "%NO% biricik (unique) kullan\u0131c\u0131lar onay verdi.",
 		"hr": "%NO% pojedina\u010dnih korisnika je dalo odobrenje.",
-		"fr": "%NO% usagers distincts ont donn\u00e9 un consentement."
+		"fr": "%NO% usagers distincts ont donn\u00e9 un consentement.",
+		"it": "%NO% distinti utenti hanno dato il consenso.",
+		"lt": "%NO% unikali\u0173 naudotoj\u0173 suteik\u0117 leidim\u0105."
 	},
 	"statservices": {
 		"no": "Samtykke er avgitt til %NO% unike tjenester.",
@@ -109,6 +123,8 @@
 		"pt": "Est\u00e3o definidos consentimentos para %NO% servi\u00e7os distintos.",
 		"tr": "Onay %NO% biricik (unique) servislere veriliyor.",
 		"hr": "Odobrenje je dano za %NO% razli\u010ditih servisa.",
-		"fr": "Un consentement a \u00e9t\u00e9 donn\u00e9 \u00e0 %NO% services diff\u00e9rents."
+		"fr": "Un consentement a \u00e9t\u00e9 donn\u00e9 \u00e0 %NO% services diff\u00e9rents.",
+		"it": "Il consenso \u00e8 stato dato a %NO% servizi distinti.",
+		"lt": "Leidimas suteiktas %NO% unikalioms paslaugoms."
 	}
 }

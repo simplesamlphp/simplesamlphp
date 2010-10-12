@@ -8,8 +8,10 @@
 		"hr": "Sustav je utvrdio da je pro\u0161lo tek nekoliko sekundi otkad ste se zadnji put autenticirali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davatelja usluge.",
 		"da": "Vi har opdaget at det kun er f\u00e5 sekunder siden du sidst autentificerede dig op mod denne service. Vi antager derfor at der er et problem med services.",
 		"fr": "Il ne s'est \u00e9coul\u00e9 que quelques secondes depuis votre authentification pr\u00e9c\u00e9dente, ce qui est la marque d'un dysfonctionnement de ce SP.",
+		"it": "E' stato rilevato che sono passati solo alcuni secondi dalla tua ultima autenticazione con questo fornitore di servizio, quindi si pu\u00f2 assumere che ci sia un problema con il Service Provider.",
 		"es": "Se ha detectado que han transcurrido solo unos segundos desde que fue autenticado por \u00faltima vez en este servicio, por lo que se asumir\u00e1 que existe un problema con este SP.",
-		"nn": "Hemos detectado que hace s\u00f3lo unos segundos desde que te autenticaste por \u00faltima vez con este proveedor de servicio por lo que asumimos que puede existir un problema con este SP"
+		"nn": "Hemos detectado que hace s\u00f3lo unos segundos desde que te autenticaste por \u00faltima vez con este proveedor de servicio por lo que asumimos que puede existir un problema con este SP",
+		"lt": "Mes nustat\u0117me, kad pra\u0117jo tik kelios sekund\u0117s nuo J\u016bs\u0173 autenti\u0161kumo patvirtimo \u0161iam paslaugos teik\u0117jui, d\u0117l to manome, kad yra nesklandum\u0173 su SP."
 	},
 	"warning_header": {
 		"no": "For kort intervall imellom innloggingsforesp\u00f8rsler",
@@ -20,8 +22,10 @@
 		"hr": "Prekratak interval izme\u0111u uzastopnih SSO autentikacija.",
 		"da": "For kort interval mellem single sign on h\u00e6ndelse.",
 		"fr": "Connexions uniques trop proches dans le temps.",
+		"it": "L'intervallo tra le autenticazioni \u00e8 troppo breve.",
 		"es": "Intervalo de tiempo muy corto entre eventos de sesi\u00f3n \u00fanica.",
-		"nn": "Intervalo demasiado corto entre dos eventos de SSO"
+		"nn": "Intervalo demasiado corto entre dos eventos de SSO",
+		"lt": "Per trumpas intervalas tarp prisijungim\u0173 prie paslaug\u0173."
 	},
 	"retry": {
 		"no": "Fors\u00f8k \u00e5 logge inn p\u00e5 nytt",
@@ -32,7 +36,9 @@
 		"hr": "Poku\u0161aj se prijaviti ponovo",
 		"da": "Login igen",
 		"fr": "R\u00e9-essayez de vous connecter",
+		"it": "Riprovare a connettersi",
 		"es": "Reintente autenticaci\u00f3n",
-		"nn": "Reintente el acceso"
+		"nn": "Reintente el acceso",
+		"lt": "Prisijunkite i\u0161 naujo"
 	}
 }

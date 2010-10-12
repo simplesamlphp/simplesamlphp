@@ -8,7 +8,9 @@
 		"hr": "Raspolo\u017eivi moduli",
 		"da": "Tilg\u00e6ngelige moduler",
 		"fr": "Modules disponibles",
-		"es": "M\u00f3dulos disponibles"
+		"it": "Moduli disponibili",
+		"es": "M\u00f3dulos disponibles",
+		"lt": "Esami moduliai"
 	},
 	"modlist_name": {
 		"no": "Navn",
@@ -19,7 +21,9 @@
 		"hr": "Naziv",
 		"da": "Navn",
 		"fr": "Nom",
-		"es": "Nombre"
+		"it": "Nome",
+		"es": "Nombre",
+		"lt": "Pavadinimas"
 	},
 	"modlist_status": {
 		"no": "Status",
@@ -30,7 +34,9 @@
 		"hr": "Status",
 		"da": "Status",
 		"fr": "Statut",
-		"es": "Estado"
+		"it": "Stato",
+		"es": "Estado",
+		"lt": "B\u016bsena"
 	},
 	"modlist_enabled": {
 		"no": "P\u00e5sl\u00e5tt",
@@ -41,7 +47,9 @@
 		"hr": "Omogu\u0107en",
 		"da": "Sl\u00e5et til",
 		"fr": "Activ\u00e9",
-		"es": "Habilitado"
+		"it": "Attivato",
+		"es": "Habilitado",
+		"lt": "Palaikomas"
 	},
 	"modlist_disabled": {
 		"no": "Avsl\u00e5tt",
@@ -52,6 +60,8 @@
 		"hr": "Onemogu\u0107en",
 		"da": "Sl\u00e5et fra",
 		"fr": "D\u00e9sactiv\u00e9",
-		"es": "Deshabilitado"
+		"it": "Disattivato",
+		"es": "Deshabilitado",
+		"lt": "Nepalaikomas"
 	}
 }
