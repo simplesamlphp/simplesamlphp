@@ -57,6 +57,12 @@ if ($organizations !== NULL) {
 	$t->data['organizations'] = $organizations;
 }
 
+if (isset($state['SPMetadata'])) {
+	$t->data['SPMetadata'] = $state['SPMetadata'];
+} else {
+	$t->data['SPMetadata'] = NULL;
+}
+
 $t->show();
 exit();
 
