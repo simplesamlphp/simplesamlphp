@@ -537,6 +537,7 @@ class SimpleSAML_IdP {
 				SimpleSAML_Auth_Default::initLogoutReturn($returnTo);
 			} elseif ($authority === 'saml2') {
 				/* SAML 2 SP which isn't an authentication source. */
+				$config = SimpleSAML_Configuration::getInstance();
 				SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'saml2/sp/initSLO.php',
 					array('RelayState' => $returnTo)
 				);
