@@ -17,7 +17,8 @@
 		"pl": "Przyk\u0142adowe Demo SAML 2.0 SP",
 		"cs": "SAML 2.0 SP Demo",
 		"tr": "SAML 2.0 SP Demo \u00d6rne\u011fi",
-		"it": "Demo di SAML 2.0 SP"
+		"it": "Demo di SAML 2.0 SP",
+		"lt": "SAML 2.0 SP Demonstracin\u0117s versijos Pavyzdys"
 	},
 	"header_shib": {
 		"no": "Shibboleth Demo",
@@ -37,7 +38,8 @@
 		"pl": "Demo Shibboleth",
 		"cs": "Shibboleth demo",
 		"tr": "Shibboleth demo",
-		"it": "Demo di Shibboleth"
+		"it": "Demo di Shibboleth",
+		"lt": "Shibboleth demonstracin\u0117 versija"
 	},
 	"header_wsfed": {
 		"no": "WS-Fed SP Demo Eksempel",
@@ -57,7 +59,8 @@
 		"pl": "Przyk\u0142adowe Demo WS-Fed SP",
 		"cs": "WS-Fed SP Demo",
 		"tr": "WS-Fed SP Demo \u00d6rne\u011fi",
-		"it": "Demo di WS-Fed SP"
+		"it": "Demo di WS-Fed SP",
+		"lt": "WS-Fed SP Demonstracin\u0117s versijos Pavyzdys"
 	},
 	"header_diagnostics": {
 		"no": "SimpleSAMLphp diagnostikk",
@@ -77,7 +80,8 @@
 		"pl": "Diagnostyka SimpleSAMLphp",
 		"cs": "SimpleSAMLphp diagnostika",
 		"tr": "SimpleSAMLphp Kontroller",
-		"it": "Diagnostici di SimpleSAMLphp"
+		"it": "Diagnostici di SimpleSAMLphp",
+		"lt": "SimpleSAMLphp Diagnostika"
 	},
 	"some_error_occured": {
 		"no": "En feil har oppst\u00e5tt",
@@ -97,7 +101,8 @@
 		"pl": "Wystapi\u0142 jaki\u015b b\u0142\u0105d",
 		"cs": "Nalezena chyba",
 		"tr": "Hata olu\u015ftu",
-		"it": "Si \u00e8 verificato un errore"
+		"it": "Si \u00e8 verificato un errore",
+		"lt": "\u012evyko tam tikra klaida"
 	},
 	"intro": {
 		"no": "Hei, dette er en statusside p\u00e5 simpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon.",
@@ -117,7 +122,8 @@
 		"pl": "Hej, to jest status strony simpleSAMLphp. Tutaj mo\u017cesz zaboaczy\u0107, czy Twoja sesja jest nadal aktywna, jak d\u0142ugo pozosta\u0142o czasu do zako\u0144czenia sesji i wszystkie atrybuty, kt\u00f3re zosta\u0142y za\u0142\u0105czone do sesji.",
 		"cs": "V\u00edtejte na informa\u010dn\u00ed str\u00e1nce. Zde uvid\u00edte, pokud vypr\u0161elo va\u0161e sezen\u00ed, jak dlouho jste pry\u010d a v\u0161echny atributy p\u0159ipojen\u00e9 k va\u0161emu sezen\u00ed.",
 		"tr": "Merhaba, bu simpleSAMLphp durum sayfas\u0131d\u0131r. Oturumunuzun s\u00fcresinin dolup dolmad\u0131\u011f\u0131n\u0131, oturumunuzun ne kadar s\u00fcrd\u00fc\u011f\u00fcn\u00fc ve oturumunuza ait t\u00fcm bilgileri buradan g\u00f6rebilirsiniz.",
-		"it": "Salve, questa \u00e8 la pagina di stato di simpleSAMLphp. Qui \u00e8 possiible vedere se la sessione \u00e8 scaduta, quanto \u00e8 durata prima di scadere e tutti gli attributi ad essa collegati."
+		"it": "Salve, questa \u00e8 la pagina di stato di simpleSAMLphp. Qui \u00e8 possiible vedere se la sessione \u00e8 scaduta, quanto \u00e8 durata prima di scadere e tutti gli attributi ad essa collegati.",
+		"lt": "Sveikia, \u010dia simpleSAMLphp b\u016bsenos tinklapis. \u010cia galite pamatyti, ar J\u016bs\u0173 sesija turi laiko apribojim\u0105, kiek trunka tas laiko apribojimas bei kitus J\u016bs\u0173 sesijai priskirtus atributus."
 	},
 	"validfor": {
 		"no": "Din sesjon er gyldig i %SECONDS% sekunder fra n\u00e5.",
@@ -137,7 +143,8 @@
 		"pl": "Twoja sesja jest jeszcze wa\u017cna przez %SECONDS% sekund",
 		"cs": "Va\u0161e sezen\u00ed je platn\u00e9 %SECONDS% sekund od te\u010f.",
 		"tr": "Oturumunuz, \u015fu andan itibaren %SECONDS% saniyeli\u011fine ge\u00e7erlidir.",
-		"it": "La tua sessione \u00e8 valida per ulteriori %SECONDS% secondi."
+		"it": "La tua sessione \u00e8 valida per ulteriori %SECONDS% secondi.",
+		"lt": "J\u016bs\u0173 sesija galioja %SECONDS% sekund\u017ei\u0173, skai\u010diuojant nuo \u0161io momento."
 	},
 	"sessionsize": {
 		"no": "Sesjons st\u00f8rrelse: %SIZE%",
@@ -157,7 +164,8 @@
 		"pl": "Rozmiar sesji: %SIZE%",
 		"cs": "Velikost sezeni: %SIZE%",
 		"tr": "Oturum b\u00fcy\u00fckl\u00fc\u011f\u00fc: %SIZE%",
-		"it": "Dimensione della session: %SIZE%"
+		"it": "Dimensione della session: %SIZE%",
+		"lt": "Sesijos trukm\u0117: %SIZE%"
 	},
 	"attributes_header": {
 		"no": "Dine attributter",
@@ -177,7 +185,8 @@
 		"pl": "Twoje atrybuty",
 		"cs": "Va\u0161e atributy",
 		"tr": "Bilgileriniz",
-		"it": "I tuoi attributi"
+		"it": "I tuoi attributi",
+		"lt": "J\u016bs\u0173 atributai"
 	},
 	"logout": {
 		"no": "Logg ut",
@@ -197,6 +206,7 @@
 		"pl": "Wyloguj",
 		"cs": "Odhl\u00e1\u0161en\u00ed",
 		"tr": "\u00c7\u0131k\u0131\u015f",
-		"it": "Disconnessione"
+		"it": "Disconnessione",
+		"lt": "Atsijungti"
 	}
 }
