@@ -202,7 +202,33 @@ $config = array (
 	 */
 	'language.available'	=> array('en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'fr', 'it', 'nl', 'lb', 'cs', 'sl', 'lt', 'hr', 'hu', 'pl', 'pt', 'pt-BR', 'tr'),
 	'language.default'		=> 'en',
-	
+
+	/*
+	 * Extra dictionary for attribute names.
+	 * This can be used to define local attributes.
+	 *
+	 * The format of the parameter is a string with <module>:<dictionary>.
+	 *
+	 * Specifying this option will cause us to look for modules/<module>/dictionaries/<dictionary>.definition.json
+	 * The dictionary should look something like:
+	 *
+	 * {
+	 *     "firstattribute": {
+	 *         "en": "English name",
+	 *         "no": "Norwegian name"
+	 *     },
+	 *     "secondattribute": {
+	 *         "en": "English name",
+	 *         "no": "Norwegian name"
+	 *     }
+	 * }
+	 *
+	 * Note that all attribute names in the dictionary must in lowercase.
+	 *
+	 * Example: 'attributes.extradictionary' => 'ourmodule:ourattributes',
+	 */
+	'attributes.extradictionary' => NULL,
+
 	/*
 	 * Which theme directory should be used?
 	 */

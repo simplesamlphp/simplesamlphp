@@ -307,6 +307,15 @@ class SimpleSAML_XHTML_Template {
 		$normName = strtolower($name);
 		$normName = str_replace(":", "_", $normName);
 
+		/* Check for an extra dictionary. */
+		$extraDict = $this->configuration->getString('attributes.extradictionary', NULL);
+		if ($extraDict !== NULL) {
+			$dict = $this->getDictionary($extraDict);
+			if (array_key_exists($normName, $dict)) {
+				return $this->getTranslation($dict[$normName]);
+			}
+		}
+
 		/* Search the default attribute dictionary. */
 		$dict = $this->getDictionary('attributes');
 		if (array_key_exists('attribute_' . $normName, $dict)) {
