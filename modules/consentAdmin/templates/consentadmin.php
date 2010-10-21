@@ -99,7 +99,7 @@ TRSTART;
 				if (isset($this->data['attribute_' . htmlspecialchars(strtolower($name)) ])) {
 				  $name = $this->data['attribute_' . htmlspecialchars(strtolower($name))];
 				}
-				$name = $this->t('attribute_'.strtolower($name)); // translate
+				$name = $this->getAttributeTranslation($name); // translate
 				if (sizeof($value) > 1) {
 						echo "<li>" . htmlspecialchars($name) . ":\n<ul>\n";
 						foreach ($value AS $v) {

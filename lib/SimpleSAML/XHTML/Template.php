@@ -296,6 +296,29 @@ class SimpleSAML_XHTML_Template {
 
 
 	/**
+	 * Translate a attribute name.
+	 *
+	 * @param string $name  The attribute name.
+	 * @return string  The translated attribute name, or the original attribute name if no translation was found.
+	 */
+	public function getAttributeTranslation($name) {
+
+		/* Normalize attribute name. */
+		$normName = strtolower($name);
+		$normName = str_replace(":", "_", $normName);
+
+		/* Search the default attribute dictionary. */
+		$dict = $this->getDictionary('attributes');
+		if (array_key_exists('attribute_' . $normName, $dict)) {
+			return $this->getTranslation($dict['attribute_' . $normName]);
+		}
+
+		/* No translations found. */
+		return $name;
+	}
+
+
+	/**
 	 * Translate a tag into the current language, with a fallback to english.
 	 *
 	 * This function is used to look up a translation tag in dictionaries, and return the
