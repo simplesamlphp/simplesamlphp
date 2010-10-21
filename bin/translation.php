@@ -19,9 +19,14 @@ $translationconfig = SimpleSAML_Configuration::getConfig('translation.php');
 $application = $translationconfig->getString('application', 'simplesamlphp');
 $base = $translationconfig->getString('baseurl') . '/module.php/translationportal/';
 
-if (!preg_match('/^(.*?)(\.definition|\.translation)?\.(json|php)/', $file, $match)) 
+if (!preg_match('/^(.*?)(?:\.(definition|translation))?\.(json|php)/', $file, $match))
 	throw new Exception('Illlegal file name. Must end on (definition|translation).json');
 $fileWithoutExt = $match[1];
+if (!empty($match[2])) {
+	$type = $match[2];
+} else {
+	$type = 'definition';
+}
 
 $basefile = basename($fileWithoutExt);
 
@@ -49,7 +54,7 @@ switch($action) {
 
 		#$content = file_get_contents($base . 'export.php?aid=' . $application . '&type=translation&file=' . $basefile);
 		#file_put_contents($fileWithoutExt . '.translation.json' , $content);
-		push($file, $basefile, $application);
+		push($file, $basefile, $application, $type);
 		
 		break;
 		
@@ -87,7 +92,7 @@ function convert_translation($data) {
 	return $data;
 }
 
-function push($file, $fileWithoutExt, $aid) {
+function push($file, $fileWithoutExt, $aid, $type) {
 	
 	if (!file_exists($file)) throw new Exception('Could not find file: ' . $file);
 	
@@ -141,7 +146,7 @@ function push($file, $fileWithoutExt, $aid) {
 	}
 
 	$pushURL = $baseurl . '/module.php/translationportal/push.php';
-	$request = array('data' => base64_encode($fileContent), 'file' => $fileWithoutExt, 'aid' => $aid);
+	$request = array('data' => base64_encode($fileContent), 'file' => $fileWithoutExt, 'aid' => $aid, 'type' => $type);
 	
 	$result = $consumer->postRequest($pushURL, $accessToken, $request);
 	
