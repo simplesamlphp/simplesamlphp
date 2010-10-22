@@ -83,7 +83,7 @@ function returnResponse($value, $function, $usrname = '', $attributes = array(),
 		'</cas:authenticationSuccess>
 </cas:serviceResponse>';
 		} else {
-			echo 'YES' . "\n" . $usrname;
+			echo 'yes' . "\n" . $usrname;
 		}
 	} else {
 		if ($function == 'serviceValidate') {
@@ -92,7 +92,7 @@ function returnResponse($value, $function, $usrname = '', $attributes = array(),
 </cas:authenticationFailure>
 </cas:serviceResponse>';
 		} else {
-			echo 'NO';
+			echo 'no';
 
 		}
 	}
