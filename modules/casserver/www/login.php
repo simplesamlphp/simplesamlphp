@@ -29,7 +29,7 @@ $auth = $casconfig->getValue('auth', 'saml2');
 if (!in_array($auth, array('saml2', 'shib13')))
  	throw new Exception('CAS Service configured to use [auth] = ' . $auth . ' only [saml2,shib13] is legal.');
  
-/*
+
 if (!$session->isValid($auth)) {
 	$url = SimpleSAML_Utilities::selfURL();
 	$hints = array(
@@ -41,9 +41,6 @@ if (!$session->isValid($auth)) {
 }
 
 $attributes = $session->getAttributes();
-*/
-
-$attributes = array('mail' => array('freek@ruc.dk'), 'anton' => array('banton'));
 
 $path = $casconfig->resolvePath($casconfig->getValue('ticketcache', '/tmp'));
 
