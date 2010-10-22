@@ -66,7 +66,7 @@ try {
 
 function returnResponse($value, $function, $usrname = '', $attributes = array(), $xtraxml = "") {
 	if ($value === 'YES') {	
-		if ($function == 'serviceValidate') {
+		if ($function != 'validate') {
 			$attributesxml = "";
 			foreach ($attributes as $attributename => $attributelist) {
 				$attr = htmlspecialchars($attributename);
@@ -86,7 +86,7 @@ function returnResponse($value, $function, $usrname = '', $attributes = array(),
 			echo 'yes' . "\n" . $usrname;
 		}
 	} else {
-		if ($function == 'serviceValidate') {
+		if ($function != 'validate') {
 			echo '<cas:serviceResponse xmlns:cas="http://www.yale.edu/tp/cas">
 <cas:authenticationFailure code="">
 </cas:authenticationFailure>
