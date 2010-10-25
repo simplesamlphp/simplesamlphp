@@ -19,7 +19,6 @@ $isPassive = isset($_GET['gateway']) && $_GET['gateway'];
 
 $config = SimpleSAML_Configuration::getInstance();
 $casconfig = SimpleSAML_Configuration::getConfig('module_casserver.php');
-$session = SimpleSAML_Session::getInstance();
 
 $legal_service_urls = $casconfig->getValue('legal_service_urls');
 if (!checkServiceURL($service, $legal_service_urls))
@@ -29,18 +28,16 @@ $auth = $casconfig->getValue('auth', 'saml2');
 if (!in_array($auth, array('saml2', 'shib13')))
  	throw new Exception('CAS Service configured to use [auth] = ' . $auth . ' only [saml2,shib13] is legal.');
  
-
-if (!$session->isValid($auth)) {
-	$url = SimpleSAML_Utilities::selfURL();
-	$hints = array(
-		SimpleSAML_Auth_State::RESTART => $url,
-	    'ForceAuthn' => $forceAuthn,
-        'isPassive' => $isPassive,
+$as = new SimpleSAML_Auth_Simple($auth);
+if (!$as->isAuthenticated()) {
+	$params = array(
+		'ForceAuthn' => $forceAuthn,
+		'isPassive' => $isPassive,
 	);
-	SimpleSAML_Auth_Default::initLogin($auth, $url, $url, $hints);
+	$as->login($params);
 }
 
-$attributes = $session->getAttributes();
+$attributes = $as->getAttributes();
 
 $path = $casconfig->resolvePath($casconfig->getValue('ticketcache', '/tmp'));
 
