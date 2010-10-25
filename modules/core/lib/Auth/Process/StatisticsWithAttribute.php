@@ -38,7 +38,7 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 		
 		if (array_key_exists('type', $config)) {
 			$this->typeTag = $config['type'];
-			if (!is_string($this->attribute)) {
+			if (!is_string($this->typeTag)) {
 				throw new Exception('Invalid typeTag given to core:StatisticsWithAttribute filter.');
 			}
 		}
