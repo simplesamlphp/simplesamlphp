@@ -6,14 +6,14 @@ $config = array(
 	/* List of aggregators. */
 	'aggregators' => array(
 		'example' => array(
-			'source' => array(
+			'sources' => array(
 				array('type' => 'flatfile'),  /* Metadata from metadata-directory. */
 				array('type' => 'xml', 'url' => 'https://idp.example.org/Metadata'),
 				array('type' => 'xml', 'file' => 'static-metadata.xml'),
 			),
 		),
 		'example2' => array(
-			'source' => array(
+			'sources' => array(
 				array('type' => 'xml', 'url' => 'https://idp.example.org/Metadata2'),
 			),
 			'set' => 'saml2',
