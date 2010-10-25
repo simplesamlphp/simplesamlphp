@@ -3,7 +3,6 @@
 
 
 $config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getInstance();
 
 if (!array_key_exists('as', $_REQUEST)) {
 	$t = new SimpleSAML_XHTML_Template($config, 'core:authsource_list.tpl.php');
@@ -51,8 +50,6 @@ $attributes = $as->getAttributes();
 $t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes');
 
 $t->data['header'] = '{status:header_saml20_sp}';
-$t->data['remaining'] = $session->remainingTime();
-$t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;
 $t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
 $t->show();
