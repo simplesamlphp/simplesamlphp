@@ -60,18 +60,19 @@ function driveProcessingChain($idp_metadata, $source, $sp_metadata, $sp_entityid
 // Get config object
 $config = SimpleSAML_Configuration::getInstance();
 $cA_config = SimpleSAML_Configuration::getConfig('module_consentAdmin.php');
+$authority = $cA_config->getValue('authority');
+
+$as = new SimpleSAML_Auth_Simple($authority);
 
 // If request is a logout request
 if(array_key_exists('logout', $_REQUEST)) {
     $returnURL = $cA_config->getValue('returnURL');
-	SimpleSAML_Auth_Default::initLogout($returnURL);
+	$as->logout($returnURL);
 }
 
 $hashAttributes = $cA_config->getValue('attributes.hash');
-$authority = $cA_config->getValue('authority');
 
 /* Check if valid local session exists */
-$as = new SimpleSAML_Auth_Simple($authority);
 $as->requireAuth();
 
 // Get released attributes
