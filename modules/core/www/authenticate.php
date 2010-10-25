@@ -5,9 +5,20 @@
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
+if (!array_key_exists('as', $_REQUEST)) {
+	$t = new SimpleSAML_XHTML_Template($config, 'core:authsource_list.tpl.php');
+
+	$t->data['sources'] = SimpleSAML_Auth_Source::getSources();
+	$t->show();
+	exit();
+}
+
+
+$asId = (string)$_REQUEST['as'];
+$as = new SimpleSAML_Auth_Simple($asId);
 
 if(array_key_exists('logout', $_REQUEST)) {
-	SimpleSAML_Auth_Default::initLogout('/' . $config->getBaseURL() . 'logout.php');
+	$as->logout('/' . $config->getBaseURL() . 'logout.php');
 }
 
 if (array_key_exists(SimpleSAML_Auth_State::EXCEPTION_PARAM, $_REQUEST)) {
@@ -25,25 +36,17 @@ if (array_key_exists(SimpleSAML_Auth_State::EXCEPTION_PARAM, $_REQUEST)) {
 	exit(0);
 }
 
-if(!array_key_exists('as', $_REQUEST)) {
-	$t = new SimpleSAML_XHTML_Template($config, 'core:authsource_list.tpl.php');
 
-	$t->data['sources'] = SimpleSAML_Auth_Source::getSources();
-	$t->show();
-	exit();
-}
-
-$as = $_REQUEST['as'];
-
-if (!$session->isValid($as)) {
-	$url = SimpleSAML_Utilities::selfURL();
-	$hints = array(
-		SimpleSAML_Auth_State::RESTART => $url,
+if (!$as->isAuthenticated()) {
+	$url = SimpleSAML_Module::getModuleURL('core/authenticate.php', array('as' => $asId));
+	$params = array(
+		'ErrorURL' => $url,
+		'ReturnTo' => $url,
 	);
-	SimpleSAML_Auth_Default::initLogin($as, $url, $url, $hints);
+	$as->login($params);
 }
 
-$attributes = $session->getAttributes();
+$attributes = $as->getAttributes();
 
 $t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes');
 
