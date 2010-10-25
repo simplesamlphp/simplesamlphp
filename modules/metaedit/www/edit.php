@@ -2,7 +2,6 @@
 
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getInstance();
 $metaconfig = SimpleSAML_Configuration::getConfig('module_metaedit.php');
 
 $mdh = new SimpleSAML_Metadata_MetaDataStorageHandlerSerialize($metaconfig->getValue('metahandlerConfig', NULL));
@@ -10,15 +9,13 @@ $mdh = new SimpleSAML_Metadata_MetaDataStorageHandlerSerialize($metaconfig->getV
 $authsource = $metaconfig->getValue('auth', 'login-admin');
 $useridattr = $metaconfig->getValue('useridattr', 'eduPersonPrincipalName');
 
-if ($session->isValid($authsource)) {
-	$attributes = $session->getAttributes();
-	// Check if userid exists
-	if (!isset($attributes[$useridattr])) 
-		throw new Exception('User ID is missing');
-	$userid = $attributes[$useridattr][0];
-} else {
-	SimpleSAML_Auth_Default::initLogin($authsource, SimpleSAML_Utilities::selfURL());
-}
+$as = new SimpleSAML_Auth_Simple($authsource);
+$as->requireAuth();
+$attributes = $as->getAttributes();
+// Check if userid exists
+if (!isset($attributes[$useridattr]))
+	throw new Exception('User ID is missing');
+$userid = $attributes[$useridattr][0];
 
 function requireOwnership($metadata, $userid) {
 	if (!isset($metadata['owner']))
