@@ -1505,7 +1505,8 @@ class SimpleSAML_Utilities {
 		/* Not authenticated as admin user. Start authentication. */
 
 		if (SimpleSAML_Auth_Source::getById('admin') !== NULL) {
-			SimpleSAML_Auth_Default::initLogin('admin', $returnTo);
+			$as = new SimpleSAML_Auth_Simple('admin');
+			$as->login();
 		} else {
 			/* For backwards-compatibility. */
 
