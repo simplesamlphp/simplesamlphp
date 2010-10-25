@@ -12,9 +12,11 @@ $this->includeAtTemplateBase('includes/header.php');
 
 <p><?php echo($this->t('{status:intro}')); ?></p>
 
-<p><?php echo($this->t('{status:validfor}', array('%SECONDS%' => $this->data['remaining']))); ?></p>
-
 <?php
+if (isset($this->data['remaining'])) {
+	echo('<p>' . $this->t('{status:validfor}', array('%SECONDS%' => $this->data['remaining'])) . '</p>');
+}
+
 if(isset($this->data['sessionsize'])) {
 	echo('<p>' . $this->t('{status:sessionsize}', array('%SIZE%' => $this->data['sessionsize'])) . '</p>');
 }
