@@ -137,7 +137,7 @@ class sspmod_saml_SP_LogoutStore {
 
 		$res = array();
 		foreach ($sessionIndexes as $sessionIndex) {
-			$sessionId = $store->get('saml.LogoutStore', $strNameId . ':' . $sessionIndex);
+			$sessionId = $store->get('saml.LogoutStore', $nameId . ':' . $sessionIndex);
 			if ($sessionId === NULL) {
 				continue;
 			}
