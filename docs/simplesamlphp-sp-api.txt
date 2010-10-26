@@ -98,6 +98,10 @@ The following global parameters are supported:
 :   The URL the user should be returned to after authentication.
     The default is to return the user to the current page.
 
+`ReturnCallback` (`array`)
+
+:   The function we should call when the user finishes authentication.
+
 The [`saml:SP`](./saml:sp) authentication source also defines some parameters.
 
 

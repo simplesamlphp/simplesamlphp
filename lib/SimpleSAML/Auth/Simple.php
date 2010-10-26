@@ -83,6 +83,8 @@ class SimpleSAML_Auth_Simple {
 	 *  - 'KeepPost': If the current request is a POST request, keep the POST
 	 *    data until after the authentication.
 	 *  - 'ReturnTo': The URL the user should be returned to after authentication.
+	 *  - 'ReturnCallback': The function we should call after the user has
+	 *    finished authentication.
 	 *
 	 * @param array $params  Various options to the authentication request.
 	 */
@@ -96,6 +98,8 @@ class SimpleSAML_Auth_Simple {
 
 		if (array_key_exists('ReturnTo', $params)) {
 			$returnTo = (string)$params['ReturnTo'];
+		} else if (array_key_exists('ReturnCallback', $params)) {
+			$returnTo = (array)$params['ReturnCallback'];
 		} else {
 			$returnTo = SimpleSAML_Utilities::selfURL();
 		}
@@ -111,7 +115,7 @@ class SimpleSAML_Auth_Simple {
 		}
 
 
-		if (!isset($params[SimpleSAML_Auth_State::RESTART])) {
+		if (!isset($params[SimpleSAML_Auth_State::RESTART]) && is_string($returnTo)) {
 			/*
 			 * An URL to restart the authentication, in case the user bookmarks
 			 * something, e.g. the discovery service page.
