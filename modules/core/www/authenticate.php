@@ -51,6 +51,6 @@ $t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes');
 
 $t->data['header'] = '{status:header_saml20_sp}';
 $t->data['attributes'] = $attributes;
-$t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
+$t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?as=' . urlencode($asId) . '&logout';
 $t->show();
 
