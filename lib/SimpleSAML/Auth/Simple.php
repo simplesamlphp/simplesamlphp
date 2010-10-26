@@ -111,13 +111,14 @@ class SimpleSAML_Auth_Simple {
 		}
 
 
-		/*
-		 * An URL to restart the authentication, in case the user bookmarks
-		 * something, e.g. the discovery service page.
-		 */
-		$restartURL = $this->getLoginURL($returnTo);
-
-		$params[SimpleSAML_Auth_State::RESTART] = $restartURL;
+		if (!isset($params[SimpleSAML_Auth_State::RESTART])) {
+			/*
+			 * An URL to restart the authentication, in case the user bookmarks
+			 * something, e.g. the discovery service page.
+			 */
+			$restartURL = $this->getLoginURL($returnTo);
+			$params[SimpleSAML_Auth_State::RESTART] = $restartURL;
+		}
 
 		SimpleSAML_Auth_Default::initLogin($this->authSource, $returnTo, $errorURL, $params);
 		assert('FALSE');
