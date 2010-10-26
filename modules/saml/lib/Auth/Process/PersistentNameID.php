@@ -42,17 +42,17 @@ class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGe
 	 */
 	protected function getValue(array &$state) {
 
-		if (!isset($state['SPMetadata']['entityid'])) {
+		if (!isset($state['Destination']['entityid'])) {
 			SimpleSAML_Logger::warning('No SP entity ID - not generating persistent NameID.');
 			return NULL;
 		}
-		$spEntityId = $state['SPMetadata']['entityid'];
+		$spEntityId = $state['Destination']['entityid'];
 
-		if (!isset($state['IdPMetadata']['entityid'])) {
+		if (!isset($state['Source']['entityid'])) {
 			SimpleSAML_Logger::warning('No IdP entity ID - not generating persistent NameID.');
 			return NULL;
 		}
-		$idpEntityId = $state['IdPMetadata']['entityid'];
+		$idpEntityId = $state['Source']['entityid'];
 
 		if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
 			SimpleSAML_Logger::warning('Missing attribute ' . var_export($this->attribute, TRUE) . ' on user - not generating persistent NameID.');
