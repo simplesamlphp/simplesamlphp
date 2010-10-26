@@ -408,7 +408,9 @@ class SimpleSAML_IdP {
 		}
 
 		$state['IdPMetadata'] = $this->getConfig()->toArray();
-		SimpleSAML_Auth_Default::initLogin($auth, array('SimpleSAML_IdP', 'postAuth'), NULL, $state);
+		$state['ReturnCallback'] = array('SimpleSAML_IdP', 'postAuth');
+		$as = new SimpleSAML_Auth_Simple($auth);
+		$as->login($state);
 	}
 
 
@@ -534,7 +536,8 @@ class SimpleSAML_IdP {
 
 			if ($authority === $this->config->getString('auth')) {
 				/* This is probably an authentication source. */
-				SimpleSAML_Auth_Default::initLogoutReturn($returnTo);
+				$as = new SimpleSAML_Auth_Simple($authority);
+				$as->logout($returnTo);
 			} elseif ($authority === 'saml2') {
 				/* SAML 2 SP which isn't an authentication source. */
 				$config = SimpleSAML_Configuration::getInstance();
