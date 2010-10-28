@@ -223,7 +223,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 	/**
 	 * Get a targeted ID. An identifier that is unique per SP entity ID.
 	 */
-	public function getTargetedID($userid, $source, $destination) {
+	public static function getTargetedID($userid, $source, $destination) {
 		return hash('sha1', $userid . '|' . SimpleSAML_Utilities::getSecretSalt() . '|' . $source . '|' . $destination);
 	}
 
