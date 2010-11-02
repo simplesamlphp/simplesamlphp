@@ -161,6 +161,7 @@ if($onLoad !== '') {
 					'pt-BR' => 'Português brasileiro', // Portuguese
 					'tr' => 'Türkçe',
 					'el' => 'ελληνικά',
+					'ja' => '日本語',
 		);
 		
 		$textarray = array();

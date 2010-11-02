@@ -7,7 +7,7 @@
 		"sv": "Processid",
 		"hr": "Identifikator procesa",
 		"da": "Proces ID",
-		"fr": "Identifiant de proc\u00e9ssus (PID)",
+		"fr": "Identifiant de processus (PID)",
 		"it": "ID del Processo",
 		"es": "Id de Proceso"
 	},
@@ -79,7 +79,7 @@
 		"sv": "Aktuell antal",
 		"hr": "Trenutni broj elemenata",
 		"da": "Aktuelt antal enheder",
-		"fr": "El\u00e9ment utilis\u00e9s actuellement",
+		"fr": "\u00c9l\u00e9ments utilis\u00e9s actuellement",
 		"it": "Attuale numero di elementi",
 		"es": "N\u00famero actual de \u00edtems"
 	},

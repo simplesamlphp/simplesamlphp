@@ -12,7 +12,8 @@
 		"nn": "Manglar informasjonskapsel",
 		"lt": "Slapukas nerastas",
 		"it": "Cookie mancante",
-		"es": "No se encuentra cookie"
+		"es": "No se encuentra cookie",
+		"hu": "Hi\u00e1nyz\u00f3 s\u00fcti (cookie)"
 	},
 	"description": {
 		"no": "Du ser ut til \u00e5 ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og pr\u00f8v igjen.",
@@ -27,7 +28,8 @@
 		"nn": "Det ser ut til at informasjonskapslar er avsl\u00e5tt i nettlesaren din. V\u00e6r vennleg og sjekk instillingane i nettlesaren din, og pr\u00f8v p\u00e5 nytt.",
 		"lt": "Atrodo J\u016bs\u0173 nar\u0161ykl\u0117 nepalaiko slapuk\u0173. Patikrinkite nar\u0161ykl\u0117s nustatymus ir bandykite dar kart\u0105.",
 		"it": "Sembra che i cookie siano disabilitati nel browser. Si prega di verificare e quindi riprovare.",
-		"es": "Al parecer ha deshabilitado las cookies de su navegador. Por favor revise las preferencias de su navegador y reintente."
+		"es": "Al parecer ha deshabilitado las cookies de su navegador. Por favor revise las preferencias de su navegador y reintente.",
+		"hu": "\u00dagy t\u0171nik, az \u00f6n b\u00f6ng\u00e9sz\u0151j\u00e9ben nincsenek enged\u00e9lyezve a s\u00fctik (cookie) haszn\u00e1lata. K\u00e9rj\u00fck ellen\u0151rizze be\u00e1ll\u00edt\u00e1sait, majd pr\u00f3b\u00e1lja \u00fajra."
 	},
 	"retry": {
 		"no": "Pr\u00f8v igjen",
@@ -42,6 +44,7 @@
 		"nn": "Pr\u00f8v p\u00e5 nytt",
 		"lt": "Bandyti dar kart\u0105",
 		"it": "Riprovare",
-		"es": "Reintentar"
+		"es": "Reintentar",
+		"hu": "\u00dajra"
 	}
 }

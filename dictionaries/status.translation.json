@@ -4,7 +4,7 @@
 		"nn": "Demonstrasjon av SAML 2.0 SP",
 		"sv": "SAML 2.0 SP demoexempel",
 		"es": "Ejemplo de SAML 2.0 SP",
-		"fr": "Example de d\u00e9monstration de SP SAML 2.0",
+		"fr": "Exemple de d\u00e9monstration de SP SAML 2.0",
 		"de": "SAML 2.0 SP Demo Beispiel",
 		"nl": "SAML 2.0 SP Demo",
 		"sl": "SAML 2.0 SP Demo primer",
@@ -18,7 +18,8 @@
 		"cs": "SAML 2.0 SP Demo",
 		"tr": "SAML 2.0 SP Demo \u00d6rne\u011fi",
 		"it": "Demo di SAML 2.0 SP",
-		"lt": "SAML 2.0 SP Demonstracin\u0117s versijos Pavyzdys"
+		"lt": "SAML 2.0 SP Demonstracin\u0117s versijos Pavyzdys",
+		"ja": "SAML 2.0 SP \u30c7\u30e2\u4f8b"
 	},
 	"header_shib": {
 		"no": "Shibboleth Demo",
@@ -39,7 +40,8 @@
 		"cs": "Shibboleth demo",
 		"tr": "Shibboleth demo",
 		"it": "Demo di Shibboleth",
-		"lt": "Shibboleth demonstracin\u0117 versija"
+		"lt": "Shibboleth demonstracin\u0117 versija",
+		"ja": "Shibboleth \u30c7\u30e2"
 	},
 	"header_wsfed": {
 		"no": "WS-Fed SP Demo Eksempel",
@@ -60,7 +62,8 @@
 		"cs": "WS-Fed SP Demo",
 		"tr": "WS-Fed SP Demo \u00d6rne\u011fi",
 		"it": "Demo di WS-Fed SP",
-		"lt": "WS-Fed SP Demonstracin\u0117s versijos Pavyzdys"
+		"lt": "WS-Fed SP Demonstracin\u0117s versijos Pavyzdys",
+		"ja": "WS-Fed SP \u30c7\u30e2\u4f8b"
 	},
 	"header_diagnostics": {
 		"no": "SimpleSAMLphp diagnostikk",
@@ -81,7 +84,8 @@
 		"cs": "SimpleSAMLphp diagnostika",
 		"tr": "SimpleSAMLphp Kontroller",
 		"it": "Diagnostici di SimpleSAMLphp",
-		"lt": "SimpleSAMLphp Diagnostika"
+		"lt": "SimpleSAMLphp Diagnostika",
+		"ja": "SimpleSAMLphp \u8a3a\u65ad"
 	},
 	"some_error_occured": {
 		"no": "En feil har oppst\u00e5tt",
@@ -102,14 +106,15 @@
 		"cs": "Nalezena chyba",
 		"tr": "Hata olu\u015ftu",
 		"it": "Si \u00e8 verificato un errore",
-		"lt": "\u012evyko tam tikra klaida"
+		"lt": "\u012evyko tam tikra klaida",
+		"ja": "\u5e7e\u3064\u304b\u306e\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f"
 	},
 	"intro": {
 		"no": "Hei, dette er en statusside p\u00e5 simpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon.",
 		"nn": "Hei, dette er statussida for simpleSAMLphp.  Her kan du sj\u00e5 om sesjonen din er gyldig, kor lenge han varer og du kan sj\u00e5 alle attributt som blir brukte i sesjonen din.",
 		"sv": "Detta \u00e4r stutussidan f\u00f6r simpleSAMLphp. H\u00e4r kan du se om sessions giltig har g\u00e5tt ut, hur l\u00e4nge det dr\u00f6jer innan den g\u00e5r ut samt alla attribut som tillh\u00f6r sessionen.",
 		"es": "Hola, esta es la p\u00e1gina de estado de simpleSAMLphp. Desde aqu\u00ed puede ver si su sesi\u00f3n ha caducado, cuanto queda hasta que lo haga y todos los atributos existentes en su sesi\u00f3n.",
-		"fr": "Bonjour, vous \u00eates sur la page de status de simpleSAMLphp. Vous pouvez consulter ici le temps restant sur votre session, ainsi que les attributs qui y sont attach\u00e9s.",
+		"fr": "Bonjour, vous \u00eates sur la page de statut de simpleSAMLphp. Vous pouvez consulter ici le temps restant sur votre session, ainsi que les attributs qui y sont attach\u00e9s.",
 		"de": "Hallo, das ist die Statusseite von simpleSAMLphp. Hier k\u00f6nnen Sie sehen, ob Ihre Sitzung ausgelaufen ist, wie lange die Sitzung noch g\u00fcltig ist und alle Attribute Ihrer Sitzung.",
 		"nl": "Dit is de overzichtspagina van simpleSAMLphp. Hier kunt u zien of uw sessie nog geldig is, hoe lang het nog duurt voordat deze verloopt, en u kunt alle attributen bekijken die aanwezig zijn in deze sessie.",
 		"sl": "\u017divjo! To je statusna stran simpleSAMLphp, ki omogo\u010da pregled nad trajanjem va\u0161e trenutne seje in atributi, ki so povezani z njo.",
@@ -123,7 +128,8 @@
 		"cs": "V\u00edtejte na informa\u010dn\u00ed str\u00e1nce. Zde uvid\u00edte, pokud vypr\u0161elo va\u0161e sezen\u00ed, jak dlouho jste pry\u010d a v\u0161echny atributy p\u0159ipojen\u00e9 k va\u0161emu sezen\u00ed.",
 		"tr": "Merhaba, bu simpleSAMLphp durum sayfas\u0131d\u0131r. Oturumunuzun s\u00fcresinin dolup dolmad\u0131\u011f\u0131n\u0131, oturumunuzun ne kadar s\u00fcrd\u00fc\u011f\u00fcn\u00fc ve oturumunuza ait t\u00fcm bilgileri buradan g\u00f6rebilirsiniz.",
 		"it": "Salve, questa \u00e8 la pagina di stato di simpleSAMLphp. Qui \u00e8 possiible vedere se la sessione \u00e8 scaduta, quanto \u00e8 durata prima di scadere e tutti gli attributi ad essa collegati.",
-		"lt": "Sveikia, \u010dia simpleSAMLphp b\u016bsenos tinklapis. \u010cia galite pamatyti, ar J\u016bs\u0173 sesija turi laiko apribojim\u0105, kiek trunka tas laiko apribojimas bei kitus J\u016bs\u0173 sesijai priskirtus atributus."
+		"lt": "Sveikia, \u010dia simpleSAMLphp b\u016bsenos tinklapis. \u010cia galite pamatyti, ar J\u016bs\u0173 sesija turi laiko apribojim\u0105, kiek trunka tas laiko apribojimas bei kitus J\u016bs\u0173 sesijai priskirtus atributus.",
+		"ja": "\u3053\u3093\u306b\u3061\u306f\u3001\u3053\u3053\u306f simpleSAMLphp\u306e\u30b9\u30c6\u30fc\u30bf\u30b9\u30da\u30fc\u30b8\u3067\u3059\u3002\u3053\u3053\u3067\u306f\u30bb\u30c3\u30b7\u30e7\u30f3\u306e\u30bf\u30a4\u30e0\u30a2\u30a6\u30c8\u6642\u9593\u3084\u30bb\u30c3\u30b7\u30e7\u30f3\u306b\u7d50\u3073\u3064\u3051\u3089\u308c\u305f\u5c5e\u6027\u60c5\u5831\u3092\u898b\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u3059\u3002"
 	},
 	"validfor": {
 		"no": "Din sesjon er gyldig i %SECONDS% sekunder fra n\u00e5.",
@@ -144,7 +150,8 @@
 		"cs": "Va\u0161e sezen\u00ed je platn\u00e9 %SECONDS% sekund od te\u010f.",
 		"tr": "Oturumunuz, \u015fu andan itibaren %SECONDS% saniyeli\u011fine ge\u00e7erlidir.",
 		"it": "La tua sessione \u00e8 valida per ulteriori %SECONDS% secondi.",
-		"lt": "J\u016bs\u0173 sesija galioja %SECONDS% sekund\u017ei\u0173, skai\u010diuojant nuo \u0161io momento."
+		"lt": "J\u016bs\u0173 sesija galioja %SECONDS% sekund\u017ei\u0173, skai\u010diuojant nuo \u0161io momento.",
+		"ja": "\u30bb\u30c3\u30b7\u30e7\u30f3\u306f\u4eca\u304b\u3089 %SECONDS% \u79d2\u9593\u6709\u52b9\u3067\u3059"
 	},
 	"sessionsize": {
 		"no": "Sesjons st\u00f8rrelse: %SIZE%",
@@ -165,7 +172,8 @@
 		"cs": "Velikost sezeni: %SIZE%",
 		"tr": "Oturum b\u00fcy\u00fckl\u00fc\u011f\u00fc: %SIZE%",
 		"it": "Dimensione della session: %SIZE%",
-		"lt": "Sesijos trukm\u0117: %SIZE%"
+		"lt": "Sesijos trukm\u0117: %SIZE%",
+		"ja": "\u30bb\u30c3\u30b7\u30e7\u30f3\u30b5\u30a4\u30ba: %SIZE%"
 	},
 	"attributes_header": {
 		"no": "Dine attributter",
@@ -186,7 +194,8 @@
 		"cs": "Va\u0161e atributy",
 		"tr": "Bilgileriniz",
 		"it": "I tuoi attributi",
-		"lt": "J\u016bs\u0173 atributai"
+		"lt": "J\u016bs\u0173 atributai",
+		"ja": "\u5c5e\u6027"
 	},
 	"logout": {
 		"no": "Logg ut",
@@ -207,6 +216,7 @@
 		"cs": "Odhl\u00e1\u0161en\u00ed",
 		"tr": "\u00c7\u0131k\u0131\u015f",
 		"it": "Disconnessione",
-		"lt": "Atsijungti"
+		"lt": "Atsijungti",
+		"ja": "\u30ed\u30b0\u30a2\u30a6\u30c8"
 	}
 }

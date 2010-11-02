@@ -11,7 +11,8 @@
 		"da": "Adgang forbudt",
 		"fr": "Acc\u00e8s refus\u00e9",
 		"lt": "Pri\u0117jimas u\u017edraustas",
-		"it": "Accesso vietato"
+		"it": "Accesso vietato",
+		"hu": "Hozz\u00e1f\u00e9r\u00e9s megtagadva"
 	},
 	"403_text": {
 		"es": "No tiene los privilegios necesarios para acceder a esta aplicaci\u00f3n. Si considera que esto no es correcto, consulte el administrador.",
@@ -25,6 +26,7 @@
 		"da": "Du har ikke de n\u00f8dvendige privilegier til at tilg\u00e5 applikationen. Kontakt administratoren hvis du mener at dette ikke er korrekt.",
 		"fr": "Vos privil\u00e8ges sont insuffisants pour acc\u00e9der \u00e0 cette application. Contactez vous administrateur si cette situation est anormale.",
 		"lt": "J\u016bs neturite reikiam\u0173 teisi\u0173, kad pasiektum\u0117te \u0161i\u0105 aplikacij\u0105. Pra\u0161ome susisiekti su administratoriumi, jei manote, kad taip netur\u0117t\u0173 b\u016bti.",
-		"it": "Non si dispone dei privilegi per accedere a questa applicazione. Contattare l'amministratore se si ritiene che si tratti di un errore."
+		"it": "Non si dispone dei privilegi per accedere a questa applicazione. Contattare l'amministratore se si ritiene che si tratti di un errore.",
+		"hu": "\u00d6nnek nincsenek meg a sz\u00fcks\u00e9ges jogosults\u00e1gai a lap megtekint\u00e9s\u00e9hez. K\u00e9rj\u00fck, forduljon az oldal adminisztr\u00e1tor\u00e1hoz."
 	}
 }

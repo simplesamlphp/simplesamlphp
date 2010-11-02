@@ -19,7 +19,8 @@
 		"cs": "Chyba",
 		"tr": "Hata",
 		"lt": "Klaida",
-		"it": "Errore"
+		"it": "Errore",
+		"ja": "\u30a8\u30e9\u30fc"
 	},
 	"user_pass_header": {
 		"no": "Skriv inn brukernavn og passord",
@@ -41,7 +42,8 @@
 		"cs": "lo\u017ete sv\u00e9 jm\u00e9no a heslo",
 		"tr": "Kullan\u0131c\u0131 ad\u0131 ve \u015fifrenizi giriniz",
 		"lt": "\u012eveskite savo prisijungimo vard\u0105 ir slapta\u017eod\u012f",
-		"it": "Inserire nome utente e password"
+		"it": "Inserire nome utente e password",
+		"ja": "\u30e6\u30fc\u30b6\u30fc\u540d\u3068\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044"
 	},
 	"user_pass_text": {
 		"no": "En tjeneste har bedt om bekreftelse p\u00e5 din identitet. Skriv inn ditt brukernavn og passord for \u00e5 autentisere deg.",
@@ -63,7 +65,8 @@
 		"cs": "Slu\u017eba po\u017eaduje va\u0161i identifikaci. Pros\u00edm vlo\u017ete sv\u00e9 jm\u00e9no a heslo.",
 		"tr": "Bir servis kendinizi yetkilendirmenizi istedi. L\u00fctfen a\u015fa\u011f\u0131daki forma kullan\u0131c\u0131 ad\u0131n\u0131z\u0131 ve \u015fifrenizi giriniz.",
 		"lt": "Paslauga pra\u0161o autentikacijos. \u017demiau \u012fveskite savo prisijungimo vard\u0105 ir slapta\u017eod\u012f.",
-		"it": "Un servizio richiede l'autenticazione; inserire il proprio nome utente e password qui sotto."
+		"it": "Un servizio richiede l'autenticazione; inserire il proprio nome utente e password qui sotto.",
+		"ja": "\u30b5\u30fc\u30d3\u30b9\u306f\u3042\u306a\u305f\u81ea\u8eab\u306e\u8a8d\u8a3c\u3092\u8981\u6c42\u3057\u3066\u3044\u307e\u3059\u3002\u4ee5\u4e0b\u306e\u30d5\u30a9\u30fc\u30e0\u306b\u30e6\u30fc\u30b6\u30fc\u540d\u3068\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
 	},
 	"login_button": {
 		"no": "Logg inn",
@@ -86,7 +89,8 @@
 		"cs": "P\u0159ihl\u00e1sit",
 		"tr": "Giri\u015f",
 		"lt": "Prisijungti",
-		"it": "Login"
+		"it": "Login",
+		"ja": "\u30ed\u30b0\u30a4\u30f3"
 	},
 	"username": {
 		"no": "Brukernavn",
@@ -109,7 +113,8 @@
 		"cs": "U\u017eivatel",
 		"tr": "Kullan\u0131c\u0131 ad\u0131",
 		"lt": "Prisijungimo vardas",
-		"it": "Nome utente"
+		"it": "Nome utente",
+		"ja": "\u30e6\u30fc\u30b6\u30fc\u540d"
 	},
 	"organization": {
 		"no": "Organisasjon",
@@ -132,7 +137,8 @@
 		"cs": "Organizace",
 		"tr": "Organizasyon",
 		"lt": "Organizacija",
-		"it": "Organizzazione"
+		"it": "Organizzazione",
+		"ja": "\u7d44\u7e54"
 	},
 	"password": {
 		"no": "Passord",
@@ -155,7 +161,8 @@
 		"cs": "Heslo",
 		"tr": "\u015eifre",
 		"lt": "Slapta\u017eodis",
-		"it": "Password"
+		"it": "Password",
+		"ja": "\u30d1\u30b9\u30ef\u30fc\u30c9"
 	},
 	"help_header": {
 		"no": "Hjelp! Jeg har glemt passordet mitt.",
@@ -177,7 +184,8 @@
 		"cs": "Chci pomoci. Zapomn\u011bl jsem heslo.",
 		"tr": "Yard\u0131m! \u015eifremi hat\u0131rlam\u0131yorum.",
 		"lt": "Pagalbos! Nepamenu savo slapta\u017eod\u017eio.",
-		"it": "Aiuto! Non ricordo la mia password."
+		"it": "Aiuto! Non ricordo la mia password.",
+		"ja": "\u305f\u3059\u3051\u3066! \u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u601d\u3044\u51fa\u305b\u307e\u305b\u3093\u3002"
 	},
 	"help_text": {
 		"no": "Synd! - Uten riktig brukernavn og passord kan du ikke autentisere deg. Det kan v\u00e6re noen som kan hjelpe deg. Fors\u00f8k \u00e5 kontakt brukerst\u00f8tte ved din vertsorganisasjon.",
@@ -199,14 +207,15 @@
 		"cs": "Probl\u00e9m! Bez jm\u00e9na a hesla se nem\u016f\u017eete identifikovat. Existuje n\u011bkdo kdo v\u00e1m pom\u016f\u017ee. Konzultujte helpdesk va\u0161\u00ed organizace.",
 		"tr": "\u00c7ok k\u00f6t\u00fc! - Kullan\u0131c\u0131 ad\u0131n\u0131z ve \u015fifreniz olmadan bu servisi kullanamazs\u0131n\u0131z. Size yard\u0131mc\u0131 olabilecek birileri olabilir. Kurulu\u015funuza dan\u0131\u015f\u0131n. ",
 		"lt": "Blogai - be prisijungimo vardo ir slapta\u017eod\u017eio negal\u0117site autentikuotis ir patekti \u012f reikiam\u0105 paslaug\u0105. Galb\u016bt yra kas Jums gal\u0117t\u0173 pad\u0117ti. Susisiekite su savo universiteto vartotoj\u0173 aptarnavimo specialistais.",
-		"it": "Guaio! - Senza il nome utente e la password, non \u00e8 possibile effettuare l'autenticazione al servizio. C'\u00e8 probabilmente qualcuno che pu\u00f2 fornire aiuto. Consultare il proprio help desk."
+		"it": "Guaio! - Senza il nome utente e la password, non \u00e8 possibile effettuare l'autenticazione al servizio. C'\u00e8 probabilmente qualcuno che pu\u00f2 fornire aiuto. Consultare il proprio help desk.",
+		"ja": "\u304a\u6c17\u306e\u6bd2\u3067\u3059! - \u30e6\u30fc\u30b6\u30fc\u540d\u3068\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u7121\u304f\u3066\u306f\u30b5\u30fc\u30d3\u30b9\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u70ba\u306b\u3042\u306a\u305f\u81ea\u8eab\u3092\u8a8d\u8a3c\u3059\u308b\u4e8b\u304c\u51fa\u6765\u307e\u305b\u3093\u3002\u3042\u306a\u305f\u306e\u5927\u5b66\u306e\u30d8\u30eb\u30d7\u30c7\u30b9\u30af\u306b\u76f8\u8ac7\u3059\u308b\u3068\u3001\u3042\u306a\u305f\u306e\u52a9\u3051\u306b\u306a\u3063\u3066\u304f\u308c\u308b\u3067\u3057\u3087\u3046\u3002"
 	},
 	"error_nopassword": {
 		"no": "Du kontaktet loginsiden, men passordet ble ikke sendt med. Fors\u00f8k igjen.",
 		"nn": "Passordet blei ikkje sendt. Pr\u00f8v p\u00e5 nytt.",
 		"sv": "Du skicka in en inloggningsf\u00f6rfr\u00e5gan men det verkar som om ditt l\u00f6senord inte fanns med i f\u00f6rfr\u00e5gan. F\u00f6rs\u00f6k igen!",
 		"es": "Usted envi\u00f3 algo a la p\u00e1gina de acceso pero, por alg\u00fan motivo, la clave no fue enviada. Int\u00e9ntelo de nuevo, por favor.",
-		"fr": "Vous avez envoy\u00e9 quelque chose sur la pge d'identification mais pour une raison inconnue votre mot de passe n'a pas \u00e9t\u00e9 transmis.  Veuillez r\u00e9essayer.",
+		"fr": "Vous avez envoy\u00e9 quelque chose sur la page d'identification mais pour une raison inconnue votre mot de passe n'a pas \u00e9t\u00e9 transmis.  Veuillez r\u00e9essayer.",
 		"de": "Sie haben etwas an die Anmeldeseite geschickt, aber aus irgendeinem Grund ist das Passwort nicht \u00fcbermittelt worden. Bitte versuchen Sie es erneut.",
 		"nl": "Je hebt wel iets ingetikt, maar blijkbaar is je wachtwoord niet verstuurd. Probeer het opnieuw AUB.",
 		"lb": "Der hud eppes un d'Login Sait gesch\u00e9eckt me aus iergentengem Grond huet d Passwuert gefehlt. Prob\u00e9iert w.e.g nach eng K\u00e9ier.",
@@ -221,7 +230,8 @@
 		"cs": "Odeslal jste data do p\u0159ihla\u0161ovac\u00ed stranky, ale z n\u011bjak\u00e9ho d\u016fvodu nebylo odesl\u00e1no heslo. Pros\u00edm zkuste to znovu.",
 		"tr": "Giri\u015f sayfas\u0131na bir\u015feyler g\u00f6nderdiniz, fakat baz\u0131 nedenlerden dolay\u0131 \u015fifreniz g\u00f6nderilemedi. L\u00fctfen tekrar deneyiniz.",
 		"lt": "J\u016bs ka\u017ek\u0105 nusiunt\u0117te \u012f prisijungimo puslap\u012f, ta\u010diau d\u0117l ka\u017ekoki\u0173 prie\u017eas\u010di\u0173 slapta\u017eodis nebuvo nusi\u0173stas. Pra\u0161ome bandyti dar kart\u0105.",
-		"it": "Sono state inviate delle informazioni alla pagina di login, ma non la password. Si prega di provare di nuovo."
+		"it": "Sono state inviate delle informazioni alla pagina di login, ma non la password. Si prega di provare di nuovo.",
+		"ja": "\u3042\u306a\u305f\u306f\u30ed\u30b0\u30a4\u30f3\u30da\u30fc\u30b8\u3067\u4f55\u304b\u3092\u9001\u4fe1\u3057\u307e\u3057\u305f\u304c\u3001\u4f55\u3089\u304b\u306e\u7406\u7531\u3067\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u9001\u4fe1\u3055\u308c\u307e\u305b\u3093\u3067\u3057\u305f\u3002\u518d\u5ea6\u8a66\u3057\u3066\u307f\u3066\u304f\u3060\u3055\u3044\u3002"
 	},
 	"error_wrongpassword": {
 		"no": "Feil brukernavn eller passord.",
@@ -244,7 +254,8 @@
 		"cs": "Nekorektn\u00ed jmeno nebo heslo.",
 		"tr": "Kullan\u0131c\u0131 ad\u0131 ve\/veya \u015fifre yanl\u0131\u015f.",
 		"lt": "Neteisingas prisijungimo vardas arba slapta\u017eodis.",
-		"it": "Nome utente o password errati."
+		"it": "Nome utente o password errati.",
+		"ja": "\u30e6\u30fc\u30b6\u30fc\u540d\u304b\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u9593\u9055\u3063\u3066\u3044\u307e\u3059\u3002"
 	},
 	"contact_info": {
 		"no": "Kontaktinformasjon:",
@@ -265,7 +276,8 @@
 		"cs": "Kontaktn\u00ed informace",
 		"tr": "\u0130leti\u015fim bilgileri:",
 		"lt": "Kontaktai:",
-		"it": "Informazioni di contatto:"
+		"it": "Informazioni di contatto:",
+		"ja": "\u9023\u7d61\u5148:"
 	},
 	"select_home_org": {
 		"no": "Velg vertsorganisasjon",
@@ -286,7 +298,8 @@
 		"cs": "Zvolte svou organizaci",
 		"tr": "Organizasyonunuzu se\u00e7iniz",
 		"lt": "Pasirinkite savo organizacij\u0105",
-		"it": "Selezionare la propria organizzazione"
+		"it": "Selezionare la propria organizzazione",
+		"ja": "\u3042\u306a\u305f\u306e\u7d44\u7e54\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044"
 	},
 	"change_home_org_title": {
 		"no": "Endre din vertsorganisasjon",
@@ -307,7 +320,8 @@
 		"cs": "Zm\u011bnte svou organizaci",
 		"tr": "Organizasyonunuzu de\u011fi\u015ftirin",
 		"lt": "Pakeisti savo organizacij\u0105",
-		"it": "Cambiare la propria organizzazione"
+		"it": "Cambiare la propria organizzazione",
+		"ja": "\u3042\u306a\u305f\u306e\u7d44\u7e54\u3092\u5909\u66f4\u3057\u3066\u304f\u3060\u3055\u3044"
 	},
 	"change_home_org_text": {
 		"no": "Du har valgt <b>%HOMEORG%<\/b> som din vertsorganisasjon. Dersom dette er feil kan du velge en annen.",
@@ -328,7 +342,8 @@
 		"cs": "M\u00e1te nastavenu <b>%HOMEORG%<\/b> jako domovskou organizaci. Pokud je to \u0161patn\u011b zvolte jinou.",
 		"tr": "<b>%HOMEORG%<\/b>'u organizasyonunuz olarak se\u00e7tiniz. E\u011fer yanl\u0131\u015f ise, ba\u015fka bir tanesini se\u00e7ebilirsiniz.",
 		"lt": "J\u016bs, savo nam\u0173 organizacija, pasirinkote <b>%HOMEORG%<\/b>. Jei tai yra neteisingas pasirinkimas, galite pasirinkti kit\u0105.",
-		"it": "E' stata selezionata <b>%HOMEORG%<\/b> come propria organizzazione. Se \u00e8 sbagliata, \u00e8 possibile selezionarne un'altra."
+		"it": "E' stata selezionata <b>%HOMEORG%<\/b> come propria organizzazione. Se \u00e8 sbagliata, \u00e8 possibile selezionarne un'altra.",
+		"ja": "\u3042\u306a\u305f\u306f <b>%HOMEORG%<\/b> \u3092\u7d44\u7e54\u3068\u3057\u3066\u9078\u629e\u3057\u307e\u3057\u305f\u3002\u3053\u308c\u306b\u554f\u984c\u304c\u3042\u308b\u5834\u5408\u306f\u4ed6\u306e\u3082\u306e\u3092\u9078\u3076\u4e8b\u3082\u53ef\u80fd\u3067\u3059\u3002"
 	},
 	"change_home_org_button": {
 		"no": "Velg vertsorganisasjon",
@@ -349,7 +364,8 @@
 		"cs": "Zvolte domovskou organizaci",
 		"tr": "Organizasyon se\u00e7iniz",
 		"lt": "Pasirinkite organizacij\u0105",
-		"it": "Selezionare la propria organizzazione"
+		"it": "Selezionare la propria organizzazione",
+		"ja": "\u7d44\u7e54\u306e\u9078\u629e"
 	},
 	"help_desk_link": {
 		"no": "Hjemmesiden til brukerst\u00f8tte",
@@ -370,7 +386,8 @@
 		"cs": "Help desk",
 		"tr": "Yard\u0131m anasayfas\u0131",
 		"lt": "Vartotoj\u0173 aptarnavimo puslapis",
-		"it": "Homepage del servizio di assistenza"
+		"it": "Homepage del servizio di assistenza",
+		"ja": "\u30d8\u30eb\u30d7\u30c7\u30b9\u30af\u30da\u30fc\u30b8"
 	},
 	"help_desk_email": {
 		"no": "Send e-post til brukerst\u00f8tte",
@@ -391,7 +408,8 @@
 		"cs": "Email helpdesku zasl\u00e1n.",
 		"tr": "Yard\u0131m'a e-posta g\u00f6nderin",
 		"lt": "Si\u0173sti el. lai\u0161k\u0105 vartotoj\u0173 aptarnavimo specialistams",
-		"it": "Invia una mail al servizio di assistenza"
+		"it": "Invia una mail al servizio di assistenza",
+		"ja": "\u30d8\u30eb\u30d7\u30c7\u30b9\u30af\u306b\u30e1\u30fc\u30eb\u3059\u308b"
 	},
 	"next": {
 		"no": "Fortsett",
@@ -412,6 +430,7 @@
 		"cs": "Dal\u0161\u00ed",
 		"tr": "S\u0131radaki",
 		"lt": "Kitas",
-		"it": "Prossimo"
+		"it": "Prossimo",
+		"ja": "\u6b21\u3078"
 	}
 }

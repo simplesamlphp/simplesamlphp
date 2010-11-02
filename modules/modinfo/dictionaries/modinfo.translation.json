@@ -10,7 +10,8 @@
 		"fr": "Modules disponibles",
 		"it": "Moduli disponibili",
 		"es": "M\u00f3dulos disponibles",
-		"lt": "Esami moduliai"
+		"lt": "Esami moduliai",
+		"hu": "El\u00e9rhet\u0151 modulok"
 	},
 	"modlist_name": {
 		"no": "Navn",
@@ -23,7 +24,8 @@
 		"fr": "Nom",
 		"it": "Nome",
 		"es": "Nombre",
-		"lt": "Pavadinimas"
+		"lt": "Pavadinimas",
+		"hu": "N\u00e9v"
 	},
 	"modlist_status": {
 		"no": "Status",
@@ -36,7 +38,8 @@
 		"fr": "Statut",
 		"it": "Stato",
 		"es": "Estado",
-		"lt": "B\u016bsena"
+		"lt": "B\u016bsena",
+		"hu": "\u00c1llapot"
 	},
 	"modlist_enabled": {
 		"no": "P\u00e5sl\u00e5tt",
@@ -49,7 +52,8 @@
 		"fr": "Activ\u00e9",
 		"it": "Attivato",
 		"es": "Habilitado",
-		"lt": "Palaikomas"
+		"lt": "Palaikomas",
+		"hu": "Enged\u00e9lyezve"
 	},
 	"modlist_disabled": {
 		"no": "Avsl\u00e5tt",
@@ -62,6 +66,7 @@
 		"fr": "D\u00e9sactiv\u00e9",
 		"it": "Disattivato",
 		"es": "Deshabilitado",
-		"lt": "Nepalaikomas"
+		"lt": "Nepalaikomas",
+		"hu": "Tiltva"
 	}
 }

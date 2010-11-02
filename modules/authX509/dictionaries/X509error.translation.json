@@ -6,7 +6,8 @@
 		"lt": "X509 sertifikato autentikacija",
 		"it": "Autenticazione con certificato X509",
 		"no": "X509 sertifikatautentisering",
-		"es": "Autenticaci\u00f3n mediante certificado X509"
+		"es": "Autenticaci\u00f3n mediante certificado X509",
+		"hu": "X509 tan\u00fas\u00edtv\u00e1nyalap\u00fa azonos\u00edt\u00e1s"
 	},
 	"certificate_text": {
 		"fr": "Un certificat X509 est requis pour acc\u00e9der \u00e0 ce service.",
@@ -15,6 +16,7 @@
 		"lt": "X509 sertifikato autentikacija yra reikalinga norint pasiekti \u0161i\u0105 paslaug\u0105.",
 		"it": "Una autenticazione con certificato X509 \u00e8 richiesta per accedere a questo servizio.",
 		"no": "X509 sertifikatautentisering er p\u00e5krevd for \u00e5 aksessere denne tjenesten.",
-		"es": "Se requiere autenticaci\u00f3n mediante certificado X509 para acceder a este servicio"
+		"es": "Se requiere autenticaci\u00f3n mediante certificado X509 para acceder a este servicio",
+		"hu": "Az al\u00e1bbi oldalhoz X509 tan\u00fas\u00edtv\u00e1nyalap\u00fa azonos\u00edt\u00e1s ut\u00e1n kaphat hozz\u00e1f\u00e9r\u00e9st"
 	}
 }

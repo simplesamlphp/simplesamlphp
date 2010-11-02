@@ -7,7 +7,9 @@
 		"sl": "Metapodatkov ni bilo mo\u010d najti.",
 		"it": "Metadati non trovati",
 		"es": "Metadatos no encontrados",
-		"lt": "Metaduomenys nerasti"
+		"lt": "Metaduomenys nerasti",
+		"hu": "Nem tal\u00e1lhat\u00f3 haszn\u00e1lhat\u00f3 metaadat",
+		"fr": "Metadata non trouv\u00e9es"
 	},
 	"not_found_for": {
 		"no": "Vi fant ikke metadataene for:",
@@ -16,7 +18,9 @@
 		"sl": "Metapodatkov za to entiteto ni bilo mo\u010d najti.",
 		"it": "Non siamo stati in grado di localizzare i metadati per l'entit\u00e0:",
 		"es": "Fue imposible localizar los metadatos para la entidad:",
-		"lt": "Nepavyko nustatyti metaduomen\u0173 \u0161iems objektams:"
+		"lt": "Nepavyko nustatyti metaduomen\u0173 \u0161iems objektams:",
+		"hu": "Az k\u00f6vetkez\u0151 entit\u00e1shoz nem tal\u00e1lhat\u00f3 metaadat:",
+		"fr": "Nous ne trouvons pas les metadata de l'entit\u00e9 :"
 	},
 	"config_problem": {
 		"no": "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverand\u00f8ren eller identitetsleverand\u00f8ren.",
@@ -25,7 +29,9 @@
 		"sl": "Najverjetneje gre za te\u017eavo z nastavitvami bodisi ponudnika storitve (SP) bodisi ponudnika identitet (IdP).",
 		"it": "Questo \u00e8 probabilmente un problema di configurazione del service provider o dell'identity provider.",
 		"es": "Esto es posiblemente un problema de configuraci\u00f3n en el proveedor de servicios o en el proveedor de identidad.",
-		"lt": "Tai grei\u010diausiai konfig\u016bracijos problema paslaugos teik\u0117jo arba tapatybi\u0173 teik\u0117jo pus\u0117je."
+		"lt": "Tai grei\u010diausiai konfig\u016bracijos problema paslaugos teik\u0117jo arba tapatybi\u0173 teik\u0117jo pus\u0117je.",
+		"hu": "Val\u00f3sz\u00edn\u0171leg valamilyen konfigur\u00e1ci\u00f3s probl\u00e9ma okozta hiba, amely lehet ak\u00e1r IdP-, ak\u00e1r SP-oldalon.",
+		"fr": "Cela ressemble \u00e0 un probl\u00e8me de configuration soit su fournisseur de service ou du fournisseur d'identit\u00e9."
 	},
 	"suggestion_user_link": {
 		"no": "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link p\u00e5 en nettside, s\u00e5 b\u00f8r du rapportere denne feilen til eieren av den nettsiden.",
@@ -34,7 +40,9 @@
 		"sl": "\u010ce ste na to te\u017eavo naleteli po kliku povezave te spletne strani, prijavite te\u017eavo skrbniku te spletne strani.",
 		"it": "Se sei un utente che ha ricevuto questo errore dopo aver cliccato un link su un sito, dovresti riportare questo errore al gestore di quel sito.",
 		"es": "Si usted es un usuario que recibe este error luego de seguir un v\u00ednculo en un sitio, debe reportar el error al due\u00f1o del sitio.",
-		"lt": "Jei J\u016bs esate naudotojas, kuris gavote \u0161i\u0105 klaid\u0105 spragtel\u0117j\u0119s nuorod\u0105 tinklapyje, J\u016bs tur\u0117tum\u0117te informuoti tinklapio administratori\u0173 apie \u0161i\u0105 klaid\u0105."
+		"lt": "Jei J\u016bs esate naudotojas, kuris gavote \u0161i\u0105 klaid\u0105 spragtel\u0117j\u0119s nuorod\u0105 tinklapyje, J\u016bs tur\u0117tum\u0117te informuoti tinklapio administratori\u0173 apie \u0161i\u0105 klaid\u0105.",
+		"hu": "Amennyiben \u00f6n, mint felhaszn\u00e1l\u00f3 keveredett erre az oldalra, \u00fagy k\u00e9rj\u00fck, a hib\u00e1val keresse az oldal adminisztr\u00e1tor\u00e1t.",
+		"fr": "Si vous \u00eates un usager qui re\u00e7oit cette erreur apr\u00e8s avoir suivi un lien sur un site, vous devriez remonter cette erreur au propri\u00e9taire de ce site."
 	},
 	"suggestion_developer": {
 		"no": "Hvis du er en utvikler som setter opp en \"single sign-on\" l\u00f8sning, s\u00e5 har du et problem med metadataoppsettet. Kontroller at metadata er riktig konfigurert hos b\u00e5de identitetsleverand\u00f8ren og tjenesteleverand\u00f8ren.",
@@ -43,6 +51,8 @@
 		"sl": "\u010ce ste razvijalec, ki razvija SSO re\u0161itev preverite, ali so nastavitve metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na strani ponudnika storitve (SP).",
 		"it": "Se sei uno sviluppatore che sta sviluppando una soluzione di single sign-on, hai un problema con la configurazione dei metadati. Verifica che siano correttamente configurati sia sull'identity provider che sul service provider.",
 		"es": "Si usted es un desarrollador que est\u00e1 desplegando una soluci\u00f3n de inicio \u00fanico, tiene un problema con la configuraci\u00f3n de sus metadatos. Verifique que los metadatos est\u00e1n configurados correctamente en el proveedor de identidad y en el proveedor de servicios",
-		"lt": "Jei J\u016bs esate k\u016br\u0117jas, kuris diegiate SSO sprendim\u0105, Jums i\u0161kilo problema susijusi su metaduomen\u0173 konfig\u016bracija. Patikrinkite, ar metaduomenys teisingai sukonfig\u016bruoti tiek tapatybi\u0173 teik\u0117jo, tiek paslaugos teik\u0117jo pus\u0117se."
+		"lt": "Jei J\u016bs esate k\u016br\u0117jas, kuris diegiate SSO sprendim\u0105, Jums i\u0161kilo problema susijusi su metaduomen\u0173 konfig\u016bracija. Patikrinkite, ar metaduomenys teisingai sukonfig\u016bruoti tiek tapatybi\u0173 teik\u0117jo, tiek paslaugos teik\u0117jo pus\u0117se.",
+		"hu": "Ha \u00f6n az oldal \u00fczemeltet\u0151je, \u00fagy javasoljuk, ellen\u0151rizze a metaadat be\u00e1ll\u00edt\u00e1sokat mint IdP-, mind SP oldalon.",
+		"fr": "Si vous \u00eates un d\u00e9veloppeur qui d\u00e9ploie une solution de single sign-on, vous avez un probl\u00e8me avec la configuration des metadata. V\u00e9rifiez que ces metadata sont correctement configur\u00e9es sur le fournisseur d'identit\u00e9 et le fournisseur de service "
 	}
 }

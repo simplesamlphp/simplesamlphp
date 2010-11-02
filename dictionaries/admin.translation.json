@@ -16,7 +16,8 @@
 		"tr": "Konfig\u00fcrasyon kontrol\u00fc",
 		"de": "Konfigurationscheck",
 		"fr": "V\u00e9rification de la configuration",
-		"it": "Verifica della configurazione"
+		"it": "Verifica della configurazione",
+		"ja": "\u8a2d\u5b9a\u78ba\u8a8d"
 	},
 	"cfg_check_select_file": {
 		"no": "Velg hvilken konfigurasjonfil som skal sjekkes",
@@ -35,7 +36,8 @@
 		"tr": "Kontrol edilecek konfig\u00fcrasyon dosyas\u0131n\u0131 se\u00e7:",
 		"de": "W\u00e4hlen Sie die Konfigurationsdatei, die gecheckt werden soll:",
 		"fr": "S\u00e9lectionnez le fichier de configuration \u00e0 v\u00e9rifier:",
-		"it": "Selezionare il file di configurazione da verificare:"
+		"it": "Selezionare il file di configurazione da verificare:",
+		"ja": "\u78ba\u8a8d\u3059\u308b\u8a2d\u5b9a\u30d5\u30a1\u30a4\u30eb\u3092\u9078\u629e:"
 	},
 	"cfg_check_missing": {
 		"no": "Mangler element i konfigurasjonsfilen",
@@ -54,7 +56,8 @@
 		"tr": "Config dosyas\u0131ndaki tercihler eksik",
 		"de": "Optionen, die in der Konfigurationsdatei fehlen",
 		"fr": "Options manquantes dans le fichier de configuration",
-		"it": "Opzioni mancanti dal file di configurazione"
+		"it": "Opzioni mancanti dal file di configurazione",
+		"ja": "\u8a2d\u5b9a\u30d5\u30a1\u30a4\u30eb\u306b\u30aa\u30d7\u30b7\u30e7\u30f3\u304c\u5728\u308a\u307e\u305b\u3093"
 	},
 	"cfg_check_superfluous": {
 		"no": "Overf\u00f8ldig element i konfigurasjonsfilen",
@@ -73,7 +76,8 @@
 		"tr": "Config dosyas\u0131ndaki gereksiz tercihler",
 		"de": "\u00dcberfl\u00fcssige Optionen in der Konfigurationsdatei",
 		"fr": "Options superflues dans le fichier de configuration",
-		"it": "Opzioni superflue nel file di configurazione"
+		"it": "Opzioni superflue nel file di configurazione",
+		"ja": "\u8a2d\u5b9a\u30d5\u30a1\u30a4\u30eb\u306b\u4e0d\u9069\u5207\u306a\u30aa\u30d7\u30b7\u30e7\u30f3\u304c\u5728\u308a\u307e\u3059"
 	},
 	"cfg_check_noerrors": {
 		"no": "Ingen feil funnet",
@@ -92,7 +96,8 @@
 		"tr": "Hata bulunmad\u0131.",
 		"de": "Keine Fehler gefunden.",
 		"fr": "Aucune erreur.",
-		"it": "Nessun errore trovato."
+		"it": "Nessun errore trovato.",
+		"ja": "\u30a8\u30e9\u30fc\u306f\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f\u3002"
 	},
 	"cfg_check_back": {
 		"no": "G\u00e5 tilbake til fil-listen",
@@ -111,7 +116,8 @@
 		"tr": "Dosya listesine geri d\u00f6n",
 		"de": "Gehe zur\u00fcck zur Dateiliste",
 		"fr": "Retour \u00e0 la liste des fichiers",
-		"it": "Tornare indietro alla lista dei file"
+		"it": "Tornare indietro alla lista dei file",
+		"ja": "\u30d5\u30a1\u30a4\u30eb\u30ea\u30b9\u30c8\u306b\u623b\u308b"
 	},
 	"metaover_header": {
 		"no": "Oversikt over metadata",
@@ -130,7 +136,8 @@
 		"tr": "\u00dcstveri (metada) genel g\u00f6r\u00fcn\u00fcm\u00fc",
 		"de": "Metadaten-\u00dcberblick",
 		"fr": "Vue d'ensemble des m\u00e9tadonn\u00e9es",
-		"it": "Visione generale dei metadati"
+		"it": "Visione generale dei metadati",
+		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf\u306e\u6982\u8981"
 	},
 	"metaover_intro": {
 		"no": "For \u00e5 se p\u00e5 detaljene i en SAML-entitet, klikk p\u00e5 SAML-entitet overskriften",
@@ -282,7 +289,8 @@
 		"tr": "\u00dcstveri (metadata)",
 		"de": "Metadaten",
 		"fr": "M\u00e9tadonn\u00e9es",
-		"it": "Metadati"
+		"it": "Metadati",
+		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf"
 	},
 	"metadata_xmlformat": {
 		"no": "I SAML 2.0 Metadata XML Format:",
@@ -301,7 +309,8 @@
 		"tr": "XML format\u0131nda SAML 2.0 SP \u00dcstverisi (Metadata)",
 		"de": "Im SAML 2.0 Metadaten-XML Format:",
 		"fr": "Au format XML de m\u00e9tadonn\u00e9es SAML 2.0",
-		"it": "Metadati SAML 2.0 in formato XML:"
+		"it": "Metadati SAML 2.0 in formato XML:",
+		"ja": "SAML 2.0 \u7528\u306e\u30e1\u30bf\u30c7\u30fc\u30bfXML\u30d5\u30a9\u30fc\u30de\u30c3\u30c8:"
 	},
 	"debug_sending_message_text_link": {
 		"no": "Du er i ferd med \u00e5 sende en melding. Trykk p\u00e5 send melding knappen for \u00e5 fortsette.",
@@ -716,8 +725,9 @@
 		"cs": "Zde jsou metadata, kter\u00e1 pro v\u00e1s simpleSAMLphp generuje. M\u016f\u017eete zaslat tento dokument sv\u00fdm d\u016fv\u011bryhodn\u00fdm partner\u016fm a zalo\u017eit tak federaci.",
 		"tr": "simpleSAMLphp'nin sizin i\u00e7in \u00fcretti\u011fi \u00fcstveri (metada). Bu \u00fcstveri dok\u00fcman\u0131n\u0131 g\u00fcvenilir bir federasyon kurmak i\u00e7in g\u00fcvenilir payda\u015flara g\u00f6nderebilirsiniz.",
 		"de": "Hier finden Sie die Metadaten, die simpleSAMLphp f\u00fcr Sie erzeugt hat. Sie k\u00f6nnen dieses Metadaten-Dokument zu Partnern schicken, denen Sie vertrauen, um eine vertrauensbasierte F\u00f6deration aufzusetzen.",
-		"fr": "Voice les m\u00e9tadonn\u00e9es g\u00e9n\u00e9r\u00e9es par simpleSAMLphp. Vous pouvez les envoyer \u00e0 vos partenaires de confiances pour construire une f\u00e9d\u00e9ration d'identit\u00e9.",
-		"it": "Questi sono i metadati che simpleSAMLphp ha generato e che possono essere inviati ai partner fidati per creare una federazione tra siti."
+		"fr": "Voici les m\u00e9tadonn\u00e9es g\u00e9n\u00e9r\u00e9es par simpleSAMLphp. Vous pouvez les envoyer \u00e0 vos partenaires de confiances pour construire une f\u00e9d\u00e9ration d'identit\u00e9.",
+		"it": "Questi sono i metadati che simpleSAMLphp ha generato e che possono essere inviati ai partner fidati per creare una federazione tra siti.",
+		"ja": "\u3053\u3053\u306f simpleSAMLphp \u304c\u751f\u6210\u3057\u305f\u30e1\u30bf\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u3059\u3002\u3042\u306a\u305f\u306f\u4fe1\u983c\u3059\u308b\u30d1\u30fc\u30c8\u30ca\u30fc\u306b\u3053\u306e\u30e1\u30bf\u30c7\u30fc\u30bf\u3092\u9001\u4fe1\u3057\u4fe1\u983c\u3055\u308c\u305f\u9023\u643a\u3092\u69cb\u7bc9\u51fa\u6765\u307e\u3059\u3002"
 	},
 	"metadata_xmlurl": {
 		"no": "Du kan n\u00e5 <a href=\"%METAURL%\">metadata i XML-format p\u00e5 en dedikert URL<\/a>:",
@@ -736,7 +746,8 @@
 		"tr": "<a href=\"%METAURL%\">\u00dcstveri xml'ini bu ba\u011flant\u0131dan alabilirsiniz<\/a>:",
 		"de": "Sie k\u00f6nnen <a href=\"%METAURL%\">das Metadaten-XML auf dieser URL erhalten:<\/a>:",
 		"fr": "Vous pouvez <a href=\"%METAURL%\">obtenir ces m\u00e9tadonn\u00e9es XML depuis une URL d\u00e9di\u00e9e<\/a>:",
-		"it": "Si possono <a href=\"%METAURL%\">ottenere i metadati in XML dall'URL dedicata<\/a>:"
+		"it": "Si possono <a href=\"%METAURL%\">ottenere i metadati in XML dall'URL dedicata<\/a>:",
+		"ja": "<a href=\"%METAURL%\">\u3053\u306eURL\u3067\u30e1\u30bf\u30c7\u30fc\u30bf\u306eXML\u3092\u53d6\u5f97\u3067\u304d\u307e\u3059<\/a>:"
 	},
 	"metadata_simplesamlformat": {
 		"no": "I simpleSAMLphp format - bruk denne dersom du benytter simpleSAMLphp i den andre enden:",
@@ -754,7 +765,8 @@
 		"tr": "E\u011fer di\u011fer tarafta bir simpleSAMLphp eleman\u0131n\u0131 kullan\u0131yorsan\u0131z, d\u00fcz simpleSAMLphp dosya bi\u00e7iminde bunu kullan\u0131n:",
 		"de": "Im simpleSAMLphp flat-file Format - verwenden Sie das, falls auf der Gegenseite eine simpleSAMLphp-Entit\u00e4t zum Einsatz kommt:",
 		"fr": "Au format \u00e0 plat simpleSAMLpgp - \u00e0 utiliser si vous avez une installation simpleSAMLphp sur la partie adverse:",
-		"it": "In formato flat per simpleSAMLphp - da utilizzare se dall'altra parte c'\u00e8 un'entit\u00e0 che utilizza simpleSAMLphp"
+		"it": "In formato flat per simpleSAMLphp - da utilizzare se dall'altra parte c'\u00e8 un'entit\u00e0 che utilizza simpleSAMLphp",
+		"ja": "simpleSAMLphp \u306e\u30d5\u30a1\u30a4\u30eb\u30d5\u30a9\u30fc\u30de\u30c3\u30c8 - \u7247\u5074\u3067\u3082 simpleSAMLphp\u30a8\u30f3\u30c6\u30a3\u30c6\u30a3\u3092\u4f7f\u7528\u3059\u308b\u5834\u5408\u306b\u3053\u308c\u3092\u4f7f\u7528\u3057\u307e\u3059:"
 	},
 	"debug_sending_message_title": {
 		"no": "Sender melding",
@@ -848,6 +860,7 @@
 		"tr": "Notlar",
 		"de": "Anmerkungen",
 		"fr": "A noter",
-		"it": "Notifiche"
+		"it": "Notifiche",
+		"ja": "\u304a\u77e5\u3089\u305b"
 	}
 }

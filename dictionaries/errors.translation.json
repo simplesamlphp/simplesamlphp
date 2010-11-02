@@ -19,7 +19,8 @@
 		"cs": "simpleSAMLphp chyba",
 		"tr": "simpleSAMLphp hatas\u0131",
 		"it": "Errore di simpleSAMLphp",
-		"lt": "simpleSAMLphp klaida"
+		"lt": "simpleSAMLphp klaida",
+		"ja": "simpleSAMLphp \u30a8\u30e9\u30fc"
 	},
 	"report_trackid": {
 		"no": "Hvis vil rapportere denne feilen, send ogs\u00e5 med dette sporingsnummeret. Det gj\u00f8r det enklere for systemadministratorene \u00e5 finne ut hva som gikk galt:",
@@ -63,7 +64,8 @@
 		"cs": "Debug",
 		"tr": "Hata ay\u0131klama bilgisi",
 		"it": "Informazioni di debug",
-		"lt": "Detali informacija"
+		"lt": "Detali informacija",
+		"ja": "\u30c7\u30d0\u30c3\u30b0\u60c5\u5831"
 	},
 	"debuginfo_text": {
 		"no": "Detaljene nedenfor kan v\u00e6re av interesse for administratoren \/ brukerst\u00f8tte:",
@@ -225,7 +227,7 @@
 		"nn": "Denne feilen er truleg p\u00e5 grunn av feilkonfigurasjon av simpleSAMLphp eller ein ukjent feil. Kontakt administrator av tenesta og rapporter detaljar om feilen.",
 		"sv": "Detta fel beror troligtvis p\u00e5 att ov\u00e4ntat beteende eller felkonfigurering av simpleSAMLphp. Kontakta den som sk\u00f6ter inloggningtj\u00e4nsten f\u00f6r att meddela dem ovanst\u00e5ende felmeddelande.",
 		"es": "Este error se debe probablemente a un comportamiento inesperado o a una configuraci\u00f3n incorrecta de simpleSAMLphp. P\u00f3ngase en contacto con el administrador de este servicio de conexi\u00f3n y env\u00edele el mensaje de error anterior.",
-		"fr": "Cette erreur est problablement caus\u00e9e par un comportement impr\u00e9vu ou une mauvaise configuration de simpleSAMLphp.  Contactez l'administrateur de ce service d'identification et envoyez lui le message d'erreur.",
+		"fr": "Cette erreur est probablement caus\u00e9e par un comportement impr\u00e9vu ou une mauvaise configuration de simpleSAMLphp.  Contactez l'administrateur de ce service d'identification et envoyez lui le message d'erreur.",
 		"de": "Dieser Fehler ist wahrscheinlich auf Grund eines unvorhergesehenen Verhaltens oder einer Fehlkonfiguration von simpleSAMLphp aufgetreten. Kontaktieren sie bitte den Administrator dieses Dienstes und teilen die obige Fehlermeldung mit.",
 		"nl": "Deze foutmelding is waarschijnlijk ontstaan door onverwacht gedrag of door verkeerde configuratie van simpleSAMLphp. Meld dit bij de beheerder van deze authenticatiedienst, en geef bovenstaande melding door.",
 		"lb": "D\u00ebsen Fehler gouf wahrscheinlech duerch eng falsch Konfiguratioun vun simpleSAMLphp ausgel\u00e9ist. Kontakt\u00e9iert am beschten den Administrator vun d\u00ebsem Login Service an sch\u00e9ckt him den Fehlerbericht",
@@ -1001,7 +1003,7 @@
 		"nn": "Informasjon om utlogginga di har blitt borte.  Du b\u00f8r g\u00e5 tilbake til tenesta du pr\u00f8ver \u00e5 logga ut av, og pr\u00f8va ein gong til.  Feilen kan vera fordi utlogginga gjekk ut p\u00e5 tid.  Utloggingsinformasjon er lagra i eit kort tidsrom (vanlegvis nokre f\u00e5 timar), og dersom utlogging tar lengre tid kan det vera feil i andre deler av konfigurasjonen p\u00e5 webstaden du var innlogga p\u00e5.  Dersom problemet ikkje blir borte, ta kontakt med webstaden du var innlogga p\u00e5.",
 		"sv": "Informationen om aktuell utloggning har f\u00f6rsvunnit. Du b\u00f6r \u00e5terv\u00e4nda till tj\u00e4nsten som du f\u00f6rs\u00f6kte logga ut fr\u00e5n och f\u00f6rs\u00f6ka logga ut p\u00e5 nytt. Detta fel kan intr\u00e4ffa om informationen om utloggningen \u00e4r f\u00f6r gammal. Utloggningsinformationen sparas en begr\u00e4nsad tid, oftas n\u00e5gra timmar. Det \u00e4r l\u00e4ngre \u00e4n vad utloggning b\u00f6r ta s\u00e5 felet kan indikera n\u00e5got fel med konfigurationen. Om problemet kvarst\u00e5r kontakta leverant\u00f6ren f\u00f6r den tj\u00e4nst du f\u00f6rs\u00f6kte logga ut fr\u00e5n.",
 		"es": "La informaci\u00f3n sobre la operaci\u00f3n de cierre de sesi\u00f3n se ha perdido. Deber\u00eda volver al servicio del que intenta salir e intentar cerrar la sesi\u00f3n de nuevo. La informaci\u00f3n para cerrar la sesi\u00f3n se almacena durante un tiempo limitado, generalmente mucho m\u00e1s tiempo del que deber\u00eda tardar la operaci\u00f3n de cierre de sesi\u00f3n, de modo que este error puede deberse a algun error en la configuraci\u00f3n. Si el problema persiste, contacte con el proveedor del servicio.",
-		"fr": "Information de d\u00e9connexion perdueLes informations aff\u00e9rantes \u00e0 la proc\u00e9dure de d\u00e9connexion en cours ont \u00e9t\u00e9 perdues. Tentez de retourner au service depuis lequel vous avez tent\u00e9 de lancer la d\u00e9connextion, et essayez encore. Cette erreur peut \u00eatre caus\u00e9e par un probl\u00e8me d&aopos;obsolescence des information de d\u00e9connexion, qui ne sont conserv\u00e9es que durant un temps limit\u00e9, de l&aops;odre de quelques heures. Cette dur\u00e9e est bien plus longue qu'une op\u00e9ration de d\u00e9connexion typique, ce qui sugg\u00e8re une autre erreur dans la configuration. Si le probl\u00e8me persiste, contactez l'administrateur du fournisseur de service",
+		"fr": "Information de d\u00e9connexion perdue. Les informations aff\u00e9rentes \u00e0 la proc\u00e9dure de d\u00e9connexion en cours ont \u00e9t\u00e9 perdues. Tentez de retourner au service depuis lequel vous avez tent\u00e9 de lancer la d\u00e9connexion, et essayez encore. Cette erreur peut \u00eatre caus\u00e9e par un probl\u00e8me d&aopos;obsolescence des information de d\u00e9connexion, qui ne sont conserv\u00e9es que durant un temps limit\u00e9, de l&aops;odre de quelques heures. Cette dur\u00e9e est bien plus longue qu'une op\u00e9ration de d\u00e9connexion typique, ce qui sugg\u00e8re une autre erreur dans la configuration. Si le probl\u00e8me persiste, contactez l'administrateur du fournisseur de service",
 		"de": "Die Information des aktuellen Abmeldevorgangs ist verloren gegangen. Bitte rufen sie den Dienst auf, vom dem sie sich abmelden wollten, und versuchen sie dort das Abmelden nochmal. Dieser Fehler tritt auf, wenn die Abmeldeanfrage abl\u00e4uft, da diese nur eine gewisse Zeit (\u00fcblicherweise ein paar Stunden) zwischengespeichert wird. Das sollte im normalen Betrieb ausreichend sein, da ein Abmeldevorgang nicht so lange dauert. Dieser Fehler kann also auch ein Anzeichen sein, da\u00df ein Konfigurationsfehler vorliegt. Tritt dieser Fehler wiederholt auf, wenden sie sich bitte an den benutzen Dienst (Service Provider), vom dem sie sich abmelden wollen.",
 		"nl": "De informatie over de huidige logout operatie is verloren gegaan. Je zou nu moeten terugkeren naar de dienst waar je probeerde uit te loggen, om het nogmaals te proberen. Deze fout kan optreden wanneer de logout informatie is verlopen. De logout informatie wordt gedurende een beperkte tijdsduur bewaard, normaal gesproken een aantal uren. Dit is langer dan een normale logout operatie zou moeten duren, dus deze fout kan er op wijzen dat er een configuratie probleem is. Als het probleem zich blijft voordoen kun u contact opnemen met de Service Provider.",
 		"sl": "Odjavni (Logout) parametri niso na voljo. Vrnite se na storitev, ki ste jo pravkar uporabljali in se ponovno poskusite odjaviti. Napaka je posledica poteka veljavnosti seje.",
@@ -1233,7 +1235,8 @@
 		"hr": "Sustav jedinstvene autentikacije poslao je poruku o gre\u0161ki",
 		"nn": "Feil fr\u00e5 vertsorganisasjonen (IdP)",
 		"lt": "Gautas klaidos prane\u0161imas i\u0161 tapatybi\u0173 tiek\u0117jo",
-		"it": "E' stato ricevuto un errore dall'Identity Provider"
+		"it": "E' stato ricevuto un errore dall'Identity Provider",
+		"hu": "Hiba t\u00f6rt\u00e9nt az azonos\u00edt\u00f3 szervezet (IdP) oldal\u00e1n"
 	},
 	"descr_RESPONSESTATUSNOSUCCESS": {
 		"no": "Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-svaret var noe annet enn OK)",
@@ -1250,7 +1253,8 @@
 		"hr": "Sustav jedinstvene autentikacije poslao je odgovor koji sadr\u017ei informaciju o pojavi gre\u0161ke. (\u0160ifra statusa dostavljena u SAML odgovoru ne odgovara \u0161ifri uspje\u0161no obra\u0111enog zahtjeva)",
 		"nn": "Vertsorganisasjonen din (IdP) gav feilmelding (SAML-svaret hadde statuskode som varsla om feil)",
 		"lt": "Tapatybi\u0173 tiek\u0117jas atsak\u0117 klaidos prane\u0161imu. (Statuso kodas SAML atsakyme buvo nes\u0117kmingas)",
-		"it": "L'Identity Provider ha risposto con un errore. (Il codice di stato nel messaggio SAML Response non indicava un successo)"
+		"it": "L'Identity Provider ha risposto con un errore. (Il codice di stato nel messaggio SAML Response non indicava un successo)",
+		"hu": "Hiba t\u00f6rt\u00e9nt az azonos\u00edt\u00f3 szervezet (IdP) oldal\u00e1n. Ismeretlen \u00e1llapotk\u00f3d."
 	},
 	"title_NOCERT": {
 		"fr": "Aucun certificat pr\u00e9sent\u00e9",
@@ -1262,10 +1266,11 @@
 		"lt": "N\u0117ra sertifikato",
 		"it": "Nessun certificato",
 		"no": "Ikke noe sertifikat mottatt",
-		"es": "No certificado"
+		"es": "No certificado",
+		"hu": "Hi\u00e1nyz\u00f3 tan\u00fas\u00edtv\u00e1ny."
 	},
 	"descr_NOCERT": {
-		"fr": "Echec de l'authentification: votre navigateur n'a pas pr\u00e9sent\u00e9 de certificat",
+		"fr": "\u00c9chec de l'authentification: votre navigateur n'a pas pr\u00e9sent\u00e9 de certificat",
 		"sl": "Avtentikacija je spodletela: va\u0161 spletni brskalnik ni posredoval digitalnega potrdila!",
 		"da": "Login fejlede - din browser sendte ikke noget certifikat",
 		"de": "Authentifizierung fehlgeschlagen: ihr Browser hat kein Zertifikat gesandt",
@@ -1274,7 +1279,8 @@
 		"lt": "Autentikacija nepavyko: J\u016bs\u0173 nar\u0161ykl\u0117 nei\u0161siunt\u0117 jokio sertifikato",
 		"it": "L'autenticazione \u00e8 fallita perch\u00e9 il tuo browser non ha inviato alcun certificato",
 		"no": "Autentisering feilet: nettleseren din sendte ikke noe klient-sertifikat",
-		"es": "Fallo de autenticaci\u00f3n: su navegador no envi\u00f3 ning\u00fan certificado"
+		"es": "Fallo de autenticaci\u00f3n: su navegador no envi\u00f3 ning\u00fan certificado",
+		"hu": "Azonos\u00edt\u00e1si hiba: a b\u00f6ng\u00e9sz\u0151 nem k\u00fcld\u00f6tt tan\u00fas\u00edtv\u00e1nyt."
 	},
 	"title_INVALIDCERT": {
 		"fr": "Certificat invalide",
@@ -1286,10 +1292,11 @@
 		"lt": "Nevalidus sertifikatas",
 		"it": "Certificato non valido",
 		"no": "Ugyldig sertifikat",
-		"es": "Certificado inv\u00e1lido"
+		"es": "Certificado inv\u00e1lido",
+		"hu": "Hib\u00e1s tan\u00fas\u00edtv\u00e1ny."
 	},
 	"descr_INVALIDCERT": {
-		"fr": "Echec de l'authentification: le certificat pr\u00e9sent\u00e9 par votre navigateur est invalide ou illisible",
+		"fr": "\u00c9chec de l'authentification: le certificat pr\u00e9sent\u00e9 par votre navigateur est invalide ou illisible",
 		"sl": "Avtentikacija je spodletela: va\u0161 spletni brskalnik je posredoval neveljavno digitalno potrdilo ali pa ga ni mo\u010d prebrati!",
 		"de": "Authentifizierung fehlgeschlagen: das von ihrem Browser gesandte Zertifikat ist ung\u00fcltig oder kann nicht gelesen werden",
 		"nn": "Feil autentisering: sertifikatet fr\u00e5 browsaren din er ugyldig eller uleseleg",
@@ -1297,7 +1304,8 @@
 		"lt": "Autentikacija nepavyko: J\u016bs\u0173 nar\u0161ykl\u0117s si\u0173stas sertifikatas yra nevalidus arba negali b\u016bti perskaitytas",
 		"it": "L'autenticazione \u00e8 fallita perch\u00e9 il tuo browser ha inviato un certificato non valido o illegibile.",
 		"no": "Autentisering feilet: sertifikatet nettleseren din sendte er ugyldig, og kan ikke leses",
-		"es": "Fallo de autenticaci\u00f3n: El certificado enviado por su navegador es inv\u00e1lido o no puede ser le\u00eddo"
+		"es": "Fallo de autenticaci\u00f3n: El certificado enviado por su navegador es inv\u00e1lido o no puede ser le\u00eddo",
+		"hu": "Azonos\u00edt\u00e1si hiba: a b\u00f6ng\u00e9sz\u0151 \u00e1ltal k\u00fcld\u00f6tt tan\u00fas\u00edtv\u00e1ny hib\u00e1s."
 	},
 	"title_UNKNOWNCERT": {
 		"fr": "Certificat inconnu",
@@ -1308,10 +1316,11 @@
 		"lt": "Ne\u017einomas sertifikatas",
 		"it": "Certificato sconosciuto",
 		"no": "Ukjent sertifikat",
-		"es": "Certificado desconocido"
+		"es": "Certificado desconocido",
+		"hu": "Ismeretlen tan\u00fas\u00edtv\u00e1ny"
 	},
 	"descr_UNKNOWNCERT": {
-		"fr": "Echec de l'authentification: le certificat pr\u00e9sent\u00e9 par votre navigateur n'est pas connu",
+		"fr": "\u00c9chec de l'authentification: le certificat pr\u00e9sent\u00e9 par votre navigateur n'est pas connu",
 		"sl": "Avtentikacija je spodletela: va\u0161 spletni brskalnik je posredoval nepoznano digitalno potrdilo",
 		"de": "Authentifizierung fehlgeschlagen: das von ihrem Browser gesandte Zertifikat ist unbekannt",
 		"nn": "Feil autentisering: ukjent sertifikat mottatt fr\u00e5 din browser",
@@ -1319,6 +1328,7 @@
 		"lt": "Autentikacija nepavyko: J\u016bs\u0173 nar\u0161ykl\u0117s si\u0173stas sertifikatas yra ne\u017einomas",
 		"it": "L'autenticazione \u00e8 fallita perch\u00e9 il tuo browser ha inviato un certificat sconosciuto.",
 		"no": "Authentisering feilet: sertifikatet nettleseren din sendte er ukjent",
-		"es": "Fallo de autenticaci\u00f3n:el certificado enviado por su navegador es desconocido"
+		"es": "Fallo de autenticaci\u00f3n:el certificado enviado por su navegador es desconocido",
+		"hu": "Azonos\u00edt\u00e1si hiba: a b\u00f6ng\u00e9sz\u0151 \u00e1ltal k\u00fcld\u00f6tt tan\u00fas\u00edtv\u00e1nyt ismeretlen t\u00edpus\u00fa."
 	}
 }

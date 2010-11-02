@@ -6,7 +6,9 @@
 		"sl": "Informacije o stanju zahtevka niso na voljo.",
 		"it": "Informazioni di stato perse",
 		"es": "Informaci\u00f3n de estado perdida",
-		"lt": "B\u016bsenos informacia prarasta"
+		"lt": "B\u016bsenos informacia prarasta",
+		"hu": "Elvezett az \u00e1llapotinform\u00e1c\u00f3",
+		"fr": "Information d'\u00e9tat perdue"
 	},
 	"description": {
 		"no": "Vi kunne ikke finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
@@ -15,7 +17,9 @@
 		"sl": "Informacije o stanju trenutne zahteve ni bilo mo\u010d najti.",
 		"it": "Non \u00e8 stato possibile localizzare le informazioni di stato per la richiesta corrente.",
 		"es": "No podemos encontrar la informaci\u00f3n de estado para la solicitud actual",
-		"lt": "Nepavyko nustatyti b\u016bsenos informacijos \u0161iai u\u017eklausai."
+		"lt": "Nepavyko nustatyti b\u016bsenos informacijos \u0161iai u\u017eklausai.",
+		"hu": "Nem lehet beazonos\u00edtani a k\u00e9r\u00e9shez tartoz\u00f3 \u00e1llapotinform\u00e1ci\u00f3t.",
+		"fr": "Nous ne pouvons pas trouver l'information d'\u00e9tat pour la demande courante"
 	},
 	"suggestions": {
 		"no": "Forslag for \u00e5 l\u00f8se dette problemet:",
@@ -24,7 +28,9 @@
 		"sl": "Predloga za razre\u0161itev nastale te\u017eave:",
 		"it": "Suggerimenti per risolvere questo problema:",
 		"es": "Sugerencias para resolver este problema",
-		"lt": "Pasi\u016blymai spr\u0119sti \u0161i\u0105 problem\u0105:"
+		"lt": "Pasi\u016blymai spr\u0119sti \u0161i\u0105 problem\u0105:",
+		"hu": "Javaslat a probl\u00e9ma elh\u00e1r\u00edt\u00e1s\u00e1ra:",
+		"fr": "Suggestions pour r\u00e9soudre ce probl\u00e8me"
 	},
 	"suggestion_goback": {
 		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
@@ -33,7 +39,9 @@
 		"sl": "Pojdite nazaj na prej\u0161njo stran in poskusite znova.",
 		"it": "Tornare alla pagina precedente e provare di nuovo.",
 		"es": "Regrese a la p\u00e1gina anterior y pruebe de nuevo",
-		"lt": "Gr\u012f\u017ekite \u012f ankstesn\u012f puslap\u012f ir pabandykite dar kart\u0105."
+		"lt": "Gr\u012f\u017ekite \u012f ankstesn\u012f puslap\u012f ir pabandykite dar kart\u0105.",
+		"hu": "Menjen vissza az el\u0151z\u0151 oldalra, majd pr\u00f3b\u00e1lja ism\u00e9t.",
+		"fr": "Retournez \u00e0 la page pr\u00e9c\u00e9dente et r\u00e9essayez"
 	},
 	"suggestion_closebrowser": {
 		"no": "Lukk nettleseren, og pr\u00f8v p\u00e5 nytt.",
@@ -42,7 +50,9 @@
 		"sl": "Zaprite spletni brskalnik in poskusite znova.",
 		"it": "Chiudere il browser web e quindi provare di nuovo.",
 		"es": "Cierre el navegador y pruebe de nuevo",
-		"lt": "U\u017edarykite interneto nar\u0161ykl\u0119 ir pabandykite dar kart\u0105."
+		"lt": "U\u017edarykite interneto nar\u0161ykl\u0119 ir pabandykite dar kart\u0105.",
+		"hu": "Z\u00e1rja be b\u00f6ng\u00e9sz\u0151j\u00e9t, majd pr\u00f3b\u00e1lja \u00fajra.",
+		"fr": "Fermez le navigateur, essayez \u00e0 nouveau"
 	},
 	"causes": {
 		"no": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
@@ -51,7 +61,9 @@
 		"sl": "Vzrok za to napako je lahko:",
 		"it": "Questo errore potrebbe essere causato da:",
 		"es": "Este error puede ser causado por",
-		"lt": "\u0160i\u0105 klaid\u0105 gal\u0117jo sukelti:"
+		"lt": "\u0160i\u0105 klaid\u0105 gal\u0117jo sukelti:",
+		"hu": "Az al\u00e1bbi hib\u00e1t okozhatta:",
+		"fr": "Cette erreur peut \u00eatre caus\u00e9e par :"
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
@@ -60,7 +72,9 @@
 		"sl": "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku.",
 		"it": "Utilizzo i pulsanti avanti ed indietro del browser web.",
 		"es": "Usando los botones atr\u00e1s y adelante de su navegador web.",
-		"lt": "Back (Atgal) ir Forward (Pirmyn) mygtuk\u0173 naudojimas interneto nar\u0161ykl\u0117je"
+		"lt": "Back (Atgal) ir Forward (Pirmyn) mygtuk\u0173 naudojimas interneto nar\u0161ykl\u0117je",
+		"hu": "Haszn\u00e1lja a b\u00f6ng\u00e9sz\u0151 el\u0151re, ill. vissza gombjait",
+		"fr": "Utilisation des boutons avance et retour dans le navigateur"
 	},
 	"cause_openbrowser": {
 		"no": "Starte nettleseren med faner lagret fra forrige gang.",
@@ -69,7 +83,9 @@
 		"sl": "Spletni brskalnik je odprl spletno stan s (poteklimi) podatki iz prej\u0161nje seje.",
 		"it": "Il browser web \u00e8 stato aperto e le finestre (tab) sono state ripristinate dalla sessione precedente.",
 		"es": "Abri\u00f3 su navegador web con pesta\u00f1as guardadas de la sesi\u00f3n previa.",
-		"lt": "Atidaryta interneto nar\u0161ykl\u0117 su kortel\u0117mis, i\u0161saugotomis i\u0161 ankstesn\u0117s sesijos."
+		"lt": "Atidaryta interneto nar\u0161ykl\u0117 su kortel\u0117mis, i\u0161saugotomis i\u0161 ankstesn\u0117s sesijos.",
+		"hu": "A b\u00f6ng\u00e9sz\u0151 a legut\u00f3bb bez\u00e1rt f\u00fcleket \u00fajranyitva indult.",
+		"fr": "Ouvert le navigateur avec des onglets sauvegard\u00e9s lors de la session pr\u00e9c\u00e9dente"
 	},
 	"cause_nocookie": {
 		"no": "At informasjonskapsler ikke er aktivert i nettleseren.",
@@ -78,7 +94,9 @@
 		"sl": "Spletni brskalnik ima izklopjeno podporo za pi\u0161kotke.",
 		"it": "I cookies potrebbe essere disabilitati.",
 		"es": "Las cookies pueden estar deshabilitadas en el navegador",
-		"lt": "Interneto nar\u0161ykl\u0117je gali b\u016bti i\u0161jungti slapukai (cookies)."
+		"lt": "Interneto nar\u0161ykl\u0117je gali b\u016bti i\u0161jungti slapukai (cookies).",
+		"hu": "Tal\u00e1n a b\u00f6ng\u00e9sz\u0151ben nincsenek enged\u00e9lyezve a s\u00fctik (cookie).",
+		"fr": "Les cookies sont peut-\u00eatre d\u00e9activ\u00e9s dans le navigateur"
 	},
 	"report_header": {
 		"no": "Rapporter denne feilen",
@@ -87,7 +105,9 @@
 		"sl": "Prijavite to napako",
 		"it": "Riportare questo errore.",
 		"es": "Informar de este error",
-		"lt": "Prane\u0161ti apie \u0161i\u0105 klaid\u0105"
+		"lt": "Prane\u0161ti apie \u0161i\u0105 klaid\u0105",
+		"hu": "A hiba jelent\u00e9se",
+		"fr": "Remontez cette erreur"
 	},
 	"report_text": {
 		"no": "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene.",
@@ -96,6 +116,8 @@
 		"sl": "\u010ce se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema.",
 		"it": "Se questo problema persiste, \u00e8 possibile segnalarlo agli amministratori di sistema.",
 		"es": "Si el problema persiste, puede reportarlo a los administradores del sistema",
-		"lt": "Jei \u0161i problema i\u0161liks, galite prane\u0161ti apie tai sistemos administratoriui."
+		"lt": "Jei \u0161i problema i\u0161liks, galite prane\u0161ti apie tai sistemos administratoriui.",
+		"hu": "Ha a probl\u00e9ma \u00e1lland\u00f3nak t\u0171nik, k\u00e9rj\u00fck, jelezze ezt az oldal adminisztr\u00e1tor\u00e1nak.",
+		"fr": "Si ce probl\u00e8me persiste, vous pouvez le remonter vers l'administrateur syst\u00e8me"
 	}
 }
