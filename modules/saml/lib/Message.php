@@ -266,7 +266,7 @@ class sspmod_saml_Message {
 	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
 	 * @return XMLSecurityKey  The decryption key.
 	 */
-	private static function getDecryptionKey(SimpleSAML_Configuration $srcMetadata,
+	public static function getDecryptionKey(SimpleSAML_Configuration $srcMetadata,
 		SimpleSAML_Configuration $dstMetadata) {
 
 		$sharedKey = $srcMetadata->getString('sharedkey', NULL);

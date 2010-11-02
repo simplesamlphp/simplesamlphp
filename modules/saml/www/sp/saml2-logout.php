@@ -64,7 +64,7 @@ if ($message instanceof SAML2_LogoutResponse) {
 
 	if ($message->isNameIdEncrypted()) {
 		try {
-			$key = self::getDecryptionKey($idpMetadata, $spMetadata);
+			$key = sspmod_saml_Message::getDecryptionKey($idpMetadata, $spMetadata);
 		} catch (Exception $e) {
 			throw new SimpleSAML_Error_Exception('Error decrypting NameID: ' . $e->getMessage());
 		}
