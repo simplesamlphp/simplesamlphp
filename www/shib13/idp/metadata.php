@@ -20,19 +20,36 @@ try {
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
 	$idpmeta = $metadata->getMetaDataConfig($idpentityid, 'shib13-idp-hosted');
 
-	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE);
-	$certFingerprint = $certInfo['certFingerprint'];
-	if (count($certFingerprint) === 1) {
-		/* Only one valid certificate. */
-		$certFingerprint = $certFingerprint[0];
+	$keys = array();
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, FALSE, 'new_');
+	if ($certInfo !== NULL) {
+		$keys[] = array(
+			'type' => 'X509Certificate',
+			'signing' => TRUE,
+			'encryption' => FALSE,
+			'X509Certificate' => $certInfo['certData'],
+		);
 	}
+
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE);
+	$keys[] = array(
+		'type' => 'X509Certificate',
+		'signing' => TRUE,
+		'encryption' => FALSE,
+		'X509Certificate' => $certInfo['certData'],
+	);
 
 	$metaArray = array(
 		'metadata-set' => 'shib13-idp-remote',
 		'entityid' => $idpentityid,
 		'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'shib13-idp-hosted'),
-		'certFingerprint' => $certFingerprint,
 	);
+
+	if (count($keys) === 1) {
+		$metaArray['certData'] = $keys[0]['X509Certificate'];
+	} else {
+		$metaArray['keys'] = $keys;
+	}
 
 	$metaArray['NameIDFormat'] = $idpmeta->getString('NameIDFormat', 'urn:mace:shibboleth:1.0:nameIdentifier');
 
@@ -49,7 +66,6 @@ try {
 
 	$metaflat = '$metadata[' . var_export($idpentityid, TRUE) . '] = ' . var_export($metaArray, TRUE) . ';';
 	
-	$metaArray['certData'] = $certInfo['certData'];
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
 	$metaBuilder->addMetadataIdP11($metaArray);
 	$metaBuilder->addOrganizationInfo($metaArray);

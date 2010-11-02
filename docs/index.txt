@@ -27,6 +27,7 @@ SimpleSAMLphp Documentation
  * [Theming simpleSAMLphp](simplesamlphp-theming)
  * [simpleSAMLphp Modules](simplesamlphp-modules) - how to create own customized modules
  * [Installing third party modules with the pack.php tool](pack)
+ * [Key rollover](./saml:keyrollover)
 
 Documentation on specific simpleSAMLphp modules:
  

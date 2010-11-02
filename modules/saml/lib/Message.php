@@ -260,35 +260,49 @@ class sspmod_saml_Message {
 
 
 	/**
-	 * Retrieve the decryption key from metadata.
+	 * Retrieve the decryption keys from metadata.
 	 *
 	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
 	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
-	 * @return XMLSecurityKey  The decryption key.
+	 * @return array  Array of decryption keys.
 	 */
-	public static function getDecryptionKey(SimpleSAML_Configuration $srcMetadata,
+	public static function getDecryptionKeys(SimpleSAML_Configuration $srcMetadata,
 		SimpleSAML_Configuration $dstMetadata) {
 
 		$sharedKey = $srcMetadata->getString('sharedkey', NULL);
 		if ($sharedKey !== NULL) {
 			$key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
 			$key->loadKey($sharedKey);
-		} else {
-			/* Find the private key we should use to decrypt messages to this SP. */
-			$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, TRUE);
-			if (!array_key_exists('PEM', $keyArray)) {
-				throw new Exception('Unable to locate key we should use to decrypt the message.');
-			}
+			return array($key);
+		}
 
-			/* Extract the public key from the certificate for encryption. */
+		$keys = array();
+
+		/* Load the new private key if it exists. */
+		$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, FALSE, 'new_');
+		if ($keyArray !== NULL) {
+			assert('isset($keyArray["PEM"])');
+
 			$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'private'));
 			if (array_key_exists('password', $keyArray)) {
 				$key->passphrase = $keyArray['password'];
 			}
 			$key->loadKey($keyArray['PEM']);
+			$keys[] = $key;
 		}
 
-		return $key;
+		/* Find the existing private key. */
+		$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, TRUE);
+		assert('isset($keyArray["PEM"])');
+
+		$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'private'));
+		if (array_key_exists('password', $keyArray)) {
+			$key->passphrase = $keyArray['password'];
+		}
+		$key->loadKey($keyArray['PEM']);
+		$keys[] = $key;
+
+		return $keys;
 	}
 
 
@@ -322,12 +336,23 @@ class sspmod_saml_Message {
 		}
 
 		try {
-			$key = self::getDecryptionKey($srcMetadata, $dstMetadata);
+			$keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
 		} catch (Exception $e) {
 			throw new SimpleSAML_Error_Exception('Error decrypting assertion: ' . $e->getMessage());
 		}
 
-		return $assertion->getAssertion($key);
+		$lastException = NULL;
+		foreach ($keys as $i => $key) {
+			try {
+				$ret = $assertion->getAssertion($key);
+				SimpleSAML_Logger::debug('Decryption with key #' . $i . ' succeeded.');
+				return $ret;
+			} catch (Exception $e) {
+				SimpleSAML_Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
+				$lastException = $e;
+			}
+		}
+		throw $lastException;
 	}
 
 
@@ -605,12 +630,26 @@ class sspmod_saml_Message {
 		/* Decrypt the NameID element if it is encrypted. */
 		if ($assertion->isNameIdEncrypted()) {
 			try {
-				$key = self::getDecryptionKey($idpMetadata, $spMetadata);
+				$key = self::getDecryptionKeys($idpMetadata, $spMetadata);
 			} catch (Exception $e) {
 				throw new SimpleSAML_Error_Exception('Error decrypting NameID: ' . $e->getMessage());
 			}
 
-			$assertion->decryptNameId($key);
+			$lastException = NULL;
+			foreach ($keys as $i => $key) {
+				try {
+					$assertion->decryptNameId($key);
+					SimpleSAML_Logger::debug('Decryption with key #' . $i . ' succeeded.');
+					$lastException = NULL;
+					break;
+				} catch (Exception $e) {
+					SimpleSAML_Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
+					$lastException = $e;
+				}
+			}
+			if ($lastException !== NULL) {
+				throw $lastException;
+			}
 		}
 
 		return $assertion;

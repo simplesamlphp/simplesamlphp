@@ -19,11 +19,37 @@ try {
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 	$idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 
+	$keys = array();
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, FALSE, 'new_');
+	if ($certInfo !== NULL) {
+		$keys[] = array(
+			'type' => 'X509Certificate',
+			'signing' => TRUE,
+			'encryption' => TRUE,
+			'X509Certificate' => $certInfo['certData'],
+		);
+		$hasNewCert = TRUE;
+	} else {
+		$hasNewCert = FALSE;
+	}
+
 	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE);
-	$certFingerprint = $certInfo['certFingerprint'];
-	if (count($certFingerprint) === 1) {
-		/* Only one valid certificate. */
-		$certFingerprint = $certFingerprint[0];
+	$keys[] = array(
+		'type' => 'X509Certificate',
+		'signing' => TRUE,
+		'encryption' => ($hasNewCert ? FALSE : TRUE),
+		'X509Certificate' => $certInfo['certData'],
+	);
+
+	if ($idpmeta->hasValue('https.certificate')) {
+		$httpsCert = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE, 'https.');
+		assert('isset($httpsCert["certData"])');
+		$keys[] = array(
+			'type' => 'X509Certificate',
+			'signing' => TRUE,
+			'encryption' => FALSE,
+			'X509Certificate' => $httpsCert['certData'],
+		);
 	}
 
 	$metaArray = array(
@@ -31,8 +57,13 @@ try {
 		'entityid' => $idpentityid,
 		'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted'),
 		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted'),
-		'certFingerprint' => $certFingerprint,
 	);
+
+	if (count($keys) === 1) {
+		$metaArray['certData'] = $keys[0]['X509Certificate'];
+	} else {
+		$metaArray['keys'] = $keys;
+	}
 
 	if ($idpmeta->getBoolean('saml20.sendartifact', FALSE)) {
 		/* Artifact sending enabled. */
@@ -59,16 +90,8 @@ try {
 		$metaArray['scope'] = $idpmeta->getArray('scope');
 	}
 
-	if ($idpmeta->hasValue('https.certificate')) {
-		$httpsCert = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE, 'https.');
-		assert('isset($httpsCert["certData"])');
-		$metaArray['https.certData'] = $httpsCert['certData'];
-	}
-
-
 	$metaflat = '$metadata[' . var_export($idpentityid, TRUE) . '] = ' . var_export($metaArray, TRUE) . ';';
 
-	$metaArray['certData'] = $certInfo['certData'];
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
 	$metaBuilder->addMetadataIdP20($metaArray);
 	$metaBuilder->addOrganizationInfo($metaArray);

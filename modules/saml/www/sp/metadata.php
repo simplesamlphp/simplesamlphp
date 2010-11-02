@@ -72,8 +72,11 @@ $acs->Binding = 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01';
 $acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId . '/artifact');
 $sp->AssertionConsumerService[] = $acs;
 
-$certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig);
+$keys = array();
+$certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig, FALSE, 'new_');
 if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
+	$hasNewCert = TRUE;
+
 	$certData = $certInfo['certData'];
 	$kd = SAML2_Utils::createKeyDescriptor($certData);
 	$kd->use = 'signing';
@@ -82,6 +85,39 @@ if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$kd = SAML2_Utils::createKeyDescriptor($certData);
 	$kd->use = 'encryption';
 	$sp->KeyDescriptor[] = $kd;
+
+	$keys[] = array(
+		'type' => 'X509Certificate',
+		'signing' => TRUE,
+		'encryption' => TRUE,
+		'X509Certificate' => $certInfo['certData'],
+	);
+
+} else {
+	$hasNewCert = FALSE;
+}
+
+$certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig);
+if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
+	$certData = $certInfo['certData'];
+	$kd = SAML2_Utils::createKeyDescriptor($certData);
+	$kd->use = 'signing';
+	$sp->KeyDescriptor[] = $kd;
+
+	if (!$hasNewCert) {
+		/* Don't include the old certificate for encryption when we have a newer certificate. */
+		$kd = SAML2_Utils::createKeyDescriptor($certData);
+		$kd->use = 'encryption';
+		$sp->KeyDescriptor[] = $kd;
+	}
+
+	$keys[] = array(
+		'type' => 'X509Certificate',
+		'signing' => TRUE,
+		'encryption' => ($hasNewCert ? FALSE : TRUE),
+		'X509Certificate' => $certInfo['certData'],
+	);
+
 } else {
 	$certData = NULL;
 }
@@ -168,8 +204,10 @@ $xml = $ed->toXML();
 SimpleSAML_Utilities::formatDOMElement($xml);
 $xml = $xml->ownerDocument->saveXML($xml);
 
-if ($certData !== NULL) {
-	$metaArray20['certData'] = $certData;
+if (count($keys) === 1) {
+	$metaArray20['certData'] = $keys[0]['X509Certificate'];
+} elseif (count($keys) > 1) {
+	$metaArray20['keys'] = $keys;
 }
 
 if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
