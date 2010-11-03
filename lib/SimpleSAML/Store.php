@@ -48,7 +48,12 @@ abstract class SimpleSAML_Store {
 			self::$instance = new SimpleSAML_Store_SQL();
 			break;
 		default:
-			throw new SimpleSAML_Error_Exception('Unknown datastore type: ' . var_export($storeType, TRUE));
+			if (strpos($storeType, ':') === FALSE) {
+				throw new SimpleSAML_Error_Exception('Unknown datastore type: ' . var_export($storeType, TRUE));
+			}
+			/* Datastore from module. */
+			$className = SimpleSAML_Module::resolveClass($storeType, 'Store', 'SimpleSAML_Store');
+			self::$instance = new $className();
 		}
 
 		return self::$instance;
