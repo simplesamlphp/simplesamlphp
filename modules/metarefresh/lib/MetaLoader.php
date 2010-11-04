@@ -245,6 +245,7 @@ class sspmod_metarefresh_MetaLoader {
 				if (!array_key_exists('expire', $metadata)) {
 					SimpleSAML_Logger::warning('metarefresh: Metadata entry without expire timestamp: ' . var_export($entityId, TRUE) . 
 						' in set ' . var_export($set, TRUE) . '.');
+					continue;
 				}
 				if ($metadata['expire'] > $ct) {
 					continue;
