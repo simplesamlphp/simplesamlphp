@@ -630,7 +630,7 @@ class sspmod_saml_Message {
 		/* Decrypt the NameID element if it is encrypted. */
 		if ($assertion->isNameIdEncrypted()) {
 			try {
-				$key = self::getDecryptionKeys($idpMetadata, $spMetadata);
+				$keys = self::getDecryptionKeys($idpMetadata, $spMetadata);
 			} catch (Exception $e) {
 				throw new SimpleSAML_Error_Exception('Error decrypting NameID: ' . $e->getMessage());
 			}
