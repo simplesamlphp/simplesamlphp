@@ -140,7 +140,7 @@ try {
 
 	/* Find MIME type for file, based on extension. */
 	$contentType = NULL;
-	if (preg_match('#\.([^/]+)$#D', $path, $type)) {
+       if (preg_match('#\.([^/\.]+)$#D', $path, $type)) {
 		$type = strtolower($type[1]);
 		if (array_key_exists($type, $mimeTypes)) {
 			$contentType = $mimeTypes[$type];
