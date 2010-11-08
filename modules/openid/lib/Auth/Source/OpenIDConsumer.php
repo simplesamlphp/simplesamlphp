@@ -9,6 +9,7 @@ SimpleSAML_Utilities::maskErrors(E_STRICT);
 /* Add the OpenID library search path. */
 set_include_path(get_include_path() . PATH_SEPARATOR . dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) . '/lib');
 
+require_once('Auth/OpenID/AX.php');
 require_once('Auth/OpenID/SReg.php');
 require_once('Auth/OpenID/Server.php');
 require_once('Auth/OpenID/ServerRequest.php');
@@ -27,13 +28,19 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 	 * List of optional attributes.
 	 */
 	private $optionalAttributes;
+	private $optionalAXAttributes;
 
 
 	/**
 	 * List of required attributes.
 	 */
 	private $requiredAttributes;
+	private $requiredAXAttributes;
 
+	/**
+	 * Validate SReg responses.
+	 */
+	private $validateSReg;
 
 	/**
 	 * Constructor for this authentication source.
@@ -51,6 +58,11 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 
 		$this->optionalAttributes = $cfgParse->getArray('attributes.optional', array());
 		$this->requiredAttributes = $cfgParse->getArray('attributes.required', array());
+
+		$this->optionalAXAttributes = $cfgParse->getArray('attributes.ax_optional', array());
+		$this->requiredAXAttributes = $cfgParse->getArray('attributes.ax_required', array());
+
+		$this->validateSReg = $cfgParse->getBoolean('sreg.validate',TRUE);
 	}
 
 
@@ -68,26 +80,6 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 
 		$url = SimpleSAML_Module::getModuleURL('openid/consumer.php');
 		SimpleSAML_Utilities::redirect($url, array('AuthState' => $id));
-	}
-
-
-	/**
-	 * Retrieve required attributes.
-	 *
-	 * @return array  Required attributes.
-	 */
-	private function getRequiredAttributes() {
-		return $this->requiredAttributes;
-	}
-
-
-	/**
-	 * Retrieve optional attributes.
-	 *
-	 * @return array  Optional attributes.
-	 */
-	private function getOptionalAttributes() {
-		return $this->optionalAttributes;
 	}
 
 
@@ -151,12 +143,38 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 		}
 
 		$sreg_request = Auth_OpenID_SRegRequest::build(
-			$this->getRequiredAttributes(),
-			$this->getOptionalAttributes()
+			$this->requiredAttributes,
+			$this->optionalAttributes
 		);
 
 		if ($sreg_request) {
 			$auth_request->addExtension($sreg_request);
+		}
+
+		// Create attribute request object
+		$ax_attribute = array();
+
+		foreach($this->requiredAXAttributes as $attr) {
+			$ax_attribute[] = Auth_OpenID_AX_AttrInfo::make($attr,1,true);
+		}
+
+		foreach($this->optionalAXAttributes as $attr) {
+			$ax_attribute[] = Auth_OpenID_AX_AttrInfo::make($attr,1,false);
+		}
+
+		if (count($ax_attribute) > 0) {
+
+			// Create AX fetch request
+			$ax_request = new Auth_OpenID_AX_FetchRequest;
+
+			// Add attributes to AX fetch request
+			foreach($ax_attribute as $attr){
+				$ax_request->add($attr);
+			}
+
+			// Add AX fetch request to authentication request
+			$auth_request->addExtension($ax_request);
+
 		}
 
 		// Redirect the user to the OpenID server for authentication.
@@ -223,12 +241,17 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 		$openid = $response->identity_url;
 
 		$attributes = array('openid' => array($openid));
+		$attributes['openid.server_url'] = array($response->endpoint->server_url);
 
 		if ($response->endpoint->canonicalID) {
 			$attributes['openid.canonicalID'] = array($response->endpoint->canonicalID);
 		}
 
-		$sreg_resp = Auth_OpenID_SRegResponse::fromSuccessResponse($response);
+		if ($response->endpoint->claimed_id) {
+				$attributes['openid.claimed_id'] = array($response->endpoint->claimed_id);
+		}
+
+		$sreg_resp = Auth_OpenID_SRegResponse::fromSuccessResponse($response, $this->validateSReg);
 		$sregresponse = $sreg_resp->contents();
 
 		if (is_array($sregresponse) && count($sregresponse) > 0) {
@@ -237,6 +260,25 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 				$attributes['openid.sreg.' . $sregkey] = array($sregvalue);
 			}
 		}
+
+		// Get AX response information
+		$ax = new Auth_OpenID_AX_FetchResponse();
+		$ax_resp = $ax->fromSuccessResponse($response);
+
+		if (($ax_resp instanceof Auth_OpenID_AX_FetchResponse) && (!empty($ax_resp->data))) {
+			$axresponse = $ax_resp->data;
+
+			$attributes['openid.axkeys'] = array_keys($axresponse);
+			foreach ($axresponse AS $axkey => $axvalue) {
+				if (preg_match("/^\w+:/",$axkey)) {
+					$attributes[$axkey] = (is_array($axvalue)) ? $axvalue : array($axvalue);
+				} else {
+					SimpleSAML_Logger::warning('Invalid attribute name in AX response: ' . var_export($axkey, TRUE));
+				}
+			}
+		}
+
+		SimpleSAML_Logger::debug('OpenID Returned Attributes: '. implode(", ",array_keys($attributes)));
 
 		$state['Attributes'] = $attributes;
 		SimpleSAML_Auth_Source::completeAuth($state);

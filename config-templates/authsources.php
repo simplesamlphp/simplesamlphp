@@ -86,6 +86,9 @@ $config = array(
 		'openid:OpenIDConsumer',
 		'attributes.required' => array('nickname'),
 		'attributes.optional' => array('fullname', 'email',),
+		// 'sreg.validate' => FALSE,
+		'attributes.ax_required' => array('http://axschema.org/namePerson/friendly'),
+		'attributes.ax_optional' => array('http://axschema.org/namePerson','http://axschema.org/contact/email'),
 	),
 	*/
 
