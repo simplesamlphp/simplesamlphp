@@ -247,8 +247,8 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 			$attributes['openid.canonicalID'] = array($response->endpoint->canonicalID);
 		}
 
-		if ($response->endpoint->claimed_id) {
-				$attributes['openid.claimed_id'] = array($response->endpoint->claimed_id);
+		if ($response->endpoint->local_id) {
+				$attributes['openid.local_id'] = array($response->endpoint->local_id);
 		}
 
 		$sreg_resp = Auth_OpenID_SRegResponse::fromSuccessResponse($response, $this->validateSReg);
