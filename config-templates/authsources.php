@@ -93,6 +93,24 @@ $config = array(
 	*/
 
 	/*
+	// Example of an authsource that authenticates against Google.
+	// See: http://code.google.com/apis/accounts/docs/OpenID.html
+	'google' => array(
+		'openid:OpenIDConsumer',
+		// Googles OpenID endpoint.
+		'target' => 'https://www.google.com/accounts/o8/id',
+		// Attributes that google can supply.
+		'attributes.ax_required' => array(
+			//'http://axschema.org/namePerson/first',
+			//'http://axschema.org/namePerson/last',
+			//'http://axschema.org/contact/email',
+			//'http://axschema.org/contact/country/home',
+			//'http://axschema.org/pref/language',
+		),
+	),
+	*/
+
+	/*
 	'papi' => array(
 		'authpapi:PAPI',
 	),

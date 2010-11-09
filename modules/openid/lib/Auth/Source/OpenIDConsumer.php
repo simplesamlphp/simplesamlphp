@@ -25,6 +25,14 @@ require_once('Auth/OpenID/ServerRequest.php');
 class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 
 	/**
+	 * Static openid target to use.
+	 *
+	 * @var string|NULL
+	 */
+	private $target;
+
+
+	/**
 	 * List of optional attributes.
 	 */
 	private $optionalAttributes;
@@ -56,6 +64,8 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 		$cfgParse = SimpleSAML_Configuration::loadFromArray($config,
 			'Authentication source ' . var_export($this->authId, TRUE));
 
+		$this->target = $cfgParse->getString('target', NULL);
+
 		$this->optionalAttributes = $cfgParse->getArray('attributes.optional', array());
 		$this->requiredAttributes = $cfgParse->getArray('attributes.required', array());
 
@@ -76,6 +86,11 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 		assert('is_array($state)');
 
 		$state['openid:AuthId'] = $this->authId;
+
+		if ($this->target !== NULL) {
+			$this->doAuth($state, $this->target);
+		}
+
 		$id = SimpleSAML_Auth_State::saveState($state, 'openid:state');
 
 		$url = SimpleSAML_Module::getModuleURL('openid/consumer.php');
