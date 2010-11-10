@@ -219,6 +219,7 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 				echo '<html><head><title>OpenID transaction in progress</title></head>
 					<body onload=\'document.getElementById("' . $form_id . '").submit()\'>' .
 					$form_html . '</body></html>';
+				exit;
 			}
 		}
 	}
