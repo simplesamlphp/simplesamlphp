@@ -86,6 +86,13 @@ class SimpleSAML_Metadata_SAMLParser {
 	 */
 	private $organizationURL = array();
 	
+
+	/**
+	 * This is an array of the Contact Persons of this entity.
+	 */
+	private $contacts = array();
+
+
 	private $scopes;
 	private $attributes;
 	private $tags;
@@ -148,6 +155,12 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		if ($entityElement->Organization) {
 			$this->processOrganization($entityElement->Organization);
+		}
+
+		if(!empty($entityElement->ContactPerson)) {
+			foreach($entityElement->ContactPerson as $contact) {
+				$this->processContactPerson($contact);
+			}
 		}
 	}
 
@@ -388,6 +401,11 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['url'] = $this->organizationURL;
 			$ret['OrganizationURL'] = $this->organizationURL;
 		}
+
+		/*
+		 * Add contact metadata
+		 */
+		$ret['contacts'] = $this->contacts;
 
 		return $ret;
 	}
@@ -889,6 +907,38 @@ class SimpleSAML_Metadata_SAMLParser {
 		$this->organizationName = $element->OrganizationName;
 		$this->organizationDisplayName = $element->OrganizationDisplayName;
 		$this->organizationURL = $element->OrganizationURL;
+	}
+
+	/**
+	 * Parse and process a ContactPerson element.
+	 *
+	 * @param SAML2_XML_md_ContactPerson $element  The ContactPerson element.
+	 */
+
+	private function processContactPerson(SAML2_XML_md_ContactPerson $element) {
+
+		$contactPerson = array();
+		if(!empty($element->contactType)) {
+			$contactPerson['contactType'] = $element->contactType;
+		}
+		if(!empty($element->Company)) {
+			$contactPerson['company'] = $element->Company;
+		}
+		if(!empty($element->GivenName)) {
+			$contactPerson['givenName'] = $element->GivenName;
+		}
+		if(!empty($element->SurName)) {
+			$contactPerson['surName'] = $element->SurName;
+		}
+		if(!empty($element->EmailAddress)) {
+			$contactPerson['emailAddress'] = $element->EmailAddress;
+		}
+		if(!empty($element->TelephoneNumber)) {
+			$contactPerson['telephoneNumber'] = $element->TelephoneNumber;
+		}
+		if(!empty($contactPerson)) {
+			$this->contacts[] = $contactPerson;
+		}
 	}
 
 
