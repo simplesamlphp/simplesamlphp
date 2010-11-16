@@ -104,7 +104,7 @@ class SimpleSAML_Auth_Simple {
 			$returnTo = SimpleSAML_Utilities::selfURL();
 		}
 
-		if ($keepPost && $_SERVER['REQUEST_METHOD'] === 'POST') {
+		if (is_string($returnTo) && $keepPost && $_SERVER['REQUEST_METHOD'] === 'POST') {
 			$returnTo = SimpleSAML_Utilities::createPostRedirectLink($returnTo, $_POST);
 		}
 
