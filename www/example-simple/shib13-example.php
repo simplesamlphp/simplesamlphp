@@ -50,7 +50,7 @@ if (!$session->isValid('shib13') ) {
 /* Prepare attributes for presentation 
 * and call a hook function for organizing the attribute array
 */
-$attributes = $session->getAttributes();
+$attributes = $session->getAuthData('shib13', 'Attributes');
 $para = array(
 	'attributes' => &$attributes
 );
@@ -69,10 +69,9 @@ SimpleSAML_Module::callHooks('attributepresentation', $para);
 $t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes');
 
 $t->data['header'] = '{status:header_shib}';
-$t->data['remaining'] = $session->remainingTime();
+$t->data['remaining'] = $session->getAuthData('shib13', 'Expire') - time();
 $t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;
-$t->data['attributes'] = $session->getAttributes();
 $t->data['logout'] = null;
 $t->show();
 

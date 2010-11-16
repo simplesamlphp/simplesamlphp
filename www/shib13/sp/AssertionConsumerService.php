@@ -24,14 +24,15 @@ function finishLogin($authProcState) {
 	assert('array_key_exists("Source", $authProcState)');
 	assert('array_key_exists("entityid", $authProcState["Source"])');
 
-	global $session;
+	$authData = array(
+		'Attributes' => $authProcState['Attributes'],
+		'saml:sp:NameID' => $authProcState['core:shib13-sp:NameID'],
+		'saml:sp:SessionIndex' => $authProcState['core:shib13-sp:SessionIndex'],
+		'saml:sp:IdP' => $authProcState['Source']['entityid'],
+	);
 
-	/* Update the session information */
-	$session->doLogin('shib13');
-	$session->setAttributes($authProcState['Attributes']);
-	$session->setNameID($authProcState['core:shib13-sp:NameID']);
-	$session->setSessionIndex($authProcState['core:shib13-sp:SessionIndex']);
-	$session->setIdP($authProcState['Source']['entityid']);
+	global $session;
+	$session->doLogin('shib13', $authData);
 
 	SimpleSAML_Utilities::redirect($authProcState['core:shib13-sp:TargetURL']);
 }
