@@ -162,8 +162,8 @@ class SimpleSAML_Session {
 	public function __wakeup() {
 		$this->addShutdownFunction();
 	}
-	
-	
+
+
 	/**
 	 * Retrieves the current session. Will create a new session if there isn't a session.
 	 *
@@ -240,7 +240,8 @@ class SimpleSAML_Session {
 	public function getTrackID() {
 		return $this->trackid;
 	}
-	
+
+
 	/**
 	 * Who authorized this session. could be in example saml2, shib13, login,login-admin etc.
 	 */
@@ -277,7 +278,8 @@ class SimpleSAML_Session {
 
 		return $authnRequest;
 	}
-	
+
+
 	/**
 	 * This method sets a cached assoc array to the authentication request cache storage.
 	 *
@@ -286,40 +288,81 @@ class SimpleSAML_Session {
 	 * @param $cache			The assoc array that will be stored.
 	 */
 	public function setAuthnRequest($protocol, $requestid, array $cache) {
-	
+
 		SimpleSAML_Logger::debug('Library - Session: Set authnrequest ' . $protocol . ' time:' . time() . ' size:' . count($cache) . '  id: '. $requestid );
 
 		$type = 'AuthnRequest-' . $protocol;
 		$this->setData($type, $requestid, $cache);
 	}
-	
 
 
-
+	/**
+	 * Set the IdP we are authenticated against.
+	 *
+	 * @param string|NULL $idp  Our current IdP, or NULL if we aren't authenticated with an IdP.
+	 */
 	public function setIdP($idp) {
-	
+		assert('is_string($idp) || is_null($idp)');
+
 		SimpleSAML_Logger::debug('Library - Session: Set IdP to : ' . $idp);
 		$this->dirty = true;
 		$this->idp = $idp;
 	}
+
+
+	/**
+	 * Retrieve the IdP we are currently authenticated against.
+	 *
+	 * @return string|NULL  Our current IdP, or NULL if we aren't authenticated with an IdP.
+	 */
 	public function getIdP() {
 		return $this->idp;
 	}
-	
 
+
+	/**
+	 * Set the SessionIndex we received from our IdP.
+	 *
+	 * @param string|NULL $sessionindex  Our SessionIndex.
+	 */
 	public function setSessionIndex($sessionindex) {
+		assert('is_string($sessionindex) || is_null($sessionindex)');
+
 		SimpleSAML_Logger::debug('Library - Session: Set sessionindex: ' . $sessionindex);
 		$this->dirty = true;
 		$this->sessionindex = $sessionindex;
 	}
+
+
+	/**
+	 * Retrieve our SessionIndex.
+	 *
+	 * @return string|NULL  Our SessionIndex.
+	 */
 	public function getSessionIndex() {
 		return $this->sessionindex;
 	}
+
+
+	/**
+	 * Set our current NameID.
+	 *
+	 * @param array|NULL $nameid  The NameID we received from the IdP
+	 */
 	public function setNameID($nameid) {
+		assert('is_array($nameid) || is_null($nameid)');
+
 		SimpleSAML_Logger::debug('Library - Session: Set nameID: ');
 		$this->dirty = true;
 		$this->nameid = $nameid;
 	}
+
+
+	/**
+	 * Get our NameID.
+	 *
+	 * @return array|NULL The NameID we received from the IdP.
+	 */
 	public function getNameID() {
 		return $this->nameid;
 	}
@@ -382,14 +425,21 @@ class SimpleSAML_Session {
 	}
 
 
+	/**
+	 * Set the lifetime of our current authentication session.
+	 *
+	 * @param int $duration  The number of seconds this authentication session is valid.
+	 */
 	public function setSessionDuration($duration) {
+		assert('is_int($duration)');
+
 		SimpleSAML_Logger::debug('Library - Session: Set session duration ' . $duration);
 		$this->dirty = true;
 		$this->sessionduration = $duration;
 	}
-	
-	
-	/*
+
+
+	/**
 	 * Is the session representing an authenticated user, and is the session still alive.
 	 * This function will return false after the user has timed out.
 	 *
@@ -413,16 +463,21 @@ class SimpleSAML_Session {
 
 		return $this->remainingTime() > 0;
 	}
-	
-	/*
+
+
+	/**
 	 * If the user is authenticated, how much time is left of the session.
+	 *
+	 * @return int  The number of seconds until the session expires.
 	 */
 	public function remainingTime() {
 		return $this->sessionduration - (time() - $this->sessionstarted);
 	}
 
-	/* 
+	/**
 	 * Is the user authenticated. This function does not check the session duration.
+	 *
+	 * @return bool  TRUE if the user is authenticated, FALSE otherwise.
 	 */
 	public function isAuthenticated() {
 		return $this->authenticated;
@@ -441,28 +496,52 @@ class SimpleSAML_Session {
 
 		return $this->sessionstarted;
 	}
-	
-	
-	// *** Attributes ***
-	
+
+
+	/**
+	 * Retrieve the attributes associated with this session.
+	 *
+	 * @return array|NULL  The attributes.
+	 */
 	public function getAttributes() {
 		return $this->attributes;
 	}
 
+
+	/**
+	 * Retrieve a single attribute.
+	 *
+	 * @param string $name  The name of the attribute.
+	 * @return array|NULL  The values of the given attribute.
+	 */
 	public function getAttribute($name) {
 		return $this->attributes[$name];
 	}
 
+
+	/**
+	 * Set the attributes for this session.
+	 *
+	 * @param array|NULL $attributes  The attributes of this session.
+	 */
 	public function setAttributes($attributes) {
 		$this->dirty = true;
 		$this->attributes = $attributes;
 	}
-	
+
+
+	/**
+	 * Set the values of a single attribute.
+	 *
+	 * @param string $name  The name of the attribute.
+	 * @param array $value  The values of the attribute.
+	 */
 	public function setAttribute($name, $value) {
 		$this->dirty = true;
 		$this->attributes[$name] = $value;
 	}
-	
+
+
 	/**
 	 * Calculates the size of the session object after serialization
 	 *
@@ -825,8 +904,7 @@ class SimpleSAML_Session {
 	 *
 	 * @param array $state  The state array.
 	 */
-	public function setLogoutState($state) {
-		assert('is_array($state)');
+	public function setLogoutState(array $state) {
 
 		$this->dirty = TRUE;
 		$this->logoutState = $state;
@@ -1009,5 +1087,3 @@ class SimpleSAML_Session {
 	}
 
 }
-
-?>
