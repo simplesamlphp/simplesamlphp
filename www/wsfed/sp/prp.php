@@ -116,7 +116,7 @@ try {
 	}
 	$nameid = array(
 		'Format' => $nameid->item(0)->getAttribute('Format'),
-		'value' => $nameid->item(0)->textContent,
+		'Value' => $nameid->item(0)->textContent,
 		);
 
 

@@ -324,19 +324,6 @@ class SimpleSAML_Session {
 		$this->nameid = $nameid;
 	}
 	public function getNameID() {
-		if (array_key_exists('value', $this->nameid)) {
-			/*
-			 * This session was saved by an old version of simpleSAMLphp.
-			 * Convert to the new NameId format.
-			 *
-			 * TODO: Remove this conversion once every session uses the new format.
-			 */
-			$this->nameid['Value'] = $this->nameid['value'];
-			unset($this->nameid['value']);
-
-			$this->dirty = TRUE;
-		}
-
 		return $this->nameid;
 	}
 
