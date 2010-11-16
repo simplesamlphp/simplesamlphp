@@ -16,15 +16,12 @@
 $config = SimpleSAML_Configuration::getInstance();
 $consentconfig = SimpleSAML_Configuration::getConfig('module_consentSimpleAdmin.php');
 
-// Get session object
-$session = SimpleSAML_Session::getInstance();
-
 $as = $consentconfig->getValue('auth');
 $as = new SimpleSAML_Auth_Simple($as);
 $as->requireAuth();
 
 // Get all attributes
-$attributes = $session->getAttributes();
+$attributes = $as->getAttributes();
 
 
 
@@ -43,9 +40,9 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 /*
  * Get IdP id and metadata
  */
-if($session->getIdP() != null) {
+if($as->getAuthData('saml:sp:IdP') != null) {
 	// From a remote idp (as bridge)
-	$idp_entityid = $session->getIdP();
+	$idp_entityid = $as->getAuthData('saml:sp:IdP');
 	$idp_metadata = $metadata->getMetaData($idp_entityid, 'saml20-idp-remote');
 } else {
 	// from the local idp
