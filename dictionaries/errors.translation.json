@@ -20,7 +20,7 @@
 		"tr": "simpleSAMLphp hatas\u0131",
 		"it": "Errore di simpleSAMLphp",
 		"lt": "simpleSAMLphp klaida",
-		"ja": "simpleSAMLphp \u30a8\u30e9\u30fc"
+		"ja": "simpleSAMLphp\u30a8\u30e9\u30fc"
 	},
 	"report_trackid": {
 		"no": "Hvis vil rapportere denne feilen, send ogs\u00e5 med dette sporingsnummeret. Det gj\u00f8r det enklere for systemadministratorene \u00e5 finne ut hva som gikk galt:",
@@ -41,7 +41,7 @@
 		"pl": "Je\u015bli zg\u0142aszasz ten bl\u0105d, podaj tak\u017ce ID zdarzenia, kt\u00f3ry umo\u017cliwi administratorowi zlokalizowa\u0107 Twoj\u0105 sesje w logach:",
 		"cs": "Pokud budete reportovat tuto chybu, pros\u00edm za\u0161lete toto ID, kter\u00e9 umo\u017en\u00ed naj\u00edt va\u0161e sezen\u00ed v loz\u00edch: ",
 		"tr": "Bu hatay\u0131 bildirirseniz, l\u00fctfen, sistem y\u00f6neticisi taraf\u0131ndan incelebilen kay\u0131tlardan oturumunuzun belirlenebilmesini sa\u011flayan izleme ID'sini de bildirin.",
-		"it": "Se inoltri questo errore, per favore riporta anche questo tracking ID, render&agrave; possibile all'amministratore del sistema il tracciamento della tua sessione nei log:",
+		"it": "Se inoltri questo errore, per favore riporta anche questo tracking ID, esso render&agrave; possibile all'amministratore del sistema il tracciamento della tua sessione nei log:",
 		"lt": "Jei prane\u0161ate apie \u0161i\u0105 klaid\u0105, neu\u017emir\u0161kite pateikti \u0161ios klaidos ID, kurio d\u0117ka sistemos administratorius gal\u0117s surasti J\u016bs\u0173 sesijos metu atliktus veiksmus atlikt\u0173 veiksm\u0173 istorijoje:"
 	},
 	"debuginfo_header": {
@@ -87,7 +87,8 @@
 		"cs": "Debug m\u016f\u017ee zaj\u00edmat administr\u00e1tora (helpdesk)",
 		"tr": "A\u015fa\u011f\u0131daki hata ay\u0131klama bilgisi y\u00f6neticinin\/yard\u0131m masas\u0131n\u0131n ilgisini \u00e7ekebilir:",
 		"it": "Le seguenti informazioni di debug possono interessare l'amministratore di sistema o il supporto utenti:",
-		"lt": "\u0160i detali informacija gali b\u016bti \u012fdomi administratoriui:"
+		"lt": "\u0160i detali informacija gali b\u016bti \u012fdomi administratoriui:",
+		"ja": "\u30b7\u30b9\u30c6\u30e0\u7ba1\u7406\u8005\u3084\u30d8\u30eb\u30d7\u30c7\u30b9\u30af\u306f\u4ee5\u4e0b\u306e\u30c7\u30d0\u30c3\u30b0\u60c5\u5831\u306b\u8208\u5473\u3092\u6301\u3064\u304b\u3082\u3057\u308c\u307e\u305b\u3093:"
 	},
 	"report_header": {
 		"no": "Rapporter feil",
@@ -109,7 +110,8 @@
 		"cs": "Chybov\u00fd report",
 		"tr": "Hatalar\u0131 bildir",
 		"lt": "Prane\u0161ti apie klaidas",
-		"it": "Riporta gli errori"
+		"it": "Riporta gli errori",
+		"ja": "\u30a8\u30e9\u30fc\u3092\u30ec\u30dd\u30fc\u30c8"
 	},
 	"report_text": {
 		"no": "Hvis du \u00f8nsker at brukerst\u00f8tte skal kunne kontakte deg igjen i forbindelse med denne feilen, m\u00e5 du oppgi e-postadressen din nedenfor:",
@@ -154,7 +156,8 @@
 		"cs": "Email",
 		"tr": "E-posta adresi:",
 		"lt": "El. pa\u0161to adresas:",
-		"it": "Indirizzo di e-mail:"
+		"it": "Indirizzo di e-mail:",
+		"ja": "E\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9:"
 	},
 	"report_explain": {
 		"no": "Forklar hva du gjorde da feilen oppsto...",
@@ -176,7 +179,8 @@
 		"cs": "Vysv\u011btlete jak do\u0161lo k t\u00e9to chyb\u011b ...",
 		"tr": "Bu hatan\u0131n neden olu\u015ftu\u011funu a\u00e7\u0131klay\u0131n...",
 		"lt": "Apra\u0161ykite kokius veiksmus atlikote, kuomet pasirod\u0117 \u0161i klaida...",
-		"it": "Descrivi cosa stavi facendo quando questo errore si \u00e8 generato..."
+		"it": "Descrivi cosa stavi facendo al momento dell'errore",
+		"ja": "\u4f55\u3092\u3057\u305f\u969b\u306b\u3053\u306e\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u305f\u304b\u3092\u8aac\u660e\u3057\u3066\u304f\u3060\u3055\u3044..."
 	},
 	"report_submit": {
 		"no": "Send feilrapport",
@@ -198,7 +202,8 @@
 		"cs": "Zaslat chybov\u00fd report",
 		"tr": "Hata raporu g\u00f6nder",
 		"lt": "Si\u0173sti prane\u0161im\u0105 apie klaid\u0105",
-		"it": "Invia un rapporto di errore"
+		"it": "Invia un rapporto di errore",
+		"ja": "\u30a8\u30e9\u30fc\u30ec\u30dd\u30fc\u30c8\u3092\u9001\u4fe1"
 	},
 	"howto_header": {
 		"no": "Hvordan f\u00e5 hjelp",
@@ -220,7 +225,8 @@
 		"cs": "Jak z\u00edskat pomoc",
 		"tr": "Nas\u0131l yard\u0131m al\u0131n\u0131r",
 		"lt": "Kaip pasiekti pagalb\u0105",
-		"it": "Come ottenere aiuto"
+		"it": "Come ottenere aiuto",
+		"ja": "\u30d8\u30eb\u30d7\u3092\u5f97\u308b\u306b\u306f"
 	},
 	"howto_text": {
 		"no": "Denne feilen skyldes sannsynligvis feil i oppsettet av simpleSAMLphp eller den er en f\u00f8lge av en uforutsett hendelse. Kontakt administratoren av denne tjenesten og rapporter s\u00e5 mye som mulig ang\u00e5ende feilen.",
@@ -264,7 +270,8 @@
 		"cs": "Chyba p\u0159i vytv\u00e1\u0159en\u00ed po\u017eadavku",
 		"tr": "\u0130stek olu\u015fturmada hata",
 		"lt": "Klaida kuriant u\u017eklaus\u0105",
-		"it": "Errore nella creazione della richiesta"
+		"it": "Errore durante la generazione della richiesta",
+		"ja": "\u30ea\u30af\u30a8\u30b9\u30c8\u306e\u751f\u6210\u30a8\u30e9\u30fc"
 	},
 	"descr_CREATEREQUEST": {
 		"no": "En feil oppstod da SAML-foresp\u00f8rselen skulle lages.",
@@ -286,7 +293,7 @@
 		"cs": "Chyba vznikla p\u0159i vytv\u00e1\u0159en\u00ed SAML po\u017eadavku.",
 		"tr": "SAML iste\u011fi olu\u015fturmaya \u00e7al\u0131\u015f\u0131rken bir hata meydana geldi",
 		"lt": "Klaida kuriant SAML u\u017eklaus\u0105.",
-		"it": "Si \u00e8 generato un errore cercando di creare una richiesta SAML."
+		"it": "Si \u00e8 verificato un errore durante la creazione della richiesta SAML."
 	},
 	"title_DISCOPARAMS": {
 		"no": "Ugyldig foresp\u00f8rsel til SAML 2.0 Discovery-tjenesten",
@@ -308,7 +315,8 @@
 		"cs": "\u0160patn\u00fd po\u017eadavek pro prohled\u00e1vac\u00ed slu\u017ebu",
 		"tr": "Tan\u0131ma servisine giden hatal\u0131 istek",
 		"lt": "Neteisinga u\u017eklaus\u0105 kreipiantis \u012f \"discovery\" servis\u0105",
-		"it": "Richiesta errata al discovery service"
+		"it": "Richiesta errata al discovery service",
+		"ja": "\u30b5\u30fc\u30d3\u30b9\u30c7\u30a3\u30b9\u30ab\u30d0\u30ea\u4e2d\u306e\u4e0d\u6b63\u306a\u30ea\u30af\u30a8\u30b9\u30c8"
 	},
 	"descr_DISCOPARAMS": {
 		"no": "Parametere sendt til discovery-tjenesten var ikke i korrekt format.",
@@ -329,7 +337,7 @@
 		"cs": "Parametr zaslan\u00fd vyhled\u00e1vac\u00ed slu\u017eb\u011b neodpov\u00edd\u00e1 specifikaci.",
 		"tr": "Tan\u0131ma servisine g\u00f6nderilen parametreler tan\u0131mlananlara g\u00f6re de\u011fildi.",
 		"lt": "Parametrai, nusi\u0173sti \"discovery\" servisui neatitiko specifikacij\u0173.",
-		"it": "I parametri inviati al discovery service non seguivano le specifiche."
+		"it": "I parametri inviati al discovery service non rispettano le specifiche."
 	},
 	"title_GENERATEAUTHNRESPONSE": {
 		"no": "Fikk ikke svart p\u00e5 autentiserings-foresp\u00f8rsel",
@@ -351,7 +359,8 @@
 		"cs": "Nelze vytvo\u0159it odpov\u011b\u010f",
 		"tr": "Kimlik do\u011frulama cevab\u0131 olu\u015fturulamad\u0131",
 		"lt": "Nepavyko sukurti autentikacijos atsakymo",
-		"it": "Impossibile creare la risposta di autenticazione"
+		"it": "Impossibile generare una risposta di autenticazione",
+		"ja": "\u8a8d\u8a3c\u5fdc\u7b54\u3092\u751f\u6210\u51fa\u6765\u307e\u305b\u3093\u3067\u3057\u305f"
 	},
 	"descr_GENERATEAUTHNRESPONSE": {
 		"no": "En feil oppsto da innloggingstjenesten pr\u00f8vde \u00e5 lage et svar p\u00e5 autentiserings-foresp\u00f8rselen.",
@@ -373,7 +382,7 @@
 		"cs": "P\u0159i vytv\u00e1\u0159en\u00ed p\u0159ihla\u0161ovac\u00ed odpov\u011bdi t\u00edmto poskytovatelem identity, vznikla chyba.",
 		"tr": "Bu kimlik sa\u011flay\u0131c\u0131 bir kimlik do\u011frulama cevab\u0131 olu\u015fturuken hata olu\u015ftu.",
 		"lt": "\u0160iam tapatybi\u0173 tiek\u0117jui bandant sukurti autentikacijos atsakym\u0105 \u012fvyko klaida.",
-		"it": "Si \u00e8 verificato un errore quando questo identity provider ha provato a creare una risposta di autenticazione."
+		"it": "Si \u00e8 verificato un errore durante la fase di creazione della risposta di autenticazione da parte dell'Identity Provider."
 	},
 	"title_LDAPERROR": {
 		"no": "LDAP-feil",
@@ -395,7 +404,8 @@
 		"cs": "LDAP chyba",
 		"tr": "LDAP hatas\u0131",
 		"lt": "LDAP klaida",
-		"it": "Errore LDAP"
+		"it": "Errore LDAP",
+		"ja": "LDAP\u30a8\u30e9\u30fc"
 	},
 	"descr_LDAPERROR": {
 		"no": "LDAP er brukerkatalogen, og n\u00e5r du fors\u00f8ker \u00e5 logge inn pr\u00f8ver vi \u00e5 kontakten en LDAP-katalog. Da vi fors\u00f8kte det denne gangen, oppsto en feil.",
@@ -416,8 +426,9 @@
 		"pl": "LDAP jest baz\u0105 uzytkownik\u00f3w i kiedy Ty pr\u00f3bujesz si\u0119 zalogowa\u0107, to my musimy nawi\u0105za\u0107 po\u0142\u0105czenie z baz\u0105 LDAP. I w\u0142a\u015bnie w tym momencie wyst\u0105pi\u0142 b\u0142\u0105d.",
 		"cs": "LDAP je datab\u00e1ze u\u017eivatel\u016f, a kdy\u017e se chcete p\u0159ihl\u00e1sit, je pot\u0159eba se p\u0159ihl\u00e1sit do LDAP datab\u00e1ze. Chyba nastala b\u011bhem p\u0159ipojov\u00e1n\u00ed.",
 		"tr": "LDAP kullan\u0131c\u0131 veritaban\u0131 ve siz giri\u015f yapmaya \u00e7al\u0131\u015f\u0131rken, LDAP veritaban\u0131na ba\u011flanmam\u0131z gerekiyor. Bu seferlik denerken bir sorun olu\u015ftu.",
-		"lt": "LDAP yra vartotoj\u0173 duomen\u0173 baz\u0117. Jums jungiantis, mums reikalinga prie jos prisijungti. Bandant tai padaryti pasirod\u0117 klaida.",
-		"it": "Gli utenti sono memorizzati nel server LDAP, che viene quindi contattato in fase di connessione dell'utente. Si \u00e8 verificato un errore proprio in questa fase."
+		"lt": "LDAP yra vartotoj\u0173 duomen\u0173 baz\u0117. Jums jungiantis, mums reikalinga prie jos prisijungti. Bandant tai padaryti \u012fvyko klaida.",
+		"it": "Gli utenti sono memorizzati nel server LDAP, che viene quindi contattato in fase di connessione dell'utente. Si \u00e8 verificato un errore proprio in questa fase.",
+		"ja": "\u3042\u306a\u305f\u304c\u30ed\u30b0\u30a4\u30f3\u3092\u884c\u3046\u6642\u3001LDAP\u3068\u3044\u3046\u30e6\u30fc\u30b6\u30fc\u30c7\u30fc\u30bf\u30fc\u30d9\u30fc\u30b9\u306b\u30a2\u30af\u30bb\u30b9\u3057\u307e\u3059\u3002\u3053\u306e\u6642\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002"
 	},
 	"title_LOGOUTREQUEST": {
 		"no": "Feil i behandling av logout-foresp\u00f8rselen",
@@ -439,7 +450,8 @@
 		"cs": "Chyba zpracov\u00e1n\u00ed odhla\u0161ovac\u00edho po\u017eadavku",
 		"tr": "\u00c7\u0131k\u0131\u015f \u0130ste\u011fini i\u015flerken hata olu\u015ftu",
 		"lt": "Klaida vykdant atsijungimo u\u017eklaus\u0105",
-		"it": "Errore nell'elaborazione della richiesta di disconnessione (Logout Request)."
+		"it": "Errore nell'elaborazione della richiesta di disconnessione (Logout Request).",
+		"ja": "\u30ed\u30b0\u30a2\u30a6\u30c8\u6d0b\u5f13\u306e\u51e6\u7406\u4e2d\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f"
 	},
 	"descr_LOGOUTREQUEST": {
 		"no": "En feil oppsto i behandlingen av logout-foresp\u00f8rselen.",
@@ -460,8 +472,9 @@
 		"pl": "Wyst\u0105pi\u0142 b\u0142ad podczas pr\u00f3by wylogowania.",
 		"cs": "P\u0159i procesu odhl\u00e1\u0161en\u00ed vznikla chyba.",
 		"tr": "\u00c7\u0131k\u0131\u015f \u0130ste\u011fini i\u015flemeye \u00e7al\u0131\u015f\u0131rken bir hata olu\u015ftu",
-		"lt": "Klaida bandant \u012fvykdyti atsijungimo u\u017eklaus\u0105.",
-		"it": "Si \u00e8 verificato un errore quando si \u00e8 tentato di elaborare la richiesta di disconnessione (Logout Request)."
+		"lt": "Klaida \u012fvyko bandant \u012fvykdyti atsijungimo u\u017eklaus\u0105.",
+		"it": "Si \u00e8 verificato un errore quando si \u00e8 tentato di elaborare la richiesta di disconnessione (Logout Request).",
+		"ja": "\u30ed\u30b0\u30a2\u30a6\u30c8\u51e6\u7406\u4e2d\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002"
 	},
 	"title_METADATA": {
 		"no": "Feil ved lasting av metadata",
@@ -483,7 +496,8 @@
 		"cs": "Chyba nahrav\u00e1n\u00ed metadat",
 		"tr": "\u00dcstveri (metadata) y\u00fcklenmesinde hata",
 		"lt": "Klaida siun\u010diant metaduomenis",
-		"it": "Errore nel caricamento dei metadati"
+		"it": "Errore nel caricamento dei metadati",
+		"ja": "\u76ee\u3089\u30fc\u30c7\u30fc\u30bf\u306e\u8aad\u307f\u8fbc\u307f\u4e2d\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f"
 	},
 	"descr_METADATA": {
 		"no": "Det er en feil i oppsettet for din simpleSAMLphp-installasjon. Hvis du er administrator for tjenesten, b\u00f8r du kontrollere at metadata er satt opp riktig.",
@@ -526,7 +540,8 @@
 		"cs": "Nem\u00e1te p\u0159\u00edstup",
 		"tr": "Giri\u015f yok",
 		"lt": "Prieigos n\u0117ra",
-		"it": "Nessun accesso"
+		"it": "Nessun accesso",
+		"ja": "\u30a2\u30af\u30bb\u30b9\u304c\u3042\u308a\u307e\u305b\u3093"
 	},
 	"descr_NOACCESS": {
 		"no": "Dette endepunktet er ikke aktivert. Sjekk aktiveringsopsjonene i ditt simpleSAMLphp-oppsett.",
@@ -547,7 +562,7 @@
 		"cs": "Tento koncov\u00fd bod nen\u00ed povolen. Zkontrolujte konfiguraci (enable options).",
 		"tr": "Bu k\u0131s\u0131m kullan\u0131mda de\u011fil. simpleSAMLphp ayarlar\u0131n\u0131z\u0131n etkinle\u015ftirme se\u00e7eneklerini kontrol edin.",
 		"lt": "Baigties ta\u0161kas ne\u012fjungtas. Patikrinkite savo simpleSAMLphp konfig\u016bracij\u0105.",
-		"it": "Questa estremit\u00e0 (endpoint) non \u00e8 abilitata. Verifica le opzioni di attivazione nella configurazione di simpleSAMLphp."
+		"it": "Questo endpoint non \u00e8 abilitato. Verifica le opzioni di attivazione nella configurazione di simpleSAMLphp."
 	},
 	"title_NORELAYSTATE": {
 		"no": "Spesifikasjon av RelayState mangler",
@@ -568,7 +583,8 @@
 		"cs": "Nenalezen RelayState",
 		"tr": "RelayState verilmemi\u015f.",
 		"lt": "N\u0117ra perdavimo statuso",
-		"it": "Nessun RelayState"
+		"it": "Nessun RelayState",
+		"ja": "RelayState\u7121\u3057"
 	},
 	"descr_NORELAYSTATE": {
 		"no": "Kilden til denne foresp\u00f8rselen har ikke angitt noen RelayState-parameter som angir hvor vi skal fortsette etterp\u00e5.",
@@ -589,7 +605,7 @@
 		"cs": "P\u016fvodce t\u00e9to \u017e\u00e1dosti nezadal parametr RelayState, kter\u00fd ur\u010duje kam d\u00e1l.",
 		"tr": "Bu iste\u011fin ba\u015flat\u0131c\u0131s\u0131, bir sonraki gidi\u015f yerini bildiren RelayState parametresini sa\u011flamam\u0131\u015f.",
 		"lt": "\u0160ios u\u017eklausos iniciatorius nepateik\u0117 perdavimo statuso parametro, kuris nusako kur toliau kreiptis.",
-		"it": "Chi ha iniziato la richiesta non ha fornito un parametro RelayState per specificare come proseguire."
+		"it": "Chi ha iniziato la richiesta non ha fornito un parametro RelayState per specificare come proseguire dopo il login."
 	},
 	"title_PROCESSASSERTION": {
 		"no": "Feil i behandling av svar fra innloggingstjenesten",
@@ -611,7 +627,7 @@
 		"cs": "Chyba zpracov\u00e1n\u00ed odpov\u011bdi od poskytovatele identity",
 		"tr": "Kimlik sa\u011flay\u0131c\u0131dan gelen cevab\u0131 i\u015flerken hata",
 		"lt": "Klaida apdorojant u\u017eklaus\u0105 i\u0161 tapatybi\u0173 tiek\u0117jo",
-		"it": "Errore nell'elaborazione della risposta dall'Identity Provider."
+		"it": "Errore nell'elaborazione della risposta ricevuta dall'Identity Provider."
 	},
 	"descr_PROCESSASSERTION": {
 		"no": "Svaret mottatt fra innloggingstjenesten kan ikke aksepteres.",
@@ -655,7 +671,8 @@
 		"cs": "'Chyba prov\u00e1d\u011bn\u00ed \u017e\u00e1dosti poskytovatele slu\u017eby",
 		"tr": "Servis Sa\u011flay\u0131c\u0131'dan gelen iste\u011fi i\u015flerken hata",
 		"lt": "Klaida siun\u010diant u\u017eklaus\u0105 i\u0161 paslaug\u0173 tiek\u0117jo",
-		"it": "Errore nell'elaborazione della richiesta dal Service Provider"
+		"it": "Errore nell'elaborazione della richiesta dal Service Provider",
+		"ja": "\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u304b\u3089\u306e\u30ea\u30af\u30a8\u30b9\u30c8\u306e\u51e6\u7406\u4e2d\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f"
 	},
 	"descr_PROCESSAUTHNREQUEST": {
 		"no": "Innloggingstjenesten mottok en autentiserings-foresp\u00f8rsel fra en tjeneste, men en feil oppsto i behandling av foresp\u00f8rselen.",
@@ -676,7 +693,7 @@
 		"cs": "Tento poskytovatel identity p\u0159ijak po\u017eadavek od poskytovatele slu\u017eby, ale p\u0159i jeho prov\u00e1den\u00ed vznikla chyba.",
 		"tr": "Bu Kimlik Sa\u011flay\u0131c\u0131 bir Servis Sa\u011flay\u0131c\u0131'dan kimlik do\u011frulama iste\u011fi ald\u0131, ancak bu iste\u011fi i\u015flemeye \u00e7al\u0131\u015f\u0131rken bir hata olu\u015ftu.",
 		"lt": "\u0160is tapatybi\u0173 tiek\u0117jas gavo autentikacijos pra\u0161ymo u\u017eklaus\u0105 i\u0161 paslaugos tiek\u0117jo, ta\u010diau apdorojant prane\u0161im\u0105 \u012fvyko klaida.",
-		"it": "Questo Identity Provider ha ricevuto una richiesta di autenticazione da parte di un Service Provider, ma si \u00e8 verificato un errore quando si \u00e8 cercato di elaborarla."
+		"it": "Questo Identity Provider ha ricevuto una richiesta di autenticazione da parte di un Service Provider, ma si \u00e8 verificato un errore durante l'elaborazione di quest'ultima"
 	},
 	"title_SLOSERVICEPARAMS": {
 		"no": "Ingen SAML-melding angitt",
@@ -697,7 +714,8 @@
 		"cs": "\u017d\u00e1dn\u00e1 SAML zpr\u00e1va nebyla zasl\u00e1na",
 		"tr": "SAML mesaj\u0131 verilmemi\u015f",
 		"lt": "Nepateikta SAML \u017einut\u0117",
-		"it": "Nessun messaggio SAML fornito"
+		"it": "Nessun messaggio SAML fornito",
+		"ja": "SAML\u30e1\u30c3\u30bb\u30fc\u30b8\u304c\u3042\u308a\u307e\u305b\u3093"
 	},
 	"descr_SLOSERVICEPARAMS": {
 		"no": "Du brukte SingleLogoutService-grensesnittet uten \u00e5 angi enten en SAML LogoutRequest eller en LogoutResponse.",
@@ -739,7 +757,8 @@
 		"cs": "\u017d\u00e1dn\u00e1 SAML odpov\u011b\u010f nebyla zasl\u00e1na",
 		"tr": "SAML cevab\u0131 verilmemi\u015f",
 		"lt": "Nepateiktas SAML atsakymas",
-		"it": "Nessuna risposta SAML fornita."
+		"it": "Nessuna risposta SAML fornita.",
+		"ja": "SAML\u30ec\u30b9\u30dd\u30f3\u30b9\u304c\u3042\u308a\u307e\u305b\u3093"
 	},
 	"descr_ACSPARAMS": {
 		"no": "Du brukte AssertionConsumerService-grensesnittet uten \u00e5 angi en SAML AuthenticationResponse.",
@@ -782,7 +801,8 @@
 		"cs": "CAS Chyba",
 		"tr": "CAS Hatas\u0131",
 		"lt": "CAS klaida",
-		"it": "Errore CAS"
+		"it": "Errore CAS",
+		"ja": "CAS\u30a8\u30e9\u30fc"
 	},
 	"descr_CASERROR": {
 		"no": "Feil i kommunikasjonen med CAS-tjeneren.",
@@ -803,7 +823,8 @@
 		"cs": "Chyba p\u0159i komunikaci s CAS serverem.",
 		"tr": "CAS sunucusu ile ileti\u015fim kurarken hata",
 		"lt": "Klaida bandant jungtis prie CAS serverio.",
-		"it": "Errore nella comunicazione con il server CAS."
+		"it": "Errore nella comunicazione con il server CAS.",
+		"ja": "CAS\u30b5\u30fc\u30d0\u30fc\u3068\u306e\u901a\u4fe1\u4e2d\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002"
 	},
 	"title_CONFIG": {
 		"no": "Feil i oppsettet",
@@ -825,7 +846,8 @@
 		"cs": "Chyba konfigurace",
 		"tr": "Yap\u0131land\u0131rma hatas\u0131",
 		"lt": "Konfig\u016bracijos klaida",
-		"it": "Errore di configurazione"
+		"it": "Errore di configurazione",
+		"ja": "\u8a2d\u5b9a\u30a8\u30e9\u30fc"
 	},
 	"descr_CONFIG": {
 		"no": "Det virker som det er en feil i oppsettet av simpleSAMLphp.",
@@ -869,7 +891,8 @@
 		"cs": "Heslo nebylo zad\u00e1no.",
 		"tr": "\u015eifre atanmad\u0131",
 		"lt": "Nepateiktas slapta\u017eodis",
-		"it": "Password non impostata"
+		"it": "Password non impostata",
+		"ja": "\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u8a2d\u5b9a\u3055\u308c\u3066\u3044\u307e\u305b\u3093"
 	},
 	"descr_NOTSET": {
 		"no": "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til noe annet enn default verdien. Bytt passord i config.php.",
@@ -911,8 +934,9 @@
 		"pl": "Nieprawid\u0142owy certyfikat",
 		"cs": "\u0160patn\u00fd certifik\u00e1t",
 		"tr": "Ge\u00e7erli olmayan sertifika",
-		"lt": "Nevalidus sertifikatas",
-		"it": "Certificato non valido"
+		"lt": "Neteisingas sertifikatas",
+		"it": "Certificato non valido",
+		"ja": "\u7121\u52b9\u306a\u8a3c\u660e\u66f8\u3067\u3059"
 	},
 	"descr_NOTVALIDCERT": {
 		"no": "Du presenterte ikke et gyldig sertifikat",
@@ -933,7 +957,7 @@
 		"pl": "Nie przedstawi\u0142e\u015b prawid\u0142owego certyfikaty",
 		"cs": "Nep\u0159edlo\u017e\u00edl jste validn\u00ed certifik\u00e1t.",
 		"tr": "Ge\u00e7erli bir sertifika sa\u011flamad\u0131n\u0131z. ",
-		"lt": "J\u016bs nepateik\u0117te validaus sertifikato.",
+		"lt": "J\u016bs nepateik\u0117te teisingo sertifikato.",
 		"it": "Non hai fornito un certificato valido."
 	},
 	"errorreport_header": {
@@ -955,7 +979,8 @@
 		"cs": "Chybov\u00fd report zasl\u00e1n",
 		"tr": "Hata raporu g\u00f6nderildi",
 		"lt": "Prane\u0161imas apie klaid\u0105 i\u0161si\u0173stas",
-		"it": "Rapporto dell'errore inviato"
+		"it": "Rapporto dell'errore inviato",
+		"ja": "\u30a8\u30e9\u30fc\u5831\u544a\u3092\u9001\u4fe1"
 	},
 	"errorreport_text": {
 		"no": "Feilrapport er sent til administrator.",
@@ -976,7 +1001,8 @@
 		"cs": "Chybov\u00fd report byl zasl\u00e1n administr\u00e1tor\u016fm.",
 		"tr": "Hata raporu y\u00f6neticilere g\u00f6nderildi",
 		"lt": "Prane\u0161imas apie klaid\u0105 i\u0161si\u0173stas administratoriams.",
-		"it": "Il rapporto dell'errore \u00e8 stato inviato agli amministratori."
+		"it": "Il rapporto dell'errore \u00e8 stato inviato agli amministratori.",
+		"ja": "\u3053\u306e\u30a8\u30e9\u30fc\u306f\u7ba1\u7406\u8005\u306b\u9001\u4fe1\u3055\u308c\u307e\u3057\u305f\u3002"
 	},
 	"title_LOGOUTINFOLOST": {
 		"no": "Informasjon om utlogging er tapt",
@@ -996,7 +1022,8 @@
 		"cs": "Odhla\u0161ovac\u00ed informace ztracena",
 		"tr": "\u00c7\u0131k\u0131\u015f bilgisi kaybedildi",
 		"lt": "Atsijungimo informacija prarasta",
-		"it": "Informazioni di disconnessione smarrite."
+		"it": "Informazioni di disconnessione smarrite.",
+		"ja": "\u30ed\u30b0\u30a2\u30a6\u30c8\u60c5\u5831\u3092\u5931\u3044\u307e\u3057\u305f"
 	},
 	"descr_LOGOUTINFOLOST": {
 		"no": "Informasjonen om den n\u00e5v\u00e6rende utloggingen har g\u00e5tt tapt. Du b\u00f8r g\u00e5 tilbake til den opprinnelige tjesesten og pr\u00f8ve \u00e5 logge ut p\u00e5 nytt. Informasjon om utloggingsoperasjoner er kun lagret i en begrenset tid - vanligvis noen timer. Dette er lengere tid enn en vanlig utlogging skal ta, s\u00e5 denne feilen kan tyde p\u00e5 at noe er galt med oppsettet. Ta kontakt med tjenesteyteren hvis problemet gjentar seg.",
@@ -1035,7 +1062,8 @@
 		"cs": "Neo\u010dek\u00e1van\u00e1 vyj\u00edmka",
 		"tr": "Beklenmeyen durum",
 		"lt": "Ne\u017einoma klaida",
-		"it": "Eccezione non gestita"
+		"it": "Eccezione non gestita",
+		"ja": "\u672a\u51e6\u7406\u4f8b\u5916"
 	},
 	"descr_UNHANDLEDEXCEPTION": {
 		"no": "En uventet feilsituasjon oppstod",
@@ -1054,7 +1082,8 @@
 		"cs": "Neo\u010dek\u00e1van\u00e1 v\u00fdj\u00edmka vznikla.",
 		"tr": "Bir beklenmeyen durum g\u00f6nderildi.",
 		"lt": "Ne\u017einoma klaida.",
-		"it": "E' stata generata un'eccezione che non \u00e8 stata gestita."
+		"it": "E' stata generata un'eccezione che non \u00e8 stata gestita.",
+		"ja": "\u672a\u51e6\u7406\u4f8b\u5916\u304c\u6295\u3052\u3089\u308c\u307e\u3057\u305f\u3002"
 	},
 	"title_NOTFOUND": {
 		"no": "Kan ikke finne siden",
@@ -1075,7 +1104,8 @@
 		"cs": "Str\u00e1nka nenalezena.",
 		"tr": "Sayfa bulunamad\u0131",
 		"lt": "Puslapis nerastas",
-		"it": "Pagina non trovata"
+		"it": "Pagina non trovata",
+		"ja": "\u30da\u30fc\u30b8\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093"
 	},
 	"descr_NOTFOUND": {
 		"no": "Den angitte siden finnes ike. URLen var: %URL%",
@@ -1096,7 +1126,8 @@
 		"cs": "Str\u00e1nka nenalezena. URL je: %URL%",
 		"tr": "Verilen sayfa bulunamad\u0131. URL %URL% idi.",
 		"lt": "\u0160is puslapis nerastas. Puslapio adresas buvo: %URL%",
-		"it": "La pagina data non \u00e8 stata trovata. URL della pagina: %URL%"
+		"it": "La pagina data non \u00e8 stata trovata. URL della pagina: %URL%",
+		"ja": "\u4e0e\u3048\u3089\u308c\u305f\u30da\u30fc\u30b8\u306f\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f\u3002URL\u306f: %URL%"
 	},
 	"title_NOTFOUNDREASON": {
 		"no": "Kan ikke finne siden",
@@ -1117,7 +1148,8 @@
 		"cs": "Str\u00e1nka nenalezena",
 		"tr": "Sayfa bulunamad\u0131",
 		"lt": "Puslapis nerastas",
-		"it": "Pagina non trovata"
+		"it": "Pagina non trovata",
+		"ja": "\u30da\u30fc\u30b8\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093"
 	},
 	"descr_NOTFOUNDREASON": {
 		"no": "Den angitte siden finnes ikke. Grunnen er: %REASON%. URLen var: %URL%",
@@ -1138,7 +1170,8 @@
 		"cs": "Str\u00e1nka nenalezena. D\u016fvod je: %REASON%  URL je: %URL%",
 		"tr": "Verilen sayfa bulunamad\u0131. Nedeni %REASON% idi. URL %URL% idi.",
 		"lt": "\u0160is puslapis nerastas. Prie\u017eastis buvo: %REASON% Puslapio adresas buvo: %URL%",
-		"it": "La pagina data non \u00e8 stata trovata. Motivo: %REASON%, URL: %URL%"
+		"it": "La pagina data non \u00e8 stata trovata. Motivo: %REASON%, URL: %URL%",
+		"ja": "\u4e0e\u3048\u3089\u308c\u305f\u30da\u30fc\u30b8\u306f\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f\u3002\u7406\u7531\u306f: %REASON% URL\u306f: %URL%"
 	},
 	"title_BADREQUEST": {
 		"no": "Feil foresp\u00f8rsel motatt",
@@ -1159,7 +1192,8 @@
 		"tr": "Hatal\u0131 istek al\u0131nd\u0131",
 		"fi": "V\u00e4\u00e4r\u00e4nlainen pyynt\u00f6 vastaanotettu",
 		"lt": "Gauta neteisinga u\u017eklausa",
-		"it": "E' stata ricevuta una richiesta erronea."
+		"it": "E' stata ricevuta una richiesta erronea.",
+		"ja": "\u4e0d\u6b63\u306a\u30ea\u30af\u30a8\u30b9\u30c8\u3092\u53d7\u4fe1\u3057\u307e\u3057\u305f"
 	},
 	"descr_BADREQUEST": {
 		"no": "En feil oppsto i foresp\u00f8rselen til denne siden. Grunnen var: %REASON%",
@@ -1178,7 +1212,8 @@
 		"cs": "Toho je chyba po\u017eadavku pro tuto str\u00e1nku. D\u016fvod je: %REASON%",
 		"tr": "Bu sayfaya yap\u0131lan istekte bir hata var. Nedeni %REASON% idi.",
 		"lt": "U\u017eklausoje \u012f \u0161\u012f puslap\u012f rasta klaida. Prie\u017eastis buvo: %REASON%",
-		"it": "C'\u00e8 un errore nella richiesta di questa pagina: %REASON%"
+		"it": "C'\u00e8 un errore nella richiesta di questa pagina: %REASON%",
+		"ja": "\u30da\u30fc\u30b8\u306e\u30ea\u30af\u30a8\u30b9\u30c8\u4e2d\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002\u7406\u7531\u306f: %REASON%"
 	},
 	"title_WRONGUSERPASS": {
 		"no": "Feil brukernavn og passord",
@@ -1199,7 +1234,8 @@
 		"cs": "\u0160patn\u00e9 jm\u00e9no a heslo.",
 		"tr": "Ge\u00e7ersiz kullan\u0131c\u0131 ad\u0131 yada \u015fifre",
 		"lt": "Neteisingas prisijungimo vardas arba slapta\u017eodis",
-		"it": "Nome utente o password non corretti"
+		"it": "Nome utente o password non corretti",
+		"ja": "\u30e6\u30fc\u30b6\u30fc\u540d\u304b\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u9593\u9055\u3063\u3066\u3044\u307e\u3059"
 	},
 	"descr_WRONGUSERPASS": {
 		"no": "Enten var brukernavnet, eller kombinasjonen med brukernavn og passord feil. Sjekk brukernavn og passord og pr\u00f8v igjen.",
@@ -1236,7 +1272,8 @@
 		"nn": "Feil fr\u00e5 vertsorganisasjonen (IdP)",
 		"lt": "Gautas klaidos prane\u0161imas i\u0161 tapatybi\u0173 tiek\u0117jo",
 		"it": "E' stato ricevuto un errore dall'Identity Provider",
-		"hu": "Hiba t\u00f6rt\u00e9nt az azonos\u00edt\u00f3 szervezet (IdP) oldal\u00e1n"
+		"hu": "Hiba t\u00f6rt\u00e9nt az azonos\u00edt\u00f3 szervezet (IdP) oldal\u00e1n",
+		"ja": "\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u304b\u3089\u30a8\u30e9\u30fc\u3092\u53d7\u4fe1\u3057\u307e\u3057\u305f"
 	},
 	"descr_RESPONSESTATUSNOSUCCESS": {
 		"no": "Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-svaret var noe annet enn OK)",
@@ -1267,7 +1304,9 @@
 		"it": "Nessun certificato",
 		"no": "Ikke noe sertifikat mottatt",
 		"es": "No certificado",
-		"hu": "Hi\u00e1nyz\u00f3 tan\u00fas\u00edtv\u00e1ny."
+		"hu": "Hi\u00e1nyz\u00f3 tan\u00fas\u00edtv\u00e1ny.",
+		"ja": "\u8a3c\u660e\u66f8\u304c\u3042\u308a\u307e\u305b\u3093",
+		"nl": "Geen certificaat"
 	},
 	"descr_NOCERT": {
 		"fr": "\u00c9chec de l'authentification: votre navigateur n'a pas pr\u00e9sent\u00e9 de certificat",
@@ -1280,7 +1319,9 @@
 		"it": "L'autenticazione \u00e8 fallita perch\u00e9 il tuo browser non ha inviato alcun certificato",
 		"no": "Autentisering feilet: nettleseren din sendte ikke noe klient-sertifikat",
 		"es": "Fallo de autenticaci\u00f3n: su navegador no envi\u00f3 ning\u00fan certificado",
-		"hu": "Azonos\u00edt\u00e1si hiba: a b\u00f6ng\u00e9sz\u0151 nem k\u00fcld\u00f6tt tan\u00fas\u00edtv\u00e1nyt."
+		"hu": "Azonos\u00edt\u00e1si hiba: a b\u00f6ng\u00e9sz\u0151 nem k\u00fcld\u00f6tt tan\u00fas\u00edtv\u00e1nyt.",
+		"nl": "Authenticatie niet gelukt: uw browser stuurde geen certificaat",
+		"ja": "\u8a8d\u8a3c\u5931\u6557: \u3042\u306a\u305f\u306e\u30d6\u30e9\u30a6\u30b6\u306f\u8a3c\u660e\u66f8\u3092\u9001\u4fe1\u3057\u307e\u305b\u3093\u3067\u3057\u305f"
 	},
 	"title_INVALIDCERT": {
 		"fr": "Certificat invalide",
@@ -1293,7 +1334,9 @@
 		"it": "Certificato non valido",
 		"no": "Ugyldig sertifikat",
 		"es": "Certificado inv\u00e1lido",
-		"hu": "Hib\u00e1s tan\u00fas\u00edtv\u00e1ny."
+		"hu": "Hib\u00e1s tan\u00fas\u00edtv\u00e1ny.",
+		"ja": "\u7121\u52b9\u306a\u8a3c\u660e\u66f8\u3067\u3059",
+		"nl": "Ongeldig certificaat"
 	},
 	"descr_INVALIDCERT": {
 		"fr": "\u00c9chec de l'authentification: le certificat pr\u00e9sent\u00e9 par votre navigateur est invalide ou illisible",
@@ -1305,7 +1348,9 @@
 		"it": "L'autenticazione \u00e8 fallita perch\u00e9 il tuo browser ha inviato un certificato non valido o illegibile.",
 		"no": "Autentisering feilet: sertifikatet nettleseren din sendte er ugyldig, og kan ikke leses",
 		"es": "Fallo de autenticaci\u00f3n: El certificado enviado por su navegador es inv\u00e1lido o no puede ser le\u00eddo",
-		"hu": "Azonos\u00edt\u00e1si hiba: a b\u00f6ng\u00e9sz\u0151 \u00e1ltal k\u00fcld\u00f6tt tan\u00fas\u00edtv\u00e1ny hib\u00e1s."
+		"hu": "Azonos\u00edt\u00e1si hiba: a b\u00f6ng\u00e9sz\u0151 \u00e1ltal k\u00fcld\u00f6tt tan\u00fas\u00edtv\u00e1ny hib\u00e1s.",
+		"nl": "Authenticatie niet gelukt: uw browser stuurde een certificaat dat ongeldig is of niet gelezen kon worden",
+		"ja": "\u8a8d\u8a3c\u5931\u6557: \u3042\u306a\u305f\u306e\u30d6\u30e9\u30a6\u30b6\u306f\u7121\u52b9\u304b\u8aad\u3080\u3053\u3068\u306e\u51fa\u6765\u306a\u3044\u8a3c\u660e\u66f8\u3092\u9001\u4fe1\u3057\u307e\u3057\u305f\u3002"
 	},
 	"title_UNKNOWNCERT": {
 		"fr": "Certificat inconnu",
@@ -1317,7 +1362,9 @@
 		"it": "Certificato sconosciuto",
 		"no": "Ukjent sertifikat",
 		"es": "Certificado desconocido",
-		"hu": "Ismeretlen tan\u00fas\u00edtv\u00e1ny"
+		"hu": "Ismeretlen tan\u00fas\u00edtv\u00e1ny",
+		"ja": "\u4e0d\u660e\u306a\u8a3c\u660e\u66f8\u3067\u3059",
+		"nl": "Onbekend certificaat"
 	},
 	"descr_UNKNOWNCERT": {
 		"fr": "\u00c9chec de l'authentification: le certificat pr\u00e9sent\u00e9 par votre navigateur n'est pas connu",
@@ -1329,6 +1376,8 @@
 		"it": "L'autenticazione \u00e8 fallita perch\u00e9 il tuo browser ha inviato un certificat sconosciuto.",
 		"no": "Authentisering feilet: sertifikatet nettleseren din sendte er ukjent",
 		"es": "Fallo de autenticaci\u00f3n:el certificado enviado por su navegador es desconocido",
-		"hu": "Azonos\u00edt\u00e1si hiba: a b\u00f6ng\u00e9sz\u0151 \u00e1ltal k\u00fcld\u00f6tt tan\u00fas\u00edtv\u00e1nyt ismeretlen t\u00edpus\u00fa."
+		"hu": "Azonos\u00edt\u00e1si hiba: a b\u00f6ng\u00e9sz\u0151 \u00e1ltal k\u00fcld\u00f6tt tan\u00fas\u00edtv\u00e1nyt ismeretlen t\u00edpus\u00fa.",
+		"ja": "\u8a8d\u8a3c\u306b\u5931\u6557\u3057\u307e\u3057\u305f: \u30d6\u30e9\u30a6\u30b6\u304b\u3089\u4e0d\u660e\u306a\u8a3c\u660e\u66f8\u304c\u9001\u3089\u308c\u307e\u3057\u305f",
+		"nl": "Authenticatie niet gelukt: het certificaat dat uw browser stuurde is onbekend"
 	}
 }

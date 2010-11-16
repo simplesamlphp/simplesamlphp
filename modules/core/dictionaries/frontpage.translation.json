@@ -158,7 +158,7 @@
 		"tr": "Bu simpleSAMLphp olduk\u00e7a iyiymi\u015f, daha fazla bilgiyi nereden okuyabilirim? <a href=\"http:\/\/uninett.no\">UNINETT<\/a> \u00fczerinde <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">Feide RnD blog'unda simpleSAMLphp <\/a> hakk\u0131nda daha fazlas\u0131n\u0131 bulabilirsiniz.",
 		"it": "Questo simpleSAMLphp &egrave; davvero un bel prodotto, dove trovo ulteriori informazioni a riguardo? Puoi trovare maggiori informazioni su <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp nel Blog di Feide RnD<\/a> oltre che <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"lt": "\u0160is simpleSAMLphp dalykas yra gana puikus, kur gal\u0117\u010diau daugiau apie j\u012f paskaityti? Daugiau informacijos apie <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp galite rasti Feide RnD blog'e<\/a> bei <a href=\"http:\/\/uninett.no\">UNINETT<\/a> svetain\u0117je.",
-		"ja": "\u3053\u306e simpleSAMLphp \u306f\u7d20\u6674\u3089\u3057\u3044\u3082\u306e\u3067\u3059\u3002\u3053\u308c\u4ee5\u4e0a\u306e\u8aac\u660e\u304c\u5fc5\u8981\u3067\u3059\u304b\uff1f\u3053\u3061\u3089\u306e\u30ea\u30f3\u30af\u3067\u66f4\u306a\u308b\u60c5\u5831\u3092\u898b\u3064\u3051\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u3059 <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp at the Feide RnD blog<\/a>"
+		"ja": "\u3053\u306e simpleSAMLphp \u306f\u7d20\u6674\u3089\u3057\u3044\u3082\u306e\u3067\u3059\u3002\u3053\u308c\u4ee5\u4e0a\u306e\u8aac\u660e\u304c\u5728\u308a\u307e\u3059\u304b\uff1f\u3053\u3061\u3089\u306e\u30ea\u30f3\u30af\u3067\u66f4\u306a\u308b\u60c5\u5831\u3092\u898b\u3064\u3051\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u3059 <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp at the Feide RnD blog<\/a>"
 	},
 	"required": {
 		"no": "P\u00e5krevd",
@@ -502,7 +502,7 @@
 		"cs": "Metada look\u00e1ln\u00edho (hosted) SAML 2.0 poskytovatele identity (IdP) (automaticky generovan\u00e9)",
 		"tr": "Sunulan SAML 2.0 Kimlik Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)",
 		"it": "Metadati dell'Identity Provider SAML 2.0 Locale (generati automaticamente)",
-		"lt": "Vietinio SAML 2.0 IdP metaduomenis (sugeneruoti automati\u0161kai)",
+		"lt": "Vietinio SAML 2.0 IdP metaduomenys (sugeneruoti automati\u0161kai)",
 		"ja": "\u30db\u30b9\u30c8 SAML 2.0 \u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u30e1\u30bf\u30c7\u30fc\u30bf(\u81ea\u52d5\u751f\u6210)"
 	},
 	"link_meta_shib13sphosted": {
@@ -525,7 +525,8 @@
 		"cs": "Metada look\u00e1ln\u00edho (hosted) Shibboleth 1.3 poskytovatele slu\u017eby (SP) (automaticky generovan\u00e9)",
 		"tr": "Sunulan Shibboleth 1.3 Servis Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)",
 		"it": "Metadati del Service Provider Shibboleth 1.3 Locale (generati automaticamente)",
-		"ja": "\u30db\u30b9\u30c8 Shibboleth 1.3 \u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u30e1\u30bf\u30c7\u30fc\u30bf(\u81ea\u52d5\u751f\u6210)"
+		"ja": "\u30db\u30b9\u30c8 Shibboleth 1.3 \u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u30e1\u30bf\u30c7\u30fc\u30bf(\u81ea\u52d5\u751f\u6210)",
+		"lt": "Vietinio Shibboleth 1.3 paslaugos teik\u0117jo (SP) metaduomenys (sugeneruoti automati\u0161kai)"
 	},
 	"link_meta_shib13idphosted": {
 		"no": "Hosted Shibboleth 1.3 Identity Provider Metadata (automatisk generert)",
@@ -547,7 +548,8 @@
 		"cs": "Metada look\u00e1ln\u00edho (hosted) Shibboleth 1.3 poskytovatele slu\u017eby (IdP) (automaticky generovan\u00e9)",
 		"tr": "Sunulan Shibboleth 1.3 Kimlik Sa\u011flay\u0131c\u0131 \u00dcstverisi (metadata) (otomatik olarak \u00fcretilmi\u015ftir)",
 		"it": "Metadati dell'Identity Provider Shibboleth 1.3 Locale (generati automaticamente)",
-		"ja": "\u30db\u30b9\u30c8 Shibboleth 1.3 \u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u30e1\u30bf\u30c7\u30fc\u30bf (\u81ea\u52d5\u751f\u6210)"
+		"ja": "\u30db\u30b9\u30c8 Shibboleth 1.3 \u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u30e1\u30bf\u30c7\u30fc\u30bf (\u81ea\u52d5\u751f\u6210)",
+		"lt": "Vietinio Shibboleth 1.3 tapatyb\u0117s teik\u0117jo (IdP) metaduomenys (sugeneruoti automati\u0161kai)"
 	},
 	"link_xmlconvert": {
 		"no": "XML til simpleSAMLphp metadata-oversetter",
@@ -569,7 +571,8 @@
 		"cs": "Konverze XML metadat do simpleSAMLPHP",
 		"tr": "XML'den simpleSAMLphp'e \u00fcstveri (metadata) d\u00f6n\u00fc\u015ft\u00fcr\u00fcc\u00fc",
 		"it": "Convertitore di metadati dal formato XML al formato simpleSAMLphp ",
-		"ja": "XML \u3092 simpleSAMLphp\u30e1\u30bf\u30c7\u30fc\u30bf\u306b\u5909\u63db"
+		"ja": "XML \u3092 simpleSAMLphp\u30e1\u30bf\u30c7\u30fc\u30bf\u306b\u5909\u63db",
+		"lt": "XML \u012f simpleSAMLphp metaduomen\u0173 vertimas"
 	},
 	"link_doc_install": {
 		"no": "Installerer simpleSAMLphp",
@@ -591,7 +594,8 @@
 		"cs": "Instalace simpleSAMLphp",
 		"tr": "simpleSAMLphp kuruluyor",
 		"it": "Installazione di simpleSAMLphp",
-		"ja": "simpleSAMLphp\u306e\u30a4\u30f3\u30b9\u30c8\u30fc\u30eb"
+		"ja": "simpleSAMLphp\u306e\u30a4\u30f3\u30b9\u30c8\u30fc\u30eb",
+		"lt": "Diegiamas simpleSAMLphp"
 	},
 	"link_doc_sp": {
 		"no": "Bruk simpleSAMLphp som Service Provider",
@@ -767,7 +771,8 @@
 		"cs": "Zapomenout moje volby poskytovatel\u016f identit a v\u00fdb\u011bru poskytovatel\u016f identit",
 		"tr": "IdP tan\u0131t\u0131m servisleri aras\u0131ndaki IdP se\u00e7imlerimi sil",
 		"it": "Dimentica la mia scelta di IdP di default",
-		"ja": "IdP\u30c7\u30a3\u30b9\u30ab\u30d0\u30ea\u30b5\u30fc\u30d3\u30b9\u5185\u306eIdp\u306e\u9078\u629e\u3092\u524a\u9664\u3059\u308b"
+		"ja": "IdP\u30c7\u30a3\u30b9\u30ab\u30d0\u30ea\u30b5\u30fc\u30d3\u30b9\u5185\u306eIdp\u306e\u9078\u629e\u3092\u524a\u9664\u3059\u308b",
+		"lt": "Panaikinti mano IdP parinktis IdP suradimo paslaugoje"
 	},
 	"welcome": {
 		"no": "Velkommen",
@@ -1003,6 +1008,8 @@
 		"it": "Pagina di installazione di simpleSAMLphp",
 		"es": "P\u00e1gina de instalaci\u00f3n de simpleSAMLphp",
 		"lt": "simpleSAMLphp diegimo puslapis",
-		"hu": "simpleSAMLphp adminisztr\u00e1ci\u00f3s fel\u00fclet"
+		"hu": "simpleSAMLphp adminisztr\u00e1ci\u00f3s fel\u00fclet",
+		"ja": "simpleSAMLphp\u8a2d\u5b9a\u30da\u30fc\u30b8",
+		"nl": "simpleSAMLphp installatiepagina"
 	}
 }

@@ -9,7 +9,8 @@
 		"da": "Proces ID",
 		"fr": "Identifiant de processus (PID)",
 		"it": "ID del Processo",
-		"es": "Id de Proceso"
+		"es": "Id de Proceso",
+		"nl": "Proces-ID"
 	},
 	"uptime": {
 		"no": "Oppetid",
@@ -21,7 +22,8 @@
 		"da": "Oppetid",
 		"fr": "Temps de fonctionnement",
 		"it": "Uptime",
-		"es": "Tiempo transcurrido"
+		"es": "Tiempo transcurrido",
+		"nl": "Uptime"
 	},
 	"time": {
 		"no": "Tid n\u00e5",
@@ -33,7 +35,8 @@
 		"da": "Aktuel tid",
 		"fr": "Date courante",
 		"it": "Ora corrente",
-		"es": "Tiempo actual"
+		"es": "Tiempo actual",
+		"nl": "Huidige tijd"
 	},
 	"version": {
 		"no": "Versjon",
@@ -45,7 +48,8 @@
 		"da": "Version",
 		"fr": "Version",
 		"it": "Versione",
-		"es": "Versi\u00f3n"
+		"es": "Versi\u00f3n",
+		"nl": "Versie"
 	},
 	"rusage_user": {
 		"no": "CPU Sekunder (bruker)",
@@ -57,7 +61,8 @@
 		"da": "CPU sekunder (Bruger)",
 		"fr": "Temps de calcul (mode utilisateur)",
 		"it": "Secondi di CPU (User)",
-		"es": "Segundos de CPU (Usuario)"
+		"es": "Segundos de CPU (Usuario)",
+		"nl": "CPU-Seconden (Gebruiker)"
 	},
 	"rusage_system": {
 		"no": "CPU Sekunder (system)",
@@ -69,7 +74,8 @@
 		"da": "CPU sekunder (System)",
 		"fr": "Temps de calcul (mode syst\u00e8me)",
 		"it": "Secondi di CPU (System)",
-		"es": "Segundos de CPU (Sistema)"
+		"es": "Segundos de CPU (Sistema)",
+		"nl": "CPU-Seconden (Systeem)"
 	},
 	"curr_items": {
 		"no": "N\u00e5v\u00e6rende antall elementer",
@@ -81,7 +87,8 @@
 		"da": "Aktuelt antal enheder",
 		"fr": "\u00c9l\u00e9ments utilis\u00e9s actuellement",
 		"it": "Attuale numero di elementi",
-		"es": "N\u00famero actual de \u00edtems"
+		"es": "N\u00famero actual de \u00edtems",
+		"nl": "Huidig aantal items"
 	},
 	"total_items": {
 		"no": "Antall elementer for alltid",
@@ -93,7 +100,8 @@
 		"da": "Total antal enheder",
 		"fr": "Total d'\u00e9l\u00e9ments depuis le d\u00e9marrage",
 		"it": "Numero totale di elementi",
-		"es": "N\u00famero total de \u00edtems"
+		"es": "N\u00famero total de \u00edtems",
+		"nl": "Totaal aantal items ooit"
 	},
 	"bytes": {
 		"no": "Totalt antall bytes i bruk n\u00e5",
@@ -105,7 +113,8 @@
 		"da": "Total antal bytes brugt aktuelt",
 		"fr": "Octets utilis\u00e9s actuellement",
 		"it": "Byte attualmente utilizzati",
-		"es": "Cantidad total de bytes en uso actualmente"
+		"es": "Cantidad total de bytes en uso actualmente",
+		"nl": "Aantal bytes nu in gebruik"
 	},
 	"curr_connections": {
 		"no": "Antall \u00e5pne forbindelser n\u00e5",
@@ -117,7 +126,8 @@
 		"da": "Nuv\u00e6rende \u00e5bne forbindelser",
 		"fr": "Connexions ouvertes",
 		"it": "Numero di connessioni aperte",
-		"es": "Conexiones abiertas actualmente"
+		"es": "Conexiones abiertas actualmente",
+		"nl": "Aantal open connecties"
 	},
 	"total_connections": {
 		"no": "Totalt antall forbindelser",
@@ -129,7 +139,8 @@
 		"da": "Total antal forbindelser",
 		"fr": "Connexions totales",
 		"it": "Connessioni totali",
-		"es": "Total de conexiones"
+		"es": "Total de conexiones",
+		"nl": "Totaal connecties"
 	},
 	"connection_structures": {
 		"no": "Tilkoblings-strukturer",
@@ -141,7 +152,8 @@
 		"da": "Forbindelses strukturer",
 		"fr": "Structures de connexion",
 		"it": "Strutture di connessione",
-		"es": "Estructuras de conexi\u00f3n"
+		"es": "Estructuras de conexi\u00f3n",
+		"nl": "Connectiestructuren"
 	},
 	"cmd_get": {
 		"no": "Totalt antall GET kommandoer",
@@ -153,7 +165,8 @@
 		"da": "Total antal GET kommandoer",
 		"fr": "Commandes GET",
 		"it": "Totale dei comandi GET",
-		"es": "Total de comandos GET"
+		"es": "Total de comandos GET",
+		"nl": "Aantal GET-commando's"
 	},
 	"cmd_set": {
 		"no": "Totalt antall SET kommandoer",
@@ -165,7 +178,8 @@
 		"da": "Total antal SET kommandoer",
 		"fr": "Commandes SET",
 		"it": "Totale dei comandi SET",
-		"es": "Total de comandos SET"
+		"es": "Total de comandos SET",
+		"nl": "Aantal SET-commando's"
 	},
 	"get_hits": {
 		"no": "Totalt antall GET kommandoer (OK)",
@@ -177,7 +191,8 @@
 		"da": "Total antal GET kommandoer (success)",
 		"fr": "Commandes GET valides",
 		"it": "Totale dei comandi GET (con successo)",
-		"es": "Total de comandos GET (exitosos)"
+		"es": "Total de comandos GET (exitosos)",
+		"nl": "Aantal GET-commando's (succes)"
 	},
 	"get_misses": {
 		"no": "Totalt antall GET kommandoer (feilet)",
@@ -189,7 +204,8 @@
 		"da": "Total antal GET kommandoer (fejl)",
 		"fr": "Commandes GET invalides",
 		"it": "Totale dei comandi GET (falliti)",
-		"es": "Total de comandos GET (fallidos)"
+		"es": "Total de comandos GET (fallidos)",
+		"nl": "Aantal GET-commando's (mislukt)"
 	},
 	"bytes_read": {
 		"no": "Antall bytes inn til tjeneren",
@@ -201,7 +217,8 @@
 		"da": "Bytes in i serveren",
 		"fr": "Octets sur le serveur",
 		"it": "Byte nel server",
-		"es": "Bytes en el servidor"
+		"es": "Bytes en el servidor",
+		"nl": "Bytes richting de server"
 	},
 	"bytes_written": {
 		"no": "Antall bytes skrevet av tjeneren",
@@ -213,7 +230,8 @@
 		"da": "Bytes skrevet af serveren",
 		"fr": "Octets \u00e9crits par le serveur",
 		"it": "Byte scritti dal server",
-		"es": "Bytes escritos por el servidor"
+		"es": "Bytes escritos por el servidor",
+		"nl": "Bytes geschreven door server"
 	},
 	"limit_maxbytes": {
 		"no": "Total lagring tilgjengelig",
@@ -225,6 +243,7 @@
 		"da": "Total plads udnyttet",
 		"fr": "Espace de stockage disponible",
 		"it": "Totale dello spazio disponibile",
-		"es": "Almacenamiento total aprovechado"
+		"es": "Almacenamiento total aprovechado",
+		"nl": "Totaal opslag vrij"
 	}
 }

@@ -65,7 +65,7 @@
 		"cs": "Slu\u017eba po\u017eaduje va\u0161i identifikaci. Pros\u00edm vlo\u017ete sv\u00e9 jm\u00e9no a heslo.",
 		"tr": "Bir servis kendinizi yetkilendirmenizi istedi. L\u00fctfen a\u015fa\u011f\u0131daki forma kullan\u0131c\u0131 ad\u0131n\u0131z\u0131 ve \u015fifrenizi giriniz.",
 		"lt": "Paslauga pra\u0161o autentikacijos. \u017demiau \u012fveskite savo prisijungimo vard\u0105 ir slapta\u017eod\u012f.",
-		"it": "Un servizio richiede l'autenticazione; inserire il proprio nome utente e password qui sotto.",
+		"it": "Un servizio ha richiesto l'autenticazione. Si prega di inserire le proprie credenziali nella maschera di login sottostante.",
 		"ja": "\u30b5\u30fc\u30d3\u30b9\u306f\u3042\u306a\u305f\u81ea\u8eab\u306e\u8a8d\u8a3c\u3092\u8981\u6c42\u3057\u3066\u3044\u307e\u3059\u3002\u4ee5\u4e0b\u306e\u30d5\u30a9\u30fc\u30e0\u306b\u30e6\u30fc\u30b6\u30fc\u540d\u3068\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
 	},
 	"login_button": {
@@ -207,7 +207,7 @@
 		"cs": "Probl\u00e9m! Bez jm\u00e9na a hesla se nem\u016f\u017eete identifikovat. Existuje n\u011bkdo kdo v\u00e1m pom\u016f\u017ee. Konzultujte helpdesk va\u0161\u00ed organizace.",
 		"tr": "\u00c7ok k\u00f6t\u00fc! - Kullan\u0131c\u0131 ad\u0131n\u0131z ve \u015fifreniz olmadan bu servisi kullanamazs\u0131n\u0131z. Size yard\u0131mc\u0131 olabilecek birileri olabilir. Kurulu\u015funuza dan\u0131\u015f\u0131n. ",
 		"lt": "Blogai - be prisijungimo vardo ir slapta\u017eod\u017eio negal\u0117site autentikuotis ir patekti \u012f reikiam\u0105 paslaug\u0105. Galb\u016bt yra kas Jums gal\u0117t\u0173 pad\u0117ti. Susisiekite su savo universiteto vartotoj\u0173 aptarnavimo specialistais.",
-		"it": "Guaio! - Senza il nome utente e la password, non \u00e8 possibile effettuare l'autenticazione al servizio. C'\u00e8 probabilmente qualcuno che pu\u00f2 fornire aiuto. Consultare il proprio help desk.",
+		"it": "Senza il nome utente e la password, non \u00e8 possibile effettuare l'autenticazione al servizio. C'\u00e8 probabilmente qualcuno che pu\u00f2 fornire aiuto. Consultare il proprio help desk.",
 		"ja": "\u304a\u6c17\u306e\u6bd2\u3067\u3059! - \u30e6\u30fc\u30b6\u30fc\u540d\u3068\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u7121\u304f\u3066\u306f\u30b5\u30fc\u30d3\u30b9\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u70ba\u306b\u3042\u306a\u305f\u81ea\u8eab\u3092\u8a8d\u8a3c\u3059\u308b\u4e8b\u304c\u51fa\u6765\u307e\u305b\u3093\u3002\u3042\u306a\u305f\u306e\u5927\u5b66\u306e\u30d8\u30eb\u30d7\u30c7\u30b9\u30af\u306b\u76f8\u8ac7\u3059\u308b\u3068\u3001\u3042\u306a\u305f\u306e\u52a9\u3051\u306b\u306a\u3063\u3066\u304f\u308c\u308b\u3067\u3057\u3087\u3046\u3002"
 	},
 	"error_nopassword": {
@@ -230,7 +230,7 @@
 		"cs": "Odeslal jste data do p\u0159ihla\u0161ovac\u00ed stranky, ale z n\u011bjak\u00e9ho d\u016fvodu nebylo odesl\u00e1no heslo. Pros\u00edm zkuste to znovu.",
 		"tr": "Giri\u015f sayfas\u0131na bir\u015feyler g\u00f6nderdiniz, fakat baz\u0131 nedenlerden dolay\u0131 \u015fifreniz g\u00f6nderilemedi. L\u00fctfen tekrar deneyiniz.",
 		"lt": "J\u016bs ka\u017ek\u0105 nusiunt\u0117te \u012f prisijungimo puslap\u012f, ta\u010diau d\u0117l ka\u017ekoki\u0173 prie\u017eas\u010di\u0173 slapta\u017eodis nebuvo nusi\u0173stas. Pra\u0161ome bandyti dar kart\u0105.",
-		"it": "Sono state inviate delle informazioni alla pagina di login, ma non la password. Si prega di provare di nuovo.",
+		"it": "Sono state inviate delle informazioni alla pagina di login, ma per qualche motivo la password risulta mancante. Si prega di riprovare.",
 		"ja": "\u3042\u306a\u305f\u306f\u30ed\u30b0\u30a4\u30f3\u30da\u30fc\u30b8\u3067\u4f55\u304b\u3092\u9001\u4fe1\u3057\u307e\u3057\u305f\u304c\u3001\u4f55\u3089\u304b\u306e\u7406\u7531\u3067\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u9001\u4fe1\u3055\u308c\u307e\u305b\u3093\u3067\u3057\u305f\u3002\u518d\u5ea6\u8a66\u3057\u3066\u307f\u3066\u304f\u3060\u3055\u3044\u3002"
 	},
 	"error_wrongpassword": {
@@ -341,7 +341,7 @@
 		"pl": "Wybra\u0142e\u015b <b>%HOMEORG%<\/b> jako swoj\u0105 domow\u0105 organizacj\u0119. Je\u015bli nieprawid\u0142owa mo\u017cesz wybra\u0107 inn\u0105.",
 		"cs": "M\u00e1te nastavenu <b>%HOMEORG%<\/b> jako domovskou organizaci. Pokud je to \u0161patn\u011b zvolte jinou.",
 		"tr": "<b>%HOMEORG%<\/b>'u organizasyonunuz olarak se\u00e7tiniz. E\u011fer yanl\u0131\u015f ise, ba\u015fka bir tanesini se\u00e7ebilirsiniz.",
-		"lt": "J\u016bs, savo nam\u0173 organizacija, pasirinkote <b>%HOMEORG%<\/b>. Jei tai yra neteisingas pasirinkimas, galite pasirinkti kit\u0105.",
+		"lt": "J\u016bs savo nam\u0173 organizacija pasirinkote <b>%HOMEORG%<\/b>. Jei tai yra neteisingas pasirinkimas, galite pasirinkti kit\u0105.",
 		"it": "E' stata selezionata <b>%HOMEORG%<\/b> come propria organizzazione. Se \u00e8 sbagliata, \u00e8 possibile selezionarne un'altra.",
 		"ja": "\u3042\u306a\u305f\u306f <b>%HOMEORG%<\/b> \u3092\u7d44\u7e54\u3068\u3057\u3066\u9078\u629e\u3057\u307e\u3057\u305f\u3002\u3053\u308c\u306b\u554f\u984c\u304c\u3042\u308b\u5834\u5408\u306f\u4ed6\u306e\u3082\u306e\u3092\u9078\u3076\u4e8b\u3082\u53ef\u80fd\u3067\u3059\u3002"
 	},
@@ -430,7 +430,7 @@
 		"cs": "Dal\u0161\u00ed",
 		"tr": "S\u0131radaki",
 		"lt": "Kitas",
-		"it": "Prossimo",
+		"it": "Avanti",
 		"ja": "\u6b21\u3078"
 	}
 }

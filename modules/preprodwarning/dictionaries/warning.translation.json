@@ -16,7 +16,8 @@
 		"de": "Sie greifen jetzt auf ein System im Pilotbetrieb zu. Diese Authentifizierungs-Konfiguration dient nur zum Testen und zur \u00dcberpr\u00fcfung des Pilotbetriebes. Falls Ihnen jemand einen Link gesendet hat, der Sie hierher gef\u00fchrt hat und Sie sind kein <i>Tester<\/i>, so war der Link vermutlich falsch und Sie sollten <b>nicht hier sein<\/b>. ",
 		"fr": "Ceci est un syst\u00e8me en pr\u00e9-production. La configuration d'authentification n'est destin\u00e9e qu'aux tests. Si vous n'\u00eates pas un testeur, <b>vous ne devriez pas \u00eatre l\u00e0<\/b>.",
 		"it": "Si sta per accedere ad un sistema di pre-produzione. Questa configurazione di autenticazione \u00e8 solo allo scopo di test. Se si \u00e8 arrivati qui a seguito di link fornito da qualcuno, e non si sta operando come <i>tester<\/i>, probabilmente si \u00e8 seguito un link sbagliato visto che <b> non si dovrebbe essere qui<\/b>.",
-		"lt": "\u0160iuo metu J\u016bs kreipiat\u0117s \u012f nebaigt\u0105 diegti sistem\u0105. \u0160ie autenti\u0161kumo patvirtinimo nustatymai skirti tik testavimui ir sistemos veikimo tikrinimui. Jei ka\u017ekas Jums atsiunt\u0117 nuorod\u0105, vedan\u010di\u0105 \u010dia, ir J\u016bs nesate <i>testuotojas<\/i>, J\u016bs grei\u010diausiai gavote neteising\u0105 nuorod\u0105 ir <b>netur\u0117tum\u0117te \u010dia b\u016bti<\/b>."
+		"lt": "\u0160iuo metu J\u016bs kreipiat\u0117s \u012f nebaigt\u0105 diegti sistem\u0105. \u0160ie autenti\u0161kumo patvirtinimo nustatymai skirti tik testavimui ir sistemos veikimo tikrinimui. Jei ka\u017ekas Jums atsiunt\u0117 nuorod\u0105, vedan\u010di\u0105 \u010dia, ir J\u016bs nesate <i>testuotojas<\/i>, J\u016bs grei\u010diausiai gavote neteising\u0105 nuorod\u0105 ir <b>netur\u0117tum\u0117te \u010dia b\u016bti<\/b>.",
+		"ja": "\u3042\u306a\u305f\u306f\u4eca\u8a66\u9a13\u74b0\u5883\u3078\u30a2\u30af\u30bb\u30b9\u3057\u3066\u3044\u307e\u3059\u3002\u3053\u306e\u8a8d\u8a3c\u8a2d\u5b9a\u306f\u8a66\u9a13\u74b0\u5883\u306e\u30c6\u30b9\u30c8\u3068\u691c\u8a3c\u306e\u70ba\u306e\u3082\u306e\u3067\u3059\u3002\u3082\u3057\u8ab0\u304b\u304c\u3053\u306e\u30ea\u30f3\u30af\u3092\u3042\u306a\u305f\u306b\u9001\u308a\u3001\u3042\u306a\u305f\u304c<i>\u30c6\u30b9\u30bf\u30fc<\/i>\u3067\u306a\u3044\u306e\u3067\u3042\u308c\u3070\u6050\u3089\u304f\u9593\u9055\u3063\u305f\u30ea\u30f3\u30af\u3067\u3042\u308a\u3001\u3053\u3053\u306b<b>\u6765\u3066\u306f\u3044\u3051\u306a\u3044<\/b>\u3067\u3057\u3087\u3046\u3002"
 	},
 	"warning_header": {
 		"no": "Advarsel om at dette er et test oppsett",
@@ -35,7 +36,8 @@
 		"de": "Warnung beim Zugriff auf ein Pilotsystem",
 		"fr": "Avertissement sur l'acc\u00e8s \u00e0 un syst\u00e8me en pr\u00e9-production",
 		"it": "Attenzione, si sta accedendo ad un sistema di pre-produzione",
-		"lt": "\u012esp\u0117jimas apie kreipim\u0105si \u012f nebaigt\u0105 diegti sistem\u0105."
+		"lt": "\u012esp\u0117jimas apie kreipim\u0105si \u012f nebaigt\u0105 diegti sistem\u0105.",
+		"ja": "\u8a66\u9a13\u74b0\u5883\u3078\u306e\u30a2\u30af\u30bb\u30b9\u306b\u3064\u3044\u3066\u306e\u8b66\u544a"
 	},
 	"yes": {
 		"no": "Ja, jeg holder p\u00e5 \u00e5 teste innlogging, og vet dette er et test-system.",
@@ -54,6 +56,7 @@
 		"de": "Ja, mir ist klar dass ich auf ein System im Pilotbetrieb zugreife",
 		"fr": "Oui, je sais que j'utilise un syst\u00e8me en pr\u00e9-producion",
 		"it": "S\u00ec, sono consapevole che sto accedendo ad un sistema di pre-produzione",
-		"lt": "Taip, a\u0161 \u017einau, kad kreipiuosi \u012f nebaigt\u0105 diegti sistem\u0105."
+		"lt": "Taip, a\u0161 \u017einau, kad kreipiuosi \u012f nebaigt\u0105 diegti sistem\u0105.",
+		"ja": "\u306f\u3044\u3001\u79c1\u306f\u8a66\u9a13\u74b0\u5883\u306b\u30a2\u30af\u30bb\u30b9\u3057\u3066\u3044\u308b\u4e8b\u3092\u7406\u89e3\u3057\u3066\u3044\u307e\u3059\u3002"
 	}
 }

@@ -12,7 +12,9 @@
 		"fr": "Acc\u00e8s refus\u00e9",
 		"lt": "Pri\u0117jimas u\u017edraustas",
 		"it": "Accesso vietato",
-		"hu": "Hozz\u00e1f\u00e9r\u00e9s megtagadva"
+		"hu": "Hozz\u00e1f\u00e9r\u00e9s megtagadva",
+		"ja": "\u30a2\u30af\u30bb\u30b9\u304c\u7981\u6b62\u3055\u308c\u3066\u3044\u307e\u3059",
+		"nl": "Geen toegang"
 	},
 	"403_text": {
 		"es": "No tiene los privilegios necesarios para acceder a esta aplicaci\u00f3n. Si considera que esto no es correcto, consulte el administrador.",
@@ -25,8 +27,10 @@
 		"hr": "Nemate potrebne ovlasti za pristup ovoj aplikaciji. Molimo kontaktirajte administratora aplikacije ako smatrate da bi vam pristup aplikaciji trebao biti omogu\u0107en.",
 		"da": "Du har ikke de n\u00f8dvendige privilegier til at tilg\u00e5 applikationen. Kontakt administratoren hvis du mener at dette ikke er korrekt.",
 		"fr": "Vos privil\u00e8ges sont insuffisants pour acc\u00e9der \u00e0 cette application. Contactez vous administrateur si cette situation est anormale.",
-		"lt": "J\u016bs neturite reikiam\u0173 teisi\u0173, kad pasiektum\u0117te \u0161i\u0105 aplikacij\u0105. Pra\u0161ome susisiekti su administratoriumi, jei manote, kad taip netur\u0117t\u0173 b\u016bti.",
+		"lt": "J\u016bs neturite reikiam\u0173 teisi\u0173 \u0161iai aplikacijai pasiekti. Pra\u0161ome susisiekti su administratoriumi, jei manote, kad taip netur\u0117t\u0173 b\u016bti.",
 		"it": "Non si dispone dei privilegi per accedere a questa applicazione. Contattare l'amministratore se si ritiene che si tratti di un errore.",
-		"hu": "\u00d6nnek nincsenek meg a sz\u00fcks\u00e9ges jogosults\u00e1gai a lap megtekint\u00e9s\u00e9hez. K\u00e9rj\u00fck, forduljon az oldal adminisztr\u00e1tor\u00e1hoz."
+		"hu": "\u00d6nnek nincsenek meg a sz\u00fcks\u00e9ges jogosults\u00e1gai a lap megtekint\u00e9s\u00e9hez. K\u00e9rj\u00fck, forduljon az oldal adminisztr\u00e1tor\u00e1hoz.",
+		"ja": "\u3042\u306a\u305f\u306f\u3053\u306e\u30a2\u30d7\u30ea\u30b1\u30fc\u30b7\u30e7\u30f3\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u3092\u6301\u3063\u3066\u3044\u307e\u305b\u3093\u3002\u3053\u308c\u304c\u6b63\u3057\u304f\u306a\u3044\u5834\u5408\u3001\u7ba1\u7406\u8005\u306b\u304a\u554f\u3044\u5408\u308f\u305b\u304f\u3060\u3055\u3044\u3002",
+		"nl": "U heeft niet genoeg rechten om deze applicatie te benaderen. Benader de beheerder als u denkt dat dit ten onrechte is."
 	}
 }

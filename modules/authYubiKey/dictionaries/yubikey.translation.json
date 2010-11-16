@@ -16,7 +16,8 @@
 		"tr": "YubiKey ile giri\u015f",
 		"fr": "S'authentifier avec YubiKey",
 		"it": "Connessione con YubiKey",
-		"lt": "Jungtis su YubiKey"
+		"lt": "Jungtis su YubiKey",
+		"ja": "YubiKey\u3067\u30ed\u30b0\u30a4\u30f3"
 	},
 	"intro": {
 		"no": "En tjeneste har bedt om at du autentiserer deg. For \u00e5 autentisere seg, trykk p\u00e5 knappen p\u00e5 din YubiKey. Feltet under vil da bli automatisk utfylt med et sikkert engangspassord.",
@@ -35,6 +36,7 @@
 		"tr": "Baz\u0131 servisler kimlik do\u011frulama istedi. Kimlik do\u011frulamak i\u00e7in, YubiKey'iniz \u00fczerindeki d\u00fc\u011fmeyi t\u0131klay\u0131n\u0131z. Ondan sonra, g\u00fcvenli bir tek kullan\u0131ml\u0131k \u015fifre a\u015fa\u011f\u0131daki alanda otomatik olarak belirecektir.",
 		"fr": "Ce service requiert une authentification. Pour vous authentifier, appuyez sur le bouton de votre YubiKey. Le champ ci dessous devrait automatiquement \u00eatre renseign\u00e9 avec un mot de passe \u00e0 usage unique.",
 		"it": "Un servizio ha richiesto l'autenticazione. Per autenticarsi, premere il pulsante sulla propria YukiKey. Il campo sottostante dovrebbe essere automaticamente riempito con una password usa e getta.",
-		"lt": "Ka\u017ekuri paslauga reikalauja autenti\u0161kumo patvirtinimo. Nor\u0117dami patvirtinti autenti\u0161kum\u0105, paspauskite mygtuk\u0105 ant savo YubiKey. \u012e \u017eemiau esant\u012f laukel\u012f tur\u0117t\u0173 b\u016bti automati\u0161kai \u012fvestas saugus vienkartinis slapta\u017eodis."
+		"lt": "Ka\u017ekuri paslauga reikalauja autenti\u0161kumo patvirtinimo. Nor\u0117dami patvirtinti autenti\u0161kum\u0105, paspauskite mygtuk\u0105 ant savo YubiKey. \u012e \u017eemiau esant\u012f laukel\u012f tur\u0117t\u0173 b\u016bti automati\u0161kai \u012fvestas saugus vienkartinis slapta\u017eodis.",
+		"ja": "\u5e7e\u3064\u304b\u306e\u30b5\u30fc\u30d3\u30b9\u306f\u8a8d\u8a3c\u3092\u8981\u6c42\u3057\u3066\u3044\u307e\u3059\u3002\u8a8d\u8a3c\u3092\u884c\u3046\u306b\u306fYubiKey\u306e\u30dc\u30bf\u30f3\u3092\u30af\u30ea\u30c3\u30af\u3057\u3066\u304f\u3060\u3055\u3044\u3002\u4ee5\u4e0b\u306e\u9805\u76ee\u306f\u30bb\u30ad\u30e5\u30a2\u30ef\u30f3\u30bf\u30a4\u30e0\u30d1\u30b9\u30ef\u30fc\u30c9\u3067\u81ea\u52d5\u7684\u306b\u57cb\u3081\u3089\u308c\u307e\u3059\u3002"
 	}
 }

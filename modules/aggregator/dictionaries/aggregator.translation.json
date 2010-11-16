@@ -11,7 +11,9 @@
 		"nn": "Oppsamling av metadata",
 		"it": "Aggregatore dei metadati",
 		"es": "Agregador de metadatos",
-		"lt": "Metaduomen\u0173 surink\u0117jas"
+		"lt": "Metaduomen\u0173 surink\u0117jas",
+		"nl": "Metadata-aggregator",
+		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf \u30a2\u30b0\u30ea\u30b1\u30fc\u30bf"
 	},
 	"aggregator_header": {
 		"no": "Aggregatorer",
@@ -25,7 +27,9 @@
 		"nn": "Aggregering",
 		"it": "Aggregatori",
 		"es": "Agregadores",
-		"lt": "Surink\u0117jai"
+		"lt": "Surink\u0117jai",
+		"nl": "Aggregatoren",
+		"ja": "\u30a2\u30b0\u30ea\u30b1\u30fc\u30bf"
 	},
 	"no_aggregators": {
 		"no": "Ingen aggregator definert i konfigurasjonen",
@@ -39,7 +43,9 @@
 		"nn": "Aggregrering er ikkje definert i konfigurasjonen.",
 		"it": "Non ci sono aggregatori definiti nella configurazione.",
 		"es": "No ha sido definido ning\u00fan agregador en la configuraci\u00f3n.",
-		"lt": "Konfig\u016bracijoje nenurodyti jokie surink\u0117jai."
+		"lt": "Konfig\u016bracijoje nenurodyti jokie surink\u0117jai.",
+		"nl": "Geen aggregator gedefinieerd in de configuratie.",
+		"ja": "\u8a2d\u5b9a\u30d5\u30a1\u30a4\u30eb\u306b\u30a2\u30b0\u30ea\u30b1\u30fc\u30bf\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3002"
 	},
 	"text": {
 		"no": "tekst",
@@ -53,6 +59,8 @@
 		"nn": "Tekst",
 		"it": "testo",
 		"es": "texto",
-		"lt": "Tekstas"
+		"lt": "Tekstas",
+		"nl": "tekst",
+		"ja": "\u30c6\u30ad\u30b9\u30c8"
 	}
 }

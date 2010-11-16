@@ -7,7 +7,9 @@
 		"it": "Autenticazione con certificato X509",
 		"no": "X509 sertifikatautentisering",
 		"es": "Autenticaci\u00f3n mediante certificado X509",
-		"hu": "X509 tan\u00fas\u00edtv\u00e1nyalap\u00fa azonos\u00edt\u00e1s"
+		"hu": "X509 tan\u00fas\u00edtv\u00e1nyalap\u00fa azonos\u00edt\u00e1s",
+		"ja": "X509\u8a3c\u660e\u66f8\u8a8d\u8a3c",
+		"nl": "Authenticatie via X509-certificaat"
 	},
 	"certificate_text": {
 		"fr": "Un certificat X509 est requis pour acc\u00e9der \u00e0 ce service.",
@@ -17,6 +19,8 @@
 		"it": "Una autenticazione con certificato X509 \u00e8 richiesta per accedere a questo servizio.",
 		"no": "X509 sertifikatautentisering er p\u00e5krevd for \u00e5 aksessere denne tjenesten.",
 		"es": "Se requiere autenticaci\u00f3n mediante certificado X509 para acceder a este servicio",
-		"hu": "Az al\u00e1bbi oldalhoz X509 tan\u00fas\u00edtv\u00e1nyalap\u00fa azonos\u00edt\u00e1s ut\u00e1n kaphat hozz\u00e1f\u00e9r\u00e9st"
+		"hu": "Az al\u00e1bbi oldalhoz X509 tan\u00fas\u00edtv\u00e1nyalap\u00fa azonos\u00edt\u00e1s ut\u00e1n kaphat hozz\u00e1f\u00e9r\u00e9st",
+		"ja": "\u3053\u306e\u30b5\u30fc\u30d3\u30b9\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u306b\u306fX509\u8a3c\u660e\u66f8\u8a8d\u8a3c\u3092\u884c\u3046\u5fc5\u8981\u304c\u3042\u308a\u307e\u3059\u3002",
+		"nl": "Authenticatie via een X509-certificaat is noodzakelijk voor toegang tot deze dienst."
 	}
 }

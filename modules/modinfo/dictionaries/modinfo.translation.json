@@ -11,7 +11,9 @@
 		"it": "Moduli disponibili",
 		"es": "M\u00f3dulos disponibles",
 		"lt": "Esami moduliai",
-		"hu": "El\u00e9rhet\u0151 modulok"
+		"hu": "El\u00e9rhet\u0151 modulok",
+		"nl": "Beschikbare modules",
+		"ja": "\u6709\u52b9\u306a\u30e2\u30b8\u30e5\u30fc\u30eb"
 	},
 	"modlist_name": {
 		"no": "Navn",
@@ -25,7 +27,9 @@
 		"it": "Nome",
 		"es": "Nombre",
 		"lt": "Pavadinimas",
-		"hu": "N\u00e9v"
+		"hu": "N\u00e9v",
+		"nl": "Naam",
+		"ja": "\u540d\u524d"
 	},
 	"modlist_status": {
 		"no": "Status",
@@ -39,7 +43,9 @@
 		"it": "Stato",
 		"es": "Estado",
 		"lt": "B\u016bsena",
-		"hu": "\u00c1llapot"
+		"hu": "\u00c1llapot",
+		"nl": "Status",
+		"ja": "\u30b9\u30c6\u30fc\u30bf\u30b9"
 	},
 	"modlist_enabled": {
 		"no": "P\u00e5sl\u00e5tt",
@@ -53,7 +59,9 @@
 		"it": "Attivato",
 		"es": "Habilitado",
 		"lt": "Palaikomas",
-		"hu": "Enged\u00e9lyezve"
+		"hu": "Enged\u00e9lyezve",
+		"nl": "Ingeschakeld",
+		"ja": "\u6709\u52b9"
 	},
 	"modlist_disabled": {
 		"no": "Avsl\u00e5tt",
@@ -67,6 +75,8 @@
 		"it": "Disattivato",
 		"es": "Deshabilitado",
 		"lt": "Nepalaikomas",
-		"hu": "Tiltva"
+		"hu": "Tiltva",
+		"nl": "Uitgeschakeld",
+		"ja": "\u7121\u52b9"
 	}
 }

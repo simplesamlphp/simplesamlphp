@@ -10,7 +10,9 @@
 		"hr": "(naziv nije specificiran)",
 		"hu": "(nincs n\u00e9v)",
 		"it": "(nome non specificato)",
-		"es": "(nombre no especificado)"
+		"es": "(nombre no especificado)",
+		"lt": "(pavadinimas nenurodytas)",
+		"nl": "(naam niet opgegeven)"
 	},
 	"sp_empty_description": {
 		"da": "(ingen beskrivelse)",
@@ -23,7 +25,9 @@
 		"hr": "(nema opisa)",
 		"hu": "(nincs le\u00edr\u00e1s)",
 		"it": "(nessuna descrizione)",
-		"es": "(sin descripci\u00f3n)"
+		"es": "(sin descripci\u00f3n)",
+		"lt": "(apib\u016bdinimas nenurodytas)",
+		"nl": "(geen omschrijving)"
 	},
 	"attribute_org": {
 		"da": "Organisation",
@@ -36,7 +40,9 @@
 		"hr": "Ustanova",
 		"hu": "Int\u00e9zm\u00e9ny",
 		"it": "Organizzazione",
-		"es": "Organizaci\u00f3n"
+		"es": "Organizaci\u00f3n",
+		"lt": "Organizacija",
+		"nl": "Organisatie"
 	},
 	"added": {
 		"da": "Samtykke givet",
@@ -49,7 +55,8 @@
 		"hr": "Dozvola dodana",
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s r\u00f6gz\u00edtve",
 		"it": "Consenso Aggiunto",
-		"es": "Consentimiento a\u00f1adido"
+		"es": "Consentimiento a\u00f1adido",
+		"lt": "Leidimas prid\u0117tas"
 	},
 	"removed": {
 		"da": "Samtykke slettet",
@@ -62,7 +69,8 @@
 		"hr": "Dozvola uklonjena",
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s visszavonva",
 		"it": "Consenso Rimosso",
-		"es": "Consentimiento eliminado"
+		"es": "Consentimiento eliminado",
+		"lt": "Leidimas pa\u0161alintas"
 	},
 	"updated": {
 		"da": "Samtykke Opdateret",
@@ -75,7 +83,8 @@
 		"hr": "Dozvola a\u017eurirana",
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s friss\u00edtve",
 		"it": "Consenso Aggiornato",
-		"es": "Consentimiento actualizado"
+		"es": "Consentimiento actualizado",
+		"lt": "Leidimas atnaujintas"
 	},
 	"unknown": {
 		"da": "Ukendt ...",
@@ -88,7 +97,8 @@
 		"hr": "Nepoznato ...",
 		"hu": "Ismeretlen ...",
 		"it": "Sconosciuto...",
-		"es": "Desconocido ..."
+		"es": "Desconocido ...",
+		"lt": "Ne\u017einoma..."
 	},
 	"attribute_id": {
 		"da": "Identitet",
@@ -101,7 +111,8 @@
 		"hr": "Identitet",
 		"hu": "Azonoss\u00e1g",
 		"it": "Identit\u00e0",
-		"es": "Identidad"
+		"es": "Identidad",
+		"lt": "Tapatyb\u0117"
 	},
 	"attribute_injected": {
 		"da": "Injiceret attribut",
@@ -114,7 +125,8 @@
 		"hr": "Uba\u010deni atribut",
 		"hu": "Attrib\u00fatum besz\u00far\u00e1sa",
 		"it": "Attributo inserito",
-		"es": "Atributo inyectado"
+		"es": "Atributo inyectado",
+		"lt": "\u012eterptas atributas"
 	},
 	"show": {
 		"da": "Vis",
@@ -127,7 +139,8 @@
 		"hr": "Prika\u017ei",
 		"hu": "Attrib\u00fatumok megjelen\u00edt\u00e9se",
 		"it": "Mostra",
-		"es": "Mostrar"
+		"es": "Mostrar",
+		"lt": "Parodyti"
 	},
 	"hide": {
 		"da": "Skjul",
@@ -140,7 +153,8 @@
 		"hr": "Sakrij",
 		"hu": "Attrib\u00fatumok rejt\u00e9se",
 		"it": "Nascondi",
-		"es": "Ocultar"
+		"es": "Ocultar",
+		"lt": "Pasl\u0117pti"
 	},
 	"attributes_text": {
 		"da": "attributter",
@@ -153,7 +167,8 @@
 		"hr": "atributi",
 		"hu": ".",
 		"it": "attributi",
-		"es": "Atributos"
+		"es": "Atributos",
+		"lt": "atributai"
 	},
 	"consentadmin_header": {
 		"da": "Administrer dine samtykker",
@@ -166,7 +181,8 @@
 		"hr": "Administracija dozvola",
 		"hu": "Adatkezel\u00e9si hozz\u00e1j\u00e1rul\u00e1sok kezel\u00e9se",
 		"it": "Amministrazione del consenso",
-		"es": "Administraci\u00f3n de consentimiento"
+		"es": "Administraci\u00f3n de consentimiento",
+		"lt": "Leidim\u0173 administravimas"
 	},
 	"consentadmin_description1": {
 		"da": "WAYF videregiver kun oplysninger til eksterne tjenester, hvis du giver dit samtykke til det. Hvilke oplysninger det drejer sig om, varierer alt efter hvad tjenesteudbyderen har behov for. Det kan for eksempel v\u00e6re:<ul><li>Dit navn<li>Din e-mail-adresse<li>Din institution<li>Etc.<\/ul>Hvis du s\u00e6tter et flueben ud for <b>Husk dette samtykke<\/b>, vil du ikke blive spurgt, n\u00e6ste gang du bes\u00f8ger tjenesteudbyderen. S\u00e5 husker WAYF, at du allerede har givet samtykke til at videregive oplysninger til tjenesteudbyderen. <p>Nedenfor er opf\u00f8rt de tjenester, som du for \u00f8jeblikket har givet l\u00f8bende samtykke til:<\/a>",
@@ -179,7 +195,8 @@
 		"hr": "Ovdje mo\u017eete pregledati i mijenjati va\u0161e dozvole davateljima usluga.",
 		"hu": "Ezen az oldalon lehet szolg\u00e1ltat\u00f3nk\u00e9nt (SP) az adakezel\u00e9si hozz\u00e1j\u00e1rul\u00e1sokat megtekinteni \u00e9s m\u00f3dos\u00edtani.",
 		"it": "Qui \u00e8 possibile vedere e modificare i consensi per i vari Service Provider.",
-		"es": "Aqu\u00ed puedes visualizar y editar tu consentimiento para los proveedores de servicio"
+		"es": "Aqu\u00ed puedes visualizar y editar tu consentimiento para los proveedores de servicio",
+		"lt": "\u010cia j\u016bs galite per\u017ei\u016br\u0117ti ir keisti savo leidimus paslaug\u0173 teik\u0117jams"
 	},
 	"consentadmin_description2": {
 		"da": "<h3>S\u00e5dan sletter du et samtykke<\/h3>Fjern fluebenet ud for tjenesten, samtykket tilh\u00f8rer.<h3>Hvilke data gemmer WAYF om dig?<\/h3><ul><li>N\u00e5r du giver dit samtykke, henter WAYF dine oplysninger fra din institution og sender de relevante videre til tjenesteudbyderen<li>Ingen af oplysningerne gemmes af WAYF<li>Hvis du har bedt WAYF huske dit samtykke, gemmes personhenf\u00f8rbare data heller ikke hos WAYF. Oplysningen om, at du har givet dit samtykke, gemmes p\u00e5 en ikke-personhenf\u00f8rbar m\u00e5de<\/ul><h3>Hvilke rettigheder har du?<\/h3>Du har ret til at tr\u00e6kke et samtykke tilbage.<h3>Hvor l\u00e6nge gemmes dine samtykker?<\/h3>Et samtykke slettes tre \u00e5r efter, at du sidst har benyttet det.<h3>Hvordan beskyttes mine oplysninger?<\/h3>WAYF foretager behandlinger af personoplysninger i henhold til persondataloven (lov nr. 429 af 31. maj 2000 med senere \u00e6ndringer). Du kan l\u00e6se n\u00e6rmere om registreredes rettigheder i persondatalovens afsnit III.<a href=\"http:\/\/www.datatilsynet.dk\/lovgivning\/persondataloven\/\">Persondataloven<\/a><h3>Links<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li><\/ul>",
@@ -192,7 +209,8 @@
 		"hr": "<h3>Kako obrisati dozvolu<\/h3> Maknite kva\u010dicu iz polja koje se odnosi na davatelja usluge <h3>Poveznice<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Po\u010detna stranica<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">Pitanja i odgovori<\/a> <\/li> <\/ul> ",
 		"hu": "<h3>Hogyan kell visszavonni egy hozz\u00e1j\u00e1rul\u00e1st?<\/h3> A szolg\u00e1ltat\u00f3hoz tartoz\u00f3 jel\u00f6l\u0151n\u00e9gyzetben sz\u00fcntesse meg a kijel\u00f6l\u00e9st!",
 		"it": "<h3>Come rimuovere il consenso><\/h3> Togliere il segno di spunta al corrispondente service provider<h3>Collegamenti<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Inizio<\/a><\/li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a><\/li><\/ul>",
-		"es": "<h3>Como eliminar su consentimiento<\/h3> Desmarque la opci\u00f3n correspondiente al proveedor de servicios <h3>V\u00ednculos<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Inicio<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul>"
+		"es": "<h3>Como eliminar su consentimiento<\/h3> Desmarque la opci\u00f3n correspondiente al proveedor de servicios <h3>V\u00ednculos<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Inicio<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul>",
+		"lt": "<h3>Kaip pa\u0161alinti savo leidim\u0105<\/h3> Panaikinkite pa\u017eym\u0117jim\u0105 ties atitinkamu paslaugos teik\u0117ju <h3>Nuorodos<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Prad\u017eia<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul> "
 	},
 	"login": {
 		"da": "login",

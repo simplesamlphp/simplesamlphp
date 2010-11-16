@@ -13,7 +13,9 @@
 		"lt": "Slapukas nerastas",
 		"it": "Cookie mancante",
 		"es": "No se encuentra cookie",
-		"hu": "Hi\u00e1nyz\u00f3 s\u00fcti (cookie)"
+		"hu": "Hi\u00e1nyz\u00f3 s\u00fcti (cookie)",
+		"nl": "Cookie ontbreekt",
+		"ja": "\u30af\u30c3\u30ad\u30fc\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093"
 	},
 	"description": {
 		"no": "Du ser ut til \u00e5 ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og pr\u00f8v igjen.",
@@ -29,7 +31,9 @@
 		"lt": "Atrodo J\u016bs\u0173 nar\u0161ykl\u0117 nepalaiko slapuk\u0173. Patikrinkite nar\u0161ykl\u0117s nustatymus ir bandykite dar kart\u0105.",
 		"it": "Sembra che i cookie siano disabilitati nel browser. Si prega di verificare e quindi riprovare.",
 		"es": "Al parecer ha deshabilitado las cookies de su navegador. Por favor revise las preferencias de su navegador y reintente.",
-		"hu": "\u00dagy t\u0171nik, az \u00f6n b\u00f6ng\u00e9sz\u0151j\u00e9ben nincsenek enged\u00e9lyezve a s\u00fctik (cookie) haszn\u00e1lata. K\u00e9rj\u00fck ellen\u0151rizze be\u00e1ll\u00edt\u00e1sait, majd pr\u00f3b\u00e1lja \u00fajra."
+		"hu": "\u00dagy t\u0171nik, az \u00f6n b\u00f6ng\u00e9sz\u0151j\u00e9ben nincsenek enged\u00e9lyezve a s\u00fctik (cookie) haszn\u00e1lata. K\u00e9rj\u00fck ellen\u0151rizze be\u00e1ll\u00edt\u00e1sait, majd pr\u00f3b\u00e1lja \u00fajra.",
+		"nl": "Het ziet er naaruit dat cookies zijn uitgeschakeld in uw browser. Controleer de browserinstellingen en probeer het opnieuw.",
+		"ja": "\u3042\u306a\u305f\u306e\u30d6\u30e9\u30a6\u30b6\u3067\u30af\u30c3\u30ad\u30fc\u304c\u7121\u52b9\u5316\u3055\u308c\u3066\u3044\u308b\u69d8\u3067\u3059\u3002\u30d6\u30e9\u30a6\u30b6\u306e\u8a2d\u5b9a\u3092\u78ba\u8a8d\u3057\u3001\u518d\u5ea6\u8a66\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
 	},
 	"retry": {
 		"no": "Pr\u00f8v igjen",
@@ -45,6 +49,8 @@
 		"lt": "Bandyti dar kart\u0105",
 		"it": "Riprovare",
 		"es": "Reintentar",
-		"hu": "\u00dajra"
+		"hu": "\u00dajra",
+		"nl": "Opnieuw",
+		"ja": "\u518d\u8a66\u884c"
 	}
 }
