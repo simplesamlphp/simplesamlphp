@@ -149,11 +149,15 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 		$session = SimpleSAML_Session::getInstance(); 
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-		/* If the consent module is active on a bridge $session->getIdP() will contain
-		 * an entry id for the remote IdP. If $session->getIdP() is NULL, then the
+		/* If the consent module is active on a bridge $state['saml:sp:IdP'] will contain
+		 * an entry id for the remote IdP. If not, then the
 		 * consent module is active on a local IdP and nothing needs to be done.
 		 */
-		if($session->getIdP() != null) {
+		if(isset($state['saml:sp:IdP'])) {
+			$idpmeta = $metadata->getMetaData($state['saml:sp:IdP'], 'saml20-idp-remote');
+			$state['Source'] = $idpmeta;
+		} elseif($session->getIdP() !== NULL) {
+			/* For backwards compatibility. TODO: Remove in version 1.8. */
 			$idpmeta = $metadata->getMetaData($session->getIdP(), 'saml20-idp-remote');
 			$state['Source'] = $idpmeta;
 		}
