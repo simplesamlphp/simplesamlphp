@@ -180,6 +180,40 @@ class SimpleSAML_Auth_Simple {
 
 
 	/**
+	 * Retrieve authentication data.
+	 *
+	 * @param string $name  The name of the parameter, e.g. 'Attribute', 'Expire' or 'saml:sp:IdP'.
+	 * @return mixed|NULL  The value of the parameter, or NULL if it isn't found or we are unauthenticated.
+	 */
+	public function getAuthData($name) {
+		assert('is_string($name)');
+
+		if (!$this->isAuthenticated()) {
+			return NULL;
+		}
+
+		$session = SimpleSAML_Session::getInstance();
+		return $session->getAuthData($this->authSource, $name);
+	}
+
+
+	/**
+	 * Retrieve all authentication data.
+	 *
+	 * @return array|NULL  All persistent authentication data, or NULL if we aren't authenticated.
+	 */
+	public function getAuthDataArray() {
+
+		if (!$this->isAuthenticated()) {
+			return NULL;
+		}
+
+		$session = SimpleSAML_Session::getInstance();
+		return $session->getAuthState($this->authSource);
+	}
+
+
+	/**
 	 * Retrieve an URL that can be used to log the user in.
 	 *
 	 * @param string|NULL $returnTo
