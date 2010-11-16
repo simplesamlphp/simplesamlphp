@@ -17,7 +17,7 @@ if (!$config->getBoolean('enable.saml20-sp', TRUE))
 
 
 // Destroy local session if exists.
-$session->doLogout();
+$session->doLogout('saml2');
 
 $binding = SAML2_Binding::getCurrentBinding();
 $message = $binding->receive();

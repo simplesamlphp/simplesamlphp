@@ -37,14 +37,15 @@ function finishLogin($authProcState) {
 	assert('array_key_exists("Source", $authProcState)');
 	assert('array_key_exists("entityid", $authProcState["Source"])');
 
-	global $session;
+	$authData = array(
+		'Attributes' => $authProcState['Attributes'],
+		'saml:sp:NameID' => $authProcState['core:saml20-sp:NameID'],
+		'saml:sp:SessionIndex' => $authProcState['core:saml20-sp:SessionIndex'],
+		'saml:sp:IdP' => $authProcState['Source']['entityid'],
+	);
 
-	/* Update the session information */
-	$session->doLogin('saml2');
-	$session->setAttributes($authProcState['Attributes']);
-	$session->setNameID($authProcState['core:saml20-sp:NameID']);
-	$session->setSessionIndex($authProcState['core:saml20-sp:SessionIndex']);
-	$session->setIdP($authProcState['Source']['entityid']);
+	global $session;
+	$session->doLogin('saml2', $authData);
 
 	SimpleSAML_Utilities::redirect($authProcState['core:saml20-sp:TargetURL']);
 }

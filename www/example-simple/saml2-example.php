@@ -50,7 +50,7 @@ if (!$session->isValid('saml2') ) {
 /* Prepare attributes for presentation 
 * and call a hook function for organizing the attribute array
 */
-$attributes = $session->getAttributes();
+$attributes = $session->getAuthData('saml2', 'Attributes');
 $para = array(
 	'attributes' => &$attributes
 );
@@ -69,7 +69,7 @@ SimpleSAML_Module::callHooks('attributepresentation', $para);
 $t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes');
 
 $t->data['header'] = '{status:header_saml20_sp}';
-$t->data['remaining'] = $session->remainingTime();
+$t->data['remaining'] = $session->getAuthData('saml2', 'Expire') - time();
 $t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;
 $t->data['logouturl'] = '/' . $config->getBaseURL() . 'saml2/sp/initSLO.php?RelayState=/' .

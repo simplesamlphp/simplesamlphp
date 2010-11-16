@@ -22,7 +22,7 @@ if (isset($_REQUEST['RelayState'])) {
 try {
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-	$idpEntityId = $session->getIdP();
+	$idpEntityId = $session->getAuthData('saml2', 'saml:sp:IdP');
 	if ($idpEntityId === NULL) {
 		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: User not authenticated with an IdP.');
 		SimpleSAML_Utilities::redirect($returnTo);
@@ -30,7 +30,7 @@ try {
 	$idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-remote');
 	$SLOendpoint = $idpMetadata->getDefaultEndpoint('SingleLogoutService', array(SAML2_Const::BINDING_HTTP_REDIRECT), NULL);
 	if ($SLOendpoint === NULL) {
-		$session->doLogout();
+		$session->doLogout('saml2');
 		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: No supported SingleLogoutService endpoint in IdP.');
 		SimpleSAML_Utilities::redirect($returnTo);
 	}
@@ -38,13 +38,13 @@ try {
 	$spEntityId = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 	$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-hosted');
 
-	$nameId = $session->getNameId();
+	$nameId = $session->getAuthData('saml2', 'saml:sp:NameID');
 
 	$lr = sspmod_saml_Message::buildLogoutRequest($spMetadata, $idpMetadata);
 	$lr->setNameId($nameId);
-	$lr->setSessionIndex($session->getSessionIndex());
+	$lr->setSessionIndex($session->getAuthData('saml2', 'saml:sp:SessionIndex'));
 
-	$session->doLogout();
+	$session->doLogout('saml2');
 
 	/* Save the $returnTo url until the user returns from the IdP. */
 	$session->setData('spLogoutReturnTo', $lr->getId(), $returnTo);
