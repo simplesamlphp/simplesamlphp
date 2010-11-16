@@ -464,29 +464,6 @@ class SimpleSAML_Session {
 	}
 	
 	/**
-	 * Clean the session object.
-	 */
-	public function clean($cleancache = false) {
-	
-		SimpleSAML_Logger::debug('Library - Session: Cleaning Session. Clean cache: ' . ($cleancache ? 'yes' : 'no') );
-	
-		if ($cleancache) {
-			$this->dataStore = null;
-			$this->idp = null;
-		}
-		
-		$this->authority = null;
-	
-		$this->authenticated = null;
-		$this->attributes = null;
-	
-		$this->sessionindex = null;
-		$this->nameid = null;
-	
-		$this->dirty = TRUE;
-	}
-	 
-	/**
 	 * Calculates the size of the session object after serialization
 	 *
 	 * @return The size of the session measured in bytes.
