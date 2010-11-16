@@ -153,7 +153,7 @@ class SimpleSAML_Auth_Simple {
 			assert('FALSE');
 		}
 
-		SimpleSAML_Auth_Default::initLogout($url);
+		SimpleSAML_Auth_Default::initLogout($url, $this->authSource);
 	}
 
 
