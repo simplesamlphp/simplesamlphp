@@ -313,9 +313,6 @@ class SimpleSAML_Session {
 		$this->sessionindex = $sessionindex;
 	}
 	public function getSessionIndex() {
-		if($this->sessionindex === NULL) {
-			$this->sessionindex = SimpleSAML_Utilities::generateID();
-		}
 		return $this->sessionindex;
 	}
 	public function setNameID($nameid) {
