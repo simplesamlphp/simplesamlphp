@@ -76,11 +76,24 @@ class SimpleSAML_Auth_Default {
 
 		/* Save persistent authentication data. */
 		$persistentAuthState = array();
+
+		if (isset($state['IdP'])) {
+			/* For backwards compatibility. */
+			$persistentAuthState['saml:sp:IdP'] = $state['IdP'];
+		}
+
 		if (isset($state['PersistentAuthData'])) {
 			foreach ($state['PersistentAuthData'] as $key) {
 				if (isset($state[$key])) {
 					$persistentAuthState[$key] = $state[$key];
 				}
+			}
+		}
+
+		/* Add those that should always be included. */
+		foreach (array('Attributes', 'Expires', 'LogoutState', 'AuthnInstant') as $a) {
+			if (isset($state[$a])) {
+				$persistentAuthState[$a] = $state[$a];
 			}
 		}
 
@@ -105,20 +118,6 @@ class SimpleSAML_Auth_Default {
 		/* Save session state. */
 		$session = SimpleSAML_Session::getInstance();
 		$session->doLogin($state['SimpleSAML_Auth_Default.id'], self::extractPersistentAuthState($state));
-		$session->setAttributes($state['Attributes']);
-		if(array_key_exists('Expires', $state)) {
-			$session->setSessionDuration($state['Expires'] - time());
-		}
-
-		if (array_key_exists('LogoutState', $state)) {
-			$session->setLogoutState($state['LogoutState']);
-		}
-
-		if (array_key_exists('IdP', $state)) {
-			$session->setIdP($state['IdP']);
-		} else {
-			$session->setIdP(NULL);
-		}
 
 		if (is_string($return)) {
 			/* Redirect... */
@@ -251,26 +250,6 @@ class SimpleSAML_Auth_Default {
 
 		$session = SimpleSAML_Session::getInstance();
 		$session->doLogin($authId, self::extractPersistentAuthState($state));
-
-		if (array_key_exists('Attributes', $state)) {
-			$session->setAttributes($state['Attributes']);
-		} else {
-			$session->setAttributes(array());
-		}
-
-		if(array_key_exists('Expires', $state)) {
-			$session->setSessionDuration($state['Expires'] - time());
-		}
-
-		if (array_key_exists('LogoutState', $state)) {
-			$session->setLogoutState($state['LogoutState']);
-		}
-
-		if (array_key_exists('IdP', $state)) {
-			$session->setIdP($state['IdP']);
-		} else {
-			$session->setIdP(NULL);
-		}
 
 		SimpleSAML_Utilities::redirect($redirectTo);
 	}
