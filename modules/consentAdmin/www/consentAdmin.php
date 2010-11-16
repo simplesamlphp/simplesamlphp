@@ -110,13 +110,11 @@ SimpleSAML_Logger::critical('consentAdmin: sp: ' .$sp_entityid.' action: '.$acti
 /*
  * Get IdP id and metadata
  */
-$session = SimpleSAML_Session::getInstance();
-
-if($session->getIdP() != null) {
+if($as->getAuthData('saml:sp:IdP') !== NULL) {
 	/*
 	 * From a remote idp (as bridge)
  	 */
-	$idp_entityid = $session->getIdP();
+	$idp_entityid = $as->getAuthData('saml:sp:IdP');
 	$idp_metadata = $metadata->getMetaData($idp_entityid, 'saml20-idp-remote');
 } else {
 	/*
