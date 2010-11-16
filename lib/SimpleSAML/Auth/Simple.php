@@ -175,7 +175,7 @@ class SimpleSAML_Auth_Simple {
 
 		/* Authenticated. */
 		$session = SimpleSAML_Session::getInstance();
-		return $session->getAttributes();
+		return $session->getAuthData($this->authSource, 'Attributes');
 	}
 
 
