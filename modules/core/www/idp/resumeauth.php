@@ -1,5 +1,7 @@
 <?php
 
+/* TODO: Delete this file in version 1.8. */
+
 if (!isset($_REQUEST['RequestID'])) {
 	throw new SimpleSAML_Error_BadRequest('Missing required URL parameter.');
 }
