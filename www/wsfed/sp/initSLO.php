@@ -25,14 +25,14 @@ if (isset($session) ) {
 	
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 	
-		$idpentityid = $session->getIdP();
+		$idpentityid = $session->getAuthData('wsfed', 'saml:sp:IdP');
 		$spentityid = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 	
 		/**
 		 * Create a logout request
 		 */		
 		
-		$session->doLogout();
+		$session->doLogout('wsfed');
 		
 		SimpleSAML_Logger::info('WS-Fed - SP.initSLO: SP (' . $spentityid . ') is sending logout request to IdP (' . $idpentityid . ')');
 			

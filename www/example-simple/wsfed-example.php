@@ -12,12 +12,12 @@ if (!$session->isValid('wsfed') ) {
 	);
 }
 
-$attributes = $session->getAttributes();
+$attributes = $session->getAuthData('wsfed', 'Attributes');
 
 $t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes');
 
 $t->data['header'] = '{status:header_wsfed}';
-$t->data['remaining'] = $session->remainingTime();
+$t->data['remaining'] = $session->getAuthData('wsfed', 'Expire') - time();
 $t->data['sessionsize'] = $session->getSize();
 $t->data['attributes'] = $attributes;
 $t->data['logouturl'] = '/' . $config->getBaseURL() . 'wsfed/sp/initSLO.php?RelayState=/' . $config->getBaseURL() . 'logout.php';

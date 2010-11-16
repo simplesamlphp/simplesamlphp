@@ -134,10 +134,12 @@ try {
 
 
 	/* Mark the user as logged in. */
-	$session->doLogin('wsfed');
-	$session->setAttributes($attributes);
-	$session->setNameID($nameid);
-	$session->setIdP($idpEntityId);
+	$authData = array(
+		'Attributes' => $attributes,
+		'saml:sp:NameID' => $nameid,
+		'saml:sp:IdP' => $idpEntityId,
+	);
+	$session->doLogin('wsfed', $authData);
 
 	/* Redirect the user back to the page which requested the login. */
 	SimpleSAML_Utilities::redirect($wctx);
