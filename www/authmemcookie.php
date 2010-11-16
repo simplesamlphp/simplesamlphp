@@ -15,7 +15,6 @@ require_once('_include.php');
 try {
 	/* Load simpleSAMLphp configuration. */
 	$globalConfig = SimpleSAML_Configuration::getInstance();
-	$session = SimpleSAML_Session::getInstance();
 
 	/* Check if this module is enabled. */
 	if(!$globalConfig->getBoolean('enable.authmemcookie', FALSE)) {
@@ -25,36 +24,27 @@ try {
 	/* Load Auth MemCookie configuration. */
 	$amc = SimpleSAML_AuthMemCookie::getInstance();
 
-	/* Check if the user is authorized. We attempt to authenticate the user if not. */
+	/* Determine the method we should use to authenticate the user and retrieve the attributes. */
 	$loginMethod = $amc->getLoginMethod();
 	switch($loginMethod) {
 	case 'authsource':
 		/* The default now. */
 		$sourceId = $amc->getAuthSource();
 		$s = new SimpleSAML_Auth_Simple($sourceId);
-		$s->requireAuth();
 		break;
 	case 'saml2':
-		if (!$session->isValid('saml2') ) {
-			SimpleSAML_Utilities::redirect(
-				'/' . $globalConfig->getBaseURL() . 'saml2/sp/initSSO.php',
-				array('RelayState' => SimpleSAML_Utilities::selfURL())
-				);
-		}
+		$s = new SimpleSAML_Auth_BWC('saml2/sp/initSSO.php', 'saml2');
 		break;
 	case 'shib13':
-		if (!$session->isValid('shib13') ) {
-			SimpleSAML_Utilities::redirect(
-				'/' . $globalConfig->getBaseURL() . 'shib13/sp/initSSO.php',
-				array('RelayState' => SimpleSAML_Utilities::selfURL())
-				);
-		}
+		$s = new SimpleSAML_Auth_BWC('shib13/sp/initSSO.php', 'shib13');
 		break;
 	default:
 		/* Should never happen, as the login method is checked in the AuthMemCookie class. */
 		throw new Exception('Invalid login method.');
 	}
 
+	/* Check if the user is authorized. We attempt to authenticate the user if not. */
+	$s->requireAuth();
 
 	/* Generate session id and save it in a cookie. */
 	$sessionID = SimpleSAML_Utilities::generateID();
@@ -67,7 +57,7 @@ try {
 
 	/* Generate the authentication information. */
 
-	$attributes = $session->getAttributes();
+	$attributes = $s->getAttributes();
 
 	$authData = array();
 
@@ -111,10 +101,11 @@ try {
 
 
 	$memcache = $amc->getMemcache();
-	$expirationTime = $session->remainingTime();
+	$expirationTime = $s->getAuthData('Expire');
 	$memcache->set($sessionID, $data, 0, $expirationTime);
 
 	/* Register logout handler. */
+	$session = SimpleSAML_Session::getInstance();
 	$session->registerLogoutHandler('SimpleSAML_AuthMemCookie', 'logoutHandler');
 
 	/* Redirect the user back to this page to signal that the login is completed. */
