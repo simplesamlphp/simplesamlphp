@@ -140,7 +140,8 @@ if($onLoad !== '') {
 		$langnames = array(
 					'no' => 'Bokmål',
 					'nn' => 'Nynorsk',
-					'se' => 'Sami',
+					'se' => 'Sámegiella',
+					'sam' => 'Åarjelh-saemien giele',
 					'da' => 'Dansk',
 					'en' => 'English',
 					'de' => 'Deutsch',
