@@ -565,9 +565,13 @@ class sspmod_saml_IdP_SAML2 {
 
 		$a->setAuthnContext(SAML2_Const::AC_PASSWORD);
 
-		$session = SimpleSAML_Session::getInstance();
-
-		$a->setAuthnInstant($session->getAuthnInstant());
+		if (isset($state['AuthnInstant'])) {
+			$a->setAuthnInstant($state['AuthnInstant']);
+		} else {
+			/* For backwards compatibility. Remove in version 1.8. */
+			$session = SimpleSAML_Session::getInstance();
+			$a->setAuthnInstant($session->getAuthnInstant());
+		}
 
 		$sessionLifetime = $config->getInteger('session.duration', 8*60*60);
 		$a->setSessionNotOnOrAfter(time() + $sessionLifetime);
