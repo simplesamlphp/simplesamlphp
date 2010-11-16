@@ -137,20 +137,29 @@ class SimpleSAML_Auth_Default {
 	 * will return if the logout operation does not require a redirect.
 	 *
 	 * @param string $returnURL  The URL we should redirect the user to after logging out.
+	 * @param string|NULL $authority  The authentication source we are logging out from, or NULL to log out of the most recent.
 	 */
-	public static function initLogoutReturn($returnURL) {
+	public static function initLogoutReturn($returnURL, $authority = NULL) {
 		assert('is_string($returnURL)');
+		assert('is_string($authority) || is_null($authority)');
 
 		$session = SimpleSAML_Session::getInstance();
 
-		$state = $session->getLogoutState();
-		$authId = $session->getAuthority();
-		$session->doLogout();
+		if ($authority === NULL) {
+			$authority = $session->getAuthority();
+			if ($authority === NULL) {
+				/* Already logged out - nothing to do here. */
+				return;
+			}
+		}
+
+		$state = $session->getAuthData($authority, 'LogoutState');
+		$session->doLogout($authority);
 
 		$state['SimpleSAML_Auth_Default.ReturnURL'] = $returnURL;
 		$state['LogoutCompletedHandler'] = array(get_class(), 'logoutCompleted');
 
-		$as = SimpleSAML_Auth_Source::getById($authId);
+		$as = SimpleSAML_Auth_Source::getById($authority);
 		if ($as === NULL) {
 			/* The authority wasn't an authentication source... */
 			self::logoutCompleted($state);
@@ -167,11 +176,13 @@ class SimpleSAML_Auth_Default {
 	 * never returns.
 	 *
 	 * @param string $returnURL  The URL we should redirect the user to after logging out.
+	 * @param string|NULL $authority  The authentication source we are logging out from, or NULL to log out of the most recent.
 	 */
-	public static function initLogout($returnURL) {
+	public static function initLogout($returnURL, $authority = NULL) {
 		assert('is_string($returnURL)');
+		assert('is_string($authority) || is_null($authority)');
 
-		self::initLogoutReturn($returnURL);
+		self::initLogoutReturn($returnURL, $authority);
 
 		/* Redirect... */
 		SimpleSAML_Utilities::redirect($returnURL);
