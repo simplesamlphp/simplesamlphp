@@ -217,6 +217,7 @@ class Facebook {
   public function get_login_url($next, $canvas) {
     return self::get_facebook_url().'/login.php?v=1.0&api_key=' . $this->api_key .
       ($next ? '&next=' . urlencode($next)  : '') .
+      '&req_perms=email' .
       ($canvas ? '&canvas' : '');
   }
 
