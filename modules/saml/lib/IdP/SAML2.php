@@ -563,7 +563,11 @@ class sspmod_saml_IdP_SAML2 {
 		}
 		$a->setNotOnOrAfter(time() + $assertionLifetime);
 
-		$a->setAuthnContext(SAML2_Const::AC_PASSWORD);
+		if (isset($state['saml:AuthnContextClassRef'])) {
+			$a->setAuthnContext($state['saml:AuthnContextClassRef']);
+		} else {
+			$a->setAuthnContext(SAML2_Const::AC_PASSWORD);
+		}
 
 		if (isset($state['AuthnInstant'])) {
 			$a->setAuthnInstant($state['AuthnInstant']);
