@@ -162,7 +162,9 @@ class SimpleSAML_Module {
 	public static function callHooks($hook, &$data = NULL) {
 		assert('is_string($hook)');
 
-		foreach (self::getModules() as $module) {
+		$modules = self::getModules();
+		sort($modules);
+		foreach ($modules as $module) {
 			if (!self::isModuleEnabled($module)) {
 				continue;
 			}
