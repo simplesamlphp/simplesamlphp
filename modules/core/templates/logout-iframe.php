@@ -158,7 +158,7 @@ if ($nFailed > 0) {
 echo('<div id="logout-failed-message" style="margin-top: 1em; border: 1px solid #ccc; padding: 1em; background: #eaeaea;' . $displayStyle . '">');
 echo('<img src="/' . $this->data['baseurlpath'] . 'resources/icons/experience/gtk-dialog-warning.48x48.png" alt="" style="float: left; margin-right: 5px;" />');
 echo('<p>' . $this->t('{logout:failedsps}') . '</p>');
-echo('<form method="get" action="logout-iframe-done.php" target="_top">');
+echo('<form method="post" action="logout-iframe-done.php" id="failed-form" target="_top">');
 echo('<input type="hidden" name="id" value="' . $id . '" />');
 echo('<input type="submit" name="continue" value="' . $this->t('{logout:return}'). '" />');
 echo('</form>');
@@ -172,7 +172,7 @@ if ($nProgress == 0 && $nFailed == 0) {
 }
 echo('<p>' . $this->t('{logout:success}') . '</p>');
 ?>
-<form method="get" action="logout-iframe-done.php" id="done-form" target="_top">
+<form method="post" action="logout-iframe-done.php" id="done-form" target="_top">
 	<input type="hidden" name="id" value="<?php echo $id; ?>" />
 	<input type="submit" name="continue" value="<?php echo $this->t('{logout:return}'); ?>" />
 </form>

@@ -32,6 +32,17 @@ function updateSPStatus(spId, status, reason) {
 	$('#statusimage-' + spId).attr('src', window.stateImage[status]).attr('alt', window.stateText[status]).attr('title', reason);
 	window.spStatus[spId] = status;
 
+	var formId = 'logout-iframe-' + spId;
+	var existing = $('input[name="' + formId + '"]');
+	if (existing.length == 0) {
+		/* Don't have an existing form element - add one. */
+		var elementHTML = '<input type="hidden" name="' + formId + '" value="' + status + '" />';
+		$('#failed-form , #done-form').append(elementHTML);
+	} else {
+		/* Update existing element. */
+		existing.attr('value', status);
+	}
+
 	updateStatus();
 }
 function logoutCompleted(spId) {
@@ -49,24 +60,9 @@ function timeoutSPs() {
 	}
 }
 
-function asyncUpdate() {
-	jQuery.getJSON(window.asyncURL, window.spStatus, function(data, textStatus) {
-		for (sp in data) {
-			if (data[sp] == 'completed') {
-				logoutCompleted(sp);
-			} else if (data[sp] == 'failed') {
-				logoutFailed(sp, 'async update');
-			}
-		}
-		window.setTimeout(asyncUpdate, 1000);
-	});
-}
-
-
 $('document').ready(function(){
 	if (window.type == 'js') {
 		window.timeoutID = window.setTimeout(timeoutSPs, window.timeoutIn * 1000);
-		window.setTimeout(asyncUpdate, 1000);
 		updateStatus();
 	} else if (window.type == 'init') {
 		$('#logout-type-selector').attr('value', 'js');

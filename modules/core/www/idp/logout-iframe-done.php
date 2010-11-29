@@ -20,21 +20,16 @@ if (!isset($_REQUEST['cancel'])) {
 	$state['core:Failed'] = TRUE; /* Mark as partial logout. */
 }
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
-$cookiePath = '/' . $globalConfig->getBaseURL();
-
 /* Find the status of all SPs. */
 foreach ($SPs as $assocId => &$sp) {
 
-	$spId = sha1($assocId);
+	$spId = 'logout-iframe-' . sha1($assocId);
 
-	$cookieId = 'logout-iframe-' . $spId;
-	if (isset($_COOKIE[$cookieId])) {
-		$cookie = $_COOKIE[$cookieId];
-		if ($cookie == 'completed' || $cookie == 'failed') {
-			$sp['core:Logout-IFrame:State'] = $cookie;
+	if (isset($_REQUEST[$spId])) {
+		$spStatus = $_REQUEST[$spId];
+		if ($spStatus === 'completed' || $spStatus === 'failed') {
+			$sp['core:Logout-IFrame:State'] = $spStatus;
 		}
-		setcookie($cookieId, '', time() - 3600, $cookiePath);
 	}
 
 	if (!isset($associations[$assocId])) {

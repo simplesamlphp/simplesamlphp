@@ -7,7 +7,7 @@ $id = (string)$_REQUEST['id'];
 
 if (isset($_REQUEST['type'])) {
 	$type = (string)$_REQUEST['type'];
-	if (!in_array($type, array('init', 'js', 'nojs', 'embed', 'async'), TRUE)) {
+	if (!in_array($type, array('init', 'js', 'nojs', 'embed'), TRUE)) {
 		throw new SimpleSAML_Error_BadRequest('Invalid value for type.');
 	}
 } else {
@@ -39,15 +39,6 @@ if ($type !== 'init') {
 		/* Move SPs from 'onhold' to 'inprogress'. */
 		if ($sp['core:Logout-IFrame:State'] === 'onhold') {
 			$sp['core:Logout-IFrame:State'] = 'inprogress';
-		}
-
-		/* Check for update by cookie. */
-		$cookieId = 'logout-iframe-' . $spId;
-		if (isset($_COOKIE[$cookieId])) {
-			$cookie = $_COOKIE[$cookieId];
-			if ($cookie == 'completed' || $cookie == 'failed') {
-				$sp['core:Logout-IFrame:State'] = $cookie;
-			}
 		}
 
 		/* Check for update through request. */
@@ -98,18 +89,6 @@ if ($type === 'nojs') {
 	$t->data['SPs'] = $state['core:Logout-IFrame:Associations'];
 	$t->data['timeout'] = $timeout;
 	$t->show();
-	exit(0);
-
-} elseif ($type == 'async') {
-	header('Content-Type: application/json');
-	$res = array();
-	foreach ($state['core:Logout-IFrame:Associations'] as $assocId => $sp) {
-		if ($sp['core:Logout-IFrame:State'] !== 'completed') {
-			continue;
-		}
-		$res[sha1($assocId)] = 'completed';
-	}
-	echo(json_encode($res));
 	exit(0);
 }
 
