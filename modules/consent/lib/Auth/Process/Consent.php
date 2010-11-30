@@ -235,7 +235,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 	 * Get a hash value that changes when attributes are added or attribute values changed.
 	 * @param boolean $includeValues Whether or not to include the attribute value in the generation of the hash.
 	 */
-	public function getAttributeHash($attributes, $includeValues = FALSE) {
+	public static function getAttributeHash($attributes, $includeValues = FALSE) {
 
 		$hashBase = NULL;	
 		if ($includeValues) {
