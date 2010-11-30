@@ -72,9 +72,8 @@ if ($message instanceof SAML2_LogoutResponse) {
 		$lastException = NULL;
 		foreach ($keys as $i => $key) {
 			try {
-				$ret = $assertion->getAssertion($key);
+				$message->decryptNameId($key);
 				SimpleSAML_Logger::debug('Decryption with key #' . $i . ' succeeded.');
-				return $ret;
 			} catch (Exception $e) {
 				SimpleSAML_Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
 				$lastException = $e;
