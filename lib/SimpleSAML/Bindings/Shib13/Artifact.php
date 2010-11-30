@@ -160,10 +160,9 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 					'Content-Type: text/xml',
 			),
 		);
-		$context = stream_context_create($opts);
 
 		/* Fetch the artifact. */
-		$response = file_get_contents($url, FALSE, $context);
+		$response = SimpleSAML_Utilities::fetch($url, $opts);
 		if ($response === FALSE) {
 			throw new SimpleSAML_Error_Exception('Failed to retrieve assertion from IdP.');
 		}
