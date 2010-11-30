@@ -85,15 +85,26 @@ if ($message instanceof SAML2_LogoutResponse) {
 	$nameId = $message->getNameId();
 	$sessionIndexes = $message->getSessionIndexes();
 
-	if (!sspmod_saml_SP_LogoutStore::logoutSessions($sourceId, $nameId, $sessionIndexes)) {
+	$numLoggedOut = sspmod_saml_SP_LogoutStore::logoutSessions($sourceId, $nameId, $sessionIndexes);
+	if ($numLoggedOut === FALSE) {
 		/* This type of logout was unsupported. Use the old method. */
 		$source->handleLogout($idpEntityId);
+		$numLoggedOut = count($sessionIndexes);
 	}
 
 	/* Create an send response. */
 	$lr = sspmod_saml_Message::buildLogoutResponse($spMetadata, $idpMetadata);
 	$lr->setRelayState($message->getRelayState());
 	$lr->setInResponseTo($message->getId());
+
+	/* We should return a partial logout if we were unable to log out of all the given session(s). */
+	if ($numLoggedOut < count($sessionIndexes)) {
+		$lr->setStatus(array(
+			'Code' => SAML2_Const::STATUS_SUCCESS,
+			'SubCode' => SAML2_Const::STATUS_PARTIAL_LOGOUT,
+			'Message' => 'Logged out of ' . $numLoggedOut  . ' of ' . count($sessionIndexes) . ' sessions.'
+		));
+	}
 
 	$binding->send($lr);
 } else {

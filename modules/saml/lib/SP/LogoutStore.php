@@ -194,7 +194,7 @@ class sspmod_saml_SP_LogoutStore {
 	 * @param string $authId  The authsource ID.
 	 * @param array $nameId  The NameID of the user.
 	 * @param array $sessionIndexes  The SessionIndexes we should log out of. Logs out of all if this is empty.
-	 * @returns bool  TRUE if OK, FALSE if not supported.
+	 * @returns int|FALSE  Number of sessions logged out, or FALSE if not supported.
 	 */
 	public static function logoutSessions($authId, array $nameId, array $sessionIndexes) {
 		assert('is_string($authId)');
@@ -235,6 +235,7 @@ class sspmod_saml_SP_LogoutStore {
 
 		$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
 
+		$numLoggedOut = 0;
 		foreach ($sessionIndexes as $sessionIndex) {
 			if (!isset($sessions[$sessionIndex])) {
 				SimpleSAML_Logger::info('saml.LogoutStore: Logout requested for unknown SessionIndex.');
@@ -256,9 +257,10 @@ class sspmod_saml_SP_LogoutStore {
 
 			SimpleSAML_Logger::info('saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackId() . '].');
 			$session->doLogout($authId);
+			$numLoggedOut += 1;
 		}
 
-		return TRUE;
+		return $numLoggedOut;
 	}
 
 }
