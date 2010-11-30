@@ -62,7 +62,7 @@ function casValidate($cas) {
 
 		if (isset($cas['validate'])) { # cas v1 yes|no\r<username> style
 			$paramPrefix = strpos($cas['validate'], '?') ? '&' : '?';
-			$result = file_get_contents($cas['validate'] . $paramPrefix . 'ticket=' . $ticket . '&service=' . urlencode($service) );
+			$result = SimpleSAML_Utilities::fetch($cas['validate'] . $paramPrefix . 'ticket=' . $ticket . '&service=' . urlencode($service) );
 			$res = preg_split("/\r?\n/",$result);
 			
 			if (strcmp($res[0], "yes") == 0) {
@@ -73,7 +73,7 @@ function casValidate($cas) {
 		} elseif (isset($cas['serviceValidate'])) { # cas v2 xml style
 			$paramPrefix = strpos($cas['serviceValidate'], '?') ? '&' : '?';
 
-			$result = file_get_contents($cas['serviceValidate'] . $paramPrefix . 'ticket=' . $ticket . '&service=' . urlencode($service) );
+			$result = SimpleSAML_Utilities::fetch($cas['serviceValidate'] . $paramPrefix . 'ticket=' . $ticket . '&service=' . urlencode($service) );
 
 			$dom = DOMDocument::loadXML($result);
 			$xPath = new DOMXpath($dom);
