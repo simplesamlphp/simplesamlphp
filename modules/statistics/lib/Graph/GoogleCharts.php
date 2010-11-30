@@ -152,13 +152,32 @@ class sspmod_statistics_Graph_GoogleCharts {
 	 *		}
 	 * </code>
 	 * 
-	 * @param $in 	Input value.
+	 * @param $max 	Input value.
 	 */
-	public static function roof($in) {
-		if ($in < 1) return 1;
-		$base = log10($in);
-		$r =  ceil(5*$in / pow(10, ceil($base)));
-		return ($r/5)*pow(10, ceil($base));
+	public static function roof($max) {
+		$mul = 1;
+
+		if ($max < 1) {
+			return 1;
+		}
+
+		$t = intval(ceil($max));
+		while ($t > 100) {
+			$t /= 10;
+			$mul *= 10;
+		}
+
+		$maxGridLines = 10;
+		$candidates = array(1, 2, 5, 10, 20, 25, 50, 100);
+
+		foreach ($candidates as $c) {
+			if ($t / $c < $maxGridLines) {
+				$tick_y = $c * $mul;
+				$target_top = intval(ceil($max / $tick_y) * $tick_y);
+				return $target_top;
+			}
+		}
+
 	}
 
 }
