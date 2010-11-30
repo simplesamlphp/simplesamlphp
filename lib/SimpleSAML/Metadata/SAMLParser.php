@@ -174,7 +174,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	public static function parseFile($file) {
 		$doc = new DOMDocument();
 
-		$res = $doc->load($file);
+		$data = SimpleSAML_Utilities::fetch($file);
+
+		$res = $doc->loadXML($data);
 		if($res !== TRUE) {
 			throw new Exception('Failed to read XML from file: ' . $file);
 		}
@@ -242,9 +244,10 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		if ($file === NULL) throw new Exception('Cannot open file NULL. File name not specified.');
 
-		$doc = new DOMDocument();
+		$data = SimpleSAML_Utilities::fetch($file);
 
-		$res = $doc->load($file);
+		$doc = new DOMDocument();
+		$res = $doc->loadXML($data);
 		if($res !== TRUE) {
 			throw new Exception('Failed to read XML from file: ' . $file);
 		}
