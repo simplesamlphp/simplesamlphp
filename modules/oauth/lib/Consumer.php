@@ -26,10 +26,7 @@ class sspmod_oauth_Consumer {
 		$req_req = OAuthRequest::from_consumer_and_token($this->consumer, NULL, "GET", $url, NULL);
 		$req_req->sign_request($this->signer, $this->consumer, NULL);
 
-		$response_req = file_get_contents($req_req->to_url());
-		if ($response_req === FALSE) {
-			throw new Exception('Error contacting request_token endpoint on the OAuth Provider');
-		}
+		$response_req = SimpleSAML_Utilities::fetch($req_req->to_url());
 
 		parse_str($response_req, $responseParsed);
 		
@@ -59,10 +56,7 @@ class sspmod_oauth_Consumer {
 		$acc_req = OAuthRequest::from_consumer_and_token($this->consumer, $requestToken, "GET", $url, NULL);
 		$acc_req->sign_request($this->signer, $this->consumer, $requestToken);
 		
-		$response_acc = file_get_contents($acc_req->to_url());
-		if ($response_acc === FALSE) {
-			throw new Exception('Error contacting request_token endpoint on the OAuth Provider');
-		}
+		$response_acc = SimpleSAML_Utilities::fetch($acc_req->to_url());
 
 		SimpleSAML_Logger::debug('oauth: Reponse to get access token: '. $response_acc);
 		
@@ -96,11 +90,7 @@ class sspmod_oauth_Consumer {
 				'header' => 'Content-Type: application/x-www-form-urlencoded',
 			),
 		);
-		$context = stream_context_create($opts);
-		$response = file_get_contents($url, FALSE, $context);
-		if ($response === FALSE) {
-			throw new SimpleSAML_Error_Exception('Failed to push definition file to ' . $pushURL);
-		}
+		$response = SimpleSAML_Utilities::fetch($url, $opts);
 		return $response;
 	}
 	
@@ -109,7 +99,7 @@ class sspmod_oauth_Consumer {
 		$data_req = OAuthRequest::from_consumer_and_token($this->consumer, $accessToken, "GET", $url, NULL);
 		$data_req->sign_request($this->signer, $this->consumer, $accessToken);
 
-		$data = file_get_contents($data_req->to_url());
+		$data = SimpleSAML_Utilities::fetch($data_req->to_url());
 		#print_r($data);
 
 		$dataDecoded = json_decode($data, TRUE);
