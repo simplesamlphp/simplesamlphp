@@ -40,13 +40,13 @@ echo 'File base: [' . $basefile . ']'. "\n";
 switch($action) {
 	case 'pulldef':
 		
-		$content = file_get_contents($base . 'export.php?aid=' . $application . '&type=def&file=' . $basefile);
+		$content = SimpleSAML_Utilities::fetch($base . 'export.php?aid=' . $application . '&type=def&file=' . $basefile);
 		file_put_contents($fileWithoutExt . '.definition.json' , $content);
 		break;
 		
 	case 'pull':
 
-		$content = file_get_contents($base . 'export.php?aid=' . $application . '&type=translation&file=' . $basefile);
+		$content = SimpleSAML_Utilities::fetch($base . 'export.php?aid=' . $application . '&type=translation&file=' . $basefile);
 		file_put_contents($fileWithoutExt . '.translation.json' , $content);
 		break;
 	
