@@ -117,7 +117,7 @@ class sspmod_statistics_Graph_GoogleCharts {
 			'&chxp=0,' . join(',', $axispos) . 
 #			'&chxp=0,0.3,0.4' .
 #			'&chm=R,CCCCCC,0,0.25,0.5' .
-			'&chg=' . (2400/(count($datasets[0])-1)) . ',20,3,3';   // lines
+			'&chg=' . (2400/(count($datasets[0])-1)) . ',-1,3,3';   // lines
 		return $url;
 	}
 	
