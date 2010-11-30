@@ -544,7 +544,13 @@ $config = array (
 	'metadata.sign.privatekey_pass' => NULL,
 	'metadata.sign.certificate' => NULL,
 
+
+	/*
+	 * Proxy to use for retrieving URLs.
+	 *
+	 * Example:
+	 *   'proxy' => 'tcp://proxy.example.com:5100'
+	 */
+	'proxy' => NULL,
+
 );
-
-
-?>

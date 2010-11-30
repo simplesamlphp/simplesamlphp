@@ -1950,6 +1950,39 @@ class SimpleSAML_Utilities {
 		}
 	}
 
-}
 
-?>
+	/**
+	 * Helper function to retrieve a file or URL with proxy support.
+	 *
+	 * An exception will be thrown if we are unable to retrieve the data.
+	 *
+	 * @param string $path  The path or URL we should fetch.
+	 * @param array $context  Extra context options. This parameter is optional.
+	 * @return string  The data we fetched.
+	 */
+	public static function fetch($path, $context = array()) {
+		assert('is_string($path)');
+
+		$config = SimpleSAML_Configuration::getInstance();
+
+		$proxy = $config->getString('proxy', NULL);
+		if ($proxy !== NULL) {
+			if (!isset($context['http']['proxy'])) {
+				$context['http']['proxy'] = $proxy;
+			}
+			if (!isset($context['http']['request_fulluri'])) {
+				$context['http']['request_fulluri'] = TRUE;
+			}
+		}
+
+		$context = stream_context_create($context);
+
+		$data = file_get_contents($path, FALSE, $context);
+		if ($data === FALSE) {
+			throw new SimpleSAML_Error_Exception('Error fetching ' . var_export($path, TRUE) . ':' . self::getLastError());
+		}
+
+		return $data;
+	}
+
+}
