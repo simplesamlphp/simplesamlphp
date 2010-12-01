@@ -139,8 +139,8 @@ class SimpleSAML_XHTML_IdPDisco {
 			$this->setIdPentityID = NULL;
 		}
 
-		if (array_key_exists('IDPList', $_GET)) {
-			$this->scopedIDPList = $_GET['IDPList'];
+		if (array_key_exists('IDPList', $_REQUEST)) {
+			$this->scopedIDPList = $_REQUEST['IDPList'];
 		}
 
 	}
