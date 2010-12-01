@@ -138,7 +138,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		/* Process Extensions element, if it exists. */
 		$ext = self::processExtensions($entityElement);
-		$this->scopes = $ext['scopes'];
+		$this->scopes = $ext['scope'];
 		$this->tags = $ext['tags'];
 
 		/* Look over the RoleDescriptors. */
@@ -421,12 +421,12 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * @param array $roleDescriptor  The parsed role desciptor.
 	 */
 	private function addExtensions(array &$metadata, array $roleDescriptor) {
-		assert('array_key_exists("scopes", $roleDescriptor)');
+		assert('array_key_exists("scope", $roleDescriptor)');
 		assert('array_key_exists("tags", $roleDescriptor)');
 
-		$scopes = array_merge($this->scopes, array_diff($roleDescriptor['scopes'], $this->scopes));
+		$scopes = array_merge($this->scopes, array_diff($roleDescriptor['scope'], $this->scopes));
 		if (!empty($scopes)) {
-			$metadata['scopes'] = $scopes;
+			$metadata['scope'] = $scopes;
 		}
 
 		$tags = array_merge($this->tags, array_diff($roleDescriptor['tags'], $this->tags));
@@ -741,7 +741,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 
 		$ext = self::processExtensions($element);
-		$ret['scopes'] = $ext['scopes'];
+		$ret['scope'] = $ext['scope'];
 		$ret['tags'] = $ext['tags'];
 
 		return $ret;
@@ -862,14 +862,14 @@ class SimpleSAML_Metadata_SAMLParser {
 	private static function processExtensions($element) {
 
 		$ret = array(
-			'scopes' => array(),
+			'scope' => array(),
 			'tags' => array(),
 		);
 
 		foreach ($element->Extensions as $e) {
 
 			if ($e instanceof SAML2_XML_shibmd_Scope) {
-				$ret['scopes'][] = $e->scope;
+				$ret['scope'][] = $e->scope;
 				continue;
 			}
 
