@@ -133,7 +133,7 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 		assert('is_string($name)');
 		assert('is_int($version)');
 
-		$this->insertOrUpdate('simpleSAMLphp_tableVersion', array('_name'),
+		$this->insertOrUpdate($this->prefix . '_tableVersion', array('_name'),
 			array('_name' => $name, '_version' => $version));
 		$this->tableVersions[$name] = $version;
 	}
