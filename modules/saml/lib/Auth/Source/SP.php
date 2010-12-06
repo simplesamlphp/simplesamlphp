@@ -420,6 +420,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$authProcState = array(
 			'saml:sp:IdP' => $idp,
+			'saml:sp:NameID' => $state['saml:sp:NameID'],
+			'saml:sp:SessionIndex' => $state['saml:sp:SessionIndex'],
 			'saml:sp:State' => $state,
 			'ReturnCall' => array('sspmod_saml_Auth_Source_SP', 'onProcessingCompleted'),
 
