@@ -103,11 +103,11 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
 		assert('isset($state["Source"]["entityid"])');
 		assert('isset($state["Destination"]["entityid"])');
 
-		if (!isset($state['saml:sp:State']['LogoutState']['saml:logout:NameID'])) {
+		if (!isset($state['saml:sp:NameID'])) {
 			return;
 		}
 
-		$rep = $state['saml:sp:State']['LogoutState']['saml:logout:NameID'];
+		$rep = $state['saml:sp:NameID'];
 		assert('isset($rep["Value"])');
 
 		$rep['%'] = '%';
