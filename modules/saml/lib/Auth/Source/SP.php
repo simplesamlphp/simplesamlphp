@@ -471,7 +471,6 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$source->addLogoutCallback($idp, $state);
 
 		$state['Attributes'] = $authProcState['Attributes'];
-		$state['IdP'] = $idp;
 
 		if (isset($state['saml:sp:isUnsoliced']) && (bool)$state['saml:sp:isUnsoliced']) {
 			if (isset($state['saml:sp:RelayState'])) {
