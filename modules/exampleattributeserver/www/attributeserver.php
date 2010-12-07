@@ -13,7 +13,7 @@ $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 
 $spEntityId = $query->getIssuer();
 if ($spEntityId === NULL) {
-	throw new SimpleSAML_Errro_BadRequest('Missing <saml:Issuer> in <samlp:AttributeQuery>.');
+	throw new SimpleSAML_Error_BadRequest('Missing <saml:Issuer> in <samlp:AttributeQuery>.');
 }
 
 $idpMetadata = $metadata->getMetadataConfig($idpEntityId, 'saml20-idp-hosted');
