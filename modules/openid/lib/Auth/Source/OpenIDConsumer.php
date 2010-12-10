@@ -31,6 +31,12 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 	 */
 	private $target;
 
+	/**
+	 * Custom realm to use.
+	 *
+	 * @var string|NULL
+	 */
+	private $realm;
 
 	/**
 	 * List of optional attributes.
@@ -65,6 +71,7 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 			'Authentication source ' . var_export($this->authId, TRUE));
 
 		$this->target = $cfgParse->getString('target', NULL);
+		$this->realm = $cfgParse->getString('realm', NULL);
 
 		$this->optionalAttributes = $cfgParse->getArray('attributes.optional', array());
 		$this->requiredAttributes = $cfgParse->getArray('attributes.required', array());
@@ -132,7 +139,11 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 	 * @return string  The trust root.
 	 */
 	private function getTrustRoot() {
-		return SimpleSAML_Utilities::selfURLhost();
+		if (!empty($this->realm)) {
+			return $this->realm;
+		} else {
+			return SimpleSAML_Utilities::selfURLhost();
+		}
 	}
 
 

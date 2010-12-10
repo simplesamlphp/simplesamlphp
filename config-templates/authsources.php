@@ -99,6 +99,8 @@ $config = array(
 		'openid:OpenIDConsumer',
 		// Googles OpenID endpoint.
 		'target' => 'https://www.google.com/accounts/o8/id',
+		// Custom realm
+		// 'realm' => 'http://*.example.org',
 		// Attributes that google can supply.
 		'attributes.ax_required' => array(
 			//'http://axschema.org/namePerson/first',
