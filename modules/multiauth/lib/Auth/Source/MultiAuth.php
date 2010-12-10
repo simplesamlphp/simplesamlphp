@@ -126,7 +126,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 			$e = new SimpleSAML_Error_UnserializableException($e);
 			SimpleSAML_Auth_State::throwException($state, $e);
 		}
-		self::loginCompleted($state);
+		SimpleSAML_Auth_Source::completeAuth($state);
 	}
 
 	/**
