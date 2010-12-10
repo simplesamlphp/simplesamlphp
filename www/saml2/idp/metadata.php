@@ -95,10 +95,13 @@ try {
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
 	$metaBuilder->addMetadataIdP20($metaArray);
 	$metaBuilder->addOrganizationInfo($metaArray);
-	$metaBuilder->addContact('technical', array(
-		'emailAddress' => $config->getString('technicalcontact_email', NULL),
-		'name' => $config->getString('technicalcontact_name', NULL),
-	));
+	$technicalContactEmail = $config->getString('technicalcontact_email', NULL);
+	if ($technicalContactEmail && $technicalContactEmail !== 'na@example.org') {
+		$metaBuilder->addContact('technical', array(
+			'emailAddress' => $technicalContactEmail,
+			'name' => $config->getString('technicalcontact_name', NULL),
+		));
+	}
 	$metaxml = $metaBuilder->getEntityDescriptorText();
 
 	/* Sign the metadata if enabled. */
