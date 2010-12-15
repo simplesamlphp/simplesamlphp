@@ -8,14 +8,40 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.7
 
-  * `aselect` authentication module.
+  * New authentication modules:
+      * `aselect`
+      * `authX509`
+  * Unified cookie configuration settings.
+  * Added protection against session fixation attacks.
+  * Error logging when failing to initialize the Session class.
+  * New session storage framework.
+      * Add and use generic key/value store.
+      * Support for storing sessions in SQL databases (MySQL, PostgreSQL & SQLite).
+      * Support for implementing custom session storage handlers.
+      * Allow loading of multiple sessions simultaneously.
+  * Set headers allowing caching of static files.
+  * More descriptive error pages:
+      * Unable to load $state array because the session was lost.
+      * Unable to find metadata for the given entityID.
+  * Support for multiple keys in metadata.
+      * Allow verification with any of the public keys in metadata.
+      * Allow key rollower by defining new and old certificate in configuration.
+      * Verify with signing keys, encrypt with encryption keys.
+  * Change `debug`-option to log messages instead of displaying them in the browser.
+      * Also logs data before encryption and after decryption.
+  * Support for custom attribute dictionaries.
+  * Add support for several authentication sessions within a single session.
+      * Allows several SPs on a single host.
+      * Allows for combining an SP and an IdP on a single host.
+  * HTTP proxy support.
+
+### Internal API changes & features removed
+
   * The `saml2` module has been removed.
       * The `saml2:SP` authsource has been removed.
       * The `sspmod_saml2_Error` class has been renamed to `sspmod_saml_Error`.
       * The `sspmod_saml2_Message` class has been renamed to `sspmod_saml_Message`.
-  * Unified cookie configuration settings.
-  * Added protection against session fixation attacks.
-  * Moved IdP function from `sspmod_saml_Message` to `sspmod_saml_IdP_SAML2`.
+  * Moved IdP functions from `sspmod_saml_Message` to `sspmod_saml_IdP_SAML2`.
   * Removed several functions and classes that are unused:
       * `SimpleSAML_Utilities::strleft`
       * `SimpleSAML_Utilities::array_values_equal`
@@ -23,11 +49,15 @@ See the upgrade notes for specific information about upgrading.
       * `SimpleSAML_Utilities::getScriptName`
       * `SimpleSAML_Utilities::getSelfProtocol`
       * `SimpleSAML_Utilities::cert_fingerprint`
+      * `SimpleSAML_Utilities::generateTrackID`
+      * `SimpleSAML_Utilities::buildBacktrace`
+      * `SimpleSAML_Utilities::formatBacktrace`
       * `SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta`
+      * `SimpleSAML_ModifiedInfo`
   * Moved function from Utilities-class to more appropriate locations.
       * `getAuthority` to `SimpleSAML_IdP`
       * `generateUserId` to `sspmod_saml_IdP_SAML2`.
-  * Replaced the message debug pages with logging of sent and received messages to the log file.
+  * Replaced calls to  with throwing an `SimpleSAML_Error_Error` exception.
   * Removed metadata send functionality from old SP code.
   * Removed bin/test.php and www/admin/test.php.
   * Removed metashare.
@@ -36,19 +66,89 @@ See the upgrade notes for specific information about upgrading.
   * Removed optional parameters from `SimpleSAML_XHTML_Template::getLanguage()`.
   * Removed functions from `SAML2_Assertion`: `get/setDestination`, `get/setInResponseTo`.
     Replaced with `setSubjectConfirmation`.
+  * Removed several unused files & templates.
 
 ### SAML 2 IdP
 
   * Support for generation of NameID values via [processing filters](./saml:nameid)
   * Obey the NameIDPolicy Format in authentication request.
+  * Allow AuthnContextClassRef to be set by processing filters.
+  * Rework iframe logout page to not rely on cookies.
+
+### SAML 2 SP
+
+  * Support SOAP logout.
+  * Various fixes to adhere more closely to the specification.
+      * Allow multiple SessionIndex-elements in LogoutRequest.
+      * Handle multiple Assertion-elements in Response.
+      * Reject duplicate assertions.
+      * Support for encrypted NameID in LogoutRequest.
+      * Verify Destination-attribute in LogoutRequest messages.
+  * Add specific options for signing and verifying authentication request and logout messages.
+  * `saml:NameIDAttribute` filter for extracting NameID from authentication response.
 
 ### SAML 1 IdP
 
   * Add `urn:mace:shibboleth:1.0` as supported protocol in generated metadata.
 
+### SAML 1 SP
+
+  * Support for IdP initiated authentication.
+
+### `aggregator`
+
+  * Allow metadata generation from command line.
+
+### `authfacebook`
+
+  * Change attribute names.
+
+### `casserver`
+
+  * Support for proxying.
+  * Add ttl for tickets.
+
 ### `core`
 
   * `core:AttributeLimit`: Make it possible to specify a default set of attributes.
+  * Make the SP metadata available on the login pages.
+
+### `discoPower`
+
+  * Sort IdPs without a name (where we only have an entityID) last in the list.
+  * CDC cookie support.
+
+### `exampleAuth`
+
+  * Add example of integration with external authentication page.
+
+### `ldap`
+
+  * Add `ldap:AttributeAddFromLDAP` filter for adding attributes from a LDAP directory.
+
+### `metarefresh`
+
+  * Don't stop updates on the first exception.
+
+### `openid`
+
+  * Don't require access to the PHP session.
+  * Remove OpenID test page. (May as well use the normal test pages.)
+  * Support for attribute exchange.
+  * Add `target` option, for directing authentication to a specific OpenID provider.
+  * Add `realm` option, for specifying the realm we should send to the OpenID provider.
+
+### `portal`
+
+  * Make it possible to register pages from modules, and not only from configuration.
+
+### `statistics`
+
+  * New y-axis scaling algorithm
+
+### `twitter`
+
+  * Change attribute names returned from twitter.
 
 
 ## Version 1.6.2
