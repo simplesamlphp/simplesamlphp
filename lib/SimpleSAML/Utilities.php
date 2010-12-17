@@ -694,6 +694,11 @@ class SimpleSAML_Utilities {
 			$url = self::selfURLhost() . $url;
 		}
 
+		/* Verify that the URL is to a http or https site. */
+		if (!preg_match('@^https?://@i', $url)) {
+			throw new SimpleSAML_Error_Exception('Redirect to invalid URL: ' . $url);
+		}
+
 		/* Determine which prefix we should put before the first
 		 * parameter.
 		 */
