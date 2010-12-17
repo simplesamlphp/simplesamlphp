@@ -151,6 +151,12 @@ See the upgrade notes for specific information about upgrading.
   * Change attribute names returned from twitter.
 
 
+## Version 1.6.3
+
+Released 2010-12-17.
+
+  * Fix for cross site scripting in redirect page.
+
 ## Version 1.6.2
 
 Released 2010-07-29.
