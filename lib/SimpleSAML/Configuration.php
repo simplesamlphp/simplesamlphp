@@ -290,7 +290,7 @@ class SimpleSAML_Configuration {
 
 
 	public function getVersion($verbose = FALSE) {
-		return '1.6.x';
+		return '1.6.3';
 	}
 
 
