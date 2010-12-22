@@ -109,6 +109,13 @@ $config = array(
 			//'http://axschema.org/contact/country/home',
 			//'http://axschema.org/pref/language',
 		),
+		// custom extension arguments
+		'extension.args' => array(
+			//'http://specs.openid.net/extensions/ui/1.0' => array(
+			//	'mode' => 'popup',
+			//	'icon' => 'true',
+			//),
+		),
 	),
 	*/
 

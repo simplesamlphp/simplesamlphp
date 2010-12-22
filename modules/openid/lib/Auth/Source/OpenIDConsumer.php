@@ -57,6 +57,11 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 	private $validateSReg;
 
 	/**
+	 * List of custom extension args
+	 */
+	private $extensionArgs;
+
+	/**
 	 * Constructor for this authentication source.
 	 *
 	 * @param array $info  Information about this authentication source.
@@ -80,6 +85,8 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 		$this->requiredAXAttributes = $cfgParse->getArray('attributes.ax_required', array());
 
 		$this->validateSReg = $cfgParse->getBoolean('sreg.validate',TRUE);
+
+		$this->extensionArgs = $cfgParse->getArray('extension.args', array());
 	}
 
 
@@ -201,6 +208,14 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 			// Add AX fetch request to authentication request
 			$auth_request->addExtension($ax_request);
 
+		}
+
+		foreach($this->extensionArgs as $ext_ns => $ext_arg) {
+			if (is_array($ext_arg)) {
+				foreach($ext_arg as $ext_key => $ext_value) {
+					$auth_request->addExtensionArg($ext_ns, $ext_key, $ext_value);
+				}
+			}
 		}
 
 		// Redirect the user to the OpenID server for authentication.
