@@ -492,7 +492,7 @@ class sspmod_saml_Message {
 		/* Validate Response-element destination. */
 		$currentURL = SimpleSAML_Utilities::selfURLNoQuery();
 		$msgDestination = $response->getDestination();
-		if ($msgDestination !== $currentURL) {
+		if ($msgDestination !== NULL && $msgDestination !== $currentURL) {
 			throw new Exception('Destination in response doesn\'t match the current URL. Destination is "' .
 				$msgDestination . '", current URL is "' . $currentURL . '".');
 		}
