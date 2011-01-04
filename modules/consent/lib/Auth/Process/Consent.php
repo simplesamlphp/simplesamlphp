@@ -97,6 +97,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 			$this->includeValues = $config['includeValues'];
 		}
 
+		$this->checked = FALSE;
 		if (array_key_exists('checked', $config)) {
 			$this->checked = $config['checked'];
 		}
