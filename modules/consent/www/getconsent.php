@@ -26,7 +26,7 @@ if (!array_key_exists('StateId', $_REQUEST)) {
 
 $id = $_REQUEST['StateId'];
 $state = SimpleSAML_Auth_State::loadState($id, 'consent:request');
-
+$spentityid = $state['core:SP'];
 
 if (array_key_exists('yes', $_REQUEST)) {
 	/* The user has pressed the yes-button. */
@@ -156,5 +156,3 @@ if (array_key_exists('consent:hiddenAttributes', $state)) {
 
 $t->show();
 exit;
-
-?>
