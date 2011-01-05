@@ -135,3 +135,64 @@ Example:
         'sp2.example.com',
         ...
     ),
+   
+Attribute presentation
+----------------------
+ 
+It is possible to change the way the attributes are represented in the consent
+page. This is done by implementing an attribute array reordering function.
+
+To create this function, you have to create a file named
+
+    hook_attributepresentation.php 
+
+and place it under
+
+    <module_name>/hooks 
+
+directory. To be found and called, the function must be named 
+
+    <module_name>_hook_attributepresentation(&$para).
+
+The parameter $para is an reference to the attribute array. By manipulating 
+this array you can change the way the attribute are presented to the user on 
+the consent and status page. 
+
+If you want the attributes to be listed in more than one level, you can make 
+the function add a child_ prefix to the root node attribute name in a recursive 
+attribute tree.
+
+### Examples ###
+
+These values will be listed as an bullet list
+    
+    Array (
+        [objectClass] => Array (
+            [0] => top
+            [1] => person
+        )
+    )
+
+This array hawe two child array. These will be listed in two separate sub
+tables.
+
+    Array (
+        [child_eduPersonOrgUnitDN] => Array (
+            [0] => Array (
+                [ou] => Array (
+                    [0] => ET
+                )
+                [cn] => Array (
+                    [0] => Eksterne tjenester
+                )
+            )
+            [1] => Array (
+                [ou] => Array (
+                    [0] => TA
+                )
+                [cn] => Array (
+                    [0] => Tjenesteavdeling
+                )
+            )
+        )
+    )
