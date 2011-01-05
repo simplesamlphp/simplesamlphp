@@ -145,29 +145,38 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 		$errorData = $this->saveError();
 
 		$config = SimpleSAML_Configuration::getInstance();
-		$t = new SimpleSAML_XHTML_Template($config, 'error.php', 'errors');
-		$t->data['showerrors'] = $config->getBoolean('showerrors', true);
-		$t->data['error'] = $errorData;
-		$t->data['errorCode'] = $this->errorCode;
-		$t->data['parameters'] = $this->parameters;
+
+		$data['showerrors'] = $config->getBoolean('showerrors', true);
+		$data['error'] = $errorData;
+		$data['errorCode'] = $this->errorCode;
+		$data['parameters'] = $this->parameters;
 
 		/* Check if there is a valid technical contact email address. */
 		if($config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org') {
 			/* Enable error reporting. */
 			$baseurl = SimpleSAML_Utilities::getBaseURL();
-			$t->data['errorReportAddress'] = $baseurl . 'errorreport.php';
+			$data['errorReportAddress'] = $baseurl . 'errorreport.php';
 		}
 
 		$session = SimpleSAML_Session::getInstance();
 		$attributes = $session->getAttributes();
 		if (is_array($attributes) && array_key_exists('mail', $attributes) && count($attributes['mail']) > 0) {
-			$email = $attributes['mail'][0];
+			$data['email'] = $attributes['mail'][0];
 		} else {
-			$email = '';
+			$data['email'] = '';
 		}
-		$t->data['email'] = $email;
 
-		$t->show();
+		$show_function = $config->getString('errors.show_function', NULL);
+		if (isset($show_function)) {
+			assert('is_callable($show_function)');
+			call_user_func($show_function, $config, $data);
+			assert('FALSE');
+		} else {
+			$t = new SimpleSAML_XHTML_Template($config, 'error.php', 'errors');
+			$t->data = array_merge($t->data, $data);
+			$t->show();
+		}
+
 		exit;
 	}
 
