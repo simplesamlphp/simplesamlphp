@@ -98,7 +98,7 @@ class SAML2_XML_Chunk {
 			$this->xmlString = $this->xml->ownerDocument->saveXML($this->xml);
 		}
 
-		return array('xmlString');
+		return array('xmlString', 'localName', 'namespaceURI');
 	}
 
 }
