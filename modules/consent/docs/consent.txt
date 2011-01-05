@@ -59,6 +59,53 @@ Here is the initialization SQL script for PostgreSQL:
 Configuring the processing filter
 ---------------------------------
 
+### Options ###
+The following options can be used when configuring the Consent module
+
+`ìncludeValues`
+:   Boolean value that indicate whether the values of the attributes should be 
+used in calculating the unique hashes that identifies the consent. If 
+includeValues is set and the value of an attribute changes, then the consent
+becomes invalid. This option is optional and defaults to FALSE. 
+
+`checked`
+:   Boolean value that indicate whether the "Remember" consent checkbox is
+checkd by default. This option is optional and defaults to FALSE. 
+
+`focus`
+:   Indicates whether the "Yes" or "No" button is in fucus by default. This
+option is optional and can take the value 'yes' or 'no' as strings. If omitted
+neither will recive focus.
+
+`store`
+:   Configuration of the Consent store. See seperate section on setting up
+consent using different storage methods.
+
+`hiddenAttributes`
+:   Whether the value of the attributes should be hidden. Set to an array of
+the attributes that should have it value hidden. Default behaviour is that all
+attribute values are shown
+
+### Options set elswhere ###
+The following options can be set in otherplaces
+
+`privacypolicy`
+:   This is an absolute URL for where an user can find a privacy policy for SP. 
+If set, this will be shown on the consent page. %SPENTITYID% in the URL
+will be replaced with the entityID of the service provider.
+
+:   This option can be set in [SP-remote metadata](./simplesamlphp-reference-sp-remote) 
+and in [IdP-hosted metadata](./simplesamlphp-reference-idp-hosted). 
+The entry in the SP-remote metadata overrides the option in the IdP-hosted 
+metadata.
+
+`consent.disable`
+:   Disable consent for a set of services. See section `Disabling consent`
+
+`userid.attribute`
+:   Unique identifier that is released for all users. See section `Configure
+the user ID`.
+
 Example config using PostgreSQL database:
 
 	90 => array(
@@ -77,7 +124,7 @@ Disabling consent
 -----------------
 
 It is possible to disable consent for a given service. You can add an option
-in the matadata og the IdP, that wil disable consent for det given service.
+in the matadata on the IdP, that will disable consent for det given service.
 Add 'consent.disable' array option and enter the entityids of the services,
 that you do not want consent for.
 
@@ -88,4 +135,3 @@ Example:
         'sp2.example.com',
         ...
     ),
-
