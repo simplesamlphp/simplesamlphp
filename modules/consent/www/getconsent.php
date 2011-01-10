@@ -8,7 +8,6 @@
  * @package simpleSAMLphp
  * @version $Id$
  */
-
 /**
  * Explicit instruct consent page to send no-cache header to browsers to make 
  * sure the users attribute information are not store on client disk.
@@ -26,7 +25,9 @@ $globalConfig = SimpleSAML_Configuration::getInstance();
 SimpleSAML_Logger::info('Consent - getconsent: Accessing consent interface');
 
 if (!array_key_exists('StateId', $_REQUEST)) {
-    throw new SimpleSAML_Error_BadRequest('Missing required StateId query parameter.');
+    throw new SimpleSAML_Error_BadRequest(
+        'Missing required StateId query parameter.'
+    );
 }
 
 $id = $_REQUEST['StateId'];
@@ -43,15 +44,18 @@ if (array_key_exists('yes', $_REQUEST)) {
 
     if (   array_key_exists('consent:store', $state) 
         && array_key_exists('saveconsent', $_REQUEST)
-        && $_REQUEST['saveconsent'] === '1')
-    {
+        && $_REQUEST['saveconsent'] === '1'
+    ) {
         /* Save consent. */
         $store = $state['consent:store'];
         $userId = $state['consent:store.userId'];
         $targetedId = $state['consent:store.destination'];
         $attributeSet = $state['consent:store.attributeSet'];
 
-        SimpleSAML_Logger::debug('Consent - saveConsent() : [' . $userId . '|' . $targetedId . '|' .  $attributeSet . ']');	
+        SimpleSAML_Logger::debug(
+            'Consent - saveConsent() : [' . $userId . '|' .
+            $targetedId . '|' .  $attributeSet . ']'
+        );	
         $store->saveConsent($userId, $targetedId, $attributeSet);
     }
 
@@ -63,8 +67,8 @@ $attributes = $state['Attributes'];
 $noconsentattributes = $state['consent:noconsentattributes'];
 
 // Remove attributes that do not require consent
-foreach($attributes AS $attrkey => $attrval) {
-    if(in_array($attrkey, $noconsentattributes)) {
+foreach ($attributes AS $attrkey => $attrval) {
+    if (in_array($attrkey, $noconsentattributes)) {
         unset($attributes[$attrkey]);
     }
 }
@@ -92,30 +96,34 @@ if (array_key_exists('privacypolicy', $state['Destination'])) {
 } elseif (array_key_exists('privacypolicy', $state['Source'])) {
     $privacypolicy = $state['Source']['privacypolicy'];
 } else {
-    $privacypolicy = FALSE;
+    $privacypolicy = false;
 }
-if($privacypolicy !== FALSE) {
-    $privacypolicy = str_replace('%SPENTITYID%', urlencode($spentityid), $privacypolicy);
+if ($privacypolicy !== false) {
+    $privacypolicy = str_replace(
+        '%SPENTITYID%',
+        urlencode($spentityid), 
+        $privacypolicy
+    );
 }
 $t->data['sppp'] = $privacypolicy;
 
 // Set focus element
 switch ($state['consent:focus']) {
-    case 'yes':
-        $t->data['autofocus'] = 'yesbutton';
-        break;
-    case 'no':
-        $t->data['autofocus'] = 'nobutton';
-        break;
-    case NULL:
-    default:
-        break;
+case 'yes':
+    $t->data['autofocus'] = 'yesbutton';
+    break;
+case 'no':
+    $t->data['autofocus'] = 'nobutton';
+    break;
+case null:
+default:
+    break;
 }
 
 if (array_key_exists('consent:store', $state)) {
-    $t->data['usestorage'] = TRUE;
+    $t->data['usestorage'] = true;
 } else {
-    $t->data['usestorage'] = FALSE;
+    $t->data['usestorage'] = false;
 }
 
 if (array_key_exists('consent:hiddenAttributes', $state)) {
@@ -125,4 +133,3 @@ if (array_key_exists('consent:hiddenAttributes', $state)) {
 }
 
 $t->show();
-exit;
