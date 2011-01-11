@@ -48,7 +48,7 @@ function printItem($name, $value) {
 
 	/* This is an array... */
 	foreach ($value as $index => $item) {
-		printItem($name . '[' . var_export($index, TRUE) . ']', $item);
+		printItem($name . '[' . $index . ']', $item);
 	}
 }
 
