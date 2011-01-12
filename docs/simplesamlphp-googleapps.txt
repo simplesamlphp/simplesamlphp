@@ -45,7 +45,7 @@ For test purposes, you can skip this section, and use the certificate included i
 
 Here is an example of openssl commands to generate a new key and a self signed certificate to use for signing SAML messages:
 
-    openssl genrsa -des3 -out googleappsidp.key 1024 
+    openssl genrsa -des3 -out googleappsidp.key 2048
     openssl rsa -in googleappsidp.key -out googleappsidp.pem
     openssl req -new -key googleappsidp.key -out googleappsidp.csr
     openssl x509 -req -days 9999 -in googleappsidp.csr -signkey googleappsidp.key -out googleappsidp.crt
