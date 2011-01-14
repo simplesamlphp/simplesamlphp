@@ -210,6 +210,9 @@ if (count($keys) === 1) {
 	$metaArray20['keys'] = $keys;
 }
 
+/* Sign the metadata if enabled. */
+$xml = SimpleSAML_Metadata_Signer::sign($xml, $sp, 'SAML 2 SP');
+
 if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
 
 	$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
