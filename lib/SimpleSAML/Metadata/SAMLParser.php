@@ -94,6 +94,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	private $scopes;
+	private $entityAttributes;
 	private $attributes;
 	private $tags;
 
@@ -140,6 +141,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$ext = self::processExtensions($entityElement);
 		$this->scopes = $ext['scope'];
 		$this->tags = $ext['tags'];
+		$this->entityAttributes = $ext['EntityAttributes'];
 
 		/* Look over the RoleDescriptors. */
 		foreach ($entityElement->RoleDescriptor as $child) {
@@ -433,6 +435,11 @@ class SimpleSAML_Metadata_SAMLParser {
 		if (!empty($tags)) {
 			$metadata['tags'] = $tags;
 		}
+		
+		if (!empty($this->entityAttributes)) {
+			$metadata['EntityAttributes'] = $this->entityAttributes;
+		}
+		
 	}
 
 
@@ -743,6 +750,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$ext = self::processExtensions($element);
 		$ret['scope'] = $ext['scope'];
 		$ret['tags'] = $ext['tags'];
+		$ret['EntityAttributes'] = $ext['EntityAttributes'];
 
 		return $ret;
 	}
@@ -864,6 +872,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$ret = array(
 			'scope' => array(),
 			'tags' => array(),
+			'entityAttributes' => array(),
 		);
 
 		foreach ($element->Extensions as $e) {
@@ -872,10 +881,43 @@ class SimpleSAML_Metadata_SAMLParser {
 				$ret['scope'][] = $e->scope;
 				continue;
 			}
+			
+			// Entity Attributes are only allowed at entity level extensions
+			// and not at RoleDescriptor level
+			if ($element instanceof SAML2_XML_md_EntityDescriptor) {
+	
+				if ($e instanceof SAML2_XML_mdattr_EntityAttributes) {
+
+					foreach($e->children AS $attr) {
+						
+						// Only saml:Attribute are currently supported here. The specifications also allows
+						// saml:Assertions, which more complex processing.
+						if ($attr instanceof SAML2_XML_saml_Attribute) {
+							if (empty($attr->Name) || empty($attr->AttributeValue)) continue;
+
+							// Attribute names that is not URI is prefixed as this: '{nameformat}name'
+							$name = $attr->Name;
+							if(empty($attr->NameFormat)) {
+								$name = '{' . SAML2_Const::NAMEFORMAT_UNSPECIFIED . '}' . $attr->Name;
+							} elseif ($attr->NameFormat !== 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri') {
+								$name = '{' . $attr->NameFormat . '}' . $attr->Name;
+							}
+							
+							$values = array();
+							foreach($attr->AttributeValue AS $attrvalue) $values[] = (string) $attrvalue;
+
+							$ret['EntityAttributes'][$name] = $values;
+						}
+					}
+				}				
+			}
+			
+
 
 			if (!($e instanceof SAML2_XML_Chunk)) {
 				continue;
 			}
+			
 
 			if ($e->localName === 'Attribute' && $e->namespaceURI === SAML2_Const::NS_SAML) {
 				$attribute = $e->getXML();
@@ -895,7 +937,6 @@ class SimpleSAML_Metadata_SAMLParser {
 				}
 			}
 		}
-
 		return $ret;
 	}
 
@@ -1172,16 +1213,21 @@ class SimpleSAML_Metadata_SAMLParser {
 		assert('is_string($fingerprint)');
 
 		$fingerprint = strtolower(str_replace(":", "", $fingerprint));
-
+		
+		$candidates = array();
 		foreach ($this->validators as $validator) {
 			foreach ($validator->getValidatingCertificates() as $cert) {
+
 				$fp = strtolower(sha1(base64_decode($cert)));
+				$candidates[] = $fp;
 				if ($fp === $fingerprint) {
 					return TRUE;
 				}
 			}
-		}
 
+
+		}
+		SimpleSAML_Logger::debug('Fingerprint was [' . $fingerprint . '] not one of [' . join(', ', $candidates). ']');
 		return FALSE;
 	}
 
