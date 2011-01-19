@@ -146,6 +146,10 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 				if (array_key_exists('expire', $le)) {
 					if ($le['expire'] < time()) {
 						unset($srcList[$key]);
+						SimpleSAML_Logger::warning("Dropping metadata entity " .
+							var_export($key,true) . ", expired " .
+							SimpleSAML_Utilities::generateTimestamp($le['expire']) .
+							".");
 					}
 				}
 			}
