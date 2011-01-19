@@ -218,10 +218,12 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends SimpleSAML_Auth_Proc
 
 		// handle [multiple] values
 		if(is_array($entries) && is_array($entries[0])){
-			$entry = $entries[0][strtolower($this->config['ldap_search_attribute'])];
 			$results = array();
-			for($i = 0; $i < $entry['count']; $i++){
-				$results[] = $entry[$i];
+			foreach($entries as $entry){
+				$entry = $entry[strtolower($this->config['ldap_search_attribute'])];
+				for($i = 0; $i < $entry['count']; $i++){
+					$results[] = $entry[$i];
+				}
 			}
 			$attributes[$this->config['new_attribute_name']] = array_values($results);
 		}
