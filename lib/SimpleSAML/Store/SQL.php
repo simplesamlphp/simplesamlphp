@@ -306,6 +306,10 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 		assert('is_string($type)');
 		assert('is_string($key)');
 
+		if (strlen($key) > 50) {
+			$key = sha1($key);
+		}
+
 		$data = array(
 			'_type' => $type,
 			'_key' => $key,
