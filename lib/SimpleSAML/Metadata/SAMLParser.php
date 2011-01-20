@@ -904,7 +904,9 @@ class SimpleSAML_Metadata_SAMLParser {
 							}
 							
 							$values = array();
-							foreach($attr->AttributeValue AS $attrvalue) $values[] = (string) $attrvalue;
+							foreach($attr->AttributeValue AS $attrvalue) {
+								$values[] = $attrvalue->getString();
+							}
 
 							$ret['EntityAttributes'][$name] = $values;
 						}
