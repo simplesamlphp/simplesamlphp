@@ -60,8 +60,10 @@ class SAML2_XML_mdattr_EntityAttributes {
 		$e = $doc->createElementNS(SAML2_XML_mdattr_EntityAttributes::NS, 'mdattr:EntityAttributes');
 		$parent->appendChild($e);
 
-		foreach ($this->children as $child) {
-			$child->toXML($e);
+		if (!empty($this->children)) {
+			foreach ($this->children as $child) {
+				$child->toXML($e);
+			}
 		}
 
 		return $e;

@@ -886,7 +886,7 @@ class SimpleSAML_Metadata_SAMLParser {
 			// and not at RoleDescriptor level
 			if ($element instanceof SAML2_XML_md_EntityDescriptor) {
 	
-				if ($e instanceof SAML2_XML_mdattr_EntityAttributes) {
+				if ($e instanceof SAML2_XML_mdattr_EntityAttributes && !empty($e->children)) {
 
 					foreach($e->children AS $attr) {
 						
