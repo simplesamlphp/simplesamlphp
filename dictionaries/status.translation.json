@@ -19,7 +19,8 @@
 		"tr": "SAML 2.0 SP Demo \u00d6rne\u011fi",
 		"it": "Demo di SAML 2.0 SP",
 		"lt": "SAML 2.0 SP Demonstracin\u0117s versijos Pavyzdys",
-		"ja": "SAML 2.0 SP \u30c7\u30e2\u4f8b"
+		"ja": "SAML 2.0 SP \u30c7\u30e2\u4f8b",
+		"zh-tw": "SAML 2.0 SP \u5c55\u793a\u7bc4\u4f8b"
 	},
 	"header_shib": {
 		"no": "Shibboleth Demo",
@@ -41,7 +42,8 @@
 		"tr": "Shibboleth demo",
 		"it": "Demo di Shibboleth",
 		"lt": "Shibboleth demonstracin\u0117 versija",
-		"ja": "Shibboleth \u30c7\u30e2"
+		"ja": "Shibboleth \u30c7\u30e2",
+		"zh-tw": "\u7279\u5b9a\u5c55\u793a"
 	},
 	"header_wsfed": {
 		"no": "WS-Fed SP Demo Eksempel",
@@ -63,7 +65,8 @@
 		"tr": "WS-Fed SP Demo \u00d6rne\u011fi",
 		"it": "Demo di WS-Fed SP",
 		"lt": "WS-Fed SP Demonstracin\u0117s versijos Pavyzdys",
-		"ja": "WS-Fed SP \u30c7\u30e2\u4f8b"
+		"ja": "WS-Fed SP \u30c7\u30e2\u4f8b",
+		"zh-tw": "WS-Fed SP \u5c55\u793a\u7bc4\u4f8b"
 	},
 	"header_diagnostics": {
 		"no": "SimpleSAMLphp diagnostikk",
@@ -85,7 +88,8 @@
 		"tr": "SimpleSAMLphp Kontroller",
 		"it": "Diagnostici di SimpleSAMLphp",
 		"lt": "SimpleSAMLphp Diagnostika",
-		"ja": "SimpleSAMLphp \u8a3a\u65ad"
+		"ja": "SimpleSAMLphp \u8a3a\u65ad",
+		"zh-tw": "SimpleSAMLphp \u8a3a\u65b7\u5de5\u5177"
 	},
 	"some_error_occured": {
 		"no": "En feil har oppst\u00e5tt",
@@ -97,7 +101,7 @@
 		"nl": "Er is een fout opgetreden",
 		"sl": "Pri\u0161lo je do napake!",
 		"da": "En fejl opstod.",
-		"hr": "Do\u0161lo je do gre\u0161ke",
+		"hr": "Do\u0161lo je do pogre\u0161ke",
 		"hu": "Hiba t\u00f6rt\u00e9nt",
 		"fi": "Virhe",
 		"pt-BR": "Ocorreu algum erro",
@@ -107,7 +111,8 @@
 		"tr": "Hata olu\u015ftu",
 		"it": "Si \u00e8 verificato un errore",
 		"lt": "\u012evyko tam tikra klaida",
-		"ja": "\u5e7e\u3064\u304b\u306e\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f"
+		"ja": "\u5e7e\u3064\u304b\u306e\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f",
+		"zh-tw": "\u6709\u932f\u8aa4\u767c\u751f"
 	},
 	"intro": {
 		"no": "Hei, dette er en statusside p\u00e5 simpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon.",
@@ -129,7 +134,8 @@
 		"tr": "Merhaba, bu simpleSAMLphp durum sayfas\u0131d\u0131r. Oturumunuzun s\u00fcresinin dolup dolmad\u0131\u011f\u0131n\u0131, oturumunuzun ne kadar s\u00fcrd\u00fc\u011f\u00fcn\u00fc ve oturumunuza ait t\u00fcm bilgileri buradan g\u00f6rebilirsiniz.",
 		"it": "Salve, questa \u00e8 la pagina di stato di simpleSAMLphp. Qui \u00e8 possiible vedere se la sessione \u00e8 scaduta, quanto \u00e8 durata prima di scadere e tutti gli attributi ad essa collegati.",
 		"lt": "Sveikia, \u010dia simpleSAMLphp b\u016bsenos tinklapis. \u010cia galite pamatyti, ar J\u016bs\u0173 sesija turi laiko apribojim\u0105, kiek trunka tas laiko apribojimas bei kitus J\u016bs\u0173 sesijai priskirtus atributus.",
-		"ja": "\u3053\u3093\u306b\u3061\u306f\u3001\u3053\u3053\u306f simpleSAMLphp\u306e\u30b9\u30c6\u30fc\u30bf\u30b9\u30da\u30fc\u30b8\u3067\u3059\u3002\u3053\u3053\u3067\u306f\u30bb\u30c3\u30b7\u30e7\u30f3\u306e\u30bf\u30a4\u30e0\u30a2\u30a6\u30c8\u6642\u9593\u3084\u30bb\u30c3\u30b7\u30e7\u30f3\u306b\u7d50\u3073\u3064\u3051\u3089\u308c\u305f\u5c5e\u6027\u60c5\u5831\u3092\u898b\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u3059\u3002"
+		"ja": "\u3053\u3093\u306b\u3061\u306f\u3001\u3053\u3053\u306f simpleSAMLphp\u306e\u30b9\u30c6\u30fc\u30bf\u30b9\u30da\u30fc\u30b8\u3067\u3059\u3002\u3053\u3053\u3067\u306f\u30bb\u30c3\u30b7\u30e7\u30f3\u306e\u30bf\u30a4\u30e0\u30a2\u30a6\u30c8\u6642\u9593\u3084\u30bb\u30c3\u30b7\u30e7\u30f3\u306b\u7d50\u3073\u3064\u3051\u3089\u308c\u305f\u5c5e\u6027\u60c5\u5831\u3092\u898b\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u3059\u3002",
+		"zh-tw": "\u55e8\uff0c\u9019\u662f simpleSAMLphp \u72c0\u614b\u9801\uff0c\u5728\u9019\u908a\u60a8\u53ef\u4ee5\u770b\u5230\u60a8\u7684\u9023\u7dda\u662f\u5426\u903e\u6642\uff0c\u4ee5\u53ca\u9084\u6709\u591a\u4e45\u624d\u903e\u6642\uff0c\u6240\u6709\u5c6c\u6027\u503c(attributes)\u90fd\u6703\u9644\u52a0\u5728\u4f60\u7684\u9023\u7dda\u88e1(session)\u3002"
 	},
 	"validfor": {
 		"no": "Din sesjon er gyldig i %SECONDS% sekunder fra n\u00e5.",
@@ -151,14 +157,15 @@
 		"tr": "Oturumunuz, \u015fu andan itibaren %SECONDS% saniyeli\u011fine ge\u00e7erlidir.",
 		"it": "La tua sessione \u00e8 valida per ulteriori %SECONDS% secondi.",
 		"lt": "J\u016bs\u0173 sesija galioja %SECONDS% sekund\u017ei\u0173, skai\u010diuojant nuo \u0161io momento.",
-		"ja": "\u30bb\u30c3\u30b7\u30e7\u30f3\u306f\u4eca\u304b\u3089 %SECONDS% \u79d2\u9593\u6709\u52b9\u3067\u3059"
+		"ja": "\u30bb\u30c3\u30b7\u30e7\u30f3\u306f\u4eca\u304b\u3089 %SECONDS% \u79d2\u9593\u6709\u52b9\u3067\u3059",
+		"zh-tw": "\u60a8\u7684 session \u5f9e\u73fe\u5728\u8d77\u9084\u6709 %SECONDS% \u6709\u6548\u3002"
 	},
 	"sessionsize": {
 		"no": "Sesjons st\u00f8rrelse: %SIZE%",
 		"nn": "Sesjonsstorleik: %SIZE%",
 		"sv": "Sessionsstorlek: %SIZE%",
 		"es": "Tama\u00f1o de la sesi\u00f3n: %SIZE%",
-		"fr": "Taille de la session: %SIZE%",
+		"fr": "Taille de la session : %SIZE%",
 		"de": "Gr\u00f6sse der Sitzung: %SIZE%",
 		"nl": "Sessiegrootte: %SIZE%",
 		"sl": "Velikost seje: %SIZE% bajtov",
@@ -173,7 +180,8 @@
 		"tr": "Oturum b\u00fcy\u00fckl\u00fc\u011f\u00fc: %SIZE%",
 		"it": "Dimensione della session: %SIZE%",
 		"lt": "Sesijos trukm\u0117: %SIZE%",
-		"ja": "\u30bb\u30c3\u30b7\u30e7\u30f3\u30b5\u30a4\u30ba: %SIZE%"
+		"ja": "\u30bb\u30c3\u30b7\u30e7\u30f3\u30b5\u30a4\u30ba: %SIZE%",
+		"zh-tw": "Session \u5927\u5c0f: %SIZE%"
 	},
 	"attributes_header": {
 		"no": "Dine attributter",
@@ -195,7 +203,8 @@
 		"tr": "Bilgileriniz",
 		"it": "I tuoi attributi",
 		"lt": "J\u016bs\u0173 atributai",
-		"ja": "\u5c5e\u6027"
+		"ja": "\u5c5e\u6027",
+		"zh-tw": "\u60a8\u7684\u5c6c\u6027\u503c"
 	},
 	"logout": {
 		"no": "Logg ut",
@@ -207,7 +216,7 @@
 		"nl": "Logout",
 		"sl": "Odjava",
 		"da": "Log ud",
-		"hr": "Odjavi se",
+		"hr": "Odjava",
 		"hu": "Kil\u00e9p\u00e9s",
 		"fi": "Uloskirjautuminen",
 		"pt-BR": "Desconectar",
@@ -217,6 +226,7 @@
 		"tr": "\u00c7\u0131k\u0131\u015f",
 		"it": "Disconnessione",
 		"lt": "Atsijungti",
-		"ja": "\u30ed\u30b0\u30a2\u30a6\u30c8"
+		"ja": "\u30ed\u30b0\u30a2\u30a6\u30c8",
+		"zh-tw": "\u767b\u51fa"
 	}
 }

@@ -9,9 +9,12 @@
 		"es": "Metadatos no encontrados",
 		"lt": "Metaduomenys nerasti",
 		"hu": "Nem tal\u00e1lhat\u00f3 haszn\u00e1lhat\u00f3 metaadat",
-		"fr": "Metadata non trouv\u00e9es",
+		"fr": "M\u00e9tadonn\u00e9es non trouv\u00e9es",
 		"nl": "Metadata niet gevonden",
-		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093"
+		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093",
+		"da": "Metadata er ikke fundt",
+		"hr": "Nema metapodataka",
+		"zh-tw": "\u627e\u4e0d\u5230\u8a6e\u91cb\u8cc7\u6599"
 	},
 	"not_found_for": {
 		"no": "Vi fant ikke metadataene for:",
@@ -22,9 +25,13 @@
 		"es": "Fue imposible localizar los metadatos para la entidad:",
 		"lt": "Nepavyko nustatyti metaduomen\u0173 \u0161iems objektams:",
 		"hu": "Az k\u00f6vetkez\u0151 entit\u00e1shoz nem tal\u00e1lhat\u00f3 metaadat:",
-		"fr": "Nous ne trouvons pas les metadata de l'entit\u00e9 :",
+		"fr": "Nous ne trouvons pas les m\u00e9tadonn\u00e9es de l'entit\u00e9 :",
 		"nl": "De metadata voor de volgende entity kon niet gevonden worden:",
-		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf\u306e\u5b9f\u4f53\u3092\u898b\u3064\u3051\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u305b\u3093\u3067\u3057\u305f:"
+		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf\u306e\u5b9f\u4f53\u3092\u898b\u3064\u3051\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u305b\u3093\u3067\u3057\u305f:",
+		"da": "Vi kan ikke finde metadata for denne forbindelse:",
+		"de": "F\u00fcr folgende Entit\u00e4t konnten keine Metadaten gefunden werden:",
+		"hr": "Nisu prona\u0111eni metapodaci za entitet:",
+		"zh-tw": "\u6211\u5011\u7121\u6cd5\u5b9a\u4f4d\u6b64\u5be6\u9ad4\u4e4b\u8a6e\u91cb\u8cc7\u6599\uff1a"
 	},
 	"config_problem": {
 		"no": "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverand\u00f8ren eller identitetsleverand\u00f8ren.",
@@ -37,7 +44,11 @@
 		"hu": "Val\u00f3sz\u00edn\u0171leg valamilyen konfigur\u00e1ci\u00f3s probl\u00e9ma okozta hiba, amely lehet ak\u00e1r IdP-, ak\u00e1r SP-oldalon.",
 		"fr": "Cela ressemble \u00e0 un probl\u00e8me de configuration soit su fournisseur de service ou du fournisseur d'identit\u00e9.",
 		"nl": "Dit is waarschijnlijk een configuratieprobleem bij ofwel de serviceprovider ofwel de identiteitsverstrekker.",
-		"ja": "\u3053\u308c\u306f\u6050\u3089\u304f\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u304b\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u306e\u8a2d\u5b9a\u306e\u554f\u984c\u3067\u3059\u3002"
+		"ja": "\u3053\u308c\u306f\u6050\u3089\u304f\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u304b\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u306e\u8a2d\u5b9a\u306e\u554f\u984c\u3067\u3059\u3002",
+		"da": "Der er sandsynligvis en konfigurationsfejl hos enten servicen eller identitetsudbyderen.",
+		"de": "Ursache ist wahrscheinlich eine Fehlkonfiguration auf Seiten des Service Providers oder des Identity Providers.",
+		"hr": "Najvjerojatnije je problem u konfiguraciji ili kod davatelja usluge ili kod davatelja identiteta.",
+		"zh-tw": "\u670d\u52d9\u63d0\u4f9b\u8005\u6216\u9a57\u8b49\u63d0\u4f9b\u8005\u4e4b\u8a2d\u5b9a\u6a94\u53ef\u80fd\u6709\u554f\u984c\u3002"
 	},
 	"suggestion_user_link": {
 		"no": "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link p\u00e5 en nettside, s\u00e5 b\u00f8r du rapportere denne feilen til eieren av den nettsiden.",
@@ -50,7 +61,11 @@
 		"hu": "Amennyiben \u00f6n, mint felhaszn\u00e1l\u00f3 keveredett erre az oldalra, \u00fagy k\u00e9rj\u00fck, a hib\u00e1val keresse az oldal adminisztr\u00e1tor\u00e1t.",
 		"fr": "Si vous \u00eates un usager qui re\u00e7oit cette erreur apr\u00e8s avoir suivi un lien sur un site, vous devriez remonter cette erreur au propri\u00e9taire de ce site.",
 		"nl": "Als u een eindgebruiker bent die deze foutmelding kreeg na het volgen van een link op een site, dan kunt u deze fout melden bij de eigenaar van die site.",
-		"ja": "\u3082\u3057\u3042\u306a\u305f\u304c\u30e6\u30fc\u30b6\u30fc\u3067\u4ee5\u4e0b\u306e\u30ea\u30f3\u30af\u306e\u30b5\u30a4\u30c8\u3067\u3053\u306e\u30a8\u30e9\u30fc\u3092\u53d7\u3051\u53d6\u3063\u305f\u306e\u3067\u3042\u308c\u3070\u3001\u3042\u306a\u305f\u306f\u3053\u306e\u30a8\u30e9\u30fc\u3092\u30b5\u30a4\u30c8\u306e\u7ba1\u7406\u8005\u306b\u5831\u544a\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+		"ja": "\u3082\u3057\u3042\u306a\u305f\u304c\u30e6\u30fc\u30b6\u30fc\u3067\u4ee5\u4e0b\u306e\u30ea\u30f3\u30af\u306e\u30b5\u30a4\u30c8\u3067\u3053\u306e\u30a8\u30e9\u30fc\u3092\u53d7\u3051\u53d6\u3063\u305f\u306e\u3067\u3042\u308c\u3070\u3001\u3042\u306a\u305f\u306f\u3053\u306e\u30a8\u30e9\u30fc\u3092\u30b5\u30a4\u30c8\u306e\u7ba1\u7406\u8005\u306b\u5831\u544a\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
+		"da": "Hvis du har modtaget denne fejlbesked efter at have klikket p\u00e5 et lilnk, skal du rappoterer fejlen til ejeren af siden. ",
+		"de": "Sind Sie lediglich einem Verweis einer anderen Website hierher gefolgt, sollten Sie diesen Fehler den Betreibern der Website melden.",
+		"hr": "Ako se ova pogre\u0161ka pojavila nakon \u0161to ste slijedili link na stranici, tada bi ovu pogre\u0161ku trebali prijaviti vlasniku navedene stranice.",
+		"zh-tw": "\u82e5\u60a8\u662f\u500b\u4f7f\u7528\u8005\uff0c\u800c\u60a8\u65bc\u6b64\u7db2\u7ad9\u6536\u5230\u4e0b\u5217\u9023\u7d50\uff0c\u8acb\u53cd\u6620\u6b64\u932f\u8aa4\u7d66\u6b64\u7ad9\u7ba1\u7406\u54e1\u3002"
 	},
 	"suggestion_developer": {
 		"no": "Hvis du er en utvikler som setter opp en \"single sign-on\" l\u00f8sning, s\u00e5 har du et problem med metadataoppsettet. Kontroller at metadata er riktig konfigurert hos b\u00e5de identitetsleverand\u00f8ren og tjenesteleverand\u00f8ren.",
@@ -61,8 +76,12 @@
 		"es": "Si usted es un desarrollador que est\u00e1 desplegando una soluci\u00f3n de inicio \u00fanico, tiene un problema con la configuraci\u00f3n de sus metadatos. Verifique que los metadatos est\u00e1n configurados correctamente en el proveedor de identidad y en el proveedor de servicios",
 		"lt": "Jei J\u016bs esate k\u016br\u0117jas, kuris diegiate SSO sprendim\u0105, Jums i\u0161kilo problema susijusi su metaduomen\u0173 konfig\u016bracija. Patikrinkite, ar metaduomenys teisingai sukonfig\u016bruoti tiek tapatybi\u0173 teik\u0117jo, tiek paslaugos teik\u0117jo pus\u0117se.",
 		"hu": "Ha \u00f6n az oldal \u00fczemeltet\u0151je, \u00fagy javasoljuk, ellen\u0151rizze a metaadat be\u00e1ll\u00edt\u00e1sokat mint IdP-, mind SP oldalon.",
-		"fr": "Si vous \u00eates un d\u00e9veloppeur qui d\u00e9ploie une solution de single sign-on, vous avez un probl\u00e8me avec la configuration des metadata. V\u00e9rifiez que ces metadata sont correctement configur\u00e9es sur le fournisseur d'identit\u00e9 et le fournisseur de service ",
+		"fr": "Si vous \u00eates un d\u00e9veloppeur qui d\u00e9ploie une solution de single sign-on, vous avez un probl\u00e8me avec la configuration des m\u00e9tadonn\u00e9es. V\u00e9rifiez que ces m\u00e9tadonn\u00e9es sont correctement configur\u00e9es sur le fournisseur d'identit\u00e9 et le fournisseur de service ",
 		"nl": "Als u een ontwikkelaar bent die een single sign-on oplossing aan het implementeren is, heeft u een probleem met de metadataconfiguratie. Controleer of de metadata correct is geconfigureerd zowel bij de identiteitsverstrekker als bij de service provider.",
-		"ja": "\u3082\u3057\u3042\u306a\u305f\u304c\u958b\u767a\u8005\u3067\u30b7\u30f3\u30b0\u30eb\u30b5\u30a4\u30f3\u30aa\u30f3\u30b7\u30b9\u30c6\u30e0\u306e\u69cb\u7bc9\u8005\u3067\u3042\u308b\u5834\u5408\u3001\u30e1\u30bf\u30c7\u30fc\u30bf\u306e\u8a2d\u5b9a\u306b\u554f\u984c\u304c\u6709\u308a\u307e\u3059\u3002\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u3068\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u306e\u4e21\u65b9\u306b\u30e1\u30bf\u30c7\u30fc\u30bf\u304c\u6b63\u3057\u304f\u8a2d\u5b9a\u3055\u308c\u3066\u3044\u308b\u304b\u78ba\u8a8d\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+		"ja": "\u3082\u3057\u3042\u306a\u305f\u304c\u958b\u767a\u8005\u3067\u30b7\u30f3\u30b0\u30eb\u30b5\u30a4\u30f3\u30aa\u30f3\u30b7\u30b9\u30c6\u30e0\u306e\u69cb\u7bc9\u8005\u3067\u3042\u308b\u5834\u5408\u3001\u30e1\u30bf\u30c7\u30fc\u30bf\u306e\u8a2d\u5b9a\u306b\u554f\u984c\u304c\u6709\u308a\u307e\u3059\u3002\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u3068\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u306e\u4e21\u65b9\u306b\u30e1\u30bf\u30c7\u30fc\u30bf\u304c\u6b63\u3057\u304f\u8a2d\u5b9a\u3055\u308c\u3066\u3044\u308b\u304b\u78ba\u8a8d\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
+		"da": "Hvis du er udvikler, s\u00e5 har du et metadata-konfigurationsproblem. Tjek at metadata er konfigurerede korrekt b\u00e5de p\u00e5 service-siden og identitetsudbyder-siden.",
+		"de": "Arbeiten Sie selbst an einem Web Single Sign-On System, stimmt mit den benutzten Metadaten etwas nicht. \u00dcberpr\u00fcfen Sie die Metadaten des Identity Providers und des Service Providers.",
+		"hr": "Ako ste programer koji postavlja sustav jedinstvene autentifikacije (SSO), tada imate problema sa konfiguracijom meta podataka (metadata). Provjerite da su meta podaci ispravno pode\u0161eni i na davatelju identiteta (IdP) i na davatelju usluge (SP).",
+		"zh-tw": "\u82e5\u60a8\u662f\u55ae\u4e00\u7c3d\u5165\u7a0b\u5f0f\u958b\u767c\u4eba\u54e1\uff0c\u60a8\u7684\u8a6e\u91cb\u8cc7\u6599\u8a2d\u5b9a\u53ef\u80fd\u6709\u554f\u984c\u3002\u8acb\u78ba\u8a8d\u670d\u52d9\u63d0\u4f9b\u8005\u6216\u9a57\u8b49\u63d0\u4f9b\u8005\u4e4b\u8a6e\u91cb\u8cc7\u6599\u8a2d\u5b9a\u6a94\u662f\u5426\u6b63\u78ba\u3002"
 	}
 }

@@ -12,7 +12,9 @@
 		"it": "(nome non specificato)",
 		"es": "(nombre no especificado)",
 		"lt": "(pavadinimas nenurodytas)",
-		"nl": "(naam niet opgegeven)"
+		"nl": "(naam niet opgegeven)",
+		"ja": "(\u540d\u524d\u7121\u3057)",
+		"zh-tw": "(\u672a\u5b9a\u7fa9\u540d\u7a31)"
 	},
 	"sp_empty_description": {
 		"da": "(ingen beskrivelse)",
@@ -27,7 +29,9 @@
 		"it": "(nessuna descrizione)",
 		"es": "(sin descripci\u00f3n)",
 		"lt": "(apib\u016bdinimas nenurodytas)",
-		"nl": "(geen omschrijving)"
+		"nl": "(geen omschrijving)",
+		"ja": "(\u8a18\u8ff0\u7121\u3057)",
+		"zh-tw": "(\u7121\u63cf\u8ff0)"
 	},
 	"attribute_org": {
 		"da": "Organisation",
@@ -42,7 +46,9 @@
 		"it": "Organizzazione",
 		"es": "Organizaci\u00f3n",
 		"lt": "Organizacija",
-		"nl": "Organisatie"
+		"nl": "Organisatie",
+		"ja": "\u7d44\u7e54",
+		"zh-tw": "\u7d44\u7e54"
 	},
 	"added": {
 		"da": "Samtykke givet",
@@ -56,7 +62,9 @@
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s r\u00f6gz\u00edtve",
 		"it": "Consenso Aggiunto",
 		"es": "Consentimiento a\u00f1adido",
-		"lt": "Leidimas prid\u0117tas"
+		"lt": "Leidimas prid\u0117tas",
+		"ja": "\u627f\u8a8d\u304c\u8ffd\u52a0\u3055\u308c\u307e\u3057\u305f",
+		"zh-tw": "\u540c\u610f\u65b0\u589e"
 	},
 	"removed": {
 		"da": "Samtykke slettet",
@@ -70,7 +78,9 @@
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s visszavonva",
 		"it": "Consenso Rimosso",
 		"es": "Consentimiento eliminado",
-		"lt": "Leidimas pa\u0161alintas"
+		"lt": "Leidimas pa\u0161alintas",
+		"ja": "\u627f\u8a8d\u304c\u524a\u9664\u3055\u308c\u307e\u3057\u305f",
+		"zh-tw": "\u540c\u610f\u79fb\u9664"
 	},
 	"updated": {
 		"da": "Samtykke Opdateret",
@@ -84,7 +94,9 @@
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s friss\u00edtve",
 		"it": "Consenso Aggiornato",
 		"es": "Consentimiento actualizado",
-		"lt": "Leidimas atnaujintas"
+		"lt": "Leidimas atnaujintas",
+		"ja": "\u627f\u8a8d\u304c\u66f4\u65b0\u3055\u308c\u307e\u3057\u305f",
+		"zh-tw": "\u540c\u610f\u66f4\u65b0"
 	},
 	"unknown": {
 		"da": "Ukendt ...",
@@ -98,7 +110,9 @@
 		"hu": "Ismeretlen ...",
 		"it": "Sconosciuto...",
 		"es": "Desconocido ...",
-		"lt": "Ne\u017einoma..."
+		"lt": "Ne\u017einoma...",
+		"ja": "\u4e0d\u660e\u2026",
+		"zh-tw": "\u672a\u77e5..."
 	},
 	"attribute_id": {
 		"da": "Identitet",
@@ -112,7 +126,9 @@
 		"hu": "Azonoss\u00e1g",
 		"it": "Identit\u00e0",
 		"es": "Identidad",
-		"lt": "Tapatyb\u0117"
+		"lt": "Tapatyb\u0117",
+		"ja": "\u8b58\u5225\u5b50",
+		"zh-tw": "\u8eab\u5206"
 	},
 	"attribute_injected": {
 		"da": "Injiceret attribut",
@@ -126,7 +142,9 @@
 		"hu": "Attrib\u00fatum besz\u00far\u00e1sa",
 		"it": "Attributo inserito",
 		"es": "Atributo inyectado",
-		"lt": "\u012eterptas atributas"
+		"lt": "\u012eterptas atributas",
+		"ja": "\u633f\u5165\u3055\u308c\u305f\u5c5e\u6027",
+		"zh-tw": "\u52a0\u5165\u5c6c\u6027"
 	},
 	"show": {
 		"da": "Vis",
@@ -140,7 +158,9 @@
 		"hu": "Attrib\u00fatumok megjelen\u00edt\u00e9se",
 		"it": "Mostra",
 		"es": "Mostrar",
-		"lt": "Parodyti"
+		"lt": "Parodyti",
+		"ja": "\u8868\u793a",
+		"zh-tw": "\u986f\u793a"
 	},
 	"hide": {
 		"da": "Skjul",
@@ -154,7 +174,9 @@
 		"hu": "Attrib\u00fatumok rejt\u00e9se",
 		"it": "Nascondi",
 		"es": "Ocultar",
-		"lt": "Pasl\u0117pti"
+		"lt": "Pasl\u0117pti",
+		"ja": "\u975e\u8868\u793a",
+		"zh-tw": "\u96b1\u85cf"
 	},
 	"attributes_text": {
 		"da": "attributter",
@@ -168,7 +190,9 @@
 		"hu": ".",
 		"it": "attributi",
 		"es": "Atributos",
-		"lt": "atributai"
+		"lt": "atributai",
+		"ja": "\u5c5e\u6027",
+		"zh-tw": "\u5c6c\u6027"
 	},
 	"consentadmin_header": {
 		"da": "Administrer dine samtykker",
@@ -182,7 +206,9 @@
 		"hu": "Adatkezel\u00e9si hozz\u00e1j\u00e1rul\u00e1sok kezel\u00e9se",
 		"it": "Amministrazione del consenso",
 		"es": "Administraci\u00f3n de consentimiento",
-		"lt": "Leidim\u0173 administravimas"
+		"lt": "Leidim\u0173 administravimas",
+		"ja": "\u627f\u8a8d\u7ba1\u7406",
+		"zh-tw": "\u7ba1\u8f44\u8a31\u53ef"
 	},
 	"consentadmin_description1": {
 		"da": "WAYF videregiver kun oplysninger til eksterne tjenester, hvis du giver dit samtykke til det. Hvilke oplysninger det drejer sig om, varierer alt efter hvad tjenesteudbyderen har behov for. Det kan for eksempel v\u00e6re:<ul><li>Dit navn<li>Din e-mail-adresse<li>Din institution<li>Etc.<\/ul>Hvis du s\u00e6tter et flueben ud for <b>Husk dette samtykke<\/b>, vil du ikke blive spurgt, n\u00e6ste gang du bes\u00f8ger tjenesteudbyderen. S\u00e5 husker WAYF, at du allerede har givet samtykke til at videregive oplysninger til tjenesteudbyderen. <p>Nedenfor er opf\u00f8rt de tjenester, som du for \u00f8jeblikket har givet l\u00f8bende samtykke til:<\/a>",
@@ -196,7 +222,9 @@
 		"hu": "Ezen az oldalon lehet szolg\u00e1ltat\u00f3nk\u00e9nt (SP) az adakezel\u00e9si hozz\u00e1j\u00e1rul\u00e1sokat megtekinteni \u00e9s m\u00f3dos\u00edtani.",
 		"it": "Qui \u00e8 possibile vedere e modificare i consensi per i vari Service Provider.",
 		"es": "Aqu\u00ed puedes visualizar y editar tu consentimiento para los proveedores de servicio",
-		"lt": "\u010cia j\u016bs galite per\u017ei\u016br\u0117ti ir keisti savo leidimus paslaug\u0173 teik\u0117jams"
+		"lt": "\u010cia j\u016bs galite per\u017ei\u016br\u0117ti ir keisti savo leidimus paslaug\u0173 teik\u0117jams",
+		"ja": "\u3053\u3053\u306f\u3001\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u306e\u627f\u8a8d\u3092\u8868\u793a\u3057\u305f\u308a\u7de8\u96c6\u3059\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u3059\u3002",
+		"zh-tw": "\u9019\u908a\u53ef\u4ee5\u6aa2\u8996\u53ca\u4fee\u6539\u60a8\u540c\u610f\u7684\u670d\u52d9\u63d0\u4f9b\u8005\u3002"
 	},
 	"consentadmin_description2": {
 		"da": "<h3>S\u00e5dan sletter du et samtykke<\/h3>Fjern fluebenet ud for tjenesten, samtykket tilh\u00f8rer.<h3>Hvilke data gemmer WAYF om dig?<\/h3><ul><li>N\u00e5r du giver dit samtykke, henter WAYF dine oplysninger fra din institution og sender de relevante videre til tjenesteudbyderen<li>Ingen af oplysningerne gemmes af WAYF<li>Hvis du har bedt WAYF huske dit samtykke, gemmes personhenf\u00f8rbare data heller ikke hos WAYF. Oplysningen om, at du har givet dit samtykke, gemmes p\u00e5 en ikke-personhenf\u00f8rbar m\u00e5de<\/ul><h3>Hvilke rettigheder har du?<\/h3>Du har ret til at tr\u00e6kke et samtykke tilbage.<h3>Hvor l\u00e6nge gemmes dine samtykker?<\/h3>Et samtykke slettes tre \u00e5r efter, at du sidst har benyttet det.<h3>Hvordan beskyttes mine oplysninger?<\/h3>WAYF foretager behandlinger af personoplysninger i henhold til persondataloven (lov nr. 429 af 31. maj 2000 med senere \u00e6ndringer). Du kan l\u00e6se n\u00e6rmere om registreredes rettigheder i persondatalovens afsnit III.<a href=\"http:\/\/www.datatilsynet.dk\/lovgivning\/persondataloven\/\">Persondataloven<\/a><h3>Links<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li><\/ul>",
@@ -210,7 +238,9 @@
 		"hu": "<h3>Hogyan kell visszavonni egy hozz\u00e1j\u00e1rul\u00e1st?<\/h3> A szolg\u00e1ltat\u00f3hoz tartoz\u00f3 jel\u00f6l\u0151n\u00e9gyzetben sz\u00fcntesse meg a kijel\u00f6l\u00e9st!",
 		"it": "<h3>Come rimuovere il consenso><\/h3> Togliere il segno di spunta al corrispondente service provider<h3>Collegamenti<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Inizio<\/a><\/li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a><\/li><\/ul>",
 		"es": "<h3>Como eliminar su consentimiento<\/h3> Desmarque la opci\u00f3n correspondiente al proveedor de servicios <h3>V\u00ednculos<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Inicio<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul>",
-		"lt": "<h3>Kaip pa\u0161alinti savo leidim\u0105<\/h3> Panaikinkite pa\u017eym\u0117jim\u0105 ties atitinkamu paslaugos teik\u0117ju <h3>Nuorodos<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Prad\u017eia<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul> "
+		"lt": "<h3>Kaip pa\u0161alinti savo leidim\u0105<\/h3> Panaikinkite pa\u017eym\u0117jim\u0105 ties atitinkamu paslaugos teik\u0117ju <h3>Nuorodos<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Prad\u017eia<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul> ",
+		"ja": "<h3>\u627f\u8a8d\u306e\u524a\u9664\u65b9\u6cd5<\/h3> \u8a72\u5f53\u3059\u308b\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u306e\u30c1\u30a7\u30c3\u30af\u3092\u5916\u3057\u307e\u3059\u3002<h3>\u30ea\u30f3\u30af<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul> ",
+		"zh-tw": "<h3>\u5728\u9019\u522a\u9664\u60a8\u7684\u6388\u6b0a<\/h3> \u53d6\u6d88\u52fe\u9078\u670d\u52d9\u63d0\u4f9b\u8005\u5c0d\u61c9\u7684\u6838\u53d6\u65b9\u584a <h3>\u9023\u7d50<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">\u958b\u59cb<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">\u8aaa\u660e<\/a> <\/li> <\/ul> "
 	},
 	"login": {
 		"da": "login",
@@ -223,7 +253,10 @@
 		"hr": "Prijavi se",
 		"hu": "Bel\u00e9p\u00e9s",
 		"it": "connessione",
-		"es": "entrar"
+		"es": "entrar",
+		"ja": "\u30ed\u30b0\u30a4\u30f3",
+		"lt": "Prisijungti",
+		"zh-tw": "\u767b\u5165"
 	},
 	"service_providers_for": {
 		"da": "Service Providers for",
@@ -236,7 +269,10 @@
 		"hr": "Davatelji usluga za",
 		"hu": "Szolg\u00e1ltat\u00f3",
 		"it": "Service provider per",
-		"es": "Proveedores de servicio para"
+		"es": "Proveedores de servicio para",
+		"ja": "\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0 - ",
+		"lt": "Paslaugos tiek\u0117jai",
+		"zh-tw": "\u670d\u52d9\u63d0\u4f9b\u8005\u7684"
 	},
 	"service_provider_header": {
 		"da": "Service Provider",
@@ -249,7 +285,10 @@
 		"hr": "Davatelj usluge",
 		"hu": "Szolg\u00e1ltat\u00f3",
 		"it": "Service Provider",
-		"es": "Proveedor de servicio"
+		"es": "Proveedor de servicio",
+		"ja": "\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0",
+		"lt": "Paslaugos tiek\u0117jas",
+		"zh-tw": "\u670d\u52d9\u63d0\u4f9b\u8005"
 	},
 	"status_header": {
 		"da": "Samtykke status",
@@ -262,7 +301,10 @@
 		"hr": "Stanje dozvola",
 		"hu": "Hozz\u00e1j\u00e1rul\u00e1s \u00e1llapota",
 		"it": "Stato del consenso",
-		"es": "Estado del consentimiento"
+		"es": "Estado del consentimiento",
+		"ja": "\u627f\u8a8d\u30b9\u30c6\u30fc\u30bf\u30b9",
+		"lt": "Leidimo statusas",
+		"zh-tw": "\u8a31\u53ef\u72c0\u614b"
 	},
 	"show_hide_attributes": {
 		"da": "vis\/skjul attributter",
@@ -275,7 +317,10 @@
 		"hr": "prika\u017ei\/sakrij atribute",
 		"hu": "Attrib\u00fatumok megjelen\u00edt\u00e9se\/rejt\u00e9se",
 		"it": "Mostra\/nascondi attributi",
-		"es": "Mostrar\/ocultar atributos"
+		"es": "Mostrar\/ocultar atributos",
+		"ja": "\u8868\u793a\/\u975e\u8868\u793a\u5c5e\u6027",
+		"lt": "Rodyti\/sl\u0117pti atributus",
+		"zh-tw": "\u986f\u793a\/\u96b1\u85cf\u5c6c\u6027"
 	},
 	"consentadmin_purpose": {
 		"da": "Form\u00e5let med tjenesten er",
@@ -288,6 +333,9 @@
 		"hr": "Namjena ovog servisa je",
 		"hu": "A szolg\u00e1ltat\u00e1s le\u00edr\u00e1sa",
 		"it": "Lo scopo di questo servizio \u00e8",
-		"es": "El prop\u00f3sito del servicio es"
+		"es": "El prop\u00f3sito del servicio es",
+		"ja": "\u30b5\u30fc\u30d3\u30b9\u306e\u76ee\u7684: ",
+		"lt": "Paslaugos paskirtis yra",
+		"zh-tw": "\u6b64\u9805\u670d\u52d9\u7684\u76ee\u7684\u70ba"
 	}
 }

@@ -163,6 +163,7 @@ if($onLoad !== '') {
 					'tr' => 'Türkçe',
 					'el' => 'ελληνικά',
 					'ja' => '日本語',
+					'zh-tw' => '中文',
 		);
 		
 		$textarray = array();

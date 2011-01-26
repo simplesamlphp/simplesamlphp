@@ -9,7 +9,10 @@
 		"lt": "B\u016bsenos informacia prarasta",
 		"hu": "Elvezett az \u00e1llapotinform\u00e1c\u00f3",
 		"fr": "Information d'\u00e9tat perdue",
-		"ja": "\u72b6\u614b\u60c5\u5831\u304c\u7121\u304f\u306a\u308a\u307e\u3057\u305f\u3002"
+		"ja": "\u72b6\u614b\u60c5\u5831\u304c\u7121\u304f\u306a\u308a\u307e\u3057\u305f\u3002",
+		"da": "Tilstandsinformation forsvundet",
+		"hr": "Podatak o stanju je izgubljen",
+		"zh-tw": "\u907a\u5931\u72c0\u614b\u8cc7\u8a0a"
 	},
 	"description": {
 		"no": "Vi kunne ikke finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
@@ -20,8 +23,11 @@
 		"es": "No podemos encontrar la informaci\u00f3n de estado para la solicitud actual",
 		"lt": "Nepavyko nustatyti b\u016bsenos informacijos \u0161iai u\u017eklausai.",
 		"hu": "Nem lehet beazonos\u00edtani a k\u00e9r\u00e9shez tartoz\u00f3 \u00e1llapotinform\u00e1ci\u00f3t.",
-		"fr": "Nous ne pouvons pas trouver l'information d'\u00e9tat pour la demande courante",
-		"ja": "\u73fe\u5728\u306e\u30ea\u30af\u30a8\u30b9\u30c8\u304b\u3089\u72b6\u614b\u60c5\u5831\u3092\u7279\u5b9a\u3059\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u305b\u3093\u3067\u3057\u305f\u3002"
+		"fr": "Nous ne pouvons pas trouver l'information d'\u00e9tat pour la demande courante.",
+		"ja": "\u73fe\u5728\u306e\u30ea\u30af\u30a8\u30b9\u30c8\u304b\u3089\u72b6\u614b\u60c5\u5831\u3092\u7279\u5b9a\u3059\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u305b\u3093\u3067\u3057\u305f\u3002",
+		"da": "Tilstandsinformation for igangv\u00e6rende request kan ikke findes",
+		"hr": "Podatak o stanju aktualnog zahtjeva nije prona\u0111en.",
+		"zh-tw": "\u6211\u5011\u7121\u6cd5\u627e\u5230\u95dc\u65bc\u9019\u500b\u8acb\u6c42\u7684\u72c0\u614b\u8cc7\u8a0a\u3002"
 	},
 	"suggestions": {
 		"no": "Forslag for \u00e5 l\u00f8se dette problemet:",
@@ -32,8 +38,11 @@
 		"es": "Sugerencias para resolver este problema",
 		"lt": "Pasi\u016blymai spr\u0119sti \u0161i\u0105 problem\u0105:",
 		"hu": "Javaslat a probl\u00e9ma elh\u00e1r\u00edt\u00e1s\u00e1ra:",
-		"fr": "Suggestions pour r\u00e9soudre ce probl\u00e8me",
-		"ja": "\u3053\u306e\u554f\u984c\u3092\u89e3\u6c7a\u3059\u308b\u70ba\u306e\u63d0\u6848:"
+		"fr": "Suggestions pour r\u00e9soudre ce probl\u00e8me :",
+		"ja": "\u3053\u306e\u554f\u984c\u3092\u89e3\u6c7a\u3059\u308b\u70ba\u306e\u63d0\u6848:",
+		"da": "L\u00f8sningsforslag til problemet:",
+		"hr": "Preporuke za rje\u0161avanje ovog problema:",
+		"zh-tw": "\u5efa\u8b70\u89e3\u6c7a\u9019\u500b\u554f\u984c\uff1a"
 	},
 	"suggestion_goback": {
 		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
@@ -44,8 +53,11 @@
 		"es": "Regrese a la p\u00e1gina anterior y pruebe de nuevo",
 		"lt": "Gr\u012f\u017ekite \u012f ankstesn\u012f puslap\u012f ir pabandykite dar kart\u0105.",
 		"hu": "Menjen vissza az el\u0151z\u0151 oldalra, majd pr\u00f3b\u00e1lja ism\u00e9t.",
-		"fr": "Retournez \u00e0 la page pr\u00e9c\u00e9dente et r\u00e9essayez",
-		"ja": "\u524d\u306e\u30da\u30fc\u30b8\u306b\u623b\u308a\u3001\u518d\u5ea6\u8a66\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+		"fr": "Retournez \u00e0 la page pr\u00e9c\u00e9dente et r\u00e9essayez.",
+		"ja": "\u524d\u306e\u30da\u30fc\u30b8\u306b\u623b\u308a\u3001\u518d\u5ea6\u8a66\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
+		"da": "G\u00e5 tilbage til forrige side og pr\u00f8v igen.",
+		"hr": "Vratite se na prethodnu stranicu i poku\u0161ajte ponovno.",
+		"zh-tw": "\u56de\u5230\u4e0a\u4e00\u9801\u4e26\u518d\u8a66\u4e00\u6b21\u3002"
 	},
 	"suggestion_closebrowser": {
 		"no": "Lukk nettleseren, og pr\u00f8v p\u00e5 nytt.",
@@ -56,8 +68,11 @@
 		"es": "Cierre el navegador y pruebe de nuevo",
 		"lt": "U\u017edarykite interneto nar\u0161ykl\u0119 ir pabandykite dar kart\u0105.",
 		"hu": "Z\u00e1rja be b\u00f6ng\u00e9sz\u0151j\u00e9t, majd pr\u00f3b\u00e1lja \u00fajra.",
-		"fr": "Fermez le navigateur, essayez \u00e0 nouveau",
-		"ja": "WEB\u30d6\u30e9\u30a6\u30b6\u3092\u9589\u3058\u3066\u3001\u518d\u5ea6\u8a66\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+		"fr": "Fermez le navigateur, essayez \u00e0 nouveau.",
+		"ja": "WEB\u30d6\u30e9\u30a6\u30b6\u3092\u9589\u3058\u3066\u3001\u518d\u5ea6\u8a66\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
+		"da": "Luk din browser og pr\u00f8v igen.",
+		"hr": "Zatvorite web preglednik, i poku\u0161ajte ponovno.",
+		"zh-tw": "\u95dc\u9589\u7db2\u9801\u700f\u89bd\u5668\uff0c\u4e26\u518d\u8a66\u4e00\u6b21\u3002"
 	},
 	"causes": {
 		"no": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
@@ -69,7 +84,10 @@
 		"lt": "\u0160i\u0105 klaid\u0105 gal\u0117jo sukelti:",
 		"hu": "Az al\u00e1bbi hib\u00e1t okozhatta:",
 		"fr": "Cette erreur peut \u00eatre caus\u00e9e par :",
-		"ja": "\u3053\u306e\u30a8\u30e9\u30fc\u306e\u539f\u56e0:"
+		"ja": "\u3053\u306e\u30a8\u30e9\u30fc\u306e\u539f\u56e0:",
+		"da": "Fejlen kan v\u00e6re for forudsaget af:",
+		"hr": "Ova pogre\u0161ka mo\u017ee biti uzrokovana:",
+		"zh-tw": "\u9019\u500b\u932f\u8aa4\u53ef\u80fd\u662f\u56e0\u70ba\uff1a"
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
@@ -80,8 +98,11 @@
 		"es": "Usando los botones atr\u00e1s y adelante de su navegador web.",
 		"lt": "Back (Atgal) ir Forward (Pirmyn) mygtuk\u0173 naudojimas interneto nar\u0161ykl\u0117je",
 		"hu": "Haszn\u00e1lja a b\u00f6ng\u00e9sz\u0151 el\u0151re, ill. vissza gombjait",
-		"fr": "Utilisation des boutons avance et retour dans le navigateur",
-		"ja": "WEB\u30d6\u30e9\u30a6\u30b6\u306e\u623b\u308b\u3084\u6b21\u3078\u306e\u30dc\u30bf\u30f3\u3092\u4f7f\u7528\u3057\u307e\u3059\u3002"
+		"fr": "Utilisation des boutons avance et retour dans le navigateur.",
+		"ja": "WEB\u30d6\u30e9\u30a6\u30b6\u306e\u623b\u308b\u3084\u6b21\u3078\u306e\u30dc\u30bf\u30f3\u3092\u4f7f\u7528\u3057\u307e\u3059\u3002",
+		"da": "Brug frem og tilbage knappen i browseren.",
+		"hr": "Kori\u0161tenjem gumbi za prethodnu (\"back\") i sljede\u0107u (\"forward\") stranicu u web pregledniku.",
+		"zh-tw": "\u65bc\u7db2\u9801\u700f\u89bd\u5668\u4f7f\u7528\u4e0a\u4e00\u9801\u53ca\u4e0b\u4e00\u9801\u3002"
 	},
 	"cause_openbrowser": {
 		"no": "Starte nettleseren med faner lagret fra forrige gang.",
@@ -92,8 +113,11 @@
 		"es": "Abri\u00f3 su navegador web con pesta\u00f1as guardadas de la sesi\u00f3n previa.",
 		"lt": "Atidaryta interneto nar\u0161ykl\u0117 su kortel\u0117mis, i\u0161saugotomis i\u0161 ankstesn\u0117s sesijos.",
 		"hu": "A b\u00f6ng\u00e9sz\u0151 a legut\u00f3bb bez\u00e1rt f\u00fcleket \u00fajranyitva indult.",
-		"fr": "Ouvert le navigateur avec des onglets sauvegard\u00e9s lors de la session pr\u00e9c\u00e9dente",
-		"ja": "\u30d6\u30e9\u30a6\u30b6\u306b\u4fdd\u5b58\u3055\u308c\u305f\u30bf\u30d6\u306b\u3088\u308a\u3001\u4ee5\u524d\u306e\u30bb\u30c3\u30b7\u30e7\u30f3\u304c\u958b\u304b\u308c\u307e\u3057\u305f\u3002"
+		"fr": "Ouvert le navigateur avec des onglets sauvegard\u00e9s lors de la session pr\u00e9c\u00e9dente.",
+		"ja": "\u30d6\u30e9\u30a6\u30b6\u306b\u4fdd\u5b58\u3055\u308c\u305f\u30bf\u30d6\u306b\u3088\u308a\u3001\u4ee5\u524d\u306e\u30bb\u30c3\u30b7\u30e7\u30f3\u304c\u958b\u304b\u308c\u307e\u3057\u305f\u3002",
+		"da": "\u00c5ben browseren med faner fra sidste session.",
+		"hr": "Otvaranjem web preglednika sa spremljenim stranicama od prethodne sesije.",
+		"zh-tw": "\u60a8\u4f7f\u7528\u7db2\u9801\u700f\u89bd\u5668\u5132\u5b58\u6a19\u7c64\u958b\u555f\u4e86\u4e0a\u4e00\u6b21\u7684\u9023\u7dda\u3002"
 	},
 	"cause_nocookie": {
 		"no": "At informasjonskapsler ikke er aktivert i nettleseren.",
@@ -104,8 +128,11 @@
 		"es": "Las cookies pueden estar deshabilitadas en el navegador",
 		"lt": "Interneto nar\u0161ykl\u0117je gali b\u016bti i\u0161jungti slapukai (cookies).",
 		"hu": "Tal\u00e1n a b\u00f6ng\u00e9sz\u0151ben nincsenek enged\u00e9lyezve a s\u00fctik (cookie).",
-		"fr": "Les cookies sont peut-\u00eatre d\u00e9activ\u00e9s dans le navigateur",
-		"ja": "\u3053\u306eWEB\u30d6\u30e9\u30a6\u30b6\u3067\u306f\u30af\u30c3\u30ad\u30fc\u304c\u7121\u52b9\u5316\u3055\u308c\u3066\u3044\u307e\u3059\u3002"
+		"fr": "Les cookies sont peut-\u00eatre d\u00e9activ\u00e9s dans le navigateur.",
+		"ja": "\u3053\u306eWEB\u30d6\u30e9\u30a6\u30b6\u3067\u306f\u30af\u30c3\u30ad\u30fc\u304c\u7121\u52b9\u5316\u3055\u308c\u3066\u3044\u307e\u3059\u3002",
+		"da": "Cookies kan v\u00e6re deaktiveret i browseren.",
+		"hr": "Mogu\u0107e je podr\u0161ka za kola\u010di\u0107e (\"cookies\") isklju\u010dena u web pregledniku.",
+		"zh-tw": "\u7db2\u9801\u700f\u89bd\u5668\u7684 Cookies \u53ef\u80fd\u88ab\u95dc\u9589\u3002"
 	},
 	"report_header": {
 		"no": "Rapporter denne feilen",
@@ -117,7 +144,10 @@
 		"lt": "Prane\u0161ti apie \u0161i\u0105 klaid\u0105",
 		"hu": "A hiba jelent\u00e9se",
 		"fr": "Remontez cette erreur",
-		"ja": "\u3053\u306e\u30a8\u30e9\u30fc\u3092\u30ec\u30dd\u30fc\u30c8"
+		"ja": "\u3053\u306e\u30a8\u30e9\u30fc\u3092\u30ec\u30dd\u30fc\u30c8",
+		"da": "Rapporter denne fejl",
+		"hr": "Prijavite ovu pogre\u0161ku",
+		"zh-tw": "\u56de\u5831\u9019\u500b\u932f\u8aa4"
 	},
 	"report_text": {
 		"no": "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene.",
@@ -128,7 +158,10 @@
 		"es": "Si el problema persiste, puede reportarlo a los administradores del sistema",
 		"lt": "Jei \u0161i problema i\u0161liks, galite prane\u0161ti apie tai sistemos administratoriui.",
 		"hu": "Ha a probl\u00e9ma \u00e1lland\u00f3nak t\u0171nik, k\u00e9rj\u00fck, jelezze ezt az oldal adminisztr\u00e1tor\u00e1nak.",
-		"fr": "Si ce probl\u00e8me persiste, vous pouvez le remonter vers l'administrateur syst\u00e8me",
-		"ja": "\u3053\u306e\u554f\u984c\u304c\u7d99\u7d9a\u3057\u3066\u8d77\u3053\u308b\u5834\u5408\u3001\u30b7\u30b9\u30c6\u30e0\u7ba1\u7406\u8005\u306b\u5831\u544a\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+		"fr": "Si ce probl\u00e8me persiste, vous pouvez le remonter vers l'administrateur syst\u00e8me.",
+		"ja": "\u3053\u306e\u554f\u984c\u304c\u7d99\u7d9a\u3057\u3066\u8d77\u3053\u308b\u5834\u5408\u3001\u30b7\u30b9\u30c6\u30e0\u7ba1\u7406\u8005\u306b\u5831\u544a\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
+		"da": "Hvis dette problem forts\u00e6tter, kan du rapportere det til systemadministratoren.",
+		"hr": "Ako ova pogre\u0161ka ustraje, mo\u017eete ju prijaviti.",
+		"zh-tw": "\u5982\u679c\u9019\u500b\u932f\u8aa4\u6301\u7e8c\u5b58\u5728\uff0c\u60a8\u53ef\u4ee5\u5c07\u5b83\u56de\u5831\u7cfb\u7d71\u7ba1\u7406\u8005\u3002"
 	}
 }

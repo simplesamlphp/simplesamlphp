@@ -21,7 +21,8 @@
 		"tr": "Ba\u011flant\u0131",
 		"it": "Affiliazione",
 		"lt": "Pareigos",
-		"ja": "\u6240\u5c5e"
+		"ja": "\u6240\u5c5e",
+		"zh-tw": "\u9023\u7d61\u65b9\u5f0f"
 	},
 	"attribute_title": {
 		"no": "Tittel",
@@ -44,7 +45,8 @@
 		"tr": "Ba\u015fl\u0131k",
 		"it": "Titolo",
 		"lt": "Pavadinimas",
-		"ja": "\u30bf\u30a4\u30c8\u30eb"
+		"ja": "\u30bf\u30a4\u30c8\u30eb",
+		"zh-tw": "\u6a19\u984c"
 	},
 	"attribute_uid": {
 		"no": "Bruker-ID",
@@ -68,7 +70,8 @@
 		"tr": "Kullan\u0131c\u0131 ID",
 		"it": "Identificativo utente",
 		"lt": "Naudotojo ID",
-		"ja": "\u30e6\u30fc\u30b6\u30fcID"
+		"ja": "\u30e6\u30fc\u30b6\u30fcID",
+		"zh-tw": "\u4f7f\u7528\u8005 ID"
 	},
 	"attribute_sn": {
 		"no": "Etternavn",
@@ -92,7 +95,8 @@
 		"tr": "Soyad\u0131",
 		"it": "Cognome",
 		"lt": "Pavard\u0117",
-		"ja": "\u59d3"
+		"ja": "\u59d3",
+		"zh-tw": "\u59d3"
 	},
 	"attribute_givenname": {
 		"no": "Fornavn",
@@ -116,7 +120,8 @@
 		"tr": "Verilen isim",
 		"it": "Nome ",
 		"lt": "Vardas",
-		"ja": "\u540d"
+		"ja": "\u540d",
+		"zh-tw": "\u540d"
 	},
 	"attribute_cn": {
 		"no": "Fullt navn",
@@ -140,7 +145,8 @@
 		"tr": "Ortak ad",
 		"it": "Nome completo",
 		"lt": "Pilnas vardas",
-		"ja": "\u4e00\u822c\u540d"
+		"ja": "\u4e00\u822c\u540d",
+		"zh-tw": "\u5e38\u7528\u540d\u5b57"
 	},
 	"attribute_mail": {
 		"no": "E-post",
@@ -164,7 +170,8 @@
 		"tr": "Posta",
 		"it": "Mail",
 		"lt": "El.pa\u0161tas",
-		"ja": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9"
+		"ja": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+		"zh-tw": "\u90f5\u4ef6"
 	},
 	"attribute_mobile": {
 		"no": "Mobiltelefon",
@@ -188,7 +195,8 @@
 		"tr": "Cep telefonu numaras\u0131",
 		"it": "Cellulare",
 		"lt": "Mobiliojo numeris",
-		"ja": "\u643a\u5e2f\u96fb\u8a71"
+		"ja": "\u643a\u5e2f\u96fb\u8a71",
+		"zh-tw": "\u624b\u6a5f"
 	},
 	"attribute_preferredlanguage": {
 		"no": "Foretrukket spr\u00e5k",
@@ -212,7 +220,8 @@
 		"tr": "Tercih edilen dil",
 		"it": "Lingua preferita",
 		"lt": "Kalba",
-		"ja": "\u8a00\u8a9e"
+		"ja": "\u8a00\u8a9e",
+		"zh-tw": "\u559c\u597d\u8a9e\u8a00"
 	},
 	"attribute_noredupersonnin": {
 		"no": "F\u00f8dselsnummer",
@@ -236,7 +245,8 @@
 		"tr": "Kamu yetkilileri taraf\u0131ndan belirlenmi\u015f kimlik numaras\u0131",
 		"it": "Numero di identit\u00e0 assegnato dall'autorit\u00e0 pubblica",
 		"lt": "Valstyb\u0117s institucij\u0173 priskirtas tapatyb\u0117s numeris",
-		"ja": "\u516c\u958b\u8a8d\u8a3c\u5c40\u306b\u3088\u3063\u3066\u5272\u308a\u5f53\u3066\u3089\u308c\u305f\u8b58\u5225\u756a\u53f7"
+		"ja": "\u516c\u958b\u8a8d\u8a3c\u5c40\u306b\u3088\u3063\u3066\u5272\u308a\u5f53\u3066\u3089\u308c\u305f\u8b58\u5225\u756a\u53f7",
+		"zh-tw": "\u8eab\u5206\u8b49\u5b57\u865f"
 	},
 	"attribute_schachomeorganization": {
 		"no": "Unik ID for organisasjon",
@@ -259,7 +269,8 @@
 		"tr": "Ana kurulu\u015f alan ad\u0131",
 		"it": "Nome del dominio della propria organizzazione",
 		"lt": "Organizacijos domenas",
-		"ja": "\u7d44\u7e54\u5185\u30c9\u30e1\u30a4\u30f3"
+		"ja": "\u7d44\u7e54\u5185\u30c9\u30e1\u30a4\u30f3",
+		"zh-tw": "\u9810\u8a2d\u7d44\u7e54 domain name"
 	},
 	"attribute_organisationname": {
 		"no": "Navn p\u00e5 organisasjon",
@@ -283,7 +294,8 @@
 		"tr": "Kurulu\u015f ad\u0131",
 		"it": "Nome dell'organizzazione",
 		"lt": "Organizacijos pavadinimas",
-		"ja": "\u7d44\u7e54\u540d"
+		"ja": "\u7d44\u7e54\u540d",
+		"zh-tw": "\u7d44\u7e54\u540d\u7a31"
 	},
 	"attribute_edupersonentitlement": {
 		"no": "Rettighet",
@@ -307,7 +319,8 @@
 		"tr": "Servise g\u00f6re yetki",
 		"it": "Qualifica rispetto al servizio",
 		"lt": "Teis\u0117s susij\u0119 su paslauga",
-		"ja": "\u30b5\u30fc\u30d3\u30b9\u306b\u95a2\u3059\u308b\u8cc7\u683c"
+		"ja": "\u30b5\u30fc\u30d3\u30b9\u306b\u95a2\u3059\u308b\u8cc7\u683c",
+		"zh-tw": "\u95dc\u65bc\u670d\u52d9\u7684\u6b0a\u5229"
 	},
 	"attribute_edupersonscopedaffiliation": {
 		"no": "Gruppetilh\u00f8righet",
@@ -331,7 +344,8 @@
 		"tr": "Ba\u011fl\u0131 olunan kurulu\u015fla ba\u011flant\u0131",
 		"it": "Affiliazione nella propria organizzazione",
 		"lt": "S\u0105saja su organizacija",
-		"ja": "\u7d44\u7e54\u5185\u8077\u7a2e"
+		"ja": "\u7d44\u7e54\u5185\u8077\u7a2e",
+		"zh-tw": "\u5bb6\u5ead\u9023\u7d61\u5730\u5740"
 	},
 	"attribute_edupersontargetedid": {
 		"no": "Persistent anonym ID",
@@ -353,7 +367,8 @@
 		"tr": "Kal\u0131c\u0131 takma ad\u0131 ID",
 		"it": "Pseudonimo identificativo persistente",
 		"lt": "Nuolatinio pseudonimo ID",
-		"ja": "\u6c38\u7d9a\u7684\u533f\u540dID"
+		"ja": "\u6c38\u7d9a\u7684\u533f\u540dID",
+		"zh-tw": "\u6301\u7e8c\u7684\u533f\u540d ID"
 	},
 	"attribute_edupersonprincipalname": {
 		"no": "Personlig ID hos organisasjonen",
@@ -376,7 +391,8 @@
 		"tr": "Ki\u015finin ba\u011fl\u0131 oldu\u011fu kurulu\u015ftaki as\u0131l ad\u0131",
 		"it": "Nome identificativo (principal name) nella propria organizzazione",
 		"lt": "Asmens pagrindinis vardas organizacijoje",
-		"ja": "\u6c38\u7d9a\u7684\u5229\u7528\u8005\u540d"
+		"ja": "\u6c38\u7d9a\u7684\u5229\u7528\u8005\u540d",
+		"zh-tw": "\u5bb6\u5ead\u7684\u500b\u4eba\u4e3b\u8981\u540d\u5b57"
 	},
 	"attribute_o": {
 		"no": "Navn p\u00e5 organisasjon",
@@ -399,7 +415,8 @@
 		"tr": "Organizasyon ad\u0131",
 		"it": "Nome dell'organizzazione",
 		"lt": "Organizacijos pavadinimas",
-		"ja": "\u6240\u5c5e\u7d44\u7e54"
+		"ja": "\u6240\u5c5e\u7d44\u7e54",
+		"zh-tw": "\u7d44\u7e54\u540d\u7a31"
 	},
 	"attribute_dc": {
 		"no": "Navneledd (DC)",
@@ -422,7 +439,8 @@
 		"fr": "Fragment de domaine (DC)",
 		"it": "Componente di dominio (DC)",
 		"lt": "Domeno komponentas",
-		"ja": "\u30c9\u30e1\u30a4\u30f3\u540d"
+		"ja": "\u30c9\u30e1\u30a4\u30f3\u540d",
+		"zh-tw": "Domain component (DC)"
 	},
 	"attribute_displayname": {
 		"no": "Navn som normalt vises",
@@ -445,7 +463,8 @@
 		"fr": "Nom pour affichage",
 		"it": "Nome da visualizzare",
 		"lt": "Rodomas vardas",
-		"ja": "\u8868\u793a\u540d"
+		"ja": "\u8868\u793a\u540d",
+		"zh-tw": "\u986f\u793a\u540d\u7a31"
 	},
 	"attribute_facsimiletelephonenumber": {
 		"no": "Faksnummer",
@@ -468,7 +487,8 @@
 		"fr": "Num\u00e9ro de fax",
 		"it": "Numero di fax",
 		"lt": "Fakso numeris",
-		"ja": "Fax\u756a\u53f7"
+		"ja": "Fax\u756a\u53f7",
+		"zh-tw": "\u50b3\u771f"
 	},
 	"attribute_homephone": {
 		"no": "Hjemmetelefon",
@@ -491,7 +511,8 @@
 		"fr": "T\u00e9l\u00e9phone personnel",
 		"it": "Telefono",
 		"lt": "Nam\u0173 telefo nr.",
-		"ja": "\u96fb\u8a71\u756a\u53f7"
+		"ja": "\u96fb\u8a71\u756a\u53f7",
+		"zh-tw": "\u4f4f\u5bb6\u96fb\u8a71"
 	},
 	"attribute_homepostaladdress": {
 		"no": "Postadresse hjemme",
@@ -514,7 +535,8 @@
 		"fr": "Adresse postale personnelle",
 		"it": "Indirizzo postale",
 		"lt": "Nam\u0173 adresas",
-		"ja": "\u4f4f\u6240"
+		"ja": "\u4f4f\u6240",
+		"zh-tw": "\u4f4f\u5bb6\u5730\u5740"
 	},
 	"attribute_jpegphoto": {
 		"no": "JPEG-foto",
@@ -537,7 +559,8 @@
 		"fr": "Photo JPEG",
 		"it": "Foto JPEG",
 		"lt": "JPEG nuotrauka",
-		"ja": "JPEG\u5199\u771f"
+		"ja": "JPEG\u5199\u771f",
+		"zh-tw": "JPEG \u5716\u7247"
 	},
 	"attribute_l": {
 		"no": "Sted",
@@ -560,7 +583,8 @@
 		"fr": "Lieu",
 		"it": "Localit\u00e0",
 		"lt": "Vietov\u0117",
-		"ja": "\u5730\u57df"
+		"ja": "\u5730\u57df",
+		"zh-tw": "\u4f4d\u7f6e"
 	},
 	"attribute_labeleduri": {
 		"no": "URI med valgfri tilleggskommentar",
@@ -583,7 +607,8 @@
 		"fr": "URI",
 		"it": "Etichetta URI",
 		"lt": "\u017dym\u0117tasis URI",
-		"ja": "URI"
+		"ja": "URI",
+		"zh-tw": "\u6a19\u7c64\u7db2\u5740"
 	},
 	"attribute_ou": {
 		"no": "Organisasjonsenhet",
@@ -606,7 +631,8 @@
 		"fr": "Section",
 		"it": "Unit\u00e0 organizzativa",
 		"lt": "Organizacijos skyrius",
-		"ja": "\u7d44\u7e54\u5358\u4f4d"
+		"ja": "\u7d44\u7e54\u5358\u4f4d",
+		"zh-tw": "\u7d44\u7e54\u55ae\u4f4d"
 	},
 	"attribute_postaladdress": {
 		"no": "Postadresse",
@@ -629,7 +655,8 @@
 		"fr": "Adresse postale",
 		"it": "Indirizzo postale",
 		"lt": "Adresas",
-		"ja": "\u4f4f\u6240"
+		"ja": "\u4f4f\u6240",
+		"zh-tw": "\u90f5\u5bc4\u5730\u5740"
 	},
 	"attribute_postalcode": {
 		"no": "Postnummer",
@@ -652,7 +679,8 @@
 		"fr": "Code postal",
 		"it": "CAP",
 		"lt": "Pa\u0161to kodas",
-		"ja": "\u90f5\u4fbf\u756a\u53f7"
+		"ja": "\u90f5\u4fbf\u756a\u53f7",
+		"zh-tw": "\u90f5\u905e\u5340\u865f"
 	},
 	"attribute_postofficebox": {
 		"no": "Postboks",
@@ -675,7 +703,8 @@
 		"fr": "Boite postale",
 		"it": "Casella postale",
 		"lt": "Pa\u0161to d\u0117\u017eut\u0117s nr.",
-		"ja": "\u30aa\u30d5\u30a3\u30b9\u30dc\u30c3\u30af\u30b9\u30dd\u30b9\u30c8"
+		"ja": "\u30aa\u30d5\u30a3\u30b9\u30dc\u30c3\u30af\u30b9\u30dd\u30b9\u30c8",
+		"zh-tw": "\u90f5\u653f\u4fe1\u7bb1"
 	},
 	"attribute_street": {
 		"no": "Gate",
@@ -698,7 +727,8 @@
 		"fr": "Rue",
 		"it": "Via",
 		"lt": "Gatv\u0117",
-		"ja": "\u756a\u5730"
+		"ja": "\u756a\u5730",
+		"zh-tw": "\u8857"
 	},
 	"attribute_telephonenumber": {
 		"no": "Telefon",
@@ -721,7 +751,8 @@
 		"fr": "Num\u00e9ro de t\u00e9l\u00e9phone",
 		"it": "Numero di telefono",
 		"lt": "Telefono nr.",
-		"ja": "\u96fb\u8a71\u756a\u53f7"
+		"ja": "\u96fb\u8a71\u756a\u53f7",
+		"zh-tw": "\u96fb\u8a71\u865f\u78bc"
 	},
 	"attribute_eduorghomepageuri": {
 		"no": "Organisasjonens hjemmeside",
@@ -744,7 +775,8 @@
 		"fr": "Site web institutionnel",
 		"it": "Homepage della propria organizzazione",
 		"lt": "Organizacijos svetain\u0117",
-		"ja": "\u7d44\u7e54\u306e\u30db\u30fc\u30e0\u30da\u30fc\u30b8"
+		"ja": "\u7d44\u7e54\u306e\u30db\u30fc\u30e0\u30da\u30fc\u30b8",
+		"zh-tw": "\u7d44\u7e54\u9996\u9801"
 	},
 	"attribute_eduorglegalname": {
 		"no": "Foretaksnavn",
@@ -767,7 +799,8 @@
 		"fr": "Nom l\u00e9gal de l'institution",
 		"it": "Nome legale della propria organizzazione",
 		"lt": "Organizacijos juridinis pavadinimas",
-		"ja": "\u7d44\u7e54\u306e\u6b63\u5f0f\u540d\u79f0"
+		"ja": "\u7d44\u7e54\u306e\u6b63\u5f0f\u540d\u79f0",
+		"zh-tw": "\u7d44\u7e54\u6b63\u5f0f\u540d\u7a31"
 	},
 	"attribute_edupersonnickname": {
 		"no": "Kallenavn",
@@ -790,7 +823,8 @@
 		"fr": "Pseudonyme",
 		"it": "Soprannome (nick)",
 		"lt": "Slapyvardis",
-		"ja": "\u30cb\u30c3\u30af\u30cd\u30fc\u30e0"
+		"ja": "\u30cb\u30c3\u30af\u30cd\u30fc\u30e0",
+		"zh-tw": "\u66b1\u7a31"
 	},
 	"attribute_edupersonorgdn": {
 		"no": "Entydig navn (DN) for brukerens vertsorganisasjon",
@@ -813,7 +847,8 @@
 		"fr": "Nom unique (DN) de l'institution d'origine",
 		"it": "Distinguished name (DN) dell'organizzazione ",
 		"lt": "Asmens organizacijos atpa\u017einimo vardas",
-		"ja": "\u7d44\u7e54\u8b58\u5225\u540d"
+		"ja": "\u7d44\u7e54\u8b58\u5225\u540d",
+		"zh-tw": "Distinguished name (DN) \u500b\u4eba\u9810\u8a2d\u7d44\u7e54"
 	},
 	"attribute_edupersonorgunitdn": {
 		"no": "Entydig navn (DN) for brukerens organisasjonsenhet",
@@ -836,7 +871,8 @@
 		"fr": "Nom unique (DN) de la section d'origine",
 		"it": "Distinguished name (DN) dell'unit\u00e0 organizzativa della persona",
 		"lt": "Asmens organizacijos skyriaus atpa\u017einomo vardas",
-		"ja": "\u7d44\u7e54\u5358\u4f4d\u8b58\u5225\u540d"
+		"ja": "\u7d44\u7e54\u5358\u4f4d\u8b58\u5225\u540d",
+		"zh-tw": "Distinguished name (DN) \u500b\u4eba\u9810\u8a2d\u7d44\u7e54\u55ae\u4f4d"
 	},
 	"attribute_edupersonprimaryaffiliation": {
 		"no": "Prim\u00e6r tilknytning til organisasjon",
@@ -859,7 +895,8 @@
 		"fr": "Affiliation primaire",
 		"it": "Affiliazione primaria",
 		"lt": "Pirmin\u0117 s\u0105saja",
-		"ja": "\u4e3b\u6240\u5c5e"
+		"ja": "\u4e3b\u6240\u5c5e",
+		"zh-tw": "\u4e3b\u8981\u9023\u7d61\u65b9\u5f0f"
 	},
 	"attribute_noreduorgnin": {
 		"no": "Organisasjonsnummer",
@@ -882,7 +919,8 @@
 		"fr": "Immatriculation de l'institution",
 		"it": "Numero organizzativo",
 		"lt": "Organizacijos numeris",
-		"ja": "\u7d44\u7e54\u756a\u53f7"
+		"ja": "\u7d44\u7e54\u756a\u53f7",
+		"zh-tw": "\u7d44\u7e54\u865f\u78bc"
 	},
 	"attribute_noredupersonbirthdate": {
 		"no": "F\u00f8dselsdato",
@@ -905,7 +943,8 @@
 		"fr": "Date de naissance",
 		"it": "Data di nascita",
 		"lt": "Gimimo data",
-		"ja": "\u751f\u5e74\u6708\u65e5"
+		"ja": "\u751f\u5e74\u6708\u65e5",
+		"zh-tw": "\u751f\u65e5"
 	},
 	"attribute_noredupersonlin": {
 		"no": "Lokalt ID-nummer",
@@ -928,7 +967,8 @@
 		"fr": "Immatriculation territoriale",
 		"it": "Numero identificativo locale",
 		"lt": "Vietinis tapatyb\u0117s numeris",
-		"ja": "\u652f\u90e8ID"
+		"ja": "\u652f\u90e8ID",
+		"zh-tw": "\u672c\u5730\u9a57\u8b49\u78bc"
 	},
 	"attribute_manager": {
 		"no": "Overordnet",
@@ -951,7 +991,8 @@
 		"fr": "Gestionnaire",
 		"it": "Manager",
 		"lt": "Vadovas",
-		"ja": "\u7ba1\u7406\u8005"
+		"ja": "\u7ba1\u7406\u8005",
+		"zh-tw": "\u7ba1\u7406\u54e1"
 	},
 	"attribute_userpassword": {
 		"no": "Hash av brukerens passord",
@@ -972,7 +1013,8 @@
 		"fr": "Mot de passe chiffr\u00e9",
 		"it": "Hash della password utente",
 		"lt": "Naudotojo slapta\u017eod\u017eio mai\u0161a",
-		"ja": "\u30d1\u30b9\u30ef\u30fc\u30c9\u30cf\u30c3\u30b7\u30e5"
+		"ja": "\u30d1\u30b9\u30ef\u30fc\u30c9\u30cf\u30c3\u30b7\u30e5",
+		"zh-tw": "\u4f7f\u7528\u8005\u5bc6\u78bc\u7de8\u78bc"
 	},
 	"attribute_edupersonprimaryorgunitdn": {
 		"no": "Entydig navn for organisasjonsenheten som brukeren prim\u00e6rt er tilknyttet",
@@ -991,7 +1033,8 @@
 		"fr": "Nom unique (DN) de la section d'origine",
 		"it": "Distinguished name (DN) dell'unit\u00e0 organizzativa della persona",
 		"lt": "Asmens pirminio organizacijos skyriaus atpa\u017einimo vardas",
-		"ja": "\u4e3b\u8981\u7d44\u7e54\u5358\u4f4d\u8b58\u5225\u540d"
+		"ja": "\u4e3b\u8981\u7d44\u7e54\u5358\u4f4d\u8b58\u5225\u540d",
+		"zh-tw": "Distinguished name (DN) of \u500b\u4eba\u4e3b\u8981\u7d44\u7e54\u55ae\u4f4d"
 	},
 	"attribute_schacuserprivateattribute": {
 		"no": "Private informasjonselement",
@@ -1011,7 +1054,8 @@
 		"hr": "Zahtjevana razina privatnosti",
 		"it": "Elementi informativi privati",
 		"lt": "Priva\u010dios informacijos elementai",
-		"ja": "\u500b\u4eba\u60c5\u5831\u8981\u7d20"
+		"ja": "\u500b\u4eba\u60c5\u5831\u8981\u7d20",
+		"zh-tw": "\u500b\u4eba\u8cc7\u6599"
 	},
 	"attribute_noredupersonlegalname": {
 		"no": "Folkeregistrert navn",
@@ -1025,7 +1069,9 @@
 		"es": "Nombre legal",
 		"lt": "Juridinis vardas",
 		"ja": "\u6b63\u5f0f\u540d\u79f0",
-		"nl": "Offici\u00eble naam"
+		"nl": "Offici\u00eble naam",
+		"de": "Offizeller Name",
+		"zh-tw": "\u6b63\u5f0f\u540d\u5b57"
 	},
 	"attribute_edupersonassurance": {
 		"no": "Tillitsniv\u00e5 for autentisering",
@@ -1039,6 +1085,8 @@
 		"lt": "Tapatyb\u0117s tikrumo profilis",
 		"es": "Identificador del perfil de garant\u00eda",
 		"nl": "Identiteitsverzekeringsprofiel",
-		"ja": "\u8b58\u5225\u5b50\u4fdd\u8a3c\u30d7\u30ed\u30d5\u30a1\u30a4\u30eb"
+		"ja": "\u8b58\u5225\u5b50\u4fdd\u8a3c\u30d7\u30ed\u30d5\u30a1\u30a4\u30eb",
+		"de": "Identity Assurance Profil",
+		"zh-tw": "\u53ef\u9760\u9a57\u8b49\u8a2d\u5b9a\u6a94"
 	}
 }
