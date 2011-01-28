@@ -19,6 +19,30 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 
 
 	/**
+	 * The error title tag in dictionary.
+	 *
+	 * @var string
+	 */
+	private $dictTitle;
+
+
+	/**
+	 * The error description tag in dictionary.
+	 *
+	 * @var string
+	 */
+	private $dictDescr;
+
+
+	/**
+	 * The name of module which throw error.
+	 *
+	 * @var string|NULL
+	 */
+	private $module = NULL;
+
+
+	/**
 	 * The parameters for the error.
 	 *
 	 * @var array
@@ -48,6 +72,16 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 			$this->errorCode = $errorCode;
 		}
 
+		$moduleCode = explode(':', $this->errorCode, 2);
+		if (count($moduleCode) === 2) {
+			$this->module = $moduleCode[0];
+			$this->dictTitle = '{' . $this->module . ':errors:title_' . $moduleCode[1] . '}';
+			$this->dictDescr = '{' . $this->module . ':errors:descr_' . $moduleCode[1] . '}';
+		} else {
+			$this->dictTitle = '{errors:title_' . $this->errorCode . '}';
+			$this->dictDescr = '{errors:descr_' . $this->errorCode . '}';
+		}
+
 		if (!empty($this->parameters)) {
 			$msg = $this->errorCode . '(';
 			foreach ($this->parameters as $k => $v) {
@@ -72,6 +106,36 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 	 */
 	public function getErrorCode() {
 		return $this->errorCode;
+	}
+
+
+	/**
+	 * Retrieve the error parameters given when throwing this error.
+	 *
+	 * @return array  The parameters.
+	 */
+	public function getParameters() {
+		return $this->parameters;
+	}
+
+
+	/**
+	 * Retrieve the error title tag in dictionary.
+	 *
+	 * @return string  The error title tag.
+	 */
+	public function getDictTitle() {
+		return $this->dictTitle;
+	}
+
+
+	/**
+	 * Retrieve the error description tag in dictionary.
+	 *
+	 * @return string  The error description tag.
+	 */
+	public function getDictDescr() {
+		return $this->dictDescr;
 	}
 
 
@@ -150,6 +214,9 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 		$data['error'] = $errorData;
 		$data['errorCode'] = $this->errorCode;
 		$data['parameters'] = $this->parameters;
+		$data['module'] = $this->module;
+		$data['dictTitle'] = $this->dictTitle;
+		$data['dictDescr'] = $this->dictDescr;
 
 		/* Check if there is a valid technical contact email address. */
 		if($config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org') {

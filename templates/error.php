@@ -9,10 +9,10 @@
 ?>
 
 
-	<h2><?php echo $this->t('title_' . $this->data['errorCode']); ?></h2>
+	<h2><?php echo $this->t($this->data['dictTitle']); ?></h2>
 
 <?php
-echo htmlspecialchars($this->t('descr_' . $this->data['errorCode'], $this->data['parameters']));
+echo htmlspecialchars($this->t($this->data['dictDescr'], $this->data['parameters']));
 ?>
 
 	<div class="trackidtext">
