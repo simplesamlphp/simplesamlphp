@@ -158,8 +158,17 @@ class sspmod_saml_SP_LogoutStore {
 	 */
 	public static function addSession($authId, array $nameId, $sessionIndex, $expire) {
 		assert('is_string($authId)');
-		assert('is_string($sessionIndex)');
+		assert('is_string($sessionIndex) || is_null($sessionIndex)');
 		assert('is_int($expire)');
+
+		if ($sessionIndex === NULL) {
+			/* This IdP apparently did not include a SessionIndex, and thus probably does not
+			 * support SLO. We still want to add the session to the data store just in case
+			 * it supports SLO, but we don't want an LogoutRequest with a specific
+			 * SessionIndex to match this session. We therefore generate our own session index.
+			 */
+			$sessionIndex = SimpleSAML_Utilities::generateID();
+		}
 
 		$store = SimpleSAML_Store::getInstance();
 		if ($store === FALSE) {
