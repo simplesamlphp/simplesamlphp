@@ -357,6 +357,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 		$as = SAML2_Utils::xpQuery($xml, './saml_assertion:AuthnStatement');
 		if (empty($as)) {
+			$this->authnInstant = NULL;
 			return;
 		} elseif (count($as) > 1) {
 			throw new Exception('More that one <saml:AuthnStatement> in <saml:Assertion> not supported.');
@@ -765,7 +766,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 	/**
 	 * Retrieve the AuthnInstant of the assertion.
 	 *
-	 * @return int  The timestamp the user was authenticated.
+	 * @return int|NULL  The timestamp the user was authenticated, or NULL if the user isn't authenticated.
 	 */
 	public function getAuthnInstant() {
 
@@ -776,10 +777,10 @@ class SAML2_Assertion implements SAML2_SignedElement {
 	/**
 	 * Set the AuthnInstant of the assertion.
 	 *
-	 * @param int $authnInstant  The timestamp the user was authenticated.
+	 * @param int|NULL $authnInstant  The timestamp the user was authenticated, or NULL if we don't want an AuthnStatement.
 	 */
 	public function setAuthnInstant($authnInstant) {
-		assert('is_int($authnInstant)');
+		assert('is_int($authnInstant) || is_null($authnInstant)');
 
 		$this->authnInstant = $authnInstant;
 	}
@@ -1131,8 +1132,8 @@ class SAML2_Assertion implements SAML2_SignedElement {
 	 */
 	private function addAuthnStatement(DOMElement $root) {
 
-		if ($this->authnContext === NULL) {
-			/* No authentication context => no authentication statement. */
+		if ($this->authnContext === NULL || $this->authnInstant === NULL) {
+			/* No authentication context or AuthnInstant => no authentication statement. */
 			return;
 		}
 
