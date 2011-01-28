@@ -39,6 +39,14 @@ $config = array (
 	'showerrors'            =>	TRUE,
 
 	/**
+	 * Custom error show function called from SimpleSAML_Error_Error::show.
+	 * See docs/simplesamlphp-errorhandling.txt for function code example.
+	 *
+	 * Example:
+	 *   'errors.show_function' => 'sspmod_exmaple_Error_Show::show',
+	 */
+
+	/**
 	 * This option allows you to enable validation of XML data against its
 	 * schemas. A warning will be written to the log if validation fails.
 	 */

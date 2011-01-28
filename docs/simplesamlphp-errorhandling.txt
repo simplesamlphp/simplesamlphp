@@ -227,3 +227,17 @@ This happens regardless of whether the exception is delivered directly or throug
 This is done to be consistent in what the application receives - now it will always receive the same exception, regardless of whether it is delivered directly or through a redirect.
 
 
+Custom error show function
+--------------------------
+
+Optional custom error show function, called from SimpleSAML_Error_Error::show, is defined with 'errors.show_function' in config.php.
+
+Example code for this function, which implements the same functionality as SimpleSAML_Error_Error::show, looks something like:
+
+    public static function show(SimpleSAML_Configuration $config, array $data) {
+        $t = new SimpleSAML_XHTML_Template($config, 'error.php', 'errors');
+        $t->data = array_merge($t->data, $data);
+        $t->show();
+        exit;
+    }
+
