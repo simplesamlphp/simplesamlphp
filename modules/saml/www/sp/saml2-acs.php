@@ -60,6 +60,7 @@ $nameId = NULL;
 $sessionIndex = NULL;
 $expire = NULL;
 $attributes = array();
+$foundAuthnStatement = FALSE;
 foreach ($assertions as $assertion) {
 
 	/* Check for duplicate assertion (replay attack). */
@@ -96,6 +97,16 @@ foreach ($assertions as $assertion) {
 	}
 
 	$attributes = array_merge($attributes, $assertion->getAttributes());
+
+	if ($assertion->getAuthnInstant() !== NULL) {
+		/* Assertion contains AuthnStatement, since AuthnInstant is a required attribute. */
+		$foundAuthnStatement = TRUE;
+	}
+}
+
+if (!$foundAuthnStatement) {
+	$e = new SimpleSAML_Error_Exception('No AuthnStatement found in assertion(s).');
+	SimpleSAML_Auth_State::throwException($state, $e);
 }
 
 if ($expire === NULL) {
