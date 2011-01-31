@@ -316,9 +316,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$e->SingleLogoutService = self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), FALSE);
 
-		if ($metadata->hasValue('NameIDFormat')) {
-			$e->NameIDFormat[] = $metadata->getString('NameIDFormat');
-		}
+		$e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', array());
 
 		$endpoints = $metadata->getEndpoints('AssertionConsumerService');
 		foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', array()) as $acs) {
@@ -371,9 +369,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$e->SingleLogoutService = self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), FALSE);
 
-		if ($metadata->hasValue('NameIDFormat')) {
-			$e->NameIDFormat[] = $metadata->getString('NameIDFormat');
-		}
+		$e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', array());
 
 		$e->SingleSignOnService = self::createEndpoints($metadata->getEndpoints('SingleSignOnService'), FALSE);
 
@@ -405,9 +401,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$this->addCertificate($e, $metadata);
 
-		if ($metadata->hasValue('NameIDFormat')) {
-			$e->NameIDFormat[] = $metadata->getString('NameIDFormat');
-		}
+		$e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', array());
 
 		$endpoints = $metadata->getEndpoints('AssertionConsumerService');
 		foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', array()) as $acs) {
@@ -442,9 +436,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$this->addCertificate($e, $metadata);
 
-		if ($metadata->hasValue('NameIDFormat')) {
-			$e->NameIDFormat[] = $metadata->getString('NameIDFormat');
-		}
+		$e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', array());
 
 		$e->SingleSignOnService = self::createEndpoints($metadata->getEndpoints('SingleSignOnService'), FALSE);
 
@@ -473,9 +465,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		$e->AttributeService = self::createEndpoints($metadata->getEndpoints('AttributeService'), FALSE);
 		$e->AssertionIDRequestService = self::createEndpoints($metadata->getEndpoints('AssertionIDRequestService'), FALSE);
 
-		foreach ($metadata->getArray('NameIDFormat', array()) as $format) {
-			$e->NameIDFormat[] = $metadata->getString('NameIDFormat');
-		}
+		$e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', array());
 
 		$this->entityDescriptor->RoleDescriptor[] = $e;
 	}
