@@ -2,20 +2,25 @@
 
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
+$session = SimpleSAML_Session::getInstance();
 $oauthconfig = SimpleSAML_Configuration::getOptionalConfig('module_oauth.php');
 
 $store = new sspmod_core_Storage_SQLPermanentStorage('oauth');
 
-$authsource = $oauthconfig->getValue('auth', 'admin');
+//$authsource = $oauthconfig->getValue('auth', 'admin');
+$authsource = "admin";	// force admin to authenticate as registry maintainer
 $useridattr = $oauthconfig->getValue('useridattr', 'user');
+//$useridattr = $oauthconfig->getValue('useridattr', 'uid');
 
-$as = new SimpleSAML_Auth_Simple($authsource);
-$as->requireAuth();
-$attributes = $as->getAttributes();
-// Check if userid exists
-if (!isset($attributes[$useridattr]))
-	throw new Exception('User ID is missing');
-$userid = $attributes[$useridattr][0];
+if ($session->isValid($authsource)) {
+	$attributes = $session->getAttributes();
+	// Check if userid exists
+	if (!isset($attributes[$useridattr])) 
+		throw new Exception('User ID is missing');
+	$userid = $attributes[$useridattr][0];
+} else {
+	SimpleSAML_Auth_Default::initLogin($authsource, SimpleSAML_Utilities::selfURL());
+}
 
 function requireOwnership($entry, $userid) {
 	if (!isset($entry['owner']))

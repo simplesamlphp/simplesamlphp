@@ -23,3 +23,4 @@ list($consumer, $token) = $server->verify_request($req);
 $data = $store->getAuthorizedData($token->key);
 
 echo json_encode($data);
+

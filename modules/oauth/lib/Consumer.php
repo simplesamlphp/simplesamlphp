@@ -22,11 +22,59 @@ class sspmod_oauth_Consumer {
 	// Used only to load the libextinc library early.
 	public static function dummy() {}
 	
+	
+	public static function getOAuthError($hrh) {
+		foreach($hrh AS $h) {
+			if (preg_match('|OAuth-Error:\s([^;]*)|i', $h, $matches)) {
+				return $matches[1];
+			}
+		}
+		return null;
+	}
+	
+	public static function getContentType($hrh) {
+		foreach($hrh AS $h) {
+			if (preg_match('|Content-Type:\s([^;]*)|i', $h, $matches)) {
+				return $matches[1];
+			}
+		}
+		return null;
+	}
+	
+	/*
+	 * This static helper function wraps file_get_contents
+	 * and throws an exception with diagnostics messages if it appear
+	 * to be failing on an OAuth endpoint.
+	 * 
+	 * If the status code is not 200, an exception is thrown. If the content-type
+	 * of the response if text/plain, the content of the response is included in 
+	 * the text of the Exception thrown.
+	 */
+	public static function getHTTP($url, $context = '') {
+		$response = @file_get_contents($url);
+		
+		if ($response === FALSE) {
+			$statuscode = 'unknown';
+			if (preg_match('/^HTTP.*\s([0-9]{3})/', $http_response_header[0], $matches)) $statuscode = $matches[1];
+			
+			$error = $context . ' [statuscode: ' . $statuscode . ']: ';
+			$contenttype = self::getContentType($http_response_header);
+			$oautherror = self::getOAuthError($http_response_header);
+			
+			if (!empty($oautherror)) $error .= $oautherror;
+
+			throw new Exception($error . ':' . $url);
+		} 
+		// Fall back to return response, if could not reckognize HTTP header. Should not happen.
+		return $response;
+	}
+	
 	public function getRequestToken($url) {
 		$req_req = OAuthRequest::from_consumer_and_token($this->consumer, NULL, "GET", $url, NULL);
 		$req_req->sign_request($this->signer, $this->consumer, NULL);
 
-		$response_req = SimpleSAML_Utilities::fetch($req_req->to_url());
+		$response_req = self::getHTTP($req_req->to_url(), 
+			'Contacting request_token endpoint on the OAuth Provider');
 
 		parse_str($response_req, $responseParsed);
 		
@@ -56,7 +104,10 @@ class sspmod_oauth_Consumer {
 		$acc_req = OAuthRequest::from_consumer_and_token($this->consumer, $requestToken, "GET", $url, NULL);
 		$acc_req->sign_request($this->signer, $this->consumer, $requestToken);
 		
-		$response_acc = SimpleSAML_Utilities::fetch($acc_req->to_url());
+		$response_acc = file_get_contents($acc_req->to_url());
+		if ($response_acc === FALSE) {
+			throw new Exception('Error contacting request_token endpoint on the OAuth Provider');
+		}
 
 		SimpleSAML_Logger::debug('oauth: Reponse to get access token: '. $response_acc);
 		
@@ -90,7 +141,11 @@ class sspmod_oauth_Consumer {
 				'header' => 'Content-Type: application/x-www-form-urlencoded',
 			),
 		);
-		$response = SimpleSAML_Utilities::fetch($url, $opts);
+		$context = stream_context_create($opts);
+		$response = file_get_contents($url, FALSE, $context);
+		if ($response === FALSE) {
+			throw new SimpleSAML_Error_Exception('Failed to push definition file to ' . $pushURL);
+		}
 		return $response;
 	}
 	
@@ -99,7 +154,7 @@ class sspmod_oauth_Consumer {
 		$data_req = OAuthRequest::from_consumer_and_token($this->consumer, $accessToken, "GET", $url, NULL);
 		$data_req->sign_request($this->signer, $this->consumer, $accessToken);
 
-		$data = SimpleSAML_Utilities::fetch($data_req->to_url());
+		$data = file_get_contents($data_req->to_url());
 		#print_r($data);
 
 		$dataDecoded = json_decode($data, TRUE);

@@ -23,7 +23,9 @@ class sspmod_oauth_Registry {
 		$this->getStandardField($request, $entry, 'description');
 		$this->getStandardField($request, $entry, 'key');
 		$this->getStandardField($request, $entry, 'secret');
-		
+		$this->getStandardField($request, $entry, 'RSAcertificate');
+		$this->getStandardField($request, $entry, 'callback_url');
+
 		if ($override) {
 			foreach($override AS $key => $value) {
 				$entry[$key] = $value;
@@ -43,6 +45,7 @@ class sspmod_oauth_Registry {
 	public function checkForm($request) {
 		$this->requireStandardField($request, 'name');
 		$this->requireStandardField($request, 'description');
+		$this->requireStandardField($request, 'key');
 	}
 	
 
@@ -121,10 +124,12 @@ class sspmod_oauth_Registry {
 				$this->standardField($metadata, 'name', 'Name of client') .
 				$this->standardField($metadata, 'description', 'Description of client', TRUE) .
 				$this->readonlyField($metadata, 'owner', 'Owner') .
-				$this->readonlyField($metadata, 'key', 'Consumer Key') .
-				$this->readonlyField($metadata, 'secret', 'Consumer Secret') .
+				$this->standardField($metadata, 'key', 'Consumer Key') .
+				$this->readonlyField($metadata, 'secret', 'Consumer Secret<br/>(Used for HMAC_SHA1 signatures)') .
+				$this->standardField($metadata, 'RSAcertificate', 'RSA certificate (PEM)<br/>(Used for RSA_SHA1 signatures)', TRUE) .
+				$this->standardField($metadata, 'callback_url', 'Static/enforcing callback-url') .
 				
-				$this->hiddenField('field_key', $metadata['key']) .
+//				$this->hiddenField('field_key', $metadata['key']) .
 				$this->hiddenField('field_secret', $metadata['secret']) .
 
 			'</table></div>' . 

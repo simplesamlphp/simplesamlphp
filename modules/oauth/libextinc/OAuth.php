@@ -171,7 +171,7 @@ class OAuthRequest {/*{{{*/
   private $http_url;
   // for debug purposes
   public $base_string;
-  public static $version = '1.0';
+  public static $default_version = '1.0';
 
   function __construct($http_method, $http_url, $parameters=NULL) {/*{{{*/
     @$parameters or $parameters = array();
@@ -185,8 +185,11 @@ class OAuthRequest {/*{{{*/
    * attempt to build up a request from what was passed to the server
    */
   public static function from_request($http_method=NULL, $http_url=NULL, $parameters=NULL) {/*{{{*/
+  	// pre-process $_SERVER['HTTP_HOST'] to ensure no port is included in HTTP_HOST
+  	$http_host = explode( ':', $_SERVER['HTTP_HOST']);
+  	
     $scheme = (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != "on") ? 'http' : 'https';
-    @$http_url or $http_url = $scheme . '://' . $_SERVER['HTTP_HOST'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
+    @$http_url or $http_url = $scheme . '://' . $http_host[0] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
     @$http_method or $http_method = $_SERVER['REQUEST_METHOD'];
     
     $request_headers = OAuthRequest::get_headers();
@@ -218,10 +221,11 @@ class OAuthRequest {/*{{{*/
 
   /**
    * pretty much a helper function to set up the request
+   * set new values in $parameters to overrule defaults
    */
   public static function from_consumer_and_token($consumer, $token, $http_method, $http_url, $parameters=NULL) {/*{{{*/
     @$parameters or $parameters = array();
-    $defaults = array("oauth_version" => OAuthRequest::$version,
+    $defaults = array("oauth_version" => OAuthRequest::$default_version,
                       "oauth_nonce" => OAuthRequest::generate_nonce(),
                       "oauth_timestamp" => OAuthRequest::generate_timestamp(),
                       "oauth_consumer_key" => $consumer->key);
@@ -244,6 +248,12 @@ class OAuthRequest {/*{{{*/
   public function get_parameters() {/*{{{*/
     return $this->parameters;
   }/*}}}*/
+  
+  public function get_version() {/*{{{*/
+  	$v = $this->get_parameter("oauth_version");
+  	if ($v != NULL) return $v;
+  	return self::$default_version;
+  }/*}}}*.
 
   /**
    * Returns the normalized parameters of the request
@@ -330,7 +340,9 @@ class OAuthRequest {/*{{{*/
 
     $port = @$parts['port'];
     $scheme = $parts['scheme'];
-    $host = $parts['host'];
+    // ensure no port definition in hosts
+    $hostname = explode(':', $parts['host']);
+    $host = $hostname[0];
     $path = @$parts['path'];
 
     $port or $port = ($scheme == 'https') ? '443' : '80';
@@ -470,7 +482,8 @@ class OAuthRequest {/*{{{*/
 
 class OAuthServer {/*{{{*/
   protected $timestamp_threshold = 300; // in seconds, five minutes
-  protected $version = 1.0;             // hi blaine
+  // protected $version = 1.0;             // hi blaine
+  protected $versions = array('1.0', '1.0a');	// dopey says hi
   protected $signature_methods = array();
 
   protected $data_store;
@@ -491,7 +504,7 @@ class OAuthServer {/*{{{*/
    * returns the request token on success
    */
   public function fetch_request_token(&$request) {/*{{{*/
-    $this->get_version($request);
+    $v = $this->get_version($request);
 
     $consumer = $this->get_consumer($request);
 
@@ -500,7 +513,15 @@ class OAuthServer {/*{{{*/
 
     $this->check_signature($request, $consumer, $token);
 
-    $new_token = $this->data_store->new_request_token($consumer);
+    // Rev A change
+    $callback = $request->get_parameter('oauth_callback');	// null if not passed
+    
+    if ($consumer->callback_url) $callback = $consumer->callback_url;	// overrule if present in consumer definition
+    
+    if ($v == '1.0a') {
+    	assert('$callback != NULL /* callback must be provided for 1.0a requests */');
+    }
+    $new_token = $this->data_store->new_request_token($consumer, $callback, $v);	// dopey: add version to the request
 
     return $new_token;
   }/*}}}*/
@@ -510,17 +531,20 @@ class OAuthServer {/*{{{*/
    * returns the access token on success
    */
   public function fetch_access_token(&$request) {/*{{{*/
-    $this->get_version($request);
+    $v = $this->get_version($request);
 
     $consumer = $this->get_consumer($request);
 
     // requires authorized request token
     $token = $this->get_token($request, $consumer, "request");
 
-
     $this->check_signature($request, $consumer, $token);
 
-    $new_token = $this->data_store->new_access_token($token, $consumer);
+    // Rev A change
+    $verifier = $request->get_parameter('oauth_verifier'); if ($verifier == null) $verifier = '';
+    $new_token = $this->data_store->new_access_token($token, $consumer, $verifier);
+    
+    // $new_token = $this->data_store->new_access_token($token, $consumer);
 
     return $new_token;
   }/*}}}*/
@@ -545,7 +569,7 @@ class OAuthServer {/*{{{*/
     if (!$version) {
       $version = 1.0;
     }
-    if ($version && $version != $this->version) {
+    if ($version && !in_array($version, $this->versions)) {
       throw new OAuthException("OAuth version '$version' not supported");
     }
     return $version;
@@ -590,17 +614,22 @@ class OAuthServer {/*{{{*/
    * try to find the token for the provided request's token key
    */
   private function get_token(&$request, $consumer, $token_type="access") {/*{{{*/
-    $token_field = @$request->get_parameter('oauth_token');
+    $token_key = @$request->get_parameter('oauth_token');
 
 	// SimpleSAML_Logger::info('request: ' . var_export($request, TRUE));
 	// SimpleSAML_Logger::info('token_type: ' . var_export($token_type, TRUE));
 	// SimpleSAML_Logger::info('token_field: ' . var_export($token_field, TRUE));
+	// 
+	// $bt = SimpleSAML_Utilities::buildBacktrace(new Exception());
+	// foreach ($bt AS $t) {
+	// 	SimpleSAML_Logger::info('   ' . $t);
+	// }
 
     $token = $this->data_store->lookup_token(
-      $consumer, $token_type, $token_field
+      $consumer, $token_type, $token_key
     );
     if (!$token) {
-      throw new OAuthException("Invalid $token_type token: $token_field");
+      throw new OAuthException("Invalid $token_type token: $token_key");
     }
     return $token;
   }/*}}}*/
@@ -671,11 +700,11 @@ class OAuthDataStore {/*{{{*/
     // implement me
   }/*}}}*/
 
-  function new_request_token($consumer) {/*{{{*/
+  function new_request_token($consumer, $callback = null) {/*{{{*/
     // return a new token attached to this consumer
   }/*}}}*/
 
-  function new_access_token($token, $consumer) {/*{{{*/
+  function new_access_token($token, $consumer, $verifier = null) {/*{{{*/
     // return a new access token attached to this consumer
     // for the user associated with this token if the request token
     // is authorized
