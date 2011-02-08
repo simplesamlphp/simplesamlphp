@@ -135,6 +135,17 @@ $config = array(
 	*/
 
 	/*
+	// LinkedIn OAuth Authentication API.
+	// Register your application to get an API key here:
+	//  https://www.linkedin.com/secure/developer
+	'linkedin' => array(
+		'authlinkedin:LinkedIn',
+		'key' => 'xxxxxxxxxxxxxxxx',
+		'secret' => 'xxxxxxxxxxxxxxxx',
+	),
+	*/
+
+	/*
 	// Twitter OAuth Authentication API.
 	// Register your application to get an API key here:
 	//  http://twitter.com/oauth_clients
