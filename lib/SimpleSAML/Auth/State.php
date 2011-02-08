@@ -80,6 +80,35 @@ class SimpleSAML_Auth_State {
 
 
 	/**
+	 * Retrieve the ID of a state array.
+	 *
+	 * Note that this function will not save the state.
+	 *
+	 * @param array &$state  The state array.
+	 * @param bool $rawId  Return a raw ID, without a restart URL. Defaults to FALSE.
+	 * @return string  Identifier which can be used to retrieve the state later.
+	 */
+	public static function getStateId(&$state, $rawId = FALSE) {
+		assert('is_array($state)');
+		assert('is_bool($rawId)');
+
+		if (!array_key_exists(self::ID, $state)) {
+			$state[self::ID] = SimpleSAML_Utilities::generateID();
+		}
+
+		$id = $state[self::ID];
+
+		if ($rawId || !array_key_exists(self::RESTART, $state)) {
+			/* Either raw ID or no restart URL. In any case, return the raw ID. */
+			return $id;
+		}
+
+		/* We have a restart URL. Return the ID with that URL. */
+		return $id . ':' . $state[self::RESTART];
+	}
+
+
+	/**
 	 * Save the state.
 	 *
 	 * This function saves the state, and returns an id which can be used to
@@ -95,25 +124,14 @@ class SimpleSAML_Auth_State {
 		assert('is_string($stage)');
 		assert('is_bool($rawId)');
 
+		$return = self::getStateId($state, $rawId);
+		$id = $state[self::ID];
+
 		/* Save stage. */
 		$state[self::STAGE] = $stage;
 
-		if (!array_key_exists(self::ID, $state)) {
-			$state[self::ID] = SimpleSAML_Utilities::generateID();
-		}
-
-		$id = $state[self::ID];
-
-		/* Embed the restart URL in the state identifier, if it is available. */
-		if (array_key_exists(self::RESTART, $state) && !$rawId) {
-			assert('is_string($state[self::RESTART])');
-			$return = $id . ':' . $state[self::RESTART];
-		} else {
-			$return = $id;
-		}
-
+		/* Save state. */
 		$serializedState = serialize($state);
-
 		$session = SimpleSAML_Session::getInstance();
 		$session->setData('SimpleSAML_Auth_State', $id, $serializedState, 60*60);
 
