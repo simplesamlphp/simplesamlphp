@@ -146,6 +146,28 @@ $config = array(
 	*/
 
 	/*
+	// MySpace OAuth Authentication API.
+	// Register your application to get an API key here:
+	//  http://developer.myspace.com/
+	'myspace' => array(
+		'authmyspace:MySpace',
+		'key' => 'xxxxxxxxxxxxxxxx',
+		'secret' => 'xxxxxxxxxxxxxxxx',
+	),
+	*/
+
+	/*
+	// Windows Live ID Authentication API.
+	// Register your application to get an API key here:
+	//  https://manage.dev.live.com
+	'windowslive' => array(
+		'authwindowslive:LiveID',
+		'key' => 'xxxxxxxxxxxxxxxx',
+		'secret' => 'xxxxxxxxxxxxxxxx',
+	),
+	*/
+
+	/*
 	// Example of a LDAP authentication source.
 	'example-ldap' => array(
 		'ldap:LDAP',
