@@ -69,8 +69,8 @@ class sspmod_oauth_Consumer {
 		return $response;
 	}
 	
-	public function getRequestToken($url) {
-		$req_req = OAuthRequest::from_consumer_and_token($this->consumer, NULL, "GET", $url, NULL);
+	public function getRequestToken($url, $parameters = NULL) {
+		$req_req = OAuthRequest::from_consumer_and_token($this->consumer, NULL, "GET", $url, $parameters);
 		$req_req->sign_request($this->signer, $this->consumer, NULL);
 
 		$response_req = self::getHTTP($req_req->to_url(), 
@@ -99,9 +99,9 @@ class sspmod_oauth_Consumer {
 		return $authorizeURL;
 	}
 	
-	public function getAccessToken($url, $requestToken) {
+	public function getAccessToken($url, $requestToken, $parameters = NULL) {
 
-		$acc_req = OAuthRequest::from_consumer_and_token($this->consumer, $requestToken, "GET", $url, NULL);
+		$acc_req = OAuthRequest::from_consumer_and_token($this->consumer, $requestToken, "GET", $url, $parameters);
 		$acc_req->sign_request($this->signer, $this->consumer, $requestToken);
 		
 		$response_acc = file_get_contents($acc_req->to_url());
@@ -149,12 +149,15 @@ class sspmod_oauth_Consumer {
 		return $response;
 	}
 	
-	public function getUserInfo($url, $accessToken) {
+	public function getUserInfo($url, $accessToken, $opts = NULL) {
 		
 		$data_req = OAuthRequest::from_consumer_and_token($this->consumer, $accessToken, "GET", $url, NULL);
 		$data_req->sign_request($this->signer, $this->consumer, $accessToken);
 
-		$data = file_get_contents($data_req->to_url());
+		if (is_array($opts)) {
+			$opts = stream_context_create($opts);
+		}
+		$data = file_get_contents($data_req->to_url(), FALSE, $opts);
 		#print_r($data);
 
 		$dataDecoded = json_decode($data, TRUE);
