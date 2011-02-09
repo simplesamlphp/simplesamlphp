@@ -199,5 +199,11 @@
 	},
 	"descr_USERABORTED": {
 		"en": "The authentication was aborted by the user"
+	},
+	"title_NOSTATE": {
+		"en": "State information lost"
+	},
+	"descr_NOSTATE": {
+		"en": "State information lost, and no way to restart the request"
 	}
 }

@@ -12,11 +12,9 @@ class SimpleSAML_Error_NoState extends SimpleSAML_Error_Error {
 
 	/**
 	 * Create the error
-	 *
-	 * @param string $reason  Optional description of why the given page could not be found.
 	 */
 	public function __construct() {
-		parent::__construct('State information lost, and no way to restart the request.');
+		parent::__construct('NOSTATE');
 	}
 
 
