@@ -24,7 +24,7 @@ if (array_key_exists('wrap_verification_code', $_REQUEST)) {
 	// wrap_error_reason = 'user_denied' means user chose not to login with LiveID
 	// redirect them to their original page so they can choose another auth mechanism
 	if ($_REQUEST['wrap_error_reason'] === 'user_denied') {
-		$e = new SimpleSAML_Error_UserAborted('User aborted authentication.');
+		$e = new SimpleSAML_Error_UserAborted();
 		SimpleSAML_Auth_State::throwException($state, $e);
 	}
 

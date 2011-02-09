@@ -193,5 +193,11 @@
 	},
 	"descr_UNKNOWNCERT": {
 		"en": "Authentication failed: the certificate your browser sent is unknown"
+	},
+	"title_USERABORTED": {
+		"en": "Authentication aborted"
+	},
+	"descr_USERABORTED": {
+		"en": "The authentication was aborted by the user"
 	}
 }

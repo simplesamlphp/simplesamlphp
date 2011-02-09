@@ -15,7 +15,7 @@ $state = SimpleSAML_Auth_State::loadState($stateId, sspmod_authmyspace_Auth_Sour
 if (array_key_exists('oauth_problem', $_REQUEST)) {
 	// oauth_problem of 'user_refused' means user chose not to login with MySpace
 	if (strcmp($_REQUEST['oauth_problem'],'user_refused') == 0) {
-		$e = new SimpleSAML_Error_UserAborted('User aborted authentication.');
+		$e = new SimpleSAML_Error_UserAborted();
 		SimpleSAML_Auth_State::throwException($state, $e);
 	}
 
