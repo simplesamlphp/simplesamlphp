@@ -205,5 +205,11 @@
 	},
 	"descr_NOSTATE": {
 		"en": "State information lost, and no way to restart the request"
+	},
+	"title_METADATANOTFOUND": {
+		"en": "Metadata not found"
+	},
+	"descr_METADATANOTFOUND": {
+		"en": "Unable to locate metadata for %ENTITYID%"
 	}
 }

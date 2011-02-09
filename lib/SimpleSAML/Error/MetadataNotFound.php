@@ -24,7 +24,11 @@ class SimpleSAML_Error_MetadataNotFound extends SimpleSAML_Error_Error {
 	public function __construct($entityId) {
 		assert('is_string($entityId)');
 
-		parent::__construct('Unable to locate metadata for ' . var_export($entityId, TRUE) . '.');
+		parent::__construct(array(
+				'METADATANOTFOUND',
+				'ENTITYID' => htmlspecialchars(var_export($entityId, TRUE))
+		));
+
 		$this->entityId = $entityId;
 	}
 
