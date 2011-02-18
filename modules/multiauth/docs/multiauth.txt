@@ -1,7 +1,7 @@
 MultiAuth module
 ================
 
-The MultiAuth module provides a method for authenticating users agains
+The MultiAuth module provides a method for users to choosebetween
 a list of authentication sources. There is only one authentication
 module:
 
@@ -52,3 +52,16 @@ authentication sources defined in the `config/authsources.php`
 file. The order in this array does not matter since the user
 is the one that decides which one to use.
 
+I is possible to add the parameter `source` to the calling URL, 
+when accessing a service, to allow the user to preselect the
+authsource to be used. This can be handy if you support different
+authentication types for differen types of users and you want the 
+users to have a direct link to the service and not want them to 
+select the correct authentication source.
+
+For example:
+
+    htttps://example.com/service/?source=saml
+    
+will take you directly to the SAML authentication source, instead 
+of hitting the multiauth select page.
