@@ -69,6 +69,14 @@ class SAML2_AuthnRequest extends SAML2_Request {
 
 
 	/**
+	 * The index of the AssertionConsumerService.
+	 *
+	 * @var int|NULL
+	 */
+	private $assertionConsumerServiceIndex;
+
+
+	/**
 	 * What authentication context was requested.
 	 *
 	 * Array with the following elements.
@@ -111,6 +119,10 @@ class SAML2_AuthnRequest extends SAML2_Request {
 
 		if ($xml->hasAttribute('ProtocolBinding')) {
 			$this->protocolBinding = $xml->getAttribute('ProtocolBinding');
+		}
+
+		if ($xml->hasAttribute('AssertionConsumerServiceIndex')) {
+			$this->assertionConsumerServiceIndex = (int)$xml->getAttribute('AssertionConsumerServiceIndex');
 		}
 
 		$nameIdPolicy = SAML2_Utils::xpQuery($xml, './saml_protocol:NameIDPolicy');
@@ -329,6 +341,28 @@ class SAML2_AuthnRequest extends SAML2_Request {
 		assert('is_string($protocolBinding) || is_null($protocolBinding)');
 
 		$this->protocolBinding = $protocolBinding;
+	}
+
+
+	/**
+	 * Retrieve the value of the AssertionConsumerServiceIndex attribute.
+	 *
+	 * @return int|NULL  The AssertionConsumerServiceIndex attribute.
+	 */
+	public function getAssertionConsumerServiceIndex() {
+		return $this->assertionConsumerServiceIndex;
+	}
+
+
+	/**
+	 * Set the value of the AssertionConsumerServiceIndex attribute.
+	 *
+	 * @param string|NULL $assertionConsumerServiceIndex  The AssertionConsumerServiceIndex attribute.
+	 */
+	public function setAssertionConsumerServiceIndex($assertionConsumerServiceIndex) {
+		assert('is_int($assertionConsumerServiceIndex) || is_null($assertionConsumerServiceIndex)');
+
+		$this->assertionConsumerServiceIndex = $assertionConsumerServiceIndex;
 	}
 
 
