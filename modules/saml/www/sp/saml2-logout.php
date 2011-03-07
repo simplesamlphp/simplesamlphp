@@ -102,13 +102,8 @@ if ($message instanceof SAML2_LogoutResponse) {
 	$lr->setRelayState($message->getRelayState());
 	$lr->setInResponseTo($message->getId());
 
-	/* We should return a partial logout if we were unable to log out of all the given session(s). */
 	if ($numLoggedOut < count($sessionIndexes)) {
-		$lr->setStatus(array(
-			'Code' => SAML2_Const::STATUS_SUCCESS,
-			'SubCode' => SAML2_Const::STATUS_PARTIAL_LOGOUT,
-			'Message' => 'Logged out of ' . $numLoggedOut  . ' of ' . count($sessionIndexes) . ' sessions.'
-		));
+		SimpleSAML_Logger::warning('Logged out of ' . $numLoggedOut  . ' of ' . count($sessionIndexes) . ' sessions.');
 	}
 
 	$binding->send($lr);
