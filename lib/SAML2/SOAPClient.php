@@ -189,7 +189,8 @@ class SAML2_SOAPClient {
 		}
 
 		if ($keyInfo['key'] !== $data) {
-			throw new Exception('Key on SSL connection did not match key we validated against.');
+			SimpleSAML_Logger::debug('Key on SSL connection did not match key we validated against.');
+			return FALSE;
 		}
 
 		SimpleSAML_Logger::debug('Message validated based on SSL certificate.');
