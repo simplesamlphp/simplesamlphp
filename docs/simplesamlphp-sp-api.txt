@@ -117,22 +117,55 @@ The [`saml:SP`](./saml:sp) authentication source also defines some parameters.
 `logout`
 --------
 
-    void logout(string $url = NULL)
+    void logout(mixed $params = NULL)
 
-Log the user out, and return to the given URL.
-If the user isn't authenticated, the user will be redirected to the URL.
-If the user is authenticated with an IdP, the user will be sent to the IdP for logout.
+Log the user out.
+After logging out, the user will either be redirected to another page, or a function will be called.
 This function never returns.
 
 ### Parameters
 
-`$url`
-:   The URL the user should be sent to after logout.
-    The default is the URL of the current page.
+`$params`
+:   Parameters for the logout operation.
+    This can either be a simple string, in which case it is interpreted as the URL the user should be redirected to after logout, or an associative array with logout parameters.
+    If this parameter isn't specified, we will redirect the user to the current URL after logout.
 
-### Example
+    If the parameter is an an array, it can have the following options:
 
-    $auth->logout('https://sp.example.org/');
+    - `ReturnTo`: The URL the user should be returned to after logout.
+    - `ReturnCallback`: The function that should be called after logout.
+    - `ReturnStateParam`: The parameter we should return the state in when redirecting.
+    - `ReturnStateStage`: The stage the state array should be saved with.
+
+    The `ReturnState` parameters allow access to the result of the logout operation after it completes.
+
+### Example 1
+
+Logout, and redirect to the specified URL.
+
+    $auth->logout('https://sp.example.org/logged_out.php');
+
+### Example 2
+
+Same as the previous, but check the result of the logout operation afterwards.
+
+    $auth->logout(array(
+        'ReturnTo' => 'https://sp.example.org/logged_out.php',
+        'ReturnStateParam' => 'LogoutState',
+        'ReturnStateStage' => 'MyLogoutState',
+    ));
+
+And in logged_out.php:
+
+    $state = SimpleSAML_Auth_State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
+    $ls = $state['saml:sp:LogoutStatus']; /* Only works for SAML SP */
+    if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' && !isset($ls['SubCode'])) {
+        /* Successful logout. */
+        echo("You have been logged out.");
+    } else {
+        /* Logout failed. Tell the user to close the browser. */
+        echo("We were unable to log you out of all your sessions. To be completely sure that you are logged out, you need to close your web browser.");
+    }
 
 
 `getAttributes`
