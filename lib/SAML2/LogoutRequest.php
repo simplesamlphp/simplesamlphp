@@ -8,6 +8,13 @@
  */
 class SAML2_LogoutRequest extends SAML2_Request {
 
+	/**
+	 * The expiration time of this request.
+	 *
+	 * @var int|NULL
+	 */
+	private $notOnOrAfter;
+
 
 	/**
 	 * The encrypted NameID in the request.
@@ -49,6 +56,10 @@ class SAML2_LogoutRequest extends SAML2_Request {
 			return;
 		}
 
+		if ($xml->hasAttribute('NotOnOrAfter')) {
+			$this->notOnOrAfter = SimpleSAML_Utilities::parseSAML2Time($xml->getAttribute('NotOnOrAfter'));
+		}
+
 		$nameId = SAML2_Utils::xpQuery($xml, './saml_assertion:NameID | ./saml_assertion:EncryptedID/xenc:EncryptedData');
 		if (empty($nameId)) {
 			throw new Exception('Missing <saml:NameID> or <saml:EncryptedID> in <samlp:LogoutRequest>.');
@@ -67,6 +78,29 @@ class SAML2_LogoutRequest extends SAML2_Request {
 		foreach ($sessionIndexes as $sessionIndex) {
 			$this->sessionIndexes[] = trim($sessionIndex->textContent);
 		}
+	}
+
+
+	/**
+	 * Retrieve the expiration time of this request.
+	 *
+	 * @return int|NULL  The expiration time of this request.
+	 */
+	public function getNotOnOrAfter() {
+
+		return $this->notOnOrAfter;
+	}
+
+
+	/**
+	 * Set the expiration time of this request.
+	 *
+	 * @param int|NULL $notOnOrAfter  The expiration time of this request.
+	 */
+	public function setNotOnOrAfter($notOnOrAfter) {
+		assert('is_int($notOnOrAfter) || is_null($notOnOrAfter)');
+
+		$this->notOnOrAfter = $notOnOrAfter;
 	}
 
 
@@ -224,6 +258,10 @@ class SAML2_LogoutRequest extends SAML2_Request {
 	public function toUnsignedXML() {
 
 		$root = parent::toUnsignedXML();
+
+		if ($this->notOnOrAfter !== NULL) {
+			$root->setAttribute('NotOnOrAfter', gmdate('Y-m-d\TH:i:s\Z', $this->notOnOrAfter));
+		}
 
 		if ($this->encryptedNameId === NULL) {
 			SAML2_Utils::addNameId($root, $this->nameId);
