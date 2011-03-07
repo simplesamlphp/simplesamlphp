@@ -31,9 +31,12 @@ class SAML2_SOAPClient {
 
 		// Determine if we are going to do a MutualSSL connection between the IdP and SP  - Shoaib
 		if ($srcMetadata->hasValue('saml.SOAPClient.certificate')) {
-			$ctxOpts['ssl']['local_cert'] = SimpleSAML_Utilities::resolveCert($srcMetadata->getString('saml.SOAPClient.certificate'));
-			if ($srcMetadata->hasValue('saml.SOAPClient.privatekey_pass')) {
-				$ctxOpts['ssl']['passphrase'] = $srcMetadata->getString('saml.SOAPClient.privatekey_pass');
+			$cert = $srcMetadata->getValue('saml.SOAPClient.certificate');
+			if ($cert !== FALSE) {
+				$ctxOpts['ssl']['local_cert'] = SimpleSAML_Utilities::resolveCert($srcMetadata->getString('saml.SOAPClient.certificate'));
+				if ($srcMetadata->hasValue('saml.SOAPClient.privatekey_pass')) {
+					$ctxOpts['ssl']['passphrase'] = $srcMetadata->getString('saml.SOAPClient.privatekey_pass');
+				}
 			}
 		} else {
 			/* Use the SP certificate and privatekey if it is configured. */

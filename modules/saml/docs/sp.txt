@@ -241,6 +241,8 @@ Options
 :   A file with a certificate _and_ private key that should be used when issuing SOAP requests from this SP.
     If this option isn't specified, the SP private key and certificate will be used.
 
+:   This option can also be set to `FALSE`, in which case no client certificate will be used.
+
 `saml.SOAPClient.privatekey_pass`
 :   The passphrase of the privatekey in `saml.SOAPClient.certificate`.
 
