@@ -195,6 +195,23 @@ The attributes will be returned as an associative array with the name of the att
     print('Hello, ' . htmlspecialchars($name));
 
 
+`getAuthData`
+---------------
+
+    mixed getAuthData(string $name)
+
+Retrieve the specified authentication data for the current session.
+NULL is returned if the user isn't authenticated.
+
+The available authentication data depends on the module used for authentication.
+See the [`saml:SP`](./saml:sp) reference for information about available SAML authentication data.
+
+### Example
+
+    $idp = $auth->getAuthData('saml:sp:IdP');
+    print(You are logged in from: ' . htmlspecialchars($idp));
+
+
 `getLoginURL`
 -------------
 

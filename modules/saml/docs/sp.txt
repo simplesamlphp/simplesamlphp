@@ -42,6 +42,23 @@ All these parameters override the equivalent option from the configuration.
 :   *Note*: SAML 2 specific.
 
 
+Authentication data
+-------------------
+
+Some SAML-specific attributes are available to the application after authentication.
+To retrieve these attributes, the application can use the `getAuthData()`-function from the [SP API](./simplesamlphp-sp-api).
+The following attributes are available:
+
+`saml:sp:IdP`
+:   The entityID of the IdP the user is authenticated against.
+
+`saml:sp:NameID`
+:   The NameID the user was issued by the IdP.
+    This is an associative array with the various fields from the NameID.
+
+`saml:sp:SessionIndex`
+:   The SessionIndex we received from the IdP.
+
 
 Examples
 --------
