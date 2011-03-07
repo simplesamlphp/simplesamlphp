@@ -202,10 +202,17 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		}
 
 		if (isset($state['saml:NameIDPolicy'])) {
-			$ar->setNameIdPolicy(array(
-				'Format' => (string)$state['saml:NameIDPolicy'],
-				'AllowCreate' => TRUE,
-			));
+			if (is_string($state['saml:NameIDPolicy'])) {
+				$policy = array(
+					'Format' => (string)$state['saml:NameIDPolicy'],
+					'AllowCreate' => TRUE,
+				);
+			} elseif (is_array($state['saml:NameIDPolicy'])) {
+				$policy = $state['saml:NameIDPolicy'];
+			} else {
+				throw new SimpleSAML_Error_Exception('Invalid value of $state[\'saml:NameIDPolicy\'].');
+			}
+			$ar->setNameIdPolicy($policy);
 		}
 
 		if (isset($state['saml:IDPList'])) {
