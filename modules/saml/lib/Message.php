@@ -655,4 +655,36 @@ class sspmod_saml_Message {
 		return $assertion;
 	}
 
+
+	/**
+	 * Retrieve the encryption key for the given entity.
+	 *
+	 * @param SimpleSAML_Configuration $metadata  The metadata of the entity.
+	 * @return XMLSecurityKey  The encryption key.
+	 */
+	public static function getEncryptionKey(SimpleSAML_Configuration $metadata) {
+
+		$sharedKey = $metadata->getString('sharedkey', NULL);
+		if ($sharedKey !== NULL) {
+			$key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
+			$key->loadKey($sharedKey);
+			return $key;
+		}
+
+		$keys = $metadata->getPublicKeys('encryption', TRUE);
+		foreach ($keys as $key) {
+			switch ($key['type']) {
+			case 'X509Certificate':
+				$pemKey = "-----BEGIN CERTIFICATE-----\n" .
+					chunk_split($key['X509Certificate'], 64) .
+					"-----END CERTIFICATE-----\n";
+				$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'public'));
+				$key->loadKey($pemKey);
+				return $key;
+			}
+		}
+
+		throw new SimpleSAML_Error_Exception('No supported encryption key in ' . var_export($metadata->getString('entityid'), TRUE));
+	}
+
 }
