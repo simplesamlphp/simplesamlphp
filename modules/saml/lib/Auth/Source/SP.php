@@ -490,7 +490,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$state['Attributes'] = $authProcState['Attributes'];
 
 		if (isset($state['saml:sp:isUnsoliced']) && (bool)$state['saml:sp:isUnsoliced']) {
-			if (isset($state['saml:sp:RelayState'])) {
+			if (!empty($state['saml:sp:RelayState'])) {
 				$redirectTo = $state['saml:sp:RelayState'];
 			} else {
 				$redirectTo = $source->getMetadata()->getString('RelayState', '/');
