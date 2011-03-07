@@ -48,7 +48,7 @@ class sspmod_saml_IdP_SAML2 {
 			'Handler' => 'sspmod_saml_IdP_SAML2',
 			'Expires' => $assertion->getSessionNotOnOrAfter(),
 			'saml:entityID' => $spEntityId,
-			'saml:NameID' => $assertion->getNameId(),
+			'saml:NameID' => $state['saml:idp:NameID'],
 			'saml:SessionIndex' => $assertion->getSessionIndex(),
 		);
 
@@ -658,7 +658,17 @@ class sspmod_saml_IdP_SAML2 {
 			);
 		}
 
+		$state['saml:idp:NameID'] = $nameId;
+
 		$a->setNameId($nameId);
+
+		$encryptNameId = $spMetadata->getBoolean('nameid.encryption', NULL);
+		if ($encryptNameId === NULL) {
+			$encryptNameId = $idpMetadata->getBoolean('nameid.encryption', FALSE);
+		}
+		if ($encryptNameId) {
+			$a->encryptNameId(sspmod_saml_Message::getEncryptionKey($spMetadata));
+		}
 
 		return $a;
 	}
