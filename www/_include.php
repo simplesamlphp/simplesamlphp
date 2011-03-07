@@ -17,6 +17,9 @@ if(get_magic_quotes_gpc()) {
 		}
 	}
 }
+if (get_magic_quotes_runtime()) {
+	set_magic_quotes_runtime(FALSE);
+}
 
 
 /* Initialize the autoloader. */
