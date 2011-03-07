@@ -526,6 +526,10 @@ class SimpleSAML_Utilities {
 			$code = 302;
 		}
 
+		if (strlen($url) > 2048) {
+			SimpleSAML_Logger::warning('Redirecting to URL longer than 2048 bytes.');
+		}
+
 		/* Set the location header. */
 		header('Location: ' . $url, TRUE, $code);
 
