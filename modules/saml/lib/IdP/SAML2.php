@@ -464,6 +464,12 @@ class sspmod_saml_IdP_SAML2 {
 		$lr->setSessionIndex($association['saml:SessionIndex']);
 		$lr->setNameId($association['saml:NameID']);
 
+		$assertionLifetime = $spMetadata->getInteger('assertion.lifetime', NULL);
+		if ($assertionLifetime === NULL) {
+			$assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
+		}
+		$lr->setNotOnOrAfter(time() + $assertionLifetime);
+
 		$encryptNameId = $spMetadata->getBoolean('nameid.encryption', NULL);
 		if ($encryptNameId === NULL) {
 			$encryptNameId = $idpMetadata->getBoolean('nameid.encryption', FALSE);
