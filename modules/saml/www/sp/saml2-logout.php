@@ -64,7 +64,7 @@ if ($message instanceof SAML2_LogoutResponse) {
 
 	if ($message->isNameIdEncrypted()) {
 		try {
-			$keys = sspmod_saml_Message::getDecryptionKeys($srcMetadata, $dstMetadata);
+			$keys = sspmod_saml_Message::getDecryptionKeys($idpMetadata, $spMetadata);
 		} catch (Exception $e) {
 			throw new SimpleSAML_Error_Exception('Error decrypting NameID: ' . $e->getMessage());
 		}
@@ -74,12 +74,16 @@ if ($message instanceof SAML2_LogoutResponse) {
 			try {
 				$message->decryptNameId($key);
 				SimpleSAML_Logger::debug('Decryption with key #' . $i . ' succeeded.');
+				$lastException = NULL;
+				break;
 			} catch (Exception $e) {
 				SimpleSAML_Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
 				$lastException = $e;
 			}
 		}
-		throw $lastException;
+		if ($lastException !== NULL) {
+			throw $lastException;
+		}
 	}
 
 	$nameId = $message->getNameId();
