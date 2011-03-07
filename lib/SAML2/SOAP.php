@@ -20,7 +20,7 @@ class SAML2_SOAP extends SAML2_Binding {
 		$outputFromIdp = '<?xml version="1.0" encoding="UTF-8"?>';
 		$outputFromIdp .= '<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">';
 		$outputFromIdp .= '<SOAP-ENV:Body>';
-		$xmlMessage = $message->toUnsignedXML();
+		$xmlMessage = $message->toSignedXML();
 		SimpleSAML_Utilities::debugMessage($xmlMessage, 'out');
 		$tempOutputFromIdp = $xmlMessage->ownerDocument->saveXML($xmlMessage);
 		$outputFromIdp .= $tempOutputFromIdp;
