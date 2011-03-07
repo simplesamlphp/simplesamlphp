@@ -552,12 +552,12 @@ class sspmod_saml_Message {
 		/* Check various properties of the assertion. */
 
 		$notBefore = $assertion->getNotBefore();
-		if ($notBefore > time() + 60) {
+		if ($notBefore !== NULL && $notBefore > time() + 60) {
 			throw new SimpleSAML_Error_Exception('Received an assertion that is valid in the future. Check clock synchronization on IdP and SP.');
 		}
 
 		$notOnOrAfter = $assertion->getNotOnOrAfter();
-		if ($notOnOrAfter <= time() - 60) {
+		if ($notOnOrAfter !== NULL && $notOnOrAfter <= time() - 60) {
 			throw new SimpleSAML_Error_Exception('Received an assertion that has expired. Check clock synchronization on IdP and SP.');
 		}
 
