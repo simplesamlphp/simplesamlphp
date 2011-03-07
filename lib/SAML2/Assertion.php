@@ -612,6 +612,36 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	/**
+	 * Encrypt the NameID in the Assertion.
+	 *
+	 * @param XMLSecurityKey $key  The encryption key.
+	 */
+	public function encryptNameId(XMLSecurityKey $key) {
+
+		/* First create a XML representation of the NameID. */
+		$doc = new DOMDocument();
+		$root = $doc->createElement('root');
+		$doc->appendChild($root);
+		SAML2_Utils::addNameId($root, $this->nameId);
+		$nameId = $root->firstChild;
+
+		SimpleSAML_Utilities::debugMessage($nameId, 'encrypt');
+
+		/* Encrypt the NameID. */
+		$enc = new XMLSecEnc();
+		$enc->setNode($nameId);
+		$enc->type = XMLSecEnc::Element;
+
+		$symmetricKey = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
+		$symmetricKey->generateSessionKey();
+		$enc->encryptKey($key, $symmetricKey);
+
+		$this->encryptedNameId = $enc->encryptNode($symmetricKey);
+		$this->nameId = NULL;
+	}
+
+
+	/**
 	 * Decrypt the NameId of the subject in the assertion.
 	 *
 	 * @param XMLSecurityKey $key  The decryption key.
@@ -1082,7 +1112,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 	 */
 	private function addSubject(DOMElement $root) {
 
-		if ($this->nameId === NULL) {
+		if ($this->nameId === NULL && $this->encryptedNameId === NULL) {
 			/* We don't have anything to create a Subject node for. */
 			return;
 		}
@@ -1090,7 +1120,13 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		$subject = $root->ownerDocument->createElementNS(SAML2_Const::NS_SAML, 'saml:Subject');
 		$root->appendChild($subject);
 
-		SAML2_Utils::addNameId($subject, $this->nameId);
+		if ($this->encryptedNameId === NULL) {
+			SAML2_Utils::addNameId($subject, $this->nameId);
+		} else {
+			$eid = $subject->ownerDocument->createElementNS(SAML2_Const::NS_SAML, 'saml:' . 'EncryptedID');
+			$subject->appendChild($eid);
+			$eid->appendChild($subject->ownerDocument->importNode($this->encryptedNameId, TRUE));
+		}
 
 		foreach ($this->SubjectConfirmation as $sc) {
 			$sc->toXML($subject);
