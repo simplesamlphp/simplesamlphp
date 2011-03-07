@@ -99,6 +99,7 @@ class SAML2_LogoutRequest extends SAML2_Request {
 		SAML2_Utils::addNameId($root, $this->nameId);
 		$nameId = $root->firstChild;
 
+		SimpleSAML_Utilities::debugMessage($nameId, 'encrypt');
 
 		/* Encrypt the NameID. */
 		$enc = new XMLSecEnc();
@@ -127,6 +128,7 @@ class SAML2_LogoutRequest extends SAML2_Request {
 		}
 
 		$nameId = SAML2_Utils::decryptElement($this->encryptedNameId, $key);
+		SimpleSAML_Utilities::debugMessage($nameId, 'decrypt');
 		$this->nameId = SAML2_Utils::parseNameId($nameId);
 
 		$this->encryptedNameId = NULL;

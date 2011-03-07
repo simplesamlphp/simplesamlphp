@@ -624,6 +624,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 		}
 
 		$nameId = SAML2_Utils::decryptElement($this->encryptedNameId, $key);
+		SimpleSAML_Utilities::debugMessage($nameId, 'decrypt');
 		$this->nameId = SAML2_Utils::parseNameId($nameId);
 
 		$this->encryptedNameId = NULL;
