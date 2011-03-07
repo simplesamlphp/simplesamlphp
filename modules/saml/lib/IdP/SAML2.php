@@ -412,6 +412,14 @@ class sspmod_saml_IdP_SAML2 {
 		$lr->setSessionIndex($association['saml:SessionIndex']);
 		$lr->setNameId($association['saml:NameID']);
 
+		$encryptNameId = $spMetadata->getBoolean('nameid.encryption', NULL);
+		if ($encryptNameId === NULL) {
+			$encryptNameId = $idpMetadata->getBoolean('nameid.encryption', FALSE);
+		}
+		if ($encryptNameId) {
+			$lr->encryptNameId(sspmod_saml_Message::getEncryptionKey($spMetadata));
+		}
+
 		$binding = new SAML2_HTTPRedirect();
 		return $binding->getRedirectURL($lr);
 	}

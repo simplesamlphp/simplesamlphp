@@ -377,6 +377,14 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$lr->setSessionIndex($sessionIndex);
 		$lr->setRelayState($id);
 
+		$encryptNameId = $idpMetadata->getBoolean('nameid.encryption', NULL);
+		if ($encryptNameId === NULL) {
+			$encryptNameId = $this->metadata->getBoolean('nameid.encryption', FALSE);
+		}
+		if ($encryptNameId) {
+			$lr->encryptNameId(sspmod_saml_Message::getEncryptionKey($idpMetadata));
+		}
+
 		$b = new SAML2_HTTPRedirect();
 		$b->send($lr);
 
