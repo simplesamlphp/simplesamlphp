@@ -117,6 +117,88 @@ class sspmod_saml_IdP_SAML2 {
 
 
 	/**
+	 * Find SP AssertionConsumerService based on parameter in AuthnRequest.
+	 *
+	 * @param array $supportedBindings  The bindings we allow for the response.
+	 * @param SimpleSAML_Configuration $spMetadata  The metadata for the SP.
+	 * @param string|NULL $AssertionConsumerServiceURL  AssertionConsumerServiceURL from request.
+	 * @param string|NULL $ProtocolBinding  ProtocolBinding from request.
+	 * @param int|NULL $AssertionConsumerServiceIndex  AssertionConsumerServiceIndex from request.
+	 * @return array  Array with the Location and Binding we should use for the response.
+	 */
+	private static function getAssertionConsumerService(array $supportedBindings, SimpleSAML_Configuration $spMetadata,
+		$AssertionConsumerServiceURL, $ProtocolBinding, $AssertionConsumerServiceIndex) {
+		assert('is_string($AssertionConsumerServiceURL) || is_null($AssertionConsumerServiceURL)');
+		assert('is_string($ProtocolBinding) || is_null($ProtocolBinding)');
+		assert('is_int($AssertionConsumerServiceIndex) || is_null($AssertionConsumerServiceIndex)');
+
+		/* We want to pick the best matching endpoint in the case where for example
+		 * only the ProtocolBinding is given. We therefore pick endpoints with the
+		 * following priority:
+		 *  1. isDefault="true"
+		 *  2. isDefault unset
+		 *  3. isDefault="false"
+		 */
+		$firstNotFalse = NULL;
+		$firstFalse = NULL;
+		foreach ($spMetadata->getEndpoints('AssertionConsumerService') as $ep) {
+
+			if ($AssertionConsumerServiceURL !== NULL && $ep['Location'] !== $AssertionConsumerServiceURL) {
+				continue;
+			}
+			if ($ProtocolBinding !== NULL && $ep['Binding'] !== $ProtocolBinding) {
+				continue;
+			}
+			if ($AssertionConsumerServiceIndex !== NULL && $ep['index'] !== $AssertionConsumerServiceIndex) {
+				continue;
+			}
+
+			if (!in_array($ep['Binding'], $supportedBindings, TRUE)) {
+				/* The endpoint has an unsupported binding. */
+				continue;
+			}
+
+			/* We have an endpoint that matches all our requirements. Check if it is the best one. */
+
+			if (array_key_exists('isDefault', $ep)) {
+				if ($ep['isDefault'] === TRUE) {
+					/* This is the first matching endpoint with isDefault set to TRUE. */
+					return $ep;
+				}
+				/* isDefault is set to FALSE, but the endpoint is still useable. */
+				if ($firstFalse === NULL) {
+					/* This is the first endpoint that we can use. */
+					$firstFalse = $ep;
+				}
+			} else if ($firstNotFalse === NULL) {
+				/* This is the first endpoint without isDefault set. */
+				$firstNotFalse = $ep;
+			}
+		}
+
+		if ($firstNotFalse !== NULL) {
+			return $firstNotFalse;
+		} elseif ($firstFalse !== NULL) {
+			return $firstFalse;
+		}
+
+		SimpleSAML_Logger::warning('Authentication request specifies invalid AssertionConsumerService:');
+		if ($AssertionConsumerServiceURL !== NULL) {
+			SimpleSAML_Logger::warning('AssertionConsumerServiceURL: ' . var_export($AssertionConsumerServiceURL, TRUE));
+		}
+		if ($ProtocolBinding !== NULL) {
+			SimpleSAML_Logger::warning('ProtocolBinding: ' . var_export($ProtocolBinding, TRUE));
+		}
+		if ($AssertionConsumerServiceIndex !== NULL) {
+			SimpleSAML_Logger::warning('AssertionConsumerServiceIndex: ' . var_export($AssertionConsumerServiceIndex, TRUE));
+		}
+
+		/* We have no good endpoints. Our last resort is to just use the default endpoint. */
+		return $spMetadata->getDefaultEndpoint('AssertionConsumerService', $supportedBindings);
+	}
+
+
+	/**
 	 * Receive an authentication request.
 	 *
 	 * @param SimpleSAML_IdP $idp  The IdP we are receiving it for.
@@ -173,6 +255,7 @@ class sspmod_saml_IdP_SAML2 {
 			$forceAuthn = FALSE;
 			$isPassive = FALSE;
 			$consumerURL = NULL;
+			$consumerIndex = NULL;
 			$extensions = NULL;
 
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: IdP initiated authentication: '. var_export($spEntityId, TRUE));
@@ -205,6 +288,7 @@ class sspmod_saml_IdP_SAML2 {
 			$isPassive = $request->getIsPassive();
 			$consumerURL = $request->getAssertionConsumerServiceURL();
 			$protocolBinding = $request->getProtocolBinding();
+			$consumerIndex = $request->getAssertionConsumerServiceIndex();
 			$extensions = $request->getExtensions();
 
 			$nameIdPolicy = $request->getNameIdPolicy();
@@ -216,39 +300,7 @@ class sspmod_saml_IdP_SAML2 {
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '. var_export($spEntityId, TRUE));
 		}
 
-		if ($protocolBinding === NULL || !in_array($protocolBinding, $supportedBindings, TRUE)) {
-			/*
-			 * No binding specified or unsupported binding requested - default to HTTP-POST.
-			 * TODO: Select any supported binding based on default endpoint?
-			 */
-			$protocolBinding = SAML2_Const::BINDING_HTTP_POST;
-		}
-
-		if ($consumerURL !== NULL) {
-			$found = FALSE;
-			foreach ($spMetadata->getEndpoints('AssertionConsumerService') as $ep) {
-				if ($ep['Binding'] !== $protocolBinding) {
-					continue;
-				}
-				if ($ep['Location'] !== $consumerURL) {
-					continue;
-				}
-				$found = TRUE;
-				break;
-			}
-
-			if (!$found) {
-				SimpleSAML_Logger::warning('Authentication request from ' . var_export($spEntityId, TRUE) .
-					' contains invalid AssertionConsumerService URL. Was ' .
-					var_export($consumerURL, TRUE) . '.');
-				$consumerURL = NULL;
-			}
-		}
-		if ($consumerURL === NULL) {
-			/* Not specified or invalid. Use default. */
-			$consumerURL = $spMetadata->getDefaultEndpoint('AssertionConsumerService', array($protocolBinding));
-			$consumerURL = $consumerURL['Location'];
-		}
+		$acsEndpoint = self::getAssertionConsumerService($supportedBindings, $spMetadata, $consumerURL, $protocolBinding, $consumerIndex);
 
 		$IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', array())));
 		if ($ProxyCount == null) $ProxyCount = $spMetadata->getInteger('ProxyCount', null);
@@ -282,8 +334,8 @@ class sspmod_saml_IdP_SAML2 {
 			'saml:RequesterID' => $RequesterID,
 			'ForceAuthn' => $forceAuthn,
 			'isPassive' => $isPassive,
-			'saml:ConsumerURL' => $consumerURL,
-			'saml:Binding' => $protocolBinding,
+			'saml:ConsumerURL' => $acsEndpoint['Location'],
+			'saml:Binding' => $acsEndpoint['Binding'],
 			'saml:NameIDFormat' => $nameIDFormat,
 			'saml:Extensions' => $extensions,
 		);
