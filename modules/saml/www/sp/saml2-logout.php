@@ -55,6 +55,7 @@ if ($message instanceof SAML2_LogoutResponse) {
 	}
 
 	$state = SimpleSAML_Auth_State::loadState($relayState, 'saml:slosent');
+	$state['saml:sp:LogoutStatus'] = $message->getStatus();
 	SimpleSAML_Auth_Source::completeLogout($state);
 
 } elseif ($message instanceof SAML2_LogoutRequest) {
