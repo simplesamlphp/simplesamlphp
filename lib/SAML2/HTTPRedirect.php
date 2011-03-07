@@ -77,6 +77,7 @@ class SAML2_HTTPRedirect extends SAML2_Binding {
 	public function send(SAML2_Message $message) {
 
 		$destination = $this->getRedirectURL($message);
+		SimpleSAML_Logger::debug('Redirect to ' . strlen($destination) . ' byte URL: ' . $destination);
 		SimpleSAML_Utilities::redirect($destination);
 	}
 
