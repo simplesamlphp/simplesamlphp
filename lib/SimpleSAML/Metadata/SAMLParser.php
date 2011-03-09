@@ -872,7 +872,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$ret = array(
 			'scope' => array(),
 			'tags' => array(),
-			'entityAttributes' => array(),
+			'EntityAttributes' => array(),
 		);
 
 		foreach ($element->Extensions as $e) {
