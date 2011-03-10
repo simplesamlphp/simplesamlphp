@@ -6,6 +6,51 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.8
+
+  * New authentication modules:
+      * [`authmyspace`](./authmyspace:oauthmyspace)
+      * [`authlinkedin`](./authlinkedin:oauthlinkedin)
+      * [`authwindowslive`](./authwindowslive:windowsliveid)
+  * Support for custom error handler, replacing the default display function.
+  * Allow error codes to be defined in modules.
+  * Better control of logout what we do after logout request.
+      * This makes it possible for the SP to display a warning when receiving a PartialLogout response from the IdP.
+  * New `cdc` module, for setting and reading common domain cookies.
+
+### `consent`
+
+  * Support for disabling consent for some attributes.
+
+### `ldap`
+
+  * `ldap:AttributeAddFromLDAP`: Extract values from multiple matching entries.
+
+### `oauth`
+
+  * Added support for:
+      * RSASHA1 signatures
+      * consent
+      * callbackurl
+      * verifier code
+      * request parameters
+
+### `openid`
+
+  * Support for sending custom extension arguments (e.g. UI extensions).
+
+### `saml`
+
+  * Extract Extensions from AuthnRequest for use by custom modules when authenticating.
+  * Allow signing of SP metadata.
+  * Better control over NameIDPolicy when sending AuthnRequest.
+  * Support encrypting/decrypting NameID in LogoutRequest.
+  * Option to disable client certificate in SOAP client.
+  * Better selection of AssertionConsumerService endpoint based on parameters in AuthnRequest.
+  * Set NotOnOrAfter in IdP LogoutRequest.
+  * Only return PartialLogout from the IdP.
+
+
 ## Version 1.7
 
   * New authentication modules:
