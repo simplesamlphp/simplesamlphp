@@ -10,7 +10,11 @@
 		"fr": "Identifiant de processus (PID)",
 		"it": "ID del Processo",
 		"es": "Id de Proceso",
-		"nl": "Proces-ID"
+		"nl": "Proces-ID",
+		"ja": "pid",
+		"lt": "Proceso ID",
+		"zh-tw": "\u7a0b\u5e8f ID",
+		"nn": "Prosess-ID"
 	},
 	"uptime": {
 		"no": "Oppetid",
@@ -23,7 +27,11 @@
 		"fr": "Temps de fonctionnement",
 		"it": "Uptime",
 		"es": "Tiempo transcurrido",
-		"nl": "Uptime"
+		"nl": "Uptime",
+		"ja": "\u8d77\u52d5\u6642\u9593",
+		"lt": "Veikimo laikas",
+		"zh-tw": "\u5df2\u904b\u4f5c\u6642\u9593",
+		"nn": "Oppetid"
 	},
 	"time": {
 		"no": "Tid n\u00e5",
@@ -36,7 +44,11 @@
 		"fr": "Date courante",
 		"it": "Ora corrente",
 		"es": "Tiempo actual",
-		"nl": "Huidige tijd"
+		"nl": "Huidige tijd",
+		"ja": "\u73fe\u5728\u6642\u523b",
+		"lt": "Laikas",
+		"zh-tw": "\u76ee\u524d\u6642\u9593",
+		"nn": "Tid no"
 	},
 	"version": {
 		"no": "Versjon",
@@ -49,7 +61,11 @@
 		"fr": "Version",
 		"it": "Versione",
 		"es": "Versi\u00f3n",
-		"nl": "Versie"
+		"nl": "Versie",
+		"ja": "\u30d0\u30fc\u30b8\u30e7\u30f3",
+		"lt": "Versija",
+		"zh-tw": "\u7248\u672c",
+		"nn": "Versjon"
 	},
 	"rusage_user": {
 		"no": "CPU Sekunder (bruker)",
@@ -62,7 +78,11 @@
 		"fr": "Temps de calcul (mode utilisateur)",
 		"it": "Secondi di CPU (User)",
 		"es": "Segundos de CPU (Usuario)",
-		"nl": "CPU-Seconden (Gebruiker)"
+		"nl": "CPU-Seconden (Gebruiker)",
+		"ja": "CPU\u6642\u9593(User)",
+		"lt": "CPU sekund\u0117s (vartotojas)",
+		"zh-tw": "CPU \u4f7f\u7528\u91cf(\u4f7f\u7528\u8005)",
+		"nn": "CPU-sekund (brukar)"
 	},
 	"rusage_system": {
 		"no": "CPU Sekunder (system)",
@@ -75,7 +95,11 @@
 		"fr": "Temps de calcul (mode syst\u00e8me)",
 		"it": "Secondi di CPU (System)",
 		"es": "Segundos de CPU (Sistema)",
-		"nl": "CPU-Seconden (Systeem)"
+		"nl": "CPU-Seconden (Systeem)",
+		"ja": "CPU\u6642\u9593(System)",
+		"lt": "CPU sekund\u0117s (sistema)",
+		"zh-tw": "CPU \u4f7f\u7528\u91cf(\u7cfb\u7d71)",
+		"nn": "CPU-sekund (system)"
 	},
 	"curr_items": {
 		"no": "N\u00e5v\u00e6rende antall elementer",
@@ -88,7 +112,11 @@
 		"fr": "\u00c9l\u00e9ments utilis\u00e9s actuellement",
 		"it": "Attuale numero di elementi",
 		"es": "N\u00famero actual de \u00edtems",
-		"nl": "Huidig aantal items"
+		"nl": "Huidig aantal items",
+		"ja": "\u73fe\u5728\u30a2\u30a4\u30c6\u30e0\u6570",
+		"lt": "\u0160iuo metu element\u0173 skai\u010dius",
+		"zh-tw": "\u76ee\u524d\u9805\u76ee\u7684\u6578\u91cf",
+		"nn": "Tal p\u00e5 element no"
 	},
 	"total_items": {
 		"no": "Antall elementer for alltid",
@@ -101,7 +129,11 @@
 		"fr": "Total d'\u00e9l\u00e9ments depuis le d\u00e9marrage",
 		"it": "Numero totale di elementi",
 		"es": "N\u00famero total de \u00edtems",
-		"nl": "Totaal aantal items ooit"
+		"nl": "Totaal aantal items ooit",
+		"ja": "\u7d2f\u8a08\u30a2\u30a4\u30c6\u30e0\u6570",
+		"lt": "Viso element\u0173",
+		"zh-tw": "\u6240\u6709\u9805\u76ee",
+		"nn": "Tal p\u00e5 element (totalt)"
 	},
 	"bytes": {
 		"no": "Totalt antall bytes i bruk n\u00e5",
@@ -114,7 +146,11 @@
 		"fr": "Octets utilis\u00e9s actuellement",
 		"it": "Byte attualmente utilizzati",
 		"es": "Cantidad total de bytes en uso actualmente",
-		"nl": "Aantal bytes nu in gebruik"
+		"nl": "Aantal bytes nu in gebruik",
+		"ja": "\u4f7f\u7528\u30e1\u30e2\u30ea",
+		"lt": "Viso \u0161iuo metu naudojama bait\u0173",
+		"zh-tw": "\u76ee\u524d\u4f7f\u7528\u7684\u7e3d\u4f4d\u5143\u7d44",
+		"nn": "Bytes (totalt) i bruk no"
 	},
 	"curr_connections": {
 		"no": "Antall \u00e5pne forbindelser n\u00e5",
@@ -127,7 +163,11 @@
 		"fr": "Connexions ouvertes",
 		"it": "Numero di connessioni aperte",
 		"es": "Conexiones abiertas actualmente",
-		"nl": "Aantal open connecties"
+		"nl": "Aantal open connecties",
+		"ja": "\u73fe\u5728\u306e\u30b3\u30cd\u30af\u30b7\u30e7\u30f3\u6570",
+		"lt": "\u0160iuo metu atidaryt\u0173 sujungim\u0173",
+		"zh-tw": "\u76ee\u524d\u958b\u555f\u7684\u9023\u7dda\u6578",
+		"nn": "Opne tilkoplingar no"
 	},
 	"total_connections": {
 		"no": "Totalt antall forbindelser",
@@ -140,7 +180,11 @@
 		"fr": "Connexions totales",
 		"it": "Connessioni totali",
 		"es": "Total de conexiones",
-		"nl": "Totaal connecties"
+		"nl": "Totaal connecties",
+		"ja": "\u7d2f\u8a08\u30b3\u30cd\u30af\u30b7\u30e7\u30f3\u6570",
+		"lt": "Viso sujungim\u0173",
+		"zh-tw": "\u7e3d\u9023\u7dda\u6578",
+		"nn": "Opne tilkoplingar (totalt)"
 	},
 	"connection_structures": {
 		"no": "Tilkoblings-strukturer",
@@ -153,7 +197,11 @@
 		"fr": "Structures de connexion",
 		"it": "Strutture di connessione",
 		"es": "Estructuras de conexi\u00f3n",
-		"nl": "Connectiestructuren"
+		"nl": "Connectiestructuren",
+		"ja": "\u30b3\u30cd\u30af\u30b7\u30e7\u30f3\u69cb\u9020\u4f53\u6570",
+		"lt": "Sujungim\u0173 strukt\u016bra",
+		"zh-tw": "\u9023\u7dda\u7d50\u69cb",
+		"nn": "Tilkoplingsstrukturar"
 	},
 	"cmd_get": {
 		"no": "Totalt antall GET kommandoer",
@@ -166,7 +214,11 @@
 		"fr": "Commandes GET",
 		"it": "Totale dei comandi GET",
 		"es": "Total de comandos GET",
-		"nl": "Aantal GET-commando's"
+		"nl": "Aantal GET-commando's",
+		"ja": "GET\u30b3\u30de\u30f3\u30c9\u5b9f\u884c\u56de\u6570",
+		"lt": "Viso GET u\u017eklaus\u0173",
+		"zh-tw": "GET \u6307\u4ee4\u7e3d\u6578",
+		"nn": "Talet p\u00e5 GET-kommandoar (totalt)"
 	},
 	"cmd_set": {
 		"no": "Totalt antall SET kommandoer",
@@ -179,7 +231,11 @@
 		"fr": "Commandes SET",
 		"it": "Totale dei comandi SET",
 		"es": "Total de comandos SET",
-		"nl": "Aantal SET-commando's"
+		"nl": "Aantal SET-commando's",
+		"ja": "SET\u30b3\u30de\u30f3\u30c9\u5b9f\u884c\u56de\u6570",
+		"lt": "Viso SET u\u017eklaus\u0173",
+		"zh-tw": "SET \u6307\u4ee4\u7e3d\u6578",
+		"nn": "Talet p\u00e5 SET-kommandoar (totalt)"
 	},
 	"get_hits": {
 		"no": "Totalt antall GET kommandoer (OK)",
@@ -192,7 +248,11 @@
 		"fr": "Commandes GET valides",
 		"it": "Totale dei comandi GET (con successo)",
 		"es": "Total de comandos GET (exitosos)",
-		"nl": "Aantal GET-commando's (succes)"
+		"nl": "Aantal GET-commando's (succes)",
+		"ja": "GET\u30b3\u30de\u30f3\u30c9\u6210\u529f\u56de\u6570",
+		"lt": "Viso GET u\u017eklaus\u0173 (s\u0117kming\u0173)",
+		"zh-tw": "GET \u6307\u4ee4\u7e3d\u6578(\u6210\u529f)",
+		"nn": "Talet p\u00e5 GET-kommandoar (suksess)"
 	},
 	"get_misses": {
 		"no": "Totalt antall GET kommandoer (feilet)",
@@ -205,7 +265,11 @@
 		"fr": "Commandes GET invalides",
 		"it": "Totale dei comandi GET (falliti)",
 		"es": "Total de comandos GET (fallidos)",
-		"nl": "Aantal GET-commando's (mislukt)"
+		"nl": "Aantal GET-commando's (mislukt)",
+		"ja": "GET\u30b3\u30de\u30f3\u30c9\u5931\u6557\u56de\u6570",
+		"lt": "Viso GET u\u017eklaus\u0173 (nes\u0117kming\u0173)",
+		"zh-tw": "GET \u6307\u4ee4\u7e3d\u6578(\u6210\u529f)",
+		"nn": "Talet p\u00e5 GET-kommandoar (feil)"
 	},
 	"bytes_read": {
 		"no": "Antall bytes inn til tjeneren",
@@ -218,7 +282,11 @@
 		"fr": "Octets sur le serveur",
 		"it": "Byte nel server",
 		"es": "Bytes en el servidor",
-		"nl": "Bytes richting de server"
+		"nl": "Bytes richting de server",
+		"ja": "\u53d7\u4fe1\u30c7\u30fc\u30bf\u91cf",
+		"lt": "Nuskaityta bait\u0173 \u012f server\u012f",
+		"zh-tw": "\u50b3\u9001\u81f3\u4e3b\u6a5f\u7e3d\u4f4d\u5143\u7d44",
+		"nn": "Bytes inn til tenaren"
 	},
 	"bytes_written": {
 		"no": "Antall bytes skrevet av tjeneren",
@@ -231,7 +299,11 @@
 		"fr": "Octets \u00e9crits par le serveur",
 		"it": "Byte scritti dal server",
 		"es": "Bytes escritos por el servidor",
-		"nl": "Bytes geschreven door server"
+		"nl": "Bytes geschreven door server",
+		"ja": "\u9001\u4fe1\u30c7\u30fc\u30bf\u91cf",
+		"lt": "\u012era\u0161yta bait\u0173 \u012f server\u012f",
+		"zh-tw": "\u5beb\u5165\u81f3\u4e3b\u6a5f\u7e3d\u4f4d\u5143\u7d44",
+		"nn": "Bytes skrivne p\u00e5 tenaren"
 	},
 	"limit_maxbytes": {
 		"no": "Total lagring tilgjengelig",
@@ -244,6 +316,10 @@
 		"fr": "Espace de stockage disponible",
 		"it": "Totale dello spazio disponibile",
 		"es": "Almacenamiento total aprovechado",
-		"nl": "Totaal opslag vrij"
+		"nl": "Totaal opslag vrij",
+		"ja": "\u6700\u5927\u5bb9\u91cf",
+		"lt": "Viso atminties",
+		"zh-tw": "\u5132\u5b58\u7a7a\u9593\u7e3d\u5229\u7528\u6578",
+		"nn": "Totalt lager tilgjengeleg"
 	}
 }

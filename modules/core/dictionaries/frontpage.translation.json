@@ -985,7 +985,8 @@
 		"lt": "Autentifikavimas",
 		"hu": "Azonos\u00edt\u00e1s (autentik\u00e1ci\u00f3)",
 		"ja": "\u8a8d\u8a3c",
-		"zh-tw": "\u8a8d\u8b49"
+		"zh-tw": "\u8a8d\u8b49",
+		"pl": "Autentykacja"
 	},
 	"federation": {
 		"no": "F\u00f8derasjon",
@@ -1005,7 +1006,8 @@
 		"lt": "Federacija",
 		"hu": "F\u00f6der\u00e1ci\u00f3",
 		"ja": "\u9023\u643a",
-		"zh-tw": "\u806f\u76df"
+		"zh-tw": "\u806f\u76df",
+		"pl": "Federacja"
 	},
 	"authtest": {
 		"no": "Test konfigurerte autentiseringskilder",
@@ -1044,7 +1046,8 @@
 		"lt": "Nebepalaikoma",
 		"hu": "Kivezet\u00e9s alatt \u00e1ll\u00f3 opci\u00f3 - haszn\u00e1lata ellenjavallt",
 		"ja": "\u53e4\u3044",
-		"zh-tw": "\u5df2\u903e\u6642"
+		"zh-tw": "\u5df2\u903e\u6642",
+		"pl": "Przestarza\u0142e"
 	},
 	"page_title": {
 		"sv": "Installationssida f\u00f6r simpleSAMLphp",

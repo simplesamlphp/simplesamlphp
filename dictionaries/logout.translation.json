@@ -370,7 +370,8 @@
 		"hu": "Kil\u00e9p\u00e9s az al\u00e1bbi szolg\u00e1ltat\u00e1sokb\u00f3l:",
 		"ja": "\u4ee5\u4e0b\u306e\u30b5\u30fc\u30d3\u30b9\u304b\u3089\u30ed\u30b0\u30a2\u30a6\u30c8\u3057\u307e\u3057\u305f:",
 		"nl": "Uitloggen van de volgende diensten:",
-		"zh-tw": "\u5f9e\u4e0b\u5217\u670d\u52d9\u767b\u51fa\uff1a"
+		"zh-tw": "\u5f9e\u4e0b\u5217\u670d\u52d9\u767b\u51fa\uff1a",
+		"pl": "Wylogowanie z nast\u0119puj\u0105cych serwis\u00f3w:"
 	},
 	"failedsps": {
 		"sl": "Odjava z ene ali ve\u010d storitev ni uspela. Odjavo dokon\u010dajte tako, da <i>zaprete spletni brskalnik<\/i>.",

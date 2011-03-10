@@ -133,7 +133,8 @@
 		"it": "Precedentemente si \u00e8 scelto di autenticarsi con",
 		"hu": "Kor\u00e1bban ezt a szem\u00e9lyazonoss\u00e1g-szolg\u00e1ltat\u00f3t (IdP) v\u00e1lasztotta: ",
 		"ja": "\u524d\u56de\u9078\u629e\u3057\u305f\u8a8d\u8a3c: ",
-		"zh-tw": "\u60a8\u5148\u524d\u5df2\u9078\u64c7\u8a8d\u8b49\u65bc"
+		"zh-tw": "\u60a8\u5148\u524d\u5df2\u9078\u64c7\u8a8d\u8b49\u65bc",
+		"pl": "Poprzednio wybra\u0142e\u015b"
 	},
 	"login_at": {
 		"no": "Logg inn hos",
@@ -152,6 +153,7 @@
 		"it": "Effettua il login con",
 		"hu": "Bel\u00e9p\u00e9s ide:",
 		"ja": "\u30ed\u30b0\u30a4\u30f3: ",
-		"zh-tw": "\u767b\u5165\u81f3"
+		"zh-tw": "\u767b\u5165\u81f3",
+		"pl": "Zaloguj w"
 	}
 }

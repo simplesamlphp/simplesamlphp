@@ -13,7 +13,9 @@
 		"lt": "Esami moduliai",
 		"hu": "El\u00e9rhet\u0151 modulok",
 		"nl": "Beschikbare modules",
-		"ja": "\u6709\u52b9\u306a\u30e2\u30b8\u30e5\u30fc\u30eb"
+		"ja": "\u6709\u52b9\u306a\u30e2\u30b8\u30e5\u30fc\u30eb",
+		"zh-tw": "\u53ef\u4f7f\u7528\u7684\u6a21\u7d44",
+		"nn": "Tilgjengelege modular"
 	},
 	"modlist_name": {
 		"no": "Navn",
@@ -29,7 +31,9 @@
 		"lt": "Pavadinimas",
 		"hu": "N\u00e9v",
 		"nl": "Naam",
-		"ja": "\u540d\u524d"
+		"ja": "\u540d\u524d",
+		"zh-tw": "\u540d\u5b57",
+		"nn": "Namn"
 	},
 	"modlist_status": {
 		"no": "Status",
@@ -45,7 +49,9 @@
 		"lt": "B\u016bsena",
 		"hu": "\u00c1llapot",
 		"nl": "Status",
-		"ja": "\u30b9\u30c6\u30fc\u30bf\u30b9"
+		"ja": "\u30b9\u30c6\u30fc\u30bf\u30b9",
+		"zh-tw": "\u72c0\u614b",
+		"nn": "Status"
 	},
 	"modlist_enabled": {
 		"no": "P\u00e5sl\u00e5tt",
@@ -61,7 +67,9 @@
 		"lt": "Palaikomas",
 		"hu": "Enged\u00e9lyezve",
 		"nl": "Ingeschakeld",
-		"ja": "\u6709\u52b9"
+		"ja": "\u6709\u52b9",
+		"zh-tw": "\u555f\u7528",
+		"nn": "P\u00e5sl\u00e5tt"
 	},
 	"modlist_disabled": {
 		"no": "Avsl\u00e5tt",
@@ -77,6 +85,8 @@
 		"lt": "Nepalaikomas",
 		"hu": "Tiltva",
 		"nl": "Uitgeschakeld",
-		"ja": "\u7121\u52b9"
+		"ja": "\u7121\u52b9",
+		"zh-tw": "\u505c\u7528",
+		"nn": "Avsl\u00e5tt"
 	}
 }

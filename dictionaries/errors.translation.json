@@ -1462,5 +1462,41 @@
 		"da": "Authentifikation fejlede: Certifikatet som din browser har send er ukendt",
 		"hr": "Neuspje\u0161na autentifikacija: digitalni certifikat kojeg je poslao va\u0161 web preglednik je nepoznat",
 		"zh-tw": "\u8a8d\u8b49\u932f\u8aa4\uff1a\u60a8\u7684\u700f\u89bd\u5668\u50b3\u9001\u4e86\u4e00\u500b\u672a\u77e5\u7684\u6191\u8b49"
+	},
+	"title_USERABORTED": {
+		"da": "Autentificering aubrudt",
+		"hr": "Autentikacija prekinuta",
+		"it": "Autenticazione interrotta",
+		"sv": "Inloggning avbruten"
+	},
+	"descr_USERABORTED": {
+		"da": "Autentificering blev afbrudt af brugeren",
+		"hr": "Korisnik je prekinuo autentikaciju",
+		"it": "L'autenticazione \u00e8 stata interrotta dall'utente",
+		"sv": "Inloggning avbr\u00f6ts av anv\u00e4ndaren"
+	},
+	"title_NOSTATE": {
+		"da": "State information tabt",
+		"hr": "Podaci o stanju su izgubljeni",
+		"it": "Informazioni di stato perse",
+		"sv": "Sessionsinformationen \u00e4r borttappad"
+	},
+	"descr_NOSTATE": {
+		"da": "State information er tabt og der er ikke muligt at gentage forsp\u00f8rgelsen",
+		"hr": "Podaci o stanju su izgubljeni i zahtjev se ne mo\u017ee reproducirati",
+		"it": "Le informazioni di stato sono andate perse, e non c'\u00e8 modo di far ripartire la richiesta",
+		"sv": "Sessionsinformationen \u00e4r borttappad och det \u00e4r inte m\u00f6jligt att \u00e5terstarta f\u00f6rfr\u00e5gan"
+	},
+	"title_METADATANOTFOUND": {
+		"da": "Metadata ikke fundet",
+		"hr": "Metapodaci nisu prona\u0111eni",
+		"it": "Metadati non trovati",
+		"sv": "Metadata saknas"
+	},
+	"descr_METADATANOTFOUND": {
+		"da": "Kan ikke finde metadata for %ENTITYID%",
+		"hr": "Metapodaci za %ENTITYID% nisu prona\u0111eni",
+		"it": "Impossibile individuare i metatadi per %ENTITYID%",
+		"sv": "Kan inte hitta metadata f\u00f6r %ENTITYID%"
 	}
 }
