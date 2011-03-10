@@ -295,7 +295,7 @@ class SimpleSAML_Configuration {
 	 * @return string
 	 */
 	public function getVersion() {
-		return 'trunk';
+		return '1.8.x';
 	}
 
 
