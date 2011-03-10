@@ -1,5 +1,5 @@
 <?php 
-	$this->data['header'] = $this->t('error_header');
+	$this->data['header'] = $this->t($this->data['dictTitle']);
 	
 	$this->data['head'] = '
 <meta name="robots" content="noindex, nofollow" />
@@ -8,11 +8,15 @@
 	$this->includeAtTemplateBase('includes/header.php'); 
 ?>
 
-
 	<h2><?php echo $this->t($this->data['dictTitle']); ?></h2>
 
 <?php
 echo htmlspecialchars($this->t($this->data['dictDescr'], $this->data['parameters']));
+
+/* Include optional information for error. */
+if (isset($this->data['includeTemplate'])) {
+	$this->includeAtTemplateBase($this->data['includeTemplate']);
+}
 ?>
 
 	<div class="trackidtext">

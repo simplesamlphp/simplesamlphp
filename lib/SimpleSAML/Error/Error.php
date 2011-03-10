@@ -51,6 +51,14 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 
 
 	/**
+	 * Name of custom include template for the error.
+	 *
+	 * @var string|NULL
+	 */
+	protected $includeTemplate = NULL;
+
+
+	/**
 	 * Constructor for this error.
 	 *
 	 * The error can either be given as a string, or as an array. If it is an array, the
@@ -217,6 +225,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 		$data['module'] = $this->module;
 		$data['dictTitle'] = $this->dictTitle;
 		$data['dictDescr'] = $this->dictDescr;
+		$data['includeTemplate'] = $this->includeTemplate;
 
 		/* Check if there is a valid technical contact email address. */
 		if($config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org') {
