@@ -71,7 +71,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
 
 		// Get the request token
-		$requestToken = $consumer->getRequestToken('http://twitter.com/oauth/request_token');
+		$requestToken = $consumer->getRequestToken('https://api.twitter.com/oauth/request_token');
 		SimpleSAML_Logger::debug("Got a request token from the OAuth service provider [" . 
 			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
@@ -83,17 +83,12 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 		$session->setData('oauth', 'oauth', $oauthState);
 
 		// Authorize the request token
-		$consumer->getAuthorizeRequest('http://twitter.com/oauth/authenticate', $requestToken);
+		$consumer->getAuthorizeRequest('https://api.twitter.com/oauth/authenticate', $requestToken);
 
 	}
 	
 	
-	
 	public function finalStep(&$state) {
-		
-		
-		
-		
 		$requestToken = unserialize($state['requestToken']);
 		
 		#echo '<pre>'; print_r($requestToken); exit;
@@ -104,19 +99,16 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
 		// Replace the request token with an access token
-		$accessToken = $consumer->getAccessToken('http://twitter.com/oauth/access_token', $requestToken);
+		$accessToken = $consumer->getAccessToken('https://api.twitter.com/oauth/access_token', $requestToken);
 		SimpleSAML_Logger::debug("Got an access token from the OAuth service provider [" . 
 			$accessToken->key . "] with the secret [" . $accessToken->secret . "]");
 			
-
-		
-		$userdata = $consumer->getUserInfo('http://twitter.com/account/verify_credentials.json', $accessToken);
+		$userdata = $consumer->getUserInfo('https://api.twitter.com/account/verify_credentials.json', $accessToken);
 		
 		$attributes = array();
 		foreach($userdata AS $key => $value) {
 			if (is_string($value))
 				$attributes['twitter.' . $key] = array((string)$value);
-			
 		}
 		
 		if (array_key_exists('screen_name', $userdata) ) {
@@ -126,7 +118,6 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 		if (array_key_exists('id_str', $userdata) )
 			$attributes['twitter_targetedID'] = array('http://twitter.com!' . $userdata['id_str']);
 			
-		
 		$state['Attributes'] = $attributes;
 	}
 
