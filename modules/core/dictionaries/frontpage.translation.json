@@ -1065,5 +1065,9 @@
 		"ja": "simpleSAMLphp\u8a2d\u5b9a\u30da\u30fc\u30b8",
 		"nl": "simpleSAMLphp installatiepagina",
 		"zh-tw": "simpleSAMLphp \u5b89\u88dd\u9801\u9762"
+	},
+	"warnings_suhosin_url_length": {
+		"no": "Lengden p\u00e5 foresp\u00f8rselparametre er begrenset av PHP Suhosin utvidelsen. Vennligst \u00f8k suhosin.get.max_value_length konfigurasjonsinnstillingen til minst 2048 tegn.",
+		"nn": "Lengda p\u00e5 f\u00f8respurnadargumenta er begrensa av PHP Suhosin utvidinga. V\u00e6r vennleg og \u00f8k suhosin.get.max_value_length konfigurasjonsinnstillinga til minst 2048 teikn."
 	}
 }
