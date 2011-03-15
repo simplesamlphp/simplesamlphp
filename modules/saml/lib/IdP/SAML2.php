@@ -257,6 +257,7 @@ class sspmod_saml_IdP_SAML2 {
 			$consumerURL = NULL;
 			$consumerIndex = NULL;
 			$extensions = NULL;
+			$allowCreate = TRUE;
 
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: IdP initiated authentication: '. var_export($spEntityId, TRUE));
 
@@ -297,6 +298,12 @@ class sspmod_saml_IdP_SAML2 {
 			} else {
 				$nameIDFormat = NULL;
 			}
+			if (isset($nameIdPolicy['AllowCreate'])) {
+				$allowCreate = $nameIdPolicy['AllowCreate'];
+			} else {
+				$allowCreate = FALSE;
+			}
+
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '. var_export($spEntityId, TRUE));
 		}
 
@@ -337,6 +344,7 @@ class sspmod_saml_IdP_SAML2 {
 			'saml:ConsumerURL' => $acsEndpoint['Location'],
 			'saml:Binding' => $acsEndpoint['Binding'],
 			'saml:NameIDFormat' => $nameIDFormat,
+			'saml:AllowCreate' => $allowCreate,
 			'saml:Extensions' => $extensions,
 		);
 
