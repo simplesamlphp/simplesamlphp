@@ -10,8 +10,8 @@ $session = SimpleSAML_Session::getInstance();
  
 $oauthState = $session->getData('oauth', 'oauth');
 
-if (empty($oauthState)) throw new Exception('Could not load oauthstate');
-if (empty($oauthState['stateid'])) throw new Exception('Could not load oauthstate:stateid');
+if (empty($oauthState)) throw new SimpleSAML_Error_Exception('Could not load oauthstate');
+if (empty($oauthState['stateid'])) throw new SimpleSAML_Error_Exception('Could not load oauthstate:stateid');
 
 $stateId = $oauthState['stateid'];
 
@@ -20,25 +20,23 @@ $stateId = $oauthState['stateid'];
 $state = SimpleSAML_Auth_State::loadState($stateId, sspmod_authtwitter_Auth_Source_Twitter::STAGE_INIT);
 $state['requestToken'] = $oauthState['requestToken'];
 
-
-
 /* Find authentication source. */
-assert('array_key_exists(sspmod_authtwitter_Auth_Source_Twitter::AUTHID, $state)');
+if (!array_key_exists(sspmod_authtwitter_Auth_Source_Twitter::AUTHID, $state)) {
+	throw new SimpleSAML_Error_Exception('No data in state for ' . sspmod_authtwitter_Auth_Source_Twitter::AUTHID);
+}
 $sourceId = $state[sspmod_authtwitter_Auth_Source_Twitter::AUTHID];
 
 $source = SimpleSAML_Auth_Source::getById($sourceId);
 if ($source === NULL) {
-	throw new Exception('Could not find authentication source with id ' . $sourceId);
+	throw new SimpleSAML_Error_Exception('Could not find authentication source with id ' . $sourceId);
 }
 
-
+if (array_key_exists('denied', $_REQUEST)) {
+	SimpleSAML_Auth_State::throwException($state, new SimpleSAML_Error_UserAborted());
+}
 
 $config = SimpleSAML_Configuration::getInstance();
 
 $source->finalStep($state);
 
-
-
 SimpleSAML_Auth_Source::completeAuth($state);
-
-
