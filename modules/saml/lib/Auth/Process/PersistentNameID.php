@@ -60,6 +60,7 @@ class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGe
 		}
 		if (count($state['Attributes'][$this->attribute]) > 1) {
 			SimpleSAML_Logger::warning('More than one value in attribute ' . var_export($this->attribute, TRUE) . ' on user - not generating persistent NameID.');
+			return NULL;
 		}
 		$uid = array_values($state['Attributes'][$this->attribute]); /* Just in case the first index is no longer 0. */
 		$uid = $uid[0];
