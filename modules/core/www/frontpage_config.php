@@ -20,9 +20,11 @@ if (!SimpleSAML_Utilities::isHTTPS()) {
 	$warnings[] = '{core:frontpage:warnings_https}';
 }
 
-$suhosinLength = ini_get('suhosin.get.max_value_length');
-if ($suhosinLength !== FALSE && (int)$suhosinLength < 2048) {
-	$warnings[] = '{core:frontpage:warnings_suhosin_url_length}';
+if (extension_loaded('suhosin')) {
+	$suhosinLength = ini_get('suhosin.get.max_value_length');
+	if (empty($suhosinLength) || (int)$suhosinLength < 2048) {
+		$warnings[] = '{core:frontpage:warnings_suhosin_url_length}';
+	}
 }
 
 
