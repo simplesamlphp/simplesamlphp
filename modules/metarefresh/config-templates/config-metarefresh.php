@@ -2,12 +2,34 @@
 
 $config = array(
 
+	/*
+	 * Global blacklist: entityIDs that should be excluded from ALL sets.
+	 */
+	#'blacklist' = array(
+	#	'http://my.own.uni/idp'
+	#),
+	
 	'sets' => array(
 
 		'kalmar' => array(
 			'cron'		=> array('hourly'),
 			'sources'	=> array(
 				array(
+					/*
+					 * entityIDs that should be excluded from this set.
+					 */
+					#'blacklist' => array(
+					#	'http://some.other.uni/idp',
+					#),
+
+					/*
+					 * Whitelist: only keep these EntityIDs.
+					 */
+					#'whitelist' => array(
+					#	'http://some.uni/idp',
+					#	'http://some.other.uni/idp',
+					#),
+
 					'src' => 'https://kalmar.feide.no/simplesaml/module.php/aggregator/?id=kalmarcentral&mimetype=text/plain&exclude=norway',
 					'validateFingerprint' => '591d4b4670463eeda91fcc816dc0af2a092aa801',
 					'template' => array(

@@ -34,7 +34,23 @@ class sspmod_metarefresh_MetaLoader {
 		} catch(Exception $e) {
 			SimpleSAML_Logger::warning('metarefresh: Failed to retrieve metadata. ' . $e->getMessage());
 		}
+
 		foreach($entities as $entity) {
+
+			if(isset($source['blacklist'])) {
+				if(!empty($source['blacklist']) && in_array($entity->getEntityID(), $source['blacklist'])) {
+					SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - blacklisted.' . "\n");
+					continue;
+				}
+			}
+
+			if(isset($source['whitelist'])) {
+				if(!empty($source['whitelist']) && !in_array($entity->getEntityID(), $source['whitelist'])) {
+					SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - not in the whitelist.' . "\n");
+					continue;
+				}
+			}
+
 			if(array_key_exists('validateFingerprint', $source) && $source['validateFingerprint'] !== NULL) {
 				if(!$entity->validateFingerprint($source['validateFingerprint'])) {
 					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature.' . "\n");
