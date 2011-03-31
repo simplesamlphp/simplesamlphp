@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>IdP Discovery Response Receiver</title>
+
+	<script type="text/javascript">
+
+function receive() {
+	
+	var urlParams = {};
+	(function () {
+		var e,
+			a = /\+/g,  // Regex for replacing addition symbol with a space
+			r = /([^&;=]+)=?([^&;]*)/g,
+			d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+			q = window.location.search.substring(1);
+
+		while (e = r.exec(q))
+		   urlParams[d(e[1])] = d(e[2]);
+	})();
+	
+	if (urlParams.entityID) {
+		window.parent.DiscoJuice.Utils.log('Response from discovery service: ' + urlParams.entityID);
+		window.parent.DiscoJuice.Control.discoResponse(urlParams.entityID);
+	} 
+
+}
+	</script>
+</head>
+
+<body onload="receive();">
+
+</body>
+</html>
