@@ -59,7 +59,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$this->idp = $this->metadata->getString('idp', NULL);
 		$this->discoURL = $this->metadata->getString('discoURL', NULL);
 		
-		if (SimpleSAML_Module::isModuleEnabled('discojuice')) {
+		if (empty($this->discoURL) && SimpleSAML_Module::isModuleEnabled('discojuice')) {
 			$this->discoURL = SimpleSAML_Module::getModuleURL('discojuice/central.php');
 		}
 	}
