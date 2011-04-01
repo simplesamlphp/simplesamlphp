@@ -69,7 +69,10 @@ if (empty($options['metadata'])) {
 }
 
 echo 'options.disco = { url: "' . SimpleSAML_Module::getModuleURL('discojuice/discojuiceDiscoveryResponse.html?'). '" }; ' . "\n";
-echo 'options.discoPath = "discojuice/"; ' . "\n";
+
+if (empty($options['discoPath'])) {
+	echo 'options.discoPath = "discojuice/"; ' . "\n";
+}
 
 echo 'var acl = ' . json_encode($this->data['acl']) . ';' . "\n";
 echo 'acl.push("' . SimpleSAML_Utilities::getSelfHost() . '");' . "\n\n";
