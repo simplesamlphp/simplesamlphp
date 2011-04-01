@@ -8,9 +8,6 @@
 if (typeof DiscoJuice == "undefined") var DiscoJuice = {};
 
 
-
-
-
 DiscoJuice.UI = {
 	// Reference to the top level DiscoJuice object
 	"parent" : DiscoJuice,
@@ -58,13 +55,6 @@ DiscoJuice.UI = {
 		
 		var debugweight = this.parent.Utils.options.get('debug.weight', false);
 		
-// 		console.log('Dump item');
-// 		console.log(item);
-// 		console.log(countrydef);
-// 		console.log(search);
-// 		console.log(distance);
-		
-
 		
 		// Add icon element first
 		if (item.icon) {
@@ -103,7 +93,6 @@ DiscoJuice.UI = {
 
 			}
 			textLink += '</span>';
-// 			clear = true;
 		}
 		
 		if (debugweight) {
@@ -133,6 +122,8 @@ DiscoJuice.UI = {
 		if (clear) {
 			textLink += '<hr style="clear: both; height: 0px; visibility:hidden" />';
 		}
+		
+		console.log(item);
 		
 		// Wrap in A element
 		textLink = '<a href="" class="' + classes + '" rel="' + escape(item.entityID) + '" title="' + escape(item.title) + '">' + 

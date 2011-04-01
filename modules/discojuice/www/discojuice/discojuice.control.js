@@ -262,7 +262,10 @@ DiscoJuice.Control = {
 	},
 	
 	
-	"selectProvider": function(entityID) {			
+	"selectProvider": function(entityID) {
+	
+		console.log('entityid: '  + entityID);
+	
 		var callback;
 		var that = this;
 		var mustwait = that.discoWrite(entityID);

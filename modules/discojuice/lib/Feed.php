@@ -111,8 +111,6 @@ class sspmod_discojuice_Feed {
 			if ($this->exclude($m['entityid'])) continue;
 			
 			$this->feed[] = $this->processEntity($m);
-			
-			
 		}
 		
 		if (!empty($this->insert)) {
@@ -125,7 +123,7 @@ class sspmod_discojuice_Feed {
 	
 	private function processEntity($m) {
 		
-		$data = array('entityID' => $m['entityID']);
+		$data = array('entityID' => $m['entityid']);
 		
 		$this->getCountry($data, $m);
 		$this->getTitle($data, $m);
