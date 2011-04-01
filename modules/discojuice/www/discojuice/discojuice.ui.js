@@ -123,7 +123,6 @@ DiscoJuice.UI = {
 			textLink += '<hr style="clear: both; height: 0px; visibility:hidden" />';
 		}
 		
-		console.log(item);
 		
 		// Wrap in A element
 		textLink = '<a href="" class="' + classes + '" rel="' + escape(item.entityID) + '" title="' + escape(item.title) + '">' + 
