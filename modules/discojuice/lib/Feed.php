@@ -188,7 +188,7 @@ class sspmod_discojuice_Feed {
 		}
 		
 		
-		$c = self::countryFromURL($m['entityID']);
+		$c = self::countryFromURL($m['entityid']);
 		if (!empty($c)) { $data['country'] = $c; return; }
 
 		if (!empty($m['SingleSignOnService']) ) {
@@ -239,16 +239,16 @@ class sspmod_discojuice_Feed {
 		} else if (isset($m['OrganizationName']) && is_array($m['OrganizationName'])) {
 			$data['title'] = array_pop($m['OrganizationName']);
 		} else {
-			$data['title'] = substr($m['entityID'], 0, 20);
+			$data['title'] = substr($m['entityid'], 0, 20);
 			$data['weight'] = 9;
 		}
 	}
 	
 	protected function getOverrides(&$data, $m) {
 		if (empty($this->overrides)) return;
-		if (empty($this->overrides[$m['entityID']])) return;
+		if (empty($this->overrides[$m['entityid']])) return;
 		
-		$override = $this->overrides[$m['entityID']];
+		$override = $this->overrides[$m['entityid']];
 		
 		foreach($override AS $k => $v) {
 			$data[$k] = $v;
@@ -274,9 +274,9 @@ class sspmod_discojuice_Feed {
 	}
 
 	
-	protected function countryFromURL($entityID) {
+	protected function countryFromURL($entityid) {
 		try {
-			$pu = parse_url($entityID, PHP_URL_HOST);			
+			$pu = parse_url($entityid, PHP_URL_HOST);			
 			if (!empty($pu)) {
 				$rh = strrev($pu); 
 				// error_log('Looking up TLD : ' . $rh);
