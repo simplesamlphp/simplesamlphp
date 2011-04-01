@@ -116,7 +116,7 @@ function show($item) {
 	
 	$iconPath = 'discojuice/logos/';
 	
-	$href = $returnto . '&' . $returnidparam . '=' . urlencode($item['entityid']);
+	$href = $returnto . '&' . $returnidparam . '=' . urlencode($item['entityID']);
 	if (!empty($item['icon'])) {
 		echo '<a href="' . htmlspecialchars($href) . '" class="">' . 
 			'<img src="' . htmlspecialchars($iconPath . $item['icon']) . '" />' .
