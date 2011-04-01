@@ -1,7 +1,7 @@
 <?php
 
 
-$djconfig = SimpleSAML_Configuration::getOptionalConfig('disojuicecentral.php');
+$djconfig = SimpleSAML_Configuration::getOptionalConfig('discojuicecentral.php');
 $config = SimpleSAML_Configuration::getInstance();
 
 

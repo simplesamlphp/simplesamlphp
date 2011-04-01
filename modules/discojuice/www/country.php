@@ -5,7 +5,7 @@ header('Content-type: application/json; utf-8');
 
 try {
 	
-	$djconfig = SimpleSAML_Configuration::getOptionalConfig('disojuicecentral.php');
+	$djconfig = SimpleSAML_Configuration::getOptionalConfig('discojuicecentral.php');
 	$options = $djconfig->getConfigItem('discojuice.options');
 	$enableCountryAPI = $options->getValue('country', FALSE);
 	

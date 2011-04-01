@@ -20,7 +20,7 @@ $config = array(
 		"type"=> false,
 		"country"=> true,
 		"location"=> true,
-		"debug.weight" => true,
+		"debug.weight" => false,
 	),
 	
 	

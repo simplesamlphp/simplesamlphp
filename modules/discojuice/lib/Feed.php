@@ -17,7 +17,7 @@ class sspmod_discojuice_Feed {
 	function __construct() {
 	
 		$this->config = SimpleSAML_Configuration::getInstance();
-		$this->djconfig = SimpleSAML_Configuration::getOptionalConfig('disojuicefeed.php');
+		$this->djconfig = SimpleSAML_Configuration::getOptionalConfig('discojuicefeed.php');
 
 		$metadatah = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$this->metadata = $metadatah->getList('saml20-idp-remote');
@@ -74,7 +74,7 @@ class sspmod_discojuice_Feed {
 		if (!is_writable($datadir))
 			throw new Exception('Data directory [' . $datadir. '] is not writable');
 		
-		$djdatadir = $datadir . 'disojuice/';
+		$djdatadir = $datadir . 'discojuice/';
 		if (!is_dir($djdatadir)) {
 			mkdir($djdatadir);
 		}
@@ -89,7 +89,7 @@ class sspmod_discojuice_Feed {
 	
 	
 	public function read() {
-		$djdatafile = $this->config->getPathValue('datadir', 'data/')  . 'disojuice/'  . 'discojuice.cache';
+		$djdatafile = $this->config->getPathValue('datadir', 'data/')  . 'discojuice/'  . 'discojuice.cache';
 
 		if (!file_exists($djdatafile)) {
 			error_log('Did not find cached version, generating content again...');

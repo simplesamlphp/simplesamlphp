@@ -8,7 +8,7 @@ class sspmod_discojuice_CentralHelper {
 	public static function show($path = '/simplesaml/module.php/discojuice/discojuice/') {
 		
 		
-		$djconfig = SimpleSAML_Configuration::getOptionalConfig('disojuicecentral.php');
+		$djconfig = SimpleSAML_Configuration::getOptionalConfig('discojuicecentral.php');
 		$config = SimpleSAML_Configuration::getInstance();
 		
 		
