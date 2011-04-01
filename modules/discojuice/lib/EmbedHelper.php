@@ -7,6 +7,8 @@ class sspmod_discojuice_EmbedHelper {
 	
 	public static function head($includeJQuery = TRUE) {
 		
+		$version = '0.1';
+		
 		$config = SimpleSAML_Configuration::getInstance();
 		$djconfig = SimpleSAML_Configuration::getOptionalConfig('disojuiceembed.php');
 		
@@ -21,13 +23,11 @@ class sspmod_discojuice_EmbedHelper {
 		
 		
 		echo '<!-- DiscoJuice -->
-		<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.misc.js') . '"></script>
-		<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.ui.js') . '"></script>
-		<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.control.js') . '"></script>
+		<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.misc.js?v=' . $version) . '"></script>
+		<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.ui.js?v=' . $version) . '"></script>
+		<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.control.js?v=' . $version) . '"></script>
 		
-		<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/idpdiscovery.js') . '"></script>
-		
-		<link rel="stylesheet" type="text/css" href="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/css/discojuice.css') . '" />';
+		<link rel="stylesheet" type="text/css" href="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/css/discojuice.css?v=' . $version) . '" />';
 	
 		
 		$options = $djconfig->getValue('discojuice.options');
