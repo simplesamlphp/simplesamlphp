@@ -22,6 +22,7 @@ DiscoJuice.Control = {
 	"location": null,
 	"showdistance": false,
 
+	"maxhits": 25,
 	
 	/*
 	 * Fetching JSON Metadata using AJAX.
@@ -37,19 +38,32 @@ DiscoJuice.Control = {
 		
 		$.getJSON(metadataurl, function(data) {
 			that.data = data;
-			that.parent.Utils.log('Successfully loaded metadata');
+			that.parent.Utils.log('Successfully loaded metadata (' + data.length + ')');
 			that.postLoad();
 		});
 	},
 	
 	"postLoad": function() {
 		if (!this.data) return;
+		
+		// Iterate through entities, and update title from DisplayNames to support Shibboleth integration.
+		for(i = 0; i < this.data.length; i++) {
+			if (!this.data[i].title) {
+				if (this.data[i].DisplayNames) {
+					this.data[i].title = this.data[i].DisplayNames[0].value;
+				}
+			}
+		}
+
+		
 		this.readCookie();
 		this.prepareData();
 		this.discoReadSetup();
-		this.showallSetup();
 		this.searchboxSetup();		
-		this.filterCountrySetup();
+		if (this.parent.Utils.options.get('country', false)) {
+			this.filterCountrySetup();
+		}
+
 		this.getCountry();
 		
 	},
@@ -67,9 +81,9 @@ DiscoJuice.Control = {
 	/*
 	 * Set weight to a specific data entry.
 	 */
-	"setWeight": function(entityid, weight) {
+	"setWeight": function(entityID, weight) {
 		for(i = 0; i < this.data.length; i++) {
-			if (this.data[i].entityid == entityid) {
+			if (this.data[i].entityID == entityID) {
 				if (isNaN(this.data[i].weight)) this.data[i].weight = 0;
 				this.data[i].weight += weight;
 				this.parent.Utils.log('COOKIE Setting weight to ' + this.data[i].weight);
@@ -77,8 +91,8 @@ DiscoJuice.Control = {
 		}
 	},
 	
-	"discoResponse": function(entityid) {
-		this.setWeight(entityid, -100);
+	"discoResponse": function(entityID) {
+		this.setWeight(entityID, -100);
 		this.prepareData();
 	},
 	
@@ -150,6 +164,12 @@ DiscoJuice.Control = {
 		
 	},
 	
+	"increase": function() {
+		
+		this.maxhits += 100;
+		this.prepareData();
+		
+	},
 	
 	"prepareData": function(showall) {
 	
@@ -158,7 +178,7 @@ DiscoJuice.Control = {
 		this.parent.Utils.log('DiscoJuice.Control prepareData()');
 		
 		var hits, i, current, search;
- 		var maxhits = 10;
+		var someleft = false;
 
  		var term = this.getTerm();
  		var categories = this.getCategories();
@@ -186,16 +206,7 @@ DiscoJuice.Control = {
 		} else {
 			this.ui.popup.find("p.discojuice_showall").hide();
 		}
-		if (categories) {
-			maxhits = 125;
-		}
-		if (showall) {
-			maxhits = 200;
-		}
-// 		if (term) {
-// 			maxhits = 10;
-// 		}
-	
+
 		this.ui.clearItems();
 		
 		hits = 0;
@@ -223,8 +234,8 @@ DiscoJuice.Control = {
 // 				if (categories.type !== current.ctype && current.weight > -50) continue;
 // 			}
 
-			if (++hits > maxhits) { //  && showall !== true) {
-				this.ui.popup.find("p.discojuice_showall").show();
+			if (++hits > this.maxhits) { 
+				someleft = true;
 				break;
 			}
 			
@@ -245,34 +256,25 @@ DiscoJuice.Control = {
 			
 			this.ui.addItem(current, countrydef, search, current.distance);
 
-
-		}
-		if (hits < maxhits) { //  && showall !== true) {
-//			this.ui.popup.find("p.discojuice_showall").hide();
 		}
 		
-		this.ui.refreshData();
-		
-		//log('Loaded ' + DiscoJuice.data.length + ' accounts to select from');
+		this.ui.refreshData(someleft, this.maxhits, hits);
 	},
 	
-	"discoWrite": function(entityid) {
-		
-	},
 	
-	"selectProvider": function(entityid) {			
+	"selectProvider": function(entityID) {			
 		var callback;
 		var that = this;
-		var mustwait = that.discoWrite(entityid);
+		var mustwait = that.discoWrite(entityID);
 		
 		if (this.parent.Utils.options.get('cookie', false)) {
-			this.parent.Utils.log('COOKIE write ' + entityid);
-			this.parent.Utils.createCookie(entityid);		
+			this.parent.Utils.log('COOKIE write ' + entityID);
+			this.parent.Utils.createCookie(entityID);		
 		}
 
 		var entity = null;
 		for(i = 0; i < this.data.length; i++) {
-			if (this.data[i].entityid == entityid) {
+			if (this.data[i].entityID == entityID) {
 				entity = this.data[i];
 			}
 		}
@@ -384,7 +386,9 @@ DiscoJuice.Control = {
 				ftext += '<option value="' + key + '" >' + this.parent.Constants.Countries[key] + '</option>';
 			}
 		}
-		ftext += '</select></p>';
+		ftext += '</select>';
+		ftext += ' <a class="discojuice_showall textlink" href="">show all countries</a>';
+		ftext += '</p>';
 		
 		this.ui.addFilter(ftext).find("select").change(function(event) {
 			event.preventDefault();
@@ -392,8 +396,22 @@ DiscoJuice.Control = {
 			//DiscoJuice.listResults();
 			that.resetTerm();
 			that.ui.focusSearch();
+			if (that.ui.popup.find("select.discojuice_filterCountrySelect").val() !== 'all') {
+				that.ui.popup.find("a.discojuice_showall").show();
+			} else {
+				that.ui.popup.find("a.discojuice_showall").hide();
+			}
 			that.prepareData();
 		});
+		this.ui.popup.find("a.discojuice_showall").click(function(event) {
+			event.preventDefault();
+			that.resetCategories();
+			that.resetTerm();
+			that.prepareData(true);
+			that.ui.focusSearch();
+			that.ui.popup.find("a.discojuice_showall").hide();
+		});
+		
 	},
 	"setCountry": function(country) {
 		if (this.parent.Constants.Countries[country]) {
@@ -449,17 +467,7 @@ DiscoJuice.Control = {
 		}
 	},
 	
-	"showallSetup": function() {
-		var that = this;
-		this.ui.popup.find("a.discojuice_showall").click(function(event) {
-			event.preventDefault();
-			that.resetCategories();
-			that.resetTerm();
-			that.prepareData(true);
-			that.ui.focusSearch();
-		});
-	},
-	
+
 	"resetCategories": function() {
 		//this.ui.popup.find("select.discojuice_filterTypeSelect").val()
 		this.ui.popup.find("select.discojuice_filterCountrySelect").val('all');

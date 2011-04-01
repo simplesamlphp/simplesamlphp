@@ -63,7 +63,10 @@ $options = $this->data['discojuice.options'];
 echo 'var options = ' . json_encode($options) . ';' . "\n\n";
 
 echo 'options.countryAPI = "' . SimpleSAML_Module::getModuleURL('discojuice/country.php'). '"; ' . "\n";
-echo 'options.metadata = "' . SimpleSAML_Module::getModuleURL('discojuice/feed.php'). '"; ' . "\n";
+
+if (empty($options['metadata'])) {
+	echo 'options.metadata = "' . SimpleSAML_Module::getModuleURL('discojuice/feed.php'). '"; ' . "\n";
+}
 
 echo 'options.disco = { url: "' . SimpleSAML_Module::getModuleURL('discojuice/discojuiceDiscoveryResponse.html?'). '" }; ' . "\n";
 echo 'options.discoPath = "discojuice/"; ' . "\n";

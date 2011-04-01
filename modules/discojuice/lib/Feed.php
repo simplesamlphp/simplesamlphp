@@ -125,7 +125,7 @@ class sspmod_discojuice_Feed {
 	
 	private function processEntity($m) {
 		
-		$data = array('entityid' => $m['entityid']);
+		$data = array('entityID' => $m['entityID']);
 		
 		$this->getCountry($data, $m);
 		$this->getTitle($data, $m);
@@ -190,14 +190,16 @@ class sspmod_discojuice_Feed {
 		}
 		
 		
-		$c = self::countryFromURL($m['entityid']);
+		$c = self::countryFromURL($m['entityID']);
 		if (!empty($c)) { $data['country'] = $c; return; }
 
 		if (!empty($m['SingleSignOnService']) ) {
 			
 			SimpleSAML_Logger::debug('SingleSignOnService found');
 			
+			$m['metadata-set'] = 'saml20-idp-remote';
 			$mc = SimpleSAML_Configuration::loadFromArray($m);
+			
 			$endpoint = $mc->getDefaultEndpoint('SingleSignOnService');
 			
 			error_log('Endpoint: ' . var_export($endpoint, TRUE));
@@ -230,21 +232,25 @@ class sspmod_discojuice_Feed {
 			$data['title'] = $m['name'];
 		} else if(isset($m['name']) && array_key_exists('en', $m['name'])) {
 			$data['title'] = $m['name']['en'];
+		} else if(isset($m['name']) && is_array($m['name'])) {
+			$data['title'] = array_pop($m['name']);
 		} else if (isset($m['name']) && is_string($m['name'])) {
 			$data['title'] = $m['name'];	
 		} else if (isset($m['OrganizationName']) && isset($m['OrganizationName']['en'])) {
 			$data['title'] = $m['OrganizationName']['en'];
+		} else if (isset($m['OrganizationName']) && is_array($m['OrganizationName'])) {
+			$data['title'] = array_pop($m['OrganizationName']);
 		} else {
-			$data['title'] = substr($m['entityid'], 0, 20);
+			$data['title'] = substr($m['entityID'], 0, 20);
 			$data['weight'] = 9;
 		}
 	}
 	
 	protected function getOverrides(&$data, $m) {
 		if (empty($this->overrides)) return;
-		if (empty($this->overrides[$m['entityid']])) return;
+		if (empty($this->overrides[$m['entityID']])) return;
 		
-		$override = $this->overrides[$m['entityid']];
+		$override = $this->overrides[$m['entityID']];
 		
 		foreach($override AS $k => $v) {
 			$data[$k] = $v;
@@ -270,9 +276,9 @@ class sspmod_discojuice_Feed {
 	}
 
 	
-	protected function countryFromURL($entityid) {
+	protected function countryFromURL($entityID) {
 		try {
-			$pu = parse_url($entityid, PHP_URL_HOST);			
+			$pu = parse_url($entityID, PHP_URL_HOST);			
 			if (!empty($pu)) {
 				$rh = strrev($pu); 
 				// error_log('Looking up TLD : ' . $rh);

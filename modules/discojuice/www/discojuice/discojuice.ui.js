@@ -84,7 +84,7 @@ DiscoJuice.UI = {
 		
 		
 
-		if (countrydef || distance) {
+		if (countrydef || (distance != undefined)) {
 				
 			textLink += '<span class="location">';
 			if (countrydef) {
@@ -94,8 +94,13 @@ DiscoJuice.UI = {
 			}
 	
 			
-			if (distance) {
-				textLink += '<span class="distance">' +  Math.round(distance) + ' km' + '</span>';
+			if (distance != undefined) {
+				if (distance < 1) {
+					textLink += '<span class="distance">Nearby</span>';
+				} else {
+					textLink += '<span class="distance">' +  Math.round(distance) + ' km' + '</span>';
+				}
+
 			}
 			textLink += '</span>';
 // 			clear = true;
@@ -130,13 +135,14 @@ DiscoJuice.UI = {
 		}
 		
 		// Wrap in A element
-		textLink = '<a href="" class="' + classes + '" rel="' + escape(item.entityid) + '" title="' + escape(item.title) + '">' + 
+		textLink = '<a href="" class="' + classes + '" rel="' + escape(item.entityID) + '" title="' + escape(item.title) + '">' + 
 			textLink + '</a>';
 
 
 		this.resulthtml += textLink;
 	},
-	"refreshData": function() {
+		
+	"refreshData": function(showmore, show, listcount) {
 		var that = this;
 		
 		this.parent.Utils.log('DiscoJuice.UI refreshData()');
@@ -147,10 +153,25 @@ DiscoJuice.UI = {
 			$(this).click(function(event) {
 				event.preventDefault();
 				overthere.hide();
-				var entityid = unescape($(this).attr('rel'));
-				overthere.control.selectProvider(entityid);
+				var entityID = unescape($(this).attr('rel'));
+				overthere.control.selectProvider(entityID);
 			});
 		});
+		
+		if (showmore) {
+			var moreLink = '<a class="discojuice_showmore textlink" href="">Results limited to ' + show + ' entries – show more…</a>';
+			this.popup.find("p.discojuice_moreLinkContainer").empty().append(moreLink);
+			this.popup.find("p.discojuice_moreLinkContainer a.discojuice_showmore").click(function(e) {
+				event.preventDefault();
+				that.control.increase();
+			});
+		} else {
+			this.popup.find("p.discojuice_moreLinkContainer").empty();
+			if (listcount > 10) {
+				var moreLink = '<span style="color: #888">' + listcount + ' entries listed</span>';
+				this.popup.find("p.discojuice_moreLinkContainer").append(moreLink);
+			} 
+		}
 	},
 
 	"enable": function(control) {
@@ -163,11 +184,11 @@ DiscoJuice.UI = {
 				'<p class="discojuice_subtitle">' + this.parent.Utils.options.get('subtitle', 'Subtitle') + '</p>' +
 			'</div>' +
 			
-			'<div id="content" style="">' +
-				'<p class="moretext"></p>' +
+			'<div class="discojuice_listContent" style="">' +
 				'<div class="scroller">' +
 					'<div class="loadingData" ><img src="' + imgpath + 'spinning.gif" /> Loading list of providers...</div>' +
 				'</div>' +
+				'<p class="discojuice_moreLinkContainer" style="margin: 0px; padding: 4px">&nbsp;</p>' +
 			'</div>' +
 	
 			'<div id="search" class="" >' +
@@ -191,10 +212,7 @@ DiscoJuice.UI = {
 			'</div>' +
 			
 			'<div class="filters bottom">' +
-// 				'<p id="filterCountry"></p>' +
-// 				'<p id="filterType"></p>' +
-				'<p class="discojuice_showall" ><a class="discojuice_showall textlink" href="">Show all providers</a></p>' +
-				'<p style="margin 0px; text-align: right; color: #ccc; font-size: x-small">DiscoJuice &copy; 2011, UNINETT</p>' +
+				'<p style="margin 0px; text-align: right; color: #ccc; font-size: 75%">DiscoJuice &copy; UNINETT</p>' +
 			'</div>' +
 	
 

@@ -8,7 +8,7 @@ div.discojuice {
 	z-index: 100;
 	margin: 0;
 	padding: 0;
-	width: 320px;
+	width: 500px;
 	position: absolute;
 	top: 30px;
 	right: 10px;
@@ -112,7 +112,7 @@ div.discojuice a.textlink:hover {
 /*
  * Section for the scroller
  */
-div.discojuice #content {
+div.discojuice .discojuice_listContent {
 	overflow: auto;	
 	max-height: 450px;	
 }
@@ -124,9 +124,11 @@ div.discojuice div.scroller img.logo {
 	float:  right;
 }
 
-
+div.discojuice div.scroller a {
+	padding: 3px 6px;
+}
 div.discojuice div.scroller a span {
-	margin: 3px;
+/*	margin: 3px;*/
 /*	display: block;*/
 }
 div.discojuice div.scroller a span.title {
@@ -147,6 +149,7 @@ div.discojuice div.scroller a span.location {
 div.discojuice div.scroller a span.country {
 	font-size:  86%;
 	color: #555;
+	margin-right: 7px;
 }
 div.discojuice div.scroller a div.debug {
 	font-size:  86%;
