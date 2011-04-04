@@ -25,16 +25,15 @@ echo '<script type="text/javascript" language="javascript" src="' . SimpleSAML_M
 
 ';
 
-
-
+$version = '0.1';
 echo '<!-- DiscoJuice -->
-<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.misc.js') . '"></script>
-<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.ui.js') . '"></script>
-<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.control.js') . '"></script>
+<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.misc.js?v=' . $version ) . '"></script>
+<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.ui.js?v=' . $version) . '"></script>
+<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.control.js?v=' . $version) . '"></script>
 
-<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/idpdiscovery.js') . '"></script>
+<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/idpdiscovery.js?v=' . $version) . '"></script>
 
-<link rel="stylesheet" type="text/css" href="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/css/discojuice.css') . '" />';
+<link rel="stylesheet" type="text/css" href="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/css/discojuice.css?v=' . $version) . '" />';
 
 ?>
 
@@ -57,7 +56,7 @@ echo '<!-- DiscoJuice -->
 	<script type="text/javascript">
 <?php
 
-
+global $options;
 $options = $this->data['discojuice.options'];
 
 echo 'var options = ' . json_encode($options) . ';' . "\n\n";
@@ -68,14 +67,23 @@ if (empty($options['metadata'])) {
 	echo 'options.metadata = "' . SimpleSAML_Module::getModuleURL('discojuice/feed.php'). '"; ' . "\n";
 }
 
-echo 'options.disco = { url: "' . SimpleSAML_Module::getModuleURL('discojuice/discojuiceDiscoveryResponse.html?'). '" }; ' . "\n";
+if (!empty($options['disco'])) {
+	echo 'options.disco.url = "' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuiceDiscoveryResponse.html?'). '"; ' . "\n";
+}
+
+
+
 
 if (empty($options['discoPath'])) {
 	echo 'options.discoPath = "discojuice/"; ' . "\n";
+	$options['discoPath'] = "discojuice/";
+	
 }
 
 echo 'var acl = ' . json_encode($this->data['acl']) . ';' . "\n";
 echo 'acl.push("' . SimpleSAML_Utilities::getSelfHost() . '");' . "\n\n";
+
+SimpleSAML_Logger::info('Icon URL is: ' . $options['discoPath'] );
 
 ?>
 		
@@ -113,8 +121,14 @@ $returnto = !empty($_REQUEST['return']) ? $_REQUEST['return'] : null;
 function show($item) {
 	
 	global $returnidparam, $returnto;
+	global $options; 
 	
-	$iconPath = 'discojuice/logos/';
+	$iconPath = $options['discoPath'] . 'logos/';
+	
+	if (empty($item['entityID'])) {
+		SimpleSAML_Logger::warning('Missing entityID on item to show in central discovery service...');
+		return;
+	}
 	
 	$href = $returnto . '&' . $returnidparam . '=' . urlencode($item['entityID']);
 	if (!empty($item['icon'])) {
