@@ -119,7 +119,7 @@ DiscoJuice.Control = {
 	
 	"locateMe": function() {
 		var that = this;
-		console.log('Locate me');
+		this.parent.Utils.log('Locate Me');
 		
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition( 
@@ -159,7 +159,7 @@ DiscoJuice.Control = {
 				}
 			);
 		} else {
-			console.log('Did not find navigator.geolocation');
+			this.parent.Utils.log('Did not find navigator.geolocation');
 		}
 		
 	},
@@ -302,6 +302,7 @@ DiscoJuice.Control = {
 	// Setup an iframe to read discovery cookies from other domains
 	"discoReadSetup": function() {
 		var settings = this.parent.Utils.options.get('disco');
+		
 		if (!settings) return;
 	
 		var html = '';
@@ -315,6 +316,8 @@ DiscoJuice.Control = {
 		
 		for(i = 0; i < stores.length; i++) {
 			currentStore = stores[i];
+			
+			this.parent.Utils.log('Setting up DisoJuice Read from Store [' + currentStore + ']');
 			
 			iframeurl = currentStore + '?entityID=' + escape(spentityid) + '&isPassive=true&returnIDParam=entityID&return=' + escape(returnurl);
 			
