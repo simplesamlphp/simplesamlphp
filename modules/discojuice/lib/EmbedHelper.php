@@ -41,7 +41,11 @@ class sspmod_discojuice_EmbedHelper {
 		echo 'options.countryAPI = "' . SimpleSAML_Module::getModuleURL('discojuice/country.php'). '"; ' . "\n";
 		echo 'options.metadata = "' . SimpleSAML_Module::getModuleURL('discojuice/feed.php'). '"; ' . "\n";
 		
-		echo 'options.disco = { url: "' . SimpleSAML_Module::getModuleURL('discojuice/discojuiceDiscoveryResponse.html?'). '" }; ' . "\n";
+		if (!empty($options['disco'])) {
+			echo 'options.disco.url = "' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuiceDiscoveryResponse.html?'). '"; ' . "\n";
+		}
+
+
 		echo 'options.discoPath = "' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/') . '"; ' . "\n";
 		
 		
