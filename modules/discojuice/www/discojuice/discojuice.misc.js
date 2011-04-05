@@ -87,6 +87,9 @@ DiscoJuice.Utils = {
 			},
 			"set": function(opts) {
 				options = opts;
+			},
+			"update": function(key, value) {
+				options[key] = value;
 			}
 		}
 	}(),
