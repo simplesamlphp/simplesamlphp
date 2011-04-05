@@ -15,7 +15,7 @@ header('Content-Type: text/plain; charset=utf-8');
 
 foreach($data AS $key => $e) {
 	
-	if ($e['country'] == 'NO') {
+	if ($e['country'] == 'SE') {
 		print_r($e);
 	}
 	

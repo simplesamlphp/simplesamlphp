@@ -5,9 +5,9 @@
  */
 class sspmod_discojuice_Feed {
 	
-	protected $config;
+	protected $config, $djconfig;
 	
-	protected $exlude, $override, $insert;
+	protected $excludes, $override, $insert, $idplist;
 	
 	protected $metadata;
 	protected $feed;
@@ -21,6 +21,10 @@ class sspmod_discojuice_Feed {
 
 		$metadatah = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$this->metadata = $metadatah->getList('saml20-idp-remote');
+		
+		$this->idplist = $this->getIdPList();
+		
+		SimpleSAML_Logger::info('IdP List contained : ' . count($this->idplist)  . ' entries.');
 		
 		$this->excludes = array_flip($this->djconfig->getValue('exclude'));
 		$this->insert = $this->djconfig->getValue('insert');
@@ -104,6 +108,21 @@ class sspmod_discojuice_Feed {
 		return (array_key_exists($e, $this->excludes));
 	}
 	
+	protected function getIdPList() {
+		$api = $this->djconfig->getValue('idplistapi', NULL);
+		if (empty($api)) return array();
+		
+		$result = array();
+		
+		$apiresult = json_decode(file_get_contents($api), TRUE);
+		if ($apiresult['status'] === 'ok') {
+			foreach($apiresult['data'] AS $idp) {
+				$result[$idp] = 1;
+			}
+		}
+		return $result;
+	}
+	
 	private function process() {
 		
 		$this->feed = array();
@@ -128,8 +147,11 @@ class sspmod_discojuice_Feed {
 		$this->getCountry($data, $m);
 		$this->getTitle($data, $m);
 		$this->getOverrides($data, $m);
-		
 		$this->getGeo($data, $m);
+		
+		if (!empty($this->idplist)) {
+			$this->islisted($data, $m);
+		}
 
 
 		return $data;
@@ -141,6 +163,19 @@ class sspmod_discojuice_Feed {
 	}
 	
 	
+	protected function islisted(&$data, $m) {
+		$weight = 0;
+		if (array_key_exists('weight', $data)) $weight = $data['weight'];
+		
+		if (!array_key_exists($m['entityid'], $this->idplist)) {
+			#echo 'Match for ' . $m['entityid'];
+			$weight += 2;
+		}
+		$data['weight'] = $weight;
+		
+#		echo '<pre>';
+#		print_r($this->idplist); exit;
+	}
 	
 	
 	protected function getGeo(&$data, $m) {
@@ -157,7 +192,11 @@ class sspmod_discojuice_Feed {
 
 			try {
 				$host = parse_url($endpoint['Location'], PHP_URL_HOST); if (empty($host)) return;
-				$ip = gethostbyname($host); if (empty($ip)) return;
+				$ip = gethostbyname($host); 
+				
+				if (empty($ip)) return;
+				if ($ip === $host) return;
+				
 				$capi = new sspmod_discojuice_Country($ip);
 				
 				if (empty($data['geo'])) {
