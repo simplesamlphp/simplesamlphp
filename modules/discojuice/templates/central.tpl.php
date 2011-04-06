@@ -1,6 +1,10 @@
 <?php
 
+
+$version = '0.1';
 header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
+
+
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -25,7 +29,7 @@ echo '<script type="text/javascript" language="javascript" src="' . SimpleSAML_M
 
 ';
 
-$version = '0.1';
+
 echo '<!-- DiscoJuice -->
 <script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.misc.js?v=' . $version ) . '"></script>
 <script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.ui.js?v=' . $version) . '"></script>
@@ -59,6 +63,11 @@ echo '<!-- DiscoJuice -->
 global $options;
 $options = $this->data['discojuice.options'];
 
+// echo '<pre>opts'; 
+// print_r($options);
+// exit;
+
+
 echo 'var options = ' . json_encode($options) . ';' . "\n\n";
 
 echo 'options.countryAPI = "' . SimpleSAML_Module::getModuleURL('discojuice/country.php'). '"; ' . "\n";
@@ -87,7 +96,6 @@ SimpleSAML_Logger::info('Icon URL is: ' . $options['discoPath'] );
 
 ?>
 		
-		IdPDiscovery.receive();
 		IdPDiscovery.setup(options, acl);
 	</script>
 	

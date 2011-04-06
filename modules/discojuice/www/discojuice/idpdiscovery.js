@@ -69,15 +69,18 @@ var IdPDiscovery = function() {
 				
 				var returnToHost = this.getHostname(returnTo);
 				
-				for (var i = 0; i < this.returnURLs.length; i++) {
-					if (this.returnURLs[i] == returnToHost) allowed = true;
+// 				console.log('returnURLs2');
+// 				console.log(returnURLs);
+				
+				for (var i = 0; i < returnURLs.length; i++) {
+					if (returnURLs[i] == returnToHost) allowed = true;
 
 				}
 				
 				if (!allowed) {
 					DiscoJuice.Utils.log('Access denied for return parameter [' + returnToHost + ']');
 					DiscoJuice.Utils.log('Allowed hosts');
-					DiscoJuice.Utils.log(this.returnURLs);
+					DiscoJuice.Utils.log(returnURLs);
 					return;
 				}
 			}
@@ -87,8 +90,11 @@ var IdPDiscovery = function() {
 			}
 			
 			if (!e.entityID) {
+				DiscoJuice.Utils.log('ReturnTo without Entityid');
+				DiscoJuice.Utils.log(e);
 				window.location = returnTo;
 			} else {
+				DiscoJuice.Utils.log('ReturnTo with Entityid');
 				window.location = returnTo + '&' + returnIDParam + '=' + escape(e.entityID);
 			}
 			
@@ -115,17 +121,24 @@ var IdPDiscovery = function() {
 			var isPassive = query.isPassive || 'false';
 			
 			if (isPassive === 'true') {
-				this.returnTo(preferredIdP);
+				this.returnTo({'entityID': preferredIdP});
 			}
 		},
 		
-
-		
 		"setup": function(options, rurls) {
 
+// 			console.log('Setting up DiscoJuice');
+// 			console.log(rurls);
+			returnURLs = rurls;
+
+			this.receive();
+			this.startUI();
+		},
+
+		
+		"startUI": function() {
+
 			var that = this;
-				
-			this.returnURLs = rurls;
 			
 			$(document).ready(function() {
 				var overthere = that;

@@ -91,7 +91,8 @@ DiscoJuice.Control = {
 		}
 	},
 	
-	"discoResponse": function(entityID) {
+	"discoResponse": function(entityID, sender) {
+		this.parent.Utils.log('DiscoResponse Received from [' + sender  + ']');
 		this.setWeight(entityID, -100);
 		this.prepareData();
 	},
