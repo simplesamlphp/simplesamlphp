@@ -265,7 +265,7 @@ DiscoJuice.Control = {
 	
 	"selectProvider": function(entityID) {
 	
-		console.log('entityid: '  + entityID);
+		// console.log('entityid: '  + entityID);
 	
 		var callback;
 		var that = this;
@@ -283,13 +283,14 @@ DiscoJuice.Control = {
 			}
 		}
 
-		console.log(entity);
+		// console.log(entity);
 
 		callback = this.parent.Utils.options.get('callback');	
 		if (callback) {
 			if (mustwait) {
 				$.doTimeout(1000, function(){
 					callback(entity);
+					// alert('done');
 				});
 				
 			} else {
