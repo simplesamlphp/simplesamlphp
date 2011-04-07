@@ -61,6 +61,7 @@ echo '<!-- DiscoJuice -->
 <?php
 
 global $options;
+global $returnidparam, $returnto;
 $options = $this->data['discojuice.options'];
 
 // echo '<pre>opts'; 
