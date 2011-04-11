@@ -114,7 +114,8 @@ div.discojuice a.textlink:hover {
  */
 div.discojuice .discojuice_listContent {
 	overflow: auto;	
-	max-height: 450px;	
+/*	max-height: 40%;	*/
+	max-height: 450px;
 }
 div.discojuice div.scroller {
 	padding:  1px 1px 10px 1px;
@@ -222,25 +223,25 @@ div.discojuice div.scroller a {
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
 	
-
+	background-color: #fafafa;
 	
-background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0.3, rgb(220,220,220)),
-    color-stop(0.9, rgb(240,240,240))
-);
-background-image: -moz-linear-gradient(
-    center bottom,
-    rgb(220,220,220) 30%,
-    rgb(240,240,240) 90%
-);
-background-image: -o-linear-gradient(
-    bottom,
-    rgb(220,220,220) 30%,
-    rgb(240,240,240) 90%
-);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.3, rgb(220,220,220)),
+		color-stop(0.9, rgb(240,240,240))
+	);
+	background-image: -moz-linear-gradient(
+		center bottom,
+		rgb(220,220,220) 30%,
+		rgb(240,240,240) 90%
+	);
+	background-image: -o-linear-gradient(
+		bottom,
+		rgb(220,220,220) 30%,
+		rgb(240,240,240) 90%
+	);
 
 	/* Text */
 	color: #333;

@@ -98,6 +98,9 @@ DiscoJuice.UI = {
 		
 		if (debugweight) {
 			textLink += '<div class="debug">';
+			
+			textLink += '<input type="text" style="display: block; width: 80%" name="debug.entityID" value="' + item.entityID + '" />';
+			
 			var w = 0;
 			if (item.weight) {
 				w += item.weight;

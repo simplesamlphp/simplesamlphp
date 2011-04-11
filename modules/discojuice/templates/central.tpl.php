@@ -1,7 +1,7 @@
 <?php
 
 
-$version = '0.1';
+$version = '0.1-2';
 header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
 
 
