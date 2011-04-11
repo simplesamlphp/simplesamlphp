@@ -29,10 +29,9 @@ function receive() {
 	})();
 	
 	var sender = parseURL(document.referrer);
-	
 	if (urlParams.entityID) {
-		window.parent.DiscoJuice.Utils.log('ResponseLocation: Response from discovery service [' + sender + ']: ' + urlParams.entityID);
-		window.parent.DiscoJuice.Control.discoResponse(urlParams.entityID, sender);
+		window.parent.DiscoJuice.Utils.log('ResponseLocation: Response from discovery service [' + sender + ']: ' + urlParams.entityID + '   subID: ' + urlParams.subID);
+		window.parent.DiscoJuice.Control.discoResponse(sender, urlParams.entityID, urlParams.subID);
 	} else {
 		window.parent.DiscoJuice.Utils.log('ResponseLocation: Response from discovery service [' + sender + ']: No valid response parameters');
 	}

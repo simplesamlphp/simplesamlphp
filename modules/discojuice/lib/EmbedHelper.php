@@ -7,27 +7,34 @@ class sspmod_discojuice_EmbedHelper {
 	
 	public static function head($includeJQuery = TRUE) {
 		
-		$version = '0.1';
+		$version = '0.1-' . rand(1000, 9999);
 		
 		$config = SimpleSAML_Configuration::getInstance();
 		$djconfig = SimpleSAML_Configuration::getOptionalConfig('discojuiceembed.php');
 		
 			
 		if ($includeJQuery) {	
-			echo '<!-- JQuery -->';
-			echo '<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-1.4.3.min.js') . '"></script>
-			<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-ui-1.8.5.custom.min.js') . '"></script>
+			echo '
+<!-- JQuery (Required for DiscoJuice) -->
+	<script type="text/javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-1.4.3.min.js') . '"></script>
+	<script type="text/javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-ui-1.8.5.custom.min.js') . '"></script>
 			
-			<link rel="stylesheet" type="text/css" href="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/css/custom/jquery-ui-1.8.5.custom.css') . '" />';
+	<link rel="stylesheet" type="text/css" href="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/css/custom/jquery-ui-1.8.5.custom.css') . '" />
+
+';
+
 		}
 		
 		
-		echo '<!-- DiscoJuice -->
-		<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.misc.js?v=' . $version) . '"></script>
-		<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.ui.js?v=' . $version) . '"></script>
-		<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.control.js?v=' . $version) . '"></script>
+		echo '
+<!-- DiscoJuice (version identifier: ' . $version . ' ) -->
+	<script type="text/javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.misc.js?v=' . $version) . '"></script>
+	<script type="text/javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.ui.js?v=' . $version) . '"></script>
+	<script type="text/javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuice.control.js?v=' . $version) . '"></script>
 		
-		<link rel="stylesheet" type="text/css" href="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/css/discojuice.css?v=' . $version) . '" />';
+	<link rel="stylesheet" type="text/css" href="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/css/discojuice.css?v=' . $version) . '" />
+
+';
 	
 		
 		$options = $djconfig->getValue('discojuice.options');
@@ -39,7 +46,10 @@ class sspmod_discojuice_EmbedHelper {
 		echo 'var target = "' . $target . '";' . "\n\n";
 		
 		echo 'options.countryAPI = "' . SimpleSAML_Module::getModuleURL('discojuice/country.php'). '"; ' . "\n";
-		echo 'options.metadata = "' . SimpleSAML_Module::getModuleURL('discojuice/feed.php'). '"; ' . "\n";
+		
+		if (empty($options['metadata'])) {
+			echo 'options.metadata = "' . SimpleSAML_Module::getModuleURL('discojuice/feed.php'). '"; ' . "\n";
+		}
 		
 		if (!empty($options['disco'])) {
 			echo 'options.disco.url = "' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/discojuiceDiscoveryResponse.html?'). '"; ' . "\n";

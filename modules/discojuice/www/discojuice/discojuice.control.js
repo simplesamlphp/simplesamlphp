@@ -1,11 +1,13 @@
 /*
  * DiscoJuice
- *  Work is based upon mock up made by the Kantara ULX group.
+ *	Work is based upon mock up made by the Kantara ULX group.
  * 
  * Author: Andreas Åkre Solberg, UNINETT, andreas.solberg@uninett.no
  * Licence undecided. Awaiting alignment with the licence of the origin Kantara mockup.
  */
-if (typeof DiscoJuice == "undefined") var DiscoJuice = {};
+if (typeof DiscoJuice === "undefined") {
+	var DiscoJuice = {};
+}
 
 
 DiscoJuice.Control = {
@@ -13,7 +15,7 @@ DiscoJuice.Control = {
 	"parent" : DiscoJuice,
 
 	// Reference to the UI object...
-	"ui": null,	
+	"ui": null, 
 	"data": null,
 	
 	// Set filter values to filter the result.
@@ -30,11 +32,15 @@ DiscoJuice.Control = {
 	 */
 	"load": function() {
 		var that = this;		
-		if (this.data) return;
+		if (this.data) {
+			return;
+		}
 		var metadataurl = this.parent.Utils.options.get('metadata');
 		
 		this.parent.Utils.log('metadataurl is ' + metadataurl);
-		if (!metadataurl) return;
+		if (!metadataurl) {
+			return;
+		}
 		
 		$.getJSON(metadataurl, function(data) {
 			that.data = data;
@@ -44,7 +50,9 @@ DiscoJuice.Control = {
 	},
 	
 	"postLoad": function() {
-		if (!this.data) return;
+		if (!this.data) {
+			return;
+		}
 		
 		// Iterate through entities, and update title from DisplayNames to support Shibboleth integration.
 		for(i = 0; i < this.data.length; i++) {
@@ -83,7 +91,7 @@ DiscoJuice.Control = {
 	 */
 	"setWeight": function(entityID, weight) {
 		for(i = 0; i < this.data.length; i++) {
-			if (this.data[i].entityID == entityID) {
+			if (this.data[i].entityID === entityID) {
 				if (isNaN(this.data[i].weight)) this.data[i].weight = 0;
 				this.data[i].weight += weight;
 				this.parent.Utils.log('COOKIE Setting weight to ' + this.data[i].weight);
@@ -92,7 +100,7 @@ DiscoJuice.Control = {
 	},
 	
 	"discoResponse": function(entityID, sender) {
-		this.parent.Utils.log('DiscoResponse Received from [' + sender  + ']');
+		this.parent.Utils.log('DiscoResponse Received from [' + sender	+ ']');
 		this.setWeight(entityID, -100);
 		this.prepareData();
 	},
@@ -107,13 +115,13 @@ DiscoJuice.Control = {
 				this.data[i].distanceweight = (2 * Math.log(this.data[i].distance + 1)) - 10;
 			}
 		}
-// 		for(i = 0; i < this.data.length; i++) {
-// 			if (this.data[i].distance) {
-// 				console.log('Distance for [' + this.data[i].title + '] ' + this.data[i].distance);
-// 			} else {
-// 				console.log('Distance for [' + this.data[i].title + '] NA');
-// 			}
-// 		}
+//		for(i = 0; i < this.data.length; i++) {
+//			if (this.data[i].distance) {
+//				console.log('Distance for [' + this.data[i].title + '] ' + this.data[i].distance);
+//			} else {
+//				console.log('Distance for [' + this.data[i].title + '] NA');
+//			}
+//		}
 		this.showdistance = true;
 		this.prepareData();
 	},
@@ -174,17 +182,19 @@ DiscoJuice.Control = {
 	
 	"prepareData": function(showall) {
 	
-		var showall = (showall ? true : false);
+		showall = (showall ? true : false);
 	
 		this.parent.Utils.log('DiscoJuice.Control prepareData()');
 		
 		var hits, i, current, search;
 		var someleft = false;
 
- 		var term = this.getTerm();
- 		var categories = this.getCategories();
+		var term = this.getTerm();
+		var categories = this.getCategories();
 
-		if (!this.data) return;
+		if (!this.data) {
+			return;
+		}
 		
 		/*
 		 * Sort data by weight...
@@ -217,35 +227,41 @@ DiscoJuice.Control = {
 			
 			if (term) {
 				search = this.parent.Utils.searchMatch(current,term);
-				if (search === false && current.weight > -50) continue;
+				if (search === false && current.weight > -50) {
+					continue;
+				}
 			} else {
 				search = null;
 			}
 			
 			if (categories && categories.country) {
-				if (!current.country) continue;
-				if (current.country !== '_all_' && categories.country !== current.country && current.weight > -50) continue;
+				if (!current.country) {
+					continue;
+				}
+				if (current.country !== '_all_' && categories.country !== current.country && current.weight > -50) {
+					continue;
+				}
 			}
-// 			if (categories && categories.type) {
-// 				if (!current.ctype && current.weight > -50) {
-// 	//				DiscoJuice.log(current);
-// 				continue;
-// 				}
-// 	//			DiscoJuice.log(current.title + ' category ' + current.ctype);
-// 				if (categories.type !== current.ctype && current.weight > -50) continue;
-// 			}
+//			if (categories && categories.type) {
+//				if (!current.ctype && current.weight > -50) {
+//	//				DiscoJuice.log(current);
+//				continue;
+//				}
+//	//			DiscoJuice.log(current.title + ' category ' + current.ctype);
+//				if (categories.type !== current.ctype && current.weight > -50) continue;
+//			}
 
-			if (++hits > this.maxhits) { 
+			if (++hits > this.maxhits) {
 				someleft = true;
 				break;
 			}
 			
-	// 		DiscoJuice.log('Accept: ' + current.title);
+	//		DiscoJuice.log('Accept: ' + current.title);
 	
 			var countrydef = null;
 			if (current.country) {
 				var cname = (this.parent.Constants.Countries[current.country] ? this.parent.Constants.Countries[current.country] : current.country);
-				if (cname !== '_all_')  {
+				if (cname !== '_all_')	{
 					var cflag = (this.parent.Constants.Flags[current.country] ? this.parent.Constants.Flags[current.country] : undefined);
 					countrydef = {'country': cname, 'flag': cflag};
 				}
@@ -265,7 +281,7 @@ DiscoJuice.Control = {
 	
 	"selectProvider": function(entityID) {
 	
-		// console.log('entityid: '  + entityID);
+		// console.log('entityid: '	 + entityID);
 	
 		var callback;
 		var that = this;
@@ -278,7 +294,7 @@ DiscoJuice.Control = {
 
 		var entity = null;
 		for(i = 0; i < this.data.length; i++) {
-			if (this.data[i].entityID == entityID) {
+			if (this.data[i].entityID === entityID) {
 				entity = this.data[i];
 			}
 		}
@@ -305,7 +321,9 @@ DiscoJuice.Control = {
 	"discoReadSetup": function() {
 		var settings = this.parent.Utils.options.get('disco');
 		
-		if (!settings) return;
+		if (!settings) {
+			return;
+		}
 	
 		var html = '';
 		var returnurl = settings.url;
@@ -314,7 +332,9 @@ DiscoJuice.Control = {
 		var i;
 		var currentStore;
 		
-		if (!stores) return;
+		if (!stores) {
+			return;
+		}
 		
 		for(i = 0; i < stores.length; i++) {
 			currentStore = stores[i];
@@ -332,8 +352,12 @@ DiscoJuice.Control = {
 	"discoWrite": function(e) {
 	
 		var settings = this.parent.Utils.options.get('disco');
-		if (!settings) return false;
-		if (!settings.writableStore) return false;
+		if (!settings) {
+			return false;
+		}
+		if (!settings.writableStore) {
+			return false;
+		}
 	
 		var html = '';
 		var returnurl = settings.url;
@@ -362,7 +386,9 @@ DiscoJuice.Control = {
 			minLength: 0,
 			source: function( request, response ) {
 				var term = request.term;
-				if (term.length === 1) return;
+				if (term.length === 1) {
+					return;
+				}
 //				that.resetCategories();							
 				that.prepareData();
 			}
@@ -455,7 +481,7 @@ DiscoJuice.Control = {
 				
 				$.getJSON(countryapi, function(data) {
 		//			DiscoJuice.log(data);
-					if (data.status == 'ok' && data.country) {
+					if (data.status === 'ok' && data.country) {
 						that.parent.Utils.createCookie(data.country, 'Country2');
 						that.setCountry(data.country);
 						that.parent.Utils.log('DiscoJuice getCountry() : Country lookup succeeded: ' + data.country);
@@ -480,8 +506,7 @@ DiscoJuice.Control = {
 		//this.ui.popup.find("select.discojuice_filterTypeSelect").val()
 		this.ui.popup.find("select.discojuice_filterCountrySelect").val('all');
 	},
-	
-		
+
 	"getCategories": function () {
 		var filters = {};
 		var type, country;
@@ -507,7 +532,8 @@ DiscoJuice.Control = {
 	"resetTerm": function() {
 		//this.ui.popup.find("select.discojuice_filterTypeSelect").val()
 		this.ui.popup.find("input.discojuice_search").val('');
-	},
-
+	}
 
 };
+
+

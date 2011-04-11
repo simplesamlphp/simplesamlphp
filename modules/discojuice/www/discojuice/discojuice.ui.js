@@ -191,7 +191,7 @@ DiscoJuice.UI = {
 				'</div>' +
 			'</div>' +
 			
-			'<div id="locatemediv">' +
+			'<div id="discojuice_locatemediv" style="display: none">' +
 				'<div class="locatemebefore">' +
 					'<p style="margin-top: 10px"><a id="locateme" href="">' +
 						'<img style="float: left; margin-right: 5px; margin-top: -10px" src="' + imgpath + 'target.png" alt="locate me..." />' +
@@ -242,7 +242,9 @@ DiscoJuice.UI = {
 		});
 
 
-		if (this.parent.Utils.options.get('location', false) && navigator.geolocation) {
+		if (this.parent.Utils.options.get('location', false) && !!navigator.geolocation) {
+			this.popup.find("div#discojuice_locatemediv").show();
+			
 			var that = this;
 			$("#locateme").click(function(event) {
 				var imgpath = that.parent.Utils.options.get('discoPath', '') + 'images/';

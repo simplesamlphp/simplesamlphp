@@ -107,7 +107,7 @@ var IdPDiscovery = function() {
 			var entityID = this.getSP();
 
 			if(!entityID) {
-				DiscoJuice.Utils.log('Missing required parameter [entityID]');
+				// DiscoJuice.Utils.log('Missing required parameter [entityID]');
 				return;
 			}
 			
