@@ -136,9 +136,9 @@ class SimpleSAML_Auth_LDAP {
 				case ERR_WRONG_PW:// 3 - ExInvalidCredential
 					return new SimpleSAML_Error_InvalidCredential($description, $errNo);
 				case ERR_AS_DATA_INCONSIST:// 4 - ExAsDataInconsist
-					return new SimpleSAML_Error_AuthSource($description, $errNo);
+					return new SimpleSAML_Error_AuthSource('ldap', $description);
 				case ERR_AS_INTERNAL:// 5 - ExAsInternal
-					return new SimpleSAML_Error_AuthSource($description, $errNo);
+					return new SimpleSAML_Error_AuthSource('ldap', $description);
 			}
 		}else{
 			switch ($errNo){
@@ -150,10 +150,10 @@ class SimpleSAML_Auth_LDAP {
 					return new SimpleSAML_Error_InvalidCredential($description, $errNo);
 				case -1://NO_SERVER_CONNECTION
 					SimpleSAML_Logger::error($description . '; cause: \'' . ldap_error($this->ldap) . '\' (0x' . dechex($errNo) . ')');
-					return new SimpleSAML_Error_AuthSource($description, $errNo);
+					return new SimpleSAML_Error_AuthSource('ldap', $description);
 				default:
 					SimpleSAML_Logger::error($description . '; cause: \'' . ldap_error($this->ldap) . '\' (0x' . dechex($errNo) . ')');
-					return new SimpleSAML_Error_AuthSource($description, $errNo);
+					return new SimpleSAML_Error_AuthSource('ldap', $description);
 			}
 		}
 	}

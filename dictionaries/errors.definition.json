@@ -211,5 +211,11 @@
 	},
 	"descr_METADATANOTFOUND": {
 		"en": "Unable to locate metadata for %ENTITYID%"
+	},
+	"title_AUTHSOURCEERROR": {
+		"en": "Authentication source error"
+	},
+	"descr_AUTHSOURCEERROR": {
+		"en": "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
 	}
 }

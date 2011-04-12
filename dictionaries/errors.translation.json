@@ -1498,5 +1498,11 @@
 		"hr": "Metapodaci za %ENTITYID% nisu prona\u0111eni",
 		"it": "Impossibile individuare i metatadi per %ENTITYID%",
 		"sv": "Kan inte hitta metadata f\u00f6r %ENTITYID%"
+	},
+	"title_AUTHSOURCEERROR": {
+		"hr": "Pogreška u autentikacijskom modulu"
+	},
+	"descr_AUTHSOURCEERROR": {
+		"hr": "Pogreška u %AUTHSOURCE% autentikacijskom modulu. Razlog: %REASON%"
 	}
 }
