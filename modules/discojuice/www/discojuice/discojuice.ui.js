@@ -99,7 +99,9 @@ DiscoJuice.UI = {
 		if (debugweight) {
 			textLink += '<div class="debug">';
 			
-			textLink += '<input type="text" style="display: block; width: 80%" name="debug.entityID" value="' + item.entityID + '" />';
+			if (item.subID) {
+				textLink += '<input value="' + item.subID + '" />';
+			}
 			
 			var w = 0;
 			if (item.weight) {
@@ -128,8 +130,13 @@ DiscoJuice.UI = {
 		}
 		
 		
+		var relID = item.entityID;
+		if (item.subID) {
+			relID += '#' + item.subID;
+		}
+		
 		// Wrap in A element
-		textLink = '<a href="" class="' + classes + '" rel="' + escape(item.entityID) + '" title="' + escape(item.title) + '">' + 
+		textLink = '<a href="" class="' + classes + '" rel="' + escape(relID) + '" title="' + escape(item.title) + '">' + 
 			textLink + '</a>';
 
 
@@ -147,8 +154,18 @@ DiscoJuice.UI = {
 			$(this).click(function(event) {
 				event.preventDefault();
 				overthere.hide();
-				var entityID = unescape($(this).attr('rel'));
-				overthere.control.selectProvider(entityID);
+							
+				// The "rel" attribute is containing: 'entityid#subid'
+				// THe following code, decodes that.
+				var relID = unescape($(this).attr('rel'));
+				var entityID = relID;
+				var subID = undefined;
+				if (relID.match(/^.*#.+?$/)) {
+					var matched = /^(.*)#(.+?)$/.exec(relID);
+					entityID = matched[1];
+					subID = matched[2];
+				}
+				overthere.control.selectProvider(entityID, subID);
 			});
 		});
 		
@@ -170,6 +187,10 @@ DiscoJuice.UI = {
 
 	"enable": function(control) {
 		var imgpath = this.parent.Utils.options.get('discoPath', '') + 'images/';
+		
+		var textSearch = this.parent.Utils.options.get('textSearch', 'or search for a provider, in example Univerity of Oslo');
+		var textHelp = this.parent.Utils.options.get('textHelp', 'Help me, I cannot find my provider');
+		var textHelpMore = this.parent.Utils.options.get('textHelpMore', 'If your institusion is not connected to Foodle, you may create a new account using any of the Guest providers, such as <strong>OpenIdP (Guest users)</strong>.');
 	
 		var html = 	'<div style="display: none" class="discojuice">' +
 			'<div class="top">' +
@@ -186,15 +207,14 @@ DiscoJuice.UI = {
 			'</div>' +
 	
 			'<div id="search" class="" >' +
-				'<p><input type="search" class="discojuice_search" results=5 autosave="discojuice" name="searchfield" placeholder="or search for a provider, in example Univerity of Oslo" value="" /></p>' +
+				'<p><input type="search" class="discojuice_search" results=5 autosave="discojuice" name="searchfield" placeholder="' + textSearch + '" value="" /></p>' +
 				'<div class="discojuice_whatisthis" style="margin-top: 15px; font-size: 11px;">' +
-					'<a  href="#" class="textlink discojuice_what">Help me, I cannot find my provider</a>' +
-//					'<p class="discojuice_whattext">If your institusion is not connected to Foodle, you may either select to login one of the commercial providers such as Facebook or Google, or you may create a new account using any of the Guest providers, such as Feide OpenIdP.</p>' +
-					'<p class="discojuice_whattext">If your institusion is not connected to Foodle, you may create a new account using any of the Guest providers, such as <strong>OpenIdP (Guest users)</strong>.</p>' +
+					'<a  href="#" class="textlink discojuice_what">' + textHelp + '</a>' +
+					'<p class="discojuice_whattext">' + textHelpMore + '</p>' +
 				'</div>' +
 			'</div>' +
 			
-			'<div id="discojuice_locatemediv" style="display: none">' +
+			'<div id="locatemediv">' +
 				'<div class="locatemebefore">' +
 					'<p style="margin-top: 10px"><a id="locateme" href="">' +
 						'<img style="float: left; margin-right: 5px; margin-top: -10px" src="' + imgpath + 'target.png" alt="locate me..." />' +
@@ -207,6 +227,7 @@ DiscoJuice.UI = {
 			
 			'<div class="filters bottom">' +
 				'<p style="margin 0px; text-align: right; color: #ccc; font-size: 75%">DiscoJuice &copy; UNINETT</p>' +
+				'<button id="discojuiceextesion_listener" style="display:none">' +
 			'</div>' +
 	
 
@@ -233,6 +254,9 @@ DiscoJuice.UI = {
 			});
 		}
 
+		this.popup.find("#discojuiceextesion_listener").click(function() {
+			that.control.discojuiceextension();
+		});
 
 		// Add listeners to the close button.
 		this.popup.find(".discojuice_close").click(function() {
@@ -245,9 +269,7 @@ DiscoJuice.UI = {
 		});
 
 
-		if (this.parent.Utils.options.get('location', false) && !!navigator.geolocation) {
-			this.popup.find("div#discojuice_locatemediv").show();
-			
+		if (this.parent.Utils.options.get('location', false) && navigator.geolocation) {
 			var that = this;
 			$("#locateme").click(function(event) {
 				var imgpath = that.parent.Utils.options.get('discoPath', '') + 'images/';

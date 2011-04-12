@@ -1,13 +1,11 @@
 /*
  * DiscoJuice
- *	Work is based upon mock up made by the Kantara ULX group.
+ *  Work is based upon mock up made by the Kantara ULX group.
  * 
  * Author: Andreas Åkre Solberg, UNINETT, andreas.solberg@uninett.no
  * Licence undecided. Awaiting alignment with the licence of the origin Kantara mockup.
  */
-if (typeof DiscoJuice === "undefined") {
-	var DiscoJuice = {};
-}
+if (typeof DiscoJuice == "undefined") var DiscoJuice = {};
 
 
 DiscoJuice.Control = {
@@ -15,7 +13,7 @@ DiscoJuice.Control = {
 	"parent" : DiscoJuice,
 
 	// Reference to the UI object...
-	"ui": null, 
+	"ui": null,	
 	"data": null,
 	
 	// Set filter values to filter the result.
@@ -32,27 +30,23 @@ DiscoJuice.Control = {
 	 */
 	"load": function() {
 		var that = this;		
-		if (this.data) {
-			return;
-		}
+		if (this.data) return;
 		var metadataurl = this.parent.Utils.options.get('metadata');
 		
 		this.parent.Utils.log('metadataurl is ' + metadataurl);
-		if (!metadataurl) {
-			return;
-		}
+		if (!metadataurl) return;
 		
 		$.getJSON(metadataurl, function(data) {
 			that.data = data;
 			that.parent.Utils.log('Successfully loaded metadata (' + data.length + ')');
 			that.postLoad();
 		});
+		
+		
 	},
 	
 	"postLoad": function() {
-		if (!this.data) {
-			return;
-		}
+		if (!this.data) return;
 		
 		// Iterate through entities, and update title from DisplayNames to support Shibboleth integration.
 		for(i = 0; i < this.data.length; i++) {
@@ -67,6 +61,7 @@ DiscoJuice.Control = {
 		this.readCookie();
 		this.prepareData();
 		this.discoReadSetup();
+		this.discoSubReadSetup();
 		this.searchboxSetup();		
 		if (this.parent.Utils.options.get('country', false)) {
 			this.filterCountrySetup();
@@ -78,10 +73,53 @@ DiscoJuice.Control = {
 	
 	"readCookie": function() {
 		if (this.parent.Utils.options.get('cookie', false)) {
-			var selected = this.parent.Utils.readCookie();
-			this.parent.Utils.log('COOKIE read ' + selected);
-			if(selected) this.setWeight(selected, -100);			
+			var selectedRelID = this.parent.Utils.readCookie();
+			
+			var entityID = selectedRelID;
+			var subID = undefined;
+			if (selectedRelID && selectedRelID.match(/^.*#.+?$/)) {
+				var matched = /^(.*)#(.+?)$/.exec(selectedRelID);
+				entityID = matched[1];
+				subID = matched[2];
+			}
+			
+			this.parent.Utils.log('COOKIE read ' + selectedRelID);
+			if(selectedRelID) this.setWeight(-100, entityID, subID);
 		}
+	},
+	
+	"discojuiceextension": function() {
+		
+		console.log('Listener activated...');
+		
+		this.ui.show();
+	
+		var selectedRelID = $("meta#discojuiceextension_id").attr('content');
+		if (!selectedRelID) return;
+		
+		console.log('Value found: ' + selectedRelID);
+		
+		var entityID = selectedRelID;
+		var subID = undefined;
+		if (selectedRelID && selectedRelID.match(/^.*#.+?$/)) {
+			var matched = /^(.*)#(.+?)$/.exec(selectedRelID);
+			entityID = matched[1];
+			subID = matched[2];
+		}
+		
+		this.parent.Utils.log('DiscoJuice Extension read ' + selectedRelID + ' ' + entityID + ' ' + subID);
+		
+		var autologin = $("meta#discojuice_autologin").attr('content');
+		
+		if(autologin == '1') {
+			console.log('DiscoJuice Extension: Select provider');
+			this.selectProvider(entityID, subID);
+		} else {
+			console.log('DiscoJuice Extension: Set weight and refresh');
+			this.setWeight(-100, entityID, subID);
+			this.prepareData();
+		}
+		
 	},
 	
 	
@@ -89,39 +127,85 @@ DiscoJuice.Control = {
 	/*
 	 * Set weight to a specific data entry.
 	 */
-	"setWeight": function(entityID, weight) {
+	"setWeight": function(weight, entityID, subID) {
 		for(i = 0; i < this.data.length; i++) {
-			if (this.data[i].entityID === entityID) {
-				if (isNaN(this.data[i].weight)) this.data[i].weight = 0;
-				this.data[i].weight += weight;
-				this.parent.Utils.log('COOKIE Setting weight to ' + this.data[i].weight);
-			}
+			if (this.data[i].entityID !== entityID) continue;				
+			if (subID && !this.data[i].subID) continue;
+			if (subID && subID !== this.data[i].subID) continue;
+			if (this.data[i].subID && !subID) continue;
+
+			if (isNaN(this.data[i].weight)) this.data[i].weight = 0;
+			this.data[i].weight += weight;
+			this.parent.Utils.log('COOKIE Setting weight to ' + this.data[i].weight);
 		}
+		this.parent.Utils.log('DiscoJuice setWeight failer (no entries found for) ' + entityID + ' # ' + subID);
 	},
 	
 	"discoResponse": function(sender, entityID, subID) {
-		this.parent.Utils.log('DiscoResponse Received from [' + sender	+ '] : ' + entityID + ' > ' + subID);
-		this.setWeight(entityID, -100);
+		this.parent.Utils.log('DiscoResponse Received from [' + sender  + '] entityID: ' + entityID + ' subID: ' + subID);
+		
+		var settings = this.parent.Utils.options.get('disco');
+		if (settings) {
+			var stores = settings.subIDstores;
+			if (stores) {
+				if (stores[entityID] && !subID) {
+					this.parent.Utils.log('Ignoring discoResponse from entityID: ' + entityID + ' because subID was required and not provided');
+					return;
+				}
+			}
+		}
+		
+		this.setWeight(-100, entityID, subID);
 		this.prepareData();
 	},
 	
 	"calculateDistance": function() {
-		for(i = 0; i < this.data.length; i++) {
+		var targets, distances;
+		for(var i = 0; i < this.data.length; i++) {
 			if (this.data[i].geo) {
-				this.data[i].distance = this.parent.Utils.calculateDistance(
-					this.data[i].geo.lat, this.data[i].geo.lon, this.location[0], this.location[1]
-				);
+				
+				targets = [];
+				distances = [];
+				
+				// Support multiple geo coordinates. Make targets be an array of targets.
+				if (typeof(this.data[i].geo)=='object' && (this.data[i].geo instanceof Array)) {
+					targets = this.data[i].geo;
+				} else {
+					targets.push(this.data[i].geo);
+				}
+
+// 				console.log('targets'); console.log(targets);
+				
+				
+				// Iterate through all targets, and stuff the distances in to 'distances'.
+				for(var j = 0; j < targets.length; j++) {
+			
+// 					console.log(targets[j]);
+					distances.push(
+						this.parent.Utils.calculateDistance(targets[j].lat, targets[j].lon, this.location[0], this.location[1])
+					);
+				}
+				this.data[i].distance = Math.min.apply( Math, distances);
+				
+// 				console.log('distances'); console.log(distances);
+// 				console.log('distance'); console.log(this.data[i].distance);
+			
+// 				this.data[i].distance = this.parent.Utils.calculateDistance(
+// 					this.data[i].geo.lat, this.data[i].geo.lon, this.location[0], this.location[1]
+// 				);
 				
 				this.data[i].distanceweight = (2 * Math.log(this.data[i].distance + 1)) - 10;
+				
+//				console.log('object'); console.log(this.data[i]);
 			}
 		}
-//		for(i = 0; i < this.data.length; i++) {
-//			if (this.data[i].distance) {
-//				console.log('Distance for [' + this.data[i].title + '] ' + this.data[i].distance);
-//			} else {
-//				console.log('Distance for [' + this.data[i].title + '] NA');
-//			}
-//		}
+// 		for(i = 0; i < this.data.length; i++) {
+// 			if (this.data[i].distance) {
+// 				console.log('Distance for [' + this.data[i].title + '] ' + this.data[i].distance);
+// 			} else {
+// 				console.log('Distance for [' + this.data[i].title + '] NA');
+// 			}
+// 		}
 		this.showdistance = true;
 		this.prepareData();
 	},
@@ -182,19 +266,17 @@ DiscoJuice.Control = {
 	
 	"prepareData": function(showall) {
 	
-		showall = (showall ? true : false);
+		var showall = (showall ? true : false);
 	
 		this.parent.Utils.log('DiscoJuice.Control prepareData()');
 		
 		var hits, i, current, search;
 		var someleft = false;
 
-		var term = this.getTerm();
-		var categories = this.getCategories();
+ 		var term = this.getTerm();
+ 		var categories = this.getCategories();
 
-		if (!this.data) {
-			return;
-		}
+		if (!this.data) return;
 		
 		/*
 		 * Sort data by weight...
@@ -227,41 +309,35 @@ DiscoJuice.Control = {
 			
 			if (term) {
 				search = this.parent.Utils.searchMatch(current,term);
-				if (search === false && current.weight > -50) {
-					continue;
-				}
+				if (search === false && current.weight > -50) continue;
 			} else {
 				search = null;
 			}
 			
 			if (categories && categories.country) {
-				if (!current.country) {
-					continue;
-				}
-				if (current.country !== '_all_' && categories.country !== current.country && current.weight > -50) {
-					continue;
-				}
+				if (!current.country) continue;
+				if (current.country !== '_all_' && categories.country !== current.country && current.weight > -50) continue;
 			}
-//			if (categories && categories.type) {
-//				if (!current.ctype && current.weight > -50) {
-//	//				DiscoJuice.log(current);
-//				continue;
-//				}
-//	//			DiscoJuice.log(current.title + ' category ' + current.ctype);
-//				if (categories.type !== current.ctype && current.weight > -50) continue;
-//			}
+// 			if (categories && categories.type) {
+// 				if (!current.ctype && current.weight > -50) {
+// 	//				DiscoJuice.log(current);
+// 				continue;
+// 				}
+// 	//			DiscoJuice.log(current.title + ' category ' + current.ctype);
+// 				if (categories.type !== current.ctype && current.weight > -50) continue;
+// 			}
 
-			if (++hits > this.maxhits) {
+			if (++hits > this.maxhits) { 
 				someleft = true;
 				break;
 			}
 			
-	//		DiscoJuice.log('Accept: ' + current.title);
+	// 		DiscoJuice.log('Accept: ' + current.title);
 	
 			var countrydef = null;
 			if (current.country) {
 				var cname = (this.parent.Constants.Countries[current.country] ? this.parent.Constants.Countries[current.country] : current.country);
-				if (cname !== '_all_')	{
+				if (cname !== '_all_')  {
 					var cflag = (this.parent.Constants.Flags[current.country] ? this.parent.Constants.Flags[current.country] : undefined);
 					countrydef = {'country': cname, 'flag': cflag};
 				}
@@ -270,7 +346,6 @@ DiscoJuice.Control = {
 			var descr = current.descr || null;
 	
 			// addItem(item, {country, flag}, keywordmatch, distance)
-			
 			this.ui.addItem(current, countrydef, search, current.distance);
 
 		}
@@ -279,27 +354,34 @@ DiscoJuice.Control = {
 	},
 	
 	
-	"selectProvider": function(entityID) {
+	"selectProvider": function(entityID, subID) {
 	
-		// console.log('entityid: '	 + entityID);
+		// console.log('entityid: '  + entityID);
 	
 		var callback;
 		var that = this;
-		var mustwait = that.discoWrite(entityID);
+		var mustwait = that.discoWrite(entityID, subID);
 		
 		if (this.parent.Utils.options.get('cookie', false)) {
-			this.parent.Utils.log('COOKIE write ' + entityID);
-			this.parent.Utils.createCookie(entityID);		
+			var relID = entityID;
+			if (subID) relID += '#' + subID;
+			
+			this.parent.Utils.log('COOKIE write ' + relID);
+			this.parent.Utils.createCookie(relID);
 		}
 
 		var entity = null;
 		for(i = 0; i < this.data.length; i++) {
-			if (this.data[i].entityID === entityID) {
-				entity = this.data[i];
+			if (this.data[i].entityID == entityID) {
+				if (!subID || subID == this.data[i].subID) {
+					entity = this.data[i];
+				}
 			}
 		}
 
-		// console.log(entity);
+		console.log('Entity Selected');
+		console.log(entity);
+		return;
 
 		callback = this.parent.Utils.options.get('callback');	
 		if (callback) {
@@ -321,9 +403,7 @@ DiscoJuice.Control = {
 	"discoReadSetup": function() {
 		var settings = this.parent.Utils.options.get('disco');
 		
-		if (!settings) {
-			return;
-		}
+		if (!settings) return;
 	
 		var html = '';
 		var returnurl = settings.url;
@@ -332,42 +412,82 @@ DiscoJuice.Control = {
 		var i;
 		var currentStore;
 		
-		if (!stores) {
-			return;
-		}
+		if (!stores) return;
 		
 		for(i = 0; i < stores.length; i++) {
 			currentStore = stores[i];
-			
 			this.parent.Utils.log('Setting up DisoJuice Read from Store [' + currentStore + ']');
-			
 			iframeurl = currentStore + '?entityID=' + escape(spentityid) + '&isPassive=true&returnIDParam=entityID&return=' + escape(returnurl);
-			
+			html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
+			this.ui.addContent(html);
+		}
+	},
+	
+	// Setup an iframe to read discovery cookies from other domains
+	"discoSubReadSetup": function() {
+		var settings = this.parent.Utils.options.get('disco');
+		
+		if (!settings) return;
+	
+		var html = '';
+		var returnurl = settings.url;
+		var spentityid = settings.spentityid;
+		var stores = settings.subIDstores;
+		var i;
+		var currentStore;
+		
+		if (!stores) return;
+		
+		for(var idp in stores) {
+			returnurl = settings.url + 'entityID=' + escape(idp);
+			currentStore = stores[idp];
+			this.parent.Utils.log('Setting up SubID DisoJuice Read from Store [' + idp + '] =>  [' + currentStore + ']');
+			iframeurl = currentStore + '?entityID=' + escape(spentityid) + '&isPassive=true&returnIDParam=subID&return=' + escape(returnurl);
+			this.parent.Utils.log('iFrame URL is  [' + iframeurl + ']');
+			this.parent.Utils.log('return URL is  [' + returnurl + ']');
 			html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
 			this.ui.addContent(html);
 		}
 	},
 
 
-	"discoWrite": function(e) {
+	"discoWrite": function(entityID, subID) {
 	
 		var settings = this.parent.Utils.options.get('disco');
-		if (!settings) {
-			return false;
-		}
-		if (!settings.writableStore) {
-			return false;
-		}
+		if (!settings) return false;
+		if (!settings.writableStore) return false;
 	
 		var html = '';
 		var returnurl = settings.url;
 		var spentityid = settings.spentityid;
 		var writableStore = settings.writableStore;
 		
-		this.parent.Utils.log('DiscoJuice.Control discoWrite(' + e + ') to ' + writableStore);
+		if (subID) {
+			
+			if (settings.subIDwritableStores && settings.subIDwritableStores[entityID]) {
+			
+				writableStore = settings.subIDwritableStores[entityID];
+				
+				this.parent.Utils.log('DiscoJuice.Control discoWrite(' + entityID + ') with SubID [' + subID + ']');
+					
+				iframeurl = writableStore + escape(subID);
+				this.parent.Utils.log('DiscoJuice.Control discoWrite iframeURL (' + iframeurl + ') ');
+					
+				html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
+				this.ui.addContent(html);
+				return true;
+				
+			
+			} else {
+				return false;
+			}
+			
+		}
+		
+		this.parent.Utils.log('DiscoJuice.Control discoWrite(' + entityID + ') to ' + writableStore);
 			
 		iframeurl = writableStore + '?entityID=' + escape(spentityid) + '&IdPentityID=' + 
-			escape(e) + '&isPassive=true&returnIDParam=bogus&return=' + escape(returnurl);
+			escape(entityID) + '&isPassive=true&returnIDParam=bogus&return=' + escape(returnurl);
 			
 		html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
 		this.ui.addContent(html);
@@ -386,9 +506,7 @@ DiscoJuice.Control = {
 			minLength: 0,
 			source: function( request, response ) {
 				var term = request.term;
-				if (term.length === 1) {
-					return;
-				}
+				if (term.length === 1) return;
 //				that.resetCategories();							
 				that.prepareData();
 			}
@@ -481,7 +599,7 @@ DiscoJuice.Control = {
 				
 				$.getJSON(countryapi, function(data) {
 		//			DiscoJuice.log(data);
-					if (data.status === 'ok' && data.country) {
+					if (data.status == 'ok' && data.country) {
 						that.parent.Utils.createCookie(data.country, 'Country2');
 						that.setCountry(data.country);
 						that.parent.Utils.log('DiscoJuice getCountry() : Country lookup succeeded: ' + data.country);
@@ -506,7 +624,8 @@ DiscoJuice.Control = {
 		//this.ui.popup.find("select.discojuice_filterTypeSelect").val()
 		this.ui.popup.find("select.discojuice_filterCountrySelect").val('all');
 	},
-
+	
+		
 	"getCategories": function () {
 		var filters = {};
 		var type, country;
@@ -534,6 +653,5 @@ DiscoJuice.Control = {
 		this.ui.popup.find("input.discojuice_search").val('');
 	}
 
+
 };
-
-

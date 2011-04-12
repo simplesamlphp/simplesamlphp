@@ -126,6 +126,8 @@ class sspmod_discojuice_Feed {
 	private function process() {
 		
 		$this->feed = array();
+		$this->merge();
+		
 		foreach($this->metadata AS $m) {
 			if ($this->exclude($m['entityid'])) continue;
 			
@@ -136,6 +138,20 @@ class sspmod_discojuice_Feed {
 			foreach($this->insert AS $i) {
 				$this->feed[] = $i;
 			}
+		}
+
+	}
+	
+	protected function merge() {
+		$mergeendpoints = $this->djconfig->getValue('mergeEndpoints', NULL);
+		SimpleSAML_Logger::info('Processing merge endpoint: ' . var_export($mergeendpoints, TRUE));
+		
+		if ($mergeendpoints === NULL) return;
+		if (!is_array($mergeendpoints)) return;
+		foreach($mergeendpoints AS $me) {
+			SimpleSAML_Logger::info('Processing merge endpoint: ' . $me);
+			$newlist = json_decode(file_get_contents($me), TRUE);
+			$this->feed = array_merge($this->feed, $newlist);
 		}
 	}
 	
