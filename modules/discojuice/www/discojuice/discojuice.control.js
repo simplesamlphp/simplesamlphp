@@ -90,14 +90,14 @@ DiscoJuice.Control = {
 	
 	"discojuiceextension": function() {
 		
-		console.log('Listener activated...');
+// 		console.log('Listener activated...');
 		
 		this.ui.show();
 	
 		var selectedRelID = $("meta#discojuiceextension_id").attr('content');
 		if (!selectedRelID) return;
 		
-		console.log('Value found: ' + selectedRelID);
+// 		console.log('Value found: ' + selectedRelID);
 		
 		var entityID = selectedRelID;
 		var subID = undefined;
@@ -112,10 +112,10 @@ DiscoJuice.Control = {
 		var autologin = $("meta#discojuice_autologin").attr('content');
 		
 		if(autologin == '1') {
-			console.log('DiscoJuice Extension: Select provider');
+// 			console.log('DiscoJuice Extension: Select provider');
 			this.selectProvider(entityID, subID);
 		} else {
-			console.log('DiscoJuice Extension: Set weight and refresh');
+// 			console.log('DiscoJuice Extension: Set weight and refresh');
 			this.setWeight(-100, entityID, subID);
 			this.prepareData();
 		}
@@ -379,9 +379,9 @@ DiscoJuice.Control = {
 			}
 		}
 
-		console.log('Entity Selected');
-		console.log(entity);
-		return;
+// 		console.log('Entity Selected');
+// 		console.log(entity);
+// 		return;
 
 		callback = this.parent.Utils.options.get('callback');	
 		if (callback) {
