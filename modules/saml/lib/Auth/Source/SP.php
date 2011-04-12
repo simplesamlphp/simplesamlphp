@@ -439,8 +439,6 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$authProcState = array(
 			'saml:sp:IdP' => $idp,
-			'saml:sp:NameID' => $state['saml:sp:NameID'],
-			'saml:sp:SessionIndex' => $state['saml:sp:SessionIndex'],
 			'saml:sp:State' => $state,
 			'ReturnCall' => array('sspmod_saml_Auth_Source_SP', 'onProcessingCompleted'),
 
@@ -448,6 +446,13 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			'Destination' => $spMetadataArray,
 			'Source' => $idpMetadataArray,
 		);
+
+		if (isset($state['saml:sp:NameID'])) {
+			$authProcState['saml:sp:NameID'] = $state['saml:sp:NameID'];
+		}
+		if (isset($state['saml:sp:SessionIndex'])) {
+			$authProcState['saml:sp:SessionIndex'] = $state['saml:sp:SessionIndex'];
+		}
 
 		$pc = new SimpleSAML_Auth_ProcessingChain($idpMetadataArray, $spMetadataArray, 'sp');
 		$pc->processState($authProcState);
