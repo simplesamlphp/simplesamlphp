@@ -225,9 +225,12 @@ DiscoJuice.UI = {
 				'<div style="clear: both" class="locatemeafter"></div>' +
 			'</div>' +
 			
+			'<div style="display: none">' + 
+				'<button id="discojuiceextesion_listener" />' +
+			'</div>' +
+			
 			'<div class="filters bottom">' +
 				'<p style="margin 0px; text-align: right; color: #ccc; font-size: 75%">DiscoJuice &copy; UNINETT</p>' +
-				'<button id="discojuiceextesion_listener" style="display:none">' +
 			'</div>' +
 	
 

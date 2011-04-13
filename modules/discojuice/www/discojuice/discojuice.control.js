@@ -24,6 +24,8 @@ DiscoJuice.Control = {
 
 	"maxhits": 25,
 	
+	"extensionResponse": null,
+	
 	/*
 	 * Fetching JSON Metadata using AJAX.
 	 * Callback postLoad is called when data is returned.
@@ -59,6 +61,7 @@ DiscoJuice.Control = {
 
 		
 		this.readCookie();
+		this.readExtensionResponse();
 		this.prepareData();
 		this.discoReadSetup();
 		this.discoSubReadSetup();
@@ -88,6 +91,22 @@ DiscoJuice.Control = {
 		}
 	},
 	
+	"readExtensionResponse": function() {
+	
+		if (!this.extensionResponse) return;
+		
+		if(!!this.extensionResponse.autologin) {
+			this.selectProvider(this.extensionResponse.entityID, this.extensionResponse.subID);
+		}
+
+		if(this.extensionResponse.selectedRelID) {
+			this.setWeight(-100, this.extensionResponse.entityID, this.extensionResponse.subID);
+		}
+		this.parent.Utils.log('DiscoJuice Extension readExtensionResponse ' + this.extensionResponse.entityID + ' ' + this.extensionResponse.subID);
+
+	},
+
+	
 	"discojuiceextension": function() {
 		
 // 		console.log('Listener activated...');
@@ -111,14 +130,13 @@ DiscoJuice.Control = {
 		
 		var autologin = $("meta#discojuice_autologin").attr('content');
 		
-		if(autologin == '1') {
-// 			console.log('DiscoJuice Extension: Select provider');
-			this.selectProvider(entityID, subID);
-		} else {
-// 			console.log('DiscoJuice Extension: Set weight and refresh');
-			this.setWeight(-100, entityID, subID);
-			this.prepareData();
-		}
+		this.extensionResponse = {
+			selectedRelID: selectedRelID,
+			entityID: entityID,
+			subID: subID,
+			autologin: autologin
+		};
+
 		
 	},
 	
