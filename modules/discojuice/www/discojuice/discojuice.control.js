@@ -111,7 +111,7 @@ DiscoJuice.Control = {
 		
 // 		console.log('Listener activated...');
 		
-		this.ui.show();
+//		this.ui.show();
 	
 		var selectedRelID = $("meta#discojuiceextension_id").attr('content');
 		if (!selectedRelID) return;
