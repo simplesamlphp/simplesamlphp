@@ -155,6 +155,7 @@ DiscoJuice.Control = {
 			if (isNaN(this.data[i].weight)) this.data[i].weight = 0;
 			this.data[i].weight += weight;
 			this.parent.Utils.log('COOKIE Setting weight to ' + this.data[i].weight);
+			return;
 		}
 		this.parent.Utils.log('DiscoJuice setWeight failer (no entries found for) ' + entityID + ' # ' + subID);
 	},
