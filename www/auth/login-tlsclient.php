@@ -1,7 +1,7 @@
 <?php
 
 
-require_once('../../www/_include.php');
+require_once('../_include.php');
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();

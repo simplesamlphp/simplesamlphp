@@ -9,7 +9,7 @@
  * @version $Id$
  */
 
-require_once('../../../www/_include.php');
+require_once('../../_include.php');
 
 SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
