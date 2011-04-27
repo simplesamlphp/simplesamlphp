@@ -337,14 +337,36 @@ class SimpleSAML_Configuration {
 		return FALSE;
 	}
 
-	
-	
+	/**
+	 * Retrieve the absolute path of the simpleSAMLphp installation,
+	 * relative to the root of the website.
+	 *
+	 * For example: simplesaml/
+	 *
+	 * The path will always end with a '/' and never have a leading slash.
+	 *
+	 * @return string  The absolute path relative to the root of the website.
+	 */
 	public function getBaseURL() {
-		if (preg_match('/^\*(.*)$/D', $this->getString('baseurlpath', 'simplesaml/'), $matches)) {
+		$baseURL = $this->getString('baseurlpath', 'simplesaml/');
+		
+		if (preg_match('/^\*(.*)$/D', $baseURL, $matches)) {
+			/* deprecated behaviour, will be removed in the future */
 			return SimpleSAML_Utilities::getFirstPathElement(false) . $matches[1];
 		}
 
-		return $this->getString('baseurlpath', 'simplesaml/');
+		if (preg_match('#^https?://[^/]*/(.*)$#', $baseURL, $matches)) {
+			/* we have a full url, we need to strip the path */
+			return $matches[1];
+		} elseif (preg_match('#^/?([^/]?.*/)#D', $baseURL, $matches)) {
+			/* local path only */
+			return $matches[1];
+		} else {
+			/* invalid format */
+			throw new SimpleSAML_Error_Exception('Incorrect format for option \'baseurlpath\'. Value is: "'.
+				$this->getString('baseurlpath', 'simplesaml/') . '". Valid format is in the form'.
+				' [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/].');
+		}
 	}
 
 

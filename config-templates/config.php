@@ -10,6 +10,17 @@ $config = array (
 	/**
 	 * Setup the following parameters to match the directory of your installation.
 	 * See the user manual for more details.
+	 *
+	 * Valid format for baseurlpath is:
+	 * [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]
+	 * (note that it must end with a '/')
+	 *
+	 * The full url format is useful if your simpleSAMLphp setup is hosted behind
+	 * a reverse proxy. In that case you can specify the external url here.
+	 *
+	 * Please note that simpleSAMLphp will then redirect all queries to the
+	 * external url, no matter where you come from (direct access or via the
+	 * reverse proxy).
 	 */
 	'baseurlpath'           => 'simplesaml/',
 	'certdir'               => 'cert/',
