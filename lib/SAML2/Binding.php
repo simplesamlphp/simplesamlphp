@@ -70,6 +70,8 @@ abstract class SAML2_Binding {
 			}
 			if (array_key_exists('SAMLRequest', $_REQUEST) || array_key_exists('SAMLResponse', $_REQUEST)) {
 				return new SAML2_HTTPPost();
+			} elseif (array_key_exists('SAMLart', $_REQUEST) ){
+				return new SAML2_HTTPArtifact();
 			} elseif ($contentType === 'text/xml') {
 				return new SAML2_SOAP();
 			}
