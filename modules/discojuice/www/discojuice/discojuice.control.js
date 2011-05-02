@@ -313,7 +313,7 @@ DiscoJuice.Control = {
 			return (xa-xb);
 		});
 		
-		if (term || categories) {
+		if (term || categories) {
 			this.ui.popup.find("p.discojuice_showall").show();
 		} else {
 			this.ui.popup.find("p.discojuice_showall").hide();
@@ -346,7 +346,7 @@ DiscoJuice.Control = {
 // 				if (categories.type !== current.ctype && current.weight > -50) continue;
 // 			}
 
-			if (++hits > this.maxhits) { 
+			if (++hits > this.maxhits) {
 				someleft = true;
 				break;
 			}
