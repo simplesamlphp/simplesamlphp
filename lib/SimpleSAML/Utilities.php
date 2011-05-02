@@ -217,7 +217,8 @@ class SimpleSAML_Utilities {
 			return $baseURL;
 		} elseif (
 			(preg_match('#^/?([^/]?.*/)$#D', $baseURL, $matches)) ||
-			(preg_match('#^\*(.*)/$#D', $baseURL, $matches))) {
+			(preg_match('#^\*(.*)/$#D', $baseURL, $matches)) ||
+			($baseURL === '')) {
 			/* get server values */
 
 			if (self::getServerHTTPS()) {
@@ -228,8 +229,7 @@ class SimpleSAML_Utilities {
 
 			$hostname = self::getServerHost();
 			$port = self::getServerPort();
-			$path = $globalConfig->getBaseURL();
-			if ($path[0] != '/') $path = '/' . $path;
+			$path = '/' . $globalConfig->getBaseURL();
 
 			return $protocol.$hostname.$port.$path;
 		} else {

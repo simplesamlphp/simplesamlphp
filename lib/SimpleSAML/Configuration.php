@@ -358,6 +358,9 @@ class SimpleSAML_Configuration {
 		if (preg_match('#^https?://[^/]*/(.*)$#', $baseURL, $matches)) {
 			/* we have a full url, we need to strip the path */
 			return $matches[1];
+		} elseif ($baseURL === '' || $baseURL === '/') {
+			/* Root directory of site. */
+			return '';
 		} elseif (preg_match('#^/?([^/]?.*/)#D', $baseURL, $matches)) {
 			/* local path only */
 			return $matches[1];
