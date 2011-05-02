@@ -66,7 +66,7 @@ DiscoJuice.Constants = {
 		'CH': 'ch.png',
 		'TR': 'tr.png',
 		'GB': 'gb.png',
-		'US': 'us.png',
+		'US': 'us.png'
 	}
 };
 
