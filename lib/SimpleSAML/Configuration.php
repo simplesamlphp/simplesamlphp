@@ -109,7 +109,7 @@ class SimpleSAML_Configuration {
 		}
 
 		if (array_key_exists('override.host', $config)) {
-			$host = SimpleSAML_Utilities::getSelfHost();
+			$host = $_SERVER['HTTP_HOST'];
 			if (array_key_exists($host, $config['override.host'])) {
 				$ofs = $config['override.host'][$host];
 				foreach (SimpleSAML_Utilities::arrayize($ofs) AS $of) {
