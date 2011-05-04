@@ -54,7 +54,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 
 
 	/**
-	 * Log-in using Facebook platform
+	 * Log-in using Twitter platform
 	 *
 	 * @param array &$state  Information about the current authentication.
 	 */
@@ -91,8 +91,6 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 	public function finalStep(&$state) {
 		$requestToken = unserialize($state['requestToken']);
 		
-		#echo '<pre>'; print_r($requestToken); exit;
-		
 		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
 		
 		SimpleSAML_Logger::debug("oauth: Using this request token [" . 
@@ -105,18 +103,19 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 			
 		$userdata = $consumer->getUserInfo('https://api.twitter.com/account/verify_credentials.json', $accessToken);
 		
+		if (!isset($userdata['id_str']) || !isset($userdata['screen_name'])) {
+			throw new SimpleSAML_Error_AuthSource($this->authId, 'Authentication error: id_str and screen_name not set.');
+		}
+
 		$attributes = array();
 		foreach($userdata AS $key => $value) {
 			if (is_string($value))
 				$attributes['twitter.' . $key] = array((string)$value);
 		}
 		
-		if (array_key_exists('screen_name', $userdata) ) {
-			$attributes['twitter_at_screen_name'] = array('@' . $userdata['screen_name']);
-			$attributes['twitter_screen_n_realm'] = array($userdata['screen_name'] . '@twitter.com');
-		}
-		if (array_key_exists('id_str', $userdata) )
-			$attributes['twitter_targetedID'] = array('http://twitter.com!' . $userdata['id_str']);
+		$attributes['twitter_at_screen_name'] = array('@' . $userdata['screen_name']);
+		$attributes['twitter_screen_n_realm'] = array($userdata['screen_name'] . '@twitter.com');
+		$attributes['twitter_targetedID'] = array('http://twitter.com!' . $userdata['id_str']);
 			
 		$state['Attributes'] = $attributes;
 	}
