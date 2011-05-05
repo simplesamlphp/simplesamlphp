@@ -20,7 +20,6 @@ var DiscoJuice = {};
  */
 DiscoJuice.Constants = {
 	"Countries": {
-
 		'CZ': 'Czech',
 		'DK': 'Denmark',
 		'FI': 'Finland',
@@ -42,6 +41,7 @@ DiscoJuice.Constants = {
 		'CH': 'Switzerland',
 		'TR': 'Turkey',
 		'US': 'USA',
+		'GB': 'UK',
 		'XX': 'Experimental'
 	},
 	"Flags": {
@@ -65,7 +65,8 @@ DiscoJuice.Constants = {
 		'SE': 'se.png',
 		'CH': 'ch.png',
 		'TR': 'tr.png',
-		'US': 'us.png',
+		'GB': 'gb.png',
+		'US': 'us.png'
 	}
 };
 
@@ -86,6 +87,9 @@ DiscoJuice.Utils = {
 			},
 			"set": function(opts) {
 				options = opts;
+			},
+			"update": function(key, value) {
+				options[key] = value;
 			}
 		}
 	}(),
@@ -142,7 +146,28 @@ DiscoJuice.Utils = {
 			}
 		}
 		return false;
+	},
+
+
+
+	// calculate distance between two locations
+	"calculateDistance": function (lat1, lon1, lat2, lon2) {
+		var R = 6371; // km
+		var dLat = this.toRad(lat2-lat1);
+		var dLon = this.toRad(lon2-lon1); 
+		var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+				Math.cos(this.toRad(lat1)) * Math.cos(this.toRad(lat2)) * 
+				Math.sin(dLon/2) * Math.sin(dLon/2); 
+		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+		var d = R * c;
+		return d;
+	},
+
+	"toRad": function (deg) {
+		return deg * Math.PI/180;
 	}
+
+
 
 
 };
@@ -178,9 +203,6 @@ DiscoJuice.Utils = {
 if (typeof DiscoJuice == "undefined") var DiscoJuice = {};
 
 
-
-
-
 DiscoJuice.UI = {
 	// Reference to the top level DiscoJuice object
 	"parent" : DiscoJuice,
@@ -190,6 +212,7 @@ DiscoJuice.UI = {
 	
 	// Reference to the 
 	"popup": null,
+	
 	
 	// Entities / items
 	"resulthtml": 'Loading data…',
@@ -205,6 +228,7 @@ DiscoJuice.UI = {
 	"focusSearch": function() {
 		$("input.discojuice_search").focus();
 	},
+	
 	"hide": function() {
 		$("div#discojuice_overlay").fadeOut("slow"); //fadeOut("fast");
 		this.popup.fadeOut("slow");
@@ -213,43 +237,108 @@ DiscoJuice.UI = {
 	"clearItems": function() {
 		this.resulthtml = '';
 	},
-	"addItem": function(current, substring, flag) {
+	
+	// addItem(item, description, {country, flag}, keywordmatch, distance)	 		
+	// addItem(current, current.descr || null, countrydef, search, current.distance);
+	"addItem": function(item, countrydef, search, distance) {
 		var textLink = '';
 		var classes = '';
-		if (current.weight < -50) classes += 'hothit';
+		if (item.weight < -50) classes += 'hothit';
 
 		var iconpath = this.parent.Utils.options.get('discoPath', '') + 'logos/';
 		var flagpath = this.parent.Utils.options.get('discoPath', '') + 'flags/';
+		var clear = false;
 		
-		var flagtext = '';
+		var debugweight = this.parent.Utils.options.get('debug.weight', false);
 		
-		if (flag) {
-			flagtext = '<img src="' + flagpath + flag + '" alt="' + escape(substring) + '" /> ';
+		
+		// Add icon element first
+		if (item.icon) {
+			textLink += '<img class="logo" src="' + iconpath + item.icon + '" />';
+			clear = true;
 		}
+		
+		// Add title
+		textLink += '<span class="title">' + item.title + '</span>';
+		
+		// Add matched search term
+		if (search && search !== true) {
+			textLink += '<span class="substring">– ' + search + '</span>';
+		} else if (item.descr) {
+			textLink += '<span class="substring">– ' +  item.descr + '</span>';
+		}
+		
+		
 
-		if (current.icon) {
-			if (!substring) {
-				textLink += '<a href="" class="' + classes + '" rel="' + escape(current.entityid) + '" title="' + current.title + '">' + 
-					'<img class="logo" src="' + iconpath + current.icon + '" />' +
-					'<span class="title">' + current.title + '</span><hr style="clear: both; height: 0px; visibility:hidden" /></a>';
-			} else {
-				textLink += '<a href="" class="' + classes + '" rel="' + escape(current.entityid) + '" title="' + current.title + '">' + 
-					'<img class="logo" src="' + iconpath +  current.icon + '" />' +
-					'<span class="title">' + current.title + '</span>' + 
-					'<span class="substring">' + flagtext + substring + '</span>' +
-					'<hr style="clear: both; height: 0px; visibility:hidden" /></a>';
-						}
-		} else {
-			if (!substring) {
-				textLink += '<a href="" class="' + classes + '" rel="' + escape(current.entityid) + '"><span class="title">' + current.title + '</span></a>';		
-			} else {
-				textLink += '<a href="" class="' + classes + '" rel="' + escape(current.entityid) + '"><span class="title">' + current.title + '</span><span class="substring">' + flagtext + substring + '</span></a>';					
+		if (countrydef || (distance != undefined)) {
+				
+			textLink += '<span class="location">';
+			if (countrydef) {
+				textLink += '<span class="country">';
+				if (countrydef.flag) textLink += '<img src="' + flagpath + countrydef.flag + '" alt="' + escape(countrydef.country) + '" /> ';
+				textLink += countrydef.country + '</span>';
 			}
 	
+			
+			if (distance != undefined) {
+				if (distance < 1) {
+					textLink += '<span class="distance">Nearby</span>';
+				} else {
+					textLink += '<span class="distance">' +  Math.round(distance) + ' km' + '</span>';
+				}
+
+			}
+			textLink += '</span>';
 		}
+		
+		if (debugweight) {
+			textLink += '<div class="debug">';
+			
+			if (item.subID) {
+				textLink += '<input value="' + item.subID + '" />';
+			}
+			
+			var w = 0;
+			if (item.weight) {
+				w += item.weight;
+			}
+			if (item.distanceweight) {
+				w += item.distanceweight;
+			}
+			textLink += 'Weight <strong style="color: #888">' + Math.round(100*w)/100 + '</strong> ';
+
+			if (item.weight) {
+				textLink += ' (base ' + item.weight + ')   ';
+			}
+			if (item.distanceweight) {
+				textLink += '(dist ' + Math.round(100*item.distanceweight)/100 + ')';
+			}
+
+
+			textLink += '</div>';
+		}
+
+		
+		// Add a clear bar. 
+		if (clear) {
+			textLink += '<hr style="clear: both; height: 0px; visibility:hidden" />';
+		}
+		
+		
+		var relID = item.entityID;
+		if (item.subID) {
+			relID += '#' + item.subID;
+		}
+		
+		// Wrap in A element
+		textLink = '<a href="" class="' + classes + '" rel="' + escape(relID) + '" title="' + escape(item.title) + '">' + 
+			textLink + '</a>';
+
+
 		this.resulthtml += textLink;
 	},
-	"refreshData": function() {
+		
+	"refreshData": function(showmore, show, listcount) {
 		var that = this;
 		
 		this.parent.Utils.log('DiscoJuice.UI refreshData()');
@@ -260,49 +349,86 @@ DiscoJuice.UI = {
 			$(this).click(function(event) {
 				event.preventDefault();
 				overthere.hide();
-				var entityid = unescape($(this).attr('rel'));
-				overthere.control.selectProvider(entityid);
+							
+				// The "rel" attribute is containing: 'entityid#subid'
+				// THe following code, decodes that.
+				var relID = unescape($(this).attr('rel'));
+				var entityID = relID;
+				var subID = undefined;
+				if (relID.match(/^.*#.+?$/)) {
+					var matched = /^(.*)#(.+?)$/.exec(relID);
+					entityID = matched[1];
+					subID = matched[2];
+				}
+				overthere.control.selectProvider(entityID, subID);
 			});
 		});
+		
+		if (showmore) {
+			var moreLink = '<a class="discojuice_showmore textlink" href="">Results limited to ' + show + ' entries – show more…</a>';
+			this.popup.find("p.discojuice_moreLinkContainer").empty().append(moreLink);
+			this.popup.find("p.discojuice_moreLinkContainer a.discojuice_showmore").click(function(e) {
+				event.preventDefault();
+				that.control.increase();
+			});
+		} else {
+			this.popup.find("p.discojuice_moreLinkContainer").empty();
+			if (listcount > 10) {
+				var moreLink = '<span style="color: #888">' + listcount + ' entries listed</span>';
+				this.popup.find("p.discojuice_moreLinkContainer").append(moreLink);
+			} 
+		}
 	},
 
 	"enable": function(control) {
+		var imgpath = this.parent.Utils.options.get('discoPath', '') + 'images/';
+		
+		var textSearch = this.parent.Utils.options.get('textSearch', 'or search for a provider, in example Univerity of Oslo');
+		var textHelp = this.parent.Utils.options.get('textHelp', 'Help me, I cannot find my provider');
+		var textHelpMore = this.parent.Utils.options.get('textHelpMore', 'If your institusion is not connected to Foodle, you may create a new account using any of the Guest providers, such as <strong>OpenIdP (Guest users)</strong>.');
+	
 		var html = 	'<div style="display: none" class="discojuice">' +
 			'<div class="top">' +
 				'<a href="#" class="discojuice_close">&nbsp;</a>' +
 				'<p class="discojuice_maintitle">' + this.parent.Utils.options.get('title', 'Title')  +  '</p>' +
 				'<p class="discojuice_subtitle">' + this.parent.Utils.options.get('subtitle', 'Subtitle') + '</p>' +
 			'</div>' +
-			'<div id="content" style="">' +
-				'<p class="moretext"></p>' +
-				'<div class="scroller"></div>' +
+			
+			'<div class="discojuice_listContent" style="">' +
+				'<div class="scroller">' +
+					'<div class="loadingData" ><img src="' + imgpath + 'spinning.gif" /> Loading list of providers...</div>' +
+				'</div>' +
+				'<p class="discojuice_moreLinkContainer" style="margin: 0px; padding: 4px">&nbsp;</p>' +
 			'</div>' +
 	
 			'<div id="search" class="" >' +
-				'<p><input type="search" class="discojuice_search" results=5 autosave="discojuice" name="searchfield" placeholder="or search for a provider, in example Univerity of Oslo" value="" /></p>' +
+				'<p><input type="search" class="discojuice_search" results=5 autosave="discojuice" name="searchfield" placeholder="' + textSearch + '" value="" /></p>' +
 				'<div class="discojuice_whatisthis" style="margin-top: 15px; font-size: 11px;">' +
-					'<a  href="#" class="textlink discojuice_what">Help me, I cannot find my provider</a>' +
-//					'<p class="discojuice_whattext">If your institusion is not connected to Foodle, you may either select to login one of the commercial providers such as Facebook or Google, or you may create a new account using any of the Guest providers, such as Feide OpenIdP.</p>' +
-					'<p class="discojuice_whattext">If your institusion is not connected to Foodle, you may create a new account using any of the Guest providers, such as <strong>OpenIdP (Guest users)</strong>.</p>' +
+					'<a  href="#" class="textlink discojuice_what">' + textHelp + '</a>' +
+					'<p class="discojuice_whattext">' + textHelpMore + '</p>' +
 				'</div>' +
 			'</div>' +
 			
+			'<div id="locatemediv">' +
+				'<div class="locatemebefore">' +
+					'<p style="margin-top: 10px"><a id="locateme" href="">' +
+						'<img style="float: left; margin-right: 5px; margin-top: -10px" src="' + imgpath + 'target.png" alt="locate me..." />' +
+						'Locate me more accurately using HTML5 Geo-Location</a>' +
+					'</p>' +
+					'<p style="color: #999" id="locatemeinfo"></p>' +
+				'</div>' +
+				'<div style="clear: both" class="locatemeafter"></div>' +
+			'</div>' +
+			
+			'<div style="display: none">' + 
+				'<button id="discojuiceextesion_listener" />' +
+			'</div>' +
+			
 			'<div class="filters bottom">' +
-				'<p id="filterCountry"></p>' +
-				'<p id="filterType"></p>' +
-				'<p class="discojuice_showall" ><a class="discojuice_showall textlink" href="">Show all providers</a></p>' +
-				'<p style="margin 0px; text-align: right; color: #ccc; font-size: x-small">DiscoJuice &copy; 2011, UNINETT</p>' +
+				'<p style="margin 0px; text-align: right; color: #ccc; font-size: 75%">DiscoJuice &copy; UNINETT</p>' +
 			'</div>' +
 	
-// 			'<dd id="locatemediv">' +
-// 				'<img style="float: left; margin-right: 5px" src="ulx/images/target.png" alt="locate me..." />' +
-// 				'<p style="margin-top: 10px"><a id="locateme" href="">' +
-// 					'Locate me</a> to show providers nearby' +
-// 				'</p>' +
-// 				'<p style="color: #999" id="locatemeinfo"></p>' +
-// 				'<div style="clear: both" >' +
-// 				'</div>' +
-// 			'</dd>' +
+
 		'</div>';
 		var that = this;
 		
@@ -326,6 +452,9 @@ DiscoJuice.UI = {
 			});
 		}
 
+		this.popup.find("#discojuiceextesion_listener").click(function() {
+			that.control.discojuiceextension();
+		});
 
 		// Add listeners to the close button.
 		this.popup.find(".discojuice_close").click(function() {
@@ -338,75 +467,24 @@ DiscoJuice.UI = {
 		});
 
 
-// 	
-// 		
-// 		// Add listener to show all providers button.
-// 		$("p#showall a").click(function(event){
-// 			event.preventDefault();
-// 			$("select#filterCountrySelect").val('all');	
-// 			DiscoJuice.listResults(true);
-// 			$("p#showall").hide();
-// 		});
-// 		$("p#showall").hide();
-// 		
-// 		//locateMe();
-// 	
-// 		// Setup filter by type.
-// 		if (DiscoJuice.options.get('location', false) && navigator.geolocation) {
-// 			$("#locateme").click(function(event) {
-// 				event.preventDefault();
-// 				DiscoJuice.locateMe();
-// 			});
-// 		} else {
-// 			$("dd#locatemediv").hide();
-// 		}	
-// 	
-// 	
-// 		// Setup filter by type.
-// 		if (DiscoJuice.options.get('type', false)) {
-// 			DiscoJuice.filterTypeSetup();
-// 		}
-// 	
-// 	
-// 		// Setup filter by country.
-// 		if (DiscoJuice.options.get('country', false)) {
-// 			DiscoJuice.filterCountrySetup();
-// 		}
-// 		
-// 		
-
-// 		
-// 			
-// 		if (DiscoJuice.options.get('location', false)) {
-// 			$("#locateme").click(function(event) {
-// 				event.preventDefault();
-// 				DiscoJuice.locateMe();
-// 			});
-// 		} else {
-// 			$("dd#locatemediv").hide();
-// 		}	
-// 		
-// 		/*
-// 			Initialise the search box.
-// 			*/
-// 		$("input#ulxSearchField").autocomplete({
-// 			minLength: 2,
-// 			source: function( request, response ) {
-// 				var term = request.term;
-// 				var result;
-// 				
-// 				$("select#filterCountrySelect").val('all');
-// 							
-// 	//			$("dd#content img.spinning").show();
-// 				DiscoJuice.listResults();
-// 	//			$("dd#content img.spinning").hide();
-// 			}
-// 		});
-// 	
-// 		// List the initial results...
-// 		// DiscoJuice.listResults();
+		if (this.parent.Utils.options.get('location', false) && navigator.geolocation) {
+			var that = this;
+			$("#locateme").click(function(event) {
+				var imgpath = that.parent.Utils.options.get('discoPath', '') + 'images/';
+				event.preventDefault();
+				$("div.locatemebefore").hide();
+				$("div.locatemeafter").html('<div class="loadingData" ><img src="' + imgpath + 'spinning.gif" /> Getting your location...</div>');
+				that.control.locateMe();
+			});
+		} else {
+			$("dd#locatemediv").hide();
+		}	
 
 	
+	},
+	
+	"setLocationText": function(html) {
+		return $("div.locatemeafter").html(html);
 	},
 	
 	"addContent": function(html) {
@@ -439,6 +517,13 @@ DiscoJuice.Control = {
 	// Set filter values to filter the result.
 	"filters": {},
 	
+	"location": null,
+	"showdistance": false,
+
+	"maxhits": 25,
+	
+	"extensionResponse": null,
+	
 	/*
 	 * Fetching JSON Metadata using AJAX.
 	 * Callback postLoad is called when data is returned.
@@ -453,29 +538,104 @@ DiscoJuice.Control = {
 		
 		$.getJSON(metadataurl, function(data) {
 			that.data = data;
-			that.parent.Utils.log('Successfully loaded metadata');
+			that.parent.Utils.log('Successfully loaded metadata (' + data.length + ')');
 			that.postLoad();
 		});
+		
+		
 	},
 	
 	"postLoad": function() {
 		if (!this.data) return;
+		
+		// Iterate through entities, and update title from DisplayNames to support Shibboleth integration.
+		for(i = 0; i < this.data.length; i++) {
+			if (!this.data[i].title) {
+				if (this.data[i].DisplayNames) {
+					this.data[i].title = this.data[i].DisplayNames[0].value;
+				}
+			}
+		}
+
+		
 		this.readCookie();
+		this.readExtensionResponse();
 		this.prepareData();
 		this.discoReadSetup();
-		this.showallSetup();
+		this.discoSubReadSetup();
 		this.searchboxSetup();		
-		this.filterCountrySetup();
+		if (this.parent.Utils.options.get('country', false)) {
+			this.filterCountrySetup();
+		}
+
 		this.getCountry();
 		
 	},
 	
 	"readCookie": function() {
 		if (this.parent.Utils.options.get('cookie', false)) {
-			var selected = this.parent.Utils.readCookie();
-			this.parent.Utils.log('COOKIE read ' + selected);
-			if(selected) this.setWeight(selected, -100);			
+			var selectedRelID = this.parent.Utils.readCookie();
+			
+			var entityID = selectedRelID;
+			var subID = undefined;
+			if (selectedRelID && selectedRelID.match(/^.*#.+?$/)) {
+				var matched = /^(.*)#(.+?)$/.exec(selectedRelID);
+				entityID = matched[1];
+				subID = matched[2];
+			}
+			
+			this.parent.Utils.log('COOKIE read ' + selectedRelID);
+			if(selectedRelID) this.setWeight(-100, entityID, subID);
 		}
+	},
+	
+	"readExtensionResponse": function() {
+	
+		if (!this.extensionResponse) return;
+		
+		if(!!this.extensionResponse.autologin) {
+			this.selectProvider(this.extensionResponse.entityID, this.extensionResponse.subID);
+		}
+
+		if(this.extensionResponse.selectedRelID) {
+			this.setWeight(-100, this.extensionResponse.entityID, this.extensionResponse.subID);
+		}
+		this.parent.Utils.log('DiscoJuice Extension readExtensionResponse ' + this.extensionResponse.entityID + ' ' + this.extensionResponse.subID);
+
+	},
+
+	
+	"discojuiceextension": function() {
+		
+// 		console.log('Listener activated...');
+		
+//		this.ui.show();
+	
+		var selectedRelID = $("meta#discojuiceextension_id").attr('content');
+		if (!selectedRelID) return;
+		
+// 		console.log('Value found: ' + selectedRelID);
+		
+		var entityID = selectedRelID;
+		var subID = undefined;
+		if (selectedRelID && selectedRelID.match(/^.*#.+?$/)) {
+			var matched = /^(.*)#(.+?)$/.exec(selectedRelID);
+			entityID = matched[1];
+			subID = matched[2];
+		}
+		
+		this.parent.Utils.log('DiscoJuice Extension read ' + selectedRelID + ' ' + entityID + ' ' + subID);
+		
+		var autologin = $("meta#discojuice_autologin").attr('content');
+		
+		this.extensionResponse = {
+			selectedRelID: selectedRelID,
+			entityID: entityID,
+			subID: subID,
+			autologin: autologin
+		};
+
+		
 	},
 	
 	
@@ -483,21 +643,143 @@ DiscoJuice.Control = {
 	/*
 	 * Set weight to a specific data entry.
 	 */
-	"setWeight": function(entityid, weight) {
+	"setWeight": function(weight, entityID, subID) {
 		for(i = 0; i < this.data.length; i++) {
-			if (this.data[i].entityid == entityid) {
-				if (isNaN(this.data[i].weight)) this.data[i].weight = 0;
-				this.data[i].weight += weight;
-				this.parent.Utils.log('COOKIE Setting weight to ' + this.data[i].weight);
-			}
+			if (this.data[i].entityID !== entityID) continue;				
+			if (subID && !this.data[i].subID) continue;
+			if (subID && subID !== this.data[i].subID) continue;
+			if (this.data[i].subID && !subID) continue;
+
+			if (isNaN(this.data[i].weight)) this.data[i].weight = 0;
+			this.data[i].weight += weight;
+			this.parent.Utils.log('COOKIE Setting weight to ' + this.data[i].weight);
+			return;
 		}
+		this.parent.Utils.log('DiscoJuice setWeight failer (no entries found for) ' + entityID + ' # ' + subID);
 	},
 	
-	"discoResponse": function(entityid) {
-		this.setWeight(entityid, -100);
+	"discoResponse": function(sender, entityID, subID) {
+		this.parent.Utils.log('DiscoResponse Received from [' + sender  + '] entityID: ' + entityID + ' subID: ' + subID);
+		
+		var settings = this.parent.Utils.options.get('disco');
+		if (settings) {
+			var stores = settings.subIDstores;
+			if (stores) {
+				if (stores[entityID] && !subID) {
+					this.parent.Utils.log('Ignoring discoResponse from entityID: ' + entityID + ' because subID was required and not provided');
+					return;
+				}
+			}
+		}
+		
+		this.setWeight(-100, entityID, subID);
 		this.prepareData();
 	},
 	
+	"calculateDistance": function() {
+		var targets, distances;
+		for(var i = 0; i < this.data.length; i++) {
+			if (this.data[i].geo) {
+				
+				targets = [];
+				distances = [];
+				
+				// Support multiple geo coordinates. Make targets be an array of targets.
+				if (typeof(this.data[i].geo)=='object' && (this.data[i].geo instanceof Array)) {
+					targets = this.data[i].geo;
+				} else {
+					targets.push(this.data[i].geo);
+				}
+
+// 				console.log('targets'); console.log(targets);
+				
+				
+				// Iterate through all targets, and stuff the distances in to 'distances'.
+				for(var j = 0; j < targets.length; j++) {
+			
+// 					console.log(targets[j]);
+					distances.push(
+						this.parent.Utils.calculateDistance(targets[j].lat, targets[j].lon, this.location[0], this.location[1])
+					);
+				}
+				this.data[i].distance = Math.min.apply( Math, distances);
+				
+// 				console.log('distances'); console.log(distances);
+// 				console.log('distance'); console.log(this.data[i].distance);
+			
+// 				this.data[i].distance = this.parent.Utils.calculateDistance(
+// 					this.data[i].geo.lat, this.data[i].geo.lon, this.location[0], this.location[1]
+// 				);
+				
+				this.data[i].distanceweight = (2 * Math.log(this.data[i].distance + 1)) - 10;
+				
+//				console.log('object'); console.log(this.data[i]);
+			}
+		}
+// 		for(i = 0; i < this.data.length; i++) {
+// 			if (this.data[i].distance) {
+// 				console.log('Distance for [' + this.data[i].title + '] ' + this.data[i].distance);
+// 			} else {
+// 				console.log('Distance for [' + this.data[i].title + '] NA');
+// 			}
+// 		}
+		this.showdistance = true;
+		this.prepareData();
+	},
+	
+	"locateMe": function() {
+		var that = this;
+		this.parent.Utils.log('Locate Me');
+		
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition( 
+	
+				function (position) {  
+	
+					// Did we get the position correctly?
+					// alert (position.coords.latitude);
+	
+					// To see everything available in the position.coords array:
+					// for (key in position.coords) {alert(key)}
+	
+					//console.log('You are here: lat ' + position.coords.latitude + ' lon ' + position.coords.longitude);
+					
+					that.ui.setLocationText('You are here: ' + position.coords.latitude + ', ' + position.coords.longitude + '. Nearby providers shown on top.');
+					
+					that.location = [position.coords.latitude, position.coords.longitude];
+					that.calculateDistance();
+					
+				}, 
+				// next function is the error callback
+				function (error) {
+					switch(error.code) {
+						case error.TIMEOUT:
+							that.ui.setLocationText('Timeout');
+							break;
+						case error.POSITION_UNAVAILABLE:
+							that.ui.setLocationText('Position unavailable');
+							break;
+						case error.PERMISSION_DENIED:
+							that.ui.setLocationText('Permission denied');
+							break;
+						case error.UNKNOWN_ERROR:
+							that.ui.setLocationText('Unknown error');
+							break;
+					}
+				}
+			);
+		} else {
+			this.parent.Utils.log('Did not find navigator.geolocation');
+		}
+		
+	},
+	
+	"increase": function() {
+		
+		this.maxhits += 100;
+		this.prepareData();
+		
+	},
 	
 	"prepareData": function(showall) {
 	
@@ -506,40 +788,35 @@ DiscoJuice.Control = {
 		this.parent.Utils.log('DiscoJuice.Control prepareData()');
 		
 		var hits, i, current, search;
- 		var maxhits = 10;
-// 		
+		var someleft = false;
+
  		var term = this.getTerm();
  		var categories = this.getCategories();
-// 	
-// 		var textIcon = '';
-		
+
 		if (!this.data) return;
 		
 		/*
 		 * Sort data by weight...
 		 */
 		this.data.sort(function(a, b) {
+		
+			// Weight
 			var xa, xb;		
 			xa = (a.weight ? a.weight : 0);
 			xb = (b.weight ? b.weight : 0);
+			
+			if (a.distanceweight) xa += a.distanceweight;
+			if (b.distanceweight) xb += b.distanceweight;
+
 			return (xa-xb);
 		});
 		
-		if (term || categories) {
+		if (term || categories) {
 			this.ui.popup.find("p.discojuice_showall").show();
 		} else {
 			this.ui.popup.find("p.discojuice_showall").hide();
 		}
-		if (categories) {
-			maxhits = 25;
-		}
-		if (showall) {
-			maxhits = 200;
-		}
-// 		if (term) {
-// 			maxhits = 10;
-// 		}
-	
+
 		this.ui.clearItems();
 		
 		hits = 0;
@@ -567,83 +844,68 @@ DiscoJuice.Control = {
 // 				if (categories.type !== current.ctype && current.weight > -50) continue;
 // 			}
 
-			if (++hits > maxhits) { //  && showall !== true) {
-				this.ui.popup.find("p.discojuice_showall").show();
+			if (++hits > this.maxhits) {
+				someleft = true;
 				break;
 			}
 			
 	// 		DiscoJuice.log('Accept: ' + current.title);
 	
-			if (search === true) {
-				if (current.descr) {
-					this.ui.addItem(current, current.descr);
-				} else if (current.country) {
-					var cname = (this.parent.Constants.Countries[current.country] ? this.parent.Constants.Countries[current.country] : current.country);
-					if (cname === '_all_') cname = '';
-					var cflag = (this.parent.Constants.Flags[current.country] ? this.parent.Constants.Flags[current.country] : undefined);
-					this.ui.addItem(current, cname, cflag);
-				} else {
-					this.ui.addItem(current);
-				}
-
-			} else if (search === null) {
-//				this.ui.addItem(current);
-
+			var countrydef = null;
+			if (current.country) {
 				var cname = (this.parent.Constants.Countries[current.country] ? this.parent.Constants.Countries[current.country] : current.country);
-				if (cname === '_all_') cname = '';
-				var cflag = (this.parent.Constants.Flags[current.country] ? this.parent.Constants.Flags[current.country] : undefined);
-
-
-				if (current.descr) {
-					this.ui.addItem(current, current.descr, cflag);
-				} else if (!categories.country && current.country) {
-					this.ui.addItem(current, cname, cflag);
-				} else {
-					this.ui.addItem(current);
+				if (cname !== '_all_')  {
+					var cflag = (this.parent.Constants.Flags[current.country] ? this.parent.Constants.Flags[current.country] : undefined);
+					countrydef = {'country': cname, 'flag': cflag};
 				}
-
-			} else {
-				this.ui.addItem(current, search);
 			}
+	
+			var descr = current.descr || null;
+	
+			// addItem(item, {country, flag}, keywordmatch, distance)
+			this.ui.addItem(current, countrydef, search, current.distance);
 
 		}
-		if (hits < maxhits) { //  && showall !== true) {
-//			this.ui.popup.find("p.discojuice_showall").hide();
-		}
 		
-		this.ui.refreshData();
-		
-		//log('Loaded ' + DiscoJuice.data.length + ' accounts to select from');
+		this.ui.refreshData(someleft, this.maxhits, hits);
 	},
 	
-	"discoWrite": function(entityid) {
-		
-	},
 	
-	"selectProvider": function(entityid) {			
+	"selectProvider": function(entityID, subID) {
+	
+		// console.log('entityid: '  + entityID);
+	
 		var callback;
 		var that = this;
-		var mustwait = that.discoWrite(entityid);
+		var mustwait = that.discoWrite(entityID, subID);
 		
 		if (this.parent.Utils.options.get('cookie', false)) {
-			this.parent.Utils.log('COOKIE write ' + entityid);
-			this.parent.Utils.createCookie(entityid);		
+			var relID = entityID;
+			if (subID) relID += '#' + subID;
+			
+			this.parent.Utils.log('COOKIE write ' + relID);
+			this.parent.Utils.createCookie(relID);
 		}
 
 		var entity = null;
 		for(i = 0; i < this.data.length; i++) {
-			if (this.data[i].entityid == entityid) {
-				entity = this.data[i];
+			if (this.data[i].entityID == entityID) {
+				if (!subID || subID == this.data[i].subID) {
+					entity = this.data[i];
+				}
 			}
 		}
 
-		console.log(entity);
+// 		console.log('Entity Selected');
+// 		console.log(entity);
+// 		return;
 
 		callback = this.parent.Utils.options.get('callback');	
 		if (callback) {
 			if (mustwait) {
 				$.doTimeout(1000, function(){
 					callback(entity);
+					// alert('done');
 				});
 				
 			} else {
@@ -657,6 +919,7 @@ DiscoJuice.Control = {
 	// Setup an iframe to read discovery cookies from other domains
 	"discoReadSetup": function() {
 		var settings = this.parent.Utils.options.get('disco');
+		
 		if (!settings) return;
 	
 		var html = '';
@@ -670,16 +933,42 @@ DiscoJuice.Control = {
 		
 		for(i = 0; i < stores.length; i++) {
 			currentStore = stores[i];
-			
+			this.parent.Utils.log('Setting up DisoJuice Read from Store [' + currentStore + ']');
 			iframeurl = currentStore + '?entityID=' + escape(spentityid) + '&isPassive=true&returnIDParam=entityID&return=' + escape(returnurl);
-			
+			html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
+			this.ui.addContent(html);
+		}
+	},
+	
+	// Setup an iframe to read discovery cookies from other domains
+	"discoSubReadSetup": function() {
+		var settings = this.parent.Utils.options.get('disco');
+		
+		if (!settings) return;
+	
+		var html = '';
+		var returnurl = settings.url;
+		var spentityid = settings.spentityid;
+		var stores = settings.subIDstores;
+		var i;
+		var currentStore;
+		
+		if (!stores) return;
+		
+		for(var idp in stores) {
+			returnurl = settings.url + 'entityID=' + escape(idp);
+			currentStore = stores[idp];
+			this.parent.Utils.log('Setting up SubID DisoJuice Read from Store [' + idp + '] =>  [' + currentStore + ']');
+			iframeurl = currentStore + '?entityID=' + escape(spentityid) + '&isPassive=true&returnIDParam=subID&return=' + escape(returnurl);
+			this.parent.Utils.log('iFrame URL is  [' + iframeurl + ']');
+			this.parent.Utils.log('return URL is  [' + returnurl + ']');
 			html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
 			this.ui.addContent(html);
 		}
 	},
 
 
-	"discoWrite": function(e) {
+	"discoWrite": function(entityID, subID) {
 	
 		var settings = this.parent.Utils.options.get('disco');
 		if (!settings) return false;
@@ -690,10 +979,32 @@ DiscoJuice.Control = {
 		var spentityid = settings.spentityid;
 		var writableStore = settings.writableStore;
 		
-		this.parent.Utils.log('DiscoJuice.Control discoWrite(' + e + ') to ' + writableStore);
+		if (subID) {
+			
+			if (settings.subIDwritableStores && settings.subIDwritableStores[entityID]) {
+			
+				writableStore = settings.subIDwritableStores[entityID];
+				
+				this.parent.Utils.log('DiscoJuice.Control discoWrite(' + entityID + ') with SubID [' + subID + ']');
+					
+				iframeurl = writableStore + escape(subID);
+				this.parent.Utils.log('DiscoJuice.Control discoWrite iframeURL (' + iframeurl + ') ');
+					
+				html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
+				this.ui.addContent(html);
+				return true;
+				
+			
+			} else {
+				return false;
+			}
+			
+		}
+		
+		this.parent.Utils.log('DiscoJuice.Control discoWrite(' + entityID + ') to ' + writableStore);
 			
 		iframeurl = writableStore + '?entityID=' + escape(spentityid) + '&IdPentityID=' + 
-			escape(e) + '&isPassive=true&returnIDParam=bogus&return=' + escape(returnurl);
+			escape(entityID) + '&isPassive=true&returnIDParam=bogus&return=' + escape(returnurl);
 			
 		html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
 		this.ui.addContent(html);
@@ -744,7 +1055,9 @@ DiscoJuice.Control = {
 				ftext += '<option value="' + key + '" >' + this.parent.Constants.Countries[key] + '</option>';
 			}
 		}
-		ftext += '</select></p>';
+		ftext += '</select>';
+		ftext += ' <a class="discojuice_showall textlink" href="">show all countries</a>';
+		ftext += '</p>';
 		
 		this.ui.addFilter(ftext).find("select").change(function(event) {
 			event.preventDefault();
@@ -752,14 +1065,32 @@ DiscoJuice.Control = {
 			//DiscoJuice.listResults();
 			that.resetTerm();
 			that.ui.focusSearch();
+			if (that.ui.popup.find("select.discojuice_filterCountrySelect").val() !== 'all') {
+				that.ui.popup.find("a.discojuice_showall").show();
+			} else {
+				that.ui.popup.find("a.discojuice_showall").hide();
+			}
 			that.prepareData();
 		});
+		this.ui.popup.find("a.discojuice_showall").click(function(event) {
+			event.preventDefault();
+			that.resetCategories();
+			that.resetTerm();
+			that.prepareData(true);
+			that.ui.focusSearch();
+			that.ui.popup.find("a.discojuice_showall").hide();
+		});
+		
 	},
 	"setCountry": function(country) {
 		if (this.parent.Constants.Countries[country]) {
 			this.ui.popup.find('select.discojuice_filterCountrySelect').val(country);
 			this.prepareData();		
 		}
+	},
+	"setPosition": function(lat, lon) {
+		this.location = [lat, lon];
+		this.calculateDistance();
 	},
 	"getCountry": function() {
 		// If countryAPI is set, then lookup by IP.
@@ -768,21 +1099,34 @@ DiscoJuice.Control = {
 		
 		if (countryapi) {
 			
-			var countrycache = this.parent.Utils.readCookie('Country');
+			var countrycache = this.parent.Utils.readCookie('Country2');
+			var geocachelat = parseFloat(this.parent.Utils.readCookie('GeoLat'));
+			var geocachelon = parseFloat(this.parent.Utils.readCookie('GeoLon'));
 		
 			if (countrycache) {
 				
 				this.setCountry(countrycache);
 				this.parent.Utils.log('DiscoJuice getCountry() : Found country in cache: ' + countrycache);
 				
+				if (geocachelat && geocachelon) {
+					this.setPosition(geocachelat, geocachelon);
+				}
+				
 			} else {
 				
 				$.getJSON(countryapi, function(data) {
 		//			DiscoJuice.log(data);
 					if (data.status == 'ok' && data.country) {
-						that.parent.Utils.createCookie(data.country, 'Country');
+						that.parent.Utils.createCookie(data.country, 'Country2');
 						that.setCountry(data.country);
 						that.parent.Utils.log('DiscoJuice getCountry() : Country lookup succeeded: ' + data.country);
+						
+						if (data.geo && data.geo.lat && data.geo.lon) {
+							that.setPosition(data.geo.lat, data.geo.lon);
+							that.parent.Utils.createCookie(data.geo.lat, 'GeoLat');
+							that.parent.Utils.createCookie(data.geo.lon, 'GeoLon');
+						}
+						
 					} else {
 						that.parent.Utils.log('DiscoJuice getCountry() : Country lookup failed: ' + (data.error || ''));
 					}
@@ -792,17 +1136,7 @@ DiscoJuice.Control = {
 		}
 	},
 	
-	"showallSetup": function() {
-		var that = this;
-		this.ui.popup.find("a.discojuice_showall").click(function(event) {
-			event.preventDefault();
-			that.resetCategories();
-			that.resetTerm();
-			that.prepareData(true);
-			that.ui.focusSearch();
-		});
-	},
-	
+
 	"resetCategories": function() {
 		//this.ui.popup.find("select.discojuice_filterTypeSelect").val()
 		this.ui.popup.find("select.discojuice_filterCountrySelect").val('all');
@@ -834,7 +1168,7 @@ DiscoJuice.Control = {
 	"resetTerm": function() {
 		//this.ui.popup.find("select.discojuice_filterTypeSelect").val()
 		this.ui.popup.find("input.discojuice_search").val('');
-	},
+	}
 
 
 };
