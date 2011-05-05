@@ -7,7 +7,7 @@ class sspmod_discojuice_EmbedHelper {
 	
 	public static function head($includeJQuery = TRUE) {
 		
-		$version = '0.1-2';
+		$version = '0.1-3';
 		
 		$config = SimpleSAML_Configuration::getInstance();
 		$djconfig = SimpleSAML_Configuration::getOptionalConfig('discojuiceembed.php');
@@ -16,7 +16,7 @@ class sspmod_discojuice_EmbedHelper {
 		if ($includeJQuery) {	
 			echo '
 <!-- JQuery (Required for DiscoJuice) -->
-	<script type="text/javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-1.4.3.min.js') . '"></script>
+	<script type="text/javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-1.6.min.js') . '"></script>
 	<script type="text/javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-ui-1.8.5.custom.min.js') . '"></script>
 			
 	<link rel="stylesheet" type="text/css" href="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/css/custom/jquery-ui-1.8.5.custom.css') . '" />

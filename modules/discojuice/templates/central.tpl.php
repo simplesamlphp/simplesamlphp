@@ -1,7 +1,7 @@
 <?php
 
 
-$version = '0.1-2';
+$version = '0.1-3';
 header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
 
 
@@ -21,7 +21,7 @@ echo '<link rel="shortcut icon" href="' . SimpleSAML_Module::getModuleURL('disco
 
 
 echo '<!-- JQuery -->';
-echo '<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-1.4.3.min.js') . '"></script>
+echo '<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-1.6.min.js') . '"></script>
 <script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-ui-1.8.5.custom.min.js') . '"></script>
 
 <link rel="stylesheet" type="text/css" href="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/css/custom/jquery-ui-1.8.5.custom.css') . '" />
