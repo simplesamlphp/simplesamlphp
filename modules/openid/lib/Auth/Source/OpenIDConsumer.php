@@ -102,10 +102,14 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 		$state['openid:AuthId'] = $this->authId;
 
 		if ($this->target !== NULL) {
+			/* We know our OpenID target URL. Skip the page where we ask for it. */
 			$this->doAuth($state, $this->target);
+
+			/* doAuth() never returns. */
+			assert('FALSE');
 		}
 
-		$id = SimpleSAML_Auth_State::saveState($state, 'openid:state');
+		$id = SimpleSAML_Auth_State::saveState($state, 'openid:init');
 
 		$url = SimpleSAML_Module::getModuleURL('openid/consumer.php');
 		SimpleSAML_Utilities::redirect($url, array('AuthState' => $id));
@@ -133,8 +137,7 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 	private function getReturnTo($stateId) {
 		assert('is_string($stateId)');
 
-		return SimpleSAML_Module::getModuleURL('openid/consumer.php', array(
-			'returned' => 1,
+		return SimpleSAML_Module::getModuleURL('openid/linkback.php', array(
 			'AuthState' => $stateId,
 		));
 	}
@@ -163,7 +166,7 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 	public function doAuth(array &$state, $openid) {
 		assert('is_string($openid)');
 
-		$stateId = SimpleSAML_Auth_State::saveState($state, 'openid:state');
+		$stateId = SimpleSAML_Auth_State::saveState($state, 'openid:auth');
 
 		$consumer = $this->getConsumer($state);
 
@@ -172,7 +175,7 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 
 		// No auth request means we can't begin OpenID.
 		if (!$auth_request) {
-			throw new Exception("Authentication error; not a valid OpenID.");
+			throw new SimpleSAML_Error_BadRequest('Not a valid OpenID: ' . var_export($openid, TRUE));
 		}
 
 		$sreg_request = Auth_OpenID_SRegRequest::build(
@@ -229,7 +232,7 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 
 			// If the redirect URL can't be built, display an error message.
 			if (Auth_OpenID::isFailure($redirect_url)) {
-				throw new Exception("Could not redirect to server: " . $redirect_url->message);
+				throw new SimpleSAML_Error_AuthSource($this->authId, 'Could not redirect to server: ' . var_export($redirect_url->message, TRUE));
 			}
 
 			SimpleSAML_Utilities::redirect($redirect_url);
@@ -240,7 +243,7 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 
 			// Display an error if the form markup couldn't be generated; otherwise, render the HTML.
 			if (Auth_OpenID::isFailure($form_html)) {
-				throw new Exception("Could not redirect to server: " . $form_html->message);
+				throw new SimpleSAML_Error_AuthSource($this->authId, 'Could not redirect to server: ' . var_export($form_html->message, TRUE));
 			} else {
 				echo '<html><head><title>OpenID transaction in progress</title></head>
 					<body onload=\'document.getElementById("' . $form_id . '").submit()\'>' .
@@ -269,12 +272,12 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 		// Check the response status.
 		if ($response->status == Auth_OpenID_CANCEL) {
 			// This means the authentication was cancelled.
-			throw new Exception('Verification cancelled.');
+			throw new SimpleSAML_Error_UserAborted();
 		} else if ($response->status == Auth_OpenID_FAILURE) {
 			// Authentication failed; display the error message.
-			throw new Exception("OpenID authentication failed: " . $response->message);
+			throw new SimpleSAML_Error_AuthSource($this->authId, 'Authentication failed: ' . var_export($response->message, TRUE));
 		} else if ($response->status != Auth_OpenID_SUCCESS) {
-			throw new Exceptioon('General error. Try again.');
+			throw new SimpleSAML_Error_AuthSource($this->authId, 'General error. Try again.');
 		}
 
 		// This means the authentication succeeded; extract the

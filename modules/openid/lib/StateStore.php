@@ -177,7 +177,7 @@ class sspmod_openid_StateStore extends Auth_OpenID_OpenIDStore{
 		$this->associations[$server_url][$handle] = $association->serialize();
 
 		/* We rely on saveState saving with the same id as before. */
-		SimpleSAML_Auth_State::saveState($this->state, 'openid:state');
+		SimpleSAML_Auth_State::saveState($this->state, 'openid:auth');
 
 		return TRUE;
 	}
