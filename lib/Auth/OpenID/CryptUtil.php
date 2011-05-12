@@ -104,5 +104,19 @@ class Auth_OpenID_CryptUtil {
 
         return $str;
     }
+
+    static function constEq($s1, $s2)
+    {
+        if (strlen($s1) != strlen($s2)) {
+            return false;
+        }
+
+        $result = true;
+        $length = strlen($s1);
+        for ($i = 0; $i < $length; $i++) {
+            $result &= ($s1[$i] == $s2[$i]);
+        }
+        return $result;
+    }
 }
 

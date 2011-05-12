@@ -227,7 +227,7 @@ class Auth_OpenID_Parse {
         if (!mb_ereg_search($regexp)) {
             return false;
         }
-        list($match) = mb_ereg_search_getregs();
+        $match = mb_ereg_search_getregs();
         return true;
     }
 
@@ -269,7 +269,7 @@ class Auth_OpenID_Parse {
 
         // Try to find the <HEAD> tag.
         $head_re = $this->headFind();
-        $head_match = '';
+        $head_match = array();
         if (!$this->match($head_re, $stripped, $head_match)) {
                      ini_set( 'pcre.backtrack_limit', $old_btlimit );
                      return array();
@@ -278,7 +278,7 @@ class Auth_OpenID_Parse {
         $link_data = array();
         $link_matches = array();
 
-        if (!preg_match_all($this->_link_find, $head_match,
+        if (!preg_match_all($this->_link_find, $head_match[0],
                             $link_matches)) {
             ini_set( 'pcre.backtrack_limit', $old_btlimit );
             return array();
