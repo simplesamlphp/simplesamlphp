@@ -21,7 +21,8 @@
 		"lt": "Pasirinkite savo tapatybi\u0173 tiek\u0117j\u0105",
 		"it": "Selezionare il proprio identity provider",
 		"ja": "\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044",
-		"zh-tw": "\u9078\u64c7\u4f60\u7684\u8b58\u5225\u63d0\u4f9b\u8005(idp)"
+		"zh-tw": "\u9078\u64c7\u4f60\u7684\u8b58\u5225\u63d0\u4f9b\u8005(idp)",
+		"ru": "\u0412\u044b\u0431\u0438\u0440\u0435\u0442\u0435 \u0432\u0430\u0448 identity provider"
 	},
 	"selectidp_full": {
 		"no": "Vennligst velg hvilken identitetsleverand\u00f8r du vil bruke for \u00e5 logge inn:",
@@ -45,7 +46,8 @@
 		"lt": "Pra\u0161ome pasirinkite tapatybi\u0173 tiek\u0117j\u0105, kuriame norite autentikuotis:",
 		"it": "Si prega di selezionare l'identity provider con il quale autenticarsi:",
 		"ja": "\u8a8d\u8a3c\u3092\u884c\u3044\u305f\u3044\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044:",
-		"zh-tw": "\u8acb\u9078\u64c7\u60a8\u6240\u8981\u524d\u5f80\u8a8d\u8b49\u7684\u9a57\u8b49\u63d0\u4f9b\u8005\uff1a"
+		"zh-tw": "\u8acb\u9078\u64c7\u60a8\u6240\u8981\u524d\u5f80\u8a8d\u8b49\u7684\u9a57\u8b49\u63d0\u4f9b\u8005\uff1a",
+		"ru": "\u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0432\u044b\u0431\u0438\u0440\u0435\u0442\u0435 identity provider \u0441 \u043f\u043e\u043c\u043e\u0449\u044c\u044e \u043a\u043e\u0442\u043e\u0440\u043e\u0433\u043e \u0432\u044b \u0445\u043e\u0442\u0438\u0442\u0435 \u043f\u0440\u043e\u0439\u0442\u0438 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e:"
 	},
 	"select": {
 		"no": "Velg",
@@ -69,7 +71,8 @@
 		"lt": "Pasirinkite",
 		"it": "Selezionare",
 		"ja": "\u9078\u629e",
-		"zh-tw": "\u9078\u64c7"
+		"zh-tw": "\u9078\u64c7",
+		"ru": "\u0412\u044b\u0431\u0440\u0430\u0442\u044c"
 	},
 	"remember": {
 		"no": "Husk mitt valg",
@@ -93,7 +96,8 @@
 		"lt": "Prisiminti pasirinkim\u0105",
 		"it": "Ricorda la mia scelta",
 		"ja": "\u9078\u629e\u3092\u8a18\u61b6\u3059\u308b",
-		"zh-tw": "\u8a18\u4f4f\u6211\u7684\u9078\u64c7"
+		"zh-tw": "\u8a18\u4f4f\u6211\u7684\u9078\u64c7",
+		"ru": "\u0417\u0430\u043f\u043e\u043c\u043d\u0438\u0442\u044c \u043c\u043e\u0439 \u0432\u044b\u0431\u043e\u0440"
 	},
 	"icon_prefered_idp": {
 		"no": "[Foretrukket valg]",
@@ -114,7 +118,8 @@
 		"lt": "[Rekomenduojame]",
 		"it": "[Scelta preferita]",
 		"ja": "[\u63a8\u5968\u3059\u308b\u9078\u629e]",
-		"zh-tw": "\u559c\u597d\u9078\u64c7"
+		"zh-tw": "\u559c\u597d\u9078\u64c7",
+		"ru": "[\u041f\u0440\u0435\u0434\u043f\u043e\u0447\u0442\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0432\u044b\u0431\u043e\u0440]"
 	},
 	"previous_auth": {
 		"no": "Du har tidligere valg \u00e5 autentisere deg hos",
@@ -134,7 +139,8 @@
 		"hu": "Kor\u00e1bban ezt a szem\u00e9lyazonoss\u00e1g-szolg\u00e1ltat\u00f3t (IdP) v\u00e1lasztotta: ",
 		"ja": "\u524d\u56de\u9078\u629e\u3057\u305f\u8a8d\u8a3c: ",
 		"zh-tw": "\u60a8\u5148\u524d\u5df2\u9078\u64c7\u8a8d\u8b49\u65bc",
-		"pl": "Poprzednio wybra\u0142e\u015b"
+		"pl": "Poprzednio wybra\u0142e\u015b",
+		"ru": "\u0412\u044b \u0443\u0436\u0435 \u0432\u044b\u0431\u0440\u0430\u043b\u0438 \u0434\u043b\u044f \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u0432"
 	},
 	"login_at": {
 		"no": "Logg inn hos",
@@ -154,6 +160,7 @@
 		"hu": "Bel\u00e9p\u00e9s ide:",
 		"ja": "\u30ed\u30b0\u30a4\u30f3: ",
 		"zh-tw": "\u767b\u5165\u81f3",
-		"pl": "Zaloguj w"
+		"pl": "Zaloguj w",
+		"ru": "\u0412\u043e\u0439\u0442\u0438 \u0432"
 	}
 }

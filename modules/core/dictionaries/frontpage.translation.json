@@ -21,7 +21,8 @@
 		"it": "<strong>Congratulazioni<\/strong>, hai installato simpleSAMLphp con successo. Questa &egrave; la pagina di riferimento della tua installazione, qui puoi trovare i link ad esempi di test, diagnostiche, metadati e alla documentazione relativa.",
 		"lt": "<strong>Sveikiname<\/strong>, J\u016bs s\u0117kmingai \u012fdieg\u0117te simpleSAMLphp. Tai pradinis diegimo puslapis, kur J\u016bs rasite nuorodas \u012f testavimo pavyzd\u017eius, diagnostik\u0105, metaduomenis ir netgi nuorodas \u012f susijusi\u0105 dokumentacij\u0105.",
 		"ja": "<strong>\u304a\u3081\u3067\u3068\u3046<\/strong>, \u3042\u306a\u305f\u306f simpleSAMLphp \u306e\u30a4\u30f3\u30b9\u30c8\u30fc\u30eb\u306b\u6210\u529f\u3057\u307e\u3057\u305f\u3002\u3053\u306e\u30da\u30fc\u30b8\u306f\u8a2d\u5b9a\u3092\u884c\u3046\u305f\u3081\u306e\u30b9\u30bf\u30fc\u30c8\u30da\u30fc\u30b8\u3067\u3059\u3002\u30c6\u30b9\u30c8\u3001\u8a3a\u65ad\u3001\u30e1\u30bf\u30c7\u30fc\u30bf\u3084\u95a2\u9023\u3059\u308b\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\u3078\u306e\u30ea\u30f3\u30af\u3092\u898b\u3064\u3051\u308b\u3067\u3057\u3087\u3046\u3002",
-		"zh-tw": "<strong>\u606d\u559c\u4f60<\/strong>\uff0c\u60a8\u5df2\u7d93\u6210\u529f\u7684\u5b89\u88dd simpleSAMLphp\u3002\u9019\u662f\u5b89\u88dd\u7684\u958b\u59cb\u9801\u9762\uff0c\u5728\u9019\u88e1\u60a8\u53ef\u4ee5\u627e\u5230\u6e2c\u8a66\u7bc4\u672c\u3001\u8a3a\u65b7\u5de5\u5177\u3001\u8a6e\u91cb\u8cc7\u6599\u53ca\u5404\u7a2e\u76f8\u95dc\u6587\u4ef6\u7684\u9023\u7d50\u3002"
+		"zh-tw": "<strong>\u606d\u559c\u4f60<\/strong>\uff0c\u60a8\u5df2\u7d93\u6210\u529f\u7684\u5b89\u88dd simpleSAMLphp\u3002\u9019\u662f\u5b89\u88dd\u7684\u958b\u59cb\u9801\u9762\uff0c\u5728\u9019\u88e1\u60a8\u53ef\u4ee5\u627e\u5230\u6e2c\u8a66\u7bc4\u672c\u3001\u8a3a\u65b7\u5de5\u5177\u3001\u8a6e\u91cb\u8cc7\u6599\u53ca\u5404\u7a2e\u76f8\u95dc\u6587\u4ef6\u7684\u9023\u7d50\u3002",
+		"ru": "<strong>\u041f\u043e\u0437\u0434\u0440\u0430\u0432\u043b\u044f\u0435\u043c<\/strong>, \u0412\u044b \u0443\u0441\u043f\u0435\u0448\u043d\u043e \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u043b\u0438 simpleSAMLphp. \u042d\u0442\u043e \u0441\u0442\u0430\u0440\u0442\u043e\u0432\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u0432\u0430\u0448\u0435\u0439 \u0438\u043d\u0441\u0442\u0430\u043b\u043b\u044f\u0446\u0438\u0438, \u0433\u0434\u0435 \u0432\u044b \u043d\u0430\u0439\u0434\u0435\u0442\u0435 \u0441\u0441\u044b\u043b\u043a\u0438 \u043d\u0430 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0442\u0435\u0441\u0442\u043e\u0432, \u0434\u0438\u0430\u0433\u043d\u043e\u0441\u0442\u0438\u043a\u0443, \u043c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435 \u0438 \u0434\u0430\u0436\u0435 \u0441\u0441\u044b\u043b\u043a\u0438 \u043d\u0430 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044e\u0449\u0443\u044e \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044e."
 	},
 	"useful_links_header": {
 		"no": "Nyttige lenker for denne installasjonen",
@@ -45,7 +46,8 @@
 		"it": "Link utili per la tua installazione",
 		"lt": "Naudingos nuorodos diegimui",
 		"ja": "\u8a2d\u5b9a\u306b\u4fbf\u5229\u306a\u30ea\u30f3\u30af\u96c6",
-		"zh-tw": "\u5df2\u5b89\u88dd\u7684\u6709\u7528\u9023\u7d50"
+		"zh-tw": "\u5df2\u5b89\u88dd\u7684\u6709\u7528\u9023\u7d50",
+		"ru": "\u041f\u043e\u043b\u0435\u0437\u043d\u044b\u0435 \u0441\u0441\u044b\u043b\u043a\u0438 \u0434\u043b\u044f \u0432\u0430\u0448\u0435\u0439 \u0438\u043d\u0441\u0442\u0430\u043b\u043b\u044f\u0446\u0438\u0438"
 	},
 	"metadata_header": {
 		"no": "Metadata",
@@ -69,7 +71,8 @@
 		"it": "Metadati",
 		"lt": "Metaduomenys",
 		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf",
-		"zh-tw": "\u8a6e\u91cb\u8cc7\u6599"
+		"zh-tw": "\u8a6e\u91cb\u8cc7\u6599",
+		"ru": "\u041c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435"
 	},
 	"doc_header": {
 		"no": "Dokumentasjon",
@@ -93,7 +96,8 @@
 		"it": "Documentazione",
 		"lt": "Dokumentacija",
 		"ja": "\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8",
-		"zh-tw": "\u8aaa\u660e\u6587\u4ef6"
+		"zh-tw": "\u8aaa\u660e\u6587\u4ef6",
+		"ru": "\u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f"
 	},
 	"checkphp": {
 		"no": "Sjekker din PHP installasjon",
@@ -117,7 +121,8 @@
 		"it": "Controllo dell'installazione di PHP",
 		"lt": "Tikrinamas J\u016bs\u0173 PHP diegimas",
 		"ja": "PHP\u306e\u8a2d\u5b9a\u3092\u78ba\u8a8d",
-		"zh-tw": "\u6aa2\u67e5\u60a8\u5b89\u88dd\u7684 PHP"
+		"zh-tw": "\u6aa2\u67e5\u60a8\u5b89\u88dd\u7684 PHP",
+		"ru": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0438\u043d\u0441\u0442\u0430\u043b\u043b\u044f\u0446\u0438\u0438 PHP"
 	},
 	"about_header": {
 		"no": "Om simpleSAMLphp",
@@ -141,7 +146,8 @@
 		"it": "A proposito di simpleSAMLphp",
 		"lt": "Apie simpleSAMLphp",
 		"ja": "simpleSAMLphp \u306b\u3064\u3044\u3066",
-		"zh-tw": "\u6709\u95dc simpleSAMLphp"
+		"zh-tw": "\u6709\u95dc simpleSAMLphp",
+		"ru": "\u041e simpleSAMLphp"
 	},
 	"about_text": {
 		"no": "Yey! simpleSAMLphp virker jammen kult, hvor kan jeg finne ut mer om det? Du kan lese mer om simpleSAMLphp p\u00e5 <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp sin hjemmeside<\/a>.",
@@ -165,7 +171,8 @@
 		"it": "Questo simpleSAMLphp &egrave; davvero un bel prodotto, dove trovo ulteriori informazioni a riguardo? Puoi trovare maggiori informazioni su <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp nel Blog di Feide RnD<\/a> oltre che <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"lt": "\u0160is simpleSAMLphp dalykas yra gana puikus, kur gal\u0117\u010diau daugiau apie j\u012f paskaityti? Daugiau informacijos apie <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp galite rasti Feide RnD blog'e<\/a> bei <a href=\"http:\/\/uninett.no\">UNINETT<\/a> svetain\u0117je.",
 		"ja": "\u3053\u306e simpleSAMLphp \u306f\u7d20\u6674\u3089\u3057\u3044\u3082\u306e\u3067\u3059\u3002\u3053\u308c\u4ee5\u4e0a\u306e\u8aac\u660e\u304c\u5728\u308a\u307e\u3059\u304b\uff1f\u3053\u3061\u3089\u306e\u30ea\u30f3\u30af\u3067\u66f4\u306a\u308b\u60c5\u5831\u3092\u898b\u3064\u3051\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u3059 <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp at the Feide RnD blog<\/a>",
-		"zh-tw": "\u89ba\u5f97 simpleSAMLphp \u9084\u883b\u9177\u7684\u561b\uff0c\u5728\u54ea\u88e1\u53ef\u4ee5\u627e\u5230\u66f4\u591a\u76f8\u95dc\u8cc7\u8a0a\uff1f\u4f60\u53ef\u4ee5\u5728\u4e0b\u5217\u7db2\u5740\u627e\u5230\u66f4\u591a\u76f8\u95dc\u8cc7\u8a0a\uff0c\u65bc <a href=\"http:\/\/uninett.no\">UNINETT<\/a> \u7684 <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp at the Feide RnD \u958b\u767c\u8005\u90e8\u843d\u683c<\/a>"
+		"zh-tw": "\u89ba\u5f97 simpleSAMLphp \u9084\u883b\u9177\u7684\u561b\uff0c\u5728\u54ea\u88e1\u53ef\u4ee5\u627e\u5230\u66f4\u591a\u76f8\u95dc\u8cc7\u8a0a\uff1f\u4f60\u53ef\u4ee5\u5728\u4e0b\u5217\u7db2\u5740\u627e\u5230\u66f4\u591a\u76f8\u95dc\u8cc7\u8a0a\uff0c\u65bc <a href=\"http:\/\/uninett.no\">UNINETT<\/a> \u7684 <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp at the Feide RnD \u958b\u767c\u8005\u90e8\u843d\u683c<\/a>",
+		"ru": "simpleSAMLphp - \u0432\u0435\u0449\u044c \u043a\u043b\u0430\u0441\u0441\u043d\u0430\u044f, \u0433\u0434\u0435 \u044f \u043c\u043e\u0433\u0443 \u043f\u0440\u043e\u0447\u0438\u0442\u0430\u0442\u044c \u0431\u043e\u043b\u044c\u0448\u0435 \u043e\u0431 \u044d\u0442\u043e\u043c? \u0412\u044b \u043c\u043e\u0436\u0435\u0442\u0435 \u043d\u0430\u0439\u0442\u0438 \u0431\u043e\u043b\u0435\u0435 \u043f\u043e\u0434\u0440\u043e\u0431\u043d\u0443\u044e \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp \u0432 \u0431\u043b\u043e\u0433\u0435 Feide RnD<\/a> \u0431\u043e\u043b\u044c\u0448\u0435 \u043d\u0430 <a href=\"http:\/\/uninett.no\">UNINETT<\/a>."
 	},
 	"required": {
 		"no": "P\u00e5krevd",
@@ -189,7 +196,8 @@
 		"it": "Obbligatorio",
 		"lt": "B\u016btinas",
 		"ja": "\u5fc5\u9808",
-		"zh-tw": "\u8acb\u6c42"
+		"zh-tw": "\u8acb\u6c42",
+		"ru": "\u041e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0439"
 	},
 	"required_ldap": {
 		"no": "P\u00e5krevd for LDAP",
@@ -213,7 +221,8 @@
 		"it": "Obbligatorio per LDAP",
 		"lt": "B\u016btinas LDAP serveriui",
 		"ja": "LDAP\u306b\u5fc5\u8981",
-		"zh-tw": "\u9700\u8981 LDAP"
+		"zh-tw": "\u9700\u8981 LDAP",
+		"ru": "\u041e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0434\u043b\u044f LDAP"
 	},
 	"required_radius": {
 		"no": "P\u00e5krevd for Radius",
@@ -237,7 +246,8 @@
 		"it": "Obbligatorio per Radius",
 		"lt": "B\u016btinas Radius serveriui",
 		"ja": "Radius\u306b\u5fc5\u8981",
-		"zh-tw": "\u9700\u8981 Radius"
+		"zh-tw": "\u9700\u8981 Radius",
+		"ru": "\u041e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0434\u043b\u044f Radius"
 	},
 	"optional": {
 		"no": "Valgfritt",
@@ -261,7 +271,8 @@
 		"it": "Facoltativo",
 		"lt": "Neprivalomas",
 		"ja": "\u4efb\u610f",
-		"zh-tw": "\u9078\u9805"
+		"zh-tw": "\u9078\u9805",
+		"ru": "\u041e\u043f\u0446\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u043e"
 	},
 	"reccomended": {
 		"no": "Anbefalt",
@@ -285,7 +296,8 @@
 		"it": "Raccomandato",
 		"lt": "Rekomenduojamas",
 		"ja": "\u63a8\u5968",
-		"zh-tw": "\u5efa\u8b70"
+		"zh-tw": "\u5efa\u8b70",
+		"ru": "\u0420\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u043c\u044b\u0439"
 	},
 	"warnings": {
 		"no": "Advarsler",
@@ -309,7 +321,8 @@
 		"it": "Avvertenze",
 		"lt": "\u012esp\u0117jimai",
 		"ja": "\u8b66\u544a",
-		"zh-tw": "\u8b66\u544a"
+		"zh-tw": "\u8b66\u544a",
+		"ru": "\u041f\u0440\u0435\u0434\u0443\u043f\u0440\u0435\u0436\u0434\u0435\u043d\u0438\u044f"
 	},
 	"warnings_https": {
 		"no": "<strong>Du bruker ikke HTTPS<\/strong> - kryptert kommunikasjon med brukeren. HTTP fungerer utmerket til testform\u00e5l, men  i et produksjonsmilj\u00f8 anbefales sterkt \u00e5 skru p\u00e5 sikker kommunikasjon med HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Les mer i dokumentet: simpleSAMLphp maintenance<\/a> ]",
@@ -333,7 +346,8 @@
 		"it": "<strong>Non stai usando HTTPS<\/strong> - comunicazione cifrata con l'utente. HTTP pu&ograve; funzionare per i test, ma in un ambiente di produzione si dovrebbe usare HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Maggiori informazioni sulla manutenzione di simpleSAMLphp<\/a> ]",
 		"lt": "<strong>J\u016bs nenaudojate HTTPS<\/strong> - \u0161ifruotos komunikacijos su vartotoju. HTTP puikiai tinka testavimo reikm\u0117ms, ta\u010diau realioje aplinkoje tur\u0117tum\u0117te naudoti HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Skaityti daugiau apie simpleSAMLphp prie\u017ei\u016br\u0105<\/a> ]",
 		"ja": "<strong>\u3042\u306a\u305f\u306fHTTPS(\u6697\u53f7\u5316\u901a\u4fe1)\u3092\u884c\u3063\u3066\u3044\u307e\u305b\u3093\u3002<\/strong>HTTP\u306f\u30c6\u30b9\u30c8\u74b0\u5883\u3067\u3042\u308c\u3070\u6b63\u5e38\u306b\u52d5\u4f5c\u3057\u307e\u3059\u3001\u3057\u304b\u3057\u88fd\u54c1\u74b0\u5883\u3067\u306fHTTPS\u3092\u4f7f\u7528\u3059\u308b\u3079\u304d\u3067\u3059\u3002[ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">\u8a73\u3057\u304f\u306f simpleSAMLphp \u30e1\u30f3\u30c6\u30ca\u30f3\u30b9\u60c5\u5831\u3092\u8aad\u3093\u3067\u304f\u3060\u3055\u3044\u3002<\/a> ]",
-		"zh-tw": "<strong>\u60a8\u4e0d\u662f\u4f7f\u7528 HTTPS <\/strong>-\u65bc\u4f7f\u7528\u7684\u50b3\u8f38\u904e\u7a0b\u4e2d\u52a0\u5bc6\u3002HTTP \u53ef\u4ee5\u6b63\u5e38\u7684\u5229\u7528\u65bc\u6e2c\u8a66\uff0c\u4f46\u662f\u5728\u4e0a\u7dda\u74b0\u5883\u88e1\uff0c\u60a8\u9084\u662f\u9700\u8981\u4f7f\u7528 HTTPS\u3002[ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">\u95b1\u8b80\u66f4\u591a\u6709\u95dc\u65bc simpleSAMLphp \u7684\u7dad\u8b77\u65b9\u5f0f<\/a> ]"
+		"zh-tw": "<strong>\u60a8\u4e0d\u662f\u4f7f\u7528 HTTPS <\/strong>-\u65bc\u4f7f\u7528\u7684\u50b3\u8f38\u904e\u7a0b\u4e2d\u52a0\u5bc6\u3002HTTP \u53ef\u4ee5\u6b63\u5e38\u7684\u5229\u7528\u65bc\u6e2c\u8a66\uff0c\u4f46\u662f\u5728\u4e0a\u7dda\u74b0\u5883\u88e1\uff0c\u60a8\u9084\u662f\u9700\u8981\u4f7f\u7528 HTTPS\u3002[ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">\u95b1\u8b80\u66f4\u591a\u6709\u95dc\u65bc simpleSAMLphp \u7684\u7dad\u8b77\u65b9\u5f0f<\/a> ]",
+		"ru": "<strong>\u0412\u044b \u043d\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442\u0435 HTTPS<\/strong> - \u0448\u0438\u0444\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0435 \u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0435 \u0441 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u043c. HTTP \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u0445\u043e\u0440\u043e\u0448\u043e \u0434\u043b\u044f \u0442\u0435\u0441\u0442\u043e\u0432\u044b\u0445 \u0446\u0435\u043b\u0435\u0439, \u043d\u043e \u0432 \u044d\u043a\u043f\u043b\u0443\u0430\u0442\u0430\u0446\u0438\u0438 \u0432\u044b \u0434\u043e\u043b\u0436\u043d\u044b \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">\u0423\u0437\u043d\u0430\u0439\u0442\u0435 \u0431\u043e\u043b\u044c\u0448\u0435 \u043e\u0431 \u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u043d\u0438\u0438 simpleSAMLphp<\/a> ]"
 	},
 	"link_saml2example": {
 		"no": "SAML 2.0 SP eksempel - test innlogging med SAML 2.0 via din IdP",
@@ -357,7 +371,8 @@
 		"it": "Esempio di SAML 2.0 SP - prova l'autenticazione tramite il tuo IdP",
 		"lt": "SAML 2.0 SP pavyzdys - testinis prisijungimas per J\u016bs\u0173 IdP",
 		"ja": "SAML 2.0 SP example - IdP \u7d4c\u7531\u3067\u30c6\u30b9\u30c8\u30ed\u30b0\u30a4\u30f3",
-		"zh-tw": "SAML 2.0 SP \u7bc4\u672c - \u6e2c\u8a66\u4f7f\u7528\u60a8\u7684 IdP \u767b\u5165"
+		"zh-tw": "SAML 2.0 SP \u7bc4\u672c - \u6e2c\u8a66\u4f7f\u7528\u60a8\u7684 IdP \u767b\u5165",
+		"ru": "\u041f\u0440\u0438\u043c\u0435\u0440 SAML 2.0 SP - \u0442\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0432\u0445\u043e\u0434 \u0432 \u0441\u0438\u0441\u0442\u0435\u043c\u0443 \u0447\u0435\u0440\u0435\u0437 \u0432\u0430\u0448 IdP"
 	},
 	"link_shib13example": {
 		"no": "Shibboleth 1.3 SP eksempel - test innlogging med Shibboleth 1.3 via din IdP",
@@ -381,7 +396,8 @@
 		"it": "Esempio di Shibboleth 1.3 SP - prova l'autenticazione tramite il tuo IdP Shibboleth",
 		"lt": "Shibboleth 1.3 SP pavyzdys - istorini\u0173 duomen\u0173 testavimas kartu su J\u016bs\u0173 Shib IdP",
 		"ja": "Shibboleth 1.3 SP example - Shib IdP \u7d4c\u7531\u3067\u30c6\u30b9\u30c8\u30ed\u30b0\u30a4\u30f3",
-		"zh-tw": "Shibboleth 1.3 SP \u7bc4\u672c - \u6e2c\u8a66\u4f7f\u7528\u60a8\u7684 Shib IdP \u767b\u5165"
+		"zh-tw": "Shibboleth 1.3 SP \u7bc4\u672c - \u6e2c\u8a66\u4f7f\u7528\u60a8\u7684 Shib IdP \u767b\u5165",
+		"ru": "\u041f\u0440\u0438\u043c\u0435\u0440 Shibboleth 1.3 SP - \u0442\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0432\u0445\u043e\u0434 \u0432 \u0441\u0438\u0441\u0442\u0435\u043c\u0443 \u0447\u0435\u0440\u0435\u0437 \u0432\u0430\u0448 Shib IdP"
 	},
 	"link_openidprovider": {
 		"no": "OpenID Provider side - Alpha versjon (testkode)",
@@ -405,7 +421,8 @@
 		"it": "OpenID Provider site - versione Alpha (codice di test)",
 		"lt": "OpenID tiek\u0117jo puslapis - alfa versija (bandomasis kodas)",
 		"ja": "OpenID \u30d7\u30ed\u30d0\u30a4\u30c0\u30b5\u30a4\u30c8 - \u30a2\u30eb\u30d5\u30a1\u30d0\u30fc\u30b8\u30e7\u30f3 (\u30c6\u30b9\u30c8\u30b3\u30fc\u30c9)",
-		"zh-tw": "OpenID \u63d0\u4f9b\u7db2\u7ad9 - \u958b\u767c\u7248\u672c(\u6e2c\u8a66\u78bc)"
+		"zh-tw": "OpenID \u63d0\u4f9b\u7db2\u7ad9 - \u958b\u767c\u7248\u672c(\u6e2c\u8a66\u78bc)",
+		"ru": "\u0421\u0430\u0439\u0442 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 OpenID - \u0410\u043b\u044c\u0444\u0430 \u0432\u0435\u0440\u0441\u0438\u044f (\u0442\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u043a\u043e\u0434)"
 	},
 	"link_diagnostics": {
 		"no": "Diagnostiser hostnavn, port og protokoll",
@@ -429,7 +446,8 @@
 		"it": "Diagnostica su nome dell'host, porta e protocollo",
 		"lt": "Serverio vardo, porto ir protokolo diagnostika",
 		"ja": "\u30db\u30b9\u30c8\u30cd\u30fc\u30e0\u3084\u30dd\u30fc\u30c8\u3001\u30d7\u30ed\u30c8\u30b3\u30eb\u3092\u8a3a\u65ad",
-		"zh-tw": "\u8a3a\u65b7\u4e3b\u6a5f\u540d\u7a31\uff0c\u9023\u63a5\u57e0\u53ca\u5354\u5b9a"
+		"zh-tw": "\u8a3a\u65b7\u4e3b\u6a5f\u540d\u7a31\uff0c\u9023\u63a5\u57e0\u53ca\u5354\u5b9a",
+		"ru": "\u0414\u0438\u0430\u0433\u043d\u043e\u0441\u0442\u0438\u043a\u0430 \u0438\u043c\u0435\u043d\u0438 \u0445\u043e\u0441\u0442\u0430, \u043f\u043e\u0440\u0442\u0430 \u0438 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u0430"
 	},
 	"link_phpinfo": {
 		"no": "PHPinfo",
@@ -453,7 +471,8 @@
 		"it": "PHP info",
 		"lt": "PHP informacija",
 		"ja": "PHP info",
-		"zh-tw": "PHP \u8cc7\u8a0a"
+		"zh-tw": "PHP \u8cc7\u8a0a",
+		"ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f PHP"
 	},
 	"link_meta_overview": {
 		"no": "Oversikt over metadata for din installasjon. Diagnostiser metadatafilene her.",
@@ -477,7 +496,8 @@
 		"it": "Panoramica dei metadati della tua installazione. Diagnostica dei file dei metadati",
 		"lt": "Diegimo metaduomen\u0173 per\u017ei\u016bra. Galite analizuoti savo metaduomenis",
 		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf\u306e\u6982\u8981\u3002\u30e1\u30bf\u30c7\u30fc\u30bf\u30d5\u30a1\u30a4\u30eb\u3092\u8a3a\u65ad\u3057\u307e\u3059\u3002",
-		"zh-tw": "\u60a8\u5b89\u88dd\u7684\u8a6e\u91cb\u8cc7\u6599\u6982\u89c0\u3002\u8a3a\u65b7\u60a8\u7684\u8a6e\u91cb\u8cc7\u6599\u6a94\u6848"
+		"zh-tw": "\u60a8\u5b89\u88dd\u7684\u8a6e\u91cb\u8cc7\u6599\u6982\u89c0\u3002\u8a3a\u65b7\u60a8\u7684\u8a6e\u91cb\u8cc7\u6599\u6a94\u6848",
+		"ru": "\u041e\u0431\u0437\u043e\u0440 \u043c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0445 \u0434\u043b\u044f \u0438\u043d\u0441\u0442\u0430\u043b\u043b\u044f\u0446\u0438\u0438. \u0414\u0438\u0430\u0433\u043d\u043e\u0441\u0442\u0438\u043a\u0430 \u0432\u0430\u0448\u0438\u0445 \u0444\u0430\u0439\u043b\u043e\u0432 \u043c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0445."
 	},
 	"link_meta_saml2sphosted": {
 		"no": "Hosted SAML 2.0 Service Provider Metadata (automatisk generert)",
@@ -597,7 +617,8 @@
 		"it": "Convertitore di metadati dal formato XML al formato simpleSAMLphp ",
 		"ja": "XML \u3092 simpleSAMLphp\u30e1\u30bf\u30c7\u30fc\u30bf\u306b\u5909\u63db",
 		"lt": "XML \u012f simpleSAMLphp metaduomen\u0173 vertimas",
-		"zh-tw": "XML \u81f3 simpleSAMLphp \u8a6e\u91cb\u8cc7\u6599\u7ffb\u8b6f\u5668"
+		"zh-tw": "XML \u81f3 simpleSAMLphp \u8a6e\u91cb\u8cc7\u6599\u7ffb\u8b6f\u5668",
+		"ru": "\u041a\u043e\u043d\u0432\u0435\u0440\u0442\u043e\u0440 XML \u0432 \u043c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435 simpleSAMLphp"
 	},
 	"link_doc_install": {
 		"no": "Installerer simpleSAMLphp",
@@ -621,7 +642,8 @@
 		"it": "Installazione di simpleSAMLphp",
 		"ja": "simpleSAMLphp\u306e\u30a4\u30f3\u30b9\u30c8\u30fc\u30eb",
 		"lt": "Diegiamas simpleSAMLphp",
-		"zh-tw": "simpleSAMLphp \u5b89\u88dd\u4e2d"
+		"zh-tw": "simpleSAMLphp \u5b89\u88dd\u4e2d",
+		"ru": "\u0423\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0430 simpleSAMLphp"
 	},
 	"link_doc_sp": {
 		"no": "Bruk simpleSAMLphp som Service Provider",
@@ -645,7 +667,8 @@
 		"it": "Usare simpleSAMLphp come Service Provider",
 		"ja": "simpleSAMLphp\u3092\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u3068\u3057\u3066\u4f7f\u7528\u3059\u308b",
 		"lt": "simpleSAMLphp naudojimas kaip paslaugos teik\u0117j\u0105",
-		"zh-tw": "\u4f7f\u7528 simpleSAMLphp \u505a\u70ba\u670d\u52d9\u63d0\u4f9b\u8005"
+		"zh-tw": "\u4f7f\u7528 simpleSAMLphp \u505a\u70ba\u670d\u52d9\u63d0\u4f9b\u8005",
+		"ru": "\u0418\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 simpleSAMLphp \u043a\u0430\u043a Service Provider"
 	},
 	"link_doc_idp": {
 		"no": "Bruk simpleSAMLphp som identitetstjeneste",
@@ -669,7 +692,8 @@
 		"it": "Usare simpleSAMLphp come Identity Provider",
 		"ja": "simpleSAMLphp\u3092\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u3068\u3057\u3066\u4f7f\u7528\u3059\u308b",
 		"lt": "simpleSAMLphp naudojimas kaip tapatyb\u0117s teik\u0117j\u0105",
-		"zh-tw": "\u4f7f\u7528 simpleSAMLphp \u505a\u70ba\u9a57\u8b49\u63d0\u4f9b\u8005"
+		"zh-tw": "\u4f7f\u7528 simpleSAMLphp \u505a\u70ba\u9a57\u8b49\u63d0\u4f9b\u8005",
+		"ru": "\u0418\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 simpleSAMLphp \u043a\u0430\u043a Identity Provider"
 	},
 	"link_doc_shibsp": {
 		"no": "Konfigurer Shibboleth 1.3 SP for \u00e5 fungere sammen med simpleSAMLphp identitetstjeneste",
@@ -741,7 +765,8 @@
 		"it": "Funzioni avanzate di simpleSAMLphp ",
 		"ja": "simpleSAMLphp \u306e\u9ad8\u5ea6\u306a\u6a5f\u80fd",
 		"lt": "simpleSAMLphp papildomos galimyb\u0117s",
-		"zh-tw": "simpleSAMLphp \u9032\u968e\u529f\u80fd"
+		"zh-tw": "simpleSAMLphp \u9032\u968e\u529f\u80fd",
+		"ru": "\u0420\u0430\u0441\u0448\u0438\u0440\u0435\u043d\u043d\u044b\u0435 \u0444\u0443\u043d\u043a\u0446\u0438\u0438 simpleSAMLphp"
 	},
 	"link_doc_maintenance": {
 		"no": "simpleSAMLphp vedlikehold og konfigurasjon",
@@ -765,7 +790,8 @@
 		"it": "Manutenzione e configurazione di simpleSAMLphp ",
 		"lt": "simpleSAMLphp valdymas ir konfig\u016bracija",
 		"ja": "simpleSAMLphp \u306e\u30e1\u30f3\u30c6\u30ca\u30f3\u30b9\u3068\u8a2d\u5b9a",
-		"zh-tw": "simpleSAMLphp \u7dad\u8b77\u53ca\u8a2d\u5b9a"
+		"zh-tw": "simpleSAMLphp \u7dad\u8b77\u53ca\u8a2d\u5b9a",
+		"ru": "\u041e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u043d\u0438\u0435 \u0438 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044f simpleSAMLphp"
 	},
 	"link_configcheck": {
 		"no": "Sjekk av simpleSAMLphp konfigurasjonsfiler",
@@ -788,7 +814,8 @@
 		"it": "Controllo configurazione simpleSAMLphp",
 		"lt": "simpleSAMLphp konfig\u016bracijos patikrinimas",
 		"ja": "simpleSAMLphp \u8a2d\u5b9a\u78ba\u8a8d",
-		"zh-tw": "simpleSAMLphp \u8a2d\u5b9a\u6aa2\u67e5"
+		"zh-tw": "simpleSAMLphp \u8a2d\u5b9a\u6aa2\u67e5",
+		"ru": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438 simpleSAMLphp"
 	},
 	"link_cleardiscochoices": {
 		"no": "Slett mitt valg av IdP i IdP discovery tjenestene",
@@ -833,7 +860,8 @@
 		"it": "Benvenuto",
 		"lt": "Sveiki atvyk\u0119",
 		"ja": "\u3088\u3046\u3053\u305d",
-		"zh-tw": "\u6b61\u8fce"
+		"zh-tw": "\u6b61\u8fce",
+		"ru": "\u0414\u043e\u0431\u0440\u043e \u043f\u043e\u0436\u0430\u043b\u043e\u0432\u0430\u0442\u044c"
 	},
 	"configuration": {
 		"no": "Konfigurasjon",
@@ -855,7 +883,8 @@
 		"it": "Configurazione",
 		"lt": "Konfig\u016bracija",
 		"ja": "\u8a2d\u5b9a",
-		"zh-tw": "\u8a2d\u5b9a"
+		"zh-tw": "\u8a2d\u5b9a",
+		"ru": "\u041a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044f"
 	},
 	"metadata": {
 		"no": "Metadata",
@@ -877,7 +906,8 @@
 		"it": "Metadati",
 		"lt": "Metaduomenys",
 		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf",
-		"zh-tw": "\u8a6e\u91cb\u8cc7\u6599"
+		"zh-tw": "\u8a6e\u91cb\u8cc7\u6599",
+		"ru": "\u041c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435"
 	},
 	"tools": {
 		"no": "Verkt\u00f8y",
@@ -899,7 +929,8 @@
 		"it": "Strumenti",
 		"lt": "\u012erankiai",
 		"ja": "\u30c4\u30fc\u30eb",
-		"zh-tw": "\u5de5\u5177"
+		"zh-tw": "\u5de5\u5177",
+		"ru": "\u0418\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b"
 	},
 	"show_metadata": {
 		"no": "Vis metadata",
@@ -921,7 +952,8 @@
 		"it": "Mostra metadati",
 		"lt": "Parodyti metaduomenis",
 		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf\u3092\u8868\u793a",
-		"zh-tw": "\u986f\u793a\u8a6e\u91cb\u8cc7\u6599"
+		"zh-tw": "\u986f\u793a\u8a6e\u91cb\u8cc7\u6599",
+		"ru": "\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u043c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435"
 	},
 	"login_as_admin": {
 		"no": "Login som administrator",
@@ -943,7 +975,8 @@
 		"it": "Accedi come amministratore",
 		"lt": "Prisijungti administratoriaus teis\u0117mis",
 		"ja": "\u7ba1\u7406\u8005\u3067\u30ed\u30b0\u30a4\u30f3",
-		"zh-tw": "\u767b\u5165\u70ba\u7ba1\u7406\u54e1"
+		"zh-tw": "\u767b\u5165\u70ba\u7ba1\u7406\u54e1",
+		"ru": "\u0412\u043e\u0439\u0442\u0438 \u043a\u0430\u043a \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440"
 	},
 	"loggedin_as_admin": {
 		"no": "Du er logget inn som administrator",
@@ -965,7 +998,8 @@
 		"it": "Sei connesso come amministratore",
 		"lt": "J\u016bs prisijung\u0117te administratoriaus teis\u0117mis",
 		"ja": "\u7ba1\u7406\u8005\u3067\u30ed\u30b0\u30a4\u30f3\u3057\u3066\u3044\u307e\u3059",
-		"zh-tw": "\u4f60\u5df2\u7d93\u767b\u5165\u6210\u70ba\u7ba1\u7406\u54e1"
+		"zh-tw": "\u4f60\u5df2\u7d93\u767b\u5165\u6210\u70ba\u7ba1\u7406\u54e1",
+		"ru": "\u0412\u044b \u0432\u043e\u0448\u043b\u0438 \u043a\u0430\u043a \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440"
 	},
 	"auth": {
 		"no": "Autentisering",
@@ -986,7 +1020,8 @@
 		"hu": "Azonos\u00edt\u00e1s (autentik\u00e1ci\u00f3)",
 		"ja": "\u8a8d\u8a3c",
 		"zh-tw": "\u8a8d\u8b49",
-		"pl": "Autentykacja"
+		"pl": "Autentykacja",
+		"ru": "\u0410\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f"
 	},
 	"federation": {
 		"no": "F\u00f8derasjon",
@@ -1007,7 +1042,8 @@
 		"hu": "F\u00f6der\u00e1ci\u00f3",
 		"ja": "\u9023\u643a",
 		"zh-tw": "\u806f\u76df",
-		"pl": "Federacja"
+		"pl": "Federacja",
+		"ru": "\u0424\u0435\u0434\u0435\u0440\u0430\u0446\u0438\u044f"
 	},
 	"authtest": {
 		"no": "Test konfigurerte autentiseringskilder",
@@ -1027,7 +1063,8 @@
 		"lt": "Testuoti nustatytus autentifikavimo \u0161altinius",
 		"hu": "Azonos\u00edt\u00e1si (autentik\u00e1ci\u00f3s) be\u00e1ll\u00edt\u00e1sok tesztel\u00e9se",
 		"ja": "\u8a2d\u5b9a\u3055\u308c\u3066\u3044\u308b\u8a8d\u8a3c\u5143\u3092\u30c6\u30b9\u30c8",
-		"zh-tw": "\u6e2c\u8a66\u8a2d\u5b9a\u597d\u7684\u8a8d\u8b49\u4f86\u6e90"
+		"zh-tw": "\u6e2c\u8a66\u8a2d\u5b9a\u597d\u7684\u8a8d\u8b49\u4f86\u6e90",
+		"ru": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0441\u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0445 \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u043e\u0432 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438"
 	},
 	"deprecated": {
 		"no": "Utdatert",
@@ -1047,7 +1084,8 @@
 		"hu": "Kivezet\u00e9s alatt \u00e1ll\u00f3 opci\u00f3 - haszn\u00e1lata ellenjavallt",
 		"ja": "\u53e4\u3044",
 		"zh-tw": "\u5df2\u903e\u6642",
-		"pl": "Przestarza\u0142e"
+		"pl": "Przestarza\u0142e",
+		"ru": "\u0423\u0441\u0442\u0430\u0440\u0435\u0432\u0448\u0438\u0435"
 	},
 	"page_title": {
 		"sv": "Installationssida f\u00f6r simpleSAMLphp",
@@ -1064,10 +1102,15 @@
 		"hu": "simpleSAMLphp adminisztr\u00e1ci\u00f3s fel\u00fclet",
 		"ja": "simpleSAMLphp\u8a2d\u5b9a\u30da\u30fc\u30b8",
 		"nl": "simpleSAMLphp installatiepagina",
-		"zh-tw": "simpleSAMLphp \u5b89\u88dd\u9801\u9762"
+		"zh-tw": "simpleSAMLphp \u5b89\u88dd\u9801\u9762",
+		"ru": "\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u0438\u043d\u0441\u0442\u0430\u043b\u043b\u044f\u0446\u0438\u0438 simpleSAMLphp"
 	},
 	"warnings_suhosin_url_length": {
 		"no": "Lengden p\u00e5 foresp\u00f8rselparametre er begrenset av PHP Suhosin utvidelsen. Vennligst \u00f8k suhosin.get.max_value_length konfigurasjonsinnstillingen til minst 2048 tegn.",
-		"nn": "Lengda p\u00e5 f\u00f8respurnadargumenta er begrensa av PHP Suhosin utvidinga. V\u00e6r vennleg og \u00f8k suhosin.get.max_value_length konfigurasjonsinnstillinga til minst 2048 teikn."
+		"nn": "Lengda p\u00e5 f\u00f8respurnadargumenta er begrensa av PHP Suhosin utvidinga. V\u00e6r vennleg og \u00f8k suhosin.get.max_value_length konfigurasjonsinnstillinga til minst 2048 teikn.",
+		"sv": "Storleken p\u00e5 f\u00f6rfr\u00e5gningsparametrarna \u00e4r begr\u00e4nsade av PHP-ut\u00f6kningen PHP Suhosin. \u00d6ka konfigurationsparametern suhosin.get.max_value_length till minst 2048 bytes.",
+		"ja": "PHP\u306eSuhosin\u62e1\u5f35\u306b\u3088\u3063\u3066\u30af\u30a8\u30ea\u30fc\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u9577\u3055\u304c\u5236\u9650\u3055\u308c\u3066\u3044\u307e\u3059\u3002suhosin.get.max_value_length \u3092 2048\u4ee5\u4e0a\u306b\u5897\u3084\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
+		"sl": "Dol\u017eina parametra poizvedbe je v PHP omejena s Suhosin raz\u0161iritvijo. Poskusite pove\u010dati parameter suhosin.get.max_value_length na vsaj 2048 bajtov.",
+		"ru": "\u0414\u043b\u0438\u043d\u0430 \u0437\u0430\u043f\u0440\u043e\u0441\u0430 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0438\u0432\u0430\u0435\u0442\u0441\u044f \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043d\u0438\u0435\u043c Suhosin \u0432 PHP. \u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0443\u0432\u0435\u043b\u0438\u0447\u0442\u0435 \u043e\u043f\u0446\u0438\u044e suhosin.get.max_value_length \u043f\u043e \u043a\u0440\u0430\u0439\u043d\u0435\u0439 \u043c\u0435\u0440\u0435 \u0434\u043e 2048 \u0431\u0430\u0439\u0442."
 	}
 }

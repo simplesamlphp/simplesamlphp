@@ -160,6 +160,7 @@ if($onLoad !== '') {
 					'pl' => 'Język polski', // Polish
 					'pt' => 'Português', // Portuguese
 					'pt-BR' => 'Português brasileiro', // Portuguese
+					'ru' => 'русский язык', // Russian
 					'tr' => 'Türkçe',
 					'el' => 'ελληνικά',
 					'ja' => '日本語',
