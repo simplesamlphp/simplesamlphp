@@ -172,7 +172,7 @@ DiscoJuice.UI = {
 		if (showmore) {
 			var moreLink = '<a class="discojuice_showmore textlink" href="">Results limited to ' + show + ' entries – show more…</a>';
 			this.popup.find("p.discojuice_moreLinkContainer").empty().append(moreLink);
-			this.popup.find("p.discojuice_moreLinkContainer a.discojuice_showmore").click(function(e) {
+			this.popup.find("p.discojuice_moreLinkContainer a.discojuice_showmore").click(function(event) {
 				event.preventDefault();
 				that.control.increase();
 			});
