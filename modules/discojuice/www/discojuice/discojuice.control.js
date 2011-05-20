@@ -34,11 +34,19 @@ DiscoJuice.Control = {
 		var that = this;		
 		if (this.data) return;
 		var metadataurl = this.parent.Utils.options.get('metadata');
+		var parameters = {};
 		
 		this.parent.Utils.log('metadataurl is ' + metadataurl);
 		if (!metadataurl) return;
+
+		// If SP EntityID is set in configuration make sure it is sent as a parameter
+		// to the feed endpoint.
+		var discosettings = this.parent.Utils.options.get('disco');
+		if (discosettings) {
+			parameters.entityID = discosettings.spentityid;
+		}
 		
-		$.getJSON(metadataurl, function(data) {
+		$.getJSON(metadataurl, parameters, function(data) {
 			that.data = data;
 			that.parent.Utils.log('Successfully loaded metadata (' + data.length + ')');
 			that.postLoad();
@@ -507,6 +515,8 @@ DiscoJuice.Control = {
 			
 		iframeurl = writableStore + '?entityID=' + escape(spentityid) + '&IdPentityID=' + 
 			escape(entityID) + '&isPassive=true&returnIDParam=bogus&return=' + escape(returnurl);
+			
+		this.parent.Utils.log('DiscoJuice.Control discoWrite iframeURL (' + iframeurl + ') ');
 			
 		html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
 		this.ui.addContent(html);
