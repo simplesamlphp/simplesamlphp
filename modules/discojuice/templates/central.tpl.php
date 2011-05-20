@@ -1,7 +1,7 @@
 <?php
 
 
-$version = '0.1-3';
+$version = '0.1-4';
 header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
 
 
@@ -64,7 +64,14 @@ global $options;
 global $returnidparam, $returnto;
 $options = $this->data['discojuice.options'];
 
-// echo '<pre>opts'; 
+if (!empty($_REQUEST['entityID'])) {
+	if (!array_key_exists('disco', $options)) {		
+		$options['disco'] = array();
+	}
+	$options['disco']['spentityid'] = $_REQUEST['entityID'];
+}
+
+// echo '</script><pre>opts'; 
 // print_r($options);
 // exit;
 

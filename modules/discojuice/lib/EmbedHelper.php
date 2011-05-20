@@ -7,7 +7,7 @@ class sspmod_discojuice_EmbedHelper {
 	
 	public static function head($includeJQuery = TRUE) {
 		
-		$version = '0.1-3';
+		$version = '0.1-4';
 		
 		$config = SimpleSAML_Configuration::getInstance();
 		$djconfig = SimpleSAML_Configuration::getOptionalConfig('discojuiceembed.php');
