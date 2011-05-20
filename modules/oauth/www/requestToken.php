@@ -20,10 +20,7 @@ try {
 	$token = $server->fetch_request_token($req, null, $req->get_version());
 
 	// OAuth1.0-revA adds oauth_callback_confirmed to token
-	echo $token;
-	if ($req->get_version() == '1.0a') {
-	  echo "&oauth_callback_confirmed=true";
-	}
+	echo $token . "&oauth_callback_confirmed=true";
 	
 } catch (Exception $e) {
 	
