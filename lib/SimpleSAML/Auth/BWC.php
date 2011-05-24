@@ -60,6 +60,16 @@ class SimpleSAML_Auth_BWC extends SimpleSAML_Auth_Simple {
 
 
 	/**
+	 * Retrieve the implementing authentication source.
+	 *
+	 * @return NULL  There is never an authentication source behind this class.
+	 */
+	public function getAuthSource() {
+		return NULL;
+	}
+
+
+	/**
 	 * Start a login operation.
 	 *
 	 * @param array $params  Various options to the authentication request.

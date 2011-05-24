@@ -29,6 +29,16 @@ class SimpleSAML_Auth_Simple {
 
 
 	/**
+	 * Retrieve the implementing authentication source.
+	 *
+	 * @return SimpleSAML_Auth_Source  The authentication source.
+	 */
+	public function getAuthSource() {
+		return SimpleSAML_Auth_Source::getById($this->authSource);
+	}
+
+
+	/**
 	 * Check if the user is authenticated.
 	 *
 	 * This function checks if the user is authenticated with the default
