@@ -41,8 +41,14 @@ class SimpleSAML_IdP_LogoutIFrame extends SimpleSAML_IdP_LogoutHandler {
 			$state['core:Logout-IFrame:From'] = NULL;
 		}
 
-		$id = SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame');
-		$url = SimpleSAML_Module::getModuleURL('core/idp/logout-iframe.php', array('id' => $id));
+		$params = array(
+			'id' => SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame'),
+		);
+		if (isset($state['core:Logout-IFrame:InitType'])) {
+			$params['type'] = $state['core:Logout-IFrame:InitType'];
+		}
+
+		$url = SimpleSAML_Module::getModuleURL('core/idp/logout-iframe.php', $params);
 		SimpleSAML_Utilities::redirect($url);
 	}
 
