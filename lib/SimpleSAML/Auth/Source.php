@@ -100,6 +100,26 @@ abstract class SimpleSAML_Auth_Source {
 
 
 	/**
+	 * Reauthenticate an user.
+	 *
+	 * This function is called by the IdP to give the authentication source a chance to
+	 * interact with the user even in the case when the user is already authenticated.
+	 *
+	 * @param array &$state  Information about the current authentication.
+	 */
+	public function reauthenticate(array &$state) {
+		assert('isset($state["ReturnCallback"])');
+
+		/* The default implementation just copies over the previous authentication data. */
+		$session = SimpleSAML_Session::getInstance();
+		$data = $session->getAuthState($this->authId);
+		foreach ($data as $k => $v) {
+			$state[$k] = $v;
+		}
+	}
+
+
+	/**
 	 * Complete authentication.
 	 *
 	 * This function should be called if authentication has completed. It will never return,
