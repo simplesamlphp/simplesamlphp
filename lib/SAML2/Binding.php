@@ -53,9 +53,9 @@ abstract class SAML2_Binding {
 	public static function getCurrentBinding() {
 		switch ($_SERVER['REQUEST_METHOD']) {
 		case 'GET':
-			if (array_key_exists('SAMLRequest', $_REQUEST) || array_key_exists('SAMLResponse', $_REQUEST)) {
+			if (array_key_exists('SAMLRequest', $_GET) || array_key_exists('SAMLResponse', $_GET)) {
 				return new SAML2_HTTPRedirect();
-			} elseif (array_key_exists('SAMLart', $_REQUEST) ){
+			} elseif (array_key_exists('SAMLart', $_GET) ){
 				return new SAML2_HTTPArtifact();
 			}
 			break;
@@ -68,9 +68,9 @@ abstract class SAML2_Binding {
 			} else {
 				$contentType = NULL;
 			}
-			if (array_key_exists('SAMLRequest', $_REQUEST) || array_key_exists('SAMLResponse', $_REQUEST)) {
+			if (array_key_exists('SAMLRequest', $_POST) || array_key_exists('SAMLResponse', $_POST)) {
 				return new SAML2_HTTPPost();
-			} elseif (array_key_exists('SAMLart', $_REQUEST) ){
+			} elseif (array_key_exists('SAMLart', $_POST) ){
 				return new SAML2_HTTPArtifact();
 			} elseif ($contentType === 'text/xml') {
 				return new SAML2_SOAP();
