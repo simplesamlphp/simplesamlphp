@@ -78,6 +78,18 @@ abstract class SAML2_Binding {
 			break;
 		}
 
+		SimpleSAML_Logger::warning('Unable to find the SAML 2 binding used for this request.');
+		SimpleSAML_Logger::warning('Request method: ' . var_export($_SERVER['REQUEST_METHOD'], TRUE));
+		if (!empty($_GET)) {
+			SimpleSAML_Logger::warning("GET parameters: '" . implode("', '", array_map('addslashes', array_keys($_GET))) . "'");
+		}
+		if (!empty($_POST)) {
+			SimpleSAML_Logger::warning("POST parameters: '" . implode("', '", array_map('addslashes', array_keys($_POST))) . "'");
+		}
+		if (isset($_SERVER['CONTENT_TYPE'])) {
+			SimpleSAML_Logger::warning('Content-Type: ' . var_export($_SERVER['CONTENT_TYPE'], TRUE));
+		}
+
 		throw new Exception('Unable to find the current binding.');
 	}
 
