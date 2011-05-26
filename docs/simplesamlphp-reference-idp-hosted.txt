@@ -55,6 +55,9 @@ Common options
     set to `__DEFAULT__`, and that IdP will be used when no other
     entries in the metadata matches.
 
+`logouttype`
+:   The logout handler to use. Either `iframe` or `traditional`. `traditional` is the default.
+
 `OrganizationName`
 :   The name of the organization responsible for this IdP.
     This name does not need to be suitable for display to end users.
