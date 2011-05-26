@@ -15,9 +15,9 @@ $this->includeAtTemplateBase('includes/header.php');
 </ul> -->
 <?php
 if ($this->data['isadmin']) {
-	echo '<p style="float: right">' . $this->t('{core:frontpage:loggedin_as_admin}') . '</p>';
+	echo '<p class="float-r">' . $this->t('{core:frontpage:loggedin_as_admin}') . '</p>';
 } else {
-	echo '<p style="float: right"><a href="' . $this->data['loginurl'] . '">' . $this->t('{core:frontpage:login_as_admin}') . '</a></p>';
+	echo '<p class="float-r"><a href="' . $this->data['loginurl'] . '">' . $this->t('{core:frontpage:login_as_admin}') . '</a></p>';
 }
 ?>
 

@@ -177,6 +177,18 @@ class SimpleSAML_XHTML_Template {
 	}
 
 	/**
+	 * Return TRUE if language is Right-to-Left.
+	 */
+	private function isLanguageRTL() {
+		$rtlLanguages = $this->configuration->getArray('language.rtl', array());
+		$thisLang = $this->getLanguage();
+		if (in_array($thisLang, $rtlLanguages)) {
+			return TRUE;
+		}
+		return FALSE;
+	}
+
+	/**
 	 * Includs a file relative to the template base directory.
 	 * This function can be used to include headers and footers etc.
 	 *

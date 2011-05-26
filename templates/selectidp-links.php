@@ -43,11 +43,11 @@ foreach ($this->data['idplist'] AS $idpentry) {
 		if (!empty($this->data['preferredidp']) && array_key_exists($this->data['preferredidp'], $this->data['idplist'])) {
 			$idpentry = $this->data['idplist'][$this->data['preferredidp']];
 			echo '<div class="preferredidp">';
-			echo '	<img src="/' . $this->data['baseurlpath'] .'resources/icons/experience/gtk-about.64x64.png" style="float: right" alt="'.$this->t('icon_prefered_idp').'" />';
+			echo '	<img src="/' . $this->data['baseurlpath'] .'resources/icons/experience/gtk-about.64x64.png" class="float-r" alt="'.$this->t('icon_prefered_idp').'" />';
 
 			if(array_key_exists('icon', $idpentry) && $idpentry['icon'] !== NULL) {
 				$iconUrl = SimpleSAML_Utilities::resolveURL($idpentry['icon']);
-				echo '<img style="float: left; margin: 1em; padding: 3px; border: 1px solid #999" src="' . htmlspecialchars($iconUrl) . '" />';
+				echo '<img class="float-l" style="margin: 1em; padding: 3px; border: 1px solid #999" src="' . htmlspecialchars($iconUrl) . '" />';
 			}
 			echo "\n" . '	<h3 style="margin-top: 8px">' . htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
 
@@ -66,7 +66,7 @@ foreach ($this->data['idplist'] AS $idpentry) {
 
 				if(array_key_exists('icon', $idpentry) && $idpentry['icon'] !== NULL) {
 					$iconUrl = SimpleSAML_Utilities::resolveURL($idpentry['icon']);
-					echo '<img style="clear: both; float: left; margin: 1em; padding: 3px; border: 1px solid #999" src="' . htmlspecialchars($iconUrl) . '" />';
+					echo '<img class="float-l" style="clear: both; margin: 1em; padding: 3px; border: 1px solid #999" src="' . htmlspecialchars($iconUrl) . '" />';
 				}
 				echo "\n" . '	<h3 style="margin-top: 8px">' . htmlspecialchars($this->t('idpname_' . $idpentry['entityid'])) . '</h3>';
 

@@ -88,6 +88,11 @@ if(!empty($this->data['htmlinject']['htmlContentHead'])) {
 
 
 
+if ($this->isLanguageRTL()) {
+?>
+	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/default-rtl.css" />
+<?php	
+}
 ?>
 
 	
@@ -165,6 +170,10 @@ if($onLoad !== '') {
 					'el' => 'ελληνικά',
 					'ja' => '日本語',
 					'zh-tw' => '中文',
+					'ar' => 'العربية', // Arabic
+					'fa' => 'پارسی', // Persian
+					'ur' => 'اردو', // Urdu
+					'he' => 'עִבְרִית', // Hebrew
 		);
 		
 		$textarray = array();

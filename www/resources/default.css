@@ -340,3 +340,12 @@ div#confirmation {
 caption {
 	display: none;
 }
+
+/* Left-to-Right CSS for RTL (Right to Left Support) */
+.float-r {
+	float: right;
+}
+.float-l {
+	float: left;
+}
+
