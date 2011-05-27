@@ -299,6 +299,9 @@ abstract class SimpleSAML_Auth_Source {
 
 		$data = $session->getData('SimpleSAML_Auth_Source.LogoutCallbacks', $id);
 		if ($data === NULL) {
+			/* FIXME: fix for IdP-first flow (issue 397) -> reevaluate logout callback infrastructure */
+			$session->doLogout($this->authId);
+
 			return;
 		}
 
