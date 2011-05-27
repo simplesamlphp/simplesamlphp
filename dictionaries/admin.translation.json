@@ -984,5 +984,11 @@
 		"ja": "\u304a\u77e5\u3089\u305b",
 		"lt": "Prane\u0161imai",
 		"zh-tw": "\u5099\u8a3b"
+	},
+	"metadata_cert": {
+		"nl": "Certificaten"
+	},
+	"metadata_cert_intro": {
+		"nl": "Download de X509-certificaten in PEM-formaat."
 	}
 }

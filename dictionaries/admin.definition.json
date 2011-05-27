@@ -104,6 +104,12 @@
 	"metadata_metadata": {
 		"en": "Metadata"
 	},
+	"metadata_cert": {
+		"en": "Certificates"
+	},
+	"metadata_cert_intro": {
+		"en": "Download the X509 certificates as PEM-encoded files."
+	},
 	"metadata_xmlformat": {
 		"en": "In SAML 2.0 Metadata XML format:"
 	},

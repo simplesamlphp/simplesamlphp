@@ -19,9 +19,12 @@ try {
 	$idpentityid = isset($_GET['idpentityid']) ? $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 	$idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 
+	$availableCerts = array();
+
 	$keys = array();
 	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, FALSE, 'new_');
 	if ($certInfo !== NULL) {
+		$availableCerts['new_idp.crt'] = $certInfo;
 		$keys[] = array(
 			'type' => 'X509Certificate',
 			'signing' => TRUE,
@@ -34,6 +37,7 @@ try {
 	}
 
 	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE);
+	$availableCerts['idp.crt'] = $certInfo;
 	$keys[] = array(
 		'type' => 'X509Certificate',
 		'signing' => TRUE,
@@ -44,6 +48,7 @@ try {
 	if ($idpmeta->hasValue('https.certificate')) {
 		$httpsCert = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE, 'https.');
 		assert('isset($httpsCert["certData"])');
+		$availableCerts['https.crt'] = $httpsCert;
 		$keys[] = array(
 			'type' => 'X509Certificate',
 			'signing' => TRUE,
@@ -112,7 +117,7 @@ try {
 
 		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
 
-
+		$t->data['available_certs'] = $availableCerts;
 		$t->data['header'] = 'saml20-idp';
 		$t->data['metaurl'] = SimpleSAML_Utilities::selfURLNoQuery();
 		$t->data['metadata'] = htmlspecialchars($metaxml);
