@@ -53,6 +53,7 @@ class sspmod_discojuice_Feed {
 			'turkey' => 'TR',
 			'us' => 'US',
 			'uk' => 'GB',
+			'japan'  => 'JP',
 		);
 		
 		$this->countryTLDs = array(
