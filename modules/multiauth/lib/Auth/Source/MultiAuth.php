@@ -81,13 +81,13 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 		saved state array as a parameter to the login form */
 		$url = SimpleSAML_Module::getModuleURL('multiauth/selectsource.php');
 		$params = array('AuthState' => $id);
-        
-        // Allowes the user to specify the auth souce to be used
-        if(isset($_GET['source'])) {
-            $params['source'] = $_GET['source'];    
-        }
-		
-        SimpleSAML_Utilities::redirect($url, $params);
+
+		// Allowes the user to specify the auth souce to be used
+		if(isset($_GET['source'])) {
+			$params['source'] = $_GET['source'];
+		}
+
+		SimpleSAML_Utilities::redirect($url, $params);
 
 		/* The previous function never returns, so this code is never
 		executed */
