@@ -14,7 +14,8 @@
 		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093",
 		"da": "Metadata er ikke fundt",
 		"hr": "Nema metapodataka",
-		"zh-tw": "\u627e\u4e0d\u5230\u8a6e\u91cb\u8cc7\u6599"
+		"zh-tw": "\u627e\u4e0d\u5230\u8a6e\u91cb\u8cc7\u6599",
+		"et": "Metaandmeid ei leitud"
 	},
 	"not_found_for": {
 		"no": "Vi fant ikke metadataene for:",
@@ -31,7 +32,8 @@
 		"da": "Vi kan ikke finde metadata for denne forbindelse:",
 		"de": "F\u00fcr folgende Entit\u00e4t konnten keine Metadaten gefunden werden:",
 		"hr": "Nisu prona\u0111eni metapodaci za entitet:",
-		"zh-tw": "\u6211\u5011\u7121\u6cd5\u5b9a\u4f4d\u6b64\u5be6\u9ad4\u4e4b\u8a6e\u91cb\u8cc7\u6599\uff1a"
+		"zh-tw": "\u6211\u5011\u7121\u6cd5\u5b9a\u4f4d\u6b64\u5be6\u9ad4\u4e4b\u8a6e\u91cb\u8cc7\u6599\uff1a",
+		"et": "Ei suudetud leida olemi metaandmeid:"
 	},
 	"config_problem": {
 		"no": "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverand\u00f8ren eller identitetsleverand\u00f8ren.",
@@ -48,7 +50,8 @@
 		"da": "Der er sandsynligvis en konfigurationsfejl hos enten servicen eller identitetsudbyderen.",
 		"de": "Ursache ist wahrscheinlich eine Fehlkonfiguration auf Seiten des Service Providers oder des Identity Providers.",
 		"hr": "Najvjerojatnije je problem u konfiguraciji ili kod davatelja usluge ili kod davatelja identiteta.",
-		"zh-tw": "\u670d\u52d9\u63d0\u4f9b\u8005\u6216\u9a57\u8b49\u63d0\u4f9b\u8005\u4e4b\u8a2d\u5b9a\u6a94\u53ef\u80fd\u6709\u554f\u984c\u3002"
+		"zh-tw": "\u670d\u52d9\u63d0\u4f9b\u8005\u6216\u9a57\u8b49\u63d0\u4f9b\u8005\u4e4b\u8a2d\u5b9a\u6a94\u53ef\u80fd\u6709\u554f\u984c\u3002",
+		"et": "T\u00f5en\u00e4oliselt on tegemist probleemiga kas teenusepakkuja v\u00f5i identiteedipakkuja seadistustes."
 	},
 	"suggestion_user_link": {
 		"no": "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link p\u00e5 en nettside, s\u00e5 b\u00f8r du rapportere denne feilen til eieren av den nettsiden.",
@@ -65,7 +68,8 @@
 		"da": "Hvis du har modtaget denne fejlbesked efter at have klikket p\u00e5 et lilnk, skal du rappoterer fejlen til ejeren af siden. ",
 		"de": "Sind Sie lediglich einem Verweis einer anderen Website hierher gefolgt, sollten Sie diesen Fehler den Betreibern der Website melden.",
 		"hr": "Ako se ova pogre\u0161ka pojavila nakon \u0161to ste slijedili link na stranici, tada bi ovu pogre\u0161ku trebali prijaviti vlasniku navedene stranice.",
-		"zh-tw": "\u82e5\u60a8\u662f\u500b\u4f7f\u7528\u8005\uff0c\u800c\u60a8\u65bc\u6b64\u7db2\u7ad9\u6536\u5230\u4e0b\u5217\u9023\u7d50\uff0c\u8acb\u53cd\u6620\u6b64\u932f\u8aa4\u7d66\u6b64\u7ad9\u7ba1\u7406\u54e1\u3002"
+		"zh-tw": "\u82e5\u60a8\u662f\u500b\u4f7f\u7528\u8005\uff0c\u800c\u60a8\u65bc\u6b64\u7db2\u7ad9\u6536\u5230\u4e0b\u5217\u9023\u7d50\uff0c\u8acb\u53cd\u6620\u6b64\u932f\u8aa4\u7d66\u6b64\u7ad9\u7ba1\u7406\u54e1\u3002",
+		"et": "Kui sa oled kasutaja, kes sai selle veateate veebilehel linki kl\u00f5psates, siis peaksid sellest t\u00f5rkest veebilehe omanikku teavitama."
 	},
 	"suggestion_developer": {
 		"no": "Hvis du er en utvikler som setter opp en \"single sign-on\" l\u00f8sning, s\u00e5 har du et problem med metadataoppsettet. Kontroller at metadata er riktig konfigurert hos b\u00e5de identitetsleverand\u00f8ren og tjenesteleverand\u00f8ren.",
@@ -82,6 +86,7 @@
 		"da": "Hvis du er udvikler, s\u00e5 har du et metadata-konfigurationsproblem. Tjek at metadata er konfigurerede korrekt b\u00e5de p\u00e5 service-siden og identitetsudbyder-siden.",
 		"de": "Arbeiten Sie selbst an einem Web Single Sign-On System, stimmt mit den benutzten Metadaten etwas nicht. \u00dcberpr\u00fcfen Sie die Metadaten des Identity Providers und des Service Providers.",
 		"hr": "Ako ste programer koji postavlja sustav jedinstvene autentifikacije (SSO), tada imate problema sa konfiguracijom meta podataka (metadata). Provjerite da su meta podaci ispravno pode\u0161eni i na davatelju identiteta (IdP) i na davatelju usluge (SP).",
-		"zh-tw": "\u82e5\u60a8\u662f\u55ae\u4e00\u7c3d\u5165\u7a0b\u5f0f\u958b\u767c\u4eba\u54e1\uff0c\u60a8\u7684\u8a6e\u91cb\u8cc7\u6599\u8a2d\u5b9a\u53ef\u80fd\u6709\u554f\u984c\u3002\u8acb\u78ba\u8a8d\u670d\u52d9\u63d0\u4f9b\u8005\u6216\u9a57\u8b49\u63d0\u4f9b\u8005\u4e4b\u8a6e\u91cb\u8cc7\u6599\u8a2d\u5b9a\u6a94\u662f\u5426\u6b63\u78ba\u3002"
+		"zh-tw": "\u82e5\u60a8\u662f\u55ae\u4e00\u7c3d\u5165\u7a0b\u5f0f\u958b\u767c\u4eba\u54e1\uff0c\u60a8\u7684\u8a6e\u91cb\u8cc7\u6599\u8a2d\u5b9a\u53ef\u80fd\u6709\u554f\u984c\u3002\u8acb\u78ba\u8a8d\u670d\u52d9\u63d0\u4f9b\u8005\u6216\u9a57\u8b49\u63d0\u4f9b\u8005\u4e4b\u8a6e\u91cb\u8cc7\u6599\u8a2d\u5b9a\u6a94\u662f\u5426\u6b63\u78ba\u3002",
+		"et": "Kui sa oled arendaja, kes juurutab \u00fchekordse sisselogimise lahendust, siis on probleemi p\u00f5hjuseks metaandmete seadistused. Kontrolli, et metaandmed oleks seadistatud korrektselt nii identiteedipakkuja kui teenusepakkuja poolel."
 	}
 }

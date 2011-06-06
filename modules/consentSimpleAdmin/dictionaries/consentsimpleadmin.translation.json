@@ -16,7 +16,8 @@
 		"lt": "Leidimo at\u0161aukimas",
 		"ja": "\u627f\u8a8d\u3092\u53d6\u308a\u6d88\u3059",
 		"zh-tw": "\u540c\u610f\u64a4\u92b7",
-		"nn": "Tilbaketrekking av samtykke"
+		"nn": "Tilbaketrekking av samtykke",
+		"et": "N\u00f5usoleku tagasiv\u00f5tmine"
 	},
 	"granted": {
 		"no": "Du har tidligere gitt samtykke %NO% ganger til %OF% forskjellige tjenester.",
@@ -35,7 +36,8 @@
 		"lt": "J\u016bs anks\u010diau suteik\u0117te %NO% ledimus %OF% \u012fvairioms paslaugoms.",
 		"ja": "\u3042\u306a\u305f\u306f %OF% \u306e\u7570\u306a\u308b\u30b5\u30fc\u30d3\u30b9\u306b %NO% \u306e\u627f\u8a8d\u304c\u3042\u308a\u307e\u3059\u3002",
 		"zh-tw": "\u60a8\u5148\u524d\u6388\u4e88 %NO% \u500b\u8a31\u53ef\u81f3 %OF% \u500b\u4e0d\u540c\u670d\u52d9\u3002",
-		"nn": "Du har tidlegare gjeve %NO% samtykke til %OF% ulike tenester."
+		"nn": "Du har tidlegare gjeve %NO% samtykke til %OF% ulike tenester.",
+		"et": "Sa oled varem andnud %NO% n\u00f5usolekut %OF% erinevale teenusele."
 	},
 	"info": {
 		"no": "Dersom du trekker tilbake alle tidligere gitte samtykker, s\u00e5 vil du hver gang du bes\u00f8ker en tjeneste p\u00e5 nytt bli spurt om du aksepterer at en gitt liste med personlig informasjon blir overf\u00f8rt til tjenesten.",
@@ -54,7 +56,8 @@
 		"lt": "Jei at\u0161auksime visus suteiktus leidimus, kiekvien\u0105 kart\u0105 kai lankysite nauj\u0105 paslaug\u0105  v\u0117l b\u016bsite klausiamas, ar sutinkate, kad b\u016bt\u0173 perduodamas duotasis asmenin\u0117s informacijos rinkinys.",
 		"ja": "\u4e0e\u3048\u3089\u308c\u305f\u627f\u8a8d\u3092\u5168\u3066\u53d6\u308a\u6d88\u3059\u5834\u5408\u3001\u500b\u4eba\u60c5\u5831\u306e\u8ee2\u9001\u8a31\u53ef\u306b\u95a2\u308f\u3089\u305a\u3001\u65b0\u3057\u3044\u30b5\u30fc\u30d3\u30b9\u306b\u8a2a\u308c\u305f\u969b\u306b\u6bce\u56de\u5c0b\u306d\u3089\u308c\u307e\u3059\u3002",
 		"zh-tw": "\u5982\u679c\u4f60\u64a4\u92b7\u6240\u6709\u8f49\u79fb\u8a31\u53ef\uff0c\u4e4b\u5f8c\u6bcf\u6b21\u8a2a\u554f\u4e00\u500b\u65b0\u670d\u52d9\u6642\uff0c\u60a8\u90fd\u6703\u88ab\u518d\u6b21\u8a62\u554f\u662f\u5426\u540c\u610f\u500b\u4eba\u8cc7\u6599\u5c07\u88ab\u50b3\u9001\u7684\u8f49\u79fb\u8a31\u53ef\u3002",
-		"nn": "Dersom du trekk tilbake samtykke, blir du spurd ved neste innlogging om du er villig til \u00e5 overf\u00f8ra informasjon til tenesta.  Dette skjer f\u00f8r innlogging og inneber ikkje at tenesta ser informasjon, men du f\u00e5r vist fram kva som blir overf\u00f8rt."
+		"nn": "Dersom du trekk tilbake samtykke, blir du spurd ved neste innlogging om du er villig til \u00e5 overf\u00f8ra informasjon til tenesta.  Dette skjer f\u00f8r innlogging og inneber ikkje at tenesta ser informasjon, men du f\u00e5r vist fram kva som blir overf\u00f8rt.",
+		"et": "Kui v\u00f5tad k\u00f5ik antud n\u00f5usolekud tagasi, siis k\u00fcsitakse sult igat teenust k\u00fclastades uuesti, kas soovid isikuandmete hulka edastada."
 	},
 	"withdraw": {
 		"no": "Trekk tilbake alle tidligere gitte samtykker",
@@ -73,7 +76,8 @@
 		"lt": "At\u0161aukti visus suteiktus leidimus",
 		"ja": "\u5168\u3066\u306e\u627f\u8a8d\u3092\u53d6\u308a\u6d88\u3059",
 		"zh-tw": "\u64a4\u92b7\u6240\u6709\u8f49\u79fb\u8a31\u53ef",
-		"nn": "Trekk tilbake alle samtykke"
+		"nn": "Trekk tilbake alle samtykke",
+		"et": "V\u00f5ta k\u00f5ik n\u00f5usolekud tagasi"
 	},
 	"headerstats": {
 		"no": "Samtykke statistikk",
@@ -92,7 +96,8 @@
 		"lt": "Leidim\u0173 Saugyklos Statistika",
 		"ja": "\u627f\u8a8d\u30b9\u30c8\u30ec\u30fc\u30b8\u7d71\u8a08",
 		"zh-tw": "\u8a31\u53ef\u5132\u5b58\u7d71\u8a08",
-		"nn": "Statistikk for samtykke"
+		"nn": "Statistikk for samtykke",
+		"et": "N\u00f5usolekute salvestamise statistika"
 	},
 	"stattotal": {
 		"no": "Samtykkelageret inneholder %NO% innslag.",
@@ -111,7 +116,8 @@
 		"lt": "Leidim\u0173 saugyklose yra %NO% \u012fra\u0161\u0173.",
 		"ja": "\u627f\u8a8d\u30b9\u30c8\u30ec\u30fc\u30b8\u306f %NO% \u30a8\u30f3\u30c8\u30ea\u3042\u308a\u307e\u3059\u3002",
 		"zh-tw": "\u540c\u610f\u5132\u5b58\u5305\u542b %NO% \u9805\u76ee\u3002",
-		"nn": "Samtykkelageret har %NO% innslag."
+		"nn": "Samtykkelageret har %NO% innslag.",
+		"et": "Salvestatud on %NO% n\u00f5usolekut."
 	},
 	"statusers": {
 		"no": "%NO% unike brukere har avgitt samtykke.",
@@ -130,7 +136,8 @@
 		"lt": "%NO% unikali\u0173 naudotoj\u0173 suteik\u0117 leidim\u0105.",
 		"ja": "%NO% \u306e\u30e6\u30cb\u30fc\u30af\u30e6\u30fc\u30b6\u30fc\u304b\u3089\u627f\u8a8d\u3092\u4e0e\u3048\u3089\u308c\u3066\u3044\u307e\u3059\u3002",
 		"zh-tw": "%NO% \u500b\u4e0d\u540c\u4f7f\u7528\u8005\u64c1\u6709\u8f49\u79fb\u8a31\u53ef\u3002",
-		"nn": "%NO% unike brukarar har gjeve samtykke."
+		"nn": "%NO% unike brukarar har gjeve samtykke.",
+		"et": "%NO% unikaalset kasutajat on andnud n\u00f5usolekuid."
 	},
 	"statservices": {
 		"no": "Samtykke er avgitt til %NO% unike tjenester.",
@@ -149,6 +156,7 @@
 		"lt": "Leidimas suteiktas %NO% unikalioms paslaugoms.",
 		"ja": "%NO% \u306e\u30e6\u30cb\u30fc\u30af\u30b5\u30fc\u30d3\u30b9\u304b\u3089\u627f\u8a8d\u3092\u4e0e\u3048\u3089\u308c\u3066\u3044\u307e\u3059\u3002",
 		"zh-tw": "\u8f49\u79fb\u8a31\u53ef\u7d66\u4e88 %NO% \u500b\u4e0d\u540c\u670d\u52d9\u3002",
-		"nn": "Samtykke er gjeve til %NO% unike tenester"
+		"nn": "Samtykke er gjeve til %NO% unike tenester",
+		"et": "N\u00f5usolekuid on antud %NO% unikaalsele teenusele."
 	}
 }

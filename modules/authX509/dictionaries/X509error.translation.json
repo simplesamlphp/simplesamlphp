@@ -14,7 +14,8 @@
 		"de": "Authentifizierung mit X.509 Zertifikat",
 		"hr": "Autentifikacija pomo\u0107u X509 digitalnog certifikata",
 		"zh-tw": "X509 \u6191\u8b49\u9a57\u8b49",
-		"nn": "X509 sertifikatautentisering"
+		"nn": "X509 sertifikatautentisering",
+		"et": "X509 sertifikaadiga autentimine"
 	},
 	"certificate_text": {
 		"fr": "Un certificat X509 est requis pour acc\u00e9der \u00e0 ce service.",
@@ -31,6 +32,7 @@
 		"de": "Das gew\u00fcnschte Service ist nur nach Authentifizierung mit einem X.509 Zertifikat nutzbar.",
 		"hr": "Potreban je X509 certifikat za pristup ovom servisu.",
 		"zh-tw": "\u9019\u500b\u670d\u52d9\u5fc5\u9808\u4ee5 X509 \u6191\u8b49\u9032\u884c\u9a57\u8b49",
-		"nn": "X509 sertifikatautentisering er p\u00e5krevd for tilgang til denne tenesta."
+		"nn": "X509 sertifikatautentisering er p\u00e5krevd for tilgang til denne tenesta.",
+		"et": "Sellele teenusele ligip\u00e4\u00e4suks on vajalik X509 sertifikaadiga autentimine."
 	}
 }

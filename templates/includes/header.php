@@ -166,6 +166,7 @@ if($onLoad !== '') {
 					'pt' => 'Português', // Portuguese
 					'pt-BR' => 'Português brasileiro', // Portuguese
 					'ru' => 'русский язык', // Russian
+					'et' => 'eesti keel',
 					'tr' => 'Türkçe',
 					'el' => 'ελληνικά',
 					'ja' => '日本語',

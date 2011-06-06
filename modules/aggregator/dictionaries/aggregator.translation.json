@@ -14,7 +14,8 @@
 		"lt": "Metaduomen\u0173 surink\u0117jas",
 		"nl": "Metadata-aggregator",
 		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf \u30a2\u30b0\u30ea\u30b1\u30fc\u30bf",
-		"zh-tw": "\u8a6e\u91cb\u8cc7\u6599\u532f\u96c6"
+		"zh-tw": "\u8a6e\u91cb\u8cc7\u6599\u532f\u96c6",
+		"et": "Metaandmete agregeerija"
 	},
 	"aggregator_header": {
 		"no": "Aggregatorer",
@@ -31,7 +32,8 @@
 		"lt": "Surink\u0117jai",
 		"nl": "Aggregatoren",
 		"ja": "\u30a2\u30b0\u30ea\u30b1\u30fc\u30bf",
-		"zh-tw": "\u532f\u96c6"
+		"zh-tw": "\u532f\u96c6",
+		"et": "Agregeerijad"
 	},
 	"no_aggregators": {
 		"no": "Ingen aggregator definert i konfigurasjonen",
@@ -48,7 +50,8 @@
 		"lt": "Konfig\u016bracijoje nenurodyti jokie surink\u0117jai.",
 		"nl": "Geen aggregator gedefinieerd in de configuratie.",
 		"ja": "\u8a2d\u5b9a\u30d5\u30a1\u30a4\u30eb\u306b\u30a2\u30b0\u30ea\u30b1\u30fc\u30bf\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3002",
-		"zh-tw": "\u8a2d\u5b9a\u6a94\u7121\u532f\u96c6\u5b9a\u7fa9"
+		"zh-tw": "\u8a2d\u5b9a\u6a94\u7121\u532f\u96c6\u5b9a\u7fa9",
+		"et": "Seadistustes pole agregeerijaid kirjeldatud."
 	},
 	"text": {
 		"no": "tekst",
@@ -65,6 +68,7 @@
 		"lt": "Tekstas",
 		"nl": "tekst",
 		"ja": "\u30c6\u30ad\u30b9\u30c8",
-		"zh-tw": "\u6587\u5b57"
+		"zh-tw": "\u6587\u5b57",
+		"et": "tekst"
 	}
 }

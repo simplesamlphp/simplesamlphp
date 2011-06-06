@@ -15,7 +15,8 @@
 		"nl": "(naam niet opgegeven)",
 		"ja": "(\u540d\u524d\u7121\u3057)",
 		"zh-tw": "(\u672a\u5b9a\u7fa9\u540d\u7a31)",
-		"nn": "(namn ikkje spesifisert)"
+		"nn": "(namn ikkje spesifisert)",
+		"et": "(nimi m\u00e4\u00e4ramata)"
 	},
 	"sp_empty_description": {
 		"da": "(ingen beskrivelse)",
@@ -33,7 +34,8 @@
 		"nl": "(geen omschrijving)",
 		"ja": "(\u8a18\u8ff0\u7121\u3057)",
 		"zh-tw": "(\u7121\u63cf\u8ff0)",
-		"nn": "(mangler informasjon)"
+		"nn": "(mangler informasjon)",
+		"et": "(kirjeldus puudub)"
 	},
 	"attribute_org": {
 		"da": "Organisation",
@@ -51,7 +53,8 @@
 		"nl": "Organisatie",
 		"ja": "\u7d44\u7e54",
 		"zh-tw": "\u7d44\u7e54",
-		"nn": "Organisasjon"
+		"nn": "Organisasjon",
+		"et": "Organisatsioon"
 	},
 	"added": {
 		"da": "Samtykke givet",
@@ -69,7 +72,8 @@
 		"ja": "\u627f\u8a8d\u304c\u8ffd\u52a0\u3055\u308c\u307e\u3057\u305f",
 		"zh-tw": "\u540c\u610f\u65b0\u589e",
 		"nn": "Samtykke lagt til",
-		"nl": "Toestemming Toegevoegd"
+		"nl": "Toestemming Toegevoegd",
+		"et": "N\u00f5usolek lisatud"
 	},
 	"removed": {
 		"da": "Samtykke slettet",
@@ -87,7 +91,8 @@
 		"ja": "\u627f\u8a8d\u304c\u524a\u9664\u3055\u308c\u307e\u3057\u305f",
 		"zh-tw": "\u540c\u610f\u79fb\u9664",
 		"nn": "Samtykke trukke tilbake",
-		"nl": "Toestemming Verwijderd"
+		"nl": "Toestemming Verwijderd",
+		"et": "N\u00f5usolek eemaldatud"
 	},
 	"updated": {
 		"da": "Samtykke Opdateret",
@@ -105,7 +110,8 @@
 		"ja": "\u627f\u8a8d\u304c\u66f4\u65b0\u3055\u308c\u307e\u3057\u305f",
 		"zh-tw": "\u540c\u610f\u66f4\u65b0",
 		"nn": "Samtykke oppdatert",
-		"nl": "Toestemming Bijgewerkt"
+		"nl": "Toestemming Bijgewerkt",
+		"et": "N\u00f5usolek uuendatud"
 	},
 	"unknown": {
 		"da": "Ukendt ...",
@@ -123,7 +129,8 @@
 		"ja": "\u4e0d\u660e\u2026",
 		"zh-tw": "\u672a\u77e5...",
 		"nn": "Ukjent...",
-		"nl": "Onbekend..."
+		"nl": "Onbekend...",
+		"et": "Tundmatu..."
 	},
 	"attribute_id": {
 		"da": "Identitet",
@@ -141,7 +148,8 @@
 		"ja": "\u8b58\u5225\u5b50",
 		"zh-tw": "\u8eab\u5206",
 		"nn": "Identitet",
-		"nl": "Identiteit"
+		"nl": "Identiteit",
+		"et": "Identiteet"
 	},
 	"attribute_injected": {
 		"da": "Injiceret attribut",
@@ -159,7 +167,8 @@
 		"ja": "\u633f\u5165\u3055\u308c\u305f\u5c5e\u6027",
 		"zh-tw": "\u52a0\u5165\u5c6c\u6027",
 		"nn": "Persondata lagt til",
-		"nl": "Ge\u00efnjecteerd attibuut"
+		"nl": "Ge\u00efnjecteerd attibuut",
+		"et": "XXXS\u00fcstitud atribuut"
 	},
 	"show": {
 		"da": "Vis",
@@ -177,7 +186,8 @@
 		"ja": "\u8868\u793a",
 		"zh-tw": "\u986f\u793a",
 		"nn": "Vis",
-		"nl": "Bekijk"
+		"nl": "Bekijk",
+		"et": "N\u00e4ita"
 	},
 	"hide": {
 		"da": "Skjul",
@@ -195,7 +205,8 @@
 		"ja": "\u975e\u8868\u793a",
 		"zh-tw": "\u96b1\u85cf",
 		"nn": "Skjul",
-		"nl": "Verberg"
+		"nl": "Verberg",
+		"et": "Peida"
 	},
 	"attributes_text": {
 		"da": "attributter",
@@ -213,7 +224,8 @@
 		"ja": "\u5c5e\u6027",
 		"zh-tw": "\u5c6c\u6027",
 		"nn": "persondata",
-		"nl": "attributen"
+		"nl": "attributen",
+		"et": "atribuudid"
 	},
 	"consentadmin_header": {
 		"da": "Administrer dine samtykker",
@@ -231,7 +243,8 @@
 		"ja": "\u627f\u8a8d\u7ba1\u7406",
 		"zh-tw": "\u7ba1\u8f44\u8a31\u53ef",
 		"nn": "Samtykkeadministrasjon",
-		"nl": "Toestemming Beheer"
+		"nl": "Toestemming Beheer",
+		"et": "N\u00f5usoleku administreerimine"
 	},
 	"consentadmin_description1": {
 		"da": "WAYF videregiver kun oplysninger til eksterne tjenester, hvis du giver dit samtykke til det. Hvilke oplysninger det drejer sig om, varierer alt efter hvad tjenesteudbyderen har behov for. Det kan for eksempel v\u00e6re:<ul><li>Dit navn<li>Din e-mail-adresse<li>Din institution<li>Etc.<\/ul>Hvis du s\u00e6tter et flueben ud for <b>Husk dette samtykke<\/b>, vil du ikke blive spurgt, n\u00e6ste gang du bes\u00f8ger tjenesteudbyderen. S\u00e5 husker WAYF, at du allerede har givet samtykke til at videregive oplysninger til tjenesteudbyderen. <p>Nedenfor er opf\u00f8rt de tjenester, som du for \u00f8jeblikket har givet l\u00f8bende samtykke til:<\/a>",
@@ -248,7 +261,8 @@
 		"lt": "\u010cia j\u016bs galite per\u017ei\u016br\u0117ti ir keisti savo leidimus paslaug\u0173 teik\u0117jams",
 		"ja": "\u3053\u3053\u306f\u3001\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u306e\u627f\u8a8d\u3092\u8868\u793a\u3057\u305f\u308a\u7de8\u96c6\u3059\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u3059\u3002",
 		"zh-tw": "\u9019\u908a\u53ef\u4ee5\u6aa2\u8996\u53ca\u4fee\u6539\u60a8\u540c\u610f\u7684\u670d\u52d9\u63d0\u4f9b\u8005\u3002",
-		"nn": "Her kan du sj\u00e5 og endra dine samtykke til tenestene."
+		"nn": "Her kan du sj\u00e5 og endra dine samtykke til tenestene.",
+		"et": "Siin saad n\u00e4ha ja muuta teenusepakkujatega n\u00f5usolekuid."
 	},
 	"consentadmin_description2": {
 		"da": "<h3>S\u00e5dan sletter du et samtykke<\/h3>Fjern fluebenet ud for tjenesten, samtykket tilh\u00f8rer.<h3>Hvilke data gemmer WAYF om dig?<\/h3><ul><li>N\u00e5r du giver dit samtykke, henter WAYF dine oplysninger fra din institution og sender de relevante videre til tjenesteudbyderen<li>Ingen af oplysningerne gemmes af WAYF<li>Hvis du har bedt WAYF huske dit samtykke, gemmes personhenf\u00f8rbare data heller ikke hos WAYF. Oplysningen om, at du har givet dit samtykke, gemmes p\u00e5 en ikke-personhenf\u00f8rbar m\u00e5de<\/ul><h3>Hvilke rettigheder har du?<\/h3>Du har ret til at tr\u00e6kke et samtykke tilbage.<h3>Hvor l\u00e6nge gemmes dine samtykker?<\/h3>Et samtykke slettes tre \u00e5r efter, at du sidst har benyttet det.<h3>Hvordan beskyttes mine oplysninger?<\/h3>WAYF foretager behandlinger af personoplysninger i henhold til persondataloven (lov nr. 429 af 31. maj 2000 med senere \u00e6ndringer). Du kan l\u00e6se n\u00e6rmere om registreredes rettigheder i persondatalovens afsnit III.<a href=\"http:\/\/www.datatilsynet.dk\/lovgivning\/persondataloven\/\">Persondataloven<\/a><h3>Links<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li><\/ul>",
@@ -266,7 +280,8 @@
 		"ja": "<h3>\u627f\u8a8d\u306e\u524a\u9664\u65b9\u6cd5<\/h3> \u8a72\u5f53\u3059\u308b\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u306e\u30c1\u30a7\u30c3\u30af\u3092\u5916\u3057\u307e\u3059\u3002<h3>\u30ea\u30f3\u30af<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul> ",
 		"zh-tw": "<h3>\u5728\u9019\u522a\u9664\u60a8\u7684\u6388\u6b0a<\/h3> \u53d6\u6d88\u52fe\u9078\u670d\u52d9\u63d0\u4f9b\u8005\u5c0d\u61c9\u7684\u6838\u53d6\u65b9\u584a <h3>\u9023\u7d50<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">\u958b\u59cb<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">\u8aaa\u660e<\/a> <\/li> <\/ul> ",
 		"nn": "<h3>Korleis dra tilbake samtykke<\/h3> Fjern haka i boksen for enkelte tenester <h3>Lenker<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">Ofte stilte sp\u00f8rsm\u00e5l<\/a> <\/li> <\/ul> ",
-		"nl": "<h3>Hoe verwijderdt u toestemmingen<\/h3> Vinkt u het vakje af dat overeenkomt met de dienstverlener <h3>Links<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul>"
+		"nl": "<h3>Hoe verwijderdt u toestemmingen<\/h3> Vinkt u het vakje af dat overeenkomt met de dienstverlener <h3>Links<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul>",
+		"et": "<h3>Kuidas eemaldada n\u00f5usolekut<\/h3> Eemalda vastava teenusepakkuja juurest m\u00e4rge <h3>Viited<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">KKK<\/a> <\/li> <\/ul>"
 	},
 	"login": {
 		"da": "login",
@@ -284,7 +299,8 @@
 		"lt": "Prisijungti",
 		"zh-tw": "\u767b\u5165",
 		"nn": "logg inn",
-		"nl": "login"
+		"nl": "login",
+		"et": "logi sisse"
 	},
 	"service_providers_for": {
 		"da": "Service Providers for",
@@ -302,7 +318,8 @@
 		"lt": "Paslaugos tiek\u0117jai",
 		"zh-tw": "\u670d\u52d9\u63d0\u4f9b\u8005\u7684",
 		"nn": "Tenesteleverand\u00f8r for ",
-		"nl": "Service Providers voor"
+		"nl": "Service Providers voor",
+		"et": "Teenusepakkujad"
 	},
 	"service_provider_header": {
 		"da": "Service Provider",
@@ -320,7 +337,8 @@
 		"lt": "Paslaugos tiek\u0117jas",
 		"zh-tw": "\u670d\u52d9\u63d0\u4f9b\u8005",
 		"nn": "Tenesteleverand\u00f8r",
-		"nl": "Service Provider"
+		"nl": "Service Provider",
+		"et": "Teenusepakkuja"
 	},
 	"status_header": {
 		"da": "Samtykke status",
@@ -338,7 +356,8 @@
 		"lt": "Leidimo statusas",
 		"zh-tw": "\u8a31\u53ef\u72c0\u614b",
 		"nn": "Samtykkestatus",
-		"nl": "Toestemming Status"
+		"nl": "Toestemming Status",
+		"et": "N\u00f5usoleku olek"
 	},
 	"show_hide_attributes": {
 		"da": "vis\/skjul attributter",
@@ -356,7 +375,8 @@
 		"lt": "Rodyti\/sl\u0117pti atributus",
 		"zh-tw": "\u986f\u793a\/\u96b1\u85cf\u5c6c\u6027",
 		"nn": "vis\/skjul personinformasjon",
-		"nl": "bekijk\/verberg attributen"
+		"nl": "bekijk\/verberg attributen",
+		"et": "n\u00e4ita\/peida atribuudid"
 	},
 	"consentadmin_purpose": {
 		"da": "Form\u00e5let med tjenesten er",
@@ -374,6 +394,7 @@
 		"lt": "Paslaugos paskirtis yra",
 		"zh-tw": "\u6b64\u9805\u670d\u52d9\u7684\u76ee\u7684\u70ba",
 		"nn": "Form\u00e5let med tenesta er",
-		"nl": "Het nut van de server is"
+		"nl": "Het nut van de server is",
+		"et": "Selle teenuse eesm\u00e4rk on"
 	}
 }
