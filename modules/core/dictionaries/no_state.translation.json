@@ -14,7 +14,8 @@
 		"hr": "Podatak o stanju je izgubljen",
 		"zh-tw": "\u907a\u5931\u72c0\u614b\u8cc7\u8a0a",
 		"nl": "Toestand informatie verloren",
-		"et": "Olekuinfo on kadunud"
+		"et": "Olekuinfo on kadunud",
+		"he": "\u05de\u05d9\u05d3\u05e2 \u05d4\u05de\u05e6\u05d1 \u05d0\u05d1\u05d3"
 	},
 	"description": {
 		"no": "Vi kunne ikke finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
@@ -31,7 +32,8 @@
 		"hr": "Podatak o stanju aktualnog zahtjeva nije prona\u0111en.",
 		"zh-tw": "\u6211\u5011\u7121\u6cd5\u627e\u5230\u95dc\u65bc\u9019\u500b\u8acb\u6c42\u7684\u72c0\u614b\u8cc7\u8a0a\u3002",
 		"nl": "Wij waren niet in staat om de toestand informatie te vinden voor het huidige verzoek.",
-		"et": "Aktiivse p\u00e4ringu olekuinfo leidmine ei \u00f5nnestunud."
+		"et": "Aktiivse p\u00e4ringu olekuinfo leidmine ei \u00f5nnestunud.",
+		"he": "\u05dc\u05d0 \u05d4\u05e6\u05dc\u05d7\u05e0\u05d5 \u05dc\u05d0\u05ea\u05e8 \u05d0\u05ea \u05de\u05d9\u05d3\u05e2 \u05d4\u05de\u05e6\u05d1 \u05dc\u05d1\u05e7\u05e9\u05d4 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9\u05ea."
 	},
 	"suggestions": {
 		"no": "Forslag for \u00e5 l\u00f8se dette problemet:",
@@ -48,7 +50,8 @@
 		"hr": "Preporuke za rje\u0161avanje ovog problema:",
 		"zh-tw": "\u5efa\u8b70\u89e3\u6c7a\u9019\u500b\u554f\u984c\uff1a",
 		"nl": "Suggesties om dit probleem op te lossen:",
-		"et": "N\u00f5uanded selle probleemi lahendamiseks:"
+		"et": "N\u00f5uanded selle probleemi lahendamiseks:",
+		"he": "\u05d4\u05e6\u05e2\u05d5\u05ea \u05dc\u05e4\u05ea\u05e8\u05d5\u05df \u05d4\u05d1\u05e2\u05d9\u05d9\u05d4 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9\u05ea:"
 	},
 	"suggestion_goback": {
 		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
@@ -65,7 +68,8 @@
 		"hr": "Vratite se na prethodnu stranicu i poku\u0161ajte ponovno.",
 		"zh-tw": "\u56de\u5230\u4e0a\u4e00\u9801\u4e26\u518d\u8a66\u4e00\u6b21\u3002",
 		"nl": "Ga terug naar de vorige pagina, en probeer opnieuw.",
-		"et": "Mine tagasi eelmisele lehek\u00fcljele ja proovi uuesti."
+		"et": "Mine tagasi eelmisele lehek\u00fcljele ja proovi uuesti.",
+		"he": "\u05d7\u05d6\u05d5\u05e8 \u05dc\u05d3\u05e3 \u05d4\u05e7\u05d5\u05d3\u05dd \u05d5\u05e0\u05e1\u05d4 \u05e9\u05d5\u05d1."
 	},
 	"suggestion_closebrowser": {
 		"no": "Lukk nettleseren, og pr\u00f8v p\u00e5 nytt.",
@@ -82,7 +86,8 @@
 		"hr": "Zatvorite web preglednik, i poku\u0161ajte ponovno.",
 		"zh-tw": "\u95dc\u9589\u7db2\u9801\u700f\u89bd\u5668\uff0c\u4e26\u518d\u8a66\u4e00\u6b21\u3002",
 		"nl": "Sluit de web browser, en probeer opnieuw.",
-		"et": "Sulge brauser ja proovi uuesti."
+		"et": "Sulge brauser ja proovi uuesti.",
+		"he": "\u05e1\u05d2\u05d5\u05e8 \u05d0\u05ea \u05d4\u05d3\u05e4\u05d3\u05e4\u05df, \u05d5\u05e0\u05e1\u05d4 \u05e9\u05d5\u05d1."
 	},
 	"causes": {
 		"no": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
@@ -99,7 +104,8 @@
 		"hr": "Ova pogre\u0161ka mo\u017ee biti uzrokovana:",
 		"zh-tw": "\u9019\u500b\u932f\u8aa4\u53ef\u80fd\u662f\u56e0\u70ba\uff1a",
 		"nl": "Deze error is waarschijnlijk veroorzaakt door:",
-		"et": "See t\u00f5rge v\u00f5ib olla p\u00f5hjustatud:"
+		"et": "See t\u00f5rge v\u00f5ib olla p\u00f5hjustatud:",
+		"he": "\u05d9\u05db\u05d5\u05dc \u05dc\u05d4\u05d9\u05d5\u05ea \u05e9\u05d4\u05e9\u05d2\u05d9\u05d0\u05d4 \u05e0\u05d2\u05e8\u05de\u05d4 \u05e2\u05dc-\u05d9\u05d3\u05d9:"
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
@@ -116,7 +122,8 @@
 		"hr": "Kori\u0161tenjem gumba za prethodnu (\"back\") i sljede\u0107u (\"forward\") stranicu u web pregledniku.",
 		"zh-tw": "\u65bc\u7db2\u9801\u700f\u89bd\u5668\u4f7f\u7528\u4e0a\u4e00\u9801\u53ca\u4e0b\u4e00\u9801\u3002",
 		"nl": "Gebruik de Volgende en Terug knoppen in de web browser.",
-		"et": "brauseri edasi-tagasi nuppude kasutamisest"
+		"et": "brauseri edasi-tagasi nuppude kasutamisest",
+		"he": "\u05e9\u05d9\u05de\u05d5\u05e9 \u05d1\u05db\u05e4\u05ea\u05d5\u05e8\u05d9 \u05d4\u05d1\u05d0 \u05d5\u05d4\u05e7\u05d5\u05d3\u05dd \u05d1\u05d3\u05e4\u05d3\u05e4\u05df."
 	},
 	"cause_openbrowser": {
 		"no": "Starte nettleseren med faner lagret fra forrige gang.",
@@ -133,7 +140,8 @@
 		"hr": "Otvaranjem web preglednika sa spremljenim stranicama od prethodne sesije.",
 		"zh-tw": "\u60a8\u4f7f\u7528\u7db2\u9801\u700f\u89bd\u5668\u5132\u5b58\u6a19\u7c64\u958b\u555f\u4e86\u4e0a\u4e00\u6b21\u7684\u9023\u7dda\u3002",
 		"nl": "Web browser geopend met tabs opgeslagen van de vorige sessie.",
-		"et": "brauseri avamisest eelmisel kasutuskorral salvestatud kaartidega"
+		"et": "brauseri avamisest eelmisel kasutuskorral salvestatud kaartidega",
+		"he": "\u05e4\u05ea\u05d9\u05d7\u05ea \u05d4\u05d3\u05e4\u05d3\u05e4\u05df \u05e2\u05dd \u05dc\u05e9\u05d5\u05e0\u05d9\u05d5\u05ea \u05e9\u05e0\u05e9\u05de\u05e8\u05d5 \u05de\u05e9\u05d9\u05de\u05d5\u05e9 \u05d4\u05e7\u05d5\u05d3\u05dd."
 	},
 	"cause_nocookie": {
 		"no": "At informasjonskapsler ikke er aktivert i nettleseren.",
@@ -150,7 +158,8 @@
 		"hr": "Mogu\u0107e da je podr\u0161ka za kola\u010di\u0107e (\"cookies\") isklju\u010dena u web pregledniku.",
 		"zh-tw": "\u7db2\u9801\u700f\u89bd\u5668\u7684 Cookies \u53ef\u80fd\u88ab\u95dc\u9589\u3002",
 		"nl": "Cookies kunnen uitgeschakeld zijn in de web browser.",
-		"et": "k\u00fcpsiste keelamisest brauseris"
+		"et": "k\u00fcpsiste keelamisest brauseris",
+		"he": "\u05ea\u05de\u05d9\u05db\u05d4 \u05d1\u05e2\u05d5\u05d2\u05d9\u05d5\u05ea \u05de\u05d1\u05d5\u05d8\u05dc\u05ea \u05d1\u05d3\u05e4\u05d3\u05e4\u05df"
 	},
 	"report_header": {
 		"no": "Rapporter denne feilen",
@@ -167,7 +176,8 @@
 		"hr": "Prijavite ovu pogre\u0161ku",
 		"zh-tw": "\u56de\u5831\u9019\u500b\u932f\u8aa4",
 		"nl": "Meld deze error",
-		"et": "Teavita sellest t\u00f5rkest"
+		"et": "Teavita sellest t\u00f5rkest",
+		"he": "\u05d3\u05d5\u05d5\u05d7 \u05e2\u05dc \u05d4\u05e9\u05d2\u05d9\u05d0\u05d4 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9\u05ea"
 	},
 	"report_text": {
 		"no": "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene.",
@@ -184,6 +194,7 @@
 		"hr": "Ako ova pogre\u0161ka ustraje, mo\u017eete ju prijaviti.",
 		"zh-tw": "\u5982\u679c\u9019\u500b\u932f\u8aa4\u6301\u7e8c\u5b58\u5728\uff0c\u60a8\u53ef\u4ee5\u5c07\u5b83\u56de\u5831\u7cfb\u7d71\u7ba1\u7406\u8005\u3002",
 		"nl": "If dit probleem behoud, dan kun je het melden aan de systeem beheerders.",
-		"et": "Kui probleem ei kao, siis teavita sellest s\u00fcsteemi administraatoreid."
+		"et": "Kui probleem ei kao, siis teavita sellest s\u00fcsteemi administraatoreid.",
+		"he": "\u05d0\u05dd \u05d4\u05d1\u05e2\u05d9\u05d9\u05d4 \u05de\u05de\u05e9\u05d9\u05db\u05d4, \u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05d3\u05d5\u05d5\u05d7 \u05e2\u05dc\u05d9\u05d4 \u05dc\u05de\u05e0\u05d4\u05dc \u05d4\u05de\u05e2\u05e8\u05db\u05ea."
 	}
 }

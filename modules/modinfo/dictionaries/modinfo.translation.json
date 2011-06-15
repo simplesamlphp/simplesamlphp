@@ -15,7 +15,9 @@
 		"nl": "Beschikbare modules",
 		"ja": "\u6709\u52b9\u306a\u30e2\u30b8\u30e5\u30fc\u30eb",
 		"zh-tw": "\u53ef\u4f7f\u7528\u7684\u6a21\u7d44",
-		"nn": "Tilgjengelege modular"
+		"nn": "Tilgjengelege modular",
+		"et": "Saadaolevad moodulid",
+		"he": "\u05de\u05d5\u05d3\u05d5\u05dc\u05d9\u05dd \u05d6\u05de\u05d9\u05e0\u05d9\u05dd"
 	},
 	"modlist_name": {
 		"no": "Navn",
@@ -33,7 +35,9 @@
 		"nl": "Naam",
 		"ja": "\u540d\u524d",
 		"zh-tw": "\u540d\u5b57",
-		"nn": "Namn"
+		"nn": "Namn",
+		"et": "Nimi",
+		"he": "\u05e9\u05dd"
 	},
 	"modlist_status": {
 		"no": "Status",
@@ -51,7 +55,9 @@
 		"nl": "Status",
 		"ja": "\u30b9\u30c6\u30fc\u30bf\u30b9",
 		"zh-tw": "\u72c0\u614b",
-		"nn": "Status"
+		"nn": "Status",
+		"et": "Olek",
+		"he": "\u05de\u05e6\u05d1"
 	},
 	"modlist_enabled": {
 		"no": "P\u00e5sl\u00e5tt",
@@ -69,7 +75,9 @@
 		"nl": "Ingeschakeld",
 		"ja": "\u6709\u52b9",
 		"zh-tw": "\u555f\u7528",
-		"nn": "P\u00e5sl\u00e5tt"
+		"nn": "P\u00e5sl\u00e5tt",
+		"et": "Lubatud",
+		"he": "\u05de\u05d5\u05e4\u05e2\u05dc"
 	},
 	"modlist_disabled": {
 		"no": "Avsl\u00e5tt",
@@ -87,6 +95,8 @@
 		"nl": "Uitgeschakeld",
 		"ja": "\u7121\u52b9",
 		"zh-tw": "\u505c\u7528",
-		"nn": "Avsl\u00e5tt"
+		"nn": "Avsl\u00e5tt",
+		"et": "Keelatud",
+		"he": "\u05db\u05d1\u05d5\u05d9"
 	}
 }

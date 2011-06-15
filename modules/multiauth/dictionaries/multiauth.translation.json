@@ -15,7 +15,9 @@
 		"ja": "\u8a8d\u8a3c\u5143\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
 		"nl": "Selecteer een authenticatiebron",
 		"zh-tw": "\u9078\u64c7\u4e00\u500b\u8a8d\u8b49\u4f86\u6e90",
-		"nn": "Vel ei innloggingskjelde"
+		"nn": "Vel ei innloggingskjelde",
+		"et": "Vali autentimisallikas",
+		"he": "\u05d1\u05d7\u05e8 \u05de\u05e7\u05d5\u05e8 \u05d0\u05d9\u05de\u05d5\u05ea"
 	},
 	"select_source_text": {
 		"no": "Den valgte autentiseringskilden vil bli brukt til \u00e5 autentisere brukeren og deretter etablere en gyldig sesjon.",
@@ -33,6 +35,8 @@
 		"ja": "\u9078\u629e\u3055\u308c\u305f\u8a8d\u8a3c\u5143\u306f\u8a8d\u8a3c\u306b\u4f7f\u7528\u3055\u308c\u3001\u6b63\u5f53\u306a\u30bb\u30c3\u30b7\u30e7\u30f3\u3092\u751f\u6210\u3057\u307e\u3059\u3002",
 		"nl": "De geselecteerde authenticatiebron zal gebruikt worden om u te authenticeren en een geldige sessie op te zetten.",
 		"zh-tw": "\u7cfb\u7d71\u5c07\u6703\u4f7f\u7528\u60a8\u9078\u64c7\u4e4b\u8a8d\u8b49\u4f86\u6e90\u9032\u884c\u9a57\u8b49\u4e26\u5efa\u7acb\u4e00\u500b\u6709\u6548\u9023\u7dda\u3002",
-		"nn": "Innloggingskjelda du har vald blir brukt til \u00e5 logga inn og laga ein gyldig sesjon."
+		"nn": "Innloggingskjelda du har vald blir brukt til \u00e5 logga inn og laga ein gyldig sesjon.",
+		"et": "Valitud autentimisallikat kasutatakse sinu autentimiseks ja kasutussessiooni loomiseks.",
+		"he": "\u05de\u05e7\u05d5\u05e8 \u05d4\u05d0\u05d9\u05de\u05d5\u05ea \u05d4\u05e0\u05d1\u05d7\u05e8 \u05d9\u05e9\u05de\u05e9 \u05db\u05d3\u05d9 \u05dc\u05d0\u05de\u05ea \u05d0\u05ea \u05d6\u05d4\u05d5\u05ea\u05da \u05d5\u05dc\u05d9\u05e6\u05d5\u05e8 \u05d0\u05ea \u05e1\u05d1\u05d9\u05d1\u05ea \u05d4\u05d4\u05ea\u05d7\u05d1\u05e8\u05d5\u05ea. "
 	}
 }

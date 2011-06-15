@@ -15,7 +15,8 @@
 		"nl": "Metadata-aggregator",
 		"ja": "\u30e1\u30bf\u30c7\u30fc\u30bf \u30a2\u30b0\u30ea\u30b1\u30fc\u30bf",
 		"zh-tw": "\u8a6e\u91cb\u8cc7\u6599\u532f\u96c6",
-		"et": "Metaandmete agregeerija"
+		"et": "Metaandmete agregeerija",
+		"he": "\u05e9\u05d5\u05dc\u05e3 \u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2 "
 	},
 	"aggregator_header": {
 		"no": "Aggregatorer",
@@ -33,7 +34,8 @@
 		"nl": "Aggregatoren",
 		"ja": "\u30a2\u30b0\u30ea\u30b1\u30fc\u30bf",
 		"zh-tw": "\u532f\u96c6",
-		"et": "Agregeerijad"
+		"et": "Agregeerijad",
+		"he": "\u05e9\u05d5\u05dc\u05e4\u05d9 \u05de\u05d9\u05d3\u05e2"
 	},
 	"no_aggregators": {
 		"no": "Ingen aggregator definert i konfigurasjonen",
@@ -51,7 +53,8 @@
 		"nl": "Geen aggregator gedefinieerd in de configuratie.",
 		"ja": "\u8a2d\u5b9a\u30d5\u30a1\u30a4\u30eb\u306b\u30a2\u30b0\u30ea\u30b1\u30fc\u30bf\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3002",
 		"zh-tw": "\u8a2d\u5b9a\u6a94\u7121\u532f\u96c6\u5b9a\u7fa9",
-		"et": "Seadistustes pole agregeerijaid kirjeldatud."
+		"et": "Seadistustes pole agregeerijaid kirjeldatud.",
+		"he": "\u05dc\u05d0 \u05de\u05d5\u05d2\u05d3\u05e8\u05d9\u05dd \u05e9\u05d5\u05dc\u05e4\u05d9 \u05de\u05d9\u05d3\u05e2."
 	},
 	"text": {
 		"no": "tekst",
@@ -69,6 +72,7 @@
 		"nl": "tekst",
 		"ja": "\u30c6\u30ad\u30b9\u30c8",
 		"zh-tw": "\u6587\u5b57",
-		"et": "tekst"
+		"et": "tekst",
+		"he": "\u05d8\u05e7\u05d8\u05e1"
 	}
 }

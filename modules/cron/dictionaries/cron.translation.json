@@ -15,7 +15,8 @@
 		"zh-tw": "\u6392\u7a0b\u7d50\u679c\u9801\u9762",
 		"nn": "Cron resultatside",
 		"nl": "Cron resultaat pagina",
-		"et": "Croni tulemuste lehek\u00fclg"
+		"et": "Croni tulemuste lehek\u00fclg",
+		"he": "\u05d3\u05e3 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea cron"
 	},
 	"cron_result_title": {
 		"da": "Her er resultatet for opgaven udf\u00f8relse:",
@@ -33,7 +34,8 @@
 		"zh-tw": "\u9019\u662f\u6392\u7a0b\u5de5\u4f5c\u57f7\u884c\u7d50\u679c\uff1a",
 		"nn": "Her er resultata fr\u00e5 k\u00f8yring av cron-jobben:",
 		"nl": "Hier is het resultaat van de cron taak uitvoering:",
-		"et": "Siin on croni t\u00f6\u00f6 t\u00e4itmise tulemus:"
+		"et": "Siin on croni t\u00f6\u00f6 t\u00e4itmise tulemus:",
+		"he": "\u05d4\u05e0\u05d4 \u05d4\u05ea\u05d5\u05e6\u05d0\u05d4 \u05e9\u05dc \u05d4\u05e8\u05e6\u05ea \u05ea\u05d4\u05dc\u05d9\u05da \u05d4 cron:"
 	},
 	"cron_info": {
 		"da": "Cron er en m\u00e5de at k\u00f8re tingene regelm\u00e6ssigt p\u00e5 UNIX-systemer.",
@@ -51,7 +53,8 @@
 		"zh-tw": "Cron \u5728 Unix \u7cfb\u7d71\u4e2d\uff0c\u53ef\u7528\u4f86\u57f7\u884c\u4f8b\u884c\u6027\u4efb\u52d9\u3002",
 		"nn": "Cron er ein m\u00e5te \u00e5 k\u00f8yra regelmessige jobbar p\u00e5 unix-system.",
 		"nl": "Cron is een manier om dingen normaal te laten draaien op unix systemen.",
-		"et": "Cron v\u00f5imaldab Unix s\u00fcsteemides regulaarselt \u00fclesandeid t\u00e4ita."
+		"et": "Cron v\u00f5imaldab Unix s\u00fcsteemides regulaarselt \u00fclesandeid t\u00e4ita.",
+		"he": "cron \u05d4\u05d5\u05d0 \u05d4\u05d3\u05e8\u05da \u05dc\u05d4\u05e8\u05d9\u05e5 \u05e2\u05d1\u05d5\u05d3\u05d5\u05ea \u05d1\u05d6\u05de\u05e0\u05d9\u05dd \u05e7\u05d1\u05d5\u05e2\u05d9\u05dd \u05d1\u05de\u05e2\u05e8\u05db\u05d5\u05ea unix."
 	},
 	"cron_suggestion": {
 		"da": "Her er et forslag til en crontab fil:",
@@ -69,7 +72,8 @@
 		"zh-tw": "\u9019\u662f\u5efa\u8b70\u7684 crontab \u6a94\u6848\uff1a",
 		"nn": "Her er eit d\u00f8me p\u00e5 crontab-fil:",
 		"nl": "Hier is een suggestie voor een contrab bestand:",
-		"et": "Siin on crontab faili soovitus:"
+		"et": "Siin on crontab faili soovitus:",
+		"he": "\u05d4\u05e6\u05e2\u05d4 \u05dc\u05e7\u05d5\u05d1\u05e5 crontab:"
 	},
 	"cron_execution": {
 		"da": "Klik her for at k\u00f8re cron job:",
@@ -87,7 +91,8 @@
 		"zh-tw": "\u9ede\u6b64\u57f7\u884c\u6392\u7a0b\u4efb\u52d9\uff1a",
 		"nn": "Klikk her for \u00e5 k\u00f8yra cron-jobb:",
 		"nl": "Klik hier om de cron taken te starten:",
-		"et": "Kl\u00f5psa siia croni t\u00f6\u00f6 k\u00e4ivitamiseks:"
+		"et": "Kl\u00f5psa siia croni t\u00f6\u00f6 k\u00e4ivitamiseks:",
+		"he": "\u05dc\u05d7\u05e5 \u05db\u05d0\u05df \u05db\u05d3\u05d9 \u05dc\u05d4\u05e8\u05d9\u05e5 \u05d0\u05ea \u05e2\u05d1\u05d5\u05d3\u05d5\u05ea \u05d4 cron"
 	},
 	"run_text": {
 		"da": "Run cron:",
@@ -105,7 +110,8 @@
 		"zh-tw": "\u57f7\u884c\u6392\u7a0b\uff1a",
 		"nn": "K\u00f8yr cron:",
 		"nl": "Start cron",
-		"et": "K\u00e4ivita croni t\u00f6\u00f6:"
+		"et": "K\u00e4ivita croni t\u00f6\u00f6:",
+		"he": "\u05d4\u05e8\u05e5 cron:"
 	},
 	"ran_text": {
 		"da": "Cron l\u00f8b p\u00e5",
@@ -123,7 +129,8 @@
 		"zh-tw": "\u6392\u7a0b\u4efb\u52d9\u57f7\u884c\u65bc",
 		"nn": "Cron k\u00f8yrde p\u00e5 tidspunkt ",
 		"nl": "Cron gestart op",
-		"et": "Cron t\u00f6\u00f6tas"
+		"et": "Cron t\u00f6\u00f6tas",
+		"he": "cron \u05e8\u05e5 \u05d1"
 	},
 	"cron_report_title": {
 		"da": "Cron rapport",
@@ -141,6 +148,7 @@
 		"zh-tw": "\u6392\u7a0b\u5831\u544a",
 		"nn": "Cron-rapport",
 		"nl": "Cron melding",
-		"et": "Croni raport"
+		"et": "Croni raport",
+		"he": "\u05d3\u05d5\u05d7 cron"
 	}
 }
