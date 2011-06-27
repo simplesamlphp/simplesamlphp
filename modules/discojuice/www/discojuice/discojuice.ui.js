@@ -274,9 +274,11 @@ DiscoJuice.UI = {
 
 		if (this.parent.Utils.options.get('location', false) && navigator.geolocation) {
 			var that = this;
-			$("#locateme").click(function(event) {
+			$("a#locateme").click(function(event) {
+				that.parent.Utils.log('Locate me. Detected click event.');
 				var imgpath = that.parent.Utils.options.get('discoPath', '') + 'images/';
 				event.preventDefault();
+ 				event.stopPropagation();
 				$("div.locatemebefore").hide();
 				$("div.locatemeafter").html('<div class="loadingData" ><img src="' + imgpath + 'spinning.gif" /> Getting your location...</div>');
 				that.control.locateMe();
