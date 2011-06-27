@@ -29,6 +29,7 @@ DiscoJuice.Constants = {
 		'HR': 'Croatia',
 		'IE': 'Ireland',
 		'IT': 'Italy',
+		'JP': 'Japan',
 		'HU': 'Hungary',
 		'LU': 'Luxembourg',
 		'NL': 'Netherlands',
@@ -54,6 +55,7 @@ DiscoJuice.Constants = {
 		'HR': 'hr.png',
 		'IE': 'ie.png',
 		'IT': 'it.png',
+		'JP': 'jp.png',
 		'HU': 'hu.png',
 		'LU': 'lu.png',
 		'NL': 'nl.png',
@@ -367,7 +369,7 @@ DiscoJuice.UI = {
 		if (showmore) {
 			var moreLink = '<a class="discojuice_showmore textlink" href="">Results limited to ' + show + ' entries – show more…</a>';
 			this.popup.find("p.discojuice_moreLinkContainer").empty().append(moreLink);
-			this.popup.find("p.discojuice_moreLinkContainer a.discojuice_showmore").click(function(e) {
+			this.popup.find("p.discojuice_moreLinkContainer a.discojuice_showmore").click(function(event) {
 				event.preventDefault();
 				that.control.increase();
 			});
@@ -469,9 +471,11 @@ DiscoJuice.UI = {
 
 		if (this.parent.Utils.options.get('location', false) && navigator.geolocation) {
 			var that = this;
-			$("#locateme").click(function(event) {
+			$("a#locateme").click(function(event) {
+				that.parent.Utils.log('Locate me. Detected click event.');
 				var imgpath = that.parent.Utils.options.get('discoPath', '') + 'images/';
 				event.preventDefault();
+ 				event.stopPropagation();
 				$("div.locatemebefore").hide();
 				$("div.locatemeafter").html('<div class="loadingData" ><img src="' + imgpath + 'spinning.gif" /> Getting your location...</div>');
 				that.control.locateMe();
@@ -532,11 +536,19 @@ DiscoJuice.Control = {
 		var that = this;		
 		if (this.data) return;
 		var metadataurl = this.parent.Utils.options.get('metadata');
+		var parameters = {};
 		
 		this.parent.Utils.log('metadataurl is ' + metadataurl);
 		if (!metadataurl) return;
+
+		// If SP EntityID is set in configuration make sure it is sent as a parameter
+		// to the feed endpoint.
+		var discosettings = this.parent.Utils.options.get('disco');
+		if (discosettings) {
+			parameters.entityID = discosettings.spentityid;
+		}
 		
-		$.getJSON(metadataurl, function(data) {
+		$.getJSON(metadataurl, parameters, function(data) {
 			that.data = data;
 			that.parent.Utils.log('Successfully loaded metadata (' + data.length + ')');
 			that.postLoad();
@@ -1005,6 +1017,8 @@ DiscoJuice.Control = {
 			
 		iframeurl = writableStore + '?entityID=' + escape(spentityid) + '&IdPentityID=' + 
 			escape(entityID) + '&isPassive=true&returnIDParam=bogus&return=' + escape(returnurl);
+			
+		this.parent.Utils.log('DiscoJuice.Control discoWrite iframeURL (' + iframeurl + ') ');
 			
 		html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
 		this.ui.addContent(html);
