@@ -202,6 +202,7 @@ class SAML2_XML_md_EntityDescriptor extends SAML2_SignedElementHelper {
 		if ($parent === NULL) {
 			$doc = new DOMDocument();
 			$e = $doc->createElementNS(SAML2_Const::NS_MD, 'md:EntityDescriptor');
+			$doc->appendChild($e);
 		} else {
 			$e = $parent->ownerDocument->createElementNS(SAML2_Const::NS_MD, 'md:EntityDescriptor');
 			$parent->appendChild($e);
