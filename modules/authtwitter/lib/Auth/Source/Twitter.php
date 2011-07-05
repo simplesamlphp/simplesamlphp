@@ -66,30 +66,23 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 		
 		$stateID = SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
 		
-		// SimpleSAML_Logger::debug('facebook auth state id = ' . $stateID);
-		
 		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
-
 		// Get the request token
-		$requestToken = $consumer->getRequestToken('https://api.twitter.com/oauth/request_token');
+		$linkback = SimpleSAML_Module::getModuleURL('authtwitter/linkback.php', array('AuthState' => $stateID));
+		$requestToken = $consumer->getRequestToken('https://api.twitter.com/oauth/request_token', array('oauth_callback' => $linkback));
 		SimpleSAML_Logger::debug("Got a request token from the OAuth service provider [" . 
 			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
-		$oauthState = array(
-			'requestToken' => serialize($requestToken),
-			'stateid' => $stateID,
-		);
-		$session = SimpleSAML_Session::getInstance();
-		$session->setData('oauth', 'oauth', $oauthState);
+		$state['authtwitter:authdata:requestToken'] = $requestToken;
+		SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
 
 		// Authorize the request token
 		$consumer->getAuthorizeRequest('https://api.twitter.com/oauth/authenticate', $requestToken);
-
 	}
 	
 	
 	public function finalStep(&$state) {
-		$requestToken = unserialize($state['requestToken']);
+		$requestToken = $state['authtwitter:authdata:requestToken'];
 		
 		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
 		

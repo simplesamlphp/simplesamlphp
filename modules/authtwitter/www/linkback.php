@@ -4,17 +4,12 @@
  * Handle linkback() response from Twitter.
  */
 
-$session = SimpleSAML_Session::getInstance();
- 
-$oauthState = $session->getData('oauth', 'oauth');
-
-if (!array_key_exists('stateid', $oauthState) || empty($oauthState['stateid'])) {
-	throw new SimpleSAML_Error_BadRequest('Could not load oauthstate:stateid');
+if (!array_key_exists('AuthState', $_REQUEST) || empty($_REQUEST['AuthState'])) {
+	throw new SimpleSAML_Error_BadRequest('Missing state parameter on twitter linkback endpoint.');
 }
-$stateId = $oauthState['stateid'];
+$stateID = $_REQUEST['AuthState'];
 
-$state = SimpleSAML_Auth_State::loadState($stateId, sspmod_authtwitter_Auth_Source_Twitter::STAGE_INIT);
-$state['requestToken'] = $oauthState['requestToken'];
+$state = SimpleSAML_Auth_State::loadState($stateID, sspmod_authtwitter_Auth_Source_Twitter::STAGE_INIT);
 
 /* Find authentication source. */
 if (!array_key_exists(sspmod_authtwitter_Auth_Source_Twitter::AUTHID, $state)) {
