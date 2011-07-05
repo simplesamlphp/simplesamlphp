@@ -4,18 +4,11 @@
  * Handle linkback() response from Facebook.
  */
  
-$cancel = FALSE;
-if (array_key_exists('cancel', $_GET)) {
-	$stateID = $_GET['cancel'];
-	$cancel = TRUE;
-} elseif (array_key_exists('next', $_GET)) {
-	$stateID = $_GET['next'];
-}
-
-if (empty($stateID)) {
+if (!array_key_exists('AuthState', $_REQUEST) || empty($_REQUEST['AuthState'])) {
 	throw new SimpleSAML_Error_BadRequest('Missing state parameter on facebook linkback endpoint.');
 }
 
+$stateID = $_REQUEST['AuthState'];
 $state = SimpleSAML_Auth_State::loadState($stateID, sspmod_authfacebook_Auth_Source_Facebook::STAGE_INIT);
 
 /* Find authentication source. */
@@ -30,11 +23,11 @@ if ($source === NULL) {
 }
 
 try {
-	if ($cancel) {
+	if (isset($_REQUEST['error_reason']) && $_REQUEST['error_reason'] == 'user_denied') {
 		throw new SimpleSAML_Error_UserAborted();
 	}
 
-	$source->authenticate($state);
+	$source->finalStep($state);
 } catch (SimpleSAML_Error_Exception $e) {
 	SimpleSAML_Auth_State::throwException($state, $e);
 } catch (Exception $e) {
