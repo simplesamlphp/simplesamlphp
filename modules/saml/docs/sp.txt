@@ -41,6 +41,11 @@ All these parameters override the equivalent option from the configuration.
 
 :   *Note*: SAML 2 specific.
 
+`saml:Extensions`
+:   The samlp:Extensions that will be sent in the login request.
+
+:   *Note*: SAML 2 specific.
+
 
 Authentication data
 -------------------
@@ -105,6 +110,17 @@ Here we will list some examples for this authentication source.
     $auth = new SimpleSAML_Auth_Simple('default-sp');
     $auth->login(array(
         'saml:AuthnContextClassRef' => 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
+    ));
+
+### Using samlp:Extensions
+
+    $dom = new DOMDocument();
+    $ce = $dom->createElementNS('http://www.example.com/XFoo', 'xfoo:test', 'Test data!');
+    ext[] = new SAML2_XML_Chunk($ce);
+
+    $auth = new SimpleSAML_Auth_Simple('default-sp');
+    $auth->login(array(
+        'saml:Extensions' => $ext,
     ));
 
 
