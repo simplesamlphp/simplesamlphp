@@ -116,7 +116,7 @@ Here we will list some examples for this authentication source.
 
     $dom = new DOMDocument();
     $ce = $dom->createElementNS('http://www.example.com/XFoo', 'xfoo:test', 'Test data!');
-    ext[] = new SAML2_XML_Chunk($ce);
+    $ext[] = new SAML2_XML_Chunk($ce);
 
     $auth = new SimpleSAML_Auth_Simple('default-sp');
     $auth->login(array(
