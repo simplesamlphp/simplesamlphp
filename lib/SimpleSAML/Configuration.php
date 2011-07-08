@@ -571,7 +571,7 @@ class SimpleSAML_Configuration {
 
 		if(!is_int($ret)) {
 			throw new Exception($this->location . ': The option ' . var_export($name, TRUE) .
-				' is not a valid string value.');
+				' is not a valid integer value.');
 		}
 
 		return $ret;
