@@ -215,7 +215,12 @@ $config = array (
 	'session.phpsession.cookiename'  => null,
 	'session.phpsession.savepath'    => null,
 	'session.phpsession.httponly'    => FALSE,
-	
+
+	/*
+	 * Option to override the default settings for the auth token cookie
+	 */
+	'session.authtoken.cookiename' => null,
+
 	/*
 	 * Languages available, RTL languages, and what language is default
 	 */

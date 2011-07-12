@@ -498,7 +498,7 @@ class SimpleSAML_Session {
 
 		$this->authToken = SimpleSAML_Utilities::generateID();
 		$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
-		$sessionHandler->setCookie('SimpleSAMLAuthToken', $this->authToken);
+		$sessionHandler->setCookie($globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'), $this->authToken);
 	}
 
 
@@ -993,11 +993,13 @@ class SimpleSAML_Session {
 		}
 
 		if ($checkToken && $session->authToken !== NULL) {
-			if (!isset($_COOKIE['SimpleSAMLAuthToken'])) {
+			$globalConfig = SimpleSAML_Configuration::getInstance();
+			$authTokenCookieName = $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken');
+			if (!isset($_COOKIE[$authTokenCookieName])) {
 				SimpleSAML_Logger::warning('Missing AuthToken cookie.');
 				return NULL;
 			}
-			if ($_COOKIE['SimpleSAMLAuthToken'] !== $session->authToken) {
+			if ($_COOKIE[$authTokenCookieName] !== $session->authToken) {
 				SimpleSAML_Logger::warning('Invalid AuthToken cookie.');
 				return NULL;
 			}
