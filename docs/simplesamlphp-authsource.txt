@@ -44,6 +44,7 @@ If the username or password is incorrect, it should throw an error saying so:
 
     throw new SimpleSAML_Error_Error('WRONGUSERPASS');
 
+"[Implementing custom username/password authentication](./simplesamlphp-customauth)" describes how to implement username/password authentication using that base class.
 
 
 Generic rules & requirements

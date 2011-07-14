@@ -30,6 +30,8 @@ SimpleSAMLphp Documentation
  * [simpleSAMLphp Modules](simplesamlphp-modules) - how to create own customized modules
  * [Installing third party modules with the pack.php tool](pack)
  * [Key rollover](./saml:keyrollover)
+ * [Creating authentication sources](./simplesamlphp-authsource)
+  * [Implementing custom username/password authentication](./simplesamlphp-customauth)
 
 Documentation on specific simpleSAMLphp modules:
  
