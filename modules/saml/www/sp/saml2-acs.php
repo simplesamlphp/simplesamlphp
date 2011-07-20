@@ -18,6 +18,20 @@ if (!($response instanceof SAML2_Response)) {
 	throw new SimpleSAML_Error_BadRequest('Invalid message received to AssertionConsumerService endpoint.');
 }
 
+$session = SimpleSAML_Session::getInstance();
+$prevAuth = $session->getAuthData($sourceId, 'saml:sp:prevAuth');
+if ($prevAuth !== NULL && $prevAuth['id'] === $response->getId() && $prevAuth['issuer'] === $response->getIssuer()) {
+	/* OK, it looks like this message has the same issuer
+	 * and ID as the SP session we already have active. We
+	 * therefore assume that the user has somehow triggered
+	 * a resend of the message.
+	 * In that case we may as well just redo the previous redirect
+	 * instead of displaying a confusing error message.
+	 */
+	SimpleSAML_Logger::info('Duplicate SAML 2 response detected - ignoring the response and redirecting the user to the correct page.');
+	SimpleSAML_Utilities::redirect($prevAuth['redirect']);
+}
+
 $stateId = $response->getInResponseTo();
 if (!empty($stateId)) {
 	/* This is a response to a request we sent earlier. */
@@ -136,6 +150,18 @@ $state['PersistentAuthData'][] = 'saml:sp:NameID';
 $state['saml:sp:SessionIndex'] = $sessionIndex;
 $state['PersistentAuthData'][] = 'saml:sp:SessionIndex';
 
+
+if (isset($state['SimpleSAML_Auth_Default.ReturnURL'])) {
+	/* Just note some information about the authentication, in case we receive the
+	 * same response again.
+	 */
+	$state['saml:sp:prevAuth'] = array(
+		'id' => $response->getId(),
+		'issuer' => $idp,
+		'redirect' => $state['SimpleSAML_Auth_Default.ReturnURL'],
+	);
+	$state['PersistentAuthData'][] = 'saml:sp:prevAuth';
+}
 
 $source->handleResponse($state, $idp, $attributes);
 assert('FALSE');
