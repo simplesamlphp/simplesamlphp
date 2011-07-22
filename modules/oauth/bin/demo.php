@@ -54,7 +54,7 @@ try {
 	echo 'Your user ID is :  ' . $userdata['eduPersonPrincipalName'][0] . "\n";
 
 } catch(Exception $e) {
-	echo 'Error occured: ' . $e->getMessage() . "\n\n";
+	echo 'Error occurred: ' . $e->getMessage() . "\n\n";
 }
 
 

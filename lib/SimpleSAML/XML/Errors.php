@@ -69,17 +69,17 @@ class SimpleSAML_XML_Errors {
 	/**
 	 * End error logging.
 	 *
-	 * @return  An array with the LibXMLErrors which has occured since begin() was called.
+	 * @return  An array with the LibXMLErrors which has occurred since begin() was called.
 	 */
 	public static function end() {
 
 		/* Check whether the error access functions are present. */
 		if(!function_exists('libxml_use_internal_errors')) {
-			/* Pretend that no errors occured. */
+			/* Pretend that no errors occurred. */
 			return array();
 		}
 
-		/* Add any errors which may have occured. */
+		/* Add any errors which may have occurred. */
 		self::addErrors();
 
 

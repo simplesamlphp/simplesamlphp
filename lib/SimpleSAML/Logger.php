@@ -159,7 +159,7 @@ class SimpleSAML_Logger {
 			}
 
 		} elseif (self::$loggingHandler === FALSE) {
-			/* Some error occured while initializing logging. */
+			/* Some error occurred while initializing logging. */
 			if (empty(self::$earlyLog)) {
 				/* This is the first message. */
 				error_log('--- Log message(s) while initializing logging ------------------------');

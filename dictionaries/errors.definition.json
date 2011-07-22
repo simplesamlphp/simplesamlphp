@@ -21,7 +21,7 @@
 		"en": "E-mail address:"
 	},
 	"report_explain": {
-		"en": "Explain what you did when this error occured..."
+		"en": "Explain what you did when this error occurred..."
 	},
 	"report_submit": {
 		"en": "Send error report"
@@ -36,7 +36,7 @@
 		"en": "Error creating request"
 	},
 	"descr_CREATEREQUEST": {
-		"en": "An error occured when trying to create the SAML request."
+		"en": "An error occurred when trying to create the SAML request."
 	},
 	"title_DISCOPARAMS": {
 		"en": "Bad request to discovery service"
@@ -48,19 +48,19 @@
 		"en": "Could not create authentication response"
 	},
 	"descr_GENERATEAUTHNRESPONSE": {
-		"en": "When this identity provider tried to create an authentication response, an error occured."
+		"en": "When this identity provider tried to create an authentication response, an error occurred."
 	},
 	"title_LDAPERROR": {
 		"en": "LDAP Error"
 	},
 	"descr_LDAPERROR": {
-		"en": "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occured when we tried it this time."
+		"en": "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
 	},
 	"title_LOGOUTREQUEST": {
 		"en": "Error processing the Logout Request"
 	},
 	"descr_LOGOUTREQUEST": {
-		"en": "An error occured when trying to process the Logout Request."
+		"en": "An error occurred when trying to process the Logout Request."
 	},
 	"title_METADATA": {
 		"en": "Error loading metadata"
@@ -90,7 +90,7 @@
 		"en": "Error processing request from Service Provider"
 	},
 	"descr_PROCESSAUTHNREQUEST": {
-		"en": "This Identity Provider received an Authentication Request from a Service Provider, but an error occured when trying to process the request."
+		"en": "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
 	},
 	"title_SLOSERVICEPARAMS": {
 		"en": "No SAML message provided"

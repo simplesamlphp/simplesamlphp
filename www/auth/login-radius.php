@@ -29,13 +29,13 @@ if (isset($_POST['username'])) {
 		if (! radius_add_server($radius, $config->getValue('auth.radius.hostname'), $config->getValue('auth.radius.port'), 
 				$config->getValue('auth.radius.secret'), 5, 3)) {
 				
-			SimpleSAML_Logger::critical('AUTH - radius: Problem occured when connecting to Radius server: '.radius_strerror($radius));
-			throw new Exception('Problem occured when connecting to Radius server: ' . radius_strerror($radius));
+			SimpleSAML_Logger::critical('AUTH - radius: Problem occurred when connecting to Radius server: '.radius_strerror($radius));
+			throw new Exception('Problem occurred when connecting to Radius server: ' . radius_strerror($radius));
 		}
 	
 		if (! radius_create_request($radius,RADIUS_ACCESS_REQUEST)) {
-			SimpleSAML_Logger::critical('AUTH - radius: Problem occured when creating the Radius request: '.radius_strerror($radius));
-			throw new Exception('Problem occured when creating the Radius request: ' . radius_strerror($radius));
+			SimpleSAML_Logger::critical('AUTH - radius: Problem occurred when creating the Radius request: '.radius_strerror($radius));
+			throw new Exception('Problem occurred when creating the Radius request: ' . radius_strerror($radius));
 		}
 	
 		radius_put_attr($radius,RADIUS_USER_NAME,$_POST['username']);

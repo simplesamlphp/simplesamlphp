@@ -54,7 +54,7 @@ span.showhide {
 </style>
 	
 
-		<!-- <h2><?php if (isset($this->data['header'])) { echo $this->t($this->data['header']); } else { echo "Some error occured"; } ?></h2> -->
+		<!-- <h2><?php if (isset($this->data['header'])) { echo $this->t($this->data['header']); } else { echo "Some error occurred"; } ?></h2> -->
 	    <h2><?php echo $this->t('consentadmin_header') ?></h2>	
 		<p> 
 		<?php echo $this->t('consentadmin_description1') ?> </p>

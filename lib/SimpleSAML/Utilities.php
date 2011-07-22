@@ -1247,7 +1247,7 @@ class SimpleSAML_Utilities {
 	/**
 	 * Retrieve last error message.
 	 *
-	 * This function retrieves the last error message. If no error has occured,
+	 * This function retrieves the last error message. If no error has occurred,
 	 * '[No error message found]' will be returned. If the required function isn't available,
 	 * '[Cannot get error message]' will be returned.
 	 *

@@ -8,7 +8,7 @@ if(array_key_exists('header', $this->data)) {
 $this->includeAtTemplateBase('includes/header.php');
 ?>
 
-<h2><?php if (isset($this->data['header'])) { echo($this->data['header']); } else { echo($this->t('{status:some_error_occured}')); } ?></h2>
+<h2><?php if (isset($this->data['header'])) { echo($this->data['header']); } else { echo($this->t('{status:some_error_occurred}')); } ?></h2>
 
 <p><?php echo($this->t('{status:intro}')); ?></p>
 

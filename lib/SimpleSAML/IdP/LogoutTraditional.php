@@ -66,7 +66,7 @@ class SimpleSAML_IdP_LogoutTraditional extends SimpleSAML_IdP_LogoutHandler {
 	 *
 	 * @param string $assocId  The association that is terminated.
 	 * @param string|NULL $relayState  The RelayState from the start of the logout.
-	 * @param SimpleSAML_Error_Exception|NULL $error  The error that occured during session termination (if any).
+	 * @param SimpleSAML_Error_Exception|NULL $error  The error that occurred during session termination (if any).
 	 */
 	public function onResponse($assocId, $relayState, SimpleSAML_Error_Exception $error = NULL) {
 		assert('is_string($assocId)');

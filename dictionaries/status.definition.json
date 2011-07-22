@@ -11,8 +11,8 @@
 	"header_diagnostics": {
 		"en": "SimpleSAMLphp Diagnostics"
 	},
-	"some_error_occured": {
-		"en": "Some error occured"
+	"some_error_occurred": {
+		"en": "Some error occurred"
 	},
 	"intro": {
 		"en": "Hi, this is the status page of simpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that is attached to your session."
