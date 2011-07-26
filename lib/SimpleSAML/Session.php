@@ -485,11 +485,11 @@ class SimpleSAML_Session {
 			$data = array();
 		}
 
+		$globalConfig = SimpleSAML_Configuration::getInstance();
 		if (!isset($data['AuthnInstant'])) {
 			$data['AuthnInstant'] = time();
 		}
 		if (!isset($data['Expire'])) {
-			$globalConfig = SimpleSAML_Configuration::getInstance();
 			$data['Expire'] = time() + $globalConfig->getInteger('session.duration', 8*60*60);
 		}
 
