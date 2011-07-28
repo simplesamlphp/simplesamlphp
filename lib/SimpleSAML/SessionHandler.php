@@ -136,6 +136,12 @@ abstract class SimpleSAML_SessionHandler {
 
 		$params = $this->getCookieParams();
 
+		// Do not set secure cookie if not on HTTPS
+		if ($params['secure'] && !SimpleSAML_Utilities::isHTTPS()) {
+			SimpleSAML_Logger::warning('Setting secure cookie on http not allowed.');
+			return;
+		}
+
 		if ($value === NULL) {
 			$expire = time() - 365*24*60*60;
 		} elseif ($params['lifetime'] === 0) {
@@ -146,9 +152,12 @@ abstract class SimpleSAML_SessionHandler {
 
 		$version = explode('.', PHP_VERSION);
 		if ((int)$version[0] === 5 && (int)$version[1] < 2) {
-			setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure']);
+			$success = setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure']);
 		} else {
-			setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+			$success = setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+		}
+		if (!$success) {
+			throw new SimpleSAML_Error_Exception('Error setting cookie - headers already sent.');
 		}
 	}
 
