@@ -582,13 +582,13 @@ table.ui-datepicker .ui-datepicker-title-row td a {
 .ui-colorpicker-color div { /* is this extra div needed? why not just .ui-colorpicker-color ? */
 	border: 1px solid #d3d3d3;
 	height: 150px;
-	background: url(images/_x_.);
+	background: url(images/gradient.jpg);
 	position: relative;
 }
 .ui-colorpicker-color div div {/* shouldn't this have a class like ui-colorpicker-selector ? */
 	width: 11px;
 	height: 11px;
-	background: url(images/_x_.);
+	background: url(images/gradient.jpg);
 	position: absolute;
 	border: 0;
 	margin: -5px 0 0 -5px;
@@ -599,7 +599,7 @@ table.ui-datepicker .ui-datepicker-title-row td a {
 	float: left;
 	width: 17px;
 	height: 150px;
-	background: url(images/_x_.);
+	background: url(images/gradient.jpg);
 	position: relative;
 	margin-right: 15px;
 }
