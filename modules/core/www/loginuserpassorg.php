@@ -14,6 +14,10 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 	throw new SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
+
+/* Retrieve the authentication state. */
+$state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_core_Auth_UserPassOrgBase::STAGEID);
+
 $organizations = sspmod_core_Auth_UserPassOrgBase::listOrganizations($authStateId);
 
 if (array_key_exists('username', $_REQUEST)) {
