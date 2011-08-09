@@ -303,7 +303,9 @@ Options
 :   The page the user should be redirected to after an IdP initiated SSO.
 
 :   *Note*: SAML 2 specific.
-    For SAML 1.1 SPs, you must specify the `TARGET` in the authentication response.
+    For SAML 1.1 SPs, you must specify the `TARGET` parameter in the authentication response.
+    How to set that parameter is depends on the IdP.
+    For simpleSAMLphp, see the documentation for [IdP-first flow](./simplesamlphp-idp-more#section_4_1).
 
 `url`
 :   An URL to your service provider. Will be added as an OrganizationURL-element in the metadata.

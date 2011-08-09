@@ -46,7 +46,7 @@ If you do not want to start the SSO flow at the SP, you may use the IdP-first se
 
 Here is an example of such an url:
 
-	https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=dev.andreas.feide.no
+	https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice
 
 You can also add a RelayState parameter to the IdP-first URL:
 
@@ -73,9 +73,11 @@ The parameters are as follows:
     This parameter is required.
 
 `target`
-:   The target parameter the SP should receive.
+:   The target parameter the SP should receive with the authentication response.
     This is often the page the user should be sent to after authentication.
     This parameter is optional for the IdP, but must be specified if the SP you are targeting is running simpleSAMLphp SP.
+
+:   *Note*: This parameter must be sent as `target` (with lowercase letters) when starting the authentication, while it is sent as `TARGET` (with uppercase letters) in the authentication response.
 
 
 IdP-initiated logout
