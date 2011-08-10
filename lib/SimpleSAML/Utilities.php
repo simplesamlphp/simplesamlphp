@@ -1606,6 +1606,13 @@ class SimpleSAML_Utilities {
 		assert('is_array($post)');
 
 		$config = SimpleSAML_Configuration::getInstance();
+		$httpRedirect = $config->getBoolean('enable.http_post', FALSE);
+
+		if ($httpRedirect && preg_match("#^http:#", $destination) && self::isHTTPS()) {
+			$url = self::createHttpPostRedirectLink($destination, $post);
+			self::redirect($url);
+			assert('FALSE');
+		}
 
 		$p = new SimpleSAML_XHTML_Template($config, 'post.php');
 		$p->data['destination'] = $destination;
@@ -1625,16 +1632,54 @@ class SimpleSAML_Utilities {
 		assert('is_string($destination)');
 		assert('is_array($post)');
 
-		$id = SimpleSAML_Utilities::generateID();
+		$config = SimpleSAML_Configuration::getInstance();
+		$httpRedirect = $config->getBoolean('enable.http_post', FALSE);
+
+		if ($httpRedirect && preg_match("#^http:#", $destination) && self::isHTTPS()) {
+			$url = self::createHttpPostRedirectLink($destination, $post);
+		} else {
+			$postId = SimpleSAML_Utilities::generateID();
+			$postData = array(
+				'post' => $post,
+				'url' => $destination,
+			);
+
+			$session = SimpleSAML_Session::getInstance();
+			$session->setData('core_postdatalink', $postId, $postData);
+
+			$url = SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirId' => $postId));
+		}
+
+		return $url;
+	}
+
+
+	/**
+	 * Create a link which will POST data to HTTP in a secure way.
+	 *
+	 * @param string $destination  The destination URL.
+	 * @param array $post  The name-value pairs which will be posted to the destination.
+	 * @return string  An URL which can be accessed to post the data.
+	 */
+	public static function createHttpPostRedirectLink($destination, $post) {
+		assert('is_string($destination)');
+		assert('is_array($post)');
+
+		$postId = SimpleSAML_Utilities::generateID();
 		$postData = array(
 			'post' => $post,
 			'url' => $destination,
 		);
 
 		$session = SimpleSAML_Session::getInstance();
-		$session->setData('core_postdatalink', $id, $postData);
+		$session->setData('core_postdatalink', $postId, $postData);
 
-		return SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirId' => $id));
+		$redirInfo = base64_encode(self::aesEncrypt($session->getSessionId() . ':' . $postId));
+
+		$url = SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $redirInfo));
+		$url = preg_replace("#^https:#", "http:", $url);
+
+		return $url;
 	}
 
 
@@ -2058,6 +2103,77 @@ class SimpleSAML_Utilities {
 		}
 
 		return $data;
+	}
+
+
+	/**
+	 * Function to AES encrypt data.
+	 *
+	 * @param string $clear  Data to encrypt.
+	 * @return array  The encrypted data and IV.
+	 */
+	public static function aesEncrypt($clear) {
+		assert('is_string($clear)');
+
+		if (!function_exists("mcrypt_encrypt")) {
+			throw new Exception("aesEncrypt needs mcrypt php module.");
+		}
+
+		$enc = MCRYPT_RIJNDAEL_256;
+		$mode = MCRYPT_MODE_CBC;
+
+		$blockSize = mcrypt_get_block_size($enc, $mode);
+		$ivSize = mcrypt_get_iv_size($enc, $mode);
+		$keySize = mcrypt_get_key_size($enc, $mode);
+
+		$key = hash('sha256', self::getSecretSalt(), TRUE);
+		$key = substr($key, 0, $keySize);
+
+		$len = strlen($clear);
+		$numpad = $blockSize - ($len % $blockSize);
+		$clear = str_pad($clear, $len + $numpad, chr($numpad));
+
+		$iv = self::generateRandomBytes($ivSize);
+
+		$data = mcrypt_encrypt($enc, $key, $clear, $mode, $iv);
+
+		return $iv . $data;
+	}
+
+
+	/**
+	 * Function to AES decrypt data.
+	 *
+	 * @param $data  Encrypted data.
+	 * @param $iv  IV of encrypted data.
+	 * @return string  The decrypted data.
+	 */
+	public static function aesDecrypt($encData) {
+		assert('is_string($encData)');
+
+		if (!function_exists("mcrypt_encrypt")) {
+			throw new Exception("aesDecrypt needs mcrypt php module.");
+		}
+
+		$enc = MCRYPT_RIJNDAEL_256;
+		$mode = MCRYPT_MODE_CBC;
+
+		$ivSize = mcrypt_get_iv_size($enc, $mode);
+		$keySize = mcrypt_get_key_size($enc, $mode);
+
+		$key = hash('sha256', self::getSecretSalt(), TRUE);
+		$key = substr($key, 0, $keySize);
+
+		$iv = substr($encData, 0, $ivSize);
+		$data = substr($encData, $ivSize);
+
+		$clear = mcrypt_decrypt($enc, $key, $data, $mode, $iv);
+
+		$len = strlen($clear);
+		$numpad = ord($clear[$len - 1]);
+		$clear = substr($clear, 0, $len - $numpad);
+
+		return $clear;
 	}
 
 }

@@ -169,6 +169,10 @@ $config = array (
 	 */
 	'session.datastore.timeout' => (4*60*60), // 4 hours
 	
+	/*
+	 * Option to override the default settings for the session cookie name
+	 */
+	'session.cookie.name' => NULL,
 
 	/*
 	 * Expiration time for the session cookie, in seconds.
@@ -208,6 +212,19 @@ $config = array (
 	 * both http and https, this must be set to FALSE.
 	 */
 	'session.cookie.secure' => FALSE,
+
+	/*
+	 * Enable secure POST from HTTPS to HTTP.
+	 *
+	 * If you have some SP's on HTTP and IdP is normally on HTTPS, this option
+	 * enables secure POSTing to HTTP endpoint without warning from browser.
+	 *
+	 * For this to work, module.php/core/postredirect.php must be accessible
+	 * also via HTTP on IdP, e.g. if your IdP is on
+	 * https://idp.example.org/ssp/, then
+	 * http://idp.example.org/ssp/module.php/core/postredirect.php must be accessible.
+	 */
+	'enable.http_post' => FALSE,
 
 	/*
 	 * Options to override the default settings for php sessions.
