@@ -55,9 +55,8 @@ extends SimpleSAML_SessionHandler {
 			if(!self::isValidSessionID($this->session_id)) {
 				/* We don't have a valid session. Create a new session id. */
 				$this->session_id = self::createSessionID();
+				$this->setCookie($this->cookie_name, $this->session_id);
 			}
-
-			$this->setCookie($this->cookie_name, $this->session_id);
 		}
 
 		return $this->session_id;
