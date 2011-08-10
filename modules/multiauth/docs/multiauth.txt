@@ -64,4 +64,11 @@ For example:
     htttps://example.com/service/?source=saml
     
 will take you directly to the SAML authentication source, instead 
-of hitting the multiauth select page.
+of hitting the multiauth select page, but this works only if you 
+don't have redirections during the authentification process.
+
+You can also use the multiauth:preselect parameter to the login call :
+   $as = new SimpleSAML_Auth_Simple('my-multiauth-authsource');
+   $as->login(array(
+       'multiauth:preselect' => 'default-sp',
+   ));
