@@ -11,9 +11,10 @@ $this->includeAtTemplateBase('includes/header.php');
 <ul>
 <?php
 foreach($this->data['sources'] as $source) {
-	echo '<li><a href="?source=' . htmlspecialchars($source) .
+	echo '<li class="' . htmlspecialchars($source['css_class']) . ' authsource">' .
+		'<a href="?source=' . htmlspecialchars($source['source']) .
 		'&AuthState=' . htmlspecialchars($this->data['authstate']) . '">' .
-		htmlspecialchars($source) . '</a></li>';
+		'<span>' . htmlspecialchars($this->t($source['text'])) . '</span></a></li>';
 }
 ?>
 </ul>

@@ -29,7 +29,21 @@ authentication source:
          * The available authentication sources.
          * They must be defined in this authsources.php file.
          */
-        'sources' => array('example-saml', 'example-admin'),
+        'sources' => array(
+            'example-saml' => array(
+                'text' => array(
+                    'en' => 'Log in using a SAML SP',
+                    'es' => 'Entrar usando un SP SAML',
+                ),
+                'css-class' => 'SAML',
+            ),
+            'example-admin' => array(
+                'text' => array(
+                    'en' => 'Log in using the admin password',
+                    'es' => 'Entrar usando la contraseña de administrador',
+                ),
+            ),
+        ),
     ),
 
     'example-saml' => array(
@@ -52,7 +66,30 @@ authentication sources defined in the `config/authsources.php`
 file. The order in this array does not matter since the user
 is the one that decides which one to use.
 
-I is possible to add the parameter `source` to the calling URL, 
+The keys of the sources array are the identifiers of authentication
+sources defined in the authsources.php configuration file. The
+values are arrays with information used to create the user
+interface that will let the user select the authentication source
+he wants. Older versions of the multiauth module did not have
+this structure and just have the authsources identifiers as the
+values of the sources array. It has been improved in a backwards
+compatibility fashion so both cases should work.
+
+So each source in the sources array has a key and a value. As
+mentioned above the key is the authsource identifier and the value
+is another array with two optional keys: 'text' and 'css-class'.
+The text element is another array with localized strings for one
+or more languages. These texts will be shown in the selectsource.php
+view. Note that you should at least enter the text in the default
+language as specified in your config.php file. The css-class
+element is a string with the css class that will be applied to
+the <li> element in the selectsource.php view. By default the
+authtype of the authsource is used as the css class with colons
+replaced by dashes. So in the previous example, the css class used
+in the 'example-admin' authentication source would be
+'core-AdminPassword'.
+
+It is possible to add the parameter `source` to the calling URL, 
 when accessing a service, to allow the user to preselect the
 authsource to be used. This can be handy if you support different
 authentication types for differen types of users and you want the 
