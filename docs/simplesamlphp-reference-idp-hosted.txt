@@ -165,6 +165,12 @@ The following SAML 2.0 options are available:
     This certificate will be added to the generated metadata of the IdP,
     which is required by some SPs when using the HTTP-Artifact binding.
 
+`nameid.encryption`
+:   Whether NameIDs sent from this IdP should be encrypted. The default
+    value is `FALSE`.
+
+:   Note that this option can be set for each SP in the [SP-remote metadata](./simplesamlphp-reference-sp-remote).
+
 `SingleSignOnService`
 :   Override the default URL for the SingleSignOnService for this
     IdP. This is an absolute URL. The default value is

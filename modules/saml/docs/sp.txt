@@ -200,6 +200,14 @@ Options
 
 :   *Note*: You must also specify at least one attribute in the `attributes` option for this element to be added to the metadata.
 
+`nameid.encryption`
+:   Whether NameIDs sent from this SP should be encrypted. The default
+    value is `FALSE`.
+
+:   Note that this option can be set for each IdP in the [IdP-remote metadata](./simplesamlphp-reference-idp-remote).
+
+:   *Note*: SAML 2 specific.
+
 `NameIDPolicy`
 :   The format of the NameID we request from the IdP.
     Defaults to the transient format if unspecified.

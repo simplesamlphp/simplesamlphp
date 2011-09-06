@@ -173,6 +173,14 @@ The following SAML 2.0 options are available:
     specified in the `simplesaml.nameidattribute`-option as the value
     of the ID.
 
+`nameid.encryption`
+:   Whether NameIDs sent to this SP should be encrypted. The default
+    value is `FALSE`.
+
+:   Note that this option also exists in the IdP-hosted metadata. This
+    entry in the SP-remote metadata overrides the option in the
+    [IdP-hosted metadata](./simplesamlphp-reference-idp-hosted).
+
 `SingleLogoutService`
 :   The URL of the SingleLogoutService endpoint for this SP.
     This option is required if you want to implement single logout for
