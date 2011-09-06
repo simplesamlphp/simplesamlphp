@@ -380,7 +380,7 @@ class SimpleSAML_IdP {
 			/* Force authentication is in effect. */
 			$needAuth = TRUE;
 		} elseif (isset($state['saml:IDPList']) && sizeof($state['saml:IDPList']) > 0) {
-			$needAuth = TRUE;
+			$needAuth = !in_array($this->authSource->getAuthData('saml:sp:IdP'), $state['saml:IDPList'], TRUE);
 		} else {
 			$needAuth = !$this->isAuthenticated();
 		}
