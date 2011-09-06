@@ -101,6 +101,14 @@ SAML 2.0 options
 
 The following SAML 2.0 options are available:
 
+`nameid.encryption`
+:   Whether NameIDs sent to this IdP should be encrypted. The default
+    value is `FALSE`.
+
+:   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+    [SP configuration](./saml:sp).
+
 `saml2.relaxvalidation`
 :   Can be used to relax some parts of the validation of assertions received from this IdP. This is an array, and can include one or more of the following flags:
 
