@@ -186,6 +186,44 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 		$source->logout($state);
 	}
 
+	/**
+	* Set the previous authentication source.
+	*
+	* This method remembers the authentication source that the user selected
+	* by storing its name in a cookie.
+	*
+	* @param string $source Name of the authentication source the user selected.
+	*/
+	public function setPreviousSource($source) {
+		assert('is_string($source)');
+
+		$cookieName = 'multiauth_source_' . $this->authId;
+
+		/* We save the cookies for 90 days. */
+		$saveUntil = time() + 60*60*24*90;
+
+		/* The base path for cookies. 
+		This should be the installation directory for simpleSAMLphp. */
+		$config = SimpleSAML_Configuration::getInstance();
+		$cookiePath = '/' . $config->getBaseUrl();
+
+		setcookie($cookieName, $source, $saveUntil, $cookiePath);
+	}
+
+	/**
+	* Get the previous authentication source.
+	*
+	* This method retrieves the authentication source that the user selected
+	* last time or NULL if this is the first time or remembering is disabled.
+	*/
+	public function getPreviousSource() {
+		$cookieName = 'multiauth_source_' . $this->authId;
+		if(array_key_exists($cookieName, $_COOKIE)) {
+			return $_COOKIE[$cookieName];
+		} else {
+			return NULL;
+		}
+	}
 }
 
 ?>

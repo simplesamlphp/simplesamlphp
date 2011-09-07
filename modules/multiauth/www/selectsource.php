@@ -19,8 +19,18 @@ $authStateId = $_REQUEST['AuthState'];
 /* Retrieve the authentication state. */
 $state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_multiauth_Auth_Source_MultiAuth::STAGEID);
 
+if (array_key_exists("SimpleSAML_Auth_Default.id", $state)) {
+	$authId = $state["SimpleSAML_Auth_Default.id"];
+	$as = SimpleSAML_Auth_Source::getById($authId);
+} else {
+	$as = NULL;
+}
+
 if (array_key_exists('source', $_REQUEST)) {
 	$source = $_REQUEST['source'];
+	if ($as !== NULL) {
+		$as->setPreviousSource($source);
+	}
 	sspmod_multiauth_Auth_Source_MultiAuth::delegateAuthentication($source, $state);
 } elseif (array_key_exists('multiauth:preselect', $state)) {
 	$source = $state['multiauth:preselect'];
@@ -31,6 +41,11 @@ $globalConfig = SimpleSAML_Configuration::getInstance();
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'multiauth:selectsource.php');
 $t->data['authstate'] = $authStateId;
 $t->data['sources'] = $state[sspmod_multiauth_Auth_Source_MultiAuth::SOURCESID];
+if ($as !== NULL) {
+	$t->data['preferred'] = $as->getPreviousSource();
+} else {
+	$t->data['preferred'] = NULL;
+}
 $t->show();
 exit();
 
