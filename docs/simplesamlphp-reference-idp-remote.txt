@@ -27,9 +27,6 @@ The following options are common between both the SAML 2.0 protocol and Shibbole
 `base64attributes`
 :   Whether attributes received from this IdP should be base64 decoded. The default is `FALSE`.
 
-`caFile`
-:   Alternative to specifying a certificate. Allows you to specify a file with root certificates, and responses from the service be validated against these certificates. Note that simpleSAMLphp doesn't support chains with any itermediate certificates between the root and the certificate used to sign the response. Support for PKIX in SimpleSAMLphp is experimental, and we encourage users to not rely on PKIX for validation of signatures; for background information review [the SAML 2.0 Metadata Interoperability Profile](http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop-cd-01.pdf).
-
 `certData`
 :   The base64 encoded certificate for this IdP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the `certificate`-option.
 
@@ -185,6 +182,9 @@ These options overrides the options set in `saml20-sp-hosted`.
 
 Shibboleth 1.3 options
 ----------------------
+
+`caFile`
+:   Alternative to specifying a certificate. Allows you to specify a file with root certificates, and responses from the service be validated against these certificates. Note that simpleSAMLphp doesn't support chains with any itermediate certificates between the root and the certificate used to sign the response. Support for PKIX in SimpleSAMLphp is experimental, and we encourage users to not rely on PKIX for validation of signatures; for background information review [the SAML 2.0 Metadata Interoperability Profile](http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop-cd-01.pdf).
 
 `saml1.useartifact`
 :   Request that the IdP returns the result to the artifact binding.

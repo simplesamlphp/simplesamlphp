@@ -160,28 +160,9 @@ class sspmod_saml_Message {
 			$pemCert = self::findCertificate($certFingerprint, $certificates);
 			$pemKeys = array($pemCert);
 		} else {
-			/* Attempt CA validation. */
-			$caFile = $srcMetadata->getString('caFile', NULL);
-			if ($caFile === NULL) {
-				throw new SimpleSAML_Error_Exception(
-					'Missing certificate in metadata for ' .
-					var_export($srcMetadata->getString('entityid'), TRUE));
-			}
-			$caFile = SimpleSAML_Utilities::resolveCert($caFile);
-
-			if (count($certificates) === 0) {
-				/* We need the full certificate in order to check it against the CA file. */
-				SimpleSAML_Logger::debug('No certificate in message when validating with CA.');
-				return FALSE;
-			}
-
-			/* We assume that it is the first certificate that was used to sign the message. */
-			$pemCert = "-----BEGIN CERTIFICATE-----\n" .
-				chunk_split($certificates[0], 64) .
-				"-----END CERTIFICATE-----\n";
-
-			SimpleSAML_Utilities::validateCA($pemCert, $caFile);
-			$pemKeys = array($pemCert);
+			throw new SimpleSAML_Error_Exception(
+				'Missing certificate in metadata for ' .
+				var_export($srcMetadata->getString('entityid'), TRUE));
 		}
 
 		SimpleSAML_Logger::debug('Has ' . count($pemKeys) . ' candidate keys for validation.');
