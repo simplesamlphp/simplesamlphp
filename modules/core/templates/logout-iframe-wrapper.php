@@ -4,7 +4,7 @@ $id = $this->data['id'];
 $SPs = $this->data['SPs'];
 $timeout = $this->data['timeout'];
 
-$iframeURL = 'logout-iframe.php?type=embed&id=' . urlencode($id) . '&timeout=' . (string)$timeout;
+$iframeURL = 'logout-iframe.php?type=embed&id=' . urlencode($id);
 
 /* Pretty arbitrary height, but should have enough safety margins for most cases. */
 $iframeHeight = 25 + count($SPs) * 4;

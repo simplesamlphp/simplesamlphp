@@ -492,6 +492,23 @@ class sspmod_saml_IdP_SAML2 {
 
 
 	/**
+	 * Retrieve the metadata for the given SP association.
+	 *
+	 * @param SimpleSAML_IdP $idp  The IdP the association belongs to.
+	 * @param array $association  The SP association.
+	 * @return SimpleSAML_Configuration|NULL  Configuration object for the SP metadata.
+	 */
+	public static function getAssociationConfig(SimpleSAML_IdP $idp, array $association, $relayState) {
+		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		try {
+			return $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
+		} catch (Exception $e) {
+			SimpleSAML_Configuration::loadFromArray(array(), 'Unknown SAML 2 entity.');
+		}
+	}
+
+
+	/**
 	 * Calculate the NameID value that should be used.
 	 *
 	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.

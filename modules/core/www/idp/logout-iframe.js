@@ -53,16 +53,19 @@ function logoutFailed(spId, reason) {
 }
 
 function timeoutSPs() {
+	var cTime = ( (new Date()).getTime() - window.startTime ) / 1000;
 	for (sp in window.spStatus) {
-		if (window.spStatus[sp] == 'inprogress') {
+		if (window.spTimeout[sp] <= cTime && window.spStatus[sp] == 'inprogress') {
 			logoutFailed(sp, 'Timeout');
 		}
 	}
+	window.timeoutID = window.setTimeout(timeoutSPs, 1000);
 }
 
 $('document').ready(function(){
+	window.startTime = (new Date()).getTime();
 	if (window.type == 'js') {
-		window.timeoutID = window.setTimeout(timeoutSPs, window.timeoutIn * 1000);
+		window.timeoutID = window.setTimeout(timeoutSPs, 1000);
 		updateStatus();
 	} else if (window.type == 'init') {
 		$('#logout-type-selector').attr('value', 'js');
