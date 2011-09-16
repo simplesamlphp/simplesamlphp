@@ -48,7 +48,7 @@ DiscoJuice.UI = {
 	"addItem": function(item, countrydef, search, distance, quickentry) {
 		var textLink = '';
 		var classes = '';
-		if (item.weight < -50) classes += 'hothit';
+//		if (item.weight < -50) classes += 'hothit';
 
 		var iconpath = this.parent.Utils.options.get('discoPath', '') + 'logos/';
 		var flagpath = this.parent.Utils.options.get('discoPath', '') + 'flags/';
