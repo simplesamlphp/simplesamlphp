@@ -1,5 +1,121 @@
 <?php
 
+
+/*
+* File: SimpleImage.php
+* Author: Simon Jarvis
+* Copyright: 2006 Simon Jarvis
+* Date: 08/11/06
+* Link: http://www.white-hat-web-design.co.uk/articles/php-image-resizing.php
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public License
+* as published by the Free Software Foundation; either version 2
+* of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details:
+* http://www.gnu.org/licenses/gpl.html
+*
+*/
+ 
+class SimpleImage {
+ 
+   var $image;
+   var $image_type;
+ 
+   function load($filename) {
+ 
+      $image_info = getimagesize($filename);
+      $this->image_type = $image_info[2];
+      if( $this->image_type == IMAGETYPE_JPEG ) {
+ 
+         $this->image = imagecreatefromjpeg($filename);
+      } elseif( $this->image_type == IMAGETYPE_GIF ) {
+ 
+         $this->image = imagecreatefromgif($filename);
+      } elseif( $this->image_type == IMAGETYPE_PNG ) {
+ 
+         $this->image = imagecreatefrompng($filename);
+      }
+   }
+   function save($filename, $image_type=IMAGETYPE_PNG, $compression=90, $permissions=null) {
+ 
+      if( $image_type == IMAGETYPE_JPEG ) {
+         imagejpeg($this->image,$filename,$compression);
+      } elseif( $image_type == IMAGETYPE_GIF ) {
+ 
+         imagegif($this->image,$filename);
+      } elseif( $image_type == IMAGETYPE_PNG ) {
+ 
+         imagepng($this->image,$filename);
+      }
+      if( $permissions != null) {
+ 
+         chmod($filename,$permissions);
+      }
+   }
+   function output($image_type=IMAGETYPE_JPEG) {
+ 
+      if( $image_type == IMAGETYPE_JPEG ) {
+         imagejpeg($this->image);
+      } elseif( $image_type == IMAGETYPE_GIF ) {
+ 
+         imagegif($this->image);
+      } elseif( $image_type == IMAGETYPE_PNG ) {
+ 
+         imagepng($this->image);
+      }
+   }
+   function getWidth() {
+ 
+      return imagesx($this->image);
+   }
+   function getHeight() {
+ 
+      return imagesy($this->image);
+   }
+   function resizeToHeight($height) {
+ 
+      $ratio = $height / $this->getHeight();
+      $width = $this->getWidth() * $ratio;
+      $this->resize($width,$height);
+   }
+ 
+   function resizeToWidth($width) {
+      $ratio = $width / $this->getWidth();
+      $height = $this->getheight() * $ratio;
+      $this->resize($width,$height);
+   }
+ 
+   function scale($scale) {
+      $width = $this->getWidth() * $scale/100;
+      $height = $this->getheight() * $scale/100;
+      $this->resize($width,$height);
+   }
+ 
+   function resize($width,$height) {
+      $new_image = imagecreatetruecolor($width, $height);
+
+	imagealphablending($new_image, false);
+	imagesavealpha($new_image,true);
+	$transparent = imagecolorallocatealpha($new_image, 255, 255, 255, 127);
+	imagefilledrectangle($new_image, 0, 0, $width, $height, $transparent);
+
+
+      imagecopyresampled($new_image, $this->image, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
+      $this->image = $new_image;
+   }      
+ 
+}
+
+
+
+
+
+
 /**
  * ...
  */
@@ -20,7 +136,18 @@ class sspmod_discojuice_Feed {
 		$this->djconfig = SimpleSAML_Configuration::getOptionalConfig('discojuicefeed.php');
 
 		$metadatah = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-		$this->metadata = $metadatah->getList('saml20-idp-remote');
+		
+		$saml2 = $metadatah->getList('saml20-idp-remote');
+		$shib = $metadatah->getList('shib13-idp-remote');
+		
+		foreach($shib AS $s) {
+			$this->metadata[$s['entityid']] = $s;
+		}
+		foreach($saml2 AS $s) {
+			$this->metadata[$s['entityid']] = $s;
+		}
+		// $this->metadata = array_merge($this->metadata, $shib);
+		
 		
 		$this->idplist = $this->getIdPList();
 		
@@ -92,7 +219,6 @@ class sspmod_discojuice_Feed {
 		
 	}
 	
-	
 	public function read() {
 		$djdatafile = $this->config->getPathValue('datadir', 'data/')  . 'discojuice/'  . 'discojuice.cache';
 
@@ -132,7 +258,9 @@ class sspmod_discojuice_Feed {
 		foreach($this->metadata AS $m) {
 			if ($this->exclude($m['entityid'])) continue;
 			
-			$this->feed[] = $this->processEntity($m);
+			$nc = $this->processEntity($m);
+			if (empty($nc['icon'])) continue;
+			$this->feed[] = $nc;
 		}
 		
 		if (!empty($this->insert)) {
@@ -165,12 +293,11 @@ class sspmod_discojuice_Feed {
 		$this->getTitle($data, $m);
 		$this->getOverrides($data, $m);
 		$this->getGeo($data, $m);
+		$this->getLogo($data, $m);
 		
 		if (!empty($this->idplist)) {
 			$this->islisted($data, $m);
 		}
-
-
 		return $data;
 	}
 	
@@ -195,10 +322,105 @@ class sspmod_discojuice_Feed {
 	}
 	
 	
+	protected static function getPreferredLogo($logos) {
+		
+		$current = array('height' => 0);
+		$found = false;
+		
+		foreach($logos AS $logo) {
+			if (
+					$logo['height'] > 23 && 
+					$logo['height'] < 41 && 
+					$logo['height'] > $current['height']
+				) {
+				$current = $logo;
+				$found = true;
+			}
+		}
+		if ($found) return $current;
+		
+		foreach($logos AS $logo) {
+			if (
+					$logo['height'] > $current['height']
+				) {
+				$current = $logo;
+				$found = true;
+			}
+		}
+		if ($found) return $current;
+		
+		return NULL;
+		
+	}
+	
+	protected static function getCachedLogo($logo) {
+		
+		$hash = sha1($logo['url']);
+		$relfile = 'cached/' . $hash;
+		$file = dirname(dirname(__FILE__)) . '/www/discojuice/logos/' . $relfile;
+		$fileorig = $file . '.orig';
+
+		if (file_exists($file)) {
+			return $relfile;
+		}
+		
+		//echo 'icon file: ' . $file; exit;
+		
+		$orgimg = file_get_contents($logo['url']);
+		if (empty($orgimg)) return null;
+		file_put_contents($fileorig, $orgimg);
+		
+		if ($logo['height'] > 40) {
+			$image = new SimpleImage();
+			$image->load($fileorig);
+			$image->resizeToHeight(38);
+			$image->save($file);
+
+			if (file_exists($file)) {
+				return $relfile;
+			}	
+		}
+		
+		file_put_contents($file, $orgimg);
+		
+		if (file_exists($file)) {
+			return $relfile;
+		}
+		
+	}
+	
+	
+	protected function getLogo(&$data, $m) {
+
+		if (!empty($m['mdui']) && !empty($m['mdui']['logos'])) {
+			
+			$cl = self::getPreferredLogo($m['mdui']['logos']);
+			
+			if (!empty($cl)) {
+				$cached = self::getCachedLogo($cl);
+				if (!empty($cached)) {
+					$data['icon'] = $cached;
+				}
+			}
+			
+//			echo '<pre>'; print_r($m); exit;
+		}
+		
+		
+	}
+	
 	protected function getGeo(&$data, $m) {
+		
+		if (!empty($m['disco']) && !empty($m['disco']['geo'])) {
+			
+			$data['geo'] = $m['disco']['geo'];
+			// $data['discogeo'] = 1;
+
+		}
 		
 		// Do not lookup Geo locations from IP if geo location is already set.
 		if (array_key_exists('geo', $data)) return;
+
 	
 		// Look for SingleSignOnService endpoint.
 		if (!empty($m['SingleSignOnService']) ) {
