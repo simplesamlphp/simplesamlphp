@@ -137,6 +137,7 @@ DiscoJuice.Utils = {
 	 */
 	"searchMatch": function(item, term) {
 		if (item.title.toLowerCase().search(term.toLowerCase()) !== -1) return true;
+		if (item.descr && item.descr.toLowerCase().search(term.toLowerCase()) !== -1) return true;
 		var key, i, keyword;
 		
 		if (item.keywords) {
