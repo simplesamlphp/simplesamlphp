@@ -45,7 +45,7 @@ DiscoJuice.UI = {
 	
 	// addItem(item, description, {country, flag}, keywordmatch, distance)	 		
 	// addItem(current, current.descr || null, countrydef, search, current.distance);
-	"addItem": function(item, countrydef, search, distance) {
+	"addItem": function(item, countrydef, search, distance, quickentry) {
 		var textLink = '';
 		var classes = '';
 		if (item.weight < -50) classes += 'hothit';
@@ -61,6 +61,11 @@ DiscoJuice.UI = {
 		if (item.icon) {
 			textLink += '<img class="logo" src="' + iconpath + item.icon + '" />';
 			clear = true;
+		}
+		
+		if (quickentry) {
+//			textLink += '<span style="font-size: 80%; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; border: 1px solid #ccc; background: #eee; color: #777; padding: 3px 2px 0px 2px; margin: 3px; position: relative; top: -2px">&#8629;</span>';
+			textLink += '<span style="font-size: 80%; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; border: 1px solid #ccc; background: #eee; color: #777; padding: 3px 2px 0px 2px; margin: 3px; float: left; left: -10px">&#8629;</span>';
 		}
 		
 		// Add title

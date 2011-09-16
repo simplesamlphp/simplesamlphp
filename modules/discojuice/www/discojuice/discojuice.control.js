@@ -26,6 +26,8 @@ DiscoJuice.Control = {
 	
 	"extensionResponse": null,
 	
+	"quickEntry": null,
+	
 	/*
 	 * Fetching JSON Metadata using AJAX.
 	 * Callback postLoad is called when data is returned.
@@ -303,6 +305,8 @@ DiscoJuice.Control = {
  		var term = this.getTerm();
  		var categories = this.getCategories();
 
+		this.quickEntry = null;
+
 		if (!this.data) return;
 		
 		/*
@@ -328,6 +332,8 @@ DiscoJuice.Control = {
 		}
 
 		this.ui.clearItems();
+		
+		var quickSelected = false;
 		
 		hits = 0;
 		for(i = 0; i < this.data.length; i++) {
@@ -373,13 +379,37 @@ DiscoJuice.Control = {
 			var descr = current.descr || null;
 	
 			// addItem(item, {country, flag}, keywordmatch, distance)
-			this.ui.addItem(current, countrydef, search, current.distance);
+			
+			var quickSel = false;
+			
+			if (!quickSelected) {
+				console.log('Term: ' + term);
+				console.log('Search: ' + search);
+				if (term && search !== false) {
+					quickSel = true;
+					quickSelected = true;
+				} else if (!term) {
+					quickSel = true;
+					quickSelected = true;	
+				}
+			}
+			
+			this.ui.addItem(current, countrydef, search, current.distance, quickSel);
+
+			if (quickSel) {
+				this.quickEntry = current;
+			}
 
 		}
 		
 		this.ui.refreshData(someleft, this.maxhits, hits);
 	},
 	
+	
+	"hitEnter": function () {
+		console.log(this.quickEntry);
+		this.selectProvider(this.quickEntry.entityID, this.quickEntry.subID);
+	},
 	
 	"selectProvider": function(entityID, subID) {
 	
@@ -529,17 +559,84 @@ DiscoJuice.Control = {
 		/*
 			Initialise the search box.
 			*/
+		
+		var waiter = function (setCallback) {
+			var my = {};
+			
+			// Number of milliseconds to wait for more events.
+			my.delay = 400;
+			my.counter = 0;
+			
+			// Call back to fire, when the waiter is pinged, and waited for the timeout 
+			// (without subsequent events).
+			my.callback = setCallback;
+			
+			// Ping
+			function ping (event) {
+				my.counter++;
+				setTimeout(function() {
+					if (--my.counter === 0) {
+						my.callback(event);
+					}
+				}, my.delay);
+			}
+			
+			my.ping = ping;
+			return my;
+		}
+		
+		var performSearch = waiter(function(event) {
+			
+			term = that.ui.popup.find("input.discojuice_search").val();
+			console.log(that.ui.popup.find("input.discojuice_search"));
+			console.log('Term ' + term);
+		
+//			if (term.length === 0) alert('Zero!');
+			
+			// Will not perform a search when search term is only one character..
+			if (term.length === 1) return; 
+	//		that.resetCategories();
+			that.prepareData();
+		});
 			
 //		this.parent.Utils.log(this.ui.popup.find("input.discojuice_search"));
-		this.ui.popup.find("input.discojuice_search").autocomplete({
-			minLength: 0,
-			source: function( request, response ) {
-				var term = request.term;
-				if (term.length === 1) return;
-//				that.resetCategories();							
-				that.prepareData();
-			}
+		this.ui.popup.find("input.discojuice_search").keydown(function (event) {
+		 	var 
+				charCode, term;
+
+		    if (event && event.which){
+		        charCode = event.which;
+		    }else if(window.event){
+		        event = window.event;
+		        charCode = event.keyCode;
+		    }
+
+		    if(charCode == 13) {
+				that.hitEnter();
+				return;
+		    }
+			
+			performSearch.ping(event);
 		});
+		this.ui.popup.find("input.discojuice_search").change(function (event) {
+			performSearch.ping(event);
+		});
+		this.ui.popup.find("input.discojuice_search").mousedown(function (event) {
+			performSearch.ping(event);
+		});
+		
+		
+// 		this.ui.popup.find("input.discojuice_search").autocomplete({
+// 			minLength: 0,
+// 			source: function( request, response ) {
+// 				var term = request.term;
+// 				
+// 				if (term.length === 0) alert('0 entries');
+// 				if (term.length === 1) return;
+// //				that.resetCategories();							
+// 				that.prepareData();
+// 			}
+// 		});
 	},
 
 	"filterCountrySetup": function (choice) {
