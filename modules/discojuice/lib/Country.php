@@ -65,7 +65,9 @@ class sspmod_discojuice_Country {
 
 		if ($this->store->exists('geo', $ip, NULL)) {
 			SimpleSAML_Logger::debug('IP Geo location (geo): Found ip [' . $ip . '] in cache.');
-			return $this->store->getValue('geo', $ip, NULL);
+			$stored =  $this->store->getValue('geo', $ip, NULL);
+			if ($stored === NULL) throw new Exception('Got negative cache for this IP');
+			return $stored;
 		}
 		
 		SimpleSAML_Logger::debug('Lookup IP');
@@ -74,6 +76,11 @@ class sspmod_discojuice_Country {
 		if (empty($rawdata)) throw new Exception('Error looking up IP geo location for [' . $ip . ']');
 		$data = json_decode($rawdata, TRUE);
 		if (empty($data)) throw new Exception('Error decoding response from looking up IP geo location for [' . $ip . ']');
+		
+		if (empty($data['longitude'])) {
+			$this->store->set('geo', $ip, NULL, NULL);
+		}
+		
 		
 		if (empty($data['longitude'])) throw new Exception('Could not get longitude from IP lookup');
 		if (empty($data['latitude'])) throw new Exception( 'Could not get latitude from IP lookup');
