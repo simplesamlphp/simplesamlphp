@@ -1,6 +1,14 @@
 target.png
+
 http://www.iconfinder.com/icondetails/53875/32/goal_target_icon
 Creative Commons (Unported 3.0) http://creativecommons.org/licenses/by/3.0/
 
 
+
+error.png
+arrowfam.png
+
+Fam fam Silk icons
+http://www.famfamfam.com/lab/icons/silk/
+Creative Commons Attribution 3.0 License
 
