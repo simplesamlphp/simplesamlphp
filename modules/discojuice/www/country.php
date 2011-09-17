@@ -1,6 +1,5 @@
 <?php
 
-header('Content-type: application/json; utf-8');
 
 
 try {
@@ -29,8 +28,16 @@ try {
 		$result['geo'] = array('lat' => (float) $matches[1], 'lon' => (float)$matches[2]);
 	}
 
-	echo json_encode($result); exit;	
-	throw new Exception('Could not lookup, invalid format: ' . $region);
+
+
+	if(preg_match('/^[0-9A-Za-z_\-]+$/', $_REQUEST['callback'], $matches)) {
+		header('Content-type: application/javascript; utf-8');
+		echo $_REQUEST['callback'] . '(' . json_encode($result) . ');';
+	} else {
+		header('Content-type: application/json; utf-8');
+		echo json_encode($result);
+	}
+
 	
 } catch(Exception $e) {
 	
