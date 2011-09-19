@@ -52,6 +52,12 @@ DiscoJuice.Control = {
 			that.data = data;
 			that.parent.Utils.log('Successfully loaded metadata (' + data.length + ')');
 			that.postLoad();
+			
+			if (that.parent.Utils.options.get('country', false)) {
+				that.filterCountrySetup();
+			}
+			that.getCountry();
+
 		});
 		
 		
@@ -76,11 +82,6 @@ DiscoJuice.Control = {
 		this.discoReadSetup();
 		this.discoSubReadSetup();
 		this.searchboxSetup();		
-		if (this.parent.Utils.options.get('country', false)) {
-			this.filterCountrySetup();
-		}
-
-		this.getCountry();
 		
 	},
 	
@@ -642,6 +643,23 @@ DiscoJuice.Control = {
 	"filterCountrySetup": function (choice) {
 		var that = this;
 		var key;
+		
+		console.log('filterCountrySetup()');
+		
+		// Reduce country list to those in metadata
+		var validCountry = {};
+		for (key in this.data) {
+			if (this.data[key].country && this.data[key].country !== '_all_') {
+				validCountry[this.data[key].country] = true;
+			}
+		}
+		console.log(validCountry);
+
+		var countries = 0;
+		for (key in validCountry) {
+			countries++;
+		}
+
 
 		var preset = this.parent.Utils.options.get('setCountry');
 		if (!choice && preset) {
@@ -658,9 +676,10 @@ DiscoJuice.Control = {
 		}
 		
 		for (key in this.parent.Constants.Countries) {
+			console.log('Considering: ' + this.parent.Constants.Countries[key]);
 			if (key === choice) {
 				ftext += '<option value="' + key + '" selected="selected">' + this.parent.Constants.Countries[key] + '</option>';
-			} else {
+			} else if (validCountry[key]) {
 				ftext += '<option value="' + key + '" >' + this.parent.Constants.Countries[key] + '</option>';
 			}
 		}
