@@ -3,7 +3,7 @@
  *  Work is based upon mock up made by the Kantara ULX group.
  * 
  * Author: Andreas Åkre Solberg, UNINETT, andreas.solberg@uninett.no
- * Licence undecided. Awaiting alignment with the licence of the origin Kantara mockup.
+ * Licence undecided.
  */
 if (typeof DiscoJuice == "undefined") var DiscoJuice = {};
 
@@ -74,7 +74,6 @@ DiscoJuice.Control = {
 				}
 			}
 		}
-
 		
 		this.readCookie();
 		this.readExtensionResponse();
@@ -343,7 +342,8 @@ DiscoJuice.Control = {
 			
 			if (term) {
 				search = this.parent.Utils.searchMatch(current,term);
-				if (search === false && current.weight > -50) continue;
+//				if (search === false && current.weight > -50) continue;
+				if (search === false) continue;
 			} else {
 				search = null;
 			}
@@ -351,6 +351,7 @@ DiscoJuice.Control = {
 			if (categories && categories.country) {
 				if (!current.country) continue;
 				if (current.country !== '_all_' && categories.country !== current.country && current.weight > -50) continue;
+//				if (current.country !== '_all_' && categories.country !== current.country) continue;
 			}
 // 			if (categories && categories.type) {
 // 				if (!current.ctype && current.weight > -50) {
@@ -381,8 +382,10 @@ DiscoJuice.Control = {
 	
 			// addItem(item, {country, flag}, keywordmatch, distance)
 			
+			/*
+			 * Quick selection is the entry that you can go to by just hitting enter.
+			 */
 			var quickSel = false;
-			
 			if (!quickSelected) {
 				console.log('Term: ' + term);
 				console.log('Search: ' + search);
@@ -626,18 +629,6 @@ DiscoJuice.Control = {
 			performSearch.ping(event);
 		});
 		
-		
-// 		this.ui.popup.find("input.discojuice_search").autocomplete({
-// 			minLength: 0,
-// 			source: function( request, response ) {
-// 				var term = request.term;
-// 				
-// 				if (term.length === 0) alert('0 entries');
-// 				if (term.length === 1) return;
-// //				that.resetCategories();							
-// 				that.prepareData();
-// 			}
-// 		});
 	},
 
 	"filterCountrySetup": function (choice) {
