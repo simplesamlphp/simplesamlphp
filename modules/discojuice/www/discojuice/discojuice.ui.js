@@ -197,11 +197,14 @@ DiscoJuice.UI = {
 		var textHelp = this.parent.Utils.options.get('textHelp', 'Help me, I cannot find my provider');
 		var textHelpMore = this.parent.Utils.options.get('textHelpMore', 'If your institusion is not connected to Foodle, you may create a new account using any of the Guest providers, such as <strong>OpenIdP (Guest users)</strong>.');
 	
+		var subtitleText = this.parent.Utils.options.get('subtitle', null);
+		var subtitleHTML = (subtitleText !== null ? '<p class="discojuice_subtitle">' + subtitleText + '</p>' : '');
+	
 		var html = 	'<div style="display: none" class="discojuice">' +
 			'<div class="top">' +
 				'<a href="#" class="discojuice_close">&nbsp;</a>' +
 				'<p class="discojuice_maintitle">' + this.parent.Utils.options.get('title', 'Title')  +  '</p>' +
-				'<p class="discojuice_subtitle">' + this.parent.Utils.options.get('subtitle', 'Subtitle') + '</p>' +
+				subtitleHTML +
 			'</div>' +
 			
 			'<div class="discojuice_listContent" style="">' +
@@ -223,7 +226,7 @@ DiscoJuice.UI = {
 				'<div class="locatemebefore">' +
 					'<p style="margin-top: 10px"><a id="locateme" href="">' +
 						'<img style="float: left; margin-right: 5px; margin-top: -10px" src="' + imgpath + 'target.png" alt="locate me..." />' +
-						'Locate me more accurately using HTML5 Geo-Location</a>' +
+						'Locate me and show nearby providers</a>' +
 					'</p>' +
 					'<p style="color: #999" id="locatemeinfo"></p>' +
 				'</div>' +
