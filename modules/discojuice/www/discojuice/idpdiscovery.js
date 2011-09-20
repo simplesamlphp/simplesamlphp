@@ -54,23 +54,20 @@ var IdPDiscovery = function() {
 		
 		"returnTo": function(e) {
 			
-// 			console.log('ReturnTo');
-// 			console.log(e);
-// 			return;
-			
 			var returnTo = query['return'] || null;
 			var returnIDParam = query.returnIDParam || 'entityID';
+			var allowed = false;
+
 			if(!returnTo) {
 				DiscoJuice.Utils.log('Missing required parameter [return]');
 				return;
 			}
-			if (acl) {
-				var allowed = false;
+			if (!acl) {
+				allowed = true;
+			} else {
+
 				
 				var returnToHost = this.getHostname(returnTo);
-				
-// 				console.log('returnURLs2');
-// 				console.log(returnURLs);
 				
 				for (var i = 0; i < returnURLs.length; i++) {
 					if (returnURLs[i] == returnToHost) allowed = true;
@@ -78,22 +75,35 @@ var IdPDiscovery = function() {
 				}
 				
 				if (!allowed) {
+					
+					returnTo += '&error=' + encodeURIComponent('IdP Discovery: Access denied. Access not granted to return results to host [' + returnToHost + ']');
+					
 					DiscoJuice.Utils.log('Access denied for return parameter [' + returnToHost + ']');
 					DiscoJuice.Utils.log('Allowed hosts');
 					DiscoJuice.Utils.log(returnURLs);
-					return;
 				}
 			}
 			
-			if (e && e.auth) {
-				returnTo += '&auth=' + e.auth;
-			}
+
 			
-			if (!e.entityID) {
+			// Return error with access denied.
+			if (!allowed) {
+				
+				window.location = returnTo;
+				
+			// Return without entity found...
+			} else if (!e.entityID) {
 				DiscoJuice.Utils.log('ReturnTo without Entityid');
 				DiscoJuice.Utils.log(e);
 				window.location = returnTo;
+			
+			// Return entityid
 			} else {
+				
+				if (e && e.auth) {
+					returnTo += '&auth=' + e.auth;
+				}
+				
 				DiscoJuice.Utils.log('ReturnTo with Entityid');
 				window.location = returnTo + '&' + returnIDParam + '=' + escape(e.entityID);
 			}
