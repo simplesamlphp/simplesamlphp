@@ -16,6 +16,11 @@ div.discojuice {
 
 }
 
+div.discojuice * {
+	color: #000;
+	background: none;
+}
+
 div.discojuice p {
 	margin: 2px; padding: 0px;
 }
