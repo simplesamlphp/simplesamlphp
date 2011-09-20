@@ -168,6 +168,65 @@ DiscoJuice.Utils = {
 
 	"toRad": function (deg) {
 		return deg * Math.PI/180;
+	},
+	
+	
+	"waiter": function (completed, waitSeconds) {
+		
+		var
+		 	my = {},
+			parallellActions = [],
+			executed = false;
+		
+		
+		function execute () {
+			
+			if (executed) {
+				console.log('Execution cancelled. Already performed.');
+				return;
+			}
+			
+			executed = true;
+			completed(my);
+		}
+		
+		function runAction (act, tooLate) {
+			var
+				thisAction = {completed: false};
+				
+			parallellActions.push(thisAction);
+			console.log('Running action ' + parallellActions.length);
+			act(function () {
+				var i;
+				thisAction.completed = true;
+				for (i = 0; i < parallellActions.length; i++) {
+					if (!parallellActions[i].completed) {
+						console.log('Cannot execute because we are waiting for another action to complete.');
+						return;
+					}
+				}
+				if (executed) {
+					console.log('All actions completed. Too late for executing...');
+					tooLate();
+					return;
+				}
+				console.log('All actions completed. Executing!');
+				execute();
+			});
+			
+		}
+		
+		function startTimer() {
+			setTimeout(function() {
+				console.log('Action timeout!');
+				if (!executed) execute();
+			}, waitSeconds);
+		}
+		
+
+		my.startTimer = startTimer;
+		my.runAction = runAction;
+		return my;
 	}
 
 
