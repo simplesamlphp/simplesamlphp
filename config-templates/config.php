@@ -172,7 +172,7 @@ $config = array (
 	/*
 	 * Option to override the default settings for the session cookie name
 	 */
-	'session.cookie.name' => NULL,
+	'session.cookie.name' => 'SimpleSAMLSessionID',
 
 	/*
 	 * Expiration time for the session cookie, in seconds.
@@ -236,7 +236,7 @@ $config = array (
 	/*
 	 * Option to override the default settings for the auth token cookie
 	 */
-	'session.authtoken.cookiename' => null,
+	'session.authtoken.cookiename' => 'SimpleSAMLAuthToken',
 
 	/*
 	 * Languages available, RTL languages, and what language is default
