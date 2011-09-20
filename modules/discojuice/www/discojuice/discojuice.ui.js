@@ -73,9 +73,9 @@ DiscoJuice.UI = {
 		
 		// Add matched search term
 		if (search && search !== true) {
-			textLink += '<span class="substring">– ' + search + '</span>';
+			textLink += '<span class="substring">&#8212; ' + search + '</span>';
 		} else if (item.descr) {
-			textLink += '<span class="substring">– ' +  item.descr + '</span>';
+			textLink += '<span class="substring">&#8212; ' +  item.descr + '</span>';
 		}
 		
 		
@@ -189,6 +189,12 @@ DiscoJuice.UI = {
 			} 
 		}
 	},
+	
+	"error": function(message) {
+		console.log("error" + message);
+		this.popup.find("div#discojuice_error").show();
+		this.popup.find("div.discojuice_errortext").append('<p style="border-bottom: 1px dotted #ddd; margin-bottom: 3px" class="discojuice_errortext">' + message + '</p>');
+	},
 
 	"enable": function(control) {
 		var imgpath = this.parent.Utils.options.get('discoPath', '') + 'images/';
@@ -219,6 +225,12 @@ DiscoJuice.UI = {
 				'<div class="discojuice_whatisthis" style="margin-top: 15px; font-size: 11px;">' +
 					'<a  href="#" class="textlink discojuice_what">' + textHelp + '</a>' +
 					'<p class="discojuice_whattext">' + textHelpMore + '</p>' +
+				'</div>' +
+			'</div>' +
+			
+			'<div id="discojuice_error" style="display: none"  class="" >' +
+				'<img src="' + imgpath + 'error.png" style="float: left" />' +
+				'<div class="discojuice_errortext" style="clear: none; margin-top: 0px; margin-left: 30px; font-size: 11px;">' + 
 				'</div>' +
 			'</div>' +
 			
