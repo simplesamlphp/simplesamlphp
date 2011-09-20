@@ -32,11 +32,14 @@ function receive() {
 	if (urlParams.entityID) {
 		window.parent.DiscoJuice.Utils.log('ResponseLocation: Response from discovery service [' + sender + ']: ' + urlParams.entityID + '   subID: ' + urlParams.subID);
 		window.parent.DiscoJuice.Control.discoResponse(sender, urlParams.entityID, urlParams.subID);
+	} else if urlParams.error) {
+		window.parent.DiscoJuice.Control.ui.error("Error from IdP Discovery Service: " + urlParams.error);
 	} else {
 		window.parent.DiscoJuice.Utils.log('ResponseLocation: Response from discovery service [' + sender + ']: No valid response parameters');
 	}
 
 }
+
 	</script>
 </head>
 
