@@ -35,8 +35,22 @@ DiscoJuice.Control = {
 	"load": function() {
 		var that = this;		
 		if (this.data) return;
+		this.data = [];
+		
 		var metadataurl = this.parent.Utils.options.get('metadata');
+		var metadataurls = [];
 		var parameters = {};
+		var curmdurl = null;
+		var i,
+			waiter;
+		
+		if (typeof metadataurl === 'string') {
+			metadataurls.push(metadataurl);
+		} else if (typeof metadataurl === 'object' && metadataurl) {
+			metadataurls = metadataurl;
+		}
+		
+
 		
 		this.parent.Utils.log('metadataurl is ' + metadataurl);
 		if (!metadataurl) return;
@@ -48,22 +62,44 @@ DiscoJuice.Control = {
 			parameters.entityID = discosettings.spentityid;
 		}
 		
-		$.getJSON(metadataurl, parameters, function(data) {
-			that.data = data;
-			that.parent.Utils.log('Successfully loaded metadata (' + data.length + ')');
+		waiter = DiscoJuice.Utils.waiter(function() {
 			that.postLoad();
-			
-			if (that.parent.Utils.options.get('country', false)) {
-				that.filterCountrySetup();
-			}
-			that.getCountry();
+		}, 10000);
+		
+		for (i = 0; i < metadataurls.length; i++) {
+			curmdurl = metadataurls[i];
+			waiter.runAction(
+				function(notifyCompleted) {
+					var j = i+1;
+					$.getJSON(curmdurl, parameters, function(data) {
+						that.data = $.merge(that.data, data);
+						console.log(data);
+						that.parent.Utils.log('Successfully loaded metadata (' + data.length + ') (' + j + ' of ' + metadataurls.length + ')');
+						notifyCompleted();
+					});
+				}, 
+				// Callback function that will be executed if action completed after timeout.
+				function () {
+					var c = curmdurl;
+					return function() {
+						that.ui.error("Metadata retrieval from [" + c + "] to slow. Ignoring response.");
+					}
+				}()
+			);
+		}
+		
+		waiter.startTimer();
+		
 
-		});
 		
 		
 	},
 	
 	"postLoad": function() {
+		var 
+			that = this,
+			waiter;
+		
 		if (!this.data) return;
 		
 		// Iterate through entities, and update title from DisplayNames to support Shibboleth integration.
@@ -75,12 +111,24 @@ DiscoJuice.Control = {
 			}
 		}
 		
-		this.readCookie();
-		this.readExtensionResponse();
-		this.prepareData();
-		this.discoReadSetup();
-		this.discoSubReadSetup();
-		this.searchboxSetup();		
+		if (that.parent.Utils.options.get('country', false)) {
+			that.filterCountrySetup();
+		}
+
+		waiter = DiscoJuice.Utils.waiter(function() {
+			that.postLoad();
+		}, 10000);
+
+
+		that.getCountry(); // Syncronous
+		that.readCookie(); // Syncronous
+		that.readExtensionResponse(); // ...
+		
+		that.prepareData();
+		
+		that.discoReadSetup(); 		// Asyncronous
+		that.discoSubReadSetup();	// Asyncronous
+		that.searchboxSetup();		// Asyncronous
 		
 	},
 	
@@ -714,7 +762,10 @@ DiscoJuice.Control = {
 	"getCountry": function() {
 		// If countryAPI is set, then lookup by IP.
 		var countryapi = this.parent.Utils.options.get('countryAPI', false);
-		var that = this;
+		var that = this,
+			waiter;
+		
+
 		
 		if (countryapi) {
 			
@@ -722,7 +773,7 @@ DiscoJuice.Control = {
 			var geocachelat = parseFloat(this.parent.Utils.readCookie('GeoLat'));
 			var geocachelon = parseFloat(this.parent.Utils.readCookie('GeoLon'));
 		
-			if (countrycache) {
+			if (countrycache && false) {
 				
 				this.setCountry(countrycache);
 				this.parent.Utils.log('DiscoJuice getCountry() : Found country in cache: ' + countrycache);
@@ -733,24 +784,42 @@ DiscoJuice.Control = {
 				
 			} else {
 				
-				$.getJSON(countryapi, function(data) {
-		//			DiscoJuice.log(data);
-					if (data.status == 'ok' && data.country) {
-						that.parent.Utils.createCookie(data.country, 'Country2');
-						that.setCountry(data.country);
-						that.parent.Utils.log('DiscoJuice getCountry() : Country lookup succeeded: ' + data.country);
+				waiter = DiscoJuice.Utils.waiter(function (my) {
+					
+					if (!my.data) return;
+					if (my.data.status == 'ok' && my.data.country) {
 						
-						if (data.geo && data.geo.lat && data.geo.lon) {
-							that.setPosition(data.geo.lat, data.geo.lon);
-							that.parent.Utils.createCookie(data.geo.lat, 'GeoLat');
-							that.parent.Utils.createCookie(data.geo.lon, 'GeoLon');
-						}
-						
+						that.parent.Utils.createCookie(my.data.country, 'Country2');
+						that.setCountry(my.data.country);
+						that.parent.Utils.log('DiscoJuice getCountry() : Country lookup succeeded: ' + my.data.country);
+
+						if (my.data.geo && my.data.geo.lat && my.data.geo.lon) {
+							that.setPosition(my.data.geo.lat, my.data.geo.lon);
+							that.parent.Utils.createCookie(my.data.geo.lat, 'GeoLat');
+							that.parent.Utils.createCookie(my.data.geo.lon, 'GeoLon');
+						} 
+
 					} else {
-						that.parent.Utils.log('DiscoJuice getCountry() : Country lookup failed: ' + (data.error || ''));
+						that.parent.Utils.log('DiscoJuice getCountry() : Country lookup failed: ' + (my.data.error || ''));
+						that.ui.error("Error looking up users localization by country: " + (my.data.error || ''));
 					}
-				});
-			
+					
+				}, 1000);
+				
+				waiter.runAction( 	
+					function (notifyCompleted) {
+						$.getJSON(countryapi, function(data) {
+							waiter.data = data;
+							notifyCompleted();
+						});
+					},
+					function() {
+						that.ui.error("Error looking up country. Showing all countries. [1] Timeout.");
+					}
+				);
+				waiter.startTimer();
+
+
 			}
 		}
 	},
