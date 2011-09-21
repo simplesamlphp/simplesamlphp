@@ -259,7 +259,7 @@ class sspmod_discojuice_Feed {
 			if ($this->exclude($m['entityid'])) continue;
 			
 			$nc = $this->processEntity($m);
-			if (empty($nc['icon'])) continue;
+//			if (empty($nc['icon'])) continue;
 			$this->feed[] = $nc;
 		}
 		
