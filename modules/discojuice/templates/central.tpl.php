@@ -22,10 +22,8 @@ echo '<link rel="shortcut icon" href="' . SimpleSAML_Module::getModuleURL('disco
 
 echo '<!-- JQuery -->';
 echo '<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-1.6.min.js') . '"></script>
-<script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-ui-1.8.5.custom.min.js') . '"></script>
-
-<link rel="stylesheet" type="text/css" href="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/css/custom/jquery-ui-1.8.5.custom.css') . '" />
-
+<!-- script type="text/javascript" language="javascript" src="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/jquery-ui-1.8.5.custom.min.js') . '"></script -->
+<!-- link rel="stylesheet" type="text/css" href="' . SimpleSAML_Module::getModuleURL('discojuice/discojuice/css/custom/jquery-ui-1.8.5.custom.css') . '" / -->
 
 ';
 
@@ -70,11 +68,6 @@ if (!empty($_REQUEST['entityID'])) {
 	}
 	$options['disco']['spentityid'] = $_REQUEST['entityID'];
 }
-
-// echo '</script><pre>opts'; 
-// print_r($options);
-// exit;
-
 
 echo 'var options = ' . json_encode($options) . ';' . "\n\n";
 
@@ -176,10 +169,7 @@ echo '<div style="display: block" class="discojuice">
 	foreach($metadata AS $item) {
 		show($item);
 	}
-	
-// 	echo '<pre>';
-// 	print_r($metadata);
-// 	echo '</pre>';
+
 	
 	echo '</div>
 		</div>
