@@ -498,7 +498,7 @@ class sspmod_saml_IdP_SAML2 {
 	 * @param array $association  The SP association.
 	 * @return SimpleSAML_Configuration|NULL  Configuration object for the SP metadata.
 	 */
-	public static function getAssociationConfig(SimpleSAML_IdP $idp, array $association, $relayState) {
+	public static function getAssociationConfig(SimpleSAML_IdP $idp, array $association) {
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		try {
 			return $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
