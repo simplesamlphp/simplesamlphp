@@ -27,6 +27,19 @@ DiscoJuice.Control = {
 	"extensionResponse": null,
 	
 	"quickEntry": null,
+
+	// Waiter Notification Callback Registry
+	"wncr": [],
+	
+	
+	"registerCallback": function (callback) {
+		this.wncr.push(callback);
+		return (this.wncr.length - 1);
+	},
+	
+	"runCallback": function (i) {
+		if (this.wncr[i] && typeof this.wncr[i] === 'function') this.wncr[i]();
+	},
 	
 	/*
 	 * Fetching JSON Metadata using AJAX.
@@ -62,7 +75,9 @@ DiscoJuice.Control = {
 			parameters.entityID = discosettings.spentityid;
 		}
 		
+		that.parent.Utils.log('Setting up load() waiter');
 		waiter = DiscoJuice.Utils.waiter(function() {
+			that.parent.Utils.log('load() waiter EXECUTE');
 			that.postLoad();
 		}, 10000);
 		
@@ -73,7 +88,6 @@ DiscoJuice.Control = {
 					var j = i+1;
 					$.getJSON(curmdurl, parameters, function(data) {
 						that.data = $.merge(that.data, data);
-						console.log(data);
 						that.parent.Utils.log('Successfully loaded metadata (' + data.length + ') (' + j + ' of ' + metadataurls.length + ')');
 						notifyCompleted();
 					});
@@ -115,20 +129,25 @@ DiscoJuice.Control = {
 			that.filterCountrySetup();
 		}
 
-		waiter = DiscoJuice.Utils.waiter(function() {
-			that.postLoad();
-		}, 10000);
-
-
 		that.getCountry(); // Syncronous
 		that.readCookie(); // Syncronous
-		that.readExtensionResponse(); // ...
+		that.readExtensionResponse(); // Reading response set by the Browser extension
+
+		that.parent.Utils.log('Setting up postLoad() waiter');
+		waiter = DiscoJuice.Utils.waiter(function() {
+			that.prepareData();
+			that.searchboxSetup();
+			that.parent.Utils.log('postLoad() waiter EXECUTE');
+		}, 10000);
 		
-		that.prepareData();
+		that.discoReadSetup(waiter);
+		that.discoSubReadSetup(waiter);
 		
-		that.discoReadSetup(); 		// Asyncronous
-		that.discoSubReadSetup();	// Asyncronous
-		that.searchboxSetup();		// Asyncronous
+		waiter.startTimer();
+		
+
+
+		
 		
 	},
 	
@@ -149,6 +168,9 @@ DiscoJuice.Control = {
 		}
 	},
 	
+	/*
+	 * Reading response set by the Browser extension
+	 */
 	"readExtensionResponse": function() {
 	
 		if (!this.extensionResponse) return;
@@ -218,7 +240,7 @@ DiscoJuice.Control = {
 		this.parent.Utils.log('DiscoJuice setWeight failer (no entries found for) ' + entityID + ' # ' + subID);
 	},
 	
-	"discoResponse": function(sender, entityID, subID) {
+	"discoResponse": function(sender, entityID, subID, cid) {
 		this.parent.Utils.log('DiscoResponse Received from [' + sender  + '] entityID: ' + entityID + ' subID: ' + subID);
 		
 		var settings = this.parent.Utils.options.get('disco');
@@ -234,6 +256,14 @@ DiscoJuice.Control = {
 		
 		this.setWeight(-100, entityID, subID);
 		this.prepareData();
+		
+		if (cid) {
+			this.runCallback(cid);			
+		} else {
+			// Fallback; if response endpoint is not yet updated to support passing a callback ID reference.
+			this.prepareData();
+		}
+		
 	},
 	
 	"calculateDistance": function() {
@@ -509,7 +539,7 @@ DiscoJuice.Control = {
 	},
 	
 	// Setup an iframe to read discovery cookies from other domains
-	"discoReadSetup": function() {
+	"discoReadSetup": function(waiter) {
 		var settings = this.parent.Utils.options.get('disco');
 		
 		if (!settings) return;
@@ -520,20 +550,31 @@ DiscoJuice.Control = {
 		var stores = settings.stores;
 		var i;
 		var currentStore;
+		var callbackid;
+		var returnurlwithparams;
 		
 		if (!stores) return;
 		
 		for(i = 0; i < stores.length; i++) {
-			currentStore = stores[i];
-			this.parent.Utils.log('Setting up DisoJuice Read from Store [' + currentStore + ']');
-			iframeurl = currentStore + '?entityID=' + escape(spentityid) + '&isPassive=true&returnIDParam=entityID&return=' + escape(returnurl);
-			html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
-			this.ui.addContent(html);
+			
+			waiter.runAction(function (notifyCompleted) {
+			
+				callbackid = this.registerCallback(notifyCompleted);
+				returnurlwithparams = returnurl + 'cid=' + callbackid;
+				
+				currentStore = stores[i];
+				this.parent.Utils.log('Setting up DisoJuice Read from Store [' + currentStore + ']');
+				iframeurl = currentStore + '?entityID=' + escape(spentityid) + '&isPassive=true&returnIDParam=entityID&return=' + escape(returnurlwithparams);
+				html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
+				this.ui.addContent(html);
+				
+			});
+
 		}
 	},
 	
 	// Setup an iframe to read discovery cookies from other domains
-	"discoSubReadSetup": function() {
+	"discoSubReadSetup": function(waiter) {
 		var settings = this.parent.Utils.options.get('disco');
 		
 		if (!settings) return;
@@ -544,18 +585,25 @@ DiscoJuice.Control = {
 		var stores = settings.subIDstores;
 		var i;
 		var currentStore;
+		var callbackid;
 		
 		if (!stores) return;
 		
 		for(var idp in stores) {
-			returnurl = settings.url + 'entityID=' + escape(idp);
-			currentStore = stores[idp];
-			this.parent.Utils.log('Setting up SubID DisoJuice Read from Store [' + idp + '] =>  [' + currentStore + ']');
-			iframeurl = currentStore + '?entityID=' + escape(spentityid) + '&isPassive=true&returnIDParam=subID&return=' + escape(returnurl);
-			this.parent.Utils.log('iFrame URL is  [' + iframeurl + ']');
-			this.parent.Utils.log('return URL is  [' + returnurl + ']');
-			html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
-			this.ui.addContent(html);
+			
+			waiter.runAction(function (notifyCompleted) {
+			
+				callbackid = this.registerCallback(notifyCompleted);
+				returnurl = settings.url + 'entityID=' + escape(idp) + '&callbackid=' + callbackid;
+				
+				currentStore = stores[idp];
+				this.parent.Utils.log('Setting up SubID DisoJuice Read from Store [' + idp + '] =>  [' + currentStore + ']');
+				iframeurl = currentStore + '?entityID=' + escape(spentityid) + '&isPassive=true&returnIDParam=subID&return=' + escape(returnurl);
+				this.parent.Utils.log('iFrame URL is  [' + iframeurl + ']');
+				this.parent.Utils.log('return URL is  [' + returnurl + ']');
+				html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
+				this.ui.addContent(html);
+			});
 		}
 	},
 
@@ -625,6 +673,7 @@ DiscoJuice.Control = {
 			
 			// Ping
 			function ping (event) {
+				console.log('Search box detected a change. Executing refresh...')
 				my.counter++;
 				setTimeout(function() {
 					if (--my.counter === 0) {

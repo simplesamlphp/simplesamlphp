@@ -217,10 +217,17 @@ DiscoJuice.Utils = {
 		}
 		
 		function startTimer() {
+			if (parallellActions.length === 0) {
+				console.log('Executing because no action is scheduled....');
+				if (!executed) execute();
+				return;
+			}
+			
 			setTimeout(function() {
 				console.log('Action timeout!');
 				if (!executed) execute();
 			}, waitSeconds);
+			
 		}
 		
 
