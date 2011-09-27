@@ -78,7 +78,7 @@ DiscoJuice.Control = {
 		// If SP EntityID is set in configuration make sure it is sent as a parameter
 		// to the feed endpoint.
 		var discosettings = this.parent.Utils.options.get('disco');
-		if (discosettings) {
+		if (this.parent.Utils.options.get('discoSetRequestor', false)) {
 			parameters.entityID = discosettings.spentityid;
 		}
 		
@@ -95,7 +95,7 @@ DiscoJuice.Control = {
 					var j = i+1;
 					$.ajax({
 						url: curmdurl,
-//						dataType: 'jsonp',
+						dataType: 'jsonp',
 						jsonpCallback: function() { return 'dj_md_' + j; },
 						cache: true,
 						data: parameters,
@@ -906,6 +906,7 @@ DiscoJuice.Control = {
 						$.ajax({
 							cache: true,
 							url: countryapi,
+							dataType: 'jsonp',
 							jsonpCallback: function() { return 'dj_country'; },
 							success: function(data) {
 								if (data && data.status == 'ok' && data.country) {
