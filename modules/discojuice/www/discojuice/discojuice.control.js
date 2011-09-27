@@ -1,7 +1,5 @@
 /*
  * DiscoJuice
- *  Work is based upon mock up made by the Kantara ULX group.
- * 
  * Author: Andreas Åkre Solberg, UNINETT, andreas.solberg@uninett.no
  * Licence undecided.
  */

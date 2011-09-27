@@ -1,9 +1,7 @@
 /*
  * DiscoJuice
- *  Work is based upon mock up made by the Kantara ULX group.
- * 
  * Author: Andreas Åkre Solberg, UNINETT, andreas.solberg@uninett.no
- * Licence undecided. Awaiting alignment with the licence of the origin Kantara mockup.
+ * Licence undecided.
  */
 if (typeof DiscoJuice == "undefined") var DiscoJuice = {};
 
