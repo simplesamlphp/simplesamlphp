@@ -288,7 +288,10 @@ DiscoJuice.UI = {
 			
 			'<div class="filters bottom">' +
 //				'<p style="margin 0px; color: #ccc; font-size: 75%; float: left">Settings</p>' +
-				'<p style="margin 0px; text-align: right; color: #ccc; font-size: 75%">DiscoJuice &copy; UNINETT</p>' +
+				'<p id="dj_help" style="margin 0px; text-align: right; color: #ccc; font-size: 75%">' + 
+				'DiscoJuice &copy; UNINETT ' + 
+				'<img class="" style="position: relative; bottom: -4px; right: -5px" alt="Information" src="' + imgpath + 'info.png" />'
+				'</p>' +
 
 			'</div>' +
 	
@@ -315,6 +318,15 @@ DiscoJuice.UI = {
 				return false;
 			});
 		}
+		
+		this.popup.find("p#dj_help").click(function() {
+			that.setScreen(
+				'<h2>About DiscoJuice</h2>' +
+				'<p style="margin: .5em 0px">DiscoJuice is a user interface to help users select which provider to login with. DiscoJuice is created by <a href="http://uninett.no">UNINETT</a></p>' +
+
+				'<p style="margin: .5em 10px"><a href="http://discojuice.org" target="_blank">Read more about DiscoJuice</a></p>' +
+				'<p style="margin: .5em 0px; font-size: 80%">Version: ' + DiscoJuice.Version);
+		});
 
 		this.popup.find("#discojuiceextesion_listener").click(function() {
 			that.control.discojuiceextension();

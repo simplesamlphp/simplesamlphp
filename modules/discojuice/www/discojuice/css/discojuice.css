@@ -68,6 +68,9 @@ div.discojuice div.discojuice_page {
 	
 }
 
+div.discojuice p#dj_help {
+	cursor: pointer;
+}
 
 
 
