@@ -93,11 +93,18 @@ DiscoJuice.Control = {
 			waiter.runAction(
 				function(notifyCompleted) {
 					var j = i+1;
-					$.getJSON(curmdurl, parameters, function(data) {
-						that.data = $.merge(that.data, data);
-						that.parent.Utils.log('Successfully loaded metadata (' + data.length + ') (' + j + ' of ' + metadataurls.length + ')');
-						notifyCompleted();
+					$.ajax({
+						url: curmdurl,
+						dataType: 'json',
+						cache: true,
+						data: parameters,
+						success: function(data) {
+							that.data = $.merge(that.data, data);
+							that.parent.Utils.log('Successfully loaded metadata (' + data.length + ') (' + j + ' of ' + metadataurls.length + ')');
+							notifyCompleted();
+						}
 					});
+
 				}, 
 				// Callback function that will be executed if action completed after timeout.
 				function () {
@@ -155,9 +162,6 @@ DiscoJuice.Control = {
 		that.getCountry(waiter);
 		
 		waiter.startTimer();
-		
-
-
 		
 		
 	},
@@ -897,28 +901,35 @@ DiscoJuice.Control = {
 				
 				waiter.runAction( 	
 					function (notifyCompleted) {
-						$.getJSON(countryapi, function(data) {
-							if (data && data.status == 'ok' && data.country) {
+						
+						$.ajax({
+							cache: true,
+							url: countryapi,
+							dataType: 'json',
+							success: function(data) {
+								if (data && data.status == 'ok' && data.country) {
 
-								that.parent.Utils.createCookie(data.country, 'Country2');
-								that.setCountry(data.country, false);
-								that.parent.Utils.log('DiscoJuice getCountry() : Country lookup succeeded: ' + data.country);
+									that.parent.Utils.createCookie(data.country, 'Country2');
+									that.setCountry(data.country, false);
+									that.parent.Utils.log('DiscoJuice getCountry() : Country lookup succeeded: ' + data.country);
 
-								if (data.geo && data.geo.lat && data.geo.lon) {
-									that.setPosition(data.geo.lat, data.geo.lon, false);
-									that.parent.Utils.createCookie(data.geo.lat, 'GeoLat');
-									that.parent.Utils.createCookie(data.geo.lon, 'GeoLon');
-								} 
+									if (data.geo && data.geo.lat && data.geo.lon) {
+										that.setPosition(data.geo.lat, data.geo.lon, false);
+										that.parent.Utils.createCookie(data.geo.lat, 'GeoLat');
+										that.parent.Utils.createCookie(data.geo.lon, 'GeoLon');
+									} 
 
-							} else if (data && data.error){
-								that.parent.Utils.log('DiscoJuice getCountry() : Country lookup failed: ' + (data.error || ''));
-								that.ui.error("Error looking up users localization by country: " + (data.error || ''));
-							} else {
-								that.parent.Utils.log('DiscoJuice getCountry() : Country lookup failed');
-								that.ui.error("Error looking up users localization by country.");
+								} else if (data && data.error){
+									that.parent.Utils.log('DiscoJuice getCountry() : Country lookup failed: ' + (data.error || ''));
+									that.ui.error("Error looking up users localization by country: " + (data.error || ''));
+								} else {
+									that.parent.Utils.log('DiscoJuice getCountry() : Country lookup failed');
+									that.ui.error("Error looking up users localization by country.");
+								}
+								notifyCompleted();
 							}
-							notifyCompleted();
 						});
+
 					}
 				);
 
