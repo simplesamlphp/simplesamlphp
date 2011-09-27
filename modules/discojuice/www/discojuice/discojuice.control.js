@@ -95,7 +95,8 @@ DiscoJuice.Control = {
 					var j = i+1;
 					$.ajax({
 						url: curmdurl,
-						dataType: 'json',
+//						dataType: 'jsonp',
+						jsonpCallback: function() { return 'dj_md_' + j; },
 						cache: true,
 						data: parameters,
 						success: function(data) {
@@ -905,7 +906,7 @@ DiscoJuice.Control = {
 						$.ajax({
 							cache: true,
 							url: countryapi,
-							dataType: 'json',
+							jsonpCallback: function() { return 'dj_country'; },
 							success: function(data) {
 								if (data && data.status == 'ok' && data.country) {
 
