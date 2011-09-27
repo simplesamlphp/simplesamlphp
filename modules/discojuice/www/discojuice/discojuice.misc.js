@@ -29,6 +29,7 @@ DiscoJuice.Constants = {
 		'HR': 'Croatia',
 		'IE': 'Ireland',
 		'IT': 'Italy',
+		'IS': 'Iceland',
 		'JP': 'Japan',
 		'HU': 'Hungary',
 		'LU': 'Luxembourg',
@@ -55,6 +56,7 @@ DiscoJuice.Constants = {
 		'HR': 'hr.png',
 		'IE': 'ie.png',
 		'IT': 'it.png',
+		'IS': 'is.png',
 		'JP': 'jp.png',
 		'HU': 'hu.png',
 		'LU': 'lu.png',
@@ -206,8 +208,13 @@ DiscoJuice.Utils = {
 					}
 				}
 				if (executed) {
-					console.log('All actions completed. Too late for executing...');
-					tooLate();
+					if (my.allowMultiple) {
+						console.log('Slow response; but executing anyway!!');
+						execute();
+					} else if (typeof tooLate === 'function') {
+						console.log('All actions completed. Too late for executing...');
+						tooLate();
+					}
 					return;
 				}
 				console.log('All actions completed. Executing!');
@@ -229,7 +236,8 @@ DiscoJuice.Utils = {
 			}, waitSeconds);
 			
 		}
-		
+
+		my.allowMultiple = false;
 
 		my.startTimer = startTimer;
 		my.runAction = runAction;

@@ -43,11 +43,9 @@ DiscoJuice.UI = {
 		this.resulthtml = '';
 	},
 	
-	// addItem(item, description, {country, flag}, keywordmatch, distance)	 		
-	// addItem(current, current.descr || null, countrydef, search, current.distance);
-	"addItem": function(item, countrydef, search, distance, quickentry) {
+	"addItem": function(item, countrydef, search, distance, quickentry, enabled) {
 		var textLink = '';
-		var classes = '';
+		var classes = (enabled ? 'enabled' : 'disabled');
 //		if (item.weight < -50) classes += 'hothit';
 
 		var iconpath = this.parent.Utils.options.get('discoPath', '') + 'logos/';
@@ -58,7 +56,7 @@ DiscoJuice.UI = {
 		
 		
 		// Add icon element first
-		if (item.icon) {
+		if (item.icon && this.parent.Utils.options.get('showIcon', true)) {
 			textLink += '<img class="logo" src="' + iconpath + item.icon + '" />';
 			clear = true;
 		}
@@ -80,7 +78,10 @@ DiscoJuice.UI = {
 		
 		
 
-		if (countrydef || (distance != undefined)) {
+		if (
+				(countrydef || (distance != undefined))
+				&& this.parent.Utils.options.get('showLocationInfo', true)
+			) {
 				
 			textLink += '<span class="location">';
 			if (countrydef) {
@@ -140,12 +141,38 @@ DiscoJuice.UI = {
 			relID += '#' + item.subID;
 		}
 		
+		
+
+		
+		
 		// Wrap in A element
 		textLink = '<a href="" class="' + classes + '" rel="' + escape(relID) + '" title="' + escape(item.title) + '">' + 
 			textLink + '</a>';
 
 
 		this.resulthtml += textLink;
+	},
+	
+	
+	"setScreen": function (content) {
+		$("div.discojuice_listContent").hide();
+		$("div#locatemediv").hide();
+		$("div#search").hide();
+		$("div.filters p.discojuice_filter_country").hide();
+		
+		$("div#discojuice_page div.discojuice_content").html(content);		
+		
+		$("div#discojuice_page").show();
+		$("div#discojuice_page_return").show();
+		
+		console.log($("div#discojuice_page"));
+		
+	},
+	
+	"returnToProviderList": function () {
+		$("div.discojuice_listContent").show();
+		$("div#discojuice_page").hide();
+		$("div#discojuice_page_return").hide();
 	},
 		
 	"refreshData": function(showmore, show, listcount) {
@@ -158,7 +185,8 @@ DiscoJuice.UI = {
 			var overthere = that;	// Overthere is a reference to the UI object
 			$(this).click(function(event) {
 				event.preventDefault();
-				overthere.hide();
+				event.stopPropagation();
+				//overthere.hide();
 							
 				// The "rel" attribute is containing: 'entityid#subid'
 				// THe following code, decodes that.
@@ -219,6 +247,17 @@ DiscoJuice.UI = {
 				'</div>' +
 				'<p class="discojuice_moreLinkContainer" style="margin: 0px; padding: 4px">&nbsp;</p>' +
 			'</div>' +
+			
+			'<div id="discojuice_page" style="display: none"  class="" >' +
+				'<div class="discojuice_content" style="">' + 
+				'</div>' +
+			'</div>' +
+			
+			'<div id="discojuice_page_return" style="display: none"  class="" >' +
+				'<div class="" style="">' + 
+				'<input id="discojuice_returntoproviderlist" type="submit" value="« Return to list of providers" />' +
+				'</div>' +
+			'</div>' +
 	
 			'<div id="search" class="" >' +
 				'<p><input type="search" class="discojuice_search" results=5 autosave="discojuice" name="searchfield" placeholder="' + textSearch + '" value="" /></p>' +
@@ -250,7 +289,9 @@ DiscoJuice.UI = {
 			'</div>' +
 			
 			'<div class="filters bottom">' +
+//				'<p style="margin 0px; color: #ccc; font-size: 75%; float: left">Settings</p>' +
 				'<p style="margin 0px; text-align: right; color: #ccc; font-size: 75%">DiscoJuice &copy; UNINETT</p>' +
+
 			'</div>' +
 	
 
@@ -279,6 +320,11 @@ DiscoJuice.UI = {
 
 		this.popup.find("#discojuiceextesion_listener").click(function() {
 			that.control.discojuiceextension();
+		});
+
+		this.popup.find("#discojuice_page_return input").click(function(e) {
+			e.preventDefault();
+			that.returnToProviderList();
 		});
 
 		// Add listeners to the close button.

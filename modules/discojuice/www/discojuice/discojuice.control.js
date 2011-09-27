@@ -14,7 +14,12 @@ DiscoJuice.Control = {
 
 	// Reference to the UI object...
 	"ui": null,	
+	
+	// entity data.
 	"data": null,
+	
+	"quickEntry": null,
+	"subsetEnabled": null,
 	
 	// Set filter values to filter the result.
 	"filters": {},
@@ -26,7 +31,7 @@ DiscoJuice.Control = {
 	
 	"extensionResponse": null,
 	
-	"quickEntry": null,
+
 
 	// Waiter Notification Callback Registry
 	"wncr": [],
@@ -49,6 +54,8 @@ DiscoJuice.Control = {
 		var that = this;		
 		if (this.data) return;
 		this.data = [];
+		
+		this.subsetEnabled = this.parent.Utils.options.get('subsetEnabled', null);
 		
 		var metadataurl = this.parent.Utils.options.get('metadata');
 		var metadataurls = [];
@@ -129,19 +136,23 @@ DiscoJuice.Control = {
 			that.filterCountrySetup();
 		}
 
-		that.getCountry(); // Syncronous
+
 		that.readCookie(); // Syncronous
 		that.readExtensionResponse(); // Reading response set by the Browser extension
 
 		that.parent.Utils.log('Setting up postLoad() waiter');
+
 		waiter = DiscoJuice.Utils.waiter(function() {
 			that.prepareData();
 			that.searchboxSetup();
 			that.parent.Utils.log('postLoad() waiter EXECUTE');
-		}, 10000);
+		}, 2000);
 		
+		waiter.allowMultiple = true;
+				
 		that.discoReadSetup(waiter);
 		that.discoSubReadSetup(waiter);
+		that.getCountry(waiter);
 		
 		waiter.startTimer();
 		
@@ -240,6 +251,17 @@ DiscoJuice.Control = {
 		this.parent.Utils.log('DiscoJuice setWeight failer (no entries found for) ' + entityID + ' # ' + subID);
 	},
 	
+	"discoResponseError": function (cid, error) {
+		this.parent.Utils.log('DiscoResponse ERROR Received cid=' + cid);
+		if (cid) {
+			this.runCallback(cid);
+		}
+		
+		if (error) {
+			this.ui.error(error);
+		}
+	},
+	
 	"discoResponse": function(sender, entityID, subID, cid) {
 		this.parent.Utils.log('DiscoResponse Received from [' + sender  + '] entityID: ' + entityID + ' subID: ' + subID);
 		
@@ -255,7 +277,6 @@ DiscoJuice.Control = {
 		}
 		
 		this.setWeight(-100, entityID, subID);
-		this.prepareData();
 		
 		if (cid) {
 			this.runCallback(cid);			
@@ -266,7 +287,7 @@ DiscoJuice.Control = {
 		
 	},
 	
-	"calculateDistance": function() {
+	"calculateDistance": function(update) {
 		var targets, distances;
 		for(var i = 0; i < this.data.length; i++) {
 			if (this.data[i].geo) {
@@ -314,7 +335,7 @@ DiscoJuice.Control = {
 // 			}
 // 		}
 		this.showdistance = true;
-		this.prepareData();
+		if (update) this.prepareData();
 	},
 	
 	"locateMe": function() {
@@ -337,7 +358,7 @@ DiscoJuice.Control = {
 					that.ui.setLocationText('You are here: ' + position.coords.latitude + ', ' + position.coords.longitude + '. Nearby providers shown on top.');
 					
 					that.location = [position.coords.latitude, position.coords.longitude];
-					that.calculateDistance();
+					that.calculateDistance(true);
 					
 				}, 
 				// next function is the error callback
@@ -369,6 +390,20 @@ DiscoJuice.Control = {
 		this.maxhits += 100;
 		this.prepareData();
 		
+	},
+	
+	"isEnabled": function (item) {
+		
+		var relID = item.entityID;
+		if (item.subID) {
+			relID += '#' + item.subID;
+		}
+		
+		if (this.subsetEnabled === null) return true;		
+		if (this.subsetEnabled[relID]) return true;
+		if (this.subsetEnabled[item.entityID]) return true;
+
+		return false;
 	},
 	
 	"prepareData": function(showall) {
@@ -476,7 +511,10 @@ DiscoJuice.Control = {
 				}
 			}
 			
-			this.ui.addItem(current, countrydef, search, current.distance, quickSel);
+			var enabled = this.isEnabled(current);
+			
+			
+			this.ui.addItem(current, countrydef, search, current.distance, quickSel, enabled);
 
 			if (quickSel) {
 				this.quickEntry = current;
@@ -497,8 +535,28 @@ DiscoJuice.Control = {
 	
 		// console.log('entityid: '  + entityID);
 	
+	
 		var callback;
 		var that = this;
+		var entity = null;
+		
+		callback = this.parent.Utils.options.get('callback');	
+		
+		for(i = 0; i < this.data.length; i++) {
+			if (this.data[i].entityID == entityID) {
+				if (!subID || subID == this.data[i].subID) {
+					entity = this.data[i];
+				}
+			}
+		}
+		
+		if (entity.auth && entity.auth === 'local') {
+			console.log('local');
+			callback(entity, that);
+			return;
+		}
+		
+		
 		var mustwait = that.discoWrite(entityID, subID);
 		
 		if (this.parent.Utils.options.get('cookie', false)) {
@@ -509,29 +567,22 @@ DiscoJuice.Control = {
 			this.parent.Utils.createCookie(relID);
 		}
 
-		var entity = null;
-		for(i = 0; i < this.data.length; i++) {
-			if (this.data[i].entityID == entityID) {
-				if (!subID || subID == this.data[i].subID) {
-					entity = this.data[i];
-				}
-			}
-		}
 
-// 		console.log('Entity Selected');
-// 		console.log(entity);
+
+		console.log('Entity Selected');
+		console.log(entity);
 // 		return;
 
-		callback = this.parent.Utils.options.get('callback');	
+
 		if (callback) {
 			if (mustwait) {
 				$.doTimeout(1000, function(){
-					callback(entity);
+					callback(entity, that);
 					// alert('done');
 				});
 				
 			} else {
-				callback(entity);
+				callback(entity, that);
 			}
 			return;
 		}
@@ -540,6 +591,7 @@ DiscoJuice.Control = {
 	
 	// Setup an iframe to read discovery cookies from other domains
 	"discoReadSetup": function(waiter) {
+		var that = this;
 		var settings = this.parent.Utils.options.get('disco');
 		
 		if (!settings) return;
@@ -559,14 +611,14 @@ DiscoJuice.Control = {
 			
 			waiter.runAction(function (notifyCompleted) {
 			
-				callbackid = this.registerCallback(notifyCompleted);
-				returnurlwithparams = returnurl + 'cid=' + callbackid;
+				callbackid = that.registerCallback(notifyCompleted);
+				returnurlwithparams = returnurl + '?cid=' + callbackid;
 				
 				currentStore = stores[i];
-				this.parent.Utils.log('Setting up DisoJuice Read from Store [' + currentStore + ']');
+				that.parent.Utils.log('Setting up DisoJuice Read from Store [' + currentStore + ']');
 				iframeurl = currentStore + '?entityID=' + escape(spentityid) + '&isPassive=true&returnIDParam=entityID&return=' + escape(returnurlwithparams);
 				html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
-				this.ui.addContent(html);
+				that.ui.addContent(html);
 				
 			});
 
@@ -576,6 +628,7 @@ DiscoJuice.Control = {
 	// Setup an iframe to read discovery cookies from other domains
 	"discoSubReadSetup": function(waiter) {
 		var settings = this.parent.Utils.options.get('disco');
+		var that = this;
 		
 		if (!settings) return;
 	
@@ -593,16 +646,16 @@ DiscoJuice.Control = {
 			
 			waiter.runAction(function (notifyCompleted) {
 			
-				callbackid = this.registerCallback(notifyCompleted);
-				returnurl = settings.url + 'entityID=' + escape(idp) + '&callbackid=' + callbackid;
+				callbackid = that.registerCallback(notifyCompleted);
+				returnurl = settings.url + '?entityID=' + escape(idp) + '&cid=' + callbackid;
 				
 				currentStore = stores[idp];
-				this.parent.Utils.log('Setting up SubID DisoJuice Read from Store [' + idp + '] =>  [' + currentStore + ']');
+				that.parent.Utils.log('Setting up SubID DisoJuice Read from Store [' + idp + '] =>  [' + currentStore + ']');
 				iframeurl = currentStore + '?entityID=' + escape(spentityid) + '&isPassive=true&returnIDParam=subID&return=' + escape(returnurl);
-				this.parent.Utils.log('iFrame URL is  [' + iframeurl + ']');
-				this.parent.Utils.log('return URL is  [' + returnurl + ']');
+				that.parent.Utils.log('iFrame URL is  [' + iframeurl + ']');
+				that.parent.Utils.log('return URL is  [' + returnurl + ']');
 				html = '<iframe src="' + iframeurl + '" style="display: none"></iframe>';
-				this.ui.addContent(html);
+				that.ui.addContent(html);
 			});
 		}
 	},
@@ -619,10 +672,13 @@ DiscoJuice.Control = {
 		var spentityid = settings.spentityid;
 		var writableStore = settings.writableStore;
 		
+		this.parent.Utils.log('DiscoJuice.Control discoWrite()');
+		
 		if (subID) {
-			
+			this.parent.Utils.log('DiscoJuice.Control discoWrite(...)');			
 			if (settings.subIDwritableStores && settings.subIDwritableStores[entityID]) {
 			
+				this.parent.Utils.log('DiscoJuice.Control discoWrite(...)');			
 				writableStore = settings.subIDwritableStores[entityID];
 				
 				this.parent.Utils.log('DiscoJuice.Control discoWrite(' + entityID + ') with SubID [' + subID + ']');
@@ -643,8 +699,12 @@ DiscoJuice.Control = {
 		
 		this.parent.Utils.log('DiscoJuice.Control discoWrite(' + entityID + ') to ' + writableStore);
 			
-		iframeurl = writableStore + '?entityID=' + escape(spentityid) + '&IdPentityID=' + 
+		// iframeurl = writableStore + '?entityID=' + escape(spentityid) + '&IdPentityID=' + 
+		// 	escape(entityID) + '&isPassive=true&returnIDParam=bogus&return=' + escape(returnurl);
+
+		iframeurl = writableStore + '&entityID=' + escape(spentityid) + '&origin=' + 
 			escape(entityID) + '&isPassive=true&returnIDParam=bogus&return=' + escape(returnurl);
+
 			
 		this.parent.Utils.log('DiscoJuice.Control discoWrite iframeURL (' + iframeurl + ') ');
 			
@@ -764,7 +824,7 @@ DiscoJuice.Control = {
 		}
 		
 		for (key in this.parent.Constants.Countries) {
-			console.log('Considering: ' + this.parent.Constants.Countries[key]);
+			//console.log('Considering: ' + this.parent.Constants.Countries[key]);
 			if (key === choice) {
 				ftext += '<option value="' + key + '" selected="selected">' + this.parent.Constants.Countries[key] + '</option>';
 			} else if (validCountry[key]) {
@@ -798,23 +858,25 @@ DiscoJuice.Control = {
 		});
 		
 	},
-	"setCountry": function(country) {
+	"setCountry": function(country, update) {
 		if (this.parent.Constants.Countries[country]) {
 			this.ui.popup.find('select.discojuice_filterCountrySelect').val(country);
-			this.prepareData();		
+			if (update) {
+				this.prepareData();
+			}
+
 		}
 	},
-	"setPosition": function(lat, lon) {
+	"setPosition": function(lat, lon, update) {
 		this.location = [lat, lon];
-		this.calculateDistance();
+		this.calculateDistance(update);
 	},
-	"getCountry": function() {
+	"getCountry": function(waiter) {
 		// If countryAPI is set, then lookup by IP.
 		var countryapi = this.parent.Utils.options.get('countryAPI', false);
-		var that = this,
-			waiter;
+		var that = this;
 		
-
+		console.log('country api : ' + countryapi);
 		
 		if (countryapi) {
 			
@@ -822,52 +884,43 @@ DiscoJuice.Control = {
 			var geocachelat = parseFloat(this.parent.Utils.readCookie('GeoLat'));
 			var geocachelon = parseFloat(this.parent.Utils.readCookie('GeoLon'));
 		
-			if (countrycache && false) {
+			if (countrycache) {
 				
-				this.setCountry(countrycache);
+				this.setCountry(countrycache, false);
 				this.parent.Utils.log('DiscoJuice getCountry() : Found country in cache: ' + countrycache);
 				
 				if (geocachelat && geocachelon) {
-					this.setPosition(geocachelat, geocachelon);
+					this.setPosition(geocachelat, geocachelon, false);
 				}
 				
 			} else {
 				
-				waiter = DiscoJuice.Utils.waiter(function (my) {
-					
-					if (!my.data) return;
-					if (my.data.status == 'ok' && my.data.country) {
-						
-						that.parent.Utils.createCookie(my.data.country, 'Country2');
-						that.setCountry(my.data.country);
-						that.parent.Utils.log('DiscoJuice getCountry() : Country lookup succeeded: ' + my.data.country);
-
-						if (my.data.geo && my.data.geo.lat && my.data.geo.lon) {
-							that.setPosition(my.data.geo.lat, my.data.geo.lon);
-							that.parent.Utils.createCookie(my.data.geo.lat, 'GeoLat');
-							that.parent.Utils.createCookie(my.data.geo.lon, 'GeoLon');
-						} 
-
-					} else {
-						that.parent.Utils.log('DiscoJuice getCountry() : Country lookup failed: ' + (my.data.error || ''));
-						that.ui.error("Error looking up users localization by country: " + (my.data.error || ''));
-					}
-					
-				}, 1000);
-				
 				waiter.runAction( 	
 					function (notifyCompleted) {
 						$.getJSON(countryapi, function(data) {
-							waiter.data = data;
+							if (data && data.status == 'ok' && data.country) {
+
+								that.parent.Utils.createCookie(data.country, 'Country2');
+								that.setCountry(data.country, false);
+								that.parent.Utils.log('DiscoJuice getCountry() : Country lookup succeeded: ' + data.country);
+
+								if (data.geo && data.geo.lat && data.geo.lon) {
+									that.setPosition(data.geo.lat, data.geo.lon, false);
+									that.parent.Utils.createCookie(data.geo.lat, 'GeoLat');
+									that.parent.Utils.createCookie(data.geo.lon, 'GeoLon');
+								} 
+
+							} else if (data && data.error){
+								that.parent.Utils.log('DiscoJuice getCountry() : Country lookup failed: ' + (data.error || ''));
+								that.ui.error("Error looking up users localization by country: " + (data.error || ''));
+							} else {
+								that.parent.Utils.log('DiscoJuice getCountry() : Country lookup failed');
+								that.ui.error("Error looking up users localization by country.");
+							}
 							notifyCompleted();
 						});
-					},
-					function() {
-						that.ui.error("Error looking up country. Showing all countries. [1] Timeout.");
 					}
 				);
-				waiter.startTimer();
-
 
 			}
 		}

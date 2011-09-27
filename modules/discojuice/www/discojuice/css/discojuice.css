@@ -1,10 +1,12 @@
 
+
 /*
  * Generic css for whole popup box
  */
 div.discojuice {
 	font-family: Arial;
-	font-size: small;
+	
+/*	font-size: small;*/
 	z-index: 100;
 	margin: 0;
 	padding: 0;
@@ -16,14 +18,56 @@ div.discojuice {
 
 }
 
-div.discojuice * {
+/*div.discojuice * {
 	color: #000;
 	background: none;
-}
+}*/
 
 div.discojuice p {
 	margin: 2px; padding: 0px;
 }
+
+
+
+
+
+
+div.discojuice form.discojuice_up {
+	padding: 0px; 
+	margin: 0px;
+	font-family: Helvetica;
+}
+div.discojuice form.discojuice_up h2 {
+	margin: 0px inherit 3px inherit;
+}
+div.discojuice form.discojuice_up  p{
+		padding: 0px; margin: 0px;
+}
+div.discojuice form.discojuice_up label.discojuice_up {
+	display: block;
+	margin: 22px 5px 0px 0px;
+	font-size: 160%;
+	color: #444;
+
+}
+div.discojuice form.discojuice_up input.discojuice_up {
+	width: 60%;
+	font-size: 200%;
+	border-radius: 6px;
+	border: 1px solid #aaa;
+	padding: 6px 20px;
+	background: #fff;
+	margin: 0px 5px 3px 0px;
+}
+div.discojuice form.discojuice_up input.submit {
+	font-size: 105px ! important;
+}
+
+
+div.discojuice div.discojuice_page {
+	
+}
+
 
 
 
@@ -132,6 +176,7 @@ div.discojuice div.scroller img.logo {
 
 div.discojuice div.scroller a {
 	padding: 3px 6px;
+	font-size: 100% ! important;
 }
 div.discojuice div.scroller a span {
 /*	margin: 3px;*/
@@ -300,7 +345,12 @@ div.discojuice div.scroller a.hothit {
 	text-shadow: 0 1px #fff;
 }
 
-
+div.discojuice div.scroller a.disabled span.title {
+	color: #999 !important;
+}
+div.discojuice div.scroller a.disabled span.location {
+	color: #999 !important;
+}
 
 
 

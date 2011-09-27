@@ -15,8 +15,8 @@ function parseURL(url) {
 }
 
 function receive() {
-	
-	var urlParams = {};
+	var urlParams = {},
+		cid = null;
 	(function () {
 		var e,
 			a = /\+/g,  // Regex for replacing addition symbol with a space
@@ -28,14 +28,20 @@ function receive() {
 		   urlParams[d(e[1])] = d(e[2]);
 	})();
 	
+	if (urlParams.cid) cid = urlParams.cid;
+		
 	var sender = parseURL(document.referrer);
 	if (urlParams.entityID) {
 		window.parent.DiscoJuice.Utils.log('ResponseLocation: Response from discovery service [' + sender + ']: ' + urlParams.entityID + '   subID: ' + urlParams.subID);
-		window.parent.DiscoJuice.Control.discoResponse(sender, urlParams.entityID, urlParams.subID);
-	} else if urlParams.error) {
-		window.parent.DiscoJuice.Control.ui.error("Error from IdP Discovery Service: " + urlParams.error);
+		
+		window.parent.DiscoJuice.Control.discoResponse(sender, urlParams.entityID, urlParams.subID, cid);
+
+	} else if (urlParams['error']) {
+		window.parent.DiscoJuice.Control.discoResponseError(cid, 
+			"Error from IdP Discovery Service [" + sender + "]:  " + urlParams.error);			
 	} else {
-		window.parent.DiscoJuice.Utils.log('ResponseLocation: Response from discovery service [' + sender + ']: No valid response parameters');
+		window.parent.DiscoJuice.Control.discoResponseError(cid, 
+			"ResponseLocation: Response from discovery service [" + sender + "]: No valid response parameters");
 	}
 
 }
