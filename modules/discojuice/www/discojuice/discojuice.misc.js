@@ -20,6 +20,7 @@ var DiscoJuice = {};
  */
 DiscoJuice.Constants = {
 	"Countries": {
+		'AT': 'Austria',
 		'CZ': 'Czech',
 		'DK': 'Denmark',
 		'FI': 'Finland',
@@ -47,6 +48,7 @@ DiscoJuice.Constants = {
 		'XX': 'Experimental'
 	},
 	"Flags": {
+		'AT': 'at.png',
 		'CZ': 'cz.png',
 		'DK': 'dk.png',
 		'FI': 'fi.png',
