@@ -522,8 +522,8 @@ DiscoJuice.Control = {
 			 */
 			var quickSel = false;
 			if (!quickSelected) {
-				console.log('Term: ' + term);
-				console.log('Search: ' + search);
+				// console.log('Term: ' + term);
+				// console.log('Search: ' + search);
 				if (term && search !== false) {
 					quickSel = true;
 					quickSelected = true;
@@ -796,6 +796,10 @@ DiscoJuice.Control = {
 
 		    if(charCode == 13) {
 				that.hitEnter();
+				return;
+		    }
+		    if(charCode == 27) {
+				that.ui.hide();
 				return;
 		    }
 			

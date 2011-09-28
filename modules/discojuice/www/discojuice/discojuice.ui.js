@@ -142,12 +142,7 @@ DiscoJuice.UI = {
 			textLink += '<hr style="clear: both; height: 0px; visibility:hidden" />';
 		}
 		
-		
 
-		
-		
-
-		
 		
 		// Wrap in A element
 		textLink = '<a href="" class="' + classes + '" rel="' + escape(relID) + '" title="' + escape(item.title) + '">' + 
@@ -162,7 +157,8 @@ DiscoJuice.UI = {
 		$("div.discojuice_listContent").hide();
 		$("div#locatemediv").hide();
 		$("div#search").hide();
-		$("div.filters p.discojuice_filter_country").hide();
+
+		$("div.filters").hide();
 		
 		$("div#discojuice_page div.discojuice_content").html(content);		
 		
@@ -177,6 +173,12 @@ DiscoJuice.UI = {
 		$("div.discojuice_listContent").show();
 		$("div#discojuice_page").hide();
 		$("div#discojuice_page_return").hide();
+		
+		if (this.parent.Utils.options.get('location', false) && navigator.geolocation) {
+			$("div#locatemediv").show();
+		}
+		$("div#search").show();
+		$("div.filters").show();
 	},
 		
 	"refreshData": function(showmore, show, listcount) {
@@ -292,8 +294,9 @@ DiscoJuice.UI = {
 				'<button id="discojuiceextesion_listener" />' +
 			'</div>' +
 			
-			'<div class="filters bottom">' +
+			'<div class="bottom">' +
 //				'<p style="margin 0px; color: #ccc; font-size: 75%; float: left">Settings</p>' +
+				'<div class="filters" style="padding: 0px; margin: 0px"></div>' +
 				'<p id="dj_help" style="margin 0px; text-align: right; color: #ccc; font-size: 75%">' + 
 				'DiscoJuice &copy; UNINETT ' + 
 				'<img class="" style="position: relative; bottom: -4px; right: -5px" alt="Information" src="' + imgpath + 'info.png" />'
@@ -366,12 +369,11 @@ DiscoJuice.UI = {
 				$("div.locatemeafter").html('<div class="loadingData" ><img src="' + imgpath + 'spinning.gif" /> Getting your location...</div>');
 				that.control.locateMe();
 			});
-		} else {
-			$("div#locatemediv").hide();
-		}	
-
-	
+		} 
+		
 	},
+	
+
 	
 	"setLocationText": function(html) {
 		return $("div.locatemeafter").html(html);
