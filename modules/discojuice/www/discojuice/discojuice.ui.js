@@ -16,6 +16,7 @@ DiscoJuice.UI = {
 	// Reference to the 
 	"popup": null,
 	
+	"alreadyLoaded": {},
 	
 	// Entities / items
 	"resulthtml": 'Loading data…',
@@ -39,6 +40,7 @@ DiscoJuice.UI = {
 	
 	"clearItems": function() {
 		this.resulthtml = '';
+		this.alreadyLoaded = {};
 	},
 	
 	"addItem": function(item, countrydef, search, distance, quickentry, enabled) {
@@ -52,6 +54,13 @@ DiscoJuice.UI = {
 		
 		var debugweight = this.parent.Utils.options.get('debug.weight', false);
 		
+		var relID = item.entityID;
+		if (item.subID) {
+			relID += '#' + item.subID;
+		}
+		
+		if (this.alreadyLoaded[relID]) return;
+		this.alreadyLoaded[relID] = true;
 		
 		// Add icon element first
 		if (item.icon && this.parent.Utils.options.get('showIcon', true)) {
@@ -134,10 +143,7 @@ DiscoJuice.UI = {
 		}
 		
 		
-		var relID = item.entityID;
-		if (item.subID) {
-			relID += '#' + item.subID;
-		}
+
 		
 		
 

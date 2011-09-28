@@ -44,6 +44,24 @@ DiscoJuice.Control = {
 		if (this.wncr[i] && typeof this.wncr[i] === 'function') this.wncr[i]();
 	},
 	
+	
+	// "mergeData": function (data) {
+	// 	var i, item, relID;
+	// 	for (i = 0; i < data.length; i++) {
+	// 		item = data[i];
+	// 		relID = item.entityID;
+	// 		if (item.subID) {
+	// 			relID += '#' + item.subID;
+	// 		}
+	// 		item['relID'] = relID;
+	// 		
+	// 		if (!this.alreadyLoaded[relID]) {
+	// 			this.data.push(item);
+	// 			this.alreadyLoaded[relID] = true;
+	// 		}
+	// 	}
+	// },
+	
 	/*
 	 * Fetching JSON Metadata using AJAX.
 	 * Callback postLoad is called when data is returned.
@@ -99,6 +117,7 @@ DiscoJuice.Control = {
 						data: parameters,
 						success: function(data) {
 							that.data = $.merge(that.data, data);
+							//that.mergeData(data);
 							that.parent.Utils.log('Successfully loaded metadata (' + data.length + ') (' + j + ' of ' + metadataurls.length + ')');
 							notifyCompleted();
 						}
