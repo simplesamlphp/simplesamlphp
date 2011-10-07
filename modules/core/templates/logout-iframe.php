@@ -29,7 +29,11 @@ foreach ($SPs as $assocId => $sp) {
 	assert('isset($sp["core:Logout-IFrame:State"])');
 	$state = $sp['core:Logout-IFrame:State'];
 	$spStatus[sha1($assocId)] = $state;
-	$spTimeout[sha1($assocId)] = $sp['core:Logout-IFrame:Timeout'] - time();
+	if (isset($sp['core:Logout-IFrame:Timeout'])) {
+		$spTimeout[sha1($assocId)] = $sp['core:Logout-IFrame:Timeout'] - time();
+	} else {
+		$spTimeout[sha1($assocId)] = 5;
+	}
 	if ($state === 'failed') {
 		$nFailed += 1;
 	} elseif ($state === 'inprogress') {
