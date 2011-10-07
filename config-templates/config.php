@@ -384,11 +384,6 @@ $config = array (
 		),
 		*/
 
-		/* When called without parameters, it will fallback to filter attributes ‹the old way›
-		 * by checking the 'attributes' parameter in metadata on SP hosted and IdP remote.
-		 */
-		50 => 'core:AttributeLimit', 
-
 		/*
 		 * Generate the 'group' attribute populated from other variables, including eduPersonAffiliation.
 		 */
