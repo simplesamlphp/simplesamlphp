@@ -65,19 +65,6 @@ Please see the [metarefresh documentation](simplesamlphp-automated_metadata).
 
 
 
-Automated testing
------------------
-
-simpleSAMLphp includes a test script that can connect to a simpleSAMLphp SP, initiate login, enter some credentials. It then picks up the response to the SP and validates it, checking the output for expected attributes.
-
-The intention of this script is to be run in system monitoring systems, like nagios or hobbit, to generate alerts when something breaks (e.g. a server is down or metadata misconfigured).
-
-The test script is located in `bin/test.php`. The configuration file is located in `config/test.php`.
-
-Documentation about configuration file format and more details about this test script will be added later. If you e.g. write a nagios plugin for this test script, let us know :) We will add a hobbit plugin and publish it somewhere pretty soon. Stay tuned!
-
-
-
 Auth MemCookie
 --------------
 
