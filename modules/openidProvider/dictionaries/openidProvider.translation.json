@@ -16,7 +16,8 @@
 		"nn": "OpenID tilbydar",
 		"nl": "OpenID provider",
 		"et": "OpenID pakkuja",
-		"he": "\u05e1\u05e4\u05e7 OpenID"
+		"he": "\u05e1\u05e4\u05e7 OpenID",
+		"zh": "OpenID\u63d0\u4f9b\u8005"
 	},
 	"title_user": {
 		"no": "OpenID for %USERID%",
@@ -35,7 +36,8 @@
 		"nn": "OpenID for %USERID%",
 		"nl": "OpenID voor %USERID%",
 		"et": "OpenID %USERID%",
-		"he": "OpenID \u05e2\u05d1\u05d5\u05e8 %USERID%"
+		"he": "OpenID \u05e2\u05d1\u05d5\u05e8 %USERID%",
+		"zh": "%USERID%\u7684OpenID"
 	},
 	"user_page_for": {
 		"no": "Dette er OpenID brukersiden for <code>%USERID%<\/code>.",
@@ -54,7 +56,8 @@
 		"nn": "Dette er OpenID brukersida for <code>%USERID%<\/code>.",
 		"nl": "Dit is de OpenID gebruikerspagina voor <code>%USERID%<\/code>.",
 		"et": "See on OpenID kasutajaleht kasutajale <code>%USERID%<\/code>.",
-		"he": "<code>%USERID%<\/code>. \u05d6\u05d4\u05d5 \u05d3\u05e3 \u05d4\u05de\u05e9\u05ea\u05de\u05e9  OpenID \u05e2\u05d1\u05d5\u05e8 "
+		"he": "<code>%USERID%<\/code>. \u05d6\u05d4\u05d5 \u05d3\u05e3 \u05d4\u05de\u05e9\u05ea\u05de\u05e9  OpenID \u05e2\u05d1\u05d5\u05e8 ",
+		"zh": "\u8fd9\u662f<code>%USERID%<\/code>\u7684OpenID\u7684\u7528\u6237\u9875\u9762"
 	},
 	"view_own_page": {
 		"no": "Se p\u00e5 din egen OpenID side.",
@@ -73,7 +76,8 @@
 		"nn": "Sj\u00e5 di OpenID-side",
 		"nl": "Bekijk uw eigen OpenID pagina.",
 		"et": "N\u00e4ita enda OpenID lehek\u00fclge.",
-		"he": "\u05d4\u05e6\u05d2 \u05d0\u05ea \u05d3\u05e3 \u05d4 OpenID \u05e9\u05dc\u05da"
+		"he": "\u05d4\u05e6\u05d2 \u05d0\u05ea \u05d3\u05e3 \u05d4 OpenID \u05e9\u05dc\u05da",
+		"zh": "\u8bbf\u95ee\u4f60\u81ea\u5df1\u7684OpenID\u9875\u9762"
 	},
 	"login_view_own_page": {
 		"no": "Logg p\u00e5 for \u00e5 se p\u00e5 din egen OpenID side.",
@@ -92,7 +96,8 @@
 		"nn": "Logg inn for \u00e5 sj\u00e5 di OpenID-side",
 		"nl": "Log in om uw eigen OpenID pagina te bekijken.",
 		"et": "Logi sisse oma OpenID lehek\u00fclje n\u00e4gemiseks.",
-		"he": "\u05d4\u05ea\u05d7\u05d1\u05e8 \u05dc\u05de\u05e2\u05e8\u05db\u05ea \u05db\u05d3\u05d9 \u05dc\u05e8\u05d0\u05d5\u05ea \u05d0\u05ea \u05d3\u05e3 \u05d4 OpenID \u05e9\u05dc\u05da"
+		"he": "\u05d4\u05ea\u05d7\u05d1\u05e8 \u05dc\u05de\u05e2\u05e8\u05db\u05ea \u05db\u05d3\u05d9 \u05dc\u05e8\u05d0\u05d5\u05ea \u05d0\u05ea \u05d3\u05e3 \u05d4 OpenID \u05e9\u05dc\u05da",
+		"zh": "\u767b\u5f55\u4ee5\u8bbf\u95ee\u4f60\u81ea\u5df1\u7684OpenID\u9875\u9762"
 	},
 	"logout_title": {
 		"no": "Logg av",
@@ -111,7 +116,8 @@
 		"nn": "Logg ut",
 		"nl": "Log uit",
 		"et": "Logi v\u00e4lja",
-		"he": "\u05d4\u05ea\u05e0\u05ea\u05e7\u05d5\u05ea"
+		"he": "\u05d4\u05ea\u05e0\u05ea\u05e7\u05d5\u05ea",
+		"zh": "\u767b\u51fa"
 	},
 	"logout": {
 		"no": "Trykk her for \u00e5 logge ut av din OpenID bruker.",
@@ -130,7 +136,8 @@
 		"nn": "Klikk her for \u00e5 logga ut med din OpenID-brukar",
 		"nl": "Klik hier om uit te loggen van uw OpenID gebruiker.",
 		"et": "Kl\u00f5psa siia oma OpenID kasutajast v\u00e4lja logimiseks.",
-		"he": "\u05dc\u05d7\u05e5 \u05db\u05d0\u05d5 \u05db\u05d3\u05d9 \u05dc\u05d4\u05ea\u05e0\u05ea\u05e7 \u05de\u05de\u05e9\u05ea\u05de\u05e9 \u05d4 OpenID \u05e9\u05dc\u05da."
+		"he": "\u05dc\u05d7\u05e5 \u05db\u05d0\u05d5 \u05db\u05d3\u05d9 \u05dc\u05d4\u05ea\u05e0\u05ea\u05e7 \u05de\u05de\u05e9\u05ea\u05de\u05e9 \u05d4 OpenID \u05e9\u05dc\u05da.",
+		"zh": "\u70b9\u51fb\u8fd9\u91cc\u767b\u51fa\u4f60\u7684OpenID"
 	},
 	"confirm_question": {
 		"no": "\u00d8nsker du \u00e5 logge p\u00e5 %SITEURL%?",
@@ -149,7 +156,8 @@
 		"nn": "\u00d8nskjer du \u00e5 logga inn til %SITEURL%?",
 		"nl": "Wilt u in te loggen op %SITEURL%?",
 		"et": "Kas sa soovid logida sisse lehek\u00fcljele %SITEURL%?",
-		"he": "\u05d4\u05d0\u05dd \u05d1\u05e8\u05e6\u05d5\u05e0\u05da \u05dc\u05d4\u05ea\u05d7\u05d1\u05e8 \u05dc %SITEURL%?"
+		"he": "\u05d4\u05d0\u05dd \u05d1\u05e8\u05e6\u05d5\u05e0\u05da \u05dc\u05d4\u05ea\u05d7\u05d1\u05e8 \u05dc %SITEURL%?",
+		"zh": "\u4f60\u60f3\u767b\u5f55\u81f3%SITEURL%"
 	},
 	"remember": {
 		"no": "Husk dette valget",
@@ -172,7 +180,8 @@
 		"ja": "\u3053\u306e\u8a2d\u5b9a\u3092\u8a18\u61b6\u3059\u308b",
 		"zh-tw": "\u8a18\u4f4f\u9019\u500b\u6c7a\u5b9a",
 		"et": "J\u00e4ta see otsus meelde",
-		"he": "\u05d6\u05db\u05d5\u05e8 \u05d0\u05ea \u05d4\u05d4\u05d7\u05dc\u05d8\u05d4"
+		"he": "\u05d6\u05db\u05d5\u05e8 \u05d0\u05ea \u05d4\u05d4\u05d7\u05dc\u05d8\u05d4",
+		"zh": "\u8bb0\u4f4f\u8fd9\u4e2a\u51b3\u5b9a"
 	},
 	"confirm": {
 		"no": "Bekreft",
@@ -195,7 +204,8 @@
 		"ja": "\u78ba\u8a8d",
 		"zh-tw": "\u78ba\u8a8d",
 		"et": "Kinnita",
-		"he": "\u05d0\u05e9\u05e8"
+		"he": "\u05d0\u05e9\u05e8",
+		"zh": "\u786e\u8ba4"
 	},
 	"notconfirm": {
 		"no": "Ikke bekreft",
@@ -218,7 +228,8 @@
 		"ja": "\u78ba\u8a8d\u3057\u306a\u3044",
 		"zh-tw": "\u4e0d\u78ba\u8a8d",
 		"et": "\u00c4ra kinnita",
-		"he": "\u05d0\u05dc \u05ea\u05d0\u05e9\u05e8"
+		"he": "\u05d0\u05dc \u05ea\u05d0\u05e9\u05e8",
+		"zh": "\u4e0d\u786e\u8ba4"
 	},
 	"trustlist_trustedsites": {
 		"no": "Klarerte websider",
@@ -241,7 +252,8 @@
 		"ja": "\u4fe1\u983c\u3055\u308c\u3066\u3044\u308b\u30b5\u30a4\u30c8",
 		"zh-tw": "\u4fe1\u4efb\u7ad9\u53f0",
 		"et": "Usaldatavad lehek\u00fcljed",
-		"he": "\u05d0\u05ea\u05e8\u05d9\u05dd \u05de\u05d4\u05d9\u05de\u05e0\u05d9\u05dd"
+		"he": "\u05d0\u05ea\u05e8\u05d9\u05dd \u05de\u05d4\u05d9\u05de\u05e0\u05d9\u05dd",
+		"zh": "\u4fe1\u4efb\u7ad9\u70b9"
 	},
 	"trustlist_remove": {
 		"no": "Fjern",
@@ -260,7 +272,8 @@
 		"zh-tw": "\u79fb\u9664",
 		"nl": "Verwijder",
 		"et": "Eemalda",
-		"he": "\u05d4\u05e1\u05e8"
+		"he": "\u05d4\u05e1\u05e8",
+		"zh": "\u79fb\u9664"
 	},
 	"trustlist_nosites": {
 		"no": "Ingen sites er husket. N\u00e5r du autentiserer deg hos en site, kan du velge \u00e5 legge den til denne listen ved \u00e5 velge <q>Husk dette valget<\/q>.",
@@ -279,7 +292,8 @@
 		"zh-tw": "\u6c92\u6709\u4efb\u4f55\u4fe1\u4efb\u7ad9\u53f0\u3002\u7576\u4f60\u65bc\u7ad9\u53f0\u8a8d\u8b49\uff0c\u60a8\u53ef\u9ede\u9078 <q>\u8a18\u4f4f\u9019\u500b\u6c7a\u5b9a<\/q> \u52a0\u5165\u8a72\u7ad9\u81f3\u9019\u500b\u6e05\u55ae\u88e1",
 		"nl": "Geen sites zijn vertrouwd. Wanneer u verbind met een site, kunt u kiezen om deze toe te voegen aan deze lijst, door <q>Onthoud deze keuze<\/q> te kiezen.",
 		"et": "\u00dchtegi lehek\u00fclge ei usaldata. Kui sa autendid mingil lehek\u00fcljel, siis saad lisada seda nimekirja, valides <q>J\u00e4ta see otsus meelde<\/q>.",
-		"he": "\u05d0\u05d9\u05df \u05d0\u05ea\u05e8\u05d9\u05dd \u05de\u05d4\u05de\u05e0\u05d9\u05dd. \u05db\u05d0\u05e9\u05e8 \u05ea\u05d6\u05d3\u05d4\u05d4 \u05e2\u05dd \u05d0\u05ea\u05e8, \u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05d1\u05d7\u05d5\u05e8 \u05dc\u05d4\u05d5\u05e1\u05d9\u05e3 \u05d0\u05d5\u05ea\u05d5 \u05dc\u05e8\u05e9\u05d9\u05de\u05d4 \u05d6\u05d5 \u05e2\u05dc \u05d9\u05d3\u05d9 \u05d1\u05d7\u05d9\u05e8\u05ea <q>\u05d6\u05db\u05d5\u05e8 \u05d0\u05ea \u05d4\u05d4\u05d7\u05dc\u05d8\u05d4<\/q>."
+		"he": "\u05d0\u05d9\u05df \u05d0\u05ea\u05e8\u05d9\u05dd \u05de\u05d4\u05de\u05e0\u05d9\u05dd. \u05db\u05d0\u05e9\u05e8 \u05ea\u05d6\u05d3\u05d4\u05d4 \u05e2\u05dd \u05d0\u05ea\u05e8, \u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05d1\u05d7\u05d5\u05e8 \u05dc\u05d4\u05d5\u05e1\u05d9\u05e3 \u05d0\u05d5\u05ea\u05d5 \u05dc\u05e8\u05e9\u05d9\u05de\u05d4 \u05d6\u05d5 \u05e2\u05dc \u05d9\u05d3\u05d9 \u05d1\u05d7\u05d9\u05e8\u05ea <q>\u05d6\u05db\u05d5\u05e8 \u05d0\u05ea \u05d4\u05d4\u05d7\u05dc\u05d8\u05d4<\/q>.",
+		"zh": "\u6ca1\u6709\u4fe1\u4efb\u7ad9\u70b9\uff0c\u5f53\u4f60\u8ba4\u8bc1\u4e00\u4e2a\u7ad9\u70b9\u7684\u65f6\u5019\uff0c\u4f60\u53ef\u4ee5\u9009\u62e9\u589e\u52a0\u81f3\u4fe1\u4efb\u5217\u8868\u901a\u8fc7\u9009\u62e9<q>\u8bb0\u4f4f\u8fd9\u4e2a\u51b3\u5b9a<\/q>"
 	},
 	"your_identifier": {
 		"no": "For \u00e5 logge inn med din OpenID, bruk f\u00f8lgende ID:",
@@ -298,7 +312,8 @@
 		"nn": "For \u00e5 logga inn med OpenID, bruk f\u00f8lgjande ID: ",
 		"nl": "Om in te loggen met uw OpenID identificatiemiddel, gebruikt u het volgende identificatiemiddel:",
 		"et": "Kasuta j\u00e4rgnevat identifikaatorit oma OpenID identifikaatoriga sisse logimiseks:",
-		"he": "\u05db\u05d3\u05d9 \u05dc\u05d4\u05ea\u05d7\u05d1\u05e8 \u05e2\u05dd \u05de\u05d6\u05d4\u05d4 OpenID, \u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05de\u05d6\u05d4\u05d4 \u05d4\u05d1\u05d0:"
+		"he": "\u05db\u05d3\u05d9 \u05dc\u05d4\u05ea\u05d7\u05d1\u05e8 \u05e2\u05dd \u05de\u05d6\u05d4\u05d4 OpenID, \u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05de\u05d6\u05d4\u05d4 \u05d4\u05d1\u05d0:",
+		"zh": "\u9009\u62e9\u5982\u4e0b\u7684\u6807\u5fd7\uff0c\u4f7f\u7528\u4f60\u81ea\u5df1\u7684OpenID\u6807\u5fd7\u767b\u5f55"
 	},
 	"howto_delegate": {
 		"no": "Du kan ogs\u00e5 delegere en annen OpenID til \u00e5 benytte denne OpenID tilbyderen. For \u00e5 gj\u00f8re det, m\u00e5 du legge til f\u00f8lgende <code>&lt;head&gt;<\/code>-element p\u00e5 websiden til denne OpenID-en du vil delegere.",
@@ -317,6 +332,7 @@
 		"nn": "Du kan ogs\u00e5 delegera ein annan ID for bruk i denne OpenID-tilbydaren.  For \u00e5 gjera det, m\u00e5 du leggja til det som st\u00e5r under inni <code>&lt;head&gt;<\/code>-elementet p\u00e5 websida til den andre IDen: ",
 		"nl": "U kunt ook delegeren een ander id met deze OpenID provider te gebruiken. Om dat te doen, moet u het volgende toevoegen aan het <code>&lt;head&gt;<\/code>-element op de webpagina van dat identificatiemiddel:",
 		"et": "V\u00f5id delegeerida ka muu identifikaatori seda OpenID pakkujat kasutama. Selle tegemiseks pead lisama j\u00e4rgneva koodi selle indetifikaatori veebilehek\u00fclje <code>&lt;head&gt;<\/code>-elementi.",
-		"he": "\u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05d4\u05e1\u05de\u05d9\u05da \u05de\u05d6\u05d4\u05d4 \u05e9\u05d5\u05e0\u05d4 \u05dc\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05e1\u05e4\u05e7 OpenID <code>&lt;head&gt;<\/code> \u05dc\u05d3\u05e3 \u05d4\u05d1\u05d9\u05ea \u05e9\u05dc \u05d4\u05de\u05d6\u05d4\u05d4 \u05d4\u05de\u05d1\u05d5\u05e7\u05e9: \u05d4\u05e0\u05d5\u05db\u05d7\u05d9. \u05d1\u05e9\u05d1\u05d9\u05dc \u05db\u05da, \u05d0\u05ea\u05d4 \u05e6\u05e8\u05d9\u05da \u05dc\u05d4\u05d5\u05e1\u05d9\u05e3 \u05e8\u05ea \u05d0\u05dc\u05de\u05e0\u05d8 "
+		"he": "\u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05d4\u05e1\u05de\u05d9\u05da \u05de\u05d6\u05d4\u05d4 \u05e9\u05d5\u05e0\u05d4 \u05dc\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05e1\u05e4\u05e7 OpenID <code>&lt;head&gt;<\/code> \u05dc\u05d3\u05e3 \u05d4\u05d1\u05d9\u05ea \u05e9\u05dc \u05d4\u05de\u05d6\u05d4\u05d4 \u05d4\u05de\u05d1\u05d5\u05e7\u05e9: \u05d4\u05e0\u05d5\u05db\u05d7\u05d9. \u05d1\u05e9\u05d1\u05d9\u05dc \u05db\u05da, \u05d0\u05ea\u05d4 \u05e6\u05e8\u05d9\u05da \u05dc\u05d4\u05d5\u05e1\u05d9\u05e3 \u05e8\u05ea \u05d0\u05dc\u05de\u05e0\u05d8 ",
+		"zh": "\u4f60\u53ef\u4ee5\u6388\u6743\u4e00\u4e2a\u4e0d\u540c\u7684\u6807\u8bc6\u7b26\uff0c\u6765\u4f7f\u7528\u8fd9\u4e2aOpenID\u63d0\u4f9b\u8005\uff0c\u4e3a\u6b64\u4f60\u9700\u8981\u5728\u90a3\u4e2a\u6807\u8bc6\u7b26<code>&lt;head&gt;<\/code>\u5143\u7d20\u4e2d\u6dfb\u52a0\u4e0b\u5217\u4fe1\u606f"
 	}
 }

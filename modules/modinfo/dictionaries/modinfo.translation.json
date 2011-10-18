@@ -17,7 +17,9 @@
 		"zh-tw": "\u53ef\u4f7f\u7528\u7684\u6a21\u7d44",
 		"nn": "Tilgjengelege modular",
 		"et": "Saadaolevad moodulid",
-		"he": "\u05de\u05d5\u05d3\u05d5\u05dc\u05d9\u05dd \u05d6\u05de\u05d9\u05e0\u05d9\u05dd"
+		"he": "\u05de\u05d5\u05d3\u05d5\u05dc\u05d9\u05dd \u05d6\u05de\u05d9\u05e0\u05d9\u05dd",
+		"ru": "\u0414\u043e\u0441\u0442\u0443\u043f\u043d\u044b\u0435 \u043c\u043e\u0434\u0443\u043b\u0438",
+		"zh": "\u53ef\u7528\u7684\u6a21\u5757"
 	},
 	"modlist_name": {
 		"no": "Navn",
@@ -37,7 +39,9 @@
 		"zh-tw": "\u540d\u5b57",
 		"nn": "Namn",
 		"et": "Nimi",
-		"he": "\u05e9\u05dd"
+		"he": "\u05e9\u05dd",
+		"ru": "\u0418\u043c\u044f",
+		"zh": "\u540d\u5b57"
 	},
 	"modlist_status": {
 		"no": "Status",
@@ -57,7 +61,9 @@
 		"zh-tw": "\u72c0\u614b",
 		"nn": "Status",
 		"et": "Olek",
-		"he": "\u05de\u05e6\u05d1"
+		"he": "\u05de\u05e6\u05d1",
+		"ru": "\u0421\u0442\u0430\u0442\u0443\u0441",
+		"zh": "\u72b6\u6001"
 	},
 	"modlist_enabled": {
 		"no": "P\u00e5sl\u00e5tt",
@@ -77,7 +83,9 @@
 		"zh-tw": "\u555f\u7528",
 		"nn": "P\u00e5sl\u00e5tt",
 		"et": "Lubatud",
-		"he": "\u05de\u05d5\u05e4\u05e2\u05dc"
+		"he": "\u05de\u05d5\u05e4\u05e2\u05dc",
+		"ru": "\u0412\u043a\u043b\u044e\u0447\u0435\u043d\u043d\u044b\u0439",
+		"zh": "\u542f\u7528"
 	},
 	"modlist_disabled": {
 		"no": "Avsl\u00e5tt",
@@ -97,6 +105,8 @@
 		"zh-tw": "\u505c\u7528",
 		"nn": "Avsl\u00e5tt",
 		"et": "Keelatud",
-		"he": "\u05db\u05d1\u05d5\u05d9"
+		"he": "\u05db\u05d1\u05d5\u05d9",
+		"ru": "\u0412\u044b\u043a\u043b\u044e\u0447\u0435\u043d\u043d\u044b\u0439",
+		"zh": "\u5173\u95ed"
 	}
 }

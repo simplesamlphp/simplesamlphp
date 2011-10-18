@@ -16,7 +16,8 @@
 		"zh-tw": "\u7a0b\u5e8f ID",
 		"nn": "Prosess-ID",
 		"et": "Protsessi ID",
-		"he": "\u05de\u05d6\u05d4\u05d4 \u05ea\u05d4\u05dc\u05d9\u05da"
+		"he": "\u05de\u05d6\u05d4\u05d4 \u05ea\u05d4\u05dc\u05d9\u05da",
+		"zh": "Process ID"
 	},
 	"uptime": {
 		"no": "Oppetid",
@@ -35,7 +36,8 @@
 		"zh-tw": "\u5df2\u904b\u4f5c\u6642\u9593",
 		"nn": "Oppetid",
 		"et": "Uptime",
-		"he": "\u05d6\u05de\u05df \u05dc\u05de\u05e2\u05dc\u05d4"
+		"he": "\u05d6\u05de\u05df \u05dc\u05de\u05e2\u05dc\u05d4",
+		"zh": "\u6b63\u5e38\u8fd0\u884c\u65f6\u95f4"
 	},
 	"time": {
 		"no": "Tid n\u00e5",
@@ -54,7 +56,8 @@
 		"zh-tw": "\u76ee\u524d\u6642\u9593",
 		"nn": "Tid no",
 		"et": "Aeg praegu",
-		"he": "\u05d6\u05de\u05df \u05e0\u05d5\u05db\u05d7\u05d9"
+		"he": "\u05d6\u05de\u05df \u05e0\u05d5\u05db\u05d7\u05d9",
+		"zh": "\u5f53\u524d\u65f6\u95f4"
 	},
 	"version": {
 		"no": "Versjon",
@@ -73,7 +76,8 @@
 		"zh-tw": "\u7248\u672c",
 		"nn": "Versjon",
 		"et": "Versioon",
-		"he": "\u05d2\u05d9\u05e8\u05e1\u05d4"
+		"he": "\u05d2\u05d9\u05e8\u05e1\u05d4",
+		"zh": "\u7248\u672c"
 	},
 	"rusage_user": {
 		"no": "CPU Sekunder (bruker)",
@@ -92,7 +96,8 @@
 		"zh-tw": "CPU \u4f7f\u7528\u91cf(\u4f7f\u7528\u8005)",
 		"nn": "CPU-sekund (brukar)",
 		"et": "CPU sekundid (kasutaja)",
-		"he": "\u05e9\u05e0\u05d9\u05d5\u05ea \u05de\u05e2\u05d1\u05d3 (\u05de\u05e9\u05ea\u05de\u05e9)"
+		"he": "\u05e9\u05e0\u05d9\u05d5\u05ea \u05de\u05e2\u05d1\u05d3 (\u05de\u05e9\u05ea\u05de\u05e9)",
+		"zh": "CPU \u79d2\u6570\uff08\u7528\u6237\uff09"
 	},
 	"rusage_system": {
 		"no": "CPU Sekunder (system)",
@@ -111,7 +116,8 @@
 		"zh-tw": "CPU \u4f7f\u7528\u91cf(\u7cfb\u7d71)",
 		"nn": "CPU-sekund (system)",
 		"et": "CPU sekundid (s\u00fcsteem)",
-		"he": "\u05e9\u05e0\u05d9\u05d5\u05ea \u05de\u05e2\u05d1\u05d3 (\u05de\u05e2\u05e8\u05db\u05ea)"
+		"he": "\u05e9\u05e0\u05d9\u05d5\u05ea \u05de\u05e2\u05d1\u05d3 (\u05de\u05e2\u05e8\u05db\u05ea)",
+		"zh": "CPU \u79d2\u6570\uff08\u7cfb\u7edf\uff09"
 	},
 	"curr_items": {
 		"no": "N\u00e5v\u00e6rende antall elementer",
@@ -130,7 +136,8 @@
 		"zh-tw": "\u76ee\u524d\u9805\u76ee\u7684\u6578\u91cf",
 		"nn": "Tal p\u00e5 element no",
 		"et": "Elementide arv praegu",
-		"he": "\u05de\u05e1\u05e4\u05e8 \u05d4\u05e4\u05e8\u05d9\u05d8\u05d9\u05dd \u05d4\u05e0\u05d5\u05db\u05d7\u05d9"
+		"he": "\u05de\u05e1\u05e4\u05e8 \u05d4\u05e4\u05e8\u05d9\u05d8\u05d9\u05dd \u05d4\u05e0\u05d5\u05db\u05d7\u05d9",
+		"zh": "\u5f53\u524d\u7684\u6761\u76ee\u6570\u91cf"
 	},
 	"total_items": {
 		"no": "Antall elementer for alltid",
@@ -149,7 +156,8 @@
 		"zh-tw": "\u6240\u6709\u9805\u76ee",
 		"nn": "Tal p\u00e5 element (totalt)",
 		"et": "Elementide arv kokku",
-		"he": "\u05de\u05e1\u05e4\u05e8 \u05db\u05dc \u05d4\u05e4\u05e8\u05d9\u05d8\u05d9\u05dd"
+		"he": "\u05de\u05e1\u05e4\u05e8 \u05db\u05dc \u05d4\u05e4\u05e8\u05d9\u05d8\u05d9\u05dd",
+		"zh": "\u4ee5\u5f80\u6761\u76ee"
 	},
 	"bytes": {
 		"no": "Totalt antall bytes i bruk n\u00e5",
@@ -168,7 +176,8 @@
 		"zh-tw": "\u76ee\u524d\u4f7f\u7528\u7684\u7e3d\u4f4d\u5143\u7d44",
 		"nn": "Bytes (totalt) i bruk no",
 		"et": "Kokku baite praegu kasutusel",
-		"he": "\u05e1\u05da \u05db\u05dc \u05d4\u05d1\u05d8\u05d9\u05dd \u05e9\u05db\u05e8\u05d2\u05e2 \u05d1\u05e9\u05d9\u05de\u05d5\u05e9"
+		"he": "\u05e1\u05da \u05db\u05dc \u05d4\u05d1\u05d8\u05d9\u05dd \u05e9\u05db\u05e8\u05d2\u05e2 \u05d1\u05e9\u05d9\u05de\u05d5\u05e9",
+		"zh": "\u76ee\u524d\u4f7f\u7528\u7684\u5b57\u8282\u6570"
 	},
 	"curr_connections": {
 		"no": "Antall \u00e5pne forbindelser n\u00e5",
@@ -187,7 +196,8 @@
 		"zh-tw": "\u76ee\u524d\u958b\u555f\u7684\u9023\u7dda\u6578",
 		"nn": "Opne tilkoplingar no",
 		"et": "Hetkel avatud \u00fchendusi",
-		"he": "\u05d7\u05d9\u05d1\u05d5\u05e8\u05d9\u05dd \u05e9\u05e2\u05db\u05e9\u05d9\u05d5 \u05e4\u05ea\u05d5\u05d7\u05d9\u05dd"
+		"he": "\u05d7\u05d9\u05d1\u05d5\u05e8\u05d9\u05dd \u05e9\u05e2\u05db\u05e9\u05d9\u05d5 \u05e4\u05ea\u05d5\u05d7\u05d9\u05dd",
+		"zh": "\u5f53\u524d\u6253\u5f00\u7684\u8fde\u63a5"
 	},
 	"total_connections": {
 		"no": "Totalt antall forbindelser",
@@ -206,7 +216,8 @@
 		"zh-tw": "\u7e3d\u9023\u7dda\u6578",
 		"nn": "Opne tilkoplingar (totalt)",
 		"et": "\u00dchendusi kokku",
-		"he": "\u05e1\u05da-\u05db\u05dc \u05d4\u05d7\u05d9\u05d1\u05d5\u05e8\u05d9\u05dd"
+		"he": "\u05e1\u05da-\u05db\u05dc \u05d4\u05d7\u05d9\u05d1\u05d5\u05e8\u05d9\u05dd",
+		"zh": "\u5168\u90e8\u8fde\u63a5"
 	},
 	"connection_structures": {
 		"no": "Tilkoblings-strukturer",
@@ -225,7 +236,8 @@
 		"zh-tw": "\u9023\u7dda\u7d50\u69cb",
 		"nn": "Tilkoplingsstrukturar",
 		"et": "\u00dchenduste struktuurid",
-		"he": "\u05de\u05d1\u05e0\u05d9 \u05d7\u05d9\u05d1\u05d5\u05e8\u05d9\u05dd"
+		"he": "\u05de\u05d1\u05e0\u05d9 \u05d7\u05d9\u05d1\u05d5\u05e8\u05d9\u05dd",
+		"zh": "\u8fde\u63a5\u7ed3\u6784"
 	},
 	"cmd_get": {
 		"no": "Totalt antall GET kommandoer",
@@ -244,7 +256,8 @@
 		"zh-tw": "GET \u6307\u4ee4\u7e3d\u6578",
 		"nn": "Talet p\u00e5 GET-kommandoar (totalt)",
 		"et": "GET-k\u00e4ske kokku",
-		"he": "\u05e1\u05d4\"\u05db \u05e4\u05e7\u05d5\u05d3\u05d5\u05ea GET"
+		"he": "\u05e1\u05d4\"\u05db \u05e4\u05e7\u05d5\u05d3\u05d5\u05ea GET",
+		"zh": "\u5168\u90e8\u7684GET\u6307\u4ee4"
 	},
 	"cmd_set": {
 		"no": "Totalt antall SET kommandoer",
@@ -263,7 +276,8 @@
 		"zh-tw": "SET \u6307\u4ee4\u7e3d\u6578",
 		"nn": "Talet p\u00e5 SET-kommandoar (totalt)",
 		"et": "SET-k\u00e4ske kokku",
-		"he": "\u05e1\u05d4\"\u05db \u05e4\u05e7\u05d5\u05d3\u05d5\u05ea SET"
+		"he": "\u05e1\u05d4\"\u05db \u05e4\u05e7\u05d5\u05d3\u05d5\u05ea SET",
+		"zh": "\u5168\u90e8\u7684SET\u6307\u4ee4"
 	},
 	"get_hits": {
 		"no": "Totalt antall GET kommandoer (OK)",
@@ -282,7 +296,8 @@
 		"zh-tw": "GET \u6307\u4ee4\u7e3d\u6578(\u6210\u529f)",
 		"nn": "Talet p\u00e5 GET-kommandoar (suksess)",
 		"et": "\u00d5nnestunud GET-k\u00e4ske kokku",
-		"he": "\u05e1\u05d4\"\u05db \u05e4\u05e7\u05d5\u05d3\u05d5\u05ea GET \u05de\u05d5\u05e6\u05dc\u05d7\u05d5\u05ea"
+		"he": "\u05e1\u05d4\"\u05db \u05e4\u05e7\u05d5\u05d3\u05d5\u05ea GET \u05de\u05d5\u05e6\u05dc\u05d7\u05d5\u05ea",
+		"zh": "\u5168\u90e8\u7684GET\u6307\u4ee4\uff08\u6210\u529f\u7684\uff09"
 	},
 	"get_misses": {
 		"no": "Totalt antall GET kommandoer (feilet)",
@@ -301,7 +316,8 @@
 		"zh-tw": "GET \u6307\u4ee4\u7e3d\u6578(\u6210\u529f)",
 		"nn": "Talet p\u00e5 GET-kommandoar (feil)",
 		"et": "Eba\u00f5nnestunud GET-k\u00e4ske kokku",
-		"he": "\u05e1\u05d4\"\u05db \u05e4\u05e7\u05d5\u05d3\u05d5\u05ea GET \u05e9\u05e0\u05db\u05e9\u05dc\u05d5"
+		"he": "\u05e1\u05d4\"\u05db \u05e4\u05e7\u05d5\u05d3\u05d5\u05ea GET \u05e9\u05e0\u05db\u05e9\u05dc\u05d5",
+		"zh": "\u5168\u90e8\u7684GET\u6307\u4ee4\uff08\u5931\u8d25\u7684\uff09"
 	},
 	"bytes_read": {
 		"no": "Antall bytes inn til tjeneren",
@@ -320,7 +336,8 @@
 		"zh-tw": "\u50b3\u9001\u81f3\u4e3b\u6a5f\u7e3d\u4f4d\u5143\u7d44",
 		"nn": "Bytes inn til tenaren",
 		"et": "Baite serverisse",
-		"he": "\u05d1\u05d8\u05d9\u05dd \u05e9\u05e0\u05d9\u05db\u05e0\u05e1\u05d5 \u05dc\u05e9\u05e8\u05ea"
+		"he": "\u05d1\u05d8\u05d9\u05dd \u05e9\u05e0\u05d9\u05db\u05e0\u05e1\u05d5 \u05dc\u05e9\u05e8\u05ea",
+		"zh": "\u8fdb\u5165\u670d\u52a1\u5668\u7684\u5b57\u8282"
 	},
 	"bytes_written": {
 		"no": "Antall bytes skrevet av tjeneren",
@@ -339,7 +356,8 @@
 		"zh-tw": "\u5beb\u5165\u81f3\u4e3b\u6a5f\u7e3d\u4f4d\u5143\u7d44",
 		"nn": "Bytes skrivne p\u00e5 tenaren",
 		"et": "Serveri poolt kirjutatud baite",
-		"he": "\u05d1\u05d8\u05d9\u05dd \u05e9\u05e0\u05db\u05ea\u05d1\u05d5 \u05e2\"\u05d9 \u05d4\u05e9\u05e8\u05ea"
+		"he": "\u05d1\u05d8\u05d9\u05dd \u05e9\u05e0\u05db\u05ea\u05d1\u05d5 \u05e2\"\u05d9 \u05d4\u05e9\u05e8\u05ea",
+		"zh": "\u670d\u52a1\u5668\u5199\u5165\u7684\u5b57\u8282"
 	},
 	"limit_maxbytes": {
 		"no": "Total lagring tilgjengelig",
@@ -358,6 +376,7 @@
 		"zh-tw": "\u5132\u5b58\u7a7a\u9593\u7e3d\u5229\u7528\u6578",
 		"nn": "Totalt lager tilgjengeleg",
 		"et": "Saadaval ketast kokku",
-		"he": "\u05e1\u05da \u05d4\u05db\u05dc \u05d0\u05d7\u05e1\u05d5\u05df \u05d6\u05de\u05d9\u05df"
+		"he": "\u05e1\u05da \u05d4\u05db\u05dc \u05d0\u05d7\u05e1\u05d5\u05df \u05d6\u05de\u05d9\u05df",
+		"zh": "\u5168\u90e8\u7684\u5b58\u50a8\u5229\u7528"
 	}
 }
