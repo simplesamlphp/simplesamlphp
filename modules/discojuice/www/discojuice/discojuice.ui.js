@@ -43,6 +43,92 @@ DiscoJuice.UI = {
 		this.alreadyLoaded = {};
 	},
 	
+	"sprintf": function() {
+	   if (!arguments || arguments.length < 1 || !RegExp)
+	   {
+	      return;
+	   }
+	   var str = arguments[0];
+	   var re = /([^%]*)%('.|0|\x20)?(-)?(\d+)?(\.\d+)?(%|b|c|d|u|f|o|s|x|X)(.*)/;
+	   var a = b = [], numSubstitutions = 0, numMatches = 0;
+	   while (a = re.exec(str))
+	   {
+	      var leftpart = a[1], pPad = a[2], pJustify = a[3], pMinLength = a[4];
+	      var pPrecision = a[5], pType = a[6], rightPart = a[7];
+
+	      numMatches++;
+	      if (pType == '%')
+	      {
+	         subst = '%';
+	      }
+	      else
+	      {
+	         numSubstitutions++;
+	         if (numSubstitutions >= arguments.length)
+	         {
+	            alert('Error! Not enough function arguments (' + (arguments.length - 1)
+	               + ', excluding the string)\n'
+	               + 'for the number of substitution parameters in string ('
+	               + numSubstitutions + ' so far).');
+	         }
+	         var param = arguments[numSubstitutions];
+	         var pad = '';
+	                if (pPad && pPad.substr(0,1) == "'") pad = leftpart.substr(1,1);
+	           else if (pPad) pad = pPad;
+	         var justifyRight = true;
+	                if (pJustify && pJustify === "-") justifyRight = false;
+	         var minLength = -1;
+	                if (pMinLength) minLength = parseInt(pMinLength);
+	         var precision = -1;
+	                if (pPrecision && pType == 'f')
+	                   precision = parseInt(pPrecision.substring(1));
+	         var subst = param;
+	         switch (pType)
+	         {
+	         case 'b':
+	            subst = parseInt(param).toString(2);
+	            break;
+	         case 'c':
+	            subst = String.fromCharCode(parseInt(param));
+	            break;
+	         case 'd':
+	            subst = parseInt(param) ? parseInt(param) : 0;
+	            break;
+	         case 'u':
+	            subst = Math.abs(param);
+	            break;
+	         case 'f':
+	            subst = (precision > -1) ? Math.round(parseFloat(param) * Math.pow(10, precision)) / Math.pow(10, precision) : parseFloat(param);
+	            break;
+	         case 'o':
+	            subst = parseInt(param).toString(8);
+	            break;
+	         case 's':
+	            subst = param;
+	            break;
+	         case 'x':
+	            subst = ('' + parseInt(param).toString(16)).toLowerCase();
+	            break;
+	         case 'X':
+	            subst = ('' + parseInt(param).toString(16)).toUpperCase();
+	            break;
+	         }
+	         var padLeft = minLength - subst.toString().length;
+	         if (padLeft > 0)
+	         {
+	            var arrTmp = new Array(padLeft+1);
+	            var padding = arrTmp.join(pad?pad:" ");
+	         }
+	         else
+	         {
+	            var padding = "";
+	         }
+	      }
+	      str = leftpart + padding + subst + rightPart;
+	   }
+	   return str;
+	},
+	
 	"addItem": function(item, countrydef, search, distance, quickentry, enabled) {
 		var textLink = '';
 		var classes = (enabled ? 'enabled' : 'disabled');
@@ -100,7 +186,7 @@ DiscoJuice.UI = {
 			
 			if (distance != undefined) {
 				if (distance < 1) {
-					textLink += '<span class="distance">Nearby</span>';
+					textLink += '<span class="distance">' + DiscoJuice.Dict.Nearby + '</span>';
 				} else {
 					textLink += '<span class="distance">' +  Math.round(distance) + ' km' + '</span>';
 				}
@@ -209,7 +295,8 @@ DiscoJuice.UI = {
 		});
 		
 		if (showmore) {
-			var moreLink = '<a class="discojuice_showmore textlink" href="">Results limited to ' + show + ' entries – show more…</a>';
+			
+			var moreLink = '<a class="discojuice_showmore textlink" href="">' + this.sprintf(DiscoJuice.Dict.moreLink, show, listcount)+ '…</a>';
 			this.popup.find("p.discojuice_moreLinkContainer").empty().append(moreLink);
 			this.popup.find("p.discojuice_moreLinkContainer a.discojuice_showmore").click(function(event) {
 				event.preventDefault();
@@ -233,9 +320,9 @@ DiscoJuice.UI = {
 	"enable": function(control) {
 		var imgpath = this.parent.Utils.options.get('discoPath', '') + 'images/';
 		
-		var textSearch = this.parent.Utils.options.get('textSearch', 'or search for a provider, in example Univerity of Oslo');
-		var textHelp = this.parent.Utils.options.get('textHelp', 'Help me, I cannot find my provider');
-		var textHelpMore = this.parent.Utils.options.get('textHelpMore', 'If your institusion is not connected to Foodle, you may create a new account using any of the Guest providers, such as <strong>OpenIdP (Guest users)</strong>.');
+		var textSearch = this.parent.Utils.options.get('textSearch',  DiscoJuice.Dict.orSearch);
+		var textHelp = this.parent.Utils.options.get('textHelp', DiscoJuice.Dict.help);
+		var textHelpMore = this.parent.Utils.options.get('textHelpMore', DiscoJuice.Dict.helpMore);
 	
 		var subtitleText = this.parent.Utils.options.get('subtitle', null);
 		var subtitleHTML = (subtitleText !== null ? '<p class="discojuice_subtitle">' + subtitleText + '</p>' : '');
@@ -249,7 +336,7 @@ DiscoJuice.UI = {
 			
 			'<div class="discojuice_listContent" style="">' +
 				'<div class="scroller">' +
-					'<div class="loadingData" ><img src="' + imgpath + 'spinning.gif" /> Loading list of providers...</div>' +
+					'<div class="loadingData" ><img src="' + imgpath + 'spinning.gif" /> ' + DiscoJuice.Dict.loading + '...</div>' +
 				'</div>' +
 				'<p class="discojuice_moreLinkContainer" style="margin: 0px; padding: 4px">&nbsp;</p>' +
 			'</div>' +
@@ -261,7 +348,7 @@ DiscoJuice.UI = {
 			
 			'<div id="discojuice_page_return" style="display: none"  class="" >' +
 				'<div class="" style="">' + 
-				'<input id="discojuice_returntoproviderlist" type="submit" value="« Return to list of providers" />' +
+				'<input id="discojuice_returntoproviderlist" type="submit" value="« ' + DiscoJuice.Dict.pageReturn + '" />' +
 				'</div>' +
 			'</div>' +
 	
@@ -283,7 +370,7 @@ DiscoJuice.UI = {
 				'<div class="locatemebefore">' +
 					'<p style="margin-top: 10px"><a id="locateme" href="">' +
 						'<img style="float: left; margin-right: 5px; margin-top: -10px" src="' + imgpath + 'target.png" alt="locate me..." />' +
-						'Locate me and show nearby providers</a>' +
+						DiscoJuice.Dict.locateMe + '</a>' +
 					'</p>' +
 					'<p style="color: #999" id="locatemeinfo"></p>' +
 				'</div>' +
@@ -330,11 +417,11 @@ DiscoJuice.UI = {
 		
 		this.popup.find("p#dj_help").click(function() {
 			that.setScreen(
-				'<h2>About DiscoJuice</h2>' +
-				'<p style="margin: .5em 0px">DiscoJuice is a user interface to help users select which provider to login with. DiscoJuice is created by <a href="http://uninett.no">UNINETT</a></p>' +
+				'<h2>' + DiscoJuice.Dict.about + '</h2>' +
+				'<p style="margin: .5em 0px">' + that.sprintf(DiscoJuice.Dict.aboutDescr, '<a href="http://uninett.no">', '</a>') + '</p>' +
 
-				'<p style="margin: .5em 10px"><a href="http://discojuice.org" target="_blank">Read more about DiscoJuice</a></p>' +
-				'<p style="margin: .5em 0px; font-size: 80%">Version: ' + DiscoJuice.Version);
+				'<p style="margin: .5em 10px"><a href="http://discojuice.org" target="_blank">' + DiscoJuice.Dict.aboutMore + '</a></p>' +
+				'<p style="margin: .5em 0px; font-size: 80%">' + DiscoJuice.Dict.version + ': ' + DiscoJuice.Version);
 		});
 
 		this.popup.find("#discojuiceextesion_listener").click(function() {
@@ -366,7 +453,7 @@ DiscoJuice.UI = {
 				event.preventDefault();
  				event.stopPropagation();
 				$("div.locatemebefore").hide();
-				$("div.locatemeafter").html('<div class="loadingData" ><img src="' + imgpath + 'spinning.gif" /> Getting your location...</div>');
+				$("div.locatemeafter").html('<div class="loadingData" ><img src="' + imgpath + 'spinning.gif" /> ' + DiscoJuice.Dict.locating + '...</div>');
 				that.control.locateMe();
 			});
 		} 

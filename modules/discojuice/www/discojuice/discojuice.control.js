@@ -840,13 +840,13 @@ DiscoJuice.Control = {
 			if (filterOptions[preset]) choice = preset;
 		}
 	
-		var ftext = '<p class="discojuice_filter_country">Show providers in ' +
+		var ftext = '<p class="discojuice_filter_country">' + DiscoJuice.Dict.showIn+ ' ' +
 			'<select class="discojuice_filterCountrySelect" name="filterCountrySelect">';
 		
 		if (choice) {
-			ftext += '<option value="all">all countries</option>';
+			ftext += '<option value="all">' + DiscoJuice.Dict.allCountries+ '</option>';
 		} else {
-			ftext += '<option value="all" selected="selected">all countries</option>';
+			ftext += '<option value="all" selected="selected">' + DiscoJuice.Dict.allCountries+ '</option>';
 		}
 		
 		for (key in this.parent.Constants.Countries) {
@@ -858,7 +858,7 @@ DiscoJuice.Control = {
 			}
 		}
 		ftext += '</select>';
-		ftext += ' <a class="discojuice_showall textlink" href="">show all countries</a>';
+		ftext += ' <a class="discojuice_showall textlink" href="">' + DiscoJuice.Dict.showAllCountries+ '</a>';
 		ftext += '</p>';
 		
 		this.ui.addFilter(ftext).find("select").change(function(event) {
