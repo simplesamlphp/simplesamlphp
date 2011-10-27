@@ -35,9 +35,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @author     Robert Richards <rrichards@cdatazone.org>
- * @copyright  2007-2010 Robert Richards <rrichards@cdatazone.org>
+ * @copyright  2007-2011 Robert Richards <rrichards@cdatazone.org>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    1.3.0-dev
+ * @version    1.3.0
  */
 
 /*
@@ -209,24 +209,28 @@ class XMLSecurityKey {
                 $this->cryptParams['cipher'] = MCRYPT_TRIPLEDES;
                 $this->cryptParams['mode'] = MCRYPT_MODE_CBC;
                 $this->cryptParams['method'] = 'http://www.w3.org/2001/04/xmlenc#tripledes-cbc';
+                $this->cryptParams['keysize'] = 24;
                 break;
             case (XMLSecurityKey::AES128_CBC):
                 $this->cryptParams['library'] = 'mcrypt';
                 $this->cryptParams['cipher'] = MCRYPT_RIJNDAEL_128;
                 $this->cryptParams['mode'] = MCRYPT_MODE_CBC;
                 $this->cryptParams['method'] = 'http://www.w3.org/2001/04/xmlenc#aes128-cbc';
+                $this->cryptParams['keysize'] = 16;
                 break;
             case (XMLSecurityKey::AES192_CBC):
                 $this->cryptParams['library'] = 'mcrypt';
                 $this->cryptParams['cipher'] = MCRYPT_RIJNDAEL_128;
                 $this->cryptParams['mode'] = MCRYPT_MODE_CBC;
                 $this->cryptParams['method'] = 'http://www.w3.org/2001/04/xmlenc#aes192-cbc';
+                $this->cryptParams['keysize'] = 24;
                 break;
             case (XMLSecurityKey::AES256_CBC):
                 $this->cryptParams['library'] = 'mcrypt';
                 $this->cryptParams['cipher'] = MCRYPT_RIJNDAEL_128;
                 $this->cryptParams['mode'] = MCRYPT_MODE_CBC;
                 $this->cryptParams['method'] = 'http://www.w3.org/2001/04/xmlenc#aes256-cbc';
+                $this->cryptParams['keysize'] = 32;
                 break;
             case (XMLSecurityKey::RSA_1_5):
                 $this->cryptParams['library'] = 'openssl';
@@ -285,28 +289,51 @@ class XMLSecurityKey {
         $this->type = $type;
     }
 
+    /**
+     * Retrieve the key size for the symmetric encryption algorithm..
+     *
+     * If the key size is unknown, or this isn't a symmetric encryption algorithm,
+     * NULL is returned.
+     *
+     * @return int|NULL  The number of bytes in the key.
+     */
+    public function getSymmetricKeySize() {
+        if (! isset($this->cryptParams['keysize'])) {
+            return NULL;
+        }
+        return $this->cryptParams['keysize'];
+    }
+      
     public function generateSessionKey() {
-        $key = '';
-        if (! empty($this->cryptParams['cipher']) && ! empty($this->cryptParams['mode'])) {
-            $keysize = mcrypt_module_get_algo_key_size($this->cryptParams['cipher']);
+        if (!isset($this->cryptParams['keysize'])) {
+            throw new Exception('Unknown key size for type "' . $this->type . '".');
+        }
+        $keysize = $this->cryptParams['keysize'];
+        
+        if (function_exists('openssl_random_pseudo_bytes')) {
+            /* We have PHP >= 5.3 - use openssl to generate session key. */
+            $key = openssl_random_pseudo_bytes($keysize);
+        } else {
             /* Generating random key using iv generation routines */
-            if (($keysize > 0) && ($td = mcrypt_module_open(MCRYPT_RIJNDAEL_256, '',$this->cryptParams['mode'], ''))) {
-                if ($this->cryptParams['cipher'] == MCRYPT_RIJNDAEL_128) {
-                    $keysize = 16;
-                    if ($this->type == XMLSecurityKey::AES256_CBC) {
-                        $keysize = 32;
-                    } elseif ($this->type == XMLSecurityKey::AES192_CBC) {
-                        $keysize = 24;
-                    }
+            $key = mcrypt_create_iv($keysize, MCRYPT_RAND);
+        }
+        
+        if ($this->type === XMLSecurityKey::TRIPLEDES_CBC) {
+            /* Make sure that the generated key has the proper parity bits set.
+             * Mcrypt doesn't care about the parity bits, but others may care.
+            */
+            for ($i = 0; $i < strlen($key); $i++) {
+                $byte = ord($key[$i]) & 0xfe;
+                $parity = 1;
+                for ($j = 1; $j < 8; $j++) {
+                    $parity ^= ($byte >> $j) & 1;
                 }
-                while (strlen($key) < $keysize) {
-                    $key .= mcrypt_create_iv(mcrypt_enc_get_iv_size ($td),MCRYPT_RAND);
-                }
-                mcrypt_module_close($td);
-                $key = substr($key, 0, $keysize);
-                $this->key = $key;
+                $byte |= $parity;
+                $key[$i] = chr($byte);
             }
         }
+        
+        $this->key = $key;
         return $key;
     }
 
@@ -1454,23 +1481,50 @@ class XMLSecEnc {
         $this->type = $curType;
     }
 
-    public function decryptNode($objKey, $replace=TRUE) {
-        $data = '';
+    /**
+     * Retrieve the CipherValue text from this encrypted node.
+     *
+     * @return string|NULL  The Ciphervalue text, or NULL if no CipherValue is found.
+     */
+    public function getCipherValue() {
         if (empty($this->rawNode)) {
             throw new Exception('Node to decrypt has not been set');
         }
-        if (! $objKey instanceof XMLSecurityKey) {
-            throw new Exception('Invalid Key');
-        }
+
         $doc = $this->rawNode->ownerDocument;
         $xPath = new DOMXPath($doc);
         $xPath->registerNamespace('xmlencr', XMLSecEnc::XMLENCNS);
         /* Only handles embedded content right now and not a reference */
         $query = "./xmlencr:CipherData/xmlencr:CipherValue";
         $nodeset = $xPath->query($query, $this->rawNode);
+        $node = $nodeset->item(0);
 
-        if ($node = $nodeset->item(0)) {
-            $encryptedData = base64_decode($node->nodeValue);
+        if (!$node) {
+                return NULL;
+        }
+
+        return base64_decode($node->nodeValue);
+    }
+
+    /**
+     * Decrypt this encrypted node.
+     *
+     * The behaviour of this function depends on the value of $replace.
+     * If $replace is FALSE, we will return the decrypted data as a string.
+     * If $replace is TRUE, we will insert the decrypted element(s) into the
+     * document, and return the decrypted element(s).
+     *
+     * @params XMLSecurityKey $objKey  The decryption key that should be used when decrypting the node.
+     * @params boolean $replace  Whether we should replace the encrypted node in the XML document with the decrypted data. The default is TRUE.
+     * @return string|DOMElement  The decrypted data.
+     */     
+    public function decryptNode($objKey, $replace=TRUE) {
+        if (! $objKey instanceof XMLSecurityKey) {
+            throw new Exception('Invalid Key');
+        }
+
+        $encryptedData = $this->getCipherValue();
+        if ($encryptedData) {
             $decrypted = $objKey->decryptData($encryptedData);
             if ($replace) {
                 switch ($this->type) {
