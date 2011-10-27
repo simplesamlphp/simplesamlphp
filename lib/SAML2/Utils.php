@@ -344,8 +344,41 @@ class SAML2_Utils {
 
 			$encKey = $symmetricKeyInfo->encryptedCtx;
 			$symmetricKeyInfo->key = $inputKey->key;
-			$key = $encKey->decryptKey($symmetricKeyInfo);
+
+			$keySizes = array(
+				XMLSecurityKey::TRIPLEDES_CBC => 24,
+				XMLSecurityKey::AES128_CBC => 16,
+				XMLSecurityKey::AES192_CBC => 24,
+				XMLSecurityKey::AES256_CBC => 32,
+			);
+			if (!isset($keySizes[$symmetricKey->type])) {
+				/* To protect against "key oracle" attacks, we need to be able to create a
+				 * symmetric key, and for that we need to know the key size.
+				 */
+				throw new Exception('Unsupported encryption algorithm: ' . var_export($symmetricKey->type, TRUE));
+			}
+			$keySize = $keySizes[$symmetricKey->type];
+
+			try {
+				$key = $encKey->decryptKey($symmetricKeyInfo);
+			} catch (Exception $e) {
+				/* We failed to decrypt this key. Log it, and substitute a "random" key. */
+				SimpleSAML_Logger::error('Failed to decrypt symmetric key: ' . $e->getMessage());
+				/* Create a replacement key, so that it looks like we fail in the same way as if the key was correctly padded. */
+
+				/* We base the symmetric key on the encrypted key, so that we always behave the same way for a given input key. */
+				$encryptedKey = $encKey->getCipherValue();
+				$key = md5($encryptedKey, TRUE);
+
+				/* Make sure that the key has the correct length. */
+				if (strlen($key) > $keySize) {
+					$key = substr($key, 0, $keySize);
+				} elseif (strlen($key) < $keySize) {
+					$key = str_pad($key, $keySize);
+				}
+			}
 			$symmetricKey->loadkey($key);
+
 		} else {
 			$symKeyAlgo = $symmetricKey->getAlgorith();
 			/* Make sure that the input key has the correct format. */

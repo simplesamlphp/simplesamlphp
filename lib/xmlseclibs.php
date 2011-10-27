@@ -1300,23 +1300,50 @@ class XMLSecEnc {
         }
     }
 
-    public function decryptNode($objKey, $replace=TRUE) {
-        $data = '';
+    /**
+     * Retrieve the CipherValue text from this encrypted node.
+     *
+     * @return string|NULL  The Ciphervalue text, or NULL if no CipherValue is found.
+     */
+    public function getCipherValue() {
         if (empty($this->rawNode)) {
             throw new Exception('Node to decrypt has not been set');
         }
-        if (! $objKey instanceof XMLSecurityKey) {
-            throw new Exception('Invalid Key');
-        }
+
         $doc = $this->rawNode->ownerDocument;
         $xPath = new DOMXPath($doc);
         $xPath->registerNamespace('xmlencr', XMLSecEnc::XMLENCNS);
         /* Only handles embedded content right now and not a reference */
         $query = "./xmlencr:CipherData/xmlencr:CipherValue";
         $nodeset = $xPath->query($query, $this->rawNode);
+        $node = $nodeset->item(0);
 
-        if ($node = $nodeset->item(0)) {
-            $encryptedData = base64_decode($node->nodeValue);
+        if (!$node) {
+                return NULL;
+        }
+
+        return base64_decode($node->nodeValue);
+    }
+
+    /**
+     * Decrypt this encrypted node.
+     *
+     * The behaviour of this function depends on the value of $replace.
+     * If $replace is FALSE, we will return the decrypted data as a string.
+     * If $replace is TRUE, we will insert the decrypted element(s) into the
+     * document, and return the decrypted element(s).
+     *
+     * @params XMLSecurityKey $objKey  The decryption key that should be used when decrypting the node.
+     * @params boolean $replace  Whether we should replace the encrypted node in the XML document with the decrypted data. The default is TRUE.
+     * @return string|DOMElement  The decrypted data.
+     */     
+    public function decryptNode($objKey, $replace=TRUE) {
+        if (! $objKey instanceof XMLSecurityKey) {
+            throw new Exception('Invalid Key');
+        }
+
+        $encryptedData = $this->getCipherValue();
+        if ($encryptedData) {
             $decrypted = $objKey->decryptData($encryptedData);
             if ($replace) {
                 switch ($this->type) {
