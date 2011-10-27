@@ -297,11 +297,13 @@ class SAML2_Utils {
 	/**
 	 * Decrypt an encrypted element.
 	 *
+	 * This is an internal helper function.
+	 *
 	 * @param DOMElement $encryptedData  The encrypted data.
 	 * @param XMLSecurityKey $inputKey  The decryption key.
 	 * @return DOMElement  The decrypted element.
 	 */
-	public static function decryptElement(DOMElement $encryptedData, XMLSecurityKey $inputKey) {
+	private static function _decryptElement(DOMElement $encryptedData, XMLSecurityKey $inputKey) {
 
 		$enc = new XMLSecEnc();
 
@@ -372,7 +374,33 @@ class SAML2_Utils {
 			throw new Exception('Missing encrypted element.');
 		}
 
+		if (!($decryptedElement instanceof DOMElement)) {
+			throw new Exception('Decrypted element was not actually a DOMElement.');
+		}
+
 		return $decryptedElement;
+	}
+
+
+	/**
+	 * Decrypt an encrypted element.
+	 *
+	 * @param DOMElement $encryptedData  The encrypted data.
+	 * @param XMLSecurityKey $inputKey  The decryption key.
+	 * @return DOMElement  The decrypted element.
+	 */
+	public static function decryptElement(DOMElement $encryptedData, XMLSecurityKey $inputKey) {
+
+		try {
+			return self::_decryptElement($encryptedData, $inputKey);
+		} catch (Exception $e) {
+			/*
+			 * Something went wrong during decryption, but for security
+			 * reasons we cannot tell the user what failed.
+			 */
+			SimpleSAML_Logger::error('Decryption failed: ' . $e->getMessage());
+			throw new Exception('Failed to decrypt XML element.');
+		}
 	}
 
 
