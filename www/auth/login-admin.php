@@ -33,7 +33,7 @@ if (isset($_POST['password'])) {
 
 	/* Validate and sanitize form data. */
 
-	if ($_POST['password'] === $correctpassword) {
+	if (SimpleSAML_Utils_Crypto::pwValid($correctpassword, $_POST['password'])) {
 		$username = 'admin';
 		$password = $_POST['password'];
 	

@@ -64,6 +64,17 @@ $config = array(
 	*/
 
 	/*
+	'crypto-hash' => array(
+		'authcrypto:Hash',
+		// hashed version of 'verysecret', made with bin/pwgen.php
+		'professor:{SSHA256}P6FDTEEIY2EnER9a6P2GwHhI5JDrwBgjQ913oVQjBngmCtrNBUMowA==' => array(
+			'uid' => array('prof_a'),
+			'eduPersonAffiliation' => array('member', 'employee', 'board'),
+		),
+	),
+	*/
+
+	/*
 	// This authentication source serves as an example of integration with an
 	// external authentication engine. Take a look at the comment in the beginning
 	// of modules/exampleauth/lib/Auth/Source/External.php for a description of
