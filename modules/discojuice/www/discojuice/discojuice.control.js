@@ -475,6 +475,11 @@ DiscoJuice.Control = {
 			current = this.data[i];
 			if (!current.weight) current.weight = 0;
 			
+			if (!current.title) {
+				console.log('No title for this entry [' + current.entityID + (current.relID) + '] skipping.');
+				continue;
+			}
+			
 			if (term) {
 				search = this.parent.Utils.searchMatch(current,term);
 //				if (search === false && current.weight > -50) continue;
