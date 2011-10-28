@@ -75,9 +75,9 @@ try {
 	 * URL will detect both '../' and './'. Searching for '\' will detect attempts to
 	 * use Windows-style paths.
 	 */
-	if (strpos($url, '\\')) {
+	if (strpos($url, '\\') !== FALSE) {
 		throw new SimpleSAML_Error_BadRequest('Requested URL contained a backslash.');
-	} elseif (strpos($url, './')) {
+	} elseif (strpos($url, './') !== FALSE) {
 		throw new SimpleSAML_Error_BadRequest('Requested URL contained \'./\'.');
 	}
 
