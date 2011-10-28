@@ -100,6 +100,8 @@ $config = array(
 		// 'sreg.validate' => FALSE,
 		'attributes.ax_required' => array('http://axschema.org/namePerson/friendly'),
 		'attributes.ax_optional' => array('http://axschema.org/namePerson','http://axschema.org/contact/email'),
+		// Prefer HTTP redirect over POST
+		// 'prefer_http_redirect' => FALSE,
 	),
 	*/
 

@@ -62,6 +62,11 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 	private $extensionArgs;
 
 	/**
+	 * Prefer HTTP Redirect over HTML Form Redirection (POST)
+	 */
+	private $preferHttpRedirect;
+
+	/**
 	 * Constructor for this authentication source.
 	 *
 	 * @param array $info  Information about this authentication source.
@@ -87,6 +92,8 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 		$this->validateSReg = $cfgParse->getBoolean('sreg.validate',TRUE);
 
 		$this->extensionArgs = $cfgParse->getArray('extension.args', array());
+
+		$this->preferHttpRedirect = $cfgParse->getBoolean('prefer_http_redirect', FALSE);
 	}
 
 
@@ -225,9 +232,12 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 		// Store the token for this authentication so we can verify the
 		// response.
 
-		// For OpenID 1, send a redirect.  For OpenID 2, use a Javascript
-		// form to send a POST request to the server.
-		if ($auth_request->shouldSendRedirect()) {
+		// For OpenID 1, send a redirect.  For OpenID 2, use a Javascript form
+		// to send a POST request to the server or use redirect if
+		// prefer_http_redirect is enabled and redirect URL size
+		// is less than 2049
+		$should_send_redirect = $auth_request->shouldSendRedirect();
+		if ($this->preferHttpRedirect || $should_send_redirect) {
 			$redirect_url = $auth_request->redirectURL($this->getTrustRoot(), $this->getReturnTo($stateId));
 
 			// If the redirect URL can't be built, display an error message.
@@ -235,21 +245,25 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 				throw new SimpleSAML_Error_AuthSource($this->authId, 'Could not redirect to server: ' . var_export($redirect_url->message, TRUE));
 			}
 
-			SimpleSAML_Utilities::redirect($redirect_url);
-		} else {
-			// Generate form markup and render it.
-			$form_id = 'openid_message';
-			$form_html = $auth_request->formMarkup($this->getTrustRoot(), $this->getReturnTo($stateId), FALSE, array('id' => $form_id));
-
-			// Display an error if the form markup couldn't be generated; otherwise, render the HTML.
-			if (Auth_OpenID::isFailure($form_html)) {
-				throw new SimpleSAML_Error_AuthSource($this->authId, 'Could not redirect to server: ' . var_export($form_html->message, TRUE));
-			} else {
-				echo '<html><head><title>OpenID transaction in progress</title></head>
-					<body onload=\'document.getElementById("' . $form_id . '").submit()\'>' .
-					$form_html . '</body></html>';
-				exit;
+			// For OpenID 2 failover to POST if redirect URL is longer than 2048
+			if ($should_send_redirect || strlen($redirect_url) <= 2048) {
+				SimpleSAML_Utilities::redirect($redirect_url);
+				assert('FALSE');
 			}
+		}
+
+		// Generate form markup and render it.
+		$form_id = 'openid_message';
+		$form_html = $auth_request->formMarkup($this->getTrustRoot(), $this->getReturnTo($stateId), FALSE, array('id' => $form_id));
+
+		// Display an error if the form markup couldn't be generated; otherwise, render the HTML.
+		if (Auth_OpenID::isFailure($form_html)) {
+			throw new SimpleSAML_Error_AuthSource($this->authId, 'Could not redirect to server: ' . var_export($form_html->message, TRUE));
+		} else {
+			echo '<html><head><title>OpenID transaction in progress</title></head>
+				<body onload=\'document.getElementById("' . $form_id . '").submit()\'>' .
+				$form_html . '</body></html>';
+			exit;
 		}
 	}
 
