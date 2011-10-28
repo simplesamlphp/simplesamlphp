@@ -155,7 +155,6 @@ DiscoJuice.UI = {
 		}
 		
 		if (quickentry) {
-//			textLink += '<span style="font-size: 80%; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; border: 1px solid #ccc; background: #eee; color: #777; padding: 3px 2px 0px 2px; margin: 3px; position: relative; top: -2px">&#8629;</span>';
 			textLink += '<span style="font-size: 80%; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; border: 1px solid #ccc; background: #eee; color: #777; padding: 3px 2px 0px 2px; margin: 3px; float: left; left: -10px">&#8629;</span>';
 		}
 		
@@ -186,7 +185,7 @@ DiscoJuice.UI = {
 			
 			if (distance != undefined) {
 				if (distance < 1) {
-					textLink += '<span class="distance">' + DiscoJuice.Dict.Nearby + '</span>';
+					textLink += '<span class="distance">' + DiscoJuice.Dict.nearby + '</span>';
 				} else {
 					textLink += '<span class="distance">' +  Math.round(distance) + ' km' + '</span>';
 				}
