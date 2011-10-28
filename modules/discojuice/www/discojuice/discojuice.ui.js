@@ -295,7 +295,7 @@ DiscoJuice.UI = {
 		
 		if (showmore) {
 			
-			var moreLink = '<a class="discojuice_showmore textlink" href="">' + this.sprintf(DiscoJuice.Dict.moreLink, show, listcount)+ '…</a>';
+			var moreLink = '<a class="discojuice_showmore textlink" href="">' + this.sprintf(DiscoJuice.Dict.moreLink, show, this.parent.Control.data.length)+ '…</a>';
 			this.popup.find("p.discojuice_moreLinkContainer").empty().append(moreLink);
 			this.popup.find("p.discojuice_moreLinkContainer a.discojuice_showmore").click(function(event) {
 				event.preventDefault();
