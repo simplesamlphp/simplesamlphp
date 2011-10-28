@@ -22,7 +22,7 @@ class SAML2_XML_md_Extensions {
 				$ret[] = new SAML2_XML_shibmd_Scope($node);
 			} elseif ($node->namespaceURI === SAML2_XML_mdattr_EntityAttributes::NS && $node->localName === 'EntityAttributes') {
 				$ret[] = new SAML2_XML_mdattr_EntityAttributes($node);
-			} elseif ($node->namespaceURL === SAML2_XML_mdrpi_Common::NS_MDRPI && $node->localName === 'PublicationInfo') {
+			} elseif ($node->namespaceURI === SAML2_XML_mdrpi_Common::NS_MDRPI && $node->localName === 'PublicationInfo') {
 				$ret[] = new SAML2_XML_mdrpi_PublicationInfo($node);
 			} else {
 				$ret[] = new SAML2_XML_Chunk($node);
