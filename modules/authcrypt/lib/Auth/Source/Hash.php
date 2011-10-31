@@ -81,7 +81,8 @@ class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase {
 		assert('is_string($password)');
 
 		foreach($this->users as $userpass=>$attrs) {
-			if(preg_match("/^$username:(.*)$/", $userpass, $matches)) {
+			$matches = explode(':', $userpass, 2);
+			if ($matches[0] === $username) {
 				if(SimpleSAML_Utils_Crypto::pwValid($matches[1], $password)) {
 					return $this->users[$userpass];
 				} else {
