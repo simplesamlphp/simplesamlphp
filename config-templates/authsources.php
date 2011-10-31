@@ -65,7 +65,7 @@ $config = array(
 
 	/*
 	'crypto-hash' => array(
-		'authcrypto:Hash',
+		'authcrypt:Hash',
 		// hashed version of 'verysecret', made with bin/pwgen.php
 		'professor:{SSHA256}P6FDTEEIY2EnER9a6P2GwHhI5JDrwBgjQ913oVQjBngmCtrNBUMowA==' => array(
 			'uid' => array('prof_a'),
