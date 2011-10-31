@@ -1006,6 +1006,10 @@ class SimpleSAML_Utilities {
 		static $fp = NULL;
 		assert('is_int($length)');
 
+		if (function_exists('openssl_random_pseudo_bytes')) {
+			return openssl_random_pseudo_bytes($length);
+		}
+
 		if($fp === NULL) {
 			if (@file_exists('/dev/urandom')) {
 				$fp = @fopen('/dev/urandom', 'rb');
