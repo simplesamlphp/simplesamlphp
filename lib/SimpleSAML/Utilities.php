@@ -67,14 +67,14 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Will return https://sp.example.org
+	 * Will return https://sp.example.org[:PORT]
 	 */
 	public static function selfURLhost() {
 
 		$url = self::getBaseURL();
 
 		$start = strpos($url,'://') + 3;
-		$length = strcspn($url,'/:',$start) + $start;
+		$length = strcspn($url,'/',$start) + $start;
 
 		return substr($url, 0, $length);
 	}
