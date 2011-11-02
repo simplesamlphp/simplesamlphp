@@ -40,8 +40,9 @@ function receive() {
 		window.parent.DiscoJuice.Control.discoResponseError(cid, 
 			"Error from IdP Discovery Service [" + sender + "]:  " + urlParams.error);			
 	} else {
-		window.parent.DiscoJuice.Control.discoResponseError(cid, 
-			"ResponseLocation: Response from discovery service [" + sender + "]: No valid response parameters");
+		console.log('No valid response parameters. cid[' + cid + ']');
+		window.parent.DiscoJuice.Control.discoResponseError(cid);
+		// 	"ResponseLocation: Response from discovery service [" + sender + "]: No valid response parameters");
 	}
 
 }
@@ -50,6 +51,6 @@ function receive() {
 </head>
 
 <body onload="receive();">
-
 </body>
+
 </html>
