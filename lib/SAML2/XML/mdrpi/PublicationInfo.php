@@ -64,8 +64,7 @@ class SAML2_XML_mdrpi_PublicationInfo {
 			$this->publicationId = $xml->getAttribute('publicationId');
 		}
 
-		$query = './*[local-name()="UsagePolicy" and namespace-uri()="' . SAML2_XML_mdrpi_Common::NS_MDRPI . '"]';
-		$this->UsagePolicy = SAML2_Utils::extractLocalizedStrings($xml, $query);
+		$this->UsagePolicy = SAML2_Utils::extractLocalizedStrings($xml, SAML2_XML_mdrpi_Common::NS_MDRPI, 'UsagePolicy');
 	}
 
 

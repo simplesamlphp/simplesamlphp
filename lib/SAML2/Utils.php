@@ -434,15 +434,21 @@ class SAML2_Utils {
 	/**
 	 * Extract localized strings from a set of nodes.
 	 *
-	 * @param DOMElement $parent  The element we should rund the XPath query on.
-	 * @param string $query  The XPath query we should use to retrieve the nodes.
+	 * @param DOMElement $parent  The element that contains the localized strings.
+	 * @param string $namespaceURI  The namespace URI the localized strings should have.
+	 * @param string $localName  The localName of the localized strings.
 	 * @return array  Localized strings.
 	 */
-	public static function extractLocalizedStrings(DOMElement $parent, $query) {
-		assert('is_string($query)');
+	public static function extractLocalizedStrings(DOMElement $parent, $namespaceURI, $localName) {
+		assert('is_string($namespaceURI)');
+		assert('is_string($localName)');
 
 		$ret = array();
-		foreach (self::xpQuery($parent, $query) as $node) {
+		for ($node = $parent->firstChild; $node !== NULL; $node = $node->nextSibling) {
+			if ($node->namespaceURI !== $namespaceURI || $node->localName !== $localName) {
+				continue;
+			}
+
 			if ($node->hasAttribute('xml:lang')) {
 				$language = $node->getAttribute('xml:lang');
 			} else {
