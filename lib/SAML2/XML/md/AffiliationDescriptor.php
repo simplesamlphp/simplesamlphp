@@ -102,7 +102,7 @@ class SAML2_XML_md_AffiliationDescriptor extends SAML2_SignedElementHelper {
 
 		$this->Extensions = SAML2_XML_md_Extensions::getList($xml);
 
-		$this->AffiliateMember = SAML2_Utils::extractStrings($xml, './saml_metadata:AffiliateMember');
+		$this->AffiliateMember = SAML2_Utils::extractStrings($xml, SAML2_Const::NS_MD, 'AffiliateMember');
 		if (empty($this->AffiliateMember)) {
 			throw new Exception('Missing AffiliateMember in AffiliationDescriptor.');
 		}

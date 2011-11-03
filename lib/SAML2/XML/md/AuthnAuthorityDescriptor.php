@@ -61,7 +61,7 @@ class SAML2_XML_md_AuthnAuthorityDescriptor extends SAML2_XML_md_RoleDescriptor 
 			$this->AssertionIDRequestService[] = new SAML2_XML_md_EndpointType($airs);
 		}
 
-		$this->NameIDFormat = SAML2_Utils::extractStrings($xml, './saml_metadata:NameIDFormat');
+		$this->NameIDFormat = SAML2_Utils::extractStrings($xml, SAML2_Const::NS_MD, 'NameIDFormat');
 	}
 
 

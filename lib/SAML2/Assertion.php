@@ -321,7 +321,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 			}
 			switch ($node->localName) {
 			case 'AudienceRestriction':
-				$audiences = SAML2_Utils::extractStrings($node, './saml_assertion:Audience');
+				$audiences = SAML2_Utils::extractStrings($node, SAML2_Const::NS_SAML, 'Audience');
 				if ($this->validAudiences === NULL) {
 					/* The first (and probably last) AudienceRestriction element. */
 					$this->validAudiences = $audiences;
@@ -401,7 +401,7 @@ class SAML2_Assertion implements SAML2_SignedElement {
 			$this->authnContext = trim($accr[0]->textContent);
 		}
 		
-		$this->AuthenticatingAuthority = SAML2_Utils::extractStrings($ac, './saml_assertion:AuthenticatingAuthority');		
+		$this->AuthenticatingAuthority = SAML2_Utils::extractStrings($ac, SAML2_Const::NS_SAML, 'AuthenticatingAuthority');
 	}
 
 
