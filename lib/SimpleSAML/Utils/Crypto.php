@@ -1,4 +1,5 @@
-<?
+<?php
+
 /**
  * A class for crypto related functions
  *
