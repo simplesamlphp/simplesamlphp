@@ -75,6 +75,17 @@ $config = array(
 	*/
 
 	/*
+	'htpasswd' => array(
+		'authcrypt:Htpasswd',
+		'htpasswd_file' => '/var/www/foo.edu/legacy_app/.htpasswd',
+		'static_attributes' => array(
+			'eduPersonAffiliation' => array('member', 'employee'),
+			'Organization' => array('University of Foo'),
+		),
+	),
+	*/
+
+	/*
 	// This authentication source serves as an example of integration with an
 	// external authentication engine. Take a look at the comment in the beginning
 	// of modules/exampleauth/lib/Auth/Source/External.php for a description of
