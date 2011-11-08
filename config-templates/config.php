@@ -171,6 +171,11 @@ $config = array (
 	'session.datastore.timeout' => (4*60*60), // 4 hours
 	
 	/*
+	 * Sets the duration, in seconds, auth state should be stored.
+	 */
+	'session.state.timeout' => (60*60), // 1 hour
+
+	/*
 	 * Option to override the default settings for the session cookie name
 	 */
 	'session.cookie.name' => 'SimpleSAMLSessionID',

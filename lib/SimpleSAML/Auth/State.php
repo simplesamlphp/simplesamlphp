@@ -80,6 +80,12 @@ class SimpleSAML_Auth_State {
 
 
 	/**
+	 * State timeout.
+	 */
+	private static $stateTimeout = NULL;
+
+
+	/**
 	 * Retrieve the ID of a state array.
 	 *
 	 * Note that this function will not save the state.
@@ -109,6 +115,21 @@ class SimpleSAML_Auth_State {
 
 
 	/**
+	 * Retrieve state timeout.
+	 *
+	 * @return integer  State timeout.
+	 */
+	private static function getStateTimeout() {
+		if (self::$stateTimeout === NULL) {
+			$globalConfig = SimpleSAML_Configuration::getInstance();
+			self::$stateTimeout = $globalConfig->getInteger('session.state.timeout', 60*60);
+		}
+
+		return self::$stateTimeout;
+	}
+
+
+	/**
 	 * Save the state.
 	 *
 	 * This function saves the state, and returns an id which can be used to
@@ -133,7 +154,7 @@ class SimpleSAML_Auth_State {
 		/* Save state. */
 		$serializedState = serialize($state);
 		$session = SimpleSAML_Session::getInstance();
-		$session->setData('SimpleSAML_Auth_State', $id, $serializedState, 60*60);
+		$session->setData('SimpleSAML_Auth_State', $id, $serializedState, self::getStateTimeout());
 
 		SimpleSAML_Logger::debug('Saved state: ' . var_export($return, TRUE));
 
