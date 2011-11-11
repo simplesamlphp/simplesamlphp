@@ -38,6 +38,13 @@ class SimpleSAML_Auth_State {
 
 
 	/**
+	 * The index in the cloned state array which contains the identifier of the
+	 * original state.
+	 */
+	const CLONE_ORIGINAL_ID = 'SimpleSAML_Auth_State.cloneOriginalId';
+
+
+	/**
 	 * The index in the state array which contains the current stage.
 	 */
 	const STAGE = 'SimpleSAML_Auth_State.stage';
@@ -159,6 +166,30 @@ class SimpleSAML_Auth_State {
 		SimpleSAML_Logger::debug('Saved state: ' . var_export($return, TRUE));
 
 		return $return;
+	}
+
+
+	/**
+	 * Clone the state.
+	 *
+	 * This function clones and returns the new cloned state.
+	 *
+	 * @param array $state  The original request state.
+	 * @return array  Cloned state data.
+	 */
+	public static function cloneState(array $state) {
+		$clonedState = $state;
+
+		if (array_key_exists(self::ID, $state)) {
+			$clonedState[self::CLONE_ORIGINAL_ID] = $state[self::ID];
+			unset($clonedState[self::ID]);
+
+			SimpleSAML_Logger::debug('Cloned state: ' . var_export($state[self::ID], TRUE));
+		} else {
+			SimpleSAML_Logger::debug('Cloned state with undefined id.');
+		}
+
+		return $clonedState;
 	}
 
 
