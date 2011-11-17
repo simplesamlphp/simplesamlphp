@@ -21,6 +21,7 @@ $attributes['HTTPS'] = array($_SERVER['HTTPS']);
 $attributes['SERVER_PROTOCOL'] = array($_SERVER['SERVER_PROTOCOL']);
 $attributes['SERVER_PORT'] = array($_SERVER['SERVER_PORT']);
 
+$attributes['Utilities_getBaseURL()'] = array(SimpleSAML_Utilities::getBaseURL());
 $attributes['Utilities_getSelfHost()'] = array(SimpleSAML_Utilities::getSelfHost());
 $attributes['Utilities_selfURLhost()'] = array(SimpleSAML_Utilities::selfURLhost());
 $attributes['Utilities_selfURLNoQuery()'] = array(SimpleSAML_Utilities::selfURLNoQuery());
