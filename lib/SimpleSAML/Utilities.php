@@ -2117,9 +2117,10 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param string $path  The path or URL we should fetch.
 	 * @param array $context  Extra context options. This parameter is optional.
-	 * @return string  The data we fetched.
+	 * @param boolean $getHeaders Whether to also return response headers. Optional.
+	 * @return mixed array if $getHeaders is set, string otherwise
 	 */
-	public static function fetch($path, $context = array()) {
+	public static function fetch($path, $context = array(), $getHeaders = FALSE) {
 		assert('is_string($path)');
 
 		$config = SimpleSAML_Configuration::getInstance();
@@ -2139,6 +2140,25 @@ class SimpleSAML_Utilities {
 		$data = file_get_contents($path, FALSE, $context);
 		if ($data === FALSE) {
 			throw new SimpleSAML_Error_Exception('Error fetching ' . var_export($path, TRUE) . ':' . self::getLastError());
+		}
+
+		// Data and headers.
+		if ($getHeaders) {
+
+			$headers = array();
+
+			foreach($http_response_header as $h) {
+				if(preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
+					$headers = array(); // reset
+					$headers[0] = $h;
+					continue;
+				}
+				$bits = explode(':', $h, 2);
+				if(count($bits) === 2) {
+					$headers[strtolower($bits[0])] = trim($bits[1]);
+				}
+			}
+			return array($data, $headers);
 		}
 
 		return $data;

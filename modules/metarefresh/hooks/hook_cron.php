@@ -16,6 +16,7 @@ function metarefresh_hook_cron(&$croninfo) {
 		$mconfig = SimpleSAML_Configuration::getOptionalConfig('config-metarefresh.php');
 
 		$sets = $mconfig->getConfigList('sets', array());
+		$stateFile = $config->getPathValue('datadir', 'data/') . 'metarefresh-state.php';
 
 		foreach ($sets AS $setkey => $set) {
 			// Only process sets where cron matches the current cron tag.
@@ -31,11 +32,21 @@ function metarefresh_hook_cron(&$croninfo) {
 				$expire = NULL;
 			}
 
-			$metaloader = new sspmod_metarefresh_MetaLoader($expire);
+			$outputDir = $set->getString('outputDir');
+			$outputDir = $config->resolvePath($outputDir);
+			$outputFormat = $set->getValueValidate('outputFormat', array('flatfile', 'serialize'), 'flatfile');
 
-			# Get global blacklist
+			$oldMetadataSrc = SimpleSAML_Metadata_MetaDataStorageSource::getSource(array(
+				'type' => $outputFormat,
+				'directory' => $outputDir,
+			));
+
+			$metaloader = new sspmod_metarefresh_MetaLoader($expire, $stateFile, $oldMetadataSrc);
+
+			# Get global blacklist, whitelist and caching info
 			$blacklist = $mconfig->getArray('blacklist', array());
 			$whitelist = $mconfig->getArray('whitelist', array());
+			$conditionalGET = $mconfig->getBoolean('conditionalGET', FALSE);
 
 			foreach($set->getArray('sources') AS $source) {
 
@@ -53,14 +64,18 @@ function metarefresh_hook_cron(&$croninfo) {
 					$source['whitelist'] = $whitelist;
 				}
 
+				# Let src specific conditionalGET override global one
+				if(!isset($source['conditionalGET'])) {
+					$source['conditionalGET'] = $conditionalGET;
+				}
+
 				SimpleSAML_Logger::debug('cron [metarefresh]: In set [' . $setkey . '] loading source ['  . $source['src'] . ']');
 				$metaloader->loadSource($source);
 			}
 
-			$outputDir = $set->getString('outputDir');
-			$outputDir = $config->resolvePath($outputDir);
+			// Write state information back to disk
+			$metaloader->writeState();
 
-			$outputFormat = $set->getValueValidate('outputFormat', array('flatfile', 'serialize'), 'flatfile');
 			switch ($outputFormat) {
 				case 'flatfile':
 					$metaloader->writeMetadataFiles($outputDir);
