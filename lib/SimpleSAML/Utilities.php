@@ -212,7 +212,7 @@ class SimpleSAML_Utilities {
 		$globalConfig = SimpleSAML_Configuration::getInstance();
 		$baseURL = $globalConfig->getString('baseurlpath', 'simplesaml/');
 		
-		if (preg_match('#^https?://([^/]*)/(.*)/$#D', $baseURL, $matches)) {
+		if (preg_match('#^https?://.*/$#D', $baseURL, $matches)) {
 			/* full url in baseurlpath, override local server values */
 			return $baseURL;
 		} elseif (
