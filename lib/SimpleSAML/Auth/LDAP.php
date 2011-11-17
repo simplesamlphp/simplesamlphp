@@ -190,24 +190,11 @@ class SimpleSAML_Auth_LDAP {
 		// Create the search filter.
 		$attribute = self::escape_filter_value($attribute, FALSE);
 		$value = self::escape_filter_value($value);
-		if (is_array($attribute)) {
-
-			// We have more than one attribute.
-			$filter = '';
-			foreach ($attribute AS $attr) {
-				$filter .= '(' . $attr . '=' . $value. ')';
-			}
-			$filter = '(|' . $filter . ')';
-
-		} elseif (is_string($attribute)) {
-
-			// We have only one attribute.
-			$filter = '(' . $attribute . '=' . $value. ')';
-
-		} else {
-			// We have an unknown attribute type...
-			throw $this->makeException('Library - LDAP search(): Search attribute must be an array or a string', ERR_INTERNAL);
+		$filter = '';
+		foreach ($attribute AS $attr) {
+			$filter .= '(' . $attr . '=' . $value. ')';
 		}
+		$filter = '(|' . $filter . ')';
 
 		// Search using generated filter.
 		SimpleSAML_Logger::debug('Library - LDAP search(): Searching base \'' . $base . '\' for \'' . $filter . '\'');
