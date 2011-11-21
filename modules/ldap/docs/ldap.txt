@@ -2,7 +2,8 @@ LDAP module
 ===========
 
 The LDAP module provides a method for authenticating users against a
-LDAP server. There are two seperate authentication modules:
+LDAP server. There are two separate authentication modules and two
+authentication process filters:
 
 
 `ldap:LDAP`
@@ -11,6 +12,11 @@ LDAP server. There are two seperate authentication modules:
 `ldap:LDAPMulti`
 : Allow the user to chose one LDAP server to authenticate against.
 
+`ldap:AttributeAddFromLDAP`
+: Adds an attribute value from LDAP to the request
+
+`ldap:AttributeAddUsersGroups`
+: Add a attribute in the request with all the users group memberships
 
 `ldap:LDAP`
 -----------
@@ -219,4 +225,320 @@ different languages:
 All options from the `ldap:LDAP` configuration can be used in each
 group, and you should refer to the documentation for that module for
 more information about available options.
+
+
+`ldap:AttributeAddFromLDAP`
+------------------------------
+
+Filter to add attributes to the identity by executing a query against
+an LDAP directory. In addition to all the configuration options available
+in the ldap:AttributeAddUsersGroups filter (below), these are the filter
+specific configuration options:
+
+
+	50 = array(
+		'class' => 'ldap:AttributeAddFromLDAP',
+
+
+		/**
+		 * The attribute name used when adding the LDAP values
+		 * to the request attributes.
+		 *
+		 * Default: NULL
+		 * Require: Yes
+		 */
+		'attribute.new' => 'my_ldap_attrib',
+
+
+		/**
+		 * When searching LDAP, this is the attribute to retrieve
+		 * and add to the request attributes.
+		 *
+		 * Default: NULL
+		 * Require: Yes
+		 */
+		'search.attribute' => 'displayName',
+
+
+		/**
+		 * The attribute name used when adding the LDAP values
+		 * to the request attributes.
+		 *
+		 * Note: Variable substitution will be performed on this option.
+		 *       Any attribute in the identity can be substituted by surrounding
+		 *       it with percent symbols (%). For instance %cn% would be replaced
+		 *       with the CN of the user.
+		 *
+		 * Default: NULL
+		 * Require: Yes
+		 */
+		'search.filter' => '(uniquemember=cn=%cn%,cn=users,cn=example,dc=org)',
+	);
+
+
+### Backwards Compatability ###
+
+The filter option names have recently changed, however the old config names will be
+converted to the new names automatically. That way any existing/older config's
+should still work. Below are the old config names and their new names:
+
+array(
+	'ldap_host'             => 'ldap.hostname',
+	'ldap_port'             => 'ldap.port',
+	'ldap_bind_user'        => 'ldap.username',
+	'ldap_bind_pwd'         => 'ldap.password',
+	'userid_attribute'      => 'attribute.username',
+	'ldap_search_base_dn'   => 'ldap.basedn',
+	'ldap_search_filter'    => 'search.filter',
+	'ldap_search_attribute' => 'search.attribute',
+	'new_attribute_name'    => 'attribute.new'
+)
+
+
+### Example ###
+
+This is the most basic configuration possible. It will look at the
+authsource for all LDAP connection information and queries LDAP for
+the specific attribute.
+
+	50 => array(
+		'class' => 'ldapAttributeAddUsersGroups',
+		'authsource' => 'example-ldap',
+		'attribute.new' => 'my_ldap_attribute',
+		'search.attribute' => 'displayName'
+		'search.filter' => '(uniquemember=cn=%cn%,cn=users,cn=example,dc=org)'
+	)
+
+If no authsource is available then you can specify the connection info
+using the filter configuration. Note: All of the options below are not
+required, see the config options for ldap:AttributeAddUsersGroups below.
+
+	50 => array(
+		'class' => 'ldapAttributeAddUsersGroups',
+		'ldap.hostname' => 'ldap.example.org',
+		'ldap.username' => 'CN=LDAP User,CN=Users,DC=example,DC=org',
+		'ldap.password' => 'Abc123',
+		'ldap.basedn' => 'DC=example,DC=org',
+		'attribute.new' => 'my_ldap_attribute',
+		'search.attribute' => 'displayName'
+		'search.filter' => '(uniquemember=cn=%cn%,cn=users,cn=example,dc=org)'
+	)
+
+
+
+
+`ldap:AttributeAddUsersGroups`
+------------------------------
+
+This filter will add the logged in users LDAP group memberships to
+a specified request attribute. Although most LDAP products have a
+memberOf attribute which only lists the direct membership relations,
+this filter checks those relation for "sub" groups, recursively
+checking the hierarchy for all groups the user would technically be
+a member of. This can be helpful for other filters to know. Below is
+a listing of all configuration options and their details.
+
+
+	50 => array(
+		'class' => 'ldap:AttributeAddUsersGroups',
+
+
+		/**
+		 * LDAP connection settings can be retrieved from an ldap:LDAP
+		 * authsource. Specify the authsource name here to pull that
+		 * data from the authsources.php file in the config folder.
+		 *
+		 * Note: ldap:LDAPMulti is not supported as the SimpleSAMLphp
+		 *       framework does not pass any information about which
+		 *       LDAP source the user selected.
+		 *
+		 * Default: NULL
+		 * Require: No
+		 */
+		'authsource' => NULL,
+		'authsource' => 'example-ldap',
+
+
+		/**
+		 * This is the attribute name which the users groups will be
+		 * added to. If the attribute exists in the request then the
+		 * filter will attempt to add them.
+		 *
+		 * Default: 'groups'
+		 * Required: No
+		 */
+		'attribute.groups' => 'groups',
+
+
+		/**
+		 * The base DN used to search LDAP. May not be needed if searching
+		 * LDAP using the standard method, meaning that no Product is specified.
+		 * Can be listed as a single string for one base, else an array of
+		 * strings for multiple bases.
+		 *
+		 * Default: ''
+		 * Required: No
+		 * AuthSource: search.base
+		 */
+		'ldap.basedn' => '',
+		'ldap.basedn' => 'DC=example,DC=org',
+		'ldap.basedn' => array(
+			'OU=Staff,DC=example,DC=org',
+			'OU=Students,DC=example,DC=org'
+		),
+
+
+		/**
+		 * Set to TRUE to enable LDAP debug level. Passed to
+		 * the LDAP connection class.
+		 *
+		 * Default: FALSE
+		 * Required: No
+		 * AuthSource: debug
+		 */
+		'ldap.debug' => FALSE,
+		'ldap.debug' => TRUE,
+
+
+		/**
+		 * Set to TRUE to force the LDAP connection to use TLS.
+		 *
+		 * Note: If ldaps:// is specified in the hostname then it
+		 *       will automatically use TLS.
+		 *
+		 * Default: FALSE
+		 * Required: No
+		 * AuthSource: enable_tls
+		 */
+		'ldap.enable_tls' => FALSE,
+		'ldap.enable_tls' => TRUE,
+
+
+		/**
+		 * This is the hostname string of LDAP server(s) to try
+		 * and connect to. It should be the same format as the
+		 * LDAP authsource hostname as it is passed to that class.
+		 *
+		 * Note: Multiple servers are separated by a space.
+		 *
+		 * Default: NULL
+		 * Required: Yes, unless authsource is used
+		 * AuthSource: hostname
+		 */
+		'ldap.hostname' => 'ldap.example.org',
+		'ldap.hostname' => 'ad1.example.org ad2.example.org',
+
+
+		/**
+		 * This is the password used to bind to LDAP.
+		 *
+		 * Default: NULL
+		 * Required: No, only if required for binding.
+		 * AuthSource: search.password OR priv.password
+		 */
+		'ldap.password' => 'Abc123',
+
+
+		/**
+		 * By specifying the directory service product name, the number
+		 * of LDAP queries can be dramatically reduced. The reason is
+		 * that most products have a special query to recursively search
+		 * group membership.
+		 *
+		 * Note: Only ActiveDirectory is currently supported.
+		 *
+		 * Default: ''
+		 * Required: No
+		 */
+		'ldap.product' => '',
+		'ldap.product' => 'ActiveDirectory',
+
+
+		/**
+		 * The LDAP timeout value passed to the LDAP connection class.
+		 *
+		 * Default: 0
+		 * Required: No
+		 * AuthSource: timeout
+		 */
+		'ldap.timeout' => 0,
+		'ldap.timeout' => 30,
+
+
+		/**
+		 * This is the username used to bind to LDAP with.
+		 * More than likely will need to be in the DN of
+		 * user binding to LDAP.
+		 *
+		 * Default: NULL
+		 * Required: No, only if required for binding.
+		 * AuthSource: search.username OR priv.username
+		 */
+		'ldap.username' => 'CN=LDAP User,CN=Users,DC=example,DC=org',
+
+
+		/**
+		 * The following attribute.* and type.* configuration options
+		 * define the LDAP schema and should only be defined/modified
+		 * if the schema has been modified or the LDAP product used
+		 * uses other attribute names. By default, the schema is setup
+		 * for ActiveDirectory.
+		 *
+		 * Defaults: Listed Below
+		 * Required: No
+		 */
+		'attribute.dn' => 'distinguishedName',
+		'attribute.groups' => 'groups', // Also noted above
+		'attribute.member' => 'member',
+		'attribute.memberof' => 'memberOf',
+		'attribute.groupname' => 'name',
+		'attribute.type' => 'objectClass',
+		'attribute.username' => 'sAMAccountName',
+
+
+		/**
+		 * As mentioned above, these can be changed if the LDAP schema
+		 * has been modified. These list the Object/Entry Type for a given
+		 * DN, in relation to the 'attribute.type' config option above.
+		 * These are used to determine the type of entry.
+		 *
+		 * Defaults: Listed Below
+		 * Required: No
+		 */
+		'type.group' => 'group',
+		'type.user' => 'user',
+	)
+
+
+### Example ###
+
+This is the most basic configuration possible. It will look at the
+authsource for all LDAP connection information and manually search
+the hierarchy for the users group memberships.
+
+	50 => array(
+		'class' => 'ldapAttributeAddUsersGroups',
+		'authsource' => 'example-ldap'
+	)
+
+By making one small change we can optimize the filter to use better
+group search methods and eliminate un-needed LDAP queries.
+
+	50 => array(
+		'class' => 'ldapAttributeAddUsersGroups',
+		'authsource' => 'example-ldap',
+		'ldap.product' => 'ActiveDirectory'
+	)
+
+If no authsource is available then you can specify the connection info
+using the filter configuration. Note: All of the options below are not
+required, see the config info above for details.
+
+	50 => array(
+		'class' => 'ldapAttributeAddUsersGroups',
+		'ldap.hostname' => 'ldap.example.org',
+		'ldap.username' => 'CN=LDAP User,CN=Users,DC=example,DC=org',
+		'ldap.password' => 'Abc123',
+		'ldap.basedn' => 'DC=example,DC=org'
+	)
 
