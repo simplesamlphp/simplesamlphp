@@ -170,8 +170,8 @@ if($onLoad !== '') {
 					'tr' => 'Türkçe',
 					'el' => 'ελληνικά',
 					'ja' => '日本語',
-					'zh' => '简体中文',
-					'zh-tw' => '繁體中文',
+					'zh' => '简体中文', // Chinese (simplified)
+					'zh-tw' => '繁體中文', // Chinese (traditional)
 					'ar' => 'العربية', // Arabic
 					'fa' => 'پارسی', // Persian
 					'ur' => 'اردو', // Urdu
