@@ -118,7 +118,7 @@ To upgrade a module:
 
 The [module] argument may be either a defintion URL, or a module identifier. In example to upgrade the metalisting module, type:
 
-	bin/pack.php remove metalisting
+	bin/pack.php upgrade metalisting
 
 Upgrading a module will upgrade to the latest version of the currently installed branch. If the access method is subversion, it will run `svn update`. If the access method is zip, it will compare the version number of the latest available version with the locally installed version.
 
