@@ -380,7 +380,7 @@ $config = array (
  		99 => 'core:LanguageAdaptor',
 	),
 	/*
-	 * Authentication processing filters that will be executed for all IdPs
+	 * Authentication processing filters that will be executed for all SPs
 	 * Both Shibboleth and SAML 2.0
 	 */
 	'authproc.sp' => array(
