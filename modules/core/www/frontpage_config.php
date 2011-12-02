@@ -81,11 +81,16 @@ $functionchecks = array(
 	'simplexml_import_dom' => array('required', 'SimpleXML'),
 	'dom_import_simplexml' => array('required', 'XML DOM'),
 	'preg_match'       => array('required',  'RegEx support'),
-	'ldap_bind'        => array('required_ldap',  'LDAP Extension'),
-	'radius_auth_open' => array('required_radius',  'Radius Extension'),
 	'mcrypt_module_open'=> array('optional',  'MCrypt'),
 	'mysql_connect'    => array('optional',  'MySQL support'),
 );
+if (SimpleSAML_Module::isModuleEnabled('ldap')) {
+	$functionchecks['ldap_bind'] = array('required_ldap',  'LDAP Extension');
+}
+if (SimpleSAML_Module::isModuleEnabled('radius')) {
+        $functionchecks['radius_auth_open'] = array('required_radius',  'Radius Extension');
+}
+
 $funcmatrix = array();
 $funcmatrix[] = array(
 	'required' => 'required', 
