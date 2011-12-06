@@ -251,6 +251,18 @@ $config = array (
 	'language.rtl'		=> array('ar','dv','fa','ur','he'),
 	'language.default'		=> 'en',
 
+	/**
+	 * Custom getLanguage function called from SimpleSAML_XHTML_Template::getLanguage().
+	 * Function should return language code of one of the available languages or NULL.
+	 * See SimpleSAML_XHTML_Template::getLanguage() source code for more info.
+	 *
+	 * This option can be used to implement a custom function for determining
+	 * the default language for the user.
+	 *
+	 * Example:
+	 *   'language.get_language_function' => array('sspmod_example_Template', 'getLanguage'),
+	 */
+
 	/*
 	 * Extra dictionary for attribute names.
 	 * This can be used to define local attributes.

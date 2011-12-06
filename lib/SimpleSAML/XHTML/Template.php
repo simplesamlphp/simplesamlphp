@@ -97,6 +97,16 @@ class SimpleSAML_XHTML_Template {
 			return $this->language;
 		}
 
+		// Run custom getLanguage function if defined
+		$customFunction = $this->configuration->getArray('language.get_language_function', NULL);
+		if (isset($customFunction)) {
+			assert('is_callable($customFunction)');
+			$customLanguage = call_user_func($customFunction, $this);
+			if ($customLanguage !== NULL && $customLanguage !== FALSE) {
+				return $customLanguage;
+			}
+		}
+
 		// Language is provided in a stored COOKIE
 		$languageCookie = SimpleSAML_XHTML_Template::getLanguageCookie();
 		if ($languageCookie !== NULL && in_array($languageCookie, $this->availableLanguages, TRUE)) {
