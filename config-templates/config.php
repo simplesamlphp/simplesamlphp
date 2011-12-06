@@ -54,7 +54,7 @@ $config = array (
 	 * See docs/simplesamlphp-errorhandling.txt for function code example.
 	 *
 	 * Example:
-	 *   'errors.show_function' => 'sspmod_exmaple_Error_Show::show',
+	 *   'errors.show_function' => array('sspmod_example_Error_Show', 'show'),
 	 */
 
 	/**

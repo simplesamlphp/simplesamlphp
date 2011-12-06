@@ -242,7 +242,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 			$data['email'] = '';
 		}
 
-		$show_function = $config->getString('errors.show_function', NULL);
+		$show_function = $config->getArray('errors.show_function', NULL);
 		if (isset($show_function)) {
 			assert('is_callable($show_function)');
 			call_user_func($show_function, $config, $data);
