@@ -43,6 +43,17 @@ set_exception_handler('SimpleSAML_exception_handler');
 /* Log full backtrace on errors and warnings. */
 function SimpleSAML_error_handler($errno, $errstr, $errfile = NULL, $errline = 0, $errcontext = NULL) {
 
+	if (!class_exists('SimpleSAML_Logger')) {
+		/* We are probably logging a deprecation-warning during parsing.
+		 * Unfortunately, the autoloader is disabled at this point,
+		 * so we should stop here.
+		 *
+		 * See PHP bug: https://bugs.php.net/bug.php?id=47987
+		 */
+		return FALSE;
+	}
+
+
 	if ($errno & SimpleSAML_Utilities::$logMask) {
 		/* Masked error. */
 		return FALSE;
