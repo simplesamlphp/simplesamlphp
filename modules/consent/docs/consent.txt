@@ -98,6 +98,9 @@ The `consent:Database` backend storage has the following options
 :   Name of the table used for storing the consents. This option is optional
 and defaults to `consent`.
 
+`timeout`
+:   The number of seconds to wait for a connection to the database server. This option is optional. If unset, it uses the default from the database-driver.
+
 Example config using PostgreSQL database:
 
 	90 => array(
