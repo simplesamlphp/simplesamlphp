@@ -15,7 +15,7 @@
 		"en": "Some error occurred"
 	},
 	"intro": {
-		"en": "Hi, this is the status page of simpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that is attached to your session."
+		"en": "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 	},
 	"validfor": {
 		"en": "Your session is valid for %SECONDS% seconds from now."
