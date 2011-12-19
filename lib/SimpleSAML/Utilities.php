@@ -833,7 +833,7 @@ class SimpleSAML_Utilities {
 			return array();
 		}
 
-		$languages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+		$languages = explode(',', strtolower($_SERVER['HTTP_ACCEPT_LANGUAGE']));
 
 		$ret = array();
 

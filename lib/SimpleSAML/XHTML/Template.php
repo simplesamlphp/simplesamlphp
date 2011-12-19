@@ -76,10 +76,13 @@ class SimpleSAML_XHTML_Template {
 	 * 
 	 * @param $language    Language code for the language to set.
 	 */
-	public function setLanguage($language) {
+	public function setLanguage($language, $setLanguageCookie = TRUE) {
+		$language = strtolower($language);
 		if (in_array($language, $this->availableLanguages, TRUE)) {
 			$this->language = $language;
-			SimpleSAML_XHTML_Template::setLanguageCookie($language);
+			if ($setLanguageCookie === TRUE) {
+				SimpleSAML_XHTML_Template::setLanguageCookie($language);
+			}
 		}
 	}
 
@@ -109,7 +112,7 @@ class SimpleSAML_XHTML_Template {
 
 		// Language is provided in a stored COOKIE
 		$languageCookie = SimpleSAML_XHTML_Template::getLanguageCookie();
-		if ($languageCookie !== NULL && in_array($languageCookie, $this->availableLanguages, TRUE)) {
+		if ($languageCookie !== NULL) {
 			$this->language = $languageCookie;
 			return $languageCookie;
 		}
@@ -667,8 +670,11 @@ class SimpleSAML_XHTML_Template {
 		$config = SimpleSAML_Configuration::getInstance();
 		$availableLanguages = $config->getArray('language.available', array('en'));
 
-		if (isset($_COOKIE['language']) && in_array((string)$_COOKIE['language'], $availableLanguages, TRUE)) {
-			return (string)$_COOKIE['language'];
+		if (isset($_COOKIE['language'])) {
+			$language = strtolower((string)$_COOKIE['language']);
+			if (in_array($language, $availableLanguages, TRUE)) {
+				return $language;
+			}
 		}
 
 		return NULL;
@@ -683,6 +689,7 @@ class SimpleSAML_XHTML_Template {
 	public static function setLanguageCookie($language) {
 		assert('is_string($language)');
 
+		$language = strtolower($language);
 		$config = SimpleSAML_Configuration::getInstance();
 		$availableLanguages = $config->getArray('language.available', array('en'));
 
