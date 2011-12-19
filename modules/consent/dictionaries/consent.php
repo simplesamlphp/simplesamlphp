@@ -27,7 +27,7 @@ $lang = array(
 		'hu' => 'Igen, elfogadom',
 		'pl' => 'Tak, akceptuję',
 		'pt' => 'Sim, Aceito',
-		'pt-BR' => 'Sim, Aceito',
+		'pt-br' => 'Sim, Aceito',
 		'tr' => 'Evet, devam et',
 	),
 	'no' => array (
@@ -47,7 +47,7 @@ $lang = array(
 		'hu' => 'Nem, nem fogadom el',
 		'pl' => 'Nie, nie akceptuję',
 		'pt' => 'Não aceito',
-		'pt-BR' => 'Não, não aceito',
+		'pt-br' => 'Não, não aceito',
 		'tr' => 'Hayır, iptal et',
 	),
 	'remember' => array (
@@ -67,7 +67,7 @@ $lang = array(
 		'hu' => 'Emlékezzen a hozzájárulásra',
 		'pl' => 'Pamiętaj moją zgodę',
 		'pt' => 'Lembrar a minha escolha',
-		'pt-BR' => 'Lembrar Consentimento',
+		'pt-br' => 'Lembrar Consentimento',
 		'tr' => 'Hatırla',
 	),
 	'consent_header' => array (
@@ -104,7 +104,7 @@ $lang = array(
 		'hu' => 'Ön azonosítja magát ehhez a szolgáltatáshoz SPNAME. Az azonosítás során IDPNAME az alábbi adatokat fogja küldeni a szolgáltatásnak. Engedélyezi?',
 		'pl' => 'SPNAME wymaga aby poniższa informacja została przesłana.',
 		'pt' => 'O serviço SPNAME necessita que a informação apresentada em baixo seja transferida.',
-		'pt-BR' => 'Você está prestes a acessar o serviço SPNAME. O serviço exige que as informações a seguir sejam transferidas do IDPNAME. Você aceita isso?',
+		'pt-br' => 'Você está prestes a acessar o serviço SPNAME. O serviço exige que as informações a seguir sejam transferidas do IDPNAME. Você aceita isso?',
 		'tr' => 'SPNAME aşağıdaki bilgilerin gönderilmesine ihtiyaç duyuyor.',
 	),
 	'consent_purpose' => array (
@@ -139,7 +139,7 @@ $lang = array(
 		'hu' => 'A szolgáltatás adatvádelmi nyilatkozata',
 		'pl' => 'Polityka prywatności dla serwisu',
 		'pt' => 'Política de privacidade do serviço',
-		'pt-BR' => 'Política de Privacidade deste serviço',
+		'pt-br' => 'Política de Privacidade deste serviço',
 		'tr' => 'Servis için gizlilik politikası',
 	),
 	'consent_attributes_header' => array (
@@ -203,7 +203,7 @@ $lang = array(
 		'hu' => 'bejelentkezés',
 		'pl' => 'login',
 		'pt' => 'Entrar',
-		'pt-BR' => 'login',
+		'pt-br' => 'login',
 		'tr' => 'Giriş',
 	),
 	'service_providers_for' => array (
@@ -223,7 +223,7 @@ $lang = array(
 		'hu' => 'Alkalmazásszolgáltatók a következő számára',
 		'pl' => 'Dostawca Serwisu dla',
 		'pt' => 'Fornecedores de Serviço (SP) para',
-		'pt-BR' => 'Provedor de serviços para',
+		'pt-br' => 'Provedor de serviços para',
 		'tr' => 'için Servis Sağlayıcılar',
 	),
 	'service_provider_header' => array (
@@ -243,7 +243,7 @@ $lang = array(
 		'hu' => 'Alkalmazásszolgáltató',
 		'pl' => 'Dostawca serwisu',
 		'pt' => 'Fornecedor de Serviço (SP)',
-		'pt-BR' => 'Provedor de Serviços',
+		'pt-br' => 'Provedor de Serviços',
 		'tr' => 'Servis Sağlayıcı',
 	),
 	'status_header' => array (
@@ -263,7 +263,7 @@ $lang = array(
 		'hu' => 'Hozzájárulás állapota',
 		'pl' => 'Status zgody',
 		'pt' => 'Consentimento',
-		'pt-BR' => 'Status do Consentimento',
+		'pt-br' => 'Status do Consentimento',
 		'tr' => 'Onay durumu',
 	),
 	'show_hide_attributes' => array (
@@ -283,7 +283,7 @@ $lang = array(
 		'hu' => 'attribútumok mutatása/elrejtése',
 		'pl' => 'pokaż/ukryj atrybuty',
 		'pt' => 'Mostrar/Ocultar atributos',
-		'pt-BR' => 'mostra/esconder Atributos',
+		'pt-br' => 'mostra/esconder Atributos',
 		'tr' => 'bilgileri göster/gizle ',
 	),
 	'noconsent_title' => array (
@@ -301,7 +301,7 @@ $lang = array(
 		'hu' => 'Nincs hozzájárulás',
 		'pl' => 'Nie wyrażono zgody',
 		'pt' => 'Consentimento negado',
-		'pt-BR' => 'Nenhum consentimento dado',
+		'pt-br' => 'Nenhum consentimento dado',
 		'tr' => 'Onay verilmemiş',
 	),
 	'noconsent_text' => array (
@@ -319,7 +319,7 @@ $lang = array(
 		'hu' => 'Nem adta hozzájárulását, hogy adatait továbbadjuk a szolgáltatónak.',
 		'pl' => 'Nie wyraziłeś zgody na przesłanie Twoich atrybutów do Dostawcy Serwisu.',
 		'pt' => 'Negou o consentimento para a transferência dos seus atributos para o fornecedor de serviço.',
-		'pt-BR' => 'Você não deu o consentimento para a transferência de seus atributos para o provedor de serviços.',
+		'pt-br' => 'Você não deu o consentimento para a transferência de seus atributos para o provedor de serviços.',
 		'tr' => 'Bilgilerinizin servis sağlayıcıya gönderilmesi için onay vermediniz.',
 	),
 	'noconsent_return' => array (
@@ -337,7 +337,7 @@ $lang = array(
 		'hu' => 'Vissza az hozzájárulás-kezelő oldalra',
 		'pl' => 'Powrót do strony wydania zezwolenia.',
 		'pt' => 'Voltar à página de consentimento',
-		'pt-BR' => 'Retornar a página de consentimento',
+		'pt-br' => 'Retornar a página de consentimento',
 		'tr' => 'Onay sayfasına geri dön',
 	),
 	'noconsent_goto_about' => array (

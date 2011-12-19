@@ -24,7 +24,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'get_IC' => array (
 		'no' => '',
@@ -42,7 +42,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'get_IC_link' => array (
 		'no' => '',
@@ -60,7 +60,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'form_username' => array (
 		'no' => '',
@@ -78,7 +78,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'form_password' => array (
 		'no' => '',
@@ -96,7 +96,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'error_header' => array (
 		'no' => 'Feil',
@@ -114,7 +114,7 @@ $lang = array(
 		'hr' => 'Greška',
 		'hu' => 'Hiba',
 		'pt' => 'Erro',
-		'pt-BR' => 'Erro',
+		'pt-br' => 'Erro',
 	),
 	'user_IC_header' => array (
 		'no' => '',
@@ -132,7 +132,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'user_IC_text' => array (
 		'no' => '',
@@ -150,7 +150,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'login_button' => array (
 		'no' => '',
@@ -168,7 +168,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'get_button' => array (
 		'no' => '',
@@ -186,7 +186,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'help_header' => array (
 		'no' => '',
@@ -204,7 +204,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'help_text' => array (
 		'no' => '',
@@ -222,7 +222,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'help_desk_link' => array (
 		'no' => 'Hjemmesiden til brukerstøtte',
@@ -237,7 +237,7 @@ $lang = array(
 		'hr' => 'Helpdesk stranice',
 		'hu' => 'Ügyfélszolgálat weboldala',
 		'pt' => 'Página do serviço de apoio ao utilizador',
-		'pt-BR' => 'Central de Ajuda',
+		'pt-br' => 'Central de Ajuda',
 	),
 	'help_desk_email' => array (
 		'no' => 'Send e-post til brukerstøtte',
@@ -252,7 +252,7 @@ $lang = array(
 		'hr' => 'Pošaljite e-mail helpdesk službi',
 		'hu' => 'Küldjön e-mailt az ügyfélszolgálatnak',
 		'pt' => 'Enviar um e-mail para o serviço de apoio ao utilizador',
-		'pt-BR' => 'Envie um e-mail para a Central de Ajuda.',
+		'pt-br' => 'Envie um e-mail para a Central de Ajuda.',
 	),
 	'contact_info' => array (
 		'no' => 'Kontaktinformasjon',
@@ -267,7 +267,7 @@ $lang = array(
 		'hr' => 'Kontakt podaci',
 		'hu' => 'Elérési információk',
 		'pt' => 'Contactos',
-		'pt-BR' => 'Informações de Contato',
+		'pt-br' => 'Informações de Contato',
 	),	
 	'getcardform_title' => array (
 		'no' => '',
@@ -285,7 +285,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'getcardform_self_title' => array (
 		'no' => '',
@@ -303,7 +303,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'getcardform_self_text' => array (
 		'no' => '',
@@ -321,7 +321,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'getcardform_finished_title' => array (
 		'no' => '',
@@ -339,7 +339,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'getcardform_finished_text' => array (
 		'no' => '',
@@ -357,7 +357,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'NO_password' => array (
 		'no' => '',
@@ -375,7 +375,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'NO_user' => array (
 		'no' => '',
@@ -393,7 +393,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'Wrong_user_pass' => array (
 		'no' => '',
@@ -411,7 +411,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'' => array (
 		'no' => '',
@@ -429,7 +429,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 	'' => array (
 		'no' => '',
@@ -447,7 +447,7 @@ $lang = array(
 		'hr' => '',
 		'hu' => '',
 		'pt' => '',
-		'pt-BR' => '',
+		'pt-br' => '',
 	),
 
 );

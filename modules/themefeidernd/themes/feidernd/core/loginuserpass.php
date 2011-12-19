@@ -150,7 +150,7 @@ foreach ($this->data['stateparams'] as $name => $value) {
 			'hu' => 'Magyar', // Hungarian
 			'pl' => 'Język polski', // Polish
 			'pt' => 'Português', // Portuguese
-			'pt-BR' => 'Português brasileiro', // Portuguese
+			'pt-br' => 'Português brasileiro', // Portuguese
 			'tr' => 'Türkçe',
 		);
 		

@@ -12,7 +12,7 @@
 		"hr": "Odaberite va\u0161 autentikacijski servis",
 		"hu": "V\u00e1lasszon szem\u00e9lyazonoss\u00e1g-szolg\u00e1ltat\u00f3t (IdP)",
 		"fi": "Valitse identiteettill\u00e4hteeis",
-		"pt-BR": "Selecione seu provedor de identidade",
+		"pt-br": "Selecione seu provedor de identidade",
 		"pt": "Escolha o seu fornecedor de identidade (IdP)",
 		"pl": "wybierz swojego Dostawc\u0119 To\u017csamo\u015bci.",
 		"cs": "Zvol sv\u00e9ho poskytovatele identity (IdP)",
@@ -39,7 +39,7 @@
 		"hr": "Molimo odaberite autentikacijski servis preko kojeg se \u017eelite autenticirati:",
 		"hu": "K\u00e9rj\u00fck, v\u00e1lassza ki azt a szem\u00e9lyazonoss\u00e1g-szolg\u00e1ltat\u00f3t (IdP), ahol azonos\u00edtani k\u00edv\u00e1nja mag\u00e1t:",
 		"fi": "Valitse identiteettil\u00e4hteesi jossa haluat kirjautua",
-		"pt-BR": "Por favor selecione o provedor de identidade ao qual deseja se autenticar",
+		"pt-br": "Por favor selecione o provedor de identidade ao qual deseja se autenticar",
 		"pt": "Por favor, escolha o  fornecedor de identidade (IdP) que ir\u00e1 usar para se autenticar:",
 		"pl": "Prosz\u0119 wybra\u0107 Dostawc\u0119 To\u017csamo\u015bci, przez kt\u00f3rego  chcesz si\u0119 uwierzytelni\u0107:",
 		"cs": "Pros\u00edm zvolte sve\u00e9ho poskytovatele identity, kter\u00fd v\u00e1m dovol\u00ed se p\u0159ihl\u00e1sit",
@@ -66,7 +66,7 @@
 		"hr": "Odaberi",
 		"hu": "V\u00e1laszt",
 		"fi": "Valitse",
-		"pt-BR": "Selecione",
+		"pt-br": "Selecione",
 		"pt": "Escolher",
 		"pl": "Wybierz",
 		"cs": "Zvol",
@@ -93,7 +93,7 @@
 		"hr": "Zapamti moj odabir",
 		"hu": "Eml\u00e9kezzen erre",
 		"fi": "Muista valintani",
-		"pt-BR": "Lembrar minha escolha",
+		"pt-br": "Lembrar minha escolha",
 		"pt": "Lembrar esta escolha",
 		"pl": "Zapami\u0119taj m\u00f3j wyb\u00f3r",
 		"cs": "Zapamatuj moji volbu",
@@ -130,7 +130,7 @@
 		"ru": "[\u041f\u0440\u0435\u0434\u043f\u043e\u0447\u0442\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0432\u044b\u0431\u043e\u0440]",
 		"et": "[Eelistatud valik]",
 		"he": "[\u05d1\u05d7\u05d9\u05e8\u05d4 \u05de\u05e2\u05d5\u05d3\u05e4\u05ea]",
-		"pt-BR": "[Op\u00e7\u00e3o preferida]",
+		"pt-br": "[Op\u00e7\u00e3o preferida]",
 		"zh": "\u9996\u9009\u9009\u9879"
 	},
 	"previous_auth": {
@@ -155,7 +155,7 @@
 		"ru": "\u0412\u044b \u0443\u0436\u0435 \u0432\u044b\u0431\u0440\u0430\u043b\u0438 \u0434\u043b\u044f \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u0432",
 		"et": "Varem oled valinud autentida, kasutades",
 		"he": "\u05d1\u05e2\u05d1\u05e8 \u05d1\u05d7\u05e8\u05ea \u05dc\u05d4\u05d6\u05d3\u05d4\u05d5\u05ea \u05d1-",
-		"pt-BR": "Voc\u00ea j\u00e1 escolheu para autenticar a",
+		"pt-br": "Voc\u00ea j\u00e1 escolheu para autenticar a",
 		"zh": "\u4f60\u5148\u524d\u9009\u62e9\u7684\u8ba4\u8bc1"
 	},
 	"login_at": {
@@ -180,7 +180,7 @@
 		"ru": "\u0412\u043e\u0439\u0442\u0438 \u0432",
 		"et": "Logi sisse",
 		"he": "\u05db\u05e0\u05e1 \u05dc-",
-		"pt-BR": "Logado como",
+		"pt-br": "Logado como",
 		"zh": "\u767b\u5f55\u4e8e"
 	}
 }

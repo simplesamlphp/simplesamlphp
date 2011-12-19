@@ -12,7 +12,7 @@
 		"hr": "Odjavljeni ste",
 		"hu": "Sikeres kil\u00e9p\u00e9s",
 		"fi": "Uloskirjautunut",
-		"pt-BR": "Desconectado",
+		"pt-br": "Desconectado",
 		"pt": "Sa\u00edda efectuada com sucesso",
 		"pl": "Wylogowano",
 		"cs": "Odhl\u00e1\u0161en",
@@ -38,7 +38,7 @@
 		"hr": "Uspje\u0161no ste se odjavili.",
 		"hu": "Sikeresen kijelentkezett. K\u00f6sz\u00f6nj\u00fck, hogy haszn\u00e1lta a szolg\u00e1ltat\u00e1st.",
 		"fi": "Olet kirjautunut ulos",
-		"pt-BR": "Voc\u00ea foi desconectado.",
+		"pt-br": "Voc\u00ea foi desconectado.",
 		"pt": "Sa\u00edda efectuada com sucesso. Obrigado por ter usado este servi\u00e7o.",
 		"pl": "Zosta\u0142e\u015b wylogowany. Dzi\u0119kuj\u0119 za skorzystanie z serwisu.",
 		"cs": "Jste odhl\u00e1\u0161en. D\u011bkujeme za pou\u017eit\u00ed t\u00e9to slu\u017eby.",
@@ -64,7 +64,7 @@
 		"hr": "Natrag na simpleSAMLphp instalacijsku stranicu",
 		"hu": "Vissza a simpleSAMLphp telep\u00edt\u0151 oldal\u00e1ra",
 		"fi": "Palaa simpleSAMLphp asennussivulle",
-		"pt-BR": "Voltar a instala\u00e7\u00e3o do simpleSAMLphp",
+		"pt-br": "Voltar a instala\u00e7\u00e3o do simpleSAMLphp",
 		"pt": "Voltar \u00e0 p\u00e1gina de instala\u00e7\u00e3o do simpleSAMLphp",
 		"pl": "Wr\u00f3c do strony \"instalacja simpleSAMLphp\"",
 		"cs": "Zp\u00e1tky na simpleSAMLphp instala\u010dn\u00ed str\u00e1nku",
@@ -100,7 +100,7 @@
 		"zh-tw": "\u66ab\u505c",
 		"et": "Ootel",
 		"he": "\u05d1\u05d4\u05e9\u05e2\u05d9\u05d9\u05d4",
-		"pt-BR": "Aguardando",
+		"pt-br": "Aguardando",
 		"zh": "\u4fdd\u6301"
 	},
 	"completed": {
@@ -126,7 +126,7 @@
 		"zh-tw": "\u5df2\u5b8c\u6210",
 		"et": "L\u00f5petatud",
 		"he": "\u05d4\u05e1\u05ea\u05d9\u05d9\u05dd",
-		"pt-BR": "Completado",
+		"pt-br": "Completado",
 		"zh": "\u5b8c\u6210"
 	},
 	"progress": {
@@ -152,7 +152,7 @@
 		"zh-tw": "\u767b\u51fa\u4e2d...",
 		"et": "V\u00e4lja logimine...",
 		"he": "\u05de\u05ea\u05e0\u05ea\u05e7 \u05de\u05d4\u05de\u05e2\u05e8\u05db\u05ea...",
-		"pt-BR": "Saindo do servi\u00e7o...",
+		"pt-br": "Saindo do servi\u00e7o...",
 		"zh": "\u6b63\u5728\u9000\u51fa"
 	},
 	"failed": {
@@ -178,7 +178,7 @@
 		"zh-tw": "\u767b\u51fa\u5931\u6557",
 		"et": "V\u00e4lja logimine eba\u00f5nnestus",
 		"he": "\u05d4\u05ea\u05e0\u05ea\u05e7\u05d5\u05ea \u05e0\u05db\u05e9\u05dc\u05d4",
-		"pt-BR": "Falha ao sair do servi\u00e7o",
+		"pt-br": "Falha ao sair do servi\u00e7o",
 		"zh": "\u9000\u51fa\u5931\u8d25"
 	},
 	"return": {
@@ -204,7 +204,7 @@
 		"zh-tw": "\u56de\u5230\u670d\u52d9",
 		"et": "Tagasi teenuse juurde",
 		"he": "\u05d7\u05d6\u05e8\u05d4 \u05dc\u05e9\u05e8\u05d5\u05ea",
-		"pt-BR": "Retornar ao servi\u00e7o",
+		"pt-br": "Retornar ao servi\u00e7o",
 		"zh": "\u8fd4\u56de\u81f3\u670d\u52a1"
 	},
 	"success": {
@@ -230,7 +230,7 @@
 		"zh-tw": "\u60a8\u5df2\u7d93\u6210\u529f\u767b\u51fa\u4e86\u5217\u8868\u4e2d\u6240\u6709\u670d\u52d9\u3002",
 		"et": "Sa oled k\u00f5igist \u00fclal loetletud teenustest edukalt v\u00e4lja logitud.",
 		"he": "\u05d4\u05ea\u05e0\u05ea\u05e7\u05ea \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4 \u05de\u05db\u05dc \u05d4\u05e9\u05e8\u05d5\u05ea\u05d9\u05dd \u05d4\u05db\u05ea\u05d5\u05d1\u05d9\u05dd \u05dc\u05de\u05e2\u05dc\u05d4",
-		"pt-BR": "Voc\u00ea saiu com sucesso de todos os servi\u00e7os listados acima.",
+		"pt-br": "Voc\u00ea saiu com sucesso de todos os servi\u00e7os listados acima.",
 		"zh": "\u4f60\u6210\u529f\u7684\u9000\u51fa\u4e86\u4e0a\u9762\u5217\u8868\u4e2d\u7684\u670d\u52a1"
 	},
 	"loggedoutfrom": {
@@ -256,7 +256,7 @@
 		"zh-tw": "\u60a8\u5df2\u6210\u529f\u5f9e %SP% \u767b\u51fa\u3002",
 		"et": "Sa oled n\u00fc\u00fcd edukalt v\u00e4lja logitud teenusest %SP%.",
 		"he": "%SP%-\u05e0\u05d5\u05ea\u05e7\u05ea \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4 \u05de",
-		"pt-BR": "Voc\u00ea est\u00e1 saiu com sucesso de %SP%.",
+		"pt-br": "Voc\u00ea est\u00e1 saiu com sucesso de %SP%.",
 		"zh": "\u4f60\u5df2\u6210\u529f\u4ece%SP%\u9000\u51fa"
 	},
 	"also_from": {
@@ -282,7 +282,7 @@
 		"zh-tw": "\u60a8\u9084\u6301\u7e8c\u767b\u5165\u4e0b\u5217\u670d\u52d9\uff1a",
 		"et": "Sa oled sisse logitud ja nendesse teenustesse:",
 		"he": "\u05d0\u05ea\u05d4 \u05de\u05d7\u05d5\u05d1\u05e8 \u05d2\u05dd \u05dc\u05e9\u05e8\u05d5\u05ea\u05d9\u05dd \u05d4\u05d1\u05d0\u05d9\u05dd:",
-		"pt-BR": "Voc\u00ea tamb\u00e9m est\u00e1 logado nestes servi\u00e7os:",
+		"pt-br": "Voc\u00ea tamb\u00e9m est\u00e1 logado nestes servi\u00e7os:",
 		"zh": "\u4f60\u540c\u65f6\u767b\u5f55\u8fd9\u4ee5\u4e0b\u8fd9\u4e9b\u670d\u52a1"
 	},
 	"logout_all_question": {
@@ -308,7 +308,7 @@
 		"zh-tw": "\u662f\u5426\u767b\u51fa\u6240\u6709\u670d\u52d9\uff1f",
 		"et": "Kas sa soovid k\u00f5igist \u00fclal loetletud teenustest v\u00e4lja logida?",
 		"he": "\u05d4\u05d0\u05dd \u05d0\u05ea\u05d4 \u05e8\u05d5\u05e6\u05d4 \u05dc\u05d4\u05ea\u05e0\u05ea\u05e7 \u05de\u05db\u05dc \u05d4\u05e9\u05e8\u05d5\u05ea\u05d9\u05dd \u05d4\u05de\u05d5\u05d6\u05db\u05e8\u05d9\u05dd \u05dc\u05de\u05e2\u05dc\u05d4?",
-		"pt-BR": "Voc\u00ea quer sair de todos os servi\u00e7os acima?",
+		"pt-br": "Voc\u00ea quer sair de todos os servi\u00e7os acima?",
 		"zh": "\u4f60\u60f3\u540c\u65f6\u4ece\u4e0a\u9762\u7684\u8fd9\u4e9b\u670d\u52a1\u4e2d\u9000\u51fa\u5417\uff1f"
 	},
 	"logout_all": {
@@ -334,7 +334,7 @@
 		"zh-tw": "Yea\uff0c\u767b\u51fa\u6240\u6709\u670d\u52d9",
 		"et": "Jah, k\u00f5igist teenustest",
 		"he": "\u05db\u05df, \u05db\u05dc \u05d4\u05e9\u05e8\u05d5\u05ea\u05d9\u05dd",
-		"pt-BR": "Sim, todos os servi\u00e7os",
+		"pt-br": "Sim, todos os servi\u00e7os",
 		"zh": "\u662f\u7684\uff0c\u6240\u6709\u7684\u670d\u52a1"
 	},
 	"logout_only": {
@@ -360,7 +360,7 @@
 		"zh-tw": "\u4e0d\uff0c\u53ea\u6709 %SP%",
 		"et": "Ei, ainult %SP%",
 		"he": "\u05dc\u05d0, \u05e8\u05e7 %SP%",
-		"pt-BR": "N\u00e3o, apenas de %SP%",
+		"pt-br": "N\u00e3o, apenas de %SP%",
 		"zh": "\u4e0d\uff0c\u4ec5%SP%"
 	},
 	"incapablesps": {
@@ -386,7 +386,7 @@
 		"zh-tw": "\u60a8\u767b\u5165\u7684\u670d\u52d9\u4e2d\u6709\u4e00\u500b\u6216\u4ee5\u4e0a <i>\u4e0d\u652f\u63f4\u767b\u51fa<\\\/i>\u3002\u8acb\u78ba\u8a8d\u60a8\u5df2\u95dc\u9589\u6240\u6709\u9023\u7dda\uff0c\u4e26<i>\u95dc\u9589\u700f\u89bd\u5668<\\\/i>\u3002",
 		"et": "\u00dcks v\u00f5i mitu teenust, millesse oled sisselogitud <i>ei toeta v\u00e4lja logimise<\/i>. Selleks, et olla kindel k\u00f5igi sessioonide l\u00f5petamises soovitame <i>sulgeda k\u00f5ik brauseri aknad<\/i>.",
 		"he": "\u05d0\u05d7\u05d3 \u05d0\u05d5 \u05d9\u05d5\u05ea\u05e8 \u05de\u05df \u05d4\u05e9\u05e8\u05d5\u05ea\u05d9\u05dd \u05e9\u05d0\u05ea\u05d4 \u05de\u05d7\u05d5\u05d1\u05e8 \u05d0\u05dc\u05d9\u05d4\u05dd <i>\u05dc\u05d0 \u05ea\u05d5\u05de\u05db\u05d9\u05dd \u05d1\u05d4\u05ea\u05e0\u05ea\u05e7\u05d5\u05ea<\/i> .\u05db\u05d3\u05d9 \u05dc\u05d5\u05d5\u05d3\u05d0 \u05e9\u05d4\u05ea\u05e0\u05ea\u05e7\u05ea \u05de\u05db\u05dc \u05d4\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9\u05dd \u05de\u05de\u05d5\u05dc\u05e5 <i>\u05e9\u05ea\u05e1\u05d2\u05d5\u05e8 \u05d0\u05ea \u05d4\u05d3\u05e4\u05d3\u05e4\u05df<\/i>",
-		"pt-BR": "Um ou mais dos servi\u00e7os que voc\u00ea est\u00e1 conectado <i>n\u00e3o suportam logout.<\/i> Para garantir que todas as suas sess\u00f5es ser\u00e3o fechadas, incentivamos voc\u00ea a <i>fechar seu navegador<\/i>.",
+		"pt-br": "Um ou mais dos servi\u00e7os que voc\u00ea est\u00e1 conectado <i>n\u00e3o suportam logout.<\/i> Para garantir que todas as suas sess\u00f5es ser\u00e3o fechadas, incentivamos voc\u00ea a <i>fechar seu navegador<\/i>.",
 		"zh": "\u4e00\u4e2a\u6216\u591a\u4e2a\u4f60\u5df2\u767b\u5f55\u7684\u670d\u52a1<i>\u4e0d\u652f\u6301\u9000\u51fa<\/i>\uff0c\u8bf7\u786e\u8ba4\u4f60\u6240\u6709sessions\u5df2\u5173\u95ed\uff0c\u6211\u4eec\u9f13\u52b1\u4f60 <i>\u5173\u95ed\u6d4f\u89c8\u5668<\/i>"
 	},
 	"no": {
@@ -412,7 +412,7 @@
 		"zh-tw": "\u53d6\u6d88",
 		"et": "Ei",
 		"he": "\u05dc\u05d0",
-		"pt-BR": "N\u00e3o",
+		"pt-br": "N\u00e3o",
 		"zh": "\u4e0d"
 	},
 	"logging_out_from": {
@@ -435,7 +435,7 @@
 		"pl": "Wylogowanie z nast\u0119puj\u0105cych serwis\u00f3w:",
 		"et": "V\u00e4lja logimine j\u00e4rgmistest teenustest:",
 		"he": "\u05de\u05ea\u05e0\u05ea\u05e7 \u05de\u05d4\u05e9\u05e8\u05d5\u05ea\u05d9\u05dd \u05d4\u05d1\u05d0\u05d9\u05dd:",
-		"pt-BR": "Saindo dos seguintes servi\u00e7os:",
+		"pt-br": "Saindo dos seguintes servi\u00e7os:",
 		"zh": "\u4ece\u4e0b\u5217\u670d\u52a1\u4e2d\u9000\u51fa"
 	},
 	"failedsps": {
@@ -457,7 +457,7 @@
 		"zh-tw": "\u7121\u6cd5\u6b63\u5e38\u767b\u51fa\uff0c\u8acb\u78ba\u8a8d\u60a8\u5df2\u95dc\u9589\u6240\u6709\u9023\u7dda\uff0c<i>\u540c\u6642\u95dc\u9589\u6240\u6709\u700f\u89bd\u5668<\\\/i>\u3002",
 		"et": "\u00dchest v\u00f5i mitmest teenusest v\u00e4lja logimine ei \u00f5nnestunud. Selleks, et olla kindel k\u00f5igi sessioonide l\u00f5petamises soovitame <i>sulgeda k\u00f5ik brauseri aknad<\/i>.",
 		"he": "\u05d0\u05d9 \u05d0\u05e4\u05e9\u05e8 \u05dc\u05d4\u05ea\u05e0\u05ea\u05e7 \u05de\u05d0\u05d7\u05d3 \u05d0\u05d5 \u05d9\u05d5\u05ea\u05e8 \u05de\u05d4\u05e9\u05e8\u05d5\u05ea\u05d9\u05dd. \u05db\u05d3\u05d9 \u05dc\u05d5\u05d5\u05d3\u05d0 \u05e9\u05d4\u05ea\u05e0\u05ea\u05e7\u05ea <i>\u05de\u05d5\u05de\u05dc\u05e5 \u05dc\u05e1\u05d2\u05d5\u05e8 \u05d0\u05ea <\/i>.\u05d4\u05d3\u05e4\u05d3\u05e4\u05df \u05e9\u05dc\u05da",
-		"pt-BR": "Incapaz de sair de um ou mais servi\u00e7os. Para garantir que todas as suas sess\u00f5es ser\u00e3o fechadas, incentivamos voc\u00ea a <i>fechar seu navegador<\/i>.",
+		"pt-br": "Incapaz de sair de um ou mais servi\u00e7os. Para garantir que todas as suas sess\u00f5es ser\u00e3o fechadas, incentivamos voc\u00ea a <i>fechar seu navegador<\/i>.",
 		"zh": "\u65e0\u6cd5\u4ece\u4e00\u4e2a\u6216\u8005\u591a\u4e2a\u670d\u52a1\u4e2d\u9000\u51fa\uff0c\u8bf7\u786e\u8ba4\u4f60\u6240\u6709sessions\u5df2\u5173\u95ed\uff0c\u6211\u4eec\u9f13\u52b1\u4f60 <i>\u5173\u95ed\u6d4f\u89c8\u5668<\/i>"
 	}
 }

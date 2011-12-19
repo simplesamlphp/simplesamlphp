@@ -164,7 +164,7 @@ if($onLoad !== '') {
 					'hu' => 'Magyar', // Hungarian
 					'pl' => 'Język polski', // Polish
 					'pt' => 'Português', // Portuguese
-					'pt-BR' => 'Português brasileiro', // Portuguese
+					'pt-br' => 'Português brasileiro', // Portuguese
 					'ru' => 'русский язык', // Russian
 					'et' => 'eesti keel',
 					'tr' => 'Türkçe',
