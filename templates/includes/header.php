@@ -29,8 +29,16 @@ if (array_key_exists('pageid', $this->data)) {
 }
 // - o - o - o - o - o - o - o - o - o - o - o - o -
 
-
-
+/**
+ * Do not allow to frame simpleSAMLphp pages from another location.
+ * This prevents clickjacking attacks in modern browsers.
+ *
+ * If you don't want any framing at all you can even change this to
+ * 'DENY', or comment it out if you actually want to allow foreign
+ * sites to put simpleSAMLphp in a frame. The latter is however
+ * probably not a good security practice.
+ */
+header('X-Frame-Options: SAMEORIGIN');
 
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
