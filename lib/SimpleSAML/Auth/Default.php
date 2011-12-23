@@ -232,7 +232,7 @@ class SimpleSAML_Auth_Default {
 
 
 	/**
-	 * Handle a unsoliced login operations.
+	 * Handle a unsolicited login operations.
 	 *
 	 * This function creates a session from the received information. It
 	 * will then redirect to the given URL.
@@ -244,7 +244,7 @@ class SimpleSAML_Auth_Default {
 	 * @param string $redirectTo  The URL we should redirect the user to after
 	 *                            updating the session.
 	 */
-	public static function handleUnsolicedAuth($authId, array $state, $redirectTo) {
+	public static function handleUnsolicitedAuth($authId, array $state, $redirectTo) {
 		assert('is_string($authId)');
 		assert('is_string($redirectTo)');
 

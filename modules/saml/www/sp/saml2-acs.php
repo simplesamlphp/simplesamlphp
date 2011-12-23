@@ -43,9 +43,9 @@ if (!empty($stateId)) {
 		throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
 	}
 } else {
-	/* This is an unsoliced response. */
+	/* This is an unsolicited response. */
 	$state = array(
-		'saml:sp:isUnsoliced' => TRUE,
+		'saml:sp:isUnsolicited' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
 		'saml:sp:RelayState' => $response->getRelayState(),
 	);

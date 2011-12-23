@@ -24,7 +24,7 @@ $target = (string)$_REQUEST['TARGET'];
 if (preg_match('@^https?://@i', $target)) {
 	/* Unsolicited response. */
 	$state = array(
-		'saml:sp:isUnsoliced' => TRUE,
+		'saml:sp:isUnsolicited' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
 		'saml:sp:RelayState' => $target,
 	);

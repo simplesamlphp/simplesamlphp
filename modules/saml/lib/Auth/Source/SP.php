@@ -502,13 +502,13 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$state['Attributes'] = $authProcState['Attributes'];
 
-		if (isset($state['saml:sp:isUnsoliced']) && (bool)$state['saml:sp:isUnsoliced']) {
+		if (isset($state['saml:sp:isUnsolicited']) && (bool)$state['saml:sp:isUnsolicited']) {
 			if (!empty($state['saml:sp:RelayState'])) {
 				$redirectTo = $state['saml:sp:RelayState'];
 			} else {
 				$redirectTo = $source->getMetadata()->getString('RelayState', '/');
 			}
-			SimpleSAML_Auth_Default::handleUnsolicedAuth($sourceId, $state, $redirectTo);
+			SimpleSAML_Auth_Default::handleUnsolicitedAuth($sourceId, $state, $redirectTo);
 		}
 
 		SimpleSAML_Auth_Source::completeAuth($state);
