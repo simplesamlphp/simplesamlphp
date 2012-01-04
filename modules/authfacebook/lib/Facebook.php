@@ -71,7 +71,7 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
     }
   }
 
-  public function clearAllPersistentData() {
+  protected function clearAllPersistentData() {
     foreach (self::$kSupportedKeys as $key) {
       $this->clearPersistentData($key);
     }
