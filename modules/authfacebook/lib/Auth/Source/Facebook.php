@@ -90,9 +90,9 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 		$facebook = new sspmod_authfacebook_Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
 		$uid = $facebook->getUser();
 
-		if (isset($uid)) {
+		if (isset($uid) && $uid) {
 			try {
-				$info = $facebook->api("/me");
+				$info = $facebook->api("/" . $uid);
 			} catch (FacebookApiException $e) {
 				throw new SimpleSAML_Error_AuthSource($this->authId, 'Error getting user profile.', $e);
 			}
