@@ -1187,6 +1187,29 @@ class SimpleSAML_Utilities {
 
 
 	/**
+	 * Normalizes an URL to an absolute URL and validate it.
+	 *
+	 * In addition to resolving the URL, this function makes sure that it is
+	 * a link to a http or https site.
+	 *
+	 * @param string $url  The relative URL.
+	 * @return string  An absolute URL for the given relative URL.
+	 */
+	public static function normalizeURL($url) {
+		assert('is_string($url)');
+
+		$url = SimpleSAML_Utilities::resolveURL($url, SimpleSAML_Utilities::selfURL());
+
+		/* Verify that the URL is to a http or https site. */
+		if (!preg_match('@^https?://@i', $url)) {
+			throw new SimpleSAML_Error_Exception('Invalid URL: ' . $url);
+		}
+
+		return $url;
+	}
+
+
+	/**
 	 * Parse a query string into an array.
 	 *
 	 * This function parses a query string into an array, similar to the way the builtin
