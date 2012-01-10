@@ -6,6 +6,21 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.8.2
+
+Released 2012-01-10.
+
+  * Fix for user-assisted cross site scripting on a couple of pages.
+
+## Version 1.8.1
+
+Released 2011-10-27.
+
+  * Fix for key oracle attack against XML encryption on SP.
+  * Fix for IdP initiated logout with IdP-initiated SSO.
+  * Fix a PHP notice if we are unable to open /dev/urandom.
+  * Fix a PHP notice during SAML 1.1 authentication.
+
 ## Version 1.8
 
   * New authentication modules:
