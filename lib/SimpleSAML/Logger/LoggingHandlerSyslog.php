@@ -23,7 +23,7 @@ class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_Loggin
          * OS Check 
          * Setting facility to LOG_USER (only valid in Windows), enable log level rewrite on windows systems.
          */
-        if (substr(strtoupper(PHP_OS),0,3) == 'WIN') {
+        if (SimpleSAML_Utilities::isWindowsOS()) {
         	$this->isWindows = true;
         	$facility = LOG_USER;
         }

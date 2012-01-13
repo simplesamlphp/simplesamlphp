@@ -1937,6 +1937,15 @@ class SimpleSAML_Utilities {
 				': ' . SimpleSAML_Utilities::getLastError());
 		}
 
+		if (!self::isWindowsOS()) {
+			$res = chmod($tmpFile, 0600);
+			if ($res === FALSE) {
+				unlink($tmpFile);
+				throw new SimpleSAML_Error_Exception('Error changing file mode ' . $tmpFile .
+					': ' . SimpleSAML_Utilities::getLastError());
+			}
+		}
+
 		$res = rename($tmpFile, $filename);
 		if ($res === FALSE) {
 			unlink($tmpFile);
@@ -2256,6 +2265,16 @@ class SimpleSAML_Utilities {
 		$clear = substr($clear, 0, $len - $numpad);
 
 		return $clear;
+	}
+
+
+	/**
+	 * This function checks if we are running on Windows OS.
+	 *
+	 * @return TRUE if we are on Windows OS, FALSE otherwise.
+	 */
+	public static function isWindowsOS() {
+		return substr(strtoupper(PHP_OS),0,3) == 'WIN';
 	}
 
 }
