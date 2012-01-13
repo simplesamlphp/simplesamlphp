@@ -4,14 +4,8 @@ if (empty($_REQUEST['entityID'])) throw new Exception('Missing parameter [entity
 if (empty($_REQUEST['return'])) throw new Exception('Missing parameter [return]');
 
 
-
 $djconfig = SimpleSAML_Configuration::getOptionalConfig('discojuice.php');
 $config = SimpleSAML_Configuration::getInstance();
-
-
-$feed = new sspmod_discojuice_Feed();
-$metadata = json_decode($feed->read(), TRUE);	
-
 
 // EntityID
 $entityid = $_REQUEST['entityID'];
@@ -34,7 +28,7 @@ $hostedConfig = array(
 	SimpleSAML_Module::getModuleURL('discojuice/response.html'),
 	
 	// Set of feeds to subscribe to.
-	$djconfig->getArray('feeds', 'Service'), 
+	$djconfig->getArray('feeds', array('edugain')), 
 	
 	$href
 );

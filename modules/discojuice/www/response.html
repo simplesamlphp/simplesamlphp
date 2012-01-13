@@ -31,18 +31,22 @@ function receive() {
 	if (urlParams.cid) cid = urlParams.cid;
 		
 	var sender = parseURL(document.referrer);
+	
+	// Received a specific entity ID from the storage.
 	if (urlParams.entityID) {
 		window.parent.DiscoJuice.Utils.log('ResponseLocation: Response from discovery service [' + sender + ']: ' + urlParams.entityID + '   subID: ' + urlParams.subID);
-		
 		window.parent.DiscoJuice.Control.discoResponse(sender, urlParams.entityID, urlParams.subID, cid);
 
+	// Received a textual error from the storage, to show in the debug log.
 	} else if (urlParams['error']) {
 		window.parent.DiscoJuice.Control.discoResponseError(cid, 
-			"Error from IdP Discovery Service [" + sender + "]:  " + urlParams.error);			
+			"Error from IdP Discovery Service [" + sender + "]:  " + urlParams.error);
+	
+	// Did not receive a response parameter. This probably means that the Disco storage did not have a stored preference
+	// for the user. Consequently: no error.
 	} else {
-		console.log('No valid response parameters. cid[' + cid + ']');
+		window.parent.DiscoJuice.Utils.log('No valid response parameters. cid[' + cid + ']');
 		window.parent.DiscoJuice.Control.discoResponseError(cid);
-		// 	"ResponseLocation: Response from discovery service [" + sender + "]: No valid response parameters");
 	}
 
 }
@@ -51,6 +55,6 @@ function receive() {
 </head>
 
 <body onload="receive();">
-</body>
 
+</body>
 </html>

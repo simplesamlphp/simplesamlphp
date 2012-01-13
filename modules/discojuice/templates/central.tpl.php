@@ -7,18 +7,13 @@ header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT
 <head>
 	<meta charset="utf-8" />
 	<title>Select Your Login Provider</title>
-	
 
-<link rel="shortcut icon" href="http://discojuice.bridge.uninett.no/simplesaml/module.php/discojuice/favicon.png" />
+	<!-- JQuery hosted by Google -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 
-
-<!-- JQuery hosted by Google -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
-
-<!-- DiscoJuice hosted by UNINETT at discojuice.org -->
-<script type="text/javascript" src="https://engine.discojuice.org/discojuice-stable.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://static.discojuice.org/css/discojuice.css" />
-
+	<!-- DiscoJuice hosted by UNINETT at discojuice.org -->
+	<script type="text/javascript" src="https://engine.discojuice.org/discojuice-stable.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://static.discojuice.org/css/discojuice.css" />
 
 	<style type="text/css">
 		body {
@@ -47,8 +42,8 @@ header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT
 				json_encode($this->data['hostedConfig'][4]) .
 			');';
 
-	echo "	djc.country = false;\n";
-	echo "	djc.showLocationInfo = false;\n";
+	// echo "	djc.country = false;\n";
+	// echo "	djc.showLocationInfo = false;\n";
 	
 	if (!$this->data['enableCentralStorage']) {
 		echo "	delete djc.disco;\n";
