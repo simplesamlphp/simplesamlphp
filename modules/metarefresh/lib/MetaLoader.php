@@ -45,11 +45,92 @@ class sspmod_metarefresh_MetaLoader {
 	 */
 	public function loadSource($source) {
 
+		// Build new HTTP context
+		$context = $this->createContext($source);
+
+		// GET!
+		try {
+			list($data, $responseHeaders) = SimpleSAML_Utilities::fetch($source['src'], $context, TRUE);
+		} catch(Exception $e) {
+			SimpleSAML_Logger::warning('metarefresh: ' . $e->getMessage());
+		}
+
+		// We have response headers, so the request succeeded
+		if(isset($responseHeaders)) {
+
+			// 200 OK
+			if(preg_match('@^HTTP/1\.[01]\s200\s@', $responseHeaders[0])) {
+
+				if (isset($source['conditionalGET']) && $source['conditionalGET']) {
+					// Stale or no metadata, so a fresh copy
+					SimpleSAML_Logger::debug('Downloaded fresh copy');
+				}
+
+				$entities = $this->loadXML($data, $source);
+
+				foreach($entities as $entity) {
+
+					if(isset($source['blacklist'])) {
+						if(!empty($source['blacklist']) && in_array($entity->getEntityID(), $source['blacklist'])) {
+							SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - blacklisted.' . "\n");
+							continue;
+						}
+					}
+
+					if(isset($source['whitelist'])) {
+						if(!empty($source['whitelist']) && !in_array($entity->getEntityID(), $source['whitelist'])) {
+							SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - not in the whitelist.' . "\n");
+							continue;
+						}
+					}
+
+					if(array_key_exists('validateFingerprint', $source) && $source['validateFingerprint'] !== NULL) {
+						if(!$entity->validateFingerprint($source['validateFingerprint'])) {
+							SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature.' . "\n");
+							continue;
+						}
+					}
+
+					$template = NULL;
+					if (array_key_exists('template', $source)) $template = $source['template'];
+
+					$this->addMetadata($source['src'], $entity->getMetadata1xSP(), 'shib13-sp-remote', $template);
+					$this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template);
+					$this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template);
+					$this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template);
+					$attributeAuthorities = $entity->getAttributeAuthorities();
+					if (!empty($attributeAuthorities)) {
+						$this->addMetadata($source['src'], $attributeAuthorities[0], 'attributeauthority-remote', $template);
+					}
+				}
+
+				$this->saveState($source, $responseHeaders);
+			}
+
+			// 304 response
+			if(preg_match('@^HTTP/1\.[01]\s304\s@', $responseHeaders[0])) {
+				SimpleSAML_Logger::debug('Received HTTP 304 (Not Modified) - attempting to re-use cached metadata');
+				$this->addCachedMetadata($source);
+			}
+
+		} else {
+			// No response headers, this means the request failed in some way, so re-use old data
+			SimpleSAML_Logger::debug('No response from ' . $source['src'] . ' - attempting to re-use cached metadata');
+			$this->addCachedMetadata($source);
+		}
+	}
+
+	/**
+	 * Create HTTP context, with any available caches taken into account
+	 */
+	private function createContext($source) {
+
 		$context = NULL;
 
 		$config = SimpleSAML_Configuration::getInstance();
 		$name = $config->getString('technicalcontact_name', NULL);
 		$mail = $config->getString('technicalcontact_email', NULL);
+
 		$rawheader = "User-Agent: SimpleSAMLphp metarefresh, run by $name <$mail>\r\n";
 
 		if (isset($source['conditionalGET']) && $source['conditionalGET']) {
@@ -67,24 +148,12 @@ class sspmod_metarefresh_MetaLoader {
 			}
 		}
 
-		// Build new HTTP context
-		$context = array('http' => array('header' => $rawheader));
+		return array('http' => array('header' => $rawheader));
+	}
 
 
-		// GET!
-		try {
-			list($data, $responseHeaders) = SimpleSAML_Utilities::fetch($source['src'], $context, TRUE);
-		} catch(Exception $e) {
-			SimpleSAML_Logger::warning('metarefresh: Failed to retrieve metadata. ' . $e->getMessage());
-		}
-
-		//SimpleSAML_Logger::debug('All response headers: ' . var_export($responsHeaders,1));
-		$status = $responseHeaders[0];
-
-		if(preg_match('@^HTTP/1\.[01]\s304\s@', $status ) && isset($this->oldMetadataSrc)) {
-			// Not-Modified. This could only have happened if 'conditionalGET' was used.
-			SimpleSAML_Logger::debug('Received \'' . $status . '\', re-using cached metadata');
-
+	private function addCachedMetadata($source) {
+		if(isset($this->oldMetadataSrc)) {
 			foreach(self::$types as $type) {
 				foreach($this->oldMetadataSrc->getMetadataSet($type) as $entity) {
 					if(array_key_exists('metarefresh:src', $entity)) {
@@ -95,64 +164,15 @@ class sspmod_metarefresh_MetaLoader {
 					}
 				}
 			}
-		} else {
-
-			// Stale or no metadata, so a fresh copy
-			if (isset($source['conditionalGET']) && $source['conditionalGET']) {
-				SimpleSAML_Logger::debug('Downloaded fresh copy');
-			}
-
-			$entities = array();
-			try{
-				$doc = new DOMDocument();
-				$res = $doc->loadXML($data);
-				if($res !== TRUE) {
-					throw new Exception('Failed to read XML from ' . $source['src']);
-				}
-				if($doc->documentElement ===  NULL) throw new Exception('Opened file is not an XML document: ' . $source['src']);
-				$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($doc->documentElement);
-			} catch(Exception $e) {
-				SimpleSAML_Logger::warning('metarefresh: Failed to retrieve metadata. ' . $e->getMessage());
-			}
-
-			foreach($entities as $entity) {
-
-				if(isset($source['blacklist'])) {
-					if(!empty($source['blacklist']) && in_array($entity->getEntityID(), $source['blacklist'])) {
-						SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - blacklisted.' . "\n");
-						continue;
-					}
-				}
-
-				if(isset($source['whitelist'])) {
-					if(!empty($source['whitelist']) && !in_array($entity->getEntityID(), $source['whitelist'])) {
-						SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - not in the whitelist.' . "\n");
-						continue;
-					}
-				}
-
-				if(array_key_exists('validateFingerprint', $source) && $source['validateFingerprint'] !== NULL) {
-					if(!$entity->validateFingerprint($source['validateFingerprint'])) {
-						SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature.' . "\n");
-						continue;
-					}
-				}
-
-				$template = NULL;
-				if (array_key_exists('template', $source)) $template = $source['template'];
-
-				$this->addMetadata($source['src'], $entity->getMetadata1xSP(), 'shib13-sp-remote', $template);
-				$this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template);
-				$this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template);
-				$this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template);
-				$attributeAuthorities = $entity->getAttributeAuthorities();
-				if (!empty($attributeAuthorities)) {
-					$this->addMetadata($source['src'], $attributeAuthorities[0], 'attributeauthority-remote', $template);
-				}
-			}
 		}
+	}
 
-		// Save state for this src
+
+	/**
+	 * Store caching state data for a source
+	 */
+	private function saveState($source, $responseHeaders) {
+
 		if (isset($source['conditionalGET']) && $source['conditionalGET']) {
 
 			// Headers section
@@ -173,10 +193,31 @@ class sspmod_metarefresh_MetaLoader {
 		}
 	}
 
+
 	/**
-	 * This function write the state array back to disk
+	 * Parse XML metadata and return entities
 	 */
-	 public function writeState() {
+	private function loadXML($data, $source) {
+		$entities = array();
+		try {
+			$doc = new DOMDocument();
+			$res = $doc->loadXML($data);
+			if($res !== TRUE) {
+				throw new Exception('Failed to read XML from ' . $source['src']);
+			}
+			if($doc->documentElement ===  NULL) throw new Exception('Opened file is not an XML document: ' . $source['src']);
+			$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($doc->documentElement);
+		} catch(Exception $e) {
+			SimpleSAML_Logger::warning('metarefresh: Failed to retrieve metadata. ' . $e->getMessage());
+		}
+		return $entities;
+	}
+
+
+	/**
+	 * This function writes the state array back to disk
+	 */
+	public function writeState() {
 		if($this->changed) {
 			SimpleSAML_Logger::debug('Writing: ' . $this->stateFile);
 			SimpleSAML_Utilities::writeFile(
@@ -187,6 +228,7 @@ class sspmod_metarefresh_MetaLoader {
 			);
 		}
 	}
+
 
 	/**
 	 * This function writes the metadata to stdout.
@@ -213,9 +255,7 @@ class sspmod_metarefresh_MetaLoader {
 			echo("\n");
 		}
 	}
-	
 
-	
 	
 	/**
 	 * This function adds metadata from the specified file to the list of metadata.
