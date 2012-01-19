@@ -188,6 +188,7 @@ if($onLoad !== '') {
 		
 		$textarray = array();
 		foreach ($languages AS $lang => $current) {
+			$lang = strtolower($lang);
 			if ($current) {
 				$textarray[] = $langnames[$lang];
 			} else {
