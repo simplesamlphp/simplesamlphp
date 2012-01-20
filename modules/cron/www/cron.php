@@ -42,7 +42,8 @@ if ($cronconfig->getValue('sendemail', TRUE) && count($summary) > 0) {
 	if($toaddress == 'na@example.org') {
 		SimpleSAML_Logger::error('Cron - Could not send email. [technicalcontact_email] not set in config.');
 	} else {
-		$email = new SimpleSAML_XHTML_EMail($toaddress, 'simpleSAMLphp cron report', 'no-reply@simplesamlphp.com');
+		// Use $toaddress for both TO and FROM
+		$email = new SimpleSAML_XHTML_EMail($toaddress, 'SimpleSAMLphp cron report', $toaddress);
 		$email->setBody($message);
 		$email->send();
 	}
