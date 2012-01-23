@@ -23,7 +23,9 @@
 		"zh-tw": "SAML 2.0 SP \u5c55\u793a\u7bc4\u4f8b",
 		"et": "SAML 2.0 SP demon\u00e4ide",
 		"he": "\u05d4\u05d3\u05d2\u05de\u05ea \u05d3\u05d5\u05d2\u05de\u05d4 \u05dc\u05e1\"\u05e9 \u05de\u05e1\u05d5\u05d2 SAML 2.0",
-		"zh": "SAML 2.0 SP\u6f14\u793a\u6848\u4f8b"
+		"zh": "SAML 2.0 SP\u6f14\u793a\u6848\u4f8b",
+		"ar": "\u0627\u0633\u062a\u0639\u0631\u0627\u0636 \u0645\u062b\u0627\u0644 \u0644 SAML 2.0 SP",
+		"id": "Contoh Demo SAML 2.0 SP"
 	},
 	"header_shib": {
 		"no": "Shibboleth Demo",
@@ -49,7 +51,9 @@
 		"zh-tw": "\u7279\u5b9a\u5c55\u793a",
 		"et": "Shibbolethi demo",
 		"he": "\u05d4\u05d3\u05d2\u05de\u05d4 \u05dc- Shibboleth",
-		"zh": "Shibboleth\u6f14\u793a"
+		"zh": "Shibboleth\u6f14\u793a",
+		"ar": "\u0627\u0633\u062a\u0639\u0631\u0627\u0636 Shibboleth",
+		"id": "Demo Shibboleth"
 	},
 	"header_wsfed": {
 		"no": "WS-Fed SP Demo Eksempel",
@@ -75,7 +79,9 @@
 		"zh-tw": "WS-Fed SP \u5c55\u793a\u7bc4\u4f8b",
 		"et": "WS-Fed SP demon\u00e4ide",
 		"he": "\u05d4\u05d3\u05d2\u05de\u05ea \u05d3\u05d5\u05d2\u05de\u05d4 \u05dc\u05e1\"\u05e9 \u05de\u05e1\u05d5\u05d2 WS-Fed",
-		"zh": "WS-Fed SP \u6f14\u793a\u6848\u4f8b"
+		"zh": "WS-Fed SP \u6f14\u793a\u6848\u4f8b",
+		"ar": "\u0627\u0633\u062a\u0639\u0631\u0627\u0636 \u0645\u062b\u0627\u0644 \u0644 WS-Fed",
+		"id": "Contoh Demo WS-Fed SP"
 	},
 	"header_diagnostics": {
 		"no": "SimpleSAMLphp diagnostikk",
@@ -101,7 +107,9 @@
 		"zh-tw": "SimpleSAMLphp \u8a3a\u65b7\u5de5\u5177",
 		"et": "SimpleSAMLphp diagnostika",
 		"he": "\u05d0\u05d9\u05d1\u05d7\u05d5\u05df SimpleSAMLphp",
-		"zh": "SimpleSAMLphp \u8bca\u65ad"
+		"zh": "SimpleSAMLphp \u8bca\u65ad",
+		"ar": "\u062a\u0634\u062e\u064a\u0635 SimpleSAMLphp",
+		"id": "Diagnostik SimpleSAMLphp"
 	},
 	"some_error_occurred": {
 		"no": "En feil har oppst\u00e5tt",
@@ -113,7 +121,7 @@
 		"nl": "Er is een fout opgetreden",
 		"sl": "Pri\u0161lo je do napake!",
 		"da": "En fejl opstod.",
-		"hr": "Do\u0161lo je do pogre\u0161ke",
+		"hr": "Pojavila se gre\u0161ka",
 		"hu": "Hiba t\u00f6rt\u00e9nt",
 		"fi": "Virhe",
 		"pt-br": "Ocorreu algum erro",
@@ -127,7 +135,9 @@
 		"zh-tw": "\u6709\u932f\u8aa4\u767c\u751f",
 		"et": "Ilmnes mingi t\u00f5rge",
 		"he": "\u05d4\u05ea\u05e8\u05d7\u05e9\u05d4 \u05e9\u05d2\u05d9\u05d0\u05d4",
-		"zh": "\u67d0\u4e9b\u9519\u8bef\u53d1\u751f\u4e86"
+		"zh": "\u67d0\u4e9b\u9519\u8bef\u53d1\u751f\u4e86",
+		"ar": "\u0644\u0642\u062f \u062d\u062f\u062b \u062e\u0637\u0627 \u0645\u0627",
+		"id": "Beberapa error telah terjadi"
 	},
 	"intro": {
 		"no": "Hei, dette er en statusside p\u00e5 simpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon.",
@@ -139,7 +149,7 @@
 		"nl": "Dit is de overzichtspagina van simpleSAMLphp. Hier kunt u zien of uw sessie nog geldig is, hoe lang het nog duurt voordat deze verloopt, en u kunt alle attributen bekijken die aanwezig zijn in deze sessie.",
 		"sl": "\u017divjo! To je statusna stran simpleSAMLphp, ki omogo\u010da pregled nad trajanjem va\u0161e trenutne seje in atributi, ki so povezani z njo.",
 		"da": "Dette er statussiden for simpleSAMLphp.Du kan se om din session er udl\u00f8bet, hvor lang tid der er til at den udl\u00f8ber samt alle \u00f8vrige oplysninger om din session.",
-		"hr": "Ovo je stranica s prikazom aktualnog stanja simpleSAMLphp-a. Ovdje mo\u017eete vidjeti je li vam istekla sjednica, koliko \u0107e jo\u0161 dugo va\u0161a sjednica biti valjana te sve atribute koji su vezani uz va\u0161u sjednicu.",
+		"hr": "Ovo je stranica s prikazom aktualnog stanja Single Sign-On sjednice. Na ovoj stranici mo\u017eete vidjeti je li vam istekla sjednica, koliko \u0107e jo\u0161 dugo va\u0161a sjednica trajati te sve atribute koji su vezani uz va\u0161u sjednicu.",
 		"hu": "\u00dcdv\u00f6z\u00f6lj\u00fck, ez a SimpleSAMLphp st\u00e1tus oldala. Itt l\u00e1thatja, ha lej\u00e1rt a munkamenete, mikor l\u00e9pett be utolj\u00e1ra \u00e9s a munkamenethez tartoz\u00f3 attrib\u00fatumokat.",
 		"fi": "T\u00e4m\u00e4 on simpleSAMLphp:n statussivu. N\u00e4et onko istuntosi voimassa, kauanko se on voimassa ja kaikki istuuntosi liitetyt attribuutit.",
 		"pt-br": "Ol\u00e1, esta \u00e9 a p\u00e1gina de status simpleSAMLphp. Aqui voc\u00ea pode ver \u00e9 se a sua sess\u00e3o expirou, o tempo que dura at\u00e9 ele expirar e todos os atributos que est\u00e3o anexados \u00e0 sua sess\u00e3o.",
@@ -153,7 +163,9 @@
 		"zh-tw": "\u55e8\uff0c\u9019\u662f simpleSAMLphp \u72c0\u614b\u9801\uff0c\u5728\u9019\u908a\u60a8\u53ef\u4ee5\u770b\u5230\u60a8\u7684\u9023\u7dda\u662f\u5426\u903e\u6642\uff0c\u4ee5\u53ca\u9084\u6709\u591a\u4e45\u624d\u903e\u6642\uff0c\u6240\u6709\u5c6c\u6027\u503c(attributes)\u90fd\u6703\u9644\u52a0\u5728\u4f60\u7684\u9023\u7dda\u88e1(session)\u3002",
 		"et": "Tere! See on SimpleSAMLphp olekuteave. Siit on v\u00f5imalik n\u00e4ha, kas su sessioon on aegunud, kui kaua see veel kestab ja k\u00f5iki teisi sessiooniga seotud atribuute.",
 		"he": "\u05e9\u05dc\u05d5\u05dd, \u05d6\u05d4\u05d5 \u05d3\u05e3 \u05d4\u05de\u05e6\u05d1 \u05e9\u05dc simpleSAMLphp. \u05db\u05d0\u05df \u05d0\u05e4\u05e9\u05e8 \u05dc\u05e8\u05d0\u05d5\u05ea \u05d0\u05dd \u05d4\u05e9\u05d9\u05d7\u05d4 \u05d4\u05d5\u05e4\u05e1\u05e7\u05d4, \u05db\u05de\u05d4 \u05d6\u05de\u05df \u05d4\u05d9\u05d0 \u05ea\u05de\u05e9\u05d9\u05da \u05e2\u05d3 \u05dc\u05d4\u05e4\u05e1\u05e7\u05ea\u05d4 \u05d5\u05db\u05dc \u05d4\u05ea\u05db\u05d5\u05e0\u05d5\u05ea \u05d4\u05de\u05e6\u05d5\u05e8\u05e4\u05d5\u05ea \u05dc\u05e9\u05d9\u05d7\u05d4.",
-		"zh": "\u55e8\uff0c\u8fd9\u662fsimpleSAMLphp\u72b6\u6001\u9875\u3002\u8fd9\u91cc\u4f60\u53ef\u4ee5\u770b\u5230\uff0c\u5982\u679c\u60a8\u7684\u4f1a\u8bdd\u8d85\u65f6\uff0c\u5b83\u6301\u7eed\u591a\u4e45\uff0c\u76f4\u5230\u8d85\u65f6\u548c\u8fde\u63a5\u5230\u60a8\u7684\u4f1a\u8bdd\u7684\u6240\u6709\u5c5e\u6027\u3002"
+		"zh": "\u55e8\uff0c\u8fd9\u662fsimpleSAMLphp\u72b6\u6001\u9875\u3002\u8fd9\u91cc\u4f60\u53ef\u4ee5\u770b\u5230\uff0c\u5982\u679c\u60a8\u7684\u4f1a\u8bdd\u8d85\u65f6\uff0c\u5b83\u6301\u7eed\u591a\u4e45\uff0c\u76f4\u5230\u8d85\u65f6\u548c\u8fde\u63a5\u5230\u60a8\u7684\u4f1a\u8bdd\u7684\u6240\u6709\u5c5e\u6027\u3002",
+		"ar": "\u0645\u0631\u062d\u0628\u0627\u064b \u0628\u0643\u0645 \u0641\u064a \u0635\u0641\u062d\u0629 \u062d\u0627\u0644\u0629 SimpleSAMLphp. \u064a\u0645\u0643\u0646\u0643 \u0647\u0646\u0627 \u0645\u0631\u0627\u0642\u0628\u0629 \u0648\u0642\u062a \u0627\u0646\u062a\u0647\u0627\u0621 \u062c\u0644\u0633\u062a\u0643\u060c \u0641\u062a\u0631\u0629 \u0627\u0633\u062a\u0645\u0631\u0627\u0631\u0647\u0627\u060c \u0645\u062a\u064a \u0633\u062a\u0646\u062a\u0647\u064a \u0648 \u062c\u0645\u064a\u0639 \u0627\u0644\u0633\u0645\u0627\u062a \u0627\u0644\u0645\u0631\u062a\u0628\u0637\u0629 \u0628\u0627\u0644\u062c\u0644\u0633\u0629",
+		"id": "Hai, ini adalah halaman status dari simpleSAMLphp. Disini anda dapat melihat jika session anda telah time out, berapa lama ia berlaku sampai time out dan semua attribut yang menempel pada session anda."
 	},
 	"validfor": {
 		"no": "Din sesjon er gyldig i %SECONDS% sekunder fra n\u00e5.",
@@ -179,7 +191,9 @@
 		"zh-tw": "\u60a8\u7684 session \u5f9e\u73fe\u5728\u8d77\u9084\u6709 %SECONDS% \u6709\u6548\u3002",
 		"et": "Sinu sessioon kehtib veel %SECONDS% sekundit.",
 		"he": "\u05d4\u05e9\u05d9\u05d7\u05d4 \u05e9\u05dc\u05da \u05d1\u05e8\u05ea-\u05ea\u05d5\u05e7\u05e3 \u05dc\u05e2\u05d5\u05d3 %SECONDS% \u05e9\u05e0\u05d9\u05d5\u05ea \u05de\u05e2\u05db\u05e9\u05d9\u05d5.",
-		"zh": "\u4f60\u7684\u4f1a\u8bdd\u5728%SECONDS%\u79d2\u5185\u6709\u6548"
+		"zh": "\u4f60\u7684\u4f1a\u8bdd\u5728%SECONDS%\u79d2\u5185\u6709\u6548",
+		"ar": "\u0633\u062a\u0633\u062a\u0645\u0631 \u062c\u0644\u0633\u062a\u0643 \u0644\u066a\u0639\u062f\u062f \u062b\u0648\u0627\u0646\u064a\u066a \u062b\u0627\u0646\u064a\u0629 \u062a\u0628\u062f\u0623 \u0627\u0644\u0627\u0646",
+		"id": "Session anda valid untuk %SECONDS% detik dari sekarang."
 	},
 	"sessionsize": {
 		"no": "Sesjons st\u00f8rrelse: %SIZE%",
@@ -206,7 +220,9 @@
 		"et": "Sessiooni suurus: %SIZE%",
 		"he": "\u05d2\u05d5\u05d3\u05dc \u05e9\u05d9\u05d7\u05d4: %SIZE%",
 		"ru": "\u0420\u0430\u0437\u043c\u0435\u0440 \u0441\u0435\u0441\u0441\u0438\u0438: %SIZE%",
-		"zh": "Session \u5927\u5c0f: %SIZE%"
+		"zh": "Session \u5927\u5c0f: %SIZE%",
+		"ar": "\u062d\u062c\u0645 \u0627\u0644\u062c\u0644\u0633\u0629 \u066a\u062d\u062c\u0645\u066a",
+		"id": "Ukuran session: %SIZE%"
 	},
 	"attributes_header": {
 		"no": "Dine attributter",
@@ -233,7 +249,9 @@
 		"et": "Sinu atribuudid",
 		"he": "\u05d4\u05ea\u05db\u05d5\u05e0\u05d5\u05ea \u05e9\u05dc\u05da",
 		"ru": "\u0412\u0430\u0448\u0438 \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b",
-		"zh": "\u4f60\u7684\u5c5e\u6027"
+		"zh": "\u4f60\u7684\u5c5e\u6027",
+		"ar": "\u0627\u0644\u0633\u0645\u0627\u062a",
+		"id": "Attribut Anda"
 	},
 	"logout": {
 		"no": "Logg ut",
@@ -260,6 +278,8 @@
 		"et": "Logi v\u00e4lja",
 		"he": "\u05d4\u05ea\u05e0\u05ea\u05e7\u05d5\u05ea",
 		"ru": "\u0412\u044b\u0439\u0442\u0438",
-		"zh": "\u9000\u51fa"
+		"zh": "\u9000\u51fa",
+		"ar": "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c",
+		"id": "Logout"
 	}
 }

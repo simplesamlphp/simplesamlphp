@@ -25,7 +25,9 @@
 		"et": "Jah, j\u00e4tka",
 		"he": "\u05db\u05df, \u05d4\u05de\u05e9\u05da",
 		"ru": "\u0414\u0430, \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u044c",
-		"zh": "\u662f\u7684\uff0c\u7ee7\u7eed"
+		"zh": "\u662f\u7684\uff0c\u7ee7\u7eed",
+		"ar": "\u0646\u0639\u0645\u060c \u0648\u0627\u0635\u0644",
+		"id": "Yam lanjutkan"
 	},
 	"no": {
 		"no": "Nei, avbryt",
@@ -53,7 +55,9 @@
 		"et": "Ei, loobu",
 		"he": "\u05dc\u05d0, \u05d1\u05d8\u05dc",
 		"ru": "\u041d\u0435\u0442, \u043e\u0442\u043c\u0435\u043d\u0438\u0442\u044c",
-		"zh": "\u4e0d\uff0c\u53d6\u6d88"
+		"zh": "\u4e0d\uff0c\u53d6\u6d88",
+		"ar": "\u0644\u0627\u060c \u0627\u0644\u063a",
+		"id": "Tidak, batalkan"
 	},
 	"remember": {
 		"no": "Godta ogs\u00e5 for fremtiden",
@@ -81,7 +85,9 @@
 		"et": "J\u00e4ta meelde",
 		"he": "\u05d6\u05db\u05d5\u05e8",
 		"ru": "\u0417\u0430\u043f\u043e\u043c\u043d\u0438\u0442\u044c",
-		"zh": "\u8bb0\u4f4f"
+		"zh": "\u8bb0\u4f4f",
+		"ar": "\u062a\u0630\u0643\u0631\u0623\u0644\u063a\u062a \u0630\u0643\u0631",
+		"id": "Ingat"
 	},
 	"consent_accept": {
 		"no": "For \u00e5 fullf\u00f8re innloggingen m\u00e5 du godta at opplysningene nedenfor sendes til SPNAME.",
@@ -109,7 +115,9 @@
 		"et": "SPNAME n\u00f5uab allpool oleva info edastamist.",
 		"he": "SPNAME \u05d3\u05d5\u05e8\u05e9 \u05e9\u05de\u05d9\u05d3\u05e2 \u05d4\u05e0\"\u05dc \u05d9\u05d5\u05e2\u05d1\u05e8",
 		"ru": "SPNAME \u0442\u0440\u0435\u0431\u0443\u0435\u0442, \u0447\u0442\u043e\u0431\u044b \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f, \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u043d\u0430\u044f \u043d\u0438\u0436\u0435, \u0431\u044b\u043b\u0430 \u043f\u0435\u0440\u0435\u0434\u0430\u043d\u0430.",
-		"zh": "SPNAME\u8bf7\u6c42\u7684\u4fe1\u606f\u5df2\u7ecf\u88ab\u4f20\u8f93\u51fa\u53bb"
+		"zh": "SPNAME\u8bf7\u6c42\u7684\u4fe1\u606f\u5df2\u7ecf\u88ab\u4f20\u8f93\u51fa\u53bb",
+		"ar": "\u064a\u062d\u062a\u0627\u062c SPNAME \u062a\u062d\u0648\u064a\u0644 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0623\u062f\u0646\u0627\u0647 ",
+		"id": "SPNAME mensyaratkan informasi dibawah ini harus ditransder."
 	},
 	"login": {
 		"no": "innlogging",
@@ -137,7 +145,9 @@
 		"et": "logi sisse",
 		"he": "\u05db\u05e0\u05d9\u05e1\u05d4",
 		"ru": "\u0432\u043e\u0439\u0442\u0438",
-		"zh": "\u767b\u5f55"
+		"zh": "\u767b\u5f55",
+		"ar": "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644",
+		"id": "login"
 	},
 	"service_providers_for": {
 		"no": "Tjenesteleverand\u00f8r for",
@@ -165,7 +175,9 @@
 		"et": "Teenusepakkujad",
 		"he": "\u05e1\u05e4\u05e7\u05d9 \u05e9\u05d9\u05e8\u05d5\u05ea \u05e2\u05d1\u05d5\u05e8",
 		"ru": "\u041f\u043e\u0441\u0442\u0430\u0432\u0449\u0438\u043a\u0438 \u0443\u0441\u043b\u0443\u0433 \u0434\u043b\u044f",
-		"zh": "\u670d\u52a1\u63d0\u4f9b\u8005\u7ed9"
+		"zh": "\u670d\u52a1\u63d0\u4f9b\u8005\u7ed9",
+		"ar": "\u0645\u0642\u062f\u0645\u064a \u062e\u062f\u0645\u0627\u062a \u0644",
+		"id": "Service Provider untuk"
 	},
 	"service_provider_header": {
 		"no": "Tjenesteleverand\u00f8r",
@@ -193,7 +205,9 @@
 		"et": "Teenusepakkuja",
 		"he": "\u05e1\u05e4\u05e7 \u05e9\u05d9\u05e8\u05d5\u05ea",
 		"ru": "\u041f\u043e\u0441\u0442\u0430\u0432\u0449\u0438\u043a \u0443\u0441\u043b\u0443\u0433",
-		"zh": "\u670d\u52a1\u63d0\u4f9b\u8005"
+		"zh": "\u670d\u52a1\u63d0\u4f9b\u8005",
+		"ar": "\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0627\u062a",
+		"id": "Service Provider"
 	},
 	"status_header": {
 		"no": "Samtykke-status",
@@ -221,7 +235,9 @@
 		"et": "N\u00f5usoleku olek",
 		"he": "\u05de\u05e6\u05d1 \u05d4\u05e1\u05db\u05de\u05d4",
 		"ru": "\u0420\u0430\u0437\u0440\u0435\u0448\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0441\u0442\u0430\u0442\u0443\u0441",
-		"zh": "\u540c\u610f\u72b6\u6001"
+		"zh": "\u540c\u610f\u72b6\u6001",
+		"ar": "\u062d\u0627\u0644\u0629 \u0645\u0648\u0627\u0641\u0642\u0629",
+		"id": "Status persetujuan"
 	},
 	"show_hide_attributes": {
 		"no": "Vis\/skjul opplysninger",
@@ -249,7 +265,9 @@
 		"et": "n\u00e4ita\/peida atribuudid",
 		"he": "\u05d4\u05e8\u05d0\u05d4\\\u05d4\u05e1\u05ea\u05e8 \u05ea\u05db\u05d5\u05e0\u05d5\u05ea ",
 		"ru": "\u043f\u043e\u043a\u0430\u0437\u0430\u0442\u044c\/\u0441\u043a\u0440\u044b\u0442\u044c \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b",
-		"zh": "\u663e\u793a\/\u9690\u85cf\u5c5e\u6027"
+		"zh": "\u663e\u793a\/\u9690\u85cf\u5c5e\u6027",
+		"ar": "\u0627\u0638\u0647\u0631\/\u0627\u0644\u063a\u064a \u0627\u0644\u0633\u0645\u0627\u062a",
+		"id": "perlihatkan\/sembunyikan attribut"
 	},
 	"consent_privacypolicy": {
 		"no": "Personvern for tjenesten",
@@ -276,7 +294,9 @@
 		"et": "Teenuse privaatsuspoliitika",
 		"he": "\u05de\u05d3\u05d9\u05e0\u05d9\u05d5\u05ea \u05d4\u05e4\u05e8\u05d8\u05d9\u05d5\u05ea \u05e9\u05dc \u05d4\u05e9\u05d9\u05e8\u05d5\u05ea",
 		"ru": "\u041f\u043e\u043b\u0438\u0442\u0438\u043a\u0430 \u043a\u043e\u043d\u0444\u0438\u0434\u0435\u043d\u0446\u0438\u0430\u043b\u044c\u043d\u043e\u0441\u0442\u0438 \u0434\u043b\u044f \u0441\u043b\u0443\u0436\u0431\u044b",
-		"zh": "\u8be5\u670d\u52a1\u7684\u9690\u79c1\u7b56\u7565"
+		"zh": "\u8be5\u670d\u52a1\u7684\u9690\u79c1\u7b56\u7565",
+		"ar": "\u0633\u064a\u0627\u0633\u0629 \u0627\u0644\u062e\u0635\u0648\u0635\u064a\u0629 \u0644\u0644\u062e\u062f\u0645\u0629",
+		"id": "Kebijakan privasi untuk layanan"
 	},
 	"noconsent_title": {
 		"no": "Ikke akseptert overf\u00f8ring av informasjon",
@@ -287,7 +307,7 @@
 		"nl": "Geen toestemming gegeven",
 		"sl": "Privolitev ni bila dana.",
 		"da": "Manglende samtykke",
-		"hr": "Isporuka nije odobrena",
+		"hr": "Isporuka podataka nije odobrena",
 		"hu": "Nincs hozz\u00e1j\u00e1rul\u00e1s",
 		"fi": "Lupaa ei annettu",
 		"pt-br": "Nenhum consentimento dado",
@@ -303,7 +323,9 @@
 		"et": "N\u00f5usolekut pole antud",
 		"he": "\u05dc\u05d0 \u05e0\u05d9\u05ea\u05e0\u05d4 \u05d4\u05e1\u05db\u05de\u05d4",
 		"ru": "\u041d\u0435\u0442 \u0434\u0430\u043d\u043d\u043e\u0433\u043e \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u044f",
-		"zh": "\u672a\u540c\u610f"
+		"zh": "\u672a\u540c\u610f",
+		"ar": "\u0644\u0645 \u062a\u0639\u0637\u064a \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
+		"id": "Tidan ada persetujuan yang diberikan"
 	},
 	"noconsent_text": {
 		"no": "Du har ikke akseptert \u00e5 overlevere opplysninger til tjenesteleverand\u00f8ren.",
@@ -330,7 +352,9 @@
 		"et": "Sa ei andnud n\u00f5usolekut sinu atribuutide teenusepakkujale edastamiseks.",
 		"he": "\u05dc\u05d0 \u05e0\u05ea\u05e0\u05ea \u05d4\u05e1\u05db\u05de\u05d4 \u05dc\u05d4\u05e2\u05d1\u05e8\u05ea \u05d4\u05de\u05d0\u05e4\u05d9\u05d9\u05e0\u05d9\u05dd \u05dc\u05e1\u05e4\u05e7 \u05d4\u05e9\u05d9\u05e8\u05d5\u05ea.",
 		"ru": "\u0412\u044b \u043d\u0435 \u0434\u0430\u043b\u0438 \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u043d\u0430 \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0443 \u0432\u0430\u0448\u0438\u0445 \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u043e\u0432 \u043a \u043f\u043e\u0441\u0442\u0430\u0432\u0449\u0438\u043a\u0443 \u0443\u0441\u043b\u0443\u0433.",
-		"zh": "\u4f60\u6ca1\u6709\u540c\u610f\u4f20\u8f93\u4f60\u7684\u76f8\u5173\u5c5e\u6027\u7ed9\u670d\u52a1\u63d0\u4f9b\u8005"
+		"zh": "\u4f60\u6ca1\u6709\u540c\u610f\u4f20\u8f93\u4f60\u7684\u76f8\u5173\u5c5e\u6027\u7ed9\u670d\u52a1\u63d0\u4f9b\u8005",
+		"ar": "\u0644\u0645 \u062a\u0648\u0627\u0641\u0642 \u0639\u0644\u064a \u062a\u062d\u0648\u064a\u0644 \u0633\u0645\u0627\u062a\u0643 \u0644\u0645\u0642\u062f\u0645 \u0627\u0644\u062e\u062f\u0645\u0629",
+		"id": "Anda tidak memberikan persetujuan untuk mentransfer atribut-atribute Anda ke service provider."
 	},
 	"noconsent_return": {
 		"no": "G\u00e5 tilbake til aksept-siden med opplysninger",
@@ -356,7 +380,9 @@
 		"zh-tw": "\u56de\u5230\u540c\u610f\u9801\u9762",
 		"et": "Tagasi n\u00f5usoleku lehele",
 		"he": "\u05d7\u05d6\u05d5\u05e8 \u05dc\u05d3\u05e3 \u05d4\u05e1\u05db\u05de\u05d4",
-		"zh": "\u8fd4\u56de\u540c\u610f\u754c\u9762"
+		"zh": "\u8fd4\u56de\u540c\u610f\u754c\u9762",
+		"ar": "\u0639\u062f \u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
+		"id": "Kembali ke halaman persetujuan"
 	},
 	"consent_header": {
 		"no": "Samtykke om overf\u00f8ring av personinformasjon",
@@ -382,7 +408,9 @@
 		"et": "N\u00f5usolek isikuandmete edastamiseks",
 		"he": "\u05d4\u05e1\u05db\u05de\u05d4 \u05dc\u05d4\u05e2\u05d1\u05e8\u05ea \u05de\u05d9\u05d3\u05e2 \u05d0\u05d9\u05e9\u05d9",
 		"pt-br": "Consentimento sobre a libera\u00e7\u00e3o de informa\u00e7\u00f5es pessoais",
-		"zh": "\u540c\u610f\u5f00\u653e\u4e2a\u4eba\u4fe1\u606f"
+		"zh": "\u540c\u610f\u5f00\u653e\u4e2a\u4eba\u4fe1\u606f",
+		"ar": "\u0627\u0648\u0627\u0641\u0642 \u0639\u0644\u064a \u0646\u0634\u0631 \u0633\u0645\u0627\u062a\u064a \u0627\u0644\u0634\u062e\u0635\u064a\u0629",
+		"id": "Persetujuan tentang melepas informasi personal"
 	},
 	"consent_attributes_header": {
 		"no": "Opplysninger som vil bli sendt til SPNAME",
@@ -407,7 +435,9 @@
 		"zh-tw": "\u8cc7\u8a0a\u5c07\u88ab\u50b3\u9001\u81f3 SPNAME",
 		"et": "Andmed saadetakse SPNAME-le",
 		"he": "\u05d4\u05de\u05d9\u05d3\u05e2 \u05d9\u05e9\u05dc\u05d7 \u05dc SPNAME",
-		"zh": "\u4fe1\u606f\u5c06\u4f1a\u53d1\u9001\u7ed9SPNAME"
+		"zh": "\u4fe1\u606f\u5c06\u4f1a\u53d1\u9001\u7ed9SPNAME",
+		"ar": "\u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u062a\u064a \u0633\u064a\u062a\u0645 \u0625\u0631\u0633\u0627\u0644\u0647\u0627 \u0644 SPNAME",
+		"id": "Informasi yang akan dikirim ke SPNAME"
 	},
 	"show_attributes": {
 		"no": "Vis opplysninger",
@@ -433,7 +463,9 @@
 		"et": "N\u00e4ita andmeid",
 		"he": "\u05d4\u05e6\u05d2 \u05de\u05d0\u05e4\u05d9\u05d9\u05e0\u05d9\u05dd",
 		"pt-br": "Mostrar atributos",
-		"zh": "\u663e\u793a\u5c5e\u6027"
+		"zh": "\u663e\u793a\u5c5e\u6027",
+		"ar": "\u0627\u0638\u0647\u0631 \u0627\u0644\u0633\u0645\u0627\u062a",
+		"id": "Perlihatkan atribut-atribut"
 	},
 	"noconsent_goto_about": {
 		"no": "G\u00e5 til informasjonsside om tjenesten",
@@ -459,7 +491,9 @@
 		"et": "Mine teenuse infolehele",
 		"he": "\u05dc\u05da \u05d0\u05dc \u05d3\u05e3 \u05d4\u05de\u05d9\u05d3\u05e2 \u05e9\u05dc \u05d4\u05e9\u05d9\u05e8\u05d5\u05ea",
 		"pt-br": "Ir para a P\u00e1gina de Informa\u00e7\u00e3o do servi\u00e7o",
-		"zh": "\u83b7\u53d6\u8be5\u670d\u52a1\u7684\u4fe1\u606f"
+		"zh": "\u83b7\u53d6\u8be5\u670d\u52a1\u7684\u4fe1\u606f",
+		"ar": "\u0627\u0630\u0647\u0628 \u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0639\u0646 \u0627\u0644\u062e\u062f\u0645\u0629",
+		"id": "Pergi ke halaman informasi untul layanan"
 	},
 	"consent_purpose": {
 		"no": "Form\u00e5let med SPNAME er SPDESC",
@@ -484,7 +518,9 @@
 		"zh-tw": "SPNAME \u7684\u76ee\u7684\u5730\u70ba SPDESC",
 		"et": "Teenuse SPNAME eesm\u00e4rk on SPDESC",
 		"he": "\u05d4\u05de\u05d8\u05e8\u05d4 \u05e9\u05dc SPNAME \u05d4\u05d9\u05d0 SPDESC",
-		"zh": "SPNAME\u7684\u76ee\u7684\u662fSPDESC"
+		"zh": "SPNAME\u7684\u76ee\u7684\u662fSPDESC",
+		"ar": "\u0627\u0644\u063a\u0631\u0636 \u0645\u0646 SPNAME \u0647\u0648 SPDESC",
+		"id": "Tujuan dari SPNAME adalah SPDESC"
 	},
 	"table_caption": {
 		"no": "Bruker innformasjon",
@@ -508,7 +544,9 @@
 		"et": "Kasutajainfo",
 		"he": "\u05de\u05d9\u05d3\u05e2 \u05e2\u05dc \u05d4\u05de\u05e9\u05ea\u05de\u05e9",
 		"pt-br": "Informa\u00e7\u00f5es do Usu\u00e1rio",
-		"zh": "\u7528\u6237\u4fe1\u606f"
+		"zh": "\u7528\u6237\u4fe1\u606f",
+		"ar": "\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645",
+		"id": "Informasi User"
 	},
 	"table_summary": {
 		"no": "Her listes den innformasjonen om deg som blir send til den tjenesten du er i ferd med \u00e5 logge p\u00e5",
@@ -532,7 +570,9 @@
 		"et": "Teave sinu kohta, mis edastatakse teenusele, millesse asud sisse logima",
 		"he": "\u05d4\u05e6\u05d2 \u05d0\u05ea \u05d4\u05de\u05d9\u05d3\u05e2 \u05e2\u05dc\u05d9\u05da \u05d0\u05e9\u05e8 \u05d9\u05d5\u05e2\u05d1\u05e8 \u05dc\u05e9\u05d9\u05e8\u05d5\u05ea \u05e9\u05d0\u05ea\u05d4 \u05e2\u05d5\u05de\u05d3 \u05dc\u05d4\u05ea\u05d7\u05d1\u05e8 \u05d0\u05dc\u05d9\u05d5",
 		"pt-br": "Liste as informa\u00e7\u00f5es sobre voc\u00ea que est\u00e1 prestes a ser transmitida para o servi\u00e7o que voc\u00ea est\u00e1 acessando",
-		"zh": "\u5f53\u4f60\u767b\u5f55\u65f6\u5c06\u8981\u4f20\u8f93\u7ed9\u670d\u52a1\u7684\u4fe1\u606f\u5217\u8868"
+		"zh": "\u5f53\u4f60\u767b\u5f55\u65f6\u5c06\u8981\u4f20\u8f93\u7ed9\u670d\u52a1\u7684\u4fe1\u606f\u5217\u8868",
+		"ar": "\u0642\u0627\u0626\u0645\u0629 \u0645\u0639\u0644\u0648\u0645\u0627\u062a\u0643 \u0627\u0644\u062a\u064a \u0633\u062a\u062d\u0648\u0644 \u0644\u0645\u0642\u062f\u0645 \u0627\u0644\u062e\u062f\u0645\u0629 \u0627\u0644\u0630\u064a \u062a\u0631\u063a\u0628 \u0628\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644 \u0627\u0644\u064a\u0647",
+		"id": "Daftar informasi tentang Anda yang akan dikirimkan ke service tujuan login Anda."
 	},
 	"show_attribute": {
 		"no": "Vis innhold",
@@ -555,6 +595,8 @@
 		"et": "N\u00e4ita sisu",
 		"he": "\u05d4\u05e6\u05d2 \u05ea\u05d5\u05db\u05df",
 		"pt-br": "Mostrar Conte\u00fado",
-		"zh": "\u663e\u793a\u5185\u5bb9"
+		"zh": "\u663e\u793a\u5185\u5bb9",
+		"ar": "\u0627\u0638\u0647\u0631\u0627\u0644\u064a\u0647\u0627 \u0638\u0647\u0631 \u0627\u0644\u0645\u062d\u062a\u0648\u064a",
+		"id": "Perlihatkan konten"
 	}
 }

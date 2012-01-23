@@ -10,7 +10,7 @@
 		"lb": "Fehler",
 		"sl": "Napaka",
 		"da": "Fejl",
-		"hr": "Pogre\u0161ka",
+		"hr": "Gre\u0161ka",
 		"hu": "Hiba",
 		"fi": "Virhe",
 		"pt-br": "Erro",
@@ -25,7 +25,9 @@
 		"et": "T\u00f5rge",
 		"he": "\u05e9\u05d2\u05d9\u05d0\u05d4",
 		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430",
-		"zh": "\u9519\u8bef"
+		"zh": "\u9519\u8bef",
+		"ar": "\u062e\u0637\u0627",
+		"id": "Error"
 	},
 	"user_pass_header": {
 		"no": "Skriv inn brukernavn og passord",
@@ -38,7 +40,7 @@
 		"lb": "Gid w.e.g Aeren Benotzernumm an d Passwuert an",
 		"sl": "Vnesite svoje uporabni\u0161ko ime in geslo",
 		"da": "Indtast brugernavn og kodeord",
-		"hr": "Unesite va\u0161u korisni\u010dku oznaku i zaporku",
+		"hr": "Unesite korisni\u010dku oznaku i zaporku",
 		"hu": "Felhaszn\u00e1l\u00f3n\u00e9v \u00e9s jelsz\u00f3",
 		"fi": "Sy\u00f6t\u00e4 tunnuksesi ja salasanasi",
 		"pt-br": "Digite seu usu\u00e1rio e senha",
@@ -53,7 +55,9 @@
 		"et": "Sisesta oma kasutajatunnus ja parool",
 		"he": "\u05d4\u05db\u05e0\u05e1 \u05e9\u05dd \u05de\u05e9\u05ea\u05de\u05e9 \u05d5\u05e1\u05d9\u05e1\u05de\u05d4",
 		"ru": "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0438\u043c\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f \u0438 \u043f\u0430\u0440\u043e\u043b\u044c",
-		"zh": "\u8f93\u5165\u4f60\u7684\u7528\u6237\u540d\u548c\u5bc6\u7801"
+		"zh": "\u8f93\u5165\u4f60\u7684\u7528\u6237\u540d\u548c\u5bc6\u7801",
+		"ar": "\u0627\u062f\u062e\u0644 \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0648 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631",
+		"id": "Masukkan username dan password Anda"
 	},
 	"user_pass_text": {
 		"no": "En tjeneste har bedt om bekreftelse p\u00e5 din identitet. Skriv inn ditt brukernavn og passord for \u00e5 autentisere deg.",
@@ -66,7 +70,7 @@
 		"lb": "En Service huet ungefrot aerch ze authentifiz\u00e9iren. Daat heescht daer musst aeren Benotzernumm an d'Passwuert an de Formulairen heidr\u00ebnner angin.",
 		"sl": "Storitev zahteva, da se prijavite. To pomeni, da je potreben vnos uporabni\u0161kega imena in gesla v spodnji polji.",
 		"da": "En web-tjeneste har bedt om at tilkendegiver dig. Det betyder, at du skal indtaste dit brugernavn og kodeord herunder",
-		"hr": "Aplikacija zahtjeva od vas da se autenticirate. To zna\u010di da u donji obrazac trebate unijeti va\u0161u korisni\u010dku oznaku i zaporku.",
+		"hr": "Aplikacija zahtjeva od vas da se autentificirate. Unesite va\u0161u korisni\u010dku oznaku i zaporku u dolje navedena polja.",
 		"hu": "Ez a szolg\u00e1ltat\u00e1s megk\u00f6veteli, hogy azonos\u00edtsa mag\u00e1t. K\u00e9rj\u00fck, adja meg felhaszn\u00e1l\u00f3nev\u00e9t \u00e9s jelszav\u00e1t az al\u00e1bbi \u0171rlapon.",
 		"fi": "Palvelu on pyyt\u00e4nyt kirjautumista. Ole hyv\u00e4 ja sy\u00f6t\u00e4 tunnuksesi ja salasanasi alla olevaan kaavakkeeseen.",
 		"pt-br": "Um servi\u00e7o que voc\u00ea pediu necessita que voc\u00ea se autentique. Digite seu nome de usu\u00e1rio e senha no formul\u00e1rio abaixo.",
@@ -81,7 +85,9 @@
 		"et": "Teenus n\u00f5uab autentimist. Palun sisesta allpool olevasse vormi oma kasutajatunnus ja parool.",
 		"he": "\u05e9\u05d9\u05e8\u05d5\u05ea \u05d1\u05d9\u05e7\u05e9 \u05e9\u05ea\u05d6\u05d3\u05d4\u05d4. \u05d0\u05e0\u05d0 \u05d4\u05db\u05e0\u05e1 \u05d0\u05ea \u05e9\u05dd \u05d4\u05de\u05e9\u05ea\u05de\u05e9 \u05d5\u05d4\u05e1\u05d9\u05e1\u05de\u05d4 \u05e9\u05dc\u05da \u05d1\u05d8\u05d5\u05e4\u05e1 \u05de\u05ea\u05d7\u05ea.",
 		"ru": "\u0421\u043b\u0443\u0436\u0431\u0430 \u0437\u0430\u043f\u0440\u0430\u0448\u0438\u0432\u0430\u0435\u0442 \u0430\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u044e. \u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u0438\u043c\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f \u0438 \u043f\u0430\u0440\u043e\u043b\u044c.",
-		"zh": "\u4e00\u4e2a\u670d\u52a1\u9700\u8981\u4f60\u7684\u8ba4\u8bc1\uff0c\u8bf7\u5728\u4e0b\u9762\u8f93\u5165\u4f60\u7684\u7528\u6237\u540d\u548c\u5bc6\u7801"
+		"zh": "\u4e00\u4e2a\u670d\u52a1\u9700\u8981\u4f60\u7684\u8ba4\u8bc1\uff0c\u8bf7\u5728\u4e0b\u9762\u8f93\u5165\u4f60\u7684\u7528\u6237\u540d\u548c\u5bc6\u7801",
+		"ar": "\u0637\u0644\u0628\u062a \u0627\u062d\u062f\u064a \u0627\u0644\u062e\u062f\u0645\u0627\u062a \u0627\u0646 \u062a\u0648\u062b\u0642 \u0627\u0646\u0643 \u0627\u0646\u062a. \u0631\u062c\u0627\u0621\u0627\u064b \u0642\u0645 \u0628\u0625\u062f\u0631\u0627\u062c \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0648 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u062e\u0627\u0635\u062a\u0643 \u0628\u0627\u0644\u0627\u0633\u062a\u0645\u0627\u0631\u0629 \u0623\u062f\u0646\u0627\u0647",
+		"id": "Sebuah layanan telah meminta Anda untuk melakukan autentifikasi. Silahkan masukkan username dan password Anda pada form dibawah"
 	},
 	"login_button": {
 		"no": "Logg inn",
@@ -95,7 +101,7 @@
 		"sl": "Prijava",
 		"da": "Login",
 		"se": "Mana sis",
-		"hr": "Prijava",
+		"hr": "Prijavi se",
 		"hu": "Bejelentkez\u00e9s",
 		"fi": "Kirjaudu",
 		"pt-br": "Acessar",
@@ -110,7 +116,9 @@
 		"et": "Logi sisse",
 		"he": "\u05db\u05e0\u05d9\u05e1\u05d4",
 		"ru": "\u0412\u043e\u0439\u0442\u0438",
-		"zh": "\u767b\u5f55"
+		"zh": "\u767b\u5f55",
+		"ar": "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644",
+		"id": "Login"
 	},
 	"username": {
 		"no": "Brukernavn",
@@ -139,7 +147,9 @@
 		"et": "Kasutajatunnus",
 		"he": "\u05e9\u05dd \u05de\u05e9\u05ea\u05de\u05e9",
 		"ru": "\u0418\u043c\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
-		"zh": "\u7528\u6237\u540d"
+		"zh": "\u7528\u6237\u540d",
+		"ar": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645",
+		"id": "Username"
 	},
 	"organization": {
 		"no": "Organisasjon",
@@ -168,7 +178,9 @@
 		"et": "Organisatsioon",
 		"he": "\u05d0\u05d9\u05e8\u05d2\u05d5\u05df",
 		"ru": "\u041e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044f",
-		"zh": "\u7ec4\u7ec7"
+		"zh": "\u7ec4\u7ec7",
+		"ar": "\u0627\u0644\u062c\u0647\u0629 ",
+		"id": "Organisasi"
 	},
 	"password": {
 		"no": "Passord",
@@ -197,7 +209,9 @@
 		"et": "Parool",
 		"he": "\u05e1\u05d9\u05e1\u05de\u05d4",
 		"ru": "\u041f\u0430\u0440\u043e\u043b\u044c",
-		"zh": "\u5bc6\u7801"
+		"zh": "\u5bc6\u7801",
+		"ar": "\u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631",
+		"id": "Password"
 	},
 	"help_header": {
 		"no": "Hjelp! Jeg har glemt passordet mitt.",
@@ -225,7 +239,9 @@
 		"et": "Appi! Ma ei m\u00e4leta parooli.",
 		"he": "\u05d4\u05e6\u05d9\u05dc\u05d5! \u05e9\u05db\u05d7\u05ea\u05d9 \u05d0\u05ea \u05d4\u05e1\u05d9\u05e1\u05de\u05d4.",
 		"ru": "\u041f\u043e\u043c\u043e\u0433\u0438\u0442\u0435! \u042f \u043d\u0435 \u043f\u043e\u043c\u043d\u044e \u0441\u0432\u043e\u0439 \u043f\u0430\u0440\u043e\u043b\u044c.",
-		"zh": "\u5e2e\u52a9\uff01\u6211\u5fd8\u8bb0\u6211\u7684\u5bc6\u7801\u4e86\uff01"
+		"zh": "\u5e2e\u52a9\uff01\u6211\u5fd8\u8bb0\u6211\u7684\u5bc6\u7801\u4e86\uff01",
+		"ar": "\u0633\u0627\u0639\u062f\u0646\u064a! \u0644\u0627 \u0627\u0630\u0643\u0631 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631",
+		"id": "Tolong! Saya tidak ingat password saya"
 	},
 	"help_text": {
 		"no": "Synd! - Uten riktig brukernavn og passord kan du ikke autentisere deg. Det kan v\u00e6re noen som kan hjelpe deg. Fors\u00f8k \u00e5 kontakt brukerst\u00f8tte ved din vertsorganisasjon.",
@@ -238,7 +254,7 @@
 		"lb": "Pesch gehaat! - Ouni aeren Benotzernumm an d'Passwuert k\u00ebnn der aerch net authentifiz\u00e9iren an op den Service zougraiffen.",
 		"sl": "\u017dal se brez uporabni\u0161kega imena in gesla ne morete prijaviti in uporabljati storitev.",
 		"da": "Desv\u00e6rre, uden korrekt brugernavn og kodeord kan du ikke f\u00e5 adgang til tjenesten. M\u00e5ske kan help-desk p\u00e5 din hjemmeinstitution hj\u00e6lpe dig",
-		"hr": "\u0160teta! - Bez ispravne korisni\u010dke oznake i zaporke ne mo\u017eete se autenticirati za pristup aplikaciji. Da biste saznali va\u0161u zaporku kontaktirajte administratora elektroni\u010dkog (LDAP) imenika va\u0161e ustanove.",
+		"hr": "\u0160teta! - Bez ispravne korisni\u010dke oznake i zaporke ne mo\u017eete pristupiti aplikaciji. Da biste saznali va\u0161u zaporku kontaktirajte administratora elektroni\u010dkog (LDAP) imenika va\u0161e ustanove.",
 		"hu": "Ajaj! - Felhaszn\u00e1l\u00f3i neve \u00e9s jelszava n\u00e9lk\u00fcl nem tudja azonos\u00edtani mag\u00e1t, \u00edgy nem f\u00e9rhet hozz\u00e1 a szolg\u00e1ltat\u00e1shoz. Biztosan van valaki, aki tud \u00f6nnek seg\u00edteni. Vegye fel a kapcsolatot az \u00fcgyf\u00e9lszolg\u00e1lattal!",
 		"fi": "Pahus! - Ilman tunnusta ja salasanaa et voi kirjautua palveluun. Voi olla, ett\u00e4 joku voi auttaa sinua. Ole hyv\u00e4 ja ota yhteytt\u00e4 korkeakoulusi tukeen!",
 		"pt-br": "Muito mal! - Sem o seu nome de usu\u00e1rio e a senha voc\u00ea n\u00e3o pode autenticar-se para acessar o servi\u00e7o. Pode haver algu\u00e9m que possa lhe ajudar. Consulte a central de d\u00favidas!",
@@ -253,7 +269,9 @@
 		"et": "Paha lugu! Ilma kasutajatunnust ja parooli teadmata pole v\u00f5imalik seda teenust kasutada. Loodetavasti saab sind keegi aidata. V\u00f5ta \u00fchendust oma \u00fclikooli kasutajatoeteenusega!",
 		"he": "\u05d7\u05d1\u05dc! - \u05d1\u05dc\u05d9 \u05e9\u05dd \u05d4\u05de\u05e9\u05ea\u05de\u05e9 \u05d5\u05d4\u05e1\u05d9\u05e1\u05de\u05d4 \u05e9\u05dc\u05da \u05d0\u05ea\u05d4 \u05dc\u05d0 \u05d9\u05db\u05d5\u05dc \u05dc\u05d4\u05d6\u05d3\u05d4\u05d5\u05ea \u05d1\u05db\u05d3\u05d9 \u05dc\u05d2\u05e9\u05ea \u05dc\u05e9\u05d9\u05e8\u05d5\u05ea. \u05d9\u05db\u05d5\u05dc \u05dc\u05d4\u05d9\u05d5\u05ea \u05e9\u05d9\u05e9 \u05de\u05d9\u05e9\u05d4\u05d5 \u05e9\u05d9\u05db\u05d5\u05dc \u05dc\u05e2\u05d6\u05d5\u05e8 \u05dc\u05da. \u05e4\u05e0\u05d4 \u05dc\u05ea\u05de\u05d9\u05db\u05d4 \u05d4\u05d8\u05db\u05e0\u05d9\u05ea \u05d1\u05d0\u05d5\u05e0\u05d9\u05d1\u05e8\u05e1\u05d9\u05d8\u05d4 \u05e9\u05dc\u05da!",
 		"ru": "\u041e\u0447\u0435\u043d\u044c \u043f\u043b\u043e\u0445\u043e! - \u0411\u0435\u0437 \u0432\u0430\u0448\u0438\u0445 \u0438\u043c\u0435\u043d\u0438 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f \u0438 \u043f\u0430\u0440\u043e\u043b\u044f \u0432\u044b \u043d\u0435 \u043c\u043e\u0436\u0435\u0442\u0435 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044c \u0432\u0430\u0448\u0435 \u043f\u0440\u0430\u0432\u043e \u043d\u0430 \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0441\u043b\u0443\u0436\u0431\u0435. \u041c\u043e\u0436\u0435\u0442 \u0431\u044b\u0442\u044c \u0435\u0441\u0442\u044c \u043a\u0442\u043e-\u043d\u0438\u0431\u0443\u0434\u044c, \u043a\u0442\u043e \u0441\u043c\u043e\u0436\u0435\u0442 \u043f\u043e\u043c\u043e\u0447\u044c \u0432\u0430\u043c. \u041f\u0440\u043e\u043a\u043e\u043d\u0441\u0443\u043b\u044c\u0442\u0438\u0440\u0443\u0439\u0442\u0435\u0441\u044c \u0441\u043e \u0441\u0432\u043e\u0435\u0439 \u0441\u043b\u0443\u0436\u0431\u043e\u0439 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0438 \u0432 \u0432\u0430\u0448\u0435\u043c \u0443\u043d\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442\u0435!",
-		"zh": "\u592a\u7cdf\u7cd5\u4e86\uff01-\u6ca1\u6709\u4f60\u7684\u7528\u6237\u540d\u548c\u5bc6\u7801\u4f60\u5c06\u4e0d\u80fd\u8bbf\u95ee\u8be5\u670d\u52a1\uff0c\u4e5f\u8bb8\u6709\u4eba\u80fd\u591f\u5e2e\u52a9\u4f60\uff0c\u8bf7\u54a8\u8be2\u4f60\u6240\u5728\u5927\u5b66\u7684\u670d\u52a1\u53f0"
+		"zh": "\u592a\u7cdf\u7cd5\u4e86\uff01-\u6ca1\u6709\u4f60\u7684\u7528\u6237\u540d\u548c\u5bc6\u7801\u4f60\u5c06\u4e0d\u80fd\u8bbf\u95ee\u8be5\u670d\u52a1\uff0c\u4e5f\u8bb8\u6709\u4eba\u80fd\u591f\u5e2e\u52a9\u4f60\uff0c\u8bf7\u54a8\u8be2\u4f60\u6240\u5728\u5927\u5b66\u7684\u670d\u52a1\u53f0",
+		"ar": "\u0644\u0633\u0648\u0621 \u0627\u0644\u062d\u0638 \u0644\u0627 \u064a\u0645\u0643\u0646\u0646\u0627 \u0627\u0644\u062a\u0648\u062b\u0642 \u0645\u0646 \u0647\u0648\u064a\u062a\u0643 \u0628\u062f\u0648\u0646 \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0648 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0648\u0628\u0627\u0644\u062a\u0627\u0644\u064a \u0644\u0627 \u064a\u0645\u0643\u0646\u0643 \u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0627\u0644\u062e\u062f\u0645\u0629. \u0644\u0644\u0645\u0633\u0627\u0639\u062f\u0629 \u0627\u062a\u0635\u0644 \u0628\u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u0633\u0624\u0648\u0644 \u0628\u0635\u0641\u062d\u0629 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629 \u0628\u062c\u0627\u0645\u0639\u062a\u0643",
+		"id": "Sayang sekali! - Tanpa username dan password Anda tidak dapat melakukan autentifikasi agar dapat mengakses layanan. Mungkin ada seseorang yang dapat menolong Anda. Hubungi help desk pada universitas Anda."
 	},
 	"error_nopassword": {
 		"no": "Du kontaktet loginsiden, men passordet ble ikke sendt med. Fors\u00f8k igjen.",
@@ -266,7 +284,7 @@
 		"lb": "Der hud eppes un d'Login Sait gesch\u00e9eckt me aus iergentengem Grond huet d Passwuert gefehlt. Prob\u00e9iert w.e.g nach eng K\u00e9ier.",
 		"sl": "Pri\u0161lo je do napake, poskusite znova.",
 		"da": "Dit kodeord blev ikke sendt - pr\u00f8v igen",
-		"hr": "Iz nekog razloga autentikacijskom servisu nije proslije\u0111ena va\u0161a zaporka. Molimo poku\u0161ajte ponovo.",
+		"hr": "Iz nekog razloga autentifikacijskom servisu nije proslije\u0111ena va\u0161a zaporka. Molimo poku\u0161ajte ponovo.",
 		"hu": "Valamilyen okn\u00e1l fogva a jelsz\u00f3 nem olvashat\u00f3. K\u00e9rj\u00fck, pr\u00f3b\u00e1lja \u00fajra!",
 		"fi": "L\u00e4hetit jotain kirjautumissivulle, mutta jostain syyst\u00e4 salasanaa ei l\u00e4hetetty. Ole hyv\u00e4 ja yrit\u00e4 uudestaan.",
 		"pt-br": "Voc\u00ea enviou alguma coisa para a p\u00e1gina de login, mas por alguma raz\u00e3o a senha n\u00e3o foi enviada. Por favor tente novamente.",
@@ -281,7 +299,9 @@
 		"et": "Sa saatsid midagi sisselogimislehele, kuid miskip\u00e4rast parooli ei saadetud. Palun proovi uuesti.",
 		"he": "\u05e9\u05dc\u05d7\u05ea \u05de\u05e9\u05d4\u05d5 \u05dc\u05d3\u05e3 \u05d4\u05db\u05e0\u05d9\u05e1\u05d4 \u05dc\u05de\u05e2\u05e8\u05db\u05ea, \u05d0\u05d1\u05dc \u05d1\u05d2\u05dc\u05dc \u05e1\u05d9\u05d1\u05d4 \u05db\u05dc \u05e9\u05d4\u05d9\u05d0 \u05d4\u05e1\u05d9\u05e1\u05de\u05d4 \u05dc\u05d0 \u05e0\u05e9\u05dc\u05d7\u05d4. \u05d1\u05d1\u05e7\u05e9\u05d4 \u05e0\u05e1\u05d4 \u05e9\u05d5\u05d1.",
 		"ru": "\u0412\u044b \u043f\u043e\u0441\u043b\u0430\u043b\u0438 \u0447\u0442\u043e-\u0442\u043e \u043d\u0430 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443 \u0432\u0445\u043e\u0434\u0430, \u043d\u043e \u043f\u043e \u043a\u0430\u043a\u0438\u043c-\u0442\u043e \u043f\u0440\u0438\u0447\u0438\u043d\u0430\u043c \u043f\u0430\u0440\u043e\u043b\u044c \u043d\u0435 \u043f\u043e\u0441\u043b\u0430\u043d. \u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u043f\u043e\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0441\u043d\u043e\u0432\u0430.",
-		"zh": "\u4f60\u786e\u5b9e\u53d1\u9001\u4e86\u4e00\u4e9b\u4fe1\u606f\u7ed9\u767b\u5f55\u9875\u9762\uff0c\u4f46\u7531\u4e8e\u67d0\u4e9b\u539f\u56e0\uff0c\u4f60\u6ca1\u6709\u53d1\u9001\u5bc6\u7801\uff0c\u8bf7\u518d\u8bd5\u4e00\u6b21"
+		"zh": "\u4f60\u786e\u5b9e\u53d1\u9001\u4e86\u4e00\u4e9b\u4fe1\u606f\u7ed9\u767b\u5f55\u9875\u9762\uff0c\u4f46\u7531\u4e8e\u67d0\u4e9b\u539f\u56e0\uff0c\u4f60\u6ca1\u6709\u53d1\u9001\u5bc6\u7801\uff0c\u8bf7\u518d\u8bd5\u4e00\u6b21",
+		"ar": "\u0644\u0642\u062f \u0642\u0645\u062a \u0628\u0625\u0631\u0633\u0627\u0644 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u062f\u062e\u0648\u0644 \u0644\u0643\u0646 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u063a\u064a\u0631 \u0645\u0631\u0641\u0642\u0629. \u0631\u062c\u0627\u0621\u0627\u064b \u0627\u0639\u062f \u0627\u0644\u0645\u062d\u0627\u0648\u0644\u0629",
+		"id": "Anda mengirimkan sesuatu ke halaman login, tetapi karena suatu alasan tertentu password tidak terkirimkan, Silahkan coba lagi."
 	},
 	"error_wrongpassword": {
 		"no": "Feil brukernavn eller passord.",
@@ -310,7 +330,9 @@
 		"et": "Kasutajatunnus v\u00f5i parool pole \u00f5ige.",
 		"he": "\u05e1\u05d9\u05e1\u05de\u05d4 \u05d0\u05d5 \u05e9\u05dd \u05de\u05e9\u05ea\u05de\u05e9 \u05dc\u05d0 \u05e0\u05db\u05d5\u05e0\u05d9\u05dd.",
 		"ru": "\u041d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u0438\u043c\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f \u0438\u043b\u0438 \u043f\u0430\u0440\u043e\u043b\u044c.",
-		"zh": "\u9519\u8bef\u7684\u7528\u6237\u540d\u6216\u8005\u5bc6\u7801"
+		"zh": "\u9519\u8bef\u7684\u7528\u6237\u540d\u6216\u8005\u5bc6\u7801",
+		"ar": " \u0627\u0633\u0645 \u0645\u0633\u062a\u062e\u062f\u0645 \u0627\u0648 \u0643\u0644\u0645\u0629 \u0633\u0631 \u062e\u0637\u0627",
+		"id": "Username atau password salah"
 	},
 	"contact_info": {
 		"no": "Kontaktinformasjon:",
@@ -337,7 +359,9 @@
 		"et": "Kontaktinfo:",
 		"he": "\u05e6\u05d5\u05e8 \u05e7\u05e9\u05e8",
 		"ru": "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u043d\u0430\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f",
-		"zh": "\u8054\u7cfb\u65b9\u5f0f"
+		"zh": "\u8054\u7cfb\u65b9\u5f0f",
+		"ar": "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0627\u062a\u0635\u0627\u0644",
+		"id": "Informasi Kontak"
 	},
 	"select_home_org": {
 		"no": "Velg vertsorganisasjon",
@@ -364,7 +388,9 @@
 		"et": "Vali oma koduorganisatsioon",
 		"he": "\u05d1\u05d7\u05e8 \u05d0\u05ea \u05d0\u05d9\u05e8\u05d2\u05d5\u05df \u05d4\u05d1\u05d9\u05ea \u05e9\u05dc\u05da",
 		"ru": "\u0412\u044b\u0431\u0435\u0440\u0435\u0442\u0435 \u0432\u0430\u0448\u0443 \u0434\u043e\u043c\u0430\u0448\u043d\u044e\u044e \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044e",
-		"zh": "\u9009\u62e9\u4f60\u7684\u7ec4\u7ec7"
+		"zh": "\u9009\u62e9\u4f60\u7684\u7ec4\u7ec7",
+		"ar": "\u0627\u062e\u062a\u0627\u0631 \u062c\u0647\u062a\u0643 \u0627\u0644\u0627\u0645",
+		"id": "Pilih Basis Organisasi Anda"
 	},
 	"change_home_org_title": {
 		"no": "Endre din vertsorganisasjon",
@@ -391,7 +417,9 @@
 		"et": "Muuda oma koduorganisatsiooni",
 		"he": "\u05d4\u05d7\u05dc\u05e3 \u05d0\u05ea \u05d0\u05d9\u05e8\u05d2\u05d5\u05df \u05d4\u05d1\u05d9\u05ea \u05e9\u05dc\u05da",
 		"ru": "\u0421\u043c\u0435\u043d\u0438\u0442\u044c \u0434\u043e\u043c\u0430\u0448\u043d\u044e\u044e \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044e",
-		"zh": "\u6539\u53d8\u4f60\u7684\u5bb6\u5ead\u7ec4\u7ec7"
+		"zh": "\u6539\u53d8\u4f60\u7684\u5bb6\u5ead\u7ec4\u7ec7",
+		"ar": "\u063a\u064a\u0631\u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0627\u0645",
+		"id": "Ubah basis organisasi anda"
 	},
 	"change_home_org_text": {
 		"no": "Du har valgt <b>%HOMEORG%<\/b> som din vertsorganisasjon. Dersom dette er feil kan du velge en annen.",
@@ -418,7 +446,9 @@
 		"et": "Sa valisid oma koduorganisatsiooniks <b>%HOMEORG%<\/b>. Kui see pole \u00f5ige, siis v\u00f5id uuesti valida.",
 		"he": "\u05d1\u05d7\u05e8\u05ea \u05d0\u05ea <b>%HOMEORG%<\/b> \u05db\u05d0\u05d9\u05e8\u05d2\u05d5\u05df \u05d4\u05d1\u05d9\u05ea \u05e9\u05dc\u05da. \u05d0\u05dd \u05d4\u05de\u05d9\u05d3\u05e2 \u05de\u05d5\u05d8\u05e2\u05d4 \u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05d1\u05d7\u05d5\u05e8 \u05d0\u05d9\u05e8\u05d2\u05d5\u05df \u05d0\u05d7\u05e8.",
 		"ru": "\u0412\u044b \u0432\u044b\u0431\u0440\u0430\u043b\u0438 <b>%HOMEORG%<\/b> \u043a\u0430\u043a \u0432\u0430\u0448\u0443 \u0434\u043e\u043c\u0430\u0448\u043d\u044e\u044e \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044e. \u0415\u0441\u043b\u0438 \u0432\u044b \u043e\u0448\u0438\u0431\u043b\u0438\u0441\u044c - \u0432\u044b \u043c\u043e\u0436\u0435\u0442\u0435 \u0432\u044b\u0431\u0440\u0430\u0442\u044c \u0434\u0440\u0443\u0433\u0443\u044e.",
-		"zh": "\u4f60\u9009\u62e9\u4e86<b>%HOMEORG%<\/b>\u4f5c\u4e3a\u4f60\u7684\u5bb6\u5ead\u7ec4\u7ec7\u3002\u5982\u679c\u9519\u4e86\u8bf7\u9009\u62e9\u5176\u4ed6\u7684"
+		"zh": "\u4f60\u9009\u62e9\u4e86<b>%HOMEORG%<\/b>\u4f5c\u4e3a\u4f60\u7684\u5bb6\u5ead\u7ec4\u7ec7\u3002\u5982\u679c\u9519\u4e86\u8bf7\u9009\u62e9\u5176\u4ed6\u7684",
+		"ar": "\u0644\u0642\u062f \u0642\u0645\u062a \u0628\u0627\u062e\u062a\u064a\u0627\u0631 <b>%HOMEORG%<\/b> \u0643\u062c\u0647\u062a\u0643 \u0627\u0644\u0627\u0645. \u0627\u0646 \u0643\u0627\u0646 \u0647\u0630\u0627 \u0627\u0644\u0627\u062e\u062a\u064a\u0627\u0631 \u063a\u064a\u0631 \u0635\u062d\u064a\u062d \u064a\u0645\u0643\u0646\u0643 \u062a\u063a\u064a\u064a\u0631\u0647",
+		"id": "Anda telah memilih  <b>%HOMEORG%<\/b> sebagai basis organisasi anda. Jika ini salah anda dapat memilih yang lain."
 	},
 	"change_home_org_button": {
 		"no": "Velg vertsorganisasjon",
@@ -445,7 +475,9 @@
 		"et": "Vali koduorganisatsioon",
 		"he": "\u05d4\u05d7\u05dc\u05e3 \u05d0\u05d9\u05e8\u05d2\u05d5\u05df \u05d1\u05d9\u05ea",
 		"ru": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0434\u043e\u043c\u0430\u0448\u043d\u044e\u044e \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044e",
-		"zh": "\u9009\u62e9\u4f60\u7684\u5bb6\u5ead\u7ec4\u7ec7"
+		"zh": "\u9009\u62e9\u4f60\u7684\u5bb6\u5ead\u7ec4\u7ec7",
+		"ar": "\u0627\u062e\u062a\u0627\u0631 \u062c\u0647\u062a\u0643 \u0627\u0644\u0627\u0645",
+		"id": "Pilih basis organisasi"
 	},
 	"help_desk_link": {
 		"no": "Hjemmesiden til brukerst\u00f8tte",
@@ -472,7 +504,9 @@
 		"et": "Kasutajatoe koduleht",
 		"he": "\u05ea\u05de\u05d9\u05db\u05d4 \u05d8\u05db\u05e0\u05d9\u05ea",
 		"ru": "\u0414\u043e\u043c\u0430\u0448\u043d\u044f\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u0441\u043b\u0443\u0436\u0431\u044b \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0438",
-		"zh": "\u670d\u52a1\u53f0\u7684\u4e3b\u9875"
+		"zh": "\u670d\u52a1\u53f0\u7684\u4e3b\u9875",
+		"ar": "\u0635\u0641\u062d\u0629 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
+		"id": "Homepage Help desk"
 	},
 	"help_desk_email": {
 		"no": "Send e-post til brukerst\u00f8tte",
@@ -499,7 +533,9 @@
 		"et": "Saada kasutajatoele e-kiri.",
 		"he": "\u05e9\u05dc\u05d7 \u05d3\u05d5\u05d0\u05dc \u05dc\u05ea\u05d9\u05db\u05d4 \u05d4\u05d8\u05db\u05e0\u05d9\u05ea",
 		"ru": "\u041f\u043e\u0441\u043b\u0430\u0442\u044c email \u0432 \u0441\u043b\u0443\u0436\u0431\u0443 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0438",
-		"zh": "\u53d1\u9001Email\u7ed9\u670d\u52a1\u53f0"
+		"zh": "\u53d1\u9001Email\u7ed9\u670d\u52a1\u53f0",
+		"ar": "\u0627\u0631\u0633\u0644 \u0625\u064a\u0645\u064a\u0644 \u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
+		"id": "Kirim e-mail ke help dek"
 	},
 	"next": {
 		"no": "Fortsett",
@@ -526,6 +562,8 @@
 		"et": "Edasi",
 		"he": "\u05d4\u05d1\u05d0",
 		"ru": "\u0414\u0430\u043b\u0435\u0435",
-		"zh": "\u4e0b\u4e00\u6b65"
+		"zh": "\u4e0b\u4e00\u6b65",
+		"ar": "\u0627\u0644\u062a\u0627\u0644\u064a",
+		"id": "Selanjutnya"
 	}
 }

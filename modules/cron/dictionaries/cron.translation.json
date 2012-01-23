@@ -18,7 +18,10 @@
 		"et": "Croni tulemuste lehek\u00fclg",
 		"he": "\u05d3\u05e3 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea cron",
 		"ru": "\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u0430 Cron",
-		"zh": "Cron\u7ed3\u679c\u9875\u9762"
+		"zh": "Cron\u7ed3\u679c\u9875\u9762",
+		"hu": "Cron fut\u00e1si eredm\u00e9nyek",
+		"ar": "\u0635\u0641\u062d\u0629 \u0646\u062a\u064a\u062c\u0629 \u0643\u0631\u0648\u0646",
+		"id": "Halaman hasil Cron"
 	},
 	"cron_result_title": {
 		"da": "Her er resultatet for opgaven udf\u00f8relse:",
@@ -39,7 +42,10 @@
 		"et": "Siin on croni t\u00f6\u00f6 t\u00e4itmise tulemus:",
 		"he": "\u05d4\u05e0\u05d4 \u05d4\u05ea\u05d5\u05e6\u05d0\u05d4 \u05e9\u05dc \u05d4\u05e8\u05e6\u05ea \u05ea\u05d4\u05dc\u05d9\u05da \u05d4 cron:",
 		"ru": "\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442 \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f \u0437\u0430\u0434\u0430\u043d\u0438\u0439 Cron:",
-		"zh": "\u8fd9\u91cc\u662fcron\u4efb\u52a1\u5904\u7406\u7ed3\u679c"
+		"zh": "\u8fd9\u91cc\u662fcron\u4efb\u52a1\u5904\u7406\u7ed3\u679c",
+		"hu": "A cron lefut\u00e1s\u00e1nak eredm\u00e9nyei:",
+		"ar": "\u0646\u062a\u0627\u0626\u062c \u0628\u062d\u062b \u0643\u0631\u0648\u0646",
+		"id": "Berikut ini adalah hasil dari eksekusi pekerjaan cron"
 	},
 	"cron_info": {
 		"da": "Cron er en m\u00e5de at k\u00f8re tingene regelm\u00e6ssigt p\u00e5 UNIX-systemer.",
@@ -60,7 +66,10 @@
 		"et": "Cron v\u00f5imaldab Unix s\u00fcsteemides regulaarselt \u00fclesandeid t\u00e4ita.",
 		"he": "cron \u05d4\u05d5\u05d0 \u05d4\u05d3\u05e8\u05da \u05dc\u05d4\u05e8\u05d9\u05e5 \u05e2\u05d1\u05d5\u05d3\u05d5\u05ea \u05d1\u05d6\u05de\u05e0\u05d9\u05dd \u05e7\u05d1\u05d5\u05e2\u05d9\u05dd \u05d1\u05de\u05e2\u05e8\u05db\u05d5\u05ea unix.",
 		"ru": "Cron \u044d\u0442\u043e \u0441\u043f\u043e\u0441\u043e\u0431 \u0440\u0435\u0433\u0443\u043b\u044f\u0440\u043d\u043e \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u0442\u044c \u0437\u0430\u0434\u0430\u043d\u0438\u044f \u043d\u0430 \u0441\u0438\u0441\u0442\u0435\u043c\u0430\u0445 UNIX.",
-		"zh": "Cron\u662f\u4e00\u79cd\u5728UNIX\u7cfb\u7edf\u4e0a\u5b9a\u65f6\u8fd0\u884c\u4efb\u52a1\u7684\u5de5\u5177"
+		"zh": "Cron\u662f\u4e00\u79cd\u5728UNIX\u7cfb\u7edf\u4e0a\u5b9a\u65f6\u8fd0\u884c\u4efb\u52a1\u7684\u5de5\u5177",
+		"hu": "A cron egy m\u00f3dszer unix rendszereken parancsok rendszeres futtat\u00e1s\u00e1ra.",
+		"ar": "  \u0643\u0631\u0648\u0646 \u0647\u0648 \u0648\u0633\u064a\u0644\u0629 \u062a\u0634\u063a\u064a\u0644 \u0645\u062a\u0643\u0631\u0631 \u0639\u0644\u064a \u064a\u0648\u0646\u064a\u0643\u0633",
+		"id": "Cron adalah cara untuk menjalankan sesuatu secara "
 	},
 	"cron_suggestion": {
 		"da": "Her er et forslag til en crontab fil:",
@@ -81,7 +90,10 @@
 		"et": "Siin on crontab faili soovitus:",
 		"he": "\u05d4\u05e6\u05e2\u05d4 \u05dc\u05e7\u05d5\u05d1\u05e5 crontab:",
 		"ru": "\u0423\u043a\u0430\u0437\u0430\u043d\u0438\u044f \u0434\u043b\u044f \u0444\u0430\u0439\u043b\u0430 crontab:",
-		"zh": "\u4ee5\u4e0b\u662f\u4e00\u4e9b\u5173\u4e8ecrontab\u6587\u4ef6\u7684\u5efa\u8bae"
+		"zh": "\u4ee5\u4e0b\u662f\u4e00\u4e9b\u5173\u4e8ecrontab\u6587\u4ef6\u7684\u5efa\u8bae",
+		"hu": "Javaslat crontab file-ra.",
+		"ar": "\u0627\u0642\u062a\u0631\u0627\u062d \u0644\u0645\u0644\u0641 \u0643\u0631\u0648\u0646\u062a\u0627\u0628",
+		"id": "Berikut adalah saran untuk file crontab:"
 	},
 	"cron_execution": {
 		"da": "Klik her for at k\u00f8re cron job:",
@@ -102,7 +114,10 @@
 		"et": "Kl\u00f5psa siia croni t\u00f6\u00f6 k\u00e4ivitamiseks:",
 		"he": "\u05dc\u05d7\u05e5 \u05db\u05d0\u05df \u05db\u05d3\u05d9 \u05dc\u05d4\u05e8\u05d9\u05e5 \u05d0\u05ea \u05e2\u05d1\u05d5\u05d3\u05d5\u05ea \u05d4 cron",
 		"ru": "\u041d\u0430\u0436\u043c\u0438\u0442\u0435, \u0447\u0442\u043e\u0431\u044b \u0432\u044b\u043f\u043e\u043b\u043d\u0438\u0442\u044c \u0437\u0430\u0434\u0430\u043d\u0438\u044f Cron:",
-		"zh": "\u70b9\u51fb\u8fd9\u91cc\u8fd0\u884ccron\u4efb\u52a1"
+		"zh": "\u70b9\u51fb\u8fd9\u91cc\u8fd0\u884ccron\u4efb\u52a1",
+		"hu": "Kattintson a cron futtat\u00e1s\u00e1hoz.",
+		"ar": " \u0627\u0636\u063a\u0637 \u0644\u064a\u0628\u062f\u0623 \u0643\u0631\u0648\u0646 \u0628\u0627\u0644\u0639\u0645\u0644",
+		"id": "Klik disini untuk menjalankan pekerjaan cron:"
 	},
 	"run_text": {
 		"da": "Run cron:",
@@ -123,7 +138,10 @@
 		"et": "K\u00e4ivita croni t\u00f6\u00f6:",
 		"he": "\u05d4\u05e8\u05e5 cron:",
 		"ru": "\u0417\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c Cron",
-		"zh": "\u8fd0\u884ccron"
+		"zh": "\u8fd0\u884ccron",
+		"hu": "Cron fut\u00e1s:",
+		"ar": "\u0623\u0628\u062f\u0627 ",
+		"id": "Jalankan cron:"
 	},
 	"ran_text": {
 		"da": "Cron l\u00f8b p\u00e5",
@@ -144,7 +162,10 @@
 		"et": "Cron t\u00f6\u00f6tas",
 		"he": "cron \u05e8\u05e5 \u05d1",
 		"ru": "Cron \u0437\u0430\u043f\u0443\u0449\u0435\u043d \u0432 ",
-		"zh": "cron\u8fd0\u884c\u4e8e"
+		"zh": "cron\u8fd0\u884c\u4e8e",
+		"hu": "A cron ekkor futott le:",
+		"ar": "\u0643\u0631\u0648\u0646 \u0639\u0645\u0644 \u0639\u0644\u064a",
+		"id": "Cron berjalan pada"
 	},
 	"cron_report_title": {
 		"da": "Cron rapport",
@@ -165,6 +186,9 @@
 		"et": "Croni raport",
 		"he": "\u05d3\u05d5\u05d7 cron",
 		"ru": "\u041e\u0442\u0447\u0451\u0442 Cron",
-		"zh": "cron\u62a5\u544a"
+		"zh": "cron\u62a5\u544a",
+		"hu": "Cron jelent\u00e9s.",
+		"ar": "\u062a\u0642\u0631\u064a\u0631 \u0643\u0631\u0648\u0646",
+		"id": "Laporan cron"
 	}
 }

@@ -17,7 +17,9 @@
 		"et": "Olekuinfo on kadunud",
 		"he": "\u05de\u05d9\u05d3\u05e2 \u05d4\u05de\u05e6\u05d1 \u05d0\u05d1\u05d3",
 		"de": "Statusinformationen verloren",
-		"zh": "\u72b6\u6001\u4fe1\u606f\u4e22\u5931"
+		"zh": "\u72b6\u6001\u4fe1\u606f\u4e22\u5931",
+		"ar": "\u062d\u062f\u062f \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0641\u0642\u0648\u062f\u0629",
+		"id": "Informasi kondisi\/state hilang"
 	},
 	"description": {
 		"no": "Vi kunne ikke finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
@@ -31,13 +33,15 @@
 		"fr": "Nous ne pouvons pas trouver l'information d'\u00e9tat pour la demande courante.",
 		"ja": "\u73fe\u5728\u306e\u30ea\u30af\u30a8\u30b9\u30c8\u304b\u3089\u72b6\u614b\u60c5\u5831\u3092\u7279\u5b9a\u3059\u308b\u3053\u3068\u304c\u51fa\u6765\u307e\u305b\u3093\u3067\u3057\u305f\u3002",
 		"da": "Tilstandsinformation for igangv\u00e6rende request kan ikke findes",
-		"hr": "Podatak o stanju aktualnog zahtjeva nije prona\u0111en.",
+		"hr": "Ne mo\u017eemo prona\u0107i podatak o stanju aktualnog zahtjeva.",
 		"zh-tw": "\u6211\u5011\u7121\u6cd5\u627e\u5230\u95dc\u65bc\u9019\u500b\u8acb\u6c42\u7684\u72c0\u614b\u8cc7\u8a0a\u3002",
 		"nl": "Wij waren niet in staat om de toestand informatie te vinden voor het huidige verzoek.",
 		"et": "Aktiivse p\u00e4ringu olekuinfo leidmine ei \u00f5nnestunud.",
 		"he": "\u05dc\u05d0 \u05d4\u05e6\u05dc\u05d7\u05e0\u05d5 \u05dc\u05d0\u05ea\u05e8 \u05d0\u05ea \u05de\u05d9\u05d3\u05e2 \u05d4\u05de\u05e6\u05d1 \u05dc\u05d1\u05e7\u05e9\u05d4 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9\u05ea.",
 		"de": "Wir konnten die Statusinformationen f\u00fcr die aktuelle Anfrage nicht lokalisieren.",
-		"zh": "\u6211\u4eec\u65e0\u6cd5\u5b9a\u4f4d\u5f53\u524d\u8bf7\u6c42\u7684\u72b6\u6001\u4fe1\u606f"
+		"zh": "\u6211\u4eec\u65e0\u6cd5\u5b9a\u4f4d\u5f53\u524d\u8bf7\u6c42\u7684\u72b6\u6001\u4fe1\u606f",
+		"ar": "\u0644\u0645 \u0646\u0633\u062a\u0637\u0639 \u062a\u062d\u062f\u064a\u062f \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0641\u0642\u0648\u062f\u0629 \u0644\u0644\u0637\u0644\u0628 \u0627\u0644\u062d\u0627\u0644\u064a",
+		"id": "Kita tidak dapat menemukan informasi kondisi\/state dari request saat ini."
 	},
 	"suggestions": {
 		"no": "Forslag for \u00e5 l\u00f8se dette problemet:",
@@ -57,7 +61,9 @@
 		"et": "N\u00f5uanded selle probleemi lahendamiseks:",
 		"he": "\u05d4\u05e6\u05e2\u05d5\u05ea \u05dc\u05e4\u05ea\u05e8\u05d5\u05df \u05d4\u05d1\u05e2\u05d9\u05d9\u05d4 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9\u05ea:",
 		"de": "Empfehlungen um dieses Problem zu l\u00f6sen:",
-		"zh": "\u5173\u4e8e\u89e3\u51b3\u8be5\u95ee\u9898\u7684\u5efa\u8bae"
+		"zh": "\u5173\u4e8e\u89e3\u51b3\u8be5\u95ee\u9898\u7684\u5efa\u8bae",
+		"ar": "\u0627\u0642\u062a\u0631\u0627\u062d\u0627\u062a \u0644\u062d\u0644 \u0627\u0644\u0645\u0634\u0643\u0644\u0629 ",
+		"id": "Saran untuk memperbaiki masalah ini:"
 	},
 	"suggestion_goback": {
 		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
@@ -77,7 +83,9 @@
 		"et": "Mine tagasi eelmisele lehek\u00fcljele ja proovi uuesti.",
 		"he": "\u05d7\u05d6\u05d5\u05e8 \u05dc\u05d3\u05e3 \u05d4\u05e7\u05d5\u05d3\u05dd \u05d5\u05e0\u05e1\u05d4 \u05e9\u05d5\u05d1.",
 		"de": "Kehre zur letzen Seite zur\u00fcck und versuche es erneut.",
-		"zh": "\u8fd4\u56de\u4e0a\u4e00\u9875\u5e76\u91cd\u65b0\u5c1d\u8bd5"
+		"zh": "\u8fd4\u56de\u4e0a\u4e00\u9875\u5e76\u91cd\u65b0\u5c1d\u8bd5",
+		"ar": "\u0627\u0631\u062c\u0639 \u0644\u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629 \u0648 \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0627\u062e\u0631\u064a",
+		"id": "Kembali ke halaman sebelumnya dan coba lagi."
 	},
 	"suggestion_closebrowser": {
 		"no": "Lukk nettleseren, og pr\u00f8v p\u00e5 nytt.",
@@ -91,13 +99,15 @@
 		"fr": "Fermez le navigateur, essayez \u00e0 nouveau.",
 		"ja": "WEB\u30d6\u30e9\u30a6\u30b6\u3092\u9589\u3058\u3066\u3001\u518d\u5ea6\u8a66\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
 		"da": "Luk din browser og pr\u00f8v igen.",
-		"hr": "Zatvorite web preglednik, i poku\u0161ajte ponovno.",
+		"hr": "Zatvorite web preglednik i poku\u0161ajte ponovno.",
 		"zh-tw": "\u95dc\u9589\u7db2\u9801\u700f\u89bd\u5668\uff0c\u4e26\u518d\u8a66\u4e00\u6b21\u3002",
 		"nl": "Sluit de web browser, en probeer opnieuw.",
 		"et": "Sulge brauser ja proovi uuesti.",
 		"he": "\u05e1\u05d2\u05d5\u05e8 \u05d0\u05ea \u05d4\u05d3\u05e4\u05d3\u05e4\u05df, \u05d5\u05e0\u05e1\u05d4 \u05e9\u05d5\u05d1.",
 		"de": "Schlie\u00dfe den Web-Browser und versuche es erneut.",
-		"zh": "\u5173\u95ed\u6d4f\u89c8\u5668\u5e76\u91cd\u8bd5"
+		"zh": "\u5173\u95ed\u6d4f\u89c8\u5668\u5e76\u91cd\u8bd5",
+		"ar": "\u0627\u063a\u0644\u0642 \u0627\u0644\u0645\u0648\u0642\u0639 \u062b\u0645 \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0627\u062e\u0631\u064a",
+		"id": "Tutup browser, dan coba lagi."
 	},
 	"causes": {
 		"no": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
@@ -111,13 +121,15 @@
 		"fr": "Cette erreur peut \u00eatre caus\u00e9e par :",
 		"ja": "\u3053\u306e\u30a8\u30e9\u30fc\u306e\u539f\u56e0:",
 		"da": "Fejlen kan v\u00e6re for forudsaget af:",
-		"hr": "Ova pogre\u0161ka mo\u017ee biti uzrokovana:",
+		"hr": "Ova gre\u0161ka mo\u017ee biti uzrokovana:",
 		"zh-tw": "\u9019\u500b\u932f\u8aa4\u53ef\u80fd\u662f\u56e0\u70ba\uff1a",
 		"nl": "Deze error is waarschijnlijk veroorzaakt door:",
 		"et": "See t\u00f5rge v\u00f5ib olla p\u00f5hjustatud:",
 		"he": "\u05d9\u05db\u05d5\u05dc \u05dc\u05d4\u05d9\u05d5\u05ea \u05e9\u05d4\u05e9\u05d2\u05d9\u05d0\u05d4 \u05e0\u05d2\u05e8\u05de\u05d4 \u05e2\u05dc-\u05d9\u05d3\u05d9:",
 		"de": "Dieser Fehler k\u00f6nnte durch folgendes verursacht werden:",
-		"zh": "\u8be5\u9519\u8bef\u53ef\u80fd\u662f\u4ee5\u4e0b\u539f\u56e0\u5bfc\u81f4\u7684\uff1a"
+		"zh": "\u8be5\u9519\u8bef\u53ef\u80fd\u662f\u4ee5\u4e0b\u539f\u56e0\u5bfc\u81f4\u7684\uff1a",
+		"ar": "\u0633\u0628\u0628 \u062d\u062f\u0648\u062b \u0647\u0630\u0627 \u0627\u0644\u062e\u0637\u0623 \u0642\u062f \u064a\u0643\u0648\u0646:",
+		"id": "Error ini mungkin disebabkan oleh:"
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
@@ -131,13 +143,15 @@
 		"fr": "Utilisation des boutons avance et retour dans le navigateur.",
 		"ja": "WEB\u30d6\u30e9\u30a6\u30b6\u306e\u623b\u308b\u3084\u6b21\u3078\u306e\u30dc\u30bf\u30f3\u3092\u4f7f\u7528\u3057\u307e\u3059\u3002",
 		"da": "Brug frem og tilbage knappen i browseren.",
-		"hr": "Kori\u0161tenjem gumba za prethodnu (\"back\") i sljede\u0107u (\"forward\") stranicu u web pregledniku.",
+		"hr": "Kori\u0161tenjem gumba za prethodnu (back) i sljede\u0107u (forward) stranicu u web pregledniku.",
 		"zh-tw": "\u65bc\u7db2\u9801\u700f\u89bd\u5668\u4f7f\u7528\u4e0a\u4e00\u9801\u53ca\u4e0b\u4e00\u9801\u3002",
 		"nl": "Gebruik de Volgende en Terug knoppen in de web browser.",
 		"et": "brauseri edasi-tagasi nuppude kasutamisest",
 		"he": "\u05e9\u05d9\u05de\u05d5\u05e9 \u05d1\u05db\u05e4\u05ea\u05d5\u05e8\u05d9 \u05d4\u05d1\u05d0 \u05d5\u05d4\u05e7\u05d5\u05d3\u05dd \u05d1\u05d3\u05e4\u05d3\u05e4\u05df.",
 		"de": "Das Benutzen der Zur\u00fcck- und Vorw\u00e4rts-Schaltfl\u00e4chen im Web-Browser.",
-		"zh": "\u4f7f\u7528\u6d4f\u89c8\u5668\u4e2d\u7684\u524d\u8fdb\u540e\u9000\u6309\u94ae"
+		"zh": "\u4f7f\u7528\u6d4f\u89c8\u5668\u4e2d\u7684\u524d\u8fdb\u540e\u9000\u6309\u94ae",
+		"ar": "\u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0623\u0632\u0631\u0627\u0631 \u0627\u0644\u0631\u062c\u0648\u0639 \u0644\u0644\u062e\u0644\u0641 \u0648 \u0627\u0644\u0627\u0645\u0627\u0645 \u0628\u0645\u062a\u0635\u0641\u062d\u0643",
+		"id": "Menggunakan tombol back dan forward pada browser web."
 	},
 	"cause_openbrowser": {
 		"no": "Starte nettleseren med faner lagret fra forrige gang.",
@@ -151,13 +165,15 @@
 		"fr": "Ouvert le navigateur avec des onglets sauvegard\u00e9s lors de la session pr\u00e9c\u00e9dente.",
 		"ja": "\u30d6\u30e9\u30a6\u30b6\u306b\u4fdd\u5b58\u3055\u308c\u305f\u30bf\u30d6\u306b\u3088\u308a\u3001\u4ee5\u524d\u306e\u30bb\u30c3\u30b7\u30e7\u30f3\u304c\u958b\u304b\u308c\u307e\u3057\u305f\u3002",
 		"da": "\u00c5ben browseren med faner fra sidste session.",
-		"hr": "Otvaranjem web preglednika sa spremljenim stranicama od prethodne sesije.",
+		"hr": "Otvaranjem web preglednika sa spremljenim stranicama od prethodne sjednice.",
 		"zh-tw": "\u60a8\u4f7f\u7528\u7db2\u9801\u700f\u89bd\u5668\u5132\u5b58\u6a19\u7c64\u958b\u555f\u4e86\u4e0a\u4e00\u6b21\u7684\u9023\u7dda\u3002",
 		"nl": "Web browser geopend met tabs opgeslagen van de vorige sessie.",
 		"et": "brauseri avamisest eelmisel kasutuskorral salvestatud kaartidega",
 		"he": "\u05e4\u05ea\u05d9\u05d7\u05ea \u05d4\u05d3\u05e4\u05d3\u05e4\u05df \u05e2\u05dd \u05dc\u05e9\u05d5\u05e0\u05d9\u05d5\u05ea \u05e9\u05e0\u05e9\u05de\u05e8\u05d5 \u05de\u05e9\u05d9\u05de\u05d5\u05e9 \u05d4\u05e7\u05d5\u05d3\u05dd.",
 		"de": "Das \u00d6ffnen des Web-Browser mit gespeicherten Tabs aus der letzten Sitzung.",
-		"zh": "\u4ece\u5148\u524d\u7684session\u4fdd\u5b58\u7684\u9009\u9879\u5361\u6253\u5f00Web\u6d4f\u89c8\u5668"
+		"zh": "\u4ece\u5148\u524d\u7684session\u4fdd\u5b58\u7684\u9009\u9879\u5361\u6253\u5f00Web\u6d4f\u89c8\u5668",
+		"ar": "\u0641\u062a\u062d \u0645\u062a\u0635\u0641\u062d\u0643 \u0645\u0633\u062a\u062e\u062f\u0645\u0627 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0645\u062d\u0641\u0648\u0638\u0629 \u0645\u0646 \u0627\u0644\u0645\u0631\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629",
+		"id": "Membuka web browser dengan tab-tab yang telah disimpan dari session sebelumnya."
 	},
 	"cause_nocookie": {
 		"no": "At informasjonskapsler ikke er aktivert i nettleseren.",
@@ -177,7 +193,9 @@
 		"et": "k\u00fcpsiste keelamisest brauseris",
 		"he": "\u05ea\u05de\u05d9\u05db\u05d4 \u05d1\u05e2\u05d5\u05d2\u05d9\u05d5\u05ea \u05de\u05d1\u05d5\u05d8\u05dc\u05ea \u05d1\u05d3\u05e4\u05d3\u05e4\u05df",
 		"de": "Cookies k\u00f6nnten im Web-Browser deaktiviert sein.",
-		"zh": "\u8be5\u6d4f\u89c8\u5668\u4e0a\u7684cookie\u53ef\u80fd\u906d\u7981\u6b62"
+		"zh": "\u8be5\u6d4f\u89c8\u5668\u4e0a\u7684cookie\u53ef\u80fd\u906d\u7981\u6b62",
+		"ar": "\u0627\u0644\u0643\u0648\u0643\u064a\u0632 \u063a\u064a\u0631 \u0645\u0646\u0634\u0637\u0629 \u0628\u0645\u062a\u0635\u0641\u062d\u0643",
+		"id": "Cookie mungkin dinonaktifkan pada web browser ini."
 	},
 	"report_header": {
 		"no": "Rapporter denne feilen",
@@ -191,13 +209,15 @@
 		"fr": "Remontez cette erreur",
 		"ja": "\u3053\u306e\u30a8\u30e9\u30fc\u3092\u30ec\u30dd\u30fc\u30c8",
 		"da": "Rapporter denne fejl",
-		"hr": "Prijavite ovu pogre\u0161ku",
+		"hr": "Prijavite ovu gre\u0161ku",
 		"zh-tw": "\u56de\u5831\u9019\u500b\u932f\u8aa4",
 		"nl": "Meld deze error",
 		"et": "Teavita sellest t\u00f5rkest",
 		"he": "\u05d3\u05d5\u05d5\u05d7 \u05e2\u05dc \u05d4\u05e9\u05d2\u05d9\u05d0\u05d4 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9\u05ea",
 		"de": "Diesen Fehler melden",
-		"zh": "\u62a5\u544a\u8fd9\u4e2a\u9519\u8bef"
+		"zh": "\u62a5\u544a\u8fd9\u4e2a\u9519\u8bef",
+		"ar": "\u0628\u0644\u063a \u0639\u0646 \u0647\u0630\u0627 \u0627\u0644\u062e\u0637\u0623 ",
+		"id": "Laporan error ini"
 	},
 	"report_text": {
 		"no": "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene.",
@@ -211,12 +231,14 @@
 		"fr": "Si ce probl\u00e8me persiste, vous pouvez le remonter vers l'administrateur syst\u00e8me.",
 		"ja": "\u3053\u306e\u554f\u984c\u304c\u7d99\u7d9a\u3057\u3066\u8d77\u3053\u308b\u5834\u5408\u3001\u30b7\u30b9\u30c6\u30e0\u7ba1\u7406\u8005\u306b\u5831\u544a\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
 		"da": "Hvis dette problem forts\u00e6tter, kan du rapportere det til systemadministratoren.",
-		"hr": "Ako ova pogre\u0161ka ustraje, mo\u017eete ju prijaviti.",
+		"hr": "Ako se ova gre\u0161ka bude i dalje pojavljivala, mo\u017eete ju prijaviti administratorima.",
 		"zh-tw": "\u5982\u679c\u9019\u500b\u932f\u8aa4\u6301\u7e8c\u5b58\u5728\uff0c\u60a8\u53ef\u4ee5\u5c07\u5b83\u56de\u5831\u7cfb\u7d71\u7ba1\u7406\u8005\u3002",
 		"nl": "If dit probleem behoud, dan kun je het melden aan de systeem beheerders.",
 		"et": "Kui probleem ei kao, siis teavita sellest s\u00fcsteemi administraatoreid.",
 		"he": "\u05d0\u05dd \u05d4\u05d1\u05e2\u05d9\u05d9\u05d4 \u05de\u05de\u05e9\u05d9\u05db\u05d4, \u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05d3\u05d5\u05d5\u05d7 \u05e2\u05dc\u05d9\u05d4 \u05dc\u05de\u05e0\u05d4\u05dc \u05d4\u05de\u05e2\u05e8\u05db\u05ea.",
 		"de": "Wenn das Problem weiter besteht, kannst du diesen Fehler den Systemadministratoren melden.",
-		"zh": "\u5982\u679c\u8fd9\u4e2a\u9519\u8bef\u518d\u6b21\u51fa\u73b0\uff0c\u4f60\u53ef\u4ee5\u5411\u4f60\u7684\u7cfb\u7edf\u7ba1\u7406\u5458\u62a5\u544a"
+		"zh": "\u5982\u679c\u8fd9\u4e2a\u9519\u8bef\u518d\u6b21\u51fa\u73b0\uff0c\u4f60\u53ef\u4ee5\u5411\u4f60\u7684\u7cfb\u7edf\u7ba1\u7406\u5458\u62a5\u544a",
+		"ar": "\u0627\u0630\u0627 \u0627\u0633\u062a\u0645\u0631\u062a \u0647\u0630\u0647 \u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0628\u0627\u0644\u062d\u062f\u0648\u062b\u060c \u0631\u062c\u0627\u0621\u0627 \u0628\u0644\u063a \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0648\u0642\u0639",
+		"id": "Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke system administrator."
 	}
 }

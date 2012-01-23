@@ -6,7 +6,7 @@
 		"sl": "Pi\u0161kotek (\"cookie\") ne obstaja!",
 		"pt": "Cookie n\u00e3o encontrado",
 		"sv": "Saknar webbl\u00e4sarkaka (cookie)",
-		"hr": "Nedostaje kola\u010di\u0107 (\"cookie\")",
+		"hr": "Nedostaje kola\u010di\u0107 (cookie)",
 		"da": "Mangler cookie",
 		"fr": "Cookie introuvable",
 		"nn": "Manglar informasjonskapsel",
@@ -19,7 +19,9 @@
 		"zh-tw": "\u907a\u5931 cookie",
 		"et": "K\u00fcpsis puudub",
 		"he": "\u05d7\u05e1\u05e8\u05d4 \u05e2\u05d5\u05d2\u05d9\u05d9\u05d4",
-		"zh": "cookie\u4e22\u5931"
+		"zh": "cookie\u4e22\u5931",
+		"ar": "\u0623\u0644\u0643\u0648\u0643\u064a\u0632 \u0627\u0644\u0645\u0641\u0642\u0648\u062f\u0629",
+		"id": "Cookie hilang"
 	},
 	"description": {
 		"no": "Du ser ut til \u00e5 ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og pr\u00f8v igjen.",
@@ -28,7 +30,7 @@
 		"sl": "Va\u0161 spletni brskalnik ima onemogo\u010dene pi\u0161kotke (\"cookies\"). Omogo\u010dite to nastavitev in poskusite ponovno.",
 		"pt": "Provavelmente desligou o suporte de cookies no seu browser. Por favor verifique se tem o suporte de cookies ligado e tente de novo.",
 		"sv": "Det verkar som om du har st\u00e4ngt av m\u00f6jligheten till kakor (cookies) i din webbl\u00e4sare. Kontrollera inst\u00e4llningarna i webbl\u00e4saren och f\u00f6rs\u00f6k igen.",
-		"hr": "Izgleda da ste onemogu\u0107ili kola\u010di\u0107e (\"cookies\") u va\u0161em web pregledniku. Molimo provjerite postavke va\u0161eg web preglednika i poku\u0161ajte ponovo.",
+		"hr": "Izgleda da ste onemogu\u0107ili kola\u010di\u0107e (cookies) u va\u0161em web pregledniku. Molimo provjerite postavke va\u0161eg web preglednika i poku\u0161ajte ponovo.",
 		"da": "Det ser ud til at du har sl\u00e5et cookies fra i din browser. Tjek dine browserinstillinger og pr\u00f8v igen.",
 		"fr": "Il semble que votre navigateur refuse les cookies. Merci de v\u00e9rifier les r\u00e9glages de votre navigateur, puis de r\u00e9-essayer.",
 		"nn": "Det ser ut til at informasjonskapslar er avsl\u00e5tt i nettlesaren din. V\u00e6r vennleg og sjekk instillingane i nettlesaren din, og pr\u00f8v p\u00e5 nytt.",
@@ -41,7 +43,9 @@
 		"zh-tw": "\u60a8\u53ef\u80fd\u95dc\u9589\u4e86\u700f\u89bd\u5668 cookie \u652f\u63f4\uff0c\u8acb\u6aa2\u67e5\u700f\u89bd\u5668\u8a2d\u5b9a\uff0c\u7136\u5f8c\u518d\u8a66\u4e00\u6b21\u3002",
 		"et": "Paistab, et sinu brauseris on k\u00fcpsised keelatud. Palun kontrolli brauseri seadistusi ja proovi seej\u00e4rel uuesti.",
 		"he": "\u05e0\u05e8\u05d0\u05d4 \u05e9\u05db\u05d9\u05d1\u05d9\u05ea \u05d0\u05ea \u05d4\u05e2\u05d5\u05d2\u05d9\u05d5\u05ea \u05d1\u05d3\u05e4\u05d3\u05e4\u05df \u05e9\u05dc\u05da\u05e5 \u05d0\u05e0\u05d0 \u05d1\u05d3\u05d5\u05e7 \u05d0\u05ea \u05d4\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea \u05d1\u05d3\u05e4\u05d3\u05e4\u05df \u05e9\u05dc\u05da, \u05d5\u05e0\u05e1\u05d4 \u05e9\u05e0\u05d9\u05ea. ",
-		"zh": "\u4f60\u4f3c\u4e4e\u7981\u6b62\u4e86\u4f60\u6d4f\u89c8\u5668\u7684cookie\u529f\u80fd\uff0c\u8bf7\u68c0\u67e5\u8bbe\u7f6e\uff0c\u7136\u540e\u91cd\u65b0\u5c1d\u8bd5"
+		"zh": "\u4f60\u4f3c\u4e4e\u7981\u6b62\u4e86\u4f60\u6d4f\u89c8\u5668\u7684cookie\u529f\u80fd\uff0c\u8bf7\u68c0\u67e5\u8bbe\u7f6e\uff0c\u7136\u540e\u91cd\u65b0\u5c1d\u8bd5",
+		"ar": "\u064a\u0628\u062f\u0648 \u0627\u0646\u0643 \u0642\u062f \u0639\u0637\u0644\u062a \u0627\u0644\u0643\u0648\u0643\u064a\u0632 \u0628\u0645\u062a\u0635\u0641\u062d\u0643. \u0642\u0645 \u0631\u062c\u0627\u0621\u0627 \u0628\u0645\u0631\u0627\u062c\u0639\u0629 \u0625\u0639\u062f\u0627\u062f\u0627\u062a \u0645\u062a\u0635\u0641\u062d\u0643 \u062b\u0645 \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0627\u062e\u0631\u064a",
+		"id": "Anda sepertinya menonaktifkan cookie di browser anda. Silahkan periksa  pengaturan pada browser anda, dan coba lagi."
 	},
 	"retry": {
 		"no": "Pr\u00f8v igjen",
@@ -64,6 +68,8 @@
 		"et": "Proovi uuesti",
 		"he": "\u05e0\u05e1\u05d4 \u05e9\u05e0\u05d9\u05ea",
 		"ru": "\u041f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u044c",
-		"zh": "\u91cd\u8bd5"
+		"zh": "\u91cd\u8bd5",
+		"ar": "\u0627\u0639\u062f \u0627\u0644\u0645\u062d\u0627\u0648\u0644\u0629",
+		"id": "Coba lagi"
 	}
 }

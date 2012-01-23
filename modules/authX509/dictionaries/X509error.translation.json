@@ -12,13 +12,15 @@
 		"nl": "Authenticatie via X509-certificaat",
 		"da": "X509 certifikat authentifikation",
 		"de": "Authentifizierung mit X.509 Zertifikat",
-		"hr": "Autentifikacija pomo\u0107u X509 digitalnog certifikata",
+		"hr": "Autentifikacija uporabom X509 digitalnog certifikata",
 		"zh-tw": "X509 \u6191\u8b49\u9a57\u8b49",
 		"nn": "X509 sertifikatautentisering",
 		"et": "X509 sertifikaadiga autentimine",
 		"he": "\u05d0\u05d9\u05de\u05d5\u05ea \u05ea\u05e2\u05d5\u05d3\u05ea X509 ",
 		"ru": "\u0421\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442 \u043f\u043e\u0434\u043b\u0438\u043d\u043d\u043e\u0441\u0442\u0438 X509",
-		"zh": "X509\u786e\u8ba4\u8ba4\u8bc1"
+		"zh": "X509\u786e\u8ba4\u8ba4\u8bc1",
+		"ar": "\u062a\u0635\u062f\u064a\u0642 \u0634\u0647\u0627\u062f\u0629 X509",
+		"id": "Autentifikasi certificate X509"
 	},
 	"certificate_text": {
 		"fr": "Un certificat X509 est requis pour acc\u00e9der \u00e0 ce service.",
@@ -33,12 +35,14 @@
 		"nl": "Authenticatie via een X509-certificaat is noodzakelijk voor toegang tot deze dienst.",
 		"da": "X509 certifikat-authentifikation er p\u00e5kr\u00e6vet til denne service.",
 		"de": "Das gew\u00fcnschte Service ist nur nach Authentifizierung mit einem X.509 Zertifikat nutzbar.",
-		"hr": "Potreban je X509 certifikat za pristup ovom servisu.",
+		"hr": "Za pristup ovom servisu potreban je X509 certifikat.",
 		"zh-tw": "\u9019\u500b\u670d\u52d9\u5fc5\u9808\u4ee5 X509 \u6191\u8b49\u9032\u884c\u9a57\u8b49",
 		"nn": "X509 sertifikatautentisering er p\u00e5krevd for tilgang til denne tenesta.",
 		"et": "Sellele teenusele ligip\u00e4\u00e4suks on vajalik X509 sertifikaadiga autentimine.",
 		"he": "\u05e0\u05d3\u05e8\u05e9 \u05d0\u05d9\u05de\u05d5\u05ea \u05ea\u05e2\u05d5\u05d3\u05ea X509  \u05e2\u05dc \u05de\u05e0\u05ea \u05dc\u05d2\u05e9\u05ea \u05dc\u05e9\u05d9\u05e8\u05d5\u05ea \u05d6\u05d4.",
 		"ru": "\u0421\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u0443 \u043f\u043e\u0434\u043b\u0438\u043d\u043d\u043e\u0441\u0442\u0438 X509 \u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0441\u043b\u0443\u0436\u0431\u0435.",
-		"zh": "X509\u786e\u8ba4\u8ba4\u8bc1\u8981\u6c42\u8bbf\u95ee\u8be5\u670d\u52a1"
+		"zh": "X509\u786e\u8ba4\u8ba4\u8bc1\u8981\u6c42\u8bbf\u95ee\u8be5\u670d\u52a1",
+		"ar": "\u062a\u0635\u062f\u064a\u0642 \u0634\u0647\u0627\u062f\u0629 (X509) \u0636\u0631\u0648\u0631\u064a \u0644\u062f\u062e\u0648\u0644 \u0647\u0630\u0647 \u0627\u0644\u062e\u062f\u0645\u0629",
+		"id": "Autentifikasi certificate X509 diperlukan untuk mengakses layanan ini."
 	}
 }
