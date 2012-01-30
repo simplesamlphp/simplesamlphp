@@ -73,7 +73,9 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 				}
 
 				/* Session cookie unset - session id not set. Generate new (secure) session id. */
-				session_id(SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16)));
+				$sessionId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16));
+				SimpleSAML_Session::createSession($sessionId);
+				session_id($sessionId);
 			}
 			
 			session_start();

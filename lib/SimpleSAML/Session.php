@@ -956,6 +956,15 @@ class SimpleSAML_Session {
 		return $ret;
 	}
 
+	/**
+	 * Create a new session and cache it.
+	 *
+	 * @param string $sessionId  The new session we should create.
+	 */
+	public static function createSession($sessionId) {
+		assert('is_string($sessionId)');
+		self::$sessions[$sessionId] = NULL;
+	}
 
 	/**
 	 * Load a session from the session handler.
@@ -975,7 +984,7 @@ class SimpleSAML_Session {
 			$checkToken = FALSE;
 		}
 
-		if (isset(self::$sessions[$sessionId])) {
+		if (array_key_exists($sessionId, self::$sessions)) {
 			return self::$sessions[$sessionId];
 		}
 
