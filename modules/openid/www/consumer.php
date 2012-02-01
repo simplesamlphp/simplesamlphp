@@ -13,6 +13,7 @@ if ($authSource === NULL) {
 	throw new SimpleSAML_Error_BadRequest('Invalid AuthId \'' . $sourceId . '\' - not found.');
 }
 
+$error = NULL;
 try {
 	if (!empty($_GET['openid_url'])) {
 		$authSource->doAuth($state, (string)$_GET['openid_url']);
