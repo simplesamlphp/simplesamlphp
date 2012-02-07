@@ -11,7 +11,7 @@ function getValue($raw) {
 	if (!empty($url)) $val = $url;
 	
 	$arr = array();
-	$query = parse_str($val, &$arr);
+	$query = parse_str($val, $arr);
 
 	#echo('<pre>');print_r($arr);
 	

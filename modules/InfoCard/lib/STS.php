@@ -151,7 +151,7 @@ class sspmod_InfoCard_STS {
 	
 		$signature = '';
 		$privkey = openssl_pkey_get_private(file_get_contents($ICconfig['sts_key']));
-		openssl_sign($canonicalbuf, &$signature, $privkey);
+		openssl_sign($canonicalbuf, $signature, $privkey);
 		openssl_free_key($privkey);
 		$infocard_signature = base64_encode($signature);
 		
