@@ -149,6 +149,8 @@ $state['saml:sp:NameID'] = $nameId;
 $state['PersistentAuthData'][] = 'saml:sp:NameID';
 $state['saml:sp:SessionIndex'] = $sessionIndex;
 $state['PersistentAuthData'][] = 'saml:sp:SessionIndex';
+$state['saml:sp:AuthnContext'] = $assertion->getAuthnContext();
+$state['PersistentAuthData'][] = 'saml:sp:AuthnContext';
 
 
 if (isset($state['SimpleSAML_Auth_Default.ReturnURL'])) {
