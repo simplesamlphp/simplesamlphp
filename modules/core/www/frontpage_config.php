@@ -20,6 +20,10 @@ if (!SimpleSAML_Utilities::isHTTPS()) {
 	$warnings[] = '{core:frontpage:warnings_https}';
 }
 
+if ($config->getValue('secretsalt') === 'defaultsecretsalt') {
+	$warnings[] = '{core:frontpage:warnings_secretsalt}';
+}
+
 if (extension_loaded('suhosin')) {
 	$suhosinLength = ini_get('suhosin.get.max_value_length');
 	if (empty($suhosinLength) || (int)$suhosinLength < 2048) {

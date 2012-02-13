@@ -44,6 +44,9 @@
 	"warnings_https": {
 		"en": "<strong>You are not using HTTPS<\/strong> - encrypted communication with the user. HTTP works fine for test purposes, but in a production environment, you should use HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Read more about simpleSAMLphp maintenance<\/a> ]"
 	},
+	"warnings_secretsalt": {
+		"en": "<strong>The configuration uses the default secret salt</strong> - make sure you modify the default 'secretsalt' option in the simpleSAML configuration in production environments. [<a href=\"http:\/\/simplesamlphp.org\/docs\/trunk\/simplesamlphp-install\">Read more about simpleSAMLphp configuration<\/a> ]"
+	},
 	"warnings_suhosin_url_length": {
 		"en": "The length of query parameters is limited by the PHP Suhosin extension. Please increase the suhosin.get.max_value_length option to at least 2048 bytes."
 	},
