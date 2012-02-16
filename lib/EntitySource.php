@@ -209,19 +209,6 @@ class sspmod_aggregator2_EntitySource {
 			$expires = $this->metadata->validUntil;
 		}
 
-		if ($this->metadata->cacheDuration !== NULL) {
-			try {
-				$durationTo = SimpleSAML_Utilities::parseDuration($this->metadata->cacheDuration);
-			} catch (Exception $e) {
-				SimpleSAML_Logger::warning($this->logLoc . 'Invalid cacheDuration in metadata from ' .
-					var_export($this->url, TRUE) . ': ' . var_export($this->metadata->cacheDuration, TRUE));
-				return;
-			}
-			if ($durationTo < $expires) {
-				$expires = $durationTo;
-			}
-		}
-
 		$metadataSerialized = serialize($this->metadata);
 
 		$this->aggregator->addCacheItem($this->cacheId, $metadataSerialized, $expires, $this->cacheTag);
