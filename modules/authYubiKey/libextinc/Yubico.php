@@ -137,11 +137,11 @@ class Auth_Yubico
 		
 		/* Verify signature. */
 		if($this->_key <> "") {
-			$rows = split("\r\n", $responseMsg);
+			$rows = explode("\r\n", $responseMsg);
 			while (list($key, $val) = each($rows)) {
 				// = is also used in BASE64 encoding so we only replace the first = by # which is not used in BASE64
 				$val = preg_replace('/=/', '#', $val, 1);
-				$row = split("#", $val);
+				$row = explode("#", $val);
 				$response[$row[0]] = (isset($row[1])) ? $row[1] : "";
 			}
 
