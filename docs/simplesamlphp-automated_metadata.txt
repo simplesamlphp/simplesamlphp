@@ -224,4 +224,8 @@ In config.php:
 	),
 
 
+Metadata cacheDuration
+----------------------
+
+SAML metadata may supply a cacheDuration attribute which indicates the maxium time to cache metadata. Because this module is run from cron, it cannot influence how often it is run and enfore this attribute by itself. Take care that you run metarefresh from cron at least as often as the shortest cacheDuration in your metadata sources.
 

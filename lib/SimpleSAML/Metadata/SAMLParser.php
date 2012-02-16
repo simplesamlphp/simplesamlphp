@@ -342,11 +342,8 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * Determine how long a given element can be cached.
 	 *
-	 * This function looks for the 'cacheDuration' and 'validUntil' attributes to determine
-	 * how long a given XML-element is valid. It returns this as na unix timestamp.
-	 *
-	 * If both the 'cacheDuration' and 'validUntil' attributes are present, the shorter of them
-	 * will be returned.
+	 * This function looks for the 'validUntil' attribute to determine
+	 * how long a given XML-element is valid. It returns this as a unix timestamp.
 	 *
 	 * @param mixed $element  The element we should determine the expiry time of.
 	 * @param int|NULL $maxExpireTime  The maximum expiration time.
@@ -354,20 +351,11 @@ class SimpleSAML_Metadata_SAMLParser {
 	 *              limit is set for the element.
 	 */
 	private static function getExpireTime($element, $maxExpireTime) {
+		/* validUntil may be NULL */
+		$expire = $element->validUntil;
 
-		if ($element->cacheDuration !== NULL) {
-			$expire = SimpleSAML_Utilities::parseDuration($element->cacheDuration, time());
-			if ($maxExpireTime !== NULL && $maxExpireTime < $expire) {
-				$expire = $maxExpireTime;
-			}
-		} else {
+		if ( $maxExpireTime !== NULL && ($expire === NULL || $maxExpireTime < $expire) ) {
 			$expire = $maxExpireTime;
-		}
-
-		if ($element->validUntil !== NULL) {
-			if ($expire === NULL || $expire > $element->validUntil) {
-				$expire = $element->validUntil;
-			}
 		}
 
 		return $expire;
