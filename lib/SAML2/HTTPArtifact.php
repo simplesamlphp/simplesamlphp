@@ -80,6 +80,9 @@ class SAML2_HTTPArtifact extends SAML2_Binding {
 
 		$idpmetadata = $metadataHandler->getMetaDataConfigForSha1($sourceId, 'saml20-idp-remote');
 
+		if ($idpmetadata === NULL) {
+			throw new Exception('No metadata found for remote provider with SHA1 ID: ' . var_export($sourceId, TRUE));
+		}
 
 		$endpoint = NULL;
 		foreach ($idpmetadata->getEndpoints('ArtifactResolutionService') as $ep) {
