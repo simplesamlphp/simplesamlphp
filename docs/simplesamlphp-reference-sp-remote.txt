@@ -206,14 +206,14 @@ The following SAML 2.0 options are available:
     unset.)
 
 `saml20.sign.response`
-:   Whether `<samlp:Response> messages should be signed.
+:   Whether `<samlp:Response>` messages should be signed.
     Defaults to `TRUE`.
 
 :   Note that this option also exists in the IdP-hosted metadata.
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
 
 `saml20.sign.assertion`
-:   Whether `<saml:Assertion> elements should be signed.
+:   Whether `<saml:Assertion>` elements should be signed.
     Defaults to `TRUE`.
 
 :   Note that this option also exists in the IdP-hosted metadata.
@@ -222,7 +222,11 @@ The following SAML 2.0 options are available:
 `simplesaml.nameidattribute`
 :   When the value of the `NameIDFormat`-option is set to either
     `email` or `persistent`, this is the name of the attribute which
-    should be used as the value of the `NameID`.
+    should be used as the value of the `NameID`. The attribute must
+    be in the set of attributes exported to the SP (that is, be in
+    the `attributes` array). For more advanced control over `NameID`,
+    including the ability to specify any attribute regardless of
+    the set sent to the SP, see the [NameID processing filters](./saml:nameid).
 
 :   Typical values can be `mail` for when using the `email` format,
     and `eduPersonTargetedID` when using the `persistent` format.
