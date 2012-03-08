@@ -1,0 +1,22 @@
+{
+	"disable_title": {
+		"no": "Skrudd av mulighet for automatisk innlogging for denne nettleseren",
+		"nn": "Skrudd av moglegheit for automatisk innlogging for denne nettlesaren"
+	},
+	"disable_info_pre": {
+		"no": "<p>Ved \u00e5 g\u00e5 til denne siden har du skrudd av muligheten for automatisk innlogging for denne nettleseren.<\/p><p>For \u00e5 skru p\u00e5 igjen muligheten, kan du g\u00e5 til <a href='URL'>denne siden<\/a>.<\/p>",
+		"nn": "<p>Ved \u00e5 g\u00e5 til denne siden har du skrudd av moglegheit for automatisk innlogging for denne nettlesaren.<\/p><p>For \u00e5 skru p\u00e5 igjen moglegheita, kan du g\u00e5 til <a href='URL'>denne siden<\/a>.<\/p>"
+	},
+	"enable_title": {
+		"no": "Skrudd p\u00e5 mulighet for automatisk innlogging for denne nettleseren",
+		"nn": "Skrudd p\u00e5 moglegheit for automatisk innlogging for denne nettlesaren"
+	},
+	"enable_info_pre": {
+		"no": "<p>Ved \u00e5 g\u00e5 til denne siden har du skrudd p\u00e5 muligheten for automatisk innlogging for denne nettleseren.<\/p><p>For \u00e5 skru av igjen muligheten, kan du g\u00e5 til <a href='URL'>denne siden<\/a>.<\/p>",
+		"nn": "<p>Ved \u00e5 g\u00e5 til denne siden har du skrudd p\u00e5 moglegheit for automatisk innlogging for denne nettlesaren.<\/p><p>For \u00e5 skru av igjen moglegheita, kan du g\u00e5 til <a href='URL'>denne siden<\/a>.<\/p>"
+	},
+	"info_post": {
+		"no": "<h3>Hva er automatisk innlogging<\/h3><\/p><p>Automatisk innlogging gj\u00f8r at man kan logge inn uten \u00e5 bli bedt om brukernavn og passord i noen tilfeller:<ul><li>hvis maskinen er i Kerberos domenet<\/li><li>og hvis man bruker en st\u00f8ttet nettleser (IE og noen flere avhengig av oppsett)<\/li><li>p\u00e5 et st\u00f8ttet operativsystem (Windows, Mac)<\/li><\/ul><\/p>",
+		"nn": "<h3>Kva er automatisk innlogging<\/h3><\/p><p>Automatisk innlogging gj\u00f8r at man kan logge inn uten \u00e5 bli bedt om brukernavn og passord i noen tilfeller:<ul><li>hvis maskinen er i Kerberos domenet<\/li><li>og hvis man bruker en st\u00f8ttet nettleser (IE og noen flere avhengig av oppsett)<\/li><li>p\u00e5 et st\u00f8ttet operativsystem (Windows, Mac)<\/li><\/ul><\/p>"
+	}
+}
