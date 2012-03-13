@@ -149,7 +149,6 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
         assert('array_key_exists("entityid", $state["Source"])');
         assert('array_key_exists("metadata-set", $state["Source"])');
 
-        $session  = SimpleSAML_Session::getInstance(); 
         $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
         /**
@@ -160,10 +159,6 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
          */
         if (isset($state['saml:sp:IdP'])) {
             $idpmeta         = $metadata->getMetaData($state['saml:sp:IdP'], 'saml20-idp-remote');
-            $state['Source'] = $idpmeta;
-        } elseif ($session->getIdP() !== null) {
-            // For backwards compatibility. TODO: Remove in version 1.8
-            $idpmeta         = $metadata->getMetaData($session->getIdP(), 'saml20-idp-remote');
             $state['Source'] = $idpmeta;
         }
 
