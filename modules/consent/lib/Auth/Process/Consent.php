@@ -128,6 +128,21 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
     }
 
     /**
+     * Helper function to check whether consent is disabled.
+     *
+     * @param mixed $option  The consent.disable option. Either an array or a boolean.
+     * @param string $entityIdD  The entityID of the SP/IdP.
+     * @return boolean  TRUE if disabled, FALSE if not.
+     */
+    private static function checkDisable($option, $entityId) {
+        if (is_array($option)) {
+            return in_array($entityId, $option, TRUE);
+        } else {
+            return (boolean)$option;
+        }
+    }
+
+    /**
      * Process a authentication response
      *
      * This function saves the state, and redirects the user to the page where
@@ -167,7 +182,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
         }
 
         // Do not use consent if disabled on source entity
-        if ( isset($state['Source']['consent.disable']) && in_array($spEntityId, $state['Source']['consent.disable'])) {
+        if (isset($state['Source']['consent.disable']) && self::checkDisable($state['Source']['consent.disable'], $spEntityId)) {
             SimpleSAML_Logger::debug('Consent: Consent disabled for entity ' . $spEntityId);
             return;
         }

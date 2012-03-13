@@ -188,7 +188,7 @@ Disabling consent
 -----------------
 
 It is possible to disable consent for a given service. You can add an option
-in the matadata on the IdP, that will disable consent for det given service.
+in the metadata on the IdP, that will disable consent for the given service.
 Add 'consent.disable' array option and enter the entityids of the services,
 that you do not want consent for.
 
@@ -199,6 +199,12 @@ Example:
         'sp2.example.com',
         ...
     ),
+
+It is also possible to disable consent for all SPs for a given IdP by setting
+the 'consent.disable' option to TRUE:
+
+    'consent.disable' => TRUE,
+
 
    
 Attribute presentation
