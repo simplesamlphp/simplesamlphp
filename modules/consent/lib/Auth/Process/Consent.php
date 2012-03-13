@@ -181,9 +181,13 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             $state['Source'] = $idpmeta;
         }
 
-        // Do not use consent if disabled on source entity
+        // Do not use consent if disabled
         if (isset($state['Source']['consent.disable']) && self::checkDisable($state['Source']['consent.disable'], $spEntityId)) {
-            SimpleSAML_Logger::debug('Consent: Consent disabled for entity ' . $spEntityId);
+            SimpleSAML_Logger::debug('Consent: Consent disabled for entity ' . $spEntityId . ' with IdP ' . $idpEntityId);
+            return;
+        }
+        if (isset($state['Destination']['consent.disable']) && self::checkDisable($state['Destination']['consent.disable'], $idpEntityId)) {
+            SimpleSAML_Logger::debug('Consent: Consent disabled for entity ' . $spEntityId . ' with IdP ' . $idpEntityId);
             return;
         }
 
