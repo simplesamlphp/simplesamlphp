@@ -149,6 +149,9 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
         assert('array_key_exists("entityid", $state["Source"])');
         assert('array_key_exists("metadata-set", $state["Source"])');
 
+        $spEntityId = $state['Destination']['entityid'];
+        $idpEntityId = $state['Source']['entityid'];
+
         $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
         /**
@@ -158,22 +161,20 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
          * done.
          */
         if (isset($state['saml:sp:IdP'])) {
-            $idpmeta         = $metadata->getMetaData($state['saml:sp:IdP'], 'saml20-idp-remote');
+            $idpEntityId = $state['saml:sp:IdP'];
+            $idpmeta         = $metadata->getMetaData($idpEntityId, 'saml20-idp-remote');
             $state['Source'] = $idpmeta;
         }
 
         if ($this->_store !== null) {
             // Do not use consent if disabled on source entity 
-            if ( isset($state['Source']['consent.disable']) && in_array($state['Destination']['entityid'], $state['Source']['consent.disable'])) {
-                SimpleSAML_Logger::debug(
-                    'Consent: Consent disabled for entity ' .
-                    $state['Destination']['entityid']
-                );
+            if ( isset($state['Source']['consent.disable']) && in_array($spEntityId, $state['Source']['consent.disable'])) {
+                SimpleSAML_Logger::debug('Consent: Consent disabled for entity ' . $spEntityId);
                 return;
             }
 
-            $source      = $state['Source']['metadata-set'] . '|' . $state['Source']['entityid'];
-            $destination = $state['Destination']['metadata-set'] . '|' . $state['Destination']['entityid'];
+            $source      = $state['Source']['metadata-set'] . '|' . $idpEntityId;
+            $destination = $state['Destination']['metadata-set'] . '|' . $spEntityId;
             $attributes  = $state['Attributes'];
 
             // Remove attributes that do not require consent
