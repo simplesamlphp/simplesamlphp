@@ -118,6 +118,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             '_username',
             '_password',
             '_table',
+            '_timeout',
         );
     }
 
