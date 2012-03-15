@@ -18,9 +18,25 @@ if (!($response instanceof SAML2_Response)) {
 	throw new SimpleSAML_Error_BadRequest('Invalid message received to AssertionConsumerService endpoint.');
 }
 
+$idp = $response->getIssuer();
+if ($idp === NULL) {
+	/* No Issuer in the response. Look for an unencrypted assertion with an issuer. */
+	foreach ($response->getAssertions() as $a) {
+		if ($a instanceof SAML2_Assertion) {
+			/* We found an unencrypted assertion - there should be an issuer here. */
+			$idp = $a->getIssuer();
+			break;
+		}
+	}
+	if ($idp === NULL) {
+		/* No issuer found in the assertions. */
+		throw new Exception('Missing <saml:Issuer> in message delivered to AssertionConsumerService.');
+	}
+}
+
 $session = SimpleSAML_Session::getInstance();
 $prevAuth = $session->getAuthData($sourceId, 'saml:sp:prevAuth');
-if ($prevAuth !== NULL && $prevAuth['id'] === $response->getId() && $prevAuth['issuer'] === $response->getIssuer()) {
+if ($prevAuth !== NULL && $prevAuth['id'] === $response->getId() && $prevAuth['issuer'] === $idp) {
 	/* OK, it looks like this message has the same issuer
 	 * and ID as the SP session we already have active. We
 	 * therefore assume that the user has somehow triggered
@@ -49,11 +65,6 @@ if (!empty($stateId)) {
 		'saml:sp:AuthId' => $sourceId,
 		'saml:sp:RelayState' => $response->getRelayState(),
 	);
-}
-
-$idp = $response->getIssuer();
-if ($idp === NULL) {
-	throw new Exception('Missing <saml:Issuer> in message delivered to AssertionConsumerService.');
 }
 
 SimpleSAML_Logger::debug('Received SAML2 Response from ' . var_export($idp, TRUE) . '.');
