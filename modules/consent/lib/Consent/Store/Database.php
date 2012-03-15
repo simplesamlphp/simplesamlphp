@@ -101,9 +101,6 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             }
             $this->_timeout = $config['timeout'];
         }
-
-        // @TODO Should be removed
-        $db = $this->_getDB();
     }
 
     /**
