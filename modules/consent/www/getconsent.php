@@ -56,7 +56,11 @@ if (array_key_exists('yes', $_REQUEST)) {
             'Consent - saveConsent() : [' . $userId . '|' .
             $targetedId . '|' .  $attributeSet . ']'
         );	
-        $store->saveConsent($userId, $targetedId, $attributeSet);
+        try {
+            $store->saveConsent($userId, $targetedId, $attributeSet);
+        } catch (Exception $e) {
+            SimpleSAML_Logger::error('Consent: Error writing to storage: ' . $e->getMessage());
+        }
     }
 
     SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
