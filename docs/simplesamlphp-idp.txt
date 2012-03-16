@@ -154,7 +154,7 @@ The [interoperable SAML 2 profile](http://saml2int.org/profile/current) specifie
 We therefore recommended enabling this in new installations.
 This can be done by adding the following to the saml20-idp-hosted configuration:
 
-    'AttributeNameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+    'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
     'authproc' => array(
         // Convert LDAP names to oids.
         100 => array('class' => 'core:AttributeMap', 'name2oid'),

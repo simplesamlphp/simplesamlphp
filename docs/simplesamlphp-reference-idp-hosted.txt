@@ -133,7 +133,7 @@ The following SAML 2.0 options are available:
 
 :   Note that this option can be set for each SP in the SP-remote metadata.
 
-`AttributeNameFormat`
+`attributes.NameFormat`
 :   What value will be set in the Format field of attribute
     statements. This parameter can be configured multiple places, and
     the actual value used is fetched from metadata by the following
@@ -162,6 +162,8 @@ The following SAML 2.0 options are available:
 :   Note that this option also exists in the SP-remote metadata, and
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
+
+:   (This option was previously named `AttributeNameFormat`.)
 
 `https.certificate`
 :   The certificate used by the webserver when handling connections.

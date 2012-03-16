@@ -123,7 +123,7 @@ The following SAML 2.0 options are available:
 
 :   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
 
-`AttributeNameFormat`
+`attributes.NameFormat`
 :   What value will be set in the Format field of attribute
     statements. This parameter can be configured multiple places, and
     the actual value used is fetched from metadata by the following
@@ -152,6 +152,8 @@ The following SAML 2.0 options are available:
 :   Note that this option also exists in the IdP-hosted metadata. This
     entry in the SP-remote metadata overrides the option in the
     IdP-hosted metadata.
+
+:   (This option was previously named `AttributeNameFormat`.)
 
 `ForceAuthn`
 :   Set this `TRUE` to force the user to reauthenticate when the IdP

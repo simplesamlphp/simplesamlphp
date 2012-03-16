@@ -622,6 +622,40 @@ class sspmod_saml_IdP_SAML2 {
 
 
 	/**
+	 * Determine which NameFormat we should use for attributes.
+	 *
+	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
+	 * @param SimpleSAML_Configuration $spMetadata  The metadata of the SP.
+	 * @return string  The NameFormat.
+	 */
+	private static function getAttributeNameFormat(SimpleSAML_Configuration $idpMetadata, SimpleSAML_Configuration $spMetadata) {
+
+		/* Try SP metadata first. */
+		$attributeNameFormat = $spMetadata->getString('attributes.NameFormat', NULL);
+		if ($attributeNameFormat !== NULL) {
+			return $attributeNameFormat;
+		}
+		$attributeNameFormat = $spMetadata->getString('AttributeNameFormat', NULL);
+		if ($attributeNameFormat !== NULL) {
+			return $attributeNameFormat;
+		}
+
+		/* Look in IdP metadata. */
+		$attributeNameFormat = $idpMetadata->getString('attributes.NameFormat', NULL);
+		if ($attributeNameFormat !== NULL) {
+			return $attributeNameFormat;
+		}
+		$attributeNameFormat = $idpMetadata->getString('AttributeNameFormat', NULL);
+		if ($attributeNameFormat !== NULL) {
+			return $attributeNameFormat;
+		}
+
+		/* Default. */
+		return 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic';
+	}
+
+
+	/**
 	 * Build an assertion based on information in the metadata.
 	 *
 	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
@@ -687,11 +721,7 @@ class sspmod_saml_IdP_SAML2 {
 		/* Add attributes. */
 
 		if ($spMetadata->getBoolean('simplesaml.attributes', TRUE)) {
-			$attributeNameFormat = $spMetadata->getString('AttributeNameFormat', NULL);
-			if ($attributeNameFormat === NULL) {
-				$attributeNameFormat = $idpMetadata->getString('AttributeNameFormat',
-					'urn:oasis:names:tc:SAML:2.0:attrname-format:basic');
-			}
+			$attributeNameFormat = self::getAttributeNameFormat($idpMetadata, $spMetadata);
 			$a->setAttributeNameFormat($attributeNameFormat);
 			$attributes = self::encodeAttributes($idpMetadata, $spMetadata, $state['Attributes']);
 			$a->setAttributes($attributes);
