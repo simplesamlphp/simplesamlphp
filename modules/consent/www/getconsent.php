@@ -42,6 +42,14 @@ if (array_key_exists('yes', $_REQUEST)) {
         SimpleSAML_Logger::stats('consentResponse rememberNot');
     }
 
+    $statsInfo = array(
+        'remember' => array_key_exists('saveconsent', $_REQUEST),
+    );
+    if (isset($state['Destination']['entityid'])) {
+        $statsInfo['spEntityID'] = $state['Destination']['entityid'];
+    }
+    SimpleSAML_Stats::log('consent:accept', $statsInfo);
+
     if (   array_key_exists('consent:store', $state) 
         && array_key_exists('saveconsent', $_REQUEST)
         && $_REQUEST['saveconsent'] === '1'

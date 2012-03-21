@@ -24,6 +24,12 @@ if (isset($state['Destination']['url.about'])) {
     $aboutService = $state['Destination']['url.about'];
 }
 
+$statsInfo = array();
+if (isset($state['Destination']['entityid'])) {
+    $statsInfo['spEntityID'] = $state['Destination']['entityid'];
+}
+SimpleSAML_Stats::log('consent:reject', $statsInfo);
+
 $globalConfig = SimpleSAML_Configuration::getInstance();
 
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'consent:noconsent.php');
