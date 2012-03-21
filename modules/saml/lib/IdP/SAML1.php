@@ -37,6 +37,12 @@ class sspmod_saml_IdP_SAML1 {
 		$config = SimpleSAML_Configuration::getInstance();
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
+		SimpleSAML_Stats::log('saml:idp:Response', array(
+			'spEntityID' => $spEntityId,
+			'idpEntityID' => $idpMetadata->getString('entityid'),
+			'protocol' => 'saml1',
+		));
+
 		/* Generate and send response. */
 		$ar = new SimpleSAML_XML_Shib13_AuthnResponse();
 		$authnResponseXML = $ar->generate($idpMetadata, $spMetadata, $shire, $attributes);
@@ -100,6 +106,11 @@ class sspmod_saml_IdP_SAML1 {
 			throw new Exception('Invalid AssertionConsumerService for SP ' .
 				var_export($spEntityId, TRUE) . ': ' . var_export($shire, TRUE));
 		}
+
+		SimpleSAML_Stats::log('saml:AuthnRequest', array(
+			'spEntityID' => $spEntityId,
+			'protocol' => 'saml1',
+		));
 
 		$sessionLostURL = SimpleSAML_Utilities::addURLparameter(
 			SimpleSAML_Utilities::selfURL(),

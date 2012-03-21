@@ -64,6 +64,12 @@ class sspmod_saml_IdP_SAML2 {
 		/* Register the session association with the IdP. */
 		$idp->addAssociation($association);
 
+		SimpleSAML_Stats::log('saml:idp:Response', array(
+			'spEntityID' => $spEntityId,
+			'idpEntityID' => $idpMetadata->getString('entityid'),
+			'protocol' => 'saml2',
+		));
+
 		/* Send the response. */
 		$binding = SAML2_Binding::getBinding($protocolBinding);
 		$binding->send($ar);
@@ -105,10 +111,18 @@ class sspmod_saml_IdP_SAML2 {
 		$ar->setInResponseTo($requestId);
 		$ar->setRelayState($relayState);
 
-		$ar->setStatus(array(
+		$status = array(
 			'Code' => $error->getStatus(),
 			'SubCode' => $error->getSubStatus(),
 			'Message' => $error->getStatusMessage(),
+		);
+		$ar->setStatus($status);
+
+		SimpleSAML_Stats::log('saml:idp:Response:error', array(
+			'spEntityID' => $spEntityId,
+			'idpEntityID' => $idpMetadata->getString('entityid'),
+			'protocol' => 'saml2',
+			'error' => $status,
 		));
 
 		$binding = SAML2_Binding::getBinding($protocolBinding);
@@ -259,6 +273,8 @@ class sspmod_saml_IdP_SAML2 {
 			$extensions = NULL;
 			$allowCreate = TRUE;
 
+			$idpInit = TRUE;
+
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: IdP initiated authentication: '. var_export($spEntityId, TRUE));
 
 		} else {
@@ -304,8 +320,19 @@ class sspmod_saml_IdP_SAML2 {
 				$allowCreate = FALSE;
 			}
 
+			$idpInit = FALSE;
+
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '. var_export($spEntityId, TRUE));
 		}
+
+		SimpleSAML_Stats::log('saml:AuthnRequest', array(
+			'spEntityID' => $spEntityId,
+			'idpEntityID' => $idpMetadata->getString('entityid'),
+			'forceAuthn' => $forceAuthn,
+			'isPassive' => $isPassive,
+			'protocol' => 'saml2',
+			'idpInit' => $idpInit,
+		));
 
 		$acsEndpoint = self::getAssertionConsumerService($supportedBindings, $spMetadata, $consumerURL, $protocolBinding, $consumerIndex);
 
@@ -373,14 +400,22 @@ class sspmod_saml_IdP_SAML2 {
 		$lr->setRelayState($state['saml:RelayState']);
 
 		if (isset($state['core:Failed']) && $state['core:Failed']) {
+			$partial = TRUE;
 			$lr->setStatus(array(
 				'Code' => SAML2_Const::STATUS_SUCCESS,
 				'SubCode' => SAML2_Const::STATUS_PARTIAL_LOGOUT,
 			));
 			SimpleSAML_Logger::info('Sending logout response for partial logout to SP ' . var_export($spEntityId, TRUE));
 		} else {
+			$partial = FALSE;
 			SimpleSAML_Logger::debug('Sending logout response to SP ' . var_export($spEntityId, TRUE));
 		}
+
+		SimpleSAML_Stats::log('saml:idp:LogoutResponse:sent', array(
+			'spEntityID' => $spEntityId,
+			'idpEntityID' => $idpMetadata->getString('entityid'),
+			'partial' => $partial
+		));
 
 		$binding = new SAML2_HTTPRedirect();
 		$binding->send($lr);
@@ -412,6 +447,14 @@ class sspmod_saml_IdP_SAML2 {
 		if ($message instanceof SAML2_LogoutResponse) {
 
 			SimpleSAML_Logger::info('Received SAML 2.0 LogoutResponse from: '. var_export($spEntityId, TRUE));
+			$statsData = array(
+				'spEntityID' => $spEntityId,
+				'idpEntityID' => $idpMetadata->getString('entityid'),
+			);
+			if (!$message->isSuccess()) {
+				$statsData['error'] = $message->getStatus();
+			}
+			SimpleSAML_Stats::log('saml:idp:LogoutResponse:recv', $statsData);
 
 			$relayState = $message->getRelayState();
 
@@ -430,6 +473,10 @@ class sspmod_saml_IdP_SAML2 {
 		} elseif ($message instanceof SAML2_LogoutRequest) {
 
 			SimpleSAML_Logger::info('Received SAML 2.0 LogoutRequest from: '. var_export($spEntityId, TRUE));
+			SimpleSAML_Stats::log('saml:idp:LogoutRequest:recv', array(
+				'spEntityID' => $spEntityId,
+				'idpEntityID' => $idpMetadata->getString('entityid'),
+			));
 
 			$spStatsId = $spMetadata->getString('core:statistics-id', $spEntityId);
 			SimpleSAML_Logger::stats('saml20-idp-SLO spinit ' . $spStatsId . ' ' . $idpMetadata->getString('entityid'));
@@ -485,6 +532,11 @@ class sspmod_saml_IdP_SAML2 {
 		if ($encryptNameId) {
 			$lr->encryptNameId(sspmod_saml_Message::getEncryptionKey($spMetadata));
 		}
+
+		SimpleSAML_Stats::log('saml:idp:LogoutRequest:sent', array(
+			'spEntityID' => $association['saml:entityID'],
+			'idpEntityID' => $idpMetadata->getString('entityid'),
+		));
 
 		$binding = new SAML2_HTTPRedirect();
 		return $binding->getRedirectURL($lr);
