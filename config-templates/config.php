@@ -140,8 +140,29 @@ $config = array (
 	/* Logging: file - Logfilename in the loggingdir from above.
 	 */
 	'logging.logfile'		=> 'simplesamlphp.log',
-	
-	
+
+	/* (New) statistics output configuration.
+	 *
+	 * This is an array of outputs. Each output has at least a 'class' option, which
+	 * selects the output.
+	 */
+	'statistics.out' => array(
+		// Log statistics to the normal log.
+		/*
+		array(
+			'class' => 'core:Log',
+			'level' => 'notice',
+		),
+		*/
+		// Log statistics to files in a directory. One file per day.
+		/*
+		array(
+			'class' => 'core:File',
+			'directory' => '/var/log/stats',
+		),
+		*/
+	),
+
 
 	/*
 	 * Enable
