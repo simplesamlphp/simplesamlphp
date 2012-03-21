@@ -430,6 +430,10 @@ class SimpleSAML_Configuration {
 			$path = $this->configuration[$name];
 		}
 
+		if ($path === NULL) {
+			return NULL;
+		}
+
 		return $this->resolvePath($path) . '/';
 	}
 
