@@ -2,7 +2,6 @@
 
 $id = $this->data['id'];
 $SPs = $this->data['SPs'];
-$timeout = $this->data['timeout'];
 
 $iframeURL = 'logout-iframe.php?type=embed&id=' . urlencode($id);
 
