@@ -200,6 +200,9 @@ The following SAML 2.0 options are available:
 :   SP NameQualifier for this SP. If not set, the IdP will set the
     SPNameQualifier to be the SP entity ID.
 
+`certData`
+:   The base64 encoded certificate for this SP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the `certificate`-option.
+
 `certificate`
 :   Name of certificate file for this SP. The certificate is used to
     verify the signature of messages received from the SP (if
