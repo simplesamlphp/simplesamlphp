@@ -150,13 +150,7 @@ abstract class SimpleSAML_SessionHandler {
 			$expire = time() + $params['lifetime'];;
 		}
 
-		$version = explode('.', PHP_VERSION);
-		if ((int)$version[0] === 5 && (int)$version[1] < 2) {
-			$success = setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure']);
-		} else {
-			$success = setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
-		}
-		if (!$success) {
+		if (!setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'], $params['httponly'])) {
 			throw new SimpleSAML_Error_Exception('Error setting cookie - headers already sent.');
 		}
 	}
