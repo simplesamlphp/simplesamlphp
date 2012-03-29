@@ -37,11 +37,12 @@
 					if (isset($this->data['username'])) {
 						echo 'value="' . htmlspecialchars($this->data['username']) . '"';
 					}
-					echo '/></td>';
+					echo '/>';
 				}
 			
 			
 			?>
+			</td>
 
 			<td style="padding: .4em;" rowspan="2">
 				<input type="submit" tabindex="3" value="<?php echo $this->t('login_button'); ?>" />
