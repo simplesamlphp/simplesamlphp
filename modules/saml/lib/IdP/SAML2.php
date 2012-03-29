@@ -226,6 +226,9 @@ class sspmod_saml_IdP_SAML2 {
 		if ($idpMetadata->getBoolean('saml20.sendartifact', FALSE)) {
 			$supportedBindings[] = SAML2_Const::BINDING_HTTP_ARTIFACT;
 		}
+		if ($idpMetadata->getBoolean('saml20.hok.assertion', FALSE)) {
+			$supportedBindings[] = SAML2_Const::BINDING_HOK_SSO;
+		}
 
 		if (isset($_REQUEST['spentityid'])) {
 			/* IdP initiated authentication. */
@@ -763,11 +766,47 @@ class sspmod_saml_IdP_SAML2 {
 		$a->setSessionIndex(SimpleSAML_Utilities::generateID());
 
 		$sc = new SAML2_XML_saml_SubjectConfirmation();
-		$sc->Method = SAML2_Const::CM_BEARER;
 		$sc->SubjectConfirmationData = new SAML2_XML_saml_SubjectConfirmationData();
 		$sc->SubjectConfirmationData->NotOnOrAfter = time() + $assertionLifetime;
 		$sc->SubjectConfirmationData->Recipient = $state['saml:ConsumerURL'];
 		$sc->SubjectConfirmationData->InResponseTo = $state['saml:RequestId'];
+
+		/* ProtcolBinding of SP's <AuthnRequest> overwrites IdP hosted metadata configuration. */
+		$hokAssertion = NULL;
+		if ($state['saml:Binding'] === SAML2_Const::BINDING_HOK_SSO) {
+		    $hokAssertion = TRUE;
+		}
+		if ($hokAssertion === NULL) {
+			$hokAssertion = $idpMetadata->getBoolean('saml20.hok.assertion', FALSE);
+		}
+
+		if ($hokAssertion) {
+			/* Holder-of-Key */
+			$sc->Method = SAML2_Const::CM_HOK;
+			if (SimpleSAML_Utilities::isHTTPS()) {
+				if (isset($_SERVER['SSL_CLIENT_CERT']) && !empty($_SERVER['SSL_CLIENT_CERT'])) {
+					/* Extract certificate data (if this is a certificate). */
+					$clientCert = $_SERVER['SSL_CLIENT_CERT'];
+					$pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
+					if (preg_match($pattern, $clientCert, $matches)) {
+						/* We have a client certificate from the browser which we add to the HoK assertion. */
+						$x509Certificate = new SAML2_XML_ds_X509Certificate();
+						$x509Certificate->certificate = str_replace(array("\r", "\n", " "), '', $matches[1]);
+
+						$x509Data = new SAML2_XML_ds_X509Data();
+						$x509Data->data[] = $x509Certificate;
+
+						$keyInfo = new SAML2_XML_ds_KeyInfo();
+						$keyInfo->info[] = $x509Data;
+
+						$sc->SubjectConfirmationData->info[] = $keyInfo;
+					} else throw new SimpleSAML_Error_Exception('Error creating HoK assertion: No valid client certificate provided during TLS handshake with IdP');
+				} else throw new SimpleSAML_Error_Exception('Error creating HoK assertion: No client certificate provided during TLS handshake with IdP');
+			} else throw new SimpleSAML_Error_Exception('Error creating HoK assertion: No HTTPS connection to IdP, but required for Holder-of-Key SSO');
+		} else {
+			/* Bearer */
+			$sc->Method = SAML2_Const::CM_BEARER;
+		}
 		$a->setSubjectConfirmation(array($sc));
 
 		/* Add attributes. */

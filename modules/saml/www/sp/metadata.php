@@ -72,6 +72,13 @@ $acs->Binding = 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01';
 $acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId . '/artifact');
 $sp->AssertionConsumerService[] = $acs;
 
+$acs = new SAML2_XML_md_IndexedEndpointType();
+$acs->index = 4;
+$acs->Binding = 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser';
+$acs->ProtocolBinding = SAML2_Const::BINDING_HTTP_POST;
+$acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
+$sp->AssertionConsumerService[] = $acs;
+
 $keys = array();
 $certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig, FALSE, 'new_');
 if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {

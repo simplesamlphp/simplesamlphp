@@ -39,11 +39,21 @@ class SAML2_Const {
 	 */
 	const BINDING_SOAP = 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP';
 
+	/**
+	 * The URN for the Holder-of-Key Web Browser SSO Profile binding
+	 */
+	const BINDING_HOK_SSO = 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser';
+
 
 	/**
 	 * Bearer subject confirmation method.
 	 */
 	const CM_BEARER = 'urn:oasis:names:tc:SAML:2.0:cm:bearer';
+
+	/**
+	* Holder-of-Key subject confirmation method.
+	*/
+	const CM_HOK = 'urn:oasis:names:tc:SAML:2.0:cm:holder-of-key';
 
 
 	/**
@@ -103,6 +113,10 @@ class SAML2_Const {
 	 */
 	const NS_XSI = 'http://www.w3.org/2001/XMLSchema-instance';
 
+	/**
+	 * The namespace for the SAML 2 HoK Web Browser SSO Profile.
+	 */
+	const NS_HOK = 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser';
 
 	/**
 	 * Top-level status code indicating successful processing of the request.

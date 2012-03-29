@@ -60,7 +60,9 @@ try {
 	$metaArray = array(
 		'metadata-set' => 'saml20-idp-remote',
 		'entityid' => $idpentityid,
-		'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted'),
+		'SingleSignOnService' => array(0 => array(
+					'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+					'Location' => $metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted'))),
 		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted'),
 	);
 
@@ -77,6 +79,14 @@ try {
 			'Location' => SimpleSAML_Utilities::getBaseURL() . 'saml2/idp/ArtifactResolutionService.php',
 			'Binding' => SAML2_Const::BINDING_SOAP,
 		);
+	}
+
+	if ($idpmeta->getBoolean('saml20.hok.assertion', FALSE)) {
+		/* Prepend HoK SSO Service endpoint. */
+		array_unshift($metaArray['SingleSignOnService'], array(
+			'hoksso:ProtocolBinding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+			'Binding' => SAML2_Const::BINDING_HOK_SSO,
+			'Location' => SimpleSAML_Utilities::getBaseURL() . 'saml2/idp/SSOService.php'));
 	}
 
 	$metaArray['NameIDFormat'] = $idpmeta->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');

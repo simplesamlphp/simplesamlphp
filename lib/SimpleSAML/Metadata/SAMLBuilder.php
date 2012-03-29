@@ -190,6 +190,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			if (isset($ep['ResponseLocation'])) {
 				$t->ResponseLocation = $ep['ResponseLocation'];
 			}
+			if (isset($ep['hoksso:ProtocolBinding'])) {
+			    $t->setAttributeNS(SAML2_Const::NS_HOK, 'hoksso:ProtocolBinding', SAML2_Const::BINDING_HTTP_REDIRECT);
+			}
 
 			if ($indexed) {
 				if (!isset($ep['index'])) {
