@@ -87,6 +87,30 @@ class SAML2_Utils {
 
 
 	/**
+	 * Helper function to convert a XMLSecurityKey to the correct algorithm.
+	 *
+	 * @param XMLSecurityKey $key  The key.
+	 * @param string $algorithm  The desired algorithm.
+	 * @return XMLSecurityKey  The new key.
+	 */
+	private static function castKey(XMLSecurityKey $key, $algorithm) {
+		assert('is_string($algorithm)');
+
+		$keyInfo = openssl_pkey_get_details($key->key);
+		if ($keyInfo === FALSE) {
+			throw new Exception('Unable to get key details from XMLSecurityKey.');
+		}
+		if (!isset($keyInfo['key'])) {
+			throw new Exception('Missing key in public key details.');
+		}
+
+		$newKey = new XMLSecurityKey($algorithm, array('type'=>'public'));
+		$newKey->loadKey($keyInfo['key']);
+		return $newKey;
+	}
+
+
+	/**
 	 * Check a signature against a key.
 	 *
 	 * An exception is thrown if we are unable to validate the signature.
@@ -98,6 +122,20 @@ class SAML2_Utils {
 		assert('array_key_exists("Signature", $info)');
 
 		$objXMLSecDSig = $info['Signature'];
+
+		$sigMethod = self::xpQuery($objXMLSecDSig->sigNode, './ds:SignedInfo/ds:SignatureMethod');
+		if (empty($sigMethod)) {
+			throw new Exception('Missing SignatureMethod element.');
+		}
+		$sigMethod = $sigMethod[0];
+		if (!$sigMethod->hasAttribute('Algorithm')) {
+			throw new Exception('Missing Algorithm-attribute on SignatureMethod element.');
+		}
+		$algo = $sigMethod->getAttribute('Algorithm');
+
+		if ($key->type === XMLSecurityKey::RSA_SHA1 && $algo === XMLSecurityKey::RSA_SHA256) {
+			$key = self::castKey($key, XMLSecurityKey::RSA_SHA256);
+		}
 
 		/* Check the signature. */
 		if (! $objXMLSecDSig->verify($key)) {
