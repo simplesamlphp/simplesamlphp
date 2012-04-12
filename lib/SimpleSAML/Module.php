@@ -42,7 +42,9 @@ class SimpleSAML_Module {
 			return FALSE;
 		}
 
-		assert('file_exists($moduleDir . "/default-disable") || file_exists($moduleDir . "/default-enable")');
+		if (assert_options(ASSERT_ACTIVE) && !file_exists($moduleDir . '/default-enable') && !file_exists($moduleDir . '/default-disable')) {
+			SimpleSAML_Logger::error("Missing default-enable or default-disable file for the module $module");
+		}
 
 		if(file_exists($moduleDir . '/enable')) {
 			return TRUE;
