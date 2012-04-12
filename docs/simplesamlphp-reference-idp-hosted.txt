@@ -202,8 +202,12 @@ The following SAML 2.0 options are available:
 
 :   Note that this requires a configured memcache server.
 
+`saml20.hok.assertion`
+:   Set to `TRUE` to enable the IdP to send responses according the [Holder-of-Key Web Browser SSO Profile](./simplesamlphp-hok-idp).
+    Defaults to `FALSE`.
+
 `saml20.sign.response`
-:   Whether `<samlp:Response> messages should be signed.
+:   Whether `<samlp:Response>` messages should be signed.
     Defaults to `TRUE`.
 
 :   Note that this option also exists in the SP-remote metadata, and
@@ -211,7 +215,7 @@ The following SAML 2.0 options are available:
     in the IdP metadata.
 
 `saml20.sign.assertion`
-:   Whether `<saml:Assertion> elements should be signed.
+:   Whether `<saml:Assertion>` elements should be signed.
     Defaults to `TRUE`.
 
 :   Note that this option also exists in the SP-remote metadata, and
