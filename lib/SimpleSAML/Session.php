@@ -8,7 +8,7 @@
  * information about all the currently logged in SPs. This is used when the user initiate a 
  * Single-Log-Out.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Ã…kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @version $Id$
  */
@@ -835,8 +835,8 @@ class SimpleSAML_Session {
 	 *                  and the default is 4 hours.
 	 */
 	public function setData($type, $id, $data, $timeout = NULL) {
-		assert(is_string($type));
-		assert(is_string($id));
+		assert('is_string($type)');
+		assert('is_string($id)');
 		assert('is_int($timeout) || is_null($timeout) || $timeout === self::DATA_TIMEOUT_LOGOUT');
 
 		/* Clean out old data. */
