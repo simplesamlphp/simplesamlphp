@@ -328,7 +328,7 @@ class sspmod_saml_IdP_SAML2 {
 			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '. var_export($spEntityId, TRUE));
 		}
 
-		SimpleSAML_Stats::log('saml:AuthnRequest', array(
+		SimpleSAML_Stats::log('saml:idp:AuthnRequest', array(
 			'spEntityID' => $spEntityId,
 			'idpEntityID' => $idpMetadata->getString('entityid'),
 			'forceAuthn' => $forceAuthn,
