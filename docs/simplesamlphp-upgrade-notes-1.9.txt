@@ -1,0 +1,8 @@
+Upgrade notes for simpleSAMLphp 1.9
+===================================
+
+  * The OpenID client "linkback" URL has changed from `.../module.php/openid/consumer.php` to `.../module.php/openid/linkback.php`.
+  * Support for CA path validation has been removed from SAML 2.0.
+  * The X-Frame-Options has been added to the default templates, to prevent the pages from being loaded in iframes.
+  * Access permissions of generated files are now restricted to the current user.
+  * The code to set cookies now requires PHP version >= 5.2. (PHP version 5.2.0 or newer has been the only supported version for a while, but it has in some cases been possible to run simpleSAMLphp with older versions.)

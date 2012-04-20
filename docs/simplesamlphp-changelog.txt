@@ -6,6 +6,163 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.9
+
+Released 2012-03-XX.
+
+  * Restructure error templates to share a common base template.
+  * Warnings about URL length limits from Suhosin PHP extension.
+  * New base class for errors from authentication sources.
+  * Support for overriding URL generation when behind a reverse proxy.
+  * New lanugages: Russian, Estonian, Hebrew, Chinese, Indonesian
+  * Add getAuthSource()-function to SimpleSAML_Auth_Simple.
+  * Add reauthenticate()-function to SimpleSAML_Auth_Source. (Is called when the IdP receives a new authentication request.)
+  * iframe logout: Make it possible to skip the "question-page" for code on the IdP.
+  * RTL text support.
+  * Make SimpleSAMLAuthToken cookie name configurable.
+  * Block writing secure cookies when we are on http.
+  * Fix state information being unavailable to UserPassOrgBase authentication templates.
+  * Make it possible to send POST-messages to http-endpoints without triggering a warning when the IdP supports both http and https.
+  * Add IPv6-support to the SimpleSAML_Utilities::ipCIDRcheck()-function.
+  * Do not allow users to switch to a language that is not enabled.
+  * iframe logout: Add a per-SP timeout option.
+  * SimpleSAML_Auth_LDAP: Better logging of the cause of exceptions.
+  * SimpleSAML_Auth_State: Add $allowMissing-parameter to loadState().
+  * module.php: More strict URL parsing.
+  * Add support for hashed admin passwords.
+  * Use openssl_random_pseudo_bytes() for better cross-platform random number generation.
+  * Add the current hostname to the error reports.
+  * Make the lifetime of SimpleSAML_Auth_State "state-arrays" configurable (via the `session.state.timeout`-option).
+  * SimpleSAML_Auth_State: Add cloneState()-function.
+  * Fix log levels used on Windows.
+  * SimpleSAML_Auth_LDAP: Clean up some unused code.
+  * core:UserPassOrgBase: Add selected organization to the authentication data that is stored in the session.
+  * Do not warn about missing Radius and LDAP PHP extensions unless those modules are enabled.
+  * Support for overriding the logic to determine the language.
+  * Avoid crashes due to deprecation-warnings issued by PHP.
+  * Use case-insensitive matching of language codes.
+  * Add X-Frame-Options to prevent other sites from loading the SSP-pages in an iframe.
+  * Add SimpleSAML_Utilities::isWindowsOS()-helper function.
+  * chmod() generated files to only be accessible to the owner of the files.
+  * Fix "re-posting" of POST data containing a key named "submit".
+  * Do not attempt to read new sessions from the session handler.
+  * Fix some pass-by-reference uses. (Support removed in PHP 5.4.)
+  * Warn the user if the secretsalt-option isn't set.
+  * A prototype for a new statistics logging core. Provides more structured logging of events, and support for multiple storage backends.
+  * Support for arbitrary namespace-prefixed attributes in md:EndpointType-elements.
+  * Fix invalid HTML for login pages where username is set.
+  * Remove unecessary check for PHP version >= 5.2 when setting cookies.
+  * Better error message when a module is missing a default-enable or default-disable file.
+
+### `authcrypt`
+
+  * `authcrypt:Hash`: New authentication source for checking username & password against configuration.
+  * `authcrypt:Htpasswd`: New authentication source for checking username & password against a `.htpasswd`-file.
+
+### `authfacebook`
+
+  * Update to latest Facebook PHP SDK.
+
+### `authorize`
+
+  * `authorize:Authorize`: Add flag to change the behaviour from default-deny to default-allow.
+  * `authorize:Authorize`: Add flag to do simple string matching instead of regex-matching.
+
+### `authtwitter`
+
+  * Update to use the correct API endpoint.
+  * Propagate "user aborted" errors back to the caller.
+  * Changes to error handling, throw more relevant exceptions.
+  * Store state information directly in the state array, instead of the session.
+
+### `authYubiKey`
+
+  * Remove deprecated uses of split().
+
+### `cas`
+
+  * Make it possible for subclasses to override finalState().
+
+### `core`
+
+  * `core:AttributeCopy`: New filter to copy attributes.
+
+### `consent`
+
+  * Add a timeout option for the database connection.
+  * Fix disabling of consent when the data store is down.
+  * Simpler configuration for disabling consent for one SP or one IdP.
+  * Do not connect to the database when consent is disabled for the current SP/IdP.
+
+### `cron`
+
+  * Set the From-address to be the technical contact email address.
+
+### `expirycheck`
+
+  * `expirycheck:ExpiryDate`: New module to check account expiration.
+
+### `ldap`
+
+  * Add a base class for authentication processing filters which fetch data from LDAP.
+  * `ldap:AttributeAddUsersGroups`: Authentication processing filter that adds group information from LDAP.
+
+### `metarefresh`
+
+  * Support for blacklisting and whitelisting entities.
+  * Support for conditional GET of metadata files.
+  * Reuse old metadata when fetching metadata fails.
+
+### `multiauth`
+
+  * Add `multiauth:preselect`-parameter, to skip the page to select authentication source.
+  * Make it possible to configure the names of the authentication sources.
+  * Remember the last selected authentication source.
+
+### `negotiate`
+
+  * New module implementing "negotiate" authentication, which can be used for Windows SSO.
+
+### `oauth`
+
+  * Update to latest version of the OAuth library.
+  * Remove support for older versions of OAuth than OAuth Rev A.
+
+### `openid`
+
+  * Separate linkback URL from page displaying OpenID URL field.
+  * Throw more relevant exceptions.
+  * Update to latest version of the OpenID library.
+  * Support for sending authentication requests via GET requests (with the prefer_http_redirect option).
+
+### `saml`
+
+  * Preserve ID-attributes on elements during signing. (Makes it possible to change the binding for some messages.)
+  * Allow SAML artifacts to be received through a POST request.
+  * Log more debug information when we are unable to determine the binding a message was sent with.
+  * Require HTTP-POST messages to be sent as POST data and HTTP-Redirect messages to be sent as query parameters.
+  * Link to download certificates from metadata pages.
+  * Fix canonicalization of <md:EntityDescriptor> and <md:EntitiesDescriptor>.
+  * Support for receiving and sending extension in authentication request messages.
+  * Reuse SimpleSAML_Utilities::postRedirect() to send HTTP-POST messages.
+  * Allow ISO8601 durations with subsecond precision.
+  * Add support for parsing and serializing the <mdrpi:PublicationInfo> metadata extension.
+  * Ignore cacheDuration when validating metadata.
+  * Better error handling when receiving a SAML 2.0 artifact from an unknown entity.
+  * IdP: Do not always trigger reauthentication when the authentication request contains a IdPList-element.
+  * IdP: Add `saml:AllowCreate` to the state array. This makes it possible to access this parameter from authentication processing filters.
+  * IdP: Sign the artifact response message.
+  * IdP: Allow the "host" metadata option to include more than one path element.
+  * SP: Use the discojuice-module as a discovery service if it is enabled.
+  * SP: Add `saml:idp`-parameter to trigger login to a specific IdP to as_login.php.
+  * SP: Do not display error on duplicate response when we have a valid session.
+  * SP: Fix for logout after IdP initiated authentication.
+  * SP: Fix handling of authentication response without a saml:Issuer element.
+  * `saml:PersistentNameID`: Fail when the user has more than one value in the user ID attribute.
+  * `saml:SQLPersistentNameID`: Persistent NameID stored in a SQL database.
+  * `saml:AuthnContextClassRef`: New filter to set the AuthnContextClassRef in responses.
+  * `saml:ExpectedAuthnContextClassRef`: New filter to verify that the SP received the correct authentication class from the IdP.
+
 ## Version 1.8.2
 
 Released 2012-01-10.
