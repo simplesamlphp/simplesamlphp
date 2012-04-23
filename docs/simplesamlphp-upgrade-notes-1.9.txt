@@ -6,3 +6,4 @@ Upgrade notes for simpleSAMLphp 1.9
   * The X-Frame-Options has been added to the default templates, to prevent the pages from being loaded in iframes.
   * Access permissions of generated files are now restricted to the current user.
   * The code to set cookies now requires PHP version >= 5.2. (PHP version 5.2.0 or newer has been the only supported version for a while, but it has in some cases been possible to run simpleSAMLphp with older versions.)
+  * It used to be possible to set an array of endpoints for the SingleSignOnService in `saml20-idp-hosted.php`. That is no longer supported.
