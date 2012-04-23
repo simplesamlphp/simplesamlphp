@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.9
 
-Released 2012-03-XX.
+Released 2012-04-XX.
 
   * Restructure error templates to share a common base template.
   * Warnings about URL length limits from Suhosin PHP extension.
@@ -56,7 +56,7 @@ Released 2012-03-XX.
 
 ### `authcrypt`
 
-  * `authcrypt:Hash`: New authentication source for checking username & password against configuration.
+  * `authcrypt:Hash`: New authentication source for checking username & password against a list of usernames and hashed passwords.
   * `authcrypt:Htpasswd`: New authentication source for checking username & password against a `.htpasswd`-file.
 
 ### `authfacebook`
@@ -121,7 +121,7 @@ Released 2012-03-XX.
 
 ### `negotiate`
 
-  * New module implementing "negotiate" authentication, which can be used for Windows SSO.
+  * New module implementing "negotiate" authentication, which can be used for Kerberos authentication (including Windows SSO).
 
 ### `oauth`
 
@@ -142,11 +142,11 @@ Released 2012-03-XX.
   * Log more debug information when we are unable to determine the binding a message was sent with.
   * Require HTTP-POST messages to be sent as POST data and HTTP-Redirect messages to be sent as query parameters.
   * Link to download certificates from metadata pages.
-  * Fix canonicalization of <md:EntityDescriptor> and <md:EntitiesDescriptor>.
+  * Fix canonicalization of &lt;md:EntityDescriptor> and &lt;md:EntitiesDescriptor>.
   * Support for receiving and sending extension in authentication request messages.
   * Reuse SimpleSAML_Utilities::postRedirect() to send HTTP-POST messages.
   * Allow ISO8601 durations with subsecond precision.
-  * Add support for parsing and serializing the <mdrpi:PublicationInfo> metadata extension.
+  * Add support for parsing and serializing the &lt;mdrpi:PublicationInfo> metadata extension.
   * Ignore cacheDuration when validating metadata.
   * Better error handling when receiving a SAML 2.0 artifact from an unknown entity.
   * IdP: Do not always trigger reauthentication when the authentication request contains a IdPList-element.
