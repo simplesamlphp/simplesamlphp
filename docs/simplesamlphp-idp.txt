@@ -28,10 +28,10 @@ Authentication module
 
 The next step is to configure the way users authenticate on your IdP. Various modules in the `modules/` directory provides methods for authenticating your users. This is an overview of those that are included in the simpleSAMLphp distribution:
 
-`authcrypt:Hash`
+[`authcrypt:Hash`](./authcrypt:authcrypt)
 : Username & password authentication with hashed passwords.
 
-`authcrypt:Htpasswd`
+[`authcrypt:Htpasswd`](./authcrypt:authcrypt)
 : Username & password authentication against .htpasswd file.
 
 [`authX509:authX509userCert`](./authX509:authX509)
