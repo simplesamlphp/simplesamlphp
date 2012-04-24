@@ -126,6 +126,8 @@ file, `config.php`, right away:
 
 		'auth.adminpassword'        => 'setnewpasswordhere',
 
+   Hashed passwords can also be used here. See the [`authcrypt`](./authcrypt:authcrypt) documentation for more information.
+
 -  Set a secret salt. This should be a random string. Some parts of the simpleSAMLphp needs this salt to generate cryptographically secure hashes. SimpleSAMLphp will give an error if the salt is not changed from the default value. The command below can help you to generated a random string on (some) unix systems:
 
 		tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
