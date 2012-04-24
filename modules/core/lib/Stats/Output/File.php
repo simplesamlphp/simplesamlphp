@@ -81,9 +81,9 @@ class sspmod_core_Stats_Output_File extends SimpleSAML_Stats_Output {
 		assert('isset($data["time"])');
 
 		$time = $data['time'];
-		$frac_time = $time - (int)$time;
+		$milliseconds = (int)(($time - (int)$time) * 1000);
 
-		$timestamp = gmdate('Y-m-d\TH:i:s', $time) . sprintf('%.03fZ', $frac_time);
+		$timestamp = gmdate('Y-m-d\TH:i:s', $time) . sprintf('.%03dZ', $milliseconds);
 
 		$outDate = substr($timestamp, 0, 10); /* The date-part of the timstamp. */
 
