@@ -32,7 +32,15 @@ if (!array_key_exists('StateId', $_REQUEST)) {
 
 $id = $_REQUEST['StateId'];
 $state = SimpleSAML_Auth_State::loadState($id, 'consent:request');
-$spentityid = $state['core:SP'];
+
+if (array_key_exists('core:SP', $state)) {
+    $spentityid = $state['core:SP'];
+} else if (array_key_exists('saml:sp:State', $state)) {
+    $spentityid = $state['saml:sp:State']['core:SP'];
+} else {
+    $spentityid = 'UNKNOWN';
+}
+
 
 // The user has pressed the yes-button
 if (array_key_exists('yes', $_REQUEST)) {
