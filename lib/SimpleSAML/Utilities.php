@@ -128,7 +128,11 @@ class SimpleSAML_Utilities {
 	 */
 	private static function getServerPort() {
 
-		$portnumber = $_SERVER["SERVER_PORT"];
+		if (isset($_SERVER["SERVER_PORT"])) {
+			$portnumber = $_SERVER["SERVER_PORT"];
+		} else {
+			$portnumber = 80;
+		}
 		$port = ':' . $portnumber;
 
 		if (self::getServerHTTPS()) {
