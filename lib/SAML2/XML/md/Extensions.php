@@ -24,6 +24,10 @@ class SAML2_XML_md_Extensions {
 				$ret[] = new SAML2_XML_mdattr_EntityAttributes($node);
 			} elseif ($node->namespaceURI === SAML2_XML_mdrpi_Common::NS_MDRPI && $node->localName === 'PublicationInfo') {
 				$ret[] = new SAML2_XML_mdrpi_PublicationInfo($node);
+			} elseif ($node->namespaceURI === SAML2_XML_mdui_UIInfo::NS && $node->localName === 'UIInfo') {
+				$ret[] = new SAML2_XML_mdui_UIInfo($node);
+			} elseif ($node->namespaceURI === SAML2_XML_mdui_DiscoHints::NS && $node->localName === 'DiscoHints') {
+				$ret[] = new SAML2_XML_mdui_DiscoHints($node);
 			} else {
 				$ret[] = new SAML2_XML_Chunk($node);
 			}

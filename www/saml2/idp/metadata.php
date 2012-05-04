@@ -105,6 +105,18 @@ try {
 		$metaArray['scope'] = $idpmeta->getArray('scope');
 	}
 
+	if ($idpmeta->hasValue('EntityAttributes')) {
+		$metaArray['EntityAttributes'] = $idpmeta->getArray('EntityAttributes');
+	}
+
+	if ($idpmeta->hasValue('UIInfo')) {
+		$metaArray['UIInfo'] = $idpmeta->getArray('UIInfo');
+	}
+
+	if ($idpmeta->hasValue('DiscoHints')) {
+		$metaArray['DiscoHints'] = $idpmeta->getArray('DiscoHints');
+	}
+
 	$metaflat = '$metadata[' . var_export($idpentityid, TRUE) . '] = ' . var_export($metaArray, TRUE) . ';';
 
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
