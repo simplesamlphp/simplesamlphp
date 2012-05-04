@@ -45,32 +45,38 @@ class sspmod_metarefresh_MetaLoader {
 	 */
 	public function loadSource($source) {
 
-		// Build new HTTP context
-		$context = $this->createContext($source);
+		if (preg_match('@^https?://@i', $source['src'])) {
+			// Build new HTTP context
+			$context = $this->createContext($source);
 
-		// GET!
-		try {
-			list($data, $responseHeaders) = SimpleSAML_Utilities::fetch($source['src'], $context, TRUE);
-		} catch(Exception $e) {
-			SimpleSAML_Logger::warning('metarefresh: ' . $e->getMessage());
-		}
+			// GET!
+			try {
+				list($data, $responseHeaders) = SimpleSAML_Utilities::fetch($source['src'], $context, TRUE);
+			} catch(Exception $e) {
+				SimpleSAML_Logger::warning('metarefresh: ' . $e->getMessage());
+			}
 
-		// We have response headers, so the request succeeded
-		if(!isset($responseHeaders)) {
-			// No response headers, this means the request failed in some way, so re-use old data
-			SimpleSAML_Logger::debug('No response from ' . $source['src'] . ' - attempting to re-use cached metadata');
-			$this->addCachedMetadata($source);
-			return;
-		} elseif(preg_match('@^HTTP/1\.[01]\s304\s@', $responseHeaders[0])) {
-			// 304 response
-			SimpleSAML_Logger::debug('Received HTTP 304 (Not Modified) - attempting to re-use cached metadata');
-			$this->addCachedMetadata($source);
-			return;
-		} elseif(!preg_match('@^HTTP/1\.[01]\s200\s@', $responseHeaders[0])) {
-			// Other error.
-			SimpleSAML_Logger::debug('Error from ' . $source['src'] . ' - attempting to re-use cached metadata');
-			$this->addCachedMetadata($source);
-			return;
+			// We have response headers, so the request succeeded
+			if(!isset($responseHeaders)) {
+				// No response headers, this means the request failed in some way, so re-use old data
+				SimpleSAML_Logger::debug('No response from ' . $source['src'] . ' - attempting to re-use cached metadata');
+				$this->addCachedMetadata($source);
+				return;
+			} elseif(preg_match('@^HTTP/1\.[01]\s304\s@', $responseHeaders[0])) {
+				// 304 response
+				SimpleSAML_Logger::debug('Received HTTP 304 (Not Modified) - attempting to re-use cached metadata');
+				$this->addCachedMetadata($source);
+				return;
+			} elseif(!preg_match('@^HTTP/1\.[01]\s200\s@', $responseHeaders[0])) {
+				// Other error.
+				SimpleSAML_Logger::debug('Error from ' . $source['src'] . ' - attempting to re-use cached metadata');
+				$this->addCachedMetadata($source);
+				return;
+			}
+		} else {
+			/* Local file. */
+			$data = file_get_contents($source['src']);
+			$responseHeaders = NULL;
 		}
 
 		/* Everything OK. Proceed. */
