@@ -49,7 +49,10 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 	 * The vendor-specific attribute for the RADIUS attributes we are interrested in.
 	 */
 	private $vendorType;
-
+	/**
+	 * The NAS-Identifier that should be set in Access-Request packets.
+	 */
+	private $nasIdentifier;
 
 	/**
 	 * Constructor for this authentication source.
@@ -74,6 +77,7 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 		$this->timeout = $config->getInteger('timeout', 5);
 		$this->retries = $config->getInteger('retries', 3);
 		$this->usernameAttribute = $config->getString('username_attribute', NULL);
+		$this->nasIdentifier = $config->getString('nas_identifier', NULL);
 
 		$this->vendor = $config->getInteger('attribute_vendor', NULL);
 		if ($this->vendor !== NULL) {
@@ -104,6 +108,9 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 
 		radius_put_attr($radius, RADIUS_USER_NAME, $username);
 		radius_put_attr($radius, RADIUS_USER_PASSWORD, $password);
+
+		if ($this->nasIdentifier != NULL)
+			radius_put_attr($radius, RADIUS_NAS_IDENTIFIER, $this->nasIdentifier);
 
 		$res = radius_send_request($radius);
 		if ($res != RADIUS_ACCESS_ACCEPT) {
@@ -179,6 +186,3 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 	}
 
 }
-
-
-?>
