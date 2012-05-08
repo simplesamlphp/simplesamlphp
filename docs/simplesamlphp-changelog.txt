@@ -53,6 +53,7 @@ Released 2012-04-XX.
   * Fix invalid HTML for login pages where username is set.
   * Remove unecessary check for PHP version >= 5.2 when setting cookies.
   * Better error message when a module is missing a default-enable or default-disable file.
+  * Support for validating RSA-SHA256 signatures.
 
 ### `authcrypt`
 
@@ -135,6 +136,10 @@ Released 2012-04-XX.
   * Update to latest version of the OpenID library.
   * Support for sending authentication requests via GET requests (with the prefer_http_redirect option).
 
+### `radius`
+
+  * Support for setting the "NAS-Identifier" attribute.
+
 ### `saml`
 
   * Preserve ID-attributes on elements during signing. (Makes it possible to change the binding for some messages.)
@@ -153,6 +158,7 @@ Released 2012-04-XX.
   * IdP: Add `saml:AllowCreate` to the state array. This makes it possible to access this parameter from authentication processing filters.
   * IdP: Sign the artifact response message.
   * IdP: Allow the "host" metadata option to include more than one path element.
+  * IdP: Support for generating metadata with MDUI extension elements.
   * SP: Use the discojuice-module as a discovery service if it is enabled.
   * SP: Add `saml:idp`-parameter to trigger login to a specific IdP to as_login.php.
   * SP: Do not display error on duplicate response when we have a valid session.
