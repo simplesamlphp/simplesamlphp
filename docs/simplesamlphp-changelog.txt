@@ -6,6 +6,12 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.8.3
+
+Released 2012-05-15.
+
+  * Fix missing SSL certificate check in `aselect` module.
+
 ## Version 1.8.2
 
 Released 2012-01-10.

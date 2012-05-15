@@ -66,7 +66,6 @@ class sspmod_aselect_Auth_Source_aselect extends SimpleSAML_Auth_Source {
 	// helper function for sending a non-browser request to a remote server
 	function as_call($url) {
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_URL, $url);
 		$result = curl_exec($ch);
