@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.9
 
-Released 2012-04-XX.
+Released 2012-05-XX.
 
   * Restructure error templates to share a common base template.
   * Warnings about URL length limits from Suhosin PHP extension.
@@ -54,6 +54,13 @@ Released 2012-04-XX.
   * Remove unecessary check for PHP version >= 5.2 when setting cookies.
   * Better error message when a module is missing a default-enable or default-disable file.
   * Support for validating RSA-SHA256 signatures.
+
+### `aselect`
+
+  * New module that replaces the previous module.
+  * Better error handling.
+  * Support for request signing.
+  * Loses support for A-Select Cross.
 
 ### `authcrypt`
 
@@ -164,6 +171,8 @@ Released 2012-04-XX.
   * SP: Do not display error on duplicate response when we have a valid session.
   * SP: Fix for logout after IdP initiated authentication.
   * SP: Fix handling of authentication response without a saml:Issuer element.
+  * SP: Support for specifying required attributes in metadata.
+  * SP: Support for limiting the AssertionConsumerService endpoints listed in metadata.
   * `saml:PersistentNameID`: Fail when the user has more than one value in the user ID attribute.
   * `saml:SQLPersistentNameID`: Persistent NameID stored in a SQL database.
   * `saml:AuthnContextClassRef`: New filter to set the AuthnContextClassRef in responses.
