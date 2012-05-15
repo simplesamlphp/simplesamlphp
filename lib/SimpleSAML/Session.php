@@ -46,6 +46,14 @@ class SimpleSAML_Session {
 
 
 	/**
+	 * Transient session flag.
+	 *
+	 * @var boolean|FALSE
+	 */
+	private $transient = FALSE;
+
+
+	/**
 	 * The track id is a new random unique identifier that is generate for each session.
 	 * This is used in the debug logs and error messages to easily track more information
 	 * about what went wrong.
@@ -150,6 +158,7 @@ class SimpleSAML_Session {
 
 		if ($transient) {
 			$this->trackid = 'XXXXXXXXXX';
+			$this->transient = TRUE;
 			return;
 		}
 
@@ -249,14 +258,21 @@ class SimpleSAML_Session {
 		try {
 			self::$instance = self::getSession();
 		} catch (Exception $e) {
+			/* For some reason, we were unable to initialize this session. Use a transient session instead. */
+			self::useTransientSession();
+
+			$globalConfig = SimpleSAML_Configuration::getInstance();
+			if ($globalConfig->getBoolean('session.disable_fallback', FALSE) === TRUE) {
+				throw $e;
+			}
+
 			if ($e instanceof SimpleSAML_Error_Exception) {
 				SimpleSAML_Logger::error('Error loading session:');
 				$e->logError();
 			} else {
 				SimpleSAML_Logger::error('Error loading session: ' . $e->getMessage());
 			}
-			/* For some reason, we were unable to initialize this session. Use a transient session instead. */
-			self::useTransientSession();
+
 			return self::$instance;
 		}
 
@@ -296,6 +312,16 @@ class SimpleSAML_Session {
 	public function getSessionId() {
 
 		return $this->sessionId;
+	}
+
+
+	/**
+	 * Retrieve if session is transient.
+	 *
+	 * @return boolean  The session transient flag.
+	 */
+	public function isTransient() {
+		return $this->transient;
 	}
 
 

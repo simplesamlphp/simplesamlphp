@@ -118,6 +118,88 @@ class SimpleSAML_Metadata_SAMLBuilder {
 				$e->Extensions[] = $s;
 			}
 		}
+
+		if ($metadata->hasValue('EntityAttributes')) {
+			$ea = new SAML2_XML_mdattr_EntityAttributes();
+			foreach ($metadata->getArray('EntityAttributes') as $attributeName => $attributeValues) {
+				$a = new SAML2_XML_saml_Attribute();
+				$a->Name = $attributeName;
+				$a->NameFormat = 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri';
+
+				// Attribute names that is not URI is prefixed as this: '{nameformat}name'
+				if (preg_match('/^\{(.*?)\}(.*)$/', $attributeName, $matches)) {
+					$a->Name = $matches[2];
+					$nameFormat = $matches[1];
+					if ($nameFormat !== SAML2_Const::NAMEFORMAT_UNSPECIFIED) {
+						$a->NameFormat = $nameFormat;
+					}
+				}
+				foreach ($attributeValues as $attributeValue) {
+					$a->AttributeValue[] = new SAML2_XML_saml_AttributeValue($attributeValue);
+				}
+				$ea->children[] = $a;
+			}
+			$this->entityDescriptor->Extensions[] = $ea;
+		}
+
+		if ($metadata->hasValue('UIInfo')) {
+			$ui = new SAML2_XML_mdui_UIInfo();
+			foreach ($metadata->getArray('UIInfo') as $uiName => $uiValues) {
+				switch ($uiName) {
+					case 'DisplayName':
+						$ui->DisplayName = $uiValues;
+					break;
+					case 'Description':
+						$ui->Description = $uiValues;
+					break;
+					case 'InformationURL':
+						$ui->InformationURL = $uiValues;
+					break;
+					case 'PrivacyStatementURL':
+						$ui->PrivacyStatementURL = $uiValues;
+					break;
+					case 'Keywords':
+						foreach ($uiValues as $lang => $keywords) {
+							$uiItem = new SAML2_XML_mdui_Keywords();
+							$uiItem->lang = $lang;
+							$uiItem->Keywords = $keywords;
+							$ui->Keywords[] = $uiItem;
+						}
+					break;
+					case 'Logo':
+						foreach ($uiValues as $logo) {
+							$uiItem = new SAML2_XML_mdui_Logo();
+							$uiItem->url    = $logo['url'];
+							$uiItem->width  = $logo['width'];
+							$uiItem->height = $logo['height'];
+							if (isset($logo['lang'])) {
+								$uiItem->lang = $logo['lang'];
+							}
+							$ui->Logo[] = $uiItem;
+						}
+					break;
+				}
+			}
+			$e->Extensions[] = $ui;
+		}
+
+		if ($metadata->hasValue('DiscoHints')) {
+			$dh = new SAML2_XML_mdui_DiscoHints();
+			foreach ($metadata->getArray('DiscoHints') as $dhName => $dhValues) {
+				switch ($dhName) {
+					case 'IPHint':
+						$dh->IPHint = $dhValues;
+					break;
+					case 'DomainHint':
+						$dh->DomainHint = $dhValues;
+					break;
+					case 'GeolocationHint':
+						$dh->GeolocationHint = $dhValues;
+					break;
+				}
+			}
+			$e->Extensions[] = $dh;
+		}
 	}
 
 

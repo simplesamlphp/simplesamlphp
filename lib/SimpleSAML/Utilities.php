@@ -128,7 +128,11 @@ class SimpleSAML_Utilities {
 	 */
 	private static function getServerPort() {
 
-		$portnumber = $_SERVER["SERVER_PORT"];
+		if (isset($_SERVER["SERVER_PORT"])) {
+			$portnumber = $_SERVER["SERVER_PORT"];
+		} else {
+			$portnumber = 80;
+		}
 		$port = ':' . $portnumber;
 
 		if (self::getServerHTTPS()) {
@@ -2179,19 +2183,24 @@ class SimpleSAML_Utilities {
 		// Data and headers.
 		if ($getHeaders) {
 
-			$headers = array();
-
-			foreach($http_response_header as $h) {
-				if(preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
-					$headers = array(); // reset
-					$headers[0] = $h;
-					continue;
+			if (isset($http_response_header)) {
+				$headers = array();
+				foreach($http_response_header as $h) {
+					if(preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
+						$headers = array(); // reset
+						$headers[0] = $h;
+						continue;
+					}
+					$bits = explode(':', $h, 2);
+					if(count($bits) === 2) {
+						$headers[strtolower($bits[0])] = trim($bits[1]);
+					}
 				}
-				$bits = explode(':', $h, 2);
-				if(count($bits) === 2) {
-					$headers[strtolower($bits[0])] = trim($bits[1]);
-				}
+			} else {
+				/* No HTTP headers - probably a different protocol, e.g. file. */
+				$headers = NULL;
 			}
+
 			return array($data, $headers);
 		}
 

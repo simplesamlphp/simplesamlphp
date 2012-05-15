@@ -45,79 +45,85 @@ class sspmod_metarefresh_MetaLoader {
 	 */
 	public function loadSource($source) {
 
-		// Build new HTTP context
-		$context = $this->createContext($source);
+		if (preg_match('@^https?://@i', $source['src'])) {
+			// Build new HTTP context
+			$context = $this->createContext($source);
 
-		// GET!
-		try {
-			list($data, $responseHeaders) = SimpleSAML_Utilities::fetch($source['src'], $context, TRUE);
-		} catch(Exception $e) {
-			SimpleSAML_Logger::warning('metarefresh: ' . $e->getMessage());
-		}
-
-		// We have response headers, so the request succeeded
-		if(isset($responseHeaders)) {
-
-			// 200 OK
-			if(preg_match('@^HTTP/1\.[01]\s200\s@', $responseHeaders[0])) {
-
-				if (isset($source['conditionalGET']) && $source['conditionalGET']) {
-					// Stale or no metadata, so a fresh copy
-					SimpleSAML_Logger::debug('Downloaded fresh copy');
-				}
-
-				$entities = $this->loadXML($data, $source);
-
-				foreach($entities as $entity) {
-
-					if(isset($source['blacklist'])) {
-						if(!empty($source['blacklist']) && in_array($entity->getEntityID(), $source['blacklist'])) {
-							SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - blacklisted.' . "\n");
-							continue;
-						}
-					}
-
-					if(isset($source['whitelist'])) {
-						if(!empty($source['whitelist']) && !in_array($entity->getEntityID(), $source['whitelist'])) {
-							SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - not in the whitelist.' . "\n");
-							continue;
-						}
-					}
-
-					if(array_key_exists('validateFingerprint', $source) && $source['validateFingerprint'] !== NULL) {
-						if(!$entity->validateFingerprint($source['validateFingerprint'])) {
-							SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature.' . "\n");
-							continue;
-						}
-					}
-
-					$template = NULL;
-					if (array_key_exists('template', $source)) $template = $source['template'];
-
-					$this->addMetadata($source['src'], $entity->getMetadata1xSP(), 'shib13-sp-remote', $template);
-					$this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template);
-					$this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template);
-					$this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template);
-					$attributeAuthorities = $entity->getAttributeAuthorities();
-					if (!empty($attributeAuthorities)) {
-						$this->addMetadata($source['src'], $attributeAuthorities[0], 'attributeauthority-remote', $template);
-					}
-				}
-
-				$this->saveState($source, $responseHeaders);
+			// GET!
+			try {
+				list($data, $responseHeaders) = SimpleSAML_Utilities::fetch($source['src'], $context, TRUE);
+			} catch(Exception $e) {
+				SimpleSAML_Logger::warning('metarefresh: ' . $e->getMessage());
 			}
 
-			// 304 response
-			if(preg_match('@^HTTP/1\.[01]\s304\s@', $responseHeaders[0])) {
+			// We have response headers, so the request succeeded
+			if(!isset($responseHeaders)) {
+				// No response headers, this means the request failed in some way, so re-use old data
+				SimpleSAML_Logger::debug('No response from ' . $source['src'] . ' - attempting to re-use cached metadata');
+				$this->addCachedMetadata($source);
+				return;
+			} elseif(preg_match('@^HTTP/1\.[01]\s304\s@', $responseHeaders[0])) {
+				// 304 response
 				SimpleSAML_Logger::debug('Received HTTP 304 (Not Modified) - attempting to re-use cached metadata');
 				$this->addCachedMetadata($source);
+				return;
+			} elseif(!preg_match('@^HTTP/1\.[01]\s200\s@', $responseHeaders[0])) {
+				// Other error.
+				SimpleSAML_Logger::debug('Error from ' . $source['src'] . ' - attempting to re-use cached metadata');
+				$this->addCachedMetadata($source);
+				return;
+			}
+		} else {
+			/* Local file. */
+			$data = file_get_contents($source['src']);
+			$responseHeaders = NULL;
+		}
+
+		/* Everything OK. Proceed. */
+		if (isset($source['conditionalGET']) && $source['conditionalGET']) {
+			// Stale or no metadata, so a fresh copy
+			SimpleSAML_Logger::debug('Downloaded fresh copy');
+		}
+
+		$entities = $this->loadXML($data, $source);
+
+		foreach($entities as $entity) {
+
+			if(isset($source['blacklist'])) {
+				if(!empty($source['blacklist']) && in_array($entity->getEntityID(), $source['blacklist'])) {
+					SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - blacklisted.' . "\n");
+					continue;
+				}
 			}
 
-		} else {
-			// No response headers, this means the request failed in some way, so re-use old data
-			SimpleSAML_Logger::debug('No response from ' . $source['src'] . ' - attempting to re-use cached metadata');
-			$this->addCachedMetadata($source);
+			if(isset($source['whitelist'])) {
+				if(!empty($source['whitelist']) && !in_array($entity->getEntityID(), $source['whitelist'])) {
+					SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - not in the whitelist.' . "\n");
+					continue;
+				}
+			}
+
+			if(array_key_exists('validateFingerprint', $source) && $source['validateFingerprint'] !== NULL) {
+				if(!$entity->validateFingerprint($source['validateFingerprint'])) {
+					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature.' . "\n");
+					continue;
+				}
+			}
+
+			$template = NULL;
+			if (array_key_exists('template', $source)) $template = $source['template'];
+
+			$this->addMetadata($source['src'], $entity->getMetadata1xSP(), 'shib13-sp-remote', $template);
+			$this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template);
+			$this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template);
+			$this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template);
+			$attributeAuthorities = $entity->getAttributeAuthorities();
+			if (!empty($attributeAuthorities)) {
+				$this->addMetadata($source['src'], $attributeAuthorities[0], 'attributeauthority-remote', $template);
+			}
 		}
+
+		$this->saveState($source, $responseHeaders);
 	}
 
 	/**

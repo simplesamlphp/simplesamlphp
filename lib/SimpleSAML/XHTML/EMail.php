@@ -90,7 +90,7 @@ Content-Transfer-Encoding: 8bit
 
 --simplesamlphp-' . $random_hash . '--
 ';
-		$headers = join("\r\n", $this->headers);
+		$headers = implode("\n", $this->headers);
 
 		$mail_sent = @mail($this->to, $this->subject, $message, $headers);
 		SimpleSAML_Logger::debug('Email: Sending e-mail to [' . $this->to . '] : ' . ($mail_sent ? 'OK' : 'Failed'));

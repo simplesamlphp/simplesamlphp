@@ -1,64 +1,44 @@
-Using the A-Select authentication source with simpleSAMLphp
-===========================================================
+A-Select module for simpleSAMLphp
+---------------------------------
 
-This authentication source for A-Select is based on the a-select
-handler by Hans Zandbelt. The original source combines the possibility
-to use an A-Select server as an authentication source and the possibility
-to use simpleSAMLphp as an A-Select server. This module only acts as a
-authentication source. Signing is not (yet) supported.
+This module allows one to use an A-Select server as authentication
+source for simpleSAMLphp.
 
-The structure applied follows the structure of the CAS authentication source.
+The module supports the A-Select protocol, including signing of
+requests. Not supported is A-Select Cross.
 
+Usage:
 
-Setting up the A-Select authentication module
-----------------------------------------------
+Enable the module if not already enabled:
+$ touch modules/aselect/enabled
 
-The first thing you need to do is to enable the aselect module:
+In config/authsources.php, configure your A-Selectserver as an
+authentication source. The following is an example for a source
+named 'aselect':
 
-    touch modules/aselect/enable
-
-The A-Select authentication module has two modes of operation.
-
-1. The module can act to the A-Select server as an application.
-
-Configuration in A-Select:
-
-        <application id="app1" level="30">
-            <attribute_policy>policyA</attribute_policy>
-            <forced_authenticate>false</forced_authenticate>
-        </application>
-
-Configuration in authsources.php
-
-    'example-aselect' => array(
+    'aselect' => array(
         'aselect:aselect',
-        'serverurl'            => 'http://a-select.dev.han.nl:8080/aselectserver/server',
-        'serverid'             => 'hanaselect',
-        'type'                 => 'app',                   # type = app/cross
-        'app_id'               => 'app1',                  # only if type = app
+        'app_id' => 'simplesamlphp',
+        'server_id' => 'sso.example.com',
+        'server_url' => 'https://test.sso.example.com/server',
+        'private_key' => 'file:///etc/ssl/private/aselect.key'
     ),
 
-2. The module can act to the A-Select server as cross A-Select.
+The parameters:
+- app_id: the application I for simpleSAMLphp as configured in
+  your A-Select server;
+- server_id: the A-Select server ID as configured in your
+  A-Select server;
+- server_url: the URL for your A-Selectserver, usually ends in
+  '/server/.
+- private_key: the key you want to use for signing requests.
+  If you're really sure you do not want request signing, you
+  can set this option to a null value.
+Options 'serverurl' and 'serverid' (without underscore) are
+supported for backwards compatibility.
 
-Configuration in A-Select:
+Author: Wessel Dankers <wsl@uvt.nl>
 
-    <cross_aselect>
-        <local_servers require_signing="false">
-            <organization id="simpleSAMLphp" server="sso.testorg.com" attribute_policy="policyA">
-            </organization>
-        </local_servers>
-    </cross_aselect>
+Copyright: © 2011,2012 Tilburg University (http://www.tilburguniversity.edu)
 
-
-Configuration in authsources.php
-
-    'example-aselect' => array(
-        'aselect:aselect',
-        'serverurl'            => 'http://a-select.dev.han.nl:8080/aselectserver/server',
-        'serverid'             => 'hanaselect',
-        'type'                 => 'cross',                 # type = app/cross
-        'local_organization'   => 'simpleSAMLphp',         # only if type = cross
-        'required_level'       => 10,                      # only if type = cross, defaults to 10
-    ),
-
-
+License: GPL version 3 or any later version.

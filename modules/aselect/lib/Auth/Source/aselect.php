@@ -1,30 +1,15 @@
 <?php
 
 /**
- * A-Select authentication source.
+ * Authentication module which acts as an A-Select client
  *
- * Based on www/aselect/handler.php by Hans Zandbelt, SURFnet BV. <hans.zandbelt@surfnet.nl>
- *
- * @author Patrick Honing, Hogeschool van Arnhem en Nijmegen. <Patrick.Honing@han.nl>
- * @package simpleSAMLphp
- * @version $Id$
+ * @author Wessel Dankers, Tilburg University
  */
 class sspmod_aselect_Auth_Source_aselect extends SimpleSAML_Auth_Source {
-
-	/**
-	 * The string used to identify our states.
-	 */
-	const STAGE_INIT = 'aselect:init';
-
-	/**
-	 * The key of the AuthId field in the state.
-	 */
-	const AUTHID = 'aselect:AuthId';
-
-	/**
-	 * @var array with aselect configuration
-	 */
-	private $asconfig;
+	private $app_id = 'simplesamlphp';
+	private $server_id;
+	private $server_url;
+	private $private_key;
 
 	/**
 	 * Constructor for this authentication source.
@@ -33,142 +18,186 @@ class sspmod_aselect_Auth_Source_aselect extends SimpleSAML_Auth_Source {
 	 * @param array $config  Configuration.
 	 */
 	public function __construct($info, $config) {
-		assert('is_array($info)');
-		assert('is_array($config)');
-
 		/* Call the parent constructor first, as required by the interface. */
 		parent::__construct($info, $config);
 
-		if (!array_key_exists('serverurl', $config)) throw new Exception('aselect serverurl not specified');
-		$this->asconfig['serverurl'] = $config['serverurl'];
+		$cfg = SimpleSAML_Configuration::loadFromArray($config,
+			'Authentication source ' . var_export($this->authId, true));
 
-		if (!array_key_exists('serverid', $config)) throw new Exception('aselect serverid not specified');
-		$this->asconfig['serverid'] = $config['serverid'];
+		$cfg->getValueValidate('type', array('app'), 'app');
+		$this->app_id = $cfg->getString('app_id');
+		$this->private_key = $cfg->getString('private_key', null);
 
-		if (!array_key_exists('type', $config)) throw new Exception('aselect type not specified');
-		$this->asconfig['type'] = $config['type'];
+		// accept these arguments with '_' for consistency
+		// accept these arguments without '_' for backwards compatibility
+		$this->server_id = $cfg->getString('serverid', null);
+		if($this->server_id === null)
+			$this->server_id = $cfg->getString('server_id');
 
-		if ($this->asconfig['type'] == 'app') {
-			if (!array_key_exists('app_id', $config)) throw new Exception('aselect app_id not specified');
-			$this->asconfig['app_id'] = $config['app_id'];
-		} elseif($this->asconfig['type'] == 'cross') {
-			if (!array_key_exists('local_organization', $config)) throw new Exception('aselect local_organization not specified');
-			$this->asconfig['local_organization'] = $config['local_organization'];
-
-			$this->asconfig['required_level'] = (array_key_exists('required_level', $config)) ? $config['required_level'] : 10;
-		} else {
-			throw new Exception('aselect type need to be either app or cross');
-		}
-
+		$this->server_url = $cfg->getString('serverurl', null);
+		if($this->server_url === null)
+			$this->server_url = $cfg->getString('server_url');
 	}
-
-
-	// helper function for sending a non-browser request to a remote server
-	function as_call($url) {
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_URL, $url);
-		$result = curl_exec($ch);
-		$error = curl_error($ch);
-		curl_close($ch);
-		if ($result == FALSE) {
-			throw new Exception('Request on remote server failed: ' . $error);
-		}
-		$parms = array();
-		foreach (explode('&', $result) as $parm) {
-			$tuple = explode('=', $parm);
-			$parms[urldecode($tuple[0])] = urldecode($tuple[1]);
-		}
-		if ($parms['result_code'] != '0000') {
-			throw new Exception('Request on remote server returned error: ' . $result);
-		}
-		return $parms;
-	}
-
 
 	/**
-	 * Log-in using A-Select
+	 * Initiate authentication.
 	 *
 	 * @param array &$state  Information about the current authentication.
 	 */
 	public function authenticate(&$state) {
-		assert('is_array($state)');
+		$state['aselect::authid'] = $this->authId;
+		$id = SimpleSAML_Auth_State::saveState($state, 'aselect:login', true);
 
-		/* We are going to need the authId in order to retrieve this authentication source later. */
-		$state[self::AUTHID] = $this->authId;
+		try {
+			$app_url = SimpleSAML_Module::getModuleURL('aselect/credentials.php', array('ssp_state' => $id));
+			$as_url = $this->request_authentication($app_url);
 
-		$stateID = SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
-
-		$serviceUrl = SimpleSAML_Module::getModuleURL('aselect/linkback.php', array('stateID' => $stateID));
-
-		if ($this->asconfig['type'] == 'app') {
-			$params = array(
-				'request'               => 'authenticate',
-				'a-select-server'       => $this->asconfig['serverid'],
-				'app_id'                => $this->asconfig['app_id'],
-				'app_url'               => $serviceUrl,
-			);
-		} else { // type = cross
-			$params = array(
-				'request'               => 'authenticate',
-				'a-select-server'       => $this->asconfig['serverid'],
-				'local_organization'    => $this->asconfig['local_organization'],
-				'required_level'        => $this->asconfig['required_level'],
-				'local_as_url'          => $serviceUrl,
-
-			);
+			SimpleSAML_Utilities::redirect($as_url);
+		} catch(Exception $e) {
+			// attach the exception to the state
+			SimpleSAML_Auth_State::throwException($state, $e);
 		}
-		$url = SimpleSAML_Utilities::addURLparameter($this->asconfig['serverurl'],$params);
-
-		$parm = $this->as_call($url);
-
-		SimpleSAML_Utilities::redirect(
-			$parm['as_url'],
-			array(
-				'rid'               => $parm['rid'],
-				'a-select-server'   => $this->asconfig['serverid'],
-			)
-		);
 	}
 
-	public function finalStep(&$state) {
-		$credentials = $state['aselect:credentials'];
-		$rid = $state['aselect:rid'];
-		assert('isset($credentials)');
-		assert('isset($rid)');
+	/**
+	 * Sign a string using the configured private key
+	 *
+	 * @param string $str  The string to calculate a signature for
+	 */
+	private function base64_signature($str) {
+		$key = openssl_pkey_get_private($this->private_key);
+		if($key === false)
+			throw new SimpleSAML_Error_Exception("Unable to load private key: ".openssl_error_string());
+		if(!openssl_sign($str, $sig, $key))
+			throw new SimpleSAML_Error_Exception("Unable to create signature: ".openssl_error_string());
+		openssl_pkey_free($key);
+		return base64_encode($sig);
+	}
 
-		$params = array(
-			'request'               => 'verify_credentials',
-			'rid'                   => $rid,
-			'a-select-server'       => $this->asconfig['serverid'],
-			'aselect_credentials'   => $credentials,
-		);
-		if ($this->asconfig['type'] == 'cross') {
-			$params['local_organization'] = $this->asconfig['local_organization'];
+	/**
+	 * Parse a base64 encoded attribute blob. Can't use parse_str() because it
+	 * may contain multi-valued attributes.
+	 *
+	 * @param string $base64  The base64 string to decode.
+	 */
+	private static function decode_attributes($base64) {
+		$blob = base64_decode($base64, true);
+		if($blob === false)
+			throw new SimpleSAML_Error_Exception("Attributes parameter base64 malformed");
+		$pairs = explode('&', $blob);
+		$ret = array();
+		foreach($pairs as $pair) {
+			$keyval = explode('=', $pair, 2);
+			if(count($keyval) < 2)
+				throw new SimpleSAML_Error_Exception("Missing value in attributes parameter");
+			$key = urldecode($keyval[0]);
+			$val = urldecode($keyval[1]);
+			$ret[$key][] = $val;
 		}
+		return $ret;
+	}
 
-		$url = SimpleSAML_Utilities::addURLparameter($this->asconfig['serverurl'], $params);
+	/**
+	 * Default options for curl invocations.
+	 */
+	private static $curl_options = array(
+		CURLOPT_BINARYTRANSFER => true,
+		CURLOPT_FAILONERROR => true,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_CONNECTTIMEOUT => 1,
+		CURLOPT_TIMEOUT => 5,
+		CURLOPT_USERAGENT => "simpleSAMLphp",
+	);
 
-		$parms = $this->as_call($url);
-		$attributes = array('uid' => array($parms['uid']));
-
-		if (array_key_exists('attributes', $parms)) {
-			$decoded = base64_decode($parms['attributes']);
-			foreach (explode('&', $decoded) as $parm) {
-				$tuple = explode('=', $parm);
-				$name = urldecode($tuple[0]);
-				if (preg_match('/\[\]$/',$name)) {
-					$name = substr($name, 0 ,-2);
-				}
-				if (!array_key_exists($name, $attributes)) {
-					$attributes[$name] = array();
-				}
-				$attributes[$name][] = urldecode($tuple[1]);
-			}
+	/**
+	 * Create a (possibly signed) URL to contact the A-Select server.
+	 *
+	 * @param string $request    The name of the request (authenticate / verify_credentials).
+	 * @param array $parameters  The parameters to pass for this request.
+	 */
+	private function create_aselect_url($request, $parameters) {
+		$parameters['request'] = $request;
+		$parameters['a-select-server'] = $this->server_id;
+		if(!is_null($this->private_key)) {
+			$signable = '';
+			foreach(array('a-select-server', 'app_id', 'app_url', 'aselect_credentials', 'rid') as $p)
+				if(array_key_exists($p, $parameters))
+					$signable .= $parameters[$p];
+			$parameters['signature'] = $this->base64_signature($signable);
 		}
-		$state['Attributes'] = $attributes;
+		return SimpleSAML_Utilities::addURLparameter($this->server_url, $parameters);
+	}
 
-		SimpleSAML_Auth_Source::completeAuth($state);
+	/**
+	 * Contact the A-Select server and return the result as an associative array.
+	 *
+	 * @param string $request    The name of the request (authenticate / verify_credentials).
+	 * @param array $parameters  The parameters to pass for this request.
+	 */
+	private function call_aselect($request, $parameters) {
+		$url = $this->create_aselect_url($request, $parameters);
+
+		$curl = curl_init($url);
+		if($curl === false)
+			throw new SimpleSAML_Error_Exception("Unable to create CURL handle");
+
+		if(!curl_setopt_array($curl, self::$curl_options))
+			throw new SimpleSAML_Error_Exception("Unable to set CURL options: ".curl_error($curl));
+
+		$str = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if($str === false)
+			throw new SimpleSAML_Error_Exception("Unable to retrieve URL: $error");
+
+		parse_str($str, $res);
+
+		// message is only available with some A-Select server implementations
+		if($res['result_code'] != '0000')
+			if(array_key_exists('message', $res))
+				throw new SimpleSAML_Error_Exception("Unable to contact SSO service: result_code=".$res['result_code']." message=".$res['message']);
+			else
+				throw new SimpleSAML_Error_Exception("Unable to contact SSO service: result_code=".$res['result_code']);
+		unset($res['result_code']);
+
+		return $res;
+	}
+
+	/**
+	 * Initiate authentication. Returns a URL to redirect the user to.
+	 *
+	 * @param string $app_url  The SSP URL to return to after authenticating (similar to an ACS).
+	 */
+	public function request_authentication($app_url) {
+		$res = $this->call_aselect('authenticate',
+			array('app_id' => $this->app_id, 'app_url' => $app_url));
+
+		$as_url = $res['as_url'];
+		unset($res['as_url']);
+
+		return SimpleSAML_Utilities::addURLparameter($as_url, $res);
+	}
+
+	/**
+	 * Verify the credentials upon return from the A-Select server. Returns an associative array
+	 * with the information given by the A-Select server. Any attributes are pre-parsed.
+	 *
+	 * @param string $server_id    The A-Select server ID as passed by the client
+	 * @param string $credentials  The credentials as passed by the client
+	 * @param string $rid          The request ID as passed by the client
+	 */
+	public function verify_credentials($server_id, $credentials, $rid) {
+		if($server_id != $this->server_id)
+			throw new SimpleSAML_Error_Exception("Acquired server ID ($server_id) does not match configured server ID ($this->server_id)");
+
+		$res = $this->call_aselect('verify_credentials',
+			array('aselect_credentials' => $credentials, 'rid' => $rid));
+
+		if(array_key_exists('attributes', $res))
+			$res['attributes'] = self::decode_attributes($res['attributes']);
+
+		return $res;
 	}
 }
