@@ -105,6 +105,38 @@ Here we will list some examples for this authentication source.
     ),
 
 
+### Specifying attributes and required attributes
+
+    An SP that wants eduPersonPrincipalName and mail, where eduPersonPrincipalName should be listed as required:
+
+    'example-attributes => array(
+        'saml:SP',
+        'name' => array( //Name required for AttributeConsumingService-element.
+            'en' => 'Example service',
+            'no' => 'Eksempeltjeneste',
+        ),
+        'attributes' => array(
+            'eduPersonPrincipalName',
+            'mail',
+        )
+        'attributes.required' => array (
+            'eduPersonPrincipalName',
+        ),
+        'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
+    ),
+
+
+### Limiting supported AssertionConsumerService endpoint bindings
+
+    'example-acs-limit' => array(
+        'saml:SP',
+        'acs.Bindings' => array(
+            'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+            'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
+        ),
+    ),
+
+
 ### Requesting a specific authentication method.
 
     $auth = new SimpleSAML_Auth_Simple('default-sp');
@@ -127,6 +159,16 @@ Here we will list some examples for this authentication source.
 Options
 -------
 
+`acs.Bindings`
+: List of bindings the SP should support. If it is unset, all will be added.
+: Possible values:
+
+    * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
+    * `urn:oasis:names:tc:SAML:1.0:profiles:browser-post`
+    * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact`
+    * `urn:oasis:names:tc:SAML:1.0:profiles:artifact-01`
+    * `urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser`
+
 `assertion.encryption`
 :   Whether assertions received by this SP must be encrypted. The default value is `FALSE`.
     If this option is set to `TRUE`, unencrypted assertions will be rejected.
@@ -146,6 +188,10 @@ Options
 
 `attributes.NameFormat`
 :   The `NameFormat` for the requested attributes.
+
+`attributes.required`
+: If you have attributes added you can here specify which should be marked as required.
+: The attributes should still be present in `attributes`.
 
 `AuthnContextClassRef`
 :   The SP can request authentication with a specific authentication context class.
