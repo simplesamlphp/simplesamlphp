@@ -84,6 +84,11 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 /*
  * Get IdP id and metadata
  */
+
+
+$local_idp_entityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+$local_idp_metadata = $metadata->getMetaData($local_idp_entityid, 'saml20-idp-hosted');
+
 if($as->getAuthData('saml:sp:IdP') !== NULL) {
 	/*
 	 * From a remote idp (as bridge)
@@ -94,12 +99,13 @@ if($as->getAuthData('saml:sp:IdP') !== NULL) {
 	/*
 	 * from the local idp
 	 */
-	$idp_entityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-	$idp_metadata = $metadata->getMetaData($idp_entityid, 'saml20-idp-hosted');
+	$idp_entityid = $local_idp_entityid;
+	$idp_metadata = $local_idp_metadata;
 }
 
 // Get user ID
-$userid_attributename = (isset($idp_metadata['userid.attribute']) && is_string($idp_metadata['userid.attribute'])) ? $idp_metadata['userid.attribute'] : 'eduPersonPrincipalName';
+$userid_attributename = (isset($local_idp_metadata['userid.attribute']) && is_string($local_idp_metadata['userid.attribute'])) ? $local_idp_metadata['userid.attribute'] : 'eduPersonPrincipalName';
+
 $userids = $attributes[$userid_attributename];
 		
 if (empty($userids)) {
