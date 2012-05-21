@@ -102,6 +102,10 @@ Released 2012-05-XX.
   * Simpler configuration for disabling consent for one SP or one IdP.
   * Do not connect to the database when consent is disabled for the current SP/IdP.
 
+### `consentAdmin`
+
+  * Fix for bridged IdP setup with `userid.attribute` set in `saml20-idp-hosted` metadata.
+
 ### `cron`
 
   * Set the From-address to be the technical contact email address.
