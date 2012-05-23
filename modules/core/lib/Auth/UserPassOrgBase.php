@@ -42,6 +42,22 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 */
 	private $usernameOrgMethod;
 
+	/**
+	 * Storage for authsource config option remember.username.enabled
+	 * loginuserpass.php and loginuserpassorg.php pages/templates use this option to
+	 * present users with a checkbox to save their username for the next login request.
+	 * @var bool
+	 */
+	protected $rememberUsernameEnabled = FALSE;
+
+	/**
+	 * Storage for authsource config option remember.username.checked
+	 * loginuserpass.php and loginuserpassorg.php pages/templates use this option
+	 * to default the remember username checkbox to checked or not.
+	 * @var bool
+	 */
+	protected $rememberUsernameChecked = FALSE;
+
 
 	/**
 	 * Constructor for this authentication source.
@@ -58,6 +74,14 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 
 		/* Call the parent constructor first, as required by the interface. */
 		parent::__construct($info, $config);
+
+		// Get the remember username config options
+		if (isset($config['remember.username.enabled'])) {
+			$this->rememberUsernameEnabled = (bool) $config['remember.username.enabled'];
+		}
+		if (isset($config['remember.username.checked'])) {
+			$this->rememberUsernameChecked = (bool) $config['remember.username.checked'];
+		}
 
 		$this->usernameOrgMethod = 'none';
 	}
@@ -94,6 +118,22 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 */
 	public function getUsernameOrgMethod() {
 		return $this->usernameOrgMethod;
+	}
+
+	/**
+	 * Getter for the authsource config option remember.username.enabled
+	 * @return bool
+	 */
+	public function getRememberUsernameEnabled() {
+		return $this->rememberUsernameEnabled;
+	}
+
+	/**
+	 * Getter for the authsource config option remember.username.checked
+	 * @return bool
+	 */
+	public function getRememberUsernameChecked() {
+		return $this->rememberUsernameChecked;
 	}
 
 

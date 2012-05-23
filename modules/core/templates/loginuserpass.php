@@ -40,13 +40,44 @@ if ($this->data['forceUsername']) {
 }
 ?>
 			</td>
-			<td style="padding: .4em;" rowspan="3">
-				<input type="submit" tabindex="4" value="<?php echo $this->t('{login:login_button}'); ?>" />
+<?php
+if ($this->data['rememberUsernameEnabled']) {
+	$rowspan = 1;
+} elseif (array_key_exists('organizations', $this->data)) {
+	$rowspan = 3;
+} else {
+	$rowspan = 2;
+}
+?>
+			<td style="padding: .4em;" rowspan="<?php echo $rowspan; ?>">
+<?php
+if ($this->data['rememberUsernameEnabled']) {
+	echo str_repeat("\t", 4);
+	echo '<input type="checkbox" id="remember_username" tabindex="4" name="remember_username" value="Yes" ';
+	echo ($this->data['rememberUsernameChecked'] ? 'checked="Yes" /> ' : '/> ');
+	echo $this->t('{login:remember_username}');
+} else {
+	$text = $this->t('{login:login_button}');
+	echo str_repeat("\t", 4);
+	echo "<input type=\"submit\" tabindex=\"4\" value=\"{$text}\" />";
+}
+?>
 			</td>
 		</tr>
 		<tr>
 			<td style="padding: .3em;"><?php echo $this->t('{login:password}'); ?></td>
 			<td><input id="password" type="password" tabindex="2" name="password" /></td>
+<?php
+// Move submit button to next row if remember checkbox enabled
+if ($this->data['rememberUsernameEnabled']) {
+	$rowspan = (array_key_exists('organizations', $this->data) ? 2 : 1);
+?>
+			<td style="padding: .4em;" rowspan="<?php echo $rowspan; ?>">
+				<input type="submit" tabindex="5" value="<?php echo $this->t('{login:login_button}'); ?>" />
+			</td>
+<?php
+}
+?>
 		</tr>
 
 <?php

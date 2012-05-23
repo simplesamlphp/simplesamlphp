@@ -27,6 +27,8 @@ if ($source === NULL) {
 
 if (array_key_exists('username', $_REQUEST)) {
 	$username = $_REQUEST['username'];
+} elseif ($source->getRememberUsernameEnabled() && array_key_exists($source->getAuthId() . '-username', $_COOKIE)) {
+	$username = $_COOKIE[$source->getAuthId() . '-username'];
 } elseif (isset($state['core:username'])) {
 	$username = (string)$state['core:username'];
 } else {
@@ -46,6 +48,14 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
 		$username = $state['forcedUsername'];
 	}
 
+	if ($source->getRememberUsernameEnabled()) {
+		$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
+		$params = $sessionHandler->getCookieParams();
+		$params['expire'] = time();
+		$params['expire'] += (isset($_REQUEST['remember_username']) && $_REQUEST['remember_username'] == 'Yes' ? 31536000 : -300);
+		setcookie($source->getAuthId() . '-username', $username, $params['expire'], $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+	}
+
 	$errorCode = sspmod_core_Auth_UserPassBase::handleLogin($authStateId, $username, $password);
 } else {
 	$errorCode = NULL;
@@ -57,9 +67,14 @@ $t->data['stateparams'] = array('AuthState' => $authStateId);
 if (array_key_exists('forcedUsername', $state)) {
 	$t->data['username'] = $state['forcedUsername'];
 	$t->data['forceUsername'] = TRUE;
+	$t->data['rememberUsernameEnabled'] = FALSE;
+	$t->data['rememberUsernameChecked'] = FALSE;
 } else {
 	$t->data['username'] = $username;
 	$t->data['forceUsername'] = FALSE;
+	$t->data['rememberUsernameEnabled'] = $source->getRememberUsernameEnabled();
+	$t->data['rememberUsernameChecked'] = $source->getRememberUsernameChecked();
+	if (isset($_COOKIE[$source->getAuthId() . '-username'])) $t->data['rememberUsernameChecked'] = TRUE;
 }
 $t->data['links'] = $source->getLoginLinks();
 $t->data['errorcode'] = $errorCode;

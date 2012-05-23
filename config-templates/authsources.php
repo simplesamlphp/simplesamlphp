@@ -52,6 +52,12 @@ $config = array(
 	/*
 	'example-userpass' => array(
 		'exampleauth:UserPass',
+
+		// Give the user an option to save their username for future login attempts
+		// And when enabled, what should the default be, to save the username or not
+		//'remember.username.enabled' => FALSE,
+		//'remember.username.checked' => FALSE,
+
 		'student:studentpass' => array(
 			'uid' => array('test'),
 			'eduPersonAffiliation' => array('member', 'student'),
@@ -213,6 +219,11 @@ $config = array(
 	'example-ldap' => array(
 		'ldap:LDAP',
 
+		// Give the user an option to save their username for future login attempts
+		// And when enabled, what should the default be, to save the username or not
+		//'remember.username.enabled' => FALSE,
+		//'remember.username.checked' => FALSE,
+
 		// The hostname of the LDAP server.
 		'hostname' => 'ldap.example.org',
 
@@ -277,6 +288,11 @@ $config = array(
 	// Example of an LDAPMulti authentication source.
 	'example-ldapmulti' => array(
 		'ldap:LDAPMulti',
+
+		// Give the user an option to save their username for future login attempts
+		// And when enabled, what should the default be, to save the username or not
+		//'remember.username.enabled' => FALSE,
+		//'remember.username.checked' => FALSE,
 
 		// The way the organization as part of the username should be handled.
 		// Three possible values:

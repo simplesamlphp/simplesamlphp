@@ -55,5 +55,8 @@
 	},
 	"contact_info": {
 		"en": "Contact information:"
+	},
+	"remember_username": {
+		"en": "Remember my username"
 	}
 }
