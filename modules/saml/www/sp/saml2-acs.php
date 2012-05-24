@@ -134,13 +134,15 @@ if (!$foundAuthnStatement) {
 	SimpleSAML_Auth_State::throwException($state, $e);
 }
 
-if ($expire === NULL) {
+if ($expire !== NULL) {
+	$logoutExpire = $expire;
+} else {
 	/* Just expire the logout associtaion 24 hours into the future. */
-	$expire = time() + 24*60*60;
+	$logoutExpire = time() + 24*60*60;
 }
 
 /* Register this session in the logout store. */
-sspmod_saml_SP_LogoutStore::addSession($sourceId, $nameId, $sessionIndex, $expire);
+sspmod_saml_SP_LogoutStore::addSession($sourceId, $nameId, $sessionIndex, $logoutExpire);
 
 /* We need to save the NameID and SessionIndex for logout. */
 $logoutState = array(
@@ -163,6 +165,9 @@ $state['PersistentAuthData'][] = 'saml:sp:SessionIndex';
 $state['saml:sp:AuthnContext'] = $assertion->getAuthnContext();
 $state['PersistentAuthData'][] = 'saml:sp:AuthnContext';
 
+if ($expire !== NULL) {
+	$state['Expire'] = $expire;
+}
 
 if (isset($state['SimpleSAML_Auth_Default.ReturnURL'])) {
 	/* Just note some information about the authentication, in case we receive the
