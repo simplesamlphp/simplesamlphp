@@ -78,9 +78,11 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 		// Get the remember username config options
 		if (isset($config['remember.username.enabled'])) {
 			$this->rememberUsernameEnabled = (bool) $config['remember.username.enabled'];
+			unset($config['remember.username.enabled']);
 		}
 		if (isset($config['remember.username.checked'])) {
 			$this->rememberUsernameChecked = (bool) $config['remember.username.checked'];
+			unset($config['remember.username.checked']);
 		}
 
 		$this->usernameOrgMethod = 'none';
