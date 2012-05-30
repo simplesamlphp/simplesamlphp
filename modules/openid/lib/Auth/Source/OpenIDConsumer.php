@@ -5,6 +5,10 @@
  * used is PHP4-compatible, and not PHP5 strict-standards compatible.
  */
 SimpleSAML_Utilities::maskErrors(E_STRICT);
+if (defined('E_DEPRECATED')) {
+	/* PHP 5.3 also has E_DEPRECATED. */
+	SimpleSAML_Utilities::maskErrors(constant('E_DEPRECATED'));
+}
 
 /* Add the OpenID library search path. */
 set_include_path(get_include_path() . PATH_SEPARATOR . dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) . '/lib');
