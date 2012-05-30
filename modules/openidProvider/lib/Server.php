@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Disable strict error reporting, since the OpenID library
+ * used is PHP4-compatible, and not PHP5 strict-standards compatible.
+ */
+SimpleSAML_Utilities::maskErrors(E_NOTICE | E_STRICT);
+if (defined('E_DEPRECATED')) {
+	/* PHP 5.3 also has E_DEPRECATED. */
+	SimpleSAML_Utilities::maskErrors(constant('E_DEPRECATED'));
+}
+
 /* Add the OpenID library search path. */
 set_include_path(get_include_path() . PATH_SEPARATOR . dirname(dirname(dirname(dirname(__FILE__)))) . '/lib');
 
@@ -77,15 +87,12 @@ class sspmod_openidProvider_Server {
 		$this->authSource = new SimpleSAML_Auth_Simple($config->getString('auth'));
 		$this->usernameAttribute = $config->getString('username_attribute');
 
-		SimpleSAML_Utilities::maskErrors(E_WARNING | E_STRICT);
 		try {
 			$store = new Auth_OpenID_FileStore($config->getString('filestore'));
 			$this->server = new Auth_OpenID_Server($store, $this->getServerURL());
 		} catch (Exception $e) {
-			SimpleSAML_Utilities::popErrorMask();
 			throw $e;
 		}
-		SimpleSAML_Utilities::popErrorMask();
 
 		$this->trustStoreDir = realpath($config->getString('filestore')) . '/truststore';
 		if (!is_dir($this->trustStoreDir)) {
@@ -363,8 +370,6 @@ class sspmod_openidProvider_Server {
 	public function processRequest(array $state) {
 		assert('isset($state["request"])');
 
-		SimpleSAML_Utilities::maskErrors(E_NOTICE | E_STRICT);
-
 		$request = $state['request'];
 
 		if (!$this->authSource->isAuthenticated()) {
@@ -415,8 +420,6 @@ class sspmod_openidProvider_Server {
 	 * This function never returns.
 	 */
 	public function receiveRequest() {
-
-		SimpleSAML_Utilities::maskErrors(E_NOTICE | E_STRICT);
 
 		$request = $this->server->decodeRequest();
 
