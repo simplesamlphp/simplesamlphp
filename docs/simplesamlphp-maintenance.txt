@@ -26,18 +26,19 @@ This document is part of the simpleSAMLphp documentation suite.
 
 simpleSAMLphp has an abstraction layer for session management. That means it is possible to choose between different kind of session stores, as well as write new session store plugins.
 
-The `session.handler` configuration option in `config.php` allows you to select which session handler SimpleSAMLphp should use to store the session information. Currently, two session handlers are included in the distribution:
+The `store.type` configuration option in `config.php` allows you to select which method SimpleSAMLphp should use to store the session information. Currently, three session handlers are included in the distribution:
 
-  * `phpsession` uses the built in session management in PHP. This is the default, and is simplest to use. It will not work in a load-balanced environement.
+  * `phpsession` uses the built in session management in PHP. This is the default, and is simplest to use. It will not work in a load-balanced environement in most configurations.
   * `memcache` uses the memcache software to cache sessions in memory. Sessions can be distributed and replicated among several memcache servers, enabling both load-balancing and fail-over.
+  * `sql` stores the session in an SQL database.
 
-	'session.handler'       => 'phpsession',
+	'store.type' => 'phpsession',
 
 ### Configuring memcache
 
-To use the memcache session handler, set the `session.handler` parameter in `config.php`:
+To use the memcache session handler, set the `store.type` parameter in `config.php`:
 
-    'session.handler'       => 'memcache',
+    'store.type' => 'memcache',
 
 memcache allows you to store multiple redudant copies of sessions on different memcache servers.
 
@@ -99,7 +100,7 @@ This value should always be larger than the `session.duration` option. Not doing
 
 Set this value to 0 if you don't want data to expire.
 
-### Note
+#### Note
 
 The oldest data will always be deleted if the memcache server runs
 out of storage space.
@@ -123,8 +124,15 @@ Setup a firewall restricting access to the memcache server.
 
 Because simpleSAMLphp uses a timestamp to check which session is most recent in a fail-over setup, it is very important to run syncrhonized clocks on all webservers where you run simpleSAMLphp.
 
-## Load balancing and failover
 
+### Configuring SQL storage
+
+To store session to a SQL database, set the `store.type` option to `sql`.
+SimpleSAMLphp uses [PDO](http://www.php.net/manual/en/book.pdo.php) when accessing the database server, so the database source is configured as with a DSN.
+The DSN is stored in the `store.sql.dsn` option. See the [PDO driver manual](http://www.php.net/manual/en/pdo.drivers.php) for the DSN syntax used by the different databases.
+Username and password for accessing the database can be configured in the `store.sql.username` and `store.sql.password` options.
+
+The required tables are created automatically. If you are storing data from multiple separate simpleSAMLphp installations in the same database, you can use the `store.sql.prefix` option to prevent conflicts.
 
 
 ## Logging and statistics
