@@ -515,8 +515,11 @@ class SimpleSAML_Session {
 		if (!isset($data['AuthnInstant'])) {
 			$data['AuthnInstant'] = time();
 		}
-		if (!isset($data['Expire'])) {
-			$data['Expire'] = time() + $globalConfig->getInteger('session.duration', 8*60*60);
+
+		$maxSessionExpire = time() + $globalConfig->getInteger('session.duration', 8*60*60);
+		if (!isset($data['Expire']) || $data['Expire'] > $maxSessionExpire) {
+			/* Unset, or beyond our session lifetime. Clamp it to our maximum session lifetime. */
+			$data['Expire'] = $maxSessionExpire;
 		}
 
 		$this->authData[$authority] = $data;
