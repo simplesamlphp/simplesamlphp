@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.9
 
-Released 2012-05-XX.
+Released 2012-06-13.
 
   * Restructure error templates to share a common base template.
   * Warnings about URL length limits from Suhosin PHP extension.
