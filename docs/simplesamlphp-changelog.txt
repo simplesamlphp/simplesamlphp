@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.9
 
-Released 2012-05-XX.
+Released 2012-06-13.
 
   * Restructure error templates to share a common base template.
   * Warnings about URL length limits from Suhosin PHP extension.
@@ -54,6 +54,7 @@ Released 2012-05-XX.
   * Remove unecessary check for PHP version >= 5.2 when setting cookies.
   * Better error message when a module is missing a default-enable or default-disable file.
   * Support for validating RSA-SHA256 signatures.
+  * Fixes for session exipration handling.
 
 ### `aselect`
 
@@ -146,6 +147,11 @@ Released 2012-05-XX.
   * Throw more relevant exceptions.
   * Update to latest version of the OpenID library.
   * Support for sending authentication requests via GET requests (with the prefer_http_redirect option).
+  * Prevent deprecation warnings from the OpenID library from causing deadlocks in the class loader.
+
+### `openidProvider`
+
+  * Prevent deprecation warnings from the OpenID library from causing deadlocks in the class loader.
 
 ### `radius`
 
@@ -165,6 +171,7 @@ Released 2012-05-XX.
   * Add support for parsing and serializing the &lt;mdrpi:PublicationInfo> metadata extension.
   * Ignore cacheDuration when validating metadata.
   * Better error handling when receiving a SAML 2.0 artifact from an unknown entity.
+  * Fix parsing of &lt;md:AssertionIDRequestService> metadata elements.
   * IdP: Do not always trigger reauthentication when the authentication request contains a IdPList-element.
   * IdP: Add `saml:AllowCreate` to the state array. This makes it possible to access this parameter from authentication processing filters.
   * IdP: Sign the artifact response message.
@@ -177,6 +184,7 @@ Released 2012-05-XX.
   * SP: Fix handling of authentication response without a saml:Issuer element.
   * SP: Support for specifying required attributes in metadata.
   * SP: Support for limiting the AssertionConsumerService endpoints listed in metadata.
+  * SP: Fix session expiration when the IdP limits the session lifetime.
   * `saml:PersistentNameID`: Fail when the user has more than one value in the user ID attribute.
   * `saml:SQLPersistentNameID`: Persistent NameID stored in a SQL database.
   * `saml:AuthnContextClassRef`: New filter to set the AuthnContextClassRef in responses.
