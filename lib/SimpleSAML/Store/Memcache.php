@@ -43,6 +43,10 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store {
 		assert('is_string($key)');
 		assert('is_null($expire) || (is_int($expire) && $expire > 2592000)');
 
+		if ($expire === NULL) {
+			$expire = 0;
+		}
+
 		SimpleSAML_Memcache::set('simpleSAMLphp.' . $type . '.' . $key, $value, $expire);
 	}
 
