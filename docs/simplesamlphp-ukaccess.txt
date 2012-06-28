@@ -26,7 +26,7 @@ Further details on configuring an SP:
   * [Service Provider QuickStart](simplesamlphp-sp)
   * [Configuration Reference](./saml:sp)
 
-### Enablig a certificate for your Service Provider
+### Enabling a certificate for your Service Provider
 
 UK Access Federation and InCommon probably requires that you enable a certificate for your SP. Other federations do not always require that you do.
 
@@ -51,7 +51,7 @@ Then edit your `authsources.php` entry, and add references to your certificate:
 Consuming Federation Metadata
 -----------------------------
 
-In order to enable the functionality to automatically download and parse metadata from a remtote URL, enable the `metarefresh` and `cron` modules:
+In order to enable the functionality to automatically download and parse metadata from a remote URL, enable the `metarefresh` and `cron` modules:
 
 	touch modules/metarefresh/enable
 	cp modules/metarefresh/config-templates/*.php config/
@@ -86,7 +86,7 @@ Edit the `config/config-metarefresh.php`:
 		),
 	);
 
-The example above is from **UK Acces Federation**. If you instead would like to get metadata from **InCommon**, use the following URL and fingerprint:
+The example above is from **UK Access Federation**. If you instead would like to get metadata from **InCommon**, use the following URL and fingerprint:
 
 	'src' => 'http://wayf.incommonfederation.org/InCommon/InCommon-metadata.xml',
 	'validateFingerprint' => '74278f967cf1bfcaaa1b41afb6336448a2150eb4',	
@@ -110,7 +110,7 @@ Now, go to the frontpage of your simpleSAMLphp installation, and:
 
 Then the page should load for a while and show no errors, only a white page. (These URLs are meant to run from *cron*, hence no output). If this operation seems to run fine, navigate to the **SimpleSAMLphp Front page** › **Federation**. Here you should see a list of all trusted Identity Providers. The Identity Providers that are downloaded are listed with information about the valid cache duration, such as *(expires in 96.0 hours)*.
 
-For more details on how to configure automateed metadata:
+For more details on how to configure automated metadata:
 
   * [Automated Metadata Management](simplesamlphp-automated_metadata)
 
@@ -167,7 +167,7 @@ SimpleSAMLphp SP supports *SAML 2.0*, compatible with Shibboleth 2.X:
   * SimpleSAMLphp uses the SAML 2.0 HTTP-REDIRECT binding for authentication request.
   * SimpleSAMLphp by default sends unsigned authentication request, may be enabled by configuring a certificate.
   * SimpleSAMLphp supports the SAML 2.0 HTTP-POST binding for Response.
-  * SimpleSAMLphp do not support the SAML 2.0 Artifact binding for Response. Estimated to be available in SimpleSAMLphp 1.6.
+  * SimpleSAMLphp does not support the SAML 2.0 Artifact binding for Response. Estimated to be available in SimpleSAMLphp 1.6.
   * SimpleSAMLphp supports SAML 2.0 Attribute Queries, but these are not sent automatically during SSO.
   * SimpleSAMLphp supports receiving and decrypting EncryptedAssertions.
   * SimpleSAMLphp supports receiving and decrypting NameID, as enabled by default by Shibboleth 2.0 - 2.1.
@@ -191,5 +191,5 @@ More information about the federations:
 - [UK Access Federation](http://www.ukfederation.org.uk/)
 - [InCommon](http://www.incommonfederation.org/)
 
-If your questions are not related to simpleSAMLphp, but instead to procedures on how to deal with a specific federation, the support channels specific for that federation.
+If your questions are not related to simpleSAMLphp, but instead procedures on how to deal with a specific federation, visit the support channels specific for that federation.
 
