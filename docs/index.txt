@@ -35,6 +35,7 @@ SimpleSAMLphp Documentation
  * [Key rollover](./saml:keyrollover)
  * [Creating authentication sources](./simplesamlphp-authsource)
   * [Implementing custom username/password authentication](./simplesamlphp-customauth)
+ * [Storing sessions in Riak](./riak:simplesamlphp-riak)
 
 Documentation on specific simpleSAMLphp modules:
  
