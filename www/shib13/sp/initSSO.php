@@ -84,7 +84,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 } else {
 
 	
-	$relaystate = $session->getRelayState();
+	$relaystate = $_GET['RelayState'];
 	
 	if (isset($relaystate) && !empty($relaystate)) {
 		SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: Already Authenticated, Go back to RelayState');
