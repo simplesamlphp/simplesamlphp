@@ -170,6 +170,7 @@ Released 2012-06-13.
   * Allow ISO8601 durations with subsecond precision.
   * Add support for parsing and serializing the &lt;mdrpi:PublicationInfo> metadata extension.
   * Ignore cacheDuration when validating metadata.
+  * Add support for the Holder-of-Key profile, on both the [SP](./simplesamlphp-hok-sp) and [IdP](./simplesamlphp-hok-idp).
   * Better error handling when receiving a SAML 2.0 artifact from an unknown entity.
   * Fix parsing of &lt;md:AssertionIDRequestService> metadata elements.
   * IdP: Do not always trigger reauthentication when the authentication request contains a IdPList-element.
