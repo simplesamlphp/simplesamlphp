@@ -295,7 +295,7 @@ class SimpleSAML_Configuration {
 	 * @return string
 	 */
 	public function getVersion() {
-		return '1.9.x';
+		return '1.9.1';
 	}
 
 
