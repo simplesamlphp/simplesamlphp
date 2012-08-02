@@ -288,6 +288,26 @@ class sspmod_saml_Message {
 
 
 	/**
+	 * Retrieve blacklisted algorithms.
+	 *
+	 * Remote configuration overrides local configuration.
+	 *
+	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.
+	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient.
+	 * @return array  Array of blacklisted algorithms.
+	 */
+	public static function getBlacklistedAlgorithms(SimpleSAML_Configuration $srcMetadata,
+		SimpleSAML_Configuration $dstMetadata) {
+
+		$blacklist = $srcMetadata->getArray('encryption.blacklisted-algorithms', NULL);
+		if ($blacklist === NULL) {
+			$blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', array());
+		}
+		return $blacklist;
+	}
+
+
+	/**
 	 * Decrypt an assertion.
 	 *
 	 * This function takes in a SAML2_Assertion and decrypts it if it is encrypted.
@@ -322,10 +342,12 @@ class sspmod_saml_Message {
 			throw new SimpleSAML_Error_Exception('Error decrypting assertion: ' . $e->getMessage());
 		}
 
+		$blacklist = self::getBlacklistedAlgorithms($srcMetadata, $dstMetadata);
+
 		$lastException = NULL;
 		foreach ($keys as $i => $key) {
 			try {
-				$ret = $assertion->getAssertion($key);
+				$ret = $assertion->getAssertion($key, $blacklist);
 				SimpleSAML_Logger::debug('Decryption with key #' . $i . ' succeeded.');
 				return $ret;
 			} catch (Exception $e) {
@@ -695,10 +717,12 @@ class sspmod_saml_Message {
 				throw new SimpleSAML_Error_Exception('Error decrypting NameID: ' . $e->getMessage());
 			}
 
+			$blacklist = self::getBlacklistedAlgorithms($idpMetadata, $spMetadata);
+
 			$lastException = NULL;
 			foreach ($keys as $i => $key) {
 				try {
-					$assertion->decryptNameId($key);
+					$assertion->decryptNameId($key, $blacklist);
 					SimpleSAML_Logger::debug('Decryption with key #' . $i . ' succeeded.');
 					$lastException = NULL;
 					break;

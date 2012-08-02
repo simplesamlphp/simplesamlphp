@@ -227,6 +227,12 @@ Options
     If this is unset, the IdP discovery service specified in the global option `idpdisco.url.{saml20|shib13}` in `config/config.php` will be used.
     If that one is also unset, the builtin default discovery service will be used.
 
+`encryption.blacklisted-algorithms`
+:   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
+
+:   Note that this option can be set for each IdP in the [IdP-remote metadata](./simplesamlphp-reference-idp-remote).
+
+:   *Note*: SAML 2 specific.
 
 `entityID`
 :   The entity ID this SP should use.

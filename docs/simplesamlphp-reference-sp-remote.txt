@@ -155,6 +155,13 @@ The following SAML 2.0 options are available:
 
 :   (This option was previously named `AttributeNameFormat`.)
 
+`encryption.blacklisted-algorithms`
+:   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
+
+:   Note that this option also exists in the IdP-hosted metadata. This
+    entry in the SP-remote metadata overrides the option in the
+    [IdP-hosted metadata](./simplesamlphp-reference-idp-hosted).
+
 `ForceAuthn`
 :   Set this `TRUE` to force the user to reauthenticate when the IdP
     receives authentication requests from this SP. The default is

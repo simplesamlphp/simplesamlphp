@@ -70,10 +70,12 @@ if ($message instanceof SAML2_LogoutResponse) {
 			throw new SimpleSAML_Error_Exception('Error decrypting NameID: ' . $e->getMessage());
 		}
 
+		$blacklist = sspmod_saml_Message::getBlacklistedAlgorithms($idpMetadata, $spMetadata);
+
 		$lastException = NULL;
 		foreach ($keys as $i => $key) {
 			try {
-				$message->decryptNameId($key);
+				$message->decryptNameId($key, $blacklist);
 				SimpleSAML_Logger::debug('Decryption with key #' . $i . ' succeeded.');
 				$lastException = NULL;
 				break;

@@ -98,6 +98,13 @@ SAML 2.0 options
 
 The following SAML 2.0 options are available:
 
+`encryption.blacklisted-algorithms`
+:   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
+
+:   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+    [SP configuration](./saml:sp).
+
 `nameid.encryption`
 :   Whether NameIDs sent to this IdP should be encrypted. The default
     value is `FALSE`.
