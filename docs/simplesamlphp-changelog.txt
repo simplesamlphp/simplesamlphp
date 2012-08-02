@@ -6,6 +6,29 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.10
+
+Released TBD.
+
+  * Add support for storing data without expiration timestamp in memcache.
+  * Fix for reauthentication in old shib13 authentication handler.
+  * Clean up executable-permissions on files.
+  * Change encryption to use the rsa-oaep-mgf1p key padding instead of PKCS 1.5.
+  * Update translations.
+
+### `core`
+
+  * `core:UserPass(Org)Base`: Add "remember username" option.
+
+### `riak`
+
+  * New module for storing sessions in a Riak database.
+
+### `saml`
+
+  * Add support for overriding SAML 2.0 SP authentication request generation.
+  * Add support for blacklisting encryption algorithms.
+
 ## Version 1.9.1
 
 Released 2012-08-02.
