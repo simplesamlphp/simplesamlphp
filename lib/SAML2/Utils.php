@@ -398,9 +398,13 @@ class SAML2_Utils {
 				SimpleSAML_Logger::error('Failed to decrypt symmetric key: ' . $e->getMessage());
 				/* Create a replacement key, so that it looks like we fail in the same way as if the key was correctly padded. */
 
-				/* We base the symmetric key on the encrypted key, so that we always behave the same way for a given input key. */
+				/* We base the symmetric key on the encrypted key and private key, so that we always behave the
+				 * same way for a given input key.
+				 */
 				$encryptedKey = $encKey->getCipherValue();
-				$key = md5($encryptedKey, TRUE);
+				$pkey = openssl_pkey_get_details($symmetricKeyInfo->key);
+				$pkey = sha1(serialize($pkey), TRUE);
+				$key = sha1($encryptedKey . $pkey, TRUE);
 
 				/* Make sure that the key has the correct length. */
 				if (strlen($key) > $keySize) {
@@ -431,7 +435,7 @@ class SAML2_Utils {
 		 */
 		$xml = '<root xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'.$decrypted.'</root>';
 		$newDoc = new DOMDocument();
-		if (!$newDoc->loadXML($xml)) {
+		if (!@$newDoc->loadXML($xml)) {
 			throw new Exception('Failed to parse decrypted XML. Maybe the wrong sharedkey was used?');
 		}
 		$decryptedElement = $newDoc->firstChild->firstChild;
