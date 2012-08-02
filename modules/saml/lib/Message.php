@@ -738,7 +738,7 @@ class sspmod_saml_Message {
 				$pemKey = "-----BEGIN CERTIFICATE-----\n" .
 					chunk_split($key['X509Certificate'], 64) .
 					"-----END CERTIFICATE-----\n";
-				$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'public'));
+				$key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, array('type'=>'public'));
 				$key->loadKey($pemKey);
 				return $key;
 			}

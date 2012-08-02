@@ -920,7 +920,7 @@ class sspmod_saml_IdP_SAML2 {
 			}
 
 			/* Extract the public key from the certificate for encryption. */
-			$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'public'));
+			$key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, array('type'=>'public'));
 			$key->loadKey($pemKey);
 		}
 
