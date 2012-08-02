@@ -339,9 +339,10 @@ class SAML2_Utils {
 	 *
 	 * @param DOMElement $encryptedData  The encrypted data.
 	 * @param XMLSecurityKey $inputKey  The decryption key.
+	 * @param array &$blacklist  Blacklisted decryption algorithms.
 	 * @return DOMElement  The decrypted element.
 	 */
-	private static function _decryptElement(DOMElement $encryptedData, XMLSecurityKey $inputKey) {
+	private static function _decryptElement(DOMElement $encryptedData, XMLSecurityKey $inputKey, array &$blacklist) {
 
 		$enc = new XMLSecEnc();
 
@@ -361,6 +362,10 @@ class SAML2_Utils {
 		$inputKeyAlgo = $inputKey->getAlgorith();
 		if ($symmetricKeyInfo->isEncrypted) {
 			$symKeyInfoAlgo = $symmetricKeyInfo->getAlgorith();
+
+			if (in_array($symKeyInfoAlgo, $blacklist, TRUE)) {
+				throw new Exception('Algorithm disabled: ' . var_export($symKeyInfoAlgo, TRUE));
+			}
 
 			if ($symKeyInfoAlgo === XMLSecurityKey::RSA_OAEP_MGF1P && $inputKeyAlgo === XMLSecurityKey::RSA_1_5) {
 				/*
@@ -426,6 +431,11 @@ class SAML2_Utils {
 			$symmetricKey = $inputKey;
 		}
 
+		$algorithm = $symmetricKey->getAlgorith();
+		if (in_array($algorithm, $blacklist, TRUE)) {
+			throw new Exception('Algorithm disabled: ' . var_export($algorithm, TRUE));
+		}
+
 		$decrypted = $enc->decryptNode($symmetricKey, FALSE);
 
 		/*
@@ -456,12 +466,13 @@ class SAML2_Utils {
 	 *
 	 * @param DOMElement $encryptedData  The encrypted data.
 	 * @param XMLSecurityKey $inputKey  The decryption key.
+	 * @param array $blacklist  Blacklisted decryption algorithms.
 	 * @return DOMElement  The decrypted element.
 	 */
-	public static function decryptElement(DOMElement $encryptedData, XMLSecurityKey $inputKey) {
+	public static function decryptElement(DOMElement $encryptedData, XMLSecurityKey $inputKey, array $blacklist = array()) {
 
 		try {
-			return self::_decryptElement($encryptedData, $inputKey);
+			return self::_decryptElement($encryptedData, $inputKey, $blacklist);
 		} catch (Exception $e) {
 			/*
 			 * Something went wrong during decryption, but for security

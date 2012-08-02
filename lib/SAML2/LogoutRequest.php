@@ -153,15 +153,16 @@ class SAML2_LogoutRequest extends SAML2_Request {
 	 * Decrypt the NameID in the LogoutRequest.
 	 *
 	 * @param XMLSecurityKey $key  The decryption key.
+	 * @param array $blacklist  Blacklisted decryption algorithms.
 	 */
-	public function decryptNameId(XMLSecurityKey $key) {
+	public function decryptNameId(XMLSecurityKey $key, array $blacklist = array()) {
 
 		if ($this->encryptedNameId === NULL) {
 			/* No NameID to decrypt. */
 			return;
 		}
 
-		$nameId = SAML2_Utils::decryptElement($this->encryptedNameId, $key);
+		$nameId = SAML2_Utils::decryptElement($this->encryptedNameId, $key, $blacklist);
 		SimpleSAML_Utilities::debugMessage($nameId, 'decrypt');
 		$this->nameId = SAML2_Utils::parseNameId($nameId);
 
