@@ -94,7 +94,7 @@
 		"nn": "Detaljane under kan vera av interesse for administrator eller hjelpetenesta",
 		"sv": "Detaljerna nedan kan vara av intresse f\u00f6r helpdesk eller de som sk\u00f6ter systemet:",
 		"es": "La siguiente informaci\u00f3n de depuraci\u00f3n puede ser de utilidad para el administrador del sistema o el centro de atenci\u00f3n a usuarios:",
-		"fr": "L'information de d\u00e9boguage ci-dessous peut \u00eatre int\u00e9ressante pour l'administrateur ou le help desk",
+		"fr": "L'information de d\u00e9boguage ci-dessous peut \u00eatre int\u00e9ressante pour l'administrateur ou le help desk :",
 		"de": "Die unten angegebene Debug-Information kann von Interesse f\u00fcr den Administrator oder das Helpdesk sein:",
 		"nl": "Onderstaande debuginformatie kan van belang zijn voor de beheerder \/ helpdesk:",
 		"lb": "Dei Debug Informatiounen hei dr\u00ebnner kinnten den Administrator interess\u00e9iren:",
@@ -1857,7 +1857,10 @@
 		"pl": "Przerwane uwierzytelnienie",
 		"ar": "\u0625\u064a\u0642\u0627\u0641 \u0627\u0644\u062a\u0648\u062b\u064a\u0642",
 		"id": "Autentifikasi dibatalkan",
-		"nl": "Authenticatie afgebroken"
+		"nl": "Authenticatie afgebroken",
+		"hu": "Azonos\u00edt\u00e1s megszak\u00edtva",
+		"nn": "Avbroten innlogging",
+		"fr": "Authentification abandonn\u00e9e"
 	},
 	"descr_USERABORTED": {
 		"da": "Autentificering blev afbrudt af brugeren",
@@ -1877,7 +1880,10 @@
 		"es": "La Autenticacion fue abortada por el usuario",
 		"pl": "Uwierzytelnienie zosta\u0142o przerwane przez u\u017cytkownika",
 		"ar": "\u062a\u0645 \u0625\u064a\u0642\u0627\u0641 \u0627\u0644\u062a\u0648\u062b\u064a\u0642 \u0628\u0648\u0627\u0633\u0637\u0629 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645",
-		"id": "Autentifikasi dibatalkan oleh user"
+		"id": "Autentifikasi dibatalkan oleh user",
+		"hu": "Az azonos\u00edt\u00e1st a felhaszn\u00e1l\u00f3 megszak\u00edtotta",
+		"nn": "Innlogging blei avbroten av sluttbrukaren",
+		"fr": "L'authentification a \u00e9t\u00e9 abandonn\u00e9e par l'usager"
 	},
 	"title_NOSTATE": {
 		"da": "State information tabt",
@@ -1897,7 +1903,9 @@
 		"pl": "Utracono informacje o stanie",
 		"ar": "\u0641\u0642\u062f\u0627\u0646 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u062d\u0627\u0644\u0629",
 		"hu": "Elveszett az \u00e1llapotinform\u00e1ci\u00f3",
-		"id": "Informasi state hilang"
+		"id": "Informasi state hilang",
+		"nn": "Mista tilstandsinformasjon",
+		"fr": "Information d'\u00e9tat perdue"
 	},
 	"descr_NOSTATE": {
 		"da": "State information er tabt og der er ikke muligt at gentage forsp\u00f8rgelsen",
@@ -1916,7 +1924,10 @@
 		"es": "Informaci\u00f3n de estado perdida y no hay manera de restablecer la petici\u00f3n",
 		"pl": "Utracono informacje o stanie i nie ma mo\u017cliwo\u015bci ponowienia zlecenia",
 		"ar": "\u0641\u0642\u062f\u0627\u0646 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u062d\u0627\u0644\u0629 \u0648 \u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0639\u0627\u062f\u0629 \u0627\u0644\u0628\u062f\u0621 \u0644\u0644\u0637\u0644\u0628",
-		"id": "Informasi state hilang, dan tidak ada cara untuk me-restat request"
+		"id": "Informasi state hilang, dan tidak ada cara untuk me-restat request",
+		"hu": "\u00c1llapotinform\u00e1ci\u00f3 elveszett, a k\u00e9r\u00e9st nem lehet \u00fajraind\u00edtani",
+		"nn": "Mista tilstandsinformasjon, og klarer ikkje \u00e5 gjera omstart",
+		"fr": "Information d'\u00e9tat perdue, et aucun moyen de relancer la requ\u00eate"
 	},
 	"title_METADATANOTFOUND": {
 		"da": "Metadata ikke fundet",
@@ -1935,7 +1946,10 @@
 		"es": "Metadatos no econtrados",
 		"pl": "Nie znaleziono metadanych",
 		"ar": "\u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627 \u0645\u0641\u0642\u0648\u062f\u0629",
-		"id": "Metadata tidak ditemukan"
+		"id": "Metadata tidak ditemukan",
+		"hu": "Metadata nem tal\u00e1lhat\u00f3",
+		"nn": "Finn ikkje metadata",
+		"fr": "M\u00e9tadonn\u00e9es non trouv\u00e9es"
 	},
 	"descr_METADATANOTFOUND": {
 		"da": "Kan ikke finde metadata for %ENTITYID%",
@@ -1954,7 +1968,10 @@
 		"es": "No se puede localizar los metadatos en %ENTITYID%",
 		"pl": "Nie mo\u017cna zlokalizowa\u0107 metadanych dotycz\u0105cych %ENTITYID%",
 		"ar": "\u0644\u0627 \u064a\u0645\u0643\u0646 \u062a\u062d\u062f\u064a\u062f \u0645\u0648\u0642\u0639 \u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627 \u0644 %ENTITYID%",
-		"id": "Tidak dapat menemukan metadata untuk %ENTITYID%"
+		"id": "Tidak dapat menemukan metadata untuk %ENTITYID%",
+		"hu": "%ENTITYID% entit\u00e1shoz nem tal\u00e1lhat\u00f3 metadataA",
+		"nn": "Klarer ikkje \u00e5 finna metadata for %ENTITYID%",
+		"fr": "Impossible de localiser les m\u00e9tadonn\u00e9es pour %ENTITYID%"
 	},
 	"title_AUTHSOURCEERROR": {
 		"hr": "Gre\u0161ka u autentifikacijskom modulu",
@@ -1971,7 +1988,10 @@
 		"es": "Error en la Autenticacion de origen",
 		"pl": "B\u0142\u0105d \u017ar\u00f3d\u0142a uwierzytelnienia",
 		"ar": "\u062e\u0637\u0627 \u0628\u0645\u0635\u062f\u0631 \u0627\u0644\u062a\u0648\u062b\u064a\u0642",
-		"id": "Error sumber autentifikasi"
+		"id": "Error sumber autentifikasi",
+		"hu": "Azonos\u00edt\u00e1si forr\u00e1s hiba",
+		"nn": "Innloggingsfeil: autentisering",
+		"fr": "Erreur sur la source d'authentification"
 	},
 	"descr_AUTHSOURCEERROR": {
 		"hr": "Do\u0161lo je do gre\u0161ke u autentifikacijskom modulu %AUTHSOURCE%. Razlog: %REASON%",
@@ -1988,6 +2008,9 @@
 		"es": "Error en la Autenticacion en el origen %AUTHSOURCE%. La razon fue: %REASON%",
 		"pl": "B\u0142\u0105d uwierzytelnienia dla \u017ar\u00f3d\u0142a %AUTHSOURCE%. Przyczyn\u0105 jest: %REASON%",
 		"ar": "\u062e\u0637\u0627 \u0628\u0645\u0635\u062f\u0631 \u0627\u0644\u062a\u0648\u062b\u064a\u0642 %AUTHSOURCE% \u0646\u062a\u064a\u062c\u0629 \u0644 %REASON%",
-		"id": "Error autentifikasi di sumber %AUTHSOURCE%. Alasannya adalah: %REASON%"
+		"id": "Error autentifikasi di sumber %AUTHSOURCE%. Alasannya adalah: %REASON%",
+		"hu": "A(z)  %AUTHSOURCE% azonos\u00edt\u00e1si forr\u00e1sban hiba van. A ok: %REASON%",
+		"nn": "Innloggingsfeil knytta til %AUTHSOURCE% p\u00e5 grunn av %REASON%",
+		"fr": "Erreur d'authentification pour la source %AUTHSOURCE%. La raison \u00e9tait %REASON%"
 	}
 }
