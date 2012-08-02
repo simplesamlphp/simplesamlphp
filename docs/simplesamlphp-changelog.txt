@@ -6,6 +6,12 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.9.1
+
+Released 2012-08-02.
+
+  * Fix for a new attack against PKCS 1.5 in XML encryption.
+
 ## Version 1.9
 
 Released 2012-06-13.
