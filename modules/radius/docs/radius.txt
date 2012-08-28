@@ -18,22 +18,18 @@ authentication source which uses the `radius:Radius` module to
         'radius:Radius',
 
         /*
-         * The hostname of the RADIUS server.
-         * Required.
+         * An array with the radius servers to use, up to 10.
+         * The options are:
+         *  - hostname: the hostname of the radius server, or its IP address. Required.
+         *  - port: the port of the radius server. Optional, defaults to 1812.
+         *  - secret: the radius secret to use with this server. Required.
          */
-        'hostname' => 'radius.example.org',
-
-        /*
-         * The port number of the radius server.
-         * Optional, defaults to 1812.
-         */
-        'port' => 1812,
-
-        /*
-         * The shared secret which is used when contacting the RADUIS server.
-         * Required.
-         */
-        'secret' => 'topsecret',
+        'servers' => array(array('hostname' => 'radius1.example.org',
+                                 'port' => 1812,
+                                 'secret' => 'topsecret'),
+                           array('hostname' => 'radius2.example.org',
+                                 'port' => 1812,
+                                 'secret' => 'topsecret')),
 
         /*
          * The timeout for contacting the RADIUS server, in seconds.
@@ -46,6 +42,12 @@ authentication source which uses the `radius:Radius` module to
          * Optional, defaults to 3 attempts.
          */
         'retries' => 3,
+
+        /*
+         * The NAS identifier to use when querying the radius server.
+         * Optional, defaults to the current host name.
+         */
+        'nas_identifier' => 'client.example.org',
 
         /*
          * The attribute name we should store the username in. Ths username

@@ -115,6 +115,9 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 		/* Try to add all radius servers, trigger a failure if no one works. */
 		$success = false;
 		foreach ($this->servers as $server) {
+			if (!isset($server['port'])) {
+				$server['port'] = 1812;
+			}
 			if (!radius_add_server($radius, $server['hostname'], $server['port'], $server['secret'], 
 								   $this->timeout, $this->retries)) {
 				SimpleSAML_Logger::info("Could not connect to server: ".radius_strerror($radius));
@@ -173,8 +176,8 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 			}
 
 			/* Use the received user name */
-			if ($attr_name == RADIUS_USER_NAME) {
-				$attributes[$this->usernameAttribute] = array($attr_value);
+			if ($resa['attr'] == RADIUS_USER_NAME) {
+				$attributes[$this->usernameAttribute] = array($resa['data']);
 				continue;
 			}
 
