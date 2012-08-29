@@ -20,6 +20,10 @@ Released TBD.
 
   * `core:UserPass(Org)Base`: Add "remember username" option.
 
+### `radius`
+
+  * New feature to configure multiple radius servers.
+
 ### `riak`
 
   * New module for storing sessions in a Riak database.
