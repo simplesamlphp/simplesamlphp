@@ -11,6 +11,11 @@
 class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 
 	/**
+	 * The list of radius servers to use.
+	 */
+	private $servers;
+
+	/**
 	 * The hostname of the radius server.
 	 */
 	private $hostname;
@@ -71,13 +76,21 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 		$config = SimpleSAML_Configuration::loadFromArray($config,
 			'Authentication source ' . var_export($this->authId, TRUE));
 
-		$this->hostname = $config->getString('hostname');
-		$this->port = $config->getIntegerRange('port', 1, 65535, 1812);
-		$this->secret = $config->getString('secret');
+		$this->servers = $config->getArray('servers', array());
+		/* For backwards compatibility. */
+		if (empty($this->servers)) {
+			$this->hostname = $config->getString('hostname');
+			$this->port = $config->getIntegerRange('port', 1, 65535, 1812);
+			$this->secret = $config->getString('secret');
+			$this->servers[] = array('hostname' => $this->hostname,
+									 'port' => $this->port,
+									 'secret' => $this->secret);
+		}
 		$this->timeout = $config->getInteger('timeout', 5);
 		$this->retries = $config->getInteger('retries', 3);
 		$this->usernameAttribute = $config->getString('username_attribute', NULL);
-		$this->nasIdentifier = $config->getString('nas_identifier', NULL);
+		$this->nasIdentifier = $config->getString('nas_identifier',
+												  isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost');
 
 		$this->vendor = $config->getInteger('attribute_vendor', NULL);
 		if ($this->vendor !== NULL) {
@@ -98,8 +111,22 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 		assert('is_string($password)');
 
 		$radius = radius_auth_open();
-		if (!radius_add_server($radius, $this->hostname, $this->port, $this->secret, $this->timeout, $this->retries)) {
-			throw new Exception('Error connecting to radius server: ' . radius_strerror($radius));
+
+		/* Try to add all radius servers, trigger a failure if no one works. */
+		$success = false;
+		foreach ($this->servers as $server) {
+			if (!isset($server['port'])) {
+				$server['port'] = 1812;
+			}
+			if (!radius_add_server($radius, $server['hostname'], $server['port'], $server['secret'], 
+								   $this->timeout, $this->retries)) {
+				SimpleSAML_Logger::info("Could not connect to server: ".radius_strerror($radius));
+				continue;
+			}
+			$success = true;
+		}
+		if (!$success) {
+			throw new Exception('Error connecting to radius server, no servers available');
 		}
 
 		if (!radius_create_request($radius, RADIUS_ACCESS_REQUEST)) {
@@ -146,6 +173,12 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 
 			if (!is_array($resa)) {
 				throw new Exception('Error getting radius attributes: ' . radius_strerror($radius));
+			}
+
+			/* Use the received user name */
+			if ($resa['attr'] == RADIUS_USER_NAME) {
+				$attributes[$this->usernameAttribute] = array($resa['data']);
+				continue;
 			}
 
 			if ($resa['attr'] !== RADIUS_VENDOR_SPECIFIC) {
