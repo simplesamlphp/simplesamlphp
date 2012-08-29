@@ -393,6 +393,10 @@ class SAML2_Utils {
 
 			try {
 				$key = $encKey->decryptKey($symmetricKeyInfo);
+				if (strlen($key) != $keySize) {
+					throw new Exception('Unexpected key size (' . strlen($key) * 8 . 'bits) for encryption algorithm: ' .
+										var_export($symmetricKey->type, TRUE));
+				}
 			} catch (Exception $e) {
 				/* We failed to decrypt this key. Log it, and substitute a "random" key. */
 				SimpleSAML_Logger::error('Failed to decrypt symmetric key: ' . $e->getMessage());
