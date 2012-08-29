@@ -29,6 +29,12 @@ Released TBD.
   * Add support for overriding SAML 2.0 SP authentication request generation.
   * Add support for blacklisting encryption algorithms.
 
+## Version 1.9.2
+
+Released 2012-08-29
+
+  * Fix related to the security issue addressed in version 1.9.1.
+
 ## Version 1.9.1
 
 Released 2012-08-02.
