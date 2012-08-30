@@ -26,8 +26,10 @@ $logoutLink = SimpleSAML_Module::getModuleURL(
 
 
 $aboutService = null;
-if (isset($state['Destination']['url.about'])) {
-    $aboutService = $state['Destination']['url.about'];
+if (!isset($state['consent:showNoConsentAboutService']) || $state['consent:showNoConsentAboutService']) {
+	if (isset($state['Destination']['url.about'])) {
+		$aboutService = $state['Destination']['url.about'];
+	}
 }
 
 $statsInfo = array();

@@ -160,6 +160,9 @@ The following options can be used when configuring the Consent module
     the attributes that should have it value hidden. Default behaviour is that 
     all attribute values are shown
 
+`showNoConsentAboutService`
+:   Whether we will show a link to more information about the service from the
+    no consent page. Defaults to `TRUE`.
 
 External options
 ----------------
