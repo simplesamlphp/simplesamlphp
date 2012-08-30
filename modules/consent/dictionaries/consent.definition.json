@@ -33,7 +33,7 @@
 		"en": "No consent given"
 	},
 	"noconsent_text": {
-		"en": "You did not give consent for transfering your attributes to the service provider."
+		"en": "You did not give consent for transfering your attributes to SPNAME."
 	},
 	"noconsent_return": {
 		"en": "Return to consent page"
@@ -61,5 +61,8 @@
 	},
 	"show_attribute": {
 		"en": "Show content"
+	},
+	"abort": {
+		"en": "Abort login to SPNAME"
 	}
 }
