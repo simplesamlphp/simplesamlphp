@@ -19,7 +19,8 @@
 		"de": "Statusinformationen verloren",
 		"zh": "\u72b6\u6001\u4fe1\u606f\u4e22\u5931",
 		"ar": "\u062d\u062f\u062f \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0641\u0642\u0648\u062f\u0629",
-		"id": "Informasi kondisi\/state hilang"
+		"id": "Informasi kondisi\/state hilang",
+		"sr": "Informacije o stanju su izgubljene"
 	},
 	"description": {
 		"no": "Vi kunne ikke finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
@@ -41,7 +42,8 @@
 		"de": "Wir konnten die Statusinformationen f\u00fcr die aktuelle Anfrage nicht lokalisieren.",
 		"zh": "\u6211\u4eec\u65e0\u6cd5\u5b9a\u4f4d\u5f53\u524d\u8bf7\u6c42\u7684\u72b6\u6001\u4fe1\u606f",
 		"ar": "\u0644\u0645 \u0646\u0633\u062a\u0637\u0639 \u062a\u062d\u062f\u064a\u062f \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0641\u0642\u0648\u062f\u0629 \u0644\u0644\u0637\u0644\u0628 \u0627\u0644\u062d\u0627\u0644\u064a",
-		"id": "Kita tidak dapat menemukan informasi kondisi\/state dari request saat ini."
+		"id": "Kita tidak dapat menemukan informasi kondisi\/state dari request saat ini.",
+		"sr": "Ne mo\u017eemo prona\u0107i informacije o stanju aktuelnog zahteva."
 	},
 	"suggestions": {
 		"no": "Forslag for \u00e5 l\u00f8se dette problemet:",
@@ -63,7 +65,8 @@
 		"de": "Empfehlungen um dieses Problem zu l\u00f6sen:",
 		"zh": "\u5173\u4e8e\u89e3\u51b3\u8be5\u95ee\u9898\u7684\u5efa\u8bae",
 		"ar": "\u0627\u0642\u062a\u0631\u0627\u062d\u0627\u062a \u0644\u062d\u0644 \u0627\u0644\u0645\u0634\u0643\u0644\u0629 ",
-		"id": "Saran untuk memperbaiki masalah ini:"
+		"id": "Saran untuk memperbaiki masalah ini:",
+		"sr": "Preporuke za re\u0161avanje ovog problema:"
 	},
 	"suggestion_goback": {
 		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
@@ -85,7 +88,8 @@
 		"de": "Kehre zur letzen Seite zur\u00fcck und versuche es erneut.",
 		"zh": "\u8fd4\u56de\u4e0a\u4e00\u9875\u5e76\u91cd\u65b0\u5c1d\u8bd5",
 		"ar": "\u0627\u0631\u062c\u0639 \u0644\u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629 \u0648 \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0627\u062e\u0631\u064a",
-		"id": "Kembali ke halaman sebelumnya dan coba lagi."
+		"id": "Kembali ke halaman sebelumnya dan coba lagi.",
+		"sr": "Vratite se na prethodnu stranicu i poku\u0161ajte ponovo."
 	},
 	"suggestion_closebrowser": {
 		"no": "Lukk nettleseren, og pr\u00f8v p\u00e5 nytt.",
@@ -107,7 +111,8 @@
 		"de": "Schlie\u00dfe den Web-Browser und versuche es erneut.",
 		"zh": "\u5173\u95ed\u6d4f\u89c8\u5668\u5e76\u91cd\u8bd5",
 		"ar": "\u0627\u063a\u0644\u0642 \u0627\u0644\u0645\u0648\u0642\u0639 \u062b\u0645 \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0627\u062e\u0631\u064a",
-		"id": "Tutup browser, dan coba lagi."
+		"id": "Tutup browser, dan coba lagi.",
+		"sr": "Zatvorite web pretra\u017eiva\u010d i poku\u0161ajte ponovo."
 	},
 	"causes": {
 		"no": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
@@ -129,7 +134,8 @@
 		"de": "Dieser Fehler k\u00f6nnte durch folgendes verursacht werden:",
 		"zh": "\u8be5\u9519\u8bef\u53ef\u80fd\u662f\u4ee5\u4e0b\u539f\u56e0\u5bfc\u81f4\u7684\uff1a",
 		"ar": "\u0633\u0628\u0628 \u062d\u062f\u0648\u062b \u0647\u0630\u0627 \u0627\u0644\u062e\u0637\u0623 \u0642\u062f \u064a\u0643\u0648\u0646:",
-		"id": "Error ini mungkin disebabkan oleh:"
+		"id": "Error ini mungkin disebabkan oleh:",
+		"sr": "Ova gre\u0161ka mo\u017ee biti uzrokovana:"
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
@@ -151,7 +157,8 @@
 		"de": "Das Benutzen der Zur\u00fcck- und Vorw\u00e4rts-Schaltfl\u00e4chen im Web-Browser.",
 		"zh": "\u4f7f\u7528\u6d4f\u89c8\u5668\u4e2d\u7684\u524d\u8fdb\u540e\u9000\u6309\u94ae",
 		"ar": "\u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0623\u0632\u0631\u0627\u0631 \u0627\u0644\u0631\u062c\u0648\u0639 \u0644\u0644\u062e\u0644\u0641 \u0648 \u0627\u0644\u0627\u0645\u0627\u0645 \u0628\u0645\u062a\u0635\u0641\u062d\u0643",
-		"id": "Menggunakan tombol back dan forward pada browser web."
+		"id": "Menggunakan tombol back dan forward pada browser web.",
+		"sr": "Kori\u0161\u0107enjem tastera za prethodnu (back) i slede\u0107u (forward) stranicu u web pretra\u017eiva\u010du."
 	},
 	"cause_openbrowser": {
 		"no": "Starte nettleseren med faner lagret fra forrige gang.",
@@ -173,7 +180,8 @@
 		"de": "Das \u00d6ffnen des Web-Browser mit gespeicherten Tabs aus der letzten Sitzung.",
 		"zh": "\u4ece\u5148\u524d\u7684session\u4fdd\u5b58\u7684\u9009\u9879\u5361\u6253\u5f00Web\u6d4f\u89c8\u5668",
 		"ar": "\u0641\u062a\u062d \u0645\u062a\u0635\u0641\u062d\u0643 \u0645\u0633\u062a\u062e\u062f\u0645\u0627 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0645\u062d\u0641\u0648\u0638\u0629 \u0645\u0646 \u0627\u0644\u0645\u0631\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629",
-		"id": "Membuka web browser dengan tab-tab yang telah disimpan dari session sebelumnya."
+		"id": "Membuka web browser dengan tab-tab yang telah disimpan dari session sebelumnya.",
+		"sr": "Otvaranjem web pretra\u017eiva\u010da sa stranicama sa\u010duvanim iz prethodne sesije."
 	},
 	"cause_nocookie": {
 		"no": "At informasjonskapsler ikke er aktivert i nettleseren.",
@@ -195,7 +203,8 @@
 		"de": "Cookies k\u00f6nnten im Web-Browser deaktiviert sein.",
 		"zh": "\u8be5\u6d4f\u89c8\u5668\u4e0a\u7684cookie\u53ef\u80fd\u906d\u7981\u6b62",
 		"ar": "\u0627\u0644\u0643\u0648\u0643\u064a\u0632 \u063a\u064a\u0631 \u0645\u0646\u0634\u0637\u0629 \u0628\u0645\u062a\u0635\u0641\u062d\u0643",
-		"id": "Cookie mungkin dinonaktifkan pada web browser ini."
+		"id": "Cookie mungkin dinonaktifkan pada web browser ini.",
+		"sr": "Mogu\u0107e da je podr\u0161ka za kola\u010di\u0107e (\"cookies\") isklju\u010dena u web pretra\u017eiva\u010du."
 	},
 	"report_header": {
 		"no": "Rapporter denne feilen",
@@ -217,7 +226,8 @@
 		"de": "Diesen Fehler melden",
 		"zh": "\u62a5\u544a\u8fd9\u4e2a\u9519\u8bef",
 		"ar": "\u0628\u0644\u063a \u0639\u0646 \u0647\u0630\u0627 \u0627\u0644\u062e\u0637\u0623 ",
-		"id": "Laporan error ini"
+		"id": "Laporan error ini",
+		"sr": "Prijavite ovu gre\u0161ku"
 	},
 	"report_text": {
 		"no": "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene.",
@@ -239,6 +249,7 @@
 		"de": "Wenn das Problem weiter besteht, kannst du diesen Fehler den Systemadministratoren melden.",
 		"zh": "\u5982\u679c\u8fd9\u4e2a\u9519\u8bef\u518d\u6b21\u51fa\u73b0\uff0c\u4f60\u53ef\u4ee5\u5411\u4f60\u7684\u7cfb\u7edf\u7ba1\u7406\u5458\u62a5\u544a",
 		"ar": "\u0627\u0630\u0627 \u0627\u0633\u062a\u0645\u0631\u062a \u0647\u0630\u0647 \u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0628\u0627\u0644\u062d\u062f\u0648\u062b\u060c \u0631\u062c\u0627\u0621\u0627 \u0628\u0644\u063a \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0648\u0642\u0639",
-		"id": "Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke system administrator."
+		"id": "Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke system administrator.",
+		"sr": "Ako se ova gre\u0161ka bude i dalje pojavljivala, mo\u017eete je prijaviti administratorima."
 	}
 }

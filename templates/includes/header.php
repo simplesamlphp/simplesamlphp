@@ -185,6 +185,7 @@ if($onLoad !== '') {
 					'ur' => 'اردو', // Urdu
 					'he' => 'עִבְרִית', // Hebrew
 					'id' => 'Bahasa Indonesia', // Indonesian
+					'sr' => 'Srpski',
 		);
 		
 		$textarray = array();

@@ -21,7 +21,8 @@
 		"he": "\u05d4\u05e1\u05e8\u05ea \u05d4\u05e1\u05db\u05de\u05d4",
 		"zh": "\u64a4\u9500\u8bb8\u53ef",
 		"ar": "\u0627\u0644\u063a\u0627\u0621 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
-		"id": "Penarikan consent"
+		"id": "Penarikan consent",
+		"sr": "Povla\u010denje odobrenja"
 	},
 	"granted": {
 		"no": "Du har tidligere gitt samtykke %NO% ganger til %OF% forskjellige tjenester.",
@@ -45,7 +46,8 @@
 		"he": "\u05db\u05d1\u05e8 \u05d4\u05e2\u05e0\u05e7\u05ea %NO% \u05d4\u05e1\u05db\u05de\u05d5\u05ea \u05dc %OF% \u05e9\u05d9\u05e8\u05d5\u05ea\u05d9\u05dd \u05e9\u05d5\u05e0\u05d9\u05dd",
 		"zh": "\u4f60\u5728\u5148\u524d\u6388\u6743\u4e86%NO%\u8bb8\u53ef\u7ed9%OF%\u4e0d\u540c\u7684\u670d\u52a1",
 		"ar": "\u0644\u0642\u062f \u0642\u0645\u062a \u0628\u0625\u0639\u0637\u0627\u0621 \u066a\u0639\u062f\u062f\u066a \u0645\u0648\u0627\u0641\u0642\u0629 \u0644 \u066a\u0644\u066a \u0627\u0644\u062e\u062f\u0645\u0627\u062a \u0627\u0644\u0645\u062e\u062a\u0644\u0641\u0629",
-		"id": "Sebelumnya anda telah memberikan memberikan hak akses sejumlah %NO%  consent kepada %OF%   layanan berbeda."
+		"id": "Sebelumnya anda telah memberikan memberikan hak akses sejumlah %NO%  consent kepada %OF%   layanan berbeda.",
+		"sr": "Do sada ste dali %NO% odobrenja za %OF% razli\u010ditih servisa."
 	},
 	"info": {
 		"no": "Dersom du trekker tilbake alle tidligere gitte samtykker, s\u00e5 vil du hver gang du bes\u00f8ker en tjeneste p\u00e5 nytt bli spurt om du aksepterer at en gitt liste med personlig informasjon blir overf\u00f8rt til tjenesten.",
@@ -69,7 +71,8 @@
 		"he": "\u05d0\u05dd \u05ea\u05e1\u05d9\u05e8 \u05d0\u05ea \u05db\u05dc \u05d4\u05d4\u05e1\u05db\u05de\u05d5\u05ea \u05e9\u05e0\u05ea\u05ea, \u05d0\u05d6\u05d9 \u05ea\u05e9\u05d0\u05dc \u05e9\u05d5\u05d1 \u05db\u05dc \u05e4\u05e2\u05dd \u05d1\u05e9\u05ea\u05d1\u05e7\u05e8 \u05d1\u05e9\u05d9\u05e8\u05d5\u05ea \u05d7\u05d3\u05e9, \u05d4\u05d0\u05dd \u05d0\u05ea\u05d4 \u05de\u05e1\u05db\u05d9\u05dd \u05d0\u05d5 \u05dc\u05d0 \u05e9\u05de\u05d9\u05d3\u05e2 \u05d0\u05d9\u05e9\u05d9 \u05de\u05e1\u05d5\u05d9\u05d9\u05dd \u05d9\u05d5\u05e2\u05d1\u05e8.",
 		"zh": "\u5982\u679c\u4f60\u64a4\u9500\u8bb8\u53ef\uff0c\u4f60\u5c06\u6bcf\u6b21\u8bbf\u95ee\u4e00\u4e2a\u65b0\u670d\u52a1\u65f6\u90fd\u5c06\u88ab\u8be2\u95ee\uff1a\u662f\u5426\u613f\u610f\u63a5\u53d7\u5c06\u4f60\u7684\u4e2a\u4eba\u4fe1\u606f\u53d1\u9001\u51fa\u53bb",
 		"ar": "\u0627\u0630\u0627 \u0642\u0645\u062a \u0628\u0625\u0644\u063a\u0627\u0621 \u062c\u0645\u064a\u0639 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0627\u062a \u0627\u0644\u0645\u0645\u0646\u0648\u062d\u0629 \u0633\u064a\u062a\u0645 \u0633\u0624\u0627\u0644\u0643 \u0643\u0644\u0645\u0627 \u062f\u062e\u0644\u062a \u0644\u062e\u062f\u0645\u0629 \u062c\u062f\u064a\u062f\u0629 \u0639\u0646 \u0642\u0628\u0648\u0644\u0643 \u0627\u0648 \u0631\u0641\u0636\u0643 \u0644\u062a\u062d\u0648\u064a\u0644 \u0628\u0639\u0636 \u0645\u0639\u0644\u0648\u0645\u0627\u062a\u0643 \u0627\u0644\u0634\u062e\u0635\u064a\u0629",
-		"id": "Jika anda menarik semua consent yang diberikan, anda akan ditanya lagi setiap kalu anda mengunjungi sebuah layanan baru, apakah anda ingin atau tidak  jika sekumpulan informasi personal itu ditransfer."
+		"id": "Jika anda menarik semua consent yang diberikan, anda akan ditanya lagi setiap kalu anda mengunjungi sebuah layanan baru, apakah anda ingin atau tidak  jika sekumpulan informasi personal itu ditransfer.",
+		"sr": "Ako povu\u010dete sva dosada\u0161nja odobrenja, svaki put kad pristupite novom servisu aplikacija \u0107e od vas tra\u017eiti odobrenje za isporu\u010divanje odgovaraju\u0107eg skupa li\u010dnih podataka."
 	},
 	"withdraw": {
 		"no": "Trekk tilbake alle tidligere gitte samtykker",
@@ -93,7 +96,8 @@
 		"he": "\u05d4\u05e1\u05e8 \u05d0\u05ea \u05db\u05dc \u05d4\u05d4\u05e1\u05db\u05de\u05d5\u05ea \u05e9\u05e0\u05d9\u05ea\u05e0\u05d5",
 		"zh": "\u64a4\u9500\u6240\u6709\u8bb8\u53ef",
 		"ar": "\u0627\u0644\u063a \u0643\u0644 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0627\u062a \u0627\u0644\u0645\u0645\u0646\u0648\u062d\u0629",
-		"id": "Tarik semua consent yang diberikan"
+		"id": "Tarik semua consent yang diberikan",
+		"sr": "Povuci sva odobrenja"
 	},
 	"headerstats": {
 		"no": "Samtykke statistikk",
@@ -117,7 +121,8 @@
 		"he": "\u05e1\u05d8\u05d9\u05e1\u05d8\u05d9\u05e7\u05d5\u05ea \u05e2\u05d1\u05d5\u05e8 \u05de\u05d0\u05d2\u05e8 \u05d4\u05d4\u05e1\u05db\u05de\u05d5\u05ea",
 		"zh": "\u9759\u6001\u5b58\u50a8\u8bb8\u53ef",
 		"ar": "\u0627\u062d\u0635\u0627\u0626\u064a\u0627\u062a \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0627\u062a \u0627\u0644\u0645\u062e\u062a\u0632\u0646\u0629",
-		"id": "Statistik Penyimpanan Consent"
+		"id": "Statistik Penyimpanan Consent",
+		"sr": "Statistike odobrenja"
 	},
 	"stattotal": {
 		"no": "Samtykkelageret inneholder %NO% innslag.",
@@ -141,7 +146,8 @@
 		"he": "\u05de\u05d0\u05d2\u05e8 \u05d4\u05d4\u05e1\u05db\u05de\u05d5\u05ea \u05de\u05db\u05d9\u05dc %NO% \u05e8\u05e9\u05d5\u05de\u05d5\u05ea.",
 		"zh": "\u8bb8\u53ef\u5b58\u50a8\u5305\u542b %NO% \u5b9e\u4f53",
 		"ar": "\u0645\u0633\u062a\u0648\u062f\u0639 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0627\u062a \u064a\u062d\u062a\u0648\u064a \u0639\u0644\u064a \u066a\u0639\u062f\u062f\u066a \u0627\u062f\u062e\u0627\u0644",
-		"id": "Penyimpan consent mengandung %NO% entri."
+		"id": "Penyimpan consent mengandung %NO% entri.",
+		"sr": "Arhiva odobrenja sadr\u017ei %NO% zapisa."
 	},
 	"statusers": {
 		"no": "%NO% unike brukere har avgitt samtykke.",
@@ -165,7 +171,8 @@
 		"he": "%NO% \u05de\u05e9\u05ea\u05de\u05e9\u05d9\u05dd \u05e9\u05d5\u05e0\u05d9\u05dd \u05e0\u05ea\u05e0\u05d5 \u05d4\u05e1\u05db\u05de\u05d5\u05ea",
 		"zh": "\u552f\u4e00\u7684%NO%\u7528\u6237\u7ed9\u4e88\u4e86\u8bb8\u53ef",
 		"ar": "\u066a\u0639\u062f\u062f\u066a \u0645\u0633\u062a\u062e\u062f\u0645 \u0641\u0631\u064a\u062f \u0627\u0639\u0637\u064a \u0645\u0648\u0627\u0641\u0642\u062a\u0647",
-		"id": "Sejumlah %NO%  user  telah diberikan consent."
+		"id": "Sejumlah %NO%  user  telah diberikan consent.",
+		"sr": "%NO% pojedina\u010dnih korisnika je dalo odobrenje."
 	},
 	"statservices": {
 		"no": "Samtykke er avgitt til %NO% unike tjenester.",
@@ -189,6 +196,7 @@
 		"he": "\u05d4\u05d4\u05e1\u05db\u05de\u05d4 \u05e0\u05d9\u05ea\u05e0\u05d4 \u05e2\u05d1\u05d5\u05e8 %NO% \u05e9\u05d9\u05e8\u05d5\u05ea\u05d9\u05dd \u05e9\u05d5\u05e0\u05d9\u05dd",
 		"zh": "\u8bb8\u53ef\u662f\u7ed9 %NO% \u552f\u4e00\u670d\u52a1",
 		"ar": "\u062a\u0645 \u0625\u0639\u0637\u0627\u0621 \u0645\u0648\u0627\u0641\u0642\u0629 \u0644\u066a\u0639\u062f\u062f\u066a \u0645\u062e\u062f\u0645 \u0641\u0631\u064a\u062f",
-		"id": "Consent diberikan kepada %NO% layanan."
+		"id": "Consent diberikan kepada %NO% layanan.",
+		"sr": "Odobrenje je dano za %NO% razli\u010ditih servisa."
 	}
 }

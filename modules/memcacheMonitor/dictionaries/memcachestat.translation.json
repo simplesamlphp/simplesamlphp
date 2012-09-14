@@ -19,7 +19,8 @@
 		"he": "\u05de\u05d6\u05d4\u05d4 \u05ea\u05d4\u05dc\u05d9\u05da",
 		"zh": "Process ID",
 		"ar": "\u0645\u0639\u0631\u0641 \u0627\u0644\u0639\u0645\u0644\u064a\u0629",
-		"id": "Process ID"
+		"id": "Process ID",
+		"sr": "Identifikator procesa"
 	},
 	"uptime": {
 		"no": "Oppetid",
@@ -41,7 +42,8 @@
 		"he": "\u05d6\u05de\u05df \u05dc\u05de\u05e2\u05dc\u05d4",
 		"zh": "\u6b63\u5e38\u8fd0\u884c\u65f6\u95f4",
 		"ar": "\u0627\u0644\u0627\u0633\u062a\u0639\u062f\u0627\u062f ",
-		"id": "Uptime"
+		"id": "Uptime",
+		"sr": "Ukupno vreme rada"
 	},
 	"time": {
 		"no": "Tid n\u00e5",
@@ -63,7 +65,8 @@
 		"he": "\u05d6\u05de\u05df \u05e0\u05d5\u05db\u05d7\u05d9",
 		"zh": "\u5f53\u524d\u65f6\u95f4",
 		"ar": "\u0627\u0644\u0648\u0642\u062a \u062d\u0627\u0644\u064a\u0627\u064b",
-		"id": "Waktu saat ini"
+		"id": "Waktu saat ini",
+		"sr": "Trenutno vreme"
 	},
 	"version": {
 		"no": "Versjon",
@@ -85,7 +88,8 @@
 		"he": "\u05d2\u05d9\u05e8\u05e1\u05d4",
 		"zh": "\u7248\u672c",
 		"ar": "\u0627\u0644\u0627\u0635\u062f\u0627\u0631",
-		"id": "Versi"
+		"id": "Versi",
+		"sr": "Verzija"
 	},
 	"rusage_user": {
 		"no": "CPU Sekunder (bruker)",
@@ -107,7 +111,8 @@
 		"he": "\u05e9\u05e0\u05d9\u05d5\u05ea \u05de\u05e2\u05d1\u05d3 (\u05de\u05e9\u05ea\u05de\u05e9)",
 		"zh": "CPU \u79d2\u6570\uff08\u7528\u6237\uff09",
 		"ar": "\u0639\u062f\u062f \u062b\u0648\u0627\u0646\u064a \u0627\u0644 CPU (\u0632\u0645\u0646 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645)",
-		"id": "CPU Detik (User)"
+		"id": "CPU Detik (User)",
+		"sr": "CPU sekundi (korisnik)"
 	},
 	"rusage_system": {
 		"no": "CPU Sekunder (system)",
@@ -129,7 +134,8 @@
 		"he": "\u05e9\u05e0\u05d9\u05d5\u05ea \u05de\u05e2\u05d1\u05d3 (\u05de\u05e2\u05e8\u05db\u05ea)",
 		"zh": "CPU \u79d2\u6570\uff08\u7cfb\u7edf\uff09",
 		"ar": "\u0639\u062f\u062f \u062b\u0648\u0627\u0646\u064a \u0627\u0644 CPU (\u0632\u0645\u0646 \u0627\u0644\u0646\u0638\u0627\u0645)",
-		"id": "CPU Detik (Sistem)"
+		"id": "CPU Detik (Sistem)",
+		"sr": "CPU sekundi (sistem)"
 	},
 	"curr_items": {
 		"no": "N\u00e5v\u00e6rende antall elementer",
@@ -151,7 +157,8 @@
 		"he": "\u05de\u05e1\u05e4\u05e8 \u05d4\u05e4\u05e8\u05d9\u05d8\u05d9\u05dd \u05d4\u05e0\u05d5\u05db\u05d7\u05d9",
 		"zh": "\u5f53\u524d\u7684\u6761\u76ee\u6570\u91cf",
 		"ar": "\u0639\u062f\u062f \u0627\u0644\u0628\u0646\u0648\u062f \u0627\u0644\u062d\u0627\u0644\u064a\u0629",
-		"id": "Jumlah item saat ini"
+		"id": "Jumlah item saat ini",
+		"sr": "Trenutni broj elemenata"
 	},
 	"total_items": {
 		"no": "Antall elementer for alltid",
@@ -173,7 +180,8 @@
 		"he": "\u05de\u05e1\u05e4\u05e8 \u05db\u05dc \u05d4\u05e4\u05e8\u05d9\u05d8\u05d9\u05dd",
 		"zh": "\u4ee5\u5f80\u6761\u76ee",
 		"ar": "\u0627\u0644\u0639\u062f\u062f \u0627\u0644\u0643\u0644\u064a \u0644\u0644\u0628\u0646\u0648\u062f",
-		"id": "Total item yang pernah dicapai"
+		"id": "Total item yang pernah dicapai",
+		"sr": "Ukupno elemenata od po\u010detka"
 	},
 	"bytes": {
 		"no": "Totalt antall bytes i bruk n\u00e5",
@@ -195,7 +203,8 @@
 		"he": "\u05e1\u05da \u05db\u05dc \u05d4\u05d1\u05d8\u05d9\u05dd \u05e9\u05db\u05e8\u05d2\u05e2 \u05d1\u05e9\u05d9\u05de\u05d5\u05e9",
 		"zh": "\u76ee\u524d\u4f7f\u7528\u7684\u5b57\u8282\u6570",
 		"ar": "\u064b\u0639\u062f\u062f \u0627\u0644\u0628\u0627\u064a\u062a \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645\u0629 \u062d\u0627\u0644\u064a\u0627",
-		"id": "Total byte yang sekarang digunakan"
+		"id": "Total byte yang sekarang digunakan",
+		"sr": "Trenutno ukupno bajtova u upotrebi"
 	},
 	"curr_connections": {
 		"no": "Antall \u00e5pne forbindelser n\u00e5",
@@ -217,7 +226,8 @@
 		"he": "\u05d7\u05d9\u05d1\u05d5\u05e8\u05d9\u05dd \u05e9\u05e2\u05db\u05e9\u05d9\u05d5 \u05e4\u05ea\u05d5\u05d7\u05d9\u05dd",
 		"zh": "\u5f53\u524d\u6253\u5f00\u7684\u8fde\u63a5",
 		"ar": "\u0627\u0644\u0627\u062a\u0635\u0627\u0644\u0627\u062a \u0627\u0644\u0645\u0641\u062a\u0648\u062d\u0629 \u062d\u0627\u0644\u064a\u0627\u064b",
-		"id": "Koneksi yang sekarang sedang terbuka"
+		"id": "Koneksi yang sekarang sedang terbuka",
+		"sr": "Trenutno otvorene konekcije"
 	},
 	"total_connections": {
 		"no": "Totalt antall forbindelser",
@@ -239,7 +249,8 @@
 		"he": "\u05e1\u05da-\u05db\u05dc \u05d4\u05d7\u05d9\u05d1\u05d5\u05e8\u05d9\u05dd",
 		"zh": "\u5168\u90e8\u8fde\u63a5",
 		"ar": "\u0627\u0644\u0639\u062f\u062f \u0627\u0644\u0643\u0644\u064a \u0644\u0644\u0627\u062a\u0635\u0627\u0644\u0627\u062a",
-		"id": "Total koneksi"
+		"id": "Total koneksi",
+		"sr": "Ukupno konekcija"
 	},
 	"connection_structures": {
 		"no": "Tilkoblings-strukturer",
@@ -261,7 +272,8 @@
 		"he": "\u05de\u05d1\u05e0\u05d9 \u05d7\u05d9\u05d1\u05d5\u05e8\u05d9\u05dd",
 		"zh": "\u8fde\u63a5\u7ed3\u6784",
 		"ar": "\u0627\u0644\u0634\u0643\u0644 \u0627\u0644\u062a\u0631\u0643\u064a\u0628\u064a \u0644\u0644\u0627\u062a\u0635\u0627\u0644\u0627\u062a",
-		"id": "Struktur koneksi"
+		"id": "Struktur koneksi",
+		"sr": "Struktura konekcija"
 	},
 	"cmd_get": {
 		"no": "Totalt antall GET kommandoer",
@@ -283,7 +295,8 @@
 		"he": "\u05e1\u05d4\"\u05db \u05e4\u05e7\u05d5\u05d3\u05d5\u05ea GET",
 		"zh": "\u5168\u90e8\u7684GET\u6307\u4ee4",
 		"ar": "\u0639\u062f\u062f \u0623\u0648\u0627\u0645\u0631 GET \u0627\u0644\u0643\u0644\u064a",
-		"id": "Total perintah GET"
+		"id": "Total perintah GET",
+		"sr": "Ukupno GET naredbi"
 	},
 	"cmd_set": {
 		"no": "Totalt antall SET kommandoer",
@@ -305,7 +318,8 @@
 		"he": "\u05e1\u05d4\"\u05db \u05e4\u05e7\u05d5\u05d3\u05d5\u05ea SET",
 		"zh": "\u5168\u90e8\u7684SET\u6307\u4ee4",
 		"ar": "\u0639\u062f\u062f \u0623\u0648\u0627\u0645\u0631 SET \u0627\u0644\u0643\u0644\u064a",
-		"id": "Total perintah SET"
+		"id": "Total perintah SET",
+		"sr": "Ukupno SET naredbi"
 	},
 	"get_hits": {
 		"no": "Totalt antall GET kommandoer (OK)",
@@ -327,7 +341,8 @@
 		"he": "\u05e1\u05d4\"\u05db \u05e4\u05e7\u05d5\u05d3\u05d5\u05ea GET \u05de\u05d5\u05e6\u05dc\u05d7\u05d5\u05ea",
 		"zh": "\u5168\u90e8\u7684GET\u6307\u4ee4\uff08\u6210\u529f\u7684\uff09",
 		"ar": "\u0627\u0644\u0639\u062f\u062f \u0627\u0644\u0643\u0644\u064a \u0644\u0623\u0648\u0627\u0645\u0631 GET \u0627\u0644\u0646\u0627\u062c\u062d\u0629",
-		"id": "Total perintah GET (berhasil)"
+		"id": "Total perintah GET (berhasil)",
+		"sr": "Ukupno GET naredbi (uspe\u0161no izvr\u0161enih)"
 	},
 	"get_misses": {
 		"no": "Totalt antall GET kommandoer (feilet)",
@@ -349,7 +364,8 @@
 		"he": "\u05e1\u05d4\"\u05db \u05e4\u05e7\u05d5\u05d3\u05d5\u05ea GET \u05e9\u05e0\u05db\u05e9\u05dc\u05d5",
 		"zh": "\u5168\u90e8\u7684GET\u6307\u4ee4\uff08\u5931\u8d25\u7684\uff09",
 		"ar": "\u0627\u0644\u0639\u062f\u062f \u0627\u0644\u0643\u0644\u064a \u0644\u0623\u0648\u0627\u0645\u0631 GET \u0627\u0644\u0641\u0627\u0634\u0644\u0629",
-		"id": "Total perintah GET (gagal)"
+		"id": "Total perintah GET (gagal)",
+		"sr": "Ukupno GET naredbi (neuspe\u0161nih)"
 	},
 	"bytes_read": {
 		"no": "Antall bytes inn til tjeneren",
@@ -371,7 +387,8 @@
 		"he": "\u05d1\u05d8\u05d9\u05dd \u05e9\u05e0\u05d9\u05db\u05e0\u05e1\u05d5 \u05dc\u05e9\u05e8\u05ea",
 		"zh": "\u8fdb\u5165\u670d\u52a1\u5668\u7684\u5b57\u8282",
 		"ar": "\u0639\u062f\u062f \u0627\u0644\u0628\u0627\u064a\u062a\u0633 \u0627\u0644\u062f\u0627\u062e\u0644\u0629 \u0644\u0644\u0645\u0634\u063a\u0644",
-		"id": "Jumlah Byte yang masuk ke server"
+		"id": "Jumlah Byte yang masuk ke server",
+		"sr": "Bajtova poslanih serveru"
 	},
 	"bytes_written": {
 		"no": "Antall bytes skrevet av tjeneren",
@@ -393,7 +410,8 @@
 		"he": "\u05d1\u05d8\u05d9\u05dd \u05e9\u05e0\u05db\u05ea\u05d1\u05d5 \u05e2\"\u05d9 \u05d4\u05e9\u05e8\u05ea",
 		"zh": "\u670d\u52a1\u5668\u5199\u5165\u7684\u5b57\u8282",
 		"ar": "\u0639\u062f\u062f \u0627\u0644\u0628\u0627\u064a\u062a\u0633 \u0627\u0644\u0645\u0643\u062a\u0648\u0628\u0629 \u0628\u0648\u0627\u0633\u0637\u0629 \u0627\u0644\u0645\u0634\u063a\u0644",
-		"id": "Jumlah Byte yang ditulis oleh server"
+		"id": "Jumlah Byte yang ditulis oleh server",
+		"sr": "Bajtova zapisanih od strane servera"
 	},
 	"limit_maxbytes": {
 		"no": "Total lagring tilgjengelig",
@@ -415,6 +433,7 @@
 		"he": "\u05e1\u05da \u05d4\u05db\u05dc \u05d0\u05d7\u05e1\u05d5\u05df \u05d6\u05de\u05d9\u05df",
 		"zh": "\u5168\u90e8\u7684\u5b58\u50a8\u5229\u7528",
 		"ar": "\u0627\u0644\u0645\u0633\u0627\u062d\u0629 \u0627\u0644\u0643\u0644\u064a\u0629 \u0627\u0644\u0645\u062a\u0648\u0641\u0631\u0629 \u0644\u0644\u062a\u062e\u0632\u064a\u0646",
-		"id": "Total media penyimpanan yang tersedia"
+		"id": "Total media penyimpanan yang tersedia",
+		"sr": "Ukupno raspolo\u017eivo memorijskog prostora"
 	}
 }

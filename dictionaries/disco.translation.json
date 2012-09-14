@@ -26,7 +26,8 @@
 		"he": "\u05d1\u05d7\u05e8 \u05d0\u05ea \u05e1\u05e4\u05e7 \u05d4\u05d6\u05d4\u05d5\u05ea \u05e9\u05dc\u05da",
 		"zh": "\u9009\u62e9\u4f60\u7684\u8eab\u4efd\u63d0\u4f9b\u8005",
 		"ar": "\u0627\u062e\u062a\u0627\u0631 \u0645\u0648\u0642\u0639 \u0647\u0648\u064a\u062a\u0643",
-		"id": "Pilih identity provider anda"
+		"id": "Pilih identity provider anda",
+		"sr": "Odaberite va\u0161eg davaoca identiteta"
 	},
 	"selectidp_full": {
 		"no": "Vennligst velg hvilken identitetsleverand\u00f8r du vil bruke for \u00e5 logge inn:",
@@ -55,7 +56,8 @@
 		"he": "\u05d1\u05d7\u05e8 \u05d0\u05ea \u05e1\u05e4\u05e7 \u05d4\u05d6\u05d9\u05d4\u05d5\u05ea \u05d0\u05dc\u05d9\u05d5 \u05d0\u05ea\u05d4 \u05e8\u05d5\u05e6\u05d4 \u05dc\u05d4\u05d9\u05d6\u05d3\u05d4\u05d5\u05ea:",
 		"zh": "\u9009\u62e9\u4f60\u8981\u8ba4\u8bc1\u7684\u8eab\u4efd\u63d0\u4f9b\u8005",
 		"ar": "\u0627\u062e\u062a\u0631 \u0645\u0648\u0642\u0639 \u0627\u0644\u0647\u0648\u064a\u0629 \u0627\u0644\u0630\u064a \u062a\u0631\u063a\u0628 \u0628\u062f\u062e\u0648\u0644\u0647",
-		"id": "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi"
+		"id": "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi",
+		"sr": "Molimo vas odaberite davaoca identiteta kod koga se \u017eelite autentifikovati:"
 	},
 	"select": {
 		"no": "Velg",
@@ -84,7 +86,8 @@
 		"he": "\u05d1\u05d7\u05e8",
 		"zh": "\u9009\u62e9",
 		"ar": "\u0627\u062e\u062a\u0627\u0631",
-		"id": "Pilih"
+		"id": "Pilih",
+		"sr": "Odaberi"
 	},
 	"remember": {
 		"no": "Husk mitt valg",
@@ -113,7 +116,8 @@
 		"he": "\u05d6\u05db\u05d5\u05e8 \u05d0\u05ea \u05d4\u05d1\u05d7\u05d9\u05e8\u05d4 \u05e9\u05dc\u05d9",
 		"zh": "\u8bb0\u4f4f\u6211\u7684\u9009\u62e9",
 		"ar": "\u062a\u0630\u0643\u0631 \u062e\u064a\u0627\u0631\u0627\u062a\u064a",
-		"id": "Ingat pilihan saya"
+		"id": "Ingat pilihan saya",
+		"sr": "Zapamti moj izbor"
 	},
 	"icon_prefered_idp": {
 		"no": "[Foretrukket valg]",
@@ -141,7 +145,8 @@
 		"pt-br": "[Op\u00e7\u00e3o preferida]",
 		"zh": "\u9996\u9009\u9009\u9879",
 		"ar": "\u0627\u062e\u062a\u064a\u0627\u0631\u064a \u0627\u0644\u0645\u0641\u0636\u0644",
-		"id": "Pilihan yang disukai"
+		"id": "Pilihan yang disukai",
+		"sr": "[Preferirani izbor]"
 	},
 	"previous_auth": {
 		"no": "Du har tidligere valg \u00e5 autentisere deg hos",
@@ -168,7 +173,8 @@
 		"pt-br": "Voc\u00ea j\u00e1 escolheu para autenticar a",
 		"zh": "\u4f60\u5148\u524d\u9009\u62e9\u7684\u8ba4\u8bc1",
 		"ar": "\u0642\u0645\u062a \u0633\u0627\u0628\u0642\u0627 \u0628\u0627\u0644\u062a\u0635\u062f\u064a\u0642 \u0641\u064a",
-		"id": "Sebelumnya anda telah memilih untuk melakukan autentifikasi di "
+		"id": "Sebelumnya anda telah memilih untuk melakukan autentifikasi di ",
+		"sr": "Prethodno ste izabrali da se autentifikujete kroz"
 	},
 	"login_at": {
 		"no": "Logg inn hos",
@@ -195,6 +201,7 @@
 		"pt-br": "Logado como",
 		"zh": "\u767b\u5f55\u4e8e",
 		"ar": "\u0633\u062c\u0644 \u062f\u062e\u0648\u0644\u064a \u0639\u0644\u064a",
-		"id": "Login di"
+		"id": "Login di",
+		"sr": "Prijavi se kroz"
 	}
 }

@@ -20,7 +20,8 @@
 		"he": "(\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05e9\u05dd)",
 		"zh": "\uff08\u6ca1\u6709\u6307\u5b9a\u540d\u5b57\uff09",
 		"ar": "\u0627\u0644\u0627\u0633\u0645 \u063a\u064a\u0631 \u0645\u062d\u062f\u062f",
-		"id": "(Nama tidak diisi)"
+		"id": "(Nama tidak diisi)",
+		"sr": "(ime nije specificirano)"
 	},
 	"sp_empty_description": {
 		"da": "(ingen beskrivelse)",
@@ -43,7 +44,8 @@
 		"he": "(\u05d0\u05d9\u05df \u05ea\u05d9\u05d0\u05d5\u05e8)",
 		"zh": "\uff08\u6ca1\u6709\u63cf\u8ff0\uff09",
 		"ar": "\u0644\u0627 \u064a\u0648\u062c\u062f \u0648\u0635\u0641",
-		"id": "(Tidak ada penjelasan)"
+		"id": "(Tidak ada penjelasan)",
+		"sr": "(nema opisa)"
 	},
 	"attribute_org": {
 		"da": "Organisation",
@@ -66,7 +68,8 @@
 		"he": "\u05d0\u05d9\u05e8\u05d2\u05d5\u05df",
 		"zh": "\u7ec4\u7ec7",
 		"ar": "\u0627\u0644\u0645\u0646\u0638\u0645\u0629",
-		"id": "Organisasi"
+		"id": "Organisasi",
+		"sr": "Institucija"
 	},
 	"added": {
 		"da": "Samtykke givet",
@@ -89,7 +92,8 @@
 		"he": "\u05d4\u05e1\u05db\u05de\u05d4 \u05d4\u05d5\u05e1\u05e4\u05d4",
 		"zh": "\u5df2\u7ecf\u6dfb\u52a0\u7684\u8bb8\u53ef",
 		"ar": "\u062a\u0645\u062a \u0627\u0636\u0627\u0641\u0629 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
-		"id": "Consent telah ditambahkan"
+		"id": "Consent telah ditambahkan",
+		"sr": "Dozvola dodata"
 	},
 	"removed": {
 		"da": "Samtykke slettet",
@@ -112,7 +116,8 @@
 		"he": "\u05d4\u05e1\u05db\u05de\u05d4 \u05d4\u05d5\u05e1\u05e8\u05d4",
 		"zh": "\u5df2\u7ecf\u79fb\u9664\u7684\u8bb8\u53ef",
 		"ar": "\u062a\u0645 \u062d\u0630\u0641 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
-		"id": "Consent telah dibuang"
+		"id": "Consent telah dibuang",
+		"sr": "Dozvola uklonjena"
 	},
 	"updated": {
 		"da": "Samtykke Opdateret",
@@ -135,7 +140,8 @@
 		"he": "\u05d4\u05e1\u05db\u05de\u05d4 \u05e2\u05d5\u05d3\u05db\u05e0\u05d4",
 		"zh": "\u5df2\u7ecf\u66f4\u65b0\u7684\u8bb8\u53ef",
 		"ar": "\u062a\u062d\u062f\u064a\u062b \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
-		"id": "Consent telah diupdate"
+		"id": "Consent telah diupdate",
+		"sr": "Dozvola a\u017eurirana"
 	},
 	"unknown": {
 		"da": "Ukendt ...",
@@ -158,7 +164,8 @@
 		"he": "\u05dc\u05d0 \u05d9\u05d3\u05d5\u05e2...",
 		"zh": "\u672a\u77e5...",
 		"ar": "\u063a\u064a\u0631 \u0645\u0639\u0631\u0648\u0641",
-		"id": "Tidak diketahui..."
+		"id": "Tidak diketahui...",
+		"sr": "Nepoznato ..."
 	},
 	"attribute_id": {
 		"da": "Identitet",
@@ -181,7 +188,8 @@
 		"he": "\u05d6\u05d4\u05d5\u05ea",
 		"zh": "\u8eab\u4efd",
 		"ar": "\u0627\u0644\u0647\u0648\u064a\u0629",
-		"id": "Identitas"
+		"id": "Identitas",
+		"sr": "Identitet"
 	},
 	"attribute_injected": {
 		"da": "Injiceret attribut",
@@ -204,7 +212,8 @@
 		"he": "\u05de\u05d0\u05e4\u05d9\u05d9\u05df \u05de\u05d5\u05d6\u05e8\u05e7",
 		"zh": "\u6ce8\u5165\u7684\u5c5e\u6027",
 		"ar": "\u0627\u0644\u0633\u0645\u0627\u062a \u0627\u0644\u062a\u064a \u062a\u0645 \u062a\u0642\u062f\u064a\u0645\u0647\u0627",
-		"id": "Attribut yang diinjeksi"
+		"id": "Attribut yang diinjeksi",
+		"sr": "Uba\u010deni atribut"
 	},
 	"show": {
 		"da": "Vis",
@@ -227,7 +236,8 @@
 		"he": "\u05d4\u05e6\u05d2",
 		"zh": "\u663e\u793a",
 		"ar": "\u0627\u0638\u0647\u0627\u0631",
-		"id": "Perlihatkan"
+		"id": "Perlihatkan",
+		"sr": "Prika\u017ei"
 	},
 	"hide": {
 		"da": "Skjul",
@@ -250,7 +260,8 @@
 		"he": "\u05d4\u05e1\u05ea\u05e8",
 		"zh": "\u9690\u85cf",
 		"ar": "\u0627\u062e\u0641\u0627\u0621",
-		"id": "Sembunyikan"
+		"id": "Sembunyikan",
+		"sr": "Sakrij"
 	},
 	"attributes_text": {
 		"da": "attributter",
@@ -273,7 +284,8 @@
 		"he": "\u05de\u05d0\u05e4\u05d9\u05d9\u05e0\u05d9\u05dd",
 		"zh": "\u5c5e\u6027",
 		"ar": "\u0627\u0644\u0633\u0645\u0627\u062a",
-		"id": "Attribute"
+		"id": "Attribute",
+		"sr": "atributi"
 	},
 	"consentadmin_header": {
 		"da": "Administrer dine samtykker",
@@ -296,7 +308,8 @@
 		"he": "\u05de\u05e0\u05d4\u05dc \u05d4\u05e1\u05db\u05de\u05d5\u05ea\u05ea",
 		"zh": "\u7ba1\u7406\u5458\u8bb8\u53ef",
 		"ar": "\u0627\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
-		"id": "Administrasi Consent"
+		"id": "Administrasi Consent",
+		"sr": "Administracija dozvola"
 	},
 	"consentadmin_description1": {
 		"da": "WAYF videregiver kun oplysninger til eksterne tjenester, hvis du giver dit samtykke til det. Hvilke oplysninger det drejer sig om, varierer alt efter hvad tjenesteudbyderen har behov for. Det kan for eksempel v\u00e6re:<ul><li>Dit navn<li>Din e-mail-adresse<li>Din institution<li>Etc.<\/ul>Hvis du s\u00e6tter et flueben ud for <b>Husk dette samtykke<\/b>, vil du ikke blive spurgt, n\u00e6ste gang du bes\u00f8ger tjenesteudbyderen. S\u00e5 husker WAYF, at du allerede har givet samtykke til at videregive oplysninger til tjenesteudbyderen. <p>Nedenfor er opf\u00f8rt de tjenester, som du for \u00f8jeblikket har givet l\u00f8bende samtykke til:<\/a>",
@@ -318,7 +331,8 @@
 		"he": "\u05db\u05d0\u05df \u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05e8\u05d0\u05d5\u05ea \u05d5\u05dc\u05e2\u05e8\u05d5\u05da \u05d0\u05ea \u05d4\u05e1\u05db\u05de\u05d5\u05ea\u05da \u05dc\u05e1\u05e4\u05e7\u05d9 \u05d4\u05e9\u05d9\u05e8\u05d5\u05ea",
 		"zh": "\u5728\u8fd9\u91cc\u4f60\u53ef\u4ee5\u67e5\u770b\u548c\u7f16\u8f91\u4f60\u7684SP\u8bb8\u53ef",
 		"ar": "\u064a\u0645\u0643\u0646\u0643 \u0631\u0624\u064a\u0629 \u0648\u062a\u0639\u062f\u064a\u0644 \u0645\u0648\u0627\u0641\u0642\u062a\u0643 \u0639\u0644\u064a \u0645\u0634\u063a\u0644\u064a \u0627\u0644\u062e\u062f\u0645\u0627\u062a \u0647\u0646\u0627 ",
-		"id": "Disini anda dapat melihat dan mengedit consent anda untuk Service Provider."
+		"id": "Disini anda dapat melihat dan mengedit consent anda untuk Service Provider.",
+		"sr": "Ovde mo\u017eete pregledati i menjati va\u0161e dozvole davaocima servisa."
 	},
 	"consentadmin_description2": {
 		"da": "<h3>S\u00e5dan sletter du et samtykke<\/h3>Fjern fluebenet ud for tjenesten, samtykket tilh\u00f8rer.<h3>Hvilke data gemmer WAYF om dig?<\/h3><ul><li>N\u00e5r du giver dit samtykke, henter WAYF dine oplysninger fra din institution og sender de relevante videre til tjenesteudbyderen<li>Ingen af oplysningerne gemmes af WAYF<li>Hvis du har bedt WAYF huske dit samtykke, gemmes personhenf\u00f8rbare data heller ikke hos WAYF. Oplysningen om, at du har givet dit samtykke, gemmes p\u00e5 en ikke-personhenf\u00f8rbar m\u00e5de<\/ul><h3>Hvilke rettigheder har du?<\/h3>Du har ret til at tr\u00e6kke et samtykke tilbage.<h3>Hvor l\u00e6nge gemmes dine samtykker?<\/h3>Et samtykke slettes tre \u00e5r efter, at du sidst har benyttet det.<h3>Hvordan beskyttes mine oplysninger?<\/h3>WAYF foretager behandlinger af personoplysninger i henhold til persondataloven (lov nr. 429 af 31. maj 2000 med senere \u00e6ndringer). Du kan l\u00e6se n\u00e6rmere om registreredes rettigheder i persondatalovens afsnit III.<a href=\"http:\/\/www.datatilsynet.dk\/lovgivning\/persondataloven\/\">Persondataloven<\/a><h3>Links<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li><li><a href=\"https:\/\/www.wayf.dk\/index.php\/da\/om-wayf\/faq-ofte-stillede-sporgsmal\">FAQ<\/a> <\/li><\/ul>",
@@ -341,7 +355,8 @@
 		"he": "<h3>\u05d0\u05d9\u05da \u05dc\u05d4\u05e1\u05d9\u05e8 \u05d0\u05ea \u05d4\u05e1\u05db\u05de\u05ea\u05da<\/h3> \u05dc\u05d7\u05e5 \u05d1\u05ea\u05d9\u05d1\u05d4 \u05d4\u05de\u05ea\u05d0\u05d9\u05de\u05d4 \u05dc\u05e1\u05e4\u05e7 \u05d4\u05e9\u05d9\u05e8\u05d5\u05ea <h3>\u05e7\u05d9\u05e9\u05d5\u05e8\u05d9\u05dd<\/h3>  <ul> <li><a href=\"https:\/\/www.wayf.dk\">\u05d4\u05ea\u05d7\u05dc\u05d4<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">\u05e9\u05d0\u05dc\u05d5\u05ea \u05e0\u05e4\u05d5\u05e6\u05d5\u05ea<\/a> <\/li> <\/ul> ",
 		"zh": "<h3>\u5982\u4f55\u5220\u9664\u4f60\u7684\u8bb8\u53ef<\/h3>\u53cd\u9009\u76f8\u5e94\u7684SP\u9009\u62e9\u6846<h3>Links<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">\u5f00\u59cb<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">FAQ<\/a> <\/li> <\/ul>",
 		"ar": "\u0644\u062d\u0630\u0641 \u0645\u0648\u0627\u0641\u0642\u062a\u0643<\/h3>\u0627\u0644\u063a\u064a  \u0635\u0646\u062f\u0648\u0642 \u0645\u0634\u063a\u0644 \u0627\u0644\u062e\u062f\u0645\u0629<h3>\u0631\u0648\u0627\u0628\u0637<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">\u0623\u0628\u062f\u0627>\/a><\/li><li><ahref=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions<\/a> <\/a> <\/li> <\/ul> ",
-		"id": "<h3>Bagaimana cara menghapus consent anda<\/h3> Hapus centak pada kotak service provider yang anda maksud <h3>Link<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Mulai<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">FAQ<\/a> <\/li> <\/ul>"
+		"id": "<h3>Bagaimana cara menghapus consent anda<\/h3> Hapus centak pada kotak service provider yang anda maksud <h3>Link<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Mulai<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">FAQ<\/a> <\/li> <\/ul>",
+		"sr": "<h3>Kako obrisati dozvolu<\/h3> Uklonite kva\u010dicu iz polja koje se odnosi na davaoca servisa <h3>Linkovi<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Po\u010detna stranica<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">Pitanja i odgovori<\/a> <\/li> <\/ul> "
 	},
 	"login": {
 		"da": "login",
@@ -364,7 +379,8 @@
 		"he": "\u05d4\u05ea\u05d7\u05d1\u05e8",
 		"zh": "\u767b\u9646",
 		"ar": "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644",
-		"id": "login"
+		"id": "login",
+		"sr": "Prijavi se"
 	},
 	"service_providers_for": {
 		"da": "Service Providers for",
@@ -387,7 +403,8 @@
 		"he": "\u05e1\u05e4\u05e7\u05d9 \u05e9\u05d9\u05e8\u05d5\u05ea \u05e2\u05d1\u05d5\u05e8",
 		"zh": "\u670d\u52a1\u63d0\u4f9b\u5546\u670d\u52a1\u4e8e",
 		"ar": "\u0645\u0634\u063a\u0644\u064a \u0627\u0644\u062e\u062f\u0645\u0629 \u0644",
-		"id": "Service Provider untuk"
+		"id": "Service Provider untuk",
+		"sr": "Davaoci Servisa za"
 	},
 	"service_provider_header": {
 		"da": "Service Provider",
@@ -410,7 +427,8 @@
 		"he": "\u05e1\u05e4\u05e7 \u05e9\u05d9\u05e8\u05d5\u05ea",
 		"zh": "\u670d\u52a1\u63d0\u4f9b\u5546",
 		"ar": "\u0645\u0642\u062f\u0645 \u0627\u0644\u062e\u062f\u0645\u0629",
-		"id": "Service Provider"
+		"id": "Service Provider",
+		"sr": "Davalac Servisa"
 	},
 	"status_header": {
 		"da": "Samtykke status",
@@ -433,7 +451,8 @@
 		"he": "\u05de\u05e6\u05d1 \u05d4\u05e1\u05db\u05de\u05d4",
 		"zh": "\u8bb8\u53ef\u72b6\u6001",
 		"ar": "\u062d\u0627\u0644\u0629 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
-		"id": "Status consent"
+		"id": "Status consent",
+		"sr": "Stanje dozvole"
 	},
 	"show_hide_attributes": {
 		"da": "vis\/skjul attributter",
@@ -456,7 +475,8 @@
 		"he": "\u05d4\u05e8\u05d0\u05d4\\\u05d4\u05e1\u05ea\u05e8 \u05de\u05d0\u05e4\u05d9\u05d9\u05e0\u05d9\u05dd",
 		"zh": "\u663e\u793a\/\u9690\u85cf\u5c5e\u6027",
 		"ar": "\u0627\u0638\u0647\u0631\/ \u0627\u062e\u0641\u064a \u0627\u0644\u0633\u0645\u0627\u062a",
-		"id": "Tunjukkan\/sembunyikan attribute"
+		"id": "Tunjukkan\/sembunyikan attribute",
+		"sr": "prika\u017ei\/sakrij atribute"
 	},
 	"consentadmin_purpose": {
 		"da": "Form\u00e5let med tjenesten er",
@@ -479,6 +499,7 @@
 		"he": "\u05de\u05d8\u05e8\u05ea \u05d4\u05e9\u05d9\u05e8\u05d5\u05ea \u05d4\u05d9\u05d0",
 		"zh": "\u8be5\u670d\u52a1\u7684\u7528\u9014",
 		"ar": "\u063a\u0631\u0636 \u0627\u0644\u062e\u062f\u0645\u0629 \u0647\u0648",
-		"id": "Tujuan dari layanan ini adalah"
+		"id": "Tujuan dari layanan ini adalah",
+		"sr": "Namena ovog servisa je"
 	}
 }
