@@ -180,6 +180,8 @@ class XMLSecurityKey {
     const DSA_SHA1 = 'http://www.w3.org/2000/09/xmldsig#dsa-sha1';
     const RSA_SHA1 = 'http://www.w3.org/2000/09/xmldsig#rsa-sha1';
     const RSA_SHA256 = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256';
+    const RSA_SHA384 = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha384';
+    const RSA_SHA512 = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha512';
 
     private $cryptParams = array();
     public $type = 0;
@@ -282,6 +284,28 @@ class XMLSecurityKey {
                 }
                 throw new Exception('Certificate "type" (private/public) must be passed via parameters');
                 break;
+            case (XMLSecurityKey::RSA_SHA384):
+                $this->cryptParams['library'] = 'openssl';
+                $this->cryptParams['method'] = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha384';
+                $this->cryptParams['padding'] = OPENSSL_PKCS1_PADDING;
+                $this->cryptParams['digest'] = 'SHA384';
+                if (is_array($params) && ! empty($params['type'])) {
+                    if ($params['type'] == 'public' || $params['type'] == 'private') {
+                        $this->cryptParams['type'] = $params['type'];
+                        break;
+                    }
+                }
+            case (XMLSecurityKey::RSA_SHA512):
+                $this->cryptParams['library'] = 'openssl';
+                $this->cryptParams['method'] = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha512';
+                $this->cryptParams['padding'] = OPENSSL_PKCS1_PADDING;
+                $this->cryptParams['digest'] = 'SHA512';
+                if (is_array($params) && ! empty($params['type'])) {
+                    if ($params['type'] == 'public' || $params['type'] == 'private') {
+                        $this->cryptParams['type'] = $params['type'];
+                        break;
+                    }
+                }
             default:
                 throw new Exception('Invalid Key Type');
                 return;
@@ -632,6 +656,7 @@ class XMLSecurityDSig {
     const XMLDSIGNS = 'http://www.w3.org/2000/09/xmldsig#';
     const SHA1 = 'http://www.w3.org/2000/09/xmldsig#sha1';
     const SHA256 = 'http://www.w3.org/2001/04/xmlenc#sha256';
+    const SHA384 = 'http://www.w3.org/2001/04/xmldsig-more#sha384';
     const SHA512 = 'http://www.w3.org/2001/04/xmlenc#sha512';
     const RIPEMD160 = 'http://www.w3.org/2001/04/xmlenc#ripemd160';
 
@@ -798,6 +823,9 @@ class XMLSecurityDSig {
                 break;
             case XMLSecurityDSig::SHA256:
                 $alg = 'sha256';
+                break;
+            case XMLSecurityDSig::SHA384:
+                $alg = 'sha384';
                 break;
             case XMLSecurityDSig::SHA512:
                 $alg = 'sha512';

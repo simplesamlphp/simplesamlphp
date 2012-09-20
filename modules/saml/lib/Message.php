@@ -21,8 +21,9 @@ class sspmod_saml_Message {
 
 		$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata, TRUE);
 		$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);
+		$ = $srcMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA1);
 
-		$privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
+		$privateKey = new XMLSecurityKey($algo, array('type' => 'private'));
 		if (array_key_exists('password', $keyArray)) {
 			$privateKey->passphrase = $keyArray['password'];
 		}
