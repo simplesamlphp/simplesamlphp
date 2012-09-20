@@ -131,7 +131,7 @@ $funcmatrix[] = array(
 $funcmatrix[] = array(
 	'required' => 'reccomended',
 	'descr' => 'Magic Quotes should be turned off',
-	'enabled' => (get_magic_quotes_runtime() === 0)
+	'enabled' => (get_magic_quotes_runtime() == 0)
 );
 
 
