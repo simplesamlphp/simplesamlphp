@@ -98,7 +98,7 @@ class SAML2_HTTPRedirect extends SAML2_Binding {
 		} elseif (array_key_exists('SAMLResponse', $data)) {
 			$msg = $data['SAMLResponse'];
 		} else {
-			throw new Execption('Missing SAMLRequest or SAMLResponse parameter.');
+			throw new Exception('Missing SAMLRequest or SAMLResponse parameter.');
 		}
 
 		if (array_key_exists('SAMLEncoding', $data)) {
