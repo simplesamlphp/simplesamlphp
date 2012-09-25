@@ -26,13 +26,25 @@ if (array_key_exists("SimpleSAML_Auth_Default.id", $state)) {
 	$as = NULL;
 }
 
+$source = NULL;
 if (array_key_exists('source', $_REQUEST)) {
 	$source = $_REQUEST['source'];
+} else {
+	foreach ($_REQUEST as $k => $v) {
+		$k = explode('-', $k, 2);
+		if (count($k) === 2 && $k[0] === 'src') {
+			$source = base64_decode($k[1]);
+		}
+	}
+}
+if ($source !== NULL) {
 	if ($as !== NULL) {
 		$as->setPreviousSource($source);
 	}
 	sspmod_multiauth_Auth_Source_MultiAuth::delegateAuthentication($source, $state);
-} elseif (array_key_exists('multiauth:preselect', $state)) {
+}
+
+if (array_key_exists('multiauth:preselect', $state)) {
 	$source = $state['multiauth:preselect'];
 	sspmod_multiauth_Auth_Source_MultiAuth::delegateAuthentication($source, $state);
 }

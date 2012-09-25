@@ -19,11 +19,10 @@ foreach($this->data['sources'] as $source) {
 	} else {
 		$autofocus = '';
 	}
-	echo '<button type="submit" name="source"' . $autofocus . ' ' .
+	$name = 'src-' . base64_encode($source['source']);
+	echo '<input type="submit" name="' . htmlspecialchars($name) . '"' . $autofocus . ' ' .
 		'id="button-' . htmlspecialchars($source['source']) . '" ' .
-		'value="' . htmlspecialchars($source['source']) . '">';
-	echo htmlspecialchars($this->t($source['text']));
-	echo '</button>';
+		'value="' . htmlspecialchars($this->t($source['text'])) . '" />';
 	echo '</li>';
 }
 ?>
