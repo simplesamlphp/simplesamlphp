@@ -4,34 +4,39 @@
 		"nn": "Skrudd av moglegheit for automatisk innlogging for denne nettlesaren",
 		"sv": "St\u00e4ngde av m\u00f6jligheten att anv\u00e4nda automatisk inloggning f\u00f6r denna webbl\u00e4sare",
 		"fr": "La possibilit\u00e9 d'utiliser la connection automatique est d\u00e9sactiv\u00e9e pour ce navigateur",
-		"et": "Seda lehek\u00fclge k\u00fclastades l\u00fclitasid automaatse sisselogimise selles brauseris v\u00e4lja."
+		"et": "Seda lehek\u00fclge k\u00fclastades l\u00fclitasid automaatse sisselogimise selles brauseris v\u00e4lja.",
+		"lt": "I\u0161jungta galimyb\u0117 naudoti automatin\u012f prisijungim\u0105 \u0161ioje nar\u0161ykl\u0117je"
 	},
 	"disable_info_pre": {
 		"no": "<p>Ved \u00e5 g\u00e5 til denne siden har du skrudd av muligheten for automatisk innlogging for denne nettleseren.<\/p><p>For \u00e5 skru p\u00e5 igjen muligheten, kan du g\u00e5 til <a href='URL'>denne siden<\/a>.<\/p>",
 		"nn": "<p>Ved \u00e5 g\u00e5 til denne siden har du skrudd av moglegheit for automatisk innlogging for denne nettlesaren.<\/p><p>For \u00e5 skru p\u00e5 igjen moglegheita, kan du g\u00e5 til <a href='URL'>denne siden<\/a>.<\/p>",
 		"sv": "<p>Genom att bes\u00f6ka denna sida har du st\u00e4ngt av m\u00f6jligheten att anv\u00e4nda automatisk inloggning f\u00f6r denna webbl\u00e4sare.<\/p><p>F\u00f6r att sl\u00e5 p\u00e5 m\u00f6jligheten igen bes\u00f6k <a href='URL'>denna sida<\/a>.<\/p>",
 		"fr": "<p>En acc\u00e9dant \u00e0 cette page, vous avez d\u00e9sactiv\u00e9 la possibilit\u00e9 d'utiliser la connection automatique pour ce navigateur.<\/p><p>Pour l'activer \u00e0 nouveau, merci de visiter <a href='URL'>cette page<\/a>.<\/p>",
-		"et": "<p>Seda lehek\u00fclge k\u00fclastades l\u00fclitasid automaatse sisselogimise selles brauseris v\u00e4lja.<\/p><p>Sisse l\u00fclitamiseks k\u00fclasta <a href='URL'>seda lehek\u00fclge<\/a>.<\/p>"
+		"et": "<p>Seda lehek\u00fclge k\u00fclastades l\u00fclitasid automaatse sisselogimise selles brauseris v\u00e4lja.<\/p><p>Sisse l\u00fclitamiseks k\u00fclasta <a href='URL'>seda lehek\u00fclge<\/a>.<\/p>",
+		"lt": "<p>Jungdamiesi \u012f \u0161i\u0105 setain\u0119, J\u016bs i\u0161jung\u0117te galimyb\u0119 naudoti automatin\u012f prisijungim\u0105 \u0161ioje nar\u0161ykl\u0117je.<\/p><p>Nor\u0117dami j\u012f v\u0117l \u012fjungti, apsilankykite <a href='URL'>\u0161ioje svetain\u0117je<\/a>.<\/p>"
 	},
 	"enable_title": {
 		"no": "Skrudd p\u00e5 mulighet for automatisk innlogging for denne nettleseren",
 		"nn": "Skrudd p\u00e5 moglegheit for automatisk innlogging for denne nettlesaren",
 		"sv": "Aktiverade m\u00f6jligheten att anv\u00e4nda automatisk inloggning f\u00f6r denna webbl\u00e4sare",
 		"fr": "La possibilit\u00e9 d'utiliser la connection automatique est activ\u00e9e pour ce navigateur",
-		"et": "L\u00fclitasid automaatse sisselogimise selles brauseris sisse"
+		"et": "L\u00fclitasid automaatse sisselogimise selles brauseris sisse",
+		"lt": "\u012ejungta galimyb\u0117 naudoti automatin\u012f prisijungim\u0105 \u0161ioje nar\u0161ykl\u0117je"
 	},
 	"enable_info_pre": {
 		"no": "<p>Ved \u00e5 g\u00e5 til denne siden har du skrudd p\u00e5 muligheten for automatisk innlogging for denne nettleseren.<\/p><p>For \u00e5 skru av igjen muligheten, kan du g\u00e5 til <a href='URL'>denne siden<\/a>.<\/p>",
 		"nn": "<p>Ved \u00e5 g\u00e5 til denne siden har du skrudd p\u00e5 moglegheit for automatisk innlogging for denne nettlesaren.<\/p><p>For \u00e5 skru av igjen moglegheita, kan du g\u00e5 til <a href='URL'>denne siden<\/a>.<\/p>",
 		"sv": "<p>Genom att bes\u00f6ka denna sida har du aktiverat m\u00f6jligheten att anv\u00e4nda automatisk inloggning f\u00f6r denna webbl\u00e4sare.<\/p><p>F\u00f6r att sl\u00e5 av m\u00f6jligheten igen bes\u00f6k <a href='URL'>denna sida<\/a>.<\/p>",
 		"fr": "<p>En acc\u00e9dant \u00e0 cette page, vous avez activ\u00e9 la possibilit\u00e9 d'utiliser la connection automatique pour ce navigateur.<\/p><p>Pour la d\u00e9sactiver \u00e0 nouveau, merci de visiter <a href='URL'>cette page<\/a>.<\/p>",
-		"et": "<p>Seda lehek\u00fclge k\u00fclastades l\u00fclitasid automaatse sisselogimise selles brauseris sisse.<\/p><p>V\u00e4lja l\u00fclitamiseks k\u00fclasta <a href='URL'>seda lehek\u00fclge<\/a>.<\/p>"
+		"et": "<p>Seda lehek\u00fclge k\u00fclastades l\u00fclitasid automaatse sisselogimise selles brauseris sisse.<\/p><p>V\u00e4lja l\u00fclitamiseks k\u00fclasta <a href='URL'>seda lehek\u00fclge<\/a>.<\/p>",
+		"lt": "<p>Jungdamiesi \u012f \u0161i\u0105 setain\u0119, J\u016bs \u012fjung\u0117te galimyb\u0119 naudoti automatin\u012f prisijungim\u0105 \u0161ioje nar\u0161ykl\u0117je.<\/p><p>Nor\u0117dami j\u012f v\u0117l i\u0161jungti, apsilankykite <a href='URL'>\u0161ioje svetain\u0117je<\/a>.<\/p>"
 	},
 	"info_post": {
 		"no": "<h3>Hva er automatisk innlogging<\/h3><\/p><p>Automatisk innlogging gj\u00f8r at man kan logge inn uten \u00e5 bli bedt om brukernavn og passord i noen tilfeller:<ul><li>hvis maskinen er i Kerberos domenet<\/li><li>og hvis man bruker en st\u00f8ttet nettleser (IE og noen flere avhengig av oppsett)<\/li><li>p\u00e5 et st\u00f8ttet operativsystem (Windows, Mac)<\/li><\/ul><\/p>",
 		"nn": "<h3>Kva er automatisk innlogging<\/h3><\/p><p>Automatisk innlogging gj\u00f8r at man kan logge inn uten \u00e5 bli bedt om brukernavn og passord i noen tilfeller:<ul><li>hvis maskinen er i Kerberos domenet<\/li><li>og hvis man bruker en st\u00f8ttet nettleser (IE og noen flere avhengig av oppsett)<\/li><li>p\u00e5 et st\u00f8ttet operativsystem (Windows, Mac)<\/li><\/ul><\/p>",
 		"sv": "<h3>Vad \u00e4r automatisk inloggning<\/h3><p>Automatisk inloggning inneb\u00e4r att du kan logga in utan att beh\u00f6va ange anv\u00e4ndarnamn och l\u00f6senord om<ul><li>om datorn finns i en kerberosdom\u00e4n<\/li><li>anv\u00e4nder en webbl\u00e4sare som kan hantera detta (Internet Explorer och n\u00e5gra andra beroende p\u00e5 installationsval)<\/li><li>anv\u00e4nder ett operativsystem som kan hantera detta (Windows, Mac OS X)<\/li><\/ul><\/p>",
 		"fr": "<h3>Qu'est-ce que la connexion automatique<\/h3><p>La connection automatique vous permet de vous connecter sans qu'on vous demande le nom d'utilisateur et mot de passe :<ul><li>si l'ordinateur est dans le domaine Kerberos<\/li><li>\u00e0 l'aide d'un navigateur pris en charge (IE et quelques autres en fonction des options d'installation)<\/li><li>sur un syst\u00e8me d'exploitation pris en charge (Windows, Mac)<\/li><\/ul><\/p>",
-		"et": "<h3>Mis on automaatne sisselogimine<\/h3>Automaatne sisselogimine v\u00f5imaldab sul logida sisse ilma kasutajatunnust ja parooli sisestamata: <ul><li>kui arvuti on Kerberos domeenis<\/li><li>kasutad toetatud brauserit (IE ja m\u00f5ned teised, s\u00f5ltuvalt paigaldusvalikutest)<\/li><li>ja toetatud operatsioonis\u00fcsteemi (Windows, Mac)<\/li><\/ul><\/p>"
+		"et": "<h3>Mis on automaatne sisselogimine<\/h3>Automaatne sisselogimine v\u00f5imaldab sul logida sisse ilma kasutajatunnust ja parooli sisestamata: <ul><li>kui arvuti on Kerberos domeenis<\/li><li>kasutad toetatud brauserit (IE ja m\u00f5ned teised, s\u00f5ltuvalt paigaldusvalikutest)<\/li><li>ja toetatud operatsioonis\u00fcsteemi (Windows, Mac)<\/li><\/ul><\/p>",
+		"lt": "<h3>Kas yra automatinis prisijungimas<\/h3><p>Automatinis prisijungimas suteikia galimyb\u0119 prisijungti ne\u012fvedant prisijungimo vardo ir slapta\u017eod\u017eio:<ul><li> jei kompiuteris priklauso Kerberos domenui<\/li><li> ir naudojama tinkama nar\u0161ykl\u0117 (IE ir kelios kitos, priklausomai nuo diegimo opcij\u0173)<\/li><li> tinkamoje operacin\u0117je sistemoje (Windows, Mac)<\/li><\/ul><\/p>"
 	}
 }
