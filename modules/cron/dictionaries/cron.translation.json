@@ -21,7 +21,8 @@
 		"zh": "Cron\u7ed3\u679c\u9875\u9762",
 		"hu": "Cron fut\u00e1si eredm\u00e9nyek",
 		"ar": "\u0635\u0641\u062d\u0629 \u0646\u062a\u064a\u062c\u0629 \u0643\u0631\u0648\u0646",
-		"id": "Halaman hasil Cron"
+		"id": "Halaman hasil Cron",
+		"sr": "Cron rezultati"
 	},
 	"cron_result_title": {
 		"da": "Her er resultatet for opgaven udf\u00f8relse:",
@@ -45,7 +46,8 @@
 		"zh": "\u8fd9\u91cc\u662fcron\u4efb\u52a1\u5904\u7406\u7ed3\u679c",
 		"hu": "A cron lefut\u00e1s\u00e1nak eredm\u00e9nyei:",
 		"ar": "\u0646\u062a\u0627\u0626\u062c \u0628\u062d\u062b \u0643\u0631\u0648\u0646",
-		"id": "Berikut ini adalah hasil dari eksekusi pekerjaan cron"
+		"id": "Berikut ini adalah hasil dari eksekusi pekerjaan cron",
+		"sr": "U nastavku su navedeni rezultati izvr\u0161avanja cron zadataka:"
 	},
 	"cron_info": {
 		"da": "Cron er en m\u00e5de at k\u00f8re tingene regelm\u00e6ssigt p\u00e5 UNIX-systemer.",
@@ -69,7 +71,8 @@
 		"zh": "Cron\u662f\u4e00\u79cd\u5728UNIX\u7cfb\u7edf\u4e0a\u5b9a\u65f6\u8fd0\u884c\u4efb\u52a1\u7684\u5de5\u5177",
 		"hu": "A cron egy m\u00f3dszer unix rendszereken parancsok rendszeres futtat\u00e1s\u00e1ra.",
 		"ar": "  \u0643\u0631\u0648\u0646 \u0647\u0648 \u0648\u0633\u064a\u0644\u0629 \u062a\u0634\u063a\u064a\u0644 \u0645\u062a\u0643\u0631\u0631 \u0639\u0644\u064a \u064a\u0648\u0646\u064a\u0643\u0633",
-		"id": "Cron adalah cara untuk menjalankan sesuatu secara "
+		"id": "Cron adalah cara untuk menjalankan sesuatu secara ",
+		"sr": "Cron je mehanizam za periodi\u010dno pokretanje procesa na Unix operativnim sistemima."
 	},
 	"cron_suggestion": {
 		"da": "Her er et forslag til en crontab fil:",
@@ -93,7 +96,8 @@
 		"zh": "\u4ee5\u4e0b\u662f\u4e00\u4e9b\u5173\u4e8ecrontab\u6587\u4ef6\u7684\u5efa\u8bae",
 		"hu": "Javaslat crontab file-ra.",
 		"ar": "\u0627\u0642\u062a\u0631\u0627\u062d \u0644\u0645\u0644\u0641 \u0643\u0631\u0648\u0646\u062a\u0627\u0628",
-		"id": "Berikut adalah saran untuk file crontab:"
+		"id": "Berikut adalah saran untuk file crontab:",
+		"sr": "U nastavku je predlog sadr\u017eaja crontab fajla:"
 	},
 	"cron_execution": {
 		"da": "Klik her for at k\u00f8re cron job:",
@@ -117,7 +121,8 @@
 		"zh": "\u70b9\u51fb\u8fd9\u91cc\u8fd0\u884ccron\u4efb\u52a1",
 		"hu": "Kattintson a cron futtat\u00e1s\u00e1hoz.",
 		"ar": " \u0627\u0636\u063a\u0637 \u0644\u064a\u0628\u062f\u0623 \u0643\u0631\u0648\u0646 \u0628\u0627\u0644\u0639\u0645\u0644",
-		"id": "Klik disini untuk menjalankan pekerjaan cron:"
+		"id": "Klik disini untuk menjalankan pekerjaan cron:",
+		"sr": "Kliknite ovde da biste pokrenuli izvr\u0161avanje cron zadataka:"
 	},
 	"run_text": {
 		"da": "Run cron:",
@@ -141,7 +146,8 @@
 		"zh": "\u8fd0\u884ccron",
 		"hu": "Cron fut\u00e1s:",
 		"ar": "\u0623\u0628\u062f\u0627 ",
-		"id": "Jalankan cron:"
+		"id": "Jalankan cron:",
+		"sr": "Pokreni cron:"
 	},
 	"ran_text": {
 		"da": "Cron l\u00f8b p\u00e5",
@@ -165,7 +171,8 @@
 		"zh": "cron\u8fd0\u884c\u4e8e",
 		"hu": "A cron ekkor futott le:",
 		"ar": "\u0643\u0631\u0648\u0646 \u0639\u0645\u0644 \u0639\u0644\u064a",
-		"id": "Cron berjalan pada"
+		"id": "Cron berjalan pada",
+		"sr": "Cron je pokrenut u"
 	},
 	"cron_report_title": {
 		"da": "Cron rapport",
@@ -189,6 +196,7 @@
 		"zh": "cron\u62a5\u544a",
 		"hu": "Cron jelent\u00e9s.",
 		"ar": "\u062a\u0642\u0631\u064a\u0631 \u0643\u0631\u0648\u0646",
-		"id": "Laporan cron"
+		"id": "Laporan cron",
+		"sr": "Cron izve\u0161taj"
 	}
 }
