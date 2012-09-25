@@ -15,7 +15,7 @@ Released TBD.
   * Clean up executable-permissions on files.
   * Change encryption to use the rsa-oaep-mgf1p key padding instead of PKCS 1.5.
   * Update translations.
-  * Add support for RSA-SHA256, RSA-SHA384 and RSA-SHA512 signature algorithms.
+  * Added Serbian translation.
 
 ### `core`
 
