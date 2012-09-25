@@ -15,10 +15,15 @@ Released TBD.
   * Clean up executable-permissions on files.
   * Change encryption to use the rsa-oaep-mgf1p key padding instead of PKCS 1.5.
   * Update translations.
+  * Added Serbian translation.
 
 ### `core`
 
   * `core:UserPass(Org)Base`: Add "remember username" option.
+
+### `papi`
+
+  * New authentication module supporting PAPI protocol.
 
 ### `radius`
 
