@@ -41,6 +41,9 @@ if (array_key_exists('password', $_REQUEST)) {
 	$password = '';
 }
 
+$errorCode = NULL;
+$errorParams = NULL;
+
 if (!empty($_REQUEST['username']) || !empty($password)) {
 	/* Either username or password set - attempt to log in. */
 
@@ -56,9 +59,13 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
 		setcookie($source->getAuthId() . '-username', $username, $params['expire'], $params['path'], $params['domain'], $params['secure'], $params['httponly']);
 	}
 
-	$errorCode = sspmod_core_Auth_UserPassBase::handleLogin($authStateId, $username, $password);
-} else {
-	$errorCode = NULL;
+	try {
+		sspmod_core_Auth_UserPassBase::handleLogin($authStateId, $username, $password);
+	} catch (SimpleSAML_Error_Error $e) {
+		/* Login failed. Extract error code and parameters, to display the error. */
+		$errorCode = $e->getErrorCode();
+		$errorParams = $e->getParameters();
+	}
 }
 
 $globalConfig = SimpleSAML_Configuration::getInstance();
@@ -78,6 +85,7 @@ if (array_key_exists('forcedUsername', $state)) {
 }
 $t->data['links'] = $source->getLoginLinks();
 $t->data['errorcode'] = $errorCode;
+$t->data['errorparams'] = $errorParams;
 
 if (isset($state['SPMetadata'])) {
 	$t->data['SPMetadata'] = $state['SPMetadata'];
