@@ -93,7 +93,7 @@ Some *Auth Proc Filters* have optional or required *parameters*. To send paramet
 
 Global *Auth Proc Filters* is configured in the `config.php` file. You will see that the config template already includes an example configuration.
 
-There is two config parameters:
+There are two config parameters:
 
   * `authproc.idp` and
   * `authproc.sp`
@@ -141,10 +141,10 @@ The following filters are included in the simpleSAMLphp distribution:
 - [`core:StatisticsWithAttribute`](./core:authproc_statisticswithattribute): Create a statistics logentry.
 - [`core:TargetedID`](./core:authproc_targetedid): Generate the `eduPersonTargetedID` attribute.
 - [`core:WarnShortSSOInterval`](./core:authproc_warnshortssointerval): Give a warning if the user logs into the same SP twice within a few seconds.
-- ['expirycheck:ExpiryDate`](./expirycheck:expirycheck): Block access to accounts that have expired.
+- [`expirycheck:ExpiryDate`](./expirycheck:expirycheck): Block access to accounts that have expired.
 - [`preprodwarning:Warning`](./preprodwarning:warning): Warn the user about accessing a test IdP.
 - [`saml:AttributeNameID`](./saml:nameid): Generate custom NameID with the value of an attribute.
-- [`saml:ExpectedAuthnContextClassRef`](./saml:authproc_expectedauthncontextclassref): Verify the user's authnentication context.
+- [`saml:ExpectedAuthnContextClassRef`](./saml:authproc_expectedauthncontextclassref): Verify the user's authentication context.
 - [`saml:NameIDAttribute`](./saml:nameidattribute): Create an attribute based on the NameID we receive from the IdP.
 - [`saml:PersistentNameID`](./saml:nameid): Generate persistent NameID from an attribute.
 - [`saml:TransientNameID`](./saml:nameid): Generate transient NameID.
