@@ -228,7 +228,7 @@ $config = array(
 		'hostname' => 'ldap.example.org',
 
 		// Whether SSL/TLS should be used when contacting the LDAP server.
-		'enable_tls' => FALSE,
+		'enable_tls' => TRUE,
 
 		// Whether debug output from the LDAP library should be enabled.
 		// Default is FALSE.
