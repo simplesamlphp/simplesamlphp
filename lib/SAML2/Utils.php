@@ -91,10 +91,17 @@ class SAML2_Utils {
 	 *
 	 * @param XMLSecurityKey $key  The key.
 	 * @param string $algorithm  The desired algorithm.
+	 * @param string $types  Public or private key, defaults to public.
 	 * @return XMLSecurityKey  The new key.
 	 */
-	private static function castKey(XMLSecurityKey $key, $algorithm) {
+	public static function castKey(XMLSecurityKey $key, $algorithm, $type = 'public') {
 		assert('is_string($algorithm)');
+		assert('$type === "public" || $type === "private"');
+
+		// do nothing if algorithm is already the type of the key
+		if ($key->type === $algorithm) {
+			return $key;
+		}
 
 		$keyInfo = openssl_pkey_get_details($key->key);
 		if ($keyInfo === FALSE) {
@@ -104,7 +111,7 @@ class SAML2_Utils {
 			throw new Exception('Missing key in public key details.');
 		}
 
-		$newKey = new XMLSecurityKey($algorithm, array('type'=>'public'));
+		$newKey = new XMLSecurityKey($algorithm, array('type'=>$type));
 		$newKey->loadKey($keyInfo['key']);
 		return $newKey;
 	}
@@ -133,18 +140,8 @@ class SAML2_Utils {
 		}
 		$algo = $sigMethod->getAttribute('Algorithm');
 
-		if ($key->type === XMLSecurityKey::RSA_SHA1) {
-			switch ($algo) {
-				case XMLSecurityKey::RSA_SHA256:
-					$key = self::castKey($key, XMLSecurityKey::RSA_SHA256);
-					break;
-				case XMLSecurityKey::RSA_SHA384:
-					$key = self::castKey($key, XMLSecurityKey::RSA_SHA384);
-					break;
-				case XMLSecurityKey::RSA_SHA512:
-					$key = self::castKey($key, XMLSecurityKey::RSA_SHA512);
-					break;
-			}
+		if ($key->type === XMLSecurityKey::RSA_SHA1 && $algo !== $key->type) {
+			$key = self::castKey($key, $algo);
 		}
 
 		/* Check the signature. */

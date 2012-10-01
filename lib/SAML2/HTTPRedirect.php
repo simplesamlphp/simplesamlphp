@@ -51,7 +51,7 @@ class SAML2_HTTPRedirect extends SAML2_Binding {
 
 		if ($key !== NULL) {
 			/* Add the signature. */
-			$msg .= '&SigAlg=' . urlencode(XMLSecurityKey::RSA_SHA1);
+			$msg .= '&SigAlg=' . urlencode($key->type);
 
 			$signature = $key->signData($msg);
 			$msg .= '&Signature=' . urlencode(base64_encode($signature));
@@ -216,17 +216,15 @@ class SAML2_HTTPRedirect extends SAML2_Binding {
 
 		$signature = base64_decode($signature);
 
-		switch ($sigAlg) {
-		case XMLSecurityKey::RSA_SHA1:
-			if ($key->type !== XMLSecurityKey::RSA_SHA1) {
-				throw new Exception('Invalid key type for validating signature on query string.');
-			}
-			if (!$key->verifySignature($query,$signature)) {
-				throw new Exception('Unable to validate signature on query string.');
-			}
-			break;
-		default:
-			throw new Exception('Unknown signature algorithm: ' . var_export($sigAlg, TRUE));
+		if ($key->type !== XMLSecurityKey::RSA_SHA1) {
+			throw new Exception('Invalid key type for validating signature on query string.');
+		}
+		if ($key->type !== $sigAlg) {
+			$key = SAML2_Utils::castKey($key, $sigAlg);
+		}
+
+		if (!$key->verifySignature($query,$signature)) {
+			throw new Exception('Unable to validate signature on query string.');
 		}
 	}
 
