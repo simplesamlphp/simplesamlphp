@@ -148,6 +148,7 @@ The following filters are included in the simpleSAMLphp distribution:
 - [`saml:NameIDAttribute`](./saml:nameidattribute): Create an attribute based on the NameID we receive from the IdP.
 - [`saml:PersistentNameID`](./saml:nameid): Generate persistent NameID from an attribute.
 - [`saml:TransientNameID`](./saml:nameid): Generate transient NameID.
+- [`smartattributes:SmartID`](./smartattributes:smartattributes): Generate user ID attribute based on several attributes.
 
 
 
