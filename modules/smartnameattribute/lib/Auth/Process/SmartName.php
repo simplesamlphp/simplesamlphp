@@ -66,6 +66,8 @@ class sspmod_smartnameattribute_Auth_Process_SmartName extends SimpleSAML_Auth_P
 		assert('is_array($request)');
 		assert('array_key_exists("Attributes", $request)');
 
+		SimpleSAML_Logger::warning('You are using the deprecated smartnameattribute:SmartName filter. You should replace it with smartattributes:SmartName instead.');
+
 		$attributes =& $request['Attributes'];
 		
 		$fullname = $this->getFullName($attributes);
