@@ -11,13 +11,13 @@
 class sspmod_saml_Message {
 
 	/**
-	 * Add signature key and and senders certificate to an element (Message or Assertion).
+	 * Add signature key and sender certificate to an element (Message or Assertion).
 	 *
 	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.
 	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient.
 	 * @param SAML2_Message $element  The element we should add the data to.
 	 */
-	public static function addSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata = NULL, SAML2_SignedElement $element) {
+	public static function addSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_SignedElement $element) {
 
 		$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata, TRUE);
 		$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);

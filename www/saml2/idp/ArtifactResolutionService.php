@@ -34,6 +34,10 @@ $request = $binding->receive();
 if (!($request instanceof SAML2_ArtifactResolve)) {
 	throw new Exception('Message received on ArtifactResolutionService wasn\'t a ArtifactResolve request.');
 }
+
+$issuer = $request->getIssuer();
+$spMetadata = $metadata->getMetadataConfig($issuer, 'saml20-sp-remote');
+
 $artifact = $request->getArtifact();
 
 $responseData = $store->get('artifact', $artifact);
@@ -51,5 +55,5 @@ $artifactResponse = new SAML2_ArtifactResponse();
 $artifactResponse->setIssuer($idpEntityId);
 $artifactResponse->setInResponseTo($request->getId());
 $artifactResponse->setAny($responseXML);
-sspmod_saml_Message::addSign($idpMetadata, NULL, $artifactResponse);
+sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $artifactResponse);
 $binding->send($artifactResponse);
