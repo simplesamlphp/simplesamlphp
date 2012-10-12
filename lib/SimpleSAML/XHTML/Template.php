@@ -572,7 +572,7 @@ class SimpleSAML_XHTML_Template {
 	public function show() {
 
 		$filename = $this->findTemplatePath($this->template);
-		require_once($filename);
+		require($filename);
 	}
 
 
