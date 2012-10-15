@@ -58,6 +58,12 @@ if (!empty($stateId)) {
 	if ($state['saml:sp:AuthId'] !== $sourceId) {
 		throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
 	}
+
+	/* Check that the issuer is the one we are expecting. */
+	assert('array_key_exists("ExpectedIssuer", $state)');
+	if ($state['ExpectedIssuer'] !== $idp) {
+		throw new SimpleSAML_Error_Exception('The issuer of the response does not match to the identity provider we sent the request to.');
+	}
 } else {
 	/* This is an unsolicited response. */
 	$state = array(

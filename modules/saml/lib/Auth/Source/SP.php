@@ -252,6 +252,9 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$ar->setExtensions($state['saml:Extensions']);
 		}
 
+		// save IdP entity ID as part of the state
+		$state['ExpectedIssuer'] = $idpMetadata->getString('entityid');
+
 		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso', TRUE);
 		$ar->setId($id);
 
