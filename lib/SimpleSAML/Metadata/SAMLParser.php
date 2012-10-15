@@ -623,6 +623,15 @@ class SimpleSAML_Metadata_SAMLParser {
 			$ret['keys'] = $spd['keys'];
 		}
 
+		/* Add validate.authnrequest. */
+		if (array_key_exists('AuthnRequestsSigned', $spd)) {
+			$ret['validate.authnrequest'] = $spd['AuthnRequestsSigned'];
+		}
+
+		/* Add saml20.sign.assertion. */
+		if (array_key_exists('WantAssertionsSigned', $spd)) {
+			$ret['saml20.sign.assertion'] = $spd['WantAssertionsSigned'];
+		}
 
 		/* Add extensions. */
 		$this->addExtensions($ret, $spd);
@@ -808,6 +817,16 @@ class SimpleSAML_Metadata_SAMLParser {
 		$attcs = $element->AttributeConsumingService;
 		if (count($attcs) > 0) {
 			self::parseAttributeConsumerService($attcs[0], $sp);
+		}
+
+		/* Check AuthnRequestsSigned */
+		if ($element->AuthnRequestsSigned !== NULL) {
+			$sp['AuthnRequestsSigned'] = $element->AuthnRequestsSigned;
+		}
+
+		/* Check WantAssertionsSigned */
+		if ($element->WantAssertionsSigned !== NULL) {
+			$sp['WantAssertionsSigned'] = $element->WantAssertionsSigned;
 		}
 
 		$this->spDescriptors[] = $sp;
