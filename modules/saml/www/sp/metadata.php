@@ -81,7 +81,7 @@ foreach ($assertionsconsumerservices as $services) {
 		break;
 	case 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser':
 		$acs->Binding = 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser';
-		$acs->ProtocolBinding = SAML2_Const::BINDING_HTTP_POST;
+		$acs->setAttributeNS(SAML2_Const::NS_HOK, 'hoksso:ProtocolBinding', SAML2_Const::BINDING_HTTP_POST);
 		$acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
 		break;
 	}
