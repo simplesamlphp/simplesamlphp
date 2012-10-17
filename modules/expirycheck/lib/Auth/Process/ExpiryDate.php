@@ -121,7 +121,7 @@ class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_Process
 		$netId = $state['Attributes'][$this->netid_attr][0];
 		$expireOnDate = strtotime($state['Attributes'][$this->expirydate_attr][0]);
 
-		if (self::shWarning(&$state, $expireOnDate, $this->warndaysbefore)) {
+		if (self::shWarning($state, $expireOnDate, $this->warndaysbefore)) {
 			assert('is_array($state)');
 			if (isset($state['isPassive']) && $state['isPassive'] === TRUE) {
 				/* We have a passive request. Skip the warning. */

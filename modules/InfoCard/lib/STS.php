@@ -360,7 +360,7 @@ class sspmod_InfoCard_STS {
 			$canonicalbuf = sspmod_InfoCard_Utils::canonicalize($signedinfo);
 			$privkey = openssl_pkey_get_private(file_get_contents($config['sts_key']));
 			$signature = '';
-			openssl_sign($canonicalbuf, &$signature, $privkey);
+			openssl_sign($canonicalbuf, $signature, $privkey);
 			openssl_free_key($privkey);
 			$samlsignature = base64_encode($signature);
 	

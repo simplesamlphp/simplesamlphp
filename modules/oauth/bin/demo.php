@@ -2,7 +2,7 @@
 <?php
 
 
-function readline($prompt = '') {
+function _readline($prompt = '') {
     echo $prompt;
     return rtrim( fgets( STDIN ), "\n" );
 }
@@ -40,7 +40,7 @@ try {
 	echo('Go to this URL to authenticate/authorize the request: ' . $url . "\n");
 	system('open ' . $url);
 
-	readline('Click enter when you have completed the authorization step using your web browser...');
+	_readline('Click enter when you have completed the authorization step using your web browser...');
 
 	// Replace the request token with an access token
 	$accessToken = $consumer->getAccessToken( $baseurl . '/module.php/oauth/accessToken.php', $requestToken);
