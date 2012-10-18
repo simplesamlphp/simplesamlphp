@@ -600,15 +600,14 @@ class sspmod_saml_Message {
 			/* Is SSO with HoK enabled? IdP remote metadata overwrites SP metadata configuration. */
 			$hok = $idpMetadata->getBoolean('saml20.hok.assertion', NULL);
 			if ($hok === NULL) {
-			    $protocolBinding = $spMetadata->getString('ProtocolBinding', SAML2_Const::BINDING_HTTP_POST);
-			    if ($protocolBinding === SAML2_Const::BINDING_HOK_SSO) {
-				$hok = TRUE;
-			    } else {
-				$hok = FALSE;
-			    }
+				$hok = $spMetadata->getBoolean('saml20.hok.assertion', FALSE);
 			}
 			if ($sc->Method === SAML2_Const::CM_BEARER && $hok) {
 				$lastError = 'Bearer SubjectConfirmation received, but Holder-of-Key SubjectConfirmation needed';
+				continue;
+			}
+			if ($sc->Method === SAML2_Const::CM_HOK && !$hok) {
+				$lastError = 'Holder-of-Key SubjectConfirmation received, but the Holder-of-Key profile is not enabled.';
 				continue;
 			}
 

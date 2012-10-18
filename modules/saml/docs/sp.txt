@@ -347,6 +347,10 @@ Options
 
 :   *Note*: SAML 1 specific.
 
+`saml20.hok.assertion`
+:   Enable support for the SAML 2.0 Holder-of-Key SSO profile.
+    See the documentation for the [Holder-of-Key profile](./simplesamlphp-hok-sp).
+
 `sign.authnrequest`
 :   Whether to sign authentication requests sent from this SP.
 

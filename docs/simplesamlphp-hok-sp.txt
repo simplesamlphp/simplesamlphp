@@ -27,12 +27,14 @@ environment variable `SSL_CLIENT_CERT` of the webserver.
 Enable HoK on SP
 ----------------
 
-Which binding/profile the Identity Provider (IdP) should use when sending authentication responses to the SP is controlled by the `ProtocolBinding` option in the SP configuration.
-To make your SP request that the response from the IdP is send using the HoK SSO Profile, this option must be set accordingly:
+To enable support for the HoK SSO Profile in the SP, the `saml20.hok.assertion` option must be set to TRUE in the SP configuration.
+This option can also be enabled in the `saml20-idp-remote` metadata file, but in that case the endpoint will not be added to the SP metadata.
+You must also send authentication requests specifying the Holder-of-Key profile to the IdP. This is controlled by the `ProtocolBinding` option in the SP configuration.
 
     'hok-sp' => array(
         'saml:SP',
-		'ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
+        'saml20.hok.assertion' => TRUE,
+        'ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
     ),
 
 When this is done, you can add the metadata of your SP to the IdP and test the authentication.
