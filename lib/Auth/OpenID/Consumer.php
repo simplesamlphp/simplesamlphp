@@ -1183,9 +1183,11 @@ class Auth_OpenID_GenericConsumer {
     function _discoverAndVerify($claimed_id, $to_match_endpoints)
     {
         // oidutil.log('Performing discovery on %s' % (claimed_id,))
-        list($unused, $services) = call_user_func($this->discoverMethod,
-                                                  $claimed_id,
-                                                  &$this->fetcher);
+        list($unused, $services) = call_user_func_array($this->discoverMethod,
+                                                        array(
+                                                            $claimed_id,
+                                                            &$this->fetcher,
+                                                        ));
 
         if (!$services) {
             return new Auth_OpenID_FailureResponse(null,
