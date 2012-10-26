@@ -238,6 +238,9 @@ $config = array(
 		// The default is 0, which means no timeout.
 		'timeout' => 0,
 
+		// Set whether to follow referrals. AD Controllers may require FALSE to function.
+		'referrals' => TRUE,
+
 		// Which attributes should be retrieved from the LDAP server.
 		// This can be an array of attribute names, or NULL, in which case
 		// all attributes are fetched.

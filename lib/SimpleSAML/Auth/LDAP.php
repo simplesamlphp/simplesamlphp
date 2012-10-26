@@ -49,16 +49,18 @@ class SimpleSAML_Auth_LDAP {
 	 * @param bool $debug
 	 * @param int $timeout
 	 * @param int $port
+	 * @param bool $referrals
 	 */
 	// TODO: Flesh out documentation.
-	public function __construct($hostname, $enable_tls = TRUE, $debug = FALSE, $timeout = 0, $port = 389) {
+	public function __construct($hostname, $enable_tls = TRUE, $debug = FALSE, $timeout = 0, $port = 389, $referrals = TRUE) {
 
 		// Debug.
 		SimpleSAML_Logger::debug('Library - LDAP __construct(): Setup LDAP with ' .
 			'host=\'' . $hostname .
 			'\', tls=' . var_export($enable_tls, true) .
 			', debug=' . var_export($debug, true) .
-			', timeout=' . var_export($timeout, true));
+			', timeout=' . var_export($timeout, true) .
+			', referrals=' . var_export($referrals, true));
 
 		/*
 		 * Set debug level before calling connect. Note that this passes
@@ -80,6 +82,10 @@ class SimpleSAML_Auth_LDAP {
 		/* Enable LDAP protocol version 3. */
 		if (!@ldap_set_option($this->ldap, LDAP_OPT_PROTOCOL_VERSION, 3))
 			throw $this->makeException('Library - LDAP __construct(): Failed to set LDAP Protocol version (LDAP_OPT_PROTOCOL_VERSION) to 3', ERR_INTERNAL);
+
+		/* Set referral option */
+		if (!@ldap_set_option($this->ldap, LDAP_OPT_REFERRALS, $referrals))
+			throw $this->makeException('Library - LDAP __construct(): Failed to set LDAP Referrals (LDAP_OPT_REFERRALS) to '.$referrals, ERR_INTERNAL);
 
 		// Set timeouts, if supported.
 		// (OpenLDAP 2.x.x or Netscape Directory SDK x.x needed).
