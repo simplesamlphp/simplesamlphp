@@ -173,7 +173,14 @@ class SAML2_HTTPRedirect extends SAML2_Binding {
 		$relayState = '';
 		$sigAlg = '';
 		foreach (explode('&', $_SERVER['QUERY_STRING']) as $e) {
-			list($name, $value) = explode('=', $e, 2);
+			$tmp = explode('=', $e, 2);
+			$name = $tmp[0];
+			if (count($tmp) === 2) {
+				$value = $tmp[1];
+			} else {
+				/* No value for this paramter. */
+				$value = '';
+			}
 			$name = urldecode($name);
 			$data[$name] = urldecode($value);
 
