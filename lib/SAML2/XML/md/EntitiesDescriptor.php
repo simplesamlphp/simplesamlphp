@@ -128,6 +128,10 @@ class SAML2_XML_md_EntitiesDescriptor extends SAML2_SignedElementHelper {
 			$e->setAttribute('cacheDuration', $this->cacheDuration);
 		}
 
+		if (isset($this->Name)) {
+			$e->setAttribute('Name', $this->Name);
+		}
+
 		SAML2_XML_md_Extensions::addList($e, $this->Extensions);
 
 		foreach ($this->children as $node) {
