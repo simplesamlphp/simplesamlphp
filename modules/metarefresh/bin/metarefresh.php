@@ -95,7 +95,7 @@ foreach($argv as $a) {
 			echo('Please run `' . $progName . ' --help` for usage information.' . "\n");
 			exit(1);
 		}
-		$outputDir =  $baseDir . $v;
+		$outputDir =   $baseDir . ($v[0] == '/' ? $v : '/' .  $v);
 		break;
 	case '--stdout':
 		$toStdOut = TRUE;
@@ -145,13 +145,15 @@ function printHelp() {
 	echo('be added to the metadata files in metadata/.' . "\n");
 	echo("\n");
 	echo('Options:' . "\n");
-	echo('     --validate-fingerprint=<FINGERPRINT>' . "\n");
+	echo(' --validate-fingerprint=<FINGERPRINT>' . "\n");
 	echo('                              Check the signature of the metadata,' . "\n");
 	echo('                              and check the fingerprint of the' . "\n");
 	echo('                              certificate against <FINGERPRINT>.' . "\n");
 	echo(' -h, --help                   Print this help.' . "\n");
 	echo(' -o=<DIR>, --out-dir=<DIR>    Write the output to this directory. The' . "\n");
-	echo('                              default directory is metadata-generated/' . "\n");
+	echo('                              default directory is metadata-generated/.' . "\n");
+	echo('                              Path will be relative to the simpleSAMLphp' . "\n");
+	echo('                              base directory.' . "\n");
 	echo(' -s, --stdout                 Write the output to stdout instead of' . "\n");
 	echo('                              seperate files in the output directory.' . "\n");
 	echo("\n");
