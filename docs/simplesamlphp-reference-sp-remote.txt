@@ -168,8 +168,8 @@ The following SAML 2.0 options are available:
     `FALSE`.
 
 `NameIDFormat`
-:   The `NameIDFormat` this SP should receive. There are three values
-    for NameIDFormat which is supported by simpleSAMLphp:
+:   The `NameIDFormat` this SP should receive. The three most commonly
+    used values are:
 
 :   1.  `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`
     2.  `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
@@ -178,9 +178,9 @@ The following SAML 2.0 options are available:
 :   The `transient` format will generate a new unique ID every time
     the SP logs in.
 
-:   The `persistent` and `email` formats will use the attribute
-    specified in the `simplesaml.nameidattribute`-option as the value
-    of the ID.
+:   To properly support the `persistent` and `emailAddress` formats,
+    you should configure [NameID generation filters](./saml:nameid)
+    on your IdP.
 
 `nameid.encryption`
 :   Whether NameIDs sent to this SP should be encrypted. The default
