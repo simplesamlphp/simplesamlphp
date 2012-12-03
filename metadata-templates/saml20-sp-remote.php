@@ -21,7 +21,7 @@ $metadata['https://saml2sp.example.org'] = array(
  */
 $metadata['google.com'] = array(
 	'AssertionConsumerService' => 'https://www.google.com/a/g.feide.no/acs',
-	'NameIDFormat' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:email',
+	'NameIDFormat' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
 	'simplesaml.nameidattribute' => 'uid',
 	'simplesaml.attributes' => FALSE,
 );
