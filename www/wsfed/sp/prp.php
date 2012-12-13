@@ -24,7 +24,12 @@ if (!$config->getBoolean('enable.wsfed-sp', false))
 	throw new SimpleSAML_Error_Error('NOACCESS');
 
 if (!empty($_GET['wa']) and ($_GET['wa'] == 'wsignoutcleanup1.0')) {
-	print 'Logged Out';
+	if (isset($session) && $session->isValid('wsfed')) {
+		$session->doLogout('wsfed');
+	}
+	if (!empty($_GET['wreply'])) {
+		SimpleSAML_Utilities::redirect(urldecode($_GET['wreply']));
+	}
 	exit;
 }
 
