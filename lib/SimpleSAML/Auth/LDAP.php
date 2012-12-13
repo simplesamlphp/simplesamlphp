@@ -387,7 +387,7 @@ class SimpleSAML_Auth_LDAP {
 		$authz_id = null;
 
 		if ($sasl_args != NULL) {
-			if (!function_exists(ldap_sasl_bind)) {
+			if (!function_exists('ldap_sasl_bind')) {
 				$ex_msg = 'Library - missing SASL support';
 				throw $this->makeException($ex_msg);
 			}
