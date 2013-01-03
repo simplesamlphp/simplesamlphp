@@ -131,7 +131,7 @@ Options
 
 The following options can be used when configuring the Consent module
 
-`ìncludeValues`
+`includeValues`
 :   Boolean value that indicate whether the values of the attributes should be 
     used in calculating the unique hashes that identifies the consent. If 
     includeValues is set and the value of an attribute changes, then the 
