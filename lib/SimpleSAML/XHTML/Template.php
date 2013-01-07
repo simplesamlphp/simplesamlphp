@@ -669,9 +669,10 @@ class SimpleSAML_XHTML_Template {
 	public static function getLanguageCookie() {
 		$config = SimpleSAML_Configuration::getInstance();
 		$availableLanguages = $config->getArray('language.available', array('en'));
+		$name = $config->getString('language.cookie.name', 'language');
 
-		if (isset($_COOKIE['language'])) {
-			$language = strtolower((string)$_COOKIE['language']);
+		if (isset($_COOKIE[$name])) {
+			$language = strtolower((string)$_COOKIE[$name]);
 			if (in_array($language, $availableLanguages, TRUE)) {
 				return $language;
 			}
@@ -696,7 +697,19 @@ class SimpleSAML_XHTML_Template {
 		if (!in_array($language, $availableLanguages, TRUE) || headers_sent()) {
 			return;
 		}
-		setcookie('language', $language, time()+60*60*24*900, '/');
+
+		$name = $config->getString('language.cookie.name', 'language');
+		$domain = $config->getString('language.cookie.domain', NULL);
+		$path = $config->getString('language.cookie.path', '/');
+		$lifetime = $config->getInteger('language.cookie.lifetime', 60*60*24*900);
+
+		if ($lifetime === 0) {
+			$expire = 0;
+		} else {
+			$expire = time() + $lifetime;
+		}
+
+		setcookie($name, $language, $expire, $path, $domain);
 	}
 
 }

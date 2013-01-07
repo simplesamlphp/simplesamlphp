@@ -277,6 +277,14 @@ $config = array (
 	'language.rtl'		=> array('ar','dv','fa','ur','he'),
 	'language.default'		=> 'en',
 
+	/*
+	 * Options to override the default settings for the language cookie
+	 */
+	'language.cookie.name'		=> 'language',
+	'language.cookie.domain'		=> NULL,
+	'language.cookie.path'		=> '/',
+	'language.cookie.lifetime'		=> (60*60*24*900),
+
 	/**
 	 * Custom getLanguage function called from SimpleSAML_XHTML_Template::getLanguage().
 	 * Function should return language code of one of the available languages or NULL.
