@@ -278,6 +278,12 @@ $config = array (
 	'language.default'		=> 'en',
 
 	/*
+	 * Options to override the default settings for the language parameter
+	 */
+	'language.parameter.name'   => 'language',
+	'language.parameter.setcookie'  => TRUE,
+
+	/*
 	 * Options to override the default settings for the language cookie
 	 */
 	'language.cookie.name'		=> 'language',

@@ -39,6 +39,12 @@ class SimpleSAML_XHTML_Template {
 
 
 	/**
+	 * HTTP GET language parameter name.
+	 */
+	private $languageParameterName = 'language';
+
+
+	/**
 	 * Constructor
 	 *
 	 * @param $configuration   Configuration object
@@ -52,9 +58,10 @@ class SimpleSAML_XHTML_Template {
 		$this->data['baseurlpath'] = $this->configuration->getBaseURL();
 
 		$this->availableLanguages = $this->configuration->getArray('language.available', array('en'));
-		
-		if (isset($_GET['language'])) {
-			$this->setLanguage($_GET['language']);
+
+		$this->languageParameterName = $this->configuration->getString('language.parameter.name', 'language');
+		if (isset($_GET[$this->languageParameterName])) {
+			$this->setLanguage($_GET[$this->languageParameterName], $this->configuration->getBoolean('language.parameter.setcookie', TRUE));
 		}
 
 		if($defaultDictionary !== NULL && substr($defaultDictionary, -4) === '.php') {
