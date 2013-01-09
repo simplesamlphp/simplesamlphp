@@ -177,6 +177,26 @@ $config = array (
 	'enable.wsfed-sp'		=> false,
 	'enable.authmemcookie' => false,
 
+
+	/*
+	 * Module enable configuration
+	 *
+	 * Configuration to override module enabling/disabling.
+	 *
+	 * Example:
+	 *
+	 * 'module.enable' => array(
+	 * 	// Setting to TRUE enables.
+	 * 	'exampleauth' => TRUE,
+	 * 	// Setting to FALSE disables.
+	 * 	'saml' => FALSE,
+	 * 	// Unset or NULL uses default.
+	 * 	'core' => NULL,
+	 * ),
+	 *
+	 */
+
+
 	/* 
 	 * This value is the duration of the session in seconds. Make sure that the time duration of
 	 * cookies both at the SP and the IdP exceeds this duration.

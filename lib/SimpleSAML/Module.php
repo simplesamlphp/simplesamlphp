@@ -42,6 +42,17 @@ class SimpleSAML_Module {
 			return FALSE;
 		}
 
+		$globalConfig = SimpleSAML_Configuration::getInstance();
+		$moduleEnable = $globalConfig->getArray('module.enable', array());
+
+		if(isset($moduleEnable[$module])) {
+			if(is_bool($moduleEnable[$module]) === TRUE) {
+				return $moduleEnable[$module];
+			}
+
+			throw new Exception("Invalid module.enable value for for the module $module");
+		}
+
 		if (assert_options(ASSERT_ACTIVE) && !file_exists($moduleDir . '/default-enable') && !file_exists($moduleDir . '/default-disable')) {
 			SimpleSAML_Logger::error("Missing default-enable or default-disable file for the module $module");
 		}
