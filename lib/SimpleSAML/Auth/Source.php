@@ -56,7 +56,7 @@ abstract class SimpleSAML_Auth_Source {
 			$source = $config->getArray($id);
 
 			if (!array_key_exists(0, $source) || !is_string($source[0])) {
-				throw new Exception('Invalid authentication source \'' . $authId .
+				throw new Exception('Invalid authentication source \'' . $id .
 					'\': First element must be a string which identifies the authentication source.');
 			}
 
