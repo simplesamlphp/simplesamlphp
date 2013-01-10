@@ -110,26 +110,6 @@ Add to CRON with
 
 
 
-Errors
-------
-
-Problem with sanitycheck module
-
-When executing [Run cron [daily]] ==> an error shows up 
-
-Cause : module sanitycheck  ==> It is active by default (`/var/simplesamlphp/modules/sanitycheck/default-enable`) 
-
-  * When executing Cron daily It will search all active modules and it executes the hook_cron.php for each one of them in :
-		`/var/simplesamlphp/modules/<nome_modulo>/hooks/hooks_cron.php`
-
-Meanwhile it is waiting that each module conf file exists in the folder: `/var/simplesamlphp/config/config-<nome_modulo>.php`
-
-It should exist one for the sanitycheck module => `config-sanitycheck.php` but it wasn't there and therefore the error showed up.
-
-Giving an error at this modules it aborted execution for the next active modules.
-
-
-
 Configuring the metarefresh module
 ----------------------------------
 

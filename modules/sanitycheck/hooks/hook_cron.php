@@ -13,12 +13,13 @@ function sanitycheck_hook_cron(&$croninfo) {
 
 	try {
 	
-		$sconfig = SimpleSAML_Configuration::getConfig('config-sanitycheck.php');
-		
-		if (is_null($sconfig->getValue('cron_tag', NULL))) return;
-		if ($sconfig->getValue('cron_tag', NULL) !== $croninfo['tag']) return;
-		
-		
+		$sconfig = SimpleSAML_Configuration::getOptionalConfig('config-sanitycheck.php');
+
+		$cronTag = $sconfig->getString('cron_tag', NULL);
+		if ($cronTag === NULL || $cronTag !== $croninfo['tag']) {
+			return;
+		}
+
 		$info = array();
 		$errors = array();
 		$hookinfo = array(
