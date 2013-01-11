@@ -77,6 +77,27 @@ This filter will only create new NameIDs when the SP specifies `AllowCreate="tru
 :   The name of the attribute we should use as the unique user ID.
 
 
+`saml:PersistentNameID2TargetedID`
+----------------------------------
+
+Stores a persistent NameID in the `eduPersonTargetedID`-attribute.
+
+This filter is not actually a NameID generation filter.
+Instead, it takes a persistent NameID and adds it as an attribute in the assertion.
+This can be used to set the `eduPersonTargetedID`-attribute to the same value as the persistent NameID.
+
+### Options
+
+`attribute`
+:   The name of the attribute we should store the result in.
+    The default is `eduPersonTargetedID`.
+
+`nameId`
+:   Whether the generated attribute should be an saml:NameID element.
+    The default is `TRUE`.
+
+
+
 Example
 -------
 
@@ -107,4 +128,30 @@ Storing persistent NameIDs in a SQL database:
             'class' => 'saml:SQLPersistentNameID',
             'attribute' => 'eduPersonPrincipalName',
         ),
+    ),
+
+Generating Persistent NameID and eduPersonTargetedID.
+
+    'authproc' => array(
+        // Generate the persistent NameID.
+        2 => array(
+            'class' => 'saml:PersistentNameID',
+            'attribute' => 'eduPersonPrincipalName',
+        ),
+        // Add the persistent to the eduPersonTargetedID attribute
+        60 => array(
+            'class' => 'saml:PersistentNameID2TargetedID',
+            'attribute' => 'eduPersonTargetedID', // The default
+            'nameId' => TRUE, // The default
+        ),
+        // Use OID attribute names.
+        90 => array(
+            'class' => 'core:AttributeMap',
+            'name2oid',
+        ),
+    ),
+    // The URN attribute NameFormat for OID attributes.
+    'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+    'attributeencodings' => array(
+        'urn:oid:1.3.6.1.4.1.5923.1.1.1.10' => 'raw', /* eduPersonTargetedID with oid NameFormat is a raw XML value */
     ),

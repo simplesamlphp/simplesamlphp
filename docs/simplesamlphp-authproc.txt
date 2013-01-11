@@ -147,6 +147,7 @@ The following filters are included in the simpleSAMLphp distribution:
 - [`saml:ExpectedAuthnContextClassRef`](./saml:authproc_expectedauthncontextclassref): Verify the user's authentication context.
 - [`saml:NameIDAttribute`](./saml:nameidattribute): Create an attribute based on the NameID we receive from the IdP.
 - [`saml:PersistentNameID`](./saml:nameid): Generate persistent NameID from an attribute.
+- [`saml:PersistentNameID2TargetedID`](./saml:nameid): Store persistent NameID as eduPersonTargetedID.
 - [`saml:TransientNameID`](./saml:nameid): Generate transient NameID.
 - [`smartattributes:SmartID`](./smartattributes:smartattributes): Generate user ID attribute based on several attributes.
 
