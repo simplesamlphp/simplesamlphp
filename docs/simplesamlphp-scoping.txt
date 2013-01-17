@@ -18,9 +18,9 @@ providers specified.
 
 A common use is for a service provider in a hub-and-spoke architecture to 
 manage its own discovery service and being able to tell the hub/proxy-IdP which 
-(backend-end) identity provider to use. The standart discovery service in 
+(backend-end) identity provider to use. The standard discovery service in 
 SimpleSAMLphp will show the intersection of all the known IdPs and the IdPs 
-specified in the scoping element. If this intersection only contains on IdP, 
+specified in the scoping element. If this intersection only contains one IdP, 
 then the request is automatically forwarded to that IdP.
 
 Scoping is a SAML 2.0 specific option.
@@ -37,7 +37,7 @@ who ultimately authenticates the user. A count of zero permits no proxying. If
 ProxyCount is unspecified the number of proxy indirections is not limited.
 
 `IDPList`
-: The list of trusted idps ie. the list of entityIDs for identity providers
+: The list of trusted IdPs ie. the list of entityIDs for identity providers
 that are relevant for a service provider in an authnRequest. 
 
 ### Note ###
@@ -67,11 +67,11 @@ RequesterID element
 -------------------
 
 To allow an identity provider to identify the original requester and the 
-proxying identity providers, SimpleSAMLphp addes the RequesterID element to 
+proxying identity providers, SimpleSAMLphp adds the RequesterID element to 
 the request and if necessary the scoping element even if explicit scoping is 
 not used.
 
-The RequesterId elements are avaliable from the state array as an array, for
+The RequesterId elements are available from the state array as an array, for
 instance the authenticate method in an authentication source
 
     $requesterIDs = $state['saml:RequesterID'];
@@ -80,11 +80,11 @@ AuthenticatingAuthority element
 -------------------------------
 
 To allow a service provider to identify the authentication authorities that 
-were involved in the authentication of the user, SimpleSAMLphp addes the 
+were involved in the authentication of the user, SimpleSAMLphp adds the 
 AuthenticatingAuthority elements.
 
 The list of authenticating authorities (the AuthenticatingAuthority element) 
-can be retrived as an array from the authentication data.
+can be retrieved as an array from the authentication data.
 
     # Get the authentication source.
     $as = new SimpleSAML_Auth_Simple();
