@@ -265,7 +265,7 @@ class sspmod_saml_SP_LogoutStore {
 				continue;
 			}
 
-			SimpleSAML_Logger::info('saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackId() . '].');
+			SimpleSAML_Logger::info('saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].');
 			$session->doLogout($authId);
 			$numLoggedOut += 1;
 		}
