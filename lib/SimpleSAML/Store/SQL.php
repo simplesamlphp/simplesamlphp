@@ -252,6 +252,10 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 		}
 		$value = urldecode($value);
 		$value = unserialize($value);
+
+                if ($value === FALSE) {
+                    return NULL;
+                }
 		return $value;
 	}
 
