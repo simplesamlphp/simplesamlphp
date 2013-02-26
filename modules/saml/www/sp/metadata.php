@@ -19,32 +19,22 @@ $entityId = $source->getEntityId();
 $spconfig = $source->getMetadata();
 
 $metaArray20 = array(
-	'AssertionConsumerService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId),
 	'SingleLogoutService' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId),
 );
-
-$ed = new SAML2_XML_md_EntityDescriptor();
-$ed->entityID = $entityId;
-
-$sp = new SAML2_XML_md_SPSSODescriptor();
-$ed->RoleDescriptor[] = $sp;
-$sp->protocolSupportEnumeration = array(
-	'urn:oasis:names:tc:SAML:1.1:protocol',
-	'urn:oasis:names:tc:SAML:2.0:protocol'
-);
-
-$slo = new SAML2_XML_md_EndpointType();
-$slo->Binding = SAML2_Const::BINDING_HTTP_REDIRECT;
-$slo->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId);
-$sp->SingleLogoutService[] = $slo;
 
 $store = SimpleSAML_Store::getInstance();
 if ($store instanceof SimpleSAML_Store_SQL) {
 	/* We can properly support SOAP logout. */
-	$slo = new SAML2_XML_md_EndpointType();
-	$slo->Binding = SAML2_Const::BINDING_SOAP;
-	$slo->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId);
-	$sp->SingleLogoutService[] = $slo;
+	$metaArray20['SingleLogoutService'] = array(
+		array(
+			'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+			'Location' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId),
+		),
+		array(
+			'Binding' => SAML2_Const::BINDING_SOAP,
+			'Location' => SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId),
+		),
+	);
 }
 
 $assertionsconsumerservicesdefault = array(
@@ -54,44 +44,45 @@ $assertionsconsumerservicesdefault = array(
 	'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
 );
 
-if ($spconfig->getBoolean('saml20.hok.assertion', FALSE)) {
+if ($spconfig->getString('ProtocolBinding', '') == 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser') {
 	$assertionsconsumerservicesdefault[] = 	'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser';
 }
 
 $assertionsconsumerservices = $spconfig->getArray('acs.Bindings', $assertionsconsumerservicesdefault);
 
 $index = 0;
+$eps = array();
 foreach ($assertionsconsumerservices as $services) {
 
-	$acs = new SAML2_XML_md_IndexedEndpointType();
-	$acs->index = $index;
+	$acsArray = array('index' => $index);
 	switch ($services) {
 	case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST':
-		$acs->Binding = SAML2_Const::BINDING_HTTP_POST;
-		$acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
+		$acsArray['Binding'] = SAML2_Const::BINDING_HTTP_POST;
+		$acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
 		break;
 	case 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post':
-		$acs->Binding = 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
-		$acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId);
+		$acsArray['Binding'] = 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
+		$acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId);
 		break;
 	case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact':
-		$acs->Binding = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact';
-		$acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
+		$acsArray['Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact';
+		$acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
 		break;
 	case 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01':
-		$acs->Binding = 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01';
-		$acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId . '/artifact');
+		$acsArray['Binding'] = 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01';
+		$acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId . '/artifact');
 		break;
 	case 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser':
-		$acs->Binding = 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser';
-		$acs->setAttributeNS(SAML2_Const::NS_HOK, 'hoksso:ProtocolBinding', SAML2_Const::BINDING_HTTP_POST);
-		$acs->Location = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
+		$acsArray['Binding'] = 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser';
+		$acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
+		$acsArray['hoksso:ProtocolBinding'] = SAML2_Const::BINDING_HTTP_REDIRECT;
 		break;
 	}
-	$sp->AssertionConsumerService[] = $acs;
+	$eps[] = $acsArray;
 	$index++;
 }
 
+$metaArray20['AssertionConsumerService'] = $eps;
 
 $keys = array();
 $certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig, FALSE, 'new_');
@@ -99,13 +90,6 @@ if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$hasNewCert = TRUE;
 
 	$certData = $certInfo['certData'];
-	$kd = SAML2_Utils::createKeyDescriptor($certData);
-	$kd->use = 'signing';
-	$sp->KeyDescriptor[] = $kd;
-
-	$kd = SAML2_Utils::createKeyDescriptor($certData);
-	$kd->use = 'encryption';
-	$sp->KeyDescriptor[] = $kd;
 
 	$keys[] = array(
 		'type' => 'X509Certificate',
@@ -120,16 +104,6 @@ if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 $certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig);
 if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$certData = $certInfo['certData'];
-	$kd = SAML2_Utils::createKeyDescriptor($certData);
-	$kd->use = 'signing';
-	$sp->KeyDescriptor[] = $kd;
-
-	if (!$hasNewCert) {
-		/* Don't include the old certificate for encryption when we have a newer certificate. */
-		$kd = SAML2_Utils::createKeyDescriptor($certData);
-		$kd->use = 'encryption';
-		$sp->KeyDescriptor[] = $kd;
-	}
 
 	$keys[] = array(
 		'type' => 'X509Certificate',
@@ -148,18 +122,6 @@ if ($name !== NULL && !empty($attributes)) {
 
 	$attributesrequired = $spconfig->getArray('attributes.required', array());
 
-	/* We have everything necessary to add an AttributeConsumingService. */
-	$acs = new SAML2_XML_md_AttributeConsumingService();
-	$sp->AttributeConsumingService[] = $acs;
-
-	$acs->index = 0;
-	$acs->ServiceName = $name;
-
-	$description = $spconfig->getLocalizedString('description', NULL);
-	if ($description !== NULL) {
-		$acs->ServiceDescription = $description;
-	}
-
 	$nameFormat = $spconfig->getString('attributes.NameFormat', NULL);
 	foreach ($attributes as $attribute) {
 		$a = new SAML2_XML_md_RequestedAttribute();
@@ -169,8 +131,9 @@ if ($name !== NULL && !empty($attributes)) {
 		if (in_array($attribute, $attributesrequired))
 			$a->isRequired = true;
 
-		$acs->RequestedAttribute[] = $a;
 	}
+
+	$metaArray20['attributes.required'] = $attributesrequired;
 
 	$metaArray20['name'] = $name;
 	if ($description !== NULL) {
@@ -183,63 +146,70 @@ if ($name !== NULL && !empty($attributes)) {
 	}
 }
 
-
+// add organization info
 $orgName = $spconfig->getLocalizedString('OrganizationName', NULL);
 if ($orgName !== NULL) {
-	$o = new SAML2_XML_md_Organization();
-	$o->OrganizationName = $orgName;
+	$metaArray20['OrganizationName'] = $orgName;
 
-	$o->OrganizationDisplayName = $spconfig->getLocalizedString('OrganizationDisplayName', NULL);
-	if ($o->OrganizationDisplayName === NULL) {
-		$o->OrganizationDisplayName = $orgName;
+	$metaArray20['OrganizationDisplayName'] = $spconfig->getLocalizedString('OrganizationDisplayName', NULL);
+	if ($metaArray20['OrganizationDisplayName'] === NULL) {
+		$metaArray20['OrganizationDisplayName'] = $orgName;
 	}
 
-	$o->OrganizationURL = $spconfig->getLocalizedString('OrganizationURL', NULL);
-	if ($o->OrganizationURL === NULL) {
+	$metaArray20['OrganizationURL'] = $spconfig->getLocalizedString('OrganizationURL', NULL);
+	if ($metaArray20['OrganizationURL'] === NULL) {
 		throw new SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
 	}
-
-	$ed->Organization = $o;
-
-	$metaArray20['OrganizationName'] = $orgName;
-	$metaArray20['OrganizationDisplayName'] = $o->OrganizationDisplayName;
-	$metaArray20['OrganizationURL'] = $o->OrganizationURL;
 }
 
-$c = new SAML2_XML_md_ContactPerson();
-$c->contactType = 'technical';
-
+// add technical contact
 $email = $config->getString('technicalcontact_email', NULL);
-if ($email !== NULL) {
-	$c->EmailAddress = array($email);
-}
+$contact = array('emailAddress' => $email);
 
 $name = $config->getString('technicalcontact_name', NULL);
 if ($name === NULL) {
 	/* Nothing to do here... */
 } elseif (preg_match('@^(.*?)\s*,\s*(.*)$@D', $name, $matches)) {
-	$c->SurName = $matches[1];
-	$c->GivenName = $matches[2];
+	$contact['surName'] = $matches[1];
+	$contact['givenName'] = $matches[2];
 } elseif (preg_match('@^(.*?)\s+(.*)$@D', $name, $matches)) {
-	$c->GivenName = $matches[1];
-	$c->SurName = $matches[2];
+	$contact['givenName'] = $matches[1];
+	$contact['surName'] = $matches[2];
 } else {
-	$c->GivenName = $name;
+	$contact['givenName'] = $name;
 }
-$ed->ContactPerson[] = $c;
 
-$xml = $ed->toXML();
-SimpleSAML_Utilities::formatDOMElement($xml);
-$xml = $xml->ownerDocument->saveXML($xml);
-
+// add certificate
 if (count($keys) === 1) {
 	$metaArray20['certData'] = $keys[0]['X509Certificate'];
 } elseif (count($keys) > 1) {
 	$metaArray20['keys'] = $keys;
 }
 
+// add UIInfo extension
+if ($spconfig->hasValue('UIInfo')) {
+	$metaArray20['UIInfo'] = $spconfig->getArray('UIInfo');
+}
+
+$supported_protocols = array('urn:oasis:names:tc:SAML:1.1:protocol', SAML2_Const::NS_SAMLP);
+
+$metaArray20['metadata-set'] = 'saml20-sp-remote';
+$metaArray20['entityid'] = $entityId;
+
+$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+$metaBuilder->addMetadataSP20($metaArray20, $supported_protocols);
+$metaBuilder->addOrganizationInfo($metaArray20);
+$metaBuilder->addContact('technical', $contact);
+
+$xml = $metaBuilder->getEntityDescriptorText();
+
+unset($metaArray20['attributes.required']);
+unset($metaArray20['UIInfo']);
+unset($metaArray20['metadata-set']);
+unset($metaArray20['entityid']);
+
 /* Sign the metadata if enabled. */
-$xml = SimpleSAML_Metadata_Signer::sign($xml, $sp, 'SAML 2 SP');
+$xml = SimpleSAML_Metadata_Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
 
 if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
 

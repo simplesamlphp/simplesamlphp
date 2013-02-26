@@ -318,6 +318,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			return;
 		}
 
+		$attributesrequired = $metadata->getArray('attributes.required', array());
+
 		/*
 		 * Add an AttributeConsumingService element with information as name and description and list
 		 * of requested attributes
@@ -335,6 +337,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$t->Name = $attribute;
 			if ($nameFormat !== SAML2_Const::NAMEFORMAT_UNSPECIFIED) {
 				$t->NameFormat = $nameFormat;
+			}
+			if (in_array($attribute, $attributesrequired)) {
+				$t->isRequired = true;
 			}
 			$attributeconsumer->RequestedAttribute[] = $t;
 		}
@@ -383,16 +388,18 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	 * Add SAML 2.0 SP metadata.
 	 *
 	 * @param array $metadata  The metadata.
+	 * @param array $protocols The protocols supported.
 	 */
-	public function addMetadataSP20($metadata) {
+	public function addMetadataSP20($metadata, $protocols = array(SAML2_Const::NS_SAMLP)) {
 		assert('is_array($metadata)');
+		assert('is_array($protocols)');
 		assert('isset($metadata["entityid"])');
 		assert('isset($metadata["metadata-set"])');
 
 		$metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
 
 		$e = new SAML2_XML_md_SPSSODescriptor();
-		$e->protocolSupportEnumeration[] = 'urn:oasis:names:tc:SAML:2.0:protocol';
+		$e->protocolSupportEnumeration = $protocols;
 
 
 		$this->addExtensions($metadata, $e);
