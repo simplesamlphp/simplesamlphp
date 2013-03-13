@@ -223,13 +223,13 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
-	 * This function parses a DOMElement which represents a EntityDescriptor element.
+	 * This function parses a SAML2_XML_md_EntityDescriptor object which represents a EntityDescriptor element.
 	 *
-	 * @param $entityElement  A DOMElement which represents a EntityDescriptor element.
+	 * @param $entityElement  A SAML2_XML_md_EntityDescriptor object which represents a EntityDescriptor element.
 	 * @return An instance of this class with the metadata loaded.
 	 */
 	public static function parseElement($entityElement) {
-		assert('$entityElement instanceof DOMElement');
+		assert('$entityElement instanceof SAML2_XML_md_EntityDescriptor');
 
 		return new SimpleSAML_Metadata_SAMLParser($entityElement, NULL);
 	}
