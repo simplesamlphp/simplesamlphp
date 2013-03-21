@@ -14,7 +14,7 @@ $this->includeAtTemplateBase('includes/header.php');
 if ($this->data['errorcode'] !== NULL) {
 ?>
 	<div style="border-left: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; background: #f5f5f5">
-		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" class="float-l" style="margin: 15px " />
+		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" class="float-l erroricon" style="margin: 15px " />
 		<h2><?php echo $this->t('{login:error_header}'); ?></h2>
 		<p><b><?php echo htmlspecialchars($this->t('{errors:title_' . $this->data['errorcode'] . '}', $this->data['errorparams'])); ?></b></p>
 		<p><?php echo htmlspecialchars($this->t('{errors:descr_' . $this->data['errorcode'] . '}', $this->data['errorparams'])); ?></p>
@@ -24,12 +24,12 @@ if ($this->data['errorcode'] !== NULL) {
 ?>
 	<h2 style="break: both"><?php echo $this->t('{login:user_pass_header}'); ?></h2>
 
-	<p><?php echo $this->t('{login:user_pass_text}'); ?></p>
+	<p class="logintext"><?php echo $this->t('{login:user_pass_text}'); ?></p>
 
 	<form action="?" method="post" name="f">
 	<table>
 		<tr>
-			<td rowspan="3"><img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-authentication.48x48.png" alt="" /></td>
+			<td rowspan="3"><img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-authentication.48x48.png" id="loginicon" alt="" /></td>
 			<td style="padding: .3em;"><?php echo $this->t('{login:username}'); ?></td>
 			<td>
 <?php
@@ -59,7 +59,7 @@ if ($this->data['rememberUsernameEnabled']) {
 } else {
 	$text = $this->t('{login:login_button}');
 	echo str_repeat("\t", 4);
-	echo "<input type=\"submit\" tabindex=\"4\" value=\"{$text}\" />";
+	echo "<input type=\"submit\" tabindex=\"4\" id=\"regularsubmit\" value=\"{$text}\" />";
 }
 ?>
 			</td>
@@ -73,7 +73,7 @@ if ($this->data['rememberUsernameEnabled']) {
 	$rowspan = (array_key_exists('organizations', $this->data) ? 2 : 1);
 ?>
 			<td style="padding: .4em;" rowspan="<?php echo $rowspan; ?>">
-				<input type="submit" tabindex="5" value="<?php echo $this->t('{login:login_button}'); ?>" />
+				<input type="submit" tabindex="5" id="regularsubmit" value="<?php echo $this->t('{login:login_button}'); ?>" />
 			</td>
 <?php
 }
@@ -112,9 +112,10 @@ foreach ($this->data['organizations'] as $orgId => $orgDesc) {
 <?php
 }
 ?>
-
+	<tr><td></td><td>
+	<input type="submit" tabindex="5" id="mobilesubmit" value="<?php echo $this->t('{login:login_button}'); ?>" />
+	</td></tr>
 	</table>
-
 <?php
 foreach ($this->data['stateparams'] as $name => $value) {
 	echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
@@ -136,8 +137,8 @@ if(!empty($this->data['links'])) {
 
 
 
-echo('<h2>' . $this->t('{login:help_header}') . '</h2>');
-echo('<p>' . $this->t('{login:help_text}') . '</p>');
+echo('<h2 class="logintext">' . $this->t('{login:help_header}') . '</h2>');
+echo('<p class="logintext">' . $this->t('{login:help_text}') . '</p>');
 
 $this->includeAtTemplateBase('includes/footer.php');
 ?>

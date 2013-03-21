@@ -9,7 +9,7 @@ function sanitycheck_hook_sanitycheck(&$hookinfo) {
 	assert('array_key_exists("errors", $hookinfo)');
 	assert('array_key_exists("info", $hookinfo)');
 
-	$hookinfo['info'][] = '[sanitycheck] At least the sanity check it self is working :)';	
+	$hookinfo['info'][] = '[sanitycheck] At least the sanity check itself is working :)';	
 	
 }
 ?>
