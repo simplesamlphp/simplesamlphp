@@ -119,28 +119,16 @@ $name = $spconfig->getLocalizedString('name', NULL);
 $attributes = $spconfig->getArray('attributes', array());
 
 if ($name !== NULL && !empty($attributes)) {
-
-	$attributesrequired = $spconfig->getArray('attributes.required', array());
-
-	$nameFormat = $spconfig->getString('attributes.NameFormat', NULL);
-	foreach ($attributes as $attribute) {
-		$a = new SAML2_XML_md_RequestedAttribute();
-		$a->Name = $attribute;
-		$a->NameFormat = $nameFormat;
-		// Is the attribute required
-		if (in_array($attribute, $attributesrequired))
-			$a->isRequired = true;
-
-	}
-
-	$metaArray20['attributes.required'] = $attributesrequired;
-
 	$metaArray20['name'] = $name;
+	$metaArray20['attributes'] = $attributes;
+	$metaArray20['attributes.required'] = $spconfig->getArray('attributes.required', array());
+	
+	$description = $spconfig->getArray('description', NULL);
 	if ($description !== NULL) {
 		$metaArray20['description'] = $description;
 	}
 
-	$metaArray20['attributes'] = $attributes;
+	$nameFormat = $spconfig->getString('attributes.NameFormat', NULL);
 	if ($nameFormat !== NULL) {
 		$metaArray20['attributes.NameFormat'] = $nameFormat;
 	}
