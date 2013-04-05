@@ -83,6 +83,19 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 	
 	public function finalStep(&$state) {
 		$requestToken = $state['authtwitter:authdata:requestToken'];
+		$parameters = array();
+
+		if (!isset($_REQUEST['oauth_token'])) {
+			throw new SimpleSAML_Error_BadRequest("Missing oauth_token parameter.");
+		}
+		if ($requestToken->key !== (string)$_REQUEST['oauth_token']) {
+			throw new SimpleSAML_Error_BadRequest("Invalid oauth_token parameter.");
+		}
+
+		if (!isset($_REQUEST['oauth_verifier'])) {
+			throw new SimpleSAML_Error_BadRequest("Missing oauth_verifier parameter.");
+		}
+		$parameters['oauth_verifier'] = (string)$_REQUEST['oauth_verifier'];
 		
 		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
 		
@@ -90,7 +103,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
 		// Replace the request token with an access token
-		$accessToken = $consumer->getAccessToken('https://api.twitter.com/oauth/access_token', $requestToken);
+		$accessToken = $consumer->getAccessToken('https://api.twitter.com/oauth/access_token', $requestToken, $parameters);
 		SimpleSAML_Logger::debug("Got an access token from the OAuth service provider [" . 
 			$accessToken->key . "] with the secret [" . $accessToken->secret . "]");
 			
