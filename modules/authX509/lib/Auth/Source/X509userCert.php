@@ -46,7 +46,7 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
 			$this->x509attributes =
 				$config['authX509:x509attributes'];
 
-		if (isset($config['authX509:ldapusercert']))
+		if (array_key_exists('authX509:ldapusercert', $config))
 			$this->ldapusercert =
 				$config['authX509:ldapusercert'];
 
@@ -142,22 +142,34 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
 			return;
 		}
 
-		$dn = FALSE;
+		$dn = NULL;
 		foreach ($this->x509attributes as $x509_attr => $ldap_attr) {
 			/* value is scalar */
-			$value = $client_cert_data['subject'][$x509_attr];
-			SimpleSAML_Logger::info('authX509: cert '.
-			                        $x509_attr.' = '.$value);
-			$dn = $ldapcf->searchfordn($ldap_attr, $value, TRUE);
-			if ($dn !== FALSE)
-				break;
+			if (array_key_exists($x509_attr, $client_cert_data['subject'])) {
+				$value = $client_cert_data['subject'][$x509_attr];
+				SimpleSAML_Logger::info('authX509: cert '.
+				                        $x509_attr.' = '.$value);
+				$dn = $ldapcf->searchfordn($ldap_attr, $value, TRUE);
+				if ($dn !== NULL)
+					break;
+			}
 		}
 
-		if ($dn === FALSE) {
+		if ($dn === NULL) {
 			SimpleSAML_Logger::error('authX509: cert has '.
 			                         'no matching user in LDAP');
 			$state['authX509.error'] = "UNKNOWNCERT";
 			$this->authFailed($state);
+
+			assert('FALSE'); /* NOTREACHED */
+			return;
+		}
+
+		if ($this->ldapusercert === NULL) { // do not check for certificate match
+			$attributes = $ldapcf->getAttributes($dn);
+			assert('is_array($attributes)');
+			$state['Attributes'] = $attributes;
+			$this->authSuccesful($state);
 
 			assert('FALSE'); /* NOTREACHED */
 			return;

@@ -1,7 +1,7 @@
 Using the X509 authentication source with simpleSAMLphp
 =======================================================
 
-The authX509 module provide X509 authentication with certificate
+The authX509 module provides X509 authentication with certificate
 validation. For now there is only one authentication source:
 
 * authX509userCert Validate against LDAP userCertificate attribute
@@ -27,22 +27,22 @@ Note that SSLVerifyClient can be set to optional if you want to support
 both certificate and plain login authentication at the same time (more on
 this later).
 
-If your server or your client (or both!) have TLS renegociation disabled
+If your server or your client (or both!) have TLS renegotiation disabled
 as a workaround for CVE-2009-3555, then the configuration directive above
 must not appear in a <Directory>, <Location>, or in a name-based
-<VirtualHost>. You can only use them server-wide, or in <VirtualHost>
-with different IP address/port combinaisons.
+<VirtualHost>. You can only use them server-wide, or in <VirtualHost>s
+with different IP address/port combinations.
 
 
 Setting up the authX509 module
 ------------------------------
 
-The first thing you need to do is to enable the cas module:
+The first thing you need to do is to enable the module:
 
     touch modules/authX509/enable
 
 Then you must add it as an authentication source. Here is an
-example authsource.php
+example authsources.php entry:
 
     'x509' => array(
         'authX509:X509userCert',
@@ -52,8 +52,8 @@ example authsource.php
         'search.enable' => TRUE,
         'search.attributes' => array('uid', 'mail'),
         'search.base' => 'dc=example,dc=net',
-        'x509attributes' => array('UID' => 'uid'),
-        'ldapusercert' => array('userCertificate;binary'),
+        'authX509:x509attributes' => array('UID' => 'uid'),
+        'authX509:ldapusercert' => array('userCertificate;binary'),
     ),
 
 The configuration is the same as for the LDAP module, except for
@@ -62,16 +62,18 @@ two options:
 * x509attributes is used to map a certificate subject attribute to
                  an LDAP attribute. It is used to find the certificate
                  owner in LDAP from the certificate subject. If multiple
-                 mappings are provided, any mappping will match (this
-                 is a logical OR). Default is array('UID' => 'uid')
+                 mappings are provided, any mapping will match (this
+                 is a logical OR). Default is array('UID' => 'uid').
 * ldapusercert   the LDAP attribute in which the user certificate will
-                 be found. Default is userCertificate;binary
+                 be found. Default is userCertificate;binary. This can
+                 be set to NULL to avoid looking up the certificate in
+                 LDAP.
 
 
 Uploading certificate in LDAP
 -----------------------------
 
-Certificate are usually stored in LDAP as DER, in binary. Here is
+Certificates are usually stored in LDAP as DER, in binary. Here is
 how to convert from PEM to DER:
 
     openssl x509 -in cert.pem -inform PEM -outform DER -out cert.der
@@ -84,8 +86,8 @@ Here is some LDIF to upload the certificate in the directory:
     userCertificate;binary:< file:///path/to/cert.der
 
 
-Supporting both certificate and login authentications
-=====================================================
+Supporting both certificate and login authentication
+====================================================
 
 In your Apache configuration, set SSLVerifyClient to optional. Then you
 can hack your metadata/saml20-idp-hosted.php file that way:
