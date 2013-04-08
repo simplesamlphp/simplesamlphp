@@ -563,14 +563,20 @@ class SimpleSAML_Utilities {
 	 *               will be urlencoded. If the value is NULL, then the
 	 *               parameter will be encoded as just the name, without a
 	 *               value.
+	 *  $allowed_redirect_hosts
+	 *               Array whitelist of hosts that redirects are allowed for.
+	 *               If NULL value, redirect will be allowed to any host.
+	 *               Otherwise, $url host must be present in Array for redirect.
+	 *               If the host is not present, an exception will be thrown.
 	 *
 	 * Returns:
 	 *  This function never returns.
 	 */
-	public static function redirect($url, $parameters = array()) {
+	public static function redirect($url, $parameters = array(), $allowed_redirect_hosts = NULL) {
 		assert(is_string($url));
 		assert(strlen($url) > 0);
 		assert(is_array($parameters));
+		if($allowed_redirect_hosts != NULL) assert(is_array($allowed_redirect_hosts));
 
 		/* Check for relative URL. */
 		if(substr($url, 0, 1) === '/') {
@@ -583,6 +589,17 @@ class SimpleSAML_Utilities {
 		/* Verify that the URL is to a http or https site. */
 		if (!preg_match('@^https?://@i', $url)) {
 			throw new SimpleSAML_Error_Exception('Redirect to invalid URL: ' . $url);
+		}
+
+		/* Validates that URL host is among those allowed. */
+		if ($allowed_redirect_hosts != NULL) {
+			preg_match('@^https?://([^/]+)@i', $url, $matches);
+			$hostname = $matches[1];
+
+			/* Throw exception for redirect to untrusted site */
+			if(!in_array($hostname, $allowed_redirect_hosts)) {
+				throw new SimpleSAML_Error_Exception('Redirect not to allowed redirect host: ' . $url);
+			}
 		}
 
 		/* Determine which prefix we should put before the first
@@ -667,6 +684,26 @@ class SimpleSAML_Utilities {
 		exit;
 	}
 
+	/*
+	 * This function validates untrusted url has hostname against
+	 *  config option 'redirect.trustedsites'.
+	 *
+	 * If option not set or hostname present among trusted sites,
+	 * peforms redirect via function redirect above.
+	 *
+	 * If site is not trusted, an exception will be thrown.
+	 *
+	 * See function redirect for details on url, parameters and return.
+	 */
+	public static function redirectUntrustedURL($url, $parameters = array()) {
+		$redirectTrustedSites = SimpleSAML_Configuration::getInstance()->getArray('redirect.trustedsites', NULL);
+		try {
+			self::redirect($url, $parameters, $redirectTrustedSites);
+		}
+		catch (SimpleSAML_Error_Exception $e) {
+			throw new SimpleSAML_Error_Exception('Site not in redirect.trusted sites: ' . $url);
+		}
+	}
 
 	/**
 	 * This function transposes a two-dimensional array, so that

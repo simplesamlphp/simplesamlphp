@@ -668,4 +668,14 @@ $config = array (
 	 */
 	'proxy' => NULL,
 
+	/*
+	 * Array of URL's to allow a trusted redirect to.
+	 *
+	 * Set to NULL to disable.
+	 *
+	 * Example:
+	 *   'redirect.trustedsites' => array('sp.example.com', 'othersite.org'),
+	 */
+	'redirect.trustedsites' => NULL,
+
 );
