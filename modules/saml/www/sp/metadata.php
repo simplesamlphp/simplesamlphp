@@ -170,6 +170,9 @@ if ( $email != 'na@example.org') {
 	}
 }
 
+// add additional contacts
+$contacts = $spconfig->getArray('contacts', array());
+
 // add certificate
 if (count($keys) === 1) {
 	$metaArray20['certData'] = $keys[0]['X509Certificate'];
@@ -191,6 +194,9 @@ $metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
 $metaBuilder->addMetadataSP20($metaArray20, $supported_protocols);
 $metaBuilder->addOrganizationInfo($metaArray20);
 if ( !empty($contact) ) $metaBuilder->addContact('technical', $contact);
+foreach ($contacts as $c) {
+    $metaBuilder->addContact($c['contactType'], $c);
+}
 
 $xml = $metaBuilder->getEntityDescriptorText();
 

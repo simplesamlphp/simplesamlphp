@@ -209,6 +209,25 @@ Options
 `certificate`
 :   File name of certificate for this SP. This certificate will be included in generated metadata.
 
+`contacts`
+:   Specify contacts in addition to the `technical` contact configured through `config/config.php`.
+
+:   For example, specifying a support contact:
+
+        'contacts' => array(
+            array(
+                'contactType'       => 'support',
+                'emailAddress'      => 'support@example.org',
+                'givenName'         => 'John',
+                'surName'           => 'Doe',
+                'telephoneNumber'   => '+31(0)12345678',
+                'company'           => 'Example Inc.',
+            )
+        ),
+
+:   Valid values for `contactType` are: `technical`, `support`, `administrative`, `billing` and `other`. All
+    fields, except `contactType` are OPTIONAL.
+
 `description`
 :   A description of this SP.
     Will be added to the generated metadata, in an AttributeConsumingService element.
