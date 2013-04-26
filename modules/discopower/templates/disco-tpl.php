@@ -102,6 +102,14 @@ function showEntry($t, $metadata, $favourite = FALSE) {
 
 function getTranslatedName($t, $metadata) {
 #	if (is_null($metadata)) throw new Exception();
+	if (isset($metadata['UIInfo']['DisplayName'])) {
+		$displayName = $metadata['UIInfo']['DisplayName'];
+		assert('is_array($displayName)'); // Should always be an array of language code -> translation.
+		if (!empty($displayName)) {
+			return $t->getTranslation($displayName);
+		}
+	}
+
 	if (array_key_exists('name', $metadata)) {
 		if (is_array($metadata['name'])) {
 			return $t->getTranslation($metadata['name']);
