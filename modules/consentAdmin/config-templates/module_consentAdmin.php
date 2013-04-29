@@ -26,7 +26,7 @@ $config = array(
 	'returnURL' => 'http://www.wayf.dk',
 
     // Shows description of the services if set to true (defaults to true)
-    'showDesription' => true, 
+    'showDescription' => true,
 
     // Set authority
     'authority' => 'saml2',

@@ -11,6 +11,6 @@ $config = array(
 	),
 
 	'auth' => 'example-static',
-	'userid', 'eduPersonPrincipalName',
+	'userid' => 'eduPersonPrincipalName',
 
 );
