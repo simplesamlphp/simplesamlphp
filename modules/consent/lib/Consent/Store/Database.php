@@ -3,8 +3,8 @@
  * Store consent in database.
  *
  * This class implements a consent store which stores the consent information
- * in a database. It is tested, and should work against both MySQL and
- * PostgreSQL.
+ * in a database. It is tested, and should work against MySQL, PostgreSQL and
+ * SQLite.
  *
  * It has the following options:
  * - dsn: The DSN which should be used to connect to the database server. See 
@@ -23,6 +23,11 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      * DSN for the database.
      */
     private $_dsn;
+
+    /**
+     * The DATETIME SQL function to use
+     */
+    private $_dateTime;
 
     /**
      * Username for the database.
@@ -64,23 +69,34 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
     {
         parent::__construct($config);
 
-        foreach (array('dsn', 'username', 'password') as $id) {
-            if (!array_key_exists($id, $config)) {
-                throw new Exception(
-                    'consent:Database - Missing required option \'' . $id . '\'.'
-                );
-            }
 
-            if (!is_string($config[$id])) {
-                throw new Exception(
-                    'consent:Database - \'' . $id . '\' is supposed to be a string.'
-                );
-            }
+        if (!array_key_exists('dsn', $config)) {
+            throw new Exception('consent:Database - Missing required option \'dsn\'.');
+        }
+        if (!is_string($config['dsn'])) {
+            throw new Exception('consent:Database - \'dsn\' is supposed to be a string.');
         }
 
         $this->_dsn = $config['dsn'];
-        $this->_username = $config['username'];
-        $this->_password = $config['password'];
+        $this->_dateTime = (0 === strpos($this->_dsn, 'sqlite:')) ? 'DATETIME("NOW")' : 'NOW()';
+
+        if (array_key_exists('username', $config)) {
+            if(!is_string($config['username'])) {
+                throw new Exception('consent:Database - \'username\' is supposed to be a string.');
+            }
+            $this->_username = $config['username'];
+        } else {
+            $this->_username = NULL;
+        }
+
+        if (array_key_exists('password', $config)) {
+            if(!is_string($config['password'])) {
+                throw new Exception('consent:Database - \'password\' is supposed to be a string.');
+            }
+            $this->_password = $config['password'];
+        } else {
+            $this->_password = NULL;
+        }
 
         if (array_key_exists('table', $config)) {
             if (!is_string($config['table'])) {
@@ -112,6 +128,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
     {
         return array(
             '_dsn',
+            '_dateTime',
             '_username',
             '_password',
             '_table',
@@ -140,7 +157,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         $st = $this->_execute(
             'UPDATE ' . $this->_table . ' ' .
-            'SET usage_date = NOW() ' .
+            'SET usage_date = ' . $this->_dateTime . ' ' .
             'WHERE hashed_user_id = ? AND service_id = ? AND attribute = ?',
             array($userId, $destinationId, $attributeSet)
         );
@@ -181,7 +198,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         /* Check for old consent (with different attribute set). */
         $st = $this->_execute(
             'UPDATE ' . $this->_table . ' ' .
-            'SET consent_date = NOW(), usage_date = NOW(), attribute = ? ' .
+            'SET consent_date = ' . $this->_dateTime . ', usage_date = ' . $this->_dateTime . ', attribute = ? ' .
             'WHERE hashed_user_id = ? AND service_id = ?',
             array($attributeSet, $userId, $destinationId)
         );
@@ -201,7 +218,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             'INSERT INTO ' . $this->_table . ' (' .
             'consent_date, usage_date, hashed_user_id, service_id, attribute' .
             ') ' .
-            'VALUES (NOW(), NOW(), ?, ?, ?)',
+            'VALUES (' . $this->_dateTime . ', ' . $this->_dateTime . ', ?, ?, ?)',
             array($userId, $destinationId, $attributeSet)
         );
 
