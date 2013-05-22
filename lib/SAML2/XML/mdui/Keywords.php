@@ -63,14 +63,15 @@ class SAML2_XML_mdui_Keywords {
 
 		$e = $doc->createElementNS(SAML2_XML_mdui_UIInfo::NS, 'mdui:Keywords');
 		$e->setAttribute('xml:lang', $this->lang);
-		$e->nodeValue = '';
+		$value = '';
 		foreach ($this->Keywords as $keyword) {
 			if (strpos($keyword, "+") !== false) {
 				throw new Exception('Keywords may not contain a "+" character.');
 			}
-			$e->nodeValue .= str_replace(' ', '+', $keyword) . ' ';
+			$value .= str_replace(' ', '+', $keyword) . ' ';
 		}
-		$e->nodeValue = rtrim($e->nodeValue);
+		$value = rtrim($value);
+		$e->appendChild($doc->createTextNode($value));
 		$parent->appendChild($e);
 
 		return $e;
