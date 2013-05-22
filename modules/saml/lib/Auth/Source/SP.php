@@ -459,6 +459,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$spMetadataArray = $this->metadata->toArray();
 		$idpMetadataArray = $idpMetadata->toArray();
 
+		/* Save the IdP in the state array. */
+		$state['saml:sp:IdP'] = $idp;
+		$state['PersistentAuthData'][] = 'saml:sp:IdP';
+
 		$authProcState = array(
 			'saml:sp:IdP' => $idp,
 			'saml:sp:State' => $state,

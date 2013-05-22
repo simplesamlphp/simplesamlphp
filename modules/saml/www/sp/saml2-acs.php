@@ -162,8 +162,6 @@ $state['saml:AuthenticatingAuthority'] = $authenticatingAuthority;
 $state['saml:AuthenticatingAuthority'][] = $idp;
 $state['PersistentAuthData'][] = 'saml:AuthenticatingAuthority';
 
-$state['saml:sp:IdP'] = $idp;
-$state['PersistentAuthData'][] = 'saml:sp:IdP';
 $state['saml:sp:NameID'] = $nameId;
 $state['PersistentAuthData'][] = 'saml:sp:NameID';
 $state['saml:sp:SessionIndex'] = $sessionIndex;
