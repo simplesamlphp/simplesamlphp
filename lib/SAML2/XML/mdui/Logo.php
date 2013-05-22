@@ -80,7 +80,7 @@ class SAML2_XML_mdui_Logo {
 		$doc = $parent->ownerDocument;
 
 		$e = $doc->createElementNS(SAML2_XML_mdui_UIInfo::NS, 'mdui:Logo');
-		$e->nodeValue = $this->url;
+		$e->appendChild($doc->createTextNode($this->url));
 		$e->setAttribute('width', (int)$this->width);
 		$e->setAttribute('height', (int)$this->height);
 		if (isset($this->lang)) {
