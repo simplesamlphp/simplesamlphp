@@ -74,7 +74,12 @@ function present_attributes($t, $attributes, $nameParent) {
 			}
 		} else {	
 			if (sizeof($value) > 1) {
-				$str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td><td class="attrvalue"><ul>';
+				$str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">';
+
+				if ($nameraw !== $name)
+					$str .= htmlspecialchars($name).'<br/>';
+				$str .= '<tt>'.htmlspecialchars($nameraw).'</tt>';
+				$str .= '</td><td class="attrvalue"><ul>';
 				foreach ($value AS $listitem) {
 					if ($nameraw === 'jpegPhoto') {
 						$str .= '<li><img src="data:image/jpeg;base64,' . htmlspecialchars($listitem) . '" /></li>';
@@ -84,7 +89,11 @@ function present_attributes($t, $attributes, $nameParent) {
 				}
 				$str .= '</ul></td></tr>';
 			} elseif(isset($value[0])) {
-				$str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">' . htmlspecialchars($name) . '</td>';
+				$str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">';
+				if ($nameraw !== $name)
+					$str .= htmlspecialchars($name).'<br/>';
+				$str .= '<tt>'.htmlspecialchars($nameraw).'</tt>';
+				$str .= '</td>';
 				if ($nameraw === 'jpegPhoto') {
 					$str .= '<td class="attrvalue"><img src="data:image/jpeg;base64,' . htmlspecialchars($value[0]) . '" /></td></tr>';
 				} else {
