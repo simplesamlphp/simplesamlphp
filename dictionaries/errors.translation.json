@@ -36,7 +36,7 @@
 		"sv": "Om du rapporterar felet b\u00f6r du ocks\u00e5 skicka med detta sp\u00e5rnings-ID. Det g\u00f6r det enklare f\u00f6r den som sk\u00f6ter systemet att fels\u00f6ka problemet:",
 		"es": "Por favor, si informa de este error, mantenga el <emph>tracking ID<\/emph> que permite encontrar su sesi&oacute;n en los registros de que dispone el administrador del sistema:",
 		"fr": "Si vous signalez cette erreur, veuillez aussi signaler l'identifiant de suivi qui permet de trouver votre session dans les logs accessibles \u00e0 l'administrateur syst\u00e8me :",
-		"de": "Falls sie diesen Fehler melden, teilen sie bitte ebenfalls diese Tracking ID mit, dadurch ist es dem Administrator m\u00f6glich ihre Sitzung in den Logs zu finden:",
+		"de": "Falls Sie diesen Fehler melden, teilen Sie bitte ebenfalls diese Tracking ID mit, dadurch ist es dem Administrator m\u00f6glich ihre Sitzung in den Logs zu finden:",
 		"nl": "Wanneer je deze fout rapporteert, geef dan AUB ook de volgende tracking ID door, waarmee het mogelijk is om jouw sessie in de logs terug te vinden:",
 		"lb": "Wann dir ons d\u00ebsen Fehler matdeelt, dann sch\u00e9ckt w.e.g och d Tracking ID mat. Dei ennerst\u00ebtzt den System Administrator aer Session an den Logs er\u00ebmzefannen:",
 		"sl": "\u010ce boste prijavili to napako, prilo\u017eite tudi ID seje, preko katere bo la\u017eje najti va\u0161e zapise v dnevni\u0161kih datotekah, ki so na voljo skrbniku sistema.",
@@ -47,7 +47,7 @@
 		"pt-br": "Se informar sobre esse erro, por favor, tamb\u00e9m informe este ID do relat\u00f3rio de monitoramento que torna poss\u00edvel localizar a sua sess\u00e3o nos registros dispon\u00edveis para o administrador do sistema:",
 		"pt": "Se comunicar este erro ao administrador de sistemas inclua o seguinte identificador que possibilita a localiza\u00e7\u00e3o da sua sess\u00e3o nos registos do servi\u00e7o:",
 		"pl": "Je\u015bli zg\u0142aszasz ten bl\u0105d, podaj tak\u017ce ID zdarzenia, kt\u00f3ry umo\u017cliwi administratorowi zlokalizowa\u0107 Twoj\u0105 sesje w logach:",
-		"cs": "Pokud budete reportovat tuto chybu, pros\u00edm za\u0161lete toto ID, kter\u00e9 umo\u017en\u00ed naj\u00edt va\u0161e sezen\u00ed v loz\u00edch: ",
+		"cs": "Pokud budete reportovat tuto chybu, pros\u00edm za\u0161lete tak\u00e9 toto ID, toto umo\u017en\u00ed naj\u00edt va\u0161\u00ed session v logu, kter\u00fd je dostupn\u00fd systmov\u00fdm administr\u00e1torem\uff1a  ",
 		"tr": "Bu hatay\u0131 bildirirseniz, l\u00fctfen, sistem y\u00f6neticisi taraf\u0131ndan incelebilen kay\u0131tlardan oturumunuzun belirlenebilmesini sa\u011flayan izleme ID'sini de bildirin.",
 		"it": "Se inoltri questo errore, per favore riporta anche questo tracking ID, esso render&agrave; possibile all'amministratore del sistema il tracciamento della tua sessione nei log:",
 		"lt": "Jei prane\u0161ate apie \u0161i\u0105 klaid\u0105, neu\u017emir\u0161kite pateikti \u0161ios klaidos ID, kurio d\u0117ka sistemos administratorius gal\u0117s surasti J\u016bs\u0173 sesijos metu atliktus veiksmus atlikt\u0173 veiksm\u0173 istorijoje:",
@@ -78,7 +78,7 @@
 		"pt-br": "Informa\u00e7\u00e3o do Debug",
 		"pt": "Informa\u00e7\u00e3o de debug",
 		"pl": "Informacja debugger'a",
-		"cs": "Debug",
+		"cs": "Ladic\u00ed informace",
 		"tr": "Hata ay\u0131klama bilgisi",
 		"it": "Informazioni di debug",
 		"lt": "Detali informacija",
@@ -109,7 +109,7 @@
 		"pt-br": "A informa\u00e7\u00e3o a seguir \u00e9 importante para seu administrador \/ Central de D\u00favidas",
 		"pt": "A informa\u00e7\u00e3o de debug abaixo pode ter interesse para o administrador \/ apoio ao utilizador:",
 		"pl": "Poni\u017csza informacja debugger'a  mo\u017ce by\u0107 przydatna dla administara \/ helpdesk:",
-		"cs": "Debug m\u016f\u017ee zaj\u00edmat administr\u00e1tora (helpdesk)",
+		"cs": "N\u00e1sleduj\u00edc\u00ed ladic\u00ed informace m\u016f\u017ee zaj\u00edmat administr\u00e1tora (helpdesk)",
 		"tr": "A\u015fa\u011f\u0131daki hata ay\u0131klama bilgisi y\u00f6neticinin\/yard\u0131m masas\u0131n\u0131n ilgisini \u00e7ekebilir:",
 		"it": "Le seguenti informazioni di debug possono interessare l'amministratore di sistema o il supporto utenti:",
 		"lt": "\u0160i detali informacija gali b\u016bti \u012fdomi administratoriui:",
@@ -140,7 +140,7 @@
 		"pt-br": "Reportar erros",
 		"pt": "Reportar um erro",
 		"pl": "Raport b\u0142\u0119d\u00f3w",
-		"cs": "Chybov\u00fd report",
+		"cs": "P\u0158chyb",
 		"tr": "Hatalar\u0131 bildir",
 		"lt": "Prane\u0161ti apie klaidas",
 		"it": "Riporta gli errori",
@@ -160,7 +160,7 @@
 		"sv": "Om du anger din e-postadress kan den som sk\u00f6ter systemet kontakta dig f\u00f6r fler fr\u00e5gor om ditt problem:",
 		"es": "Si lo desea, indique su direcci\u00f3n electr\u00f3nica, para que los administradores puedan ponerse en contacto con usted y obtener datos adicionales de su problema",
 		"fr": "De mani\u00e8re optionnelle, vous pouvez entrer votre courriel, afin que les administrateurs puissent vous contacter par la suite \u00e0 propos de votre probl\u00e8me :",
-		"de": "Geben sie optional eine E-Mail-Adresse an, so dass der Administrator sie bei etwaigen R\u00fcckfragen kontaktieren kann:",
+		"de": "Geben Sie optional eine E-Mail-Adresse an, so dass der Administrator Sie bei etwaigen R\u00fcckfragen kontaktieren kann:",
 		"nl": "Voeg desgewenst je e-mailadres toe, zodat de beheerders contact kunnen zoeken voor verder informatie over dit probleem:",
 		"lb": "Optionnal kennt dir aer E-mail Adress angin, fir dass den Administrator aerch fir weider Froen kontakt\u00e9ieren kann:",
 		"sl": "\u010ce \u017eelite, vnesite elektronski naslov, na katerem boste dosegljivi v primeru dodatnih vpra\u0161anj za skrbnika sistema :",
@@ -221,7 +221,7 @@
 		"sv": "F\u00f6rklara hur felet uppstod...",
 		"es": "Explique lo que ha hecho para llegar a este error...",
 		"fr": "Expliquez ce que vous faisiez lorsque cette erreur est apparue...",
-		"de": "Erl\u00e4utern sie, wodurch der Fehler auftrat...",
+		"de": "Erl\u00e4utern Sie, wodurch der Fehler auftrat...",
 		"nl": "Leg uit wat je deed toen deze foutmelding optrad...",
 		"lb": "Erklaert w.e.g genau waat dir gemaacht hud fir den Fehler auszel\u00e9isen...",
 		"sl": "Opi\u0161ite, kako je pri\u0161lo do napake...",
@@ -311,7 +311,7 @@
 		"sv": "Detta fel beror troligtvis p\u00e5 att ov\u00e4ntat beteende eller felkonfigurering av simpleSAMLphp. Kontakta den som sk\u00f6ter inloggningtj\u00e4nsten f\u00f6r att meddela dem ovanst\u00e5ende felmeddelande.",
 		"es": "Este error se debe probablemente a un comportamiento inesperado o a una configuraci\u00f3n incorrecta de simpleSAMLphp. P\u00f3ngase en contacto con el administrador de este servicio de conexi\u00f3n y env\u00edele el mensaje de error anterior.",
 		"fr": "Cette erreur est probablement caus\u00e9e par un comportement impr\u00e9vu ou une mauvaise configuration de simpleSAMLphp.  Contactez l'administrateur de ce service d'identification et envoyez lui le message d'erreur.",
-		"de": "Dieser Fehler ist wahrscheinlich auf Grund eines unvorhergesehenen Verhaltens oder einer Fehlkonfiguration von simpleSAMLphp aufgetreten. Kontaktieren sie bitte den Administrator dieses Dienstes und teilen die obige Fehlermeldung mit.",
+		"de": "Dieser Fehler ist wahrscheinlich auf Grund eines unvorhergesehenen Verhaltens oder einer Fehlkonfiguration von simpleSAMLphp aufgetreten. Kontaktieren Sie bitte den Administrator dieses Dienstes und teilen die obige Fehlermeldung mit.",
 		"nl": "Deze foutmelding is waarschijnlijk ontstaan door onverwacht gedrag of door verkeerde configuratie van simpleSAMLphp. Meld dit bij de beheerder van deze authenticatiedienst, en geef bovenstaande melding door.",
 		"lb": "D\u00ebsen Fehler gouf wahrscheinlech duerch eng falsch Konfiguratioun vun simpleSAMLphp ausgel\u00e9ist. Kontakt\u00e9iert am beschten den Administrator vun d\u00ebsem Login Service an sch\u00e9ckt him den Fehlerbericht",
 		"sl": "Ta napaka je verjetno posledica nepravilne konfiguracije simpleSAMLphp-ja. Obrnite se na skrbnika in mu posredujte to napako.",
@@ -414,7 +414,7 @@
 		"pl": "nieprawid\u0142owe \u017cadanie do listy serwisow",
 		"cs": "\u0160patn\u00fd po\u017eadavek pro prohled\u00e1vac\u00ed slu\u017ebu",
 		"tr": "Tan\u0131ma servisine giden hatal\u0131 istek",
-		"lt": "Neteisinga u\u017eklaus\u0105 kreipiantis \u012f \"discovery\" servis\u0105",
+		"lt": "Neteisinga u\u017eklausa kreipiantis \u012f \"discovery\" servis\u0105",
 		"it": "Richiesta errata al discovery service",
 		"ja": "\u30b5\u30fc\u30d3\u30b9\u30c7\u30a3\u30b9\u30ab\u30d0\u30ea\u4e2d\u306e\u4e0d\u6b63\u306a\u30ea\u30af\u30a8\u30b9\u30c8",
 		"zh-tw": "\u7121\u6548\u7684\u8acb\u6c42\u65bc\u641c\u5c0b\u670d\u52d9",
@@ -504,7 +504,7 @@
 		"pl": "Wystapi\u0142 b\u0142ad podczas pr\u00f3by utworzenia przez Dostawc\u0119 To\u017csamo\u015bci odpowiedzi uwierzytelniania .",
 		"cs": "P\u0159i vytv\u00e1\u0159en\u00ed p\u0159ihla\u0161ovac\u00ed odpov\u011bdi t\u00edmto poskytovatelem identity, vznikla chyba.",
 		"tr": "Bu kimlik sa\u011flay\u0131c\u0131 bir kimlik do\u011frulama cevab\u0131 olu\u015fturuken hata olu\u015ftu.",
-		"lt": "\u0160iam tapatybi\u0173 tiek\u0117jui bandant sukurti autentikacijos atsakym\u0105 \u012fvyko klaida.",
+		"lt": "\u0160iam tapatybi\u0173 teik\u0117jui bandant sukurti autentikacijos atsakym\u0105 \u012fvyko klaida.",
 		"it": "Si \u00e8 verificato un errore durante la fase di creazione della risposta di autenticazione da parte dell'Identity Provider.",
 		"zh-tw": "\u7576\u9019\u500b\u9a57\u8b49\u63d0\u4f9b\u8005\u5617\u8a66\u5efa\u7acb\u4e00\u500b\u9a57\u8b49\u56de\u61c9\u6642\uff0c\u6709\u500b\u932f\u8aa4\u767c\u751f\u3002",
 		"ja": "\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u306e\u8a8d\u8a3c\u30ec\u30b9\u30dd\u30f3\u30b9\u306e\u751f\u6210\u6642\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002",
@@ -551,7 +551,7 @@
 		"sv": "LDAP anv\u00e4nds som anv\u00e4ndardatabas och n\u00e4r du f\u00f6rs\u00f6ker logga m\u00e5ste LDAP-servern kontaktas. Vid f\u00f6rs\u00f6ket att kontakta LDAP-servern uppstod ett fel.",
 		"es": "LDAP es la base de datos de usuarios, es necesario contactar con ella cuando usted decide entrar. Se ha producido un error en dicho acceso",
 		"fr": "La base de donn\u00e9es utilisateur est un annuaire LDAP, et quand vous essayez de vous connecter, nous avons besoin de prendre contact avec cet annuaire LDAP. Lorsque nous avons essay\u00e9 cette fois une erreur s'est produite.",
-		"de": "LDAP ist die gew\u00e4hlte Nutzerdatenbank. Wenn sie versuchen sich anzumelden, muss auf diese LDAP-Datenbank zugegriffen werden, dabei ist dieses mal ein Fehler aufgetreten.",
+		"de": "LDAP ist die gew\u00e4hlte Nutzerdatenbank. Wenn Sie versuchen sich anzumelden, muss auf diese LDAP-Datenbank zugegriffen werden, dabei ist dieses mal ein Fehler aufgetreten.",
 		"nl": "De account database is in LDAP opgeslagen en bij het inloggen moet er worden gecommuniceerd met een LDAP backend. Daarbij is een fout opgetreden.",
 		"lb": "LDAP as eng Benotzerdatenbank an wann een anloggen well g\u00ebt se kontakt\u00e9iert. Dobai as des K\u00e9ier een Fehler geschitt.",
 		"sl": "LDAP je zbirka uporabnikov. Ko se \u017eelite prijaviti, je potrebno prijavo preveriti v LDAPu. Pri trenutnem preverjanju je pri\u0161lo do napake.",
@@ -564,7 +564,7 @@
 		"pl": "LDAP jest baz\u0105 uzytkownik\u00f3w i kiedy Ty pr\u00f3bujesz si\u0119 zalogowa\u0107, to my musimy nawi\u0105za\u0107 po\u0142\u0105czenie z baz\u0105 LDAP. I w\u0142a\u015bnie w tym momencie wyst\u0105pi\u0142 b\u0142\u0105d.",
 		"cs": "LDAP je datab\u00e1ze u\u017eivatel\u016f, a kdy\u017e se chcete p\u0159ihl\u00e1sit, je pot\u0159eba se p\u0159ihl\u00e1sit do LDAP datab\u00e1ze. Chyba nastala b\u011bhem p\u0159ipojov\u00e1n\u00ed.",
 		"tr": "LDAP kullan\u0131c\u0131 veritaban\u0131 ve siz giri\u015f yapmaya \u00e7al\u0131\u015f\u0131rken, LDAP veritaban\u0131na ba\u011flanmam\u0131z gerekiyor. Bu seferlik denerken bir sorun olu\u015ftu.",
-		"lt": "LDAP yra vartotoj\u0173 duomen\u0173 baz\u0117. Jums jungiantis, mums reikalinga prie jos prisijungti. Bandant tai padaryti \u012fvyko klaida.",
+		"lt": "LDAP yra naudotoj\u0173 duomen\u0173 baz\u0117. Jums jungiantis, mums reikalinga prie jos prisijungti. Bandant tai padaryti \u012fvyko klaida.",
 		"it": "Gli utenti sono memorizzati nel server LDAP, che viene quindi contattato in fase di connessione dell'utente. Si \u00e8 verificato un errore proprio in questa fase.",
 		"ja": "\u3042\u306a\u305f\u304c\u30ed\u30b0\u30a4\u30f3\u3092\u884c\u3046\u6642\u3001LDAP\u3068\u3044\u3046\u30e6\u30fc\u30b6\u30fc\u30c7\u30fc\u30bf\u30fc\u30d9\u30fc\u30b9\u306b\u30a2\u30af\u30bb\u30b9\u3057\u307e\u3059\u3002\u3053\u306e\u6642\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002",
 		"zh-tw": "LDAP \u662f\u4f7f\u7528\u9019\u8cc7\u6599\u5eab\uff0c\u7576\u60a8\u5617\u8a66\u767b\u5165\u6642\uff0c\u6211\u5011\u5fc5\u9808\u9023\u7d50\u81f3\u4e00\u500b LDAP \u8cc7\u6599\u5eab\u3002\u800c\u5728\u5617\u8a66\u6642\u6709\u500b\u932f\u8aa4\u767c\u751f\u3002",
@@ -671,7 +671,7 @@
 		"sv": "Det finns n\u00e5got fel i konfigurationen i installation av simpleSAMLphp. Om du \u00e4r adminstrat\u00f6r av tj\u00e4nsten ska du kontrollera om konfigurationen av metadata \u00e4r r\u00e4tt konfigurerad.",
 		"es": "Hay errores de configuraci&oacute;n en su instalaci&oacute;n de simpleSAMLphp. Si es usted el administrador del servicio, cerci&oacute;rese de que la configuraci&oacute;n de los metadatos es correcta.",
 		"fr": "Quelque chose n'est pas configur\u00e9 correctement dans votre installation de simpleSAMLphp. Si vous \u00eates l'administrateur de ce service, vous devez vous assurer que votre configuration des m\u00e9tadonn\u00e9es est correctement r\u00e9alis\u00e9e.",
-		"de": "Diese Installation von simpleSAMLphp ist falsch konfiguriert. Falls sie der Administrator dieses Dienstes sind, sollten sie sicherstellen das die Metadatenkonfiguration korrekt ist.",
+		"de": "Diese Installation von simpleSAMLphp ist falsch konfiguriert. Falls Sie der Administrator dieses Dienstes sind, sollten Sie sicherstellen, dass die Metadatenkonfiguration korrekt ist.",
 		"nl": "SimplSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst dient de metadata configuratie te controleren.",
 		"lb": "Des simpleSAMLphp Installatioun sch\u00e9int falsch konfigur\u00e9iert ze sin. Wann dir den Administrator vun d\u00ebsem Service sid, dann stellt s\u00ebcher dass d Meta Donn\u00e9es richteg angeriicht sin.",
 		"sl": "V konfiguraciji simpleSAMLphp-ja je napaka. \u010ce ste skrbnik te storitve, preverite, da je konfiguracija metapodatkov pravilna.",
@@ -741,7 +741,7 @@
 		"fi": "T\u00e4m\u00e4 p\u00e4\u00e4te ei ole otettu k\u00e4ytt\u00f6\u00f6n. Tarkasta enable-optiot simpleSAMLphp:n asetuksissa.",
 		"pt-br": "Este par\u00e2metro n\u00e3o est\u00e1 ativado. Marque a op\u00e7\u00e3o habilitar na configura\u00e7\u00e3o do simpleSAMLphp.",
 		"pt": "Este ponto de acesso (endpoint) n\u00e3o est\u00e1 dispon\u00edvel. Verifique as op\u00e7\u00f5es relevantes na configura\u00e7\u00e3o do simpleSAMLphp.",
-		"cs": "Tento koncov\u00fd bod nen\u00ed povolen. Zkontrolujte konfiguraci (enable options).",
+		"cs": "Tento koncov\u00fd bod nen\u00ed povolen. Zkontrolujte konfiguraci (zapn\u011bte volby).",
 		"tr": "Bu k\u0131s\u0131m kullan\u0131mda de\u011fil. simpleSAMLphp ayarlar\u0131n\u0131z\u0131n etkinle\u015ftirme se\u00e7eneklerini kontrol edin.",
 		"lt": "Baigties ta\u0161kas ne\u012fjungtas. Patikrinkite savo simpleSAMLphp konfig\u016bracij\u0105.",
 		"it": "Questo endpoint non \u00e8 abilitato. Verifica le opzioni di attivazione nella configurazione di simpleSAMLphp.",
@@ -771,7 +771,7 @@
 		"fi": "Ei RelayState ",
 		"pt-br": "Sem RelayState",
 		"pt": "RelayState n\u00e3o definido",
-		"cs": "Nenalezen RelayState",
+		"cs": "Nenalezen RelayState.",
 		"tr": "RelayState verilmemi\u015f.",
 		"lt": "N\u0117ra perdavimo statuso",
 		"it": "Nessun RelayState",
@@ -834,7 +834,7 @@
 		"pl": "B\u0142\u0105d przetwarzania odpowiedzi od Dostawcy To\u017csamo\u015bci",
 		"cs": "Chyba zpracov\u00e1n\u00ed odpov\u011bdi od poskytovatele identity",
 		"tr": "Kimlik sa\u011flay\u0131c\u0131dan gelen cevab\u0131 i\u015flerken hata",
-		"lt": "Klaida apdorojant u\u017eklaus\u0105 i\u0161 tapatybi\u0173 tiek\u0117jo",
+		"lt": "Klaida apdorojant u\u017eklaus\u0105 i\u0161 tapatybi\u0173 teik\u0117jo",
 		"it": "Errore nell'elaborazione della risposta ricevuta dall'Identity Provider.",
 		"ja": "\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u304b\u3089\u306e\u30ec\u30b9\u30dd\u30f3\u30b9\u306e\u51e6\u7406\u4e2d\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002",
 		"zh-tw": "\u5f9e\u9a57\u8b49\u63d0\u4f9b\u8005\u53d6\u5f97\u932f\u8aa4\u57f7\u884c\u56de\u61c9",
@@ -864,7 +864,7 @@
 		"pl": "Nie zakceptowali\u015bmy odpowiedzi wys\u0142anej przez Dostawc\u0119 To\u017csamo\u015bci.",
 		"cs": "Neakceptujeme odpov\u011b\u010f zaslanou poskytovatelem identity.",
 		"tr": "Kimlik Sa\u011flay\u0131c\u0131'dan gelen cevab\u0131 kabul etmedik.",
-		"lt": "Mes nepriimame u\u017eklausos, si\u0173stos i\u0161 tapatybi\u0173 tiek\u0117jo.",
+		"lt": "Mes nepriimame u\u017eklausos, si\u0173stos i\u0161 tapatybi\u0173 teik\u0117jo.",
 		"it": "Non \u00e8 stata accettata una risposta proveniente dall'Identity Provider.",
 		"ja": "\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u304b\u3089\u9001\u4fe1\u3055\u308c\u305f\u30ec\u30b9\u30dd\u30f3\u30b9\u3092\u53d7\u3051\u4ed8\u3051\u307e\u305b\u3093\u3067\u3057\u305f\u3002",
 		"zh-tw": "\u6211\u5011\u7121\u6cd5\u65bc\u9a57\u8b49\u63d0\u4f9b\u8005\u5b8c\u6210\u56de\u61c9\u50b3\u9001\u3002",
@@ -892,9 +892,9 @@
 		"pt-br": "Erro processando o pedido do Provedor de Servi\u00e7os.",
 		"pt": "Erro ao processar o pedido  do fornecedor de servi\u00e7o (SP)",
 		"pl": "B\u0142\u0105d przetwarzania \u017c\u0105dania od Dostawcy Serwisu",
-		"cs": "'Chyba prov\u00e1d\u011bn\u00ed \u017e\u00e1dosti poskytovatele slu\u017eby",
+		"cs": "Chyba prov\u00e1d\u011bn\u00ed \u017e\u00e1dosti poskytovatele slu\u017eby",
 		"tr": "Servis Sa\u011flay\u0131c\u0131'dan gelen iste\u011fi i\u015flerken hata",
-		"lt": "Klaida siun\u010diant u\u017eklaus\u0105 i\u0161 paslaug\u0173 tiek\u0117jo",
+		"lt": "Klaida siun\u010diant u\u017eklaus\u0105 i\u0161 paslaug\u0173 teik\u0117jo",
 		"it": "Errore nell'elaborazione della richiesta dal Service Provider",
 		"ja": "\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u304b\u3089\u306e\u30ea\u30af\u30a8\u30b9\u30c8\u306e\u51e6\u7406\u4e2d\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f",
 		"zh-tw": "\u5f9e\u9a57\u8b49\u63d0\u4f9b\u8005\u5f97\u5230\u932f\u8aa4\u57f7\u884c\u8acb\u6c42",
@@ -921,9 +921,9 @@
 		"fi": "Identiteetintarjoaja sai tunnistautumispyynn\u00f6n palveluntarjoajalta, mutta pyynnin k\u00e4sittelyss\u00e4 tapahtui virhe.",
 		"pt-br": "Este Provedor de Identidade recebeu um Pedido de Autentica\u00e7\u00e3o de um Provedor de Servi\u00e7os, mas um erro ocorreu ao tentar processar o pedido.",
 		"pt": "Ocorreu um erro ao processar o pedido de autentica\u00e7\u00e3o emitido pelo fornecedor de servi\u00e7o.",
-		"cs": "Tento poskytovatel identity p\u0159ijak po\u017eadavek od poskytovatele slu\u017eby, ale p\u0159i jeho prov\u00e1den\u00ed vznikla chyba.",
+		"cs": "Tento poskytovatel identity p\u0159ijal po\u017eadavek od poskytovatele slu\u017eby, ale p\u0159i jeho prov\u00e1den\u00ed vznikla chyba.",
 		"tr": "Bu Kimlik Sa\u011flay\u0131c\u0131 bir Servis Sa\u011flay\u0131c\u0131'dan kimlik do\u011frulama iste\u011fi ald\u0131, ancak bu iste\u011fi i\u015flemeye \u00e7al\u0131\u015f\u0131rken bir hata olu\u015ftu.",
-		"lt": "\u0160is tapatybi\u0173 tiek\u0117jas gavo autentikacijos pra\u0161ymo u\u017eklaus\u0105 i\u0161 paslaugos tiek\u0117jo, ta\u010diau apdorojant prane\u0161im\u0105 \u012fvyko klaida.",
+		"lt": "\u0160is tapatybi\u0173 tiek\u0117jas gavo autentikacijos pra\u0161ymo u\u017eklaus\u0105 i\u0161 paslaugos teik\u0117jo, ta\u010diau apdorojant prane\u0161im\u0105 \u012fvyko klaida.",
 		"it": "Questo Identity Provider ha ricevuto una richiesta di autenticazione da parte di un Service Provider, ma si \u00e8 verificato un errore durante l'elaborazione di quest'ultima",
 		"ja": "\u3053\u306e\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u306f\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u304b\u3089\u306e\u8a8d\u8a3c\u30ea\u30af\u30a8\u30b9\u30c8\u3092\u53d7\u3051\u4ed8\u3051\u307e\u3057\u305f\u304c\u3001\u30ea\u30af\u30a8\u30b9\u30c8\u306e\u51e6\u7406\u4e2d\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f\u3002",
 		"zh-tw": "\u9019\u500b\u9a57\u8b49\u63d0\u4f9b\u8005\u6536\u5230\u4e00\u500b\u670d\u52d9\u63d0\u4f9b\u8005\u7684\u8a8d\u8b49\u8acb\u6c42\uff0c\u4f46\u5728\u6e96\u5099\u57f7\u884c\u9019\u500b\u8acb\u6c42\u6642\u767c\u751f\u932f\u8aa4\u3002",
@@ -1041,7 +1041,7 @@
 		"fi": "Yritit Assertion Consumer Service-liittym\u00e4\u00e4n, mutta et tarjonnut SAML tunnistautumisvastausta.",
 		"pt-br": "Voc\u00ea acessou a interface do Assertion Consumer Service, mas n\u00e3o forneceu uma SAML Authentication Response.",
 		"pt": "Na interface Assertion Consumer Service deve fornecer uma mensagem SAML do tipo Authentication Response.",
-		"cs": "P\u0159istupujete k Assertion Consumer Service rozhran\u00ed, ale nepos\u00ed\u00e1late SAML Authentication Response.",
+		"cs": "P\u0159istupujete k Assertion Consumer Service rozhran\u00ed, ale nepos\u00edl\u00e1late SAML Authentication Response.",
 		"tr": "Onay Al\u0131c\u0131 Servis (Assertion Consumer Service) aray\u00fcz\u00fcne giri\u015f yapt\u0131n\u0131z, ancak SAML Kimlik Do\u011frulama Cevab\u0131 sa\u011flamad\u0131n\u0131z.",
 		"lt": "J\u016bs pasiek\u0117te vartotoj\u0173 aptarnavimo servis\u0105, ta\u010diau nepateik\u0117te SAML autentikacijos atsakymo.",
 		"it": "Hai acceduto all'interfaccia di Assertion Consumer Service, ma senza fornire un messaggio SAML di Authentication Response.",
@@ -1211,7 +1211,7 @@
 		"sv": "Konfigurationsl\u00f6senordet (auth.adminpassword) \u00e4r inte \u00e4ndrat fr\u00e5n standardv\u00e4rdet. Uppdatera kongiruationen med ett nytt l\u00f6senord!",
 		"es": "La clave de acceso del fichero de configuraci\u00f3n (auth.adminpassword) no ha sido cambiada de su valor por defecto. Por favor, edite dicho fichero",
 		"fr": "Le mot de passe dans la configuration (auth.adminpassword) n'a pas \u00e9t\u00e9 chang\u00e9 par rapport \u00e0 la valeur par d\u00e9faut. Veuillez modifier la configuration.",
-		"de": "Sie benutzen noch immer das Standardpasswort, bitte \u00e4ndern sie die Konfiguration (auth.adminpassword).",
+		"de": "Sie benutzen noch immer das Standardpasswort, bitte \u00e4ndern Sie die Konfiguration (auth.adminpassword).",
 		"nl": "Het default wachtwoord in de configuratie (auth.adminpassword) is niet aangepast; pas de configuratie aan aub.",
 		"lb": "D'Passwuert an der Konfiguration (auth.adminpassword) as bis elo net ge\u00e4nnertgin. W.e.g aennert daat an der Konfiguratioun.",
 		"sl": "V nastavitvah je geslo skrbnika (auth.adminpassword) \u0161e vedno nastavljeno na za\u010detno vrednost. Spremenite ga!",
@@ -1282,7 +1282,7 @@
 		"pt-br": "Voc\u00ea n\u00e3o possui um certificado v\u00e1lido",
 		"pt": "N\u00e3o foi apresentado um certificado v\u00e1lido.",
 		"pl": "Nie przedstawi\u0142e\u015b prawid\u0142owego certyfikaty",
-		"cs": "Nep\u0159edlo\u017e\u00edl jste validn\u00ed certifik\u00e1t.",
+		"cs": "Nep\u0159edlo\u017eil jste validn\u00ed certifik\u00e1t.",
 		"tr": "Ge\u00e7erli bir sertifika sa\u011flamad\u0131n\u0131z. ",
 		"lt": "J\u016bs nepateik\u0117te teisingo sertifikato.",
 		"it": "Non hai fornito un certificato valido.",
@@ -1388,7 +1388,7 @@
 		"sv": "Informationen om aktuell utloggning har f\u00f6rsvunnit. Du b\u00f6r \u00e5terv\u00e4nda till tj\u00e4nsten som du f\u00f6rs\u00f6kte logga ut fr\u00e5n och f\u00f6rs\u00f6ka logga ut p\u00e5 nytt. Detta fel kan intr\u00e4ffa om informationen om utloggningen \u00e4r f\u00f6r gammal. Utloggningsinformationen sparas en begr\u00e4nsad tid, oftas n\u00e5gra timmar. Det \u00e4r l\u00e4ngre \u00e4n vad utloggning b\u00f6r ta s\u00e5 felet kan indikera n\u00e5got fel med konfigurationen. Om problemet kvarst\u00e5r kontakta leverant\u00f6ren f\u00f6r den tj\u00e4nst du f\u00f6rs\u00f6kte logga ut fr\u00e5n.",
 		"es": "La informaci\u00f3n sobre la operaci\u00f3n de cierre de sesi\u00f3n se ha perdido. Deber\u00eda volver al servicio del que intenta salir e intentar cerrar la sesi\u00f3n de nuevo. La informaci\u00f3n para cerrar la sesi\u00f3n se almacena durante un tiempo limitado, generalmente mucho m\u00e1s tiempo del que deber\u00eda tardar la operaci\u00f3n de cierre de sesi\u00f3n, de modo que este error puede deberse a algun error en la configuraci\u00f3n. Si el problema persiste, contacte con el proveedor del servicio.",
 		"fr": "Information de d\u00e9connexion perdue. Les informations aff\u00e9rentes \u00e0 la proc\u00e9dure de d\u00e9connexion en cours ont \u00e9t\u00e9 perdues. Tentez de retourner au service depuis lequel vous avez tent\u00e9 de lancer la d\u00e9connexion, et essayez encore. Cette erreur peut \u00eatre caus\u00e9e par un probl\u00e8me d'obsolescence des information de d\u00e9connexion, qui ne sont conserv\u00e9es que durant un temps limit\u00e9, de l'ordre de quelques heures. Cette dur\u00e9e est bien plus longue qu'une op\u00e9ration de d\u00e9connexion typique, ce qui sugg\u00e8re une autre erreur dans la configuration. Si le probl\u00e8me persiste, contactez l'administrateur du fournisseur de service.",
-		"de": "Die Information des aktuellen Abmeldevorgangs ist verloren gegangen. Bitte rufen sie den Dienst auf, vom dem sie sich abmelden wollten, und versuchen sie dort das Abmelden nochmal. Dieser Fehler tritt auf, wenn die Abmeldeanfrage abl\u00e4uft, da diese nur eine gewisse Zeit (\u00fcblicherweise ein paar Stunden) zwischengespeichert wird. Das sollte im normalen Betrieb ausreichend sein, da ein Abmeldevorgang nicht so lange dauert. Dieser Fehler kann also auch ein Anzeichen sein, da\u00df ein Konfigurationsfehler vorliegt. Tritt dieser Fehler wiederholt auf, wenden sie sich bitte an den benutzen Dienst (Service Provider), vom dem sie sich abmelden wollen.",
+		"de": "Die Information des aktuellen Abmeldevorgangs ist verloren gegangen. Bitte rufen Sie den Dienst auf, vom dem Sie sich abmelden wollten, und versuchen Sie dort das Abmelden nochmal. Dieser Fehler tritt auf, wenn die Abmeldeanfrage abl\u00e4uft, da diese nur eine gewisse Zeit (\u00fcblicherweise ein paar Stunden) zwischengespeichert wird. Das sollte im normalen Betrieb ausreichend sein, da ein Abmeldevorgang nicht so lange dauert. Dieser Fehler kann also auch ein Anzeichen sein, dass ein Konfigurationsfehler vorliegt. Tritt dieser Fehler wiederholt auf, wenden sie sich bitte an den benutzen Dienst (Service Provider), vom dem sie sich abmelden wollen.",
 		"nl": "De informatie over de huidige logout operatie is verloren gegaan. Je zou nu moeten terugkeren naar de dienst waar je probeerde uit te loggen, om het nogmaals te proberen. Deze fout kan optreden wanneer de logout informatie is verlopen. De logout informatie wordt gedurende een beperkte tijdsduur bewaard, normaal gesproken een aantal uren. Dit is langer dan een normale logout operatie zou moeten duren, dus deze fout kan er op wijzen dat er een configuratie probleem is. Als het probleem zich blijft voordoen kun u contact opnemen met de Service Provider.",
 		"sl": "Odjavni (Logout) parametri niso na voljo. Vrnite se na storitev, ki ste jo pravkar uporabljali in se ponovno poskusite odjaviti. Napaka je posledica poteka veljavnosti seje.",
 		"da": "Oplysningerne om logout er tabt. Du b\u00f8r g\u00e5 tilbage til tjenesten du \u00f8nskede at logge ud af og pr\u00f8ve igen. Fejlen kan skyldes at oplysningerne blev for\u00e6ldet, da de kun gemmes i kort tid, typisk et par timer. Dette er dog l\u00e6ngere end hvad det burde tage at logge ud, s\u00e5 denne fejl kan indikere en konfigurationsfejl. Hvis fejlen genopst\u00e5r, bedes du kontakte tjenesteudbyderen.",
@@ -1399,7 +1399,7 @@
 		"pt": "A informa\u00e7\u00e3o acerca da opera\u00e7\u00e3o de logout foi perdida. Por favor, volte ao servi\u00e7o de onde efectuou o logout e tente de novo esta opera\u00e7\u00e3o. A informa\u00e7\u00e3o de logout possui um tempo de expira\u00e7\u00e3o que \u00e9 normalmente muito superior ao tempo normal de processamento desta opera\u00e7\u00e3o. Se o problema persistir pode ser um erro de configura\u00e7\u00e3o e dever\u00e1 ser comunicado.",
 		"cs": "Informace o odhla\u0161ovac\u00ed operaci byla ztracena. M\u016f\u017eete se vr\u00e1tit do aplikace, ze kter\u00e9 jste se odhla\u0161ovali a zkusit to znova. Tato chyba byla zp\u016fsobena vypr\u0161en\u00edm odhla\u0161ovac\u00edh informac\u00ed. Ty jsou ulo\u017eeny omezen\u00fd \u010das (jednotky hodin). To by m\u011blo sta\u010di na norm\u00e1ln\u00ed odhla\u0161en\u00ed a tato chyba m\u016f\u017ee ukazovat na chyby v konfiguraci. Pokud probl\u00e9m p\u0159etrv\u00e1v\u00e1, kontaktujte administr\u00e1tora.",
 		"tr": "Y\u00fcr\u00fcrl\u00fckteki \u00e7\u0131k\u0131\u015f i\u015flemi ile ilgili bilgi kayboldu. \u00c7\u0131kmak istedi\u011finiz servise geri d\u00f6n\u00fcn ve yeniden \u00e7\u0131kmay\u0131 denyin. Bu hata, \u00e7\u0131k\u0131\u015f bilgisinin s\u00fcresi doldu\u011fu i\u00e7in olu\u015fmu\u015f olabilir. \u00c7\u0131k\u0131\u015f bilgisi belirli bir s\u00fcre i\u00e7in tutulur - genellikle birka\u00e7 saat. Bu s\u00fcre normal bir \u00e7\u0131k\u0131\u015f i\u015fleminin tutaca\u011f\u0131ndan daha fazla bir s\u00fcredir; bu hata yap\u0131land\u0131rma ile ilgili ba\u015fka bir hatay\u0131 i\u015faret ediyor olabilir. E\u011fer sorun devam ederse, servis sa\u011flay\u0131c\u0131n\u0131zla ileti\u015fime ge\u00e7iniz.",
-		"lt": "Informacija apie atsijungimo operacij\u0105 prarasta. J\u016bs tur\u0117tum\u0117te sugr\u012f\u017eti \u012f t\u0105 paslaug\u0105, i\u0161 kurios band\u0117te atsijungti ir pabandyti atlikti tai dar kart\u0105. \u0160i klaida gal\u0117jo b\u016bti sukelta, nes baig\u0117si atsijungimo informacijos galiojimo laikas. Informacija apie atsijungim\u0105 yra saugoma ribot\u0105 laiko tarp\u0105 - da\u017eniausiai kelias valandas. Tai yra daugiau nei bet kokia normali atsijungimo informacija gali u\u017etrukti, taigi \u0161i klaida gali b\u016bti sukelta kitos klaidos, kuri \u012fvyko d\u0117l konfig\u016bracijos. Jei problema t\u0119siasi, susisiekite su savo paslaugos tiek\u0117ju.",
+		"lt": "Informacija apie atsijungimo operacij\u0105 prarasta. J\u016bs tur\u0117tum\u0117te sugr\u012f\u017eti \u012f t\u0105 paslaug\u0105, i\u0161 kurios band\u0117te atsijungti ir pabandyti atlikti tai dar kart\u0105. \u0160i klaida gal\u0117jo b\u016bti sukelta, nes baig\u0117si atsijungimo informacijos galiojimo laikas. Informacija apie atsijungim\u0105 yra saugoma ribot\u0105 laiko tarp\u0105 - da\u017eniausiai kelias valandas. Tai yra daugiau nei bet kokia normali atsijungimo informacija gali u\u017etrukti, taigi \u0161i klaida gali b\u016bti sukelta kitos klaidos, kuri \u012fvyko d\u0117l konfig\u016bracijos. Jei problema t\u0119siasi, susisiekite su savo paslaugos teik\u0117ju.",
 		"it": "Le informazioni riguardo all'attuale operazione di disconnessione sono andate perse. Si dovrebbe tornare al servizio da cui si cercava di disconnettersi e provare di nuovo. Questo errore pu\u00f2 essere causato dal termine della validit\u00e0 delle informazioni di disconnessione. Le informazioni per la disconnessione sono conservate per un breve arco temporale, in genere alcune ore. Questo \u00e8 un tempo superiore a quello che una operazione di disconnessione dovrebbe richiedere, quindi questo errore pu\u00f2 indicare un problema di configurazione di qualche altro tipo. Se il problema persiste, consultare il fornitore del service provider.",
 		"zh-tw": "\u907a\u5931\u6b63\u5728\u767b\u51fa\u7684\u76f8\u95dc\u64cd\u4f5c\u8cc7\u8a0a\uff0c\u60a8\u53ef\u80fd\u8981\u56de\u5230\u60a8\u6e96\u5099\u767b\u51fa\u7684\u670d\u52d9\u518d\u767b\u51fa\u4e00\u6b21\u3002\u9019\u500b\u932f\u8aa4\u53ef\u80fd\u662f\u56e0\u70ba\u767b\u51fa\u8cc7\u8a0a\u903e\u6642\u3002\u767b\u51fa\u8cc7\u8a0a\u50c5\u80fd\u5728\u6709\u9650\u7684\u6642\u9593\u88e1\u6709\u6548 - \u901a\u5e38\u662f\u5e7e\u5c0f\u6642\u3002\u9019\u5df2\u7d93\u5927\u65bc\u6b63\u5e38\u7684\u767b\u51fa\u64cd\u4f5c\u6240\u9700\u7684\u6642\u9593\uff0c\u6240\u4ee5\u9019\u500b\u932f\u8aa4\u4e5f\u8a31\u8aaa\u660e\u6709\u4e9b\u5176\u4ed6\u7684\u932f\u8aa4\u88ab\u8a2d\u5b9a\u3002\u5982\u679c\u9019\u500b\u932f\u8aa4\u6301\u7e8c\u5b58\u5728\uff0c\u8acb\u9023\u7d61\u60a8\u7684\u670d\u52d9\u63d0\u4f9b\u8005\u3002",
 		"ja": "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amout of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider.",
@@ -1453,7 +1453,7 @@
 		"hu": "Kezeletlen kiv\u00e9tel (exception) keletkezett.",
 		"pt-br": "Uma exce\u00e7\u00e3o n\u00e3o tratada foi descartada.",
 		"pt": "Foi despoletada um excep\u00e7\u00e3o que n\u00e3o foi tratada.",
-		"cs": "Neo\u010dek\u00e1van\u00e1 v\u00fdj\u00edmka vznikla.",
+		"cs": "Neo\u010dek\u00e1van\u00e1 vyj\u00edmka vznikla.",
 		"tr": "Bir beklenmeyen durum g\u00f6nderildi.",
 		"lt": "Ne\u017einoma klaida.",
 		"it": "E' stata generata un'eccezione che non \u00e8 stata gestita.",
@@ -1675,7 +1675,7 @@
 		"sv": "Antingen finns det ingen anv\u00e4ndare med angiven anv\u00e4ndaridentitet eller s\u00e5 har du angivit fel l\u00f6senord. F\u00f6rs\u00f6k igen.",
 		"es": "No existe un usuario con el identificador indicado, o la contrase\u00f1a indicada es incorrecta. Por favor revise el identificador de usuario e int\u00e9ntelo de nuevo.",
 		"fr": "Utilisateur inexistant, ou mot de passe incorrect. V\u00e9rifiez le nom d'utilisateur, et r\u00e9-essayez.",
-		"de": "Entweder es konnte kein Nutzer mit dem angegebenen Nutzernamen gefunden werden oder das Passwort ist falsch. \u00dcberpr\u00fcfen sie die Zugangsdaten und probieren sie es nochmal.",
+		"de": "Entweder es konnte kein Nutzer mit dem angegebenen Nutzernamen gefunden werden oder das Passwort ist falsch. \u00dcberpr\u00fcfen Sie die Zugangsdaten und probieren Sie es nochmal.",
 		"nl": "De opgegeven gebruikersnaam bestaat niet, of het wachtwoord is ongeldig. Verifieer de gebruikersnaam en probeer het nogmaals.",
 		"sl": "Uporabnika s tem uporabni\u0161kim imenom ni bilo mogo\u010de najti ali pa je vpisano geslo napa\u010dno. Preverite svoje uporabni\u0161ko ime in poskusite znova.",
 		"da": "Enten kunne brugeren ikke findes eller ogs\u00e5 var kodeordet forkert. Pr\u00f8v igen.",
@@ -1685,7 +1685,7 @@
 		"pt": "O utilizador ou senha fornecidos s\u00e3o incorrectos. Por favor tente de novo.",
 		"cs": "U\u017eivatel bu\u010f nebyl nalezen, nebo jste zadal \u0161patn\u00e9 heslo. Pros\u00edm zkontrolujte login a zkuste se p\u0159ihl\u00e1sit znovu.",
 		"tr": "Ya bu kullan\u0131c\u0131 ad\u0131nda bir kullan\u0131c\u0131 bulunamad\u0131, yada \u015fifreniz yanl\u0131\u015f. L\u00fctfen kullan\u0131c\u0131 ad\u0131n\u0131 kontrol edin ve yeniden deneyin.",
-		"lt": "Vartotojas su tokiu prisijungimo vardu nerastas, arba neteisingai \u012fved\u0117te slapta\u017eod\u012f. Pasitikrinkite prisijungimo vard\u0105 ir bandykite dar kart\u0105.",
+		"lt": "Naudotojas su tokiu prisijungimo vardu nerastas, arba neteisingai \u012fved\u0117te slapta\u017eod\u012f. Pasitikrinkite prisijungimo vard\u0105 ir bandykite dar kart\u0105.",
 		"it": "L'utente fornito non \u00e8 stato trovato, oppure la password fornita era sbagliata. Si prega di verificare il nome utente e provare di nuovo",
 		"zh-tw": "\u627e\u4e0d\u5230\u60a8\u6240\u63d0\u4f9b\u7684\u4f7f\u7528\u8005\u540d\u7a31\u4e4b\u4f7f\u7528\u8005\uff0c\u6216\u60a8\u7d66\u4e86\u932f\u8aa4\u5bc6\u78bc\u3002\u8acb\u6aa2\u67e5\u4f7f\u7528\u8005\u4e26\u518d\u8a66\u4e00\u6b21\u3002",
 		"ja": "\u30e6\u30fc\u30b6\u30fc\u540d\u304c\u898b\u3064\u304b\u3089\u306a\u304b\u3063\u305f\u304b\u3001\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u9593\u9055\u3063\u3066\u3044\u308b\u304b\u306e\u4f55\u65b9\u304b\u3067\u3059\u3002\u30e6\u30fc\u30b6\u30fc\u540d\u3001\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u78ba\u8a8d\u3057\u3066\u8a66\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
@@ -1711,7 +1711,7 @@
 		"fr": "Erreur lev\u00e9e par le fournisseur d'identit\u00e9",
 		"hr": "Autentifikacijski servis je prijavio gre\u0161ku",
 		"nn": "Feil fr\u00e5 vertsorganisasjonen (IdP)",
-		"lt": "Gautas klaidos prane\u0161imas i\u0161 tapatybi\u0173 tiek\u0117jo",
+		"lt": "Gautas klaidos prane\u0161imas i\u0161 tapatybi\u0173 teik\u0117jo",
 		"it": "E' stato ricevuto un errore dall'Identity Provider",
 		"hu": "Hiba t\u00f6rt\u00e9nt az azonos\u00edt\u00f3 szervezet (IdP) oldal\u00e1n",
 		"ja": "\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u304b\u3089\u30a8\u30e9\u30fc\u3092\u53d7\u4fe1\u3057\u307e\u3057\u305f",
@@ -1723,7 +1723,8 @@
 		"pl": "Dostawca to\u017csamo\u015bci przes\u0142a\u0142 b\u0142\u0105d",
 		"ar": "\u062e\u0637\u0627 \u062a\u0645 \u0627\u0644\u062d\u0635\u0648\u0644 \u0639\u0644\u064a\u0647 \u0645\u0646 \u0645\u0642\u062f\u0645 \u0627\u0644\u0647\u0648\u064a\u0629",
 		"id": "Error diterima dari Identity Provider",
-		"sr": "Davalac Identiteta je prijavio gre\u0161ku"
+		"sr": "Davalac Identiteta je prijavio gre\u0161ku",
+		"cs": "Chyba p\u0159ijat\u00e1 od poskytovatele identity"
 	},
 	"descr_RESPONSESTATUSNOSUCCESS": {
 		"no": "Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-svaret var noe annet enn OK)",
@@ -1739,7 +1740,7 @@
 		"fr": "Le fournisseur d'identit\u00e9 a renvoy\u00e9 une erreur (le code de statut de la r\u00e9ponse SAML n'indiquait pas le succ\u00e8s)",
 		"hr": "Autentifikacijski servis je poslao odgovor koji sadr\u017ei informaciju o pojavi gre\u0161ke. (\u0160ifra statusa dostavljena u SAML odgovoru ne odgovara \u0161ifri uspje\u0161no obra\u0111enog zahtjeva)",
 		"nn": "Vertsorganisasjonen din (IdP) gav feilmelding (SAML-svaret hadde statuskode som varsla om feil)",
-		"lt": "Tapatybi\u0173 tiek\u0117jas atsak\u0117 klaidos prane\u0161imu. (Statuso kodas SAML atsakyme buvo nes\u0117kmingas)",
+		"lt": "Tapatybi\u0173 teik\u0117jas atsak\u0117 klaidos prane\u0161imu. (Statuso kodas SAML atsakyme buvo nes\u0117kmingas)",
 		"it": "L'Identity Provider ha risposto con un errore. (Il codice di stato nel messaggio SAML Response non indicava un successo)",
 		"hu": "Hiba t\u00f6rt\u00e9nt az azonos\u00edt\u00f3 szervezet (IdP) oldal\u00e1n. Ismeretlen \u00e1llapotk\u00f3d.",
 		"zh-tw": "\u9a57\u8b49\u63d0\u4f9b\u8005\u56de\u61c9\u4e00\u500b\u932f\u8aa4\u3002(\u5728 SAML \u56de\u61c9\u88e1\u7684\u72c0\u614b\u78bc\u70ba\u4e0d\u6210\u529f)",
@@ -1751,7 +1752,8 @@
 		"pl": "Odpowied\u017a dostawcy to\u017csamo\u015bci oznacza b\u0142\u0105d (kod stanu w odpowiedzi SAML nie oznacza sukcesu)",
 		"ar": "\u0645\u0642\u062f\u0645 \u0627\u0644\u0647\u0648\u064a\u0629 \u0627\u0633\u062a\u062c\u0627\u0628 \u0628\u062e\u0637\u0623. (\u0631\u0645\u0632 \u0627\u0644\u062d\u0627\u0644\u0629 \u0628\u0627\u0633\u062a\u062c\u0627\u0628\u0629 SAML \u0641\u0627\u0634\u0644)",
 		"id": "Identity Provider merespon dengan error. (Kode status di Response SAML adalah tidak berhasil)",
-		"sr": "Davalac Identiteta je poslao odgovor koji sadr\u017ei informaciju o pojavi gre\u0161ke(\u0160ifra statusa dostavljena u SAML odgovoru ne odgovara \u0161ifri uspe\u0161no obra\u0111enog zahteva)."
+		"sr": "Davalac Identiteta je poslao odgovor koji sadr\u017ei informaciju o pojavi gre\u0161ke(\u0160ifra statusa dostavljena u SAML odgovoru ne odgovara \u0161ifri uspe\u0161no obra\u0111enog zahteva).",
+		"cs": "Poskytovatel identity odpov\u011bd\u011bl chybou. (Stavov\u00fd k\u00f3d v SAML nebyl \u00fasp\u011b\u0161n\u00fd)"
 	},
 	"title_NOCERT": {
 		"fr": "Aucun certificat pr\u00e9sent\u00e9",
@@ -1776,7 +1778,8 @@
 		"pl": "Brak certyfikatu",
 		"ar": "\u0627\u0644\u0634\u0647\u0627\u062f\u0627\u062a \u0645\u0641\u0642\u0648\u062f\u0629",
 		"id": "Tidak ada sertifikat",
-		"sr": "Nema digitalnog sertifikata"
+		"sr": "Nema digitalnog sertifikata",
+		"cs": "Chyb\u00ed certiifik\u00e1t"
 	},
 	"descr_NOCERT": {
 		"fr": "\u00c9chec de l'authentification : votre navigateur n'a pas pr\u00e9sent\u00e9 de certificat",
@@ -1801,7 +1804,8 @@
 		"pl": "Nie powiod\u0142o si\u0119 uwierzytelnienie: przegl\u0105darka nie przes\u0142a\u0142a certyfikatu",
 		"ar": "\u0641\u0634\u0644 \u0627\u0644\u062a\u0648\u062b\u064a\u0642 \u0644\u0627\u0646 \u0645\u062a\u0635\u0641\u062d\u0643 \u0644\u0645 \u064a\u0631\u0633\u0644 \u0634\u0647\u0627\u062f\u0627\u062a",
 		"id": "Autentifikasi gagal: Browser anada tidak mengirim sertifikat",
-		"sr": "Neuspe\u0161na autentifikacija: va\u0161 web pretra\u017eiva\u010d nije poslao digitalni sertifikat"
+		"sr": "Neuspe\u0161na autentifikacija: va\u0161 web pretra\u017eiva\u010d nije poslao digitalni sertifikat",
+		"cs": "P\u0159ihl\u00e1\u0161en\u00ed neprob\u011bhlo: V\u00e1\u0161 prohl\u00ed\u017ee\u010d neodeslal \u017e\u00e1dn\u00fd certifik\u00e1t"
 	},
 	"title_INVALIDCERT": {
 		"fr": "Certificat invalide",
@@ -1826,7 +1830,8 @@
 		"pl": "Niepoprawny certyfikat",
 		"ar": "\u0634\u0647\u0627\u062f\u0629 \u063a\u064a\u0631 \u0635\u062d\u064a\u062d\u0629",
 		"id": "Sertifikat invalid",
-		"sr": "Neispravan digitalni sertifikat"
+		"sr": "Neispravan digitalni sertifikat",
+		"cs": "\u0160patn\u00fd certifik\u00e1t"
 	},
 	"descr_INVALIDCERT": {
 		"fr": "\u00c9chec de l'authentification : le certificat pr\u00e9sent\u00e9 par votre navigateur est invalide ou illisible",
@@ -1851,7 +1856,8 @@
 		"pl": "Nie powiod\u0142o si\u0119 uwierzytelnienie: certyfikat przes\u0142any przez przegl\u0105dark\u0119 jest niepoprawny lub nie mo\u017ce zosta\u0107 przeczytany",
 		"ar": "\u0641\u0634\u0644 \u0627\u0644\u062a\u0648\u062b\u064a\u0642 \u0644\u0627\u0646 \u0645\u062a\u0635\u0641\u062d\u0643 \u0627\u0631\u0633\u0644 \u0634\u0647\u0627\u062f\u0627\u062a \u063a\u064a\u0631 \u0635\u062d\u064a\u062d\u0629 \u0627\u0648 \u0644\u0627 \u064a\u0645\u0643\u0646 \u0642\u0631\u0627\u0621\u062a\u0647\u0627 ",
 		"id": "Autentifikasi gagal: Sertifikat yang browser Anda kirimkan invalid atau tidak dapat dibaca",
-		"sr": "Neuspe\u0161na autentifikacija: digitalni sertifikat koji je poslao va\u0161 web pretra\u017eiva\u010d nije ispravan ili se ne mo\u017ee pro\u010ditati"
+		"sr": "Neuspe\u0161na autentifikacija: digitalni sertifikat koji je poslao va\u0161 web pretra\u017eiva\u010d nije ispravan ili se ne mo\u017ee pro\u010ditati",
+		"cs": "P\u0159ihl\u00e1\u0161en\u00ed neprob\u011bhlo: certifik\u00e1t kter\u00fd odeslal V\u00e1\u0161 rohl\u00ed\u017ee\u010d nemohl b\u00fdt p\u0159e\u010dten"
 	},
 	"title_UNKNOWNCERT": {
 		"fr": "Certificat inconnu",
@@ -1876,7 +1882,8 @@
 		"pl": "Nieznany certyfikat",
 		"ar": "\u0634\u0647\u0627\u062f\u0629 \u063a\u064a\u0631 \u0645\u0639\u0644\u0648\u0645\u0629",
 		"id": "Sertifikat tidak dikenal",
-		"sr": "Nepoznat digitalni sertifikat"
+		"sr": "Nepoznat digitalni sertifikat",
+		"cs": "Nezn\u00e1m\u00fd certifik\u00e1t"
 	},
 	"descr_UNKNOWNCERT": {
 		"fr": "\u00c9chec de l'authentification : le certificat pr\u00e9sent\u00e9 par votre navigateur n'est pas connu",
@@ -1901,7 +1908,8 @@
 		"pl": "Nie powiod\u0142o si\u0119 uwierzytelnienie: certyfikat przes\u0142any przez przegl\u0105dark\u0119 jest nieznany",
 		"ar": "\u0641\u0634\u0644 \u0627\u0644\u062a\u0648\u062b\u064a\u0642 \u0644\u0627\u0646 \u0645\u062a\u0635\u0641\u062d\u0643 \u0627\u0631\u0633\u0644 \u0634\u0647\u0627\u062f\u0647 \u063a\u064a\u0631 \u0645\u0639\u0644\u0648\u0645\u0629",
 		"id": "Autentifikasi gagal: sertifikat yang browser anda kirimkan tidak dikenal",
-		"sr": "Neuspe\u0161na autentifikacija: digitalni sertifikat koji je poslao va\u0161 web pretra\u017eiva\u010d je nepoznat"
+		"sr": "Neuspe\u0161na autentifikacija: digitalni sertifikat koji je poslao va\u0161 web pretra\u017eiva\u010d je nepoznat",
+		"cs": "P\u0159ihl\u00e1\u0161en\u00ed neprob\u011bhlo: certifik\u00e1t kter\u00fd odeslal V\u00e1\u0161 prohl\u00ed\u017ee\u010d je nezn\u00e1m\u00fd"
 	},
 	"title_USERABORTED": {
 		"da": "Autentificering aubrudt",
@@ -1926,7 +1934,8 @@
 		"nl": "Authenticatie afgebroken",
 		"hu": "Azonos\u00edt\u00e1s megszak\u00edtva",
 		"nn": "Avbroten innlogging",
-		"fr": "Authentification abandonn\u00e9e"
+		"fr": "Authentification abandonn\u00e9e",
+		"cs": "P\u0159ihl\u00e1\u0161en\u00ed odm\u00edtnuto"
 	},
 	"descr_USERABORTED": {
 		"da": "Autentificering blev afbrudt af brugeren",
@@ -1942,7 +1951,7 @@
 		"de": "Die Authentifizierung wurde durch den Benutzer abgebrochen",
 		"pt-br": "A autentica\u00e7\u00e3o foi abortada pelo usu\u00e1rio",
 		"zh": "\u8ba4\u8bc1\u88ab\u7528\u6237\u4e2d\u6b62",
-		"lt": "Autentikacija nutrauk\u0117 vartotojas",
+		"lt": "Autentikacija nutrauk\u0117 naudotojas",
 		"es": "La Autenticacion fue abortada por el usuario",
 		"pl": "Uwierzytelnienie zosta\u0142o przerwane przez u\u017cytkownika",
 		"ar": "\u062a\u0645 \u0625\u064a\u0642\u0627\u0641 \u0627\u0644\u062a\u0648\u062b\u064a\u0642 \u0628\u0648\u0627\u0633\u0637\u0629 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645",
@@ -1950,7 +1959,8 @@
 		"sr": "Korisnik je prekinuo proces autentifikacie",
 		"hu": "Az azonos\u00edt\u00e1st a felhaszn\u00e1l\u00f3 megszak\u00edtotta",
 		"nn": "Innlogging blei avbroten av sluttbrukaren",
-		"fr": "L'authentification a \u00e9t\u00e9 abandonn\u00e9e par l'usager"
+		"fr": "L'authentification a \u00e9t\u00e9 abandonn\u00e9e par l'usager",
+		"cs": "P\u0159ihl\u00e1\u0161en\u00ed bylo p\u0159eru\u0161eno u\u017eivatelem"
 	},
 	"title_NOSTATE": {
 		"da": "State information tabt",
@@ -1973,7 +1983,8 @@
 		"id": "Informasi state hilang",
 		"sr": "Podaci o stanju su izgubljeni",
 		"nn": "Mista tilstandsinformasjon",
-		"fr": "Information d'\u00e9tat perdue"
+		"fr": "Information d'\u00e9tat perdue",
+		"cs": "Stavov\u00e1 informace ztracena"
 	},
 	"descr_NOSTATE": {
 		"da": "State information er tabt og der er ikke muligt at gentage forsp\u00f8rgelsen",
@@ -1996,7 +2007,8 @@
 		"sr": "Podaci o stanju su izgubljeni i zahtev se ne mo\u017ee reprodukovati",
 		"hu": "\u00c1llapotinform\u00e1ci\u00f3 elveszett, a k\u00e9r\u00e9st nem lehet \u00fajraind\u00edtani",
 		"nn": "Mista tilstandsinformasjon, og klarer ikkje \u00e5 gjera omstart",
-		"fr": "Information d'\u00e9tat perdue, et aucun moyen de relancer la requ\u00eate"
+		"fr": "Information d'\u00e9tat perdue, et aucun moyen de relancer la requ\u00eate",
+		"cs": "Stavov\u00e1 informace "
 	},
 	"title_METADATANOTFOUND": {
 		"da": "Metadata ikke fundet",
@@ -2063,7 +2075,8 @@
 		"sr": "Gre\u0161ka u autentifikacionom modulu",
 		"hu": "Azonos\u00edt\u00e1si forr\u00e1s hiba",
 		"nn": "Innloggingsfeil: autentisering",
-		"fr": "Erreur sur la source d'authentification"
+		"fr": "Erreur sur la source d'authentification",
+		"it": "Errore di sorgente di autenticazione"
 	},
 	"descr_AUTHSOURCEERROR": {
 		"hr": "Do\u0161lo je do gre\u0161ke u autentifikacijskom modulu %AUTHSOURCE%. Razlog: %REASON%",
@@ -2084,6 +2097,7 @@
 		"sr": "Do\u0161lo je do gre\u0161ke u autentifikacionom modulu %AUTHSOURCE%. Razlog: %REASON%",
 		"hu": "A(z)  %AUTHSOURCE% azonos\u00edt\u00e1si forr\u00e1sban hiba van. A ok: %REASON%",
 		"nn": "Innloggingsfeil knytta til %AUTHSOURCE% p\u00e5 grunn av %REASON%",
-		"fr": "Erreur d'authentification pour la source %AUTHSOURCE%. La raison \u00e9tait %REASON%"
+		"fr": "Erreur d'authentification pour la source %AUTHSOURCE%. La raison \u00e9tait %REASON%",
+		"it": "Errore di autenticazione in sorgente %AUTHSOURCE%. La ragione \u00e8 $REASON%"
 	}
 }

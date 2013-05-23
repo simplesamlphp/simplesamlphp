@@ -1418,6 +1418,7 @@
 		"hr": "Veli\u010dina polja s parametrima ograni\u010dena je Suhosin PHP ekstenzijom. Podesite da vrijednost parametra suhosin.get.max_value_length bude najmanje 2048 bajtova (za primjenu u sustavu AAI@EduHr preporu\u010da se da navedena vrijednost bude 16382 bajtova).",
 		"id": "Panjang parameter quert dibatasi oleh ekstensi Suhosin PHP. Tolong tingkatkan opsi suhosin.get.max_value_length setidaknya menjadi 2048 byte. ",
 		"sr": "Veli\u010dina polja s parametrima ograni\u010dena je Suhosin PHP ekstenzijom. Podesite da vrednost parametra suhosin.get.max_value_length bude najmanje 2048 bajtova.",
-		"fr": "La longuer des param\u00e8tres de requ\u00eate est limit\u00e9e par l'extension PHP Suhosin. Merci d'augmenter l'option suhosin.get.max_value_length \u00e0 au moins 2048 octets."
+		"fr": "La longuer des param\u00e8tres de requ\u00eate est limit\u00e9e par l'extension PHP Suhosin. Merci d'augmenter l'option suhosin.get.max_value_length \u00e0 au moins 2048 octets.",
+		"it": "La lunghezza dei parametri della query \u00e8 limitato dall'estensione PHP Suhosin. Incrementa l'opzione suhosin.get.max_value_lenght ad almeno 2048 bytes"
 	}
 }

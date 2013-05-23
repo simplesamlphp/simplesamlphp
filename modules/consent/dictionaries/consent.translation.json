@@ -5,7 +5,7 @@
 		"sv": "Ja",
 		"es": "S\u00ed",
 		"fr": "Oui",
-		"de": "Ja, ich stimmte zu",
+		"de": "Ja, ich stimme zu",
 		"nl": "Ja, ik ga akkoord",
 		"lb": "Jo",
 		"sl": "Da, nadaljuj",
@@ -36,7 +36,7 @@
 		"sv": "Nej",
 		"es": "No",
 		"fr": "Non",
-		"de": "Nein, ich stimmte nicht zu",
+		"de": "Nein, ich stimme nicht zu",
 		"nl": "Nee, ik weiger",
 		"lb": "Nee",
 		"sl": "Ne, prekli\u010di",
@@ -624,6 +624,10 @@
 		"no": "Avbryt innlogging til SPNAME",
 		"nn": "Avbryt innlogging til SPNAME",
 		"lt": "At\u0161aukti prisijungim\u0105 prie SPNAME",
-		"sr": "Prekini prijavu na SPNAME"
+		"sr": "Prekini prijavu na SPNAME",
+		"it": "Login interrotto a SPNAME",
+		"fr": "Annuler la connexion au fournisseur de service SPNAME",
+		"de": "Anmeldung am Service Provider SPNAME abbrechen",
+		"et": "Katkesta sisselogimine: SPNAME"
 	}
 }

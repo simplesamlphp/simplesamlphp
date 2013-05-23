@@ -41,7 +41,7 @@
 		"pt-br": "Selecione o arquivo de configura\u00e7\u00e3o para verificar",
 		"pt": "Escolha o ficheiro de configura\u00e7\u00e3o a verificar:",
 		"pl": "Wybierz plik konfiguracyjny do sprawdzenia:",
-		"cs": "Vyber konfiguracniho souboru k verifikaci:",
+		"cs": "Vyber konfigura\u010dn\u00edho souboru k verifikaci:",
 		"tr": "Kontrol edilecek konfig\u00fcrasyon dosyas\u0131n\u0131 se\u00e7:",
 		"de": "W\u00e4hlen Sie die Konfigurationsdatei, die gecheckt werden soll:",
 		"fr": "S\u00e9lectionnez le fichier de configuration \u00e0 v\u00e9rifier :",
@@ -351,7 +351,7 @@
 		"pt-br": "Os seguintes campos opcionais n\u00e3o foram encontrados",
 		"pt": "Os seguintes campos opcionais n\u00e3o foram encontrados",
 		"pl": "Nastepuj\u0105ce pola opcjonalne nie zosta\u0142y znalezione",
-		"cs": "asleduj\u00edc\u00ed voliteln\u00e1 pole nenalezena",
+		"cs": "Nasleduj\u00edc\u00ed voliteln\u00e1 pole nenalezena",
 		"tr": "\u015eu iste\u011fe ba\u011fl\u0131 alanlar bulunamad\u0131",
 		"fr": "Les champs optionnels suivants n'ont pas \u00e9t\u00e9 trouv\u00e9s",
 		"it": "I seguenti campi, opzionali, non sono stati trovati",
@@ -1274,7 +1274,9 @@
 		"id": "Sertifikat",
 		"sr": "Sertifikati",
 		"nn": "Sertifikat",
-		"fr": "Certificats"
+		"fr": "Certificats",
+		"cs": "Certifik\u00e1ty",
+		"it": "Certificati"
 	},
 	"metadata_cert_intro": {
 		"nl": "Download de X509-certificaten in PEM-formaat.",
@@ -1292,6 +1294,8 @@
 		"id": "Download sertifikat X509 sebagai file dikodekan-PEM.",
 		"sr": "Preuzmite X509 sertifikate u PEM formatu.",
 		"nn": "Last ned X509-sertifikat som PEM-koda filer",
-		"fr": "T\u00e9l\u00e9charger les certificats X509 en tant que fichiers encod\u00e9s PEM."
+		"fr": "T\u00e9l\u00e9charger les certificats X509 en tant que fichiers encod\u00e9s PEM.",
+		"cs": "St\u00e1hn\u011bte certifik\u00e1t X509 jako PEM-encoded soubor",
+		"it": "Scarica i certificati X509 come file PEM-encoded"
 	}
 }

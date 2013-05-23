@@ -22,7 +22,8 @@
 		"zh": "cookie\u4e22\u5931",
 		"ar": "\u0623\u0644\u0643\u0648\u0643\u064a\u0632 \u0627\u0644\u0645\u0641\u0642\u0648\u062f\u0629",
 		"id": "Cookie hilang",
-		"sr": "Nedostaje kola\u010di\u0107 (cookie)"
+		"sr": "Nedostaje kola\u010di\u0107 (cookie)",
+		"cs": "Chyb\u011bj\u00edc\u00ed cookie"
 	},
 	"description": {
 		"no": "Du ser ut til \u00e5 ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og pr\u00f8v igjen.",
@@ -47,7 +48,8 @@
 		"zh": "\u4f60\u4f3c\u4e4e\u7981\u6b62\u4e86\u4f60\u6d4f\u89c8\u5668\u7684cookie\u529f\u80fd\uff0c\u8bf7\u68c0\u67e5\u8bbe\u7f6e\uff0c\u7136\u540e\u91cd\u65b0\u5c1d\u8bd5",
 		"ar": "\u064a\u0628\u062f\u0648 \u0627\u0646\u0643 \u0642\u062f \u0639\u0637\u0644\u062a \u0627\u0644\u0643\u0648\u0643\u064a\u0632 \u0628\u0645\u062a\u0635\u0641\u062d\u0643. \u0642\u0645 \u0631\u062c\u0627\u0621\u0627 \u0628\u0645\u0631\u0627\u062c\u0639\u0629 \u0625\u0639\u062f\u0627\u062f\u0627\u062a \u0645\u062a\u0635\u0641\u062d\u0643 \u062b\u0645 \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0627\u062e\u0631\u064a",
 		"id": "Anda sepertinya menonaktifkan cookie di browser anda. Silahkan periksa  pengaturan pada browser anda, dan coba lagi.",
-		"sr": "Izgleda da ste onemogu\u0107ili kola\u010di\u0107e (cookies) u va\u0161em web pretra\u017eiva\u010du. Molimo proverite pode\u0161avanja va\u0161eg web pretra\u017eiva\u010da i poku\u0161ajte ponovo."
+		"sr": "Izgleda da ste onemogu\u0107ili kola\u010di\u0107e (cookies) u va\u0161em web pretra\u017eiva\u010du. Molimo proverite pode\u0161avanja va\u0161eg web pretra\u017eiva\u010da i poku\u0161ajte ponovo.",
+		"cs": "V\u00e1\u0161 internetov\u00fd prohl\u00ed\u017ee\u010d m\u00e1 z\u0159ejm\u011b vypnutou podporu cookies. Pros\u00edme, zkontrolujte nastaven\u00ed cookies ve va\u0161em prohl\u00ed\u017ee\u010di a zkuste znovu."
 	},
 	"retry": {
 		"no": "Pr\u00f8v igjen",
@@ -73,6 +75,7 @@
 		"zh": "\u91cd\u8bd5",
 		"ar": "\u0627\u0639\u062f \u0627\u0644\u0645\u062d\u0627\u0648\u0644\u0629",
 		"id": "Coba lagi",
-		"sr": "Poku\u0161aj ponovo"
+		"sr": "Poku\u0161aj ponovo",
+		"cs": "Opakujte"
 	}
 }

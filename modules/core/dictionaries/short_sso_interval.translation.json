@@ -22,7 +22,8 @@
 		"zh": "\u6211\u4eec\u68c0\u6d4b\u5230\u4ece\u4f60\u4e0a\u4e00\u6b21\u8fde\u63a5\u5230\u8be5\u670d\u52a1\u63d0\u4f9b\u8005\u5230\u672c\u6b21\u8fde\u63a5\u4e2d\u95f4\u95f4\u9694\u4ec5\u4ec5\u6570\u79d2\u7684\u65f6\u95f4\uff0c\u6211\u4eec\u731c\u6d4b\u8be5SP\u53ef\u80fd\u6709\u95ee\u9898",
 		"ar": "\u064a\u0628\u062f\u0648 \u0627\u0646\u0643 \u0642\u062f \u0642\u0645\u062a \u0628\u062a\u0635\u062f\u064a\u0642 \u0627\u0644\u062f\u062e\u0648\u0644 \u0639\u062f\u0629 \u0645\u0631\u0627\u062a \u0644\u0645\u0642\u062f\u0645 \u0647\u0630\u0647 \u0627\u0644\u062e\u062f\u0645\u0629 \u062e\u0644\u0627\u0644 \u0627\u0644\u062b\u0648\u0627\u0646\u064a \u0627\u0644\u0642\u0644\u064a\u0644\u0629 \u0627\u0644\u0645\u0627\u0636\u064a\u0629 \u0645\u0645\u0627 \u064a\u0642\u0648\u062f\u0646\u0627 \u0644\u0644\u0627\u0639\u062a\u0642\u0627\u062f \u0628\u0648\u062c\u0648\u062f \u0645\u0634\u0643\u0644\u0629 \u0645\u0627 \u0628\u0647\u0630\u0627 \u0627\u0644 SP ",
 		"id": "Kami telah mendeteksi kalau beberapa detik yang lalu sejak autentifikasi yang anda lakukan pada service provider ini, dan oleh karena itu diasumsikan ada masalah dengan SP ini",
-		"sr": "Pro\u0161lo tek nekoliko sekundi otkad ste se zadnji put autentifikovali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davaoca servisa."
+		"sr": "Pro\u0161lo tek nekoliko sekundi otkad ste se zadnji put autentifikovali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davaoca servisa.",
+		"cs": "Zjistili jsme, \u017ee ub\u011bhlo pouze p\u00e1r sekund od Va\u0161eho minul\u00e9ho pri\u0159hl\u00e1\u0161en\u00ed pomoc\u00ed service providera a proto p\u0159edpokl\u00e1d\u00e1me, \u017ee nastala chyba v tom SP."
 	},
 	"warning_header": {
 		"no": "For kort intervall imellom innloggingsforesp\u00f8rsler",
@@ -47,7 +48,8 @@
 		"zh": "\u5355\u70b9\u767b\u5f55\u4e8b\u4ef6\u4e4b\u95f4\u95f4\u9694\u592a\u77ed\u4e86",
 		"ar": "\u0641\u062a\u0631\u0627\u062a \u0642\u0635\u064a\u0631\u0629 \u062c\u062f\u0627\u064b \u0628\u064a\u0646 \u0645\u062d\u0627\u0648\u0644\u0627\u062a \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644 \u0627\u0644\u0645\u0648\u062d\u062f ",
 		"id": "Interval yang terlalu pendek antara event single sign on.",
-		"sr": "Prekratak interval izme\u0111u uzastopnih SSO prijava."
+		"sr": "Prekratak interval izme\u0111u uzastopnih SSO prijava.",
+		"cs": "P\u0159\u00edli\u0161 kr\u00e1tk\u00fd interval mezi ud\u00e1lostmi jednoho prihl\u00e1\u0161en\u00ed."
 	},
 	"retry": {
 		"no": "Fors\u00f8k \u00e5 logge inn p\u00e5 nytt",
@@ -72,6 +74,7 @@
 		"zh": "\u91cd\u65b0\u5c1d\u8bd5\u767b\u9646",
 		"ar": "\u0627\u0639\u062f \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644",
 		"id": "Coba login kembali",
-		"sr": "Poku\u0161aj se prijaviti ponovo"
+		"sr": "Poku\u0161aj se prijaviti ponovo",
+		"cs": "P\u0159ihla\u0161te se znovu."
 	}
 }
