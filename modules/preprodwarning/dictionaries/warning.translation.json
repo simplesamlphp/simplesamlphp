@@ -26,6 +26,7 @@
 		"zh": "\u4f60\u73b0\u5728\u8bbf\u95ee\u7684\u662f\u4e00\u4e2a\u9884\u5b89\u88c5\u7cfb\u7edf\uff0c\u8fd9\u4e2a\u8ba4\u8bc1\u8bbe\u7f6e\u662f\u7528\u6765\u6d4b\u8bd5\u548c\u9884\u53d1\u5e03\u6821\u9a8c\u4e4b\u7528\u3002\u5982\u679c\u6709\u4eba\u53d1\u9001\u4e00\u4e2a\u8fde\u63a5\u8ba9\u4f60\u8bbf\u95ee\u5230\u8fd9\u91cc\uff0c\u5e76\u4e14\u4f60\u53c8\u4e0d\u662f<i>\u6d4b\u8bd5\u4eba\u5458<\/i>\uff0c\u90a3\u4e48\u4f60\u83b7\u5f97\u4e86\u4e00\u4e2a\u9519\u8bef\u8fde\u63a5\uff0c\u5e76\u4e14\u4f60<b>\u4e0d\u5e94\u8be5\u5728\u8fd9\u91cc<\/b>",
 		"hu": "Egy teszt, vagy fejleszt\u0151i oldalra jutott\u00e1l. Az azonos\u00edt\u00e1s csak pr\u00f3ba miatt t\u00f6rt\u00e9nik. Ha valaki olyan linket k\u00fcld\u00f6tt, amire kattintva ide jutott\u00e1l, \u00e9s nem vagy <i>tesztel\u0151<\/i>, val\u00f3sz\u00edn\u0171leg elrontott valamit, \u00e9s amit keresel, azt <b>itt nem tal\u00e1lod<\/b>.",
 		"ar": "\u0644\u0642\u062f \u062f\u062e\u0644\u062a \u0646\u0638\u0627\u0645\u0627\u064b \u0645\u0628\u062f\u0626\u064a\u0627\u064b. \u0625\u0639\u062f\u0627\u062f\u0627\u062a \u0627\u0644\u062a\u0635\u062f\u064a\u0642 \u0647\u0630\u0647 \u0644\u0644\u0627\u062e\u062a\u0628\u0627\u0631 \u0641\u0642\u0637. \u0627\u0630\u0627 \u062f\u062e\u0644\u062a \u0647\u0646\u0627 \u0628\u0646\u0627\u0621 \u0639\u0644\u064a \u062d\u0635\u0648\u0644\u0643 \u0639\u0644\u064a \u0647\u0630\u0627 \u0627\u0644\u0631\u0627\u0628\u0637 \u0645\u0646 \u0634\u062e\u0635 \u0645\u0627 \u0648 \u0627\u0646\u062a \u0644\u0633\u062a \u0627\u062d\u062f \u0645\u062e\u062a\u0628\u0631\u064a \u0647\u0630\u0627 \u0627\u0644\u0646\u0638\u0627\u0645 \u0642\u0645 \u0631\u062c\u0627\u0621\u0627\u064b \u0628\u0627\u0644\u062e\u0631\u0648\u062c",
+		"lv": "J\u016bs izmantojat testa (pirmsprodukcijas) sist\u0113mu. \u0160\u012b autentifik\u0101cija ir tikai test\u0113\u0161anas vajadz\u012bb\u0101m. Ja k\u0101ds Jums ats\u016bt\u012bjis saiti uz \u0161ejieni un J\u016bs neesat <i>test\u0113t\u0101js<\/i>, Jums te <b>nav j\u0101atrodas<\/b>.",
 		"id": "Sekarang anda sedang mengakses sistem pra-produksi. Setup autentifikasi ini untuk keperluan uji coba dan verifikasi pra-produksi",
 		"sr": "Pristupate sistemu koji se nalazi u pred-produkcionoj fazi. Ova autentifikaciona pode\u0161avanja slu\u017ee za testiranje i proveru ispravnosti rada pred-produkcionog sistema. Ako vam je neko poslao adresu koja pokazuje na ovu stranicu, a vi niste <i>osoba zadu\u017eena za testiranje<\/i>, verovatno ste <b>na ovu stranicu do\u0161li gre\u0161kom<\/b>."
 	},
@@ -56,6 +57,7 @@
 		"zh": "\u5173\u4e8e\u8bbf\u95ee\u9884\u53d1\u5e03\u7cfb\u7edf\u7684\u8b66\u544a",
 		"hu": "Ez NEM egy \u00e9les rendszer!",
 		"ar": "\u062a\u062d\u0630\u064a\u0631 \u062f\u062e\u0648\u0644 \u0646\u0638\u0627\u0645 \u0645\u0628\u062f\u0626\u064a",
+		"lv": "Br\u012bdin\u0101jums par testa sist\u0113mas izmanto\u0161anu",
 		"id": "Peringatan tentang mengakses sistem pra-produksi",
 		"sr": "Upozorenje o pristupanju pred-produkcionom sistemu"
 	},
@@ -86,6 +88,7 @@
 		"zh": "\u662f\u7684\uff0c\u6211\u77e5\u9053\u6211\u6b63\u8bbf\u95ee\u9884\u53d1\u5e03\u7cfb\u7edf",
 		"hu": "Meg\u00e9rtettem. Teszt rendszeren vagyok!",
 		"ar": "\u0646\u0639\u0645\u060c \u0627\u0639\u0644\u0645 \u0627\u0646\u0646\u064a \u0642\u062f \u062f\u062e\u0644\u062a \u0646\u0638\u0627\u0645\u0627\u064b \u0645\u0628\u062f\u0626\u064a\u0627\u064b",
+		"lv": "J\u0101, es zinu, ka es izmantoju testa (pirmsprodukcijas) sist\u0113mu",
 		"id": "Ya, saya tahu kalau saya sedang mengakses sistem pra-produksi",
 		"sr": "Da, znam da pristupam sistemu koji je u pred-produkcionoj fazi"
 	}

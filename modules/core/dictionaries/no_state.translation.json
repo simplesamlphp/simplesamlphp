@@ -20,6 +20,7 @@
 		"zh": "\u72b6\u6001\u4fe1\u606f\u4e22\u5931",
 		"ar": "\u062d\u062f\u062f \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0641\u0642\u0648\u062f\u0629",
 		"id": "Informasi kondisi\/state hilang",
+		"lv": "St\u0101vok\u013ca inform\u0101cija ir pazaud\u0113ta",
 		"sr": "Informacije o stanju su izgubljene"
 	},
 	"description": {
@@ -43,6 +44,7 @@
 		"zh": "\u6211\u4eec\u65e0\u6cd5\u5b9a\u4f4d\u5f53\u524d\u8bf7\u6c42\u7684\u72b6\u6001\u4fe1\u606f",
 		"ar": "\u0644\u0645 \u0646\u0633\u062a\u0637\u0639 \u062a\u062d\u062f\u064a\u062f \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0641\u0642\u0648\u062f\u0629 \u0644\u0644\u0637\u0644\u0628 \u0627\u0644\u062d\u0627\u0644\u064a",
 		"id": "Kita tidak dapat menemukan informasi kondisi\/state dari request saat ini.",
+		"lv": "Nav iesp\u0113jams atrast st\u0101vok\u013ca inform\u0101ciju \u0161im piepras\u012bjumam.",
 		"sr": "Ne mo\u017eemo prona\u0107i informacije o stanju aktuelnog zahteva."
 	},
 	"suggestions": {
@@ -66,6 +68,7 @@
 		"zh": "\u5173\u4e8e\u89e3\u51b3\u8be5\u95ee\u9898\u7684\u5efa\u8bae",
 		"ar": "\u0627\u0642\u062a\u0631\u0627\u062d\u0627\u062a \u0644\u062d\u0644 \u0627\u0644\u0645\u0634\u0643\u0644\u0629 ",
 		"id": "Saran untuk memperbaiki masalah ini:",
+		"lv": "Ieteikumi probl\u0113mas atrisin\u0101\u0161anai:",
 		"sr": "Preporuke za re\u0161avanje ovog problema:"
 	},
 	"suggestion_goback": {
@@ -89,6 +92,7 @@
 		"zh": "\u8fd4\u56de\u4e0a\u4e00\u9875\u5e76\u91cd\u65b0\u5c1d\u8bd5",
 		"ar": "\u0627\u0631\u062c\u0639 \u0644\u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629 \u0648 \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0627\u062e\u0631\u064a",
 		"id": "Kembali ke halaman sebelumnya dan coba lagi.",
+		"lv": "Ejiet atpaka\u013c uz iepriek\u0161\u0113jo lapu un m\u0113\u0123iniet v\u0113lreiz.",
 		"sr": "Vratite se na prethodnu stranicu i poku\u0161ajte ponovo."
 	},
 	"suggestion_closebrowser": {
@@ -112,6 +116,7 @@
 		"zh": "\u5173\u95ed\u6d4f\u89c8\u5668\u5e76\u91cd\u8bd5",
 		"ar": "\u0627\u063a\u0644\u0642 \u0627\u0644\u0645\u0648\u0642\u0639 \u062b\u0645 \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0627\u062e\u0631\u064a",
 		"id": "Tutup browser, dan coba lagi.",
+		"lv": "Aizveriet interneta p\u0101rl\u016bku un m\u0113\u0123iniet v\u0113lreiz.",
 		"sr": "Zatvorite web pretra\u017eiva\u010d i poku\u0161ajte ponovo."
 	},
 	"causes": {
@@ -135,6 +140,7 @@
 		"zh": "\u8be5\u9519\u8bef\u53ef\u80fd\u662f\u4ee5\u4e0b\u539f\u56e0\u5bfc\u81f4\u7684\uff1a",
 		"ar": "\u0633\u0628\u0628 \u062d\u062f\u0648\u062b \u0647\u0630\u0627 \u0627\u0644\u062e\u0637\u0623 \u0642\u062f \u064a\u0643\u0648\u0646:",
 		"id": "Error ini mungkin disebabkan oleh:",
+		"lv": "K\u013c\u016bdu rad\u012bjis:",
 		"sr": "Ova gre\u0161ka mo\u017ee biti uzrokovana:"
 	},
 	"cause_backforward": {
@@ -158,6 +164,7 @@
 		"zh": "\u4f7f\u7528\u6d4f\u89c8\u5668\u4e2d\u7684\u524d\u8fdb\u540e\u9000\u6309\u94ae",
 		"ar": "\u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0623\u0632\u0631\u0627\u0631 \u0627\u0644\u0631\u062c\u0648\u0639 \u0644\u0644\u062e\u0644\u0641 \u0648 \u0627\u0644\u0627\u0645\u0627\u0645 \u0628\u0645\u062a\u0635\u0641\u062d\u0643",
 		"id": "Menggunakan tombol back dan forward pada browser web.",
+		"lv": "Interneta p\u0101rl\u016bka pogu Uz priek\u0161u un Atpaka\u013c lieto\u0161ana.",
 		"sr": "Kori\u0161\u0107enjem tastera za prethodnu (back) i slede\u0107u (forward) stranicu u web pretra\u017eiva\u010du."
 	},
 	"cause_openbrowser": {
@@ -181,6 +188,7 @@
 		"zh": "\u4ece\u5148\u524d\u7684session\u4fdd\u5b58\u7684\u9009\u9879\u5361\u6253\u5f00Web\u6d4f\u89c8\u5668",
 		"ar": "\u0641\u062a\u062d \u0645\u062a\u0635\u0641\u062d\u0643 \u0645\u0633\u062a\u062e\u062f\u0645\u0627 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0645\u062d\u0641\u0648\u0638\u0629 \u0645\u0646 \u0627\u0644\u0645\u0631\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629",
 		"id": "Membuka web browser dengan tab-tab yang telah disimpan dari session sebelumnya.",
+		"lv": "Interneta p\u0101rl\u016bka atv\u0113r\u0161ana ar saglab\u0101t\u0101m ciln\u0113m no iepriek\u0161\u0113j\u0101s sesijas.",
 		"sr": "Otvaranjem web pretra\u017eiva\u010da sa stranicama sa\u010duvanim iz prethodne sesije."
 	},
 	"cause_nocookie": {
@@ -204,6 +212,7 @@
 		"zh": "\u8be5\u6d4f\u89c8\u5668\u4e0a\u7684cookie\u53ef\u80fd\u906d\u7981\u6b62",
 		"ar": "\u0627\u0644\u0643\u0648\u0643\u064a\u0632 \u063a\u064a\u0631 \u0645\u0646\u0634\u0637\u0629 \u0628\u0645\u062a\u0635\u0641\u062d\u0643",
 		"id": "Cookie mungkin dinonaktifkan pada web browser ini.",
+		"lv": "Iesp\u0113jams, interneta p\u0101rl\u016bk\u0101 ir aizliegtas s\u012bkdatnes.",
 		"sr": "Mogu\u0107e da je podr\u0161ka za kola\u010di\u0107e (\"cookies\") isklju\u010dena u web pretra\u017eiva\u010du."
 	},
 	"report_header": {
@@ -227,6 +236,7 @@
 		"zh": "\u62a5\u544a\u8fd9\u4e2a\u9519\u8bef",
 		"ar": "\u0628\u0644\u063a \u0639\u0646 \u0647\u0630\u0627 \u0627\u0644\u062e\u0637\u0623 ",
 		"id": "Laporan error ini",
+		"lv": "Zi\u0146ojiet par \u0161o k\u013c\u016bdu",
 		"sr": "Prijavite ovu gre\u0161ku"
 	},
 	"report_text": {
@@ -250,6 +260,7 @@
 		"zh": "\u5982\u679c\u8fd9\u4e2a\u9519\u8bef\u518d\u6b21\u51fa\u73b0\uff0c\u4f60\u53ef\u4ee5\u5411\u4f60\u7684\u7cfb\u7edf\u7ba1\u7406\u5458\u62a5\u544a",
 		"ar": "\u0627\u0630\u0627 \u0627\u0633\u062a\u0645\u0631\u062a \u0647\u0630\u0647 \u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0628\u0627\u0644\u062d\u062f\u0648\u062b\u060c \u0631\u062c\u0627\u0621\u0627 \u0628\u0644\u063a \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0648\u0642\u0639",
 		"id": "Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke system administrator.",
+		"lv": "Ja probl\u0113ma atk\u0101rtojas, varat zi\u0146ot sist\u0113mas administratoriem.",
 		"sr": "Ako se ova gre\u0161ka bude i dalje pojavljivala, mo\u017eete je prijaviti administratorima."
 	}
 }

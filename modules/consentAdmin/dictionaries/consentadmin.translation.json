@@ -20,6 +20,7 @@
 		"he": "(\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05e9\u05dd)",
 		"zh": "\uff08\u6ca1\u6709\u6307\u5b9a\u540d\u5b57\uff09",
 		"ar": "\u0627\u0644\u0627\u0633\u0645 \u063a\u064a\u0631 \u0645\u062d\u062f\u062f",
+		"lv": "(v\u0101rds nav nor\u0101d\u012bts)",
 		"id": "(Nama tidak diisi)",
 		"sr": "(ime nije specificirano)"
 	},
@@ -44,6 +45,7 @@
 		"he": "(\u05d0\u05d9\u05df \u05ea\u05d9\u05d0\u05d5\u05e8)",
 		"zh": "\uff08\u6ca1\u6709\u63cf\u8ff0\uff09",
 		"ar": "\u0644\u0627 \u064a\u0648\u062c\u062f \u0648\u0635\u0641",
+		"lv": "(nav apraksta)",
 		"id": "(Tidak ada penjelasan)",
 		"sr": "(nema opisa)"
 	},
@@ -68,6 +70,7 @@
 		"he": "\u05d0\u05d9\u05e8\u05d2\u05d5\u05df",
 		"zh": "\u7ec4\u7ec7",
 		"ar": "\u0627\u0644\u0645\u0646\u0638\u0645\u0629",
+		"lv": "Organiz\u0101cija",
 		"id": "Organisasi",
 		"sr": "Institucija"
 	},
@@ -92,6 +95,7 @@
 		"he": "\u05d4\u05e1\u05db\u05de\u05d4 \u05d4\u05d5\u05e1\u05e4\u05d4",
 		"zh": "\u5df2\u7ecf\u6dfb\u52a0\u7684\u8bb8\u53ef",
 		"ar": "\u062a\u0645\u062a \u0627\u0636\u0627\u0641\u0629 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
+		"lv": "Pievienotie noteikumi",
 		"id": "Consent telah ditambahkan",
 		"sr": "Dozvola dodata"
 	},
@@ -116,6 +120,7 @@
 		"he": "\u05d4\u05e1\u05db\u05de\u05d4 \u05d4\u05d5\u05e1\u05e8\u05d4",
 		"zh": "\u5df2\u7ecf\u79fb\u9664\u7684\u8bb8\u53ef",
 		"ar": "\u062a\u0645 \u062d\u0630\u0641 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
+		"lv": "No\u0146emtie noteikumi",
 		"id": "Consent telah dibuang",
 		"sr": "Dozvola uklonjena"
 	},
@@ -140,6 +145,7 @@
 		"he": "\u05d4\u05e1\u05db\u05de\u05d4 \u05e2\u05d5\u05d3\u05db\u05e0\u05d4",
 		"zh": "\u5df2\u7ecf\u66f4\u65b0\u7684\u8bb8\u53ef",
 		"ar": "\u062a\u062d\u062f\u064a\u062b \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
+		"lv": "Uzlabotie noteikumi",
 		"id": "Consent telah diupdate",
 		"sr": "Dozvola a\u017eurirana"
 	},
@@ -164,6 +170,7 @@
 		"he": "\u05dc\u05d0 \u05d9\u05d3\u05d5\u05e2...",
 		"zh": "\u672a\u77e5...",
 		"ar": "\u063a\u064a\u0631 \u0645\u0639\u0631\u0648\u0641",
+		"lv": "Nezin\u0101ms ...",
 		"id": "Tidak diketahui...",
 		"sr": "Nepoznato ..."
 	},
@@ -188,6 +195,7 @@
 		"he": "\u05d6\u05d4\u05d5\u05ea",
 		"zh": "\u8eab\u4efd",
 		"ar": "\u0627\u0644\u0647\u0648\u064a\u0629",
+		"lv": "Identit\u0101te",
 		"id": "Identitas",
 		"sr": "Identitet"
 	},
@@ -212,6 +220,7 @@
 		"he": "\u05de\u05d0\u05e4\u05d9\u05d9\u05df \u05de\u05d5\u05d6\u05e8\u05e7",
 		"zh": "\u6ce8\u5165\u7684\u5c5e\u6027",
 		"ar": "\u0627\u0644\u0633\u0645\u0627\u062a \u0627\u0644\u062a\u064a \u062a\u0645 \u062a\u0642\u062f\u064a\u0645\u0647\u0627",
+		"lv": "Ievietots atrib\u016bts",
 		"id": "Attribut yang diinjeksi",
 		"sr": "Uba\u010deni atribut"
 	},
@@ -236,6 +245,7 @@
 		"he": "\u05d4\u05e6\u05d2",
 		"zh": "\u663e\u793a",
 		"ar": "\u0627\u0638\u0647\u0627\u0631",
+		"lv": "Par\u0101d\u012bt",
 		"id": "Perlihatkan",
 		"sr": "Prika\u017ei"
 	},
@@ -260,6 +270,7 @@
 		"he": "\u05d4\u05e1\u05ea\u05e8",
 		"zh": "\u9690\u85cf",
 		"ar": "\u0627\u062e\u0641\u0627\u0621",
+		"lv": "Sl\u0113pt",
 		"id": "Sembunyikan",
 		"sr": "Sakrij"
 	},
@@ -284,6 +295,7 @@
 		"he": "\u05de\u05d0\u05e4\u05d9\u05d9\u05e0\u05d9\u05dd",
 		"zh": "\u5c5e\u6027",
 		"ar": "\u0627\u0644\u0633\u0645\u0627\u062a",
+		"lv": "atrib\u016bti",
 		"id": "Attribute",
 		"sr": "atributi"
 	},
@@ -308,6 +320,7 @@
 		"he": "\u05de\u05e0\u05d4\u05dc \u05d4\u05e1\u05db\u05de\u05d5\u05ea\u05ea",
 		"zh": "\u7ba1\u7406\u5458\u8bb8\u53ef",
 		"ar": "\u0627\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
+		"lv": "Noteikumu administrators",
 		"id": "Administrasi Consent",
 		"sr": "Administracija dozvola"
 	},
@@ -331,6 +344,7 @@
 		"he": "\u05db\u05d0\u05df \u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05e8\u05d0\u05d5\u05ea \u05d5\u05dc\u05e2\u05e8\u05d5\u05da \u05d0\u05ea \u05d4\u05e1\u05db\u05de\u05d5\u05ea\u05da \u05dc\u05e1\u05e4\u05e7\u05d9 \u05d4\u05e9\u05d9\u05e8\u05d5\u05ea",
 		"zh": "\u5728\u8fd9\u91cc\u4f60\u53ef\u4ee5\u67e5\u770b\u548c\u7f16\u8f91\u4f60\u7684SP\u8bb8\u53ef",
 		"ar": "\u064a\u0645\u0643\u0646\u0643 \u0631\u0624\u064a\u0629 \u0648\u062a\u0639\u062f\u064a\u0644 \u0645\u0648\u0627\u0641\u0642\u062a\u0643 \u0639\u0644\u064a \u0645\u0634\u063a\u0644\u064a \u0627\u0644\u062e\u062f\u0645\u0627\u062a \u0647\u0646\u0627 ",
+		"lv": "\u0160eit J\u016bs varat apl\u016bkot un labot noteikumus priek\u0161 servisu pieg\u0101d\u0101t\u0101jiem",
 		"id": "Disini anda dapat melihat dan mengedit consent anda untuk Service Provider.",
 		"sr": "Ovde mo\u017eete pregledati i menjati va\u0161e dozvole davaocima servisa."
 	},
@@ -355,6 +369,7 @@
 		"he": "<h3>\u05d0\u05d9\u05da \u05dc\u05d4\u05e1\u05d9\u05e8 \u05d0\u05ea \u05d4\u05e1\u05db\u05de\u05ea\u05da<\/h3> \u05dc\u05d7\u05e5 \u05d1\u05ea\u05d9\u05d1\u05d4 \u05d4\u05de\u05ea\u05d0\u05d9\u05de\u05d4 \u05dc\u05e1\u05e4\u05e7 \u05d4\u05e9\u05d9\u05e8\u05d5\u05ea <h3>\u05e7\u05d9\u05e9\u05d5\u05e8\u05d9\u05dd<\/h3>  <ul> <li><a href=\"https:\/\/www.wayf.dk\">\u05d4\u05ea\u05d7\u05dc\u05d4<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">\u05e9\u05d0\u05dc\u05d5\u05ea \u05e0\u05e4\u05d5\u05e6\u05d5\u05ea<\/a> <\/li> <\/ul> ",
 		"zh": "<h3>\u5982\u4f55\u5220\u9664\u4f60\u7684\u8bb8\u53ef<\/h3>\u53cd\u9009\u76f8\u5e94\u7684SP\u9009\u62e9\u6846<h3>Links<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">\u5f00\u59cb<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">FAQ<\/a> <\/li> <\/ul>",
 		"ar": "\u0644\u062d\u0630\u0641 \u0645\u0648\u0627\u0641\u0642\u062a\u0643<\/h3>\u0627\u0644\u063a\u064a  \u0635\u0646\u062f\u0648\u0642 \u0645\u0634\u063a\u0644 \u0627\u0644\u062e\u062f\u0645\u0629<h3>\u0631\u0648\u0627\u0628\u0637<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">\u0623\u0628\u062f\u0627>\/a><\/li><li><ahref=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions<\/a> <\/a> <\/li> <\/ul> ",
+		"lv": "<h3>K\u0101 dz\u0113st noteikumus<\/h3> Iz\u0146emiet \u0137eks\u012bti pie atbilsto\u0161\u0101 servisa pieg\u0101d\u0101t\u0101ja <h3>Saites<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">S\u0101kums<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">BUJ<\/a> <\/li> <\/ul> ",
 		"id": "<h3>Bagaimana cara menghapus consent anda<\/h3> Hapus centak pada kotak service provider yang anda maksud <h3>Link<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Mulai<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">FAQ<\/a> <\/li> <\/ul>",
 		"sr": "<h3>Kako obrisati dozvolu<\/h3> Uklonite kva\u010dicu iz polja koje se odnosi na davaoca servisa <h3>Linkovi<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Po\u010detna stranica<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">Pitanja i odgovori<\/a> <\/li> <\/ul> "
 	},
@@ -379,6 +394,7 @@
 		"he": "\u05d4\u05ea\u05d7\u05d1\u05e8",
 		"zh": "\u767b\u9646",
 		"ar": "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644",
+		"lv": "piesl\u0113gties",
 		"id": "login",
 		"sr": "Prijavi se"
 	},
@@ -403,6 +419,7 @@
 		"he": "\u05e1\u05e4\u05e7\u05d9 \u05e9\u05d9\u05e8\u05d5\u05ea \u05e2\u05d1\u05d5\u05e8",
 		"zh": "\u670d\u52a1\u63d0\u4f9b\u5546\u670d\u52a1\u4e8e",
 		"ar": "\u0645\u0634\u063a\u0644\u064a \u0627\u0644\u062e\u062f\u0645\u0629 \u0644",
+		"lv": "Servisa pieg\u0101d\u0101t\u0101ji priek\u0161",
 		"id": "Service Provider untuk",
 		"sr": "Davaoci Servisa za"
 	},
@@ -427,6 +444,7 @@
 		"he": "\u05e1\u05e4\u05e7 \u05e9\u05d9\u05e8\u05d5\u05ea",
 		"zh": "\u670d\u52a1\u63d0\u4f9b\u5546",
 		"ar": "\u0645\u0642\u062f\u0645 \u0627\u0644\u062e\u062f\u0645\u0629",
+		"lv": "Servisa pieg\u0101d\u0101t\u0101js",
 		"id": "Service Provider",
 		"sr": "Davalac Servisa"
 	},
@@ -451,6 +469,7 @@
 		"he": "\u05de\u05e6\u05d1 \u05d4\u05e1\u05db\u05de\u05d4",
 		"zh": "\u8bb8\u53ef\u72b6\u6001",
 		"ar": "\u062d\u0627\u0644\u0629 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
+		"lv": "Noteikumu statuss",
 		"id": "Status consent",
 		"sr": "Stanje dozvole"
 	},
@@ -475,6 +494,7 @@
 		"he": "\u05d4\u05e8\u05d0\u05d4\\\u05d4\u05e1\u05ea\u05e8 \u05de\u05d0\u05e4\u05d9\u05d9\u05e0\u05d9\u05dd",
 		"zh": "\u663e\u793a\/\u9690\u85cf\u5c5e\u6027",
 		"ar": "\u0627\u0638\u0647\u0631\/ \u0627\u062e\u0641\u064a \u0627\u0644\u0633\u0645\u0627\u062a",
+		"lv": "r\u0101d\u012b\u0161anas\/sl\u0113p\u0161anas atrib\u016bti",
 		"id": "Tunjukkan\/sembunyikan attribute",
 		"sr": "prika\u017ei\/sakrij atribute"
 	},
@@ -499,6 +519,7 @@
 		"he": "\u05de\u05d8\u05e8\u05ea \u05d4\u05e9\u05d9\u05e8\u05d5\u05ea \u05d4\u05d9\u05d0",
 		"zh": "\u8be5\u670d\u52a1\u7684\u7528\u9014",
 		"ar": "\u063a\u0631\u0636 \u0627\u0644\u062e\u062f\u0645\u0629 \u0647\u0648",
+		"lv": "\u0160\u012b servisa nol\u016bks ir",
 		"id": "Tujuan dari layanan ini adalah",
 		"sr": "Namena ovog servisa je"
 	}

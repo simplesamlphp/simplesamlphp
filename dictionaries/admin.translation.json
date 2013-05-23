@@ -25,6 +25,7 @@
 		"ru": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438",
 		"zh": "\u914d\u7f6e\u68c0\u67e5",
 		"ar": "\u0645\u0631\u0627\u062c\u0639\u0629 \u0627\u0644\u062a\u0631\u062a\u064a\u0628",
+		"lv": "Konfigur\u0101cijas p\u0101rbaude",
 		"id": "Pemeriksaan konfigurasi",
 		"sr": "Provera pode\u0161avanja"
 	},
@@ -54,6 +55,7 @@
 		"ru": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0444\u0430\u0439\u043b \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438 \u0434\u043b\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438:",
 		"zh": "\u9009\u62e9\u4e00\u4e2a\u914d\u7f6e\u6587\u4ef6\u7528\u4e8e\u68c0\u6d4b",
 		"ar": "\u0627\u062e\u062a\u0627\u0631\u0645\u0644\u0641 \u0627\u0644\u062a\u0631\u062a\u064a\u0628 \u0627\u0644\u0630\u064a \u062a\u0631\u063a\u0628  \u0628\u0645\u0631\u0627\u062c\u0639\u062a\u0647",
+		"lv": "Izv\u0113lieties p\u0101rbaud\u0101mos konfigur\u0101cijas failus:",
 		"id": "Pilih file konfigurasi untuk diperiksa",
 		"sr": "Odaberite konfiguracionu fajl koji \u017eelite proveriti:"
 	},
@@ -82,6 +84,7 @@
 		"he": "\u05d0\u05e4\u05e9\u05e8\u05d5\u05d9\u05d5\u05ea \u05d7\u05e1\u05e8\u05d5\u05ea \u05de\u05e7\u05d5\u05d1\u05e5 \u05d4\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea",
 		"zh": "\u914d\u7f6e\u6587\u4ef6\u4e2d\u9009\u9879\u7f3a\u5931",
 		"ar": "\u062e\u064a\u0627\u0631\u0627\u062a \u0645\u0641\u0642\u0648\u062f\u0629 \u0645\u0646 \u0645\u0644\u0641 \u0627\u0644\u062a\u0631\u062a\u064a\u0628",
+		"lv": "Konfigur\u0101cijas fail\u0101 tr\u016bkst opciju",
 		"id": "Opsi-opsi uang hilang dari file konfigurasi",
 		"sr": "Paramentri koji nedostaju u konfiguracionom fajlu"
 	},
@@ -110,6 +113,7 @@
 		"he": "\u05d0\u05e4\u05e9\u05e8\u05d5\u05d9\u05d5\u05ea \u05de\u05d9\u05d5\u05ea\u05e8\u05d5\u05ea \u05d1\u05e7\u05d5\u05d1\u05e5 \u05d4\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea",
 		"zh": "\u914d\u7f6e\u6587\u4ef6\u4e2d\u62e5\u6709\u8fc7\u591a\u7684\u9009\u9879",
 		"ar": "\u062e\u064a\u0627\u0631\u0627\u062a \u0641\u0627\u0626\u0636\u0629 \u0628\u0645\u0644\u0641 \u0627\u0644\u062a\u0631\u062a\u064a\u0628",
+		"lv": "S\u012bkas (superfluous) opcijas konfigur\u0101cijas fail\u0101",
 		"id": "Pilihan tak beguna di file konfigurasi",
 		"sr": "Suvi\u0161ni parametri u konfiguracionom fajlu"
 	},
@@ -138,6 +142,7 @@
 		"he": "\u05dc\u05d0 \u05e0\u05de\u05e6\u05d0\u05d5 \u05e9\u05d2\u05d9\u05d0\u05d5\u05ea.",
 		"zh": "\u6ca1\u6709\u53d1\u73b0\u9519\u8bef",
 		"ar": "\u0644\u0627 \u062a\u0648\u062c\u062f \u0623\u062e\u0637\u0627\u0621 ",
+		"lv": "K\u013c\u016bdas nav atrastas.",
 		"id": "Tidak ada error yang ditemukan",
 		"sr": "Nije prona\u0111ena nijedna gre\u0161ka."
 	},
@@ -166,6 +171,7 @@
 		"he": "\u05d7\u05d6\u05d5\u05e8 \u05d0\u05dc \u05e8\u05e9\u05d9\u05de\u05ea \u05d4\u05e7\u05d1\u05e6\u05d9\u05dd",
 		"zh": "\u8fd4\u56de\u81f3\u6587\u4ef6\u5217\u8868",
 		"ar": "\u0639\u062f \u0644\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u0644\u0641\u0627\u062a",
+		"lv": "Iet atpaka\u013c uz sarakstu",
 		"id": "Kembali ke daftar file",
 		"sr": "Vrati se natrag na listu fajlova"
 	},
@@ -194,6 +200,7 @@
 		"he": "\u05e1\u05e7\u05d9\u05e8\u05ea \u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2",
 		"zh": "\u5143\u4fe1\u606f\u6d4f\u89c8",
 		"ar": "\u0646\u0638\u0631\u0629 \u0639\u0627\u0645\u0629 \u0644\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629\/ \u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627",
+		"lv": "Metadatu p\u0101rskats",
 		"id": "Ikhtisar Metadata",
 		"sr": "Pregled metapodataka"
 	},
@@ -222,6 +229,7 @@
 		"he": "\u05db\u05d3\u05d9 \u05dc\u05d4\u05e1\u05ea\u05db\u05dc \u05e2\u05dc \u05d4\u05e4\u05e8\u05d8\u05d9\u05dd \u05e9\u05dc \u05d9\u05e9\u05d5\u05ea SAML, \u05dc\u05d7\u05e5 \u05e2\u05dc \u05db\u05d5\u05ea\u05e8\u05ea \u05d9\u05e9\u05d5\u05ea \u05d4SAML ",
 		"zh": "\u60f3\u8981\u67e5\u770bSAML\u5b9e\u4f53\u7684\u8be6\u7ec6\u60c5\u51b5\uff0c\u8bf7\u70b9\u51fbSAML\u5b9e\u4f53\u8f7d\u5165\u5668",
 		"ar": "\u0644\u0625\u0644\u063a\u0627\u0621 \u0646\u0638\u0631\u0629 \u0639\u0644\u064a \u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u062d\u062f\u064a \u0648\u062d\u062f\u0627\u062a SAML, \u0627\u0636\u063a\u0637 \u0639\u0644\u064a \u062a\u0631\u0648\u064a\u0633\u0629  \u0627\u0644\u0648\u062d\u062f\u0629 ",
+		"lv": "Lai apl\u016bkotu SAML vienuma deta\u013cas, klik\u0161\u0137iniet uz vienuma galvenes.",
 		"id": "Untuk melihat detail entiti SAML, klik pada bagian header entiti SAML",
 		"sr": "Da biste videli detalje o SAML entitetu, kliknite na njegovo zaglavlje."
 	},
@@ -250,6 +258,7 @@
 		"he": "\u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05e8\u05e9\u05d5\u05de\u05ea \u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2 \u05d6\u05d5",
 		"zh": "\u8be5\u5143\u4fe1\u606f\u5b9e\u4f53\u5b58\u5728\u9519\u8bef",
 		"ar": "\u062e\u0637\u0627 \u0628\u0647\u0630\u0627 \u0627\u0644\u0628\u064a\u0627\u0646 \u0627\u0644\u0648\u0635\u0641\u064a\/ \u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627",
+		"lv": "K\u013c\u016bda \u0161aj\u0101 metadatu ierakst\u0101",
 		"id": "Error pada entri metadata ini",
 		"sr": "Ovaj zapis metapodataka sadr\u017ei gre\u0161ku"
 	},
@@ -278,6 +287,7 @@
 		"he": "\u05e9\u05d3\u05d5\u05ea \u05e0\u05d3\u05e8\u05e9\u05d9\u05dd",
 		"zh": "\u5fc5\u9700\u7684\u533a\u57df",
 		"ar": "\u062d\u0642\u0644 \u0625\u062c\u0628\u0627\u0631\u064a",
+		"lv": "Oblig\u0101tie lauki",
 		"id": "Field-field yang wajib diisi",
 		"sr": "Obavezna polja"
 	},
@@ -306,6 +316,7 @@
 		"he": "\u05d4\u05e9\u05d3\u05d5\u05ea \u05d4\u05d3\u05e8\u05d5\u05e9\u05d9\u05dd \u05d4\u05d1\u05d0\u05d9\u05dd \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0\u05d5",
 		"zh": "\u4e0b\u5217\u5fc5\u9700\u7684\u533a\u57df\u6ca1\u6709\u627e\u5230",
 		"ar": "\u0627\u0644\u062d\u0642\u0648\u0644 \u0627\u0644\u0625\u062c\u0628\u0627\u0631\u064a\u0629 \u0623\u062f\u0646\u0627\u0647 \u0645\u0641\u0642\u0648\u062f\u0629",
+		"lv": "Nav atrasti oblig\u0101tie lauki",
 		"id": "Field-field yang diperlukan wajib disisi berikut ini tidak ditemukan",
 		"sr": "Nisu prona\u0111ena slede\u0107a opciona polja"
 	},
@@ -334,6 +345,7 @@
 		"he": "\u05e9\u05d3\u05d5\u05ea \u05e8\u05e9\u05d5\u05ea",
 		"zh": "\u9009\u9879\u533a\u57df",
 		"ar": "\u062d\u0642\u0644 \u0627\u062e\u062a\u064a\u0627\u0631\u064a",
+		"lv": "Neoblig\u0101tie lauki",
 		"id": "Field-field opsional",
 		"sr": "Opciona polja"
 	},
@@ -362,6 +374,7 @@
 		"he": "\u05e9\u05d3\u05d5\u05ea \u05d4\u05e8\u05e9\u05d5\u05ea \u05d4\u05d1\u05d0\u05d9\u05dd \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0\u05d5",
 		"zh": "\u4e0b\u5217\u5fc5\u9700\u7684\u9009\u9879\u533a\u57df\u6ca1\u6709\u627e\u5230",
 		"ar": "\u0627\u0644\u062d\u0642\u0648\u0644 \u0627\u0644\u0627\u062e\u062a\u064a\u0627\u0631\u064a\u0629 \u0623\u062f\u0646\u0627\u0647 \u0645\u0641\u0642\u0648\u062f\u0629",
+		"lv": "Nav atrasti neoblig\u0101tie lauki",
 		"id": "Field-field opsional berikut tidak dapat ditemukan",
 		"sr": "Nisu prona\u0111ena slede\u0107a opciona polja"
 	},
@@ -390,6 +403,7 @@
 		"he": "\u05d4\u05e9\u05d3\u05d5\u05ea \u05d4\u05d1\u05d0\u05d9\u05dd \u05dc\u05d0 \u05d6\u05d5\u05d4\u05d5",
 		"zh": "\u4e0b\u5217\u533a\u57df\u65e0\u6cd5\u8bc6\u522b",
 		"ar": "\u0644\u0645 \u064a\u062a\u0645 \u0627\u0644\u062a\u0639\u0631\u0641 \u0639\u0644\u064a \u0627\u0644\u0642\u0644 \u0623\u062f\u0646\u0627\u0647 ",
+		"lv": "Nav atpaz\u012bti \u0161\u0101di ievadlauki",
 		"id": "Field-field berikut ini tidak dapat dikenali",
 		"sr": "Slede\u0107a polja nisu prepoznata"
 	},
@@ -418,6 +432,7 @@
 		"he": "\u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2",
 		"zh": "\u5143\u4fe1\u606f",
 		"ar": "\u0628\u064a\u0627\u0646\u0627\u062a \u0648\u0635\u0641\u064a\u0629\/ \u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627",
+		"lv": "Metadati",
 		"id": "Metadata",
 		"sr": "Metapodaci"
 	},
@@ -446,6 +461,7 @@
 		"he": "\u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2 \u05e2\u05d1\u05d5\u05e8 SAML 2.0 \u05d1\u05ea\u05d1\u05e0\u05d9\u05ea XML:",
 		"zh": "\u5728SAML 2.0 XML \u5143\u4fe1\u606f\u683c\u5f0f\u4e2d\uff1a",
 		"ar": "\u0628\u064a\u0627\u0646\u0627\u062a SAML 2.0 \u0627\u0644\u0648\u0635\u0641\u064a\u0629 \u0628\u0635\u064a\u063a\u0629 XML",
+		"lv": "SAML 2.0 metadatos XML form\u0101t\u0101:",
 		"id": "Dalam format XML Metadata SAML 2.0",
 		"sr": "Metapodaci u SAML 2.0 XML formatu:"
 	},
@@ -473,6 +489,7 @@
 		"he": "\u05d0\u05ea\u05d4 \u05e2\u05d5\u05de\u05d3 \u05dc\u05e9\u05dc\u05d5\u05d7 \u05d4\u05d5\u05d3\u05e2\u05d4. \u05dc\u05d7\u05e5 \u05e2\u05dc \u05db\u05e4\u05ea\u05d5\u05e8 \u05d4\u05e9\u05dc\u05d9\u05d7\u05d4 \u05db\u05d3\u05d9 \u05dc\u05d4\u05de\u05e9\u05d9\u05da.",
 		"zh": "\u4f60\u51c6\u5907\u53d1\u9001\u4e00\u4e2a\u6d88\u606f\uff0c\u8bf7\u70b9\u51fb\u63d0\u4ea4\u94fe\u63a5\u4ee5\u7ee7\u7eed",
 		"ar": "\u0627\u0646\u062a \u0639\u0644\u064a \u0648\u0634\u0643 \u0625\u0631\u0633\u0627\u0644 \u0631\u0633\u0627\u0644\u0629. \u0627\u0636\u063a\u0637 \u0639\u0644\u064a \u0627\u0644\u0631\u0627\u0628\u0637 \u0644\u0644\u0645\u0648\u0627\u0635\u0644\u0629",
+		"lv": "J\u016bs gatavojaties s\u016bt\u012bt zi\u0146u. Spiediet saiti S\u016bt\u012bt zi\u0146u.",
 		"id": "Anda baru saja akan mengirim sebuah pesan. Tekan link submit pesan untuk melanjutkan.",
 		"sr": "Kliknite na link \"Po\u0161alji poruku\" da biste poslali poruku."
 	},
@@ -501,6 +518,7 @@
 		"he": "\u05e9\u05dc\u05d7 \u05d4\u05d5\u05d3\u05e2\u05d4",
 		"zh": "\u63d0\u4ea4\u4fe1\u606f",
 		"ar": "\u0633\u0644\u0645 \u0627\u0644\u0631\u0633\u0627\u0644\u0629",
+		"lv": "S\u016bt\u012bt zi\u0146u",
 		"id": "Submit pesan",
 		"sr": "Po\u0161alji poruku"
 	},
@@ -529,6 +547,7 @@
 		"he": "\u05d4\u05d5\u05d3\u05e2\u05d4",
 		"zh": "\u4fe1\u606f",
 		"ar": "\u0631\u0633\u0627\u0644\u0629",
+		"lv": "Zi\u0146a",
 		"id": "Pesan",
 		"sr": "Poruka"
 	},
@@ -556,6 +575,7 @@
 		"he": "\u05db\u05d9\u05d5\u05d5\u05df \u05e9\u05d0\u05ea\u05d4 \u05d1\u05de\u05e6\u05d1 \u05de\u05d1\u05d3\u05d9\u05e7\u05ea \u05d1\u05d0\u05d2\u05d9\u05dd, \u05d0\u05ea\u05d4 \u05e8\u05d5\u05d0\u05d4 \u05d0\u05ea \u05ea\u05d5\u05db\u05df \u05d4\u05d4\u05d5\u05d3\u05e2\u05d4 \u05e9\u05d0\u05ea\u05d4 \u05e9\u05d5\u05dc\u05d7:",
 		"zh": "\u5f53\u4f60\u5904\u5728\u8c03\u8bd5\u6a21\u5f0f\u4e2d\u65f6\uff0c\u4f60\u5c06\u770b\u5230\u4f60\u6b63\u5728\u53d1\u9001\u7684\u6d88\u606f\u7684\u5185\u5bb9",
 		"ar": "\u064a\u0645\u0643\u0646\u0643 \u0631\u0624\u064a\u0629 \u0645\u062d\u062a\u0648\u064a \u0627\u0644\u0631\u0633\u0627\u0644\u0629 \u0637\u0627\u0644\u0645\u0627 \u0643\u0646\u062a \u0641\u064a \u062d\u0627\u0644\u0629 \u062a\u0635\u062d\u064a\u062d",
+		"lv": "T\u0101 k\u0101 \u0161is ir atk\u013c\u016bdo\u0161anas re\u017e\u012bms, J\u016bs varat redz\u0113t s\u016bt\u0101m\u0101s zi\u0146as saturu:",
 		"id": "Karena anda berada pada mode debug, anda dapat melihat isi pesan yang anda kirim:",
 		"sr": "Obzirom da ste u debug modu, imate mogu\u0107nost videti sadr\u017eaj poruke koju \u0161aljete:"
 	},
@@ -584,6 +604,7 @@
 		"he": "\u05e1\u05e4\u05e7 \u05e9\u05d9\u05e8\u05d5\u05ea \u05de\u05e8\u05d5\u05d7\u05e7 \u05de\u05e1\u05d5\u05d2 SAML 2.0",
 		"zh": "SAML 2.0 \u670d\u52a1\u63d0\u4f9b\u8005 (\u8fdc\u7a0b)",
 		"ar": "\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629 SAML 2.0 \u0627\u0644\u0628\u0639\u064a\u062f",
+		"lv": "SAML 2.0 servisa pieg\u0101d\u0101t\u0101js (att\u0101lin\u0101ts)",
 		"id": "Service Provider SAML 2.0 (Remote)",
 		"sr": "SAML 2.0 Davalac Servisa (udaljeni)"
 	},
@@ -612,6 +633,7 @@
 		"he": "\u05e1\u05e4\u05e7 \u05d6\u05d4\u05d5\u05ea \u05de\u05e7\u05d5\u05de\u05d9 \u05de\u05e1\u05d5\u05d2 SAML 2.0",
 		"zh": "SAML 2.0 \u8eab\u4efd\u63d0\u4f9b\u8005\uff08\u672c\u5730\uff09",
 		"ar": "\u0645\u0642\u062f\u0645 \u0647\u0648\u064a\u0629 SAML 2.0 \u0627\u0644\u0645\u0633\u062a\u0636\u0627\u0641",
+		"lv": "SAML 2.0 identit\u0101tes pieg\u0101d\u0101t\u0101js (host\u0113ts)",
 		"id": "Identity Provider SAML 2.0 (Hosted)",
 		"sr": "SAML 2.0 Davalac Identiteta (lokalni)"
 	},
@@ -640,6 +662,7 @@
 		"he": "\u05e1\u05e4\u05e7 \u05d6\u05d4\u05d5\u05ea \u05de\u05e8\u05d5\u05d7\u05e7 \u05de\u05e1\u05d5\u05d2 SAML 2.0",
 		"zh": "SAML 2.0 \u8eab\u4efd\u63d0\u4f9b\u8005\uff08\u8fdc\u7a0b\uff09",
 		"ar": "\u0645\u0642\u062f\u0645 \u0647\u0648\u064a\u0629 SAML 2.0 \u0627\u0644\u0628\u0639\u064a\u062f",
+		"lv": "SAML 2.0 identit\u0101tes pieg\u0101d\u0101t\u0101js (att\u0101lin\u0101ts)",
 		"id": "Identity Provider SAML 2.0 (Remote)",
 		"sr": "SAML 2.0 Davalac Identiteta (udaljeni)"
 	},
@@ -668,6 +691,7 @@
 		"he": "\u05e1\u05e4\u05e7 \u05e9\u05d9\u05e8\u05d5\u05ea \u05de\u05e7\u05d5\u05de\u05d9 \u05de\u05e1\u05d5\u05d2 Shib 1.3",
 		"zh": "Shib 1.3 \u670d\u52a1\u63d0\u4f9b\u8005\uff08\u672c\u5730\uff09",
 		"ar": "\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629 Shib 1.3 \u0627\u0644\u0645\u0633\u062a\u0636\u0627\u0641",
+		"lv": "Shib 1.3 servisa pieg\u0101d\u0101t\u0101js (host\u0113ts)",
 		"id": "Service Provider Shib 1.3 (Hosted)",
 		"sr": "Shib 1.3 Davalac Servisa (lokalni)"
 	},
@@ -696,6 +720,7 @@
 		"he": "\u05e1\u05e4\u05e7 \u05e9\u05d9\u05e8\u05d5\u05ea \u05de\u05e8\u05d5\u05d7\u05e7 \u05de\u05e1\u05d5\u05d2 Shib 1.3",
 		"zh": "Shib 1.3 \u670d\u52a1\u63d0\u4f9b\u8005\uff08\u8fdc\u7a0b\uff09",
 		"ar": "\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629 Shib 1.3 \u0627\u0644\u0628\u0639\u064a\u062f",
+		"lv": "Shib 1.3 servisa pieg\u0101d\u0101t\u0101js (att\u0101lin\u0101ts)",
 		"id": "Service Provider Shib 1.3 (Remote)",
 		"sr": "Shib 1.3 Davalac Servisa (udaljeni)"
 	},
@@ -724,6 +749,7 @@
 		"he": "\u05e1\u05e4\u05e7 \u05d6\u05d4\u05d5\u05ea \u05de\u05e7\u05d5\u05de\u05d9 \u05de\u05e1\u05d5\u05d2 Shib 1.3",
 		"zh": "Shib 1.3 \u8ba4\u8bc1\u63d0\u4f9b\u8005\uff08\u672c\u5730\uff09",
 		"ar": "\u0645\u0642\u062f\u0645 \u0647\u0648\u064a\u0629 Shib 1.3 \u0627\u0644\u0645\u0633\u062a\u0636\u0627\u0641",
+		"lv": "Shib 1.3 identit\u0101tes pieg\u0101d\u0101t\u0101js (host\u0113ts)",
 		"id": "Identity Provider Shib 1.3 (Hosted)",
 		"sr": "Shib 1.3 Davalac Identiteta(lokalni)"
 	},
@@ -752,6 +778,7 @@
 		"he": "\u05e1\u05e4\u05e7 \u05d6\u05d4\u05d5\u05ea \u05de\u05e8\u05d5\u05d7\u05e7 \u05de\u05e1\u05d5\u05d2 Shib 1.3",
 		"zh": "Shib 1.3 \u8ba4\u8bc1\u63d0\u4f9b\u8005\uff08\u8fdc\u7a0b\uff09",
 		"ar": "\u0645\u0642\u062f\u0645 \u0647\u0648\u064a\u0629 Shib 1.3 \u0627\u0644\u0628\u0639\u064a\u062f",
+		"lv": "Shib 1.3 identit\u0101tes pieg\u0101d\u0101t\u0101js (att\u0101lin\u0101ts)",
 		"id": "Identity Provider Shib 1.3 (Remote)",
 		"sr": "Shib 1.3 Davalac Identiteta (udaljeni)"
 	},
@@ -780,6 +807,7 @@
 		"he": "\u05e1\u05e4\u05e7 \u05e9\u05d9\u05e8\u05d5\u05ea \u05de\u05e7\u05d5\u05de\u05d9 \u05de\u05e1\u05d5\u05d2 \u05d0\u05d9\u05d7\u05d5\u05d3-WS",
 		"zh": "WS-Federation \u670d\u52a1\u63d0\u4f9b\u8005\uff08\u672c\u5730\uff09",
 		"ar": "\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629 WS-\u0627\u0644\u0641\u062f\u0631\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0636\u0627\u0641 ",
+		"lv": "WS-Federation servisa pieg\u0101d\u0101t\u0101js (host\u0113ts)",
 		"id": "Servide Provider WS-Federation (Hosted)",
 		"sr": "WS-Federation Davalac Servisa (lokalni)"
 	},
@@ -808,6 +836,7 @@
 		"he": "\u05e1\u05e4\u05e7 \u05d6\u05d4\u05d5\u05ea \u05de\u05e8\u05d5\u05d7\u05e7 \u05de\u05e1\u05d5\u05d2 \u05d0\u05d9\u05d7\u05d5\u05d3-WS",
 		"zh": "WS-Federation \u8eab\u4efd\u63d0\u4f9b\u8005\uff08\u8fdc\u7a0b\uff09",
 		"ar": "\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629 WS-\u0627\u0644\u0641\u062f\u0631\u0627\u0644\u064a\u0629 \u0627\u0644\u0628\u0639\u064a\u062f",
+		"lv": "WS-Federation servisa pieg\u0101d\u0101t\u0101js (att\u0101lin\u0101ts)",
 		"id": "Identity Provider WS-Federation (Remote)",
 		"sr": "WS-Federation Davalac Servisa (udaljeni)"
 	},
@@ -836,6 +865,7 @@
 		"he": "\u05de\u05e0\u05ea\u05d7 \u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2",
 		"zh": "\u5143\u4fe1\u606f\u5206\u6790\u5668",
 		"ar": "\u0645\u062d\u0644\u0644 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629\/\u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627",
+		"lv": "Metadatu pars\u0113t\u0101js",
 		"id": "Parser metadata",
 		"sr": "Metadata analizator"
 	},
@@ -864,6 +894,7 @@
 		"he": "\u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2 \u05d1\u05ea\u05d1\u05e0\u05d9\u05ea XML",
 		"zh": "XML\u5143\u4fe1\u606f",
 		"ar": "\u0628\u064a\u0627\u0646\u0627\u062a \u0648\u0635\u0641\u064a\u0629 \u0628\u0635\u064a\u063a\u0629 XML",
+		"lv": "XML metadati",
 		"id": "metadata XML",
 		"sr": "Metapodaci u XML formatu"
 	},
@@ -892,6 +923,7 @@
 		"he": "\u05e0\u05ea\u05d7",
 		"zh": "\u5206\u6790\u5668",
 		"ar": "\u062d\u0644\u0644",
+		"lv": "Pars\u0113t",
 		"id": "Parse",
 		"sr": "Analiziraj"
 	},
@@ -920,6 +952,7 @@
 		"he": "\u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2 \u05de\u05d5\u05de\u05e8",
 		"zh": "\u8f6c\u6362\u8fc7\u7684\u5143\u4fe1\u606f",
 		"ar": "\u0628\u064a\u0627\u0646\u0627\u062a \u0648\u0635\u0641\u064a\u0629 \u0645\u062d\u0648\u0644\u0629",
+		"lv": "Konvert\u0113tie metadati",
 		"id": "Metadata yang telah dikonvesi",
 		"sr": "Konvertovani metapodaci"
 	},
@@ -948,6 +981,7 @@
 		"he": "\u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2 \u05e9\u05dc \u05e1\u05e9 \u05de\u05e1\u05d5\u05d2 SAML 2.0 ",
 		"zh": "SAML 2.0 SP \u5143\u4fe1\u606f",
 		"ar": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629 \u0644 SAML 2.0 SP",
+		"lv": "SAML 2.0 SP metadati",
 		"id": "Metadata SAML 2.0 SP",
 		"sr": "SAML 2.0 SP metapodaci"
 	},
@@ -976,6 +1010,7 @@
 		"he": "\u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2 \u05e9\u05dc \u05e1\u05d6 \u05de\u05e1\u05d5\u05d2 SAML 2.0 ",
 		"zh": "SAML 2.0 IdP \u5143\u4fe1\u606f",
 		"ar": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629 \u0644 SAML 2.0 IdP",
+		"lv": "SAML 2.0 IdP metadati",
 		"id": "Metadata SAML 2.0 IdP",
 		"sr": "SAML 2.0 IdP metapodaci"
 	},
@@ -1004,6 +1039,7 @@
 		"he": "\u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2 \u05e9\u05dc \u05e1\u05e9 \u05de\u05e1\u05d5\u05d2 Shib 1.3",
 		"zh": "Shib 1.3 SP \u5143\u4fe1\u606f",
 		"ar": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629 \u0644Shib 1.3 SP",
+		"lv": "Shib 1.3 SP metadati",
 		"id": "Metadata Shib 1.3 SP",
 		"sr": "Shib 1.3 SP metapodaci"
 	},
@@ -1032,6 +1068,7 @@
 		"he": "\u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2 \u05e9\u05dc \u05e1\u05d6 \u05de\u05e1\u05d5\u05d2 Shib 1.3",
 		"zh": "Shib 1.3 IdP \u5143\u4fe1\u606f",
 		"ar": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629 \u0644Shib 1.3 IdP",
+		"lv": "Shib 1.3 IdP metadati",
 		"id": "Metadata Shib 1.3 IdP",
 		"sr": "Shib 1.3 IdP metapodaci"
 	},
@@ -1060,6 +1097,7 @@
 		"he": "\u05d4\u05e0\u05d4 \u05d4\u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2 \u05e9 simpleSAMLphp \u05d9\u05d9\u05e6\u05e8 \u05e2\u05d1\u05d5\u05e8\u05da. \u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05e9\u05dc\u05d5\u05d7 \u05d0\u05ea \u05de\u05e1\u05de\u05da \u05d4\u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2 \u05dc\u05e9\u05d5\u05ea\u05e4\u05d9\u05dd \u05de\u05d4\u05d9\u05de\u05e0\u05d9\u05dd \u05db\u05d3\u05d9 \u05dc\u05d9\u05e6\u05d5\u05e8 \u05d0\u05d9\u05d7\u05d5\u05d3 \u05de\u05d0\u05d5\u05d1\u05d8\u05d7. ",
 		"zh": "\u8fd9\u91cc\u662fsimpleSAMLphp\u4e3a\u4f60\u751f\u6210\u7684\u5143\u4fe1\u606f\uff0c\u4f60\u5e94\u8be5\u53d1\u9001\u8fd9\u4e2a\u5143\u4fe1\u606f\u6587\u6863\u7ed9\u4f60\u7684\u4fe1\u4efb\u7684\u5408\u4f5c\u4f19\u4f34\u4ee5\u5efa\u7acb\u4fe1\u4efb\u7684\u8054\u76df",
 		"ar": "\u0647\u0630\u0647 \u0647\u064a \u0628\u064a\u0627\u0646\u0627\u062a\u0643 \u0627\u0644\u0648\u0635\u0641\u064a\u0629 \u0627\u0644\u0645\u062c\u0647\u0632\u0629 \u0628\u0648\u0627\u0633\u0637\u0629 SAMLphp. \u0644\u0644\u062a\u062c\u0647\u064a\u0632 \u0644\u0641\u062f\u0631\u0627\u0644\u064a\u0629 \u0645\u0648\u062b\u0648\u0642 \u0628\u0647\u0627 \u0642\u0645 \u0628\u0625\u0631\u0633\u0627\u0644 \u0647\u0630\u0647 \u0627\u0644\u0648\u062b\u064a\u0642\u0629  \u0644\u0634\u0631\u0643\u0627\u0621 \u0645\u0648\u062b\u0648\u0642 \u0628\u0647\u0645",
+		"lv": "\u0160eit ir simpleSAMLphp \u0123ener\u0113tie metadati. J\u016bs varat tos s\u016bt\u012bt partneriem, lai izveidotu uzticamu feder\u0101ciju.",
 		"id": "Berikut ini adalah simpleSAMLphp metadata yang telah digenerate untuk Anda. Anda dapat mengirim dokumen metadata ini kepada rekan yang dipercayai untuk mensetup federasi terpercaya.",
 		"sr": "Ovo su metapodaci koje je simpleSAMLphp izgenerisao za vas. Te metapodatke mo\u017eete poslati davaocima servisa ili davaocima identiteta u koje imate poverenja i sa kojima \u017eelite uspostaviti federaciju."
 	},
@@ -1088,6 +1126,7 @@
 		"he": "\u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc <a href=\"%METAURL%\">\u05dc\u05e7\u05d1\u05dc \u05d0\u05ea \u05d4\u05de\u05d8\u05d0 \u05de\u05d9\u05d3\u05e2 \u05d1\u05db\u05ea\u05d5\u05d1\u05ea \u05e0\u05e4\u05e8\u05d3\u05ea<\/a>:",
 		"zh": "\u4f60\u53ef\u4ee5\u5728 <a href=\"%METAURL%\">\u83b7\u53d6\u5143\u4fe1\u606fXML<\/a>",
 		"ar": "\u064a\u0645\u0643\u0646\u0643 \u0627\u0644\u062d\u0635\u0648\u0644 \u0639\u0644\u064a \u0628\u064a\u0627\u0646\u0627\u062a\u0643 \u0627\u0644\u0648\u0635\u0641\u064a\u0629 \u0628\u0645\u0644\u0641 xml \u0628 URL \u0645\u062a\u062e\u0635\u0635 \u0628\u0625\u062f\u062e\u0627\u0644<a href=\"%METAURL%\">",
+		"lv": "J\u016bs varat <a href=\"%METAURL%\">sa\u0146emt metadatu xml \u0161aj\u0101 URL<\/a>:",
 		"id": "Anda dapat <a href=\"%METAURL%\">mendapatkan xml metadata pada URL tersendiri<\/a>:",
 		"sr": "Metapodaci su dostupni na <a href=\"%METAURL%\">ovoj adresi<\/a>:"
 	},
@@ -1115,6 +1154,7 @@
 		"he": "\u05d1\u05ea\u05d1\u05e0\u05d9\u05ea \u05e7\u05d5\u05d1\u05e5 simpleSAMLphp \u05e9\u05d8\u05d5\u05d7 - \u05dc\u05de\u05e7\u05e8\u05d9\u05dd \u05d1\u05d4\u05dd \u05d0\u05ea\u05d4 \u05de\u05e9\u05ea\u05de\u05e9 \u05d1\u05d9\u05e9\u05d5\u05ea simpleSAMLphp \u05d1\u05e6\u05d3 \u05d4\u05e9\u05e0\u05d9: ",
 		"zh": "\u5982\u679c\u4f60\u60f3\u5728\u5176\u4ed6\u7f51\u7ad9\u4f7f\u7528\u7684simpleSAMLphp\uff0c\u90a3\u4e48\u4f60\u5e94\u8be5\u4f7f\u7528simpleSAMLphp\u6241\u5e73\u7684\u6587\u4ef6\u683c\u5f0f",
 		"ar": "\u0628\u0635\u064a\u063a\u0629 simpleSAMLphp- \u0627\u0633\u062a\u062e\u062f\u0645 \u0647\u0630\u0647 \u0627\u0644\u0635\u064a\u063a\u0629 \u0627\u0646 \u0643\u0646\u062a \u062a\u0633\u062a\u062e\u062f\u0645 \u0648\u062d\u062f\u0629 simpleSAMLphp \u0628\u0627\u0644\u0627\u062a\u062c\u0627\u0647 \u0627\u0644\u0627\u062e\u0631 \u0627\u064a\u0636\u0627\u064b",
+		"lv": "SimpleSAMLphp parasta faila form\u0101t\u0101 - lietojiet \u0161o, ja izmantojat simpleSAMLphp ent\u012btiju otr\u0101 gal\u0101:",
 		"id": "Dalam format file biasa simpleSAMLphp - gunakan ini jika Anda menggunakan entiti simpleSAMLphp pada sisi lain:",
 		"sr": "U simpleSAMLphp formatu - koristite ovu opciju ako se na drugoj strani tako\u0111e nalazi simpleSAMLphp entitet:"
 	},
@@ -1143,6 +1183,7 @@
 		"he": "\u05e9\u05d5\u05dc\u05d7 \u05d4\u05d5\u05d3\u05e2\u05d4",
 		"zh": "\u6b63\u5728\u53d1\u9001\u6d88\u606f",
 		"ar": "\u0627\u0631\u0633\u0644 \u0631\u0633\u0627\u0644\u0629",
+		"lv": "Zi\u0146as s\u016bt\u012b\u0161ana",
 		"id": "Mengirimpan pesan",
 		"sr": "\u0160aljem poruku"
 	},
@@ -1170,6 +1211,7 @@
 		"he": "\u05d0\u05ea\u05d4 \u05e2\u05d5\u05de\u05d3 \u05dc\u05e9\u05dc\u05d5\u05d7 \u05d4\u05d5\u05d3\u05e2\u05d4. \u05dc\u05d7\u05e5 \u05e2\u05dc \u05db\u05e4\u05ea\u05d5\u05e8 \u05d4\u05e9\u05dc\u05d9\u05d7\u05d4 \u05db\u05d3\u05d9 \u05dc\u05d4\u05de\u05e9\u05d9\u05da.",
 		"zh": "\u4f60\u51c6\u5907\u53d1\u9001\u4e00\u4e2a\u6d88\u606f\uff0c\u8bf7\u70b9\u51fb\u63d0\u4ea4\u6309\u94ae\u4ee5\u7ee7\u7eed",
 		"ar": "\u0627\u0646\u062a \u0639\u0644\u064a \u0648\u0634\u0643 \u0625\u0631\u0633\u0627\u0644 \u0631\u0633\u0627\u0644\u0629. \u0627\u0636\u063a\u0637 \u0639\u0644\u064a \u0627\u0644\u0632\u0631 \u0644\u0644\u0645\u0648\u0627\u0635\u0644\u0629",
+		"lv": "J\u016bs gatavojaties s\u016bt\u012bt zi\u0146u. Spiediet pogu S\u016bt\u012bt zi\u0146u.",
 		"id": "Anda baru saja akan mengirim sebuah pesan. Tekan tombol submit pesan untuk melanjutkan.",
 		"sr": "Kliknite na dugme \"Po\u0161alji poruku\" da biste poslali poruku."
 	},
@@ -1198,6 +1240,7 @@
 		"he": "\u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05db\u05d1\u05d5\u05ea \u05d0\u05ea \u05de\u05e6\u05d1 \u05d1\u05d3\u05d9\u05e7\u05ea \u05d4\u05d1\u05d0\u05d2\u05d9\u05dd \u05d1\u05e7\u05d5\u05d1\u05e5 \u05d1\u05d4\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea \u05d4\u05d2\u05dc\u05d5\u05d1\u05dc\u05d9 \u05e9\u05dc simpleSAMLphp <tt>config\/config.php<\/tt>.",
 		"zh": "\u4f60\u53ef\u4ee5\u5173\u95ed\u8c03\u8bd5\u6a21\u5f0f\uff0c\u5728simpleSAMLphp\u5168\u5c40\u914d\u7f6e\u6587\u4ef6<tt>config\/config.php<\/tt>\u4e2d",
 		"ar": "\u064a\u0645\u0643\u0646\u0643 \u0625\u063a\u0644\u0627\u0642 \u062d\u0627\u0644\u0629 \u0627\u0644\u062a\u0635\u062d\u064a\u062d \u0628\u0645\u0644\u0641 \u062a\u0631\u062a\u064a\u0628 simpleSAMLphp<tt>config\/config.php<\/tt>",
+		"lv": "J\u016bs varat izsl\u0113gt atk\u013c\u016bdo\u0161anas re\u017e\u012bmu glob\u0101laj\u0101 simpleSAMLphp konfigur\u0101cijas fail\u0101 <tt>config\/config.php<\/tt>.",
 		"id": "Anda dapat menonaktifkan mode debuh pada file konfigurasi global simpleSAMLhphp  <tt>config\/config.php<\/tt>.",
 		"sr": "Debug mod mo\u017eete isklju\u010diti u glavnom simpleSAMLphp konfiguracionom fajlu <tt>config\/config.php<\/tt>. "
 	},
@@ -1226,6 +1269,7 @@
 		"he": "\u05e1\u05e4\u05e7 \u05e9\u05d9\u05e8\u05d5\u05ea \u05de\u05e7\u05d5\u05de\u05d9 \u05de\u05e1\u05d5\u05d2 SAML 2.0",
 		"zh": "SAML 2.0 \u670d\u52a1\u63d0\u4f9b\u8005\uff08\u672c\u5730\uff09",
 		"ar": "\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629 SAML 2.0 (\u0627\u0644\u0645\u0633\u062a\u0636\u0627\u0641)",
+		"lv": "SAML 2.0 servisa pieg\u0101d\u0101t\u0101js (host\u0113ts)",
 		"id": "Service Provider SAML 2.0 (Hosted)",
 		"sr": "SAML 2.0 Davalac Servisa (lokalni)"
 	},
@@ -1255,6 +1299,7 @@
 		"ru": "\u0423\u0432\u0435\u0434\u043e\u043c\u043b\u0435\u043d\u0438\u044f",
 		"zh": "\u901a\u544a",
 		"ar": "\u0645\u0644\u062d\u0648\u0638\u0627\u062a",
+		"lv": "Br\u012bdin\u0101jumi",
 		"id": "Pemberitahuan",
 		"sr": "Napomene"
 	},
@@ -1271,6 +1316,7 @@
 		"hu": "Tan\u00fas\u00edtv\u00e1nyok.",
 		"ar": "\u0627\u0644\u0634\u0647\u0627\u062f\u0627\u062a",
 		"hr": "Certifikati",
+		"lv": "Sertifik\u0101ti",
 		"id": "Sertifikat",
 		"sr": "Sertifikati",
 		"nn": "Sertifikat",
@@ -1291,6 +1337,7 @@
 		"hu": "PEM form\u00e1tum\u00fa X509 tan\u00fas\u00edtv\u00e1ny let\u00f6lt\u00e9se.",
 		"ar": "\u062d\u0645\u0644 \u0634\u0647\u0627\u062f\u0627\u062a X509 \u0643\u0645\u0644\u0641\u0627\u062a \u0628\u062a\u0631\u0645\u064a\u0632 PEM",
 		"hr": "Preuzmite X509 certifikate u PEM formatu.",
+		"lv": "Lejupiel\u0101d\u0113t X509 sertifik\u0101tus k\u0101 PEM-kod\u0113tus failus.",
 		"id": "Download sertifikat X509 sebagai file dikodekan-PEM.",
 		"sr": "Preuzmite X509 sertifikate u PEM formatu.",
 		"nn": "Last ned X509-sertifikat som PEM-koda filer",

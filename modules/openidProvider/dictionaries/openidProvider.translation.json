@@ -19,6 +19,7 @@
 		"he": "\u05e1\u05e4\u05e7 OpenID",
 		"zh": "OpenID\u63d0\u4f9b\u8005",
 		"ar": "\u0645\u0632\u0648\u062f \u0627\u0644 OpenID",
+		"lv": "OpenID pieg\u0101d\u0101t\u0101js",
 		"id": "Provider OpenID",
 		"sr": "Davalac OpenID digitalnih identiteta"
 	},
@@ -43,6 +44,7 @@
 		"zh": "%USERID%\u7684OpenID",
 		"hu": "%USERID% OpenID azonos\u00edt\u00f3ja",
 		"ar": "%USERID% \u0644 OpenID",
+		"lv": "OpenID priek\u0161 %USERID%",
 		"id": "OpenID untuk %USERID%",
 		"sr": "OpenID za %USERID%"
 	},
@@ -66,6 +68,7 @@
 		"he": "<code>%USERID%<\/code>. \u05d6\u05d4\u05d5 \u05d3\u05e3 \u05d4\u05de\u05e9\u05ea\u05de\u05e9  OpenID \u05e2\u05d1\u05d5\u05e8 ",
 		"zh": "\u8fd9\u662f<code>%USERID%<\/code>\u7684OpenID\u7684\u7528\u6237\u9875\u9762",
 		"ar": "\u0635\u0641\u062d\u0629 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0644 OpenID <code>%USERID%<\/code>",
+		"lv": "\u0160\u012b ir OpenID lietot\u0101ja lapa priek\u0161 <code>%USERID%<\/code>.",
 		"id": "Ini adalah halaman pengguna OpenID untuk <code>%USERID%<\/code>.",
 		"sr": "Ovo je OpenID stranica za korisnika <code>%USERID%<\/code>."
 	},
@@ -90,6 +93,7 @@
 		"zh": "\u8bbf\u95ee\u4f60\u81ea\u5df1\u7684OpenID\u9875\u9762",
 		"hu": "Tekintse meg OpenID oldal\u00e1t.",
 		"ar": "\u0634\u0627\u0647\u062f \u0635\u0641\u062d\u062a\u064a \u0628 OpenID",
+		"lv": "Skatiet savu OpenID lapu.",
 		"id": "Lihat halaman OpenID anda.",
 		"sr": "Pogledaj svoju OpenID stranicu."
 	},
@@ -113,6 +117,7 @@
 		"he": "\u05d4\u05ea\u05d7\u05d1\u05e8 \u05dc\u05de\u05e2\u05e8\u05db\u05ea \u05db\u05d3\u05d9 \u05dc\u05e8\u05d0\u05d5\u05ea \u05d0\u05ea \u05d3\u05e3 \u05d4 OpenID \u05e9\u05dc\u05da",
 		"zh": "\u767b\u5f55\u4ee5\u8bbf\u95ee\u4f60\u81ea\u5df1\u7684OpenID\u9875\u9762",
 		"ar": "\u0642\u0645 \u0628\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644 \u0644\u062a\u0634\u0627\u0647\u062f \u0635\u0641\u062d\u062a\u0643 \u0628 OpenID",
+		"lv": "Piesl\u0113dzieties pie savas OpenID lapas.",
 		"id": "Log in untuk melihat halaman OpenID Anda.",
 		"sr": "Prijavite se da biste videli va\u0161u OpenID stranicu."
 	},
@@ -137,6 +142,7 @@
 		"zh": "\u767b\u51fa",
 		"hu": "Kil\u00e9p\u00e9s",
 		"ar": "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c",
+		"lv": "Atsl\u0113gties",
 		"id": "Log out",
 		"sr": "Odjavi se"
 	},
@@ -161,6 +167,7 @@
 		"zh": "\u70b9\u51fb\u8fd9\u91cc\u767b\u51fa\u4f60\u7684OpenID",
 		"hu": "Kattintson a kil\u00e9p\u00e9shez.",
 		"ar": "\u0627\u0636\u063a\u0637 \u0644\u062a\u062e\u0631\u062c \u0645\u0646 OpenID \u062e\u0627\u0635\u062a\u0643",
+		"lv": "Klik\u0161\u0137iniet \u0161eit, lai atsl\u0113gtos.",
 		"id": "Klik disini untuk log out dari user OpenID anda.",
 		"sr": "Kliknite ovde da biste se odjavili."
 	},
@@ -184,6 +191,7 @@
 		"he": "\u05d4\u05d0\u05dd \u05d1\u05e8\u05e6\u05d5\u05e0\u05da \u05dc\u05d4\u05ea\u05d7\u05d1\u05e8 \u05dc %SITEURL%?",
 		"zh": "\u4f60\u60f3\u767b\u5f55\u81f3%SITEURL%",
 		"ar": "\u0647\u0644 \u062a\u0631\u063a\u0628 \u0628\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644 \u0644 %SITEURL%?",
+		"lv": "Vai v\u0113laties piesl\u0113gties pie %SITEURL%?",
 		"id": "Apakah anda ingin log in ke %SITEURL%?",
 		"sr": "\u017delite li se prijaviti za pristup stranici %SITEURL%?"
 	},
@@ -211,6 +219,7 @@
 		"he": "\u05d6\u05db\u05d5\u05e8 \u05d0\u05ea \u05d4\u05d4\u05d7\u05dc\u05d8\u05d4",
 		"zh": "\u8bb0\u4f4f\u8fd9\u4e2a\u51b3\u5b9a",
 		"ar": "\u062a\u0630\u0643\u0631 \u0647\u0630\u0627 \u0627\u0644\u0642\u0631\u0627\u0631",
+		"lv": "Atcer\u0113ties \u0161o izv\u0113li",
 		"id": "Ingat pilihan ini.",
 		"sr": "Zapamti ovu odluku"
 	},
@@ -238,6 +247,7 @@
 		"he": "\u05d0\u05e9\u05e8",
 		"zh": "\u786e\u8ba4",
 		"ar": "\u062a\u0627\u0643\u064a\u062f\u0627\u0644\u0642\u0631\u0627\u0631\u0627\u062a \u0643\u064a\u062f",
+		"lv": "Piekrist",
 		"id": "Konfirmasi",
 		"sr": "Potvrdi"
 	},
@@ -265,6 +275,7 @@
 		"he": "\u05d0\u05dc \u05ea\u05d0\u05e9\u05e8",
 		"zh": "\u4e0d\u786e\u8ba4",
 		"ar": "\u0644\u0627 \u062a\u0624\u0643\u062f",
+		"lv": "Nepiekrist",
 		"id": "Jangan konfirmasi",
 		"sr": "Nemoj potvrditi"
 	},
@@ -292,6 +303,7 @@
 		"he": "\u05d0\u05ea\u05e8\u05d9\u05dd \u05de\u05d4\u05d9\u05de\u05e0\u05d9\u05dd",
 		"zh": "\u4fe1\u4efb\u7ad9\u70b9",
 		"ar": "\u0645\u0648\u0642\u0639 \u0645\u0648\u062b\u0648\u0642 \u0628\u0647",
+		"lv": "Uzticam\u0101s vietnes",
 		"id": "Situs yang dipercayai",
 		"sr": "Web stranice kojima verujete"
 	},
@@ -316,6 +328,7 @@
 		"zh": "\u79fb\u9664",
 		"hu": "T\u00f6r\u00f6l",
 		"ar": " \u0627\u0645\u0633\u062d",
+		"lv": "Dz\u0113st",
 		"id": "Buang",
 		"sr": "Ukloni "
 	},
@@ -339,6 +352,7 @@
 		"he": "\u05d0\u05d9\u05df \u05d0\u05ea\u05e8\u05d9\u05dd \u05de\u05d4\u05de\u05e0\u05d9\u05dd. \u05db\u05d0\u05e9\u05e8 \u05ea\u05d6\u05d3\u05d4\u05d4 \u05e2\u05dd \u05d0\u05ea\u05e8, \u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05d1\u05d7\u05d5\u05e8 \u05dc\u05d4\u05d5\u05e1\u05d9\u05e3 \u05d0\u05d5\u05ea\u05d5 \u05dc\u05e8\u05e9\u05d9\u05de\u05d4 \u05d6\u05d5 \u05e2\u05dc \u05d9\u05d3\u05d9 \u05d1\u05d7\u05d9\u05e8\u05ea <q>\u05d6\u05db\u05d5\u05e8 \u05d0\u05ea \u05d4\u05d4\u05d7\u05dc\u05d8\u05d4<\/q>.",
 		"zh": "\u6ca1\u6709\u4fe1\u4efb\u7ad9\u70b9\uff0c\u5f53\u4f60\u8ba4\u8bc1\u4e00\u4e2a\u7ad9\u70b9\u7684\u65f6\u5019\uff0c\u4f60\u53ef\u4ee5\u9009\u62e9\u589e\u52a0\u81f3\u4fe1\u4efb\u5217\u8868\u901a\u8fc7\u9009\u62e9<q>\u8bb0\u4f4f\u8fd9\u4e2a\u51b3\u5b9a<\/q>",
 		"ar": "\u0644\u0627 \u062a\u0648\u062c\u062f \u0645\u0648\u0627\u0642\u0639 \u0645\u0648\u062b\u0648\u0642 \u0628\u0647\u0627. \u0639\u0646\u062f\u0645\u0627 \u062a\u0642\u0648\u0645 \u0628\u0627\u0644\u062a\u0635\u062f\u064a\u0642 \u0639\u0644\u064a \u0627\u062d\u062f \u0627\u0644\u0645\u0648\u0627\u0642\u0639\u060c \u064a\u0645\u0643\u0646\u0643 \u0625\u0636\u0627\u0641\u062a\u0647 \u0644\u0644\u0642\u0627\u0626\u0645\u0629 \u0628\u0627\u062e\u062a\u064a\u0627\u0631 <q>remember this decision<\/q>.",
+		"lv": "Nav uzticamu viet\u0146u. Kad autentific\u0113jaties \u0161aj\u0101 vietn\u0113, varat to pievienot sarakstam izv\u0113loties <q>Atcer\u0113ties \u0161o izv\u0113li<\/q>.",
 		"id": "Tidak ada situs yang dipercayai. Ketika anda melakukan autentifikasi pada suatu situs, anda dapat memilih untuk menambahkannya ke daftar ini dengan memilih <q>Remember this decision<\/q>.",
 		"sr": "Trenutno ne verujete nijednoj web stranici. Prilikom autentifikacije za pristup nekoj web stranici mo\u017eete je postaviti na popis stranica kojima verujete odabirom opcije <q>Zapamti ovu odluku<\/q>."
 	},
@@ -362,6 +376,7 @@
 		"he": "\u05db\u05d3\u05d9 \u05dc\u05d4\u05ea\u05d7\u05d1\u05e8 \u05e2\u05dd \u05de\u05d6\u05d4\u05d4 OpenID, \u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05de\u05d6\u05d4\u05d4 \u05d4\u05d1\u05d0:",
 		"zh": "\u9009\u62e9\u5982\u4e0b\u7684\u6807\u5fd7\uff0c\u4f7f\u7528\u4f60\u81ea\u5df1\u7684OpenID\u6807\u5fd7\u767b\u5f55",
 		"ar": "\u0644\u0644\u062f\u062e\u0648\u0644 \u0645\u0633\u062a\u062e\u062f\u0645\u0627 \u064b \u0627\u0633\u0645 \u062f\u062e\u0648\u0644\u0643 \u0644 OpenID, \u0627\u0633\u062a\u062e\u062f\u0645 \u0627\u0644\u062a\u0639\u0631\u064a\u0641 \u0623\u062f\u0646\u0627\u0647 ",
+		"lv": "Lai piesl\u0113gtos ar J\u016bsu OpenID identifikatoru, izmantojiet \u0161o identifikatoru:",
 		"id": "Untuk log in dengan identifier OpenID anda, gunakan identifier berikut :",
 		"sr": "Da biste se prijavili s va\u0161im OpenID digitalnim identitetom, koristite slede\u0107i identifikator:"
 	},
@@ -385,6 +400,7 @@
 		"he": "\u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05d4\u05e1\u05de\u05d9\u05da \u05de\u05d6\u05d4\u05d4 \u05e9\u05d5\u05e0\u05d4 \u05dc\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05e1\u05e4\u05e7 OpenID <code>&lt;head&gt;<\/code> \u05dc\u05d3\u05e3 \u05d4\u05d1\u05d9\u05ea \u05e9\u05dc \u05d4\u05de\u05d6\u05d4\u05d4 \u05d4\u05de\u05d1\u05d5\u05e7\u05e9: \u05d4\u05e0\u05d5\u05db\u05d7\u05d9. \u05d1\u05e9\u05d1\u05d9\u05dc \u05db\u05da, \u05d0\u05ea\u05d4 \u05e6\u05e8\u05d9\u05da \u05dc\u05d4\u05d5\u05e1\u05d9\u05e3 \u05e8\u05ea \u05d0\u05dc\u05de\u05e0\u05d8 ",
 		"zh": "\u4f60\u53ef\u4ee5\u6388\u6743\u4e00\u4e2a\u4e0d\u540c\u7684\u6807\u8bc6\u7b26\uff0c\u6765\u4f7f\u7528\u8fd9\u4e2aOpenID\u63d0\u4f9b\u8005\uff0c\u4e3a\u6b64\u4f60\u9700\u8981\u5728\u90a3\u4e2a\u6807\u8bc6\u7b26<code>&lt;head&gt;<\/code>\u5143\u7d20\u4e2d\u6dfb\u52a0\u4e0b\u5217\u4fe1\u606f",
 		"ar": "\u064a\u0645\u0643\u0646\u0643 \u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u062a\u0639\u0631\u064a\u0641 \u0627\u062e\u0631 \u0644\u0644\u062f\u062e\u0648\u0644 \u0644\u0647\u0630\u0627 \u0627\u0644\u0645\u0648\u0642\u0639\u060c \u0644\u0644\u0642\u064a\u0627\u0645 \u0628\u0630\u0644\u0643 \u0642\u0645 \u0628\u0625\u0636\u0627\u0641\u0629 \u0627\u0644\u0622\u062a\u064a <code>&lt;head&gt;<\/code>-element \u0644\u0645\u062a\u0635\u0641\u062d\u0643",
+		"lv": "J\u016bs varat ar\u012b dele\u0123\u0113t citu identifikatoru \u0161\u012b OpenID pied\u0101v\u0101t\u0101ja izmanto\u0161anai. Lai to izdar\u012btu, identifikatora interneta lap\u0101 pie <code>&lt;head&gt;<\/code>-elementa Jums j\u0101pievieno sekojo\u0161ais:",
 		"id": "Anda juga dapat mendelegasikan pengidentifikasi yang berbeda untuk menggunakan provider OpenID ini. Untuk melakukan hal itu, anda harus menambahkan <code>&lt;head&gt;<\/code>-element ke halaman web pengidentifikasi tersebut.",
 		"sr": "Ovom davaocu OpenID digitalnih identiteta mo\u017eete dodeliti i druga\u010diji identifikator. Da biste to uradili, morate dodati slede\u0107i sadr\u017eaj u <code>&lt;head&gt;<\/code> element web stranice tog identifikatora:"
 	}

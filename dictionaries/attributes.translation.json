@@ -29,7 +29,8 @@
 		"zh": "\u8054\u7edc\u65b9\u5f0f",
 		"sr": "Povezanost sa institucijom",
 		"ar": "\u062c\u0647\u0629 \u0627\u0644\u0639\u0645\u0644",
-		"id": "Afiliasi"
+		"id": "Afiliasi",
+		"lv": "Pieder\u012bba"
 	},
 	"attribute_title": {
 		"no": "Tittel",
@@ -60,7 +61,8 @@
 		"zh": "\u6807\u9898",
 		"sr": "Zvanje",
 		"ar": "\u0627\u0644\u0644\u0642\u0628",
-		"id": "Gelar"
+		"id": "Gelar",
+		"lv": "Amats"
 	},
 	"attribute_uid": {
 		"no": "Bruker-ID",
@@ -92,7 +94,8 @@
 		"zh": "\u7528\u6237ID",
 		"sr": "Korisni\u010dko ime",
 		"ar": "\u0627\u0644\u0627\u0633\u0645 \u0627\u0644\u062a\u0639\u0631\u064a\u0641\u064a \u0644\u0644\u0645\u0633\u062a\u062e\u062f\u0645",
-		"id": "User ID"
+		"id": "User ID",
+		"lv": "Lietot\u0101ja ID"
 	},
 	"attribute_sn": {
 		"no": "Etternavn",
@@ -124,7 +127,8 @@
 		"zh": "\u59d3",
 		"sr": "Prezime",
 		"ar": "\u0627\u0633\u0645 \u0627\u0644\u0639\u0627\u0626\u0644\u0647",
-		"id": "Nama Keluaga"
+		"id": "Nama Keluaga",
+		"lv": "Uzv\u0101rds"
 	},
 	"attribute_givenname": {
 		"no": "Fornavn",
@@ -156,7 +160,8 @@
 		"zh": "\u540d",
 		"sr": "Ime",
 		"ar": "\u0627\u0644\u0627\u0633\u0645",
-		"id": "Nama"
+		"id": "Nama",
+		"lv": "V\u0101rds"
 	},
 	"attribute_cn": {
 		"no": "Fullt navn",
@@ -188,7 +193,8 @@
 		"zh": "\u5e38\u7528\u540d\u5b57",
 		"sr": "Ime i Prezime",
 		"ar": "\u0623\u0633\u0645\u0627\u0621 \u0627\u062e\u0631\u064a",
-		"id": "Common Name"
+		"id": "Common Name",
+		"lv": "V\u0101rds"
 	},
 	"attribute_mail": {
 		"no": "E-post",
@@ -220,7 +226,8 @@
 		"zh": "\u90ae\u7bb1",
 		"sr": "Elektronska adresa",
 		"ar": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0628\u0631\u064a\u062f\u064a",
-		"id": "Mail"
+		"id": "Mail",
+		"lv": "Pasts"
 	},
 	"attribute_mobile": {
 		"no": "Mobiltelefon",
@@ -252,7 +259,8 @@
 		"zh": "\u624b\u673a",
 		"sr": "Broj mobilnog telefona",
 		"ar": "\u0631\u0642\u0645 \u0627\u0644\u0647\u0627\u062a\u0641 \u0627\u0644\u0633\u064a\u0627\u0631",
-		"id": "Handphone"
+		"id": "Handphone",
+		"lv": "Mobilais telefons"
 	},
 	"attribute_preferredlanguage": {
 		"no": "Foretrukket spr\u00e5k",
@@ -284,7 +292,8 @@
 		"zh": "\u9996\u9009\u8bed\u8a00",
 		"sr": "Preferirani jezik",
 		"ar": "\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0645\u0641\u0636\u0644\u0629",
-		"id": "Pilihan Bahasa"
+		"id": "Pilihan Bahasa",
+		"lv": "V\u0113lam\u0101 valoda"
 	},
 	"attribute_noredupersonnin": {
 		"no": "F\u00f8dselsnummer",
@@ -316,7 +325,8 @@
 		"zh": "\u8eab\u4efd\u8bc1\u53f7\u7801",
 		"sr": "Jedinstveni brojni identifikator osobe",
 		"ar": "\u0627\u0644\u0631\u0642\u0645 \u0627\u0644\u062a\u0639\u0631\u064a\u0641\u064a \u0627\u0644\u0645\u0639\u064a\u0646 \u0645\u0646 \u0642\u0628\u0644 \u0627\u0644\u0633\u0644\u0637\u0627\u062a \u0627\u0644\u0639\u0627\u0645\u0629 ",
-		"id": "Identity number assigned by public authorities"
+		"id": "Identity number assigned by public authorities",
+		"lv": "Publisko autorit\u0101\u0161u pie\u0161\u0137irtais identit\u0101tes numurs"
 	},
 	"attribute_schachomeorganization": {
 		"no": "Unik ID for organisasjon",
@@ -347,6 +357,7 @@
 		"zh": "\u9996\u9875\u7ec4\u7ec7\u7684\u57df\u540d",
 		"ar": "\u0627\u0633\u0645 \u0627\u0644\u0646\u0637\u0627\u0642 \u0627\u0644\u0645\u062e\u0635\u0635 \u0644\u0644\u0645\u0646\u0638\u0645\u0629\u0627\u0644\u0627\u0645\\\u0627\u0644\u0645\u0648\u0642\u0639 \u0627\u0644\u0627\u0645 ",
 		"id": "Home organization domain name",
+		"lv": "Organiz\u0101cijas domeins",
 		"sr": "Domen mati\u010dne institucije"
 	},
 	"attribute_organisationname": {
@@ -379,7 +390,8 @@
 		"zh": "\u7ec4\u7ec7\u540d\u79f0",
 		"sr": "Naziv mati\u010dne institucije",
 		"ar": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0646\u0638\u0645\u0629\u0627\u0644\u0627\u0645\\\u0627\u0644\u0645\u0648\u0642\u0639 \u0627\u0644\u0627\u0645",
-		"id": "Organization name"
+		"id": "Organization name",
+		"lv": "Organiz\u0101cijas nosaukums"
 	},
 	"attribute_edupersonentitlement": {
 		"no": "Rettighet",
@@ -411,6 +423,7 @@
 		"zh": "\u5173\u4e8e\u670d\u52a1\u7684\u6743\u5229",
 		"sr": "Prava i privilegije korisnika na sistemu",
 		"ar": "\u0627\u0633\u062a\u062d\u0642\u0627\u0642\u0627\u062a \u0627\u0644\u062e\u062f\u0645\u0629",
+		"lv": "Pilnvaras attiec\u012bb\u0101 uz servisu",
 		"id": "Hak mengenai layanan ini"
 	},
 	"attribute_edupersonscopedaffiliation": {
@@ -443,6 +456,7 @@
 		"zh": "\u5bb6\u5ead\u8054\u7edc\u5730\u5740",
 		"sr": "Povezanost sa institucijom sa domenom",
 		"ar": "\u0627\u0644\u0648\u0636\u0639 \u0623\u0648 \u0627\u0644\u0648\u0638\u064a\u0641\u0629 \u0628\u0627\u0644\u0645\u0646\u0638\u0645\u0629\u0627\u0644\u0627\u0645\\\u0627\u0644\u0645\u0648\u0642\u0639 \u0627\u0644\u0627\u0645",
+		"lv": "Amats organiz\u0101cij\u0101",
 		"id": "Afiliasi di organisasi asal"
 	},
 	"attribute_edupersontargetedid": {
@@ -474,6 +488,7 @@
 		"sr": "Trajni anonimni identifikator",
 		"ar": "\u0627\u0644\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u0639\u0627\u0631 ",
 		"pl": "Trwa\u0142y anonimowy identyfikator",
+		"lv": "Past\u0101v\u012bgs pseidon\u012bma ID",
 		"id": "Persistent pseudonymous ID"
 	},
 	"attribute_edupersonprincipalname": {
@@ -506,6 +521,7 @@
 		"sr": "Jedinstveni identifikator osobe",
 		"ar": "\u0623\u0644\u0627\u0633\u0645 \u0628\u0627\u0644\u0645\u0646\u0638\u0645\u0629 \u0627\u0644\u0627\u0645\\\u0627\u0644\u0645\u0648\u0642\u0639 \u0627\u0644\u0627\u0645 ",
 		"pl": "G\u0142\u00f3wna nazwa u\u017cytkownika w instytucji macierzystej",
+		"lv": "Priek\u0161nieka v\u0101rds",
 		"id": "Nama kepala pada organisasi asal"
 	},
 	"attribute_o": {
@@ -537,6 +553,7 @@
 		"zh": "\u7ec4\u7ec7\u540d\u79f0",
 		"sr": "Naziv mati\u010dne institucije",
 		"ar": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0646\u0638\u0645\u0629",
+		"lv": "Organiz\u0101cijas nosaukums",
 		"id": "Nama organisasi"
 	},
 	"attribute_dc": {
@@ -568,6 +585,7 @@
 		"zh": "Opened the web browser with tabs saved from the previous session.\u57df\u7ec4\u4ef6\uff08DC\uff09",
 		"sr": "Domenska komponenta (DC)",
 		"ar": "\u0645\u0643\u0648\u0646\u0627\u062a \u0627\u0644\u0646\u0637\u0627\u0642",
+		"lv": "Dom\u0113ns (DC)",
 		"id": "Domain component(DC)"
 	},
 	"attribute_displayname": {
@@ -598,6 +616,7 @@
 		"ru": "\u041e\u0442\u043e\u0431\u0440\u0430\u0436\u0430\u0435\u043c\u043e\u0435 \u0438\u043c\u044f",
 		"zh": "\u663e\u793a\u540d\u79f0",
 		"ar": "\u0627\u0644\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 ",
+		"lv": "Par\u0101d\u0101mais v\u0101rds",
 		"id": "Nama yang ditampilkan",
 		"sr": "Ime za prikaz"
 	},
@@ -630,6 +649,7 @@
 		"zh": "\u4f20\u771f\u53f7\u7801",
 		"sr": "Fax broj",
 		"ar": "\u0631\u0642\u0645 \u0627\u0644\u0641\u0627\u0643\u0633",
+		"lv": "Fakss",
 		"id": "No Fax"
 	},
 	"attribute_homephone": {
@@ -661,6 +681,7 @@
 		"zh": "\u5bb6\u5ead\u7535\u8bdd",
 		"sr": "Ku\u0107ni telefonski broj",
 		"ar": "\u0631\u0642\u0645 \u0627\u0644\u0647\u0627\u062a\u0641 \u0627\u0644\u0645\u0646\u0632\u0644\u064a",
+		"lv": "Telefons",
 		"id": "Telepon rumah"
 	},
 	"attribute_homepostaladdress": {
@@ -692,6 +713,7 @@
 		"zh": "\u5bb6\u5ead\u90ae\u653f\u5730\u5740",
 		"sr": "Ku\u0107na po\u0161tanska adresa",
 		"ar": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0628\u0631\u064a\u062f\u064a",
+		"lv": "Pasta adrese",
 		"id": "Alamat pos rumah"
 	},
 	"attribute_jpegphoto": {
@@ -723,6 +745,7 @@
 		"zh": "JPEG\u56fe\u7247",
 		"sr": "Slika osobe",
 		"ar": "\u0635\u0648\u0631\u0629 (JPEG)",
+		"lv": "JPEG fotogr\u0101fija",
 		"id": "Foto JPEG"
 	},
 	"attribute_l": {
@@ -754,6 +777,7 @@
 		"zh": "\u4f4d\u7f6e",
 		"sr": "Lokacija(Mesto)",
 		"ar": "\u0627\u0644\u0645\u062d\u0644\u064a\u0629",
+		"lv": "Atra\u0161an\u0101s vieta",
 		"id": "Lokalitas"
 	},
 	"attribute_labeleduri": {
@@ -785,6 +809,7 @@
 		"zh": "\u6807\u7b7eURI",
 		"sr": "URI adresa",
 		"ar": "URI \u0623\u0633\u0645 ",
+		"lv": "URI nosaukums",
 		"id": "Berlabel URL"
 	},
 	"attribute_ou": {
@@ -816,6 +841,7 @@
 		"zh": "\u7ec4\u7ec7\u5355\u4f4d",
 		"sr": "Organizaciona jedinica",
 		"ar": "\u0627\u0644\u0648\u062d\u062f\u0629",
+		"lv": "Organiz\u0101cijas vien\u012bba",
 		"id": "Organizational unit"
 	},
 	"attribute_postaladdress": {
@@ -847,6 +873,7 @@
 		"zh": "\u90ae\u653f\u5730\u5740",
 		"sr": "Po\u0161tanska adresa",
 		"ar": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0628\u0631\u064a\u062f\u064a \u0644\u0644\u0645\u0646\u0638\u0645\u0629",
+		"lv": "Pasta adrese",
 		"id": "Alamat pos"
 	},
 	"attribute_postalcode": {
@@ -878,6 +905,7 @@
 		"zh": "\u90ae\u653f\u7f16\u7801",
 		"sr": "Po\u0161tanski broj",
 		"ar": "\u0627\u0644\u0631\u0645\u0632 \u0627\u0644\u0628\u0631\u064a\u062f\u064a",
+		"lv": "Pasta kods",
 		"id": "Kode pos"
 	},
 	"attribute_postofficebox": {
@@ -909,6 +937,7 @@
 		"zh": "\u90ae\u653f\u4fe1\u7bb1",
 		"sr": "Broj po\u0161tanskog sandu\u010deta",
 		"ar": "\u0627\u0644\u0635\u0646\u062f\u0648\u0642 \u0627\u0644\u0628\u0631\u064a\u062f\u064a",
+		"lv": "Pasta kaste",
 		"id": "PO Box"
 	},
 	"attribute_street": {
@@ -940,6 +969,7 @@
 		"zh": "\u8857\u9053",
 		"sr": "Ulica i broj",
 		"ar": "\u0627\u0644\u0634\u0627\u0631\u0639",
+		"lv": "Iela",
 		"id": "Jalan"
 	},
 	"attribute_telephonenumber": {
@@ -971,6 +1001,7 @@
 		"zh": "\u7535\u8bdd\u53f7\u7801",
 		"sr": "Telefonski broj",
 		"ar": "\u0631\u0642\u0645 \u0627\u0644\u0647\u0627\u062a\u0641",
+		"lv": "Telefons",
 		"id": "No Telepon"
 	},
 	"attribute_eduorghomepageuri": {
@@ -1002,6 +1033,7 @@
 		"zh": "\u7ec4\u7ec7\u7684\u9996\u9875",
 		"sr": "URL adresa institucije",
 		"ar": " \u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0627\u0644\u0643\u062a\u0631\u0648\u0646\u064a\u0629 \u0644\u0644\u0645\u0646\u0638\u0645\u0629",
+		"lv": "Organiz\u0101cijas m\u0101jas lapa",
 		"id": "Homepage organisasi"
 	},
 	"attribute_eduorglegalname": {
@@ -1033,6 +1065,7 @@
 		"zh": "\u7ec4\u7ec7\u7684\u6cd5\u5b9a\u540d\u79f0",
 		"sr": "Zvani\u010dni naziv institucije",
 		"ar": "\u0627\u0644\u0627\u0633\u0645 \u0627\u0644\u0642\u0627\u0646\u0648\u0646\u064a \u0644\u0644\u0645\u0646\u0638\u0645\u0629",
+		"lv": "Organiz\u0101cijas juridiskais nosaukums",
 		"id": "Nama legal Organisasi"
 	},
 	"attribute_edupersonnickname": {
@@ -1064,6 +1097,7 @@
 		"zh": "\u6635\u79f0",
 		"sr": "Nadimak",
 		"ar": "\u0627\u0644\u0643\u0646\u064a\u0629",
+		"lv": "Niks",
 		"id": "Nama panggilan"
 	},
 	"attribute_edupersonorgdn": {
@@ -1095,6 +1129,7 @@
 		"sr": "Jedinstveni naziv (DN) korisnikove mati\u010dne institucije",
 		"ar": "\u0627\u0644\u0627\u0633\u0645 \u0627\u0644\u0645\u0645\u064a\u0632 \u0644\u0644\u0645\u0646\u0638\u0645\u0629 \u0631\u0628 \u0627\u0644\u0639\u0645\u0644",
 		"et": "Koduorganisatsiooni unikaalne nimi (DN)",
+		"lv": "Organiz\u0101cijas v\u0101rds (DN)",
 		"id": "Distinguished name (DN) of person's home organization"
 	},
 	"attribute_edupersonorgunitdn": {
@@ -1126,6 +1161,7 @@
 		"sr": "Jedinstveni naziv (DN) korisnikove organizacione jedinice",
 		"ar": "\u0627\u0644\u0627\u0633\u0645 \u0627\u0644\u0645\u0645\u064a\u0632 \u0644\u0644\u0648\u062d\u062f\u0629 \u0628\u0627\u0644\u0645\u0646\u0638\u0645\u0629 \u0631\u0628 \u0627\u0644\u0639\u0645\u0644",
 		"et": "Koduorganisatsiooni all\u00fcksuse unikaalne nimi (DN)",
+		"lv": "Organiz\u0101cijas vien\u012bbas v\u0101rds (DN)",
 		"id": "Distinguished name (DN) of the person's home organizational unit"
 	},
 	"attribute_edupersonprimaryaffiliation": {
@@ -1157,6 +1193,7 @@
 		"zh": "\u4e3b\u8981\u7684\u8054\u7cfb\u65b9\u5f0f",
 		"sr": "Primarna povezanost sa institucijom",
 		"ar": "\u0627\u0644\u0648\u0638\u064a\u0641\u0629 \u0627\u0644\u0627\u0633\u0627\u0633\u064a\u0629",
+		"lv": "Pamatdarba amats",
 		"id": "Afiliasi utama"
 	},
 	"attribute_noreduorgnin": {
@@ -1187,6 +1224,7 @@
 		"zh": "\u7ec4\u7ec7\u53f7\u7801",
 		"sr": "Jedinstveni brojni identifikator institucije",
 		"ar": "\u0627\u0644\u0631\u0642\u0645 \u0628\u0627\u0644\u0645\u0646\u0638\u0645\u0629",
+		"lv": "Organiz\u0101cijas re\u0123istr\u0101cijas numurs",
 		"id": "Nomor Organisasi",
 		"et": "Registrikood"
 	},
@@ -1219,6 +1257,7 @@
 		"zh": "\u751f\u65e5",
 		"sr": "Datum ro\u0111enja",
 		"ar": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0645\u064a\u0644\u0627\u062f",
+		"lv": "Dzim\u0161anas datums",
 		"id": "Tanggal lahir"
 	},
 	"attribute_noredupersonlin": {
@@ -1250,6 +1289,7 @@
 		"zh": "\u672c\u5730\u8eab\u4efd\u53f7\u7801",
 		"sr": "Lokalni brojni identifikator osobe",
 		"ar": "\u0631\u0642\u0645 \u0627\u0644\u0647\u0648\u064a\u0629 \u0627\u0644\u0645\u062d\u0644\u064a",
+		"lv": "Personas kods",
 		"id": "Nomor identitas lokal"
 	},
 	"attribute_manager": {
@@ -1281,6 +1321,7 @@
 		"zh": "\u7ba1\u7406\u5458",
 		"sr": "Rukovodilac",
 		"ar": "\u0627\u0644\u0645\u062f\u064a\u0631",
+		"lv": "Priek\u0161nieks",
 		"id": "Manager"
 	},
 	"attribute_userpassword": {
@@ -1311,6 +1352,7 @@
 		"zh": "\u7528\u6237\u5bc6\u7801\u7684HASH\u503c",
 		"sr": "He\u0161 vrednost korisnikove lozinke",
 		"ar": "\u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631",
+		"lv": "Paroles jauc\u0113jsumma (hash)",
 		"id": "Hash password user"
 	},
 	"attribute_edupersonprimaryorgunitdn": {
@@ -1339,6 +1381,7 @@
 		"ar": "\u0627\u0644\u0627\u0633\u0645 \u0627\u0644\u0645\u0645\u064a\u0632 \u0644\u0644\u0648\u062d\u062f\u0629 \u0627\u0644\u0623\u0633\u0627\u0633\u064a\u0629 \u0628\u0627\u0644\u0645\u0646\u0638\u0645\u0629 \u0631\u0628 \u0627\u0644\u0639\u0645\u0644",
 		"pl": "Nazwa osoby w jednostce organizacyjnej",
 		"et": "Peamise all\u00fcksuse unikaalne nimi (DN)",
+		"lv": "Personas pamata organiz\u0101cijas vien\u012bbas v\u0101rds (DN)",
 		"id": "Distinguished name (DN) of person's primary Organizational Unit"
 	},
 	"attribute_schacuserprivateattribute": {
@@ -1367,6 +1410,7 @@
 		"zh": "\u4e2a\u4eba\u8d44\u6599",
 		"sr": "Privatni atribut",
 		"ar": "\u0648\u062d\u062f\u0627\u062a \u0627\u0644\u062a\u0639\u0631\u064a\u0641 \u0627\u0644\u062e\u0627\u0635\u0629",
+		"lv": "Priv\u0101t\u0101s inform\u0101cijas elementi",
 		"id": "Elemen-elemen informasi personal"
 	},
 	"attribute_noredupersonlegalname": {
@@ -1391,6 +1435,7 @@
 		"pl": "Formalna nazwa u\u017cytkownika",
 		"et": "Ametlik nimi",
 		"hu": "Hivatalos n\u00e9v (noreduperson)",
+		"lv": "Juridiskais nosaukums",
 		"id": "Nama legal",
 		"sr": "Pravno ime",
 		"cs": "Pr\u00e1vn\u00ed jm\u00e9no"
@@ -1416,6 +1461,7 @@
 		"zh": "\u53ef\u9760\u9a8c\u8bc1\u914d\u7f6e\u6587\u4ef6",
 		"sr": "Visina pouzdanosti davaoca digitalnih identiteta",
 		"ar": "\u0647\u0648\u064a\u0629 \u0627\u0644\u0636\u0645\u0627\u0646",
+		"lv": "Apraksts, k\u0101 at\u0161\u0137irt cilv\u0113ku no robota",
 		"id": "Profil penjamin identitas",
 		"cs": "Poskytovatel identifika\u010dn\u00edho profilu"
 	}

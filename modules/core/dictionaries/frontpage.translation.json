@@ -28,6 +28,7 @@
 		"zh": "<strong>\u606d\u559c\u4f60\uff01<\/strong>,\u4f60\u5df2\u6210\u529f\u5b89\u88c5simpleSAMLphp\u3002\u8fd9\u662f\u4f60\u7684\u5f00\u59cb\u9875\u9762,\u4f60\u5728\u8fd9\u91cc\u53ef\u4ee5\u53d1\u73b0\u6d4b\u8bd5\u6837\u4f8b\/\u8bca\u65ad\u5de5\u5177\/\u5143\u4fe1\u606f\/\u751a\u81f3\u662f\u76f8\u5173\u6587\u6863\u7684\u94fe\u63a5",
 		"ar": "<strong>Congratulations<\/strong>, \u0644\u0642\u062f \u0642\u0645\u062a \u0628\u0625\u0646\u0632\u0627\u0644 simpleSAMLphp \u0628\u0646\u062c\u0627\u062d. \u0647\u0630\u0647 \u0647\u064a \u0635\u0641\u062d\u0629 \u0627\u0644\u0628\u062f\u0627\u064a\u0629 \u062d\u064a\u062b \u0633\u062a\u062c\u062f \u0631\u0648\u0627\u0628\u0637 \u0644\u0627\u062e\u062a\u0628\u0627\u0631 \u0627\u0644\u0623\u0645\u062b\u0644\u0629\u060c \u0627\u0644\u062a\u0634\u062e\u064a\u0635\u060c \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629\/\u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627 \u0648 \u0627\u0644\u0643\u062a\u064a\u0628\u0627\u062a \u0627\u0644\u062a\u0639\u0631\u064a\u0641\u064a\u0629",
 		"id": "<strong>Selamat<\/strong>, Anda telah berhasil melakukan instalasi simpleSAMLphp. Ini adalah halaman awal instalasi Anda, dimana Anda akan menemukan link ke contoh-contoh tes, diagnostik, metadata dan bahkan link ke dokumentasi terkait.",
+		"lv": "<strong>Apsveicu<\/strong>, J\u016bs esat veiksm\u012bgi uzinstal\u0113jis simpleSAMLphp.\u0160\u012b ir J\u016bsu instal\u0101cijas s\u0101kuma lapa, kur varat atrast saites uz testu piem\u0113riem, diagnostiku, metadatiem un dokument\u0101ciju.",
 		"sr": "<strong>\u010cestitamo<\/strong>, uspe\u0161no ste instalirali simpleSAMLphp. Ovo je po\u010detna stranica na kojoj mo\u017eete prona\u0107i primere, dijagnostiku, metapodatke i linkove na relevantnu dokumentaciju."
 	},
 	"useful_links_header": {
@@ -59,6 +60,7 @@
 		"zh": "\u5bf9\u4f60\u6709\u7528\u7684\u4e00\u4e9b\u94fe\u63a5",
 		"ar": "\u0631\u0648\u0627\u0628\u0637 \u0645\u0641\u064a\u062f\u0629 \u0644\u0644\u0625\u0646\u0632\u0627\u0644 ",
 		"id": "Link-Link yang bermanfaat untuk membantu proses instalasi Anda",
+		"lv": "Der\u012bgas saites instal\u0101cijai",
 		"sr": "Korisni linkovi"
 	},
 	"metadata_header": {
@@ -90,6 +92,7 @@
 		"zh": "\u5143\u4fe1\u606f",
 		"ar": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629\/\u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627 ",
 		"id": "Metadata",
+		"lv": "Metadati",
 		"sr": "Medapodaci"
 	},
 	"doc_header": {
@@ -121,6 +124,7 @@
 		"zh": "\u6587\u6863",
 		"ar": "\u0627\u0644\u0643\u062a\u064a\u0628\u0627\u062a \u0627\u0644\u062a\u0639\u0631\u064a\u0641\u064a\u0629",
 		"id": "Dokumentasi",
+		"lv": "Dokument\u0101cija",
 		"sr": "Dokumentacija"
 	},
 	"checkphp": {
@@ -152,6 +156,7 @@
 		"zh": "\u6b63\u68c0\u6d4b\u4f60\u7684PHP",
 		"ar": "\u062a\u0627\u0643\u062f \u0645\u0646 \u0625\u0646\u0632\u0627\u0644 PHP",
 		"id": "Memerika instalasi PHP Anda",
+		"lv": "P\u0101rbauda J\u016bsu PHP instal\u0101ciju",
 		"sr": "Provera va\u0161e PHP instalacije"
 	},
 	"about_header": {
@@ -183,6 +188,7 @@
 		"zh": "\u5173\u4e8esimpleSAMLphp",
 		"ar": "\u0639\u0646 simpleSAMLphp",
 		"id": "Tentang simpleSAMLphp",
+		"lv": "Par simpleSAMLphp",
 		"sr": "O simpleSAMLphp-u"
 	},
 	"about_text": {
@@ -213,6 +219,7 @@
 		"he": "\u05d4-simpleSAMLphp \u05d4\u05d6\u05d4 \u05d4\u05d5\u05d0 \u05de\u05d4 \u05d6\u05d4 \u05de\u05d2\u05e0\u05d9\u05d1, \u05d0\u05d9\u05dd\u05d4 \u05d0\u05e0\u05d9 \u05d9\u05db\u05d5\u05dc \u05dc\u05e7\u05e8\u05d5\u05d0 \u05d9\u05d5\u05ea\u05e8 \u05e2\u05dc\u05d9\u05d5?\u05d0\u05ea\u05d4 \u05d9\u05db\u05d5\u05dc \u05dc\u05de\u05e6\u05d5\u05d0 \u05de\u05d9\u05d3\u05e2 \u05e0\u05d5\u05e1\u05e3 \u05d1- <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\"> simpleSAMLphp \u05d1 Feide \u05d1\u05d1\u05dc\u05d5\u05d2 \u05d4\u05e4\u05d9\u05ea\u05d5\u05d7 \u05e9\u05dc \u05e9\u05e0\u05de\u05e6\u05d0 \u05d1- <a href=\"http:\/\/uninett.no\">UNINETT<\/a>. ",
 		"zh": "\u662f\u4e0d\u662f\u89c9\u5f97simpleSAMLphp\u5f88\u9177\uff1f\u6211\u5728\u54ea\u91cc\u80fd\u627e\u5230\u66f4\u591a\u8d44\u6599\u5462\uff1f\u4f60\u53ef\u4ee5\u5728\u4e0b\u5217\u7f51\u5740\u627e\u5230\u66f4\u591a\u4fe1\u606f\uff1a <a href=\"http:\/\/uninett.no\">UNINETT<\/a> \u7684 <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp at the Feide RnD \u5f00\u53d1\u8005\u535a\u5ba2<\/a>",
 		"ar": "\u0644\u0644\u0645\u0632\u064a\u062f \u0639\u0646 simpleSAMLphp \u0627\u0630\u0647\u0628 \u0627\u0644\u064a<a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp \u0628\u0645\u062f\u0648\u0646\u0629 Feide RnD <\/a> over at <a href=\"http:\/\/uninett.no\">UNINETT<\/a>",
+		"lv": "simpleSAMLphp ir baigi for\u0161s, kur par to var palas\u012bt vair\u0101k? Vair\u0101k inform\u0101cijas ir <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp Feide RnD blog\u0101<\/a> pie <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"id": "simpleSAMLphp sangat menarik, dimana Saya bisa membaca lebih jauh tentang hal ini ? Anda dapat mencari informasi lebih jauh tentang <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp pada blog Feide RnD<\/a> ke arah <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"sr": "simpleSAMLphp je veoma kul, gde mogu da pro\u010ditam vi\u0161e o njemu? Vi\u0161e informacija o simpleSAMLphp-u mo\u017eete prona\u0107i na <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp stranici Feide RnD bloga<\/a>."
 	},
@@ -244,6 +251,7 @@
 		"he": "\u05d3\u05e8\u05d5\u05e9",
 		"zh": "\u9700\u6c42",
 		"ar": "\u0645\u0637\u0644\u0648\u0628",
+		"lv": "Oblig\u0101ts",
 		"id": "Diperlukan",
 		"sr": "Obavezno"
 	},
@@ -275,6 +283,7 @@
 		"he": "\u05d3\u05e8\u05d5\u05e9 \u05e2\u05d1\u05d5\u05e8 LDAP",
 		"zh": "\u5bf9LDAP\u7684\u9700\u6c42",
 		"ar": "\u0645\u0637\u0644\u0648\u0628 \u0644 LDAP",
+		"lv": "Oblig\u0101ts priek\u0161 LDAP",
 		"id": "Diperlukan untuk LDAP",
 		"sr": "Obavezno za LDAP"
 	},
@@ -306,6 +315,7 @@
 		"he": "\u05d3\u05e8\u05d5\u05e9 \u05e2\u05d1\u05d5\u05e8 Radius",
 		"zh": "\u5bf9Radius\u7684\u9700\u6c42",
 		"ar": "\u0645\u0637\u0644\u0648\u0628 \u0644 Radius",
+		"lv": "Oblig\u0101ts priek\u0161 Radius",
 		"id": "Diperlukan untuk Radius",
 		"sr": "Obavezno za Radius"
 	},
@@ -337,6 +347,7 @@
 		"he": "\u05e0\u05ea\u05d5\u05df \u05dc\u05d1\u05d7\u05d9\u05e8\u05d4",
 		"zh": "\u53ef\u9009\u7684",
 		"ar": "\u0627\u062e\u062a\u064a\u0627\u0631\u064a",
+		"lv": "Neoblig\u0101ts",
 		"id": "Opsional",
 		"sr": "Opciono"
 	},
@@ -368,6 +379,7 @@
 		"he": "\u05e8\u05e6\u05d5\u05d9",
 		"zh": "\u63a8\u8350\u7684",
 		"ar": "\u0645\u0648\u0635\u064a \u0628\u0647",
+		"lv": "Ieteicams",
 		"id": "Direkomendasikan",
 		"sr": "Preporu\u010deno"
 	},
@@ -399,6 +411,7 @@
 		"he": "\u05d0\u05d6\u05d4\u05e8\u05d5\u05ea",
 		"zh": "\u8b66\u544a",
 		"ar": "\u062a\u062d\u0630\u064a\u0631",
+		"lv": "Br\u012bdin\u0101jumi",
 		"id": "Peringatan-Peringatan",
 		"sr": "Upozorenja"
 	},
@@ -430,6 +443,7 @@
 		"he": "<strong>\u05d0\u05ea\u05d4 \u05dc\u05d0 \u05de\u05e9\u05ea\u05de\u05e9 \u05d1- HTTPS <\/strong> - \u05d4\u05ea\u05e7\u05e9\u05e8\u05d5\u05ea \u05de\u05d5\u05e6\u05e4\u05e0\u05ea \u05e2\u05dd \u05d4\u05de\u05e9\u05ea\u05de\u05e9. HTTP \u05e2\u05d5\u05d1\u05d3 \u05d1\u05e1\u05d3\u05e8 \u05dc\u05de\u05d8\u05e8\u05d5\u05ea \u05d1\u05d3\u05d9\u05e7\u05d4, \u05d0\u05d5\u05dc\u05dd \u05dc\u05de\u05e2\u05e8\u05db\u05d5\u05ea \u05d0\u05de\u05d9\u05ea\u05d9\u05d5\u05ea, \u05db\u05d3\u05d9 \u05dc\u05d4\u05e9\u05ea\u05de\u05e9 \u05d4 HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\"> \u05e7\u05e8\u05d0 \u05e2\u05d5\u05d3 \u05e2\u05dc \u05ea\u05d7\u05d6\u05d5\u05e7 simpleSAMLphp <\/a> ]",
 		"zh": "<strong>\u4f60\u6ca1\u6709\u4f7f\u7528HTTPS<\/strong> - \u548c\u7528\u6237\u52a0\u5bc6\u7684\u901a\u4fe1\u3002HTTP\u5728\u6d4b\u8bd5\u76ee\u7684\u4e0b\u5f88\u597d,\u4f46\u751f\u4ea7\u73af\u5883\u8bf7\u4f7f\u7528HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">\u83b7\u53d6\u66f4\u591asimpleSAMLphp\u7ef4\u62a4\u7684\u4fe1\u606f<\/a> ]",
 		"ar": "<strong>\u0627\u0646\u062a \u0644\u0627 \u062a\u0633\u062a\u062e\u062f\u0645 HTTPS<\/strong> - \u0645\u062d\u0627\u062f\u062b\u0629 \u0645\u0634\u0641\u0631\u0629 \u0645\u0639 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645. HTTP \u062c\u064a\u062f \u0644\u0644\u0627\u062e\u062a\u0628\u0627\u0631\u0627\u062a \u0644\u0643\u0646 \u0641\u064a \u0628\u064a\u0626\u0629 \u0627\u0644\u0646\u0638\u0627\u0645 \u0627\u0644\u0645\u0628\u062f\u0626\u064a \u064a\u0646\u0628\u063a\u064a \u0627\u0633\u062a\u062e\u062f\u0627\u0645 HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/contents\/simplesamlphp-maintenance-and-configuration\">read more about simpleSAMLphp maintenance<\/a>]",
+		"lv": "<strong>J\u016bs neizmantojat HTTPS<\/strong> - \u0161ifr\u0113tu komunik\u0101ciju ar lietot\u0101ju. HTTP ir labs testa nol\u016bkiem, bet ra\u017eo\u0161an\u0101 j\u0101izmanto HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Lasiet vair\u0101k par simpleSAMLphp uztur\u0113\u0161anu<\/a> ]",
 		"id": "<strong>Anda tidak menggunakan HTTPS<\/strong> - komunikasi yang dienkripsi dengan user. HTTP bekerja baik-baik saja untuk tujuan pengetesan , tapi dalam lingkungan produksi, Anda sebaiknya menggunakan HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Baca lebih lanjut tentang proses pemeliraan simpleSAMLphp.<\/a> ]",
 		"sr": "<strong>Ne koristite HTTPS<\/strong> - kriptovanu komunikaciju s korisnikom. HTTP se mo\u017ee koristiti za potrebe testiranja, ali u produkcionom okru\u017eenju trebali biste koristiti HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Pro\u010ditajte vi\u0161e o simpleSAMLphp pode\u0161avanjima<\/a> ]"
 	},
@@ -461,6 +475,7 @@
 		"he": "\u05d3\u05d5\u05d2\u05de\u05d0 \u05dc\u05e1\"\u05e9 \u05de\u05e1\u05d5\u05d2 SAML 2.0 - \u05d1\u05d7\u05df \u05db\u05e0\u05d9\u05e1\u05d4 \u05dc\u05de\u05e2\u05e8\u05db\u05ea \u05d3\u05e8\u05da \u05d4\u05e1\"\u05d6 \u05e9\u05dc\u05da",
 		"zh": "SAML 2.0 SP\u6837\u4f8b-\u6d4b\u8bd5\u4ece\u4f60\u7684idP\u767b\u5f55",
 		"ar": "\u0645\u062b\u0627\u0644 SAML 2.0 SP- \u0627\u062e\u062a\u0628\u0631 \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644 \u0645\u0633\u062a\u062e\u062f\u0645\u0627\u064b \u0647\u0648\u064a\u0629 IdP",
+		"lv": "SAML 2.0 SP piem\u0113rs - testa piesl\u0113g\u0161an\u0101s caur J\u016bsu IDP",
 		"id": "Contoh SAML 2.0 SP - Tes login melalui Idp Anda",
 		"sr": "SAML 2.0 SP primer - testirajte autentifikaciju kroz va\u0161 Davalac Identieta"
 	},
@@ -492,6 +507,7 @@
 		"he": "\u05d3\u05d5\u05d2\u05de\u05d0 \u05dc\u05e1\"\u05e9 \u05de\u05e1\u05d5\u05d2 Shibboleth 1.3 - \u05d1\u05d5\u05d7\u05df \u05db\u05e0\u05d9\u05e1\u05d4 \u05dc\u05de\u05e2\u05e8\u05db\u05ea \u05d3\u05e8\u05da \u05e1\"\u05d6 \u05de\u05e1\u05d5\u05d2 - Shibboleth",
 		"zh": "Shibboleth 1.3SP\u6837\u4f8b-\u6d4b\u8bd5\u4ece\u4f60\u7684Shib idP\u767b\u5f55",
 		"ar": "\u0645\u062b\u0627\u0644 Shibboleth 1.3 SP- \u0627\u062e\u062a\u0628\u0631 \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644 \u0645\u0633\u062a\u062e\u062f\u0645\u0627\u064b \u0647\u0648\u064a\u0629 Shib IdP",
+		"lv": "Shibboleth 1.3 SP piem\u0113rs - testa piesl\u0113g\u0161an\u0101s caur J\u016bsu Shib IDP",
 		"id": "Contoh Shibboleth 1.3 SP  - Tes login melalui IdP Shib Anda",
 		"sr": "Shibboleth 1.3 SP primer - testirajte autentifikaciju kroz va\u0161 Shib Davalac Servisa"
 	},
@@ -523,6 +539,7 @@
 		"he": "\u05d0\u05ea\u05e8 \u05e1\u05e4\u05e7 OpenID - \u05d2\u05d9\u05e8\u05e1\u05ea \u05d0\u05dc\u05e4\u05d0 (\u05e7\u05d5\u05d3 \u05d1\u05d3\u05d9\u05e7\u05d4(",
 		"zh": "OpenID \u63d0\u4f9b\u7ad9\u70b9 - Alpha \u7248\u672c \uff08\u6d4b\u8bd5\u4ee3\u7801\uff09",
 		"ar": "\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629 OpenID \u0627\u0635\u062f\u0627\u0631 \u0623\u0644\u0641\u0627- \u0627\u062e\u062a\u0628\u0631 \u0627\u0644\u0631\u0645\u0632",
+		"lv": "OpenID pieg\u0101d\u0101t\u0101ja vietne - Alfa versija (testa kods)",
 		"id": "Situs Provider OpenID - Versi Alpa (Kode untuk tes)",
 		"sr": "Davalac OpenID digitalnih identiteta - razvojna verzija (test)"
 	},
@@ -554,6 +571,7 @@
 		"he": "\u05d0\u05d9\u05d1\u05d7\u05d5\u05df \u05e2\u05dc \u05e9\u05dd \u05de\u05d7\u05e9\u05d1, \u05e4\u05d5\u05e8\u05d8 \u05d5\u05e4\u05e8\u05d5\u05d8\u05d5\u05e7\u05d5\u05dc",
 		"zh": "\u8bca\u65ad\u4e3b\u673a\u540d\/\u7aef\u53e3\/\u534f\u8bae",
 		"ar": "\u062a\u0634\u062e\u064a\u0635 \u0627\u0633\u0645 \u0627\u0644\u0645\u0636\u064a\u0641\u060c \u0627\u0644\u0645\u0646\u0641\u0630\u060c \u0627\u0644\u0637\u0631\u064a\u0642\u0629",
+		"lv": "Saimniekdatora v\u0101rda, porta un protokola diagnostika",
 		"id": "Diagnostik pada hostname, port dan protokol",
 		"sr": "Dijagnostika vezana za naziv servera (hostname), port i protokol "
 	},
@@ -585,6 +603,7 @@
 		"he": "\u05de\u05d9\u05d3\u05e2 PHP",
 		"zh": "PHP\u4fe1\u606f",
 		"ar": "\u0645\u0639\u0644\u0648\u0645\u0627\u062a PHP",
+		"lv": "PHP info",
 		"id": "PHP info",
 		"sr": "Informacije o PHP instalaciji"
 	},
@@ -616,6 +635,7 @@
 		"he": "\u05e1\u05e7\u05d9\u05e8\u05ea \u05de\u05d8\u05d0-\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05dc\u05d4\u05ea\u05e7\u05e0\u05d4 \u05e9\u05dc\u05da. \u05d0\u05d1\u05d7\u05df \u05d0\u05ea \u05e7\u05d1\u05e6\u05d9 \u05de\u05d8\u05d0-\u05d4\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05e9\u05dc\u05da",
 		"zh": "\u5143\u4fe1\u606f\u6982\u89c8\uff0c\u8bca\u65ad\u4f60\u7684\u5143\u4fe1\u606f\u6587\u4ef6",
 		"ar": "\u0645\u0646\u0638\u0631 \u0628\u064a\u0627\u0646\u0627\u062a\u0643 \u0627\u0644\u0648\u0635\u0641\u064a\u0629\/\u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627. \u0634\u062e\u0635\/ \u0639\u0627\u0644\u062c \u0645\u0644\u0641\u0627\u062a \u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627 \u062e\u0627\u0635\u062a\u0643",
+		"lv": "Metadatu p\u0101rskats J\u016bsu instal\u0101cij\u0101. Diagnostic\u0113t metadatu failus",
 		"id": "Ringkasan Metadata dari instalasi Anda. Memeriksa file metadata Anda",
 		"sr": "Pregled metapodataka o va\u0161oj instalaciji. Proverite ispravnost sadr\u017eaja fajlova sa metapodacima."
 	},
@@ -647,6 +667,7 @@
 		"ru": "\u041c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435 SAML 2.0 \u041f\u043e\u0441\u0442\u0430\u0432\u0449\u0438\u043a\u0430 \u0423\u0441\u043b\u0443\u0433 (SP) (\u0433\u0435\u043d\u0435\u0440\u0438\u0440\u0443\u044e\u0442\u0441\u044f \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438)",
 		"zh": "\u5b58\u50a8\u7684 SAML 2.0 Service Provider Metadata\uff08\u81ea\u52a8\u751f\u6210\uff09",
 		"ar": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629\/\u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627 \u0644\u0645\u0642\u062f\u0645 SAML 2.0 \u0627\u0644\u0636\u064a\u0641 (\u062a\u0645 \u062a\u062c\u0647\u064a\u0632\u0647\u0627 \u0627\u062a\u0648\u0645\u0627\u062a\u064a\u0643\u064a\u0627\u064b)",
+		"lv": "Host\u0113ta SAML 2.0 servisa pieg\u0101d\u0101t\u0101ja metadati (\u0123ener\u0113ti autom\u0101tiski)",
 		"id": "Metadata Service Provider SAML 2.0 Hosted (secara otomatis digenerate)",
 		"sr": "Metapodaci za lokalni SAML 2.0 Davalac Servisa (automatski generisani)"
 	},
@@ -678,6 +699,7 @@
 		"ru": "\u041c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435 SAML 2.0 \u041f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 \u043f\u043e\u0434\u043b\u0438\u043d\u043d\u043e\u0441\u0442\u0438 (IdP) (\u0433\u0435\u043d\u0435\u0440\u0438\u0440\u0443\u044e\u0442\u0441\u044f \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438)",
 		"zh": "\u5b58\u50a8\u7684 Hosted SAML 2.0 Identity Provider Metadata\uff08\u81ea\u52a8\u751f\u6210\uff09",
 		"ar": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629\/\u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627 \u0644\u0647\u0648\u064a\u0629 \u0645\u0642\u062f\u0645 SAML 2.0 \u0627\u0644\u0636\u064a\u0641 (\u062a\u0645 \u062a\u062c\u0647\u064a\u0632\u0647\u0627 \u0627\u062a\u0648\u0645\u0627\u062a\u064a\u0643\u064a\u0627\u064b)",
+		"lv": "Host\u0113ta SAML 2.0 identit\u0101tes pieg\u0101d\u0101t\u0101ja metadati (\u0123ener\u0113ti autom\u0101tiski)",
 		"id": "Metadata Identity Provider SAML 2.0 Hosted (secara otomatis digenerate)",
 		"sr": "Metapodaci za lokalni SAML 2.0 Davalac Identiteta (automatski generisani) "
 	},
@@ -709,6 +731,7 @@
 		"ru": "\u041c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435 Shibboleth 1.3 \u041f\u043e\u0441\u0442\u0430\u0432\u0449\u0438\u043a\u0430 \u0423\u0441\u043b\u0443\u0433 (SP) (\u0433\u0435\u043d\u0435\u0440\u0438\u0440\u0443\u044e\u0442\u0441\u044f \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438)",
 		"zh": "\u5b58\u50a8\u7684 Shibboleth 1.3 Service Provider Metadata\uff08\u81ea\u52a8\u751f\u6210\uff09",
 		"ar": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629\/\u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627 \u0644\u0645\u0642\u062f\u0645 Shibboleth 1.3 \u0627\u0644\u0636\u064a\u0641 (\u062a\u0645 \u062a\u062c\u0647\u064a\u0632\u0647\u0627 \u0627\u062a\u0648\u0645\u0627\u062a\u064a\u0643\u064a\u0627\u064b)",
+		"lv": "Host\u0113ta Shibboleth 1.3 servisa pieg\u0101d\u0101t\u0101ja metadati (\u0123ener\u0113ti autom\u0101tiski)",
 		"id": "Metadata Service Provider Shibboleth 1.3  Hosted (secara otomatis digenerate)",
 		"sr": "Metapodaci za lokalni Shibboleth 1.3 Davalac Servisa (automatski generisani)"
 	},
@@ -740,6 +763,7 @@
 		"ru": "\u041c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435 Shibboleth 1.3 \u041f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 \u043f\u043e\u0434\u043b\u0438\u043d\u043d\u043e\u0441\u0442\u0438 (IdP) (\u0433\u0435\u043d\u0435\u0440\u0438\u0440\u0443\u044e\u0442\u0441\u044f \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438)",
 		"zh": "\u5b58\u50a8\u7684 Shibboleth 1.3 Identity Provider Metadata\uff08\u81ea\u52a8\u751f\u6210\uff09",
 		"ar": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629\/\u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627 \u0644\u0647\u0648\u064a\u0629 \u0645\u0642\u062f\u0645 Shibboleth 1.3 \u0627\u0644\u0636\u064a\u0641 (\u062a\u0645 \u062a\u062c\u0647\u064a\u0632\u0647\u0627 \u0627\u062a\u0648\u0645\u0627\u062a\u064a\u0643\u064a\u0627\u064b)",
+		"lv": "Host\u0113ta Shibboleth 1.3 identit\u0101tes pieg\u0101d\u0101t\u0101ja metadati (\u0123ener\u0113ti autom\u0101tiski)",
 		"id": "Metadata Identity Provider Shibboleth 1.3 Hosted (secara otomatis digenerate)",
 		"sr": "Metapodaci za lokalni Shibboleth 1.3 Davalac Identiteta (automatski generisani)"
 	},
@@ -771,6 +795,7 @@
 		"he": "\u05de\u05de\u05d9\u05e8 XML \u05dc\u05de\u05d8\u05d0-\u05de\u05d9\u05d3\u05e2 \u05e9\u05dc simpleSAMLphp",
 		"zh": "\u5c06XML\u8f6c\u5316\u4e3asimpleSAMLphp\u5143\u4fe1\u606f\u7684\u8f6c\u6362\u5668",
 		"ar": "\u062d\u0648\u0644 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629 \u0645\u0646 \u0635\u064a\u063a\u0629 XML \u0627\u0644\u064a simpleSAMLphp",
+		"lv": "XML uz simpleSAMLphp metadatu konvertors",
 		"id": "Konverter XML ke metadata simpleSAMLphp",
 		"sr": "Pretvaranje metapodataka iz XML formata u simpleSAMLphp format"
 	},
@@ -802,6 +827,7 @@
 		"he": "\u05d4\u05ea\u05e7\u05e0\u05ea simpleSAMLphp",
 		"zh": "\u6b63\u5728\u5b89\u88c5simpleSAMLphp",
 		"ar": "\u0631\u0643\u0628 simpleSAMLphp",
+		"lv": "Instal\u0113 simpleSAMLphp",
 		"id": "Instalasi simpleSAMLphp",
 		"sr": "Instalacija simpleSAMLphp-a"
 	},
@@ -833,6 +859,7 @@
 		"he": "\u05e9\u05d9\u05de\u05d5\u05e9 \u05d1 simpleSAMLphp \u05db\u05e1\u05e4\u05e7 \u05e9\u05e8\u05d5\u05ea\u05d9\u05dd",
 		"zh": "\u6b63\u5728\u4f7f\u7528simpleSAMLphp\u4f5c\u4e3a\u670d\u52a1\u63d0\u4f9b\u8005",
 		"ar": "\u0627\u0633\u062a\u062e\u062f\u0627\u0645 simpleSAMLphp \u0643\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629",
+		"lv": "Izmanto simpleSAMLphp k\u0101 servisa pieg\u0101d\u0101t\u0101ju",
 		"id": "Menggunakan simpleSAMLphp sebagai Service Provider",
 		"sr": "Kako iskoristiti simpleSAMLphp kao autentifikacioni modul kod Davaoca Servisa"
 	},
@@ -864,6 +891,7 @@
 		"he": "\u05e9\u05d9\u05de\u05d5\u05e9 \u05d1 simpleSAMLphp \u05db\u05e1\u05e4\u05e7 \u05d6\u05d4\u05d5\u05d9\u05d5\u05ea",
 		"zh": "\u6b63\u5728\u4f7f\u7528simpleSAMLphp\u4f5c\u4e3a\u8eab\u4efd\u63d0\u4f9b\u8005",
 		"ar": "\u0627\u0633\u062a\u062e\u062f\u0627\u0645 simpleSAMLphp \u0643\u0645\u0642\u062f\u0645 \u0647\u0648\u064a\u0629",
+		"lv": "Izmanto simpleSAMLphp k\u0101 identit\u0101tes pieg\u0101d\u0101t\u0101ju",
 		"id": "Menggunakan simpleSAMLphp sebagai Identity Provider",
 		"sr": "Kako iskoristiti simpleSAMLphp za implementaciju Davaoca Identiteta"
 	},
@@ -895,6 +923,7 @@
 		"ru": "\u0421\u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0438\u0440\u043e\u0432\u0430\u0442\u044c Shibboleth 1.3 SP \u0434\u043b\u044f \u0440\u0430\u0431\u043e\u0442\u044b \u0441 simpleSAMLphp IdP",
 		"zh": "\u914d\u7f6eShibboleth 1.3 SP\u4ee5\u4fbf\u548csimpleSAMLphp IdP\u534f\u540c\u5de5\u4f5c",
 		"ar": "\u0631\u062a\u0628 Shibboleth 1.3 SP \u0644\u0644\u0639\u0645\u0644 \u0645\u0639 simpleSAMLphp IdP",
+		"lv": "Konfigur\u0113t Shibboleth 1.3 SP str\u0101d\u0101t ar simpleSAMLphp IdP",
 		"id": "Mengkonfigurasi Shibboleth 1.3 SP untuk bekerja dengan simpleSAMLphp IdP",
 		"sr": "Podesite Shibboleth 1.3 SP za rad sa simpleSAMLphp Davaocem Identeteta"
 	},
@@ -926,6 +955,7 @@
 		"ru": "simpleSAMLphp \u0432 \u043a\u0430\u0447\u0435\u0441\u0442\u0432\u0435 IdP \u0434\u043b\u044f Google Apps for Education",
 		"zh": "simpleSAMLphp\u4f5c\u4e3aGoogle Apps for Education\u7684IdP",
 		"ar": "\u0627\u0633\u062a\u062e\u062f\u0627\u0645 SimpleSAMLphp \u0643 IdP \u0644\u062a\u0637\u0628\u064a\u0642\u0627\u062a \u0642\u0648\u0642\u0644 \u0627\u0644\u062a\u0639\u0644\u064a\u0645\u064a\u0629",
+		"lv": "simpleSAMLphp k\u0101 IdP priek\u0161 Google Apps for Education",
 		"id": "simpleSAMLphp sebagai IdP untuk Google Apps for Education",
 		"sr": "simpleSAMLphp kao autentifikacioni servis za Google Apps for Education"
 	},
@@ -957,6 +987,7 @@
 		"he": "\u05ea\u05db\u05d5\u05e0\u05d5\u05ea \u05de\u05ea\u05e7\u05d3\u05de\u05d5\u05ea \u05e9\u05dc simpleSAMLphp",
 		"zh": "simpleSAMLphp\u9ad8\u7ea7\u529f\u80fd",
 		"ar": "\u062a\u0637\u0628\u064a\u0642\u0627\u062a simpleSAMLphp \u0627\u0644\u0645\u062a\u0642\u062f\u0645\u0629",
+		"lv": "simpleSAMLphp advanc\u0113t\u0101s iesp\u0113jas",
 		"id": "Fitur Lanjutan simpleSAMLphp",
 		"sr": "Napredne mogu\u0107nosti simpleSAMLphp-a"
 	},
@@ -988,6 +1019,7 @@
 		"he": "\u05ea\u05d7\u05d6\u05d5\u05e7\u05d4 \u05d5\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea \u05e9\u05dc simpleSAMLphp",
 		"zh": "simpleSAMLphp\u7ef4\u62a4\u548c\u914d\u7f6e",
 		"ar": "\u062a\u0631\u062a\u064a\u0628 \u0648 \u0635\u064a\u0627\u0646\u0629 simpleSAMLphp",
+		"lv": "simpleSAMLphp uztur\u0113\u0161ana un konfigur\u0113\u0161ana",
 		"id": "Konfigurasi dan Pemeliharaan simpleSAMLphp",
 		"sr": "Odr\u017eavanje i pode\u0161avanja simpleSAMLphp-a"
 	},
@@ -1018,6 +1050,7 @@
 		"he": "\u05d1\u05d3\u05d9\u05e7\u05ea \u05d4\u05d2\u05d3\u05e8\u05d5\u05ea simpleSAMLphp ",
 		"zh": "\u68c0\u67e5simpleSAMLphp\u914d\u7f6e",
 		"ar": "\u0645\u0631\u0627\u062c\u0639\u0629 \u062a\u0631\u062a\u064a\u0628 simpleSAMLphp",
+		"lv": "simpleSAMLphp konfigur\u0101cijas p\u0101rbaude",
 		"id": "Pemeriksaan konfigurasi simpleSAMLphp",
 		"sr": "Provera simpleSAMLphp pode\u0161avanja"
 	},
@@ -1048,6 +1081,7 @@
 		"ru": "\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043c\u043e\u0439 \u043f\u043e\u0434\u0431\u043e\u0440 IdP \u0432 IdP discovery services",
 		"zh": "\u5728IdP\u641c\u7d22\u670d\u52a1\u4e2d\u5220\u9664\u6211\u7684\u5173\u4e8eIdP\u7684\u9009\u62e9",
 		"ar": "\u0627\u062d\u0630\u0641 \u062e\u064a\u0627\u0631\u0627\u062a\u064a \u0644 IdP \u0628\u0645\u0633\u062a\u0643\u0634\u0641 \u062e\u062f\u0645\u0627\u062a IdP",
+		"lv": "Dz\u0113st manas IdP izv\u0113les IdP discovery servisos",
 		"id": "Hapus pilihan IdP saya di IdP penemuan layanan",
 		"sr": "Poni\u0161ti moj izbor za Davaoca Identiteta u servisima za pronala\u017eenje Davaoca Identiteta "
 	},
@@ -1078,6 +1112,7 @@
 		"pt-br": "Seja bem-vindo(a)",
 		"zh": "\u6b22\u8fce",
 		"ar": "\u0645\u0631\u062d\u0628\u0627\u064b",
+		"lv": "Laipni l\u016bdzam",
 		"id": "Selamat Datang",
 		"sr": "Dobrodo\u0161li"
 	},
@@ -1108,6 +1143,7 @@
 		"pt-br": "Configura\u00e7\u00e3o",
 		"zh": "\u914d\u7f6e",
 		"ar": "\u0627\u0644\u062a\u0631\u062a\u064a\u0628",
+		"lv": "Konfigur\u0101cija",
 		"id": "Konfigurasi",
 		"sr": "Pode\u0161avanja"
 	},
@@ -1138,6 +1174,7 @@
 		"pt-br": "Metadata",
 		"zh": "\u5143\u4fe1\u606f",
 		"ar": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629\/ \u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627 ",
+		"lv": "Metadati",
 		"id": "Metadata",
 		"sr": "Metapodaci"
 	},
@@ -1168,6 +1205,7 @@
 		"pt-br": "Ferramentas",
 		"zh": "\u5de5\u5177",
 		"ar": "\u0627\u0644\u0623\u062f\u0648\u0627\u062a ",
+		"lv": "R\u012bki",
 		"id": "Peralatan",
 		"sr": "Alati"
 	},
@@ -1198,6 +1236,7 @@
 		"pt-br": "Mostrar Metadata",
 		"zh": "\u663e\u793a\u5143\u4fe1\u606f",
 		"ar": "\u0627\u0638\u0647\u0631 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629\/ \u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627",
+		"lv": "R\u0101d\u012bt metadatus",
 		"id": "Perlihatkan metadata",
 		"sr": "Prika\u017ei metapodatke"
 	},
@@ -1228,6 +1267,7 @@
 		"pt-br": "Login como Administrador",
 		"zh": "\u4f5c\u4e3a\u7ba1\u7406\u5458\u767b\u5f55",
 		"ar": "\u0633\u062c\u0644 \u062f\u062e\u0648\u0644 \u0627\u0644\u0645\u0634\u0631\u0641",
+		"lv": "Piesl\u0113gties k\u0101 administrators",
 		"id": "Login sebagai administrator",
 		"sr": "Prijavite se kao administrator"
 	},
@@ -1258,6 +1298,7 @@
 		"pt-br": "Voc\u00ea est\u00e1 logado como Administrador",
 		"zh": "\u4f60\u5df2\u7ecf\u4f5c\u4e3a\u7ba1\u7406\u5458\u767b\u5f55\u4e86",
 		"ar": "\u0644\u0642\u062f \u0633\u062c\u0644\u062a \u0627\u0644\u062f\u062e\u0648\u0644 \u0643\u0645\u0634\u0631\u0641 \u0639\u0644\u064a \u0627\u0644\u0645\u0648\u0642\u0639\u062d",
+		"lv": "J\u016bs esat piesl\u0113dzies k\u0101 administrators",
 		"id": "Anda login sebagai administrator",
 		"sr": "Prijavljeni ste kao administrator"
 	},
@@ -1287,6 +1328,7 @@
 		"pt-br": "Autentica\u00e7\u00e3o",
 		"zh": "\u8ba4\u8bc1",
 		"ar": " \u0627\u0644\u062a\u0648\u062b\u064a\u0642",
+		"lv": "Autentifik\u0101cija",
 		"id": "Autentifikasi",
 		"sr": "Autentifikacija"
 	},
@@ -1316,6 +1358,7 @@
 		"pt-br": "Federa\u00e7\u00e3o",
 		"zh": "\u8054\u76df",
 		"ar": "\u0627\u0644\u062f\u062e\u0648\u0644 \u0627\u0644\u0645\u0648\u062d\u062f",
+		"lv": "Feder\u0101cija",
 		"id": "Federasi",
 		"sr": "Federacija"
 	},
@@ -1343,6 +1386,7 @@
 		"he": "\u05d1\u05d7\u05df \u05d0\u05ea \u05d4\u05d2\u05d3\u05e8\u05d5\u05ea \u05de\u05e7\u05d5\u05e8\u05d5\u05ea \u05d4\u05d4\u05d9\u05d6\u05d3\u05d4\u05d5\u05ea",
 		"zh": "\u6d4b\u8bd5\u5df2\u7ecf\u914d\u7f6e\u7684\u8ba4\u8bc1\u6e90",
 		"ar": "\u0627\u062e\u062a\u0628\u0631 \u062a\u0631\u062a\u064a\u0628 \u0645\u0635\u0627\u062f\u0631 \u0627\u0644\u062a\u0648\u062b\u064a\u0642",
+		"lv": "Test\u0113t konfigur\u0113tos autentifik\u0101cijas avotus",
 		"id": "Memerika sumber autentifikasi yang telah dikonfigurasi",
 		"sr": "Testirajte pode\u0161ene autentifikacione servise"
 	},
@@ -1371,6 +1415,7 @@
 		"pt-br": "Depreciado",
 		"zh": "\u5df2\u7ecf\u8d85\u65f6",
 		"ar": "\u0627\u0633\u062a\u0646\u0643\u0627\u0631",
+		"lv": "Atcelts",
 		"id": "Usang",
 		"sr": "Zastarelo"
 	},
@@ -1397,6 +1442,7 @@
 		"zh": "simpleSAMLphp\u5b89\u88c5\u9875\u9762",
 		"ar": "\u0635\u0641\u062d\u0629 \u062a\u0631\u0643\u064a\u0628 simpleSAMLphp",
 		"id": "Halaman instalasi simpleSAMLphp",
+		"lv": "simpleSAMLphp instal\u0101cijas lapa",
 		"sr": "simpleSAMLphp instalaciona stranica"
 	},
 	"warnings_suhosin_url_length": {
@@ -1416,6 +1462,7 @@
 		"hu": "A http k\u00e9r\u00e9s param\u00e9tereinek hossza meghaladta a PHP Suhosin kiterjeszt\u00e9s hat\u00e1r\u00e9rt\u00e9k\u00e9t. N\u00f6velje meg a suhosin.get.max_value_length opci\u00f3t legal\u00e1bb 2048 byte-ra.",
 		"ar": "\u0637\u0648\u0644 \u0627\u0644\u0633\u0624\u0627\u0644 \u0645\u062d\u062f\u062f \u0628\u0648\u0627\u0633\u0637\u0629 PHP Suhosin. \u0642\u0645 \u0631\u062c\u0627\u0621\u0627\u064b\u064b \u0628\u0632\u064a\u0627\u062f\u0629 \u0627\u0644\u062e\u064a\u0627\u0631 Suhosin.get.max_value_length \u0644 \u0662\u0660\u0664\u0668 \u0628\u0627\u064a\u062a\u0633 \u0639\u0644\u064a \u0627\u0644\u0627\u0642\u0644",
 		"hr": "Veli\u010dina polja s parametrima ograni\u010dena je Suhosin PHP ekstenzijom. Podesite da vrijednost parametra suhosin.get.max_value_length bude najmanje 2048 bajtova (za primjenu u sustavu AAI@EduHr preporu\u010da se da navedena vrijednost bude 16382 bajtova).",
+		"lv": "Piepras\u012bjuma parametru garumu ierobe\u017eo PHP Suhosin papla\u0161in\u0101jums. L\u016bdzu palieliniet suhosin.get.max_value_length opciju l\u012bdz vismaz 2048 baitiem.",
 		"id": "Panjang parameter quert dibatasi oleh ekstensi Suhosin PHP. Tolong tingkatkan opsi suhosin.get.max_value_length setidaknya menjadi 2048 byte. ",
 		"sr": "Veli\u010dina polja s parametrima ograni\u010dena je Suhosin PHP ekstenzijom. Podesite da vrednost parametra suhosin.get.max_value_length bude najmanje 2048 bajtova.",
 		"fr": "La longuer des param\u00e8tres de requ\u00eate est limit\u00e9e par l'extension PHP Suhosin. Merci d'augmenter l'option suhosin.get.max_value_length \u00e0 au moins 2048 octets.",
