@@ -6,6 +6,101 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.11
+
+Released TBD.
+
+  * Support for RSA_SHA256, RSA_SHA384 and RSA_SHA512 in HTTP Redirect binding.
+  * Support for RegistrationInfo element in SAML 2.0 metadata.
+  * Support for AuthnRequestsSigned and WantAssertionsSigned when generating metadata.
+  * Third party OpenID library updated with a bugfix.
+  * Added the Name attribute to EntitiesDescriptor.
+  * Removed deprecated option 'session.requestcache' from config-template.
+  * Workaround for SSL SNI extension not being correctly set.
+  * New language cookie and parameter config options.
+  * Add 'module.enable' configuration option for enabling/disabling modules.
+  * Check for existence of memcache extension. 
+  * Initial support for limiting redirects to trusted hosts.
+  * Demo example now shows both friendly and canonical name of the attributes.
+  * Other minor fixes for bugs and typos.
+  * Several translations updated.
+  * Added Latvian translation.
+
+### `authorize`
+
+  * Added a logout link to the 403 error page.
+
+### `authtwitter`
+
+  * Updated API endpoint for version 1.1.
+  * Fix for oauth_verifier parameter.
+
+### `authX509`
+
+  * ldapusercert validation made optional.
+
+### `consent`
+
+  * Added support for SQLite databases.
+
+### `core`
+
+  * Fix error propagation in UserPass(Org)Base authentication sources.
+  * MCrypt module marked as required.
+
+### `discopower`
+
+  * Get the name of an IdP from mdui:DisplayName.
+
+### `expirycheck`
+
+  * PHP 5.4 compatibility fixes.
+
+### `InfoCard`
+
+  * PHP 5.4 compatibility fixes.
+
+### `ldap`
+
+  * Added an option to disable following referrals.
+
+### `metarefresh`
+
+  * Improved help message.
+
+### `oauth`
+
+  * PHP 5.4 compatibility fixes.
+
+### `saml`
+
+  * Verify that the issuer of an AuthnResponse is the same entity ID we sent a request to.
+  * Added separate option to enable Holder of Key support on SP.
+  * Fix for HoK profile metadata.
+  * New filter for storing persistent NameID in eduPersonTargetedID attribute.
+  * Support for UIInfo elements.
+  * Bugfix for SAML SP metadata signing.
+  * Ignore default technical contact.
+  * Support for MDUI elements in SP metadata.
+  * Support for more contact types in SP metadata. 
+
+### `sanitycheck`
+
+  * Configuration file made optional.
+
+### `smartattributes`
+
+  * New filter: smartattributes:SmartID.
+  * New filter: smartattributes:SmartName.
+
+### `smartnameattribute`
+
+  * Deprecated.
+
+### `wsfed`
+
+  * Support for SLO in WS-Fed.
+
 ## Version 1.10
 
 Released 2012-09-25.
