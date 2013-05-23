@@ -1466,6 +1466,8 @@
 		"id": "Panjang parameter quert dibatasi oleh ekstensi Suhosin PHP. Tolong tingkatkan opsi suhosin.get.max_value_length setidaknya menjadi 2048 byte. ",
 		"sr": "Veli\u010dina polja s parametrima ograni\u010dena je Suhosin PHP ekstenzijom. Podesite da vrednost parametra suhosin.get.max_value_length bude najmanje 2048 bajtova.",
 		"fr": "La longuer des param\u00e8tres de requ\u00eate est limit\u00e9e par l'extension PHP Suhosin. Merci d'augmenter l'option suhosin.get.max_value_length \u00e0 au moins 2048 octets.",
-		"it": "La lunghezza dei parametri della query \u00e8 limitato dall'estensione PHP Suhosin. Incrementa l'opzione suhosin.get.max_value_lenght ad almeno 2048 bytes"
+		"it": "La lunghezza dei parametri della query \u00e8 limitato dall'estensione PHP Suhosin. Incrementa l'opzione suhosin.get.max_value_lenght ad almeno 2048 bytes",
+		"nl": "De lengte van de query-parameters wordt beperkt door PHP's Suhosin-extensie. Gelieve de optie suhosin.get.max_value_length te verhogen tot tenminste 2048 bytes.",
+		"es": "El n\u00famero de par\u00e1metros de la petici\u00f3n est\u00e1 limitado por la extensi\u00f3n Suhosin de PHP. Por favor, incremente el valor de la opci\u00f3n suhosin.get.max_value_length a al menos 2048 bytes."
 	}
 }

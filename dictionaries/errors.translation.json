@@ -2027,7 +2027,8 @@
 		"hu": "Az azonos\u00edt\u00e1st a felhaszn\u00e1l\u00f3 megszak\u00edtotta",
 		"nn": "Innlogging blei avbroten av sluttbrukaren",
 		"fr": "L'authentification a \u00e9t\u00e9 abandonn\u00e9e par l'usager",
-		"cs": "P\u0159ihl\u00e1\u0161en\u00ed bylo p\u0159eru\u0161eno u\u017eivatelem"
+		"cs": "P\u0159ihl\u00e1\u0161en\u00ed bylo p\u0159eru\u0161eno u\u017eivatelem",
+		"nl": "De authenticatie is afgebroken door de gebruiker"
 	},
 	"title_NOSTATE": {
 		"da": "State information tabt",
@@ -2052,7 +2053,8 @@
 		"sr": "Podaci o stanju su izgubljeni",
 		"nn": "Mista tilstandsinformasjon",
 		"fr": "Information d'\u00e9tat perdue",
-		"cs": "Stavov\u00e1 informace ztracena"
+		"cs": "Stavov\u00e1 informace ztracena",
+		"nl": "Toestandsinformatie verloren"
 	},
 	"descr_NOSTATE": {
 		"da": "State information er tabt og der er ikke muligt at gentage forsp\u00f8rgelsen",
@@ -2077,7 +2079,8 @@
 		"hu": "\u00c1llapotinform\u00e1ci\u00f3 elveszett, a k\u00e9r\u00e9st nem lehet \u00fajraind\u00edtani",
 		"nn": "Mista tilstandsinformasjon, og klarer ikkje \u00e5 gjera omstart",
 		"fr": "Information d'\u00e9tat perdue, et aucun moyen de relancer la requ\u00eate",
-		"cs": "Stavov\u00e1 informace "
+		"cs": "Stavov\u00e1 informace ",
+		"nl": "Informatie over de toestand is verloren, en het verzoek kan niet herstart worden"
 	},
 	"title_METADATANOTFOUND": {
 		"da": "Metadata ikke fundet",
@@ -2101,7 +2104,8 @@
 		"sr": "Metapodaci nisu prona\u0111eni",
 		"hu": "Metadata nem tal\u00e1lhat\u00f3",
 		"nn": "Finn ikkje metadata",
-		"fr": "M\u00e9tadonn\u00e9es non trouv\u00e9es"
+		"fr": "M\u00e9tadonn\u00e9es non trouv\u00e9es",
+		"nl": "Metadata niet gevonden"
 	},
 	"descr_METADATANOTFOUND": {
 		"da": "Kan ikke finde metadata for %ENTITYID%",
@@ -2125,7 +2129,8 @@
 		"sr": "Metapodaci za %ENTITYID% nisu prona\u0111eni",
 		"hu": "%ENTITYID% entit\u00e1shoz nem tal\u00e1lhat\u00f3 metadataA",
 		"nn": "Klarer ikkje \u00e5 finna metadata for %ENTITYID%",
-		"fr": "Impossible de localiser les m\u00e9tadonn\u00e9es pour %ENTITYID%"
+		"fr": "Impossible de localiser les m\u00e9tadonn\u00e9es pour %ENTITYID%",
+		"nl": "Kan geen metadata vinden voor %ENTITYID%"
 	},
 	"title_AUTHSOURCEERROR": {
 		"hr": "Gre\u0161ka u autentifikacijskom modulu",
@@ -2148,7 +2153,8 @@
 		"hu": "Azonos\u00edt\u00e1si forr\u00e1s hiba",
 		"nn": "Innloggingsfeil: autentisering",
 		"fr": "Erreur sur la source d'authentification",
-		"it": "Errore di sorgente di autenticazione"
+		"it": "Errore di sorgente di autenticazione",
+		"nl": "Fout in authenticatiebron"
 	},
 	"descr_AUTHSOURCEERROR": {
 		"hr": "Do\u0161lo je do gre\u0161ke u autentifikacijskom modulu %AUTHSOURCE%. Razlog: %REASON%",
@@ -2171,6 +2177,7 @@
 		"hu": "A(z)  %AUTHSOURCE% azonos\u00edt\u00e1si forr\u00e1sban hiba van. A ok: %REASON%",
 		"nn": "Innloggingsfeil knytta til %AUTHSOURCE% p\u00e5 grunn av %REASON%",
 		"fr": "Erreur d'authentification pour la source %AUTHSOURCE%. La raison \u00e9tait %REASON%",
-		"it": "Errore di autenticazione in sorgente %AUTHSOURCE%. La ragione \u00e8 $REASON%"
+		"it": "Errore di autenticazione in sorgente %AUTHSOURCE%. La ragione \u00e8 $REASON%",
+		"nl": "Fout in authenticatiebron %AUTHSOURCE%. Als reden werd gegeven: %REASON%."
 	}
 }

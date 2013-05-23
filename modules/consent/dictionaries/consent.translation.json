@@ -649,6 +649,8 @@
 		"it": "Login interrotto a SPNAME",
 		"fr": "Annuler la connexion au fournisseur de service SPNAME",
 		"de": "Anmeldung am Service Provider SPNAME abbrechen",
-		"et": "Katkesta sisselogimine: SPNAME"
+		"et": "Katkesta sisselogimine: SPNAME",
+		"nl": "Inloggen op SPNAME afbreken",
+		"es": "Cancelar la identificaci\u00f3n en SPNAME"
 	}
 }

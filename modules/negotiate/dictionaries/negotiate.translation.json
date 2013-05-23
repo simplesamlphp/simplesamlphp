@@ -7,7 +7,9 @@
 		"et": "Seda lehek\u00fclge k\u00fclastades l\u00fclitasid automaatse sisselogimise selles brauseris v\u00e4lja.",
 		"lt": "I\u0161jungta galimyb\u0117 naudoti automatin\u012f prisijungim\u0105 \u0161ioje nar\u0161ykl\u0117je",
 		"sr": "Mogu\u0107nost automatske prijave je za ovaj pretra\u017eiva\u010d isklju\u010dena",
-		"it": "Login automatico disabilitato per questo browser."
+		"it": "Login automatico disabilitato per questo browser.",
+		"nl": "Mogelijkheid tot automatisch inloggen voor deze browser uitgeschakeld",
+		"es": "La identificaci\u00f3n autom\u00e1tica en este navegador se ha deshabilitado."
 	},
 	"disable_info_pre": {
 		"no": "<p>Ved \u00e5 g\u00e5 til denne siden har du skrudd av muligheten for automatisk innlogging for denne nettleseren.<\/p><p>For \u00e5 skru p\u00e5 igjen muligheten, kan du g\u00e5 til <a href='URL'>denne siden<\/a>.<\/p>",
@@ -17,7 +19,9 @@
 		"et": "<p>Seda lehek\u00fclge k\u00fclastades l\u00fclitasid automaatse sisselogimise selles brauseris v\u00e4lja.<\/p><p>Sisse l\u00fclitamiseks k\u00fclasta <a href='URL'>seda lehek\u00fclge<\/a>.<\/p>",
 		"lt": "<p>Jungdamiesi \u012f \u0161i\u0105 setain\u0119, J\u016bs i\u0161jung\u0117te galimyb\u0119 naudoti automatin\u012f prisijungim\u0105 \u0161ioje nar\u0161ykl\u0117je.<\/p><p>Nor\u0117dami j\u012f v\u0117l \u012fjungti, apsilankykite <a href='URL'>\u0161ioje svetain\u0117je<\/a>.<\/p>",
 		"sr": "<p>Pristupanjem na ovu stranicu, ovaj pretra\u017eiva\u010d ste za isklju\u010dili mogu\u0107nost automatske prijave.<\/p><p>Da bi ste opet uklju\u010dili ovu mogu\u0107nost, molim vas posetite <a href='URL'>ovu stranicu<\/a>.<\/p>",
-		"it": "<p>Per accedere a questa pagina devi disabilitare il login automatico sul tuo browser<\/p><p>Per riattivarlo visita <a href='URL'>questa pagina<\/a>.<\/p>"
+		"it": "<p>Per accedere a questa pagina devi disabilitare il login automatico sul tuo browser<\/p><p>Per riattivarlo visita <a href='URL'>questa pagina<\/a>.<\/p>",
+		"nl": "<p>Middels het laden van deze pagina heeft u de mogelijkheid tot automatisch inloggen uitgeschakeld voor deze browser.<\/p><p>Om dit weer in te schakelen, bezoekt u <a href='URL'>deze pagina<\/a>.<\/p>",
+		"es": "<p>Al acceder a esta p\u00e1gina, ha deshabilitado la posibilidad de identificarse autom\u00e1ticamente en este navegador.<\/p><p>Para habilitarla de nuevo, por favor, visite <a href='URL'>esta p\u00e1gina<\/a>.<\/p>"
 	},
 	"enable_title": {
 		"no": "Skrudd p\u00e5 mulighet for automatisk innlogging for denne nettleseren",
@@ -27,7 +31,9 @@
 		"et": "L\u00fclitasid automaatse sisselogimise selles brauseris sisse",
 		"lt": "\u012ejungta galimyb\u0117 naudoti automatin\u012f prisijungim\u0105 \u0161ioje nar\u0161ykl\u0117je",
 		"sr": "Mogu\u0107nost automatske prijave je za ovaj pretra\u017eiva\u010d uklju\u010dena",
-		"it": "Login automatico per questo browser attivato."
+		"it": "Login automatico per questo browser attivato.",
+		"nl": "Mogelijkheid tot automatisch inloggen voor deze browser ingeschakeld",
+		"es": "La identificaci\u00f3n autom\u00e1tica en este navegador se ha habilitado."
 	},
 	"enable_info_pre": {
 		"no": "<p>Ved \u00e5 g\u00e5 til denne siden har du skrudd p\u00e5 muligheten for automatisk innlogging for denne nettleseren.<\/p><p>For \u00e5 skru av igjen muligheten, kan du g\u00e5 til <a href='URL'>denne siden<\/a>.<\/p>",
@@ -37,7 +43,9 @@
 		"et": "<p>Seda lehek\u00fclge k\u00fclastades l\u00fclitasid automaatse sisselogimise selles brauseris sisse.<\/p><p>V\u00e4lja l\u00fclitamiseks k\u00fclasta <a href='URL'>seda lehek\u00fclge<\/a>.<\/p>",
 		"lt": "<p>Jungdamiesi \u012f \u0161i\u0105 setain\u0119, J\u016bs \u012fjung\u0117te galimyb\u0119 naudoti automatin\u012f prisijungim\u0105 \u0161ioje nar\u0161ykl\u0117je.<\/p><p>Nor\u0117dami j\u012f v\u0117l i\u0161jungti, apsilankykite <a href='URL'>\u0161ioje svetain\u0117je<\/a>.<\/p>",
 		"sr": "<p>Pristupanjem na ovu stranicu, ovaj pretra\u017eiva\u010d ste za uklju\u010dili mogu\u0107nost automatske prijave.<\/p><p>Da bi ste opet isklju\u010dili ovu mogu\u0107nost, molim vas posetite <a href='URL'>ovu stranicu<\/a>.<\/p>",
-		"it": "<p>Per accedere a questa pagina devi abilitare il login automatico sul tuo browser<\/p><p>Per riattivarlo visita <a href='URL'>questa pagina<\/a>.<\/p>"
+		"it": "<p>Per accedere a questa pagina devi abilitare il login automatico sul tuo browser<\/p><p>Per riattivarlo visita <a href='URL'>questa pagina<\/a>.<\/p>",
+		"nl": "<p>Middels het laden van deze pagina heeft u de mogelijkheid tot automatisch inloggen ingeschakeld voor deze browser.<\/p><p>Om dit weer uit te schakelen, bezoekt u <a href='URL'>deze pagina<\/a>.<\/p>",
+		"es": "<p>Al acceder a esta p\u00e1gina, ha habilitado la identificaci\u00f3n autom\u00e1tica en este navegador.<\/p><p>Para deshabilitarlo de nuevo, por favor, visite <a href='URL'>esta p\u00e1gina<\/a>.<\/p>"
 	},
 	"info_post": {
 		"no": "<h3>Hva er automatisk innlogging<\/h3><\/p><p>Automatisk innlogging gj\u00f8r at man kan logge inn uten \u00e5 bli bedt om brukernavn og passord i noen tilfeller:<ul><li>hvis maskinen er i Kerberos domenet<\/li><li>og hvis man bruker en st\u00f8ttet nettleser (IE og noen flere avhengig av oppsett)<\/li><li>p\u00e5 et st\u00f8ttet operativsystem (Windows, Mac)<\/li><\/ul><\/p>",
@@ -47,6 +55,8 @@
 		"et": "<h3>Mis on automaatne sisselogimine<\/h3>Automaatne sisselogimine v\u00f5imaldab sul logida sisse ilma kasutajatunnust ja parooli sisestamata: <ul><li>kui arvuti on Kerberos domeenis<\/li><li>kasutad toetatud brauserit (IE ja m\u00f5ned teised, s\u00f5ltuvalt paigaldusvalikutest)<\/li><li>ja toetatud operatsioonis\u00fcsteemi (Windows, Mac)<\/li><\/ul><\/p>",
 		"lt": "<h3>Kas yra automatinis prisijungimas<\/h3><p>Automatinis prisijungimas suteikia galimyb\u0119 prisijungti ne\u012fvedant prisijungimo vardo ir slapta\u017eod\u017eio:<ul><li> jei kompiuteris priklauso Kerberos domenui<\/li><li> ir naudojama tinkama nar\u0161ykl\u0117 (IE ir kelios kitos, priklausomai nuo diegimo opcij\u0173)<\/li><li> tinkamoje operacin\u0117je sistemoje (Windows, Mac)<\/li><\/ul><\/p>",
 		"sr": "<h3>\u0160ta je automatska prijava<\/h3><p>Automatska prijava vam omogu\u0107ava da se prijavite bez uno\u0161enja korisni\u010dkog imena i lozinke:<ul><li>ukoliko je kompjuter u Kerberos domenu<\/li><li>kori\u0161\u0107enjem pretra\u017eiva\u010da (IE i jo\u0161 neki zavisno od opcija prilikom instaliranja)<\/li><li>na odgovaraju\u0107em operativnom sistemu (Windows, Mac)<\/li><\/ul><\/p>",
-		"it": "<h3>Cos'\u00e8 il login automatico<\/h3><p>Il login automatico ti permette di identificarti senza richiedere username e password:<ul><li>Se il computer \u00e8 in un dominio Kerberos<\/li><li>Se usi un browser supportato(per IE ed altri browser dipende dalle opzioni di installazione)<\/li><li>Su sistemi opererativi supportati(Windows, Mac<\/li><\/ul><\/p>"
+		"it": "<h3>Cos'\u00e8 il login automatico<\/h3><p>Il login automatico ti permette di identificarti senza richiedere username e password:<ul><li>Se il computer \u00e8 in un dominio Kerberos<\/li><li>Se usi un browser supportato(per IE ed altri browser dipende dalle opzioni di installazione)<\/li><li>Su sistemi opererativi supportati(Windows, Mac<\/li><\/ul><\/p>",
+		"nl": "<h3>Wat is automatisch inloggen?<\/h3><p>Automatisch inloggen stelt u in staat in te loggen zonder om een gebruikersnaam en wachtwoord gevraagd te worden:<ul><li>wanneer een computer zich in het Kerberos-domein bevindt<\/li><li>gebruikmakend van een ondersteunde browser (IE en enkele andere afhankelijk van installatieopties)<\/li><li>op een ondersteund besturingssysteem (Windows, Mac)<\/li><\/ul><\/p>",
+		"es": "<h3>\u00bfQu\u00e9 es la identificaci\u00f3n autom\u00e1tica?<\/h3><p>La identificaci\u00f3n autom\u00e1tica le permite identificarse sin ser preguntado por su nombre de usuario y contrase\u00f1a:<ul><li>si su ordenador est\u00e1 en un dominio Kerberos<\/li><li>utilizando un navegador soportado (IE y otros, dependiendo de las opciones de instalaci\u00f3n)<\/li><li>en un sistema operativo soportado (Windows, Mac)<\/li><\/ul><\/p>"
 	}
 }

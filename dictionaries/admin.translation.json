@@ -440,7 +440,7 @@
 		"no": "I SAML 2.0 Metadata XML Format:",
 		"nn": "P\u00e5 SAML 2.0 metadata XML-format",
 		"sv": "I SAML 2.0 Metadata XML-format:",
-		"es": "en formato xml de metadatos SAML 2.0:",
+		"es": "En formato xml de metadatos SAML 2.0:",
 		"nl": "In SAML 2.0 Metadata XML formaat:",
 		"sl": "V SAML 2.0 Metapodatkovni XML format:",
 		"da": "I SAML 2.0 metadata xml-format:",
@@ -1134,7 +1134,7 @@
 		"no": "I simpleSAMLphp format - bruk denne dersom du benytter simpleSAMLphp i den andre enden:",
 		"nn": "P\u00e5 flat fil for simpleSAMLphp.  Bruk denne dersom du bruker simpleSAMLphp p\u00e5 andre sida:",
 		"sv": "I filformatet f\u00f6r simpleSAML, anv\u00e4nd detta detta format om simpleSAMLphp anv\u00e4nds i mottagende sida:",
-		"es": "en un fichero de formato simpleSAMLphp - utilice esta opci\u00f3n si est\u00e1 usando una entidad simpleSAMLphp en el otro extremo:",
+		"es": "En un fichero de formato simpleSAMLphp - utilice esta opci\u00f3n si est\u00e1 usando una entidad simpleSAMLphp en el otro extremo:",
 		"nl": "In simpleSAMLphp flat file formaat - gebruik dit wanneer uw federatiepartner ook simpleSAMLphp gebruikt",
 		"sl": "V simpleSAMLphp \"flat file\" formatu - ta format uporabite, \u010de uporabljate simpleSAMLphp entiteto na drugi strani:",
 		"da": "I simpleSAMLphp flat-file format - brug dette hvis du ogs\u00e5 bruger simpleSAMLphp i den anden ende;",
@@ -1322,7 +1322,8 @@
 		"nn": "Sertifikat",
 		"fr": "Certificats",
 		"cs": "Certifik\u00e1ty",
-		"it": "Certificati"
+		"it": "Certificati",
+		"es": "Certificados"
 	},
 	"metadata_cert_intro": {
 		"nl": "Download de X509-certificaten in PEM-formaat.",
@@ -1343,6 +1344,7 @@
 		"nn": "Last ned X509-sertifikat som PEM-koda filer",
 		"fr": "T\u00e9l\u00e9charger les certificats X509 en tant que fichiers encod\u00e9s PEM.",
 		"cs": "St\u00e1hn\u011bte certifik\u00e1t X509 jako PEM-encoded soubor",
-		"it": "Scarica i certificati X509 come file PEM-encoded"
+		"it": "Scarica i certificati X509 come file PEM-encoded",
+		"es": "Descargar los certificados X509 en formato PEM."
 	}
 }
