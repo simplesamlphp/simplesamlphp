@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.11
 
-Released TBD.
+Released 2013-06-05.
 
   * Support for RSA_SHA256, RSA_SHA384 and RSA_SHA512 in HTTP Redirect binding.
   * Support for RegistrationInfo element in SAML 2.0 metadata.
