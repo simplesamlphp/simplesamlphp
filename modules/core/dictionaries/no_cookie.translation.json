@@ -24,7 +24,9 @@
 		"lv": "Tr\u016bkst s\u012bkdatnes",
 		"id": "Cookie hilang",
 		"sr": "Nedostaje kola\u010di\u0107 (cookie)",
-		"cs": "Chyb\u011bj\u00edc\u00ed cookie"
+		"cs": "Chyb\u011bj\u00edc\u00ed cookie",
+		"ro": "<i>Cookie<\/i> lips\u0103",
+		"ru": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442 cookie-\u0444\u0430\u0439\u043b"
 	},
 	"description": {
 		"no": "Du ser ut til \u00e5 ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og pr\u00f8v igjen.",
@@ -51,7 +53,9 @@
 		"lv": "Izskat\u0101s, ka J\u016bsu interneta p\u0101rl\u016bk\u0101 ir aizliegtas s\u012bkdatnes. L\u016bdzu p\u0101rbaudiet sava p\u0101rl\u016bka uzst\u0101d\u012bjumus un m\u0113\u0123iniet v\u0113lreiz.",
 		"id": "Anda sepertinya menonaktifkan cookie di browser anda. Silahkan periksa  pengaturan pada browser anda, dan coba lagi.",
 		"sr": "Izgleda da ste onemogu\u0107ili kola\u010di\u0107e (cookies) u va\u0161em web pretra\u017eiva\u010du. Molimo proverite pode\u0161avanja va\u0161eg web pretra\u017eiva\u010da i poku\u0161ajte ponovo.",
-		"cs": "V\u00e1\u0161 internetov\u00fd prohl\u00ed\u017ee\u010d m\u00e1 z\u0159ejm\u011b vypnutou podporu cookies. Pros\u00edme, zkontrolujte nastaven\u00ed cookies ve va\u0161em prohl\u00ed\u017ee\u010di a zkuste znovu."
+		"cs": "V\u00e1\u0161 internetov\u00fd prohl\u00ed\u017ee\u010d m\u00e1 z\u0159ejm\u011b vypnutou podporu cookies. Pros\u00edme, zkontrolujte nastaven\u00ed cookies ve va\u0161em prohl\u00ed\u017ee\u010di a zkuste znovu.",
+		"ro": "<i>Cookies<\/i> au fost dezactivate \u00een browser-ul dumneavoastr\u0103. V\u0103 rug\u0103m s\u0103 verifica\u021bi configurarea browser-ului dup\u0103 care \u00eencerca\u021bi din nou.",
+		"ru": "\u0412\u0438\u0434\u0438\u043c\u043e, \u0432\u044b \u043e\u0442\u043a\u043b\u044e\u0447\u0438\u043b\u0438 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0443 cookies \u0432 \u0432\u0430\u0448\u0435\u043c \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435. \u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u043f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u0432\u0430\u0448\u0435\u0433\u043e \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0430 \u0438 \u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u043f\u043e\u043f\u044b\u0442\u043a\u0443."
 	},
 	"retry": {
 		"no": "Pr\u00f8v igjen",
@@ -79,6 +83,7 @@
 		"lv": "M\u0113\u0123in\u0101t v\u0113lreiz",
 		"id": "Coba lagi",
 		"sr": "Poku\u0161aj ponovo",
-		"cs": "Opakujte"
+		"cs": "Opakujte",
+		"ro": "\u00cencearc\u0103 din nou"
 	}
 }

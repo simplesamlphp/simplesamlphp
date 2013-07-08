@@ -26,7 +26,8 @@
 		"ar": "\u0623\u062f\u062e\u0644 \u0645\u0633\u062a\u062e\u062f\u0645\u0627\u064bYubiKey ",
 		"lv": "Piesl\u0113gties ar YubiKey",
 		"id": "Login dengan YubiKey",
-		"sr": "Prijavite se pomo\u0107u YubiKey-a"
+		"sr": "Prijavite se pomo\u0107u YubiKey-a",
+		"ro": "Login cu YubiKey"
 	},
 	"intro": {
 		"no": "En tjeneste har bedt om at du autentiserer deg. For \u00e5 autentisere seg, trykk p\u00e5 knappen p\u00e5 din YubiKey. Feltet under vil da bli automatisk utfylt med et sikkert engangspassord.",
@@ -55,6 +56,7 @@
 		"ar": "\u0628\u0639\u0636 \u0627\u0644\u062e\u062f\u0645\u0627\u062a \u062a\u062a\u0637\u0644\u0628  \u062a\u0635\u062f\u064a\u0642\u0627\u064b. \u0644\u0644\u062a\u0635\u062f\u064a\u0642 \u0623\u0636\u063a\u0637 \u0627\u0644\u0632\u0631 \u0627\u0644\u0645\u0648\u062c\u0648\u062f \u0639\u0644\u064a   YubiKey. \u0645\u0645\u0627 \u0633\u064a\u0624\u062f\u064a \u0644\u0645\u0644\u0621 \u0627\u0644\u062d\u0642\u0644 \u0623\u062f\u0646\u0627\u0647 \u0628\u0643\u0644\u0645\u0629 \u0633\u0631 \u0648\u0627\u062d\u062f\u0629 \u0627\u0645\u0646\u0647 \u0627\u062a\u0648\u0645\u0627\u062a\u064a\u0643\u064a\u0627\u064b",
 		"lv": "K\u0101ds serviss prasa autentifik\u0101ciju. Klik\u0161\u0137iniet YubiKey pogu. Ievadlauks zem\u0101k autom\u0101tiski tiks aizpild\u012bts ar dro\u0161u vienreiz\u0113ju paroli.",
 		"id": "Beberapa layanan meminta autentifikasi. Untuk melakukan autentifikasi, klik tombol pada YubiKey Anda. Field dibawah seharusnya secara otomatis akan diisi dengan one-time-password yang aman.",
-		"sr": "Neki od servisa je zatra\u017eio da se autentifikujete. Da biste se autentifikovali pritisnite dugme na va\u0161em YubiKey ure\u0111aju. Nakon toga bi u polje ispod trebala biti automatski upisana jednokratna lozinka."
+		"sr": "Neki od servisa je zatra\u017eio da se autentifikujete. Da biste se autentifikovali pritisnite dugme na va\u0161em YubiKey ure\u0111aju. Nakon toga bi u polje ispod trebala biti automatski upisana jednokratna lozinka.",
+		"ro": "Un serviciu a cerut s\u0103 v\u0103 autentifica\u021bi. Pentru autentificare, ap\u0103sa\u021bi butonul de pe YubiKey. C\u00e2mpul de mai jos va fi completat automat cu o parol\u0103 de unic\u0103 folosin\u021b\u0103."
 	}
 }

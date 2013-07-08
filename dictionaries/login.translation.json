@@ -29,7 +29,8 @@
 		"ar": "\u062e\u0637\u0627",
 		"id": "Error",
 		"lv": "K\u013c\u016bda",
-		"sr": "Gre\u0161ka"
+		"sr": "Gre\u0161ka",
+		"ro": "Eroare"
 	},
 	"user_pass_header": {
 		"no": "Skriv inn brukernavn og passord",
@@ -61,7 +62,8 @@
 		"ar": "\u0627\u062f\u062e\u0644 \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0648 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631",
 		"id": "Masukkan username dan password Anda",
 		"lv": "Ievadiet savu lietot\u0101ja v\u0101rdu un paroli",
-		"sr": "Unesite va\u0161e korisni\u010dko ime i lozinku"
+		"sr": "Unesite va\u0161e korisni\u010dko ime i lozinku",
+		"ro": "V\u0103 rug\u0103m s\u0103 completa\u021bi numele de utilizator \u0219i parola"
 	},
 	"user_pass_text": {
 		"no": "En tjeneste har bedt om bekreftelse p\u00e5 din identitet. Skriv inn ditt brukernavn og passord for \u00e5 autentisere deg.",
@@ -93,7 +95,8 @@
 		"ar": "\u0637\u0644\u0628\u062a \u0627\u062d\u062f\u064a \u0627\u0644\u062e\u062f\u0645\u0627\u062a \u0627\u0646 \u062a\u0648\u062b\u0642 \u0627\u0646\u0643 \u0627\u0646\u062a. \u0631\u062c\u0627\u0621\u0627\u064b \u0642\u0645 \u0628\u0625\u062f\u0631\u0627\u062c \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0648 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u062e\u0627\u0635\u062a\u0643 \u0628\u0627\u0644\u0627\u0633\u062a\u0645\u0627\u0631\u0629 \u0623\u062f\u0646\u0627\u0647",
 		"id": "Sebuah layanan telah meminta Anda untuk melakukan autentifikasi. Silahkan masukkan username dan password Anda pada form dibawah",
 		"lv": "Serviss pieprasa autentifik\u0101ciju. L\u016bdzu ievadiet savu lietot\u0101ja v\u0101rdu un paroli.",
-		"sr": "Servis zahteva od vas da se autentifikujete. Unesite va\u0161e korisni\u010dko ime i lozinku u dole navedena polja."
+		"sr": "Servis zahteva od vas da se autentifikujete. Unesite va\u0161e korisni\u010dko ime i lozinku u dole navedena polja.",
+		"ro": "Un serviciu a solicitat autentificarea dumneavoastr\u0103. V\u0103 rug\u0103m s\u0103 completa\u021bi numele de utilizator \u0219i parola \u00een c\u00e2mpurile de mai jos."
 	},
 	"login_button": {
 		"no": "Logg inn",
@@ -126,7 +129,8 @@
 		"ar": "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644",
 		"id": "Login",
 		"lv": "Piesl\u0113gties",
-		"sr": "Prijavi se"
+		"sr": "Prijavi se",
+		"ro": "Autentificare"
 	},
 	"username": {
 		"no": "Brukernavn",
@@ -159,7 +163,8 @@
 		"ar": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645",
 		"id": "Username",
 		"lv": "Lietot\u0101ja v\u0101rds",
-		"sr": "Korisni\u010dko ime"
+		"sr": "Korisni\u010dko ime",
+		"ro": "Nume de utilizator"
 	},
 	"organization": {
 		"no": "Organisasjon",
@@ -192,7 +197,8 @@
 		"ar": "\u0627\u0644\u062c\u0647\u0629 ",
 		"id": "Organisasi",
 		"lv": "Organiz\u0101cija",
-		"sr": "Institucija"
+		"sr": "Institucija",
+		"ro": "Institu\u021bie"
 	},
 	"password": {
 		"no": "Passord",
@@ -225,7 +231,8 @@
 		"ar": "\u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631",
 		"id": "Password",
 		"lv": "Parole",
-		"sr": "Lozinka"
+		"sr": "Lozinka",
+		"ro": "Parola"
 	},
 	"help_header": {
 		"no": "Hjelp! Jeg har glemt passordet mitt.",
@@ -257,7 +264,8 @@
 		"ar": "\u0633\u0627\u0639\u062f\u0646\u064a! \u0644\u0627 \u0627\u0630\u0643\u0631 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631",
 		"id": "Tolong! Saya tidak ingat password saya",
 		"lv": "Pal\u012bdziet! Es neatceros paroli.",
-		"sr": "Upomo\u0107! Zaboravio\/la sam svoju lozinku."
+		"sr": "Upomo\u0107! Zaboravio\/la sam svoju lozinku.",
+		"ro": "Nu mai \u0219tiu parola."
 	},
 	"help_text": {
 		"no": "Synd! - Uten riktig brukernavn og passord kan du ikke autentisere deg. Det kan v\u00e6re noen som kan hjelpe deg. Fors\u00f8k \u00e5 kontakt brukerst\u00f8tte ved din vertsorganisasjon.",
@@ -289,7 +297,8 @@
 		"ar": "\u0644\u0633\u0648\u0621 \u0627\u0644\u062d\u0638 \u0644\u0627 \u064a\u0645\u0643\u0646\u0646\u0627 \u0627\u0644\u062a\u0648\u062b\u0642 \u0645\u0646 \u0647\u0648\u064a\u062a\u0643 \u0628\u062f\u0648\u0646 \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0648 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0648\u0628\u0627\u0644\u062a\u0627\u0644\u064a \u0644\u0627 \u064a\u0645\u0643\u0646\u0643 \u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0627\u0644\u062e\u062f\u0645\u0629. \u0644\u0644\u0645\u0633\u0627\u0639\u062f\u0629 \u0627\u062a\u0635\u0644 \u0628\u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u0633\u0624\u0648\u0644 \u0628\u0635\u0641\u062d\u0629 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629 \u0628\u062c\u0627\u0645\u0639\u062a\u0643",
 		"id": "Sayang sekali! - Tanpa username dan password Anda tidak dapat melakukan autentifikasi agar dapat mengakses layanan. Mungkin ada seseorang yang dapat menolong Anda. Hubungi help desk pada universitas Anda.",
 		"lv": "Bez lietot\u0101ja v\u0101rda un paroles J\u016bs nevarat autentific\u0113ties un nevarat izmantot servisu. Iesp\u0113jams, ir k\u0101ds, kas var Jums pal\u012bdz\u0113t. Vaic\u0101jiet savas universit\u0101tes pal\u012bdz\u012bbas dienestam.",
-		"sr": "\u0160teta! - Bez ispravnog korisni\u010dkog imena i lozinke ne mo\u017eete pristupiti servisu. Da biste saznali va\u0161e korisni\u010dko ime i lozinku obratite se va\u0161oj mati\u010dnoj instituciji."
+		"sr": "\u0160teta! - Bez ispravnog korisni\u010dkog imena i lozinke ne mo\u017eete pristupiti servisu. Da biste saznali va\u0161e korisni\u010dko ime i lozinku obratite se va\u0161oj mati\u010dnoj instituciji.",
+		"ro": "Din p\u0103cate f\u0103r\u0103 nume de utilizator \u0219i parol\u0103 nu v\u0103 pute\u021bi autentifica pentru accesul la acest serviciu. Contacta\u021bi echipa de suport tehnic de la universitatea dumneavoastr\u0103."
 	},
 	"error_nopassword": {
 		"no": "Du kontaktet loginsiden, men passordet ble ikke sendt med. Fors\u00f8k igjen.",
@@ -321,7 +330,8 @@
 		"ar": "\u0644\u0642\u062f \u0642\u0645\u062a \u0628\u0625\u0631\u0633\u0627\u0644 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u062f\u062e\u0648\u0644 \u0644\u0643\u0646 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u063a\u064a\u0631 \u0645\u0631\u0641\u0642\u0629. \u0631\u062c\u0627\u0621\u0627\u064b \u0627\u0639\u062f \u0627\u0644\u0645\u062d\u0627\u0648\u0644\u0629",
 		"id": "Anda mengirimkan sesuatu ke halaman login, tetapi karena suatu alasan tertentu password tidak terkirimkan, Silahkan coba lagi.",
 		"lv": "Kaut k\u0101du iemeslu d\u0113\u013c parole nav nos\u016bt\u012bta. L\u016bdzu m\u0113\u0123iniet v\u0113lreiz.",
-		"sr": "Iz nekog razloga autentifikacionom servisu nije prosle\u0111ena va\u0161a lozinka. Molimo poku\u0161ajte ponovo."
+		"sr": "Iz nekog razloga autentifikacionom servisu nije prosle\u0111ena va\u0161a lozinka. Molimo poku\u0161ajte ponovo.",
+		"ro": "A\u021bi trimis informa\u021bii c\u0103tre pagina de autentificare dar din motive necunoscute parola nu a fost trimis\u0103. V\u0103 rug\u0103m s\u0103 \u00eencerca\u021bi din nou."
 	},
 	"error_wrongpassword": {
 		"no": "Feil brukernavn eller passord.",
@@ -354,7 +364,8 @@
 		"ar": " \u0627\u0633\u0645 \u0645\u0633\u062a\u062e\u062f\u0645 \u0627\u0648 \u0643\u0644\u0645\u0629 \u0633\u0631 \u062e\u0637\u0627",
 		"id": "Username atau password salah",
 		"lv": "Nekorekts lietot\u0101ja v\u0101rds vai parole.",
-		"sr": "Neispravno korisni\u010dko ime ili lozinka."
+		"sr": "Neispravno korisni\u010dko ime ili lozinka.",
+		"ro": "Nume de utilizator incorect sau parola incorect\u0103."
 	},
 	"contact_info": {
 		"no": "Kontaktinformasjon:",
@@ -385,7 +396,8 @@
 		"ar": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0627\u062a\u0635\u0627\u0644",
 		"id": "Informasi Kontak",
 		"lv": "Kontaktinform\u0101cija",
-		"sr": "Kontakt podaci:"
+		"sr": "Kontakt podaci:",
+		"ro": "Informa\u021bii de contact:"
 	},
 	"select_home_org": {
 		"no": "Velg vertsorganisasjon",
@@ -416,7 +428,8 @@
 		"ar": "\u0627\u062e\u062a\u0627\u0631 \u062c\u0647\u062a\u0643 \u0627\u0644\u0627\u0645",
 		"id": "Pilih Basis Organisasi Anda",
 		"lv": "Izv\u0113lieties organiz\u0101ciju",
-		"sr": "Izaberite va\u0161u mati\u010dnu instituciju"
+		"sr": "Izaberite va\u0161u mati\u010dnu instituciju",
+		"ro": "Alege\u021bi institu\u021bia de origine"
 	},
 	"change_home_org_title": {
 		"no": "Endre din vertsorganisasjon",
@@ -447,7 +460,8 @@
 		"ar": "\u063a\u064a\u0631\u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0627\u0645",
 		"id": "Ubah basis organisasi anda",
 		"lv": "Main\u012bt organiz\u0101ciju",
-		"sr": "Promenite izbor za va\u0161u mati\u010dnu instituciju"
+		"sr": "Promenite izbor za va\u0161u mati\u010dnu instituciju",
+		"ro": "Modifica\u021bi institu\u021bia de origine"
 	},
 	"change_home_org_text": {
 		"no": "Du har valgt <b>%HOMEORG%<\/b> som din vertsorganisasjon. Dersom dette er feil kan du velge en annen.",
@@ -478,7 +492,8 @@
 		"ar": "\u0644\u0642\u062f \u0642\u0645\u062a \u0628\u0627\u062e\u062a\u064a\u0627\u0631 <b>%HOMEORG%<\/b> \u0643\u062c\u0647\u062a\u0643 \u0627\u0644\u0627\u0645. \u0627\u0646 \u0643\u0627\u0646 \u0647\u0630\u0627 \u0627\u0644\u0627\u062e\u062a\u064a\u0627\u0631 \u063a\u064a\u0631 \u0635\u062d\u064a\u062d \u064a\u0645\u0643\u0646\u0643 \u062a\u063a\u064a\u064a\u0631\u0647",
 		"id": "Anda telah memilih  <b>%HOMEORG%<\/b> sebagai basis organisasi anda. Jika ini salah anda dapat memilih yang lain.",
 		"lv": "J\u016bs izv\u0113l\u0113j\u0101ties <b>%HOMEORG%<\/b>. ja tas nav pareizi, izv\u0113lieties citu.",
-		"sr": "Odabrali ste <b>%HOMEORG%<\/b> kao va\u0161u mati\u010dnu instituciju. Ako to nije ta\u010dno mo\u017eete odabrati drugu instituciju."
+		"sr": "Odabrali ste <b>%HOMEORG%<\/b> kao va\u0161u mati\u010dnu instituciju. Ako to nije ta\u010dno mo\u017eete odabrati drugu instituciju.",
+		"ro": "A\u021bi ales ca institu\u021bie de origine<b>%HOMEORG%<\/b>. Dac\u0103 nu este corect v\u0103 rug\u0103m s\u0103 alege\u021bi alt\u0103 institu\u021bie."
 	},
 	"change_home_org_button": {
 		"no": "Velg vertsorganisasjon",
@@ -509,7 +524,8 @@
 		"ar": "\u0627\u062e\u062a\u0627\u0631 \u062c\u0647\u062a\u0643 \u0627\u0644\u0627\u0645",
 		"id": "Pilih basis organisasi",
 		"lv": "Izv\u0113l\u0113ties organiz\u0101ciju",
-		"sr": "Izaberite mati\u010dnu instituciju"
+		"sr": "Izaberite mati\u010dnu instituciju",
+		"ro": "Alege\u021bi institu\u021bia de origine"
 	},
 	"help_desk_link": {
 		"no": "Hjemmesiden til brukerst\u00f8tte",
@@ -540,7 +556,8 @@
 		"ar": "\u0635\u0641\u062d\u0629 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
 		"id": "Homepage Help desk",
 		"lv": "Pal\u012bdz\u012bbas dienesta interneta lapa",
-		"sr": "Stranice slu\u017ebe za podr\u0161ku korisnicima"
+		"sr": "Stranice slu\u017ebe za podr\u0161ku korisnicima",
+		"ro": "Pagina echipei de suport tehnic"
 	},
 	"help_desk_email": {
 		"no": "Send e-post til brukerst\u00f8tte",
@@ -571,7 +588,8 @@
 		"ar": "\u0627\u0631\u0633\u0644 \u0625\u064a\u0645\u064a\u0644 \u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
 		"id": "Kirim e-mail ke help dek",
 		"lv": "S\u016bt\u012bt e-pastu pal\u012bdz\u012bbas dienestam",
-		"sr": "Po\u0161alji e-mail slu\u017ebi za podr\u0161ku korisnicima"
+		"sr": "Po\u0161alji e-mail slu\u017ebi za podr\u0161ku korisnicima",
+		"ro": "Trimite\u021bi un mesaj la echipa de suport tehnic"
 	},
 	"next": {
 		"no": "Fortsett",
@@ -602,6 +620,7 @@
 		"ar": "\u0627\u0644\u062a\u0627\u0644\u064a",
 		"id": "Selanjutnya",
 		"lv": "T\u0101l\u0101k",
-		"sr": "Dalje"
+		"sr": "Dalje",
+		"ro": "Urm\u0103torul pas"
 	}
 }

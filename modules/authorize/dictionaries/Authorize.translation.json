@@ -25,7 +25,8 @@
 		"ar": "\u0645\u0645\u0646\u0648\u0639 \u0627\u0644\u062f\u062e\u0648\u0644",
 		"lv": "Pieeja liegta",
 		"id": "Dilarang mengakses",
-		"sr": "Pristup zabranjen"
+		"sr": "Pristup zabranjen",
+		"ro": "Accesul nu este permis"
 	},
 	"403_text": {
 		"es": "No tiene los privilegios necesarios para acceder a esta aplicaci\u00f3n. Si considera que esto no es correcto, consulte el administrador.",
@@ -52,6 +53,7 @@
 		"ar": "\u0644\u0627 \u064a\u0645\u0643\u0646\u0643 \u0627\u0644\u062f\u062e\u0648\u0644 \u0644\u0647\u0630\u0627 \u0627\u0644\u062a\u0637\u0628\u064a\u0642. \u0642\u0645 \u0628\u0623\u062e\u0637\u0627\u0631 \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0648\u0642\u0639 \u0627\u0646 \u0643\u0646\u062a \u062a\u0638\u0646 \u0627\u0646 \u0647\u0630\u0627 \u063a\u064a\u0631 \u0635\u062d\u064a\u062d",
 		"lv": "Jums nav pietiekamu ties\u012bbu \u0161\u012bs aplik\u0101cijas izmanto\u0161anai. Vaic\u0101jiet administratoram.",
 		"id": "Anda tidak memiliki hak yang diperlukan untuk mengakses aplikasi ini. Silahkan menghubungi administrator jika seharusnya anda dapat mengakses aplikasi ini.",
-		"sr": "Nemate potrebna ovla\u0161\u0107enja za pristup ovoj aplikaciji. Molimo kontaktirajte administratora aplikacije ako smatrate da bi vam pristup aplikaciji trebao biti omogu\u0107en."
+		"sr": "Nemate potrebna ovla\u0161\u0107enja za pristup ovoj aplikaciji. Molimo kontaktirajte administratora aplikacije ako smatrate da bi vam pristup aplikaciji trebao biti omogu\u0107en.",
+		"ro": "Nu ave\u021bi drepturile necesare pentru a accesa\/folosi aceast\u0103 aplica\u021bie. V\u0103 rug\u0103m s\u0103 contacta\u021bi administratorul sistemului dac\u0103 considera\u021bi aceast\u0103 afirma\u021bie ca fiind incorect\u0103."
 	}
 }

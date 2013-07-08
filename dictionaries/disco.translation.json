@@ -28,7 +28,8 @@
 		"ar": "\u0627\u062e\u062a\u0627\u0631 \u0645\u0648\u0642\u0639 \u0647\u0648\u064a\u062a\u0643",
 		"id": "Pilih identity provider anda",
 		"lv": "Izv\u0113lieties identit\u0101tes pieg\u0101d\u0101t\u0101ju",
-		"sr": "Odaberite va\u0161eg davaoca identiteta"
+		"sr": "Odaberite va\u0161eg davaoca identiteta",
+		"ro": "Alege\u021bi furnizorul de identitate"
 	},
 	"selectidp_full": {
 		"no": "Vennligst velg hvilken identitetsleverand\u00f8r du vil bruke for \u00e5 logge inn:",
@@ -59,7 +60,8 @@
 		"ar": "\u0627\u062e\u062a\u0631 \u0645\u0648\u0642\u0639 \u0627\u0644\u0647\u0648\u064a\u0629 \u0627\u0644\u0630\u064a \u062a\u0631\u063a\u0628 \u0628\u062f\u062e\u0648\u0644\u0647",
 		"id": "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi",
 		"lv": "L\u016bdzu izv\u0113lieties identit\u0101tes pieg\u0101d\u0101t\u0101ju, pie kura v\u0113laties autentific\u0113ties:",
-		"sr": "Molimo vas odaberite davaoca identiteta kod koga se \u017eelite autentifikovati:"
+		"sr": "Molimo vas odaberite davaoca identiteta kod koga se \u017eelite autentifikovati:",
+		"ro": "V\u0103 rug\u0103m s\u0103 alege\u021bi furnizorul de identitate pe care dori\u021bi s\u0103-l folosi\u021bi pentru autentificarea dumneavoastr\u0103:"
 	},
 	"select": {
 		"no": "Velg",
@@ -90,7 +92,8 @@
 		"ar": "\u0627\u062e\u062a\u0627\u0631",
 		"id": "Pilih",
 		"lv": "Izv\u0113l\u0113ties",
-		"sr": "Odaberi"
+		"sr": "Odaberi",
+		"ro": "Selecta\u021bi"
 	},
 	"remember": {
 		"no": "Husk mitt valg",
@@ -121,7 +124,8 @@
 		"ar": "\u062a\u0630\u0643\u0631 \u062e\u064a\u0627\u0631\u0627\u062a\u064a",
 		"id": "Ingat pilihan saya",
 		"lv": "Atcer\u0113ties manu izv\u0113li",
-		"sr": "Zapamti moj izbor"
+		"sr": "Zapamti moj izbor",
+		"ro": "Memoreaz\u0103 alegerea f\u0103cut\u0103"
 	},
 	"icon_prefered_idp": {
 		"no": "[Foretrukket valg]",
@@ -151,7 +155,8 @@
 		"ar": "\u0627\u062e\u062a\u064a\u0627\u0631\u064a \u0627\u0644\u0645\u0641\u0636\u0644",
 		"id": "Pilihan yang disukai",
 		"lv": "(Mana lab\u0101k\u0101 izv\u0113le)",
-		"sr": "[Preferirani izbor]"
+		"sr": "[Preferirani izbor]",
+		"ro": "[Varianta preferat\u0103]"
 	},
 	"previous_auth": {
 		"no": "Du har tidligere valg \u00e5 autentisere deg hos",
@@ -180,7 +185,8 @@
 		"ar": "\u0642\u0645\u062a \u0633\u0627\u0628\u0642\u0627 \u0628\u0627\u0644\u062a\u0635\u062f\u064a\u0642 \u0641\u064a",
 		"id": "Sebelumnya anda telah memilih untuk melakukan autentifikasi di ",
 		"lv": "Iepriek\u0161 J\u016bs autentific\u0113j\u0101ties pie",
-		"sr": "Prethodno ste izabrali da se autentifikujete kroz"
+		"sr": "Prethodno ste izabrali da se autentifikujete kroz",
+		"ro": "Anterior a\u021bi ales s\u0103 v\u0103 autentifica\u021bi la"
 	},
 	"login_at": {
 		"no": "Logg inn hos",
@@ -209,6 +215,7 @@
 		"ar": "\u0633\u062c\u0644 \u062f\u062e\u0648\u0644\u064a \u0639\u0644\u064a",
 		"id": "Login di",
 		"lv": "Piesl\u0113gties pie",
-		"sr": "Prijavi se kroz"
+		"sr": "Prijavi se kroz",
+		"ro": "Autentificare la"
 	}
 }

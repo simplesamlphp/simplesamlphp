@@ -24,7 +24,8 @@
 		"lv": "P\u0113c p\u0113d\u0113j\u0101s autentifik\u0101cijas ir pag\u0101ju\u0161as tikai da\u017eas sekundes, t\u0101d\u0113\u013c, iesp\u0113jams, ir probl\u0113ma ar servisa pieg\u0101d\u0101t\u0101ju.",
 		"id": "Kami telah mendeteksi kalau beberapa detik yang lalu sejak autentifikasi yang anda lakukan pada service provider ini, dan oleh karena itu diasumsikan ada masalah dengan SP ini",
 		"sr": "Pro\u0161lo tek nekoliko sekundi otkad ste se zadnji put autentifikovali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davaoca servisa.",
-		"cs": "Zjistili jsme, \u017ee ub\u011bhlo pouze p\u00e1r sekund od Va\u0161eho minul\u00e9ho pri\u0159hl\u00e1\u0161en\u00ed pomoc\u00ed service providera a proto p\u0159edpokl\u00e1d\u00e1me, \u017ee nastala chyba v tom SP."
+		"cs": "Zjistili jsme, \u017ee ub\u011bhlo pouze p\u00e1r sekund od Va\u0161eho minul\u00e9ho pri\u0159hl\u00e1\u0161en\u00ed pomoc\u00ed service providera a proto p\u0159edpokl\u00e1d\u00e1me, \u017ee nastala chyba v tom SP.",
+		"ro": "A fost detectat faptul c\u0103 v-a\u021bi autentificat \u00een urm\u0103 cu doar c\u00e2teva secunde cu acest furnizor de servicii, se va considera c\u0103 exist\u0103 o problem\u0103 cu acest furnizor de servicii."
 	},
 	"warning_header": {
 		"no": "For kort intervall imellom innloggingsforesp\u00f8rsler",
@@ -51,7 +52,8 @@
 		"lv": "P\u0101r\u0101k mazs interv\u0101ls starp piesl\u0113g\u0161an\u0101s notikumiem.",
 		"id": "Interval yang terlalu pendek antara event single sign on.",
 		"sr": "Prekratak interval izme\u0111u uzastopnih SSO prijava.",
-		"cs": "P\u0159\u00edli\u0161 kr\u00e1tk\u00fd interval mezi ud\u00e1lostmi jednoho prihl\u00e1\u0161en\u00ed."
+		"cs": "P\u0159\u00edli\u0161 kr\u00e1tk\u00fd interval mezi ud\u00e1lostmi jednoho prihl\u00e1\u0161en\u00ed.",
+		"ro": "Interval prea scurt \u00eentre evenimentele <i>single sign-on<\/i>."
 	},
 	"retry": {
 		"no": "Fors\u00f8k \u00e5 logge inn p\u00e5 nytt",
@@ -78,6 +80,7 @@
 		"lv": "M\u0113\u0123in\u0101t piesl\u0113gties v\u0113lreiz",
 		"id": "Coba login kembali",
 		"sr": "Poku\u0161aj se prijaviti ponovo",
-		"cs": "P\u0159ihla\u0161te se znovu."
+		"cs": "P\u0159ihla\u0161te se znovu.",
+		"ro": "\u00cencerca\u021bi din nou"
 	}
 }

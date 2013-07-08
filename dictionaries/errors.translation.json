@@ -29,7 +29,8 @@
 		"ar": "\u062e\u0637\u0627 \u0628 simpleSAMLphp",
 		"lv": "simpleSAMLphp k\u013c\u016bda",
 		"id": "Error simpelSAMLphp",
-		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 simpleSAMLphp"
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 simpleSAMLphp",
+		"ro": "Eroare simpleSAMLphp"
 	},
 	"report_trackid": {
 		"no": "Hvis vil rapportere denne feilen, send ogs\u00e5 med dette sporingsnummeret. Det gj\u00f8r det enklere for systemadministratorene \u00e5 finne ut hva som gikk galt:",
@@ -61,7 +62,8 @@
 		"ar": "\u0627\u0630\u0627 \u0642\u0645\u062a \u0628\u0631\u0641\u0639 \u062a\u0642\u0631\u064a\u0631 \u0639\u0646 \u0647\u0630\u0627 \u0627\u0644\u062e\u0637\u0623 \u0642\u0645 \u0631\u062c\u0627\u0621\u0627\u064b \u0628\u0625\u062f\u0631\u0627\u062c \u0631\u0642\u0645 \u0627\u0644\u0645\u062a\u0627\u0628\u0639\u0629 \u0623\u062f\u0646\u0627\u0647 \u0643\u064a\u0645\u0627 \u0646\u0633\u062a\u0637\u064a\u0639 \u062a\u062d\u062f\u064a\u062f \u0641\u062a\u0631\u0629 \u062f\u062e\u0648\u0644\u0643 \u0628\u0645\u0644\u0641\u0627\u062a \u0627\u0644\u0645\u0634\u0631\u0641 \u0639\u0644\u064a \u0627\u0644\u0645\u0648\u0642\u0639",
 		"lv": "Kad zi\u0146ojat par k\u013c\u016bdu, l\u016bdzu nor\u0101diet \u0161o atseko\u0161anas numuru, kas administratoram pal\u012bdz atrast \u0161o sesiju sist\u0113mas ierakstos.",
 		"id": "Jika Anda melaporkan error ini, tolong laporkan juga nomor pelacakan sehingga memungkinkan untuk lokasi session anda pada log tersedia untuk system administrator:",
-		"ru": "\u041f\u0440\u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0435 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f \u043e\u0431 \u043e\u0448\u0438\u0431\u043a\u0435, \u043f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0441\u043e\u043e\u0431\u0449\u0438\u0442\u0435 \u044d\u0442\u043e\u0442 \u0442\u0440\u0435\u043a\u0438\u043d\u0433\u043e\u0432\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 (\u043e\u043d \u043f\u043e\u0437\u0432\u043e\u043b\u0438\u0442 \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u0443 \u043d\u0430\u0439\u0442\u0438 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0432\u0430\u0448\u0435\u0439 \u0441\u0435\u0441\u0441\u0438\u0438 \u0432 \u0441\u0438\u0441\u0442\u0435\u043c\u043d\u044b\u0445 \u043b\u043e\u0433\u0430\u0445):"
+		"ru": "\u041f\u0440\u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0435 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f \u043e\u0431 \u043e\u0448\u0438\u0431\u043a\u0435, \u043f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0441\u043e\u043e\u0431\u0449\u0438\u0442\u0435 \u044d\u0442\u043e\u0442 \u0442\u0440\u0435\u043a\u0438\u043d\u0433\u043e\u0432\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 (\u043e\u043d \u043f\u043e\u0437\u0432\u043e\u043b\u0438\u0442 \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u0443 \u043d\u0430\u0439\u0442\u0438 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0432\u0430\u0448\u0435\u0439 \u0441\u0435\u0441\u0441\u0438\u0438 \u0432 \u0441\u0438\u0441\u0442\u0435\u043c\u043d\u044b\u0445 \u043b\u043e\u0433\u0430\u0445):",
+		"ro": "Dac\u0103 raporta\u021bi aceast\u0103 eroare, v\u0103 rug\u0103m s\u0103 include\u021bi urm\u0103torul num\u0103r de \u00eenregistrare care va permite localizarea sesiunii dumneavoastr\u0103 \u00een jurnalele de sistem:"
 	},
 	"debuginfo_header": {
 		"no": "Detaljer for feils\u00f8king",
@@ -93,7 +95,8 @@
 		"ar": "\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u062a\u0635\u062d\u064a\u062d",
 		"lv": "Atk\u013c\u016bdo\u0161anas infom\u0101cija",
 		"id": "Informasi debug",
-		"ru": "\u041e\u0442\u043b\u0430\u0434\u043e\u0447\u043d\u0430\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f"
+		"ru": "\u041e\u0442\u043b\u0430\u0434\u043e\u0447\u043d\u0430\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f",
+		"ro": "Informa\u021bii de depanare"
 	},
 	"debuginfo_text": {
 		"no": "Detaljene nedenfor kan v\u00e6re av interesse for administratoren \/ brukerst\u00f8tte:",
@@ -125,7 +128,8 @@
 		"ar": " \u0642\u062f \u062a\u0643\u0648\u0646 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u062a\u0635\u062d\u064a\u062d \u0623\u062f\u0646\u0627\u0647 \u0645\u0641\u064a\u062f\u0629 \u0644\u0645\u0634\u0631\u0641 \u0627\u0644\u0645\u0648\u0642\u0639\/ \u0627\u0648 \u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
 		"lv": "Zem\u0101k eso\u0161\u0101 atk\u013c\u016bdo\u0161anas inform\u0101cija var interes\u0113t administratoru un pal\u012bdz\u012bbas dienestu:",
 		"id": "Informasi debug dibawah ini mungkin menarik bagi administrator\/help desk:",
-		"ru": "\u041d\u0438\u0436\u0435\u043f\u0440\u0438\u0432\u0435\u0434\u0435\u043d\u043d\u0430\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043c\u043e\u0436\u0435\u0442 \u0431\u044b\u0442\u044c \u043f\u043e\u043b\u0435\u0437\u043d\u0430 \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u0443 \u0441\u0438\u0441\u0442\u0435\u043c\u044b:"
+		"ru": "\u041d\u0438\u0436\u0435\u043f\u0440\u0438\u0432\u0435\u0434\u0435\u043d\u043d\u0430\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043c\u043e\u0436\u0435\u0442 \u0431\u044b\u0442\u044c \u043f\u043e\u043b\u0435\u0437\u043d\u0430 \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u0443 \u0441\u0438\u0441\u0442\u0435\u043c\u044b:",
+		"ro": "Informa\u021biile de depanare de mai jos pot fi importante pentru administratorul de sistem:"
 	},
 	"report_header": {
 		"no": "Rapporter feil",
@@ -157,7 +161,8 @@
 		"ar": "\u0627\u0631\u0641\u0639 \u062a\u0642\u0631\u064a\u0631\u0627\u064b \u0639\u0646 \u0627\u0644\u0623\u062e\u0637\u0627\u0621 ",
 		"lv": "Zi\u0146ot par k\u013c\u016bd\u0101m",
 		"id": "Laporakan error",
-		"ru": "\u0421\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435 \u043e\u0431 \u043e\u0448\u0438\u0431\u043a\u0430\u0445"
+		"ru": "\u0421\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435 \u043e\u0431 \u043e\u0448\u0438\u0431\u043a\u0430\u0445",
+		"ro": "Raporta\u021bi erorile"
 	},
 	"report_text": {
 		"no": "Hvis du \u00f8nsker at brukerst\u00f8tte skal kunne kontakte deg igjen i forbindelse med denne feilen, m\u00e5 du oppgi e-postadressen din nedenfor:",
@@ -188,7 +193,9 @@
 		"sr": "Opciono, unesite Va\u0161u e-mail adresu kako bi administratori mogli da Vas kontaktiraju ukoliko im budu trebale dodantne informacije:",
 		"ar": "\u0627\u062f\u0631\u062c \u0639\u0646\u0648\u0627\u0646 \u0627\u064a\u0645\u064a\u0644\u0643 \u0627\u062e\u062a\u064a\u0627\u0631\u064a\u0627\u064b \u0644\u0644\u0645\u0634\u0631\u0641 \u0644\u064a\u0633\u062a\u0637\u064a\u0639 \u0627\u0644\u062a\u0648\u0627\u0635\u0644 \u0645\u0639\u0643 \u0644\u062d\u0644 \u0627\u0644\u0645\u0634\u0643\u0644\u0629",
 		"lv": "Nor\u0101diet savu e-pastu, lai administrators var ar Jums sazin\u0101ties un preciz\u0113t notiku\u0161o:",
-		"id": "Opsional, masukkan alamat email Anda, agar administrator dapat menghubungi Anda untuk pertanyaan lebih lanjut tentang masalah Anda:"
+		"id": "Opsional, masukkan alamat email Anda, agar administrator dapat menghubungi Anda untuk pertanyaan lebih lanjut tentang masalah Anda:",
+		"ro": "Op\u021bional, trece\u021bi adresa dumneavoastr\u0103 de e-mail. Administratorii de sistem vor putea s\u0103 v\u0103 contacteze pentru eventuale informa\u021bii suplimentare despre problema dumneavoastra:",
+		"ru": "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0430\u0434\u0440\u0435\u0441 \u0432\u0430\u0448\u0435\u0439 \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u043e\u0439 \u043f\u043e\u0447\u0442\u044b, \u0447\u0442\u043e\u0431\u044b \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440 \u043c\u043e\u0433 \u0441\u0432\u044f\u0437\u0430\u0442\u044c\u0441\u044f \u0441 \u0432\u0430\u043c\u0438 \u0434\u043b\u044f \u043f\u0440\u043e\u044f\u0441\u043d\u0435\u043d\u0438\u044f \u0434\u0430\u043d\u043d\u043e\u0439 \u0441\u0438\u0442\u0443\u0430\u0446\u0438\u0438 (\u043d\u0435\u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u043e):"
 	},
 	"report_email": {
 		"no": "E-postadresse:",
@@ -220,7 +227,9 @@
 		"sr": "e-mail adresa:",
 		"ar": "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0623\u0645\u064a\u0644",
 		"lv": "E-pasta adrese:",
-		"id": "Alamat E-mail:"
+		"id": "Alamat E-mail:",
+		"ro": "Adresa e-mail:",
+		"ru": "\u0410\u0434\u0440\u0435\u0441 \u0432\u0430\u0448\u0435\u0439 \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u043e\u0439 \u043f\u043e\u0447\u0442\u044b:"
 	},
 	"report_explain": {
 		"no": "Forklar hva du gjorde da feilen oppsto...",
@@ -251,7 +260,9 @@
 		"sr": "Opi\u0161ite \u0161ta ste radili kada se ova gre\u0161ka desila...",
 		"ar": "\u0627\u0634\u0631\u062d \u0645\u0627 \u0641\u0639\u0644\u062a\u0647 \u0639\u0646\u062f \u062d\u062f\u0648\u062b \u0627\u0644\u062e\u0637\u0623 ",
 		"lv": "Aprakstiet, ko J\u016bs dar\u012bj\u0101t, kad notika k\u013c\u016bda.",
-		"id": "Jelaskan apa yang Anda lakukan ketika error ini terjadi..."
+		"id": "Jelaskan apa yang Anda lakukan ketika error ini terjadi...",
+		"ro": "Descrie\u021bi ce opera\u021biuini executa\u021bi c\u00e2nd a ap\u0103rut aceast\u0103 eroare  ...",
+		"ru": "\u0423\u0442\u043e\u0447\u043d\u0438\u0442\u0435 \u0432\u0430\u0448\u0438 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f \u043f\u0435\u0440\u0435\u0434 \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u0435\u043c \u043e\u0448\u0438\u0431\u043a\u0438... "
 	},
 	"report_submit": {
 		"no": "Send feilrapport",
@@ -282,7 +293,9 @@
 		"sr": "Po\u0161alji prijavu gre\u0161ke",
 		"ar": "\u0627\u0631\u0633\u0644 \u062a\u0642\u0631\u064a\u0631\u0627\u064b \u0639\u0646 \u0627\u0644\u062e\u0637\u0623 ",
 		"lv": "S\u016bt\u012bt zi\u0146ojumu par k\u013c\u016bdu",
-		"id": "Kirim laporan error"
+		"id": "Kirim laporan error",
+		"ro": "Trimite\u021bi raportul cu erorile observate",
+		"ru": "\u0412\u044b\u0441\u043b\u0430\u0442\u044c \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435 \u043e\u0431 \u043e\u0448\u0438\u0431\u043a\u0435 "
 	},
 	"howto_header": {
 		"no": "Hvordan f\u00e5 hjelp",
@@ -313,7 +326,9 @@
 		"sr": "Kome se obratiti za pomo\u0107",
 		"ar": "\u0644\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
 		"lv": "K\u0101 atrast pal\u012bdz\u012bbu",
-		"id": "Bagaimana mendapatkan pertolongan"
+		"id": "Bagaimana mendapatkan pertolongan",
+		"ro": "Cum ob\u021bine\u021bi ajutor\/asisten\u021b\u0103",
+		"ru": "\u041a\u0430\u043a \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u043f\u043e\u043c\u043e\u0449\u044c"
 	},
 	"howto_text": {
 		"no": "Denne feilen skyldes sannsynligvis feil i oppsettet av simpleSAMLphp eller den er en f\u00f8lge av en uforutsett hendelse. Kontakt administratoren av denne tjenesten og rapporter s\u00e5 mye som mulig ang\u00e5ende feilen.",
@@ -344,7 +359,9 @@
 		"sr": "Ova gre\u0161ka se verovatno desila zbog neo\u010dekivanog pona\u0161anja, ili pogre\u0161nih pode\u0161avanja simpleSAMLphp-a. Kontaktirajte administratora ovog servisa i po\u0161aljite mu poruku o gre\u0161ci prikazanu iznad.",
 		"ar": "\u0647\u0630\u0627 \u0627\u0644\u062e\u0637\u0623 \u0646\u0627\u062a\u062c \u063a\u0627\u0644\u0628\u0627\u064b \u0639\u0646 \u0633\u0644\u0648\u0643 \u063a\u064a\u0631 \u0645\u062a\u0648\u0642\u0639 \u0627\u0648 \u0639\u0646 \u062e\u0637\u0627 \u0641\u064a \u062a\u0631\u062a\u064a\u0628 \u0627\u0644\u0628\u0631\u0646\u0627\u0645\u062c. \u0627\u062a\u0635\u0644 \u0628\u0627\u0644\u0645\u0634\u0631\u0641 \u0639\u0644\u064a \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644 \u0644\u0647\u0630\u0647 \u0627\u0644\u062e\u062f\u0645\u0629 \u0648 \u0642\u0645 \u0628\u0625\u0631\u0633\u0627\u0644 \u062a\u0642\u0631\u064a\u0631 \u0627\u0644\u062e\u0637\u0623 \u0623\u0639\u0644\u0627\u0647 \u0644\u0647\u0645 \u0623\u064a\u0636\u0627\u064b ",
 		"lv": "Iesp\u0113jams, k\u013c\u016bda radusies no neparedz\u0113tas darb\u012bbas vai nepareizas simpleSAMLphp konfigur\u0101cijas. Nos\u016btiet administratoram k\u013c\u016bdas zi\u0146ojumu.",
-		"id": "Error ini mungkin karena perilaku yang tidak diharapakan atau konfigurasi yang salah di simpleSAMLphp. Hubungi administrator dari layanan login ini, dan kirimkan kepada mereka pesan error diatas."
+		"id": "Error ini mungkin karena perilaku yang tidak diharapakan atau konfigurasi yang salah di simpleSAMLphp. Hubungi administrator dari layanan login ini, dan kirimkan kepada mereka pesan error diatas.",
+		"ro": "Aceast\u0103 eroare a ap\u0103rut probabil din cauza unui comportament nea\u0219teptat sau a erorilor de configurare a simpleSAMLphp. V\u0103 rug\u0103m s\u0103 contacta\u021bi administratorul acestui serviciu \u0219i s\u0103-i furniza\u021bi mesajul de eroare de mai sus.",
+		"ru": "\u042d\u0442\u0430 \u043e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u0430, \u0432\u0435\u0440\u043e\u044f\u0442\u043d\u043e, \u0438\u0437-\u0437\u0430 \u043d\u0435\u043f\u0440\u0435\u0434\u0432\u0438\u0434\u0435\u043d\u043d\u043e\u0439 \u0441\u0438\u0442\u0443\u0430\u0446\u0438\u0438 \u0438\u043b\u0438 \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0439 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438 simpleSAMLphp. \u0421\u0432\u044f\u0436\u0438\u0442\u0435\u0441\u044c \u0441 \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u043e\u043c \u044d\u0442\u043e\u0433\u043e \u0441\u0435\u0440\u0432\u0438\u0441\u0430 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u044c\u0442\u0435 \u0435\u043c\u0443 \u0432\u044b\u0448\u0435\u0443\u043a\u0430\u0437\u0430\u043d\u043d\u043e\u0435 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435 \u043e\u0431 \u043e\u0448\u0438\u0431\u043a\u0435."
 	},
 	"title_CREATEREQUEST": {
 		"no": "Feil i laging av foresp\u00f8rselen",
@@ -375,7 +392,9 @@
 		"sr": "Gre\u0161ka pri kreiranju zahteva",
 		"ar": "\u062e\u0637\u0627 \u0628\u0637\u0644\u0628 \u0627\u0644\u062a\u0643\u0648\u064a\u0646",
 		"lv": "Piepras\u012bjuma veido\u0161anas k\u013c\u016bda",
-		"id": "Error membuat request."
+		"id": "Error membuat request.",
+		"ro": "Eroare la crearea cererii",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u0438 \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u0438 \u0437\u0430\u043f\u0440\u043e\u0441\u0430"
 	},
 	"descr_CREATEREQUEST": {
 		"no": "En feil oppstod da SAML-foresp\u00f8rselen skulle lages.",
@@ -406,7 +425,9 @@
 		"sr": "Desila se gre\u0161ka prilikom poku\u0161aja kreiranja SAML zahteva.",
 		"ar": "\u062d\u062f\u062b \u062e\u0637\u0627 \u0639\u0646\u062f \u0645\u062d\u0627\u0648\u0644\u0629 \u062a\u0643\u0648\u064a\u0646 \u0637\u0644\u0628 SAML",
 		"lv": "Veidojot SAML piepras\u012bjumu rad\u0101s k\u013c\u016bda.",
-		"id": "Sebuah error telah terjadi ketika membuat request SAML."
+		"id": "Sebuah error telah terjadi ketika membuat request SAML.",
+		"ro": "A ap\u0103rut o eroare la crearea cererii SAML.",
+		"ru": "\u041f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u0430 \u043e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u0438 \u043f\u043e\u043f\u044b\u0442\u043a\u0435 \u0441\u043e\u0437\u0434\u0430\u0442\u044c SAML \u0437\u0430\u043f\u0440\u043e\u0441."
 	},
 	"title_DISCOPARAMS": {
 		"no": "Ugyldig foresp\u00f8rsel til SAML 2.0 Discovery-tjenesten",
@@ -437,7 +458,9 @@
 		"ar": "\u0637\u0644\u0628 \u0633\u064a\u0621 \u0644\u062e\u062f\u0645\u0629 \u0627\u0633\u062a\u0643\u0634\u0627\u0641\u064a\u0629",
 		"lv": "Nepareizs piepras\u012bjums discovery servisam",
 		"id": "Request yang buruk ke layanan penemuan",
-		"sr": "Servisu za lociranje poslat je neispravan zahtev"
+		"sr": "Servisu za lociranje poslat je neispravan zahtev",
+		"ro": "Cerere eronat\u0103 c\u0103tre serviciul de c\u0103utare",
+		"ru": "\u041d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u0437\u0430\u043f\u0440\u043e\u0441 \u043a \u0441\u043b\u0443\u0436\u0431\u0435 \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0435\u043d\u0438\u044f"
 	},
 	"descr_DISCOPARAMS": {
 		"no": "Parametere sendt til discovery-tjenesten var ikke i korrekt format.",
@@ -468,7 +491,9 @@
 		"ar": "\u0627\u0644\u062e\u0635\u0627\u0626\u0635 \u0627\u0644\u0645\u0631\u0641\u0642\u0629 \u0644\u0627 \u062a\u0637\u0627\u0628\u0642 \u0627\u0644\u0645\u0648\u0627\u0635\u0641\u0627\u062a",
 		"lv": "Discovery servisam nos\u016bt\u012btie parametri neatbilst specifik\u0101cij\u0101m.",
 		"id": "Parameter-parameter yang dikirimkan ke layanan penemuan tidak sesuai dengan spesifikasi",
-		"sr": "Parametri poslati servisu za lociranje nisu u ispravnom formatu."
+		"sr": "Parametri poslati servisu za lociranje nisu u ispravnom formatu.",
+		"ro": "Parametrii trimi\u0219i c\u0103tre serviciul de c\u0103utare nu sunt \u00een conformitate cu specifica\u021biile.",
+		"ru": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b, \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043d\u044b\u0435 \u0432 \u0441\u043b\u0443\u0436\u0431\u0443 \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0435\u043d\u0438\u044f, \u043d\u0435 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044e\u0442 \u0441\u043f\u0435\u0446\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438."
 	},
 	"title_GENERATEAUTHNRESPONSE": {
 		"no": "Fikk ikke svart p\u00e5 autentiserings-foresp\u00f8rsel",
@@ -499,7 +524,9 @@
 		"sr": "Autentifikacioni odgovor nije mogao biti kreiran",
 		"ar": "\u0644\u0627 \u064a\u0645\u0643\u0646\u0646\u0627 \u0627\u062c\u0631\u0627\u0621 \u0627\u0644\u062a\u0648\u062b\u064a\u0642",
 		"lv": "Neizdev\u0101s izveidot autentifik\u0101cijas atbildi",
-		"id": "Tidak dapat membuat respon autentifikasi"
+		"id": "Tidak dapat membuat respon autentifikasi",
+		"ro": "Nu a fost posibil\u0103 crearea r\u0103spunsului de autentificare",
+		"ru": "\u041d\u0435\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e \u0441\u043e\u0437\u0434\u0430\u0442\u044c \u043e\u0442\u0432\u0435\u0442 \u043f\u043e \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438"
 	},
 	"descr_GENERATEAUTHNRESPONSE": {
 		"no": "En feil oppsto da innloggingstjenesten pr\u00f8vde \u00e5 lage et svar p\u00e5 autentiserings-foresp\u00f8rselen.",
@@ -530,7 +557,9 @@
 		"sr": "Desila se gre\u0161ka prilikom kreiranja autentifikacionog odgovora od strane ovog davaoca identiteta.",
 		"ar": " \u062d\u062f\u062b \u062e\u0637\u0627 \u0639\u0646\u062f \u0645\u062d\u0627\u0648\u0644\u0629 \u0627\u062c\u0631\u0627\u0621 \u0627\u0644\u062a\u0648\u062b\u064a\u0642",
 		"lv": "Kad identit\u0101tes pieg\u0101d\u0101t\u0101js m\u0113\u0123in\u0101ja izveigot autentifik\u0101cijas atbildi, rad\u0101s k\u013c\u016bda.",
-		"id": "Ketika identity provider ini mencoba untuk membuat response autentifikasi, error terjadi."
+		"id": "Ketika identity provider ini mencoba untuk membuat response autentifikasi, error terjadi.",
+		"ro": "A ap\u0103rut o eroare c\u00e2nd furnizorul de identitate \u00eencerca s\u0103 creeze un r\u0103spuns de autentificare.",
+		"ru": "\u041f\u0440\u0438 \u043f\u043e\u043f\u044b\u0442\u043a\u0435 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u0441\u043e\u0437\u0434\u0430\u0442\u044c \u043e\u0442\u0432\u0435\u0442 \u043f\u043e \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u0430 \u043e\u0448\u0438\u0431\u043a\u0430."
 	},
 	"title_LDAPERROR": {
 		"no": "LDAP-feil",
@@ -561,7 +590,9 @@
 		"sr": "LDAP gre\u0161ka",
 		"ar": "\u062e\u0637\u0627 LDAP",
 		"lv": "LDAP k\u013c\u016bda",
-		"id": "Error LDAP"
+		"id": "Error LDAP",
+		"ro": "Eroare LDAP",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 LDAP"
 	},
 	"descr_LDAPERROR": {
 		"no": "LDAP er brukerkatalogen, og n\u00e5r du fors\u00f8ker \u00e5 logge inn pr\u00f8ver vi \u00e5 kontakten en LDAP-katalog. Da vi fors\u00f8kte det denne gangen, oppsto en feil.",
@@ -592,7 +623,9 @@
 		"sr": "Podaci o korisni\u010dkim nalozima \u010duvaju se u LDAP bazi, a kada poku\u0161ate da se ulogujete vr\u0161i se provera da li Va\u0161e korisni\u010dko ime i lozinka postoje u LDAP bazi. Prilikom pristupa LDAP bazi, do\u0161lo je do gre\u0161ke.",
 		"ar": "LDAP \u0647\u0648 \u0633\u062c\u0644 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645. \u0639\u0646\u062f\u0645\u0627 \u062a\u0633\u062c\u0644 \u062f\u062e\u0648\u0644\u0643 \u064a\u0646\u0628\u063a\u064a \u0639\u0644\u064a\u0646\u0627 \u0627\u0644\u0627\u062a\u0635\u0627\u0644 \u0628\u0633\u062c\u0644 LDAP. \u062d\u062f\u062b \u062e\u0637\u0627 \u0645\u0627 \u0639\u0646\u062f\u0645\u0627 \u062d\u0627\u0648\u0644\u0646\u0627 \u0630\u0644\u0643 \u0647\u0630\u0647 \u0627\u0644\u0645\u0631\u0629",
 		"lv": "LDAP ir lietot\u0101ju datu b\u0101ze. Piesl\u0113dzoties pie t\u0101s ir j\u0101sp\u0113j piek\u013c\u016bt. \u0160oreiz tas neizdev\u0101s un rad\u0101s k\u013c\u016bda.",
-		"id": "LDAP adalah database user, dan ketika Anda mencoba login, Kami perlu menghubungi database LDAP. Sebuah error terjadi ketika Kami mencobanya saat ini. "
+		"id": "LDAP adalah database user, dan ketika Anda mencoba login, Kami perlu menghubungi database LDAP. Sebuah error terjadi ketika Kami mencobanya saat ini. ",
+		"ro": "LDAP reprezint\u0103 o baz\u0103 de date cu utilizatori. C\u00e2nd \u00eencerca\u021bi s\u0103 v\u0103 autentifica\u021bi, trebuie contactat\u0103 o baz\u0103 de date LDAP. A ap\u0103rut o eroare c\u00e2nd s-a \u00eencercat aceast\u0103 opera\u021biune.",
+		"ru": "LDAP - \u044d\u0442\u043e \u0431\u0430\u0437\u0430 \u0434\u0430\u043d\u043d\u044b\u0445 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439, \u043f\u0440\u0438 \u0432\u0430\u0448\u0435\u0439 \u043f\u043e\u043f\u044b\u0442\u043a\u0435 \u0432\u0445\u043e\u0434\u0430 \u0432 \u0441\u0438\u0441\u0442\u0435\u043c\u0443, \u043d\u0430\u043c \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e \u0441\u0432\u044f\u0437\u0430\u0442\u044c\u0441\u044f \u0441 \u0431\u0430\u0437\u043e\u0439 \u0434\u0430\u043d\u043d\u044b\u0445 LDAP. \u041f\u0440\u0438 \u044d\u0442\u043e\u0439 \u043f\u043e\u043f\u044b\u0442\u043a\u0435 \u0441\u0432\u044f\u0437\u0430\u0442\u044c\u0441\u044f \u0441 LDAP \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u0430 \u043e\u0448\u0438\u0431\u043a\u0430. "
 	},
 	"title_LOGOUTREQUEST": {
 		"no": "Feil i behandling av logout-foresp\u00f8rselen",
@@ -623,7 +656,9 @@
 		"sr": "Gre\u0161ka pri obradi zahteva za odjavu",
 		"ar": "\u062e\u0637\u0627 \u0639\u0646\u062f \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c",
 		"lv": "Atsl\u0113g\u0161an\u0101s piepras\u012bjuma apstr\u0101des k\u013c\u016bda",
-		"id": "Error memproses Request Logout"
+		"id": "Error memproses Request Logout",
+		"ro": "Eroare la procesarea cererii de deautentificare",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u0438 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0435 \u0437\u0430\u043f\u0440\u043e\u0441\u0430 \u043d\u0430 \u0432\u044b\u0445\u043e\u0434 \u0438\u0437 \u0441\u0438\u0441\u0442\u0435\u043c\u044b "
 	},
 	"descr_LOGOUTREQUEST": {
 		"no": "En feil oppsto i behandlingen av logout-foresp\u00f8rselen.",
@@ -654,7 +689,9 @@
 		"sr": "Do\u0161lo je do gre\u0161ke prilikom poku\u0161aja obrade zahteva za odjavom.",
 		"ar": "\u062e\u0637\u0627 \u0639\u0646\u062f \u0645\u062d\u0627\u0648\u0644\u0629 \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c",
 		"lv": "Apstr\u0101d\u0101jot atsl\u0113g\u0161an\u0101s piepras\u012bjumu, rad\u0101s k\u013c\u016bda.",
-		"id": "Sebuah error telah terjadi ketika memproses Request Logout."
+		"id": "Sebuah error telah terjadi ketika memproses Request Logout.",
+		"ro": "A ap\u0103rut o eroare la procesarea cererii de deautentificare.",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u0430 \u043f\u0440\u0438 \u043f\u043e\u043f\u044b\u0442\u043a\u0435 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 \u0437\u0430\u043f\u0440\u043e\u0441\u0430 \u043d\u0430 \u0432\u044b\u0445\u043e\u0434 \u0438\u0437 \u0441\u0438\u0441\u0442\u0435\u043c\u044b"
 	},
 	"title_METADATA": {
 		"no": "Feil ved lasting av metadata",
@@ -685,7 +722,9 @@
 		"sr": "Gre\u0161ka prilikom u\u010ditavanja metapodataka",
 		"ar": "\u062e\u0637\u0627 \u0628\u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0648\u0635\u0641\u064a\u0629\/ \u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627 ",
 		"lv": "Metadatu iel\u0101des k\u013c\u016bda",
-		"id": "Error meload metadata"
+		"id": "Error meload metadata",
+		"ro": "Eroare la \u00eenc\u0103rcarea metadatelor",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u0437\u0430\u0433\u0440\u0443\u0437\u043a\u0438 \u043c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0445"
 	},
 	"descr_METADATA": {
 		"no": "Det er en feil i oppsettet for din simpleSAMLphp-installasjon. Hvis du er administrator for tjenesten, b\u00f8r du kontrollere at metadata er satt opp riktig.",
@@ -716,7 +755,9 @@
 		"pl": "Wykryto b\u0142\u0105d w konfiguracji simpleSAMLphp. Je\u015bli jeste\u015b administratorem tej us\u0142ugi, to sprawd\u017a, czy prawid\u0142owo zosta\u0142y skonfigurowane metadane.",
 		"ar": "\u0647\u0646\u0627\u0643 \u062e\u0637\u0627 \u0628\u062a\u0631\u062a\u064a\u0628 simpleSAMLphp \u0627\u0644\u062e\u0627\u0635 \u0628\u0643. \u0627\u0646 \u0643\u0646\u062a \u0627\u0644\u0645\u0634\u0631\u0641 \u0639\u0644\u064a \u0627\u0644\u0645\u0648\u0642\u0639\u060c \u062a\u0623\u0643\u062f \u0631\u062c\u0627\u0621\u0627\u064b \u0645\u0646 \u0627\u0646 \u062a\u0631\u062a\u064a\u0628 \u0627\u0644\u0645\u064a\u062a\u0627\u062f\u0627\u062a\u0627 \u0635\u062d\u064a\u062d",
 		"lv": "J\u016bsu simpleSAMLphp instal\u0101cijas konfigur\u0101cij\u0101 ir k\u013c\u016bda. P\u0101rliecinieties, lai metadatu konfigur\u0101cija b\u016btu korekta.",
-		"id": "Ada beberapa kesalahan konfigurasi pada instalasi simpleSAMLphp Anda. Jika Anda adalah administrator dari layanan ini, Anda harus memastikan konfigurasi metdata Anda telah disetup dengan benar. "
+		"id": "Ada beberapa kesalahan konfigurasi pada instalasi simpleSAMLphp Anda. Jika Anda adalah administrator dari layanan ini, Anda harus memastikan konfigurasi metdata Anda telah disetup dengan benar. ",
+		"ro": "Exist\u0103 o eroare \u00een configurarea simpleSAMLphp. Dac\u0103 sunte\u021bi administratorul acestui serviciu, verifica\u021bi configurarea metadatelor.",
+		"ru": "\u0412\u0430\u0448 simpleSAMLphp \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0435 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u043e\u043d\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435. \u0415\u0441\u043b\u0438 \u0432\u044b \u044f\u0432\u043b\u044f\u0435\u0442\u0435\u0441\u044c \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u043e\u043c \u0441\u0438\u0441\u0442\u0435\u043c\u044b, \u043f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044e \u043c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0445."
 	},
 	"title_NOACCESS": {
 		"no": "Ingen tilgang",
@@ -747,7 +788,9 @@
 		"sr": "Pristup nije dozvoljen",
 		"ar": "\u0645\u0645\u0646\u0648\u0639 \u0627\u0644\u062f\u062e\u0648\u0644",
 		"lv": "Nav pieejas",
-		"id": "Tiaak ada akses"
+		"id": "Tiaak ada akses",
+		"ro": "Accesul este interzis",
+		"ru": "\u041e\u0442\u043a\u0430\u0437 \u0432 \u0434\u043e\u0441\u0442\u0443\u043f\u0435"
 	},
 	"descr_NOACCESS": {
 		"no": "Dette endepunktet er ikke aktivert. Sjekk aktiveringsopsjonene i ditt simpleSAMLphp-oppsett.",
@@ -778,7 +821,9 @@
 		"pl": "Brak uprawnie\u0144. Sprawd\u017a opcj\u0119 enable w konfiguracji simpleSAMLphp.",
 		"ar": "\u0647\u0630\u0647 \u0627\u0644\u0646\u0642\u0637\u0629 \u063a\u064a\u0631 \u0645\u0646\u0634\u0637\u0629. \u0631\u0627\u062c\u0639 \u062e\u064a\u0627\u0631\u0627\u062a \u0627\u0644\u062a\u0646\u0634\u064a\u0637 \u0628\u062a\u0631\u062a\u064a\u0628 simpleSAMLphp",
 		"lv": "\u0160is beigu punkts nav iesp\u0113jots. P\u0101rbaudiet iesp\u0113jo\u0161anas opcijas simpleSAMLphp konfigur\u0101cij\u0101.",
-		"id": "Endpoint ini tidak diaktifkan. Periksalah opsi enable pada konfigurasi simpleSAMLphp Anda."
+		"id": "Endpoint ini tidak diaktifkan. Periksalah opsi enable pada konfigurasi simpleSAMLphp Anda.",
+		"ro": "Acest cap\u0103t\/obiectiv nu este activat. Verifica\u021bi op\u021biunile de activare \u00een configurarea simpleSAMLphp.",
+		"ru": "\u0414\u0430\u043d\u043d\u0430\u044f \u043a\u043e\u043d\u0435\u0447\u043d\u0430\u044f \u0442\u043e\u0447\u043a\u0430 \u043d\u0435 \u0430\u043a\u0442\u0438\u0432\u0438\u0440\u043e\u0432\u0430\u043d\u0430. \u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u043e\u043f\u0446\u0438\u0438 \u0432 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438 \u0432\u0430\u0448\u0435\u0433\u043e simpleSAMLphp."
 	},
 	"title_NORELAYSTATE": {
 		"no": "Spesifikasjon av RelayState mangler",
@@ -809,7 +854,9 @@
 		"zh": "\u65e0\u4f9d\u8d56\u72b6\u6001",
 		"ar": "\u0627\u0646\u0639\u062f\u0627\u0645 \u0627\u0644\u062a\u0642\u0648\u064a\u0629",
 		"lv": "Nav RelayState",
-		"id": "Tidak ada RelayState"
+		"id": "Tidak ada RelayState",
+		"ro": "Nu exist\u0103 <i>RelayState<\/i>",
+		"ru": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440 RelayState"
 	},
 	"descr_NORELAYSTATE": {
 		"no": "Kilden til denne foresp\u00f8rselen har ikke angitt noen RelayState-parameter som angir hvor vi skal fortsette etterp\u00e5.",
@@ -840,7 +887,9 @@
 		"pl": "Inicjator zlecenia nie dostarczy\u0142 parametru RelayState, wskazuj\u0105cego, gdzie przekaza\u0107 zlecenie.",
 		"ar": "\u0644\u0645 \u064a\u0648\u0641\u0631 \u0637\u0627\u0644\u0628 \u0627\u0644\u062e\u062f\u0645\u0629 \u062e\u0635\u0627\u0626\u0635 \u062a\u0642\u0648\u064a\u0629 \u062a\u0642\u0648\u062f \u0644\u0644\u062e\u0637\u0648\u0629 \u0627\u0644\u062a\u0627\u0644\u064a\u0629",
 		"lv": "Piepras\u012bjuma veidot\u0101js nav nor\u0101d\u012bjis RelayState parametru, kas par\u0101d\u012btu, kurp iet t\u0101l\u0101k.",
-		"id": "Inisiator dari request ini tidak menyediakan parameter RelayState yang mengindikasikan kemana selanjutnya pergi."
+		"id": "Inisiator dari request ini tidak menyediakan parameter RelayState yang mengindikasikan kemana selanjutnya pergi.",
+		"ro": "Ini\u021biatorul acestei cereri nu a furnizat parametrul <i>RelayState<\/i> care indic\u0103 urm\u0103torul pas.",
+		"ru": "\u0418\u043d\u0438\u0446\u0438\u0430\u0442\u043e\u0440 \u0434\u0430\u043d\u043d\u043e\u0433\u043e \u0437\u0430\u043f\u0440\u043e\u0441\u0430 \u043d\u0435 \u043f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u0438\u043b \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440 RelayState \u0441 \u0443\u043a\u0430\u0437\u0430\u043d\u0438\u0435\u043c \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0439 \u0442\u043e\u0447\u043a\u0438 \u043f\u0435\u0440\u0435\u0445\u043e\u0434\u0430."
 	},
 	"title_PROCESSASSERTION": {
 		"no": "Feil i behandling av svar fra innloggingstjenesten",
@@ -871,7 +920,9 @@
 		"sr": "Gre\u0161ka pri obradi odgovora koji je poslao Davalac Identeteta",
 		"ar": "\u062e\u0637\u0627 \u0628\u0625\u062c\u0631\u0627\u0621\u0627\u062a \u0645\u0639\u0627\u0645\u0644\u0629 \u0625\u062c\u0627\u0628\u0627\u062a \u0645\u0642\u062f\u0645 \u0627\u0644\u0647\u0648\u064a\u0629",
 		"lv": "Identit\u0101tes pieg\u0101d\u0101t\u0101ja atbildes apstr\u0101des k\u013c\u016bda",
-		"id": "Error memproses response dari Identity Provider."
+		"id": "Error memproses response dari Identity Provider.",
+		"ro": "Eroare la procesarea r\u0103spunsului primit de la furnizorul de identitate",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u0438 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0435 \u043e\u0442\u043a\u043b\u0438\u043a\u0430 \u043e\u0442 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438"
 	},
 	"descr_PROCESSASSERTION": {
 		"no": "Svaret mottatt fra innloggingstjenesten kan ikke aksepteres.",
@@ -902,7 +953,9 @@
 		"sr": "Odgovor koji je poslao Davalac Identiteta nije prihva\u0107en.",
 		"ar": "\u0644\u0645 \u0646\u0642\u0628\u0644 \u0625\u062c\u0627\u0628\u0627\u062a \u0645\u0642\u062f\u0645 \u0627\u0644\u0647\u0648\u064a\u0629",
 		"lv": "Netiek akcept\u0113ta atbilde no identit\u0101tes pieg\u0101d\u0101t\u0101ja.",
-		"id": "Kami tidak menerima response yang dikirimlan dari Identity Provider."
+		"id": "Kami tidak menerima response yang dikirimlan dari Identity Provider.",
+		"ro": "R\u0103spunsul de la acest furnizor de identitate nu a fost acceptat.",
+		"ru": "\u041e\u0442\u043a\u043b\u0438\u043a \u043e\u0442 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u043d\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d."
 	},
 	"title_PROCESSAUTHNREQUEST": {
 		"no": "Feil ved behandling av foresp\u00f8rsel fra SP",
@@ -933,7 +986,9 @@
 		"sr": "Gre\u0161ka prilikom obrade zahteva koji je poslao Davalac Servisa",
 		"ar": "\u062e\u0637\u0627 \u0628\u0645\u0639\u0627\u0645\u0644\u0629 \u0637\u0644\u0628 \u0645\u0642\u062f\u0645 \u0627\u0644\u062e\u062f\u0645\u0629",
 		"lv": "Servisa pieg\u0101d\u0101t\u0101ja piepras\u012bjuma apstr\u0101des k\u013c\u016bda",
-		"id": "Error memproses request dari Service Provider"
+		"id": "Error memproses request dari Service Provider",
+		"ro": "Eroare la procesarea r\u0103spunsului primit de la furnizorul de servicii",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u0438 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0435 \u0437\u0430\u043f\u0440\u043e\u0441\u0430 \u043e\u0442 \u0441\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430"
 	},
 	"descr_PROCESSAUTHNREQUEST": {
 		"no": "Innloggingstjenesten mottok en autentiserings-foresp\u00f8rsel fra en tjeneste, men en feil oppsto i behandling av foresp\u00f8rselen.",
@@ -964,7 +1019,9 @@
 		"pl": "Dostawca to\u017csamo\u015bci otrzyma\u0142 od dostawcy us\u0142ugi zlecenie uwierzytelnienia, ale wyst\u0105pi\u0142 b\u0142\u0105d podczas przetwarzania zlecenia.",
 		"ar": "\u062d\u0635\u0644 \u0645\u0642\u062f\u0645 \u0627\u0644\u0647\u0648\u064a\u0629 \u0647\u0630\u0627 \u0639\u0644\u064a \u0637\u0644\u0628 \u062a\u0648\u062b\u064a\u0642 \u0645\u0646 \u0645\u0642\u062f\u0645 \u0627\u0644\u062e\u062f\u0645\u0629 \u0644\u0643\u0646 \u062d\u062f\u062b \u062e\u0637\u0627 \u0628\u0627\u0644\u0625\u062c\u0631\u0627\u0621\u0627\u062a ",
 		"lv": "Identit\u0101tes pieg\u0101d\u0101t\u0101js ir sa\u0146\u0113mis autentifik\u0101cijas piepras\u012bjumu no servisa pieg\u0101d\u0101t\u0101ja, bet to apstr\u0101d\u0101jot rad\u0101s k\u013c\u016bda.",
-		"id": "Identity Provider ini menerima Request Autentifikasi dari sebuah Service Provider, tetapi error terjadi ketika memproses request."
+		"id": "Identity Provider ini menerima Request Autentifikasi dari sebuah Service Provider, tetapi error terjadi ketika memproses request.",
+		"ro": "Acest furnizor de identitate a primit o cerere de autentificare de la un furnizor de servicii, dar a ap\u0103rut o eroare la procesarea cererii.",
+		"ru": "\u041f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u043f\u043e\u043b\u0443\u0447\u0438\u043b \u0437\u0430\u043f\u0440\u043e\u0441 \u043d\u0430 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u043e\u0442 \u0441\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430, \u043d\u043e \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u0430 \u043e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u0438 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0435 \u0434\u0430\u043d\u043d\u043e\u0433\u043e \u0437\u0430\u043f\u0440\u043e\u0441\u0430."
 	},
 	"title_SLOSERVICEPARAMS": {
 		"no": "Ingen SAML-melding angitt",
@@ -995,7 +1052,9 @@
 		"pl": "Nie dostarczono komunikatu SAML",
 		"ar": "\u0644\u0645 \u064a\u062a\u0645 \u062a\u0642\u062f\u064a\u0645 \u0631\u0633\u0627\u0644\u0629 SAML",
 		"lv": "Nav SAML zi\u0146ojuma",
-		"id": "Tidak pesan SAML yang disediakan"
+		"id": "Tidak pesan SAML yang disediakan",
+		"ro": "Nu a fost furnizat mesajul SAML",
+		"ru": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442 \u0443\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435 SAML "
 	},
 	"descr_SLOSERVICEPARAMS": {
 		"no": "Du brukte SingleLogoutService-grensesnittet uten \u00e5 angi enten en SAML LogoutRequest eller en LogoutResponse.",
@@ -1026,7 +1085,9 @@
 		"pl": "Zosta\u0142a wywo\u0142ana us\u0142uga SingleLogoutService, ale nie dostarczono komunikatu SAML LogoutRequest lub LogoutResponse.",
 		"ar": "\u0644\u0642\u062f \u0648\u0635\u0644\u062a \u0644\u0646\u0642\u0637\u0629 \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c \u0627\u0644\u0645\u0648\u062d\u062f \u0644\u0643\u0646\u0643 \u0644\u0645 \u062a\u0648\u0641\u0631 \u0637\u0644\u0628 \u062a\u0633\u062c\u064a\u0644 \u062e\u0631\u0648\u062c SAML \u0627\u0648 \u0627\u0633\u062a\u062c\u0627\u0628\u0629 \u0644\u0637\u0644\u0628 \u0627\u0644\u062e\u0631\u0648\u062c",
 		"lv": "J\u016bs izmantojat SingleLogoutService interfeisu, bet neesat devis SAML atsl\u0113g\u0161an\u0101s piepras\u012bjumu vai atsl\u0113g\u0161an\u0101s atbildi.",
-		"id": "Anda mengakses antarmuka SingleLogout, tetapi tidak menyediakan LogoutRequest SAML atau LogoutResponse."
+		"id": "Anda mengakses antarmuka SingleLogout, tetapi tidak menyediakan LogoutRequest SAML atau LogoutResponse.",
+		"ro": "A\u021bi accesat interfa\u021ba <i>SingleLogoutService<\/i>, dar nu a\u021bi furnizat o cerere de deautentificare sau un r\u0103spuns de deautentificare SAML.",
+		"ru": "\u0412\u044b \u043f\u043e\u043b\u0443\u0447\u0438\u043b\u0438 \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0443 SingleLogoutService, \u043d\u043e \u043d\u0435 \u043f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u0438\u043b\u0438 SAML LogoutRequest \u0438\u043b\u0438 LogoutResponse \u0443\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u044f."
 	},
 	"title_ACSPARAMS": {
 		"no": "Ingen SAML-respons angitt",
@@ -1057,7 +1118,9 @@
 		"pl": "Nie dostarczo odpowiedzi SAML",
 		"ar": "\u0644\u0627 \u062a\u0648\u062c\u062f \u0627\u0633\u062a\u062c\u0627\u0628\u0629 SAML",
 		"lv": "Nav SAML atbildes",
-		"id": "Tidak ada response SAML yang disediakan"
+		"id": "Tidak ada response SAML yang disediakan",
+		"ro": "Nu a fost furnizat r\u0103spunsul SAML",
+		"ru": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442 SAML \u043e\u0442\u043a\u043b\u0438\u043a"
 	},
 	"descr_ACSPARAMS": {
 		"no": "Du brukte AssertionConsumerService-grensesnittet uten \u00e5 angi en SAML AuthenticationResponse.",
@@ -1088,7 +1151,9 @@
 		"pl": "Zosta\u0142a wywo\u0142ana us\u0142uga Assertion Consumer Service, ale nie dostarczono komunikatu SAML 'Authentication Response'",
 		"ar": "\u0644\u0642\u062f \u0648\u0635\u0644\u062a \u0644\u0646\u0637\u0627\u0642 \u062a\u0623\u0643\u064a\u062f \u062e\u062f\u0645\u0629 \u0632\u0628\u0648\u0646 \u0644\u0643\u0646\u0643 \u0644\u0645 \u062a\u0648\u0641\u0631 \u0627\u0633\u062a\u062c\u0627\u0628\u0629 \u062a\u0648\u062b\u064a\u0642 SAML",
 		"lv": "J\u016bs izmantojat Assertion Consumer Service interfeisu, bet neesat devis SAML autentifik\u0101cijas atbildi.",
-		"id": "Anda mengakses antarnyka Assertion Consumer Service, tetapi tidak menyediakan Response Autentifikasi SAML. "
+		"id": "Anda mengakses antarnyka Assertion Consumer Service, tetapi tidak menyediakan Response Autentifikasi SAML. ",
+		"ro": "A\u021bi accesat interfa\u021ba <i>Assertion Consumer Service<\/i> dar nu a\u021bi furnizat r\u0103spunsul de autentificare SAML.",
+		"ru": "\u0412\u044b \u043f\u043e\u043b\u0443\u0447\u0438\u043b\u0438 \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0443 Assertion Consumer Service, \u043d\u043e \u043d\u0435 \u043f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u0438\u043b\u0438 \u043e\u0442\u043a\u043b\u0438\u043a SAML \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438."
 	},
 	"title_CASERROR": {
 		"no": "CAS-feil",
@@ -1119,7 +1184,9 @@
 		"sr": "CAS gre\u0161ka",
 		"ar": "\u062e\u0637\u0627 CAS",
 		"lv": "CAS k\u013c\u016bda",
-		"id": "Error CAS"
+		"id": "Error CAS",
+		"ro": "Eroare CAS",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 CAS"
 	},
 	"descr_CASERROR": {
 		"no": "Feil i kommunikasjonen med CAS-tjeneren.",
@@ -1150,7 +1217,9 @@
 		"pl": "B\u0142\u0105d podczas komunikacji z serwerem CAS",
 		"ar": "\u062e\u0637\u0627 \u0639\u0646\u062f \u0645\u062d\u0627\u0648\u0644\u0629 \u0627\u0644\u0627\u062a\u0635\u0627\u0644 \u0628\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629 CAS",
 		"lv": "K\u013c\u016bda komunic\u0113jot ar CAS serveri.",
-		"id": "Error ketika berkomunikasi dengans server CAS."
+		"id": "Error ketika berkomunikasi dengans server CAS.",
+		"ro": "Eroare de comunicare cu serverul CAS.",
+		"ru": "\u041f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u0430 \u043e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u0438 \u043e\u0431\u043c\u0435\u043d\u0435 \u0434\u0430\u043d\u043d\u044b\u043c\u0438 \u0441 \u0441\u0435\u0440\u0432\u0435\u0440\u043e\u043c CAS."
 	},
 	"title_CONFIG": {
 		"no": "Feil i oppsettet",
@@ -1181,7 +1250,9 @@
 		"sr": "Gre\u0161ka u pode\u0161avanjima",
 		"ar": "\u062e\u0637\u0627 \u0628\u0627\u0644\u062a\u0631\u062a\u064a\u0628",
 		"lv": "Konfigur\u0101cijas k\u013c\u016bda",
-		"id": "Error konfigurasi"
+		"id": "Error konfigurasi",
+		"ro": "Eroare de configurare",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438"
 	},
 	"descr_CONFIG": {
 		"no": "Det virker som det er en feil i oppsettet av simpleSAMLphp.",
@@ -1212,7 +1283,9 @@
 		"sr": "Izgleda da postoji gre\u0161ka u pode\u0161avanjima simpleSAMLphp-a.",
 		"ar": "\u064a\u0628\u062f\u0648 \u0627\u0646 \u062a\u0631\u062a\u064a\u0628 simpleSAMLphp \u063a\u064a\u0631 \u0635\u062d\u064a\u062d",
 		"lv": "simpleSAMLphp nav pareizi nokonfigur\u0113ts.",
-		"id": "simpleSAMLphp sepertinya telah salah dikonfigurasi"
+		"id": "simpleSAMLphp sepertinya telah salah dikonfigurasi",
+		"ro": "Probleme la configurarea simpleSAMLphp.",
+		"ru": "\u0412\u0438\u0434\u0438\u043c\u043e, simpleSAMLphp \u0441\u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0438\u0440\u043e\u0432\u0430\u043d \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e."
 	},
 	"title_NOTSET": {
 		"no": "Passordet er ikke satt",
@@ -1243,7 +1316,9 @@
 		"sr": "Lozinka nije postavljena",
 		"ar": "\u0644\u0645 \u062a\u0642\u0645 \u0628\u062a\u062d\u062f\u064a\u062f \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631",
 		"lv": "Parole nav uzst\u0101d\u012bta",
-		"id": "Password tidak diset"
+		"id": "Password tidak diset",
+		"ro": "Parola nu este configurat\u0103",
+		"ru": "\u041f\u0430\u0440\u043e\u043b\u044c \u043d\u0435 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d"
 	},
 	"descr_NOTSET": {
 		"no": "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til noe annet enn default verdien. Bytt passord i config.php.",
@@ -1274,7 +1349,9 @@
 		"pl": "Has\u0142o w konfiguracji (auth.adminpassword) ma domy\u015bln\u0105 warto\u015b\u0107. Prosz\u0119 poprawi\u0107 konfiguracj\u0119.",
 		"ar": "\u0644\u0645 \u062a\u0642\u0645 \u0628\u062a\u063a\u064a\u064a\u0631 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0627\u0644\u0627\u0641\u062a\u0631\u0627\u0636\u064a\u0629 \u0628\u0627\u0644\u062a\u0631\u062a\u064a\u0628 (auth.adminpassword). \u0631\u062c\u0627\u0621\u0627\u064b \u0642\u0645 \u0628\u062a\u062d\u0631\u064a\u0631 \u0645\u0644\u0641 \u0627\u0644\u062a\u0631\u062a\u064a\u0628",
 		"lv": "Konfigur\u0101cij\u0101 auth.adminpassword parolei ir noklus\u0113t\u0101 v\u0113rt\u012bba, t\u0101 nav main\u012bta. L\u016bdzu nomainiet to, labojot failu.",
-		"id": "Password di konfigurasi (auth.adminspassword) tidak berubah dari nilai default. Silahkan edit file konfigurasi."
+		"id": "Password di konfigurasi (auth.adminspassword) tidak berubah dari nilai default. Silahkan edit file konfigurasi.",
+		"ro": "Parola din configurare (<i>auth.adminpassword<\/i>) este cea implicit\u0103, v\u0103 rug\u0103m s\u0103 o modifica\u021bi.",
+		"ru": "\u041f\u0430\u0440\u043e\u043b\u044c \u0432 \u0444\u0430\u0439\u043b\u0435 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438 (auth.adminpassword) \u043d\u0435 \u0438\u0437\u043c\u0435\u043d\u0435\u043d \u043e\u0442 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f \u043f\u043e \u0443\u043c\u043e\u043b\u0447\u0430\u043d\u0438\u044e. \u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u043e\u0442\u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u0443\u0439\u0442\u0435 \u0444\u0430\u0439\u043b \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438."
 	},
 	"title_NOTVALIDCERT": {
 		"no": "Ugyldig sertifikat",
@@ -1305,7 +1382,9 @@
 		"sr": "Neispravan sertifikat",
 		"ar": "\u0634\u0647\u0627\u062f\u0629 \u063a\u064a\u0631 \u0635\u062d\u064a\u062d\u0629",
 		"lv": "Neder\u012bgs sertifik\u0101ts",
-		"id": "Sertifikat invalid"
+		"id": "Sertifikat invalid",
+		"ro": "Certificat nevalid",
+		"ru": "\u041d\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442"
 	},
 	"descr_NOTVALIDCERT": {
 		"no": "Du presenterte ikke et gyldig sertifikat",
@@ -1336,7 +1415,9 @@
 		"sr": "Niste dostavili validan setifikat.",
 		"ar": "\u0644\u0645 \u062a\u0642\u062f\u0645 \u0634\u0647\u0627\u062f\u0629 \u0635\u062d\u064a\u062d\u0629",
 		"lv": "J\u016bs neesat nor\u0101d\u012bjis der\u012bgu sertifik\u0101tu.",
-		"id": "Anda tidak menyediakan sertifikat yang valid."
+		"id": "Anda tidak menyediakan sertifikat yang valid.",
+		"ro": "Nu a\u021bi oferit un certificat valid.",
+		"ru": "\u0412\u044b \u043d\u0435 \u043f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u0438\u043b\u0438 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442."
 	},
 	"errorreport_header": {
 		"no": "Feilrapport sent",
@@ -1366,7 +1447,9 @@
 		"ar": "\u062a\u0645 \u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u062a\u0642\u0631\u064a\u0631 \u0639\u0646 \u0627\u0644\u062e\u0637\u0623 ",
 		"lv": "K\u013c\u016bdas zi\u0146ojums nos\u016bt\u012bts",
 		"id": "Laporan error dikirimkan",
-		"sr": "Prijava gre\u0161ke poslata"
+		"sr": "Prijava gre\u0161ke poslata",
+		"ro": "Raportul cu erori a fost trimis",
+		"ru": "\u0421\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435 \u043e\u0431 \u043e\u0448\u0438\u0431\u043a\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043e"
 	},
 	"errorreport_text": {
 		"no": "Feilrapport er sent til administrator.",
@@ -1396,7 +1479,9 @@
 		"ar": "\u062a\u0645 \u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u062a\u0642\u0631\u064a\u0631 \u0639\u0646 \u0627\u0644\u062e\u0637\u0623  \u0644\u0644\u0645\u0634\u0631\u0641",
 		"lv": "K\u013c\u016bdas zi\u0146ojums administratoriem ir nos\u016bt\u012bts.",
 		"id": "Laporan error telah dikirimkan ke administrator",
-		"sr": "Prijava gre\u0161ke poslata je administratorima."
+		"sr": "Prijava gre\u0161ke poslata je administratorima.",
+		"ro": "Raportul cu erori a fost trimis c\u0103tre administratori.",
+		"ru": "\u0421\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435 \u043e\u0431 \u043e\u0448\u0438\u0431\u043a\u0435 \u0431\u044b\u043b\u043e \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043e \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u0430\u043c."
 	},
 	"title_LOGOUTINFOLOST": {
 		"no": "Informasjon om utlogging er tapt",
@@ -1426,7 +1511,9 @@
 		"ar": "\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c \u0645\u0641\u0642\u0648\u062f\u0629",
 		"lv": "Atsl\u0113g\u0161an\u0101s inform\u0101cija zaud\u0113ta",
 		"id": "Informasi logout hilang",
-		"sr": "Informacija o odjavljivanju je izgubljena"
+		"sr": "Informacija o odjavljivanju je izgubljena",
+		"ro": "Informa\u021bia de deautentificare a fost pierdut\u0103",
+		"ru": "\u041f\u043e\u0442\u0435\u0440\u044f\u043d\u0430 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u0432\u044b\u0445\u043e\u0434\u0435."
 	},
 	"descr_LOGOUTINFOLOST": {
 		"no": "Informasjonen om den n\u00e5v\u00e6rende utloggingen har g\u00e5tt tapt. Du b\u00f8r g\u00e5 tilbake til den opprinnelige tjesesten og pr\u00f8ve \u00e5 logge ut p\u00e5 nytt. Informasjon om utloggingsoperasjoner er kun lagret i en begrenset tid - vanligvis noen timer. Dette er lengere tid enn en vanlig utlogging skal ta, s\u00e5 denne feilen kan tyde p\u00e5 at noe er galt med oppsettet. Ta kontakt med tjenesteyteren hvis problemet gjentar seg.",
@@ -1456,7 +1543,9 @@
 		"ar": "\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c \u0627\u0644\u062d\u0627\u0644\u064a \u0645\u0641\u0642\u0648\u062f\u0629. \u0639\u062f \u0644\u0635\u0641\u062d\u0629 \u0645\u0642\u062f\u0645 \u0627\u0644\u062e\u062f\u0645\u0629 \u0648 \u062d\u0627\u0648\u0644 \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c \u0645\u0631\u0629 \u0627\u062e\u0631\u064a. \u064a\u062d\u062f\u062b \u0647\u0630\u0627 \u0627\u0644\u062e\u0637\u0623 \u0646\u062a\u064a\u062c\u0629 \u0644\u0627\u0646\u062a\u0647\u0627\u0621 \u0635\u0644\u0627\u062d\u064a\u0629 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c \u0627\u0644\u062a\u064a \u062a\u062d\u0641\u0638 \u0644\u0641\u062a\u0631\u0629 \u0645\u062d\u062f\u062f\u0629- \u0639\u062f\u0629 \u0633\u0627\u0639\u0627\u062a \u0639\u0627\u062f\u0629. \u0641\u062a\u0631\u0629 \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c \u0647\u0630\u0647 \u0623\u0637\u0648\u0644 \u0645\u0646 \u0627\u0644\u0645\u0639\u062a\u0627\u062f \u0645\u0645\u0627 \u064a\u062f\u0644 \u0639\u0644\u064a \u0648\u062c\u0648\u062f \u0623\u062e\u0637\u0627\u0621 \u0627\u062e\u0631\u064a \u0628\u0627\u0644\u062a\u0631\u062a\u064a\u0628. \u0627\u0630\u0627 \u0648\u0627\u062c\u0647\u062a\u0643 \u0647\u0630\u0647 \u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0645\u0631\u0629 \u0627\u062e\u0631\u064a \u0642\u0645 \u0631\u062c\u0627\u0621\u0627\u064b \u0628\u0627\u0644\u0627\u062a\u0635\u0627\u0644 \u0628\u0645\u0642\u062f\u0645 \u0627\u0644\u062e\u062f\u0645\u0629",
 		"lv": "Inform\u0101cija par atsl\u0113g\u0161an\u0101s oper\u0101ciju ir pazaud\u0113ta. Jums j\u0101atgrie\u017eas pie servisa, no kura m\u0113\u0123in\u0101j\u0101t atsl\u0113gties, un j\u0101m\u0113\u0123ina atsl\u0113gties v\u0113lreiz. K\u013c\u016bda var rasties, ja atsl\u0113g\u0161an\u0101s norit p\u0101r\u0101k ilgi. Inform\u0101cija par atsl\u0113g\u0161anos tiek glab\u0101ta vair\u0101kas stundas. Tas ir ilg\u0101k nek\u0101 parasti norit atsl\u0113g\u0161an\u0101s proced\u016bra, t\u0101d\u0113\u013c \u0161\u012b k\u013c\u016bda var nor\u0101d\u012bt uz k\u013c\u016bdu konfigur\u0101cij\u0101. Ja probl\u0113ma turpin\u0101s, sazinieties ar servisa pieg\u0101d\u0101t\u0101ju.",
 		"id": "Informasi tentang operasi logout saat ini telah hilang. Anda harus kembali ke layanan tempat Anda mencoba logout dan mencoba melakukan proses logout kembali. Error ini dapat disebabakan oleh informasi logout yang telah kadaluarsa. Informasi logout disimpan untuk waktu yang terbatas - biasanya dalam bilangan jam. Waktu ini lebih lama dari operasi logout normal umumnya, jadi error ini mungkin mengindikasikan beberapa erro lain pada konfigurasi. Jika masalah tetap terjadi, hubungi service provider Anda.",
-		"sr": "Informacija o aktuelnom zahtevu za odjavljivanjem se izgubila. Preporu\u010dujemo da se vratite u aplikaciju iz koje ste se hteli odjaviti i poku\u0161ate da se odjavite ponovo. Ova gre\u0161ka mo\u017ee biti uzrokovana istekom validnosti zahteva za odjavom. Zahtev se skladi\u0161ti odre\u0111eno vreme - po pravilu nekoliko sati. Obzirom da je to du\u017ee nego \u0161to bi bilo koja operacija odjavljivanja trebala trajati, gre\u0161ka koja se pojavila mo\u017ee upu\u0107ivati na gre\u0161ku u pode\u0161avanjima. Ukoliko se problem nastavi, kontaktirajte administratora aplikacije."
+		"sr": "Informacija o aktuelnom zahtevu za odjavljivanjem se izgubila. Preporu\u010dujemo da se vratite u aplikaciju iz koje ste se hteli odjaviti i poku\u0161ate da se odjavite ponovo. Ova gre\u0161ka mo\u017ee biti uzrokovana istekom validnosti zahteva za odjavom. Zahtev se skladi\u0161ti odre\u0111eno vreme - po pravilu nekoliko sati. Obzirom da je to du\u017ee nego \u0161to bi bilo koja operacija odjavljivanja trebala trajati, gre\u0161ka koja se pojavila mo\u017ee upu\u0107ivati na gre\u0161ku u pode\u0161avanjima. Ukoliko se problem nastavi, kontaktirajte administratora aplikacije.",
+		"ro": "Informa\u021bia de deautentificare pentru aceast\u0103 opera\u021biune a fost pierdut\u0103. V\u0103 rug\u0103m s\u0103 v\u0103 \u00eentoarce\u021bi la serviciul din care a\u021bi \u00eencercat s\u0103 v\u0103 deautentifica\u021bi \u0219i s\u0103 \u00eencerca\u021bi din nou. Aceast\u0103 eroare poate fi cauzat\u0103 de expirarea informa\u021biei de deautentificare. Informa\u021bia de deautentificare este stocat\u0103 pentru un timp limitat, dar de obicei c\u00e2teva ore, ceea ce eate mai mult dec\u00e2t poate dura \u00een mod obi\u0219nuit o opera\u021biune de deautentificare. Prin urmare, mesajul poate indica o alt\u0103 eroare de configurare. Dac\u0103 problema persist\u0103, v\u0103 rug\u0103m s\u0103 contacta\u021bi furnizorul de servicii.",
+		"ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0442\u0435\u043a\u0443\u0449\u0435\u0439 \u043e\u043f\u0435\u0440\u0430\u0446\u0438\u0438 \u0432\u044b\u0445\u043e\u0434\u0430 \u0431\u044b\u043b\u0430 \u043f\u043e\u0442\u0435\u0440\u044f\u043d\u0430. \u0412\u044b \u0434\u043e\u043b\u0436\u043d\u044b \u0432\u0435\u0440\u043d\u0443\u0442\u044c\u0441\u044f \u043d\u0430 \u0441\u043b\u0443\u0436\u0431\u0443, \u0438\u0437 \u043a\u043e\u0442\u043e\u0440\u043e\u0439 \u0432\u044b \u043f\u044b\u0442\u0430\u043b\u0438\u0441\u044c \u0432\u044b\u0439\u0442\u0438 \u0438 \u043f\u043e\u043f\u044b\u0442\u0430\u0442\u044c\u0441\u044f \u0432\u044b\u0439\u0442\u0438 \u0441\u043d\u043e\u0432\u0430. \u042d\u0442\u0430 \u043e\u0448\u0438\u0431\u043a\u0430 \u043c\u043e\u0436\u0435\u0442 \u0431\u044b\u0442\u044c \u0432\u044b\u0437\u0432\u0430\u043d\u0430 \u0443\u0441\u0442\u0430\u0440\u0435\u0432\u0430\u043d\u0438\u0435\u043c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u043e \u0432\u044b\u0445\u043e\u0434\u0435. \u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u0432\u044b\u0445\u043e\u0434\u0435 \u0445\u0440\u0430\u043d\u0438\u0442\u0441\u044f \u0432 \u0442\u0435\u0447\u0435\u043d\u0438\u0435 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u043d\u043e\u0433\u043e \u043e\u0442\u0440\u0435\u0437\u043a\u0430 \u0432\u0440\u0435\u043c\u0435\u043d\u0438 - \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043e \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e\u0438\u0445 \u0447\u0430\u0441\u043e\u0432. \u042d\u0442\u043e \u0431\u043e\u043b\u044c\u0448\u0435, \u0447\u0435\u043c \u043f\u043e\u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0434\u043b\u044f \u043b\u044e\u0431\u043e\u0439 \u043d\u043e\u0440\u043c\u0430\u043b\u044c\u043d\u043e\u0439 \u043e\u043f\u0435\u0440\u0430\u0446\u0438\u0438 \u0432\u044b\u0445\u043e\u0434\u0430, \u043f\u043e\u044d\u0442\u043e\u043c\u0443 \u044d\u0442\u0430 \u043e\u0448\u0438\u0431\u043a\u0430 \u043c\u043e\u0436\u0435\u0442 \u043e\u0437\u043d\u0430\u0447\u0430\u0442\u044c \u043d\u0435\u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0434\u0440\u0443\u0433\u0438\u0435 \u043e\u0448\u0438\u0431\u043a\u0438 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438. \u0415\u0441\u043b\u0438 \u043f\u0440\u043e\u0431\u043b\u0435\u043c\u0430 \u043d\u0435 \u0443\u0441\u0442\u0440\u0430\u043d\u0435\u043d\u0430, \u043e\u0431\u0440\u0430\u0442\u0438\u0442\u0435\u0441\u044c \u043a \u0441\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0443."
 	},
 	"title_UNHANDLEDEXCEPTION": {
 		"no": "Uh\u00e5ndtert feil",
@@ -1485,7 +1574,9 @@
 		"ar": "\u0627\u0633\u062a\u062b\u0646\u0627\u0621 \u063a\u064a\u0631 \u0645\u0639\u0627\u0644\u062c",
 		"lv": "Nezin\u0101ma k\u013c\u016bda",
 		"id": "Exception yang tidak tertangani",
-		"sr": "Neobra\u0111ena gre\u0161ka"
+		"sr": "Neobra\u0111ena gre\u0161ka",
+		"ro": "Excep\u021bie netratat\u0103",
+		"ru": "\u041d\u0435\u043e\u0431\u0440\u0430\u0431\u0430\u0442\u044b\u0432\u0430\u0435\u043c\u043e\u0435 \u0438\u0441\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435"
 	},
 	"descr_UNHANDLEDEXCEPTION": {
 		"no": "En uventet feilsituasjon oppstod",
@@ -1514,7 +1605,9 @@
 		"ar": "\u062a\u0645 \u0627\u0644\u062a\u062e\u0644\u0635 \u0645\u0646 \u0627\u0633\u062a\u062b\u0646\u0627\u0621 \u063a\u064a\u0631 \u0645\u0639\u0627\u0644\u062c",
 		"lv": "Noticis nezin\u0101ms iz\u0146\u0113muma gad\u012bjums.",
 		"id": "Exception yang tidak tertangani telah di-thrown",
-		"sr": "Pojavila se gre\u0161ka koja ne mo\u017ee do kraja biti obra\u0111ena."
+		"sr": "Pojavila se gre\u0161ka koja ne mo\u017ee do kraja biti obra\u0111ena.",
+		"ro": "A ap\u0103rut o excep\u021bie netratat\u0103.",
+		"ru": "\u0412\u044b\u0434\u0430\u043d\u043e \u043d\u0435\u043e\u0431\u0440\u0430\u0431\u0430\u0442\u044b\u0432\u0430\u0435\u043c\u043e\u0435 \u0438\u0441\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435."
 	},
 	"title_NOTFOUND": {
 		"no": "Kan ikke finne siden",
@@ -1544,7 +1637,9 @@
 		"ar": "\u0627\u0644\u0635\u0641\u062d\u0629 \u063a\u064a\u0631 \u0645\u0648\u062c\u0648\u062f\u0629",
 		"lv": "Lapa nav atrasta",
 		"id": "Halaman tidak ditemukan",
-		"sr": "Stranica nije prona\u0111ena"
+		"sr": "Stranica nije prona\u0111ena",
+		"ro": "Pagina nu a fost g\u0103sit\u0103",
+		"ru": "\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u0430"
 	},
 	"descr_NOTFOUND": {
 		"no": "Den angitte siden finnes ike. URLen var: %URL%",
@@ -1574,7 +1669,9 @@
 		"ar": "\u0627\u0644\u0635\u0641\u062d\u0629 \u063a\u064a\u0631 \u0645\u0648\u062c\u0648\u062f\u0629. \u0627\u0644\u0639\u0646\u0648\u0627\u0646 %URL%",
 		"lv": "Nor\u0101d\u012bt\u0101 lapa nav atrasta. Saite: %URL%",
 		"id": "Halaman yang diminta tidak dapat ditemukan. URL nya adalah %URL%",
-		"sr": "Tra\u017eena stranica nije prona\u0111ena. Adresa stranice je: %URL%"
+		"sr": "Tra\u017eena stranica nije prona\u0111ena. Adresa stranice je: %URL%",
+		"ro": "Pagina nu a fost g\u0103sit\u0103, URL-ul a fost urm\u0103torul: %URL%",
+		"ru": "\u0417\u0430\u043f\u0440\u0430\u0448\u0438\u0432\u0430\u0435\u043c\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u0430. \u0421\u0441\u044b\u043b\u043a\u0430 \u0431\u044b\u043b\u0430: %URL%"
 	},
 	"title_NOTFOUNDREASON": {
 		"no": "Kan ikke finne siden",
@@ -1604,7 +1701,9 @@
 		"ar": "\u0627\u0644\u0635\u0641\u062d\u0629 \u063a\u064a\u0631 \u0645\u0648\u062c\u0648\u062f\u0629",
 		"lv": "Lapa nav atrasta",
 		"id": "Halaman tidak ditemukan",
-		"sr": "Stranica nije prona\u0111ena"
+		"sr": "Stranica nije prona\u0111ena",
+		"ro": "Pagina nu a fost g\u0103sit\u0103",
+		"ru": "\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u0430"
 	},
 	"descr_NOTFOUNDREASON": {
 		"no": "Den angitte siden finnes ikke. Grunnen er: %REASON%. URLen var: %URL%",
@@ -1634,7 +1733,9 @@
 		"ar": "\u0627\u0644\u0635\u0641\u062d\u0629 \u063a\u064a\u0631 \u0645\u0648\u062c\u0648\u062f\u0629. \u0627\u0644\u0633\u0628\u0628 %REASON% \u0648 \u0627\u0644\u0639\u0646\u0648\u0627\u0646 %URL%",
 		"lv": "Nor\u0101d\u012bt\u0101 lapa nav atrasta. Iemesls: %REASON% Saite: %URL%",
 		"id": "Halaman yang diminta tidak ditemykan, Error-nya adalah: %REASON% URL-nya adalah: %URL%",
-		"sr": "Tra\u017eena stranica nije prona\u0111ena. Razlog: %REASON% Adresa stranice je: %URL%"
+		"sr": "Tra\u017eena stranica nije prona\u0111ena. Razlog: %REASON% Adresa stranice je: %URL%",
+		"ro": "Pagina nu a fost g\u0103sit\u0103, motivul a fost urm\u0103torul: %REASON%, URL-ul a fost: %URL%",
+		"ru": "\u0417\u0430\u043f\u0440\u0430\u0448\u0438\u0432\u0430\u0435\u043c\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u0430. \u041f\u0440\u0438\u0447\u0438\u043d\u0430: %REASON%  \u0421\u0441\u044b\u043b\u043a\u0430: %URL%"
 	},
 	"title_BADREQUEST": {
 		"no": "Feil foresp\u00f8rsel motatt",
@@ -1664,7 +1765,9 @@
 		"ar": "\u0627\u0633\u062a\u0642\u0628\u0627\u0644 \u0637\u0644\u0628 \u0633\u064a\u0621",
 		"lv": "Sa\u0146emts nepareizs piepras\u012bjums",
 		"id": "Request buruk diterima",
-		"sr": "Dobijeni zahtev nije ispravan"
+		"sr": "Dobijeni zahtev nije ispravan",
+		"ro": "S-a primit o cerere incorect\u0103",
+		"ru": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u043e\u0442\u043a\u043b\u0438\u043a"
 	},
 	"descr_BADREQUEST": {
 		"no": "En feil oppsto i foresp\u00f8rselen til denne siden. Grunnen var: %REASON%",
@@ -1693,7 +1796,9 @@
 		"ar": "\u062e\u0637\u0627 \u0628\u0637\u0644\u0628 \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062d\u0629. \u0627\u0644\u0633\u0628\u0628 %REASON%",
 		"lv": "K\u013c\u016bdains piepras\u012bjums \u0161ai lapai. Iemesls: %REASON%",
 		"id": "Terjadi error pada request ke halaman ini. Alasannya adalah: %REASON%",
-		"sr": "Dogodila se gre\u0161ka prilikom dohvatanja ove stranice. Razlog: %REASON%"
+		"sr": "Dogodila se gre\u0161ka prilikom dohvatanja ove stranice. Razlog: %REASON%",
+		"ro": "Exist\u0103 o eroare \u00een cererea c\u0103tre aceast\u0103 pagin\u0103. Motivul este: %REASON%",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u0432 \u0437\u0430\u043f\u0440\u043e\u0441\u0435 \u043a \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435. \u041f\u0440\u0438\u0447\u0438\u043d\u0430: %REASON%"
 	},
 	"title_WRONGUSERPASS": {
 		"no": "Feil brukernavn og passord",
@@ -1723,7 +1828,9 @@
 		"ar": "\u0627\u0633\u0645 \u0645\u0633\u062a\u062e\u062f\u0645 \u0627\u0648 \u0643\u0644\u0645\u0629 \u0633\u0631 \u062e\u0637\u0627 ",
 		"lv": "Nekorekts lietot\u0101ja v\u0101rds vai parole",
 		"id": "Username atau password salah",
-		"sr": "Neispravno korisni\u010dko ime ili lozinka"
+		"sr": "Neispravno korisni\u010dko ime ili lozinka",
+		"ro": "Nume de utilizator incorect sau parol\u0103 incorect\u0103",
+		"ru": "\u041d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u0438\u043c\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f \u0438\u043b\u0438 \u043f\u0430\u0440\u043e\u043b\u044c"
 	},
 	"descr_WRONGUSERPASS": {
 		"no": "Enten var brukernavnet, eller kombinasjonen med brukernavn og passord feil. Sjekk brukernavn og passord og pr\u00f8v igjen.",
@@ -1752,7 +1859,8 @@
 		"ar": "\u0627\u0645\u0627 \u0627\u0646\u0647 \u0644\u0645  \u0646\u062a\u0645\u0643\u0646 \u0645\u0646 \u0627\u0644\u062a\u0639\u0631\u0641 \u0639\u0644\u064a \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0627\u0648 \u0627\u0646 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u062e\u0637\u0627. \u0631\u0627\u062c\u0639 \u0627\u0633\u0645 \u0627\u0644\u062f\u062e\u0648\u0644 \u0648 \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0627\u062e\u0631\u064a",
 		"lv": "Vai nu nav lietot\u0101ja ar nor\u0101d\u012bto lietot\u0101ja v\u0101rdu, vai parole nor\u0101d\u012bta k\u013c\u016bdaini. L\u016bdzu m\u0113\u0123iniet v\u0113lreiz.",
 		"id": "Username yang diberikan tidak dapat ditemukan, atau password yang Anda berikan salah. Silahkan periksa username dan coba lagi.",
-		"sr": "Korisnik s navedenim korisni\u010dkim imenom ne mo\u017ee biti prona\u0111en ili je lozinka koju ste uneli neispravna. Molimo proverite korisni\u010dko ime i poku\u0161ajte ponovo."
+		"sr": "Korisnik s navedenim korisni\u010dkim imenom ne mo\u017ee biti prona\u0111en ili je lozinka koju ste uneli neispravna. Molimo proverite korisni\u010dko ime i poku\u0161ajte ponovo.",
+		"ro": "Nu a fost g\u0103sit niciun utilizator cu numele de utilizator specificat, sau parola introdus\u0103 este gre\u0219it\u0103. V\u0103 rug\u0103m s\u0103 \u00eencerca\u021bi din nou."
 	},
 	"title_RESPONSESTATUSNOSUCCESS": {
 		"no": "Feilmelding mottatt fra innloggingstjenesten",
@@ -1782,7 +1890,8 @@
 		"lv": "K\u013c\u016bda no identit\u0101tes pieg\u0101d\u0101t\u0101ja",
 		"id": "Error diterima dari Identity Provider",
 		"sr": "Davalac Identiteta je prijavio gre\u0161ku",
-		"cs": "Chyba p\u0159ijat\u00e1 od poskytovatele identity"
+		"cs": "Chyba p\u0159ijat\u00e1 od poskytovatele identity",
+		"ro": "Eroare primit\u0103 de la furnizorul de identitate"
 	},
 	"descr_RESPONSESTATUSNOSUCCESS": {
 		"no": "Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-svaret var noe annet enn OK)",
@@ -1812,7 +1921,8 @@
 		"lv": "Identit\u0101tes pieg\u0101d\u0101t\u0101js atbild\u0113jis ar k\u013c\u016bdu. Statusa kods SAML atbild\u0113 at\u0161\u0137iras no veiksm\u012bga",
 		"id": "Identity Provider merespon dengan error. (Kode status di Response SAML adalah tidak berhasil)",
 		"sr": "Davalac Identiteta je poslao odgovor koji sadr\u017ei informaciju o pojavi gre\u0161ke(\u0160ifra statusa dostavljena u SAML odgovoru ne odgovara \u0161ifri uspe\u0161no obra\u0111enog zahteva).",
-		"cs": "Poskytovatel identity odpov\u011bd\u011bl chybou. (Stavov\u00fd k\u00f3d v SAML nebyl \u00fasp\u011b\u0161n\u00fd)"
+		"cs": "Poskytovatel identity odpov\u011bd\u011bl chybou. (Stavov\u00fd k\u00f3d v SAML nebyl \u00fasp\u011b\u0161n\u00fd)",
+		"ro": "Furnizorul de identitate a r\u0103spuns cu o eroare. (Codul de stare in r\u0103spunsul SAML a fost  \u00eencercare nereu\u0219it\u0103)"
 	},
 	"title_NOCERT": {
 		"fr": "Aucun certificat pr\u00e9sent\u00e9",
@@ -1839,7 +1949,8 @@
 		"lv": "Nav sertifik\u0101ta",
 		"id": "Tidak ada sertifikat",
 		"sr": "Nema digitalnog sertifikata",
-		"cs": "Chyb\u00ed certiifik\u00e1t"
+		"cs": "Chyb\u00ed certiifik\u00e1t",
+		"ro": "Lipse\u0219te certificatul"
 	},
 	"descr_NOCERT": {
 		"fr": "\u00c9chec de l'authentification : votre navigateur n'a pas pr\u00e9sent\u00e9 de certificat",
@@ -1866,7 +1977,8 @@
 		"lv": "Autentifik\u0101cija neizdev\u0101s, jo J\u016bsu interneta p\u0101rl\u016bks nav ats\u016bt\u012bjis nevienu sertifik\u0101tu",
 		"id": "Autentifikasi gagal: Browser anada tidak mengirim sertifikat",
 		"sr": "Neuspe\u0161na autentifikacija: va\u0161 web pretra\u017eiva\u010d nije poslao digitalni sertifikat",
-		"cs": "P\u0159ihl\u00e1\u0161en\u00ed neprob\u011bhlo: V\u00e1\u0161 prohl\u00ed\u017ee\u010d neodeslal \u017e\u00e1dn\u00fd certifik\u00e1t"
+		"cs": "P\u0159ihl\u00e1\u0161en\u00ed neprob\u011bhlo: V\u00e1\u0161 prohl\u00ed\u017ee\u010d neodeslal \u017e\u00e1dn\u00fd certifik\u00e1t",
+		"ro": "Autentificare e\u0219uat\u0103: browser-ul dumneavoastr\u0103 nu a trimis niciun certificat"
 	},
 	"title_INVALIDCERT": {
 		"fr": "Certificat invalide",
@@ -1893,7 +2005,8 @@
 		"lv": "Neder\u012bgs sertifik\u0101ts",
 		"id": "Sertifikat invalid",
 		"sr": "Neispravan digitalni sertifikat",
-		"cs": "\u0160patn\u00fd certifik\u00e1t"
+		"cs": "\u0160patn\u00fd certifik\u00e1t",
+		"ro": "Certificat nevalid"
 	},
 	"descr_INVALIDCERT": {
 		"fr": "\u00c9chec de l'authentification : le certificat pr\u00e9sent\u00e9 par votre navigateur est invalide ou illisible",
@@ -1920,7 +2033,8 @@
 		"lv": "Autentifik\u0101cija neizdev\u0101s, jo J\u016bsu interneta p\u0101rl\u016bks ats\u016bt\u012bjis neder\u012bgu vai nelas\u0101mu sertifik\u0101tu",
 		"id": "Autentifikasi gagal: Sertifikat yang browser Anda kirimkan invalid atau tidak dapat dibaca",
 		"sr": "Neuspe\u0161na autentifikacija: digitalni sertifikat koji je poslao va\u0161 web pretra\u017eiva\u010d nije ispravan ili se ne mo\u017ee pro\u010ditati",
-		"cs": "P\u0159ihl\u00e1\u0161en\u00ed neprob\u011bhlo: certifik\u00e1t kter\u00fd odeslal V\u00e1\u0161 rohl\u00ed\u017ee\u010d nemohl b\u00fdt p\u0159e\u010dten"
+		"cs": "P\u0159ihl\u00e1\u0161en\u00ed neprob\u011bhlo: certifik\u00e1t kter\u00fd odeslal V\u00e1\u0161 rohl\u00ed\u017ee\u010d nemohl b\u00fdt p\u0159e\u010dten",
+		"ro": "Autentificare e\u0219uat\u0103: certificatul trimis de browser-ul dumneavoastr\u0103 nu este valid sau nu poate fi citit"
 	},
 	"title_UNKNOWNCERT": {
 		"fr": "Certificat inconnu",
@@ -1947,7 +2061,8 @@
 		"lv": "Nepaz\u012bstams sertifik\u0101ts",
 		"id": "Sertifikat tidak dikenal",
 		"sr": "Nepoznat digitalni sertifikat",
-		"cs": "Nezn\u00e1m\u00fd certifik\u00e1t"
+		"cs": "Nezn\u00e1m\u00fd certifik\u00e1t",
+		"ro": "Certificat necunoscut"
 	},
 	"descr_UNKNOWNCERT": {
 		"fr": "\u00c9chec de l'authentification : le certificat pr\u00e9sent\u00e9 par votre navigateur n'est pas connu",
@@ -1974,7 +2089,8 @@
 		"lv": "Autentifik\u0101cija neizdev\u0101s, jo J\u016bsu interneta p\u0101rl\u016bks ats\u016bt\u012bjis nepaz\u012bstamu sertifik\u0101tu",
 		"id": "Autentifikasi gagal: sertifikat yang browser anda kirimkan tidak dikenal",
 		"sr": "Neuspe\u0161na autentifikacija: digitalni sertifikat koji je poslao va\u0161 web pretra\u017eiva\u010d je nepoznat",
-		"cs": "P\u0159ihl\u00e1\u0161en\u00ed neprob\u011bhlo: certifik\u00e1t kter\u00fd odeslal V\u00e1\u0161 prohl\u00ed\u017ee\u010d je nezn\u00e1m\u00fd"
+		"cs": "P\u0159ihl\u00e1\u0161en\u00ed neprob\u011bhlo: certifik\u00e1t kter\u00fd odeslal V\u00e1\u0161 prohl\u00ed\u017ee\u010d je nezn\u00e1m\u00fd",
+		"ro": "Autentificare e\u0219uat\u0103: certificatul trimis de browser-ul dumneavoastr\u0103 nu este recunoscut"
 	},
 	"title_USERABORTED": {
 		"da": "Autentificering aubrudt",
@@ -2001,7 +2117,8 @@
 		"hu": "Azonos\u00edt\u00e1s megszak\u00edtva",
 		"nn": "Avbroten innlogging",
 		"fr": "Authentification abandonn\u00e9e",
-		"cs": "P\u0159ihl\u00e1\u0161en\u00ed odm\u00edtnuto"
+		"cs": "P\u0159ihl\u00e1\u0161en\u00ed odm\u00edtnuto",
+		"ro": "Autentificare \u00eentrerupt\u0103"
 	},
 	"descr_USERABORTED": {
 		"da": "Autentificering blev afbrudt af brugeren",
@@ -2028,7 +2145,8 @@
 		"nn": "Innlogging blei avbroten av sluttbrukaren",
 		"fr": "L'authentification a \u00e9t\u00e9 abandonn\u00e9e par l'usager",
 		"cs": "P\u0159ihl\u00e1\u0161en\u00ed bylo p\u0159eru\u0161eno u\u017eivatelem",
-		"nl": "De authenticatie is afgebroken door de gebruiker"
+		"nl": "De authenticatie is afgebroken door de gebruiker",
+		"ro": "Autentificarea a fost \u00eentrerupt\u0103 de utilizator"
 	},
 	"title_NOSTATE": {
 		"da": "State information tabt",
@@ -2054,7 +2172,8 @@
 		"nn": "Mista tilstandsinformasjon",
 		"fr": "Information d'\u00e9tat perdue",
 		"cs": "Stavov\u00e1 informace ztracena",
-		"nl": "Toestandsinformatie verloren"
+		"nl": "Toestandsinformatie verloren",
+		"ro": "Informa\u021bia de stare a fost pierdut\u0103"
 	},
 	"descr_NOSTATE": {
 		"da": "State information er tabt og der er ikke muligt at gentage forsp\u00f8rgelsen",
@@ -2080,7 +2199,8 @@
 		"nn": "Mista tilstandsinformasjon, og klarer ikkje \u00e5 gjera omstart",
 		"fr": "Information d'\u00e9tat perdue, et aucun moyen de relancer la requ\u00eate",
 		"cs": "Stavov\u00e1 informace ",
-		"nl": "Informatie over de toestand is verloren, en het verzoek kan niet herstart worden"
+		"nl": "Informatie over de toestand is verloren, en het verzoek kan niet herstart worden",
+		"ro": "Informa\u021bia de stare a fost pierdut\u0103, cererea nu poate fi reluat\u0103"
 	},
 	"title_METADATANOTFOUND": {
 		"da": "Metadata ikke fundet",
@@ -2105,7 +2225,8 @@
 		"hu": "Metadata nem tal\u00e1lhat\u00f3",
 		"nn": "Finn ikkje metadata",
 		"fr": "M\u00e9tadonn\u00e9es non trouv\u00e9es",
-		"nl": "Metadata niet gevonden"
+		"nl": "Metadata niet gevonden",
+		"ro": "Metadatele nu au fost g\u0103site"
 	},
 	"descr_METADATANOTFOUND": {
 		"da": "Kan ikke finde metadata for %ENTITYID%",
@@ -2130,7 +2251,8 @@
 		"hu": "%ENTITYID% entit\u00e1shoz nem tal\u00e1lhat\u00f3 metadataA",
 		"nn": "Klarer ikkje \u00e5 finna metadata for %ENTITYID%",
 		"fr": "Impossible de localiser les m\u00e9tadonn\u00e9es pour %ENTITYID%",
-		"nl": "Kan geen metadata vinden voor %ENTITYID%"
+		"nl": "Kan geen metadata vinden voor %ENTITYID%",
+		"ro": "Nu pot fi localizate metadatele pentru %ENTITYID%"
 	},
 	"title_AUTHSOURCEERROR": {
 		"hr": "Gre\u0161ka u autentifikacijskom modulu",
@@ -2154,7 +2276,9 @@
 		"nn": "Innloggingsfeil: autentisering",
 		"fr": "Erreur sur la source d'authentification",
 		"it": "Errore di sorgente di autenticazione",
-		"nl": "Fout in authenticatiebron"
+		"nl": "Fout in authenticatiebron",
+		"ro": "Eroare surs\u0103 de autentificare",
+		"no": "Autentiseringskildefeil"
 	},
 	"descr_AUTHSOURCEERROR": {
 		"hr": "Do\u0161lo je do gre\u0161ke u autentifikacijskom modulu %AUTHSOURCE%. Razlog: %REASON%",
@@ -2178,6 +2302,8 @@
 		"nn": "Innloggingsfeil knytta til %AUTHSOURCE% p\u00e5 grunn av %REASON%",
 		"fr": "Erreur d'authentification pour la source %AUTHSOURCE%. La raison \u00e9tait %REASON%",
 		"it": "Errore di autenticazione in sorgente %AUTHSOURCE%. La ragione \u00e8 $REASON%",
-		"nl": "Fout in authenticatiebron %AUTHSOURCE%. Als reden werd gegeven: %REASON%."
+		"nl": "Fout in authenticatiebron %AUTHSOURCE%. Als reden werd gegeven: %REASON%.",
+		"ro": "Eroare de autentificare la sursa %AUTHSOURCE%. Motivul a fost: %REASON%",
+		"no": "Feil i autentiseringskilden %AUTHSOURCE%. Feilen var: %REASON%"
 	}
 }

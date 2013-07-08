@@ -29,7 +29,8 @@
 		"ar": "\u0646\u0639\u0645\u060c \u0648\u0627\u0635\u0644",
 		"lv": "J\u0101, turpin\u0101t",
 		"id": "Yam lanjutkan",
-		"sr": "Da, nastavi"
+		"sr": "Da, nastavi",
+		"ro": "Da, continu\u0103"
 	},
 	"no": {
 		"no": "Nei, avbryt",
@@ -61,7 +62,8 @@
 		"ar": "\u0644\u0627\u060c \u0627\u0644\u063a",
 		"lv": "N\u0113, atcelt",
 		"id": "Tidak, batalkan",
-		"sr": "Ne, odustani"
+		"sr": "Ne, odustani",
+		"ro": "Nu, renun\u021b"
 	},
 	"remember": {
 		"no": "Godta ogs\u00e5 for fremtiden",
@@ -93,7 +95,8 @@
 		"ar": "\u062a\u0630\u0643\u0631\u0623\u0644\u063a\u062a \u0630\u0643\u0631",
 		"lv": "Atcer\u0113ties",
 		"id": "Ingat",
-		"sr": "Zapamti moj izbor"
+		"sr": "Zapamti moj izbor",
+		"ro": "\u021aine minte"
 	},
 	"consent_accept": {
 		"no": "For \u00e5 fullf\u00f8re innloggingen m\u00e5 du godta at opplysningene nedenfor sendes til SPNAME.",
@@ -125,7 +128,8 @@
 		"ar": "\u064a\u062d\u062a\u0627\u062c SPNAME \u062a\u062d\u0648\u064a\u0644 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0623\u062f\u0646\u0627\u0647 ",
 		"lv": "SPNAME prasa p\u0101rraid\u012bt pa t\u012bklu zem\u0101k eso\u0161o inform\u0101ciju.",
 		"id": "SPNAME mensyaratkan informasi dibawah ini harus ditransder.",
-		"sr": "Servis SPNAME zahteva slanje dole navedenih podataka."
+		"sr": "Servis SPNAME zahteva slanje dole navedenih podataka.",
+		"ro": "SPNAME solicit\u0103 trimiterea informa\u021biilor de mai jos."
 	},
 	"login": {
 		"no": "innlogging",
@@ -157,7 +161,8 @@
 		"ar": "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644",
 		"lv": "piesl\u0113gties",
 		"id": "login",
-		"sr": "prijavi se"
+		"sr": "prijavi se",
+		"ro": "autentificare"
 	},
 	"service_providers_for": {
 		"no": "Tjenesteleverand\u00f8r for",
@@ -189,7 +194,8 @@
 		"ar": "\u0645\u0642\u062f\u0645\u064a \u062e\u062f\u0645\u0627\u062a \u0644",
 		"lv": "Servisa pieg\u0101d\u0101t\u0101ji priek\u0161",
 		"id": "Service Provider untuk",
-		"sr": "Davaoci Servisa za"
+		"sr": "Davaoci Servisa za",
+		"ro": "Furnizor de servicii pentru"
 	},
 	"service_provider_header": {
 		"no": "Tjenesteleverand\u00f8r",
@@ -221,7 +227,8 @@
 		"ar": "\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0627\u062a",
 		"lv": "Servisa pieg\u0101d\u0101t\u0101js",
 		"id": "Service Provider",
-		"sr": "Davalac Servisa"
+		"sr": "Davalac Servisa",
+		"ro": "Furnizor de servicii"
 	},
 	"status_header": {
 		"no": "Samtykke-status",
@@ -253,7 +260,8 @@
 		"ar": "\u062d\u0627\u0644\u0629 \u0645\u0648\u0627\u0641\u0642\u0629",
 		"lv": "Noteikumu statuss",
 		"id": "Status persetujuan",
-		"sr": "Status odobrenja"
+		"sr": "Status odobrenja",
+		"ro": "Stare acord"
 	},
 	"show_hide_attributes": {
 		"no": "Vis\/skjul opplysninger",
@@ -285,7 +293,8 @@
 		"ar": "\u0627\u0638\u0647\u0631\/\u0627\u0644\u063a\u064a \u0627\u0644\u0633\u0645\u0627\u062a",
 		"lv": "r\u0101d\u012bt\/sl\u0113pt atrib\u016btus",
 		"id": "perlihatkan\/sembunyikan attribut",
-		"sr": "prika\u017ei\/sakrij atribute"
+		"sr": "prika\u017ei\/sakrij atribute",
+		"ro": "arat\u0103\/ascunde atributele"
 	},
 	"consent_privacypolicy": {
 		"no": "Personvern for tjenesten",
@@ -316,7 +325,8 @@
 		"ar": "\u0633\u064a\u0627\u0633\u0629 \u0627\u0644\u062e\u0635\u0648\u0635\u064a\u0629 \u0644\u0644\u062e\u062f\u0645\u0629",
 		"lv": "Servisa dro\u0161\u012bbas noteikumi",
 		"id": "Kebijakan privasi untuk layanan",
-		"sr": "Politika za\u0161tite privatnosti kod servisa"
+		"sr": "Politika za\u0161tite privatnosti kod servisa",
+		"ro": "Politica de confiden\u021bialitate pentru serviciu"
 	},
 	"noconsent_title": {
 		"no": "Ikke akseptert overf\u00f8ring av informasjon",
@@ -347,7 +357,8 @@
 		"ar": "\u0644\u0645 \u062a\u0639\u0637\u064a \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
 		"lv": "Nav noteikumu",
 		"id": "Tidan ada persetujuan yang diberikan",
-		"sr": "Slanje podataka nije odobreno"
+		"sr": "Slanje podataka nije odobreno",
+		"ro": "Nu a fost dat acordul (consim\u021b\u0103m\u00e2ntul)"
 	},
 	"noconsent_text": {
 		"no": "Du har ikke akseptert \u00e5 overlevere opplysninger til SPNAME.",
@@ -378,7 +389,8 @@
 		"ar": "\u0644\u0645 \u062a\u0648\u0627\u0641\u0642 \u0639\u0644\u064a \u062a\u062d\u0648\u064a\u0644 \u0633\u0645\u0627\u062a\u0643 \u0644\u0645\u0642\u062f\u0645 \u0627\u0644\u062e\u062f\u0645\u0629",
 		"lv": "J\u016bs neesat devis at\u013cauju p\u0101rraid\u012bt inform\u0101ciju servisa pieg\u0101d\u0101t\u0101jam.",
 		"id": "Anda tidak memberikan persetujuan untuk mentransfer atribut-atribute Anda ke service provider.",
-		"sr": "Niste odobrili da se va\u0161i podaci po\u0161alju davaocu servisa."
+		"sr": "Niste odobrili da se va\u0161i podaci po\u0161alju davaocu servisa.",
+		"ro": "Nu a\u021bi fost de acord s\u0103 trimite\u021bi atributele c\u0103tre SPNAME."
 	},
 	"noconsent_return": {
 		"no": "G\u00e5 tilbake til samtykkesiden",
@@ -408,7 +420,8 @@
 		"ar": "\u0639\u062f \u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629",
 		"lv": "Atgriezties uz noteikumu lapu",
 		"id": "Kembali ke halaman persetujuan",
-		"sr": "Povratak na stranicu za kreiranje pristanka"
+		"sr": "Povratak na stranicu za kreiranje pristanka",
+		"ro": "\u00centoarcere la pagina de consim\u021b\u0103m\u00e2nt"
 	},
 	"consent_header": {
 		"no": "Samtykke om overf\u00f8ring av personinformasjon",
@@ -438,7 +451,8 @@
 		"ar": "\u0627\u0648\u0627\u0641\u0642 \u0639\u0644\u064a \u0646\u0634\u0631 \u0633\u0645\u0627\u062a\u064a \u0627\u0644\u0634\u062e\u0635\u064a\u0629",
 		"lv": "Noteikumi par person\u012bg\u0101s inform\u0101cijas nodo\u0161anu",
 		"id": "Persetujuan tentang melepas informasi personal",
-		"sr": "Pristanak za slanje li\u010dnih podataka"
+		"sr": "Pristanak za slanje li\u010dnih podataka",
+		"ro": "Acordul pentru a furniza informa\u021bii personale"
 	},
 	"consent_attributes_header": {
 		"no": "Opplysninger som vil bli sendt til SPNAME",
@@ -467,7 +481,8 @@
 		"ar": "\u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u062a\u064a \u0633\u064a\u062a\u0645 \u0625\u0631\u0633\u0627\u0644\u0647\u0627 \u0644 SPNAME",
 		"lv": "Inform\u0101cija, kas tiks s\u016bt\u012bta SPNAME",
 		"id": "Informasi yang akan dikirim ke SPNAME",
-		"sr": "Informacije koje \u0107e biti poslate servisu SPNAME"
+		"sr": "Informacije koje \u0107e biti poslate servisu SPNAME",
+		"ro": "Informa\u021bii care vor fi trimise la SPNAME"
 	},
 	"show_attributes": {
 		"no": "Vis opplysninger",
@@ -497,7 +512,8 @@
 		"ar": "\u0627\u0638\u0647\u0631 \u0627\u0644\u0633\u0645\u0627\u062a",
 		"lv": "R\u0101d\u012bt atrib\u016btus",
 		"id": "Perlihatkan atribut-atribut",
-		"sr": "Prika\u017ei atribute"
+		"sr": "Prika\u017ei atribute",
+		"ro": "Arat\u0103 atributele"
 	},
 	"noconsent_goto_about": {
 		"no": "G\u00e5 til informasjonsside om tjenesten",
@@ -527,7 +543,8 @@
 		"ar": "\u0627\u0630\u0647\u0628 \u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0639\u0646 \u0627\u0644\u062e\u062f\u0645\u0629",
 		"lv": "Iet uz servisa inform\u0101cijas lapu",
 		"id": "Pergi ke halaman informasi untul layanan",
-		"sr": "Idi na stranicu sa informacijama o servisu"
+		"sr": "Idi na stranicu sa informacijama o servisu",
+		"ro": "Link la pagina serviciului"
 	},
 	"consent_purpose": {
 		"no": "Form\u00e5let med SPNAME er SPDESC",
@@ -556,7 +573,8 @@
 		"ar": "\u0627\u0644\u063a\u0631\u0636 \u0645\u0646 SPNAME \u0647\u0648 SPDESC",
 		"lv": "SPNAME nol\u016bks ir SPDESC",
 		"id": "Tujuan dari SPNAME adalah SPDESC",
-		"sr": "Namena servisa SPNAME je SPDESC"
+		"sr": "Namena servisa SPNAME je SPDESC",
+		"ro": "Scopul SPNAME este SPDESC"
 	},
 	"table_caption": {
 		"no": "Bruker innformasjon",
@@ -584,7 +602,8 @@
 		"ar": "\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645",
 		"lv": "Lietot\u0101ja inform\u0101cija",
 		"id": "Informasi User",
-		"sr": "Informacije o korisniku"
+		"sr": "Informacije o korisniku",
+		"ro": "Informa\u021bii despre utilizator"
 	},
 	"table_summary": {
 		"no": "Her listes den innformasjonen om deg som blir send til den tjenesten du er i ferd med \u00e5 logge p\u00e5",
@@ -612,7 +631,8 @@
 		"ar": "\u0642\u0627\u0626\u0645\u0629 \u0645\u0639\u0644\u0648\u0645\u0627\u062a\u0643 \u0627\u0644\u062a\u064a \u0633\u062a\u062d\u0648\u0644 \u0644\u0645\u0642\u062f\u0645 \u0627\u0644\u062e\u062f\u0645\u0629 \u0627\u0644\u0630\u064a \u062a\u0631\u063a\u0628 \u0628\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644 \u0627\u0644\u064a\u0647",
 		"lv": "Inform\u0101cija par Jums, kas tiks s\u016bt\u012bta servisam, kuram J\u016bs piesl\u0113dzaties",
 		"id": "Daftar informasi tentang Anda yang akan dikirimkan ke service tujuan login Anda.",
-		"sr": "Prika\u017ei spisak podataka o vama koji \u0107e biti prosle\u0111eni servisu kome \u017eelite pristupiti"
+		"sr": "Prika\u017ei spisak podataka o vama koji \u0107e biti prosle\u0111eni servisu kome \u017eelite pristupiti",
+		"ro": "Afi\u0219eaz\u0103 informa\u021biile care vor fi trimise la serviciul unde dori\u021bi s\u0103 v\u0103 autentifica\u021bi"
 	},
 	"show_attribute": {
 		"no": "Vis innhold",
@@ -639,7 +659,8 @@
 		"ar": "\u0627\u0638\u0647\u0631\u0627\u0644\u064a\u0647\u0627 \u0638\u0647\u0631 \u0627\u0644\u0645\u062d\u062a\u0648\u064a",
 		"lv": "R\u0101d\u012bt saturu",
 		"id": "Perlihatkan konten",
-		"sr": "Prika\u017ei sadr\u017eaj"
+		"sr": "Prika\u017ei sadr\u017eaj",
+		"ro": "Arat\u0103 con\u021binutul"
 	},
 	"abort": {
 		"no": "Avbryt innlogging til SPNAME",
@@ -651,6 +672,8 @@
 		"de": "Anmeldung am Service Provider SPNAME abbrechen",
 		"et": "Katkesta sisselogimine: SPNAME",
 		"nl": "Inloggen op SPNAME afbreken",
-		"es": "Cancelar la identificaci\u00f3n en SPNAME"
+		"es": "Cancelar la identificaci\u00f3n en SPNAME",
+		"ro": "Anuleaz\u0103 cererea de autentificare la SPNAME",
+		"ar": "\u0625\u0644\u063a\u0627\u0621 \u0639\u0645\u0644\u064a\u0629 \u0627\u0644\u062f\u062e\u0648\u0644 \u0644SPNAME"
 	}
 }

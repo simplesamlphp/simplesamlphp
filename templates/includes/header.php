@@ -187,6 +187,7 @@ if($onLoad !== '') {
 					'id' => 'Bahasa Indonesia', // Indonesian
 					'sr' => 'Srpski',
 					'lv' => 'Latviešu',
+					'ro' => 'Românește',
 		);
 		
 		$textarray = array();

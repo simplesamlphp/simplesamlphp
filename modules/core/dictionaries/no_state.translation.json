@@ -21,7 +21,8 @@
 		"ar": "\u062d\u062f\u062f \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0641\u0642\u0648\u062f\u0629",
 		"id": "Informasi kondisi\/state hilang",
 		"lv": "St\u0101vok\u013ca inform\u0101cija ir pazaud\u0113ta",
-		"sr": "Informacije o stanju su izgubljene"
+		"sr": "Informacije o stanju su izgubljene",
+		"ro": "Informa\u021biile de stare au fost pierdute"
 	},
 	"description": {
 		"no": "Vi kunne ikke finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
@@ -45,7 +46,8 @@
 		"ar": "\u0644\u0645 \u0646\u0633\u062a\u0637\u0639 \u062a\u062d\u062f\u064a\u062f \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0641\u0642\u0648\u062f\u0629 \u0644\u0644\u0637\u0644\u0628 \u0627\u0644\u062d\u0627\u0644\u064a",
 		"id": "Kita tidak dapat menemukan informasi kondisi\/state dari request saat ini.",
 		"lv": "Nav iesp\u0113jams atrast st\u0101vok\u013ca inform\u0101ciju \u0161im piepras\u012bjumam.",
-		"sr": "Ne mo\u017eemo prona\u0107i informacije o stanju aktuelnog zahteva."
+		"sr": "Ne mo\u017eemo prona\u0107i informacije o stanju aktuelnog zahteva.",
+		"ro": "Nu a fost posibil\u0103 localizarea informa\u021biilor de stare pentru cererea curent\u0103."
 	},
 	"suggestions": {
 		"no": "Forslag for \u00e5 l\u00f8se dette problemet:",
@@ -69,7 +71,8 @@
 		"ar": "\u0627\u0642\u062a\u0631\u0627\u062d\u0627\u062a \u0644\u062d\u0644 \u0627\u0644\u0645\u0634\u0643\u0644\u0629 ",
 		"id": "Saran untuk memperbaiki masalah ini:",
 		"lv": "Ieteikumi probl\u0113mas atrisin\u0101\u0161anai:",
-		"sr": "Preporuke za re\u0161avanje ovog problema:"
+		"sr": "Preporuke za re\u0161avanje ovog problema:",
+		"ro": "Sugestii pentru rezolvarea acestei probleme:"
 	},
 	"suggestion_goback": {
 		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
@@ -93,7 +96,8 @@
 		"ar": "\u0627\u0631\u062c\u0639 \u0644\u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629 \u0648 \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0627\u062e\u0631\u064a",
 		"id": "Kembali ke halaman sebelumnya dan coba lagi.",
 		"lv": "Ejiet atpaka\u013c uz iepriek\u0161\u0113jo lapu un m\u0113\u0123iniet v\u0113lreiz.",
-		"sr": "Vratite se na prethodnu stranicu i poku\u0161ajte ponovo."
+		"sr": "Vratite se na prethodnu stranicu i poku\u0161ajte ponovo.",
+		"ro": "Accesa\u021bi pagina anterioar\u0103 \u0219i \u00eencerca\u021bi din nou."
 	},
 	"suggestion_closebrowser": {
 		"no": "Lukk nettleseren, og pr\u00f8v p\u00e5 nytt.",
@@ -117,7 +121,8 @@
 		"ar": "\u0627\u063a\u0644\u0642 \u0627\u0644\u0645\u0648\u0642\u0639 \u062b\u0645 \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0627\u062e\u0631\u064a",
 		"id": "Tutup browser, dan coba lagi.",
 		"lv": "Aizveriet interneta p\u0101rl\u016bku un m\u0113\u0123iniet v\u0113lreiz.",
-		"sr": "Zatvorite web pretra\u017eiva\u010d i poku\u0161ajte ponovo."
+		"sr": "Zatvorite web pretra\u017eiva\u010d i poku\u0161ajte ponovo.",
+		"ro": "\u00cenchide\u021bi browser-ul \u0219i \u00eencerca\u021bi din nou."
 	},
 	"causes": {
 		"no": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
@@ -141,7 +146,8 @@
 		"ar": "\u0633\u0628\u0628 \u062d\u062f\u0648\u062b \u0647\u0630\u0627 \u0627\u0644\u062e\u0637\u0623 \u0642\u062f \u064a\u0643\u0648\u0646:",
 		"id": "Error ini mungkin disebabkan oleh:",
 		"lv": "K\u013c\u016bdu rad\u012bjis:",
-		"sr": "Ova gre\u0161ka mo\u017ee biti uzrokovana:"
+		"sr": "Ova gre\u0161ka mo\u017ee biti uzrokovana:",
+		"ro": "Aceast\u0103 eroare poate fi cauzat\u0103 de:"
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
@@ -165,7 +171,8 @@
 		"ar": "\u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0623\u0632\u0631\u0627\u0631 \u0627\u0644\u0631\u062c\u0648\u0639 \u0644\u0644\u062e\u0644\u0641 \u0648 \u0627\u0644\u0627\u0645\u0627\u0645 \u0628\u0645\u062a\u0635\u0641\u062d\u0643",
 		"id": "Menggunakan tombol back dan forward pada browser web.",
 		"lv": "Interneta p\u0101rl\u016bka pogu Uz priek\u0161u un Atpaka\u013c lieto\u0161ana.",
-		"sr": "Kori\u0161\u0107enjem tastera za prethodnu (back) i slede\u0107u (forward) stranicu u web pretra\u017eiva\u010du."
+		"sr": "Kori\u0161\u0107enjem tastera za prethodnu (back) i slede\u0107u (forward) stranicu u web pretra\u017eiva\u010du.",
+		"ro": "Utilizarea butoanelor \"\u00eenainte\" sau \"\u00eenapoi\" din browser."
 	},
 	"cause_openbrowser": {
 		"no": "Starte nettleseren med faner lagret fra forrige gang.",
@@ -189,7 +196,8 @@
 		"ar": "\u0641\u062a\u062d \u0645\u062a\u0635\u0641\u062d\u0643 \u0645\u0633\u062a\u062e\u062f\u0645\u0627 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0645\u062d\u0641\u0648\u0638\u0629 \u0645\u0646 \u0627\u0644\u0645\u0631\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629",
 		"id": "Membuka web browser dengan tab-tab yang telah disimpan dari session sebelumnya.",
 		"lv": "Interneta p\u0101rl\u016bka atv\u0113r\u0161ana ar saglab\u0101t\u0101m ciln\u0113m no iepriek\u0161\u0113j\u0101s sesijas.",
-		"sr": "Otvaranjem web pretra\u017eiva\u010da sa stranicama sa\u010duvanim iz prethodne sesije."
+		"sr": "Otvaranjem web pretra\u017eiva\u010da sa stranicama sa\u010duvanim iz prethodne sesije.",
+		"ro": "Pornirea browser-ului cu file salvate \u00eentr-o sesiune anterioar\u0103."
 	},
 	"cause_nocookie": {
 		"no": "At informasjonskapsler ikke er aktivert i nettleseren.",
@@ -213,7 +221,8 @@
 		"ar": "\u0627\u0644\u0643\u0648\u0643\u064a\u0632 \u063a\u064a\u0631 \u0645\u0646\u0634\u0637\u0629 \u0628\u0645\u062a\u0635\u0641\u062d\u0643",
 		"id": "Cookie mungkin dinonaktifkan pada web browser ini.",
 		"lv": "Iesp\u0113jams, interneta p\u0101rl\u016bk\u0101 ir aizliegtas s\u012bkdatnes.",
-		"sr": "Mogu\u0107e da je podr\u0161ka za kola\u010di\u0107e (\"cookies\") isklju\u010dena u web pretra\u017eiva\u010du."
+		"sr": "Mogu\u0107e da je podr\u0161ka za kola\u010di\u0107e (\"cookies\") isklju\u010dena u web pretra\u017eiva\u010du.",
+		"ro": "Browser-ul are deactivate <i>cookies<\/i>."
 	},
 	"report_header": {
 		"no": "Rapporter denne feilen",
@@ -237,7 +246,8 @@
 		"ar": "\u0628\u0644\u063a \u0639\u0646 \u0647\u0630\u0627 \u0627\u0644\u062e\u0637\u0623 ",
 		"id": "Laporan error ini",
 		"lv": "Zi\u0146ojiet par \u0161o k\u013c\u016bdu",
-		"sr": "Prijavite ovu gre\u0161ku"
+		"sr": "Prijavite ovu gre\u0161ku",
+		"ro": "V\u0103 rug\u0103m s\u0103 anun\u021ba\u021bi aceast\u0103 eroare"
 	},
 	"report_text": {
 		"no": "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene.",
@@ -261,6 +271,7 @@
 		"ar": "\u0627\u0630\u0627 \u0627\u0633\u062a\u0645\u0631\u062a \u0647\u0630\u0647 \u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0628\u0627\u0644\u062d\u062f\u0648\u062b\u060c \u0631\u062c\u0627\u0621\u0627 \u0628\u0644\u063a \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0648\u0642\u0639",
 		"id": "Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke system administrator.",
 		"lv": "Ja probl\u0113ma atk\u0101rtojas, varat zi\u0146ot sist\u0113mas administratoriem.",
-		"sr": "Ako se ova gre\u0161ka bude i dalje pojavljivala, mo\u017eete je prijaviti administratorima."
+		"sr": "Ako se ova gre\u0161ka bude i dalje pojavljivala, mo\u017eete je prijaviti administratorima.",
+		"ro": "Dac\u0103 problema persist\u0103, anun\u021ba\u021bi administratorii de sistem."
 	}
 }

@@ -46,8 +46,14 @@ switch($action) {
 		
 	case 'pull':
 
-		$content = SimpleSAML_Utilities::fetch($base . 'export.php?aid=' . $application . '&type=translation&file=' . $basefile);
-		file_put_contents($fileWithoutExt . '.translation.json' , $content);
+		try {
+			$content = SimpleSAML_Utilities::fetch($base . 'export.php?aid=' . $application . '&type=translation&file=' . $basefile);
+			file_put_contents($fileWithoutExt . '.translation.json' , $content);
+		}
+		catch (SimpleSAML_Error_Exception $e) {
+			echo 'Translation unavailable for ' . $basefile; 
+			SimpleSAML_Logger::warning("Translation unavailable for $basefile in $base: " . $e->getMessage());
+		}
 		break;
 	
 	case 'push':

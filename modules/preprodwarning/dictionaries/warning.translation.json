@@ -28,7 +28,8 @@
 		"ar": "\u0644\u0642\u062f \u062f\u062e\u0644\u062a \u0646\u0638\u0627\u0645\u0627\u064b \u0645\u0628\u062f\u0626\u064a\u0627\u064b. \u0625\u0639\u062f\u0627\u062f\u0627\u062a \u0627\u0644\u062a\u0635\u062f\u064a\u0642 \u0647\u0630\u0647 \u0644\u0644\u0627\u062e\u062a\u0628\u0627\u0631 \u0641\u0642\u0637. \u0627\u0630\u0627 \u062f\u062e\u0644\u062a \u0647\u0646\u0627 \u0628\u0646\u0627\u0621 \u0639\u0644\u064a \u062d\u0635\u0648\u0644\u0643 \u0639\u0644\u064a \u0647\u0630\u0627 \u0627\u0644\u0631\u0627\u0628\u0637 \u0645\u0646 \u0634\u062e\u0635 \u0645\u0627 \u0648 \u0627\u0646\u062a \u0644\u0633\u062a \u0627\u062d\u062f \u0645\u062e\u062a\u0628\u0631\u064a \u0647\u0630\u0627 \u0627\u0644\u0646\u0638\u0627\u0645 \u0642\u0645 \u0631\u062c\u0627\u0621\u0627\u064b \u0628\u0627\u0644\u062e\u0631\u0648\u062c",
 		"lv": "J\u016bs izmantojat testa (pirmsprodukcijas) sist\u0113mu. \u0160\u012b autentifik\u0101cija ir tikai test\u0113\u0161anas vajadz\u012bb\u0101m. Ja k\u0101ds Jums ats\u016bt\u012bjis saiti uz \u0161ejieni un J\u016bs neesat <i>test\u0113t\u0101js<\/i>, Jums te <b>nav j\u0101atrodas<\/b>.",
 		"id": "Sekarang anda sedang mengakses sistem pra-produksi. Setup autentifikasi ini untuk keperluan uji coba dan verifikasi pra-produksi",
-		"sr": "Pristupate sistemu koji se nalazi u pred-produkcionoj fazi. Ova autentifikaciona pode\u0161avanja slu\u017ee za testiranje i proveru ispravnosti rada pred-produkcionog sistema. Ako vam je neko poslao adresu koja pokazuje na ovu stranicu, a vi niste <i>osoba zadu\u017eena za testiranje<\/i>, verovatno ste <b>na ovu stranicu do\u0161li gre\u0161kom<\/b>."
+		"sr": "Pristupate sistemu koji se nalazi u pred-produkcionoj fazi. Ova autentifikaciona pode\u0161avanja slu\u017ee za testiranje i proveru ispravnosti rada pred-produkcionog sistema. Ako vam je neko poslao adresu koja pokazuje na ovu stranicu, a vi niste <i>osoba zadu\u017eena za testiranje<\/i>, verovatno ste <b>na ovu stranicu do\u0161li gre\u0161kom<\/b>.",
+		"ro": "\u00cen acest moment accesa\u021bi un sistem pre-produc\u021bie. Acest sistem de autentificare este realizat doar pentru testare \u0219i verificare. Dac\u0103 a\u021bi primit de la cineva acest link \u0219i nu sunte\u021bi <i>tester<\/i>, atunci probabil a\u021bi primit un link gre\u0219it \u0219i <b>nu<\/b> ar fi trebuit s\u0103 ajunge\u021bi aici."
 	},
 	"warning_header": {
 		"no": "Advarsel om at dette er et test oppsett",
@@ -59,7 +60,8 @@
 		"ar": "\u062a\u062d\u0630\u064a\u0631 \u062f\u062e\u0648\u0644 \u0646\u0638\u0627\u0645 \u0645\u0628\u062f\u0626\u064a",
 		"lv": "Br\u012bdin\u0101jums par testa sist\u0113mas izmanto\u0161anu",
 		"id": "Peringatan tentang mengakses sistem pra-produksi",
-		"sr": "Upozorenje o pristupanju pred-produkcionom sistemu"
+		"sr": "Upozorenje o pristupanju pred-produkcionom sistemu",
+		"ro": "Aten\u021bionare privind accesarea unui sistem pre-produc\u021bie"
 	},
 	"yes": {
 		"no": "Ja, jeg holder p\u00e5 \u00e5 teste innlogging, og vet dette er et test-system.",
@@ -90,6 +92,7 @@
 		"ar": "\u0646\u0639\u0645\u060c \u0627\u0639\u0644\u0645 \u0627\u0646\u0646\u064a \u0642\u062f \u062f\u062e\u0644\u062a \u0646\u0638\u0627\u0645\u0627\u064b \u0645\u0628\u062f\u0626\u064a\u0627\u064b",
 		"lv": "J\u0101, es zinu, ka es izmantoju testa (pirmsprodukcijas) sist\u0113mu",
 		"id": "Ya, saya tahu kalau saya sedang mengakses sistem pra-produksi",
-		"sr": "Da, znam da pristupam sistemu koji je u pred-produkcionoj fazi"
+		"sr": "Da, znam da pristupam sistemu koji je u pred-produkcionoj fazi",
+		"ro": "Da, \u00een\u021beleg c\u0103 accesez un sistem pre-produc\u021bie"
 	}
 }

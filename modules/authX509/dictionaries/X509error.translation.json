@@ -22,7 +22,8 @@
 		"ar": "\u062a\u0635\u062f\u064a\u0642 \u0634\u0647\u0627\u062f\u0629 X509",
 		"lv": "x509 sertifik\u0101ta autentifik\u0101cija",
 		"id": "Autentifikasi certificate X509",
-		"sr": "Autentifikacija upotrebom X509 digitalnog sertifikata"
+		"sr": "Autentifikacija upotrebom X509 digitalnog sertifikata",
+		"ro": "Autentificare cu certificat X509"
 	},
 	"certificate_text": {
 		"fr": "Un certificat X509 est requis pour acc\u00e9der \u00e0 ce service.",
@@ -47,6 +48,7 @@
 		"ar": "\u062a\u0635\u062f\u064a\u0642 \u0634\u0647\u0627\u062f\u0629 (X509) \u0636\u0631\u0648\u0631\u064a \u0644\u062f\u062e\u0648\u0644 \u0647\u0630\u0647 \u0627\u0644\u062e\u062f\u0645\u0629",
 		"lv": "x509 sertifik\u0101ta autentifik\u0101cija ir nepiecie\u0161ama, lai piek\u013c\u016btu \u0161im servisam",
 		"id": "Autentifikasi certificate X509 diperlukan untuk mengakses layanan ini.",
-		"sr": "Za pristup ovom servisu potrebno je da se autentifikujete upotrebom X509 sertifikata."
+		"sr": "Za pristup ovom servisu potrebno je da se autentifikujete upotrebom X509 sertifikata.",
+		"ro": "Pentru accesarea acestui serviciu este necesar\u0103 autentificarea cu certificat X509."
 	}
 }
