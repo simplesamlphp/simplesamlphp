@@ -59,7 +59,11 @@ class SimpleSAML_Utilities {
 
 		if(strstr($currenthost, ":")) {
 				$currenthostdecomposed = explode(":", $currenthost);
-				$currenthost = $currenthostdecomposed[0];
+				$port = array_pop($currenthostdecomposed);
+				if (!is_numeric($port)) {
+					array_push($currenthostdecomposed, $port);
+                }
+                $currenthost = implode($currenthostdecomposed, ":");
 		}
 		return $currenthost;
 
