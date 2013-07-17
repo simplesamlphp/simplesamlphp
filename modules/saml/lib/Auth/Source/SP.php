@@ -259,7 +259,22 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$ar->setId($id);
 
 		SimpleSAML_Logger::debug('Sending SAML 2 AuthnRequest to ' . var_export($idpMetadata->getString('entityid'), TRUE));
-		$b = new SAML2_HTTPRedirect();
+
+		/* Select appropriate SSO endpoint */
+		if ($ar->getProtocolBinding() === SAML2_Const::BINDING_HOK_SSO) {
+			$dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(
+				SAML2_Const::BINDING_HOK_SSO)
+			);
+		} else {
+			$dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(
+				SAML2_Const::BINDING_HTTP_REDIRECT,
+				SAML2_Const::BINDING_HTTP_POST)
+			);
+		}
+		$ar->setDestination($dst['Location']);
+
+		$b = SAML2_Binding::getBinding($dst['Binding']);
+
 		$this->sendSAML2AuthnRequest($state, $b, $ar);
 
 		assert('FALSE');
@@ -392,7 +407,9 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$idpMetadata = $this->getIdPMetadata($idp);
 
-		$endpoint = $idpMetadata->getDefaultEndpoint('SingleLogoutService', array(SAML2_Const::BINDING_HTTP_REDIRECT), FALSE);
+		$endpoint = $idpMetadata->getDefaultEndpoint('SingleLogoutService', array(
+			SAML2_Const::BINDING_HTTP_REDIRECT,
+			SAML2_Const::BINDING_HTTP_POST), FALSE);
 		if ($endpoint === FALSE) {
 			SimpleSAML_Logger::info('No logout endpoint for IdP ' . var_export($idp, TRUE) . '.');
 			return;
@@ -402,6 +419,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$lr->setNameId($nameId);
 		$lr->setSessionIndex($sessionIndex);
 		$lr->setRelayState($id);
+		$lr->setDestination($endpoint['Location']);
 
 		$encryptNameId = $idpMetadata->getBoolean('nameid.encryption', NULL);
 		if ($encryptNameId === NULL) {
@@ -411,7 +429,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$lr->encryptNameId(sspmod_saml_Message::getEncryptionKey($idpMetadata));
 		}
 
-		$b = new SAML2_HTTPRedirect();
+		$b = SAML2_Binding::getBinding($endpoint['Binding']);
 		$b->send($lr);
 
 		assert('FALSE');

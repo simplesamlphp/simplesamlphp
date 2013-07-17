@@ -25,8 +25,24 @@ try {
 		'metadata-set' => 'saml20-sp-remote',
 		'entityid' => $spentityid,
 		'AssertionConsumerService' => $metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted'),
-		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted'),
 	);
+
+    $slob = $metadata->getGenerated('SingleLogoutServiceBinding', 'saml20-sp-hosted');
+    $slol = $metadata->getGenerated('SingleLogoutService', 'saml20-sp-hosted');
+
+	if (is_array($slob)) {
+		foreach ($slob as $binding) {
+			$metaArray['SingleLogoutService'][] = array(
+				'Binding' => $binding,
+				'Location' => $slol,
+			);
+		}
+	} else {
+		$metaArray['SingleLogoutService'][] = array(
+			'Binding' => $slob,
+			'Location' => $slol,
+		);
+	}
 
 	$metaArray['NameIDFormat'] = $spmeta->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
 
@@ -97,4 +113,3 @@ try {
 
 }
 
-?>

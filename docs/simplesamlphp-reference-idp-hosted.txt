@@ -181,26 +181,6 @@ The following SAML 2.0 options are available:
 
 :   Note that this option can be set for each SP in the [SP-remote metadata](./simplesamlphp-reference-sp-remote).
 
-`SingleSignOnService`
-:   Override the default URL for the SingleSignOnService for this
-    IdP. This is an absolute URL. The default value is
-    `<simpleSAMLphp-root>/saml2/idp/SSOService.php`
-
-:   Note that this only changes the values in the generated
-    metadata and in the messages sent to others. You must also
-    configure your webserver to deliver this URL to the correct PHP
-    page.
-
-`SingleLogoutService`
-:   Override the default URL for the SingleLogoutService for this
-    IdP. This is an absolute URL. The default value is
-    `<simpleSAMLphp-root>/saml2/idp/SingleLogoutService.php`
-
-:   Note that this only changes the values in the generated
-    metadata and in the messages sent to others. You must also
-    configure your webserver to deliver this URL to the correct PHP
-    page.
-
 `saml20.sendartifact`
 :   Set to `TRUE` to enable the IdP to send responses with the HTTP-Artifact binding.
     Defaults to `FALSE`.
@@ -233,6 +213,48 @@ The following SAML 2.0 options are available:
 :   Note that this option also exists in the SP-remote metadata, and
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
+
+`SingleSignOnService`
+:   Override the default URL for the SingleSignOnService for this
+    IdP. This is an absolute URL. The default value is
+    `<simpleSAMLphp-root>/saml2/idp/SSOService.php`
+
+:   Note that this only changes the values in the generated
+    metadata and in the messages sent to others. You must also
+    configure your webserver to deliver this URL to the correct PHP
+    page.
+
+`SingleSignOnServiceBinding`
+:	List of SingleSignOnService bindings that the IdP will claim support for.
+:	Possible values:
+
+	* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
+	* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
+
+:	Defaults to HTTP-Redirect binding. Please note that the order
+	specified will be kept in the metadata, making the first binding
+	the default one.
+
+`SingleLogoutService`
+:   Override the default URL for the SingleLogoutService for this
+    IdP. This is an absolute URL. The default value is
+    `<simpleSAMLphp-root>/saml2/idp/SingleLogoutService.php`
+
+:   Note that this only changes the values in the generated
+    metadata and in the messages sent to others. You must also
+    configure your webserver to deliver this URL to the correct PHP
+    page.
+
+`SingleLogoutServiceBinding`
+:   List of SingleLogoutService bindings the IdP will claim support for.
+:	Possible values:
+
+	* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
+	* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
+
+:	Defaults to HTTP-Redirect binding. Please note that the order
+	specified will be kept in the metadata, making the first binding
+	the default one.
 
 `validate.authnrequest`
 :   Whether we require signatures on authentication requests sent to this IdP.

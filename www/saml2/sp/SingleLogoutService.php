@@ -52,8 +52,22 @@ if ($message instanceof SAML2_LogoutRequest) {
 
 		SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: SP me (' . $spEntityId . ') is sending logout response to IdP (' . $idpEntityId . ')');
 
+		$dst = $idpMetadata->getDefaultEndpoint('SingleLogoutService', array(
+			SAML2_Const::BINDING_HTTP_REDIRECT,
+			SAML2_Const::BINDING_HTTP_POST)
+		);
+   
+		if (!$binding instanceof SAML2_SOAP) {
+			$binding = SAML2_Binding::getBinding($dst['Binding']);
+			if (isset($dst['ResponseLocation'])) {
+				$dst = $dst['ResponseLocation'];
+			} else {
+				$dst = $dst['Location'];
+			}
+			$binding->setDestination($dst);
+		}
+
 		/* Send response. */
-		$binding = new SAML2_HTTPRedirect();
 		$binding->send($lr);
 	} catch (Exception $exception) {
 		throw new SimpleSAML_Error_Error('LOGOUTREQUEST', $exception);
@@ -80,6 +94,3 @@ if ($message instanceof SAML2_LogoutRequest) {
 	throw new SimpleSAML_Error_Error('SLOSERVICEPARAMS');
 }
 
-
-
-?>

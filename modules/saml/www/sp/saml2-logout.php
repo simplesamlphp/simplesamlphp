@@ -108,6 +108,21 @@ if ($message instanceof SAML2_LogoutResponse) {
 		SimpleSAML_Logger::warning('Logged out of ' . $numLoggedOut  . ' of ' . count($sessionIndexes) . ' sessions.');
 	}
 
+	$dst = $idpMetadata->getDefaultEndpoint('SingleLogoutService', array(
+		SAML2_Const::BINDING_HTTP_REDIRECT,
+		SAML2_Const::BINDING_HTTP_POST)
+	);
+
+	if (!$binding instanceof SAML2_SOAP) {
+		$binding = SAML2_Binding::getBinding($dst['Binding']);
+		if (isset($dst['ResponseLocation'])) {
+			$dst = $dst['ResponseLocation'];
+		} else {
+			$dst = $dst['Location'];
+		}
+		$binding->setDestination($dst);
+	}
+
 	$binding->send($lr);
 } else {
 	throw new SimpleSAML_Error_BadRequest('Unknown message received on logout endpoint: ' . get_class($message));

@@ -107,8 +107,14 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 				case 'SingleSignOnService' : 
 					return $baseurl . 'saml2/idp/SSOService.php';
 
+				case 'SingleSignOnServiceBinding' : 
+					return SAML2_Const::BINDING_HTTP_REDIRECT;
+
 				case 'SingleLogoutService' : 
 					return $baseurl . 'saml2/idp/SingleLogoutService.php';
+
+				case 'SingleLogoutServiceBinding' :
+					return SAML2_Const::BINDING_HTTP_REDIRECT;
 			}
 		} elseif($set == 'shib13-sp-hosted') {
 			switch ($property) {				
@@ -341,4 +347,3 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 
 }
 
-?>

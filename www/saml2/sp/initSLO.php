@@ -28,12 +28,13 @@ try {
 		SimpleSAML_Utilities::redirect($returnTo);
 	}
 	$idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-remote');
-	$SLOendpoint = $idpMetadata->getDefaultEndpoint('SingleLogoutService', array(SAML2_Const::BINDING_HTTP_REDIRECT), NULL);
+	$SLOendpoint = $idpMetadata->getDefaultEndpoint('SingleLogoutService', array(SAML2_Const::BINDING_HTTP_REDIRECT, SAML2_Const::BINDING_HTTP_POST), NULL);
 	if ($SLOendpoint === NULL) {
 		$session->doLogout('saml2');
 		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: No supported SingleLogoutService endpoint in IdP.');
 		SimpleSAML_Utilities::redirect($returnTo);
 	}
+	$lr->setDestination($SLOendpoint['Location']);
 
 	$spEntityId = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 	$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-hosted');
@@ -51,7 +52,7 @@ try {
 
 	SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: SP (' . $spEntityId . ') is sending logout request to IdP (' . $idpEntityId . ')');
 
-	$b = new SAML2_HTTPRedirect();
+	$b = SAML2_Binding::getBinding($SLOendpoint['Binding']);
 	$b->send($lr);
 
 
@@ -59,5 +60,3 @@ try {
 	throw new SimpleSAML_Error_Error('CREATEREQUEST', $exception);
 }
 
-
-?>

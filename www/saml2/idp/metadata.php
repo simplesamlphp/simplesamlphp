@@ -60,11 +60,40 @@ try {
 	$metaArray = array(
 		'metadata-set' => 'saml20-idp-remote',
 		'entityid' => $idpentityid,
-		'SingleSignOnService' => array(0 => array(
-					'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
-					'Location' => $metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted'))),
-		'SingleLogoutService' => $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted'),
 	);
+
+	$ssob = $metadata->getGenerated('SingleSignOnServiceBinding', 'saml20-idp-hosted');
+	$slob = $metadata->getGenerated('SingleLogoutServiceBinding', 'saml20-idp-hosted');
+	$ssol = $metadata->getGenerated('SingleSignOnService', 'saml20-idp-hosted');
+	$slol = $metadata->getGenerated('SingleLogoutService', 'saml20-idp-hosted');
+
+	if (is_array($ssob)) {
+		foreach ($ssob as $binding) {
+			$metaArray['SingleSignOnService'][] = array(
+				'Binding' => $binding,
+				'Location' => $ssol,
+			);
+		}
+	} else {
+		$metaArray['SingleSignOnService'][] = array(
+			'Binding' => $ssob,
+			'Location' => $ssol,
+		);
+	}
+
+	if (is_array($slob)) {
+		foreach ($slob as $binding) {
+			$metaArray['SingleLogoutService'][] = array(
+				'Binding' => $binding,
+				'Location' => $slol,
+			);
+		}
+	} else {
+		$metaArray['SingleLogoutService'][] = array(
+			'Binding' => $slob,
+			'Location' => $slol,
+		);
+	}
 
 	if (count($keys) === 1) {
 		$metaArray['certData'] = $keys[0]['X509Certificate'];
@@ -164,4 +193,3 @@ try {
 
 }
 
-?>

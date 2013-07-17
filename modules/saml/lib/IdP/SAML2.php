@@ -419,8 +419,18 @@ class sspmod_saml_IdP_SAML2 {
 			'idpEntityID' => $idpMetadata->getString('entityid'),
 			'partial' => $partial
 		));
+		$dst = $spMetadata->getDefaultEndpoint('SingleLogoutService', array(
+			SAML2_Const::BINDING_HTTP_REDIRECT,
+			SAML2_Const::BINDING_HTTP_POST)
+		);
+		$binding = SAML2_Binding::getBinding($dst['Binding']);
+		if (isset($dst['ResponseLocation'])) {
+			$dst = $dst['ResponseLocation'];
+		} else {
+			$dst = $dst['Location'];
+		}
+		$lr->setDestination($dst);
 
-		$binding = new SAML2_HTTPRedirect();
 		$binding->send($lr);
 	}
 

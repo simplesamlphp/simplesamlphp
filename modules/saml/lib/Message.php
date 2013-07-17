@@ -413,16 +413,7 @@ class sspmod_saml_Message {
 		/* Shoaib - setting the appropriate binding based on parameter in sp-metadata defaults to HTTP_POST */
 		$ar->setProtocolBinding($protbind);
 
-		/* Select appropriate SSO endpoint */
-		if ($protbind === SAML2_Const::BINDING_HOK_SSO) {
-		    $dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(SAML2_Const::BINDING_HOK_SSO));
-		} else {
-		    $dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(SAML2_Const::BINDING_HTTP_REDIRECT));
-		}
-		$dst = $dst['Location'];
-
 		$ar->setIssuer($spMetadata->getString('entityid'));
-		$ar->setDestination($dst);
 
 		if ($spMetadata->hasValue('AuthnContextClassRef')) {
 			$accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
@@ -443,13 +434,8 @@ class sspmod_saml_Message {
 	 */
 	public static function buildLogoutRequest(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata) {
 
-		$dst = $dstMetadata->getDefaultEndpoint('SingleLogoutService', array(SAML2_Const::BINDING_HTTP_REDIRECT));
-		$dst = $dst['Location'];
-
 		$lr = new SAML2_LogoutRequest();
-
 		$lr->setIssuer($srcMetadata->getString('entityid'));
-		$lr->setDestination($dst);
 
 		self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
 
@@ -465,17 +451,8 @@ class sspmod_saml_Message {
 	 */
 	public static function buildLogoutResponse(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata) {
 
-		$dst = $dstMetadata->getDefaultEndpoint('SingleLogoutService', array(SAML2_Const::BINDING_HTTP_REDIRECT));
-		if (isset($dst['ResponseLocation'])) {
-			$dst = $dst['ResponseLocation'];
-		} else {
-			$dst = $dst['Location'];
-		}
-
 		$lr = new SAML2_LogoutResponse();
-
 		$lr->setIssuer($srcMetadata->getString('entityid'));
-		$lr->setDestination($dst);
 
 		self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
 

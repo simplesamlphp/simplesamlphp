@@ -388,6 +388,14 @@ Options
 
 :   *Note*: SAML 2 specific.
 
+`SingleLogoutServiceBinding`
+:	List of SingleLogoutService bindings the IdP will claim support for.
+:	Possible values:
+
+    * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
+    * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
+	* `urn:oasis:names:tc:SAML:2.0:bindings:SOAP`
+
 `redirect.sign`
 :   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is `FALSE`.
 

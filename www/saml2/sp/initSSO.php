@@ -164,11 +164,18 @@ try {
 	}
 	$session->setData('SAML2:SP:SSO:Info', $ar->getId(), $info);
 
-	$b = new SAML2_HTTPRedirect();
+	/* Select appropriate SSO endpoint */
+	if ($ar->getProtocolBinding() === SAML2_Const::BINDING_HOK_SSO) {
+		$dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(SAML2_Const::BINDING_HOK_SSO));
+	} else {
+		$dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(SAML2_Const::BINDING_HTTP_REDIRECT, SAML2_Const::BINDING_HTTP_POST));
+	}
+	$ar->setDestination($dst['Location']);
+
+	$b = SAML2_Binding::getBinding($dst['Binding']);
 	$b->send($ar);
 
 } catch(Exception $exception) {
 	throw new SimpleSAML_Error_Error('CREATEREQUEST', $exception);
 }
 
-?>
