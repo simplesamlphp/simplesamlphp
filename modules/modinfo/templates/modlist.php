@@ -17,6 +17,7 @@ $this->includeAtTemplateBase('includes/header.php');
 <th colspan="2"><?php echo($this->t('{modinfo:modinfo:version}')); ?></th>
 </tr>
 <?php
+ksort($this->data['modules']);
 
 $i = 0;
 foreach($this->data['modules'] as $id => $info) {
