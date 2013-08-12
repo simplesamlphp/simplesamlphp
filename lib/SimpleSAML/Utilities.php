@@ -1972,9 +1972,10 @@ class SimpleSAML_Utilities {
 	 * @param string $filename  The name of the file.
 	 * @param string $data  The data we should write to the file.
 	 */
-	public static function writeFile($filename, $data) {
+	public static function writeFile($filename, $data, $mode=0600) {
 		assert('is_string($filename)');
 		assert('is_string($data)');
+		assert('is_numeric($mode)');
 
 		$tmpFile = $filename . '.new.' . getmypid() . '.' . php_uname('n');
 
@@ -1985,7 +1986,7 @@ class SimpleSAML_Utilities {
 		}
 
 		if (!self::isWindowsOS()) {
-			$res = chmod($tmpFile, 0600);
+			$res = chmod($tmpFile, $mode);
 			if ($res === FALSE) {
 				unlink($tmpFile);
 				throw new SimpleSAML_Error_Exception('Error changing file mode ' . $tmpFile .
