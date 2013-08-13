@@ -16,6 +16,12 @@ body {
 	font: 83%/1.5 arial,tahoma,verdana,sans-serif;
 }
 
+.body-embed {
+	padding: 0;
+	background: #ffffff;
+	font: 83%/1.5 arial,tahoma,verdana,sans-serif;
+}
+
 img {
 	border: none;
 	display: block;

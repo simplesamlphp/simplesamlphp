@@ -29,8 +29,7 @@ class SimpleSAML_IdP_LogoutTraditional extends SimpleSAML_IdP_LogoutHandler {
 
 		try {
 			$idp = SimpleSAML_IdP::getByState($association);
-			$url = call_user_func(array($association['Handler'], 'getLogoutURL'), $idp, $association, $relayState);
-			SimpleSAML_Utilities::redirect($url);
+			call_user_func(array($association['Handler'], 'sendLogoutRequest'), $idp, $association, $relayState);
 		} catch (Exception $e) {
 			SimpleSAML_Logger::warning('Unable to initialize logout to ' . var_export($id, TRUE) . '.');
 			$this->idp->terminateAssociation($id);

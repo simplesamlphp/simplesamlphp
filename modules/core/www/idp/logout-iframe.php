@@ -83,7 +83,8 @@ if ($type === 'js' || $type === 'nojs') {
 
 		try {
 			$assocIdP = SimpleSAML_IdP::getByState($sp);
-			$url = call_user_func(array($sp['Handler'], 'getLogoutURL'), $assocIdP, $sp, NULL);
+			$params = array('id' => $id, 'sp' => $sp['id'], 'type' => $type);
+			$url = SimpleSAML_Module::getModuleURL('core/idp/performlogout.php', $params);
 			$sp['core:Logout-IFrame:URL'] = $url;
 		} catch (Exception $e) {
 			$sp['core:Logout-IFrame:State'] = 'failed';

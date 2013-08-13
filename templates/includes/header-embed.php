@@ -19,5 +19,5 @@ if(array_key_exists('head', $this->data)) {
 }
 ?>
 </head>
-<body>
+<body class="body-embed">
 
