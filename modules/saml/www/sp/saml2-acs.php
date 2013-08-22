@@ -48,6 +48,8 @@ if ($prevAuth !== NULL && $prevAuth['id'] === $response->getId() && $prevAuth['i
 	SimpleSAML_Utilities::redirect($prevAuth['redirect']);
 }
 
+$idpMetadata = array();
+
 $stateId = $response->getInResponseTo();
 if (!empty($stateId)) {
 	/* This is a response to a request we sent earlier. */
@@ -62,7 +64,11 @@ if (!empty($stateId)) {
 	/* Check that the issuer is the one we are expecting. */
 	assert('array_key_exists("ExpectedIssuer", $state)');
 	if ($state['ExpectedIssuer'] !== $idp) {
-		throw new SimpleSAML_Error_Exception('The issuer of the response does not match to the identity provider we sent the request to.');
+		$idpMetadata = $source->getIdPMetadata($idp);
+		$idplist = $idpMetadata->getArrayize('IDPList', array());
+		if (!in_array($state['ExpectedIssuer'], $idplist)) {
+			throw new SimpleSAML_Error_Exception('The issuer of the response does not match to the identity provider we sent the request to.');
+		}
 	}
 } else {
 	/* This is an unsolicited response. */
@@ -75,7 +81,9 @@ if (!empty($stateId)) {
 
 SimpleSAML_Logger::debug('Received SAML2 Response from ' . var_export($idp, TRUE) . '.');
 
-$idpMetadata = $source->getIdPmetadata($idp);
+if (empty($idpMetadata)) {
+	$idpMetadata = $source->getIdPmetadata($idp);
+}
 
 try {
 	$assertions = sspmod_saml_Message::processResponse($spMetadata, $idpMetadata, $response);
