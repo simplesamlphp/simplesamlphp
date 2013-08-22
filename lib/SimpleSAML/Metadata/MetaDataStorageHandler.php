@@ -100,6 +100,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 
 				case 'SingleLogoutService' : 
 					return $baseurl . 'saml2/sp/SingleLogoutService.php';					
+
+				case 'SingleLogoutServiceBinding' :
+					return SAML2_Const::BINDING_HTTP_REDIRECT;
 			}
 		} elseif($set == 'saml20-idp-hosted') {
 

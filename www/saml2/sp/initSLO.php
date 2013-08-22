@@ -34,7 +34,6 @@ try {
 		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: No supported SingleLogoutService endpoint in IdP.');
 		SimpleSAML_Utilities::redirect($returnTo);
 	}
-	$lr->setDestination($SLOendpoint['Location']);
 
 	$spEntityId = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();
 	$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-hosted');
@@ -44,6 +43,7 @@ try {
 	$lr = sspmod_saml_Message::buildLogoutRequest($spMetadata, $idpMetadata);
 	$lr->setNameId($nameId);
 	$lr->setSessionIndex($session->getAuthData('saml2', 'saml:sp:SessionIndex'));
+	$lr->setDestination($SLOendpoint['Location']);
 
 	$session->doLogout('saml2');
 
