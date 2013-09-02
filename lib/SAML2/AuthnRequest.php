@@ -467,6 +467,7 @@ class SAML2_AuthnRequest extends SAML2_Request {
 
 		if ($this->ProxyCount !== null || count($this->IDPList) > 0 || count($this->RequesterID) > 0) {
 			$scoping = $this->document->createElementNS(SAML2_Const::NS_SAMLP, 'Scoping');
+			$root->appendChild($scoping);
 			if ($this->ProxyCount !== null) {
 				$scoping->setAttribute('ProxyCount', $this->ProxyCount);
 			}
@@ -478,7 +479,6 @@ class SAML2_AuthnRequest extends SAML2_Request {
 					$idplist->appendChild($idpEntry);
 				}
 				$scoping->appendChild($idplist);
-				$root->appendChild($scoping);
 			}
 			if (count($this->RequesterID) > 0) {
 				SAML2_Utils::addStrings($scoping, SAML2_Const::NS_SAMLP, 'RequesterID', FALSE, $this->RequesterID);
