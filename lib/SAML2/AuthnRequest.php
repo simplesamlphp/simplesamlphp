@@ -51,7 +51,7 @@ class SAML2_AuthnRequest extends SAML2_Request {
 	*/
 
 	private $RequesterID = array();
-	
+
 	/**
 	 * The URL of the asertion consumer service where the response should be delivered.
 	 *
@@ -67,6 +67,13 @@ class SAML2_AuthnRequest extends SAML2_Request {
 	 */
 	private $protocolBinding;
 
+
+	/**
+	 * The index of the AttributeConsumingService.
+	 *
+	 * @var int|NULL
+	 */
+	private $attributeConsumingServiceIndex;
 
 	/**
 	 * The index of the AssertionConsumerService.
@@ -121,6 +128,10 @@ class SAML2_AuthnRequest extends SAML2_Request {
 			$this->protocolBinding = $xml->getAttribute('ProtocolBinding');
 		}
 
+		if ($xml->hasAttribute('AttributeConsumingServiceIndex')) {
+			$this->attributeConsumingServiceIndex = (int)$xml->getAttribute('AttributeConsumingServiceIndex');
+		}
+
 		if ($xml->hasAttribute('AssertionConsumerServiceIndex')) {
 			$this->assertionConsumerServiceIndex = (int)$xml->getAttribute('AssertionConsumerServiceIndex');
 		}
@@ -164,7 +175,7 @@ class SAML2_AuthnRequest extends SAML2_Request {
 		$scoping = SAML2_Utils::xpQuery($xml, './saml_protocol:Scoping');
 		if (!empty($scoping)) {
 			$scoping =$scoping[0];
-			
+
 			if ($scoping->hasAttribute('ProxyCount')) {
 				$this->ProxyCount = (int)$scoping->getAttribute('ProxyCount');
 			}
@@ -176,7 +187,7 @@ class SAML2_AuthnRequest extends SAML2_Request {
 				}
 				$this->IDPList[] = $idpEntry->getAttribute('ProviderID');
 			}
-		
+
 			$requesterIDs = SAML2_Utils::xpQuery($scoping, './saml_protocol:RequesterID');
 			foreach ($requesterIDs as $requesterID) {
 				$this->RequesterID[] = trim($requesterID->textContent);
@@ -343,6 +354,27 @@ class SAML2_AuthnRequest extends SAML2_Request {
 		$this->protocolBinding = $protocolBinding;
 	}
 
+	/**
+	 * Retrieve the value of the AttributeConsumingServiceIndex attribute.
+	 *
+	 * @return int|NULL  The AttributeConsumingServiceIndex attribute.
+	 */
+	public function getAttributeConsumingServiceIndex() {
+		return $this->attributeConsumingServiceIndex;
+	}
+
+
+	/**
+	 * Set the value of the AttributeConsumingServiceIndex attribute.
+	 *
+	 * @param int|NULL $attributeConsumingServiceIndex  The AttributeConsumingServiceIndex attribute.
+	 */
+	public function setAttributeConsumingServiceIndex($attributeConsumingServiceIndex) {
+		assert('is_int($attributeConsumingServiceIndex) || is_null($attributeConsumingServiceIndex)');
+
+		$this->attributeConsumingServiceIndex = $attributeConsumingServiceIndex;
+	}
+
 
 	/**
 	 * Retrieve the value of the AssertionConsumerServiceIndex attribute.
@@ -357,7 +389,7 @@ class SAML2_AuthnRequest extends SAML2_Request {
 	/**
 	 * Set the value of the AssertionConsumerServiceIndex attribute.
 	 *
-	 * @param string|NULL $assertionConsumerServiceIndex  The AssertionConsumerServiceIndex attribute.
+	 * @param int|NULL $assertionConsumerServiceIndex  The AssertionConsumerServiceIndex attribute.
 	 */
 	public function setAssertionConsumerServiceIndex($assertionConsumerServiceIndex) {
 		assert('is_int($assertionConsumerServiceIndex) || is_null($assertionConsumerServiceIndex)');
@@ -427,12 +459,19 @@ class SAML2_AuthnRequest extends SAML2_Request {
 			$root->setAttribute('IsPassive', 'true');
 		}
 
-		if ($this->assertionConsumerServiceURL !== NULL) {
-			$root->setAttribute('AssertionConsumerServiceURL', $this->assertionConsumerServiceURL);
+		if ($this->assertionConsumerServiceIndex !== NULL) {
+			$root->setAttribute('AssertionConsumerServiceIndex', $this->assertionConsumerServiceIndex);
+		} else {
+			if ($this->assertionConsumerServiceURL !== NULL) {
+				$root->setAttribute('AssertionConsumerServiceURL', $this->assertionConsumerServiceURL);
+			}
+			if ($this->protocolBinding !== NULL) {
+				$root->setAttribute('ProtocolBinding', $this->protocolBinding);
+			}
 		}
 
-		if ($this->protocolBinding !== NULL) {
-			$root->setAttribute('ProtocolBinding', $this->protocolBinding);
+		if ($this->attributeConsumingServiceIndex !== NULL) {
+			$root->setAttribute('AttributeConsumingServiceIndex', $this->attributeConsumingServiceIndex);
 		}
 
 		if (!empty($this->nameIdPolicy)) {

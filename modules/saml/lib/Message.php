@@ -415,6 +415,9 @@ class sspmod_saml_Message {
 
 		$ar->setIssuer($spMetadata->getString('entityid'));
 
+		$ar->setAssertionConsumerServiceIndex($spMetadata->getInteger('AssertionConsumerServiceIndex', NULL));
+		$ar->setAttributeConsumingServiceIndex($spMetadata->getInteger('AttributeConsumingServiceIndex', NULL));
+
 		if ($spMetadata->hasValue('AuthnContextClassRef')) {
 			$accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
 			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr));
