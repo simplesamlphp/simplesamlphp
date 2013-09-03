@@ -37,6 +37,7 @@ class SimpleSAML_Error_NotFound extends SimpleSAML_Error_Error {
 		}
 
 		$this->reason = $reason;
+		$this->httpCode = 404;
 	}
 
 
@@ -49,16 +50,4 @@ class SimpleSAML_Error_NotFound extends SimpleSAML_Error_Error {
 		return $this->reason;
 	}
 
-
-	/**
-	 * Set the HTTP return code for this error.
-	 *
-	 * This should be overridden by subclasses who want a different return code than 500 Internal Server Error.
-	 */
-	protected function setHTTPCode() {
-		header('HTTP/1.0 404 Not Found');
-	}
-
 }
-
-?>

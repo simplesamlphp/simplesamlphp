@@ -19,6 +19,14 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 
 
 	/**
+	 * The http code.
+	 *
+	 * @var integer
+	 */
+	protected $httpCode = 500;
+
+
+	/**
 	 * The error title tag in dictionary.
 	 *
 	 * @var string
@@ -68,7 +76,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 	 * @param mixed $errorCode  One of the error codes defined in the errors dictionary.
 	 * @param Exception $cause  The exception which caused this fatal error (if any).
 	 */
-	public function __construct($errorCode, Exception $cause = NULL) {
+	public function __construct($errorCode, Exception $cause = NULL, $httpCode = NULL) {
 		assert('is_string($errorCode) || is_array($errorCode)');
 
 		if (is_array($errorCode)) {
@@ -78,6 +86,10 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 		} else {
 			$this->parameters = array();
 			$this->errorCode = $errorCode;
+		}
+
+		if (isset($httpCode)) {
+			$this->httpCode = $httpCode;
 		}
 
 		$moduleCode = explode(':', $this->errorCode, 2);
@@ -153,7 +165,30 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 	 * This should be overridden by subclasses who want a different return code than 500 Internal Server Error.
 	 */
 	protected function setHTTPCode() {
-		header('HTTP/1.0 500 Internal Server Error');
+		// Some mostly used HTTP codes.
+		$httpCodesMap = array(
+			400 => 'HTTP/1.0 400 Bad Request',
+			403 => 'HTTP/1.0 403 Forbidden',
+			404 => 'HTTP/1.0 404 Not Found',
+			405 => 'HTTP/1.0 405 Method Not Allowed',
+			500 => 'HTTP/1.0 500 Internal Server Error',
+			501 => 'HTTP/1.0 501 Method Not Implemented',
+			503 => 'HTTP/1.0 503 Service Temporarily Unavailable',
+		);
+
+		$httpCode = $this->httpCode;
+
+		if (function_exists('http_response_code')) {
+			http_response_code($httpCode);
+			return;
+		}
+
+		if (!array_key_exists($this->httpCode, $httpCodesMap)) {
+			$httpCode = 500;
+			SimpleSAML_Logger::warning('HTTP response code not defined: ' . var_export($this->httpCode, TRUE));
+		}
+
+		header($httpCodesMap[$httpCode]);
 	}
 
 
