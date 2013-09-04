@@ -171,6 +171,56 @@ There is also an additional fallback for the private key and the certificate. If
 
 
 
+Session checking function
+-------------------------
+
+Optional session checking function, called on session init and loading, defined with 'session.check_function' in config.php.
+
+Example code for the function with GeoIP country check:
+
+
+    public static function checkSession($session, $init = FALSE) {
+        $data_type = 'example:check_session';
+        $data_key = 'remote_addr';
+
+        $remote_addr = NULL;
+        if (!empty($_SERVER['REMOTE_ADDR'])) {
+            $remote_addr = (string)$_SERVER['REMOTE_ADDR'];
+        }
+
+        if ($init) {
+            $session->setData($data_type, $data_key, $remote_addr);
+            return;
+        }
+
+        if (!function_exists('geoip_country_code_by_name')) {
+            SimpleSAML_Logger::warning('geoip php module required.');
+            return TRUE;
+        }
+
+        $stored_remote_addr = $session->getData($data_type, $data_key);
+        if ($stored_remote_addr === NULL) {
+            SimpleSAML_Logger::warning('Stored data not found.');
+            return FALSE;
+        }
+
+        $country_a = geoip_country_code_by_name($remote_addr);
+        $country_b = geoip_country_code_by_name($stored_remote_addr);
+
+        if ($country_a === $country_b) {
+            if ($stored_remote_addr !== $remote_addr) {
+                $session->setData($data_type, $data_key, $remote_addr);
+            }
+
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
+
+
+
 Support
 -------
 

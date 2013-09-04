@@ -290,6 +290,14 @@ $config = array (
 	 */
 	'session.authtoken.cookiename' => 'SimpleSAMLAuthToken',
 
+	/**
+	 * Custom function for session checking called on session init and loading.
+	 * See docs/simplesamlphp-advancedfeatures.txt for function code example.
+	 *
+	 * Example:
+	 *   'session.check_function' => array('sspmod_example_Util', 'checkSession'),
+	 */
+
 	/*
 	 * Languages available, RTL languages, and what language is default
 	 */

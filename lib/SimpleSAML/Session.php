@@ -169,6 +169,14 @@ class SimpleSAML_Session {
 
 		$this->dirty = TRUE;
 		$this->addShutdownFunction();
+
+		/* Initialize data for session check function if defined */
+		$globalConfig = SimpleSAML_Configuration::getInstance();
+		$checkFunction = $globalConfig->getArray('session.check_function', NULL);
+		if (isset($checkFunction)) {
+			assert('is_callable($checkFunction)');
+			call_user_func($checkFunction, $this, TRUE);
+		}
 	}
 
 
@@ -1030,16 +1038,30 @@ class SimpleSAML_Session {
 			$session->sessionId = $sh->getCookieSessionId();
 		}
 
-		if ($checkToken && $session->authToken !== NULL) {
+		if ($checkToken) {
 			$globalConfig = SimpleSAML_Configuration::getInstance();
-			$authTokenCookieName = $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken');
-			if (!isset($_COOKIE[$authTokenCookieName])) {
-				SimpleSAML_Logger::warning('Missing AuthToken cookie.');
-				return NULL;
+
+			if ($session->authToken !== NULL) {
+				$authTokenCookieName = $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken');
+				if (!isset($_COOKIE[$authTokenCookieName])) {
+					SimpleSAML_Logger::warning('Missing AuthToken cookie.');
+					return NULL;
+				}
+				if ($_COOKIE[$authTokenCookieName] !== $session->authToken) {
+					SimpleSAML_Logger::warning('Invalid AuthToken cookie.');
+					return NULL;
+				}
 			}
-			if ($_COOKIE[$authTokenCookieName] !== $session->authToken) {
-				SimpleSAML_Logger::warning('Invalid AuthToken cookie.');
-				return NULL;
+
+			/* Run session check function if defined */
+			$checkFunction = $globalConfig->getArray('session.check_function', NULL);
+			if (isset($checkFunction)) {
+				assert('is_callable($checkFunction)');
+				$check = call_user_func($checkFunction, $session);
+				if ($check !== TRUE) {
+					SimpleSAML_Logger::warning('Session did not pass check function.');
+					return NULL;
+				}
 			}
 		}
 
