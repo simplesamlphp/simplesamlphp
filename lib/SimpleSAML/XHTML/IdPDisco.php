@@ -190,13 +190,15 @@ class SimpleSAML_XHTML_IdPDisco {
 	protected function setCookie($name, $value) {
 		$prefixedName = 'idpdisco_' . $this->instance . '_' . $name;
 
-		/* We save the cookies for 90 days. */
-		$saveUntil = time() + 60*60*24*90;
+		$params = array(
+			/* We save the cookies for 90 days. */
+			'lifetime' => (60*60*24*90),
+			/* The base path for cookies. This should be the installation directory for simpleSAMLphp. */
+			'path' => ('/' . $this->config->getBaseUrl()),
+			'httponly' => FALSE,
+		);
 
-		/* The base path for cookies. This should be the installation directory for simpleSAMLphp. */
-		$cookiePath = '/' . $this->config->getBaseUrl();
-
-		setcookie($prefixedName, $value, $saveUntil, $cookiePath);
+		SimpleSAML_Utilities::setCookie($prefixedName, $value, $params, FALSE);
 	}
 
 

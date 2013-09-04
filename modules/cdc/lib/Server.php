@@ -203,8 +203,14 @@ class sspmod_cdc_Server {
 	 * @return array  The response.
 	 */
 	private function handleDelete(array $request) {
+		$params = array(
+			'path' => '/',
+			'domain' => '.' . $this->domain,
+			'secure' => TRUE,
+			'httponly' => FALSE,
+		);
 
-		setcookie('_saml_idp', 'DELETE', time() - 86400 , '/', '.' . $this->domain, TRUE);
+		SimpleSAML_Utilities::setCookie('_saml_idp', NULL, $params, FALSE);
 		return 'ok';
 	}
 
@@ -392,13 +398,15 @@ class sspmod_cdc_Server {
 			$cookie = $tmp[1];
 		}
 
-		if ($this->cookieLifetime === 0) {
-			$expire = 0;
-		} else {
-			$expire = time() + $this->cookieLifetime;
-		}
+		$params = array(
+			'lifetime' => $this->cookieLifetime,
+			'path' => '/',
+			'domain' => '.' . $this->domain,
+			'secure' => TRUE,
+			'httponly' => FALSE,
+		);
 
-		setcookie('_saml_idp', $cookie, $expire, '/', '.' . $this->domain, TRUE);
+		SimpleSAML_Utilities::setCookie('_saml_idp', $cookie, $params, FALSE);
 	}
 
 }

@@ -2354,4 +2354,64 @@ class SimpleSAML_Utilities {
 		return substr(strtoupper(PHP_OS),0,3) == 'WIN';
 	}
 
+
+	/**
+	 * Set a cookie.
+	 *
+	 * @param string $name  The name of the session cookie.
+	 * @param string|NULL $value  The value of the cookie. Set to NULL to delete the cookie.
+	 * @param array|NULL $params  Cookie parameters.
+	 * @param bool $throw  Whether to throw exception if setcookie fails.
+	 */
+	public static function setCookie($name, $value, array $params = NULL, $throw = TRUE) {
+		assert('is_string($name)');
+		assert('is_string($value) || is_null($value)');
+
+		$default_params = array(
+			'lifetime' => 0,
+			'expire' => NULL,
+			'path' => '/',
+			'domain' => NULL,
+			'secure' => FALSE,
+			'httponly' => TRUE,
+			'raw' => FALSE,
+		);
+
+		if ($params !== NULL) {
+			$params = array_merge($default_params, $params);
+		} else {
+			$params = $default_params;
+		}
+
+		// Do not set secure cookie if not on HTTPS
+		if ($params['secure'] && !self::isHTTPS()) {
+			SimpleSAML_Logger::warning('Setting secure cookie on http not allowed.');
+			return;
+		}
+
+		if ($value === NULL) {
+			$expire = time() - 365*24*60*60;
+		} elseif (isset($params['expire'])) {
+			$expire = $params['expire'];
+		} elseif ($params['lifetime'] === 0) {
+			$expire = 0;
+		} else {
+			$expire = time() + $params['lifetime'];
+		}
+
+		if ($params['raw']) {
+			$success = setrawcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+		} else {
+			$success = setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+		}
+
+		if (!$success) {
+			if ($throw) {
+				throw new SimpleSAML_Error_Exception('Error setting cookie - headers already sent.');
+			} else {
+				SimpleSAML_Logger::warning('Error setting cookie - headers already sent.');
+			}
+		}
+	}
+
 }

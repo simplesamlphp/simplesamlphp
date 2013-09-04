@@ -130,29 +130,17 @@ abstract class SimpleSAML_SessionHandler {
 	 * @param string $name  The name of the session cookie.
 	 * @param string|NULL $value  The value of the cookie. Set to NULL to delete the cookie.
 	 */
-	public function setCookie($name, $value) {
+	public function setCookie($name, $value, array $params = NULL) {
 		assert('is_string($name)');
 		assert('is_string($value) || is_null($value)');
 
-		$params = $this->getCookieParams();
-
-		// Do not set secure cookie if not on HTTPS
-		if ($params['secure'] && !SimpleSAML_Utilities::isHTTPS()) {
-			SimpleSAML_Logger::warning('Setting secure cookie on http not allowed.');
-			return;
-		}
-
-		if ($value === NULL) {
-			$expire = time() - 365*24*60*60;
-		} elseif ($params['lifetime'] === 0) {
-			$expire = 0;
+		if ($params !== NULL) {
+			$params = array_merge($this->getCookieParams(), $params);
 		} else {
-			$expire = time() + $params['lifetime'];;
+			$params = $this->getCookieParams();
 		}
 
-		if (!setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'], $params['httponly'])) {
-			throw new SimpleSAML_Error_Exception('Error setting cookie - headers already sent.');
-		}
+		SimpleSAML_Utilities::setCookie($name, $value, $params);
 	}
 
 }

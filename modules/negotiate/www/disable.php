@@ -9,8 +9,14 @@
  * @version $Id$
  */
 
+$params = array(
+    'expire' => (mktime(0,0,0,1,1,2038)),
+    'secure' => FALSE,
+    'httponly' => TRUE,
+);
+SimpleSAML_Utilities::setCookie('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', 'True', $params, FALSE);
+
 $globalConfig = SimpleSAML_Configuration::getInstance();
-setcookie('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', 'True', mktime(0,0,0,1,1,2038), '/', SimpleSAML_Utilities::getSelfHost(), FALSE, TRUE);
 $session = SimpleSAML_Session::getInstance();
 $session->setData('negotiate:disable', 'session', FALSE, 24*60*60);
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'negotiate:disable.php');

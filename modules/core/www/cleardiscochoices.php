@@ -20,7 +20,7 @@ foreach($_COOKIE as $cookieName => $value) {
 	/* Delete the cookie. We delete it once without the secure flag and once with the secure flag. This
 	 * ensures that the cookie will be deleted in any case.
 	 */
-	setcookie($cookieName, '', time() - 24*60*60, $cookiePath);
+	SimpleSAML_Utilities::setCookie($cookieName, NULL, array('path' => $cookiePath, 'httponly' => FALSE), FALSE);
 }
 
 
@@ -35,4 +35,3 @@ if(array_key_exists('ReturnTo', $_REQUEST)) {
 /* Redirect to destination. */
 SimpleSAML_Utilities::redirect($returnTo);
 
-?>

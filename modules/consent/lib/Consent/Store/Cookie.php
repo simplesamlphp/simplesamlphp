@@ -266,26 +266,21 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
         assert('is_string($name)');
         assert('is_string($value)');
 
-        if ($value === null) {
-            $expire = 1; /* Delete by setting expiry in the past. */
-            $value = '';
-        } else {
-            $expire = time() + 90 * 24*60*60;
-        }
+        $globalConfig = SimpleSAML_Configuration::getInstance();
+        $params = array(
+            'lifetime' => (90*24*60*60),
+            'path' => ('/' . $globalConfig->getBaseURL()),
+            'httponly' => FALSE,
+        );
 
         if (SimpleSAML_Utilities::isHTTPS()) {
             /* Enable secure cookie for https-requests. */
-            $secure = true;
+            $params['secure'] = true;
         } else {
-            $secure = false;
+            $params['secure'] = false;
         }
 
-        $globalConfig = SimpleSAML_Configuration::getInstance();
-        $path = '/' . $globalConfig->getBaseURL();
-
-        setcookie($name, $value, $expire, $path, null, $secure);
+        SimpleSAML_Utilities::setCookie($name, $value, $params, FALSE);
     }
 
 }
-
-?>

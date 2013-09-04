@@ -302,13 +302,13 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 			$newCookie = $tmp[1];
 		}
 
-		if ($this->cdcLifetime === NULL) {
-			$expire = 0;
-		} else {
-			$expire = time() + $this->cdcLifetime;
-		}
-
-		setcookie('_saml_idp', $newCookie, $expire, '/', $this->cdcDomain, TRUE);
+		$params = array(
+			'lifetime' => $this->cdcLifetime,
+			'domain' => $this->cdcDomain,
+			'secure' => TRUE,
+			'httponly' => FALSE,
+		);
+		SimpleSAML_Utilities::setCookie('_saml_idp', $newCookie, $params, FALSE);
 	}
 
 
@@ -339,5 +339,3 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	}
 
 }
-
-?>
