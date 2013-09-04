@@ -264,7 +264,7 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
     private function _setConsentCookie($name, $value)
     {
         assert('is_string($name)');
-        assert('is_string($value)');
+        assert('is_string($value) || is_null($value)');
 
         $globalConfig = SimpleSAML_Configuration::getInstance();
         $params = array(
