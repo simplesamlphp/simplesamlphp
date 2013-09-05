@@ -40,6 +40,20 @@ extends SimpleSAML_SessionHandler {
 
 
 	/**
+	 * Create and set new session id.
+	 *
+	 * @return string  The new session id.
+	 */
+	public function newSessionId() {
+		$this->session_id = self::createSessionID();
+		SimpleSAML_Session::createSession($this->session_id);
+		$this->setCookie($this->cookie_name, $this->session_id);
+
+		return $this->session_id;
+	}
+
+
+	/**
 	 * Retrieve the session id of saved in the session cookie.
 	 *
 	 * @return string  The session id saved in the cookie.
@@ -54,9 +68,7 @@ extends SimpleSAML_SessionHandler {
 			/* Check if we have a valid session id. */
 			if(!self::isValidSessionID($this->session_id)) {
 				/* We don't have a valid session. Create a new session id. */
-				$this->session_id = self::createSessionID();
-				SimpleSAML_Session::createSession($this->session_id);
-				$this->setCookie($this->cookie_name, $this->session_id);
+				return self::newSessionId();
 			}
 		}
 
@@ -115,5 +127,3 @@ extends SimpleSAML_SessionHandler {
 	}
 
 }
-
-?>

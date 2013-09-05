@@ -54,30 +54,49 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 
 
 	/**
+	 * Create and set new session id.
+	 *
+	 * @return string  The new session id.
+	 */
+	public function newSessionId() {
+		$session_cookie_params = session_get_cookie_params();
+
+		if ($session_cookie_params['secure'] && !SimpleSAML_Utilities::isHTTPS()) {
+			throw new SimpleSAML_Error_Exception('Session start with secure cookie not allowed on http.');
+		}
+
+		if (headers_sent()) {
+			throw new SimpleSAML_Error_Exception('Cannot create new session - headers already sent.');
+		}
+
+		/* Generate new (secure) session id. */
+		$sessionId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16));
+		SimpleSAML_Session::createSession($sessionId);
+		session_id($sessionId);
+
+		session_start();
+
+		return session_id();
+	}
+
+
+	/**
 	 * Retrieve the session id of saved in the session cookie.
 	 *
 	 * @return string  The session id saved in the cookie.
 	 */
 	public function getCookieSessionId() {
 		if(session_id() === '') {
+			if(!self::hasSessionCookie()) {
+				return self::newSessionId();
+			}
+
 			$session_cookie_params = session_get_cookie_params();
 
 			if ($session_cookie_params['secure'] && !SimpleSAML_Utilities::isHTTPS()) {
 				throw new SimpleSAML_Error_Exception('Session start with secure cookie not allowed on http.');
 			}
 
-			if(!self::hasSessionCookie()) {
-
-				if (headers_sent()) {
-					throw new SimpleSAML_Error_Exception('Cannot create new session - headers already sent.');
-				}
-
-				/* Session cookie unset - session id not set. Generate new (secure) session id. */
-				$sessionId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16));
-				SimpleSAML_Session::createSession($sessionId);
-				session_id($sessionId);
-			}
-			
 			session_start();
 		}
 

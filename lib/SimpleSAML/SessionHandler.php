@@ -48,6 +48,14 @@ abstract class SimpleSAML_SessionHandler {
 
 
 	/**
+	 * Create and set new session id.
+	 *
+	 * @return string  The new session id.
+	 */
+	abstract public function newSessionId();
+
+
+	/**
 	 * Retrieve the session id of saved in the session cookie.
 	 *
 	 * @return string  The session id saved in the cookie.
