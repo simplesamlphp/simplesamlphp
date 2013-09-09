@@ -22,6 +22,13 @@ class SimpleSAML_Session {
 
 
 	/**
+	 * This is a timeout value for setData, which indicates that the data
+	 * should never be deleted, i.e. lasts the whole session lifetime.
+	 */
+	const DATA_TIMEOUT_SESSION_END = 'sessionEndTimeout';
+
+
+	/**
 	 * The list of loaded session objects.
 	 *
 	 * This is an associative array indexed with the session id.
@@ -804,6 +811,11 @@ class SimpleSAML_Session {
 					continue;
 				}
 
+				if ($info['expires'] === self::DATA_TIMEOUT_SESSION_END) {
+					/* This data never expires. */
+					continue;
+				}
+
 				if($ct > $info['expires']) {
 					unset($typedData[$id]);
 				}
@@ -874,7 +886,7 @@ class SimpleSAML_Session {
 	public function setData($type, $id, $data, $timeout = NULL) {
 		assert('is_string($type)');
 		assert('is_string($id)');
-		assert('is_int($timeout) || is_null($timeout) || $timeout === self::DATA_TIMEOUT_LOGOUT');
+		assert('is_int($timeout) || is_null($timeout) || $timeout === self::DATA_TIMEOUT_LOGOUT || $timeout === self::DATA_TIMEOUT_SESSION_END');
 
 		/* Clean out old data. */
 		$this->expireData();
@@ -902,6 +914,8 @@ class SimpleSAML_Session {
 
 		if ($timeout === self::DATA_TIMEOUT_LOGOUT) {
 			$expires = self::DATA_TIMEOUT_LOGOUT;
+		} elseif ($timeout === self::DATA_TIMEOUT_SESSION_END) {
+			$expires = self::DATA_TIMEOUT_SESSION_END;
 		} else {
 			$expires = time() + $timeout;
 		}
