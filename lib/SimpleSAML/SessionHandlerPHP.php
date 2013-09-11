@@ -72,7 +72,12 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 		/* Generate new (secure) session id. */
 		$sessionId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16));
 		SimpleSAML_Session::createSession($sessionId);
-		session_id($sessionId);
+
+		if (session_id($sessionId) !== '') {
+			/* Session already started, close it. */
+			session_write_close();
+			session_id($sessionId);
+		}
 
 		session_start();
 
