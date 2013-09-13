@@ -80,7 +80,9 @@ class SimpleSAML_Session {
 	// Session duration parameters
 	private $sessionstarted = null;
 	private $sessionduration = null;
-	
+
+	private $rememberMeExpire = null;
+
 	// Track whether the session object is modified or not.
 	private $dirty = false;
 		
@@ -501,6 +503,52 @@ class SimpleSAML_Session {
 
 
 	/**
+	 * Set remember me expire time.
+	 *
+	 * @param int $expire  Unix timestamp when remember me session cookies expire.
+	 */
+	public function setRememberMeExpire($expire = NULL) {
+		assert('is_int($expire) || is_null($expire)');
+
+		if ($expire === NULL) {
+			$globalConfig = SimpleSAML_Configuration::getInstance();
+			$expire = time() + $globalConfig->getInteger('session.rememberme.lifetime', 14*86400);
+		}
+		$this->rememberMeExpire = $expire;
+
+		$cookieParams = array('expire' => $this->rememberMeExpire);
+		$this->updateSessionCookies($cookieParams);
+	}
+
+
+	/**
+	 * Get remember me expire time.
+	 *
+	 * @return integer|NULL The remember me expire time.
+	 */
+	public function getRememberMeExpire() {
+		return $this->rememberMeExpire;
+	}
+
+
+	/**
+	 * Update session cookies.
+	 */
+	public function updateSessionCookies($params = NULL) {
+		$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
+
+		if ($this->sessionId !== NULL) {
+			$sessionHandler->setCookie($sessionHandler->getSessionCookieName(), $this->sessionId, $params);
+		}
+
+		if ($this->authToken !== NULL) {
+			$globalConfig = SimpleSAML_Configuration::getInstance();
+			$sessionHandler->setCookie($globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'), $this->authToken, $params);
+		}
+	}
+
+
+	/**
 	 * Marks the user as logged in with the specified authority.
 	 *
 	 * If the user already has logged in, the user will be logged out first.
@@ -526,6 +574,8 @@ class SimpleSAML_Session {
 			$data = array();
 		}
 
+		$data['Authority'] = $authority;
+
 		$globalConfig = SimpleSAML_Configuration::getInstance();
 		if (!isset($data['AuthnInstant'])) {
 			$data['AuthnInstant'] = time();
@@ -542,7 +592,12 @@ class SimpleSAML_Session {
 
 		$this->authToken = SimpleSAML_Utilities::generateID();
 		$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
-		$sessionHandler->setCookie($globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'), $this->authToken);
+
+		if (!$this->transient && (!empty($data['RememberMe']) || $this->rememberMeExpire) && $globalConfig->getBoolean('session.rememberme.enable', FALSE)) {
+			$this->setRememberMeExpire();
+		} else {
+			$sessionHandler->setCookie($globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'), $this->authToken);
+		}
 	}
 
 
@@ -578,8 +633,34 @@ class SimpleSAML_Session {
 			$this->authority = NULL;
 		}
 
+		if ($this->authority === NULL && $this->rememberMeExpire) {
+			$this->rememberMeExpire = NULL;
+			$this->updateSessionCookies();
+		}
+
 		/* Delete data which expires on logout. */
 		$this->expireDataLogout();
+	}
+
+
+	/**
+	 * Set the lifetime for authentication source.
+	 *
+	 * @param string $authority  The authentication source we are setting expire time for.
+	 * @param int $expire  The number of seconds authentication source is valid.
+	 */
+	public function setAuthorityExpire($authority, $expire = NULL) {
+		assert('isset($this->authData[$authority])');
+		assert('is_int($expire) || is_null($expire)');
+
+		$this->dirty = true;
+
+		if ($expire === NULL) {
+			$globalConfig = SimpleSAML_Configuration::getInstance();
+			$expire = time() + $globalConfig->getInteger('session.duration', 8*60*60);
+		}
+
+		$this->authData[$authority]['Expire'] = $expire;
 	}
 
 

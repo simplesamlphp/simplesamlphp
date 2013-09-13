@@ -290,6 +290,23 @@ $config = array (
 	 */
 	'session.authtoken.cookiename' => 'SimpleSAMLAuthToken',
 
+	/*
+	 * Options for remember me feature for IdP sessions. Remember me feature
+	 * has to be also implemented in authentication source used.
+	 *
+	 * Option 'session.cookie.lifetime' should be set to zero (0), i.e. cookie
+	 * expires on browser session if remember me is not checked.
+	 *
+	 * Session duration ('session.duration' option) should be set according to
+	 * 'session.rememberme.lifetime' option.
+	 *
+	 * It's advised to use remember me feature with session checking function
+	 * defined with 'session.check_function' option.
+	 */
+	'session.rememberme.enable' => FALSE,
+	'session.rememberme.checked' => FALSE,
+	'session.rememberme.lifetime' => (14*86400),
+
 	/**
 	 * Custom function for session checking called on session init and loading.
 	 * See docs/simplesamlphp-advancedfeatures.txt for function code example.
