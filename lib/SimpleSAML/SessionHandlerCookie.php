@@ -76,6 +76,17 @@ extends SimpleSAML_SessionHandler {
 	}
 
 
+	/**
+	 * Retrieve the session cookie name.
+	 *
+	 * @return string  The session cookie name.
+	 */
+	public function getSessionCookieName() {
+
+		return $this->cookie_name;
+	}
+
+
 	/* This static function creates a session id. A session id consists
 	 * of 32 random hexadecimal characters.
 	 *

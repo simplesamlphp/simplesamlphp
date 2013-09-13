@@ -64,6 +64,14 @@ abstract class SimpleSAML_SessionHandler {
 
 
 	/**
+	 * Retrieve the session cookie name.
+	 *
+	 * @return string  The session cookie name.
+	 */
+	abstract public function getSessionCookieName();
+
+
+	/**
 	 * Save the session.
 	 *
 	 * @param SimpleSAML_Session $session  The session object we should save.

@@ -13,6 +13,10 @@
  */
 class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 
+	/* This variable contains the session cookie name. */
+	protected $cookie_name;
+
+
 	/* Initialize the PHP session handling. This constructor is protected
 	 * because it should only be called from
 	 * SimpleSAML_SessionHandler::createSessionHandler(...).
@@ -42,8 +46,12 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 				session_set_cookie_params($params['lifetime'], $params['path'], $params['domain'], $params['secure'], $params['httponly']);
 			}
 
-			$cookiename = $config->getString('session.phpsession.cookiename', NULL);
-			if (!empty($cookiename)) session_name($cookiename);
+			$this->cookie_name = $config->getString('session.phpsession.cookiename', NULL);
+			if (!empty($this->cookie_name)) {
+				session_name($this->cookie_name);
+			} else {
+				$this->cookie_name = session_name();
+			}
 
 			$savepath = $config->getString('session.phpsession.savepath', NULL);
 			if(!empty($savepath)) {
@@ -110,6 +118,17 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 
 
 	/**
+	 * Retrieve the session cookie name.
+	 *
+	 * @return string  The session cookie name.
+	 */
+	public function getSessionCookieName() {
+
+		return $this->cookie_name;
+	}
+
+
+	/**
 	 * Save the current session to the PHP session array.
 	 *
 	 * @param SimpleSAML_Session $session  The session object we should save.
@@ -169,8 +188,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 	 */
 	public function hasSessionCookie() {
 
-		$cookieName = session_name();
-		return array_key_exists($cookieName, $_COOKIE);
+		return array_key_exists($this->cookie_name, $_COOKIE);
 	}
 
 
