@@ -14,6 +14,10 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
 	 */
 	private $map = array();
 
+	/**
+	 * Should attributes be duplicated or renamed.
+	 */
+	private $duplicate = FALSE;
 
 	/**
 	 * Initialize this filter, parse configuration
@@ -25,11 +29,16 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
 		parent::__construct($config, $reserved);
 
 		assert('is_array($config)');
+		$mapFiles = array();
 
 		foreach($config as $origName => $newName) {
 			if(is_int($origName)) {
-				/* No index given - this is a map file. */
-				$this->loadMapFile($newName);
+				if($newName === '%duplicate') {
+					$this->duplicate = TRUE;
+				} else {
+					/* No index given - this is a map file. */
+					$mapFiles[] = $newName;
+				}
 				continue;
 			}
 
@@ -42,6 +51,11 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
 			}
 
 			$this->map[$origName] = $newName;
+		}
+
+		// Load map files after we determine dupilicate or rename
+		foreach($mapFiles as &$file) {
+			$this->loadMapFile($file);
 		}
 	}
 
@@ -65,7 +79,11 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
 			throw new Exception('Attribute map file "' . $filePath . '" didn\'t define an attribute map.');
 		}
 
-		$this->map = array_merge($this->map, $attributemap);
+		if ($this->duplicate) {
+			$this->map = array_merge_recursive($this->map, $attributemap);
+		} else {
+			$this->map = array_merge($this->map, $attributemap);
+		}
 	}
 
 
@@ -83,13 +101,15 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
 		foreach($attributes as $name => $values) {
 			if(array_key_exists($name, $this->map)) {
 				if(!is_array($this->map[$name])) {
-					unset($attributes[$name]);
+					if (!$this->duplicate) {
+						unset($attributes[$name]);
+					}
 					$attributes[$this->map[$name]] = $values;
 				} else {
 					foreach($this->map[$name] as $to_map) {
 						$attributes[$to_map] = $values;
 					}
-					if (!in_array($name, $this->map[$name])) {
+					if (!$this->duplicate && !in_array($name, $this->map[$name], TRUE)) {
 						unset($attributes[$name]);
 					}
 				}

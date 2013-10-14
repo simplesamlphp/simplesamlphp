@@ -32,3 +32,13 @@ Attribute map in separate file:
     ),
 
 This filter will use the map file from `simpesamlphp/attributemap/name2oid.php`.
+
+Duplicate attributes based on a map file:
+
+    'authproc' => array(
+        50 => array(
+            'class' => 'core:AttributeMap',
+            'name2urn', 'name2oid',
+            '%duplicate',
+        ),
+    ),
