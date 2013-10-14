@@ -82,12 +82,15 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
 
 		foreach($attributes as $name => $values) {
 			if(array_key_exists($name, $this->map)) {
-				unset($attributes[$name]);
 				if(!is_array($this->map[$name])) {
+					unset($attributes[$name]);
 					$attributes[$this->map[$name]] = $values;
 				} else {
 					foreach($this->map[$name] as $to_map) {
 						$attributes[$to_map] = $values;
+					}
+					if (!in_array($name, $this->map[$name])) {
+						unset($attributes[$name]);
 					}
 				}
 			}
