@@ -41,4 +41,4 @@ Author: Wessel Dankers <wsl@uvt.nl>
 
 Copyright: © 2011,2012 Tilburg University (http://www.tilburguniversity.edu)
 
-License: GPL version 3 or any later version.
+License: LGPL version 2.1
