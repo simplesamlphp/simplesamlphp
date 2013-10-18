@@ -114,7 +114,12 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			foreach ($metadata->getArray('scope') as $scopetext) {
 				$s = new SAML2_XML_shibmd_Scope();
 				$s->scope = $scopetext;
-				$s->regexp = FALSE;
+				// Check whether $ ^ ( ) * | \ are in a scope -> assume regex.
+				if (1 === preg_match('/[\$\^\)\(\*\|\\\\]/', $scopetext)) {
+					$s->regexp = TRUE;
+				} else {
+					$s->regexp = FALSE;
+				}
 				$e->Extensions[] = $s;
 			}
 		}

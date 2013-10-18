@@ -108,6 +108,8 @@ Common options
 `scope`
 :   An array with scopes for this IdP.
     The scopes will be added to the generated XML metadata.
+    A scope can either be a domain name or a regular expression
+    matching a number of domains.
 
 `userid.attribute`
 :   The attribute name of an attribute which uniquely identifies
