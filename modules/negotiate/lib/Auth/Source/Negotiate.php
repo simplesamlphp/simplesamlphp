@@ -47,6 +47,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 		$this->subnet = $config->getArray('subnet', NULL);
 		$this->admin_user = $config->getString('adminUser', NULL);
 		$this->admin_pw = $config->getString('adminPassword', NULL);
+		$this->attributes = $config->getArray('attributes', NULL);
 
 	}
 
@@ -268,7 +269,7 @@ click <a href="'.htmlspecialchars($url).'">here</a>.
 		$this->adminBind();
 		try {
 			$dn = $this->ldap->searchfordn($this->base, $this->attr, $uid);
-			return $this->ldap->getAttributes($dn);
+			return $this->ldap->getAttributes($dn, $this->attributes);
 		} catch (SimpleSAML_Error_Exception $e) {
 			SimpleSAML_Logger::debug('Negotiate - ldap lookup failed: '. $e);
 			return NULL;
