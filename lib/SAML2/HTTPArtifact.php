@@ -73,7 +73,7 @@ class SAML2_HTTPArtifact extends SAML2_Binding {
 			$sourceId = bin2hex(substr($artifact,4,20));
 
 		}else{
-			throw new Execption('Missing SAMLArt parameter.');
+			throw new Exception('Missing SAMLArt parameter.');
 		}
 
 		$metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
