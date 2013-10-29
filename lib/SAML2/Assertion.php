@@ -663,6 +663,8 @@ class SAML2_Assertion implements SAML2_SignedElement {
 
 
 	public function decryptAttributes($key, array $blacklist = array()){
+		$firstAttribute = TRUE;
+
 		if($this->encryptedAttribute === null){
 			return;
 		}
