@@ -58,7 +58,7 @@ class SAML2_XML_md_PDPDescriptor extends SAML2_XML_md_RoleDescriptor {
 		}
 
 		foreach (SAML2_Utils::xpQuery($xml, './saml_metadata:AssertionIDRequestService') as $ep) {
-			$this->AssertionIDRequestService[] = new SAML2_XML_md_EndpointType($airs);
+			$this->AssertionIDRequestService[] = new SAML2_XML_md_EndpointType($ep);
 		}
 
 		$this->NameIDFormat = SAML2_Utils::extractStrings($xml, SAML2_Const::NS_MD, 'NameIDFormat');
