@@ -398,9 +398,9 @@ class SimpleSAML_XHTML_IdPDisco {
 			$this->setPreviousIdP($idp);
 
 			if($this->saveIdP()) {
-				$this->setCookie('remember', 1);
+				$this->setCookie('remember', '1');
 			} else {
-				$this->setCookie('remember', 0);
+				$this->setCookie('remember', '0');
 			}
 
 			return $idp;
