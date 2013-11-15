@@ -20,6 +20,10 @@ Initialize configuration and metadata:
     cp -r config-templates/* config/
     cp -r metadata-templates/* metadata/
 
+Install the external dependencies with Composer (http://getcomposer.org/):
+
+    php composer.phar install
+
 
 Upgrading
 ---------
@@ -29,3 +33,6 @@ Go to the root directory of your simpleSAMLphp installation:
 
 Ask subversion to update to the latest version:
     svn update
+
+Install the external dependencies with Composer (http://getcomposer.org/):
+    php composer.phar install

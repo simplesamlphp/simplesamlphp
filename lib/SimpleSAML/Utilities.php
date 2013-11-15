@@ -302,14 +302,14 @@ class SimpleSAML_Utilities {
 		$currentTime = time();
 	
 		if (! empty($start)) {
-			$startTime = self::parseSAML2Time($start);
+			$startTime = SAML2_Utils::parseSAML2Time($start);
 			/* Allow for a 10 minute difference in Time */
 			if (($startTime < 0) || (($startTime - 600) > $currentTime)) {
 				return FALSE;
 			}
 		}
 		if (! empty($end)) {
-			$endTime = self::parseSAML2Time($end);
+			$endTime = SAML2_Utils::parseSAML2Time($end);
 			if (($endTime < 0) || ($endTime <= $currentTime)) {
 				return FALSE;
 			}
@@ -334,55 +334,6 @@ class SimpleSAML_Utilities {
 			$instant = time();
 		}
 		return gmdate('Y-m-d\TH:i:s\Z', $instant);
-	}
-
-
-	/* This function converts a SAML2 timestamp on the form
-	 * yyyy-mm-ddThh:mm:ss(\.s+)?Z to a UNIX timestamp. The sub-second
-	 * part is ignored.
-	 *
-	 * Andreas comments:
-	 *  I got this timestamp from Shibboleth 1.3 IdP: 2008-01-17T11:28:03.577Z
-	 *  Therefore I added to possibliity to have microseconds to the format.
-	 * Added: (\.\\d{1,3})? to the regex.
-	 *
-	 *
-	 * Parameters:
-	 *  $time     The time we should convert.
-	 *
-	 * Returns:
-	 *  $time converted to a unix timestamp.
-	 */
-	public static function parseSAML2Time($time) {
-		$matches = array();
-
-
-		/* We use a very strict regex to parse the timestamp. */
-		if(preg_match('/^(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d)' .
-		              'T(\\d\\d):(\\d\\d):(\\d\\d)(?:\\.\\d+)?Z$/D',
-		              $time, $matches) == 0) {
-			throw new Exception(
-				'Invalid SAML2 timestamp passed to' .
-				' parseSAML2Time: ' . $time);
-		}
-
-		/* Extract the different components of the time from the
-		 * matches in the regex. intval will ignore leading zeroes
-		 * in the string.
-		 */
-		$year = intval($matches[1]);
-		$month = intval($matches[2]);
-		$day = intval($matches[3]);
-		$hour = intval($matches[4]);
-		$minute = intval($matches[5]);
-		$second = intval($matches[6]);
-
-		/* We use gmmktime because the timestamp will always be given
-		 * in UTC.
-		 */
-		$ts = gmmktime($hour, $minute, $second, $month, $day, $year);
-
-		return $ts;
 	}
 
 

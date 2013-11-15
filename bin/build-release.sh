@@ -15,8 +15,6 @@ fi
 
 cd /tmp
 
-REPOPATH="http://simplesamlphp.googlecode.com/svn/tags/$TAG/"
-
 if [ -a "$TAG" ]; then
     echo "$0: Destination already exists: $TAG" >&2
     exit 1
@@ -24,7 +22,21 @@ fi
 
 umask 0022
 
+REPOPATH="http://simplesamlphp.googlecode.com/svn/tags/$TAG/"
+
 svn export "$REPOPATH"
+
+# Use composer only on newer versions that have a composer.json
+if [ -f "$TAG/composer.json" ]; then
+    if [ ! -x composer.phar ]; then
+        echo "$0: Composerfile detected, but Composer not installed?" >&2
+        exit 1
+    fi
+
+    # Install dependencies (without vcs history or dev tools)
+    php composer.phar install --no-dev --prefer-dist -o -d "$TAG"
+fi
+
 mkdir -p "$TAG/config" "$TAG/metadata"
 cp -rv "$TAG/config-templates/"* "$TAG/config/"
 cp -rv "$TAG/metadata-templates/"* "$TAG/metadata/"
