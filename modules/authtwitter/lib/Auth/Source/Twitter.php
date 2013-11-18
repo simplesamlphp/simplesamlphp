@@ -38,18 +38,10 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 		/* Call the parent constructor first, as required by the interface. */
 		parent::__construct($info, $config);
 
-		if (!array_key_exists('key', $config))
-			throw new Exception('Twitter authentication source is not properly configured: missing [key]');
-		
-		$this->key = $config['key'];
-		
-		if (!array_key_exists('secret', $config))
-			throw new Exception('Twitter authentication source is not properly configured: missing [secret]');
+		$configObject = SimpleSAML_Configuration::loadFromArray($config, 'authsources[' . var_export($this->authId, TRUE) . ']');
 
-		$this->secret = $config['secret'];
-
-		// require_once(dirname(dirname(dirname(dirname(__FILE__)))) . '/extlibinc/facebook.php');
-
+		$this->key = $configObject->getString('key');
+		$this->secret = $configObject->getString('secret');
 	}
 
 
@@ -127,5 +119,3 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 	}
 
 }
-
-?>
