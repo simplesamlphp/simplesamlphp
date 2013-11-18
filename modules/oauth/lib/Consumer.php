@@ -88,10 +88,11 @@ class sspmod_oauth_Consumer {
 	}
 	
 	public function getAuthorizeRequest($url, $requestToken, $redirect = TRUE, $callback = NULL) {
-		$authorizeURL = $url . '?oauth_token=' . $requestToken->key;
+		$params = array('oauth_token' => $requestToken->key);
 		if ($callback) {
-			$authorizeURL .= '&oauth_callback=' . urlencode($callback);
+			$params['oauth_callback'] = $callback;
 		}
+		$authorizeURL = SimpleSAML_Utilities::addURLparameter($url, $params);
 		if ($redirect) {
 			SimpleSAML_Utilities::redirect($authorizeURL);
 			exit;
