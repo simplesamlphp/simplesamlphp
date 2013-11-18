@@ -23,6 +23,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 
 	private $key;
 	private $secret;
+	private $force_login;
 
 
 	/**
@@ -42,6 +43,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 
 		$this->key = $configObject->getString('key');
 		$this->secret = $configObject->getString('secret');
+		$this->force_login = $configObject->getBoolean('force_login', FALSE);
 	}
 
 
@@ -69,7 +71,11 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 		SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
 
 		// Authorize the request token
-		$consumer->getAuthorizeRequest('https://api.twitter.com/oauth/authenticate', $requestToken);
+		$url = 'https://api.twitter.com/oauth/authenticate';
+		if ($this->force_login) {
+			$url = SimpleSAML_Utilities::addURLparameter($url, array('force_login' => 'true'));
+		}
+		$consumer->getAuthorizeRequest($url, $requestToken);
 	}
 	
 	
