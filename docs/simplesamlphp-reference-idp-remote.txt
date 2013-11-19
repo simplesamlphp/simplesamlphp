@@ -142,6 +142,18 @@ The following SAML 2.0 options are available:
 `SingleLogoutServiceResponse`
 :   Endpoint URL for logout responses. Overrides the `SingleLogoutService`-option for responses.
 
+`signature.algorithm`
+:   The algorithm to use when signing any message sent to this specific identity provider. Defaults to RSA-SHA1.
+:   Note that this option also exists in the SP configuration.
+    This value in the IdP remote metadata overrides the value in the SP configuration.
+:   Possible values:
+
+    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+       *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
+
 `SPNameQualifier`
 :   This corresponds to the SPNameQualifier in the SAML 2.0 specification. It allows to give subjects a SP specific namespace. This option is rarely used, so if you don't need it, leave it out. When left out, simpleSAMLphp assumes the entityID of your SP as the SPNameQualifier.
 
