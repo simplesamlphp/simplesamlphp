@@ -231,6 +231,18 @@ The following SAML 2.0 options are available:
 :   Note that this option also exists in the IdP-hosted metadata.
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
 
+`signature.algorithm`
+:   The algorithm to use when signing any message sent to this specific service provider. Defaults to RSA-SHA1.
+:   Note that this option also exists in the IdP-hosted metadata.
+    The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+:   Possible values:
+
+    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+       *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
+
 `simplesaml.nameidattribute`
 :   When the value of the `NameIDFormat`-option is set to either
     `email` or `persistent`, this is the name of the attribute which
