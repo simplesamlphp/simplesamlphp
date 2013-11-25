@@ -995,6 +995,31 @@ class SimpleSAML_Configuration {
 		assert('is_string($endpointType)');
 
 		$endpoints = $this->getEndpoints($endpointType);
+
+		// SingleLogoutService is not an IndexedEndpointType, so we are free to choose the default.
+		if ($endpointType === "SingleLogoutService") {
+			
+
+			$eps = array();
+			foreach ($endpoints as $ep) {
+				if ($bindings !== NULL && !in_array($ep['Binding'], $bindings, TRUE)) {
+					/* Unsupported binding. Skip it. */
+					continue;
+				}
+				$eps[$ep['Binding']] = $ep;
+			}
+
+			// We will apply the following order:
+			// 1st: SAML2_Const::BINDING_SOAP
+			// 2nd: SAML2_Const::BINDING_HTTP_REDIRECT
+			if (isset($eps[SAML2_Const::BINDING_SOAP])) {
+				return $eps[SAML2_Const::BINDING_SOAP];
+			}
+			if (isset($eps[SAML2_Const::BINDING_HTTP_REDIRECT])) {
+				return $eps[SAML2_Const::BINDING_HTTP_REDIRECT];
+			}
+		}
+
 		$defaultEndpoint = SimpleSAML_Utilities::getDefaultEndpoint($endpoints, $bindings);
 		if ($defaultEndpoint !== NULL) {
 			return $defaultEndpoint;
