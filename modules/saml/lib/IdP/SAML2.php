@@ -546,8 +546,7 @@ class sspmod_saml_IdP_SAML2 {
 
 
 	/**
-     * Retrieve a logout URL for a given logout association. Only for logout endpoints that support
-     * HTTP-Redirect binding.
+     * Retrieve a logout URL for a given logout association.
 	 *
 	 * @param SimpleSAML_IdP $idp  The IdP we are sending a logout request from.
 	 * @param array $association  The association that should be terminated.
@@ -562,9 +561,18 @@ class sspmod_saml_IdP_SAML2 {
 		$idpMetadata = $idp->getConfig();
 		$spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
-		// It doesn't make sense to use HTTP-Post when asking for a logout URL, therefore we allow only
-		// HTTP-Redirect.
-		$dst = $spMetadata->getDefaultEndpoint('SingleLogoutService', array(SAML2_Const::BINDING_HTTP_REDIRECT));
+		$bindings = array(SAML2_Const::BINDING_HTTP_REDIRECT,
+						  SAML2_Const::BINDING_HTTP_POST);
+		$dst = $spMetadata->getDefaultEndpoint('SingleLogoutService', $bindings);
+
+		if ($dst['Binding'] === SAML2_Const::BINDING_HTTP_POST) {
+			$params = array('association' => $association['id'], 'idp' => $idp->getId());
+			if ($relayState !== NULL) {
+				$params['RelayState'] = $relayState;
+			}
+			return SimpleSAML_Module::getModuleURL('core/idp/logout-iframe-post.php', $params);
+		}
+
 		$lr = self::buildLogoutRequest($idpMetadata, $spMetadata, $association, $relayState);
 		$lr->setDestination($dst['Location']);
 
