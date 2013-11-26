@@ -40,6 +40,16 @@ if (isset($_REQUEST['prefix'])) $prefix = $_REQUEST['prefix'];
 $suffix = '';
 if (isset($_REQUEST['suffix'])) $suffix = $_REQUEST['suffix'];
 
+/* Make sure that the request isn't suspicious (contains references to current
+ * directory or parent directory or anything like that. Searching for './' in the
+ * URL will detect both '../' and './'. Searching for '\' will detect attempts to
+ * use Windows-style paths.
+ */
+if (strpos($attributemap, '\\') !== FALSE) {
+	throw new SimpleSAML_Error_BadRequest('Requested URL contained a backslash.');
+} elseif (strpos($attributemap, './') !== FALSE) {
+	throw new SimpleSAML_Error_BadRequest('Requested URL contained \'./\'.');
+}
 
 $arp = new sspmod_aggregator_ARP($md, $attributemap, $prefix, $suffix);
 
