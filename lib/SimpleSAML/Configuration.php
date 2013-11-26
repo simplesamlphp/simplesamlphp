@@ -984,6 +984,36 @@ class SimpleSAML_Configuration {
 
 
 	/**
+	 * Find an endpoint of the given type, using a list of supported bindings as a way to prioritize.
+	 *
+	 * @param string $endpointType  The endpoint type.
+	 * @param array $bindings  Sorted array of acceptable bindings.
+	 * @param mixed $default  The default value to return if no matching endpoint is found. If no default is provided, an exception will be thrown.
+	 * @return  array|NULL  The default endpoint, or NULL if no acceptable endpoints are used.
+	 */
+	public function getEndpointPrioritizedByBinding($endpointType, array $bindings, $default = self::REQUIRED_OPTION) {
+		assert('is_string($endpointType)');
+
+		$endpoints = $this->getEndpoints($endpointType);
+
+		foreach ($bindings as $binding) {
+			foreach ($endpoints as $ep) {
+				if ($ep['Binding'] === $binding) {
+					return $ep;
+				}
+			}
+		}
+
+		if ($default === self::REQUIRED_OPTION) {
+			$loc = $this->location . '[' . var_export($endpointType, TRUE) . ']:';
+			throw new Exception($loc . 'Could not find a supported ' . $endpointType . ' endpoint.');
+		}
+
+		return $default;
+	}
+
+
+	/**
 	 * Find the default endpoint of the given type.
 	 *
 	 * @param string $endpointType  The endpoint type.
@@ -995,30 +1025,6 @@ class SimpleSAML_Configuration {
 		assert('is_string($endpointType)');
 
 		$endpoints = $this->getEndpoints($endpointType);
-
-		// SingleLogoutService is not an IndexedEndpointType, so we are free to choose the default.
-		if ($endpointType === "SingleLogoutService") {
-			
-
-			$eps = array();
-			foreach ($endpoints as $ep) {
-				if ($bindings !== NULL && !in_array($ep['Binding'], $bindings, TRUE)) {
-					/* Unsupported binding. Skip it. */
-					continue;
-				}
-				$eps[$ep['Binding']] = $ep;
-			}
-
-			// We will apply the following order:
-			// 1st: SAML2_Const::BINDING_SOAP
-			// 2nd: SAML2_Const::BINDING_HTTP_REDIRECT
-			if (isset($eps[SAML2_Const::BINDING_SOAP])) {
-				return $eps[SAML2_Const::BINDING_SOAP];
-			}
-			if (isset($eps[SAML2_Const::BINDING_HTTP_REDIRECT])) {
-				return $eps[SAML2_Const::BINDING_HTTP_REDIRECT];
-			}
-		}
 
 		$defaultEndpoint = SimpleSAML_Utilities::getDefaultEndpoint($endpoints, $bindings);
 		if ($defaultEndpoint !== NULL) {

@@ -407,7 +407,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$idpMetadata = $this->getIdPMetadata($idp);
 
-		$endpoint = $idpMetadata->getDefaultEndpoint('SingleLogoutService', array(
+		$endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
 			SAML2_Const::BINDING_HTTP_REDIRECT,
 			SAML2_Const::BINDING_HTTP_POST), FALSE);
 		if ($endpoint === FALSE) {

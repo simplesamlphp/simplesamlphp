@@ -52,7 +52,7 @@ if ($message instanceof SAML2_LogoutRequest) {
 
 		SimpleSAML_Logger::info('SAML2.0 - SP.SingleLogoutService: SP me (' . $spEntityId . ') is sending logout response to IdP (' . $idpEntityId . ')');
 
-		$dst = $idpMetadata->getDefaultEndpoint('SingleLogoutService', array(
+		$dst = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
 			SAML2_Const::BINDING_HTTP_REDIRECT,
 			SAML2_Const::BINDING_HTTP_POST)
 		);

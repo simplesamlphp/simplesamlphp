@@ -403,7 +403,7 @@ class sspmod_saml_IdP_SAML2 {
 			'idpEntityID' => $idpMetadata->getString('entityid'),
 		));
 
-		$dst = $spMetadata->getDefaultEndpoint('SingleLogoutService', array(
+		$dst = $spMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
 			SAML2_Const::BINDING_HTTP_REDIRECT,
 			SAML2_Const::BINDING_HTTP_POST)
 		);
@@ -453,7 +453,7 @@ class sspmod_saml_IdP_SAML2 {
 			'idpEntityID' => $idpMetadata->getString('entityid'),
 			'partial' => $partial
 		));
-		$dst = $spMetadata->getDefaultEndpoint('SingleLogoutService', array(
+		$dst = $spMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
 			SAML2_Const::BINDING_HTTP_REDIRECT,
 			SAML2_Const::BINDING_HTTP_POST)
 		);
@@ -563,7 +563,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		$bindings = array(SAML2_Const::BINDING_HTTP_REDIRECT,
 						  SAML2_Const::BINDING_HTTP_POST);
-		$dst = $spMetadata->getDefaultEndpoint('SingleLogoutService', $bindings);
+		$dst = $spMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', $bindings);
 
 		if ($dst['Binding'] === SAML2_Const::BINDING_HTTP_POST) {
 			$params = array('association' => $association['id'], 'idp' => $idp->getId());

@@ -108,7 +108,7 @@ if ($message instanceof SAML2_LogoutResponse) {
 		SimpleSAML_Logger::warning('Logged out of ' . $numLoggedOut  . ' of ' . count($sessionIndexes) . ' sessions.');
 	}
 
-	$dst = $idpMetadata->getDefaultEndpoint('SingleLogoutService', array(
+	$dst = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
 		SAML2_Const::BINDING_HTTP_REDIRECT,
 		SAML2_Const::BINDING_HTTP_POST)
 	);
