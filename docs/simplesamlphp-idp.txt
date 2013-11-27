@@ -122,6 +122,23 @@ This configuration creates two users - `student` and `employee`, with the passwo
 The attributes will be returned by the IdP when the user logs on.
 
 
+Creating a SSL self signed certificate
+--------------------------------------
+
+Here is an example of an `openssl`-command which can be used to generate a new private key key and the corresponding self-signed certificate.
+
+This key and certificate can be used to sign SAML messages:
+
+    openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out example.org.crt -keyout example.org.pem
+
+The certificate above will be valid for 10 years.
+
+
+### Note ###
+
+simpleSAMLphp will only work with RSA certificates. DSA certificates are not supported.
+
+
 Configuring the IdP
 -------------------
 
@@ -142,8 +159,8 @@ This is a minimal configuration of a SAML 2.0 IdP:
          * The private key and certificate to use when signing responses.
          * These are stored in the cert-directory.
          */
-        'privatekey' => 'server.pem',
-        'certificate' => 'server.crt',
+        'privatekey' => 'example.org.pem',
+        'certificate' => 'example.org.crt',
 
         /*
          * The authentication source which should be used to authenticate the
@@ -187,30 +204,6 @@ Note that the URI in the entityID and the URLs to the AssertionConsumerService a
 If you have the metadata of the remote SP as an XML file, you can use the built-in XML to simpleSAMLphp metadata converter, which by default is available as `/admin/metadata-converter.php` in your simpleSAMLphp installation.
 
 For more information about available options in the sp-remote metadata files, see the [SP remote reference](simplesamlphp-reference-sp-remote).
-
-
-Creating a SSL self signed certificate
---------------------------------------
-
-For test purposes, you can skip this section, and use the certificate included in the simpleSAMLphp distribution.
-
-Here is an example of an `openssl`-command which can be used to generate a new private key key and the corresponding self-signed certificate.
-
-This key and certificate can be used to sign SAML messages:
-
-    openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out example.org.crt -keyout example.org.pem
-
-The certificate above will be valid for 10 years.
-
-
-### Note ###
-
-simpleSAMLphp will only work with RSA certificates. DSA certificates are not supported.
-
-
-### Warning ###
-
-The certificate that is included in the simpleSAMLphp distribution must **NEVER** be used in production, as the private key is also included in the package and can be downloaded by anyone.
 
 
 Adding this IdP to other SPs

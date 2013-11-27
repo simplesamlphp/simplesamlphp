@@ -196,7 +196,7 @@ These options overrides the options set in `saml20-sp-hosted`.
 **Example: Configuration for validating messages**
 
     'redirect.validate' => TRUE,
-    'certificate' => 'server.crt',
+    'certificate' => 'example.org.crt',
 
 
 Shibboleth 1.3 options
@@ -238,7 +238,7 @@ Calculating the fingerprint of a certificate
 
 If you have obtained a certificate file, and want to calculate the fingerprint of the file, you can use the `openssl` command:
 
-    $ openssl x509 -noout -fingerprint -in "server.crt"
+    $ openssl x509 -noout -fingerprint -in "example.org.crt"
     SHA1 Fingerprint=AF:E7:1C:28:EF:74:0B:C8:74:25:BE:13:A2:26:3D:37:97:1D:A1:F9
 
 In this case, the certFingerprint option should be set to `AF:E7:1C:28:EF:74:0B:C8:74:25:BE:13:A2:26:3D:37:97:1D:A1:F9`.

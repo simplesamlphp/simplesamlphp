@@ -362,8 +362,8 @@ These are some examples of IdP metadata
         'host' => '__DEFAULT__',
 
         /* The private key and certificate used by this IdP. */
-        'certificate' => 'server.crt',
-        'privatekey' => 'server.pem',
+        'certificate' => 'example.org.crt',
+        'privatekey' => 'example.org.pem',
 
         /*
          * The authentication source for this IdP. Must be one

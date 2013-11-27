@@ -339,7 +339,7 @@ These options overrides the options set in `saml20-idp-hosted`.
 **Example: Configuration for validating messages**
 
     'redirect.validate' => TRUE,
-    'certificate' => 'server.crt',
+    'certificate' => 'example.org.crt',
 
 ### Fields for scoping
 

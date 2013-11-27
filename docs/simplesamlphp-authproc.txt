@@ -109,8 +109,8 @@ Filters can be added both in `hosted` and `remote` metadata. Here is an example 
 
 	'__DYNAMIC:1__' => array(
 		'host'				=>	'__DEFAULT_',
-		'privatekey'		=>	'server.pem',
-		'certificate'		=>	'server.crt',
+		'privatekey'		=>	'example.org.pem',
+		'certificate'		=>	'example.org.crt',
 		'auth'				=>	'feide',
 		'authproc' => array(
 			40 => 'core:AttributeRealm',

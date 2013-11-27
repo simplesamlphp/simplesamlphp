@@ -140,8 +140,8 @@ To use this authentication source in a SAML 2.0 IdP, set the
 
     '__DYNAMIC:1__' => array(
       'host' => '__DEFAULT__',
-      'privatekey' => 'server.pem',
-      'certificate' => 'server.crt',
+      'privatekey' => 'example.org.pem',
+      'certificate' => 'example.org.crt',
       'auth' => 'example-static',
     ),
 

@@ -79,8 +79,8 @@ If given the following configuration...
 
     $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = array(
         'host' => 'www.example.com',
-        'certificate' => 'server.crt',
-        'privatekey' => 'server.pem',
+        'certificate' => 'example.com.crt',
+        'privatekey' => 'example.com.pem',
         'auth' => 'example-userpass',
 
 		'EntityAttributes' => array(
