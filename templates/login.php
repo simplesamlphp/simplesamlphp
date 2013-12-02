@@ -54,7 +54,7 @@
 			<td><input id="password" type="password" tabindex="2" name="password" /></td>
 		</tr>
 	<tr><td></td><td>
-	<input type="submit" tabindex="5" id="mobilesubmit" value="<?php echo $this->t('{login_button}'); ?>" />
+	<input type="submit" tabindex="5" id="mobilesubmit" value="<?php echo $this->t('login_button'); ?>" />
 	</td></tr>
 	</table>
 	
