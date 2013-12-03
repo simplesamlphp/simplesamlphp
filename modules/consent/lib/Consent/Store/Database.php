@@ -511,4 +511,24 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         return $error[0] . ' - ' . $error[2] . ' (' . $error[1] . ')';
     }
+
+    /**
+     * A quick selftest of the consent database.
+     *
+     * @return boolen TRUE if OK, FALSE if not. Will throw an exception on connection errors.
+     */
+    public function selftest()
+    {
+        $st = $this->_execute(
+            'SELECT * FROM ' . $this->_table . ' WHERE hashed_user_id = ? AND service_id = ? AND attribute = ?',
+            array('test', 'test', 'test')
+        );
+
+        if ($st === FALSE) {
+            /* Normally, the test will fail by an exception, so we won't reach this code. */
+            return FALSE;
+        }
+
+	return TRUE;
+    }
 }
