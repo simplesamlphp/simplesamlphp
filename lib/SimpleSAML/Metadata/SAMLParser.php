@@ -102,7 +102,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
-	 * This is an array of elements that may be sued to validate this element.
+	 * This is an array of elements that may be used to validate this element.
 	 *
 	 * @var array
 	 */
