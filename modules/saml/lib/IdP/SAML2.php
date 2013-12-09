@@ -865,7 +865,10 @@ class sspmod_saml_IdP_SAML2 {
 
 		if ($nameIdFormat === NULL || !isset($state['saml:NameID'][$nameIdFormat])) {
 			/* Either not set in request, or not set to a format we supply. Fall back to old generation method. */
-			$nameIdFormat = $spMetadata->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
+			$nameIdFormat = $spMetadata->getString('NameIDFormat', NULL);
+			if ($nameIdFormat === NULL) {
+				$nameIdFormat = $idpMetadata->getString('NameIDFormat', SAML2_Const::NAMEID_TRANSIENT);
+			}
 		}
 
 		if (isset($state['saml:NameID'][$nameIdFormat])) {
