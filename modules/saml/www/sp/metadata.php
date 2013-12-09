@@ -118,6 +118,11 @@ if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$certData = NULL;
 }
 
+$format = $spconfig->getString('NameIDPolicy', NULL);
+if ($format !== NULL) {
+    $metaArray20['NameIDFormat'] = $format;
+}
+
 $name = $spconfig->getLocalizedString('name', NULL);
 $attributes = $spconfig->getArray('attributes', array());
 
