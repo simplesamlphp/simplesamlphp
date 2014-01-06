@@ -32,6 +32,11 @@ class sspmod_smartattributes_Auth_Process_SmartID extends SimpleSAML_Auth_Proces
 	private $_add_authority = true;
 
 	/**
+	 * Whether to prepend the CandidateID, separated by ':'
+	 */
+	private $_add_candidate = true;
+
+	/**
 	 * Attributes which should be added/appended.
 	 *
 	 * Associative array of arrays.
@@ -65,15 +70,22 @@ class sspmod_smartattributes_Auth_Process_SmartID extends SimpleSAML_Auth_Proces
 			}
 		}
 
+		if (array_key_exists('add_candidate', $config)) {
+			$this->_add_candidate = $config['add_candidate'];
+			if (!is_bool($this->_add_candidate)) {
+				throw new Exception('SmartID authproc configuration error: \'add_candidate\' should be a boolean.');
+			}
+		}
+
 	}
 
 	private function addID($attributes, $request) {
 		foreach ($this->_candidates as $idCandidate) {
 			if (isset($attributes[$idCandidate][0])) {
 				if(($this->_add_authority) && (isset($request['saml:AuthenticatingAuthority'][0]))) {
-					return $idCandidate.':'.$attributes[$idCandidate][0] . '!' . $request['saml:AuthenticatingAuthority'][0];
+					return ($this->_add_candidate ? $idCandidate.':' : '').$attributes[$idCandidate][0] . '!' . $request['saml:AuthenticatingAuthority'][0];
 				} else {
-					return $idCandidate.':'.$attributes[$idCandidate][0];
+					return ($this->_add_candidate ? $idCandidate.':' : '').$attributes[$idCandidate][0];
 				}
 			}
 		}
