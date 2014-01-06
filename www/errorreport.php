@@ -91,7 +91,7 @@ if (!preg_match('/\s/', $email) && strpos($email, '@') !== FALSE) {
 
 /* Send the email. */
 $toAddress = $config->getString('technicalcontact_email', 'na@example.org');
-if ($toAddress !== 'na@example.org') {
+if ($config->getBoolean('errorreporting', TRUE) && $toAddress !== 'na@example.org') {
 	$email = new SimpleSAML_XHTML_EMail($toAddress, 'simpleSAMLphp error report', $from);
 	$email->setBody($message);
 	$email->send();

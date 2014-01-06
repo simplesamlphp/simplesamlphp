@@ -263,7 +263,8 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 		$data['includeTemplate'] = $this->includeTemplate;
 
 		/* Check if there is a valid technical contact email address. */
-		if($config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org') {
+		if($config->getBoolean('errorreporting', TRUE) &&
+			$config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org') {
 			/* Enable error reporting. */
 			$baseurl = SimpleSAML_Utilities::getBaseURL();
 			$data['errorReportAddress'] = $baseurl . 'errorreport.php';

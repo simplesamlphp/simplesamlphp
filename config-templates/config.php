@@ -46,8 +46,15 @@ $config = array (
 	 */
 	'debug' => FALSE,
 
-
+	/*
+	 * When showerrors is enabled, all error messages and stack traces will be output
+	 * to the browser.
+	 *
+	 * When errorreporting is enabled, a form will be presented for the user to report
+	 * the error to technicalcontact_email.
+	 */
 	'showerrors'            =>	TRUE,
+	'errorreporting'		=>	TRUE,
 
 	/**
 	 * Custom error show function called from SimpleSAML_Error_Error::show.
