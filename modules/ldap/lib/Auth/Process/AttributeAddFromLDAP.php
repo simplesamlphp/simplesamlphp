@@ -102,12 +102,6 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
 		assert('array_key_exists("Attributes", $request)');
 
 		$attributes =& $request['Attributes'];
-		$map =& $this->attribute_map;
-
-		if(!isset($attributes[$map['username']])){
-			throw new Exception('The user\'s identity does not have an attribute called "'.$map['username'].'"');
-		}
-
 
 		// perform a merge on the ldap_search_filter
 
