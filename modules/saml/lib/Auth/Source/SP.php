@@ -222,8 +222,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		if (isset($state['saml:IDPList'])) {
 			$IDPList = $state['saml:IDPList'];
 		} else {
-            $IDPList = array();
-        }
+			$IDPList = array();
+		}
 		
 		$ar->setIDPList(array_unique(array_merge($this->metadata->getArray('IDPList', array()), 
 												$idpMetadata->getArray('IDPList', array()),
@@ -340,16 +340,20 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		}
 
 		$returnTo = SimpleSAML_Module::getModuleURL('saml/sp/discoresp.php', array('AuthID' => $id));
-        
-        $params = array(
-            'entityID' => $this->entityId,
-            'return' => $returnTo,
-            'returnIDParam' => 'idpentityid'
-        );
-        
-        if(isset($state['saml:IDPList'])) {
-            $params['IDPList'] = $state['saml:IDPList'];
-        }
+		
+		$params = array(
+			'entityID' => $this->entityId,
+			'return' => $returnTo,
+			'returnIDParam' => 'idpentityid'
+		);
+		
+		if(isset($state['saml:IDPList'])) {
+			$params['IDPList'] = $state['saml:IDPList'];
+		}
+
+		if (isset($state['isPassive']) && $state['isPassive']) {
+			$params['isPassive'] = 'true';
+		}
 
 		SimpleSAML_Utilities::redirect($discoURL, $params);
 	}
