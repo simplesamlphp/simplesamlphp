@@ -181,7 +181,7 @@
 		"pt-br": "Sobre o simpleSAMLphp",
 		"pt": "Sobre o simpleSAMLphp",
 		"pl": "O simpleSAMLphp",
-		"cs": " ",
+		"cs": "O aplikaci simpleSAMLphp",
 		"tr": "simpleSAMLphp hakk\u0131nda",
 		"it": "A proposito di simpleSAMLphp",
 		"lt": "Apie simpleSAMLphp",
@@ -214,7 +214,7 @@
 		"pt-br": "Este simpleSAMLphp \u00e9 uma coisa muito legal, onde posso ler mais sobre isso? Voc\u00ea pode encontrar mais informa\u00e7\u00f5es sobre o <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp no blog de Feide RnD<\/a> durante a <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"pt": "Pode encontrar mais informa\u00e7\u00e3o sobre o <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp no blog da Feide RnD<\/a> em <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"pl": "Ten simpleSAMLphp jest niez\u0142y, gdzie mog\u0119 poczyta\u0107 o tym? Mo\u017cesz znale\u017a\u0107 wi\u0119cej informacji o <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp na blogu Feide RnD<\/a> oraz na stronie <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
-		"cs": " ",
+		"cs": "Tato vlastnost simpleSAMLphp je velmi p\u011bkn\u00e1, kde se o n\u00ed mohu do\u010d\u00edst v\u00edce? Dal\u0161\u00ed informace o simpleSAMLphp z\u00edsk\u00e1te <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">na blogu Feide RnD<\/a> na <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"tr": "Bu simpleSAMLphp olduk\u00e7a iyiymi\u015f, daha fazla bilgiyi nereden okuyabilirim? <a href=\"http:\/\/uninett.no\">UNINETT<\/a> \u00fczerinde <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">Feide RnD blog'unda simpleSAMLphp <\/a> hakk\u0131nda daha fazlas\u0131n\u0131 bulabilirsiniz.",
 		"it": "Questo simpleSAMLphp &egrave; davvero un bel prodotto, dove trovo ulteriori informazioni a riguardo? Puoi trovare maggiori informazioni su <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp nel Blog di Feide RnD<\/a> oltre che <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"lt": "\u0160is simpleSAMLphp dalykas yra gana puikus, kur gal\u0117\u010diau daugiau apie j\u012f paskaityti? Daugiau informacijos apie <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp galite rasti Feide RnD blog'e<\/a> bei <a href=\"http:\/\/uninett.no\">UNINETT<\/a> svetain\u0117je.",
@@ -1372,7 +1372,8 @@
 		"lv": "Autentifik\u0101cija",
 		"id": "Autentifikasi",
 		"sr": "Autentifikacija",
-		"ro": "Autentificare"
+		"ro": "Autentificare",
+		"cs": "Autentizace"
 	},
 	"federation": {
 		"no": "F\u00f8derasjon",
@@ -1403,7 +1404,8 @@
 		"lv": "Feder\u0101cija",
 		"id": "Federasi",
 		"sr": "Federacija",
-		"ro": "Federa\u021bie"
+		"ro": "Federa\u021bie",
+		"cs": "Federace"
 	},
 	"authtest": {
 		"no": "Test konfigurerte autentiseringskilder",
@@ -1432,7 +1434,8 @@
 		"lv": "Test\u0113t konfigur\u0113tos autentifik\u0101cijas avotus",
 		"id": "Memerika sumber autentifikasi yang telah dikonfigurasi",
 		"sr": "Testirajte pode\u0161ene autentifikacione servise",
-		"ro": "Surse de autentificare configurate pentru teste"
+		"ro": "Surse de autentificare configurate pentru teste",
+		"cs": "Otestovat nakonfigurovan\u00e9 autentiza\u010dn\u00ed zdroje"
 	},
 	"deprecated": {
 		"no": "Utdatert",
@@ -1462,7 +1465,8 @@
 		"lv": "Atcelts",
 		"id": "Usang",
 		"sr": "Zastarelo",
-		"ro": "Depreciate"
+		"ro": "Depreciate",
+		"cs": "Zastaral\u00e9"
 	},
 	"page_title": {
 		"sv": "Installationssida f\u00f6r simpleSAMLphp",
@@ -1489,7 +1493,8 @@
 		"id": "Halaman instalasi simpleSAMLphp",
 		"lv": "simpleSAMLphp instal\u0101cijas lapa",
 		"sr": "simpleSAMLphp instalaciona stranica",
-		"ro": "Pagina de instalare a simpleSAMLphp"
+		"ro": "Pagina de instalare a simpleSAMLphp",
+		"cs": "Instala\u010dn\u00ed str\u00e1nka simpleSAMLphp"
 	},
 	"warnings_suhosin_url_length": {
 		"no": "Lengden p\u00e5 foresp\u00f8rselparametre er begrenset av PHP Suhosin utvidelsen. Vennligst \u00f8k suhosin.get.max_value_length konfigurasjonsinnstillingen til minst 2048 tegn.",
@@ -1515,6 +1520,7 @@
 		"it": "La lunghezza dei parametri della query \u00e8 limitato dall'estensione PHP Suhosin. Incrementa l'opzione suhosin.get.max_value_lenght ad almeno 2048 bytes",
 		"nl": "De lengte van de query-parameters wordt beperkt door PHP's Suhosin-extensie. Gelieve de optie suhosin.get.max_value_length te verhogen tot tenminste 2048 bytes.",
 		"es": "El n\u00famero de par\u00e1metros de la petici\u00f3n est\u00e1 limitado por la extensi\u00f3n Suhosin de PHP. Por favor, incremente el valor de la opci\u00f3n suhosin.get.max_value_length a al menos 2048 bytes.",
-		"ro": "Lungimea parametrilor din cerere este limitat\u0103 de extensia Suhosin a PHP. V\u0103 rug\u0103m s\u0103 modifica\u021bi <i>suhosin.get.max_value_length<\/i> la cel pu\u021bin 2048 de octe\u021bi."
+		"ro": "Lungimea parametrilor din cerere este limitat\u0103 de extensia Suhosin a PHP. V\u0103 rug\u0103m s\u0103 modifica\u021bi <i>suhosin.get.max_value_length<\/i> la cel pu\u021bin 2048 de octe\u021bi.",
+		"cs": "D\u00e9lka parametr\u016f dotazu je limitov\u00e1na roz\u0161\u00ed\u0159en\u00edm PHP Suhosin. Pros\u00edm, zvy\u0161te parametr suhosin.get.max_value_length alespo\u0148 na 2048 bajt\u016f."
 	}
 }

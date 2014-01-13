@@ -156,7 +156,7 @@
 		"zh-tw": "\u767b\u5165",
 		"et": "logi sisse",
 		"he": "\u05db\u05e0\u05d9\u05e1\u05d4",
-		"ru": "\u0432\u043e\u0439\u0442\u0438",
+		"ru": "\u041b\u043e\u0433\u0438\u043d",
 		"zh": "\u767b\u5f55",
 		"ar": "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644",
 		"lv": "piesl\u0113gties",
@@ -384,7 +384,7 @@
 		"zh-tw": "\u60a8\u4e0d\u540c\u610f\u50b3\u8f38\u60a8\u7684\u5c6c\u6027\u81f3\u670d\u52d9\u63d0\u4f9b\u8005\u3002",
 		"et": "Sa ei andnud n\u00f5usolekut sinu atribuutide teenusepakkujale edastamiseks.",
 		"he": "\u05dc\u05d0 \u05e0\u05ea\u05e0\u05ea \u05d4\u05e1\u05db\u05de\u05d4 \u05dc\u05d4\u05e2\u05d1\u05e8\u05ea \u05d4\u05de\u05d0\u05e4\u05d9\u05d9\u05e0\u05d9\u05dd \u05dc\u05e1\u05e4\u05e7 \u05d4\u05e9\u05d9\u05e8\u05d5\u05ea.",
-		"ru": "\u0412\u044b \u043d\u0435 \u0434\u0430\u043b\u0438 \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u043d\u0430 \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0443 \u0432\u0430\u0448\u0438\u0445 \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u043e\u0432 \u043a \u043f\u043e\u0441\u0442\u0430\u0432\u0449\u0438\u043a\u0443 \u0443\u0441\u043b\u0443\u0433.",
+		"ru": "\u0412\u044b \u043d\u0435 \u0434\u0430\u043b\u0438 \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u044f \u043d\u0430 \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0443 \u0432\u0430\u0448\u0438\u0445 \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u043e\u0432 \u043a \u043f\u043e\u0441\u0442\u0430\u0432\u0449\u0438\u043a\u0443 \u0443\u0441\u043b\u0443\u0433.",
 		"zh": "\u4f60\u6ca1\u6709\u540c\u610f\u4f20\u8f93\u4f60\u7684\u76f8\u5173\u5c5e\u6027\u7ed9\u670d\u52a1\u63d0\u4f9b\u8005",
 		"ar": "\u0644\u0645 \u062a\u0648\u0627\u0641\u0642 \u0639\u0644\u064a \u062a\u062d\u0648\u064a\u0644 \u0633\u0645\u0627\u062a\u0643 \u0644\u0645\u0642\u062f\u0645 \u0627\u0644\u062e\u062f\u0645\u0629",
 		"lv": "J\u016bs neesat devis at\u013cauju p\u0101rraid\u012bt inform\u0101ciju servisa pieg\u0101d\u0101t\u0101jam.",
@@ -421,7 +421,8 @@
 		"lv": "Atgriezties uz noteikumu lapu",
 		"id": "Kembali ke halaman persetujuan",
 		"sr": "Povratak na stranicu za kreiranje pristanka",
-		"ro": "\u00centoarcere la pagina de consim\u021b\u0103m\u00e2nt"
+		"ro": "\u00centoarcere la pagina de consim\u021b\u0103m\u00e2nt",
+		"ru": "\u0412\u0435\u0440\u043d\u0443\u0442\u044c\u0441\u044f \u043d\u0430 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443 \u0434\u043b\u044f \u0432\u044b\u0440\u0430\u0436\u0435\u043d\u0438\u044f \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u044f"
 	},
 	"consent_header": {
 		"no": "Samtykke om overf\u00f8ring av personinformasjon",
@@ -452,7 +453,8 @@
 		"lv": "Noteikumi par person\u012bg\u0101s inform\u0101cijas nodo\u0161anu",
 		"id": "Persetujuan tentang melepas informasi personal",
 		"sr": "Pristanak za slanje li\u010dnih podataka",
-		"ro": "Acordul pentru a furniza informa\u021bii personale"
+		"ro": "Acordul pentru a furniza informa\u021bii personale",
+		"ru": "\u0421\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u043d\u0430 \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0443 \u043d\u0435\u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445"
 	},
 	"consent_attributes_header": {
 		"no": "Opplysninger som vil bli sendt til SPNAME",
@@ -482,7 +484,8 @@
 		"lv": "Inform\u0101cija, kas tiks s\u016bt\u012bta SPNAME",
 		"id": "Informasi yang akan dikirim ke SPNAME",
 		"sr": "Informacije koje \u0107e biti poslate servisu SPNAME",
-		"ro": "Informa\u021bii care vor fi trimise la SPNAME"
+		"ro": "Informa\u021bii care vor fi trimise la SPNAME",
+		"ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0431\u0443\u0434\u0435\u0442 \u043f\u0435\u0440\u0435\u0434\u0430\u043d\u0430 \u0432 SPNAME "
 	},
 	"show_attributes": {
 		"no": "Vis opplysninger",
@@ -513,7 +516,8 @@
 		"lv": "R\u0101d\u012bt atrib\u016btus",
 		"id": "Perlihatkan atribut-atribut",
 		"sr": "Prika\u017ei atribute",
-		"ro": "Arat\u0103 atributele"
+		"ro": "Arat\u0103 atributele",
+		"ru": "\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b"
 	},
 	"noconsent_goto_about": {
 		"no": "G\u00e5 til informasjonsside om tjenesten",
@@ -544,7 +548,8 @@
 		"lv": "Iet uz servisa inform\u0101cijas lapu",
 		"id": "Pergi ke halaman informasi untul layanan",
 		"sr": "Idi na stranicu sa informacijama o servisu",
-		"ro": "Link la pagina serviciului"
+		"ro": "Link la pagina serviciului",
+		"ru": "\u041f\u0435\u0440\u0435\u0439\u0442\u0438 \u043d\u0430 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443 \u0441 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0435\u0439 \u043e \u0434\u0430\u043d\u043d\u043e\u0439 \u0441\u043b\u0443\u0436\u0431\u0435"
 	},
 	"consent_purpose": {
 		"no": "Form\u00e5let med SPNAME er SPDESC",
@@ -574,7 +579,8 @@
 		"lv": "SPNAME nol\u016bks ir SPDESC",
 		"id": "Tujuan dari SPNAME adalah SPDESC",
 		"sr": "Namena servisa SPNAME je SPDESC",
-		"ro": "Scopul SPNAME este SPDESC"
+		"ro": "Scopul SPNAME este SPDESC",
+		"ru": "\u0426\u0435\u043b\u044c SPNAME - SPDESC"
 	},
 	"table_caption": {
 		"no": "Bruker innformasjon",
@@ -603,7 +609,9 @@
 		"lv": "Lietot\u0101ja inform\u0101cija",
 		"id": "Informasi User",
 		"sr": "Informacije o korisniku",
-		"ro": "Informa\u021bii despre utilizator"
+		"ro": "Informa\u021bii despre utilizator",
+		"ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435",
+		"cs": "U\u017eivatelsk\u00e9 informace"
 	},
 	"table_summary": {
 		"no": "Her listes den innformasjonen om deg som blir send til den tjenesten du er i ferd med \u00e5 logge p\u00e5",
@@ -632,7 +640,9 @@
 		"lv": "Inform\u0101cija par Jums, kas tiks s\u016bt\u012bta servisam, kuram J\u016bs piesl\u0113dzaties",
 		"id": "Daftar informasi tentang Anda yang akan dikirimkan ke service tujuan login Anda.",
 		"sr": "Prika\u017ei spisak podataka o vama koji \u0107e biti prosle\u0111eni servisu kome \u017eelite pristupiti",
-		"ro": "Afi\u0219eaz\u0103 informa\u021biile care vor fi trimise la serviciul unde dori\u021bi s\u0103 v\u0103 autentifica\u021bi"
+		"ro": "Afi\u0219eaz\u0103 informa\u021biile care vor fi trimise la serviciul unde dori\u021bi s\u0103 v\u0103 autentifica\u021bi",
+		"ru": "\u0412\u044b\u0434\u0430\u0442\u044c \u0441\u043f\u0438\u0441\u043e\u043a \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0431\u0443\u0434\u0435\u0442 \u043f\u0435\u0440\u0435\u0434\u0430\u043d\u0430 \u0441\u043b\u0443\u0436\u0431\u0435, \u0432 \u043a\u043e\u0442\u043e\u0440\u0443\u044e \u0432\u044b \u043f\u044b\u0442\u0430\u0435\u0442\u0435\u0441\u044c \u0432\u043e\u0439\u0442\u0438",
+		"cs": "Seznam informac\u00ed o v\u00e1s, kter\u00e9 budou p\u0159ed\u00e1ny slu\u017eb\u011b, ke kter\u00e9 se p\u0159ihla\u0161ujete"
 	},
 	"show_attribute": {
 		"no": "Vis innhold",
@@ -660,7 +670,9 @@
 		"lv": "R\u0101d\u012bt saturu",
 		"id": "Perlihatkan konten",
 		"sr": "Prika\u017ei sadr\u017eaj",
-		"ro": "Arat\u0103 con\u021binutul"
+		"ro": "Arat\u0103 con\u021binutul",
+		"ru": "\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u043c\u043e\u0435",
+		"cs": "Zobrazit obsah"
 	},
 	"abort": {
 		"no": "Avbryt innlogging til SPNAME",
@@ -674,6 +686,8 @@
 		"nl": "Inloggen op SPNAME afbreken",
 		"es": "Cancelar la identificaci\u00f3n en SPNAME",
 		"ro": "Anuleaz\u0103 cererea de autentificare la SPNAME",
-		"ar": "\u0625\u0644\u063a\u0627\u0621 \u0639\u0645\u0644\u064a\u0629 \u0627\u0644\u062f\u062e\u0648\u0644 \u0644SPNAME"
+		"ar": "\u0625\u0644\u063a\u0627\u0621 \u0639\u0645\u0644\u064a\u0629 \u0627\u0644\u062f\u062e\u0648\u0644 \u0644SPNAME",
+		"ru": "\u041f\u0440\u0435\u043a\u0440\u0430\u0442\u0438\u0442\u044c \u043b\u043e\u0433\u0438\u043d \u0432 SPNAME",
+		"cs": "Zru\u0161it p\u0159ihl\u00e1\u0161en\u00ed k SPNAME"
 	}
 }

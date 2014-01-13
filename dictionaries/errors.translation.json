@@ -148,7 +148,7 @@
 		"pt-br": "Reportar erros",
 		"pt": "Reportar um erro",
 		"pl": "Raport b\u0142\u0119d\u00f3w",
-		"cs": "P\u0158chyb",
+		"cs": "Ozn\u00e1mit chyby",
 		"tr": "Hatalar\u0131 bildir",
 		"lt": "Prane\u0161ti apie klaidas",
 		"it": "Riporta gli errori",
@@ -1172,7 +1172,7 @@
 		"pt-br": "Erro CAS",
 		"pt": "Erro de CAS",
 		"pl": "B\u0142\u0105d CAS",
-		"cs": "CAS Chyba",
+		"cs": "CAS chyba",
 		"tr": "CAS Hatas\u0131",
 		"lt": "CAS klaida",
 		"it": "Errore CAS",
@@ -1860,7 +1860,8 @@
 		"lv": "Vai nu nav lietot\u0101ja ar nor\u0101d\u012bto lietot\u0101ja v\u0101rdu, vai parole nor\u0101d\u012bta k\u013c\u016bdaini. L\u016bdzu m\u0113\u0123iniet v\u0113lreiz.",
 		"id": "Username yang diberikan tidak dapat ditemukan, atau password yang Anda berikan salah. Silahkan periksa username dan coba lagi.",
 		"sr": "Korisnik s navedenim korisni\u010dkim imenom ne mo\u017ee biti prona\u0111en ili je lozinka koju ste uneli neispravna. Molimo proverite korisni\u010dko ime i poku\u0161ajte ponovo.",
-		"ro": "Nu a fost g\u0103sit niciun utilizator cu numele de utilizator specificat, sau parola introdus\u0103 este gre\u0219it\u0103. V\u0103 rug\u0103m s\u0103 \u00eencerca\u021bi din nou."
+		"ro": "Nu a fost g\u0103sit niciun utilizator cu numele de utilizator specificat, sau parola introdus\u0103 este gre\u0219it\u0103. V\u0103 rug\u0103m s\u0103 \u00eencerca\u021bi din nou.",
+		"ru": "\u041b\u0438\u0431\u043e \u043d\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f \u0441 \u0434\u0430\u043d\u043d\u044b\u043c \u0438\u043c\u0435\u043d\u0435\u043c, \u043b\u0438\u0431\u043e \u043d\u0435\u0432\u0435\u0440\u043d\u044b\u0439 \u043f\u0430\u0440\u043e\u043b\u044c.\u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u043f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0438\u043c\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f \u0438 \u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0441\u043d\u043e\u0432\u0430."
 	},
 	"title_RESPONSESTATUSNOSUCCESS": {
 		"no": "Feilmelding mottatt fra innloggingstjenesten",
@@ -1891,7 +1892,8 @@
 		"id": "Error diterima dari Identity Provider",
 		"sr": "Davalac Identiteta je prijavio gre\u0161ku",
 		"cs": "Chyba p\u0159ijat\u00e1 od poskytovatele identity",
-		"ro": "Eroare primit\u0103 de la furnizorul de identitate"
+		"ro": "Eroare primit\u0103 de la furnizorul de identitate",
+		"ru": "\u041e\u0442 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0430 \u043e\u0448\u0438\u0431\u043a\u0430"
 	},
 	"descr_RESPONSESTATUSNOSUCCESS": {
 		"no": "Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-svaret var noe annet enn OK)",
@@ -1922,7 +1924,8 @@
 		"id": "Identity Provider merespon dengan error. (Kode status di Response SAML adalah tidak berhasil)",
 		"sr": "Davalac Identiteta je poslao odgovor koji sadr\u017ei informaciju o pojavi gre\u0161ke(\u0160ifra statusa dostavljena u SAML odgovoru ne odgovara \u0161ifri uspe\u0161no obra\u0111enog zahteva).",
 		"cs": "Poskytovatel identity odpov\u011bd\u011bl chybou. (Stavov\u00fd k\u00f3d v SAML nebyl \u00fasp\u011b\u0161n\u00fd)",
-		"ro": "Furnizorul de identitate a r\u0103spuns cu o eroare. (Codul de stare in r\u0103spunsul SAML a fost  \u00eencercare nereu\u0219it\u0103)"
+		"ro": "Furnizorul de identitate a r\u0103spuns cu o eroare. (Codul de stare in r\u0103spunsul SAML a fost  \u00eencercare nereu\u0219it\u0103)",
+		"ru": "\u041f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u0441\u043e\u043e\u0431\u0449\u0430\u0435\u0442 \u043e\u0431 \u043e\u0448\u0438\u0431\u043a\u0435. (\u041a\u043e\u0434 \u0441\u0442\u0430\u0442\u0443\u0441 \u0432 \u043e\u0442\u043a\u043b\u0438\u043a\u0435 SAML \u0441\u043e\u043e\u0431\u0449\u0430\u0435\u0442 \u043e \u043d\u0435\u0443\u0441\u043f\u0435\u0448\u043d\u043e\u0439 \u043f\u043e\u043f\u044b\u0442\u043a\u0435)"
 	},
 	"title_NOCERT": {
 		"fr": "Aucun certificat pr\u00e9sent\u00e9",
@@ -1950,7 +1953,8 @@
 		"id": "Tidak ada sertifikat",
 		"sr": "Nema digitalnog sertifikata",
 		"cs": "Chyb\u00ed certiifik\u00e1t",
-		"ro": "Lipse\u0219te certificatul"
+		"ro": "Lipse\u0219te certificatul",
+		"ru": "\u0421\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442"
 	},
 	"descr_NOCERT": {
 		"fr": "\u00c9chec de l'authentification : votre navigateur n'a pas pr\u00e9sent\u00e9 de certificat",
@@ -1978,7 +1982,8 @@
 		"id": "Autentifikasi gagal: Browser anada tidak mengirim sertifikat",
 		"sr": "Neuspe\u0161na autentifikacija: va\u0161 web pretra\u017eiva\u010d nije poslao digitalni sertifikat",
 		"cs": "P\u0159ihl\u00e1\u0161en\u00ed neprob\u011bhlo: V\u00e1\u0161 prohl\u00ed\u017ee\u010d neodeslal \u017e\u00e1dn\u00fd certifik\u00e1t",
-		"ro": "Autentificare e\u0219uat\u0103: browser-ul dumneavoastr\u0103 nu a trimis niciun certificat"
+		"ro": "Autentificare e\u0219uat\u0103: browser-ul dumneavoastr\u0103 nu a trimis niciun certificat",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u0438 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438: \u0432\u0430\u0448 \u0431\u0440\u0430\u0443\u0437\u0435\u0440 \u043d\u0435 \u0432\u044b\u0441\u043b\u0430\u043b \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442"
 	},
 	"title_INVALIDCERT": {
 		"fr": "Certificat invalide",
@@ -2006,7 +2011,8 @@
 		"id": "Sertifikat invalid",
 		"sr": "Neispravan digitalni sertifikat",
 		"cs": "\u0160patn\u00fd certifik\u00e1t",
-		"ro": "Certificat nevalid"
+		"ro": "Certificat nevalid",
+		"ru": "\u041d\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442"
 	},
 	"descr_INVALIDCERT": {
 		"fr": "\u00c9chec de l'authentification : le certificat pr\u00e9sent\u00e9 par votre navigateur est invalide ou illisible",
@@ -2034,7 +2040,8 @@
 		"id": "Autentifikasi gagal: Sertifikat yang browser Anda kirimkan invalid atau tidak dapat dibaca",
 		"sr": "Neuspe\u0161na autentifikacija: digitalni sertifikat koji je poslao va\u0161 web pretra\u017eiva\u010d nije ispravan ili se ne mo\u017ee pro\u010ditati",
 		"cs": "P\u0159ihl\u00e1\u0161en\u00ed neprob\u011bhlo: certifik\u00e1t kter\u00fd odeslal V\u00e1\u0161 rohl\u00ed\u017ee\u010d nemohl b\u00fdt p\u0159e\u010dten",
-		"ro": "Autentificare e\u0219uat\u0103: certificatul trimis de browser-ul dumneavoastr\u0103 nu este valid sau nu poate fi citit"
+		"ro": "Autentificare e\u0219uat\u0103: certificatul trimis de browser-ul dumneavoastr\u0103 nu este valid sau nu poate fi citit",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u0438 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438: \u0432\u0430\u0448 \u0431\u0440\u0430\u0443\u0437\u0435\u0440 \u0432\u044b\u0441\u043b\u0430\u043b \u043d\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0438\u043b\u0438 \u043d\u0435\u0447\u0438\u0442\u0430\u0435\u043c\u044b\u0439 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442"
 	},
 	"title_UNKNOWNCERT": {
 		"fr": "Certificat inconnu",
@@ -2062,7 +2069,8 @@
 		"id": "Sertifikat tidak dikenal",
 		"sr": "Nepoznat digitalni sertifikat",
 		"cs": "Nezn\u00e1m\u00fd certifik\u00e1t",
-		"ro": "Certificat necunoscut"
+		"ro": "Certificat necunoscut",
+		"ru": "\u041d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u044b\u0439 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442"
 	},
 	"descr_UNKNOWNCERT": {
 		"fr": "\u00c9chec de l'authentification : le certificat pr\u00e9sent\u00e9 par votre navigateur n'est pas connu",
@@ -2090,7 +2098,8 @@
 		"id": "Autentifikasi gagal: sertifikat yang browser anda kirimkan tidak dikenal",
 		"sr": "Neuspe\u0161na autentifikacija: digitalni sertifikat koji je poslao va\u0161 web pretra\u017eiva\u010d je nepoznat",
 		"cs": "P\u0159ihl\u00e1\u0161en\u00ed neprob\u011bhlo: certifik\u00e1t kter\u00fd odeslal V\u00e1\u0161 prohl\u00ed\u017ee\u010d je nezn\u00e1m\u00fd",
-		"ro": "Autentificare e\u0219uat\u0103: certificatul trimis de browser-ul dumneavoastr\u0103 nu este recunoscut"
+		"ro": "Autentificare e\u0219uat\u0103: certificatul trimis de browser-ul dumneavoastr\u0103 nu este recunoscut",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u043f\u0440\u0438 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438: \u0432\u0430\u0448 \u0431\u0440\u0430\u0443\u0437\u0435\u0440 \u0432\u044b\u0441\u043b\u0430\u043b \u043d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u044b\u0439 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442"
 	},
 	"title_USERABORTED": {
 		"da": "Autentificering aubrudt",
@@ -2118,7 +2127,8 @@
 		"nn": "Avbroten innlogging",
 		"fr": "Authentification abandonn\u00e9e",
 		"cs": "P\u0159ihl\u00e1\u0161en\u00ed odm\u00edtnuto",
-		"ro": "Autentificare \u00eentrerupt\u0103"
+		"ro": "Autentificare \u00eentrerupt\u0103",
+		"ru": "\u0410\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f \u043f\u0440\u0435\u0440\u0432\u0430\u043d\u0430"
 	},
 	"descr_USERABORTED": {
 		"da": "Autentificering blev afbrudt af brugeren",
@@ -2146,7 +2156,8 @@
 		"fr": "L'authentification a \u00e9t\u00e9 abandonn\u00e9e par l'usager",
 		"cs": "P\u0159ihl\u00e1\u0161en\u00ed bylo p\u0159eru\u0161eno u\u017eivatelem",
 		"nl": "De authenticatie is afgebroken door de gebruiker",
-		"ro": "Autentificarea a fost \u00eentrerupt\u0103 de utilizator"
+		"ro": "Autentificarea a fost \u00eentrerupt\u0103 de utilizator",
+		"ru": "\u0410\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f \u043f\u0440\u0435\u0440\u0432\u0430\u043d\u0430 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u043c"
 	},
 	"title_NOSTATE": {
 		"da": "State information tabt",
@@ -2173,7 +2184,8 @@
 		"fr": "Information d'\u00e9tat perdue",
 		"cs": "Stavov\u00e1 informace ztracena",
 		"nl": "Toestandsinformatie verloren",
-		"ro": "Informa\u021bia de stare a fost pierdut\u0103"
+		"ro": "Informa\u021bia de stare a fost pierdut\u0103",
+		"ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0438 \u0443\u0442\u0435\u0440\u044f\u043d\u0430"
 	},
 	"descr_NOSTATE": {
 		"da": "State information er tabt og der er ikke muligt at gentage forsp\u00f8rgelsen",
@@ -2200,7 +2212,8 @@
 		"fr": "Information d'\u00e9tat perdue, et aucun moyen de relancer la requ\u00eate",
 		"cs": "Stavov\u00e1 informace ",
 		"nl": "Informatie over de toestand is verloren, en het verzoek kan niet herstart worden",
-		"ro": "Informa\u021bia de stare a fost pierdut\u0103, cererea nu poate fi reluat\u0103"
+		"ro": "Informa\u021bia de stare a fost pierdut\u0103, cererea nu poate fi reluat\u0103",
+		"ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0438 \u0443\u0442\u0435\u0440\u044f\u043d\u0430, \u043d\u0435\u0442 \u0441\u043f\u043e\u0441\u043e\u0431\u0430 \u0438\u043d\u0438\u0446\u0438\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0437\u0430\u043f\u0440\u043e\u0441 \u0437\u0430\u043d\u043e\u0432\u043e"
 	},
 	"title_METADATANOTFOUND": {
 		"da": "Metadata ikke fundet",
@@ -2226,7 +2239,9 @@
 		"nn": "Finn ikkje metadata",
 		"fr": "M\u00e9tadonn\u00e9es non trouv\u00e9es",
 		"nl": "Metadata niet gevonden",
-		"ro": "Metadatele nu au fost g\u0103site"
+		"ro": "Metadatele nu au fost g\u0103site",
+		"ru": "\u041c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u044b",
+		"cs": "Metadata nenalezena"
 	},
 	"descr_METADATANOTFOUND": {
 		"da": "Kan ikke finde metadata for %ENTITYID%",
@@ -2252,7 +2267,9 @@
 		"nn": "Klarer ikkje \u00e5 finna metadata for %ENTITYID%",
 		"fr": "Impossible de localiser les m\u00e9tadonn\u00e9es pour %ENTITYID%",
 		"nl": "Kan geen metadata vinden voor %ENTITYID%",
-		"ro": "Nu pot fi localizate metadatele pentru %ENTITYID%"
+		"ro": "Nu pot fi localizate metadatele pentru %ENTITYID%",
+		"ru": "\u041d\u0435\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e \u043d\u0430\u0439\u0442\u0438 \u043c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435 \u0434\u043b\u044f %ENTITYID%",
+		"cs": "Nebyly nalezeny metadata pro %ENTITYID%"
 	},
 	"title_AUTHSOURCEERROR": {
 		"hr": "Gre\u0161ka u autentifikacijskom modulu",
@@ -2278,7 +2295,9 @@
 		"it": "Errore di sorgente di autenticazione",
 		"nl": "Fout in authenticatiebron",
 		"ro": "Eroare surs\u0103 de autentificare",
-		"no": "Autentiseringskildefeil"
+		"no": "Autentiseringskildefeil",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0430 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438",
+		"cs": "Chyba autentiza\u010dn\u00edho zdroje"
 	},
 	"descr_AUTHSOURCEERROR": {
 		"hr": "Do\u0161lo je do gre\u0161ke u autentifikacijskom modulu %AUTHSOURCE%. Razlog: %REASON%",
@@ -2304,6 +2323,8 @@
 		"it": "Errore di autenticazione in sorgente %AUTHSOURCE%. La ragione \u00e8 $REASON%",
 		"nl": "Fout in authenticatiebron %AUTHSOURCE%. Als reden werd gegeven: %REASON%.",
 		"ro": "Eroare de autentificare la sursa %AUTHSOURCE%. Motivul a fost: %REASON%",
-		"no": "Feil i autentiseringskilden %AUTHSOURCE%. Feilen var: %REASON%"
+		"no": "Feil i autentiseringskilden %AUTHSOURCE%. Feilen var: %REASON%",
+		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0430 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 %AUTHSOURCE%. \u041f\u0440\u0438\u0447\u0438\u043d\u0430: %REASON%",
+		"cs": "Autentiza\u010dn\u00ed chyba ve zdroji %AUTHSOURCE%. D\u016fvodem bylo: %REASON%"
 	}
 }

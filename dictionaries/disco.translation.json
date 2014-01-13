@@ -156,7 +156,8 @@
 		"id": "Pilihan yang disukai",
 		"lv": "(Mana lab\u0101k\u0101 izv\u0113le)",
 		"sr": "[Preferirani izbor]",
-		"ro": "[Varianta preferat\u0103]"
+		"ro": "[Varianta preferat\u0103]",
+		"cs": "[Preferovan\u00e1 volba]"
 	},
 	"previous_auth": {
 		"no": "Du har tidligere valg \u00e5 autentisere deg hos",
@@ -186,7 +187,8 @@
 		"id": "Sebelumnya anda telah memilih untuk melakukan autentifikasi di ",
 		"lv": "Iepriek\u0161 J\u016bs autentific\u0113j\u0101ties pie",
 		"sr": "Prethodno ste izabrali da se autentifikujete kroz",
-		"ro": "Anterior a\u021bi ales s\u0103 v\u0103 autentifica\u021bi la"
+		"ro": "Anterior a\u021bi ales s\u0103 v\u0103 autentifica\u021bi la",
+		"cs": "D\u0159\u00edve jste zvolil(a) ov\u011b\u0159en\u00ed u"
 	},
 	"login_at": {
 		"no": "Logg inn hos",
@@ -216,6 +218,7 @@
 		"id": "Login di",
 		"lv": "Piesl\u0113gties pie",
 		"sr": "Prijavi se kroz",
-		"ro": "Autentificare la"
+		"ro": "Autentificare la",
+		"cs": "P\u0159ihl\u00e1\u0161en\u00ed k"
 	}
 }

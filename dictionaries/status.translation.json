@@ -28,7 +28,8 @@
 		"lv": "SAML 2.0 SP demonstr\u0101cijas piem\u0113rs",
 		"id": "Contoh Demo SAML 2.0 SP",
 		"sr": "SAML 2.0 SP Demo Primer",
-		"ro": "Exemplu demonstrativ de furnizor de servicii SAML 2.0"
+		"ro": "Exemplu demonstrativ de furnizor de servicii SAML 2.0",
+		"ru": "\u0414\u0435\u043c\u043e \u043f\u0440\u0438\u043c\u0435\u0440 \u0441\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 SAML 2.0 SP"
 	},
 	"header_shib": {
 		"no": "Shibboleth Demo",
@@ -59,7 +60,8 @@
 		"lv": "Shibboleth demo",
 		"id": "Demo Shibboleth",
 		"sr": "Shibboleth Demo",
-		"ro": "Demo Shibboleth"
+		"ro": "Demo Shibboleth",
+		"ru": "Shibboleth \u0434\u0435\u043c\u043e"
 	},
 	"header_wsfed": {
 		"no": "WS-Fed SP Demo Eksempel",
@@ -90,7 +92,8 @@
 		"lv": "WS-Fed SP demonstr\u0101cijas piem\u0113rs",
 		"id": "Contoh Demo WS-Fed SP",
 		"sr": "WS-Fed SP Demo Primer",
-		"ro": "Exemplu demonstrativ de WS-Fed"
+		"ro": "Exemplu demonstrativ de WS-Fed",
+		"ru": "\u0414\u0435\u043c\u043e \u043f\u0440\u0438\u043c\u0435\u0440 \u0441\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 WS-Fed SP"
 	},
 	"header_diagnostics": {
 		"no": "SimpleSAMLphp diagnostikk",
@@ -121,7 +124,8 @@
 		"lv": "SimpleSAMLphp diagnostika",
 		"id": "Diagnostik SimpleSAMLphp",
 		"sr": "SimpleSAMLphp Dijagnostika",
-		"ro": "Diagnostic simpleSAMLphp"
+		"ro": "Diagnostic simpleSAMLphp",
+		"ru": "\u0414\u0438\u0430\u0433\u043d\u043e\u0441\u0442\u0438\u043a\u0430 SimpleSAMLphp"
 	},
 	"some_error_occurred": {
 		"no": "En feil har oppst\u00e5tt",
@@ -152,7 +156,8 @@
 		"lv": "Notikusi k\u013c\u016bda",
 		"id": "Beberapa error telah terjadi",
 		"sr": "Desila se gre\u0161ka",
-		"ro": "A ap\u0103rut o eroare"
+		"ro": "A ap\u0103rut o eroare",
+		"ru": "\u041f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u0430 \u043e\u0448\u0438\u0431\u043a\u0430"
 	},
 	"intro": {
 		"no": "Hei, dette er en statusside p\u00e5 simpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon.",
@@ -183,7 +188,8 @@
 		"lv": "\u0160\u012b ir SimpleSAMLphp statusa lapa. Te J\u016bs varat redz\u0113t vai J\u016bsu sesija ir p\u0101rtraukta, cik ilgi t\u0101 bijusi akt\u012bva un visus ar to saist\u012btos atrib\u016btus.",
 		"id": "Hai, ini adalah halaman status dari simpleSAMLphp. Disini anda dapat melihat jika session anda telah time out, berapa lama ia berlaku sampai time out dan semua attribut yang menempel pada session anda.",
 		"sr": "Ovo je stranica s prikazom aktuelnog stanja va\u0161e sesije. Na ovoj stranici mo\u017eete videti je li vam je istekla sesija, koliko \u0107e jo\u0161 dugo va\u0161a sesija trajati i sve atribute koji su vezani uz va\u0161u sesiju.",
-		"ro": "Aceasta este pagina de stare pentru simpleSAMLphp. Aici pute\u021bi verifica dac\u0103 sesiunea dumneavoastr\u0103 a expirat, c\u00e2t timp mai este p\u00e2n\u0103 la expirarea sesiunii precum \u0219i toate atributele ata\u0219ate sesiunii dumneavoastr\u0103."
+		"ro": "Aceasta este pagina de stare pentru simpleSAMLphp. Aici pute\u021bi verifica dac\u0103 sesiunea dumneavoastr\u0103 a expirat, c\u00e2t timp mai este p\u00e2n\u0103 la expirarea sesiunii precum \u0219i toate atributele ata\u0219ate sesiunii dumneavoastr\u0103.",
+		"ru": "\u042d\u0442\u043e \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u0441\u043e \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u043c SimpleSAMLphp. \u041c\u043e\u0436\u043d\u043e \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0438\u0442\u044c \u0441\u043b\u0443\u0447\u0430\u0438 \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u044f \u0441\u0435\u0441\u0441\u0438\u0438, \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c \u0441\u0435\u0441\u0441\u0438\u0438 \u0434\u043e \u0438\u0441\u0442\u0435\u0447\u0435\u043d\u0438\u044f \u0441\u0440\u043e\u043a\u0430 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f \u0438 \u0432\u0441\u0435 \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b \u0432 \u0434\u0430\u043d\u043d\u043e\u0439 \u0441\u0435\u0441\u0441\u0438\u0438."
 	},
 	"validfor": {
 		"no": "Din sesjon er gyldig i %SECONDS% sekunder fra n\u00e5.",
@@ -214,7 +220,8 @@
 		"lv": "Sesija ir der\u012bga %SECONDS% sekundes no \u0161\u012b br\u012b\u017ea.",
 		"id": "Session anda valid untuk %SECONDS% detik dari sekarang.",
 		"sr": "Va\u0161a sesija \u0107e biti validna jo\u0161 %SECONDS% sekundi.",
-		"ro": "Sesiunea dumneavoastr\u0103 mai este valid\u0103 \u00eenc\u0103 %SECONDS%."
+		"ro": "Sesiunea dumneavoastr\u0103 mai este valid\u0103 \u00eenc\u0103 %SECONDS%.",
+		"ru": "\u0412\u0430\u0448\u0430 \u0441\u0435\u0441\u0441\u0438\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u0430 \u0432 \u0442\u0435\u0447\u0435\u043d\u0438\u0435 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0445 %SECONDS% \u0441\u0435\u043a\u0443\u043d\u0434."
 	},
 	"sessionsize": {
 		"no": "Sesjons st\u00f8rrelse: %SIZE%",

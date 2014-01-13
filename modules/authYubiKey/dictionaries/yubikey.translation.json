@@ -27,7 +27,8 @@
 		"lv": "Piesl\u0113gties ar YubiKey",
 		"id": "Login dengan YubiKey",
 		"sr": "Prijavite se pomo\u0107u YubiKey-a",
-		"ro": "Login cu YubiKey"
+		"ro": "Login cu YubiKey",
+		"cs": "P\u0159ihl\u00e1\u0161en\u00ed pomoc\u00ed YubiKey"
 	},
 	"intro": {
 		"no": "En tjeneste har bedt om at du autentiserer deg. For \u00e5 autentisere seg, trykk p\u00e5 knappen p\u00e5 din YubiKey. Feltet under vil da bli automatisk utfylt med et sikkert engangspassord.",
@@ -57,6 +58,7 @@
 		"lv": "K\u0101ds serviss prasa autentifik\u0101ciju. Klik\u0161\u0137iniet YubiKey pogu. Ievadlauks zem\u0101k autom\u0101tiski tiks aizpild\u012bts ar dro\u0161u vienreiz\u0113ju paroli.",
 		"id": "Beberapa layanan meminta autentifikasi. Untuk melakukan autentifikasi, klik tombol pada YubiKey Anda. Field dibawah seharusnya secara otomatis akan diisi dengan one-time-password yang aman.",
 		"sr": "Neki od servisa je zatra\u017eio da se autentifikujete. Da biste se autentifikovali pritisnite dugme na va\u0161em YubiKey ure\u0111aju. Nakon toga bi u polje ispod trebala biti automatski upisana jednokratna lozinka.",
-		"ro": "Un serviciu a cerut s\u0103 v\u0103 autentifica\u021bi. Pentru autentificare, ap\u0103sa\u021bi butonul de pe YubiKey. C\u00e2mpul de mai jos va fi completat automat cu o parol\u0103 de unic\u0103 folosin\u021b\u0103."
+		"ro": "Un serviciu a cerut s\u0103 v\u0103 autentifica\u021bi. Pentru autentificare, ap\u0103sa\u021bi butonul de pe YubiKey. C\u00e2mpul de mai jos va fi completat automat cu o parol\u0103 de unic\u0103 folosin\u021b\u0103.",
+		"cs": "N\u011bkter\u00e1 slu\u017eba si vy\u017e\u00e1dala autentizaci. K p\u0159ihl\u00e1\u0161en\u00ed klikn\u011bte na v\u00e1\u0161 YubiKey. Spodn\u00ed pol\u00ed\u010dko by se pot\u00e9 m\u011blo automaticky vyplnit bezpe\u010dn\u00fdm jednor\u00e1zov\u00fdm heslem."
 	}
 }

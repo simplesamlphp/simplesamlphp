@@ -25,7 +25,8 @@
 		"lv": "Izv\u0113lieties autentifik\u0101cijas avotu",
 		"id": "Pilih sumber autentifikasi",
 		"sr": "Odaberite izvor preko koga se \u017eelite autentifikovati",
-		"ro": "V\u0103 rug\u0103m s\u0103 alege\u021bi o surs\u0103 pentru autentificare"
+		"ro": "V\u0103 rug\u0103m s\u0103 alege\u021bi o surs\u0103 pentru autentificare",
+		"cs": "Zvolte autentiza\u010dn\u00ed zdroj"
 	},
 	"select_source_text": {
 		"no": "Den valgte autentiseringskilden vil bli brukt til \u00e5 autentisere brukeren og deretter etablere en gyldig sesjon.",
@@ -53,6 +54,7 @@
 		"lv": "Izv\u0113l\u0113tais autentifik\u0101cijas avots tiks izmantots J\u016bsu autentific\u0113\u0161anai un der\u012bgas sesijas izveido\u0161anai.",
 		"id": "Sumber autentifikasi terpilih akan digunakan untuk mengautentifikasi Anda dan membuat sebuah session yang valid.",
 		"sr": "Izabrani autentifikacioni izvor \u0107e biti upotrebljen za va\u0161u autentifikaciju i kreiranje validne sesije.",
-		"ro": "Sursa de autentificare selectat\u0103 va fi folosit\u0103 pentru a v\u0103 autentifica \u0219i pentru a crea o sesiune valid\u0103."
+		"ro": "Sursa de autentificare selectat\u0103 va fi folosit\u0103 pentru a v\u0103 autentifica \u0219i pentru a crea o sesiune valid\u0103.",
+		"cs": "Zvolen\u00fd autentiza\u010dn\u00ed zdroj bude pou\u017eit pro va\u0161e ov\u011b\u0159en\u00ed a vytvo\u0159en\u00ed platn\u00e9ho sezen\u00ed."
 	}
 }

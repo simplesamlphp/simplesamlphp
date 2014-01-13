@@ -24,7 +24,8 @@
 		"id": "Metadata tidak ditemukan",
 		"lv": "Metadati nav atrasti",
 		"sr": "Metapodaci nisu prona\u0111eni",
-		"ro": "Nu au fost g\u0103site metadate"
+		"ro": "Nu au fost g\u0103site metadate",
+		"cs": "Metadata nebyla nalezena"
 	},
 	"not_found_for": {
 		"no": "Vi fant ikke metadataene for:",
@@ -51,7 +52,8 @@
 		"id": "Kita tidak dapat menemukan metadata untuk entity",
 		"lv": "Metadati \u0161ai ent\u012btijai nav atrasti:",
 		"sr": "Ne mogu prona\u0107i metapodatke za entitet:",
-		"ro": "Nu am g\u0103sit metadate pentru urm\u0103toarea entitate:"
+		"ro": "Nu am g\u0103sit metadate pentru urm\u0103toarea entitate:",
+		"cs": "Nebyla nalezena metadata pro entitu:"
 	},
 	"config_problem": {
 		"no": "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverand\u00f8ren eller identitetsleverand\u00f8ren.",
@@ -62,7 +64,7 @@
 		"es": "Esto es posiblemente un problema de configuraci\u00f3n en el proveedor de servicios o en el proveedor de identidad.",
 		"lt": "Tai grei\u010diausiai konfig\u016bracijos problema paslaugos teik\u0117jo arba tapatybi\u0173 teik\u0117jo pus\u0117je.",
 		"hu": "Val\u00f3sz\u00edn\u0171leg valamilyen konfigur\u00e1ci\u00f3s probl\u00e9ma okozta hiba, amely lehet ak\u00e1r IdP-, ak\u00e1r SP-oldalon.",
-		"fr": "Cela ressemble \u00e0 un probl\u00e8me de configuration soit su fournisseur de service ou du fournisseur d'identit\u00e9.",
+		"fr": "Cela ressemble \u00e0 un probl\u00e8me de configuration soit du fournisseur de service ou du fournisseur d'identit\u00e9.",
 		"nl": "Dit is waarschijnlijk een configuratieprobleem bij ofwel de serviceprovider ofwel de identiteitsverstrekker.",
 		"ja": "\u3053\u308c\u306f\u6050\u3089\u304f\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u304b\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u306e\u8a2d\u5b9a\u306e\u554f\u984c\u3067\u3059\u3002",
 		"da": "Der er sandsynligvis en konfigurationsfejl hos enten servicen eller identitetsudbyderen.",
@@ -78,7 +80,8 @@
 		"id": "Sepertinya ini terjadi karena ada kesalahan konfigurasi baik pada service provider maupun pada identity provider",
 		"lv": "Visticam\u0101k \u0161\u012b ir konfigur\u0101cijas probl\u0113ma pie servisa pieg\u0101d\u0101t\u0101ja vai identit\u0101tes pieg\u0101d\u0101t\u0101ja.",
 		"sr": "Najverojatnije je problem u pode\u0161avanjima davaoca servisa ili davaoca identiteta.",
-		"ro": "Probabil exist\u0103 o problem\u0103 de configurare, fie la furnizorul de servicii fie la furnizorul de identitate."
+		"ro": "Probabil exist\u0103 o problem\u0103 de configurare, fie la furnizorul de servicii fie la furnizorul de identitate.",
+		"cs": "Toto je pravd\u011bpodobn\u011b konfigura\u010dn\u00ed probl\u00e9m na stran\u011b poskytovatele slu\u017eby nebo poskytovatele identity."
 	},
 	"suggestion_user_link": {
 		"no": "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link p\u00e5 en nettside, s\u00e5 b\u00f8r du rapportere denne feilen til eieren av den nettsiden.",
@@ -105,7 +108,8 @@
 		"id": "Jika adalah user yang menerika error ini setelah mengklik link pada sebuah situs, anda harus melaporkan error ini kepada pemilik situs tersebut",
 		"lv": "Ja J\u016bs esat lietot\u0101js un sa\u0146emat \u0161o k\u013c\u016bdu, sekojot saitei k\u0101d\u0101 interneta lap\u0101, Jums j\u0101zi\u0146o par \u0161o k\u013c\u016bdu lapas \u012bpa\u0161niekam.",
 		"sr": "Ukoliko se ova gre\u0161ka pojavila nakon \u0161to ste sledili link na nekoj web stranici, onda biste gre\u0161ku trebali prijaviti vlasniku navedene stranice.",
-		"ro": "Dac\u0103 sunte\u021bi un utilizator care a primit acest mesaj de eroare \u00een urma utiliz\u0103rii unui link din alt sit, v\u0103 rug\u0103m s\u0103 anun\u021ba\u021bi aceast\u0103 eroare de\u021bin\u0103torului sitului respectiv."
+		"ro": "Dac\u0103 sunte\u021bi un utilizator care a primit acest mesaj de eroare \u00een urma utiliz\u0103rii unui link din alt sit, v\u0103 rug\u0103m s\u0103 anun\u021ba\u021bi aceast\u0103 eroare de\u021bin\u0103torului sitului respectiv.",
+		"cs": "Pokud jste u\u017eivatel, kter\u00fd obdr\u017eel chybu po n\u00e1sledov\u00e1n\u00ed odkazu na webov\u00e9 str\u00e1nce, m\u011bli byste o t\u00e9to chyb\u011b informovat vlastn\u00edka t\u00e9to str\u00e1nky. "
 	},
 	"suggestion_developer": {
 		"no": "Hvis du er en utvikler som setter opp en \"single sign-on\" l\u00f8sning, s\u00e5 har du et problem med metadataoppsettet. Kontroller at metadata er riktig konfigurert hos b\u00e5de identitetsleverand\u00f8ren og tjenesteleverand\u00f8ren.",
@@ -132,6 +136,7 @@
 		"id": "Jika anda adalah pengembang yang mendeploy solusi sing-on, anda memiliki masalah dengan konfigurasi metadata.  Periksalah kalau metadata telah dikonfigurasi dengan benar baik pada sisi identity provider dan pada sisi service provider.",
 		"lv": "Ja J\u016bs esat vienotas piesl\u0113g\u0161an\u0101s risin\u0101juma izstr\u0101d\u0101t\u0101js, J\u016bsu metadatu konfigur\u0101cij\u0101 ir k\u013c\u016bda. P\u0101rbaudiet tos gan pie identit\u0101tes pieg\u0101d\u0101t\u0101ja, gan pie servisa pieg\u0101d\u0101t\u0101ja.",
 		"sr": "Postoji gre\u0161ka sa pode\u0161avanjima metapodataka. Ukoliko ste administrator sistema, proverite da li metapodaci ispravno uneseni na strani davaoca servisa i davaoca identiteta.",
-		"ro": "Dac\u0103 sunte\u021bi dezvoltator care implementeaz\u0103 o solu\u021bie <i>single sign-on<\/i>, ave\u021bi o problem\u0103 la configurarea metadatelor. V\u0103 rug\u0103m s\u0103 verifica\u021bi configurarea corect\u0103 a metadatelor, at\u00e2t la furnizorul de identitate c\u00e2t \u0219i la furnizorul de servicii."
+		"ro": "Dac\u0103 sunte\u021bi dezvoltator care implementeaz\u0103 o solu\u021bie <i>single sign-on<\/i>, ave\u021bi o problem\u0103 la configurarea metadatelor. V\u0103 rug\u0103m s\u0103 verifica\u021bi configurarea corect\u0103 a metadatelor, at\u00e2t la furnizorul de identitate c\u00e2t \u0219i la furnizorul de servicii.",
+		"cs": "Pokud jste v\u00fdvoj\u00e1\u0159 nasazuj\u00edc\u00ed \u0159e\u0161en\u00ed jednotn\u00e9ho p\u0159ihla\u0161ov\u00e1n\u00ed, m\u00e1te probl\u00e9m s konfigurac\u00ed metadat. Ov\u011b\u0159te, zda jsou metadata nakonfigurov\u00e1na spr\u00e1vn\u011b jak u poskytovatele identity tak u poskytovatele slu\u017eby."
 	}
 }

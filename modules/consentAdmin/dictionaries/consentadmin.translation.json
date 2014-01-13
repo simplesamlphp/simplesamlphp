@@ -23,7 +23,9 @@
 		"lv": "(v\u0101rds nav nor\u0101d\u012bts)",
 		"id": "(Nama tidak diisi)",
 		"sr": "(ime nije specificirano)",
-		"ro": "(nu a fost specificat numele)"
+		"ro": "(nu a fost specificat numele)",
+		"ru": "(\u0438\u043c\u044f \u043d\u0435 \u0443\u043a\u0430\u0437\u0430\u043d\u043e)",
+		"cs": "(jm\u00e9no nespecifikov\u00e1no)"
 	},
 	"sp_empty_description": {
 		"da": "(ingen beskrivelse)",
@@ -49,7 +51,9 @@
 		"lv": "(nav apraksta)",
 		"id": "(Tidak ada penjelasan)",
 		"sr": "(nema opisa)",
-		"ro": "(f\u0103r\u0103 descriere)"
+		"ro": "(f\u0103r\u0103 descriere)",
+		"ru": "(\u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442)",
+		"cs": "(\u017e\u00e1dn\u00fd popis)"
 	},
 	"attribute_org": {
 		"da": "Organisation",
@@ -75,7 +79,9 @@
 		"lv": "Organiz\u0101cija",
 		"id": "Organisasi",
 		"sr": "Institucija",
-		"ro": "Institu\u021bie"
+		"ro": "Institu\u021bie",
+		"ru": "\u041e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044f",
+		"cs": "Organizace"
 	},
 	"added": {
 		"da": "Samtykke givet",
@@ -101,7 +107,9 @@
 		"lv": "Pievienotie noteikumi",
 		"id": "Consent telah ditambahkan",
 		"sr": "Dozvola dodata",
-		"ro": "Acordul a fost ad\u0103ugat"
+		"ro": "Acordul a fost ad\u0103ugat",
+		"ru": "\u0421\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u043e",
+		"cs": "Ud\u011blen\u00e9 povolen\u00ed"
 	},
 	"removed": {
 		"da": "Samtykke slettet",
@@ -127,7 +135,9 @@
 		"lv": "No\u0146emtie noteikumi",
 		"id": "Consent telah dibuang",
 		"sr": "Dozvola uklonjena",
-		"ro": "Acordul a fost \u00eenl\u0103turat"
+		"ro": "Acordul a fost \u00eenl\u0103turat",
+		"ru": "\u0421\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u043e\u0442\u043e\u0437\u0432\u0430\u043d\u043e",
+		"cs": "Odebran\u00e9 povolen\u00ed"
 	},
 	"updated": {
 		"da": "Samtykke Opdateret",
@@ -153,7 +163,9 @@
 		"lv": "Uzlabotie noteikumi",
 		"id": "Consent telah diupdate",
 		"sr": "Dozvola a\u017eurirana",
-		"ro": "Acordul a fost actualizat"
+		"ro": "Acordul a fost actualizat",
+		"ru": "\u0421\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u043e",
+		"cs": "Aktualizovan\u00e9 povolen\u00ed"
 	},
 	"unknown": {
 		"da": "Ukendt ...",
@@ -179,7 +191,9 @@
 		"lv": "Nezin\u0101ms ...",
 		"id": "Tidak diketahui...",
 		"sr": "Nepoznato ...",
-		"ro": "Necunoscut ..."
+		"ro": "Necunoscut ...",
+		"ru": "\u041d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u043e..",
+		"cs": "Nezn\u00e1m\u00fd ..."
 	},
 	"attribute_id": {
 		"da": "Identitet",
@@ -205,7 +219,9 @@
 		"lv": "Identit\u0101te",
 		"id": "Identitas",
 		"sr": "Identitet",
-		"ro": "Identitate"
+		"ro": "Identitate",
+		"ru": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u043e\u043d\u043d\u0430\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f",
+		"cs": "Identita"
 	},
 	"attribute_injected": {
 		"da": "Injiceret attribut",
@@ -231,7 +247,9 @@
 		"lv": "Ievietots atrib\u016bts",
 		"id": "Attribut yang diinjeksi",
 		"sr": "Uba\u010deni atribut",
-		"ro": "Atribut introdus"
+		"ro": "Atribut introdus",
+		"ru": "\u0412\u0432\u0435\u0434\u0435\u043d\u043d\u044b\u0439 \u0430\u0442\u0440\u0438\u0431\u0443\u0442",
+		"cs": "Vlo\u017een\u00fd atribut"
 	},
 	"show": {
 		"da": "Vis",
@@ -257,7 +275,9 @@
 		"lv": "Par\u0101d\u012bt",
 		"id": "Perlihatkan",
 		"sr": "Prika\u017ei",
-		"ro": "Arat\u0103"
+		"ro": "Arat\u0103",
+		"ru": "\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c",
+		"cs": "Zobrazit"
 	},
 	"hide": {
 		"da": "Skjul",
@@ -283,7 +303,9 @@
 		"lv": "Sl\u0113pt",
 		"id": "Sembunyikan",
 		"sr": "Sakrij",
-		"ro": "Ascunde"
+		"ro": "Ascunde",
+		"ru": "\u0421\u043a\u0440\u044b\u0442\u044c",
+		"cs": "Skr\u00fdt"
 	},
 	"attributes_text": {
 		"da": "attributter",
@@ -309,7 +331,9 @@
 		"lv": "atrib\u016bti",
 		"id": "Attribute",
 		"sr": "atributi",
-		"ro": "atribute"
+		"ro": "atribute",
+		"ru": "\u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b",
+		"cs": "atributy"
 	},
 	"consentadmin_header": {
 		"da": "Administrer dine samtykker",
@@ -335,7 +359,9 @@
 		"lv": "Noteikumu administrators",
 		"id": "Administrasi Consent",
 		"sr": "Administracija dozvola",
-		"ro": "Administrarea acordurilor (consim\u021b\u0103mintelor)"
+		"ro": "Administrarea acordurilor (consim\u021b\u0103mintelor)",
+		"ru": "\u0423\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u0435\u043c",
+		"cs": "Administrace povolen\u00ed"
 	},
 	"consentadmin_description1": {
 		"da": "WAYF videregiver kun oplysninger til eksterne tjenester, hvis du giver dit samtykke til det. Hvilke oplysninger det drejer sig om, varierer alt efter hvad tjenesteudbyderen har behov for. Det kan for eksempel v\u00e6re:<ul><li>Dit navn<li>Din e-mail-adresse<li>Din institution<li>Etc.<\/ul>Hvis du s\u00e6tter et flueben ud for <b>Husk dette samtykke<\/b>, vil du ikke blive spurgt, n\u00e6ste gang du bes\u00f8ger tjenesteudbyderen. S\u00e5 husker WAYF, at du allerede har givet samtykke til at videregive oplysninger til tjenesteudbyderen. <p>Nedenfor er opf\u00f8rt de tjenester, som du for \u00f8jeblikket har givet l\u00f8bende samtykke til:<\/a>",
@@ -361,7 +387,9 @@
 		"id": "Disini anda dapat melihat dan mengedit consent anda untuk Service Provider.",
 		"sr": "Ovde mo\u017eete pregledati i menjati va\u0161e dozvole davaocima servisa.",
 		"nl": "Hier kunt u uw verleende toestemmingen voor dienstverleners bekijken en bewerken.",
-		"ro": "Aici pute\u021bi edita acordul\/consim\u021b\u0103m\u00e2ntul dumneavoastr\u0103 pentru Furnizorii de servicii."
+		"ro": "Aici pute\u021bi edita acordul\/consim\u021b\u0103m\u00e2ntul dumneavoastr\u0103 pentru Furnizorii de servicii.",
+		"ru": "\u0412 \u044d\u0442\u043e\u043c \u043f\u043e\u043b\u0435 \u043c\u043e\u0436\u043d\u043e \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u0438 \u043e\u0442\u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0442\u0435\u043a\u0441\u0442 \u0432\u0430\u0448\u0435\u0433\u043e \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u044f \u0434\u043b\u044f \u0441\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u043e\u0432.",
+		"cs": "Zde m\u016f\u017eete zobrazit a upravit va\u0161e povolen\u00ed pro Poskytovatele slu\u017eeb."
 	},
 	"consentadmin_description2": {
 		"da": "<h3>S\u00e5dan sletter du et samtykke<\/h3>Fjern fluebenet ud for tjenesten, samtykket tilh\u00f8rer.<h3>Hvilke data gemmer WAYF om dig?<\/h3><ul><li>N\u00e5r du giver dit samtykke, henter WAYF dine oplysninger fra din institution og sender de relevante videre til tjenesteudbyderen<li>Ingen af oplysningerne gemmes af WAYF<li>Hvis du har bedt WAYF huske dit samtykke, gemmes personhenf\u00f8rbare data heller ikke hos WAYF. Oplysningen om, at du har givet dit samtykke, gemmes p\u00e5 en ikke-personhenf\u00f8rbar m\u00e5de<\/ul><h3>Hvilke rettigheder har du?<\/h3>Du har ret til at tr\u00e6kke et samtykke tilbage.<h3>Hvor l\u00e6nge gemmes dine samtykker?<\/h3>Et samtykke slettes tre \u00e5r efter, at du sidst har benyttet det.<h3>Hvordan beskyttes mine oplysninger?<\/h3>WAYF foretager behandlinger af personoplysninger i henhold til persondataloven (lov nr. 429 af 31. maj 2000 med senere \u00e6ndringer). Du kan l\u00e6se n\u00e6rmere om registreredes rettigheder i persondatalovens afsnit III.<a href=\"http:\/\/www.datatilsynet.dk\/lovgivning\/persondataloven\/\">Persondataloven<\/a><h3>Links<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li><li><a href=\"https:\/\/www.wayf.dk\/index.php\/da\/om-wayf\/faq-ofte-stillede-sporgsmal\">FAQ<\/a> <\/li><\/ul>",
@@ -387,7 +415,9 @@
 		"lv": "<h3>K\u0101 dz\u0113st noteikumus<\/h3> Iz\u0146emiet \u0137eks\u012bti pie atbilsto\u0161\u0101 servisa pieg\u0101d\u0101t\u0101ja <h3>Saites<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">S\u0101kums<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">BUJ<\/a> <\/li> <\/ul> ",
 		"id": "<h3>Bagaimana cara menghapus consent anda<\/h3> Hapus centak pada kotak service provider yang anda maksud <h3>Link<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Mulai<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">FAQ<\/a> <\/li> <\/ul>",
 		"sr": "<h3>Kako obrisati dozvolu<\/h3> Uklonite kva\u010dicu iz polja koje se odnosi na davaoca servisa <h3>Linkovi<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Po\u010detna stranica<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">Pitanja i odgovori<\/a> <\/li> <\/ul> ",
-		"ro": "<h3>Cum poate fi anulat acordul dumneavoastr\u0103<\/h3>Debifa\u021bi c\u0103su\u021ba corespunz\u0103toare furnizorului de servicii <h3>Link-uri<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a><\/li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a><\/li><\/ul>"
+		"ro": "<h3>Cum poate fi anulat acordul dumneavoastr\u0103<\/h3>Debifa\u021bi c\u0103su\u021ba corespunz\u0103toare furnizorului de servicii <h3>Link-uri<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a><\/li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a><\/li><\/ul>",
+		"ru": "<h3>\u041a\u0430\u043a \u0443\u0434\u0430\u043b\u0438\u0442\u044c \u0432\u0430\u0448\u0435 \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u0435<\/h3> \u0421\u043d\u0438\u043c\u0438\u0442\u0435 \u0432\u044b\u0434\u0435\u043b\u0435\u043d\u0438\u0435 \u0441 \u0441\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 <h3>\u0421\u0441\u044b\u043b\u043a\u0438<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul>",
+		"cs": "<h3>Jak smazat va\u0161e povolen\u00ed<\/h3> Odzna\u010dte pol\u00ed\u010dko odpov\u00eddaj\u00edc\u00ed poskytovateli slu\u017eeb <h3>Odkazy<\/h3> <ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a><\/li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a><\/li><\/ul>"
 	},
 	"login": {
 		"da": "login",
@@ -413,7 +443,9 @@
 		"lv": "piesl\u0113gties",
 		"id": "login",
 		"sr": "Prijavi se",
-		"ro": "autentificare"
+		"ro": "autentificare",
+		"ru": "\u0412\u0445\u043e\u0434",
+		"cs": "p\u0159ihl\u00e1\u0161en\u00ed"
 	},
 	"service_providers_for": {
 		"da": "Service Providers for",
@@ -439,7 +471,9 @@
 		"lv": "Servisa pieg\u0101d\u0101t\u0101ji priek\u0161",
 		"id": "Service Provider untuk",
 		"sr": "Davaoci Servisa za",
-		"ro": "Furnizori de servicii pentru"
+		"ro": "Furnizori de servicii pentru",
+		"ru": "\u0421\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u044b \u0434\u043b\u044f",
+		"cs": "Poskytovatel\u00e9 slu\u017eeb pro"
 	},
 	"service_provider_header": {
 		"da": "Service Provider",
@@ -465,7 +499,9 @@
 		"lv": "Servisa pieg\u0101d\u0101t\u0101js",
 		"id": "Service Provider",
 		"sr": "Davalac Servisa",
-		"ro": "Furnizor de servicii"
+		"ro": "Furnizor de servicii",
+		"ru": "\u0421\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440",
+		"cs": "Poskytovatel slu\u017eeb"
 	},
 	"status_header": {
 		"da": "Samtykke status",
@@ -491,7 +527,9 @@
 		"lv": "Noteikumu statuss",
 		"id": "Status consent",
 		"sr": "Stanje dozvole",
-		"ro": "Stare acord (consim\u021b\u0103m\u00e2nt)"
+		"ro": "Stare acord (consim\u021b\u0103m\u00e2nt)",
+		"ru": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u044f",
+		"cs": "Stav povolen\u00ed"
 	},
 	"show_hide_attributes": {
 		"da": "vis\/skjul attributter",
@@ -517,7 +555,9 @@
 		"lv": "r\u0101d\u012b\u0161anas\/sl\u0113p\u0161anas atrib\u016bti",
 		"id": "Tunjukkan\/sembunyikan attribute",
 		"sr": "prika\u017ei\/sakrij atribute",
-		"ro": "arat\u0103\/ascunde atributele"
+		"ro": "arat\u0103\/ascunde atributele",
+		"ru": "\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c\/\u0441\u043a\u0440\u044b\u0442\u044c \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b",
+		"cs": "zobrazit\/skr\u00fdt atributy"
 	},
 	"consentadmin_purpose": {
 		"da": "Form\u00e5let med tjenesten er",
@@ -543,6 +583,8 @@
 		"lv": "\u0160\u012b servisa nol\u016bks ir",
 		"id": "Tujuan dari layanan ini adalah",
 		"sr": "Namena ovog servisa je",
-		"ro": "Scopul acestui serviciu este"
+		"ro": "Scopul acestui serviciu este",
+		"ru": "\u0426\u0435\u043b\u044c\u044e \u0441\u0435\u0440\u0432\u0438\u0441\u0430 \u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f",
+		"cs": "\u00da\u010del slu\u017eby je"
 	}
 }

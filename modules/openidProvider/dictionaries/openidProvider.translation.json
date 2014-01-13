@@ -22,7 +22,9 @@
 		"lv": "OpenID pieg\u0101d\u0101t\u0101js",
 		"id": "Provider OpenID",
 		"sr": "Davalac OpenID digitalnih identiteta",
-		"ro": "Furnizorul OpenID"
+		"ro": "Furnizorul OpenID",
+		"ru": "\u041f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440 OpenID",
+		"cs": "OpenID poskytovatel"
 	},
 	"title_user": {
 		"no": "OpenID for %USERID%",
@@ -48,7 +50,9 @@
 		"lv": "OpenID priek\u0161 %USERID%",
 		"id": "OpenID untuk %USERID%",
 		"sr": "OpenID za %USERID%",
-		"ro": "OpenID pentru %USERID%"
+		"ro": "OpenID pentru %USERID%",
+		"ru": "OpenID \u0434\u043b\u044f %USERID%",
+		"cs": "OpenID pro %USERID%"
 	},
 	"user_page_for": {
 		"no": "Dette er OpenID brukersiden for <code>%USERID%<\/code>.",
@@ -73,7 +77,9 @@
 		"lv": "\u0160\u012b ir OpenID lietot\u0101ja lapa priek\u0161 <code>%USERID%<\/code>.",
 		"id": "Ini adalah halaman pengguna OpenID untuk <code>%USERID%<\/code>.",
 		"sr": "Ovo je OpenID stranica za korisnika <code>%USERID%<\/code>.",
-		"ro": "Aceasta este pagina OpenID pentru <code>%USERID<\/code>."
+		"ro": "Aceasta este pagina OpenID pentru <code>%USERID<\/code>.",
+		"ru": "\u042d\u0442\u043e OpenID \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u0434\u043b\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f <code>%USERID%<\/code>.",
+		"cs": "Toto je u\u017eivatelsk\u00e1 tr\u00e1nka OpenID pro <code>%USERID%<\/code>."
 	},
 	"view_own_page": {
 		"no": "Se p\u00e5 din egen OpenID side.",
@@ -99,7 +105,9 @@
 		"lv": "Skatiet savu OpenID lapu.",
 		"id": "Lihat halaman OpenID anda.",
 		"sr": "Pogledaj svoju OpenID stranicu.",
-		"ro": "Accesa\u021bi pagina dumneavoastr\u0103 OpenID."
+		"ro": "Accesa\u021bi pagina dumneavoastr\u0103 OpenID.",
+		"ru": "\u041f\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u0412\u0430\u0448\u0443 OpenID \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443.",
+		"cs": "Zobrazit Va\u0161i OpenID str\u00e1nku."
 	},
 	"login_view_own_page": {
 		"no": "Logg p\u00e5 for \u00e5 se p\u00e5 din egen OpenID side.",
@@ -124,7 +132,9 @@
 		"lv": "Piesl\u0113dzieties pie savas OpenID lapas.",
 		"id": "Log in untuk melihat halaman OpenID Anda.",
 		"sr": "Prijavite se da biste videli va\u0161u OpenID stranicu.",
-		"ro": "Autentifica\u021bi-v\u0103 pentru a vizualiza pagina dumneavoastr\u0103 OpenID."
+		"ro": "Autentifica\u021bi-v\u0103 pentru a vizualiza pagina dumneavoastr\u0103 OpenID.",
+		"ru": "\u0412\u043e\u0439\u0442\u0438 \u0434\u043b\u044f \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440\u0430 \u0412\u0430\u0448\u0435\u0439 OpenID \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b.",
+		"cs": "P\u0159ihl\u00e1sit se pro zobrazen\u00ed Va\u0161\u00ed OpenID str\u00e1nky."
 	},
 	"logout_title": {
 		"no": "Logg av",
@@ -150,7 +160,9 @@
 		"lv": "Atsl\u0113gties",
 		"id": "Log out",
 		"sr": "Odjavi se",
-		"ro": "Ie\u0219ire din sistem (deautentificare)"
+		"ro": "Ie\u0219ire din sistem (deautentificare)",
+		"ru": "\u0412\u044b\u0439\u0442\u0438",
+		"cs": "Odhl\u00e1sit"
 	},
 	"logout": {
 		"no": "Trykk her for \u00e5 logge ut av din OpenID bruker.",
@@ -176,7 +188,9 @@
 		"lv": "Klik\u0161\u0137iniet \u0161eit, lai atsl\u0113gtos.",
 		"id": "Klik disini untuk log out dari user OpenID anda.",
 		"sr": "Kliknite ovde da biste se odjavili.",
-		"ro": "Ap\u0103sa\u021bi aici pentru a ie\u0219i din contul dumneavoastr\u0103 OpenID."
+		"ro": "Ap\u0103sa\u021bi aici pentru a ie\u0219i din contul dumneavoastr\u0103 OpenID.",
+		"ru": "\u041a\u043b\u0438\u043a\u043d\u0438\u0442\u0435 \u0442\u0443\u0442 \u0434\u043b\u044f \u0432\u044b\u0445\u043e\u0434\u0430 \u0432\u0430\u0448\u0435\u0433\u043e OpenID \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f.",
+		"cs": "Klikn\u011bte zde pro odhl\u00e1\u0161en\u00ed Va\u0161eho OpenID u\u017eivatele."
 	},
 	"confirm_question": {
 		"no": "\u00d8nsker du \u00e5 logge p\u00e5 %SITEURL%?",
@@ -201,7 +215,9 @@
 		"lv": "Vai v\u0113laties piesl\u0113gties pie %SITEURL%?",
 		"id": "Apakah anda ingin log in ke %SITEURL%?",
 		"sr": "\u017delite li se prijaviti za pristup stranici %SITEURL%?",
-		"ro": "Dori\u021bi s\u0103 v\u0103 conecta\u021bi la %SITEURL%?"
+		"ro": "Dori\u021bi s\u0103 v\u0103 conecta\u021bi la %SITEURL%?",
+		"ru": "\u0412\u044b \u0445\u043e\u0442\u0438\u0442\u0435 \u0432\u043e\u0439\u0442\u0438 \u043d\u0430 %SITEURL%?",
+		"cs": "P\u0159ejete si p\u0159ihl\u00e1sit se k %SITEURL%?"
 	},
 	"remember": {
 		"no": "Husk dette valget",
@@ -230,7 +246,9 @@
 		"lv": "Atcer\u0113ties \u0161o izv\u0113li",
 		"id": "Ingat pilihan ini.",
 		"sr": "Zapamti ovu odluku",
-		"ro": "\u021aine minte aceast\u0103 alegere"
+		"ro": "\u021aine minte aceast\u0103 alegere",
+		"ru": "\u0417\u0430\u043f\u043e\u043c\u043d\u0438\u0442\u044c \u044d\u0442\u043e \u0440\u0435\u0448\u0435\u043d\u0438\u0435",
+		"cs": "Pamatovat toto rozhodnut\u00ed"
 	},
 	"confirm": {
 		"no": "Bekreft",
@@ -259,7 +277,9 @@
 		"lv": "Piekrist",
 		"id": "Konfirmasi",
 		"sr": "Potvrdi",
-		"ro": "Confirm\/De acord"
+		"ro": "Confirm\/De acord",
+		"ru": "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044c",
+		"cs": "Potvrdit"
 	},
 	"notconfirm": {
 		"no": "Ikke bekreft",
@@ -288,7 +308,9 @@
 		"lv": "Nepiekrist",
 		"id": "Jangan konfirmasi",
 		"sr": "Nemoj potvrditi",
-		"ro": "Nu confirm\/Nu sunt de acord"
+		"ro": "Nu confirm\/Nu sunt de acord",
+		"ru": "\u041e\u0442\u043a\u0430\u0437\u0430\u0442\u044c\u0441\u044f \u043e\u0442 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u044f",
+		"cs": "Nepotvrdit"
 	},
 	"trustlist_trustedsites": {
 		"no": "Klarerte websider",
@@ -317,7 +339,9 @@
 		"lv": "Uzticam\u0101s vietnes",
 		"id": "Situs yang dipercayai",
 		"sr": "Web stranice kojima verujete",
-		"ro": "Situri de \u00eencredere"
+		"ro": "Situri de \u00eencredere",
+		"ru": "\u0414\u043e\u0432\u0435\u0440\u0435\u043d\u043d\u044b\u0435 \u0441\u0430\u0439\u0442\u044b",
+		"cs": "D\u016fv\u011bryhodn\u00e1 m\u00edsta"
 	},
 	"trustlist_remove": {
 		"no": "Fjern",
@@ -343,7 +367,9 @@
 		"lv": "Dz\u0113st",
 		"id": "Buang",
 		"sr": "Ukloni ",
-		"ro": "\u0218terge"
+		"ro": "\u0218terge",
+		"ru": "\u0423\u0434\u0430\u043b\u0438\u0442\u044c",
+		"cs": "Odebrat"
 	},
 	"trustlist_nosites": {
 		"no": "Ingen sites er husket. N\u00e5r du autentiserer deg hos en site, kan du velge \u00e5 legge den til denne listen ved \u00e5 velge <q>Husk dette valget<\/q>.",
@@ -368,7 +394,9 @@
 		"lv": "Nav uzticamu viet\u0146u. Kad autentific\u0113jaties \u0161aj\u0101 vietn\u0113, varat to pievienot sarakstam izv\u0113loties <q>Atcer\u0113ties \u0161o izv\u0113li<\/q>.",
 		"id": "Tidak ada situs yang dipercayai. Ketika anda melakukan autentifikasi pada suatu situs, anda dapat memilih untuk menambahkannya ke daftar ini dengan memilih <q>Remember this decision<\/q>.",
 		"sr": "Trenutno ne verujete nijednoj web stranici. Prilikom autentifikacije za pristup nekoj web stranici mo\u017eete je postaviti na popis stranica kojima verujete odabirom opcije <q>Zapamti ovu odluku<\/q>.",
-		"ro": "Niciun sit nu este considerat de \u00eencredere. Atunci c\u00e2nd v\u0103 autentifica\u021bi pe un sit, pute\u021bi alege ad\u0103ugarea acestuia \u00een lista celor de \u00eencredere prin marcarea <q>Re\u021bine aceast\u0103 alegere<\/q>"
+		"ro": "Niciun sit nu este considerat de \u00eencredere. Atunci c\u00e2nd v\u0103 autentifica\u021bi pe un sit, pute\u021bi alege ad\u0103ugarea acestuia \u00een lista celor de \u00eencredere prin marcarea <q>Re\u021bine aceast\u0103 alegere<\/q>",
+		"ru": "\u041d\u0435\u0442 \u0434\u043e\u0432\u0435\u0440\u0435\u043d\u043d\u044b\u0445 \u0441\u0430\u0439\u0442\u043e\u0432. \u041f\u043e\u0441\u043b\u0435 \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u043d\u0430 \u0441\u0430\u0439\u0442\u0435, \u043c\u043e\u0436\u043d\u043e \u0434\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0439 \u0441\u0430\u0439\u0442 \u0432 \u0432\u0430\u0448 \u0441\u043f\u0438\u0441\u043e\u043a, \u0432\u044b\u0431\u0440\u0430\u0432 <q>\u0417\u0430\u043f\u043e\u043c\u043d\u0438\u0442\u044c \u043c\u043e\u0439 \u0432\u044b\u0431\u043e\u0440<\/q>.",
+		"cs": "\u017d\u00e1dn\u00e1 d\u016fv\u011bryhodn\u00e1 m\u00edsta. Kdy\u017e se p\u0159ihl\u00e1s\u00edte ke str\u00e1nce, m\u016f\u017eete ji p\u0159idat do tohoto seznamu volbou <q>Pamatovat toto rozhodnut\u00ed<\/q>."
 	},
 	"your_identifier": {
 		"no": "For \u00e5 logge inn med din OpenID, bruk f\u00f8lgende ID:",
@@ -393,7 +421,9 @@
 		"lv": "Lai piesl\u0113gtos ar J\u016bsu OpenID identifikatoru, izmantojiet \u0161o identifikatoru:",
 		"id": "Untuk log in dengan identifier OpenID anda, gunakan identifier berikut :",
 		"sr": "Da biste se prijavili s va\u0161im OpenID digitalnim identitetom, koristite slede\u0107i identifikator:",
-		"ro": "Pentru a v\u0103 autentifica cu identificatorul dumneavoastr\u0103 OpenID, folos\u021bi urm\u0103torul identificator:"
+		"ro": "Pentru a v\u0103 autentifica cu identificatorul dumneavoastr\u0103 OpenID, folos\u021bi urm\u0103torul identificator:",
+		"ru": "\u0414\u043b\u044f \u0432\u0445\u043e\u0434\u0430 \u0441 \u0412\u0430\u0448\u0438\u043c OpenID \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440\u043e\u043c, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0439\u0442\u0435 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440:",
+		"cs": "Pro p\u0159ihl\u00e1\u0161en\u00ed pomoc\u00ed Va\u0161eho OpenID identifik\u00e1toru pou\u017eijte n\u00e1sleduj\u00edc\u00ed identifik\u00e1tor:"
 	},
 	"howto_delegate": {
 		"no": "Du kan ogs\u00e5 delegere en annen OpenID til \u00e5 benytte denne OpenID tilbyderen. For \u00e5 gj\u00f8re det, m\u00e5 du legge til f\u00f8lgende <code>&lt;head&gt;<\/code>-element p\u00e5 websiden til denne OpenID-en du vil delegere.",
@@ -418,6 +448,8 @@
 		"lv": "J\u016bs varat ar\u012b dele\u0123\u0113t citu identifikatoru \u0161\u012b OpenID pied\u0101v\u0101t\u0101ja izmanto\u0161anai. Lai to izdar\u012btu, identifikatora interneta lap\u0101 pie <code>&lt;head&gt;<\/code>-elementa Jums j\u0101pievieno sekojo\u0161ais:",
 		"id": "Anda juga dapat mendelegasikan pengidentifikasi yang berbeda untuk menggunakan provider OpenID ini. Untuk melakukan hal itu, anda harus menambahkan <code>&lt;head&gt;<\/code>-element ke halaman web pengidentifikasi tersebut.",
 		"sr": "Ovom davaocu OpenID digitalnih identiteta mo\u017eete dodeliti i druga\u010diji identifikator. Da biste to uradili, morate dodati slede\u0107i sadr\u017eaj u <code>&lt;head&gt;<\/code> element web stranice tog identifikatora:",
-		"ro": "Pute\u021bi delega un identificator diferit pentru utilizarea acestui furnizor OpenID. \u00cen acest caz, trebuie s\u0103 ad\u0103uga\u021bi urm\u0103toarele la elementul <code>&lt;head&gt;<\/code> din pagina web a identificatorului respectiv:"
+		"ro": "Pute\u021bi delega un identificator diferit pentru utilizarea acestui furnizor OpenID. \u00cen acest caz, trebuie s\u0103 ad\u0103uga\u021bi urm\u0103toarele la elementul <code>&lt;head&gt;<\/code> din pagina web a identificatorului respectiv:",
+		"ru": "\u0412\u044b \u0442\u0430\u043a\u0436\u0435 \u043c\u043e\u0436\u0435\u0442\u0435 \u0432\u044b\u0434\u0435\u043b\u0438\u0442\u044c \u0434\u0440\u0443\u0433\u043e\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0434\u043b\u044f \u0440\u0430\u0431\u043e\u0442\u044b \u0441 \u0434\u0430\u043d\u043d\u044b\u043c \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u043e\u043c OpenID. \u0414\u043b\u044f \u044d\u0442\u043e\u0433\u043e \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e \u0434\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442 \u043d\u0430 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435 \u0434\u0430\u043d\u043d\u043e\u0433\u043e \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440\u0430: <code>&lt;head&gt;<\/code>",
+		"cs": "M\u016f\u017eete tak\u00e9 delegovat r\u016fzn\u00fd identifik\u00e1tor pro pou\u017eit\u00ed tohoto OpenID poskytovatele. Mus\u00edte pro to p\u0159idat n\u00e1sleduj\u00edc\u00ed do <code>&lt;head&gt;<\/code> elementu na webov\u00e9 str\u00e1nce tohoto identifik\u00e1toru:"
 	}
 }

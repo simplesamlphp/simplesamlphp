@@ -24,7 +24,8 @@
 		"lv": "Cron rezult\u0101tu lapa",
 		"id": "Halaman hasil Cron",
 		"sr": "Cron rezultati",
-		"ro": "Pagina cu rezultatele <i>cron<\/i>"
+		"ro": "Pagina cu rezultatele <i>cron<\/i>",
+		"cs": "Str\u00e1nka v\u00fdsledk\u016f cronu"
 	},
 	"cron_result_title": {
 		"da": "Her er resultatet for opgaven udf\u00f8relse:",
@@ -51,7 +52,8 @@
 		"lv": "Te ir cron darba rezult\u0101ts:",
 		"id": "Berikut ini adalah hasil dari eksekusi pekerjaan cron",
 		"sr": "U nastavku su navedeni rezultati izvr\u0161avanja cron zadataka:",
-		"ro": "Reezultatele execut\u0103rii sarcinilor din <i>cron<\/i>"
+		"ro": "Reezultatele execut\u0103rii sarcinilor din <i>cron<\/i>",
+		"cs": "Zde je v\u00fdsledek \u00fakol\u016f spu\u0161t\u011bn\u00fdch z cronu:"
 	},
 	"cron_info": {
 		"da": "Cron er en m\u00e5de at k\u00f8re tingene regelm\u00e6ssigt p\u00e5 UNIX-systemer.",
@@ -78,7 +80,8 @@
 		"lv": "Cron paredz\u0113ts regul\u0101ru darbu iestat\u012b\u0161anai unix sist\u0113m\u0101s.",
 		"id": "Cron adalah cara untuk menjalankan sesuatu secara ",
 		"sr": "Cron je mehanizam za periodi\u010dno pokretanje procesa na Unix operativnim sistemima.",
-		"ro": "<i>Cron<\/i> este o modalitate folosit\u0103 pe sisteme UNIX pentru a executa diferite sarcini \u00een mod periodic."
+		"ro": "<i>Cron<\/i> este o modalitate folosit\u0103 pe sisteme UNIX pentru a executa diferite sarcini \u00een mod periodic.",
+		"cs": "Cron je zp\u016fsob spou\u0161t\u011bn\u00ed pravideln\u00fdch \u00fakol\u016f na unixov\u00fdch syst\u00e9mech."
 	},
 	"cron_suggestion": {
 		"da": "Her er et forslag til en crontab fil:",
@@ -105,7 +108,8 @@
 		"lv": "Ieteikums crontab failam:",
 		"id": "Berikut adalah saran untuk file crontab:",
 		"sr": "U nastavku je predlog sadr\u017eaja crontab fajla:",
-		"ro": "Sugestie pentru un fi\u0219ier <i>crontab<\/i>:"
+		"ro": "Sugestie pentru un fi\u0219ier <i>crontab<\/i>:",
+		"cs": "Zde je n\u00e1vrh pro soubor crontab:"
 	},
 	"cron_execution": {
 		"da": "Klik her for at k\u00f8re cron job:",
@@ -132,7 +136,8 @@
 		"lv": "Klik\u0161\u0137iniet te, lai palaistu cron darbus:",
 		"id": "Klik disini untuk menjalankan pekerjaan cron:",
 		"sr": "Kliknite ovde da biste pokrenuli izvr\u0161avanje cron zadataka:",
-		"ro": "Ap\u0103sa\u021bi aici pentru a executa sarcinile din <i>cron\/<i>:"
+		"ro": "Ap\u0103sa\u021bi aici pentru a executa sarcinile din <i>cron\/<i>:",
+		"cs": "Klikn\u011bte zde pro spu\u0161t\u011bn\u00ed \u00fakol\u016f z cronu:"
 	},
 	"run_text": {
 		"da": "Run cron:",
@@ -159,7 +164,8 @@
 		"lv": "Palaist cron:",
 		"id": "Jalankan cron:",
 		"sr": "Pokreni cron:",
-		"ro": "Executa\u021bi <i>cron\/<i>:"
+		"ro": "Executa\u021bi <i>cron\/<i>:",
+		"cs": "Spusit cron:"
 	},
 	"ran_text": {
 		"da": "Cron l\u00f8b p\u00e5",
@@ -186,7 +192,8 @@
 		"lv": "Cron darbojies",
 		"id": "Cron berjalan pada",
 		"sr": "Cron je pokrenut u",
-		"ro": "<i>Cron<\/i> a fost executat la"
+		"ro": "<i>Cron<\/i> a fost executat la",
+		"cs": "Cron prob\u011bhl v"
 	},
 	"cron_report_title": {
 		"da": "Cron rapport",
@@ -213,6 +220,7 @@
 		"lv": "Cron atskaite",
 		"id": "Laporan cron",
 		"sr": "Cron izve\u0161taj",
-		"ro": "Raport <i>cron<\/i>"
+		"ro": "Raport <i>cron<\/i>",
+		"cs": "Hl\u00e1\u0161en\u00ed cronu"
 	}
 }

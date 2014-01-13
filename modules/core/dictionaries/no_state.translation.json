@@ -22,7 +22,9 @@
 		"id": "Informasi kondisi\/state hilang",
 		"lv": "St\u0101vok\u013ca inform\u0101cija ir pazaud\u0113ta",
 		"sr": "Informacije o stanju su izgubljene",
-		"ro": "Informa\u021biile de stare au fost pierdute"
+		"ro": "Informa\u021biile de stare au fost pierdute",
+		"ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0438 \u0443\u0442\u0435\u0440\u044f\u043d\u0430",
+		"cs": "Stavov\u00e1 informace ztracena"
 	},
 	"description": {
 		"no": "Vi kunne ikke finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
@@ -47,7 +49,9 @@
 		"id": "Kita tidak dapat menemukan informasi kondisi\/state dari request saat ini.",
 		"lv": "Nav iesp\u0113jams atrast st\u0101vok\u013ca inform\u0101ciju \u0161im piepras\u012bjumam.",
 		"sr": "Ne mo\u017eemo prona\u0107i informacije o stanju aktuelnog zahteva.",
-		"ro": "Nu a fost posibil\u0103 localizarea informa\u021biilor de stare pentru cererea curent\u0103."
+		"ro": "Nu a fost posibil\u0103 localizarea informa\u021biilor de stare pentru cererea curent\u0103.",
+		"ru": "\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0438\u0442\u044c \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e \u043e \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0438 \u0434\u043b\u044f \u0434\u0430\u043d\u043d\u043e\u0433\u043e \u0437\u0430\u043f\u0440\u043e\u0441\u0430.",
+		"cs": "Nebylo mo\u017en\u00e9 naj\u00edt stavovou informaci pro sou\u010dasn\u00fd po\u017eadavek."
 	},
 	"suggestions": {
 		"no": "Forslag for \u00e5 l\u00f8se dette problemet:",
@@ -72,7 +76,9 @@
 		"id": "Saran untuk memperbaiki masalah ini:",
 		"lv": "Ieteikumi probl\u0113mas atrisin\u0101\u0161anai:",
 		"sr": "Preporuke za re\u0161avanje ovog problema:",
-		"ro": "Sugestii pentru rezolvarea acestei probleme:"
+		"ro": "Sugestii pentru rezolvarea acestei probleme:",
+		"ru": "\u0412\u0430\u0440\u0438\u0430\u043d\u0442\u044b \u0440\u0435\u0448\u0435\u043d\u0438\u044f \u043f\u0440\u043e\u0431\u043b\u0435\u043c\u044b:",
+		"cs": "N\u00e1vrhy pro vy\u0159e\u0161en\u00ed tohoto probl\u00e9mu:"
 	},
 	"suggestion_goback": {
 		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
@@ -97,7 +103,9 @@
 		"id": "Kembali ke halaman sebelumnya dan coba lagi.",
 		"lv": "Ejiet atpaka\u013c uz iepriek\u0161\u0113jo lapu un m\u0113\u0123iniet v\u0113lreiz.",
 		"sr": "Vratite se na prethodnu stranicu i poku\u0161ajte ponovo.",
-		"ro": "Accesa\u021bi pagina anterioar\u0103 \u0219i \u00eencerca\u021bi din nou."
+		"ro": "Accesa\u021bi pagina anterioar\u0103 \u0219i \u00eencerca\u021bi din nou.",
+		"ru": "\u0412\u0435\u0440\u043d\u0443\u0442\u044c\u0441\u044f \u043a \u043f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0435\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435 \u0438 \u043f\u043e\u043f\u0440\u043e\u0431\u043e\u0432\u0430\u0442\u044c \u0441\u043d\u043e\u0432\u0430.",
+		"cs": "J\u00edt zp\u011bt na p\u0159edchoz\u00ed str\u00e1nku a zkusit znovu."
 	},
 	"suggestion_closebrowser": {
 		"no": "Lukk nettleseren, og pr\u00f8v p\u00e5 nytt.",
@@ -122,7 +130,9 @@
 		"id": "Tutup browser, dan coba lagi.",
 		"lv": "Aizveriet interneta p\u0101rl\u016bku un m\u0113\u0123iniet v\u0113lreiz.",
 		"sr": "Zatvorite web pretra\u017eiva\u010d i poku\u0161ajte ponovo.",
-		"ro": "\u00cenchide\u021bi browser-ul \u0219i \u00eencerca\u021bi din nou."
+		"ro": "\u00cenchide\u021bi browser-ul \u0219i \u00eencerca\u021bi din nou.",
+		"ru": "\u0417\u0430\u043a\u0440\u044b\u0442\u044c \u0432\u0435\u0431 \u0431\u0440\u0430\u0443\u0437\u0435\u0440 \u0438 \u043f\u043e\u043f\u0440\u043e\u0431\u043e\u0432\u0430\u0442\u044c \u0441\u043d\u043e\u0432\u0430.",
+		"cs": "Zav\u0159\u00edt webov\u00fd prohl\u00ed\u017ee\u010d a zkusit znovu."
 	},
 	"causes": {
 		"no": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
@@ -147,7 +157,9 @@
 		"id": "Error ini mungkin disebabkan oleh:",
 		"lv": "K\u013c\u016bdu rad\u012bjis:",
 		"sr": "Ova gre\u0161ka mo\u017ee biti uzrokovana:",
-		"ro": "Aceast\u0103 eroare poate fi cauzat\u0103 de:"
+		"ro": "Aceast\u0103 eroare poate fi cauzat\u0103 de:",
+		"ru": "\u042d\u0442\u0430 \u043e\u0448\u0438\u0431\u043a\u0430 \u043c\u043e\u0436\u0435\u0442 \u0431\u044b\u0442\u044c \u0432\u044b\u0437\u0432\u0430\u043d\u0430:",
+		"cs": "Tato chyba m\u016f\u017ee b\u00fdt zp\u016fsoben\u00e1:"
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
@@ -172,7 +184,9 @@
 		"id": "Menggunakan tombol back dan forward pada browser web.",
 		"lv": "Interneta p\u0101rl\u016bka pogu Uz priek\u0161u un Atpaka\u013c lieto\u0161ana.",
 		"sr": "Kori\u0161\u0107enjem tastera za prethodnu (back) i slede\u0107u (forward) stranicu u web pretra\u017eiva\u010du.",
-		"ro": "Utilizarea butoanelor \"\u00eenainte\" sau \"\u00eenapoi\" din browser."
+		"ro": "Utilizarea butoanelor \"\u00eenainte\" sau \"\u00eenapoi\" din browser.",
+		"ru": "\u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0439\u0442\u0435 \u043a\u043b\u0430\u0432\u0438\u0448\u0438 \"\u0412\u043f\u0435\u0440\u0435\u0434\" \"\u041d\u0430\u0437\u0430\u0434\" \u0432 \u0431\u0440\u043e\u0443\u0437\u0435\u0440\u0435.",
+		"cs": "Pou\u017eit\u00edm tla\u010d\u00edtek zp\u011bt a vp\u0159ed ve webv\u00e9m prohl\u00ed\u017ee\u010di."
 	},
 	"cause_openbrowser": {
 		"no": "Starte nettleseren med faner lagret fra forrige gang.",
@@ -197,7 +211,9 @@
 		"id": "Membuka web browser dengan tab-tab yang telah disimpan dari session sebelumnya.",
 		"lv": "Interneta p\u0101rl\u016bka atv\u0113r\u0161ana ar saglab\u0101t\u0101m ciln\u0113m no iepriek\u0161\u0113j\u0101s sesijas.",
 		"sr": "Otvaranjem web pretra\u017eiva\u010da sa stranicama sa\u010duvanim iz prethodne sesije.",
-		"ro": "Pornirea browser-ului cu file salvate \u00eentr-o sesiune anterioar\u0103."
+		"ro": "Pornirea browser-ului cu file salvate \u00eentr-o sesiune anterioar\u0103.",
+		"ru": "\u041e\u0442\u043a\u0440\u044b\u0442 \u0431\u0440\u0430\u0443\u0437\u0435\u0440 \u0441 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u043d\u044b\u043c\u0438 \u0437\u0430\u043a\u043b\u0430\u0434\u043a\u0430\u043c\u0438 \u043e\u0442 \u043f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0435\u0439 \u0441\u0435\u0441\u0441\u0438\u0438.",
+		"cs": "Otev\u0159en\u00edm webov\u00e9ho prohl\u00ed\u017ee\u010de se z\u00e1lo\u017ekami z p\u0159edchoz\u00edho sezen\u00ed."
 	},
 	"cause_nocookie": {
 		"no": "At informasjonskapsler ikke er aktivert i nettleseren.",
@@ -222,7 +238,9 @@
 		"id": "Cookie mungkin dinonaktifkan pada web browser ini.",
 		"lv": "Iesp\u0113jams, interneta p\u0101rl\u016bk\u0101 ir aizliegtas s\u012bkdatnes.",
 		"sr": "Mogu\u0107e da je podr\u0161ka za kola\u010di\u0107e (\"cookies\") isklju\u010dena u web pretra\u017eiva\u010du.",
-		"ro": "Browser-ul are deactivate <i>cookies<\/i>."
+		"ro": "Browser-ul are deactivate <i>cookies<\/i>.",
+		"ru": "\u0412\u043e\u0437\u043c\u043e\u0436\u043d\u043e, \u0432 \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435 \u043e\u0442\u043a\u043b\u044e\u0447\u0435\u043d\u044b Cookies.",
+		"cs": "Ve webov\u00e9m prohl\u00ed\u017ee\u010di mohou b\u00fdt zak\u00e1z\u00e1ny cookies."
 	},
 	"report_header": {
 		"no": "Rapporter denne feilen",
@@ -247,7 +265,9 @@
 		"id": "Laporan error ini",
 		"lv": "Zi\u0146ojiet par \u0161o k\u013c\u016bdu",
 		"sr": "Prijavite ovu gre\u0161ku",
-		"ro": "V\u0103 rug\u0103m s\u0103 anun\u021ba\u021bi aceast\u0103 eroare"
+		"ro": "V\u0103 rug\u0103m s\u0103 anun\u021ba\u021bi aceast\u0103 eroare",
+		"ru": "\u0421\u043e\u043e\u0431\u0449\u0438\u0442\u044c \u043e \u0434\u0430\u043d\u043d\u043e\u0439 \u043e\u0448\u0438\u0431\u043a\u0435",
+		"cs": "Nahl\u00e1sit tuto chybu"
 	},
 	"report_text": {
 		"no": "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene.",
@@ -272,6 +292,8 @@
 		"id": "Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke system administrator.",
 		"lv": "Ja probl\u0113ma atk\u0101rtojas, varat zi\u0146ot sist\u0113mas administratoriem.",
 		"sr": "Ako se ova gre\u0161ka bude i dalje pojavljivala, mo\u017eete je prijaviti administratorima.",
-		"ro": "Dac\u0103 problema persist\u0103, anun\u021ba\u021bi administratorii de sistem."
+		"ro": "Dac\u0103 problema persist\u0103, anun\u021ba\u021bi administratorii de sistem.",
+		"ru": "\u0415\u0441\u043b\u0438 \u043f\u0440\u043e\u0431\u043b\u0435\u043c\u0430 \u043e\u0441\u0442\u0430\u0435\u0442\u0441\u044f, \u0441\u043e\u043e\u0431\u0449\u0438\u0442\u044c \u043e\u0431 \u044d\u0442\u043e\u043c \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u0443.",
+		"cs": "Pokud probl\u00e9m p\u0159etrv\u00e1v\u00e1, m\u016f\u017eete ho nahl\u00e1sit spr\u00e1vci."
 	}
 }

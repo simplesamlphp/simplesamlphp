@@ -24,7 +24,8 @@
 		"lv": "Pieejamie modu\u013ci",
 		"id": "Module-module yang tersedia",
 		"sr": "Raspolo\u017eivi moduli",
-		"ro": "Module disponibile"
+		"ro": "Module disponibile",
+		"cs": "Dostupn\u00e9 moduly"
 	},
 	"modlist_name": {
 		"no": "Navn",
@@ -51,7 +52,8 @@
 		"lv": "V\u0101rds",
 		"id": "Nama",
 		"sr": "Naziv",
-		"ro": "Nume"
+		"ro": "Nume",
+		"cs": "Jm\u00e9no"
 	},
 	"modlist_status": {
 		"no": "Status",
@@ -78,7 +80,8 @@
 		"lv": "Statuss",
 		"id": "Status",
 		"sr": "Status",
-		"ro": "Stare"
+		"ro": "Stare",
+		"cs": "Stav"
 	},
 	"modlist_enabled": {
 		"no": "P\u00e5sl\u00e5tt",
@@ -105,7 +108,8 @@
 		"lv": "Iesp\u0113jots",
 		"id": "Diaktifkan",
 		"sr": "Omogu\u0107en",
-		"ro": "Activat\/Disponibil"
+		"ro": "Activat\/Disponibil",
+		"cs": "Povolen\u00fd"
 	},
 	"modlist_disabled": {
 		"no": "Avsl\u00e5tt",
@@ -132,6 +136,7 @@
 		"lv": "Atsp\u0113jots",
 		"id": "Dinonaktifkan",
 		"sr": "Onemogu\u0107en",
-		"ro": "Dezactivat\/Nedisponibil"
+		"ro": "Dezactivat\/Nedisponibil",
+		"cs": "Zak\u00e1zan\u00fd"
 	}
 }

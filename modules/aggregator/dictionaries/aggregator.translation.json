@@ -23,7 +23,8 @@
 		"lv": "Metadatu agregators",
 		"id": "Aggregator metadata",
 		"sr": "Agregator metapodataka",
-		"ro": "Agregator de metadate"
+		"ro": "Agregator de metadate",
+		"cs": "Metadata agreg\u00e1tor"
 	},
 	"aggregator_header": {
 		"no": "Aggregatorer",
@@ -49,7 +50,8 @@
 		"lv": "Agregatori",
 		"id": "Aggregator",
 		"sr": "Agregatori",
-		"ro": "Agregatoare"
+		"ro": "Agregatoare",
+		"cs": "Agreg\u00e1tory"
 	},
 	"no_aggregators": {
 		"no": "Ingen aggregator definert i konfigurasjonen",
@@ -75,7 +77,8 @@
 		"lv": "Konfigur\u0101cij\u0101 nav defin\u0113ti agregatori.",
 		"id": "Tidak ada aggregator yang didefinisikan di konfigurasi",
 		"sr": "U pode\u0161avanjima nije definisan nijedan agregator.",
-		"ro": "Nu sunt definite agregatoare \u00een configurare."
+		"ro": "Nu sunt definite agregatoare \u00een configurare.",
+		"cs": "\u017d\u00e1dn\u00e9 agreg\u00e1tory nejsou definov\u00e1ny v konfiguraci."
 	},
 	"text": {
 		"no": "tekst",
@@ -101,6 +104,7 @@
 		"lv": "teksts",
 		"id": "teks",
 		"sr": "tekst",
-		"ro": "text"
+		"ro": "text",
+		"cs": "text"
 	}
 }
