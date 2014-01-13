@@ -153,7 +153,7 @@ Released 2012-06-13.
   * Warnings about URL length limits from Suhosin PHP extension.
   * New base class for errors from authentication sources.
   * Support for overriding URL generation when behind a reverse proxy.
-  * New lanugages: Russian, Estonian, Hebrew, Chinese, Indonesian
+  * New languages: Russian, Estonian, Hebrew, Chinese, Indonesian
   * Add getAuthSource()-function to SimpleSAML_Auth_Simple.
   * Add reauthenticate()-function to SimpleSAML_Auth_Source. (Is called when the IdP receives a new authentication request.)
   * iframe logout: Make it possible to skip the "question-page" for code on the IdP.
