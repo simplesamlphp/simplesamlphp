@@ -6,7 +6,7 @@ $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
 if (!$session->isValid('wsfed') ) {
-	SimpleSAML_Utilities::redirect(
+	SimpleSAML_Utilities::redirectTrustedURL(
 		'/' . $config->getBaseURL() . 'wsfed/sp/initSSO.php',
 		array('RelayState' => SimpleSAML_Utilities::selfURL())
 	);

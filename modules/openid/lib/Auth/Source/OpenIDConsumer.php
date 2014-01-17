@@ -123,7 +123,7 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 		$id = SimpleSAML_Auth_State::saveState($state, 'openid:init');
 
 		$url = SimpleSAML_Module::getModuleURL('openid/consumer.php');
-		SimpleSAML_Utilities::redirect($url, array('AuthState' => $id));
+		SimpleSAML_Utilities::redirectTrustedURL($url, array('AuthState' => $id));
 	}
 
 
@@ -251,7 +251,7 @@ class sspmod_openid_Auth_Source_OpenIDConsumer extends SimpleSAML_Auth_Source {
 
 			// For OpenID 2 failover to POST if redirect URL is longer than 2048
 			if ($should_send_redirect || strlen($redirect_url) <= 2048) {
-				SimpleSAML_Utilities::redirect($redirect_url);
+				SimpleSAML_Utilities::redirectTrustedURL($redirect_url);
 				assert('FALSE');
 			}
 		}

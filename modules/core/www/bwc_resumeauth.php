@@ -20,7 +20,7 @@ if ($requestcache['ForceAuthn'] && $requestcache['core:prevSession'] === $sessio
 }
 
 if (isset($state['ReturnTo'])) {
-	SimpleSAML_Utilities::redirect($state['ReturnTo']);
+	SimpleSAML_Utilities::redirectUntrustedURL($state['ReturnTo']);
 }
 
 foreach ($session->getAuthState($authority) as $k => $v) {

@@ -94,7 +94,7 @@ class sspmod_oauth_Consumer {
 		}
 		$authorizeURL = SimpleSAML_Utilities::addURLparameter($url, $params);
 		if ($redirect) {
-			SimpleSAML_Utilities::redirect($authorizeURL);
+			SimpleSAML_Utilities::redirectTrustedURL($authorizeURL);
 			exit;
 		}	
 		return $authorizeURL;

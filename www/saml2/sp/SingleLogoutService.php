@@ -88,7 +88,7 @@ if ($message instanceof SAML2_LogoutRequest) {
 		throw new SimpleSAML_Error_Error('LOGOUTINFOLOST');
 	}
 
-	SimpleSAML_Utilities::redirect($returnTo);
+	SimpleSAML_Utilities::redirectUntrustedURL($returnTo);
 
 } else {
 	throw new SimpleSAML_Error_Error('SLOSERVICEPARAMS');

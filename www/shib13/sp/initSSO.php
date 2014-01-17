@@ -58,7 +58,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 			$discservice = '/' . $config->getBaseURL() . 'shib13/sp/idpdisco.php';
 		}
 
-		SimpleSAML_Utilities::redirect($discservice, array(
+		SimpleSAML_Utilities::redirectTrustedURL($discservice, array(
 			'entityID' => $spentityid,
 			'return' => SimpleSAML_Utilities::selfURL(),
 			'returnIDParam' => 'idpentityid',
@@ -75,7 +75,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 		SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: SP (' . $spentityid . ') is sending AuthNRequest to IdP (' . $idpentityid . ')');
 
 		$url = $ar->createRedirect($idpentityid);
-		SimpleSAML_Utilities::redirect($url);
+		SimpleSAML_Utilities::redirectTrustedURL($url);
 	
 	} catch(Exception $exception) {		
 		throw new SimpleSAML_Error_Error('CREATEREQUEST', $exception);
@@ -88,7 +88,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 	
 	if (isset($relaystate) && !empty($relaystate)) {
 		SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: Already Authenticated, Go back to RelayState');
-		SimpleSAML_Utilities::redirect($relaystate);
+		SimpleSAML_Utilities::redirectUntrustedURL($relaystate);
 	} else {
 		throw new SimpleSAML_Error_Error('NORELAYSTATE');
 	}

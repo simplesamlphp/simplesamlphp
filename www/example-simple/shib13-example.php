@@ -41,7 +41,7 @@ $session = SimpleSAML_Session::getInstance();
  * retrieving attributes from the session.
  */
 if (!$session->isValid('shib13') ) {
-	SimpleSAML_Utilities::redirect(
+	SimpleSAML_Utilities::redirectTrustedURL(
 		'/' . $config->getBaseURL() . 'shib13/sp/initSSO.php',
 		array('RelayState' => SimpleSAML_Utilities::selfURL())
 	);

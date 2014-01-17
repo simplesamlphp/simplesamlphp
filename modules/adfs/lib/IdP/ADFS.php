@@ -171,7 +171,7 @@ class sspmod_adfs_IdP_ADFS {
 		// NB:: we don't know from which SP the logout request came from
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $idp->getConfig();
-		SimpleSAML_Utilities::redirect($idpMetadata->getValue('redirect-after-logout', SimpleSAML_Utilities::getBaseURL()));
+		SimpleSAML_Utilities::redirectTrustedURL($idpMetadata->getValue('redirect-after-logout', SimpleSAML_Utilities::getBaseURL()));
 	}
 	
 	public static function receiveLogoutMessage(SimpleSAML_IdP $idp) {

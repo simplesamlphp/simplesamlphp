@@ -248,7 +248,7 @@ class SimpleSAML_Auth_ProcessingChain {
 			 * in $state['ReturnURL'].
 			 */
 			$id = SimpleSAML_Auth_State::saveState($state, self::COMPLETED_STAGE);
-			SimpleSAML_Utilities::redirect($state['ReturnURL'], array(self::AUTHPARAM => $id));
+			SimpleSAML_Utilities::redirectUntrustedURL($state['ReturnURL'], array(self::AUTHPARAM => $id));
 		} else {
 			/* Pass the state to the function defined in $state['ReturnCall']. */
 

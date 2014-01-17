@@ -59,7 +59,7 @@ if (isset($_POST['password'])) {
 		else 
 			SimpleSAML_Logger::stats('AUTH-login-admin OK');
 		
-		SimpleSAML_Utilities::redirect($relaystate);
+		SimpleSAML_Utilities::redirectUntrustedURL($relaystate);
 		exit(0);
 	} else {
 		SimpleSAML_Logger::stats('AUTH-login-admin Failed');

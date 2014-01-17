@@ -35,4 +35,4 @@ if (!empty($_REQUEST['saml:idp'])) {
 $as = new SimpleSAML_Auth_Simple($_REQUEST['AuthId']);
 $as->requireAuth($options);
 
-SimpleSAML_Utilities::redirect($_REQUEST['ReturnTo']);
+SimpleSAML_Utilities::redirectUntrustedURL($_REQUEST['ReturnTo']);

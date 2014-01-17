@@ -59,7 +59,7 @@ if ($username = $_POST['username']) {
 			$session->setNameID(array(
 					'value' => SimpleSAML_Utilities::generateID(),
 					'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
-			SimpleSAML_Utilities::redirect($relaystate);
+			SimpleSAML_Utilities::redirectUntrustedURL($relaystate);
 		}
 	} catch(Exception $e) {
 			throw new SimpleSAML_Error_Error('LDAPERROR', $e);

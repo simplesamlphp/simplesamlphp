@@ -104,7 +104,7 @@ function casValidate($cas) {
 	 */
 	} else {
 		SimpleSAML_Logger::info("AUTH - cas-ldap: redirecting to {$cas['login']}");
-		SimpleSAML_Utilities::redirect($cas['login'], array(
+		SimpleSAML_Utilities::redirectTrustedURL($cas['login'], array(
 			'service' => $service
 		));		
 	}
@@ -132,7 +132,7 @@ try {
 	$session->setNameID(array(
 			'value' => SimpleSAML_Utilities::generateID(),
 			'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
-	SimpleSAML_Utilities::redirect($relaystate);
+	SimpleSAML_Utilities::redirectUntrustedURL($relaystate);
 
 } catch(Exception $exception) {
 	throw new SimpleSAML_Error_Error('CASERROR', $exception);

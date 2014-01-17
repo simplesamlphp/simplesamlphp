@@ -22,7 +22,7 @@ class sspmod_exampleauth_Auth_Process_RedirectTest extends SimpleSAML_Auth_Proce
 		/* Save state and redirect. */
 		$id = SimpleSAML_Auth_State::saveState($state, 'exampleauth:redirectfilter-test');
 		$url = SimpleSAML_Module::getModuleURL('exampleauth/redirecttest.php');
-		SimpleSAML_Utilities::redirect($url, array('StateId' => $id));
+		SimpleSAML_Utilities::redirectTrustedURL($url, array('StateId' => $id));
 	}
 
 }

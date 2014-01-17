@@ -80,6 +80,6 @@ class sspmod_saml_Auth_Process_ExpectedAuthnContextClassRef extends SimpleSAML_A
 		$id = SimpleSAML_Auth_State::saveState($request, 'saml:ExpectedAuthnContextClassRef:unauthorized');
 		$url = SimpleSAML_Module::getModuleURL(
 			'saml/sp/wrong_authncontextclassref.php');
-		SimpleSAML_Utilities::redirect($url, array('StateId' => $id));
+		SimpleSAML_Utilities::redirectTrustedURL($url, array('StateId' => $id));
 	}
 }

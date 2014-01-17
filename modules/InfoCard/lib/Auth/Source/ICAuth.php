@@ -37,7 +37,7 @@ class sspmod_InfoCard_Auth_Source_ICAuth extends SimpleSAML_Auth_Source {
 		$state[self::AUTHID] = $this->authId;
 		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
 		$url = SimpleSAML_Module::getModuleURL('InfoCard/login-infocard.php');
-		SimpleSAML_Utilities::redirect($url, array('AuthState' => $id));
+		SimpleSAML_Utilities::redirectTrustedURL($url, array('AuthState' => $id));
 	}
 	
 

@@ -96,7 +96,7 @@ if ($idpentityid === NULL) {
 		
 		$extDiscoveryStorage = $config->getBoolean('idpdisco.extDiscoveryStorage');
 		
-		SimpleSAML_Utilities::redirect($extDiscoveryStorage, array(
+		SimpleSAML_Utilities::redirectTrustedURL($extDiscoveryStorage, array(
 			'entityID' => $spentityid,
 			'return' => SimpleSAML_Utilities::addURLparameter($discourl, array(
 				'return' => SimpleSAML_Utilities::selfURL(),
@@ -120,7 +120,7 @@ if ($idpentityid === NULL) {
 		$discoparameters['IDPList'] = $reachableIDPs;
 	}
 
-	SimpleSAML_Utilities::redirect($discourl, $discoparameters);
+	SimpleSAML_Utilities::redirectTrustedURL($discourl, $discoparameters);
 }
 
 

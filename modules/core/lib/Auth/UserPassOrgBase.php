@@ -157,7 +157,7 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 
 		$url = SimpleSAML_Module::getModuleURL('core/loginuserpassorg.php');
 		$params = array('AuthState' => $id);
-		SimpleSAML_Utilities::redirect($url, $params);
+		SimpleSAML_Utilities::redirectTrustedURL($url, $params);
 	}
 
 

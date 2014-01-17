@@ -52,7 +52,7 @@ class sspmod_aselect_Auth_Source_aselect extends SimpleSAML_Auth_Source {
 			$app_url = SimpleSAML_Module::getModuleURL('aselect/credentials.php', array('ssp_state' => $id));
 			$as_url = $this->request_authentication($app_url);
 
-			SimpleSAML_Utilities::redirect($as_url);
+			SimpleSAML_Utilities::redirectTrustedURL($as_url);
 		} catch(Exception $e) {
 			// attach the exception to the state
 			SimpleSAML_Auth_State::throwException($state, $e);

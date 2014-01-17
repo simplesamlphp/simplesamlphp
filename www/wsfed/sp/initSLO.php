@@ -38,7 +38,7 @@ if (isset($session) ) {
 			
 		$idpmeta = $metadata->getMetaData($idpentityid, 'wsfed-idp-remote');
 		
-		SimpleSAML_Utilities::redirect($idpmeta['prp'], array(
+		SimpleSAML_Utilities::redirectTrustedURL($idpmeta['prp'], array(
 			'wa' => 'wsignout1.0',
 			'wct' =>  gmdate('Y-m-d\TH:i:s\Z', time()),
 			'wtrealm' => $spentityid,
@@ -53,7 +53,7 @@ if (isset($session) ) {
 } else {
 
 	SimpleSAML_Logger::info('WS-Fed - SP.initSLO: User is already logged out. Go back to relaystate');
-	SimpleSAML_Utilities::redirect($returnTo);
+	SimpleSAML_Utilities::redirectUntrustedURL($returnTo);
 	
 }
 

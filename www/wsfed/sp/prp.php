@@ -28,7 +28,7 @@ if (!empty($_GET['wa']) and ($_GET['wa'] == 'wsignoutcleanup1.0')) {
 		$session->doLogout('wsfed');
 	}
 	if (!empty($_GET['wreply'])) {
-		SimpleSAML_Utilities::redirect(urldecode($_GET['wreply']));
+		SimpleSAML_Utilities::redirectUntrustedURL(urldecode($_GET['wreply']));
 	}
 	exit;
 }
@@ -147,7 +147,7 @@ try {
 	$session->doLogin('wsfed', $authData);
 
 	/* Redirect the user back to the page which requested the login. */
-	SimpleSAML_Utilities::redirect($wctx);
+	SimpleSAML_Utilities::redirectUntrustedURL($wctx);
 
 } catch(Exception $exception) {		
 	throw new SimpleSAML_Error_Error('PROCESSASSERTION', $exception);

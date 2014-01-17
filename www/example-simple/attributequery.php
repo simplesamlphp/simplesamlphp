@@ -61,7 +61,7 @@ function handleResponse() {
 	$data['attributes'] = $assertion->getAttributes();
 	$GLOBALS['session']->setData('attributequeryexample:data', $dataId, $data, 3600);
 
-	SimpleSAML_Utilities::redirect(SimpleSAML_Utilities::selfURLNoQuery(),
+	SimpleSAML_Utilities::redirectTrustedURL(SimpleSAML_Utilities::selfURLNoQuery(),
 		array('dataId' => $dataId));
 }
 

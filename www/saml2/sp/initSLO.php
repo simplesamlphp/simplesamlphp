@@ -25,7 +25,7 @@ try {
 	$idpEntityId = $session->getAuthData('saml2', 'saml:sp:IdP');
 	if ($idpEntityId === NULL) {
 		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: User not authenticated with an IdP.');
-		SimpleSAML_Utilities::redirect($returnTo);
+		SimpleSAML_Utilities::redirectUntrustedURL($returnTo);
 	}
 	$idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-remote');
 	$SLOendpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
@@ -35,7 +35,7 @@ try {
 	if ($SLOendpoint === NULL) {
 		$session->doLogout('saml2');
 		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: No supported SingleLogoutService endpoint in IdP.');
-		SimpleSAML_Utilities::redirect($returnTo);
+		SimpleSAML_Utilities::redirectUntrustedURL($returnTo);
 	}
 
 	$spEntityId = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();

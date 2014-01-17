@@ -110,7 +110,7 @@ if (isset($_POST['username'])) {
 
 	
 				$returnto = $_REQUEST['RelayState'];
-				SimpleSAML_Utilities::redirect($returnto);
+				SimpleSAML_Utilities::redirectUntrustedURL($returnto);
 				
 	
 			case RADIUS_ACCESS_REJECT:

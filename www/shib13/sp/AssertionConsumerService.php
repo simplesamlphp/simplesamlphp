@@ -34,7 +34,7 @@ function finishLogin($authProcState) {
 	global $session;
 	$session->doLogin('shib13', $authData);
 
-	SimpleSAML_Utilities::redirect($authProcState['core:shib13-sp:TargetURL']);
+	SimpleSAML_Utilities::redirectTrustedURL($authProcState['core:shib13-sp:TargetURL']);
 }
 
 

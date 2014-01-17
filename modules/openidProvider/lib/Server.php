@@ -401,7 +401,7 @@ class sspmod_openidProvider_Server {
 			}
 
 			$trustURL = $this->getStateURL('trust.php', $state);
-			SimpleSAML_Utilities::redirect($trustURL);
+			SimpleSAML_Utilities::redirectTrustedURL($trustURL);
 		}
 
 		if (!$trusted) {

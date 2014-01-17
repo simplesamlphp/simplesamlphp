@@ -45,7 +45,7 @@ if ($prevAuth !== NULL && $prevAuth['id'] === $response->getId() && $prevAuth['i
 	 * instead of displaying a confusing error message.
 	 */
 	SimpleSAML_Logger::info('Duplicate SAML 2 response detected - ignoring the response and redirecting the user to the correct page.');
-	SimpleSAML_Utilities::redirect($prevAuth['redirect']);
+	SimpleSAML_Utilities::redirectTrustedURL($prevAuth['redirect']);
 }
 
 $idpMetadata = array();

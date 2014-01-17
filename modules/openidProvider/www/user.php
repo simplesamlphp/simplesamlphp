@@ -15,7 +15,7 @@ if (!$userId && $identity) {
 	 * We are accessing the front-page, but are logged in.
 	 * Redirect to the correct page.
 	 */
-	SimpleSAML_Utilities::redirect($identity);
+	SimpleSAML_Utilities::redirectTrustedURL($identity);
 }
 
 /* Determine whether we are at the users own page. */
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 	}
 
-	SimpleSAML_Utilities::redirect($identity);
+	SimpleSAML_Utilities::redirectTrustedURL($identity);
 }
 
 if ($ownPage) {

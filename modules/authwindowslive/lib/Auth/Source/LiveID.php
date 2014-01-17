@@ -72,7 +72,7 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source {
 				. '&wrap_scope=WL_Profiles.View,Messenger.SignIn'
 		;
 
-                SimpleSAML_Utilities::redirect($authorizeURL);
+                SimpleSAML_Utilities::redirectTrustedURL($authorizeURL);
 	}
 
 

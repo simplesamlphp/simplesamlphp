@@ -193,7 +193,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 			if ($this->config->getBoolean('idpdisco.extDiscoveryStorage', NULL) != NULL) {
 				$extDiscoveryStorage = $this->config->getBoolean('idpdisco.extDiscoveryStorage');
 				$this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
-				SimpleSAML_Utilities::redirect($extDiscoveryStorage, array(
+				SimpleSAML_Utilities::redirectTrustedURL($extDiscoveryStorage, array(
 					'entityID' => $this->spEntityId,
 					'IdPentityID' => $idp,
 					'returnIDParam' => $this->returnIdParam,
@@ -203,7 +203,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 				
 			} else {
 				$this->log('Choice made [' . $idp . '] (Redirecting the user back. returnIDParam=' . $this->returnIdParam . ')');
-				SimpleSAML_Utilities::redirect($this->returnURL, array($this->returnIdParam => $idp));
+				SimpleSAML_Utilities::redirectUntrustedURL($this->returnURL, array($this->returnIdParam => $idp));
 			}
 			
 			return;
@@ -211,7 +211,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 		
 		if ($this->isPassive) {
 			$this->log('Choice not made. (Redirecting the user back without answer)');
-			SimpleSAML_Utilities::redirect($this->returnURL);
+			SimpleSAML_Utilities::redirectUntrustedURL($this->returnURL);
 			return;
 		}
 

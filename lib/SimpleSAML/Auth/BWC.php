@@ -120,7 +120,7 @@ class SimpleSAML_Auth_BWC extends SimpleSAML_Auth_Simple {
 
 		$config = SimpleSAML_Configuration::getInstance();
 		$authurl = '/' . $config->getBaseURL() . $this->auth;
-		SimpleSAML_Utilities::redirect($authurl, array(
+		SimpleSAML_Utilities::redirectTrustedURL($authurl, array(
 			'RelayState' => $relayState,
 			'AuthId' => $authId,
 			'protocol' => 'saml2',
@@ -143,20 +143,19 @@ class SimpleSAML_Auth_BWC extends SimpleSAML_Auth_Simple {
 		$session = SimpleSAML_Session::getInstance();
 		if (!$session->isValid($this->authority)) {
 			/* Not authenticated to this authentication source. */
-			SimpleSAML_Utilities::redirect($url);
+			SimpleSAML_Utilities::redirectUntrustedURL($url);
 			assert('FALSE');
 		}
 
 		if ($this->authority === 'saml2') {
 			$config = SimpleSAML_Configuration::getInstance();
-			SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'saml2/sp/initSLO.php',
+			SimpleSAML_Utilities::redirectUntrustedURL('/' . $config->getBaseURL() . 'saml2/sp/initSLO.php',
 				array('RelayState' => $url)
 			);
 		}
 
 		$session->doLogout($this->authority);
-
-		SimpleSAML_Utilities::redirect($url);
+		SimpleSAML_Utilities::redirectUntrustedURL($url);
 	}
 
 }

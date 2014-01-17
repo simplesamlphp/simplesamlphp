@@ -47,7 +47,7 @@ function finishLogin($authProcState) {
 	global $session;
 	$session->doLogin('saml2', $authData);
 
-	SimpleSAML_Utilities::redirect($authProcState['core:saml20-sp:TargetURL']);
+	SimpleSAML_Utilities::redirectUntrustedURL($authProcState['core:saml20-sp:TargetURL']);
 }
 
 SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Accessing SAML 2.0 SP endpoint AssertionConsumerService');
@@ -116,7 +116,7 @@ try {
 		$status = $response->getStatus();
 		if(array_key_exists('OnError', $info)) {
 			/* We have an error handler. Return the error to it. */
-			SimpleSAML_Utilities::redirect($info['OnError'], array('StatusCode' => $status['Code']));
+			SimpleSAML_Utilities::redirectTrustedURL($info['OnError'], array('StatusCode' => $status['Code']));
 		}
 
 		/* We don't have an error handler. Show an error page. */

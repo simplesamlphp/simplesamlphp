@@ -38,7 +38,7 @@ if ($idpentityid == null) {
 
 	SimpleSAML_Logger::info('WS-Fed - SP.initSSO: No chosen or default IdP, go to WSFeddisco');
 
-	SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'wsfed/sp/idpdisco.php', array(
+	SimpleSAML_Utilities::redirectTrustedURL('/' . $config->getBaseURL() . 'wsfed/sp/idpdisco.php', array(
 		'entityID' => $spentityid,
 		'return' => SimpleSAML_Utilities::selfURL(),
 		'returnIDParam' => 'idpentityid')
@@ -51,7 +51,7 @@ try {
 	$idpmeta = $metadata->getMetaData($idpentityid, 'wsfed-idp-remote');
 	$spmeta = $metadata->getMetaData($spentityid, 'wsfed-sp-hosted');
 
-	SimpleSAML_Utilities::redirect($idpmeta['prp'], array(
+	SimpleSAML_Utilities::redirectTrustedURL($idpmeta['prp'], array(
 		'wa' => 'wsignin1.0',
 		'wct' =>  gmdate('Y-m-d\TH:i:s\Z', time()),
 		'wtrealm' => $spentityid,

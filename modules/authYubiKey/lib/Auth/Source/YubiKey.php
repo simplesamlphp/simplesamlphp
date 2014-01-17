@@ -104,7 +104,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
 
 		$url = SimpleSAML_Module::getModuleURL('authYubiKey/yubikeylogin.php');
-		SimpleSAML_Utilities::redirect($url, array('AuthState' => $id));
+		SimpleSAML_Utilities::redirectTrustedURL($url, array('AuthState' => $id));
 	}
 	
 	

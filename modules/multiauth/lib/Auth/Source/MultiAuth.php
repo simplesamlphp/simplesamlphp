@@ -121,7 +121,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 			$params['source'] = $_GET['source'];
 		}
 
-		SimpleSAML_Utilities::redirect($url, $params);
+		SimpleSAML_Utilities::redirectTrustedURL($url, $params);
 
 		/* The previous function never returns, so this code is never
 		executed */

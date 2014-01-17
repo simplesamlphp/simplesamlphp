@@ -129,7 +129,7 @@ class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_Processing
 			'authorize:Authorize');
 		$url = SimpleSAML_Module::getModuleURL(
 			'authorize/authorize_403.php');
-		SimpleSAML_Utilities::redirect($url, array('StateId' => $id));
+		SimpleSAML_Utilities::redirectTrustedURL($url, array('StateId' => $id));
 	}
 }
 

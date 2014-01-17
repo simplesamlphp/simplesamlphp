@@ -41,7 +41,7 @@ $session = SimpleSAML_Session::getInstance();
  * retrieving attributes from the session.
  */
 if (!$session->isValid('saml2') ) {
-	SimpleSAML_Utilities::redirect(
+	SimpleSAML_Utilities::redirectTrustedURL(
 		'/' . $config->getBaseURL() . 'saml2/sp/initSSO.php',
 		array('RelayState' => SimpleSAML_Utilities::selfURL())
 	);

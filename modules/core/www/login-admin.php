@@ -10,5 +10,5 @@ $returnTo = $_REQUEST['ReturnTo'];
 
 SimpleSAML_Utilities::requireAdmin();
 
-SimpleSAML_Utilities::redirect($returnTo);
+SimpleSAML_Utilities::redirectUntrustedURL($returnTo);
 
