@@ -494,38 +494,35 @@ class SimpleSAML_Utilities {
 	}
 
 
-	/* This function redirects the user to the specified address.
-	 * An optional set of query parameters can be appended by passing
-	 * them in an array.
+	/**
+	 * This function redirects the user to the specified address.
 	 *
-	 * This function will use the HTTP 303 See Other redirect if the
-	 * current request is a POST request and the HTTP version is HTTP/1.1.
-	 * Otherwise a HTTP 302 Found redirect will be used.
+	 * This function will use the "HTTP 303 See Other" redirection if the
+	 * current request used the POST method and the HTTP version is 1.1.
+	 * Otherwise, a "HTTP 302 Found" redirection will be used.
 	 *
 	 * The fuction will also generate a simple web page with a clickable
 	 * link to the target page.
 	 *
-	 * Parameters:
-	 *  $url         URL we should redirect to. This URL may include
-	 *               query parameters. If this URL is a relative URL
-	 *               (starting with '/'), then it will be turned into an
-	 *               absolute URL by prefixing it with the absolute URL
-	 *               to the root of the website.
-	 *  $parameters  Array with extra query string parameters which should
-	 *               be appended to the URL. The name of the parameter is
-	 *               the array index. The value of the parameter is the
-	 *               value stored in the index. Both the name and the value
-	 *               will be urlencoded. If the value is NULL, then the
-	 *               parameter will be encoded as just the name, without a
-	 *               value.
-	 *  $allowed_redirect_hosts
-	 *               Array whitelist of hosts that redirects are allowed for.
-	 *               If NULL value, redirect will be allowed to any host.
-	 *               Otherwise, $url host must be present in Array for redirect.
-	 *               If the host is not present, an exception will be thrown.
+	 * @param string $url The URL we should redirect to. This URL may include
+	 * query parameters. If this URL is a relative URL (starting with '/'),
+	 * then it will be turned into an absolute URL by prefixing it with the
+	 * absolute URL to the root of the website.
+	 * @param string[] $parameters An array with extra query string parameters
+	 * which should be appended to the URL. The name of the parameter is the
+	 * array index. The value of the parameter is the value stored in the index.
+	 * Both the name and the value will be urlencoded. If the value is NULL,
+	 * then the parameter will be encoded as just the name, without a value.
+	 * @param string[] $allowed_redirect_hosts An array with a whitelist of
+	 * hosts for which redirects are allowed. If NULL, redirections will be
+	 * allowed to any host. Otherwise, the host of the $url provided must be
+	 * present in this parameter. If the host is not whitelisted, an exception
+	 * will be thrown.
 	 *
-	 * Returns:
-	 *  This function never returns.
+	 * @return void This function never returns.
+	 * @deprecated 1.12.0 This function will be removed from the API. Use
+	 * accordingly the redirectTrustedURL or redirectUntrustedURL functions
+	 * instead.
 	 */
 	public static function redirect($url, $parameters = array(), $allowed_redirect_hosts = NULL) {
 		assert(is_string($url));
@@ -541,19 +538,23 @@ class SimpleSAML_Utilities {
 			$url = self::selfURLhost() . $url;
 		}
 
-		/* Verify that the URL is to a http or https site. */
+		/* Verify that the URL points to an http or https site. */
 		if (!preg_match('@^https?://@i', $url)) {
 			throw new SimpleSAML_Error_Exception('Redirect to invalid URL: ' . $url);
 		}
 
-		/* Validates that URL host is among those allowed. */
-		if ($allowed_redirect_hosts != NULL) {
+		/* Validates the URL's host is among those allowed. */
+		if ($allowed_redirect_hosts !== NULL) {
 			preg_match('@^https?://([^/]+)@i', $url, $matches);
 			$hostname = $matches[1];
 
-			/* Throw exception for redirect to untrusted site */
+			// add self host to the white list
+			$self_host = self::getSelfHost();
+			$allowed_redirect_hosts[] = $self_host;
+
+			/* Throw exception due to redirection to untrusted site */
 			if(!in_array($hostname, $allowed_redirect_hosts)) {
-				throw new SimpleSAML_Error_Exception('Redirect not to allowed redirect host: ' . $url);
+				throw new SimpleSAML_Error_Exception('Redirection not to allowed to URL: ' . $url);
 			}
 		}
 
@@ -606,7 +607,7 @@ class SimpleSAML_Utilities {
 		}
 
 		if (strlen($url) > 2048) {
-			SimpleSAML_Logger::warning('Redirecting to URL longer than 2048 bytes.');
+			SimpleSAML_Logger::warning('Redirecting to an URL longer than 2048 bytes.');
 		}
 
 		/* Set the location header. */
@@ -639,25 +640,51 @@ class SimpleSAML_Utilities {
 		exit;
 	}
 
-	/*
-	 * This function validates untrusted url has hostname against
-	 *  config option 'redirect.trustedsites'.
+	/**
+	 * This function redirects to the specified URL without performing
+	 * any security checks. Please, do NOT use this function with user
+	 * supplied URLs.
 	 *
-	 * If option not set or hostname present among trusted sites,
-	 * peforms redirect via function redirect above.
+	 * This function will use the "HTTP 303 See Other" redirection if the
+	 * current request used the POST method and the HTTP version is 1.1.
+	 * Otherwise, a "HTTP 302 Found" redirection will be used.
 	 *
-	 * If site is not trusted, an exception will be thrown.
+	 * The fuction will also generate a simple web page with a clickable
+	 * link to the target URL.
 	 *
-	 * See function redirect for details on url, parameters and return.
+	 * @param string $url The URL we should redirect to. This URL may include
+	 * query parameters. If this URL is a relative URL (starting with '/'),
+	 * then it will be turned into an absolute URL by prefixing it with the
+	 * absolute URL to the root of the website.
+	 * @param string[] $parameters An array with extra query string parameters
+	 * which should be appended to the URL. The name of the parameter is the
+	 * array index. The value of the parameter is the value stored in the index.
+	 * Both the name and the value will be urlencoded. If the value is NULL,
+	 * then the parameter will be encoded as just the name, without a value.
+	 *
+	 * @return void This function never returns.
+	 */
+	public static function redirectTrustedURL($url, $parameters = array()) {
+		self::redirect($url, $parameters);
+	}
+
+	/**
+	 * This function redirects to the specified URL after performing the
+	 * appropriate security checks on it. Particularly, it will make sure
+	 * that the provided URL is allowed by the 'redirect.trustedsites'
+	 * directive in the configuration.
+	 *
+	 * If the aforementioned option is not set or the URL does corresponds
+	 * to a trusted site, it performs a redirection to it. If the site is
+	 * not trusted, an exception will be thrown.
+	 *
+	 * See the redirectTrustedURL function for more details.
+	 * 
+	 * @return void This function never returns.
 	 */
 	public static function redirectUntrustedURL($url, $parameters = array()) {
-		$redirectTrustedSites = SimpleSAML_Configuration::getInstance()->getArray('redirect.trustedsites', NULL);
-		try {
-			self::redirect($url, $parameters, $redirectTrustedSites);
-		}
-		catch (SimpleSAML_Error_Exception $e) {
-			throw new SimpleSAML_Error_Exception('Site not in redirect.trusted sites: ' . $url);
-		}
+		$trustedSites = SimpleSAML_Configuration::getInstance()->getArray('redirect.trustedsites', NULL);
+		self::redirect($url, $parameters, $trustedSites);
 	}
 
 	/**
@@ -1120,7 +1147,7 @@ class SimpleSAML_Utilities {
 	 */
 	public static function resolveURL($url, $base = NULL) {
 		if($base === NULL) {
-			$base = SimpleSAML_Utilities::getBaseURL();
+			$base = self::getBaseURL();
 		}
 
 
@@ -1635,7 +1662,7 @@ class SimpleSAML_Utilities {
 			return;
 		}
 
-		$returnTo = SimpleSAML_Utilities::selfURL();
+		$returnTo = self::selfURL();
 
 		/* Not authenticated as admin user. Start authentication. */
 
@@ -1646,7 +1673,7 @@ class SimpleSAML_Utilities {
 			/* For backwards-compatibility. */
 
 			$config = SimpleSAML_Configuration::getInstance();
-			SimpleSAML_Utilities::redirect('/' . $config->getBaseURL() . 'auth/login-admin.php',
+			self::redirectTrustedURL('/' . $config->getBaseURL() . 'auth/login-admin.php',
 				array('RelayState' => $returnTo)
 						       );
 		}
@@ -2092,9 +2119,9 @@ class SimpleSAML_Utilities {
 
 		$url = SimpleSAML_Module::getModuleURL('core/no_cookie.php');
 		if ($retryURL !== NULL) {
-			$url = SimpleSAML_Utilities::addURLParameter($url, array('retryURL' => $retryURL));
+			$url = self::addURLParameter($url, array('retryURL' => $retryURL));
 		}
-		SimpleSAML_Utilities::redirect($url);
+		self::redirectTrustedURL($url);
 	}
 
 
