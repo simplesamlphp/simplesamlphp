@@ -22,27 +22,25 @@ If you have read about the AJAX iFrame Single Log-Out approach at Andreas' blog 
 Attribute Release Consent
 -------------------------
 
-The attribute release consent is documented in a separate document.
-
-  * [Documentation on the consent module](./consent:consent)
+The attribute release consent is documented in a [separate document](./consent:consent).
 
 
 Support for bookmarking the login page
 --------------------------------------
 
-Most SAML software crash fatally when users bookmarks the login page and returns later when the cached session information is lost. This is natural as the login page happens in the middle of a SAML transaction, and the SAML software needs some references to the request in order to be able to produce the SAML Response.
+Most SAML software crash fatally when users bookmark the login page and return later on when the cached session information is lost. This is natural as the login page happens in the middle of a SAML transaction, and the SAML software needs some references to the original request in order to be able to produce the SAML Response.
 
-SimpleSAMLphp has implemented a graceful fallback to tackle this situation. When simpleSAMLphp is not able to lookup a session in the login process, it fall-backs to the *IdP-first flow*, described in next section, where the reference to the request is not needed.
+SimpleSAMLphp has implemented a graceful fallback to tackle this situation. When simpleSAMLphp is not able to lookup a session during the login process, it falls back to the *IdP-first flow*, described in the next section, where the reference to the request is not needed.
 
-What happens in the IdP-first flow is that an *SAML unsolicited response* is sent back to the SP. An *unsolicited response* is a SAML Response with no reference to a SAML Request (no `InReplyTo` field). 
+What happens in the IdP-first flow is that a *SAML unsolicited response* is sent directly to the SP. An *unsolicited response* is a SAML Response with no reference to a SAML Request (no `InReplyTo` field). 
 
-When an SimpleSAMLphp IdP fall-back to IdP-first flow, the `RelayState` parameter sent from the SP in the SAML request is also lost. The RelayState information contain a reference key for the SP to lookup where to send the user after successfull authentication. The SimpleSAMLphp Service Provider supports configuring a static URL to redirect the user after a unsolicited response is received. See more information about the `RelayState` parameter in the next section: *IdP-first flow*.
+When a SimpleSAMLphp IdP falls back to IdP-first flow, the `RelayState` parameter sent by the SP in the SAML request is also lost. The RelayState information contain a reference key for the SP to lookup where to send the user after successfull authentication. The SimpleSAMLphp Service Provider supports configuring a static URL to redirect the user after a unsolicited response is received. See more information about the `RelayState` parameter in the next section: *IdP-first flow*.
 
 
 IdP-first flow
 --------------
 
-If you do not want to start the SSO flow at the SP, you may use the IdP-first setup. To do this, redirect the user to the SSOService endpoint on the IdP with one parameter `spentityid` that match the SP EntityId that the user should be logged into.
+If you do not want to start the SSO flow at the SP, you may use the IdP-first setup. To do this, redirect the user to the SSOService endpoint on the IdP with a `spentityid` parameter that matches the SP EntityID that the user should be authenticated for.
 
 Here is an example of such an url:
 
@@ -75,7 +73,7 @@ The parameters are as follows:
 `target`
 :   The target parameter the SP should receive with the authentication response.
     This is often the page the user should be sent to after authentication.
-    This parameter is optional for the IdP, but must be specified if the SP you are targeting is running simpleSAMLphp SP.
+    This parameter is optional for the IdP, but must be specified if the SP you are targeting is running simpleSAMLphp.
 
 :   *Note*: This parameter must be sent as `target` (with lowercase letters) when starting the authentication, while it is sent as `TARGET` (with uppercase letters) in the authentication response.
 
@@ -87,4 +85,4 @@ IdP-initiated logout can be initiated by visiting the URL:
 
     https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php?ReturnTo=<URL to return to after logout>
 
-It will send a logout request to each SP, and afterwards return the user to the URL specified in the `ReturnTo` parameter.
+It will send a logout request to each SP, and afterwards return the user to the URL specified in the `ReturnTo` parameter. Bear in mind that IdPs might disallow redirecting to URLs other than those of their own for security reasons, so in order to get the redirection to work, it might be necessary to ask the IdP to whitelist the URL we are planning to redirect to.
