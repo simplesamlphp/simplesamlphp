@@ -116,6 +116,8 @@ class sspmod_cdc_Server {
 		$domain = $request['domain'];
 		$server = new sspmod_cdc_Server($domain);
 
+		$server->validate('CDCRequest');
+
 		$server->handleRequest($request);
 	}
 
