@@ -23,6 +23,7 @@ if (!$config->getBoolean('enable.saml20-sp', TRUE))
 if (empty($_GET['RelayState'])) {
 	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
+$returnTo = SimpleSAML_Utilities::checkURLAllowed($_GET['RelayState']);
 
 $reachableIDPs = array();
 
@@ -134,7 +135,7 @@ try {
 
 	$assertionConsumerServiceURL = $metadata->getGenerated('AssertionConsumerService', 'saml20-sp-hosted');
 	$ar->setAssertionConsumerServiceURL($assertionConsumerServiceURL);
-	$ar->setRelayState($_REQUEST['RelayState']);
+	$ar->setRelayState($returnTo);
 
 	if ($isPassive) {
 		$ar->setIsPassive(TRUE);
@@ -156,9 +157,9 @@ try {
 
 	/* Save request information. */
 	$info = array();
-	$info['RelayState'] = $_REQUEST['RelayState'];
+	$info['RelayState'] = $returnTo;
 	if(array_key_exists('OnError', $_REQUEST)) {
-		$info['OnError'] = $_REQUEST['OnError'];
+		$info['OnError'] = SimpleSAML_Utilities::checkURLAllowed($_REQUEST['OnError']);
 	}
 	$session->setData('SAML2:SP:SSO:Info', $ar->getId(), $info);
 

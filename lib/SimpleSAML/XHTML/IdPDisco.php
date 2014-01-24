@@ -124,7 +124,7 @@ class SimpleSAML_XHTML_IdPDisco {
 		if(!array_key_exists('return', $_GET)) {
 			throw new Exception('Missing parameter: return');
 		} else {
-			$this->returnURL = $_GET['return'];
+			$this->returnURL = SimpleSAML_Utilities::checkURLAllowed($_GET['return']);
 		}
 		
 		$this->isPassive = FALSE;
@@ -474,7 +474,7 @@ class SimpleSAML_XHTML_IdPDisco {
 				
 			} else {
 				$this->log('Choice made [' . $idp . '] (Redirecting the user back. returnIDParam=' . $this->returnIdParam . ')');
-				SimpleSAML_Utilities::redirectUntrustedURL($this->returnURL, array($this->returnIdParam => $idp));
+				SimpleSAML_Utilities::redirectTrustedURL($this->returnURL, array($this->returnIdParam => $idp));
 			}
 			
 			return;
@@ -482,7 +482,7 @@ class SimpleSAML_XHTML_IdPDisco {
 		
 		if ($this->isPassive) {
 			$this->log('Choice not made. (Redirecting the user back without answer)');
-			SimpleSAML_Utilities::redirectUntrustedURL($this->returnURL);
+			SimpleSAML_Utilities::redirectTrustedURL($this->returnURL);
 			return;
 		}
 
@@ -500,7 +500,7 @@ class SimpleSAML_XHTML_IdPDisco {
         
         if(sizeof($idpintersection)  == 1) {
             $this->log('Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' . $this->returnIdParam . ')');
-            SimpleSAML_Utilities::redirectUntrustedURL($this->returnURL, array($this->returnIdParam => $idpintersection[0]));
+            SimpleSAML_Utilities::redirectTrustedURL($this->returnURL, array($this->returnIdParam => $idpintersection[0]));
         }
 
 		/*

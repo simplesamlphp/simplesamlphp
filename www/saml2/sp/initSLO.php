@@ -13,7 +13,7 @@ if (!$config->getBoolean('enable.saml20-sp', TRUE))
 
 
 if (isset($_REQUEST['RelayState'])) {
-	$returnTo = $_REQUEST['RelayState'];
+	$returnTo = SimpleSAML_Utilities::checkURLAllowed($_REQUEST['RelayState']);
 } else {
 	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
@@ -25,7 +25,7 @@ try {
 	$idpEntityId = $session->getAuthData('saml2', 'saml:sp:IdP');
 	if ($idpEntityId === NULL) {
 		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: User not authenticated with an IdP.');
-		SimpleSAML_Utilities::redirectUntrustedURL($returnTo);
+		SimpleSAML_Utilities::redirectTrustedURL($returnTo);
 	}
 	$idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-remote');
 	$SLOendpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
@@ -34,8 +34,8 @@ try {
 		NULL);
 	if ($SLOendpoint === NULL) {
 		$session->doLogout('saml2');
-		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: No supported SingleLogoutService endpoint in IdP.');
-		SimpleSAML_Utilities::redirectUntrustedURL($returnTo);
+		SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: No SingleLogoutService endpoint supported in the IdP.');
+		SimpleSAML_Utilities::redirectTrustedURL($returnTo);
 	}
 
 	$spEntityId = isset($_GET['spentityid']) ? $_GET['spentityid'] : $metadata->getMetaDataCurrentEntityID();

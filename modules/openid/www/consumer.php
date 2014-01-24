@@ -6,6 +6,13 @@ if (!array_key_exists('AuthState', $_REQUEST) || empty($_REQUEST['AuthState'])) 
 }
 
 $authState = $_REQUEST['AuthState'];
+
+// sanitize the input
+$restartURL = SimpleSAML_Utilities::getURLFromStateID($authState);
+if (!is_null($restartURL)) {
+	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+}
+
 $state = SimpleSAML_Auth_State::loadState($authState, 'openid:init');
 $sourceId = $state['openid:AuthId'];
 $authSource = SimpleSAML_Auth_Source::getById($sourceId);

@@ -7,7 +7,18 @@
  * @author Wessel Dankers, Tilburg University
  */
 function check_credentials() {
-	$state = SimpleSAML_Auth_State::loadState($_REQUEST['ssp_state'], 'aselect:login');
+	
+	if (!array_key_exists('ssp_state', $_REQUEST))
+		SimpleSAML_Auth_State::throwException($state, new SimpleSAML_Error_Exception("Missing ssp_state parameter"));	
+	$id = $_REQUEST['ssp_state'];
+
+	// sanitize the input
+	$restartURL = SimpleSAML_Utilities::getURLFromStateID($id);
+	if (!is_null($restartURL)) {
+		SimpleSAML_Utilities::checkURLAllowed($restartURL);
+	}
+
+	$state = SimpleSAML_Auth_State::loadState($id, 'aselect:login');
 
 	if(!array_key_exists('a-select-server', $_REQUEST))
 		SimpleSAML_Auth_State::throwException($state, new SimpleSAML_Error_Exception("Missing a-select-server parameter"));

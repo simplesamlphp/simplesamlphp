@@ -124,6 +124,12 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 		assert('is_string($authStateId)');
 		assert('is_string($otp)');
 
+		// sanitize the input
+		$restartURL = SimpleSAML_Utilities::getURLFromStateID($authStateId);
+		if (!is_null($restartURL)) {
+			SimpleSAML_Utilities::checkURLAllowed($restartURL);
+		}
+
 		/* Retrieve the authentication state. */
 		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
 

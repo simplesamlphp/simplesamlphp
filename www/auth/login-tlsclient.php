@@ -23,9 +23,6 @@ if (!array_key_exists('RelayState', $_REQUEST)) {
 	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
 
-$relaystate = $_REQUEST['RelayState'];
-
-
 try {
 
 	$attributes = array();
@@ -55,21 +52,21 @@ try {
 	
 	$session->setNameID(array(
 		'value' => SimpleSAML_Utilities::generateID(),
-		'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
+		'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient')
+	);
 		
 	/**
 	 * Create a statistics log entry for every successfull login attempt.
 	 * Also log a specific attribute as set in the config: statistics.authlogattr
 	 */
 	$authlogattr = $config->getValue('statistics.authlogattr', null);
-	if ($authlogattr && array_key_exists($authlogattr, $attributes)) 
+	if ($authlogattr && array_key_exists($authlogattr, $attributes)) {
 		SimpleSAML_Logger::stats('AUTH-tlsclient OK ' . $attributes[$authlogattr][0]);
-	else 
+	} else {
 		SimpleSAML_Logger::stats('AUTH-tlsclient OK');
-		
+	}
 
-	$returnto = $_REQUEST['RelayState'];
-	SimpleSAML_Utilities::redirectUntrustedURL($returnto);
+	SimpleSAML_Utilities::redirectUntrustedURL($_REQUEST['RelayState']);
 	
 	
 } catch (Exception $e) {

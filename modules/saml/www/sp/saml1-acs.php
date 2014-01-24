@@ -19,17 +19,25 @@ $source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP
 
 SimpleSAML_Logger::debug('Received SAML1 response');
 
-
 $target = (string)$_REQUEST['TARGET'];
+
 if (preg_match('@^https?://@i', $target)) {
 	/* Unsolicited response. */
 	$state = array(
 		'saml:sp:isUnsolicited' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
-		'saml:sp:RelayState' => $target,
+		'saml:sp:RelayState' => SimpleSAML_Utilities::checkURLAllowed($target),
 	);
 } else {
-	$state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
+	$stateID = $_REQUEST['TARGET'];
+
+	// sanitize the input
+	$restartURL = SimpleSAML_Utilities::getURLFromStateID($stateID);
+	if (!is_null($restartURL)) {
+		SimpleSAML_Utilities::checkURLAllowed($restartURL);
+	}
+
+	$state = SimpleSAML_Auth_State::loadState($stateID, 'saml:sp:sso');
 
 	/* Check that the authentication source is correct. */
 	assert('array_key_exists("saml:sp:AuthId", $state)');

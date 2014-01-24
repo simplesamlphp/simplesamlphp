@@ -9,6 +9,12 @@ if (!array_key_exists('AuthState', $_REQUEST) || empty($_REQUEST['AuthState'])) 
 }
 $stateID = $_REQUEST['AuthState'];
 
+// sanitize the input
+$restartURL = SimpleSAML_Utilities::getURLFromStateID($stateID);
+if (!is_null($restartURL)) {
+	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+}
+
 $state = SimpleSAML_Auth_State::loadState($stateID, sspmod_authtwitter_Auth_Source_Twitter::STAGE_INIT);
 
 /* Find authentication source. */

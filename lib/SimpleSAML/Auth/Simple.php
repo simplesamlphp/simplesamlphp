@@ -219,7 +219,7 @@ class SimpleSAML_Auth_Simple {
 				$params[$state['ReturnStateParam']] = $stateID;
 			}
 
-			SimpleSAML_Utilities::redirectUntrustedURL($state['ReturnTo'], $params);
+			SimpleSAML_Utilities::redirectTrustedURL($state['ReturnTo'], $params);
 		}
 	}
 

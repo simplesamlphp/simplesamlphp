@@ -10,6 +10,13 @@ if (!array_key_exists('StateId', $_GET)) {
     throw new SimpleSAML_Error_BadRequest('Missing required StateId query parameter.');
 }
 $id = (string)$_GET['StateId'];
+
+// sanitize the input
+$restartURL = SimpleSAML_Utilities::getURLFromStateID($id);
+if (!is_null($restartURL)) {
+	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+}
+
 $state = SimpleSAML_Auth_State::loadState($id, 'consent:request');
 
 $state['Responder'] = array('sspmod_consent_Logout', 'postLogout');

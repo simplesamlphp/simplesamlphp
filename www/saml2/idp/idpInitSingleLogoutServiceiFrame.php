@@ -16,5 +16,5 @@ if (!isset($_REQUEST['RelayState'])) {
 	throw new SimpleSAML_Error_BadRequest('Missing required RelayState parameter.');
 }
 
-$idp->doLogoutRedirect((string)$_REQUEST['RelayState']);
+$idp->doLogoutRedirect(SimpleSAML_Utilities::checkURLAllowed((string)$_REQUEST['RelayState']));
 assert('FALSE');

@@ -5,6 +5,12 @@ if (!isset($_REQUEST['id'])) {
 }
 $id = (string)$_REQUEST['id'];
 
+// sanitize the input
+$restartURL = SimpleSAML_Utilities::getURLFromStateID($id);
+if (!is_null($restartURL)) {
+	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+}
+
 $state = SimpleSAML_Auth_State::loadState($id, 'core:Logout-IFrame');
 $idp = SimpleSAML_IdP::getByState($state);
 

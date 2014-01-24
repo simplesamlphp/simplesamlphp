@@ -14,6 +14,13 @@ if (!array_key_exists('StateId', $_REQUEST)) {
 }
 
 $id = $_REQUEST['StateId'];
+
+// sanitize the input
+$restartURL = SimpleSAML_Utilities::getURLFromStateID($id);
+if (!is_null($restartURL)) {
+	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+}
+
 $state = SimpleSAML_Auth_State::loadState($id, 'expirywarning:expired');
 
 $globalConfig = SimpleSAML_Configuration::getInstance();

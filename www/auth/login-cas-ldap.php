@@ -30,8 +30,6 @@ try {
 
 	$casconfig = $casldapconfig[$idpentityid]['cas'];
 	$ldapconfig = $casldapconfig[$idpentityid]['ldap'];
-	
-	
 } catch (Exception $exception) {
 	throw new SimpleSAML_Error_Error('METADATA', $exception);
 }
@@ -43,8 +41,6 @@ try {
 if (!array_key_exists('RelayState', $_REQUEST)) {
 	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
-
-
 
 function casValidate($cas) {
 
@@ -110,12 +106,7 @@ function casValidate($cas) {
 	}
 }
 
-
-
 try {
-	
-	$relaystate = $_REQUEST['RelayState'];
-
 	list($username, $casattributes) = casValidate($casconfig);
 	
 	SimpleSAML_Logger::info('AUTH - cas-ldap: '. $username . ' authenticated by ' . $casconfig['validate']);
@@ -132,11 +123,9 @@ try {
 	$session->setNameID(array(
 			'value' => SimpleSAML_Utilities::generateID(),
 			'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
-	SimpleSAML_Utilities::redirectUntrustedURL($relaystate);
+
+	SimpleSAML_Utilities::redirectUntrustedURL($_REQUEST['RelayState']);
 
 } catch(Exception $exception) {
 	throw new SimpleSAML_Error_Error('CASERROR', $exception);
 }
-
-
-?>

@@ -701,13 +701,26 @@ $config = array (
 	'proxy' => NULL,
 
 	/*
-	 * Array of URL's to allow a trusted redirect to.
+	 * Array of domains that are allowed when generating links or redirections
+	 * to URLs. simpleSAMLphp will use this option to determine whether to
+	 * to consider a given URL valid or not, but you should always validate
+	 * URLs obtained from the input on your own (i.e. ReturnTo or RelayState
+	 * parameters obtained from the $_REQUEST array).
 	 *
-	 * Set to NULL to disable.
+	 * Set to NULL to disable checking of URLs.
+	 *
+	 * simpleSAMLphp will automatically add your own domain (either by checking
+	 * it dinamically, or by using the domain defined in the 'baseurlpath'
+	 * directive, the latter having precedence) to the list of trusted domains,
+	 * in case this option is NOT set to NULL. In that case, you are explicitly
+	 * telling simpleSAMLphp to verify URLs.
+	 *
+	 * Set to an empty array to disallow ALL redirections or links pointing to
+	 * an external URL other than your own domain.
 	 *
 	 * Example:
-	 *   'redirect.trustedsites' => array('sp.example.com', 'othersite.org'),
+	 *   'trusted.url.domains' => array('sp.example.com', 'app.example.com'),
 	 */
-	'redirect.trustedsites' => NULL,
+	'trusted.url.domains' => NULL,
 
 );

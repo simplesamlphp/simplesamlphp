@@ -42,7 +42,7 @@ if (!array_key_exists('RelayState', $_REQUEST)) {
 	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
 
-$relaystate = $_REQUEST['RelayState'];
+$relaystate = SimpleSAML_Utilities::checkURLAllowed($_REQUEST['RelayState']);
 
 if ($username = $_POST['username']) {
 	try {
@@ -59,7 +59,7 @@ if ($username = $_POST['username']) {
 			$session->setNameID(array(
 					'value' => SimpleSAML_Utilities::generateID(),
 					'Format' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'));
-			SimpleSAML_Utilities::redirectUntrustedURL($relaystate);
+			SimpleSAML_Utilities::redirectTrustedURL($relaystate);
 		}
 	} catch(Exception $e) {
 			throw new SimpleSAML_Error_Error('LDAPERROR', $e);

@@ -10,6 +10,12 @@ if (array_key_exists('stateid', $_REQUEST)) {
 	throw new Exception('State Lost - not returned by MySpace Auth');
 }
 
+// sanitize the input
+$restartURL = SimpleSAML_Utilities::getURLFromStateID($stateId);
+if (!is_null($restartURL)) {
+	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+}
+
 $state = SimpleSAML_Auth_State::loadState($stateId, sspmod_authmyspace_Auth_Source_MySpace::STAGE_INIT);
 
 if (array_key_exists('oauth_problem', $_REQUEST)) {

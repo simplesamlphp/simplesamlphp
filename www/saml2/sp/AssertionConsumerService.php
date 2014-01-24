@@ -47,7 +47,7 @@ function finishLogin($authProcState) {
 	global $session;
 	$session->doLogin('saml2', $authData);
 
-	SimpleSAML_Utilities::redirectUntrustedURL($authProcState['core:saml20-sp:TargetURL']);
+	SimpleSAML_Utilities::redirectTrustedURL($authProcState['core:saml20-sp:TargetURL']);
 }
 
 SimpleSAML_Logger::info('SAML2.0 - SP.AssertionConsumerService: Accessing SAML 2.0 SP endpoint AssertionConsumerService');
@@ -59,6 +59,13 @@ if (array_key_exists(SimpleSAML_Auth_ProcessingChain::AUTHPARAM, $_REQUEST)) {
 	/* We have returned from the authentication processing filters. */
 
 	$authProcId = $_REQUEST[SimpleSAML_Auth_ProcessingChain::AUTHPARAM];
+
+	// sanitize the input
+	$restartURL = SimpleSAML_Utilities::getURLFromStateID($authProcId);
+	if (!is_null($restartURL)) {
+		SimpleSAML_Utilities::checkURLAllowed($restartURL);
+	}
+
 	$authProcState = SimpleSAML_Auth_ProcessingChain::fetchProcessedState($authProcId);
 	finishLogin($authProcState);
 }
@@ -93,7 +100,7 @@ try {
 	if($info === NULL) {
 		/* Fall back to RelayState. */
 		$info = array();
-		$info['RelayState'] = $response->getRelayState();
+		$info['RelayState'] = SimpleSAML_Utilities::checkURLAllowed($response->getRelayState());
 		if(empty($info['RelayState'])) {
 			$info['RelayState'] = $spMetadata->getString('RelayState', NULL);
 		}

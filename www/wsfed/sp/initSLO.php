@@ -13,7 +13,7 @@ if (!$config->getBoolean('enable.wsfed-sp', false))
 
 
 if (isset($_REQUEST['RelayState'])) {
-	$returnTo = $_REQUEST['RelayState'];
+	$returnTo = SimpleSAML_Utilities::checkURLAllowed($_REQUEST['RelayState']);
 } else {
 	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
@@ -53,7 +53,7 @@ if (isset($session) ) {
 } else {
 
 	SimpleSAML_Logger::info('WS-Fed - SP.initSLO: User is already logged out. Go back to relaystate');
-	SimpleSAML_Utilities::redirectUntrustedURL($returnTo);
+	SimpleSAML_Utilities::redirectTrustedURL($returnTo);
 	
 }
 

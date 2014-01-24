@@ -54,6 +54,12 @@ if ($message instanceof SAML2_LogoutResponse) {
 		SimpleSAML_Logger::warning('Unsuccessful logout. Status was: ' . sspmod_saml_Message::getResponseError($message));
 	}
 
+	// sanitize the input
+	$restartURL = SimpleSAML_Utilities::getURLFromStateID($relayState);
+	if (!is_null($restartURL)) {
+		SimpleSAML_Utilities::checkURLAllowed($restartURL);
+	}
+
 	$state = SimpleSAML_Auth_State::loadState($relayState, 'saml:slosent');
 	$state['saml:sp:LogoutStatus'] = $message->getStatus();
 	SimpleSAML_Auth_Source::completeLogout($state);

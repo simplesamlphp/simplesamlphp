@@ -14,7 +14,7 @@ if (!isset($_REQUEST['ReturnTo'])) {
 	die('Missing ReturnTo parameter.');
 }
 
-$returnTo = $_REQUEST['ReturnTo'];
+$returnTo = SimpleSAML_Utilities::checkURLAllowed($_REQUEST['ReturnTo']);
 
 
 /*
@@ -31,6 +31,13 @@ if (!preg_match('@State=(.*)@', $returnTo, $matches)) {
 	die('Invalid ReturnTo URL for this example.');
 }
 $stateId = urldecode($matches[1]);
+
+// sanitize the input
+$restartURL = SimpleSAML_Utilities::getURLFromStateID($stateId);
+if (!is_null($restartURL)) {
+	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+}
+
 SimpleSAML_Auth_State::loadState($stateId, 'exampleauth:External');
 
 /*
@@ -87,8 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$_SESSION['mail'] = $user['mail'];
 		$_SESSION['type'] = $user['type'];
 
-		header('Location: ' . $returnTo);
-		exit();
+		SimpleSAML_Utilities::redirectTrustedURL($returnTo);
 	}
 }
 

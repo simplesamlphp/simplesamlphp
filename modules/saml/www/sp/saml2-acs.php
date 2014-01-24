@@ -52,6 +52,13 @@ $idpMetadata = array();
 
 $stateId = $response->getInResponseTo();
 if (!empty($stateId)) {
+
+	// sanitize the input
+	$restartURL = SimpleSAML_Utilities::getURLFromStateID($stateId);
+	if (!is_null($restartURL)) {
+		SimpleSAML_Utilities::checkURLAllowed($restartURL);
+	}
+
 	/* This is a response to a request we sent earlier. */
 	$state = SimpleSAML_Auth_State::loadState($stateId, 'saml:sp:sso');
 
@@ -75,7 +82,7 @@ if (!empty($stateId)) {
 	$state = array(
 		'saml:sp:isUnsolicited' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
-		'saml:sp:RelayState' => $response->getRelayState(),
+		'saml:sp:RelayState' => SimpleSAML_Utilities::checkURLAllowed($response->getRelayState()),
 	);
 }
 

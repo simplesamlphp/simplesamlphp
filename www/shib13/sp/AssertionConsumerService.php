@@ -47,6 +47,13 @@ if (array_key_exists(SimpleSAML_Auth_ProcessingChain::AUTHPARAM, $_REQUEST)) {
 	/* We have returned from the authentication processing filters. */
 
 	$authProcId = $_REQUEST[SimpleSAML_Auth_ProcessingChain::AUTHPARAM];
+
+	// sanitize the input
+	$restartURL = SimpleSAML_Utilities::getURLFromStateID($authProcId);
+	if (!is_null($restartURL)) {
+		SimpleSAML_Utilities::checkURLAllowed($restartURL);
+	}
+
 	$authProcState = SimpleSAML_Auth_ProcessingChain::fetchProcessedState($authProcId);
 	finishLogin($authProcState);
 }
@@ -86,7 +93,7 @@ try {
 	$authProcState = array(
 		'core:shib13-sp:NameID' => $authnResponse->getNameID(),
 		'core:shib13-sp:SessionIndex' => $authnResponse->getSessionIndex(),
-		'core:shib13-sp:TargetURL' => $relayState,
+		'core:shib13-sp:TargetURL' => SimpleSAML_Utilities::checkURLAllowed($relayState),
 		'ReturnURL' => SimpleSAML_Utilities::selfURLNoQuery(),
 		'Attributes' => $authnResponse->getAttributes(),
 		'Destination' => $spmetadata,

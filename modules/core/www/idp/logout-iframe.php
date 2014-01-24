@@ -19,6 +19,12 @@ if ($type !== 'embed' && $type !== 'async') {
 	SimpleSAML_Stats::log('core:idp:logout-iframe:page', array('type' => $type));
 }
 
+// sanitize the input
+$restartURL = SimpleSAML_Utilities::getURLFromStateID($id);
+if (!is_null($restartURL)) {
+	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+}
+
 $state = SimpleSAML_Auth_State::loadState($id, 'core:Logout-IFrame');
 $idp = SimpleSAML_IdP::getByState($state);
 

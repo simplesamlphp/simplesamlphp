@@ -70,7 +70,7 @@ if (!isset($session) || !$session->isValid('shib13') ) {
 		$ar = new SimpleSAML_XML_Shib13_AuthnRequest();
 		$ar->setIssuer($spentityid);	
 		if(isset($_GET['RelayState'])) 
-			$ar->setRelayState($_GET['RelayState']);
+			$ar->setRelayState(SimpleSAML_Utilities::checkURLAllowed($_GET['RelayState']));
 
 		SimpleSAML_Logger::info('Shib1.3 - SP.initSSO: SP (' . $spentityid . ') is sending AuthNRequest to IdP (' . $idpentityid . ')');
 

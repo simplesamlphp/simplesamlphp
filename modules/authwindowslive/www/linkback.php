@@ -6,6 +6,13 @@
 
 if (array_key_exists('wrap_client_state', $_REQUEST)) {
 	$stateId = $_REQUEST['wrap_client_state'];
+	
+	// sanitize the input
+	$restartURL = SimpleSAML_Utilities::getURLFromStateID($stateId);
+	if (!is_null($restartURL)) {
+		SimpleSAML_Utilities::checkURLAllowed($restartURL);
+	}
+
 	$state = SimpleSAML_Auth_State::loadState($stateId, sspmod_authwindowslive_Auth_Source_LiveID::STAGE_INIT);
 } else {
 	throw new Exception('Lost OAuth-WRAP Client State');

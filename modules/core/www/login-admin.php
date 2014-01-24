@@ -6,9 +6,8 @@
 if (!array_key_exists('ReturnTo', $_REQUEST)) {
 	throw new SimpleSAML_Error_BadRequest('Missing ReturnTo parameter.');
 }
-$returnTo = $_REQUEST['ReturnTo'];
 
 SimpleSAML_Utilities::requireAdmin();
 
-SimpleSAML_Utilities::redirectUntrustedURL($returnTo);
+SimpleSAML_Utilities::redirectUntrustedURL($_REQUEST['ReturnTo']);
 

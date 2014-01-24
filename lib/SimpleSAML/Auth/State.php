@@ -211,13 +211,7 @@ class SimpleSAML_Auth_State {
 		assert('is_bool($allowMissing)');
 		SimpleSAML_Logger::debug('Loading state: ' . var_export($id, TRUE));
 
-		$tmp = explode(':', $id, 2);
-		$id = $tmp[0];
-		if (count($tmp) === 2) {
-			$restartURL = $tmp[1];
-		} else {
-			$restartURL = NULL;
-		}
+		$restartURL = SimpleSAML_Utilities::getURLFromStateID($id);
 
 		$session = SimpleSAML_Session::getInstance();
 		$state = $session->getData('SimpleSAML_Auth_State', $id);

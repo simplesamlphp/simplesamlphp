@@ -327,7 +327,7 @@ class sspmod_cdc_Server {
 
 		$url = SimpleSAML_Utilities::addURLparameter($to, $params);
 		if (strlen($url) < 2048) {
-			SimpleSAML_Utilities::redirectUntrustedURL($url);
+			SimpleSAML_Utilities::redirectTrustedURL($url);
 		} else {
 			SimpleSAML_Utilities::postRedirect($to, $params);
 		}

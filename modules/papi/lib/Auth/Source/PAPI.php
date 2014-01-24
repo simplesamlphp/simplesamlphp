@@ -115,6 +115,13 @@ class sspmod_papi_Auth_Source_PAPI extends SimpleSAML_Auth_Source {
         if (isset($_REQUEST['SSPStateID'])) {
 			// yes! restore original request
            	$this->_stateId = (string)$_REQUEST['SSPStateID'];
+           	
+			// sanitize the input
+			$restartURL = SimpleSAML_Utilities::getURLFromStateID($this->_stateId);
+			if (!is_null($restartURL)) {
+				SimpleSAML_Utilities::checkURLAllowed($restartURL);
+			}
+
            	$state = SimpleSAML_Auth_State::loadState($this->_stateId, self::STAGE_INIT);
 		} else if (!$this->_poa->isAuthenticated()) { 
 			// no! we have to save the request
@@ -161,6 +168,13 @@ class sspmod_papi_Auth_Source_PAPI extends SimpleSAML_Auth_Source {
     		$this->_poa->logout(true);
     	} else if (isset($_REQUEST['SSPStateID'])) {
     		$this->_stateId = (string)$_REQUEST['SSPStateID'];
+
+			// sanitize the input
+			$restartURL = SimpleSAML_Utilities::getURLFromStateID($this->_stateId);
+			if (!is_null($restartURL)) {
+				SimpleSAML_Utilities::checkURLAllowed($restartURL);
+			}
+
     		$state = SimpleSAML_Auth_State::loadState($this->_stateId, self::STAGE_INIT);
     	} else {
     		return;

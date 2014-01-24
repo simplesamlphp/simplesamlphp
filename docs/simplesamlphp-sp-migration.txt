@@ -209,6 +209,9 @@ If you want to return to a specific URL after logging out, you should include th
 
     $as->logout('https://example.org/');
 
+Please make sure the URL is trusted. If you obtain the URL from the user input, make sure it is trusted before
+calling $as->logout(), by using the SimpleSAML_Utilities::checkURLAllowed() method.
+
 
 #### Login link
 

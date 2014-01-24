@@ -76,6 +76,12 @@ class SimpleSAML_IdP_LogoutTraditional extends SimpleSAML_IdP_LogoutHandler {
 			throw new SimpleSAML_Error_Exception('RelayState lost during logout.');
 		}
 
+		// sanitize the input
+		$restartURL = SimpleSAML_Utilities::getURLFromStateID($relayState);
+		if (!is_null($restartURL)) {
+			SimpleSAML_Utilities::checkURLAllowed($restartURL);
+		}
+
 		$state = SimpleSAML_Auth_State::loadState($relayState, 'core:LogoutTraditional');
 
 		if ($error === NULL) {

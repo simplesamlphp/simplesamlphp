@@ -46,7 +46,7 @@ if ($idpentityid == null) {
 }
 
 try {
-	$relaystate = $_GET['RelayState'];
+	$relaystate = SimpleSAML_Utilities::checkURLAllowed($_GET['RelayState']);
 	
 	$idpmeta = $metadata->getMetaData($idpentityid, 'wsfed-idp-remote');
 	$spmeta = $metadata->getMetaData($spentityid, 'wsfed-sp-hosted');

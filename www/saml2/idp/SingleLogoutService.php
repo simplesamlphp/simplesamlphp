@@ -18,7 +18,7 @@ $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idp = SimpleSAML_IdP::getById('saml2:' . $idpEntityId);
 
 if (isset($_REQUEST['ReturnTo'])) {
-	$idp->doLogoutRedirect((string)$_REQUEST['ReturnTo']);
+	$idp->doLogoutRedirect(SimpleSAML_Utilities::checkURLAllowed((string)$_REQUEST['ReturnTo']));
 } else {
 	sspmod_saml_IdP_SAML2::receiveLogoutMessage($idp);
 }

@@ -48,10 +48,8 @@ storeTicket($ticket, $path, array('service' => $service,
 	'proxies' => array(),
 	'validbefore' => time() + 5));
 
-SimpleSAML_Utilities::redirectUntrustedURL(
+SimpleSAML_Utilities::redirectTrustedURL(
 	SimpleSAML_Utilities::addURLparameter($service,
 		array('ticket' => $ticket)
 	)
 );
-
-?>

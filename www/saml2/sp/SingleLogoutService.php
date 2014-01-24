@@ -83,12 +83,14 @@ if ($message instanceof SAML2_LogoutRequest) {
 		$id = $message->getInResponseTo();
 	}
 
+	// 'spLogoutReturnTo' is checked before storing it in the
+	// session, so we trust it here.
 	$returnTo = $session->getData('spLogoutReturnTo', $id);
 	if (empty($returnTo)) {
 		throw new SimpleSAML_Error_Error('LOGOUTINFOLOST');
 	}
 
-	SimpleSAML_Utilities::redirectUntrustedURL($returnTo);
+	SimpleSAML_Utilities::redirectTrustedURL($returnTo);
 
 } else {
 	throw new SimpleSAML_Error_Error('SLOSERVICEPARAMS');

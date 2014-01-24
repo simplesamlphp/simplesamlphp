@@ -13,6 +13,12 @@ if (!isset($_GET['ticket'])) {
 	throw new SimpleSAML_Error_BadRequest('Missing ticket parameter.');
 }
 
+// sanitize the input
+$restartURL = SimpleSAML_Utilities::getURLFromStateID($stateId);
+if (!is_null($restartURL)) {
+	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+}
+
 $state = SimpleSAML_Auth_State::loadState($stateId, sspmod_cas_Auth_Source_CAS::STAGE_INIT);
 $state['cas:ticket'] = (string)$_GET['ticket'];
 
