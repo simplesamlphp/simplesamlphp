@@ -92,10 +92,8 @@ if ($idpentityid === NULL) {
 		$discourl = SimpleSAML_Utilities::getBaseURL() . 'saml2/sp/idpdisco.php';
 	}
 
-	if ($config->getBoolean('idpdisco.extDiscoveryStorage', NULL) != NULL) {
-		
-		$extDiscoveryStorage = $config->getBoolean('idpdisco.extDiscoveryStorage');
-		
+	$extDiscoveryStorage = $config->getString('idpdisco.extDiscoveryStorage', NULL);
+	if ($extDiscoveryStorage !== NULL) {
 		SimpleSAML_Utilities::redirectTrustedURL($extDiscoveryStorage, array(
 			'entityID' => $spentityid,
 			'return' => SimpleSAML_Utilities::addURLparameter($discourl, array(

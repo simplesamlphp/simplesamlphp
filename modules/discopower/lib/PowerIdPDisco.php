@@ -189,9 +189,9 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 
 		$idp = $this->getTargetIdp();
 		if($idp !== NULL) {
-		
-			if ($this->config->getBoolean('idpdisco.extDiscoveryStorage', NULL) != NULL) {
-				$extDiscoveryStorage = $this->config->getBoolean('idpdisco.extDiscoveryStorage');
+
+			$extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage');
+			if ($extDiscoveryStorage !== NULL) {
 				$this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
 				SimpleSAML_Utilities::redirectTrustedURL($extDiscoveryStorage, array(
 					'entityID' => $this->spEntityId,
