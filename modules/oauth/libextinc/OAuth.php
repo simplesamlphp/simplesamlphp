@@ -181,7 +181,7 @@ abstract class OAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod {
 
   // Up to the SP to implement this lookup of keys. Possible ideas are:
     // (1) do a lookup in a table of trusted certs keyed off of consumer
-    // (2) fetch via http using a url provided by the requester
+    // (2) fetch via http using a URL provided by the requester
     // (3) some sort of specific discovery code based on request
     //
   // Either way should return a string representation of the certificate
@@ -391,7 +391,7 @@ class OAuthRequest {
   }
 
   /**
-   * parses the url and rebuilds it to be
+   * parses the URL and rebuilds it to be
    * scheme://host/path
    */
   public function get_normalized_http_url() {
@@ -410,7 +410,7 @@ class OAuthRequest {
   }
 
   /**
-   * builds a url usable for a GET request
+   * builds a URL usable for a GET request
    */
   public function to_url() {
     $post_data = $this->to_postdata();

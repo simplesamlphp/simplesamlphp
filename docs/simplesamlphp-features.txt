@@ -71,7 +71,7 @@ An example of a usability problem, is when you are editing a wiki, and are about
 
 ## Dynamic SAML
 
-SimpleSAMLphp has experimental support for dynamically downloading the metadata of an Service Provider or Identity Provider when receiving a new incomming message where the entityId is unknown. Dynamic SAML requires the EntityID to be an URL pointing to the metadata of the entity.
+SimpleSAMLphp has experimental support for dynamically downloading the metadata of an Service Provider or Identity Provider when receiving a new incomming message where the entityId is unknown. Dynamic SAML requires the EntityID to be a URL pointing to the metadata of the entity.
 
 
 

@@ -30,11 +30,11 @@ $config = array(
 	 * If you enable this, you will also need to get your host accepted in the access control list of 
 	 * discojuice.org
 	 *
-	 * The response url of your service, similar to:
+	 * The response URL of your service, similar to:
 	 *
 	 *		https://sp.example.org/simplesaml/module.php/discojuice/response.html	
 	 *
-	 * will need to be registered at discojuice.org. If your response url is already registered in the metadata
+	 * will need to be registered at discojuice.org. If your response URL is already registered in the metadata
 	 * of one of the federation feeds at discojuice.org, you should already have access.
 	 */
 	'enableCentralStorage' => false,

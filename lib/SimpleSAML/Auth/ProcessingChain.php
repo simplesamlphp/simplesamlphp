@@ -162,7 +162,7 @@ class SimpleSAML_Auth_ProcessingChain {
 	 * This function will only return if processing completes. If processing requires showing
 	 * a page to the user, we will not be able to return from this function. There are two ways
 	 * this can be handled:
-	 * - Redirect to an URL: We will redirect to the URL set in $state['ReturnURL'].
+	 * - Redirect to a URL: We will redirect to the URL set in $state['ReturnURL'].
 	 * - Call a function: We will call the function set in $state['ReturnCall'].
 	 *
 	 * If an exception is thrown during processing, it should be handled by the caller of

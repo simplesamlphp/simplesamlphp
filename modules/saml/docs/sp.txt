@@ -328,7 +328,7 @@ Options
 :   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
 
 `OrganizationURL`
-:   An URL the end user can access for more information about the organization.
+:   A URL the end user can access for more information about the organization.
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
 
@@ -427,7 +427,7 @@ Options
     For simpleSAMLphp, see the documentation for [IdP-first flow](./simplesamlphp-idp-more#section_4_1).
 
 `url`
-:   An URL to your service provider. Will be added as an OrganizationURL-element in the metadata.
+:   A URL to your service provider. Will be added as an OrganizationURL-element in the metadata.
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to language-specific URL:
 

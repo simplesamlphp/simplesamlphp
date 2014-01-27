@@ -42,7 +42,7 @@ IdP-first flow
 
 If you do not want to start the SSO flow at the SP, you may use the IdP-first setup. To do this, redirect the user to the SSOService endpoint on the IdP with a `spentityid` parameter that matches the SP EntityID that the user should be authenticated for.
 
-Here is an example of such an url:
+Here is an example of such a URL:
 
 	https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice
 

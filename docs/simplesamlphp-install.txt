@@ -189,7 +189,7 @@ to `disable`.
 The simpleSAMLphp installation webpage
 --------------------------------------
 
-After installing simpleSAMLphp, you can access the homepage of your installation, which contains some information and a few links to the test services. The url of an installation can be e.g.:
+After installing simpleSAMLphp, you can access the homepage of your installation, which contains some information and a few links to the test services. The URL of an installation can be e.g.:
 
 	https://service.example.org/simplesaml/
 

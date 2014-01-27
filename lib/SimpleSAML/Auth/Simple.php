@@ -89,7 +89,7 @@ class SimpleSAML_Auth_Simple {
 	 * This function accepts an array $params, which controls some parts of
 	 * the authentication. The accepted parameters depends on the authentication
 	 * source being used. Some parameters are generic:
-	 *  - 'ErrorURL': An URL that should receive errors from the authentication.
+	 *  - 'ErrorURL': A URL that should receive errors from the authentication.
 	 *  - 'KeepPost': If the current request is a POST request, keep the POST
 	 *    data until after the authentication.
 	 *  - 'ReturnTo': The URL the user should be returned to after authentication.
@@ -127,7 +127,7 @@ class SimpleSAML_Auth_Simple {
 
 		if (!isset($params[SimpleSAML_Auth_State::RESTART]) && is_string($returnTo)) {
 			/*
-			 * An URL to restart the authentication, in case the user bookmarks
+			 * A URL to restart the authentication, in case the user bookmarks
 			 * something, e.g. the discovery service page.
 			 */
 			$restartURL = $this->getLoginURL($returnTo);
@@ -152,7 +152,7 @@ class SimpleSAML_Auth_Simple {
 	 *  - 'ReturnStateParam': The parameter we should return the state in when redirecting.
 	 *  - 'ReturnStateStage': The stage the state array should be saved with.
 	 *
-	 * @param string|array|NULL $params  Either the url the user should be redirected to after logging out,
+	 * @param string|array|NULL $params  Either the URL the user should be redirected to after logging out,
 	 *                                   or an array with parameters for the logout. If this parameter is
 	 *                                   NULL, we will return to the current page.
 	 */
@@ -281,13 +281,11 @@ class SimpleSAML_Auth_Simple {
 
 
 	/**
-	 * Retrieve an URL that can be used to log the user in.
+	 * Retrieve a URL that can be used to log the user in.
 	 *
-	 * @param string|NULL $returnTo
-	 *   The page the user should be returned to afterwards. If this parameter
-	 *   is NULL, the user will be returned to the current page.
-	 * @return string
-	 *   An URL which is suitable for use in link-elements.
+	 * @param string|NULL $returnTo The page the user should be returned to afterwards.
+	 * If this parameter is NULL, the user will be returned to the current page.
+	 * @return string A URL which is suitable for use in link-elements.
 	 */
 	public function getLoginURL($returnTo = NULL) {
 		assert('is_null($returnTo) || is_string($returnTo)');
@@ -306,13 +304,11 @@ class SimpleSAML_Auth_Simple {
 
 
 	/**
-	 * Retrieve an URL that can be used to log the user out.
+	 * Retrieve a URL that can be used to log the user out.
 	 *
-	 * @param string|NULL $returnTo
-	 *   The page the user should be returned to afterwards. If this parameter
-	 *   is NULL, the user will be returned to the current page.
-	 * @return string
-	 *   An URL which is suitable for use in link-elements.
+	 * @param string|NULL $returnTo The page the user should be returned to afterwards.
+	 * If this parameter is NULL, the user will be returned to the current page.
+	 * @return string A URL which is suitable for use in link-elements.
 	 */
 	public function getLogoutURL($returnTo = NULL) {
 		assert('is_null($returnTo) || is_string($returnTo)');

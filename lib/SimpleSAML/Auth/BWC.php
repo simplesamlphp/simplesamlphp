@@ -131,7 +131,7 @@ class SimpleSAML_Auth_BWC extends SimpleSAML_Auth_Simple {
 	/**
 	 * Start a logout operation.
 	 *
-	 * @param string|NULL $url  The url the user should be redirected to after logging out.
+	 * @param string|NULL $url  The URL the user should be redirected to after logging out.
 	 *                          Defaults to the current page.
 	 */
 	public function logout($url = NULL) {

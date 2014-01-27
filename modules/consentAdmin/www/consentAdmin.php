@@ -244,7 +244,7 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
 		$sp_description = $sp_metadata['description'];
 	}
 
-    // Add an URL to the service if present in metadata
+    // Add a URL to the service if present in metadata
     $sp_service_url = isset($sp_metadata['ServiceURL']) ? $sp_metadata['ServiceURL'] : null;
 
 	// Fill out array for the template

@@ -570,7 +570,7 @@ abstract class BaseFacebook
    * JavaScript, you can pass in display=popup as part of the $params.
    *
    * The parameters:
-   * - redirect_uri: the url to go to after a successful login
+   * - redirect_uri: the URL to go to after a successful login
    * - scope: comma separated list of requested extended perms
    *
    * @param array $params Provide custom parameters
@@ -600,7 +600,7 @@ abstract class BaseFacebook
    * Get a Logout URL suitable for use with redirects.
    *
    * The parameters:
-   * - next: the url to go to after a successful logout
+   * - next: the URL to go to after a successful logout
    *
    * @param array $params Provide custom parameters
    * @return string The URL for the logout flow

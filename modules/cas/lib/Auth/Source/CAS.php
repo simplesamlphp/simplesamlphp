@@ -77,7 +77,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 		if(isset($this->_casConfig['login'])){
 			$this->_loginMethod =  $this->_casConfig['login'];
 		}else{
-			throw new Exception("cas login url not specified");
+			throw new Exception("cas login URL not specified");
 		}
 	}
 

@@ -50,7 +50,7 @@ try {
 
 	$session->doLogout('saml2');
 
-	/* Save the $returnTo url until the user returns from the IdP. */
+	/* Save the $returnTo URL until the user returns from the IdP. */
 	$session->setData('spLogoutReturnTo', $lr->getId(), $returnTo);
 
 	SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: SP (' . $spEntityId . ') is sending logout request to IdP (' . $idpEntityId . ')');

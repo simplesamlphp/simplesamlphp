@@ -303,11 +303,11 @@ class sspmod_openidProvider_Server {
 
 
 	/**
-	 * Save the state, and return an URL that can contain a reference to the state.
+	 * Save the state, and return a URL that can contain a reference to the state.
 	 *
 	 * @param string $page  The name of the page.
 	 * @param array $state  The state array.
-	 * @return string  An URL with the state ID as a parameter.
+	 * @return string  A URL with the state ID as a parameter.
 	 */
 	private function getStateURL($page, array $state) {
 		assert('is_string($page)');

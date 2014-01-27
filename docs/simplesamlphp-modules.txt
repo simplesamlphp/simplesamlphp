@@ -113,7 +113,7 @@ www
 :   To retrieve this URL, the
     `SimpleSAML_Module::getModuleURL($resource)`-function can be used.
     This function takes in a resource on the form `<module>/<file>`.
-    This function will then return an URL to the given file in the
+    This function will then return a URL to the given file in the
     `www`-directory of `module`.
 
 

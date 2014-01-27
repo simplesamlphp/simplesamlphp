@@ -187,7 +187,7 @@ class sspmod_adfs_IdP_ADFS {
 		$idp->handleLogoutRequest($state, $assocId);
 	}
 
-	// accepts an association array, and returns an URL that can be accessed to terminate the association.
+	// accepts an association array, and returns a URL that can be accessed to terminate the association.
 	public static function getLogoutURL(SimpleSAML_IdP $idp, array $association, $relayState) {
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $idp->getConfig();

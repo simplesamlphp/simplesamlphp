@@ -500,7 +500,7 @@ class SimpleSAML_IdP {
 
 
 	/**
-	 * Log out, then redirect to an URL.
+	 * Log out, then redirect to a URL.
 	 *
 	 * This function never returns.
 	 *
@@ -520,7 +520,7 @@ class SimpleSAML_IdP {
 
 
 	/**
-	 * Redirect to an URL after logout.
+	 * Redirect to a URL after logout.
 	 *
 	 * This function never returns.
 	 *

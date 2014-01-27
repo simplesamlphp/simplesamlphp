@@ -197,7 +197,7 @@ class SimpleSAML_Utilities {
 
 		$requestURI = $_SERVER['REQUEST_URI'];
 		if ($requestURI[0] !== '/') {
-			/* We probably have an url on the form: http://server/. */
+			/* We probably have a URL of the form: http://server/. */
 			if (preg_match('#^https?://[^/]*(/.*)#i', $requestURI, $matches)) {
 				$requestURI = $matches[1];
 			}
@@ -223,7 +223,7 @@ class SimpleSAML_Utilities {
 		$baseURL = $globalConfig->getString('baseurlpath', 'simplesaml/');
 		
 		if (preg_match('#^https?://.*/$#D', $baseURL, $matches)) {
-			/* full url in baseurlpath, override local server values */
+			/* full URL in baseurlpath, override local server values */
 			return $baseURL;
 		} elseif (
 			(preg_match('#^/?([^/]?.*/)$#D', $baseURL, $matches)) ||
@@ -577,7 +577,7 @@ class SimpleSAML_Utilities {
 		}
 
 		if (strlen($url) > 2048) {
-			SimpleSAML_Logger::warning('Redirecting to an URL longer than 2048 bytes.');
+			SimpleSAML_Logger::warning('Redirecting to a URL longer than 2048 bytes.');
 		}
 
 		/* Set the location header. */
@@ -1228,7 +1228,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Normalizes an URL to an absolute URL and validate it.
+	 * Normalizes a URL to an absolute URL and validate it.
 	 *
 	 * In addition to resolving the URL, this function makes sure that it is
 	 * a link to a http or https site.
@@ -1653,7 +1653,7 @@ class SimpleSAML_Utilities {
 	 * Retrieve a admin login URL.
 	 *
 	 * @param string|NULL $returnTo  The URL the user should arrive on after admin authentication.
-	 * @return string  An URL which can be used for admin authentication.
+	 * @return string  A URL which can be used for admin authentication.
 	 */
 	public static function getAdminLoginURL($returnTo = NULL) {
 		assert('is_string($returnTo) || is_null($returnTo)');
@@ -1729,7 +1729,7 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param string $destination  The destination URL.
 	 * @param array $post  The name-value pairs which will be posted to the destination.
-	 * @return string  An URL which can be accessed to post the data.
+	 * @return string  A URL which can be accessed to post the data.
 	 */
 	public static function createPostRedirectLink($destination, $post) {
 		assert('is_string($destination)');
@@ -1762,7 +1762,7 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param string $destination  The destination URL.
 	 * @param array $post  The name-value pairs which will be posted to the destination.
-	 * @return string  An URL which can be accessed to post the data.
+	 * @return string  A URL which can be accessed to post the data.
 	 */
 	public static function createHttpPostRedirectLink($destination, $post) {
 		assert('is_string($destination)');

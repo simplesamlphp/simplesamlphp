@@ -242,12 +242,12 @@ A. IdP-first setup
 
 If you do not want to start the SSO flow at the SP, you may use the IdP-first setup. To do this, redirect the user to the SSOService endpoint on the IdP with one parameter `spentityid` that match the SP EntityId that the user should be logged into.
 
-Here is an example of such an url:
+Here is an example of such a URL:
 
 	https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org
 
 If the SP is a simpleSAMLphp SP, you must also specify a `RelayState` parameter for the SP.
-This must be set to an URL the user should be redirected to after authentication.
+This must be set to a URL the user should be redirected to after authentication.
 The `RelayState` parameter can be specified in the [SP configuration](saml:sp), or it can be sent from the IdP.
 To send the RelayState parameter from a simpleSAMLphp IdP, specify it in the query string to SSOService.php:
 

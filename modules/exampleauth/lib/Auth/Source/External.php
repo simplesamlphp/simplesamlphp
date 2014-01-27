@@ -133,7 +133,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		$stateId = SimpleSAML_Auth_State::saveState($state, 'exampleauth:External');
 
 		/*
-		 * Now we generate an URL the user should return to after authentication.
+		 * Now we generate a URL the user should return to after authentication.
 		 * We assume that whatever authentication page we send the user to has an
 		 * option to return the user to a specific page afterwards.
 		 */
