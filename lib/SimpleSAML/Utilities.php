@@ -365,14 +365,14 @@ class SimpleSAML_Utilities {
 		$currentTime = time();
 	
 		if (!empty($start)) {
-			$startTime = SAML2_Utils::parseSAML2Time($start);
+			$startTime = SAML2_Utils::xsDateTimeToTimestamp($start);
 			/* Allow for a 10 minute difference in Time */
 			if (($startTime < 0) || (($startTime - 600) > $currentTime)) {
 				return FALSE;
 			}
 		}
 		if (!empty($end)) {
-			$endTime = SAML2_Utils::parseSAML2Time($end);
+			$endTime = SAML2_Utils::xsDateTimeToTimestamp($end);
 			if (($endTime < 0) || ($endTime <= $currentTime)) {
 				return FALSE;
 			}
