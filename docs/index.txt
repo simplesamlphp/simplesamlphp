@@ -14,7 +14,6 @@ SimpleSAMLphp Documentation
  * [Using simpleSAMLphp as a SAML Service Provider](simplesamlphp-sp)
   * [Hosted SP Configuration Reference](./saml:sp)
   * [IdP remote reference](simplesamlphp-reference-idp-remote)
-  * [Connecting SimpleSAMLphp as a SP to UK Access Federation or InCommon](simplesamlphp-ukaccess)
   * [Upgrading - migration to use the SAML authentication source](simplesamlphp-sp-migration)
   * [Configuring HTTP-Artifact](./simplesamlphp-artifact-sp)
   * [Using scoping](./simplesamlphp-scoping)

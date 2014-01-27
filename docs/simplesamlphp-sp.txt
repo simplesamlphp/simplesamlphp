@@ -130,11 +130,15 @@ The textfields for AssertionConsumerService and SingleLogoutService should conta
 
 After checking your metadata, give your SP a proper name and description and click 'save'.
 
+The procedure for managing trust in federations differ, but the common part is that you would need to provide the *SAML 2.0 metadata
+of your SP*, and register that with the federation administration.
+
+
 
 Test the SP
 -----------------------------
 
-After the metadata is is configured on the IdP, you should be able to test the configuration.
+After the metadata is configured on the IdP, you should be able to test the configuration.
 The installation page of simpleSAMLphp has a link to test authentication sources.
 When you click the link, you should receive a list of authentication sources, including the one you have created for the SP.
 
@@ -143,6 +147,11 @@ After entering your credentials, you should be redirected back to the test page.
 The test page should contain a list of your attributes:
 
 ![Screenshot of the status page after an user have succesfully authenticated](http://rnd.feide.no/files/screenshot-example.png)
+
+For a better looking, more advanced Discovery Service with tabs and live search, you may want to use the `discopower` module
+in simpleSAMLphp. Take a look at the following blog entry for more information:
+
+  * [Blog entry about the DiscoPower module](https://rnd.feide.no/content/improved-discovery-service-live-search)
 
 
 Integrating authentication with your own application
