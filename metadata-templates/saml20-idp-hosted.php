@@ -52,4 +52,20 @@ $metadata['__DYNAMIC:1__'] = array(
 	),
 	*/
 
+	/*
+	 * Uncomment the following to specify the registration information in the
+	 * exported metadata. Refer to:
+     * http://docs.oasis-open.org/security/saml/Post2.0/saml-metadata-rpi/v1.0/cs01/saml-metadata-rpi-v1.0-cs01.html
+	 * for more information.
+	 */
+	/*
+	'RegistrationInfo' => array(
+		'authority' => 'urn:mace:example.org',
+		'instant' => '2008-01-17T11:28:03Z',
+		'policies' => array(
+			'en' => 'http://example.org/policy',
+			'es' => 'http://example.org/politica',
+		),
+	),
+	*/
 );

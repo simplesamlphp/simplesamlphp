@@ -147,6 +147,25 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			$this->entityDescriptor->Extensions[] = $ea;
 		}
 
+		if ($metadata->hasValue('RegistrationInfo')) {
+			$ri = new SAML2_XML_mdrpi_RegistrationInfo();
+			foreach ($metadata->getArray('RegistrationInfo') as $riName => $riValues) {
+				switch ($riName) {
+					case 'authority':
+						$ri->registrationAuthority = $riValues;
+						break;
+					case 'instant':
+						$ri->registrationInstant = SAML2_Utils::xsDateTimeToTimestamp($riValues);
+						break;
+					case 'policies':
+						$ri->RegistrationPolicy = $riValues;
+						break;
+				}
+			}
+			$this->entityDescriptor->Extensions[] = $ri;
+
+		}
+
 		if ($metadata->hasValue('UIInfo')) {
 			$ui = new SAML2_XML_mdui_UIInfo();
 			foreach ($metadata->getArray('UIInfo') as $uiName => $uiValues) {

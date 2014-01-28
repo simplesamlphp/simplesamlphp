@@ -146,6 +146,10 @@ try {
 		$metaArray['DiscoHints'] = $idpmeta->getArray('DiscoHints');
 	}
 
+	if ($idpmeta->hasValue('RegistrationInfo')) {
+		$metaArray['RegistrationInfo'] = $idpmeta->getArray('RegistrationInfo');
+	}
+
 	$metaflat = '$metadata[' . var_export($idpentityid, TRUE) . '] = ' . var_export($metaArray, TRUE) . ';';
 
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
