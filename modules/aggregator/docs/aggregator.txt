@@ -43,9 +43,6 @@ All of the global parameters can be overriden for each aggregator. Here is a lis
   * `saml2`
   * `shib13`
 
-`foo`
-: sldkfjdslkjf
-
 `reconstruct`
 : Whether simpleSAMLphp should regenerate the metadata XML (TRUE) or pass-through the input metadata XML (FALSE).
 
