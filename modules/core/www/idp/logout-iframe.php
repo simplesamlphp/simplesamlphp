@@ -20,9 +20,9 @@ if ($type !== 'embed' && $type !== 'async') {
 }
 
 // sanitize the input
-$restartURL = SimpleSAML_Utilities::getURLFromStateID($id);
-if (!is_null($restartURL)) {
-	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+$sid = SimpleSAML_Utilities::parseStateID($id);
+if (!is_null($sid['url'])) {
+	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
 }
 
 $state = SimpleSAML_Auth_State::loadState($id, 'core:Logout-IFrame');

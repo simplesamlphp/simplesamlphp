@@ -211,10 +211,10 @@ class SimpleSAML_Auth_State {
 		assert('is_bool($allowMissing)');
 		SimpleSAML_Logger::debug('Loading state: ' . var_export($id, TRUE));
 
-		$restartURL = SimpleSAML_Utilities::getURLFromStateID($id);
+		$sid = SimpleSAML_Utilities::parseStateID($id);
 
 		$session = SimpleSAML_Session::getInstance();
-		$state = $session->getData('SimpleSAML_Auth_State', $id);
+		$state = $session->getData('SimpleSAML_Auth_State', $sid['id']);
 
 		if ($state === NULL) {
 			/* Could not find saved data. */
@@ -222,11 +222,11 @@ class SimpleSAML_Auth_State {
 				return NULL;
 			}
 
-			if ($restartURL === NULL) {
+			if ($sid['url'] === NULL) {
 				throw new SimpleSAML_Error_NoState();
 			}
 
-			SimpleSAML_Utilities::redirectTrustedURL($restartURL);
+			SimpleSAML_Utilities::redirectTrustedURL($sid['url']);
 		}
 
 		$state = unserialize($state);
@@ -246,11 +246,11 @@ class SimpleSAML_Auth_State {
 
 			SimpleSAML_Logger::warning($msg);
 
-			if ($restartURL === NULL) {
+			if ($sid['url'] === NULL) {
 				throw new Exception($msg);
 			}
 
-			SimpleSAML_Utilities::redirectTrustedURL($restartURL);
+			SimpleSAML_Utilities::redirectTrustedURL($sid['url']);
 		}
 
 		return $state;

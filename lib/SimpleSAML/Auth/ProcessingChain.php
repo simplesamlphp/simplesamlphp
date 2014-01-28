@@ -306,7 +306,7 @@ class SimpleSAML_Auth_ProcessingChain {
 	 * SimpleSAML_Auth_ProcessingChain::AUTHPARAM request parameter. Please
 	 * make sure to sanitize it properly by calling the
 	 * SimpleSAML_Utilities::checkURLAllowed() function with the embedded
-	 * restart URL, if any. See also SimpleSAML_Utilities::getURLFromStateID().
+	 * restart URL, if any. See also SimpleSAML_Utilities::parseStateID().
 	 */
 	public static function fetchProcessedState($id) {
 		assert('is_string($id)');

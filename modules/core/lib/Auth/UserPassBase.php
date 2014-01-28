@@ -198,9 +198,9 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		assert('is_string($password)');
 
 		// sanitize the input
-		$restartURL = SimpleSAML_Utilities::getURLFromStateID($authStateId);
-		if (!is_null($restartURL)) {
-			SimpleSAML_Utilities::checkURLAllowed($restartURL);
+		$sid = SimpleSAML_Utilities::parseStateID($authStateId);
+		if (!is_null($sid['url'])) {
+			SimpleSAML_Utilities::checkURLAllowed($sid['url']);
 		}
 
 		/* Here we retrieve the state array we saved in the authenticate-function. */

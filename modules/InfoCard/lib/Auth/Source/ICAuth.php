@@ -69,9 +69,9 @@ class sspmod_InfoCard_Auth_Source_ICAuth extends SimpleSAML_Auth_Source {
 			}
 
 			// sanitize the input
-			$restartURL = SimpleSAML_Utilities::getURLFromStateID($authStateId);
-			if (!is_null($restartURL)) {
-				SimpleSAML_Utilities::checkURLAllowed($restartURL);
+			$sid = SimpleSAML_Utilities::parseStateID($authStateId);
+			if (!is_null($sid['url'])) {
+				SimpleSAML_Utilities::checkURLAllowed($sid['url']);
 			}
 
 			/* Retrieve the authentication state. */

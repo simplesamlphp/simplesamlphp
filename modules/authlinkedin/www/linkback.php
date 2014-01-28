@@ -11,9 +11,9 @@ if (array_key_exists('stateid', $_REQUEST)) {
 }
 
 // sanitize the input
-$restartURL = SimpleSAML_Utilities::getURLFromStateID($stateId);
-if (!is_null($restartURL)) {
-	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+$sid = SimpleSAML_Utilities::parseStateID($stateId);
+if (!is_null($sid['url'])) {
+	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
 }
 
 $state = SimpleSAML_Auth_State::loadState($stateId, sspmod_authlinkedin_Auth_Source_LinkedIn::STAGE_INIT);

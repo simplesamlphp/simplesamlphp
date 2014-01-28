@@ -32,9 +32,9 @@ if (preg_match('@^https?://@i', $target)) {
 	$stateID = $_REQUEST['TARGET'];
 
 	// sanitize the input
-	$restartURL = SimpleSAML_Utilities::getURLFromStateID($stateID);
-	if (!is_null($restartURL)) {
-		SimpleSAML_Utilities::checkURLAllowed($restartURL);
+	$sid = SimpleSAML_Utilities::parseStateID($stateID);
+	if (!is_null($sid['url'])) {
+		SimpleSAML_Utilities::checkURLAllowed($sid['url']);
 	}
 
 	$state = SimpleSAML_Auth_State::loadState($stateID, 'saml:sp:sso');

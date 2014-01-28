@@ -54,9 +54,9 @@ $stateId = $response->getInResponseTo();
 if (!empty($stateId)) {
 
 	// sanitize the input
-	$restartURL = SimpleSAML_Utilities::getURLFromStateID($stateId);
-	if (!is_null($restartURL)) {
-		SimpleSAML_Utilities::checkURLAllowed($restartURL);
+	$sid = SimpleSAML_Utilities::parseStateID($stateId);
+	if (!is_null($sid['url'])) {
+		SimpleSAML_Utilities::checkURLAllowed($sid['url']);
 	}
 
 	/* This is a response to a request we sent earlier. */

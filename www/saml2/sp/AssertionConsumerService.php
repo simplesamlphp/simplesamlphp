@@ -61,9 +61,9 @@ if (array_key_exists(SimpleSAML_Auth_ProcessingChain::AUTHPARAM, $_REQUEST)) {
 	$authProcId = $_REQUEST[SimpleSAML_Auth_ProcessingChain::AUTHPARAM];
 
 	// sanitize the input
-	$restartURL = SimpleSAML_Utilities::getURLFromStateID($authProcId);
-	if (!is_null($restartURL)) {
-		SimpleSAML_Utilities::checkURLAllowed($restartURL);
+	$sid = SimpleSAML_Utilities::parseStateID($authProcId);
+	if (!is_null($sid['url'])) {
+		SimpleSAML_Utilities::checkURLAllowed($sid['url']);
 	}
 
 	$authProcState = SimpleSAML_Auth_ProcessingChain::fetchProcessedState($authProcId);

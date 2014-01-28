@@ -17,9 +17,9 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 $authStateId = $_REQUEST['AuthState'];
 
 // sanitize the input
-$restartURL = SimpleSAML_Utilities::getURLFromStateID($authStateId);
-if (!is_null($restartURL)) {
-	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+$sid = SimpleSAML_Utilities::parseStateID($authStateId);
+if (!is_null($sid['url'])) {
+	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
 }
 
 /* Retrieve the authentication state. */

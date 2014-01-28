@@ -187,9 +187,9 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		$stateId = (string)$_REQUEST['State'];
 
 		// sanitize the input
-		$restartURL = SimpleSAML_Utilities::getURLFromStateID($stateId);
-		if (!is_null($restartURL)) {
-			SimpleSAML_Utilities::checkURLAllowed($restartURL);
+		$sid = SimpleSAML_Utilities::parseStateID($stateId);
+		if (!is_null($sid['url'])) {
+			SimpleSAML_Utilities::checkURLAllowed($sid['url']);
 		}
 
 		/*

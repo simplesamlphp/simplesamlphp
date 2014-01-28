@@ -33,9 +33,9 @@ if (!preg_match('@State=(.*)@', $returnTo, $matches)) {
 $stateId = urldecode($matches[1]);
 
 // sanitize the input
-$restartURL = SimpleSAML_Utilities::getURLFromStateID($stateId);
-if (!is_null($restartURL)) {
-	SimpleSAML_Utilities::checkURLAllowed($restartURL);
+$sid = SimpleSAML_Utilities::parseStateID($stateId);
+if (!is_null($sid['url'])) {
+	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
 }
 
 SimpleSAML_Auth_State::loadState($stateId, 'exampleauth:External');

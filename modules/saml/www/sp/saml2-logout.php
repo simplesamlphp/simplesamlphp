@@ -55,9 +55,9 @@ if ($message instanceof SAML2_LogoutResponse) {
 	}
 
 	// sanitize the input
-	$restartURL = SimpleSAML_Utilities::getURLFromStateID($relayState);
-	if (!is_null($restartURL)) {
-		SimpleSAML_Utilities::checkURLAllowed($restartURL);
+	$sid = SimpleSAML_Utilities::parseStateID($relayState);
+	if (!is_null($sid['url'])) {
+		SimpleSAML_Utilities::checkURLAllowed($sid['url']);
 	}
 
 	$state = SimpleSAML_Auth_State::loadState($relayState, 'saml:slosent');
