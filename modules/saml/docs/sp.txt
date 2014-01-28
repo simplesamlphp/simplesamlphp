@@ -9,6 +9,11 @@ Metadata
 
 The metadata for your SP will be available from the federation page on your simpleSAMLphp installation.
 
+SimpleSAMLphp supports generating metadata with the MDUI and MDRPI metadata extensions.
+See the documentation for those extensions for more details:
+
+  * [MDUI extension](./simplesamlphp-metadata-extensions-ui)
+
 
 Parameters
 -------
@@ -63,97 +68,6 @@ The following attributes are available:
 
 `saml:sp:SessionIndex`
 :   The SessionIndex we received from the IdP.
-
-
-Examples
---------
-
-Here we will list some examples for this authentication source.
-
-### Minimal
-
-    'example-minimal' => array(
-        'saml:SP',
-    ),
-
-### Connecting to a specific IdP
-
-    'example' => array(
-        'saml:SP',
-        'idp' => 'https://idp.example.net/',
-    ),
-
-### Using a specific entity ID
-
-    'example' => array(
-        'saml:SP',
-        'entityID' => 'https://sp.example.net',
-    ),
-
-### Encryption and signing
-
-    This SP will accept encrypted assertions, and will sign and validate all messages.
-
-    'example-enc' => array(
-        'saml:SP',
-
-        'certificate' => 'example.crt',
-        'privatekey' => 'example.key',
-        'privatekey_pass' => 'secretpassword',
-        'redirect.sign' => TRUE,
-        'redirect.validate' => TRUE,
-    ),
-
-
-### Specifying attributes and required attributes
-
-    An SP that wants eduPersonPrincipalName and mail, where eduPersonPrincipalName should be listed as required:
-
-    'example-attributes => array(
-        'saml:SP',
-        'name' => array( //Name required for AttributeConsumingService-element.
-            'en' => 'Example service',
-            'no' => 'Eksempeltjeneste',
-        ),
-        'attributes' => array(
-            'eduPersonPrincipalName',
-            'mail',
-        )
-        'attributes.required' => array (
-            'eduPersonPrincipalName',
-        ),
-        'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
-    ),
-
-
-### Limiting supported AssertionConsumerService endpoint bindings
-
-    'example-acs-limit' => array(
-        'saml:SP',
-        'acs.Bindings' => array(
-            'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-            'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
-        ),
-    ),
-
-
-### Requesting a specific authentication method.
-
-    $auth = new SimpleSAML_Auth_Simple('default-sp');
-    $auth->login(array(
-        'saml:AuthnContextClassRef' => 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
-    ));
-
-### Using samlp:Extensions
-
-    $dom = new DOMDocument();
-    $ce = $dom->createElementNS('http://www.example.com/XFoo', 'xfoo:test', 'Test data!');
-    $ext[] = new SAML2_XML_Chunk($ce);
-
-    $auth = new SimpleSAML_Auth_Simple('default-sp');
-    $auth->login(array(
-        'saml:Extensions' => $ext,
-    ));
 
 
 Options
@@ -351,6 +265,42 @@ Options
 
 :   *Note*: SAML 2 specific.
 
+`redirect.sign`
+:   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is `FALSE`.
+
+:   *Note*: SAML 2 specific.
+
+`redirect.validate`
+:   Whether logout requests and logout responses received received by this SP should be validated. The default is `FALSE`.
+
+:   *Note*: SAML 2 specific.
+
+`RegistrationInfo`
+:   Allows to specify information about the registrar of this SP. Please refer to the
+    'SAML V2.0 Metadata Extensions for Registration and Publication Information' document
+    for further information on this topic. This option accepts an array with the following
+    options:
+
+:   -   `authority`: The unique identifier of the authority that registered the entity.
+    It is recommended that this be a URL that resolves to a human readable page describing
+    the registrar authority (e.g., the registrar's home page). This parameter is REQUIRED.
+
+:   -   `instant`: The instant the entity was registered with the authority. Time values 
+    must be expressed in the UTC timezone using the 'Z' timezone identifier. This parameter
+    is OPTIONAL.
+
+:   -   `policies`: The policy under which the entity was registered. An indexed array with
+    URLs pointing to the localized versions of the policy. Each index will be used as the
+    language identifier. This parameter is OPTIONAL.
+
+`RelayState`
+:   The page the user should be redirected to after an IdP initiated SSO.
+
+:   *Note*: SAML 2 specific.
+    For SAML 1.1 SPs, you must specify the `TARGET` parameter in the authentication response.
+    How to set that parameter is depends on the IdP.
+    For simpleSAMLphp, see the documentation for [IdP-first flow](./simplesamlphp-idp-more#section_4_1).
+
 `saml.SOAPClient.certificate`
 :   A file with a certificate _and_ private key that should be used when issuing SOAP requests from this SP.
     If this option isn't specified, the SP private key and certificate will be used.
@@ -408,24 +358,6 @@ Options
     * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
 	* `urn:oasis:names:tc:SAML:2.0:bindings:SOAP`
 
-`redirect.sign`
-:   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is `FALSE`.
-
-:   *Note*: SAML 2 specific.
-
-`redirect.validate`
-:   Whether logout requests and logout responses received received by this SP should be validated. The default is `FALSE`.
-
-:   *Note*: SAML 2 specific.
-
-`RelayState`
-:   The page the user should be redirected to after an IdP initiated SSO.
-
-:   *Note*: SAML 2 specific.
-    For SAML 1.1 SPs, you must specify the `TARGET` parameter in the authentication response.
-    How to set that parameter is depends on the IdP.
-    For simpleSAMLphp, see the documentation for [IdP-first flow](./simplesamlphp-idp-more#section_4_1).
-
 `url`
 :   A URL to your service provider. Will be added as an OrganizationURL-element in the metadata.
 
@@ -444,3 +376,94 @@ Options
     in the IdP metadata.
 
 :   *Note*: SAML 2 specific.
+
+
+Examples
+--------
+
+Here we will list some examples for this authentication source.
+
+### Minimal
+
+    'example-minimal' => array(
+        'saml:SP',
+    ),
+
+### Connecting to a specific IdP
+
+    'example' => array(
+        'saml:SP',
+        'idp' => 'https://idp.example.net/',
+    ),
+
+### Using a specific entity ID
+
+    'example' => array(
+        'saml:SP',
+        'entityID' => 'https://sp.example.net',
+    ),
+
+### Encryption and signing
+
+    This SP will accept encrypted assertions, and will sign and validate all messages.
+
+    'example-enc' => array(
+        'saml:SP',
+
+        'certificate' => 'example.crt',
+        'privatekey' => 'example.key',
+        'privatekey_pass' => 'secretpassword',
+        'redirect.sign' => TRUE,
+        'redirect.validate' => TRUE,
+    ),
+
+
+### Specifying attributes and required attributes
+
+    An SP that wants eduPersonPrincipalName and mail, where eduPersonPrincipalName should be listed as required:
+
+    'example-attributes => array(
+        'saml:SP',
+        'name' => array( //Name required for AttributeConsumingService-element.
+            'en' => 'Example service',
+            'no' => 'Eksempeltjeneste',
+        ),
+        'attributes' => array(
+            'eduPersonPrincipalName',
+            'mail',
+        )
+        'attributes.required' => array (
+            'eduPersonPrincipalName',
+        ),
+        'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
+    ),
+
+
+### Limiting supported AssertionConsumerService endpoint bindings
+
+    'example-acs-limit' => array(
+        'saml:SP',
+        'acs.Bindings' => array(
+            'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+            'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
+        ),
+    ),
+
+
+### Requesting a specific authentication method.
+
+    $auth = new SimpleSAML_Auth_Simple('default-sp');
+    $auth->login(array(
+        'saml:AuthnContextClassRef' => 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
+    ));
+
+### Using samlp:Extensions
+
+    $dom = new DOMDocument();
+    $ce = $dom->createElementNS('http://www.example.com/XFoo', 'xfoo:test', 'Test data!');
+    $ext[] = new SAML2_XML_Chunk($ce);
+
+    $auth = new SimpleSAML_Auth_Simple('default-sp');
+    $auth->login(array(
+        'saml:Extensions' => $ext,
+    ));

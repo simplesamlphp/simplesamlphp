@@ -193,6 +193,11 @@ if ($spconfig->hasValue('UIInfo')) {
 	$metaArray20['UIInfo'] = $spconfig->getArray('UIInfo');
 }
 
+// add RegistrationInfo extension
+if ($spconfig->hasValue('RegistrationInfo')) {
+	$metaArray20['RegistrationInfo'] = $spconfig->getArray('RegistrationInfo');
+}
+
 $supported_protocols = array('urn:oasis:names:tc:SAML:1.1:protocol', SAML2_Const::NS_SAMLP);
 
 $metaArray20['metadata-set'] = 'saml20-sp-remote';
