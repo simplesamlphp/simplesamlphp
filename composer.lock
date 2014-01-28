@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "608aa8b969b50e691e090388b39a33be",
+    "hash": "a41286a477344329430151e56b185911",
     "packages": [
         {
             "name": "openid/php-openid",
@@ -15,7 +15,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openid/php-openid/zipball/ee669c6a9d4d95b58ecd9b6945627276807694fb",
+                "url": "https://api.github.com/repos/openid/php-openid/zipball/654dd027437960f7e5fc261fd9ebff2a4efcaf89",
                 "reference": "ee669c6a9d4d95b58ecd9b6945627276807694fb",
                 "shasum": ""
             },
@@ -53,52 +53,6 @@
                 "yadis"
             ],
             "time": "2013-10-03 21:21:20"
-        },
-        {
-            "name": "pimple/pimple",
-            "version": "v1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fabpot/Pimple.git",
-                "reference": "ae11e57e8c2bb414b2ff93396dbbfc0eb92feb94"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/ae11e57e8c2bb414b2ff93396dbbfc0eb92feb94",
-                "reference": "ae11e57e8c2bb414b2ff93396dbbfc0eb92feb94",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Pimple": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Pimple is a simple Dependency Injection Container for PHP 5.3",
-            "homepage": "http://pimple.sensiolabs.org",
-            "keywords": [
-                "container",
-                "dependency injection"
-            ],
-            "time": "2013-03-08 08:21:40"
         },
         {
             "name": "psr/log",
@@ -155,20 +109,21 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v0.2.0",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "d4b833edc6fcbd6948e79eacdfee1b6c257691b7"
+                "reference": "247203b0689fceb6ac49ecef870e948c308ff5ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/d4b833edc6fcbd6948e79eacdfee1b6c257691b7",
-                "reference": "d4b833edc6fcbd6948e79eacdfee1b6c257691b7",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/247203b0689fceb6ac49ecef870e948c308ff5ae",
+                "reference": "247203b0689fceb6ac49ecef870e948c308ff5ae",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
+                "ext-mcrypt": "*",
                 "ext-openssl": "*",
                 "php": ">=5.3.3",
                 "psr/log": "1.0.0",
@@ -194,11 +149,13 @@
             "authors": [
                 {
                     "name": "Andreas Åkre Solberg",
-                    "email": "andreas.solberg@uninett.no"
+                    "email": "andreas.solberg@uninett.no",
+                    "homepage": "http://rnd.feide.no",
+                    "role": "Developer"
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2013-11-12 15:07:13"
+            "time": "2014-01-27 19:45:13"
         }
     ],
     "packages-dev": [
