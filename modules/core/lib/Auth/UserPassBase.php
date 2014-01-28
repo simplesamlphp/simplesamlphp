@@ -218,6 +218,8 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		 * was called. We should call login() on the same authentication source.
 		 */
 
+		SimpleSAML_Logger::stats('User \''.$username.'\' has been successfully authenticated.');
+
 		/* Attempt to log in. */
 		$attributes = $source->login($username, $password);
 
