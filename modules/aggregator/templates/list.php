@@ -15,8 +15,8 @@ if (count($this->data['sources']) === 0) {
 		$encName = htmlspecialchars($source);
 		echo('<li>');
 		echo('<a href="?id=' . $encId . '">' . $encName . '</a>');
-		echo(' <a href="?id=' . $encId . '&amp;mimetype=text/plain">[' . $this->t('{aggregator:aggregator:text}') . ']</a>');
-		echo(' <a href="?id=' . $encId . '&amp;mimetype=application/xml">[xml]</a>');
+		echo(' <a href="?id=' . $encId . '&amp;format=txt">[' . $this->t('{aggregator:aggregator:text}') . ']</a>');
+		echo(' <a href="?id=' . $encId . '&amp;format=xml">[xml]</a>');
 		echo('</li>');
 	}
 

@@ -32,15 +32,16 @@ if (isset($_REQUEST['exclude']))
 
 $xml = $aggregator->getMetadataDocument();
 
+$format = 'application/samlmetadata+xml';
 
 /* Show the metadata. */
-if(array_key_exists('mimetype', $_GET)) {
-	$mimeType = $_GET['mimetype'];
-} else {
-	$mimeType = 'application/samlmetadata+xml';
+if(array_key_exists('format', $_GET)) {
+	if ($_GET['format'] === "txt") {
+		$format = 'text/plain';
+	}
 }
 
-header('Content-Type: ' . $mimeType);
+header('Content-Type: ' . $format);
 
 echo($xml->saveXML());
 
