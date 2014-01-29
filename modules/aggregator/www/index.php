@@ -37,13 +37,14 @@ $format = 'application/samlmetadata+xml';
 /* Show the metadata. */
 if(array_key_exists('format', $_GET)) {
 	if ($_GET['format'] === "txt") {
+		SimpleSAML_Utilities::formatDOMElement($xml);
 		$format = 'text/plain';
 	}
 }
 
+$metadata = '<?xml version="1.0"?>'."\n".$xml->ownerDocument->saveXML($xml);
+
 header('Content-Type: ' . $format);
+header('Content-Length: ' . strlen($metadata));
 
-echo($xml->saveXML());
-
-
-?>
+echo $metadata;

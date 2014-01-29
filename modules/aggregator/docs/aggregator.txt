@@ -33,6 +33,30 @@ The configuration file includes an option `aggregators`, which includes a indexe
 
 All of the global parameters can be overriden for each aggregator. Here is a list of the available (global) paramters:
 
+`maxDuration`
+: Max validity of metadata (duration) in seconds.
+
+`reconstruct`
+: Whether simpleSAMLphp should regenerate the metadata XML (TRUE) or pass-through the input metadata XML (FALSE).
+
+`RegistrationInfo`
+:   Allows to specify information about the registrar of this aggregate. Please refer to the
+    'SAML V2.0 Metadata Extensions for Registration and Publication Information' document
+    for further information on this topic. This option accepts an array with the following
+    options:
+
+:   -   `authority`: The unique identifier of the authority that registered the entity.
+    It is recommended that this be a URL that resolves to a human readable page describing
+    the registrar authority (e.g., the registrar's home page). This parameter is REQUIRED.
+
+:   -   `instant`: The instant the entity was registered with the authority. Time values 
+    must be expressed in the UTC timezone using the 'Z' timezone identifier. This parameter
+    is OPTIONAL.
+
+:   -   `policies`: The policy under which the entity was registered. An indexed array with
+    URLs pointing to the localized versions of the policy. Each index will be used as the
+    language identifier. This parameter is OPTIONAL.
+
 `set`
 : By default all SAML types are available, including: `array('saml20-idp-remote', 'saml20-sp-remote', 'shib13-idp-remote', 'shib13-sp-remote')`. This list can be reduced by specifying one of the following values:
 
@@ -43,23 +67,17 @@ All of the global parameters can be overriden for each aggregator. Here is a lis
   * `saml2`
   * `shib13`
 
-`reconstruct`
-: Whether simpleSAMLphp should regenerate the metadata XML (TRUE) or pass-through the input metadata XML (FALSE).
-
-`maxDuration`
-: Max validity of metadata (duration) in seconds.
-
 `sign.enable`
 : Enable signing of metadata document
+
+`sign.certificate`
+: Certificate to embed, corresponding to the private key.
 
 `sign.privatekey`
 : Private key to use when signing
 
 `sign.privatekey_pass`
 : Optionally a passphrase to the private key
-
-`sign.certificate`
-: Certificate to embed, corresponding to the private key.
 
 
 Accessing the aggregate

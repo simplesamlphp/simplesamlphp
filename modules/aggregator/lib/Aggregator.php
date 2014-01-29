@@ -86,11 +86,8 @@ class sspmod_aggregator_Aggregator {
 				var_export($id, TRUE) . ': ' . $e->getMessage());
 		}
 
-
-		#echo $exclude; exit;
 		/* Find list of all available entities. */
 		$entities = array();
-		#echo '<pre>'; print_r($this->sets); exit;
 		
 		foreach ($sources as $source) {
 			foreach ($this->sets as $set) {
@@ -176,18 +173,31 @@ class sspmod_aggregator_Aggregator {
 
 		// Get metadata entries
 		$entities = $this->getSources();
-		
-		
-		// Generate XML Document
-		$xml = new DOMDocument();
-		$entitiesDescriptor = $xml->createElementNS('urn:oasis:names:tc:SAML:2.0:metadata', 'EntitiesDescriptor');
-		$entitiesDescriptor->setAttribute('Name', $this->id);
-		$xml->appendChild($entitiesDescriptor);
-		
-		
 		$maxDuration = $this->getMaxDuration();
 		$reconstruct = $this->getReconstruct();
 
+		$entitiesDescriptor = new SAML2_XML_md_EntitiesDescriptor();
+		$entitiesDescriptor->Name = $this->id;
+		$entitiesDescriptor->validUntil = time() + $maxDuration;
+
+		// add RegistrationInfo extension if enabled
+		if ($this->gConfig->hasValue('RegistrationInfo')) {
+			$ri = new SAML2_XML_mdrpi_RegistrationInfo();
+			foreach ($this->gConfig->getArray('RegistrationInfo') as $riName => $riValues) {
+				switch ($riName) {
+					case 'authority':
+						$ri->registrationAuthority = $riValues;
+						break;
+					case 'instant':
+						$ri->registrationInstant = SAML2_Utils::xsDateTimeToTimestamp($riValues);
+						break;
+					case 'policies':
+						$ri->RegistrationPolicy = $riValues;
+						break;
+				}
+			}
+			$entitiesDescriptor->Extensions[] = $ri;
+		}
 
 		/* Build EntityDescriptor elements for them. */
 		foreach ($entities as $entity => $sets) {
@@ -218,7 +228,7 @@ class sspmod_aggregator_Aggregator {
 				/* All metadata sets for the entity contain the same entity descriptor. Use that one. */
 				$tmp = new DOMDocument();
 				$tmp->loadXML(base64_decode($entityDescriptor));
-				$entityDescriptor = $tmp->documentElement;
+				$entitiesDescriptor->children[] = new SAML2_XML_md_EntityDescriptor($tmp->documentElement);
 			} else {
 				
 				$tmp = new SimpleSAML_Metadata_SAMLBuilder($entity, $maxDuration, $maxDuration);
@@ -229,21 +239,19 @@ class sspmod_aggregator_Aggregator {
 					$orgmeta = $metadata;
 				}
 				$tmp->addOrganizationInfo($orgmeta);
-				$entityDescriptor = $tmp->getEntityDescriptor();
+				$entitiesDescriptor->children[] = $tmp->getEntityDescriptor();
 			}
-
-			$entitiesDescriptor->appendChild($xml->importNode($entityDescriptor, TRUE));
 		}
 		
+		$document = $entitiesDescriptor->toXML();
 		
-		/* Sign the metadata if enabled. */
+		// sign the metadata if enabled
 		if ($this->shouldSign()) {
 			$signer = new SimpleSAML_XML_Signer($this->getSigningInfo());
-			$signer->sign($entitiesDescriptor, $entitiesDescriptor, $entitiesDescriptor->firstChild);
+			$signer->sign($document, $document, $document->firstChild);
 		}
 		
-
-		return $xml;
+		return $document;
 	}
 	
 
