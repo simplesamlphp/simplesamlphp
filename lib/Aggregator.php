@@ -120,6 +120,14 @@ class sspmod_aggregator2_Aggregator {
 
 
 	/**
+	 * The registration information for our generated metadata.
+	 *
+	 * @var array
+	 */
+	protected $regInfo;
+
+
+	/**
 	 * Initialize this aggregator.
 	 *
 	 * @param string $id  The id of this aggregator.
@@ -171,6 +179,8 @@ class sspmod_aggregator2_Aggregator {
 
 
 		$this->sslCAFile = $config->getString('ssl.cafile', NULL);
+
+		$this->regInfo = $config->getArray('RegistrationInfo', NULL);
 
 		$this->initSources($config->getConfigList('sources'));
 	}
@@ -379,6 +389,29 @@ class sspmod_aggregator2_Aggregator {
 	protected function getEntitiesDescriptor() {
 
 		$ret = new SAML2_XML_md_EntitiesDescriptor();
+
+		$now = time();
+
+		// add RegistrationInfo extension if enabled
+		if ($this->regInfo !== NULL) {
+			$ri = new SAML2_XML_mdrpi_RegistrationInfo();
+			$ri->registrationInstant = $now;
+			foreach ($this->regInfo as $riName => $riValues) {
+				switch ($riName) {
+					case 'authority':
+						$ri->registrationAuthority = $riValues;
+						break;
+					case 'instant':
+						$ri->registrationInstant = SAML2_Utils::xsDateTimeToTimestamp($riValues);
+						break;
+					case 'policies':
+						$ri->RegistrationPolicy = $riValues;
+						break;
+				}
+			}
+			$ret->Extensions[] = $ri;
+		}
+
 		foreach ($this->sources as $source) {
 			$m = $source->getMetadata();
 			if ($m === NULL) {
@@ -387,7 +420,7 @@ class sspmod_aggregator2_Aggregator {
 			$ret->children[] = $m;
 		}
 
-		$ret->validUntil = time() + $this->validLength;
+		$ret->validUntil = $now + $this->validLength;
 
 		return $ret;
 	}
