@@ -209,22 +209,8 @@ The following SAML 2.0 options are available:
     in the `NameIDFormat` element.
 
 `RegistrationInfo`
-:   Allows to specify information about the registrar of this IdP. Please refer to the
-    'SAML V2.0 Metadata Extensions for Registration and Publication Information' document
-    for further information on this topic. This option accepts an array with the following
-    options:
-
-:   -   `authority`: The unique identifier of the authority that registered the entity.
-    It is recommended that this be a URL that resolves to a human readable page describing
-    the registrar authority (e.g., the registrar's home page). This parameter is REQUIRED.
-
-:   -   `instant`: The instant the entity was registered with the authority. Time values 
-    must be expressed in the UTC timezone using the 'Z' timezone identifier. This parameter
-    is OPTIONAL.
-
-:   -   `policies`: The policy under which the entity was registered. An indexed array with
-    URLs pointing to the localized versions of the policy. Each index will be used as the
-    language identifier. This parameter is OPTIONAL.
+:   Allows to specify information about the registrar of this SP. Please refer to the
+    [MDRPI extension](./simplesamlphp-metadata-extensions-rpi) document for further information.
 
 `saml20.sendartifact`
 :   Set to `TRUE` to enable the IdP to send responses with the HTTP-Artifact binding.
@@ -378,10 +364,11 @@ The following options for Shibboleth 1.3 IdP's are avaiblable:
 Metadata extensions
 -------------------
 
-SimpleSAMLphp supports generating metadata with the MDUI and EntityAttributes metadata extensions.
+SimpleSAMLphp supports generating metadata with the MDUI, MDRPI and EntityAttributes metadata extensions.
 See the documentation for those extensions for more details:
 
   * [MDUI extension](./simplesamlphp-metadata-extensions-ui)
+  * [MDRPI extension](./simplesamlphp-metadata-extensions-rpi)
   * [EntityAttributes](./simplesamlphp-metadata-extensions-attributes)
 
 
