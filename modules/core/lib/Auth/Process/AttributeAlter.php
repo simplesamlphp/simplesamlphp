@@ -11,19 +11,24 @@
 class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_ProcessingFilter {
 
 	/**
-	 * Should found pattern be replace
+	 * Should the pattern found be replaced?
 	 */
 	private $replace = FALSE;
-	
-	/**
-	 * Pattern to be search for.
+
+    /**
+     * Should the value found be removed?
+     */
+    private $remove = FALSE;
+
+    /**
+	 * Pattern to search for.
 	 */
 	private $pattern = '';
 	
 	/**
-	 * String to replace found pattern.
+	 * String to replace the pattern found with.
 	 */
-	private $replacement = '';
+	private $replacement = FALSE;
 	
 	/**
 	 * Attribute to search in
@@ -31,7 +36,7 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
 	private $subject = '';
 
 	/**
-	 * Attribute to place result in.
+	 * Attribute to place the result in.
 	 */
 	private $target = '';
 	
@@ -40,94 +45,136 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
 	 *
 	 * @param array $config  Configuration information about this filter.
 	 * @param mixed $reserved  For future use.
+     * @throws SimpleSAML_Error_Exception In case of invalid configuration.
 	 */
 	public function __construct($config, $reserved) {
-		assert('is_array($config)');
-
 		parent::__construct($config, $reserved);
 
-		// Parse filter configuration		
-		foreach($config as $name => $value) {
-			// Is %replace set?
-			if(is_int($name)) {
-				if($value == '%replace') {
+        assert('is_array($config)');
+
+		// parse filter configuration
+		foreach ($config as $name => $value) {
+			if (is_int($name)) {
+                // check if this is an option
+				if($value === '%replace') {
 					$this->replace = TRUE;
+				} elseif ($value == '%remove') {
+					$this->remove = TRUE;
 				} else {
-					throw new Exception('Unknown flag : ' . var_export($value, TRUE));
+					throw new SimpleSAML_Error_Exception('Unknown flag : ' . var_export($value, TRUE));
 				}
 				continue;
 			}
 			
 			// Unknown flag
-			if(!is_string($name)) {
-				throw new Exception('Unknown flag : ' . var_export($name, TRUE));
+			if (!is_string($name)) {
+				throw new SimpleSAML_Error_Exception('Unknown flag : ' . var_export($name, TRUE));
 			}
 			
 			// Set pattern
-			if($name == 'pattern') {
+			if ($name === 'pattern') {
 				$this->pattern = $value;
 			}
 			
 			// Set replacement
-			if($name == 'replacement') {
+			if ($name === 'replacement') {
 				$this->replacement = $value;
 			}
 			
 			// Set subject
-			if($name == 'subject') {
+			if ($name === 'subject') {
 				$this->subject = $value;
 			}
 			
 			// Set target
-			if($name == 'target') {
+			if ($name === 'target') {
 				$this->target = $value;
 			}
 		}
 	}
 
 	/**
-	 * Apply filter to modify attributes.
+	 * Apply the filter to modify attributes.
 	 *
 	 * Modify existing attributes with the configured values.
 	 *
-	 * @param array &$request  The current request
+	 * @param array &$request The current request.
+     * @throws SimpleSAML_Error_Exception In case of invalid configuration.
 	 */
 	public function process(&$request) {
 		assert('is_array($request)');
 		assert('array_key_exists("Attributes", $request)');
 
-		// Get attributes from request
+		// get attributes from request
 		$attributes =& $request['Attributes'];
 
-		// Check that all required params are set in config
-		if(empty($this->pattern) || empty($this->subject)) {
-			throw new Exception("Not all params set in config.");
+		// check that all required params are set in config
+		if (empty($this->pattern) || empty($this->subject)) {
+			throw new SimpleSAML_Error_Exception("Not all params set in config.");
 		}
 
-		if(!$this->replace && empty($this->replacement)) {
-			throw new Exception("'replacement' must be set if '%replace' is not set");
+		if (!$this->replace && !$this->remove && $this->replacement === false) {
+			throw new SimpleSAML_Error_Exception("'replacement' must be set if neither '%replace' nor ".
+                "'%remove' are set.");
 		}
 
-		// Use subject as taget if target is not set
-		if(empty($this->target)) {
+        if (!$this->replace && $this->replacement === null) {
+            throw new SimpleSAML_Error_Exception("'%replace' must be set if 'replacement' is null.");
+        }
+
+        if ($this->replace && $this->remove) {
+            throw new SimpleSAML_Error_Exception("'%replace' and '%remove' cannot be used together.");
+        }
+
+		if (empty($this->target)) {
+            // use subject as target if target is not set
 			$this->target = $this->subject;		
 		}
-	
-		// Check if attributes contains subject and target attribute
-		if (array_key_exists($this->subject, $attributes) && array_key_exists($this->target, $attributes)) {
-			if($this->replace == TRUE) {
-				$matches = array();
-				// Try to match pattern
-				if(preg_match($this->pattern, $attributes[$this->subject][0], $matches) > 0) {
-					if(empty($this->replacement)) {
-						$attributes[$this->target][0] = $matches[0];	
-					} else {
-						$attributes[$this->target][0] = $this->replacement;
-					}
-				}
-			} else {	
-				$attributes[$this->target] = preg_replace($this->pattern, $this->replacement, $attributes[$this->subject]);
-			}		
-		}
+
+        if ($this->subject !== $this->target && $this->remove) {
+            throw new SimpleSAML_Error_Exception("Cannot use '%remove' when 'target' is different than 'subject'.");
+        }
+
+		// ensure the subject exists
+		if (!array_key_exists($this->subject, $attributes)) {
+            throw new SimpleSAML_Error_Exception("Can't find " . $this->subject . " in user's attributes.");
+        }
+
+        if ($this->replace) { // replace the whole value
+            foreach ($attributes[$this->subject] as &$value) {
+                $matches = array();
+                if (preg_match($this->pattern, $value, $matches) > 0) {
+                    $new_value = $matches[0];
+
+                    if ($this->replacement !== FALSE) {
+                        $new_value = $this->replacement;
+                    }
+
+                    if ($this->subject === $this->target) {
+                        $value = $new_value;
+                    } else {
+                        $attributes[$this->target][] = $new_value;
+                    }
+                }
+            }
+        } elseif ($this->remove) { // remove the whole value
+            $removedAttrs = array();
+            foreach ($attributes[$this->subject] as $value) {
+                $matches = array();
+                if (preg_match($this->pattern, $value, $matches) > 0) {
+                    $removedAttrs[] = $value;
+                }
+            }
+            $attributes[$this->target] = array_diff($attributes[$this->subject], $removedAttrs);
+        } else { // replace only the part that matches
+            if ($this->subject === $this->target) {
+                $attributes[$this->target] = preg_replace($this->pattern, $this->replacement,
+                                                          $attributes[$this->subject]);
+            } else {
+                $attributes[$this->target] = array_diff(preg_replace($this->pattern, $this->replacement,
+                                                                     $attributes[$this->subject]),
+                                                        $attributes[$this->subject]);
+            }
+        }
 	}
 }
