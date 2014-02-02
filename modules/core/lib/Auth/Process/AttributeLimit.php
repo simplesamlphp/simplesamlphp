@@ -28,20 +28,28 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 	 *
 	 * @param array $config  Configuration information about this filter.
 	 * @param mixed $reserved  For future use
+     * @throws SimpleSAML_Error_Exception If invalid configuration is found.
 	 */
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 
 		assert('is_array($config)');
 
-		foreach($config as $index => $value) {
+		foreach ($config as $index => $value) {
 			if ($index === 'default') {
 				$this->isDefault = (bool)$value;
 			} elseif (is_int($index)) {
-				if(!is_string($value)) {
-					throw new SimpleSAML_Error_Exception('AttributeLimit: Invalid attribute name: ' . var_export($value, TRUE));
+				if (!is_string($value)) {
+					throw new SimpleSAML_Error_Exception('AttributeLimit: Invalid attribute name: ' .
+                        var_export($value, TRUE));
 				}
 				$this->allowedAttributes[] = $value;
+            } elseif (is_string($index)) {
+                if (!is_array($value)) {
+                    throw new SimpleSAML_Error_Exception('AttributeLimit: Values for ' . var_export($index, TRUE) .
+                        ' must be specified in an array.');
+                }
+                $this->allowedAttributes[$index] = $value;
 			} else {
 				throw new SimpleSAML_Error_Exception('AttributeLimit: Invalid option: ' . var_export($index, TRUE));
 			}
@@ -75,6 +83,7 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 	 * Removes all attributes which aren't one of the allowed attributes.
 	 *
 	 * @param array &$request  The current request
+     * @throws SimpleSAML_Error_Exception If invalid configuration is found.
 	 */
 	public function process(&$request) {
 		assert('is_array($request)');
@@ -96,14 +105,24 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 
 		$attributes =& $request['Attributes'];
 
-		foreach($attributes as $name => $values) {
-			if(!in_array($name, $allowedAttributes, TRUE)) {
-				unset($attributes[$name]);
+		foreach ($attributes as $name => $values) {
+			if (!in_array($name, $allowedAttributes, TRUE)) {
+                // the attribute name is not in the array of allowed attributes
+                if (array_key_exists($name, $allowedAttributes)) {
+                    // but it is an index of the array
+                    if (!is_array($values)) {
+                        throw new SimpleSAML_Error_Exception('AttributeLimit: Values for ' . var_export($name, TRUE) .
+                            ' must be specified in an array.');
+                    }
+                    $attributes[$name] = array_intersect($attributes[$name], $allowedAttributes[$name]);
+                    if (!empty($attributes[$name])) {
+                        continue;
+                    }
+                }
+                unset($attributes[$name]);
 			}
 		}
 
 	}
 
 }
-
-?>
