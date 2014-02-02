@@ -684,6 +684,12 @@ class sspmod_saml_IdP_SAML2 {
 			}
 
 			foreach ($values as $value) {
+                // allow null values
+                if ($value === null) {
+                    $ret[$name][] = $value;
+                    continue;
+                }
+
 				switch ($encoding) {
 				case 'string':
 					$value = (string)$value;
