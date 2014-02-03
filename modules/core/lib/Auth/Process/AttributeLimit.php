@@ -110,7 +110,7 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
                 // the attribute name is not in the array of allowed attributes
                 if (array_key_exists($name, $allowedAttributes)) {
                     // but it is an index of the array
-                    if (!is_array($values)) {
+                    if (!is_array($allowedAttributes[$name])) {
                         throw new SimpleSAML_Error_Exception('AttributeLimit: Values for ' . var_export($name, TRUE) .
                             ' must be specified in an array.');
                     }
