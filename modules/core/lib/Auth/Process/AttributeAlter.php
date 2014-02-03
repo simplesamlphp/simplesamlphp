@@ -135,9 +135,9 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
             throw new SimpleSAML_Error_Exception("Cannot use '%remove' when 'target' is different than 'subject'.");
         }
 
-		// ensure the subject exists
 		if (!array_key_exists($this->subject, $attributes)) {
-            throw new SimpleSAML_Error_Exception("Can't find " . $this->subject . " in user's attributes.");
+            // if no such subject, stop gracefully
+            return;
         }
 
         if ($this->replace) { // replace the whole value
