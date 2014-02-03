@@ -84,8 +84,8 @@ The endpoint supports the following query parameter:
 `exclude`
 : Specify a `tag` that will be excluded from the metadata set. Useful for leaving out your own federation metadata.
 
-`format`
-: Select the Mime-Type that will be used. Can be `txt` or `xml`.
+`mimetype`
+: Select the Mime-Type that will be used. Default is `application/samlmetadata+xml`.
 
 
 
