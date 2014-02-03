@@ -20,6 +20,9 @@
 	"attribute_mail": {
 		"en": "Mail"
 	},
+	"attribute_ismemberof": {
+		"en": "Group membership"
+	},
 	"attribute_mobile": {
 		"en": "Mobile"
 	},
