@@ -177,7 +177,6 @@ class SimpleSAML_Session {
 		$this->trackid = substr(md5(uniqid(rand(), true)), 0, 10);
 
 		$this->dirty = TRUE;
-		$this->addShutdownFunction();
 
 		/* Initialize data for session check function if defined */
 		$globalConfig = SimpleSAML_Configuration::getInstance();
@@ -187,6 +186,32 @@ class SimpleSAML_Session {
 			call_user_func($checkFunction, $this, TRUE);
 		}
 	}
+
+
+    /**
+     * Destructor for this class. It will save the session to the session handler
+     * in case the session has been marked as dirty. Do nothing otherwise.
+     */
+    public function __destruct() {
+        if(!$this->dirty) {
+            /* Session hasn't changed - don't bother saving it. */
+            return;
+        }
+
+        $this->dirty = FALSE;
+
+        $sh = SimpleSAML_SessionHandler::getSessionHandler();
+
+        try {
+            $sh->saveSession($this);
+        } catch (Exception $e) {
+            if (!($e instanceof SimpleSAML_Error_Exception)) {
+                $e = new SimpleSAML_Error_UnserializableException($e);
+            }
+            SimpleSAML_Logger::error('Unable to save session.');
+            $e->logError();
+        }
+    }
 
 
 	/**
@@ -247,7 +272,6 @@ class SimpleSAML_Session {
 	 * This function is called after this class has been deserialized.
 	 */
 	public function __wakeup() {
-		$this->addShutdownFunction();
 
 		/* TODO: Remove for version 1.8. */
 		if ($this->authData === NULL) {
@@ -1163,42 +1187,6 @@ class SimpleSAML_Session {
 		self::$sessions[$sessionId] = $session;
 
 		return $session;
-	}
-
-
-	/**
-	 * Save the session to the session handler.
-	 *
-	 * This function will check the dirty-flag to check if the session has changed.
-	 */
-	public function saveSession() {
-
-		if(!$this->dirty) {
-			/* Session hasn't changed - don't bother saving it. */
-			return;
-		}
-
-		$this->dirty = FALSE;
-
-		$sh = SimpleSAML_SessionHandler::getSessionHandler();
-
-		try {
-			$sh->saveSession($this);
-		} catch (Exception $e) {
-			if (!($e instanceof SimpleSAML_Error_Exception)) {
-				$e = new SimpleSAML_Error_UnserializableException($e);
-			}
-			SimpleSAML_Logger::error('Unable to save session.');
-			$e->logError();
-		}
-	}
-
-
-	/**
-	 * Add a shutdown function for saving this session object on exit.
-	 */
-	private function addShutdownFunction() {
-		register_shutdown_function(array($this, 'saveSession'));
 	}
 
 
