@@ -95,7 +95,7 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * This is an array of objects which will autoexpire after a set time. It is used
+	 * This is an array of objects which will expire automatically after a set time. It is used
 	 * where one needs to store some information - for example a logout request, but doesn't
 	 * want it to be stored forever.
 	 *
@@ -159,7 +159,7 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * private constructor restricts instantiaton to getInstance()
+	 * Private constructor that restricts instantiation to getInstance().
 	 */
 	private function __construct($transient = FALSE) {
 
@@ -283,7 +283,9 @@ class SimpleSAML_Session {
 	/**
 	 * Retrieves the current session. Will create a new session if there isn't a session.
 	 *
-	 * @return The current session.
+	 * @return SimpleSAML_Session The current session.
+     * @throws Exception When session couldn't be initialized and
+     * the session fallback is disabled by configuration.
 	 */
 	public static function getInstance() {
 
@@ -359,7 +361,7 @@ class SimpleSAML_Session {
 	/**
 	 * Retrieve if session is transient.
 	 *
-	 * @return boolean  The session transient flag.
+	 * @return boolean The session transient flag.
 	 */
 	public function isTransient() {
 		return $this->transient;
@@ -369,6 +371,8 @@ class SimpleSAML_Session {
 	/**
 	 * Get a unique ID that will be permanent for this session.
 	 * Used for debugging and tracing log files related to a session.
+     *
+     * @return string The unique ID.
 	 */
 	public function getTrackID() {
 		return $this->trackid;
@@ -376,7 +380,9 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Who authorized this session. could be in example saml2, shib13, login,login-admin etc.
+	 * Who authorized this session. Could be for example 'saml2', 'shib13', 'login', 'login-admin' etc.
+     *
+     * @return string Who authorized this session.
 	 */
 	public function getAuthority() {
 		return $this->authority;
@@ -388,25 +394,28 @@ class SimpleSAML_Session {
 	 * The complete request is not stored, instead the values that will be needed later
 	 * are stored in an assoc array.
 	 *
-	 * @param $protocol 		saml2 or shib13
-	 * @param $requestid 		The request id used as a key to lookup the cache.
-	 *
-	 * @return Returns an assoc array of cached variables associated with the
+	 * @param string $protocol saml2 or shib13
+	 * @param string $requestid The request id used as a key to lookup the cache.
+	 * @throws Exception If the method can't find a cached version of the request.
+	 * @return array Returns an assoc array of cached variables associated with the
 	 * authentication request.
 	 */
 	public function getAuthnRequest($protocol, $requestid) {
 
 
-		SimpleSAML_Logger::debug('Library - Session: Get authnrequest from cache ' . $protocol . ' time:' . time() . '  id: '. $requestid );
+		SimpleSAML_Logger::debug('Library - Session: Get authnrequest from cache ' . $protocol . ' time:' . time() .
+                                 '  id: '. $requestid );
 
 		$type = 'AuthnRequest-' . $protocol;
 		$authnRequest = $this->getData($type, $requestid);
 
 		if($authnRequest === NULL) {
 			/*
-			 * Could not find requested ID. Throw an error. Could be that it is never set, or that it is deleted due to age.
+			 * Could not find requested ID. Throw an error. Could be that it is never set, or that it is deleted
+			 * due to age.
 			 */
-			throw new Exception('Could not find cached version of authentication request with ID ' . $requestid . ' (' . $protocol . ')');
+			throw new Exception('Could not find cached version of authentication request with ID ' . $requestid .
+                                ' (' . $protocol . ')');
 		}
 
 		return $authnRequest;
@@ -416,13 +425,14 @@ class SimpleSAML_Session {
 	/**
 	 * This method sets a cached assoc array to the authentication request cache storage.
 	 *
-	 * @param $protocol 		saml2 or shib13
-	 * @param $requestid 		The request id used as a key to lookup the cache.
-	 * @param $cache			The assoc array that will be stored.
+	 * @param string $protocol 'saml2' or 'shib13'
+	 * @param string $requestid The request id used as a key to lookup the cache.
+	 * @param array $cache The assoc array that will be stored.
 	 */
 	public function setAuthnRequest($protocol, $requestid, array $cache) {
 
-		SimpleSAML_Logger::debug('Library - Session: Set authnrequest ' . $protocol . ' time:' . time() . ' size:' . count($cache) . '  id: '. $requestid );
+		SimpleSAML_Logger::debug('Library - Session: Set authnrequest ' . $protocol . ' time:' . time() . ' size:' .
+                                 count($cache) . '  id: '. $requestid );
 
 		$type = 'AuthnRequest-' . $protocol;
 		$this->setData($type, $requestid, $cache);
@@ -432,7 +442,7 @@ class SimpleSAML_Session {
 	/**
 	 * Set the IdP we are authenticated against.
 	 *
-	 * @param string|NULL $idp  Our current IdP, or NULL if we aren't authenticated with an IdP.
+	 * @param string|NULL $idp Our current IdP, or NULL if we aren't authenticated with an IdP.
 	 */
 	public function setIdP($idp) {
 		assert('is_string($idp) || is_null($idp)');
@@ -452,7 +462,7 @@ class SimpleSAML_Session {
 	/**
 	 * Retrieve the IdP we are currently authenticated against.
 	 *
-	 * @return string|NULL  Our current IdP, or NULL if we aren't authenticated with an IdP.
+	 * @return string|NULL Our current IdP, or NULL if we aren't authenticated with an IdP.
 	 */
 	public function getIdP() {
 		if (!isset($this->authData[$this->authority]['saml:sp:IdP'])) {
@@ -465,7 +475,7 @@ class SimpleSAML_Session {
 	/**
 	 * Set the SessionIndex we received from our IdP.
 	 *
-	 * @param string|NULL $sessionindex  Our SessionIndex.
+	 * @param string|NULL $sessionindex Our SessionIndex.
 	 */
 	public function setSessionIndex($sessionindex) {
 		assert('is_string($sessionindex) || is_null($sessionindex)');
@@ -484,7 +494,7 @@ class SimpleSAML_Session {
 	/**
 	 * Retrieve our SessionIndex.
 	 *
-	 * @return string|NULL  Our SessionIndex.
+	 * @return string|NULL Our SessionIndex.
 	 */
 	public function getSessionIndex() {
 		if (!isset($this->authData[$this->authority]['saml:sp:SessionIndex'])) {
@@ -497,7 +507,7 @@ class SimpleSAML_Session {
 	/**
 	 * Set our current NameID.
 	 *
-	 * @param array|NULL $nameid  The NameID we received from the IdP
+	 * @param array|NULL $nameid The NameID we received from the IdP
 	 */
 	public function setNameID($nameid) {
 		assert('is_array($nameid) || is_null($nameid)');
@@ -529,7 +539,7 @@ class SimpleSAML_Session {
 	/**
 	 * Set remember me expire time.
 	 *
-	 * @param int $expire  Unix timestamp when remember me session cookies expire.
+	 * @param int $expire Unix timestamp when remember me session cookies expire.
 	 */
 	public function setRememberMeExpire($expire = NULL) {
 		assert('is_int($expire) || is_null($expire)');
@@ -567,7 +577,8 @@ class SimpleSAML_Session {
 
 		if ($this->authToken !== NULL) {
 			$globalConfig = SimpleSAML_Configuration::getInstance();
-			$sessionHandler->setCookie($globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'), $this->authToken, $params);
+			$sessionHandler->setCookie($globalConfig->getString('session.authtoken.cookiename',
+                                                                'SimpleSAMLAuthToken'), $this->authToken, $params);
 		}
 	}
 
@@ -577,8 +588,8 @@ class SimpleSAML_Session {
 	 *
 	 * If the user already has logged in, the user will be logged out first.
 	 *
-	 * @param string $authority  The authority the user logged in with.
-	 * @param array|NULL $data  The authentication data for this authority.
+	 * @param string $authority The authority the user logged in with.
+	 * @param array|NULL $data The authentication data for this authority.
 	 */
 	public function doLogin($authority, array $data = NULL) {
 		assert('is_string($authority)');
@@ -617,10 +628,13 @@ class SimpleSAML_Session {
 		$this->authToken = SimpleSAML_Utilities::generateID();
 		$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
 
-		if (!$this->transient && (!empty($data['RememberMe']) || $this->rememberMeExpire) && $globalConfig->getBoolean('session.rememberme.enable', FALSE)) {
-			$this->setRememberMeExpire();
+		if (!$this->transient && (!empty($data['RememberMe']) || $this->rememberMeExpire) &&
+            $globalConfig->getBoolean('session.rememberme.enable', FALSE)) {
+
+            $this->setRememberMeExpire();
 		} else {
-			$sessionHandler->setCookie($globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'), $this->authToken);
+			$sessionHandler->setCookie($globalConfig->getString('session.authtoken.cookiename',
+                                                                'SimpleSAMLAuthToken'), $this->authToken);
 		}
 	}
 
@@ -630,7 +644,7 @@ class SimpleSAML_Session {
 	 *
 	 * This function will call any registered logout handlers before marking the user as logged out.
 	 *
-	 * @param string|NULL $authority  The authentication source we are logging out of.
+	 * @param string|NULL $authority The authentication source we are logging out of.
 	 */
 	public function doLogout($authority = NULL) {
 
@@ -670,8 +684,8 @@ class SimpleSAML_Session {
 	/**
 	 * Set the lifetime for authentication source.
 	 *
-	 * @param string $authority  The authentication source we are setting expire time for.
-	 * @param int $expire  The number of seconds authentication source is valid.
+	 * @param string $authority The authentication source we are setting expire time for.
+	 * @param int $expire The number of seconds authentication source is valid.
 	 */
 	public function setAuthorityExpire($authority, $expire = NULL) {
 		assert('isset($this->authData[$authority])');
@@ -691,7 +705,7 @@ class SimpleSAML_Session {
 	/**
 	 * Set the lifetime of our current authentication session.
 	 *
-	 * @param int $duration  The number of seconds this authentication session is valid.
+	 * @param int $duration The number of seconds this authentication session is valid.
 	 */
 	public function setSessionDuration($duration) {
 		assert('is_int($duration)');
@@ -716,7 +730,8 @@ class SimpleSAML_Session {
 		assert('is_string($authority)');
 
 		if (!isset($this->authData[$authority])) {
-			SimpleSAML_Logger::debug('Session: '. var_export($authority, TRUE) .' not valid because we are not authenticated.');
+			SimpleSAML_Logger::debug('Session: '. var_export($authority, TRUE) .
+                                     ' not valid because we are not authenticated.');
 			return FALSE;
 		}
 
@@ -734,7 +749,7 @@ class SimpleSAML_Session {
 	/**
 	 * If the user is authenticated, how much time is left of the session.
 	 *
-	 * @return int  The number of seconds until the session expires.
+	 * @return int The number of seconds until the session expires.
 	 */
 	public function remainingTime() {
 
@@ -750,7 +765,7 @@ class SimpleSAML_Session {
 	/**
 	 * Is the user authenticated. This function does not check the session duration.
 	 *
-	 * @return bool  TRUE if the user is authenticated, FALSE otherwise.
+	 * @return bool TRUE if the user is authenticated, FALSE otherwise.
 	 */
 	public function isAuthenticated() {
 		return isset($this->authData[$this->authority]);
@@ -760,7 +775,7 @@ class SimpleSAML_Session {
 	/**
 	 * Retrieve the time the user was authenticated.
 	 *
-	 * @return int|NULL  The timestamp for when the user was authenticated. NULL if the user hasn't authenticated.
+	 * @return int|NULL The timestamp for when the user was authenticated. NULL if the user hasn't authenticated.
 	 */
 	public function getAuthnInstant() {
 
@@ -817,8 +832,8 @@ class SimpleSAML_Session {
 	/**
 	 * Set the values of a single attribute.
 	 *
-	 * @param string $name  The name of the attribute.
-	 * @param array $value  The values of the attribute.
+	 * @param string $name The name of the attribute.
+	 * @param array $value The values of the attribute.
 	 */
 	public function setAttribute($name, $value) {
 		assert('isset($this->authData[$this->authority])');
@@ -831,7 +846,7 @@ class SimpleSAML_Session {
 	/**
 	 * Calculates the size of the session object after serialization
 	 *
-	 * @return The size of the session measured in bytes.
+	 * @return int The size of the session measured in bytes.
 	 */
 	public function getSize() {
 		$s = serialize($this);
@@ -842,8 +857,9 @@ class SimpleSAML_Session {
 	/**
 	 * This function registers a logout handler.
 	 *
-	 * @param $classname  The class which contains the logout handler.
-	 * @param $functionname  The logout handler function.
+	 * @param string $classname The class which contains the logout handler.
+	 * @param string $functionname The logout handler function.
+     * @throws Exception If the handler is not a valid function or method.
 	 */
 	public function registerLogoutHandler($classname, $functionname) {
 		assert('isset($this->authData[$this->authority])');
@@ -864,7 +880,8 @@ class SimpleSAML_Session {
 	/**
 	 * This function calls all registered logout handlers.
 	 *
-	 * @param string $authority  The authentication source we are logging out from.
+	 * @param string $authority The authentication source we are logging out from.
+     * @throws Exception If the handler is not a valid function or method.
 	 */
 	private function callLogoutHandlers($authority) {
 		assert('is_string($authority)');
@@ -981,17 +998,20 @@ class SimpleSAML_Session {
 	 * The timeout value can be SimpleSAML_Session::DATA_TIMEOUT_LOGOUT, which indicates
 	 * that the data should be deleted on logout (and not before).
 	 *
-	 * @param $type     The type of the data. This is checked when retrieving data from the store.
-	 * @param $id       The identifier of the data.
-	 * @param $data     The data.
-	 * @param $timeout  The number of seconds this data should be stored after its last access.
-	 *                  This parameter is optional. The default value is set in 'session.datastore.timeout',
-	 *                  and the default is 4 hours.
+	 * @param string $type The type of the data. This is checked when retrieving data from the store.
+	 * @param string $id The identifier of the data.
+	 * @param mixed $data The data.
+	 * @param int|NULL $timeout The number of seconds this data should be stored after its last access.
+	 * This parameter is optional. The default value is set in 'session.datastore.timeout',
+	 * and the default is 4 hours.
+     * @throws Exception If the data couldn't be stored.
+     *
 	 */
 	public function setData($type, $id, $data, $timeout = NULL) {
 		assert('is_string($type)');
 		assert('is_string($id)');
-		assert('is_int($timeout) || is_null($timeout) || $timeout === self::DATA_TIMEOUT_LOGOUT || $timeout === self::DATA_TIMEOUT_SESSION_END');
+		assert('is_int($timeout) || is_null($timeout) || $timeout === self::DATA_TIMEOUT_LOGOUT ||'.
+               ' $timeout === self::DATA_TIMEOUT_SESSION_END');
 
 		/* Clean out old data. */
 		$this->expireData();
@@ -1051,9 +1071,9 @@ class SimpleSAML_Session {
 	 * Note that this will not change when the data stored in the data store will expire. If that is required,
 	 * the data should be written back with setData.
 	 *
-	 * @param $type  The type of the data. This must match the type used when adding the data.
-	 * @param $id    The identifier of the data. Can be NULL, in which case NULL will be returned.
-	 * @return The data of the given type with the given id or NULL if the data doesn't exist in the data store.
+	 * @param string $type The type of the data. This must match the type used when adding the data.
+	 * @param string|NULL $id The identifier of the data. Can be NULL, in which case NULL will be returned.
+	 * @return mixed The data of the given type with the given id or NULL if the data doesn't exist in the data store.
 	 */
 	public function getData($type, $id) {
 		assert('is_string($type)');
@@ -1090,8 +1110,8 @@ class SimpleSAML_Session {
 	 *
 	 * An empty array will be returned if no data of the given type is found.
 	 *
-	 * @param $type  The type of the data.
-	 * @return An associative array with all data of the given type.
+	 * @param string $type The type of the data.
+	 * @return array An associative array with all data of the given type.
 	 */
 	public function getDataOfType($type) {
 		assert('is_string($type)');
@@ -1161,7 +1181,8 @@ class SimpleSAML_Session {
 			$globalConfig = SimpleSAML_Configuration::getInstance();
 
 			if ($session->authToken !== NULL) {
-				$authTokenCookieName = $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken');
+				$authTokenCookieName = $globalConfig->getString('session.authtoken.cookiename',
+                                                                'SimpleSAMLAuthToken');
 				if (!isset($_COOKIE[$authTokenCookieName])) {
 					SimpleSAML_Logger::warning('Missing AuthToken cookie.');
 					return NULL;
@@ -1357,7 +1378,7 @@ class SimpleSAML_Session {
 	 * This function is just for backwards-compatibility. New code should
 	 * use the SimpleSAML_IdP::getAssociations()-function.
 	 *
-	 * @return array  Array of SAML 2 entitiyIDs.
+	 * @return array  Array of SAML 2 entityIDs.
 	 * @deprecated  Will be removed in the future.
 	 */
 	public function get_sp_list() {
