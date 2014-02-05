@@ -46,7 +46,7 @@ class SimpleSAML_Memcache {
 				continue;
 			}
 
-			/* Unserialize the object. */
+			/* Deserialize the object. */
 			$info = unserialize($serializedInfo);
 
 			/*
