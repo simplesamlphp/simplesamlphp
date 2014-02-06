@@ -3,9 +3,9 @@
 /**
  * The Session class holds information about a user session, and everything attached to it.
  *
- * The session will have a duration, and validity, and also cache information about the different
+ * The session will have a duration and validity, and also cache information about the different
  * federation protocols, as Shibboleth and SAML 2.0. On the IdP side the Session class holds 
- * information about all the currently logged in SPs. This is used when the user initiate a 
+ * information about all the currently logged in SPs. This is used when the user initiates a
  * Single-Log-Out.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
@@ -61,37 +61,28 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * The track id is a new random unique identifier that is generate for each session.
+	 * The track id is a new random unique identifier that is generated for each session.
 	 * This is used in the debug logs and error messages to easily track more information
 	 * about what went wrong.
+     *
+     * @var int
 	 */
 	private $trackid = 0;
-	
-	private $idp = null;
-	
-	private $authenticated = null;
-	private $attributes = null;
-	
-	private $sessionindex = null;
-	private $nameid = null;
-	
+
+
 	private $authority = null;
-	
-	// Session duration parameters
-	private $sessionstarted = null;
-	private $sessionduration = null;
+
 
 	private $rememberMeExpire = null;
 
-	// Track whether the session object is modified or not.
-	private $dirty = false;
-		
 
-	/**
-	 * This is an array of registered logout handlers.
-	 * All registered logout handlers will be called on logout.
-	 */
-	private $logout_handlers = array();
+    /**
+     * Marks a session as modified, and therefore needs to be saved before destroying
+     * this object.
+     *
+     * @var bool
+     */
+    private $dirty = false;
 
 
 	/**
@@ -101,6 +92,8 @@ class SimpleSAML_Session {
 	 *
 	 * The data store contains three levels of nested associative arrays. The first is the data type, the
 	 * second is the identifier, and the third contains the expire time of the data and the data itself.
+     *
+     * @var array
 	 */
 	private $dataStore = null;
 
@@ -111,20 +104,6 @@ class SimpleSAML_Session {
 	 * Stored as a two-level associative array: $sessionNameId[<entityType>][<entityId>]
 	 */
 	private $sessionNameId;
-
-
-	/**
-	 * Logout state when authenticated with authentication sources.
-	 */
-	private $logoutState;
-
-
-	/**
-	 * Persistent authentication state.
-	 *
-	 * @array
-	 */
-	private $authState;
 
 
 	/**
@@ -160,6 +139,8 @@ class SimpleSAML_Session {
 
 	/**
 	 * Private constructor that restricts instantiation to getInstance().
+     *
+     * @param boolean $transient Whether to create a transient session or not.
 	 */
 	private function __construct($transient = FALSE) {
 
@@ -212,72 +193,6 @@ class SimpleSAML_Session {
             $e->logError();
         }
     }
-
-
-	/**
-	 * Upgrade this session object to use the $authData property.
-	 *
-	 * TODO: Remove in version 1.8.
-	 */
-	private function upgradeAuthData() {
-		$this->authData = array();
-
-		if ($this->authority === NULL || !$this->authenticated) {
-			return;
-		}
-
-		if ($this->authState !== NULL) {
-			$data = $this->authState;
-		} else {
-			$data = array();
-		}
-
-		if ($this->attributes !== NULL) {
-			$data['Attributes'] = $this->attributes;
-		} else {
-			$data['Attributes'] = array();
-		}
-
-		if ($this->idp !== NULL) {
-			$data['saml:sp:IdP'] = $this->idp;
-		}
-
-		if ($this->sessionindex !== NULL) {
-			$data['saml:sp:SessionIndex'] = $this->sessionindex;
-		}
-
-		if ($this->nameid !== NULL) {
-			$data['saml:sp:NameID'] = $this->nameid;
-		}
-
-		$data['AuthnInstant'] = $this->sessionstarted;
-		$data['Expire'] = $this->sessionstarted + $this->sessionduration;
-		$this->sessionstarted = NULL;
-		$this->sessionduration = NULL;
-
-		if ($this->logoutState !== NULL) {
-			$data['LogoutState'] = $this->logoutState;
-		}
-
-
-		if (!empty($this->logout_handlers)) {
-			$data['LogoutHandlers'] = $this->logout_handlers;
-		}
-
-		$this->authData[$this->authority] = $data;
-	}
-
-
-	/**
-	 * This function is called after this class has been deserialized.
-	 */
-	public function __wakeup() {
-
-		/* TODO: Remove for version 1.8. */
-		if ($this->authData === NULL) {
-			$this->upgradeAuthData();
-		}
-	}
 
 
 	/**
@@ -713,7 +628,6 @@ class SimpleSAML_Session {
 
 		SimpleSAML_Logger::debug('Library - Session: Set session duration ' . $duration);
 		$this->dirty = true;
-		$this->sessionduration = $duration;
 
 		$this->authData[$this->authority]['Expire'] = time() + $duration;
 	}
@@ -1172,11 +1086,6 @@ class SimpleSAML_Session {
 
 		assert('$session instanceof self');
 
-		/* For backwardscompatibility. Remove after 1.7. */
-		if ($session->sessionId === NULL) {
-			$session->sessionId = $sh->getCookieSessionId();
-		}
-
 		if ($checkToken) {
 			$globalConfig = SimpleSAML_Configuration::getInstance();
 
@@ -1313,11 +1222,6 @@ class SimpleSAML_Session {
 	public function getAssociations($idp) {
 		assert('is_string($idp)');
 
-		if (substr($idp, 0, 6) === 'saml2:' && !empty($this->sp_at_idpsessions)) {
-			/* Remove in 1.7. */
-			$this->upgradeAssociations($idp);
-		}
-
 		if (!isset($this->associations)) {
 			$this->associations = array();
 		}
@@ -1352,11 +1256,6 @@ class SimpleSAML_Session {
 	public function terminateAssociation($idp, $associationId) {
 		assert('is_string($idp)');
 		assert('is_string($associationId)');
-
-		if (substr($idp, 0, 6) === 'saml2:' && !empty($this->sp_at_idpsessions)) {
-			/* Remove in 1.7. */
-			$this->upgradeAssociations($idp);
-		}
 
 		if (!isset($this->associations)) {
 			return;
