@@ -99,14 +99,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Current NameIDs for sessions.
-	 *
-	 * Stored as a two-level associative array: $sessionNameId[<entityType>][<entityId>]
-	 */
-	private $sessionNameId;
-
-
-	/**
 	 * The list of IdP-SP associations.
 	 *
 	 * This is an associative array with the IdP id as the key, and the list of
