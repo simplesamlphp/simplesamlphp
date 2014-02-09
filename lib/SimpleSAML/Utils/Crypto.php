@@ -30,7 +30,7 @@ class SimpleSAML_Utils_Crypto {
 		if(!$salt) {
 			// Default 8 byte salt, but 4 byte for LDAP SHA1 hashes
 			$bytes = ($algo == 'SSHA1') ? 4 : 8;
-			$salt = SimpleSAML_Utilities::generateRandomBytes($bytes, TRUE);
+			$salt = SimpleSAML_Utilities::generateRandomBytes($bytes);
 		}
 
 		if($algo[0] == 'S' && in_array(substr(strtolower($algo),1), hash_algos())) {
