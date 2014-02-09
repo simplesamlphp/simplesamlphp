@@ -5,6 +5,10 @@ $metadata['__DYNAMIC:1__'] = array(
 	'privatekey' => 'server.pem',
 	'certificate' => 'server.crt',
 	'auth' => 'example-userpass',
+	'authproc' => array(
+		// Convert LDAP names to WS-Fed Claims.
+		100 => array('class' => 'core:AttributeMap', 'name2claim'),
+	),
 );
 
 ?>

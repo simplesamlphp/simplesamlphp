@@ -42,6 +42,10 @@ function mtype($set) {
 		case 'shib13-sp-hosted': return '{admin:metadata_shib13-sp}';
 		case 'shib13-idp-remote': return '{admin:metadata_shib13-idp}';
 		case 'shib13-idp-hosted': return '{admin:metadata_shib13-idp}';
+        case 'adfs-sp-remote'; return '{admin:metadata_adfs-sp}';
+        case 'adfs-sp-hosted'; return '{admin:metadata_adfs-sp}';
+        case 'adfs-idp-remote'; return '{admin:metadata_adfs-idp}';
+        case 'adfs-idp-hosted'; return '{admin:metadata_adfs-idp}';
 	}
 }
 

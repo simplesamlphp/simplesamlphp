@@ -68,6 +68,12 @@
 	"metaover_group_metadata.shib13-idp-remote": {
 		"en": "Shib 1.3 Identity Provider (Remote)"
 	},
+    "metaover_group_metadata.adfs-sp-remote": {
+        "en": "ADFS Service Provider (Remote)"
+    },
+    "metaover_group_metadata.adfs-idp-hosted": {
+        "en": "ADFS Identity Provider (Hosted)"
+    },
 	"metaover_group_metadata.wsfed-sp-hosted": {
 		"en": "WS-Federation Service Provider (Hosted)"
 	},
@@ -95,6 +101,12 @@
 	"metadata_shib13-idp": {
 		"en": "Shib 1.3 IdP Metadata"
 	},
+    "metadata_adfs-sp": {
+        "en": "ADFS SP Metadata"
+    },
+    "metadata_adfs-idp": {
+        "en": "ADFS IdP Metadata"
+    },
 	"metadata_intro": {
 		"en": "Here is the metadata that simpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
 	},

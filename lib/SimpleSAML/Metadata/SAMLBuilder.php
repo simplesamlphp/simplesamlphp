@@ -85,6 +85,20 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		return $xml->ownerDocument->saveXML();
 	}
 
+	public function addSecurityTokenServiceType($metadata) {
+		assert('is_array($metadata)');
+		assert('isset($metadata["entityid"])');
+		assert('isset($metadata["metadata-set"])');
+
+		$metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
+                $defaultEndpoint = $metadata->getDefaultEndpoint('SingleSignOnService');
+                $e = new sspmod_adfs_SAML2_XML_fed_SecurityTokenServiceType();
+                $e->Location = $defaultEndpoint['Location'];
+
+		$this->addCertificate($e, $metadata);
+
+		$this->entityDescriptor->RoleDescriptor[] = $e;
+	}
 
 	/**
 	 * @param SimpleSAML_Configuration $metadata  Metadata.
