@@ -117,14 +117,16 @@ try {
 			'name' => $config->getString('technicalcontact_name', NULL),
 		));
 	}
-	$metaxml = explode("\n", $metaBuilder->getEntityDescriptorText());
-    unset($metaxml[0]);
-    $metaxml = implode("\n", $metaxml);
+	$output_xhtml = array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml';
+	$metaxml = $metaBuilder->getEntityDescriptorText($output_xhtml);
+	if (!$output_xhtml) {
+        $metaxml = str_replace("\n", '', $metaxml);
+    }
 
 	/* Sign the metadata if enabled. */
 	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta->toArray(), 'ADFS IdP');
 
-	if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
+	if ($output_xhtml) {
 		$defaultidp = $config->getString('default-adfs-idp', NULL);
 
 		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
@@ -138,19 +140,17 @@ try {
 		$t->show();
 
 	} else {
-
 		header('Content-Type: application/xml');
 
+        // make sure to export only the md:EntityDescriptor
+		$metaxml = substr($metaxml, strpos($metaxml, '<md:EntityDescriptor'));
+        // 22 = strlen('</md:EntityDescriptor>')
+		$metaxml = substr($metaxml, 0,  strrpos($metaxml, '</md:EntityDescriptor>') + 22);
 		echo $metaxml;
-		exit(0);
 
+		exit(0);
 	}
 
-
-
 } catch(Exception $exception) {
-
 	throw new SimpleSAML_Error_Error('METADATA', $exception);
-
 }
-
