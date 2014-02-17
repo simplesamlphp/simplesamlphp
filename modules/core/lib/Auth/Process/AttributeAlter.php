@@ -166,6 +166,10 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
                 }
             }
             $attributes[$this->target] = array_diff($attributes[$this->subject], $removedAttrs);
+
+            if (empty($attributes[$this->target])) {
+                unset($attributes[$this->target]);
+            }
         } else { // replace only the part that matches
             if ($this->subject === $this->target) {
                 $attributes[$this->target] = preg_replace($this->pattern, $this->replacement,
