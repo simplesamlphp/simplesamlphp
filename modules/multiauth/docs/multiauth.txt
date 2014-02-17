@@ -1,7 +1,7 @@
 MultiAuth module
 ================
 
-The MultiAuth module provides a method for users to choosebetween
+The MultiAuth module provides a method for users to choose between
 a list of authentication sources. There is only one authentication
 module:
 
@@ -60,7 +60,7 @@ You should update the name of this authentication source
 (`example-multi`), and the authentication sources it references,
 to have a name which makes sense to your organization.
 
-The MultiAuth authentication sources only has an option: the
+The MultiAuth authentication sources only has one option: the
 `sources` option, and it is required. It is an array of other
 authentication sources defined in the `config/authsources.php`
 file. The order in this array does not matter since the user
@@ -73,9 +73,9 @@ interface that will let the user select the authentication source
 he wants. Older versions of the multiauth module did not have
 this structure and just have the authsources identifiers as the
 values of the sources array. It has been improved in a backwards
-compatibility fashion so both cases should work.
+compatible fashion so both cases should work.
 
-So each source in the sources array has a key and a value. As
+Each source in the sources array has a key and a value. As
 mentioned above the key is the authsource identifier and the value
 is another array with two optional keys: 'text' and 'css-class'.
 The text element is another array with localized strings for one
@@ -83,7 +83,7 @@ or more languages. These texts will be shown in the selectsource.php
 view. Note that you should at least enter the text in the default
 language as specified in your config.php file. The css-class
 element is a string with the css class that will be applied to
-the <li> element in the selectsource.php view. By default the
+the &lt;li> element in the selectsource.php view. By default the
 authtype of the authsource is used as the css class with colons
 replaced by dashes. So in the previous example, the css class used
 in the 'example-admin' authentication source would be
@@ -92,7 +92,7 @@ in the 'example-admin' authentication source would be
 It is possible to add the parameter `source` to the calling URL, 
 when accessing a service, to allow the user to preselect the
 authsource to be used. This can be handy if you support different
-authentication types for differen types of users and you want the 
+authentication types for different types of users and you want the 
 users to have a direct link to the service and not want them to 
 select the correct authentication source.
 
@@ -102,10 +102,11 @@ For example:
     
 will take you directly to the SAML authentication source, instead 
 of hitting the multiauth select page, but this works only if you 
-don't have redirections during the authentification process.
+don't have redirections during the authentication process.
 
-You can also use the multiauth:preselect parameter to the login call :
-   $as = new SimpleSAML_Auth_Simple('my-multiauth-authsource');
-   $as->login(array(
-       'multiauth:preselect' => 'default-sp',
-   ));
+You can also use the multiauth:preselect parameter to the login call:
+
+    $as = new SimpleSAML_Auth_Simple('my-multiauth-authsource');
+    $as->login(array(
+        'multiauth:preselect' => 'default-sp',
+    ));
