@@ -361,25 +361,6 @@ class SimpleSAML_Auth_LDAP {
 			);
 		}
 
-        // parse each entry and process its attributes
-        for ($i = 0; $i < $results['count']; $i++) {
-            $entry = $results[$i];
-
-            // iterate over the attributes of the entry
-            for ($j = 0; $j < $entry['count']; $j++) {
-                $name = $entry[$j];
-                $attribute = $entry[$name];
-
-                // decide whether to base64 encode or not
-                for ($k = 0; $k < $attribute['count']; $k++) {
-                    // base64 encode binary attributes
-                    if (!ctype_print($attribute[$k])) {
-                        $results[$i][$name][$k] = base64_encode($attribute[$k]);
-                    }
-                }
-            }
-        }
-
 		// Remove the count and return
 		unset($results['count']);
 		return $results;
@@ -541,12 +522,12 @@ class SimpleSAML_Auth_LDAP {
 					continue;
 				}
 
-                // base64 encode binary attributes
-                if (!ctype_print($value)) {
+				// Base64 encode jpegPhoto.
+				if (strtolower($name) === 'jpegphoto') {
 					$values[] = base64_encode($value);
-				} else {
+				} else
 					$values[] = $value;
-                }
+
 			}
 
 			// Adding.
