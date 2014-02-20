@@ -18,122 +18,162 @@
  *          - Added conversion of original filter option names for backwards-compatibility
  *          - Updated the constructor to use the new config method
  *          - Updated the process method to use the new config variable names
+ * Updated: 20131119 Yørn de Jong / Jaime Perez
+ *      - Added support for retrieving multiple values at once from LDAP
+ *      - Don't crash but fail silently on LDAP errors; the plugin is to complement attributes
  *
- * @author Steve Moitozo, JAARS, Inc., Ryan Panning
+ * @author Yørn de Jong
+ * @author Jaime Perez
+ * @author Steve Moitozo
+ * @author JAARS, Inc.
+ * @author Ryan Panning
  * @package simpleSAMLphp
  * @version $Id$
  */
 class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Process_BaseFilter {
 
-
-	/**
-	 * Name of the attribute to add LDAP values to
-	 *
-	 * @var string
-	 */
-	protected $new_attribute;
-
-
-	/**
-	 * LDAP attribute to add to the request attributes
-	 *
-	 * @var string
-	 */
-	protected $search_attribute;
+    /**
+     * LDAP attribute to add to the request attributes
+     *
+     * @var string
+     */
+    protected $search_attributes;
 
 
-	/**
-	 * LDAP search filter to use in the LDAP query
-	 *
-	 * @var string
-	 */
-	protected $search_filter;
+    /**
+     * LDAP search filter to use in the LDAP query
+     *
+     * @var string
+     */
+    protected $search_filter;
 
 
-	/**
-	 * Initialize this filter.
-	 *
-	 * @param array $config  Configuration information about this filter.
-	 * @param mixed $reserved  For future use.
-	 */
-	public function __construct($config, $reserved) {
+    /**
+     * Initialize this filter.
+     *
+     * @param array $config Configuration information about this filter.
+     * @param mixed $reserved For future use.
+     */
+    public function __construct($config, $reserved) {
 
-		// For backwards compatibility, check for old config names
-		if (isset($config['ldap_host']))             $config['ldap.hostname']      = $config['ldap_host'];
-		if (isset($config['ldap_port']))             $config['ldap.port']          = $config['ldap_port'];
-		if (isset($config['ldap_bind_user']))        $config['ldap.username']      = $config['ldap_bind_user'];
-		if (isset($config['ldap_bind_pwd']))         $config['ldap.password']      = $config['ldap_bind_pwd'];
-		if (isset($config['userid_attribute']))      $config['attribute.username'] = $config['userid_attribute'];
-		if (isset($config['ldap_search_base_dn']))   $config['ldap.basedn']        = $config['ldap_search_base_dn'];
-		if (isset($config['ldap_search_filter']))    $config['search.filter']      = $config['ldap_search_filter'];
-		if (isset($config['ldap_search_attribute'])) $config['search.attribute']   = $config['ldap_search_attribute'];
-		if (isset($config['new_attribute_name']))    $config['attribute.new']      = $config['new_attribute_name'];
+        /*
+         * For backwards compatibility, check for old config names
+         * @TODO Remove after 2.0
+         */
+        if (isset($config['ldap_host'])) {
+            $config['ldap.hostname'] = $config['ldap_host'];
+        }
+        if (isset($config['ldap_port'])) {
+            $config['ldap.port'] = $config['ldap_port'];
+        }
+        if (isset($config['ldap_bind_user'])) {
+            $config['ldap.username'] = $config['ldap_bind_user'];
+        }
+        if (isset($config['ldap_bind_pwd'])) {
+            $config['ldap.password'] = $config['ldap_bind_pwd'];
+        }
+        if (isset($config['userid_attribute'])) {
+            $config['attribute.username'] = $config['userid_attribute'];
+        }
+        if (isset($config['ldap_search_base_dn'])) {
+            $config['ldap.basedn'] = $config['ldap_search_base_dn'];
+        }
+        if (isset($config['ldap_search_filter'])) {
+            $config['search.filter'] = $config['ldap_search_filter'];
+        }
+        if (isset($config['ldap_search_attribute'])) {
+            $config['search.attribute'] = $config['ldap_search_attribute'];
+        }
+        if (isset($config['new_attribute_name'])) {
+            $config['attribute.new'] = $config['new_attribute_name'];
+        }
 
-		// Remove the old config names
-		unset(
-			$config['ldap_host'],
-			$config['ldap_port'],
-			$config['ldap_bind_user'],
-			$config['ldap_bind_pwd'],
-			$config['userid_attribute'],
-			$config['ldap_search_base_dn'],
-			$config['ldap_search_filter'],
-			$config['ldap_search_attribute'],
-			$config['new_attribute_name']
-		);
+        /*
+         * Remove the old config names
+         * @TODO Remove after 2.0
+         */
+        unset(
+        $config['ldap_host'],
+        $config['ldap_port'],
+        $config['ldap_bind_user'],
+        $config['ldap_bind_pwd'],
+        $config['userid_attribute'],
+        $config['ldap_search_base_dn'],
+        $config['ldap_search_filter'],
+        $config['ldap_search_attribute'],
+        $config['new_attribute_name']
+        );
 
-		// Now that we checked for BC, run the parent constructor
-		parent::__construct($config, $reserved);
+        // Now that we checked for BC, run the parent constructor
+        parent::__construct($config, $reserved);
 
-		// Get filter specific config options
-		$this->new_attribute    = $this->config->getString('attribute.new');
-		$this->search_attribute = $this->config->getString('search.attribute');
-		$this->search_filter    = $this->config->getString('search.filter');
-	}
+        // Get filter specific config options
+        $this->search_attributes = $this->config->getArrayize('attributes', array());
+        if (empty($this->search_attributes)) {
+            $new_attribute = $this->config->getString('attribute.new', '');
+            $this->search_attributes[$new_attribute] = $this->config->getString('search.attribute');
+        }
+        $this->search_filter    = $this->config->getString('search.filter');
+    }
 
 
-	/**
-	 * Add attributes from an LDAP server.
-	 *
-	 * @param array &$request  The current request
-	 */
-	public function process(&$request) {
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+    /**
+     * Add attributes from an LDAP server.
+     *
+     * @param array &$request The current request
+     */
+    public function process(&$request) {
+        assert('is_array($request)');
+        assert('array_key_exists("Attributes", $request)');
 
-		$attributes =& $request['Attributes'];
+        $attributes =& $request['Attributes'];
 
-		// perform a merge on the ldap_search_filter
+        // perform a merge on the ldap_search_filter
 
-		// loop over the attributes and build the search and replace arrays
-		foreach($attributes as $attr => $val){
-			$arrSearch[] = '%'.$attr.'%';
+        // loop over the attributes and build the search and replace arrays
+        foreach ($attributes as $attr => $val) {
+            $arrSearch[] = '%'.$attr.'%';
 
-			if(strlen($val[0]) > 0){
-				$arrReplace[] = SimpleSAML_Auth_LDAP::escape_filter_value($val[0]);
-			}else{
-				$arrReplace[] = '';
-			}
-		}
+            if (strlen($val[0]) > 0) {
+                $arrReplace[] = SimpleSAML_Auth_LDAP::escape_filter_value($val[0]);
+            } else {
+                $arrReplace[] = '';
+            }
+        }
 
-		// merge the attributes into the ldap_search_filter
-		$filter = str_replace($arrSearch, $arrReplace, $this->search_filter);
+        // merge the attributes into the ldap_search_filter
+        $filter = str_replace($arrSearch, $arrReplace, $this->search_filter);
 
-		// search for matching entries
-		$entries = $this->getLdap()->searchformultiple($this->base_dn, $filter, (array) $this->search_attribute, TRUE, FALSE);
+        if (strpos($filter, '%') !== FALSE) {
+            SimpleSAML_Logger::info('There are non-existing attributes in the search filter. ('.
+                                    $this->search_filter.')');
+            return;
+        }
 
-		// handle [multiple] values
-		if(is_array($entries) && is_array($entries[0])){
-			$results = array();
-			foreach($entries as $entry){
-				$entry = $entry[strtolower($this->search_attribute)];
-				for($i = 0; $i < $entry['count']; $i++){
-					$results[] = $entry[$i];
-				}
-			}
-			$attributes[$this->new_attribute] = array_values($results);
-		}
+        // search for matching entries
+        try {
+            $entries = $this->getLdap()->searchformultiple($this->base_dn, $filter,
+                                                           array_values($this->search_attributes), TRUE, FALSE);
+        } catch (Exception $e) {
+            return; // silent fail, error is still logged by LDAP search
+        }
 
-	}
-
+        // handle [multiple] values
+        foreach ($entries as $entry) {
+            foreach ($this->search_attributes as $target => $name) {
+                if (is_numeric($target)) {
+                    $target = $name;
+                }
+                $name = strtolower($name);
+                if (isset($entry[$name])) {
+                    unset($entry[$name]['count']);
+                    if (isset($attributes[$target])) {
+                        $attributes[$target] = array_merge($attributes[$target], array_values($entry[$name]));
+                    } else {
+                        $attributes[$target] = array_values($entry[$name]);
+                    }
+                }
+            }
+        }
+    }
 }
