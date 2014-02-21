@@ -277,10 +277,10 @@ style is deprecated now and will be removed in 2.0.
 
 This is the most basic configuration possible. It will look at the
 authsource for all LDAP connection information and queries LDAP for
-the specific attribute.
+the specific attributes requested.
 
 	50 => array(
-		'class' => 'ldap:AttributeAddUsersGroups',
+		'class' => 'ldap:AttributeAddFromLDAP',
 		'authsource' => 'example-ldap',
 		'attributes' => array('displayName' => 'cn', 'jpegPhoto'),
 		'search.filter' => '(uid=%uid%)',
@@ -288,10 +288,10 @@ the specific attribute.
 
 If no authsource is available then you can specify the connection info
 using the filter configuration. Note: Not all of the options below are
-required, see the config options for ldap:AttributeAddUsersGroups below.
+required, see the config options for ldap:AttributeAddFromLDAP above.
 
 	50 => array(
-		'class' => 'ldap:AttributeAddUsersGroups',
+		'class' => 'ldap:AttributeAddFromLDAP',
 		'ldap.hostname' => 'ldap.example.org',
 		'ldap.username' => 'CN=LDAP User,CN=Users,DC=example,DC=org',
 		'ldap.password' => 'Abc123',
