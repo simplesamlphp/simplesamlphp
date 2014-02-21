@@ -239,26 +239,15 @@ specific configuration options:
 	50 = array(
 		'class' => 'ldap:AttributeAddFromLDAP',
 
-
 		/**
-		 * The attribute name used when adding the LDAP values
-		 * to the request attributes.
+		 * The attributes to search for and their mappings. This must be an array,
+		 * and keys can be skipped. If you skip a key, then the attribute will be
+		 * exported with the same name as the LDAP attribute.
 		 *
 		 * Default: NULL
-		 * Require: Yes
+		 * Required: Yes
 		 */
-		'attribute.new' => 'my_ldap_attrib',
-
-
-		/**
-		 * When searching LDAP, this is the attribute to retrieve
-		 * and add to the request attributes.
-		 *
-		 * Default: NULL
-		 * Require: Yes
-		 */
-		'search.attribute' => 'displayName',
-
+		'attributes' => array('mail', 'jpegPhoto' => 'jpegphoto'),
 
 		/**
 		 * The search filter to find the user in LDAP.
@@ -269,29 +258,19 @@ specific configuration options:
 		 *       with the CN of the user.
 		 *
 		 * Default: NULL
-		 * Require: Yes
+		 * Required: Yes
 		 */
-		'search.filter' => '(uniquemember=cn=%cn%,cn=users,cn=example,dc=org)',
+		'search.filter' => '(uid=%uid%)',
 	);
 
 
 ### Backwards Compatibility ###
 
-The filter option names have recently changed, however the old config names will be
-converted to the new names automatically. That way any existing/older config's
-should still work. Below are the old config names and their new names:
-
-    array(
-        'ldap_host'             => 'ldap.hostname',
-        'ldap_port'             => 'ldap.port',
-        'ldap_bind_user'        => 'ldap.username',
-        'ldap_bind_pwd'         => 'ldap.password',
-        'userid_attribute'      => 'attribute.username',
-        'ldap_search_base_dn'   => 'ldap.basedn',
-        'ldap_search_filter'    => 'search.filter',
-        'ldap_search_attribute' => 'search.attribute',
-        'new_attribute_name'    => 'attribute.new'
-    )
+Previous versions of this filter allowed just one attribute to be fetched from the
+LDAP at a time. The options 'attribute.new' and 'search.attribute' were used instead
+of the new option 'attributes'. Fortunately, the filter is backwards compatible, so
+your old configuration will still work, but keep in mind that the old configuration
+style is deprecated now and will be removed in 2.0.
 
 
 ### Example ###
@@ -303,9 +282,8 @@ the specific attribute.
 	50 => array(
 		'class' => 'ldap:AttributeAddUsersGroups',
 		'authsource' => 'example-ldap',
-		'attribute.new' => 'my_ldap_attribute',
-		'search.attribute' => 'displayName',
-		'search.filter' => '(uniquemember=cn=%cn%,cn=users,cn=example,dc=org)'
+		'attributes' => array('displayName' => 'cn', 'jpegPhoto'),
+		'search.filter' => '(uid=%uid%)',
 	)
 
 If no authsource is available then you can specify the connection info
@@ -318,9 +296,8 @@ required, see the config options for ldap:AttributeAddUsersGroups below.
 		'ldap.username' => 'CN=LDAP User,CN=Users,DC=example,DC=org',
 		'ldap.password' => 'Abc123',
 		'ldap.basedn' => 'DC=example,DC=org',
-		'attribute.new' => 'my_ldap_attribute',
-		'search.attribute' => 'displayName',
-		'search.filter' => '(uniquemember=cn=%cn%,cn=users,cn=example,dc=org)'
+		'attributes' => array('displayName' => 'cn', 'jpegPhoto'),
+		'search.filter' => '(uid=%uid%)',
 	)
 
 
