@@ -49,6 +49,13 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
 
 
     /**
+     * What to do with attributes when the target already exists. Either replace, merge or add.
+     *
+     * @var string
+     */
+    protected $attr_policy;
+
+    /**
      * Initialize this filter.
      *
      * @param array $config Configuration information about this filter.
@@ -114,6 +121,9 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
             $this->search_attributes[$new_attribute] = $this->config->getString('search.attribute');
         }
         $this->search_filter    = $this->config->getString('search.filter');
+
+        // get the attribute policy
+        $this->attr_policy = $this->config->getString('attribute.policy', 'merge');
     }
 
 
@@ -145,8 +155,14 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
         $filter = str_replace($arrSearch, $arrReplace, $this->search_filter);
 
         if (strpos($filter, '%') !== FALSE) {
-            SimpleSAML_Logger::info('There are non-existing attributes in the search filter. ('.
+            SimpleSAML_Logger::info('AttributeAddFromLDAP: There are non-existing attributes in the search filter. ('.
                                     $this->search_filter.')');
+            return;
+        }
+
+        if (!in_array($this->attr_policy, array('merge', 'replace', 'add'))) {
+            SimpleSAML_Logger::warning("AttributeAddFromLDAP: 'attribute.policy' must be one of 'merge',".
+                                       "'replace' or 'add'.");
             return;
         }
 
@@ -164,11 +180,23 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
                 if (is_numeric($target)) {
                     $target = $name;
                 }
+
+                if (isset($attributes[$target]) && $this->attr_policy === 'replace') {
+                    unset($attributes[$target]);
+                }
                 $name = strtolower($name);
                 if (isset($entry[$name])) {
                     unset($entry[$name]['count']);
                     if (isset($attributes[$target])) {
-                        $attributes[$target] = array_merge($attributes[$target], array_values($entry[$name]));
+                        foreach(array_values($entry[$name]) as $value) {
+                            if ($this->attr_policy === 'merge') {
+                                if (!in_array($value, $attributes[$target])) {
+                                    $attributes[$target][] = $value;
+                                }
+                            } else {
+                                $attributes[$target][] = $value;
+                            }
+                        }
                     } else {
                         $attributes[$target] = array_values($entry[$name]);
                     }

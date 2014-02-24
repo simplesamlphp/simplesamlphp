@@ -250,6 +250,24 @@ specific configuration options:
 		'attributes' => array('mail', 'jpegPhoto' => 'jpegphoto'),
 
 		/**
+		 * The attribute policy that defines what to do with attributes that are
+		 * already part of the attributes of the user. Can be one of:
+		 *
+		 * - add: blindly add the values. If the attribute already exists and has
+		 * the same value, the result of the filter will be two equal values.
+		 *
+		 * - merge: carefully merge the values. If a value is already part of
+		 * the attribute, do not add a duplicate.
+		 *
+		 * - replace: if the attribute is present before running the filter,
+		 * replace its values with the ones obtained at this point.
+		 *
+		 * Default: merge
+		 * Required: No
+		 */
+		'attribute.policy' => 'merge',
+
+		/**
 		 * The search filter to find the user in LDAP.
 		 *
 		 * Note: Variable substitution will be performed on this option.
