@@ -6,6 +6,119 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.12
+
+Released 2014-02-24.
+
+  * Removed example authproc filters from configuration template.
+  * Stopped using the 'target-densitydpi' option removed from WebKit.
+  * The SimpleSAML_Utilities::generateRandomBytesMTrand() function is now deprecated.
+  * Removed code for compatibility with PHP versions older than 5.3.
+  * Removed the old interface of SimpleSAML_Session.
+  * Fixed a memory leak in SimpleSAML_Session regarding serialization and unserialization.
+  * Support for RegistrationInfo (MDRPI) elements in the metadata of identity and service providers.
+  * Renamed SimpleSAML_Utilities::parseSAML2Time() function to xsDateTimeToTimestamp().
+  * New SimpleSAML_Utilities::redirectTrustedURL() and redirectUntrustedURL() functions.
+  * Deprecated the SimpleSAML_Utilities::redirect() function.
+  * Improved Russian translation.
+  * Added Czech translation.
+  * New 'errorreporting' option to enable or disable error reporting feature.
+  * Example certificate removed.
+  * New SimpleSAML_Configuration::getEndpointPrioritizedByBinding() function.
+  * PHP 5.3 or newer required.
+  * Started using Composer as dependency manager.
+  * Detached the basic SAML2 library and moved to a standalone library in github.
+  * Added support for exporting shibmd:Scope metadata with regular expressions.
+  * Remember me option in the IdP.
+  * New SimpleSAML_Utilities::setCookie wrapper.
+  * Custom HTTP codes on error.
+  * Added Romanian translation.
+  * Bug fixes and documentation enhancements.
+
+### `adfs`
+
+  * Support for exporting metadata.
+
+### `aggregator`
+
+  * Support for RegistrationInfo (MDRPI) elements in the metadata.
+  * Fix for HTTP header injection vulnerability.
+  * Fix for directory traversal vulnerability.
+
+### `aggregator2`
+
+  * Support for RegistrationInfo (MDRPI) elements in the metadata.
+
+### `aselect`
+
+  * License changed to LGPL 2.1.
+
+### `authfacebook`
+
+  * Updated extlibinc to 3.2.2.
+
+### `authtwitter`
+
+  * Added 'force_login' configuration option.
+
+### `cdc`
+
+  * Bugfix related to request validation.
+
+### `core`
+
+  * The AttributeAlter filter no longer throws an exception if the attribute was not found.
+  * Support for removal of values in the AttributeAlter filter, with '%remove' flag.
+  * Support for empty strings and NULL values as a replacement in the AttributeAlter filter.
+  * Bugfixes in the AttributeAlter filter.
+  * Support for NULL attribute values.
+  * Support for limiting values and not only attributes in the AttributeLimit filter.
+  * Log a message when a user authenticates successfully.
+  * Added %duplicate flag to AttributeMap, to leave original names in place when using map file.
+  * Fix infinite loop when overwriting attributes with AttributeMap.
+
+### `discopower`
+
+  * Bugfix for incorrect handling of the 'idpdisco.extDiscoveryStorage' option.
+
+### `ldap`
+
+  * Support for configuring the duplicate attribute handling policy in AttributeAddFromLDAP, 'attribute.policy' option.
+  * Support for binary attributes in the AttributeAddFromLDAP filter.
+  * Support for multiple attributes in the AttributeAddFromLDAP filter.
+
+### `metarefresh`
+
+  * Support for specifying permissions of the resulting files.
+
+### `negotiate`
+
+  * Added support for "attributes"-parameter.
+
+### `oauth`
+
+  * Bugfix related to authorize URL building.
+
+### `openidProvider`
+
+  * Support for SReg and AX requests.
+
+### `saml`
+
+  * Send 'isPassive' in passive discovery requests.
+  * Support for generating NameIDFormat in service providers with NameIDPolicy set.
+  * Support for AttributeConsumingService and AssertionConsumingServiceIndex.
+  * Support for the HTTP-POST binding in WebSSO profile.
+  * Fix for entity ID validation problems when using the IDPList configuration option.
+
+### `smartattributes`
+
+  * New 'add_candidate' option to allow the user to decide whether to prepend or not the candidate attribute name to the resulting value.
+
+### `statistics`
+
+  * Bugfix in statistics aggregator.
+
 ## Version 1.11
 
 Released 2013-06-05.
