@@ -136,22 +136,8 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 		assert('is_string($string)');
 
 		return preg_replace_callback('/([^a-zA-Z0-9_@=.])/',
-			'self::escapeIllegalChar',
+			function ($m) { return sprintf("%%%02x", ord($m[1])); },
 			$string);
-	}
-
-	/**
-	 * Escapes a single special character.
-	 *
-	 * This function is used as a callback by escapeIllegalChars.
-	 *
-	 * @param array $matches The matches array provided by
-     * preg_*() functions. $matches[0] is the complete match, while
-	 * $matches[1] is the specific subpattern enclosed in parenthesis
-	 * that triggers the match.
-	 */
-	private static function escapeIllegalChar($matches) {
-		return sprintf("%%%02x", ord($matches[1]));
 	}
 
 }
