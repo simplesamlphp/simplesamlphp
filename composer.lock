@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a41286a477344329430151e56b185911",
+    "hash": "21cdfe0feea0b69980fe1362512dffef",
     "packages": [
         {
             "name": "openid/php-openid",
@@ -15,7 +15,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openid/php-openid/zipball/654dd027437960f7e5fc261fd9ebff2a4efcaf89",
+                "url": "https://api.github.com/repos/openid/php-openid/zipball/cb53da46b73baff46ae325eb799d91703acc3780",
                 "reference": "ee669c6a9d4d95b58ecd9b6945627276807694fb",
                 "shasum": ""
             },
@@ -109,16 +109,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v0.3.0",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "247203b0689fceb6ac49ecef870e948c308ff5ae"
+                "reference": "3cfedfc764de05f0a061e3c07668a24e839d9cf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/247203b0689fceb6ac49ecef870e948c308ff5ae",
-                "reference": "247203b0689fceb6ac49ecef870e948c308ff5ae",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/3cfedfc764de05f0a061e3c07668a24e839d9cf8",
+                "reference": "3cfedfc764de05f0a061e3c07668a24e839d9cf8",
                 "shasum": ""
             },
             "require": {
@@ -155,7 +155,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2014-01-27 19:45:13"
+            "time": "2014-02-21 10:09:30"
         }
     ],
     "packages-dev": [
@@ -174,7 +174,7 @@
         "openid/php-openid": 20
     },
     "platform": {
-        "php": ">=5.3.0"
+        "php": "~5.3"
     },
     "platform-dev": [
 
