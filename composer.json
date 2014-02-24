@@ -22,8 +22,8 @@
         "files": ["lib/_autoload_modules.php"]
     },
     "require": {
-        "php": ">=5.3.0",
-        "simplesamlphp/saml2": "0.3.0",
+        "php": "~5.3",
+        "simplesamlphp/saml2": "~0.3",
         "openid/php-openid": "dev-master#ee669c6a9d4d95b58ecd9b6945627276807694fb as 2.2.2"
     },
     "support": {
