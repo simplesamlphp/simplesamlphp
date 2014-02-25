@@ -1,46 +1,57 @@
 {
 	"access_denied": {
 		"en": "You do not have access to this service",
-		"sl": "Dostop do storitve zavrnjen."
+		"sl": "Dostop do storitve zavrnjen.",
+		"cs": "Nem\u00e1te p\u0159\u00edstup k t\u00e9to slu\u017eb\u011b."
 	},
 	"no_access_to": {
 		"en": "Your account %NETID% has expired, access denied!",
-		"sl": "Dostop zavrnjen, ker je va\u0161e uporabni\u0161ko (NetID) %NETID% ime poteklo!"
+		"sl": "Dostop zavrnjen, ker je va\u0161e uporabni\u0161ko (NetID) %NETID% ime poteklo!",
+		"cs": "V\u00e1\u0161 \u00fa\u010det %NETID% expiroval, p\u0159\u00edstup odm\u00edtnut!"
 	},
 	"contact_home": {
 		"en": "Access to services is controlled by your home organization. Please contact your local IT support for questions.",
-		"sl": "Mo\u017enost dostopa do storitve ureja va\u0161a doma\u010da organizacija. Obrnite se na njihov oddelek za pomo\u010d uporabnikom."
+		"sl": "Mo\u017enost dostopa do storitve ureja va\u0161a doma\u010da organizacija. Obrnite se na njihov oddelek za pomo\u010d uporabnikom.",
+		"cs": "P\u0159\u00edstup ke slu\u017eb\u011b je \u0159\u00edzen Va\u0161\u00ed domovskou organizac\u00ed. Pros\u00edm, kontaktujte sv\u00e9ho lok\u00e1ln\u00edho spr\u00e1vce."
 	},
 	"expiry_date_text": {
 		"en": "Expiration date:",
-		"sl": "Datum poteka:"
+		"sl": "Datum poteka:",
+		"cs": "Datum expirace:"
 	},
 	"warning_header": {
 		"en": "Warning, your account %NETID% will expire in %DAYSLEFT% %DAYS%!",
-		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% bo poteklo \u010dez %DAYSLEFT% %DAYS%!"
+		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% bo poteklo \u010dez %DAYSLEFT% %DAYS%!",
+		"cs": "Pozor! V\u00e1\u0161 \u00fa\u010det %NETID% expiruje za %DAYSLEFT% %DAYS%!"
 	},
 	"warning_header_today": {
 		"en": "Warning, your account %NETID% will expire today!",
-		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% pote\u010de danes!"
+		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% pote\u010de danes!",
+		"cs": "Pozor! V\u00e1\u0161 \u00fa\u010det %NETID% dnes expiruje!"
 	},
 	"warning": {
 		"en": "Warning, your account %NETID% will expire in %DAYSLEFT% %DAYS%!",
-		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% bo poteklo \u010dez %DAYSLEFT% %DAYS%!"
+		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% bo poteklo \u010dez %DAYSLEFT% %DAYS%!",
+		"cs": "Pozor! V\u00e1\u0161 \u00fa\u010det %NETID% expiruje za %DAYSLEFT% %DAYS%!"
 	},
 	"warning_today": {
 		"en": "Warning, your account %NETID% will expire today!",
-		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% pote\u010de danes!"
+		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% pote\u010de danes!",
+		"cs": "Pozor! V\u00e1\u0161 \u00fa\u010det %NETID% dnes expiruje!"
 	},
 	"day": {
 		"en": "day",
-		"sl": "dan"
+		"sl": "dan",
+		"cs": "den"
 	},
 	"days": {
 		"en": "days",
-		"sl": "dni"
+		"sl": "dni",
+		"cs": "dn\u00ed"
 	},
 	"btn_continue": {
 		"en": "I am aware of this, continue..." ,
-		"sl": "Zavedam se tega, nadaljuj..."
+		"sl": "Zavedam se tega, nadaljuj...",
+		"cs": "Jsem si toho vědom, pokračovat..."
 	}
 }
