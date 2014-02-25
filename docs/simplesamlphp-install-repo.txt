@@ -41,3 +41,13 @@ Ask git to update to the latest version:
 Install or upgrade the external dependencies with Composer ([get composer](http://getcomposer.org/)):
 
     php composer.phar install
+
+
+Migrating from Subversion
+-------------------------
+
+If you installed SimpleSAMLphp from subversion, and want to keep updated on the development, you will have to migrate
+your installation to git. First, follow the steps to get a fresh install from github in a different directory. Skip the
+steps regarding configuration and metadata initialization, and copy all the files you might have modified instead (not
+only configuration and metadata, but also any custom modules or templates). Finally, proceed to install Composer and
+install all the dependencies with it. You may want to add all your custom files to the '.gitignore' file.
