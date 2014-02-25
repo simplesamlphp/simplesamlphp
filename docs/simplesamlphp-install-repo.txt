@@ -39,4 +39,5 @@ Ask git to update to the latest version:
     git pull origin master
 
 Install the external dependencies with Composer (http://getcomposer.org/):
+
     php composer.phar install
