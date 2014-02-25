@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.12
 
-Released 2014-02-24.
+Released TBD.
 
   * Removed example authproc filters from configuration template.
   * Stopped using the 'target-densitydpi' option removed from WebKit.
