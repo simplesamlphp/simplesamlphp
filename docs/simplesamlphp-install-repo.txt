@@ -1,0 +1,42 @@
+Installing SimpleSAMLphp from the repository
+============================================
+
+These are some notes about running SimpleSAMLphp from subversion.
+
+Installing from github
+----------------------
+
+Go to the directory where you want to install SimpleSAMLphp:
+
+    cd /var
+
+Then do a git clone:
+
+    git clone git@github.com:simplesamlphp/simplesamlphp.git simplesamlphp
+
+Initialize configuration and metadata:
+
+    cd /var/simplesamlphp
+    cp -r config-templates/* config/
+    cp -r metadata-templates/* metadata/
+
+Install the external dependencies with Composer (you can refer to http://getcomposer.org/ to get detailed
+instructions on how to install Composer itself):
+
+    php composer.phar install
+
+
+Upgrading
+---------
+
+Go to the root directory of your simpleSAMLphp installation:
+
+    cd /var/simplesamlphp
+
+Ask git to update to the latest version:
+
+    git fetch origin
+    git pull master
+
+Install the external dependencies with Composer (http://getcomposer.org/):
+    php composer.phar install

@@ -10,7 +10,7 @@ SimpleSAMLphp Documentation
     * [Upgrade notes for version 1.7](simplesamlphp-upgrade-notes-1.7)
     * [Upgrade notes for version 1.6](simplesamlphp-upgrade-notes-1.6)
     * [Upgrade notes for version 1.5](simplesamlphp-upgrade-notes-1.5)
-    * [Installation from Subversion](simplesamlphp-subversion)
+    * [Installation from the repository](simplesamlphp-install-repo)
     * [Changelog](simplesamlphp-changelog)
  * [Using simpleSAMLphp as a SAML Service Provider](simplesamlphp-sp)
   * [Hosted SP Configuration Reference](./saml:sp)
