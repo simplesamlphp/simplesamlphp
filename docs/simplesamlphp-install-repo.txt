@@ -20,7 +20,7 @@ Initialize configuration and metadata:
     cp -r config-templates/* config/
     cp -r metadata-templates/* metadata/
 
-Install the external dependencies with Composer (you can refer to http://getcomposer.org/ to get detailed
+Install the external dependencies with Composer (you can refer to [getcomposer.org](http://getcomposer.org/) to get detailed
 instructions on how to install Composer itself):
 
     php composer.phar install
@@ -38,6 +38,6 @@ Ask git to update to the latest version:
     git fetch origin
     git pull origin master
 
-Install the external dependencies with Composer (http://getcomposer.org/):
+Install or upgrade the external dependencies with Composer ([get composer](http://getcomposer.org/)):
 
     php composer.phar install
