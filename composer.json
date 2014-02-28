@@ -27,8 +27,8 @@
         "openid/php-openid": "dev-master#ee669c6a9d4d95b58ecd9b6945627276807694fb as 2.2.2"
     },
     "support": {
-        "issues": "https://code.google.com/p/simplesamlphp/issues/list",
-        "source": "https://code.google.com/p/simplesamlphp"
+        "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",
+        "source": "https://github.com/simplesamlphp/simplesamlphp"
     },
     "repositories": [
         {
