@@ -207,6 +207,8 @@ if ($type === 'js') {
 ?>
   </div>
   <!-- #content -->
+</div>
+<!-- #wrap -->
 <?php
 if ($type === 'embed') {
 	$this->includeAtTemplateBase('includes/footer-embed.php');
@@ -214,5 +216,3 @@ if ($type === 'embed') {
 	$this->includeAtTemplateBase('includes/footer.php');
 }
 ?>
-</div>
-<!-- #wrap -->
