@@ -220,9 +220,7 @@ Options
 
 :   If this option is set, its value will be added to the metadata generated for this SP, in the NameIDFormat element.
 
-:   *Note 1*: This option replaces the `NameIDFormat` option found in `saml20-sp-hosted`.
-
-:   *Note 2*: SAML 2 specific.
+:   *Note 1*: SAML 2 specific.
 
 `OrganizationName`
 :   The name of the organization responsible for this SP.
