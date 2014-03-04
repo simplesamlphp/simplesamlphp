@@ -182,8 +182,6 @@ There are two modes of encryption supported by simpleSAMLphp. One is symmetric e
 
 simpleSAMLphp only signs authentication responses by default. Signing of authentication request, logout requests and logout responses can be enabled by setting the `redirect.sign` option. Validation of received messages can be enabled by the `redirect.validate` option.
 
-These options overrides the options set in `saml20-sp-hosted`.
-
 `redirect.sign`
 :   Whether authentication request, logout requests and logout responses sent to this IdP should be signed. The default is `FALSE`.
 
