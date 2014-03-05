@@ -506,11 +506,12 @@ class SimpleSAML_Session {
 	/**
 	 * This function registers a logout handler.
 	 *
+	 * @param string $authority The authority for which register the handler.
 	 * @param string $classname The class which contains the logout handler.
 	 * @param string $functionname The logout handler function.
 	 * @throws Exception If the handler is not a valid function or method.
 	 */
-	public function registerLogoutHandler($classname, $functionname) {
+	public function registerLogoutHandler($authority, $classname, $functionname) {
 		assert('isset($this->authData[$this->authority])');
 
 		$logout_handler = array($classname, $functionname);
@@ -521,7 +522,7 @@ class SimpleSAML_Session {
 		}
 
 
-		$this->authData[$this->authority]['LogoutHandlers'][] = $logout_handler;
+		$this->authData[$authority]['LogoutHandlers'][] = $logout_handler;
 		$this->dirty = TRUE;
 	}
 
