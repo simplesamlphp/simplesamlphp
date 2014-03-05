@@ -90,7 +90,7 @@ try {
 
 	/* Register logout handler. */
 	$session = SimpleSAML_Session::getSessionFromRequest();
-	$session->registerLogoutHandler('SimpleSAML_AuthMemCookie', 'logoutHandler');
+	$session->registerLogoutHandler($sourceId, 'SimpleSAML_AuthMemCookie', 'logoutHandler');
 
 	/* Redirect the user back to this page to signal that the login is completed. */
 	SimpleSAML_Utilities::redirectTrustedURL(SimpleSAML_Utilities::selfURL());
