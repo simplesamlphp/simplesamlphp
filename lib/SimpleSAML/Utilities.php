@@ -1650,20 +1650,13 @@ class SimpleSAML_Utilities {
 			return;
 		}
 
-		$returnTo = self::selfURL();
-
 		/* Not authenticated as admin user. Start authentication. */
 
 		if (SimpleSAML_Auth_Source::getById('admin') !== NULL) {
 			$as = new SimpleSAML_Auth_Simple('admin');
 			$as->login();
 		} else {
-			/* For backwards-compatibility. */
-
-			$config = SimpleSAML_Configuration::getInstance();
-			self::redirectTrustedURL('/' . $config->getBaseURL() . 'auth/login-admin.php',
-				array('RelayState' => $returnTo)
-						       );
+			throw new Exception('Cannot find "admin" auth source, and admin privileges are required.');
 		}
 	}
 
