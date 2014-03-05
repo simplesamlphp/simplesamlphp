@@ -735,21 +735,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Retrieve a single attribute.
-	 *
-	 * @param string $name  The name of the attribute.
-	 * @return array|NULL  The values of the given attribute.
-	 * @deprecated
-	 */
-	public function getAttribute($name) {
-		if (!isset($this->authData[$this->authority]['Attributes'][$name])) {
-			return NULL;
-		}
-		return $this->authData[$this->authority]['Attributes'][$name];
-	}
-
-
-	/**
 	 * Set the attributes for this session.
 	 *
 	 * @param array|NULL $attributes  The attributes of this session.
@@ -760,20 +745,6 @@ class SimpleSAML_Session {
 
 		$this->dirty = true;
 		$this->authData[$this->authority]['Attributes'] = $attributes;
-	}
-
-
-	/**
-	 * Set the values of a single attribute.
-	 *
-	 * @param string $name The name of the attribute.
-	 * @param array $value The values of the attribute.
-	 */
-	public function setAttribute($name, $value) {
-		assert('isset($this->authData[$this->authority])');
-
-		$this->dirty = true;
-		$this->authData[$this->authority]['Attributes'][$name] = $value;
 	}
 
 
