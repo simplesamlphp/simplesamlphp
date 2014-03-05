@@ -148,21 +148,13 @@ class SimpleSAML_Auth_Default {
 	 * it on beforehand if the URL is obtained from user input. Refer to
 	 * SimpleSAML_Utilities::checkURLAllowed() for more information.
 	 * @param string|NULL $authority The authentication source we are logging
-	 * out from, or NULL to log out from the most recent.
+	 * out from.
 	 */
-	public static function initLogoutReturn($returnURL, $authority = NULL) {
+	public static function initLogoutReturn($returnURL) {
 		assert('is_string($returnURL)');
-		assert('is_string($authority) || is_null($authority)');
+		assert('is_string($authority)');
 
 		$session = SimpleSAML_Session::getSessionFromRequest();
-
-		if ($authority === NULL) {
-			$authority = $session->getAuthority();
-			if ($authority === NULL) {
-				/* Already logged out - nothing to do here. */
-				return;
-			}
-		}
 
 		$state = $session->getAuthData($authority, 'LogoutState');
 		$session->doLogout($authority);
@@ -191,12 +183,12 @@ class SimpleSAML_Auth_Default {
 	 * it on beforehand if the URL is obtained from user input. Refer to
 	 * SimpleSAML_Utilities::checkURLAllowed() for more information.
 	 * @param string|NULL $authority The authentication source we are logging
-	 * out from, or NULL to log out from the most recent.
+	 * out from.
 	 * @return void This function never returns.
 	 */
-	public static function initLogout($returnURL, $authority = NULL) {
+	public static function initLogout($returnURL, $authority) {
 		assert('is_string($returnURL)');
-		assert('is_string($authority) || is_null($authority)');
+		assert('is_string($authority)');
 
 		self::initLogoutReturn($returnURL, $authority);
 
