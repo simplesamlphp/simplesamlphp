@@ -226,17 +226,18 @@ class SimpleSAML_Auth_Default {
 
 		$source = $state['SimpleSAML_Auth_Default.logoutSource'];
 
-		$session = SimpleSAML_Session::getSessionFromRequest();
-		$authId = $session->getAuthority();
 
-		if ($authId !== $source) {
-			SimpleSAML_Logger::warning('Received logout from different authentication source ' .
-				'than the current. Current is ' . var_export($authId, TRUE) .
-				'. Logout source is ' . var_export($source, TRUE) . '.');
+		$session = SimpleSAML_Session::getSessionFromRequest();
+		if (!$session->isValid($source)) {
+			SimpleSAML_Logger::warning(
+				'Received logout from an invalid authentication source '.
+				var_export($source, TRUE)
+			);
+
 			return;
 		}
 
-		$session->doLogout();
+		$session->doLogout($source);
 	}
 
 
