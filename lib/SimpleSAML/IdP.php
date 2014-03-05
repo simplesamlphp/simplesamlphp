@@ -102,7 +102,7 @@ class SimpleSAML_IdP {
 		if (SimpleSAML_Auth_Source::getById($auth) !== NULL) {
 			$this->authSource = new SimpleSAML_Auth_Simple($auth);
 		} else {
-			$this->authSource = new SimpleSAML_Auth_BWC($auth, $this->config->getString('authority', NULL));
+			throw new SimpleSAML_Error_Exception('No such "'.$auth.'" auth source found.');
 		}
 	}
 
