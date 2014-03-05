@@ -555,24 +555,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Retrieve the time the user was authenticated.
-	 *
-	 * @return int|NULL The timestamp for when the user was authenticated. NULL if the user hasn't authenticated.
-	 * @deprecated
-	 */
-	public function getAuthnInstant() {
-
-		if (!isset($this->authData[$this->authority])) {
-			/* Not authenticated. */
-			return NULL;
-		}
-
-		assert('isset($this->authData[$this->authority]["AuthnInstant"])');
-		return $this->authData[$this->authority]['AuthnInstant'];
-	}
-
-
-	/**
 	 * Retrieve the attributes associated with this session.
 	 *
 	 * @return array|NULL  The attributes.
