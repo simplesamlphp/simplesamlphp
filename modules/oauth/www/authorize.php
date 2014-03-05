@@ -48,7 +48,7 @@ try {
 		exit();	// and be done.
 	}
 
-	$attributes = $session->getAttributes();
+	$attributes = $session->getAuthData($as, 'Attributes');
 
 	// Assume user consent at this point and proceed with authorizing the token
 	list($url, $verifier) = $store->authorize($requestToken, $attributes);
