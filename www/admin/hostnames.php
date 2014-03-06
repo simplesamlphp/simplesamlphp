@@ -27,7 +27,7 @@ $attributes['Utilities_selfURL()'] = array(SimpleSAML_Utilities::selfURL());
 $et = new SimpleSAML_XHTML_Template($config, 'hostnames.php');
 
 $et->data['header'] = '{status:header_diagnostics}';
-$et->data['remaining'] = 'na';
+$et->data['remaining']  = $session->getAuthData('admin', 'Expire') - time();
 $et->data['attributes'] = $attributes;
 $et->data['valid'] = 'na';
 $et->data['logout'] = null;
