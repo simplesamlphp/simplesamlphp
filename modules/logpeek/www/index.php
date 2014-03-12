@@ -51,4 +51,3 @@ $t->data['endtime'] = date(DATE_RFC822, $lastTimeEpoch);
 $t->data['filesize'] = $fileSize;
 
 $t->show();
-?>

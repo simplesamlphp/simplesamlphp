@@ -44,5 +44,3 @@ $config = array (
 	'cdc.lifetime' => NULL,
 
 );
-
-?>

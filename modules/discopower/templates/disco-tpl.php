@@ -210,4 +210,4 @@ foreach( $this->data['idplist'] AS $tab => $slist) {
 </div>
 
 		
-<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+<?php $this->includeAtTemplateBase('includes/footer.php');

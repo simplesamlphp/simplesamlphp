@@ -213,4 +213,3 @@ if ($type === 'embed') {
 } else {
 	$this->includeAtTemplateBase('includes/footer.php');
 }
-?>

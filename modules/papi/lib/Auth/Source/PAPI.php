@@ -183,5 +183,3 @@ class sspmod_papi_Auth_Source_PAPI extends SimpleSAML_Auth_Source {
 	}
 
 }
-
-?>

@@ -286,5 +286,3 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 		return $source->getOrganizations();
 	}
 }
-
-?>

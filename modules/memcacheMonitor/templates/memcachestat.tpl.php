@@ -99,4 +99,3 @@ if (array_key_exists('bytes', $this->data['statsraw']) && array_key_exists('limi
 
 <?php
 $this->includeAtTemplateBase('includes/footer.php');
-?>

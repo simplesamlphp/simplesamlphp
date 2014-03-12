@@ -180,5 +180,3 @@ class sspmod_statistics_Graph_GoogleCharts {
 	}
 
 }
-
-?>

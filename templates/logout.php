@@ -16,5 +16,3 @@ echo('<p>[ <a href="' . htmlspecialchars($this->data['link']) . '">' .
 	htmlspecialchars($this->data['text']) . '</a> ]</p>');
 
 $this->includeAtTemplateBase('includes/footer.php');
-
-?>

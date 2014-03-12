@@ -150,4 +150,3 @@ $t->data['password']=$password;
 
 $t->show();
 exit();
-?>

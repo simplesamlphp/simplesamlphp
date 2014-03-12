@@ -32,6 +32,3 @@ $t->data['target'] = SimpleSAML_Module::getModuleURL('core/short_sso_interval.ph
 $t->data['params'] = array('StateId' => $id);
 $t->data['trackId'] = $session->getTrackID();
 $t->show();
-
-
-?>

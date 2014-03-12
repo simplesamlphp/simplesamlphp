@@ -119,4 +119,3 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 
 }
 
-?>

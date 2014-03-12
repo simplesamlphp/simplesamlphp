@@ -429,4 +429,3 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 
 }
 
-?>

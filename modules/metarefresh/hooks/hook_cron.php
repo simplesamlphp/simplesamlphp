@@ -95,4 +95,3 @@ function metarefresh_hook_cron(&$croninfo) {
 		$croninfo['summary'][] = 'Error during metarefresh: ' . $e->getMessage();
 	}
 }
-?>

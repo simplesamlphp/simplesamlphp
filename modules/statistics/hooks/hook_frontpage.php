@@ -20,4 +20,3 @@ function statistics_hook_frontpage(&$links) {
 	);
 
 }
-?>

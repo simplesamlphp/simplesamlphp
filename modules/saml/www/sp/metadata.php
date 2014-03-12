@@ -229,4 +229,3 @@ if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
 	header('Content-Type: application/samlmetadata+xml');
 	echo($xml);
 }
-?>

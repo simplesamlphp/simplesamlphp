@@ -31,4 +31,4 @@ echo '<p>' . $this->t('{consentSimpleAdmin:consentsimpleadmin:info}') . '</p>';
 </form>
 <!--  Withdraw all consent given -->
 
-<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+<?php $this->includeAtTemplateBase('includes/footer.php');

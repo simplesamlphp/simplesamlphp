@@ -716,5 +716,3 @@ class SimpleSAML_XHTML_Template {
 	}
 
 }
-
-?>

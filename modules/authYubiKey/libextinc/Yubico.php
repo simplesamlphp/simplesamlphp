@@ -160,4 +160,3 @@ class Auth_Yubico
 		return true;
 	}
 }
-?>

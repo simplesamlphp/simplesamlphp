@@ -39,6 +39,3 @@ foreach ($tags AS $tag) {
 $t = new SimpleSAML_XHTML_Template($config, 'cron:croninfo-tpl.php', 'cron:cron');
 $t->data['urls'] = $urls;
 $t->show();
-
-
-?>

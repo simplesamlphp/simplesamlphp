@@ -125,5 +125,3 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 	}
 
 }
-
-?>

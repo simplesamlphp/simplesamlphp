@@ -34,5 +34,3 @@ class sspmod_preprodwarning_Auth_Process_Warning extends SimpleSAML_Auth_Process
 
 
 }
-
-?>

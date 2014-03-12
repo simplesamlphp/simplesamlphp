@@ -140,5 +140,3 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 	}
 
 }
-
-?>

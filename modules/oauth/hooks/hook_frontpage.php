@@ -15,4 +15,3 @@ function oauth_hook_frontpage(&$links) {
 	);
 
 }
-?>

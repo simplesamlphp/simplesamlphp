@@ -11,4 +11,3 @@ $attributemap = array(
 	'streetaddress' => 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/streetaddress',
 	'telephonenumber' => 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/otherphone',
 );
-?>

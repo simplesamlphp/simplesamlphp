@@ -18,4 +18,3 @@ function modinfo_hook_moduleinfo(&$moduleinfo) {
 	);
 
 }
-?>

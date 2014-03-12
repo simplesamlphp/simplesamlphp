@@ -61,4 +61,4 @@ foreach($this->data['modules'] as $id => $info) {
 }
 ?>
 </table>
-<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+<?php $this->includeAtTemplateBase('includes/footer.php');

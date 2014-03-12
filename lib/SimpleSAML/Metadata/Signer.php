@@ -197,5 +197,3 @@ class SimpleSAML_Metadata_Signer {
 	}
 
 }
-
-?>

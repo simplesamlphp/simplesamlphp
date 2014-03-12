@@ -94,4 +94,4 @@ if ($this->data['isadmin']) {
 	
 
 		
-<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+<?php $this->includeAtTemplateBase('includes/footer.php');

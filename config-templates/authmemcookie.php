@@ -73,5 +73,3 @@ $config = array(
 	'memcache.port' => 11211,
 
 );
-
-?>

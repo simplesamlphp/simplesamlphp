@@ -223,4 +223,3 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 	}
 
 }
-?>

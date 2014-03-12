@@ -22,4 +22,3 @@ class sspmod_logpeek_Syslog_parseLine{
 		return strtotime($time);
 	}
 }
-?>

@@ -380,5 +380,3 @@ class sspmod_InfoCard_STS {
 	
 
 }
-
-?>

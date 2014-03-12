@@ -26,5 +26,3 @@ if (isset($_GET['wa'])) {
 	$logoutError = NULL; /* NULL on success, or an instance of a SimpleSAML_Error_Exception on failure. */
 	$idp->handleLogoutResponse($assocId, $relayState, $logoutError);
 }
-
-?>

@@ -29,4 +29,3 @@ $t->data['stats'] = $stats;
 
 
 $t->show();
-?>

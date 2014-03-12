@@ -48,4 +48,4 @@ if(array_key_exists('available_certs', $this->data)) {	?>
 		
 
 
-<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+<?php $this->includeAtTemplateBase('includes/footer.php');

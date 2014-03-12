@@ -18,4 +18,3 @@ foreach ($this->data['sources'] as $id) {
 
 <?php
 $this->includeAtTemplateBase('includes/footer.php');
-?>

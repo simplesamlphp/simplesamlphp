@@ -42,5 +42,3 @@ try {
 }
 
 SimpleSAML_Auth_Source::completeAuth($state);
-
-?>

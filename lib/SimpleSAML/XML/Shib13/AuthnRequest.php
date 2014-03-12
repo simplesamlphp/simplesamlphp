@@ -44,5 +44,3 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	}
 
 }
-
-?>

@@ -65,5 +65,3 @@ class SimpleSAML_XML_Parser  {
 	}
 	
 }
-
-?>

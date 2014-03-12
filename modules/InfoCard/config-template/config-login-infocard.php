@@ -198,6 +198,3 @@ $config = array (
 	'debugDir' => '/tmp',
 
 );
- 
-
-?>

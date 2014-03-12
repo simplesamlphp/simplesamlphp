@@ -64,5 +64,3 @@ class SimpleSAML_Error_AuthSource extends SimpleSAML_Error_Error {
 
 	
 }
-
-?>

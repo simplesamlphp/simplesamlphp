@@ -91,5 +91,3 @@ $state['LogoutState'] = $logoutState;
 
 $source->handleResponse($state, $responseIssuer, $attributes);
 assert('FALSE');
-
-?>

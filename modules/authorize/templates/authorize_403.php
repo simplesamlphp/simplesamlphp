@@ -26,4 +26,3 @@ if (isset($this->data['LogoutURL'])) {
 ?>
 <?php
 $this->includeAtTemplateBase('includes/footer.php');
-?>

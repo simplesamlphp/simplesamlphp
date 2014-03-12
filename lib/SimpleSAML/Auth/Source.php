@@ -349,5 +349,3 @@ abstract class SimpleSAML_Auth_Source {
 	}
 
 }
-
-?>

@@ -713,5 +713,3 @@ class SimpleSAML_Auth_LDAP {
 	}
 
 }
-
-?>

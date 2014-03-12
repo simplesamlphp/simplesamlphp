@@ -155,6 +155,3 @@ class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_Process
 
 
 }
-
-
-?>

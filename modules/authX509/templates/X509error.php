@@ -39,4 +39,3 @@ if(!empty($this->data['links'])) {
 
 
 $this->includeAtTemplateBase('includes/footer.php');
-?>

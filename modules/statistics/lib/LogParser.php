@@ -68,5 +68,3 @@ class sspmod_statistics_LogParser {
 
 
 }
-
-?>

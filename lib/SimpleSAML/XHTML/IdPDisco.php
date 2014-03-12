@@ -528,5 +528,3 @@ class SimpleSAML_XHTML_IdPDisco {
 		$t->show();
 	}
 }
-
-?>

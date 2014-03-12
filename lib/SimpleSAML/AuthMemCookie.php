@@ -144,5 +144,3 @@ class SimpleSAML_AuthMemCookie {
 		self::getInstance()->doLogout();
 	}
 }
-
-?>

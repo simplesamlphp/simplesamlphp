@@ -18,5 +18,3 @@ $attributemap = array(
 	'eduPersonOrgDN'			=> 'urn:mace:dir:attribute-def:eduPersonOrgDN',
 	'eduPersonOrgUnitDN'		=> 'urn:mace:dir:attribute-def:eduPersonOrgUnitDN',
 );
-
-?>
