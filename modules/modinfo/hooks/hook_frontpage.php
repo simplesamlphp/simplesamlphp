@@ -14,4 +14,3 @@ function modinfo_hook_frontpage(&$links) {
 		);
 
 }
-?>

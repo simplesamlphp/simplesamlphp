@@ -191,5 +191,3 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 		return $status;
 	}
 }
-
-?>

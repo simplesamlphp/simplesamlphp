@@ -12,4 +12,3 @@ function sanitycheck_hook_sanitycheck(&$hookinfo) {
 	$hookinfo['info'][] = '[sanitycheck] At least the sanity check itself is working :)';	
 	
 }
-?>

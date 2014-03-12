@@ -29,4 +29,3 @@ class sspmod_oauth_OAuthSignatureMethodRSASHA1 extends OAuthSignatureMethod_RSA_
 		return $oConsumer->secret;
 	}
 }
-?>

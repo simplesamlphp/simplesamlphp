@@ -79,4 +79,4 @@
 			echo "<p><a href='".$this->data['help_desk_email_URL']."'>".$this->t('help_desk_email')."</a></p>";
 	?>
 	
-<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+<?php $this->includeAtTemplateBase('includes/footer.php');

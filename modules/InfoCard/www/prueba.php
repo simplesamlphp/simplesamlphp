@@ -158,5 +158,4 @@ pg_close($dbconn);
 //  print base64_encode(calculate_PPID('urn:uuid:bbe3ecf5-900b-d249-b9a7-e7c261fdf189', $certificates));
 // 
 // // 	print base64_encode(pack('H*','0939625DA3A93E44F52D72AE4246EE54DE265D84'));
-//  	
-?>
+//

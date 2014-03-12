@@ -161,5 +161,3 @@ function getServerKeys($server) {
 
 	return $keys;
 }
-
-?>

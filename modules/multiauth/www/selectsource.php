@@ -65,5 +65,3 @@ if ($as !== NULL) {
 }
 $t->show();
 exit();
-
-?>

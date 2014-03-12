@@ -266,5 +266,3 @@ class SimpleSAML_XML_Signer {
 		$objXMLSecDSig->insertSignature($insertInto, $insertBefore);
 	}
 }
-
-?>

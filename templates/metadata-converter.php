@@ -40,4 +40,3 @@ if($output !== NULL) {
 
 <?php
 $this->includeAtTemplateBase('includes/footer.php');
-?>

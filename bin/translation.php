@@ -194,5 +194,3 @@ function json_format($data, $indentation = '') {
 
 	return $ret;
 }
-
-?>

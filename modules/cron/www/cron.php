@@ -58,5 +58,3 @@ if (isset($_REQUEST['output']) && $_REQUEST['output'] == "xhtml") {
 	$t->data['summary'] = $summary;
 	$t->show();
 }
-
-?>

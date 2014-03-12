@@ -293,5 +293,3 @@ class SimpleSAML_XML_Validator {
 	}
 
 }
-
-?>

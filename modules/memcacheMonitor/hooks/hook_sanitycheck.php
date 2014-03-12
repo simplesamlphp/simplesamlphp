@@ -33,6 +33,3 @@ function memcacheMonitor_hook_sanitycheck(&$hookinfo) {
 		$hookinfo['info'][] = '[memcacheMonitor] All servers responding.';
 	}
 }
-
-
-?>

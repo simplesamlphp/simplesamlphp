@@ -61,4 +61,3 @@ $t->data['contact_info_URL'] = $contact_info_URL;
 $t->data['error'] = $error;
 $t->show();
 exit();
-?>

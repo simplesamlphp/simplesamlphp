@@ -139,4 +139,3 @@ $attributemap = array(
 	'urn:oid:2.5.4.8' => 'urn:mace:dir:attribute-def:st',
 	'urn:oid:2.5.4.9' => 'urn:mace:dir:attribute-def:street',
 );
-?>

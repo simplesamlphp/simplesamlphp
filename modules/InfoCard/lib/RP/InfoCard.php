@@ -345,5 +345,3 @@ SimpleSAML_Logger::debug('IC: secureToken');
     return $decrypted;
   }
 }
-
-?>

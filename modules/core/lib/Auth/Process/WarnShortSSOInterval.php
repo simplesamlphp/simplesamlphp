@@ -50,5 +50,3 @@ class sspmod_core_Auth_Process_WarnShortSSOInterval extends SimpleSAML_Auth_Proc
 	}
 
 }
-
-?>

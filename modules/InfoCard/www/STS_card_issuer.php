@@ -283,6 +283,3 @@ if ( (strcmp($_GET['ident'],'RADIUS')==0) && (($configuredIP == null) || ($_SERV
 		throw new SimpleSAML_Error_NotFound('The URL wasn\'t found in the module.');
 	}
 }
-
-
-?>

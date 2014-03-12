@@ -430,4 +430,3 @@ class SimpleSAML_Memcache {
 	}
 
 }
-?>

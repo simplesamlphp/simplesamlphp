@@ -24,5 +24,3 @@ $state = SimpleSAML_Auth_State::loadState($id, 'exampleauth:redirectfilter-test'
 $state['Attributes']['RedirectTest2'] = array('OK');
 
 SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
-
-?>

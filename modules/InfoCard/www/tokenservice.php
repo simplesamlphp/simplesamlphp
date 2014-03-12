@@ -134,6 +134,3 @@ if ($debugDir!=null){
 	fwrite($handle,$response);
 	fclose($handle);
 }
-
-
-?>

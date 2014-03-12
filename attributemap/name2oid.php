@@ -163,4 +163,3 @@ $attributemap = array(
 	'schacHomeOrganization' => 'urn:oid:1.3.6.1.4.1.25178.1.2.9',
 	'schacPersonalUniqueCode' => 'urn:oid:1.3.6.1.4.1.25178.1.2.14',
 );
-?>

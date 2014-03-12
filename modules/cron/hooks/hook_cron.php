@@ -17,4 +17,3 @@ function cron_hook_cron(&$croninfo) {
 	}
 
 }
-?>

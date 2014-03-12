@@ -33,5 +33,3 @@ header('Content-Disposition: attachment; filename='.substr($_SERVER['PATH_INFO']
 header('Content-Type: application/x-x509-ca-cert');
 echo $certInfo['PEM'];
 exit(0);
-
-?>

@@ -149,4 +149,3 @@ echo('<h2 class="logintext">' . $this->t('{login:help_header}') . '</h2>');
 echo('<p class="logintext">' . $this->t('{login:help_text}') . '</p>');
 
 $this->includeAtTemplateBase('includes/footer.php');
-?>

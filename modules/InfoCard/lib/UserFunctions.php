@@ -110,4 +110,3 @@ class sspmod_InfoCard_UserFunctions {
 	}
 
 }
-?>

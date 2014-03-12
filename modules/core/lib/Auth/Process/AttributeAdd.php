@@ -87,5 +87,3 @@ class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFi
 	}
 
 }
-
-?>

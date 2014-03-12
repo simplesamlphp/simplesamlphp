@@ -49,4 +49,3 @@ function core_hook_sanitycheck(&$hookinfo) {
 	}
 	
 }
-?>

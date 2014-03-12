@@ -27,4 +27,3 @@ function oauth_hook_cron(&$croninfo) {
 		$croninfo['summary'][] = $message;
 	}
 }
-?>

@@ -97,5 +97,3 @@ Content-Transfer-Encoding: 8bit
 	}
 
 }
-
-?>

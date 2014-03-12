@@ -10,5 +10,3 @@ $attributemap = array(
 	'urn:oid:2.5.4.42' => 'givenName',
 	'urn:oid:2.16.756.1.2.5.1.1.1' => 'eduPerson',
 );
-
-?>

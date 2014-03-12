@@ -133,5 +133,3 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
 
 
 }
-
-?>

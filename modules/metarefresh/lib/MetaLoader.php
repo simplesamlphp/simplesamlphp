@@ -444,5 +444,3 @@ class sspmod_metarefresh_MetaLoader {
 	}
 
 }
-
-?>

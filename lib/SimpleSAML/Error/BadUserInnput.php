@@ -9,5 +9,3 @@
 class SimpleSAML_Error_BadUserInnput extends SimpleSAML_Error_User{
 	
 }
-
-?>

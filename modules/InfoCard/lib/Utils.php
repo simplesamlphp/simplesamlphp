@@ -105,4 +105,3 @@ class sspmod_InfoCard_Utils {
 
 
 }
-?>

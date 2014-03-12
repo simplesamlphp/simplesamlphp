@@ -18,6 +18,3 @@ function consentSimpleAdmin_hook_frontpage(&$links) {
 	);
 	
 }
-
-
-?>

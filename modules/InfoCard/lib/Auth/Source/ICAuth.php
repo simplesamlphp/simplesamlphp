@@ -94,5 +94,3 @@ class sspmod_InfoCard_Auth_Source_ICAuth extends SimpleSAML_Auth_Source {
 	}
 
 }
-
-?>
