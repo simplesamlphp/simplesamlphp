@@ -58,5 +58,8 @@
 	},
 	"remember_username": {
 		"en": "Remember my username"
-	}
+	},
+    "remember_me": {
+        "en": "Remember me"
+    }
 }

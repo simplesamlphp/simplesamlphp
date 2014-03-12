@@ -65,6 +65,13 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
 		SimpleSAML_Utilities::setCookie($source->getAuthId() . '-username', $username, $params, FALSE);
 	}
 
+    if ($source->isRememberMeEnabled()) {
+        if (array_key_exists('remember_me', $_REQUEST) && $_REQUEST['remember_me'] === 'Yes') {
+            $state['RememberMe'] = TRUE;
+            $authStateId = SimpleSAML_Auth_State::saveState($state, sspmod_core_Auth_UserPassBase::STAGEID);
+        }
+    }
+
 	try {
 		sspmod_core_Auth_UserPassBase::handleLogin($authStateId, $username, $password);
 	} catch (SimpleSAML_Error_Error $e) {
@@ -82,11 +89,15 @@ if (array_key_exists('forcedUsername', $state)) {
 	$t->data['forceUsername'] = TRUE;
 	$t->data['rememberUsernameEnabled'] = FALSE;
 	$t->data['rememberUsernameChecked'] = FALSE;
+    $t->data['rememberMeEnabled'] = $source->isRememberMeEnabled();
+    $t->data['rememberMeChecked'] = $source->isRememberMeChecked();
 } else {
 	$t->data['username'] = $username;
 	$t->data['forceUsername'] = FALSE;
 	$t->data['rememberUsernameEnabled'] = $source->getRememberUsernameEnabled();
 	$t->data['rememberUsernameChecked'] = $source->getRememberUsernameChecked();
+    $t->data['rememberMeEnabled'] = $source->isRememberMeEnabled();
+    $t->data['rememberMeChecked'] = $source->isRememberMeChecked();
 	if (isset($_COOKIE[$source->getAuthId() . '-username'])) $t->data['rememberUsernameChecked'] = TRUE;
 }
 $t->data['links'] = $source->getLoginLinks();

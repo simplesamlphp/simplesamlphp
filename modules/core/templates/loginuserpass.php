@@ -41,7 +41,7 @@ if ($this->data['forceUsername']) {
 ?>
 			</td>
 <?php
-if ($this->data['rememberUsernameEnabled']) {
+if ($this->data['rememberUsernameEnabled'] || $this->data['rememberMeEnabled']) {
 	$rowspan = 1;
 } elseif (array_key_exists('organizations', $this->data)) {
 	$rowspan = 3;
@@ -51,11 +51,19 @@ if ($this->data['rememberUsernameEnabled']) {
 ?>
 			<td style="padding: .4em;" rowspan="<?php echo $rowspan; ?>">
 <?php
-if ($this->data['rememberUsernameEnabled']) {
-	echo str_repeat("\t", 4);
-	echo '<input type="checkbox" id="remember_username" tabindex="4" name="remember_username" value="Yes" ';
-	echo ($this->data['rememberUsernameChecked'] ? 'checked="Yes" /> ' : '/> ');
-	echo $this->t('{login:remember_username}');
+if ($this->data['rememberUsernameEnabled'] || $this->data['rememberMeEnabled']) {
+    if ($this->data['rememberUsernameEnabled']) {
+        echo str_repeat("\t", 4);
+        echo '<input type="checkbox" id="remember_username" tabindex="4" name="remember_username" value="Yes" ';
+        echo ($this->data['rememberUsernameChecked'] ? 'checked="Yes" /> ' : '/> ');
+        echo $this->t('{login:remember_username}');
+    }
+    if ($this->data['rememberMeEnabled']) {
+        echo str_repeat("\t", 4);
+        echo '<input type="checkbox" id="remember_me" tabindex="4" name="remember_me" value="Yes" ';
+        echo $this->data['rememberMeChecked'] ? 'checked="Yes" /> ' : '/> ';
+        echo $this->t('{login:remember_me}');
+    }
 } else {
 	$text = $this->t('{login:login_button}');
 	echo str_repeat("\t", 4);
@@ -69,7 +77,7 @@ if ($this->data['rememberUsernameEnabled']) {
 			<td><input id="password" type="password" tabindex="2" name="password" /></td>
 <?php
 // Move submit button to next row if remember checkbox enabled
-if ($this->data['rememberUsernameEnabled']) {
+if ($this->data['rememberUsernameEnabled'] || $this->data['rememberMeEnabled']) {
 	$rowspan = (array_key_exists('organizations', $this->data) ? 2 : 1);
 ?>
 			<td style="padding: .4em;" rowspan="<?php echo $rowspan; ?>">
