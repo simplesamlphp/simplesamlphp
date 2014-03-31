@@ -124,7 +124,7 @@ if ($format !== NULL) {
 }
 
 $name = $spconfig->getLocalizedString('name', NULL);
-$attributes = $spconfig->getArray('attributes', array());
+$attributes = array_values($spconfig->getArray('attributes', array()));
 
 if ($name !== NULL && !empty($attributes)) {
 	$metaArray20['name'] = $name;
