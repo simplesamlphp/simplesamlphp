@@ -4,7 +4,7 @@
  *
  * Filter for requesting the vo to give attributes to the SP.
  *
- * @author Gyula Szabó <gyufi@sztaki.hu>
+ * @author Gyula Szabó <gyufi@niif.hu>
  * @package simpleSAMLphp
  * @version $Id$
  */
