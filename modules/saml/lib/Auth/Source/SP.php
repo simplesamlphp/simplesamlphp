@@ -523,6 +523,37 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 
 	/**
+	 * Get all associations for a given IdP entity Id,
+	 * used for logging out all logged in SPs of a hosted IdP.
+	 *
+	 * @param string $idpEntityId
+	 * @return array|mixed
+	 */
+	public function collectAssociations($idpEntityId)
+	{
+		assert('is_string($assoc)');
+
+		$id = strlen($this->authId) . ':' . $this->authId . $idpEntityId;
+
+		$session = SimpleSAML_Session::getInstance();
+
+		$data = $session->getData('SimpleSAML_Auth_Source.LogoutAssociationsCallbacks', $id);
+		if ($data === NULL) {
+			return array();
+		}
+
+		assert('is_array($data)');
+		assert('array_key_exists("callback", $data)');
+		assert('array_key_exists("state", $data)');
+
+		$callback 		= $data['callback'];
+		$callbackState 	= $data['state'];
+
+		return call_user_func($callback, $callbackState);
+	}
+
+
+	/**
 	 * Called when we have completed the procssing chain.
 	 *
 	 * @param array $authProcState  The processing chain state.

@@ -1052,7 +1052,7 @@ class SimpleSAML_Session {
 	 * Load a session from the session handler.
 	 *
 	 * @param string|NULL $sessionId  The session we should load, or NULL to load the current session.
-	 * @return The session which is stored in the session handler, or NULL if the session wasn't found.
+	 * @return self Session which is stored in the session handler, or NULL if the session wasn't found.
 	 */
 	public static function getSession($sessionId = NULL) {
 		assert('is_string($sessionId) || is_null($sessionId)');
@@ -1234,6 +1234,23 @@ class SimpleSAML_Session {
 		}
 
 		return $this->associations[$idp];
+	}
+
+
+	/**
+	 * Retrieve all associations for all idps.
+	 *
+	 * Gets all associations for this session indexed by IdP ID, sub indexed by SP ID.
+	 *
+	 * @return array Associations in form [ idpId => [ spId => [ data ] ] ]
+	 */
+	public function getAllAssociations()
+	{
+		if (!isset($this->associations)) {
+			$this->associations = array();
+		}
+
+		return $this->associations;
 	}
 
 
