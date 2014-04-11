@@ -23,8 +23,50 @@ $baseDir = dirname(dirname(__FILE__));
 /* Add library autoloader. */
 require_once($baseDir . '/lib/_autoload.php');
 
-/* Initialize the configuration. */
-$configdir = $baseDir . '/config';
+$configdir = '';
+
+$progName = array_shift($argv);
+foreach($argv as $a) {
+	if(strlen($a) === 0) continue;
+
+	if(strpos($a, '=') !== FALSE) {
+		$p = strpos($a, '=');
+		$v = substr($a, $p + 1);
+		$a = substr($a, 0, $p);
+	} else {
+		$v = NULL;
+	}
+
+	switch ($a) {
+		case '--help':
+			echo printHelp();
+			exit(0);
+		case '--configdir':
+			/* If the path is not empty and the file exists, then set the configuration directory. */
+			if (!empty($v) && file_exists($v)) {
+				$configdir = $v;
+			} else {
+				/* Directory does not exist. */
+				echo "Alternate config directory argument: $configdir was not found. Using default config directory location.\n";
+				$configdir = '';
+			}
+			break;
+		default:
+			echo('Unknown option: ' . $a . "\n");
+			echo('Please run `' . $progName . ' --help` for usage information.' . "\n");
+			exit(1);
+	}
+}
+
+if (empty($configdir)) {
+	if (empty(getenv("SIMPLESAMLPHP_CONFIG_DIR"))) {
+		/* Initialize the default configuration. */
+		$configdir = $baseDir . '/config';
+	} else {
+		$configdir = getenv("SIMPLESAMLPHP_CONFIG_DIR");
+	}
+}
+
 SimpleSAML_Configuration::setConfigDir($configdir);
 
 /* Things we should warn the user about. */
@@ -162,4 +204,17 @@ function getServerKeys($server) {
 	return $keys;
 }
 
+/**
+ * Print a help for the command lin options.
+ */
+function printHelp() {
+	return 'Usage: [options]
+
+This program parses and aggregates SimpleSAMLphp log files.
+
+Options:
+	--configdir		Specify the absolute path of the config directory.
+	--help			Prints help text.
+';
+}
 ?>
