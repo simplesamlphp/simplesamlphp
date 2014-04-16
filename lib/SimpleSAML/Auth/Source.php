@@ -297,6 +297,14 @@ abstract class SimpleSAML_Auth_Source {
 		$session = SimpleSAML_Session::getInstance();
 		$session->setData('SimpleSAML_Auth_Source.LogoutCallbacks', $id, $data,
 			SimpleSAML_Session::DATA_TIMEOUT_LOGOUT);
+
+		if (!array_key_exists('LogoutAssociationsCallback', $state)) {
+			return;
+		}
+
+		$session->setData('SimpleSAML_Auth_Source.LogoutAssociationsCallbacks', $id, array(
+			'callback' => $state['LogoutAssociationsCallback'],
+			'state'	=> $callbackState));
 	}
 
 

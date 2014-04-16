@@ -44,6 +44,7 @@ class SimpleSAML_Auth_Default {
 			'SimpleSAML_Auth_Default.ErrorURL' => $errorURL,
 			'LoginCompletedHandler' => array(get_class(), 'loginCompleted'),
 			'LogoutCallback' => array(get_class(), 'logoutCallback'),
+			'LogoutAssociationsCallback' => array(get_class(), 'logoutAssociationsCallback'),
 			'LogoutCallbackState' => array(
 				'SimpleSAML_Auth_Default.logoutSource' => $authId,
 			),
@@ -246,6 +247,32 @@ class SimpleSAML_Auth_Default {
 		}
 
 		$session->doLogout();
+	}
+
+
+	/**
+	 * Called when the authentication source receives a request to know the open associations for a logout.
+	 *
+	 * @param array $state  State array for the logout operation.
+	 * @return array Associations by IdP
+	 */
+	public static function logoutAssociationsCallback($state) {
+		assert('is_array($state)');
+		assert('array_key_exists("SimpleSAML_Auth_Default.logoutSource", $state)');
+
+		$source = $state['SimpleSAML_Auth_Default.logoutSource'];
+
+		$session = SimpleSAML_Session::getInstance();
+		$authId = $session->getAuthority();
+
+		if ($authId !== $source) {
+			SimpleSAML_Logger::warning('Received logout from different authentication source ' .
+				'than the current. Current is ' . var_export($authId, TRUE) .
+				'. Logout source is ' . var_export($source, TRUE) . '.');
+			return array();
+		}
+
+		return $session->getAllAssociations();
 	}
 
 
