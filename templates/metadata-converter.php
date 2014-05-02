@@ -32,7 +32,7 @@ if($output !== NULL) {
 		}
 
 		echo('<h3>' . htmlspecialchars($type) . '</h3>' . "\n");
-		echo('<pre class="metadatabox">' . htmlspecialchars($text) . '</pre>' . "\n");
+		echo('<textarea class="metadatabox">' . htmlspecialchars($text) . '</textarea>' . "\n");
 	}
 }
 
