@@ -54,7 +54,7 @@ function SimpleSAML_error_handler($errno, $errstr, $errfile = NULL, $errline = 0
 	}
 
 
-	if ($errno & SimpleSAML_Utilities::$logMask) {
+	if ($errno & SimpleSAML_Utilities::$logMask || ! ($errno & error_reporting() )) {
 		/* Masked error. */
 		return FALSE;
 	}
