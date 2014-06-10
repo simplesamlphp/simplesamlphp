@@ -496,8 +496,9 @@ class sspmod_saml_Message {
 		/* Validate Response-element destination. */
 		$currentURL = SimpleSAML_Utilities::selfURLNoQuery();
 		$msgDestination = $response->getDestination();
-		if ($msgDestination !== NULL && $msgDestination !== $currentURL) {
-			throw new Exception('Destination in response doesn\'t match the current URL. Destination is "' .
+		if ($msgDestination !== NULL && !self::isValidDestination($currentURL, $msgDestination)) {
+
+                    throw new Exception('Destination in response doesn\'t match the current URL. Destination is "' .
 				$msgDestination . '", current URL is "' . $currentURL . '".');
 		}
 
@@ -667,7 +668,7 @@ class sspmod_saml_Message {
 				$lastError = 'NotOnOrAfter in SubjectConfirmationData is in the past: ' . $scd->NotOnOrAfter;
 				continue;
 			}
-			if ($scd->Recipient !== NULL && $scd->Recipient !== $currentURL) {
+			if ($scd->Recipient !== NULL && !self::isValidRecipient($currentURL, $scd->Recipient)) {
 				$lastError = 'Recipient in SubjectConfirmationData does not match the current URL. Recipient is ' .
 					var_export($scd->Recipient, TRUE) . ', current URL is ' . var_export($currentURL, TRUE) . '.';
 				continue;
@@ -764,5 +765,23 @@ class sspmod_saml_Message {
 
 		throw new SimpleSAML_Error_Exception('No supported encryption key in ' . var_export($metadata->getString('entityid'), TRUE));
 	}
+        
+        public static function isValidDestination($currentUrl, $dstUrl)
+        {
+            return self::isValidUrl($currentUrl, $dstUrl);
+        }
+        
+        public static function isValidRecipient($currentUrl, $rcpUrl)
+        {
+            return self::isValidUrl($currentUrl, $rcpUrl);
+        }
+        
+        public static function isValidUrl($currentUrl, $otherUrl)
+        {
+            $curParts = parse_url($currentUrl);
+            $otherParts = parse_url($otherUrl);
+            
+            return $curParts['host'] == $otherParts['host'];
+        }
 
 }
