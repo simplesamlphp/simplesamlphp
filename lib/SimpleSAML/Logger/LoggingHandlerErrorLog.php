@@ -26,10 +26,15 @@ class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_Logg
 	);
 
 
+    function setLogFormat($format) {
+        $this->format = $format;
+    }
+
+
 	function log_internal($level, $string) {
 		$config = SimpleSAML_Configuration::getInstance();
-        assert($config instanceof SimpleSAML_Configuration);
-        $processname = $config->getString('logging.processname','simpleSAMLphp');
+		assert($config instanceof SimpleSAML_Configuration);
+		$processname = $config->getString('logging.processname','simpleSAMLphp');
 		
 		if(array_key_exists($level, self::$levelNames)) {
 			$levelName = self::$levelNames[$level];
@@ -37,7 +42,13 @@ class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_Logg
 			$levelName = sprintf('UNKNOWN%d', $level);
 		}
 
-		error_log($processname.' - '.$levelName . ': ' . $string);
+        $formats = array('%process', '%level');
+        $replacements = array($processname, $levelName);
+        $string = str_replace($formats, $replacements, $string);
+        $string = preg_replace('/%\w+(\{[^\}]+\})?/', '', $string);
+        $string = trim($string);
+
+		error_log($string);
 	}
 }
 

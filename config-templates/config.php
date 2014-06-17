@@ -125,6 +125,34 @@ $config = array (
 	'logging.level'         => SimpleSAML_Logger::NOTICE,
 	'logging.handler'       => 'syslog',
 
+    /*
+     * Specify the format of the logs. Its use varies depending on the log handler used (for instance, you cannot
+     * control here how dates are displayed when using the syslog or errorlog handlers), but in general the options
+     * are:
+     *
+     * - %date{<format>}: the date and time, with its format specified inside the brackets. See the PHP documentation
+     *   of the strftime() function for more information on the format. If the brackets are omitted, the standard
+     *   format is applied. This can be useful if you just want to control the placement of the date, but don't care
+     *   about the format.
+     *
+     * - %process: the name of the SimpleSAMLphp process. Remember you can configure this in the 'logging.processname'
+     *   option below.
+     *
+     * - %level: the log level (name or number depending on the handler used).
+     *
+     * - %stat: if the log entry is intended for statistical purposes, it will print the string 'STAT ' (bear in mind
+     *   the trailing space).
+     *
+     * - %trackid: the track ID, an identifier that allows you to track a single session.
+     *
+     * - %srcip: the IP address of the client. If you are behind a proxy, make sure to modify the
+     *   $_SERVER['REMOTE_ADDR'] variable on your code accordingly to the X-Forwarded-For header.
+     *
+     * - %msg: the message to be logged.
+     *
+     */
+    //'logging.format' => '%date{%b %d %H:%M:%S} %process %level %stat[%trackid] %msg',
+
 	/*
 	 * Choose which facility should be used when logging with syslog.
 	 *

@@ -12,7 +12,7 @@
 class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_LoggingHandler {
 
 	private $isWindows = false;
-	
+
     function __construct() {
         $config = SimpleSAML_Configuration::getInstance();
         assert($config instanceof SimpleSAML_Configuration);
@@ -31,6 +31,12 @@ class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_Loggin
         openlog($processname, LOG_PID, $facility);
     }
 
+
+    function setLogFormat($format) {
+        $this->format = $format;
+    }
+
+
     function log_internal($level,$string) {
     	/*
     	 * Changing log level to supported levels if OS is Windows
@@ -41,7 +47,14 @@ class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_Loggin
 			else
 				$level = LOG_INFO;			
     	}
-        syslog($level,$level.' '.$string);
+
+        $formats = array('%process', '%level');
+        $replacements = array('', $level);
+        $string = str_replace($formats, $replacements, $string);
+        $string = preg_replace('/%\w+(\{[^\}]+\})?/', '', $string);
+        $string = trim($string);
+
+        syslog($level, $string);
     }
 }
 ?>

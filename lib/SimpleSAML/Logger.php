@@ -11,6 +11,8 @@
 
 interface SimpleSAML_Logger_LoggingHandler {
     function log_internal($level,$string);
+
+    function setLogFormat($format);
 }
 
 class SimpleSAML_Logger {
@@ -41,6 +43,35 @@ class SimpleSAML_Logger {
 	 * TRACKID_FETCHING, which means that we are fetching the trackid now.
 	 */
 	private static $trackid = null;
+
+    /**
+     * This variable holds the format used to log any message. Its use varies depending on the log handler used (for
+     * instance, you cannot control here how dates are displayed when using syslog or errorlog handlers), but in
+     * general the options are:
+     *
+     * - %date{<format>}: the date and time, with its format specified inside the brackets. See the PHP documentation
+     *   of the strftime() function for more information on the format. If the brackets are omitted, the standard
+     *   format is applied. This can be useful if you just want to control the placement of the date, but don't care
+     *   about the format.
+     *
+     * - %process: the name of the SimpleSAMLphp process. Remember you can configure this in the 'logging.processname'
+     *   option.
+     *
+     * - %level: the log level (name or number depending on the handler used).
+     *
+     * - %stat: if the log entry is intended for statistical purposes, it will print the string 'STAT ' (bear in mind
+     *   the trailing space).
+     *
+     * - %trackid: the track ID, an identifier that allows you to track a single session.
+     *
+     * - %srcip: the IP address of the client. If you are behind a proxy, make sure to modify the
+     *   $_SERVER['REMOTE_ADDR'] variable on your code accordingly to the X-Forwarded-For header.
+     *
+     * - %msg: the message to be logged.
+     *
+     * @var string The format of the log line.
+     */
+    private static $format = '%date{%b %d %H:%M:%S} %process %level %stat[%trackid] %msg';
 
 /*
 	 *		LOG_ERR				No statistics, only errors
@@ -141,6 +172,10 @@ class SimpleSAML_Logger {
 		} else {
 			throw new Exception('Invalid value for the [logging.handler] configuration option. Unknown handler: ' . $handler);
 		}
+
+        self::$format = $config->getString('logging.format', self::$format);
+        $sh->setLogFormat(self::$format);
+
 		/* Set the session handler. */
 		self::$loggingHandler = $sh;
 	}
@@ -188,9 +223,18 @@ class SimpleSAML_Logger {
 		
 		if (self::$logLevel >= $level || $statsLog) {
 			if (is_array($string)) $string = implode(",",$string);
-			$string = '['.self::getTrackId().'] '.$string;
-			if ($statsLog) $string = 'STAT '.$string;  
-			self::$loggingHandler->log_internal($level,$string);
+
+            $formats = array('%trackid', '%msg', '%srcip', '%stat');
+            $replacements = array(self::getTrackId(), $string, $_SERVER['REMOTE_ADDR']);
+
+            $stat = '';
+            if ($statsLog) {
+                $stat = 'STAT ';
+            }
+            array_push($replacements, $stat);
+
+            $string = str_replace($formats, $replacements, self::$format);
+            self::$loggingHandler->log_internal($level, $string);
 		}
 	}
 	
