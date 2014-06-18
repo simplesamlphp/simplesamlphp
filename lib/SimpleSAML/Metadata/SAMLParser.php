@@ -384,7 +384,6 @@ class SimpleSAML_Metadata_SAMLParser {
 		 * Add organizational metadata
 		 */
 		if (!empty($this->organizationName)) {
-			$ret['name'] = $this->organizationName;
 			$ret['description'] = $this->organizationName;
 			$ret['OrganizationName'] = $this->organizationName;
 		}
@@ -636,6 +635,11 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* Add extensions. */
 		$this->addExtensions($ret, $spd);
 
+		// prioritize mdui:DisplayName as the name if available
+		if (isset($ret['UIInfo']) && isset($ret['UIInfo']['DisplayName'])) {
+			$ret['name'] = $ret['UIInfo']['DisplayName'];
+		}
+
 		return $ret;
 	}
 
@@ -699,6 +703,11 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		/* Add extensions. */
 		$this->addExtensions($ret, $idp);
+
+		// prioritize mdui:DisplayName as the name if available
+		if (isset($ret['UIInfo']) && isset($ret['UIInfo']['DisplayName'])) {
+			$ret['name'] = $ret['UIInfo']['DisplayName'];
+		}
 
 		return $ret;
 	}

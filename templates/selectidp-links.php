@@ -11,6 +11,10 @@ $this->includeAtTemplateBase('includes/header.php');
 
 foreach ($this->data['idplist'] AS $idpentry) {
 	if (isset($idpentry['UIInfo']['DisplayName'])) {
+		/* TODO: remove this branch, If ['UIInfo']['DisplayName'] is available, it will get through to 'name' in the
+		 * metadata parsed with SSP >= 1.13.0, so this code is no longer necessary. Keep it now to avoid breaking
+		 * metadata parsed with previous versions.
+		 */
 		$this->includeInlineTranslation('idpname_' . $idpentry['entityid'], $idpentry['UIInfo']['DisplayName']);
 	} elseif (isset($idpentry['name'])) {
 		$this->includeInlineTranslation('idpname_' . $idpentry['entityid'], $idpentry['name']);
