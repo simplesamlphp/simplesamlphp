@@ -54,6 +54,12 @@ example authsources.php entry:
         'search.base' => 'dc=example,dc=net',
         'authX509:x509attributes' => array('UID' => 'uid'),
         'authX509:ldapusercert' => array('userCertificate;binary'),
+        'privread' => FALSE,
+        'privldap' => 'ldap.example.net',
+        'privenableTLS' => TRUE,
+        'privusername' => NULL,
+        'privpassword' => NULL,
+
     ),
 
 The configuration is the same as for the LDAP module, except for
