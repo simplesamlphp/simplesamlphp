@@ -481,6 +481,9 @@ class SimpleSAML_Metadata_SAMLParser {
 		if (array_key_exists('attributes.NameFormat', $spd)) {
 			$ret['attributes.NameFormat'] = $spd['attributes.NameFormat'];
 		}
+		if (array_key_exists('attributes.NameFormats', $spd)) {
+			$ret['attributes.NameFormats'] = $spd['attributes.NameFormats'];
+		}
 
 		/* Add name & description. */
 		if (array_key_exists('name', $spd)) {
@@ -607,6 +610,9 @@ class SimpleSAML_Metadata_SAMLParser {
 		}
 		if (array_key_exists('attributes.NameFormat', $spd)) {
 			$ret['attributes.NameFormat'] = $spd['attributes.NameFormat'];
+		}
+		if (array_key_exists('attributes.NameFormats', $spd)) {
+			$ret['attributes.NameFormats'] = $spd['attributes.NameFormats'];
 		}
 
 		/* Add name & description. */
@@ -1072,6 +1078,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$sp['description'] = $element->ServiceDescription;
 
 		$format = NULL;
+		$formats = array();
 		$sp['attributes'] = array();
 		foreach ($element->RequestedAttribute AS $child) {
 			$attrname = $child->Name;
@@ -1082,11 +1089,22 @@ class SimpleSAML_Metadata_SAMLParser {
 			} else {
 				$attrformat = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
 			}
-
-			if ($format === NULL) {
-				$format = $attrformat;
-			} elseif ($format !== $attrformat) {
-				$format = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
+			$formats[] = $attrformat;
+		}
+		$formats = array_count_values($formats);
+		if (array_key_exists(SAML2_Const::NAMEFORMAT_UNSPECIFIED, $formats)) {
+			$format = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
+		} elseif (array_key_exists(SAML2_Const::NAMEFORMAT_URI, $formats) &&
+			  array_key_exists('urn:mace:shibboleth:1.0:attributeNamespace:uri', $formats) &&
+			  $formats[SAML2_Const::NAMEFORMAT_URI] >= $formats['urn:mace:shibboleth:1.0:attributeNamespace:uri']) {
+			$format = SAML2_Const::NAMEFORMAT_URI;
+		} else {
+			$format_count = 0;
+			foreach ($formats AS $f=>$fc) {
+				if ($fc > $format_count) {
+					$format_count = $fc;
+					$format = $f;
+				}
 			}
 		}
 
@@ -1100,6 +1118,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		if ($format !== SAML2_Const::NAMEFORMAT_UNSPECIFIED && $format !== NULL) {
 			$sp['attributes.NameFormat'] = $format;
+			$sp['attributes.NameFormats'] = array_keys($formats);
 		}
 	}
 

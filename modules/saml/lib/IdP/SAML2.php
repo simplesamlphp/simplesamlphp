@@ -727,6 +727,16 @@ class sspmod_saml_IdP_SAML2 {
 	private static function getAttributeNameFormat(SimpleSAML_Configuration $idpMetadata,
 		SimpleSAML_Configuration $spMetadata) {
 
+		/* First check if NameFormat configured for IdP matches NameFormats declared
+		   in SP metadata ACS RequestedAttribute(s) */
+		$spAttributeNameFormat = $spMetadata->getArray('attributes.NameFormats', NULL);
+		$idpAttributeNameFormat = $idpMetadata->getString('attributes.NameFormat', NULL);
+		if ($idpAttributeNameFormat !== NULL &&
+		    is_array($spAttributeNameFormat) &&
+		    in_array($idpAttributeNameFormat, $spAttributeNameFormat)) {
+			return $idpAttributeNameFormat;
+		}
+
 		/* Try SP metadata first. */
 		$attributeNameFormat = $spMetadata->getString('attributes.NameFormat', NULL);
 		if ($attributeNameFormat !== NULL) {
