@@ -119,15 +119,6 @@ The following SAML 2.0 options are available:
     entry in the IdP-remote metadata overrides the option in the
     [SP configuration](./saml:sp).
 
-`saml2.relaxvalidation`
-:   Can be used to relax some parts of the validation of assertions received from this IdP. This is an array, and can include one or more of the following flags:
-
-    -   `unknowncondition` - Disables errors when encountering unknown &lt;Condition> nodes.
-    -   `nosubject` - Ignore missing &lt;Subject&gt; in &lt;Assertion&gt;.
-    -   `noconditions` - Ignore missing &lt;Conditions&gt; in &lt;Assertion&gt;.
-    -   `noauthnstatement` - Ignore missing &lt;AuthnStatement&gt; in &lt;Assertion&gt;.
-    -   `noattributestatement` - Ignore missing &lt;AttributeStatement&gt; in &lt;Assertion&gt;.
-
 `sign.authnrequest`
 :   Whether to sign authentication requests sent to this IdP.
 
