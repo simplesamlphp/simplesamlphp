@@ -316,7 +316,7 @@ class sspmod_saml_Message {
 
 		$blacklist = $srcMetadata->getArray('encryption.blacklisted-algorithms', NULL);
 		if ($blacklist === NULL) {
-			$blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', array());
+			$blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', array(XMLSecurityKey::RSA_1_5));
 		}
 		return $blacklist;
 	}
