@@ -217,7 +217,31 @@ class sspmod_metarefresh_MetaLoader {
 			throw new Exception('Failed to read XML from ' . $source['src']);
 		}
 		if($doc->documentElement ===  NULL) throw new Exception('Opened file is not an XML document: ' . $source['src']);
-		$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($doc->documentElement);
+
+		if (SimpleSAML_Utilities::isDOMElementOfType($doc->documentElement, 'EntitiesDescriptor', '@md') === TRUE) {
+			foreach (SAML2_Utils::xpQuery($doc->documentElement,
+				'./saml_metadata:EntityDescriptor|./saml_metadata:EntitiesDescriptor') as $node) {
+
+				if ($node->localName === 'EntityDescriptor') {
+					try {
+						$entities = array_merge($entities,
+							SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($node));
+					} catch (Exception $e) {
+						$entityID = $node->getAttribute('entityID');
+						if (empty($entityID)) {
+							$entityID = "unknown";
+						}
+						SimpleSAML_Logger::warning('[metarefresh]: Error while parsing entity ('.$entityID.'): '.
+							$e->getMessage());
+					}
+				} else {
+					$entities = array_merge($entities, $this->loadXML($node->ownerDocument->saveXML($node), $source));
+				}
+			}
+		} else {
+			$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($doc->documentElement);
+		}
+
 		return $entities;
 	}
 
