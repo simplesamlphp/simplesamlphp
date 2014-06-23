@@ -489,7 +489,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		$e->protocolSupportEnumeration[] = 'urn:oasis:names:tc:SAML:2.0:protocol';
 
 		if ($metadata->getBoolean('redirect.sign', FALSE)) {
-			$e->WantAuthnRequestSigned = TRUE;
+			$e->WantAuthnRequestsSigned = TRUE;
 		}
 
 		$this->addExtensions($metadata, $e);
