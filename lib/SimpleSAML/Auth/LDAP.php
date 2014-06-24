@@ -373,7 +373,7 @@ class SimpleSAML_Auth_LDAP {
                 // decide whether to base64 encode or not
                 for ($k = 0; $k < $attribute['count']; $k++) {
                     // base64 encode binary attributes
-                    if (strtolower($name) === 'jpegphoto') {
+                    if (strtolower($name) === 'jpegphoto' || strtolower($name) === 'objectguid') {
                         $results[$i][$name][$k] = base64_encode($attribute[$k]);
                     }
                 }
@@ -542,7 +542,7 @@ class SimpleSAML_Auth_LDAP {
 				}
 
 				// Base64 encode jpegPhoto.
-				if (strtolower($name) === 'jpegphoto') {
+				if (strtolower($name) === 'jpegphoto' || strtolower($name) === 'objectguid') {
 					$values[] = base64_encode($value);
 				} else
 					$values[] = $value;
