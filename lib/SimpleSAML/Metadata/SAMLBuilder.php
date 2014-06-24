@@ -488,8 +488,10 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		$e = new SAML2_XML_md_IDPSSODescriptor();
 		$e->protocolSupportEnumeration[] = 'urn:oasis:names:tc:SAML:2.0:protocol';
 
-		if ($metadata->getBoolean('redirect.sign', FALSE)) {
-			$e->WantAuthnRequestsSigned = TRUE;
+		if ($metadata->hasValue('sign.authnrequest')) {
+			$e->WantAuthnRequestsSigned = $metadata->getBoolean('sign.authnrequest');
+		} elseif ($metadata->hasValue('redirect.sign')) {
+			$e->WantAuthnRequestsSigned = $metadata->getBoolean('redirect.sign');
 		}
 
 		$this->addExtensions($metadata, $e);
