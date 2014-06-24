@@ -682,7 +682,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		/* Enable redirect.sign if WantAuthnRequestsSigned is enabled. */
 		if ($idp['WantAuthnRequestsSigned']) {
-			$ret['redirect.sign'] = TRUE;
+			$ret['sign.authnrequest'] = TRUE;
 		}
 
 		/* Find the SSO service endpoint. */
