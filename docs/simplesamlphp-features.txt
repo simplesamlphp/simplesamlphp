@@ -73,5 +73,7 @@ An example of a usability problem, is when you are editing a wiki, and are about
 
 SimpleSAMLphp has experimental support for dynamically downloading the metadata of an Service Provider or Identity Provider when receiving a new incomming message where the entityId is unknown. Dynamic SAML requires the EntityID to be a URL pointing to the metadata of the entity.
 
+## Configurable config directory location
 
+An environment variable can be used to specify the location of the configuration directory.  Use the environment variable SIMPLESAMLPHP_CONFIG_DIR to specifiy an absolute path to the SimpleSAMLphp configuration directory.  It is possible to now have a single instance of the SimpleSAMLphp library to serve multiple client configuration setups, by using combining Apache Alias and SetEnv directives.
 
