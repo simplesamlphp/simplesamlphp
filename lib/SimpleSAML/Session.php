@@ -147,7 +147,7 @@ class SimpleSAML_Session {
 		$sh = SimpleSAML_SessionHandler::getSessionHandler();
 		$this->sessionId = $sh->newSessionId();
 
-		$this->trackid = substr(md5(uniqid(rand(), true)), 0, 10);
+		$this->trackid = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(5));
 
 		$this->dirty = TRUE;
 
