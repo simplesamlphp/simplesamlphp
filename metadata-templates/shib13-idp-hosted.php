@@ -2,7 +2,7 @@
 /**
  * SAML 1.1 IdP configuration for simpleSAMLphp.
  *
- * See: https://rnd.feide.no/content/idp-hosted-metadata-reference
+ * See: https://simplesamlphp.org/docs/stable/simplesamlphp-reference-idp-hosted
  */
 
 $metadata['__DYNAMIC:1__'] = array(

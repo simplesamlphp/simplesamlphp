@@ -33,7 +33,7 @@ $allLinks = array(
 );
 
 $links_welcome[] = array(
-	'href' => 'https://rnd.feide.no/view/simplesamlphpdocs',
+	'href' => 'https://simplesamlphp.org/docs/stable/',
 	'text' => '{core:frontpage:doc_header}',
 );
 
