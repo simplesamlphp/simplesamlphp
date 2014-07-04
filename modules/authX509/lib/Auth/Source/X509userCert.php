@@ -28,6 +28,15 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
 	 */
 	private $ldapcf;
 
+	/**
+	 * LDAP configuration for privileged read
+	 */
+	private $privRead;
+	private $privLdap;
+	private $privEnableTLS;
+	private $privUsername;
+	private $privPassword;
+
 
 	/**
 	 * Constructor for this authentication source.
@@ -50,6 +59,20 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
 			$this->ldapusercert =
 				$config['authX509:ldapusercert'];
 
+		if (isset($config['privread']))
+			$this->privRead =
+				$config['privread'];
+		if (isset($config['privldap']))
+			$this->privLdap =
+				$config['privldap'];
+		if (isset($config['privenableTLS']))
+			$this->privEnableTLS = $config['privenableTLS'] ? 'TRUE' : 'FALSE';
+		if (isset($config['privusername']))
+			$this->privUsername =
+				$config['privusername'];
+		if (isset($config['privpassword']))
+			$this->privPassword =
+				$config['privpassword'];
 		parent::__construct($info, $config);
 
 		$this->ldapcf = new sspmod_ldap_ConfigHelper($config,
@@ -204,7 +227,17 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
 			}
 
 			if ($ldap_cert_data === $client_cert_data) {
-				$attributes = $ldapcf->getAttributes($dn);
+				
+		                $ldap_priv = new SimpleSAML_Auth_LDAP($this->privLdap, $this->privEnableTLS, 'FALSE', NULL);
+				if($this->privRead){
+					if(!$ldap_priv->bind($this->privUsername, $this->privPassword)) {
+							throw new Exception('Error authenticating using privileged DN & password.');
+					}
+					$attributes = $ldap_priv->getAttributes($dn);
+				}
+				else{
+					$attributes = $ldapcf->getAttributes($dn);
+				}
 				assert('is_array($attributes)');
 				$state['Attributes'] = $attributes;
 				$this->authSuccesful($state);
