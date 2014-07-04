@@ -445,7 +445,7 @@ class sspmod_openidProvider_Server {
             'isPassive'=>TRUE
     	);
 
-    	$pc->processStatePassive(&$state);
+    	$pc->processStatePassive($state);
     	$attributes = $state['Attributes'];
 
     	//Process SREG requests
