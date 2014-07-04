@@ -73,7 +73,7 @@ $message = '<h1>SimpleSAMLphp Error Report</h1>
 <p>Referer: <tt>' . htmlspecialchars($data['referer']) . '</tt></p>
 
 <hr />
-<div class="footer">This message was sent using simpleSAMLphp. Visit <a href="http://rnd.feide.no/simplesamlphp">simpleSAMLphp homepage</a>.</div>
+<div class="footer">This message was sent using simpleSAMLphp. Visit the <a href="http://simplesamlphp.org/">simpleSAMLphp homepage</a>.</div>
 
 ';
 

@@ -2,7 +2,7 @@
 /**
  * SAML 1.1 remote SP metadata for simpleSAMLphp.
  *
- * See: https://rnd.feide.no/content/sp-remote-metadata-reference
+ * See: https://simplesamlphp.org/docs/stable/simplesamlphp-reference-sp-remote
  */
 
 /*

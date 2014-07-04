@@ -4,7 +4,7 @@
  *
  * Remember to remove the IdPs you don't use from this file.
  *
- * See: https://rnd.feide.no/content/idp-remote-metadata-reference
+ * See: https://simplesamlphp.org/docs/stable/simplesamlphp-reference-idp-remote
  */
 
 /*

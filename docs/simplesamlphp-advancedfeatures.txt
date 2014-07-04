@@ -231,7 +231,7 @@ you are welcome to join! The forums are open for you to ask
 questions, contribute answers other further questions, request
 improvements or contribute with code or plugins of your own.
 
--  [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
+-  [simpleSAMLphp homepage](https://simplesamlphp.org)
 -  [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/)
 -  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
 -  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
