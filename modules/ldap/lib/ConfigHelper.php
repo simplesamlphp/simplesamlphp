@@ -252,6 +252,12 @@ class sspmod_ldap_ConfigHelper {
 		if ($attribute == NULL)
 			$attribute = $this->searchAttributes;
 
+		if ($this->searchUsername !== NULL) {
+			if(!$ldap->bind($this->searchUsername, $this->searchPassword)) {
+				throw new Exception('Error authenticating using search username & password.');
+			}
+		}
+
 		return $ldap->searchfordn($this->searchBase, $attribute,
 			$value, $allowZeroHits);
 	}
@@ -266,6 +272,14 @@ class sspmod_ldap_ConfigHelper {
 			$this->timeout,
 			389,
 			$this->referrals);
+
+		/* Are privs needed to get the attributes? */
+		if ($this->privRead) {
+			/* Yes, rebind with privs */
+			if(!$ldap->bind($this->privUsername, $this->privPassword)) {
+				throw new Exception('Error authenticating using privileged DN & password.');
+			}
+		}
 
 		return $ldap->getAttributes($dn, $attributes);
 	}
