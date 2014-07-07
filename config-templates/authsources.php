@@ -70,7 +70,7 @@ $config = array(
 		'dsn' => 'pgsql:host=sql.example.org;port=5432;dbname=simplesaml',
 		'username' => 'simplesaml',
 		'password' => 'secretpassword',
-		'query' => 'SELECT "username", "name", "email" FROM "users" WHERE "username" = :username AND "password" = :password',
+        'query' => 'SELECT uid, givenName, email, eduPersonPrincipalName FROM users WHERE uid = :username AND password = SHA2(CONCAT((SELECT salt FROM users WHERE uid = :username), :password),256);',
 	),
 	*/
 
