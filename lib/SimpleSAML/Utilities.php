@@ -1622,7 +1622,7 @@ class SimpleSAML_Utilities {
 	 */
 	public static function isAdmin() {
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 
 		return $session->isValid('admin') || $session->isValid('login-admin');
 	}
@@ -1726,7 +1726,7 @@ class SimpleSAML_Utilities {
 				'url' => $destination,
 			);
 
-			$session = SimpleSAML_Session::getInstance();
+			$session = SimpleSAML_Session::getSessionFromRequest();
 			$session->setData('core_postdatalink', $postId, $postData);
 
 			$url = SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirId' => $postId));
@@ -1753,7 +1753,7 @@ class SimpleSAML_Utilities {
 			'url' => $destination,
 		);
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->setData('core_postdatalink', $postId, $postData);
 
 		$redirInfo = base64_encode(self::aesEncrypt($session->getSessionId() . ':' . $postId));
@@ -2105,7 +2105,7 @@ class SimpleSAML_Utilities {
 	public static function checkCookie($retryURL = NULL) {
 		assert('is_string($retryURL) || is_null($retryURL)');
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		if ($session->hasSessionCookie()) {
 			return;
 		}

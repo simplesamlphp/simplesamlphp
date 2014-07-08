@@ -12,7 +12,7 @@ require_once('../../_include.php');
 
 $config = SimpleSAML_Configuration::getInstance();
 
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
 
 SimpleSAML_Logger::warning('The file saml2/sp/initSLO.php is deprecated and will be removed in future versions.');
 

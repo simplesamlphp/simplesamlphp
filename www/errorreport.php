@@ -18,7 +18,7 @@ $email = (string)$_REQUEST['email'];
 $text = htmlspecialchars((string)$_REQUEST['text']);
 
 try {
-	$session = SimpleSAML_Session::getInstance();
+	$session = SimpleSAML_Session::getSessionFromRequest();
 	$data = $session->getData('core:errorreport', $reportId);
 } catch (Exception $e) {
 	SimpleSAML_Logger::error('Error loading error report data: ' . var_export($e->getMessage(), TRUE));

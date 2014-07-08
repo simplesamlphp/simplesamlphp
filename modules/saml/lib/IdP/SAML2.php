@@ -798,7 +798,7 @@ class sspmod_saml_IdP_SAML2 {
 			$a->setAuthnInstant($state['AuthnInstant']);
 		} else {
 			/* For backwards compatibility. Remove in version 1.8. */
-			$session = SimpleSAML_Session::getInstance();
+			$session = SimpleSAML_Session::getSessionFromRequest();
 			$a->setAuthnInstant($session->getAuthnInstant());
 		}
 

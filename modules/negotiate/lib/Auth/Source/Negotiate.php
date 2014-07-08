@@ -80,7 +80,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 			$this->fallBack($state);
 		// Go straight to fallback if Negotiate is disabled or if you are
 		// sent back to the IdP directly from the SP after having logged out
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		$disabled = $session->getData('negotiate:disable', 'session');
 
 		if ($disabled or
@@ -309,7 +309,7 @@ click <a href="'.htmlspecialchars($url).'">here</a>.
 		SimpleSAML_Logger::debug('Negotiate - logout has the following authId: "'.$authId.'"');
 
 		if ($authId === NULL) {
-			$session = SimpleSAML_Session::getInstance();
+			$session = SimpleSAML_Session::getSessionFromRequest();
 			$session->setData('negotiate:disable', 'session', TRUE, 24*60*60);
 			parent::logout($state);
 		} else {

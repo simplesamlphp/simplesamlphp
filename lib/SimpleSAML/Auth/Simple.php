@@ -48,7 +48,7 @@ class SimpleSAML_Auth_Simple {
 	 * @return bool  TRUE if the user is authenticated, FALSE if not.
 	 */
 	public function isAuthenticated() {
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 
 		return $session->isValid($this->authSource);
 	}
@@ -70,7 +70,7 @@ class SimpleSAML_Auth_Simple {
 	 */
 	public function requireAuth(array $params = array()) {
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 
 		if ($session->isValid($this->authSource)) {
 			/* Already authenticated. */
@@ -176,7 +176,7 @@ class SimpleSAML_Auth_Simple {
 			assert('isset($params["ReturnStateParam"]) && isset($params["ReturnStateStage"])');
 		}
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		if ($session->isValid($this->authSource)) {
 			$state = $session->getAuthData($this->authSource, 'LogoutState');
 			if ($state !== NULL) {
@@ -241,7 +241,7 @@ class SimpleSAML_Auth_Simple {
 		}
 
 		/* Authenticated. */
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		return $session->getAuthData($this->authSource, 'Attributes');
 	}
 
@@ -259,7 +259,7 @@ class SimpleSAML_Auth_Simple {
 			return NULL;
 		}
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		return $session->getAuthData($this->authSource, $name);
 	}
 
@@ -275,7 +275,7 @@ class SimpleSAML_Auth_Simple {
 			return NULL;
 		}
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		return $session->getAuthState($this->authSource);
 	}
 

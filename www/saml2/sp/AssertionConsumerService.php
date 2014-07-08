@@ -27,7 +27,7 @@ SimpleSAML_Logger::warning('The file saml2/sp/AssertionConsumerService.php is de
 /* Get the session object for the user. Create a new session if no session
  * exists for this user.
  */
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
 
 
 /**

@@ -24,7 +24,7 @@
 require_once('../../_include.php');
 
 $config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 SimpleSAML_Logger::warning('The file wsfed/sp/prp.php is deprecated and will be removed in future versions.');

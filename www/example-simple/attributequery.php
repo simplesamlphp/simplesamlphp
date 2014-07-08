@@ -10,7 +10,7 @@
 
 require_once('../_include.php');
 
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 SimpleSAML_Logger::warning('The file example-simple/attributequery.php is deprecated and will be removed in future versions.');

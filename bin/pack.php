@@ -12,7 +12,7 @@ if (count($argv) < 1) {
 }
 
 // Needed in order to make session_start to be called before output is printed.
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
 $config = SimpleSAML_Configuration::getConfig('config.php');
 
 

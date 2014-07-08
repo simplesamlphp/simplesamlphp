@@ -101,7 +101,7 @@ class SimpleSAML_Auth_BWC extends SimpleSAML_Auth_Simple {
 			$params['ReturnTo'] = SimpleSAML_Utilities::createPostRedirectLink($params['ReturnTo'], $_POST);
 		}
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 
 		$authnRequest = array(
 			'IsPassive' => isset($params['isPassive']) ? $params['isPassive'] : FALSE,
@@ -152,7 +152,7 @@ class SimpleSAML_Auth_BWC extends SimpleSAML_Auth_Simple {
 			$url = SimpleSAML_Utilities::selfURL();
 		}
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		if (!$session->isValid($this->authority)) {
 			/* Not authenticated to this authentication source. */
 			SimpleSAML_Utilities::redirectTrustedURL($url);

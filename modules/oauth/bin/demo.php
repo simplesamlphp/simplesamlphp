@@ -20,7 +20,7 @@ try {
 	require_once(dirname(dirname(__FILE__)) . '/libextinc/OAuth.php');
 
 	// Needed in order to make session_start to be called before output is printed.
-	$session = SimpleSAML_Session::getInstance();
+	$session = SimpleSAML_Session::getSessionFromRequest();
 
 	//$baseurl = (isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : 'https://foodle.feide.no/simplesaml');
 	$baseurl = (isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : 'http://mars.foodle.local/simplesaml');

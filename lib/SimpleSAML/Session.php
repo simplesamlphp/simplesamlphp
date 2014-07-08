@@ -191,14 +191,23 @@ class SimpleSAML_Session {
     }
 
 
-	/**
+    /**
+     * @deprecated
+     * @see SimpleSAML_Session::getSessionFromRequest()
+     */
+    public static function getInstance() {
+        return self::getSessionFromRequest();
+    }
+
+
+    /**
 	 * Retrieves the current session. Will create a new session if there isn't a session.
 	 *
 	 * @return SimpleSAML_Session The current session.
 	 * @throws Exception When session couldn't be initialized and
 	 * the session fallback is disabled by configuration.
 	 */
-	public static function getInstance() {
+	public static function getSessionFromRequest() {
 
 		/* Check if we already have initialized the session. */
 		if (isset(self::$instance)) {

@@ -15,7 +15,7 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 SimpleSAML_Logger::warning('The file shib13/sp/initSSO.php is deprecated and will be removed in future versions.');
 
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
 		
 
 /*

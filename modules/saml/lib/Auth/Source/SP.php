@@ -403,7 +403,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 	public function reauthenticate(array &$state) {
 		assert('is_array($state)');
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		$data = $session->getAuthState($this->authId);
 		foreach ($data as $k => $v) {
 			$state[$k] = $v;
@@ -438,7 +438,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		assert('isset($state["ReturnCallback"])');
 
 		// Update session state
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->doLogin($state['saml:sp:AuthId'], SimpleSAML_Auth_Default::extractPersistentAuthState($state));
 
 		// resume the login process

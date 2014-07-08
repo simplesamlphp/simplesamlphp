@@ -14,7 +14,7 @@ $config = SimpleSAML_Configuration::getInstance();
 
 SimpleSAML_Logger::warning('The file wsfed/sp/initSLO.php is deprecated and will be removed in future versions.');
 
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
 
 SimpleSAML_Logger::info('WS-Fed - SP.initSLO: Accessing WS-Fed SP initSLO script');
 
