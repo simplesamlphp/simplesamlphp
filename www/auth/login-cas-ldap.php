@@ -1,6 +1,14 @@
 <?php
 
 /**
+ * WARNING:
+ *
+ * THIS FILE IS DEPRECATED AND WILL BE REMOVED IN FUTURE VERSIONS
+ *
+ * @deprecated
+ */
+
+/**
  * This file is part of SimpleSAMLphp. See the file COPYING in the
  * root of the distribution for licence information.
  *
@@ -15,6 +23,8 @@ require_once('../_include.php');
 
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
+
+SimpleSAML_Logger::warning('The file auth/login-cas-ldap.php is deprecated and will be removed in future versions.');
 
 try {
 	$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
