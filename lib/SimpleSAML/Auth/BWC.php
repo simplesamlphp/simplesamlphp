@@ -1,6 +1,14 @@
 <?php
 
 /**
+ * WARNING:
+ *
+ * THIS FILE IS DEPRECATED AND WILL BE REMOVED IN FUTURE VERSIONS
+ *
+ * @deprecated
+ */
+
+/**
  * Helper class for backwards compatibility with old-style authentication sources.
  *
  * Provides the same interface as Auth_Simple.
@@ -31,6 +39,7 @@ class SimpleSAML_Auth_BWC extends SimpleSAML_Auth_Simple {
 	 *
 	 * @param string $auth  The authentication page.
 	 * @param string|NULL $authority  The authority we should validate the login against.
+     * @deprecated
 	 */
 	public function __construct($auth, $authority) {
 		assert('is_string($auth)');
@@ -63,6 +72,7 @@ class SimpleSAML_Auth_BWC extends SimpleSAML_Auth_Simple {
 	 * Retrieve the implementing authentication source.
 	 *
 	 * @return NULL  There is never an authentication source behind this class.
+     * @deprecated
 	 */
 	public function getAuthSource() {
 		return NULL;
@@ -73,6 +83,7 @@ class SimpleSAML_Auth_BWC extends SimpleSAML_Auth_Simple {
 	 * Start a login operation.
 	 *
 	 * @param array $params  Various options to the authentication request.
+     * @deprecated
 	 */
 	public function login(array $params = array()) {
 
@@ -133,6 +144,7 @@ class SimpleSAML_Auth_BWC extends SimpleSAML_Auth_Simple {
 	 *
 	 * @param string|NULL $url  The URL the user should be redirected to after logging out.
 	 *                          Defaults to the current page.
+     * @deprecated
 	 */
 	public function logout($url = NULL) {
 
