@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * WARNING:
+ *
+ * THIS FILE IS DEPRECATED AND WILL BE REMOVED IN FUTURE VERSIONS
+ *
+ * @deprecated
+ */
+
 require_once('../../_include.php');
 
 /**
@@ -13,6 +21,8 @@ require_once('../../_include.php');
  */
 
 $config = SimpleSAML_Configuration::getInstance();
+
+SimpleSAML_Logger::warning('The file saml2/sp/AssertionConsumerService.php is deprecated and will be removed in future versions.');
 
 /* Get the session object for the user. Create a new session if no session
  * exists for this user.

@@ -1,10 +1,20 @@
 <?php
 
+/**
+ * WARNING:
+ *
+ * THIS FILE IS DEPRECATED AND WILL BE REMOVED IN FUTURE VERSIONS
+ *
+ * @deprecated
+ */
+
 require_once('../../_include.php');
 
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+
+SimpleSAML_Logger::warning('The file saml2/sp/metadata.php is deprecated and will be removed in future versions.');
 
 
 if (!$config->getValue('enable.saml20-sp', TRUE))

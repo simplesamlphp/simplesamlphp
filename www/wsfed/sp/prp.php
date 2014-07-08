@@ -1,4 +1,13 @@
 <?php
+
+/**
+ * WARNING:
+ *
+ * THIS FILE IS DEPRECATED AND WILL BE REMOVED IN FUTURE VERSIONS
+ *
+ * @deprecated
+ */
+
 /**
  * WS-Federation/ADFS PRP protocol support for simpleSAMLphp.
  *
@@ -17,6 +26,8 @@ require_once('../../_include.php');
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+
+SimpleSAML_Logger::warning('The file wsfed/sp/prp.php is deprecated and will be removed in future versions.');
 
 SimpleSAML_Logger::info('WS-Fed - SP.AssertionConsumerService: Accessing WS-Fed SP endpoint AssertionConsumerService');
 
