@@ -939,6 +939,7 @@ class SimpleSAML_Utilities {
 	 * @param $schema  The schema which should be used.
 	 * @return Returns a string with the errors if validation fails. An empty string is
 	 *         returned if validation passes.
+	 * @deprecated
 	 */
 	public static function validateXML($xml, $schema) {
 		assert('is_string($xml) || $xml instanceof DOMDocument');
@@ -984,6 +985,7 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param $message  The message which should be validated, as a string.
 	 * @param $type     The type of document - can be either 'saml20', 'saml11' or 'saml-meta'.
+	 * @deprecated
 	 */
 	public static function validateXMLDocument($message, $type) {
 		assert('is_string($message)');
@@ -1772,6 +1774,7 @@ class SimpleSAML_Utilities {
 	 * @param string $certificate  The certificate, in PEM format.
 	 * @param string $caFile  File with trusted certificates, in PEM-format.
 	 * @return boolean|string TRUE on success, or a string with error messages if it failed.
+	 * @deprecated
 	 */
 	private static function validateCABuiltIn($certificate, $caFile) {
 		assert('is_string($certificate)');
@@ -1806,6 +1809,7 @@ class SimpleSAML_Utilities {
 	 * @param string $certificate  The certificate, in PEM format.
 	 * @param string $caFile  File with trusted certificates, in PEM-format.
 	 * @return boolean|string TRUE on success, a string with error messages on failure.
+	 * @deprecated
 	 */
 	private static function validateCAExec($certificate, $caFile) {
 		assert('is_string($certificate)');
@@ -1862,6 +1866,7 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param string $certificate  The certificate, in PEM format.
 	 * @param string $caFile  File with trusted certificates, in PEM-format.
+	 * @deprecated
 	 */
 	public static function validateCA($certificate, $caFile) {
 		assert('is_string($certificate)');
