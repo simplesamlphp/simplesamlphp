@@ -3,7 +3,6 @@
  * Show a 403 Forbidden page about not authorized to access an application.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 if (!array_key_exists('StateId', $_REQUEST)) {

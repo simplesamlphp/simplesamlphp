@@ -4,7 +4,6 @@
  * This endpoint returns an XRDS document describing this server.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 if (isset($_REQUEST['user'])) {

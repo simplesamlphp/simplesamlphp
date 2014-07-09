@@ -6,7 +6,6 @@
  * This class is based on www/auth/login-radius.php.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 

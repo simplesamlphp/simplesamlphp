@@ -4,7 +4,6 @@
  * Class defining the logout completed handler for the consent page.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_consent_Logout {
 

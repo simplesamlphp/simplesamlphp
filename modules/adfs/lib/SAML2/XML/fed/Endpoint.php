@@ -3,7 +3,6 @@
  * Class representing fed Endpoint.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_adfs_SAML2_XML_fed_Endpoint {
 	/**

@@ -8,7 +8,6 @@
  *
  * @author Lorenzo Gil, Yaco Sistemas S.L.
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 if (!array_key_exists('AuthState', $_REQUEST)) {

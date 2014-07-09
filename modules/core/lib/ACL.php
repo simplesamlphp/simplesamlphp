@@ -4,7 +4,6 @@
  * Generic library for access control lists.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_core_ACL {
 

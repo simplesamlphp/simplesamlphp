@@ -8,7 +8,6 @@
  *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 

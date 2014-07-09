@@ -1,8 +1,6 @@
 <?php
 /* 
  * Configuration for the module portal.
- * 
- * $Id: $
  */
 
 $config = array (

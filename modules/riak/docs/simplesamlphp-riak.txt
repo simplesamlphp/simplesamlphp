@@ -7,7 +7,6 @@ Riak Store module
 	http://daringfireball.net/projects/markdown/syntax
 -->
 
-  * Version: `$Id$`
 
 <!-- {{TOC}} -->
 

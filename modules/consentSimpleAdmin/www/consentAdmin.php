@@ -8,7 +8,6 @@
  * @author Mads Freen - WAYF
  * @author Jacob Christiansen - WAYF
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 

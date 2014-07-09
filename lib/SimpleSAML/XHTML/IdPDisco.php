@@ -10,7 +10,6 @@
  * @author Olav Morken, UNINETT AS.
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_XHTML_IdPDisco {
 

@@ -5,7 +5,6 @@
  *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Error_Assertion extends SimpleSAML_Error_Exception {
 

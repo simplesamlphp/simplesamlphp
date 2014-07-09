@@ -5,7 +5,6 @@
  *
  * @author Dyonisius Visser, TERENA. <visser@terena.org>
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Utils_Crypto {
 

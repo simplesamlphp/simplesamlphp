@@ -4,7 +4,6 @@
  * This page provides a way to create a redirect to a POST request.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 if (array_key_exists('RedirId', $_REQUEST)) {

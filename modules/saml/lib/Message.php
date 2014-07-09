@@ -6,7 +6,6 @@
  * available metadata.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_saml_Message {
 

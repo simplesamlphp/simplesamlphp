@@ -14,7 +14,6 @@
  * Provides the same interface as Auth_Simple.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Auth_BWC extends SimpleSAML_Auth_Simple {
 

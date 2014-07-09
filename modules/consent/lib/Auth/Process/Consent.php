@@ -6,7 +6,6 @@
  * released to the SP.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilter
 {

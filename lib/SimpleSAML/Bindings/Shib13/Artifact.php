@@ -4,7 +4,6 @@
  * Implementation of the Shibboleth 1.3 Artifact binding.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Bindings_Shib13_Artifact {
 

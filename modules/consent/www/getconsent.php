@@ -6,7 +6,6 @@
  * authorizes the release of attributes.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 /**
  * Explicit instruct consent page to send no-cache header to browsers to make 

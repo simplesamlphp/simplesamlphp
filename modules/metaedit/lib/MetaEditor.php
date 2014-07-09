@@ -5,7 +5,6 @@
  *
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_metaedit_MetaEditor {
 

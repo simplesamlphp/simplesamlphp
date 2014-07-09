@@ -9,7 +9,6 @@
  *
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 

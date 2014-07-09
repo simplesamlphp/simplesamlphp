@@ -4,7 +4,6 @@
  * A directory over logout information.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_saml_SP_LogoutStore {
 

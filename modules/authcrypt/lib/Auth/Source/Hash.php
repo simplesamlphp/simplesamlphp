@@ -8,7 +8,6 @@
  *
  * @author Dyonisius Visser, TERENA.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase {
 

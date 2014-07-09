@@ -5,7 +5,6 @@
  *
  * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Configuration {
 

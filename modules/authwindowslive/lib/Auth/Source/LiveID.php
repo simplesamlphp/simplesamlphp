@@ -5,7 +5,6 @@
  *
  * @author Brook Schofield, TERENA.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source {
 

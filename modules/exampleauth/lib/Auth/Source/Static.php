@@ -8,7 +8,6 @@
  *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_exampleauth_Auth_Source_Static extends SimpleSAML_Auth_Source {
 

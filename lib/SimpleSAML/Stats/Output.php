@@ -4,7 +4,6 @@
  * Interface for statistics outputs.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 abstract class SimpleSAML_Stats_Output {
 

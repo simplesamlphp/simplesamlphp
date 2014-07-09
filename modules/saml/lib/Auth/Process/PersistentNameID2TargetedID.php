@@ -4,7 +4,6 @@
  * Authproc filter to create the eduPersonTargetedID attribute from the persistent NameID.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_saml_Auth_Process_PersistentNameID2TargetedID extends SimpleSAML_Auth_ProcessingFilter {
 

@@ -101,7 +101,7 @@ $configdir = dirname(dirname(__FILE__)) . '/config';
 if (!file_exists($configdir . '/config.php')) {
 	header('Content-Type: text/plain');
 	echo("You have not yet created the simpleSAMLphp configuration files.\n");
-	echo("See: http://rnd.feide.no/content/installing-simplesamlphp#id434777\n");
+	echo("See: https://simplesamlphp.org/docs/devel/simplesamlphp-install-repo\n");
 	exit(1);
 }
 
