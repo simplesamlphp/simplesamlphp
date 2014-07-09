@@ -4,7 +4,6 @@
  * Helper class for simple authentication applications.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Auth_Simple {
 

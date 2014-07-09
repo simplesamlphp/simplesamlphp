@@ -6,7 +6,6 @@
  *
  * @author Jacob Christiansen, WAYF
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_ProcessingFilter {
 

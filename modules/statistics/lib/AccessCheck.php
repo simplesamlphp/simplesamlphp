@@ -4,7 +4,6 @@
  * Class implementing the access checker function for the statistics module.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_statistics_AccessCheck {
 

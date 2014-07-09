@@ -7,7 +7,6 @@
  *
  * @author Danny Bollaert, UGent.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 

@@ -7,7 +7,6 @@
  * configuration of these options.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_ldap_ConfigHelper {
 

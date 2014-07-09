@@ -4,7 +4,6 @@
  * Endpoint for logging out in with an authentication source.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 if (!isset($_REQUEST['ReturnTo']) || !is_string($_REQUEST['ReturnTo'])) {

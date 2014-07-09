@@ -6,7 +6,6 @@
  * This class implements the various functions used by IdP.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_IdP {
 

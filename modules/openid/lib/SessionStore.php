@@ -7,7 +7,6 @@
  * Auth_OpenID_Consumer class.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_openid_SessionStore {
 

@@ -7,7 +7,6 @@ SAML V2.0 Metadata Extensions for Login and Discovery User Interface
 	http://daringfireball.net/projects/markdown/syntax
 -->
 
-  * Version: `$Id:$`
   * Author: Timothy Ace [tace@synacor.com](mailto:tace@synacor.com)
 
 <!-- {{TOC}} -->

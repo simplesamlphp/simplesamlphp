@@ -19,7 +19,6 @@
  *        ),
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 

@@ -7,7 +7,6 @@
  * against a SQL database.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 

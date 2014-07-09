@@ -16,7 +16,6 @@ require_once('../../_include.php');
  *
  * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
- * @version $Id$
  * @abstract
  */
 

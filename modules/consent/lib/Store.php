@@ -5,7 +5,6 @@
  * @package simpleSAMLphp
  * @author Olav Morken <olav.morken@uninett.no>
  * @author JAcob Christiansen <jach@wayf.dk>
- * @version $Id$
  */
 abstract class sspmod_consent_Store
 {

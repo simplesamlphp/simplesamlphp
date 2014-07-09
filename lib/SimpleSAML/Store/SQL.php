@@ -4,7 +4,6 @@
  * A SQL datastore.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 

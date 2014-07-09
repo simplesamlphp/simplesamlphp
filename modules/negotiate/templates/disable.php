@@ -6,7 +6,6 @@
  * @author Mathias Meisfjordskar, University of Oslo.
  *         <mathias.meisfjordskar@usit.uio.no>
  * @package simpleSAMLphp
- * @version $Id$
  */
 $this->includeAtTemplateBase('includes/header.php');
 ?>

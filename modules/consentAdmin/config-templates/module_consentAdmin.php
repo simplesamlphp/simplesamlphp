@@ -4,7 +4,6 @@
  *
  * @author Jacob Christiansen, <jach@wayf.dk>
  * @package simpleSAMLphp
- * @version $Id$
  */
 $config = array(
 	/*

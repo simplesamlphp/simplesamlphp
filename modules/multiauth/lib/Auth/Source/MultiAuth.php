@@ -6,7 +6,6 @@
  *
  * @author Lorenzo Gil, Yaco Sistemas S.L.
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {

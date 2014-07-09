@@ -6,7 +6,6 @@
  * This class builds SAML 2.0 metadata for an entity by examining the metadata for the entity.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Metadata_SAMLBuilder {
 

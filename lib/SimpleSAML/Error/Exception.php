@@ -7,7 +7,6 @@
  *
  * @author Thomas Graff <thomas.graff@uninett.no>
  * @package simpleSAMLphp_base
- * @version $Id$
  */
 class SimpleSAML_Error_Exception extends Exception {
 

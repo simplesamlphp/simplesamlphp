@@ -13,7 +13,6 @@
  * - 'sppp': URL to the privacy policy of the destination, or FALSE.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 assert('is_array($this->data["srcMetadata"])');
 assert('is_array($this->data["dstMetadata"])');

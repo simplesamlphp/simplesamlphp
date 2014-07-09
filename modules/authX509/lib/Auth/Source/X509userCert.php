@@ -6,7 +6,6 @@
  *
  * @author Emmanuel Dreyfus <manu@netbsd.org>
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
 

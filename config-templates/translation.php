@@ -2,7 +2,6 @@
 /* 
  * Configuration 
  * 
- * $Id$
  */
 
 $config = array (

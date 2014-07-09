@@ -7,7 +7,6 @@
  *
  * @author Ryan Panning <panman@traileyes.com>
  * @package simpleSAMLphp
- * @version $Id$
  */
 abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_ProcessingFilter {
 

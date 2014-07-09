@@ -11,7 +11,6 @@
  *
  * @author Daniel Tsosie
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_adfs_XMLSecurityDSig extends XMLSecurityDSig {
 

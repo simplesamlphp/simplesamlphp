@@ -7,7 +7,6 @@
  * - 'params': Parameters which should be included in the request.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 

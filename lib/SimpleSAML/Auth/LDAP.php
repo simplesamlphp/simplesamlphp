@@ -17,7 +17,6 @@ define('ERR_AS_ATTRIBUTE', 6);
  * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @author Anders Lund, UNINETT AS. <anders.lund@uninett.no>
  * @package simpleSAMLphp
- * @version $Id: Session.php 244 2008-02-04 08:36:24Z andreassolberg $
  */
 class SimpleSAML_Auth_LDAP {
 

@@ -5,7 +5,6 @@
  *
  * @author Gyula Szabo MTA SZTAKI
  * @package simpleSAMLphp
- * @version $Id$
  *
  * You just follow the 'source' => 'destination' schema. In this example user's  * cn will be the user's displayName.
  *

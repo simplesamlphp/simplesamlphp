@@ -4,7 +4,6 @@
  *
  * @author Hans Zandbelt, SURFnet bv, <hans.zandbelt@surfnet.nl>
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 SimpleSAML_Logger::info('ADFS - IdP.prp: Accessing ADFS IdP endpoint prp');

@@ -7,7 +7,6 @@
  * @author Mathias Meisfjordskar, University of Oslo.
  * 	   <mathias.meisfjordskar@usit.uio.no>
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
