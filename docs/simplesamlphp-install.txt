@@ -48,8 +48,7 @@ What actual packages are required for the various extensions varies between diff
 Download and install simpleSAMLphp
 ----------------------------------
 
-The most recent relase of simpleSAMLphp is found at [code.google.com/p/simplesamlphp/](http://code.google.com/p/simplesamlphp/).
-To obtain the latest stable version, download the archive file listed under Featured Dowloads.
+The most recent relase of simpleSAMLphp is found at [https://simplesamlphp.org/download](https://simplesamlphp.org/download).
 
 Go to the directory where you want to install simpleSAMLphp, and extract the archive file you just downloaded:
 
