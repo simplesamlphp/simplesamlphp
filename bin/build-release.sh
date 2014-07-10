@@ -22,23 +22,28 @@ fi
 
 umask 0022
 
-REPOPATH="http://simplesamlphp.googlecode.com/svn/tags/$TAG/"
+REPOPATH="https://github.com/simplesamlphp/simplesamlphp.git"
 
-svn export "$REPOPATH"
+git clone $REPOPATH $TAG
+cd $TAG
+git checkout $TAG
+cd ..
 
 # Use composer only on newer versions that have a composer.json
 if [ -f "$TAG/composer.json" ]; then
-    if [ ! -x composer.phar ]; then
-        curl -sS https://getcomposer.org/installer | php
+    if [ ! -x "TAG/composer.phar" ]; then
+        curl -sS https://getcomposer.org/installer | php -- --install-dir=$TAG
     fi
 
     # Install dependencies (without vcs history or dev tools)
-    php composer.phar install --no-dev --prefer-dist -o -d "$TAG"
+    php "$TAG/composer.phar" install --no-dev --prefer-dist -o -d "$TAG"
 fi
 
 mkdir -p "$TAG/config" "$TAG/metadata"
 cp -rv "$TAG/config-templates/"* "$TAG/config/"
 cp -rv "$TAG/metadata-templates/"* "$TAG/metadata/"
+rm -rf "$TAG/.git"
+rm "$TAG/composer.phar"
 tar --owner 0 --group 0 -cvzf "$TAG.tar.gz" "$TAG"
 rm -rf "$TAG"
 
