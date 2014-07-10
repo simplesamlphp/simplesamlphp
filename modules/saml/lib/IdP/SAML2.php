@@ -63,11 +63,12 @@ class sspmod_saml_IdP_SAML2 {
 		/* Register the session association with the IdP. */
 		$idp->addAssociation($association);
 
-		SimpleSAML_Stats::log('saml:idp:Response', array(
+		$statsData = array(
 			'spEntityID' => $spEntityId,
 			'idpEntityID' => $idpMetadata->getString('entityid'),
 			'protocol' => 'saml2',
-		));
+		);
+		SimpleSAML_Stats::log('saml:idp:Response', $statsData);
 
 		/* Send the response. */
 		$binding = SAML2_Binding::getBinding($protocolBinding);
@@ -117,12 +118,13 @@ class sspmod_saml_IdP_SAML2 {
 		);
 		$ar->setStatus($status);
 
-		SimpleSAML_Stats::log('saml:idp:Response:error', array(
+		$statsData = array(
 			'spEntityID' => $spEntityId,
 			'idpEntityID' => $idpMetadata->getString('entityid'),
 			'protocol' => 'saml2',
 			'error' => $status,
-		));
+		);
+		SimpleSAML_Stats::log('saml:idp:Response:error', $statsData);
 
 		$binding = SAML2_Binding::getBinding($protocolBinding);
 		$binding->send($ar);

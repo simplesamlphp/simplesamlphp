@@ -36,11 +36,12 @@ class sspmod_saml_IdP_SAML1 {
 		$config = SimpleSAML_Configuration::getInstance();
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-		SimpleSAML_Stats::log('saml:idp:Response', array(
+		$statsData = array(
 			'spEntityID' => $spEntityId,
 			'idpEntityID' => $idpMetadata->getString('entityid'),
 			'protocol' => 'saml1',
-		));
+		);
+		SimpleSAML_Stats::log('saml:idp:Response', $statsData);
 
 		/* Generate and send response. */
 		$ar = new SimpleSAML_XML_Shib13_AuthnResponse();
