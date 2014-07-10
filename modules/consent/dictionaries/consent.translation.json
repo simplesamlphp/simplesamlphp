@@ -688,6 +688,8 @@
 		"ro": "Anuleaz\u0103 cererea de autentificare la SPNAME",
 		"ar": "\u0625\u0644\u063a\u0627\u0621 \u0639\u0645\u0644\u064a\u0629 \u0627\u0644\u062f\u062e\u0648\u0644 \u0644SPNAME",
 		"ru": "\u041f\u0440\u0435\u043a\u0440\u0430\u0442\u0438\u0442\u044c \u043b\u043e\u0433\u0438\u043d \u0432 SPNAME",
-		"cs": "Zru\u0161it p\u0159ihl\u00e1\u0161en\u00ed k SPNAME"
+		"cs": "Zru\u0161it p\u0159ihl\u00e1\u0161en\u00ed k SPNAME",
+		"hr": "Odustani od prijave u SPNAME",
+		"zh": "\u4e2d\u6b62\u767b\u5f55\u5230SPNAME"
 	}
 }
