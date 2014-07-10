@@ -278,11 +278,6 @@ class SimpleSAML_Configuration {
 
 		$dir = dirname($this->filename);
 
-		if ($instancename === 'simplesaml') {
-			/* For backwards compatibility. */
-			self::setConfigDir($path, 'simplesaml');
-		}
-
 		self::$instance[$instancename] = self::loadFromFile($dir . '/' . $filename, TRUE);
 		return self::$instance[$instancename];
 	}
