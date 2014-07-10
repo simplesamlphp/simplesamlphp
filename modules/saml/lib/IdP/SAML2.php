@@ -63,11 +63,15 @@ class sspmod_saml_IdP_SAML2 {
 		/* Register the session association with the IdP. */
 		$idp->addAssociation($association);
 
-		SimpleSAML_Stats::log('saml:idp:Response', array(
+		$statsData = array(
 			'spEntityID' => $spEntityId,
 			'idpEntityID' => $idpMetadata->getString('entityid'),
 			'protocol' => 'saml2',
-		));
+		);
+		if (isset($state['saml:AuthnRequestReceivedAt'])) {
+			$statsData['logintime'] = microtime(TRUE) - $state['saml:AuthnRequestReceivedAt'];
+		}
+		SimpleSAML_Stats::log('saml:idp:Response', $statsData);
 
 		/* Send the response. */
 		$binding = SAML2_Binding::getBinding($protocolBinding);
@@ -117,12 +121,16 @@ class sspmod_saml_IdP_SAML2 {
 		);
 		$ar->setStatus($status);
 
-		SimpleSAML_Stats::log('saml:idp:Response:error', array(
+		$statsData = array(
 			'spEntityID' => $spEntityId,
 			'idpEntityID' => $idpMetadata->getString('entityid'),
 			'protocol' => 'saml2',
 			'error' => $status,
-		));
+		);
+		if (isset($state['saml:AuthnRequestReceivedAt'])) {
+			$statsData['logintime'] = microtime(TRUE) - $state['saml:AuthnRequestReceivedAt'];
+		}
+		SimpleSAML_Stats::log('saml:idp:Response:error', $statsData);
 
 		$binding = SAML2_Binding::getBinding($protocolBinding);
 		$binding->send($ar);
@@ -375,6 +383,7 @@ class sspmod_saml_IdP_SAML2 {
 			'saml:NameIDFormat' => $nameIDFormat,
 			'saml:AllowCreate' => $allowCreate,
 			'saml:Extensions' => $extensions,
+			'saml:AuthnRequestReceivedAt' => microtime(TRUE),
 		);
 
 		$idp->handleAuthenticationRequest($state);
