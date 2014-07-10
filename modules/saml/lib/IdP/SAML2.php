@@ -68,6 +68,9 @@ class sspmod_saml_IdP_SAML2 {
 			'idpEntityID' => $idpMetadata->getString('entityid'),
 			'protocol' => 'saml2',
 		);
+		if (isset($state['saml:AuthnRequestReceivedAt'])) {
+			$statsData['logintime'] = microtime(TRUE) - $state['saml:AuthnRequestReceivedAt'];
+		}
 		SimpleSAML_Stats::log('saml:idp:Response', $statsData);
 
 		/* Send the response. */
@@ -124,6 +127,9 @@ class sspmod_saml_IdP_SAML2 {
 			'protocol' => 'saml2',
 			'error' => $status,
 		);
+		if (isset($state['saml:AuthnRequestReceivedAt'])) {
+			$statsData['logintime'] = microtime(TRUE) - $state['saml:AuthnRequestReceivedAt'];
+		}
 		SimpleSAML_Stats::log('saml:idp:Response:error', $statsData);
 
 		$binding = SAML2_Binding::getBinding($protocolBinding);
@@ -377,6 +383,7 @@ class sspmod_saml_IdP_SAML2 {
 			'saml:NameIDFormat' => $nameIDFormat,
 			'saml:AllowCreate' => $allowCreate,
 			'saml:Extensions' => $extensions,
+			'saml:AuthnRequestReceivedAt' => microtime(TRUE),
 		);
 
 		$idp->handleAuthenticationRequest($state);

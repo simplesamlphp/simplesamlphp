@@ -41,6 +41,9 @@ class sspmod_saml_IdP_SAML1 {
 			'idpEntityID' => $idpMetadata->getString('entityid'),
 			'protocol' => 'saml1',
 		);
+		if (isset($state['saml:AuthnRequestReceivedAt'])) {
+			$statsData['logintime'] = microtime(TRUE) - $state['saml:AuthnRequestReceivedAt'];
+		}
 		SimpleSAML_Stats::log('saml:idp:Response', $statsData);
 
 		/* Generate and send response. */
@@ -122,6 +125,7 @@ class sspmod_saml_IdP_SAML1 {
 
 			'saml:shire' => $shire,
 			'saml:target' => $target,
+			'saml:AuthnRequestReceivedAt' => microtime(TRUE),
 		);
 
 		$idp->handleAuthenticationRequest($state);
