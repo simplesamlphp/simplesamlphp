@@ -247,7 +247,8 @@ Released 2013-06-05.
   * Bugfix for SAML SP metadata signing.
   * Ignore default technical contact.
   * Support for MDUI elements in SP metadata.
-  * Support for more contact types in SP metadata. 
+  * Support for more contact types in SP metadata.
+  * New information in statistics with the time it took for a login to happen.
 
 ### `sanitycheck`
 
