@@ -206,27 +206,25 @@ class sspmod_metarefresh_MetaLoader {
 
 
 	/**
-	 * Parse XML metadata and return entities
+	 * Recursively load all EntityDescriptor elements inside an EntitiesDescriptor or nested EntitiesDescriptor
+	 * elements. This function fails gracefully when one entity cannot be parsed, and tries to continue processing.
+	 *
+	 * @param DOMElement $root The root DOMElement to start loading from.
+	 *
+	 * @return array The array of entities loaded from the root element.
 	 */
-	private function loadXML($data, $source) {
+	private function recursiveLoadXML(DOMElement $root) {
 		$entities = array();
-		$doc = new DOMDocument();
-		$res = $doc->loadXML($data);
-		if($res !== TRUE) {
-			throw new Exception('Failed to read XML from ' . $source['src']);
-		}
-		if($doc->documentElement ===  NULL) throw new Exception('Opened file is not an XML document: ' . $source['src']);
-
-		if (SimpleSAML_Utilities::isDOMElementOfType($doc->documentElement, 'EntitiesDescriptor', '@md') === TRUE) {
-			foreach (SAML2_Utils::xpQuery($doc->documentElement,
-				'./saml_metadata:EntityDescriptor|./saml_metadata:EntitiesDescriptor') as $node) {
-
-				if ($node->localName === 'EntityDescriptor') {
+		if (SimpleSAML_Utilities::isDOMElementOfType($root, 'EntitiesDescriptor', '@md') === TRUE) {
+			foreach (SAML2_Utils::xpQuery($root,
+				'./saml_metadata:EntityDescriptor|./saml_metadata:EntitiesDescriptor') as $element)
+			{
+				if ($element->localName === 'EntityDescriptor') {
 					try {
 						$entities = array_merge($entities,
-							SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($node));
+							SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($element));
 					} catch (Exception $e) {
-						$entityID = $node->getAttribute('entityID');
+						$entityID = $element->getAttribute('entityID');
 						if (empty($entityID)) {
 							$entityID = "unknown";
 						}
@@ -234,14 +232,29 @@ class sspmod_metarefresh_MetaLoader {
 							$e->getMessage());
 					}
 				} else {
-					$entities = array_merge($entities, $this->loadXML($node->ownerDocument->saveXML($node), $source));
+					$entities = array_merge($entities, $this->recursiveLoadXML($element));
 				}
 			}
 		} else {
-			$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($doc->documentElement);
+			$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($root);
 		}
 
 		return $entities;
+	}
+
+
+	/**
+	 * Parse XML metadata and return entities
+	 */
+	private function loadXML($data, $source) {
+		$doc = new DOMDocument();
+		$res = $doc->loadXML($data);
+		if($res !== TRUE) {
+			throw new Exception('Failed to read XML from ' . $source['src']);
+		}
+		if($doc->documentElement ===  NULL) throw new Exception('Opened file is not an XML document: ' . $source['src']);
+
+		return $this->recursiveLoadXML($doc->documentElement);
 	}
 
 
