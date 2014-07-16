@@ -241,7 +241,7 @@ class SimpleSAML_Auth_State {
 			 */
 
 			$msg = 'Wrong stage in state. Was \'' . $state[self::STAGE] .
-				'\', shoud be \'' . $stage . '\'.';
+				'\', should be \'' . $stage . '\'.';
 
 			SimpleSAML_Logger::warning($msg);
 
