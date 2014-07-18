@@ -40,7 +40,6 @@ Released TBD.
 ### `metarefresh`
 
   * Use cached metadata if something goes wrong when refreshing feeds.
-  * Discard only offending entities instead of entire aggregates when metadata parsing goes wrong.
 
 ### `openidProvider`
 
