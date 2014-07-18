@@ -206,47 +206,10 @@ class sspmod_metarefresh_MetaLoader {
 
 
 	/**
-	 * Recursively load all EntityDescriptor elements inside an EntitiesDescriptor or nested EntitiesDescriptor
-	 * elements. This function fails gracefully when one entity cannot be parsed, and tries to continue processing.
-	 *
-	 * @param DOMElement $root The root DOMElement to start loading from.
-	 *
-	 * @return array The array of entities loaded from the root element.
-	 */
-	private function recursiveLoadXML(DOMElement $root) {
-		$entities = array();
-		if (SimpleSAML_Utilities::isDOMElementOfType($root, 'EntitiesDescriptor', '@md') === TRUE) {
-			foreach (SAML2_Utils::xpQuery($root,
-				'./saml_metadata:EntityDescriptor|./saml_metadata:EntitiesDescriptor') as $element)
-			{
-				if ($element->localName === 'EntityDescriptor') {
-					try {
-						$entities = array_merge($entities,
-							SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($element));
-					} catch (Exception $e) {
-						$entityID = $element->getAttribute('entityID');
-						if (empty($entityID)) {
-							$entityID = "unknown";
-						}
-						SimpleSAML_Logger::warning('[metarefresh]: Error while parsing entity ('.$entityID.'): '.
-							$e->getMessage());
-					}
-				} else {
-					$entities = array_merge($entities, $this->recursiveLoadXML($element));
-				}
-			}
-		} else {
-			$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($root);
-		}
-
-		return $entities;
-	}
-
-
-	/**
 	 * Parse XML metadata and return entities
 	 */
 	private function loadXML($data, $source) {
+		$entities = array();
 		$doc = new DOMDocument();
 		$res = $doc->loadXML($data);
 		if($res !== TRUE) {
@@ -254,7 +217,31 @@ class sspmod_metarefresh_MetaLoader {
 		}
 		if($doc->documentElement ===  NULL) throw new Exception('Opened file is not an XML document: ' . $source['src']);
 
-		return $this->recursiveLoadXML($doc->documentElement);
+		if (SimpleSAML_Utilities::isDOMElementOfType($doc->documentElement, 'EntitiesDescriptor', '@md') === TRUE) {
+			foreach (SAML2_Utils::xpQuery($doc->documentElement,
+				'./saml_metadata:EntityDescriptor|./saml_metadata:EntitiesDescriptor') as $node) {
+
+				if ($node->localName === 'EntityDescriptor') {
+					try {
+						$entities = array_merge($entities,
+							SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($node));
+					} catch (Exception $e) {
+						$entityID = $node->getAttribute('entityID');
+						if (empty($entityID)) {
+							$entityID = "unknown";
+						}
+						SimpleSAML_Logger::warning('[metarefresh]: Error while parsing entity ('.$entityID.'): '.
+							$e->getMessage());
+					}
+				} else {
+					$entities = array_merge($entities, $this->loadXML($node->ownerDocument->saveXML($node), $source));
+				}
+			}
+		} else {
+			$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($doc->documentElement);
+		}
+
+		return $entities;
 	}
 
 
