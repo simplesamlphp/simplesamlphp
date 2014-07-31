@@ -27,7 +27,8 @@
 		"id": "Dilarang mengakses",
 		"sr": "Pristup zabranjen",
 		"ro": "Accesul nu este permis",
-		"cs": "P\u0159\u00edstup odm\u00edtnut"
+		"cs": "P\u0159\u00edstup odm\u00edtnut",
+		"eu": "Sarrera debekatua"
 	},
 	"403_text": {
 		"es": "No tiene los privilegios necesarios para acceder a esta aplicaci\u00f3n. Si considera que esto no es correcto, consulte el administrador.",
@@ -56,6 +57,7 @@
 		"id": "Anda tidak memiliki hak yang diperlukan untuk mengakses aplikasi ini. Silahkan menghubungi administrator jika seharusnya anda dapat mengakses aplikasi ini.",
 		"sr": "Nemate potrebna ovla\u0161\u0107enja za pristup ovoj aplikaciji. Molimo kontaktirajte administratora aplikacije ako smatrate da bi vam pristup aplikaciji trebao biti omogu\u0107en.",
 		"ro": "Nu ave\u021bi drepturile necesare pentru a accesa\/folosi aceast\u0103 aplica\u021bie. V\u0103 rug\u0103m s\u0103 contacta\u021bi administratorul sistemului dac\u0103 considera\u021bi aceast\u0103 afirma\u021bie ca fiind incorect\u0103.",
-		"cs": "Nem\u00e1te dostate\u010dn\u00e1 pr\u00e1va pro p\u0159\u00edstup k t\u00e9to aplikaci. Pros\u00edm, kontaktujte administr\u00e1tora, pokud toto omezen\u00ed shled\u00e1v\u00e1te nespr\u00e1vn\u00e9."
+		"cs": "Nem\u00e1te dostate\u010dn\u00e1 pr\u00e1va pro p\u0159\u00edstup k t\u00e9to aplikaci. Pros\u00edm, kontaktujte administr\u00e1tora, pokud toto omezen\u00ed shled\u00e1v\u00e1te nespr\u00e1vn\u00e9.",
+		"eu": "Ez duzu beharrezko pribilegiorik aplikazio honetan sartzeko. Hau okerra dela baderitzozu, jar zaitez administratzailearekin harremanetan. "
 	}
 }

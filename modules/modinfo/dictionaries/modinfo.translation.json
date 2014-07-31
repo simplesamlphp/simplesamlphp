@@ -25,7 +25,8 @@
 		"id": "Module-module yang tersedia",
 		"sr": "Raspolo\u017eivi moduli",
 		"ro": "Module disponibile",
-		"cs": "Dostupn\u00e9 moduly"
+		"cs": "Dostupn\u00e9 moduly",
+		"eu": "Modulu erabilgarriak"
 	},
 	"modlist_name": {
 		"no": "Navn",
@@ -53,7 +54,8 @@
 		"id": "Nama",
 		"sr": "Naziv",
 		"ro": "Nume",
-		"cs": "Jm\u00e9no"
+		"cs": "Jm\u00e9no",
+		"eu": "Izena"
 	},
 	"modlist_status": {
 		"no": "Status",
@@ -81,7 +83,8 @@
 		"id": "Status",
 		"sr": "Status",
 		"ro": "Stare",
-		"cs": "Stav"
+		"cs": "Stav",
+		"eu": "Egoera"
 	},
 	"modlist_enabled": {
 		"no": "P\u00e5sl\u00e5tt",
@@ -109,7 +112,8 @@
 		"id": "Diaktifkan",
 		"sr": "Omogu\u0107en",
 		"ro": "Activat\/Disponibil",
-		"cs": "Povolen\u00fd"
+		"cs": "Povolen\u00fd",
+		"eu": "Aktibatu"
 	},
 	"modlist_disabled": {
 		"no": "Avsl\u00e5tt",
@@ -137,6 +141,7 @@
 		"id": "Dinonaktifkan",
 		"sr": "Onemogu\u0107en",
 		"ro": "Dezactivat\/Nedisponibil",
-		"cs": "Zak\u00e1zan\u00fd"
+		"cs": "Zak\u00e1zan\u00fd",
+		"eu": "Desaktibatu"
 	}
 }

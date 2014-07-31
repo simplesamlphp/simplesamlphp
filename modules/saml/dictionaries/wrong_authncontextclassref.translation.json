@@ -16,7 +16,9 @@
 		"ru": "\u041d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u044b\u0439 \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438",
 		"cs": "\u0160patn\u00fd autentiza\u010dn\u00ed kontext",
 		"hr": "Neispravan autentikacijski kontekst",
-		"zh": "\u9519\u8bef\u7684\u9a8c\u8bc1\u4e0a\u4e0b\u6587"
+		"zh": "\u9519\u8bef\u7684\u9a8c\u8bc1\u4e0a\u4e0b\u6587",
+		"eu": "Kautotze testu inguru okerra",
+		"de": "Falscher Authentifizierungskontext"
 	},
 	"description": {
 		"hu": "A m\u00f3d, ahogyan azonos\u00edtott t\u00e9ged a szem\u00e9lyazonoss\u00e1g szolg\u00e1ltat\u00f3d, nem elfogadott enn\u00e9l a szolg\u00e1ltat\u00e1sn\u00e1l. Val\u00f3sz\u00edn\u0171leg t\u00fal gyenge, vagy nem k\u00e9tfaktoros.",
@@ -35,6 +37,8 @@
 		"ru": "\u0412\u0430\u0448 \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u043d\u0435 \u043f\u0440\u0438\u043d\u044f\u0442 \u0434\u0430\u043d\u043d\u044b\u043c \u0441\u0435\u0440\u0432\u0438\u0441\u043e\u043c. \u041b\u0438\u0431\u043e \u0441\u043b\u0438\u0448\u043a\u043e\u043c \u0441\u043b\u0430\u0431\u044b\u0439, \u043b\u0438\u0431\u043e \u043d\u0435 \u0434\u0432\u0443\u0445-\u0444\u0430\u043a\u0442\u043e\u0440\u043d\u044b\u0439.",
 		"cs": "V\u00e1\u0161 autentiza\u010dn\u00ed kontext nen\u00ed touto slu\u017ebou akceptov\u00e1n. Pravd\u011bpodobn\u00e9 p\u0159\u00edli\u0161 snadn\u00e9 nebo nedvoufaktorov\u00e9.",
 		"hr": "Odabrana usluga ne prihva\u0107a va\u0161 autentikacijski kontekst. Najvjerojatnije zato \u0161to va\u0161 autentikacijski servis ne zadovoljava razinu sigurnosti koju odabrana usluga zahtijeva.",
-		"zh": "\u6b64\u670d\u52a1\u4e0d\u63a5\u53d7\u60a8\u7684\u9a8c\u8bc1\u4e0a\u4e0b\u6587\u3002\u53ef\u80fd\u56e0\u4e3a\u9a8c\u8bc1\u592a\u5f31\u6216\u975e\u53cc\u56e0\u7d20\u9a8c\u8bc1\u3002"
+		"zh": "\u6b64\u670d\u52a1\u4e0d\u63a5\u53d7\u60a8\u7684\u9a8c\u8bc1\u4e0a\u4e0b\u6587\u3002\u53ef\u80fd\u56e0\u4e3a\u9a8c\u8bc1\u592a\u5f31\u6216\u975e\u53cc\u56e0\u7d20\u9a8c\u8bc1\u3002",
+		"eu": "Zerbitzu honek ez du onartzen zure kautotze testuingurua. Ziurrenik ahulegia da edo ez da bi faktoredun kautotzea. ",
+		"de": "Ihr Authentifizierungskontext wird von diesem Dienst nicht akzeptiert. Wahrscheinlich ist er zu schwach oder nicht Zwei-Faktor."
 	}
 }

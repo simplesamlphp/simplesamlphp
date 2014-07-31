@@ -20,6 +20,7 @@ Released TBD.
   * Several functions, classes and interfaces marked as deprecated.
   * Bug fixes and documentation enhancements.
   * Updated translations.
+  * New language: Basque.
 
 ### `adfs`
 

@@ -354,7 +354,7 @@ $config = array(
     'language.available' => array(
         'en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'fr', 'it', 'nl', 'lb', 'cs',
         'sl', 'lt', 'hr', 'hu', 'pl', 'pt', 'pt-br', 'tr', 'ja', 'zh', 'zh-tw', 'ru', 'et',
-        'he', 'id', 'sr', 'lv', 'ro'
+        'he', 'id', 'sr', 'lv', 'ro', 'eu'
     ),
     'language.rtl' => array('ar', 'dv', 'fa', 'ur', 'he'),
     'language.default' => 'en',

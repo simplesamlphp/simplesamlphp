@@ -24,7 +24,8 @@
 		"id": "Aggregator metadata",
 		"sr": "Agregator metapodataka",
 		"ro": "Agregator de metadate",
-		"cs": "Metadata agreg\u00e1tor"
+		"cs": "Metadata agreg\u00e1tor",
+		"eu": "Metadatu eranslea"
 	},
 	"aggregator_header": {
 		"no": "Aggregatorer",
@@ -51,7 +52,8 @@
 		"id": "Aggregator",
 		"sr": "Agregatori",
 		"ro": "Agregatoare",
-		"cs": "Agreg\u00e1tory"
+		"cs": "Agreg\u00e1tory",
+		"eu": "Eransleak"
 	},
 	"no_aggregators": {
 		"no": "Ingen aggregator definert i konfigurasjonen",
@@ -78,7 +80,8 @@
 		"id": "Tidak ada aggregator yang didefinisikan di konfigurasi",
 		"sr": "U pode\u0161avanjima nije definisan nijedan agregator.",
 		"ro": "Nu sunt definite agregatoare \u00een configurare.",
-		"cs": "\u017d\u00e1dn\u00e9 agreg\u00e1tory nejsou definov\u00e1ny v konfiguraci."
+		"cs": "\u017d\u00e1dn\u00e9 agreg\u00e1tory nejsou definov\u00e1ny v konfiguraci.",
+		"eu": "Ez da inolako eranslerik zehaztu konfigurazioan. "
 	},
 	"text": {
 		"no": "tekst",
@@ -105,6 +108,7 @@
 		"id": "teks",
 		"sr": "tekst",
 		"ro": "text",
-		"cs": "text"
+		"cs": "text",
+		"eu": "testua"
 	}
 }
