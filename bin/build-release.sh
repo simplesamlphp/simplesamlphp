@@ -2,21 +2,25 @@
 
 set -e
 
-TAG=$1
+VERSION=$1
+
 if ! shift; then
-    echo "$0: Missing required tag parameter." >&2
+    echo "$0: Missing required version parameter." >&2
     exit 1
 fi
 
-if [ -z "$TAG" ]; then
-    echo "$0: Empty tag parameter." >&2
+if [ -z "$VERSION" ]; then
+    echo "$0: Empty version parameter." >&2
     exit 1
 fi
+
+TAG="v$VERSION"
+TARGET="simplesamlphp-$VERSION"
 
 cd /tmp
 
-if [ -a "$TAG" ]; then
-    echo "$0: Destination already exists: $TAG" >&2
+if [ -a "$TARGET" ]; then
+    echo "$0: Destination already exists: $TARGET" >&2
     exit 1
 fi
 
@@ -24,27 +28,28 @@ umask 0022
 
 REPOPATH="https://github.com/simplesamlphp/simplesamlphp.git"
 
-git clone $REPOPATH $TAG
-cd $TAG
+git clone $REPOPATH $TARGET
+cd $TARGET
 git checkout $TAG
 cd ..
 
 # Use composer only on newer versions that have a composer.json
-if [ -f "$TAG/composer.json" ]; then
-    if [ ! -x "TAG/composer.phar" ]; then
-        curl -sS https://getcomposer.org/installer | php -- --install-dir=$TAG
+if [ -f "$TARGET/composer.json" ]; then
+    if [ ! -x "$TARGET/composer.phar" ]; then
+        curl -sS https://getcomposer.org/installer | php -- --install-dir=$TARGET
     fi
 
     # Install dependencies (without vcs history or dev tools)
-    php "$TAG/composer.phar" install --no-dev --prefer-dist -o -d "$TAG"
+    php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
 fi
 
-mkdir -p "$TAG/config" "$TAG/metadata"
-cp -rv "$TAG/config-templates/"* "$TAG/config/"
-cp -rv "$TAG/metadata-templates/"* "$TAG/metadata/"
-rm -rf "$TAG/.git"
-rm "$TAG/composer.phar"
-tar --owner 0 --group 0 -cvzf "$TAG.tar.gz" "$TAG"
-rm -rf "$TAG"
+mkdir -p "$TARGET/config" "$TARGET/metadata"
+cp -rv "$TARGET/config-templates/"* "$TARGET/config/"
+cp -rv "$TARGET/metadata-templates/"* "$TARGET/metadata/"
+rm -rf "$TARGET/.git"
+rm "$TARGET/composer.phar"
+tar --owner 0 --group 0 -cvzf "$TARGET.tar.gz" "$TARGET"
+rm -rf "$TARGET"
 
-echo "Created: /tmp/$TAG.tar.gz"
+echo "Created: /tmp/$TARGET.tar.gz"
+
