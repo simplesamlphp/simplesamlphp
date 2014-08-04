@@ -231,6 +231,17 @@ $config = array(
 
 
     /*
+     * Configure Session class for simpleSAMLphp.
+     *
+     * - 'simplesaml': Use 'SimpleSAML_Session' as session class.
+     * - 'module:Class': Use a class provided by a module. Class must extend SimpleSAML_Session.
+     *
+     * The default value is 'simplesaml'.
+     *
+     */
+    'session.type' => 'simplesaml',
+
+    /*
      * This value is the duration of the session in seconds. Make sure that the time duration of
      * cookies both at the SP and the IdP exceeds this duration.
      */

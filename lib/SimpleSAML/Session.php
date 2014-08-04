@@ -35,13 +35,13 @@ class SimpleSAML_Session {
 	 *
 	 * @var array
 	 */
-	private static $sessions = array();
+	protected static $sessions = array();
 
 
 	/**
 	 * This variable holds the instance of the session - Singleton approach.
 	 */
-	private static $instance = null;
+	protected static $instance = null;
 	
 
 	/**
@@ -49,7 +49,7 @@ class SimpleSAML_Session {
 	 *
 	 * @var string|NULL
 	 */
-	private $sessionId;
+	protected $sessionId;
 
 
 	/**
@@ -57,7 +57,7 @@ class SimpleSAML_Session {
 	 *
 	 * @var boolean|FALSE
 	 */
-	private $transient = FALSE;
+	protected $transient = FALSE;
 
 
 	/**
@@ -67,16 +67,16 @@ class SimpleSAML_Session {
 	 *
 	 * @var int
 	 */
-	private $trackid = 0;
+	protected $trackid = 0;
 
 
 	/**
 	 * @deprecated
 	 */
-	private $authority = null;
+	protected $authority = null;
 
 
-	private $rememberMeExpire = null;
+	protected $rememberMeExpire = null;
 
 
 	/**
@@ -85,7 +85,7 @@ class SimpleSAML_Session {
 	 *
 	 * @var bool
 	 */
-    private $dirty = false;
+    protected $dirty = false;
 
 
 	/**
@@ -98,7 +98,7 @@ class SimpleSAML_Session {
      *
      * @var array
 	 */
-	private $dataStore = null;
+	protected $dataStore = null;
 
 
 	/**
@@ -109,7 +109,7 @@ class SimpleSAML_Session {
 	 *
 	 * @var array
 	 */
-	private $associations = array();
+	protected $associations = array();
 
 
 	/**
@@ -119,7 +119,7 @@ class SimpleSAML_Session {
 	 *
 	 * @var string|NULL
 	 */
-	private $authToken;
+	protected $authToken;
 
 
 	/**
@@ -129,7 +129,7 @@ class SimpleSAML_Session {
 	 *
 	 * @var array|NULL  Associative array of associative arrays.
 	 */
-	private $authData;
+	protected $authData;
 
 
 	/**
@@ -213,7 +213,7 @@ class SimpleSAML_Session {
 			return self::$instance;
 		}
 
-
+		$globalConfig = SimpleSAML_Configuration::getInstance();
 		/* Check if we have stored a session stored with the session
 		 * handler.
 		 */
@@ -223,7 +223,6 @@ class SimpleSAML_Session {
 			/* For some reason, we were unable to initialize this session. Use a transient session instead. */
 			self::useTransientSession();
 
-			$globalConfig = SimpleSAML_Configuration::getInstance();
 			if ($globalConfig->getBoolean('session.disable_fallback', FALSE) === TRUE) {
 				throw $e;
 			}
@@ -244,7 +243,20 @@ class SimpleSAML_Session {
 
 
 		/* Create a new session. */
-		self::$instance = new SimpleSAML_Session();
+		$sessionType = $globalConfig->getString('session.type', 'simplesaml');
+		switch ($sessionType) {
+			case 'simplesaml':
+				self::$instance = new SimpleSAML_Session();
+				break;
+			default:
+				if (strpos($sessionType, ':') === FALSE) {
+					throw new SimpleSAML_Error_Exception('Unknown datastore type: ' . var_export($sessionType, TRUE));
+				}
+				/* Session from module. */
+				$className = SimpleSAML_Module::resolveClass($sessionType, 'Session', 'SimpleSAML_Session');
+				self::$instance = new $className();
+		}
+		
 		return self::$instance;
 	}
 
@@ -818,7 +830,7 @@ class SimpleSAML_Session {
 	 * @param string $authority The authentication source we are logging out from.
 	 * @throws Exception If the handler is not a valid function or method.
 	 */
-	private function callLogoutHandlers($authority) {
+	protected function callLogoutHandlers($authority) {
 		assert('is_string($authority)');
 		assert('isset($this->authData[$authority])');
 
@@ -853,7 +865,7 @@ class SimpleSAML_Session {
 	 * if the only change to the session object is that some data has expired, it will not be
 	 * written back to the session store.
 	 */
-	private function expireData() {
+	protected function expireData() {
 
 		if(!is_array($this->dataStore)) {
 			return;
@@ -885,7 +897,7 @@ class SimpleSAML_Session {
 	 * This function deletes data which should be deleted on logout from the data store.
 	 * @deprecated
 	 */
-	private function expireDataLogout() {
+	protected function expireDataLogout() {
 
 		if(!is_array($this->dataStore)) {
 			return;
