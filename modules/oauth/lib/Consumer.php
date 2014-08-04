@@ -78,7 +78,7 @@ class sspmod_oauth_Consumer {
 		parse_str($response_req, $responseParsed);
 		
 		if(array_key_exists('error', $responseParsed))
-			throw new Exception('Error getting request token: ') . $responseParsed['error'];
+			throw new Exception('Error getting request token: ' . $responseParsed['error']);
 			
 		$requestToken = $responseParsed['oauth_token'];
 		$requestTokenSecret = $responseParsed['oauth_token_secret'];
@@ -114,7 +114,7 @@ class sspmod_oauth_Consumer {
 		parse_str($response_acc, $accessResponseParsed);
 		
 		if(array_key_exists('error', $accessResponseParsed))
-			throw new Exception('Error getting request token: ') . $accessResponseParsed['error'];
+			throw new Exception('Error getting request token: ' . $accessResponseParsed['error']);
 		
 		$accessToken = $accessResponseParsed['oauth_token'];
 		$accessTokenSecret = $accessResponseParsed['oauth_token_secret'];
@@ -144,7 +144,7 @@ class sspmod_oauth_Consumer {
 		$context = stream_context_create($opts);
 		$response = file_get_contents($url, FALSE, $context);
 		if ($response === FALSE) {
-			throw new SimpleSAML_Error_Exception('Failed to push definition file to ' . $pushURL);
+			throw new SimpleSAML_Error_Exception('Failed to push definition file to ' . $url);
 		}
 		return $response;
 	}
