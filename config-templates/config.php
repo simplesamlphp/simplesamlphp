@@ -242,11 +242,6 @@ $config = array(
     'session.type' => 'simplesaml',
 
     /*
-     * This value represents the session class. The default value is 'simplesaml' which means
-     * that it will use SimpleSAML_Session class.
-     * You can provide session class o
-
-    /*
      * This value is the duration of the session in seconds. Make sure that the time duration of
      * cookies both at the SP and the IdP exceeds this duration.
      */
