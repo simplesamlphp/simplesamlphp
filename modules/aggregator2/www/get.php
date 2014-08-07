@@ -5,7 +5,19 @@ if (!isset($_REQUEST['id'])) {
 }
 $id = (string) $_REQUEST['id'];
 
+$set = null;
+if (isset($_REQUEST['set'])) {
+    $set = explode(',', $_REQUEST['set']);
+}
+
+$excluded_entities = null;
+if (isset($_REQUEST['exclude'])) {
+    $excluded_entities = explode(',', $_REQUEST['exclude']);
+}
+
 $aggregator = sspmod_aggregator2_Aggregator::getAggregator($id);
+$aggregator->setFilters($set);
+$aggregator->excludeEntities($excluded_entities);
 $xml = $aggregator->getMetadata();
 
 $mimetype = 'application/samlmetadata+xml';
