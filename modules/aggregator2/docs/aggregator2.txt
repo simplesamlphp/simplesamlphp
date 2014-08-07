@@ -55,7 +55,8 @@ The aggregator can be configured with the following options:
 
 `sign.privatekey`
 :   The private key that should be used to sign the metadata, in PEM format.
-    The path to the private key can be absolute, or it can be relative to the `cert`-directory.
+    The path to the private key can be absolute, or it can be relative to the `cert`-directory. Skip this option or
+    set it to NULL if you don't want to sign the generated metadata.
 
 `sign.privatekey_pass`
 :   The password for the private key.
