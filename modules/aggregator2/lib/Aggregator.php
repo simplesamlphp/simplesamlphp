@@ -255,7 +255,6 @@ class sspmod_aggregator2_Aggregator {
 			SimpleSAML_Utilities::writeFile($expireFile, $expireInfo);
 		} catch (Exception $e) {
 			SimpleSAML_Logger::warning($this->logLoc . 'Unable to write expiration info to ' . var_export($expireFile, TRUE));
-			return $metadata;
 		}
 
 	}
