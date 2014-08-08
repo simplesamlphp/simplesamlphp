@@ -90,37 +90,21 @@ The aggregator can be configured with the following options:
     with the set of entities desired, or an array of strings with all the different sets to filter by. The following
     sets are available:
 
-*   `saml2`
+: * `saml2`: all the entities that support the SAML 2.0 protocol.
 
-:   All the entities that support the SAML 2.0 protocol.
+: * `shib13` all the entities that support the SAML 1.1 protocol.
 
-*   `shib13`
+: * `saml20-idp` all the identity providers that support the SAML 2.0 protocol.
 
-:   All the entities that support the SAML 1.1 protocol.
+: * `saml20-sp` all the service providers that support the SAML 2.0 protocol.
 
-*   `saml20-idp`
+: * `saml20-aa` all the attribute authorities that support the SAML 2.0 protocol.
 
-:   All the identity providers that support the SAML 2.0 protocol.
+: * `shib13-idp` all the identity providers that support the SAML 1.1 protocol.
 
-*   `saml20-sp`
+: * `shib13-sp` all the service providers that support the SAML 1.1 protocol.
 
-:   All the service providers that support the SAML 2.0 protocol.
-
-*   `saml20-aa`
-
-:   All the attribute authorities that support the SAML 2.0 protocol.
-
-*   `shib13-idp`
-
-:   All the identity providers that support the SAML 1.1 protocol.
-
-*   `shib13-sp`
-
-:   All the service providers that support the SAML 1.1 protocol.
-
-*   `shib13-aa`
-
-:   All the attribute authorities that support the SAML 1.1 protocol.
+: * `shib13-aa` all the attribute authorities that support the SAML 1.1 protocol.
 
 :   *Note*: this option will not filter the entities in the cached metadata sources. It will only act as a default
     configuration for the generation of the metadata aggregate, and therefore can be overriden per request.
