@@ -43,9 +43,11 @@ function check_credentials() {
 
 		if(array_key_exists('attributes', $creds)) {
 			$state['Attributes'] = $creds['attributes'];
-		} else {
+		} else if(array_key_exists('res', $creds)) {
 			$res = $creds['res'];
 			$state['Attributes'] = array('uid' => array($res['uid']), 'organization' => array($res['organization']));
+		} else {
+			throw new SimpleSAML_Error_Exception("Could not find credentials for source with id $authid");
 		}
 	} catch(Exception $e) {
 		SimpleSAML_Auth_State::throwException($state, $e);
