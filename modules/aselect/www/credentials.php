@@ -49,8 +49,7 @@ try {
     if (array_key_exists('attributes', $creds)) {
         $state['Attributes'] = $creds['attributes'];
     } else {
-        $res = $creds['res'];
-        $state['Attributes'] = array('uid' => array($res['uid']), 'organization' => array($res['organization']));
+        $state['Attributes'] = array('uid' => array($creds['uid']), 'organization' => array($creds['organization']));
     }
 } catch (Exception $e) {
     SimpleSAML_Auth_State::throwException($state, $e);
