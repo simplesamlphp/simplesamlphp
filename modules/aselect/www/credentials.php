@@ -6,8 +6,6 @@
  *
  * @author Wessel Dankers, Tilburg University
  */
-function check_credentials() {
-	
 	if (!array_key_exists('ssp_state', $_REQUEST))
 		throw new SimpleSAML_Error_Exception("Missing ssp_state parameter");
 	$id = $_REQUEST['ssp_state'];
@@ -53,6 +51,3 @@ function check_credentials() {
 
 	SimpleSAML_Auth_Source::completeAuth($state);
 	SimpleSAML_Auth_State::throwException($state, new SimpleSAML_Error_Exception("Internal error in A-Select component"));
-}
-
-check_credentials();
