@@ -9,7 +9,7 @@
 function check_credentials() {
 	
 	if (!array_key_exists('ssp_state', $_REQUEST))
-		SimpleSAML_Auth_State::throwException($state, new SimpleSAML_Error_Exception("Missing ssp_state parameter"));	
+		throw new SimpleSAML_Error_Exception("Missing ssp_state parameter");
 	$id = $_REQUEST['ssp_state'];
 
 	// sanitize the input
