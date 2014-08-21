@@ -248,7 +248,7 @@ class SimpleSAML_Auth_Simple {
 	/**
 	 * Retrieve authentication data.
 	 *
-	 * @param string $name  The name of the parameter, e.g. 'Attribute', 'Expire' or 'saml:sp:IdP'.
+	 * @param string $name  The name of the parameter, e.g. 'Attributes', 'Expire' or 'saml:sp:IdP'.
 	 * @return mixed|NULL  The value of the parameter, or NULL if it isn't found or we are unauthenticated.
 	 */
 	public function getAuthData($name) {
