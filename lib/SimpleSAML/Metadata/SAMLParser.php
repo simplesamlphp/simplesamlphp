@@ -605,6 +605,9 @@ class SimpleSAML_Metadata_SAMLParser {
 		if (array_key_exists('attributes', $spd)) {
 			$ret['attributes'] = $spd['attributes'];
 		}
+		if (array_key_exists('attributes.required', $spd)) {
+			$ret['attributes.required'] = $spd['attributes.required'];
+		}
 		if (array_key_exists('attributes.NameFormat', $spd)) {
 			$ret['attributes.NameFormat'] = $spd['attributes.NameFormat'];
 		}
@@ -1073,9 +1076,14 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		$format = NULL;
 		$sp['attributes'] = array();
+		$sp['attributes.required'] = array();
 		foreach ($element->RequestedAttribute AS $child) {
 			$attrname = $child->Name;
 			$sp['attributes'][] = $attrname;
+			
+			if ($child->isRequired) {
+				$sp['attributes.required'][] = $attrname;
+			}
 
 			if ($child->NameFormat !== NULL) {
 				$attrformat = $child->NameFormat;
@@ -1096,6 +1104,9 @@ class SimpleSAML_Metadata_SAMLParser {
 			 * should have one or more attributes.
 			 */
 			unset($sp['attributes']);
+		}
+		if (empty($sp['attributes.required'])) {
+			unset($sp['attributes.required']);
 		}
 
 		if ($format !== SAML2_Const::NAMEFORMAT_UNSPECIFIED && $format !== NULL) {
