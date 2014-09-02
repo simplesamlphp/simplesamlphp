@@ -35,7 +35,7 @@ consent module:
 	
     touch modules/consent/enable
 
-The simplest wayf to setup the consent module is to not use any storage at 
+The simplest way to setup the consent module is to not use any storage at 
 all. This means that the user will always be asked to give consent each time 
 the user logs in.
 
@@ -66,7 +66,7 @@ Example:
 
 ### Using a database as storage ###
 
-In order to use tha database backend storage, you first need to setup the
+In order to use a database backend storage, you first need to setup the
 database. 
 
 Here is the initialization SQL script:
@@ -89,7 +89,7 @@ The `consent:Database` backend storage has the following options
 :   Data Source Name must comply to the syntax for the PHP PDO layer.
 
 `username`
-:   Username for the database user to be used for the connectio.
+:   Username for the database user to be used for the connection.
 
 `password`
 :   Password for the database user used for the connection.
@@ -139,19 +139,19 @@ The following options can be used when configuring the Consent module
 
 `checked`
 :   Boolean value that indicate whether the "Remember" consent checkbox is
-    checkd by default. This option is optional and defaults to FALSE. 
+    checked by default. This option is optional and defaults to FALSE. 
 
 `focus`
-:   Indicates whether the "Yes" or "No" button is in fucus by default. This
+:   Indicates whether the "Yes" or "No" button is in focus by default. This
     option is optional and can take the value 'yes' or 'no' as strings. If 
-    omitted neither will recive focus.
+    omitted neither will receive focus.
 
 `store`
 :   Configuration of the Consent storage backend. The store option is given in 
     the format <module>:<class> and refers to the class 
     sspmod_<module>_Consent_Store_<class>. The consent module comes with two 
     build in storages backends 'consnet:Cookie' and 'consent:Database'. See 
-    seperate section on setting up consent using different storage methods. 
+    separate section on setting up consent using different storage methods. 
     This option is optional. If option is not set, then the user is asked to 
     consent, but the consent is not saved.
 
@@ -271,7 +271,7 @@ These values will be listed as an bullet list
         )
     )
 
-This array hawe two child array. These will be listed in two separate sub
+This array has two child arrays. These will be listed in two separate sub
 tables.
 
     Array (
