@@ -85,6 +85,8 @@ $logoutState = array(
 	);
 $state['LogoutState'] = $logoutState;
 
+$state['saml:sp:NameID'] = $response->getNameID();
+
 $source->handleResponse($state, $responseIssuer, $attributes);
 assert('FALSE');
 
