@@ -619,8 +619,8 @@ class sspmod_saml_Message {
 				    $lastError = 'No valid client certificate provided during TLS Handshake with SP';
 				    continue;
 				} elseif ($matchResult === FALSE) {
-					$lastError = 'Could not validate client certificate provided during TLS handshake with SP';
-					continue;
+				    $lastError = 'Could not validate client certificate provided during TLS handshake with SP';
+				    continue;
 				}
 				/* We have a valid client certificate from the browser. */
 				$clientCert = str_replace(array("\r", "\n", " "), '', $matches[1]);
