@@ -614,9 +614,13 @@ class sspmod_saml_Message {
 				/* Extract certificate data (if this is a certificate). */
 				$clientCert = $_SERVER['SSL_CLIENT_CERT'];
 				$pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)-----END CERTIFICATE-----/m';
-				if (preg_match($pattern, $clientCert, $matches) === FALSE) {
+				$matchResult = preg_match($pattern, $clientCert, $matches);
+				if ($matchResult === 0) {
 				    $lastError = 'No valid client certificate provided during TLS Handshake with SP';
 				    continue;
+				} elseif ($matchResult === FALSE) {
+					$lastError = 'Could not validate client certificate provided during TLS handshake with SP';
+					continue;
 				}
 				/* We have a valid client certificate from the browser. */
 				$clientCert = str_replace(array("\r", "\n", " "), '', $matches[1]);
