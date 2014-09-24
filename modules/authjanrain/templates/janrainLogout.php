@@ -100,15 +100,15 @@ if (!function_exists('json_decode')) {
                 var httpsLoadUrl                       = "http://widgets-cdn.rpxnow.com/load/login.yourcompany.com";
         \*------------------------------------------------------------------------*/
 
-        janrain.settings.appUrl                = 'https://pbjanrain.rpxnow.com';
-        janrain.settings.capture.captureServer = 'https://pbjanrain.janraincapture.com';
-        janrain.settings.capture.appId         = 'e35rtybq7kc9yp6mh2238hpabv';
-        janrain.settings.capture.clientId      = 'pg8fb7m57yz6gzdcz26ckv3ynyuf3gn3';
+        janrain.settings.appUrl                = 'https://APPNAME.rpxnow.com';
+        janrain.settings.capture.captureServer = 'https://APPNAME.janraincapture.com';
+        janrain.settings.capture.appId         = 'CAPTURE_APP_ID';
+        janrain.settings.capture.clientId      = 'CAPTURE_API_CLIENT_ID';
 
         // These are the URLs for your Engage app's load.js file, which is necessary
         // to load the Capture Widget.
-        var httpLoadUrl  = "http://widget-cdn.rpxnow.com/load/pbjanrain";
-        var httpsLoadUrl = "https://rpxnow.com/load/pbjanrain";
+        var httpLoadUrl  = "http://widget-cdn.rpxnow.com/load/APPNAME";
+        var httpsLoadUrl = "https://rpxnow.com/load/APPNAME";
 
 
         // --- Engage Widget Settings ----------------------------------------------
