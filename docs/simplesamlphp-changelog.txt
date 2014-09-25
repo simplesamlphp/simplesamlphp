@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.13
 
-Released TBD.
+Released 2014-09-25.
 
   * Added the 'remember me' option to the default login page.
   * Improved error reporting.
@@ -30,6 +30,10 @@ Released TBD.
 
   * Fixed an issue when regenerating metadata from certain metadata sources.
 
+### `aselect`
+
+  * Bug fixes.
+
 ### `discopower`
 
   * Bug fix.
@@ -41,6 +45,10 @@ Released TBD.
 ### `metarefresh`
 
   * Use cached metadata if something goes wrong when refreshing feeds.
+
+### `oauth`
+
+  * Bug fix.
 
 ### `openidProvider`
 
