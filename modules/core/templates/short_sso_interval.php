@@ -25,6 +25,11 @@ $this->includeAtTemplateBase('includes/header.php');
 		}
 	?>
 	<p><?php echo $this->t('{core:short_sso_interval:warning}'); ?></p>
+    <div class="trackidtext"><p>
+        <?php echo $this->t('{errors:report_trackid}'); ?>
+        <span class="trackid"><?php echo $this->data['trackId']; ?></span>
+        </p>
+    </div>
 
 	<input type="submit" name="continue" id="contbutton" value="<?php echo htmlspecialchars($this->t('{core:short_sso_interval:retry}')) ?>" />
 
