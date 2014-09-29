@@ -20,11 +20,10 @@ class sspmod_saml_Message {
 
 		$dstPrivateKey = $dstMetadata->getString('signature.privatekey', NULL);
 
-		if($dstPrivateKey !== NULL) {
+		if ($dstPrivateKey !== NULL) {
 			$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, TRUE, 'signature.');
 			$certArray = SimpleSAML_Utilities::loadPublicKey($dstMetadata, FALSE, 'signature.');
-		}
-		else {
+		} else {
 			$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata, TRUE);
 			$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);
 		}
