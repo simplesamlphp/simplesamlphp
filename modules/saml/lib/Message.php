@@ -18,8 +18,16 @@ class sspmod_saml_Message {
 	 */
 	public static function addSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_SignedElement $element) {
 
-		$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata, TRUE);
-		$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);
+		$dstPrivateKey = $dstMetadata->getString('signature.privatekey', NULL);
+
+		if($dstPrivateKey !== NULL) {
+			$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, TRUE, 'signature.');
+			$certArray = SimpleSAML_Utilities::loadPublicKey($dstMetadata, FALSE, 'signature.');
+		}
+		else {
+			$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata, TRUE);
+			$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);
+		}
 
 		$algo = $dstMetadata->getString('signature.algorithm', NULL);
 		if ($algo === NULL) {

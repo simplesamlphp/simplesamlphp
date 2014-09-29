@@ -249,6 +249,14 @@ The following SAML 2.0 options are available:
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
+`signature.privatekey`
+:   Name of private key file for this IdP, in PEM format. The filename is relative to the cert/-directory.
+:   Note that this option also exists in the IdP-hosted metadata. This entry in the SP-remote metadata overrides the option `privatekey` in the IdP-hosted metadata.
+
+`signature.privatekey_pass`
+:   Passphrase for the private key. Leave this option out if the private key is unencrypted.
+:   Note that this option only is used if `signature.privatekey` is present.
+
 `simplesaml.nameidattribute`
 :   When the value of the `NameIDFormat`-option is set to either
     `email` or `persistent`, this is the name of the attribute which
