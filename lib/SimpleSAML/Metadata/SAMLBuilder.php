@@ -608,43 +608,23 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	/**
 	 * Add contact information.
 	 *
-	 * Accepts a contact type, and an array of the following elements (all are optional):
-	 * - emailAddress     Email address (as string), or array of email addresses.
-	 * - telephoneNumber  Telephone number of contact (as string), or array of telephone numbers.
-	 * - name             Full name of contact, either as <GivenName> <SurName>, or as <SurName>, <GivenName>.
-	 * - surName          Surname of contact.
-	 * - givenName        Givenname of contact.
-	 * - company          Company name of contact.
+	 * Accepts a contact type, and a contact array that must be previously sanitized.
 	 *
-	 * 'name' will only be used if neither givenName nor surName is present.
+	 * @param string $type The type of contact. Deprecated.
+	 * @param array $details The details about the contact.
 	 *
-	 * The following contact types are allowed:
-	 * "technical", "support", "administrative", "billing", "other"
-	 *
-	 * @param string $type  The type of contact.
-	 * @param array $details  The details about the contact.
+	 * @todo Change the signature to remove $type.
+	 * @todo Remove the capability to pass a name and parse it inside the method.
+     *
+     * @deprecated This function will change its signature and no longer parse a 'name' element.
 	 */
 	public function addContact($type, $details) {
 		assert('is_string($type)');
 		assert('is_array($details)');
 		assert('in_array($type, array("technical", "support", "administrative", "billing", "other"), TRUE)');
 
-		/* Parse name into givenName and surName. */
-		if (isset($details['name']) && empty($details['surName']) && empty($details['givenName'])) {
-			$names = explode(',', $details['name'], 2);
-			if (count($names) === 2) {
-				$details['surName'] = trim($names[0]);
-				$details['givenName'] = trim($names[1]);
-			} else {
-				$names = explode(' ', $details['name'], 2);
-				if (count($names) === 2) {
-					$details['givenName'] = trim($names[0]);
-					$details['surName'] = trim($names[1]);
-				} else {
-					$details['surName'] = trim($names[0]);
-				}
-			}
-		}
+		// TODO: remove this check as soon as getContact() is called always before calling this function.
+		$details = SimpleSAML_Utils_Config_Metadata::getContact($details);
 
 		$e = new SAML2_XML_md_ContactPerson();
 		$e->contactType = $type;
