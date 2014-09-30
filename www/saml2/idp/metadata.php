@@ -158,19 +158,28 @@ try {
 		$metaArray['redirect.sign'] = $idpmeta->getBoolean('redirect.validate');
 	}
 
-	$metaflat = '$metadata[' . var_export($idpentityid, TRUE) . '] = ' . var_export($metaArray, TRUE) . ';';
+	if ($idpmeta->hasValue('contacts')) {
+		$contacts = $idpmeta->getArray('contacts');
+		foreach ($contacts as $contact) {
+			$metaArray['contacts'][] = SimpleSAML_Utils_Config_Metadata::getContact($contact);
+		}
+	}
+
+	$technicalContactEmail = $config->getString('technicalcontact_email', FALSE);
+	if ($technicalContactEmail && $technicalContactEmail !== 'na@example.org') {
+		$techcontact['emailAddress'] = $technicalContactEmail;
+		$techcontact['name'] = $config->getString('technicalcontact_name', NULL);
+		$techcontact['contactType'] = 'technical';
+		$metaArray['contacts'][] = SimpleSAML_Utils_Config_Metadata::getContact($techcontact);
+	}
 
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
 	$metaBuilder->addMetadataIdP20($metaArray);
 	$metaBuilder->addOrganizationInfo($metaArray);
-	$technicalContactEmail = $config->getString('technicalcontact_email', NULL);
-	if ($technicalContactEmail && $technicalContactEmail !== 'na@example.org') {
-		$metaBuilder->addContact('technical', array(
-			'emailAddress' => $technicalContactEmail,
-			'name' => $config->getString('technicalcontact_name', NULL),
-		));
-	}
+
 	$metaxml = $metaBuilder->getEntityDescriptorText();
+
+	$metaflat = '$metadata[' . var_export($idpentityid, TRUE) . '] = ' . var_export($metaArray, TRUE) . ';';
 
 	/* Sign the metadata if enabled. */
 	$metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta->toArray(), 'SAML 2 IdP');
