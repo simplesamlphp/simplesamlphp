@@ -158,28 +158,21 @@ if ($orgName !== NULL) {
 	}
 }
 
-// add technical contact
-$email = $config->getString('technicalcontact_email', 'na@example.org');
-if ( $email != 'na@example.org') {
-
-	$contact = array('emailAddress' => $email);
-
-	$name = $config->getString('technicalcontact_name', NULL);
-	if ($name === NULL) {
-		/* Nothing to do here... */
-	} elseif (preg_match('@^(.*?)\s*,\s*(.*)$@D', $name, $matches)) {
-		$contact['surName'] = $matches[1];
-		$contact['givenName'] = $matches[2];
-	} elseif (preg_match('@^(.*?)\s+(.*)$@D', $name, $matches)) {
-		$contact['givenName'] = $matches[1];
-		$contact['surName'] = $matches[2];
-	} else {
-		$contact['givenName'] = $name;
+if ($spconfig->hasValue('contacts')) {
+	$contacts = $spconfig->getArray('contacts');
+	foreach ($contacts as $contact) {
+		$metaArray20['contacts'][] = SimpleSAML_Utils_Config_Metadata::getContact($contact);
 	}
 }
 
-// add additional contacts
-$contacts = $spconfig->getArray('contacts', array());
+// add technical contact
+$email = $config->getString('technicalcontact_email', 'na@example.org', FALSE);
+if ($email && $email !== 'na@example.org') {
+	$techcontact['emailAddress'] = $email;
+	$techcontact['name'] = $config->getString('technicalcontact_name', NULL);
+	$techcontact['contactType'] = 'technical';
+	$metaArray20['contacts'][] = SimpleSAML_Utils_Config_Metadata::getContact($techcontact);
+}
 
 // add certificate
 if (count($keys) === 1) {
@@ -206,10 +199,6 @@ $metaArray20['entityid'] = $entityId;
 $metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
 $metaBuilder->addMetadataSP20($metaArray20, $supported_protocols);
 $metaBuilder->addOrganizationInfo($metaArray20);
-if ( !empty($contact) ) $metaBuilder->addContact('technical', $contact);
-foreach ($contacts as $c) {
-    $metaBuilder->addContact($c['contactType'], $c);
-}
 
 $xml = $metaBuilder->getEntityDescriptorText();
 
