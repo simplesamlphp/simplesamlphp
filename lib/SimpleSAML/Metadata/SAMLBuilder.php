@@ -465,7 +465,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		foreach ($metadata->getArray('contacts', array()) as $contact) {
 			if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
-				$this->addContact($contact['contactType'], $contact);
+				$this->addContact($contact['contactType'], SimpleSAML_Utils_Config_Metadata::getContact($contact));
 			}
 		}
 
@@ -511,7 +511,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		foreach ($metadata->getArray('contacts', array()) as $contact) {
 			if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
-				$this->addContact($contact['contactType'], $contact);
+				$this->addContact($contact['contactType'], SimpleSAML_Utils_Config_Metadata::getContact($contact));
 			}
 		}
 

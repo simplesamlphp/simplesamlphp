@@ -69,10 +69,11 @@ try {
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
 	$metaBuilder->addMetadataIdP11($metaArray);
 	$metaBuilder->addOrganizationInfo($metaArray);
-	$metaBuilder->addContact('technical', array(
+	$metaBuilder->addContact('technical', SimpleSAML_Utils_Config_Metadata::getContact(array(
 		'emailAddress' => $config->getString('technicalcontact_email', NULL),
 		'name' => $config->getString('technicalcontact_name', NULL),
-		));
+		'contactType' => 'technical',
+		)));
 	$metaxml = $metaBuilder->getEntityDescriptorText();
 
 	/* Sign the metadata if enabled. */

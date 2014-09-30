@@ -112,10 +112,11 @@ try {
 	$metaBuilder->addOrganizationInfo($metaArray);
 	$technicalContactEmail = $config->getString('technicalcontact_email', NULL);
 	if ($technicalContactEmail && $technicalContactEmail !== 'na@example.org') {
-		$metaBuilder->addContact('technical', array(
+		$metaBuilder->addContact('technical', SimpleSAML_Utils_Config_Metadata::getContact(array(
 			'emailAddress' => $technicalContactEmail,
 			'name' => $config->getString('technicalcontact_name', NULL),
-		));
+			'contactType' => 'technical',
+		)));
 	}
 	$output_xhtml = array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml';
 	$metaxml = $metaBuilder->getEntityDescriptorText($output_xhtml);
