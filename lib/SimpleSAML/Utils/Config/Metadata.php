@@ -5,7 +5,26 @@
  * @package SimpleSAMLphp
  * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  */
-class SimpleSAML_Utils_Config_Metadata {
+class SimpleSAML_Utils_Config_Metadata
+{
+
+    /**
+     * @var array The valid configuration options for a contact configuration array.
+     * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
+     */
+    public static $VALID_CONTACT_OPTIONS = array(
+        'contactType', 'emailAddress', 'givenName', 'surName', 'telephoneNumber', 'company',
+    );
+
+
+    /**
+     * @var array The valid types of contact for a contact configuration array.
+     * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
+     */
+    public static $VALID_CONTACT_TYPES = array(
+        'technical', 'support', 'administrative', 'billing', 'other',
+    );
+
 
     /**
      * Parse and sanitize a contact from an array.
@@ -16,7 +35,7 @@ class SimpleSAML_Utils_Config_Metadata {
      * - telephoneNumber Telephone number of contact (as string), or array of telephone numbers. Optional.
      * - name            Full name of contact, either as <GivenName> <SurName>, or as <SurName>, <GivenName>. Optional.
      * - surName         Surname of contact (as string). Optional.
-     * - givenName       Givenname of contact (as string). Optional.
+     * - givenName       Given name of contact (as string). Optional.
      * - company         Company name of contact (as string). Optional.
      *
      * The following values are allowed as "contactType":
@@ -46,16 +65,14 @@ class SimpleSAML_Utils_Config_Metadata {
     public static function getContact($contact)
     {
         assert('is_array($contact) || is_null($contact)');
-        $valid_options = array('contactType', 'emailAddress', 'givenName', 'surName', 'telephoneNumber', 'company');
-        $valid_types   = array('technical', 'support', 'administrative', 'billing', 'other');
 
         // check the type
-        if (!isset($contact['contactType']) || !in_array($contact['contactType'], $valid_types, true)) {
+        if (!isset($contact['contactType']) || !in_array($contact['contactType'], self::$VALID_CONTACT_TYPES, true)) {
             $types = join(', ', array_map(
                 function($t) {
                     return '"'.$t.'"';
                 },
-                $valid_types
+                self::$VALID_CONTACT_TYPES
             ));
             throw new InvalidArgumentException('"contactType" is mandatory and must be one of '. $types.".");
         }
@@ -132,7 +149,7 @@ class SimpleSAML_Utils_Config_Metadata {
         }
 
         // make sure only valid options are outputted
-        return array_intersect_key($contact, array_flip($valid_options));
+        return array_intersect_key($contact, array_flip(self::$VALID_CONTACT_OPTIONS));
     }
 
 }
