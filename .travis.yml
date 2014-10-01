@@ -7,4 +7,4 @@ php:
 
 before_script: composer install
 
-script: phpunit --bootstrap vendor/autoload.php
+script: phpunit --configuration tools/phpunit
