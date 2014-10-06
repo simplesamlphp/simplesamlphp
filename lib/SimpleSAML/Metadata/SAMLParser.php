@@ -663,6 +663,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * - 'SingleLogoutService': String with the URL where we should send logout requests(/responses).
 	 * - 'SingleLogoutServiceResponse': String where we should send logout responses (if this is different from
 	 *   the 'SingleLogoutService' endpoint.
+	 * - 'NameIDFormats': The name ID formats this IdP supports.
 	 * - 'certData': X509Certificate for entity (if present).
 	 * - 'certFingerprint': Fingerprint of the X509Certificate from the metadata.
 	 *
@@ -705,6 +706,8 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* Find the ArtifactResolutionService endpoint. */
 		$ret['ArtifactResolutionService'] = $idp['ArtifactResolutionService'];
 
+		/* Add supported nameIDFormats */
+		$ret['NameIDFormats'] = $idp['nameIDFormats'];
 
 		/* Add public keys. */
 		if (!empty($idp['keys'])) {
