@@ -188,6 +188,7 @@ if($onLoad !== '') {
 					'sr' => 'Srpski', // Serbian
 					'lv' => 'Latviešu', // Latvian
 					'ro' => 'Românește', // Romanian
+					'eu' => 'Euskara', // Basque
 		);
 		
 		$textarray = array();
