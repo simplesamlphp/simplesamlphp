@@ -60,9 +60,9 @@ foreach ($this->data['metaentries']['hosted'] AS $hm) {
 		echo '<br /><b>Deprecated</b>';
 	if ($hm['entityid'] !== $hm['metadata-index']) 
 		echo '<br />Index: ' . $hm['metadata-index'];
-	if (array_key_exists('name', $hm))
+	if (!empty($hm['name']))
 		echo '<br /><strong>' . $this->getTranslation(SimpleSAML_Utilities::arrayize($hm['name'], 'en')) . '</strong>';
-	if (array_key_exists('descr', $hm))
+	if (!empty($hm['descr']))
 		echo '<br /><strong>' . $this->getTranslation(SimpleSAML_Utilities::arrayize($hm['descr'], 'en')) . '</strong>';
 
 	echo '<br  />[ <a href="' . $hm['metadata-url'] . '">' . $this->t('{core:frontpage:show_metadata}') . '</a> ]';
@@ -81,9 +81,9 @@ foreach($this->data['metaentries']['remote'] AS $setkey => $set) {
 		echo ('<a href="' . 
 			htmlspecialchars(SimpleSAML_Module::getModuleURL('core/show_metadata.php', array('entityid' => $entry['entityid'], 'set' => $setkey ))) .
 			'">');
-		if (array_key_exists('name', $entry)) {
+		if (!empty($entry['name'])) {
 			echo htmlspecialchars($this->getTranslation(SimpleSAML_Utilities::arrayize($entry['name'], 'en')));
-		} elseif (array_key_exists('OrganizationDisplayName', $entry)) {
+		} elseif (!empty($entry['OrganizationDisplayName'])) {
 			echo htmlspecialchars($this->getTranslation(SimpleSAML_Utilities::arrayize($entry['OrganizationDisplayName'], 'en')));
 		} else {
 			echo htmlspecialchars($entry['entityid']);
