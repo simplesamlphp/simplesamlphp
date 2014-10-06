@@ -636,7 +636,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$this->addExtensions($ret, $spd);
 
 		// prioritize mdui:DisplayName as the name if available
-		if (isset($ret['UIInfo']) && isset($ret['UIInfo']['DisplayName'])) {
+		if (!empty($ret['UIInfo']['DisplayName'])) {
 			$ret['name'] = $ret['UIInfo']['DisplayName'];
 		}
 
@@ -705,7 +705,7 @@ class SimpleSAML_Metadata_SAMLParser {
 		$this->addExtensions($ret, $idp);
 
 		// prioritize mdui:DisplayName as the name if available
-		if (isset($ret['UIInfo']) && isset($ret['UIInfo']['DisplayName'])) {
+		if (!empty($ret['UIInfo']['DisplayName'])) {
 			$ret['name'] = $ret['UIInfo']['DisplayName'];
 		}
 
