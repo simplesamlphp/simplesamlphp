@@ -498,6 +498,11 @@ class SimpleSAML_Metadata_SAMLParser {
 		/* Add extensions. */
 		$this->addExtensions($ret, $spd);
 
+		// prioritize mdui:DisplayName as the name if available
+		if (!empty($ret['UIInfo']['DisplayName'])) {
+			$ret['name'] = $ret['UIInfo']['DisplayName'];
+		}
+
 		return $ret;
 	}
 
@@ -548,6 +553,11 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		/* Add extensions. */
 		$this->addExtensions($ret, $idp);
+
+		// prioritize mdui:DisplayName as the name if available
+		if (!empty($ret['UIInfo']['DisplayName'])) {
+			$ret['name'] = $ret['UIInfo']['DisplayName'];
+		}
 
 		return $ret;
 	}
