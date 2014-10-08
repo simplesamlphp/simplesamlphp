@@ -562,6 +562,10 @@ class SimpleSAML_Utilities {
 	 * meanwhile we are deprecating the it.
 	 */
 	private static function _doRedirect($url, $parameters = array()) {
+		assert('is_string($url)');
+		assert('!empty($url)');
+		assert('is_array($parameters)');
+
 		if (!empty($parameters)) {
 			$url = self::addURLparameter($url, $parameters);
 		}
@@ -643,12 +647,10 @@ class SimpleSAML_Utilities {
 	 * use the redirectTrustedURL or redirectUntrustedURL functions
 	 * accordingly.
 	 */
-	public static function redirect($url, $parameters = array(),
-		$allowed_redirect_hosts = NULL) {
-		
-		assert(is_string($url));
-		assert(strlen($url) > 0);
-		assert(is_array($parameters));
+	public static function redirect($url, $parameters = array(), $allowed_redirect_hosts = NULL) {
+		assert('is_string($url)');
+		assert('strlen($url) > 0');
+		assert('is_array($parameters)');
 
 		if ($allowed_redirect_hosts !== NULL) {
 			$url = self::checkURLAllowed($url, $allowed_redirect_hosts);
@@ -683,6 +685,9 @@ class SimpleSAML_Utilities {
 	 * @return void This function never returns.
 	 */
 	public static function redirectTrustedURL($url, $parameters = array()) {
+		assert('is_string($url)');
+		assert('is_array($parameters)');
+
 		$url = self::normalizeURL($url);
 		self::_doRedirect($url, $parameters);
 	}
@@ -702,6 +707,9 @@ class SimpleSAML_Utilities {
 	 * @return void This function never returns.
 	 */
 	public static function redirectUntrustedURL($url, $parameters = array()) {
+		assert('is_string($url)');
+		assert('is_array($parameters)');
+
 		$url = self::checkURLAllowed($url);
 		self::_doRedirect($url, $parameters);
 	}
