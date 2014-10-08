@@ -301,12 +301,11 @@ class SimpleSAML_Utilities {
 	 * Check if a URL is valid and is in our list of allowed URLs.
 	 *
 	 * @param string $url The URL to check.
-	 * @param array $trustedSites An optional white list of domains. If none
-	 * specified, the 'trusted.url.domains' configuration directive will be
-	 * used.
-	 * @return string The normalized URL itself if it is allowed.
-	 * @throws SimpleSAML_Error_Exception if the URL is malformed or is not
-	 * allowed by configuration.
+	 * @param array $trustedSites An optional white list of domains. If none specified, the 'trusted.url.domains'
+	 * configuration directive will be used.
+	 * @return string The normalized URL itself if it is allowed. An empty string if the $url parameter is empty as
+	 * defined by the empty() function.
+	 * @throws SimpleSAML_Error_Exception if the URL is malformed or is not allowed by configuration.
 	 */
 	public static function checkURLAllowed($url, array $trustedSites = NULL) {
 		if (empty($url)) {
@@ -620,32 +619,25 @@ class SimpleSAML_Utilities {
 	/**
 	 * This function redirects the user to the specified address.
 	 *
-	 * This function will use the "HTTP 303 See Other" redirection if the
-	 * current request used the POST method and the HTTP version is 1.1.
-	 * Otherwise, a "HTTP 302 Found" redirection will be used.
+	 * This function will use the "HTTP 303 See Other" redirection if the current request used the POST method and the
+	 * HTTP version is 1.1. Otherwise, a "HTTP 302 Found" redirection will be used.
 	 *
-	 * The fuction will also generate a simple web page with a clickable
-	 * link to the target page.
+	 * The function will also generate a simple web page with a clickable link to the target page.
 	 *
-	 * @param string $url The URL we should redirect to. This URL may include
-	 * query parameters. If this URL is a relative URL (starting with '/'),
-	 * then it will be turned into an absolute URL by prefixing it with the
-	 * absolute URL to the root of the website.
-	 * @param string[] $parameters An array with extra query string parameters
-	 * which should be appended to the URL. The name of the parameter is the
-	 * array index. The value of the parameter is the value stored in the index.
-	 * Both the name and the value will be urlencoded. If the value is NULL,
-	 * then the parameter will be encoded as just the name, without a value.
- 	 * @param string[] $allowed_redirect_hosts An array with a whitelist of
-	 * hosts for which redirects are allowed. If NULL, redirections will be
-	 * allowed to any host. Otherwise, the host of the $url provided must be
-	 * present in this parameter. If the host is not whitelisted, an exception
-	 * will be thrown.
+	 * @param string $url The URL we should redirect to. This URL may include query parameters. If this URL is a
+	 * relative URL (starting with '/'), then it will be turned into an absolute URL by prefixing it with the absolute
+	 * URL to the root of the website.
+	 * @param string[] $parameters An array with extra query string parameters which should be appended to the URL. The
+	 * name of the parameter is the array index. The value of the parameter is the value stored in the index. Both the
+	 * name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
+	 * name, without a value.
+	 * @param string[] $allowed_redirect_hosts An array with a whitelist of hosts for which redirects are allowed. If
+	 * NULL, redirections will be allowed to any host. Otherwise, the host of the $url provided must be present in this
+	 * parameter. If the host is not whitelisted, an exception will be thrown.
 	 *
 	 * @return void This function never returns.
-	 * @deprecated 1.12.0 This function will be removed from the API. Instead,
-	 * use the redirectTrustedURL or redirectUntrustedURL functions
-	 * accordingly.
+	 * @deprecated 1.12.0 This function will be removed from the API. Instead, use the redirectTrustedURL or
+	 * redirectUntrustedURL functions accordingly.
 	 */
 	public static function redirect($url, $parameters = array(), $allowed_redirect_hosts = NULL) {
 		assert('is_string($url)');
@@ -661,26 +653,21 @@ class SimpleSAML_Utilities {
 	}
 
 	/**
-	 * This function redirects to the specified URL without performing
-	 * any security checks. Please, do NOT use this function with user
-	 * supplied URLs.
+	 * This function redirects to the specified URL without performing any security checks. Please, do NOT use this
+	 * function with user supplied URLs.
 	 *
-	 * This function will use the "HTTP 303 See Other" redirection if the
-	 * current request used the POST method and the HTTP version is 1.1.
-	 * Otherwise, a "HTTP 302 Found" redirection will be used.
+	 * This function will use the "HTTP 303 See Other" redirection if the current request used the POST method and the
+	 * HTTP version is 1.1. Otherwise, a "HTTP 302 Found" redirection will be used.
 	 *
-	 * The fuction will also generate a simple web page with a clickable
-	 * link to the target URL.
+	 * The function will also generate a simple web page with a clickable  link to the target URL.
 	 *
-	 * @param string $url The URL we should redirect to. This URL may include
-	 * query parameters. If this URL is a relative URL (starting with '/'),
-	 * then it will be turned into an absolute URL by prefixing it with the
-	 * absolute URL to the root of the website.
-	 * @param string[] $parameters An array with extra query string parameters
-	 * which should be appended to the URL. The name of the parameter is the
-	 * array index. The value of the parameter is the value stored in the index.
-	 * Both the name and the value will be urlencoded. If the value is NULL,
-	 * then the parameter will be encoded as just the name, without a value.
+	 * @param string $url The URL we should redirect to. This URL may include query parameters. If this URL is a
+	 * relative URL (starting with '/'), then it will be turned into an absolute URL by prefixing it with the absolute
+	 * URL to the root of the website.
+	 * @param string[] $parameters An array with extra query string parameters which should be appended to the URL. The
+	 * name of the parameter is the array index. The value of the parameter is the value stored in the index. Both the
+	 * name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
+	 * name, without a value.
 	 *
 	 * @return void This function never returns.
 	 */
@@ -693,14 +680,12 @@ class SimpleSAML_Utilities {
 	}
 
 	/**
-	 * This function redirects to the specified URL after performing the
-	 * appropriate security checks on it. Particularly, it will make sure that
-	 * the provided URL is allowed by the 'redirect.trustedsites' directive
-	 * in the configuration.
+	 * This function redirects to the specified URL after performing the appropriate security checks on it.
+	 * Particularly, it will make sure that the provided URL is allowed by the 'redirect.trustedsites' directive in the
+	 * configuration.
 	 *
-	 * If the aforementioned option is not set or the URL does correspond to a
-	 * trusted site, it performs a redirection to it. If the site is not
-	 * trusted, an exception will be thrown.
+	 * If the aforementioned option is not set or the URL does correspond to a trusted site, it performs a redirection
+	 * to it. If the site is not trusted, an exception will be thrown.
 	 *
 	 * See the redirectTrustedURL function for more details.
 	 * 
