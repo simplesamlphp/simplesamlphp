@@ -652,9 +652,10 @@ class SimpleSAML_Utilities {
 		assert(strlen($url) > 0);
 		assert(is_array($parameters));
 
-		$url = self::normalizeURL($url);
 		if ($allowed_redirect_hosts !== NULL) {
-			$url = self::checkURLAllowed($url, $allowed_redirect_hosts);	
+			$url = self::checkURLAllowed($url, $allowed_redirect_hosts);
+		} else {
+			$url = self::normalizeURL($url);
 		}
 		self::_doRedirect($url, $parameters);
 	}
