@@ -157,6 +157,7 @@ if($onLoad !== '') {
 					'sam' => 'Åarjelh-saemien giele', // Southern Sami
 					'da' => 'Dansk', // Danish
 					'en' => 'English',
+					'eu' => 'English',
 					'de' => 'Deutsch', // German
 					'sv' => 'Svenska', // Swedish
 					'fi' => 'Suomeksi', // Finnish
