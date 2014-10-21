@@ -9,12 +9,7 @@ $session = SimpleSAML_Session::getSessionFromRequest();
 /* Check if valid local session exists.. */
 SimpleSAML_Utilities::requireAdmin();
 
-
-
-
-
 $attributes = array();
-
 
 $attributes['HTTP_HOST'] = array($_SERVER['HTTP_HOST']);
 $attributes['HTTPS'] = array($_SERVER['HTTPS']);
@@ -29,11 +24,7 @@ $attributes['Utilities_getSelfHostWithPath()'] = array(SimpleSAML_Utilities::get
 $attributes['Utilities_getFirstPathElement()'] = array(SimpleSAML_Utilities::getFirstPathElement());
 $attributes['Utilities_selfURL()'] = array(SimpleSAML_Utilities::selfURL());
 
-
-
-
-
-$et = new SimpleSAML_XHTML_Template($config, 'status.php');
+$et = new SimpleSAML_XHTML_Template($config, 'hostnames.php');
 
 $et->data['header'] = '{status:header_diagnostics}';
 $et->data['remaining'] = 'na';
@@ -42,6 +33,3 @@ $et->data['valid'] = 'na';
 $et->data['logout'] = null;
 
 $et->show();
-
-
-?>
