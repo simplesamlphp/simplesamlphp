@@ -30,6 +30,20 @@ if(isset($this->data['sessionsize'])) {
 $attributes = $this->data['attributes'];
 echo(present_attributes($this, $attributes, ''));
 
+$nameid = $this->data['nameid'];
+if ( $nameid !== FALSE ) {
+	echo "<h2>" .$this->t('{status:subject_header}') . "</h2>";
+	if ( !isset($nameid['Value']) ) {
+		$list = array("NameID" => array($this->t('{status:subject_notset}')));
+		echo "<p>NameID: <span class=\"notset\">" . $this->t('{status:subject_notset}') . "</span></p>";
+	} else {
+		$list = array(
+			"NameId" => array($nameid['Value']),
+			$this->t('{status:subject_format}') => array($nameid['Format']) );
+	}
+	echo(present_attributes($this, $list, ''));
+}
+
 if (isset($this->data['logout'])) {
 	echo('<h2>' . $this->t('{status:logout}') . '</h2>');
 	echo('<p>' . $this->data['logout'] . '</p>');
