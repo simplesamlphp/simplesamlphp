@@ -79,10 +79,17 @@ if (!empty($stateId)) {
 	}
 } else {
 	/* This is an unsolicited response. */
+	
+	$relayState = $response->getRelayState();
+	
+	if(empty($relayState)){
+		$relayState = $spMetadata->getValue("RelayState");
+	}
+		
 	$state = array(
 		'saml:sp:isUnsolicited' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
-		'saml:sp:RelayState' => SimpleSAML_Utilities::checkURLAllowed($response->getRelayState()),
+		'saml:sp:RelayState' => SimpleSAML_Utilities::checkURLAllowed($relayState),
 	);
 }
 
