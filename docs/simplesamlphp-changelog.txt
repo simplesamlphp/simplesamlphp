@@ -6,6 +6,16 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.13.1
+
+Released 2014-10-27
+
+  * Solved an issue with empty fields in metadata to cause SimpleSAMLphp to fail with a translation error. Issues #97 and #114.
+  * Added Basque language to the list of known languages. Issue #117.
+  * Optimized the execution of redirections by removing an additional, unnecessary function call.
+  * Solved an issue that caused SimpleSAMLphp to fail when the RelayState parameter was empty or missing on an IdP-initiated authentication. Issues #99 and # 104.
+  * Fixed a certificate check for SubjectConfirmations with Holder of Key methods.
+
 ## Version 1.13
 
 Released 2014-09-25.
