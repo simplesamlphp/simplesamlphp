@@ -289,7 +289,7 @@ class SimpleSAML_Configuration {
 	 * @return string
 	 */
 	public function getVersion() {
-		return '1.13.0';
+		return '1.13.1';
 	}
 
 
