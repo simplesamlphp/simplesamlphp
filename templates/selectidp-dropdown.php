@@ -32,6 +32,12 @@ foreach ($this->data['idplist'] AS $idpentry) {
 		<input type="hidden" name="returnIDParam" value="<?php echo htmlspecialchars($this->data['returnIDParam']); ?>" />
 		<select id="dropdownlist" name="idpentityid">
 		<?php
+
+		usort($this->data['idplist'], function($idpentry1, $idpentry2) {
+			return strcmp($this->t('idpname_' . $idpentry1['entityid']),
+			              $this->t('idpname_' . $idpentry2['entityid']));
+
+		});
 			
 		foreach ($this->data['idplist'] AS $idpentry) {
 
