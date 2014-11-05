@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "48589fba88067fb1865e08006ab2a986",
+    "hash": "e609dc6172b06d1dd51be10f92c4d18b",
     "packages": [
         {
             "name": "openid/php-openid",
@@ -15,7 +16,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openid/php-openid/zipball/cb53da46b73baff46ae325eb799d91703acc3780",
+                "url": "https://api.github.com/repos/openid/php-openid/zipball/fff9217fb1acda132702730b66b10981ea9d4cac",
                 "reference": "ee669c6a9d4d95b58ecd9b6945627276807694fb",
                 "shasum": ""
             },
@@ -93,32 +94,17 @@
             "time": "2012-12-21 11:40:51"
         },
         {
-            "name": "robrichards/xmlseclibs",
-            "version": "1.3.1",
-            "source": {
-                "type": "svn",
-                "url": "http://xmlseclibs.googlecode.com/svn",
-                "reference": "trunk@50"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "xmlseclibs.php"
-                ]
-            }
-        },
-        {
             "name": "simplesamlphp/saml2",
-            "version": "v0.4.1",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "3eb0798f12c16c27f912aa594494ca17d9a30c56"
+                "reference": "497152245ec73c3f96c84306dcddf850017b84a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/3eb0798f12c16c27f912aa594494ca17d9a30c56",
-                "reference": "3eb0798f12c16c27f912aa594494ca17d9a30c56",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/497152245ec73c3f96c84306dcddf850017b84a8",
+                "reference": "497152245ec73c3f96c84306dcddf850017b84a8",
                 "shasum": ""
             },
             "require": {
@@ -127,7 +113,7 @@
                 "ext-openssl": "*",
                 "php": ">=5.3.3",
                 "psr/log": "1.0.0",
-                "robrichards/xmlseclibs": "1.3.*"
+                "simplesamlphp/xmlseclibs": "~1.3.1"
             },
             "require-dev": {
                 "phpmd/phpmd": "~1.5",
@@ -149,18 +135,65 @@
             "authors": [
                 {
                     "name": "Andreas Åkre Solberg",
-                    "email": "andreas.solberg@uninett.no",
-                    "homepage": "http://rnd.feide.no",
-                    "role": "Developer"
+                    "email": "andreas.solberg@uninett.no"
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2014-02-26 11:19:09"
+            "time": "2014-10-07 13:40:34"
+        },
+        {
+            "name": "simplesamlphp/xmlseclibs",
+            "version": "v1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simplesamlphp/xmlseclibs.git",
+                "reference": "b51cc66d576608282272892278a5fc234d21ba34"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simplesamlphp/xmlseclibs/zipball/b51cc66d576608282272892278a5fc234d21ba34",
+                "reference": "b51cc66d576608282272892278a5fc234d21ba34",
+                "shasum": ""
+            },
+            "replace": {
+                "cdatazone/xmlseclibs": "self.version",
+                "fr3d/xmlseclibs": "self.version",
+                "robrichards/xmlseclibs": "self.version"
+            },
+            "suggest": {
+                "ext/mcrypt": "",
+                "ext/openssl": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "xmlseclibs.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Richards"
+                }
+            ],
+            "description": "A PHP library for XML Security",
+            "homepage": "http://code.google.com/p/xmlseclibs/",
+            "keywords": [
+                "certificate",
+                "security",
+                "signature",
+                "signing",
+                "x.509",
+                "xml",
+                "xmlsec"
+            ],
+            "time": "2013-06-19 00:00:00"
         }
     ],
-    "packages-dev": [
-
-    ],
+    "packages-dev": [],
     "aliases": [
         {
             "alias": "2.2.2",
@@ -173,10 +206,9 @@
     "stability-flags": {
         "openid/php-openid": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": "~5.3"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
