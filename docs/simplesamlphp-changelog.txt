@@ -6,6 +6,13 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.13.2
+
+Released 2014-11-04
+
+  * Solved performance issues when processing large metadata sets.
+  * Fix an issue in the web interface when only one language is enabled.
+
 ## Version 1.13.1
 
 Released 2014-10-27
