@@ -147,12 +147,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xmlseclibs.git",
-                "reference": "b51cc66d576608282272892278a5fc234d21ba34"
+                "reference": "0d9a9f83ace5875a46af91e64bb6a67ff5b8ae4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xmlseclibs/zipball/b51cc66d576608282272892278a5fc234d21ba34",
-                "reference": "b51cc66d576608282272892278a5fc234d21ba34",
+                "url": "https://api.github.com/repos/simplesamlphp/xmlseclibs/zipball/0d9a9f83ace5875a46af91e64bb6a67ff5b8ae4b",
+                "reference": "0d9a9f83ace5875a46af91e64bb6a67ff5b8ae4b",
                 "shasum": ""
             },
             "replace": {
