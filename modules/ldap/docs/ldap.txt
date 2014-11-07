@@ -66,10 +66,12 @@ authentication source:
 		/*
 		 * The attribute(s) the username should match against.
 		 *
-		 * This is an array with one or more attribute names. Any of the attributes in
-		 * the array may match the value the username.
+		 * This is an array with one or more attributes, where each attribute can be a name or
+		 * an array with an attribute name as first element and a pattern in which %username% will
+		 * be replaced with the user's username. Any of the attributes in the array may match the
+		 * value the username or the substituted pattern as appropriate.
 		 */
-		'search.attributes' => array('uid', 'mail'),
+		'search.attributes' => array('uid', 'mail', array('mail', '%username%@example.org')),
 
 		/*
 		 * The username & password where simpleSAMLphp should bind to before searching. If
