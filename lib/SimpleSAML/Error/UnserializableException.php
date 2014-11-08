@@ -11,7 +11,6 @@
  * of the original exception.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Error_UnserializableException extends SimpleSAML_Error_Exception {
 

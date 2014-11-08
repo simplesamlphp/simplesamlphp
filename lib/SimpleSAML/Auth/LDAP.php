@@ -17,7 +17,6 @@ define('ERR_AS_ATTRIBUTE', 6);
  * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @author Anders Lund, UNINETT AS. <anders.lund@uninett.no>
  * @package simpleSAMLphp
- * @version $Id: Session.php 244 2008-02-04 08:36:24Z andreassolberg $
  */
 class SimpleSAML_Auth_LDAP {
 
@@ -373,7 +372,7 @@ class SimpleSAML_Auth_LDAP {
                 // decide whether to base64 encode or not
                 for ($k = 0; $k < $attribute['count']; $k++) {
                     // base64 encode binary attributes
-                    if (strtolower($name) === 'jpegphoto') {
+                    if (strtolower($name) === 'jpegphoto' || strtolower($name) === 'objectguid') {
                         $results[$i][$name][$k] = base64_encode($attribute[$k]);
                     }
                 }
@@ -541,8 +540,8 @@ class SimpleSAML_Auth_LDAP {
 					continue;
 				}
 
-				// Base64 encode jpegPhoto.
-				if (strtolower($name) === 'jpegphoto') {
+				// Base64 encode binary attributes.
+				if (strtolower($name) === 'jpegphoto' || strtolower($name) === 'objectguid') {
 					$values[] = base64_encode($value);
 				} else
 					$values[] = $value;

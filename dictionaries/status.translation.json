@@ -16,6 +16,7 @@
 		"pt": "Exemplo de demonstra\u00e7\u00e3o do SP SAML 2.0",
 		"pl": "Przyk\u0142adowe Demo SAML 2.0 SP",
 		"cs": "SAML 2.0 SP Demo",
+		"eu": "SAML 2.0 SP Adibidea",
 		"tr": "SAML 2.0 SP Demo \u00d6rne\u011fi",
 		"it": "Demo di SAML 2.0 SP",
 		"lt": "SAML 2.0 SP Demonstracin\u0117s versijos Pavyzdys",
@@ -48,6 +49,7 @@
 		"pt": "Exemplo de demonstra\u00e7\u00e3o do SP Shibboleth 1.3",
 		"pl": "Demo Shibboleth",
 		"cs": "Shibboleth demo",
+		"eu": "Shibboleth Adibidea",
 		"tr": "Shibboleth demo",
 		"it": "Demo di Shibboleth",
 		"lt": "Shibboleth demonstracin\u0117 versija",
@@ -80,6 +82,7 @@
 		"pt": "Exemplo de demonstra\u00e7\u00e3o do SP WS-Fed",
 		"pl": "Przyk\u0142adowe Demo WS-Fed SP",
 		"cs": "WS-Fed SP Demo",
+		"eu": "WS-Fed SP Adibidea",
 		"tr": "WS-Fed SP Demo \u00d6rne\u011fi",
 		"it": "Demo di WS-Fed SP",
 		"lt": "WS-Fed SP Demonstracin\u0117s versijos Pavyzdys",
@@ -112,6 +115,7 @@
 		"pt": "Diagn\u00f3sticos do simpleSAMLphp",
 		"pl": "Diagnostyka SimpleSAMLphp",
 		"cs": "SimpleSAMLphp diagnostika",
+		"eu": "simpleSAMLphp Diagnostikoa",
 		"tr": "SimpleSAMLphp Kontroller",
 		"it": "Diagnostici di SimpleSAMLphp",
 		"lt": "SimpleSAMLphp Diagnostika",
@@ -144,6 +148,7 @@
 		"pt": "Ocorreu um erro",
 		"pl": "Wystapi\u0142 jaki\u015b b\u0142\u0105d",
 		"cs": "Nalezena chyba",
+		"eu": "Errore bat jazo da",
 		"tr": "Hata olu\u015ftu",
 		"it": "Si \u00e8 verificato un errore",
 		"lt": "\u012evyko tam tikra klaida",
@@ -189,7 +194,8 @@
 		"id": "Hai, ini adalah halaman status dari simpleSAMLphp. Disini anda dapat melihat jika session anda telah time out, berapa lama ia berlaku sampai time out dan semua attribut yang menempel pada session anda.",
 		"sr": "Ovo je stranica s prikazom aktuelnog stanja va\u0161e sesije. Na ovoj stranici mo\u017eete videti je li vam je istekla sesija, koliko \u0107e jo\u0161 dugo va\u0161a sesija trajati i sve atribute koji su vezani uz va\u0161u sesiju.",
 		"ro": "Aceasta este pagina de stare pentru simpleSAMLphp. Aici pute\u021bi verifica dac\u0103 sesiunea dumneavoastr\u0103 a expirat, c\u00e2t timp mai este p\u00e2n\u0103 la expirarea sesiunii precum \u0219i toate atributele ata\u0219ate sesiunii dumneavoastr\u0103.",
-		"ru": "\u042d\u0442\u043e \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u0441\u043e \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u043c SimpleSAMLphp. \u041c\u043e\u0436\u043d\u043e \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0438\u0442\u044c \u0441\u043b\u0443\u0447\u0430\u0438 \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u044f \u0441\u0435\u0441\u0441\u0438\u0438, \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c \u0441\u0435\u0441\u0441\u0438\u0438 \u0434\u043e \u0438\u0441\u0442\u0435\u0447\u0435\u043d\u0438\u044f \u0441\u0440\u043e\u043a\u0430 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f \u0438 \u0432\u0441\u0435 \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b \u0432 \u0434\u0430\u043d\u043d\u043e\u0439 \u0441\u0435\u0441\u0441\u0438\u0438."
+		"ru": "\u042d\u0442\u043e \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u0441\u043e \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u043c SimpleSAMLphp. \u041c\u043e\u0436\u043d\u043e \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0438\u0442\u044c \u0441\u043b\u0443\u0447\u0430\u0438 \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u044f \u0441\u0435\u0441\u0441\u0438\u0438, \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c \u0441\u0435\u0441\u0441\u0438\u0438 \u0434\u043e \u0438\u0441\u0442\u0435\u0447\u0435\u043d\u0438\u044f \u0441\u0440\u043e\u043a\u0430 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f \u0438 \u0432\u0441\u0435 \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b \u0432 \u0434\u0430\u043d\u043d\u043e\u0439 \u0441\u0435\u0441\u0441\u0438\u0438.",
+		"eu": "Kaixo, hau simpleSAMLphp-ren egoera orria da. Hemendik ikus dezakezu zure saioa iraungi den, zenbat denbora geratzen den hau gerta dadin eta zure saioan dauden atributu guztiak."
 	},
 	"validfor": {
 		"no": "Din sesjon er gyldig i %SECONDS% sekunder fra n\u00e5.",
@@ -221,7 +227,8 @@
 		"id": "Session anda valid untuk %SECONDS% detik dari sekarang.",
 		"sr": "Va\u0161a sesija \u0107e biti validna jo\u0161 %SECONDS% sekundi.",
 		"ro": "Sesiunea dumneavoastr\u0103 mai este valid\u0103 \u00eenc\u0103 %SECONDS%.",
-		"ru": "\u0412\u0430\u0448\u0430 \u0441\u0435\u0441\u0441\u0438\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u0430 \u0432 \u0442\u0435\u0447\u0435\u043d\u0438\u0435 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0445 %SECONDS% \u0441\u0435\u043a\u0443\u043d\u0434."
+		"ru": "\u0412\u0430\u0448\u0430 \u0441\u0435\u0441\u0441\u0438\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u0430 \u0432 \u0442\u0435\u0447\u0435\u043d\u0438\u0435 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0445 %SECONDS% \u0441\u0435\u043a\u0443\u043d\u0434.",
+		"eu": "Zure saioa %SECONDS% segundoz izango da baliagarri."
 	},
 	"sessionsize": {
 		"no": "Sesjons st\u00f8rrelse: %SIZE%",
@@ -240,6 +247,7 @@
 		"pt": "Tamanho da sess\u00e3o: %SIZE%",
 		"pl": "Rozmiar sesji: %SIZE%",
 		"cs": "Velikost sezeni: %SIZE%",
+		"eu": "Saioaren tamaina: %SIZE%",
 		"tr": "Oturum b\u00fcy\u00fckl\u00fc\u011f\u00fc: %SIZE%",
 		"it": "Dimensione della session: %SIZE%",
 		"lt": "Sesijos trukm\u0117: %SIZE%",
@@ -272,6 +280,7 @@
 		"pt": "Os seus atributos",
 		"pl": "Twoje atrybuty",
 		"cs": "Va\u0161e atributy",
+		"eu": "Atributuak",
 		"tr": "Bilgileriniz",
 		"it": "I tuoi attributi",
 		"lt": "J\u016bs\u0173 atributai",
@@ -304,6 +313,7 @@
 		"pt": "Sair",
 		"pl": "Wyloguj",
 		"cs": "Odhl\u00e1\u0161en\u00ed",
+		"eu": "Irten",
 		"tr": "\u00c7\u0131k\u0131\u015f",
 		"it": "Disconnessione",
 		"lt": "Atsijungti",

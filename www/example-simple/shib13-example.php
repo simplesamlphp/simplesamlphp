@@ -1,6 +1,14 @@
 <?php
 
 /**
+ * WARNING:
+ *
+ * THIS FILE IS DEPRECATED AND WILL BE REMOVED IN FUTURE VERSIONS
+ *
+ * @deprecated
+ */
+
+/**
  * The _include script registers a autoloader for the simpleSAMLphp libraries. It also
  * initializes the simpleSAMLphp config class with the correct path.
  */
@@ -19,7 +27,9 @@ session_cache_limiter('nocache');
 
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
+
+SimpleSAML_Logger::warning('The file example-simple/shib13-example.php is deprecated and will be removed in future versions.');
 
 /**
  * Check if valid local session exists, and the authority is the Shib 1.3 SP

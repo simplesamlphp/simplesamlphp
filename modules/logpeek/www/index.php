@@ -19,7 +19,7 @@ function logFilter($objFile, $tag, $cut){
 
 
 $config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
 
 SimpleSAML_Utilities::requireAdmin();
 

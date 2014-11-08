@@ -7,7 +7,6 @@ SimpleSAMLphp Features
 	http://daringfireball.net/projects/markdown/syntax
 -->
 
-  * Version: `$Id`
 
 <!-- {{TOC}} -->
 

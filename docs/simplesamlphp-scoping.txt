@@ -7,13 +7,12 @@ Scoping
     http://daringfireball.net/projects/markdown/syntax
 -->
 
-  * Version: `$Id$`
 
 <!-- {{TOC}} -->
 
 Scoping allows a service provider to specify a list of identity providers in an
 authnRequest to a proxying identity provider. This is an indication to the 
-proxying identity provider, that the service will only deal with the identity 
+proxying identity provider that the service will only deal with the identity
 providers specified.
 
 A common use is for a service provider in a hub-and-spoke architecture to 
@@ -37,7 +36,7 @@ who ultimately authenticates the user. A count of zero permits no proxying. If
 ProxyCount is unspecified the number of proxy indirections is not limited.
 
 `IDPList`
-: The list of trusted IdPs ie. the list of entityIDs for identity providers
+: The list of trusted IdPs, i.e. the list of entityIDs for identity providers
 that are relevant for a service provider in an authnRequest. 
 
 ### Note ###
@@ -46,12 +45,14 @@ SimpleSAMLphp does not support specifying the GetComplete option.
 Usage
 -----
 
-The ProxyCount and IDPList option can be specified in the following places
+The ProxyCount and IDPList option can be specified in the following places:
 
 - as a state parameter to the authentication source
 - in the saml:SP authentication source configuration
 - in the saml20-idp-remote metadata
 - in the saml20-sp-remote metadata
+
+Example configuration:
 
     # Add the IDPList
     'IDPList' => array(
@@ -97,7 +98,7 @@ Support
 
 If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
-- [simpleSAMLphp homepage (at Feide RnD)](http://rnd.feide.no/simplesamlphp)
+- [simpleSAMLphp homepage](https://simplesamlphp.org)
 - [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/)
 - [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
 - [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)

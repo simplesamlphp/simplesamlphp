@@ -150,7 +150,7 @@ class sspmod_aselect_Auth_Source_aselect extends SimpleSAML_Auth_Source {
 		curl_close($curl);
 
 		if($str === false)
-			throw new SimpleSAML_Error_Exception("Unable to retrieve URL: $error");
+			throw new SimpleSAML_Error_Exception("Unable to retrieve URL: $err");
 
 		parse_str($str, $res);
 

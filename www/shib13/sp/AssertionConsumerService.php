@@ -1,10 +1,20 @@
 <?php
 
+/**
+ * WARNING:
+ *
+ * THIS FILE IS DEPRECATED AND WILL BE REMOVED IN FUTURE VERSIONS
+ *
+ * @deprecated
+ */
+
 require_once('../../_include.php');
 
 $config = SimpleSAML_Configuration::getInstance();
 
-$session = SimpleSAML_Session::getInstance();
+SimpleSAML_Logger::warning('The file shib13/sp/AssertionConsumerService.php is deprecated and will be removed in future versions.');
+
+$session = SimpleSAML_Session::getSessionFromRequest();
 
 
 /**

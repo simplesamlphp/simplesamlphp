@@ -162,6 +162,12 @@ The following SAML 2.0 options are available:
     entry in the SP-remote metadata overrides the option in the
     [IdP-hosted metadata](./simplesamlphp-reference-idp-hosted).
 
+:   The RSA encryption algorithm with PKCS#1 v1.5 padding is blacklisted by default for security reasons. Any assertions
+    encrypted with this algorithm will therefore fail to decrypt. You can override this limitation by defining an empty
+    array in this option (or blacklisting any other algorithms not including that one). However, it is strongly
+    discouraged to do so. For your own safety, please include the string 'http://www.w3.org/2001/04/xmlenc#rsa-1_5' if
+    you make use of this option.
+
 `ForceAuthn`
 :   Set this `TRUE` to force the user to reauthenticate when the IdP
     receives authentication requests from this SP. The default is
@@ -242,6 +248,14 @@ The following SAML 2.0 options are available:
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
+
+`signature.privatekey`
+:   Name of private key file for this IdP, in PEM format. The filename is relative to the cert/-directory.
+:   Note that this option also exists in the IdP-hosted metadata. This entry in the SP-remote metadata overrides the option `privatekey` in the IdP-hosted metadata.
+
+`signature.privatekey_pass`
+:   Passphrase for the private key. Leave this option out if the private key is unencrypted.
+:   Note that this option only is used if `signature.privatekey` is present.
 
 `simplesaml.nameidattribute`
 :   When the value of the `NameIDFormat`-option is set to either

@@ -128,6 +128,7 @@ if ($message instanceof SAML2_LogoutResponse) {
 		}
 		$binding->setDestination($dst);
 	}
+	$lr->setDestination($dst);
 
 	$binding->send($lr);
 } else {

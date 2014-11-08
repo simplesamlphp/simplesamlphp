@@ -8,7 +8,6 @@
  *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 
@@ -55,6 +54,23 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	 */
 	protected $rememberUsernameChecked = FALSE;
 
+    /**
+     * Storage for general config option session.rememberme.enable.
+     * loginuserpass.php page/template uses this option to present
+     * users with a checkbox to keep their session alive across
+     * different browser sessions (that is, closing and opening the
+     * browser again).
+     * @var bool
+     */
+    protected $rememberMeEnabled = FALSE;
+
+    /**
+     * Storage for general config option session.rememberme.checked.
+     * loginuserpass.php page/template uses this option to default
+     * the "remember me" checkbox to checked or not.
+     * @var bool
+     */
+    protected $rememberMeChecked = FALSE;
 
 	/**
 	 * Constructor for this authentication source.
@@ -85,6 +101,11 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 			$this->rememberUsernameChecked = (bool) $config['remember.username.checked'];
 			unset($config['remember.username.checked']);
 		}
+
+        // get the "remember me" config options
+        $sspcnf = SimpleSAML_Configuration::getInstance();
+        $this->rememberMeEnabled = $sspcnf->getBoolean('session.rememberme.enable', FALSE);
+        $this->rememberMeChecked = $sspcnf->getBoolean('session.rememberme.checked', FALSE);
 	}
 
 
@@ -121,6 +142,21 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		return $this->rememberUsernameChecked;
 	}
 
+    /**
+     * Check if the "remember me" feature is enabled.
+     * @return bool TRUE if enabled, FALSE otherwise.
+     */
+    public function isRememberMeEnabled() {
+        return $this->rememberMeEnabled;
+    }
+
+    /**
+     * Check if the "remember me" checkbox should be checked.
+     * @return bool TRUE if enabled, FALSE otherwise.
+     */
+    public function isRememberMeChecked() {
+        return $this->rememberMeChecked;
+    }
 
 	/**
 	 * Initialize login.

@@ -6,7 +6,6 @@
  *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 // SSP is loaded as a separate project

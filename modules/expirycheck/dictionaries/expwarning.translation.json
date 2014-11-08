@@ -1,0 +1,94 @@
+{
+	"access_denied": {
+		"sl": "Dostop do storitve zavrnjen.",
+		"cs": "Nem\u00e1te p\u0159\u00edstup k t\u00e9to slu\u017eb\u011b.",
+		"es": "No tiene acceso a este servicio",
+		"nl": "U heeft geen toegang tot deze dienst",
+		"zh": "\u60a8\u4e0d\u80fd\u4f7f\u7528\u672c\u670d\u52a1",
+		"eu": "Ez duzu zerbitzu honetarako baimenik.",
+		"de": "Sie haben keinen Zugriff auf diesen Dienst."
+	},
+	"no_access_to": {
+		"sl": "Dostop zavrnjen, ker je va\u0161e uporabni\u0161ko (NetID) %NETID% ime poteklo!",
+		"cs": "V\u00e1\u0161 \u00fa\u010det %NETID% expiroval, p\u0159\u00edstup odm\u00edtnut!",
+		"es": "Su cuenta %NETID% ha expirado, \u00a1acceso denegado!",
+		"nl": "Uw account %NETID% is verlopen, toegang geweigerd!",
+		"zh": "\u60a8\u7684\u5e10\u53f7 %NETID% \u5df2\u8fc7\u671f,\u8bbf\u95ee\u88ab\u62d2\u7edd!",
+		"eu": "Zure %NETID% kontua iraungi da, ez duzu baimenik!",
+		"de": "Ihr Konto %NETID% ist abgelaufen, Zugang verweigert!"
+	},
+	"contact_home": {
+		"sl": "Mo\u017enost dostopa do storitve ureja va\u0161a doma\u010da organizacija. Obrnite se na njihov oddelek za pomo\u010d uporabnikom.",
+		"cs": "P\u0159\u00edstup ke slu\u017eb\u011b je \u0159\u00edzen Va\u0161\u00ed domovskou organizac\u00ed. Pros\u00edm, kontaktujte sv\u00e9ho lok\u00e1ln\u00edho spr\u00e1vce.",
+		"es": "El acceso a los servicios est\u00e1 controlado por su instituci\u00f3n de origen. Por favor, contacte con su servicio t\u00e9cnico local si tiene alguna pregunta.",
+		"nl": "Toegang tot diensten wordt verleend door uw thuisinstelling. Neemt u bij vragen contact op met uw lokale helpdesk.",
+		"eu": "Zerbitzura sartzea zure jatorrizko erakundeak kontrolatzen du. Mesedez, jarri zure erabiltzaile zentzuarekin kontaktuan.",
+		"de": "Der Zugriff auf Dienste wird von Ihrer Heimatorganisation geregelt. Bitte kontaktieren Sie bei Fragen ihre lokale IT Unterst\u00fctzung."
+	},
+	"expiry_date_text": {
+		"sl": "Datum poteka:",
+		"cs": "Datum expirace:",
+		"es": "Fecha de expiraci\u00f3n:",
+		"nl": "Verloopdatum:",
+		"zh": "\u6709\u6548\u671f\u81f3\uff1a",
+		"eu": "Iraungitze data:",
+		"de": "Ablaufdatum:"
+	},
+	"warning_header": {
+		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% bo poteklo \u010dez %DAYSLEFT% %DAYS%!",
+		"cs": "Pozor! V\u00e1\u0161 \u00fa\u010det %NETID% expiruje za %DAYSLEFT% %DAYS%!",
+		"es": "\u00a1Atenci\u00f3n, su cuenta %NETID% expirar\u00e1 en %DAYSLEFT% %DAYS%!",
+		"nl": "Waarschuwing, uw account %NETID% verloopt over %DAYSLEFT% %DAYS%!",
+		"eu": "Adi, zure %NETID% kontua %DAYSLEFT% %DAYS%-etan iraungiko da!",
+		"de": "Warnung, Ihr Konto %NETID% wird in %DAYSLEFT% %DAYS% ablaufen!"
+	},
+	"warning_header_today": {
+		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% pote\u010de danes!",
+		"cs": "Pozor! V\u00e1\u0161 \u00fa\u010det %NETID% dnes expiruje!",
+		"es": "\u00a1Atenci\u00f3n, su cuenta %NETID% expira hoy!",
+		"nl": "Waarschuwing, uw account %NETID% verloopt vandaag!",
+		"eu": "Adi, zure %NETID% kontua gaur iraungiko da!",
+		"de": "Warnung, Ihr Konto %NETID% l\u00e4uft heute ab!"
+	},
+	"warning": {
+		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% bo poteklo \u010dez %DAYSLEFT% %DAYS%!",
+		"cs": "Pozor! V\u00e1\u0161 \u00fa\u010det %NETID% expiruje za %DAYSLEFT% %DAYS%!",
+		"es": "\u00a1Atenci\u00f3n, su cuenta %NETID% expirar\u00e1 en %DAYSLEFT% %DAYS%!",
+		"nl": "Waarschuwing, uw account %NETID% verloopt over %DAYSLEFT% %DAYS%!",
+		"eu": "Adi, zure %NETID% kontua %DAYSLEFT% %DAYS%-etan iraungiko da!",
+		"de": "Warnung, Ihr Konto %NETID% wird in %DAYSLEFT% %DAYS% ablaufen!"
+	},
+	"warning_today": {
+		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% pote\u010de danes!",
+		"cs": "Pozor! V\u00e1\u0161 \u00fa\u010det %NETID% dnes expiruje!",
+		"es": "\u00a1Atenci\u00f3n, su cuenta %NETID% expira hoy!",
+		"nl": "Waarschuwing, uw account %NETID% verloopt vandaag!",
+		"eu": "Adi, zure %NETID% kontua gaur iraungiko da!",
+		"de": "Warnung, Ihr Konto %NETID% l\u00e4uft heute ab!"
+	},
+	"day": {
+		"sl": "dan",
+		"cs": "den",
+		"es": "d\u00eda",
+		"nl": "dag",
+		"eu": "egun",
+		"de": "Tag"
+	},
+	"days": {
+		"sl": "dni",
+		"cs": "dn\u00ed",
+		"es": "d\u00edas",
+		"nl": "dagen",
+		"eu": "egun",
+		"de": "Tagen"
+	},
+	"btn_continue": {
+		"sl": "Zavedam se tega, nadaljuj...",
+		"cs": "Jsem si toho v\u011bdom, pokra\u010dovat...",
+		"es": "Soy consciente de ello, contin\u00faa...",
+		"nl": "OK, ik heb het gezien...",
+		"zh": "\u6211\u5df2\u77e5\u6089\uff0c\u7ee7\u7eed...",
+		"eu": "Badakit, jarraitu...",
+		"de": "Ich bin mir dessen bewu\u00dft, weiter..."
+	}
+}

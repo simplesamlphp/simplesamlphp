@@ -4,7 +4,6 @@
  * Class for representing a SAML 2 error.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 

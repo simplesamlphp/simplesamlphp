@@ -5,7 +5,6 @@
  *
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_smartnameattribute_Auth_Process_SmartName extends SimpleSAML_Auth_ProcessingFilter {
 

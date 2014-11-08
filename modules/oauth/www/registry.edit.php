@@ -2,7 +2,7 @@
 
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
 $oauthconfig = SimpleSAML_Configuration::getOptionalConfig('module_oauth.php');
 
 $store = new sspmod_core_Storage_SQLPermanentStorage('oauth');

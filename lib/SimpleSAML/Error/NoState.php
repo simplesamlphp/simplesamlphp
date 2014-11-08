@@ -5,7 +5,6 @@
  * that we don't know what to do.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Error_NoState extends SimpleSAML_Error_Error {
 

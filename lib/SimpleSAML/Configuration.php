@@ -5,7 +5,6 @@
  *
  * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Configuration {
 
@@ -278,11 +277,6 @@ class SimpleSAML_Configuration {
 		}
 
 		$dir = dirname($this->filename);
-
-		if ($instancename === 'simplesaml') {
-			/* For backwards compatibility. */
-			self::setConfigDir($path, 'simplesaml');
-		}
 
 		self::$instance[$instancename] = self::loadFromFile($dir . '/' . $filename, TRUE);
 		return self::$instance[$instancename];

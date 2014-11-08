@@ -11,7 +11,6 @@
  * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  * @abstract
- * @version $Id$
  */
 abstract class SimpleSAML_SessionHandlerCookie
 extends SimpleSAML_SessionHandler {

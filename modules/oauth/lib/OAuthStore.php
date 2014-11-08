@@ -10,7 +10,6 @@ require_once(dirname(dirname(__FILE__)) . '/libextinc/OAuth.php');
  * @author Andreas Åkre Solberg, <andreas.solberg@uninett.no>, UNINETT AS.
  * @author Mark Dobrinic, <mdobrinic@cozmanova.com>, Cozmanova bv
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_oauth_OAuthStore extends OAuthDataStore {
 

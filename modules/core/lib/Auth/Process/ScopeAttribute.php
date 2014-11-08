@@ -4,7 +4,6 @@
  * Add a scoped variant of an attribute.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_ProcessingFilter {
 

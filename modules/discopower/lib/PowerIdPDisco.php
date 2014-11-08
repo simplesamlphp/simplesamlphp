@@ -9,7 +9,6 @@
  *
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 
@@ -190,7 +189,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 		$idp = $this->getTargetIdp();
 		if($idp !== NULL) {
 
-			$extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage');
+			$extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage',NULL);
 			if ($extDiscoveryStorage !== NULL) {
 				$this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
 				SimpleSAML_Utilities::redirectTrustedURL($extDiscoveryStorage, array(

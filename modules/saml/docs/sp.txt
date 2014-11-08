@@ -99,6 +99,10 @@ Options
 :   The attributes will be added without a `NameFormat` by default.
     Use the `attributes.NameFormat` option to specify the `NameFormat` for the attributes.
 
+:   An associative array can be used, mixing both elements with and without keys. When a key is
+    specified for an element of the array, it will be used as the friendly name of the attribute
+    in the generated metadata.
+
 :   *Note*: This list will only be added to the metadata if the `name`-option is also specified.
 
 `attributes.NameFormat`
@@ -411,13 +415,16 @@ Here we will list some examples for this authentication source.
 
     'example-attributes => array(
         'saml:SP',
-        'name' => array( //Name required for AttributeConsumingService-element.
+        'name' => array( // Name required for AttributeConsumingService-element.
             'en' => 'Example service',
             'no' => 'Eksempeltjeneste',
         ),
         'attributes' => array(
             'eduPersonPrincipalName',
             'mail',
+            // Specify friendly names for these attributes:
+            'sn' => 'urn:oid:2.5.4.4',
+            'givenName' => 'urn:oid:2.5.4.42',
         )
         'attributes.required' => array (
             'eduPersonPrincipalName',

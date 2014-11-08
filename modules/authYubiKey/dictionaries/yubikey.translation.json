@@ -13,6 +13,7 @@
 		"fi": "Kirjaudu Yubikeylla",
 		"pt": "Entrar com YubiKey",
 		"pl": "Login z YubiKey",
+		"eu": "YubiKey erabiliz",
 		"tr": "YubiKey ile giri\u015f",
 		"fr": "S'authentifier avec YubiKey",
 		"it": "Connessione con YubiKey",
@@ -59,6 +60,7 @@
 		"id": "Beberapa layanan meminta autentifikasi. Untuk melakukan autentifikasi, klik tombol pada YubiKey Anda. Field dibawah seharusnya secara otomatis akan diisi dengan one-time-password yang aman.",
 		"sr": "Neki od servisa je zatra\u017eio da se autentifikujete. Da biste se autentifikovali pritisnite dugme na va\u0161em YubiKey ure\u0111aju. Nakon toga bi u polje ispod trebala biti automatski upisana jednokratna lozinka.",
 		"ro": "Un serviciu a cerut s\u0103 v\u0103 autentifica\u021bi. Pentru autentificare, ap\u0103sa\u021bi butonul de pe YubiKey. C\u00e2mpul de mai jos va fi completat automat cu o parol\u0103 de unic\u0103 folosin\u021b\u0103.",
-		"cs": "N\u011bkter\u00e1 slu\u017eba si vy\u017e\u00e1dala autentizaci. K p\u0159ihl\u00e1\u0161en\u00ed klikn\u011bte na v\u00e1\u0161 YubiKey. Spodn\u00ed pol\u00ed\u010dko by se pot\u00e9 m\u011blo automaticky vyplnit bezpe\u010dn\u00fdm jednor\u00e1zov\u00fdm heslem."
+		"cs": "N\u011bkter\u00e1 slu\u017eba si vy\u017e\u00e1dala autentizaci. K p\u0159ihl\u00e1\u0161en\u00ed klikn\u011bte na v\u00e1\u0161 YubiKey. Spodn\u00ed pol\u00ed\u010dko by se pot\u00e9 m\u011blo automaticky vyplnit bezpe\u010dn\u00fdm jednor\u00e1zov\u00fdm heslem.",
+		"eu": "Zerbitzu batek kautotzeko eskatu du. Kautotzeko, klikatu zure YubiKey botoia. Behean kokatutako eremua automatikoki bete beharko litzateke erabilera bakarreko (OTP) pasahitz seguru batekin"
 	}
 }

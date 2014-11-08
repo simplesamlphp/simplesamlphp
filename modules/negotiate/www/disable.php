@@ -6,7 +6,6 @@
  * @author Mathias Meisfjordskar, University of Oslo.
  *         <mathias.meisfjordskar@usit.uio.no>
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 $params = array(
@@ -17,7 +16,7 @@ $params = array(
 SimpleSAML_Utilities::setCookie('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', 'True', $params, FALSE);
 
 $globalConfig = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
 $session->setData('negotiate:disable', 'session', FALSE, 24*60*60);
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'negotiate:disable.php');
 $t->show();

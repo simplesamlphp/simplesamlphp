@@ -2,7 +2,7 @@
 /**
  * SAML 1.1 SP configuration for simpleSAMLphp.
  *
- * See: https://rnd.feide.no/content/sp-hosted-metadata-reference
+ * See: https://simplesamlphp.org/docs/stable/saml:sp
  */
 
 /*

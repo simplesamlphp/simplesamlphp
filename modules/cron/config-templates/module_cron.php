@@ -1,8 +1,6 @@
 <?php
 /* 
  * Configuration for the Cron module.
- * 
- * $Id: $
  */
 
 $config = array (

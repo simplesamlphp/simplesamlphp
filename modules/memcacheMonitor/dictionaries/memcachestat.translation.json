@@ -24,7 +24,8 @@
 		"sr": "Identifikator procesa",
 		"ro": "ID proces",
 		"ru": "ID \u043f\u0440\u043e\u0446\u0435\u0441\u0441\u0430",
-		"cs": "ID procesu"
+		"cs": "ID procesu",
+		"eu": "Id prozesua"
 	},
 	"uptime": {
 		"no": "Oppetid",
@@ -51,7 +52,8 @@
 		"sr": "Ukupno vreme rada",
 		"ro": "Timp de func\u021bionare",
 		"ru": "\u0412\u0440\u0435\u043c\u044f \u0431\u0435\u0437\u043e\u0442\u043a\u0430\u0437\u043d\u043e\u0439 \u0440\u0430\u0431\u043e\u0442\u044b",
-		"cs": "Uptime"
+		"cs": "Uptime",
+		"eu": "Jardun-denbora"
 	},
 	"time": {
 		"no": "Tid n\u00e5",
@@ -78,7 +80,8 @@
 		"sr": "Trenutno vreme",
 		"ro": "Ora curent\u0103",
 		"ru": "\u0422\u0435\u043a\u0443\u0449\u0435\u0435 \u0432\u0440\u0435\u043c\u044f",
-		"cs": "Aktu\u00e1ln\u00ed \u010das"
+		"cs": "Aktu\u00e1ln\u00ed \u010das",
+		"eu": "Uneko ordua"
 	},
 	"version": {
 		"no": "Versjon",
@@ -105,7 +108,8 @@
 		"sr": "Verzija",
 		"ro": "Versiune",
 		"ru": "\u0412\u0435\u0440\u0441\u0438\u044f",
-		"cs": "Verze"
+		"cs": "Verze",
+		"eu": "Bertsioa"
 	},
 	"rusage_user": {
 		"no": "CPU Sekunder (bruker)",
@@ -132,7 +136,8 @@
 		"sr": "CPU sekundi (korisnik)",
 		"ro": "Secunde CPU (utilizator)",
 		"ru": "\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440\u043d\u043e\u0435 \u0432\u0440\u0435\u043c\u044f \u0432 \u0441\u0435\u043a\u0443\u043d\u0434\u0430\u0445 (\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f)",
-		"cs": "CPU sekundy (u\u017eivatel)"
+		"cs": "CPU sekundy (u\u017eivatel)",
+		"eu": "PUZ segunduak (Erabiltzailea)"
 	},
 	"rusage_system": {
 		"no": "CPU Sekunder (system)",
@@ -159,7 +164,8 @@
 		"sr": "CPU sekundi (sistem)",
 		"ro": "Secunde CPU (sistem)",
 		"ru": "\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440\u043d\u043e\u0435 \u0432\u0440\u0435\u043c\u044f \u0432 \u0441\u0435\u043a\u0443\u043d\u0434\u0430\u0445 (\u0441\u0438\u0441\u0442\u0435\u043c\u044b)",
-		"cs": "CPU sekundy (system)"
+		"cs": "CPU sekundy (system)",
+		"eu": "PUZ segunduak (Sistema)"
 	},
 	"curr_items": {
 		"no": "N\u00e5v\u00e6rende antall elementer",
@@ -186,7 +192,8 @@
 		"sr": "Trenutni broj elemenata",
 		"ro": "Num\u0103rul curent de elemente",
 		"ru": "\u0422\u0435\u043a\u0443\u0449\u0435\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432",
-		"cs": "Aktu\u00e1ln\u00ed mno\u017estv\u00ed polo\u017eek"
+		"cs": "Aktu\u00e1ln\u00ed mno\u017estv\u00ed polo\u017eek",
+		"eu": "Uneko elementu kopurua"
 	},
 	"total_items": {
 		"no": "Antall elementer for alltid",
@@ -213,7 +220,8 @@
 		"sr": "Ukupno elemenata od po\u010detka",
 		"ro": "Num\u0103r total de elemente",
 		"ru": "\u041e\u0431\u0449\u0435\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432 \u0437\u0430 \u0432\u0441\u0435 \u0432\u0440\u0435\u043c\u044f",
-		"cs": "Celkov\u00fd sou\u010det polo\u017eek"
+		"cs": "Celkov\u00fd sou\u010det polo\u017eek",
+		"eu": "Elementuen guztizko kopurua"
 	},
 	"bytes": {
 		"no": "Totalt antall bytes i bruk n\u00e5",
@@ -240,7 +248,8 @@
 		"sr": "Trenutno ukupno bajtova u upotrebi",
 		"ro": "Num\u0103r de octe\u021bi utiliza\u021bi acum",
 		"ru": "\u0421\u0435\u0439\u0447\u0430\u0441 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442\u0441\u044f \u0432\u0441\u0435\u0433\u043e \u0431\u0430\u0439\u0442",
-		"cs": "Vyu\u017e\u00edv\u00e1no celkem bajt\u016f"
+		"cs": "Vyu\u017e\u00edv\u00e1no celkem bajt\u016f",
+		"eu": "Une honetan erabiltzen ari diren byten guztizko kopurua"
 	},
 	"curr_connections": {
 		"no": "Antall \u00e5pne forbindelser n\u00e5",
@@ -267,7 +276,8 @@
 		"sr": "Trenutno otvorene konekcije",
 		"ro": "Conexiuni deschise acum",
 		"ru": "\u0422\u0435\u043a\u0443\u0449\u0438\u0435 \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u0435 \u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u044f",
-		"cs": "Aktu\u00e1ln\u011b otev\u0159en\u00e9 konexe"
+		"cs": "Aktu\u00e1ln\u011b otev\u0159en\u00e9 konexe",
+		"eu": "Egun irekita dauden konexioak"
 	},
 	"total_connections": {
 		"no": "Totalt antall forbindelser",
@@ -294,7 +304,8 @@
 		"sr": "Ukupno konekcija",
 		"ro": "Num\u0103r total de conexiuni",
 		"ru": "\u0412\u0441\u0435\u0433\u043e \u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0439",
-		"cs": "Celkem konex\u00ed"
+		"cs": "Celkem konex\u00ed",
+		"eu": "Konexioak guztira"
 	},
 	"connection_structures": {
 		"no": "Tilkoblings-strukturer",
@@ -321,7 +332,8 @@
 		"sr": "Struktura konekcija",
 		"ro": "Structuri de conectare",
 		"ru": "\u0421\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u044b \u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0439",
-		"cs": "Struktury konex\u00ed"
+		"cs": "Struktury konex\u00ed",
+		"eu": "Konexio egiturak"
 	},
 	"cmd_get": {
 		"no": "Totalt antall GET kommandoer",
@@ -348,7 +360,8 @@
 		"sr": "Ukupno GET naredbi",
 		"ro": "Num\u0103r total de comenzi GET",
 		"ru": "\u0412\u0441\u0435\u0433\u043e \u043a\u043e\u043c\u0430\u043d\u0434 GET",
-		"cs": "Celkov\u00fd po\u010det GET p\u0159\u00edkaz\u016f"
+		"cs": "Celkov\u00fd po\u010det GET p\u0159\u00edkaz\u016f",
+		"eu": "GET komandoak guztira"
 	},
 	"cmd_set": {
 		"no": "Totalt antall SET kommandoer",
@@ -375,7 +388,8 @@
 		"sr": "Ukupno SET naredbi",
 		"ro": "Num\u0103r total de comenzi SET",
 		"ru": "\u0412\u0441\u0435\u0433\u043e \u043a\u043e\u043c\u0430\u043d\u0434 SET",
-		"cs": "Celkov\u00fd po\u010det SET p\u0159\u00edkaz\u016f"
+		"cs": "Celkov\u00fd po\u010det SET p\u0159\u00edkaz\u016f",
+		"eu": "SET komandoak guztira"
 	},
 	"get_hits": {
 		"no": "Totalt antall GET kommandoer (OK)",
@@ -402,7 +416,8 @@
 		"sr": "Ukupno GET naredbi (uspe\u0161no izvr\u0161enih)",
 		"ro": "Num\u0103r total de comenzi GET (efectuate cu succes)",
 		"ru": "\u0412\u0441\u0435\u0433\u043e \u043a\u043e\u043c\u0430\u043d\u0434 GET (\u0443\u0441\u043f\u0435\u0448\u043d\u044b\u0445)",
-		"cs": "Celkov\u00fd po\u010det GET p\u0159\u00edkaz\u016f (\u00fasp\u011b\u0161n\u00fdch)"
+		"cs": "Celkov\u00fd po\u010det GET p\u0159\u00edkaz\u016f (\u00fasp\u011b\u0161n\u00fdch)",
+		"eu": "GET komandoak guztira (arrakastatsuak)"
 	},
 	"get_misses": {
 		"no": "Totalt antall GET kommandoer (feilet)",
@@ -429,7 +444,8 @@
 		"sr": "Ukupno GET naredbi (neuspe\u0161nih)",
 		"ro": "Num\u0103r total de comenzi GET (e\u0219uate)",
 		"ru": "\u0412\u0441\u0435\u0433\u043e \u043a\u043e\u043c\u0430\u043d\u0434 GET (\u0441 \u043e\u0448\u0438\u0431\u043a\u043e\u0439)",
-		"cs": "Celkov\u00fd po\u010det GET p\u0159\u00edkaz\u016f (ne\u00fasp\u011b\u0161n\u00fdch)"
+		"cs": "Celkov\u00fd po\u010det GET p\u0159\u00edkaz\u016f (ne\u00fasp\u011b\u0161n\u00fdch)",
+		"eu": "GET komandoak guztira (huts egiteak)"
 	},
 	"bytes_read": {
 		"no": "Antall bytes inn til tjeneren",
@@ -456,7 +472,8 @@
 		"sr": "Bajtova poslanih serveru",
 		"ro": "Octe\u021bi \u00eenspre server",
 		"ru": "\u0411\u0430\u0439\u0442 \u043d\u0430 \u0441\u0435\u0440\u0432\u0435\u0440",
-		"cs": "P\u0159\u00edchoz\u00edch bajt\u016f na server"
+		"cs": "P\u0159\u00edchoz\u00edch bajt\u016f na server",
+		"eu": "Byte-ak zerbitzarian"
 	},
 	"bytes_written": {
 		"no": "Antall bytes skrevet av tjeneren",
@@ -483,7 +500,8 @@
 		"sr": "Bajtova zapisanih od strane servera",
 		"ro": "Octe\u021bi scri\u0219i de server",
 		"ru": "\u0411\u0430\u0439\u0442 \u0437\u0430\u043f\u0438\u0441\u0430\u043d\u043e \u0441\u0435\u0440\u0432\u0435\u0440\u043e\u043c",
-		"cs": "Bajt\u016f zapsan\u00fdch serverem"
+		"cs": "Bajt\u016f zapsan\u00fdch serverem",
+		"eu": "Byte-ak zerbitzariak idatzita"
 	},
 	"limit_maxbytes": {
 		"no": "Total lagring tilgjengelig",
@@ -510,6 +528,7 @@
 		"sr": "Ukupno raspolo\u017eivo memorijskog prostora",
 		"ro": "Spa\u021biu de stocare disponibil",
 		"ru": "\u041e\u0431\u0449\u0438\u0439 \u0434\u043e\u0441\u0442\u0443\u043f\u043d\u044b\u0439 \u043e\u0431\u044a\u0435\u043c \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f \u0434\u0430\u043d\u043d\u044b\u0445",
-		"cs": "Celkov\u00e9 dostupn\u00e9 \u00falo\u017ei\u0161t\u011b"
+		"cs": "Celkov\u00e9 dostupn\u00e9 \u00falo\u017ei\u0161t\u011b",
+		"eu": "Ustiatutako biltegiraketa guztira"
 	}
 }

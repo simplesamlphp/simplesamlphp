@@ -30,7 +30,8 @@
 		"id": "<strong>Selamat<\/strong>, Anda telah berhasil melakukan instalasi simpleSAMLphp. Ini adalah halaman awal instalasi Anda, dimana Anda akan menemukan link ke contoh-contoh tes, diagnostik, metadata dan bahkan link ke dokumentasi terkait.",
 		"lv": "<strong>Apsveicu<\/strong>, J\u016bs esat veiksm\u012bgi uzinstal\u0113jis simpleSAMLphp.\u0160\u012b ir J\u016bsu instal\u0101cijas s\u0101kuma lapa, kur varat atrast saites uz testu piem\u0113riem, diagnostiku, metadatiem un dokument\u0101ciju.",
 		"sr": "<strong>\u010cestitamo<\/strong>, uspe\u0161no ste instalirali simpleSAMLphp. Ovo je po\u010detna stranica na kojoj mo\u017eete prona\u0107i primere, dijagnostiku, metapodatke i linkove na relevantnu dokumentaciju.",
-		"ro": "<strong>Felciit\u0103ri<\/strong>, a\u021bi instalat cu succes simpleSAMLphp. Aceasta este pagina de start unde g\u0103si\u021bi link-uri c\u0103tre exemple, diagnostic\u0103ri, metadate, documenta\u021bie."
+		"ro": "<strong>Felciit\u0103ri<\/strong>, a\u021bi instalat cu succes simpleSAMLphp. Aceasta este pagina de start unde g\u0103si\u021bi link-uri c\u0103tre exemple, diagnostic\u0103ri, metadate, documenta\u021bie.",
+		"eu": "<strong>&iexcl;Zorionak!<\/strong> simpleSAMLphp zuzen instalatu duzu. Hau instalazioaren hasiera orria da, hemen, aurkituko dituzu loturak froga, metadatu edo dokumentu garrantzitsuetan sartzeko."
 	},
 	"useful_links_header": {
 		"no": "Nyttige lenker for denne installasjonen",
@@ -50,6 +51,7 @@
 		"pt": "Liga\u00e7\u00f5es \u00fateis da sua instala\u00e7\u00e3o",
 		"pl": "Przydatne linki dla Twojej instalacji",
 		"cs": "Linky pro va\u0161i instalaci",
+		"eu": "Instalaziorako lotura erabilgarriak",
 		"tr": "Kurulumunuz i\u00e7in faydal\u0131 linkler",
 		"it": "Link utili per la tua installazione",
 		"lt": "Naudingos nuorodos diegimui",
@@ -83,6 +85,7 @@
 		"pt": "Metadados",
 		"pl": "Metadane",
 		"cs": "Metadata",
+		"eu": "Metadatuak",
 		"tr": "\u00dcstveri (Metadata)",
 		"it": "Metadati",
 		"lt": "Metaduomenys",
@@ -116,6 +119,7 @@
 		"pt": "Documenta\u00e7\u00e3o",
 		"pl": "Dokumentacja",
 		"cs": "Dokumentace",
+		"eu": "Dokumentazioa",
 		"tr": "Dok\u00fcmantasyon",
 		"it": "Documentazione",
 		"lt": "Dokumentacija",
@@ -149,6 +153,7 @@
 		"pt": "Verifica\u00e7\u00e3o do seu ambiente PHP",
 		"pl": "Sprawdzanie instalacji PHP",
 		"cs": "Test va\u0161\u00ed PHP instalace",
+		"eu": "Zure PHP instalaziooa egiazatzen",
 		"tr": "PHP kurulumunuz kontrol ediliyor",
 		"it": "Controllo dell'installazione di PHP",
 		"lt": "Tikrinamas J\u016bs\u0173 PHP diegimas",
@@ -182,6 +187,7 @@
 		"pt": "Sobre o simpleSAMLphp",
 		"pl": "O simpleSAMLphp",
 		"cs": "O aplikaci simpleSAMLphp",
+		"eu": "simpleSAMLphp-ari buruz",
 		"tr": "simpleSAMLphp hakk\u0131nda",
 		"it": "A proposito di simpleSAMLphp",
 		"lt": "Apie simpleSAMLphp",
@@ -228,7 +234,8 @@
 		"lv": "simpleSAMLphp ir baigi for\u0161s, kur par to var palas\u012bt vair\u0101k? Vair\u0101k inform\u0101cijas ir <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp Feide RnD blog\u0101<\/a> pie <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"id": "simpleSAMLphp sangat menarik, dimana Saya bisa membaca lebih jauh tentang hal ini ? Anda dapat mencari informasi lebih jauh tentang <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp pada blog Feide RnD<\/a> ke arah <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
 		"sr": "simpleSAMLphp je veoma kul, gde mogu da pro\u010ditam vi\u0161e o njemu? Vi\u0161e informacija o simpleSAMLphp-u mo\u017eete prona\u0107i na <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp stranici Feide RnD bloga<\/a>.",
-		"ro": "Acest simpleSAMLphp este interesant, unde pot g\u0103si mai multe informa\u021bii ? Pute\u021bi g\u0103si mai multe informa\u021bii despre <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\"> la blog-ul Feide despre simpleSAMLphp<\/a> de la <a href=\"http:\/\/uninett.no\">UNINETT<\/a>."
+		"ro": "Acest simpleSAMLphp este interesant, unde pot g\u0103si mai multe informa\u021bii ? Pute\u021bi g\u0103si mai multe informa\u021bii despre <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\"> la blog-ul Feide despre simpleSAMLphp<\/a> de la <a href=\"http:\/\/uninett.no\">UNINETT<\/a>.",
+		"eu": "simpleSAMLphp-en kontu hau interesgarria da benetan, non bila nezake informazio gehiago honen inguruan? <a href=\"http:\/\/rnd.feide.no\/simplesamlphp\">simpleSAMLphp Feideren I+G blogeko <a href=\"http:\/\/uninett.no\">UNINETT<\/a>n."
 	},
 	"required": {
 		"no": "P\u00e5krevd",
@@ -248,6 +255,7 @@
 		"pt": "Necess\u00e1rio",
 		"pl": "Wymagane",
 		"cs": "Po\u017eadov\u00e1no",
+		"eu": "Beharrezkoa",
 		"tr": "Gerekli",
 		"it": "Obbligatorio",
 		"lt": "B\u016btinas",
@@ -281,6 +289,7 @@
 		"pt": "Necess\u00e1rio para LDAP",
 		"pl": "Wymagane dla LDAP",
 		"cs": "Po\u017eadov\u00e1no pro LDAP",
+		"eu": "LDAPrentzat beharrezkoa",
 		"tr": "LDAP i\u00e7in gerekli",
 		"it": "Obbligatorio per LDAP",
 		"lt": "B\u016btinas LDAP serveriui",
@@ -314,6 +323,7 @@
 		"pt": "Necess\u00e1rio para Radius",
 		"pl": "Wymagane dla Radius",
 		"cs": "Po\u017eadov\u00e1no pro Radius",
+		"eu": "RADIUSentzat beharrezkoa",
 		"tr": "Radius i\u00e7in gerekli",
 		"it": "Obbligatorio per Radius",
 		"lt": "B\u016btinas Radius serveriui",
@@ -360,7 +370,8 @@
 		"lv": "Neoblig\u0101ts",
 		"id": "Opsional",
 		"sr": "Opciono",
-		"ro": "Op\u021bional"
+		"ro": "Op\u021bional",
+		"eu": "Hautazkoa"
 	},
 	"reccomended": {
 		"no": "Anbefalt",
@@ -393,7 +404,8 @@
 		"lv": "Ieteicams",
 		"id": "Direkomendasikan",
 		"sr": "Preporu\u010deno",
-		"ro": "Recomandat"
+		"ro": "Recomandat",
+		"eu": "Gomendatua"
 	},
 	"warnings": {
 		"no": "Advarsler",
@@ -426,7 +438,8 @@
 		"lv": "Br\u012bdin\u0101jumi",
 		"id": "Peringatan-Peringatan",
 		"sr": "Upozorenja",
-		"ro": "Aten\u021bion\u0103ri"
+		"ro": "Aten\u021bion\u0103ri",
+		"eu": "Oharrak"
 	},
 	"warnings_https": {
 		"no": "<strong>Du bruker ikke HTTPS<\/strong> - kryptert kommunikasjon med brukeren. HTTP fungerer utmerket til testform\u00e5l, men  i et produksjonsmilj\u00f8 anbefales sterkt \u00e5 skru p\u00e5 sikker kommunikasjon med HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Les mer i dokumentet: simpleSAMLphp maintenance<\/a> ]",
@@ -459,7 +472,8 @@
 		"lv": "<strong>J\u016bs neizmantojat HTTPS<\/strong> - \u0161ifr\u0113tu komunik\u0101ciju ar lietot\u0101ju. HTTP ir labs testa nol\u016bkiem, bet ra\u017eo\u0161an\u0101 j\u0101izmanto HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Lasiet vair\u0101k par simpleSAMLphp uztur\u0113\u0161anu<\/a> ]",
 		"id": "<strong>Anda tidak menggunakan HTTPS<\/strong> - komunikasi yang dienkripsi dengan user. HTTP bekerja baik-baik saja untuk tujuan pengetesan , tapi dalam lingkungan produksi, Anda sebaiknya menggunakan HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Baca lebih lanjut tentang proses pemeliraan simpleSAMLphp.<\/a> ]",
 		"sr": "<strong>Ne koristite HTTPS<\/strong> - kriptovanu komunikaciju s korisnikom. HTTP se mo\u017ee koristiti za potrebe testiranja, ali u produkcionom okru\u017eenju trebali biste koristiti HTTPS. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Pro\u010ditajte vi\u0161e o simpleSAMLphp pode\u0161avanjima<\/a> ]",
-		"ro": "<strong>Aten\u021bie, nu utiliza\u021bi HTTPS<\/strong> - comunicare criptat\u0103 cu utilizatorul. HTTP func\u021bioneaza bine pentru teste, dar \u00een produc\u021bie trebuie folosit HTTPS. [<a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Citi\u021bi mai multe despre \u00eentre\u021binerea simpleSAMLphp<\/a> ]"
+		"ro": "<strong>Aten\u021bie, nu utiliza\u021bi HTTPS<\/strong> - comunicare criptat\u0103 cu utilizatorul. HTTP func\u021bioneaza bine pentru teste, dar \u00een produc\u021bie trebuie folosit HTTPS. [<a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Citi\u021bi mai multe despre \u00eentre\u021binerea simpleSAMLphp<\/a> ]",
+		"eu": "<strong>Ez zara erabiltzen ari HTTPSak<\/strong> - erabiltzailearekin zifratutako komunikazioak. HTTP zuzen ibiltzen da ebaluaketa ingurunetan, baina ustiapenean erabili behar baduzu, HTTPS erabili beharko zenuke. [ <a href=\"http:\/\/rnd.feide.no\/content\/simplesamlphp-maintenance-and-configuration\">Irakur ezazu gehiago simpleSAMLphp-ren mantentze-lanei buruz <\/a> ]"
 	},
 	"link_saml2example": {
 		"no": "SAML 2.0 SP eksempel - test innlogging med SAML 2.0 via din IdP",
@@ -492,7 +506,8 @@
 		"lv": "SAML 2.0 SP piem\u0113rs - testa piesl\u0113g\u0161an\u0101s caur J\u016bsu IDP",
 		"id": "Contoh SAML 2.0 SP - Tes login melalui Idp Anda",
 		"sr": "SAML 2.0 SP primer - testirajte autentifikaciju kroz va\u0161 Davalac Identieta",
-		"ro": "Exemplu furnizor de servicii SAML 2.0 - testarea autentific\u0103rii prin furnizorul dumneavoastr\u0103 de identitate"
+		"ro": "Exemplu furnizor de servicii SAML 2.0 - testarea autentific\u0103rii prin furnizorul dumneavoastr\u0103 de identitate",
+		"eu": "SPren adibidea SAML 2.0rekin - saiakera zure IdP erabiliz sartzen"
 	},
 	"link_shib13example": {
 		"no": "Shibboleth 1.3 SP eksempel - test innlogging med Shibboleth 1.3 via din IdP",
@@ -525,7 +540,8 @@
 		"lv": "Shibboleth 1.3 SP piem\u0113rs - testa piesl\u0113g\u0161an\u0101s caur J\u016bsu Shib IDP",
 		"id": "Contoh Shibboleth 1.3 SP  - Tes login melalui IdP Shib Anda",
 		"sr": "Shibboleth 1.3 SP primer - testirajte autentifikaciju kroz va\u0161 Shib Davalac Servisa",
-		"ro": "Exemplu furnizor de servicii Shibboleth 1.3 - testarea autentific\u0103rii prin furnizorul dumneavoastr\u0103 de identitate Shib"
+		"ro": "Exemplu furnizor de servicii Shibboleth 1.3 - testarea autentific\u0103rii prin furnizorul dumneavoastr\u0103 de identitate Shib",
+		"eu": "SPren adibidea Shibboleth 1.3 erabiliz - saikera zure IdP Shibboleth erabiliz sartzen"
 	},
 	"link_openidprovider": {
 		"no": "OpenID Provider side - Alpha versjon (testkode)",
@@ -558,7 +574,8 @@
 		"lv": "OpenID pieg\u0101d\u0101t\u0101ja vietne - Alfa versija (testa kods)",
 		"id": "Situs Provider OpenID - Versi Alpa (Kode untuk tes)",
 		"sr": "Davalac OpenID digitalnih identiteta - razvojna verzija (test)",
-		"ro": "Furnizor OpenID - versiune alpha (cod de test)"
+		"ro": "Furnizor OpenID - versiune alpha (cod de test)",
+		"eu": "OpenID hornitzailearen gunea - Alfa bertsioa (proba kodea)"
 	},
 	"link_diagnostics": {
 		"no": "Diagnostiser hostnavn, port og protokoll",
@@ -591,7 +608,8 @@
 		"lv": "Saimniekdatora v\u0101rda, porta un protokola diagnostika",
 		"id": "Diagnostik pada hostname, port dan protokol",
 		"sr": "Dijagnostika vezana za naziv servera (hostname), port i protokol ",
-		"ro": "Diagnostic despre numele de host, port \u0219i protocol"
+		"ro": "Diagnostic despre numele de host, port \u0219i protocol",
+		"eu": "Host, ataka eta protokoloen gaineko diagnostikoa"
 	},
 	"link_phpinfo": {
 		"no": "PHPinfo",
@@ -611,6 +629,7 @@
 		"pt": "PHP info",
 		"pl": "PHP info",
 		"cs": "PHP info",
+		"eu": "PHP info",
 		"tr": "PHP info",
 		"it": "PHP info",
 		"lt": "PHP informacija",
@@ -657,7 +676,8 @@
 		"lv": "Metadatu p\u0101rskats J\u016bsu instal\u0101cij\u0101. Diagnostic\u0113t metadatu failus",
 		"id": "Ringkasan Metadata dari instalasi Anda. Memeriksa file metadata Anda",
 		"sr": "Pregled metapodataka o va\u0161oj instalaciji. Proverite ispravnost sadr\u017eaja fajlova sa metapodacima.",
-		"ro": "Privire de ansamblu a metadatelor pentru instalarea dumneavoastr\u0103. Diagnostica\u021bi fi\u0219ierele cu metadate"
+		"ro": "Privire de ansamblu a metadatelor pentru instalarea dumneavoastr\u0103. Diagnostica\u021bi fi\u0219ierele cu metadate",
+		"eu": "Zure instalazioko metadatuen ikuspegi orokorra. Egiaztatu zure metadatu fitxategiak"
 	},
 	"link_meta_saml2sphosted": {
 		"no": "Hosted SAML 2.0 Service Provider Metadata (automatisk generert)",
@@ -690,7 +710,8 @@
 		"lv": "Host\u0113ta SAML 2.0 servisa pieg\u0101d\u0101t\u0101ja metadati (\u0123ener\u0113ti autom\u0101tiski)",
 		"id": "Metadata Service Provider SAML 2.0 Hosted (secara otomatis digenerate)",
 		"sr": "Metapodaci za lokalni SAML 2.0 Davalac Servisa (automatski generisani)",
-		"ro": "Metadate pentru furnizorul de servicii SAML 2.0 g\u0103zduit (generate automat)"
+		"ro": "Metadate pentru furnizorul de servicii SAML 2.0 g\u0103zduit (generate automat)",
+		"eu": "SP SAML 2.0ren ostatatutako metadatuak (automatikoki sortuak)"
 	},
 	"link_meta_saml2idphosted": {
 		"no": "Hosted SAML 2.0 Identity Provider Metadata (automatisk generert)",
@@ -723,7 +744,8 @@
 		"lv": "Host\u0113ta SAML 2.0 identit\u0101tes pieg\u0101d\u0101t\u0101ja metadati (\u0123ener\u0113ti autom\u0101tiski)",
 		"id": "Metadata Identity Provider SAML 2.0 Hosted (secara otomatis digenerate)",
 		"sr": "Metapodaci za lokalni SAML 2.0 Davalac Identiteta (automatski generisani) ",
-		"ro": "Metadate pentru furnizorul de identitate SAML 2.0 g\u0103zduit (generate automat)"
+		"ro": "Metadate pentru furnizorul de identitate SAML 2.0 g\u0103zduit (generate automat)",
+		"eu": "IdP SAML 2.0ren ostatatutako metadatuak (automatikoki sortuak)"
 	},
 	"link_meta_shib13sphosted": {
 		"no": "Hosted Shibboleth 1.3 Service Provider Metadata (automatisk generert)",
@@ -756,7 +778,8 @@
 		"lv": "Host\u0113ta Shibboleth 1.3 servisa pieg\u0101d\u0101t\u0101ja metadati (\u0123ener\u0113ti autom\u0101tiski)",
 		"id": "Metadata Service Provider Shibboleth 1.3  Hosted (secara otomatis digenerate)",
 		"sr": "Metapodaci za lokalni Shibboleth 1.3 Davalac Servisa (automatski generisani)",
-		"ro": "Metadate pentru furnizorul de servicii Shibboleth 1.3 g\u0103zduit (generate automat)"
+		"ro": "Metadate pentru furnizorul de servicii Shibboleth 1.3 g\u0103zduit (generate automat)",
+		"eu": "SP Shibooleth 1.3ren ostatatutako metadatuak (automatikoki sortuak)"
 	},
 	"link_meta_shib13idphosted": {
 		"no": "Hosted Shibboleth 1.3 Identity Provider Metadata (automatisk generert)",
@@ -789,7 +812,8 @@
 		"lv": "Host\u0113ta Shibboleth 1.3 identit\u0101tes pieg\u0101d\u0101t\u0101ja metadati (\u0123ener\u0113ti autom\u0101tiski)",
 		"id": "Metadata Identity Provider Shibboleth 1.3 Hosted (secara otomatis digenerate)",
 		"sr": "Metapodaci za lokalni Shibboleth 1.3 Davalac Identiteta (automatski generisani)",
-		"ro": "Metadate pentru furnizorul de identitate Shibboleth 1.3 g\u0103zduit (generate automat)"
+		"ro": "Metadate pentru furnizorul de identitate Shibboleth 1.3 g\u0103zduit (generate automat)",
+		"eu": "IdP Shibooleth 1.3ren ostatatutako metadatuak (automatikoki sortuak)"
 	},
 	"link_xmlconvert": {
 		"no": "XML til simpleSAMLphp metadata-oversetter",
@@ -822,7 +846,8 @@
 		"lv": "XML uz simpleSAMLphp metadatu konvertors",
 		"id": "Konverter XML ke metadata simpleSAMLphp",
 		"sr": "Pretvaranje metapodataka iz XML formata u simpleSAMLphp format",
-		"ro": "Convertor metadate din XML \u00een simpleSAMLphp"
+		"ro": "Convertor metadate din XML \u00een simpleSAMLphp",
+		"eu": "XML-tik simpleSAMLphp metadatuetara bihurgailua"
 	},
 	"link_doc_install": {
 		"no": "Installerer simpleSAMLphp",
@@ -842,6 +867,7 @@
 		"pt": "Instalar o simpleSAMLphp",
 		"pl": "Instalowanie simpleSAMLphp",
 		"cs": "Instalace simpleSAMLphp",
+		"eu": "simpleSAMLphp-en instalakuntza",
 		"tr": "simpleSAMLphp kuruluyor",
 		"it": "Installazione di simpleSAMLphp",
 		"ja": "simpleSAMLphp\u306e\u30a4\u30f3\u30b9\u30c8\u30fc\u30eb",
@@ -875,6 +901,7 @@
 		"pt": "Usar o simpleSAMLphp como um fornecedor de servi\u00e7o (SP)",
 		"pl": "U\u017cycie simpleSAMLphp jako Dostawca Serwisu",
 		"cs": "Pou\u017eit\u00ed simpleSAMLphp jako SP",
+		"eu": "simpleSAMLphp erabili Identificadore hornitzaile moduan",
 		"tr": "simpleSAMLphp'i Servis Sa\u011flay\u0131c\u0131 (SP) olarak kullanmak",
 		"it": "Usare simpleSAMLphp come Service Provider",
 		"ja": "simpleSAMLphp\u3092\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u3068\u3057\u3066\u4f7f\u7528\u3059\u308b",
@@ -908,6 +935,7 @@
 		"pt": "Usar o simpleSAMLphp como um fornecedor de identidade (IdP)",
 		"pl": "U\u017cycie simpleSAMLphp jako Dostawca To\u017csamo\u015bci",
 		"cs": "Pou\u017eit\u00ed simpleSAMLphp jako IdP",
+		"eu": "simpleSAMLphp erabili Identifikadore Hornitzaile moduan",
 		"tr": "simpleSAMLphp'i Kimlik Sa\u011flay\u0131c\u0131 (IdP) olarak kullanmak",
 		"it": "Usare simpleSAMLphp come Identity Provider",
 		"ja": "simpleSAMLphp\u3092\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u3068\u3057\u3066\u4f7f\u7528\u3059\u308b",
@@ -941,6 +969,7 @@
 		"pt": "Configurar um SP Shibboleth 1.3 para funcionar com um IdP simpleSAMLphp",
 		"pl": "Konfiguruj Shibboleth 1.3 SP do wsp\u00f3\u0142pracy z simpleSAMLphp IdP",
 		"cs": "Konfigurace Shibboleth 1.3 SP pro pr\u00e1ci s simpleSAMLphp IdP",
+		"eu": "Shibboleth 1.3 SP konfiguratzea IdP simpleSAMLphp-ekin lan egin ahal izateko",
 		"tr": "Shibboleth 1.3 SP'yi simpleSAMLphp IdP ile \u00e7al\u0131\u015fmas\u0131 i\u00e7in d\u00fczenle",
 		"it": "Configurare un SP Shibboleth 1.3 per funzionare con un IdP simpleSAMLphp",
 		"ja": "simpleSAMLphp IdP \u3068 \u9023\u643a\u3059\u308b Shibboleth SP 1.3 \u3068\u3057\u3066\u8a2d\u5b9a",
@@ -974,6 +1003,7 @@
 		"pt": "Configurar o simpleSAMLphp  para funcionar como um IdP para o Google Apps for Education",
 		"pl": "simpleSAMLphp jako Dostawca To\u017csamo\u015bci dla Google Apps dla szkolnictwa",
 		"cs": "simpleSAMLphp jako IdP pro Google Apps for Education",
+		"eu": "simpleSAMLphp Hezkuntzarako Google Apps-entzako IdP moduan",
 		"tr": "\"Google Apps for Education\" i\u00e7in kimlik sa\u011flay\u0131c\u0131 (IdP) olarak simpleSAMLphp ",
 		"it": "simpleSAMLphp come IdP per Google Apps for Education",
 		"ja": "simpleSAMLphp \u3092 Google Apps for Education \u306e\u70ba\u306eIdP\u3068\u3057\u3066\u8a2d\u5b9a",
@@ -1007,6 +1037,7 @@
 		"pt": "Funcionalidades avan\u00e7adas do simpleSAMLphp",
 		"pl": "Zaawansowane w\u0142a\u015bciwo\u015bci simpleSAMLphp",
 		"cs": "simpleSAMLphp nadstandartn\u00ed vlastnosti",
+		"eu": "simpleSAMLphp-en ezaugarri aurreratuak",
 		"tr": "simpleSAMLphp Geli\u015fmi\u015f \u00d6zellikler",
 		"it": "Funzioni avanzate di simpleSAMLphp ",
 		"ja": "simpleSAMLphp \u306e\u9ad8\u5ea6\u306a\u6a5f\u80fd",
@@ -1040,6 +1071,7 @@
 		"pt": "Configura\u00e7\u00e3o e manuten\u00e7\u00e3o do simpleSAMLphp",
 		"pl": "Konfiguracja i Prace administracyjne ",
 		"cs": "simpleSAMLphp udr\u017eba a konfigurace",
+		"eu": "simpleSAMLphp-en mantentzea eta konfigurazioa",
 		"tr": "simpleSAMLphp Bak\u0131m ve D\u00fczenleme",
 		"it": "Manutenzione e configurazione di simpleSAMLphp ",
 		"lt": "simpleSAMLphp valdymas ir konfig\u016bracija",
@@ -1072,6 +1104,7 @@
 		"pt": "Teste da configura\u00e7\u00e3o do simpleSAMLphp",
 		"pl": "sprawdzanie konfiguracji simpleSAMLphp",
 		"cs": "Test konfigurace simpleSAMLphp",
+		"eu": "simpleSAMLphp-en konfigurazioa egiaztatzea",
 		"tr": "simpleSAMLphp konfig\u00fcrasyon kontrol\u00fc",
 		"it": "Controllo configurazione simpleSAMLphp",
 		"lt": "simpleSAMLphp konfig\u016bracijos patikrinimas",
@@ -1117,7 +1150,8 @@
 		"lv": "Dz\u0113st manas IdP izv\u0113les IdP discovery servisos",
 		"id": "Hapus pilihan IdP saya di IdP penemuan layanan",
 		"sr": "Poni\u0161ti moj izbor za Davaoca Identiteta u servisima za pronala\u017eenje Davaoca Identiteta ",
-		"ro": "\u0218terge furnizorii de identitate ale\u0219i de mine din serviciile de c\u0103utare a furnizorilor de identitate"
+		"ro": "\u0218terge furnizorii de identitate ale\u0219i de mine din serviciile de c\u0103utare a furnizorilor de identitate",
+		"eu": "Nire IdP aukerak ezabatu IdP aurkikuntza zerbitzuetan"
 	},
 	"welcome": {
 		"no": "Velkommen",
@@ -1135,6 +1169,7 @@
 		"pt": "Bem vindo",
 		"pl": "Witaj",
 		"cs": "V\u00edtejte",
+		"eu": "Ongi etorri",
 		"tr": "Ho\u015fgeldiniz",
 		"it": "Benvenuto",
 		"lt": "Sveiki atvyk\u0119",
@@ -1167,6 +1202,7 @@
 		"pt": "Configura\u00e7\u00e3o",
 		"pl": "Konfiguracja",
 		"cs": "Konfigurace",
+		"eu": "Konfigurazioa",
 		"tr": "Konfigurasyon",
 		"it": "Configurazione",
 		"lt": "Konfig\u016bracija",
@@ -1199,6 +1235,7 @@
 		"pt": "Metadados",
 		"pl": "Metadane",
 		"cs": "Metadata",
+		"eu": "Metadatuak",
 		"tr": "\u00dcstveri (Metadata)",
 		"it": "Metadati",
 		"lt": "Metaduomenys",
@@ -1231,6 +1268,7 @@
 		"pt": "Ferramentas",
 		"pl": "Narz\u0119dzia",
 		"cs": "N\u00e1stroje",
+		"eu": "Tresnak",
 		"tr": "Ara\u00e7lar",
 		"it": "Strumenti",
 		"lt": "\u012erankiai",
@@ -1263,6 +1301,7 @@
 		"pt": "Mostrar meta-dados",
 		"pl": "Wy\u015bwietl metadane",
 		"cs": "Zobraz metadata",
+		"eu": "Ikusi metadatuak",
 		"tr": "\u00dcstveri (Metadata) g\u00f6ster",
 		"it": "Mostra metadati",
 		"lt": "Parodyti metaduomenis",
@@ -1295,6 +1334,7 @@
 		"pt": "Entrar como administrador",
 		"pl": "Zaloguj si\u0119 jako administrator",
 		"cs": "P\u0159\u00edhl\u00e1sit se jako administr\u00e1tor",
+		"eu": "Sartu administratzaile bezala",
 		"tr": "Y\u00f6netici olarak giri\u015f",
 		"it": "Accedi come amministratore",
 		"lt": "Prisijungti administratoriaus teis\u0117mis",
@@ -1327,6 +1367,7 @@
 		"pt": "Est\u00e1 autenticado como administrador",
 		"pl": "Jeste\u015b zalogowany jako administrator",
 		"cs": "Jste p\u0159ihl\u00e1\u0161en jako administrator",
+		"eu": "Administratzaile bezala sartu zara",
 		"tr": "Y\u00f6netici olarak girdiniz",
 		"it": "Sei connesso come amministratore",
 		"lt": "J\u016bs prisijung\u0117te administratoriaus teis\u0117mis",
@@ -1373,7 +1414,8 @@
 		"id": "Autentifikasi",
 		"sr": "Autentifikacija",
 		"ro": "Autentificare",
-		"cs": "Autentizace"
+		"cs": "Autentizace",
+		"eu": "Kautotzea"
 	},
 	"federation": {
 		"no": "F\u00f8derasjon",
@@ -1405,7 +1447,8 @@
 		"id": "Federasi",
 		"sr": "Federacija",
 		"ro": "Federa\u021bie",
-		"cs": "Federace"
+		"cs": "Federace",
+		"eu": "Federazioa"
 	},
 	"authtest": {
 		"no": "Test konfigurerte autentiseringskilder",
@@ -1435,7 +1478,8 @@
 		"id": "Memerika sumber autentifikasi yang telah dikonfigurasi",
 		"sr": "Testirajte pode\u0161ene autentifikacione servise",
 		"ro": "Surse de autentificare configurate pentru teste",
-		"cs": "Otestovat nakonfigurovan\u00e9 autentiza\u010dn\u00ed zdroje"
+		"cs": "Otestovat nakonfigurovan\u00e9 autentiza\u010dn\u00ed zdroje",
+		"eu": "Frogatu kautotzeko jada konfiguratuak dauden iturriak"
 	},
 	"deprecated": {
 		"no": "Utdatert",
@@ -1466,7 +1510,8 @@
 		"id": "Usang",
 		"sr": "Zastarelo",
 		"ro": "Depreciate",
-		"cs": "Zastaral\u00e9"
+		"cs": "Zastaral\u00e9",
+		"eu": "Zaharkitua"
 	},
 	"page_title": {
 		"sv": "Installationssida f\u00f6r simpleSAMLphp",
@@ -1494,7 +1539,8 @@
 		"lv": "simpleSAMLphp instal\u0101cijas lapa",
 		"sr": "simpleSAMLphp instalaciona stranica",
 		"ro": "Pagina de instalare a simpleSAMLphp",
-		"cs": "Instala\u010dn\u00ed str\u00e1nka simpleSAMLphp"
+		"cs": "Instala\u010dn\u00ed str\u00e1nka simpleSAMLphp",
+		"eu": "simpleSAMLphp instalatzeko orria"
 	},
 	"warnings_suhosin_url_length": {
 		"no": "Lengden p\u00e5 foresp\u00f8rselparametre er begrenset av PHP Suhosin utvidelsen. Vennligst \u00f8k suhosin.get.max_value_length konfigurasjonsinnstillingen til minst 2048 tegn.",
@@ -1521,6 +1567,7 @@
 		"nl": "De lengte van de query-parameters wordt beperkt door PHP's Suhosin-extensie. Gelieve de optie suhosin.get.max_value_length te verhogen tot tenminste 2048 bytes.",
 		"es": "El n\u00famero de par\u00e1metros de la petici\u00f3n est\u00e1 limitado por la extensi\u00f3n Suhosin de PHP. Por favor, incremente el valor de la opci\u00f3n suhosin.get.max_value_length a al menos 2048 bytes.",
 		"ro": "Lungimea parametrilor din cerere este limitat\u0103 de extensia Suhosin a PHP. V\u0103 rug\u0103m s\u0103 modifica\u021bi <i>suhosin.get.max_value_length<\/i> la cel pu\u021bin 2048 de octe\u021bi.",
-		"cs": "D\u00e9lka parametr\u016f dotazu je limitov\u00e1na roz\u0161\u00ed\u0159en\u00edm PHP Suhosin. Pros\u00edm, zvy\u0161te parametr suhosin.get.max_value_length alespo\u0148 na 2048 bajt\u016f."
+		"cs": "D\u00e9lka parametr\u016f dotazu je limitov\u00e1na roz\u0161\u00ed\u0159en\u00edm PHP Suhosin. Pros\u00edm, zvy\u0161te parametr suhosin.get.max_value_length alespo\u0148 na 2048 bajt\u016f.",
+		"eu": "Eskaeraren parametroen luzera PHP Suhosin luzapenak mugatzen du. Mesedez, luza ezazu suhosin.get.max_value_length aukeraren balioa gutxienez 2048 bytetara."
 	}
 }

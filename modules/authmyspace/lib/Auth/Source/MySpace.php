@@ -7,7 +7,6 @@ require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/lib
  *
  * @author Brook Schofield, TERENA.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_authmyspace_Auth_Source_MySpace extends SimpleSAML_Auth_Source {
 

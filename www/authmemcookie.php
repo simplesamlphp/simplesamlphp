@@ -105,7 +105,7 @@ try {
 	$memcache->set($sessionID, $data, 0, $expirationTime);
 
 	/* Register logout handler. */
-	$session = SimpleSAML_Session::getInstance();
+	$session = SimpleSAML_Session::getSessionFromRequest();
 	$session->registerLogoutHandler('SimpleSAML_AuthMemCookie', 'logoutHandler');
 
 	/* Redirect the user back to this page to signal that the login is completed. */

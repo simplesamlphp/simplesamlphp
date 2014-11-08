@@ -6,9 +6,78 @@ simpleSAMLphp changelog
 This document lists the changes between versions of simpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.13.2
+
+Released 2014-11-04
+
+  * Solved performance issues when processing large metadata sets.
+  * Fix an issue in the web interface when only one language is enabled.
+
+## Version 1.13.1
+
+Released 2014-10-27
+
+  * Solved an issue with empty fields in metadata to cause SimpleSAMLphp to fail with a translation error. Issues #97 and #114.
+  * Added Basque language to the list of known languages. Issue #117.
+  * Optimized the execution of redirections by removing an additional, unnecessary function call.
+  * Solved an issue that caused SimpleSAMLphp to fail when the RelayState parameter was empty or missing on an IdP-initiated authentication. Issues #99 and # 104.
+  * Fixed a certificate check for SubjectConfirmations with Holder of Key methods.
+
+## Version 1.13
+
+Released 2014-09-25.
+
+  * Added the 'remember me' option to the default login page.
+  * Improved error reporting.
+  * Added a new 'logging.format' option to control the formatting of the logs.
+  * Added support for the 'objectguid' binary attribute in LDAP modules.
+  * Added support for custom search and private attributes read credentials in all LDAP modules.
+  * Added support for the WantAuthnRequestsSigned option in generated SAML metadata.
+  * Tracking identifiers are no longer generated based on MD5.
+  * Several functions, classes and interfaces marked as deprecated.
+  * Bug fixes and documentation enhancements.
+  * Updated translations.
+  * New language: Basque.
+
+### `adfs`
+
+  * Honour the 'wreply' parameter when redirecting.
+
+### `aggregator`
+
+  * Fixed an issue when regenerating metadata from certain metadata sources.
+
+### `discopower`
+
+  * Bug fix.
+
+### `expirycheck`
+
+  * Translations are now possible for this module.
+
+### `metarefresh`
+
+  * Use cached metadata if something goes wrong when refreshing feeds.
+
+### `openidProvider`
+
+  * Fix for compatibility with versions of PHP greater or equal to 5.4.
+
+### `saml`
+
+  * Make it possible to add friendly names to attributes in SP metadata.
+  * The RSA_1.5 (RSA with PKCS#1 v1.5 padding) encryption algorithm is now blacklisted by default for security reasons.
+  * Stop checking the 'IDPList' parameter in IdPs.
+  * Solved an issue that allowed bypassing authentication status checks when presenting an 'IDPList' parameter.
+  * The 'Destination' attribute is now always sent in logout responses issued by an SP.
+
+### `sqlauth`
+
+  * Updated documentation to remove bad practice with regard to password storage.
+
 ## Version 1.12
 
-Released TBD.
+Released 2014-03-24.
 
   * Removed example authproc filters from configuration template.
   * Stopped using the 'target-densitydpi' option removed from WebKit.
@@ -195,7 +264,8 @@ Released 2013-06-05.
   * Bugfix for SAML SP metadata signing.
   * Ignore default technical contact.
   * Support for MDUI elements in SP metadata.
-  * Support for more contact types in SP metadata. 
+  * Support for more contact types in SP metadata.
+  * New information in statistics with the time it took for a login to happen.
 
 ### `sanitycheck`
 

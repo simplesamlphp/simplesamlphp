@@ -9,36 +9,60 @@
  * @package simpleSAMLphp
  * @version $ID$
  */
-class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_LoggingHandler {
+class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_LoggingHandler
+{
 
-	/**
-	 * This array contains the mappings from syslog loglevel to names.
-	 */
-	private static $levelNames = array(
-		SimpleSAML_Logger::EMERG => 'EMERG',
-		SimpleSAML_Logger::ALERT => 'ALERT',
-		SimpleSAML_Logger::CRIT => 'CRIT',
-		SimpleSAML_Logger::ERR => 'ERR',
-		SimpleSAML_Logger::WARNING => 'WARNING',
-		SimpleSAML_Logger::NOTICE => 'NOTICE',
-		SimpleSAML_Logger::INFO => 'INFO',
-		SimpleSAML_Logger::DEBUG => 'DEBUG',
-	);
+    /**
+     * This array contains the mappings from syslog loglevel to names.
+     */
+    private static $levelNames = array(
+        SimpleSAML_Logger::EMERG   => 'EMERG',
+        SimpleSAML_Logger::ALERT   => 'ALERT',
+        SimpleSAML_Logger::CRIT    => 'CRIT',
+        SimpleSAML_Logger::ERR     => 'ERR',
+        SimpleSAML_Logger::WARNING => 'WARNING',
+        SimpleSAML_Logger::NOTICE  => 'NOTICE',
+        SimpleSAML_Logger::INFO    => 'INFO',
+        SimpleSAML_Logger::DEBUG   => 'DEBUG',
+    );
+    private $format;
 
 
-	function log_internal($level, $string) {
-		$config = SimpleSAML_Configuration::getInstance();
+    /**
+     * Set the format desired for the logs.
+     *
+     * @param string $format The format used for logs.
+     */
+    public function setLogFormat($format)
+    {
+        $this->format = $format;
+    }
+
+
+    /**
+     * Log a message to syslog.
+     *
+     * @param int $level The log level.
+     * @param string $string The formatted message to log.
+     */
+    public function log($level, $string)
+    {
+        $config = SimpleSAML_Configuration::getInstance();
         assert($config instanceof SimpleSAML_Configuration);
-        $processname = $config->getString('logging.processname','simpleSAMLphp');
-		
-		if(array_key_exists($level, self::$levelNames)) {
-			$levelName = self::$levelNames[$level];
-		} else {
-			$levelName = sprintf('UNKNOWN%d', $level);
-		}
+        $processname = $config->getString('logging.processname', 'simpleSAMLphp');
 
-		error_log($processname.' - '.$levelName . ': ' . $string);
-	}
+        if (array_key_exists($level, self::$levelNames)) {
+            $levelName = self::$levelNames[$level];
+        } else {
+            $levelName = sprintf('UNKNOWN%d', $level);
+        }
+
+        $formats = array('%process', '%level');
+        $replacements = array($processname, $levelName);
+        $string = str_replace($formats, $replacements, $string);
+        $string = preg_replace('/%\w+(\{[^\}]+\})?/', '', $string);
+        $string = trim($string);
+
+        error_log($string);
+    }
 }
-
-?>

@@ -10,13 +10,13 @@
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Session {
 
 	/**
 	 * This is a timeout value for setData, which indicates that the data should be deleted
 	 * on logout.
+	 * @deprecated
 	 */
 	const DATA_TIMEOUT_LOGOUT = 'logoutTimeout';
 
@@ -64,24 +64,27 @@ class SimpleSAML_Session {
 	 * The track id is a new random unique identifier that is generated for each session.
 	 * This is used in the debug logs and error messages to easily track more information
 	 * about what went wrong.
-     *
-     * @var int
+	 *
+	 * @var int
 	 */
 	private $trackid = 0;
 
 
+	/**
+	 * @deprecated
+	 */
 	private $authority = null;
 
 
 	private $rememberMeExpire = null;
 
 
-    /**
-     * Marks a session as modified, and therefore needs to be saved before destroying
-     * this object.
-     *
-     * @var bool
-     */
+	/**
+	 * Marks a session as modified, and therefore needs to be saved before destroying
+	 * this object.
+	 *
+	 * @var bool
+	 */
     private $dirty = false;
 
 
@@ -131,8 +134,8 @@ class SimpleSAML_Session {
 
 	/**
 	 * Private constructor that restricts instantiation to getInstance().
-     *
-     * @param boolean $transient Whether to create a transient session or not.
+	 *
+	 * @param boolean $transient Whether to create a transient session or not.
 	 */
 	private function __construct($transient = FALSE) {
 
@@ -147,7 +150,7 @@ class SimpleSAML_Session {
 		$sh = SimpleSAML_SessionHandler::getSessionHandler();
 		$this->sessionId = $sh->newSessionId();
 
-		$this->trackid = substr(md5(uniqid(rand(), true)), 0, 10);
+		$this->trackid = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(5));
 
 		$this->dirty = TRUE;
 
@@ -161,10 +164,10 @@ class SimpleSAML_Session {
 	}
 
 
-    /**
-     * Destructor for this class. It will save the session to the session handler
-     * in case the session has been marked as dirty. Do nothing otherwise.
-     */
+	/**
+	 * Destructor for this class. It will save the session to the session handler
+	 * in case the session has been marked as dirty. Do nothing otherwise.
+	 */
     public function __destruct() {
         if(!$this->dirty) {
             /* Session hasn't changed - don't bother saving it. */
@@ -187,14 +190,23 @@ class SimpleSAML_Session {
     }
 
 
-	/**
+    /**
+     * @deprecated
+     * @see SimpleSAML_Session::getSessionFromRequest()
+     */
+    public static function getInstance() {
+        return self::getSessionFromRequest();
+    }
+
+
+    /**
 	 * Retrieves the current session. Will create a new session if there isn't a session.
 	 *
 	 * @return SimpleSAML_Session The current session.
-     * @throws Exception When session couldn't be initialized and
-     * the session fallback is disabled by configuration.
+	 * @throws Exception When session couldn't be initialized and
+	 * the session fallback is disabled by configuration.
 	 */
-	public static function getInstance() {
+	public static function getSessionFromRequest() {
 
 		/* Check if we already have initialized the session. */
 		if (isset(self::$instance)) {
@@ -278,8 +290,8 @@ class SimpleSAML_Session {
 	/**
 	 * Get a unique ID that will be permanent for this session.
 	 * Used for debugging and tracing log files related to a session.
-     *
-     * @return string The unique ID.
+	 *
+	 * @return string The unique ID.
 	 */
 	public function getTrackID() {
 		return $this->trackid;
@@ -288,8 +300,9 @@ class SimpleSAML_Session {
 
 	/**
 	 * Who authorized this session. Could be for example 'saml2', 'shib13', 'login', 'login-admin' etc.
-     *
-     * @return string Who authorized this session.
+	 *
+	 * @return string Who authorized this session.
+	 * @deprecated
 	 */
 	public function getAuthority() {
 		return $this->authority;
@@ -306,6 +319,7 @@ class SimpleSAML_Session {
 	 * @throws Exception If the method can't find a cached version of the request.
 	 * @return array Returns an assoc array of cached variables associated with the
 	 * authentication request.
+	 * @deprecated
 	 */
 	public function getAuthnRequest($protocol, $requestid) {
 
@@ -335,6 +349,7 @@ class SimpleSAML_Session {
 	 * @param string $protocol 'saml2' or 'shib13'
 	 * @param string $requestid The request id used as a key to lookup the cache.
 	 * @param array $cache The assoc array that will be stored.
+	 * @deprecated
 	 */
 	public function setAuthnRequest($protocol, $requestid, array $cache) {
 
@@ -350,6 +365,7 @@ class SimpleSAML_Session {
 	 * Set the IdP we are authenticated against.
 	 *
 	 * @param string|NULL $idp Our current IdP, or NULL if we aren't authenticated with an IdP.
+	 * @deprecated
 	 */
 	public function setIdP($idp) {
 		assert('is_string($idp) || is_null($idp)');
@@ -370,6 +386,7 @@ class SimpleSAML_Session {
 	 * Retrieve the IdP we are currently authenticated against.
 	 *
 	 * @return string|NULL Our current IdP, or NULL if we aren't authenticated with an IdP.
+	 * @deprecated
 	 */
 	public function getIdP() {
 		if (!isset($this->authData[$this->authority]['saml:sp:IdP'])) {
@@ -383,6 +400,7 @@ class SimpleSAML_Session {
 	 * Set the SessionIndex we received from our IdP.
 	 *
 	 * @param string|NULL $sessionindex Our SessionIndex.
+	 * @deprecated
 	 */
 	public function setSessionIndex($sessionindex) {
 		assert('is_string($sessionindex) || is_null($sessionindex)');
@@ -402,6 +420,7 @@ class SimpleSAML_Session {
 	 * Retrieve our SessionIndex.
 	 *
 	 * @return string|NULL Our SessionIndex.
+	 * @deprecated
 	 */
 	public function getSessionIndex() {
 		if (!isset($this->authData[$this->authority]['saml:sp:SessionIndex'])) {
@@ -415,6 +434,7 @@ class SimpleSAML_Session {
 	 * Set our current NameID.
 	 *
 	 * @param array|NULL $nameid The NameID we received from the IdP
+	 * @deprecated
 	 */
 	public function setNameID($nameid) {
 		assert('is_array($nameid) || is_null($nameid)');
@@ -434,6 +454,7 @@ class SimpleSAML_Session {
 	 * Get our NameID.
 	 *
 	 * @return array|NULL The NameID we received from the IdP.
+	 * @deprecated
 	 */
 	public function getNameID() {
 		if (!isset($this->authData[$this->authority]['saml:sp:NameID'])) {
@@ -613,6 +634,7 @@ class SimpleSAML_Session {
 	 * Set the lifetime of our current authentication session.
 	 *
 	 * @param int $duration The number of seconds this authentication session is valid.
+	 * @deprecated
 	 */
 	public function setSessionDuration($duration) {
 		assert('is_int($duration)');
@@ -656,6 +678,7 @@ class SimpleSAML_Session {
 	 * If the user is authenticated, how much time is left of the session.
 	 *
 	 * @return int The number of seconds until the session expires.
+	 * @deprecated
 	 */
 	public function remainingTime() {
 
@@ -672,6 +695,7 @@ class SimpleSAML_Session {
 	 * Is the user authenticated. This function does not check the session duration.
 	 *
 	 * @return bool TRUE if the user is authenticated, FALSE otherwise.
+	 * @deprecated
 	 */
 	public function isAuthenticated() {
 		return isset($this->authData[$this->authority]);
@@ -682,6 +706,7 @@ class SimpleSAML_Session {
 	 * Retrieve the time the user was authenticated.
 	 *
 	 * @return int|NULL The timestamp for when the user was authenticated. NULL if the user hasn't authenticated.
+	 * @deprecated
 	 */
 	public function getAuthnInstant() {
 
@@ -699,6 +724,7 @@ class SimpleSAML_Session {
 	 * Retrieve the attributes associated with this session.
 	 *
 	 * @return array|NULL  The attributes.
+	 * @deprecated
 	 */
 	public function getAttributes() {
 		if (!isset($this->authData[$this->authority]['Attributes'])) {
@@ -713,6 +739,7 @@ class SimpleSAML_Session {
 	 *
 	 * @param string $name  The name of the attribute.
 	 * @return array|NULL  The values of the given attribute.
+	 * @deprecated
 	 */
 	public function getAttribute($name) {
 		if (!isset($this->authData[$this->authority]['Attributes'][$name])) {
@@ -726,6 +753,7 @@ class SimpleSAML_Session {
 	 * Set the attributes for this session.
 	 *
 	 * @param array|NULL $attributes  The attributes of this session.
+	 * @deprecated
 	 */
 	public function setAttributes($attributes) {
 		assert('isset($this->authData[$this->authority])');
@@ -753,6 +781,7 @@ class SimpleSAML_Session {
 	 * Calculates the size of the session object after serialization
 	 *
 	 * @return int The size of the session measured in bytes.
+	 * @deprecated
 	 */
 	public function getSize() {
 		$s = serialize($this);
@@ -765,7 +794,7 @@ class SimpleSAML_Session {
 	 *
 	 * @param string $classname The class which contains the logout handler.
 	 * @param string $functionname The logout handler function.
-     * @throws Exception If the handler is not a valid function or method.
+	 * @throws Exception If the handler is not a valid function or method.
 	 */
 	public function registerLogoutHandler($classname, $functionname) {
 		assert('isset($this->authData[$this->authority])');
@@ -787,7 +816,7 @@ class SimpleSAML_Session {
 	 * This function calls all registered logout handlers.
 	 *
 	 * @param string $authority The authentication source we are logging out from.
-     * @throws Exception If the handler is not a valid function or method.
+	 * @throws Exception If the handler is not a valid function or method.
 	 */
 	private function callLogoutHandlers($authority) {
 		assert('is_string($authority)');
@@ -854,6 +883,7 @@ class SimpleSAML_Session {
 
 	/**
 	 * This function deletes data which should be deleted on logout from the data store.
+	 * @deprecated
 	 */
 	private function expireDataLogout() {
 
@@ -1116,6 +1146,7 @@ class SimpleSAML_Session {
 	 * Set the logout state for this session.
 	 *
 	 * @param array $state  The state array.
+	 * @deprecated
 	 */
 	public function setLogoutState(array $state) {
 		assert('isset($this->authData[$this->authority])');
@@ -1129,6 +1160,7 @@ class SimpleSAML_Session {
 	 * Retrieve the logout state for this session.
 	 *
 	 * @return array  The logout state. If no logout state is set, an empty array will be returned.
+	 * @deprecated
 	 */
 	public function getLogoutState() {
 		assert('isset($this->authData[$this->authority])');

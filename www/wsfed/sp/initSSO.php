@@ -1,4 +1,13 @@
 <?php
+
+/**
+ * WARNING:
+ *
+ * THIS FILE IS DEPRECATED AND WILL BE REMOVED IN FUTURE VERSIONS
+ *
+ * @deprecated
+ */
+
 /**
  * WS-Federation/ADFS PRP protocol support for simpleSAMLphp.
  *
@@ -8,13 +17,14 @@
  *
  * @author Hans Zandbelt, SURFnet BV. <hans.zandbelt@surfnet.nl>
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 require_once('../../_include.php');
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+
+SimpleSAML_Logger::warning('The file wsfed/sp/initSSO.php is deprecated and will be removed in future versions.');
 
 SimpleSAML_Logger::info('WS-Fed - SP.initSSO: Accessing WS-Fed SP initSSO script');
 

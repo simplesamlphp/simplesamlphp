@@ -6,7 +6,6 @@
  * available metadata.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_saml_Message {
 
@@ -19,8 +18,15 @@ class sspmod_saml_Message {
 	 */
 	public static function addSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_SignedElement $element) {
 
-		$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata, TRUE);
-		$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);
+		$dstPrivateKey = $dstMetadata->getString('signature.privatekey', NULL);
+
+		if ($dstPrivateKey !== NULL) {
+			$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, TRUE, 'signature.');
+			$certArray = SimpleSAML_Utilities::loadPublicKey($dstMetadata, FALSE, 'signature.');
+		} else {
+			$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata, TRUE);
+			$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);
+		}
 
 		$algo = $dstMetadata->getString('signature.algorithm', NULL);
 		if ($algo === NULL) {
@@ -316,7 +322,7 @@ class sspmod_saml_Message {
 
 		$blacklist = $srcMetadata->getArray('encryption.blacklisted-algorithms', NULL);
 		if ($blacklist === NULL) {
-			$blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', array());
+			$blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', array(XMLSecurityKey::RSA_1_5));
 		}
 		return $blacklist;
 	}
@@ -615,8 +621,9 @@ class sspmod_saml_Message {
 				/* Extract certificate data (if this is a certificate). */
 				$clientCert = $_SERVER['SSL_CLIENT_CERT'];
 				$pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
-				if (preg_match($pattern, $clientCert, $matches) === FALSE) {
-				    $lastError = 'No valid client certificate provided during TLS Handshake with SP';
+				if (!preg_match($pattern, $clientCert, $matches)) {
+				    $lastError = 'Error while looking for client certificate during TLS handshake with SP, the client certificate does not '
+				                 . 'have the expected structure';
 				    continue;
 				}
 				/* We have a valid client certificate from the browser. */

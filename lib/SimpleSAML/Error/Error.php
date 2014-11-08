@@ -5,7 +5,6 @@
  *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 
@@ -207,7 +206,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 		SimpleSAML_Logger::error('Error report with id ' . $reportId . ' generated.');
 
 		$config = SimpleSAML_Configuration::getInstance();
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 
 		if (isset($_SERVER['HTTP_REFERER'])) {
 			$referer = $_SERVER['HTTP_REFERER'];
@@ -270,7 +269,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 			$data['errorReportAddress'] = $baseurl . 'errorreport.php';
 		}
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		$attributes = $session->getAttributes();
 		if (is_array($attributes) && array_key_exists('mail', $attributes) && count($attributes['mail']) > 0) {
 			$data['email'] = $attributes['mail'][0];

@@ -4,7 +4,6 @@
  * Filter for setting the SAML 2 common domain cookie.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter {
 

@@ -2,7 +2,7 @@
 
 
 /**
- * Represents a definitino of a module.
+ * Represents a definition of a module.
  * Is usually read and parsed from a JSON definition file.
  *
  * @Author	Andreas Åkre Solberg, <andreas.solberg@uninett.no>
@@ -43,6 +43,9 @@ class sspmod_core_ModuleDefinition {
 			
 		} elseif(preg_match('|^http(s)?://.*$|', $id)) {
 			$defraw = file_get_contents($id);
+			if ( $defraw === FALSE ) {
+				throw new Exception('Error while downloading module definition [' . $id . ']');
+			}
 			$def = json_decode($defraw, TRUE);
 		} else {
 			throw new Exception('Could not resolve [' . $id . '] as URL nor module identifier.');

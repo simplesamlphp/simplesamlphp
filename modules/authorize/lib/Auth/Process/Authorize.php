@@ -6,7 +6,6 @@
  *
  * @author Ernesto Revilla, Yaco Sistemas SL., Ryan Panning
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_ProcessingFilter {
 

@@ -30,48 +30,71 @@ Options
 Examples
 --------
 
-Database layout used in examples:
+Database layout used in some of the examples:
 
     CREATE TABLE users (
-      username VARCHAR(30) NOT NULL PRIMARY KEY,
+      uid VARCHAR(30) NOT NULL PRIMARY KEY,
       password TEXT NOT NULL,
-      name TEXT NOT NULL,
-      email TEXT NOT NULL
+      salt TEXT NOT NULL,
+      givenName TEXT NOT NULL,
+      email TEXT NOT NULL,
+      eduPersonPrincipalName TEXT NOT NULL
     );
     CREATE TABLE usergroups (
-      username TEXT REFERENCES users (username) ON DELETE CASCADE ON UPDATE CASCADE,
+      uid TEXT REFERENCES users (uid) ON DELETE CASCADE ON UPDATE CASCADE,
       groupname TEXT,
-      UNIQUE(username, groupname)
+      UNIQUE(uid, groupname)
     );
 
-Example - simple setup, PostgreSQL server:
+Example query - SHA256 of salt + password, with the salt stored in an independent column, MySQL server:
 
-    'sql-exampleorg' => array(
-      'sqlauth:SQL',
-      'dsn' => 'pgsql:host=sql.example.org;port=5432;dbname=simplesaml',
-      'username' => 'userdb',
-      'password' => 'secretpassword',
-      'query' => 'SELECT username, name, email FROM users WHERE username = :username AND password = :password',
-    ),
-
-Example - multiple groups, MySQL server:
-
-    'sql-exampleorg-groups' => array(
-      'sqlauth:SQL',
-      'dsn' => 'mysql:host=sql.example.org;dbname=simplesaml',
-      'username' => 'userdb',
-      'password' => 'secretpassword',
-      'query' => 'SELECT users.username, name, email, groupname AS groups FROM users LEFT JOIN usergroups ON users.username=usergroups.username WHERE users.username = :username AND password = :password',
-    ),
-
-Example query - MD5 of salt + password, stored as salt + md5(salt + password) in password-field, MySQL server:
-
-    SELECT username, name, email
+    SELECT uid, givenName, email, eduPersonPrincipalName
     FROM users
-    WHERE username = :username AND SUBSTRING(password, -32) = MD5(CONCAT(SUBSTRING(password, 1, LENGTH(password) - 32), :password))
+    WHERE uid = :username
+    AND PASSWORD = SHA2(
+        CONCAT(
+            (SELECT salt FROM users WHERE uid = :username),
+            :password
+        ),
+        256
+    )
 
-Example query - MD5 of salt + password, stored as salt + md5(salt + password) in password-field, PostgreSQL server:
+Example query - SHA256 of salt + password, with the salt stored in an independent column. Multiple groups, MySQL server:
 
-    SELECT username, name, email
+    SELECT users.uid, givenName, email, eduPersonPrincipalName, groupname AS groups
+    FROM users LEFT JOIN usergroups ON users.uid = usergroups.username
+    WHERE users.uid = :username
+    AND PASSWORD = SHA2(
+        CONCAT(
+            (SELECT salt FROM users WHERE uid = :username),
+            :password
+        ),
+        256
+    )
+
+Example query - SHA512 of salt + password, stored as salt (32 bytes) + sha256(salt + password) in password-field, PostgreSQL server:
+
+    SELECT uid, givenName, email, eduPersonPrincipalName
     FROM users
-    WHERE username = :username AND SUBSTRING(password FROM LENGTH(password) - 31) = MD5(SUBSTRING(password FROM 1 FOR LENGTH(password) - 32) || :password)
+    WHERE username = :username
+    AND SUBSTRING(
+        password FROM LENGTH(password) - 31
+    ) = SHA2(
+        CONCAT(
+            SUBSTRING(password FROM 1 FOR LENGTH(password) - 32),
+            :password
+        ),
+        512
+    )
+
+Security considerations
+-----------------------
+
+Please never store passwords in plaintext in a database. You should always hash your passwords with a secure one-way
+function like the ones in the SHA2 family. Use randomly generated salts with a length at least equal to the hash of the
+password itself. Salts should be per-password, that meaning every time a password changes, the salt must change, and
+therefore salts must be stored in the database alongside the passwords they were used for. Application-wide salts can
+be used (by just concatenating them to the input of the hash function), but should never replace per-password salts,
+used instead as an additional security measure.
+
+One way hashing algorithms like MD5 or SHA1 are considered insecure and should therefore be avoided.

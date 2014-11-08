@@ -19,7 +19,6 @@ include_once  dirname(dirname(dirname(dirname(__FILE__)))) . '/lib/Auth/OpenID/A
  * Helper class for the OpenID provider code.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_openidProvider_Server {
 
@@ -445,7 +444,7 @@ class sspmod_openidProvider_Server {
             'isPassive'=>TRUE
     	);
 
-    	$pc->processStatePassive(&$state);
+    	$pc->processStatePassive($state);
     	$attributes = $state['Attributes'];
 
     	//Process SREG requests

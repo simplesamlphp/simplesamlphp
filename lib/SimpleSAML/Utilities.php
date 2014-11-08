@@ -5,7 +5,6 @@
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
- * @version $Id$
  */
 class SimpleSAML_Utilities {
 
@@ -302,20 +301,17 @@ class SimpleSAML_Utilities {
 	 * Check if a URL is valid and is in our list of allowed URLs.
 	 *
 	 * @param string $url The URL to check.
-	 * @param array $trustedSites An optional white list of domains. If none
-	 * specified, the 'trusted.url.domains' configuration directive will be
-	 * used.
-	 * @return string The normalized URL itself if it is allowed.
-	 * @throws SimpleSAML_Error_Exception if the URL is malformed or is not
-	 * allowed by configuration.
+	 * @param array $trustedSites An optional white list of domains. If none specified, the 'trusted.url.domains'
+	 * configuration directive will be used.
+	 * @return string The normalized URL itself if it is allowed. An empty string if the $url parameter is empty as
+	 * defined by the empty() function.
+	 * @throws SimpleSAML_Error_Exception if the URL is malformed or is not allowed by configuration.
 	 */
 	public static function checkURLAllowed($url, array $trustedSites = NULL) {
-		$url = self::normalizeURL($url);
-
-		// verify that the URL points to an http or https site
-		if (!preg_match('@^https?://@i', $url)) {
-			throw new SimpleSAML_Error_Exception('Invalid URL: '.$url);
+		if (empty($url)) {
+			return '';
 		}
+		$url = self::normalizeURL($url);
 
 		// get the white list of domains
 		if ($trustedSites === NULL) {
@@ -565,6 +561,10 @@ class SimpleSAML_Utilities {
 	 * meanwhile we are deprecating the it.
 	 */
 	private static function _doRedirect($url, $parameters = array()) {
+		assert('is_string($url)');
+		assert('!empty($url)');
+		assert('is_array($parameters)');
+
 		if (!empty($parameters)) {
 			$url = self::addURLparameter($url, $parameters);
 		}
@@ -619,91 +619,82 @@ class SimpleSAML_Utilities {
 	/**
 	 * This function redirects the user to the specified address.
 	 *
-	 * This function will use the "HTTP 303 See Other" redirection if the
-	 * current request used the POST method and the HTTP version is 1.1.
-	 * Otherwise, a "HTTP 302 Found" redirection will be used.
+	 * This function will use the "HTTP 303 See Other" redirection if the current request used the POST method and the
+	 * HTTP version is 1.1. Otherwise, a "HTTP 302 Found" redirection will be used.
 	 *
-	 * The fuction will also generate a simple web page with a clickable
-	 * link to the target page.
+	 * The function will also generate a simple web page with a clickable link to the target page.
 	 *
-	 * @param string $url The URL we should redirect to. This URL may include
-	 * query parameters. If this URL is a relative URL (starting with '/'),
-	 * then it will be turned into an absolute URL by prefixing it with the
-	 * absolute URL to the root of the website.
-	 * @param string[] $parameters An array with extra query string parameters
-	 * which should be appended to the URL. The name of the parameter is the
-	 * array index. The value of the parameter is the value stored in the index.
-	 * Both the name and the value will be urlencoded. If the value is NULL,
-	 * then the parameter will be encoded as just the name, without a value.
- 	 * @param string[] $allowed_redirect_hosts An array with a whitelist of
-	 * hosts for which redirects are allowed. If NULL, redirections will be
-	 * allowed to any host. Otherwise, the host of the $url provided must be
-	 * present in this parameter. If the host is not whitelisted, an exception
-	 * will be thrown.
+	 * @param string $url The URL we should redirect to. This URL may include query parameters. If this URL is a
+	 * relative URL (starting with '/'), then it will be turned into an absolute URL by prefixing it with the absolute
+	 * URL to the root of the website.
+	 * @param string[] $parameters An array with extra query string parameters which should be appended to the URL. The
+	 * name of the parameter is the array index. The value of the parameter is the value stored in the index. Both the
+	 * name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
+	 * name, without a value.
+	 * @param string[] $allowed_redirect_hosts An array with a whitelist of hosts for which redirects are allowed. If
+	 * NULL, redirections will be allowed to any host. Otherwise, the host of the $url provided must be present in this
+	 * parameter. If the host is not whitelisted, an exception will be thrown.
 	 *
 	 * @return void This function never returns.
-	 * @deprecated 1.12.0 This function will be removed from the API. Instead,
-	 * use the redirectTrustedURL or redirectUntrustedURL functions
-	 * accordingly.
+	 * @deprecated 1.12.0 This function will be removed from the API. Instead, use the redirectTrustedURL or
+	 * redirectUntrustedURL functions accordingly.
 	 */
-	public static function redirect($url, $parameters = array(),
-		$allowed_redirect_hosts = NULL) {
-		
-		assert(is_string($url));
-		assert(strlen($url) > 0);
-		assert(is_array($parameters));
+	public static function redirect($url, $parameters = array(), $allowed_redirect_hosts = NULL) {
+		assert('is_string($url)');
+		assert('strlen($url) > 0');
+		assert('is_array($parameters)');
 
-		$url = self::normalizeURL($url);
 		if ($allowed_redirect_hosts !== NULL) {
-			$url = self::checkURLAllowed($url, $allowed_redirect_hosts);	
+			$url = self::checkURLAllowed($url, $allowed_redirect_hosts);
+		} else {
+			$url = self::normalizeURL($url);
 		}
 		self::_doRedirect($url, $parameters);
 	}
 
 	/**
-	 * This function redirects to the specified URL without performing
-	 * any security checks. Please, do NOT use this function with user
-	 * supplied URLs.
+	 * This function redirects to the specified URL without performing any security checks. Please, do NOT use this
+	 * function with user supplied URLs.
 	 *
-	 * This function will use the "HTTP 303 See Other" redirection if the
-	 * current request used the POST method and the HTTP version is 1.1.
-	 * Otherwise, a "HTTP 302 Found" redirection will be used.
+	 * This function will use the "HTTP 303 See Other" redirection if the current request used the POST method and the
+	 * HTTP version is 1.1. Otherwise, a "HTTP 302 Found" redirection will be used.
 	 *
-	 * The fuction will also generate a simple web page with a clickable
-	 * link to the target URL.
+	 * The function will also generate a simple web page with a clickable  link to the target URL.
 	 *
-	 * @param string $url The URL we should redirect to. This URL may include
-	 * query parameters. If this URL is a relative URL (starting with '/'),
-	 * then it will be turned into an absolute URL by prefixing it with the
-	 * absolute URL to the root of the website.
-	 * @param string[] $parameters An array with extra query string parameters
-	 * which should be appended to the URL. The name of the parameter is the
-	 * array index. The value of the parameter is the value stored in the index.
-	 * Both the name and the value will be urlencoded. If the value is NULL,
-	 * then the parameter will be encoded as just the name, without a value.
+	 * @param string $url The URL we should redirect to. This URL may include query parameters. If this URL is a
+	 * relative URL (starting with '/'), then it will be turned into an absolute URL by prefixing it with the absolute
+	 * URL to the root of the website.
+	 * @param string[] $parameters An array with extra query string parameters which should be appended to the URL. The
+	 * name of the parameter is the array index. The value of the parameter is the value stored in the index. Both the
+	 * name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
+	 * name, without a value.
 	 *
 	 * @return void This function never returns.
 	 */
 	public static function redirectTrustedURL($url, $parameters = array()) {
+		assert('is_string($url)');
+		assert('is_array($parameters)');
+
 		$url = self::normalizeURL($url);
 		self::_doRedirect($url, $parameters);
 	}
 
 	/**
-	 * This function redirects to the specified URL after performing the
-	 * appropriate security checks on it. Particularly, it will make sure that
-	 * the provided URL is allowed by the 'redirect.trustedsites' directive
-	 * in the configuration.
+	 * This function redirects to the specified URL after performing the appropriate security checks on it.
+	 * Particularly, it will make sure that the provided URL is allowed by the 'redirect.trustedsites' directive in the
+	 * configuration.
 	 *
-	 * If the aforementioned option is not set or the URL does correspond to a
-	 * trusted site, it performs a redirection to it. If the site is not
-	 * trusted, an exception will be thrown.
+	 * If the aforementioned option is not set or the URL does correspond to a trusted site, it performs a redirection
+	 * to it. If the site is not trusted, an exception will be thrown.
 	 *
 	 * See the redirectTrustedURL function for more details.
 	 * 
 	 * @return void This function never returns.
 	 */
 	public static function redirectUntrustedURL($url, $parameters = array()) {
+		assert('is_string($url)');
+		assert('is_array($parameters)');
+
 		$url = self::checkURLAllowed($url);
 		self::_doRedirect($url, $parameters);
 	}
@@ -939,6 +930,7 @@ class SimpleSAML_Utilities {
 	 * @param $schema  The schema which should be used.
 	 * @return Returns a string with the errors if validation fails. An empty string is
 	 *         returned if validation passes.
+	 * @deprecated
 	 */
 	public static function validateXML($xml, $schema) {
 		assert('is_string($xml) || $xml instanceof DOMDocument');
@@ -984,6 +976,7 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param $message  The message which should be validated, as a string.
 	 * @param $type     The type of document - can be either 'saml20', 'saml11' or 'saml-meta'.
+	 * @deprecated
 	 */
 	public static function validateXMLDocument($message, $type) {
 		assert('is_string($message)');
@@ -1622,7 +1615,7 @@ class SimpleSAML_Utilities {
 	 */
 	public static function isAdmin() {
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 
 		return $session->isValid('admin') || $session->isValid('login-admin');
 	}
@@ -1726,7 +1719,7 @@ class SimpleSAML_Utilities {
 				'url' => $destination,
 			);
 
-			$session = SimpleSAML_Session::getInstance();
+			$session = SimpleSAML_Session::getSessionFromRequest();
 			$session->setData('core_postdatalink', $postId, $postData);
 
 			$url = SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirId' => $postId));
@@ -1753,7 +1746,7 @@ class SimpleSAML_Utilities {
 			'url' => $destination,
 		);
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->setData('core_postdatalink', $postId, $postData);
 
 		$redirInfo = base64_encode(self::aesEncrypt($session->getSessionId() . ':' . $postId));
@@ -1772,6 +1765,7 @@ class SimpleSAML_Utilities {
 	 * @param string $certificate  The certificate, in PEM format.
 	 * @param string $caFile  File with trusted certificates, in PEM-format.
 	 * @return boolean|string TRUE on success, or a string with error messages if it failed.
+	 * @deprecated
 	 */
 	private static function validateCABuiltIn($certificate, $caFile) {
 		assert('is_string($certificate)');
@@ -1806,6 +1800,7 @@ class SimpleSAML_Utilities {
 	 * @param string $certificate  The certificate, in PEM format.
 	 * @param string $caFile  File with trusted certificates, in PEM-format.
 	 * @return boolean|string TRUE on success, a string with error messages on failure.
+	 * @deprecated
 	 */
 	private static function validateCAExec($certificate, $caFile) {
 		assert('is_string($certificate)');
@@ -1862,6 +1857,7 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param string $certificate  The certificate, in PEM format.
 	 * @param string $caFile  File with trusted certificates, in PEM-format.
+	 * @deprecated
 	 */
 	public static function validateCA($certificate, $caFile) {
 		assert('is_string($certificate)');
@@ -2105,7 +2101,7 @@ class SimpleSAML_Utilities {
 	public static function checkCookie($retryURL = NULL) {
 		assert('is_string($retryURL) || is_null($retryURL)');
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		if ($session->hasSessionCookie()) {
 			return;
 		}

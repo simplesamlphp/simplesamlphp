@@ -4,7 +4,6 @@
  * A directory over logout information.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_saml_SP_LogoutStore {
 
@@ -187,7 +186,7 @@ class sspmod_saml_SP_LogoutStore {
 			$sessionIndex = sha1($sessionIndex);
 		}
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		$sessionId = $session->getSessionId();
 
 		if ($store instanceof SimpleSAML_Store_SQL) {

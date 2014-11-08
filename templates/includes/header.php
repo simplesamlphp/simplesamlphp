@@ -147,61 +147,63 @@ if($onLoad !== '') {
 	
 	if ($includeLanguageBar) {
 		
-		
-		echo '<div id="languagebar">';
 		$languages = $this->getLanguageList();
-		$langnames = array(
-					'no' => 'Bokmål', // Norwegian Bokmål
-					'nn' => 'Nynorsk', // Norwegian Nynorsk
-					'se' => 'Sámegiella', // Northern Sami
-					'sam' => 'Åarjelh-saemien giele', // Southern Sami
-					'da' => 'Dansk', // Danish
-					'en' => 'English',
-					'de' => 'Deutsch', // German
-					'sv' => 'Svenska', // Swedish
-					'fi' => 'Suomeksi', // Finnish
-					'es' => 'Español', // Spanish
-					'fr' => 'Français', // French
-					'it' => 'Italiano', // Italian
-					'nl' => 'Nederlands', // Dutch
-					'lb' => 'Lëtzebuergesch', // Luxembourgish
-					'cs' => 'Čeština', // Czech
-					'sl' => 'Slovenščina', // Slovensk
-					'lt' => 'Lietuvių kalba', // Lithuanian
-					'hr' => 'Hrvatski', // Croatian
-					'hu' => 'Magyar', // Hungarian
-					'pl' => 'Język polski', // Polish
-					'pt' => 'Português', // Portuguese
-					'pt-br' => 'Português brasileiro', // Portuguese
-					'ru' => 'русский язык', // Russian
-					'et' => 'eesti keel', // Estonian
-					'tr' => 'Türkçe', // Turkish
-					'el' => 'ελληνικά', // Greek
-					'ja' => '日本語', // Japanese
-					'zh' => '简体中文', // Chinese (simplified)
-					'zh-tw' => '繁體中文', // Chinese (traditional)
-					'ar' => 'العربية', // Arabic
-					'fa' => 'پارسی', // Persian
-					'ur' => 'اردو', // Urdu
-					'he' => 'עִבְרִית', // Hebrew
-					'id' => 'Bahasa Indonesia', // Indonesian
-					'sr' => 'Srpski', // Serbian
-					'lv' => 'Latviešu', // Latvian
-					'ro' => 'Românește', // Romanian
-		);
-		
-		$textarray = array();
-		foreach ($languages AS $lang => $current) {
-			$lang = strtolower($lang);
-			if ($current) {
-				$textarray[] = $langnames[$lang];
-			} else {
-				$textarray[] = '<a href="' . htmlspecialchars(SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), array($this->languageParameterName => $lang))) . '">' .
-					$langnames[$lang] . '</a>';
+		if ( count($languages) > 1 ) {
+			echo '<div id="languagebar">';
+			$langnames = array(
+						'no' => 'Bokmål', // Norwegian Bokmål
+						'nn' => 'Nynorsk', // Norwegian Nynorsk
+						'se' => 'Sámegiella', // Northern Sami
+						'sam' => 'Åarjelh-saemien giele', // Southern Sami
+						'da' => 'Dansk', // Danish
+						'en' => 'English',
+						'de' => 'Deutsch', // German
+						'sv' => 'Svenska', // Swedish
+						'fi' => 'Suomeksi', // Finnish
+						'es' => 'Español', // Spanish
+						'fr' => 'Français', // French
+						'it' => 'Italiano', // Italian
+						'nl' => 'Nederlands', // Dutch
+						'lb' => 'Lëtzebuergesch', // Luxembourgish
+						'cs' => 'Čeština', // Czech
+						'sl' => 'Slovenščina', // Slovensk
+						'lt' => 'Lietuvių kalba', // Lithuanian
+						'hr' => 'Hrvatski', // Croatian
+						'hu' => 'Magyar', // Hungarian
+						'pl' => 'Język polski', // Polish
+						'pt' => 'Português', // Portuguese
+						'pt-br' => 'Português brasileiro', // Portuguese
+						'ru' => 'русский язык', // Russian
+						'et' => 'eesti keel', // Estonian
+						'tr' => 'Türkçe', // Turkish
+						'el' => 'ελληνικά', // Greek
+						'ja' => '日本語', // Japanese
+						'zh' => '简体中文', // Chinese (simplified)
+						'zh-tw' => '繁體中文', // Chinese (traditional)
+						'ar' => 'العربية', // Arabic
+						'fa' => 'پارسی', // Persian
+						'ur' => 'اردو', // Urdu
+						'he' => 'עִבְרִית', // Hebrew
+						'id' => 'Bahasa Indonesia', // Indonesian
+						'sr' => 'Srpski', // Serbian
+						'lv' => 'Latviešu', // Latvian
+						'ro' => 'Românește', // Romanian
+						'eu' => 'Euskara', // Basque
+			);
+			
+			$textarray = array();
+			foreach ($languages AS $lang => $current) {
+				$lang = strtolower($lang);
+				if ($current) {
+					$textarray[] = $langnames[$lang];
+				} else {
+					$textarray[] = '<a href="' . htmlspecialchars(SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURL(), array($this->languageParameterName => $lang))) . '">' .
+						$langnames[$lang] . '</a>';
+				}
 			}
+			echo join(' | ', $textarray);
+			echo '</div>';
 		}
-		echo join(' | ', $textarray);
-		echo '</div>';
 
 	}
 

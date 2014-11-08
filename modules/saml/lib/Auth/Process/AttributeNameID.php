@@ -4,7 +4,6 @@
  * Authproc filter to create a NameID from an attribute.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_saml_Auth_Process_AttributeNameID extends sspmod_saml_BaseNameIDGenerator {
 

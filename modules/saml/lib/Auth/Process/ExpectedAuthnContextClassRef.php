@@ -12,7 +12,6 @@
  *       ),
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_saml_Auth_Process_ExpectedAuthnContextClassRef extends SimpleSAML_Auth_ProcessingFilter {
 

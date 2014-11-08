@@ -14,19 +14,18 @@
  * - 'sppp': URL to the privacy policy of the destination, or FALSE.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 
-//$this->data['header'] = $this->t('{expirycheck:warning:warning_header}');
+//$this->data['header'] = $this->t('{expirycheck:expwarning:warning_header}');
 
 # netid will expire today
 if ($this->data['daysleft'] == 0) {
-	$this->data['header'] = $this->t('{expirycheck:warning:warning_header_today}', array(
+	$this->data['header'] = $this->t('{expirycheck:expwarning:warning_header_today}', array(
 				'%NETID%' => htmlspecialchars($this->data['netId'])
 			));
 
-	$warning = $this->t('{expirycheck:warning:warning_today}', array(
+	$warning = $this->t('{expirycheck:expwarning:warning_today}', array(
 				'%NETID%' => htmlspecialchars($this->data['netId'])
 			));
 
@@ -34,37 +33,37 @@ if ($this->data['daysleft'] == 0) {
 # netid will expire in one day
 elseif ($this->data['daysleft'] == 1) {
 
-	$this->data['header'] = $this->t('{expirycheck:warning:warning_header}', array(
+	$this->data['header'] = $this->t('{expirycheck:expwarning:warning_header}', array(
 				'%NETID%' => htmlspecialchars($this->data['netId']),
-				'%DAYS%' => $this->t('{expirycheck:warning:day}'),
+				'%DAYS%' => $this->t('{expirycheck:expwarning:day}'),
 				'%DAYSLEFT%' => htmlspecialchars($this->data['daysleft']),
 			));
 
-	$warning = $this->t('{expirycheck:warning:warning}', array(
+	$warning = $this->t('{expirycheck:expwarning:warning}', array(
 				'%NETID%' => htmlspecialchars($this->data['netId']),
-				'%DAYS%' => $this->t('{expirycheck:warning:day}'),
+				'%DAYS%' => $this->t('{expirycheck:expwarning:day}'),
 				'%DAYSLEFT%' => htmlspecialchars($this->data['daysleft']),
 			));
 
 }
 # netid will expire in next <daysleft> days
 else {
-	$this->data['header'] = $this->t('{expirycheck:warning:warning_header}', array(
+	$this->data['header'] = $this->t('{expirycheck:expwarning:warning_header}', array(
 				'%NETID%' => htmlspecialchars($this->data['netId']),
-				'%DAYS%' => $this->t('{expirycheck:warning:days}'),
+				'%DAYS%' => $this->t('{expirycheck:expwarning:days}'),
 				'%DAYSLEFT%' => htmlspecialchars($this->data['daysleft']),
 			));
 
-	$warning = $this->t('{expirycheck:warning:warning}', array(
+	$warning = $this->t('{expirycheck:expwarning:warning}', array(
 				'%NETID%' => htmlspecialchars($this->data['netId']),
-				'%DAYS%' => $this->t('{expirycheck:warning:days}'),
+				'%DAYS%' => $this->t('{expirycheck:expwarning:days}'),
 				'%DAYSLEFT%' => htmlspecialchars($this->data['daysleft']),
 			));
 
 
 }
 
-//$this->data['header'] = str_replace("%DAYSLEFT%", $this->data['daysleft'], str_replace("%NETID%", $this->data['netId'], $this->t('{expirycheck:warning:warning_header}')));
+//$this->data['header'] = str_replace("%DAYSLEFT%", $this->data['daysleft'], str_replace("%NETID%", $this->data['netId'], $this->t('{expirycheck:expwarning:warning_header}')));
 $this->data['autofocus'] = 'yesbutton';
 
 $this->includeAtTemplateBase('includes/header.php');
@@ -80,9 +79,9 @@ $this->includeAtTemplateBase('includes/header.php');
 		}
 	?>
 	<h3><?php echo $warning; ?></h3>
-	<p><?php echo $this->t('{expirycheck:warning:expiry_date_text}') . " " . $this->data['expireOnDate']; ?></p>
+	<p><?php echo $this->t('{expirycheck:expwarning:expiry_date_text}') . " " . $this->data['expireOnDate']; ?></p>
 
-	<input type="submit" name="yes" id="yesbutton" value="<?php echo htmlspecialchars($this->t('{expirycheck:warning:btn_continue}')) ?>" />
+	<input type="submit" name="yes" id="yesbutton" value="<?php echo htmlspecialchars($this->t('{expirycheck:expwarning:btn_continue}')) ?>" />
 
 </form>
 

@@ -7,7 +7,6 @@ authorize Module
 	http://daringfireball.net/projects/markdown/syntax
 -->
 
-  * Version: `$Id$`
   * Author: Ernesto Revilla <erny@yaco.es>, Yaco Sistemas, Ryan Panning
   * Package: simpleSAMLphp
 

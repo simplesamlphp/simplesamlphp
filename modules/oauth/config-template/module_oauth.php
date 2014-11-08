@@ -2,7 +2,6 @@
 /* 
  * Configuration for the OAuth module.
  * 
- * $Id$
  */
 
 $config = array (

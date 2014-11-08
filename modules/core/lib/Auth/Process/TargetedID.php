@@ -27,7 +27,6 @@
  *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilter {
 

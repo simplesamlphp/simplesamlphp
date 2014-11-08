@@ -7,7 +7,6 @@
  *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
- * @version $Id$
  */
 abstract class SimpleSAML_Auth_Source {
 
@@ -111,7 +110,7 @@ abstract class SimpleSAML_Auth_Source {
 		assert('isset($state["ReturnCallback"])');
 
 		/* The default implementation just copies over the previous authentication data. */
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		$data = $session->getAuthState($this->authId);
 		foreach ($data as $k => $v) {
 			$state[$k] = $v;
@@ -294,7 +293,7 @@ abstract class SimpleSAML_Auth_Source {
 			);
 
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->setData('SimpleSAML_Auth_Source.LogoutCallbacks', $id, $data,
 			SimpleSAML_Session::DATA_TIMEOUT_LOGOUT);
 	}
@@ -315,7 +314,7 @@ abstract class SimpleSAML_Auth_Source {
 
 		$id = strlen($this->authId) . ':' . $this->authId . $assoc;
 
-		$session = SimpleSAML_Session::getInstance();
+		$session = SimpleSAML_Session::getSessionFromRequest();
 
 		$data = $session->getData('SimpleSAML_Auth_Source.LogoutCallbacks', $id);
 		if ($data === NULL) {

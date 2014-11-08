@@ -1,10 +1,20 @@
 <?php
 
+/**
+ * WARNING:
+ *
+ * THIS FILE IS DEPRECATED AND WILL BE REMOVED IN FUTURE VERSIONS
+ *
+ * @deprecated
+ */
+
 require_once('../../_include.php');
 
 $config = SimpleSAML_Configuration::getInstance();
 
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
+
+SimpleSAML_Logger::warning('The file saml2/sp/initSLO.php is deprecated and will be removed in future versions.');
 
 SimpleSAML_Logger::info('SAML2.0 - SP.initSLO: Accessing SAML 2.0 SP initSLO script');
 

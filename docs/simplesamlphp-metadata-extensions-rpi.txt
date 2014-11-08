@@ -7,7 +7,6 @@ SAML V2.0 Metadata Extensions for Registration and Publication Information
     http://daringfireball.net/projects/markdown/syntax
 -->
 
-  * Version: `$Id:$`
   * Author: Jaime Perez [jaime.perez@uninett.no](mailto:jaime.perez@uninett.no)
 
 <!-- {{TOC}} -->

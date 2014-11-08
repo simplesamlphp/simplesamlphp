@@ -29,7 +29,8 @@
 		"lv": "J\u016bs izmantojat testa (pirmsprodukcijas) sist\u0113mu. \u0160\u012b autentifik\u0101cija ir tikai test\u0113\u0161anas vajadz\u012bb\u0101m. Ja k\u0101ds Jums ats\u016bt\u012bjis saiti uz \u0161ejieni un J\u016bs neesat <i>test\u0113t\u0101js<\/i>, Jums te <b>nav j\u0101atrodas<\/b>.",
 		"id": "Sekarang anda sedang mengakses sistem pra-produksi. Setup autentifikasi ini untuk keperluan uji coba dan verifikasi pra-produksi",
 		"sr": "Pristupate sistemu koji se nalazi u pred-produkcionoj fazi. Ova autentifikaciona pode\u0161avanja slu\u017ee za testiranje i proveru ispravnosti rada pred-produkcionog sistema. Ako vam je neko poslao adresu koja pokazuje na ovu stranicu, a vi niste <i>osoba zadu\u017eena za testiranje<\/i>, verovatno ste <b>na ovu stranicu do\u0161li gre\u0161kom<\/b>.",
-		"ro": "\u00cen acest moment accesa\u021bi un sistem pre-produc\u021bie. Acest sistem de autentificare este realizat doar pentru testare \u0219i verificare. Dac\u0103 a\u021bi primit de la cineva acest link \u0219i nu sunte\u021bi <i>tester<\/i>, atunci probabil a\u021bi primit un link gre\u0219it \u0219i <b>nu<\/b> ar fi trebuit s\u0103 ajunge\u021bi aici."
+		"ro": "\u00cen acest moment accesa\u021bi un sistem pre-produc\u021bie. Acest sistem de autentificare este realizat doar pentru testare \u0219i verificare. Dac\u0103 a\u021bi primit de la cineva acest link \u0219i nu sunte\u021bi <i>tester<\/i>, atunci probabil a\u021bi primit un link gre\u0219it \u0219i <b>nu<\/b> ar fi trebuit s\u0103 ajunge\u021bi aici.",
+		"eu": "Aurre-produzkio batean sartzen ari zara. Konfigurazio hau aurre-produkzioko sistemaren frogak egin eta egiaztatzeko bakarrik da. Hona iristeko norbaitek bidali dizun lotura bat jarraitu baduzu eta <i>frogatzaile<\/i> bat ez bazara, ziurrenik errore bat izango da, eta zuk <b>ez zenuke hemen egon behar<\/b>."
 	},
 	"warning_header": {
 		"no": "Advarsel om at dette er et test oppsett",
@@ -44,6 +45,7 @@
 		"pt": "Aviso ao aceder a sistema em pr\u00e9-produ\u00e7\u00e3o",
 		"pl": "Uwaga, korzystasz z wersji testowej systemu",
 		"cs": "Varov\u00e1n\u00ed p\u0159ed p\u0159\u00edstupem do testovac\u00edho syst\u00e9mu",
+		"eu": "Aurre-produkzio sistema batean sartzeari buruzko oharra",
 		"tr": "Tamamlanmam\u0131\u015f bir sisteme eri\u015fim hakk\u0131nda uyar\u0131",
 		"de": "Warnung beim Zugriff auf ein Pilotsystem",
 		"fr": "Avertissement sur l'acc\u00e8s \u00e0 un syst\u00e8me en pr\u00e9-production",
@@ -76,6 +78,7 @@
 		"pt": "Sim, eu sei que estou a aceder a um sistema em pr\u00e9-produ\u00e7\u00e3o",
 		"pl": "Tak, wiem, \u017ce korzystam z wersji testowej.",
 		"cs": "Ano, j\u00e1 v\u00edm, \u017ee p\u0159istupuj\u00ed k testovac\u00edmu syst\u00e9mu",
+		"eu": "Bai, badakit aurre-produkzio sistema batean sartzen asi naizela.",
 		"tr": "Evet, tamanlanmam\u0131\u015f bir sisteme girdi\u011fimin fark\u0131nday\u0131m.",
 		"de": "Ja, mir ist klar dass ich auf ein System im Pilotbetrieb zugreife",
 		"fr": "Oui, je sais que j'utilise un syst\u00e8me en pr\u00e9-production",

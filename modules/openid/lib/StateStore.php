@@ -9,7 +9,6 @@ require_once('Auth/OpenID/Association.php');
  * an state-array.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 class sspmod_openid_StateStore extends Auth_OpenID_OpenIDStore{
 

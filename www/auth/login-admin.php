@@ -1,11 +1,20 @@
 <?php
 
+/**
+ * WARNING:
+ *
+ * THIS FILE IS DEPRECATED AND WILL BE REMOVED IN FUTURE VERSIONS
+ *
+ * @deprecated
+ */
 
 require_once('../_include.php');
 
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
+
+SimpleSAML_Logger::warning('The file auth/login-admin.php is deprecated and will be removed in future versions.');
 
 SimpleSAML_Logger::info('AUTH -admin: Accessing auth endpoint login-admin');
 

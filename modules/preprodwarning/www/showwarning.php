@@ -5,7 +5,6 @@
  * authorizes the release of attributes.
  *
  * @package simpleSAMLphp
- * @version $Id$
  */
 
 SimpleSAML_Logger::info('PreProdWarning - Showing warning to user');

@@ -393,6 +393,61 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 
 	/**
+	 * Re-authenticate an user.
+	 *
+	 * This function is called by the IdP to give the authentication source a chance to
+	 * interact with the user even in the case when the user is already authenticated.
+	 *
+	 * @param array &$state  Information about the current authentication.
+	 */
+	public function reauthenticate(array &$state) {
+		assert('is_array($state)');
+
+		$session = SimpleSAML_Session::getSessionFromRequest();
+		$data = $session->getAuthState($this->authId);
+		foreach ($data as $k => $v) {
+			$state[$k] = $v;
+		}
+
+		// check if we have an IDPList specified in the request
+		if (isset($state['saml:IDPList']) && sizeof($state['saml:IDPList']) > 0 &&
+			!in_array($state['saml:sp:IdP'], $state['saml:IDPList'], TRUE)) {
+			/*
+			 * This is essentially wrong. The IdP used to authenticate the current session is not in the IDPList
+			 * that we just received, so we are triggering authentication again against an IdP in the IDPList. This
+			 * is fine if the user wants to, but we SHOULD offer the user to logout before proceeding.
+			 *
+			 * After successful authentication in a different IdP, the reauthPostLogin callback will be invoked,
+			 * overriding the current session with a new one, associated with the new IdP. This will leave us in an
+			 * inconsistent state, with several service providers with valid sessions they got from different IdPs.
+			 *
+			 * TODO: we need to offer the user the possibility to logout before blindly authenticating him again.
+			 */
+			$state['LoginCompletedHandler'] = array('sspmod_saml_Auth_Source_SP', 'reauthPostLogin');
+			$this->authenticate($state);
+		}
+	}
+
+
+	/**
+	 * Complete login operation after re-authenticating the user on another IdP.
+	 *
+	 * @param array $state  The authentication state.
+	 */
+	public static function reauthPostLogin(array $state) {
+		assert('isset($state["ReturnCallback"])');
+
+		// Update session state
+		$session = SimpleSAML_Session::getSessionFromRequest();
+		$session->doLogin($state['saml:sp:AuthId'], SimpleSAML_Auth_Default::extractPersistentAuthState($state));
+
+		// resume the login process
+		call_user_func($state['ReturnCallback'], $state);
+		assert('FALSE');
+	}
+
+
+	/**
 	 * Start a SAML 2 logout operation.
 	 *
 	 * @param array $state  The logout state.

@@ -16,6 +16,7 @@
 		"pt": "Sa\u00edda efectuada com sucesso",
 		"pl": "Wylogowano",
 		"cs": "Odhl\u00e1\u0161en",
+		"eu": "Saioa itxita.",
 		"tr": "\u00c7\u0131kt\u0131n\u0131z",
 		"it": "Disconnesso",
 		"lt": "Atsijungta",
@@ -48,6 +49,7 @@
 		"pt": "Sa\u00edda efectuada com sucesso. Obrigado por ter usado este servi\u00e7o.",
 		"pl": "Zosta\u0142e\u015b wylogowany. Dzi\u0119kuj\u0119 za skorzystanie z serwisu.",
 		"cs": "Jste odhl\u00e1\u0161en. D\u011bkujeme za pou\u017eit\u00ed t\u00e9to slu\u017eby.",
+		"eu": "Saioa itxi da.",
 		"tr": "\u00c7\u0131kt\u0131n\u0131z",
 		"it": "Sei stato disconnesso",
 		"lt": "J\u016bs buvote atjungtas nuo sistemos.",
@@ -93,7 +95,8 @@
 		"id": "Kembali ke halaman instalasi simpleSAMLphp",
 		"sr": "Natrag na po\u010detnu stranicu simpleSAMLphp instalacije",
 		"ro": "Merge\u021bi \u00eenapoi la pagina de instalare a simpleSAMLphp",
-		"ru": "\u0412\u0435\u0440\u043d\u0443\u0442\u044c\u0441\u044f \u043d\u0430 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438 simpleSAMLphp"
+		"ru": "\u0412\u0435\u0440\u043d\u0443\u0442\u044c\u0441\u044f \u043d\u0430 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438 simpleSAMLphp",
+		"eu": "Itzuli simpleSAMLphp instalazio orrira "
 	},
 	"hold": {
 		"no": "P\u00e5 vent",
@@ -125,7 +128,8 @@
 		"id": "Ditahan",
 		"sr": "Na \u010dekanju",
 		"ro": "\u00cen a\u0219teptare",
-		"ru": "\u0412 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0438 \u043e\u0436\u0438\u0434\u0430\u043d\u0438\u044f"
+		"ru": "\u0412 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0438 \u043e\u0436\u0438\u0434\u0430\u043d\u0438\u044f",
+		"eu": "Itxaroten"
 	},
 	"completed": {
 		"no": "Fullf\u00f8rt",
@@ -157,7 +161,8 @@
 		"id": "Selesai",
 		"sr": "Zavr\u0161eno",
 		"ro": "Terminat",
-		"ru": "\u0412\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u043e"
+		"ru": "\u0412\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u043e",
+		"eu": "Amaitua"
 	},
 	"progress": {
 		"no": "Logger ut...",
@@ -175,6 +180,7 @@
 		"pt": "A sair...",
 		"pl": "Wylogowywanie...",
 		"cs": "Odhla\u0161uji...",
+		"eu": "Saioa ixten...",
 		"tr": "\u00c7\u0131k\u0131yor",
 		"lt": "Atjungiama...",
 		"it": "Disconnessione...",
@@ -221,7 +227,8 @@
 		"id": "Log out gagal",
 		"sr": "Odjava nije uspela",
 		"ro": "Deautentificarea a e\u0219uat",
-		"ru": "\u0412\u044b\u0445\u043e\u0434 \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043d \u043d\u0435\u0443\u0434\u0430\u0447\u043d\u043e"
+		"ru": "\u0412\u044b\u0445\u043e\u0434 \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043d \u043d\u0435\u0443\u0434\u0430\u0447\u043d\u043e",
+		"eu": "Saioa ixteko prozesuak huts egin du"
 	},
 	"return": {
 		"no": "Tilbake til tjenesten",
@@ -239,6 +246,7 @@
 		"pt": "Regressar ao servi\u00e7o",
 		"pl": "Powr\u00f3t do serwisu",
 		"cs": "Zp\u00e1tky na slu\u017ebu",
+		"eu": "Itzuli zerbitzura",
 		"tr": "Servise geri d\u00f6n",
 		"lt": "Gr\u012f\u017eti \u012f paslaug\u0105",
 		"it": "Ritornare al servizio",
@@ -285,7 +293,8 @@
 		"id": "Anda telah berhasil log out dari semua layanan yang tercantuh diatas.",
 		"sr": "Uspe\u0161no ste se odjavili iz svih gore navedenih servisa.",
 		"ro": "A\u021bi fost deautentificat de la toate serviciile enumerate mai sus.",
-		"ru": "\u0412\u044b \u0443\u0441\u043f\u0435\u0448\u043d\u043e \u0432\u044b\u0448\u043b\u0438 \u0438\u0437 \u0432\u0441\u0435\u0445 \u0441\u043b\u0443\u0436\u0431 \u043f\u0435\u0440\u0435\u0447\u0438\u0441\u043b\u0435\u043d\u043d\u044b\u0445 \u0432\u044b\u0448\u0435."
+		"ru": "\u0412\u044b \u0443\u0441\u043f\u0435\u0448\u043d\u043e \u0432\u044b\u0448\u043b\u0438 \u0438\u0437 \u0432\u0441\u0435\u0445 \u0441\u043b\u0443\u0436\u0431 \u043f\u0435\u0440\u0435\u0447\u0438\u0441\u043b\u0435\u043d\u043d\u044b\u0445 \u0432\u044b\u0448\u0435.",
+		"eu": "Hemen adierazten den zerrendako zerbitzu guztietako saioak zuzen itxi dira"
 	},
 	"loggedoutfrom": {
 		"no": "Du er n\u00e5 logget ut fra %SP%.",
@@ -317,7 +326,8 @@
 		"id": "Sekarang anda telah sukses log out dari %SP%.",
 		"sr": "Uspe\u0161no ste odjavljeni iz %SP%.",
 		"ro": "A\u021bi fost deautentificat din %SP%.",
-		"ru": "\u0412\u044b \u0443\u0441\u043f\u0435\u0448\u043d\u043e \u0432\u044b\u0448\u043b\u0438 \u0438\u0437 \u0441\u043b\u0443\u0436\u0431\u044b %SP%."
+		"ru": "\u0412\u044b \u0443\u0441\u043f\u0435\u0448\u043d\u043e \u0432\u044b\u0448\u043b\u0438 \u0438\u0437 \u0441\u043b\u0443\u0436\u0431\u044b %SP%.",
+		"eu": "%SP% saioa zuzen itxi da."
 	},
 	"also_from": {
 		"no": "Du er ogs\u00e5 logget inn p\u00e5 disse tjenestene:",
@@ -349,7 +359,8 @@
 		"id": "Anda juga telah log out dari layanan berikut: ",
 		"sr": "Tako\u0111e ste prijavljeni u slede\u0107im servisima:",
 		"ro": "Sunte\u021bi autentificat \u0219i la urm\u0103toarele servicii:",
-		"ru": "\u0412\u044b \u0442\u0430\u043a\u0436\u0435 \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u044b \u043a \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u043c \u0441\u043b\u0443\u0436\u0431\u0430\u043c:"
+		"ru": "\u0412\u044b \u0442\u0430\u043a\u0436\u0435 \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u044b \u043a \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u043c \u0441\u043b\u0443\u0436\u0431\u0430\u043c:",
+		"eu": "Zerbitzu hauetan ere kautotuta zaude:"
 	},
 	"logout_all_question": {
 		"no": "Vil du logge ut fra alle tjenestene ovenfor?",
@@ -365,6 +376,7 @@
 		"pt": "Deseja sair de todos os servi\u00e7os listados em cima?",
 		"pl": "Czy chcesz zosta\u0107 wylogowany z powy\u017cszych serwis\u00f3w?",
 		"cs": "Chcete se odhl\u00e1sit ze v\u0161ech t\u011bchto slu\u017eeb?",
+		"eu": "Goian agertzen diren zerbitzu guztietako saioak itxi nahi al dituzu?",
 		"tr": "Yukar\u0131daki t\u00fcm servislerden \u00e7\u0131kmak istiyor musunuz?",
 		"it": "Vuoi disconnetterti da tutti i servizi qui sopra riportati?",
 		"fi": "Haluatko uloskirjautua edell\u00e4mainituista palveluista?",
@@ -398,6 +410,7 @@
 		"pt": "Sim, todos os servi\u00e7os",
 		"pl": "Tak, wszystkie serwisy",
 		"cs": "Ano, v\u0161echny slu\u017eby",
+		"eu": "Bai, zerbitzu guztiak",
 		"tr": "Evet, t\u00fcm servisler.",
 		"it": "Si, da tutti i servizi",
 		"hr": "Da, iz svih servisa",
@@ -419,7 +432,7 @@
 		"no": "Nei, bare %SP%",
 		"nn": "Nei, logg berre ut fr\u00e5 %SP%",
 		"sv": "Nej, endast %SP%",
-		"es": "No, s\u00f3lo %SPS",
+		"es": "No, s\u00f3lo %SP%",
 		"fr": "Non, seulement de %SP%",
 		"de": "Nein, nur %SP%",
 		"nl": "Nee, alleen %SP%",
@@ -430,6 +443,7 @@
 		"pt": "N\u00e3o, apenas %SP%",
 		"pl": "Nie, tylko %SP%",
 		"cs": "Ne, jen %SP%",
+		"eu": "Ez, %SP% bakarrik",
 		"tr": "Hay\u0131r, sadece %SP%",
 		"it": "No, solo da %SP%",
 		"hr": "Ne, samo iz %SP%",
@@ -477,7 +491,8 @@
 		"id": "Satu atau beberapa layanan yang anda telah login  <i>tidak mendukung logout<\/i>.Untuk meyakinkan semua session anda ditutup, anda disarankan untuk <i>menutup web browser anda<\/i>.",
 		"sr": "Jedan ili vi\u0161e servisa na koje ste prijavljeni <i>ne podr\u017eava odjavljivanje<\/i>. Da biste bili sigurni da su sve va\u0161e sesije zavr\u0161ene, preporu\u010dujemo da <i>zatvorite web pretra\u017eiva\u010d<\/i>.",
 		"ro": "Unul sau mai multe servicii \u00een care sunte\u021bi autentificat <i>nu suport\u0103 deautentificare<\/i>. Pentru a fi sigur c\u0103 toate sesiunile sunt \u00eenchise, v\u0103 rug\u0103m s\u0103 \u00eenchide\u021bi <i>browser-ul<\/i>.",
-		"ru": "\u041d\u0435\u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0436\u0431\u044b, \u043a \u043a\u043e\u0442\u043e\u0440\u044b\u043c \u0432\u044b \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u044b, <i>\u043d\u0435 \u043f\u043e\u0434\u0434\u0435\u0436\u0438\u0432\u0430\u044e\u0442 \u0432\u044b\u0445\u043e\u0434 \u0438\u0437 \u0441\u0438\u0441\u0442\u0435\u043c\u044b<\/i>. \u0414\u043b\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u044f \u0437\u0430\u043a\u0440\u044b\u0442\u0438\u044f \u0432\u0441\u0435\u0445 \u0441\u0435\u0441\u0441\u0438\u0439, <i>\u0437\u0430\u043a\u0440\u043e\u0439\u0442\u0435 \u0432\u0430\u0448 \u0431\u0440\u0430\u0443\u0437\u0435\u0440<\/i>."
+		"ru": "\u041d\u0435\u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0436\u0431\u044b, \u043a \u043a\u043e\u0442\u043e\u0440\u044b\u043c \u0432\u044b \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u044b, <i>\u043d\u0435 \u043f\u043e\u0434\u0434\u0435\u0436\u0438\u0432\u0430\u044e\u0442 \u0432\u044b\u0445\u043e\u0434 \u0438\u0437 \u0441\u0438\u0441\u0442\u0435\u043c\u044b<\/i>. \u0414\u043b\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u044f \u0437\u0430\u043a\u0440\u044b\u0442\u0438\u044f \u0432\u0441\u0435\u0445 \u0441\u0435\u0441\u0441\u0438\u0439, <i>\u0437\u0430\u043a\u0440\u043e\u0439\u0442\u0435 \u0432\u0430\u0448 \u0431\u0440\u0430\u0443\u0437\u0435\u0440<\/i>.",
+		"eu": "Kautotuta zauden zerbitzu bat edo batzuk <i>ez dute uzten saioa ixten<\/i>. Zure saio guztiak ixten direla ziurtatzeko, <i>zure nabigatzaileko leiho guztiak ixtea<\/i> gomendatzen da."
 	},
 	"no": {
 		"no": "Nei",
@@ -494,6 +509,7 @@
 		"pt": "N\u00e3o",
 		"pl": "Nie",
 		"cs": "Ne",
+		"eu": "Ez",
 		"tr": "Hay\u0131r",
 		"it": "No",
 		"hr": "Ne",
@@ -539,7 +555,8 @@
 		"sr": "Odjavljujete se iz slede\u0107ih servisa",
 		"cs": "Odhl\u00e1\u0161en\u00ed z n\u00e1sleduj\u00edc\u00edch slu\u017eeb:",
 		"ro": "Deautentificare din urm\u0103toarele servicii:",
-		"ru": "\u0412\u044b\u0445\u043e\u0434 \u0438\u0437 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0445 \u0441\u043b\u0443\u0436\u0431:"
+		"ru": "\u0412\u044b\u0445\u043e\u0434 \u0438\u0437 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0445 \u0441\u043b\u0443\u0436\u0431:",
+		"eu": "Honako zerbitzu hauen saioak itxi:"
 	},
 	"failedsps": {
 		"sl": "Odjava z ene ali ve\u010d storitev ni uspela. Odjavo dokon\u010dajte tako, da <i>zaprete spletni brskalnik<\/i>.",
@@ -568,6 +585,7 @@
 		"sr": "Odjavljivanje iz jednog ili vi\u0161e servisa nije uspelo. Da biste bili sigurni da su sve va\u0161e sesija zavr\u0161ene, preporu\u010dujemo da <i>zatvorite web pretra\u017eiva\u010d<\/i>.",
 		"cs": "Odhl\u00e1\u0161en\u00ed z jedn\u00e9 nebo z v\u00edce slu\u017eeb se nezda\u0159ilo. Aby bylo zaji\u0161t\u011bno, \u017ee v\u0161echny va\u0161e relace budou uzav\u0159eny, doporu\u010dujeme <i>ukon\u010dit v\u00e1\u0161 webov\u00fd prohl\u00ed\u017ee\u010d<\/i>.",
 		"ro": "Nu a fost posibil\u0103 deautentificarea pentru unul sau mai multe servicii. Pentru a fi sigur c\u0103 toate sesiunile sunt \u00eenchise, v\u0103 rug\u0103m s\u0103 \u00eenchide\u021bi <i>browser-ul<\/i>.",
-		"ru": "\u041d\u0435\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e \u0432\u044b\u0439\u0442\u0438 \u0438\u0437 \u043d\u0435\u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u0441\u043b\u0443\u0436\u0431.  \u0414\u043b\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u044f \u0437\u0430\u043a\u0440\u044b\u0442\u0438\u044f \u0432\u0441\u0435\u0445 \u0441\u0435\u0441\u0441\u0438\u0439, <i>\u0437\u0430\u043a\u0440\u043e\u0439\u0442\u0435 \u0432\u0430\u0448 \u0431\u0440\u0430\u0443\u0437\u0435\u0440<\/i>. "
+		"ru": "\u041d\u0435\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e \u0432\u044b\u0439\u0442\u0438 \u0438\u0437 \u043d\u0435\u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u0441\u043b\u0443\u0436\u0431.  \u0414\u043b\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u044f \u0437\u0430\u043a\u0440\u044b\u0442\u0438\u044f \u0432\u0441\u0435\u0445 \u0441\u0435\u0441\u0441\u0438\u0439, <i>\u0437\u0430\u043a\u0440\u043e\u0439\u0442\u0435 \u0432\u0430\u0448 \u0431\u0440\u0430\u0443\u0437\u0435\u0440<\/i>. ",
+		"eu": "Ezinezkoa da zerbitzu bat edo batzuen saioak ixtea. Zure saio guztiak itxi direla ziurtatzeko, <i>zure web nabigatzailea ixtea<\/i> gomendatzen da.  "
 	}
 }

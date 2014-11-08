@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * WARNING:
+ *
+ * THIS FILE IS DEPRECATED AND WILL BE REMOVED IN FUTURE VERSIONS
+ *
+ * @deprecated
+ */
+
 /*
  * This script is meant as an example of how simpleSAMLphp can be
  * accessed from an existing application.
@@ -13,6 +21,8 @@
  * by the simpleSAMLphp autoloader.
  */
 require_once('../../lib/_autoload.php');
+
+SimpleSAML_Logger::warning('The file example-simple/verysimple.php is deprecated and will be removed in future versions.');
 
 /*
  * We use the default-sp authentication source.

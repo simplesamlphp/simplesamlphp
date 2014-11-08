@@ -105,6 +105,12 @@ The following SAML 2.0 options are available:
     entry in the IdP-remote metadata overrides the option in the
     [SP configuration](./saml:sp).
 
+:   The RSA encryption algorithm with PKCS#1 v1.5 padding is blacklisted by default for security reasons. Any assertions
+    encrypted with this algorithm will therefore fail to decrypt. You can override this limitation by defining an empty
+    array in this option (or blacklisting any other algorithms not including that one). However, it is strongly
+    discouraged to do so. For your own safety, please include the string 'http://www.w3.org/2001/04/xmlenc#rsa-1_5' if
+    you make use of this option.
+
 `nameid.encryption`
 :   Whether NameIDs sent to this IdP should be encrypted. The default
     value is `FALSE`.
@@ -112,15 +118,6 @@ The following SAML 2.0 options are available:
 :   Note that this option also exists in the SP configuration. This
     entry in the IdP-remote metadata overrides the option in the
     [SP configuration](./saml:sp).
-
-`saml2.relaxvalidation`
-:   Can be used to relax some parts of the validation of assertions received from this IdP. This is an array, and can include one or more of the following flags:
-
-    -   `unknowncondition` - Disables errors when encountering unknown &lt;Condition> nodes.
-    -   `nosubject` - Ignore missing &lt;Subject&gt; in &lt;Assertion&gt;.
-    -   `noconditions` - Ignore missing &lt;Conditions&gt; in &lt;Assertion&gt;.
-    -   `noauthnstatement` - Ignore missing &lt;AuthnStatement&gt; in &lt;Assertion&gt;.
-    -   `noattributestatement` - Ignore missing &lt;AttributeStatement&gt; in &lt;Assertion&gt;.
 
 `sign.authnrequest`
 :   Whether to sign authentication requests sent to this IdP.
