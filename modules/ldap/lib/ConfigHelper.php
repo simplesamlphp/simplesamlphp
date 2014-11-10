@@ -93,6 +93,11 @@ class sspmod_ldap_ConfigHelper {
 	 */
 	private $attributes;
 
+	/**
+	 * The LDAP realm set.
+	 */
+	private $ldapRealm;
+
 
 	/**
 	 * The user cannot get all attributes, privileged reader required
@@ -155,6 +160,9 @@ class sspmod_ldap_ConfigHelper {
 		}
 
 		$this->attributes = $config->getArray('attributes', NULL);
+		if ($config->hasValue('ldaprealm')) {
+			$this->ldapRealm = $config->getString('ldaprealm');
+		}
 	}
 
 
@@ -166,10 +174,11 @@ class sspmod_ldap_ConfigHelper {
 	 *
 	 * @param string $username  The username the user wrote.
 	 * @param string $password  The password the user wrote.
-	 * @param arrray $sasl_args  Array of SASL options for LDAP bind.
+	 * @param array $sasl_args  Array of SASL options for LDAP bind.
+	 * @param boolean $scan	    Check if the organization method is set on 'scan' or not
 	 * @return array  Associative array with the users attributes.
 	 */
-	public function login($username, $password, array $sasl_args = NULL) {
+	public function login($username, $password, array $sasl_args = NULL, $scan = FALSE) {
 		assert('is_string($username)');
 		assert('is_string($password)');
 
@@ -194,12 +203,16 @@ class sspmod_ldap_ConfigHelper {
 			if ($dn === NULL) {
 				/* User not found with search. */
 				SimpleSAML_Logger::info($this->location . ': Unable to find users DN. username=\'' . $username . '\'');
-				throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+				if ($scan) {
+					throw new SimpleSAML_Error_UserNotFound('WRONGUSERPASS');
+				} else {
+					throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+				}
 			}
 		}
 
 		if (!$ldap->bind($dn, $password, $sasl_args)) {
-			SimpleSAML_Logger::info($this->location . ': '. $username . ' failed to authenticate. DN=' . $dn);
+			SimpleSAML_Logger::info($this->location . ': '. $username . ' failed to authenticate. DN=' . $dn . ' IP=' . $_SERVER['REMOTE_ADDR']);
 			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
 		}
 
@@ -270,4 +283,10 @@ class sspmod_ldap_ConfigHelper {
 		return $ldap->getAttributes($dn, $attributes);
 	}
 
+	/**
+	 * Return the LDAPRealm value.
+	 */
+	public function getLDAPRealm() {
+		return $this->ldapRealm;
+	}
 }

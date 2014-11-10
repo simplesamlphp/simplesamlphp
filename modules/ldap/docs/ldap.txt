@@ -157,6 +157,8 @@ and add an entry which uses this module:
 		 * - 'allow':  Will allow users to type 'username@organization'.
 		 * - 'force':  Force users to type 'username@organization'. The dropdown
 		 *             list will be hidden.
+		 * - 'scan':   Allow the user to enter the organization but remove the 
+			       dropdown box (first matching organization will be used).
 		 *
 		 * The default is 'none'.
 		 */
