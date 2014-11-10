@@ -53,7 +53,7 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 			if ($name === 'username_organization_method') {
 				$usernameOrgMethod = $cfgHelper->getValueValidate(
 					'username_organization_method',
-					array('none', 'allow', 'force'));
+					array('none', 'allow', 'force', 'scan'));
 				$this->setUsernameOrgMethod($usernameOrgMethod);
 				continue;
 			}
@@ -106,7 +106,8 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 			$username = $username . '@' . $org;
 		}
 
-		return $this->ldapOrgs[$org]->login($username, $password, $sasl_args);
+		$scan = $this->getUsernameOrgMethod() === 'scan';
+		return $this->ldapOrgs[$org]->login($username, $password, $sasl_args, $scan);
 	}
 
 
@@ -119,7 +120,21 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 		return $this->orgs;
 	}
 
+	protected function getLDAPOrgs() {
+		return $this->ldapOrgs;
+	}
+	
+	/**
+         * Retrieve the LDAP realm attribute of an organization, if any.
+         *
+	 * @param orgId The organization ID
+         * @return string The value set in 'ldaprealm' attribute or NULL.
+         */
+        protected function getLDAPRealm($orgId) {
+		if (isset($orgId) && isset($this->ldapOrgs[$orgId])) {
+			return $this->ldapOrgs[$orgId]->getLDAPRealm();
+		}
+                return NULL;
+        }
 }
-
-
 ?>
