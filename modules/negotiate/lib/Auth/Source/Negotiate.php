@@ -17,6 +17,9 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 
 	private $config;
 	protected $ldap = NULL;
+	
+	private $realms;
+	private $currentRealm = NULL;
 
 	/**
 	 * Constructor for this authentication source.
@@ -37,18 +40,21 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 		$config = SimpleSAML_Configuration::loadFromArray($config);;
 
 		$this->backend = $config->getString('fallback');
-		$this->hostname = $config->getString('hostname');
 		$this->enableTLS = $config->getBoolean('enable_tls', FALSE);
 		$this->debugLDAP = $config->getBoolean('debugLDAP', FALSE);
 		$this->timeout = $config->getValue('timeout', 30);
 		$this->keytab = $config->getString('keytab');
-		$this->base = $config->getString('base');
-		$this->attr = $config->getString('attr', 'uid');
 		$this->subnet = $config->getArray('subnet', NULL);
-		$this->admin_user = $config->getString('adminUser', NULL);
-		$this->admin_pw = $config->getString('adminPassword', NULL);
 		$this->attributes = $config->getArray('attributes', NULL);
-
+		
+		if ($config->hasValue('realms')) {
+			$realmArray = $config->getArray('realms', NULL);
+			foreach($realmArray as $name => $value) {
+				$this->realms[strtolower($name)] = $value;
+			}
+		} else {
+			throw new Exception('No realm set in configuration file ("realms" parameter).');
+		}
 	}
 
 	/**
@@ -98,17 +104,8 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 			assert('FALSE');
 		}
 
-		SimpleSAML_Logger::debug('Negotiate - authenticate(): looking for Negotate');
+		SimpleSAML_Logger::debug('Negotiate - authenticate(): looking for Negotiate');
 		if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
-			SimpleSAML_Logger::debug('Negotiate - authenticate(): Negotate found');
-			$this->ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debugLDAP, $this->timeout);
-
-			list($mech, $data) = explode(' ', $_SERVER['HTTP_AUTHORIZATION'],2);
-			if(strtolower($mech) == 'basic')
-				SimpleSAML_Logger::debug('Negotiate - authenticate(): Basic found. Skipping.');
-			else if(strtolower($mech) != 'negotiate')
-				SimpleSAML_Logger::debug('Negotiate - authenticate(): No "Negotiate" found. Skipping.');
-
 			$auth = new KRB5NegotiateAuth($this->keytab);
 			// Atempt Kerberos authentication
 			try {
@@ -118,9 +115,48 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 				$reply = NULL;
 			}
 
+			// Search for the corresponding realm and set current variables
+			$user = $auth->getAuthenticatedUser();
+			$pos = strpos($user, '@');
+			if ($pos === false) {
+				$this->fallBack($state);
+				// Never executed
+				assert('FALSE');
+			}
+			$realmName = strtolower(substr($user, $pos + 1, strlen($user)));
+			
+			// Use the correct realm
+			if (isset($this->realms[$realmName])) {
+				SimpleSAML_Logger::info('Negotiate - setting realm parameters for "'. $realmName . '".');
+				$this->currentRealm = $realmName;
+			// Use default realm ("*"), if set
+			} else if (isset($this->realms['*'])) {
+				SimpleSAML_Logger::info('Negotiate - setting realm parameters with default realm.');
+				$this->currentRealm = '*';
+			// No corresponding realm found, cancel
+			} else {
+				$this->fallBack($state);
+				// Never executed
+				assert('FALSE');
+			}
+			// Set local variables for authentication process
+			$this->hostname = $this->realms[$this->currentRealm]['hostname'];
+			$this->base = $this->realms[$this->currentRealm]['base'];
+			$this->attr = $this->realms[$this->currentRealm]['attr'];
+			$this->admin_user = $this->realms[$this->currentRealm]['adminUser'];
+			$this->admin_pw = $this->realms[$this->currentRealm]['adminPassword'];
+			
+			SimpleSAML_Logger::debug('Negotiate - authenticate(): Negotiate found');
+			$this->ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debugLDAP, $this->timeout);
+			
+			list($mech, $data) = explode(' ', $_SERVER['HTTP_AUTHORIZATION'],2);
+			if(strtolower($mech) == 'basic')
+				SimpleSAML_Logger::debug('Negotiate - authenticate(): Basic found. Skipping.');
+			else if(strtolower($mech) != 'negotiate')
+				SimpleSAML_Logger::debug('Negotiate - authenticate(): No "Negotiate" found. Skipping.');
+			
 			if($reply) {
-				// Success. Krb TGS recieved.
-				$user = $auth->getAuthenticatedUser();
+				// Success. Krb TGS received.
 				SimpleSAML_Logger::info('Negotiate - authenticate(): '. $user . ' authenticated.');
 				$lookup = $this->lookupUserData($user);
 				if ($lookup) {
@@ -135,7 +171,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 					assert('FALSE');
 				}
 			} else {
-				// Some error in the recieved ticket. Expired?
+				// Some error in the received ticket. Expired?
 				SimpleSAML_Logger::info('Negotiate - authenticate(): Kerberos authN failed. Skipping.');
 			}
 		} else {
@@ -269,7 +305,9 @@ click <a href="'.htmlspecialchars($url).'">here</a>.
 		$this->adminBind();
 		try {
 			$dn = $this->ldap->searchfordn($this->base, $this->attr, $uid);
-			return $this->ldap->getAttributes($dn, $this->attributes);
+			$ldapAttr = $this->ldap->getAttributes($dn, $this->attributes);
+			$ldapAttr['kerbrealm'] = [$this->currentRealm];
+			return $ldapAttr;
 		} catch (SimpleSAML_Error_Exception $e) {
 			SimpleSAML_Logger::debug('Negotiate - ldap lookup failed: '. $e);
 			return NULL;
