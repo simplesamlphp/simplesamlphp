@@ -322,11 +322,28 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		$base64 = $sp->getBoolean('base64attributes', FALSE);
 
 		$namequalifier = $sp->getString('NameQualifier', $spEntityId);
-		$nameid = SimpleSAML_Utilities::generateID();
+
+//		$nameid = SimpleSAML_Utilities::generateID();
+		$nameidattribute = $sp->getString('simplesaml.nameidattribute', NULL);
+                if ($nameidattribute === NULL) {
+			SimpleSAML_Logger::error('Unable to generate NameID. Check the simplesaml.nameidattribute option.');
+			return NULL;
+		} else {
+                	if (!array_key_exists($nameidattribute, $attributes)) {
+                        SimpleSAML_Logger::error('Unable to add NameID: Missing ' . var_export($nameidattribute, TRUE) .
+                                ' in the attributes of the user.');
+                        return NULL;
+                	}
+			$nameid = $attributes[$nameidattribute][0] ;
+                        SimpleSAML_Logger::debug('NameID: ' . $nameidattribute . ' = ' . $nameid ) ;
+		}
+		$nameidformat = $sp->getString('NameIDFormat', 'xurn:mace:shibboleth:1.0:nameIdentifier');
+                SimpleSAML_Logger::debug('NameIDFormat: ' . $nameidformat ) ;
+
 		$subjectNode =
 			'<Subject>' .
 			'<NameIdentifier' .
-			' Format="urn:mace:shibboleth:1.0:nameIdentifier"' .
+			' Format="'.$nameidformat.'"' .
 			' NameQualifier="' . htmlspecialchars($namequalifier) . '"' .
 			'>' .
 			htmlspecialchars($nameid) .
