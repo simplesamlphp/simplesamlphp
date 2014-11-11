@@ -1948,7 +1948,7 @@ class SimpleSAML_Utilities {
 
 		$tmpFile = $filename . '.new.' . getmypid() . '.' . php_uname('n');
 
-		$res = file_put_contents($tmpFile, $data);
+		$res = @file_put_contents($tmpFile, $data);
 		if ($res === FALSE) {
 			throw new SimpleSAML_Error_Exception('Error saving file ' . $tmpFile .
 				': ' . SimpleSAML_Utilities::getLastError());
