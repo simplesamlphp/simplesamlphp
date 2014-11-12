@@ -24,8 +24,7 @@
     "require": {
         "php": "~5.3",
         "simplesamlphp/saml2": "~0.3",
-        "simplesamlphp/xmlseclibs": "~1.3.2",
-        "openid/php-openid": "dev-master#ee669c6a9d4d95b58ecd9b6945627276807694fb as 2.2.2"
+        "simplesamlphp/xmlseclibs": "~1.3.2"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",
