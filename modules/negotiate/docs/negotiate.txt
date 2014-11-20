@@ -20,6 +20,7 @@ Negotiate implements the following mechanics:
    fails to authenticate in the Negotiate module
  * Check only clients from a certain subnet
  * Supports enabling/disabling a client
+ * Supports multiple realm/ldap config for complex AD topology
 
 In effect this module aims to extend the Microsoft AD SSO session to
 the SAML IdP. (Or any other Kerberos domain) It doesn't work like this
@@ -55,10 +56,16 @@ All configuration is handled in authsources.php:
              'negotiate:Negotiate',
              'keytab' => '/path/to/keytab-file',
              'fallback' => 'ldap',
-             'hostname' => 'ldap.example.com',
-             'base' => 'cn=people,dc=example,dc=com',
-             'adminUser' => 'cn=idp-fallback,cn=services,dc=example,dc=com',
-             'adminPassword' => 'VerySecretPassphraseHush'
+						 'realms' => array(
+							'*' => array(
+             	 'hostname' => 'ldap.example.com',
+             	 'base' => 'cn=people,dc=example,dc=com',
+             	 'adminUser' => 'cn=idp-fallback,cn=services,dc=example,dc=com',
+             	 'adminPassword' => 'VerySecretPassphraseHush',
+							 'attr' => 'sAMAccountName',
+							 'attributes' => array('sAMAccountName', 'distinguishedName', 'cn', 'displayName')
+							)
+						 )
      ),
      'ldap' => array(
              'ldap:LDAP',
@@ -139,6 +146,21 @@ self-explanatory. Read the documentation of the LDAP auth module for
 more information. 'attr' is the attribute that will be used to look up
 user objects in the directory after extracting it from the Kerberos
 session. Default is 'uid'.
+
+The module supports using several Kerberos realms. Then you must specify
+a LDAP configuration for each Kerberos realm that may be used. If you're
+using only one realm (one AD domain for example) then you could let your
+ldap configuration with the magic "*" key. For multi realms the syntax is :
+
+     'weblogin' => array(
+             'negotiate:Negotiate',
+							...
+						 'realms' => array(
+							'realm1' => array ( ... ldap configuration for realm1 ...),
+							'realm2' => array ( ... ldap configuration for realm2 ...),
+							'*' => array ( ... ldap configuration for any other realm ...)
+							)
+			),
 
 For LDAP directories with restricted access to objects or attributes
 Negotiate implements 'adminUser' and 'adminPassword'. adminUser must
