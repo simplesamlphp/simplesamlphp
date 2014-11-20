@@ -148,7 +148,11 @@ class SimpleSAML_Session {
 		}
 
 		$sh = SimpleSAML_SessionHandler::getSessionHandler();
-		$this->sessionId = $sh->newSessionId();
+		if (!$sh->hasSessionCookie()) {
+			$this->sessionId = $sh->newSessionId();
+		} else {
+			$this->sessionId = $sh->getCookieSessionId();
+		}
 
 		$this->trackid = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(5));
 
@@ -176,6 +180,10 @@ class SimpleSAML_Session {
 
         $this->dirty = FALSE;
 
+        $this->saveSession();
+    }
+
+    public function saveSession() {
         $sh = SimpleSAML_SessionHandler::getSessionHandler();
 
         try {
@@ -188,7 +196,6 @@ class SimpleSAML_Session {
             $e->logError();
         }
     }
-
 
     /**
      * @deprecated

@@ -161,6 +161,7 @@ class SimpleSAML_Auth_State {
 		$serializedState = serialize($state);
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->setData('SimpleSAML_Auth_State', $id, $serializedState, self::getStateTimeout());
+		$session->saveSession();
 
 		SimpleSAML_Logger::debug('Saved state: ' . var_export($return, TRUE));
 

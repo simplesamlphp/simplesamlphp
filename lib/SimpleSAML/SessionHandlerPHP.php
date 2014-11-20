@@ -27,6 +27,9 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 		 */
 		parent::__construct();
 
+        $config = SimpleSAML_Configuration::getInstance();
+        $this->cookie_name = $config->getString('session.phpsession.cookiename', NULL);
+
 		/* Initialize the php session handling.
 		 *
 		 * If session_id() returns a blank string, then we need
@@ -34,8 +37,6 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 		 * started, and we should avoid calling session_start().
 		 */
 		if(session_id() === '') {
-			$config = SimpleSAML_Configuration::getInstance();
-
 			$params = $this->getCookieParams();
 
 			$version = explode('.', PHP_VERSION);
@@ -45,7 +46,6 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 				session_set_cookie_params($params['lifetime'], $params['path'], $params['domain'], $params['secure'], $params['httponly']);
 			}
 
-			$this->cookie_name = $config->getString('session.phpsession.cookiename', NULL);
 			if (!empty($this->cookie_name)) {
 				session_name($this->cookie_name);
 			} else {
