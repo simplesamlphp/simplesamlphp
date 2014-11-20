@@ -39,6 +39,8 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 *  'none': Force the user to select the correct organization from the dropdown box.
 	 *  'allow': Allow the user to enter the organization as part of the username.
 	 *  'force': Remove the dropdown box.
+	 *  'scan': Allow the user to enter the organization but remove the dropdown box
+		    (first matching organization will be used).
 	 */
 	private $usernameOrgMethod;
 
@@ -57,6 +59,11 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 * @var bool
 	 */
 	protected $rememberUsernameChecked = FALSE;
+
+	/**
+	 * Storage for authsource config option force_scan
+	 */
+	protected $forceScan = FALSE;
 
 
 	/**
@@ -85,6 +92,11 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 			unset($config['remember.username.checked']);
 		}
 
+		if (isset($config['force_scan'])) {
+			$this->forceScan = (bool) $config['force_scan'];
+			unset($config['force_scan']);
+		}
+
 		$this->usernameOrgMethod = 'none';
 	}
 
@@ -96,13 +108,15 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 * - 'none': Force the user to select the correct organization from the dropdown box.
 	 * - 'allow': Allow the user to enter the organization as part of the username.
 	 * - 'force': Remove the dropdown box.
+	 * - 'scan': Allow the user to enter the organization but remove the dropdown box
+		     (first matching organization will be used).
 	 *
 	 * If unconfigured, the default is 'none'.
 	 *
 	 * @param string $usernameOrgMethod  The method which should be used.
 	 */
 	protected function setUsernameOrgMethod($usernameOrgMethod) {
-		assert('in_array($usernameOrgMethod, array("none", "allow", "force"), TRUE)');
+		assert('in_array($usernameOrgMethod, array("none", "allow", "force", "scan"), TRUE)');
 
 		$this->usernameOrgMethod = $usernameOrgMethod;
 	}
@@ -115,6 +129,8 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 * - 'none': Force the user to select the correct organization from the dropdown box.
 	 * - 'allow': Allow the user to enter the organization as part of the username.
 	 * - 'force': Remove the dropdown box.
+	 * - 'scan': Allow the user to enter the organization but remove the dropdown box
+		     (first matching organization will be used).
 	 *
 	 * @return string  The method which should be used.
 	 */
@@ -238,9 +254,41 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 				}
 			}
 		}
-
-		/* Attempt to log in. */
-		$attributes = $source->login($username, $password, $organization);
+		
+		/* If the method is 'scan', cycle through organizations to find the good one */
+		if ($orgMethod === 'scan' && $organization === '') {
+			$listOrg = $source->getOrganizations();
+			foreach ($listOrg as $orgId => $value) {
+				try {
+					$attributes = $source->login($username, $password, $orgId);
+				} catch (SimpleSAML_Error_UserNotFound $e) {
+					/* Search did not match for the user set */
+					SimpleSAML_Logger::warning("[" . var_export($orgId, TRUE) . "] LDAP 'search' process failed.");
+					continue;
+				} catch(Exception $e) {
+					/* Search matched but bind did not */
+					SimpleSAML_Logger::warning("[" . var_export($orgId, TRUE) . "] LDAP 'bind' process failed (wrong user/password).");
+					if ($source->forceScan) {
+						continue;
+					} else {
+						throw $e;
+					}
+				}
+				$organization = $orgId;
+				$realm = $source->getLDAPRealm($orgId);
+				if (is_array($attributes) && $realm !== NULL) {
+					$attributes['ldaprealm'] = [$realm];
+				}
+				break;
+			}
+			/* Cycled through all organizations but did not find the user set */
+			if (!isset($attributes) || !is_array($attributes)) {
+				throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+			}
+		} else {
+			/* Attempt to log in. */
+			$attributes = $source->login($username, $password, $organization);
+		}
 
 		// Add the selected Org to the state
 		$state[self::ORGID] = $organization;
@@ -280,7 +328,7 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 		}
 
 		$orgMethod = $source->getUsernameOrgMethod();
-		if ($orgMethod === 'force') {
+		if ($orgMethod === 'force' || $orgMethod === 'scan') {
 			return NULL;
 		}
 
