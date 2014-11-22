@@ -1,1 +1,2 @@
 src_dir: .
+coverage_clover: ./tools/phpunit/build/logs/clover.xml
