@@ -31,7 +31,9 @@ class SimpleSAML_Memcache {
 	 * @return The data stored with the given key, or NULL if no data matching the key was found.
 	 */
 	public static function get($key) {
+		SimpleSAML_Logger::debug("loading key $key from memcache");
 
+		$latestInfo = NULL;
 		$latestTime = 0.0;
 		$latestData = NULL;
 		$mustUpdate = FALSE;
@@ -69,15 +71,15 @@ class SimpleSAML_Memcache {
 				continue;
 			}
 
-
-			if($latestTime === 0.0) {
-				/* First data found. */
+			if($latestInfo === NULL) {
+				/* First info found. */
+				$latestInfo = $serializedInfo;
 				$latestTime = $info['timestamp'];
 				$latestData = $info['data'];
 				continue;
 			}
 
-			if($info['timestamp'] === $latestTime && $info['data'] === $latestData) {
+			if($info['timestamp'] === $latestTime && $serializedInfo === $latestInfo) {
 				/* This data matches the data from the other server(s). */
 				continue;
 			}
@@ -91,18 +93,21 @@ class SimpleSAML_Memcache {
 
 			/* Update if data in $info is newer than $latestData. */
 			if($latestTime < $info['timestamp']) {
+				$latestInfo = $serializedInfo;
 				$latestTime = $info['timestamp'];
 				$latestData = $info['data'];
 			}
 		}
 
-		if($latestTime === 0.0) {
+		if($latestData === NULL) {
 			/* We didn't find any data matching the key. */
+			SimpleSAML_Logger::debug("key $key not found in memcache");
 			return NULL;
 		}
 
 		if($mustUpdate) {
 			/* We found data matching the key, but some of the servers need updating. */
+			SimpleSAML_Logger::debug("Memcache servers out of sync for $key, forcing sync");
 			self::set($key, $latestData);
 		}
 
@@ -118,6 +123,7 @@ class SimpleSAML_Memcache {
 	 * @param int|NULL $expire  The expiration timestamp of the data.
 	 */
 	public static function set($key, $value, $expire = NULL) {
+		SimpleSAML_Logger::debug("saving key $key to memcache");
 		$savedInfo = array(
 			'timestamp' => microtime(TRUE),
 			'data' => $value
@@ -143,6 +149,7 @@ class SimpleSAML_Memcache {
 	 */
 	public static function delete($key) {
 		assert('is_string($key)');
+		SimpleSAML_Logger::debug("deleting key $key from memcache");
 
 		/* Store this object to all groups of memcache servers. */
 		foreach(self::getMemcacheServers() as $server) {
