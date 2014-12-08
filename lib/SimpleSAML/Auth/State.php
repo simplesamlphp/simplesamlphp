@@ -162,6 +162,18 @@ class SimpleSAML_Auth_State {
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->setData('SimpleSAML_Auth_State', $id, $serializedState, self::getStateTimeout());
 
+		// This is for ownCloud/user_saml to work (using the default PHP session store)
+		$sh = SimpleSAML_SessionHandler::getSessionHandler();
+		try {
+				$sh->saveSession($session);
+		} catch (Exception $e) {
+				if (!($e instanceof SimpleSAML_Error_Exception)) {
+						$e = new SimpleSAML_Error_UnserializableException($e);
+				}
+				SimpleSAML_Logger::error('Unable to save session.');
+				$e->logError();
+		}
+		
 		SimpleSAML_Logger::debug('Saved state: ' . var_export($return, TRUE));
 
 		return $return;

@@ -488,6 +488,9 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$lr->encryptNameId(sspmod_saml_Message::getEncryptionKey($idpMetadata));
 		}
 
+		// This is for ownCloud/user_saml to work (using the default PHP session store)
+		session_write_close();
+		
 		$b = SAML2_Binding::getBinding($endpoint['Binding']);
 		$b->send($lr);
 
