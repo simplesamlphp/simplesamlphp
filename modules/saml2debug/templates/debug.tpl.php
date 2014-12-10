@@ -1,13 +1,10 @@
 <?php
 
-$this->data['head']  = '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>';
-$this->data['head'] .= '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui.js"></script>';
-$this->data['head'] .= '<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 'resources/uitheme/jquery-ui-themeroller.css" />';
-
-$this->data['head'] .= '<script type="text/javascript">
+$this->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
+$this->data['head'] = '<script type="text/javascript">
 
 $(document).ready(function() {
-	$("#tabdiv > ul").tabs({ selected: ' . $this->data['activeTab'] . ' });
+	$("#tabdiv").tabs({ selected: ' . $this->data['activeTab'] . ' });
 });
 </script>';
 
