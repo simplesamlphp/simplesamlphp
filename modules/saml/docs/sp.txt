@@ -266,7 +266,7 @@ Options
 `ProtocolBinding`
 :   The binding that should be used for SAML2 authentication responses.
     This option controls the binding that is requested through the AuthnRequest message to the IdP.
-    By default the HTTP-Redirect binding is used.
+    By default the HTTP-Post binding is used.
 
 :   *Note*: SAML 2 specific.
 
