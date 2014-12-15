@@ -91,12 +91,25 @@ try {
 	/* Store the authentication data in the memcache server. */
 
 	$data = '';
+	$amcConfig = SimpleSAML_Configuration::getConfig('authmemcookie.php');
+	$format = strtolower($amcConfig->getBoolean('format', 'implode'));
+	assert('in_array($format, array("implode", "multi", "json"))');
 	foreach($authData as $n => $v) {
-		if(is_array($v)) {
-			$v = implode(':', $v);
+		if(!is_array($v)) {
+			$v = array((string)$v);
+		}
+		if ($format === 'multi') {
+			$v = array(implode(':', $v));
 		}
 
-		$data .= $n . '=' . $v . "\r\n";
+		if (in_array($format, array('implode', 'multi'))) {
+			foreach($v as $v2) {
+				$data .= $n . '=' . str_replace("\r\n", "\n", $v2) . "\r\n";
+			}
+		}
+	}
+	if ($format === 'json') {
+		$data = json_encode($authData);
 	}
 
 

@@ -81,6 +81,33 @@ $config = array(
 	 */
 	'memcache.port' => 11211,
 
+	/*
+	 * This option specifies how the attributes are represented in the memcache store.
+	 * Up until SimpleSamlPhp 1.13, the format was "implode".
+	 * In this format, the representation consists of multiple lines, one attribute-name per line.
+	 * Multi-value attributes would be concatinated with colons in between.
+	 * For backwards compatibility, this is still the standard behaviour.
+	 * 
+	 * The possible values are:
+	 * # implode
+	 *   Classic behaviour, memcache will contain one line per attribute name,
+	 *   if the attribute is multi-value, the values are concatinated with a colon (:) in between.
+	 *   Lines are separated with Windows-style newlines (\r\n)
+	 * 
+	 * # multi
+	 *   Looks like implode, except that there will not be one line per attribute name,
+	 *   but per attribute value. Multi-value attributes will be represented with multiple lines
+	 *   with identical keys.
+	 *   This option is recommended if you want to handle multi-value attributes,
+	 *   but you have to be compatible with the old format as well.
+	 *
+	 * # json
+	 *   The attributes are serialised as JSON. The root is a dictionary with the attribute name as key,
+	 *   and an array of attribute values as value.
+	 */
+	'format' => 'implode', // backwards-compatible
+	//'format' => 'json', // recommended
+
 );
 
 ?>
