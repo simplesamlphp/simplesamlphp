@@ -2,6 +2,9 @@
 
 require_once('../_include.php');
 
+/* Make sure that the user has admin access rights. */
+SimpleSAML_Utilities::requireAdmin();
+
 $config = SimpleSAML_Configuration::getInstance();
 
 if(array_key_exists('xmldata', $_POST)) {
