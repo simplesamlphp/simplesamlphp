@@ -275,6 +275,8 @@ th.rowtitle {
 	overflow: scroll; 
 	border: 1px solid #eee; 
 	padding: 2px;
+	width: 100%;
+	height: 450px;
 }
 div.preferredidp {
 	border: 1px dashed #ccc;
