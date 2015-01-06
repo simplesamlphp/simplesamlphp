@@ -95,7 +95,11 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 			return;
 		}
 
-		$query = 'CREATE TABLE ' . $this->prefix . '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value TEXT NOT NULL, _expire TIMESTAMP, PRIMARY KEY (_key, _type))';
+		if ($this->driver === 'sqlsrv') {
+			$query = 'CREATE TABLE ' . $this->prefix . '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value TEXT NOT NULL, _expire DateTime, PRIMARY KEY (_key, _type))';
+		} else {
+			$query = 'CREATE TABLE ' . $this->prefix . '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value TEXT NOT NULL, _expire TIMESTAMP, PRIMARY KEY (_key, _type))';
+		}
 		$this->pdo->exec($query);
 
 		$query = 'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON '  . $this->prefix . '_kvstore (_expire)';
@@ -179,6 +183,8 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 			switch ($ecode) {
 			case '23505': /* PostgreSQL */
 				break;
+			case '23000': /* Fix for SQL Server – 23000 = “Integrity constraint violation” */
+				break;
 			default:
 				SimpleSAML_Logger::error('Error while saving data: ' . $e->getMessage());
 				throw $e;
@@ -200,7 +206,19 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 
 		$updateQuery = 'UPDATE ' . $table . ' SET ' . implode(',', $updateCols) . ' WHERE ' . implode(' AND ', $condCols);
 		$updateQuery = $this->pdo->prepare($updateQuery);
-		$updateQuery->execute($data);
+		try {
+			$updateQuery->execute($data);
+			return;
+		} catch (PDOEXception $e){
+			$ecode = (string)$e->getCode();
+			switch ($ecode) {
+				case '23000': /* Fix for SQL Server – 23000 = “Integrity constraint violation” */
+					break;
+				default:
+					SimpleSAML_Logger::error('Error while saving data: ' . $e->getMessage());
+					throw $e;
+			}
+		}
 	}
 
 
