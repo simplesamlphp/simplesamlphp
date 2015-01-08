@@ -745,7 +745,7 @@ $config = array(
      * Set to NULL to disable checking of URLs.
      *
      * simpleSAMLphp will automatically add your own domain (either by checking
-     * it dinamically, or by using the domain defined in the 'baseurlpath'
+     * it dynamically, or by using the domain defined in the 'baseurlpath'
      * directive, the latter having precedence) to the list of trusted domains,
      * in case this option is NOT set to NULL. In that case, you are explicitly
      * telling simpleSAMLphp to verify URLs.
