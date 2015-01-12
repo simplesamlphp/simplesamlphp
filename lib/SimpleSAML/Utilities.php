@@ -1930,6 +1930,17 @@ class SimpleSAML_Utilities {
 		date_default_timezone_set($serverTimezone);
 	}
 
+	/**
+	 * Disable the loading of external entities in XML documents to prevent local and
+	 * remote file inclusion attacks. This is in most cases already disabled by default
+	 * in system libraries, but to be safe we explicitly disable it also.
+	 */
+	public static function disableXMLEntityLoader() {
+		/* Function only present in PHP >= 5.2.11 while we support 5.2+ */
+		if ( function_exists('libxml_disable_entity_loader') ) {
+			libxml_disable_entity_loader();
+		}
+	}
 
 	/**
 	 * Atomically write a file.
