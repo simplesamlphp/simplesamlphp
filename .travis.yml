@@ -11,6 +11,9 @@ matrix:
   allow_failures:
     - php: hhvm
 
-before_script: composer install
+before_script: composer install --dev
 
 script: phpunit --configuration tools/phpunit
+
+after_script:
+ - php vendor/bin/coveralls -v
