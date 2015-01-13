@@ -251,6 +251,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 			return $data;
 		}
 
+		/* Look at Metadata Query Protocol: https://github.com/iay/md-query/blob/master/draft-young-md-query.txt */
 		$mdx_url = $this->server . '/entities/' . urlencode( $index);
 
 		SimpleSAML_Logger::debug('MetaData - Handler.MDX: Downloading metadata for "'. $index .'" from [' . $mdx_url . ']' );
