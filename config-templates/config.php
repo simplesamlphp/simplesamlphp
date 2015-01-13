@@ -599,7 +599,6 @@ $config = array(
      *     array('type' => 'mdx', server => 'http://mdx.server.com:8080', 'cachedir' => '/var/simplesamlphp/mdx-cache', 'cachelength' => 86400)
      *     ),
      *
-     *
      * Default:
      * 'metadata.sources' => array(
      *     array('type' => 'flatfile')

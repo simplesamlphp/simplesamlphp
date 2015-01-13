@@ -282,7 +282,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 			throw new Exception('No metadata for set "' . $set .
 				'" available from "' . $index . '".');
 		}
-	if (is_array($data[0])) $data = $data[0];
+		if (is_array($data[0])) $data = $data[0];
+
 		$this->writeToCache($set, $index, $data);
 
 		return $data;
