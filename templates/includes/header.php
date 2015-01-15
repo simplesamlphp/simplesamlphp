@@ -59,22 +59,11 @@ if(array_key_exists('header', $this->data)) {
 <?php
 
 if(!empty($jquery)) {
-	$version = '1.5';
+	$version = '1.6';
 	if (array_key_exists('version', $jquery))
 		$version = $jquery['version'];
 		
-	if ($version == '1.5') {
-		if (isset($jquery['core']) && $jquery['core'])
-			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>' . "\n");
-	
-		if (isset($jquery['ui']) && $jquery['ui'])
-			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui.js"></script>' . "\n");
-	
-		if (isset($jquery['css']) && $jquery['css'])
-			echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 
-				'resources/uitheme/jquery-ui-themeroller.css" />' . "\n");	
-			
-	} else if ($version == '1.6') {
+	if ($version == '1.6') {
 		if (isset($jquery['core']) && $jquery['core'])
 			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-16.js"></script>' . "\n");
 	
@@ -83,7 +72,7 @@ if(!empty($jquery)) {
 	
 		if (isset($jquery['css']) && $jquery['css'])
 			echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 
-				'resources/uitheme16/ui.all.css" />' . "\n");	
+				'resources/uitheme16/ui.all.css" />' . "\n");
 	}
 }
 
