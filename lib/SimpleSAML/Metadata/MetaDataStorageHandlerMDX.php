@@ -230,11 +230,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 		assert('is_string($index)');
 		assert('is_string($set)');
 
-		if (!preg_match('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@', $index)) {
-			SimpleSAML_Logger::info('MetaData - Handler.MDX: EntityID/index [' . $index . '] does not look like a URL. Skipping.' );
-			return NULL;
-		}
-
 		SimpleSAML_Logger::info('MetaData - Handler.MDX: Loading metadata entity [' . $index . '] from [' . $set . ']' );
 
 		/* Read from cache if possible. */
