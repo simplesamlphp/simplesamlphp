@@ -198,8 +198,17 @@ class SimpleSAML_Auth_LDAP {
 		$value = self::escape_filter_value($value);
 		$filter = '';
 		foreach ($attribute AS $attr) {
-			$filter .= '(' . $attr . '=' . $value. ')';
+			if (is_array($attr)) {
+				$queryAttr = $attr[0];
+				$queryValue = str_replace('%username%', $value, $attr[1]);
+			} else {
+				$queryAttr = $attr;
+				$queryValue = $value;
+			}
+
+			$filter .= '(' . $queryAttr . '=' . $queryValue . ')';
 		}
+
 		$filter = '(|' . $filter . ')';
 
 		// Search using generated filter.
