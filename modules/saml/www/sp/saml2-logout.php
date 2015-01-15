@@ -7,7 +7,7 @@
  */
 
 if (!array_key_exists('PATH_INFO', $_SERVER)) {
-	throw new SimpleSAML_Error_BadRequest('Missing authentication source id in logout URL');
+	throw new SimpleSAML_Error_BadRequest('Missing authentication source ID in logout URL');
 }
 
 $sourceId = substr($_SERVER['PATH_INFO'], 1);

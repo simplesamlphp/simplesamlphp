@@ -4,6 +4,10 @@
  * Assertion consumer service handler for SAML 2.0 SP authentication client.
  */
 
+if (!array_key_exists('PATH_INFO', $_SERVER)) {
+    throw new SimpleSAML_Error_BadRequest('Missing authentication source ID in assertion consumer service URL');
+}
+
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
 $source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
 $spMetadata = $source->getMetadata();
