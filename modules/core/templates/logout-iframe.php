@@ -50,8 +50,6 @@ if (!isset($this->data['head'])) {
 	$this->data['head'] = '';
 }
 
-$this->data['head'] .= '<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery.js"></script>';
-
 $this->data['head'] .= '
 <script type="text/javascript" language="JavaScript">
 window.stateImage = ' . json_encode($stateImage) . ';
