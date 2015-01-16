@@ -58,8 +58,8 @@ tar cf - . | (cd %{buildroot}%{_prefix}simplesamlphp; tar xfp -)
 # keep the labels, as uninstall + restorecon
 # may result in admin revealing sensitive data by mistake.
 #    semanage fcontext -d -t httpd_sys_content_t '/var/lib/simplesamlphp(/.*)?'
-#    semanage fcontext -a -t httpd_sys_rw_content_t '/var/lib/simplesamlphp/data(/.*)?'
-#    semanage fcontext -a -t httpd_sys_rw_content_t '/var/lib/simplesamlphp/log(/.*)?'
+#    semanage fcontext -d -t httpd_sys_rw_content_t '/var/lib/simplesamlphp/data(/.*)?'
+#    semanage fcontext -d -t httpd_sys_rw_content_t '/var/lib/simplesamlphp/log(/.*)?'
 
 %preun
 
