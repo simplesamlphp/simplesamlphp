@@ -18,7 +18,7 @@ License:   %{license}
 Group:     %{group}
 Source0:   %{source}
 BuildArch: noarch
-Requires:  httpd, mod_ssl, mod_php, php-ldap, php-mcrypt, php-pecl-krb5, php-xml
+Requires:  httpd, mod_ssl, mod_php, php-ldap, php-mcrypt, php-xml
 Requires(pre): shadow-utils
 Provides:  %{name}
 URL:       %{url}
