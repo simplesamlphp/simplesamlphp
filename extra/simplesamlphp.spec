@@ -6,7 +6,7 @@
 %define group     Networking/WWW
 %define source    %{name}-%version.tar.gz
 %define url       https://simplesamlphp.org
-%define vendor    Feide RND
+%define vendor    UNINETT AS
 %define buildroot %{_tmppath}/%{name}-root
 %define _prefix   /var/lib/
 
