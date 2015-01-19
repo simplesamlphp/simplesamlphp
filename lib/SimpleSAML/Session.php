@@ -735,20 +735,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Set the attributes for this session.
-	 *
-	 * @param array|NULL $attributes  The attributes of this session.
-	 * @deprecated
-	 */
-	public function setAttributes($attributes) {
-		assert('isset($this->authData[$this->authority])');
-
-		$this->dirty = true;
-		$this->authData[$this->authority]['Attributes'] = $attributes;
-	}
-
-
-	/**
 	 * Calculates the size of the session object after serialization
 	 *
 	 * @return int The size of the session measured in bytes.
