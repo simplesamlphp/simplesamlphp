@@ -537,24 +537,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * If the user is authenticated, how much time is left of the session.
-	 *
-	 * @return int The number of seconds until the session expires.
-	 * @deprecated
-	 */
-	public function remainingTime() {
-
-		if (!isset($this->authData[$this->authority])) {
-			/* Not authenticated. */
-			return -1;
-		}
-
-		assert('isset($this->authData[$this->authority]["Expire"])');
-		return $this->authData[$this->authority]['Expire'] - time();
-	}
-
-
-	/**
 	 * Retrieve the attributes associated with this session.
 	 *
 	 * @return array|NULL  The attributes.
