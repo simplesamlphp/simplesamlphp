@@ -68,7 +68,7 @@ try {
 		$t = new SimpleSAML_XHTML_Template($config, 'oauth:authorized.php');
 
 		$t->data['header'] = '{status:header_saml20_sp}';
-		$t->data['remaining'] = $session->remainingTime();
+		$t->data['remaining'] = $session->getAuthData($as, "Expire") - time();
 		$t->data['sessionsize'] = $session->getSize();
 		$t->data['attributes'] = $attributes;
 		$t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
