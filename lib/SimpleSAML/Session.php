@@ -344,24 +344,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * This method sets a cached assoc array to the authentication request cache storage.
-	 *
-	 * @param string $protocol 'saml2' or 'shib13'
-	 * @param string $requestid The request id used as a key to lookup the cache.
-	 * @param array $cache The assoc array that will be stored.
-	 * @deprecated
-	 */
-	public function setAuthnRequest($protocol, $requestid, array $cache) {
-
-		SimpleSAML_Logger::debug('Library - Session: Set authnrequest ' . $protocol . ' time:' . time() . ' size:' .
-                                 count($cache) . '  id: '. $requestid );
-
-		$type = 'AuthnRequest-' . $protocol;
-		$this->setData($type, $requestid, $cache);
-	}
-
-
-	/**
 	 * Set remember me expire time.
 	 *
 	 * @param int $expire Unix timestamp when remember me session cookies expire.
