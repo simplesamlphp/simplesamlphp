@@ -70,12 +70,6 @@ class SimpleSAML_Session {
 	private $trackid = 0;
 
 
-	/**
-	 * @deprecated
-	 */
-	private $authority = null;
-
-
 	private $rememberMeExpire = null;
 
 
@@ -385,7 +379,6 @@ class SimpleSAML_Session {
 		}
 
 		$this->authData[$authority] = $data;
-		$this->authority = $authority;
 
 		$this->authToken = SimpleSAML_Utilities::generateID();
 		$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
