@@ -553,16 +553,6 @@ class SimpleSAML_Session {
 		return $this->authData[$this->authority]['Expire'] - time();
 	}
 
-	/**
-	 * Is the user authenticated. This function does not check the session duration.
-	 *
-	 * @return bool TRUE if the user is authenticated, FALSE otherwise.
-	 * @deprecated
-	 */
-	public function isAuthenticated() {
-		return isset($this->authData[$this->authority]);
-	}
-
 
 	/**
 	 * Retrieve the time the user was authenticated.
