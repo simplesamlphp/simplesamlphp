@@ -537,20 +537,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Retrieve the attributes associated with this session.
-	 *
-	 * @return array|NULL  The attributes.
-	 * @deprecated
-	 */
-	public function getAttributes() {
-		if (!isset($this->authData[$this->authority]['Attributes'])) {
-			return NULL;
-		}
-		return $this->authData[$this->authority]['Attributes'];
-	}
-
-
-	/**
 	 * Calculates the size of the session object after serialization
 	 *
 	 * @return int The size of the session measured in bytes.
