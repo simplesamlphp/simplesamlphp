@@ -362,41 +362,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Set the IdP we are authenticated against.
-	 *
-	 * @param string|NULL $idp Our current IdP, or NULL if we aren't authenticated with an IdP.
-	 * @deprecated
-	 */
-	public function setIdP($idp) {
-		assert('is_string($idp) || is_null($idp)');
-		assert('isset($this->authData[$this->authority])');
-
-		SimpleSAML_Logger::debug('Library - Session: Set IdP to : ' . $idp);
-		$this->dirty = true;
-		if ($idp !== NULL) {
-			$this->authData[$this->authority]['saml:sp:IdP'] = $idp;
-		} else {
-			unset($this->authData[$this->authority]['saml:sp:IdP']);
-		}
-
-	}
-
-
-	/**
-	 * Retrieve the IdP we are currently authenticated against.
-	 *
-	 * @return string|NULL Our current IdP, or NULL if we aren't authenticated with an IdP.
-	 * @deprecated
-	 */
-	public function getIdP() {
-		if (!isset($this->authData[$this->authority]['saml:sp:IdP'])) {
-			return NULL;
-		}
-		return $this->authData[$this->authority]['saml:sp:IdP'];
-	}
-
-
-	/**
 	 * Set our current NameID.
 	 *
 	 * @param array|NULL $nameid The NameID we received from the IdP
