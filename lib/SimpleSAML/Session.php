@@ -406,19 +406,11 @@ class SimpleSAML_Session {
 	 *
 	 * This function will call any registered logout handlers before marking the user as logged out.
 	 *
-	 * @param string|NULL $authority The authentication source we are logging out of.
+	 * @param string $authority The authentication source we are logging out of.
 	 */
-	public function doLogout($authority = NULL) {
+	public function doLogout($authority) {
 
 		SimpleSAML_Logger::debug('Session: doLogout(' . var_export($authority, TRUE) . ')');
-
-		if ($authority === NULL) {
-			if ($this->authority === NULL) {
-				SimpleSAML_Logger::debug('Session: No current authsource - not logging out.');
-				return;
-			}
-			$authority = $this->authority;
-		}
 
 		if (!isset($this->authData[$authority])) {
 			SimpleSAML_Logger::debug('Session: Already logged out of ' . $authority . '.');
@@ -429,11 +421,8 @@ class SimpleSAML_Session {
 
 		$this->callLogoutHandlers($authority);
 		unset($this->authData[$authority]);
-		if ($this->authority === $authority) {
-			$this->authority = NULL;
-		}
 
-		if ($this->authority === NULL && $this->rememberMeExpire) {
+		if (!$this->isValid($authority) && $this->rememberMeExpire) {
 			$this->rememberMeExpire = NULL;
 			$this->updateSessionCookies();
 		}
