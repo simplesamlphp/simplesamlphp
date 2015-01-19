@@ -299,17 +299,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Who authorized this session. Could be for example 'saml2', 'shib13', 'login', 'login-admin' etc.
-	 *
-	 * @return string Who authorized this session.
-	 * @deprecated
-	 */
-	public function getAuthority() {
-		return $this->authority;
-	}
-
-
-	/**
 	 * Set remember me expire time.
 	 *
 	 * @param int $expire Unix timestamp when remember me session cookies expire.
