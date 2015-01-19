@@ -147,10 +147,10 @@ class SimpleSAML_Auth_Default {
 	 * logging out. No checking is performed on the URL, so make sure to verify
 	 * it on beforehand if the URL is obtained from user input. Refer to
 	 * SimpleSAML_Utilities::checkURLAllowed() for more information.
-	 * @param string|NULL $authority The authentication source we are logging
+	 * @param string $authority The authentication source we are logging
 	 * out from.
 	 */
-	public static function initLogoutReturn($returnURL) {
+	public static function initLogoutReturn($returnURL, $authority) {
 		assert('is_string($returnURL)');
 		assert('is_string($authority)');
 
