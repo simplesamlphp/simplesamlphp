@@ -952,37 +952,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Set the logout state for this session.
-	 *
-	 * @param array $state  The state array.
-	 * @deprecated
-	 */
-	public function setLogoutState(array $state) {
-		assert('isset($this->authData[$this->authority])');
-
-		$this->dirty = TRUE;
-		$this->authData[$this->authority]['LogoutState'] = $state;
-	}
-
-
-	/**
-	 * Retrieve the logout state for this session.
-	 *
-	 * @return array  The logout state. If no logout state is set, an empty array will be returned.
-	 * @deprecated
-	 */
-	public function getLogoutState() {
-		assert('isset($this->authData[$this->authority])');
-
-		if (!isset($this->authData[$this->authority]['LogoutState'])) {
-			return array();
-		}
-
-		return $this->authData[$this->authority]['LogoutState'];
-	}
-
-
-	/**
 	 * Get the current persistent authentication state.
 	 *
 	 * @param string|NULL $authority  The authority to retrieve the data from.
