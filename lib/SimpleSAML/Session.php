@@ -860,15 +860,11 @@ class SimpleSAML_Session {
 	/**
 	 * Get the current persistent authentication state.
 	 *
-	 * @param string|NULL $authority  The authority to retrieve the data from.
+	 * @param string $authority  The authority to retrieve the data from.
 	 * @return array  The current persistent authentication state, or NULL if not authenticated.
 	 */
-	public function getAuthState($authority = NULL) {
-		assert('is_string($authority) || is_null($authority)');
-
-		if ($authority === NULL) {
-			$authority = $this->authority;
-		}
+	public function getAuthState($authority ) {
+		assert('is_string($authority)');
 
 		if (!isset($this->authData[$authority])) {
 			return NULL;
