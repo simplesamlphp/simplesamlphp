@@ -1074,37 +1074,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Get a list of associated SAML 2 SPs.
-	 *
-	 * This function is just for backwards-compatibility. New code should
-	 * use the SimpleSAML_IdP::getAssociations()-function.
-	 *
-	 * @return array  Array of SAML 2 entityIDs.
-	 * @deprecated  Will be removed in the future.
-	 */
-	public function get_sp_list() {
-
-		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-		try {
-			$idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-			$idp = SimpleSAML_IdP::getById('saml2:' . $idpEntityId);
-		} catch (Exception $e) {
-			/* No SAML 2 IdP configured? */
-			return array();
-		}
-
-		$ret = array();
-		foreach ($idp->getAssociations() as $assoc) {
-			if (isset($assoc['saml:entityID'])) {
-				$ret[] = $assoc['saml:entityID'];
-			}
-		}
-
-		return $ret;
-	}
-
-
-	/**
 	 * Retrieve authentication data.
 	 *
 	 * @param string $authority  The authentication source we should retrieve data from.
