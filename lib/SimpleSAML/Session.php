@@ -474,18 +474,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Calculates the size of the session object after serialization
-	 *
-	 * @return int The size of the session measured in bytes.
-	 * @deprecated
-	 */
-	public function getSize() {
-		$s = serialize($this);
-		return strlen($s);
-	}
-
-
-	/**
 	 * This function registers a logout handler.
 	 *
 	 * @param string $authority The authority for which register the handler.
