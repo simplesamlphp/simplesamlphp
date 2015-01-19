@@ -362,40 +362,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Set our current NameID.
-	 *
-	 * @param array|NULL $nameid The NameID we received from the IdP
-	 * @deprecated
-	 */
-	public function setNameID($nameid) {
-		assert('is_array($nameid) || is_null($nameid)');
-		assert('isset($this->authData[$this->authority])');
-
-		SimpleSAML_Logger::debug('Library - Session: Set nameID: ');
-		$this->dirty = true;
-		if ($nameid !== NULL) {
-			$this->authData[$this->authority]['saml:sp:NameID'] = $nameid;
-		} else {
-			unset($this->authData[$this->authority]['saml:sp:NameID']);
-		}
-	}
-
-
-	/**
-	 * Get our NameID.
-	 *
-	 * @return array|NULL The NameID we received from the IdP.
-	 * @deprecated
-	 */
-	public function getNameID() {
-		if (!isset($this->authData[$this->authority]['saml:sp:NameID'])) {
-			return NULL;
-		}
-		return $this->authData[$this->authority]['saml:sp:NameID'];
-	}
-
-
-	/**
 	 * Set remember me expire time.
 	 *
 	 * @param int $expire Unix timestamp when remember me session cookies expire.
