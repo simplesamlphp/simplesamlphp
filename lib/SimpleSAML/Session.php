@@ -528,23 +528,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Set the lifetime of our current authentication session.
-	 *
-	 * @param int $duration The number of seconds this authentication session is valid.
-	 * @deprecated
-	 */
-	public function setSessionDuration($duration) {
-		assert('is_int($duration)');
-		assert('isset($this->authData[$this->authority])');
-
-		SimpleSAML_Logger::debug('Library - Session: Set session duration ' . $duration);
-		$this->dirty = true;
-
-		$this->authData[$this->authority]['Expire'] = time() + $duration;
-	}
-
-
-	/**
 	 * Is the session representing an authenticated user, and is the session still alive.
 	 * This function will return false after the user has timed out.
 	 *
