@@ -512,7 +512,7 @@ class SimpleSAML_Session {
 	 * @throws Exception If the handler is not a valid function or method.
 	 */
 	public function registerLogoutHandler($authority, $classname, $functionname) {
-		assert('isset($this->authData[$this->authority])');
+		assert('isset($this->authData[$authority])');
 
 		$logout_handler = array($classname, $functionname);
 
