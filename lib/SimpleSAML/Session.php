@@ -397,40 +397,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * Set the SessionIndex we received from our IdP.
-	 *
-	 * @param string|NULL $sessionindex Our SessionIndex.
-	 * @deprecated
-	 */
-	public function setSessionIndex($sessionindex) {
-		assert('is_string($sessionindex) || is_null($sessionindex)');
-		assert('isset($this->authData[$this->authority])');
-
-		SimpleSAML_Logger::debug('Library - Session: Set sessionindex: ' . $sessionindex);
-		$this->dirty = true;
-		if ($sessionindex !== NULL) {
-			$this->authData[$this->authority]['saml:sp:SessionIndex'] = $sessionindex;
-		} else {
-			unset($this->authData[$this->authority]['saml:sp:SessionIndex']);
-		}
-	}
-
-
-	/**
-	 * Retrieve our SessionIndex.
-	 *
-	 * @return string|NULL Our SessionIndex.
-	 * @deprecated
-	 */
-	public function getSessionIndex() {
-		if (!isset($this->authData[$this->authority]['saml:sp:SessionIndex'])) {
-			return NULL;
-		}
-		return $this->authData[$this->authority]['saml:sp:SessionIndex'];
-	}
-
-
-	/**
 	 * Set our current NameID.
 	 *
 	 * @param array|NULL $nameid The NameID we received from the IdP
