@@ -310,40 +310,6 @@ class SimpleSAML_Session {
 
 
 	/**
-	 * This method retrieves from session a cache of a specific Authentication Request
-	 * The complete request is not stored, instead the values that will be needed later
-	 * are stored in an assoc array.
-	 *
-	 * @param string $protocol saml2 or shib13
-	 * @param string $requestid The request id used as a key to lookup the cache.
-	 * @throws Exception If the method can't find a cached version of the request.
-	 * @return array Returns an assoc array of cached variables associated with the
-	 * authentication request.
-	 * @deprecated
-	 */
-	public function getAuthnRequest($protocol, $requestid) {
-
-
-		SimpleSAML_Logger::debug('Library - Session: Get authnrequest from cache ' . $protocol . ' time:' . time() .
-                                 '  id: '. $requestid );
-
-		$type = 'AuthnRequest-' . $protocol;
-		$authnRequest = $this->getData($type, $requestid);
-
-		if($authnRequest === NULL) {
-			/*
-			 * Could not find requested ID. Throw an error. Could be that it is never set, or that it is deleted
-			 * due to age.
-			 */
-			throw new Exception('Could not find cached version of authentication request with ID ' . $requestid .
-                                ' (' . $protocol . ')');
-		}
-
-		return $authnRequest;
-	}
-
-
-	/**
 	 * Set remember me expire time.
 	 *
 	 * @param int $expire Unix timestamp when remember me session cookies expire.
