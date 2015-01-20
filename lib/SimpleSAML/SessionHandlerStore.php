@@ -41,27 +41,7 @@ class SimpleSAML_SessionHandlerStore extends SimpleSAML_SessionHandlerCookie {
 			return $session;
 		}
 
-		if (!($this->store instanceof SimpleSAML_Store_Memcache)) {
-			return NULL;
-		}
-
-		/* For backwards compatibility, check the MemcacheStore object. */
-		$store = SimpleSAML_MemcacheStore::find($sessionId);
-		if ($store === NULL) {
-			return NULL;
-		}
-
-		$session = $store->get('SimpleSAMLphp_SESSION');
-		if ($session === NULL) {
-			return NULL;
-		}
-
-		assert('is_string($session)');
-
-		$session = unserialize($session);
-		assert('$session instanceof SimpleSAML_Session');
-
-		return $session;
+		return NULL;
 	}
 
 
