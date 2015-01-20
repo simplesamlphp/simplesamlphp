@@ -261,7 +261,7 @@ class SimpleSAML_IdP {
 		if (isset($state['core:SP'])) {
 			$session = SimpleSAML_Session::getSessionFromRequest();
 			$session->setData('core:idp-ssotime', $state['core:IdP'] . ';' . $state['core:SP'],
-				time(), SimpleSAML_Session::DATA_TIMEOUT_LOGOUT);
+				time(), SimpleSAML_Session::DATA_TIMEOUT_SESSION_END);
 		}
 
 		call_user_func($state['Responder'], $state);
@@ -460,6 +460,8 @@ class SimpleSAML_IdP {
 
 		if ($assocId !== NULL) {
 			$this->terminateAssociation($assocId);
+			$session = SimpleSAML_Session::getSessionFromRequest();
+			$session->deleteData('core:idp-ssotime', $this->id . ':' . $state['saml:SPEntityId']);
 		}
 
 		/* Terminate the local session. */
@@ -488,6 +490,9 @@ class SimpleSAML_IdP {
 	public function handleLogoutResponse($assocId, $relayState, SimpleSAML_Error_Exception $error = NULL) {
 		assert('is_string($assocId)');
 		assert('is_string($relayState) || is_null($relayState)');
+
+		$session = SimpleSAML_Session::getSessionFromRequest();
+		$session->deleteData('core:idp-ssotime', $this->id . ';' . substr($assocId, strpos($assocId, ':') +1));
 
 		$handler = $this->getLogoutHandler();
 		$handler->onResponse($assocId, $relayState, $error);
