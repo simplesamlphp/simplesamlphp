@@ -1042,13 +1042,12 @@ class SimpleSAML_Utilities {
 	 * This function generates a binary string containing random bytes.
 	 *
 	 * It is implemented as a wrapper of the openssl_random_pseudo_bytes function,
-     * available since PHP 5.3.0.
+	 * available since PHP 5.3.0.
 	 *
 	 * @param int $length The number of random bytes to return.
-     * @param boolean $fallback Deprecated.
 	 * @return string A string of $length random bytes.
 	 */
-	public static function generateRandomBytes($length, $fallback = TRUE) {
+	public static function generateRandomBytes($length) {
 		assert('is_int($length)');
 
         return openssl_random_pseudo_bytes($length);
