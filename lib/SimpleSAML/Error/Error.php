@@ -269,12 +269,15 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 			$data['errorReportAddress'] = $baseurl . 'errorreport.php';
 		}
 
+		$data['email'] = '';
 		$session = SimpleSAML_Session::getSessionFromRequest();
-		$attributes = $session->getAttributes();
-		if (is_array($attributes) && array_key_exists('mail', $attributes) && count($attributes['mail']) > 0) {
-			$data['email'] = $attributes['mail'][0];
-		} else {
-			$data['email'] = '';
+		$authorities = $session->getAuthorities();
+		foreach ($authorities as $authority) {
+			$attributes = $session->getAuthData($authority, 'Attributes');
+			if ($attributes !== NULL && array_key_exists('mail', $attributes) && count($attributes['mail']) > 0) {
+				$data['email'] = $attributes['mail'][0];
+				break; // enough, don't need to get all available mails, if more than one
+			}
 		}
 
 		$show_function = $config->getArray('errors.show_function', NULL);
