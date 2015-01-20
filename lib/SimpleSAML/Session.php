@@ -200,11 +200,6 @@ class SimpleSAML_Session {
 			/* For some reason, we were unable to initialize this session. Use a transient session instead. */
 			self::useTransientSession();
 
-			$globalConfig = SimpleSAML_Configuration::getInstance();
-			if ($globalConfig->getBoolean('session.disable_fallback', FALSE) === TRUE) {
-				throw $e;
-			}
-
 			if ($e instanceof SimpleSAML_Error_Exception) {
 				SimpleSAML_Logger::error('Error loading session:');
 				$e->logError();
@@ -212,7 +207,7 @@ class SimpleSAML_Session {
 				SimpleSAML_Logger::error('Error loading session: ' . $e->getMessage());
 			}
 
-			return self::$instance;
+			throw $e;
 		}
 
 		if(self::$instance !== NULL) {
