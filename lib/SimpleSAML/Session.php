@@ -14,14 +14,6 @@
 class SimpleSAML_Session {
 
 	/**
-	 * This is a timeout value for setData, which indicates that the data should be deleted
-	 * on logout.
-	 * @deprecated
-	 */
-	const DATA_TIMEOUT_LOGOUT = 'logoutTimeout';
-
-
-	/**
 	 * This is a timeout value for setData, which indicates that the data
 	 * should never be deleted, i.e. lasts the whole session lifetime.
 	 */
@@ -419,9 +411,6 @@ class SimpleSAML_Session {
 			$this->rememberMeExpire = NULL;
 			$this->updateSessionCookies();
 		}
-
-		/* Delete data which expires on logout. */
-		$this->expireDataLogout();
 	}
 
 
@@ -548,39 +537,12 @@ class SimpleSAML_Session {
 
 		foreach($this->dataStore as &$typedData) {
 			foreach($typedData as $id => $info) {
-				if ($info['expires'] === self::DATA_TIMEOUT_LOGOUT) {
-					/* This data only expires on logout. */
-					continue;
-				}
-
 				if ($info['expires'] === self::DATA_TIMEOUT_SESSION_END) {
 					/* This data never expires. */
 					continue;
 				}
 
 				if($ct > $info['expires']) {
-					unset($typedData[$id]);
-				}
-			}
-		}
-	}
-
-
-	/**
-	 * This function deletes data which should be deleted on logout from the data store.
-	 * @deprecated
-	 */
-	private function expireDataLogout() {
-
-		if(!is_array($this->dataStore)) {
-			return;
-		}
-
-		$this->dirty = TRUE;
-
-		foreach ($this->dataStore as &$typedData) {
-			foreach ($typedData as $id => $info) {
-				if ($info['expires'] === self::DATA_TIMEOUT_LOGOUT) {
 					unset($typedData[$id]);
 				}
 			}
@@ -616,8 +578,8 @@ class SimpleSAML_Session {
 	/**
 	 * This function stores data in the data store.
 	 *
-	 * The timeout value can be SimpleSAML_Session::DATA_TIMEOUT_LOGOUT, which indicates
-	 * that the data should be deleted on logout (and not before).
+	 * The timeout value can be SimpleSAML_Session::DATA_TIMEOUT_SESSION_END, which indicates
+	 * that the data should never be deleted.
 	 *
 	 * @param string $type The type of the data. This is checked when retrieving data from the store.
 	 * @param string $id The identifier of the data.
@@ -631,8 +593,8 @@ class SimpleSAML_Session {
 	public function setData($type, $id, $data, $timeout = NULL) {
 		assert('is_string($type)');
 		assert('is_string($id)');
-		assert('is_int($timeout) || is_null($timeout) || $timeout === self::DATA_TIMEOUT_LOGOUT ||'.
-               ' $timeout === self::DATA_TIMEOUT_SESSION_END');
+		assert('is_int($timeout) || is_null($timeout) || $timeout === self::DATA_TIMEOUT_SESSION_END');
+
 
 		/* Clean out old data. */
 		$this->expireData();
@@ -658,9 +620,7 @@ class SimpleSAML_Session {
 			}
 		}
 
-		if ($timeout === self::DATA_TIMEOUT_LOGOUT) {
-			$expires = self::DATA_TIMEOUT_LOGOUT;
-		} elseif ($timeout === self::DATA_TIMEOUT_SESSION_END) {
+		if ($timeout === self::DATA_TIMEOUT_SESSION_END) {
 			$expires = self::DATA_TIMEOUT_SESSION_END;
 		} else {
 			$expires = time() + $timeout;
