@@ -623,8 +623,8 @@ $config = array(
 
 
     /*
-     * Configuration for the MemcacheStore class. This allows you to store
-     * multiple redudant copies of sessions on different memcache servers.
+     * Configuration for the 'memcache' session store. This allows you to store
+     * multiple redundant copies of sessions on different memcache servers.
      *
      * 'memcache_store.servers' is an array of server groups. Every data
      * item will be mirrored in every server group.
@@ -645,7 +645,7 @@ $config = array(
      *  - 'timeout': The timeout for this server. By default, the timeout
      *    is 3 seconds.
      *
-     * Example of redudant configuration with load balancing:
+     * Example of redundant configuration with load balancing:
      * This configuration makes it possible to lose both servers in the
      * a-group or both servers in the b-group without losing any sessions.
      * Note that sessions will be lost if one server is lost from both the
