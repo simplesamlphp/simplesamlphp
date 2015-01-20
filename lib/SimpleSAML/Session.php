@@ -596,13 +596,6 @@ class SimpleSAML_Session {
 					throw new Exception('The value of the session.datastore.timeout' .
 						' configuration option should be a positive integer.');
 				}
-			} else {
-				/* For backwards compatibility. */
-				$timeout = $configuration->getInteger('session.requestcache', 4*(60*60));
-				if ($timeout <= 0) {
-					throw new Exception('The value of the session.requestcache' .
-						' configuration option should be a positive integer.');
-				}
 			}
 		}
 
