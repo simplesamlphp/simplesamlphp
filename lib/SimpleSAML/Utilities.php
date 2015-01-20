@@ -1021,23 +1021,6 @@ class SimpleSAML_Utilities {
 	}
 
 
-    /**
-     * @deprecated
-     * @param int $length The amount of random bytes to generate.
-     * @return string A string of $length random bytes.
-     */
-    public static function generateRandomBytesMTrand($length) {
-	
-		/* Use mt_rand to generate $length random bytes. */
-		$data = '';
-		for($i = 0; $i < $length; $i++) {
-			$data .= chr(mt_rand(0, 255));
-		}
-
-		return $data;
-	}
-
-
 	/**
 	 * This function generates a binary string containing random bytes.
 	 *
