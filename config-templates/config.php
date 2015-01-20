@@ -293,12 +293,6 @@ $config = array(
     'session.cookie.secure' => false,
 
     /*
-     * When set to FALSE fallback to transient session on session initialization
-     * failure, throw exception otherwise.
-     */
-    'session.disable_fallback' => false,
-
-    /*
      * Enable secure POST from HTTPS to HTTP.
      *
      * If you have some SP's on HTTP and IdP is normally on HTTPS, this option
