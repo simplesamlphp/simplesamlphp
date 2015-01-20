@@ -901,4 +901,21 @@ class SimpleSAML_Session {
 		return $this->authData[$authority][$name];
 	}
 
+
+	/**
+	 * Retrieve a list of authorities (authentication sources) that are currently valid within
+	 * this session.
+	 *
+	 * @return mixed An array containing every authority currently valid. Empty if none available.
+	 */
+	public function getAuthorities()
+	{
+		$authorities = array();
+		foreach (array_keys($this->authData) as $authority) {
+			if ($this->isValid($authority)) {
+				$authorities[] = $authority;
+			}
+		}
+		return $authorities;
+	}
 }
