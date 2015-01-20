@@ -177,15 +177,6 @@ class SimpleSAML_Session {
 
 
     /**
-     * @deprecated
-     * @see SimpleSAML_Session::getSessionFromRequest()
-     */
-    public static function getInstance() {
-        return self::getSessionFromRequest();
-    }
-
-
-    /**
 	 * Retrieves the current session. Will create a new session if there isn't a session.
 	 *
 	 * @return SimpleSAML_Session The current session.
