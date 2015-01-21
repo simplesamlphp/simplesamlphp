@@ -44,11 +44,9 @@ Documentation on specific simpleSAMLphp modules:
  
  * [Consent module](./consent:consent)
  * [Installing and configuring the consentAdmin module](./consentAdmin:consentAdmin)
- * [OpenId Provider Module](./openidProvider:provider)
  * [Authorization](./authorize:authorize)
  * [autotest Module](./autotest:test)
  * [Statistics](./statistics:statistics)
- * [Aggregator](./aggregator:aggregator)
 
 Documentation for simpleSAMLphp developers:
 
