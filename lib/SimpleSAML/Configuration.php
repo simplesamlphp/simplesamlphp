@@ -1125,10 +1125,14 @@ class SimpleSAML_Configuration {
 				throw new Exception($this->location . ': Unable to load certificate/public key from file "' . $file . '".');
 			}
 
-			/* Extract certificate data (if this is a certificate). */
+			/* Extract certificate data (if this is an RSA certificate). */
 			$pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
 			if (!preg_match($pattern, $data, $matches)) {
-				throw new SimpleSAML_Error_Exception($this->location . ': Could not find PEM encoded certificate in "' . $file . '".');
+				/* Try to extract DSA certificate data */
+				$pattern = '/^-----BEGIN PUBLIC KEY-----([^-]*)^-----END PUBLIC KEY-----/m';
+				if (!preg_match($pattern, $data, $matches)) {
+					throw new SimpleSAML_Error_Exception($this->location . ': Could not find PEM encoded certificate in "' . $file . '".');
+				}
 			}
 			$certData = preg_replace('/\s+/', '', $matches[1]);
 
