@@ -39,10 +39,8 @@ if (!$as->isAuthenticated()) {
 
 $attributes = $as->getAttributes();
 
-$path = $casconfig->resolvePath($casconfig->getValue('ticketcache', '/tmp'));
-
 $ticket = str_replace( '_', 'ST-', SimpleSAML_Utilities::generateID() );
-storeTicket($ticket, $path, array('service' => $service,
+storeTicket($ticket, array('service' => $service,
 	'forceAuthn' => $forceAuthn,
 	'attributes' => $attributes,
 	'proxies' => array(),

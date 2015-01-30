@@ -24,8 +24,7 @@ try {
 /* Load simpleSAMLphp, configuration and metadata */
 	$casconfig = SimpleSAML_Configuration::getConfig('module_casserver.php');
 	
-	$path = $casconfig->resolvePath($casconfig->getValue('ticketcache', 'ticketcache'));
-	$ticketcontent = retrieveTicket($ticket, $path);
+	$ticketcontent = retrieveTicket($ticket);
 	
 	$usernamefield = $casconfig->getValue('attrname', 'eduPersonPrincipalName');
 	$dosendattributes = $casconfig->getValue('attributes', FALSE);
@@ -49,7 +48,7 @@ try {
 				'proxies' => array_merge(array($service), $ticketcontent['proxies']),
 				'validbefore' => time() + 60);
 			SimpleSAML_Utilities::fetch($pgtUrl . '?pgtIou=' . $pgtiou . '&pgtId=' . $pgt);
-			storeTicket($pgt, $path, $content);
+			storeTicket($pgt, $content);
 			$pgtiouxml = "\n<cas:proxyGrantingTicket>$pgtiou</cas:proxyGrantingTicket>\n";
 		}
 		

@@ -13,8 +13,6 @@ $config = array (
 	// Legal values: saml2, shib13
 	'auth' => 'saml2',
 	
-	'ticketcache' => 'ticketcache',
-
 	'attrname' => 'mail', // 'eduPersonPrincipalName',
 	#'attributes' => TRUE, // enable transfer of attributes
 	
