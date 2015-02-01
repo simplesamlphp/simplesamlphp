@@ -10,7 +10,7 @@
  */
 
 if (!array_key_exists('AuthState', $_REQUEST)) {
-	throw new SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
+	throw new SimpleSAML_Error_NoState('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
 

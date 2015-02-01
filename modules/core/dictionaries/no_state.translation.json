@@ -83,6 +83,9 @@
 		"cs": "N\u00e1vrhy pro vy\u0159e\u0161en\u00ed tohoto probl\u00e9mu:",
 		"eu": "Arazo hau konpontzeko iradokizunak:"
 	},
+	"suggestion_badlink": {
+		"sv": "Kontrollera att länken du använde för att komma åt webplatsen är korrekt."
+	},
 	"suggestion_goback": {
 		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
 		"nn": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
@@ -166,6 +169,9 @@
 		"ru": "\u042d\u0442\u0430 \u043e\u0448\u0438\u0431\u043a\u0430 \u043c\u043e\u0436\u0435\u0442 \u0431\u044b\u0442\u044c \u0432\u044b\u0437\u0432\u0430\u043d\u0430:",
 		"cs": "Tato chyba m\u016f\u017ee b\u00fdt zp\u016fsoben\u00e1:",
 		"eu": "Errore hau honek eragin dezake:"
+	},
+	"cause_badlink": {
+		"sv": "Länken till websidan var felaktig, kanske till följd av elak automatisk ifyllning, en trasig länk eller ett trasigt bokmärke."
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
