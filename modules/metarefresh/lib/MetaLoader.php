@@ -159,7 +159,7 @@ class sspmod_metarefresh_MetaLoader {
 			}
 		}
 
-		return array('http' => array('header' => $rawheader));
+		return array('http' => array('header' => $rawheader, 'timeout' => 5));
 	}
 
 
