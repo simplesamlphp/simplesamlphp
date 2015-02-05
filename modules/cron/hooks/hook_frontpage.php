@@ -14,4 +14,3 @@ function cron_hook_frontpage(&$links) {
 	);
 
 }
-?>

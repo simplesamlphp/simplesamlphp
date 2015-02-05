@@ -30,4 +30,3 @@ function consentSimpleAdmin_hook_sanitycheck(&$hookinfo) {
 	}
 	
 }
-?>

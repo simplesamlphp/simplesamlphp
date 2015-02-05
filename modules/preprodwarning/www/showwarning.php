@@ -38,6 +38,3 @@ $t = new SimpleSAML_XHTML_Template($globalConfig, 'preprodwarning:warning.php');
 $t->data['yesTarget'] = SimpleSAML_Module::getModuleURL('preprodwarning/showwarning.php');
 $t->data['yesData'] = array('StateId' => $id);
 $t->show();
-
-
-?>

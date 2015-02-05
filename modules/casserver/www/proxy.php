@@ -51,5 +51,3 @@ print <<<eox
 </cas:serviceResponse>
 eox;
 }
-
-?>

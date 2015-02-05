@@ -14,6 +14,3 @@ function saml2debug_hook_frontpage(&$links) {
 	);
 	
 }
-
-
-?>

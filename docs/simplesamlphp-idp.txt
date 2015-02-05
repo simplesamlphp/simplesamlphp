@@ -55,7 +55,7 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 [`radius:Radius`](./radius:radius)
 : Authenticates an user to a Radius server.
 
-[`InfoCard:ICAuth`](./InfoCard:usage)
+[`InfoCard:ICAuth`](https://github.com/simplesamlphp/simplesamlphp-module-infocard/blob/master/README.md)
 : Authenticate with an InfoCard.
 
 [`multiauth:MultiAuth`](./multiauth:multiauth)
@@ -76,7 +76,7 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 [`authtwitter:Twitter`](./authtwitter:oauthtwitter)
 : Authenticate with your Twitter account using the Twitter OAuth API.
 
-[`papi:PAPI`](./papi:papi)
+[`papi:PAPI`](https://github.com/rediris-es/simplesamlphp-module-papi/blog/master/README.md)
 : Authenticate by means of the PAPI protocol.
 
 In this guide, we will use the `exampleauth:UserPass` authentication module. This module does not have any dependencies, and is therefore simple to set up.

@@ -44,7 +44,7 @@ $links_federation = array();
 
 
 $links_config[] = array(
-	'href' => SimpleSAML_Utilities::getBaseURL() . 'example-simple/hostnames.php?dummy=1',
+	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/hostnames.php',
 	'text' => '{core:frontpage:link_diagnostics}'
 );
 

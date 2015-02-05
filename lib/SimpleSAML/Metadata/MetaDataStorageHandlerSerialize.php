@@ -254,5 +254,3 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
 	}
 
 }
-
-?>

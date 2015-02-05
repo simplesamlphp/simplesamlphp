@@ -27,13 +27,9 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 		return $this->issuer;
 	}
 
-	public function createRedirect($destination, $shire = NULL) {
+	public function createRedirect($destination, $shire) {
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpmetadata = $metadata->getMetaDataConfig($destination, 'shib13-idp-remote');
-
-		if ($shire === NULL) {
-			$shire = $metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted');
-		}
 
 		$desturl = $idpmetadata->getDefaultEndpoint('SingleSignOnService', array('urn:mace:shibboleth:1.0:profiles:AuthnRequest'));
 		$desturl = $desturl['Location'];
@@ -48,5 +44,3 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	}
 
 }
-
-?>

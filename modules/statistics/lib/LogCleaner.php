@@ -173,5 +173,3 @@ class sspmod_statistics_LogCleaner {
 
 
 }
-
-?>

@@ -14,4 +14,3 @@ function logpeek_hook_frontpage(&$links) {
 	);
 
 }
-?>

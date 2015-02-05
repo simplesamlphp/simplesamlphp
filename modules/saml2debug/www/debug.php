@@ -64,5 +64,3 @@ $t->data['encoded'] = $encoded;
 $t->data['decoded'] = $decoded;
 $t->data['activeTab'] = $activeTab;
 $t->show();
-
-?>

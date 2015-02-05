@@ -221,4 +221,3 @@ class sspmod_logpeek_File_reverseRead{
 	}
 	
 }
-?>

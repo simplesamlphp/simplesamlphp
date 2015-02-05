@@ -48,7 +48,7 @@ try {
 		exit();	// and be done.
 	}
 
-	$attributes = $session->getAttributes();
+	$attributes = $session->getAuthData($as, 'Attributes');
 
 	// Assume user consent at this point and proceed with authorizing the token
 	list($url, $verifier) = $store->authorize($requestToken, $attributes);
@@ -68,8 +68,7 @@ try {
 		$t = new SimpleSAML_XHTML_Template($config, 'oauth:authorized.php');
 
 		$t->data['header'] = '{status:header_saml20_sp}';
-		$t->data['remaining'] = $session->remainingTime();
-		$t->data['sessionsize'] = $session->getSize();
+		$t->data['remaining'] = $session->getAuthData($as, "Expire") - time();
 		$t->data['attributes'] = $attributes;
 		$t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
 		$t->data['oauth_verifier'] = $verifier;

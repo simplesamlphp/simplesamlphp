@@ -45,4 +45,3 @@ foreach ($this->data['stateparams'] as $name => $value) {
 <?php
 
 $this->includeAtTemplateBase('includes/footer.php');
-?>

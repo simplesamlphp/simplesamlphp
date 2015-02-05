@@ -11,5 +11,3 @@
 class SimpleSAML_Error_User extends SimpleSAML_Error_Exception{
 	
 }
-
-?>

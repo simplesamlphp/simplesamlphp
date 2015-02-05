@@ -26,6 +26,3 @@ if (isset($state['Source']['auth'])) {
 }
 header('HTTP/1.0 403 Forbidden');
 $t->show();
-
-
-?>

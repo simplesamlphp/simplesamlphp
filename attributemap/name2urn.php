@@ -160,4 +160,3 @@ $attributemap = array(
 	'x121Address' => 'urn:mace:dir:attribute-def:x121Address',
 	'x500UniqueIdentifier' => 'urn:mace:dir:attribute-def:x500UniqueIdentifier',
 );
-?>

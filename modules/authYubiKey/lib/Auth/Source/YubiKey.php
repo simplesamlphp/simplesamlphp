@@ -207,5 +207,3 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 	}
 
 }
-
-?>

@@ -1021,34 +1021,16 @@ class SimpleSAML_Utilities {
 	}
 
 
-    /**
-     * @deprecated
-     * @param int $length The amount of random bytes to generate.
-     * @return string A string of $length random bytes.
-     */
-    public static function generateRandomBytesMTrand($length) {
-	
-		/* Use mt_rand to generate $length random bytes. */
-		$data = '';
-		for($i = 0; $i < $length; $i++) {
-			$data .= chr(mt_rand(0, 255));
-		}
-
-		return $data;
-	}
-
-
 	/**
 	 * This function generates a binary string containing random bytes.
 	 *
 	 * It is implemented as a wrapper of the openssl_random_pseudo_bytes function,
-     * available since PHP 5.3.0.
+	 * available since PHP 5.3.0.
 	 *
 	 * @param int $length The number of random bytes to return.
-     * @param boolean $fallback Deprecated.
 	 * @return string A string of $length random bytes.
 	 */
-	public static function generateRandomBytes($length, $fallback = TRUE) {
+	public static function generateRandomBytes($length) {
 		assert('is_int($length)');
 
         return openssl_random_pseudo_bytes($length);
@@ -1650,20 +1632,13 @@ class SimpleSAML_Utilities {
 			return;
 		}
 
-		$returnTo = self::selfURL();
-
 		/* Not authenticated as admin user. Start authentication. */
 
 		if (SimpleSAML_Auth_Source::getById('admin') !== NULL) {
 			$as = new SimpleSAML_Auth_Simple('admin');
 			$as->login();
 		} else {
-			/* For backwards-compatibility. */
-
-			$config = SimpleSAML_Configuration::getInstance();
-			self::redirectTrustedURL('/' . $config->getBaseURL() . 'auth/login-admin.php',
-				array('RelayState' => $returnTo)
-						       );
+			throw new Exception('Cannot find "admin" auth source, and admin privileges are required.');
 		}
 	}
 
@@ -1930,6 +1905,17 @@ class SimpleSAML_Utilities {
 		date_default_timezone_set($serverTimezone);
 	}
 
+	/**
+	 * Disable the loading of external entities in XML documents to prevent local and
+	 * remote file inclusion attacks. This is in most cases already disabled by default
+	 * in system libraries, but to be safe we explicitly disable it also.
+	 */
+	public static function disableXMLEntityLoader() {
+		/* Function only present in PHP >= 5.2.11 while we support 5.2+ */
+		if ( function_exists('libxml_disable_entity_loader') ) {
+			libxml_disable_entity_loader();
+		}
+	}
 
 	/**
 	 * Atomically write a file.

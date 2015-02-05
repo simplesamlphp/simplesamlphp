@@ -15,4 +15,3 @@ function metaedit_hook_frontpage(&$links) {
 	);
 
 }
-?>

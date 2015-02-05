@@ -26,5 +26,3 @@ class sspmod_exampleauth_Auth_Process_RedirectTest extends SimpleSAML_Auth_Proce
 	}
 
 }
-
-?>

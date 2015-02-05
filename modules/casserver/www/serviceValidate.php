@@ -97,5 +97,3 @@ function returnResponse($value, $function, $usrname = '', $attributes = array(),
 		}
 	}
 }
-
-?>

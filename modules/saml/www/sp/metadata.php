@@ -5,6 +5,9 @@ if (!array_key_exists('PATH_INFO', $_SERVER)) {
 }
 
 $config = SimpleSAML_Configuration::getInstance();
+if ($config->getBoolean('admin.protectmetadata', false)) {
+	SimpleSAML_Utilities::requireAdmin();
+}
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
 $source = SimpleSAML_Auth_Source::getById($sourceId);
 if ($source === NULL) {
@@ -226,4 +229,3 @@ if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
 	header('Content-Type: application/samlmetadata+xml');
 	echo($xml);
 }
-?>

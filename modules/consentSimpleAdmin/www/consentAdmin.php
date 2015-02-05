@@ -89,4 +89,3 @@ $t->data['consents'] = count($user_consent_list);
 
 
 $t->show();
-?>

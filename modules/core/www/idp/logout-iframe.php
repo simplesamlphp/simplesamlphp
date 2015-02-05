@@ -114,5 +114,6 @@ $t->data['id'] = $id;
 $t->data['type'] = $type;
 $t->data['from'] = $state['core:Logout-IFrame:From'];
 $t->data['SPs'] = $state['core:Logout-IFrame:Associations'];
+$t->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => FALSE, 'css' => FALSE);
 $t->show();
 exit(0);

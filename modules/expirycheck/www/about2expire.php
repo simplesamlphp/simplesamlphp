@@ -37,6 +37,3 @@ $t->data['daysleft'] = $state['daysleft'];
 $t->data['expireOnDate'] = $state['expireOnDate'];
 $t->data['netId'] = $state['netId'];
 $t->show();
-
-
-?>

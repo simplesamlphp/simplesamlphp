@@ -100,5 +100,3 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
 		return array();
 	}
 }
-
-?>

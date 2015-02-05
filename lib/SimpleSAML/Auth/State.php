@@ -338,5 +338,3 @@ class SimpleSAML_Auth_State {
 	}
 
 }
-
-?>

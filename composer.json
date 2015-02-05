@@ -26,6 +26,10 @@
         "simplesamlphp/saml2": "~0.3",
         "simplesamlphp/xmlseclibs": "~1.3.2"
     },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7",
+        "satooshi/php-coveralls": "dev-master"
+    },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",
         "source": "https://github.com/simplesamlphp/simplesamlphp"

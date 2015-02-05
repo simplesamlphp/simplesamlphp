@@ -13,7 +13,7 @@ $useridattr = $oauthconfig->getValue('useridattr', 'user');
 //$useridattr = $oauthconfig->getValue('useridattr', 'uid');
 
 if ($session->isValid($authsource)) {
-	$attributes = $session->getAttributes();
+	$attributes = $session->getAuthData($authsource, 'Attributes');
 	// Check if userid exists
 	if (!isset($attributes[$useridattr])) 
 		throw new Exception('User ID is missing');

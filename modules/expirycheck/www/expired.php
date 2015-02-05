@@ -28,6 +28,3 @@ $t = new SimpleSAML_XHTML_Template($globalConfig, 'expirycheck:expired.php');
 $t->data['expireOnDate'] = $state['expireOnDate'];
 $t->data['netId'] = $state['netId'];
 $t->show();
-
-
-?>

@@ -37,5 +37,3 @@ ShibMapAttribute urn:mace:switch.ch:attribute-def:swissEduPersonStudyLevel Shib-
 ShibMapAttribute urn:mace:switch.ch:attribute-def:swissEduPersonStaffCategory Shib-SwissEP-StaffCategory staffCategory
 
 */
-
-?>

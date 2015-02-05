@@ -23,6 +23,15 @@
 	"sessionsize": {
 		"en": "Session size: %SIZE%"
 	},
+	"subject_header": {
+		"en": "SAML Subject"
+	},
+	"subject_notset": {
+		"en": "not set"
+	},
+	"subject_format": {
+		"en": "Format"
+	},
 	"attributes_header": {
 		"en": "Your attributes"
 	},

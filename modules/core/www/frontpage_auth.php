@@ -28,22 +28,6 @@ $links_auth[] = array(
 	'text' => '{core:frontpage:authtest}',
 );
 
-
-if ($config->getValue('enable.saml20-sp') === true)
-	$links_auth[] = array(
-		'href' => SimpleSAML_Utilities::getBaseURL() . 'example-simple/saml2-example.php',
-		'text' => '{core:frontpage:link_saml2example}',
-		'deprecated' => TRUE,
-	);
-
-if ($config->getValue('enable.shib13-sp') === true)
-	$links_auth[] = array(
-		'href' => SimpleSAML_Utilities::getBaseURL() . 'example-simple/shib13-example.php',
-		'text' => '{core:frontpage:link_shib13example}',
-		'deprecated' => TRUE,
-	);
-
-
 $allLinks = array(
 	'links'      => &$links,
 	'welcome'    => &$links_welcome,

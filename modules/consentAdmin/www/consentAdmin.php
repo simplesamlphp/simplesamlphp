@@ -263,4 +263,3 @@ $et->data['header'] = 'Consent Administration';
 $et->data['spList'] = $sp_list;
 $et->data['showDescription'] = $cA_config->getValue('showDescription');
 $et->show();
-?>

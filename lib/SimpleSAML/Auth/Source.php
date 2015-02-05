@@ -295,7 +295,7 @@ abstract class SimpleSAML_Auth_Source {
 
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->setData('SimpleSAML_Auth_Source.LogoutCallbacks', $id, $data,
-			SimpleSAML_Session::DATA_TIMEOUT_LOGOUT);
+			SimpleSAML_Session::DATA_TIMEOUT_SESSION_END);
 	}
 
 
@@ -331,6 +331,7 @@ abstract class SimpleSAML_Auth_Source {
 		$callback = $data['callback'];
 		$callbackState = $data['state'];
 
+		$session->deleteData('SimpleSAML_Auth_Source.LogoutCallbacks', $id);
 		call_user_func($callback, $callbackState);
 	}
 
@@ -349,5 +350,3 @@ abstract class SimpleSAML_Auth_Source {
 	}
 
 }
-
-?>

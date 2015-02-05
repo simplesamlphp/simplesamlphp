@@ -244,5 +244,3 @@ class SimpleSAML_Error_Exception extends Exception {
 	}
 
 }
-
-?>

@@ -1,4 +1,4 @@
-The simpleSAMLphp statistics module
+The SimpleSAMLphp statistics module
 ===================================
 
 
@@ -13,7 +13,7 @@ The simpleSAMLphp statistics module
 
 ## Configure your logs
 
-It's recommended to use syslog for logging, then a separate loglevel is
+It's recommended to use syslog for logging, then a separate log level is
 dedicated to statistics. You need to get all statistics log entries
 in one log file. Here is how I do it in syslog.conf:
 
@@ -36,7 +36,7 @@ With content that looks like this:
     Nov 15 13:16:39 www1 simplesamlphp-openwiki[2125]: 5 STAT [3493d5d87f] saml20-sp-SSO urn:mace:feide.no:services:no.feide.openwikicore sam.feide.no NA
     Nov 15 13:37:27 www1 simplesamlphp-foodle[3146]: 5 STAT [77013b4b6e] AUTH-login-admin OK
 
-Here you can see that I collect statistics in one file for several installations. You could easily separate each instance of simpleSAMLphp into separate files (your preference).
+Here you can see that I collect statistics in one file for several installations. You could easily separate each instance of SimpleSAMLphp into separate files (your preference).
 
 ## Configure the statistics module
 
@@ -59,7 +59,7 @@ Make sure the stat dir is writable. SimpleSAMLphp will write data here:
 
 ### Configuring the syntax of the logfile
 
-Syslog uses different date formats on different environments, so you need to do some manual tweaking to make sure that simpleSAMLphp knows how to interpret the logs.
+Syslog uses different date formats on different environments, so you need to do some manual tweaking to make sure that SimpleSAMLphp knows how to interpret the logs.
 
 There are three parameter values you need to make sure are correct.
 
@@ -117,15 +117,13 @@ script `statistics/bin/loganalyzer.php` manually.
 
 ## Presentation of the statistics
 
-At the Installation page there will be a link "show statistics", go there and if simpleSAMLphp finds the statistics files in the `statdir` generated from cron or the script you will see statistics. Enjoy.
+At the Installation page there will be a link "show statistics", go there and if SimpleSAMLphp finds the statistics files in the `statdir` generated from cron or the script you will see statistics. Enjoy.
 
 Support
 -------
 
-If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
+If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
--  [simpleSAMLphp homepage (at Feide RnD)](http://simplesamlphp.org)
+-  [SimpleSAMLphp homepage](http://simplesamlphp.org)
 -  [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/stable/)
--  [Join the simpleSAMLphp user's mailing list](http://simplesamlphp.org/lists)
--  [Visit and contribute to the simpleSAMLphp wiki](https://openwiki.uninett.no/simplesamlphp:start)
-
+-  [Join the SimpleSAMLphp user's mailing list](http://simplesamlphp.org/lists)

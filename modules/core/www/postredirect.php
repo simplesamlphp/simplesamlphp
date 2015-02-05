@@ -50,5 +50,3 @@ $p->data['destination'] = $postData['url'];
 $p->data['post'] = $postData['post'];
 $p->show();
 exit(0);
-
-?>

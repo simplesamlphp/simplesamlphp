@@ -12,5 +12,3 @@ $config = array (
 	'secret' => '_0e29f782d295bc9782112981f654f1db58174d19d7',
 
 );
-
-?>

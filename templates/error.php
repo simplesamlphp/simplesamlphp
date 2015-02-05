@@ -69,4 +69,4 @@ if (isset($this->data['errorReportAddress'])) {
 <p><?php echo $this->t('howto_text'); ?></p>
 
 
-<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+<?php $this->includeAtTemplateBase('includes/footer.php');

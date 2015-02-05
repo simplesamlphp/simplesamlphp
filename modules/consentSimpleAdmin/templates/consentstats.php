@@ -17,4 +17,4 @@ echo '<p>' . $this->t('{consentSimpleAdmin:consentsimpleadmin:statservices}', ar
 ?></p>
 
 
-<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+<?php $this->includeAtTemplateBase('includes/footer.php');

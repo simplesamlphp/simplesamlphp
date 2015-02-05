@@ -196,5 +196,3 @@ class SimpleSAML_Module {
 	}
 
 }
-
-?>

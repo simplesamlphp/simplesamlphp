@@ -131,5 +131,3 @@ class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_Processing
 		SimpleSAML_Utilities::redirectTrustedURL($url, array('StateId' => $id));
 	}
 }
-
-?>

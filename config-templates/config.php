@@ -293,12 +293,6 @@ $config = array(
     'session.cookie.secure' => false,
 
     /*
-     * When set to FALSE fallback to transient session on session initialization
-     * failure, throw exception otherwise.
-     */
-    'session.disable_fallback' => false,
-
-    /*
      * Enable secure POST from HTTPS to HTTP.
      *
      * If you have some SP's on HTTP and IdP is normally on HTTPS, this option
@@ -629,8 +623,8 @@ $config = array(
 
 
     /*
-     * Configuration for the MemcacheStore class. This allows you to store
-     * multiple redudant copies of sessions on different memcache servers.
+     * Configuration for the 'memcache' session store. This allows you to store
+     * multiple redundant copies of sessions on different memcache servers.
      *
      * 'memcache_store.servers' is an array of server groups. Every data
      * item will be mirrored in every server group.
@@ -651,7 +645,7 @@ $config = array(
      *  - 'timeout': The timeout for this server. By default, the timeout
      *    is 3 seconds.
      *
-     * Example of redudant configuration with load balancing:
+     * Example of redundant configuration with load balancing:
      * This configuration makes it possible to lose both servers in the
      * a-group or both servers in the b-group without losing any sessions.
      * Note that sessions will be lost if one server is lost from both the
@@ -745,7 +739,7 @@ $config = array(
      * Set to NULL to disable checking of URLs.
      *
      * simpleSAMLphp will automatically add your own domain (either by checking
-     * it dinamically, or by using the domain defined in the 'baseurlpath'
+     * it dynamically, or by using the domain defined in the 'baseurlpath'
      * directive, the latter having precedence) to the list of trusted domains,
      * in case this option is NOT set to NULL. In that case, you are explicitly
      * telling simpleSAMLphp to verify URLs.

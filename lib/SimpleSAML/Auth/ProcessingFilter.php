@@ -64,5 +64,3 @@ abstract class SimpleSAML_Auth_ProcessingFilter {
 	abstract public function process(&$request);
 
 }
-
-?>

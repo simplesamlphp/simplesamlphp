@@ -325,5 +325,3 @@ class SimpleSAML_Auth_Simple {
 	}
 
 }
-
-?>
