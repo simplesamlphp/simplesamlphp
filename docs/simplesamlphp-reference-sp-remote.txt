@@ -257,6 +257,10 @@ The following SAML 2.0 options are available:
 :   Passphrase for the private key. Leave this option out if the private key is unencrypted.
 :   Note that this option only is used if `signature.privatekey` is present.
 
+`signature.certificate`
+:   Certificate file included by IdP for KeyInfo within the signature for the SP, in PEM format. The filename is relative to the cert/-directory.
+:   If `signature.privatekey` is present and `signature.certificate` is left blank, X509Certificate will not be included with the signature.
+
 `simplesaml.nameidattribute`
 :   When the value of the `NameIDFormat`-option is set to either
     `email` or `persistent`, this is the name of the attribute which
