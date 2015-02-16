@@ -1302,6 +1302,39 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
+         * If this EntityDescriptor was signed this function use the public key to check the signature.
+         *
+         * @param $certificates One ore more certificates with the public key. This makes it possible
+         *                      to do a key rollover.
+         * @return TRUE if it is possible to check the signature with the certificate, FALSE otherwise.
+         */
+	public function validateSignature($certificates) {
+		foreach ($certificates as $cert) {
+			assert('is_string($cert)');
+			$certFile = SimpleSAML_Utilities::resolveCert($cert);
+			if (!file_exists($certFile)) {
+				throw new Exception('Could not find certificate file [' . $certFile . '], which is needed to validate signature');
+			}
+			$certData = file_get_contents($certFile);
+
+			foreach ($this->validators as $validator) {
+				$key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
+				$key->loadKey($certData);
+				try {
+					if ($validator->validate($key)) {
+						return TRUE;
+					}
+				} catch (Exception $e) {
+					/* This certificate does not sign this element. */
+				}
+			}
+		}
+		SimpleSAML_Logger::debug('Could not validate signature');
+		return FALSE;
+	}
+
+
+	/**
 	 * This function checks if this EntityDescriptor was signed with a certificate with the
 	 * given fingerprint.
 	 *

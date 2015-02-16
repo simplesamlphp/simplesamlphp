@@ -108,9 +108,16 @@ class sspmod_metarefresh_MetaLoader {
 				}
 			}
 
+			if(array_key_exists('certificates', $source) && $source['certificates'] !== NULL) {
+				if(!$entity->validateSignature($source['certificates'])) {
+					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature using certificate.' . "\n");
+					continue;
+				}
+			}
+
 			if(array_key_exists('validateFingerprint', $source) && $source['validateFingerprint'] !== NULL) {
 				if(!$entity->validateFingerprint($source['validateFingerprint'])) {
-					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature.' . "\n");
+					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature using fingerprint.' . "\n");
 					continue;
 				}
 			}
