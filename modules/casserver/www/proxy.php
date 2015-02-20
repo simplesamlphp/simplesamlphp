@@ -2,7 +2,7 @@
 require 'tickets.php';
 
 /*
- * Incmming parameters:
+ * Incoming parameters:
  *  targetService
  *  ptg
  *  
