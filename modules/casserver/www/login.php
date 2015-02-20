@@ -2,7 +2,7 @@
 require 'tickets.php';
 
 /*
- * Incomming parameters:
+ * Incoming parameters:
  *  service
  *  renew
  *  gateway

@@ -332,7 +332,7 @@ class sspmod_saml_IdP_SAML2 {
 
 			$idpInit = FALSE;
 
-			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '. var_export($spEntityId, TRUE));
+			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: incoming authentication request: '. var_export($spEntityId, TRUE));
 		}
 
 		SimpleSAML_Stats::log('saml:idp:AuthnRequest', array(

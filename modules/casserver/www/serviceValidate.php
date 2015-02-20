@@ -5,7 +5,7 @@ require 'tickets.php';
 if (!$function) $function = 'serviceValidate';
 
 /*
- * Incomming parameters:
+ * Incoming parameters:
  *  service
  *  renew
  *  ticket
