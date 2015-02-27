@@ -208,12 +208,6 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 		assert('is_string($password)');
 		assert('is_string($organization)');
 
-		// sanitize the input
-		$sid = SimpleSAML_Utilities::parseStateID($authStateId);
-		if (!is_null($sid['url'])) {
-			SimpleSAML_Utilities::checkURLAllowed($sid['url']);
-		}
-
 		/* Retrieve the authentication state. */
 		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
 
@@ -261,12 +255,6 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 */
 	public static function listOrganizations($authStateId) {
 		assert('is_string($authStateId)');
-
-		// sanitize the input
-		$sid = SimpleSAML_Utilities::parseStateID($authStateId);
-		if (!is_null($sid['url'])) {
-			SimpleSAML_Utilities::checkURLAllowed($sid['url']);
-		}
 
 		/* Retrieve the authentication state. */
 		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);

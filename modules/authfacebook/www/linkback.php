@@ -7,16 +7,7 @@
 if (!array_key_exists('AuthState', $_REQUEST) || empty($_REQUEST['AuthState'])) {
 	throw new SimpleSAML_Error_BadRequest('Missing state parameter on facebook linkback endpoint.');
 }
-
-$stateID = $_REQUEST['AuthState'];
-
-// sanitize the input
-$sid = SimpleSAML_Utilities::parseStateID($stateID);
-if (!is_null($sid['url'])) {
-	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
-}
-
-$state = SimpleSAML_Auth_State::loadState($stateID, sspmod_authfacebook_Auth_Source_Facebook::STAGE_INIT);
+$state = SimpleSAML_Auth_State::loadState($_REQUEST['AuthState'], sspmod_authfacebook_Auth_Source_Facebook::STAGE_INIT);
 
 /* Find authentication source. */
 if (!array_key_exists(sspmod_authfacebook_Auth_Source_Facebook::AUTHID, $state)) {

@@ -225,7 +225,7 @@ class SimpleSAML_Auth_State {
 				throw new SimpleSAML_Error_NoState();
 			}
 
-			SimpleSAML_Utilities::redirectTrustedURL($sid['url']);
+			SimpleSAML_Utilities::redirectUntrustedURL($sid['url']);
 		}
 
 		$state = unserialize($state);
@@ -249,7 +249,7 @@ class SimpleSAML_Auth_State {
 				throw new Exception($msg);
 			}
 
-			SimpleSAML_Utilities::redirectTrustedURL($sid['url']);
+			SimpleSAML_Utilities::redirectUntrustedURL($sid['url']);
 		}
 
 		return $state;

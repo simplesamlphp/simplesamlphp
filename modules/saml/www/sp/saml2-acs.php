@@ -56,13 +56,6 @@ $idpMetadata = array();
 
 $stateId = $response->getInResponseTo();
 if (!empty($stateId)) {
-
-	// sanitize the input
-	$sid = SimpleSAML_Utilities::parseStateID($stateId);
-	if (!is_null($sid['url'])) {
-		SimpleSAML_Utilities::checkURLAllowed($sid['url']);
-	}
-
 	/* This is a response to a request we sent earlier. */
 	$state = SimpleSAML_Auth_State::loadState($stateId, 'saml:sp:sso');
 

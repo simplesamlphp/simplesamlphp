@@ -29,15 +29,7 @@ $returnTo = SimpleSAML_Utilities::checkURLAllowed($_REQUEST['ReturnTo']);
 if (!preg_match('@State=(.*)@', $returnTo, $matches)) {
 	die('Invalid ReturnTo URL for this example.');
 }
-$stateId = urldecode($matches[1]);
-
-// sanitize the input
-$sid = SimpleSAML_Utilities::parseStateID($stateId);
-if (!is_null($sid['url'])) {
-	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
-}
-
-SimpleSAML_Auth_State::loadState($stateId, 'exampleauth:External');
+SimpleSAML_Auth_State::loadState(urldecode($matches[1]), 'exampleauth:External');
 
 /*
  * The loadState-function will not return if the second parameter does not

@@ -33,15 +33,7 @@ if (preg_match('@^https?://@i', $target)) {
 		'saml:sp:RelayState' => SimpleSAML_Utilities::checkURLAllowed($target),
 	);
 } else {
-	$stateID = $_REQUEST['TARGET'];
-
-	// sanitize the input
-	$sid = SimpleSAML_Utilities::parseStateID($stateID);
-	if (!is_null($sid['url'])) {
-		SimpleSAML_Utilities::checkURLAllowed($sid['url']);
-	}
-
-	$state = SimpleSAML_Auth_State::loadState($stateID, 'saml:sp:sso');
+	$state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
 
 	/* Check that the authentication source is correct. */
 	assert('array_key_exists("saml:sp:AuthId", $state)');
