@@ -201,7 +201,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 		case 'shib13-sp-remote':
 			return $entity->getMetadata1xSP();
 		case 'attributeauthority-remote':
-			return $entity->getAttributeAuthorities();
+			$ret = $entity->getAttributeAuthorities();
+			return $ret[0];
 
 		default:
 			SimpleSAML_Logger::warning('MetaData - Handler.MDX: Unknown metadata set: ' . $set);
@@ -262,9 +263,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 		}
 
 		$entity = SimpleSAML_Metadata_SAMLParser::parseString($xmldata);
-		SimpleSAML_Logger::debug('MetaData - Handler.MDX: Completed parsing of [' .
-			$mdx_url . ']'  );
-
+		SimpleSAML_Logger::debug('MetaData - Handler.MDX: Completed parsing of [' .	$mdx_url . ']'  );
 
 		if( $this->validateFingerprint !== NULL) {
 			if(!$entity->validateFingerprint($this->validateFingerprint)) {
@@ -274,10 +273,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 
 		$data = self::getParsedSet($entity, $set);
 		if ($data === NULL) {
-			throw new Exception('No metadata for set "' . $set .
-				'" available from "' . $index . '".');
+			throw new Exception('No metadata for set "' . $set . '" available from "' . $index . '".');
 		}
-		if (is_array($data[0])) $data = $data[0];
 
 		$this->writeToCache($set, $index, $data);
 
