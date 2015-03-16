@@ -62,5 +62,5 @@ Documentation for simpleSAMLphp developers:
 
 ## Community help and support
 
- * [Please join the mailinglist](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
+ * [Please join the mailinglist](https://simplesamlphp.org/lists)
 
