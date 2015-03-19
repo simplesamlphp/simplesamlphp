@@ -98,7 +98,7 @@ class SimpleSAML_Auth_Default {
 		}
 
 		/* Add those that should always be included. */
-		foreach (array('Attributes', 'Expire', 'LogoutState', 'AuthnInstant', 'RememberMe') as $a) {
+		foreach (array('Attributes', 'Expire', 'LogoutState', 'AuthnInstant', 'RememberMe', 'saml:sp:NameID') as $a) {
 			if (isset($state[$a])) {
 				$persistentAuthState[$a] = $state[$a];
 			}
