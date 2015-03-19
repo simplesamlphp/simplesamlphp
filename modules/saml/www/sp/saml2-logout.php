@@ -20,7 +20,17 @@ if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
 	throw new SimpleSAML_Error_Exception('Source type changed?');
 }
 
-$binding = SAML2_Binding::getCurrentBinding();
+try {
+    $binding = SAML2_Binding::getCurrentBinding();
+} catch (Exception $e) { // TODO: look for a specific exception
+    // This is dirty. Instead of checking the message of the exception, SAML2_Binding::getCurrentBinding() should throw
+    // an specific exception when the binding is unknown, and we should capture that here.
+    if ($e->getMessage() === 'Unable to find the current binding.') {
+        throw new SimpleSAML_Error_Error('SLOSERVICEPARAMS', $e, 400);
+    } else {
+        throw $e; // do not ignore other exceptions!
+    }
+}
 $message = $binding->receive();
 
 $idpEntityId = $message->getIssuer();

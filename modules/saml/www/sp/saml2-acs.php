@@ -12,7 +12,18 @@ $sourceId = substr($_SERVER['PATH_INFO'], 1);
 $source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
 $spMetadata = $source->getMetadata();
 
-$b = SAML2_Binding::getCurrentBinding();
+try {
+    $b = SAML2_Binding::getCurrentBinding();
+} catch (Exception $e) { // TODO: look for a specific exception
+    // This is dirty. Instead of checking the message of the exception, SAML2_Binding::getCurrentBinding() should throw
+    // an specific exception when the binding is unknown, and we should capture that here.
+    if ($e->getMessage() === 'Unable to find the current binding.') {
+        throw new SimpleSAML_Error_Error('ACSPARAMS', $e, 400);
+    } else {
+        throw $e; // do not ignore other exceptions!
+    }
+}
+
 if ($b instanceof SAML2_HTTPArtifact) {
 	$b->setSPMetadata($spMetadata);
 }
