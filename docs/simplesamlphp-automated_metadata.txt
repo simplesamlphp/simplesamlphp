@@ -75,7 +75,10 @@ Here's an example of a possible configuration for both the Kalmar Federation and
 				'sources'	=> array(
 					array(
 						'src' => 'https://kalmar.feide.no/simplesaml/module.php/aggregator/?id=kalmarcentral&mimetype=text/plain&exclude=norway',
-						'validateFingerprint' => '591d4b4670463eeda91fcc816dc0af2a092aa801',
+						'certificates' => array(
+							'current.crt',
+							'rollover.crt',
+						),
 						'template' => array(
 							'tags'	=> array('kalmar'),
 							'authproc' => array(
@@ -133,6 +136,14 @@ Each metadata source has the following options:
 
 `src`
 :   The source URL where the metadata will be fetched from.
+
+`certificates`
+:   An array of certificate files, the filename is relative to the `cert/`-directory,
+    that will be used to verify the signature of the metadata. The public key will
+    be extracted from the certificate and everything else will be ignored. So it is
+    possible to use a self signed certificate that has expired. Add more than one
+    certificate to be able to handle key rollover. This takes precedence over
+    validateFingerprint.
 
 `validateFingerprint`
 :   The fingerprint of the certificate used to sign the metadata. You
