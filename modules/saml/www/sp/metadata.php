@@ -211,7 +211,9 @@ unset($metaArray20['metadata-set']);
 unset($metaArray20['entityid']);
 
 // sanitize the attributes array to remove friendly names
-$metaArray20['attributes'] = array_values($metaArray20['attributes']);
+if (isset($metaArray20['attributes']) && is_array($metaArray20['attributes'])) {
+    $metaArray20['attributes'] = array_values($metaArray20['attributes']);
+}
 
 /* Sign the metadata if enabled. */
 $xml = SimpleSAML_Metadata_Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
