@@ -52,7 +52,7 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 			if ($name === 'username_organization_method') {
 				$usernameOrgMethod = $cfgHelper->getValueValidate(
 					'username_organization_method',
-					array('none', 'allow', 'force'));
+					array('none', 'allow', 'force', 'fallthrough'));
 				$this->setUsernameOrgMethod($usernameOrgMethod);
 				continue;
 			}
@@ -93,6 +93,10 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 		assert('is_string($password)');
 		assert('is_string($org)');
 
+		if ($this->getUsernameOrgMethod() === 'fallthrough') {
+			return $this->loginAllOrgs($username, $password, $sasl_args);
+		}
+
 		if (!array_key_exists($org, $this->ldapOrgs)) {
 			/* The user has selected an organization which doesn't exist anymore. */
 			SimpleSAML_Logger::warning('Authentication source ' . var_export($this->authId, TRUE) .
@@ -118,4 +122,26 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 		return $this->orgs;
 	}
 
+	/**
+	 * Attempt to log in to any of the ldap systems using the given username and password.
+	 *
+	 * @param string $username  The username the user wrote.
+	 * @param string $password  The password the user wrote.
+	 * @return array  Associative array with the users attributes.
+	 */
+	private function loginAllOrgs($username, $password, array $sasl_args = NULL) {
+		foreach ($this->orgs as $org => $orgDescription) {
+			$userdetails = NULL;
+			try {
+				$userdetails = $this->ldapOrgs[$org]->login($username, $password, $sasl_args);
+			} catch (SimpleSAML_Error_Error $e) {
+				// User didn't exist in that organization, so keep going.
+			}
+			if ($userdetails !== NULL) {
+				return $userdetails;
+			}
+		}
+
+		throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+	}
 }

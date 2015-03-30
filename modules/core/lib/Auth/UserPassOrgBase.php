@@ -34,10 +34,11 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 
 	/**
 	 * What way do we handle the organization as part of the username.
-	 * Three values:
+	 * Four values:
 	 *  'none': Force the user to select the correct organization from the dropdown box.
 	 *  'allow': Allow the user to enter the organization as part of the username.
 	 *  'force': Remove the dropdown box.
+	 *  'fallthrough': Remove the dropdown box, try each organization in turn.
 	 */
 	private $usernameOrgMethod;
 
@@ -91,17 +92,18 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	/**
 	 * Configure the way organizations as part of the username is handled.
 	 *
-	 * There are three possible values:
+	 * There are four possible values:
 	 * - 'none': Force the user to select the correct organization from the dropdown box.
 	 * - 'allow': Allow the user to enter the organization as part of the username.
 	 * - 'force': Remove the dropdown box.
+	 * - 'fallthrough': Remove the dropdown box, try each organization in turn.
 	 *
 	 * If unconfigured, the default is 'none'.
 	 *
 	 * @param string $usernameOrgMethod  The method which should be used.
 	 */
 	protected function setUsernameOrgMethod($usernameOrgMethod) {
-		assert('in_array($usernameOrgMethod, array("none", "allow", "force"), TRUE)');
+		assert('in_array($usernameOrgMethod, array("none", "allow", "force", "fallthrough"), TRUE)');
 
 		$this->usernameOrgMethod = $usernameOrgMethod;
 	}
@@ -110,10 +112,11 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	/**
 	 * Retrieve the way organizations as part of the username should be handled.
 	 *
-	 * There are three possible values:
+	 * There are four possible values:
 	 * - 'none': Force the user to select the correct organization from the dropdown box.
 	 * - 'allow': Allow the user to enter the organization as part of the username.
 	 * - 'force': Remove the dropdown box.
+	 * - 'fallthrough': Remove the dropdown box, try each organization in turn.
 	 *
 	 * @return string  The method which should be used.
 	 */
@@ -219,7 +222,7 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 		}
 
 		$orgMethod = $source->getUsernameOrgMethod();
-		if ($orgMethod !== 'none') {
+		if ($orgMethod !== 'none' && $orgMethod !== 'fallthrough') {
 			$tmp = explode('@', $username, 2);
 			if (count($tmp) === 2) {
 				$username = $tmp[0];
@@ -267,7 +270,7 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 		}
 
 		$orgMethod = $source->getUsernameOrgMethod();
-		if ($orgMethod === 'force') {
+		if ($orgMethod === 'force' || $orgMethod === 'fallthrough') {
 			return NULL;
 		}
 
