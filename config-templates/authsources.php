@@ -336,12 +336,15 @@ $config = array(
         //'remember.username.checked' => FALSE,
 
         // The way the organization as part of the username should be handled.
-        // Three possible values:
-        // - 'none':   No handling of the organization. Allows '@' to be part
-        //             of the username.
-        // - 'allow':  Will allow users to type 'username@organization'.
-        // - 'force':  Force users to type 'username@organization'. The dropdown
-        //             list will be hidden.
+        // Four possible values:
+        // - 'none':        No handling of the organization. Allows '@' to be
+        //                  part of the username.
+        // - 'allow':       Will allow users to type 'username@organization'.
+        // - 'force':       Force users to type 'username@organization'. The
+        //                  dropdown list will be hidden.
+        // - 'fallthrough': The dropdown list of organizations is hidden. When
+        //                  the user tries to log in, each organization is tried
+        //                  in turn.
         //
         // The default is 'none'.
         'username_organization_method' => 'none',
