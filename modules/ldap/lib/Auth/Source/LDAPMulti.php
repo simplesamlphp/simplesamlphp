@@ -131,14 +131,11 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 	 */
 	private function loginAllOrgs($username, $password, array $sasl_args = NULL) {
 		foreach ($this->orgs as $org => $orgDescription) {
-			$userdetails = NULL;
 			try {
 				$userdetails = $this->ldapOrgs[$org]->login($username, $password, $sasl_args);
+				return $userdetails;
 			} catch (SimpleSAML_Error_Error $e) {
 				// User didn't exist in that organization, so keep going.
-			}
-			if ($userdetails !== NULL) {
-				return $userdetails;
 			}
 		}
 
