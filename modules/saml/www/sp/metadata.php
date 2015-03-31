@@ -194,6 +194,16 @@ if ($spconfig->hasValue('RegistrationInfo')) {
 	$metaArray20['RegistrationInfo'] = $spconfig->getArray('RegistrationInfo');
 }
 
+// add signature options
+if ($spconfig->hasValue('WantAssertionsSigned')) {
+	$metaArray20['saml20.sign.assertion'] = $spconfig->getBoolean('WantAssertionsSigned');
+}
+if ($spconfig->hasValue('redirect.sign')) {
+	$metaArray20['redirect.validate'] = $spconfig->getBoolean('redirect.sign');
+} elseif ($spconfig->hasValue('sign.authnrequest')) {
+	$metaArray20['validate.authnrequest'] = $spconfig->getBoolean('sign.authnrequest');
+}
+
 $supported_protocols = array('urn:oasis:names:tc:SAML:1.1:protocol', SAML2_Const::NS_SAMLP);
 
 $metaArray20['metadata-set'] = 'saml20-sp-remote';

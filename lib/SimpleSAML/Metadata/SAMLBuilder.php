@@ -441,6 +441,15 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		$e = new SAML2_XML_md_SPSSODescriptor();
 		$e->protocolSupportEnumeration = $protocols;
 
+		if ($metadata->hasValue('saml20.sign.assertion')) {
+			$e->WantAssertionsSigned = $metadata->getBoolean('saml20.sign.assertion');
+		}
+
+		if ($metadata->hasValue('redirect.validate')) {
+			$e->AuthnRequestsSigned = $metadata->getBoolean('redirect.validate');
+		} elseif ($metadata->hasValue('validate.authnrequest')) {
+			$e->AuthnRequestsSigned = $metadata->getBoolean('validate.authnrequest');
+		}
 
 		$this->addExtensions($metadata, $e);
 
