@@ -265,6 +265,9 @@ $config = array(
         // The hostname of the LDAP server.
         'hostname' => 'ldap.example.org',
 
+        // The port of the LDAP server. Defaults to 389 if not specified
+        'port' => 389,
+
         // Whether SSL/TLS should be used when contacting the LDAP server.
         'enable_tls' => TRUE,
 
