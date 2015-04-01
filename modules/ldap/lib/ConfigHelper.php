@@ -25,6 +25,12 @@ class sspmod_ldap_ConfigHelper {
 
 
 	/**
+	 * The port of the LDAP server.
+	 */
+	private $port;
+
+
+	/**
 	 * Whether we should use TLS/SSL when contacting the LDAP server.
 	 */
 	private $enableTLS;
@@ -127,6 +133,7 @@ class sspmod_ldap_ConfigHelper {
 		$config = SimpleSAML_Configuration::loadFromArray($config, $location);
 
 		$this->hostname = $config->getString('hostname');
+		$this->port = $config->getInteger('port', 389);
 		$this->enableTLS = $config->getBoolean('enable_tls', FALSE);
 		$this->debug = $config->getBoolean('debug', FALSE);
 		$this->timeout = $config->getInteger('timeout', 0);
@@ -177,7 +184,7 @@ class sspmod_ldap_ConfigHelper {
 			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
 		}
 
-		$ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debug, $this->timeout, 389, $this->referrals);
+		$ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debug, $this->timeout, $this->port, $this->referrals);
 
 		if (!$this->searchEnable) {
 			$ldapusername = addcslashes($username, ',+"\\<>;*');
@@ -245,7 +252,7 @@ class sspmod_ldap_ConfigHelper {
 			$this->enableTLS,
 			$this->debug,
 			$this->timeout,
-			389,
+			$this->port,
 			$this->referrals);
 
 		if ($attribute == NULL)
@@ -269,7 +276,7 @@ class sspmod_ldap_ConfigHelper {
 			$this->enableTLS,
 			$this->debug,
 			$this->timeout,
-			389,
+			$this->port,
 			$this->referrals);
 
 		/* Are privs needed to get the attributes? */
