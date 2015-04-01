@@ -100,7 +100,7 @@ class SimpleSAML_Auth_LDAP {
 		}
 
 		// Enable TLS, if needed.
-		if (!preg_match("/ldaps:/i", $hostname) and $enable_tls)
+		if ($enable_tls)
 			if (!@ldap_start_tls($this->ldap))
 				throw $this->makeException('Library - LDAP __construct(): Unable to force TLS', ERR_INTERNAL);
 
