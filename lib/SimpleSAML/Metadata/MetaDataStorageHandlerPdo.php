@@ -170,6 +170,15 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 		}
 	}
 
+	/**
+	 * Replace the -'s to an _ in table names for Metadata sets
+	 * since SQL does not allow a - in a table name.
+	 *
+	 * @param string $index Entity ID
+	 * @param string $set The set to add the metadata to
+	 * @param array $entityData Metadata
+	 * @return bool True/False if entry was sucessfully added
+	 */
 	public function addEntry($index, $set, $entityData) {
 		assert('is_string($index)');
 		assert('is_string($set)');
@@ -193,7 +202,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 	}
 
 	/**
-	 * Replace the -'s to an _ in table names since SQL does not allow a - in a table name.
+	 * Replace the -'s to an _ in table names for Metadata sets
+	 * since SQL does not allow a - in a table name.
 	 *
 	 * @param string $table Table
 	 * @return string Replaced table name
