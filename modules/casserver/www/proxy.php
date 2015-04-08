@@ -22,12 +22,10 @@ $legal_service_urls = $casconfig->getValue('legal_service_urls');
 if (!checkServiceURL($targetService, $legal_service_urls))
 	throw new Exception('Service parameter provided to CAS server is not listed as a legal service: [service] = ' . $service);
 
-$path = $casconfig->resolvePath($casconfig->getValue('ticketcache', 'ticketcache'));
-
-$ticket = retrieveTicket($pgt, $path, false);
+$ticket = retrieveTicket($pgt, false);
 if ($ticket['validbefore'] > time()) {
 	$pt = str_replace( '_', 'PT-', SimpleSAML_Utilities::generateID() );
-	storeTicket($pt, $path, array(
+	storeTicket($pt, array(
 		'service' => $targetService,
 		'forceAuthn' => false,
 		'attributes' => $ticket['attributes'],

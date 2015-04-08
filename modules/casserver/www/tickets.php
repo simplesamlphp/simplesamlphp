@@ -1,35 +1,33 @@
 <?php
 
-function storeTicket($ticket, $path, $value ) {
+function storeTicket($ticket, $value ) {
+        $store = SimpleSAML_Store::getInstance();
+        if ($store === FALSE) {
+            throw new Exception('Unable to store ticket without a datastore configured.');
+        }
 
-	if (!is_dir($path)) 
-		throw new Exception('Directory for CAS Server ticket storage [' . $path . '] does not exists. ');
-		
-	if (!is_writable($path)) 
-		throw new Exception('Directory for CAS Server ticket storage [' . $path . '] is not writable. ');
-
-	$filename = $path . '/' . $ticket;
-	file_put_contents($filename, serialize($value));
+        $store->set('casticket', $ticket, serialize($value), time() + 15*60);
 }
 
-function retrieveTicket($ticket, $path, $unlink = true) {
+function retrieveTicket($ticket, $unlink = true) {
 
 	if (!preg_match('/^(ST|PT|PGT)-?[a-zA-Z0-9]+$/D', $ticket)) throw new Exception('Invalid characters in ticket');
 
-	if (!is_dir($path)) 
-		throw new Exception('Directory for CAS Server ticket storage [' . $path . '] does not exists. ');
+        $store = SimpleSAML_Store::getInstance();
+        if ($store === FALSE) {
+            throw new Exception('Unable to retrieve ticket without a datastore configured.');
+        }
 
-	$filename = $path . '/' . $ticket;
+        $content = $store->get('casticket', $ticket);
 
-	if (!file_exists($filename))
+	if (!$content) {
 		throw new Exception('Could not find ticket');
-	
-	$content = file_get_contents($filename);
-	
-	if ($unlink) {
-		unlink($filename);
 	}
-	
+
+	if ($unlink) {
+		$store->delete('casticket', $ticket);
+	}
+
 	return unserialize($content);
 }
 
