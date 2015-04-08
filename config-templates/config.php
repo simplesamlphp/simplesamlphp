@@ -571,6 +571,15 @@ $config = array(
      * - 'cachelength': Maximum time metadata cah be cached, in seconds. Default to 24
      *                  hours (86400 seconds). Optional.
      *
+     * PDO metadata handler:
+     * This metadata handler looks up for the metadata of an entity stored in a database.
+     * The PDO metadata handler defines the following options:
+     * - 'type': This is always 'pdo'.
+     * - 'dsn': The database connection string. Mandatory.
+     * - 'username': Database username
+     * - 'cachedir': Database password
+     * - 'usePersistentConnection': Enable/Disable persistent database connection. Default is false.
+     *
      *
      * Examples:
      *
@@ -591,6 +600,11 @@ $config = array(
      * This example defines an mdx source.
      * 'metadata.sources' => array(
      *     array('type' => 'mdx', server => 'http://mdx.server.com:8080', 'cachedir' => '/var/simplesamlphp/mdx-cache', 'cachelength' => 86400)
+     *     ),
+     *
+     * This example defines an pdo source.
+     * 'metadata.sources' => array(
+     *     array('type' => 'pdo', server => 'mysql:host=localhost;dbname=saml', 'username' => 'simplesamlphp', 'password' => 'SuperSecretPassword')
      *     ),
      *
      * Default:
