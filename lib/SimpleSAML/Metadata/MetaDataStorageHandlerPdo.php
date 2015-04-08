@@ -171,8 +171,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 	}
 
 	/**
-	 * Replace the -'s to an _ in table names for Metadata sets
-	 * since SQL does not allow a - in a table name.
+	 * Add metadata to the configured database
 	 *
 	 * @param string $index Entity ID
 	 * @param string $set The set to add the metadata to
@@ -190,13 +189,23 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
 		$tableName = $this->getTableName($set);
 
-		$stmt = $this->pdo->prepare("INSERT INTO $tableName (entity_id, entity_data) VALUES(:entity_id, :entity_data)");
+		$metadata = $this->pdo->prepare("SELECT entity_id, entity_data FROM $tableName WHERE entity_id = :entity_id");
+		$metadata->bindValue(":entity_id", $index, PDO::PARAM_STR);
+		$metadata->execute();
+		$retrivedEntityIDs = $metadata->fetch();
+
+		if(count($retrivedEntityIDs) > 0){
+			$stmt = $this->pdo->prepare("UPDATE $tableName SET entity_data = :entity_data WHERE entity_id = :entity_id");
+		}
+		else{
+			$stmt = $this->pdo->prepare("INSERT INTO $tableName (entity_id, entity_data) VALUES (:entity_id, :entity_data)");
+		}
+
 		$stmt->bindValue(":entity_id", $index, PDO::PARAM_STR);
 		$stmt->bindValue(":entity_data", json_encode($entityData), PDO::PARAM_STR);
-		$stmt->execute();
-
-		if ($result === FALSE) {
-		    throw new Exception("PDO metadata handler: Database error: " . var_export($this->pdo->errorInfo(), TRUE));
+		
+		if ($stmt->execute() === FALSE) {
+			throw new Exception("PDO metadata handler: Database error: " . var_export($this->pdo->errorInfo(), TRUE));
 		}
 		return 1 === $stmt->rowCount();
 	}
