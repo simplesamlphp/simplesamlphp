@@ -506,6 +506,7 @@ class SimpleSAML_Utilities {
 
 	/**
 	 * Check whether an IP address is part of an CIDR.
+	 * @deprecated This method will be removed in version 2.0.
 	 */
 	static function ipCIDRcheck($cidr, $ip = null) {
 		if ($ip == null) $ip = $_SERVER['REMOTE_ADDR'];
