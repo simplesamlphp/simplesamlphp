@@ -347,7 +347,7 @@ class sspmod_saml_IdP_SAML2 {
 		$acsEndpoint = self::getAssertionConsumerService($supportedBindings, $spMetadata, $consumerURL, $protocolBinding, $consumerIndex);
 
 		$IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', array())));
-		if ($ProxyCount == null) $ProxyCount = $spMetadata->getInteger('ProxyCount', null);
+		if ($ProxyCount === null) $ProxyCount = $spMetadata->getInteger('ProxyCount', null);
 
 		if (!$forceAuthn) {
 			$forceAuthn = $spMetadata->getBoolean('ForceAuthn', FALSE);

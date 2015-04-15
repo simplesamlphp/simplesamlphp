@@ -151,7 +151,7 @@ $consent_storage = sspmod_consent_Store::parseStoreConfig($cA_config->getValue('
 $hashed_user_id = sspmod_consent_Auth_Process_Consent::getHashedUserID($userid, $source);
 
 // If a checkbox have been clicked
-if ($action != null && $sp_entityid != null) {
+if ($action !== null && $sp_entityid !== null) {
 	// Get SP metadata
 	$sp_metadata = $metadata->getMetaData($sp_entityid, 'saml20-sp-remote');
 

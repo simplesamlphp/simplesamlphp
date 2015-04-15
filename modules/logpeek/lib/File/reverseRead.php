@@ -153,7 +153,7 @@ class sspmod_logpeek_File_reverseRead{
 			$pos++;
 			$cnt++;
 		}   
-		return $pos == false? false: substr($haystack, $pos, strlen($haystack));
+		return ($pos === false) ? false : substr($haystack, $pos, strlen($haystack));
 	}
 	
 	

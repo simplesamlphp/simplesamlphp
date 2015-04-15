@@ -25,10 +25,10 @@ class SimpleSAML_Utils_Net
      */
     static function ipCIDRcheck($cidr, $ip = null)
     {
-        if ($ip == null) {
+        if ($ip === null) {
             $ip = $_SERVER['REMOTE_ADDR'];
         }
-        if (strpos($cidr, '/') == false) {
+        if (strpos($cidr, '/') === false) {
             return false;
         }
 

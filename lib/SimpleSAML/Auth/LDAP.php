@@ -586,7 +586,7 @@ class SimpleSAML_Auth_LDAP {
 			$dn = $this->searchfordn($config['searchbase'], $config['searchattributes'], $username);
 		}
 
-		if ($password != null) { /* checking users credentials ... assuming below that she may read her own attributes ... */
+		if ($password !== null) { /* checking users credentials ... assuming below that she may read her own attributes ... */
 			if (!$this->bind($dn, $password)) {
 				SimpleSAML_Logger::info('Library - LDAP validate(): Failed to authenticate \''. $username . '\' using DN \'' . $dn . '\'');
 				return FALSE;

@@ -509,7 +509,7 @@ class SimpleSAML_Utilities {
 	 * @deprecated This method will be removed in version 2.0. Use SimpleSAML_Utils_Net::ipCIDRcheck() instead.
 	 */
 	static function ipCIDRcheck($cidr, $ip = null) {
-		if ($ip == null) $ip = $_SERVER['REMOTE_ADDR'];
+		if ($ip === null) $ip = $_SERVER['REMOTE_ADDR'];
 		list ($net, $mask) = explode('/', $cidr);
 
 		if (strstr($ip, ':') || strstr($net, ':')) {
