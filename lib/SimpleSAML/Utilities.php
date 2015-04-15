@@ -706,6 +706,8 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param $in   Input two-dimensional array.
 	 * @return      The transposed array.
+	 *
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_Arrays::transpose() instead.
 	 */
 	public static function transposeArray($in) {
 		assert('is_array($in)');
