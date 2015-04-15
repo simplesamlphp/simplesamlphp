@@ -506,7 +506,7 @@ class SimpleSAML_Utilities {
 
 	/**
 	 * Check whether an IP address is part of an CIDR.
-	 * @deprecated This method will be removed in version 2.0.
+	 * @deprecated This method will be removed in version 2.0. Use SimpleSAML_Utils_Net::ipCIDRcheck() instead.
 	 */
 	static function ipCIDRcheck($cidr, $ip = null) {
 		if ($ip == null) $ip = $_SERVER['REMOTE_ADDR'];
@@ -2305,6 +2305,8 @@ class SimpleSAML_Utilities {
 	 * This function checks if we are running on Windows OS.
 	 *
 	 * @return TRUE if we are on Windows OS, FALSE otherwise.
+	 *
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_System::getOS() instead.
 	 */
 	public static function isWindowsOS() {
 		return substr(strtoupper(PHP_OS),0,3) == 'WIN';

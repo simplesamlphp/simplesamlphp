@@ -27,7 +27,7 @@ class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_Loggin
         $processname = $config->getString('logging.processname', 'simpleSAMLphp');
 
         // Setting facility to LOG_USER (only valid in Windows), enable log level rewrite on windows systems.
-        if (SimpleSAML_Utilities::isWindowsOS()) {
+        if (SimpleSAML_Utils_System::getOS() === SimpleSAML_Utils_System::WINDOWS) {
             $this->isWindows = TRUE;
             $facility = LOG_USER;
         }
