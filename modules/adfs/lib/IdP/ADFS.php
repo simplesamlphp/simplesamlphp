@@ -75,7 +75,7 @@ class sspmod_adfs_IdP_ADFS {
 			$hasValue = FALSE;
 			$r = '<saml:Attribute AttributeNamespace="http://schemas.xmlsoap.org/claims" AttributeName="' . htmlspecialchars($name) .'">';
 			foreach ($values as $value) {
-				if ( (!isset($value)) or ($value === '')) continue;
+				if ( (!isset($value)) || ($value === '')) continue;
 				$r .= '<saml:AttributeValue>' . htmlspecialchars($value) . '</saml:AttributeValue>';
 				$hasValue = TRUE;
 			}

@@ -75,15 +75,15 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 
 		// Check for disabled SPs. The disable flag is store in the SP
 		// metadata.
-		if (array_key_exists('SPMetadata', $state) and $this->spDisabledInMetadata($state['SPMetadata']))
+		if (array_key_exists('SPMetadata', $state) && $this->spDisabledInMetadata($state['SPMetadata']))
 			$this->fallBack($state);
 		// Go straight to fallback if Negotiate is disabled or if you are
 		// sent back to the IdP directly from the SP after having logged out
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$disabled = $session->getData('negotiate:disable', 'session');
 
-		if ($disabled or
-		    (!empty($_COOKIE['NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT']) and
+		if ($disabled ||
+		    (!empty($_COOKIE['NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT']) &&
 		     $_COOKIE['NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT'] == 'True')) {
 			SimpleSAML_Logger::debug('Negotiate - session disabled. falling back');
 			$this->fallBack($state);
