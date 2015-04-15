@@ -1966,6 +1966,7 @@ class SimpleSAML_Utilities {
 	 * temporary files can be saved.
 	 *
 	 * @return string  Path to temp directory, without a trailing '/'.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_System::getTempDir instead.
 	 */
 	public static function getTempDir() {
 

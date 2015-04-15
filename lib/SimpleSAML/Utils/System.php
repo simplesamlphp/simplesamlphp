@@ -54,4 +54,35 @@ class SimpleSAML_Utils_System
         }
         return false;
     }
+
+    /**
+     * This function retrieves the path to a directory where temporary files can be saved.
+     *
+     * @return string Path to a temporary directory, without a trailing directory separator.
+     * @throws SimpleSAML_Error_Exception If the temporary directory cannot be created or it exists and does not belong
+     * to the current user.
+     */
+    public static function getTempDir()
+    {
+        $globalConfig = SimpleSAML_Configuration::getInstance();
+
+        $tempDir = rtrim($globalConfig->getString('tempdir', sys_get_temp_dir().DIRECTORY_SEPARATOR.'simplesaml'),
+            DIRECTORY_SEPARATOR);
+
+        if (!is_dir($tempDir)) {
+            if (!mkdir($tempDir, 0700, true)) {
+                throw new SimpleSAML_Error_Exception('Error creating temporary directory "'.$tempDir.
+                    '": '.SimpleSAML_Utilities::getLastError());
+            }
+        } elseif (function_exists('posix_getuid')) {
+            // check that the owner of the temp directory is the current user
+            $stat = lstat($tempDir);
+            if ($stat['uid'] !== posix_getuid()) {
+                throw new SimpleSAML_Error_Exception('Temporary directory "'.$tempDir.
+                    '" does not belong to the current user.');
+            }
+        }
+
+        return $tempDir;
+    }
 }

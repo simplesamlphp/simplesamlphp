@@ -137,7 +137,7 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 				"-----END CERTIFICATE-----\n";
 		}
 
-		$file = SimpleSAML_Utilities::getTempDir() . '/' . sha1($certData) . '.crt';
+		$file = SimpleSAML_Utils_System::getTempDir() . DIRECTORY_SEPARATOR . sha1($certData) . '.crt';
 		if (!file_exists($file)) {
 			SimpleSAML_Utilities::writeFile($file, $certData);
 		}
