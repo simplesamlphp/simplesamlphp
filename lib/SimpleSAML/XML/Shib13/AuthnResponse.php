@@ -3,7 +3,7 @@
 /**
  * A Shibboleth 1.3 authentication response.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Ã…kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  */
 class SimpleSAML_XML_Shib13_AuthnResponse {
