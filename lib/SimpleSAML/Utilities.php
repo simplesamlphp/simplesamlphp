@@ -1927,6 +1927,8 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param string $filename  The name of the file.
 	 * @param string $data  The data we should write to the file.
+     *
+     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_System::writeFile() instead.
 	 */
 	public static function writeFile($filename, $data, $mode=0600) {
 		assert('is_string($filename)');

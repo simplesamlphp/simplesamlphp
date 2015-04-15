@@ -18,7 +18,6 @@ class SimpleSAML_Utils_System
     const IRIX = 7;
     const SUNOS = 8;
 
-
     /**
      * This function returns the Operating System we are running on.
      *
@@ -61,6 +60,10 @@ class SimpleSAML_Utils_System
      * @return string Path to a temporary directory, without a trailing directory separator.
      * @throws SimpleSAML_Error_Exception If the temporary directory cannot be created or it exists and does not belong
      * to the current user.
+     *
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getTempDir()
     {
@@ -84,5 +87,52 @@ class SimpleSAML_Utils_System
         }
 
         return $tempDir;
+    }
+
+    /**
+     * Atomically write a file.
+     *
+     * This is a helper function for writing data atomically to a file. It does this by writing the file data to a
+     * temporary file, then renaming it to the required file name.
+     *
+     * @param string $filename The path to the file we want to write to.
+     * @param string $data The data we should write to the file.
+     * @param int    $mode The permissions to apply to the file. Defaults to 0600.
+     *
+     * @throws SimpleSAML_Error_Exception If the file cannot be saved, permissions cannot be changed or it is not
+     * possible to write to the target file.
+     *
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Andjelko Horvat
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function writeFile($filename, $data, $mode = 0600)
+    {
+        assert('is_string($filename)');
+        assert('is_string($data)');
+        assert('is_numeric($mode)');
+
+        $tmpFile = self::getTempDir().DIRECTORY_SEPARATOR.rand();
+
+        $res = @file_put_contents($tmpFile, $data);
+        if ($res === false) {
+            throw new SimpleSAML_Error_Exception('Error saving file "'.$tmpFile.
+                '": '.SimpleSAML_Utilities::getLastError());
+        }
+
+        if (self::getOS() !== self::WINDOWS) {
+            if (!chmod($tmpFile, $mode)) {
+                unlink($tmpFile);
+                throw new SimpleSAML_Error_Exception('Error changing file mode of "'.$tmpFile.
+                    '": '.SimpleSAML_Utilities::getLastError());
+            }
+        }
+
+        if (!rename($tmpFile, $filename)) {
+            unlink($tmpFile);
+            throw new SimpleSAML_Error_Exception('Error moving "'.$tmpFile.'" to "'.
+                $filename.'": '.SimpleSAML_Utilities::getLastError());
+        }
     }
 }
