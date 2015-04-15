@@ -122,7 +122,7 @@ class sspmod_statistics_Aggregator {
 				echo("----------------------------------------\n");
 				echo('Log line: ' . $logline . "\n");
 				echo('Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) . '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n");
-				print_r($content);
+				echo htmlentities(print_r($content, true));
 				if ($i >= 13) exit;
 			}
 			

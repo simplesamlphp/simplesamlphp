@@ -75,7 +75,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             if (!is_bool($config['includeValues'])) {
                 throw new SimpleSAML_Error_Exception(
                     'Consent: includeValues must be boolean. ' .
-                    var_export($config['includeValues']) . ' given.'
+                    var_export($config['includeValues'], true) . ' given.'
                 );
             }
             $this->_includeValues = $config['includeValues'];
@@ -85,7 +85,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             if (!is_bool($config['checked'])) {
                 throw new SimpleSAML_Error_Exception(
                     'Consent: checked must be boolean. ' .
-                    var_export($config['checked']) . ' given.'
+                    var_export($config['checked'], true) . ' given.'
                 );
             }
             $this->_checked = $config['checked'];
@@ -95,7 +95,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             if (!in_array($config['focus'], array('yes', 'no'), true)) {
                 throw new SimpleSAML_Error_Exception(
                     'Consent: focus must be a string with values `yes` or `no`. ' .
-                    var_export($config['focus']) . ' given.'
+                    var_export($config['focus'], true) . ' given.'
                 );
             }
             $this->_focus = $config['focus'];
@@ -105,7 +105,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             if (!is_array($config['hiddenAttributes'])) {
                 throw new SimpleSAML_Error_Exception(
                     'Consent: hiddenAttributes must be an array. ' .
-                    var_export($config['hiddenAttributes']) . ' given.'
+                    var_export($config['hiddenAttributes'], true) . ' given.'
                 );
             }
             $this->_hiddenAttributes = $config['hiddenAttributes'];
@@ -115,7 +115,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             if (!is_array($config['noconsentattributes'])) {
                 throw new SimpleSAML_Error_Exception(
                     'Consent: noconsentattributes must be an array. ' .
-                    var_export($config['noconsentattributes']) . ' given.'
+                    var_export($config['noconsentattributes'], true) . ' given.'
                 );
             }
             $this->_noconsentattributes = $config['noconsentattributes'];
