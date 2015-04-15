@@ -1,8 +1,9 @@
 <?php
-/**
- * Class Utils_MetadataTest
- */
 
+
+/**
+ * Tests related to SAML metadata.
+ */
 class Utils_MetadataTest extends PHPUnit_Framework_TestCase
 {
 
@@ -45,7 +46,7 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         // test basic name parsing
         $contact = array(
             'contactType' => 'technical',
-            'name' => 'John Doe'
+            'name'        => 'John Doe'
         );
         $parsed = SimpleSAML_Utils_Config_Metadata::getContact($contact);
         $this->assertArrayNotHasKey('name', $parsed);
@@ -57,7 +58,7 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         // test comma-separated names
         $contact = array(
             'contactType' => 'technical',
-            'name' => 'Doe, John'
+            'name'        => 'Doe, John'
         );
         $parsed = SimpleSAML_Utils_Config_Metadata::getContact($contact);
         $this->assertArrayHasKey('givenName', $parsed);
@@ -68,7 +69,7 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         // test long names
         $contact = array(
             'contactType' => 'technical',
-            'name' => 'John Fitzgerald Doe Smith'
+            'name'        => 'John Fitzgerald Doe Smith'
         );
         $parsed = SimpleSAML_Utils_Config_Metadata::getContact($contact);
         $this->assertArrayNotHasKey('name', $parsed);
@@ -79,7 +80,7 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         // test comma-separated long names
         $contact = array(
             'contactType' => 'technical',
-            'name' => 'Doe Smith, John Fitzgerald'
+            'name'        => 'Doe Smith, John Fitzgerald'
         );
         $parsed = SimpleSAML_Utils_Config_Metadata::getContact($contact);
         $this->assertArrayNotHasKey('name', $parsed);

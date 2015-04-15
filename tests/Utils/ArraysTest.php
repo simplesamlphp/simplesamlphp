@@ -2,9 +2,9 @@
 
 
 /**
- * Class Utils_Arrays
+ * Tests for SimpleSAML_Utils_Arrays.
  */
-class Utils_Arrays extends PHPUnit_Framework_TestCase
+class Utils_ArraysTest extends PHPUnit_Framework_TestCase
 {
 
     /**
@@ -12,7 +12,8 @@ class Utils_Arrays extends PHPUnit_Framework_TestCase
      *
      * @expectedException SimpleSAML_Error_Exception
      */
-    public function testNormalizeAttributesArrayBadInput() {
+    public function testNormalizeAttributesArrayBadInput()
+    {
         SimpleSAML_Utils_Arrays::normalizeAttributesArray('string');
     }
 
@@ -21,7 +22,8 @@ class Utils_Arrays extends PHPUnit_Framework_TestCase
      *
      * @expectedException SimpleSAML_Error_Exception
      */
-    public function testNormalizeAttributesArrayBadKeys() {
+    public function testNormalizeAttributesArrayBadKeys()
+    {
         SimpleSAML_Utils_Arrays::normalizeAttributesArray(array('attr1' => 'value1', 1 => 'value2'));
     }
 
@@ -30,14 +32,16 @@ class Utils_Arrays extends PHPUnit_Framework_TestCase
      *
      * @expectedException SimpleSAML_Error_Exception
      */
-    public function testNormalizeAttributesArrayBadValues() {
+    public function testNormalizeAttributesArrayBadValues()
+    {
         SimpleSAML_Utils_Arrays::normalizeAttributesArray(array('attr1' => 'value1', 'attr2' => 0));
     }
 
     /**
      * Test the normalizeAttributesArray() function.
      */
-    public function testNormalizeAttributesArray() {
+    public function testNormalizeAttributesArray()
+    {
         $attributes = array(
             'key1' => 'value1',
             'key2' => array('value2', 'value3'),
