@@ -10,6 +10,52 @@ class SimpleSAML_Utils_Arrays
 {
 
     /**
+     * Validate and normalize an array with attributes.
+     *
+     * This function takes in an associative array with attributes, and parses and validates
+     * this array. On success, it will return a normalized array, where each attribute name
+     * is an index to an array of one or more strings. On failure an exception will be thrown.
+     * This exception will contain an message describing what is wrong.
+     *
+     * @param array $attributes The array containing attributes that we should validate and normalize.
+     *
+     * @return array The normalized attributes array.
+     * @throws SimpleSAML_Error_Exception If input is not an array, array keys are not strings or attribute values are
+     *     not strings.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function normalizeAttributesArray($attributes)
+    {
+
+        if (!is_array($attributes)) {
+            throw new SimpleSAML_Error_Exception('Attributes was not an array. Was: '.print_r($attributes, true).'".');
+        }
+
+        $newAttrs = array();
+        foreach ($attributes as $name => $values) {
+            if (!is_string($name)) {
+                throw new SimpleSAML_Error_Exception('Invalid attribute name: "'.print_r($name, true).'".');
+            }
+
+            if (!is_array($values)) {
+                $values = array($values);
+            }
+
+            foreach ($values as $value) {
+                if (!is_string($value)) {
+                    throw new SimpleSAML_Error_Exception('Invalid attribute value for attribute '.$name.
+                        ': "'.print_r($value, true).'".');
+                }
+            }
+
+            $newAttrs[$name] = $values;
+        }
+
+        return $newAttrs;
+    }
+
+    /**
      * This function transposes a two-dimensional array, so that $a['k1']['k2'] becomes $a['k2']['k1'].
      *
      * @param array $array The two-dimensional array to transpose.

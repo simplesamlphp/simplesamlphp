@@ -1248,6 +1248,8 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param array $attributes  The attributes we should parse and validate.
 	 * @return array  The parsed attributes.
+	 * @deprecated This method will be removed in SSP 2.0. Please use
+	 * SimpleSAML_Utils_Arrays::normalizeAttributesArray() instead.
 	 */
 	public static function parseAttributes($attributes) {
 
