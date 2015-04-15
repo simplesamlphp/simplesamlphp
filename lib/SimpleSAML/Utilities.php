@@ -1583,8 +1583,10 @@ class SimpleSAML_Utilities {
 		return $doc->saveXML($root);
 	}
 
-	/*
+	/**
 	 * Input is single value or array, returns an array.
+     *
+     * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Arrays::arrayize() instead.
 	 */
 	public static function arrayize($data, $index = 0) {
 		if (is_array($data)) {

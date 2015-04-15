@@ -8,6 +8,32 @@ class Utils_ArraysTest extends PHPUnit_Framework_TestCase
 {
 
     /**
+     * Test the arrayize() function.
+     */
+    public function testArrayize()
+    {
+        // check with empty array as input
+        $array = array();
+        $this->assertEquals($array, SimpleSAML_Utils_Arrays::arrayize($array));
+
+        // check non-empty array as input
+        $array = array('key' => 'value');
+        $this->assertEquals($array, SimpleSAML_Utils_Arrays::arrayize($array));
+
+        // check indexes are ignored when input is an array
+        $this->assertArrayNotHasKey('invalid', SimpleSAML_Utils_Arrays::arrayize($array, 'invalid'));
+
+        // check default index
+        $expected = array('string');
+        $this->assertEquals($expected, SimpleSAML_Utils_Arrays::arrayize($expected[0]));
+
+        // check string index
+        $index = 'key';
+        $expected = array($index => 'string');
+        $this->assertEquals($expected, SimpleSAML_Utils_Arrays::arrayize($expected[$index], $index));
+    }
+
+    /**
      * Test the normalizeAttributesArray() function with input not being an array
      *
      * @expectedException SimpleSAML_Error_Exception

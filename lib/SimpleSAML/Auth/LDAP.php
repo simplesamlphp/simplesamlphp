@@ -261,7 +261,7 @@ class SimpleSAML_Auth_LDAP {
 	public function searchfordn($base, $attribute, $value, $allowZeroHits = FALSE) {
 
 		// Traverse all search bases, returning DN if found.
-		$bases = SimpleSAML_Utilities::arrayize($base);
+		$bases = SimpleSAML_Utils_Arrays::arrayize($base);
 		$result = NULL;
 		foreach ($bases AS $current) {
 			try {

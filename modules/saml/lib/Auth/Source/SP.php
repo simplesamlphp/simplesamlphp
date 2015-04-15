@@ -193,7 +193,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		}
 
 		if (isset($state['saml:AuthnContextClassRef'])) {
-			$accr = SimpleSAML_Utilities::arrayize($state['saml:AuthnContextClassRef']);
+			$accr = SimpleSAML_Utils_Arrays::arrayize($state['saml:AuthnContextClassRef']);
 			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr));
 		}
 

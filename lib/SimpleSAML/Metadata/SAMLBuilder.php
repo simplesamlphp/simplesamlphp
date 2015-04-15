@@ -277,9 +277,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			return;
 		}
 
-		$orgName = SimpleSAML_Utilities::arrayize($metadata['OrganizationName'], 'en');
-		$orgDisplayName = SimpleSAML_Utilities::arrayize($metadata['OrganizationDisplayName'], 'en');
-		$orgURL = SimpleSAML_Utilities::arrayize($metadata['OrganizationURL'], 'en');
+		$orgName = SimpleSAML_Utils_Arrays::arrayize($metadata['OrganizationName'], 'en');
+		$orgDisplayName = SimpleSAML_Utils_Arrays::arrayize($metadata['OrganizationDisplayName'], 'en');
+		$orgURL = SimpleSAML_Utils_Arrays::arrayize($metadata['OrganizationURL'], 'en');
 
 		$this->addOrganization($orgName, $orgDisplayName, $orgURL);
 	}

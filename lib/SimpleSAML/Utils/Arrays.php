@@ -10,6 +10,23 @@ class SimpleSAML_Utils_Arrays
 {
 
     /**
+     * Put a non-array variable into an array.
+     *
+     * @param array $data The data to place into an array.
+     * @param mixed $index The index or key of the array where to place the data. Defaults to 0.
+     *
+     * @return array An array with one element containing $data, with key $index, or $data itself if it's already an
+     *     array.
+     *
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function arrayize($data, $index = 0)
+    {
+        return (is_array($data)) ? $data : array($index => $data);
+    }
+
+    /**
      * Validate and normalize an array with attributes.
      *
      * This function takes in an associative array with attributes, and parses and validates
@@ -24,6 +41,7 @@ class SimpleSAML_Utils_Arrays
      *     not strings.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function normalizeAttributesArray($attributes)
     {
@@ -38,9 +56,7 @@ class SimpleSAML_Utils_Arrays
                 throw new SimpleSAML_Error_Exception('Invalid attribute name: "'.print_r($name, true).'".');
             }
 
-            if (!is_array($values)) {
-                $values = array($values);
-            }
+            $values = self::arrayize($values);
 
             foreach ($values as $value) {
                 if (!is_string($value)) {
