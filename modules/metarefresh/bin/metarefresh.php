@@ -144,8 +144,6 @@ if($toStdOut) {
 	$metaloader->writeMetadataFiles($outputDir);
 }
 
-exit(0);
-
 /**
  * This function prints the help output.
  */
@@ -178,8 +176,3 @@ function printHelp() {
 	echo('                              seperate files in the output directory.' . "\n");
 	echo("\n");
 }
-
-
-
-
-

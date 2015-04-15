@@ -160,9 +160,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 		if (array_key_exists('negotiate:disable', $spMetadata)) {
 			if ($spMetadata['negotiate:disable'] == TRUE) {
 				SimpleSAML_Logger::debug('Negotiate - SP disabled. falling back');
-				return True;
-				// Never executed
-				assert('FALSE');
+				return true;
 			} else {
 				SimpleSAML_Logger::debug('Negotiate - SP disable flag found but set to FALSE');
 			}
