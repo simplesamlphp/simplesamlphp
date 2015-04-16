@@ -10,6 +10,24 @@ class SimpleSAML_Utils_Auth
 {
 
     /**
+     * Retrieve a admin login URL.
+     *
+     * @param string|NULL $returnTo The URL the user should arrive on after admin authentication. Defaults to null.
+     *
+     * @return string A URL which can be used for admin authentication.
+     */
+    public static function getAdminLoginURL($returnTo = null)
+    {
+        assert('is_string($returnTo) || is_null($returnTo)');
+
+        if ($returnTo === null) {
+            $returnTo = SimpleSAML_Utilities::selfURL();
+        }
+
+        return SimpleSAML_Module::getModuleURL('core/login-admin.php', array('ReturnTo' => $returnTo));
+    }
+
+    /**
      * Check whether the current user is admin.
      *
      * @return boolean True if the current user is an admin user, false otherwise.

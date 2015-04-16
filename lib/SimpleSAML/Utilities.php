@@ -1343,19 +1343,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Retrieve a admin login URL.
-	 *
-	 * @param string|NULL $returnTo  The URL the user should arrive on after admin authentication.
-	 * @return string  A URL which can be used for admin authentication.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Auth::getAdminLoginURL instead();
 	 */
 	public static function getAdminLoginURL($returnTo = NULL) {
-		assert('is_string($returnTo) || is_null($returnTo)');
-
-		if ($returnTo === NULL) {
-			$returnTo = SimpleSAML_Utilities::selfURL();
-		}
-
-		return SimpleSAML_Module::getModuleURL('core/login-admin.php', array('ReturnTo' => $returnTo));
+		return SimpleSAML_Utils_Auth::getAdminLoginURL($returnTo);
 	}
 
 
