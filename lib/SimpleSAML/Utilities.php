@@ -487,22 +487,9 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Show and log fatal error message.
-	 *
-	 * This function logs a error message to the error log and shows the
-	 * message to the user. Script execution terminates afterwards.
-	 *
-	 * The error code comes from the errors-dictionary. It can optionally include parameters, which
-	 * will be substituted into the output string.
-	 *
-	 * @param string $trackId  The trackid of the user, from $session->getTrackID().
-	 * @param mixed $errorCode  Either a string with the error code, or an array with the error code and
-	 *                          additional parameters.
-	 * @param Exception $e  The exception which caused the error.
-	 * @deprecated
+	 * @deprecated This function will be removed in SSP 2.0. Please raise a SimpleSAML_Error_Error exception instead.
 	 */
 	public static function fatalError($trackId = 'na', $errorCode = null, Exception $e = null) {
-
 		throw new SimpleSAML_Error_Error($errorCode, $e);
 	}
 
