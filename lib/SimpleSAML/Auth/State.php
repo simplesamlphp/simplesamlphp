@@ -105,7 +105,7 @@ class SimpleSAML_Auth_State {
 		assert('is_bool($rawId)');
 
 		if (!array_key_exists(self::ID, $state)) {
-			$state[self::ID] = SimpleSAML_Utilities::generateID();
+			$state[self::ID] = SimpleSAML_Utils_Random::generateID();
 		}
 
 		$id = $state[self::ID];

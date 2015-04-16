@@ -304,7 +304,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 			$scopedAttributes = array();
 		}
 
-		$id = SimpleSAML_Utilities::generateID();
+		$id = SimpleSAML_Utils_Random::generateID();
 		
 		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
 		
@@ -313,7 +313,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		
 		
 		$assertionExpire = SimpleSAML_Utilities::generateTimestamp(time() + 60 * 5);# 5 minutes
-		$assertionid = SimpleSAML_Utilities::generateID();
+		$assertionid = SimpleSAML_Utils_Random::generateID();
 
 		$spEntityId = $sp->getString('entityid');
 
@@ -321,7 +321,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		$base64 = $sp->getBoolean('base64attributes', FALSE);
 
 		$namequalifier = $sp->getString('NameQualifier', $spEntityId);
-		$nameid = SimpleSAML_Utilities::generateID();
+		$nameid = SimpleSAML_Utils_Random::generateID();
 		$subjectNode =
 			'<Subject>' .
 			'<NameIdentifier' .

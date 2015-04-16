@@ -31,7 +31,7 @@ try {
 	$s->requireAuth();
 
 	/* Generate session id and save it in a cookie. */
-	$sessionID = SimpleSAML_Utilities::generateID();
+	$sessionID = SimpleSAML_Utils_Random::generateID();
 
 	$cookieName = $amc->getCookieName();
 

@@ -48,7 +48,7 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 		$msg = '<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">' .
 			'<SOAP-ENV:Body>' .
 			'<samlp:Request xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol"' .
-			' RequestID="' . SimpleSAML_Utilities::generateID() . '"' .
+			' RequestID="' . SimpleSAML_Utils_Random::generateID() . '"' .
 			' MajorVersion="1" MinorVersion="1"' .
 			' IssueInstant="' . SimpleSAML_Utilities::generateTimestamp() . '"' .
 			'>';

@@ -809,7 +809,7 @@ class sspmod_saml_IdP_SAML2 {
 		$sessionLifetime = $config->getInteger('session.duration', 8*60*60);
 		$a->setSessionNotOnOrAfter(time() + $sessionLifetime);
 
-		$a->setSessionIndex(SimpleSAML_Utilities::generateID());
+		$a->setSessionIndex(SimpleSAML_Utils_Random::generateID());
 
 		$sc = new SAML2_XML_saml_SubjectConfirmation();
 		$sc->SubjectConfirmationData = new SAML2_XML_saml_SubjectConfirmationData();
@@ -892,7 +892,7 @@ class sspmod_saml_IdP_SAML2 {
 
 			if ($nameIdFormat === SAML2_Const::NAMEID_TRANSIENT) {
 				/* generate a random id */
-				$nameIdValue = SimpleSAML_Utilities::generateID();
+				$nameIdValue = SimpleSAML_Utils_Random::generateID();
 			} else {
 				/* this code will end up generating either a fixed assigned id (via nameid.attribute)
 				   or random id if not assigned/configured */
@@ -900,7 +900,7 @@ class sspmod_saml_IdP_SAML2 {
 				if ($nameIdValue === NULL) {
 					SimpleSAML_Logger::warning('Falling back to transient NameID.');
 					$nameIdFormat = SAML2_Const::NAMEID_TRANSIENT;
-					$nameIdValue = SimpleSAML_Utilities::generateID();
+					$nameIdValue = SimpleSAML_Utils_Random::generateID();
 				}
 			}
 
