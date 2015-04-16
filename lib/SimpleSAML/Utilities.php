@@ -1360,25 +1360,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Require admin access for current page.
-	 *
-	 * This is a helper-function for limiting a page to admin access. It will redirect
-	 * the user to a login page if the current user doesn't have admin access.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Auth::requireAdmin() instead.
 	 */
 	public static function requireAdmin() {
-
-		if (SimpleSAML_Utils_Auth::isAdmin()) {
-			return;
-		}
-
-		/* Not authenticated as admin user. Start authentication. */
-
-		if (SimpleSAML_Auth_Source::getById('admin') !== NULL) {
-			$as = new SimpleSAML_Auth_Simple('admin');
-			$as->login();
-		} else {
-			throw new Exception('Cannot find "admin" auth source, and admin privileges are required.');
-		}
+		return SimpleSAML_Utils_Auth::requireAdmin();
 	}
 
 

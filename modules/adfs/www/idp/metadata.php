@@ -9,7 +9,7 @@ if (!$config->getBoolean('enable.adfs-idp', false))
 
 /* Check if valid local session exists.. */
 if ($config->getBoolean('admin.protectmetadata', false)) {
-	SimpleSAML_Utilities::requireAdmin();
+    SimpleSAML_Utils_Auth::requireAdmin();
 }
 
 

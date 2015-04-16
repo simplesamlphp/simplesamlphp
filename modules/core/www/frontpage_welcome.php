@@ -7,7 +7,7 @@ $session = SimpleSAML_Session::getSessionFromRequest();
 
 /* Check if valid local session exists.. */
 if ($config->getBoolean('admin.protectindexpage', false)) {
-	SimpleSAML_Utilities::requireAdmin();
+    SimpleSAML_Utils_Auth::requireAdmin();
 }
 $loginurl = SimpleSAML_Utilities::getAdminLoginURL();
 $isadmin = SimpleSAML_Utils_Auth::isAdmin();

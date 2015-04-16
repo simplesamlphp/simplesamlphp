@@ -36,7 +36,7 @@ class sspmod_statistics_AccessCheck {
 
 		if (!isset($authsource)) {
 			// If authsource is not defined, init admin login.
-			SimpleSAML_Utilities::requireAdmin();
+            SimpleSAML_Utils_Auth::requireAdmin();
 		}
 
 		/* We are using an authsource for login. */

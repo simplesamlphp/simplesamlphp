@@ -21,7 +21,7 @@ function logFilter($objFile, $tag, $cut){
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 
-SimpleSAML_Utilities::requireAdmin();
+SimpleSAML_Utils_Auth::requireAdmin();
 
 $logpeekconfig = SimpleSAML_Configuration::getConfig('module_logpeek.php');
 $logfile = $logpeekconfig->getValue('logfile', '/var/simplesamlphp.log');

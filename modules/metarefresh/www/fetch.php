@@ -3,7 +3,7 @@
 $config = SimpleSAML_Configuration::getInstance();
 $mconfig = SimpleSAML_Configuration::getOptionalConfig('config-metarefresh.php');
 
-SimpleSAML_Utilities::requireAdmin();
+SimpleSAML_Utils_Auth::requireAdmin();
 
 SimpleSAML_Logger::setCaptureLog(TRUE);
 
