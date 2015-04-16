@@ -137,7 +137,7 @@ class SimpleSAML_Session
         $sh = SimpleSAML_SessionHandler::getSessionHandler();
         $this->sessionId = $sh->newSessionId();
 
-        $this->trackid = SimpleSAML_Utilities::stringToHex(openssl_random_pseudo_bytes(5));
+        $this->trackid = bin2hex(openssl_random_pseudo_bytes(5));
 
         $this->dirty = true;
 

@@ -81,7 +81,7 @@ class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameI
 			throw new sspmod_saml_Error(SAML2_Const::STATUS_RESPONDER, 'urn:oasis:names:tc:SAML:2.0:status:InvalidNameIDPolicy');
 		}
 
-		$value = SimpleSAML_Utilities::stringToHex(openssl_random_pseudo_bytes(20));
+		$value = bin2hex(openssl_random_pseudo_bytes(20));
 		SimpleSAML_Logger::debug('SQLPersistentNameID: Created persistent NameID ' . var_export($value, TRUE) . ' for user ' . var_export($uid, TRUE) . '.');
 		sspmod_saml_IdP_SQLNameID::add($idpEntityId, $spEntityId, $uid, $value);
 

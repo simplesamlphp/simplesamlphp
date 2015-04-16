@@ -382,7 +382,7 @@ class SimpleSAML_Utilities {
 
 
 	public static function generateID() {
-		return '_' . self::stringToHex(openssl_random_pseudo_bytes(21));
+		return '_' . bin2hex(openssl_random_pseudo_bytes(21));
 	}
 	
 
@@ -967,10 +967,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * This function converts a binary string to hexadecimal characters.
-	 *
-	 * @param $bytes  Input string.
-	 * @return String with lowercase hexadecimal characters.
+	 * @deprecated This function will be removed in SSP 2.0. Please use bin2hex() instead.
 	 */
 	public static function stringToHex($bytes) {
 		$ret = '';

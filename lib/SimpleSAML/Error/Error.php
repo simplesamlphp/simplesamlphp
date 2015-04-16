@@ -202,7 +202,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 		$emsg = array_shift($data);
 		$etrace = implode("\n", $data);
 
-		$reportId = SimpleSAML_Utilities::stringToHex(openssl_random_pseudo_bytes(4));
+		$reportId = bin2hex(openssl_random_pseudo_bytes(4));
 		SimpleSAML_Logger::error('Error report with id ' . $reportId . ' generated.');
 
 		$config = SimpleSAML_Configuration::getInstance();
