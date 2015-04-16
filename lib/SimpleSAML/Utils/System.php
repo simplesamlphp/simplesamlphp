@@ -2,7 +2,7 @@
 
 
 /**
- * System-related utility classes.
+ * System-related utility methods.
  *
  * @package SimpleSAMLphp
  */

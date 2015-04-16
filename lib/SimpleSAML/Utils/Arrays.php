@@ -2,7 +2,7 @@
 
 
 /**
- * Array-related utility classes.
+ * Array-related utility methods.
  *
  * @package SimpleSAMLphp
  */

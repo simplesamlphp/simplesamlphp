@@ -2,7 +2,7 @@
 
 
 /**
- * Net-related utility classes.
+ * Net-related utility methods.
  *
  * @package SimpleSAMLphp
  */
