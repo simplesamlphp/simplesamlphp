@@ -382,7 +382,7 @@ class SimpleSAML_Utilities {
 
 
 	public static function generateID() {
-		return '_' . self::stringToHex(self::generateRandomBytes(21));
+		return '_' . self::stringToHex(openssl_random_pseudo_bytes(21));
 	}
 	
 
@@ -957,18 +957,12 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * This function generates a binary string containing random bytes.
-	 *
-	 * It is implemented as a wrapper of the openssl_random_pseudo_bytes function,
-	 * available since PHP 5.3.0.
-	 *
-	 * @param int $length The number of random bytes to return.
-	 * @return string A string of $length random bytes.
+     * @deprecated This function will be removed in SSP 2.0. Please use openssl_random_pseudo_bytes() instead.
 	 */
 	public static function generateRandomBytes($length) {
 		assert('is_int($length)');
 
-        return openssl_random_pseudo_bytes($length);
+		return openssl_random_pseudo_bytes($length);
 	}
 
 

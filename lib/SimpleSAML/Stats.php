@@ -80,7 +80,7 @@ class SimpleSAML_Stats {
 
 		/* The ID generation is designed to cluster IDs related in time close together. */
 		$int_t = (int)$data['time'];
-		$hd = SimpleSAML_Utilities::generateRandomBytes(16);
+		$hd = openssl_random_pseudo_bytes(16);
 		$data['_id'] = sprintf('%016x%s', $int_t, bin2hex($hd));
 
 		foreach (self::$outputs as $out) {

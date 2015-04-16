@@ -93,7 +93,7 @@ extends SimpleSAML_SessionHandler {
 	 *  A random session id.
 	 */
 	private static function createSessionID() {
-		return SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16));
+		return SimpleSAML_Utilities::stringToHex(openssl_random_pseudo_bytes(16));
 	}
 
 

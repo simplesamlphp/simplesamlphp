@@ -82,7 +82,7 @@ class SimpleSAML_Utils_Crypto
         $numpad = $blockSize - ($len % $blockSize);
         $data = str_pad($data, $len + $numpad, chr($numpad));
 
-        $iv = SimpleSAML_Utilities::generateRandomBytes($ivSize);
+        $iv = openssl_random_pseudo_bytes($ivSize);
 
         $data = mcrypt_encrypt($enc, $key, $data, $mode, $iv);
 
@@ -257,7 +257,7 @@ class SimpleSAML_Utils_Crypto
         if (!$salt) { // no salt provided, generate one
             // default 8 byte salt, but 4 byte for LDAP SHA1 hashes
             $bytes = ($algorithm == 'SSHA1') ? 4 : 8;
-            $salt = SimpleSAML_Utilities::generateRandomBytes($bytes);
+            $salt = openssl_random_pseudo_bytes($bytes);
         }
 
         if ($algorithm[0] == 'S' && in_array(substr(strtolower($algorithm), 1), hash_algos())) {
