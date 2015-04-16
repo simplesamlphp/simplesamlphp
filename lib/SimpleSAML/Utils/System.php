@@ -74,8 +74,9 @@ class SimpleSAML_Utils_System
 
         if (!is_dir($tempDir)) {
             if (!mkdir($tempDir, 0700, true)) {
+                $error = error_get_last();
                 throw new SimpleSAML_Error_Exception('Error creating temporary directory "'.$tempDir.
-                    '": '.SimpleSAML_Utilities::getLastError());
+                    '": '.$error['message']);
             }
         } elseif (function_exists('posix_getuid')) {
             // check that the owner of the temp directory is the current user
@@ -117,22 +118,25 @@ class SimpleSAML_Utils_System
 
         $res = @file_put_contents($tmpFile, $data);
         if ($res === false) {
+            $error = error_get_last();
             throw new SimpleSAML_Error_Exception('Error saving file "'.$tmpFile.
-                '": '.SimpleSAML_Utilities::getLastError());
+                '": '.$error['message']);
         }
 
         if (self::getOS() !== self::WINDOWS) {
             if (!chmod($tmpFile, $mode)) {
                 unlink($tmpFile);
+                $error = error_get_last();
                 throw new SimpleSAML_Error_Exception('Error changing file mode of "'.$tmpFile.
-                    '": '.SimpleSAML_Utilities::getLastError());
+                    '": '.$error['message']);
             }
         }
 
         if (!rename($tmpFile, $filename)) {
             unlink($tmpFile);
+            $error = error_get_last();
             throw new SimpleSAML_Error_Exception('Error moving "'.$tmpFile.'" to "'.
-                $filename.'": '.SimpleSAML_Utilities::getLastError());
+                $filename.'": '.$error['message']);
         }
     }
 }

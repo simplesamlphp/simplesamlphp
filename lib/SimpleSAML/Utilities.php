@@ -1199,13 +1199,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Retrieve last error message.
-	 *
-	 * This function retrieves the last error message. If no error has occurred,
-	 * '[No error message found]' will be returned. If the required function isn't available,
-	 * '[Cannot get error message]' will be returned.
-	 *
-	 * @return string  Last error message.
+	 * @deprecated This function will be removed in SSP 2.0. Please call error_get_last() directly.
 	 */
 	public static function getLastError() {
 
@@ -1915,7 +1909,8 @@ class SimpleSAML_Utilities {
 
 		$data = file_get_contents($path, FALSE, $context);
 		if ($data === FALSE) {
-			throw new SimpleSAML_Error_Exception('Error fetching ' . var_export($path, TRUE) . ':' . self::getLastError());
+			$error = error_get_last();
+			throw new SimpleSAML_Error_Exception('Error fetching ' . var_export($path, TRUE) . ':' . $error['message']);
 		}
 
 		// Data and headers.

@@ -164,8 +164,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
 
 		$data = @file_get_contents($filePath);
 		if ($data === FALSE) {
+			$error = error_get_last();
 			SimpleSAML_Logger::warning('Error reading file ' . $filePath .
-				': ' . SimpleSAML_Utilities::getLastError());
+				': ' . $error['message']);
 			return NULL;
 		}
 
@@ -199,8 +200,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
 			SimpleSAML_Logger::info('Creating directory: ' . $dir);
 			$res = @mkdir($dir, 0777, TRUE);
 			if ($res === FALSE) {
+				$error = error_get_last();
 				SimpleSAML_Logger::error('Failed to create directory ' . $dir .
-					': ' . SimpleSAML_Utilities::getLastError());
+					': ' . $error['message']);
 				return FALSE;
 			}
 		}
@@ -211,15 +213,17 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
 
 		$res = file_put_contents($newPath, $data);
 		if ($res === FALSE) {
+			$error = error_get_last();
 			SimpleSAML_Logger::error('Error saving file ' . $newPath .
-				': ' . SimpleSAML_Utilities::getLastError());
+				': ' . $error['message']);
 			return FALSE;
 		}
 
 		$res = rename($newPath, $filePath);
 		if ($res === FALSE) {
+			$error = error_get_last();
 			SimpleSAML_Logger::error('Error renaming ' . $newPath . ' to ' . $filePath .
-				': ' . SimpleSAML_Utilities::getLastError());
+				': ' . $error['message']);
 			return FALSE;
 		}
 
@@ -248,8 +252,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
 
 		$res = unlink($filePath);
 		if ($res === FALSE) {
+			$error = error_get_last();
 			SimpleSAML_Logger::error('Failed to delete file ' . $filePath .
-				': ' . SimpleSAML_Utilities::getLastError());
+				': ' . $error['message']);
 		}
 	}
 
