@@ -1,142 +1,101 @@
 <?php
 
+
 /**
- * A class for crypto related functions
+ * A class for cryptography-related functions
  *
- * @author Dyonisius Visser, TERENA. <visser@terena.org>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
-class SimpleSAML_Utils_Crypto {
+class SimpleSAML_Utils_Crypto
+{
 
-	/**
-	 * This function generates a password hash
-	 * @param $password  The unencrypted password
-	 * @param $algo      The hashing algorithm, capitals, optionally prepended with 'S' (salted)
-	 * @param $salt      Optional salt
-	 */
-	public static function pwHash($password, $algo, $salt = NULL) {
-		assert('is_string($algo)');
-		assert('is_string($password)');
+    /**
+     * This function hashes a password with a given algorithm.
+     *
+     * @param string $password The password to hash.
+     * @param string $algorithm The hashing algorithm, uppercase, optionally prepended with 'S' (salted). See
+     *     hash_algos() for a complete list of hashing algorithms.
+     * @param string $salt An optional salt to use.
+     *
+     * @return string The hashed password.
+     * @throws SimpleSAML_Error_Exception If the algorithm specified is not supported, or the input parameters are not
+     *     strings.
+     * @see hash_algos()
+     * @author Dyonisius Visser, TERENA <visser@terena.org>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function pwHash($password, $algorithm, $salt = null)
+    {
+        if (!is_string($algorithm) || !is_string($password)) {
+            throw new SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
 
-		if(in_array(strtolower($algo), hash_algos())) {
-			$php_algo = strtolower($algo); // 'sha256' etc
-			// LDAP compatibility
-			return '{' . preg_replace('/^SHA1$/', 'SHA', $algo) . '}'
-				.base64_encode(hash($php_algo, $password, TRUE));
-		}
+        // hash w/o salt
+        if (in_array(strtolower($algorithm), hash_algos())) {
+            $alg_str = '{'.str_replace('SHA1', 'SHA', $algorithm).'}'; // LDAP compatibility
+            $hash = hash(strtolower($algorithm), $password, true);
+            return $alg_str.base64_encode($hash);
+        }
 
-		// Salt
-		if(!$salt) {
-			// Default 8 byte salt, but 4 byte for LDAP SHA1 hashes
-			$bytes = ($algo == 'SSHA1') ? 4 : 8;
-			$salt = SimpleSAML_Utilities::generateRandomBytes($bytes);
-		}
+        // hash w/ salt
+        if (!$salt) { // no salt provided, generate one
+            // default 8 byte salt, but 4 byte for LDAP SHA1 hashes
+            $bytes = ($algorithm == 'SSHA1') ? 4 : 8;
+            $salt = SimpleSAML_Utilities::generateRandomBytes($bytes);
+        }
 
-		if($algo[0] == 'S' && in_array(substr(strtolower($algo),1), hash_algos())) {
-			$php_algo = substr(strtolower($algo),1); // 'sha256' etc
-			// Salted hash, with LDAP compatibility
-			return '{' . preg_replace('/^SSHA1$/', 'SSHA', $algo) . '}' .
-				base64_encode(hash($php_algo, $password.$salt, TRUE) . $salt);
-		}
+        if ($algorithm[0] == 'S' && in_array(substr(strtolower($algorithm), 1), hash_algos())) {
+            $alg = substr(strtolower($algorithm), 1); // 'sha256' etc
+            $alg_str = '{'.str_replace('SSHA1', 'SSHA', $algorithm).'}'; // LDAP compatibility
+            $hash = hash($alg, $password.$salt, true);
+            return $alg_str.base64_encode($hash.$salt);
+        }
 
-		throw new Exception('Hashing algoritm \'' . strtolower($algo) . '\' not supported');
-
-	}
-
-
-	/**
-	 * This function checks if a password is valid
-	 * @param $crypted  Password as appears in password file, optionally prepended with algorithm
-	 * @param $clear    Password to check
-	 */
-	public static function pwValid($crypted, $clear) {
-		assert('is_string($crypted)');
-		assert('is_string($clear)');
-
-		// Match algorithm string ('{SSHA256}', '{MD5}')
-		if(preg_match('/^{(.*?)}(.*)$/', $crypted, $matches)) {
-
-			// LDAP compatibility
-			$algo = preg_replace('/^(S?SHA)$/', '${1}1', $matches[1]);
-
-			$cryptedpw =  $matches[2];
-
-			if(in_array(strtolower($algo), hash_algos())) {
-				// Unsalted hash
-				return ( $crypted == self::pwHash($clear, $algo) );
-			}
-
-			if($algo[0] == 'S' && in_array(substr(strtolower($algo),1), hash_algos())) {
-				$php_algo = substr(strtolower($algo),1);
-				// Salted hash
-				$hash_length = strlen(hash($php_algo, 'whatever', TRUE));
-				$salt = substr(base64_decode($cryptedpw), $hash_length);
-				return ( $crypted == self::pwHash($clear, $algo, $salt) );
-			}
-
-			throw new Exception('Hashing algoritm \'' . strtolower($algo) . '\' not supported');
-
-		} else {
-			return $crypted === $clear;
-		}
-	}
-
-	/**
-	 * This function generates an Apache 'apr1' password hash, which uses a modified
-	 * version of MD5: http://httpd.apache.org/docs/2.2/misc/password_encryptions.html
-	 * @param $password  The unencrypted password
-	 * @param $salt      Optional salt
-	 */
-	public static function apr1Md5Hash($password, $salt = NULL) {
-		assert('is_string($password)');
-
-		$chars = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-		if(!$salt) {
-			$salt = substr(str_shuffle($allowed_chars), 0, 8);
-		}
-
-		$len = strlen($password);
-		$text = $password.'$apr1$'.$salt;
-		$bin = pack("H32", md5($password.$salt.$password));
-		for($i = $len; $i > 0; $i -= 16) { $text .= substr($bin, 0, min(16, $i)); }
-		for($i = $len; $i > 0; $i >>= 1) { $text .= ($i & 1) ? chr(0) : $password{0}; }
-		$bin = pack("H32", md5($text));
-		for($i = 0; $i < 1000; $i++) {
-			$new = ($i & 1) ? $password : $bin;
-			if ($i % 3) $new .= $salt;
-			if ($i % 7) $new .= $password;
-			$new .= ($i & 1) ? $bin : $password;
-			$bin = pack("H32", md5($new));
-		}
-		$tmp= '';
-		for ($i = 0; $i < 5; $i++) {
-			$k = $i + 6;
-			$j = $i + 12;
-			if ($j == 16) $j = 5;
-			$tmp = $bin[$i].$bin[$k].$bin[$j].$tmp;
-		}
-		$tmp = chr(0).chr(0).$bin[11].$tmp;
-		$tmp = strtr(
-			strrev(substr(base64_encode($tmp), 2)),
-			"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
-			$chars
-		);
-		return "$"."apr1"."$".$salt."$".$tmp;
-	}
+        throw new SimpleSAML_Error_Exception('Hashing algorithm \''.strtolower($algorithm).'\' is not supported');
+    }
 
 
-	/**
-	 * This function verifies an Apache 'apr1' password hash
-	 */
-	public static function apr1Md5Valid($crypted, $clear) {
-		assert('is_string($crypted)');
-		assert('is_string($clear)');
-		$pattern = '/^\$apr1\$([A-Za-z0-9\.\/]{8})\$([A-Za-z0-9\.\/]{22})$/';
+    /**
+     * This function checks if a password is valid
+     *
+     * @param string $hash The password as it appears in password file, optionally prepended with algorithm.
+     * @param string $password The password to check in clear.
+     *
+     * @return boolean True if the hash corresponds with the given password, false otherwise.
+     * @throws SimpleSAML_Error_Exception If the algorithm specified is not supported, or the input parameters are not
+     *     strings.
+     * @author Dyonisius Visser, TERENA <visser@terena.org>
+     */
+    public static function pwValid($hash, $password)
+    {
+        if (!is_string($hash) || !is_string($password)) {
+            throw new SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
 
-		if(preg_match($pattern, $crypted, $matches)) {
-			$salt = $matches[1];
-			return ( $crypted == self::apr1Md5Hash($clear, $salt) );
-		}
-		return FALSE;
-	}
+        // match algorithm string (e.g. '{SSHA256}', '{MD5}')
+        if (preg_match('/^{(.*?)}(.*)$/', $hash, $matches)) {
+
+            // LDAP compatibility
+            $alg = preg_replace('/^(S?SHA)$/', '${1}1', $matches[1]);
+
+            // hash w/o salt
+            if (in_array(strtolower($alg), hash_algos())) {
+                return $hash === self::pwHash($password, $alg);
+            }
+
+            // hash w/ salt
+            if ($alg[0] === 'S' && in_array(substr(strtolower($alg), 1), hash_algos())) {
+                $php_alg = substr(strtolower($alg), 1);
+
+                // get hash length of this algorithm to learn how long the salt is
+                $hash_length = strlen(hash($php_alg, '', true));
+                $salt = substr(base64_decode($matches[2]), $hash_length);
+                return ($hash === self::pwHash($password, $alg, $salt));
+            }
+        } else {
+            return $hash === $password;
+        }
+
+        throw new SimpleSAML_Error_Exception('Hashing algorithm \''.strtolower($alg).'\' is not supported');
+    }
 }
