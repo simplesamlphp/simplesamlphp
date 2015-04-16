@@ -505,56 +505,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Check whether an IP address is part of an CIDR.
 	 * @deprecated This method will be removed in version 2.0. Use SimpleSAML_Utils_Net::ipCIDRcheck() instead.
 	 */
 	static function ipCIDRcheck($cidr, $ip = null) {
-		if ($ip === null) $ip = $_SERVER['REMOTE_ADDR'];
-		list ($net, $mask) = explode('/', $cidr);
-
-		if (strstr($ip, ':') || strstr($net, ':')) {
-			// Validate IPv6 with inet_pton, convert to hex with bin2hex
-			// then store as a long with hexdec
-
-			$ip_pack = inet_pton($ip);
-			$net_pack = inet_pton($net);
-
-			if ($ip_pack === false || $net_pack === false) {
-				// not valid IPv6 address (warning already issued)
-				return false;
-			}
-
-			$ip_ip = str_split(bin2hex($ip_pack),8);
-			foreach ($ip_ip as &$value) {
-				$value = hexdec($value);
-			}
-
-			$ip_net = str_split(bin2hex($net_pack),8);
-			foreach ($ip_net as &$value) {
-				$value = hexdec($value);
-			}
-		} else {
-			$ip_ip[0] = ip2long ($ip);
-			$ip_net[0] = ip2long ($net);
-		}
-
-		for($i = 0; $mask > 0 && $i < sizeof($ip_ip); $i++) {
-			if ($mask > 32) {
-				$iteration_mask = 32;
-			} else {
-				$iteration_mask = $mask;
-			}
-			$mask -= 32;
-
-			$ip_mask = ~((1 << (32 - $iteration_mask)) - 1);
-
-			$ip_net_mask = $ip_net[$i] & $ip_mask;
-			$ip_ip_mask = $ip_ip[$i] & $ip_mask;
-
-			if ($ip_ip_mask != $ip_net_mask)
-				return false;
-		}
-		return true;
+		return SimpleSAML_Utils_Net::ipCIDRcheck($cidr, $ip);
 	}
 
 	/*
@@ -701,32 +655,10 @@ class SimpleSAML_Utilities {
 	}
 
 	/**
-	 * This function transposes a two-dimensional array, so that
-	 * $a['k1']['k2'] becomes $a['k2']['k1'].
-	 *
-	 * @param $in   Input two-dimensional array.
-	 * @return      The transposed array.
-	 *
 	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_Arrays::transpose() instead.
 	 */
 	public static function transposeArray($in) {
-		assert('is_array($in)');
-
-		$ret = array();
-
-		foreach($in as $k1 => $a2) {
-			assert('is_array($a2)');
-
-			foreach($a2 as $k2 => $v) {
-				if(!array_key_exists($k2, $ret)) {
-					$ret[$k2] = array();
-				}
-
-				$ret[$k2][$k1] = $v;
-			}
-		}
-
-		return $ret;
+		return SimpleSAML_Utils_Arrays::transpose($in);
 	}
 
 
@@ -1239,45 +1171,11 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Parse and validate an array with attributes.
-	 *
-	 * This function takes in an associative array with attributes, and parses and validates
-	 * this array. On success, it will return a normalized array, where each attribute name
-	 * is an index to an array of one or more strings. On failure an exception will be thrown.
-	 * This exception will contain an message describing what is wrong.
-	 *
-	 * @param array $attributes  The attributes we should parse and validate.
-	 * @return array  The parsed attributes.
 	 * @deprecated This method will be removed in SSP 2.0. Please use
 	 * SimpleSAML_Utils_Arrays::normalizeAttributesArray() instead.
 	 */
 	public static function parseAttributes($attributes) {
-
-		if (!is_array($attributes)) {
-			throw new Exception('Attributes was not an array. Was: ' . var_export($attributes, TRUE));
-		}
-
-		$newAttrs = array();
-		foreach ($attributes as $name => $values) {
-			if (!is_string($name)) {
-				throw new Exception('Invalid attribute name: ' . var_export($name, TRUE));
-			}
-
-			if (!is_array($values)) {
-				$values = array($values);
-			}
-
-			foreach ($values as $value) {
-				if (!is_string($value)) {
-					throw new Exception('Invalid attribute value for attribute ' . $name .
-						': ' . var_export($value, TRUE));
-				}
-			}
-
-			$newAttrs[$name] = $values;
-		}
-
-		return $newAttrs;
+		return SimpleSAML_Utils_Arrays::normalizeAttributesArray($attributes);
 	}
 
 
@@ -1346,133 +1244,18 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Get public key or certificate from metadata.
-	 *
-	 * This function implements a function to retrieve the public key or certificate from
-	 * a metadata array.
-	 *
-	 * It will search for the following elements in the metadata:
-	 * 'certData'  The certificate as a base64-encoded string.
-	 * 'certificate'  A file with a certificate or public key in PEM-format.
-	 * 'certFingerprint'  The fingerprint of the certificate. Can be a single fingerprint,
-	 *                    or an array of multiple valid fingerprints.
-	 *
-	 * This function will return an array with these elements:
-	 * 'PEM'  The public key/certificate in PEM-encoding.
-	 * 'certData'  The certificate data, base64 encoded, on a single line. (Only
-	 *             present if this is a certificate.)
-	 * 'certFingerprint'  Array of valid certificate fingerprints. (Only present
-	 *                    if this is a certificate.)
-	 *
-	 * @param SimpleSAML_Configuration $metadata  The metadata.
-	 * @param bool $required  Whether the private key is required. If this is TRUE, a
-	 *                        missing key will cause an exception. Default is FALSE.
-	 * @param string $prefix  The prefix which should be used when reading from the metadata
-	 *                        array. Defaults to ''.
-	 * @return array|NULL  Public key or certificate data, or NULL if no public key or
-	 *                     certificate was found.
 	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::loadPublicKey() instead.
 	 */
 	public static function loadPublicKey(SimpleSAML_Configuration $metadata, $required = FALSE, $prefix = '') {
-		assert('is_bool($required)');
-		assert('is_string($prefix)');
-
-		$keys = $metadata->getPublicKeys(NULL, FALSE, $prefix);
-		if ($keys !== NULL) {
-			foreach ($keys as $key) {
-				if ($key['type'] !== 'X509Certificate') {
-					continue;
-				}
-				if ($key['signing'] !== TRUE) {
-					continue;
-				}
-				$certData = $key['X509Certificate'];
-				$pem = "-----BEGIN CERTIFICATE-----\n" .
-					chunk_split($certData, 64) .
-					"-----END CERTIFICATE-----\n";
-				$certFingerprint = strtolower(sha1(base64_decode($certData)));
-
-				return array(
-					'certData' => $certData,
-					'PEM' => $pem,
-					'certFingerprint' => array($certFingerprint),
-				);
-			}
-			/* No valid key found. */
-		} elseif ($metadata->hasValue($prefix . 'certFingerprint')) {
-			/* We only have a fingerprint available. */
-			$fps = $metadata->getArrayizeString($prefix . 'certFingerprint');
-
-			/* Normalize fingerprint(s) - lowercase and no colons. */
-			foreach($fps as &$fp) {
-				assert('is_string($fp)');
-				$fp = strtolower(str_replace(':', '', $fp));
-			}
-
-			/* We can't build a full certificate from a fingerprint, and may as well
-			 * return an array with only the fingerprint(s) immediately.
-			 */
-			return array('certFingerprint' => $fps);
-		}
-
-		/* No public key/certificate available. */
-		if ($required) {
-			throw new Exception('No public key / certificate found in metadata.');
-		} else {
-			return NULL;
-		}
+		return SimpleSAML_Utils_Crypto::loadPublicKey($metadata, $required, $prefix);
 	}
 
 
 	/**
-	 * Load private key from metadata.
-	 *
-	 * This function loads a private key from a metadata array. It searches for the
-	 * following elements:
-	 * 'privatekey'  Name of a private key file in the cert-directory.
-	 * 'privatekey_pass'  Password for the private key.
-	 *
-	 * It returns and array with the following elements:
-	 * 'PEM'  Data for the private key, in PEM-format
-	 * 'password'  Password for the private key.
-	 *
-	 * @param SimpleSAML_Configuration $metadata  The metadata array the private key should be loaded from.
-	 * @param bool $required  Whether the private key is required. If this is TRUE, a
-	 *                        missing key will cause an exception. Default is FALSE.
-	 * @param string $prefix  The prefix which should be used when reading from the metadata
-	 *                        array. Defaults to ''.
-	 * @return array|NULL  Extracted private key, or NULL if no private key is present.
 	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::loadPrivateKey() instead.
 	 */
 	public static function loadPrivateKey(SimpleSAML_Configuration $metadata, $required = FALSE, $prefix = '') {
-		assert('is_bool($required)');
-		assert('is_string($prefix)');
-
-		$file = $metadata->getString($prefix . 'privatekey', NULL);
-		if ($file === NULL) {
-			/* No private key found. */
-			if ($required) {
-				throw new Exception('No private key found in metadata.');
-			} else {
-				return NULL;
-			}
-		}
-
-		$file = SimpleSAML_Utilities::resolveCert($file);
-		$data = @file_get_contents($file);
-		if ($data === FALSE) {
-			throw new Exception('Unable to load private key from file "' . $file . '"');
-		}
-
-		$ret = array(
-			'PEM' => $data,
-		);
-
-		if ($metadata->hasValue($prefix . 'privatekey_pass')) {
-			$ret['password'] = $metadata->getString($prefix . 'privatekey_pass');
-		}
-
-		return $ret;
+		return SimpleSAML_Utils_Crypto::loadPrivateKey($metadata, $required, $prefix);
 	}
 
 
@@ -1586,16 +1369,10 @@ class SimpleSAML_Utilities {
 	}
 
 	/**
-	 * Input is single value or array, returns an array.
-	 *
 	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Arrays::arrayize() instead.
 	 */
 	public static function arrayize($data, $index = 0) {
-		if (is_array($data)) {
-			return $data;
-		} else {
-			return array($index => $data);
-		}
+		return SimpleSAML_Utils_Arrays::arrayize($data, $index);
 	}
 
 
@@ -1927,84 +1704,18 @@ class SimpleSAML_Utilities {
 	}
 
 	/**
-	 * Atomically write a file.
-	 *
-	 * This is a helper function for safely writing file data atomically.
-	 * It does this by writing the file data to a temporary file, and then
-	 * renaming this to the correct name.
-	 *
-	 * @param string $filename  The name of the file.
-	 * @param string $data  The data we should write to the file.
-	 *
 	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_System::writeFile() instead.
 	 */
 	public static function writeFile($filename, $data, $mode=0600) {
-		assert('is_string($filename)');
-		assert('is_string($data)');
-		assert('is_numeric($mode)');
-
-		$tmpFile = $filename . '.new.' . getmypid() . '.' . php_uname('n');
-
-		$res = @file_put_contents($tmpFile, $data);
-		if ($res === FALSE) {
-			throw new SimpleSAML_Error_Exception('Error saving file ' . $tmpFile .
-				': ' . SimpleSAML_Utilities::getLastError());
-		}
-
-		if (!self::isWindowsOS()) {
-			$res = chmod($tmpFile, $mode);
-			if ($res === FALSE) {
-				unlink($tmpFile);
-				throw new SimpleSAML_Error_Exception('Error changing file mode ' . $tmpFile .
-					': ' . SimpleSAML_Utilities::getLastError());
-			}
-		}
-
-		$res = rename($tmpFile, $filename);
-		if ($res === FALSE) {
-			unlink($tmpFile);
-			throw new SimpleSAML_Error_Exception('Error renaming ' . $tmpFile . ' to ' .
-				$filename . ': ' . SimpleSAML_Utilities::getLastError());
-		}
+		return SimpleSAML_Utils_System::writeFile($filename, $data, $mode);
 	}
 
 
 	/**
-	 * Get temp directory path.
-	 *
-	 * This function retrieves the path to a directory where
-	 * temporary files can be saved.
-	 *
-	 * @return string  Path to temp directory, without a trailing '/'.
 	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_System::getTempDir instead.
 	 */
 	public static function getTempDir() {
-
-		$globalConfig = SimpleSAML_Configuration::getInstance();
-
-		$tempDir = $globalConfig->getString('tempdir', '/tmp/simplesaml');
-
-		while (substr($tempDir, -1) === '/') {
-			$tempDir = substr($tempDir, 0, -1);
-		}
-
-		if (!is_dir($tempDir)) {
-			$ret = mkdir($tempDir, 0700, TRUE);
-			if (!$ret) {
-				throw new SimpleSAML_Error_Exception('Error creating temp dir ' .
-					var_export($tempDir, TRUE) . ': ' . SimpleSAML_Utilities::getLastError());
-			}
-		} elseif (function_exists('posix_getuid')) {
-
-			/* Check that the owner of the temp diretory is the current user. */
-			$stat = lstat($tempDir);
-			if ($stat['uid'] !== posix_getuid()) {
-				throw new SimpleSAML_Error_Exception('Temp directory (' . var_export($tempDir, TRUE) .
-					') not owned by current user.');
-			}
-		}
-
-		return $tempDir;
+		return SimpleSAML_Utils_System::getTempDir();
 	}
 
 
@@ -2242,87 +1953,26 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Function to AES encrypt data.
-	 *
-	 * @param string $clear  Data to encrypt.
-	 * @return array  The encrypted data and IV.
 	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::aesEncrypt() instead.
 	 */
 	public static function aesEncrypt($clear) {
-		assert('is_string($clear)');
-
-		if (!function_exists("mcrypt_encrypt")) {
-			throw new Exception("aesEncrypt needs mcrypt php module.");
-		}
-
-		$enc = MCRYPT_RIJNDAEL_256;
-		$mode = MCRYPT_MODE_CBC;
-
-		$blockSize = mcrypt_get_block_size($enc, $mode);
-		$ivSize = mcrypt_get_iv_size($enc, $mode);
-		$keySize = mcrypt_get_key_size($enc, $mode);
-
-		$key = hash('sha256', self::getSecretSalt(), TRUE);
-		$key = substr($key, 0, $keySize);
-
-		$len = strlen($clear);
-		$numpad = $blockSize - ($len % $blockSize);
-		$clear = str_pad($clear, $len + $numpad, chr($numpad));
-
-		$iv = self::generateRandomBytes($ivSize);
-
-		$data = mcrypt_encrypt($enc, $key, $clear, $mode, $iv);
-
-		return $iv . $data;
+		return SimpleSAML_Utils_Crypto::aesEncrypt($clear);
 	}
 
 
 	/**
-	 * Function to AES decrypt data.
-	 *
-	 * @param $data  Encrypted data.
-	 * @param $iv  IV of encrypted data.
-	 * @return string  The decrypted data.
 	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::aesDecrypt() instead.
 	 */
 	public static function aesDecrypt($encData) {
-		assert('is_string($encData)');
-
-		if (!function_exists("mcrypt_encrypt")) {
-			throw new Exception("aesDecrypt needs mcrypt php module.");
-		}
-
-		$enc = MCRYPT_RIJNDAEL_256;
-		$mode = MCRYPT_MODE_CBC;
-
-		$ivSize = mcrypt_get_iv_size($enc, $mode);
-		$keySize = mcrypt_get_key_size($enc, $mode);
-
-		$key = hash('sha256', self::getSecretSalt(), TRUE);
-		$key = substr($key, 0, $keySize);
-
-		$iv = substr($encData, 0, $ivSize);
-		$data = substr($encData, $ivSize);
-
-		$clear = mcrypt_decrypt($enc, $key, $data, $mode, $iv);
-
-		$len = strlen($clear);
-		$numpad = ord($clear[$len - 1]);
-		$clear = substr($clear, 0, $len - $numpad);
-
-		return $clear;
+		return SimpleSAML_Utils_Crypto::aesDecrypt($encData);
 	}
 
 
 	/**
-	 * This function checks if we are running on Windows OS.
-	 *
-	 * @return TRUE if we are on Windows OS, FALSE otherwise.
-	 *
 	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_System::getOS() instead.
 	 */
 	public static function isWindowsOS() {
-		return substr(strtoupper(PHP_OS),0,3) == 'WIN';
+		return SimpleSAML_Utils_System::getOS() === SimpleSAML_Utils_System::WINDOWS;
 	}
 
 
