@@ -28,7 +28,7 @@ class sspmod_statistics_AccessCheck {
 			return;
 		}
 
-		if (SimpleSAML_Utilities::isAdmin()) {
+		if (SimpleSAML_Utils_Auth::isAdmin()) {
 			// User logged in as admin. OK.
 			SimpleSAML_Logger::debug('Statistics auth - logged in as admin, access granted');
 			return;

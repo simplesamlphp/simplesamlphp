@@ -1335,15 +1335,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Check whether the current user is a admin user.
-	 *
-	 * @return bool  TRUE if the current user is a admin user, FALSE if not.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Auth::isAdmin() instead.
 	 */
 	public static function isAdmin() {
-
-		$session = SimpleSAML_Session::getSessionFromRequest();
-
-		return $session->isValid('admin') || $session->isValid('login-admin');
+		return SimpleSAML_Utils_Auth::isAdmin();
 	}
 
 
@@ -1372,7 +1367,7 @@ class SimpleSAML_Utilities {
 	 */
 	public static function requireAdmin() {
 
-		if (self::isAdmin()) {
+		if (SimpleSAML_Utils_Auth::isAdmin()) {
 			return;
 		}
 

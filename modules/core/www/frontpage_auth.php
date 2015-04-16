@@ -10,7 +10,7 @@ if ($config->getBoolean('admin.protectindexpage', false)) {
 	SimpleSAML_Utilities::requireAdmin();
 }
 $loginurl = SimpleSAML_Utilities::getAdminLoginURL();
-$isadmin = SimpleSAML_Utilities::isAdmin();
+$isadmin = SimpleSAML_Utils_Auth::isAdmin();
 
 
 
