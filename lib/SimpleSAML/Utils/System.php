@@ -99,8 +99,8 @@ class SimpleSAML_Utils_System
      * @param string $data The data we should write to the file.
      * @param int    $mode The permissions to apply to the file. Defaults to 0600.
      *
-     * @throws SimpleSAML_Error_Exception If the file cannot be saved, permissions cannot be changed or it is not
-     * possible to write to the target file.
+     * @throws SimpleSAML_Error_Exception If any of the input parameters doesn't have the proper types, or the file
+     *     cannot be saved, permissions cannot be changed or it is not possible to write to the target file.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
@@ -109,9 +109,9 @@ class SimpleSAML_Utils_System
      */
     public static function writeFile($filename, $data, $mode = 0600)
     {
-        assert('is_string($filename)');
-        assert('is_string($data)');
-        assert('is_numeric($mode)');
+        if (!is_string($filename) || !is_string($data) || !is_numeric($mode)) {
+            throw new SimpleSAML_Error_Exception('Invalid input parameters');
+        }
 
         $tmpFile = self::getTempDir().DIRECTORY_SEPARATOR.rand();
 
