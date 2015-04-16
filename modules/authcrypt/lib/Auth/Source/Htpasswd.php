@@ -6,6 +6,9 @@
  * @author Dyonisius (Dick) Visser, TERENA.
  * @package simpleSAMLphp
  */
+
+use WhiteHat101\Crypt\APR1_MD5;
+
 class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBase {
 
 
@@ -77,7 +80,7 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
 				}
 
 				// Apache's custom MD5
-				if(SimpleSAML_Utils_Crypto::apr1Md5Valid($crypted, $password)) {
+				if(APR1_MD5::check($crypted, $password)) {
 					SimpleSAML_Logger::debug('User '. $username . ' authenticated successfully');
 					return $attributes;
 				}
