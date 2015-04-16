@@ -1731,7 +1731,7 @@ class SimpleSAML_Utilities {
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->setData('core_postdatalink', $postId, $postData);
 
-		$redirInfo = base64_encode(self::aesEncrypt($session->getSessionId() . ':' . $postId));
+		$redirInfo = base64_encode(SimpleSAML_Utils_Crypto::aesEncrypt($session->getSessionId() . ':' . $postId));
 
 		$url = SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $redirInfo));
 		$url = preg_replace("#^https:#", "http:", $url);
@@ -2244,6 +2244,7 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param string $clear  Data to encrypt.
 	 * @return array  The encrypted data and IV.
+     * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::aesEncrypt() instead.
 	 */
 	public static function aesEncrypt($clear) {
 		assert('is_string($clear)');
@@ -2280,6 +2281,7 @@ class SimpleSAML_Utilities {
 	 * @param $data  Encrypted data.
 	 * @param $iv  IV of encrypted data.
 	 * @return string  The decrypted data.
+     * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::aesDecrypt() instead.
 	 */
 	public static function aesDecrypt($encData) {
 		assert('is_string($encData)');

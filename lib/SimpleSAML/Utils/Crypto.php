@@ -10,6 +10,86 @@ class SimpleSAML_Utils_Crypto
 {
 
     /**
+     * Decrypt data using AES and the system-wide secret salt as key.
+     *
+     * @param string $data The encrypted data to decrypt.
+     *
+     * @return string The decrypted data.
+     * @throws SimpleSAML_Error_Exception If the mcrypt module is not loaded or $ciphertext is not a string.
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function aesDecrypt($ciphertext)
+    {
+        if (!is_string($ciphertext)) {
+            throw new SimpleSAML_Error_Exception('Input parameter "$ciphertext" must be a string.');
+        }
+        if (!function_exists("mcrypt_encrypt")) {
+            throw new SimpleSAML_Error_Exception("The mcrypt PHP module is not loaded.");
+        }
+
+        $enc = MCRYPT_RIJNDAEL_256;
+        $mode = MCRYPT_MODE_CBC;
+
+        $ivSize = mcrypt_get_iv_size($enc, $mode);
+        $keySize = mcrypt_get_key_size($enc, $mode);
+
+        $key = hash('sha256', SimpleSAML_Utilities::getSecretSalt(), true);
+        $key = substr($key, 0, $keySize);
+
+        $iv = substr($ciphertext, 0, $ivSize);
+        $data = substr($ciphertext, $ivSize);
+
+        $clear = mcrypt_decrypt($enc, $key, $data, $mode, $iv);
+
+        $len = strlen($clear);
+        $numpad = ord($clear[$len - 1]);
+        $clear = substr($clear, 0, $len - $numpad);
+
+        return $clear;
+    }
+
+    /**
+     * Encrypt data using AES and the system-wide secret salt as key.
+     *
+     * @param string $data The data to encrypt.
+     *
+     * @return string The encrypted data and IV.
+     * @throws SimpleSAML_Error_Exception If the mcrypt module is not loaded or $data is not a string.
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function aesEncrypt($data)
+    {
+        if (!is_string($data)) {
+            throw new SimpleSAML_Error_Exception('Input parameter "$data" must be a string.');
+        }
+        if (!function_exists("mcrypt_encrypt")) {
+            throw new SimpleSAML_Error_Exception('The mcrypt PHP module is not loaded.');
+        }
+
+        $enc = MCRYPT_RIJNDAEL_256;
+        $mode = MCRYPT_MODE_CBC;
+
+        $blockSize = mcrypt_get_block_size($enc, $mode);
+        $ivSize = mcrypt_get_iv_size($enc, $mode);
+        $keySize = mcrypt_get_key_size($enc, $mode);
+
+        $key = hash('sha256', SimpleSAML_Utilities::getSecretSalt(), true);
+        $key = substr($key, 0, $keySize);
+
+        $len = strlen($data);
+        $numpad = $blockSize - ($len % $blockSize);
+        $data = str_pad($data, $len + $numpad, chr($numpad));
+
+        $iv = SimpleSAML_Utilities::generateRandomBytes($ivSize);
+
+        $data = mcrypt_encrypt($enc, $key, $data, $mode, $iv);
+
+        return $iv.$data;
+    }
+
+    /**
      * This function hashes a password with a given algorithm.
      *
      * @param string $password The password to hash.

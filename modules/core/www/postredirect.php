@@ -16,7 +16,7 @@ if (array_key_exists('RedirId', $_REQUEST)) {
 		throw new SimpleSAML_Error_BadRequest('Invalid RedirInfo data.');
 	}
 
-	list($sessionId, $postId) = explode(':', SimpleSAML_Utilities::aesDecrypt($encData));
+	list($sessionId, $postId) = explode(':', SimpleSAML_Utils_Crypto::aesDecrypt($encData));
 
 	if (empty($sessionId) || empty($postId)) {
 		throw new SimpleSAML_Error_BadRequest('Invalid session info data.');
