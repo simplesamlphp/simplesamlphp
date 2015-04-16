@@ -20,7 +20,7 @@ try {
 	$availableCerts = array();
 
 	$keys = array();
-	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, FALSE, 'new_');
+	$certInfo = SimpleSAML_Utils_Crypto::loadPublicKey($idpmeta, FALSE, 'new_');
 	if ($certInfo !== NULL) {
 		$availableCerts['new_idp.crt'] = $certInfo;
 		$keys[] = array(
@@ -34,7 +34,7 @@ try {
 		$hasNewCert = FALSE;
 	}
 
-	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE);
+	$certInfo = SimpleSAML_Utils_Crypto::loadPublicKey($idpmeta, TRUE);
 	$availableCerts['idp.crt'] = $certInfo;
 	$keys[] = array(
 		'type' => 'X509Certificate',
@@ -44,7 +44,7 @@ try {
 	);
 
 	if ($idpmeta->hasValue('https.certificate')) {
-		$httpsCert = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE, 'https.');
+		$httpsCert = SimpleSAML_Utils_Crypto::loadPublicKey($idpmeta, TRUE, 'https.');
 		assert('isset($httpsCert["certData"])');
 		$availableCerts['https.crt'] = $httpsCert;
 		$keys[] = array(

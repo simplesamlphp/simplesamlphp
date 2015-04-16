@@ -1371,6 +1371,7 @@ class SimpleSAML_Utilities {
 	 *                        array. Defaults to ''.
 	 * @return array|NULL  Public key or certificate data, or NULL if no public key or
 	 *                     certificate was found.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::loadPublicKey() instead.
 	 */
 	public static function loadPublicKey(SimpleSAML_Configuration $metadata, $required = FALSE, $prefix = '') {
 		assert('is_bool($required)');
@@ -1441,6 +1442,7 @@ class SimpleSAML_Utilities {
 	 * @param string $prefix  The prefix which should be used when reading from the metadata
 	 *                        array. Defaults to ''.
 	 * @return array|NULL  Extracted private key, or NULL if no private key is present.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::loadPrivateKey() instead.
 	 */
 	public static function loadPrivateKey(SimpleSAML_Configuration $metadata, $required = FALSE, $prefix = '') {
 		assert('is_bool($required)');
@@ -1585,8 +1587,8 @@ class SimpleSAML_Utilities {
 
 	/**
 	 * Input is single value or array, returns an array.
-     *
-     * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Arrays::arrayize() instead.
+	 *
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Arrays::arrayize() instead.
 	 */
 	public static function arrayize($data, $index = 0) {
 		if (is_array($data)) {
@@ -1933,8 +1935,8 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param string $filename  The name of the file.
 	 * @param string $data  The data we should write to the file.
-     *
-     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_System::writeFile() instead.
+	 *
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_System::writeFile() instead.
 	 */
 	public static function writeFile($filename, $data, $mode=0600) {
 		assert('is_string($filename)');
@@ -2244,7 +2246,7 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param string $clear  Data to encrypt.
 	 * @return array  The encrypted data and IV.
-     * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::aesEncrypt() instead.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::aesEncrypt() instead.
 	 */
 	public static function aesEncrypt($clear) {
 		assert('is_string($clear)');
@@ -2281,7 +2283,7 @@ class SimpleSAML_Utilities {
 	 * @param $data  Encrypted data.
 	 * @param $iv  IV of encrypted data.
 	 * @return string  The decrypted data.
-     * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::aesDecrypt() instead.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::aesDecrypt() instead.
 	 */
 	public static function aesDecrypt($encData) {
 		assert('is_string($encData)');

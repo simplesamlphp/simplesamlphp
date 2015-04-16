@@ -21,11 +21,11 @@ class sspmod_saml_Message {
 		$dstPrivateKey = $dstMetadata->getString('signature.privatekey', NULL);
 
 		if ($dstPrivateKey !== NULL) {
-			$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, TRUE, 'signature.');
-			$certArray = SimpleSAML_Utilities::loadPublicKey($dstMetadata, FALSE, 'signature.');
+			$keyArray = SimpleSAML_Utils_Crypto::loadPrivateKey($dstMetadata, TRUE, 'signature.');
+			$certArray = SimpleSAML_Utils_Crypto::loadPublicKey($dstMetadata, FALSE, 'signature.');
 		} else {
-			$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata, TRUE);
-			$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);
+			$keyArray = SimpleSAML_Utils_Crypto::loadPrivateKey($srcMetadata, TRUE);
+			$certArray = SimpleSAML_Utils_Crypto::loadPublicKey($srcMetadata, FALSE);
 		}
 
 		$algo = $dstMetadata->getString('signature.algorithm', NULL);
@@ -281,7 +281,7 @@ class sspmod_saml_Message {
 		$keys = array();
 
 		/* Load the new private key if it exists. */
-		$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, FALSE, 'new_');
+		$keyArray = SimpleSAML_Utils_Crypto::loadPrivateKey($dstMetadata, FALSE, 'new_');
 		if ($keyArray !== NULL) {
 			assert('isset($keyArray["PEM"])');
 
@@ -294,7 +294,7 @@ class sspmod_saml_Message {
 		}
 
 		/* Find the existing private key. */
-		$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, TRUE);
+		$keyArray = SimpleSAML_Utils_Crypto::loadPrivateKey($dstMetadata, TRUE);
 		assert('isset($keyArray["PEM"])');
 
 		$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'private'));

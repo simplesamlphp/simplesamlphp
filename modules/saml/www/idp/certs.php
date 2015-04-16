@@ -17,13 +17,13 @@ $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 
 switch($_SERVER['PATH_INFO']) {
 	case '/new_idp.crt':
-		$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, FALSE, 'new_');
+		$certInfo = SimpleSAML_Utils_Crypto::loadPublicKey($idpmeta, FALSE, 'new_');
 		break;
 	case '/idp.crt':
-		$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE);
+		$certInfo = SimpleSAML_Utils_Crypto::loadPublicKey($idpmeta, TRUE);
 		break;
 	case '/https.crt':
-		$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE, 'https.');
+		$certInfo = SimpleSAML_Utils_Crypto::loadPublicKey($idpmeta, TRUE, 'https.');
 		break;
 	default:
 		throw new SimpleSAML_Error_NotFound('Unknown certificate.');

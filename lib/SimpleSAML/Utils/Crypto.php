@@ -89,6 +89,142 @@ class SimpleSAML_Utils_Crypto
         return $iv.$data;
     }
 
+
+    /**
+     * Load a private key from metadata.
+     *
+     * This function loads a private key from a metadata array. It looks for the following elements:
+     * - 'privatekey': Name of a private key file in the cert-directory.
+     * - 'privatekey_pass': Password for the private key.
+     *
+     * It returns and array with the following elements:
+     * - 'PEM': Data for the private key, in PEM-format.
+     * - 'password': Password for the private key.
+     *
+     * @param SimpleSAML_Configuration $metadata The metadata array the private key should be loaded from.
+     * @param bool                     $required Whether the private key is required. If this is true, a
+     * missing key will cause an exception. Defaults to false.
+     * @param string                   $prefix The prefix which should be used when reading from the metadata
+     * array. Defaults to ''.
+     *
+     * @return array|NULL Extracted private key, or NULL if no private key is present.
+     * @throws SimpleSAML_Error_Exception If no private key is found in the metadata, or it was not possible to load it.
+     *
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function loadPrivateKey(SimpleSAML_Configuration $metadata, $required = false, $prefix = '')
+    {
+        if (!is_bool($required) || !is_string($prefix)) {
+            throw new SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
+
+        $file = $metadata->getString($prefix.'privatekey', null);
+        if ($file === null) {
+            // no private key found
+            if ($required) {
+                throw new SimpleSAML_Error_Exception('No private key found in metadata.');
+            } else {
+                return null;
+            }
+        }
+
+        $file = SimpleSAML_Utilities::resolveCert($file);
+        $data = @file_get_contents($file);
+        if ($data === false) {
+            throw new SimpleSAML_Error_Exception('Unable to load private key from file "'.$file.'"');
+        }
+
+        $ret = array(
+            'PEM' => $data,
+        );
+
+        if ($metadata->hasValue($prefix.'privatekey_pass')) {
+            $ret['password'] = $metadata->getString($prefix.'privatekey_pass');
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Get public key or certificate from metadata.
+     *
+     * This function implements a function to retrieve the public key or certificate from a metadata array.
+     *
+     * It will search for the following elements in the metadata:
+     * - 'certData': The certificate as a base64-encoded string.
+     * - 'certificate': A file with a certificate or public key in PEM-format.
+     * - 'certFingerprint': The fingerprint of the certificate. Can be a single fingerprint, or an array of multiple
+     * valid fingerprints.
+     *
+     * This function will return an array with these elements:
+     * - 'PEM': The public key/certificate in PEM-encoding.
+     * - 'certData': The certificate data, base64 encoded, on a single line. (Only present if this is a certificate.)
+     * - 'certFingerprint': Array of valid certificate fingerprints. (Only present if this is a certificate.)
+     *
+     * @param SimpleSAML_Configuration $metadata The metadata.
+     * @param bool                     $required Whether the private key is required. If this is TRUE, a missing key
+     *     will cause an exception. Default is FALSE.
+     * @param string                   $prefix The prefix which should be used when reading from the metadata array.
+     *     Defaults to ''.
+     *
+     * @return array|NULL Public key or certificate data, or NULL if no public key or certificate was found.
+     *
+     * @throws SimpleSAML_Error_Exception If no private key is found in the metadata, or it was not possible to load it.
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Lasse Birnbaum Jensen
+     */
+    public static function loadPublicKey(SimpleSAML_Configuration $metadata, $required = false, $prefix = '')
+    {
+        assert('is_bool($required)');
+        assert('is_string($prefix)');
+
+        $keys = $metadata->getPublicKeys(null, false, $prefix);
+        if ($keys !== null) {
+            foreach ($keys as $key) {
+                if ($key['type'] !== 'X509Certificate') {
+                    continue;
+                }
+                if ($key['signing'] !== true) {
+                    continue;
+                }
+                $certData = $key['X509Certificate'];
+                $pem = "-----BEGIN CERTIFICATE-----\n".
+                    chunk_split($certData, 64).
+                    "-----END CERTIFICATE-----\n";
+                $certFingerprint = strtolower(sha1(base64_decode($certData)));
+
+                return array(
+                    'certData'        => $certData,
+                    'PEM'             => $pem,
+                    'certFingerprint' => array($certFingerprint),
+                );
+            }
+            // no valid key found
+        } elseif ($metadata->hasValue($prefix.'certFingerprint')) {
+            // we only have a fingerprint available
+            $fps = $metadata->getArrayizeString($prefix.'certFingerprint');
+
+            // normalize fingerprint(s) - lowercase and no colons
+            foreach ($fps as &$fp) {
+                assert('is_string($fp)');
+                $fp = strtolower(str_replace(':', '', $fp));
+            }
+
+            // We can't build a full certificate from a fingerprint, and may as well return an array with only the
+            //fingerprint(s) immediately.
+            return array('certFingerprint' => $fps);
+        }
+
+        // no public key/certificate available
+        if ($required) {
+            throw new SimpleSAML_Error_Exception('No public key / certificate found in metadata.');
+        } else {
+            return null;
+        }
+    }
+
     /**
      * This function hashes a password with a given algorithm.
      *
