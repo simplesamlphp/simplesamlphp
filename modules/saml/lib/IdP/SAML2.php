@@ -628,7 +628,7 @@ class sspmod_saml_IdP_SAML2 {
 				$idpEntityId = $idpMetadata->getString('entityid');
 				$spEntityId = $spMetadata->getString('entityid');
 
-				$secretSalt = SimpleSAML_Utilities::getSecretSalt();
+				$secretSalt = SimpleSAML_Utils_Config::getSecretSalt();
 
 				$uidData = 'uidhashbase' . $secretSalt;
 				$uidData .= strlen($idpEntityId) . ':' . $idpEntityId;

@@ -290,7 +290,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
      */
     public static function getHashedUserID($userid, $source)
     {
-        return hash('sha1', $userid . '|' . SimpleSAML_Utilities::getSecretSalt() . '|' . $source);
+        return hash('sha1', $userid . '|' . SimpleSAML_Utils_Config::getSecretSalt() . '|' . $source);
     }
 
     /**
@@ -304,7 +304,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
      */
     public static function getTargetedID($userid, $source, $destination)
     {
-        return hash('sha1', $userid . '|' . SimpleSAML_Utilities::getSecretSalt() . '|' . $source . '|' . $destination);
+        return hash('sha1', $userid . '|' . SimpleSAML_Utils_Config::getSecretSalt() . '|' . $source . '|' . $destination);
     }
 
     /**
