@@ -1,12 +1,12 @@
 <?php
-
+namespace SimpleSAML\Utils;
 
 /**
  * Net-related utility methods.
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Utils_Net
+class Net
 {
 
     /**

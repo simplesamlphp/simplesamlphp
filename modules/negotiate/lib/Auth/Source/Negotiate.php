@@ -184,7 +184,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 			return TRUE;
 		$ip = $_SERVER['REMOTE_ADDR'];
 		foreach ($this->subnet as $cidr) {
-			$ret = SimpleSAML_Utils_Net::ipCIDRcheck($cidr);
+			$ret = SimpleSAML\Utils\Net::ipCIDRcheck($cidr);
 			if ($ret) {
 				SimpleSAML_Logger::debug('Negotiate: Client "'.$ip.'" matched subnet.');
 				return TRUE;
