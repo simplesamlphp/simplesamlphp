@@ -297,9 +297,9 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		assert('$element instanceof DOMElement');
 
-		if(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntityDescriptor', '@md') === TRUE) {
+		if (SimpleSAML\Utils\XML::isDOMElementOfType($element, 'EntityDescriptor', '@md') === TRUE) {
 			return self::processDescriptorsElement(new SAML2_XML_md_EntityDescriptor($element));
-		} elseif(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntitiesDescriptor', '@md') === TRUE) {
+		} elseif (SimpleSAML\Utils\XML::isDOMElementOfType($element, 'EntitiesDescriptor', '@md') === TRUE) {
 			return self::processDescriptorsElement(new SAML2_XML_md_EntitiesDescriptor($element));
 		} else {
 			throw new Exception('Unexpected root node: [' . $element->namespaceURI . ']:' .
@@ -1293,7 +1293,7 @@ class SimpleSAML_Metadata_SAMLParser {
 			throw new Exception('Failed to load SAML metadata from empty XML document.');
 		}
 
-		if(SimpleSAML_Utilities::isDOMElementOfType($ed, 'EntityDescriptor', '@md') === FALSE) {
+		if (SimpleSAML\Utils\XML::isDOMElementOfType($ed, 'EntityDescriptor', '@md') === FALSE) {
 			throw new Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
 		}
 

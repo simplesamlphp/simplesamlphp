@@ -653,66 +653,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * This function checks if the DOMElement has the correct localName and namespaceURI.
-	 *
-	 * We also define the following shortcuts for namespaces:
-	 * - '@ds':      'http://www.w3.org/2000/09/xmldsig#'
-	 * - '@md':      'urn:oasis:names:tc:SAML:2.0:metadata'
-	 * - '@saml1':   'urn:oasis:names:tc:SAML:1.0:assertion'
-	 * - '@saml1md': 'urn:oasis:names:tc:SAML:profiles:v1metadata'
-	 * - '@saml1p':  'urn:oasis:names:tc:SAML:1.0:protocol'
-	 * - '@saml2':   'urn:oasis:names:tc:SAML:2.0:assertion'
-	 * - '@saml2p':  'urn:oasis:names:tc:SAML:2.0:protocol'
-	 *
-	 * @param $element The element we should check.
-	 * @param $name The localname the element should have.
-	 * @param $nsURI The namespaceURI the element should have.
-	 * @return TRUE if both namespace and localname matches, FALSE otherwise.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::isDOMElementOfType() instead.
 	 */
 	public static function isDOMElementOfType(DOMNode $element, $name, $nsURI) {
-		assert('is_string($name)');
-		assert('is_string($nsURI)');
-		assert('strlen($nsURI) > 0');
-
-		if (!($element instanceof DOMElement)) {
-			/* Most likely a comment-node. */
-			return FALSE;
-		}
-
-		/* Check if the namespace is a shortcut, and expand it if it is. */
-		if($nsURI[0] == '@') {
-
-			/* The defined shortcuts. */
-			$shortcuts = array(
-				'@ds' => 'http://www.w3.org/2000/09/xmldsig#',
-				'@md' => 'urn:oasis:names:tc:SAML:2.0:metadata',
-				'@saml1' => 'urn:oasis:names:tc:SAML:1.0:assertion',
-				'@saml1md' => 'urn:oasis:names:tc:SAML:profiles:v1metadata',
-				'@saml1p' => 'urn:oasis:names:tc:SAML:1.0:protocol',
-				'@saml2' => 'urn:oasis:names:tc:SAML:2.0:assertion',
-				'@saml2p' => 'urn:oasis:names:tc:SAML:2.0:protocol',
-				'@shibmd' => 'urn:mace:shibboleth:metadata:1.0',
-				);
-
-			/* Check if it is a valid shortcut. */
-			if(!array_key_exists($nsURI, $shortcuts)) {
-				throw new Exception('Unknown namespace shortcut: ' . $nsURI);
-			}
-
-			/* Expand the shortcut. */
-			$nsURI = $shortcuts[$nsURI];
-		}
-
-
-		if($element->localName !== $name) {
-			return FALSE;
-		}
-
-		if($element->namespaceURI !== $nsURI) {
-			return FALSE;
-		}
-
-		return TRUE;
+		return SimpleSAML\Utils\XML::isDOMElementOfType($element, $name, $nsURI);
 	}
 
 

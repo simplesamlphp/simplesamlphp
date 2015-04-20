@@ -80,7 +80,7 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 		}
 
 		$soapEnvelope = $doc->firstChild;
-		if (!SimpleSAML_Utilities::isDOMElementOfType($soapEnvelope, 'Envelope', 'http://schemas.xmlsoap.org/soap/envelope/')) {
+		if (!SimpleSAML\Utils\XML::isDOMElementOfType($soapEnvelope, 'Envelope', 'http://schemas.xmlsoap.org/soap/envelope/')) {
 			throw new SimpleSAML_Error_Exception('Expected artifact response to contain a <soap:Envelope> element.');
 		}
 
