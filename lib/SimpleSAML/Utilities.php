@@ -1624,6 +1624,7 @@ class SimpleSAML_Utilities {
 	 * Disable the loading of external entities in XML documents to prevent local and
 	 * remote file inclusion attacks. This is in most cases already disabled by default
 	 * in system libraries, but to be safe we explicitly disable it also.
+	 * @deprecated This function will be removed in SSP 2.0. Please use libxml_disable_entity_loader() instead.
 	 */
 	public static function disableXMLEntityLoader() {
 		/* Function only present in PHP >= 5.2.11 while we support 5.2+ */
