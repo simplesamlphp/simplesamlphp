@@ -390,16 +390,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * This function generates a timestamp on the form used by the SAML protocols.
-	 *
-	 * @param $instant  The time the timestamp should represent.
-	 * @return The timestamp.
+	 * @deprecated This function will be removed in SSP 2.0. Please use \SimpleSAML\Utils\Time::generateTimestamp() instead.
 	 */
 	public static function generateTimestamp($instant = NULL) {
-		if($instant === NULL) {
-			$instant = time();
-		}
-		return gmdate('Y-m-d\TH:i:s\Z', $instant);
+		return SimpleSAML\Utils\Time::generateTimestamp($instant);
 	}
 
 

@@ -306,13 +306,13 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 
 		$id = SimpleSAML_Utils_Random::generateID();
 		
-		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
+		$issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
 		
 		// 30 seconds timeskew back in time to allow differing clocks.
-		$notBefore = SimpleSAML_Utilities::generateTimestamp(time() - 30);
+		$notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
 		
 		
-		$assertionExpire = SimpleSAML_Utilities::generateTimestamp(time() + 60 * 5);# 5 minutes
+		$assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 5);# 5 minutes
 		$assertionid = SimpleSAML_Utils_Random::generateID();
 
 		$spEntityId = $sp->getString('entityid');

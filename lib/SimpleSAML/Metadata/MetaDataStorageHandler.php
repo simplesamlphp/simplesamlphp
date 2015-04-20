@@ -144,7 +144,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 						unset($srcList[$key]);
 						SimpleSAML_Logger::warning("Dropping metadata entity " .
 							var_export($key,true) . ", expired " .
-							SimpleSAML_Utilities::generateTimestamp($le['expire']) .
+                            SimpleSAML\Utils\Time::generateTimestamp($le['expire']) .
 							".");
 					}
 				}

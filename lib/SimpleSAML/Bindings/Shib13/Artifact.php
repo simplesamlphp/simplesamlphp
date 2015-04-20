@@ -50,7 +50,7 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 			'<samlp:Request xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol"' .
 			' RequestID="' . SimpleSAML_Utils_Random::generateID() . '"' .
 			' MajorVersion="1" MinorVersion="1"' .
-			' IssueInstant="' . SimpleSAML_Utilities::generateTimestamp() . '"' .
+			' IssueInstant="' . SimpleSAML\Utils\Time::generateTimestamp() . '"' .
 			'>';
 
 		foreach ($artifacts as $a) {
