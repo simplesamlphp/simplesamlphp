@@ -1321,18 +1321,18 @@ class SimpleSAML_Utilities {
 	}
 
 	/**
-	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_System::writeFile() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\System::writeFile() instead.
 	 */
 	public static function writeFile($filename, $data, $mode=0600) {
-		return SimpleSAML_Utils_System::writeFile($filename, $data, $mode);
+		return SimpleSAML\Utils\System::writeFile($filename, $data, $mode);
 	}
 
 
 	/**
-	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_System::getTempDir instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\System::getTempDir instead.
 	 */
 	public static function getTempDir() {
-		return SimpleSAML_Utils_System::getTempDir();
+		return SimpleSAML\Utils\System::getTempDir();
 	}
 
 
@@ -1587,10 +1587,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_System::getOS() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\System::getOS() instead.
 	 */
 	public static function isWindowsOS() {
-		return SimpleSAML_Utils_System::getOS() === SimpleSAML_Utils_System::WINDOWS;
+		return SimpleSAML\Utils\System::getOS() === SimpleSAML\Utils\System::WINDOWS;
 	}
 
 

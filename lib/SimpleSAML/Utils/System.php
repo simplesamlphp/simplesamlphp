@@ -1,12 +1,12 @@
 <?php
-
+namespace SimpleSAML\Utils;
 
 /**
  * System-related utility methods.
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Utils_System
+class System
 {
 
     const WINDOWS = 1;
