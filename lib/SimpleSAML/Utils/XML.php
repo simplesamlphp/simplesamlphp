@@ -14,18 +14,21 @@ class XML
     /**
      * Format a DOM element.
      *
-     * This function takes in a DOM element, and inserts whitespace to make it more
-     * readable. Note that whitespace added previously will be removed.
+     * This function takes in a DOM element, and inserts whitespace to make it more readable. Note that whitespace
+     * added previously will be removed.
      *
-     * @param DOMElement $root The root element which should be formatted.
-     * @param string     $indentBase The indentation this element should be assumed to
-     *                         have. Default is an empty string.
+     * @param \DOMElement $root The root element which should be formatted.
+     * @param string      $indentBase The indentation this element should be assumed to have. Defaults to an empty
+     *     string.
      *
+     * @throws \SimpleSAML_Error_Exception If $root is not a DOMElement or $indentBase is not a string.
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function formatDOMElement(DOMElement $root, $indentBase = '')
+    public static function formatDOMElement(\DOMElement $root, $indentBase = '')
     {
-        assert(is_string($indentBase));
+        if (!is_string($indentBase)) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters');
+        }
 
         // check what this element contains
         $fullText = ''; // all text in this element
@@ -34,10 +37,10 @@ class XML
         for ($i = 0; $i < $root->childNodes->length; $i++) {
             $child = $root->childNodes->item($i);
 
-            if ($child instanceof DOMText) {
+            if ($child instanceof \DOMText) {
                 $textNodes[] = $child;
                 $fullText .= $child->wholeText;
-            } elseif ($child instanceof DOMComment || $child instanceof DOMElement) {
+            } elseif ($child instanceof \DOMComment || $child instanceof \DOMElement) {
                 $childNodes[] = $child;
             } else {
                 // unknown node type. We don't know how to format this
@@ -47,7 +50,7 @@ class XML
 
         $fullText = trim($fullText);
         if (strlen($fullText) > 0) {
-            // we contain text
+            // we contain textelf
             $hasText = true;
         } else {
             $hasText = false;
@@ -67,7 +70,7 @@ class XML
 
         if ($hasText) {
             // only text - add a single text node to the element with the full text
-            $root->appendChild(new DOMText($fullText));
+            $root->appendChild(new \DOMText($fullText));
             return;
         }
 
@@ -82,16 +85,16 @@ class XML
         $childIndentation = $indentBase.'  ';
         foreach ($childNodes as $node) {
             // add indentation before node
-            $root->insertBefore(new DOMText("\n".$childIndentation), $node);
+            $root->insertBefore(new \DOMText("\n".$childIndentation), $node);
 
             // format child elements
-            if ($node instanceof DOMElement) {
+            if ($node instanceof \DOMElement) {
                 self::formatDOMElement($node, $childIndentation);
             }
         }
 
         // add indentation before closing tag
-        $root->appendChild(new DOMText("\n".$indentBase));
+        $root->appendChild(new \DOMText("\n".$indentBase));
     }
 
     /**
@@ -104,19 +107,19 @@ class XML
      * to ''.
      *
      * @return string The formatted string.
-     *
-     * @throws SimpleSAML_Error_Exception If the input does not parse correctly as an XML string.
-     *
+     * @throws \SimpleSAML_Error_Exception If the input does not parse correctly as an XML string or parameters are not
+     *     strings.
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function formatXMLString($xml, $indentBase = '')
     {
-        assert('is_string($xml)');
-        assert('is_string($indentBase)');
+        if (!is_string($xml) || !is_string($indentBase)) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters');
+        }
 
-        $doc = new DOMDocument();
+        $doc = new \DOMDocument();
         if (!$doc->loadXML($xml)) {
-            throw new SimpleSAML_Error_Exception('Error parsing XML string.');
+            throw new \SimpleSAML_Error_Exception('Error parsing XML string.');
         }
 
         $root = $doc->firstChild;
