@@ -1059,26 +1059,26 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Auth::isAdmin() instead.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Auth::isAdmin() instead.
 	 */
 	public static function isAdmin() {
-		return SimpleSAML_Utils_Auth::isAdmin();
+		return SimpleSAML\Utils\Auth::isAdmin();
 	}
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Auth::getAdminLoginURL instead();
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Auth::getAdminLoginURL instead();
 	 */
 	public static function getAdminLoginURL($returnTo = NULL) {
-		return SimpleSAML_Utils_Auth::getAdminLoginURL($returnTo);
+		return SimpleSAML\Utils\Auth::getAdminLoginURL($returnTo);
 	}
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Auth::requireAdmin() instead.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Auth::requireAdmin() instead.
 	 */
 	public static function requireAdmin() {
-		return SimpleSAML_Utils_Auth::requireAdmin();
+		return SimpleSAML\Utils\Auth::requireAdmin();
 	}
 
 

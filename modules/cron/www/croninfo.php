@@ -11,7 +11,7 @@ require_once('_include.php');
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 
-SimpleSAML_Utils_Auth::requireAdmin();
+SimpleSAML\Utils\Auth::requireAdmin();
 
 $cronconfig = SimpleSAML_Configuration::getConfig('module_cron.php');
 

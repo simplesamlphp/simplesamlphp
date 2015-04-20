@@ -6,7 +6,7 @@
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 
-SimpleSAML_Utils_Auth::requireAdmin();
+SimpleSAML\Utils\Auth::requireAdmin();
 
 
 if (!array_key_exists('entityid', $_REQUEST))

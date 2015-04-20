@@ -11,7 +11,7 @@ if (!$config->getBoolean('enable.saml20-idp', false))
 
 /* Check if valid local session exists.. */
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    SimpleSAML_Utils_Auth::requireAdmin();
+    SimpleSAML\Utils\Auth::requireAdmin();
 }
 
 

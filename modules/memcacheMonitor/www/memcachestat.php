@@ -75,7 +75,7 @@ function humanreadable($input) {
 $config = SimpleSAML_Configuration::getInstance();
 
 /* Make sure that the user has admin access rights. */
-SimpleSAML_Utils_Auth::requireAdmin();
+SimpleSAML\Utils\Auth::requireAdmin();
 
 
 $formats = array(

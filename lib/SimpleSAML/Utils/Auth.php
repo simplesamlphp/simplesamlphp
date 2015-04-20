@@ -1,12 +1,12 @@
 <?php
-
+namespace SimpleSAML\Utils;
 
 /**
  * Auth-related utility methods.
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Utils_Auth
+class Auth
 {
 
     /**
@@ -21,10 +21,10 @@ class SimpleSAML_Utils_Auth
         assert('is_string($returnTo) || is_null($returnTo)');
 
         if ($returnTo === null) {
-            $returnTo = SimpleSAML_Utilities::selfURL();
+            $returnTo = \SimpleSAML_Utilities::selfURL();
         }
 
-        return SimpleSAML_Module::getModuleURL('core/login-admin.php', array('ReturnTo' => $returnTo));
+        return \SimpleSAML_Module::getModuleURL('core/login-admin.php', array('ReturnTo' => $returnTo));
     }
 
     /**
@@ -36,7 +36,7 @@ class SimpleSAML_Utils_Auth
      */
     public static function isAdmin()
     {
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML_Session::getSessionFromRequest();
         return $session->isValid('admin') || $session->isValid('login-admin');
     }
 
@@ -54,16 +54,16 @@ class SimpleSAML_Utils_Auth
      */
     public static function requireAdmin()
     {
-        if (SimpleSAML_Utils_Auth::isAdmin()) {
+        if (self::isAdmin()) {
             return;
         }
 
         // not authenticated as admin user, start authentication
-        if (SimpleSAML_Auth_Source::getById('admin') !== null) {
-            $as = new SimpleSAML_Auth_Simple('admin');
+        if (\SimpleSAML_Auth_Source::getById('admin') !== null) {
+            $as = new \SimpleSAML_Auth_Simple('admin');
             $as->login();
         } else {
-            throw new SimpleSAML_Error_Exception('Cannot find "admin" auth source, and admin privileges are required.');
+            throw new \SimpleSAML_Error_Exception('Cannot find "admin" auth source, and admin privileges are required.');
         }
     }
 }
