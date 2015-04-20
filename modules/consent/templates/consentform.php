@@ -74,7 +74,7 @@ if (array_key_exists('descr_purpose', $this->data['dstMetadata'])) {
         array(
             'SPNAME' => $dstName,
             'SPDESC' => $this->getTranslation(
-                SimpleSAML_Utils_Arrays::arrayize(
+                SimpleSAML\Utils\Arrays::arrayize(
                     $this->data['dstMetadata']['descr_purpose'],
                     'en'
                 )

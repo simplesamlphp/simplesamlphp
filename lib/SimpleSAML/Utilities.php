@@ -564,10 +564,10 @@ class SimpleSAML_Utilities {
 	}
 
 	/**
-	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Utils_Arrays::transpose() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Arrays::transpose() instead.
 	 */
 	public static function transposeArray($in) {
-		return SimpleSAML_Utils_Arrays::transpose($in);
+		return SimpleSAML\Utils\Arrays::transpose($in);
 	}
 
 
@@ -971,10 +971,10 @@ class SimpleSAML_Utilities {
 
 	/**
 	 * @deprecated This method will be removed in SSP 2.0. Please use
-	 * SimpleSAML_Utils_Arrays::normalizeAttributesArray() instead.
+	 * SimpleSAML\Utils\Arrays::normalizeAttributesArray() instead.
 	 */
 	public static function parseAttributes($attributes) {
-		return SimpleSAML_Utils_Arrays::normalizeAttributesArray($attributes);
+		return SimpleSAML\Utils\Arrays::normalizeAttributesArray($attributes);
 	}
 
 
@@ -1051,10 +1051,10 @@ class SimpleSAML_Utilities {
 	}
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Arrays::arrayize() instead.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Arrays::arrayize() instead.
 	 */
 	public static function arrayize($data, $index = 0) {
-		return SimpleSAML_Utils_Arrays::arrayize($data, $index);
+		return SimpleSAML\Utils\Arrays::arrayize($data, $index);
 	}
 
 

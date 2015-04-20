@@ -1,12 +1,12 @@
 <?php
-
+namespace SimpleSAML\Utils;
 
 /**
  * Array-related utility methods.
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Utils_Arrays
+class Arrays
 {
 
     /**
@@ -37,7 +37,7 @@ class SimpleSAML_Utils_Arrays
      * @param array $attributes The array containing attributes that we should validate and normalize.
      *
      * @return array The normalized attributes array.
-     * @throws SimpleSAML_Error_Exception If input is not an array, array keys are not strings or attribute values are
+     * @throws \SimpleSAML_Error_Exception If input is not an array, array keys are not strings or attribute values are
      *     not strings.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
@@ -47,20 +47,20 @@ class SimpleSAML_Utils_Arrays
     {
 
         if (!is_array($attributes)) {
-            throw new SimpleSAML_Error_Exception('Attributes was not an array. Was: '.print_r($attributes, true).'".');
+            throw new \SimpleSAML_Error_Exception('Attributes was not an array. Was: '.print_r($attributes, true).'".');
         }
 
         $newAttrs = array();
         foreach ($attributes as $name => $values) {
             if (!is_string($name)) {
-                throw new SimpleSAML_Error_Exception('Invalid attribute name: "'.print_r($name, true).'".');
+                throw new \SimpleSAML_Error_Exception('Invalid attribute name: "'.print_r($name, true).'".');
             }
 
             $values = self::arrayize($values);
 
             foreach ($values as $value) {
                 if (!is_string($value)) {
-                    throw new SimpleSAML_Error_Exception('Invalid attribute value for attribute '.$name.
+                    throw new \SimpleSAML_Error_Exception('Invalid attribute value for attribute '.$name.
                         ': "'.print_r($value, true).'".');
                 }
             }

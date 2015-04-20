@@ -25,7 +25,7 @@ if(array_key_exists('xmldata', $_POST)) {
 	}
 
 	/* Transpose from $entities[entityid][type] to $output[type][entityid]. */
-	$output = SimpleSAML_Utils_Arrays::transpose($entities);
+	$output = SimpleSAML\Utils\Arrays::transpose($entities);
 
 	/* Merge all metadata of each type to a single string which should be
 	 * added to the corresponding file.

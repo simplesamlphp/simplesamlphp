@@ -294,7 +294,7 @@ class sspmod_statistics_StatDataset {
 
 		$statdir = $this->statconfig->getValue('statdir');
 		$resarray = array();
-		$rules = SimpleSAML_Utils_Arrays::arrayize($this->ruleid);
+		$rules = SimpleSAML\Utils\Arrays::arrayize($this->ruleid);
 		foreach($rules AS $rule) {
 			// Get file and extract results.
 			$resultFileName = $statdir . '/' . $rule . '-' . $this->timeres . '-'. $this->fileslot . '.stat';

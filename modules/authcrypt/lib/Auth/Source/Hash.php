@@ -50,7 +50,7 @@ class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase {
 			$passwordhash = $userpass[1];
 
 			try {
-				$attributes = SimpleSAML_Utils_Arrays::normalizeAttributesArray($attributes);
+				$attributes = SimpleSAML\Utils\Arrays::normalizeAttributesArray($attributes);
 			} catch(Exception $e) {
 				throw new Exception('Invalid attributes for user ' . $username .
 					' in authentication source ' . $this->authId . ': ' .
