@@ -91,7 +91,7 @@ foreach ($assertionsconsumerservices as $services) {
 $metaArray20['AssertionConsumerService'] = $eps;
 
 $keys = array();
-$certInfo = SimpleSAML_Utils_Crypto::loadPublicKey($spconfig, FALSE, 'new_');
+$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($spconfig, FALSE, 'new_');
 if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$hasNewCert = TRUE;
 
@@ -107,7 +107,7 @@ if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$hasNewCert = FALSE;
 }
 
-$certInfo = SimpleSAML_Utils_Crypto::loadPublicKey($spconfig);
+$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($spconfig);
 if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$certData = $certInfo['certData'];
 

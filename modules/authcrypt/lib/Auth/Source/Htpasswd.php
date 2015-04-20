@@ -86,7 +86,7 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
 				}
 
 				// SHA1 or plain-text
-				if(SimpleSAML_Utils_Crypto::pwValid($crypted, $password)) {
+				if(SimpleSAML\Utils\Crypto::pwValid($crypted, $password)) {
 					SimpleSAML_Logger::debug('User '. $username . ' authenticated successfully');
 					return $attributes;
 				}

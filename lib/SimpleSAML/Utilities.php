@@ -1020,18 +1020,18 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::loadPublicKey() instead.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::loadPublicKey() instead.
 	 */
 	public static function loadPublicKey(SimpleSAML_Configuration $metadata, $required = FALSE, $prefix = '') {
-		return SimpleSAML_Utils_Crypto::loadPublicKey($metadata, $required, $prefix);
+		return SimpleSAML\Utils\Crypto::loadPublicKey($metadata, $required, $prefix);
 	}
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::loadPrivateKey() instead.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::loadPrivateKey() instead.
 	 */
 	public static function loadPrivateKey(SimpleSAML_Configuration $metadata, $required = FALSE, $prefix = '') {
-		return SimpleSAML_Utils_Crypto::loadPrivateKey($metadata, $required, $prefix);
+		return SimpleSAML\Utils\Crypto::loadPrivateKey($metadata, $required, $prefix);
 	}
 
 
@@ -1163,7 +1163,7 @@ class SimpleSAML_Utilities {
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->setData('core_postdatalink', $postId, $postData);
 
-		$redirInfo = base64_encode(SimpleSAML_Utils_Crypto::aesEncrypt($session->getSessionId() . ':' . $postId));
+		$redirInfo = base64_encode(SimpleSAML\Utils\Crypto::aesEncrypt($session->getSessionId() . ':' . $postId));
 
 		$url = SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $redirInfo));
 		$url = preg_replace("#^https:#", "http:", $url);
@@ -1571,18 +1571,18 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::aesEncrypt() instead.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::aesEncrypt() instead.
 	 */
 	public static function aesEncrypt($clear) {
-		return SimpleSAML_Utils_Crypto::aesEncrypt($clear);
+		return SimpleSAML\Utils\Crypto::aesEncrypt($clear);
 	}
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Crypto::aesDecrypt() instead.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::aesDecrypt() instead.
 	 */
 	public static function aesDecrypt($encData) {
-		return SimpleSAML_Utils_Crypto::aesDecrypt($encData);
+		return SimpleSAML\Utils\Crypto::aesDecrypt($encData);
 	}
 
 

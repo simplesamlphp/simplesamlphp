@@ -21,7 +21,7 @@ try {
 	$idpmeta = $metadata->getMetaDataConfig($idpentityid, 'shib13-idp-hosted');
 
 	$keys = array();
-	$certInfo = SimpleSAML_Utils_Crypto::loadPublicKey($idpmeta, FALSE, 'new_');
+	$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, FALSE, 'new_');
 	if ($certInfo !== NULL) {
 		$keys[] = array(
 			'type' => 'X509Certificate',
@@ -31,7 +31,7 @@ try {
 		);
 	}
 
-	$certInfo = SimpleSAML_Utils_Crypto::loadPublicKey($idpmeta, TRUE);
+	$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, TRUE);
 	$keys[] = array(
 		'type' => 'X509Certificate',
 		'signing' => TRUE,

@@ -29,8 +29,8 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 
 		SimpleSAML_Utilities::validateXMLDocument($response, 'saml11');
 
-		$privatekey = SimpleSAML_Utils_Crypto::loadPrivateKey($idpmd, TRUE);
-		$publickey = SimpleSAML_Utils_Crypto::loadPublicKey($idpmd, TRUE);
+		$privatekey = SimpleSAML\Utils\Crypto::loadPrivateKey($idpmd, TRUE);
+		$publickey = SimpleSAML\Utils\Crypto::loadPublicKey($idpmd, TRUE);
 
 		$responsedom = new DOMDocument();
 		$responsedom->loadXML(str_replace ("\r", "", $response));
