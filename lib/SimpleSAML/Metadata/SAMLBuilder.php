@@ -78,7 +78,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$xml = $this->getEntityDescriptor();
 		if ($formatted) {
-			SimpleSAML_Utilities::formatDOMElement($xml);
+			SimpleSAML\Utils\XML::formatDOMElement($xml);
 		}
 
 		return $xml->ownerDocument->saveXML();
