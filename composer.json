@@ -17,7 +17,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "SimpleSAML_": "lib/"
+            "SimpleSAML": "lib/"
         },
         "files": ["lib/_autoload_modules.php"]
     },
