@@ -1,12 +1,11 @@
 <?php
+namespace SimpleSAML\Utils;
+
 /**
  * Utility class for random data generation and manipulation.
  *
  * @package SimpleSAMLphp
  */
-
-namespace SimpleSAML\Utils;
-
 class Random
 {
 

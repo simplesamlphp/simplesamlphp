@@ -14,7 +14,7 @@ class SimpleSAML_Auth_TimeLimitedToken {
 	 */
 	public function __construct( $lifetime = 900, $secretSalt = NULL, $skew = 1) {
 		if ($secretSalt === NULL) {
-			$secretSalt = SimpleSAML_Utils_Config::getSecretSalt();
+			$secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
 		}
 	
 		$this->secretSalt = $secretSalt;

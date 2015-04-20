@@ -34,7 +34,7 @@ class SimpleSAML_Utils_Crypto
         $ivSize = mcrypt_get_iv_size($enc, $mode);
         $keySize = mcrypt_get_key_size($enc, $mode);
 
-        $key = hash('sha256', SimpleSAML_Utils_Config::getSecretSalt(), true);
+        $key = hash('sha256', SimpleSAML\Utils\Config::getSecretSalt(), true);
         $key = substr($key, 0, $keySize);
 
         $iv = substr($ciphertext, 0, $ivSize);
@@ -75,7 +75,7 @@ class SimpleSAML_Utils_Crypto
         $ivSize = mcrypt_get_iv_size($enc, $mode);
         $keySize = mcrypt_get_key_size($enc, $mode);
 
-        $key = hash('sha256', SimpleSAML_Utils_Config::getSecretSalt(), true);
+        $key = hash('sha256', SimpleSAML\Utils\Config::getSecretSalt(), true);
         $key = substr($key, 0, $keySize);
 
         $len = strlen($data);

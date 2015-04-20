@@ -1,12 +1,12 @@
 <?php
-
+namespace SimpleSAML\Utils;
 
 /**
  * Utility class for SimpleSAMLphp configuration management and manipulation.
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Utils_Config
+class Config
 {
 
     /**
@@ -21,14 +21,14 @@ class SimpleSAML_Utils_Config
      *
      * @return string The secret salt.
      *
-     * @throws SimpleSAML_Error_Exception If the secret salt hasn't been configured.
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no> 
+     * @throws \SimpleSAML_Error_Exception If the secret salt hasn't been configured.
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getSecretSalt()
     {
-        $secretSalt = SimpleSAML_Configuration::getInstance()->getString('secretsalt');
+        $secretSalt = \SimpleSAML_Configuration::getInstance()->getString('secretsalt');
         if ($secretSalt === 'defaultsecretsalt') {
-            throw new SimpleSAML_Error_Exception('The "secretsalt" configuration option must be set to a secret value.');
+            throw new \SimpleSAML_Error_Exception('The "secretsalt" configuration option must be set to a secret value.');
         }
 
         return $secretSalt;

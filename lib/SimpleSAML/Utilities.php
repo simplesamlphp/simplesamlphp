@@ -979,10 +979,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Config::getSecretSalt() instead.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Config::getSecretSalt() instead.
 	 */
 	public static function getSecretSalt() {
-		return SimpleSAML_Utils_Config::getSecretSalt();
+		return SimpleSAML\Utils\Config::getSecretSalt();
 	}
 
 

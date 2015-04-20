@@ -199,7 +199,7 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
     {
         assert('is_string($data)');
 
-        $secretSalt = SimpleSAML_Utils_Config::getSecretSalt();
+        $secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
 
         return sha1($secretSalt . $data . $secretSalt) . ':' . $data;
     }
