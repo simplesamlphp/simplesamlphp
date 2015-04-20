@@ -382,10 +382,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML_Utils_Random::generateID() instead.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Random::generateID() instead.
 	 */
 	public static function generateID() {
-		return SimpleSAML_Utils_Random::generateID();
+		return SimpleSAML\Utils\Random::generateID();
 	}
 
 
@@ -1127,7 +1127,7 @@ class SimpleSAML_Utilities {
 		if ($httpRedirect && preg_match("#^http:#", $destination) && self::isHTTPS()) {
 			$url = self::createHttpPostRedirectLink($destination, $post);
 		} else {
-			$postId = SimpleSAML_Utils_Random::generateID();
+			$postId = SimpleSAML\Utils\Random::generateID();
 			$postData = array(
 				'post' => $post,
 				'url' => $destination,
@@ -1154,7 +1154,7 @@ class SimpleSAML_Utilities {
 		assert('is_string($destination)');
 		assert('is_array($post)');
 
-		$postId = SimpleSAML_Utils_Random::generateID();
+		$postId = SimpleSAML\Utils\Random::generateID();
 		$postData = array(
 			'post' => $post,
 			'url' => $destination,

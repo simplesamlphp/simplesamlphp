@@ -41,7 +41,7 @@ $attributes = $as->getAttributes();
 
 $path = $casconfig->resolvePath($casconfig->getValue('ticketcache', '/tmp'));
 
-$ticket = str_replace( '_', 'ST-', SimpleSAML_Utils_Random::generateID() );
+$ticket = str_replace( '_', 'ST-', SimpleSAML\Utils\Random::generateID() );
 storeTicket($ticket, $path, array('service' => $service,
 	'forceAuthn' => $forceAuthn,
 	'attributes' => $attributes,

@@ -37,8 +37,8 @@ if (array_key_exists('editkey', $_REQUEST)) {
 } else {
 	$entry = array(
 		'owner' => $userid,
-		'key' => SimpleSAML_Utils_Random::generateID(),
-		'secret' => SimpleSAML_Utils_Random::generateID(),
+		'key' => SimpleSAML\Utils\Random::generateID(),
+		'secret' => SimpleSAML\Utils\Random::generateID(),
 	);
 }
 

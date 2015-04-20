@@ -26,7 +26,7 @@ $path = $casconfig->resolvePath($casconfig->getValue('ticketcache', 'ticketcache
 
 $ticket = retrieveTicket($pgt, $path, false);
 if ($ticket['validbefore'] > time()) {
-	$pt = str_replace( '_', 'PT-', SimpleSAML_Utils_Random::generateID() );
+	$pt = str_replace( '_', 'PT-', SimpleSAML\Utils\Random::generateID() );
 	storeTicket($pt, $path, array(
 		'service' => $targetService,
 		'forceAuthn' => false,

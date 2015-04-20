@@ -41,8 +41,8 @@ try {
 					
 		if (isset($_GET['pgtUrl'])) {
 			$pgtUrl = $_GET['pgtUrl'];
-			$pgtiou = str_replace( '_', 'PGTIOU-', SimpleSAML_Utils_Random::generateID());
-			$pgt = str_replace( '_', 'PGT-', SimpleSAML_Utils_Random::generateID());
+			$pgtiou = str_replace( '_', 'PGTIOU-', SimpleSAML\Utils\Random::generateID());
+			$pgt = str_replace( '_', 'PGT-', SimpleSAML\Utils\Random::generateID());
 			$content = array(
 				'attributes' => $attributes,
 				'forceAuthn' => false,

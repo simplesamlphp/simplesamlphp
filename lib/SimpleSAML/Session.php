@@ -408,7 +408,7 @@ class SimpleSAML_Session
 
         $this->authData[$authority] = $data;
 
-        $this->authToken = SimpleSAML_Utils_Random::generateID();
+        $this->authToken = SimpleSAML\Utils\Random::generateID();
         $sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
 
         if (!$this->transient && (!empty($data['RememberMe']) || $this->rememberMeExpire) &&

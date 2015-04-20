@@ -28,7 +28,7 @@ class sspmod_saml_Auth_Process_TransientNameID extends sspmod_saml_BaseNameIDGen
 	 */
 	protected function getValue(array &$state) {
 
-		return SimpleSAML_Utils_Random::generateID();
+		return SimpleSAML\Utils\Random::generateID();
 	}
 
 }

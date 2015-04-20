@@ -50,7 +50,7 @@ class sspmod_adfs_IdP_ADFS {
 		$issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
 		$notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
 		$assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 5);
-		$assertionID = SimpleSAML_Utils_Random::generateID();
+		$assertionID = SimpleSAML\Utils\Random::generateID();
 		$nameidFormat = 'http://schemas.xmlsoap.org/claims/UPN';
 		$result =
 '<wst:RequestSecurityTokenResponse xmlns:wst="http://schemas.xmlsoap.org/ws/2005/02/trust">
@@ -141,7 +141,7 @@ class sspmod_adfs_IdP_ADFS {
 			}
 			$nameid = $attributes[$nameidattribute][0];
 		} else {
-			$nameid = SimpleSAML_Utils_Random::generateID();
+			$nameid = SimpleSAML\Utils\Random::generateID();
 		}
 
 		$idp = SimpleSAML_IdP::getByState($state);		

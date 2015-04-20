@@ -167,7 +167,7 @@ function present_attributes($t, $attributes, $nameParent)
 
             $isHidden = in_array($nameraw, $t->data['hiddenAttributes'], true);
             if ($isHidden) {
-                $hiddenId = SimpleSAML_Utils_Random::generateID();
+                $hiddenId = SimpleSAML\Utils\Random::generateID();
 
                 $str .= '<div class="attrvalue" style="display: none;" id="hidden_' . $hiddenId . '">';
             } else {
