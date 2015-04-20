@@ -62,13 +62,101 @@ class Time
          * this error will be logged even if we prefix the function call with '@'.
          * Instead we temporarily replace the error handler.
          */
-        set_error_handler(function (){
-                return true;
-            });
+        set_error_handler(function () {
+            return true;
+        });
         $serverTimezone = date_default_timezone_get();
         restore_error_handler();
 
         // set the timezone to the default
         date_default_timezone_set($serverTimezone);
+    }
+
+
+    /**
+     * Interpret a ISO8601 duration value relative to a given timestamp.
+     *
+     * @param string $duration The duration, as a string.
+     * @param int    $timestamp The unix timestamp we should apply the duration to. Optional, default to the current
+     *     time.
+     *
+     * @return int The new timestamp, after the duration is applied.
+     * @throws \SimpleSAML_Error_Exception If $duration is not a valid ISO 8601 duration or if the input parameters do
+     *     not have the right data types.
+     */
+    public static function parseDuration($duration, $timestamp = null)
+    {
+        if (!(is_string($duration) && (is_int($timestamp) || is_null($timestamp)))) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters');
+        }
+
+        // parse the duration. We use a very strict pattern
+        $durationRegEx = '#^(-?)P(?:(?:(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)D)?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)(?:[.,]\d+)?S)?)?)|(?:(\\d+)W))$#D';
+        if (!preg_match($durationRegEx, $duration, $matches)) {
+            throw new \SimpleSAML_Error_Exception('Invalid ISO 8601 duration: '.$duration);
+        }
+
+        $durYears = (empty($matches[2]) ? 0 : (int) $matches[2]);
+        $durMonths = (empty($matches[3]) ? 0 : (int) $matches[3]);
+        $durDays = (empty($matches[4]) ? 0 : (int) $matches[4]);
+        $durHours = (empty($matches[5]) ? 0 : (int) $matches[5]);
+        $durMinutes = (empty($matches[6]) ? 0 : (int) $matches[6]);
+        $durSeconds = (empty($matches[7]) ? 0 : (int) $matches[7]);
+        $durWeeks = (empty($matches[8]) ? 0 : (int) $matches[8]);
+
+        if (!empty($matches[1])) {
+            // negative
+            $durYears = -$durYears;
+            $durMonths = -$durMonths;
+            $durDays = -$durDays;
+            $durHours = -$durHours;
+            $durMinutes = -$durMinutes;
+            $durSeconds = -$durSeconds;
+            $durWeeks = -$durWeeks;
+        }
+
+        if ($timestamp === null) {
+            $timestamp = time();
+        }
+
+        if ($durYears !== 0 || $durMonths !== 0) {
+            /* Special handling of months and years, since they aren't a specific interval, but
+             * instead depend on the current time.
+             */
+
+            /* We need the year and month from the timestamp. Unfortunately, PHP doesn't have the
+             * gmtime function. Instead we use the gmdate function, and split the result.
+             */
+            $yearmonth = explode(':', gmdate('Y:n', $timestamp));
+            $year = (int) ($yearmonth[0]);
+            $month = (int) ($yearmonth[1]);
+
+            // remove the year and month from the timestamp
+            $timestamp -= gmmktime(0, 0, 0, $month, 1, $year);
+
+            // add years and months, and normalize the numbers afterwards
+            $year += $durYears;
+            $month += $durMonths;
+            while ($month > 12) {
+                $year += 1;
+                $month -= 12;
+            }
+            while ($month < 1) {
+                $year -= 1;
+                $month += 12;
+            }
+
+            // add year and month back into timestamp
+            $timestamp += gmmktime(0, 0, 0, $month, 1, $year);
+        }
+
+        // add the other elements
+        $timestamp += $durWeeks * 7 * 24 * 60 * 60;
+        $timestamp += $durDays * 24 * 60 * 60;
+        $timestamp += $durHours * 60 * 60;
+        $timestamp += $durMinutes * 60;
+        $timestamp += $durSeconds;
+
+        return $timestamp;
     }
 }
