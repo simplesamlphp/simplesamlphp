@@ -58,7 +58,7 @@ class System
      * This function retrieves the path to a directory where temporary files can be saved.
      *
      * @return string Path to a temporary directory, without a trailing directory separator.
-     * @throws SimpleSAML_Error_Exception If the temporary directory cannot be created or it exists and does not belong
+     * @throws \SimpleSAML_Error_Exception If the temporary directory cannot be created or it exists and does not belong
      * to the current user.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
@@ -67,7 +67,7 @@ class System
      */
     public static function getTempDir()
     {
-        $globalConfig = SimpleSAML_Configuration::getInstance();
+        $globalConfig = \SimpleSAML_Configuration::getInstance();
 
         $tempDir = rtrim($globalConfig->getString('tempdir', sys_get_temp_dir().DIRECTORY_SEPARATOR.'simplesaml'),
             DIRECTORY_SEPARATOR);
@@ -75,14 +75,14 @@ class System
         if (!is_dir($tempDir)) {
             if (!mkdir($tempDir, 0700, true)) {
                 $error = error_get_last();
-                throw new SimpleSAML_Error_Exception('Error creating temporary directory "'.$tempDir.
+                throw new \SimpleSAML_Error_Exception('Error creating temporary directory "'.$tempDir.
                     '": '.$error['message']);
             }
         } elseif (function_exists('posix_getuid')) {
             // check that the owner of the temp directory is the current user
             $stat = lstat($tempDir);
             if ($stat['uid'] !== posix_getuid()) {
-                throw new SimpleSAML_Error_Exception('Temporary directory "'.$tempDir.
+                throw new \SimpleSAML_Error_Exception('Temporary directory "'.$tempDir.
                     '" does not belong to the current user.');
             }
         }
@@ -100,7 +100,7 @@ class System
      * @param string $data The data we should write to the file.
      * @param int    $mode The permissions to apply to the file. Defaults to 0600.
      *
-     * @throws SimpleSAML_Error_Exception If any of the input parameters doesn't have the proper types, or the file
+     * @throws \SimpleSAML_Error_Exception If any of the input parameters doesn't have the proper types, or the file
      *     cannot be saved, permissions cannot be changed or it is not possible to write to the target file.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
@@ -111,7 +111,7 @@ class System
     public static function writeFile($filename, $data, $mode = 0600)
     {
         if (!is_string($filename) || !is_string($data) || !is_numeric($mode)) {
-            throw new SimpleSAML_Error_Exception('Invalid input parameters');
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters');
         }
 
         $tmpFile = self::getTempDir().DIRECTORY_SEPARATOR.rand();
@@ -119,7 +119,7 @@ class System
         $res = @file_put_contents($tmpFile, $data);
         if ($res === false) {
             $error = error_get_last();
-            throw new SimpleSAML_Error_Exception('Error saving file "'.$tmpFile.
+            throw new \SimpleSAML_Error_Exception('Error saving file "'.$tmpFile.
                 '": '.$error['message']);
         }
 
@@ -127,7 +127,7 @@ class System
             if (!chmod($tmpFile, $mode)) {
                 unlink($tmpFile);
                 $error = error_get_last();
-                throw new SimpleSAML_Error_Exception('Error changing file mode of "'.$tmpFile.
+                throw new \SimpleSAML_Error_Exception('Error changing file mode of "'.$tmpFile.
                     '": '.$error['message']);
             }
         }
@@ -135,7 +135,7 @@ class System
         if (!rename($tmpFile, $filename)) {
             unlink($tmpFile);
             $error = error_get_last();
-            throw new SimpleSAML_Error_Exception('Error moving "'.$tmpFile.'" to "'.
+            throw new \SimpleSAML_Error_Exception('Error moving "'.$tmpFile.'" to "'.
                 $filename.'": '.$error['message']);
         }
     }
