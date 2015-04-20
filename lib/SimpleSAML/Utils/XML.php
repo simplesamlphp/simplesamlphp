@@ -131,6 +131,43 @@ class XML
 
 
     /**
+     * This function finds direct descendants of a DOM element with the specified
+     * localName and namespace. They are returned in an array.
+     *
+     * This function accepts the same shortcuts for namespaces as the isDOMElementOfType function.
+     *
+     * @param \DOMElement $element The element we should look in.
+     * @param string      $localName The name the element should have.
+     * @param string      $namespaceURI The namespace the element should have.
+     *
+     * @return array  Array with the matching elements in the order they are found. An empty array is
+     *         returned if no elements match.
+     */
+    public static function getDOMChildren(\DOMElement $element, $localName, $namespaceURI)
+    {
+        assert('is_string($localName)');
+        assert('is_string($namespaceURI)');
+
+        $ret = array();
+
+        for ($i = 0; $i < $element->childNodes->length; $i++) {
+            $child = $element->childNodes->item($i);
+
+            // skip text nodes and comment elements
+            if ($child instanceof \DOMText || $child instanceof \DOMComment) {
+                continue;
+            }
+
+            if (self::isDOMElementOfType($child, $localName, $namespaceURI) === true) {
+                $ret[] = $child;
+            }
+        }
+
+        return $ret;
+    }
+
+
+    /**
      * This function extracts the text from DOMElements which should contain only text content.
      *
      * @param \DOMElement $element The element we should extract text from.

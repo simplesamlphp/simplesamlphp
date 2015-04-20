@@ -1017,7 +1017,7 @@ class SimpleSAML_Metadata_SAMLParser {
 				$name = $attribute->getAttribute('Name');
 				$values = array_map(
 					array('SimpleSAML\Utils\XML', 'getDOMText'),
-					SimpleSAML_Utilities::getDOMChildren($attribute, 'AttributeValue', '@saml2')
+                    SimpleSAML\Utils\XML::getDOMChildren($attribute, 'AttributeValue', '@saml2')
 				);
 
 				if ($name === 'tags') {

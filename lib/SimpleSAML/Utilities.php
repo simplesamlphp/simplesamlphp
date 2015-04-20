@@ -661,37 +661,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * This function finds direct descendants of a DOM element with the specified
-	 * localName and namespace. They are returned in an array.
-	 *
-	 * This function accepts the same shortcuts for namespaces as the isDOMElementOfType function.
-	 *
-	 * @param DOMElement $element  The element we should look in.
-	 * @param string $localName  The name the element should have.
-	 * @param string $namespaceURI  The namespace the element should have.
-	 * @return array  Array with the matching elements in the order they are found. An empty array is
-	 *         returned if no elements match.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::getDOMChildren() instead.
 	 */
 	public static function getDOMChildren(DOMElement $element, $localName, $namespaceURI) {
-		assert('is_string($localName)');
-		assert('is_string($namespaceURI)');
-
-		$ret = array();
-
-		for($i = 0; $i < $element->childNodes->length; $i++) {
-			$child = $element->childNodes->item($i);
-
-			/* Skip text nodes and comment elements. */
-			if($child instanceof DOMText || $child instanceof DOMComment) {
-				continue;
-			}
-
-			if(self::isDOMElementOfType($child, $localName, $namespaceURI) === TRUE) {
-				$ret[] = $child;
-			}
-		}
-
-		return $ret;
+		return SimpleSAML\Utils\XML::getDOMChildren($element, $localName, $namespaceURI);
 	}
 
 

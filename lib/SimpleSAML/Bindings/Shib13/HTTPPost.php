@@ -67,7 +67,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		if ($signResponse) {
 			/* Sign the response - this must be done after encrypting the assertion. */
 			/* We insert the signature before the saml2p:Status element. */
-			$statusElements = SimpleSAML_Utilities::getDOMChildren($responseroot, 'Status', '@saml1p');
+			$statusElements = SimpleSAML\Utils\XML::getDOMChildren($responseroot, 'Status', '@saml1p');
 			assert('count($statusElements) === 1');
 			$signer->sign($responseroot, $responseroot, $statusElements[0]);
 

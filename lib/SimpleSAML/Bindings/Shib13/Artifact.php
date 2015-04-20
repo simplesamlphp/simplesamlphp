@@ -84,14 +84,14 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 			throw new SimpleSAML_Error_Exception('Expected artifact response to contain a <soap:Envelope> element.');
 		}
 
-		$soapBody = SimpleSAML_Utilities::getDOMChildren($soapEnvelope, 'Body', 'http://schemas.xmlsoap.org/soap/envelope/');
+		$soapBody = SimpleSAML\Utils\XML::getDOMChildren($soapEnvelope, 'Body', 'http://schemas.xmlsoap.org/soap/envelope/');
 		if (count($soapBody) === 0) {
 			throw new SimpleSAML_Error_Exception('Couldn\'t find <soap:Body> in <soap:Envelope>.');
 		}
 		$soapBody = $soapBody[0];
 
 
-		$responseElement = SimpleSAML_Utilities::getDOMChildren($soapBody, 'Response', 'urn:oasis:names:tc:SAML:1.0:protocol');
+		$responseElement = SimpleSAML\Utils\XML::getDOMChildren($soapBody, 'Response', 'urn:oasis:names:tc:SAML:1.0:protocol');
 		if (count($responseElement) === 0) {
 			throw new SimpleSAML_Error_Exception('Couldn\'t find <saml1p:Response> in <soap:Body>.');
 		}
