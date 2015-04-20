@@ -93,4 +93,35 @@ class XML
         // add indentation before closing tag
         $root->appendChild(new DOMText("\n".$indentBase));
     }
+
+    /**
+     * Format an XML string.
+     *
+     * This function formats an XML string using the formatDOMElement() function.
+     *
+     * @param string $xml An XML string which should be formatted.
+     * @param string $indentBase Optional indentation which should be applied to all the output. Optional, defaults
+     * to ''.
+     *
+     * @return string The formatted string.
+     *
+     * @throws SimpleSAML_Error_Exception If the input does not parse correctly as an XML string.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function formatXMLString($xml, $indentBase = '')
+    {
+        assert('is_string($xml)');
+        assert('is_string($indentBase)');
+
+        $doc = new DOMDocument();
+        if (!$doc->loadXML($xml)) {
+            throw new SimpleSAML_Error_Exception('Error parsing XML string.');
+        }
+
+        $root = $doc->firstChild;
+        self::formatDOMElement($root, $indentBase);
+
+        return $doc->saveXML($root);
+    }
 }

@@ -1226,28 +1226,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Format an XML string.
-	 *
-	 * This function formats an XML string using the formatDOMElement function.
-	 *
-	 * @param string $xml  XML string which should be formatted.
-	 * @param string $indentBase  Optional indentation which should be applied to all
-	 *                            the output. Optional, defaults to ''.
-	 * @return string  Formatted string.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::formatXMLString() instead.
 	 */
 	public static function formatXMLString($xml, $indentBase = '') {
-		assert('is_string($xml)');
-		assert('is_string($indentBase)');
-
-		$doc = new DOMDocument();
-		if (!$doc->loadXML($xml)) {
-			throw new Exception('Error parsing XML string.');
-		}
-
-		$root = $doc->firstChild;
-		SimpleSAML\Utils\XML::formatDOMElement($root);
-
-		return $doc->saveXML($root);
+		return SimpleSAML\Utils\XML::formatXMLString($xml, $indentBase);
 	}
 
 	/**
@@ -1715,7 +1697,7 @@ class SimpleSAML_Utilities {
 			assert(FALSE);
 		}
 
-		$str = self::formatXMLString($message);
+		$str = SimpleSAML\Utils\XML::formatXMLString($message);
 		foreach (explode("\n", $str) as $line) {
 			SimpleSAML_Logger::debug($line);
 		}
