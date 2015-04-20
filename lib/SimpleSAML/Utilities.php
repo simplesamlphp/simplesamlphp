@@ -752,28 +752,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * This function extracts the text from DOMElements which should contain
-	 * only text content.
-	 *
-	 * @param $element The element we should extract text from.
-	 * @return The text content of the element.
+	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::getDOMText() instead.
 	 */
 	public static function getDOMText($element) {
-		assert('$element instanceof DOMElement');
-
-		$txt = '';
-
-		for($i = 0; $i < $element->childNodes->length; $i++) {
-			$child = $element->childNodes->item($i);
-			if(!($child instanceof DOMText)) {
-				throw new Exception($element->localName . ' contained a non-text child node.');
-			}
-
-			$txt .= $child->wholeText;
-		}
-
-		$txt = trim($txt);
-		return $txt;
+		return SimpleSAML\Utils\XML::getDOMText($element);
 	}
 
 

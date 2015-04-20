@@ -1016,7 +1016,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 				$name = $attribute->getAttribute('Name');
 				$values = array_map(
-					array('SimpleSAML_Utilities', 'getDOMText'),
+					array('SimpleSAML\Utils\XML', 'getDOMText'),
 					SimpleSAML_Utilities::getDOMChildren($attribute, 'AttributeValue', '@saml2')
 				);
 

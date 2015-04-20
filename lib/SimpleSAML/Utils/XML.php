@@ -127,4 +127,35 @@ class XML
 
         return $doc->saveXML($root);
     }
+
+
+    /**
+     * This function extracts the text from DOMElements which should contain only text content.
+     *
+     * @param \DOMElement $element The element we should extract text from.
+     *
+     * @return string The text content of the element.
+     * @throws \SimpleSAML_Error_Exception If the element contains a non-text child node.
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function getDOMText(\DOMElement $element)
+    {
+        if (!($element instanceof \DOMElement)) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters');
+        }
+
+        $txt = '';
+
+        for ($i = 0; $i < $element->childNodes->length; $i++) {
+            $child = $element->childNodes->item($i);
+            if (!($child instanceof \DOMText)) {
+                throw new \SimpleSAML_Error_Exception($element->localName.' contained a non-text child node.');
+            }
+
+            $txt .= $child->wholeText;
+        }
+
+        $txt = trim($txt);
+        return $txt;
+    }
 }
