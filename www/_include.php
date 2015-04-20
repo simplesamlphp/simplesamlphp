@@ -106,6 +106,6 @@ if (!file_exists($configdir . '/config.php')) {
 }
 
 /* Set the timezone. */
-SimpleSAML_Utilities::initTimezone();
+SimpleSAML\Utils\Time::initTimezone();
 /* Disable XML external entity loading explicitly. */
 libxml_disable_entity_loader();
