@@ -37,7 +37,7 @@ if($config->getBoolean('idpdisco.enableremember', FALSE)) {
 
 
 $links_federation[] = array(
-	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/metadata-converter.php',
+	'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/metadata-converter.php',
 	'text' => '{core:frontpage:link_xmlconvert}',
 );
 

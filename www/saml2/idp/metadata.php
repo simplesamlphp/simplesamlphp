@@ -105,7 +105,7 @@ try {
 		/* Artifact sending enabled. */
 		$metaArray['ArtifactResolutionService'][] = array(
 			'index' => 0,
-			'Location' => SimpleSAML_Utilities::getBaseURL() . 'saml2/idp/ArtifactResolutionService.php',
+			'Location' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'saml2/idp/ArtifactResolutionService.php',
 			'Binding' => SAML2_Const::BINDING_SOAP,
 		);
 	}
@@ -115,7 +115,7 @@ try {
 		array_unshift($metaArray['SingleSignOnService'], array(
 			'hoksso:ProtocolBinding' => SAML2_Const::BINDING_HTTP_REDIRECT,
 			'Binding' => SAML2_Const::BINDING_HOK_SSO,
-			'Location' => SimpleSAML_Utilities::getBaseURL() . 'saml2/idp/SSOService.php'));
+			'Location' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php'));
 	}
 
 	$metaArray['NameIDFormat'] = $idpmeta->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');

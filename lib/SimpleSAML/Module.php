@@ -155,7 +155,7 @@ class SimpleSAML_Module {
 		assert('is_string($resource)');
 		assert('$resource[0] !== "/"');
 
-		$url = SimpleSAML_Utilities::getBaseURL() . 'module.php/' . $resource;
+		$url = \SimpleSAML\Utils\HTTP::getBaseURL() . 'module.php/' . $resource;
 		if (!empty($parameters)) {
 			$url = \SimpleSAML\Utils\HTTP::addURLParameters($url, $parameters);
 		}

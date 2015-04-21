@@ -208,6 +208,47 @@ class HTTP
 
 
     /**
+     * Retrieve the base URL of the SimpleSAMLphp installation. The URL will always end with a '/'. For example:
+     *      https://idp.example.org/simplesaml/
+     *
+     * @return string The absolute base URL for the simpleSAMLphp installation.
+     * @throws \SimpleSAML_Error_Exception If 'baseurlpath' has an invalid format.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function getBaseURL()
+    {
+        $globalConfig = \SimpleSAML_Configuration::getInstance();
+        $baseURL = $globalConfig->getString('baseurlpath', 'simplesaml/');
+
+        if (preg_match('#^https?://.*/$#D', $baseURL, $matches)) {
+            // full URL in baseurlpath, override local server values
+            return $baseURL;
+        } elseif (
+            (preg_match('#^/?([^/]?.*/)$#D', $baseURL, $matches)) ||
+            (preg_match('#^\*(.*)/$#D', $baseURL, $matches)) ||
+            ($baseURL === '')
+        ) {
+            // get server values
+            $protocol = 'http';
+            $protocol .= (self::getServerHTTPS()) ? 's' : '';
+            $protocol .= '://';
+
+            $hostname = self::getServerHost();
+            $port = self::getServerPort();
+            $path = '/'.$globalConfig->getBaseURL();
+
+            return $protocol.$hostname.$port.$path;
+        } else {
+            throw new \SimpleSAML_Error_Exception('Invalid value for \'baseurlpath\' in '.
+                'config.php. Valid format is in the form: '.
+                '[(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]. '.
+                'It must end with a \'/\'.');
+        }
+    }
+
+
+    /**
      * Parse a query string into an array.
      *
      * This function parses a query string into an array, similar to the way the builtin 'parse_str' works, except it

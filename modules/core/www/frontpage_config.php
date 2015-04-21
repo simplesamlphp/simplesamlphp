@@ -44,12 +44,12 @@ $links_federation = array();
 
 
 $links_config[] = array(
-	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/hostnames.php',
+	'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/hostnames.php',
 	'text' => '{core:frontpage:link_diagnostics}'
 );
 
 $links_config[] = array(
-	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/phpinfo.php',
+	'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/phpinfo.php',
 	'text' => '{core:frontpage:link_phpinfo}'
 );
 

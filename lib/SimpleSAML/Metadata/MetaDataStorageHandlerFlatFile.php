@@ -116,7 +116,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
 	private function generateDynamicHostedEntityID($set) {
 
 		/* Get the configuration. */
-		$baseurl = SimpleSAML_Utilities::getBaseURL();
+		$baseurl = \SimpleSAML\Utils\HTTP::getBaseURL();
 
 		if ($set === 'saml20-idp-hosted') {
 			return $baseurl . 'saml2/idp/metadata.php';

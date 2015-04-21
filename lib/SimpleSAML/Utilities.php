@@ -208,46 +208,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Retrieve and return the absolute base URL for the simpleSAMLphp installation.
-	 *
-	 * For example: https://idp.example.org/simplesaml/
-	 *
-	 * The URL will always end with a '/'.
-	 *
-	 * @return string  The absolute base URL for the simpleSAMLphp installation.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::getBaseURL() instead.
 	 */
 	public static function getBaseURL() {
-
-		$globalConfig = SimpleSAML_Configuration::getInstance();
-		$baseURL = $globalConfig->getString('baseurlpath', 'simplesaml/');
-		
-		if (preg_match('#^https?://.*/$#D', $baseURL, $matches)) {
-			/* full URL in baseurlpath, override local server values */
-			return $baseURL;
-		} elseif (
-			(preg_match('#^/?([^/]?.*/)$#D', $baseURL, $matches)) ||
-			(preg_match('#^\*(.*)/$#D', $baseURL, $matches)) ||
-			($baseURL === '')) {
-			/* get server values */
-
-			if (self::getServerHTTPS()) {
-				$protocol = 'https://';
-			} else {
-				$protocol = 'http://';
-			}
-
-			$hostname = self::getServerHost();
-			$port = self::getServerPort();
-			$path = '/' . $globalConfig->getBaseURL();
-
-			return $protocol.$hostname.$port.$path;
-		} else {
-			throw new SimpleSAML_Error_Exception('Invalid value of \'baseurl\' in '.
-				'config.php. Valid format is in the form: '.
-				'[(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]. '.
-				'It must end with a \'/\'.');
-		}
-
+		return \SimpleSAML\Utils\HTTP::getBaseURL();
 	}
 
 

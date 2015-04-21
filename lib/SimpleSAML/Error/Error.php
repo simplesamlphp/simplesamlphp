@@ -265,7 +265,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 		if($config->getBoolean('errorreporting', TRUE) &&
 			$config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org') {
 			/* Enable error reporting. */
-			$baseurl = SimpleSAML_Utilities::getBaseURL();
+			$baseurl = \SimpleSAML\Utils\HTTP::getBaseURL();
 			$data['errorReportAddress'] = $baseurl . 'errorreport.php';
 		}
 
