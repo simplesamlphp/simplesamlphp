@@ -939,33 +939,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Parse a query string into an array.
-	 *
-	 * This function parses a query string into an array, similar to the way the builtin
-	 * 'parse_str' works, except it doesn't handle arrays, and it doesn't do "magic quotes".
-	 *
-	 * Query parameters without values will be set to an empty string.
-	 *
-	 * @param $query_string  The query string which should be parsed.
-	 * @return The query string as an associative array.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::parseQueryString() instead.
 	 */
 	public static function parseQueryString($query_string) {
-		assert('is_string($query_string)');
-
-		$res = array();
-		foreach(explode('&', $query_string) as $param) {
-			$param = explode('=', $param);
-			$name = urldecode($param[0]);
-			if(count($param) === 1) {
-				$value = '';
-			} else {
-				$value = urldecode($param[1]);
-			}
-
-			$res[$name] = $value;
-		}
-
-		return $res;
+		return \SimpleSAML\Utils\HTTP::parseQueryString($query_string);
 	}
 
 

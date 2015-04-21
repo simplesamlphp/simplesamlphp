@@ -87,4 +87,40 @@ class HTTP
         }
         return $port;
     }
+
+
+    /**
+     * Parse a query string into an array.
+     *
+     * This function parses a query string into an array, similar to the way the builtin 'parse_str' works, except it
+     * doesn't handle arrays, and it doesn't do "magic quotes".
+     *
+     * Query parameters without values will be set to an empty string.
+     *
+     * @param string $query_string The query string which should be parsed.
+     *
+     * @return array The query string as an associative array.
+     * @throws \SimpleSAML_Error_Exception If $query_string is not a string.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function parseQueryString($query_string)
+    {
+        if (!is_string($query_string)) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters');
+        }
+
+        $res = array();
+        foreach (explode('&', $query_string) as $param) {
+            $param = explode('=', $param);
+            $name = urldecode($param[0]);
+            if (count($param) === 1) {
+                $value = '';
+            } else {
+                $value = urldecode($param[1]);
+            }
+            $res[$name] = $value;
+        }
+        return $res;
+    }
 }
