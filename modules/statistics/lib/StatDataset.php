@@ -213,8 +213,7 @@ class sspmod_statistics_StatDataset {
 		$dateformat_period = $this->timeresconfig->getValue('dateformat-period');
 		$dateformat_intra =  $this->timeresconfig->getValue('dateformat-intra'); 
 		$axislabelint =  $this->timeresconfig->getValue('axislabelint');
-	
-		#$max = 25;
+
 		$xentries = count($this->results);
 		$lastslot = 0; $i = 0;
 

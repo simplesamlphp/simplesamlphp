@@ -150,7 +150,7 @@ class sspmod_statistics_Aggregator {
 					if (isset($tresconfig['customDateHandler'])) $dh = $tresconfig['customDateHandler'];
 			
 					$timeslot = $datehandler['default']->toSlot($epoch, $tresconfig['slot']);
-					$fileslot = $datehandler[$dh]->toSlot($epoch, $tresconfig['fileslot']); //print_r($content);
+					$fileslot = $datehandler[$dh]->toSlot($epoch, $tresconfig['fileslot']);
 				
 					if (isset($rule['action']) && ($action !== $rule['action'])) continue;
 
@@ -232,7 +232,6 @@ class sspmod_statistics_Aggregator {
 				
 					// The last slot.
 					$maxslot = $slotlist[count($slotlist)-1];
-					#print_r($slotlist); 
 		
 					// Get start and end slot number within the file, based on the fileslot.
 					$start = (int)$datehandler['default']->toSlot(
