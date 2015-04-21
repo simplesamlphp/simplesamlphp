@@ -194,8 +194,8 @@ class HTTP
      * Save the given HTTP POST data and the destination where it should be posted to a given session.
      *
      * @param \SimpleSAML_Session $session The session where to temporarily store the data.
-     * @param string $destination The destination URL where the form should be posted.
-     * @param array  $data An associative array with the data to be posted to $destination.
+     * @param string              $destination The destination URL where the form should be posted.
+     * @param array               $data An associative array with the data to be posted to $destination.
      *
      * @return string A random identifier that can be used to retrieve the data from the current session.
      *
@@ -819,6 +819,80 @@ class HTTP
         $dir = self::resolvePath($dir, $baseDir);
 
         return $baseHost.$dir.$tail;
+    }
+
+
+    /**
+     * Set a cookie.
+     *
+     * @param string      $name The name of the cookie.
+     * @param string|NULL $value The value of the cookie. Set to NULL to delete the cookie.
+     * @param array|NULL  $params Cookie parameters.
+     * @param bool        $throw Whether to throw exception if setcookie() fails.
+     *
+     * @throws \SimpleSAML_Error_Exception If any parameter has an incorrect type or the if the headers were already
+     *     sent and the cookie cannot be set.
+     *
+     * @author Andjelko Horvat
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function setCookie($name, $value, $params = null, $throw = true)
+    {
+        if (!(is_string($name) && // $name must be a string
+            (is_string($value) || is_null($value)) && // $value can be a string or null
+            (is_array($params) || is_null($params)) && // $params can be an array or null
+            is_bool($throw)) // $throw must be boolean
+        ) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
+
+        $default_params = array(
+            'lifetime' => 0,
+            'expire'   => null,
+            'path'     => '/',
+            'domain'   => null,
+            'secure'   => false,
+            'httponly' => true,
+            'raw'      => false,
+        );
+
+        if ($params !== null) {
+            $params = array_merge($default_params, $params);
+        } else {
+            $params = $default_params;
+        }
+
+        // Do not set secure cookie if not on HTTPS
+        if ($params['secure'] && !self::isHTTPS()) {
+            \SimpleSAML_Logger::warning('Setting secure cookie on plain HTTP is not allowed.');
+            return;
+        }
+
+        if ($value === null) {
+            $expire = time() - 365 * 24 * 60 * 60;
+        } elseif (isset($params['expire'])) {
+            $expire = $params['expire'];
+        } elseif ($params['lifetime'] === 0) {
+            $expire = 0;
+        } else {
+            $expire = time() + $params['lifetime'];
+        }
+
+        if ($params['raw']) {
+            $success = setrawcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'],
+                $params['httponly']);
+        } else {
+            $success = setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'],
+                $params['httponly']);
+        }
+
+        if (!$success) {
+            if ($throw) {
+                throw new \SimpleSAML_Error_Exception('Error setting cookie: headers already sent.');
+            } else {
+                \SimpleSAML_Logger::warning('Error setting cookie: headers already sent.');
+            }
+        }
     }
 
 

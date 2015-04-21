@@ -57,7 +57,7 @@ if ($organizations === NULL || !empty($organization)) {
 			$params = $sessionHandler->getCookieParams();
 			$params['expire'] = time();
 			$params['expire'] += (isset($_REQUEST['remember_username']) && $_REQUEST['remember_username'] == 'Yes' ? 31536000 : -300);
-			SimpleSAML_Utilities::setCookie($source->getAuthId() . '-username', $username, $params, FALSE);
+            \SimpleSAML\Utils\HTTP::setCookie($source->getAuthId() . '-username', $username, $params, FALSE);
 		}
 
 		try {

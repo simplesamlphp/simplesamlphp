@@ -197,7 +197,7 @@ class SimpleSAML_XHTML_IdPDisco {
 			'httponly' => FALSE,
 		);
 
-		SimpleSAML_Utilities::setCookie($prefixedName, $value, $params, FALSE);
+        \SimpleSAML\Utils\HTTP::setCookie($prefixedName, $value, $params, FALSE);
 	}
 
 

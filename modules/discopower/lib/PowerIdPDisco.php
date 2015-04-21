@@ -306,7 +306,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 			'secure' => TRUE,
 			'httponly' => FALSE,
 		);
-		SimpleSAML_Utilities::setCookie('_saml_idp', $newCookie, $params, FALSE);
+        \SimpleSAML\Utils\HTTP::setCookie('_saml_idp', $newCookie, $params, FALSE);
 	}
 
 

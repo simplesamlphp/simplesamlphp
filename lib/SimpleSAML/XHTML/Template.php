@@ -711,7 +711,7 @@ class SimpleSAML_XHTML_Template {
 			'httponly' => FALSE,
 		);
 
-		SimpleSAML_Utilities::setCookie($name, $language, $params, FALSE);
+        \SimpleSAML\Utils\HTTP::setCookie($name, $language, $params, FALSE);
 	}
 
 }

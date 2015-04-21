@@ -279,7 +279,7 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
             $params['secure'] = false;
         }
 
-        SimpleSAML_Utilities::setCookie($name, $value, $params, FALSE);
+        \SimpleSAML\Utils\HTTP::setCookie($name, $value, $params, FALSE);
     }
 
 }

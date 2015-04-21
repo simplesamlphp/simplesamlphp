@@ -211,7 +211,7 @@ class sspmod_cdc_Server {
 			'httponly' => FALSE,
 		);
 
-		SimpleSAML_Utilities::setCookie('_saml_idp', NULL, $params, FALSE);
+        \SimpleSAML\Utils\HTTP::setCookie('_saml_idp', NULL, $params, FALSE);
 		return 'ok';
 	}
 
@@ -407,7 +407,7 @@ class sspmod_cdc_Server {
 			'httponly' => FALSE,
 		);
 
-		SimpleSAML_Utilities::setCookie('_saml_idp', $cookie, $params, FALSE);
+        \SimpleSAML\Utils\HTTP::setCookie('_saml_idp', $cookie, $params, FALSE);
 	}
 
 }

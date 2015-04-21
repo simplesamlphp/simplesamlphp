@@ -155,7 +155,7 @@ abstract class SimpleSAML_SessionHandler {
 			$params = $this->getCookieParams();
 		}
 
-		SimpleSAML_Utilities::setCookie($name, $value, $params);
+		\SimpleSAML\Utils\HTTP::setCookie($name, $value, $params);
 	}
 
 }
