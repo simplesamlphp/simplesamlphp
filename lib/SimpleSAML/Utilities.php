@@ -35,32 +35,6 @@ class SimpleSAML_Utilities {
 		return \SimpleSAML\Utils\HTTP::getSelfHost();
 	}
 
-	/**
-	 * Retrieve Host value from $_SERVER environment variables
-	 */
-	private static function getServerHost() {
-
-		if (array_key_exists('HTTP_HOST', $_SERVER)) {
-			$currenthost = $_SERVER['HTTP_HOST'];
-		} elseif (array_key_exists('SERVER_NAME', $_SERVER)) {
-			$currenthost = $_SERVER['SERVER_NAME'];
-		} else {
-			/* Almost certainly not what you want, but ... */
-			$currenthost = 'localhost';
-		}
-
-		if(strstr($currenthost, ":")) {
-				$currenthostdecomposed = explode(":", $currenthost);
-				$port = array_pop($currenthostdecomposed);
-				if (!is_numeric($port)) {
-					array_push($currenthostdecomposed, $port);
-                }
-                $currenthost = implode($currenthostdecomposed, ":");
-		}
-		return $currenthost;
-
-	}
-
 
 	/**
 	 * Will return https://sp.example.org[:PORT]
@@ -96,50 +70,6 @@ class SimpleSAML_Utilities {
 
 	}
 
-	/**
-	 * retrieve HTTPS status from $_SERVER environment variables
-	 */
-	private static function getServerHTTPS() {
-
-		if(!array_key_exists('HTTPS', $_SERVER)) {
-			/* Not an https-request. */
-			return FALSE;
-		}
-
-		if($_SERVER['HTTPS'] === 'off') {
-			/* IIS with HTTPS off. */
-			return FALSE;
-		}
-
-		/* Otherwise, HTTPS will be a non-empty string. */
-		return $_SERVER['HTTPS'] !== '';
-
-	}
-
-
-	/**
-	 * Retrieve port number from $_SERVER environment variables
-	 * return it as a string such as ":80" if different from
-	 * protocol default port, otherwise returns an empty string
-	 */
-	private static function getServerPort() {
-
-		if (isset($_SERVER["SERVER_PORT"])) {
-			$portnumber = $_SERVER["SERVER_PORT"];
-		} else {
-			$portnumber = 80;
-		}
-		$port = ':' . $portnumber;
-
-		if (self::getServerHTTPS()) {
-			if ($portnumber == '443') $port = '';
-		} else {
-			if ($portnumber == '80') $port = '';
-		}
-
-		return $port;
-
-	}
 
 	/**
 	 * Will return https://sp.example.org/universities/ruc/baz/simplesaml/saml2/SSOService.php
