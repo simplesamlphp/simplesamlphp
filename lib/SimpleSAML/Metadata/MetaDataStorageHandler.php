@@ -187,7 +187,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 		assert('is_string($set)');
 
 		/* First we look for the hostname/path combination. */
-		$currenthostwithpath = SimpleSAML_Utilities::getSelfHostWithPath(); // sp.example.org/university
+		$currenthostwithpath = \SimpleSAML\Utils\HTTP::getSelfHostWithPath(); // sp.example.org/university
 
 		foreach($this->sources as $source) {
 			$index = $source->getEntityIdFromHostPath($currenthostwithpath, $set, $type);

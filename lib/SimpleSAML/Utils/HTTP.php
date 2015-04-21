@@ -319,7 +319,7 @@ class HTTP
     /**
      * Retrieve our own host.
      *
-     * @return string The current host.
+     * @return string The current host (with non-default ports included).
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
@@ -332,6 +332,24 @@ class HTTP
         $length = strcspn($url, '/:', $start);
 
         return substr($url, $start, $length);
+    }
+
+
+    /**
+     * Retrieve our own host together with the URL path. Please note this function will return the base URL for the
+     * current SP, as defined in the global configuration.
+     *
+     * @return string The current host (with non-default ports included) plus the URL path.
+     *
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function getSelfHostWithPath()
+    {
+        $baseurl = explode("/", self::getBaseURL());
+        $elements = array_slice($baseurl, 3 - count($baseurl), count($baseurl) - 4);
+        $path = implode("/", $elements);
+        return self::getSelfHost()."/".$path;
     }
 
 

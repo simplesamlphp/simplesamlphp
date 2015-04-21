@@ -20,7 +20,7 @@ $attributes['Utilities_getBaseURL()'] = array(\SimpleSAML\Utils\HTTP::getBaseURL
 $attributes['Utilities_getSelfHost()'] = array(\SimpleSAML\Utils\HTTP::getSelfHost());
 $attributes['Utilities_selfURLhost()'] = array(SimpleSAML_Utilities::selfURLhost());
 $attributes['Utilities_selfURLNoQuery()'] = array(SimpleSAML_Utilities::selfURLNoQuery());
-$attributes['Utilities_getSelfHostWithPath()'] = array(SimpleSAML_Utilities::getSelfHostWithPath());
+$attributes['Utilities_getSelfHostWithPath()'] = array(\SimpleSAML\Utils\HTTP::getSelfHostWithPath());
 $attributes['Utilities_getFirstPathElement()'] = array(SimpleSAML_Utilities::getFirstPathElement());
 $attributes['Utilities_selfURL()'] = array(SimpleSAML_Utilities::selfURL());
 

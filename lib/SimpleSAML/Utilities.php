@@ -87,18 +87,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Will return sp.example.org/ssp/sp1
-	 *
-	 * Please note this function will return the base URL for the current
-	 * SP, as defined in the global configuration.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::getSelfHostWithPath() instead.
 	 */
 	public static function getSelfHostWithPath() {
-	
-		$baseurl = explode("/", self::getBaseURL());
-		$elements = array_slice($baseurl, 3 - count($baseurl), count($baseurl) - 4);
-		$path = implode("/", $elements);
-		$selfhostwithpath = self::getSelfHost();
-		return $selfhostwithpath . "/" . $path;
+		return \SimpleSAML\Utils\HTTP::getSelfHostWithPath();
 	}
 	
 	/**
