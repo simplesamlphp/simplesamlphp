@@ -208,6 +208,96 @@ class HTTP
 
 
     /**
+     * Helper function to retrieve a file or URL with proxy support.
+     *
+     * An exception will be thrown if we are unable to retrieve the data.
+     *
+     * @param string  $url The path or URL we should fetch.
+     * @param array   $context Extra context options. This parameter is optional.
+     * @param boolean $getHeaders Whether to also return response headers. Optional.
+     *
+     * @return mixed array if $getHeaders is set, string otherwise
+     * @throws \SimpleSAML_Error_Exception If the input parameters are invalid or the file or URL cannot be retrieved.
+     *
+     * @author Andjelko Horvat
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Marco Ferrante, University of Genova <marco@csita.unige.it>
+     */
+    public static function fetch($url, $context = array(), $getHeaders = false)
+    {
+        if (!is_string($url)) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
+
+        $config = \SimpleSAML_Configuration::getInstance();
+
+        $proxy = $config->getString('proxy', null);
+        if ($proxy !== null) {
+            if (!isset($context['http']['proxy'])) {
+                $context['http']['proxy'] = $proxy;
+            }
+            if (!isset($context['http']['request_fulluri'])) {
+                $context['http']['request_fulluri'] = true;
+            }
+            /*
+             * If the remote endpoint over HTTPS uses the SNI extension (Server Name Indication RFC 4366), the proxy
+             * could introduce a mismatch between the names in the Host: HTTP header and the SNI_server_name in TLS
+             * negotiation (thanks to Cristiano Valli @ GARR-IDEM to have pointed this problem).
+             * See: https://bugs.php.net/bug.php?id=63519
+             * These controls will force the same value for both fields.
+             * Marco Ferrante (marco@csita.unige.it), Nov 2012
+             */
+            if (preg_match('#^https#i', $url)
+                && defined('OPENSSL_TLSEXT_SERVER_NAME')
+                && OPENSSL_TLSEXT_SERVER_NAME
+            ) {
+                // extract the hostname
+                $hostname = parse_url($url, PHP_URL_HOST);
+                if (!empty($hostname)) {
+                    $context['ssl'] = array(
+                        'SNI_server_name' => $hostname,
+                        'SNI_enabled'     => true,
+                    );
+                } else {
+                    \SimpleSAML_Logger::warning('Invalid URL format or local URL used through a proxy');
+                }
+            }
+        }
+
+        $context = stream_context_create($context);
+        $data = file_get_contents($url, false, $context);
+        if ($data === false) {
+            $error = error_get_last();
+            throw new \SimpleSAML_Error_Exception('Error fetching '.var_export($url, true).':'.$error['message']);
+        }
+
+        // data and headers.
+        if ($getHeaders) {
+            if (isset($http_response_header)) {
+                $headers = array();
+                foreach ($http_response_header as $h) {
+                    if (preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
+                        $headers = array(); // reset
+                        $headers[0] = $h;
+                        continue;
+                    }
+                    $bits = explode(':', $h, 2);
+                    if (count($bits) === 2) {
+                        $headers[strtolower($bits[0])] = trim($bits[1]);
+                    }
+                }
+            } else {
+                // no HTTP headers, probably a different protocol, e.g. file
+                $headers = null;
+            }
+            return array($data, $headers);
+        }
+
+        return $data;
+    }
+
+
+    /**
      * This function parses the Accept-Language HTTP header and returns an associative array with each language and the
      * score for that language. If a language includes a region, then the result will include both the language with
      * the region and the language without the region.

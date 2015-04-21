@@ -178,7 +178,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	public static function parseFile($file) {
 		$doc = new DOMDocument();
 
-		$data = SimpleSAML_Utilities::fetch($file);
+		$data = \SimpleSAML\Utils\HTTP::fetch($file);
 
 		$res = $doc->loadXML($data);
 		if($res !== TRUE) {
@@ -248,7 +248,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		if ($file === NULL) throw new Exception('Cannot open file NULL. File name not specified.');
 
-		$data = SimpleSAML_Utilities::fetch($file);
+		$data = \SimpleSAML\Utils\HTTP::fetch($file);
 
 		$doc = new DOMDocument();
 		$res = $doc->loadXML($data);

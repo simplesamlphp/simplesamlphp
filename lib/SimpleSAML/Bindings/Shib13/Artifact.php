@@ -161,7 +161,7 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 		);
 
 		/* Fetch the artifact. */
-		$response = SimpleSAML_Utilities::fetch($url, $opts);
+		$response = \SimpleSAML\Utils\HTTP::fetch($url, $opts);
 		if ($response === FALSE) {
 			throw new SimpleSAML_Error_Exception('Failed to retrieve assertion from IdP.');
 		}

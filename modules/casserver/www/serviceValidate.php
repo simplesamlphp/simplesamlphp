@@ -48,7 +48,7 @@ try {
 				'forceAuthn' => false,
 				'proxies' => array_merge(array($service), $ticketcontent['proxies']),
 				'validbefore' => time() + 60);
-			SimpleSAML_Utilities::fetch($pgtUrl . '?pgtIou=' . $pgtiou . '&pgtId=' . $pgt);
+			\SimpleSAML\Utils\HTTP::fetch($pgtUrl . '?pgtIou=' . $pgtiou . '&pgtId=' . $pgt);
 			storeTicket($pgt, $path, $content);
 			$pgtiouxml = "\n<cas:proxyGrantingTicket>$pgtiou</cas:proxyGrantingTicket>\n";
 		}

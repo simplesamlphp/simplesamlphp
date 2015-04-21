@@ -93,7 +93,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 				'ticket' => $ticket,
 				'service' => $service,
 		));
-		$result = SimpleSAML_Utilities::fetch($url);
+		$result = \SimpleSAML\Utils\HTTP::fetch($url);
 		$res = preg_split("/\r?\n/",$result);
 
 		if (strcmp($res[0], "yes") == 0) {
@@ -116,7 +116,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 				'ticket' => $ticket,
 				'service' => $service,
 		));
-		$result = SimpleSAML_Utilities::fetch($url);
+		$result = \SimpleSAML\Utils\HTTP::fetch($url);
 
 		$dom = DOMDocument::loadXML($result);
 		$xPath = new DOMXpath($dom);

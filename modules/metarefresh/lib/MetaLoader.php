@@ -50,7 +50,7 @@ class sspmod_metarefresh_MetaLoader {
 
 			// GET!
 			try {
-				list($data, $responseHeaders) = SimpleSAML_Utilities::fetch($source['src'], $context, TRUE);
+				list($data, $responseHeaders) = \SimpleSAML\Utils\HTTP::fetch($source['src'], $context, TRUE);
 			} catch(Exception $e) {
 				SimpleSAML_Logger::warning('metarefresh: ' . $e->getMessage());
 			}

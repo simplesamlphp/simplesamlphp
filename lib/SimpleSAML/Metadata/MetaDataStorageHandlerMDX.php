@@ -253,7 +253,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 
 		SimpleSAML_Logger::debug('MetaData - Handler.MDX: Downloading metadata for "'. $index .'" from [' . $mdx_url . ']' );
 		try {
-			$xmldata = SimpleSAML_Utilities::fetch($mdx_url);
+			$xmldata = \SimpleSAML\Utils\HTTP::fetch($mdx_url);
 		} catch(Exception $e) {
 			SimpleSAML_Logger::warning('Fetching metadata for ' . $index . ': ' . $e->getMessage());
 		}
