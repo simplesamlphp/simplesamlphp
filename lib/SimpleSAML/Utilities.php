@@ -37,16 +37,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Will return https://sp.example.org[:PORT]
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::getSelfURLHost() instead.
 	 */
 	public static function selfURLhost() {
-
-		$url = self::getBaseURL();
-
-		$start = strpos($url,'://') + 3;
-		$length = strcspn($url,'/',$start) + $start;
-
-		return substr($url, 0, $length);
+		return \SimpleSAML\Utils\HTTP::getSelfURLHost();
 	}
 
 	

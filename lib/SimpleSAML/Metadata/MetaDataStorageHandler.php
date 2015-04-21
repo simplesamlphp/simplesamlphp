@@ -89,7 +89,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 		$config = SimpleSAML_Configuration::getInstance();
 		assert($config instanceof SimpleSAML_Configuration);
 		
-		$baseurl = SimpleSAML_Utilities::selfURLhost() . '/' . 
+		$baseurl = \SimpleSAML\Utils\HTTP::getSelfURLHost() . '/' .
 			$config->getBaseURL();
 		
 		if ($set == 'saml20-sp-hosted') {
