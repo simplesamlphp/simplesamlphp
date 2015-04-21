@@ -198,7 +198,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 
 	
 		/* Then we look for the hostname. */
-		$currenthost = SimpleSAML_Utilities::getSelfHost(); // sp.example.org
+		$currenthost = \SimpleSAML\Utils\HTTP::getSelfHost(); // sp.example.org
 		if(strpos($currenthost, ":") !== FALSE) {
 			$currenthostdecomposed = explode(":", $currenthost);
 			$currenthost = $currenthostdecomposed[0];

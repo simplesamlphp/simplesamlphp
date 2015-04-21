@@ -17,7 +17,7 @@ $attributes['SERVER_PROTOCOL'] = array($_SERVER['SERVER_PROTOCOL']);
 $attributes['SERVER_PORT'] = array($_SERVER['SERVER_PORT']);
 
 $attributes['Utilities_getBaseURL()'] = array(\SimpleSAML\Utils\HTTP::getBaseURL());
-$attributes['Utilities_getSelfHost()'] = array(SimpleSAML_Utilities::getSelfHost());
+$attributes['Utilities_getSelfHost()'] = array(\SimpleSAML\Utils\HTTP::getSelfHost());
 $attributes['Utilities_selfURLhost()'] = array(SimpleSAML_Utilities::selfURLhost());
 $attributes['Utilities_selfURLNoQuery()'] = array(SimpleSAML_Utilities::selfURLNoQuery());
 $attributes['Utilities_getSelfHostWithPath()'] = array(SimpleSAML_Utilities::getSelfHostWithPath());

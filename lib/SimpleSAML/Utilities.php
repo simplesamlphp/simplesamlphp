@@ -29,19 +29,12 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Will return sp.example.org
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::getSelfHost() instead.
 	 */
 	public static function getSelfHost() {
-
-		$url = self::getBaseURL();
-
-		$start = strpos($url,'://') + 3;
-		$length = strcspn($url,'/:',$start);
-
-		return substr($url, $start, $length);
-
+		return \SimpleSAML\Utils\HTTP::getSelfHost();
 	}
-	
+
 	/**
 	 * Retrieve Host value from $_SERVER environment variables
 	 */

@@ -317,6 +317,25 @@ class HTTP
 
 
     /**
+     * Retrieve our own host.
+     *
+     * @return string The current host.
+     *
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function getSelfHost()
+    {
+        $url = self::getBaseURL();
+
+        $start = strpos($url, '://') + 3;
+        $length = strcspn($url, '/:', $start);
+
+        return substr($url, $start, $length);
+    }
+
+
+    /**
      * Parse a query string into an array.
      *
      * This function parses a query string into an array, similar to the way the builtin 'parse_str' works, except it
