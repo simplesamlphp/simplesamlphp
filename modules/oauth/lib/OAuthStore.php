@@ -63,7 +63,7 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore {
 		if ($oConsumer && ($oConsumer->callback_url)) $url = $oConsumer->callback_url;
 		
 		$verifier = SimpleSAML\Utils\Random::generateID();
-		$url = SimpleSAML_Utilities::addURLparameter($url, array("oauth_verifier"=>$verifier));
+		$url = \SimpleSAML\Utils\HTTP::addURLParameters($url, array("oauth_verifier"=>$verifier));
 		
 		$this->store->set('authorized', $requestTokenKey, $verifier, $data, $this->config->getValue('requestTokenDuration', 60*30) );
 		

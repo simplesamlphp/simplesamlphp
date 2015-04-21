@@ -91,7 +91,7 @@ class sspmod_oauth_Consumer {
 		if ($callback) {
 			$params['oauth_callback'] = $callback;
 		}
-		$authorizeURL = SimpleSAML_Utilities::addURLparameter($url, $params);
+		$authorizeURL = \SimpleSAML\Utils\HTTP::addURLParameters($url, $params);
 		if ($redirect) {
 			SimpleSAML_Utilities::redirectTrustedURL($authorizeURL);
 			exit;

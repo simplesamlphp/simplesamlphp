@@ -49,7 +49,7 @@ storeTicket($ticket, $path, array('service' => $service,
 	'validbefore' => time() + 5));
 
 SimpleSAML_Utilities::redirectTrustedURL(
-	SimpleSAML_Utilities::addURLparameter($service,
+    \SimpleSAML\Utils\HTTP::addURLParameters($service,
 		array('ticket' => $ticket)
 	)
 );

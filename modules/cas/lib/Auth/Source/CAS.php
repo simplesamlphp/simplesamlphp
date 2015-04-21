@@ -89,7 +89,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 	 * @return list username and attributes
 	 */
 	private function casValidate($ticket, $service){
-		$url = SimpleSAML_Utilities::addURLparameter($this->_casConfig['validate'], array(
+		$url = \SimpleSAML\Utils\HTTP::addURLParameters($this->_casConfig['validate'], array(
 				'ticket' => $ticket,
 				'service' => $service,
 		));
@@ -112,7 +112,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 	 * @return list username and attributes
 	 */
 	private function casServiceValidate($ticket, $service){
-		$url = SimpleSAML_Utilities::addURLparameter($this->_casConfig['serviceValidate'], array(
+		$url = \SimpleSAML\Utils\HTTP::addURLParameters($this->_casConfig['serviceValidate'], array(
 				'ticket' => $ticket,
 				'service' => $service,
 		));

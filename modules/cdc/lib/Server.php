@@ -324,7 +324,7 @@ class sspmod_cdc_Server {
 			'Signature' => $signature,
 		);
 
-		$url = SimpleSAML_Utilities::addURLparameter($to, $params);
+		$url = \SimpleSAML\Utils\HTTP::addURLParameters($to, $params);
 		if (strlen($url) < 2048) {
 			SimpleSAML_Utilities::redirectTrustedURL($url);
 		} else {

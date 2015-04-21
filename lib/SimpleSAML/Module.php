@@ -157,7 +157,7 @@ class SimpleSAML_Module {
 
 		$url = SimpleSAML_Utilities::getBaseURL() . 'module.php/' . $resource;
 		if (!empty($parameters)) {
-			$url = SimpleSAML_Utilities::addURLparameter($url, $parameters);
+			$url = \SimpleSAML\Utils\HTTP::addURLParameters($url, $parameters);
 		}
 		return $url;
 	}

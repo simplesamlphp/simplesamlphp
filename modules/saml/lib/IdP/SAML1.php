@@ -115,7 +115,7 @@ class sspmod_saml_IdP_SAML1 {
 			'protocol' => 'saml1',
 		));
 
-		$sessionLostURL = SimpleSAML_Utilities::addURLparameter(
+		$sessionLostURL = \SimpleSAML\Utils\HTTP::addURLParameters(
 			SimpleSAML_Utilities::selfURL(),
 			array('cookieTime' => time()));
 

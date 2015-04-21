@@ -361,7 +361,7 @@ class sspmod_saml_IdP_SAML2 {
 			$sessionLostParams['RelayState'] = $relayState;
 		}
 
-		$sessionLostURL = SimpleSAML_Utilities::addURLparameter(
+		$sessionLostURL = \SimpleSAML\Utils\HTTP::addURLParameters(
 			SimpleSAML_Utilities::selfURLNoQuery(),
 			$sessionLostParams);
 

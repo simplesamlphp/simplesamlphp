@@ -66,6 +66,46 @@ class HTTP
 
 
     /**
+     * Add one or more query parameters to the given URL.
+     *
+     * @param string $url The URL the query parameters should be added to.
+     * @param array  $parameters The query parameters which should be added to the url. This should be an associative
+     *     array.
+     *
+     * @return string The URL with the new query parameters.
+     * @throws \SimpleSAML_Error_Exception If $url is not a string or $parameters is not an array.
+     *
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function addURLParameters($url, $parameters)
+    {
+        if (!is_string($url) || !is_array($parameters)) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
+
+        $queryStart = strpos($url, '?');
+        if ($queryStart === false) {
+            $oldQuery = array();
+            $url .= '?';
+        } else {
+            $oldQuery = substr($url, $queryStart + 1);
+            if ($oldQuery === false) {
+                $oldQuery = array();
+            } else {
+                $oldQuery = self::parseQueryString($oldQuery);
+            }
+            $url = substr($url, 0, $queryStart + 1);
+        }
+
+        $query = array_merge($oldQuery, $parameters);
+        $url .= http_build_query($query, '', '&');
+
+        return $url;
+    }
+
+
+    /**
      * Retrieve the port number from $_SERVER environment variables.
      *
      * @return string The port number prepended by a colon, if it is different than the default port for the protocol
@@ -107,7 +147,7 @@ class HTTP
     public static function parseQueryString($query_string)
     {
         if (!is_string($query_string)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters');
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
         }
 
         $res = array();
