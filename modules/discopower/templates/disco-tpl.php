@@ -63,7 +63,7 @@ function showEntry($t, $metadata, $favourite = FALSE) {
 	$html .= '' . htmlspecialchars(getTranslatedName($t, $metadata)) . '';
 
 	if(array_key_exists('icon', $metadata) && $metadata['icon'] !== NULL) {
-		$iconUrl = SimpleSAML_Utilities::resolveURL($metadata['icon']);
+		$iconUrl = \SimpleSAML\Utils\HTTP::resolveURL($metadata['icon']);
 		$html .= '<img alt="Icon for identity provider" class="entryicon" src="' . htmlspecialchars($iconUrl) . '" />';
 	}
 

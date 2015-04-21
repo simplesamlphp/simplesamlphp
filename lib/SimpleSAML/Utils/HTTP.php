@@ -515,4 +515,91 @@ class HTTP
 
         return $ret;
     }
+
+
+    /**
+     * Resolve a (possibly relative) URL relative to a given base URL.
+     *
+     * This function supports these forms of relative URLs:
+     * - ^\w+: Absolute URL. E.g. "http://www.example.com:port/path?query#fragment".
+     * - ^// Same protocol. E.g. "//www.example.com:port/path?query#fragment".
+     * - ^/ Same protocol and host. E.g. "/path?query#fragment".
+     * - ^? Same protocol, host and path, replace query string & fragment. E.g. "?query#fragment".
+     * - ^# Same protocol, host, path and query, replace fragment. E.g. "#fragment".
+     * - The rest: Relative to the base path.
+     *
+     * @param string $url The relative URL.
+     * @param string $base The base URL. Defaults to the base URL of this installation of SimpleSAMLphp.
+     *
+     * @return string An absolute URL for the given relative URL.
+     * @throws \SimpleSAML_Error_Exception If the base URL cannot be parsed into a valid URL, or the given parameters
+     *     are not strings.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function resolveURL($url, $base = null)
+    {
+        if ($base === null) {
+            $base = self::getBaseURL();
+        }
+
+        if (!is_string($url) || !is_string($base)) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
+
+        if (!preg_match('/^((((\w+:)\/\/[^\/]+)(\/[^?#]*))(?:\?[^#]*)?)(?:#.*)?/', $base, $baseParsed)) {
+            throw new \SimpleSAML_Error_Exception('Unable to parse base url: '.$base);
+        }
+
+        $baseDir = dirname($baseParsed[5].'filename');
+        $baseScheme = $baseParsed[4];
+        $baseHost = $baseParsed[3];
+        $basePath = $baseParsed[2];
+        $baseQuery = $baseParsed[1];
+
+        if (preg_match('$^\w+:$', $url)) {
+            return $url;
+        }
+
+        if (substr($url, 0, 2) === '//') {
+            return $baseScheme.$url;
+        }
+
+        $firstChar = substr($url, 0, 1);
+        if ($firstChar === '/') {
+            return $baseHost.$url;
+        }
+        if ($firstChar === '?') {
+            return $basePath.$url;
+        }
+        if ($firstChar === '#') {
+            return $baseQuery.$url;
+        }
+
+        // we have a relative path. Remove query string/fragment and save it as $tail
+        $queryPos = strpos($url, '?');
+        $fragmentPos = strpos($url, '#');
+        if ($queryPos !== false || $fragmentPos !== false) {
+            if ($queryPos === false) {
+                $tailPos = $fragmentPos;
+            } elseif ($fragmentPos === false) {
+                $tailPos = $queryPos;
+            } elseif ($queryPos < $fragmentPos) {
+                $tailPos = $queryPos;
+            } else {
+                $tailPos = $fragmentPos;
+            }
+
+            $tail = substr($url, $tailPos);
+            $dir = substr($url, 0, $tailPos);
+        } else {
+            $dir = $url;
+            $tail = '';
+        }
+
+        $dir = self::resolvePath($dir, $baseDir);
+
+        return $baseHost.$dir.$tail;
+    }
 }

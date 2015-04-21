@@ -551,82 +551,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Resolve a (possibly) relative URL relative to a given base URL.
-	 *
-	 * This function supports these forms of relative URLs:
-	 *  ^\w+: Absolute URL
-	 *  ^// Same protocol.
-	 *  ^/ Same protocol and host.
-	 *  ^? Same protocol, host and path, replace query string & fragment
-	 *  ^# Same protocol, host, path and query, replace fragment
-	 *  The rest: Relative to the base path.
-	 *
-	 * @param $url  The relative URL.
-	 * @param $base  The base URL. Defaults to the base URL of this installation of simpleSAMLphp.
-	 * @return An absolute URL for the given relative URL.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::resolveURL() instead.
 	 */
 	public static function resolveURL($url, $base = NULL) {
-		if($base === NULL) {
-			$base = self::getBaseURL();
-		}
-
-		if(!preg_match('/^((((\w+:)\/\/[^\/]+)(\/[^?#]*))(?:\?[^#]*)?)(?:#.*)?/', $base, $baseParsed)) {
-			throw new Exception('Unable to parse base url: ' . $base);
-		}
-
-		$baseDir = dirname($baseParsed[5] . 'filename');
-		$baseScheme = $baseParsed[4];
-		$baseHost = $baseParsed[3];
-		$basePath = $baseParsed[2];
-		$baseQuery = $baseParsed[1];
-
-		if(preg_match('$^\w+:$', $url)) {
-			return $url;
-		}
-
-		if(substr($url, 0, 2) === '//') {
-			return $baseScheme . $url;
-		}
-
-		$firstChar = substr($url, 0, 1);
-
-		if($firstChar === '/') {
-			return $baseHost . $url;
-		}
-
-		if($firstChar === '?') {
-			return $basePath . $url;
-		}
-
-		if($firstChar === '#') {
-			return $baseQuery . $url;
-		}
-
-
-		/* We have a relative path. Remove query string/fragment and save it as $tail. */
-		$queryPos = strpos($url, '?');
-		$fragmentPos = strpos($url, '#');
-		if($queryPos !== FALSE || $fragmentPos !== FALSE) {
-			if($queryPos === FALSE) {
-				$tailPos = $fragmentPos;
-			} elseif($fragmentPos === FALSE) {
-				$tailPos = $queryPos;
-			} elseif($queryPos < $fragmentPos) {
-				$tailPos = $queryPos;
-			} else {
-				$tailPos = $fragmentPos;
-			}
-
-			$tail = substr($url, $tailPos);
-			$dir = substr($url, 0, $tailPos);
-		} else {
-			$dir = $url;
-			$tail = '';
-		}
-
-		$dir = self::resolvePath($dir, $baseDir);
-
-		return $baseHost . $dir . $tail;
+		return \SimpleSAML\Utils\HTTP::resolveURL($url, $base);
 	}
 
 
