@@ -141,7 +141,7 @@ class SimpleSAML_XHTML_Template {
 	 *         languages in the header were available.
 	 */
 	private function getHTTPLanguage() {
-		$languageScore = SimpleSAML_Utilities::getAcceptLanguage();
+		$languageScore = \SimpleSAML\Utils\HTTP::getAcceptLanguage();
 
 		/* For now we only use the default language map. We may use a configurable language map
 		 * in the future.

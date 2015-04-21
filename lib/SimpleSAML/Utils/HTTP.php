@@ -208,6 +208,74 @@ class HTTP
 
 
     /**
+     * This function parses the Accept-Language HTTP header and returns an associative array with each language and the
+     * score for that language. If a language includes a region, then the result will include both the language with
+     * the region and the language without the region.
+     *
+     * The returned array will be in the same order as the input.
+     *
+     * @return array An associative array with each language and the score for that language.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function getAcceptLanguage()
+    {
+        if (!array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
+            // no Accept-Language header, return an empty set
+            return array();
+        }
+
+        $languages = explode(',', strtolower($_SERVER['HTTP_ACCEPT_LANGUAGE']));
+
+        $ret = array();
+
+        foreach ($languages as $l) {
+            $opts = explode(';', $l);
+
+            $l = trim(array_shift($opts)); // the language is the first element
+
+            $q = 1.0;
+
+            // iterate over all options, and check for the quality option
+            foreach ($opts as $o) {
+                $o = explode('=', $o);
+                if (count($o) < 2) {
+                    // skip option with no value
+                    continue;
+                }
+
+                $name = trim($o[0]);
+                $value = trim($o[1]);
+
+                if ($name === 'q') {
+                    $q = (float) $value;
+                }
+            }
+
+            // remove the old key to ensure that the element is added to the end
+            unset($ret[$l]);
+
+            // set the quality in the result
+            $ret[$l] = $q;
+
+            if (strpos($l, '-')) {
+                // the language includes a region part
+
+                // extract the language without the region
+                $l = explode('-', $l);
+                $l = $l[0];
+
+                // add this language to the result (unless it is defined already)
+                if (!array_key_exists($l, $ret)) {
+                    $ret[$l] = $q;
+                }
+            }
+        }
+        return $ret;
+    }
+
+
+    /**
      * Retrieve the base URL of the SimpleSAMLphp installation. The URL will always end with a '/'. For example:
      *      https://idp.example.org/simplesaml/
      *
