@@ -429,6 +429,35 @@ class HTTP
 
 
     /**
+     * Normalizes a URL to an absolute URL and validate it. In addition to resolving the URL, this function makes sure
+     * that it is a link to an http or https site.
+     *
+     * @param string $url The relative URL.
+     *
+     * @return string An absolute URL for the given relative URL.
+     * @throws \SimpleSAML_Error_Exception If $url is not a string or a valid URL.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function normalizeURL($url)
+    {
+        if (!is_string($url)) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
+
+        $url = self::resolveURL($url, self::getSelfURL());
+
+        // verify that the URL is to a http or https site
+        if (!preg_match('@^https?://@i', $url)) {
+            throw new \SimpleSAML_Error_Exception('Invalid URL: '.$url);
+        }
+
+        return $url;
+    }
+
+
+    /**
      * Parse a query string into an array.
      *
      * This function parses a query string into an array, similar to the way the builtin 'parse_str' works, except it

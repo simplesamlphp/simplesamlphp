@@ -559,25 +559,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Normalizes a URL to an absolute URL and validate it.
-	 *
-	 * In addition to resolving the URL, this function makes sure that it is
-	 * a link to a http or https site.
-	 *
-	 * @param string $url  The relative URL.
-	 * @return string  An absolute URL for the given relative URL.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::normalizeURL() instead.
 	 */
 	public static function normalizeURL($url) {
-		assert('is_string($url)');
-
-		$url = SimpleSAML_Utilities::resolveURL($url, SimpleSAML_Utilities::selfURL());
-
-		/* Verify that the URL is to a http or https site. */
-		if (!preg_match('@^https?://@i', $url)) {
-			throw new SimpleSAML_Error_Exception('Invalid URL: ' . $url);
-		}
-
-		return $url;
+		return \SimpleSAML\Utils\HTTP::normalizeURL($url);
 	}
 
 
