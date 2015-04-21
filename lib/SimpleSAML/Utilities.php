@@ -770,7 +770,7 @@ class SimpleSAML_Utilities {
 	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Auth::requireAdmin() instead.
 	 */
 	public static function requireAdmin() {
-		return SimpleSAML\Utils\Auth::requireAdmin();
+		\SimpleSAML\Utils\Auth::requireAdmin();
 	}
 
 
@@ -996,7 +996,7 @@ class SimpleSAML_Utilities {
 	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Time::initTimezone() instead.
 	 */
 	public static function initTimezone() {
-		return SimpleSAML\Utils\Time::initTimezone();
+		\SimpleSAML\Utils\Time::initTimezone();
 	}
 
 	/**
@@ -1016,7 +1016,7 @@ class SimpleSAML_Utilities {
 	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\System::writeFile() instead.
 	 */
 	public static function writeFile($filename, $data, $mode=0600) {
-		return SimpleSAML\Utils\System::writeFile($filename, $data, $mode);
+		\SimpleSAML\Utils\System::writeFile($filename, $data, $mode);
 	}
 
 
