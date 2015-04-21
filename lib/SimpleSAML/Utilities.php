@@ -45,23 +45,10 @@ class SimpleSAML_Utilities {
 
 	
 	/**
-	 * This function checks if we should set a secure cookie.
-	 *
-	 * @return TRUE if the cookie should be secure, FALSE otherwise.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::isHTTPS() instead.
 	 */
 	public static function isHTTPS() {
-
-		$url = self::getBaseURL();
-
-		$end = strpos($url,'://');
-		$protocol = substr($url, 0, $end);
-
-		if ($protocol === 'https') {
-			return TRUE;
-		} else {
-			return FALSE;
-		}
-
+		return \SimpleSAML\Utils\HTTP::isHTTPS();
 	}
 
 

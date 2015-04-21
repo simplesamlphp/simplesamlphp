@@ -429,6 +429,20 @@ class HTTP
 
 
     /**
+     * This function checks if we are using HTTPS as protocol.
+     *
+     * @return boolean True if the HTTPS is used, false otherwise.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function isHTTPS()
+    {
+        return strpos(self::getBaseURL(), 'https://') === 0;
+    }
+
+
+    /**
      * Normalizes a URL to an absolute URL and validate it. In addition to resolving the URL, this function makes sure
      * that it is a link to an http or https site.
      *

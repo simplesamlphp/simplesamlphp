@@ -610,7 +610,7 @@ class sspmod_saml_Message {
 			$scd = $sc->SubjectConfirmationData;
 			if ($sc->Method === SAML2_Const::CM_HOK) {
 				/* Check HoK Assertion */
-				if (SimpleSAML_Utilities::isHTTPS() === FALSE) {
+				if (\SimpleSAML\Utils\HTTP::isHTTPS() === FALSE) {
 				    $lastError = 'No HTTPS connection, but required for Holder-of-Key SSO';
 				    continue;
 				}

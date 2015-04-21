@@ -272,7 +272,7 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
             'httponly' => FALSE,
         );
 
-        if (SimpleSAML_Utilities::isHTTPS()) {
+        if (\SimpleSAML\Utils\HTTP::isHTTPS()) {
             /* Enable secure cookie for https-requests. */
             $params['secure'] = true;
         } else {

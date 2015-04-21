@@ -829,7 +829,7 @@ class sspmod_saml_IdP_SAML2 {
 		if ($hokAssertion) {
 			/* Holder-of-Key */
 			$sc->Method = SAML2_Const::CM_HOK;
-			if (SimpleSAML_Utilities::isHTTPS()) {
+			if (\SimpleSAML\Utils\HTTP::isHTTPS()) {
 				if (isset($_SERVER['SSL_CLIENT_CERT']) && !empty($_SERVER['SSL_CLIENT_CERT'])) {
 					/* Extract certificate data (if this is a certificate). */
 					$clientCert = $_SERVER['SSL_CLIENT_CERT'];
