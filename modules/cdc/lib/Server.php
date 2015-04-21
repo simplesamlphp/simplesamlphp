@@ -328,7 +328,7 @@ class sspmod_cdc_Server {
 		if (strlen($url) < 2048) {
 			SimpleSAML_Utilities::redirectTrustedURL($url);
 		} else {
-			SimpleSAML_Utilities::postRedirect($to, $params);
+            \SimpleSAML\Utils\HTTP::submitPOSTData($to, $params);
 		}
 	}
 

@@ -675,72 +675,22 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Do a POST redirect to a page.
-	 *
-	 * This function never returns.
-	 *
-	 * @param string $destination  The destination URL.
-	 * @param array $post  An array of name-value pairs which will be posted.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::submitPOSTData() instead.
 	 */
 	public static function postRedirect($destination, $post) {
-		assert('is_string($destination)');
-		assert('is_array($post)');
-
-		$config = SimpleSAML_Configuration::getInstance();
-		$httpRedirect = $config->getBoolean('enable.http_post', FALSE);
-
-		if ($httpRedirect && preg_match("#^http:#", $destination) && self::isHTTPS()) {
-			$url = self::createHttpPostRedirectLink($destination, $post);
-			self::redirect($url);
-			assert('FALSE');
-		}
-
-		$p = new SimpleSAML_XHTML_Template($config, 'post.php');
-		$p->data['destination'] = $destination;
-		$p->data['post'] = $post;
-		$p->show();
-		exit(0);
+		\SimpleSAML\Utils\HTTP::submitPOSTData($destination, $post);
 	}
 
 	/**
-	 * Create a link which will POST data.
-	 *
-	 * @param string $destination  The destination URL.
-	 * @param array $post  The name-value pairs which will be posted to the destination.
-	 * @return string  A URL which can be accessed to post the data.
+	 * @deprecated This method will be removed in SSP 2.0. PLease use SimpleSAML\Utils\HTTP::getPOSTRedirectURL() instead.
 	 */
 	public static function createPostRedirectLink($destination, $post) {
-		assert('is_string($destination)');
-		assert('is_array($post)');
-
-		$config = SimpleSAML_Configuration::getInstance();
-		$httpRedirect = $config->getBoolean('enable.http_post', FALSE);
-
-		if ($httpRedirect && preg_match("#^http:#", $destination) && self::isHTTPS()) {
-			$url = self::createHttpPostRedirectLink($destination, $post);
-		} else {
-			$postId = SimpleSAML\Utils\Random::generateID();
-			$postData = array(
-				'post' => $post,
-				'url' => $destination,
-			);
-
-			$session = SimpleSAML_Session::getSessionFromRequest();
-			$session->setData('core_postdatalink', $postId, $postData);
-
-			$url = SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirId' => $postId));
-		}
-
-		return $url;
+		return \SimpleSAML\Utils\HTTP::getPOSTRedirectURL($destination, $post);
 	}
 
 
 	/**
-	 * Create a link which will POST data to HTTP in a secure way.
-	 *
-	 * @param string $destination  The destination URL.
-	 * @param array $post  The name-value pairs which will be posted to the destination.
-	 * @return string  A URL which can be accessed to post the data.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::getPOSTRedirectURL() instead.
 	 */
 	public static function createHttpPostRedirectLink($destination, $post) {
 		assert('is_string($destination)');

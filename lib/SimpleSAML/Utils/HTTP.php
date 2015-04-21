@@ -11,6 +11,29 @@ class HTTP
 {
 
     /**
+     * Obtain a URL where we can redirect to securely post a form with the given data to a specific destination.
+     *
+     * @param string $destination The destination URL.
+     * @param array  $data An associative array containing the data to be posted to $destination.
+     *
+     * @return string  A URL which allows to securely post a form to $destination.
+     *
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    private static function getSecurePOSTRedirectURL($destination, $data)
+    {
+        $session = \SimpleSAML_Session::getSessionFromRequest();
+        $id = self::savePOSTData($session, $destination, $data);
+
+        // encrypt the session ID and the random ID
+        $info = base64_encode(Crypto::aesEncrypt($session->getSessionId().':'.$id));
+
+        $url = \SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $info));
+        return preg_replace('#^https:#', 'http:', $url);
+    }
+
+
+    /**
      * Retrieve Host value from $_SERVER environment variables.
      *
      * @return string The current host name, including the port if needed. It will use localhost when unable to
@@ -164,6 +187,34 @@ class HTTP
 
         // end script execution
         exit;
+    }
+
+
+    /**
+     * Save the given HTTP POST data and the destination where it should be posted to a given session.
+     *
+     * @param \SimpleSAML_Session $session The session where to temporarily store the data.
+     * @param string $destination The destination URL where the form should be posted.
+     * @param array  $data An associative array with the data to be posted to $destination.
+     *
+     * @return string A random identifier that can be used to retrieve the data from the current session.
+     *
+     * @author Andjelko Horvat
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    private static function savePOSTData(\SimpleSAML_Session $session, $destination, $data)
+    {
+        // generate a random ID to avoid replay attacks
+        $id = Random::generateID();
+        $postData = array(
+            'post' => $data,
+            'url'  => $destination,
+        );
+
+        // save the post data to the session, tied to the random ID
+        $session->setData('core_postdatalink', $id, $postData);
+
+        return $id;
     }
 
 
@@ -421,6 +472,40 @@ class HTTP
             return ($trailingslash ? '/' : '').$matches[1];
         }
         return '';
+    }
+
+
+    /**
+     * Create a link which will POST data.
+     *
+     * @param string $destination The destination URL.
+     * @param array  $data The name-value pairs which will be posted to the destination.
+     *
+     * @return string  A URL which can be accessed to post the data.
+     * @throws \SimpleSAML_Error_Exception If $destination is not a string or $data is not an array.
+     *
+     * @author Andjelko Horvat
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function getPOSTRedirectURL($destination, $data)
+    {
+        if (!is_string($destination) || !is_array($data)) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
+
+        $config = \SimpleSAML_Configuration::getInstance();
+        $allowed = $config->getBoolean('enable.http_post', false);
+
+        if ($allowed && preg_match("#^http:#", $destination) && self::isHTTPS()) {
+            // we need to post the data to HTTP
+            $url = self::getSecurePOSTRedirectURL($destination, $data);
+        } else { // post the data directly
+            $session = \SimpleSAML_Session::getSessionFromRequest();
+            $id = self::savePOSTData($session, $destination, $data);
+            $url = \SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirId' => $id));
+        }
+
+        return $url;
     }
 
 
@@ -734,5 +819,41 @@ class HTTP
         $dir = self::resolvePath($dir, $baseDir);
 
         return $baseHost.$dir.$tail;
+    }
+
+
+    /**
+     * Submit a POST form to a specific destination.
+     *
+     * This function never returns.
+     *
+     * @param string $destination The destination URL.
+     * @param array  $data An associative array with the data to be posted to $destination.
+     *
+     * @throws \SimpleSAML_Error_Exception If $destination is not a string or $data is not an array.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Andjelko Horvat
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function submitPOSTData($destination, $data)
+    {
+        if (!is_string($destination) || !is_array($data)) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
+
+        $config = \SimpleSAML_Configuration::getInstance();
+        $allowed = $config->getBoolean('enable.http_post', false);
+
+        if ($allowed && preg_match("#^http:#", $destination) && self::isHTTPS()) {
+            // we need to post the data to HTTP
+            self::redirect(self::getSecurePOSTRedirectURL($destination, $data));
+        }
+
+        $p = new \SimpleSAML_XHTML_Template($config, 'post.php');
+        $p->data['destination'] = $destination;
+        $p->data['post'] = $data;
+        $p->show();
+        exit(0);
     }
 }

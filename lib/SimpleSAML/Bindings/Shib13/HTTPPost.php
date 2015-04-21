@@ -80,7 +80,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 
 		SimpleSAML_Utilities::debugMessage($response, 'out');
 
-		SimpleSAML_Utilities::postRedirect($shire, array(
+		\SimpleSAML\Utils\HTTP::submitPOSTData($shire, array(
 			'TARGET' => $relayState,
 			'SAMLResponse' => base64_encode($response),
 		));
