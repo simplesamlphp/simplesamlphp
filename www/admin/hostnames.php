@@ -21,7 +21,7 @@ $attributes['Utilities_getSelfHost()'] = array(\SimpleSAML\Utils\HTTP::getSelfHo
 $attributes['Utilities_selfURLhost()'] = array(SimpleSAML_Utilities::selfURLhost());
 $attributes['Utilities_selfURLNoQuery()'] = array(SimpleSAML_Utilities::selfURLNoQuery());
 $attributes['Utilities_getSelfHostWithPath()'] = array(\SimpleSAML\Utils\HTTP::getSelfHostWithPath());
-$attributes['Utilities_getFirstPathElement()'] = array(SimpleSAML_Utilities::getFirstPathElement());
+$attributes['Utilities_getFirstPathElement()'] = array(\SimpleSAML\Utils\HTTP::getFirstPathElement());
 $attributes['Utilities_selfURL()'] = array(SimpleSAML_Utilities::selfURL());
 
 $et = new SimpleSAML_XHTML_Template($config, 'hostnames.php');

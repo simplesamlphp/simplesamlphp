@@ -346,7 +346,7 @@ class SimpleSAML_Configuration {
 		
 		if (preg_match('/^\*(.*)$/D', $baseURL, $matches)) {
 			/* deprecated behaviour, will be removed in the future */
-			return SimpleSAML_Utilities::getFirstPathElement(false) . $matches[1];
+			return \SimpleSAML\Utils\HTTP::getFirstPathElement(false) . $matches[1];
 		}
 
 		if (preg_match('#^https?://[^/]*/(.*)$#', $baseURL, $matches)) {

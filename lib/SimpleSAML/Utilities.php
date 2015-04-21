@@ -92,18 +92,15 @@ class SimpleSAML_Utilities {
 	public static function getSelfHostWithPath() {
 		return \SimpleSAML\Utils\HTTP::getSelfHostWithPath();
 	}
-	
+
+
 	/**
-	 * Will return foo
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::getFirstPathElement() instead.
 	 */
 	public static function getFirstPathElement($trailingslash = true) {
-	
-		if (preg_match('|^/(.*?)/|', $_SERVER['SCRIPT_NAME'], $matches)) {
-			return ($trailingslash ? '/' : '') . $matches[1];
-		}
-		return '';
+		return \SimpleSAML\Utils\HTTP::getFirstPathElement($trailingslash);
 	}
-	
+
 
 	public static function selfURL() {
 

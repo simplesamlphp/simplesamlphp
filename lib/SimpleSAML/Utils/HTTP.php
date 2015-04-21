@@ -317,6 +317,24 @@ class HTTP
 
 
     /**
+     * Retrieve the first element of the URL path.
+     *
+     * @param boolean $trailingslash Whether to add a trailing slash to the element or not. Defaults to true.
+     *
+     * @return string The first element of the URL path, with an optional, trailing slash.
+     *
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     */
+    public static function getFirstPathElement($trailingslash = true)
+    {
+        if (preg_match('|^/(.*?)/|', $_SERVER['SCRIPT_NAME'], $matches)) {
+            return ($trailingslash ? '/' : '').$matches[1];
+        }
+        return '';
+    }
+
+
+    /**
      * Retrieve our own host.
      *
      * @return string The current host (with non-default ports included).
