@@ -523,7 +523,7 @@ class SimpleSAML_XHTML_IdPDisco {
 		$t->data['return'] = $this->returnURL;
 		$t->data['returnIDParam'] = $this->returnIdParam;
 		$t->data['entityID'] = $this->spEntityId;
-		$t->data['urlpattern'] = htmlspecialchars(SimpleSAML_Utilities::selfURLNoQuery());
+		$t->data['urlpattern'] = htmlspecialchars(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
 		$t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', FALSE);
 		$t->show();
 	}

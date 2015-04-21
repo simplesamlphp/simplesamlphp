@@ -372,16 +372,16 @@ class HTTP
 
 
     /**
-     * Retrieve the current URL.
+     * Retrieve the current, complete URL.
      *
-     * @return string The current URL.
+     * @return string The current URL, including query parameters.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getSelfURL()
     {
-        $selfURLhost = self::getSelfURLHost();
+        $url = self::getSelfURLHost();
         $requestURI = $_SERVER['REQUEST_URI'];
         if ($requestURI[0] !== '/') {
             // we probably have a URL of the form: http://server/
@@ -389,7 +389,7 @@ class HTTP
                 $requestURI = $matches[1];
             }
         }
-        return $selfURLhost.$requestURI;
+        return $url.$requestURI;
     }
 
 
@@ -407,6 +407,24 @@ class HTTP
         $start = strpos($url, '://') + 3;
         $length = strcspn($url, '/', $start) + $start;
         return substr($url, 0, $length);
+    }
+
+
+    /**
+     * Retrieve the current URL without the query parameters.
+     *
+     * @return string The current URL, not including query parameters.
+     *
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     */
+    public static function getSelfURLNoQuery()
+    {
+        $url = self::getSelfURLHost();
+        $url .= $_SERVER['SCRIPT_NAME'];
+        if (isset($_SERVER['PATH_INFO'])) {
+            $url .= $_SERVER['PATH_INFO'];
+        }
+        return $url;
     }
 
 

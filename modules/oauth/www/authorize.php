@@ -41,7 +41,7 @@ try {
 		$t->data['header'] = '{status:header_saml20_sp}';
 		$t->data['consumer'] = $consumer;	// array containint {name, description, key, secret, owner} keys
 		$t->data['urlAgree'] = \SimpleSAML\Utils\HTTP::addURLParameters(\SimpleSAML\Utils\HTTP::getSelfURL(), array("consent" => "yes"));
-		$t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
+		$t->data['logouturl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery() . '?logout';
 	
 		$t->show();
 	
@@ -70,7 +70,7 @@ try {
 		$t->data['header'] = '{status:header_saml20_sp}';
 		$t->data['remaining'] = $session->getAuthData($as, "Expire") - time();
 		$t->data['attributes'] = $attributes;
-		$t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
+		$t->data['logouturl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery() . '?logout';
 		$t->data['oauth_verifier'] = $verifier;
 		$t->show();
 	}

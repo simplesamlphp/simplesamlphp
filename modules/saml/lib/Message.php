@@ -500,7 +500,7 @@ class sspmod_saml_Message {
 		}
 
 		/* Validate Response-element destination. */
-		$currentURL = SimpleSAML_Utilities::selfURLNoQuery();
+		$currentURL = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
 		$msgDestination = $response->getDestination();
 		if ($msgDestination !== NULL && $msgDestination !== $currentURL) {
 			throw new Exception('Destination in response doesn\'t match the current URL. Destination is "' .
@@ -556,7 +556,7 @@ class sspmod_saml_Message {
 		}
 		/* At least one valid signature found. */
 
-		$currentURL = SimpleSAML_Utilities::selfURLNoQuery();
+		$currentURL = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
 
 
 		/* Check various properties of the assertion. */

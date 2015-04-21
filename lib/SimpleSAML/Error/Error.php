@@ -226,7 +226,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 			'exceptionTrace' => $etrace,
 			'reportId' => $reportId,
 			'trackId' => $session->getTrackID(),
-			'url' => SimpleSAML_Utilities::selfURLNoQuery(),
+			'url' => \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
 			'version' => $config->getVersion(),
 			'referer' => $referer,
 		);

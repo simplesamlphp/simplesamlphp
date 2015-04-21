@@ -191,7 +191,7 @@ try {
 
 		$t->data['available_certs'] = $availableCerts;
 		$t->data['header'] = 'saml20-idp';
-		$t->data['metaurl'] = SimpleSAML_Utilities::selfURLNoQuery();
+		$t->data['metaurl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
 		$t->data['metadata'] = htmlspecialchars($metaxml);
 		$t->data['metadataflat'] = htmlspecialchars($metaflat);
 		$t->data['defaultidp'] = $defaultidp;

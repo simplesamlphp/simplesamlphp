@@ -362,7 +362,7 @@ class sspmod_saml_IdP_SAML2 {
 		}
 
 		$sessionLostURL = \SimpleSAML\Utils\HTTP::addURLParameters(
-			SimpleSAML_Utilities::selfURLNoQuery(),
+            \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
 			$sessionLostParams);
 
 		$state = array(

@@ -66,16 +66,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Will return https://sp.example.org/universities/ruc/baz/simplesaml/saml2/SSOService.php
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::getSelfURLNoQuery() instead.
 	 */
 	public static function selfURLNoQuery() {
-	
-		$selfURLhost = self::selfURLhost();
-		$selfURLhost .= $_SERVER['SCRIPT_NAME'];
-		if (isset($_SERVER['PATH_INFO'])) {
-			$selfURLhost .= $_SERVER['PATH_INFO'];
-		}
-		return $selfURLhost;
+		return \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
 	
 	}
 
