@@ -110,7 +110,7 @@ class SimpleSAML_Utilities {
 	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::addURLParameters() instead.
 	 */
 	public static function addURLparameter($url, $parameters) {
-		return \SimpleSAML\Utils\HTTP::addURLParameter($url, $parameters);
+		return \SimpleSAML\Utils\HTTP::addURLParameters($url, $parameters);
 	}
 
 
