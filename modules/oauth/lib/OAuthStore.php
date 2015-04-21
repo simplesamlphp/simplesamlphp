@@ -111,7 +111,6 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore {
 		$callback = NULL;
 		if ($consumer['value']['callback_url']) $callback = $consumer['value']['callback_url'];
 
-		// SimpleSAML_Logger::info('OAuth consumer dump(' . var_export($consumer, TRUE) . ')');
 		if ($consumer['value']['RSAcertificate']) {
 			return new OAuthConsumer($consumer['value']['key'], $consumer['value']['RSAcertificate'], $callback);
 		} else {
@@ -159,7 +158,6 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore {
     function new_access_token($requestToken, $consumer, $verifier = null) {
 		SimpleSAML_Logger::info('OAuth new_access_token(' . $requestToken . ',' . $consumer . ')');
 		$accestoken = new OAuthToken(SimpleSAML\Utils\Random::generateID(), SimpleSAML\Utils\Random::generateID());
-		// SimpleSAML_Logger::info('OAuth new_access_token(' . $requestToken . ',' . $consumer . ',' . $accestoken . ')');
 		$this->store->set('access', $accestoken->key, $consumer->key, $accestoken, $this->config->getValue('accessTokenDuration', 60*60*24) );
         return $accestoken;
     }

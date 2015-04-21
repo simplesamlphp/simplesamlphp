@@ -39,9 +39,6 @@ class SimpleSAML_Auth_TimeLimitedToken {
 	 * Calculate the given time slot for a given offset.
 	 */
 	private function calculate_time_slot($offset) {
-	
-		#echo 'lifetime is: ' . $this->lifetime;
-		
 		$timeslot = floor( (time() - $offset) / ($this->lifetime + $this->skew) );
 		return $timeslot;
 	}
@@ -51,10 +48,6 @@ class SimpleSAML_Auth_TimeLimitedToken {
 	 */
 	private function calculate_tokenvalue($offset) {
 		// A secret salt that should be randomly generated for each installation.
-		#echo 'Secret salt is: ' . $this->secretSalt;
-		
-		#echo '<p>Calculating sha1( ' . $this->calculate_time_slot($offset) . ':' . $this->secretSalt . '  )<br />';
-		
 		return sha1( $this->calculate_time_slot($offset) . ':' . $this->secretSalt);
 	}
 	
@@ -74,10 +67,6 @@ class SimpleSAML_Auth_TimeLimitedToken {
 		$splittedtoken = explode('-', $token);
 		$offset = hexdec($splittedtoken[0]);
 		$value  = $splittedtoken[1];
-		
-		
-		#echo 'compare [' . $this->calculate_tokenvalue($offset). '] with [' . $value . '] offset was [' . $offset. ']';
-		
 		return ($this->calculate_tokenvalue($offset) === $value);
 	}
 	

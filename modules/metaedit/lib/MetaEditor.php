@@ -38,7 +38,6 @@ class sspmod_metaedit_MetaEditor {
 		$this->getStandardField($request, $metadata, 'description');
 		$this->getEndpointField($request, $metadata, 'AssertionConsumerService', SAML2_Const::BINDING_HTTP_POST, TRUE);
 		$this->getEndpointField($request, $metadata, 'SingleLogoutService', SAML2_Const::BINDING_HTTP_REDIRECT, FALSE);
-		// $this->getStandardField($request, $metadata, 'certFingerprint');
 		$metadata['updated'] = time();
 		
 		if ($override) {
@@ -109,8 +108,6 @@ class sspmod_metaedit_MetaEditor {
 		if (array_key_exists($key, $metadata)) {
 			$value = htmlspecialchars($metadata[$key]);
 		}
-		#echo '<tr><td><pre>'; print_r($metadata); echo '</pre></td></tr>';
-		
 		if ($textarea) {
 			return '<tr><td class="name">' . $name . '</td><td class="data">
 			<textarea name="field_' . $key . '" rows="5" cols="50">' . $value . '</textarea></td></tr>';
@@ -156,10 +153,7 @@ class sspmod_metaedit_MetaEditor {
 			'<div id="tabdiv">' .
 			'<ul>' .
 			'<li><a href="#basic">Name and descrition</a></li>' . 
-			'<li><a href="#saml">SAML 2.0</a></li>' . 
-			// '<li><a href="#attributes">Attributes</a></li>' . 
-			// '<li><a href="#orgs">Organizations</a></li>' . 
-			// '<li><a href="#contacts">Contacts</a></li>' . 
+			'<li><a href="#saml">SAML 2.0</a></li>' .
 			'</ul>' .
 			'<div id="basic"><table class="formtable">' .
 				$this->standardField($metadata, 'entityid', 'EntityID') .
@@ -172,8 +166,6 @@ class sspmod_metaedit_MetaEditor {
 			'</table></div><div id="saml"><table class="formtable">' .
 				$this->endpointField($metadata, 'AssertionConsumerService', 'AssertionConsumerService endpoint') .
 				$this->endpointField($metadata, 'SingleLogoutService', 'SingleLogoutService endpoint') .
-				// $this->standardField($metadata, 'certFingerprint', 'Certificate Fingerprint') .			
-				
 			'</table></div>' .
 			'</div>' .
 			'<input type="submit" name="submit" value="Save" style="margin-top: 5px" />' .

@@ -180,7 +180,6 @@ class sspmod_metarefresh_MetaLoader {
 				foreach($this->oldMetadataSrc->getMetadataSet($type) as $entity) {
 					if(array_key_exists('metarefresh:src', $entity)) {
 						if($entity['metarefresh:src'] == $source['src']) {
-							//SimpleSAML_Logger::debug('Re-using cached metadata for ' . $entity['entityid']);
 							$this->addMetadata($source['src'], $entity, $type);
 						}
 					}
@@ -291,10 +290,6 @@ class sspmod_metarefresh_MetaLoader {
 		}
 	
 		if (isset($template)) {
-// 			foreach($metadata AS $mkey => $mentry) {
-// 				echo '<pre>'; print_r($metadata); exit;
-// 				$metadata[$mkey] = array_merge($mentry, $template);
-// 			}
 			$metadata = array_merge($metadata, $template);
 		}
 	
@@ -341,7 +336,7 @@ class sspmod_metarefresh_MetaLoader {
 			$md = array_merge($md, $elements);
 		}
 		
-		#$metadata, $attributemap, $prefix, $suffix
+		// $metadata, $attributemap, $prefix, $suffix
 		$arp = new sspmod_metarefresh_ARP($md, 
 			$config->getValue('attributemap', ''),  
 			$config->getValue('prefix', ''),  

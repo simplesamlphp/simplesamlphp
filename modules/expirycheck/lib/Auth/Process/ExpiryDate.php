@@ -76,7 +76,6 @@ class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_Process
 	 *
 	 */
 	public function shWarning(&$state, $expireOnDate, $warndaysbefore) {
-		#date_default_timezone_set('Europe/Ljubljana');
 		$now = time();
 		$end = $expireOnDate;
 

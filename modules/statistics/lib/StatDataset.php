@@ -65,7 +65,6 @@ class sspmod_statistics_StatDataset {
 	public function setDelimiter($delimiter = '_') {
 		if (empty($delimiter)) $delimiter = '_';
 		$this->delimiter = $delimiter;
-		// echo 'delimiter set to ' . $delimiter; exit;
 	}
 	public function getDelimiter() {
 		if ($this->delimiter === '_') return NULL;
@@ -79,8 +78,7 @@ class sspmod_statistics_StatDataset {
 		 */
 		$slotsize = $this->ruleconfig->getValue('slot');
 		$dateformat_period = $this->timeresconfig->getValue('dateformat-period');
-		$dateformat_intra =  $this->timeresconfig->getValue('dateformat-intra'); 
-		// $axislabelint =  $this->ruleconfig->getValue('axislabelint');
+		$dateformat_intra =  $this->timeresconfig->getValue('dateformat-intra');
 
 		
 		$maxvalue = 0; $maxvaluetime = NULL;
@@ -96,12 +94,11 @@ class sspmod_statistics_StatDataset {
 	
 	public function getDebugData() {
 		$debugdata = array();
-		
+
 		$slotsize = $this->timeresconfig->getValue('slot');
 		$dateformat_period = $this->timeresconfig->getValue('dateformat-period');
-		$dateformat_intra =  $this->timeresconfig->getValue('dateformat-intra'); 
-		// $axislabelint =  $this->ruleconfig->getValue('axislabelint');
-		
+		$dateformat_intra =  $this->timeresconfig->getValue('dateformat-intra');
+
 		foreach($this->results AS $slot => &$res) {
 			$debugdata[$slot] = array($this->datehandlerTick->prettyDateSlot($slot, $slotsize, $dateformat_intra), $res[$this->delimiter] );
 		}
@@ -125,7 +122,6 @@ class sspmod_statistics_StatDataset {
 		}
 		asort($this->summary);
 		$this->summary = array_reverse($this->summary, TRUE);
-		// echo '<pre>'; print_r($summaryDataset); exit;
 	}
 	
 	public function getTopDelimiters() {
@@ -195,8 +191,7 @@ class sspmod_statistics_StatDataset {
 			// check if there should be an axis here...
 			if ( $slot % $axislabelint == 0)  {
 				$axis[] =  $this->datehandlerTick->prettyDateSlot($slot, $slotsize, $dateformat_intra);
-				$axispos[] = (($i)/($xentries-1));		
-				// echo 'set axis on [' . $slot . '] = [' . $datehandler->prettyDateSlot($slot, $slotsize, $dateformat_intra) . ']';
+				$axispos[] = (($i)/($xentries-1));
 			}
 			$lastslot = $slot;
 			$i++;
@@ -226,10 +221,6 @@ class sspmod_statistics_StatDataset {
 
 		$dataset = array();
 		foreach($this->results AS $slot => $res) {
-			#echo ('<p>new value: ' . number_format(100*$res[$delimiter] / $max, 2));
-	// 		echo('<hr><p>delimiter [<tt>' .$delimiter . '</tt>].');
-	// 		echo('<p>Res <pre>'); print_r($res); echo( '</pre>');
-	// 		echo('<p>return <pre>'); print_r(isset($res[$delimiter]) ? $res[$delimiter] : 'NO'); echo('</pre>');
 			if (array_key_exists($this->delimiter, $res)) {
 				if ($res[$this->delimiter] === NULL) {
 					$dataset[] = -1;
@@ -239,8 +230,6 @@ class sspmod_statistics_StatDataset {
 			} else {
 				$dataset[] = '0';
 			}
-			// foreach(array_keys($res) AS $nd) $availdelimiters[$nd] = 1;
-			
 			$lastslot = $slot;
 			$i++;
 		}

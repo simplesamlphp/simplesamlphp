@@ -413,7 +413,6 @@ class SimpleSAML_XHTML_Template {
 
 		$translated = $this->getTranslation($tagData);
 
-#		if (!empty($replacements)){		echo('<pre> [' . $tag . ']'); print_r($replacements); exit; }
 		foreach ($replacements as $k => $v) {
 			/* try to translate if no replacement is given */
 			if ($v == NULL) $v = $this->t($k);

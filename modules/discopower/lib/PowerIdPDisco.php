@@ -99,7 +99,6 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	 * This function will structure the idp list in a hierarchy based upon the tags.
 	 */
 	protected function idplistStructured($list) {
-		# echo '<pre>'; print_r($list); exit;
 		$slist = array();
 		
 		$order = $this->discoconfig->getValue('taborder');

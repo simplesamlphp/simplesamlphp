@@ -7,10 +7,8 @@ $oauthconfig = SimpleSAML_Configuration::getOptionalConfig('module_oauth.php');
 
 $store = new sspmod_core_Storage_SQLPermanentStorage('oauth');
 
-//$authsource = $oauthconfig->getValue('auth', 'admin');
 $authsource = "admin";	// force admin to authenticate as registry maintainer
 $useridattr = $oauthconfig->getValue('useridattr', 'user');
-//$useridattr = $oauthconfig->getValue('useridattr', 'uid');
 
 if ($session->isValid($authsource)) {
 	$attributes = $session->getAuthData($authsource, 'Attributes');
@@ -52,9 +50,7 @@ if (isset($_POST['submit'])) {
 	$entry = $editor->formToMeta($_POST, array(), array('owner' => $userid));
 
 	requireOwnership($entry, $userid);
-	
-#	echo('<pre>Created: '); print_r($entry); exit;
-	
+
 	$store->set('consumers', $entry['key'], '', $entry);
 	
 	$template = new SimpleSAML_XHTML_Template($config, 'oauth:registry.saved.php');

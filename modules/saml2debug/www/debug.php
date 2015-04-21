@@ -13,8 +13,6 @@ function getValue($raw) {
 	$arr = array();
 	$query = parse_str($val, $arr);
 
-	#echo('<pre>');print_r($arr);
-	
 	if (array_key_exists('SAMLResponse', $arr)) return $arr['SAMLResponse'];
 	if (array_key_exists('SAMLRequest', $arr)) return $arr['SAMLRequest'];
 	if (array_key_exists('LogoutRequest', $arr)) return $arr['LogoutRequest'];
@@ -25,8 +23,7 @@ function getValue($raw) {
 
 function decode($raw) {
 	$message = getValue($raw);
-	#echo 'using value: ' . $message; exit;
-	
+
 	$base64decoded = base64_decode($message);
 	$gzinflated = gzinflate($base64decoded);
 	if ($gzinflated != FALSE) {

@@ -130,8 +130,6 @@ class sspmod_oauth_Consumer {
 		$opts = array(
 			'ssl' => array(
 				'verify_peer' => FALSE,
-				// 'cafile' => $file,
-				// 'local_cert' => $spKeyCertFile,
 				'capture_peer_cert' => TRUE,
 				'capture_peer_chain' => TRUE,
 			),
@@ -158,7 +156,6 @@ class sspmod_oauth_Consumer {
 			$opts = stream_context_create($opts);
 		}
 		$data = file_get_contents($data_req->to_url(), FALSE, $opts);
-		#print_r($data);
 
 		$dataDecoded = json_decode($data, TRUE);
 		return $dataDecoded;

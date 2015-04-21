@@ -58,8 +58,6 @@ switch($action) {
 	
 	case 'push':
 
-		#$content = file_get_contents($base . 'export.php?aid=' . $application . '&type=translation&file=' . $basefile);
-		#file_put_contents($fileWithoutExt . '.translation.json' , $content);
 		push($file, $basefile, $application, $type);
 		
 		break;

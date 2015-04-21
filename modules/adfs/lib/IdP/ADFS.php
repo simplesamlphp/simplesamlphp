@@ -34,8 +34,6 @@ class sspmod_adfs_IdP_ADFS {
 
 		$state = array(
 			'Responder' => array('sspmod_adfs_IdP_ADFS', 'sendResponse'),
-//			SimpleSAML_Auth_State::EXCEPTION_HANDLER_FUNC => array('sspmod_adfs_IdP', 'handleAuthError'),
-//			SimpleSAML_Auth_State::RESTART => $sessionLostURL,
 			'SPMetadata' => $spMetadata->toArray(),
 			'ForceAuthn' => $forceAuthn,
 			'isPassive' => $isPassive,
@@ -46,7 +44,6 @@ class sspmod_adfs_IdP_ADFS {
 	}
 
 	public static function ADFS_GenerateResponse($issuer, $target, $nameid, $attributes) {
-		#$nameid = 'hans@surfnet.nl';
 		$issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
 		$notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
 		$assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 5);
@@ -185,8 +182,6 @@ class sspmod_adfs_IdP_ADFS {
 		$state = array(
 			'Responder' => array('sspmod_adfs_IdP_ADFS', 'sendLogoutResponse'),
 		);
-		//$spEntityId = NULL;
-		//$assocId = 'adfs:' . $spEntityId;
 		$assocId = NULL;
 		// TODO: verify that this is really no problem for: 
 		//       a) SSP, because there's no caller SP...
@@ -199,7 +194,6 @@ class sspmod_adfs_IdP_ADFS {
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $idp->getConfig();
 		$spMetadata = $metadata->getMetaDataConfig($association['adfs:entityID'], 'adfs-sp-remote');
-		// 'https://adfs-test.showcase.surfnet.nl/adfs/ls/?wa=wsignoutcleanup1.0&wreply=https%3A%2F%2Flocalhost%2Fsimplesaml');
 		$returnTo = SimpleSAML_Module::getModuleURL('adfs/idp/prp.php?assocId=' . urlencode($association["id"]) . '&relayState=' . urlencode($relayState));
 		return $spMetadata->getValue('prp') . '?' . 'wa=wsignoutcleanup1.0&wreply=' . urlencode($returnTo);
 	}

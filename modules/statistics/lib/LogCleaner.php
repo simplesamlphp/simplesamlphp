@@ -46,9 +46,7 @@ class sspmod_statistics_LogCleaner {
 		
 		
 		$file = fopen($this->inputfile, 'r');
-		#$logfile = file($this->inputfile, FILE_IGNORE_NEW_LINES );
-		
-		
+
 		$logparser = new sspmod_statistics_LogParser(
 			$this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
 		);
@@ -78,7 +76,6 @@ class sspmod_statistics_LogCleaner {
 			}
 			
 			$trackid = $content[4];
-			#echo "trackid: " . $content[4] . "\n";
 			
 			if(!isset($sessioncounter[$trackid])) $sessioncounter[$trackid] = 0;
 			$sessioncounter[$trackid]++;
@@ -105,8 +102,7 @@ class sspmod_statistics_LogCleaner {
 		foreach($sessioncounter AS $trackid => $sc) {
 			if($sc > 200) $todelete[] = $trackid;
 		}
-		
-		#print_r($histogram);
+
 		return $todelete;
 	}
 	
@@ -122,8 +118,7 @@ class sspmod_statistics_LogCleaner {
 			throw new Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
 		
 		$file = fopen($this->inputfile, 'r');
-		#$logfile = file($this->inputfile, FILE_IGNORE_NEW_LINES );
-		
+
 		/* Open the output file in a way that guarantees that we will not overwrite a random file. */
 		if (file_exists($outputfile)) {
 			/* Delete existing output file. */
@@ -157,10 +152,7 @@ class sspmod_statistics_LogCleaner {
 			$trackid = $content[4];
 			
 			if (in_array($trackid, $todelete)) {
-				#echo "Deleting entry with trackid: $trackid \n";
 				continue;
-			} else {
-				#echo "NOT Deleting entry with trackid: $trackid \n";
 			}
 			
 			fputs($outfile, $logline);
