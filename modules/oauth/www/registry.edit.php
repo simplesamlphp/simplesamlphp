@@ -17,7 +17,7 @@ if ($session->isValid($authsource)) {
 		throw new Exception('User ID is missing');
 	$userid = $attributes[$useridattr][0];
 } else {
-	SimpleSAML_Auth_Default::initLogin($authsource, SimpleSAML_Utilities::selfURL());
+	SimpleSAML_Auth_Default::initLogin($authsource, \SimpleSAML\Utils\HTTP::getSelfURL());
 }
 
 function requireOwnership($entry, $userid) {

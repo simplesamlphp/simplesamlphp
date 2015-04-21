@@ -21,7 +21,7 @@ class Auth
         assert('is_string($returnTo) || is_null($returnTo)');
 
         if ($returnTo === null) {
-            $returnTo = \SimpleSAML_Utilities::selfURL();
+            $returnTo = \SimpleSAML\Utils\HTTP::getSelfURL();
         }
 
         return \SimpleSAML_Module::getModuleURL('core/login-admin.php', array('ReturnTo' => $returnTo));

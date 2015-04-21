@@ -110,7 +110,7 @@ class SimpleSAML_Auth_Simple {
 		} else if (array_key_exists('ReturnCallback', $params)) {
 			$returnTo = (array)$params['ReturnCallback'];
 		} else {
-			$returnTo = SimpleSAML_Utilities::selfURL();
+			$returnTo = \SimpleSAML\Utils\HTTP::getSelfURL();
 		}
 
 		if (is_string($returnTo) && $keepPost && $_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -159,7 +159,7 @@ class SimpleSAML_Auth_Simple {
 		assert('is_array($params) || is_string($params) || is_null($params)');
 
 		if ($params === NULL) {
-			$params = SimpleSAML_Utilities::selfURL();
+			$params = \SimpleSAML\Utils\HTTP::getSelfURL();
 		}
 
 		if (is_string($params)) {
@@ -290,7 +290,7 @@ class SimpleSAML_Auth_Simple {
 		assert('is_null($returnTo) || is_string($returnTo)');
 
 		if ($returnTo === NULL) {
-			$returnTo = SimpleSAML_Utilities::selfURL();
+			$returnTo = \SimpleSAML\Utils\HTTP::getSelfURL();
 		}
 
 		$login = SimpleSAML_Module::getModuleURL('core/as_login.php', array(
@@ -313,7 +313,7 @@ class SimpleSAML_Auth_Simple {
 		assert('is_null($returnTo) || is_string($returnTo)');
 
 		if ($returnTo === NULL) {
-			$returnTo = SimpleSAML_Utilities::selfURL();
+			$returnTo = \SimpleSAML\Utils\HTTP::getSelfURL();
 		}
 
 		$logout = SimpleSAML_Module::getModuleURL('core/as_logout.php', array(

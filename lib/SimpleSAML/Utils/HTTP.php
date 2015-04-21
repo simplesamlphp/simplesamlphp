@@ -372,6 +372,28 @@ class HTTP
 
 
     /**
+     * Retrieve the current URL.
+     *
+     * @return string The current URL.
+     *
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function getSelfURL()
+    {
+        $selfURLhost = self::getSelfURLHost();
+        $requestURI = $_SERVER['REQUEST_URI'];
+        if ($requestURI[0] !== '/') {
+            // we probably have a URL of the form: http://server/
+            if (preg_match('#^https?://[^/]*(/.*)#i', $requestURI, $matches)) {
+                $requestURI = $matches[1];
+            }
+        }
+        return $selfURLhost.$requestURI;
+    }
+
+
+    /**
      * Retrieve a URL containing the protocol, the current host and optionally, the port number.
      *
      * @return string The current URL without a URL path or query parameters.

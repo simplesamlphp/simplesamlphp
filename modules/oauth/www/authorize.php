@@ -30,7 +30,7 @@ try {
 
 	$as = $oauthconfig->getString('auth');
 	if (!$session->isValid($as)) {
-		SimpleSAML_Auth_Default::initLogin($as, SimpleSAML_Utilities::selfURL());
+		SimpleSAML_Auth_Default::initLogin($as, \SimpleSAML\Utils\HTTP::getSelfURL());
 	}
 
 
@@ -40,7 +40,7 @@ try {
 		$t = new SimpleSAML_XHTML_Template($config, 'oauth:consent.php');
 		$t->data['header'] = '{status:header_saml20_sp}';
 		$t->data['consumer'] = $consumer;	// array containint {name, description, key, secret, owner} keys
-		$t->data['urlAgree'] = \SimpleSAML\Utils\HTTP::addURLParameters(SimpleSAML_Utilities::selfURL(), array("consent" => "yes"));
+		$t->data['urlAgree'] = \SimpleSAML\Utils\HTTP::addURLParameters(\SimpleSAML\Utils\HTTP::getSelfURL(), array("consent" => "yes"));
 		$t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
 	
 		$t->show();

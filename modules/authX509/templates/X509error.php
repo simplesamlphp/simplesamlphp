@@ -21,7 +21,7 @@ if ($this->data['errorcode'] !== NULL) {
 
 	<p><?php echo $this->t('{authX509:X509error:certificate_text}'); ?></p>
 
-	<a href="<?php echo htmlspecialchars(SimpleSAML_Utilities::selfURL()); ?>">
+	<a href="<?php echo htmlspecialchars(\SimpleSAML\Utils\HTTP::getSelfURL()); ?>">
 		<?php echo $this->t('{login:login_button}'); ?>
 	</a>
 

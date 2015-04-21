@@ -96,20 +96,11 @@ class SimpleSAML_Utilities {
 	}
 
 
+    /**
+     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::getSelfURL() instead.
+     */
 	public static function selfURL() {
-
-		$selfURLhost = self::selfURLhost();
-
-		$requestURI = $_SERVER['REQUEST_URI'];
-		if ($requestURI[0] !== '/') {
-			/* We probably have a URL of the form: http://server/. */
-			if (preg_match('#^https?://[^/]*(/.*)#i', $requestURI, $matches)) {
-				$requestURI = $matches[1];
-			}
-		}
-
-		return $selfURLhost . $requestURI;
-
+		return \SimpleSAML\Utils\HTTP::getSelfURL();
 	}
 
 

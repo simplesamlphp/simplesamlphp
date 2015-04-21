@@ -22,7 +22,7 @@ $attributes['Utilities_selfURLhost()'] = array(\SimpleSAML\Utils\HTTP::getSelfUR
 $attributes['Utilities_selfURLNoQuery()'] = array(SimpleSAML_Utilities::selfURLNoQuery());
 $attributes['Utilities_getSelfHostWithPath()'] = array(\SimpleSAML\Utils\HTTP::getSelfHostWithPath());
 $attributes['Utilities_getFirstPathElement()'] = array(\SimpleSAML\Utils\HTTP::getFirstPathElement());
-$attributes['Utilities_selfURL()'] = array(SimpleSAML_Utilities::selfURL());
+$attributes['Utilities_selfURL()'] = array(\SimpleSAML\Utils\HTTP::getSelfURL());
 
 $et = new SimpleSAML_XHTML_Template($config, 'hostnames.php');
 
