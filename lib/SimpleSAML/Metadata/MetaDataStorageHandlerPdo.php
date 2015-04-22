@@ -194,7 +194,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 		$metadata->execute();
 		$retrivedEntityIDs = $metadata->fetch();
 
-		if(count($retrivedEntityIDs) > 0){
+		if($retrivedEntityIDs !== FALSE && count($retrivedEntityIDs) > 0){
 			$stmt = $this->pdo->prepare("UPDATE $tableName SET entity_data = :entity_data WHERE entity_id = :entity_id");
 		}
 		else{
