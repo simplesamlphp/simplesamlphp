@@ -293,23 +293,10 @@ class SimpleSAML_Utilities {
 	}
 
 	/**
-	 * This function redirects to the specified URL after performing the appropriate security checks on it.
-	 * Particularly, it will make sure that the provided URL is allowed by the 'redirect.trustedsites' directive in the
-	 * configuration.
-	 *
-	 * If the aforementioned option is not set or the URL does correspond to a trusted site, it performs a redirection
-	 * to it. If the site is not trusted, an exception will be thrown.
-	 *
-	 * See the redirectTrustedURL function for more details.
-	 * 
-	 * @return void This function never returns.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::redirectUntrustedURL() instead.
 	 */
 	public static function redirectUntrustedURL($url, $parameters = array()) {
-		assert('is_string($url)');
-		assert('is_array($parameters)');
-
-		$url = self::checkURLAllowed($url);
-		self::_doRedirect($url, $parameters);
+		return \SimpleSAML\Utils\HTTP::redirectUntrustedURL($url, $parameters);
 	}
 
 	/**

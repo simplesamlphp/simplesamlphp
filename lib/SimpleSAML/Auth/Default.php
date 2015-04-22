@@ -265,7 +265,7 @@ class SimpleSAML_Auth_Default {
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->doLogin($authId, self::extractPersistentAuthState($state));
 
-		SimpleSAML_Utilities::redirectUntrustedURL($redirectTo);
+		\SimpleSAML\Utils\HTTP::redirectUntrustedURL($redirectTo);
 	}
 
 }

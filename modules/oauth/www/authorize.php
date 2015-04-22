@@ -60,7 +60,7 @@ try {
 	} 
 	else if (isset($_REQUEST['oauth_callback'])) {
 		// If callback was provided in the request (oauth1.0)
-		SimpleSAML_Utilities::redirectUntrustedURL($_REQUEST['oauth_callback']);
+		\SimpleSAML\Utils\HTTP::redirectUntrustedURL($_REQUEST['oauth_callback']);
 	
 	} else {
 		// No callback provided, display standard template
