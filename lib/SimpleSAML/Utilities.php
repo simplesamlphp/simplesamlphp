@@ -250,25 +250,6 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * This function redirects the user to the specified address.
-	 *
-	 * This function will use the "HTTP 303 See Other" redirection if the current request used the POST method and the
-	 * HTTP version is 1.1. Otherwise, a "HTTP 302 Found" redirection will be used.
-	 *
-	 * The function will also generate a simple web page with a clickable link to the target page.
-	 *
-	 * @param string $url The URL we should redirect to. This URL may include query parameters. If this URL is a
-	 * relative URL (starting with '/'), then it will be turned into an absolute URL by prefixing it with the absolute
-	 * URL to the root of the website.
-	 * @param string[] $parameters An array with extra query string parameters which should be appended to the URL. The
-	 * name of the parameter is the array index. The value of the parameter is the value stored in the index. Both the
-	 * name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
-	 * name, without a value.
-	 * @param string[] $allowed_redirect_hosts An array with a whitelist of hosts for which redirects are allowed. If
-	 * NULL, redirections will be allowed to any host. Otherwise, the host of the $url provided must be present in this
-	 * parameter. If the host is not whitelisted, an exception will be thrown.
-	 *
-	 * @return void This function never returns.
 	 * @deprecated 1.12.0 This function will be removed from the API. Instead, use the redirectTrustedURL or
 	 * redirectUntrustedURL functions accordingly.
 	 */
