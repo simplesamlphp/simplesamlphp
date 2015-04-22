@@ -462,10 +462,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::resolvePath() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\System::resolvePath() instead.
 	 */
 	public static function resolvePath($path, $base = NULL) {
-		return \SimpleSAML\Utils\HTTP::resolvePath($path, $base);
+		return \SimpleSAML\Utils\System::resolvePath($path, $base);
 	}
 
 
@@ -539,7 +539,7 @@ class SimpleSAML_Utilities {
 
 		$globalConfig = SimpleSAML_Configuration::getInstance();
 		$base = $globalConfig->getPathValue('certdir', 'cert/');
-		return SimpleSAML_Utilities::resolvePath($path, $base);
+		return \SimpleSAML\Utils\System::resolvePath($path, $base);
 	}
 
 

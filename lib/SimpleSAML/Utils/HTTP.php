@@ -796,59 +796,6 @@ class HTTP
 
 
     /**
-     * Resolve a (possibly) relative path from the given base path.
-     *
-     * A path which starts with a '/' is assumed to be absolute, all others are assumed to be
-     * relative. The default base path is the root of the SimpleSAMPphp installation.
-     *
-     * @param string      $path The path we should resolve.
-     * @param string|null $base The base path, where we should search for $path from. Default value is the root of the
-     *     SimpleSAMLphp installation.
-     *
-     * @return string An absolute path referring to $path.
-     *
-     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     */
-    public static function resolvePath($path, $base = null)
-    {
-        if ($base === null) {
-            $config = \SimpleSAML_Configuration::getInstance();
-            $base = $config->getBaseDir();
-        }
-
-        // remove trailing slashes from $base
-        while (substr($base, -1) === '/') {
-            $base = substr($base, 0, -1);
-        }
-
-        // check for absolute path
-        if (substr($path, 0, 1) === '/') {
-            // absolute path. */
-            $ret = '/';
-        } else {
-            // path relative to base
-            $ret = $base;
-        }
-
-        $path = explode('/', $path);
-        foreach ($path as $d) {
-            if ($d === '.') {
-                continue;
-            } elseif ($d === '..') {
-                $ret = dirname($ret);
-            } else {
-                if (substr($ret, -1) !== '/') {
-                    $ret .= '/';
-                }
-                $ret .= $d;
-            }
-        }
-
-        return $ret;
-    }
-
-
-    /**
      * Resolve a (possibly relative) URL relative to a given base URL.
      *
      * This function supports these forms of relative URLs:
@@ -929,7 +876,7 @@ class HTTP
             $tail = '';
         }
 
-        $dir = self::resolvePath($dir, $baseDir);
+        $dir = System::resolvePath($dir, $baseDir);
 
         return $baseHost.$dir.$tail;
     }
