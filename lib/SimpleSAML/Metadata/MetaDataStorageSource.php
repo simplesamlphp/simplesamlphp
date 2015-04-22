@@ -68,6 +68,8 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 				return new SimpleSAML_Metadata_MetaDataStorageHandlerSerialize($sourceConfig);
 			case 'mdx':
 				return new SimpleSAML_Metadata_MetaDataStorageHandlerMDX($sourceConfig);
+			case 'pdo':
+				return new SimpleSAML_Metadata_MetaDataStorageHandlerPdo($sourceConfig);
 			default:
 				throw new Exception('Invalid metadata source type: "' . $type . '".');
 		}
