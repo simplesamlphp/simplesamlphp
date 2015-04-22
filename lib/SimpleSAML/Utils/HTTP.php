@@ -101,14 +101,14 @@ class HTTP
         $port = (isset($_SERVER['SERVER_PORT'])) ? $_SERVER['SERVER_PORT'] : '80';
         if (self::getServerHTTPS()) {
             if ($port !== '443') {
-                $port = ':'.$port;
+                return ':'.$port;
             }
         } else {
             if ($port !== '80') {
-                $port = ':'.$port;
+                return ':'.$port;
             }
         }
-        return $port;
+        return '';
     }
 
 
