@@ -18,7 +18,7 @@ if (!is_string($_REQUEST['AuthId'])) {
  * Setting up the options for the requireAuth() call later..
  */
 $options = array(
-	'ReturnTo' => SimpleSAML_Utilities::checkURLAllowed($_REQUEST['ReturnTo']),
+	'ReturnTo' => \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']),
 );
 
 /*

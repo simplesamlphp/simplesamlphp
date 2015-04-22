@@ -102,45 +102,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Check if a URL is valid and is in our list of allowed URLs.
-	 *
-	 * @param string $url The URL to check.
-	 * @param array $trustedSites An optional white list of domains. If none specified, the 'trusted.url.domains'
-	 * configuration directive will be used.
-	 * @return string The normalized URL itself if it is allowed. An empty string if the $url parameter is empty as
-	 * defined by the empty() function.
-	 * @throws SimpleSAML_Error_Exception if the URL is malformed or is not allowed by configuration.
+	 * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Utils\HTTP::checkURLAllowed() instead.
 	 */
 	public static function checkURLAllowed($url, array $trustedSites = NULL) {
-		if (empty($url)) {
-			return '';
-		}
-		$url = self::normalizeURL($url);
-
-		// get the white list of domains
-		if ($trustedSites === NULL) {
-			$trustedSites = SimpleSAML_Configuration::getInstance()->getArray('trusted.url.domains', NULL);
-			if ($trustedSites === NULL) {
-				$trustedSites = SimpleSAML_Configuration::getInstance()->getArray('redirect.trustedsites', NULL);
-			}
-		}
-
-		// validates the URL's host is among those allowed
-		if ($trustedSites !== NULL) {
-			assert(is_array($trustedSites));
-			preg_match('@^https?://([^/]+)@i', $url, $matches);
-			$hostname = $matches[1];
-
-			// add self host to the white list
-			$self_host = self::getSelfHost();
-			$trustedSites[] = $self_host;
-
-			/* Throw exception due to redirection to untrusted site */
-			if (!in_array($hostname, $trustedSites)) {
-				throw new SimpleSAML_Error_Exception('URL not allowed: '.$url);
-			}
-		}
-		return $url;
+		return \SimpleSAML\Utils\HTTP::checkURLAllowed($url, $trustedSites);
 	}
 
 

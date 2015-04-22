@@ -123,7 +123,7 @@ class SimpleSAML_XHTML_IdPDisco {
 		if(!array_key_exists('return', $_GET)) {
 			throw new Exception('Missing parameter: return');
 		} else {
-			$this->returnURL = SimpleSAML_Utilities::checkURLAllowed($_GET['return']);
+			$this->returnURL = \SimpleSAML\Utils\HTTP::checkURLAllowed($_GET['return']);
 		}
 		
 		$this->isPassive = FALSE;

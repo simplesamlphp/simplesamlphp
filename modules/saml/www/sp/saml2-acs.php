@@ -90,7 +90,7 @@ if (!empty($stateId)) {
 	$state = array(
 		'saml:sp:isUnsolicited' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
-		'saml:sp:RelayState' => SimpleSAML_Utilities::checkURLAllowed($response->getRelayState()),
+		'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($response->getRelayState()),
 	);
 }
 

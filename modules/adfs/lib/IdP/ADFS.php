@@ -175,7 +175,7 @@ class sspmod_adfs_IdP_ADFS {
 		// if a redirect is to occur based on wreply, we will redirect to url as
 		// this implies an override to normal sp notification.
 		if(isset($_GET['wreply']) && !empty($_GET['wreply'])) {
-			$idp->doLogoutRedirect(SimpleSAML_Utilities::checkURLAllowed($_GET['wreply']));
+			$idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed($_GET['wreply']));
 			assert(FALSE);
 		}
 

@@ -13,7 +13,7 @@ if (!isset($_REQUEST['ReturnTo'])) {
 	die('Missing ReturnTo parameter.');
 }
 
-$returnTo = SimpleSAML_Utilities::checkURLAllowed($_REQUEST['ReturnTo']);
+$returnTo = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']);
 
 
 /*

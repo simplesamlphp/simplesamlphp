@@ -26,7 +26,7 @@ foreach($_COOKIE as $cookieName => $value) {
 
 /* Find where we should go now. */
 if(array_key_exists('ReturnTo', $_REQUEST)) {
-	$returnTo = SimpleSAML_Utilities::checkURLAllowed($_REQUEST['ReturnTo']);
+	$returnTo = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']);
 } else {
 	/* Return to the front page if no other destination is given. This is the same as the base cookie path. */
 	$returnTo = $cookiePath;

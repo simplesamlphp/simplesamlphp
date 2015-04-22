@@ -259,6 +259,54 @@ class HTTP
 
 
     /**
+     * Check if a URL is valid and is in our list of allowed URLs.
+     *
+     * @param string $url The URL to check.
+     * @param array  $trustedSites An optional white list of domains. If none specified, the 'trusted.url.domains'
+     * configuration directive will be used.
+     *
+     * @return string The normalized URL itself if it is allowed. An empty string if the $url parameter is empty as
+     * defined by the empty() function.
+     * @throws \SimpleSAML_Error_Exception if the URL is malformed or is not allowed by configuration.
+     *
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function checkURLAllowed($url, array $trustedSites = null)
+    {
+        if (empty($url)) {
+            return '';
+        }
+        $url = self::normalizeURL($url);
+
+        // get the white list of domains
+        if ($trustedSites === null) {
+            $trustedSites = \SimpleSAML_Configuration::getInstance()->getArray('trusted.url.domains', null);
+            // TODO: remove this before 2.0
+            if ($trustedSites === null) {
+                $trustedSites = \SimpleSAML_Configuration::getInstance()->getArray('redirect.trustedsites', null);
+            }
+        }
+
+        // validates the URL's host is among those allowed
+        if ($trustedSites !== null) {
+            assert(is_array($trustedSites));
+            preg_match('@^https?://([^/]+)@i', $url, $matches);
+            $hostname = $matches[1];
+
+            // add self host to the white list
+            $self_host = self::getSelfHost();
+            $trustedSites[] = $self_host;
+
+            // throw exception due to redirection to untrusted site
+            if (!in_array($hostname, $trustedSites)) {
+                throw new \SimpleSAML_Error_Exception('URL not allowed: '.$url);
+            }
+        }
+        return $url;
+    }
+
+
+    /**
      * Helper function to retrieve a file or URL with proxy support.
      *
      * An exception will be thrown if we are unable to retrieve the data.
