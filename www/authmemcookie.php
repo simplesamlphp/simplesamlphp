@@ -93,7 +93,7 @@ try {
 	$session->registerLogoutHandler($sourceId, 'SimpleSAML_AuthMemCookie', 'logoutHandler');
 
 	/* Redirect the user back to this page to signal that the login is completed. */
-	SimpleSAML_Utilities::redirectTrustedURL(\SimpleSAML\Utils\HTTP::getSelfURL());
+	\SimpleSAML\Utils\HTTP::redirectTrustedURL(\SimpleSAML\Utils\HTTP::getSelfURL());
 } catch(Exception $e) {
 	throw new SimpleSAML_Error_Error('CONFIG', $e);
 }

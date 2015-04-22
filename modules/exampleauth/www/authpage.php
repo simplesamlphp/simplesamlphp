@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$_SESSION['mail'] = $user['mail'];
 		$_SESSION['type'] = $user['type'];
 
-		SimpleSAML_Utilities::redirectTrustedURL($returnTo);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($returnTo);
 	}
 }
 

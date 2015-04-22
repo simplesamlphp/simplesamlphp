@@ -56,7 +56,7 @@ try {
 
 	if ($url) {
 		// If authorize() returns a URL, take user there (oauth1.0a)
-		SimpleSAML_Utilities::redirectTrustedURL($url);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
 	} 
 	else if (isset($_REQUEST['oauth_callback'])) {
 		// If callback was provided in the request (oauth1.0)

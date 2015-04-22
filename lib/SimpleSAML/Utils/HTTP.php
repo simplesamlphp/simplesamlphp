@@ -683,6 +683,39 @@ class HTTP
 
 
     /**
+     * This function redirects to the specified URL without performing any security checks. Please, do NOT use this
+     * function with user supplied URLs.
+     *
+     * This function will use the "HTTP 303 See Other" redirection if the current request used the POST method and the
+     * HTTP version is 1.1. Otherwise, a "HTTP 302 Found" redirection will be used.
+     *
+     * The function will also generate a simple web page with a clickable  link to the target URL.
+     *
+     * @param string   $url The URL we should redirect to. This URL may include query parameters. If this URL is a
+     * relative URL (starting with '/'), then it will be turned into an absolute URL by prefixing it with the absolute
+     * URL to the root of the website.
+     * @param string[] $parameters An array with extra query string parameters which should be appended to the URL. The
+     * name of the parameter is the array index. The value of the parameter is the value stored in the index. Both the
+     * name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
+     * name, without a value.
+     *
+     * @return void This function never returns.
+     * @throws \SimpleSAML_Error_Exception If $url is not a string or $parameters is not an array.
+     *
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function redirectTrustedURL($url, $parameters = array())
+    {
+        if (!is_string($url) || !is_array($parameters)) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
+
+        $url = self::normalizeURL($url);
+        self::redirect($url, $parameters);
+    }
+
+
+    /**
      * Resolve a (possibly) relative path from the given base path.
      *
      * A path which starts with a '/' is assumed to be absolute, all others are assumed to be

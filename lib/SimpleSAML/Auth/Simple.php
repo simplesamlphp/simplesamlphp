@@ -217,8 +217,7 @@ class SimpleSAML_Auth_Simple {
 				$stateID = SimpleSAML_Auth_State::saveState($state, $state['ReturnStateStage']);
 				$params[$state['ReturnStateParam']] = $stateID;
 			}
-
-			SimpleSAML_Utilities::redirectTrustedURL($state['ReturnTo'], $params);
+			\SimpleSAML\Utils\HTTP::redirectTrustedURL($state['ReturnTo'], $params);
 		}
 	}
 

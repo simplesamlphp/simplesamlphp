@@ -205,7 +205,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 
 		$serviceUrl = SimpleSAML_Module::getModuleURL('cas/linkback.php', array('stateID' => $stateID));
 
-		SimpleSAML_Utilities::redirectTrustedURL($this->_loginMethod, array(
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($this->_loginMethod, array(
 			'service' => $serviceUrl));
 	}
 
@@ -229,7 +229,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 
 		SimpleSAML_Auth_State::deleteState($state);
 		// we want cas to log us out
-		SimpleSAML_Utilities::redirectTrustedURL($logoutUrl);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($logoutUrl);
 	}
 
 }

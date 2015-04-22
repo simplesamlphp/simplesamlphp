@@ -99,4 +99,4 @@ if ($config->getBoolean('errorreporting', TRUE) && $toAddress !== 'na@example.or
 }
 
 /* Redirect the user back to this page to clear the POST request. */
-SimpleSAML_Utilities::redirectTrustedURL(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
+\SimpleSAML\Utils\HTTP::redirectTrustedURL(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());

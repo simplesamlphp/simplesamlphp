@@ -128,7 +128,7 @@ class SimpleSAML_Auth_Default {
 
 		if (is_string($return)) {
 			/* Redirect... */
-			SimpleSAML_Utilities::redirectTrustedURL($return);
+			\SimpleSAML\Utils\HTTP::redirectTrustedURL($return);
 		} else {
 			call_user_func($return, $state);
 			assert('FALSE');
@@ -193,7 +193,7 @@ class SimpleSAML_Auth_Default {
 		self::initLogoutReturn($returnURL, $authority);
 
 		/* Redirect... */
-		SimpleSAML_Utilities::redirectTrustedURL($returnURL);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($returnURL);
 	}
 
 
@@ -211,7 +211,7 @@ class SimpleSAML_Auth_Default {
 		$returnURL = $state['SimpleSAML_Auth_Default.ReturnURL'];
 
 		/* Redirect... */
-		SimpleSAML_Utilities::redirectTrustedURL($returnURL);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($returnURL);
 	}
 
 

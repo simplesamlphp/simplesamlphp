@@ -32,4 +32,4 @@ if (!empty($_REQUEST['saml:idp'])) {
 $as = new SimpleSAML_Auth_Simple($_REQUEST['AuthId']);
 $as->requireAuth($options);
 
-SimpleSAML_Utilities::redirectTrustedURL($options['ReturnTo']);
+\SimpleSAML\Utils\HTTP::redirectTrustedURL($options['ReturnTo']);

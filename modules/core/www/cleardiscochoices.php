@@ -33,5 +33,5 @@ if(array_key_exists('ReturnTo', $_REQUEST)) {
 }
 
 /* Redirect to destination. */
-SimpleSAML_Utilities::redirectTrustedURL($returnTo);
+\SimpleSAML\Utils\HTTP::redirectTrustedURL($returnTo);
 

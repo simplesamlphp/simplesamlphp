@@ -155,7 +155,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		 * Note the 'ReturnTo' parameter. This must most likely be replaced with
 		 * the real name of the parameter for the login page.
 		 */
-		SimpleSAML_Utilities::redirectTrustedURL($authPage, array(
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($authPage, array(
 			'ReturnTo' => $returnTo,
 		));
 
