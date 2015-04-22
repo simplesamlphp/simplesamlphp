@@ -444,7 +444,7 @@ class HTTP
             $protocol .= '://';
 
             $hostname = self::getServerHost();
-            $port = self::getServerPort();
+            $port = ':'.self::getServerPort();
             $path = '/'.$globalConfig->getBaseURL();
 
             return $protocol.$hostname.$port.$path;
