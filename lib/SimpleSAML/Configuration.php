@@ -1118,7 +1118,7 @@ class SimpleSAML_Configuration {
 			);
 		} elseif ($this->hasValue($prefix . 'certificate')) {
 			$file = $this->getString($prefix . 'certificate');
-			$file = SimpleSAML_Utilities::resolveCert($file);
+			$file = \SimpleSAML\Utils\Config::getCertPath($file);
 			$data = @file_get_contents($file);
 
 			if ($data === FALSE) {

@@ -10,6 +10,28 @@ class Config
 {
 
     /**
+     * Resolves a path that may be relative to the cert-directory.
+     *
+     * @param string $path The (possibly relative) path to the file.
+     *
+     * @return string  The file path.
+     * @throws \InvalidArgumentException If $path is not a string.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function getCertPath($path)
+    {
+        if (!is_string($path)) {
+            throw new \InvalidArgumentException('Invalid input parameters.');
+        }
+
+        $globalConfig = \SimpleSAML_Configuration::getInstance();
+        $base = $globalConfig->getPathValue('certdir', 'cert/');
+        return System::resolvePath($path, $base);
+    }
+
+
+    /**
      * Retrieve the secret salt.
      *
      * This function retrieves the value which is configured as the secret salt. It will check that the value exists
@@ -20,15 +42,15 @@ class Config
      * data together with the salt.
      *
      * @return string The secret salt.
+     * @throws \InvalidArgumentException If the secret salt hasn't been configured.
      *
-     * @throws \SimpleSAML_Error_Exception If the secret salt hasn't been configured.
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getSecretSalt()
     {
         $secretSalt = \SimpleSAML_Configuration::getInstance()->getString('secretsalt');
         if ($secretSalt === 'defaultsecretsalt') {
-            throw new \SimpleSAML_Error_Exception('The "secretsalt" configuration option must be set to a secret value.');
+            throw new \InvalidArgumentException('The "secretsalt" configuration option must be set to a secret value.');
         }
 
         return $secretSalt;

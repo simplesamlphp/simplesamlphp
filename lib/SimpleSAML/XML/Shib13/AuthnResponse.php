@@ -106,7 +106,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 			$this->validator->validateFingerprint($certFingerprints);
 		} elseif ($md->hasValue('caFile')) {
 			/* Validate against CA. */
-			$this->validator->validateCA(SimpleSAML_Utilities::resolveCert($md->getString('caFile')));
+			$this->validator->validateCA(\SimpleSAML\Utils\Config::getCertPath($md->getString('caFile')));
 		} else {
 			throw new SimpleSAML_Error_Exception('Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider [' . $issuer . '].');
 		}
@@ -115,7 +115,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	}
 
 
-	/* Checks if the given node is validated by the signatore on this response.
+	/* Checks if the given node is validated by the signature on this response.
 	 *
 	 * Returns:
 	 *  TRUE if the node is validated or FALSE if not.

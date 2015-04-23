@@ -1311,7 +1311,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	public function validateSignature($certificates) {
 		foreach ($certificates as $cert) {
 			assert('is_string($cert)');
-			$certFile = SimpleSAML_Utilities::resolveCert($cert);
+			$certFile = \SimpleSAML\Utils\Config::getCertPath($cert);
 			if (!file_exists($certFile)) {
 				throw new Exception('Could not find certificate file [' . $certFile . '], which is needed to validate signature');
 			}

@@ -130,7 +130,7 @@ class Crypto
             }
         }
 
-        $file = \SimpleSAML_Utilities::resolveCert($file);
+        $file = Config::getCertPath($file);
         $data = @file_get_contents($file);
         if ($data === false) {
             throw new \SimpleSAML_Error_Exception('Unable to load private key from file "'.$file.'"');

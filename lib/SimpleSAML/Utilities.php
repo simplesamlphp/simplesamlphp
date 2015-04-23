@@ -417,17 +417,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Resolves a path that may be relative to the cert-directory.
-	 *
-	 * @param string $path  The (possibly relative) path to the file.
-	 * @return string  The file path.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Config::getCertPath() instead.
 	 */
 	public static function resolveCert($path) {
-		assert('is_string($path)');
-
-		$globalConfig = SimpleSAML_Configuration::getInstance();
-		$base = $globalConfig->getPathValue('certdir', 'cert/');
-		return \SimpleSAML\Utils\System::resolvePath($path, $base);
+		return \SimpleSAML\Utils\Config::getCertPath($path);
 	}
 
 
