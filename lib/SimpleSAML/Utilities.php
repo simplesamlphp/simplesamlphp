@@ -685,11 +685,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Disable reporting of the given log levels.
-	 *
-	 * Every call to this function must be followed by a call to popErrorMask();
-	 *
-	 * @param int $mask  The log levels that should be masked.
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	public static function maskErrors($mask) {
 		assert('is_int($mask)');
@@ -704,12 +700,9 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Pop an error mask.
-	 *
-	 * This function restores the previous error mask.
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	public static function popErrorMask() {
-
 		$lastMask = array_pop(self::$logLevelStack);
 		error_reporting($lastMask[0]);
 		self::$logMask = $lastMask[1];
