@@ -875,25 +875,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Check for session cookie, and show missing-cookie page if it is missing.
-	 *
-	 * @param string|NULL $retryURL  The URL the user should access to retry the operation.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::checkSessionCookie() instead.
 	 */
 	public static function checkCookie($retryURL = NULL) {
-		assert('is_string($retryURL) || is_null($retryURL)');
-
-		$session = SimpleSAML_Session::getSessionFromRequest();
-		if ($session->hasSessionCookie()) {
-			return;
-		}
-
-		/* We didn't have a session cookie. Redirect to the no-cookie page. */
-
-		$url = SimpleSAML_Module::getModuleURL('core/no_cookie.php');
-		if ($retryURL !== NULL) {
-			$url = self::addURLParameter($url, array('retryURL' => $retryURL));
-		}
-		self::redirectTrustedURL($url);
+		return \SimpleSAML\Utils\HTTP::checkSessionCookie($retryURL);
 	}
 
 

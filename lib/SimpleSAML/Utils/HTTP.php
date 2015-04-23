@@ -259,6 +259,38 @@ class HTTP
 
 
     /**
+     * Check for session cookie, and show missing-cookie page if it is missing.
+     *
+     * @param string|NULL $retryURL The URL the user should access to retry the operation. Defaults to null.
+     *
+     * @return void If there is a session cookie, nothing will be returned. Otherwise, the user will be redirected to a
+     *     page telling about the missing cookie.
+     * @throws \SimpleSAML_Error_Exception If $retryURL is neither a string nor null.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function checkSessionCookie($retryURL = null)
+    {
+        if (!is_string($retryURL) || !is_null($retryURL)) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
+
+        $session = \SimpleSAML_Session::getSessionFromRequest();
+        if ($session->hasSessionCookie()) {
+            return;
+        }
+
+        // we didn't have a session cookie. Redirect to the no-cookie page
+
+        $url = \SimpleSAML_Module::getModuleURL('core/no_cookie.php');
+        if ($retryURL !== null) {
+            $url = self::addURLParameters($url, array('retryURL' => $retryURL));
+        }
+        self::redirectTrustedURL($url);
+    }
+
+
+    /**
      * Check if a URL is valid and is in our list of allowed URLs.
      *
      * @param string $url The URL to check.

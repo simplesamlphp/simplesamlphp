@@ -69,7 +69,7 @@ class sspmod_saml_IdP_SAML1 {
 				 * Less than five seconds has passed since we were
 				 * here the last time. Cookies are probably disabled.
 				 */
-				SimpleSAML_Utilities::checkCookie(\SimpleSAML\Utils\HTTP::getSelfURL());
+				\SimpleSAML\Utils\HTTP::checkCookie(\SimpleSAML\Utils\HTTP::getSelfURL());
 			}
 		}
 
