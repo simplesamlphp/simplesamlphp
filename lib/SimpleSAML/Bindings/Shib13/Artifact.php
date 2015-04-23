@@ -121,7 +121,7 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 		$artifacts = self::getArtifacts();
 		$request = self::buildRequest($artifacts);
 
-		SimpleSAML_Utilities::debugMessage($msgStr, 'out');
+		\SimpleSAML\Utils\XML::debugSAMLMessage($request, 'out');
 
 		$url = $idpMetadata->getDefaultEndpoint('ArtifactResolutionService', array('urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding'));
 		$url = $url['Location'];
@@ -166,7 +166,7 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 			throw new SimpleSAML_Error_Exception('Failed to retrieve assertion from IdP.');
 		}
 
-		SimpleSAML_Utilities::debugMessage($response, 'in');
+		\SimpleSAML\Utils\XML::debugSAMLMessage($response, 'in');
 
 		/* Find the response in the SOAP message. */
 		$response = self::extractResponse($response);

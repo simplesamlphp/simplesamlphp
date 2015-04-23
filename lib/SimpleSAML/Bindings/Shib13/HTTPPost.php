@@ -78,7 +78,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 
 		$response = $responsedom->saveXML();
 
-		SimpleSAML_Utilities::debugMessage($response, 'out');
+		\SimpleSAML\Utils\XML::debugSAMLMessage($response, 'out');
 
 		\SimpleSAML\Utils\HTTP::submitPOSTData($shire, array(
 			'TARGET' => $relayState,
@@ -103,7 +103,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		$rawResponse = $post['SAMLResponse'];
 		$samlResponseXML = base64_decode($rawResponse);
 
-		SimpleSAML_Utilities::debugMessage($samlResponseXML, 'in');
+		\SimpleSAML\Utils\XML::debugSAMLMessage($samlResponseXML, 'in');
 
 		SimpleSAML_Utilities::validateXMLDocument($samlResponseXML, 'saml11');
 

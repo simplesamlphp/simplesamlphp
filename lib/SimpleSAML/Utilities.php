@@ -886,45 +886,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Helper function to log messages that we send or receive.
-	 *
-	 * @param string|DOMElement $message  The message, as an XML string or an XML element.
-	 * @param string $type  Whether this message is sent or received, encrypted or decrypted.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::debugSAMLMessage() instead.
 	 */
 	public static function debugMessage($message, $type) {
-		assert('is_string($message) || $message instanceof DOMElement');
-
-		$globalConfig = SimpleSAML_Configuration::getInstance();
-		if (!$globalConfig->getBoolean('debug', FALSE)) {
-			/* Message debug disabled. */
-			return;
-		}
-
-		if ($message instanceof DOMElement) {
-			$message = $message->ownerDocument->saveXML($message);
-		}
-
-		switch ($type) {
-		case 'in':
-			SimpleSAML_Logger::debug('Received message:');
-			break;
-		case 'out':
-			SimpleSAML_Logger::debug('Sending message:');
-			break;
-		case 'decrypt':
-			SimpleSAML_Logger::debug('Decrypted message:');
-			break;
-		case 'encrypt':
-			SimpleSAML_Logger::debug('Encrypted message:');
-			break;
-		default:
-			assert(FALSE);
-		}
-
-		$str = SimpleSAML\Utils\XML::formatXMLString($message);
-		foreach (explode("\n", $str) as $line) {
-			SimpleSAML_Logger::debug($line);
-		}
+		return \SimpleSAML\Utils\XML::debugSAMLMessage($message, $type);
 	}
 
 

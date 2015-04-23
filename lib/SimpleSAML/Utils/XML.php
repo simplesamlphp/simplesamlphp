@@ -12,6 +12,61 @@ class XML
 {
 
     /**
+     * Helper function to log SAML messages that we send or receive.
+     *
+     * @param string|\DOMElement $message The message, as an string containing the XML or an XML element.
+     * @param string            $type Whether this message is sent or received, encrypted or decrypted. The following
+     *     values are supported:
+     *      - 'in': for messages received.
+     *      - 'out': for outgoing messages.
+     *      - 'decrypt': for decrypted messages.
+     *      - 'encrypt': for encrypted messages.
+     *
+     * @throws \SimpleSAML_Error_Exception If $type is not a string or $message is neither a string nor a \DOMElement.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function debugSAMLMessage($message, $type)
+    {
+        if (!(is_string($type) && (is_string($message) || $message instanceof \DOMElement))) {
+            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+        }
+
+        $globalConfig = \SimpleSAML_Configuration::getInstance();
+        if (!$globalConfig->getBoolean('debug', false)) {
+            // message debug disabled
+            return;
+        }
+
+        if ($message instanceof \DOMElement) {
+            $message = $message->ownerDocument->saveXML($message);
+        }
+
+        switch ($type) {
+            case 'in':
+                \SimpleSAML_Logger::debug('Received message:');
+                break;
+            case 'out':
+                \SimpleSAML_Logger::debug('Sending message:');
+                break;
+            case 'decrypt':
+                \SimpleSAML_Logger::debug('Decrypted message:');
+                break;
+            case 'encrypt':
+                \SimpleSAML_Logger::debug('Encrypted message:');
+                break;
+            default:
+                assert(false);
+        }
+
+        $str = self::formatXMLString($message);
+        foreach (explode("\n", $str) as $line) {
+            \SimpleSAML_Logger::debug($line);
+        }
+    }
+
+
+    /**
      * Format a DOM element.
      *
      * This function takes in a DOM element, and inserts whitespace to make it more readable. Note that whitespace
