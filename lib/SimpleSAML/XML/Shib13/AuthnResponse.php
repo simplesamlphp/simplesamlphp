@@ -212,7 +212,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 				$end = $condition->getAttribute('NotOnOrAfter');
 
 				if ($start && $end) {
-					if (! SimpleSAML_Utilities::checkDateConditions($start, $end)) {
+					if (!self::checkDateConditions($start, $end)) {
 						error_log('Date check failed ... (from ' . $start . ' to ' . $end . ')');
 						continue;
 					}
@@ -425,6 +425,43 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		$attr .= '</Attribute>';
 
 		return $attr;
+	}
+
+	/**
+	 * Check if we are currently between the given date & time conditions.
+	 *
+	 * Note that this function allows a 10-minute leap from the initial time as marked by $start.
+	 *
+	 * @param string|null $start A SAML2 timestamp marking the start of the period to check. Defaults to null, in which
+	 *     case there's no limitations in the past.
+	 * @param string|null $end A SAML2 timestamp marking the end of the period to check. Defaults to null, in which
+	 *     case there's no limitations in the future.
+	 *
+	 * @return bool True if the current time belongs to the period specified by $start and $end. False otherwise.
+	 *
+	 * @see \SAML2_Utils::xsDateTimeToTimestamp.
+	 *
+	 * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+	 * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+	 */
+	protected static function checkDateConditions($start = null, $end = null)
+	{
+		$currentTime = time();
+
+		if (!empty($start)) {
+			$startTime = \SAML2_Utils::xsDateTimeToTimestamp($start);
+			// allow for a 10 minute difference in time
+			if (($startTime < 0) || (($startTime - 600) > $currentTime)) {
+				return false;
+			}
+		}
+		if (!empty($end)) {
+			$endTime = \SAML2_Utils::xsDateTimeToTimestamp($end);
+			if (($endTime < 0) || ($endTime <= $currentTime)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

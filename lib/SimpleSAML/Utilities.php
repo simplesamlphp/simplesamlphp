@@ -130,9 +130,12 @@ class SimpleSAML_Utilities {
 	}
 
 
+	/**
+	 * @deprecated This method will be removed in SSP 2.0.
+	 */
 	public static function checkDateConditions($start=NULL, $end=NULL) {
 		$currentTime = time();
-	
+
 		if (!empty($start)) {
 			$startTime = SAML2_Utils::xsDateTimeToTimestamp($start);
 			/* Allow for a 10 minute difference in Time */
