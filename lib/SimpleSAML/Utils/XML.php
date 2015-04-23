@@ -12,10 +12,61 @@ class XML
 {
 
     /**
+     * This function performs some sanity checks on XML documents, and optionally validates them against their schema
+     * if the 'debug.validatexml' option is enabled. A warning will be printed to the log if validation fails.
+     *
+     * @param string $message The SAML document we want to check.
+     * @param string $type The type of document. Can be one of:
+     * - 'saml20'
+     * - 'saml11'
+     * - 'saml-meta'
+     *
+     * @throws \InvalidArgumentException If $message is not a string or $type is not a string containing one of the
+     *     values allowed.
+     * @throws \SimpleSAML_Error_Exception If $message contains a doctype declaration.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function checkSAMLMessage($message, $type)
+    {
+        $allowed_types = array('saml20', 'saml11', 'saml-meta');
+        if (!(is_string($message) && in_array($type, $allowed_types))) {
+            throw new \InvalidArgumentException('Invalid input parameters.');
+        }
+
+        // a SAML message should not contain a doctype-declaration
+        if (strpos($message, '<!DOCTYPE') !== false) {
+            throw new \SimpleSAML_Error_Exception('XML contained a doctype declaration.');
+        }
+
+        $enabled = \SimpleSAML_Configuration::getInstance()->getBoolean('debug.validatexml', null);
+        if (!$enabled) {
+            return;
+        }
+
+        $result = true;
+        switch ($type) {
+            case 'saml11':
+                $result = self::isValid($message, 'oasis-sstc-saml-schema-protocol-1.1.xsd');
+                break;
+            case 'saml20':
+                $result = self::isValid($message, 'saml-schema-protocol-2.0.xsd');
+                break;
+            case 'saml-meta':
+                $result = self::isValid($message, 'saml-schema-metadata-2.0.xsd');
+        }
+        if ($result !== true) {
+            \SimpleSAML_Logger::warning($result);
+        }
+    }
+
+
+    /**
      * Helper function to log SAML messages that we send or receive.
      *
      * @param string|\DOMElement $message The message, as an string containing the XML or an XML element.
-     * @param string            $type Whether this message is sent or received, encrypted or decrypted. The following
+     * @param string             $type Whether this message is sent or received, encrypted or decrypted. The following
      *     values are supported:
      *      - 'in': for messages received.
      *      - 'out': for outgoing messages.
@@ -322,7 +373,7 @@ class XML
      * it doesn't. Please use strict comparisons to check the values returned.
      *
      * @param string|\DOMDocument $xml The XML string or document which should be validated.
-     * @param string $schema The filename of the schema that should be used to validate the document.
+     * @param string              $schema The filename of the schema that should be used to validate the document.
      *
      * @return boolean|string Returns a string with errors found if validation fails. True if validation passes ok.
      * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \DOMDocument.

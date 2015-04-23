@@ -10,7 +10,7 @@ $config = SimpleSAML_Configuration::getInstance();
 if(array_key_exists('xmldata', $_POST)) {
 	$xmldata = $_POST['xmldata'];
 
-	SimpleSAML_Utilities::validateXMLDocument($xmldata, 'saml-meta');
+	\SimpleSAML\Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
 	$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsString($xmldata);
 
 	/* Get all metadata for the entities. */

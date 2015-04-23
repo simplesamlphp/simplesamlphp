@@ -27,7 +27,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 	 */
 	public function sendResponse($response, SimpleSAML_Configuration $idpmd, SimpleSAML_Configuration $spmd, $relayState, $shire) {
 
-		SimpleSAML_Utilities::validateXMLDocument($response, 'saml11');
+		\SimpleSAML\Utils\XML::checkSAMLMessage($response, 'saml11');
 
 		$privatekey = SimpleSAML\Utils\Crypto::loadPrivateKey($idpmd, TRUE);
 		$publickey = SimpleSAML\Utils\Crypto::loadPublicKey($idpmd, TRUE);
@@ -105,7 +105,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 
 		\SimpleSAML\Utils\XML::debugSAMLMessage($samlResponseXML, 'in');
 
-		SimpleSAML_Utilities::validateXMLDocument($samlResponseXML, 'saml11');
+		\SimpleSAML\Utils\XML::checkSAMLMessage($samlResponseXML, 'saml11');
 
 		$samlResponse = new SimpleSAML_XML_Shib13_AuthnResponse();
 		$samlResponse->setXML($samlResponseXML);

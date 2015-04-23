@@ -31,7 +31,7 @@ if (array_key_exists('entityid', $_REQUEST)) {
 } elseif(array_key_exists('xmlmetadata', $_REQUEST)) {
 
 	$xmldata = $_REQUEST['xmlmetadata'];
-	SimpleSAML_Utilities::validateXMLDocument($xmldata, 'saml-meta');
+	\SimpleSAML\Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
 	$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsString($xmldata);
 	$entity = array_pop($entities);
 	$metadata =  $entity->getMetadata20SP();
