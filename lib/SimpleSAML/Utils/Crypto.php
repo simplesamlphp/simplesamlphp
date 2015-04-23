@@ -16,14 +16,16 @@ class Crypto
      * @param string $ciphertext The encrypted data to decrypt.
      *
      * @return string The decrypted data.
-     * @throws \SimpleSAML_Error_Exception If the mcrypt module is not loaded or $ciphertext is not a string.
+     * @htorws \InvalidArgumentException If $ciphertext is not a string.
+     * @throws \SimpleSAML_Error_Exception If the mcrypt module is not loaded.
+     *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function aesDecrypt($ciphertext)
     {
         if (!is_string($ciphertext)) {
-            throw new \SimpleSAML_Error_Exception('Input parameter "$ciphertext" must be a string.');
+            throw new \InvalidArgumentException('Input parameter "$ciphertext" must be a string.');
         }
         if (!function_exists("mcrypt_encrypt")) {
             throw new \SimpleSAML_Error_Exception("The mcrypt PHP module is not loaded.");
@@ -50,20 +52,23 @@ class Crypto
         return $clear;
     }
 
+
     /**
      * Encrypt data using AES and the system-wide secret salt as key.
      *
      * @param string $data The data to encrypt.
      *
      * @return string The encrypted data and IV.
-     * @throws \SimpleSAML_Error_Exception If the mcrypt module is not loaded or $data is not a string.
+     * @throws \InvalidArgumentException If $data is not a string.
+     * @throws \SimpleSAML_Error_Exception If the mcrypt module is not loaded.
+     *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function aesEncrypt($data)
     {
         if (!is_string($data)) {
-            throw new \SimpleSAML_Error_Exception('Input parameter "$data" must be a string.');
+            throw new \InvalidArgumentException('Input parameter "$data" must be a string.');
         }
         if (!function_exists("mcrypt_encrypt")) {
             throw new \SimpleSAML_Error_Exception('The mcrypt PHP module is not loaded.');
@@ -103,13 +108,15 @@ class Crypto
      * - 'password': Password for the private key.
      *
      * @param \SimpleSAML_Configuration $metadata The metadata array the private key should be loaded from.
-     * @param bool                     $required Whether the private key is required. If this is true, a
+     * @param bool                      $required Whether the private key is required. If this is true, a
      * missing key will cause an exception. Defaults to false.
-     * @param string                   $prefix The prefix which should be used when reading from the metadata
+     * @param string                    $prefix The prefix which should be used when reading from the metadata
      * array. Defaults to ''.
      *
      * @return array|NULL Extracted private key, or NULL if no private key is present.
-     * @throws \SimpleSAML_Error_Exception If no private key is found in the metadata, or it was not possible to load it.
+     * @throws \InvalidArgumentException If $required is not boolean or $prefix is not a string.
+     * @throws \SimpleSAML_Error_Exception If no private key is found in the metadata, or it was not possible to load
+     *     it.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
@@ -117,7 +124,7 @@ class Crypto
     public static function loadPrivateKey(\SimpleSAML_Configuration $metadata, $required = false, $prefix = '')
     {
         if (!is_bool($required) || !is_string($prefix)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $file = $metadata->getString($prefix.'privatekey', null);
@@ -147,6 +154,7 @@ class Crypto
         return $ret;
     }
 
+
     /**
      * Get public key or certificate from metadata.
      *
@@ -164,22 +172,26 @@ class Crypto
      * - 'certFingerprint': Array of valid certificate fingerprints. (Only present if this is a certificate.)
      *
      * @param \SimpleSAML_Configuration $metadata The metadata.
-     * @param bool                     $required Whether the private key is required. If this is TRUE, a missing key
+     * @param bool                      $required Whether the private key is required. If this is TRUE, a missing key
      *     will cause an exception. Default is FALSE.
-     * @param string                   $prefix The prefix which should be used when reading from the metadata array.
+     * @param string                    $prefix The prefix which should be used when reading from the metadata array.
      *     Defaults to ''.
      *
      * @return array|NULL Public key or certificate data, or NULL if no public key or certificate was found.
+     * @throws \InvalidArgumentException If $metadata is not an instance of \SimpleSAML_Configuration, $required is not
+     *     boolean or $prefix is not a string.
+     * @throws \SimpleSAML_Error_Exception If no private key is found in the metadata, or it was not possible to load
+     *     it.
      *
-     * @throws \SimpleSAML_Error_Exception If no private key is found in the metadata, or it was not possible to load it.
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Lasse Birnbaum Jensen
      */
     public static function loadPublicKey(\SimpleSAML_Configuration $metadata, $required = false, $prefix = '')
     {
-        assert('is_bool($required)');
-        assert('is_string($prefix)');
+        if (!is_bool($required) || !is_string($prefix)) {
+            throw new \InvalidArgumentException('Invalid input parameters.');
+        }
 
         $keys = $metadata->getPublicKeys(null, false, $prefix);
         if ($keys !== null) {
@@ -226,6 +238,7 @@ class Crypto
         }
     }
 
+
     /**
      * This function hashes a password with a given algorithm.
      *
@@ -235,16 +248,18 @@ class Crypto
      * @param string $salt An optional salt to use.
      *
      * @return string The hashed password.
-     * @throws \SimpleSAML_Error_Exception If the algorithm specified is not supported, or the input parameters are not
-     *     strings.
+     * @throws \InvalidArgumentException If the input parameters are not strings.
+     * @throws \SimpleSAML_Error_Exception If the algorithm specified is not supported.
+     *
      * @see hash_algos()
+     *
      * @author Dyonisius Visser, TERENA <visser@terena.org>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function pwHash($password, $algorithm, $salt = null)
     {
         if (!is_string($algorithm) || !is_string($password)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         // hash w/o salt
@@ -279,14 +294,15 @@ class Crypto
      * @param string $password The password to check in clear.
      *
      * @return boolean True if the hash corresponds with the given password, false otherwise.
-     * @throws \SimpleSAML_Error_Exception If the algorithm specified is not supported, or the input parameters are not
-     *     strings.
+     * @throws \InvalidArgumentException If the input parameters are not strings.
+     * @throws \SimpleSAML_Error_Exception If the algorithm specified is not supported.
+     *
      * @author Dyonisius Visser, TERENA <visser@terena.org>
      */
     public static function pwValid($hash, $password)
     {
         if (!is_string($hash) || !is_string($password)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         // match algorithm string (e.g. '{SSHA256}', '{MD5}')

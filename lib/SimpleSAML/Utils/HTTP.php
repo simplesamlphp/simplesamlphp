@@ -129,7 +129,7 @@ class HTTP
      *     the name, without a value.
      *
      * @return void This function never returns.
-     * @throws \SimpleSAML_Error_Exception If $url is not a string or is empty, or $parameters is not an array.
+     * @throws \InvalidArgumentException If $url is not a string or is empty, or $parameters is not an array.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Mads Freek Petersen
@@ -138,7 +138,7 @@ class HTTP
     private static function redirect($url, $parameters = array())
     {
         if (!is_string($url) || empty($url) || !is_array($parameters)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
         if (!empty($parameters)) {
             $url = self::addURLParameters($url, $parameters);
@@ -226,7 +226,7 @@ class HTTP
      *     array.
      *
      * @return string The URL with the new query parameters.
-     * @throws \SimpleSAML_Error_Exception If $url is not a string or $parameters is not an array.
+     * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
@@ -234,7 +234,7 @@ class HTTP
     public static function addURLParameters($url, $parameters)
     {
         if (!is_string($url) || !is_array($parameters)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $queryStart = strpos($url, '?');
@@ -265,14 +265,14 @@ class HTTP
      *
      * @return void If there is a session cookie, nothing will be returned. Otherwise, the user will be redirected to a
      *     page telling about the missing cookie.
-     * @throws \SimpleSAML_Error_Exception If $retryURL is neither a string nor null.
+     * @throws \InvalidArgumentException If $retryURL is neither a string nor null.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function checkSessionCookie($retryURL = null)
     {
         if (!is_string($retryURL) || !is_null($retryURL)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $session = \SimpleSAML_Session::getSessionFromRequest();
@@ -299,7 +299,8 @@ class HTTP
      *
      * @return string The normalized URL itself if it is allowed. An empty string if the $url parameter is empty as
      * defined by the empty() function.
-     * @throws \SimpleSAML_Error_Exception if the URL is malformed or is not allowed by configuration.
+     * @throws \InvalidArgumentException If the URL is malformed.
+     * @throws \SimpleSAML_Error_Exception If the URL is not allowed by configuration.
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
@@ -348,7 +349,8 @@ class HTTP
      * @param boolean $getHeaders Whether to also return response headers. Optional.
      *
      * @return mixed array if $getHeaders is set, string otherwise
-     * @throws \SimpleSAML_Error_Exception If the input parameters are invalid or the file or URL cannot be retrieved.
+     * @throws \InvalidArgumentException If the input parameters are invalid.
+     * @throws \SimpleSAML_Error_Exception If the file or URL cannot be retrieved.
      *
      * @author Andjelko Horvat
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
@@ -357,7 +359,7 @@ class HTTP
     public static function fetch($url, $context = array(), $getHeaders = false)
     {
         if (!is_string($url)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $config = \SimpleSAML_Configuration::getInstance();
@@ -562,7 +564,7 @@ class HTTP
      * @param array  $data The name-value pairs which will be posted to the destination.
      *
      * @return string  A URL which can be accessed to post the data.
-     * @throws \SimpleSAML_Error_Exception If $destination is not a string or $data is not an array.
+     * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
      *
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
@@ -570,7 +572,7 @@ class HTTP
     public static function getPOSTRedirectURL($destination, $data)
     {
         if (!is_string($destination) || !is_array($data)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $config = \SimpleSAML_Configuration::getInstance();
@@ -704,7 +706,7 @@ class HTTP
      * @param string $url The relative URL.
      *
      * @return string An absolute URL for the given relative URL.
-     * @throws \SimpleSAML_Error_Exception If $url is not a string or a valid URL.
+     * @throws \InvalidArgumentException If $url is not a string or a valid URL.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
@@ -712,14 +714,14 @@ class HTTP
     public static function normalizeURL($url)
     {
         if (!is_string($url)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $url = self::resolveURL($url, self::getSelfURL());
 
         // verify that the URL is to a http or https site
         if (!preg_match('@^https?://@i', $url)) {
-            throw new \SimpleSAML_Error_Exception('Invalid URL: '.$url);
+            throw new \InvalidArgumentException('Invalid URL: '.$url);
         }
 
         return $url;
@@ -737,14 +739,14 @@ class HTTP
      * @param string $query_string The query string which should be parsed.
      *
      * @return array The query string as an associative array.
-     * @throws \SimpleSAML_Error_Exception If $query_string is not a string.
+     * @throws \InvalidArgumentException If $query_string is not a string.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function parseQueryString($query_string)
     {
         if (!is_string($query_string)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $res = array();
@@ -780,14 +782,14 @@ class HTTP
      * name, without a value.
      *
      * @return void This function never returns.
-     * @throws \SimpleSAML_Error_Exception If $url is not a string or $parameters is not an array.
+     * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function redirectTrustedURL($url, $parameters = array())
     {
         if (!is_string($url) || !is_array($parameters)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $url = self::normalizeURL($url);
@@ -812,14 +814,14 @@ class HTTP
      * name, without a value.
      *
      * @return void This function never returns.
-     * @throws \SimpleSAML_Error_Exception If $url is not a string or $parameters is not an array.
+     * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function redirectUntrustedURL($url, $parameters = array())
     {
         if (!is_string($url) || !is_array($parameters)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $url = self::checkURLAllowed($url);
@@ -842,7 +844,7 @@ class HTTP
      * @param string $base The base URL. Defaults to the base URL of this installation of SimpleSAMLphp.
      *
      * @return string An absolute URL for the given relative URL.
-     * @throws \SimpleSAML_Error_Exception If the base URL cannot be parsed into a valid URL, or the given parameters
+     * @throws \InvalidArgumentException If the base URL cannot be parsed into a valid URL, or the given parameters
      *     are not strings.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
@@ -855,11 +857,11 @@ class HTTP
         }
 
         if (!is_string($url) || !is_string($base)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         if (!preg_match('/^((((\w+:)\/\/[^\/]+)(\/[^?#]*))(?:\?[^#]*)?)(?:#.*)?/', $base, $baseParsed)) {
-            throw new \SimpleSAML_Error_Exception('Unable to parse base url: '.$base);
+            throw new \InvalidArgumentException('Unable to parse base url: '.$base);
         }
 
         $baseDir = dirname($baseParsed[5].'filename');
@@ -922,8 +924,8 @@ class HTTP
      * @param array|NULL  $params Cookie parameters.
      * @param bool        $throw Whether to throw exception if setcookie() fails.
      *
-     * @throws \SimpleSAML_Error_Exception If any parameter has an incorrect type or the if the headers were already
-     *     sent and the cookie cannot be set.
+     * @throws \InvalidArgumentException If any parameter has an incorrect type.
+     * @throws \SimpleSAML_Error_Exception If the headers were already sent and the cookie cannot be set.
      *
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
@@ -935,7 +937,7 @@ class HTTP
             (is_array($params) || is_null($params)) && // $params can be an array or null
             is_bool($throw)) // $throw must be boolean
         ) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $default_params = array(
@@ -996,7 +998,7 @@ class HTTP
      * @param string $destination The destination URL.
      * @param array  $data An associative array with the data to be posted to $destination.
      *
-     * @throws \SimpleSAML_Error_Exception If $destination is not a string or $data is not an array.
+     * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Andjelko Horvat
@@ -1005,7 +1007,7 @@ class HTTP
     public static function submitPOSTData($destination, $data)
     {
         if (!is_string($destination) || !is_array($data)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $config = \SimpleSAML_Configuration::getInstance();

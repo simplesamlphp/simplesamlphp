@@ -73,14 +73,14 @@ class XML
      *      - 'decrypt': for decrypted messages.
      *      - 'encrypt': for encrypted messages.
      *
-     * @throws \SimpleSAML_Error_Exception If $type is not a string or $message is neither a string nor a \DOMElement.
+     * @throws \InvalidArgumentException If $type is not a string or $message is neither a string nor a \DOMElement.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function debugSAMLMessage($message, $type)
     {
         if (!(is_string($type) && (is_string($message) || $message instanceof \DOMElement))) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters.');
+            throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $globalConfig = \SimpleSAML_Configuration::getInstance();
@@ -127,13 +127,14 @@ class XML
      * @param string      $indentBase The indentation this element should be assumed to have. Defaults to an empty
      *     string.
      *
-     * @throws \SimpleSAML_Error_Exception If $root is not a DOMElement or $indentBase is not a string.
+     * @throws \InvalidArgumentException If $root is not a DOMElement or $indentBase is not a string.
+     *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function formatDOMElement(\DOMElement $root, $indentBase = '')
     {
         if (!is_string($indentBase)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters');
+            throw new \InvalidArgumentException('Invalid input parameters');
         }
 
         // check what this element contains
@@ -214,19 +215,20 @@ class XML
      * to ''.
      *
      * @return string The formatted string.
-     * @throws \SimpleSAML_Error_Exception If the input does not parse correctly as an XML string or parameters are not
-     *     strings.
+     * @throws \InvalidArgumentException If the parameters are not strings.
+     * @throws \DOMException If the input does not parse correctly as an XML string.
+     *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function formatXMLString($xml, $indentBase = '')
     {
         if (!is_string($xml) || !is_string($indentBase)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters');
+            throw new \InvalidArgumentException('Invalid input parameters');
         }
 
         $doc = new \DOMDocument();
         if (!$doc->loadXML($xml)) {
-            throw new \SimpleSAML_Error_Exception('Error parsing XML string.');
+            throw new \DOMException('Error parsing XML string.');
         }
 
         $root = $doc->firstChild;
@@ -248,11 +250,14 @@ class XML
      *
      * @return array  Array with the matching elements in the order they are found. An empty array is
      *         returned if no elements match.
+     * @throws \InvalidArgumentException If $element is not an instance of DOMElement, $localName is not a string or
+     *     $namespaceURI is not a string.
      */
     public static function getDOMChildren(\DOMElement $element, $localName, $namespaceURI)
     {
-        assert('is_string($localName)');
-        assert('is_string($namespaceURI)');
+        if (!($element instanceof \DOMElement) || !is_string($localName) || !is_string($namespaceURI)) {
+            throw new \InvalidArgumentException('Invalid input parameters.');
+        }
 
         $ret = array();
 
@@ -279,13 +284,15 @@ class XML
      * @param \DOMElement $element The element we should extract text from.
      *
      * @return string The text content of the element.
+     * @throws \InvalidArgumentException If $element is not an instance of DOMElement.
      * @throws \SimpleSAML_Error_Exception If the element contains a non-text child node.
+     *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getDOMText(\DOMElement $element)
     {
         if (!($element instanceof \DOMElement)) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters');
+            throw new \InvalidArgumentException('Invalid input parameters');
         }
 
         $txt = '';
@@ -321,7 +328,7 @@ class XML
      * @param string   $nsURI The namespaceURI the element should have.
      *
      * @return boolean True if both namespace and local name matches, false otherwise.
-     * @throws \SimpleSAML_Error_Exception If the namespace shortcut is unknown.
+     * @throws \InvalidArgumentException If the namespace shortcut is unknown.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
@@ -349,7 +356,7 @@ class XML
 
             // check if it is a valid shortcut
             if (!array_key_exists($nsURI, $shortcuts)) {
-                throw new \SimpleSAML_Error_Exception('Unknown namespace shortcut: '.$nsURI);
+                throw new \InvalidArgumentException('Unknown namespace shortcut: '.$nsURI);
             }
 
             // expand the shortcut

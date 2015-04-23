@@ -81,19 +81,19 @@ class Time
      *     time.
      *
      * @return int The new timestamp, after the duration is applied.
-     * @throws \SimpleSAML_Error_Exception If $duration is not a valid ISO 8601 duration or if the input parameters do
+     * @throws \InvalidArgumentException If $duration is not a valid ISO 8601 duration or if the input parameters do
      *     not have the right data types.
      */
     public static function parseDuration($duration, $timestamp = null)
     {
         if (!(is_string($duration) && (is_int($timestamp) || is_null($timestamp)))) {
-            throw new \SimpleSAML_Error_Exception('Invalid input parameters');
+            throw new \InvalidArgumentException('Invalid input parameters');
         }
 
         // parse the duration. We use a very strict pattern
         $durationRegEx = '#^(-?)P(?:(?:(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)D)?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)(?:[.,]\d+)?S)?)?)|(?:(\\d+)W))$#D';
         if (!preg_match($durationRegEx, $duration, $matches)) {
-            throw new \SimpleSAML_Error_Exception('Invalid ISO 8601 duration: '.$duration);
+            throw new \InvalidArgumentException('Invalid ISO 8601 duration: '.$duration);
         }
 
         $durYears = (empty($matches[2]) ? 0 : (int) $matches[2]);

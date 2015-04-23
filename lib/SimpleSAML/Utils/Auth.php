@@ -15,10 +15,13 @@ class Auth
      * @param string|NULL $returnTo The URL the user should arrive on after admin authentication. Defaults to null.
      *
      * @return string A URL which can be used for admin authentication.
+     * @throws \InvalidArgumentException If $returnTo is neither a string nor null.
      */
     public static function getAdminLoginURL($returnTo = null)
     {
-        assert('is_string($returnTo) || is_null($returnTo)');
+        if (!(is_string($returnTo) || is_null($returnTo))) {
+            throw new \InvalidArgumentException('Invalid input parameters.');
+        }
 
         if ($returnTo === null) {
             $returnTo = \SimpleSAML\Utils\HTTP::getSelfURL();
@@ -47,7 +50,7 @@ class Auth
      * a login page if the current user doesn't have admin access.
      *
      * @return void This function will only return if the user is admin.
-     * @throws SimpleSAML_Error_Exception If no "admin" authentication source was configured.
+     * @throws \SimpleSAML_Error_Exception If no "admin" authentication source was configured.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
