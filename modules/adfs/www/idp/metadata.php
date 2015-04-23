@@ -112,7 +112,7 @@ try {
 	$metaBuilder->addOrganizationInfo($metaArray);
 	$technicalContactEmail = $config->getString('technicalcontact_email', NULL);
 	if ($technicalContactEmail && $technicalContactEmail !== 'na@example.org') {
-		$metaBuilder->addContact('technical', SimpleSAML_Utils_Config_Metadata::getContact(array(
+		$metaBuilder->addContact('technical', \SimpleSAML\Utils\Config\Metadata::getContact(array(
 			'emailAddress' => $technicalContactEmail,
 			'name' => $config->getString('technicalcontact_name', NULL),
 			'contactType' => 'technical',

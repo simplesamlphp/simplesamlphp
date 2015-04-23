@@ -1020,7 +1020,7 @@ class SimpleSAML_Configuration {
 
 		$endpoints = $this->getEndpoints($endpointType);
 
-		$defaultEndpoint = SimpleSAML_Utilities::getDefaultEndpoint($endpoints, $bindings);
+		$defaultEndpoint = \SimpleSAML\Utils\Config\Metadata::getDefaultEndpoint($endpoints, $bindings);
 		if ($defaultEndpoint !== NULL) {
 			return $defaultEndpoint;
 		}

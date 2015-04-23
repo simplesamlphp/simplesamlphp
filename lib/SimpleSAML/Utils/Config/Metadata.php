@@ -1,5 +1,5 @@
 <?php
-
+namespace SimpleSAML\Utils\Config;
 
 /**
  * Class with utilities to fetch different configuration objects from metadata configuration arrays.
@@ -7,7 +7,7 @@
  * @package SimpleSAMLphp
  * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  */
-class SimpleSAML_Utils_Config_Metadata
+class Metadata
 {
 
     /**
@@ -72,7 +72,7 @@ class SimpleSAML_Utils_Config_Metadata
      * @return array An array holding valid contact configuration options. If a key 'name' was part of the input array,
      * it will try to decompose the name into its parts, and place the parts into givenName and surName, if those are
      * missing.
-     * @throws InvalidArgumentException if the contact does not conform to valid configuration rules for contacts.
+     * @throws \InvalidArgumentException if the contact does not conform to valid configuration rules for contacts.
      */
     public static function getContact($contact)
     {
@@ -86,7 +86,7 @@ class SimpleSAML_Utils_Config_Metadata
                 },
                 self::$VALID_CONTACT_TYPES
             ));
-            throw new InvalidArgumentException('"contactType" is mandatory and must be one of '.$types.".");
+            throw new \InvalidArgumentException('"contactType" is mandatory and must be one of '.$types.".");
         }
 
         // try to fill in givenName and surName from name
@@ -114,7 +114,7 @@ class SimpleSAML_Utils_Config_Metadata
                 empty($contact['givenName']) || !is_string($contact['givenName'])
             )
         ) {
-            throw new InvalidArgumentException('"givenName" must be a string and cannot be empty.');
+            throw new \InvalidArgumentException('"givenName" must be a string and cannot be empty.');
         }
 
         // check surName
@@ -122,7 +122,7 @@ class SimpleSAML_Utils_Config_Metadata
                 empty($contact['surName']) || !is_string($contact['surName'])
             )
         ) {
-            throw new InvalidArgumentException('"surName" must be a string and cannot be empty.');
+            throw new \InvalidArgumentException('"surName" must be a string and cannot be empty.');
         }
 
         // check company
@@ -130,7 +130,7 @@ class SimpleSAML_Utils_Config_Metadata
                 empty($contact['company']) || !is_string($contact['company'])
             )
         ) {
-            throw new InvalidArgumentException('"company" must be a string and cannot be empty.');
+            throw new \InvalidArgumentException('"company" must be a string and cannot be empty.');
         }
 
         // check emailAddress
@@ -138,12 +138,12 @@ class SimpleSAML_Utils_Config_Metadata
             if (empty($contact['emailAddress']) ||
                 !(is_string($contact['emailAddress']) || is_array($contact['emailAddress']))
             ) {
-                throw new InvalidArgumentException('"emailAddress" must be a string or an array and cannot be empty.');
+                throw new \InvalidArgumentException('"emailAddress" must be a string or an array and cannot be empty.');
             }
             if (is_array($contact['emailAddress'])) {
                 foreach ($contact['emailAddress'] as $address) {
                     if (!is_string($address) || empty($address)) {
-                        throw new InvalidArgumentException('Email addresses must be a string and cannot be empty.');
+                        throw new \InvalidArgumentException('Email addresses must be a string and cannot be empty.');
                     }
                 }
             }
@@ -154,12 +154,12 @@ class SimpleSAML_Utils_Config_Metadata
             if (empty($contact['telephoneNumber']) ||
                 !(is_string($contact['telephoneNumber']) || is_array($contact['telephoneNumber']))
             ) {
-                throw new InvalidArgumentException('"telephoneNumber" must be a string or an array and cannot be empty.');
+                throw new \InvalidArgumentException('"telephoneNumber" must be a string or an array and cannot be empty.');
             }
             if (is_array($contact['telephoneNumber'])) {
                 foreach ($contact['telephoneNumber'] as $address) {
                     if (!is_string($address) || empty($address)) {
-                        throw new InvalidArgumentException('Telephone numbers must be a string and cannot be empty.');
+                        throw new \InvalidArgumentException('Telephone numbers must be a string and cannot be empty.');
                     }
                 }
             }

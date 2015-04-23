@@ -164,7 +164,7 @@ if ($orgName !== NULL) {
 if ($spconfig->hasValue('contacts')) {
 	$contacts = $spconfig->getArray('contacts');
 	foreach ($contacts as $contact) {
-		$metaArray20['contacts'][] = SimpleSAML_Utils_Config_Metadata::getContact($contact);
+		$metaArray20['contacts'][] = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
 	}
 }
 
@@ -174,7 +174,7 @@ if ($email && $email !== 'na@example.org') {
 	$techcontact['emailAddress'] = $email;
 	$techcontact['name'] = $config->getString('technicalcontact_name', NULL);
 	$techcontact['contactType'] = 'technical';
-	$metaArray20['contacts'][] = SimpleSAML_Utils_Config_Metadata::getContact($techcontact);
+	$metaArray20['contacts'][] = \SimpleSAML\Utils\Config\Metadata::getContact($techcontact);
 }
 
 // add certificate

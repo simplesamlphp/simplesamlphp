@@ -37,8 +37,8 @@ if (array_key_exists('entityid', $_REQUEST)) {
 	$metadata =  $entity->getMetadata20SP();
 
 	/* Trim metadata endpoint arrays. */
-	$metadata['AssertionConsumerService'] = array(SimpleSAML_Utilities::getDefaultEndpoint($metadata['AssertionConsumerService'], array(SAML2_Const::BINDING_HTTP_POST)));
-	$metadata['SingleLogoutService'] = array(SimpleSAML_Utilities::getDefaultEndpoint($metadata['SingleLogoutService'], array(SAML2_Const::BINDING_HTTP_REDIRECT)));
+	$metadata['AssertionConsumerService'] = array(\SimpleSAML\Utils\Config\Metadata::getDefaultEndpoint($metadata['AssertionConsumerService'], array(SAML2_Const::BINDING_HTTP_POST)));
+	$metadata['SingleLogoutService'] = array(\SimpleSAML\Utils\Config\Metadata::getDefaultEndpoint($metadata['SingleLogoutService'], array(SAML2_Const::BINDING_HTTP_REDIRECT)));
 
 } else {
 	$metadata = array(
