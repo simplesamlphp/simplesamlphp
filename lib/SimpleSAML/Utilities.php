@@ -280,7 +280,7 @@ class SimpleSAML_Utilities {
 	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::redirectUntrustedURL() instead.
 	 */
 	public static function redirectUntrustedURL($url, $parameters = array()) {
-		return \SimpleSAML\Utils\HTTP::redirectUntrustedURL($url, $parameters);
+		\SimpleSAML\Utils\HTTP::redirectUntrustedURL($url, $parameters);
 	}
 
 	/**
@@ -547,7 +547,7 @@ class SimpleSAML_Utilities {
 	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::formatDOMElement() instead.
 	 */
 	public static function formatDOMElement(DOMElement $root, $indentBase = '') {
-		return SimpleSAML\Utils\XML::formatDOMElement($root, $indentBase);
+		SimpleSAML\Utils\XML::formatDOMElement($root, $indentBase);
 	}
 
 
@@ -838,7 +838,7 @@ class SimpleSAML_Utilities {
 	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::checkSessionCookie() instead.
 	 */
 	public static function checkCookie($retryURL = NULL) {
-		return \SimpleSAML\Utils\HTTP::checkSessionCookie($retryURL);
+		\SimpleSAML\Utils\HTTP::checkSessionCookie($retryURL);
 	}
 
 
@@ -846,7 +846,7 @@ class SimpleSAML_Utilities {
 	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::debugSAMLMessage() instead.
 	 */
 	public static function debugMessage($message, $type) {
-		return \SimpleSAML\Utils\XML::debugSAMLMessage($message, $type);
+		\SimpleSAML\Utils\XML::debugSAMLMessage($message, $type);
 	}
 
 
@@ -886,7 +886,7 @@ class SimpleSAML_Utilities {
 	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::setCookie() instead.
 	 */
 	public static function setCookie($name, $value, array $params = NULL, $throw = TRUE) {
-		return \SimpleSAML\Utils\HTTP::setCookie($name, $value, $params, $throw);
+		\SimpleSAML\Utils\HTTP::setCookie($name, $value, $params, $throw);
 	}
 
 }
