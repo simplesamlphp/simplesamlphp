@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * Class with utilities to fetch different configuration objects from metadata configuration arrays.
  *
@@ -13,7 +15,12 @@ class SimpleSAML_Utils_Config_Metadata
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
     public static $VALID_CONTACT_OPTIONS = array(
-        'contactType', 'emailAddress', 'givenName', 'surName', 'telephoneNumber', 'company',
+        'contactType',
+        'emailAddress',
+        'givenName',
+        'surName',
+        'telephoneNumber',
+        'company',
     );
 
 
@@ -22,7 +29,11 @@ class SimpleSAML_Utils_Config_Metadata
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
     public static $VALID_CONTACT_TYPES = array(
-        'technical', 'support', 'administrative', 'billing', 'other',
+        'technical',
+        'support',
+        'administrative',
+        'billing',
+        'other',
     );
 
 
@@ -57,6 +68,7 @@ class SimpleSAML_Utils_Config_Metadata
      * otherwise it will just return the name as "givenName" in the resulting array.
      *
      * @param array $contact The contact to parse and sanitize.
+     *
      * @return array An array holding valid contact configuration options. If a key 'name' was part of the input array,
      * it will try to decompose the name into its parts, and place the parts into givenName and surName, if those are
      * missing.
@@ -69,12 +81,12 @@ class SimpleSAML_Utils_Config_Metadata
         // check the type
         if (!isset($contact['contactType']) || !in_array($contact['contactType'], self::$VALID_CONTACT_TYPES, true)) {
             $types = join(', ', array_map(
-                function($t) {
+                function ($t) {
                     return '"'.$t.'"';
                 },
                 self::$VALID_CONTACT_TYPES
             ));
-            throw new InvalidArgumentException('"contactType" is mandatory and must be one of '. $types.".");
+            throw new InvalidArgumentException('"contactType" is mandatory and must be one of '.$types.".");
         }
 
         // try to fill in givenName and surName from name
@@ -100,28 +112,32 @@ class SimpleSAML_Utils_Config_Metadata
         // check givenName
         if (isset($contact['givenName']) && (
                 empty($contact['givenName']) || !is_string($contact['givenName'])
-            )) {
+            )
+        ) {
             throw new InvalidArgumentException('"givenName" must be a string and cannot be empty.');
         }
 
         // check surName
         if (isset($contact['surName']) && (
                 empty($contact['surName']) || !is_string($contact['surName'])
-            )) {
+            )
+        ) {
             throw new InvalidArgumentException('"surName" must be a string and cannot be empty.');
         }
 
         // check company
         if (isset($contact['company']) && (
                 empty($contact['company']) || !is_string($contact['company'])
-            )) {
+            )
+        ) {
             throw new InvalidArgumentException('"company" must be a string and cannot be empty.');
         }
 
         // check emailAddress
         if (isset($contact['emailAddress'])) {
             if (empty($contact['emailAddress']) ||
-                !(is_string($contact['emailAddress']) || is_array($contact['emailAddress']))) {
+                !(is_string($contact['emailAddress']) || is_array($contact['emailAddress']))
+            ) {
                 throw new InvalidArgumentException('"emailAddress" must be a string or an array and cannot be empty.');
             }
             if (is_array($contact['emailAddress'])) {
@@ -136,7 +152,8 @@ class SimpleSAML_Utils_Config_Metadata
         // check telephoneNumber
         if (isset($contact['telephoneNumber'])) {
             if (empty($contact['telephoneNumber']) ||
-                !(is_string($contact['telephoneNumber']) || is_array($contact['telephoneNumber']))) {
+                !(is_string($contact['telephoneNumber']) || is_array($contact['telephoneNumber']))
+            ) {
                 throw new InvalidArgumentException('"telephoneNumber" must be a string or an array and cannot be empty.');
             }
             if (is_array($contact['telephoneNumber'])) {
@@ -152,4 +169,55 @@ class SimpleSAML_Utils_Config_Metadata
         return array_intersect_key($contact, array_flip(self::$VALID_CONTACT_OPTIONS));
     }
 
+
+    /**
+     * Find the default endpoint in an endpoint array.
+     *
+     * @param array $endpoints An array with endpoints.
+     * @param array $bindings An array with acceptable bindings. Can be null if any binding is allowed.
+     *
+     * @return array|NULL The default endpoint, or null if no acceptable endpoints are used.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function getDefaultEndpoint(array $endpoints, array $bindings = null)
+    {
+        $firstNotFalse = null;
+        $firstAllowed = null;
+
+        // look through the endpoint list for acceptable endpoints
+        foreach ($endpoints as $i => $ep) {
+            if ($bindings !== null && !in_array($ep['Binding'], $bindings, true)) {
+                // unsupported binding, skip it
+                continue;
+            }
+
+            if (array_key_exists('isDefault', $ep)) {
+                if ($ep['isDefault'] === true) {
+                    // this is the first endpoint with isDefault set to true
+                    return $ep;
+                }
+                // isDefault is set to false, but the endpoint is still usable as a last resort
+                if ($firstAllowed === null) {
+                    // this is the first endpoint that we can use
+                    $firstAllowed = $ep;
+                }
+            } else {
+                if ($firstNotFalse === null) {
+                    // this is the first endpoint without isDefault set
+                    $firstNotFalse = $ep;
+                }
+            }
+        }
+
+        if ($firstNotFalse !== null) {
+            // we have an endpoint without isDefault set to false
+            return $firstNotFalse;
+        }
+
+        /* $firstAllowed either contains the first endpoint we can use, or it contains null if we cannot use any of the
+         * endpoints. Either way we return its value.
+         */
+        return $firstAllowed;
+    }
 }
