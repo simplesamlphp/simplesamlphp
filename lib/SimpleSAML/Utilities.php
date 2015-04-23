@@ -141,7 +141,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Random::generateID() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Random::generateID() instead.
 	 */
 	public static function generateID() {
 		return SimpleSAML\Utils\Random::generateID();
@@ -149,7 +149,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use \SimpleSAML\Utils\Time::generateTimestamp() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Utils\Time::generateTimestamp() instead.
 	 */
 	public static function generateTimestamp($instant = NULL) {
 		return SimpleSAML\Utils\Time::generateTimestamp($instant);
@@ -157,7 +157,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use \SimpleSAML\Utils\Time::parseDuration() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Utils\Time::parseDuration() instead.
 	 */
 	public static function parseDuration($duration, $timestamp = NULL) {
 		return SimpleSAML\Utils\Time::parseDuration($duration, $timestamp);
@@ -165,7 +165,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please raise a SimpleSAML_Error_Error exception instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please raise a SimpleSAML_Error_Error exception instead.
 	 */
 	public static function fatalError($trackId = 'na', $errorCode = null, Exception $e = null) {
 		throw new SimpleSAML_Error_Error($errorCode, $e);
@@ -179,10 +179,6 @@ class SimpleSAML_Utilities {
 		return SimpleSAML\Utils\Net::ipCIDRcheck($cidr, $ip);
 	}
 
-	/*
-	 * This is a temporary function, holding the redirect() functionality,
-	 * meanwhile we are deprecating the it.
-	 */
 	private static function _doRedirect($url, $parameters = array()) {
 		assert('is_string($url)');
 		assert('!empty($url)');
@@ -240,8 +236,8 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated 1.12.0 This function will be removed from the API. Instead, use the redirectTrustedURL or
-	 * redirectUntrustedURL functions accordingly.
+	 * @deprecated 1.12.0 This method will be removed from the API. Instead, use the redirectTrustedURL() or
+	 * redirectUntrustedURL() functions accordingly.
 	 */
 	public static function redirect($url, $parameters = array(), $allowed_redirect_hosts = NULL) {
 		assert('is_string($url)');
@@ -279,7 +275,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::isDOMElementOfType() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::isDOMElementOfType() instead.
 	 */
 	public static function isDOMElementOfType(DOMNode $element, $name, $nsURI) {
 		return SimpleSAML\Utils\XML::isDOMElementOfType($element, $name, $nsURI);
@@ -287,7 +283,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::getDOMChildren() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::getDOMChildren() instead.
 	 */
 	public static function getDOMChildren(DOMElement $element, $localName, $namespaceURI) {
 		return SimpleSAML\Utils\XML::getDOMChildren($element, $localName, $namespaceURI);
@@ -295,7 +291,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::getDOMText() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::getDOMText() instead.
 	 */
 	public static function getDOMText($element) {
 		return SimpleSAML\Utils\XML::getDOMText($element);
@@ -328,7 +324,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-     * @deprecated This function will be removed in SSP 2.0. Please use openssl_random_pseudo_bytes() instead.
+     * @deprecated This method will be removed in SSP 2.0. Please use openssl_random_pseudo_bytes() instead.
 	 */
 	public static function generateRandomBytes($length) {
 		assert('is_int($length)');
@@ -338,7 +334,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use bin2hex() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use bin2hex() instead.
 	 */
 	public static function stringToHex($bytes) {
 		$ret = '';
@@ -391,7 +387,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Config::getSecretSalt() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Config::getSecretSalt() instead.
 	 */
 	public static function getSecretSalt() {
 		return SimpleSAML\Utils\Config::getSecretSalt();
@@ -399,7 +395,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please call error_get_last() directly.
+	 * @deprecated This method will be removed in SSP 2.0. Please call error_get_last() directly.
 	 */
 	public static function getLastError() {
 
@@ -425,7 +421,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::loadPublicKey() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::loadPublicKey() instead.
 	 */
 	public static function loadPublicKey(SimpleSAML_Configuration $metadata, $required = FALSE, $prefix = '') {
 		return SimpleSAML\Utils\Crypto::loadPublicKey($metadata, $required, $prefix);
@@ -433,7 +429,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::loadPrivateKey() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::loadPrivateKey() instead.
 	 */
 	public static function loadPrivateKey(SimpleSAML_Configuration $metadata, $required = FALSE, $prefix = '') {
 		return SimpleSAML\Utils\Crypto::loadPrivateKey($metadata, $required, $prefix);
@@ -441,7 +437,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::formatDOMElement() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::formatDOMElement() instead.
 	 */
 	public static function formatDOMElement(DOMElement $root, $indentBase = '') {
 		SimpleSAML\Utils\XML::formatDOMElement($root, $indentBase);
@@ -449,14 +445,14 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::formatXMLString() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::formatXMLString() instead.
 	 */
 	public static function formatXMLString($xml, $indentBase = '') {
 		return SimpleSAML\Utils\XML::formatXMLString($xml, $indentBase);
 	}
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Arrays::arrayize() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Arrays::arrayize() instead.
 	 */
 	public static function arrayize($data, $index = 0) {
 		return SimpleSAML\Utils\Arrays::arrayize($data, $index);
@@ -464,7 +460,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Auth::isAdmin() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Auth::isAdmin() instead.
 	 */
 	public static function isAdmin() {
 		return SimpleSAML\Utils\Auth::isAdmin();
@@ -472,7 +468,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Auth::getAdminLoginURL instead();
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Auth::getAdminLoginURL instead();
 	 */
 	public static function getAdminLoginURL($returnTo = NULL) {
 		return SimpleSAML\Utils\Auth::getAdminLoginURL($returnTo);
@@ -480,7 +476,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Auth::requireAdmin() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Auth::requireAdmin() instead.
 	 */
 	public static function requireAdmin() {
 		\SimpleSAML\Utils\Auth::requireAdmin();
@@ -534,7 +530,7 @@ class SimpleSAML_Utilities {
 	 * @param string $certificate  The certificate, in PEM format.
 	 * @param string $caFile  File with trusted certificates, in PEM-format.
 	 * @return boolean|string TRUE on success, or a string with error messages if it failed.
-	 * @deprecated
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	private static function validateCABuiltIn($certificate, $caFile) {
 		assert('is_string($certificate)');
@@ -569,7 +565,7 @@ class SimpleSAML_Utilities {
 	 * @param string $certificate  The certificate, in PEM format.
 	 * @param string $caFile  File with trusted certificates, in PEM-format.
 	 * @return boolean|string TRUE on success, a string with error messages on failure.
-	 * @deprecated
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	private static function validateCAExec($certificate, $caFile) {
 		assert('is_string($certificate)');
@@ -626,7 +622,7 @@ class SimpleSAML_Utilities {
 	 *
 	 * @param string $certificate  The certificate, in PEM format.
 	 * @param string $caFile  File with trusted certificates, in PEM-format.
-	 * @deprecated
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	public static function validateCA($certificate, $caFile) {
 		assert('is_string($certificate)');
@@ -656,17 +652,14 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Time::initTimezone() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Time::initTimezone() instead.
 	 */
 	public static function initTimezone() {
 		\SimpleSAML\Utils\Time::initTimezone();
 	}
 
 	/**
-	 * Disable the loading of external entities in XML documents to prevent local and
-	 * remote file inclusion attacks. This is in most cases already disabled by default
-	 * in system libraries, but to be safe we explicitly disable it also.
-     * @deprecated This function will be removed in SSP 2.0. Please use libxml_disable_entity_loader() instead.
+     * @deprecated This method will be removed in SSP 2.0. Please use libxml_disable_entity_loader() instead.
 	 */
 	public static function disableXMLEntityLoader() {
 		/* Function only present in PHP >= 5.2.11 while we support 5.2+ */
@@ -756,7 +749,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::aesEncrypt() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::aesEncrypt() instead.
 	 */
 	public static function aesEncrypt($clear) {
 		return SimpleSAML\Utils\Crypto::aesEncrypt($clear);
@@ -764,7 +757,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * @deprecated This function will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::aesDecrypt() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::aesDecrypt() instead.
 	 */
 	public static function aesDecrypt($encData) {
 		return SimpleSAML\Utils\Crypto::aesDecrypt($encData);
