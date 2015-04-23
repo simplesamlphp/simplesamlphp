@@ -311,51 +311,11 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * This function attempts to validate an XML string against the specified schema.
-	 *
-	 * It will parse the string into a DOM document and validate this document against the schema.
-	 *
-	 * @param $xml     The XML string or document which should be validated.
-	 * @param $schema  The schema which should be used.
-	 * @return Returns a string with the errors if validation fails. An empty string is
-	 *         returned if validation passes.
-	 * @deprecated
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::isValid() instead.
 	 */
 	public static function validateXML($xml, $schema) {
-		assert('is_string($xml) || $xml instanceof DOMDocument');
-		assert('is_string($schema)');
-
-		SimpleSAML_XML_Errors::begin();
-
-		if($xml instanceof DOMDocument) {
-			$dom = $xml;
-			$res = TRUE;
-		} else {
-			$dom = new DOMDocument;
-			$res = $dom->loadXML($xml);
-		}
-
-		if($res) {
-
-			$config = SimpleSAML_Configuration::getInstance();
-			$schemaPath = $config->resolvePath('schemas') . '/';
-			$schemaFile = $schemaPath . $schema;
-
-			$res = $dom->schemaValidate($schemaFile);
-			if($res) {
-				SimpleSAML_XML_Errors::end();
-				return '';
-			}
-
-			$errorText = "Schema validation failed on XML string:\n";
-		} else {
-			$errorText = "Failed to parse XML string for schema validation:\n";
-		}
-
-		$errors = SimpleSAML_XML_Errors::end();
-		$errorText .= SimpleSAML_XML_Errors::formatErrors($errors);
-
-		return $errorText;
+		$result = \SimpleSAML\Utils\XML::isValid($xml, $schema);
+		return ($result === true) ? '' : $result;
 	}
 
 

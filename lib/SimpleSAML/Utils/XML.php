@@ -271,6 +271,7 @@ class XML
      *
      * @return boolean True if both namespace and local name matches, false otherwise.
      * @throws \SimpleSAML_Error_Exception If the namespace shortcut is unknown.
+     *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
@@ -310,5 +311,60 @@ class XML
             return false;
         }
         return true;
+    }
+
+
+    /**
+     * This function attempts to validate an XML string against the specified schema. It will parse the string into a
+     * DOM document and validate this document against the schema.
+     *
+     * Note that this function returns values that are evaluated as a logical true, both when validation works and when
+     * it doesn't. Please use strict comparisons to check the values returned.
+     *
+     * @param string|\DOMDocument $xml The XML string or document which should be validated.
+     * @param string $schema The filename of the schema that should be used to validate the document.
+     *
+     * @return boolean|string Returns a string with errors found if validation fails. True if validation passes ok.
+     * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \DOMDocument.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     */
+    public static function isValid($xml, $schema)
+    {
+        if (!(is_string($schema) && (is_string($xml) || $xml instanceof \DOMDocument))) {
+            throw new \InvalidArgumentException('Invalid input parameters.');
+        }
+
+        \SimpleSAML_XML_Errors::begin();
+
+        if ($xml instanceof \DOMDocument) {
+            $dom = $xml;
+            $res = true;
+        } else {
+            $dom = new \DOMDocument;
+            $res = $dom->loadXML($xml);
+        }
+
+        if ($res) {
+
+            $config = \SimpleSAML_Configuration::getInstance();
+            $schemaPath = $config->resolvePath('schemas').'/';
+            $schemaFile = $schemaPath.$schema;
+
+            $res = $dom->schemaValidate($schemaFile);
+            if ($res) {
+                \SimpleSAML_XML_Errors::end();
+                return true;
+            }
+
+            $errorText = "Schema validation failed on XML string:\n";
+        } else {
+            $errorText = "Failed to parse XML string for schema validation:\n";
+        }
+
+        $errors = \SimpleSAML_XML_Errors::end();
+        $errorText .= \SimpleSAML_XML_Errors::formatErrors($errors);
+
+        return $errorText;
     }
 }
