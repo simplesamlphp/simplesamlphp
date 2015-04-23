@@ -110,23 +110,10 @@ class SimpleSAML_Utilities {
 
 
 	/**
-	 * Get the ID and (optionally) a URL embedded in a StateID,
-	 * in the form 'id:url'.
-	 *
-	 * @param string $stateId The state ID to use.
-	 * @return array A hashed array with the ID and the URL (if any),
-	 * in the 'id' and 'url' keys, respectively. If there's no URL
-	 * in the input parameter, NULL will be returned as the value for
-	 * the 'url' key.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Auth_State::parseStateID() instead.
 	 */
 	public static function parseStateID($stateId) {
-		$tmp = explode(':', $stateId, 2);
-		$id = $tmp[0];
-		$url = NULL;
-		if (count($tmp) === 2) {
-			$url = $tmp[1];
-		}
-		return array('id' => $id, 'url' => $url);
+		return SimpleSAML_Auth_State::parseStateID($stateId);
 	}
 
 

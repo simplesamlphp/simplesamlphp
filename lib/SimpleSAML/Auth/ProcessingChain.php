@@ -302,7 +302,7 @@ class SimpleSAML_Auth_ProcessingChain {
 	 * Retrieve a state which has finished processing.
 	 *
 	 * @param string $id The state identifier.
-     * @see SimpleSAML_Utilities::parseStateID()
+     * @see SimpleSAML_Auth_State::parseStateID()
      * @return Array The state referenced by the $id parameter.
 	 */
 	public static function fetchProcessedState($id) {
