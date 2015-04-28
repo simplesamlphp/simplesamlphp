@@ -324,7 +324,7 @@ class SimpleSAML_Utilities {
 
 
 	/**
-     * @deprecated This method will be removed in SSP 2.0. Please use openssl_random_pseudo_bytes() instead.
+	 * @deprecated This method will be removed in SSP 2.0. Please use openssl_random_pseudo_bytes() instead.
 	 */
 	public static function generateRandomBytes($length) {
 		assert('is_int($length)');

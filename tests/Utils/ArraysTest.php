@@ -36,7 +36,7 @@ class Utils_ArraysTest extends PHPUnit_Framework_TestCase
     /**
      * Test the normalizeAttributesArray() function with input not being an array
      *
-     * @expectedException SimpleSAML_Error_Exception
+     * @expectedException InvalidArgumentException
      */
     public function testNormalizeAttributesArrayBadInput()
     {
@@ -46,7 +46,7 @@ class Utils_ArraysTest extends PHPUnit_Framework_TestCase
     /**
      * Test the normalizeAttributesArray() function with an array with non-string attribute names.
      *
-     * @expectedException SimpleSAML_Error_Exception
+     * @expectedException InvalidArgumentException
      */
     public function testNormalizeAttributesArrayBadKeys()
     {
@@ -56,7 +56,7 @@ class Utils_ArraysTest extends PHPUnit_Framework_TestCase
     /**
      * Test the normalizeAttributesArray() function with an array with non-string attribute values.
      *
-     * @expectedException SimpleSAML_Error_Exception
+     * @expectedException InvalidArgumentException
      */
     public function testNormalizeAttributesArrayBadValues()
     {
