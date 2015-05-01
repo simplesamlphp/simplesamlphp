@@ -23,6 +23,13 @@ class DBAL extends \SimpleSAML_Store
     private $kvstorePrefix;
 
     /**
+     * Database connection
+     *
+     * @var \Doctrine\DBAL\Connection
+     */
+    private $conn;
+
+    /**
      * Initialize the SQL datastore.
      */
     protected function __construct()
@@ -39,7 +46,6 @@ class DBAL extends \SimpleSAML_Store
             'host' => $config->getString('store.dbal.host', 'localhost'),
             'dbname' => $config->getString('store.dbal.dbname'),
         );
-
         $this->conn = DriverManager::getConnection($connectionParams);
         $this->initKVTable();
     }
@@ -122,7 +128,7 @@ class DBAL extends \SimpleSAML_Store
         $result = $query->fetchAll(\PDO::FETCH_ASSOC);
 
         if (count($result) === 0) {
-            return;
+            return null;
         }
 
         $value = $result[0]['_value'];
@@ -133,7 +139,7 @@ class DBAL extends \SimpleSAML_Store
         $value = unserialize($value);
 
         if (false === $value) {
-            return;
+            return null;
         }
 
         return $value;
@@ -216,7 +222,7 @@ class DBAL extends \SimpleSAML_Store
     /**
      * Clean the key-value table of expired entries.
      */
-    protected function cleanKVStore()
+    public function cleanKVStore()
     {
         \SimpleSAML_Logger::debug('store.dbal: Cleaning key-value store.');
 
@@ -236,5 +242,23 @@ class DBAL extends \SimpleSAML_Store
     public function createQueryBuilder()
     {
         return $this->conn->createQueryBuilder();
+    }
+
+    /**
+     * Returns the database connection
+     *
+     * @return \Doctrine\DBAL\Connection
+     */
+    public function getConnection()
+    {
+        return $this->conn;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrefix()
+    {
+        return $this->prefix;
     }
 }
