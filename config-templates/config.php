@@ -609,6 +609,7 @@ $config = array(
      * - 'phpsession': Limited datastore, which uses the PHP session.
      * - 'memcache': Key-value datastore, based on memcache.
      * - 'sql': SQL datastore, using PDO.
+     * - 'dbal': SQL datastore, using Doctrine DBAL.
      *
      * The default datastore is 'phpsession'.
      *
@@ -630,6 +631,18 @@ $config = array(
      */
     'store.sql.username' => null,
     'store.sql.password' => null,
+
+    /*
+     * The connection parameters the SQL/DBAL datastore should used to.
+     *
+     * See http://doctrine-dbal.readthedocs.org/en/latest/reference/configuration.html
+     * for reference.
+     */
+    'store.dbal.dbname'             => 'simplesamlphp',
+    'store.dbal.user'               => 'user',
+    'store.dbal.password'           => 'secret',
+    'store.dbal.host'               => 'localhost',
+    'store.dbal.driver'             => 'pdo_mysql',
 
     /*
      * The prefix we should use on our tables.

@@ -46,6 +46,9 @@ abstract class SimpleSAML_Store {
 		case 'sql':
 			self::$instance = new SimpleSAML_Store_SQL();
 			break;
+		case 'dbal':
+			self::$instance = new SimpleSAML\Store\DBAL();
+			break;
 		default:
 			if (strpos($storeType, ':') === FALSE) {
 				throw new SimpleSAML_Error_Exception('Unknown datastore type: ' . var_export($storeType, TRUE));

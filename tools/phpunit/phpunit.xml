@@ -16,6 +16,9 @@
         <testsuite name="Metadata">
             <directory>./../../tests/Metadata/</directory>
         </testsuite>
+        <testsuite name="Store">
+            <directory>./../../tests/Store/</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
