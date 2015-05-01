@@ -81,7 +81,7 @@ class DBAL extends \SimpleSAML_Store
         $platform = $this->conn->getDatabasePlatform();
 
         $origSchema = $manager->createSchema();
-        $tables = [];
+        $tables = array();
 
         foreach ($origSchema->getTables() as $table) {
             if (0 === strpos($table->getName(), $tablePrefix)) {
