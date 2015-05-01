@@ -114,7 +114,7 @@ class DBAL extends \SimpleSAML_Store
                 $qb->expr()->gt('_expire', ':now')
             ))
             ->setParameter('type', $type, Type::STRING)
-            ->setParameter('key', $key, Type::INTEGER)
+            ->setParameter('key', $key, Type::STRING)
             ->setParameter('now', new \DateTime(), Type::DATETIME)
             ->execute()
         ;
@@ -169,7 +169,7 @@ class DBAL extends \SimpleSAML_Store
             ->where($qb->expr()->eq('_type', ':type'))
             ->andWhere($qb->expr()->eq('_key', ':key'))
             ->setParameter('type', $type, Type::STRING)
-            ->setParameter('key', $key, Type::INTEGER)
+            ->setParameter('key', $key, Type::STRING)
             ->setParameter('value', $value, Type::TEXT)
             ->setParameter('expire', $expire, Type::DATETIME)
         ;
@@ -183,7 +183,7 @@ class DBAL extends \SimpleSAML_Store
                ->setValue('_value', ':value')
                ->setValue('_expire', ':expire')
                ->setParameter('type', $type, Type::STRING)
-               ->setParameter('key', $key, Type::INTEGER)
+                ->setParameter('key', $key, Type::STRING)
                ->setParameter('value', $value, Type::TEXT)
                ->setParameter('expire', $expire, Type::DATETIME)
             ;
@@ -208,7 +208,7 @@ class DBAL extends \SimpleSAML_Store
             ->where($qb->expr()->eq('_type', ':type'))
             ->andWhere($qb->expr()->eq('_key', ':key'))
             ->setParameter('type', $type, Type::STRING)
-            ->setParameter('key', $key, Type::INTEGER)
+            ->setParameter('key', $key, Type::STRING)
             ->execute()
         ;
     }
