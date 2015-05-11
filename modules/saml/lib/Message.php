@@ -588,7 +588,7 @@ class sspmod_saml_Message {
 		$found = FALSE;
 		$lastError = 'No SubjectConfirmation element in Subject.';
 		foreach ($assertion->getSubjectConfirmation() as $sc) {
-			if ($sc->Method !== SAML2_Const::CM_BEARER && $sc->Method !== SAML2_Const::CM_HOK) {
+			if ($sc->Method !== SAML2_Const::CM_BEARER && $sc->Method !== SAML2_Const::CM_HOK && $sc->Method !== SAML2_Const::CM_VOUCHES) {
 				$lastError = 'Invalid Method on SubjectConfirmation: ' . var_export($sc->Method, TRUE);
 				continue;
 			}
