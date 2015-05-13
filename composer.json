@@ -23,7 +23,7 @@
     },
     "require": {
         "php": "~5.3",
-        "simplesamlphp/saml2": "~1.5",
+        "simplesamlphp/saml2": "~1.5.3",
         "simplesamlphp/xmlseclibs": "~1.3.2",
         "whitehat101/apr1-md5": "~1.0"
     },
