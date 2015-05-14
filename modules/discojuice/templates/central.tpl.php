@@ -42,9 +42,6 @@ header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT
 				json_encode($this->data['hostedConfig'][4]) .
 			');';
 
-	// echo "	djc.country = false;\n";
-	// echo "	djc.showLocationInfo = false;\n";
-	
 	if (!$this->data['enableCentralStorage']) {
 		echo "	delete djc.disco;\n";
 	}

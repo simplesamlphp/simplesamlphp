@@ -13,7 +13,7 @@ if (!isset($_REQUEST['ReturnTo'])) {
 	die('Missing ReturnTo parameter.');
 }
 
-$returnTo = SimpleSAML_Utilities::checkURLAllowed($_REQUEST['ReturnTo']);
+$returnTo = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']);
 
 
 /*
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$_SESSION['mail'] = $user['mail'];
 		$_SESSION['type'] = $user['type'];
 
-		SimpleSAML_Utilities::redirectTrustedURL($returnTo);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($returnTo);
 	}
 }
 

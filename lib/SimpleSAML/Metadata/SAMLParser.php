@@ -178,7 +178,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	public static function parseFile($file) {
 		$doc = new DOMDocument();
 
-		$data = SimpleSAML_Utilities::fetch($file);
+		$data = \SimpleSAML\Utils\HTTP::fetch($file);
 
 		$res = $doc->loadXML($data);
 		if($res !== TRUE) {
@@ -248,7 +248,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		if ($file === NULL) throw new Exception('Cannot open file NULL. File name not specified.');
 
-		$data = SimpleSAML_Utilities::fetch($file);
+		$data = \SimpleSAML\Utils\HTTP::fetch($file);
 
 		$doc = new DOMDocument();
 		$res = $doc->loadXML($data);
@@ -297,9 +297,9 @@ class SimpleSAML_Metadata_SAMLParser {
 
 		assert('$element instanceof DOMElement');
 
-		if(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntityDescriptor', '@md') === TRUE) {
+		if (SimpleSAML\Utils\XML::isDOMElementOfType($element, 'EntityDescriptor', '@md') === TRUE) {
 			return self::processDescriptorsElement(new SAML2_XML_md_EntityDescriptor($element));
-		} elseif(SimpleSAML_Utilities::isDOMElementOfType($element, 'EntitiesDescriptor', '@md') === TRUE) {
+		} elseif (SimpleSAML\Utils\XML::isDOMElementOfType($element, 'EntitiesDescriptor', '@md') === TRUE) {
 			return self::processDescriptorsElement(new SAML2_XML_md_EntitiesDescriptor($element));
 		} else {
 			throw new Exception('Unexpected root node: [' . $element->namespaceURI . ']:' .
@@ -1016,8 +1016,8 @@ class SimpleSAML_Metadata_SAMLParser {
 
 				$name = $attribute->getAttribute('Name');
 				$values = array_map(
-					array('SimpleSAML_Utilities', 'getDOMText'),
-					SimpleSAML_Utilities::getDOMChildren($attribute, 'AttributeValue', '@saml2')
+					array('SimpleSAML\Utils\XML', 'getDOMText'),
+                    SimpleSAML\Utils\XML::getDOMChildren($attribute, 'AttributeValue', '@saml2')
 				);
 
 				if ($name === 'tags') {
@@ -1293,7 +1293,7 @@ class SimpleSAML_Metadata_SAMLParser {
 			throw new Exception('Failed to load SAML metadata from empty XML document.');
 		}
 
-		if(SimpleSAML_Utilities::isDOMElementOfType($ed, 'EntityDescriptor', '@md') === FALSE) {
+		if (SimpleSAML\Utils\XML::isDOMElementOfType($ed, 'EntityDescriptor', '@md') === FALSE) {
 			throw new Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
 		}
 
@@ -1311,7 +1311,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	public function validateSignature($certificates) {
 		foreach ($certificates as $cert) {
 			assert('is_string($cert)');
-			$certFile = SimpleSAML_Utilities::resolveCert($cert);
+			$certFile = \SimpleSAML\Utils\Config::getCertPath($cert);
 			if (!file_exists($certFile)) {
 				throw new Exception('Could not find certificate file [' . $certFile . '], which is needed to validate signature');
 			}

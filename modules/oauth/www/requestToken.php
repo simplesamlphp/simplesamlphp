@@ -26,7 +26,4 @@ try {
 	
 	header('Content-type: text/plain; utf-8', TRUE, 500);
 	header('OAuth-Error: ' . $e->getMessage());
-
-	print_r($e);
-	
 }

@@ -141,7 +141,7 @@ class SimpleSAML_XHTML_Template {
 	 *         languages in the header were available.
 	 */
 	private function getHTTPLanguage() {
-		$languageScore = SimpleSAML_Utilities::getAcceptLanguage();
+		$languageScore = \SimpleSAML\Utils\HTTP::getAcceptLanguage();
 
 		/* For now we only use the default language map. We may use a configurable language map
 		 * in the future.
@@ -413,7 +413,6 @@ class SimpleSAML_XHTML_Template {
 
 		$translated = $this->getTranslation($tagData);
 
-#		if (!empty($replacements)){		echo('<pre> [' . $tag . ']'); print_r($replacements); exit; }
 		foreach ($replacements as $k => $v) {
 			/* try to translate if no replacement is given */
 			if ($v == NULL) $v = $this->t($k);
@@ -712,7 +711,7 @@ class SimpleSAML_XHTML_Template {
 			'httponly' => FALSE,
 		);
 
-		SimpleSAML_Utilities::setCookie($name, $language, $params, FALSE);
+        \SimpleSAML\Utils\HTTP::setCookie($name, $language, $params, FALSE);
 	}
 
 }

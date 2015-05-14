@@ -30,7 +30,7 @@ try {
 
 	$as = $oauthconfig->getString('auth');
 	if (!$session->isValid($as)) {
-		SimpleSAML_Auth_Default::initLogin($as, SimpleSAML_Utilities::selfURL());
+		SimpleSAML_Auth_Default::initLogin($as, \SimpleSAML\Utils\HTTP::getSelfURL());
 	}
 
 
@@ -40,8 +40,8 @@ try {
 		$t = new SimpleSAML_XHTML_Template($config, 'oauth:consent.php');
 		$t->data['header'] = '{status:header_saml20_sp}';
 		$t->data['consumer'] = $consumer;	// array containint {name, description, key, secret, owner} keys
-		$t->data['urlAgree'] = SimpleSAML_Utilities::addURLparameter( SimpleSAML_Utilities::selfURL(), array("consent" => "yes") );
-		$t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
+		$t->data['urlAgree'] = \SimpleSAML\Utils\HTTP::addURLParameters(\SimpleSAML\Utils\HTTP::getSelfURL(), array("consent" => "yes"));
+		$t->data['logouturl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery() . '?logout';
 	
 		$t->show();
 	
@@ -56,11 +56,11 @@ try {
 
 	if ($url) {
 		// If authorize() returns a URL, take user there (oauth1.0a)
-		SimpleSAML_Utilities::redirectTrustedURL($url);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
 	} 
 	else if (isset($_REQUEST['oauth_callback'])) {
 		// If callback was provided in the request (oauth1.0)
-		SimpleSAML_Utilities::redirectUntrustedURL($_REQUEST['oauth_callback']);
+		\SimpleSAML\Utils\HTTP::redirectUntrustedURL($_REQUEST['oauth_callback']);
 	
 	} else {
 		// No callback provided, display standard template
@@ -70,7 +70,7 @@ try {
 		$t->data['header'] = '{status:header_saml20_sp}';
 		$t->data['remaining'] = $session->getAuthData($as, "Expire") - time();
 		$t->data['attributes'] = $attributes;
-		$t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?logout';
+		$t->data['logouturl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery() . '?logout';
 		$t->data['oauth_verifier'] = $verifier;
 		$t->show();
 	}
@@ -79,13 +79,4 @@ try {
 	
 	header('Content-type: text/plain; utf-8', TRUE, 500);
 	header('OAuth-Error: ' . $e->getMessage());
-
-	print_r($e);
-	
 }
-
-
-// 
-// $req = OAuthRequest::from_request();
-// $token = $server->fetch_request_token($req);
-// echo $token;

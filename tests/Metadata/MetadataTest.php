@@ -1,8 +1,9 @@
 <?php
-/**
- * Class Utils_MetadataTest
- */
 
+
+/**
+ * Tests related to SAML metadata.
+ */
 class Utils_MetadataTest extends PHPUnit_Framework_TestCase
 {
 
@@ -16,7 +17,7 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
             'name' => 'John Doe'
         );
         try {
-            $parsed = SimpleSAML_Utils_Config_Metadata::getContact($contact);
+            $parsed = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
         } catch (InvalidArgumentException $e) {
             $this->assertStringStartsWith('"contactType" is mandatory and must be one of ', $e->getMessage());
         }
@@ -26,17 +27,17 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
             'contactType' => 'invalid'
         );
         try {
-            $parsed = SimpleSAML_Utils_Config_Metadata::getContact($contact);
+            $parsed = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
         } catch (InvalidArgumentException $e) {
             $this->assertStringStartsWith('"contactType" is mandatory and must be one of ', $e->getMessage());
         }
 
         // test all valid contact types
-        foreach (SimpleSAML_Utils_Config_Metadata::$VALID_CONTACT_TYPES as $type) {
+        foreach (\SimpleSAML\Utils\Config\Metadata::$VALID_CONTACT_TYPES as $type) {
             $contact = array(
                 'contactType' => $type
             );
-            $parsed = SimpleSAML_Utils_Config_Metadata::getContact($contact);
+            $parsed = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
             $this->assertArrayHasKey('contactType', $parsed);
             $this->assertArrayNotHasKey('givenName', $parsed);
             $this->assertArrayNotHasKey('surName', $parsed);
@@ -45,9 +46,9 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         // test basic name parsing
         $contact = array(
             'contactType' => 'technical',
-            'name' => 'John Doe'
+            'name'        => 'John Doe'
         );
-        $parsed = SimpleSAML_Utils_Config_Metadata::getContact($contact);
+        $parsed = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
         $this->assertArrayNotHasKey('name', $parsed);
         $this->assertArrayHasKey('givenName', $parsed);
         $this->assertArrayHasKey('surName', $parsed);
@@ -57,9 +58,9 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         // test comma-separated names
         $contact = array(
             'contactType' => 'technical',
-            'name' => 'Doe, John'
+            'name'        => 'Doe, John'
         );
-        $parsed = SimpleSAML_Utils_Config_Metadata::getContact($contact);
+        $parsed = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
         $this->assertArrayHasKey('givenName', $parsed);
         $this->assertArrayHasKey('surName', $parsed);
         $this->assertEquals('John', $parsed['givenName']);
@@ -68,9 +69,9 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         // test long names
         $contact = array(
             'contactType' => 'technical',
-            'name' => 'John Fitzgerald Doe Smith'
+            'name'        => 'John Fitzgerald Doe Smith'
         );
-        $parsed = SimpleSAML_Utils_Config_Metadata::getContact($contact);
+        $parsed = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
         $this->assertArrayNotHasKey('name', $parsed);
         $this->assertArrayHasKey('givenName', $parsed);
         $this->assertArrayNotHasKey('surName', $parsed);
@@ -79,9 +80,9 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         // test comma-separated long names
         $contact = array(
             'contactType' => 'technical',
-            'name' => 'Doe Smith, John Fitzgerald'
+            'name'        => 'Doe Smith, John Fitzgerald'
         );
-        $parsed = SimpleSAML_Utils_Config_Metadata::getContact($contact);
+        $parsed = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
         $this->assertArrayNotHasKey('name', $parsed);
         $this->assertArrayHasKey('givenName', $parsed);
         $this->assertArrayHasKey('surName', $parsed);
@@ -96,7 +97,7 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         foreach ($invalid_types as $type) {
             $contact['givenName'] = $type;
             try {
-                SimpleSAML_Utils_Config_Metadata::getContact($contact);
+                \SimpleSAML\Utils\Config\Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals('"givenName" must be a string and cannot be empty.', $e->getMessage());
             }
@@ -110,7 +111,7 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         foreach ($invalid_types as $type) {
             $contact['surName'] = $type;
             try {
-                SimpleSAML_Utils_Config_Metadata::getContact($contact);
+                \SimpleSAML\Utils\Config\Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals('"surName" must be a string and cannot be empty.', $e->getMessage());
             }
@@ -124,7 +125,7 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         foreach ($invalid_types as $type) {
             $contact['company'] = $type;
             try {
-                SimpleSAML_Utils_Config_Metadata::getContact($contact);
+                \SimpleSAML\Utils\Config\Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals('"company" must be a string and cannot be empty.', $e->getMessage());
             }
@@ -138,7 +139,7 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         foreach ($invalid_types as $type) {
             $contact['emailAddress'] = $type;
             try {
-                SimpleSAML_Utils_Config_Metadata::getContact($contact);
+                \SimpleSAML\Utils\Config\Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
                     '"emailAddress" must be a string or an array and cannot be empty.',
@@ -150,7 +151,7 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         foreach ($invalid_types as $type) {
             $contact['emailAddress'] = $type;
             try {
-                SimpleSAML_Utils_Config_Metadata::getContact($contact);
+                \SimpleSAML\Utils\Config\Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
                     'Email addresses must be a string and cannot be empty.',
@@ -167,7 +168,7 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         foreach ($invalid_types as $type) {
             $contact['telephoneNumber'] = $type;
             try {
-                SimpleSAML_Utils_Config_Metadata::getContact($contact);
+                \SimpleSAML\Utils\Config\Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
                     '"telephoneNumber" must be a string or an array and cannot be empty.',
@@ -179,7 +180,7 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         foreach ($invalid_types as $type) {
             $contact['telephoneNumber'] = $type;
             try {
-                SimpleSAML_Utils_Config_Metadata::getContact($contact);
+                \SimpleSAML\Utils\Config\Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals('Telephone numbers must be a string and cannot be empty.', $e->getMessage());
             }
@@ -187,12 +188,12 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
 
         // test completeness
         $contact = array();
-        foreach (SimpleSAML_Utils_Config_Metadata::$VALID_CONTACT_OPTIONS as $option) {
+        foreach (\SimpleSAML\Utils\Config\Metadata::$VALID_CONTACT_OPTIONS as $option) {
             $contact[$option] = 'string';
         }
         $contact['contactType'] = 'technical';
         $contact['name'] = 'to_be_removed';
-        $parsed = SimpleSAML_Utils_Config_Metadata::getContact($contact);
+        $parsed = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
         foreach (array_keys($parsed) as $key) {
             $this->assertEquals($parsed[$key], $contact[$key]);
         }

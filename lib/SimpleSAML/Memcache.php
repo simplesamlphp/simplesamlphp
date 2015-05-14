@@ -403,7 +403,7 @@ class SimpleSAML_Memcache {
 				throw new Exception('Failed to get memcache server status.');
 			}
 
-			$stats = SimpleSAML_Utilities::transposeArray($stats);
+			$stats = SimpleSAML\Utils\Arrays::transpose($stats);
 
 			$ret = array_merge_recursive($ret, $stats);
 		}

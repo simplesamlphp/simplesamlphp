@@ -6,7 +6,7 @@ $config = SimpleSAML_Configuration::getInstance();
 
 if(array_key_exists('link_href', $_REQUEST)) {
 	$link = (string)$_REQUEST['link_href'];
-	$link = SimpleSAML_Utilities::normalizeURL($link);
+	$link = \SimpleSAML\Utils\HTTP::normalizeURL($link);
 } else {
 	$link = 'index.php';
 }

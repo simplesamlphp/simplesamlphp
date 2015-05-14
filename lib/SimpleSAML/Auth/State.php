@@ -105,7 +105,7 @@ class SimpleSAML_Auth_State {
 		assert('is_bool($rawId)');
 
 		if (!array_key_exists(self::ID, $state)) {
-			$state[self::ID] = SimpleSAML_Utilities::generateID();
+			$state[self::ID] = SimpleSAML\Utils\Random::generateID();
 		}
 
 		$id = $state[self::ID];
@@ -210,7 +210,7 @@ class SimpleSAML_Auth_State {
 		assert('is_bool($allowMissing)');
 		SimpleSAML_Logger::debug('Loading state: ' . var_export($id, TRUE));
 
-		$sid = SimpleSAML_Utilities::parseStateID($id);
+		$sid = self::parseStateID($id);
 
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$state = $session->getData('SimpleSAML_Auth_State', $sid['id']);
@@ -225,7 +225,7 @@ class SimpleSAML_Auth_State {
 				throw new SimpleSAML_Error_NoState();
 			}
 
-			SimpleSAML_Utilities::redirectUntrustedURL($sid['url']);
+			\SimpleSAML\Utils\HTTP::redirectUntrustedURL($sid['url']);
 		}
 
 		$state = unserialize($state);
@@ -249,7 +249,7 @@ class SimpleSAML_Auth_State {
 				throw new Exception($msg);
 			}
 
-			SimpleSAML_Utilities::redirectUntrustedURL($sid['url']);
+			\SimpleSAML\Utils\HTTP::redirectUntrustedURL($sid['url']);
 		}
 
 		return $state;
@@ -294,7 +294,7 @@ class SimpleSAML_Auth_State {
 			$id = self::saveState($state, self::EXCEPTION_STAGE);
 
 			/* Redirect to the exception handler. */
-			SimpleSAML_Utilities::redirectTrustedURL($state[self::EXCEPTION_HANDLER_URL], array(self::EXCEPTION_PARAM => $id));
+			\SimpleSAML\Utils\HTTP::redirectTrustedURL($state[self::EXCEPTION_HANDLER_URL], array(self::EXCEPTION_PARAM => $id));
 
 		} elseif (array_key_exists(self::EXCEPTION_HANDLER_FUNC, $state)) {
 			/* Call the exception handler. */
@@ -335,6 +335,28 @@ class SimpleSAML_Auth_State {
 		assert('array_key_exists(self::EXCEPTION_DATA, $state)');
 
 		return $state;
+	}
+
+
+	/**
+	 * Get the ID and (optionally) a URL embedded in a StateID, in the form 'id:url'.
+	 *
+	 * @param string $stateId The state ID to use.
+	 *
+	 * @return array A hashed array with the ID and the URL (if any), in the 'id' and 'url' keys, respectively. If
+	 * there's no URL in the input parameter, NULL will be returned as the value for the 'url' key.
+	 *
+	 * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+	 * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+	 */
+	public static function parseStateID($stateId) {
+		$tmp = explode(':', $stateId, 2);
+		$id = $tmp[0];
+		$url = null;
+		if (count($tmp) === 2) {
+			$url = $tmp[1];
+		}
+		return array('id' => $id, 'url' => $url);
 	}
 
 }

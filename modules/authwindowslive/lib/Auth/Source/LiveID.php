@@ -71,7 +71,7 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source {
 				. '&wrap_scope=WL_Profiles.View,Messenger.SignIn'
 		;
 
-                SimpleSAML_Utilities::redirectTrustedURL($authorizeURL);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($authorizeURL);
 	}
 
 
@@ -96,7 +96,7 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source {
 			),
 		);
 
-		$result = SimpleSAML_Utilities::fetch('https://consent.live.com/AccessToken.aspx', $context);
+		$result = \SimpleSAML\Utils\HTTP::fetch('https://consent.live.com/AccessToken.aspx', $context);
 
 		parse_str($result, $response);
 
@@ -111,8 +111,8 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source {
 		// Documentation at: http://msdn.microsoft.com/en-us/library/ff751708.aspx
 		$opts = array('http' => array('header' => "Accept: application/json\r\nAuthorization: WRAP access_token=" .
 						$response['wrap_access_token'] . "\r\n"));
-		$data = SimpleSAML_Utilities::fetch('https://apis.live.net/V4.1/cid-'. $response['uid'] . '/Profiles',$opts);
-                $userdata = json_decode($data, TRUE);
+		$data = \SimpleSAML\Utils\HTTP::fetch('https://apis.live.net/V4.1/cid-'. $response['uid'] . '/Profiles',$opts);
+		$userdata = json_decode($data, TRUE);
 
 		$attributes = array();
 		$attributes['windowslive_uid'] = array($response['uid']);

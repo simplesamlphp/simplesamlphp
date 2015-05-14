@@ -194,7 +194,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		 */
 		$url = SimpleSAML_Module::getModuleURL('core/loginuserpass.php');
 		$params = array('AuthState' => $id);
-		SimpleSAML_Utilities::redirectTrustedURL($url, $params);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, $params);
 
 		/* The previous function never returns, so this code is never executed. */
 		assert('FALSE');

@@ -152,7 +152,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 			if(!is_array($entry['hint.cidr'])) continue;
 			
 			foreach ($entry['hint.cidr'] AS $hint_entry) {
-				if (SimpleSAML_Utilities::ipCIDRcheck($hint_entry, $ip)) {
+				if (SimpleSAML\Utils\Net::ipCIDRcheck($hint_entry, $ip)) {
 					if ($type === 'entityid') {
 						return $entry['entityid'];
 					} else {
@@ -178,7 +178,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 		$metadataSet = $this->getMetadataSet($set);
 
 		/* Check for hostname. */
-		$currenthost = SimpleSAML_Utilities::getSelfHost(); // sp.example.org
+		$currenthost = \SimpleSAML\Utils\HTTP::getSelfHost(); // sp.example.org
 		if(strpos($currenthost, ":") !== FALSE) {
 			$currenthostdecomposed = explode(":", $currenthost);
 			$currenthost = $currenthostdecomposed[0];

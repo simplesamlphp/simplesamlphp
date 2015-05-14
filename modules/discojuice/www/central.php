@@ -12,7 +12,7 @@ $entityid = $_REQUEST['entityID'];
 
 // Return to...
 $returnidparam = !empty($_REQUEST['returnIDParam']) ? $_REQUEST['returnIDParam'] : 'entityID';
-$href = SimpleSAML_Utilities::addURLparameter(
+$href = \SimpleSAML\Utils\HTTP::addURLParameters(
 	$_REQUEST['return'],
 	array($returnidparam => '')
 );

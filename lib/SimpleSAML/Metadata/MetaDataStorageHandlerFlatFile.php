@@ -116,16 +116,16 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
 	private function generateDynamicHostedEntityID($set) {
 
 		/* Get the configuration. */
-		$baseurl = SimpleSAML_Utilities::getBaseURL();
+		$baseurl = \SimpleSAML\Utils\HTTP::getBaseURL();
 
 		if ($set === 'saml20-idp-hosted') {
 			return $baseurl . 'saml2/idp/metadata.php';
 		} elseif($set === 'shib13-idp-hosted') {
 			return $baseurl . 'shib13/idp/metadata.php';
 		} elseif($set === 'wsfed-sp-hosted') {
-			return 'urn:federation:' . SimpleSAML_Utilities::getSelfHost();
+			return 'urn:federation:' . \SimpleSAML\Utils\HTTP::getSelfHost();
 		} elseif($set === 'adfs-idp-hosted') {
-			return 'urn:federation:' . SimpleSAML_Utilities::getSelfHost() . ':idp';
+			return 'urn:federation:' . \SimpleSAML\Utils\HTTP::getSelfHost() . ':idp';
 		} else {
 			throw new Exception('Can not generate dynamic EntityID for metadata of this type: [' . $set . ']');
 		}

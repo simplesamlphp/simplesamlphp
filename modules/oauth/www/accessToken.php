@@ -20,7 +20,7 @@ try {
 
 
 	$requestToken = $req->get_parameter('oauth_token');
-	$verifier = $req->get_parameter("oauth_verifier"); if ($verifier == null) $verifier = '';
+	$verifier = $req->get_parameter("oauth_verifier"); if ($verifier === null) $verifier = '';
 
 	if (!$store->isAuthorized($requestToken, $verifier)) {
 		throw new Exception('Your request was not authorized. Request token [' . $requestToken . '] not found.');
@@ -35,7 +35,4 @@ try {
 	
 	header('Content-type: text/plain; utf-8', TRUE, 500);
 	header('OAuth-Error: ' . $e->getMessage());
-
-	print_r($e);
-	
 }

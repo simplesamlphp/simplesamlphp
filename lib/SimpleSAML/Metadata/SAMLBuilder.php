@@ -78,7 +78,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		$xml = $this->getEntityDescriptor();
 		if ($formatted) {
-			SimpleSAML_Utilities::formatDOMElement($xml);
+			SimpleSAML\Utils\XML::formatDOMElement($xml);
 		}
 
 		return $xml->ownerDocument->saveXML();
@@ -277,9 +277,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 			return;
 		}
 
-		$orgName = SimpleSAML_Utilities::arrayize($metadata['OrganizationName'], 'en');
-		$orgDisplayName = SimpleSAML_Utilities::arrayize($metadata['OrganizationDisplayName'], 'en');
-		$orgURL = SimpleSAML_Utilities::arrayize($metadata['OrganizationURL'], 'en');
+		$orgName = SimpleSAML\Utils\Arrays::arrayize($metadata['OrganizationName'], 'en');
+		$orgDisplayName = SimpleSAML\Utils\Arrays::arrayize($metadata['OrganizationDisplayName'], 'en');
+		$orgURL = SimpleSAML\Utils\Arrays::arrayize($metadata['OrganizationURL'], 'en');
 
 		$this->addOrganization($orgName, $orgDisplayName, $orgURL);
 	}
@@ -474,7 +474,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		foreach ($metadata->getArray('contacts', array()) as $contact) {
 			if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
-				$this->addContact($contact['contactType'], SimpleSAML_Utils_Config_Metadata::getContact($contact));
+				$this->addContact($contact['contactType'], \SimpleSAML\Utils\Config\Metadata::getContact($contact));
 			}
 		}
 
@@ -520,7 +520,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 		foreach ($metadata->getArray('contacts', array()) as $contact) {
 			if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
-				$this->addContact($contact['contactType'], SimpleSAML_Utils_Config_Metadata::getContact($contact));
+				$this->addContact($contact['contactType'], \SimpleSAML\Utils\Config\Metadata::getContact($contact));
 			}
 		}
 
@@ -633,7 +633,7 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		assert('in_array($type, array("technical", "support", "administrative", "billing", "other"), TRUE)');
 
 		// TODO: remove this check as soon as getContact() is called always before calling this function.
-		$details = SimpleSAML_Utils_Config_Metadata::getContact($details);
+		$details = \SimpleSAML\Utils\Config\Metadata::getContact($details);
 
 		$e = new SAML2_XML_md_ContactPerson();
 		$e->contactType = $type;

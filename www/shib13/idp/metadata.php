@@ -11,7 +11,7 @@ if (!$config->getBoolean('enable.shib13-idp', false))
 
 /* Check if valid local session exists.. */
 if ($config->getBoolean('admin.protectmetadata', false)) {
-	SimpleSAML_Utilities::requireAdmin();
+    SimpleSAML\Utils\Auth::requireAdmin();
 }
 
 
@@ -21,7 +21,7 @@ try {
 	$idpmeta = $metadata->getMetaDataConfig($idpentityid, 'shib13-idp-hosted');
 
 	$keys = array();
-	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, FALSE, 'new_');
+	$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, FALSE, 'new_');
 	if ($certInfo !== NULL) {
 		$keys[] = array(
 			'type' => 'X509Certificate',
@@ -31,7 +31,7 @@ try {
 		);
 	}
 
-	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE);
+	$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, TRUE);
 	$keys[] = array(
 		'type' => 'X509Certificate',
 		'signing' => TRUE,
@@ -69,7 +69,7 @@ try {
 	$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
 	$metaBuilder->addMetadataIdP11($metaArray);
 	$metaBuilder->addOrganizationInfo($metaArray);
-	$metaBuilder->addContact('technical', SimpleSAML_Utils_Config_Metadata::getContact(array(
+	$metaBuilder->addContact('technical', \SimpleSAML\Utils\Config\Metadata::getContact(array(
 		'emailAddress' => $config->getString('technicalcontact_email', NULL),
 		'name' => $config->getString('technicalcontact_name', NULL),
 		'contactType' => 'technical',
@@ -87,7 +87,7 @@ try {
 	
 		$t->data['header'] = 'shib13-idp';
 		
-		$t->data['metaurl'] = SimpleSAML_Utilities::addURLparameter(SimpleSAML_Utilities::selfURLNoQuery(), array('output' => 'xml'));
+		$t->data['metaurl'] = \SimpleSAML\Utils\HTTP::addURLParameters(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery(), array('output' => 'xml'));
 		$t->data['metadata'] = htmlspecialchars($metaxml);
 		$t->data['metadataflat'] = htmlspecialchars($metaflat);
 	

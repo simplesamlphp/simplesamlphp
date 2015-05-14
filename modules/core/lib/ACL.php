@@ -119,7 +119,7 @@ class sspmod_core_ACL {
 		case 'or':
 			return self::opOr($attributes, $rule);
 		default:
-			throw new SimpleSAML_Error_Exception('Invalid ACL operation: ' . var_export($op. TRUE));
+			throw new SimpleSAML_Error_Exception('Invalid ACL operation: ' . var_export($op, TRUE));
 		}
 	}
 

@@ -110,9 +110,7 @@ class sspmod_core_ModuleDefinition {
 
 		$remoteDef = self::load($this->def['definition'], 'remote');
 		$remoteVersion = $remoteDef->getVersion($branch);
-		
-		#echo ' Comparing versions local [' . $thisVersion . '] and remote [' . $remoteVersion . ']' . "\n";
-		
+
 		return version_compare($remoteVersion, $thisVersion, '>');
 	}
 	

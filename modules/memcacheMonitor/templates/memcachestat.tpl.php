@@ -58,7 +58,6 @@ foreach($column_titles as $ct) {
 foreach($table as $row_title => $row_data) {
 	echo '<tr>' . "\n";
 	echo '<th class="rowtitle" style="text-align: right">' . $this->t('{memcacheMonitor:memcachestat:' . $row_title . '}') . '</th>' . "\n";
-#	echo '<th class="rowtitle" style="text-align: right">' . $row_title . '</th>' . "\n";
 
 	foreach($column_titles as $ct) {
 		echo '<td>';
@@ -77,10 +76,6 @@ foreach($table as $row_title => $row_data) {
 </table>
 
 <?php
-
-
-#echo('<pre>'); print_r($this->data['statsraw']); exit;
-
 if (array_key_exists('bytes', $this->data['statsraw']) && array_key_exists('limit_maxbytes', $this->data['statsraw'])) {
 	foreach($this->data['statsraw']['bytes'] as $key => $row_data) {
 		echo ('<h3>Storage usage on [' . $key . ']</h3>');
@@ -93,9 +88,4 @@ if (array_key_exists('bytes', $this->data['statsraw']) && array_key_exists('limi
 	}
 }
 
-?>
-
-
-
-<?php
 $this->includeAtTemplateBase('includes/footer.php');

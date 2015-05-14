@@ -140,8 +140,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 
 		$rawData = file_get_contents($cachefilename);
 		if (empty($rawData)) {
+			$error = error_get_last();
 			throw new Exception('Error reading metadata from cache file "' . $cachefilename . '": ' .
-				SimpleSAML_Utilities::getLastError());
+				$error['message']);
 		}
 
 		$data = unserialize($rawData);
@@ -252,14 +253,15 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 
 		SimpleSAML_Logger::debug('MetaData - Handler.MDX: Downloading metadata for "'. $index .'" from [' . $mdx_url . ']' );
 		try {
-			$xmldata = SimpleSAML_Utilities::fetch($mdx_url);
+			$xmldata = \SimpleSAML\Utils\HTTP::fetch($mdx_url);
 		} catch(Exception $e) {
 			SimpleSAML_Logger::warning('Fetching metadata for ' . $index . ': ' . $e->getMessage());
 		}
 
 		if (empty($xmldata)) {
+			$error = error_get_last();
 			throw new Exception('Error downloading metadata for "'. $index .'" from "' . $mdx_url . '": ' .
-				SimpleSAML_Utilities::getLastError());
+                $error['message']);
 		}
 
 		$entity = SimpleSAML_Metadata_SAMLParser::parseString($xmldata);

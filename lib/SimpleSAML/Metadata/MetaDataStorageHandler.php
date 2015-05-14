@@ -89,7 +89,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 		$config = SimpleSAML_Configuration::getInstance();
 		assert($config instanceof SimpleSAML_Configuration);
 		
-		$baseurl = SimpleSAML_Utilities::selfURLhost() . '/' . 
+		$baseurl = \SimpleSAML\Utils\HTTP::getSelfURLHost() . '/' .
 			$config->getBaseURL();
 		
 		if ($set == 'saml20-sp-hosted') {
@@ -144,7 +144,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 						unset($srcList[$key]);
 						SimpleSAML_Logger::warning("Dropping metadata entity " .
 							var_export($key,true) . ", expired " .
-							SimpleSAML_Utilities::generateTimestamp($le['expire']) .
+                            SimpleSAML\Utils\Time::generateTimestamp($le['expire']) .
 							".");
 					}
 				}
@@ -187,7 +187,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 		assert('is_string($set)');
 
 		/* First we look for the hostname/path combination. */
-		$currenthostwithpath = SimpleSAML_Utilities::getSelfHostWithPath(); // sp.example.org/university
+		$currenthostwithpath = \SimpleSAML\Utils\HTTP::getSelfHostWithPath(); // sp.example.org/university
 
 		foreach($this->sources as $source) {
 			$index = $source->getEntityIdFromHostPath($currenthostwithpath, $set, $type);
@@ -198,7 +198,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler {
 
 	
 		/* Then we look for the hostname. */
-		$currenthost = SimpleSAML_Utilities::getSelfHost(); // sp.example.org
+		$currenthost = \SimpleSAML\Utils\HTTP::getSelfHost(); // sp.example.org
 		if(strpos($currenthost, ":") !== FALSE) {
 			$currenthostdecomposed = explode(":", $currenthost);
 			$currenthost = $currenthostdecomposed[0];

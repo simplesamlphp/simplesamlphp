@@ -99,7 +99,6 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	 * This function will structure the idp list in a hierarchy based upon the tags.
 	 */
 	protected function idplistStructured($list) {
-		# echo '<pre>'; print_r($list); exit;
 		$slist = array();
 		
 		$order = $this->discoconfig->getValue('taborder');
@@ -192,7 +191,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 			$extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage',NULL);
 			if ($extDiscoveryStorage !== NULL) {
 				$this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
-				SimpleSAML_Utilities::redirectTrustedURL($extDiscoveryStorage, array(
+				\SimpleSAML\Utils\HTTP::redirectTrustedURL($extDiscoveryStorage, array(
 					'entityID' => $this->spEntityId,
 					'IdPentityID' => $idp,
 					'returnIDParam' => $this->returnIdParam,
@@ -202,7 +201,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 				
 			} else {
 				$this->log('Choice made [' . $idp . '] (Redirecting the user back. returnIDParam=' . $this->returnIdParam . ')');
-				SimpleSAML_Utilities::redirectTrustedURL($this->returnURL, array($this->returnIdParam => $idp));
+				\SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL, array($this->returnIdParam => $idp));
 			}
 			
 			return;
@@ -210,7 +209,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 		
 		if ($this->isPassive) {
 			$this->log('Choice not made. (Redirecting the user back without answer)');
-			SimpleSAML_Utilities::redirectTrustedURL($this->returnURL);
+			\SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL);
 			return;
 		}
 
@@ -225,7 +224,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 		$t->data['return'] = $this->returnURL;
 		$t->data['returnIDParam'] = $this->returnIdParam;
 		$t->data['entityID'] = $this->spEntityId;
-		$t->data['urlpattern'] = htmlspecialchars(SimpleSAML_Utilities::selfURLNoQuery());
+		$t->data['urlpattern'] = htmlspecialchars(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
 		$t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', FALSE);
 		$t->data['rememberchecked'] = $this->config->getBoolean('idpdisco.rememberchecked', FALSE);
 		$t->data['defaulttab'] = $this->discoconfig->getValue('defaulttab', 0);
@@ -307,7 +306,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 			'secure' => TRUE,
 			'httponly' => FALSE,
 		);
-		SimpleSAML_Utilities::setCookie('_saml_idp', $newCookie, $params, FALSE);
+        \SimpleSAML\Utils\HTTP::setCookie('_saml_idp', $newCookie, $params, FALSE);
 	}
 
 

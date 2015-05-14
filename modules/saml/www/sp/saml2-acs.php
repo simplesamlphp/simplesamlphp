@@ -60,7 +60,7 @@ if ($prevAuth !== NULL && $prevAuth['id'] === $response->getId() && $prevAuth['i
 	 * instead of displaying a confusing error message.
 	 */
 	SimpleSAML_Logger::info('Duplicate SAML 2 response detected - ignoring the response and redirecting the user to the correct page.');
-	SimpleSAML_Utilities::redirectTrustedURL($prevAuth['redirect']);
+	\SimpleSAML\Utils\HTTP::redirectTrustedURL($prevAuth['redirect']);
 }
 
 $idpMetadata = array();
@@ -90,7 +90,7 @@ if (!empty($stateId)) {
 	$state = array(
 		'saml:sp:isUnsolicited' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
-		'saml:sp:RelayState' => SimpleSAML_Utilities::checkURLAllowed($response->getRelayState()),
+		'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($response->getRelayState()),
 	);
 }
 

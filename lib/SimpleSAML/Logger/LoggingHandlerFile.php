@@ -56,7 +56,7 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
             }
         }
 
-        SimpleSAML_Utilities::initTimezone();
+        SimpleSAML\Utils\Time::initTimezone();
     }
 
 

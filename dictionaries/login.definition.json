@@ -11,6 +11,9 @@
 	"login_button": {
 		"en": "Login"
 	},
+	"processing": {
+		"en": "Processing..."
+	},
 	"username": {
 		"en": "Username"
 	},

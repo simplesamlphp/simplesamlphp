@@ -30,7 +30,7 @@ if (preg_match('@^https?://@i', $target)) {
 	$state = array(
 		'saml:sp:isUnsolicited' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
-		'saml:sp:RelayState' => SimpleSAML_Utilities::checkURLAllowed($target),
+		'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($target),
 	);
 } else {
 	$state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
