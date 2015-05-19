@@ -8,15 +8,15 @@ $session = SimpleSAML_Session::getSessionFromRequest();
 
 /* Check if valid local session exists.. */
 if ($config->getBoolean('admin.protectindexpage', false)) {
-	SimpleSAML_Utilities::requireAdmin();
+    SimpleSAML\Utils\Auth::requireAdmin();
 }
-$loginurl = SimpleSAML_Utilities::getAdminLoginURL();
-$isadmin = SimpleSAML_Utilities::isAdmin();
+$loginurl = SimpleSAML\Utils\Auth::getAdminLoginURL();
+$isadmin = SimpleSAML\Utils\Auth::isAdmin();
 
 
 $warnings = array();
 
-if (!SimpleSAML_Utilities::isHTTPS()) {
+if (!\SimpleSAML\Utils\HTTP::isHTTPS()) {
 	$warnings[] = '{core:frontpage:warnings_https}';
 }
 
@@ -44,12 +44,12 @@ $links_federation = array();
 
 
 $links_config[] = array(
-	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/hostnames.php',
+	'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/hostnames.php',
 	'text' => '{core:frontpage:link_diagnostics}'
 );
 
 $links_config[] = array(
-	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/phpinfo.php',
+	'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/phpinfo.php',
 	'text' => '{core:frontpage:link_phpinfo}'
 );
 

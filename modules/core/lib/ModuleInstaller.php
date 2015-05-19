@@ -20,11 +20,6 @@ class sspmod_core_ModuleInstaller {
 		$access = $this->module->getAccess($branch);
 		
 		switch($access['type']) {
-			// case 'svn' :
-			// 	$this->requireInstalled();
-			// 	$this->remove($access);
-			// 	break;
-			
 			default:
 				$this->requireInstalled();
 				$this->removeModuleDir($access);

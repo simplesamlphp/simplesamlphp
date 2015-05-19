@@ -137,7 +137,7 @@ class SimpleSAML_Session
         $sh = SimpleSAML_SessionHandler::getSessionHandler();
         $this->sessionId = $sh->newSessionId();
 
-        $this->trackid = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(5));
+        $this->trackid = bin2hex(openssl_random_pseudo_bytes(5));
 
         $this->dirty = true;
 
@@ -408,7 +408,7 @@ class SimpleSAML_Session
 
         $this->authData[$authority] = $data;
 
-        $this->authToken = SimpleSAML_Utilities::generateID();
+        $this->authToken = SimpleSAML\Utils\Random::generateID();
         $sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
 
         if (!$this->transient && (!empty($data['RememberMe']) || $this->rememberMeExpire) &&

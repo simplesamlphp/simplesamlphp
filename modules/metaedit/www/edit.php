@@ -31,16 +31,14 @@ if (array_key_exists('entityid', $_REQUEST)) {
 } elseif(array_key_exists('xmlmetadata', $_REQUEST)) {
 
 	$xmldata = $_REQUEST['xmlmetadata'];
-	SimpleSAML_Utilities::validateXMLDocument($xmldata, 'saml-meta');
+	\SimpleSAML\Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
 	$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsString($xmldata);
 	$entity = array_pop($entities);
 	$metadata =  $entity->getMetadata20SP();
 
 	/* Trim metadata endpoint arrays. */
-	$metadata['AssertionConsumerService'] = array(SimpleSAML_Utilities::getDefaultEndpoint($metadata['AssertionConsumerService'], array(SAML2_Const::BINDING_HTTP_POST)));
-	$metadata['SingleLogoutService'] = array(SimpleSAML_Utilities::getDefaultEndpoint($metadata['SingleLogoutService'], array(SAML2_Const::BINDING_HTTP_REDIRECT)));
-
-	#echo '<pre>'; print_r($metadata); exit;
+	$metadata['AssertionConsumerService'] = array(\SimpleSAML\Utils\Config\Metadata::getDefaultEndpoint($metadata['AssertionConsumerService'], array(SAML2_Const::BINDING_HTTP_POST)));
+	$metadata['SingleLogoutService'] = array(\SimpleSAML\Utils\Config\Metadata::getDefaultEndpoint($metadata['SingleLogoutService'], array(SAML2_Const::BINDING_HTTP_REDIRECT)));
 
 } else {
 	$metadata = array(

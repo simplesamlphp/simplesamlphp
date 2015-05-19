@@ -46,6 +46,13 @@ class sspmod_ldap_ConfigHelper {
 	private $timeout;
 
 	/**
+	 * The port used when accessing the LDAP server.
+	 *
+	 * @var int
+	 */
+	private $port;
+
+	/**
 	 * Whether to follow referrals
 	 */
 	private $referrals;
@@ -130,6 +137,7 @@ class sspmod_ldap_ConfigHelper {
 		$this->enableTLS = $config->getBoolean('enable_tls', FALSE);
 		$this->debug = $config->getBoolean('debug', FALSE);
 		$this->timeout = $config->getInteger('timeout', 0);
+		$this->port = $config->getInteger('port', 389);
 		$this->referrals = $config->getBoolean('referrals', TRUE);
 		$this->searchEnable = $config->getBoolean('search.enable', FALSE);
 		$this->privRead = $config->getBoolean('priv.read', FALSE);
@@ -177,7 +185,7 @@ class sspmod_ldap_ConfigHelper {
 			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
 		}
 
-		$ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debug, $this->timeout, 389, $this->referrals);
+		$ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debug, $this->timeout, $this->port, $this->referrals);
 
 		if (!$this->searchEnable) {
 			$ldapusername = addcslashes($username, ',+"\\<>;*');
@@ -245,7 +253,7 @@ class sspmod_ldap_ConfigHelper {
 			$this->enableTLS,
 			$this->debug,
 			$this->timeout,
-			389,
+			$this->port,
 			$this->referrals);
 
 		if ($attribute == NULL)
@@ -269,7 +277,7 @@ class sspmod_ldap_ConfigHelper {
 			$this->enableTLS,
 			$this->debug,
 			$this->timeout,
-			389,
+			$this->port,
 			$this->referrals);
 
 		/* Are privs needed to get the attributes? */

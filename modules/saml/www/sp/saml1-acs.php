@@ -30,18 +30,10 @@ if (preg_match('@^https?://@i', $target)) {
 	$state = array(
 		'saml:sp:isUnsolicited' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
-		'saml:sp:RelayState' => SimpleSAML_Utilities::checkURLAllowed($target),
+		'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($target),
 	);
 } else {
-	$stateID = $_REQUEST['TARGET'];
-
-	// sanitize the input
-	$sid = SimpleSAML_Utilities::parseStateID($stateID);
-	if (!is_null($sid['url'])) {
-		SimpleSAML_Utilities::checkURLAllowed($sid['url']);
-	}
-
-	$state = SimpleSAML_Auth_State::loadState($stateID, 'saml:sp:sso');
+	$state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
 
 	/* Check that the authentication source is correct. */
 	assert('array_key_exists("saml:sp:AuthId", $state)');
@@ -88,6 +80,8 @@ $logoutState = array(
 	'saml:logout:Type' => 'saml1'
 	);
 $state['LogoutState'] = $logoutState;
+
+$state['saml:sp:NameID'] = $response->getNameID();
 
 $source->handleResponse($state, $responseIssuer, $attributes);
 assert('FALSE');

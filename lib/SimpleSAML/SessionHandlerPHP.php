@@ -68,7 +68,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 	public function newSessionId() {
 		$session_cookie_params = session_get_cookie_params();
 
-		if ($session_cookie_params['secure'] && !SimpleSAML_Utilities::isHTTPS()) {
+		if ($session_cookie_params['secure'] && !\SimpleSAML\Utils\HTTP::isHTTPS()) {
 			throw new SimpleSAML_Error_Exception('Session start with secure cookie not allowed on http.');
 		}
 
@@ -77,7 +77,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 		}
 
 		/* Generate new (secure) session id. */
-		$sessionId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16));
+		$sessionId = bin2hex(openssl_random_pseudo_bytes(16));
 		SimpleSAML_Session::createSession($sessionId);
 
 		if (session_id() !== '') {
@@ -105,7 +105,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 
 			$session_cookie_params = session_get_cookie_params();
 
-			if ($session_cookie_params['secure'] && !SimpleSAML_Utilities::isHTTPS()) {
+			if ($session_cookie_params['secure'] && !\SimpleSAML\Utils\HTTP::isHTTPS()) {
 				throw new SimpleSAML_Error_Exception('Session start with secure cookie not allowed on http.');
 			}
 

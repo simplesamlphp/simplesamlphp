@@ -12,7 +12,18 @@ $sourceId = substr($_SERVER['PATH_INFO'], 1);
 $source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
 $spMetadata = $source->getMetadata();
 
-$b = SAML2_Binding::getCurrentBinding();
+try {
+    $b = SAML2_Binding::getCurrentBinding();
+} catch (Exception $e) { // TODO: look for a specific exception
+    // This is dirty. Instead of checking the message of the exception, SAML2_Binding::getCurrentBinding() should throw
+    // an specific exception when the binding is unknown, and we should capture that here.
+    if ($e->getMessage() === 'Unable to find the current binding.') {
+        throw new SimpleSAML_Error_Error('ACSPARAMS', $e, 400);
+    } else {
+        throw $e; // do not ignore other exceptions!
+    }
+}
+
 if ($b instanceof SAML2_HTTPArtifact) {
 	$b->setSPMetadata($spMetadata);
 }
@@ -49,20 +60,13 @@ if ($prevAuth !== NULL && $prevAuth['id'] === $response->getId() && $prevAuth['i
 	 * instead of displaying a confusing error message.
 	 */
 	SimpleSAML_Logger::info('Duplicate SAML 2 response detected - ignoring the response and redirecting the user to the correct page.');
-	SimpleSAML_Utilities::redirectTrustedURL($prevAuth['redirect']);
+	\SimpleSAML\Utils\HTTP::redirectTrustedURL($prevAuth['redirect']);
 }
 
 $idpMetadata = array();
 
 $stateId = $response->getInResponseTo();
 if (!empty($stateId)) {
-
-	// sanitize the input
-	$sid = SimpleSAML_Utilities::parseStateID($stateId);
-	if (!is_null($sid['url'])) {
-		SimpleSAML_Utilities::checkURLAllowed($sid['url']);
-	}
-
 	/* This is a response to a request we sent earlier. */
 	$state = SimpleSAML_Auth_State::loadState($stateId, 'saml:sp:sso');
 
@@ -86,7 +90,7 @@ if (!empty($stateId)) {
 	$state = array(
 		'saml:sp:isUnsolicited' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
-		'saml:sp:RelayState' => SimpleSAML_Utilities::checkURLAllowed($response->getRelayState()),
+		'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($response->getRelayState()),
 	);
 }
 

@@ -5,7 +5,7 @@ require 'tickets.php';
 if (!$function) $function = 'serviceValidate';
 
 /*
- * Incomming parameters:
+ * Incoming parameters:
  *  service
  *  renew
  *  ticket
@@ -41,14 +41,14 @@ try {
 					
 		if (isset($_GET['pgtUrl'])) {
 			$pgtUrl = $_GET['pgtUrl'];
-			$pgtiou = str_replace( '_', 'PGTIOU-', SimpleSAML_Utilities::generateID());
-			$pgt = str_replace( '_', 'PGT-', SimpleSAML_Utilities::generateID());
+			$pgtiou = str_replace( '_', 'PGTIOU-', SimpleSAML\Utils\Random::generateID());
+			$pgt = str_replace( '_', 'PGT-', SimpleSAML\Utils\Random::generateID());
 			$content = array(
 				'attributes' => $attributes,
 				'forceAuthn' => false,
 				'proxies' => array_merge(array($service), $ticketcontent['proxies']),
 				'validbefore' => time() + 60);
-			SimpleSAML_Utilities::fetch($pgtUrl . '?pgtIou=' . $pgtiou . '&pgtId=' . $pgt);
+			\SimpleSAML\Utils\HTTP::fetch($pgtUrl . '?pgtIou=' . $pgtiou . '&pgtId=' . $pgt);
 			storeTicket($pgt, $path, $content);
 			$pgtiouxml = "\n<cas:proxyGrantingTicket>$pgtiou</cas:proxyGrantingTicket>\n";
 		}

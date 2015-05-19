@@ -62,6 +62,5 @@ Documentation for simpleSAMLphp developers:
 
 ## Community help and support
 
- * [Please join the mailinglist](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
- * [The simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start) contains information about different setup of simpleSAMLphp. In example eduGAIN setup, common errors, linux setup, shibboleth installation etc.
+ * [Please join the mailinglist](https://simplesamlphp.org/lists)
 

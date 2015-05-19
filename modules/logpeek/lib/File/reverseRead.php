@@ -83,9 +83,7 @@ class sspmod_logpeek_File_reverseRead{
 		
 		fseek($this->fileHandle, $this->blockStart, SEEK_SET);
 		$buff = fread($this->fileHandle, $splits);
-		
-		// $buff = stream_get_contents($this->fileHandle, $splits, $this->blockStart);
-		
+
 		return $buff;
 	}
 	
@@ -153,7 +151,7 @@ class sspmod_logpeek_File_reverseRead{
 			$pos++;
 			$cnt++;
 		}   
-		return $pos == false? false: substr($haystack, $pos, strlen($haystack));
+		return ($pos === false) ? false : substr($haystack, $pos, strlen($haystack));
 	}
 	
 	
@@ -182,7 +180,6 @@ class sspmod_logpeek_File_reverseRead{
 		}
 		
 		return $lastLines;
-		// return str_replace("\r", '', implode('', array_reverse($buff1)));
 	}
 	
 	

@@ -168,7 +168,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		SimpleSAML_Logger::debug('Starting SAML 1 SSO to ' . var_export($idpEntityId, TRUE) .
 			' from ' . var_export($this->entityId, TRUE) . '.');
-		SimpleSAML_Utilities::redirectTrustedURL($url);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
 	}
 
 
@@ -193,7 +193,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		}
 
 		if (isset($state['saml:AuthnContextClassRef'])) {
-			$accr = SimpleSAML_Utilities::arrayize($state['saml:AuthnContextClassRef']);
+			$accr = SimpleSAML\Utils\Arrays::arrayize($state['saml:AuthnContextClassRef']);
 			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr));
 		}
 
@@ -355,7 +355,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$params['isPassive'] = 'true';
 		}
 
-		SimpleSAML_Utilities::redirectTrustedURL($discoURL, $params);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($discoURL, $params);
 	}
 
 

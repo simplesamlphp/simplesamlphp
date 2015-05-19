@@ -531,7 +531,7 @@ class SimpleSAML_IdP {
 	public static function finishLogoutRedirect(SimpleSAML_IdP $idp, array $state) {
 		assert('isset($state["core:Logout:URL"])');
 
-		SimpleSAML_Utilities::redirectTrustedURL($state['core:Logout:URL']);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($state['core:Logout:URL']);
 		assert('FALSE');
 	}
 

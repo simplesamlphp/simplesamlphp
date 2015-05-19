@@ -11,13 +11,6 @@ if (!array_key_exists('StateId', $_REQUEST)) {
 }
 
 $id = $_REQUEST['StateId'];
-
-// sanitize the input
-$sid = SimpleSAML_Utilities::parseStateID($id);
-if (!is_null($sid['url'])) {
-	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
-}
-
 $state = SimpleSAML_Auth_State::loadState($id, 'consent:request');
 
 $resumeFrom = SimpleSAML_Module::getModuleURL(

@@ -17,7 +17,7 @@ simpleSAMLphp news and documentation
 This document is part of the simpleSAMLphp documentation suite.
 
  * [List of all simpleSAMLphp documentation](http://simplesamlphp.org/docs)
- * [Latest news about simpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also conatins an RSS feed)
+ * [Latest news about simpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also contains an RSS feed)
  * [simpleSAMLphp homepage](https://simplesamlphp.org)
 
 
@@ -48,7 +48,7 @@ What actual packages are required for the various extensions varies between diff
 Download and install simpleSAMLphp
 ----------------------------------
 
-The most recent relase of simpleSAMLphp is found at [https://simplesamlphp.org/download](https://simplesamlphp.org/download).
+The most recent release of simpleSAMLphp is found at [https://simplesamlphp.org/download](https://simplesamlphp.org/download).
 
 Go to the directory where you want to install simpleSAMLphp, and extract the archive file you just downloaded:
 
@@ -143,9 +143,9 @@ file, `config.php`, right away:
 		'technicalcontact_email'    => 'andreas.solberg@uninett.no',
 
 -  
-    If you use simpleSAMLphp in a country where english is not
+    If you use simpleSAMLphp in a country where English is not
     widespread, you may want to change the default language from
-    english to something else:
+    English to something else:
 
 		'language.default'      => 'no',
 
@@ -191,7 +191,7 @@ After installing simpleSAMLphp, you can access the homepage of your installation
 
 	https://service.example.org/simplesaml/
 
-The exact link depends on how you set it up with Apache, and off course on your hostname.
+The exact link depends on how you set it up with Apache, and of course on your hostname.
 
 ### Warning
 
@@ -231,9 +231,8 @@ Support
 If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
 -  [simpleSAMLphp homepage](https://simplesamlphp.org)
--  [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/)
--  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
--  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
+-  [List of all available simpleSAMLphp documentation](https://simplesamlphp.org/docs/)
+-  [Join the simpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)
 
 
 
@@ -249,10 +248,10 @@ in an alternative way.
 	Still you can install simpleSAMLphp - keep on reading.
 
 2.	You have full permissions to the server, but cannot edit Apache
-	configuration for some reason, polictics, policy or whatever.
+	configuration for some reason, politics, policy or whatever.
 
 
-The SimpleSAMLphp code contains one folder named `simplesamlphp`. In this folder there are a lot of subfolders for library, metadata, configuration and much more. One of these folders is named `www`. This and *only this* folder should be exposed on the web. The reccomended configuration is to put the whole `simplesamlphp` folder outside the webroot, and then link in the `www` folder by using the `Alias` directive, as described in [the section called “Configuring Apache”](#sect.apacheconfig "Configuring Apache"). But this is not the only possible way.
+The SimpleSAMLphp code contains one folder named `simplesamlphp`. In this folder there are a lot of subfolders for library, metadata, configuration and much more. One of these folders is named `www`. This and *only this* folder should be exposed on the web. The recommended configuration is to put the whole `simplesamlphp` folder outside the webroot, and then link in the `www` folder by using the `Alias` directive, as described in [the section called “Configuring Apache”](#sect.apacheconfig "Configuring Apache"). But this is not the only possible way.
 
 As an example, let's see how you can install simpleSAMLphp in your home directory on a shared hosting server.
 

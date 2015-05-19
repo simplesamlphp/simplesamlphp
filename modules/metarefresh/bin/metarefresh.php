@@ -34,6 +34,11 @@ $outputDir = $baseDir . '/metadata-generated';
  */
 $toStdOut = FALSE;
 
+/* $certificates contains the certificates which should be used to check the signature of the signed
+ * EntityDescriptor in the metadata, or NULL if signature verification shouldn't be done.
+ */
+$certificates = NULL;
+
 /* $validateFingerprint contains the fingerprint of the certificate which should have been used
  * to sign the EntityDescriptor in the metadata, or NULL if fingerprint validation shouldn't be
  * done.
@@ -78,6 +83,14 @@ foreach($argv as $a) {
 	}
 
 	switch($a) {
+	case '--certificate':
+		if($v === NULL || strlen($v) === 0) {
+			echo('The --certficate option requires an parameter.' . "\n");
+			echo('Please run `' . $progName . ' --help` for usage information.' . "\n");
+			exit(1);
+		}
+		$certificates[] = $v;
+		break;
 	case '--validate-fingerprint':
 		if($v === NULL || strlen($v) === 0) {
 			echo('The --validate-fingerprint option requires an parameter.' . "\n");
@@ -120,6 +133,7 @@ $metaloader = new sspmod_metarefresh_MetaLoader();
 
 foreach($files as $f) {
 	$source = array('src' => $f);
+	if (isset($certificates)) $source['certificates'] = $certificates;
 	if (isset($validateFingerprint)) $source['validateFingerprint'] = $validateFingerprint;
 	$metaloader->loadSource($source);
 }
@@ -129,8 +143,6 @@ if($toStdOut) {
 } else {
 	$metaloader->writeMetadataFiles($outputDir);
 }
-
-exit(0);
 
 /**
  * This function prints the help output.
@@ -145,6 +157,12 @@ function printHelp() {
 	echo('be added to the metadata files in metadata/.' . "\n");
 	echo("\n");
 	echo('Options:' . "\n");
+	echo(' --certificate=<FILE>         The certificate which should be used' . "\n");
+	echo('                              to check the signature of the metadata.' . "\n");
+	echo('                              The file are stored in the cert dir.' . "\n");
+	echo('                              It is possibility to add multiple' . "\n");
+	echo('                              --certificate options to handle' . "\n");
+	echo('                              key rollover.' . "\n");
 	echo(' --validate-fingerprint=<FINGERPRINT>' . "\n");
 	echo('                              Check the signature of the metadata,' . "\n");
 	echo('                              and check the fingerprint of the' . "\n");
@@ -158,8 +176,3 @@ function printHelp() {
 	echo('                              seperate files in the output directory.' . "\n");
 	echo("\n");
 }
-
-
-
-
-

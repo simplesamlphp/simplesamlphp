@@ -6,6 +6,9 @@
  * @author Dyonisius (Dick) Visser, TERENA.
  * @package simpleSAMLphp
  */
+
+use WhiteHat101\Crypt\APR1_MD5;
+
 class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBase {
 
 
@@ -36,7 +39,7 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
 		$this->users = explode("\n", trim($htpasswd));
 
 		try {
-			$this->attributes = SimpleSAML_Utilities::parseAttributes($config['static_attributes']);
+			$this->attributes = SimpleSAML\Utils\Arrays::normalizeAttributesArray($config['static_attributes']);
 		} catch(Exception $e) {
 			throw new Exception('Invalid static_attributes in authentication source ' .
 				$this->authId . ': ' .	$e->getMessage());
@@ -77,13 +80,13 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
 				}
 
 				// Apache's custom MD5
-				if(SimpleSAML_Utils_Crypto::apr1Md5Valid($crypted, $password)) {
+				if(APR1_MD5::check($crypted, $password)) {
 					SimpleSAML_Logger::debug('User '. $username . ' authenticated successfully');
 					return $attributes;
 				}
 
 				// SHA1 or plain-text
-				if(SimpleSAML_Utils_Crypto::pwValid($crypted, $password)) {
+				if(SimpleSAML\Utils\Crypto::pwValid($crypted, $password)) {
 					SimpleSAML_Logger::debug('User '. $username . ' authenticated successfully');
 					return $attributes;
 				}

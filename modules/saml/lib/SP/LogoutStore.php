@@ -180,7 +180,7 @@ class sspmod_saml_SP_LogoutStore {
 			 * it supports SLO, but we don't want an LogoutRequest with a specific
 			 * SessionIndex to match this session. We therefore generate our own session index.
 			 */
-			$sessionIndex = SimpleSAML_Utilities::generateID();
+			$sessionIndex = SimpleSAML\Utils\Random::generateID();
 		}
 
 		$store = SimpleSAML_Store::getInstance();

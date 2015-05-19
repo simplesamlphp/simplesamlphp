@@ -21,11 +21,11 @@ class SimpleSAML_Auth_Default {
 	 * @param string|array $return The URL or function we should direct the
 	 * user to after authentication. If using a URL obtained from user input,
 	 * please make sure to check it by calling
-	 * SimpleSAML_Utilities::checkURLAllowed().
+	 * \SimpleSAML\Utils\HTTP::checkURLAllowed().
 	 * @param string|NULL $errorURL The URL we should direct the user to after
 	 * failed authentication. Can be NULL, in which case a standard error page
 	 * will be shown. If using a URL obtained from user input, please make sure
-	 * to check it by calling SimpleSAML_Utilities::checkURLAllowed().
+	 * to check it by calling \SimpleSAML\Utils\HTTP::checkURLAllowed().
 	 * @param array $params Extra information about the login. Different
 	 * authentication requestors may provide different information. Optional,
 	 * will default to an empty array.
@@ -98,7 +98,7 @@ class SimpleSAML_Auth_Default {
 		}
 
 		/* Add those that should always be included. */
-		foreach (array('Attributes', 'Expire', 'LogoutState', 'AuthnInstant', 'RememberMe') as $a) {
+		foreach (array('Attributes', 'Expire', 'LogoutState', 'AuthnInstant', 'RememberMe', 'saml:sp:NameID') as $a) {
 			if (isset($state[$a])) {
 				$persistentAuthState[$a] = $state[$a];
 			}
@@ -128,7 +128,7 @@ class SimpleSAML_Auth_Default {
 
 		if (is_string($return)) {
 			/* Redirect... */
-			SimpleSAML_Utilities::redirectTrustedURL($return);
+			\SimpleSAML\Utils\HTTP::redirectTrustedURL($return);
 		} else {
 			call_user_func($return, $state);
 			assert('FALSE');
@@ -146,7 +146,7 @@ class SimpleSAML_Auth_Default {
 	 * @param string $returnURL The URL we should redirect the user to after
 	 * logging out. No checking is performed on the URL, so make sure to verify
 	 * it on beforehand if the URL is obtained from user input. Refer to
-	 * SimpleSAML_Utilities::checkURLAllowed() for more information.
+	 * \SimpleSAML\Utils\HTTP::checkURLAllowed() for more information.
 	 * @param string $authority The authentication source we are logging
 	 * out from.
 	 */
@@ -181,7 +181,7 @@ class SimpleSAML_Auth_Default {
 	 * @param string $returnURL The URL we should redirect the user to after
 	 * logging out. No checking is performed on the URL, so make sure to verify
 	 * it on beforehand if the URL is obtained from user input. Refer to
-	 * SimpleSAML_Utilities::checkURLAllowed() for more information.
+	 * \SimpleSAML\Utils\HTTP::checkURLAllowed() for more information.
 	 * @param string|NULL $authority The authentication source we are logging
 	 * out from.
 	 * @return void This function never returns.
@@ -193,7 +193,7 @@ class SimpleSAML_Auth_Default {
 		self::initLogoutReturn($returnURL, $authority);
 
 		/* Redirect... */
-		SimpleSAML_Utilities::redirectTrustedURL($returnURL);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($returnURL);
 	}
 
 
@@ -211,7 +211,7 @@ class SimpleSAML_Auth_Default {
 		$returnURL = $state['SimpleSAML_Auth_Default.ReturnURL'];
 
 		/* Redirect... */
-		SimpleSAML_Utilities::redirectTrustedURL($returnURL);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($returnURL);
 	}
 
 
@@ -265,7 +265,7 @@ class SimpleSAML_Auth_Default {
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->doLogin($authId, self::extractPersistentAuthState($state));
 
-		SimpleSAML_Utilities::redirectUntrustedURL($redirectTo);
+		\SimpleSAML\Utils\HTTP::redirectUntrustedURL($redirectTo);
 	}
 
 }

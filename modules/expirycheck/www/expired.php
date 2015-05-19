@@ -11,16 +11,7 @@ SimpleSAML_Logger::info('expirycheck - User has been warned that NetID is near t
 if (!array_key_exists('StateId', $_REQUEST)) {
 	throw new SimpleSAML_Error_BadRequest('Missing required StateId query parameter.');
 }
-
-$id = $_REQUEST['StateId'];
-
-// sanitize the input
-$sid = SimpleSAML_Utilities::parseStateID($id);
-if (!is_null($sid['url'])) {
-	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
-}
-
-$state = SimpleSAML_Auth_State::loadState($id, 'expirywarning:expired');
+$state = SimpleSAML_Auth_State::loadState($_REQUEST['StateId'], 'expirywarning:expired');
 
 $globalConfig = SimpleSAML_Configuration::getInstance();
 

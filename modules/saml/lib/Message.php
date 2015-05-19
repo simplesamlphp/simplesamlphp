@@ -21,11 +21,11 @@ class sspmod_saml_Message {
 		$dstPrivateKey = $dstMetadata->getString('signature.privatekey', NULL);
 
 		if ($dstPrivateKey !== NULL) {
-			$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, TRUE, 'signature.');
-			$certArray = SimpleSAML_Utilities::loadPublicKey($dstMetadata, FALSE, 'signature.');
+			$keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, TRUE, 'signature.');
+			$certArray = SimpleSAML\Utils\Crypto::loadPublicKey($dstMetadata, FALSE, 'signature.');
 		} else {
-			$keyArray = SimpleSAML_Utilities::loadPrivateKey($srcMetadata, TRUE);
-			$certArray = SimpleSAML_Utilities::loadPublicKey($srcMetadata, FALSE);
+			$keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($srcMetadata, TRUE);
+			$certArray = SimpleSAML\Utils\Crypto::loadPublicKey($srcMetadata, FALSE);
 		}
 
 		$algo = $dstMetadata->getString('signature.algorithm', NULL);
@@ -281,7 +281,7 @@ class sspmod_saml_Message {
 		$keys = array();
 
 		/* Load the new private key if it exists. */
-		$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, FALSE, 'new_');
+		$keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, FALSE, 'new_');
 		if ($keyArray !== NULL) {
 			assert('isset($keyArray["PEM"])');
 
@@ -294,7 +294,7 @@ class sspmod_saml_Message {
 		}
 
 		/* Find the existing private key. */
-		$keyArray = SimpleSAML_Utilities::loadPrivateKey($dstMetadata, TRUE);
+		$keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, TRUE);
 		assert('isset($keyArray["PEM"])');
 
 		$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'private'));
@@ -500,7 +500,7 @@ class sspmod_saml_Message {
 		}
 
 		/* Validate Response-element destination. */
-		$currentURL = SimpleSAML_Utilities::selfURLNoQuery();
+		$currentURL = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
 		$msgDestination = $response->getDestination();
 		if ($msgDestination !== NULL && $msgDestination !== $currentURL) {
 			throw new Exception('Destination in response doesn\'t match the current URL. Destination is "' .
@@ -556,7 +556,7 @@ class sspmod_saml_Message {
 		}
 		/* At least one valid signature found. */
 
-		$currentURL = SimpleSAML_Utilities::selfURLNoQuery();
+		$currentURL = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
 
 
 		/* Check various properties of the assertion. */
@@ -587,8 +587,9 @@ class sspmod_saml_Message {
 
 		$found = FALSE;
 		$lastError = 'No SubjectConfirmation element in Subject.';
+		$validSCMethods = array(SAML2_Const::CM_BEARER, SAML2_Const::CM_HOK, SAML2_Const::CM_VOUCHES);
 		foreach ($assertion->getSubjectConfirmation() as $sc) {
-			if ($sc->Method !== SAML2_Const::CM_BEARER && $sc->Method !== SAML2_Const::CM_HOK) {
+		    if (!in_array($sc->Method, $validSCMethods)) {
 				$lastError = 'Invalid Method on SubjectConfirmation: ' . var_export($sc->Method, TRUE);
 				continue;
 			}
@@ -610,7 +611,7 @@ class sspmod_saml_Message {
 			$scd = $sc->SubjectConfirmationData;
 			if ($sc->Method === SAML2_Const::CM_HOK) {
 				/* Check HoK Assertion */
-				if (SimpleSAML_Utilities::isHTTPS() === FALSE) {
+				if (\SimpleSAML\Utils\HTTP::isHTTPS() === FALSE) {
 				    $lastError = 'No HTTPS connection, but required for Holder-of-Key SSO';
 				    continue;
 				}

@@ -560,6 +560,17 @@ $config = array(
      * - 'file': Path to the XML file with the metadata.
      * - 'url': The URL to fetch metadata from. THIS IS ONLY FOR DEBUGGING - THERE IS NO CACHING OF THE RESPONSE.
      *
+     * MDX metadata handler:
+     * This metadata handler looks up for the metadata of an entity at the given MDX server.
+     * The MDX metadata handler defines the following options:
+     * - 'type': This is always 'mdx'.
+     * - 'server': URL of the MDX server (url:port). Mandatory.
+     * - 'validateFingerprint': The fingerprint of the certificate used to sign the metadata.
+     *                          You don't need this option if you don't want to validate the signature on the metadata. Optional.
+     * - 'cachedir': Directory where metadata can be cached. Optional.
+     * - 'cachelength': Maximum time metadata cah be cached, in seconds. Default to 24
+     *                  hours (86400 seconds). Optional.
+     *
      *
      * Examples:
      *
@@ -577,6 +588,10 @@ $config = array(
      *     array('type' => 'xml', 'file' => 'idp.example.org-idpMeta.xml'),
      *     ),
      *
+     * This example defines an mdx source.
+     * 'metadata.sources' => array(
+     *     array('type' => 'mdx', server => 'http://mdx.server.com:8080', 'cachedir' => '/var/simplesamlphp/mdx-cache', 'cachelength' => 86400)
+     *     ),
      *
      * Default:
      * 'metadata.sources' => array(

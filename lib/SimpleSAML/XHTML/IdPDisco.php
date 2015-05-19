@@ -123,7 +123,7 @@ class SimpleSAML_XHTML_IdPDisco {
 		if(!array_key_exists('return', $_GET)) {
 			throw new Exception('Missing parameter: return');
 		} else {
-			$this->returnURL = SimpleSAML_Utilities::checkURLAllowed($_GET['return']);
+			$this->returnURL = \SimpleSAML\Utils\HTTP::checkURLAllowed($_GET['return']);
 		}
 		
 		$this->isPassive = FALSE;
@@ -197,7 +197,7 @@ class SimpleSAML_XHTML_IdPDisco {
 			'httponly' => FALSE,
 		);
 
-		SimpleSAML_Utilities::setCookie($prefixedName, $value, $params, FALSE);
+        \SimpleSAML\Utils\HTTP::setCookie($prefixedName, $value, $params, FALSE);
 	}
 
 
@@ -462,8 +462,7 @@ class SimpleSAML_XHTML_IdPDisco {
 			$extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage', NULL);
 			if ($extDiscoveryStorage !== NULL) {
 				$this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
-				SimpleSAML_Utilities::redirectTrustedURL($extDiscoveryStorage, array(
-//					$this->returnIdParam => $idp,
+				\SimpleSAML\Utils\HTTP::redirectTrustedURL($extDiscoveryStorage, array(
 					'entityID' => $this->spEntityId,
 					'IdPentityID' => $idp,
 					'returnIDParam' => $this->returnIdParam,
@@ -473,7 +472,7 @@ class SimpleSAML_XHTML_IdPDisco {
 				
 			} else {
 				$this->log('Choice made [' . $idp . '] (Redirecting the user back. returnIDParam=' . $this->returnIdParam . ')');
-				SimpleSAML_Utilities::redirectTrustedURL($this->returnURL, array($this->returnIdParam => $idp));
+				\SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL, array($this->returnIdParam => $idp));
 			}
 			
 			return;
@@ -481,7 +480,7 @@ class SimpleSAML_XHTML_IdPDisco {
 		
 		if ($this->isPassive) {
 			$this->log('Choice not made. (Redirecting the user back without answer)');
-			SimpleSAML_Utilities::redirectTrustedURL($this->returnURL);
+			\SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL);
 			return;
 		}
 
@@ -495,12 +494,12 @@ class SimpleSAML_XHTML_IdPDisco {
 			$idpList = array_intersect_key($idpList, array_fill_keys($idpintersection, NULL));
 		}
 
-        $idpintersection = array_values($idpintersection); 
-        
-        if(sizeof($idpintersection)  == 1) {
-            $this->log('Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' . $this->returnIdParam . ')');
-            SimpleSAML_Utilities::redirectTrustedURL($this->returnURL, array($this->returnIdParam => $idpintersection[0]));
-        }
+		$idpintersection = array_values($idpintersection);
+
+		if(sizeof($idpintersection)  == 1) {
+			$this->log('Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' . $this->returnIdParam . ')');
+			\SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL, array($this->returnIdParam => $idpintersection[0]));
+		}
 
 		/*
 		 * Make use of an XHTML template to present the select IdP choice to the user.
@@ -523,7 +522,7 @@ class SimpleSAML_XHTML_IdPDisco {
 		$t->data['return'] = $this->returnURL;
 		$t->data['returnIDParam'] = $this->returnIdParam;
 		$t->data['entityID'] = $this->spEntityId;
-		$t->data['urlpattern'] = htmlspecialchars(SimpleSAML_Utilities::selfURLNoQuery());
+		$t->data['urlpattern'] = htmlspecialchars(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
 		$t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', FALSE);
 		$t->show();
 	}

@@ -15,5 +15,13 @@ SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoi
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idp = SimpleSAML_IdP::getById('saml2:' . $idpEntityId);
-sspmod_saml_IdP_SAML2::receiveAuthnRequest($idp);
+try {
+    sspmod_saml_IdP_SAML2::receiveAuthnRequest($idp);
+} catch (Exception $e) {
+    if ($e->getMessage() === "Unable to find the current binding.") {
+        throw new SimpleSAML_Error_Error('SSOPARAMS', $e, 400);
+    } else {
+        throw $e; // do not ignore other exceptions!
+    }
+}
 assert('FALSE');

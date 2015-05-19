@@ -100,7 +100,7 @@ class SimpleSAML_Auth_LDAP {
 		}
 
 		// Enable TLS, if needed.
-		if (!preg_match("/ldaps:/i", $hostname) and $enable_tls)
+		if (stripos($hostname, "ldaps:") === FALSE and $enable_tls)
 			if (!@ldap_start_tls($this->ldap))
 				throw $this->makeException('Library - LDAP __construct(): Unable to force TLS', ERR_INTERNAL);
 
@@ -261,7 +261,7 @@ class SimpleSAML_Auth_LDAP {
 	public function searchfordn($base, $attribute, $value, $allowZeroHits = FALSE) {
 
 		// Traverse all search bases, returning DN if found.
-		$bases = SimpleSAML_Utilities::arrayize($base);
+		$bases = SimpleSAML\Utils\Arrays::arrayize($base);
 		$result = NULL;
 		foreach ($bases AS $current) {
 			try {
@@ -586,7 +586,7 @@ class SimpleSAML_Auth_LDAP {
 			$dn = $this->searchfordn($config['searchbase'], $config['searchattributes'], $username);
 		}
 
-		if ($password != null) { /* checking users credentials ... assuming below that she may read her own attributes ... */
+		if ($password !== null) { /* checking users credentials ... assuming below that she may read her own attributes ... */
 			if (!$this->bind($dn, $password)) {
 				SimpleSAML_Logger::info('Library - LDAP validate(): Failed to authenticate \''. $username . '\' using DN \'' . $dn . '\'');
 				return FALSE;

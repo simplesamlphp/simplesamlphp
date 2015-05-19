@@ -3,7 +3,7 @@
 /**
  * Implementation of the Shibboleth 1.3 HTTP-POST binding.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Ã…kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  */
 class SimpleSAML_Bindings_Shib13_HTTPPost {
@@ -27,10 +27,10 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 	 */
 	public function sendResponse($response, SimpleSAML_Configuration $idpmd, SimpleSAML_Configuration $spmd, $relayState, $shire) {
 
-		SimpleSAML_Utilities::validateXMLDocument($response, 'saml11');
+		\SimpleSAML\Utils\XML::checkSAMLMessage($response, 'saml11');
 
-		$privatekey = SimpleSAML_Utilities::loadPrivateKey($idpmd, TRUE);
-		$publickey = SimpleSAML_Utilities::loadPublicKey($idpmd, TRUE);
+		$privatekey = SimpleSAML\Utils\Crypto::loadPrivateKey($idpmd, TRUE);
+		$publickey = SimpleSAML\Utils\Crypto::loadPublicKey($idpmd, TRUE);
 
 		$responsedom = new DOMDocument();
 		$responsedom->loadXML(str_replace ("\r", "", $response));
@@ -67,7 +67,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		if ($signResponse) {
 			/* Sign the response - this must be done after encrypting the assertion. */
 			/* We insert the signature before the saml2p:Status element. */
-			$statusElements = SimpleSAML_Utilities::getDOMChildren($responseroot, 'Status', '@saml1p');
+			$statusElements = SimpleSAML\Utils\XML::getDOMChildren($responseroot, 'Status', '@saml1p');
 			assert('count($statusElements) === 1');
 			$signer->sign($responseroot, $responseroot, $statusElements[0]);
 
@@ -78,9 +78,9 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 
 		$response = $responsedom->saveXML();
 
-		SimpleSAML_Utilities::debugMessage($response, 'out');
+		\SimpleSAML\Utils\XML::debugSAMLMessage($response, 'out');
 
-		SimpleSAML_Utilities::postRedirect($shire, array(
+		\SimpleSAML\Utils\HTTP::submitPOSTData($shire, array(
 			'TARGET' => $relayState,
 			'SAMLResponse' => base64_encode($response),
 		));
@@ -103,9 +103,9 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		$rawResponse = $post['SAMLResponse'];
 		$samlResponseXML = base64_decode($rawResponse);
 
-		SimpleSAML_Utilities::debugMessage($samlResponseXML, 'in');
+		\SimpleSAML\Utils\XML::debugSAMLMessage($samlResponseXML, 'in');
 
-		SimpleSAML_Utilities::validateXMLDocument($samlResponseXML, 'saml11');
+		\SimpleSAML\Utils\XML::checkSAMLMessage($samlResponseXML, 'saml11');
 
 		$samlResponse = new SimpleSAML_XML_Shib13_AuthnResponse();
 		$samlResponse->setXML($samlResponseXML);

@@ -29,7 +29,7 @@ class SimpleSAML_IdP_LogoutTraditional extends SimpleSAML_IdP_LogoutHandler {
 		try {
 			$idp = SimpleSAML_IdP::getByState($association);
 			$url = call_user_func(array($association['Handler'], 'getLogoutURL'), $idp, $association, $relayState);
-			SimpleSAML_Utilities::redirectTrustedURL($url);
+			\SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
 		} catch (Exception $e) {
 			SimpleSAML_Logger::warning('Unable to initialize logout to ' . var_export($id, TRUE) . '.');
 			$this->idp->terminateAssociation($id);
@@ -73,12 +73,6 @@ class SimpleSAML_IdP_LogoutTraditional extends SimpleSAML_IdP_LogoutHandler {
 
 		if ($relayState === NULL) {
 			throw new SimpleSAML_Error_Exception('RelayState lost during logout.');
-		}
-
-		// sanitize the input
-		$sid = SimpleSAML_Utilities::parseStateID($relayState);
-		if (!is_null($sid['url'])) {
-			SimpleSAML_Utilities::checkURLAllowed($sid['url']);
 		}
 
 		$state = SimpleSAML_Auth_State::loadState($relayState, 'core:LogoutTraditional');

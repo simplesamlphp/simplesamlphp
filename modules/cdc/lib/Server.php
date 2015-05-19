@@ -211,7 +211,7 @@ class sspmod_cdc_Server {
 			'httponly' => FALSE,
 		);
 
-		SimpleSAML_Utilities::setCookie('_saml_idp', NULL, $params, FALSE);
+        \SimpleSAML\Utils\HTTP::setCookie('_saml_idp', NULL, $params, FALSE);
 		return 'ok';
 	}
 
@@ -324,11 +324,11 @@ class sspmod_cdc_Server {
 			'Signature' => $signature,
 		);
 
-		$url = SimpleSAML_Utilities::addURLparameter($to, $params);
+		$url = \SimpleSAML\Utils\HTTP::addURLParameters($to, $params);
 		if (strlen($url) < 2048) {
-			SimpleSAML_Utilities::redirectTrustedURL($url);
+			\SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
 		} else {
-			SimpleSAML_Utilities::postRedirect($to, $params);
+			\SimpleSAML\Utils\HTTP::submitPOSTData($to, $params);
 		}
 	}
 
@@ -407,7 +407,7 @@ class sspmod_cdc_Server {
 			'httponly' => FALSE,
 		);
 
-		SimpleSAML_Utilities::setCookie('_saml_idp', $cookie, $params, FALSE);
+        \SimpleSAML\Utils\HTTP::setCookie('_saml_idp', $cookie, $params, FALSE);
 	}
 
 }

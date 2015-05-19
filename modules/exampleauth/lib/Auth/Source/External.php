@@ -155,7 +155,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		 * Note the 'ReturnTo' parameter. This must most likely be replaced with
 		 * the real name of the parameter for the login page.
 		 */
-		SimpleSAML_Utilities::redirectTrustedURL($authPage, array(
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($authPage, array(
 			'ReturnTo' => $returnTo,
 		));
 
@@ -183,19 +183,12 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		if (!isset($_REQUEST['State'])) {
 			throw new SimpleSAML_Error_BadRequest('Missing "State" parameter.');
 		}
-		$stateId = (string)$_REQUEST['State'];
-
-		// sanitize the input
-		$sid = SimpleSAML_Utilities::parseStateID($stateId);
-		if (!is_null($sid['url'])) {
-			SimpleSAML_Utilities::checkURLAllowed($sid['url']);
-		}
 
 		/*
 		 * Once again, note the second parameter to the loadState function. This must
 		 * match the string we used in the saveState-call above.
 		 */
-		$state = SimpleSAML_Auth_State::loadState($stateId, 'exampleauth:External');
+		$state = SimpleSAML_Auth_State::loadState($_REQUEST['State'], 'exampleauth:External');
 
 		/*
 		 * Now we have the $state-array, and can use it to locate the authentication
