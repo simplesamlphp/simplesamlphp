@@ -128,6 +128,7 @@ $attributemap = array(
 	'urn:mace:dir:attribute-def:roleOccupant' => 'urn:oid:2.5.4.33',
 	'urn:mace:dir:attribute-def:roomNumber' => 'urn:oid:0.9.2342.19200300.100.1.6',
 	'urn:mace:dir:attribute-def:sOARecord' => 'urn:oid:0.9.2342.19200300.100.1.30',
+	'urn:mace:dir:attribute-def:schacGender' => 'urn:oid:1.3.6.1.4.1.25178.1.2.2',
 	'urn:mace:dir:attribute-def:searchGuide' => 'urn:oid:2.5.4.14',
 	'urn:mace:dir:attribute-def:secretary' => 'urn:oid:0.9.2342.19200300.100.1.21',
 	'urn:mace:dir:attribute-def:seeAlso' => 'urn:oid:2.5.4.34',

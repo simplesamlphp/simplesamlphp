@@ -74,6 +74,7 @@ $attributemap = array(
 	'urn:oid:1.3.6.1.4.1.5923.1.2.1.4' => 'urn:mace:dir:attribute-def:eduOrgLegalName',
 	'urn:oid:1.3.6.1.4.1.5923.1.2.1.5' => 'urn:mace:dir:attribute-def:eduOrgSuperiorURI',
 	'urn:oid:1.3.6.1.4.1.5923.1.2.1.6' => 'urn:mace:dir:attribute-def:eduOrgWhitePagesURI',
+	'urn:oid:1.3.6.1.4.1.25178.1.2.2' => 'urn:mace:dir:attribute-def:schacGender',	
 	'urn:oid:2.16.840.1.113730.3.1.1' => 'urn:mace:dir:attribute-def:carLicense',
 	'urn:oid:2.16.840.1.113730.3.1.2' => 'urn:mace:dir:attribute-def:departmentNumber',
 	'urn:oid:2.16.840.1.113730.3.1.216' => 'urn:mace:dir:attribute-def:userPKCS12',

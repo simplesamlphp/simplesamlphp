@@ -128,6 +128,7 @@ $attributemap = array(
 	'roleOccupant' => 'urn:mace:dir:attribute-def:roleOccupant',
 	'roomNumber' => 'urn:mace:dir:attribute-def:roomNumber',
 	'sOARecord' => 'urn:mace:dir:attribute-def:sOARecord',
+	'schacGender' => 'urn:mace:dir:attribute-def:schacGender',
 	'searchGuide' => 'urn:mace:dir:attribute-def:searchGuide',
 	'secretary' => 'urn:mace:dir:attribute-def:secretary',
 	'seeAlso' => 'urn:mace:dir:attribute-def:seeAlso',
