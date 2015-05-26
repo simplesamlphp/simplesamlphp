@@ -20,7 +20,7 @@ class Net
      *
      * @author Andreas Åkre Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
-     * @author Brook Schofield, TERENA
+     * @author Brook Schofield, GÉANT
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     static function ipCIDRcheck($cidr, $ip = null)
@@ -38,11 +38,11 @@ class Net
             // Validate IPv6 with inet_pton, convert to hex with bin2hex
             // then store as a long with hexdec
 
-            $ip_pack = inet_pton($ip);
-            $net_pack = inet_pton($net);
+            $ip_pack = @inet_pton($ip);
+            $net_pack = @inet_pton($net);
 
             if ($ip_pack === false || $net_pack === false) {
-                // not valid IPv6 address (warning already issued)
+                // not valid IPv6 address (warning silenced)
                 return false;
             }
 
