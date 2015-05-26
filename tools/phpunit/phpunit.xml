@@ -10,14 +10,8 @@
          syntaxCheck="false"
          bootstrap="./../../vendor/autoload.php">
     <testsuites>
-        <testsuite name="Utils">
-            <directory>./../../tests/Utils/</directory>
-        </testsuite>
-        <testsuite name="Metadata">
-            <directory>./../../tests/Metadata/</directory>
-        </testsuite>
-        <testsuite name="modules-core">
-            <directory>./../../tests/modules/core/</directory>
+        <testsuite name="Unit tests">
+            <directory>./../../tests/</directory>
         </testsuite>
     </testsuites>
     <filter>
