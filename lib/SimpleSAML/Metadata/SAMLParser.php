@@ -478,6 +478,9 @@ class SimpleSAML_Metadata_SAMLParser {
 		if (array_key_exists('attributes', $spd)) {
 			$ret['attributes'] = $spd['attributes'];
 		}
+		if (array_key_exists('attributes.required', $spd)) {
+			$ret['attributes.required'] = $spd['attributes.required'];
+		}
 		if (array_key_exists('attributes.NameFormat', $spd)) {
 			$ret['attributes.NameFormat'] = $spd['attributes.NameFormat'];
 		}
@@ -1095,6 +1098,10 @@ class SimpleSAML_Metadata_SAMLParser {
 			$sp['attributes'][] = $attrname;
 			
 			if ($child->isRequired) {
+				$sp['attributes.required'][] = $attrname;
+			}
+
+			if ($child->isRequired !== NULL && $child->isRequired === TRUE) {
 				$sp['attributes.required'][] = $attrname;
 			}
 
