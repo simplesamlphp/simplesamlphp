@@ -54,7 +54,7 @@ class Utils_Net_Test extends PHPUnit_Framework_TestCase
         // check limits for standard classes
         $this->assertTrue(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/128', '2001:0DB8:0000:0000:0000:0000:0000:0000'));
         $this->assertTrue(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/128', '2001:0DB8::0'));
-        $this->assertFale(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/128', '2001:0DB8::1'));
+        $this->assertFalse(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/128', '2001:0DB8::1'));
 
         $this->assertTrue(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/112', '2001:0DB8::1'));
         $this->assertFalse(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/112', '2001:0DB8::1:1'));
