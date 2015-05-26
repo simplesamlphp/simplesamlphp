@@ -1,0 +1,11 @@
+{
+	"warning": {
+		"nl": "Je certificaat verloopt over %days% dagen. Vervang tijdig je certificaat."
+	},
+	"warning_header": {
+		"nl": "Je certificaat verloopt binnenkort."
+	},
+	"proceed": {
+		"nl": "Verder"
+	}
+}

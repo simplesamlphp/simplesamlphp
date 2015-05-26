@@ -106,3 +106,17 @@ can hack your metadata/saml20-idp-hosted.php file that way:
                             'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
     )
 
+Checking certificate expiry
+===========================
+
+To issue warnings to users whos certificate is about to expire, configure an authproc filter.
+
+Example:
+
+     10 => array(
+         'class' => 'authX509:ExpiryWarning',
+         'warndaysbefore' => '30',
+     ),
+
+Parameter `warndaysbefore` specifies the number of days the user's certificate needs to be valid before a warning is
+issued. The default is 30.
