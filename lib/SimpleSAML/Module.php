@@ -41,7 +41,7 @@ class SimpleSAML_Module {
 			return FALSE;
 		}
 
-		$globalConfig = SimpleSAML_Configuration::getInstance();
+		$globalConfig = SimpleSAML_Configuration::getOptionalConfig();
 		$moduleEnable = $globalConfig->getArray('module.enable', array());
 
 		if(isset($moduleEnable[$module])) {
