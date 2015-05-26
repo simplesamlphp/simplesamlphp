@@ -44,7 +44,7 @@ class sspmod_core_Auth_Process_LanguageAdaptor extends SimpleSAML_Auth_Processin
 		if (array_key_exists($this->langattr, $attributes))
 			$attrlang = $attributes[$this->langattr][0];
 
-		$lang = SimpleSAML_XHTML_Template::getLanguageCookie();
+		$lang = SimpleSAML_Locale_Language::getLanguageCookie();
 
 
 		if (isset($attrlang))
@@ -55,7 +55,7 @@ class sspmod_core_Auth_Process_LanguageAdaptor extends SimpleSAML_Auth_Processin
 
 		if (isset($attrlang) && !isset($lang)) {
 			/* Language set in attribute but not in cookie - update cookie. */
-			SimpleSAML_XHTML_Template::setLanguageCookie($attrlang);
+			SimpleSAML_Locale_Language::setLanguageCookie($attrlang);
 		} elseif (!isset($attrlang) && isset($lang)) {
 			/* Language set in cookie, but not in attribute. Update attribute. */
 			$request['Attributes'][$this->langattr] = array($lang);
