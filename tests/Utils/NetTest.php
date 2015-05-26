@@ -63,8 +63,15 @@ class Utils_Net_Test extends PHPUnit_Framework_TestCase
 
         // check limits for non-standard classes
         $this->assertTrue(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/108', '2001:0DB8::1:1'));
-        $this->assertTrue(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/108', '2001:0DB8::FF:1'));
+        $this->assertTrue(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/108', '2001:0DB8::F:1'));
+        $this->assertFalse(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/108', '2001:0DB8::FF:1'));
         $this->assertFalse(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/108', '2001:0DB8::1FF:1'));
         $this->assertFalse(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/108', '2001:0DB8::FFFF:1'));
+
+        $this->assertTrue(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/104', '2001:0DB8::1:1'));
+        $this->assertTrue(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/104', '2001:0DB8::F:1'));
+        $this->assertTrue(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/104', '2001:0DB8::FF:1'));
+        $this->assertFalse(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/104', '2001:0DB8::1FF:1'));
+        $this->assertFalse(SimpleSAML\Utils\Net::ipCIDRcheck('2001:0DB8::/104', '2001:0DB8::FFFF:1'));
      }
 }
