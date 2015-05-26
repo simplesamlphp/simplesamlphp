@@ -45,8 +45,8 @@ assert('array_key_exists("url", $postData)');
 assert('array_key_exists("post", $postData)');
 
 $config = SimpleSAML_Configuration::getInstance();
-$p = new SimpleSAML_XHTML_Template($config, 'post.php');
-$p->data['destination'] = $postData['url'];
-$p->data['post'] = $postData['post'];
-$p->show();
+$template = new SimpleSAML_XHTML_Template($config, 'post.php');
+$template->data['destination'] = $postData['url'];
+$template->data['post'] = $postData['post'];
+$template->show();
 exit(0);

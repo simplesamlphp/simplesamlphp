@@ -24,11 +24,11 @@ $attributes['Utilities_getSelfHostWithPath()'] = array(\SimpleSAML\Utils\HTTP::g
 $attributes['Utilities_getFirstPathElement()'] = array(\SimpleSAML\Utils\HTTP::getFirstPathElement());
 $attributes['Utilities_selfURL()'] = array(\SimpleSAML\Utils\HTTP::getSelfURL());
 
-$et = new SimpleSAML_XHTML_Template($config, 'hostnames.php');
+$template = new SimpleSAML_XHTML_Template($config, 'hostnames.php');
 
-$et->data['remaining']  = $session->getAuthData('admin', 'Expire') - time();
-$et->data['attributes'] = $attributes;
-$et->data['valid'] = 'na';
-$et->data['logout'] = null;
+$template->data['remaining']  = $session->getAuthData('admin', 'Expire') - time();
+$template->data['attributes'] = $attributes;
+$template->data['valid'] = 'na';
+$template->data['logout'] = null;
 
-$et->show();
+$template->show();

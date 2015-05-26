@@ -186,9 +186,9 @@ if ($action !== null && $sp_entityid !== null) {
         }
     }
     // init template to enable translation of status messages
-    $et = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadminajax.php', 'consentAdmin:consentadmin');
-    $et->data['res'] = $res;
-    $et->show();
+    $template = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadminajax.php', 'consentAdmin:consentadmin');
+    $template->data['res'] = $res;
+    $template->show();
     exit;
 }
 
@@ -204,9 +204,9 @@ foreach ($user_consent_list as $c) {
 $template_sp_content = array();
 
 // Init template
-$et = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
-$sp_empty_name = $et->getTag('sp_empty_name');
-$sp_empty_description = $et->getTag('sp_empty_description');
+$template = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
+$sp_empty_name = $template->translator->getTag('sp_empty_name');
+$sp_empty_description = $template->translator->getTag('sp_empty_description');
 
 // Process consents for all SP
 foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
@@ -267,7 +267,7 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
     );
 }
 
-$et->data['header'] = 'Consent Administration';
-$et->data['spList'] = $sp_list;
-$et->data['showDescription'] = $cA_config->getValue('showDescription');
-$et->show();
+$template->data['header'] = 'Consent Administration';
+$template->data['spList'] = $sp_list;
+$template->data['showDescription'] = $cA_config->getValue('showDescription');
+$template->show();
