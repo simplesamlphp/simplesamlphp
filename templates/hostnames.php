@@ -1,4 +1,5 @@
 <?php
+$this->data['header'] = $this->t('{status:header_diagnostics}');
 $this->includeAtTemplateBase('includes/header.php');
 $this->includeAtTemplateBase('includes/attributes.php');
 
