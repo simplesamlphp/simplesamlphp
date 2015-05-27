@@ -310,7 +310,7 @@ $config = array(
      */
     'session.phpsession.cookiename' => null,
     'session.phpsession.savepath' => null,
-    'session.phpsession.httponly' => false,
+    'session.phpsession.httponly' => true,
 
     /*
      * Option to override the default settings for the auth token cookie
