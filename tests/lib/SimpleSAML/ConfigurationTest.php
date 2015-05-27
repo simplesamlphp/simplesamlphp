@@ -44,7 +44,7 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
     /**
      * Test SimpleSAML_Configuration::hasValue()
      */
-    public function testHetValue() {
+    public function testHasValue() {
         $c = SimpleSAML_Configuration::loadFromArray(array(
             'exists_true' => TRUE,
             'exists_null' => NULL,
@@ -57,7 +57,7 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
     /**
      * Test SimpleSAML_Configuration::hasValue()
      */
-    public function testHetValueOneOf() {
+    public function testHasValueOneOf() {
         $c = SimpleSAML_Configuration::loadFromArray(array(
             'exists_true' => TRUE,
             'exists_null' => NULL,
