@@ -116,7 +116,11 @@ Example:
      10 => array(
          'class' => 'authX509:ExpiryWarning',
          'warndaysbefore' => '30',
+         'renewurl' => 'https://myca.com/renew',
      ),
 
 Parameter `warndaysbefore` specifies the number of days the user's certificate needs to be valid before a warning is
 issued. The default is 30.
+
+Parameter `renewurl` specifies the URL of your Certification Authority. If specified, the user is suggested to renew the
+certificate immediately.
