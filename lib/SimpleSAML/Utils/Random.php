@@ -10,9 +10,14 @@ class Random
 {
 
     /**
-     * Generate a random identifier, 22 bytes long.
+     * The fixed length of random identifiers.
+     */
+    const ID_LENGTH = 43;
+
+    /**
+     * Generate a random identifier, ID_LENGTH bytes long.
      *
-     * @return string A 22-bytes long string with a random, hex string.
+     * @return string A ID_LENGTH-bytes long string with a random, hex-encoded string.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
@@ -20,6 +25,6 @@ class Random
      */
     public static function generateID()
     {
-        return '_'.bin2hex(openssl_random_pseudo_bytes(21));
+        return '_'.bin2hex(openssl_random_pseudo_bytes((self::ID_LENGTH - 1)/2));
     }
 }
