@@ -133,6 +133,10 @@ if ($name !== NULL && !empty($attributes)) {
 	$metaArray20['name'] = $name;
 	$metaArray20['attributes'] = $attributes;
 	$metaArray20['attributes.required'] = $spconfig->getArray('attributes.required', array());
+
+	if (empty($metaArray20['attributes.required'])) {
+	    unset($metaArray20['attributes.required']);
+	}
 	
 	$description = $spconfig->getArray('description', NULL);
 	if ($description !== NULL) {
@@ -184,6 +188,11 @@ if (count($keys) === 1) {
 	$metaArray20['keys'] = $keys;
 }
 
+// add EntityAttributes extension
+if ($spconfig->hasValue('EntityAttributes')) {
+	$metaArray20['EntityAttributes'] = $spconfig->getArray('EntityAttributes');
+}
+
 // add UIInfo extension
 if ($spconfig->hasValue('UIInfo')) {
 	$metaArray20['UIInfo'] = $spconfig->getArray('UIInfo');
@@ -215,7 +224,6 @@ $metaBuilder->addOrganizationInfo($metaArray20);
 
 $xml = $metaBuilder->getEntityDescriptorText();
 
-unset($metaArray20['attributes.required']);
 unset($metaArray20['UIInfo']);
 unset($metaArray20['metadata-set']);
 unset($metaArray20['entityid']);
