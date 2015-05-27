@@ -539,16 +539,6 @@ class SimpleSAML_Utilities {
 	}
 
 	/**
-     * @deprecated This method will be removed in SSP 2.0. Please use libxml_disable_entity_loader() instead.
-	 */
-	public static function disableXMLEntityLoader() {
-		/* Function only present in PHP >= 5.2.11 while we support 5.2+ */
-		if ( function_exists('libxml_disable_entity_loader') ) {
-			libxml_disable_entity_loader();
-		}
-	}
-
-	/**
 	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\System::writeFile() instead.
 	 */
 	public static function writeFile($filename, $data, $mode=0600) {
