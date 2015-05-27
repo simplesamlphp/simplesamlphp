@@ -38,10 +38,26 @@ try {
     }
     $creds = $aselect->verify_credentials($server_id, $credentials, $rid);
 
-    if (array_key_exists('attributes', $creds)) {
-        $state['Attributes'] = $creds['attributes'];
-    } else {
+    if ($state['aselect::add_default_attributes'] === true) {
+        // Add default attributes
         $state['Attributes'] = array('uid' => array($creds['uid']), 'organization' => array($creds['organization']));
+        if (array_key_exists('attributes', $creds)) {
+            $state['Attributes'] = array_merge($state['Attributes'], $creds['attributes']);
+        }
+    } elseif ($state['aselect::add_default_attributes'] === false) {
+        // Do not add default attributes
+        if (array_key_exists('attributes', $creds)) {
+            $state['Attributes'] = $creds['attributes'];
+        } else {
+            $state['Attributes'] = array();
+        }
+    } else {
+        // Legacy behaviour: add default attributes if no attributes are returned
+        if (array_key_exists('attributes', $creds)) {
+            $state['Attributes'] = $creds['attributes'];
+        } else {
+            $state['Attributes'] = array('uid' => array($creds['uid']), 'organization' => array($creds['organization']));
+        }
     }
 } catch (Exception $e) {
     SimpleSAML_Auth_State::throwException($state, $e);

@@ -10,6 +10,7 @@ class sspmod_aselect_Auth_Source_aselect extends SimpleSAML_Auth_Source {
 	private $server_id;
 	private $server_url;
 	private $private_key;
+	private $add_default_attributes;
 
 	/**
 	 * Constructor for this authentication source.
@@ -37,6 +38,8 @@ class sspmod_aselect_Auth_Source_aselect extends SimpleSAML_Auth_Source {
 		$this->server_url = $cfg->getString('serverurl', null);
 		if($this->server_url === null)
 			$this->server_url = $cfg->getString('server_url');
+
+		$this->add_default_attributes = $cfg->getBoolean('add_default_attributes', null);
 	}
 
 	/**
@@ -46,6 +49,7 @@ class sspmod_aselect_Auth_Source_aselect extends SimpleSAML_Auth_Source {
 	 */
 	public function authenticate(&$state) {
 		$state['aselect::authid'] = $this->authId;
+		$state['aselect::add_default_attributes'] = $this->add_default_attributes;
 		$id = SimpleSAML_Auth_State::saveState($state, 'aselect:login', true);
 
 		try {
