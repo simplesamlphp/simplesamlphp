@@ -7,9 +7,13 @@ SimpleSAML\Utils\Auth::requireAdmin();
 
 $config = SimpleSAML_Configuration::getInstance();
 
-if(array_key_exists('xmldata', $_POST)) {
+if ( !empty($_FILES['xmlfile']['tmp_name']) ) {
+	$xmldata = file_get_contents($_FILES['xmlfile']['tmp_name']);
+} elseif ( array_key_exists('xmldata', $_POST) ) {
 	$xmldata = $_POST['xmldata'];
+}
 
+if ( !empty($xmldata) ) {
 	\SimpleSAML\Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
 	$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsString($xmldata);
 
