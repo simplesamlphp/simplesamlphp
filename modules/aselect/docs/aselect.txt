@@ -21,7 +21,8 @@ named 'aselect':
         'app_id' => 'simplesamlphp',
         'server_id' => 'sso.example.com',
         'server_url' => 'https://test.sso.example.com/server',
-        'private_key' => 'file:///etc/ssl/private/aselect.key'
+        'private_key' => 'file:///etc/ssl/private/aselect.key',
+        'add_default_attributes' => FALSE
     ),
 
 The parameters:
@@ -34,6 +35,10 @@ The parameters:
 - private_key: the key you want to use for signing requests.
   If you're really sure you do not want request signing, you
   can set this option to a null value.
+- add_default_attributes: true to add default attributes
+  (uid and organization) to resulting attributes, false
+  to never do this, and null to do this only when no
+  attributes are returned.
 Options 'serverurl' and 'serverid' (without underscore) are
 supported for backwards compatibility.
 
