@@ -38,12 +38,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 
 			$params = $this->getCookieParams();
 
-			$version = explode('.', PHP_VERSION);
-			if ((int)$version[0] === 5 && (int)$version[1] < 2) {
-				session_set_cookie_params($params['lifetime'], $params['path'], $params['domain'], $params['secure']);
-			} else {
-				session_set_cookie_params($params['lifetime'], $params['path'], $params['domain'], $params['secure'], $params['httponly']);
-			}
+			session_set_cookie_params($params['lifetime'], $params['path'], $params['domain'], $params['secure'], $params['httponly']);
 
 			$this->cookie_name = $config->getString('session.phpsession.cookiename', NULL);
 			if (!empty($this->cookie_name)) {
