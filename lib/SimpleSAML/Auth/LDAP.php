@@ -90,11 +90,8 @@ class SimpleSAML_Auth_LDAP {
 		// (OpenLDAP 2.x.x or Netscape Directory SDK x.x needed).
 		$this->timeout = $timeout;
 		if ($timeout > 0) {
-			if (defined('LDAP_OPT_NETWORK_TIMEOUT')) {
-				/* This option isn't present before PHP 5.3. */
-				if (!@ldap_set_option($this->ldap, constant('LDAP_OPT_NETWORK_TIMEOUT'), $timeout))
-					SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_NETWORK_TIMEOUT) to ' . $timeout);
-			}
+			if (!@ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, $timeout))
+				SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_NETWORK_TIMEOUT) to ' . $timeout);
 			if (!@ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, $timeout))
 				SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_TIMELIMIT) to ' . $timeout);
 		}

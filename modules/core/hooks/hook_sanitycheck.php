@@ -25,8 +25,6 @@ function core_hook_sanitycheck(&$hookinfo) {
 	
 	if (version_compare(phpversion(), '5.3', '>=')) {
 		$hookinfo['info'][] = '[core] You are running PHP version ' . phpversion() . '. Great.';
-	} elseif( version_compare(phpversion(), '5.1.2', '>=')) {
-		$hookinfo['info'][] = '[core] You are running PHP version ' . phpversion() . '. It\'s recommended to upgrade to >= 5.2';
 	} else {
 		$hookinfo['errors'][] = '[core] You are running PHP version ' . phpversion() . '. SimpleSAMLphp requires version >= 5.3. Please upgrade!';
 	}
