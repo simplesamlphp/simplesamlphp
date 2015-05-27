@@ -18,7 +18,7 @@
     "es": "Por favor, renueve su certificado a tiempo."
   },
   "renew_url": {
-    "nl": "<a href='%renewurl%'>Vernieuw<\/a> tijdig je certificate.",
+    "nl": "<a href='%renewurl%'>Vervang<\/a> tijdig je certificaat.",
     "no": "Vennligst <a href=‘%renewurl%’>forny<\/a> sertifikatet ditt før det utløper.",
     "da": "<a href='%renewurl%'>Forny<\/a>, venligst dit certifikat før det udløber.",
     "es": "Por favor, <a href=‘%renewurl%’>renueve<\/a> su certificado a tiempo."
