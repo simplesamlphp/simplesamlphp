@@ -2,7 +2,7 @@
 
 
 /**
- * Tests for SimpleSAML_Utils_Test.
+ * Tests for SimpleSAML\Utils\Test.
  */
 class Utils_Net_Test extends PHPUnit_Framework_TestCase
 {
