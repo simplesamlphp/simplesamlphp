@@ -107,20 +107,6 @@ class SimpleSAML_Configuration {
 			$config = array();
 		}
 
-		if (array_key_exists('override.host', $config)) {
-			$host = $_SERVER['HTTP_HOST'];
-			if (array_key_exists($host, $config['override.host'])) {
-				$ofs = $config['override.host'][$host];
-				foreach (SimpleSAML\Utils\Arrays::arrayize($ofs) AS $of) {
-					$overrideFile = dirname($filename) . '/' . $of;
-					if (!file_exists($overrideFile)) {
-						throw new Exception('Config file [' . $filename . '] requests override for host ' . $host . ' but file does not exists [' . $of . ']');
-					}
-					require($overrideFile);
-				}
-			}
-		}
-
 		$cfg = new SimpleSAML_Configuration($config, $filename);
 		$cfg->filename = $filename;
 
