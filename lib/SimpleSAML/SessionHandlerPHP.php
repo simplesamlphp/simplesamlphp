@@ -211,7 +211,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 			$ret['path'] = $config->getBoolean('session.phpsession.limitedpath', FALSE) ? '/' . $config->getBaseURL() : '/';
 		}
 
-		$ret['httponly'] = $config->getBoolean('session.phpsession.httponly', FALSE);
+		$ret['httponly'] = $config->getBoolean('session.phpsession.httponly', TRUE);
 
 		return $ret;
 	}
