@@ -271,7 +271,7 @@ class HTTP
      */
     public static function checkSessionCookie($retryURL = null)
     {
-        if (!is_string($retryURL) || !is_null($retryURL)) {
+        if (!is_string($retryURL) && !is_null($retryURL)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
