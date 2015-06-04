@@ -66,7 +66,9 @@ if (isset($_POST['submit'])) {
 	} catch(Exception $e) {}
 	if ($testmetadata) requireOwnership($testmetadata, $userid);
 	
-	$mdh->saveMetadata($metadata['entityid'], 'saml20-sp-remote', $metadata);
+	if( FALSE === $mdh->saveMetadata($metadata['entityid'], 'saml20-sp-remote', $metadata) ){
+		throw new Exception("Could not save metadata. See log for details"); 
+	}
 	
 	$template = new SimpleSAML_XHTML_Template($config, 'metaedit:saved.php');
 	$template->show();
