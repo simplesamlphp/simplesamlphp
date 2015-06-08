@@ -31,6 +31,7 @@ SimpleSAMLphp Documentation
  * [Maintenance and configuration](simplesamlphp-maintenance) - covers session handling, php configuration etc.
  * [Authentication Processing Filters](simplesamlphp-authproc) - attribute filtering, attribute mapping, consent, group generation etc.
  * [Advanced features](simplesamlphp-advancedfeatures) - covers bridging protocols, attribute filtering, etc.
+ * [State Information Lost](simplesamlphp-nostate) - more about this common error message
  * [SimpleSAMLphp Dictionaries and Translation](simplesamlphp-translation)
  * [Theming simpleSAMLphp](simplesamlphp-theming)
  * [simpleSAMLphp Modules](simplesamlphp-modules) - how to create own customized modules
