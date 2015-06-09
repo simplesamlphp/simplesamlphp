@@ -135,7 +135,7 @@ If you want to setup a SAML 2.0 IdP for Google Apps, you need to configure two m
 This is the configuration of the IdP itself. Here is some example config:
 
 	// The SAML entity ID is the index of this config. Dynamic:X will automatically generate an entity ID (Reccomended)
-	'__DYNAMIC:1__' => array(
+	$metadata['__DYNAMIC:1__'] => array(
 		
 		// The hostname of the server (VHOST) that this SAML entity will use.
 		'host'				=>	'__DEFAULT__',
@@ -160,7 +160,7 @@ In the (`saml20-sp-remote.php`) file we will configure an entry for Google Apps 
        * at Google Apps. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you
        * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.
        */
-      'google.com' => array(
+      $metadata['google.com'] => array(
         'AssertionConsumerService'   => 'https://www.google.com/a/g.feide.no/acs', 
         'NameIDFormat'               => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
         'simplesaml.nameidattribute' => 'uid',
