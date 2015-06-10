@@ -144,7 +144,7 @@ class SimpleSAML_Configuration {
 			if ($configSet !== 'simplesaml') {
 				throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
 			} else {
-				self::$configDirs['simplesaml'] = dirname(dirname(dirname(__FILE__))) . '/config';
+				self::$configDirs['simplesaml'] = SimpleSAML\Utils\Config::getConfigDir();
 			}
 		}
 
@@ -171,7 +171,7 @@ class SimpleSAML_Configuration {
 			if ($configSet !== 'simplesaml') {
 				throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
 			} else {
-				self::$configDirs['simplesaml'] = dirname(dirname(dirname(__FILE__))) . '/config';
+				self::$configDirs['simplesaml'] = SimpleSAML\Utils\Config::getConfigDir();
 			}
 		}
 
