@@ -197,6 +197,61 @@ $config = array(
     ),
 
 
+
+    /*
+     * Database
+     *
+     * This database configuration is optional. If you are not using
+     * core funcationlity or modules that require a database, you can
+     * skip this configuration.
+     */
+
+    /*
+     * Database connection string.
+     * Ensure that you have the required PDO database drive installed
+     * for your connection string.
+     */
+    'database.dsn' => 'mysql:host=localhost;dbname=saml',
+
+    /*
+     * SQL database credentials
+     */
+    'database.username' => 'simplesamlphp',
+    'database.password' => 'secret',
+
+    /*
+     * (Optional) Table prefix
+     */
+    'database.prefix' => '',
+
+    /*
+     * True or false if you would like a persisent datata connection
+     */
+    'database.persistent' => false,
+
+    /*
+     * Database slave configuration is optional as well. If you are only
+     * running a single database server, leave this blank. If you have
+     * a master/slave conifguration, you can define as many slave servers
+     * as you want here. Slaves will be picked at random to be queried from.
+     *
+     * Configuration options in the salve array are exactly the same as the
+     * options for the master (shown above) with the exception of the table
+     * prefix.
+     */
+    'database.slaves' => array(
+        /*
+        array(
+            'dsn' => 'mysql:host=myslave;dbname=saml',
+            'username' => 'simplesamlphp',
+            'password' => 'secret',
+            'persistent' => false,
+        ),
+        */
+    ),
+
+
+
     /*
      * Enable
      *
@@ -572,13 +627,13 @@ $config = array(
      *                  hours (86400 seconds). Optional.
      *
      * PDO metadata handler:
-     * This metadata handler looks up for the metadata of an entity stored in a database.
+     * This metadata handler looks up metadata of an entity stored in a database.
+     *
+     * Note: If you are using the PDO metadata handler, you must configure the database
+     * options in this configuration file.
+     *
      * The PDO metadata handler defines the following options:
      * - 'type': This is always 'pdo'.
-     * - 'dsn': The database connection string. Mandatory.
-     * - 'username': Database username
-     * - 'cachedir': Database password
-     * - 'usePersistentConnection': Enable/Disable persistent database connection. Default is false.
      *
      *
      * Examples:
@@ -604,7 +659,7 @@ $config = array(
      *
      * This example defines an pdo source.
      * 'metadata.sources' => array(
-     *     array('type' => 'pdo', server => 'mysql:host=localhost;dbname=saml', 'username' => 'simplesamlphp', 'password' => 'SuperSecretPassword')
+     *     array('type' => 'pdo')
      *     ),
      *
      * Default:

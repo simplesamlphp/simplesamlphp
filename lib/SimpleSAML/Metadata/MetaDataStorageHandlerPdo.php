@@ -20,7 +20,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 	/**
 	 * The PDO object
 	 */
-	private $pdo;
+	private $db;
 
 	/**
 	 * Prefix to apply to the metadata table
@@ -69,20 +69,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 		assert('is_array($config)');
 
 		$globalConfig = SimpleSAML_Configuration::getInstance();
+		$this->db = SimpleSAML_Database::getInstance();
 
 		$cfgHelp = SimpleSAML_Configuration::loadFromArray($config, 'pdo metadata source');
-
-		// determine the table prefix if one was set
-		$this->tablePrefix = $cfgHelp->getString('tablePrefix', '');
-		$this->dsn = $cfgHelp->getString('dsn');
-
-		$driverOptions = array();
-		if ($cfgHelp->getBoolean('usePersistentConnection', TRUE)) {
-			$driverOptions = array(PDO::ATTR_PERSISTENT => TRUE);
-		}
-
-		$this->pdo = new PDO($this->dsn, $cfgHelp->getValue('username', NULL), $cfgHelp->getValue('password', NULL), $driverOptions);
-		$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 
 
@@ -102,7 +91,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 			return NULL;
 		}
 
-		$stmt = $this->pdo->prepare("SELECT entity_id, entity_data FROM $tableName");
+		$stmt = $this->db->read("SELECT entity_id, entity_data FROM $tableName");
 		if($stmt->execute()) {
 			$metadata = array();
 
@@ -189,24 +178,24 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
 		$tableName = $this->getTableName($set);
 
-		$metadata = $this->pdo->prepare("SELECT entity_id, entity_data FROM $tableName WHERE entity_id = :entity_id");
-		$metadata->bindValue(":entity_id", $index, PDO::PARAM_STR);
-		$metadata->execute();
+		$metadata = $this->db->read("SELECT entity_id, entity_data FROM $tableName WHERE entity_id = :entity_id", array(
+			'entity_id' => $index,
+		));
+
 		$retrivedEntityIDs = $metadata->fetch();
 
+		$params = array(
+			'entity_id' => $index,
+			'entity_data' => json_encode($entityData),
+		);
+
 		if($retrivedEntityIDs !== FALSE && count($retrivedEntityIDs) > 0){
-			$stmt = $this->pdo->prepare("UPDATE $tableName SET entity_data = :entity_data WHERE entity_id = :entity_id");
+			$stmt = $this->db->write("UPDATE $tableName SET entity_data = :entity_data WHERE entity_id = :entity_id", $params);
 		}
 		else{
-			$stmt = $this->pdo->prepare("INSERT INTO $tableName (entity_id, entity_data) VALUES (:entity_id, :entity_data)");
+			$stmt = $this->db->write("INSERT INTO $tableName (entity_id, entity_data) VALUES (:entity_id, :entity_data)", $params);
 		}
 
-		$stmt->bindValue(":entity_id", $index, PDO::PARAM_STR);
-		$stmt->bindValue(":entity_data", json_encode($entityData), PDO::PARAM_STR);
-		
-		if ($stmt->execute() === FALSE) {
-			throw new Exception("PDO metadata handler: Database error: " . var_export($this->pdo->errorInfo(), TRUE));
-		}
 		return 1 === $stmt->rowCount();
 	}
 
@@ -220,7 +209,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 	private function getTableName($table) {
 		assert('is_string($table)');
 
-		return str_replace("-", "_", $this->tablePrefix . $table);
+		return $this->db->applyPrefix(str_replace("-", "_", $this->tablePrefix . $table));
 	}
 
 	/**
@@ -229,10 +218,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 	public function initDatabase() {
 		foreach ($this->supportedSets as $set) {
 			$tableName = $this->getTableName($set);
-			$result = $this->pdo->exec("CREATE TABLE IF NOT EXISTS $tableName (entity_id VARCHAR(255) PRIMARY KEY NOT NULL, entity_data TEXT NOT NULL)");
-			if ($result === FALSE) {
-			    throw new Exception("PDO metadata handler: Database error: " . var_export($this->pdo->errorInfo(), TRUE));
-			}
+			$this->db->write("CREATE TABLE IF NOT EXISTS $tableName (entity_id VARCHAR(255) PRIMARY KEY NOT NULL, entity_data TEXT NOT NULL)");
 		}
 	}
 
