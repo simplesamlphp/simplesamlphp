@@ -14,15 +14,15 @@ class Crypto
      * Decrypt data using AES and the system-wide secret salt as key.
      *
      * @param string $ciphertext The encrypted data to decrypt.
+     * @param string $secret The secret to use to decrypt the data.
      *
      * @return string The decrypted data.
      * @htorws \InvalidArgumentException If $ciphertext is not a string.
      * @throws \SimpleSAML_Error_Exception If the mcrypt module is not loaded.
      *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     * @see \SimpleSAML\Utils\Crypto::aesDecrypt()
      */
-    public static function aesDecrypt($ciphertext)
+    private static function _aesDecrypt($ciphertext, $secret)
     {
         if (!is_string($ciphertext)) {
             throw new \InvalidArgumentException('Input parameter "$ciphertext" must be a string.');
@@ -37,7 +37,7 @@ class Crypto
         $ivSize = mcrypt_get_iv_size($enc, $mode);
         $keySize = mcrypt_get_key_size($enc, $mode);
 
-        $key = hash('sha256', Config::getSecretSalt(), true);
+        $key = hash('sha256', $secret, true);
         $key = substr($key, 0, $keySize);
 
         $iv = substr($ciphertext, 0, $ivSize);
@@ -50,6 +50,66 @@ class Crypto
         $clear = substr($clear, 0, $len - $numpad);
 
         return $clear;
+    }
+
+
+    /**
+     * Decrypt data using AES and the system-wide secret salt as key.
+     *
+     * @param string $ciphertext The encrypted data to decrypt.
+     *
+     * @return string The decrypted data.
+     * @htorws \InvalidArgumentException If $ciphertext is not a string.
+     * @throws \SimpleSAML_Error_Exception If the mcrypt module is not loaded.
+     *
+     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function aesDecrypt($ciphertext)
+    {
+        return self::_aesDecrypt($ciphertext, Config::getSecretSalt());
+    }
+
+
+    /**
+     * @param string $data The data to encrypt.
+     * @param string $secret The secret to use to encrypt the data.
+     *
+     * @return string The encrypted data and IV.
+     * @throws \InvalidArgumentException If $data is not a string.
+     * @throws \SimpleSAML_Error_Exception If the mcrypt module is not loaded.
+     *
+     * @see \SimpleSAML\Utils\Crypto::aesEncrypt()
+     */
+    private static function _aesEncrypt($data, $secret)
+    {
+        if (!is_string($data)) {
+            throw new \InvalidArgumentException('Input parameter "$data" must be a string.');
+        }
+
+        if (!function_exists("mcrypt_encrypt")) {
+            throw new \SimpleSAML_Error_Exception('The mcrypt PHP module is not loaded.');
+        }
+
+        $enc = MCRYPT_RIJNDAEL_256;
+        $mode = MCRYPT_MODE_CBC;
+
+        $blockSize = mcrypt_get_block_size($enc, $mode);
+        $ivSize = mcrypt_get_iv_size($enc, $mode);
+        $keySize = mcrypt_get_key_size($enc, $mode);
+
+        $key = hash('sha256', $secret, true);
+        $key = substr($key, 0, $keySize);
+
+        $len = strlen($data);
+        $numpad = $blockSize - ($len % $blockSize);
+        $data = str_pad($data, $len + $numpad, chr($numpad));
+
+        $iv = openssl_random_pseudo_bytes($ivSize);
+
+        $data = mcrypt_encrypt($enc, $key, $data, $mode, $iv);
+
+        return $iv.$data;
     }
 
 
@@ -67,32 +127,7 @@ class Crypto
      */
     public static function aesEncrypt($data)
     {
-        if (!is_string($data)) {
-            throw new \InvalidArgumentException('Input parameter "$data" must be a string.');
-        }
-        if (!function_exists("mcrypt_encrypt")) {
-            throw new \SimpleSAML_Error_Exception('The mcrypt PHP module is not loaded.');
-        }
-
-        $enc = MCRYPT_RIJNDAEL_256;
-        $mode = MCRYPT_MODE_CBC;
-
-        $blockSize = mcrypt_get_block_size($enc, $mode);
-        $ivSize = mcrypt_get_iv_size($enc, $mode);
-        $keySize = mcrypt_get_key_size($enc, $mode);
-
-        $key = hash('sha256', Config::getSecretSalt(), true);
-        $key = substr($key, 0, $keySize);
-
-        $len = strlen($data);
-        $numpad = $blockSize - ($len % $blockSize);
-        $data = str_pad($data, $len + $numpad, chr($numpad));
-
-        $iv = openssl_random_pseudo_bytes($ivSize);
-
-        $data = mcrypt_encrypt($enc, $key, $data, $mode, $iv);
-
-        return $iv.$data;
+        return self::_aesEncrypt($data, Config::getSecretSalt());
     }
 
 
