@@ -14,7 +14,10 @@ class CryptoTest extends PHPUnit_Framework_TestCase
      */
     public function testAesDecryptBadInput()
     {
-        \SimpleSAML\Utils\Crypto::aesDecrypt(array());
+        $m = new ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesDecrypt');
+        $m->setAccessible(true);
+
+        $m->invokeArgs(null, array(array(), 'SECRET'));
     }
 
 
@@ -25,7 +28,10 @@ class CryptoTest extends PHPUnit_Framework_TestCase
      */
     public function testAesEncryptBadInput()
     {
-        \SimpleSAML\Utils\Crypto::aesEncrypt(array());
+        $m = new ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesEncrypt');
+        $m->setAccessible(true);
+
+        $m->invokeArgs(null, array(array(), 'SECRET'));
     }
 
 
