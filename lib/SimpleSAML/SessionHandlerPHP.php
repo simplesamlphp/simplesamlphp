@@ -77,18 +77,22 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 		}
 
 		/* Generate new (secure) session id. */
-		$sessionId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16));
-		SimpleSAML_Session::createSession($sessionId);
 
-		if (session_id() !== '') {
-			/* Session already started, close it. */
-			session_write_close();
-		}
+		/**
+		*
+		* Regenerate the session id instead of destroying the current session.
+		* This will keep the current session data intact once the new session id
+		* has been generated.
+		*
+		*/
+		$old_session_id = session_id();
+		
+		// regenerates the session id, set to TRUE to delete the old associated files (set to false to keep)
+        session_regenerate_id(TRUE);
+        $new_session_id = session_id();
 
-		session_id($sessionId);
-		session_start();
-
-		return session_id();
+        // returns the new session
+		return $new_session_id;
 	}
 
 
