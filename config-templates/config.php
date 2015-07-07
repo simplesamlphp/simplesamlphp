@@ -114,7 +114,7 @@ $config = array(
      *		SimpleSAML_Logger::WARNING	No statistics, only warnings/errors
      *		SimpleSAML_Logger::NOTICE	Statistics and errors
      *		SimpleSAML_Logger::INFO		Verbose logs
-     *		SimpleSAML_Logger::DEBUG	Full debug logs - not reccomended for production
+     *		SimpleSAML_Logger::DEBUG	Full debug logs - not recommended for production
      *
      * Choose logging handler.
      *
