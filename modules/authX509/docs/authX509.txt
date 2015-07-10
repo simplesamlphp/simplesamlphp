@@ -29,8 +29,8 @@ this later).
 
 If your server or your client (or both!) have TLS renegotiation disabled
 as a workaround for CVE-2009-3555, then the configuration directive above
-must not appear in a <Directory>, <Location>, or in a name-based
-<VirtualHost>. You can only use them server-wide, or in <VirtualHost>s
+must not appear in a &lt;Directory&gt;, &lt;Location&gt;, or in a name-based
+&lt;VirtualHost&gt;. You can only use them server-wide, or in &lt;VirtualHost&gt;s
 with different IP address/port combinations.
 
 
