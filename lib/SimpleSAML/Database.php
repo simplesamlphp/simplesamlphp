@@ -48,7 +48,7 @@ class SimpleSAML_Database {
 	 */
 	public static function getInstance($altConfig = null) {
 		$config = ($altConfig)? $altConfig : SimpleSAML_Configuration::getInstance();
-		$instanceId = spl_object_hash($config);
+		$instanceId = self::generateInstanceId($config);
 
 		/* Check if we already have initialized the session. */
 		if (isset(self::$instance[$instanceId])) {
@@ -83,6 +83,28 @@ class SimpleSAML_Database {
 		}
 
 		$this->tablePrefix = $config->getString('database.prefix', '');
+	}
+
+	/**
+	 * Generate an Instance ID based on the database
+	 * configuration.
+	 *
+	 * @param $config 			Configuration class
+	 *
+	 * @return string $instanceId
+	 */
+	private static function generateInstanceId($config){
+		$assembledConfig = array(
+			'master' => array(
+				'database.dsn' => $config->getValue('database.dsn'),
+				'database.username' => $config->getValue('database.username'),
+				'database.password' => $config->getValue('database.password'),
+				'database.persistent' => $config->getValue('database.persistent'),
+			),
+			'slaves' => $config->getValue('database.slaves'),
+		);
+
+		return sha1(serialize($assembledConfig));
 	}
 
 	/**
