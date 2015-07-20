@@ -10,6 +10,7 @@
  * @author Tyler Antonio, University of Alberta <tantonio@ualberta.ca>
  * @package simpleSAMLphp
  */
+
 class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_MetaDataStorageSource{
 
 	/**
@@ -63,7 +64,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 	 *
 	 * - 'password': 				Password for the database user.
 	 *
-	 * @param $config  An associtive array with the configuration for this handler.
+	 * @param array $config  An associtive array with the configuration for this handler.
 	 */
 	public function __construct($config) {
 		assert('is_array($config)');
@@ -79,8 +80,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 	 * This function loads the given set of metadata from a file our configured database.
 	 * This function returns NULL if it is unable to locate the given set in the metadata directory.
 	 *
-	 * @param $set  The set of metadata we are loading.
-	 * @return Associative array with the metadata, or NULL if we are unable to load metadata from the given file.
+	 * @param string $set  The set of metadata we are loading.
+	 * @return array $metadata Associative array with the metadata, or NULL if we are unable to load metadata from the given file.
 	 */
 	private function load($set) {
 		assert('is_string($set)');
@@ -110,7 +111,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 	 * Retrieve a list of all available metadata for a given set.
 	 *
 	 * @param string $set  The set we are looking for metadata in.
-	 * @return array  An associative array with all the metadata for the given set.
+	 * @return array $metadata An associative array with all the metadata for the given set.
 	 */
 	public function getMetadataSet($set) {
 		assert('is_string($set)');

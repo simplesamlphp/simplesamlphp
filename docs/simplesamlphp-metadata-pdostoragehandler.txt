@@ -15,18 +15,18 @@ Introduction
 
 If you want to run a clustered simpleSAMLphp IdP service and you would like to have centralized storage for metadata, you can use the PDO metadata storage handler.
 
-The present document explains how to configure simpleSAMLphp and your database.
+The present document explains how to configure SimpleSAMLphp and your database.
 
 
 
 Preparations
 ------------
 
-You will need to have the appropriate PDO drivers for your database.
+You will need to have the appropriate PDO drivers for your database and you will have to configure the database secion within the config/config.php file.
 
 
 
-Configuring the simpleSAMLphp
+Configuring SimpleSAMLphp
 -----------------------------
 
 You will first need to configure a PDO metadata source.
@@ -37,12 +37,7 @@ Here is an example of flatfile plus PDO:
 
 	'metadata.sources' => array(
 		array('type' => 'flatfile'),
-		array('type' => 'pdo',
-			'dsn' => 'mysql:host=localhost;dbname=saml',
-			'username' => 'simplesamlphp',
-			'password' => 'SuperSecretPassword',
-			'usePersistentConnection' => FALSE,
-		),
+		array('type' => 'pdo'),
 	),
 
 
