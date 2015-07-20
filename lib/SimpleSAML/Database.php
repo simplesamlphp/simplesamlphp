@@ -99,6 +99,7 @@ class SimpleSAML_Database {
 				'database.dsn' => $config->getValue('database.dsn'),
 				'database.username' => $config->getValue('database.username'),
 				'database.password' => $config->getValue('database.password'),
+				'database.prefix' => $config->getValue('database.prefix'),
 				'database.persistent' => $config->getValue('database.persistent'),
 			),
 			'slaves' => $config->getValue('database.slaves'),
@@ -177,7 +178,7 @@ class SimpleSAML_Database {
 					$query->bindValue(":$param", $value[0], ($value[1])? $value[1] : PDO::PARAM_STR);
 				}
 				else{
-					$query->bindValue(":$param", $value, PDO::PARAM_STR);	
+					$query->bindValue(":$param", $value, PDO::PARAM_STR);
 				}
 			}
 
@@ -186,6 +187,29 @@ class SimpleSAML_Database {
 			if ($query->execute() === FALSE) {
 				throw new Exception("Database error: " . var_export($this->pdo->errorInfo(), TRUE));
 			}
+
+			return $query;
+		} catch (PDOException $e){
+			throw new Exception("Database error: ". $e->getMessage());
+		}
+	}
+
+	/**
+	 * This function queries the database without using a
+	 * prepared statement.
+	 *
+	 * @param $db 			PDO object to use
+	 * @param $stmt 		Prepared SQL statement
+	 * @param $params 		Parameters
+	 *
+	 * @return PDO statement object
+	 */
+	private function exec($db, $stmt){
+		assert('is_object($db)');
+		assert('is_string($stmt)');
+
+		try{
+			$query = $db->exec($stmt);
 
 			return $query;
 		} catch (PDOException $e){
@@ -204,7 +228,11 @@ class SimpleSAML_Database {
 	public function write($stmt, $params = array()){
 		$db = $this->dbMaster;
 
-		return $this->query($db, $stmt, $params);
+		if (is_array($params)) {
+			return $this->query($db, $stmt, $params);
+		} else {
+			return $this->exec($db, $stmt);
+		}
 	}
 
 	/**
