@@ -29,6 +29,7 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @covers SimpleSAML_Database::getInstance
+	 * @covers SimpleSAML_Database::generateInstanceId
 	 * @covers SimpleSAML_Database::__construct
 	 * @covers SimpleSAML_Database::connect
 	 */
@@ -57,6 +58,30 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @covers SimpleSAML_Database::getInstance
+	 * @covers SimpleSAML_Database::generateInstanceId
+	 * @covers SimpleSAML_Database::__construct
+	 * @covers SimpleSAML_Database::connect
+	 * @expectedException Exception
+	 * @test
+	 */
+	public function ConnectionFailure()
+	{
+		$config = array(
+			'database.dsn' => 'mysql:host=localhost;dbname=saml',
+			'database.username' => 'notauser',
+			'database.password' => 'notausersinvalidpassword',
+			'database.prefix' => 'phpunit_',
+			'database.persistent' => true,
+			'database.slaves' => array(),
+		);
+
+		$this->config = new SimpleSAML_Configuration($config, "test/SimpleSAML/DatabaseTest.php");
+		$db = SimpleSAML_Database::getInstance($this->config);
+	}
+
+	/**
+	 * @covers SimpleSAML_Database::getInstance
+	 * @covers SimpleSAML_Database::generateInstanceId
 	 * @covers SimpleSAML_Database::__construct
 	 * @covers SimpleSAML_Database::connect
 	 * @test
@@ -88,13 +113,28 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 		$db2 = SimpleSAML_Database::getInstance($config2);
 		$db3 = SimpleSAML_Database::getInstance($config3);
 
+		$generateInstanceId = self::getMethod('generateInstanceId');
+
+		$instance1 = $generateInstanceId->invokeArgs($db1, array($config1));
+		$instance2 = $generateInstanceId->invokeArgs($db2, array($config2));
+		$instance3 = $generateInstanceId->invokeArgs($db3, array($config3));
+
+		// Assert that $instance1 and $instance2 have different instance ids
+		$this->assertNotEquals($instance1, $instance2, "Database instances should be different, but returned the same id");
+		// Assert that $instance1 and $instance3 have identical instance ids
+		$this->assertEquals($instance1, $instance3, "Database instances should have the same id, but returned different id");
+
 		// Assert that $db1 and $db2 are different instances
-		$this->assertFalse((spl_object_hash($db1) == spl_object_hash($db2)), "Database instances should be different, but returned the same spl_object_hash");
+		$this->assertNotEquals(spl_object_hash($db1), spl_object_hash($db2), "Database instances should be different, but returned the same spl_object_hash");
 		// Assert that $db1 and $db3 are identical instances
-		$this->assertTrue((spl_object_hash($db1) == spl_object_hash($db3)), "Database instances should be the same, but returned different spl_object_hash");
+		$this->assertEquals(spl_object_hash($db1), spl_object_hash($db3), "Database instances should be the same, but returned different spl_object_hash");
 	}
 
 	/**
+	 * @covers SimpleSAML_Database::getInstance
+	 * @covers SimpleSAML_Database::generateInstanceId
+	 * @covers SimpleSAML_Database::__construct
+	 * @covers SimpleSAML_Database::connect
 	 * @covers SimpleSAML_Database::getSlave
 	 * @test
 	 */
@@ -105,6 +145,29 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 		$slave = spl_object_hash($getSlave->invokeArgs($this->db, array()));
 
 		$this->assertTrue(($master == $slave), "getSlave should have returned the master database object");
+
+		$config = array(
+			'database.dsn' => 'sqlite::memory:',
+			'database.username' => null,
+			'database.password' => null,
+			'database.prefix' => 'phpunit_',
+			'database.persistent' => true,
+			'database.slaves' => array(
+				array(
+					'dsn' => 'sqlite::memory:',
+					'username' => null,
+					'password' => null,
+				),
+			),
+		);
+
+		$sspConfiguration = new SimpleSAML_Configuration($config, "test/SimpleSAML/DatabaseTest.php");
+		$msdb = SimpleSAML_Database::getInstance($sspConfiguration);
+
+		$slaves = PHPUnit_Framework_Assert::readAttribute($msdb, 'dbSlaves');
+		$gotSlave = spl_object_hash($getSlave->invokeArgs($msdb, array()));
+
+		$this->assertEquals(spl_object_hash($slaves[0]), $gotSlave, "getSlave should have returned a slave database object");
 	}
 
 	/**
@@ -131,14 +194,14 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 		$table = $this->db->applyPrefix("sspdbt");
 		$this->assertEquals($this->config->getValue('database.prefix') . "sspdbt", $table);
 
-		$this->db->write("CREATE TABLE IF NOT EXISTS $table (ssp_key VARCHAR(255) NOT NULL, ssp_value TEXT NOT NULL)", false);
+		$this->db->write("CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)", false);
 
 		$query1 = $this->db->read("SELECT * FROM $table");
 		$this->assertEquals(0, $query1->fetch(), "Table $table is not empty when it should be.");
 
-		$ssp_key = "test_" . time();
+		$ssp_key = time();
 		$ssp_value = md5(rand(0,10000));
-		$stmt = $this->db->write("INSERT INTO $table (ssp_key, ssp_value) VALUES (:ssp_key, :ssp_value)", array('ssp_key' => $ssp_key, 'ssp_value' => $ssp_value));
+		$stmt = $this->db->write("INSERT INTO $table (ssp_key, ssp_value) VALUES (:ssp_key, :ssp_value)", array('ssp_key' => array($ssp_key, PDO::PARAM_INT), 'ssp_value' => $ssp_value));
 		$this->assertEquals(1, $stmt->rowCount(), "Could not insert data into $table.");
 
 		$query2 = $this->db->read("SELECT * FROM $table WHERE ssp_key = :ssp_key", array('ssp_key' => $ssp_key));
@@ -147,7 +210,22 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * @covers SimpleSAML_Database::read
+	 * @covers SimpleSAML_Database::query
+	 * @expectedException Exception
+	 * @test
+	 */
+	public function ReadFailure()
+	{
+		$table = $this->db->applyPrefix("sspdbt");
+		$this->assertEquals($this->config->getValue('database.prefix') . "sspdbt", $table);
+
+		$query = $this->db->read("SELECT * FROM $table");
+	}
+
+	/**
 	 * @covers SimpleSAML_Database::write
+	 * @covers SimpleSAML_Database::exec
 	 * @expectedException Exception
 	 * @test
 	 */

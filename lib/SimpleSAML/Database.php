@@ -184,10 +184,6 @@ class SimpleSAML_Database {
 
 			$query->execute();
 
-			if ($query->execute() === FALSE) {
-				throw new Exception("Database error: " . var_export($this->pdo->errorInfo(), TRUE));
-			}
-
 			return $query;
 		} catch (PDOException $e){
 			throw new Exception("Database error: ". $e->getMessage());
