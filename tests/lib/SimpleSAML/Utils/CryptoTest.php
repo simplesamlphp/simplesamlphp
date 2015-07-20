@@ -41,7 +41,7 @@ class CryptoTest extends PHPUnit_Framework_TestCase
      */
     public function testAesDecrypt()
     {
-        if (!extension_loaded('mcrypt')) {
+        if (!extension_loaded('openssl')) {
             $this->setExpectedException('\SimpleSAML_Error_Exception');
         }
 
@@ -50,7 +50,7 @@ class CryptoTest extends PHPUnit_Framework_TestCase
         $m->setAccessible(true);
 
         $plaintext = 'SUPER_SECRET_TEXT';
-        $ciphertext = 'J5/rmhc54DpEbnP4rLD3IUUiSOE28165Gpr8BzNF4bFHjjesCe6mnHRZ6EiRbQE41ZDB/qg3ilWlw1gWzlKKww==';
+        $ciphertext = 'NmRkODJlZGE2OTA3YTYwMm9En+KAReUk2z7Xi/b3c39kF/c1n6Vdj/zNARQt+UHU';
         $this->assertEquals($plaintext, $m->invokeArgs(null, array(base64_decode($ciphertext), $secret)));
     }
 
@@ -60,7 +60,7 @@ class CryptoTest extends PHPUnit_Framework_TestCase
      */
     public function testAesEncrypt()
     {
-        if (!extension_loaded('mcrypt')) {
+        if (!extension_loaded('openssl')) {
             $this->setExpectedException('\SimpleSAML_Error_Exception');
         }
 
