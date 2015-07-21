@@ -126,7 +126,7 @@ class Database {
 
 			return $db;
 		} catch(PDOException $e){
-			throw new DBException("Database error: ". $e->getMessage());
+			throw new Exception("Database error: ". $e->getMessage());
 		}
 	}
 
@@ -187,7 +187,7 @@ class Database {
 
 			return $query;
 		} catch (PDOException $e){
-			throw new DBException("Database error: ". $e->getMessage());
+			throw new Exception("Database error: ". $e->getMessage());
 		}
 	}
 
@@ -210,7 +210,7 @@ class Database {
 
 			return $query;
 		} catch (PDOException $e){
-			throw new DBException("Database error: ". $e->getMessage());
+			throw new Exception("Database error: ". $e->getMessage());
 		}
 	}
 
