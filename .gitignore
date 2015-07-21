@@ -1,4 +1,8 @@
-log/simplesamlphp.log
+.gitignore
+log
+config
+metadata
+cert
 
 # https://www.gitignore.io/api/osx,windows,linux,netbeans,sublimetext,composer,phpstorm,vagrant
 # Created by https://www.gitignore.io
@@ -63,6 +67,8 @@ $RECYCLE.BIN/
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 
+### Eclipse ###
+.project
 
 ### NetBeans ###
 nbproject/private/
