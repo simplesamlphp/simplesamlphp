@@ -21,17 +21,17 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 	 * @requires PHP 5.3.2
 	 */
 	protected static function getMethod($getMethod) {
-		$class = new ReflectionClass('SimpleSAML_Database');
+		$class = new ReflectionClass('SimpleSAML\Database');
 		$method = $class->getMethod($getMethod);
 		$method->setAccessible(true);
 		return $method;
 	}
 
 	/**
-	 * @covers SimpleSAML_Database::getInstance
-	 * @covers SimpleSAML_Database::generateInstanceId
-	 * @covers SimpleSAML_Database::__construct
-	 * @covers SimpleSAML_Database::connect
+	 * @covers SimpleSAML\Database::getInstance
+	 * @covers SimpleSAML\Database::generateInstanceId
+	 * @covers SimpleSAML\Database::__construct
+	 * @covers SimpleSAML\Database::connect
 	 */
 	public function setUp()
 	{
@@ -50,17 +50,17 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('SimpleSAML_Configuration', $this->config);
 		$this->assertEquals($config['database.dsn'], $this->config->getValue('database.dsn'));
 
-		$this->db = SimpleSAML_Database::getInstance($this->config);
+		$this->db = SimpleSAML\Database::getInstance($this->config);
 
 		// Ensure that we have a functional database class.
-		$this->assertInstanceOf('SimpleSAML_Database', $this->db);
+		$this->assertInstanceOf('SimpleSAML\Database', $this->db);
 	}
 
 	/**
-	 * @covers SimpleSAML_Database::getInstance
-	 * @covers SimpleSAML_Database::generateInstanceId
-	 * @covers SimpleSAML_Database::__construct
-	 * @covers SimpleSAML_Database::connect
+	 * @covers SimpleSAML\Database::getInstance
+	 * @covers SimpleSAML\Database::generateInstanceId
+	 * @covers SimpleSAML\Database::__construct
+	 * @covers SimpleSAML\Database::connect
 	 * @expectedException Exception
 	 * @test
 	 */
@@ -76,14 +76,14 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 		);
 
 		$this->config = new SimpleSAML_Configuration($config, "test/SimpleSAML/DatabaseTest.php");
-		$db = SimpleSAML_Database::getInstance($this->config);
+		$db = SimpleSAML\Database::getInstance($this->config);
 	}
 
 	/**
-	 * @covers SimpleSAML_Database::getInstance
-	 * @covers SimpleSAML_Database::generateInstanceId
-	 * @covers SimpleSAML_Database::__construct
-	 * @covers SimpleSAML_Database::connect
+	 * @covers SimpleSAML\Database::getInstance
+	 * @covers SimpleSAML\Database::generateInstanceId
+	 * @covers SimpleSAML\Database::__construct
+	 * @covers SimpleSAML\Database::connect
 	 * @test
 	 */
 	public function Instances()
@@ -109,9 +109,9 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 		$config2 = new SimpleSAML_Configuration($config2, "test/SimpleSAML/DatabaseTest.php");
 		$config3 = new SimpleSAML_Configuration($config, "test/SimpleSAML/DatabaseTest.php");
 
-		$db1 = SimpleSAML_Database::getInstance($config1);
-		$db2 = SimpleSAML_Database::getInstance($config2);
-		$db3 = SimpleSAML_Database::getInstance($config3);
+		$db1 = SimpleSAML\Database::getInstance($config1);
+		$db2 = SimpleSAML\Database::getInstance($config2);
+		$db3 = SimpleSAML\Database::getInstance($config3);
 
 		$generateInstanceId = self::getMethod('generateInstanceId');
 
@@ -131,11 +131,11 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers SimpleSAML_Database::getInstance
-	 * @covers SimpleSAML_Database::generateInstanceId
-	 * @covers SimpleSAML_Database::__construct
-	 * @covers SimpleSAML_Database::connect
-	 * @covers SimpleSAML_Database::getSlave
+	 * @covers SimpleSAML\Database::getInstance
+	 * @covers SimpleSAML\Database::generateInstanceId
+	 * @covers SimpleSAML\Database::__construct
+	 * @covers SimpleSAML\Database::connect
+	 * @covers SimpleSAML\Database::getSlave
 	 * @test
 	 */
 	public function Slaves(){
@@ -162,7 +162,7 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 		);
 
 		$sspConfiguration = new SimpleSAML_Configuration($config, "test/SimpleSAML/DatabaseTest.php");
-		$msdb = SimpleSAML_Database::getInstance($sspConfiguration);
+		$msdb = SimpleSAML\Database::getInstance($sspConfiguration);
 
 		$slaves = PHPUnit_Framework_Assert::readAttribute($msdb, 'dbSlaves');
 		$gotSlave = spl_object_hash($getSlave->invokeArgs($msdb, array()));
@@ -171,7 +171,7 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers SimpleSAML_Database::applyPrefix
+	 * @covers SimpleSAML\Database::applyPrefix
 	 * @test
 	 */
 	public function prefix(){
@@ -183,10 +183,10 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers SimpleSAML_Database::write
-	 * @covers SimpleSAML_Database::read
-	 * @covers SimpleSAML_Database::exec
-	 * @covers SimpleSAML_Database::query
+	 * @covers SimpleSAML\Database::write
+	 * @covers SimpleSAML\Database::read
+	 * @covers SimpleSAML\Database::exec
+	 * @covers SimpleSAML\Database::query
 	 * @test
 	 */
 	public function Querying()
@@ -210,8 +210,8 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers SimpleSAML_Database::read
-	 * @covers SimpleSAML_Database::query
+	 * @covers SimpleSAML\Database::read
+	 * @covers SimpleSAML\Database::query
 	 * @expectedException Exception
 	 * @test
 	 */
@@ -224,8 +224,8 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers SimpleSAML_Database::write
-	 * @covers SimpleSAML_Database::exec
+	 * @covers SimpleSAML\Database::write
+	 * @covers SimpleSAML\Database::exec
 	 * @expectedException Exception
 	 * @test
 	 */

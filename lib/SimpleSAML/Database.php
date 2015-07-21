@@ -1,4 +1,5 @@
 <?php
+namespace SimpleSAML;
 
 /**
  * This file implements functions to read and write to a group of database
@@ -14,10 +15,10 @@
  * such as sqlauth, an alternative config file can be provided.
  *
  * @author Tyler Antonio, University of Alberta. <tantonio@ualberta.ca>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
-class SimpleSAML_Database {
+class Database {
 
 	/**
 	 * This variable holds the instance of the session - Singleton approach.
@@ -47,7 +48,7 @@ class SimpleSAML_Database {
 	 * @return SimpleSAML_Database The shared database connection.
 	 */
 	public static function getInstance($altConfig = null) {
-		$config = ($altConfig)? $altConfig : SimpleSAML_Configuration::getInstance();
+		$config = ($altConfig)? $altConfig : \SimpleSAML_Configuration::getInstance();
 		$instanceId = self::generateInstanceId($config);
 
 		/* Check if we already have initialized the session. */
@@ -56,7 +57,7 @@ class SimpleSAML_Database {
 		}
 
 		/* Create a new session. */
-		self::$instance[$instanceId] = new SimpleSAML_Database($config);
+		self::$instance[$instanceId] = new Database($config);
 		return self::$instance[$instanceId];
 	}
 
@@ -68,7 +69,7 @@ class SimpleSAML_Database {
 	private function __construct($config) {
 		$driverOptions = array();
 		if ($config->getBoolean('database.persistent', TRUE)) {
-			$driverOptions = array(PDO::ATTR_PERSISTENT => TRUE);
+			$driverOptions = array(\PDO::ATTR_PERSISTENT => TRUE);
 		}
 
 		// Connect to the master
@@ -120,12 +121,12 @@ class SimpleSAML_Database {
 	 */
 	private function connect($dsn, $username, $password, $options){
 		try{
-			$db = new PDO($dsn, $username, $password, $options);
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$db = new \PDO($dsn, $username, $password, $options);
+			$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 			return $db;
 		} catch(PDOException $e){
-			throw new Exception("Database error: ". $e->getMessage());
+			throw new DBException("Database error: ". $e->getMessage());
 		}
 	}
 
@@ -175,10 +176,10 @@ class SimpleSAML_Database {
 
 			foreach ($params as $param => $value) {
 				if(is_array($value)){
-					$query->bindValue(":$param", $value[0], ($value[1])? $value[1] : PDO::PARAM_STR);
+					$query->bindValue(":$param", $value[0], ($value[1])? $value[1] : \PDO::PARAM_STR);
 				}
 				else{
-					$query->bindValue(":$param", $value, PDO::PARAM_STR);
+					$query->bindValue(":$param", $value, \PDO::PARAM_STR);
 				}
 			}
 
@@ -186,7 +187,7 @@ class SimpleSAML_Database {
 
 			return $query;
 		} catch (PDOException $e){
-			throw new Exception("Database error: ". $e->getMessage());
+			throw new DBException("Database error: ". $e->getMessage());
 		}
 	}
 
@@ -209,7 +210,7 @@ class SimpleSAML_Database {
 
 			return $query;
 		} catch (PDOException $e){
-			throw new Exception("Database error: ". $e->getMessage());
+			throw new DBException("Database error: ". $e->getMessage());
 		}
 	}
 

@@ -70,7 +70,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 		assert('is_array($config)');
 
 		$globalConfig = SimpleSAML_Configuration::getInstance();
-		$this->db = SimpleSAML_Database::getInstance();
+		$this->db = SimpleSAML\Database::getInstance();
 
 		$cfgHelp = SimpleSAML_Configuration::loadFromArray($config, 'pdo metadata source');
 	}
