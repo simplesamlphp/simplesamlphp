@@ -202,13 +202,13 @@ $config = array(
      * Database
      *
      * This database configuration is optional. If you are not using
-     * core funcationlity or modules that require a database, you can
+     * core functionality or modules that require a database, you can
      * skip this configuration.
      */
 
     /*
      * Database connection string.
-     * Ensure that you have the required PDO database drive installed
+     * Ensure that you have the required PDO database driver installed
      * for your connection string.
      */
     'database.dsn' => 'mysql:host=localhost;dbname=saml',
@@ -225,7 +225,7 @@ $config = array(
     'database.prefix' => '',
 
     /*
-     * True or false if you would like a persisent datata connection
+     * True or false if you would like a persistent database connection
      */
     'database.persistent' => false,
 
@@ -235,7 +235,7 @@ $config = array(
      * a master/slave conifguration, you can define as many slave servers
      * as you want here. Slaves will be picked at random to be queried from.
      *
-     * Configuration options in the salve array are exactly the same as the
+     * Configuration options in the slave array are exactly the same as the
      * options for the master (shown above) with the exception of the table
      * prefix.
      */

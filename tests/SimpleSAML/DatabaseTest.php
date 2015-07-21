@@ -231,7 +231,7 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 	 */
 	public function NoSuchTable()
 	{
-		$this->db->write("DROP TABLE phpunit_nonexistant", false);
+		$this->db->write("DROP TABLE phpunit_nonexistent", false);
 	}
 
 	public function tearDown()

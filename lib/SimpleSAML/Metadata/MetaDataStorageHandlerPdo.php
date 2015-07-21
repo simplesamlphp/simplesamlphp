@@ -77,7 +77,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
 
 	/**
-	 * This function loads the given set of metadata from a file our configured database.
+	 * This function loads the given set of metadata from a file to a configured database.
 	 * This function returns NULL if it is unable to locate the given set in the metadata directory.
 	 *
 	 * @param string $set  The set of metadata we are loading.

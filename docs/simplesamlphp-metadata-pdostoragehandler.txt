@@ -13,7 +13,7 @@ PDO Metadata Storage Handler
 Introduction
 ------------
 
-If you want to run a clustered simpleSAMLphp IdP service and you would like to have centralized storage for metadata, you can use the PDO metadata storage handler.
+If you want to run a clustered SimpleSAMLphp IdP service and you would like to have centralized storage for metadata, you can use the PDO metadata storage handler.
 
 The present document explains how to configure SimpleSAMLphp and your database.
 
@@ -22,7 +22,7 @@ The present document explains how to configure SimpleSAMLphp and your database.
 Preparations
 ------------
 
-You will need to have the appropriate PDO drivers for your database and you will have to configure the database secion within the config/config.php file.
+You will need to have the appropriate PDO drivers for your database and you will have to configure the database section within the config/config.php file.
 
 
 
@@ -50,7 +50,7 @@ Once you have configured your metadata sources to include a PDO source, you will
 
 	[root@simplesamlphp simplesamlphp]# php bin/initMDSPdo.php
 
-If you connect to your datbase, you will see 11 new empty tables; one for each metadata set.
+If you connect to your database, you will see 11 new empty tables; one for each metadata set.
 
 
 Adding Metadata

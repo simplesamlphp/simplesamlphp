@@ -43,7 +43,7 @@ class SimpleSAML_Database {
     /**
 	 * Retrieves the current database instance. Will create a new one if there isn't an existing connection.
 	 *
-	 * @param object $altConfig Optional: Instance of a SimpleSAML_Configruation class
+	 * @param object $altConfig Optional: Instance of a SimpleSAML_Configuration class
 	 * @return SimpleSAML_Database The shared database connection.
 	 */
 	public static function getInstance($altConfig = null) {
@@ -63,7 +63,7 @@ class SimpleSAML_Database {
 	/**
 	 * Private constructor that restricts instantiation to getInstance().
 	 *
-	 * @param object $config Instance of the SimpleSAML_Configruation class
+	 * @param object $config Instance of the SimpleSAML_Configuration class
 	 */
 	private function __construct($config) {
 		$driverOptions = array();
