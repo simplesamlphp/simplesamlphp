@@ -232,7 +232,7 @@ $config = array(
     /*
      * Database slave configuration is optional as well. If you are only
      * running a single database server, leave this blank. If you have
-     * a master/slave conifguration, you can define as many slave servers
+     * a master/slave configuration, you can define as many slave servers
      * as you want here. Slaves will be picked at random to be queried from.
      *
      * Configuration options in the slave array are exactly the same as the
