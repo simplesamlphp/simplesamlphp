@@ -11,8 +11,13 @@ class sspmod_metarefresh_MetaLoader {
 	private $oldMetadataSrc;
 	private $stateFile;
 	private $changed;
-	private static $types = array('saml20-idp-remote', 'saml20-sp-remote',
-		'shib13-idp-remote', 'shib13-sp-remote', 'attributeauthority-remote');
+	private $types = array(
+		'saml20-idp-remote',
+		'saml20-sp-remote',
+		'shib13-idp-remote',
+		'shib13-sp-remote',
+		'attributeauthority-remote'
+	);
 
 
 	/**
@@ -36,6 +41,33 @@ class sspmod_metarefresh_MetaLoader {
 		$this->state = (isset($state)) ? $state : array();
 
 	}
+
+
+	/**
+	 * Get the types of entities that will be loaded.
+	 *
+	 * @return array The entity types allowed.
+	 */
+	public function getTypes()
+	{
+		return $this->types;
+	}
+
+
+	/**
+	 * Set the types of entities that will be loaded.
+	 *
+	 * @param string|array $types Either a string with the name of one single type allowed, or an array with a list of
+	 * types. Pass an empty array to reset to all types of entities.
+	 */
+	public function setTypes($types)
+	{
+		if (!is_array($types)) {
+			$types = array($types);
+		}
+		$this->types = $types;
+	}
+
 
 	/**
 	 * This function processes a SAML metadata file.
@@ -176,7 +208,7 @@ class sspmod_metarefresh_MetaLoader {
 
 	private function addCachedMetadata($source) {
 		if(isset($this->oldMetadataSrc)) {
-			foreach(self::$types as $type) {
+			foreach($this->types as $type) {
 				foreach($this->oldMetadataSrc->getMetadataSet($type) as $entity) {
 					if(array_key_exists('metarefresh:src', $entity)) {
 						if($entity['metarefresh:src'] == $source['src']) {
@@ -369,7 +401,7 @@ class sspmod_metarefresh_MetaLoader {
 			}
 		}
 	
-		foreach(self::$types as $type) {
+		foreach($this->types as $type) {
 
 			$filename = $outputDir . '/' . $type . '.php';
 
