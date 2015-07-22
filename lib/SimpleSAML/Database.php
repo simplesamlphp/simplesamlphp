@@ -125,8 +125,8 @@ class Database {
 			$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 			return $db;
-		} catch(PDOException $e){
-			throw new Exception("Database error: ". $e->getMessage());
+		} catch(\PDOException $e){
+			throw new \Exception("Database error: ". $e->getMessage());
 		}
 	}
 
@@ -186,8 +186,8 @@ class Database {
 			$query->execute();
 
 			return $query;
-		} catch (PDOException $e){
-			throw new Exception("Database error: ". $e->getMessage());
+		} catch (\PDOException $e){
+			throw new \Exception("Database error: ". $e->getMessage());
 		}
 	}
 
@@ -209,8 +209,8 @@ class Database {
 			$query = $db->exec($stmt);
 
 			return $query;
-		} catch (PDOException $e){
-			throw new Exception("Database error: ". $e->getMessage());
+		} catch (\PDOException $e){
+			throw new \Exception("Database error: ". $e->getMessage());
 		}
 	}
 
