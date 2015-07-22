@@ -60,7 +60,12 @@ if ($prevAuth !== NULL && $prevAuth['id'] === $response->getId() && $prevAuth['i
 	 * instead of displaying a confusing error message.
 	 */
 	SimpleSAML_Logger::info('Duplicate SAML 2 response detected - ignoring the response and redirecting the user to the correct page.');
-	\SimpleSAML\Utils\HTTP::redirectTrustedURL($prevAuth['redirect']);
+	if (isset($prevAuth['redirect'])) {
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($prevAuth['redirect']);
+	}
+
+	SimpleSAML_Logger::info('No RelayState or ReturnURL available, cannot redirect.');
+	throw new SimpleSAML_Error_Exception('Duplicate assertion received.');
 }
 
 $idpMetadata = array();
@@ -90,7 +95,11 @@ if (!empty($stateId)) {
 	$state = array(
 		'saml:sp:isUnsolicited' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
-		'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($response->getRelayState()),
+		'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($spMetadata->getString(
+				'RelayState',
+				$response->getRelayState()
+			)
+		),
 	);
 }
 
@@ -196,17 +205,17 @@ if ($expire !== NULL) {
 	$state['Expire'] = $expire;
 }
 
+// note some information about the authentication, in case we receive the same response again
+$state['saml:sp:prevAuth'] = array(
+	'id'     => $response->getId(),
+	'issuer' => $idp,
+);
 if (isset($state['SimpleSAML_Auth_Default.ReturnURL'])) {
-	/* Just note some information about the authentication, in case we receive the
-	 * same response again.
-	 */
-	$state['saml:sp:prevAuth'] = array(
-		'id' => $response->getId(),
-		'issuer' => $idp,
-		'redirect' => $state['SimpleSAML_Auth_Default.ReturnURL'],
-	);
-	$state['PersistentAuthData'][] = 'saml:sp:prevAuth';
+	$state['saml:sp:prevAuth']['redirect'] = $state['SimpleSAML_Auth_Default.ReturnURL'];
+} elseif (isset($state['saml:sp:RelayState'])) {
+	$state['saml:sp:prevAuth']['redirect'] = $state['saml:sp:RelayState'];
 }
+$state['PersistentAuthData'][] = 'saml:sp:prevAuth';
 
 $source->handleResponse($state, $idp, $attributes);
 assert('FALSE');
