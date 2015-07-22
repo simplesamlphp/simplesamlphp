@@ -20,7 +20,8 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 	 * Make protected functions available for testing
 	 * @requires PHP 5.3.2
 	 */
-	protected static function getMethod($getMethod) {
+	protected static function getMethod($getMethod)
+	{
 		$class = new ReflectionClass('SimpleSAML\Database');
 		$method = $class->getMethod($getMethod);
 		$method->setAccessible(true);

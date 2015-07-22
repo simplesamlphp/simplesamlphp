@@ -93,10 +93,10 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 		}
 
 		$stmt = $this->db->read("SELECT entity_id, entity_data FROM $tableName");
-		if($stmt->execute()) {
+		if ($stmt->execute()) {
 			$metadata = array();
 
-			while($d = $stmt->fetch()) {
+			while ($d = $stmt->fetch()) {
 				$metadata[$d['entity_id']] = json_decode($d['entity_data'], TRUE);
 			}
 
@@ -116,12 +116,12 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 	public function getMetadataSet($set) {
 		assert('is_string($set)');
 
-		if(array_key_exists($set, $this->cachedMetadata)) {
+		if (array_key_exists($set, $this->cachedMetadata)) {
 			return $this->cachedMetadata[$set];
 		}
 
 		$metadataSet = $this->load($set);
-		if($metadataSet === NULL) {
+		if ($metadataSet === NULL) {
 			$metadataSet = array();
 		}
 
@@ -192,8 +192,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
 		if($retrivedEntityIDs !== FALSE && count($retrivedEntityIDs) > 0){
 			$stmt = $this->db->write("UPDATE $tableName SET entity_data = :entity_data WHERE entity_id = :entity_id", $params);
-		}
-		else{
+		} else {
 			$stmt = $this->db->write("INSERT INTO $tableName (entity_id, entity_data) VALUES (:entity_id, :entity_data)", $params);
 		}
 

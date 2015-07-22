@@ -18,7 +18,8 @@ namespace SimpleSAML;
  * @package SimpleSAMLphp
  */
 
-class Database {
+class Database
+{
 
 	/**
 	 * This variable holds the instance of the session - Singleton approach.
@@ -47,7 +48,8 @@ class Database {
 	 * @param object $altConfig Optional: Instance of a SimpleSAML_Configuration class
 	 * @return SimpleSAML_Database The shared database connection.
 	 */
-	public static function getInstance($altConfig = null) {
+	public static function getInstance($altConfig = null)
+	{
 		$config = ($altConfig)? $altConfig : \SimpleSAML_Configuration::getInstance();
 		$instanceId = self::generateInstanceId($config);
 
@@ -66,7 +68,8 @@ class Database {
 	 *
 	 * @param object $config Instance of the SimpleSAML_Configuration class
 	 */
-	private function __construct($config) {
+	private function __construct($config)
+	{
 		$driverOptions = array();
 		if ($config->getBoolean('database.persistent', TRUE)) {
 			$driverOptions = array(\PDO::ATTR_PERSISTENT => TRUE);
@@ -94,7 +97,8 @@ class Database {
 	 *
 	 * @return string $instanceId
 	 */
-	private static function generateInstanceId($config){
+	private static function generateInstanceId($config)
+	{
 		$assembledConfig = array(
 			'master' => array(
 				'database.dsn' => $config->getValue('database.dsn'),
@@ -119,13 +123,14 @@ class Database {
 	 *
 	 * @return PDO object
 	 */
-	private function connect($dsn, $username, $password, $options){
-		try{
+	private function connect($dsn, $username, $password, $options)
+	{
+		try {
 			$db = new \PDO($dsn, $username, $password, $options);
 			$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 			return $db;
-		} catch(\PDOException $e){
+		} catch(\PDOException $e) {
 			throw new \Exception("Database error: ". $e->getMessage());
 		}
 	}
@@ -137,7 +142,8 @@ class Database {
 	 *
 	 * @return PDO object
 	 */
-	private function getSlave(){
+	private function getSlave()
+	{
 		if (count($this->dbSlaves) > 0) {
 			$slaveId = rand(0,count($this->dbSlaves)-1);
 			return $this->dbSlaves[$slaveId];
@@ -153,7 +159,8 @@ class Database {
 	 * @param $table Table to apply prefix,if configured
 	 * @return string Table with configured prefix
 	 */
-	public function applyPrefix($table){
+	public function applyPrefix($table)
+	{
 		return $this->tablePrefix . $table;
 	}
 
@@ -166,19 +173,19 @@ class Database {
 	 *
 	 * @return PDO statement object
 	 */
-	private function query($db, $stmt, $params){
+	private function query($db, $stmt, $params)
+	{
 		assert('is_object($db)');
 		assert('is_string($stmt)');
 		assert('is_array($params)');
 
-		try{
+		try {
 			$query = $db->prepare($stmt);
 
 			foreach ($params as $param => $value) {
-				if(is_array($value)){
+				if (is_array($value)) {
 					$query->bindValue(":$param", $value[0], ($value[1])? $value[1] : \PDO::PARAM_STR);
-				}
-				else{
+				} else {
 					$query->bindValue(":$param", $value, \PDO::PARAM_STR);
 				}
 			}
@@ -186,7 +193,7 @@ class Database {
 			$query->execute();
 
 			return $query;
-		} catch (\PDOException $e){
+		} catch (\PDOException $e) {
 			throw new \Exception("Database error: ". $e->getMessage());
 		}
 	}
@@ -201,15 +208,16 @@ class Database {
 	 *
 	 * @return PDO statement object
 	 */
-	private function exec($db, $stmt){
+	private function exec($db, $stmt)
+	{
 		assert('is_object($db)');
 		assert('is_string($stmt)');
 
-		try{
+		try {
 			$query = $db->exec($stmt);
 
 			return $query;
-		} catch (\PDOException $e){
+		} catch (\PDOException $e) {
 			throw new \Exception("Database error: ". $e->getMessage());
 		}
 	}
@@ -222,7 +230,8 @@ class Database {
 	 *
 	 * @return PDO statement object
 	 */
-	public function write($stmt, $params = array()){
+	public function write($stmt, $params = array())
+	{
 		$db = $this->dbMaster;
 
 		if (is_array($params)) {
@@ -241,7 +250,8 @@ class Database {
 	 *
 	 * @return PDO statement object
 	 */
-	public function read($stmt, $params = array()){
+	public function read($stmt, $params = array())
+	{
 		$db = $this->getSlave();
 
 		return $this->query($db, $stmt, $params);

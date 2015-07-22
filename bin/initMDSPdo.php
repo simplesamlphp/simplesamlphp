@@ -18,7 +18,7 @@ foreach ($config['metadata.sources'] as $source) {
 		$metadataStorageHandler = new SimpleSAML_Metadata_MetaDataStorageHandlerPdo($source);
 		$result = $metadataStorageHandler->initDatabase();
 
-		if ($result === FALSE) {
+		if ($result === false) {
 			echo "Failed to intialize metadata database.". PHP_EOL;
 		} else {
 			echo "Successfully initialized metadata database.". PHP_EOL;
