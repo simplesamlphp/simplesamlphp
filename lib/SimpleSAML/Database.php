@@ -42,7 +42,7 @@ class Database
 	 */
 	private $tablePrefix;
 
-    /**
+	/**
 	 * Retrieves the current database instance. Will create a new one if there isn't an existing connection.
 	 *
 	 * @param object $altConfig Optional: Instance of a SimpleSAML_Configuration class
