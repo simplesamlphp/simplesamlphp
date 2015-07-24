@@ -51,6 +51,20 @@ $config = array(
 							51 => array('class' => 'core:AttributeMap', 'oid2name'),
 						),
 					),
+
+					/*
+					 * The sets of entities to load, any combination of:
+					 *  - 'saml20-idp-remote'
+					 *  - 'saml20-sp-remote'
+					 *  - 'shib13-idp-remote'
+					 *  - 'shib13-sp-remote'
+					 *  - 'attributeauthority-remote'
+					 *
+					 * All of them will be used by default.
+					 *
+					 * This option takes precedence over the same option per metadata set.
+					 */
+					//'types' => array(),
 				),
 			),
 			'expireAfter' 		=> 60*60*24*4, // Maximum 4 days cache time.
@@ -61,6 +75,19 @@ $config = array(
 			 * Can be 'flatfile' or 'serialize'. 'flatfile' is the default.
 			 */
 			'outputFormat' => 'flatfile',
+
+
+			/*
+			 * The sets of entities to load, any combination of:
+			 *  - 'saml20-idp-remote'
+			 *  - 'saml20-sp-remote'
+			 *  - 'shib13-idp-remote'
+			 *  - 'shib13-sp-remote'
+			 *  - 'attributeauthority-remote'
+			 *
+			 * All of them will be used by default.
+			 */
+			//'types' => array(),
 		),
 	),
 );
