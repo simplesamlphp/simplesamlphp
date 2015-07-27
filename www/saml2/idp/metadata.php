@@ -118,6 +118,15 @@ try {
 			'Location' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php'));
 	}
 
+    if ($idpmeta->getBoolean('saml20.ecp', FALSE)) {
+		/* ECP  enabled. */
+		$metaArray['SingleSignOnService'][] = array(
+			'index' => 0,
+			'Location' => SimpleSAML_Utilities::getBaseURL() . 'saml2/idp/SSOService.php',
+			'Binding' => SAML2_Const::BINDING_SOAP,
+		);
+	}
+
 	$metaArray['NameIDFormat'] = $idpmeta->getString('NameIDFormat', 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
 
 	if ($idpmeta->hasValue('OrganizationName')) {
