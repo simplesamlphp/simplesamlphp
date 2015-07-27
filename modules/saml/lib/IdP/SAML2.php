@@ -15,7 +15,7 @@ class sspmod_saml_IdP_SAML2 {
 	public static function sendResponse(array $state) {
 		assert('isset($state["Attributes"])');
 		assert('isset($state["SPMetadata"])');
-		assert('isset($state["saml:ConsumerURL"])');
+		assert('array_key_exists("saml:ConsumerURL", $state)'); // Can be NULL.
 		assert('array_key_exists("saml:RequestId", $state)'); // Can be NULL.
 		assert('array_key_exists("saml:RelayState", $state)'); // Can be NULL.
 
@@ -75,6 +75,9 @@ class sspmod_saml_IdP_SAML2 {
 
 		/* Send the response. */
 		$binding = SAML2_Binding::getBinding($protocolBinding);
+		if ($binding instanceof SAML2_SOAP) {
+			$binding->AssertionConsumerServiceURL = $consumerURL; 
+		}
 		$binding->send($ar);
 	}
 
@@ -87,9 +90,20 @@ class sspmod_saml_IdP_SAML2 {
 	 */
 	public static function handleAuthError(SimpleSAML_Error_Exception $exception, array $state) {
 		assert('isset($state["SPMetadata"])');
-		assert('isset($state["saml:ConsumerURL"])');
+		assert('array_key_exists("saml:ConsumerURL", $state)'); // Can be NULL.
 		assert('array_key_exists("saml:RequestId", $state)'); // Can be NULL.
 		assert('array_key_exists("saml:RelayState", $state)'); // Can be NULL.
+
+ 		if ($exception instanceof SimpleSAML_Error_Error && $exception->getErrorCode() === 'WRONGUSERPASS') {
+ 			/*
+ 			 * This should only happen during SOAP authentication, and indicates
+ 			 * that we do not have a valid username or password.
+ 			 */
+ 			header('WWW-Authenticate: Basic realm="IDPAUTH"', TRUE, 401);
+ 			header('Content-Type: text/plain');
+ 			echo('SOAP authentication requires basic auth.');
+ 			exit(0);
+ 		}
 
 		$spMetadata = $state["SPMetadata"];
 		$spEntityId = $spMetadata['entityid'];
@@ -218,6 +232,41 @@ class sspmod_saml_IdP_SAML2 {
 		return $spMetadata->getDefaultEndpoint('AssertionConsumerService', $supportedBindings);
 	}
 
+ 	/**
+	 * Check a SOAP AuthnRequest.
+	 *
+	 * @param SimpleSAML_Configuration $idpMetadata  The metadata for the IdP.
+	 * @param SimpleSAML_Configuration $spMetadata  The metadata for the SP.
+	 * @param array &$state  The state array.
+	 */
+	private static function processSOAPAuthnRequest(SimpleSAML_Configuration $idpMetadata, SimpleSAML_Configuration $spMetadata, SAML2_AuthnRequest $request, array &$state) {
+
+		$GLOBALS['SimpleSAML.debugDisableRedirect'] = TRUE;
+
+		/* Send the response via SOAP. */
+		$state['saml:Binding'] = SAML2_Const::BINDING_SOAP_RESPONSE;
+
+		$allowSOAP = $spMetadata->getBoolean('saml20.soap.auth.allow', NULL);
+		if ($allowSOAP === NULL) {
+			$allowSOAP = $idpMetadata->getBoolean('saml20.soap.auth.allow', FALSE);
+		}
+		if (!$allowSOAP) {
+			throw new SimpleSAML_Error_Exception('SOAP authentication not enabled.');
+		}
+
+		if (!sspmod_saml_Message::checkSign($spMetadata, $request)) {
+			throw new SimpleSAML_Error_Exception('SOAP authentication request not signed.');
+		}
+
+		/* Add basic auth data. */
+		if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
+			SimpleSAML_Logger::debug('SOAP auth without authentication data.');
+			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+		}
+		$state['core:auth:username'] = $_SERVER['PHP_AUTH_USER'];
+		$state['core:auth:password'] = $_SERVER['PHP_AUTH_PW'];
+	}
+
 
 	/**
 	 * Receive an authentication request.
@@ -239,6 +288,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		if (isset($_REQUEST['spentityid'])) {
 			/* IdP initiated authentication. */
+			$binding = NULL;
 
 			if (isset($_REQUEST['cookieTime'])) {
 				$cookieTime = (int)$_REQUEST['cookieTime'];
@@ -344,6 +394,12 @@ class sspmod_saml_IdP_SAML2 {
 			'idpInit' => $idpInit,
 		));
 
+		if ($binding instanceof SAML2_SOAP) {
+			$supportedBindings = array(
+				SAML2_Const::BINDING_PAOS,
+			);
+		}
+
 		$acsEndpoint = self::getAssertionConsumerService($supportedBindings, $spMetadata, $consumerURL, $protocolBinding, $consumerIndex);
 
 		$IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', array())));
@@ -383,8 +439,18 @@ class sspmod_saml_IdP_SAML2 {
 			'saml:NameIDFormat' => $nameIDFormat,
 			'saml:AllowCreate' => $allowCreate,
 			'saml:Extensions' => $extensions,
+			'core:IdP' => $idp->getId(),
 			'saml:AuthnRequestReceivedAt' => microtime(TRUE),
 		);
+
+		
+		if ($binding instanceof SAML2_SOAP) {
+			try {
+				self::processSOAPAuthnRequest($idpMetadata, $spMetadata, $request, $state);
+			} catch (SimpleSAML_Error_Exception $e) {
+				self::handleAuthError($e, $state);
+			}
+		}
 
 		$idp->handleAuthenticationRequest($state);
 	}
@@ -771,7 +837,7 @@ class sspmod_saml_IdP_SAML2 {
 	private static function buildAssertion(SimpleSAML_Configuration $idpMetadata,
 		SimpleSAML_Configuration $spMetadata, array &$state) {
 		assert('isset($state["Attributes"])');
-		assert('isset($state["saml:ConsumerURL"])');
+		assert('array_key_exists("saml:ConsumerURL", $state)'); // Can be NULL.
 
 		$signAssertion = $spMetadata->getBoolean('saml20.sign.assertion', NULL);
 		if ($signAssertion === NULL) {

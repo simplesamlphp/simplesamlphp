@@ -203,6 +203,10 @@ class SimpleSAML_Utilities {
 			SimpleSAML_Logger::warning('Redirecting to a URL longer than 2048 bytes.');
 		}
 
+		if (isset($GLOBALS['SimpleSAML.debugDisableRedirect'])) {
+			throw new SimpleSAML_Error_Exception('Redirect was attempted with redirecting disabled: ' . var_export($url, TRUE));
+		}
+
 		/* Set the location header. */
 		header('Location: ' . $url, TRUE, $code);
 
