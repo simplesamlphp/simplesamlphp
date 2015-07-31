@@ -102,7 +102,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 		assert('is_string($entityId)');
 
 		$cachekey = sha1($entityId);
-		$globalConfig = SimpleSAML_Configuration::getInstance();
 		return $this->cacheDir . '/' . $set . '-' . $cachekey . '.cached.xml';
 	}
 
