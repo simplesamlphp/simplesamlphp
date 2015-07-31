@@ -45,7 +45,7 @@ class Database
 	/**
 	 * Retrieves the current database instance. Will create a new one if there isn't an existing connection.
 	 *
-	 * @param object $altConfig Optional: Instance of a SimpleSAML_Configuration class
+	 * @param \SimpleSAML_Configuration object $altConfig Optional: Instance of a SimpleSAML_Configuration class
 	 * @return \SimpleSAML\Database The shared database connection.
 	 */
 	public static function getInstance($altConfig = null)
@@ -93,7 +93,7 @@ class Database
 	 * Generate an Instance ID based on the database
 	 * configuration.
 	 *
-	 * @param $config 			Configuration class
+	 * @param \SimpleSAML_Configuration $config Configuration class
 	 *
 	 * @return string $instanceId
 	 */
@@ -116,10 +116,10 @@ class Database
 	/**
 	 * This function connects to a dabase.
 	 *
-	 * @param $dsn 			Database connection string
-	 * @param $username 	SQL user
-	 * @param $password 	SQL password
-	 * @param $options 		PDO options
+	 * @param string $dsn      Database connection string
+	 * @param string $username SQL user
+	 * @param string $password SQL password
+	 * @param array  $options  PDO options
 	 *
 	 * @return \PDO object
 	 */
@@ -156,7 +156,7 @@ class Database
 	 * This function simply applies the table prefix to
 	 * a suppled table name.
 	 *
-	 * @param $table Table to apply prefix,if configured
+	 * @param string $table Table to apply prefix to, if configured
 	 * @return string Table with configured prefix
 	 */
 	public function applyPrefix($table)
@@ -167,9 +167,9 @@ class Database
 	/**
 	 * This function queries the database
 	 *
-	 * @param $db 			PDO object to use
-	 * @param $stmt 		Prepared SQL statement
-	 * @param $params 		Parameters
+	 * @param \PDO   $db     PDO object to use
+	 * @param string $stmt   Prepared SQL statement
+	 * @param array  $params Parameters
 	 *
 	 * @return \PDO statement object
 	 */
@@ -202,9 +202,9 @@ class Database
 	 * This function queries the database without using a
 	 * prepared statement.
 	 *
-	 * @param $db 			PDO object to use
-	 * @param $stmt 		Prepared SQL statement
-	 * @param $params 		Parameters
+	 * @param \PDO   $db     PDO object to use
+	 * @param string $stmt   Prepared SQL statement
+	 * @param array  $params Parameters
 	 *
 	 * @return \PDO statement object
 	 */
@@ -225,8 +225,8 @@ class Database
 	/**
 	 * This executes queries directly on the master.
 	 *
-	 * @param $stmt 		Prepared SQL statement
-	 * @param $params 		Parameters
+	 * @param string $stmt   Prepared SQL statement
+	 * @param array  $params Parameters
 	 *
 	 * @return \PDO statement object
 	 */
@@ -245,8 +245,8 @@ class Database
 	 * This executes queries on a database server
 	 * that is determined by this::getSlave()
 	 *
-	 * @param $stmt 		Prepared SQL statement
-	 * @param $params 		Parameters
+	 * @param string $stmt   Prepared SQL statement
+	 * @param array  $params Parameters
 	 *
 	 * @return \PDO statement object
 	 */
