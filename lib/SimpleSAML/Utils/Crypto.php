@@ -284,7 +284,7 @@ class Crypto
         }
 
         // hash w/ salt
-        if (!$salt) { // no salt provided, generate one
+        if ($salt === null) { // no salt provided, generate one
             // default 8 byte salt, but 4 byte for LDAP SHA1 hashes
             $bytes = ($algorithm == 'SSHA1') ? 4 : 8;
             $salt = openssl_random_pseudo_bytes($bytes);
