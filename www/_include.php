@@ -75,28 +75,6 @@ function SimpleSAML_error_handler($errno, $errstr, $errfile = NULL, $errline = 0
 }
 set_error_handler('SimpleSAML_error_handler');
 
-/**
- * Class which should print a warning every time a reference to $SIMPLESAML_INCPREFIX is made.
- */
-class SimpleSAML_IncPrefixWarn {
-
-	/**
-	 * Print a warning, as a call to this function means that $SIMPLESAML_INCPREFIX is referenced.
-	 *
-	 * @return A blank string.
-	 */
-	function __toString() {
-		$backtrace = debug_backtrace();
-		$where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
-		error_log('Deprecated $SIMPLESAML_INCPREFIX still in use at ' . $where .
-			'. The simpleSAMLphp library now uses an autoloader.');
-		return '';
-	}
-}
-/* Set the $SIMPLESAML_INCPREFIX to a reference to the class. */
-$SIMPLESAML_INCPREFIX = new SimpleSAML_IncPrefixWarn();
-
-
 $configdir = dirname(dirname(__FILE__)) . '/config';
 if (!file_exists($configdir . '/config.php')) {
 	header('Content-Type: text/plain');
