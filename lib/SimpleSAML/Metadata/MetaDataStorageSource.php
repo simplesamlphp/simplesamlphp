@@ -46,8 +46,12 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 	 * The type of source is based on the 'type' parameter in the configuration.
 	 * The default type is 'flatfile'.
 	 *
-	 * @param $sourceConfig  Associative array with the configuration for this metadata source.
-	 * @return An instance of a metadata source with the given configuration.
+	 * @param array $sourceConfig  Associative array with the configuration for this metadata source.
+	 * @return SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile|
+	 * SimpleSAML_Metadata_MetaDataStorageHandlerXML|
+	 * SimpleSAML_Metadata_MetaDataStorageHandlerSerialize|
+	 * SimpleSAML_Metadata_MetaDataStorageHandlerMDX|
+	 * SimpleSAML_Metadata_MetaDataStorageHandlerPdo An instance of a metadata source with the given configuration.
 	 */
 	public static function getSource($sourceConfig) {
 
@@ -82,8 +86,8 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 	 *
 	 * A subclass should override this function if it is able to easily generate this list.
 	 *
-	 * @param $set  The set we want to list metadata for.
-	 * @return An associative array with all entities in the given set, or an empty array if we are
+	 * @param string $set  The set we want to list metadata for.
+	 * @return array An associative array with all entities in the given set, or an empty array if we are
 	 *         unable to generate this list.
 	 */
 	public function getMetadataSet($set) {
@@ -98,11 +102,11 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 	 * override this function if it doesn't implement the getMetadataSet function, or if the
 	 * implementation of getMetadataSet is slow.
 	 *
-	 * @param $hostPath  The host/path combination we are looking up.
-	 * @param $set  Which set of metadata we are looking it up in.
-	 * @param $type Do you want to return the metaindex or the entityID. [entityid|metaindex]
+	 * @param string $hostPath  The host/path combination we are looking up.
+	 * @param string $set  Which set of metadata we are looking it up in.
+	 * @param string $type Do you want to return the metaindex or the entityID. [entityid|metaindex]
 
-	 * @return An entity id which matches the given host/path combination, or NULL if
+	 * @return array|null An entity id which matches the given host/path combination, or NULL if
 	 *         we are unable to locate one which matches.
 	 */
 	public function getEntityIdFromHostPath($hostPath, $set, $type = 'entityid') {
@@ -138,10 +142,10 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 	 * This function returns the entityID for any of the entities that have an 
 	 * IP range which the IP falls within.
 	 *
-	 * @param $set  Which set of metadata we are looking it up in.
-	 * @param $ip	IP address
-	 * @param $type Do you want to return the metaindex or the entityID. [entityid|metaindex]
-	 * @return The entity id of a entity which have a CIDR hint where the provided
+	 * @param string $set  Which set of metadata we are looking it up in.
+	 * @param string $ip	IP address
+	 * @param string $type Do you want to return the metaindex or the entityID. [entityid|metaindex]
+	 * @return string The entity id of a entity which have a CIDR hint where the provided
 	 * 		IP address match.
 	 */
 	public function getPreferredEntityIdFromCIDRhint($set, $ip, $type = 'entityid') {
@@ -204,9 +208,9 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource {
 	 * override this function if it doesn't implement the getMetadataSet function, or if the
 	 * implementation of getMetadataSet is slow.
 	 *
-	 * @param $index  The entityId or metaindex we are looking up.
-	 * @param $set  The set we are looking for metadata in.
-	 * @return An associative array with metadata for the given entity, or NULL if we are unable to
+	 * @param string $index  The entityId or metaindex we are looking up.
+	 * @param string $set  The set we are looking for metadata in.
+	 * @return array An associative array with metadata for the given entity, or NULL if we are unable to
 	 *         locate the entity.
 	 */
 	public function getMetaData($index, $set) {
