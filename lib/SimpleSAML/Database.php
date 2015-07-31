@@ -81,8 +81,8 @@ class Database
         // Connect to the master
         $this->dbMaster = $this->connect(
             $config->getString('database.dsn'),
-            $config->getString('database.username'),
-            $config->getString('database.password'),
+            $config->getString('database.username', null),
+            $config->getString('database.password', null),
             $driverOptions
         );
 
@@ -119,8 +119,8 @@ class Database
         $assembledConfig = array(
             'master' => array(
                 'database.dsn'        => $config->getString('database.dsn'),
-                'database.username'   => $config->getString('database.username'),
-                'database.password'   => $config->getString('database.password'),
+                'database.username'   => $config->getString('database.username', null),
+                'database.password'   => $config->getString('database.password', null),
                 'database.prefix'     => $config->getString('database.prefix', ''),
                 'database.persistent' => $config->getBoolean('database.persistent', false),
             ),
