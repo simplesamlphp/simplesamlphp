@@ -298,8 +298,9 @@ class sspmod_statistics_StatDataset {
 		}
 
 		$combined = $resarray[0];
-		if(count($resarray) > 1) {
-			for($i = 1; $i < count($resarray); $i++) {
+		$count = count($resarray);
+		if($count > 1) {
+			for($i = 1; $i < $count; $i++) {
 				$combined = $this->combine($combined, $resarray[$i]);
 			}
 		}
