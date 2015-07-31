@@ -14,11 +14,6 @@
 class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_MetaDataStorageSource{
 
 	/**
-	 * PDO Database connection string
-	 */
-	private $dsn;
-
-	/**
 	 * The PDO object
 	 */
 	private $db;
@@ -69,10 +64,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 	public function __construct($config) {
 		assert('is_array($config)');
 
-		$globalConfig = SimpleSAML_Configuration::getInstance();
 		$this->db = SimpleSAML\Database::getInstance();
-
-		$cfgHelp = SimpleSAML_Configuration::loadFromArray($config, 'pdo metadata source');
 	}
 
 
@@ -102,7 +94,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
 			return $metadata;
 		} else {
-			throw new Exception('PDO metadata handler: Database error: ' . var_export($this->pdo->errorInfo(), TRUE));
+			throw new Exception('PDO metadata handler: Database error: ' . var_export($this->db->getLastError(), TRUE));
 		}
 	}
 
@@ -141,7 +133,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 		assert('is_string($set)');
 
 		/* Get the configuration. */
-		$baseurl = SimpleSAML_Utilities::getBaseURL();
+		$baseurl = \SimpleSAML\Utils\HTTP::getBaseURL();
 
 		if ($set === 'saml20-idp-hosted') {
 			return $baseurl . 'saml2/idp/metadata.php';
@@ -152,9 +144,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 		} elseif($set === 'shib13-sp-hosted') {
 			return $baseurl . 'shib13/sp/metadata.php';
 		} elseif($set === 'wsfed-sp-hosted') {
-			return 'urn:federation:' . SimpleSAML_Utilities::getSelfHost();
+			return 'urn:federation:' . \SimpleSAML\Utils\HTTP::getSelfHost();
 		} elseif($set === 'adfs-idp-hosted') {
-			return 'urn:federation:' . SimpleSAML_Utilities::getSelfHost() . ':idp';
+			return 'urn:federation:' . \SimpleSAML\Utils\HTTP::getSelfHost() . ':idp';
 		} else {
 			throw new Exception('Can not generate dynamic EntityID for metadata of this type: [' . $set . ']');
 		}
