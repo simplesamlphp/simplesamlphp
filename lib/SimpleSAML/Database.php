@@ -60,12 +60,12 @@ class Database
         $config = ($altConfig) ? $altConfig : \SimpleSAML_Configuration::getInstance();
         $instanceId = self::generateInstanceId($config);
 
-        /* Check if we already have initialized the session. */
+        // check if we already have initialized the session
         if (isset(self::$instance[$instanceId])) {
             return self::$instance[$instanceId];
         }
 
-        /* Create a new session. */
+        // create a new session
         self::$instance[$instanceId] = new Database($config);
         return self::$instance[$instanceId];
     }
@@ -83,7 +83,7 @@ class Database
             $driverOptions = array(\PDO::ATTR_PERSISTENT => true);
         }
 
-        // Connect to the master
+        // connect to the master
         $this->dbMaster = $this->connect(
             $config->getString('database.dsn'),
             $config->getString('database.username', null),
@@ -91,7 +91,7 @@ class Database
             $driverOptions
         );
 
-        // Connect to any configured slaves
+        // connect to any configured slaves
         $slaves = $config->getArray('database.slaves', array());
         if (count($slaves >= 1)) {
             foreach ($slaves as $slave) {

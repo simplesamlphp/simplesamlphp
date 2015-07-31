@@ -51,22 +51,18 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      * This constructor initializes the PDO metadata storage handler with the specified
      * configuration. The configuration is an associative array with the following
      * possible elements (set in config.php):
-     * - 'usePersistentConnection': TRUE/FALSE if database connection should be
-     *                                persistent.
-     *
-     * - 'dsn':                    The database connection string.
-     *
+     * - 'usePersistentConnection': TRUE/FALSE if database connection should be persistent.
+     * - 'dsn':                     The database connection string.
      * - 'username':                Database user name
-     *
      * - 'password':                Password for the database user.
      *
-     * @param array $config An associtive array with the configuration for this handler.
+     * @param array $config An associative array with the configuration for this handler.
      */
     public function __construct($config)
     {
         assert('is_array($config)');
 
-        $this->db = SimpleSAML\Database::getInstance();
+        $this->db = SimpleSAML\Database::getInstance($config);
     }
 
 
