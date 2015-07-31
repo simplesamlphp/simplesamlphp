@@ -116,7 +116,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
      * @param string $set Which set of metadata we are looking it up in.
      * @param string $type Do you want to return the metaindex or the entityID. [entityid|metaindex]
      *
-     * @return array|null An entity id which matches the given host/path combination, or NULL if
+     * @return string|null An entity id which matches the given host/path combination, or NULL if
      *         we are unable to locate one which matches.
      */
     public function getEntityIdFromHostPath($hostPath, $set, $type = 'entityid')
