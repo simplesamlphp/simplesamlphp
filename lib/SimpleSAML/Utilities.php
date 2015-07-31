@@ -175,7 +175,7 @@ class SimpleSAML_Utilities {
 	/**
 	 * @deprecated This method will be removed in version 2.0. Use SimpleSAML\Utils\Net::ipCIDRcheck() instead.
 	 */
-	static function ipCIDRcheck($cidr, $ip = null) {
+	public static function ipCIDRcheck($cidr, $ip = null) {
 		return SimpleSAML\Utils\Net::ipCIDRcheck($cidr, $ip);
 	}
 
