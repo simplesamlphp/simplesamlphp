@@ -46,7 +46,7 @@ class Database
 	 * Retrieves the current database instance. Will create a new one if there isn't an existing connection.
 	 *
 	 * @param object $altConfig Optional: Instance of a SimpleSAML_Configuration class
-	 * @return SimpleSAML_Database The shared database connection.
+	 * @return \SimpleSAML\Database The shared database connection.
 	 */
 	public static function getInstance($altConfig = null)
 	{
@@ -121,7 +121,7 @@ class Database
 	 * @param $password 	SQL password
 	 * @param $options 		PDO options
 	 *
-	 * @return PDO object
+	 * @return \PDO object
 	 */
 	private function connect($dsn, $username, $password, $options)
 	{
@@ -140,7 +140,7 @@ class Database
 	 * to query. In the event no slaves are configured, it
 	 * will return the master.
 	 *
-	 * @return PDO object
+	 * @return \PDO object
 	 */
 	private function getSlave()
 	{
@@ -171,7 +171,7 @@ class Database
 	 * @param $stmt 		Prepared SQL statement
 	 * @param $params 		Parameters
 	 *
-	 * @return PDO statement object
+	 * @return \PDO statement object
 	 */
 	private function query($db, $stmt, $params)
 	{
@@ -206,7 +206,7 @@ class Database
 	 * @param $stmt 		Prepared SQL statement
 	 * @param $params 		Parameters
 	 *
-	 * @return PDO statement object
+	 * @return \PDO statement object
 	 */
 	private function exec($db, $stmt)
 	{
@@ -228,7 +228,7 @@ class Database
 	 * @param $stmt 		Prepared SQL statement
 	 * @param $params 		Parameters
 	 *
-	 * @return PDO statement object
+	 * @return \PDO statement object
 	 */
 	public function write($stmt, $params = array())
 	{
@@ -248,7 +248,7 @@ class Database
 	 * @param $stmt 		Prepared SQL statement
 	 * @param $params 		Parameters
 	 *
-	 * @return PDO statement object
+	 * @return \PDO statement object
 	 */
 	public function read($stmt, $params = array())
 	{
