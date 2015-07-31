@@ -7,7 +7,7 @@ namespace SimpleSAML;
  *
  * This database class supports a single database, or a master/slave
  * configuration with as many defined slaves as a user would like.
- * 
+ *
  * The goal of this class is to provide a single mechanism to connect to a database
  * that can be reused by any component within SimpleSAMLphp including modules.
  * When using this class, the global configuration should be passed here, but
@@ -21,239 +21,265 @@ namespace SimpleSAML;
 class Database
 {
 
-	/**
-	 * This variable holds the instance of the session - Singleton approach.
-	 */
-	private static $instance = array();
+    /**
+     * This variable holds the instance of the session - Singleton approach.
+     */
+    private static $instance = array();
 
-	/**
-	 * PDO Object for the Master database server
-	 */
-	private $dbMaster;
+    /**
+     * PDO Object for the Master database server
+     */
+    private $dbMaster;
 
-	/**
-	 * Array of PDO Objects for configured database
-	 * slaves
-	 */
-	private $dbSlaves = array();
+    /**
+     * Array of PDO Objects for configured database
+     * slaves
+     */
+    private $dbSlaves = array();
 
-	/**
-	 * Prefix to apply to the tables
-	 */
-	private $tablePrefix;
+    /**
+     * Prefix to apply to the tables
+     */
+    private $tablePrefix;
 
-	/**
-	 * Retrieves the current database instance. Will create a new one if there isn't an existing connection.
-	 *
-	 * @param \SimpleSAML_Configuration object $altConfig Optional: Instance of a SimpleSAML_Configuration class
-	 * @return \SimpleSAML\Database The shared database connection.
-	 */
-	public static function getInstance($altConfig = null)
-	{
-		$config = ($altConfig)? $altConfig : \SimpleSAML_Configuration::getInstance();
-		$instanceId = self::generateInstanceId($config);
 
-		/* Check if we already have initialized the session. */
-		if (isset(self::$instance[$instanceId])) {
-			return self::$instance[$instanceId];
-		}
+    /**
+     * Retrieves the current database instance. Will create a new one if there isn't an existing connection.
+     *
+     * @param \SimpleSAML_Configuration $altConfig Optional: Instance of a SimpleSAML_Configuration class
+     *
+     * @return \SimpleSAML\Database The shared database connection.
+     */
+    public static function getInstance($altConfig = null)
+    {
+        $config = ($altConfig) ? $altConfig : \SimpleSAML_Configuration::getInstance();
+        $instanceId = self::generateInstanceId($config);
 
-		/* Create a new session. */
-		self::$instance[$instanceId] = new Database($config);
-		return self::$instance[$instanceId];
-	}
+        /* Check if we already have initialized the session. */
+        if (isset(self::$instance[$instanceId])) {
+            return self::$instance[$instanceId];
+        }
 
-	/**
-	 * Private constructor that restricts instantiation to getInstance().
-	 *
-	 * @param object $config Instance of the SimpleSAML_Configuration class
-	 */
-	private function __construct($config)
-	{
-		$driverOptions = array();
-		if ($config->getBoolean('database.persistent', TRUE)) {
-			$driverOptions = array(\PDO::ATTR_PERSISTENT => TRUE);
-		}
+        /* Create a new session. */
+        self::$instance[$instanceId] = new Database($config);
+        return self::$instance[$instanceId];
+    }
 
-		// Connect to the master
-		$this->dbMaster = $this->connect($config->getValue('database.dsn'), $config->getValue('database.username'), $config->getValue('database.password'), $driverOptions);
 
-		// Connect to any configured slaves
-		$slaves = $config->getValue('database.slaves');
-		if (count($slaves >= 1)) {
-			foreach ($slaves as $slave) {
-				array_push($this->dbSlaves, $this->connect($slave['dsn'], $slave['username'], $slave['password'], $driverOptions));
-			}
-		}
+    /**
+     * Private constructor that restricts instantiation to getInstance().
+     *
+     * @param \SimpleSAML_Configuration $config Instance of the SimpleSAML_Configuration class
+     */
+    private function __construct($config)
+    {
+        $driverOptions = array();
+        if ($config->getBoolean('database.persistent', true)) {
+            $driverOptions = array(\PDO::ATTR_PERSISTENT => true);
+        }
 
-		$this->tablePrefix = $config->getString('database.prefix', '');
-	}
+        // Connect to the master
+        $this->dbMaster = $this->connect(
+            $config->getString('database.dsn'),
+            $config->getString('database.username'),
+            $config->getString('database.password'),
+            $driverOptions
+        );
 
-	/**
-	 * Generate an Instance ID based on the database
-	 * configuration.
-	 *
-	 * @param \SimpleSAML_Configuration $config Configuration class
-	 *
-	 * @return string $instanceId
-	 */
-	private static function generateInstanceId($config)
-	{
-		$assembledConfig = array(
-			'master' => array(
-				'database.dsn' => $config->getValue('database.dsn'),
-				'database.username' => $config->getValue('database.username'),
-				'database.password' => $config->getValue('database.password'),
-				'database.prefix' => $config->getValue('database.prefix'),
-				'database.persistent' => $config->getValue('database.persistent'),
-			),
-			'slaves' => $config->getValue('database.slaves'),
-		);
+        // Connect to any configured slaves
+        $slaves = $config->getArray('database.slaves', array());
+        if (count($slaves >= 1)) {
+            foreach ($slaves as $slave) {
+                array_push(
+                    $this->dbSlaves,
+                    $this->connect(
+                        $slave['dsn'],
+                        $slave['username'],
+                        $slave['password'],
+                        $driverOptions
+                    )
+                );
+            }
+        }
 
-		return sha1(serialize($assembledConfig));
-	}
+        $this->tablePrefix = $config->getString('database.prefix', '');
+    }
 
-	/**
-	 * This function connects to a dabase.
-	 *
-	 * @param string $dsn      Database connection string
-	 * @param string $username SQL user
-	 * @param string $password SQL password
-	 * @param array  $options  PDO options
-	 *
-	 * @return \PDO object
-	 */
-	private function connect($dsn, $username, $password, $options)
-	{
-		try {
-			$db = new \PDO($dsn, $username, $password, $options);
-			$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
-			return $db;
-		} catch(\PDOException $e) {
-			throw new \Exception("Database error: ". $e->getMessage());
-		}
-	}
+    /**
+     * Generate an Instance ID based on the database
+     * configuration.
+     *
+     * @param \SimpleSAML_Configuration $config Configuration class
+     *
+     * @return string $instanceId
+     */
+    private static function generateInstanceId($config)
+    {
+        $assembledConfig = array(
+            'master' => array(
+                'database.dsn'        => $config->getString('database.dsn'),
+                'database.username'   => $config->getString('database.username'),
+                'database.password'   => $config->getString('database.password'),
+                'database.prefix'     => $config->getString('database.prefix', ''),
+                'database.persistent' => $config->getBoolean('database.persistent', false),
+            ),
+            'slaves' => $config->getArray('database.slaves', array()),
+        );
 
-	/**
-	 * This function randomly selects a slave database server
-	 * to query. In the event no slaves are configured, it
-	 * will return the master.
-	 *
-	 * @return \PDO object
-	 */
-	private function getSlave()
-	{
-		if (count($this->dbSlaves) > 0) {
-			$slaveId = rand(0,count($this->dbSlaves)-1);
-			return $this->dbSlaves[$slaveId];
-		} else {
-			return $this->dbMaster;
-		}
-	}
+        return sha1(serialize($assembledConfig));
+    }
 
-	/**
-	 * This function simply applies the table prefix to
-	 * a suppled table name.
-	 *
-	 * @param string $table Table to apply prefix to, if configured
-	 * @return string Table with configured prefix
-	 */
-	public function applyPrefix($table)
-	{
-		return $this->tablePrefix . $table;
-	}
 
-	/**
-	 * This function queries the database
-	 *
-	 * @param \PDO   $db     PDO object to use
-	 * @param string $stmt   Prepared SQL statement
-	 * @param array  $params Parameters
-	 *
-	 * @return \PDO statement object
-	 */
-	private function query($db, $stmt, $params)
-	{
-		assert('is_object($db)');
-		assert('is_string($stmt)');
-		assert('is_array($params)');
+    /**
+     * This function connects to a database.
+     *
+     * @param string $dsn Database connection string
+     * @param string $username SQL user
+     * @param string $password SQL password
+     * @param array  $options PDO options
+     *
+     * @throws \Exception If an error happens while trying to connect to the database.
+     * @return \PDO object
+     */
+    private function connect($dsn, $username, $password, $options)
+    {
+        try {
+            $db = new \PDO($dsn, $username, $password, $options);
+            $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
-		try {
-			$query = $db->prepare($stmt);
+            return $db;
+        } catch (\PDOException $e) {
+            throw new \Exception("Database error: ".$e->getMessage());
+        }
+    }
 
-			foreach ($params as $param => $value) {
-				if (is_array($value)) {
-					$query->bindValue(":$param", $value[0], ($value[1])? $value[1] : \PDO::PARAM_STR);
-				} else {
-					$query->bindValue(":$param", $value, \PDO::PARAM_STR);
-				}
-			}
 
-			$query->execute();
+    /**
+     * This function randomly selects a slave database server
+     * to query. In the event no slaves are configured, it
+     * will return the master.
+     *
+     * @return \PDO object
+     */
+    private function getSlave()
+    {
+        if (count($this->dbSlaves) > 0) {
+            $slaveId = rand(0, count($this->dbSlaves) - 1);
+            return $this->dbSlaves[$slaveId];
+        } else {
+            return $this->dbMaster;
+        }
+    }
 
-			return $query;
-		} catch (\PDOException $e) {
-			throw new \Exception("Database error: ". $e->getMessage());
-		}
-	}
 
-	/**
-	 * This function queries the database without using a
-	 * prepared statement.
-	 *
-	 * @param \PDO   $db     PDO object to use
-	 * @param string $stmt   Prepared SQL statement
-	 * @param array  $params Parameters
-	 *
-	 * @return \PDO statement object
-	 */
-	private function exec($db, $stmt)
-	{
-		assert('is_object($db)');
-		assert('is_string($stmt)');
+    /**
+     * This function simply applies the table prefix to a supplied table name.
+     *
+     * @param string $table Table to apply prefix to, if configured
+     *
+     * @return string Table with configured prefix
+     */
+    public function applyPrefix($table)
+    {
+        return $this->tablePrefix.$table;
+    }
 
-		try {
-			$query = $db->exec($stmt);
 
-			return $query;
-		} catch (\PDOException $e) {
-			throw new \Exception("Database error: ". $e->getMessage());
-		}
-	}
+    /**
+     * This function queries the database
+     *
+     * @param \PDO   $db PDO object to use
+     * @param string $stmt Prepared SQL statement
+     * @param array  $params Parameters
+     *
+     * @throws \Exception If an error happens while trying to execute the query.
+     * @return \PDO statement object
+     */
+    private function query($db, $stmt, $params)
+    {
+        assert('is_object($db)');
+        assert('is_string($stmt)');
+        assert('is_array($params)');
 
-	/**
-	 * This executes queries directly on the master.
-	 *
-	 * @param string $stmt   Prepared SQL statement
-	 * @param array  $params Parameters
-	 *
-	 * @return \PDO statement object
-	 */
-	public function write($stmt, $params = array())
-	{
-		$db = $this->dbMaster;
+        try {
+            $query = $db->prepare($stmt);
 
-		if (is_array($params)) {
-			return $this->query($db, $stmt, $params);
-		} else {
-			return $this->exec($db, $stmt);
-		}
-	}
+            foreach ($params as $param => $value) {
+                if (is_array($value)) {
+                    $query->bindValue(":$param", $value[0], ($value[1]) ? $value[1] : \PDO::PARAM_STR);
+                } else {
+                    $query->bindValue(":$param", $value, \PDO::PARAM_STR);
+                }
+            }
 
-	/**
-	 * This executes queries on a database server
-	 * that is determined by this::getSlave()
-	 *
-	 * @param string $stmt   Prepared SQL statement
-	 * @param array  $params Parameters
-	 *
-	 * @return \PDO statement object
-	 */
-	public function read($stmt, $params = array())
-	{
-		$db = $this->getSlave();
+            $query->execute();
 
-		return $this->query($db, $stmt, $params);
-	}
+            return $query;
+        } catch (\PDOException $e) {
+            throw new \Exception("Database error: ".$e->getMessage());
+        }
+    }
+
+
+    /**
+     * This function queries the database without using a
+     * prepared statement.
+     *
+     * @param \PDO   $db PDO object to use
+     * @param string $stmt Prepared SQL statement
+     *
+     * @throws \Exception If an error happens while trying to execute the query.
+     * @return \PDO statement object
+     */
+    private function exec($db, $stmt)
+    {
+        assert('is_object($db)');
+        assert('is_string($stmt)');
+
+        try {
+            $query = $db->exec($stmt);
+
+            return $query;
+        } catch (\PDOException $e) {
+            throw new \Exception("Database error: ".$e->getMessage());
+        }
+    }
+
+
+    /**
+     * This executes queries directly on the master.
+     *
+     * @param string $stmt Prepared SQL statement
+     * @param array  $params Parameters
+     *
+     * @return \PDO statement object
+     */
+    public function write($stmt, $params = array())
+    {
+        $db = $this->dbMaster;
+
+        if (is_array($params)) {
+            return $this->query($db, $stmt, $params);
+        } else {
+            return $this->exec($db, $stmt);
+        }
+    }
+
+
+    /**
+     * This executes queries on a database server
+     * that is determined by this::getSlave()
+     *
+     * @param string $stmt Prepared SQL statement
+     * @param array  $params Parameters
+     *
+     * @return \PDO statement object
+     */
+    public function read($stmt, $params = array())
+    {
+        $db = $this->getSlave();
+
+        return $this->query($db, $stmt, $params);
+    }
 }
