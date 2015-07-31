@@ -53,11 +53,12 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
      *
      * @param array $sourceConfig Associative array with the configuration for this metadata source.
      *
-     * @return SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile|
-     * SimpleSAML_Metadata_MetaDataStorageHandlerXML|
-     * SimpleSAML_Metadata_MetaDataStorageHandlerSerialize|
-     * SimpleSAML_Metadata_MetaDataStorageHandlerMDX|
-     * SimpleSAML_Metadata_MetaDataStorageHandlerPdo An instance of a metadata source with the given configuration.
+     * @return SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile
+     * @return SimpleSAML_Metadata_MetaDataStorageHandlerXML
+     * @return SimpleSAML_Metadata_MetaDataStorageHandlerSerialize
+     * @return SimpleSAML_Metadata_MetaDataStorageHandlerMDX
+     * @return SimpleSAML_Metadata_MetaDataStorageHandlerPdo An instance of a metadata source with the given
+     * configuration.
      *
      * @throws Exception If the metadata source type is invalid.
      */
