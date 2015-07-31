@@ -855,7 +855,6 @@ class SimpleSAML_Configuration
      * isn't found, and no default value is given.
      *
      * @param string $name The name of the option.
-     * @param string $location Name of the items in the array.
      * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
      *                        required if this parameter isn't given. The default value can be any value, including
      *                        NULL.
