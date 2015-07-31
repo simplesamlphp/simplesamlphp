@@ -233,6 +233,11 @@ class SimpleSAML_Logger
 
     private static function log($level, $string, $statsLog = FALSE)
     {
+        if (php_sapi_name() === 'cli' || defined('STDIN')) {
+            // we are being executed from the CLI, nowhere to log
+            return;
+        }
+
         if (self::$loggingHandler === NULL) {
             /* Initialize logging. */
             self::createLoggingHandler();
