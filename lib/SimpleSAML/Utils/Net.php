@@ -34,6 +34,8 @@ class Net
 
         list ($net, $mask) = explode('/', $cidr);
 
+        $ip_ip = array();
+        $ip_net = array();
         if (strstr($ip, ':') || strstr($net, ':')) {
             // Validate IPv6 with inet_pton, convert to hex with bin2hex
             // then store as a long with hexdec
