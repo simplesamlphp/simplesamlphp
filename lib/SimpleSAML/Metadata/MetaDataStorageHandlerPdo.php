@@ -62,7 +62,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
     {
         assert('is_array($config)');
 
-        $this->db = SimpleSAML\Database::getInstance($config);
+        $this->db = SimpleSAML\Database::getInstance();
     }
 
 
