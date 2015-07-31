@@ -42,6 +42,11 @@ class Database
      */
     private $tablePrefix;
 
+    /**
+     * Array with information on the last error occurred.
+     */
+    private $lastError;
+
 
     /**
      * Retrieves the current database instance. Will create a new one if there isn't an existing connection.
@@ -194,7 +199,7 @@ class Database
      * @param array  $params Parameters
      *
      * @throws \Exception If an error happens while trying to execute the query.
-     * @return \PDO statement object
+     * @return \PDOStatement object
      */
     private function query($db, $stmt, $params)
     {
@@ -217,6 +222,7 @@ class Database
 
             return $query;
         } catch (\PDOException $e) {
+            $this->lastError = $db->errorInfo();
             throw new \Exception("Database error: ".$e->getMessage());
         }
     }
@@ -230,7 +236,7 @@ class Database
      * @param string $stmt Prepared SQL statement
      *
      * @throws \Exception If an error happens while trying to execute the query.
-     * @return \PDO statement object
+     * @return \PDOStatement object
      */
     private function exec($db, $stmt)
     {
@@ -242,6 +248,7 @@ class Database
 
             return $query;
         } catch (\PDOException $e) {
+            $this->lastError = $db->errorInfo();
             throw new \Exception("Database error: ".$e->getMessage());
         }
     }
@@ -253,7 +260,7 @@ class Database
      * @param string $stmt Prepared SQL statement
      * @param array  $params Parameters
      *
-     * @return \PDO statement object
+     * @return \PDOStatement object
      */
     public function write($stmt, $params = array())
     {
@@ -274,12 +281,23 @@ class Database
      * @param string $stmt Prepared SQL statement
      * @param array  $params Parameters
      *
-     * @return \PDO statement object
+     * @return \PDOStatement object
      */
     public function read($stmt, $params = array())
     {
         $db = $this->getSlave();
 
         return $this->query($db, $stmt, $params);
+    }
+
+
+    /**
+     * Return an array with information about the last operation performed in the database.
+     *
+     * @return array The array with error information.
+     */
+    public function getLastError()
+    {
+        return $this->lastError;
     }
 }
