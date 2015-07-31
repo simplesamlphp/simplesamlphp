@@ -114,10 +114,8 @@ class System
             $base = $config->getBaseDir();
         }
 
-        // remove trailing slashes from $base
-        while (substr($base, -1) === '/') {
-            $base = substr($base, 0, -1);
-        }
+        // remove trailing slashes
+        $base = rtrim($base, '/');
 
         // check for absolute path
         if (substr($path, 0, 1) === '/') {

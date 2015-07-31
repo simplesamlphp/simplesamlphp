@@ -416,10 +416,8 @@ class SimpleSAML_Configuration
             $path = $this->getBaseDir().$path;
         }
 
-        /* Remove trailing slashes. */
-        while (substr($path, -1) === '/') {
-            $path = substr($path, 0, -1);
-        }
+        // remove trailing slashes
+        $path = rtrim($path, '/');
 
         return $path;
     }
