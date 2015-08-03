@@ -12,9 +12,10 @@ abstract class SimpleSAML_Auth_Source {
 
 
 	/**
-	 * The authentication source identifier.
+	 * The authentication source identifier. This identifier can be used to look up this object, for example when
+	 * returning from a login form.
 	 *
-	 * This identifier can be used to look up this object, for example when returning from a login form.
+	 * @var string
 	 */
 	protected $authId;
 
@@ -25,8 +26,8 @@ abstract class SimpleSAML_Auth_Source {
 	 * Any authentication source which implements its own constructor must call this
 	 * constructor first.
 	 *
-	 * @param array $info  Information about this authentication source.
-	 * @param array &$config  Configuration for this authentication source.
+	 * @param array $info Information about this authentication source.
+	 * @param array &$config Configuration for this authentication source.
 	 */
 	public function __construct($info, &$config) {
 		assert('is_array($info)');
@@ -40,8 +41,9 @@ abstract class SimpleSAML_Auth_Source {
 	/**
 	 * Get sources of a specific type.
 	 *
-	 * @param string $type  The type of the authentication source.
-	 * @return array  Array of SimpleSAML_Auth_Source objects of the specified type.
+	 * @param string $type The type of the authentication source.
+	 * @return SimpleSAML_Auth_Source[]  Array of SimpleSAML_Auth_Source objects of the specified type.
+	 * @throws Exception If the authentication source is invalid.
 	 */
 	public static function getSourcesOfType($type) {
 		assert('is_string($type)');
@@ -73,7 +75,7 @@ abstract class SimpleSAML_Auth_Source {
 	/**
 	 * Retrieve the ID of this authentication source.
 	 *
-	 * @return string  The ID of this authentication source.
+	 * @return string The ID of this authentication source.
 	 */
 	public function getAuthId() {
 
@@ -93,7 +95,7 @@ abstract class SimpleSAML_Auth_Source {
 	 * save the state, and at a later stage, load the state, update it with the authentication
 	 * information about the user, and call completeAuth with the state array.
 	 *
-	 * @param array &$state  Information about the current authentication.
+	 * @param array &$state Information about the current authentication.
 	 */
 	abstract public function authenticate(&$state);
 
@@ -104,7 +106,7 @@ abstract class SimpleSAML_Auth_Source {
 	 * This function is called by the IdP to give the authentication source a chance to
 	 * interact with the user even in the case when the user is already authenticated.
 	 *
-	 * @param array &$state  Information about the current authentication.
+	 * @param array &$state Information about the current authentication.
 	 */
 	public function reauthenticate(array &$state) {
 		assert('isset($state["ReturnCallback"])');
@@ -125,7 +127,7 @@ abstract class SimpleSAML_Auth_Source {
 	 * except in the case of exceptions. Exceptions thrown from this page should not be caught,
 	 * but should instead be passed to the top-level exception handler.
 	 *
-	 * @param array &$state  Information about the current authentication.
+	 * @param array &$state Information about the current authentication.
 	 */
 	public static function completeAuth(&$state) {
 		assert('is_array($state)');
@@ -152,7 +154,7 @@ abstract class SimpleSAML_Auth_Source {
 	 * should be called with the state. If this operation can be completed without
 	 * showing the user a page, or redirecting, this function should return.
 	 *
-	 * @param array &$state  Information about the current logout operation.
+	 * @param array &$state Information about the current logout operation.
 	 */
 	public function logout(&$state) {
 		assert('is_array($state)');
@@ -168,7 +170,7 @@ abstract class SimpleSAML_Auth_Source {
 	 * except in the case of exceptions. Exceptions thrown from this page should not be caught,
 	 * but should instead be passed to the top-level exception handler.
 	 *
-	 * @param array &$state  Information about the current authentication.
+	 * @param array &$state Information about the current authentication.
 	 */
 	public static function completeLogout(&$state) {
 		assert('is_array($state)');
@@ -190,9 +192,10 @@ abstract class SimpleSAML_Auth_Source {
 	 * This function takes an array with the configuration for an authentication source object,
 	 * and returns the object.
 	 *
-	 * @param string $authId  The authentication source identifier.
-	 * @param array $config  The configuration.
-	 * @return SimpleSAML_Auth_Source  The parsed authentication source.
+	 * @param string $authId The authentication source identifier.
+	 * @param array $config The configuration.
+	 * @return SimpleSAML_Auth_Source The parsed authentication source.
+	 * @throws Exception If the authentication source is invalid.
 	 */
 	private static function parseAuthSource($authId, $config) {
 		assert('is_string($authId)');
@@ -223,10 +226,11 @@ abstract class SimpleSAML_Auth_Source {
 	 * authentication source of the given type. If no authentication source or if an
 	 * authentication source of a different type is found, an exception will be thrown.
 	 *
-	 * @param string $authId  The authentication source identifier.
-	 * @param string|NULL $type  The type of authentication source. If NULL, any type will be accepted.
-	 * @return SimpleSAML_Auth_Source|NULL  The AuthSource object, or NULL if no authentication
+	 * @param string $authId The authentication source identifier.
+	 * @param string|NULL $type The type of authentication source. If NULL, any type will be accepted.
+	 * @return SimpleSAML_Auth_Source|NULL The AuthSource object, or NULL if no authentication
 	 *     source with the given identifier is found.
+	 * @throws SimpleSAML_Error_Exception If no such authentication source is found or it is invalid.
 	 */
 	public static function getById($authId, $type = NULL) {
 		assert('is_string($authId)');
@@ -266,8 +270,8 @@ abstract class SimpleSAML_Auth_Source {
 	 * Note that logout-associations exists per authentication source. A logout association
 	 * from one authentication source cannot be called from a different authentication source.
 	 *
-	 * @param string $assoc  The identifier for this logout association.
-	 * @param array $state  The state array passed to the authenticate-function.
+	 * @param string $assoc The identifier for this logout association.
+	 * @param array $state The state array passed to the authenticate-function.
 	 */
 	protected function addLogoutCallback($assoc, $state) {
 		assert('is_string($assoc)');
@@ -307,7 +311,7 @@ abstract class SimpleSAML_Auth_Source {
 	 *
 	 * This function always returns.
 	 *
-	 * @param string $assoc  The logout association which should be called.
+	 * @param string $assoc The logout association which should be called.
 	 */
 	protected function callLogoutCallback($assoc) {
 		assert('is_string($assoc)');
@@ -339,8 +343,7 @@ abstract class SimpleSAML_Auth_Source {
 	/**
 	 * Retrieve list of authentication sources.
 	 *
-	 * @param string $authId  The authentication source identifier.
-	 * @return array  The id of all authentication sources.
+	 * @return array The id of all authentication sources.
 	 */
 	public static function getSources() {
 
