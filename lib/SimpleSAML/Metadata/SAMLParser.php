@@ -50,7 +50,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * This is an array with the processed IDPSSODescriptor elements we have found.
 	 * Each element in the array is an associative array with the elements from parseSSODescriptor and:
-	 * - 'SingleSignOnService': Array with the IdP's single signon service endpoints. Each endpoint is stored
+	 * - 'SingleSignOnService': Array with the IdP's single sign on service endpoints. Each endpoint is stored
 	 *   as an associative array with the elements that parseGenericEndpoint returns.
 	 */
 	private $idpDescriptors;
@@ -119,7 +119,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This is the constructor for the SAMLParser class.
 	 *
 	 * @param SAML2_XML_md_EntityDescriptor $entityElement  The EntityDescriptor.
-	 * @param int|NULL $maxExpireTime  The unix timestamp for when this entity should expire, or NULL if unknwon.
+	 * @param int|NULL $maxExpireTime  The unix timestamp for when this entity should expire, or NULL if unknown.
 	 * @param array $validators  An array of parent elements that may validate this element.
 	 */
 	private function __construct(SAML2_XML_md_EntityDescriptor $entityElement, $maxExpireTime, array $validators = array()) {
@@ -172,8 +172,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * This function parses a file which contains XML encoded metadata.
 	 *
-	 * @param $file  The path to the file which contains the metadata.
-	 * @return An instance of this class with the metadata loaded.
+	 * @param string $file The path to the file which contains the metadata.
+	 * @return SimpleSAML_Metadata_SAMLParser An instance of this class with the metadata loaded.
+	 * @throws Exception If the file does not parse as XML.
 	 */
 	public static function parseFile($file) {
 		$doc = new DOMDocument();
@@ -192,8 +193,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * This function parses a string which contains XML encoded metadata.
 	 *
-	 * @param $metadata  A string which contains XML encoded metadata.
-	 * @return An instance of this class with the metadata loaded.
+	 * @param string $metadata A string which contains XML encoded metadata.
+	 * @return SimpleSAML_Metadata_SAMLParser An instance of this class with the metadata loaded.
+	 * @throws Exception If the string does not parse as XML.
 	 */
 	public static function parseString($metadata) {
 		$doc = new DOMDocument();
@@ -210,8 +212,8 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * This function parses a DOMDocument which is assumed to contain a single EntityDescriptor element.
 	 *
-	 * @param $document  The DOMDocument which contains the EntityDescriptor element.
-	 * @return An instance of this class with the metadata loaded.
+	 * @param DOMDocument $document The DOMDocument which contains the EntityDescriptor element.
+	 * @return SimpleSAML_Metadata_SAMLParser An instance of this class with the metadata loaded.
 	 */
 	public static function parseDocument($document) {
 		assert('$document instanceof DOMDocument');
@@ -225,8 +227,8 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * This function parses a SAML2_XML_md_EntityDescriptor object which represents a EntityDescriptor element.
 	 *
-	 * @param $entityElement  A SAML2_XML_md_EntityDescriptor object which represents a EntityDescriptor element.
-	 * @return An instance of this class with the metadata loaded.
+	 * @param SAML2_XML_md_EntityDescriptor $entityElement A SAML2_XML_md_EntityDescriptor object which represents a EntityDescriptor element.
+	 * @return SimpleSAML_Metadata_SAMLParser An instance of this class with the metadata loaded.
 	 */
 	public static function parseElement($entityElement) {
 		assert('$entityElement instanceof SAML2_XML_md_EntityDescriptor');
@@ -241,8 +243,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * the file contains a single EntityDescriptorElement, then the array will contain a single SAMLParser
 	 * instance.
 	 *
-	 * @param $file  The path to the file which contains the EntityDescriptor or EntitiesDescriptor element.
-	 * @return An array of SAMLParser instances.
+	 * @param string $file The path to the file which contains the EntityDescriptor or EntitiesDescriptor element.
+	 * @return SimpleSAML_Metadata_SAMLParser[] An array of SAMLParser instances.
+	 * @throws Exception If the file does not parse as XML.
 	 */
 	public static function parseDescriptorsFile($file) {
 
@@ -266,8 +269,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * EntityDescriptor element or an EntitiesDescriptor element. It will return an associative array of
 	 * SAMLParser instances.
 	 *
-	 * @param $string  The string with XML data.
-	 * @return An associative array of SAMLParser instances. The key of the array will be the entity id.
+	 * @param string $string The string with XML data.
+	 * @return SimpleSAML_Metadata_SAMLParser[] An associative array of SAMLParser instances. The key of the array will be the entity id.
+	 * @throws Exception If the string does not parse as XML.
 	 */
 	public static function parseDescriptorsString($string) {
 
@@ -286,8 +290,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This function parses a DOMElement which represents either an EntityDescriptor element or an
 	 * EntitiesDescriptor element. It will return an associative array of SAMLParser instances in both cases.
 	 *
-	 * @param DOMElement|NULL $element  The DOMElement which contains the EntityDescriptor element or the EntitiesDescriptor element.
-	 * @return An associative array of SAMLParser instances. The key of the array will be the entity id.
+	 * @param DOMElement|NULL $element The DOMElement which contains the EntityDescriptor element or the EntitiesDescriptor element.
+	 * @return SimpleSAML_Metadata_SAMLParser[] An associative array of SAMLParser instances. The key of the array will be the entity id.
+	 * @throws Exception if the document is empty or the root is an unexpected node.
 	 */
 	public static function parseDescriptorsElement(DOMElement $element = NULL) {
 
@@ -305,17 +310,15 @@ class SimpleSAML_Metadata_SAMLParser {
 			throw new Exception('Unexpected root node: [' . $element->namespaceURI . ']:' .
 				$element->localName);
 		}
-
-		return $ret;
 	}
 
 
 	/**
 	 *
 	 * @param SAML2_XML_md_EntityDescriptor|SAML2_XML_md_EntitiesDescriptor $element  The element we should process.
-	 * @param int|NULL $maxExpireTime  The maximum expiration time of the entitites.
-	 * @param array $validators  The parent-elements that may be signed.
-	 * @return array  Array of SAMLParser instances.
+	 * @param int|NULL $maxExpireTime  The maximum expiration time of the entities.
+	 * @param array $validators The parent-elements that may be signed.
+	 * @return SimpleSAML_Metadata_SAMLParser[] Array of SAMLParser instances.
 	 */
 	private static function processDescriptorsElement($element, $maxExpireTime = NULL, array $validators = array()) {
 		assert('is_null($maxExpireTime) || is_int($maxExpireTime)');
@@ -347,10 +350,10 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This function looks for the 'validUntil' attribute to determine
 	 * how long a given XML-element is valid. It returns this as a unix timestamp.
 	 *
-	 * @param mixed $element  The element we should determine the expiry time of.
-	 * @param int|NULL $maxExpireTime  The maximum expiration time.
-	 * @return int  The unix timestamp for when the element should expire. Will be NULL if no
-	 *              limit is set for the element.
+	 * @param mixed $element The element we should determine the expiry time of.
+	 * @param int|NULL $maxExpireTime The maximum expiration time.
+	 * @return int The unix timestamp for when the element should expire. Will be NULL if no
+	 *             limit is set for the element.
 	 */
 	private static function getExpireTime($element, $maxExpireTime) {
 		/* validUntil may be NULL */
@@ -367,7 +370,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * This function returns the entity id of this parsed entity.
 	 *
-	 * @return The entity id of this parsed entity.
+	 * @return string The entity id of this parsed entity.
 	 */
 	public function getEntityId() {
 		return $this->entityId;
@@ -408,8 +411,8 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * Add data parsed from extensions to metadata.
 	 *
-	 * @param array &$metadata  The metadata that should be updated.
-	 * @param array $roleDescriptor  The parsed role desciptor.
+	 * @param array &$metadata The metadata that should be updated.
+	 * @param array $roleDescriptor The parsed role descriptor.
 	 */
 	private function addExtensions(array &$metadata, array $roleDescriptor) {
 		assert('array_key_exists("scope", $roleDescriptor)');
@@ -440,7 +443,7 @@ class SimpleSAML_Metadata_SAMLParser {
 
 
 	/**
-	 * This function returns the metadata for SAML 1.x SPs in the format simpleSAMLphp expects.
+	 * This function returns the metadata for SAML 1.x SPs in the format SimpleSAMLphp expects.
 	 * This is an associative array with the following fields:
 	 * - 'entityid': The entity id of the entity described in the metadata.
 	 * - 'AssertionConsumerService': String with the URL of the assertion consumer service which supports
@@ -449,7 +452,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 *
 	 * Metadata must be loaded with one of the parse functions before this function can be called.
 	 *
-	 * @return Associative array with metadata or NULL if we are unable to generate metadata for a SAML 1.x SP.
+	 * @return array An associative array with metadata or NULL if we are unable to generate metadata for a SAML 1.x SP.
 	 */
 	public function getMetadata1xSP() {
 
@@ -514,7 +517,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This function returns the metadata for SAML 1.x IdPs in the format simpleSAMLphp expects.
 	 * This is an associative array with the following fields:
 	 * - 'entityid': The entity id of the entity described in the metadata.
-	 * - 'name': Autogenerated name for this entity. Currently set to the entity id.
+	 * - 'name': Auto generated name for this entity. Currently set to the entity id.
 	 * - 'SingleSignOnService': String with the URL of the SSO service which supports the redirect binding.
 	 * - 'SingleLogoutService': String with the URL where we should send logout requests/responses.
 	 * - 'certData': X509Certificate for entity (if present).
@@ -522,7 +525,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 *
 	 * Metadata must be loaded with one of the parse functions before this function can be called.
 	 *
-	 * @return Associative array with metadata or NULL if we are unable to generate metadata for a SAML 1.x IdP.
+	 * @return array An associative array with metadata or NULL if we are unable to generate metadata for a SAML 1.x IdP.
 	 */
 	public function getMetadata1xIdP() {
 
@@ -578,7 +581,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 *
 	 * Metadata must be loaded with one of the parse functions before this function can be called.
 	 *
-	 * @return Associative array with metadata or NULL if we are unable to generate metadata for a SAML 2.x SP.
+	 * @return array An associative array with metadata or NULL if we are unable to generate metadata for a SAML 2.x SP.
 	 */
 	public function getMetadata20SP() {
 
@@ -664,7 +667,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This function returns the metadata for SAML 2.0 IdPs in the format simpleSAMLphp expects.
 	 * This is an associative array with the following fields:
 	 * - 'entityid': The entity id of the entity described in the metadata.
-	 * - 'name': Autogenerated name for this entity. Currently set to the entity id.
+	 * - 'name': Auto generated name for this entity. Currently set to the entity id.
 	 * - 'SingleSignOnService': String with the URL of the SSO service which supports the redirect binding.
 	 * - 'SingleLogoutService': String with the URL where we should send logout requests(/responses).
 	 * - 'SingleLogoutServiceResponse': String where we should send logout responses (if this is different from
@@ -675,7 +678,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	 *
 	 * Metadata must be loaded with one of the parse functions before this function can be called.
 	 *
-	 * @return Associative array with metadata or NULL if we are unable to generate metadata for a SAML 2.0 IdP.
+	 * @return array An associative array with metadata or NULL if we are unable to generate metadata for a SAML 2.0 IdP.
 	 */
 	public function getMetadata20IdP() {
 
@@ -735,7 +738,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * Retrieve AttributeAuthorities from the metadata.
 	 *
-	 * @return array  Array of AttributeAuthorityDescriptor entries.
+	 * @return array Array of AttributeAuthorityDescriptor entries.
 	 */
 	public function getAttributeAuthorities() {
 
@@ -752,9 +755,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor.
 	 *
 	 * @param SAML2_XML_md_RoleDescriptor $element  The element we should extract metadata from.
-	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
-	 *                              NULL if unknwon.
-	 * @return Associative array with metadata we have extracted from this element.
+	 * @param int|NULL $expireTime The unix timestamp for when this element should expire, or
+	 *                             NULL if unknown.
+	 * @return array An associative array with metadata we have extracted from this element.
 	 */
 	private static function parseRoleDescriptorType(SAML2_XML_md_RoleDescriptor $element, $expireTime) {
 		assert('is_null($expireTime) || is_int($expireTime)');
@@ -803,9 +806,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor:
 	 *
 	 * @param SAML2_XML_md_SSODescriptorType $element The element we should extract metadata from.
-	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
-	 *                              NULL if unknwon.
-	 * @return Associative array with metadata we have extracted from this element.
+	 * @param int|NULL $expireTime The unix timestamp for when this element should expire, or
+	 *                             NULL if unknown.
+	 * @return array An associative array with metadata we have extracted from this element.
 	 */
 	private static function parseSSODescriptor(SAML2_XML_md_SSODescriptorType $element, $expireTime) {
 		assert('is_null($expireTime) || is_int($expireTime)');
@@ -830,8 +833,8 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This function extracts metadata from a SPSSODescriptor element.
 	 *
 	 * @param SAML2_XML_md_SPSSODescriptor $element The element which should be parsed.
-	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
-	 *                              NULL if unknwon.
+	 * @param int|NULL $expireTime The unix timestamp for when this element should expire, or
+	 *                             NULL if unknown.
 	 */
 	private function processSPSSODescriptor(SAML2_XML_md_SPSSODescriptor $element, $expireTime) {
 		assert('is_null($expireTime) || is_int($expireTime)');
@@ -865,8 +868,8 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This function extracts metadata from a IDPSSODescriptor element.
 	 *
 	 * @param SAML2_XML_md_IDPSSODescriptor $element The element which should be parsed.
-	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
-	 *                              NULL if unknwon.
+	 * @param int|NULL $expireTime The unix timestamp for when this element should expire, or
+	 *                             NULL if unknown.
 	 */
 	private function processIDPSSODescriptor(SAML2_XML_md_IDPSSODescriptor $element, $expireTime) {
 		assert('is_null($expireTime) || is_int($expireTime)');
@@ -890,8 +893,8 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This function extracts metadata from a AttributeAuthorityDescriptor element.
 	 *
 	 * @param SAML2_XML_md_AttributeAuthorityDescriptor $element The element which should be parsed.
-	 * @param int|NULL $expireTime  The unix timestamp for when this element should expire, or
-	 *                              NULL if unknwon.
+	 * @param int|NULL $expireTime The unix timestamp for when this element should expire, or
+	 *                             NULL if unknown.
 	 */
 	private function processAttributeAuthorityDescriptor(SAML2_XML_md_AttributeAuthorityDescriptor $element, $expireTime) {
 		assert('is_null($expireTime) || is_int($expireTime)');
@@ -911,7 +914,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * Parse an Extensions element.
 	 *
-	 * @param mixed $element  The element which contains the Extensions element.
+	 * @param mixed $element The element which contains the Extensions element.
+	 *
+	 * @return array An associative array with the extensions parsed.
 	 */
 	private static function processExtensions($element) {
 
@@ -1039,7 +1044,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * Parse and process a Organization element.
 	 *
-	 * @param SAML2_XML_md_Organization $element  The Organization element.
+	 * @param SAML2_XML_md_Organization $element The Organization element.
 	 */
 	private function processOrganization(SAML2_XML_md_Organization $element) {
 
@@ -1051,7 +1056,7 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * Parse and process a ContactPerson element.
 	 *
-	 * @param SAML2_XML_md_ContactPerson $element  The ContactPerson element.
+	 * @param SAML2_XML_md_ContactPerson $element The ContactPerson element.
 	 */
 
 	private function processContactPerson(SAML2_XML_md_ContactPerson $element) {
@@ -1145,8 +1150,8 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * - 'index': The index of this endpoint. This attribute is only for indexed endpoints.
 	 * - 'isDefault': Whether this endpoint is the default endpoint for this type. This attribute may not exist.
 	 *
-	 * @param $element The element which should be parsed.
-	 * @return Associative array with the data we have extracted from the element.
+	 * @param SAML2_XML_md_EndpointType $element The element which should be parsed.
+	 * @return array An associative array with the data we have extracted from the element.
 	 */
 	private static function parseGenericEndpoint(SAML2_XML_md_EndpointType $element) {
 
@@ -1174,8 +1179,8 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
 	 * Extract generic endpoints.
 	 *
-	 * @param array $endpoints  The endpoints we should parse.
-	 * @return array  Array of parsed endpoints.
+	 * @param array $endpoints The endpoints we should parse.
+	 * @return array Array of parsed endpoints.
 	 */
 	private static function extractEndpoints(array $endpoints) {
 
@@ -1193,13 +1198,13 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * X509 certificate.
 	 *
 	 * The associative array for a key can contain:
-	 * - 'encryption': Indicates wheter this key can be used for encryption.
-	 * - 'signing': Indicates wheter this key can be used for signing.
+	 * - 'encryption': Indicates whether this key can be used for encryption.
+	 * - 'signing': Indicates whether this key can be used for signing.
 	 * - 'type: The type of the key. 'X509Certificate' is the only key type we support.
 	 * - 'X509Certificate': The contents of the first X509Certificate element (if the type is 'X509Certificate ').
 	 *
-	 * @param SAML2_XML_md_KeyDescriptor $kd  The KeyDescriptor element.
-	 * @return Associative array describing the key, or NULL if this is an unsupported key.
+	 * @param SAML2_XML_md_KeyDescriptor $kd The KeyDescriptor element.
+	 * @return array An associative array describing the key, or NULL if this is an unsupported key.
 	 */
 	private static function parseKeyDescriptor(SAML2_XML_md_KeyDescriptor $kd) {
 
@@ -1284,8 +1289,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	 *
 	 * This function will throw an exception if it is unable to locate the node.
 	 *
-	 * @param $doc The DOMDocument where we should find the EntityDescriptor node.
-	 * @return The DOMEntity which represents the EntityDescriptor.
+	 * @param DOMDocument $doc The DOMDocument where we should find the EntityDescriptor node.
+	 * @return SAML2_XML_md_EntityDescriptor The DOMEntity which represents the EntityDescriptor.
+	 * @throws Exception If the document is empty or the first element is not an EntityDescriptor element.
 	 */
 	private static function findEntityDescriptor($doc) {
 
@@ -1311,9 +1317,10 @@ class SimpleSAML_Metadata_SAMLParser {
 	/**
          * If this EntityDescriptor was signed this function use the public key to check the signature.
          *
-         * @param $certificates One ore more certificates with the public key. This makes it possible
+         * @param array $certificates One ore more certificates with the public key. This makes it possible
          *                      to do a key rollover.
-         * @return TRUE if it is possible to check the signature with the certificate, FALSE otherwise.
+         * @return boolean True if it is possible to check the signature with the certificate, false otherwise.
+	 * @throws Exception If the certificate file cannot be found.
          */
 	public function validateSignature($certificates) {
 		foreach ($certificates as $cert) {
@@ -1345,9 +1352,9 @@ class SimpleSAML_Metadata_SAMLParser {
 	 * This function checks if this EntityDescriptor was signed with a certificate with the
 	 * given fingerprint.
 	 *
-	 * @param $fingerprint  Fingerprint of the certificate which should have been used to sign this
+	 * @param string $fingerprint Fingerprint of the certificate which should have been used to sign this
 	 *                      EntityDescriptor.
-	 * @return TRUE if it was signed with the certificate with the given fingerprint, FALSE otherwise.
+	 * @return boolean True if it was signed with the certificate with the given fingerprint, false otherwise.
 	 */
 	public function validateFingerprint($fingerprint) {
 		assert('is_string($fingerprint)');
