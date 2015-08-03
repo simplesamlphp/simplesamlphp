@@ -12,10 +12,11 @@ class SimpleSAML_Metadata_Signer {
 	 * This functions finds what key & certificate files should be used to sign the metadata
 	 * for the given entity.
 	 *
-	 * @param $config  Our SimpleSAML_Configuration instance.
-	 * @param $entityMetadata  The metadata of the entity.
-	 * @param $type  A string which describes the type entity this is, e.g. 'SAML 2 IdP' or 'Shib 1.3 SP'.
-	 * @return An associative array with the keys 'privatekey', 'certificate', and optionally 'privatekey_pass'.
+	 * @param SimpleSAML_Configuration $config Our SimpleSAML_Configuration instance.
+	 * @param array $entityMetadata The metadata of the entity.
+	 * @param string $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or 'Shib 1.3 SP'.
+	 * @return array An associative array with the keys 'privatekey', 'certificate', and optionally 'privatekey_pass'.
+	 * @throws Exception If the key and certificate used to sign is unknown.
 	 */
 	private static function findKeyCert($config, $entityMetadata, $type) {
 
@@ -96,9 +97,11 @@ class SimpleSAML_Metadata_Signer {
 	/**
 	 * Determine whether metadata signing is enabled for the given metadata.
 	 *
-	 * @param $config  Our SimpleSAML_Configuration instance.
-	 * @param $entityMetadata  The metadata of the entity.
-	 * @param $type  A string which describes the type entity this is, e.g. 'SAML 2 IdP' or 'Shib 1.3 SP'.
+	 * @param SimpleSAML_Configuration $config Our SimpleSAML_Configuration instance.
+	 * @param array $entityMetadata The metadata of the entity.
+	 * @param string $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or 'Shib 1.3 SP'.
+	 * @return boolean True if metadata signing is enabled, false otherwise.
+	 * @throws Exception If the value of the 'metadata.sign.enable' option is not a boolean.
 	 */
 	private static function isMetadataSigningEnabled($config, $entityMetadata, $type) {
 
@@ -123,10 +126,11 @@ class SimpleSAML_Metadata_Signer {
 	/**
 	 * Signs the given metadata if metadata signing is enabled.
 	 *
-	 * @param $metadataString  A string with the metadata.
-	 * @param $entityMetadata  The metadata of the entity.
-	 * @param $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or 'Shib 1.3 SP'.
-	 * @return The $metadataString with the signature embedded.
+	 * @param string $metadataString A string with the metadata.
+	 * @param array $entityMetadata The metadata of the entity.
+	 * @param string $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or 'Shib 1.3 SP'.
+	 * @return string The $metadataString with the signature embedded.
+	 * @throws Exception If the certificate or private key cannot be loaded, or the metadata doesn't parse properly.
 	 */
 	public static function sign($metadataString, $entityMetadata, $type) {
 
