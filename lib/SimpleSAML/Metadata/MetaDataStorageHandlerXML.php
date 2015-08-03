@@ -11,6 +11,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
 
 	/**
 	 * This variable contains an associative array with the parsed metadata.
+	 *
+	 * @var array
 	 */
 	private $metadata;
 
@@ -22,7 +24,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
 	 *           base directory.
 	 * - 'url': URL we should download the metadata from. This is only meant for testing.
 	 *
-	 * @param $config  The configuration for this instance of the XML metadata source.
+	 * @param array $config The configuration for this instance of the XML metadata source.
+	 *
+	 * @throws Exception If neither the 'file' or 'url' options are defined in the configuration.
 	 */
 	protected function __construct($config) {
 
@@ -34,7 +38,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
 		} elseif(array_key_exists('url', $config)) {
 			$src = $config['url'];
 		} else {
-			throw new Exception('Missing either \'file\' or \'url\' in XML metadata source configuration.');
+			throw new Exception("Missing either 'file' or 'url' in XML metadata source configuration.");
 		}
 
 
@@ -88,8 +92,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
 	 * This function returns an associative array with metadata for all entities in the given set. The
 	 * key of the array is the entity id.
 	 *
-	 * @param $set  The set we want to list metadata for.
-	 * @return An associative array with all entities in the given set.
+	 * @param string $set The set we want to list metadata for.
+	 * @return array An associative array with all entities in the given set.
 	 */
 	public function getMetadataSet($set) {
 		if(array_key_exists($set, $this->metadata)) {
