@@ -30,7 +30,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
 	 * - 'directory': The directory we should load metadata from. The default directory is
 	 *                set in the 'metadatadir' configuration option in 'config.php'.
 	 *
-	 * @param $config  An associtive array with the configuration for this handler.
+	 * @param array $config  An associative array with the configuration for this handler.
 	 */
 	protected function __construct($config) {
 		assert('is_array($config)');
@@ -57,8 +57,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
 	 * This function loads the given set of metadata from a file our metadata directory.
 	 * This function returns NULL if it is unable to locate the given set in the metadata directory.
 	 *
-	 * @param $set  The set of metadata we are loading.
-	 * @return Associative array with the metadata, or NULL if we are unable to load metadata from the given file.
+	 * @param string $set The set of metadata we are loading.
+	 * @return array An associative array with the metadata, or NULL if we are unable to load metadata from the given file.
+	 * @throws Exception If the metadata set cannot be loaded.
 	 */
 	private function load($set) {
 
@@ -84,8 +85,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
 	 * This function retrieves the given set of metadata. It will return an empty array if it is
 	 * unable to locate it.
 	 *
-	 * @param $set  The set of metadata we are retrieving.
-	 * @return Asssociative array with the metadata. Each element in the array is an entity, and the
+	 * @param string $set The set of metadata we are retrieving.
+	 * @return array An asssociative array with the metadata. Each element in the array is an entity, and the
 	 *         key is the entity id.
 	 */
 	public function getMetadataSet($set) {
