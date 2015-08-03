@@ -44,12 +44,13 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 	 *                  hours (86400 seconds).
 	 *
 	 * @param array $config  The configuration for this instance of the XML metadata source.
+	 * @throws Exception If no server option can be found in the configuration.
 	 */
 	protected function __construct($config) {
 		assert('is_array($config)');
 
 		if (!array_key_exists('server', $config)){
-			throw new Exception('Error, the $server parameter of the config has not been set!');
+			throw new Exception("The 'server' configuration option is not set.");
 		} else {
 			$this->server = $config['server'];
 		}
@@ -80,8 +81,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 	 * This function returns an associative array with metadata for all entities in the given set. The
 	 * key of the array is the entity id.
 	 *
-	 * @param $set  The set we want to list metadata for.
-	 * @return An associative array with all entities in the given set.
+	 * @param string $set The set we want to list metadata for.
+	 * @return array An associative array with all entities in the given set.
 	 */
 	public function getMetadataSet($set) {
 
@@ -113,6 +114,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 	 * @param string $entityId  The entity id of this entity.
 	 * @return array|NULL  The associative array with the metadata for this entity, or NULL
 	 *                     if the entity could not be found.
+	 * @throws Exception If an error occurs while loading metadata from cache.
 	 */
 	private function getFromCache($set, $entityId) {
 		assert('is_string($set)');
@@ -163,6 +165,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 	 * @param string $set  The metadata set this entity belongs to.
 	 * @param string $entityId  The entity id of this entity.
 	 * @param array $data  The associative array with the metadata for this entity.
+	 * @throws Exception If metadata cannot be written to cache.
 	 */
 	private function writeToCache($set, $entityId, $data) {
 		assert('is_string($set)');
@@ -222,10 +225,11 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 	 * override this function if it doesn't implement the getMetadataSet function, or if the
 	 * implementation of getMetadataSet is slow.
 	 *
-	 * @param $index  The entityId or metaindex we are looking up.
-	 * @param $set  The set we are looking for metadata in.
-	 * @return An associative array with metadata for the given entity, or NULL if we are unable to
+	 * @param string $index The entityId or metaindex we are looking up.
+	 * @param string $set The set we are looking for metadata in.
+	 * @return array An associative array with metadata for the given entity, or NULL if we are unable to
 	 *         locate the entity.
+	 * @throws Exception If an error occurs while downloading metadata, validating the signature or writing to cache.
 	 */
 	public function getMetaData($index, $set) {
 		assert('is_string($index)');
