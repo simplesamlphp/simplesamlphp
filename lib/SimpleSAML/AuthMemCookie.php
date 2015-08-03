@@ -10,20 +10,20 @@
 class SimpleSAML_AuthMemCookie {
 
 	/**
-	 * This is the singleton instance of this class.
+	 * @var SimpleSAML_AuthMemCookie This is the singleton instance of this class.
 	 */
 	private static $instance = NULL;
 
 
 	/**
-	 * The configuration for Auth MemCookie.
+	 * @var SimpleSAML_Configuration The configuration for Auth MemCookie.
 	 */
 	private $amcConfig;
 
 	/**
 	 * This function is used to retrieve the singleton instance of this class.
 	 *
-	 * @return The singleton instance of this class.
+	 * @return SimpleSAML_AuthMemCookie The singleton instance of this class.
 	 */
 	public static function getInstance() {
 		if(self::$instance === NULL) {
