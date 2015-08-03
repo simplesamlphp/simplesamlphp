@@ -14,20 +14,23 @@
 abstract class SimpleSAML_SessionHandler {
 
 
-	/* This static variable contains a reference to the current
+	/**
+	 * This static variable contains a reference to the current
 	 * instance of the session handler. This variable will be NULL if
 	 * we haven't instantiated a session handler yet.
+	 *
+	 * @var SimpleSAML_SessionHandler
 	 */
 	private static $sessionHandler = NULL;
 
 
 
-	/* This function retrieves the current instance of the session handler.
+	/**
+	 * This function retrieves the current instance of the session handler.
 	 * The session handler will be instantiated if this is the first call
 	 * to this fuunction.
 	 *
-	 * Returns:
-	 *  The current session handler.
+	 * @return SimpleSAML_SessionHandler The current session handler.
 	 */
 	public static function getSessionHandler() {
 		if(self::$sessionHandler === NULL) {
@@ -38,7 +41,8 @@ abstract class SimpleSAML_SessionHandler {
 	}
 
 
-	/* This constructor is included in case it is needed in the the
+	/**
+	 * This constructor is included in case it is needed in the the
 	 * future. Including it now allows us to write parent::__construct() in
 	 * the subclasses of this class.
 	 */
@@ -49,7 +53,7 @@ abstract class SimpleSAML_SessionHandler {
 	/**
 	 * Create and set new session id.
 	 *
-	 * @return string  The new session id.
+	 * @return string The new session id.
 	 */
 	abstract public function newSessionId();
 
@@ -57,7 +61,7 @@ abstract class SimpleSAML_SessionHandler {
 	/**
 	 * Retrieve the session id of saved in the session cookie.
 	 *
-	 * @return string  The session id saved in the cookie.
+	 * @return string The session id saved in the cookie.
 	 */
 	abstract public function getCookieSessionId();
 
@@ -65,7 +69,7 @@ abstract class SimpleSAML_SessionHandler {
 	/**
 	 * Retrieve the session cookie name.
 	 *
-	 * @return string  The session cookie name.
+	 * @return string The session cookie name.
 	 */
 	abstract public function getSessionCookieName();
 
@@ -73,7 +77,7 @@ abstract class SimpleSAML_SessionHandler {
 	/**
 	 * Save the session.
 	 *
-	 * @param SimpleSAML_Session $session  The session object we should save.
+	 * @param SimpleSAML_Session $session The session object we should save.
 	 */
 	abstract public function saveSession(SimpleSAML_Session $session);
 
@@ -81,8 +85,8 @@ abstract class SimpleSAML_SessionHandler {
 	/**
 	 * Load the session.
 	 *
-	 * @param string|NULL $sessionId  The ID of the session we should load, or NULL to use the default.
-	 * @return SimpleSAML_Session|NULL  The session object, or NULL if it doesn't exist.
+	 * @param string|NULL $sessionId The ID of the session we should load, or null to use the default.
+	 * @return SimpleSAML_Session|null The session object, or null if it doesn't exist.
 	 */
 	abstract public function loadSession($sessionId = NULL);
 
@@ -109,9 +113,9 @@ abstract class SimpleSAML_SessionHandler {
 	/**
 	 * Check whether the session cookie is set.
 	 *
-	 * This function will only return FALSE if is is certain that the cookie isn't set.
+	 * This function will only return false if is is certain that the cookie isn't set.
 	 *
-	 * @return bool  TRUE if it was set, FALSE if not.
+	 * @return bool True if it was set, false if not.
 	 */
 	public function hasSessionCookie() {
 
@@ -122,7 +126,7 @@ abstract class SimpleSAML_SessionHandler {
 	/**
 	 * Get the cookie parameters that should be used for session cookies.
 	 *
-	 * @return array
+	 * @return array An array with the cookie parameters.
 	 * @link http://www.php.net/manual/en/function.session-get-cookie-params.php
 	 */
 	public function getCookieParams() {
@@ -142,8 +146,8 @@ abstract class SimpleSAML_SessionHandler {
 	/**
 	 * Set a session cookie.
 	 *
-	 * @param string $name  The name of the session cookie.
-	 * @param string|NULL $value  The value of the cookie. Set to NULL to delete the cookie.
+	 * @param string $name The name of the session cookie.
+	 * @param string|null $value The value of the cookie. Set to null to delete the cookie.
 	 */
 	public function setCookie($name, $value, array $params = NULL) {
 		assert('is_string($name)');
