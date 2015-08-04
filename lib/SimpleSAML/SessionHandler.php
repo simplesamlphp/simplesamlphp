@@ -170,5 +170,4 @@ abstract class SimpleSAML_SessionHandler
 
         \SimpleSAML\Utils\HTTP::setCookie($name, $value, $params);
     }
-
 }

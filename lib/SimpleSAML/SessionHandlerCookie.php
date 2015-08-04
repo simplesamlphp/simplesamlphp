@@ -9,23 +9,31 @@
  * session id.
  *
  * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  * @abstract
  */
 abstract class SimpleSAML_SessionHandlerCookie
 extends SimpleSAML_SessionHandler {
 
-	/* This variable contains the current session id. */
+	/**
+	 * This variable contains the current session id.
+	 *
+	 * @var string|null
+	 */
 	private $session_id = NULL;
 
 
-	/* This variable contains the session cookie name. */
+	/**
+	 * This variable contains the session cookie name.
+	 *
+	 * @var string
+	 */
 	protected $cookie_name;
 
 
-	/* This constructor initializes the session id based on what
-	 * we receive in a cookie. We create a new session id and set
-	 * a cookie with this id if we don't have a session id.
+	/**
+	 * This constructor initializes the session id based on what we receive in a cookie. We create a new session id and
+	 * set a cookie with this id if we don't have a session id.
 	 */
 	protected function __construct() {
 		/* Call the constructor in the base class in case it should
@@ -41,7 +49,7 @@ extends SimpleSAML_SessionHandler {
 	/**
 	 * Create and set new session id.
 	 *
-	 * @return string  The new session id.
+	 * @return string The new session id.
 	 */
 	public function newSessionId() {
 		$this->session_id = self::createSessionID();
@@ -55,7 +63,7 @@ extends SimpleSAML_SessionHandler {
 	/**
 	 * Retrieve the session id of saved in the session cookie.
 	 *
-	 * @return string  The session id saved in the cookie.
+	 * @return string The session id saved in the cookie.
 	 */
 	public function getCookieSessionId() {
 		if ($this->session_id === NULL) {
@@ -78,7 +86,7 @@ extends SimpleSAML_SessionHandler {
 	/**
 	 * Retrieve the session cookie name.
 	 *
-	 * @return string  The session cookie name.
+	 * @return string The session cookie name.
 	 */
 	public function getSessionCookieName() {
 
@@ -86,26 +94,23 @@ extends SimpleSAML_SessionHandler {
 	}
 
 
-	/* This static function creates a session id. A session id consists
-	 * of 32 random hexadecimal characters.
+	/**
+	 * This static function creates a session id. A session id consists of 32 random hexadecimal characters.
 	 *
-	 * Returns:
-	 *  A random session id.
+	 * @return string A random session id.
 	 */
 	private static function createSessionID() {
 		return bin2hex(openssl_random_pseudo_bytes(16));
 	}
 
 
-	/* This static function validates a session id. A session id is valid
-	 * if it only consists of characters which are allowed in a session id
-	 * and it is the correct length.
+	/**
+	 * This static function validates a session id. A session id is valid if it only consists of characters which are
+	 * allowed in a session id and it is the correct length.
 	 *
-	 * Parameters:
-	 *  $session_id  The session id we should validate.
+	 * @param string $session_id The session ID we should validate.
 	 *
-	 * Returns:
-	 *  TRUE if this session id is valid, FALSE if not.
+	 * @return boolean True if this session ID is valid, false otherwise.
 	 */
 	private static function isValidSessionID($session_id) {
 		if(!is_string($session_id)) {
@@ -127,9 +132,9 @@ extends SimpleSAML_SessionHandler {
 	/**
 	 * Check whether the session cookie is set.
 	 *
-	 * This function will only return FALSE if is is certain that the cookie isn't set.
+	 * This function will only return false if is is certain that the cookie isn't set.
 	 *
-	 * @return bool  TRUE if it was set, FALSE if not.
+	 * @return boolean True if it was set, false otherwise.
 	 */
 	public function hasSessionCookie() {
 

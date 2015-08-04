@@ -7,7 +7,7 @@
  * An authentication source is any system which somehow authenticate the user.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 abstract class SimpleSAML_Auth_Source
 {
