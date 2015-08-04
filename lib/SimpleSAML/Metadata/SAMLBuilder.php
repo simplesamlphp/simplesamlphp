@@ -23,7 +23,7 @@ class SimpleSAML_Metadata_SAMLBuilder
     /**
      * The maximum time in seconds the metadata should be cached.
      *
-     * @var double|null
+     * @var int|null
      */
     private $maxCache = null;
 
@@ -31,7 +31,7 @@ class SimpleSAML_Metadata_SAMLBuilder
     /**
      * The maximum time in seconds since the current time that this metadata should be considered valid.
      *
-     * @var double|null
+     * @var int|null
      */
     private $maxDuration = null;
 
