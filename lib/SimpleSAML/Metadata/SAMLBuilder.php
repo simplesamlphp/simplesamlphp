@@ -15,7 +15,7 @@ class SimpleSAML_Metadata_SAMLBuilder
     /**
      * The EntityDescriptor we are building.
      *
-     * @var string
+     * @var SAML2_XML_md_EntityDescriptor
      */
     private $entityDescriptor;
 
@@ -23,7 +23,7 @@ class SimpleSAML_Metadata_SAMLBuilder
     /**
      * The maximum time in seconds the metadata should be cached.
      *
-     * @var int|null
+     * @var double|null
      */
     private $maxCache = null;
 
@@ -31,7 +31,7 @@ class SimpleSAML_Metadata_SAMLBuilder
     /**
      * The maximum time in seconds since the current time that this metadata should be considered valid.
      *
-     * @var int|null
+     * @var double|null
      */
     private $maxDuration = null;
 
@@ -40,8 +40,8 @@ class SimpleSAML_Metadata_SAMLBuilder
      * Initialize the SAML builder.
      *
      * @param string   $entityId The entity id of the entity.
-     * @param int|null $maxCache The maximum time in seconds the metadata should be cached. Defaults to null
-     * @param int|null $maxDuration The maximum time in seconds this metadata should be considered valid. Defaults
+     * @param double|null $maxCache The maximum time in seconds the metadata should be cached. Defaults to null
+     * @param double|null $maxDuration The maximum time in seconds this metadata should be considered valid. Defaults
      * to null.
      */
     public function __construct($entityId, $maxCache = null, $maxDuration = null)
@@ -322,7 +322,7 @@ class SimpleSAML_Metadata_SAMLBuilder
      * @param array $endpoints The endpoints.
      * @param bool  $indexed Whether the endpoints should be indexed.
      *
-     * @return SAML2_XML_md_IndexedEndpointType[]|SAML2_XML_md_EndpointType[] An array of endpoint objects.
+     * @return array An array of endpoint objects, either SAML2_XML_md_EndpointType or SAML2_XML_md_IndexedEndpointType.
      */
     private static function createEndpoints(array $endpoints, $indexed)
     {
