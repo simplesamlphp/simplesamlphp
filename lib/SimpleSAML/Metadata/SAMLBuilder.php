@@ -13,17 +13,34 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 	/**
 	 * The EntityDescriptor we are building.
+	 *
+	 * @var string
 	 */
 	private $entityDescriptor;
 
 
+	/**
+	 * The maximum time in seconds the metadata should be cached.
+	 *
+	 * @var int|null
+	 */
 	private $maxCache = NULL;
+
+
+	/**
+	 * The maximum time in seconds since the current time that this metadata should be considered valid.
+	 *
+	 * @var int|null
+	 */
 	private $maxDuration = NULL;
 
 	/**
-	 * Initialize the builder.
+	 * Initialize the SAML builder.
 	 *
-	 * @param string $entityId  The entity id of the entity.
+	 * @param string $entityId The entity id of the entity.
+	 * @param int|null $maxCache The maximum time in seconds the metadata should be cached. Defaults to null
+	 * @param int|null $maxDuration The maximum time in seconds this metadata should be considered valid. Defaults
+	 * to null.
 	 */
 	public function __construct($entityId, $maxCache = NULL, $maxDuration = NULL) {
 		assert('is_string($entityId)');
@@ -50,10 +67,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
-	 * Retrieve the EntityDescriptor.
-	 *
 	 * Retrieve the EntityDescriptor element which is generated for this entity.
-	 * @return DOMElement  The EntityDescriptor element for this entity.
+	 *
+	 * @return DOMElement The EntityDescriptor element of this entity.
 	 */
 	public function getEntityDescriptor() {
 
@@ -69,9 +85,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	 *
 	 * This function serializes this EntityDescriptor, and returns it as text.
 	 *
-	 * @param bool $formatted  Whether the returned EntityDescriptor should be
-	 *                         formatted first.
-	 * @return string  The serialized EntityDescriptor.
+	 * @param bool $formatted Whether the returned EntityDescriptor should be formatted first.
+	 * @return string The serialized EntityDescriptor.
 	 */
 	public function getEntityDescriptorText($formatted = TRUE) {
 		assert('is_bool($formatted)');
@@ -84,6 +99,12 @@ class SimpleSAML_Metadata_SAMLBuilder {
 		return $xml->ownerDocument->saveXML();
 	}
 
+
+	/**
+	 * Add a SecurityTokenServiceType for ADFS metadata.
+	 *
+	 * @param array $metadata The metadata with the information about the SecurityTokenServiceType.
+	 */
 	public function addSecurityTokenServiceType($metadata) {
 		assert('is_array($metadata)');
 		assert('isset($metadata["entityid"])');
@@ -100,8 +121,10 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	}
 
 	/**
-	 * @param SimpleSAML_Configuration $metadata  Metadata.
-	 * @param $e Reference to the element where the Extensions element should be included.
+	 * Add extensions to the metadata.
+	 *
+	 * @param SimpleSAML_Configuration $metadata The metadata to get extensions from.
+	 * @param SAML2_XML_md_RoleDescriptor $e Reference to the element where the Extensions element should be included.
 	 */
 	private function addExtensions(SimpleSAML_Configuration $metadata, SAML2_XML_md_RoleDescriptor $e) {
 
@@ -241,13 +264,11 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
-	 * Add Organization element.
+	 * Add an Organization element based on data passed as parameters
 	 *
-	 * This function adds an organization element to the metadata.
-	 *
-	 * @param array $orgName  An array with the localized OrganizatioName.
-	 * @param array $orgDisplayName  An array with the localized OrganizatioDisplayName.
-	 * @param array $orgURL  An array with the localized OrganizatioURL.
+	 * @param array $orgName An array with the localized OrganizationName.
+	 * @param array $orgDisplayName An array with the localized OrganizationDisplayName.
+	 * @param array $orgURL An array with the localized OrganizationURL.
 	 */
 	public function addOrganization(array $orgName, array $orgDisplayName, array $orgURL) {
 
@@ -262,9 +283,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
-	 * Add organization element based on metadata array.
+	 * Add an Organization element based on metadata array.
 	 *
-	 * @param array $metadata  The metadata we should extract the organization information from.
+	 * @param array $metadata The metadata we should extract the organization information from.
 	 */
 	public function addOrganizationInfo(array $metadata) {
 
@@ -286,11 +307,11 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
-	 * Add endpoint list to metadata.
+	 * Add a list of endpoints to metadata.
 	 *
-	 * @param array $endpoints  The endpoints.
-	 * @param bool $indexed  Whether the endpoints should be indexed.
-	 * @return array  Array of endpoint objects.
+	 * @param array $endpoints The endpoints.
+	 * @param bool $indexed Whether the endpoints should be indexed.
+	 * @return SAML2_XML_md_IndexedEndpointType[]|SAML2_XML_md_EndpointType[] An array of endpoint objects.
 	 */
 	private static function createEndpoints(array $endpoints, $indexed) {
 		assert('is_bool($indexed)');
@@ -343,8 +364,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	/**
 	 * Add an AttributeConsumingService element to the metadata.
 	 *
-	 * @param DOMElement $spDesc  The SPSSODescriptor element.
-	 * @param SimpleSAML_Configuration $metadata  The metadata.
+	 * @param SAML2_XML_md_SPSSODescriptor $spDesc The SPSSODescriptor element.
+	 * @param SimpleSAML_Configuration $metadata The metadata.
 	 */
 	private function addAttributeConsumingService(SAML2_XML_md_SPSSODescriptor $spDesc, SimpleSAML_Configuration $metadata) {
 		$attributes = $metadata->getArray('attributes', array());
@@ -389,12 +410,10 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
-	 * Add metadata set for entity.
+	 * Add a specific type of metadata to an entity.
 	 *
-	 * This function is used to add a metadata array to the entity.
-	 *
-	 * @param string $set  The metadata set this metadata comes from.
-	 * @param array $metadata  The metadata.
+	 * @param string $set The metadata set this metadata comes from.
+	 * @param array $metadata The metadata.
 	 */
 	public function addMetadata($set, $metadata) {
 		assert('is_string($set)');
@@ -427,8 +446,8 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	/**
 	 * Add SAML 2.0 SP metadata.
 	 *
-	 * @param array $metadata  The metadata.
-	 * @param array $protocols The protocols supported.
+	 * @param array $metadata The metadata.
+	 * @param array $protocols The protocols supported. Defaults to SAML2_Const::NS_SAMLP.
 	 */
 	public function addMetadataSP20($metadata, $protocols = array(SAML2_Const::NS_SAMLP)) {
 		assert('is_array($metadata)');
@@ -482,9 +501,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
-	 * Add SAML 2.0 IdP metadata.
+	 * Add metadata of a SAML 2.0 identity provider.
 	 *
-	 * @param array $metadata  The metadata.
+	 * @param array $metadata The metadata.
 	 */
 	public function addMetadataIdP20($metadata) {
 		assert('is_array($metadata)');
@@ -528,9 +547,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
-	 * Add SAML 1.1 SP metadata.
+	 * Add metadata of a SAML 1.1 service provider.
 	 *
-	 * @param array $metadata  The metadata.
+	 * @param array $metadata The metadata.
 	 */
 	public function addMetadataSP11($metadata) {
 		assert('is_array($metadata)');
@@ -562,9 +581,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
-	 * Add SAML 1.1 IdP metadata.
+	 * Add metadata of a SAML 1.1 identity provider.
 	 *
-	 * @param array $metadata  The metadata.
+	 * @param array $metadata The metadata.
 	 */
 	public function addMetadataIdP11($metadata) {
 		assert('is_array($metadata)');
@@ -588,9 +607,10 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
-	 * Add a AttributeAuthorityDescriptor.
+	 * Add metadata of a SAML attribute authority.
 	 *
-	 * @param array $metadata  The AttributeAuthorityDescriptor, in the format returned by SAMLParser.
+	 * @param array $metadata The AttributeAuthorityDescriptor, in the format returned by
+	 * SimpleSAML_Metadata_SAMLParser.
 	 */
 	public function addAttributeAuthority(array $metadata) {
 		assert('is_array($metadata)');
@@ -675,9 +695,9 @@ class SimpleSAML_Metadata_SAMLBuilder {
 	/**
 	 * Add a KeyDescriptor with an X509 certificate.
 	 *
-	 * @param SAML2_XML_md_RoleDescriptor $rd  The RoleDescriptor the certificate should be added to.
-	 * @param string $use  The value of the use-attribute.
-	 * @param string $x509data  The certificate data.
+	 * @param SAML2_XML_md_RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
+	 * @param string $use The value of the 'use' attribute.
+	 * @param string $x509data The certificate data.
 	 */
 	private function addX509KeyDescriptor(SAML2_XML_md_RoleDescriptor $rd, $use, $x509data) {
 		assert('in_array($use, array("encryption", "signing"), TRUE)');
@@ -690,12 +710,12 @@ class SimpleSAML_Metadata_SAMLBuilder {
 
 
 	/**
-	 * Add certificate.
+	 * Add a certificate.
 	 *
 	 * Helper function for adding a certificate to the metadata.
 	 *
-	 * @param SAML2_XML_md_RoleDescriptor $rd  The RoleDescriptor the certificate should be added to.
-	 * @param SimpleSAML_Configuration $metadata  The metadata for the entity.
+	 * @param SAML2_XML_md_RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
+	 * @param SimpleSAML_Configuration $metadata The metadata of the entity.
 	 */
 	private function addCertificate(SAML2_XML_md_RoleDescriptor $rd, SimpleSAML_Configuration $metadata) {
 
