@@ -72,7 +72,7 @@ class Metadata
      * @return array An array holding valid contact configuration options. If a key 'name' was part of the input array,
      * it will try to decompose the name into its parts, and place the parts into givenName and surName, if those are
      * missing.
-     * @throws \InvalidArgumentException If $contact is neither a string nor null, or the contact does not conform to
+     * @throws \InvalidArgumentException If $contact is neither an array nor null, or the contact does not conform to
      *     valid configuration rules for contacts.
      */
     public static function getContact($contact)
