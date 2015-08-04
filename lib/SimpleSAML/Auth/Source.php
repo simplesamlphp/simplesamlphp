@@ -61,12 +61,7 @@ abstract class SimpleSAML_Auth_Source
         foreach ($sources as $id) {
             $source = $config->getArray($id);
 
-            if (!array_key_exists(0, $source) || !is_string($source[0])) {
-                throw new Exception(
-                    'Invalid authentication source \''.$id.
-                    '\': First element must be a string which identifies the authentication source.'
-                );
-            }
+            self::validateSource($source, $id);
 
             if ($source[0] !== $type) {
                 continue;
@@ -213,12 +208,7 @@ abstract class SimpleSAML_Auth_Source
         assert('is_string($authId)');
         assert('is_array($config)');
 
-        if (!array_key_exists(0, $config) || !is_string($config[0])) {
-            throw new Exception(
-                'Invalid authentication source \''.$authId.
-                '\': First element must be a string which identifies the authentication source.'
-            );
-        }
+        self::validateSource($config, $authId);
 
         $className = SimpleSAML_Module::resolveClass($config[0], 'Auth_Source', 'SimpleSAML_Auth_Source');
 
@@ -374,5 +364,24 @@ abstract class SimpleSAML_Auth_Source
         $config = SimpleSAML_Configuration::getOptionalConfig('authsources.php');
 
         return $config->getOptions();
+    }
+
+
+    /**
+     * Make sure that the first element of an auth source is its identifier.
+     *
+     * @param array $source An array with the auth source configuration.
+     * @param string $id The auth source identifier.
+     *
+     * @throws Exception If the first element of $source is not an identifier for the auth source.
+     */
+    protected static function validateSource($source, $id)
+    {
+        if (!array_key_exists(0, $source) || !is_string($source[0])) {
+            throw new Exception(
+                'Invalid authentication source \''.$id.
+                '\': First element must be a string which identifies the authentication source.'
+            );
+        }
     }
 }
