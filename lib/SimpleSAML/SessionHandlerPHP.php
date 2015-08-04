@@ -1,23 +1,25 @@
 <?php
 
 /**
- * This file is part of SimpleSAMLphp. See the file COPYING in the
- * root of the distribution for licence information.
+ * This file is part of SimpleSAMLphp. See the file COPYING in the root of the distribution for licence information.
  *
- * This file defines a session handler which uses the default php
- * session handler for storage.
+ * This file defines a session handler which uses the default php session handler for storage.
  *
  * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 
-	/* This variable contains the session cookie name. */
+	/**
+	 * This variable contains the session cookie name.
+	 *
+	 * @var string
+	 */
 	protected $cookie_name;
 
 
-	/* Initialize the PHP session handling. This constructor is protected
-	 * because it should only be called from
+	/**
+	 * Initialize the PHP session handling. This constructor is protected because it should only be called from
 	 * SimpleSAML_SessionHandler::createSessionHandler(...).
 	 */
 	protected function __construct() {
@@ -58,7 +60,10 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 	/**
 	 * Create and set new session id.
 	 *
-	 * @return string  The new session id.
+	 * @return string The new session id.
+	 *
+	 * @throws SimpleSAML_Error_Exception If the cookie is marked as secure but we are not using HTTPS, or the headers
+	 * were already sent and therefore we cannot set the cookie.
 	 */
 	public function newSessionId() {
 		$session_cookie_params = session_get_cookie_params();
@@ -90,7 +95,9 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 	/**
 	 * Retrieve the session id of saved in the session cookie.
 	 *
-	 * @return string  The session id saved in the cookie.
+	 * @return string The session id saved in the cookie.
+	 *
+	 * @throws SimpleSAML_Error_Exception If the cookie is marked as secure but we are not using HTTPS.
 	 */
 	public function getCookieSessionId() {
 		if(session_id() === '') {
@@ -114,7 +121,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 	/**
 	 * Retrieve the session cookie name.
 	 *
-	 * @return string  The session cookie name.
+	 * @return string The session cookie name.
 	 */
 	public function getSessionCookieName() {
 
@@ -125,7 +132,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 	/**
 	 * Save the current session to the PHP session array.
 	 *
-	 * @param SimpleSAML_Session $session  The session object we should save.
+	 * @param SimpleSAML_Session $session The session object we should save.
 	 */
 	public function saveSession(SimpleSAML_Session $session) {
 
@@ -136,8 +143,11 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 	/**
 	 * Load the session from the PHP session array.
 	 *
-	 * @param string|NULL $sessionId  The ID of the session we should load, or NULL to use the default.
-	 * @return SimpleSAML_Session|NULL  The session object, or NULL if it doesn't exist.
+	 * @param string|null $sessionId The ID of the session we should load, or NULL to use the default.
+	 * @return SimpleSAML_Session|null The session object, or NULL if it doesn't exist.
+	 *
+	 * @throws SimpleSAML_Error_Exception If it wasn't possible to disable session cookies or load a session with a
+	 * specific identifier.
 	 */
 	public function loadSession($sessionId = NULL) {
 		assert('is_string($sessionId) || is_null($sessionId)');
@@ -176,9 +186,9 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 	/**
 	 * Check whether the session cookie is set.
 	 *
-	 * This function will only return FALSE if is is certain that the cookie isn't set.
+	 * This function will only return false if is is certain that the cookie isn't set.
 	 *
-	 * @return bool  TRUE if it was set, FALSE if not.
+	 * @return boolean True if it was set, false otherwise.
 	 */
 	public function hasSessionCookie() {
 
@@ -191,8 +201,11 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 	 *
 	 * This function contains some adjustments from the default to provide backwards-compatibility.
 	 *
-	 * @return array
+	 * @return array The cookie parameters for our sessions.
 	 * @link http://www.php.net/manual/en/function.session-get-cookie-params.php
+	 *
+	 * @throws SimpleSAML_Error_Exception If both 'session.phpsession.limitedpath' and 'session.cookie.path' options
+	 * are set at the same time in the configuration.
 	 */
 	public function getCookieParams() {
 
