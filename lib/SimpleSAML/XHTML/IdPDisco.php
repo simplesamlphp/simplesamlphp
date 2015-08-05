@@ -157,8 +157,6 @@ class SimpleSAML_XHTML_IdPDisco
 
         if (array_key_exists('IdPentityID', $_GET)) {
             $this->setIdPentityID = $_GET['IdPentityID'];
-        } else {
-            $this->setIdPentityID = null;
         }
 
         if (array_key_exists('IDPList', $_REQUEST)) {
@@ -252,6 +250,7 @@ class SimpleSAML_XHTML_IdPDisco
                 $this->metadata->getMetaData($idp, $metadataSet);
                 return $idp;
             } catch (Exception $e) {
+                // continue
             }
         }
 
@@ -274,7 +273,7 @@ class SimpleSAML_XHTML_IdPDisco
         /* Parameter set from the Extended IdP Metadata Discovery Service Protocol, indicating that the user prefers
          * this IdP.
          */
-        if ($this->setIdPentityID) {
+        if (!empty($this->setIdPentityID)) {
             return $this->validateIdP($this->setIdPentityID);
         }
 
