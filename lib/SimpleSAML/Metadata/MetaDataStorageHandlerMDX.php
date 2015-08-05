@@ -298,6 +298,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
             );
         }
 
+        /** @var string $xmldata */
         $entity = SimpleSAML_Metadata_SAMLParser::parseString($xmldata);
         SimpleSAML_Logger::debug('MetaData - Handler.MDX: Completed parsing of ['.$mdx_url.']');
 
