@@ -14,7 +14,7 @@ abstract class SimpleSAML_Store
      *
      * This is false if the data store isn't enabled, and null if we haven't attempted to initialize it.
      *
-     * @var SimpleSAML_Store|boolean|null
+     * @var SimpleSAML_Store|false|null
      */
     private static $instance;
 
@@ -22,7 +22,7 @@ abstract class SimpleSAML_Store
     /**
      * Retrieve our singleton instance.
      *
-     * @return SimpleSAML_Store|boolean  The data store, or false if it isn't enabled.
+     * @return SimpleSAML_Store|false  The data store, or false if it isn't enabled.
      */
     public static function getInstance()
     {
