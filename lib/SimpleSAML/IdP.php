@@ -5,7 +5,7 @@
  *
  * This class implements the various functions used by IdP.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_IdP {
 
@@ -55,7 +55,9 @@ class SimpleSAML_IdP {
 	/**
 	 * Initialize an IdP.
 	 *
-	 * @param string $id  The identifier of this IdP.
+	 * @param string $id The identifier of this IdP.
+	 *
+	 * @throws SimpleSAML_Error_Exception If the IdP is disabled or no such auth source was found.
 	 */
 	private function __construct($id) {
 		assert('is_string($id)');
@@ -110,7 +112,7 @@ class SimpleSAML_IdP {
 	/**
 	 * Retrieve the ID of this IdP.
 	 *
-	 * @return string  The ID of this IdP.
+	 * @return string The ID of this IdP.
 	 */
 	public function getId() {
 		return $this->id;
@@ -120,8 +122,8 @@ class SimpleSAML_IdP {
 	/**
 	 * Retrieve an IdP by ID.
 	 *
-	 * @param string $id  The identifier of the IdP.
-	 * @return SimpleSAML_IdP  The IdP.
+	 * @param string $id The identifier of the IdP.
+	 * @return SimpleSAML_IdP The IdP.
 	 */
 	public static function getById($id) {
 		assert('is_string($id)');
@@ -139,8 +141,8 @@ class SimpleSAML_IdP {
 	/**
 	 * Retrieve the IdP "owning" the state.
 	 *
-	 * @param array &$state  The state array.
-	 * @return SimpleSAML_IdP  The IdP.
+	 * @param array &$state The state array.
+	 * @return SimpleSAML_IdP The IdP.
 	 */
 	public static function getByState(array &$state) {
 		assert('isset($state["core:IdP"])');
@@ -152,7 +154,7 @@ class SimpleSAML_IdP {
 	/**
 	 * Retrieve the configuration for this IdP.
 	 *
-	 * @return SimpleSAML_Configuration  The configuration object.
+	 * @return SimpleSAML_Configuration The configuration object.
 	 */
 	public function getConfig() {
 
@@ -163,8 +165,8 @@ class SimpleSAML_IdP {
 	/**
 	 * Get SP name.
 	 *
-	 * @param string $assocId  The association identifier.
-	 * @return array|NULL  The name of the SP, as an associative array of language=>text, or NULL if this isn't an SP.
+	 * @param string $assocId The association identifier.
+	 * @return array|null The name of the SP, as an associative array of language => text, or null if this isn't an SP.
 	 */
 	public function getSPName($assocId) {
 		assert('is_string($assocId)');
@@ -202,7 +204,7 @@ class SimpleSAML_IdP {
 	/**
 	 * Add an SP association.
 	 *
-	 * @param array  The SP association.
+	 * @param array $association The SP association.
 	 */
 	public function addAssociation(array $association) {
 		assert('isset($association["id"])');
@@ -218,7 +220,7 @@ class SimpleSAML_IdP {
 	/**
 	 * Retrieve list of SP associations.
 	 *
-	 * @return array  List of SP associations.
+	 * @return array List of SP associations.
 	 */
 	public function getAssociations() {
 
@@ -230,7 +232,7 @@ class SimpleSAML_IdP {
 	/**
 	 * Remove an SP association.
 	 *
-	 * @param string $assocId  The association id.
+	 * @param string $assocId The association id.
 	 */
 	public function terminateAssociation($assocId) {
 		assert('is_string($assocId)');
@@ -243,7 +245,7 @@ class SimpleSAML_IdP {
 	/**
 	 * Is the current user authenticated?
 	 *
-	 * @return bool  TRUE if the user is authenticated, FALSE if not.
+	 * @return boolean True if the user is authenticated, false otherwise.
 	 */
 	public function isAuthenticated() {
 		return $this->authSource->isAuthenticated();
@@ -253,7 +255,7 @@ class SimpleSAML_IdP {
 	/**
 	 * Called after authproc has run.
 	 *
-	 * @param array $state  The authentication request state array.
+	 * @param array $state The authentication request state array.
 	 */
 	public static function postAuthProc(array $state) {
 		assert('is_callable($state["Responder"])');
@@ -272,7 +274,9 @@ class SimpleSAML_IdP {
 	/**
 	 * The user is authenticated.
 	 *
-	 * @param array $state  The authentication request state arrray.
+	 * @param array $state The authentication request state array.
+	 *
+	 * @throws SimpleSAML_Error_Exception If we are not authenticated.
 	 */
 	public static function postAuth(array $state) {
 
@@ -317,7 +321,9 @@ class SimpleSAML_IdP {
 	 *
 	 * This function authenticates the user.
 	 *
-	 * @param array &$state  The authentication request state.
+	 * @param array &$state The authentication request state.
+	 *
+	 * @throws SimpleSAML_Error_NoPassive If we were asked to do passive authentication.
 	 */
 	private function authenticate(array &$state) {
 
@@ -330,15 +336,14 @@ class SimpleSAML_IdP {
 
 
 	/**
-	 * Reuthenticate the user.
+	 * Re-authenticate the user.
 	 *
-	 * This function reauthenticates an user with an existing session. This
-	 * gives the authentication source a chance to do additional work when
-	 * reauthenticating for SSO.
+	 * This function re-authenticates an user with an existing session. This gives the authentication source a chance
+	 * to do additional work when re-authenticating for SSO.
 	 *
 	 * Note: This function is not used when ForceAuthn=true.
 	 *
-	 * @param array &$state  The authentication request state.
+	 * @param array &$state The authentication request state.
 	 */
 	private function reauthenticate(array &$state) {
 
@@ -358,7 +363,7 @@ class SimpleSAML_IdP {
 	/**
 	 * Process authentication requests.
 	 *
-	 * @param array &$state  The authentication request state.
+	 * @param array &$state The authentication request state.
 	 */
 	public function handleAuthenticationRequest(array &$state) {
 		assert('isset($state["Responder"])');
@@ -405,7 +410,9 @@ class SimpleSAML_IdP {
 	/**
 	 * Find the logout handler of this IdP.
 	 *
-	 * @return string  The logout handler class.
+	 * @return string The logout handler class.
+	 *
+	 * @throws SimpleSAML_Error_Exception If we cannot find a logout handler.
 	 */
 	public function getLogoutHandler() {
 
@@ -432,7 +439,7 @@ class SimpleSAML_IdP {
 	 *
 	 * This function will never return.
 	 *
-	 * @param array &$state  The logout request state.
+	 * @param array &$state The logout request state.
 	 */
 	public function finishLogout(array &$state) {
 		assert('isset($state["Responder"])');
@@ -448,8 +455,9 @@ class SimpleSAML_IdP {
 	 *
 	 * This function will never return.
 	 *
-	 * @param array &$state  The logout request state.
-	 * @param string|NULL $assocId  The association we received the logout request from, or NULL if there was no association.
+	 * @param array &$state The logout request state.
+	 * @param string|null $assocId The association we received the logout request from, or null if there was no
+	 * association.
 	 */
 	public function handleLogoutRequest(array &$state, $assocId) {
 		assert('isset($state["Responder"])');
@@ -483,9 +491,9 @@ class SimpleSAML_IdP {
 	 *
 	 * This function will never return.
 	 *
-	 * @param string $assocId  The association that is terminated.
-	 * @param string|NULL $relayState  The RelayState from the start of the logout.
-	 * @param SimpleSAML_Error_Exception|NULL $error  The error that occurred during session termination (if any).
+	 * @param string $assocId The association that is terminated.
+	 * @param string|null $relayState The RelayState from the start of the logout.
+	 * @param SimpleSAML_Error_Exception|null $error The error that occurred during session termination (if any).
 	 */
 	public function handleLogoutResponse($assocId, $relayState, SimpleSAML_Error_Exception $error = NULL) {
 		assert('is_string($assocId)');
@@ -506,7 +514,7 @@ class SimpleSAML_IdP {
 	 *
 	 * This function never returns.
 	 *
-	 * @param string $url  The URL the user should be returned to after logout.
+	 * @param string $url The URL the user should be returned to after logout.
 	 */
 	public function doLogoutRedirect($url) {
 		assert('is_string($url)');
@@ -526,7 +534,8 @@ class SimpleSAML_IdP {
 	 *
 	 * This function never returns.
 	 *
-	 * @param array &$state  The logout state from doLogoutRedirect().
+	 * @param SimpleSAML_IdP $idp Deprecated. Will be removed.
+	 * @param array &$state The logout state from doLogoutRedirect().
 	 */
 	public static function finishLogoutRedirect(SimpleSAML_IdP $idp, array $state) {
 		assert('isset($state["core:Logout:URL"])');
