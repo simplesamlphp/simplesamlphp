@@ -4,7 +4,7 @@
  * Helper class for accessing information about modules.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Module {
 
@@ -12,10 +12,10 @@ class SimpleSAML_Module {
 	/**
 	 * Retrieve the base directory for a module.
 	 *
-	 * The returned path name will be an absoulte path.
+	 * The returned path name will be an absolute path.
 	 *
-	 * @param string $module  Name of the module
-	 * @return string  The base directory of a module.
+	 * @param string $module Name of the module
+	 * @return string The base directory of a module.
 	 */
 	public static function getModuleDir($module) {
 		$baseDir = dirname(dirname(dirname(__FILE__))) . '/modules';
@@ -28,10 +28,12 @@ class SimpleSAML_Module {
 	/**
 	 * Determine whether a module is enabled.
 	 *
-	 * Will return FALSE if the given module doesn't exists.
+	 * Will return false if the given module doesn't exists.
 	 *
-	 * @param string $module  Name of the module
-	 * @return bool  TRUE if the given module is enabled, FALSE if not.
+	 * @param string $module Name of the module
+	 * @return bool True if the given module is enabled, false otherwise.
+	 *
+	 * @throws Exception If module.enable is set and is not boolean.
 	 */
 	public static function isModuleEnabled($module) {
 
@@ -71,7 +73,9 @@ class SimpleSAML_Module {
 	/**
 	 * Get available modules.
 	 *
-	 * @return array  One string for each module.
+	 * @return array One string for each module.
+	 *
+	 * @throws Exception If we cannot open the module's directory.
 	 */
 	public static function getModules() {
 
@@ -113,10 +117,12 @@ class SimpleSAML_Module {
 	 *
 	 * An exception will be thrown if the class can't be resolved.
 	 *
-	 * @param string $id  The string we should resolve.
-	 * @param string $type  The type of the class.
-	 * @param string|NULL $subclass  The class should be a subclass of this class. Optional.
-	 * @return string  The classname.
+	 * @param string $id The string we should resolve.
+	 * @param string $type The type of the class.
+	 * @param string|null $subclass  The class should be a subclass of this class. Optional.
+	 * @return string The classname.
+	 *
+	 * @throws Exception If the class cannot be resolved.
 	 */
 	public static function resolveClass($id, $type, $subclass = NULL) {
 		assert('is_string($id)');
@@ -147,9 +153,9 @@ class SimpleSAML_Module {
 	 *
 	 * This function creates an absolute URL to a resource stored under ".../modules/<module>/www/".
 	 *
-	 * @param string $resource  Resource path, on the form "<module name>/<resource>"
-	 * @param array $parameters  Extra parameters which should be added to the URL. Optional.
-	 * @return string  The absolute URL to the given resource.
+	 * @param string $resource Resource path, on the form "<module name>/<resource>"
+	 * @param array $parameters Extra parameters which should be added to the URL. Optional.
+	 * @return string The absolute URL to the given resource.
 	 */
 	public static function getModuleURL($resource, array $parameters = array()) {
 		assert('is_string($resource)');
@@ -168,8 +174,8 @@ class SimpleSAML_Module {
 	 *
 	 * This function iterates over all enabled modules and calls a hook in each module.
 	 *
-	 * @param string $hook  The name of the hook.
-	 * @param mixed &$data  The data which should be passed to each hook. Will be passed as a reference.
+	 * @param string $hook The name of the hook.
+	 * @param mixed &$data The data which should be passed to each hook. Will be passed as a reference.
 	 */
 	public static function callHooks($hook, &$data = NULL) {
 		assert('is_string($hook)');
