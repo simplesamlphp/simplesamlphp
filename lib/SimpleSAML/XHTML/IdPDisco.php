@@ -505,15 +505,14 @@ class SimpleSAML_XHTML_IdPDisco
 
 
     /**
-     * Handles a request to this discovery service.
+     * Check if an IdP is set or if the request is passive, and redirect accordingly.
      *
-     * The IdP disco parameters should be set before calling this function.
+     * @return void If there is no IdP targeted and this is not a passive request.
      */
-    public function handleRequest()
+    protected function start()
     {
         $idp = $this->getTargetIdp();
         if ($idp !== null) {
-
             $extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
                 $this->log('Choice made ['.$idp.'] (Forwarding to external discovery storage)');
@@ -530,15 +529,23 @@ class SimpleSAML_XHTML_IdPDisco
                 );
                 \SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL, array($this->returnIdParam => $idp));
             }
-
-            return;
         }
 
         if ($this->isPassive) {
             $this->log('Choice not made. (Redirecting the user back without answer)');
             \SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL);
-            return;
         }
+    }
+
+
+    /**
+     * Handles a request to this discovery service.
+     *
+     * The IdP disco parameters should be set before calling this function.
+     */
+    public function handleRequest()
+    {
+        $this->start();
 
         // no choice made. Show discovery service page
         $idpList = $this->getIdPList();

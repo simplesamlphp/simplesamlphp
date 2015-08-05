@@ -185,34 +185,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	 * The IdP disco parameters should be set before calling this function.
 	 */
 	public function handleRequest() {
-
-		$idp = $this->getTargetIdp();
-		if($idp !== NULL) {
-
-			$extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage',NULL);
-			if ($extDiscoveryStorage !== NULL) {
-				$this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
-				\SimpleSAML\Utils\HTTP::redirectTrustedURL($extDiscoveryStorage, array(
-					'entityID' => $this->spEntityId,
-					'IdPentityID' => $idp,
-					'returnIDParam' => $this->returnIdParam,
-					'isPassive' => 'true',
-					'return' => $this->returnURL
-				));
-				
-			} else {
-				$this->log('Choice made [' . $idp . '] (Redirecting the user back. returnIDParam=' . $this->returnIdParam . ')');
-				\SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL, array($this->returnIdParam => $idp));
-			}
-			
-			return;
-		}
-		
-		if ($this->isPassive) {
-			$this->log('Choice not made. (Redirecting the user back without answer)');
-			\SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL);
-			return;
-		}
+		$this->start();
 
 		/* No choice made. Show discovery service page. */
 		$idpList = $this->getIdPList();
