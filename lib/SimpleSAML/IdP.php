@@ -367,11 +367,7 @@ class SimpleSAML_IdP
     {
         $sourceImpl = $this->authSource->getAuthSource();
         if ($sourceImpl === null) {
-            // backwards-compatibility with non-authsource IdP
-            foreach ($this->authSource->getAuthDataArray() as $k => $v) {
-                $state[$k] = $v;
-            }
-            return;
+            throw new SimpleSAML_Error_Exception('No such auth source defined.');
         }
 
         $sourceImpl->reauthenticate($state);
