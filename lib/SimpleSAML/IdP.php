@@ -362,6 +362,8 @@ class SimpleSAML_IdP
      * Note: This function is not used when ForceAuthn=true.
      *
      * @param array &$state The authentication request state.
+     *
+     * @throws SimpleSAML_Error_Exception If there is no auth source defined for this IdP.
      */
     private function reauthenticate(array &$state)
     {
