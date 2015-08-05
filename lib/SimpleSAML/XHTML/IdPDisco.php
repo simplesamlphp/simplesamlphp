@@ -7,14 +7,17 @@
  * Experimental support added for Extended IdP Metadata Discovery Protocol by Andreas 2008-08-28
  * More information: http://rnd.feide.no/content/extended-identity-provider-discovery-service-protocol
  *
+ * @author Jaime Pérez <jaime.perez@uninett.no>, UNINETT AS.
  * @author Olav Morken, UNINETT AS.
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_XHTML_IdPDisco {
 
 	/**
 	 * An instance of the configuration class.
+	 *
+	 * @var SimpleSAML_Configuration
 	 */
 	protected $config;
 
@@ -28,12 +31,16 @@ class SimpleSAML_XHTML_IdPDisco {
 
 	/**
 	 * An instance of the metadata handler, which will allow us to fetch metadata about IdPs.
+	 *
+	 * @var SimpleSAML_Metadata_MetaDataStorageHandler
 	 */
 	protected $metadata;
 
 
 	/**
 	 * The users session.
+	 *
+	 * @var SimpleSAML_Session
 	 */
 	protected $session;
 
@@ -48,17 +55,23 @@ class SimpleSAML_XHTML_IdPDisco {
 
 	/**
 	 * The entity id of the SP which accesses this IdP discovery service.
+	 *
+	 * @var string
 	 */
 	protected $spEntityId;
 	
 	/**
 	 * HTTP parameter from the request, indicating whether the discovery service
 	 * can interact with the user or not.
+	 *
+	 * @var boolean
 	 */
 	protected $isPassive;
 	
 	/**
-	 * The SP request to set the IdPentityID... 
+	 * The SP request to set the IdPentityID...
+	 *
+	 * @var string|null
 	 */
 	protected $setIdPentityID = NULL;
 
@@ -66,6 +79,8 @@ class SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * The name of the query parameter which should contain the users choice of IdP.
 	 * This option default to 'entityID' for Shibboleth compatibility.
+	 *
+	 * @var string
 	 */
 	protected $returnIdParam;
 
@@ -73,11 +88,15 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * The list of scoped idp's. The intersection between the metadata idpList
 	 * and scopedIDPList (given as a $_GET IDPList[] parameter) is presented to
 	 * the user. If the intersection is empty the metadata idpList is used.
+	 *
+	 * @var array
 	 */
 	protected $scopedIDPList = array();
 	
 	/**
 	 * The URL the user should be redirected to after choosing an IdP.
+	 *
+	 * @var string
 	 */
 	protected $returnURL;
 
@@ -85,11 +104,12 @@ class SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Initializes this discovery service.
 	 *
-	 * The constructor does the parsing of the request. If this is an invalid request, it will
-	 * throw an exception.
+	 * The constructor does the parsing of the request. If this is an invalid request, it will throw an exception.
 	 *
-	 * @param array $metadataSets  Array with metadata sets we find remote entities in.
-	 * @param string $instance  The name of this instance of the discovery service.
+	 * @param array $metadataSets Array with metadata sets we find remote entities in.
+	 * @param string $instance The name of this instance of the discovery service.
+	 *
+	 * @throws Exception If the request is invalid.
 	 */
 	public function __construct(array $metadataSets, $instance) {
 		assert('is_string($instance)');
@@ -151,7 +171,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * This is an helper function for logging messages. It will prefix the messages with our
 	 * discovery service type.
 	 *
-	 * @param $message  The message which should be logged.
+	 * @param string $message The message which should be logged.
 	 */
 	protected function log($message) {
 		SimpleSAML_Logger::info('idpDisco.' . $this->instance . ': ' . $message);
@@ -164,8 +184,8 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * This function will retrieve a cookie with the given name for the current discovery
 	 * service type.
 	 *
-	 * @param $name  The name of the cookie.
-	 * @return  The value of the cookie with the given name, or NULL if no cookie with that name exists.
+	 * @param string $name The name of the cookie.
+	 * @return string The value of the cookie with the given name, or NULL if no cookie with that name exists.
 	 */
 	protected function getCookie($name) {
 		$prefixedName = 'idpdisco_' . $this->instance . '_' . $name;
@@ -183,8 +203,8 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * This function will save a cookie with the given name and value for the current discovery
 	 * service type.
 	 *
-	 * @param $name  The name of the cookie.
-	 * @param $value  The value of the cookie.
+	 * @param string $name The name of the cookie.
+	 * @param string $value The value of the cookie.
 	 */
 	protected function setCookie($name, $value) {
 		$prefixedName = 'idpdisco_' . $this->instance . '_' . $name;
@@ -207,8 +227,8 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * Takes a string with the IdP entity id, and returns the entity id if it is valid, or
 	 * NULL if not.
 	 *
-	 * @param $idp  The entity id we want to validate. This can be NULL, in which case we will return NULL.
-	 * @return  The entity id if it is valid, NULL if not.
+	 * @param string|null $idp The entity id we want to validate. This can be NULL, in which case we will return NULL.
+	 * @return string|null The entity id if it is valid, NULL if not.
 	 */
 	protected function validateIdP($idp) {
 		if($idp === NULL) {
@@ -237,7 +257,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 *
 	 * This function finds out which IdP the user has manually chosen, if any.
 	 *
-	 * @return  The entity id of the IdP the user has chosen, or NULL if the user has made no choice.
+	 * @return string The entity id of the IdP the user has chosen, or NULL if the user has made no choice.
 	 */
 	protected function getSelectedIdP() {
 
@@ -275,7 +295,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Retrieve the users saved choice of IdP.
 	 *
-	 * @return  The entity id of the IdP the user has saved, or NULL if the user hasn't saved any choice.
+	 * @return string The entity id of the IdP the user has saved, or NULL if the user hasn't saved any choice.
 	 */
 	protected function getSavedIdP() {
 		if(!$this->config->getBoolean('idpdisco.enableremember', FALSE)) {
@@ -300,7 +320,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Retrieve the previous IdP the user used.
 	 *
-	 * @return  The entity id of the previous IdP the user used, or NULL if this is the first time.
+	 * @return string The entity id of the previous IdP the user used, or NULL if this is the first time.
 	 */
 	protected function getPreviousIdP() {
 		return $this->validateIdP($this->getCookie('lastidp'));
@@ -331,7 +351,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	 * This function will first look at the previous IdP the user has chosen. If the user
 	 * hasn't chosen an IdP before, it will look at the IP address.
 	 *
-	 * @return  The entity id of the IdP the user should most likely use.
+	 * @return string The entity id of the IdP the user should most likely use.
 	 */
 	protected function getRecommendedIdP() {
 
@@ -355,7 +375,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Save the current IdP choice to a cookie.
 	 *
-	 * @param string $idp  The entityID of the IdP.
+	 * @param string $idp The entityID of the IdP.
 	 */
 	protected function setPreviousIdP($idp) {
 		assert('is_string($idp)');
@@ -368,7 +388,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Determine whether the choice of IdP should be saved.
 	 *
-	 * @return  TRUE if the choice should be saved, FALSE if not.
+	 * @return boolean True if the choice should be saved, false otherwise.
 	 */
 	protected function saveIdP() {
 		if(!$this->config->getBoolean('idpdisco.enableremember', FALSE)) {
@@ -385,8 +405,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Determine which IdP the user should go to, if any.
 	 *
-	 * @return  The entity id of the IdP the user should be sent to, or NULL if the user
-	 *          should choose.
+	 * @return string The entity id of the IdP the user should be sent to, or NULL if the user should choose.
 	 */
 	protected function getTargetIdP() {
 
@@ -422,7 +441,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Retrieve the list of IdPs which are stored in the metadata.
 	 *
-	 * @return array  Array with entityid=>metadata mappings.
+	 * @return array An array with entityid => metadata mappings.
 	 */
 	protected function getIdPList() {
 
@@ -443,7 +462,7 @@ class SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Return the list of scoped idp
 	 *
-	 * @return array  Array of idp entities
+	 * @return array An array of IdP entities
 	 */
 	protected function getScopedIDPList() {
 		return $this->scopedIDPList;
@@ -469,7 +488,6 @@ class SimpleSAML_XHTML_IdPDisco {
 		}
 		return $list;
 	}
-
 
 
 	/**
