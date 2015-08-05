@@ -448,7 +448,30 @@ class SimpleSAML_XHTML_IdPDisco {
 	protected function getScopedIDPList() {
 		return $this->scopedIDPList;
 	}
-	
+
+
+	/**
+	 * Filter the list of IdPs.
+	 *
+	 * This method returns the IdPs that comply with the following conditions:
+	 *   - The IdP does not have the 'hide.from.discovery' configuration option.
+	 *
+	 * @param array $list An associative array containing metadata for the IdPs to apply the filtering to.
+	 *
+	 * @return array An associative array containing metadata for the IdPs that were not filtered out.
+	 */
+	protected function filter($list)
+	{
+		foreach ($list as $entity => $metadata) {
+			if (array_key_exists('hide.from.discovery', $metadata) && $metadata['hide.from.discovery'] === true) {
+				unset($list[$entity]);
+			}
+		}
+		return $list;
+	}
+
+
+
 	/**
 	 * Handles a request to this discovery service.
 	 *
@@ -487,6 +510,7 @@ class SimpleSAML_XHTML_IdPDisco {
 		/* No choice made. Show discovery service page. */
 
 		$idpList = $this->getIdPList();
+		$idpList = $this->filter($idpList);
 		$preferredIdP = $this->getRecommendedIdP();
 
 		$idpintersection = array_intersect(array_keys($idpList), $this->getScopedIDPList());
