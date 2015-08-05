@@ -41,10 +41,12 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 		/* Determine what we should sign - either the Response element or the Assertion. The default
 		 * is to sign the Assertion, but that can be overridden by the 'signresponse' option in the
 		 * SP metadata or 'saml20.signresponse' in the global configuration.
+		 *
+		 * TODO: neither 'signresponse' nor 'shib13.signresponse' are valid options any longer. Remove!
 		 */
 		$signResponse = FALSE;
 		if ($spmd->hasValue('signresponse')) {
-			$signResponse = $spmd->getBoolean['signresponse'];
+			$signResponse = $spmd->getBoolean('signresponse');
 		} else {
 			$signResponse = $this->configuration->getBoolean('shib13.signresponse', TRUE);
 		}
