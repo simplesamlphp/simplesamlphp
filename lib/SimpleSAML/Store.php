@@ -1,19 +1,18 @@
 <?php
 
 /**
- * Base class for datastores.
+ * Base class for data stores.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 abstract class SimpleSAML_Store {
 
 	/**
 	 * Our singleton instance.
 	 *
-	 * This is FALSE if the datastore isn't enabled, and NULL
-	 * if we haven't attempted to initialize it.
+	 * This is false if the data store isn't enabled, and null if we haven't attempted to initialize it.
 	 *
-	 * @var SimpleSAML_Store|FALSE|NULL
+	 * @var SimpleSAML_Store|boolean|null
 	 */
 	private static $instance;
 
@@ -21,7 +20,7 @@ abstract class SimpleSAML_Store {
 	/**
 	 * Retrieve our singleton instance.
 	 *
-	 * @return SimpleSAML_Store|FALSE  The datastore, or FALSE if it isn't enabled.
+	 * @return SimpleSAML_Store|boolean  The data store, or false if it isn't enabled.
 	 */
 	public static function getInstance() {
 
@@ -57,31 +56,31 @@ abstract class SimpleSAML_Store {
 
 
 	/**
-	 * Retrieve a value from the datastore.
+	 * Retrieve a value from the data store.
 	 *
-	 * @param string $type  The datatype.
-	 * @param string $key  The key.
-	 * @return mixed|NULL  The value.
+	 * @param string $type The data type.
+	 * @param string $key The key.
+	 * @return mixed|null The value.
 	 */
 	abstract public function get($type, $key);
 
 
 	/**
-	 * Save a value to the datastore.
+	 * Save a value to the data store.
 	 *
-	 * @param string $type  The datatype.
-	 * @param string $key  The key.
-	 * @param mixed $value  The value.
-	 * @param int|NULL $expire  The expiration time (unix timestamp), or NULL if it never expires.
+	 * @param string $type The data type.
+	 * @param string $key The key.
+	 * @param mixed $value The value.
+	 * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
 	 */
 	abstract public function set($type, $key, $value, $expire = NULL);
 
 
 	/**
-	 * Delete a value from the datastore.
+	 * Delete a value from the data store.
 	 *
-	 * @param string $type  The datatype.
-	 * @param string $key  The key.
+	 * @param string $type The data type.
+	 * @param string $key The key.
 	 */
 	abstract public function delete($type, $key);
 
