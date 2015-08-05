@@ -1,19 +1,23 @@
 <?php
 
 /**
- * Session storage in the datastore.
+ * Session storage in the data store.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_SessionHandlerStore extends SimpleSAML_SessionHandlerCookie {
 
 	/**
-	 * The datastore we save the session to.
+	 * The data store we save the session to.
+	 *
+	 * @var SimpleSAML_Store
 	 */
 	private $store;
 
 	/**
-	 * Initialize the session handlerstore.
+	 * Initialize the session.
+	 *
+	 * @param SimpleSAML_Store $store The store to use.
 	 */
 	protected function __construct(SimpleSAML_Store $store) {
 		parent::__construct();
@@ -23,10 +27,10 @@ class SimpleSAML_SessionHandlerStore extends SimpleSAML_SessionHandlerCookie {
 
 
 	/**
-	 * Load the session from the datastore.
+	 * Load a session from the data store.
 	 *
-	 * @param string|NULL $sessionId  The ID of the session we should load, or NULL to use the default.
-	 * @return SimpleSAML_Session|NULL  The session object, or NULL if it doesn't exist.
+	 * @param string|null $sessionId The ID of the session we should load, or null to use the default.
+	 * @return SimpleSAML_Session|null The session object, or null if it doesn't exist.
 	 */
 	public function loadSession($sessionId = NULL) {
 		assert('is_string($sessionId) || is_null($sessionId)');
@@ -46,9 +50,9 @@ class SimpleSAML_SessionHandlerStore extends SimpleSAML_SessionHandlerCookie {
 
 
 	/**
-	 * Save the current session to the datastore.
+	 * Save a session to the data store.
 	 *
-	 * @param SimpleSAML_Session $session  The session object we should save.
+	 * @param SimpleSAML_Session $session The session object we should save.
 	 */
 	public function saveSession(SimpleSAML_Session $session) {
 
