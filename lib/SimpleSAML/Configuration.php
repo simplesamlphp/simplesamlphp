@@ -110,18 +110,18 @@ class SimpleSAML_Configuration
         if (file_exists($filename)) {
             $config = 'UNINITIALIZED';
 
-            /* The file initializes a variable named '$config'. */
+            // the file initializes a variable named '$config'
             require($filename);
 
-            /* Check that $config is initialized to an array. */
+            // check that $config is initialized to an array
             if (!is_array($config)) {
                 throw new Exception('Invalid configuration file: '.$filename);
             }
         } elseif ($required) {
-            /* File does not exist, but is required. */
+            // file does not exist, but is required
             throw new Exception('Missing configuration file: '.$filename);
         } else {
-            /* File does not exist, but is optional. */
+            // file does not exist, but is optional
             $config = array();
         }
 
@@ -259,6 +259,10 @@ class SimpleSAML_Configuration
      *
      * TODO: remove.
      *
+     * @param string $path
+     * @param string $instancename
+     * @param string $configfilename
+     *
      * @see setConfigDir()
      * @deprecated This function is superseeded by the setConfigDir function.
      */
@@ -269,16 +273,17 @@ class SimpleSAML_Configuration
         assert('is_string($configfilename)');
 
         if ($instancename === 'simplesaml') {
-            /* For backwards compatibility. */
+            // for backwards compatibility
             self::setConfigDir($path, 'simplesaml');
         }
 
-        /* Check if we already have loaded the given config - return the existing instance if we have. */
+        // check if we already have loaded the given config - return the existing instance if we have
         if (array_key_exists($instancename, self::$instance)) {
             return self::$instance[$instancename];
         }
 
         self::$instance[$instancename] = self::loadFromFile($path.'/'.$configfilename, true);
+        return self::$instance[$instancename];
     }
 
 
@@ -286,6 +291,9 @@ class SimpleSAML_Configuration
      * Load a configuration file which is located in the same directory as this configuration file.
      *
      * TODO: remove.
+     *
+     * @param string $instancename
+     * @param string $filename
      *
      * @see getConfig()
      * @deprecated This function is superseeded by the getConfig() function.
@@ -296,7 +304,7 @@ class SimpleSAML_Configuration
         assert('is_string($filename)');
         assert('$this->filename !== NULL');
 
-        /* Check if we already have loaded the given config - return the existing instance if we have. */
+        // check if we already have loaded the given config - return the existing instance if we have
         if (array_key_exists($instancename, self::$instance)) {
             return self::$instance[$instancename];
         }
@@ -333,12 +341,13 @@ class SimpleSAML_Configuration
      */
     public function getValue($name, $default = null)
     {
-
-        /* Return the default value if the option is unset. */
+        // return the default value if the option is unset
         if (!array_key_exists($name, $this->configuration)) {
             if ($default === self::REQUIRED_OPTION) {
-                throw new Exception($this->location.': Could not retrieve the required option '.
-                    var_export($name, true));
+                throw new Exception(
+                    $this->location.': Could not retrieve the required option '.
+                    var_export($name, true)
+                );
             }
             return $default;
         }
@@ -369,7 +378,7 @@ class SimpleSAML_Configuration
      */
     public function hasValueOneOf($names)
     {
-        foreach ($names AS $name) {
+        foreach ($names as $name) {
             if ($this->hasValue($name)) {
                 return true;
             }
@@ -394,24 +403,26 @@ class SimpleSAML_Configuration
         $baseURL = $this->getString('baseurlpath', 'simplesaml/');
 
         if (preg_match('/^\*(.*)$/D', $baseURL, $matches)) {
-            /* deprecated behaviour, will be removed in the future */
+            // deprecated behaviour, will be removed in the future
             return \SimpleSAML\Utils\HTTP::getFirstPathElement(false).$matches[1];
         }
 
         if (preg_match('#^https?://[^/]*/(.*)$#', $baseURL, $matches)) {
-            /* we have a full url, we need to strip the path */
+            // we have a full url, we need to strip the path
             return $matches[1];
         } elseif ($baseURL === '' || $baseURL === '/') {
-            /* Root directory of site. */
+            // Root directory of site
             return '';
         } elseif (preg_match('#^/?([^/]?.*/)#D', $baseURL, $matches)) {
-            /* local path only */
+            // local path only
             return $matches[1];
         } else {
-            /* invalid format */
-            throw new SimpleSAML_Error_Exception('Incorrect format for option \'baseurlpath\'. Value is: "'.
+            // invalid format
+            throw new SimpleSAML_Error_Exception(
+                'Incorrect format for option \'baseurlpath\'. Value is: "'.
                 $this->getString('baseurlpath', 'simplesaml/').'". Valid format is in the form'.
-                ' [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/].');
+                ' [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/].'
+            );
         }
     }
 
@@ -434,8 +445,8 @@ class SimpleSAML_Configuration
 
         assert('is_string($path)');
 
-        /* Prepend path with basedir if it doesn't start with a slash or a Windows
-         * drive letter (e.g. "C:\"). We assume getBaseDir ends with a slash.
+        /* Prepend path with basedir if it doesn't start with a slash or a Windows drive letter (e.g. "C:\"). We assume
+         * getBaseDir ends with a slash.
          */
         if ($path[0] !== '/' &&
             !(preg_match('@^[a-z]:[\\\\/]@i', $path, $matches) && is_dir($matches[0]))
@@ -466,8 +477,7 @@ class SimpleSAML_Configuration
      */
     public function getPathValue($name, $default = null)
     {
-
-        /* Return the default value if the option is unset. */
+        // return the default value if the option is unset
         if (!array_key_exists($name, $this->configuration)) {
             $path = $default;
         } else {
@@ -493,12 +503,10 @@ class SimpleSAML_Configuration
      */
     public function getBaseDir()
     {
-        /* Check if a directory is configured in the configuration
-         * file.
-         */
+        // check if a directory is configured in the configuration file
         $dir = $this->getString('basedir', null);
         if ($dir !== null) {
-            /* Add trailing slash if it is missing. */
+            // add trailing slash if it is missing
             if (substr($dir, -1) !== '/') {
                 $dir .= '/';
             }
@@ -506,10 +514,7 @@ class SimpleSAML_Configuration
             return $dir;
         }
 
-        /* The directory wasn't set in the configuration file. Our
-         * path is <base directory>/lib/SimpleSAML/Configuration.php
-         */
-
+        // the directory wasn't set in the configuration file, path is <base directory>/lib/SimpleSAML/Configuration.php
         $dir = __FILE__;
         assert('basename($dir) === "Configuration.php"');
 
@@ -551,15 +556,15 @@ class SimpleSAML_Configuration
         $ret = $this->getValue($name, $default);
 
         if ($ret === $default) {
-            /* The option wasn't found, or it matches the default value. In any case, return
-             * this value.
-             */
+            // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
         if (!is_bool($ret)) {
-            throw new Exception($this->location.': The option '.var_export($name, true).
-                ' is not a valid boolean value.');
+            throw new Exception(
+                $this->location.': The option '.var_export($name, true).
+                ' is not a valid boolean value.'
+            );
         }
 
         return $ret;
@@ -589,15 +594,15 @@ class SimpleSAML_Configuration
         $ret = $this->getValue($name, $default);
 
         if ($ret === $default) {
-            /* The option wasn't found, or it matches the default value. In any case, return
-             * this value.
-             */
+            // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
         if (!is_string($ret)) {
-            throw new Exception($this->location.': The option '.var_export($name, true).
-                ' is not a valid string value.');
+            throw new Exception(
+                $this->location.': The option '.var_export($name, true).
+                ' is not a valid string value.'
+            );
         }
 
         return $ret;
@@ -627,15 +632,15 @@ class SimpleSAML_Configuration
         $ret = $this->getValue($name, $default);
 
         if ($ret === $default) {
-            /* The option wasn't found, or it matches the default value. In any case, return
-             * this value.
-             */
+            // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
         if (!is_int($ret)) {
-            throw new Exception($this->location.': The option '.var_export($name, true).
-                ' is not a valid integer value.');
+            throw new Exception(
+                $this->location.': The option '.var_export($name, true).
+                ' is not a valid integer value.'
+            );
         }
 
         return $ret;
@@ -671,16 +676,16 @@ class SimpleSAML_Configuration
         $ret = $this->getInteger($name, $default);
 
         if ($ret === $default) {
-            /* The option wasn't found, or it matches the default value. In any case, return
-             * this value.
-             */
+            // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
         if ($ret < $minimum || $ret > $maximum) {
-            throw new Exception($this->location.': Value of option '.var_export($name, true).
+            throw new Exception(
+                $this->location.': Value of option '.var_export($name, true).
                 ' is out of range. Value is '.$ret.', allowed range is ['
-                .$minimum.' - '.$maximum.']');
+                .$minimum.' - '.$maximum.']'
+            );
         }
 
         return $ret;
@@ -715,9 +720,7 @@ class SimpleSAML_Configuration
 
         $ret = $this->getValue($name, $default);
         if ($ret === $default) {
-            /* The option wasn't found, or it matches the default value. In any case, return
-             * this value.
-             */
+            // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
@@ -728,9 +731,11 @@ class SimpleSAML_Configuration
             }
             $strValues = implode(', ', $strValues);
 
-            throw new Exception($this->location.': Invalid value given for the option '.
+            throw new Exception(
+                $this->location.': Invalid value given for the option '.
                 var_export($name, true).'. It should have one of the following values: '.
-                $strValues.'; but it had the following value: '.var_export($ret, true));
+                $strValues.'; but it had the following value: '.var_export($ret, true)
+            );
         }
 
         return $ret;
@@ -760,15 +765,12 @@ class SimpleSAML_Configuration
         $ret = $this->getValue($name, $default);
 
         if ($ret === $default) {
-            /* The option wasn't found, or it matches the default value. In any case, return
-             * this value.
-             */
+            // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
         if (!is_array($ret)) {
-            throw new Exception($this->location.': The option '.var_export($name, true).
-                ' is not an array.');
+            throw new Exception($this->location.': The option '.var_export($name, true).' is not an array.');
         }
 
         return $ret;
@@ -794,9 +796,7 @@ class SimpleSAML_Configuration
         $ret = $this->getValue($name, $default);
 
         if ($ret === $default) {
-            /* The option wasn't found, or it matches the default value. In any case, return
-             * this value.
-             */
+            // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
@@ -829,16 +829,16 @@ class SimpleSAML_Configuration
         $ret = $this->getArrayize($name, $default);
 
         if ($ret === $default) {
-            /* The option wasn't found, or it matches the default value. In any case, return
-             * this value.
-             */
+            // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
         foreach ($ret as $value) {
             if (!is_string($value)) {
-                throw new Exception($this->location.': The option '.var_export($name, true).
-                    ' must be a string or an array of strings.');
+                throw new Exception(
+                    $this->location.': The option '.var_export($name, true).
+                    ' must be a string or an array of strings.'
+                );
             }
         }
 
@@ -871,15 +871,15 @@ class SimpleSAML_Configuration
         $ret = $this->getValue($name, $default);
 
         if ($ret === $default) {
-            /* The option wasn't found, or it matches the default value. In any case, return
-             * this value.
-             */
+            // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
         if (!is_array($ret)) {
-            throw new Exception($this->location.': The option '.var_export($name, true).
-                ' is not an array.');
+            throw new Exception(
+                $this->location.': The option '.var_export($name, true).
+                ' is not an array.'
+            );
         }
 
         return self::loadFromArray($ret, $this->location.'['.var_export($name, true).']');
@@ -912,15 +912,15 @@ class SimpleSAML_Configuration
         $ret = $this->getValue($name, $default);
 
         if ($ret === $default) {
-            /* The option wasn't found, or it matches the default value. In any case, return
-             * this value.
-             */
+            // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
         if (!is_array($ret)) {
-            throw new Exception($this->location.': The option '.var_export($name, true).
-                ' is not an array.');
+            throw new Exception(
+                $this->location.': The option '.var_export($name, true).
+                ' is not an array.'
+            );
         }
 
         $out = array();
@@ -947,7 +947,6 @@ class SimpleSAML_Configuration
      */
     public function getOptions()
     {
-
         return array_keys($this->configuration);
     }
 
@@ -959,7 +958,6 @@ class SimpleSAML_Configuration
      */
     public function toArray()
     {
-
         return $this->configuration;
     }
 
@@ -1016,14 +1014,14 @@ class SimpleSAML_Configuration
         $loc = $this->location.'['.var_export($endpointType, true).']:';
 
         if (!array_key_exists($endpointType, $this->configuration)) {
-            /* No endpoints of the given type. */
+            // no endpoints of the given type
             return array();
         }
 
 
         $eps = $this->configuration[$endpointType];
         if (is_string($eps)) {
-            /* For backwards-compatibility. */
+            // for backwards-compatibility
             $eps = array($eps);
         } elseif (!is_array($eps)) {
             throw new Exception($loc.': Expected array or string.');
@@ -1034,7 +1032,7 @@ class SimpleSAML_Configuration
             $iloc = $loc.'['.var_export($i, true).']';
 
             if (is_string($ep)) {
-                /* For backwards-compatibility. */
+                // for backwards-compatibility
                 $ep = array(
                     'Location' => $ep,
                     'Binding'  => $this->getDefaultBinding($endpointType),
@@ -1164,9 +1162,7 @@ class SimpleSAML_Configuration
 
         $ret = $this->getValue($name, $default);
         if ($ret === $default) {
-            /* The option wasn't found, or it matches the default value. In any case, return
-             * this value.
-             */
+            // the option wasn't found, or it matches the default value. In any case, return this value
             return $ret;
         }
 
@@ -1248,7 +1244,7 @@ class SimpleSAML_Configuration
                 throw new Exception($this->location.': Unable to load certificate/public key from file "'.$file.'".');
             }
 
-            /* Extract certificate data (if this is a certificate). */
+            // extract certificate data (if this is a certificate)
             $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
             if (!preg_match($pattern, $data, $matches)) {
                 throw new SimpleSAML_Error_Exception(
@@ -1273,5 +1269,4 @@ class SimpleSAML_Configuration
             return null;
         }
     }
-
 }
