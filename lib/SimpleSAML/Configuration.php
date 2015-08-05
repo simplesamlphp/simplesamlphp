@@ -5,28 +5,34 @@
  * Configuration of SimpleSAMLphp
  *
  * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Configuration
 {
 
     /**
      * A default value which means that the given option is required.
+     *
+     * @var string
      */
     const REQUIRED_OPTION = '___REQUIRED_OPTION___';
 
 
     /**
      * Associative array with mappings from instance-names to configuration objects.
+     *
+     * @var array
      */
     private static $instance = array();
 
 
     /**
-     * Configration directories.
+     * Configuration directories.
      *
      * This associative array contains the mappings from configuration sets to
      * configuration directories.
+     *
+     * @var array
      */
     private static $configDirs = array();
 
@@ -35,24 +41,32 @@ class SimpleSAML_Configuration
      * Cache of loaded configuration files.
      *
      * The index in the array is the full path to the file.
+     *
+     * @var array
      */
     private static $loadedConfigs = array();
 
 
     /**
      * The configuration array.
+     *
+     * @var array
      */
     private $configuration;
 
 
     /**
      * The location which will be given when an error occurs.
+     *
+     * @var string
      */
     private $location;
 
 
     /**
      * The file this configuration was loaded from.
+     *
+     * @var string|null
      */
     private $filename = null;
 
@@ -60,7 +74,7 @@ class SimpleSAML_Configuration
     /**
      * Initializes a configuration from the given array.
      *
-     * @param array  $config The configuration array.
+     * @param array $config The configuration array.
      * @param string $location The location which will be given when an error occurs.
      */
     public function __construct($config, $location)
@@ -77,10 +91,12 @@ class SimpleSAML_Configuration
      * Load the given configuration file.
      *
      * @param string $filename The full path of the configuration file.
-     * @param bool   $required Whether the file is required.
+     * @param bool $required Whether the file is required.
      *
-     * @return SimpleSAML_Configuration  The configuration file. An exception will be thrown if the
+     * @return SimpleSAML_Configuration The configuration file. An exception will be thrown if the
      *                                   configuration file is missing.
+     *
+     * @throws Exception If the configuration file is invalid or missing.
      */
     private static function loadFromFile($filename, $required)
     {
@@ -138,6 +154,9 @@ class SimpleSAML_Configuration
      *
      * @param string $filename The name of the configuration file.
      * @param string $configSet The configuration set. Optional, defaults to 'simplesaml'.
+     *
+     * @return SimpleSAML_Configuration The SimpleSAML_Configuration object.
+     * @throws Exception If the configuration set is not initialized.
      */
     public static function getConfig($filename = 'config.php', $configSet = 'simplesaml')
     {
@@ -166,7 +185,8 @@ class SimpleSAML_Configuration
      * @param string $filename The name of the configuration file.
      * @param string $configSet The configuration set. Optional, defaults to 'simplesaml'.
      *
-     * @return SimpleSAML_Configuration  A configuration object.
+     * @return SimpleSAML_Configuration A configuration object.
+     * @throws Exception If the configuration set is not initialized.
      */
     public static function getOptionalConfig($filename = 'config.php', $configSet = 'simplesaml')
     {
@@ -193,7 +213,7 @@ class SimpleSAML_Configuration
      * @param array  $config The configuration array.
      * @param string $location The location which will be given when an error occurs. Optional.
      *
-     * @return SimpleSAML_Configuration  The configuration object.
+     * @return SimpleSAML_Configuration The configuration object.
      */
     public static function loadFromArray($config, $location = '[ARRAY]')
     {
@@ -213,9 +233,11 @@ class SimpleSAML_Configuration
      * If no configuration file with the given instance name is found, an exception will
      * be thrown.
      *
-     * @param string $instancename The instance name of the configuration file. Depreceated.
+     * @param string $instancename The instance name of the configuration file. Deprecated.
      *
-     * @return SimpleSAML_Configuration  The configuration object.
+     * @return SimpleSAML_Configuration The configuration object.
+     *
+     * @throws Exception If the configuration with $instancename name is not initialized.
      */
     public static function getInstance($instancename = 'simplesaml')
     {
@@ -235,8 +257,10 @@ class SimpleSAML_Configuration
     /**
      * Initialize a instance name with the given configuration file.
      *
+     * TODO: remove.
+     *
      * @see setConfigDir()
-     * @depreceated  This function is superseeded by the setConfigDir function.
+     * @deprecated This function is superseeded by the setConfigDir function.
      */
     public static function init($path, $instancename = 'simplesaml', $configfilename = 'config.php')
     {
@@ -261,8 +285,10 @@ class SimpleSAML_Configuration
     /**
      * Load a configuration file which is located in the same directory as this configuration file.
      *
+     * TODO: remove.
+     *
      * @see getConfig()
-     * @depreceated  This function is superseeded by the getConfig() function.
+     * @deprecated This function is superseeded by the getConfig() function.
      */
     public function copyFromBase($instancename, $filename)
     {
@@ -283,7 +309,7 @@ class SimpleSAML_Configuration
 
 
     /**
-     * Retrieve the current version of simpleSAMLphp.
+     * Retrieve the current version of SimpleSAMLphp.
      *
      * @return string
      */
@@ -297,11 +323,13 @@ class SimpleSAML_Configuration
      * Retrieve a configuration option set in config.php.
      *
      * @param string $name Name of the configuration option.
-     * @param mixed  $default Default value of the configuration option. This parameter will default to NULL if not
+     * @param mixed  $default Default value of the configuration option. This parameter will default to null if not
      *                        specified. This can be set to SimpleSAML_Configuration::REQUIRED_OPTION, which will
      *                        cause an exception to be thrown if the option isn't found.
      *
      * @return mixed The configuration option with name $name, or $default if the option was not found.
+     *
+     * @throws Exception If the required option cannot be retrieved.
      */
     public function getValue($name, $default = null)
     {
@@ -351,14 +379,15 @@ class SimpleSAML_Configuration
 
 
     /**
-     * Retrieve the absolute path of the simpleSAMLphp installation,
-     * relative to the root of the website.
+     * Retrieve the absolute path of the SimpleSAMLphp installation, relative to the root of the website.
      *
      * For example: simplesaml/
      *
      * The path will always end with a '/' and never have a leading slash.
      *
-     * @return string  The absolute path relative to the root of the website.
+     * @return string The absolute path relative to the root of the website.
+     *
+     * @throws SimpleSAML_Error_Exception If the format of 'baseurlpath' is incorrect.
      */
     public function getBaseURL()
     {
@@ -388,16 +417,14 @@ class SimpleSAML_Configuration
 
 
     /**
-     * This function resolves a path which may be relative to the
-     * simpleSAMLphp base directory.
+     * This function resolves a path which may be relative to the SimpleSAMLphp base directory.
      *
      * The path will never end with a '/'.
      *
-     * @param string|null $path The path we should resolve. This option may be NULL.
+     * @param string|null $path The path we should resolve. This option may be null.
      *
-     * @return string|null $path if $path is an absolute path, or $path prepended with
-     *         the base directory of this simpleSAMLphp installation. We
-     *         will return NULL if $path is NULL.
+     * @return string|null $path if $path is an absolute path, or $path prepended with the base directory of this
+     * SimpleSAMLphp installation. We will return NULL if $path is null.
      */
     public function resolvePath($path)
     {
@@ -425,18 +452,17 @@ class SimpleSAML_Configuration
 
     /**
      * Retrieve a path configuration option set in config.php.
-     * The function will always return an absolute path unless the
-     * option is not set. It will then return the default value.
      *
-     * It checks if the value starts with a slash, and prefixes it
-     * with the value from getBaseDir if it doesn't.
+     * The function will always return an absolute path unless the option is not set. It will then return the default
+     * value.
      *
-     * @param string      $name Name of the configuration option.
-     * @param string|null $default Default value of the configuration option.
-     *        This parameter will default to NULL if not specified.
+     * It checks if the value starts with a slash, and prefixes it with the value from getBaseDir if it doesn't.
      *
-     * @return string|null The path configuration option with name $name, or $default if
-     *  the option was not found.
+     * @param string $name Name of the configuration option.
+     * @param string|null $default Default value of the configuration option. This parameter will default to null if
+     * not specified.
+     *
+     * @return string|null The path configuration option with name $name, or $default if the option was not found.
      */
     public function getPathValue($name, $default = null)
     {
@@ -457,13 +483,13 @@ class SimpleSAML_Configuration
 
 
     /**
-     * Retrieve the base directory for this simpleSAMLphp installation.
-     * This function first checks the 'basedir' configuration option. If
-     * this option is undefined or NULL, then we fall back to looking at
-     * the current filename.
+     * Retrieve the base directory for this SimpleSAMLphp installation.
      *
-     * @return string The absolute path to the base directory for this simpleSAMLphp
-     *  installation. This path will always end with a slash.
+     * This function first checks the 'basedir' configuration option. If this option is undefined or null, then we
+     * fall back to looking at the current filename.
+     *
+     * @return string The absolute path to the base directory for this SimpleSAMLphp installation. This path will
+     * always end with a slash.
      */
     public function getBaseDir()
     {
@@ -505,16 +531,18 @@ class SimpleSAML_Configuration
     /**
      * This function retrieves a boolean configuration option.
      *
-     * An exception will be thrown if this option isn't a boolean, or if this option isn't found, and no
-     * default value is given.
+     * An exception will be thrown if this option isn't a boolean, or if this option isn't found, and no default value
+     * is given.
      *
      * @param string $name The name of the option.
      * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
      *                  required if this parameter isn't given. The default value can be any value, including
-     *                  NULL.
+     *                  null.
      *
      * @return boolean|mixed The option with the given name, or $default if the option isn't found and $default is
      *     specified.
+     *
+     * @throws Exception If the option is not boolean.
      */
     public function getBoolean($name, $default = self::REQUIRED_OPTION)
     {
@@ -541,16 +569,18 @@ class SimpleSAML_Configuration
     /**
      * This function retrieves a string configuration option.
      *
-     * An exception will be thrown if this option isn't a string, or if this option isn't found, and no
-     * default value is given.
+     * An exception will be thrown if this option isn't a string, or if this option isn't found, and no default value
+     * is given.
      *
      * @param string $name The name of the option.
      * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
      *                  required if this parameter isn't given. The default value can be any value, including
-     *                  NULL.
+     *                  null.
      *
      * @return string|mixed The option with the given name, or $default if the option isn't found and $default is
      *     specified.
+     *
+     * @throws Exception If the option is not a string.
      */
     public function getString($name, $default = self::REQUIRED_OPTION)
     {
@@ -577,16 +607,18 @@ class SimpleSAML_Configuration
     /**
      * This function retrieves an integer configuration option.
      *
-     * An exception will be thrown if this option isn't an integer, or if this option isn't found, and no
-     * default value is given.
+     * An exception will be thrown if this option isn't an integer, or if this option isn't found, and no default value
+     * is given.
      *
      * @param string $name The name of the option.
      * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
      *                  required if this parameter isn't given. The default value can be any value, including
-     *                  NULL.
+     *                  null.
      *
      * @return int|mixed The option with the given name, or $default if the option isn't found and $default is
-     *     specified.
+     * specified.
+     *
+     * @throws Exception If the option is not an integer.
      */
     public function getInteger($name, $default = self::REQUIRED_OPTION)
     {
@@ -623,10 +655,12 @@ class SimpleSAML_Configuration
      * @param int    $maximum The largest value which is allowed.
      * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
      *                  required if this parameter isn't given. The default value can be any value, including
-     *                  NULL.
+     *                  null.
      *
      * @return int|mixed The option with the given name, or $default if the option isn't found and $default is
      *     specified.
+     *
+     * @throws Exception If the option is not in the range specified.
      */
     public function getIntegerRange($name, $minimum, $maximum, $default = self::REQUIRED_OPTION)
     {
@@ -668,9 +702,11 @@ class SimpleSAML_Configuration
      * @param array  $allowedValues The values the option is allowed to take, as an array.
      * @param mixed  $default The default value which will be returned if the option isn't found. If this parameter
      *                  isn't given, the option will be considered to be mandatory. The default value can be
-     *                  any value, including NULL.
+     *                  any value, including null.
      *
      * @return mixed The option with the given name, or $default if the option isn't found adn $default is given.
+     *
+     * @throws Exception If the option does not have any of the allowed values.
      */
     public function getValueValidate($name, $allowedValues, $default = self::REQUIRED_OPTION)
     {
@@ -710,9 +746,12 @@ class SimpleSAML_Configuration
      * @param string $name The name of the option.
      * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
      *                       required if this parameter isn't given. The default value can be any value, including
-     *                       NULL.
+     *                       null.
      *
-     * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
+     * @return array|mixed The option with the given name, or $default if the option isn't found and $default is
+     * specified.
+     *
+     * @throws Exception If the option is not an array.
      */
     public function getArray($name, $default = self::REQUIRED_OPTION)
     {
@@ -744,7 +783,7 @@ class SimpleSAML_Configuration
      * @param string $name The name of the option.
      * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
      *                       required if this parameter isn't given. The default value can be any value, including
-     *                       NULL.
+     *                       null.
      *
      * @return array The option with the given name, or $default if the option isn't found and $default is specified.
      */
@@ -777,9 +816,11 @@ class SimpleSAML_Configuration
      * @param string $name The name of the option.
      * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
      *                       required if this parameter isn't given. The default value can be any value, including
-     *                       NULL.
+     *                       null.
      *
      * @return array The option with the given name, or $default if the option isn't found and $default is specified.
+     *
+     * @throws Exception If the option is not a string or an array of strings.
      */
     public function getArrayizeString($name, $default = self::REQUIRED_OPTION)
     {
@@ -808,18 +849,20 @@ class SimpleSAML_Configuration
     /**
      * Retrieve an array as a SimpleSAML_Configuration object.
      *
-     * This function will load the value of an option into a SimpleSAML_Configuration
-     * object. The option must contain an array.
+     * This function will load the value of an option into a SimpleSAML_Configuration object. The option must contain
+     * an array.
      *
-     * An exception will be thrown if this option isn't an array, or if this option
-     * isn't found, and no default value is given.
+     * An exception will be thrown if this option isn't an array, or if this option isn't found, and no default value
+     * is given.
      *
      * @param string $name The name of the option.
      * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
      *                        required if this parameter isn't given. The default value can be any value, including
-     *                        NULL.
+     *                        null.
      *
      * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
+     *
+     * @throws Exception If the option is not an array.
      */
     public function getConfigItem($name, $default = self::REQUIRED_OPTION)
     {
@@ -846,20 +889,21 @@ class SimpleSAML_Configuration
     /**
      * Retrieve an array of arrays as an array of SimpleSAML_Configuration objects.
      *
-     * This function will retrieve an option containing an array of arrays, and create an
-     * array of SimpleSAML_Configuration objects from that array. The indexes in the new
-     * array will be the same as the original indexes, but the values will be
-     * SimpleSAML_Configuration objects.
+     * This function will retrieve an option containing an array of arrays, and create an array of
+     * SimpleSAML_Configuration objects from that array. The indexes in the new array will be the same as the original
+     * indexes, but the values will be SimpleSAML_Configuration objects.
      *
-     * An exception will be thrown if this option isn't an array of arrays, or if this option
-     * isn't found, and no default value is given.
+     * An exception will be thrown if this option isn't an array of arrays, or if this option isn't found, and no
+     * default value is given.
      *
      * @param string $name The name of the option.
      * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
      *                        required if this parameter isn't given. The default value can be any value, including
-     *                        NULL.
+     *                        null.
      *
      * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
+     *
+     * @throws Exception If the value of this element is not an array.
      */
     public function getConfigList($name, $default = self::REQUIRED_OPTION)
     {
@@ -923,12 +967,14 @@ class SimpleSAML_Configuration
     /**
      * Retrieve the default binding for the given endpoint type.
      *
-     * This function combines the current metadata type (saml 2 / saml 1.1)
+     * This function combines the current metadata type (SAML 2 / SAML 1.1)
      * with the endpoint type to determine which binding is the default.
      *
      * @param string $endpointType The endpoint type.
      *
      * @return string The default binding.
+     *
+     * @throws Exception If the default binding is missing for this endpoint type.
      */
     private function getDefaultBinding($endpointType)
     {
@@ -960,6 +1006,8 @@ class SimpleSAML_Configuration
      * @param string $endpointType The endpoint type.
      *
      * @return array Array of endpoints of the given type.
+     *
+     * @throws Exception If any element of the configuration options for this endpoint type is incorrect.
      */
     public function getEndpoints($endpointType)
     {
@@ -1038,7 +1086,9 @@ class SimpleSAML_Configuration
      * @param mixed  $default The default value to return if no matching endpoint is found. If no default is provided,
      *     an exception will be thrown.
      *
-     * @return array|null The default endpoint, or NULL if no acceptable endpoints are used.
+     * @return array|null The default endpoint, or null if no acceptable endpoints are used.
+     *
+     * @throws Exception If no supported endpoint is found.
      */
     public function getEndpointPrioritizedByBinding($endpointType, array $bindings, $default = self::REQUIRED_OPTION)
     {
@@ -1067,11 +1117,13 @@ class SimpleSAML_Configuration
      * Find the default endpoint of the given type.
      *
      * @param string $endpointType The endpoint type.
-     * @param array  $bindings Array with acceptable bindings. Can be NULL if any binding is allowed.
+     * @param array  $bindings Array with acceptable bindings. Can be null if any binding is allowed.
      * @param mixed  $default The default value to return if no matching endpoint is found. If no default is provided,
      *     an exception will be thrown.
      *
-     * @return array|null The default endpoint, or NULL if no acceptable endpoints are used.
+     * @return array|null The default endpoint, or null if no acceptable endpoints are used.
+     *
+     * @throws Exception If no supported endpoint is found.
      */
     public function getDefaultEndpoint($endpointType, array $bindings = null, $default = self::REQUIRED_OPTION)
     {
@@ -1102,7 +1154,9 @@ class SimpleSAML_Configuration
      * @param mixed  $default The default value. If no default is given, and the option isn't found, an exception will
      *     be thrown.
      *
-     * @return array Associative array with language=>string pairs.
+     * @return array Associative array with language => string pairs.
+     *
+     * @throws Exception If the translation is not an array or a string, or its index or value are not strings.
      */
     public function getLocalizedString($name, $default = self::REQUIRED_OPTION)
     {
@@ -1142,13 +1196,17 @@ class SimpleSAML_Configuration
     /**
      * Get public key from metadata.
      *
-     * @param string|NULL $use The purpose this key can be used for. (encryption or signing).
-     * @param bool        $required Whether the public key is required. If this is TRUE, a
-     *                        missing key will cause an exception. Default is FALSE.
-     * @param string      $prefix The prefix which should be used when reading from the metadata
-     *                        array. Defaults to ''.
+     * @param string|null $use The purpose this key can be used for. (encryption or signing).
+     * @param bool $required Whether the public key is required. If this is true, a
+     *                       missing key will cause an exception. Default is false.
+     * @param string $prefix The prefix which should be used when reading from the metadata
+     *                       array. Defaults to ''.
      *
-     * @return array|null Public key data, or NULL if no public key or was found.
+     * @return array|null Public key data, or null if no public key or was found.
+     *
+     * @throws Exception If the certificate or public key cannot be loaded from a file.
+     * @throws SimpleSAML_Error_Exception If the file does not contain a valid PEM-encoded certificate, or there is no
+     * certificate in the metadata.
      */
     public function getPublicKeys($use = null, $required = false, $prefix = '')
     {
