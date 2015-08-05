@@ -5,12 +5,13 @@
  *
  * This class is responsible for taking a statistics event and logging it.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Stats {
 
 	/**
 	 * Whether this class is initialized.
+	 *
 	 * @var boolean
 	 */
 	private static $initialized = FALSE;
@@ -18,6 +19,7 @@ class SimpleSAML_Stats {
 
 	/**
 	 * The statistics output callbacks.
+	 *
 	 * @var array
 	 */
 	private static $outputs = NULL;
@@ -26,8 +28,8 @@ class SimpleSAML_Stats {
 	/**
 	 * Create an output from a configuration object.
 	 *
-	 * @param SimpleSAML_Configuration $config  The configuration object.
-	 * @return
+	 * @param SimpleSAML_Configuration $config The configuration object.
+	 * @return mixed A new instance of the configured class.
 	 */
 	private static function createOutput(SimpleSAML_Configuration $config) {
 		$cls = $config->getString('class');
@@ -56,8 +58,8 @@ class SimpleSAML_Stats {
 	/**
 	 * Notify about an event.
 	 *
-	 * @param string $event  The event.
-	 * @param array $data  Event data. Optional.
+	 * @param string $event The event.
+	 * @param array $data Event data. Optional.
 	 */
 	public static function log($event, array $data = array()) {
 		assert('is_string($event)');
