@@ -147,12 +147,8 @@ try {
         $metaArray['EntityAttributes'] = $idpmeta->getArray('EntityAttributes');
 
         // check for entity categories
-        $entity_category = 'http://macedir.org/entity-category';
-        $hide_from_discovery = 'http://refeds.org/category/hide-from-discovery';
-        if (array_key_exists($entity_category, $metaArray['EntityAttributes'])) {
-            if (in_array($hide_from_discovery, $metaArray['EntityAttributes'][$entity_category])) {
-                $metaArray['hide.from.discovery'] = true;
-            }
+        if (SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery($metaArray)) {
+            $metaArray['hide.from.discovery'] = true;
         }
     }
 
