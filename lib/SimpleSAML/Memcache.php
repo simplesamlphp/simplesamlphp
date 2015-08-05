@@ -14,12 +14,14 @@
  * values will lead to incorrect behaviour.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Memcache {
 
 	/**
 	 * Cache of the memcache servers we are using.
+	 *
+	 * @var Memcache[]|null
 	 */
 	private static $serverGroups = NULL;
 
@@ -27,8 +29,8 @@ class SimpleSAML_Memcache {
 	/**
 	 * Find data stored with a given key.
 	 *
-	 * @param $key  The key of the data.
-	 * @return The data stored with the given key, or NULL if no data matching the key was found.
+	 * @param string $key The key of the data.
+	 * @return mixed The data stored with the given key, or null if no data matching the key was found.
 	 */
 	public static function get($key) {
 		SimpleSAML_Logger::debug("loading key $key from memcache");
@@ -118,9 +120,9 @@ class SimpleSAML_Memcache {
 	/**
 	 * Save a key-value pair to the memcache servers.
 	 *
-	 * @param $key    The key of the data.
-	 * @param $value  The value of the data.
-	 * @param int|NULL $expire  The expiration timestamp of the data.
+	 * @param string $key The key of the data.
+	 * @param mixed $value The value of the data.
+	 * @param integer|null $expire The expiration timestamp of the data.
 	 */
 	public static function set($key, $value, $expire = NULL) {
 		SimpleSAML_Logger::debug("saving key $key to memcache");
@@ -145,7 +147,7 @@ class SimpleSAML_Memcache {
 	/**
 	 * Delete a key-value pair from the memcache servers.
 	 *
-	 * @param string $key  The key we should delete.
+	 * @param string $key The key we should delete.
 	 */
 	public static function delete($key) {
 		assert('is_string($key)');
@@ -176,8 +178,10 @@ class SimpleSAML_Memcache {
 	 *    The timeout for contacting this server, in seconds.
 	 *    The default value is 3 seconds.
 	 *
-	 * @param $memcache  The Memcache object we should add this server to.
-	 * @param $server    The server we should add.
+	 * @param Memcache $memcache The Memcache object we should add this server to.
+	 * @param array $server An associative array with the configuration options for the server to add.
+	 *
+	 * @throws Exception If any configuration option for the server is invalid.
 	 */
 	private static function addMemcacheServer($memcache, $server) {
 
@@ -251,8 +255,10 @@ class SimpleSAML_Memcache {
 	 * This function takes in a list of servers belonging to a group and
 	 * creates a Memcache object from the servers in the group.
 	 *
-	 * @param array $group  Array of servers which should be created as a group.
-	 * @return A Memcache object of the servers in the group.
+	 * @param array $group Array of servers which should be created as a group.
+	 * @return Memcache A Memcache object of the servers in the group
+	 *
+	 * @throws Exception If the servers configuration is invalid.
 	 */
 	private static function loadMemcacheServerGroup(array $group) {
 
@@ -296,7 +302,9 @@ class SimpleSAML_Memcache {
 	 * This function gets a list of all configured memcache servers. This list is initialized based
 	 * on the content of 'memcache_store.servers' in the configuration.
 	 *
-	 * @return Array with Memcache objects.
+	 * @return Memcache[] Array with Memcache objects.
+	 *
+	 * @throws Exception If the servers configuration is invalid.
 	 */
 	private static function getMemcacheServers() {
 
@@ -352,7 +360,9 @@ class SimpleSAML_Memcache {
 	 * set in the configuration, then we will use a default value of 0.
 	 * 0 means that the item will never expire.
 	 *
-	 * @return  The value which should be passed in the set(...) calls to the memcache objects.
+	 * @return integer The value which should be passed in the set(...) calls to the memcache objects.
+	 *
+	 * @throws Exception If the option 'memcache_store.expires' has a negative value.
 	 */
 	private static function getExpireTime()
 	{
@@ -390,8 +400,9 @@ class SimpleSAML_Memcache {
 	/**
 	 * This function retrieves statistics about all memcache server groups.
 	 *
-	 * @return Array with the names of each stat and an array with the value for each
-	 *         server group.
+	 * @return array Array with the names of each stat and an array with the value for each server group.
+	 *
+	 * @throws Exception If memcache server status couldn't be retrieved.
 	 */
 	public static function getStats()
 	{
@@ -416,7 +427,7 @@ class SimpleSAML_Memcache {
 	 * Retrieve statistics directly in the form returned by getExtendedStats, for
 	 * all server groups.
 	 *
-	 * @return Array with the extended stats output for each server group.
+	 * @return array An array with the extended stats output for each server group.
 	 */
 	public static function getRawStats() {
 		$ret = array();
