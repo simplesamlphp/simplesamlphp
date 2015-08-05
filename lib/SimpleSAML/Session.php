@@ -57,7 +57,7 @@ class SimpleSAML_Session
      * This is used in the debug logs and error messages to easily track more information
      * about what went wrong.
      *
-     * @var int
+     * @var string|int
      */
     private $trackid = 0;
 
