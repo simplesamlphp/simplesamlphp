@@ -488,6 +488,15 @@ class SimpleSAML_Metadata_SAMLParser
 
         if (!empty($this->entityAttributes)) {
             $metadata['EntityAttributes'] = $this->entityAttributes;
+
+            // check for entity categories
+            $entity_category = 'http://macedir.org/entity-category';
+            $hide_from_discovery = 'http://refeds.org/category/hide-from-discovery';
+            if (array_key_exists($entity_category, $metadata['EntityAttributes'])) {
+                if (in_array($hide_from_discovery, $metadata['EntityAttributes'][$entity_category])) {
+                    $metadata['hide.from.discovery'] = true;
+                }
+            }
         }
 
         if (!empty($roleDescriptor['UIInfo'])) {
