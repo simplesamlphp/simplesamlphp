@@ -195,7 +195,8 @@ class SimpleSAML_Session
      *
      * @param string|null $sessionId The session we should load, or null to load the current session.
      *
-     * @return The session which is stored in the session handler, or null if the session wasn't found.
+     * @return SimpleSAML_Session The session that is stored in the session handler, or null if the session wasn't
+     * found.
      */
     public static function getSession($sessionId = null)
     {
@@ -225,8 +226,10 @@ class SimpleSAML_Session
             $globalConfig = SimpleSAML_Configuration::getInstance();
 
             if ($session->authToken !== null) {
-                $authTokenCookieName = $globalConfig->getString('session.authtoken.cookiename',
-                                                                'SimpleSAMLAuthToken');
+                $authTokenCookieName = $globalConfig->getString(
+                    'session.authtoken.cookiename',
+                    'SimpleSAMLAuthToken'
+                );
                 if (!isset($_COOKIE[$authTokenCookieName])) {
                     SimpleSAML_Logger::warning('Missing AuthToken cookie.');
                     return null;
@@ -417,8 +420,10 @@ class SimpleSAML_Session
 
             $this->setRememberMeExpire();
         } else {
-            $sessionHandler->setCookie($globalConfig->getString('session.authtoken.cookiename',
-                                                                'SimpleSAMLAuthToken'), $this->authToken);
+            $sessionHandler->setCookie(
+                $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
+                $this->authToken
+            );
         }
     }
 
@@ -471,8 +476,10 @@ class SimpleSAML_Session
                 $classname = $handler[0];
                 $functionname = $handler[1];
 
-                throw new Exception('Logout handler is not a vaild function: '.$classname.'::'.
-                                    $functionname);
+                throw new Exception(
+                    'Logout handler is not a vaild function: '.$classname.'::'.
+                    $functionname
+                );
             }
 
             // call the logout handler
@@ -496,8 +503,10 @@ class SimpleSAML_Session
         assert('is_string($authority)');
 
         if (!isset($this->authData[$authority])) {
-            SimpleSAML_Logger::debug('Session: '.var_export($authority, true).
-                                     ' not valid because we are not authenticated.');
+            SimpleSAML_Logger::debug(
+                'Session: '.var_export($authority, true).
+                ' not valid because we are not authenticated.'
+            );
             return false;
         }
 
@@ -514,7 +523,7 @@ class SimpleSAML_Session
     /**
      * Update session cookies.
      *
-     * @param array The parameters for the cookies.
+     * @param array $params The parameters for the cookies.
      */
     public function updateSessionCookies($params = null)
     {
@@ -526,8 +535,11 @@ class SimpleSAML_Session
 
         if ($this->authToken !== null) {
             $globalConfig = SimpleSAML_Configuration::getInstance();
-            $sessionHandler->setCookie($globalConfig->getString('session.authtoken.cookiename',
-                                                                'SimpleSAMLAuthToken'), $this->authToken, $params);
+            $sessionHandler->setCookie(
+                $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
+                $this->authToken,
+                $params
+            );
         }
     }
 
@@ -568,8 +580,10 @@ class SimpleSAML_Session
         $logout_handler = array($classname, $functionname);
 
         if (!is_callable($logout_handler)) {
-            throw new Exception('Logout handler is not a vaild function: '.$classname.'::'.
-                                $functionname);
+            throw new Exception(
+                'Logout handler is not a vaild function: '.$classname.'::'.
+                $functionname
+            );
         }
 
         $this->authData[$authority]['LogoutHandlers'][] = $logout_handler;
@@ -628,14 +642,15 @@ class SimpleSAML_Session
 
         if ($timeout === null) {
             // use the default timeout
-
             $configuration = SimpleSAML_Configuration::getInstance();
 
             $timeout = $configuration->getInteger('session.datastore.timeout', null);
             if ($timeout !== null) {
                 if ($timeout <= 0) {
-                    throw new Exception('The value of the session.datastore.timeout'.
-                                        ' configuration option should be a positive integer.');
+                    throw new Exception(
+                        'The value of the session.datastore.timeout'.
+                        ' configuration option should be a positive integer.'
+                    );
                 }
             }
         }
