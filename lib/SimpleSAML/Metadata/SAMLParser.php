@@ -384,7 +384,9 @@ class SimpleSAML_Metadata_SAMLParser
 
         if ($element instanceof SAML2_XML_md_EntityDescriptor) {
             $ret = new SimpleSAML_Metadata_SAMLParser($element, $maxExpireTime, $validators);
-            return array($ret->getEntityId() => $ret);
+            $ret = array($ret->getEntityId() => $ret);
+            /** @var SimpleSAML_Metadata_SAMLParser[] $ret */
+            return $ret;
         }
 
         assert('$element instanceof SAML2_XML_md_EntitiesDescriptor');
@@ -1065,7 +1067,7 @@ class SimpleSAML_Metadata_SAMLParser
                             'height' => $uiItem->height,
                             'width'  => $uiItem->width,
                         );
-                        if (!empty($uiItem->Lang)) {
+                        if (!empty($uiItem->lang)) {
                             $logo['lang'] = $uiItem->lang;
                         }
                         $ret['UIInfo']['Logo'][] = $logo;
