@@ -493,7 +493,7 @@ class SimpleSAML_XHTML_IdPDisco
      *
      * @return array An associative array containing metadata for the IdPs that were not filtered out.
      */
-    protected function filter($list)
+    protected function filterList($list)
     {
         foreach ($list as $entity => $metadata) {
             if (array_key_exists('hide.from.discovery', $metadata) && $metadata['hide.from.discovery'] === true) {
@@ -542,7 +542,7 @@ class SimpleSAML_XHTML_IdPDisco
 
         // no choice made. Show discovery service page
         $idpList = $this->getIdPList();
-        $idpList = $this->filter($idpList);
+        $idpList = $this->filterList($idpList);
         $preferredIdP = $this->getRecommendedIdP();
 
         $idpintersection = array_intersect(array_keys($idpList), $this->getScopedIDPList());

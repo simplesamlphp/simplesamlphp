@@ -144,6 +144,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	}
 	
 	protected function filterList($list) {
+		parent::filterList($list);
 		
 		try {
 			$spmd = $this->metadata->getMetaData($this->spEntityId, 'saml20-sp-remote');
