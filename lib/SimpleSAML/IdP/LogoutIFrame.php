@@ -1,17 +1,17 @@
 <?php
 
 /**
- * Class which handles iframe logout.
+ * Class that handles iframe logout.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_IdP_LogoutIFrame extends SimpleSAML_IdP_LogoutHandler {
 
 	/**
 	 * Start the logout operation.
 	 *
-	 * @param array &$state  The logout state.
-	 * @param string|NULL $assocId  The SP we are logging out from.
+	 * @param array &$state The logout state.
+	 * @param string|null $assocId The SP we are logging out from.
 	 */
 	public function startLogout(array &$state, $assocId) {
 		assert('is_string($assocId) || is_null($assocId)');
@@ -57,9 +57,9 @@ class SimpleSAML_IdP_LogoutIFrame extends SimpleSAML_IdP_LogoutHandler {
 	 *
 	 * This function will never return.
 	 *
-	 * @param string $assocId  The association that is terminated.
-	 * @param string|NULL $relayState  The RelayState from the start of the logout.
-	 * @param SimpleSAML_Error_Exception|NULL $error  The error that occurred during session termination (if any).
+	 * @param string $assocId The association that is terminated.
+	 * @param string|NULL $relayState The RelayState from the start of the logout.
+	 * @param SimpleSAML_Error_Exception|null $error The error that occurred during session termination (if any).
 	 */
 	public function onResponse($assocId, $relayState, SimpleSAML_Error_Exception $error = NULL) {
 		assert('is_string($assocId)');
