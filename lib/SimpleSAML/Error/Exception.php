@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Baseclass for simpleSAML Exceptions
+ * Base class for SimpleSAMLphp Exceptions
  *
  * This class tries to make sure that every exception is serializable.
  *
  * @author Thomas Graff <thomas.graff@uninett.no>
- * @package simpleSAMLphp_base
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Error_Exception extends Exception {
 
@@ -32,12 +32,12 @@ class SimpleSAML_Error_Exception extends Exception {
 	/**
 	 * Constructor for this error.
 	 *
-	 * Note that the cause will be converted to a SimpleSAML_Error_UnserializableException
-	 * unless it is a subclass of SimpleSAML_Error_Exception.
+	 * Note that the cause will be converted to a SimpleSAML_Error_UnserializableException unless it is a subclass of
+	 * SimpleSAML_Error_Exception.
 	 *
 	 * @param string $message Exception message
 	 * @param int $code Error code
-	 * @param Exception|NULL $cause  The cause of this exception.
+	 * @param Exception|null $cause The cause of this exception.
 	 */
 	public function __construct($message, $code = 0, Exception $cause = NULL) {
 		assert('is_string($message)');
@@ -56,8 +56,8 @@ class SimpleSAML_Error_Exception extends Exception {
 	/**
 	 * Convert any exception into a SimpleSAML_Error_Exception.
 	 *
-	 * @param Exception $e  The exception.
-	 * @return SimpleSAML_Error_Exception  The new exception.
+	 * @param Exception $e The exception.
+	 * @return SimpleSAML_Error_Exception The new exception.
 	 */
 	public static function fromException(Exception $e) {
 
@@ -71,7 +71,7 @@ class SimpleSAML_Error_Exception extends Exception {
 	/**
 	 * Load the backtrace from the given exception.
 	 *
-	 * @param Exception $exception  The exception we should fetch the backtrace from.
+	 * @param Exception $exception The exception we should fetch the backtrace from.
 	 */
 	protected function initBacktrace(Exception $exception) {
 
@@ -103,7 +103,7 @@ class SimpleSAML_Error_Exception extends Exception {
 	/**
 	 * Retrieve the backtrace.
 	 *
-	 * @return array  An array where each function call is a single item.
+	 * @return array An array where each function call is a single item.
 	 */
 	public function getBacktrace() {
 		return $this->backtrace;
@@ -113,7 +113,7 @@ class SimpleSAML_Error_Exception extends Exception {
 	/**
 	 * Retrieve the cause of this exception.
 	 *
-	 * @return SimpleSAML_Error_Exception|NULL  The cause of this exception.
+	 * @return SimpleSAML_Error_Exception|null The cause of this exception.
 	 */
 	public function getCause() {
 		return $this->cause;
@@ -123,7 +123,7 @@ class SimpleSAML_Error_Exception extends Exception {
 	/**
 	 * Retrieve the class of this exception.
 	 *
-	 * @return string  The classname.
+	 * @return string The name of the class.
 	 */
 	public function getClass() {
 		return get_class($this);
@@ -133,9 +133,9 @@ class SimpleSAML_Error_Exception extends Exception {
 	/**
 	 * Format this exception for logging.
 	 *
-	 * Create an array with lines for logging.
+	 * Create an array of lines for logging.
 	 *
-	 * @return array  Log lines which should be written out.
+	 * @return array Log lines that should be written out.
 	 */
 	public function format() {
 
@@ -223,14 +223,12 @@ class SimpleSAML_Error_Exception extends Exception {
 	/**
 	 * Function for serialization.
 	 *
-	 * This function builds a list of all variables which should be serialized.
-	 * It will serialize all variables except the Exception::trace variable.
+	 * This function builds a list of all variables which should be serialized. It will serialize all variables except
+	 * the Exception::trace variable.
 	 *
-	 * @return array  Array with the variables which should be serialized.
+	 * @return array Array with the variables that should be serialized.
 	 */
 	public function __sleep() {
-
-		$ret = array();
 
 		$ret = array_keys((array)$this);
 
