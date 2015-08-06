@@ -1,34 +1,38 @@
 <?php
 
 /**
- * This class implements a generic IdP discovery service, for use in various IdP
- * discovery service pages. This should reduce code duplication.
+ * This class implements a generic IdP discovery service, for use in various IdP discovery service pages. This should
+ * reduce code duplication.
  *
- * This module extends the basic IdP disco handler, and add features like filtering 
- * and tabs.
+ * This module extends the basic IdP disco handler, and add features like filtering and tabs.
  *
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 
+
+	/**
+	 * The configuration for this instance.
+	 *
+	 * @var SimpleSAML_Configuration
+	 */
 	private $discoconfig;
 
 
 	/**
-	 * The domain to use when saving common domain cookies.
-	 * This is NULL if support for common domain cookies is disabled.
+	 * The domain to use when saving common domain cookies. This is null if support for common domain cookies is
+	 * disabled.
 	 *
-	 * @var string|NULL
+	 * @var string|null
 	 */
 	private $cdcDomain;
 
 
 	/**
-	 * The lifetime of the CDC cookie, in seconds.
-	 * If set to NULL, it will only be valid until the browser is closed.
+	 * The lifetime of the CDC cookie, in seconds. If set to null, it will only be valid until the browser is closed.
 	 *
-	 * @var int|NULL
+	 * @var int|null
 	 */
 	private $cdcLifetime;
 
@@ -36,11 +40,10 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Initializes this discovery service.
 	 *
-	 * The constructor does the parsing of the request. If this is an invalid request, it will
-	 * throw an exception.
+	 * The constructor does the parsing of the request. If this is an invalid request, it will throw an exception.
 	 *
-	 * @param array $metadataSets  Array with metadata sets we find remote entities in.
-	 * @param string $instance  The name of this instance of the discovery service.
+	 * @param array $metadataSets Array with metadata sets we find remote entities in.
+	 * @param string $instance The name of this instance of the discovery service.
 	 */
 	public function __construct(array $metadataSets, $instance) {
 
@@ -61,10 +64,9 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Log a message.
 	 *
-	 * This is an helper function for logging messages. It will prefix the messages with our
-	 * discovery service type.
+	 * This is an helper function for logging messages. It will prefix the messages with our discovery service type.
 	 *
-	 * @param $message  The message which should be logged.
+	 * @param string $message The message which should be logged.
 	 */
 	protected function log($message) {
 		SimpleSAML_Logger::info('PowerIdPDisco.' . $this->instance . ': ' . $message);
@@ -74,13 +76,12 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Compare two entities.
 	 *
-	 * This function is used to sort the entity list. It sorts based on english name,
-	 * and will always put IdP's with names configured before those with only an
-	 * entityID.
+	 * This function is used to sort the entity list. It sorts based on english name, and will always put IdP's with
+	 * names configured before those with only an entityID.
 	 *
-	 * @param array $a  The metadata of the first entity.
-	 * @param array $b  The metadata of the second entity.
-	 * @return int  How $a compares to $b.
+	 * @param array $a The metadata of the first entity.
+	 * @param array $b The metadata of the second entity.
+	 * @return int How $a compares to $b.
 	 */
 	public static function mcmp(array $a, array $b) {
 		if (isset($a['name']['en']) && isset($b['name']['en'])) {
@@ -95,8 +96,12 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	}
 
 
-	/*
-	 * This function will structure the idp list in a hierarchy based upon the tags.
+	/**
+	 * Structure the list of IdPs in a hierarchy based upon the tags.
+	 *
+	 * @param array $list A list of IdPs.
+	 *
+	 * @return array The list of IdPs structured accordingly.
 	 */
 	protected function idplistStructured($list) {
 		$slist = array();
@@ -127,7 +132,17 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 		
 		return $slist;
 	}
-	
+
+
+	/**
+	 * Do the actual filtering according the rules defined.
+	 *
+	 * @param array $filter A set of rules regarding filtering.
+	 * @param array $entry An entry to be evaluated by the filters.
+	 * @param boolean $default What to do in case the entity does not match any rules. Defaults to true.
+	 *
+	 * @return boolean True if the entity should be kept, false if it should be discarded according to the filters.
+	 */
 	private function processFilter($filter, $entry, $default = TRUE) {
 		if (in_array($entry['entityid'], $filter['entities.include'] )) return TRUE;
 		if (in_array($entry['entityid'], $filter['entities.exclude'] )) return FALSE;
@@ -142,7 +157,16 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 		}
 		return $default;
 	}
-	
+
+
+	/**
+	 * Filter a list of entities according to any filters defined in the parent class, plus discopower configuration
+	 * options regarding filtering.
+	 *
+	 * @param array $list A list of entities to filter.
+	 *
+	 * @return array The list in $list after filtering entities.
+	 */
 	protected function filterList($list) {
 		parent::filterList($list);
 		
@@ -210,7 +234,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Get the IdP entities saved in the common domain cookie.
 	 *
-	 * @return array  List of IdP entities.
+	 * @return array List of IdP entities.
 	 */
 	private function getCDC() {
 
@@ -235,10 +259,9 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Save the current IdP choice to a cookie.
 	 *
-	 * This function overrides the corresponding function in the parent class,
-	 * to add support for common domain cookie.
+	 * This function overrides the corresponding function in the parent class, to add support for common domain cookie.
 	 *
-	 * @param string $idp  The entityID of the IdP.
+	 * @param string $idp The entityID of the IdP.
 	 */
 	protected function setPreviousIdP($idp) {
 		assert('is_string($idp)');
@@ -287,10 +310,9 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco {
 	/**
 	 * Retrieve the previous IdP the user used.
 	 *
-	 * This function overrides the corresponding function in the parent class,
-	 * to add support for common domain cookie.
+	 * This function overrides the corresponding function in the parent class, to add support for common domain cookie.
 	 *
-	 * @return string|NULL  The entity id of the previous IdP the user used, or NULL if this is the first time.
+	 * @return string|null The entity id of the previous IdP the user used, or null if this is the first time.
 	 */
 	protected function getPreviousIdP() {
 
