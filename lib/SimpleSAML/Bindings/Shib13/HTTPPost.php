@@ -4,7 +4,7 @@
  * Implementation of the Shibboleth 1.3 HTTP-POST binding.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Bindings_Shib13_HTTPPost {
 
@@ -19,11 +19,11 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 	/**
 	 * Send an authenticationResponse using HTTP-POST.
 	 *
-	 * @param string $response  The response which should be sent.
-	 * @param SimpleSAML_Configuration $idpmd  The metadata of the IdP which is sending the response.
-	 * @param SimpleSAML_Configuration $spmd  The metadata of the SP which is receiving the response.
-	 * @param string|NULL $relayState  The relaystate for the SP.
-	 * @param string $shire  The shire which should receive the response.
+	 * @param string $response The response which should be sent.
+	 * @param SimpleSAML_Configuration $idpmd The metadata of the IdP which is sending the response.
+	 * @param SimpleSAML_Configuration $spmd The metadata of the SP which is receiving the response.
+	 * @param string|null $relayState The relaystate for the SP.
+	 * @param string $shire The shire which should receive the response.
 	 */
 	public function sendResponse($response, SimpleSAML_Configuration $idpmd, SimpleSAML_Configuration $spmd, $relayState, $shire) {
 
@@ -93,8 +93,8 @@ class SimpleSAML_Bindings_Shib13_HTTPPost {
 	/**
 	 * Decode a received response.
 	 *
-	 * @param array $post  POST data received.
-	 * @return SimpleSAML_XML_Shib13_AuthnResponse  Response.
+	 * @param array $post POST data received.
+	 * @return SimpleSAML_XML_Shib13_AuthnResponse The response decoded into an object.
 	 */
 	public function decodeResponse($post) {
 		assert('is_array($post)');
