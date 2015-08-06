@@ -3,7 +3,7 @@
 /**
  * Class which handles traditional logout.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_IdP_LogoutTraditional extends SimpleSAML_IdP_LogoutHandler {
 
@@ -12,7 +12,7 @@ class SimpleSAML_IdP_LogoutTraditional extends SimpleSAML_IdP_LogoutHandler {
 	 *
 	 * This function never returns.
 	 *
-	 * @param array &$state  The logout state.
+	 * @param array &$state The logout state.
 	 */
 	private function logoutNextSP(array &$state) {
 
@@ -47,8 +47,8 @@ class SimpleSAML_IdP_LogoutTraditional extends SimpleSAML_IdP_LogoutHandler {
 	 *
 	 * This function never returns.
 	 *
-	 * @param array &$state  The logout state.
-	 * @param string $assocId  The association that started the logout.
+	 * @param array &$state The logout state.
+	 * @param string $assocId The association that started the logout.
 	 */
 	public function startLogout(array &$state, $assocId) {
 
@@ -63,9 +63,11 @@ class SimpleSAML_IdP_LogoutTraditional extends SimpleSAML_IdP_LogoutHandler {
 	 *
 	 * This function will never return.
 	 *
-	 * @param string $assocId  The association that is terminated.
-	 * @param string|NULL $relayState  The RelayState from the start of the logout.
-	 * @param SimpleSAML_Error_Exception|NULL $error  The error that occurred during session termination (if any).
+	 * @param string $assocId The association that is terminated.
+	 * @param string|null $relayState The RelayState from the start of the logout.
+	 * @param SimpleSAML_Error_Exception|null $error The error that occurred during session termination (if any).
+	 *
+	 * @throws SimpleSAML_Error_Exception If the RelayState was lost during logout.
 	 */
 	public function onResponse($assocId, $relayState, SimpleSAML_Error_Exception $error = NULL) {
 		assert('is_string($assocId)');
