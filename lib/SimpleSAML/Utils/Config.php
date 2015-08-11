@@ -55,4 +55,34 @@ class Config
 
         return $secretSalt;
     }
+
+    /**
+     * Returns the path to the config dir
+     *
+     * If the SIMPLESAMLPHP_CONFIG_DIR environment variable has been set, it takes precedence over the default
+     * $simplesamldir/config directory.
+     *
+     * @return string The path to the configuration directory.
+     */
+    public static function getConfigDir()
+    {
+        $configDir    = dirname(dirname(dirname(__DIR__))) . '/config';
+        $configDirEnv = getenv('SIMPLESAMLPHP_CONFIG_DIR');
+        if ($configDirEnv !== false) {
+            if (!is_dir($configDirEnv)) {
+                // this error is fatal, make sure the user can read it at least
+                header('Content-Type: text/plain');
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        'Config directory specified by environment variable SIMPLESAMLPHP_CONFIG_DIR is not a ' .
+                        'directory.  Given: "%s"',
+                        $configDirEnv
+                    )
+                );
+            }
+            $configDir = $configDirEnv;
+        }
+
+        return $configDir;
+    }
 }

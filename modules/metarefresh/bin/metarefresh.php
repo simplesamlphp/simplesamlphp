@@ -23,7 +23,8 @@ if(!SimpleSAML_Module::isModuleEnabled('metarefresh')) {
 }
 
 /* Initialize the configuration. */
-SimpleSAML_Configuration::setConfigDir($baseDir . '/config');
+$configdir = SimpleSAML\Utils\Config::getConfigDir();
+SimpleSAML_Configuration::setConfigDir($configdir);
 
 /* $outputDir contains the directory we will store the generated metadata in. */
 $outputDir = $baseDir . '/metadata-generated';

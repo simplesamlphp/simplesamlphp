@@ -81,7 +81,7 @@ function SimpleSAML_error_handler($errno, $errstr, $errfile = null, $errline = 0
 
 set_error_handler('SimpleSAML_error_handler');
 
-$configdir = dirname(dirname(__FILE__)).'/config';
+$configdir = SimpleSAML\Utils\Config::getConfigDir();
 if (!file_exists($configdir.'/config.php')) {
     header('Content-Type: text/plain');
     echo("You have not yet created the simpleSAMLphp configuration files.\n");
