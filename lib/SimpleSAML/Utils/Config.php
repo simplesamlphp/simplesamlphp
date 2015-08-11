@@ -70,8 +70,6 @@ class Config
         $configDirEnv = getenv('SIMPLESAMLPHP_CONFIG_DIR');
         if ($configDirEnv !== false) {
             if (!is_dir($configDirEnv)) {
-                // this error is fatal, make sure the user can read it at least
-                header('Content-Type: text/plain');
                 throw new \InvalidArgumentException(
                     sprintf(
                         'Config directory specified by environment variable SIMPLESAMLPHP_CONFIG_DIR is not a ' .
