@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Test for the core:AttributeAdd filter.
+ * Test for the core:AttributeCopy filter.
  */
-class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
+class Test_Core_Auth_Process_AttributeCopy extends PHPUnit_Framework_TestCase
 {
 
     /**
@@ -15,7 +15,7 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_AttributeAdd($config, NULL);
+        $filter = new sspmod_core_Auth_Process_AttributeCopy($config, NULL);
         $filter->process($request);
         return $request;
     }
@@ -26,15 +26,16 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
     public function testBasic()
     {
         $config = array(
-            'test' => array('value1', 'value2'),
+            'test' => 'testnew',
         );
         $request = array(
-            'Attributes' => array(),
+            'Attributes' => array('test' => array('AAP')),
         );
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('test', $attributes);
-        $this->assertEquals($attributes['test'], array('value1', 'value2'));
+        $this->assertArrayHasKey('testnew', $attributes);
+        $this->assertEquals($attributes['testnew'], array('AAP'));
     }
 
     /**
@@ -43,18 +44,19 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
     public function testExistingNotModified()
     {
         $config = array(
-            'test' => array('value1', 'value2'),
+            'test' => 'testnew',
         );
         $request = array(
             'Attributes' => array(
+                'test' => array('AAP'),
                 'original1' => array('original_value1'),
                 'original2' => array('original_value2'),
             ),
         );
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey('test', $attributes);
-        $this->assertEquals($attributes['test'], array('value1', 'value2'));
+        $this->assertArrayHasKey('testnew', $attributes);
+        $this->assertEquals($attributes['test'], array('AAP'));
         $this->assertArrayHasKey('original1', $attributes);
         $this->assertEquals($attributes['original1'], array('original_value1'));
         $this->assertArrayHasKey('original2', $attributes);
@@ -62,96 +64,42 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test single string as attribute value.
+     * Test copying multiple attributes
      */
-    public function testStringValue()
+    public function testCopyMultiple()
     {
         $config = array(
-            'test' => 'value',
+            'test1' => 'new1',
+            'test2' => 'new2',
         );
         $request = array(
-            'Attributes' => array(),
+            'Attributes' => array('test1' => array('val1'), 'test2' => array('val2.1','val2.2')),
         );
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey('test', $attributes);
-        $this->assertEquals($attributes['test'], array('value'));
+        $this->assertArrayHasKey('new1', $attributes);
+        $this->assertEquals($attributes['new1'], array('val1'));
+        $this->assertArrayHasKey('new2', $attributes);
+        $this->assertEquals($attributes['new2'], array('val2.1','val2.2'));
     }
 
     /**
-     * Test adding multiple attributes in one config.
+     * Test behaviour when target attribute exists (should be replaced).
      */
-    public function testAddMultiple()
+    public function testCopyClash()
     {
         $config = array(
-            'test1' => array('value1'),
-            'test2' => array('value2'),
-        );
-        $request = array(
-            'Attributes' => array(),
-        );
-        $result = self::processFilter($config, $request);
-        $attributes = $result['Attributes'];
-        $this->assertArrayHasKey('test1', $attributes);
-        $this->assertEquals($attributes['test1'], array('value1'));
-        $this->assertArrayHasKey('test2', $attributes);
-        $this->assertEquals($attributes['test2'], array('value2'));
-    }
-
-    /**
-     * Test behavior when appending attribute values.
-     */
-    public function testAppend()
-    {
-        $config = array(
-            'test' => array('value2'),
+            'test' => 'new1',
         );
         $request = array(
             'Attributes' => array(
-                'test' => array('value1'),
+                'test' => array('testvalue1'),
+                'new1' => array('newvalue1'),
             ),
         );
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['test'], array('value1', 'value2'));
-    }
-
-    /**
-     * Test replacing attribute values.
-     */
-    public function testReplace()
-    {
-        $config = array(
-            '%replace',
-            'test' => array('value2'),
-        );
-        $request = array(
-            'Attributes' => array(
-                'test' => array('value1'),
-            ),
-        );
-        $result = self::processFilter($config, $request);
-        $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['test'], array('value2'));
-    }
-
-    /**
-     * Test wrong usage generates exceptions
-     *
-     * @expectedException Exception
-     */
-    public function testWrongFlag()
-    {
-        $config = array(
-            '%nonsense',
-            'test' => array('value2'),
-        );
-        $request = array(
-            'Attributes' => array(
-                'test' => array('value1'),
-            ),
-        );
-        $result = self::processFilter($config, $request);
+        $this->assertEquals($attributes['new1'], array('testvalue1'));
     }
 
     /**
@@ -162,7 +110,6 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
     public function testWrongAttributeName()
     {
         $config = array(
-            '%replace',
             array('value2'),
         );
         $request = array(
@@ -181,8 +128,7 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
     public function testWrongAttributeValue()
     {
         $config = array(
-            '%replace',
-            'test' => array(true),
+            'test' => array('test2'),
         );
         $request = array(
             'Attributes' => array(

@@ -103,7 +103,7 @@ class Test_Core_Auth_Process_ScopeFromAttribute extends PHPUnit_Framework_TestCa
      * NOTE: currently disabled: this triggers a warning and a warning
      * wants to start a session which we cannot do in phpunit. How to fix?
      */
-/*    public function testNoAt()
+    public function testNoAt()
     {
         $config = array(
             'sourceAttribute' => 'eduPersonPrincipalName',
@@ -118,5 +118,5 @@ class Test_Core_Auth_Process_ScopeFromAttribute extends PHPUnit_Framework_TestCa
         $attributes = $result['Attributes'];
 
         $this->assertArrayNotHasKey('scope', $attributes);
-    } */
+    }
 }
