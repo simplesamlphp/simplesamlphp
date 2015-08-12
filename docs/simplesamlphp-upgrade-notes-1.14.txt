@@ -88,6 +88,7 @@ The following methods and classes have been deprecated. Refer to the code for al
     * `SimpleSAML_Auth_Default`
     * `SimpleSAML_Auth_Default::extractPersistentAuthState()`
     * `SimpleSAML_Auth_Default::handleUnsolicitedAuth()`
+    * `SimpleSAML_Auth_Default::initLogin()`
     * `SimpleSAML_Auth_Default::loginCompleted()`
     * `SimpleSAML_Utilities`
     * `SimpleSAML_Utilities::addURLParameter()`

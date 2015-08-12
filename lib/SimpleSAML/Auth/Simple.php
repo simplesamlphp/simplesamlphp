@@ -133,7 +133,8 @@ class SimpleSAML_Auth_Simple {
 			$params[SimpleSAML_Auth_State::RESTART] = $restartURL;
 		}
 
-		SimpleSAML_Auth_Default::initLogin($this->authSource, $returnTo, $errorURL, $params);
+		$as = $this->getAuthSource();
+		$as->initLogin($this->authSource, $returnTo, $errorURL, $params);
 		assert('FALSE');
 	}
 

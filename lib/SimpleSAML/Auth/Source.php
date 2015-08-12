@@ -148,6 +148,56 @@ abstract class SimpleSAML_Auth_Source
 
 
     /**
+     * Start authentication.
+     *
+     * This method never returns.
+     *
+     * @param string|array $return The URL or function we should direct the user to after authentication. If using a
+     * URL obtained from user input, please make sure to check it by calling \SimpleSAML\Utils\HTTP::checkURLAllowed().
+     * @param string|null $errorURL The URL we should direct the user to after failed authentication. Can be null, in
+     * which case a standard error page will be shown. If using a URL obtained from user input, please make sure to
+     * check it by calling \SimpleSAML\Utils\HTTP::checkURLAllowed().
+     * @param array $params Extra information about the login. Different authentication requestors may provide different
+     * information. Optional, will default to an empty array.
+     */
+    public function initLogin($return, $errorURL = null, array $params = array())
+    {
+        assert('is_string($authId)');
+        assert('is_string($return) || is_array($return)');
+        assert('is_string($errorURL) || is_null($errorURL)');
+
+        $state = array_merge($params, array(
+            'SimpleSAML_Auth_Default.id' => $this->authId,
+            'SimpleSAML_Auth_Default.Return' => $return,
+            'SimpleSAML_Auth_Default.ErrorURL' => $errorURL,
+            'LoginCompletedHandler' => array(get_class(), 'loginCompleted'),
+            'LogoutCallback' => array(get_class(), 'logoutCallback'),
+            'LogoutCallbackState' => array(
+                'SimpleSAML_Auth_Default.logoutSource' => $this->authId,
+            ),
+        ));
+
+        if (is_string($return)) {
+            $state['SimpleSAML_Auth_Default.ReturnURL'] = $return;
+        }
+
+        if ($errorURL !== null) {
+            $state[SimpleSAML_Auth_State::EXCEPTION_HANDLER_URL] = $errorURL;
+        }
+
+        try {
+            $this->authenticate($state);
+        } catch (SimpleSAML_Error_Exception $e) {
+            SimpleSAML_Auth_State::throwException($state, $e);
+        } catch (Exception $e) {
+            $e = new SimpleSAML_Error_UnserializableException($e);
+            SimpleSAML_Auth_State::throwException($state, $e);
+        }
+        self::loginCompleted($state);
+    }
+
+
+    /**
      * Called when a login operation has finished.
      *
      * This method never returns.
