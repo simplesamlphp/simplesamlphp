@@ -148,6 +148,38 @@ abstract class SimpleSAML_Auth_Source
 
 
     /**
+     * Called when a login operation has finished.
+     *
+     * This method never returns.
+     *
+     * @param array $state The state after the login has completed.
+     */
+    protected static function loginCompleted($state)
+    {
+        assert('is_array($state)');
+        assert('array_key_exists("SimpleSAML_Auth_Default.Return", $state)');
+        assert('array_key_exists("SimpleSAML_Auth_Default.id", $state)');
+        assert('array_key_exists("Attributes", $state)');
+        assert('!array_key_exists("LogoutState", $state) || is_array($state["LogoutState"])');
+
+        $return = $state['SimpleSAML_Auth_Default.Return'];
+
+        // save session state
+        $session = SimpleSAML_Session::getSessionFromRequest();
+        $authId = $state['SimpleSAML_Auth_Default.id'];
+        $state = SimpleSAML_Auth_State::extractPersistentAuthState($state);
+        $session->doLogin($authId, $state);
+
+        if (is_string($return)) { // redirect...
+            \SimpleSAML\Utils\HTTP::redirectTrustedURL($return);
+        } else {
+            call_user_func($return, $state);
+        }
+        assert('false');
+    }
+
+
+    /**
      * Log out from this authentication source.
      *
      * This function should be overridden if the authentication source requires special

@@ -87,9 +87,7 @@ class SimpleSAML_Auth_Default {
 
 
 	/**
-	 * Called when a login operation has finished.
-	 *
-	 * @param array $state  The state after the login.
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	public static function loginCompleted($state) {
 		assert('is_array($state)');
