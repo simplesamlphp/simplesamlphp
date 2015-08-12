@@ -76,11 +76,6 @@ class SimpleSAML_Auth_Default {
 
 
 	/**
-	 * Extract the persistent authentication state from the state array.
-	 *
-	 * @param array $state  The state after the login.
-	 * @return array  The persistent authentication state.
-	 *
 	 * @deprecated This method will be removed in SSP 2.0. Please use
 	 * SimpleSAML_Auth_State::extractPersistentAuthState() instead.
 	 */
@@ -227,30 +222,11 @@ class SimpleSAML_Auth_Default {
 
 
 	/**
-	 * Handle a unsolicited login operations.
-	 *
-	 * This function creates a session from the received information. It
-	 * will then redirect to the given URL.
-	 *
-	 * This is used to handle IdP initiated SSO.
-	 *
-	 * @param string $authId The id of the authentication source that received
-	 * the request.
-	 * @param array $state A state array.
-	 * @param string $redirectTo The URL we should redirect the user to after
-	 * updating the session. The function will check if the URL is allowed, so
-	 * there is no need to manually check the URL on beforehand. Please refer
-	 * to the 'trusted.url.domains' configuration directive for more
-	 * information about allowing (or disallowing) URLs.
+	 * @deprecated This method will be removed in SSP 2.0. Please use
+	 * sspmod_saml_Auth_Source_SP::handleUnsolicitedAuth() instead.
 	 */
 	public static function handleUnsolicitedAuth($authId, array $state, $redirectTo) {
-		assert('is_string($authId)');
-		assert('is_string($redirectTo)');
-
-		$session = SimpleSAML_Session::getSessionFromRequest();
-		$session->doLogin($authId, SimpleSAML_Auth_State::extractPersistentAuthState($state));
-
-		\SimpleSAML\Utils\HTTP::redirectUntrustedURL($redirectTo);
+		sspmod_saml_Auth_Source_SP::handleUnsolicitedAuth($authId, $state, $redirectTo);
 	}
 
 }
