@@ -10,6 +10,10 @@ define('ERR_AS_DATA_INCONSIST', 4);
 define('ERR_AS_INTERNAL', 5);
 define('ERR_AS_ATTRIBUTE', 6);
 
+// not defined in earlier PHP versions
+if (!defined('LDAP_OPT_DIAGNOSTIC_MESSAGE')) {
+	define('LDAP_OPT_DIAGNOSTIC_MESSAGE', 0x0032);
+}
 
 /**
  * The LDAP class holds helper functions to access an LDAP database.
@@ -146,6 +150,9 @@ class SimpleSAML_Auth_LDAP {
 		}else{
 			if ($errNo !== 0) {
 				$description .= '; cause: \'' . ldap_error($this->ldap) . '\' (0x' . dechex($errNo) . ')';
+				if (@ldap_get_option($this->ldap, LDAP_OPT_DIAGNOSTIC_MESSAGE, $extendedError) and !empty($extendedError)) {
+					$description .= '; additional: \'' . $extendedError . '\'';
+				}
 			}
 			switch ($errNo){
 				case 0x20://LDAP_NO_SUCH_OBJECT
