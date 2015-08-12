@@ -8,6 +8,8 @@
  *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
+ *
+ * @deprecated This class will be removed in SSP 2.0.
  */
 class SimpleSAML_Auth_Default {
 
@@ -78,33 +80,14 @@ class SimpleSAML_Auth_Default {
 	 *
 	 * @param array $state  The state after the login.
 	 * @return array  The persistent authentication state.
+	 *
+	 * @deprecated This method will be removed in SSP 2.0. Please use
+	 * SimpleSAML_Auth_State::extractPersistentAuthState() instead.
 	 */
 	public static function extractPersistentAuthState(array &$state) {
 
-		/* Save persistent authentication data. */
-		$persistentAuthState = array();
-
-		if (isset($state['IdP'])) {
-			/* For backwards compatibility. */
-			$persistentAuthState['saml:sp:IdP'] = $state['IdP'];
-		}
-
-		if (isset($state['PersistentAuthData'])) {
-			foreach ($state['PersistentAuthData'] as $key) {
-				if (isset($state[$key])) {
-					$persistentAuthState[$key] = $state[$key];
-				}
-			}
-		}
-
-		/* Add those that should always be included. */
-		foreach (array('Attributes', 'Expire', 'LogoutState', 'AuthnInstant', 'RememberMe', 'saml:sp:NameID') as $a) {
-			if (isset($state[$a])) {
-				$persistentAuthState[$a] = $state[$a];
-			}
-		}
-
-		return $persistentAuthState;
+		$state = SimpleSAML_Auth_State::extractPersistentAuthState($state);
+		return $state;
 	}
 
 
@@ -124,7 +107,9 @@ class SimpleSAML_Auth_Default {
 
 		/* Save session state. */
 		$session = SimpleSAML_Session::getSessionFromRequest();
-		$session->doLogin($state['SimpleSAML_Auth_Default.id'], self::extractPersistentAuthState($state));
+		$authId = $state['SimpleSAML_Auth_Default.id'];
+		$state = SimpleSAML_Auth_State::extractPersistentAuthState($state);
+		$session->doLogin($authId, $state);
 
 		if (is_string($return)) {
 			/* Redirect... */
@@ -263,7 +248,7 @@ class SimpleSAML_Auth_Default {
 		assert('is_string($redirectTo)');
 
 		$session = SimpleSAML_Session::getSessionFromRequest();
-		$session->doLogin($authId, self::extractPersistentAuthState($state));
+		$session->doLogin($authId, SimpleSAML_Auth_State::extractPersistentAuthState($state));
 
 		\SimpleSAML\Utils\HTTP::redirectUntrustedURL($redirectTo);
 	}

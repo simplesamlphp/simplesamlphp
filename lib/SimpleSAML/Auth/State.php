@@ -92,6 +92,44 @@ class SimpleSAML_Auth_State {
 
 
 	/**
+	 * Extract the persistent authentication state from the state array.
+	 *
+	 * @param array $state The state array to analyze.
+	 * @return array The persistent authentication state.
+	 */
+	public static function extractPersistentAuthState(array $state)
+	{
+		// save persistent authentication data
+		$persistent = array();
+
+		if (array_key_exists('PersistentAuthData', $state)) {
+			foreach ($state['PersistentAuthData'] as $key) {
+				if (isset($state[$key])) {
+					$persistent[$key] = $state[$key];
+				}
+			}
+		}
+
+		// add those that should always be included
+		$mandatory = array(
+			'Attributes',
+			'Expire',
+			'LogoutState',
+			'AuthInstant',
+			'RememberMe',
+			'saml:sp:NameID'
+		);
+		foreach ($mandatory as $key) {
+			if (isset($state[$key])) {
+				$persistent[$key] = $state[$key];
+			}
+		}
+
+		return $persistent;
+	}
+
+
+	/**
 	 * Retrieve the ID of a state array.
 	 *
 	 * Note that this function will not save the state.

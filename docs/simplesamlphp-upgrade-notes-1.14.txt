@@ -86,6 +86,7 @@ The following methods have changed their signature. Refer to the code for the up
 The following methods and classes have been deprecated. Refer to the code for alternatives:
 
     * `SimpleSAML_Auth_Default`
+    * `SimpleSAML_Auth_Default::extractPersistentAuthState()`
     * `SimpleSAML_Utilities`
     * `SimpleSAML_Utilities::addURLParameter()`
     * `SimpleSAML_Utilities::aesDecrypt()`
