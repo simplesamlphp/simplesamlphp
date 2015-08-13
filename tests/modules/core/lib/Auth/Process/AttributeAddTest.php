@@ -163,7 +163,7 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
     {
         $config = array(
             '%replace',
-            array('value2'),
+             true => array('value2'),
         );
         $request = array(
             'Attributes' => array(

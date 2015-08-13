@@ -43,7 +43,7 @@ class Test_Core_Auth_Process_ScopeAttribute extends PHPUnit_Framework_TestCase
     }
 
     /*
-     * If scope already set, module must add, not overwrite.
+     * If target attribute already set, module must add, not overwrite.
      */
     public function testNoOverwrite()
     {
@@ -63,6 +63,29 @@ class Test_Core_Auth_Process_ScopeAttribute extends PHPUnit_Framework_TestCase
         $attributes = $result['Attributes'];
         $this->assertEquals($attributes['eduPersonScopedAffiliation'], array('library-walk-in@example.edu', 'member@example.com'));
     }
+
+    /*
+     * If same scope already set, module must do nothing, not duplicate value.
+     */
+    public function testNoDuplication()
+    {
+        $config = array(
+            'scopeAttribute' => 'eduPersonPrincipalName',
+            'sourceAttribute' => 'eduPersonAffiliation',
+            'targetAttribute' => 'eduPersonScopedAffiliation',
+        );
+        $request = array(
+            'Attributes' => array(
+                'eduPersonPrincipalName' => array('jdoe@example.com'),
+                'eduPersonAffiliation' => array('member'),
+                'eduPersonScopedAffiliation' => array('member@example.com'),
+            )
+        );
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertEquals($attributes['eduPersonScopedAffiliation'], array('member@example.com'));
+    }
+
 
     /*
      * If source attribute not set, nothing happens
