@@ -8,110 +8,36 @@
  *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
+ *
+ * @deprecated This class will be removed in SSP 2.0.
  */
 class SimpleSAML_Auth_Default {
 
 
 	/**
-	 * Start authentication.
-	 *
-	 * This function never returns.
-	 *
-	 * @param string $authId  The identifier of the authentication source.
-	 * @param string|array $return The URL or function we should direct the
-	 * user to after authentication. If using a URL obtained from user input,
-	 * please make sure to check it by calling
-	 * \SimpleSAML\Utils\HTTP::checkURLAllowed().
-	 * @param string|NULL $errorURL The URL we should direct the user to after
-	 * failed authentication. Can be NULL, in which case a standard error page
-	 * will be shown. If using a URL obtained from user input, please make sure
-	 * to check it by calling \SimpleSAML\Utils\HTTP::checkURLAllowed().
-	 * @param array $params Extra information about the login. Different
-	 * authentication requestors may provide different information. Optional,
-	 * will default to an empty array.
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	public static function initLogin($authId, $return, $errorURL = NULL,
 		array $params = array()) {
 
-		assert('is_string($authId)');
-		assert('is_string($return) || is_array($return)');
-		assert('is_string($errorURL) || is_null($errorURL)');
-
-		$state = array_merge($params, array(
-			'SimpleSAML_Auth_Default.id' => $authId,
-			'SimpleSAML_Auth_Default.Return' => $return,
-			'SimpleSAML_Auth_Default.ErrorURL' => $errorURL,
-			'LoginCompletedHandler' => array(get_class(), 'loginCompleted'),
-			'LogoutCallback' => array(get_class(), 'logoutCallback'),
-			'LogoutCallbackState' => array(
-				'SimpleSAML_Auth_Default.logoutSource' => $authId,
-			),
-		));
-
-		if (is_string($return)) {
-			$state['SimpleSAML_Auth_Default.ReturnURL'] = $return;
-		}
-
-		if ($errorURL !== NULL) {
-			$state[SimpleSAML_Auth_State::EXCEPTION_HANDLER_URL] = $errorURL;
-		}
-
 		$as = SimpleSAML_Auth_Source::getById($authId);
-		if ($as === NULL) {
-			throw new Exception('Invalid authentication source: ' . $authId);
-		}
-
-		try {
-			$as->authenticate($state);
-		} catch (SimpleSAML_Error_Exception $e) {
-			SimpleSAML_Auth_State::throwException($state, $e);
-		} catch (Exception $e) {
-			$e = new SimpleSAML_Error_UnserializableException($e);
-			SimpleSAML_Auth_State::throwException($state, $e);
-		}
-		self::loginCompleted($state);
+		$as->initLogin($return, $errorURL, $params);
 	}
 
 
 	/**
-	 * Extract the persistent authentication state from the state array.
-	 *
-	 * @param array $state  The state after the login.
-	 * @return array  The persistent authentication state.
+	 * @deprecated This method will be removed in SSP 2.0. Please use
+	 * SimpleSAML_Auth_State::extractPersistentAuthState() instead.
 	 */
 	public static function extractPersistentAuthState(array &$state) {
 
-		/* Save persistent authentication data. */
-		$persistentAuthState = array();
-
-		if (isset($state['IdP'])) {
-			/* For backwards compatibility. */
-			$persistentAuthState['saml:sp:IdP'] = $state['IdP'];
-		}
-
-		if (isset($state['PersistentAuthData'])) {
-			foreach ($state['PersistentAuthData'] as $key) {
-				if (isset($state[$key])) {
-					$persistentAuthState[$key] = $state[$key];
-				}
-			}
-		}
-
-		/* Add those that should always be included. */
-		foreach (array('Attributes', 'Expire', 'LogoutState', 'AuthnInstant', 'RememberMe', 'saml:sp:NameID') as $a) {
-			if (isset($state[$a])) {
-				$persistentAuthState[$a] = $state[$a];
-			}
-		}
-
-		return $persistentAuthState;
+		$state = SimpleSAML_Auth_State::extractPersistentAuthState($state);
+		return $state;
 	}
 
 
 	/**
-	 * Called when a login operation has finished.
-	 *
-	 * @param array $state  The state after the login.
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	public static function loginCompleted($state) {
 		assert('is_array($state)');
@@ -124,7 +50,9 @@ class SimpleSAML_Auth_Default {
 
 		/* Save session state. */
 		$session = SimpleSAML_Session::getSessionFromRequest();
-		$session->doLogin($state['SimpleSAML_Auth_Default.id'], self::extractPersistentAuthState($state));
+		$authId = $state['SimpleSAML_Auth_Default.id'];
+		$state = SimpleSAML_Auth_State::extractPersistentAuthState($state);
+		$session->doLogin($authId, $state);
 
 		if (is_string($return)) {
 			/* Redirect... */
@@ -242,30 +170,11 @@ class SimpleSAML_Auth_Default {
 
 
 	/**
-	 * Handle a unsolicited login operations.
-	 *
-	 * This function creates a session from the received information. It
-	 * will then redirect to the given URL.
-	 *
-	 * This is used to handle IdP initiated SSO.
-	 *
-	 * @param string $authId The id of the authentication source that received
-	 * the request.
-	 * @param array $state A state array.
-	 * @param string $redirectTo The URL we should redirect the user to after
-	 * updating the session. The function will check if the URL is allowed, so
-	 * there is no need to manually check the URL on beforehand. Please refer
-	 * to the 'trusted.url.domains' configuration directive for more
-	 * information about allowing (or disallowing) URLs.
+	 * @deprecated This method will be removed in SSP 2.0. Please use
+	 * sspmod_saml_Auth_Source_SP::handleUnsolicitedAuth() instead.
 	 */
 	public static function handleUnsolicitedAuth($authId, array $state, $redirectTo) {
-		assert('is_string($authId)');
-		assert('is_string($redirectTo)');
-
-		$session = SimpleSAML_Session::getSessionFromRequest();
-		$session->doLogin($authId, self::extractPersistentAuthState($state));
-
-		\SimpleSAML\Utils\HTTP::redirectUntrustedURL($redirectTo);
+		sspmod_saml_Auth_Source_SP::handleUnsolicitedAuth($authId, $state, $redirectTo);
 	}
 
 }

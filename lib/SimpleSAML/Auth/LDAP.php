@@ -150,7 +150,7 @@ class SimpleSAML_Auth_LDAP {
 		}else{
 			if ($errNo !== 0) {
 				$description .= '; cause: \'' . ldap_error($this->ldap) . '\' (0x' . dechex($errNo) . ')';
-				if (@ldap_get_option($this->ldap, LDAP_OPT_DIAGNOSTIC_MESSAGE, $extendedError) and !empty($extendedError)) {
+				if (@ldap_get_option($this->ldap, LDAP_OPT_DIAGNOSTIC_MESSAGE, $extendedError) && !empty($extendedError)) {
 					$description .= '; additional: \'' . $extendedError . '\'';
 				}
 			}

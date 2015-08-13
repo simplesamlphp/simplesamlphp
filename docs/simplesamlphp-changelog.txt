@@ -1,10 +1,91 @@
-simpleSAMLphp changelog
+SimpleSAMLphp changelog
 =======================
 
 <!-- {{TOC}} -->
 
-This document lists the changes between versions of simpleSAMLphp.
+This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
+
+## Version 1.14.0
+
+Released TBD
+
+### Security
+
+  * Resolved a security issue with multiple modules that were not validating the URLs they were redirecting to.
+  * Added a security check to disable loading external entities in XML documents.
+  * Enforced admin access to the metadata converter tool.
+  * Changed `xmlseclibs` dependency to point to `robrichards/xmlseclibs` version 1.4.1.
+
+### New features
+
+  * Allow setting the location of the configuration directory with an environment variable.
+  * Added support for the Metadata Query Protocol by means of the new MDX metadata storage handler.
+  * Added support for the Sender-Vouches method.
+  * Added support for WantAssertionsSigned and AuthnRequestsSigned in SAML 2.0 SP metadata.
+  * Added support for file uploads in the metadata converter.
+  * Added support for the Hide From Discovery REFEDS Entity Category.
+  * Added the SAML NameID to the attributes status page, when available.
+  * Added attribute definitions for schacGender (schac), sisSchoolGrade and sisLegalGuardianFor (skolfederation.se).
+  * Attributes required in metadata are now taken into account when parsing.
+
+### Bug fixes
+
+  * Fixed an issue with friendly names in the attributes released.
+  * Fixed an issue with memcache that would result in a push for every fetch, when several servers configured.
+  * Fixed an issue with HTML escaping in error reports.
+  * Fixed an issue with the 'admin.protectmetadata' option not being enforced for SP metadata.
+  * Fixed an issue with SAML 1.X SSO authentications that removed the NameID of the subject from available data.
+  * Fixed an issue with the login form that resulted in a `NOSTATE` error if the user clicked the login button twice.
+  * Fixed an issue with replay detection in IdP-initiated flows.
+  * Fixed an issue that prevented the SAML 1.X IdP to restart when the session is lost.
+  * Fixed an issue that prevented classes using namespaces to be loaded automatically.
+  * Fixed an issue that prevented certain metadata signatures to be verified (fixed upstream in `xmlseclibs`).
+  * Other bug fixes and numerous documentation enhancements.
+
+### API and user interface
+
+  * Added a new and simple database class to serve as PDO interface for all the database needs.
+  * Removed the old, unused `pack` installer tool.
+  * Improved usability by telling users the endpoints are not to be accessed directly.
+  * Moved the hostname, port and protocol diagnostics tool to the admin directory.
+  * Several classes and functions deprecated.
+  * Changed the signature of several functions.
+  * Deleted old and deprecated code, interfaces and endpoints.
+  * Deleted old jQuery remnants.
+  * Deleted the undocumented dynamic XML metadata storage handler.
+  * Deleted the backwards-compatible authentication source.
+
+### `authcrypt`
+
+  * Added whitehat101/apr1-md5 as a dependency for Apache htpasswd.
+
+### `authX509`
+
+  * Added an authentication processing filter to warn about certificate expiration.
+
+### `core`
+
+  * The PHP authentication processing filter now accepts a new option called `function` to define an anonymous function.
+
+### `ldap`
+
+  * Added a new `port` configuration option.
+  * Better error reporting.
+
+### `metaedit`
+
+  * Removed the `admins` configuration option.
+
+### `metarefresh`
+
+  * Added the possibility to specify which types of entities to load.
+  * Added the possibility to verify metadata signatures by using the public key present in a certificate.
+  * Fix `certificate` precedence over `fingerprint` in the configuration options when verifying metadata signatures.
+
+### `smartnameattribute`
+
+  * This module was deprecated long time ago and has now been removed. Use the `smartattributes` module instead.
 
 ## Version 1.13.2
 
@@ -846,7 +927,7 @@ Released 2010-01-08.
 
   * Fix security vulnerability due to insecure temp file creation:
     * statistics: The logcleaner script outputs to a file in /tmp.
-    * InfoCard: Saves state directly in /tmp. Changed to the simpleSAMLphp temp directory.
+    * InfoCard: Saves state directly in /tmp. Changed to the SimpleSAMLphp temp directory.
     * openidProvider: Default configuration saves state information in /tmp.
       Changed to '/var/lib/simplesamlphp-openid-provider'.
     * SAML 1 artifact support: Saves certificates temporarily in '/tmp/simplesaml', but directory creation was insecure.
@@ -872,7 +953,7 @@ Released 2009-11-05. Revision 1937.
   * Make use of the portal module on the frontpage.
   * SQL datastore.
   * Support for setting timezone in config (instead of php.ini).
-  * Logging of PHP errors and notices to simpleSAMLphp log file.
+  * Logging of PHP errors and notices to SimpleSAMLphp log file.
   * Improve handling of unhandled errors and exceptions.
   * Admin authentication through authentication sources.
   * Various bugfixes & cleanups.
@@ -1002,12 +1083,12 @@ Updates to `config.php`. Please check for updates in your local modified configu
     * AttributeMap
     * Smartname. does it best to guess the full name of the user based on several attributes.
     * Language adaptor: allow adopting UI by preferredLanguage SAML 2.0 Attribute both on the IdP and the SP. And if the user selects a lanauge, this can be sent to the SP as an attribute.
-  * New module: portal, allows you to created tabbed interface for custom pages within simpleSAMLphp. In example user consent management and attribute viewer.
+  * New module: portal, allows you to created tabbed interface for custom pages within SimpleSAMLphp. In example user consent management and attribute viewer.
   * New module: ldapstatus. Used by Feide to monitor connections to a large list of LDAP connections. Contact Feide on details on how to use.
   * ldapstatus also got certificate check capabilities.
   * New module: MemcacheMonitor: Show statistics for memcache servers.
   * New module: DiscoPower. A tabbed discovery service module with alot of functionality.
-  * New module: SAML 2.0 Debugginer. An improved version of the one found on rnd.feide.no earlier is not included in simpleSAMLphp allowing you to run it locally.
+  * New module: SAML 2.0 Debugginer. An improved version of the one found on rnd.feide.no earlier is not included in SimpleSAMLphp allowing you to run it locally.
   * New module: Simple Consent Amdin module that have one button to remove all consent for one user.
   * New module: Consent Administration. Contribution from Wayf.
   * We also have a consent adminstration module that we use in Feide that is not checked in to subversion.
@@ -1030,7 +1111,7 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * More localized UI.
   * New login as administrator link on frontpage.
   * Tabbed frontpage. Restructured.
-  * Simplifications to the theming and updated documentation on theming simpleSAMLphp.
+  * Simplifications to the theming and updated documentation on theming SimpleSAMLphp.
   * Attribute presentation hook allows you to tweak attributes before presentation in the attribute viewers. Used by Feide to group orgUnit information in a hieararchy.
   * Verification of the Receipient attribute in the response. Will improve security if for some reason an IdP is not includeding sufficient Audience restrictions.
   * Added hook to let modules tell about themself moduleinfo hook.
@@ -1174,7 +1255,7 @@ New localizations in version 1.1: Sami, Svenska (swedish), Suomeksi (finnish), N
   * Add support for external IdP discovery services.
   * Support password encrypted private keys.
   * Added PHP autoloading as the preferred way of loading the
-    simpleSAMLphp library.
+    SimpleSAMLphp library.
   * New error report script which will report errors to the
     `technicalcontact_email` address.
   * Support lookup of the DN of the user who is logging in by searching

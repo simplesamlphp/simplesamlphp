@@ -6,7 +6,7 @@
 class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
 {
 
-    /*
+    /**
      * Helper function to run the filter with a given configuration.
      *
      * @param array $config  The filter configuration.
@@ -20,7 +20,7 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
         return $request;
     }
 
-    /*
+    /**
      * Test the most basic functionality.
      */
     public function testBasic()
@@ -37,7 +37,7 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
         $this->assertEquals($attributes['test'], array('value1', 'value2'));
     }
 
-    /*
+    /**
      * Test that existing attributes are left unmodified.
      */
     public function testExistingNotModified()
@@ -61,7 +61,7 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
         $this->assertEquals($attributes['original2'], array('original_value2'));
     }
 
-    /*
+    /**
      * Test single string as attribute value.
      */
     public function testStringValue()
@@ -78,8 +78,8 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
         $this->assertEquals($attributes['test'], array('value'));
     }
 
-    /*
-     * Test the most basic functionality.
+    /**
+     * Test adding multiple attributes in one config.
      */
     public function testAddMultiple()
     {
@@ -98,7 +98,7 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
         $this->assertEquals($attributes['test2'], array('value2'));
     }
 
-    /*
+    /**
      * Test behavior when appending attribute values.
      */
     public function testAppend()
@@ -116,7 +116,7 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
         $this->assertEquals($attributes['test'], array('value1', 'value2'));
     }
 
-    /*
+    /**
      * Test replacing attribute values.
      */
     public function testReplace()
@@ -135,4 +135,60 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
         $this->assertEquals($attributes['test'], array('value2'));
     }
 
+    /**
+     * Test wrong usage generates exceptions
+     *
+     * @expectedException Exception
+     */
+    public function testWrongFlag()
+    {
+        $config = array(
+            '%nonsense',
+            'test' => array('value2'),
+        );
+        $request = array(
+            'Attributes' => array(
+                'test' => array('value1'),
+            ),
+        );
+        $result = self::processFilter($config, $request);
+    }
+
+    /**
+     * Test wrong attribute name
+     *
+     * @expectedException Exception
+     */
+    public function testWrongAttributeName()
+    {
+        $config = array(
+            '%replace',
+             true => array('value2'),
+        );
+        $request = array(
+            'Attributes' => array(
+                'test' => array('value1'),
+            ),
+        );
+        $result = self::processFilter($config, $request);
+    }
+
+    /**
+     * Test wrong attribute value
+     *
+     * @expectedException Exception
+     */
+    public function testWrongAttributeValue()
+    {
+        $config = array(
+            '%replace',
+            'test' => array(true),
+        );
+        $request = array(
+            'Attributes' => array(
+                'test' => array('value1'),
+            ),
+        );
+        $result = self::processFilter($config, $request);
+    }
 }
