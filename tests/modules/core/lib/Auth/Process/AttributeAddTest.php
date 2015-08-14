@@ -155,25 +155,6 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test wrong attribute name
-     *
-     * @expectedException Exception
-     */
-    public function testWrongAttributeName()
-    {
-        $config = array(
-            '%replace',
-             true => array('value2'),
-        );
-        $request = array(
-            'Attributes' => array(
-                'test' => array('value1'),
-            ),
-        );
-        $result = self::processFilter($config, $request);
-    }
-
-    /**
      * Test wrong attribute value
      *
      * @expectedException Exception
