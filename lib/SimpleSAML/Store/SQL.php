@@ -95,7 +95,12 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 			return;
 		}
 
-		$query = 'CREATE TABLE ' . $this->prefix . '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value TEXT NOT NULL, _expire TIMESTAMP, PRIMARY KEY (_key, _type))';
+		if ($this->driver === 'sqlsrv') {
+		  $query = 'CREATE TABLE ' . $this->prefix . '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value TEXT NOT NULL, _expire DATETIME, PRIMARY KEY (_key, _type))'; 
+		} else {
+		  $query = 'CREATE TABLE ' . $this->prefix . '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value TEXT NOT NULL, _expire TIMESTAMP, PRIMARY KEY (_key, _type))';
+		}
+    
 		$this->pdo->exec($query);
 
 		$query = 'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON '  . $this->prefix . '_kvstore (_expire)';
