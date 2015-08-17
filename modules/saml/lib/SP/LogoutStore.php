@@ -19,23 +19,23 @@ class sspmod_saml_SP_LogoutStore {
 		}
 
 		if ($store->driver === 'sqlsrv') {
-		  $query = 'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore (
-		    _authSource VARCHAR(30) NOT NULL,
-		    _nameId VARCHAR(40) NOT NULL,
-		    _sessionIndex VARCHAR(50) NOT NULL,
-		    _expire DATETIME NOT NULL,
-		    _sessionId VARCHAR(50) NOT NULL,
-		    UNIQUE (_authSource, _nameID, _sessionIndex)
-		  )';
+			$query = 'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore (
+				_authSource VARCHAR(30) NOT NULL,
+				_nameId VARCHAR(40) NOT NULL,
+				_sessionIndex VARCHAR(50) NOT NULL,
+				_expire DATETIME NOT NULL,
+				_sessionId VARCHAR(50) NOT NULL,
+				UNIQUE (_authSource, _nameID, _sessionIndex)
+				)';
 		} else {
-		  $query = 'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore (
-		    _authSource VARCHAR(30) NOT NULL,
-		    _nameId VARCHAR(40) NOT NULL,
-		    _sessionIndex VARCHAR(50) NOT NULL,
-		    _expire TIMESTAMP NOT NULL,
-		    _sessionId VARCHAR(50) NOT NULL,
-		    UNIQUE (_authSource, _nameID, _sessionIndex)
-		  )';
+			$query = 'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore (
+				_authSource VARCHAR(30) NOT NULL,
+				_nameId VARCHAR(40) NOT NULL,
+				_sessionIndex VARCHAR(50) NOT NULL,
+				_expire TIMESTAMP NOT NULL,
+				_sessionId VARCHAR(50) NOT NULL,
+				UNIQUE (_authSource, _nameID, _sessionIndex)
+				)';
 		}
 	
 		$store->pdo->exec($query);
