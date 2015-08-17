@@ -14,6 +14,27 @@ class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameI
 	 */
 	private $attribute;
 
+	/**
+	 * Whether we should create a persistent NameID if not explicitly requested (as saml:PersistentNameID does).
+	 *
+	 * @var boolean
+	 */
+	private $allowUnspecified;
+
+	/**
+	 * Whether we should create a persistent NameID if a different format is requested.
+	 *
+	 * @var boolean
+	 */
+	private $allowDifferent;
+
+	/**
+	 * Whether we should ignore allowCreate in the NameID policy
+	 *
+	 * @var boolean
+	 */
+	private $alwaysCreate;
+
 
 	/**
 	 * Initialize this filter, parse configuration.
@@ -31,6 +52,24 @@ class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameI
 			throw new SimpleSAML_Error_Exception('PersistentNameID: Missing required option \'attribute\'.');
 		}
 		$this->attribute = $config['attribute'];
+
+		if (isset($config['allowUnspecified'])) {
+			$this->allowUnspecified = (bool)$config['allowUnspecified'];
+		} else {
+			$this->allowUnspecified = FALSE;
+		}
+
+		if (isset($config['allowDifferent'])) {
+			$this->allowDifferent = (bool)$config['allowDifferent'];
+		} else {
+			$this->allowDifferent = FALSE;
+		}
+
+		if (isset($config['alwaysCreate'])) {
+			$this->alwaysCreate = (bool)$config['alwaysCreate'];
+		} else {
+			$this->alwaysCreate = FALSE;
+		}
 	}
 
 
@@ -41,8 +80,14 @@ class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameI
 	 */
 	protected function getValue(array &$state) {
 
-		if (!isset($state['saml:NameIDFormat']) || $state['saml:NameIDFormat'] !== $this->format) {
+		if (!isset($state['saml:NameIDFormat']) && !$this->allowUnspecified) {
 			SimpleSAML_Logger::debug('SQLPersistentNameID: Request did not specify persistent NameID format -  not generating persistent NameID.');
+			return NULL;
+		}
+
+		$validNameIdFormats = @array_filter(array($state['saml:NameIDFormat'], $state['SPMetadata']['NameIDPolicy'], $state['SPMetadata']['NameIDFormat']));
+		if (count($validNameIdFormats) && !in_array($this->format, $validNameIdFormats) && !$this->allowDifferent) {
+			SimpleSAML_Logger::debug('SQLPersistentNameID: SP expects different NameID format (' . implode(', ', $validNameIdFormats) . ') -  not generating persistent NameID.');
 			return NULL;
 		}
 
@@ -76,7 +121,7 @@ class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameI
 			return $value;
 		}
 
-		if (!isset($state['saml:AllowCreate']) || !$state['saml:AllowCreate']) {
+		if ((!isset($state['saml:AllowCreate']) || !$state['saml:AllowCreate']) && !$this->alwaysCreate) {
 			SimpleSAML_Logger::warning('SQLPersistentNameID: Did not find persistent NameID for user, and not allowed to create new NameID.');
 			throw new sspmod_saml_Error(SAML2_Const::STATUS_RESPONDER, 'urn:oasis:names:tc:SAML:2.0:status:InvalidNameIDPolicy');
 		}
