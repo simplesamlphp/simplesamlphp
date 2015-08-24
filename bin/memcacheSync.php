@@ -24,7 +24,7 @@ $baseDir = dirname(dirname(__FILE__));
 require_once($baseDir . '/lib/_autoload.php');
 
 /* Initialize the configuration. */
-$configdir = $baseDir . '/config';
+$configdir = SimpleSAML\Utils\Config::getConfigDir();
 SimpleSAML_Configuration::setConfigDir($configdir);
 
 /* Things we should warn the user about. */

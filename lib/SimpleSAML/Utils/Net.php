@@ -23,7 +23,7 @@ class Net
      * @author Brook Schofield, GÉANT
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    static function ipCIDRcheck($cidr, $ip = null)
+    public static function ipCIDRcheck($cidr, $ip = null)
     {
         if ($ip === null) {
             $ip = $_SERVER['REMOTE_ADDR'];
@@ -34,6 +34,8 @@ class Net
 
         list ($net, $mask) = explode('/', $cidr);
 
+        $ip_ip = array();
+        $ip_net = array();
         if (strstr($ip, ':') || strstr($net, ':')) {
             // Validate IPv6 with inet_pton, convert to hex with bin2hex
             // then store as a long with hexdec

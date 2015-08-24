@@ -439,7 +439,9 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		// Update session state
 		$session = SimpleSAML_Session::getSessionFromRequest();
-		$session->doLogin($state['saml:sp:AuthId'], SimpleSAML_Auth_Default::extractPersistentAuthState($state));
+		$authId = $state['saml:sp:AuthId'];
+		$state = SimpleSAML_Auth_State::extractPersistentAuthState($state);
+		$session->doLogin($authId, $state);
 
 		// resume the login process
 		call_user_func($state['ReturnCallback'], $state);
@@ -578,6 +580,29 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 
 	/**
+	 * Handle an unsolicited login operations.
+	 *
+	 * This method creates a session from the information received. It will then redirect to the given URL. This is used
+	 * to handle IdP initiated SSO. This method will never return.
+	 *
+	 * @param string $authId The id of the authentication source that received the request.
+	 * @param array $state A state array.
+	 * @param string $redirectTo The URL we should redirect the user to after updating the session. The function will
+	 * check if the URL is allowed, so there is no need to manually check the URL on beforehand. Please refer to the
+	 * 'trusted.url.domains' configuration directive for more information about allowing (or disallowing) URLs.
+	 */
+	public static function handleUnsolicitedAuth($authId, array $state, $redirectTo) {
+		assert('is_string($authId)');
+		assert('is_string($redirectTo)');
+
+		$session = SimpleSAML_Session::getSessionFromRequest();
+		$session->doLogin($authId, SimpleSAML_Auth_State::extractPersistentAuthState($state));
+
+		\SimpleSAML\Utils\HTTP::redirectUntrustedURL($redirectTo);
+	}
+
+
+	/**
 	 * Called when we have completed the procssing chain.
 	 *
 	 * @param array $authProcState  The processing chain state.
@@ -607,7 +632,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			} else {
 				$redirectTo = $source->getMetadata()->getString('RelayState', '/');
 			}
-			SimpleSAML_Auth_Default::handleUnsolicitedAuth($sourceId, $state, $redirectTo);
+			self::handleUnsolicitedAuth($sourceId, $state, $redirectTo);
 		}
 
 		SimpleSAML_Auth_Source::completeAuth($state);

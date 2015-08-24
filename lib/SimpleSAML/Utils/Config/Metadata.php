@@ -11,6 +11,22 @@ class Metadata
 {
 
     /**
+     * The string that identities Entity Categories.
+     *
+     * @var string
+     */
+    public static $ENTITY_CATEGORY = 'http://macedir.org/entity-category';
+
+
+    /**
+     * The string the identifies the REFEDS "Hide From Discovery" Entity Category.
+     *
+     * @var string
+     */
+    public static $HIDE_FROM_DISCOVERY = 'http://refeds.org/category/hide-from-discovery';
+
+
+    /**
      * @var array The valid configuration options for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
@@ -72,7 +88,7 @@ class Metadata
      * @return array An array holding valid contact configuration options. If a key 'name' was part of the input array,
      * it will try to decompose the name into its parts, and place the parts into givenName and surName, if those are
      * missing.
-     * @throws \InvalidArgumentException If $contact is neither a string nor null, or the contact does not conform to
+     * @throws \InvalidArgumentException If $contact is neither an array nor null, or the contact does not conform to
      *     valid configuration rules for contacts.
      */
     public static function getContact($contact)
@@ -157,7 +173,9 @@ class Metadata
             if (empty($contact['telephoneNumber']) ||
                 !(is_string($contact['telephoneNumber']) || is_array($contact['telephoneNumber']))
             ) {
-                throw new \InvalidArgumentException('"telephoneNumber" must be a string or an array and cannot be empty.');
+                throw new \InvalidArgumentException(
+                    '"telephoneNumber" must be a string or an array and cannot be empty.'
+                );
             }
             if (is_array($contact['telephoneNumber'])) {
                 foreach ($contact['telephoneNumber'] as $address) {
@@ -222,5 +240,28 @@ class Metadata
          * endpoints. Either way we return its value.
          */
         return $firstAllowed;
+    }
+
+
+    /**
+     * Determine if an entity should be hidden in the discovery service.
+     *
+     * This method searches for the "Hide From Discovery" REFEDS Entity Category, and tells if the entity should be
+     * hidden or not depending on it.
+     *
+     * @see https://refeds.org/category/hide-from-discovery
+     *
+     * @param array $metadata An associative array with the metadata representing an entity.
+     *
+     * @return boolean True if the entity should be hidden, false otherwise.
+     */
+    public static function isHiddenFromDiscovery($metadata)
+    {
+        if (array_key_exists(self::$ENTITY_CATEGORY, $metadata['EntityAttributes'])) {
+            if (in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY])) {
+                return true;
+            }
+        }
+        return false;
     }
 }
