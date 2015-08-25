@@ -162,7 +162,6 @@ abstract class SimpleSAML_Auth_Source
      */
     public function initLogin($return, $errorURL = null, array $params = array())
     {
-        assert('is_string($authId)');
         assert('is_string($return) || is_array($return)');
         assert('is_string($errorURL) || is_null($errorURL)');
 
