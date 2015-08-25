@@ -440,8 +440,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		// Update session state
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$authId = $state['saml:sp:AuthId'];
-		$state = SimpleSAML_Auth_State::extractPersistentAuthState($state);
-		$session->doLogin($authId, $state);
+		$session->doLogin($authId, SimpleSAML_Auth_State::extractPersistentAuthState($state));
 
 		// resume the login process
 		call_user_func($state['ReturnCallback'], $state);
