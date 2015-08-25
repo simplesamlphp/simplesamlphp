@@ -27,11 +27,11 @@ class SimpleSAML_Auth_Default {
 
 	/**
 	 * @deprecated This method will be removed in SSP 2.0. Please use
-	 * SimpleSAML_Auth_State::extractPersistentAuthState() instead.
+	 * SimpleSAML_Auth_State::getPersistentAuthData() instead.
 	 */
 	public static function extractPersistentAuthState(array &$state) {
 
-		return SimpleSAML_Auth_State::extractPersistentAuthState($state);
+		return SimpleSAML_Auth_State::getPersistentAuthData($state);
 	}
 
 
@@ -50,7 +50,7 @@ class SimpleSAML_Auth_Default {
 		/* Save session state. */
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$authId = $state['SimpleSAML_Auth_Default.id'];
-		$session->doLogin($authId, SimpleSAML_Auth_State::extractPersistentAuthState($state));
+		$session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
 
 		if (is_string($return)) {
 			/* Redirect... */

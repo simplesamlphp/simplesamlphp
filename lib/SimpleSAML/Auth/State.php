@@ -92,12 +92,12 @@ class SimpleSAML_Auth_State {
 
 
 	/**
-	 * Extract the persistent authentication state from the state array.
+	 * Get the persistent authentication state from the state array.
 	 *
 	 * @param array $state The state array to analyze.
 	 * @return array The persistent authentication state.
 	 */
-	public static function extractPersistentAuthState(array $state)
+	public static function getPersistentAuthData(array $state)
 	{
 		// save persistent authentication data
 		$persistent = array();
