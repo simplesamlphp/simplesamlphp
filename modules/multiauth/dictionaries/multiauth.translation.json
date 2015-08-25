@@ -27,7 +27,8 @@
 		"sr": "Odaberite izvor preko koga se \u017eelite autentifikovati",
 		"ro": "V\u0103 rug\u0103m s\u0103 alege\u021bi o surs\u0103 pentru autentificare",
 		"cs": "Zvolte autentiza\u010dn\u00ed zdroj",
-		"eu": "Hauta ezazu iturburu bat kautotzeko"
+		"eu": "Hauta ezazu iturburu bat kautotzeko",
+		"af": "Kies 'n verifikasie bron"
 	},
 	"select_source_text": {
 		"no": "Den valgte autentiseringskilden vil bli brukt til \u00e5 autentisere brukeren og deretter etablere en gyldig sesjon.",
@@ -57,6 +58,7 @@
 		"sr": "Izabrani autentifikacioni izvor \u0107e biti upotrebljen za va\u0161u autentifikaciju i kreiranje validne sesije.",
 		"ro": "Sursa de autentificare selectat\u0103 va fi folosit\u0103 pentru a v\u0103 autentifica \u0219i pentru a crea o sesiune valid\u0103.",
 		"cs": "Zvolen\u00fd autentiza\u010dn\u00ed zdroj bude pou\u017eit pro va\u0161e ov\u011b\u0159en\u00ed a vytvo\u0159en\u00ed platn\u00e9ho sezen\u00ed.",
-		"eu": "Kautotzeko hautatu duzun iturburua, kautotu eta baliozko saio bat sortzeko erabiliko da."
+		"eu": "Kautotzeko hautatu duzun iturburua, kautotu eta baliozko saio bat sortzeko erabiliko da.",
+		"af": "Die gekose verifikasie bron sal gebruik word om jou te identifiseer en 'n geldige sessie te skep."
 	}
 }
