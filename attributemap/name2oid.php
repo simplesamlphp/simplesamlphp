@@ -44,6 +44,7 @@ $attributemap = array(
 	'eduOrgSuperiorURI' => 'urn:oid:1.3.6.1.4.1.5923.1.2.1.5',
 	'eduOrgWhitePagesURI' => 'urn:oid:1.3.6.1.4.1.5923.1.2.1.6',
 	'eduPersonAffiliation' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.1',
+	'eduPersonAssurance' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.11',
 	'eduPersonEntitlement' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.7',
 	'eduPersonNickname' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.2',
 	'eduPersonOrgDN' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.3',

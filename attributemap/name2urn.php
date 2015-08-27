@@ -44,6 +44,7 @@ $attributemap = array(
 	'eduOrgSuperiorURI' => 'urn:mace:dir:attribute-def:eduOrgSuperiorURI',
 	'eduOrgWhitePagesURI' => 'urn:mace:dir:attribute-def:eduOrgWhitePagesURI',
 	'eduPersonAffiliation' => 'urn:mace:dir:attribute-def:eduPersonAffiliation',
+	'eduPersonAssurance' => 'urn:mace:dir:attribute-def:eduPersonAssurance',
 	'eduPersonEntitlement' => 'urn:mace:dir:attribute-def:eduPersonEntitlement',
 	'eduPersonNickname' => 'urn:mace:dir:attribute-def:eduPersonNickname',
 	'eduPersonOrgDN' => 'urn:mace:dir:attribute-def:eduPersonOrgDN',

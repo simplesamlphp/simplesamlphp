@@ -62,6 +62,7 @@ $attributemap = array(
 	'urn:oid:1.3.6.1.4.1.2428.90.1.9' => 'urn:mace:dir:attribute-def:federationFeideSchemaVersion',
 	'urn:oid:1.3.6.1.4.1.250.1.57' => 'urn:mace:dir:attribute-def:labeledURI',
 	'urn:oid:1.3.6.1.4.1.5923.1.1.1.1' => 'urn:mace:dir:attribute-def:eduPersonAffiliation',
+	'urn:oid:1.3.6.1.4.1.5923.1.1.1.11' => 'urn:mace:dir:attribute-def:eduPersonAssurance',
 	'urn:oid:1.3.6.1.4.1.5923.1.1.1.10' => 'urn:mace:dir:attribute-def:eduPersonTargetedID',
 	'urn:oid:1.3.6.1.4.1.5923.1.1.1.2' => 'urn:mace:dir:attribute-def:eduPersonNickname',
 	'urn:oid:1.3.6.1.4.1.5923.1.1.1.3' => 'urn:mace:dir:attribute-def:eduPersonOrgDN',
