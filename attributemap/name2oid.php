@@ -165,5 +165,6 @@ $attributemap = array(
 	'x121Address' => 'urn:oid:2.5.4.24',
 	'x500UniqueIdentifier' => 'urn:oid:2.5.4.45',
 	'schacHomeOrganization' => 'urn:oid:1.3.6.1.4.1.25178.1.2.9',
+	'schacHomeOrganizationType' => 'urn:oid:1.3.6.1.4.1.25178.1.2.10',
 	'schacPersonalUniqueCode' => 'urn:oid:1.3.6.1.4.1.25178.1.2.14',
 );

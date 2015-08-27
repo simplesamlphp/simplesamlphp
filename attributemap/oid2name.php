@@ -144,5 +144,6 @@ $attributemap = array(
 	'urn:oid:2.5.4.8' => 'st',
 	'urn:oid:2.5.4.9' => 'street',
 	'urn:oid:1.3.6.1.4.1.25178.1.2.9' => 'schacHomeOrganization',
+	'urn:oid:1.3.6.1.4.1.25178.1.2.10' => 'schacHomeOrganizationType',
 	'urn:oid:1.3.6.1.4.1.25178.1.2.14' => 'schacPersonalUniqueCode',
 );
