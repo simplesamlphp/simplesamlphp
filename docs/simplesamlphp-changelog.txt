@@ -25,6 +25,7 @@ Released TBD
   * Added support for WantAssertionsSigned and AuthnRequestsSigned in SAML 2.0 SP metadata.
   * Added support for file uploads in the metadata converter.
   * Added support for the Hide From Discovery REFEDS Entity Category.
+  * Added support for the eduPersonAssurance attribute.
   * Added the SAML NameID to the attributes status page, when available.
   * Added attribute definitions for schacGender (schac), sisSchoolGrade and sisLegalGuardianFor (skolfederation.se).
   * Attributes required in metadata are now taken into account when parsing.
@@ -55,6 +56,7 @@ Released TBD
   * Deleted old jQuery remnants.
   * Deleted the undocumented dynamic XML metadata storage handler.
   * Deleted the backwards-compatible authentication source.
+  * Updated translations.
 
 ### `authcrypt`
 
