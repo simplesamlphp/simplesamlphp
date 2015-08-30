@@ -36,29 +36,10 @@ class SimpleSAML_Auth_Default {
 
 
 	/**
-	 * @deprecated This method will be removed in SSP 2.0.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Auth_Source::loginCompleted() instead.
 	 */
 	public static function loginCompleted($state) {
-		assert('is_array($state)');
-		assert('array_key_exists("SimpleSAML_Auth_Default.Return", $state)');
-		assert('array_key_exists("SimpleSAML_Auth_Default.id", $state)');
-		assert('array_key_exists("Attributes", $state)');
-		assert('!array_key_exists("LogoutState", $state) || is_array($state["LogoutState"])');
-
-		$return = $state['SimpleSAML_Auth_Default.Return'];
-
-		/* Save session state. */
-		$session = SimpleSAML_Session::getSessionFromRequest();
-		$authId = $state['SimpleSAML_Auth_Default.id'];
-		$session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
-
-		if (is_string($return)) {
-			/* Redirect... */
-			\SimpleSAML\Utils\HTTP::redirectTrustedURL($return);
-		} else {
-			call_user_func($return, $state);
-			assert('FALSE');
-		}
+		SimpleSAML_Auth_Source::loginCompleted($state);
 	}
 
 
