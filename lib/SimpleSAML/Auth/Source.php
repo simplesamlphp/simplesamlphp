@@ -203,7 +203,7 @@ abstract class SimpleSAML_Auth_Source
      *
      * @param array $state The state after the login has completed.
      */
-    protected static function loginCompleted($state)
+    public static function loginCompleted($state)
     {
         assert('is_array($state)');
         assert('array_key_exists("SimpleSAML_Auth_Default.Return", $state)');
