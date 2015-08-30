@@ -248,6 +248,22 @@ abstract class SimpleSAML_Auth_Source
 
 
     /**
+     * Called when logout operation completes.
+     *
+     * This function never returns.
+     *
+     * @param array $state The state after the logout.
+     */
+    public static function logoutCompleted($state)
+    {
+        assert('is_array($state)');
+        assert('array_key_exists("SimpleSAML_Auth_Default.ReturnURL", $state)');
+
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($state['SimpleSAML_Auth_Default.ReturnURL']);
+    }
+
+
+    /**
      * Complete logout.
      *
      * This function should be called after logout has completed. It will never return,

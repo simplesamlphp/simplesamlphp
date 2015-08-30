@@ -105,20 +105,10 @@ class SimpleSAML_Auth_Default {
 
 
 	/**
-	 * Called when logout operation completes.
-	 *
-	 * This function never returns.
-	 *
-	 * @param array $state  The state after the logout.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Auth_Source::logoutCompleted() instead.
 	 */
 	public static function logoutCompleted($state) {
-		assert('is_array($state)');
-		assert('array_key_exists("SimpleSAML_Auth_Default.ReturnURL", $state)');
-
-		$returnURL = $state['SimpleSAML_Auth_Default.ReturnURL'];
-
-		/* Redirect... */
-		\SimpleSAML\Utils\HTTP::redirectTrustedURL($returnURL);
+		SimpleSAML_Auth_Source::logoutCompleted($state);
 	}
 
 
