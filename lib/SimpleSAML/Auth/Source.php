@@ -351,6 +351,31 @@ abstract class SimpleSAML_Auth_Source
 
 
     /**
+     * Called when the authentication source receives an external logout request.
+     *
+     * @param array $state State array for the logout operation.
+     */
+    public static function logoutCallback($state)
+    {
+        assert('is_array($state)');
+        assert('array_key_exists("SimpleSAML_Auth_Default.logoutSource", $state)');
+
+        $source = $state['SimpleSAML_Auth_Default.logoutSource'];
+
+        $session = SimpleSAML_Session::getSessionFromRequest();
+        if (!$session->isValid($source)) {
+            SimpleSAML_Logger::warning(
+                'Received logout from an invalid authentication source '.
+                var_export($source, true)
+            );
+
+            return;
+        }
+        $session->doLogout($source);
+    }
+
+
+    /**
      * Add a logout callback association.
      *
      * This function adds a logout callback association, which allows us to initiate
