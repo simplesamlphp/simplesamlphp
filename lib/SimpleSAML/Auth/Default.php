@@ -15,13 +15,15 @@ class SimpleSAML_Auth_Default {
 
 
 	/**
-	 * @deprecated This method will be removed in SSP 2.0.
+	 * @deprecated This method will be removed in SSP 2.0. Use SimpleSAML_Auth_Source::initLogin() instead.
 	 */
 	public static function initLogin($authId, $return, $errorURL = NULL,
 		array $params = array()) {
 
 		$as = SimpleSAML_Auth_Source::getById($authId);
+		if ($as !== null) {
 		$as->initLogin($return, $errorURL, $params);
+	}
 	}
 
 
