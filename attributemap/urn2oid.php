@@ -163,4 +163,6 @@ $attributemap = array(
 	'urn:mace:dir:attribute-def:userid' => 'urn:oid:0.9.2342.19200300.100.1.1',
 	'urn:mace:dir:attribute-def:x121Address' => 'urn:oid:2.5.4.24',
 	'urn:mace:dir:attribute-def:x500UniqueIdentifier' => 'urn:oid:2.5.4.45',
+	'urn:mace:terena.org:attribute-def:schacHomeOrganization' => 'urn:oid:1.3.6.1.4.1.25178.1.2.9',
+	'urn:mace:terena.org:attribute-def:schacHomeOrganizationType' => 'urn:oid:1.3.6.1.4.1.25178.1.2.10',
 );
