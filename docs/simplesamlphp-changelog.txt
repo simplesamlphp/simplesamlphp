@@ -26,6 +26,7 @@ Released TBD
   * Added support for file uploads in the metadata converter.
   * Added support for the Hide From Discovery REFEDS Entity Category.
   * Added support for the eduPersonAssurance attribute.
+  * Added support for the full SCHAC 1.5.0 schema.
   * Added the SAML NameID to the attributes status page, when available.
   * Added attribute definitions for schacGender (schac), sisSchoolGrade and sisLegalGuardianFor (skolfederation.se).
   * Attributes required in metadata are now taken into account when parsing.
