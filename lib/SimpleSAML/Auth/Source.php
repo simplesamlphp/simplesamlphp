@@ -248,6 +248,35 @@ abstract class SimpleSAML_Auth_Source
 
 
     /**
+     * Start logout.
+     *
+     * This function starts a logout operation from the current authentication source. This function will return if the
+     * logout operation does not require a redirect.
+     *
+     * @param string $returnURL The URL we should redirect the user to after logging out. No checking is performed on
+     * the URL, so make sure to verify it on beforehand if the URL is obtained from user input. Refer to
+     * \SimpleSAML\Utils\HTTP::checkURLAllowed() for more information.
+     */
+    public function initLogoutReturn($returnURL)
+    {
+        assert('is_string($returnURL)');
+        assert('is_string($authority)');
+
+        $session = SimpleSAML_Session::getSessionFromRequest();
+
+        $state = $session->getAuthData($this->authId, 'LogoutState');
+        $session->doLogout($this->authId);
+
+        $state['SimpleSAML_Auth_Default.ReturnURL'] = $returnURL;
+        $state['LogoutCompletedHandler'] = array(get_class(), 'logoutCompleted');
+
+        $this->logout($state);
+
+        self::logoutCompleted($state);
+    }
+
+
+    /**
      * Called when logout operation completes.
      *
      * This function never returns.

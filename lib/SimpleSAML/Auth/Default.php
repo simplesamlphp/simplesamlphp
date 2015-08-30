@@ -23,7 +23,7 @@ class SimpleSAML_Auth_Default {
 		$as = SimpleSAML_Auth_Source::getById($authId);
 		if ($as === null) {
 			throw new Exception('Invalid authentication source: ' . $authId);
-	}
+		}
 		$as->initLogin($return, $errorURL, $params);
 	}
 
@@ -47,38 +47,14 @@ class SimpleSAML_Auth_Default {
 
 
 	/**
-	 * Start logout.
-	 *
-	 * This function starts a logout operation from the current authentication
-	 * source. This function will return if the logout operation does not
-	 * require a redirect.
-	 *
-	 * @param string $returnURL The URL we should redirect the user to after
-	 * logging out. No checking is performed on the URL, so make sure to verify
-	 * it on beforehand if the URL is obtained from user input. Refer to
-	 * \SimpleSAML\Utils\HTTP::checkURLAllowed() for more information.
-	 * @param string $authority The authentication source we are logging
-	 * out from.
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	public static function initLogoutReturn($returnURL, $authority) {
-		assert('is_string($returnURL)');
-		assert('is_string($authority)');
-
-		$session = SimpleSAML_Session::getSessionFromRequest();
-
-		$state = $session->getAuthData($authority, 'LogoutState');
-		$session->doLogout($authority);
-
-		$state['SimpleSAML_Auth_Default.ReturnURL'] = $returnURL;
-		$state['LogoutCompletedHandler'] = array(get_class(), 'logoutCompleted');
-
 		$as = SimpleSAML_Auth_Source::getById($authority);
-		if ($as === NULL) {
-			/* The authority wasn't an authentication source... */
-			self::logoutCompleted($state);
+		if ($as === null) {
+			throw new Exception('Invalid authentication source: ' . $authority);
 		}
-
-		$as->logout($state);
+		$as->initLogoutReturn($returnURL);
 	}
 
 
