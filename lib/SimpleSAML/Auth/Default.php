@@ -21,9 +21,10 @@ class SimpleSAML_Auth_Default {
 		array $params = array()) {
 
 		$as = SimpleSAML_Auth_Source::getById($authId);
-		if ($as !== null) {
-		$as->initLogin($return, $errorURL, $params);
+		if ($as === null) {
+			throw new Exception('Invalid authentication source: ' . $authId);
 	}
+		$as->initLogin($return, $errorURL, $params);
 	}
 
 
