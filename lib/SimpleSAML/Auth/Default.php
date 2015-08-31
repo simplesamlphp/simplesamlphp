@@ -47,25 +47,48 @@ class SimpleSAML_Auth_Default {
 	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	public static function initLogoutReturn($returnURL, $authority) {
-		$as = self::getAuthSource($authority);
-		$as->initLogoutReturn($returnURL);
-	}
+		assert('is_string($returnURL)');
+		assert('is_string($authority)');
+
+		$session = SimpleSAML_Session::getSessionFromRequest();
+
+		$state = $session->getAuthData($authority, 'LogoutState');
+		$session->doLogout($authority);
+
+		$state['SimpleSAML_Auth_Default.ReturnURL'] = $returnURL;
+		$state['LogoutCompletedHandler'] = array(get_class(), 'logoutCompleted');
+
+		$as = SimpleSAML_Auth_Source::getById($authority);
+		if ($as === NULL) {
+			/* The authority wasn't an authentication source... */
+			self::logoutCompleted($state);
+ 		}
+
+		$as->logout($state);
+ 	}
 
 
 	/**
-	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Auth_Source::initLogout() instead.
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	public static function initLogout($returnURL, $authority) {
-		$as = self::getAuthSource($authority);
-		$as->initLogout($returnURL);
+		assert('is_string($returnURL)');
+		assert('is_string($authority)');
+
+		self::initLogoutReturn($returnURL, $authority);
+
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($returnURL);
 	}
 
 
 	/**
-	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Auth_Source::logoutCompleted() instead.
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	public static function logoutCompleted($state) {
-		SimpleSAML_Auth_Source::logoutCompleted($state);
+		assert('is_array($state)');
+		assert('array_key_exists("SimpleSAML_Auth_Default.ReturnURL", $state)');
+
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($state['SimpleSAML_Auth_Default.ReturnURL']);
 	}
 
 
