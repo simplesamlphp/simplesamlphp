@@ -33,7 +33,11 @@ class SimpleSAML_Auth_Simple {
 	 * @return SimpleSAML_Auth_Source  The authentication source.
 	 */
 	public function getAuthSource() {
-		return SimpleSAML_Auth_Source::getById($this->authSource);
+		$as = SimpleSAML_Auth_Source::getById($this->authSource);
+		if ($as === null) {
+			throw new SimpleSAML_Error_Exception('Invalid authentication source: '.$this->authSource);
+		}
+		return $as;
 	}
 
 
