@@ -217,8 +217,8 @@ $state['saml:sp:prevAuth'] = array(
     'id'     => $response->getId(),
     'issuer' => $idp,
 );
-if (isset($state['SimpleSAML_Auth_Default.ReturnURL'])) {
-    $state['saml:sp:prevAuth']['redirect'] = $state['SimpleSAML_Auth_Default.ReturnURL'];
+if (isset($state['SimpleSAML_Auth_Source.ReturnURL'])) {
+    $state['saml:sp:prevAuth']['redirect'] = $state['SimpleSAML_Auth_Source.ReturnURL'];
 } elseif (isset($state['saml:sp:RelayState'])) {
     $state['saml:sp:prevAuth']['redirect'] = $state['saml:sp:RelayState'];
 }
