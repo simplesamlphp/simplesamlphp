@@ -72,8 +72,6 @@ The following deprecated methods and constants have been removed:
 The following methods have changed their signature. Refer to the code for the updated signatures:
 
     * `SimpleSAML_Auth_Default::initLogin()`
-    * `SimpleSAML_Auth_Default::initLogout()`
-    * `SimpleSAML_Auth_Default::initLogoutReturn()`
     * `SimpleSAML_Metadata_MetaDataStorageHandler::getGenerated()`
     * `SimpleSAML_Metadata_MetaDataStorageHandler::getMetaData()`
     * `SimpleSAML_Metadata_MetaDataStorageHandler::getMetaDataCurrent()`
@@ -86,7 +84,7 @@ The following methods have changed their signature. Refer to the code for the up
 
 The following methods and classes have been deprecated. Refer to the code for alternatives:
 
-    * `SimpleSAML_Auth_Default`
+    * `SimpleSAML_Auth_Default`, together with all the `SimpleSAML_Auth_Default.*` keys in the state array.
     * `SimpleSAML_Auth_Default::extractPersistentAuthState()`
     * `SimpleSAML_Auth_Default::handleUnsolicitedAuth()`
     * `SimpleSAML_Auth_Default::initLogin()`
