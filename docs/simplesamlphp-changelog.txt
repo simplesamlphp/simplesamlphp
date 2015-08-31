@@ -68,10 +68,6 @@ Released TBD
 
   * Added an authentication processing filter to warn about certificate expiration.
 
-### `core`
-
-  * The PHP authentication processing filter now accepts a new option called `function` to define an anonymous function.
-
 ### `ldap`
 
   * Added a new `port` configuration option.
