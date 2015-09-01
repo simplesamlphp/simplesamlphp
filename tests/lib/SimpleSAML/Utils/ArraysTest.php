@@ -40,10 +40,14 @@ class Utils_ArraysTest extends PHPUnit_Framework_TestCase
     public function testTranspose()
     {
         // check bad arrays
-        $this->assertFalse(SimpleSAML\Utils\Arrays::transpose(array('1', '2', '3')),
-            'Invalid two-dimensional array was accepted');
-        $this->assertFalse(SimpleSAML\Utils\Arrays::transpose(array('1' => 0, '2' => '0', '3' => array(0))),
-            'Invalid elements on a two-dimensional array were accepted');
+        $this->assertFalse(
+            SimpleSAML\Utils\Arrays::transpose(array('1', '2', '3')),
+            'Invalid two-dimensional array was accepted'
+        );
+        $this->assertFalse(
+            SimpleSAML\Utils\Arrays::transpose(array('1' => 0, '2' => '0', '3' => array(0))),
+            'Invalid elements on a two-dimensional array were accepted'
+        );
 
         // check array with numerical keys
         $array = array(
@@ -64,8 +68,11 @@ class Utils_ArraysTest extends PHPUnit_Framework_TestCase
                 'key2' => 'value2'
             )
         );
-        $this->assertEquals($transposed, SimpleSAML\Utils\Arrays::transpose($array),
-            'Unexpected result of transpose()');
+        $this->assertEquals(
+            $transposed,
+            SimpleSAML\Utils\Arrays::transpose($array),
+            'Unexpected result of transpose()'
+        );
 
         // check array with string keys
         $array = array(
@@ -86,8 +93,11 @@ class Utils_ArraysTest extends PHPUnit_Framework_TestCase
                 'key2' => 'value2'
             )
         );
-        $this->assertEquals($transposed, SimpleSAML\Utils\Arrays::transpose($array),
-            'Unexpected result of transpose()');
+        $this->assertEquals(
+            $transposed,
+            SimpleSAML\Utils\Arrays::transpose($array),
+            'Unexpected result of transpose()'
+        );
 
         // check array with no keys in common between sub arrays
         $array = array(
@@ -110,7 +120,10 @@ class Utils_ArraysTest extends PHPUnit_Framework_TestCase
                 'key2' => 'value2'
             )
         );
-        $this->assertEquals($transposed, SimpleSAML\Utils\Arrays::transpose($array),
-            'Unexpected result of transpose()');
+        $this->assertEquals(
+            $transposed,
+            SimpleSAML\Utils\Arrays::transpose($array),
+            'Unexpected result of transpose()'
+        );
     }
 }
