@@ -10,9 +10,9 @@ class Utils_AttributesTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * Test the getExpectedAttribute() function with invalid input.
+     * Test the getExpectedAttribute() method with invalid attributes array.
      */
-    public function testGetExpectedAttributeInvalidInput()
+    public function testGetExpectedAttributeInvalidAttributesArray()
     {
         // check with empty array as input
         $attributes = 'string';
@@ -22,7 +22,14 @@ class Utils_AttributesTest extends PHPUnit_Framework_TestCase
             'The attributes array is not an array, it is: '.print_r($attributes, true).'.'
         );
         \SimpleSAML\Utils\Attributes::getExpectedAttribute($attributes, $expected);
+    }
 
+
+    /**
+     * Test the getExpectedAttributeMethod() method with invalid expected attribute parameter.
+     */
+    public function testGetExpectedAttributeInvalidAttributeName()
+    {
         // check with invalid attribute name
         $attributes = array();
         $expected = false;
@@ -31,7 +38,14 @@ class Utils_AttributesTest extends PHPUnit_Framework_TestCase
             'The expected attribute is not a string, it is: '.print_r($expected, true).'.'
         );
         \SimpleSAML\Utils\Attributes::getExpectedAttribute($attributes, $expected);
+    }
 
+
+    /**
+     * Test the getExpectedAttributeMethod() method with a non-normalized attributes array.
+     */
+    public function testGetExpectedAttributeNonNormalizedArray()
+    {
         // check with non-normalized attributes array
         $attributes = array(
             'attribute' => 'value',
@@ -46,9 +60,9 @@ class Utils_AttributesTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * Test the getExpectedAttribute() with valid input that raises exceptions.
+     * Test the getExpectedAttribute() method with valid input but missing expected attribute.
      */
-    public function testGetExpectedAttributeErrorConditions()
+    public function testGetExpectedAttributeMissingAttribute()
     {
         // check missing attribute
         $attributes = array(
@@ -60,7 +74,32 @@ class Utils_AttributesTest extends PHPUnit_Framework_TestCase
             "No such attribute '".$expected."' found."
         );
         \SimpleSAML\Utils\Attributes::getExpectedAttribute($attributes, $expected);
+    }
 
+
+    /**
+     * Test the getExpectedAttribute() method with an empty attribute.
+     */
+    public function testGetExpectedAttributeEmptyAttribute()
+    {
+        // check empty attribute
+        $attributes = array(
+            'attribute' => array(),
+        );
+        $expected = 'attribute';
+        $this->setExpectedException(
+            'SimpleSAML_Error_Exception',
+            "Empty attribute '".$expected."'.'"
+        );
+        \SimpleSAML\Utils\Attributes::getExpectedAttribute($attributes, $expected);
+    }
+
+
+    /**
+     * Test the getExpectedAttributeMethod() method with multiple values (not being allowed).
+     */
+    public function testGetExpectedAttributeMultipleValues()
+    {
         // check attribute with more than value, that being not allowed
         $attributes = array(
             'attribute' => array(
