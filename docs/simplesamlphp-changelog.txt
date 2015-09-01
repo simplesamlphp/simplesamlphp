@@ -25,6 +25,8 @@ Released TBD
   * Added support for WantAssertionsSigned and AuthnRequestsSigned in SAML 2.0 SP metadata.
   * Added support for file uploads in the metadata converter.
   * Added support for the Hide From Discovery REFEDS Entity Category.
+  * Added support for the eduPersonAssurance attribute.
+  * Added support for the full SCHAC 1.5.0 schema.
   * Added the SAML NameID to the attributes status page, when available.
   * Added attribute definitions for schacGender (schac), sisSchoolGrade and sisLegalGuardianFor (skolfederation.se).
   * Attributes required in metadata are now taken into account when parsing.
@@ -38,6 +40,7 @@ Released TBD
   * Fixed an issue with SAML 1.X SSO authentications that removed the NameID of the subject from available data.
   * Fixed an issue with the login form that resulted in a `NOSTATE` error if the user clicked the login button twice.
   * Fixed an issue with replay detection in IdP-initiated flows.
+  * Fixed an issue with SessionNotOnOrAfter that kept moving forward in the future with every SSO authentication.
   * Fixed an issue that prevented the SAML 1.X IdP to restart when the session is lost.
   * Fixed an issue that prevented classes using namespaces to be loaded automatically.
   * Fixed an issue that prevented certain metadata signatures to be verified (fixed upstream in `xmlseclibs`).
@@ -55,6 +58,7 @@ Released TBD
   * Deleted old jQuery remnants.
   * Deleted the undocumented dynamic XML metadata storage handler.
   * Deleted the backwards-compatible authentication source.
+  * Updated translations.
 
 ### `authcrypt`
 
@@ -63,10 +67,6 @@ Released TBD
 ### `authX509`
 
   * Added an authentication processing filter to warn about certificate expiration.
-
-### `core`
-
-  * The PHP authentication processing filter now accepts a new option called `function` to define an anonymous function.
 
 ### `ldap`
 

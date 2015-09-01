@@ -773,6 +773,8 @@ class sspmod_saml_IdP_SAML2 {
 		assert('isset($state["Attributes"])');
 		assert('isset($state["saml:ConsumerURL"])');
 
+		$now = time();
+
 		$signAssertion = $spMetadata->getBoolean('saml20.sign.assertion', NULL);
 		if ($signAssertion === NULL) {
 			$signAssertion = $idpMetadata->getBoolean('saml20.sign.assertion', TRUE);
@@ -788,13 +790,13 @@ class sspmod_saml_IdP_SAML2 {
 		$a->setIssuer($idpMetadata->getString('entityid'));
 		$a->setValidAudiences(array($spMetadata->getString('entityid')));
 
-		$a->setNotBefore(time() - 30);
+		$a->setNotBefore($now - 30);
 
 		$assertionLifetime = $spMetadata->getInteger('assertion.lifetime', NULL);
 		if ($assertionLifetime === NULL) {
 			$assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
 		}
-		$a->setNotOnOrAfter(time() + $assertionLifetime);
+		$a->setNotOnOrAfter($now + $assertionLifetime);
 
 		if (isset($state['saml:AuthnContextClassRef'])) {
 			$a->setAuthnContext($state['saml:AuthnContextClassRef']);
@@ -802,18 +804,20 @@ class sspmod_saml_IdP_SAML2 {
 			$a->setAuthnContext(SAML2_Const::AC_PASSWORD);
 		}
 
+		$sessionStart = $now;
 		if (isset($state['AuthnInstant'])) {
 			$a->setAuthnInstant($state['AuthnInstant']);
+			$sessionStart = $state['AuthnInstant'];
 		}
 
 		$sessionLifetime = $config->getInteger('session.duration', 8*60*60);
-		$a->setSessionNotOnOrAfter(time() + $sessionLifetime);
+		$a->setSessionNotOnOrAfter($sessionStart + $sessionLifetime);
 
 		$a->setSessionIndex(SimpleSAML\Utils\Random::generateID());
 
 		$sc = new SAML2_XML_saml_SubjectConfirmation();
 		$sc->SubjectConfirmationData = new SAML2_XML_saml_SubjectConfirmationData();
-		$sc->SubjectConfirmationData->NotOnOrAfter = time() + $assertionLifetime;
+		$sc->SubjectConfirmationData->NotOnOrAfter = $now + $assertionLifetime;
 		$sc->SubjectConfirmationData->Recipient = $state['saml:ConsumerURL'];
 		$sc->SubjectConfirmationData->InResponseTo = $state['saml:RequestId'];
 

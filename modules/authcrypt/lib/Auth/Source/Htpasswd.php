@@ -39,7 +39,7 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
 		$this->users = explode("\n", trim($htpasswd));
 
 		try {
-			$this->attributes = SimpleSAML\Utils\Arrays::normalizeAttributesArray($config['static_attributes']);
+			$this->attributes = SimpleSAML\Utils\Attributes::normalizeAttributesArray($config['static_attributes']);
 		} catch(Exception $e) {
 			throw new Exception('Invalid static_attributes in authentication source ' .
 				$this->authId . ': ' .	$e->getMessage());

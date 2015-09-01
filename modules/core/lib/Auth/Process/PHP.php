@@ -4,7 +4,7 @@
 /**
  * Attribute filter for running arbitrary PHP code.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
 {
@@ -16,17 +16,14 @@ class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
      */
     private $code;
 
-    /**
-     * @var callable
-     */
-    private $function = null;
-
 
     /**
      * Initialize this filter, parse configuration
      *
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
+     *
+     * @throws SimpleSAML_Error_Exception if the 'code' option is not defined.
      */
     public function __construct($config, $reserved)
     {
@@ -34,17 +31,10 @@ class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
 
         assert('is_array($config)');
 
-        if (isset($config['function'])) {
-            $this->function = $config['function'];
-        } else { // TODO: remove this branch after removing the 'code' option.
-            if (!isset($config['code'])) {
-                throw new SimpleSAML_Error_Exception("core:PHP: Neither 'function' nor 'code' options defined.");
-            }
-            SimpleSAML_Logger::warning(
-                "Deprecated 'code' configuration option in PHP authentication processing filter."
-            );
-            $this->code = (string) $config['code'];
+        if (!isset($config['code'])) {
+            throw new SimpleSAML_Error_Exception("core:PHP: missing mandatory configuration option 'code'.");
         }
+        $this->code = (string) $config['code'];
     }
 
 
@@ -58,13 +48,7 @@ class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
         assert('is_array($request)');
         assert('array_key_exists("Attributes", $request)');
 
-        if ($this->function) {
-            $function = $this->function;
-            $function($request['Attributes']);
-        } else { // TODO: remove this branch after removing the 'code' option.
-            $function = create_function('&$attributes', $this->code);
-            $function($request['Attributes']);
-        }
+        $function = create_function('&$attributes', $this->code);
+        $function($request['Attributes']);
     }
-
 }

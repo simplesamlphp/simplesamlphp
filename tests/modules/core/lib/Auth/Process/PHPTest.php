@@ -35,28 +35,6 @@ class Test_Core_Auth_Process_PHP extends PHPUnit_Framework_TestCase
     }
 
 
-
-    /**
-     * Check that defining a function works as expected.
-     */
-    public function testFunctionDefined()
-    {
-        $config = array(
-            'function' => function (&$attributes) {
-                $attributes['key'] = 'value';
-            },
-        );
-        $request = array('Attributes' => array());
-        $expected = array(
-            'Attributes' => array(
-                'key' => 'value',
-            ),
-        );
-
-        $this->assertEquals($expected, $this->processFilter($config, $request));
-    }
-
-
     /**
      * Check that defining the code works as expected.
      */
@@ -71,30 +49,6 @@ class Test_Core_Auth_Process_PHP extends PHPUnit_Framework_TestCase
         $expected = array(
             'Attributes' => array(
                 'key' => 'value',
-            ),
-        );
-
-        $this->assertEquals($expected, $this->processFilter($config, $request));
-    }
-
-
-    /**
-     * Check that when both the function and code are defined, only the function is executed.
-     */
-    public function testOptionsPrecedence()
-    {
-        $config = array(
-            'function' => function (&$attributes) {
-                $attributes['who'] = 'function';
-            },
-            'code'     => '
-                $attributes["who"] = "code";
-            ',
-        );
-        $request = array('Attributes' => array());
-        $expected = array(
-            'Attributes' => array(
-                'who' => 'function',
             ),
         );
 

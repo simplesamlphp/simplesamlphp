@@ -429,11 +429,11 @@ class SimpleSAML_Utilities
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use
-     * SimpleSAML\Utils\Arrays::normalizeAttributesArray() instead.
+     * SimpleSAML\Utils\Attributes::normalizeAttributesArray() instead.
      */
     public static function parseAttributes($attributes)
     {
-        return SimpleSAML\Utils\Arrays::normalizeAttributesArray($attributes);
+        return SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
     }
 
 
