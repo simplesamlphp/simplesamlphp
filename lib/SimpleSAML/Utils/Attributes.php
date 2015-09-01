@@ -43,9 +43,13 @@ class Attributes
         $attribute = $attributes[$expected];
 
         if (!is_array($attribute)) {
-            throw new \SimpleSAML_Error_Exception('The attributes array is not normalized, values should be arrays.');
+            throw new \InvalidArgumentException('The attributes array is not normalized, values should be arrays.');
         }
-        if (count($attribute) > 1) {
+
+        if (count($attribute) === 0) {
+            throw new \SimpleSAML_Error_Exception("Empty attribute '".$expected."'.'");
+
+        } elseif (count($attribute) > 1) {
             if ($allow_multiple === false) {
                 throw new \SimpleSAML_Error_Exception(
                     'More than one value found for the attribute, multiple values not allowed.'
