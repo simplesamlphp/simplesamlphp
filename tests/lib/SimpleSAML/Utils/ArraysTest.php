@@ -33,55 +33,6 @@ class Utils_ArraysTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, SimpleSAML\Utils\Arrays::arrayize($expected[$index], $index));
     }
 
-    /**
-     * Test the normalizeAttributesArray() function with input not being an array
-     *
-     * @expectedException InvalidArgumentException
-     */
-    public function testNormalizeAttributesArrayBadInput()
-    {
-        SimpleSAML\Utils\Arrays::normalizeAttributesArray('string');
-    }
-
-    /**
-     * Test the normalizeAttributesArray() function with an array with non-string attribute names.
-     *
-     * @expectedException InvalidArgumentException
-     */
-    public function testNormalizeAttributesArrayBadKeys()
-    {
-        SimpleSAML\Utils\Arrays::normalizeAttributesArray(array('attr1' => 'value1', 1 => 'value2'));
-    }
-
-    /**
-     * Test the normalizeAttributesArray() function with an array with non-string attribute values.
-     *
-     * @expectedException InvalidArgumentException
-     */
-    public function testNormalizeAttributesArrayBadValues()
-    {
-        SimpleSAML\Utils\Arrays::normalizeAttributesArray(array('attr1' => 'value1', 'attr2' => 0));
-    }
-
-    /**
-     * Test the normalizeAttributesArray() function.
-     */
-    public function testNormalizeAttributesArray()
-    {
-        $attributes = array(
-            'key1' => 'value1',
-            'key2' => array('value2', 'value3'),
-            'key3' => 'value1'
-        );
-        $expected = array(
-            'key1' => array('value1'),
-            'key2' => array('value2', 'value3'),
-            'key3' => array('value1')
-        );
-        $this->assertEquals($expected, SimpleSAML\Utils\Arrays::normalizeAttributesArray($attributes),
-            'Attribute array normalization failed');
-    }
-
 
     /**
      * Test the transpose() function.

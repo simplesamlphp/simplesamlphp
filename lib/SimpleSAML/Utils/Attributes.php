@@ -54,4 +54,52 @@ class Attributes
         }
         return reset($attribute);
     }
+
+
+    /**
+     * Validate and normalize an array with attributes.
+     *
+     * This function takes in an associative array with attributes, and parses and validates
+     * this array. On success, it will return a normalized array, where each attribute name
+     * is an index to an array of one or more strings. On failure an exception will be thrown.
+     * This exception will contain an message describing what is wrong.
+     *
+     * @param array $attributes The array containing attributes that we should validate and normalize.
+     *
+     * @return array The normalized attributes array.
+     * @throws \InvalidArgumentException If input is not an array, array keys are not strings or attribute values are
+     *     not strings.
+     *
+     * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function normalizeAttributesArray($attributes)
+    {
+        if (!is_array($attributes)) {
+            throw new \InvalidArgumentException(
+                'The attributes array is not an array, it is: '.print_r($attributes, true).'".'
+            );
+        }
+
+        $newAttrs = array();
+        foreach ($attributes as $name => $values) {
+            if (!is_string($name)) {
+                throw new \InvalidArgumentException('Invalid attribute name: "'.print_r($name, true).'".');
+            }
+
+            $values = Arrays::arrayize($values);
+
+            foreach ($values as $value) {
+                if (!is_string($value)) {
+                    throw new \InvalidArgumentException(
+                        'Invalid attribute value for attribute '.$name.': "'.print_r($value, true).'".'
+                    );
+                }
+            }
+
+            $newAttrs[$name] = $values;
+        }
+
+        return $newAttrs;
+    }
 }
