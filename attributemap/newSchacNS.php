@@ -4,7 +4,7 @@
  */
 
 define('SCHAC_OLD_NS', 'urn:mace:terena.org:attribute-def:');
-define('SCHAC_NEW_NS', SCHAC_NEW_NS.'');
+define('SCHAC_NEW_NS', 'urn:schac:attribute-def:');
 
 $attributemap = array(
     SCHAC_OLD_NS.'schacCountryOfCitizenship' => SCHAC_NEW_NS.'schacCountryOfCitizenship',
