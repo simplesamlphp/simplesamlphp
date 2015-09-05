@@ -3,8 +3,13 @@
  * This file provides translations from the deprecated schac namespace provided by TERENA, to the new namespace.
  */
 
-define('SCHAC_OLD_NS', 'urn:mace:terena.org:attribute-def:');
-define('SCHAC_NEW_NS', 'urn:schac:attribute-def:');
+if (!defined('SCHAC_OLD_NS')) {
+    define('SCHAC_OLD_NS', 'urn:mace:terena.org:attribute-def:');
+}
+
+if (!defined('SCHAC_NEW_NS')) {
+    define('SCHAC_NEW_NS', 'urn:schac:attribute-def:');
+}
 
 $attributemap = array(
     SCHAC_OLD_NS.'schacCountryOfCitizenship' => SCHAC_NEW_NS.'schacCountryOfCitizenship',
