@@ -75,7 +75,7 @@ eventually reach up to you. And remember that following this guidelines you are 
 request so the process will be smoother and faster. We really appreciate you helping us out, not only with your code,
 but also by following this guidelines.
 
-# Reporting bugs
+## Reporting bugs
 
 Before reporting a bug, please make sure it is indeed a bug. Check [the documentation](https://simplesamlphp.org/docs/stable/)
 to verify what the intended behaviour is. Review the [list of issues](https://github.com/simplesamlphp/simplesamlphp/issues)
@@ -95,7 +95,7 @@ You can help us diagnose and fix bugs by asking and providing answers to the fol
 * How critical is this bug? Does it impact a large amount of users?
 * Is this a security issue? If so, how severe is it? How can an attacker exploit it?
 
-# Translations
+## Translations
 
 SimpleSAMLphp is translated to many languages, though it needs constant updates from translators, as well as new
 translations to other languages. Translations can be contributed through [the translation portal](https://translation.rnd.feide.no/).
@@ -106,7 +106,7 @@ Before starting a new translation, decide what style you want to use, whether yo
 manner or not, etc. Be coherent and keep that style through all your translations. If there is already a translation and
 you want to complete it, make sure to keep the same style used by your fellow translators.
 
-# Documentation
+## Documentation
 
 Did you find a typo in the documentation? Does something make no sense? Did we use very poor english? Tell us!
 
@@ -116,7 +116,7 @@ please do not hesitate to open an issue.
 
 Good documentation is key to make things easier for our users!
 
-# Community
+## Community
 
 You don't feel capable of contributing with your code, but are using SimpleSAMLphp and can share your knowledge and
 experience? Please, do so! Join our [users mailing list](http://groups.google.com/group/simplesamlphp) and help other
