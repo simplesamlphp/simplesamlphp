@@ -8,6 +8,8 @@ documents, or using encryption, is is still needed.
 PHP session cookies are now set to HTTP-only by default. This relates to the `session.phpsession.httponly`
 configuration option.
 
+The jQuery version in use has been bumped to the latest 1.8.X version.
+
 The following deprecated files, directories and endpoints have been removed:
 
     * `bin/pack.php`

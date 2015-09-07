@@ -58,6 +58,7 @@ Released TBD
   * Deleted old jQuery remnants.
   * Deleted the undocumented dynamic XML metadata storage handler.
   * Deleted the backwards-compatible authentication source.
+  * Updated jQuery to the latest 1.8.X version.
   * Updated translations.
 
 ### `authcrypt`
