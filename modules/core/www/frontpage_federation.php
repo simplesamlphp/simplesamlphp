@@ -103,6 +103,11 @@ if ($config->getBoolean('enable.adfs-idp', FALSE) === true) {
     } catch(Exception $e) {}
 }
 
+foreach ($metaentries['remote'] as $key => $value) {
+	if (empty($value)) {
+		unset($metaentries['remote'][$key]);
+	}
+}
 
 
 
