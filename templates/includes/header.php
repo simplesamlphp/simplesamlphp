@@ -65,10 +65,10 @@ if(!empty($jquery)) {
 		
 	if ($version == '1.8') {
 		if (isset($jquery['core']) && $jquery['core'])
-			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-18.js"></script>' . "\n");
+			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-1.8.js"></script>' . "\n");
 	
 		if (isset($jquery['ui']) && $jquery['ui'])
-			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui-18.js"></script>' . "\n");
+			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui-1.8.js"></script>' . "\n");
 	
 		if (isset($jquery['css']) && $jquery['css'])
 			echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 
