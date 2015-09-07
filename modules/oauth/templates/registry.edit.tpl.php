@@ -1,6 +1,6 @@
 <?php
 
-$this->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
+$this->data['jquery'] = array('core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 $this->data['head']  = '<link rel="stylesheet" type="text/css" href="/' . $this->data['baseurlpath'] . 'module.php/metaedit/resources/style.css" />' . "\n";
 $this->data['head'] .= '<script type="text/javascript">
 $(document).ready(function() {

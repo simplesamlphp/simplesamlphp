@@ -59,20 +59,20 @@ if(array_key_exists('header', $this->data)) {
 <?php
 
 if(!empty($jquery)) {
-	$version = '1.6';
+	$version = '1.8';
 	if (array_key_exists('version', $jquery))
 		$version = $jquery['version'];
 		
-	if ($version == '1.6') {
+	if ($version == '1.8') {
 		if (isset($jquery['core']) && $jquery['core'])
-			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-16.js"></script>' . "\n");
+			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-18.js"></script>' . "\n");
 	
 		if (isset($jquery['ui']) && $jquery['ui'])
-			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui-16.js"></script>' . "\n");
+			echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui-18.js"></script>' . "\n");
 	
 		if (isset($jquery['css']) && $jquery['css'])
 			echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] . 
-				'resources/uitheme16/ui.all.css" />' . "\n");
+				'resources/uitheme1.8/jquery-ui.css" />' . "\n");
 	}
 }
 
