@@ -12,7 +12,7 @@ SimpleSAML\Utils\Auth::requireAdmin();
 $attributes = array();
 
 $attributes['HTTP_HOST'] = array($_SERVER['HTTP_HOST']);
-$attributes['HTTPS'] = array($_SERVER['HTTPS']);
+$attributes['HTTPS'] = isset($_SERVER['HTTPS'])? array($_SERVER['HTTPS']) : array();
 $attributes['SERVER_PROTOCOL'] = array($_SERVER['SERVER_PROTOCOL']);
 $attributes['SERVER_PORT'] = array($_SERVER['SERVER_PORT']);
 
