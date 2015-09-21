@@ -47,6 +47,10 @@ Released 2014-09-25.
 
   * Fixed an issue when regenerating metadata from certain metadata sources.
 
+### `aselect`
+
+  * Bug fixes.
+
 ### `discopower`
 
   * Bug fix.
@@ -58,6 +62,10 @@ Released 2014-09-25.
 ### `metarefresh`
 
   * Use cached metadata if something goes wrong when refreshing feeds.
+
+### `oauth`
+
+  * Bug fix.
 
 ### `openidProvider`
 
