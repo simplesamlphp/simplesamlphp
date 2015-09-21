@@ -3,7 +3,7 @@
 /**
  * A Shibboleth 1.3 authentication response.
  *
- * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Ã…kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  */
 class SimpleSAML_XML_Shib13_AuthnResponse {
@@ -106,7 +106,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 			$this->validator->validateFingerprint($certFingerprints);
 		} elseif ($md->hasValue('caFile')) {
 			/* Validate against CA. */
-			$this->validator->validateCA(SimpleSAML_Utilities::resolveCert($md->getString('caFile')));
+			$this->validator->validateCA(\SimpleSAML\Utils\Config::getCertPath($md->getString('caFile')));
 		} else {
 			throw new SimpleSAML_Error_Exception('Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider [' . $issuer . '].');
 		}
@@ -115,7 +115,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	}
 
 
-	/* Checks if the given node is validated by the signatore on this response.
+	/* Checks if the given node is validated by the signature on this response.
 	 *
 	 * Returns:
 	 *  TRUE if the node is validated or FALSE if not.
@@ -212,7 +212,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 				$end = $condition->getAttribute('NotOnOrAfter');
 
 				if ($start && $end) {
-					if (! SimpleSAML_Utilities::checkDateConditions($start, $end)) {
+					if (!self::checkDateConditions($start, $end)) {
 						error_log('Date check failed ... (from ' . $start . ' to ' . $end . ')');
 						continue;
 					}
@@ -304,16 +304,16 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 			$scopedAttributes = array();
 		}
 
-		$id = SimpleSAML_Utilities::generateID();
+		$id = SimpleSAML\Utils\Random::generateID();
 		
-		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
+		$issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
 		
 		// 30 seconds timeskew back in time to allow differing clocks.
-		$notBefore = SimpleSAML_Utilities::generateTimestamp(time() - 30);
+		$notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
 		
 		
-		$assertionExpire = SimpleSAML_Utilities::generateTimestamp(time() + 60 * 5);# 5 minutes
-		$assertionid = SimpleSAML_Utilities::generateID();
+		$assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 5);# 5 minutes
+		$assertionid = SimpleSAML\Utils\Random::generateID();
 
 		$spEntityId = $sp->getString('entityid');
 
@@ -321,7 +321,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		$base64 = $sp->getBoolean('base64attributes', FALSE);
 
 		$namequalifier = $sp->getString('NameQualifier', $spEntityId);
-		$nameid = SimpleSAML_Utilities::generateID();
+		$nameid = SimpleSAML\Utils\Random::generateID();
 		$subjectNode =
 			'<Subject>' .
 			'<NameIdentifier' .
@@ -427,6 +427,42 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		return $attr;
 	}
 
+	/**
+	 * Check if we are currently between the given date & time conditions.
+	 *
+	 * Note that this function allows a 10-minute leap from the initial time as marked by $start.
+	 *
+	 * @param string|null $start A SAML2 timestamp marking the start of the period to check. Defaults to null, in which
+	 *     case there's no limitations in the past.
+	 * @param string|null $end A SAML2 timestamp marking the end of the period to check. Defaults to null, in which
+	 *     case there's no limitations in the future.
+	 *
+	 * @return bool True if the current time belongs to the period specified by $start and $end. False otherwise.
+	 *
+	 * @see \SAML2_Utils::xsDateTimeToTimestamp.
+	 *
+	 * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+	 * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+	 */
+	protected static function checkDateConditions($start = null, $end = null)
+	{
+		$currentTime = time();
+
+		if (!empty($start)) {
+			$startTime = \SAML2_Utils::xsDateTimeToTimestamp($start);
+			// allow for a 10 minute difference in time
+			if (($startTime < 0) || (($startTime - 600) > $currentTime)) {
+				return false;
+			}
+		}
+		if (!empty($end)) {
+			$endTime = \SAML2_Utils::xsDateTimeToTimestamp($end);
+			if (($endTime < 0) || ($endTime <= $currentTime)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }
 
-?>

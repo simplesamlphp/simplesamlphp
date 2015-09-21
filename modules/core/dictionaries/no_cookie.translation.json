@@ -27,7 +27,8 @@
 		"cs": "Chyb\u011bj\u00edc\u00ed cookie",
 		"ro": "<i>Cookie<\/i> lips\u0103",
 		"ru": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442 cookie-\u0444\u0430\u0439\u043b",
-		"eu": "Cookie-a falta da"
+		"eu": "Cookie-a falta da",
+		"af": "Verlore cookie"
 	},
 	"description": {
 		"no": "Du ser ut til \u00e5 ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og pr\u00f8v igjen.",
@@ -37,7 +38,7 @@
 		"pt": "Provavelmente desligou o suporte de cookies no seu browser. Por favor verifique se tem o suporte de cookies ligado e tente de novo.",
 		"sv": "Det verkar som om du har st\u00e4ngt av m\u00f6jligheten till kakor (cookies) i din webbl\u00e4sare. Kontrollera inst\u00e4llningarna i webbl\u00e4saren och f\u00f6rs\u00f6k igen.",
 		"hr": "Izgleda da ste onemogu\u0107ili kola\u010di\u0107e (cookies) u va\u0161em web pregledniku. Molimo provjerite postavke va\u0161eg web preglednika i poku\u0161ajte ponovo.",
-		"da": "Det ser ud til at du har sl\u00e5et cookies fra i din browser. Tjek dine browserinstillinger og pr\u00f8v igen.",
+		"da": "Det ser ud til at du har sl\u00e5et cookies fra i din browser. Tjek dine browserindstillinger og pr\u00f8v igen.",
 		"fr": "Il semble que votre navigateur refuse les cookies. Merci de v\u00e9rifier les r\u00e9glages de votre navigateur, puis de r\u00e9-essayer.",
 		"nn": "Det ser ut til at informasjonskapslar er avsl\u00e5tt i nettlesaren din. V\u00e6r vennleg og sjekk instillingane i nettlesaren din, og pr\u00f8v p\u00e5 nytt.",
 		"lt": "Atrodo J\u016bs\u0173 nar\u0161ykl\u0117 nepalaiko slapuk\u0173. Patikrinkite nar\u0161ykl\u0117s nustatymus ir bandykite dar kart\u0105.",
@@ -57,7 +58,8 @@
 		"cs": "V\u00e1\u0161 internetov\u00fd prohl\u00ed\u017ee\u010d m\u00e1 z\u0159ejm\u011b vypnutou podporu cookies. Pros\u00edme, zkontrolujte nastaven\u00ed cookies ve va\u0161em prohl\u00ed\u017ee\u010di a zkuste znovu.",
 		"ro": "<i>Cookies<\/i> au fost dezactivate \u00een browser-ul dumneavoastr\u0103. V\u0103 rug\u0103m s\u0103 verifica\u021bi configurarea browser-ului dup\u0103 care \u00eencerca\u021bi din nou.",
 		"ru": "\u0412\u0438\u0434\u0438\u043c\u043e, \u0432\u044b \u043e\u0442\u043a\u043b\u044e\u0447\u0438\u043b\u0438 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0443 cookies \u0432 \u0432\u0430\u0448\u0435\u043c \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435. \u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u043f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u0432\u0430\u0448\u0435\u0433\u043e \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0430 \u0438 \u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u043f\u043e\u043f\u044b\u0442\u043a\u0443.",
-		"eu": "Badirudi zure nabigatzaileko cookie-ak desgaitu dituzula. Mesedez, berrikusi zure nabigatzaileko lehentasunak eta saiatu berriro."
+		"eu": "Badirudi zure nabigatzaileko cookie-ak desgaitu dituzula. Mesedez, berrikusi zure nabigatzaileko lehentasunak eta saiatu berriro.",
+		"af": "Dit blyk dat jy cookies in jou webblaaier af geskakel het. Gaan asseblief die stellings in jou webblaaier na en probeer weer."
 	},
 	"retry": {
 		"no": "Pr\u00f8v igjen",
@@ -87,6 +89,7 @@
 		"sr": "Poku\u0161aj ponovo",
 		"cs": "Opakujte",
 		"ro": "\u00cencearc\u0103 din nou",
-		"eu": "Saiatu berriro"
+		"eu": "Saiatu berriro",
+		"af": "Probeer weer"
 	}
 }

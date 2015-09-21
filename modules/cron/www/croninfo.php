@@ -11,7 +11,7 @@ require_once('_include.php');
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 
-SimpleSAML_Utilities::requireAdmin();
+SimpleSAML\Utils\Auth::requireAdmin();
 
 $cronconfig = SimpleSAML_Configuration::getConfig('module_cron.php');
 
@@ -39,6 +39,3 @@ foreach ($tags AS $tag) {
 $t = new SimpleSAML_XHTML_Template($config, 'cron:croninfo-tpl.php', 'cron:cron');
 $t->data['urls'] = $urls;
 $t->show();
-
-
-?>

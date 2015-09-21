@@ -10,5 +10,3 @@ $metadata['__DYNAMIC:1__'] = array(
 		100 => array('class' => 'core:AttributeMap', 'name2claim'),
 	),
 );
-
-?>

@@ -8,10 +8,10 @@ $session = SimpleSAML_Session::getSessionFromRequest();
 
 /* Check if valid local session exists.. */
 if ($config->getBoolean('admin.protectindexpage', false)) {
-	SimpleSAML_Utilities::requireAdmin();
+    SimpleSAML\Utils\Auth::requireAdmin();
 }
-$loginurl = SimpleSAML_Utilities::getAdminLoginURL();
-$isadmin = SimpleSAML_Utilities::isAdmin();
+$loginurl = SimpleSAML\Utils\Auth::getAdminLoginURL();
+$isadmin = SimpleSAML\Utils\Auth::isAdmin();
 
 
 
@@ -37,7 +37,7 @@ if($config->getBoolean('idpdisco.enableremember', FALSE)) {
 
 
 $links_federation[] = array(
-	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/metadata-converter.php',
+	'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/metadata-converter.php',
 	'text' => '{core:frontpage:link_xmlconvert}',
 );
 
@@ -75,14 +75,6 @@ if ($isadmin) {
 	$metaentries['remote']['shib13-idp-remote'] = $metadata->getList('shib13-idp-remote');
 }
 
-if ($config->getBoolean('enable.saml20-sp', TRUE) === true) {
-	try {
-		$metaentries['hosted']['saml20-sp'] = $metadata->getMetaDataCurrent('saml20-sp-hosted');
-		$metaentries['hosted']['saml20-sp']['deprecated'] = TRUE;
-		$metaentries['hosted']['saml20-sp']['metadata-url'] = '/' . $config->getBaseURL() .
-                                                              'saml2/sp/metadata.php?output=xhtml';
-	} catch(Exception $e) {}
-}
 if ($config->getBoolean('enable.saml20-idp', FALSE) === true) {
 	try {
 		$metaentries['hosted']['saml20-idp'] = $metadata->getMetaDataCurrent('saml20-idp-hosted');
@@ -90,14 +82,6 @@ if ($config->getBoolean('enable.saml20-idp', FALSE) === true) {
                                                                'saml2/idp/metadata.php?output=xhtml';
 		if ($isadmin)
 			$metaentries['remote']['saml20-sp-remote'] = $metadata->getList('saml20-sp-remote');
-	} catch(Exception $e) {}
-}
-if ($config->getBoolean('enable.shib13-sp', FALSE) === true) {
-	try {
-		$metaentries['hosted']['shib13-sp'] = $metadata->getMetaDataCurrent('shib13-sp-hosted');
-		$metaentries['hosted']['shib13-sp']['deprecated'] = TRUE;
-		$metaentries['hosted']['shib13-sp']['metadata-url'] = '/' . $config->getBaseURL() .
-                                                              'shib13/sp/metadata.php?output=xhtml';
 	} catch(Exception $e) {}
 }
 if ($config->getBoolean('enable.shib13-idp', FALSE) === true) {
@@ -119,6 +103,11 @@ if ($config->getBoolean('enable.adfs-idp', FALSE) === true) {
     } catch(Exception $e) {}
 }
 
+foreach ($metaentries['remote'] as $key => $value) {
+	if (empty($value)) {
+		unset($metaentries['remote'][$key]);
+	}
+}
 
 
 

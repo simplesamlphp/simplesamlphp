@@ -15,4 +15,3 @@ function sanitycheck_hook_frontpage(&$links) {
 	);
 
 }
-?>

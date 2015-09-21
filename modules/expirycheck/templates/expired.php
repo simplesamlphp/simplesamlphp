@@ -9,4 +9,3 @@ $this->includeAtTemplateBase('includes/header.php');
 		<p><?php echo $this->t('{expirycheck:expwarning:contact_home}');?></p>
 <?php
 $this->includeAtTemplateBase('includes/footer.php');
-?>

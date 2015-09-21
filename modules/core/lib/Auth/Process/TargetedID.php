@@ -100,7 +100,7 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 		}
 
 
-		$secretSalt = SimpleSAML_Utilities::getSecretSalt();
+		$secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
 
 		if (array_key_exists('Source', $state)) {
 			$srcID = self::getEntityId($state['Source']);
@@ -176,5 +176,3 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 	}
 
 }
-
-?>

@@ -125,7 +125,7 @@ class sspmod_saml_SP_LogoutStore {
 	/**
 	 * Retrieve all session IDs from a key-value store.
 	 *
-	 * @param SimpleSAML_Store_SQL $store  The datastore.
+	 * @param SimpleSAML_Store $store  The datastore.
 	 * @param string $authId  The authsource ID.
 	 * @param string $nameId  The hash of the users NameID.
 	 * @param array $sessionIndexes  The session indexes.
@@ -167,7 +167,7 @@ class sspmod_saml_SP_LogoutStore {
 			 * it supports SLO, but we don't want an LogoutRequest with a specific
 			 * SessionIndex to match this session. We therefore generate our own session index.
 			 */
-			$sessionIndex = SimpleSAML_Utilities::generateID();
+			$sessionIndex = SimpleSAML\Utils\Random::generateID();
 		}
 
 		$store = SimpleSAML_Store::getInstance();
@@ -234,6 +234,7 @@ class sspmod_saml_SP_LogoutStore {
 			/* We cannot fetch all sessions without a SQL store. */
 			return FALSE;
 		} else {
+			/** @var SimpleSAML_Store $sessions At this point the store cannot be false */
 			$sessions = self::getSessionsStore($store, $authId, $strNameId, $sessionIndexes);
 
 		}

@@ -1,78 +1,90 @@
 <?php
 
+
 /**
- * Authproc filter to generate a persistent NameID.
+ * Authentication processing filter to generate a persistent NameID.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
-class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGenerator {
+class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGenerator
+{
 
-	/**
-	 * Which attribute contains the unique identifier of the user.
-	 *
-	 * @var string
-	 */
-	private $attribute;
-
-
-	/**
-	 * Initialize this filter, parse configuration.
-	 *
-	 * @param array $config  Configuration information about this filter.
-	 * @param mixed $reserved  For future use.
-	 */
-	public function __construct($config, $reserved) {
-		parent::__construct($config, $reserved);
-		assert('is_array($config)');
-
-		$this->format = SAML2_Const::NAMEID_PERSISTENT;
-
-		if (!isset($config['attribute'])) {
-			throw new SimpleSAML_Error_Exception('PersistentNameID: Missing required option \'attribute\'.');
-		}
-		$this->attribute = $config['attribute'];
-	}
+    /**
+     * Which attribute contains the unique identifier of the user.
+     *
+     * @var string
+     */
+    private $attribute;
 
 
-	/**
-	 * Get the NameID value.
-	 *
-	 * @return string|NULL  The NameID value.
-	 */
-	protected function getValue(array &$state) {
+    /**
+     * Initialize this filter, parse configuration.
+     *
+     * @param array $config Configuration information about this filter.
+     * @param mixed $reserved For future use.
+     *
+     * @throws SimpleSAML_Error_Exception If the required option 'attribute' is missing.
+     */
+    public function __construct($config, $reserved)
+    {
+        parent::__construct($config, $reserved);
+        assert('is_array($config)');
 
-		if (!isset($state['Destination']['entityid'])) {
-			SimpleSAML_Logger::warning('No SP entity ID - not generating persistent NameID.');
-			return NULL;
-		}
-		$spEntityId = $state['Destination']['entityid'];
+        $this->format = SAML2_Const::NAMEID_PERSISTENT;
 
-		if (!isset($state['Source']['entityid'])) {
-			SimpleSAML_Logger::warning('No IdP entity ID - not generating persistent NameID.');
-			return NULL;
-		}
-		$idpEntityId = $state['Source']['entityid'];
+        if (!isset($config['attribute'])) {
+            throw new SimpleSAML_Error_Exception("PersistentNameID: Missing required option 'attribute'.");
+        }
+        $this->attribute = $config['attribute'];
+    }
 
-		if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
-			SimpleSAML_Logger::warning('Missing attribute ' . var_export($this->attribute, TRUE) . ' on user - not generating persistent NameID.');
-			return NULL;
-		}
-		if (count($state['Attributes'][$this->attribute]) > 1) {
-			SimpleSAML_Logger::warning('More than one value in attribute ' . var_export($this->attribute, TRUE) . ' on user - not generating persistent NameID.');
-			return NULL;
-		}
-		$uid = array_values($state['Attributes'][$this->attribute]); /* Just in case the first index is no longer 0. */
-		$uid = $uid[0];
 
-		$secretSalt = SimpleSAML_Utilities::getSecretSalt();
+    /**
+     * Get the NameID value.
+     *
+     * @param array $state The state array.
+     * @return string|null The NameID value.
+     */
+    protected function getValue(array &$state)
+    {
 
-		$uidData = 'uidhashbase' . $secretSalt;
-		$uidData .= strlen($idpEntityId) . ':' . $idpEntityId;
-		$uidData .= strlen($spEntityId) . ':' . $spEntityId;
-		$uidData .= strlen($uid) . ':' . $uid;
-		$uidData .= $secretSalt;
+        if (!isset($state['Destination']['entityid'])) {
+            SimpleSAML_Logger::warning('No SP entity ID - not generating persistent NameID.');
+            return null;
+        }
+        $spEntityId = $state['Destination']['entityid'];
 
-		return sha1($uidData);
-	}
+        if (!isset($state['Source']['entityid'])) {
+            SimpleSAML_Logger::warning('No IdP entity ID - not generating persistent NameID.');
+            return null;
+        }
+        $idpEntityId = $state['Source']['entityid'];
 
+        if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
+            SimpleSAML_Logger::warning(
+                'Missing attribute '.var_export($this->attribute, true).
+                ' on user - not generating persistent NameID.'
+            );
+            return null;
+        }
+        if (count($state['Attributes'][$this->attribute]) > 1) {
+            SimpleSAML_Logger::warning(
+                'More than one value in attribute '.var_export($this->attribute, true).
+                ' on user - not generating persistent NameID.'
+            );
+            return null;
+        }
+        $uid = array_values($state['Attributes'][$this->attribute]); // just in case the first index is no longer 0
+        $uid = $uid[0];
+
+        $secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
+
+        $uidData = 'uidhashbase'.$secretSalt;
+        $uidData .= strlen($idpEntityId).':'.$idpEntityId;
+        $uidData .= strlen($spEntityId).':'.$spEntityId;
+        $uidData .= strlen($uid).':'.$uid;
+        $uidData .= $secretSalt;
+
+        return sha1($uidData);
+    }
 }

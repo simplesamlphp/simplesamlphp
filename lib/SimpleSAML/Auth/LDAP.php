@@ -10,6 +10,10 @@ define('ERR_AS_DATA_INCONSIST', 4);
 define('ERR_AS_INTERNAL', 5);
 define('ERR_AS_ATTRIBUTE', 6);
 
+// not defined in earlier PHP versions
+if (!defined('LDAP_OPT_DIAGNOSTIC_MESSAGE')) {
+	define('LDAP_OPT_DIAGNOSTIC_MESSAGE', 0x0032);
+}
 
 /**
  * The LDAP class holds helper functions to access an LDAP database.
@@ -90,17 +94,14 @@ class SimpleSAML_Auth_LDAP {
 		// (OpenLDAP 2.x.x or Netscape Directory SDK x.x needed).
 		$this->timeout = $timeout;
 		if ($timeout > 0) {
-			if (defined('LDAP_OPT_NETWORK_TIMEOUT')) {
-				/* This option isn't present before PHP 5.3. */
-				if (!@ldap_set_option($this->ldap, constant('LDAP_OPT_NETWORK_TIMEOUT'), $timeout))
-					SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_NETWORK_TIMEOUT) to ' . $timeout);
-			}
+			if (!@ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, $timeout))
+				SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_NETWORK_TIMEOUT) to ' . $timeout);
 			if (!@ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, $timeout))
 				SimpleSAML_Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_TIMELIMIT) to ' . $timeout);
 		}
 
 		// Enable TLS, if needed.
-		if (!preg_match("/ldaps:/i", $hostname) and $enable_tls)
+		if (stripos($hostname, "ldaps:") === FALSE and $enable_tls)
 			if (!@ldap_start_tls($this->ldap))
 				throw $this->makeException('Library - LDAP __construct(): Unable to force TLS', ERR_INTERNAL);
 
@@ -149,6 +150,9 @@ class SimpleSAML_Auth_LDAP {
 		}else{
 			if ($errNo !== 0) {
 				$description .= '; cause: \'' . ldap_error($this->ldap) . '\' (0x' . dechex($errNo) . ')';
+				if (@ldap_get_option($this->ldap, LDAP_OPT_DIAGNOSTIC_MESSAGE, $extendedError) && !empty($extendedError)) {
+					$description .= '; additional: \'' . $extendedError . '\'';
+				}
 			}
 			switch ($errNo){
 				case 0x20://LDAP_NO_SUCH_OBJECT
@@ -261,7 +265,7 @@ class SimpleSAML_Auth_LDAP {
 	public function searchfordn($base, $attribute, $value, $allowZeroHits = FALSE) {
 
 		// Traverse all search bases, returning DN if found.
-		$bases = SimpleSAML_Utilities::arrayize($base);
+		$bases = SimpleSAML\Utils\Arrays::arrayize($base);
 		$result = NULL;
 		foreach ($bases AS $current) {
 			try {
@@ -586,7 +590,7 @@ class SimpleSAML_Auth_LDAP {
 			$dn = $this->searchfordn($config['searchbase'], $config['searchattributes'], $username);
 		}
 
-		if ($password != null) { /* checking users credentials ... assuming below that she may read her own attributes ... */
+		if ($password !== null) { /* checking users credentials ... assuming below that she may read her own attributes ... */
 			if (!$this->bind($dn, $password)) {
 				SimpleSAML_Logger::info('Library - LDAP validate(): Failed to authenticate \''. $username . '\' using DN \'' . $dn . '\'');
 				return FALSE;
@@ -704,5 +708,3 @@ class SimpleSAML_Auth_LDAP {
 	}
 
 }
-
-?>

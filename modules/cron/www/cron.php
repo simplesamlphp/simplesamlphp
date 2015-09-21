@@ -22,7 +22,7 @@ $croninfo = array(
 	'summary' => &$summary,
 	'tag' => $_REQUEST['tag'],
 );
-$url = SimpleSAML_Utilities::selfURL();
+$url = \SimpleSAML\Utils\HTTP::getSelfURL();
 $time = date(DATE_RFC822);
 
 SimpleSAML_Module::callHooks('cron', $croninfo);
@@ -58,5 +58,3 @@ if (isset($_REQUEST['output']) && $_REQUEST['output'] == "xhtml") {
 	$t->data['summary'] = $summary;
 	$t->show();
 }
-
-?>

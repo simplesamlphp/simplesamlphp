@@ -220,9 +220,7 @@ Options
 
 :   If this option is set, its value will be added to the metadata generated for this SP, in the NameIDFormat element.
 
-:   *Note 1*: This option replaces the `NameIDFormat` option found in `saml20-sp-hosted`.
-
-:   *Note 2*: SAML 2 specific.
+:   *Note 1*: SAML 2 specific.
 
 `OrganizationName`
 :   The name of the organization responsible for this SP.
@@ -266,17 +264,19 @@ Options
 `ProtocolBinding`
 :   The binding that should be used for SAML2 authentication responses.
     This option controls the binding that is requested through the AuthnRequest message to the IdP.
-    By default the HTTP-Redirect binding is used.
+    By default the HTTP-Post binding is used.
 
 :   *Note*: SAML 2 specific.
 
 `redirect.sign`
 :   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is `FALSE`.
+    If set, the `AuthnRequestsSigned` attribute of the `SPSSODescriptor` element in SAML 2.0 metadata will contain its value. This
+    option takes precedence over the `sign.authnrequest` option in any metadata generated for this SP.
 
 :   *Note*: SAML 2 specific.
 
 `redirect.validate`
-:   Whether logout requests and logout responses received received by this SP should be validated. The default is `FALSE`.
+:   Whether logout requests and logout responses received by this SP should be validated. The default is `FALSE`.
 
 :   *Note*: SAML 2 specific.
 
@@ -314,7 +314,8 @@ Options
     See the documentation for the [Holder-of-Key profile](./simplesamlphp-hok-sp).
 
 `sign.authnrequest`
-:   Whether to sign authentication requests sent from this SP.
+:   Whether to sign authentication requests sent from this SP. If set, the `AuthnRequestsSigned` attribute of the
+    `SPSSODescriptor` element in SAML 2.0 metadata will contain its value.
 
 :   Note that this option also exists in the IdP-remote metadata, and
     any value in the IdP-remote metadata overrides the one configured
@@ -367,6 +368,11 @@ Options
     in the IdP metadata.
 
 :   *Note*: SAML 2 specific.
+
+`WantAssertionsSigned`
+:   Whether assertions received by this SP must be signed. The default value is `FALSE`.
+    The value set for this option will be used to set the `WantAssertionsSigned` attribute of the `SPSSODescriptor` element in
+    the exported SAML 2.0 metadata.
 
 
 Examples

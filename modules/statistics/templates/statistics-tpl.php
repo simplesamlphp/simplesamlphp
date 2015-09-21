@@ -1,9 +1,7 @@
 <?php
 $this->data['header'] = 'SimpleSAMLphp Statistics';
 
-$this->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
-
-// $this->data['hideLanguageBar'] = TRUE;
+$this->data['jquery'] = array('core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 
 $this->data['head'] ='';
 $this->data['head'] .= '<script type="text/javascript">
@@ -92,11 +90,6 @@ td.datacontent {
 echo('<h1>'. $this->data['available.rules'][$this->data['selected.rule']]['name'] . '</h1>');
 echo('<p>' . $this->data['available.rules'][$this->data['selected.rule']]['descr'] . '</p>');
 
-// echo('<pre>');
-// print_r($this->data);
-// exit;
-
-
 // Report settings
 echo '<table class="selecttime" style="width: 100%; border: 1px solid #ccc; background: #eee; margin: 1px 0px; padding: 0px">';
 echo('<tr><td style="width: 50px; padding: 0px"><img style="margin: 0px" src="../../resources/icons/crystal_project/kchart.32x32.png" alt="Report settings" /></td>');
@@ -119,9 +112,6 @@ echo '</td>';
 
 // Select delimiter
 echo '<td style="text-align: right">';
-
-#echo('<pre>here'); print_r($this->data['delimiterPresentation']); echo('</pre>');
-
 echo '<form style="display: inline">';
 echo getBaseURL($this, 'post', 'd');
 echo '<select onChange="submit();" name="d">';
@@ -168,7 +158,6 @@ if (isset($this->data['available.times.prev'])) {
 echo '<td style="text-align: right">';
 echo '<form style="display: inline">';
 echo getBaseURL($this, 'post', 'res');
-// echo '<input type="hidden" name="rule" value="' . $this->data['selected.rule'] . '" />';
 echo '<select onChange="submit();" name="res">';
 foreach ($this->data['available.timeres'] AS $key => $timeresname) {
 	if ($key == $this->data['selected.timeres']) {
@@ -184,7 +173,6 @@ echo '</td>';
 echo '<td style="text-align: left">';
 echo '<form style="display: inline">';
 echo getBaseURL($this, 'post', 'time');
-// echo '<input type="hidden" name="rule" value="' . $this->data['selected.rule'] . '" />';
 echo '<select onChange="submit();" name="time">';
 foreach ($this->data['available.times'] AS $key => $timedescr) {
 	if ($key == $this->data['selected.time']) {
@@ -272,18 +260,7 @@ foreach ( $this->data['summaryDataset'] as $key => $value ) {
 echo '</table></div>';
 //  - - - - - - - End table view - - - - - - - 
 
-
-// 
-//  echo('<pre>');
-// print_r($this->data['results']);
-// exit;
-
-
 echo '<div id="debug" >';
-
-#echo $this->data['selected.time'];
-#echo '<input style="width: 80%" value="' . htmlspecialchars($this->data['imgurl']) . '" />';
-
 echo '<table class="timeseries" style="">';
 echo('<tr><th>Time</th><th>Total</th>');
 foreach($this->data['topdelimiters'] AS $key) {

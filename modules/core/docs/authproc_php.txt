@@ -11,8 +11,7 @@ Parameters
     It must be `'core:PHP'`.
 
 `code`
-:   The PHP code that should be run.
-    This PHP code will have one variable available - `$attributes`.
+:   The PHP code that should be run. This code will have only one variable available: `$attributes`.
     This is an associative array of attributes, and can be modified to add or remove attributes.
 
 Examples

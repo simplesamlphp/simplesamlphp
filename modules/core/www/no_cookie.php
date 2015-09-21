@@ -2,7 +2,7 @@
 
 if (isset($_REQUEST['retryURL'])) {
 	$retryURL = (string)$_REQUEST['retryURL'];
-	$retryURL = SimpleSAML_Utilities::normalizeURL($retryURL);
+	$retryURL = \SimpleSAML\Utils\HTTP::normalizeURL($retryURL);
 } else {
 	$retryURL = NULL;
 }

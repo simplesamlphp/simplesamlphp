@@ -172,7 +172,8 @@ The hook interface allows you to call a hook function in all enabled modules whi
 
 Each hook function accepts a single argument. This argument will be passed by reference, which allows each hook to update that argument.
 
-There is currently a single user of the hook interface - the front page. The front page defines a hook named `frontpage`, which allows modules to add things to the different sections on the front page. For an example of this, see `modules/modinfo/hooks/hook_frontpage.php`.
+There is currently a single user of the hook interface - the front page. The front page defines a hook named `frontpage`, which allows modules to add things to the different sections on the front page. For an example of this, see the `modules/modinfo/hooks/hook_frontpage.php` file in the
+[modinfo module](https://github.com/simplesamlphp/simplesamlphp-module-modinfo).
 
 
 

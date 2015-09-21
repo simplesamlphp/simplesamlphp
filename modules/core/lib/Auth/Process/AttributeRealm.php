@@ -52,5 +52,3 @@ class sspmod_core_Auth_Process_AttributeRealm extends SimpleSAML_Auth_Processing
 	}
 
 }
-
-?>

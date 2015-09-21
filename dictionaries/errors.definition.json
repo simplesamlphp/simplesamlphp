@@ -96,14 +96,26 @@
 		"en": "No SAML message provided"
 	},
 	"descr_SLOSERVICEPARAMS": {
-		"en": "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse."
+		"en": "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
 	},
 	"title_ACSPARAMS": {
 		"en": "No SAML response provided"
 	},
 	"descr_ACSPARAMS": {
-		"en": "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response."
+		"en": "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 	},
+    "title_SSOPARAMS": {
+        "en": "No SAML request provided"
+    },
+    "descr_SSOPARAMS": {
+        "en": "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+    },
+    "title_ARSPARAMS": {
+        "en": "No SAML message provided"
+    },
+    "descr_ARSPARAMS": {
+        "en": "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+    },
 	"title_CASERROR": {
 		"en": "CAS Error"
 	},

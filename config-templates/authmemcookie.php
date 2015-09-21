@@ -7,15 +7,6 @@
 $config = array(
 
 	/*
-	 * What type of login Auth MemCookie will use.
-	 * Can be either 'authsource', 'saml2' or 'shib13'.
-	 *
-	 * For backwards compatibility, the default value if unset is 'saml2'.
-	 * New installations should use 'authsource'.
-	 */
-	'loginmethod' => 'authsource',
-
-	/*
 	 * The authentication source that should be used.
 	 *
 	 * This must be one of the authentication sources configured in config/authsources.php.
@@ -82,5 +73,3 @@ $config = array(
 	'memcache.port' => 11211,
 
 );
-
-?>

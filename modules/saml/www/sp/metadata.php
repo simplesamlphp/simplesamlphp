@@ -5,6 +5,9 @@ if (!array_key_exists('PATH_INFO', $_SERVER)) {
 }
 
 $config = SimpleSAML_Configuration::getInstance();
+if ($config->getBoolean('admin.protectmetadata', false)) {
+    SimpleSAML\Utils\Auth::requireAdmin();
+}
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
 $source = SimpleSAML_Auth_Source::getById($sourceId);
 if ($source === NULL) {
@@ -88,7 +91,7 @@ foreach ($assertionsconsumerservices as $services) {
 $metaArray20['AssertionConsumerService'] = $eps;
 
 $keys = array();
-$certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig, FALSE, 'new_');
+$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($spconfig, FALSE, 'new_');
 if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$hasNewCert = TRUE;
 
@@ -104,7 +107,7 @@ if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$hasNewCert = FALSE;
 }
 
-$certInfo = SimpleSAML_Utilities::loadPublicKey($spconfig);
+$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($spconfig);
 if ($certInfo !== NULL && array_key_exists('certData', $certInfo)) {
 	$certData = $certInfo['certData'];
 
@@ -130,6 +133,10 @@ if ($name !== NULL && !empty($attributes)) {
 	$metaArray20['name'] = $name;
 	$metaArray20['attributes'] = $attributes;
 	$metaArray20['attributes.required'] = $spconfig->getArray('attributes.required', array());
+
+	if (empty($metaArray20['attributes.required'])) {
+	    unset($metaArray20['attributes.required']);
+	}
 	
 	$description = $spconfig->getArray('description', NULL);
 	if ($description !== NULL) {
@@ -161,7 +168,7 @@ if ($orgName !== NULL) {
 if ($spconfig->hasValue('contacts')) {
 	$contacts = $spconfig->getArray('contacts');
 	foreach ($contacts as $contact) {
-		$metaArray20['contacts'][] = SimpleSAML_Utils_Config_Metadata::getContact($contact);
+		$metaArray20['contacts'][] = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
 	}
 }
 
@@ -171,7 +178,7 @@ if ($email && $email !== 'na@example.org') {
 	$techcontact['emailAddress'] = $email;
 	$techcontact['name'] = $config->getString('technicalcontact_name', NULL);
 	$techcontact['contactType'] = 'technical';
-	$metaArray20['contacts'][] = SimpleSAML_Utils_Config_Metadata::getContact($techcontact);
+	$metaArray20['contacts'][] = \SimpleSAML\Utils\Config\Metadata::getContact($techcontact);
 }
 
 // add certificate
@@ -179,6 +186,11 @@ if (count($keys) === 1) {
 	$metaArray20['certData'] = $keys[0]['X509Certificate'];
 } elseif (count($keys) > 1) {
 	$metaArray20['keys'] = $keys;
+}
+
+// add EntityAttributes extension
+if ($spconfig->hasValue('EntityAttributes')) {
+	$metaArray20['EntityAttributes'] = $spconfig->getArray('EntityAttributes');
 }
 
 // add UIInfo extension
@@ -189,6 +201,16 @@ if ($spconfig->hasValue('UIInfo')) {
 // add RegistrationInfo extension
 if ($spconfig->hasValue('RegistrationInfo')) {
 	$metaArray20['RegistrationInfo'] = $spconfig->getArray('RegistrationInfo');
+}
+
+// add signature options
+if ($spconfig->hasValue('WantAssertionsSigned')) {
+	$metaArray20['saml20.sign.assertion'] = $spconfig->getBoolean('WantAssertionsSigned');
+}
+if ($spconfig->hasValue('redirect.sign')) {
+	$metaArray20['redirect.validate'] = $spconfig->getBoolean('redirect.sign');
+} elseif ($spconfig->hasValue('sign.authnrequest')) {
+	$metaArray20['validate.authnrequest'] = $spconfig->getBoolean('sign.authnrequest');
 }
 
 $supported_protocols = array('urn:oasis:names:tc:SAML:1.1:protocol', SAML2_Const::NS_SAMLP);
@@ -202,13 +224,14 @@ $metaBuilder->addOrganizationInfo($metaArray20);
 
 $xml = $metaBuilder->getEntityDescriptorText();
 
-unset($metaArray20['attributes.required']);
 unset($metaArray20['UIInfo']);
 unset($metaArray20['metadata-set']);
 unset($metaArray20['entityid']);
 
 // sanitize the attributes array to remove friendly names
-$metaArray20['attributes'] = array_values($metaArray20['attributes']);
+if (isset($metaArray20['attributes']) && is_array($metaArray20['attributes'])) {
+    $metaArray20['attributes'] = array_values($metaArray20['attributes']);
+}
 
 /* Sign the metadata if enabled. */
 $xml = SimpleSAML_Metadata_Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
@@ -226,4 +249,3 @@ if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
 	header('Content-Type: application/samlmetadata+xml');
 	echo($xml);
 }
-?>

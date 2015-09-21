@@ -8,15 +8,15 @@ $session = SimpleSAML_Session::getSessionFromRequest();
 
 /* Check if valid local session exists.. */
 if ($config->getBoolean('admin.protectindexpage', false)) {
-	SimpleSAML_Utilities::requireAdmin();
+    SimpleSAML\Utils\Auth::requireAdmin();
 }
-$loginurl = SimpleSAML_Utilities::getAdminLoginURL();
-$isadmin = SimpleSAML_Utilities::isAdmin();
+$loginurl = SimpleSAML\Utils\Auth::getAdminLoginURL();
+$isadmin = SimpleSAML\Utils\Auth::isAdmin();
 
 
 $warnings = array();
 
-if (!SimpleSAML_Utilities::isHTTPS()) {
+if (!\SimpleSAML\Utils\HTTP::isHTTPS()) {
 	$warnings[] = '{core:frontpage:warnings_https}';
 }
 
@@ -44,12 +44,12 @@ $links_federation = array();
 
 
 $links_config[] = array(
-	'href' => SimpleSAML_Utilities::getBaseURL() . 'example-simple/hostnames.php?dummy=1',
+	'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/hostnames.php',
 	'text' => '{core:frontpage:link_diagnostics}'
 );
 
 $links_config[] = array(
-	'href' => SimpleSAML_Utilities::getBaseURL() . 'admin/phpinfo.php',
+	'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/phpinfo.php',
 	'text' => '{core:frontpage:link_phpinfo}'
 );
 
@@ -85,7 +85,7 @@ $functionchecks = array(
 	'simplexml_import_dom' => array('required', 'SimpleXML'),
 	'dom_import_simplexml' => array('required', 'XML DOM'),
 	'preg_match'       => array('required',  'RegEx support'),
-	'mcrypt_module_open'=> array('required',  'MCrypt'),
+	'mcrypt_module_open'=> array('optional',  'MCrypt'),
 	'mysql_connect'    => array('optional',  'MySQL support'),
 );
 if (SimpleSAML_Module::isModuleEnabled('ldap')) {

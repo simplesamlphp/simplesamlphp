@@ -3,7 +3,7 @@
 $config = SimpleSAML_Configuration::getInstance();
 $mconfig = SimpleSAML_Configuration::getOptionalConfig('config-metarefresh.php');
 
-SimpleSAML_Utilities::requireAdmin();
+SimpleSAML\Utils\Auth::requireAdmin();
 
 SimpleSAML_Logger::setCaptureLog(TRUE);
 
@@ -30,7 +30,24 @@ foreach ($sets AS $setkey => $set) {
 		$blacklist = $mconfig->getArray('blacklist', array());
 		$whitelist = $mconfig->getArray('whitelist', array());
 
+		// get global type filters
+		$available_types = array(
+			'saml20-idp-remote',
+			'saml20-sp-remote',
+			'shib13-idp-remote',
+			'shib13-sp-remote',
+			'attributeauthority-remote'
+		);
+		$set_types = $set->getArrayize('types', $available_types);
+
 		foreach($set->getArray('sources') AS $source) {
+
+			// filter metadata by type of entity
+			if (isset($source['types'])) {
+				$metaloader->setTypes($source['types']);
+			} else {
+				$metaloader->setTypes($set_types);
+			}
 
 			# Merge global and src specific blacklists
 			if(isset($source['blacklist'])) {

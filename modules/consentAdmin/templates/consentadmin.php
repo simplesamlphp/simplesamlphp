@@ -68,7 +68,6 @@ span.showhide {
 			<?php
 			$spList = $this->data['spList'];
 			$show_spid = 0;
-			//$show_hide_attributes= $this->t('show_hide_attributes');
 			$show_text = $this->t('show');
 			$hide_text = $this->t('hide');
 			$attributes_text = $this->t('attributes_text');
@@ -132,6 +131,6 @@ TRSTART;
 		
 		<h2>Logout</h2>
 
-			<p><a href="<?php echo SimpleSAML_Utilities::selfURL() . '?logout'; ?>">Logout</a></p>
+			<p><a href="<?php echo \SimpleSAML\Utils\HTTP::getSelfURL() . '?logout'; ?>">Logout</a></p>
 		
-<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+<?php $this->includeAtTemplateBase('includes/footer.php');

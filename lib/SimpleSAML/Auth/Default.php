@@ -8,161 +8,49 @@
  *
  * @author Olav Morken, UNINETT AS.
  * @package simpleSAMLphp
+ *
+ * @deprecated This class will be removed in SSP 2.0.
  */
 class SimpleSAML_Auth_Default {
 
 
 	/**
-	 * Start authentication.
-	 *
-	 * This function never returns.
-	 *
-	 * @param string $authId  The identifier of the authentication source.
-	 * @param string|array $return The URL or function we should direct the
-	 * user to after authentication. If using a URL obtained from user input,
-	 * please make sure to check it by calling
-	 * SimpleSAML_Utilities::checkURLAllowed().
-	 * @param string|NULL $errorURL The URL we should direct the user to after
-	 * failed authentication. Can be NULL, in which case a standard error page
-	 * will be shown. If using a URL obtained from user input, please make sure
-	 * to check it by calling SimpleSAML_Utilities::checkURLAllowed().
-	 * @param array $params Extra information about the login. Different
-	 * authentication requestors may provide different information. Optional,
-	 * will default to an empty array.
+	 * @deprecated This method will be removed in SSP 2.0. Use SimpleSAML_Auth_Source::initLogin() instead.
 	 */
 	public static function initLogin($authId, $return, $errorURL = NULL,
 		array $params = array()) {
 
-		assert('is_string($authId)');
-		assert('is_string($return) || is_array($return)');
-		assert('is_string($errorURL) || is_null($errorURL)');
-
-		$state = array_merge($params, array(
-			'SimpleSAML_Auth_Default.id' => $authId,
-			'SimpleSAML_Auth_Default.Return' => $return,
-			'SimpleSAML_Auth_Default.ErrorURL' => $errorURL,
-			'LoginCompletedHandler' => array(get_class(), 'loginCompleted'),
-			'LogoutCallback' => array(get_class(), 'logoutCallback'),
-			'LogoutCallbackState' => array(
-				'SimpleSAML_Auth_Default.logoutSource' => $authId,
-			),
-		));
-
-		if (is_string($return)) {
-			$state['SimpleSAML_Auth_Default.ReturnURL'] = $return;
-		}
-
-		if ($errorURL !== NULL) {
-			$state[SimpleSAML_Auth_State::EXCEPTION_HANDLER_URL] = $errorURL;
-		}
-
-		$as = SimpleSAML_Auth_Source::getById($authId);
-		if ($as === NULL) {
-			throw new Exception('Invalid authentication source: ' . $authId);
-		}
-
-		try {
-			$as->authenticate($state);
-		} catch (SimpleSAML_Error_Exception $e) {
-			SimpleSAML_Auth_State::throwException($state, $e);
-		} catch (Exception $e) {
-			$e = new SimpleSAML_Error_UnserializableException($e);
-			SimpleSAML_Auth_State::throwException($state, $e);
-		}
-		self::loginCompleted($state);
+		$as = self::getAuthSource($authId);
+		$as->initLogin($return, $errorURL, $params);
 	}
 
 
 	/**
-	 * Extract the persistent authentication state from the state array.
-	 *
-	 * @param array $state  The state after the login.
-	 * @return array  The persistent authentication state.
+	 * @deprecated This method will be removed in SSP 2.0. Please use
+	 * SimpleSAML_Auth_State::getPersistentAuthData() instead.
 	 */
 	public static function extractPersistentAuthState(array &$state) {
 
-		/* Save persistent authentication data. */
-		$persistentAuthState = array();
-
-		if (isset($state['IdP'])) {
-			/* For backwards compatibility. */
-			$persistentAuthState['saml:sp:IdP'] = $state['IdP'];
-		}
-
-		if (isset($state['PersistentAuthData'])) {
-			foreach ($state['PersistentAuthData'] as $key) {
-				if (isset($state[$key])) {
-					$persistentAuthState[$key] = $state[$key];
-				}
-			}
-		}
-
-		/* Add those that should always be included. */
-		foreach (array('Attributes', 'Expire', 'LogoutState', 'AuthnInstant', 'RememberMe') as $a) {
-			if (isset($state[$a])) {
-				$persistentAuthState[$a] = $state[$a];
-			}
-		}
-
-		return $persistentAuthState;
+		return SimpleSAML_Auth_State::getPersistentAuthData($state);
 	}
 
 
 	/**
-	 * Called when a login operation has finished.
-	 *
-	 * @param array $state  The state after the login.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Auth_Source::loginCompleted() instead.
 	 */
 	public static function loginCompleted($state) {
-		assert('is_array($state)');
-		assert('array_key_exists("SimpleSAML_Auth_Default.Return", $state)');
-		assert('array_key_exists("SimpleSAML_Auth_Default.id", $state)');
-		assert('array_key_exists("Attributes", $state)');
-		assert('!array_key_exists("LogoutState", $state) || is_array($state["LogoutState"])');
-
-		$return = $state['SimpleSAML_Auth_Default.Return'];
-
-		/* Save session state. */
-		$session = SimpleSAML_Session::getSessionFromRequest();
-		$session->doLogin($state['SimpleSAML_Auth_Default.id'], self::extractPersistentAuthState($state));
-
-		if (is_string($return)) {
-			/* Redirect... */
-			SimpleSAML_Utilities::redirectTrustedURL($return);
-		} else {
-			call_user_func($return, $state);
-			assert('FALSE');
-		}
+		SimpleSAML_Auth_Source::loginCompleted($state);
 	}
 
 
 	/**
-	 * Start logout.
-	 *
-	 * This function starts a logout operation from the current authentication
-	 * source. This function will return if the logout operation does not
-	 * require a redirect.
-	 *
-	 * @param string $returnURL The URL we should redirect the user to after
-	 * logging out. No checking is performed on the URL, so make sure to verify
-	 * it on beforehand if the URL is obtained from user input. Refer to
-	 * SimpleSAML_Utilities::checkURLAllowed() for more information.
-	 * @param string|NULL $authority The authentication source we are logging
-	 * out from, or NULL to log out from the most recent.
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
-	public static function initLogoutReturn($returnURL, $authority = NULL) {
+	public static function initLogoutReturn($returnURL, $authority) {
 		assert('is_string($returnURL)');
-		assert('is_string($authority) || is_null($authority)');
+		assert('is_string($authority)');
 
 		$session = SimpleSAML_Session::getSessionFromRequest();
-
-		if ($authority === NULL) {
-			$authority = $session->getAuthority();
-			if ($authority === NULL) {
-				/* Already logged out - nothing to do here. */
-				return;
-			}
-		}
 
 		$state = $session->getAuthData($authority, 'LogoutState');
 		$session->doLogout($authority);
@@ -174,105 +62,65 @@ class SimpleSAML_Auth_Default {
 		if ($as === NULL) {
 			/* The authority wasn't an authentication source... */
 			self::logoutCompleted($state);
-		}
+ 		}
 
 		$as->logout($state);
-	}
+ 	}
 
 
 	/**
-	 * Start logout.
-	 *
-	 * This function starts a logout operation from the current authentication
-	 * source. This function never returns.
-	 *
-	 * @param string $returnURL The URL we should redirect the user to after
-	 * logging out. No checking is performed on the URL, so make sure to verify
-	 * it on beforehand if the URL is obtained from user input. Refer to
-	 * SimpleSAML_Utilities::checkURLAllowed() for more information.
-	 * @param string|NULL $authority The authentication source we are logging
-	 * out from, or NULL to log out from the most recent.
-	 * @return void This function never returns.
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
-	public static function initLogout($returnURL, $authority = NULL) {
+	public static function initLogout($returnURL, $authority) {
 		assert('is_string($returnURL)');
-		assert('is_string($authority) || is_null($authority)');
+		assert('is_string($authority)');
 
 		self::initLogoutReturn($returnURL, $authority);
 
-		/* Redirect... */
-		SimpleSAML_Utilities::redirectTrustedURL($returnURL);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($returnURL);
 	}
 
 
 	/**
-	 * Called when logout operation completes.
-	 *
-	 * This function never returns.
-	 *
-	 * @param array $state  The state after the logout.
+	 * @deprecated This method will be removed in SSP 2.0.
 	 */
 	public static function logoutCompleted($state) {
 		assert('is_array($state)');
 		assert('array_key_exists("SimpleSAML_Auth_Default.ReturnURL", $state)');
 
-		$returnURL = $state['SimpleSAML_Auth_Default.ReturnURL'];
-
-		/* Redirect... */
-		SimpleSAML_Utilities::redirectTrustedURL($returnURL);
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($state['SimpleSAML_Auth_Default.ReturnURL']);
 	}
 
 
 	/**
-	 * Called when the authentication source receives an external logout request.
-	 *
-	 * @param array $state  State array for the logout operation.
+	 * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Auth_Source::logoutCallback() instead.
 	 */
 	public static function logoutCallback($state) {
-		assert('is_array($state)');
-		assert('array_key_exists("SimpleSAML_Auth_Default.logoutSource", $state)');
-
-		$source = $state['SimpleSAML_Auth_Default.logoutSource'];
-
-		$session = SimpleSAML_Session::getSessionFromRequest();
-		$authId = $session->getAuthority();
-
-		if ($authId !== $source) {
-			SimpleSAML_Logger::warning('Received logout from different authentication source ' .
-				'than the current. Current is ' . var_export($authId, TRUE) .
-				'. Logout source is ' . var_export($source, TRUE) . '.');
-			return;
-		}
-
-		$session->doLogout();
+		SimpleSAML_Auth_Source::logoutCallback($state);
 	}
 
 
 	/**
-	 * Handle a unsolicited login operations.
-	 *
-	 * This function creates a session from the received information. It
-	 * will then redirect to the given URL.
-	 *
-	 * This is used to handle IdP initiated SSO.
-	 *
-	 * @param string $authId The id of the authentication source that received
-	 * the request.
-	 * @param array $state A state array.
-	 * @param string $redirectTo The URL we should redirect the user to after
-	 * updating the session. The function will check if the URL is allowed, so
-	 * there is no need to manually check the URL on beforehand. Please refer
-	 * to the 'trusted.url.domains' configuration directive for more
-	 * information about allowing (or disallowing) URLs.
+	 * @deprecated This method will be removed in SSP 2.0. Please use
+	 * sspmod_saml_Auth_Source_SP::handleUnsolicitedAuth() instead.
 	 */
 	public static function handleUnsolicitedAuth($authId, array $state, $redirectTo) {
-		assert('is_string($authId)');
-		assert('is_string($redirectTo)');
-
-		$session = SimpleSAML_Session::getSessionFromRequest();
-		$session->doLogin($authId, self::extractPersistentAuthState($state));
-
-		SimpleSAML_Utilities::redirectUntrustedURL($redirectTo);
+		sspmod_saml_Auth_Source_SP::handleUnsolicitedAuth($authId, $state, $redirectTo);
 	}
 
+
+	/**
+	 * Return an authentication source by ID.
+	 *
+	 * @param string $id The id of the authentication source.
+	 * @return SimpleSAML_Auth_Source The authentication source.
+	 * @throws Exception If the $id does not correspond with an authentication source.
+	 */
+	private static function getAuthSource($id) {
+		$as = SimpleSAML_Auth_Source::getById($id);
+		if ($as === null) {
+			throw new Exception('Invalid authentication source: ' . $id);
+		}
+		return $as;
+	}
 }

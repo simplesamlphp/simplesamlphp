@@ -114,7 +114,7 @@ $config = array(
      *		SimpleSAML_Logger::WARNING	No statistics, only warnings/errors
      *		SimpleSAML_Logger::NOTICE	Statistics and errors
      *		SimpleSAML_Logger::INFO		Verbose logs
-     *		SimpleSAML_Logger::DEBUG	Full debug logs - not reccomended for production
+     *		SimpleSAML_Logger::DEBUG	Full debug logs - not recommended for production
      *
      * Choose logging handler.
      *
@@ -195,6 +195,61 @@ $config = array(
         ),
         */
     ),
+
+
+
+    /*
+     * Database
+     *
+     * This database configuration is optional. If you are not using
+     * core functionality or modules that require a database, you can
+     * skip this configuration.
+     */
+
+    /*
+     * Database connection string.
+     * Ensure that you have the required PDO database driver installed
+     * for your connection string.
+     */
+    'database.dsn' => 'mysql:host=localhost;dbname=saml',
+
+    /*
+     * SQL database credentials
+     */
+    'database.username' => 'simplesamlphp',
+    'database.password' => 'secret',
+
+    /*
+     * (Optional) Table prefix
+     */
+    'database.prefix' => '',
+
+    /*
+     * True or false if you would like a persistent database connection
+     */
+    'database.persistent' => false,
+
+    /*
+     * Database slave configuration is optional as well. If you are only
+     * running a single database server, leave this blank. If you have
+     * a master/slave configuration, you can define as many slave servers
+     * as you want here. Slaves will be picked at random to be queried from.
+     *
+     * Configuration options in the slave array are exactly the same as the
+     * options for the master (shown above) with the exception of the table
+     * prefix.
+     */
+    'database.slaves' => array(
+        /*
+        array(
+            'dsn' => 'mysql:host=myslave;dbname=saml',
+            'username' => 'simplesamlphp',
+            'password' => 'secret',
+            'persistent' => false,
+        ),
+        */
+    ),
+
 
 
     /*
@@ -293,12 +348,6 @@ $config = array(
     'session.cookie.secure' => false,
 
     /*
-     * When set to FALSE fallback to transient session on session initialization
-     * failure, throw exception otherwise.
-     */
-    'session.disable_fallback' => false,
-
-    /*
      * Enable secure POST from HTTPS to HTTP.
      *
      * If you have some SP's on HTTP and IdP is normally on HTTPS, this option
@@ -316,7 +365,7 @@ $config = array(
      */
     'session.phpsession.cookiename' => null,
     'session.phpsession.savepath' => null,
-    'session.phpsession.httponly' => false,
+    'session.phpsession.httponly' => true,
 
     /*
      * Option to override the default settings for the auth token cookie
@@ -566,6 +615,26 @@ $config = array(
      * - 'file': Path to the XML file with the metadata.
      * - 'url': The URL to fetch metadata from. THIS IS ONLY FOR DEBUGGING - THERE IS NO CACHING OF THE RESPONSE.
      *
+     * MDX metadata handler:
+     * This metadata handler looks up for the metadata of an entity at the given MDX server.
+     * The MDX metadata handler defines the following options:
+     * - 'type': This is always 'mdx'.
+     * - 'server': URL of the MDX server (url:port). Mandatory.
+     * - 'validateFingerprint': The fingerprint of the certificate used to sign the metadata.
+     *                          You don't need this option if you don't want to validate the signature on the metadata. Optional.
+     * - 'cachedir': Directory where metadata can be cached. Optional.
+     * - 'cachelength': Maximum time metadata cah be cached, in seconds. Default to 24
+     *                  hours (86400 seconds). Optional.
+     *
+     * PDO metadata handler:
+     * This metadata handler looks up metadata of an entity stored in a database.
+     *
+     * Note: If you are using the PDO metadata handler, you must configure the database
+     * options in this configuration file.
+     *
+     * The PDO metadata handler defines the following options:
+     * - 'type': This is always 'pdo'.
+     *
      *
      * Examples:
      *
@@ -583,6 +652,15 @@ $config = array(
      *     array('type' => 'xml', 'file' => 'idp.example.org-idpMeta.xml'),
      *     ),
      *
+     * This example defines an mdx source.
+     * 'metadata.sources' => array(
+     *     array('type' => 'mdx', server => 'http://mdx.server.com:8080', 'cachedir' => '/var/simplesamlphp/mdx-cache', 'cachelength' => 86400)
+     *     ),
+     *
+     * This example defines an pdo source.
+     * 'metadata.sources' => array(
+     *     array('type' => 'pdo')
+     *     ),
      *
      * Default:
      * 'metadata.sources' => array(
@@ -629,8 +707,8 @@ $config = array(
 
 
     /*
-     * Configuration for the MemcacheStore class. This allows you to store
-     * multiple redudant copies of sessions on different memcache servers.
+     * Configuration for the 'memcache' session store. This allows you to store
+     * multiple redundant copies of sessions on different memcache servers.
      *
      * 'memcache_store.servers' is an array of server groups. Every data
      * item will be mirrored in every server group.
@@ -651,7 +729,7 @@ $config = array(
      *  - 'timeout': The timeout for this server. By default, the timeout
      *    is 3 seconds.
      *
-     * Example of redudant configuration with load balancing:
+     * Example of redundant configuration with load balancing:
      * This configuration makes it possible to lose both servers in the
      * a-group or both servers in the b-group without losing any sessions.
      * Note that sessions will be lost if one server is lost from both the
@@ -745,7 +823,7 @@ $config = array(
      * Set to NULL to disable checking of URLs.
      *
      * simpleSAMLphp will automatically add your own domain (either by checking
-     * it dinamically, or by using the domain defined in the 'baseurlpath'
+     * it dynamically, or by using the domain defined in the 'baseurlpath'
      * directive, the latter having precedence) to the list of trusted domains,
      * in case this option is NOT set to NULL. In that case, you are explicitly
      * telling simpleSAMLphp to verify URLs.

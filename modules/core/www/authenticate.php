@@ -51,6 +51,8 @@ $t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes');
 
 $t->data['header'] = '{status:header_saml20_sp}';
 $t->data['attributes'] = $attributes;
-$t->data['logouturl'] = SimpleSAML_Utilities::selfURLNoQuery() . '?as=' . urlencode($asId) . '&logout';
+// if saml:sp:IdP is set, this is SAML auth so we can pass a NameId
+$t->data['nameid'] = !is_null( $as->getAuthData('saml:sp:IdP') ) ? $as->getAuthData('saml:sp:NameID') : FALSE;
+$t->data['logouturl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery() . '?as=' . urlencode($asId) . '&logout';
 $t->show();
 

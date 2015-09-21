@@ -13,4 +13,3 @@ function consentAdmin_hook_frontpage(&$links) {
 		'text' => '{consentAdmin:consentadmin:consentadmin_header}',
 	);
 }
-?>

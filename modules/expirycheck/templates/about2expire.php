@@ -16,9 +16,6 @@
  * @package simpleSAMLphp
  */
 
-
-//$this->data['header'] = $this->t('{expirycheck:expwarning:warning_header}');
-
 # netid will expire today
 if ($this->data['daysleft'] == 0) {
 	$this->data['header'] = $this->t('{expirycheck:expwarning:warning_header_today}', array(
@@ -63,7 +60,6 @@ else {
 
 }
 
-//$this->data['header'] = str_replace("%DAYSLEFT%", $this->data['daysleft'], str_replace("%NETID%", $this->data['netId'], $this->t('{expirycheck:expwarning:warning_header}')));
 $this->data['autofocus'] = 'yesbutton';
 
 $this->includeAtTemplateBase('includes/header.php');
@@ -89,4 +85,3 @@ $this->includeAtTemplateBase('includes/header.php');
 <?php
 
 $this->includeAtTemplateBase('includes/footer.php');
-?>

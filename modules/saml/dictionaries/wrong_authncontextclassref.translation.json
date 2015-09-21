@@ -18,7 +18,10 @@
 		"hr": "Neispravan autentikacijski kontekst",
 		"zh": "\u9519\u8bef\u7684\u9a8c\u8bc1\u4e0a\u4e0b\u6587",
 		"eu": "Kautotze testu inguru okerra",
-		"de": "Falscher Authentifizierungskontext"
+		"de": "Falscher Authentifizierungskontext",
+		"id": "Konteks otentikasi keliru",
+		"zh-tw": "\u932f\u8aa4\u9a57\u8b49\u78bc",
+		"af": "Verkeerde verifikasie konteks"
 	},
 	"description": {
 		"hu": "A m\u00f3d, ahogyan azonos\u00edtott t\u00e9ged a szem\u00e9lyazonoss\u00e1g szolg\u00e1ltat\u00f3d, nem elfogadott enn\u00e9l a szolg\u00e1ltat\u00e1sn\u00e1l. Val\u00f3sz\u00edn\u0171leg t\u00fal gyenge, vagy nem k\u00e9tfaktoros.",
@@ -39,6 +42,9 @@
 		"hr": "Odabrana usluga ne prihva\u0107a va\u0161 autentikacijski kontekst. Najvjerojatnije zato \u0161to va\u0161 autentikacijski servis ne zadovoljava razinu sigurnosti koju odabrana usluga zahtijeva.",
 		"zh": "\u6b64\u670d\u52a1\u4e0d\u63a5\u53d7\u60a8\u7684\u9a8c\u8bc1\u4e0a\u4e0b\u6587\u3002\u53ef\u80fd\u56e0\u4e3a\u9a8c\u8bc1\u592a\u5f31\u6216\u975e\u53cc\u56e0\u7d20\u9a8c\u8bc1\u3002",
 		"eu": "Zerbitzu honek ez du onartzen zure kautotze testuingurua. Ziurrenik ahulegia da edo ez da bi faktoredun kautotzea. ",
-		"de": "Ihr Authentifizierungskontext wird von diesem Dienst nicht akzeptiert. Wahrscheinlich ist er zu schwach oder nicht Zwei-Faktor."
+		"de": "Ihr Authentifizierungskontext wird von diesem Dienst nicht akzeptiert. Wahrscheinlich ist er zu schwach oder nicht Zwei-Faktor.",
+		"id": "Konteks otentikasi Anda tidak tersedia pada layanan ini. Mungkin terlalu lemah atau bukan keamanan-ganda.",
+		"zh-tw": "\u60a8\u7684\u9a57\u8b49\u78bc\u7121\u6cd5\u88ab\u63a5\u53d7\u3002\u53ef\u80fd\u662f\u5f37\u5ea6\u592a\u5f31\u6216\u662f\u672a\u4f7f\u7528\u5169\u6bb5\u5f0f\u9a57\u8b49\u3002",
+		"af": "Jou verifikasie konteks is nie deur die diens aanvaar nie. Waarskynlik te swak of nie twee-faktor nie."
 	}
 }

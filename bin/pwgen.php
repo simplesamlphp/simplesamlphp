@@ -44,4 +44,4 @@ if(!in_array(strtolower($algo), hash_algos())) {
 echo "Do you want to use a salt? (yes/no) [yes] ";
 $s = (trim(fgets(STDIN)) == 'no') ? '' : 'S';
 
-echo "\n  " . SimpleSAML_Utils_Crypto::pwHash($password, strtoupper( $s . $algo ) ). "\n\n";
+echo "\n  " . SimpleSAML\Utils\Crypto::pwHash($password, strtoupper( $s . $algo ) ). "\n\n";

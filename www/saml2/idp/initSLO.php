@@ -11,5 +11,5 @@ if (!isset($_GET['RelayState'])) {
 	throw new SimpleSAML_Error_Error('NORELAYSTATE');
 }
 
-$idp->doLogoutRedirect(SimpleSAML_Utilities::checkURLAllowed((string)$_GET['RelayState']));
+$idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed((string)$_GET['RelayState']));
 assert('FALSE');

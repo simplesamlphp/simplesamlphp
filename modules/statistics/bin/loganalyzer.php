@@ -9,9 +9,10 @@ $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 require_once($baseDir . '/lib/_autoload.php');
 
 /* Initialize the configuration. */
-SimpleSAML_Configuration::setConfigDir($baseDir . '/config');
+$configdir = SimpleSAML\Utils\Config::getConfigDir();
+SimpleSAML_Configuration::setConfigDir($configdir);
 
-SimpleSAML_Utilities::initTimezone();
+SimpleSAML\Utils\Time::initTimezone();
 
 $progName = array_shift($argv);
 $debug = FALSE;

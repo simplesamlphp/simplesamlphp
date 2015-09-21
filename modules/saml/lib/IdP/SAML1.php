@@ -69,7 +69,7 @@ class sspmod_saml_IdP_SAML1 {
 				 * Less than five seconds has passed since we were
 				 * here the last time. Cookies are probably disabled.
 				 */
-				SimpleSAML_Utilities::checkCookie(SimpleSAML_Utilities::selfURL());
+				\SimpleSAML\Utils\HTTP::checkSessionCookie(\SimpleSAML\Utils\HTTP::getSelfURL());
 			}
 		}
 
@@ -115,14 +115,14 @@ class sspmod_saml_IdP_SAML1 {
 			'protocol' => 'saml1',
 		));
 
-		$sessionLostURL = SimpleSAML_Utilities::addURLparameter(
-			SimpleSAML_Utilities::selfURL(),
+		$sessionLostURL = \SimpleSAML\Utils\HTTP::addURLParameters(
+            \SimpleSAML\Utils\HTTP::getSelfURL(),
 			array('cookieTime' => time()));
 
 		$state = array(
 			'Responder' => array('sspmod_saml_IdP_SAML1', 'sendResponse'),
 			'SPMetadata' => $spMetadata->toArray(),
-
+			SimpleSAML_Auth_State::RESTART => $sessionLostURL,
 			'saml:shire' => $shire,
 			'saml:target' => $target,
 			'saml:AuthnRequestReceivedAt' => microtime(TRUE),

@@ -2,7 +2,7 @@
 require 'tickets.php';
 
 /*
- * Incomming parameters:
+ * Incoming parameters:
  *  targetService
  *  ptg
  *  
@@ -26,7 +26,7 @@ $path = $casconfig->resolvePath($casconfig->getValue('ticketcache', 'ticketcache
 
 $ticket = retrieveTicket($pgt, $path, false);
 if ($ticket['validbefore'] > time()) {
-	$pt = str_replace( '_', 'PT-', SimpleSAML_Utilities::generateID() );
+	$pt = str_replace( '_', 'PT-', SimpleSAML\Utils\Random::generateID() );
 	storeTicket($pt, $path, array(
 		'service' => $targetService,
 		'forceAuthn' => false,
@@ -51,5 +51,3 @@ print <<<eox
 </cas:serviceResponse>
 eox;
 }
-
-?>

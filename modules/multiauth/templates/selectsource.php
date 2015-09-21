@@ -28,4 +28,4 @@ foreach($this->data['sources'] as $source) {
 ?>
 </ul>
 </form>
-<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+<?php $this->includeAtTemplateBase('includes/footer.php');

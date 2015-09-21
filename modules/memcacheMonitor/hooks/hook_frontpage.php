@@ -14,6 +14,3 @@ function memcacheMonitor_hook_frontpage(&$links) {
 	);
 	
 }
-
-
-?>

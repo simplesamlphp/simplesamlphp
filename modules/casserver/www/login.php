@@ -2,7 +2,7 @@
 require 'tickets.php';
 
 /*
- * Incomming parameters:
+ * Incoming parameters:
  *  service
  *  renew
  *  gateway
@@ -41,15 +41,15 @@ $attributes = $as->getAttributes();
 
 $path = $casconfig->resolvePath($casconfig->getValue('ticketcache', '/tmp'));
 
-$ticket = str_replace( '_', 'ST-', SimpleSAML_Utilities::generateID() );
+$ticket = str_replace( '_', 'ST-', SimpleSAML\Utils\Random::generateID() );
 storeTicket($ticket, $path, array('service' => $service,
 	'forceAuthn' => $forceAuthn,
 	'attributes' => $attributes,
 	'proxies' => array(),
 	'validbefore' => time() + 5));
 
-SimpleSAML_Utilities::redirectTrustedURL(
-	SimpleSAML_Utilities::addURLparameter($service,
+\SimpleSAML\Utils\HTTP::redirectTrustedURL(
+	\SimpleSAML\Utils\HTTP::addURLParameters($service,
 		array('ticket' => $ticket)
 	)
 );

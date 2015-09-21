@@ -33,7 +33,11 @@ class SimpleSAML_Auth_Simple {
 	 * @return SimpleSAML_Auth_Source  The authentication source.
 	 */
 	public function getAuthSource() {
-		return SimpleSAML_Auth_Source::getById($this->authSource);
+		$as = SimpleSAML_Auth_Source::getById($this->authSource);
+		if ($as === null) {
+			throw new SimpleSAML_Error_Exception('Invalid authentication source: '.$this->authSource);
+		}
+		return $as;
 	}
 
 
@@ -110,11 +114,11 @@ class SimpleSAML_Auth_Simple {
 		} else if (array_key_exists('ReturnCallback', $params)) {
 			$returnTo = (array)$params['ReturnCallback'];
 		} else {
-			$returnTo = SimpleSAML_Utilities::selfURL();
+			$returnTo = \SimpleSAML\Utils\HTTP::getSelfURL();
 		}
 
 		if (is_string($returnTo) && $keepPost && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$returnTo = SimpleSAML_Utilities::createPostRedirectLink($returnTo, $_POST);
+			$returnTo = \SimpleSAML\Utils\HTTP::getPOSTRedirectURL($returnTo, $_POST);
 		}
 
 		if (array_key_exists('ErrorURL', $params)) {
@@ -133,7 +137,8 @@ class SimpleSAML_Auth_Simple {
 			$params[SimpleSAML_Auth_State::RESTART] = $restartURL;
 		}
 
-		SimpleSAML_Auth_Default::initLogin($this->authSource, $returnTo, $errorURL, $params);
+		$as = $this->getAuthSource();
+		$as->initLogin($returnTo, $errorURL, $params);
 		assert('FALSE');
 	}
 
@@ -159,7 +164,7 @@ class SimpleSAML_Auth_Simple {
 		assert('is_array($params) || is_string($params) || is_null($params)');
 
 		if ($params === NULL) {
-			$params = SimpleSAML_Utilities::selfURL();
+			$params = \SimpleSAML\Utils\HTTP::getSelfURL();
 		}
 
 		if (is_string($params)) {
@@ -217,8 +222,7 @@ class SimpleSAML_Auth_Simple {
 				$stateID = SimpleSAML_Auth_State::saveState($state, $state['ReturnStateStage']);
 				$params[$state['ReturnStateParam']] = $stateID;
 			}
-
-			SimpleSAML_Utilities::redirectTrustedURL($state['ReturnTo'], $params);
+			\SimpleSAML\Utils\HTTP::redirectTrustedURL($state['ReturnTo'], $params);
 		}
 	}
 
@@ -290,7 +294,7 @@ class SimpleSAML_Auth_Simple {
 		assert('is_null($returnTo) || is_string($returnTo)');
 
 		if ($returnTo === NULL) {
-			$returnTo = SimpleSAML_Utilities::selfURL();
+			$returnTo = \SimpleSAML\Utils\HTTP::getSelfURL();
 		}
 
 		$login = SimpleSAML_Module::getModuleURL('core/as_login.php', array(
@@ -313,7 +317,7 @@ class SimpleSAML_Auth_Simple {
 		assert('is_null($returnTo) || is_string($returnTo)');
 
 		if ($returnTo === NULL) {
-			$returnTo = SimpleSAML_Utilities::selfURL();
+			$returnTo = \SimpleSAML\Utils\HTTP::getSelfURL();
 		}
 
 		$logout = SimpleSAML_Module::getModuleURL('core/as_logout.php', array(
@@ -325,5 +329,3 @@ class SimpleSAML_Auth_Simple {
 	}
 
 }
-
-?>

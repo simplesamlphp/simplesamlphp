@@ -202,7 +202,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 		$emsg = array_shift($data);
 		$etrace = implode("\n", $data);
 
-		$reportId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(4));
+		$reportId = bin2hex(openssl_random_pseudo_bytes(4));
 		SimpleSAML_Logger::error('Error report with id ' . $reportId . ' generated.');
 
 		$config = SimpleSAML_Configuration::getInstance();
@@ -226,7 +226,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 			'exceptionTrace' => $etrace,
 			'reportId' => $reportId,
 			'trackId' => $session->getTrackID(),
-			'url' => SimpleSAML_Utilities::selfURLNoQuery(),
+			'url' => \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
 			'version' => $config->getVersion(),
 			'referer' => $referer,
 		);
@@ -265,16 +265,19 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception {
 		if($config->getBoolean('errorreporting', TRUE) &&
 			$config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org') {
 			/* Enable error reporting. */
-			$baseurl = SimpleSAML_Utilities::getBaseURL();
+			$baseurl = \SimpleSAML\Utils\HTTP::getBaseURL();
 			$data['errorReportAddress'] = $baseurl . 'errorreport.php';
 		}
 
+		$data['email'] = '';
 		$session = SimpleSAML_Session::getSessionFromRequest();
-		$attributes = $session->getAttributes();
-		if (is_array($attributes) && array_key_exists('mail', $attributes) && count($attributes['mail']) > 0) {
-			$data['email'] = $attributes['mail'][0];
-		} else {
-			$data['email'] = '';
+		$authorities = $session->getAuthorities();
+		foreach ($authorities as $authority) {
+			$attributes = $session->getAuthData($authority, 'Attributes');
+			if ($attributes !== NULL && array_key_exists('mail', $attributes) && count($attributes['mail']) > 0) {
+				$data['email'] = $attributes['mail'][0];
+				break; // enough, don't need to get all available mails, if more than one
+			}
 		}
 
 		$show_function = $config->getArray('errors.show_function', NULL);

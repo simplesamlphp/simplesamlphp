@@ -67,7 +67,7 @@ if ($this->data['rememberUsernameEnabled'] || $this->data['rememberMeEnabled']) 
 } else {
 	$text = $this->t('{login:login_button}');
 	echo str_repeat("\t", 4);
-	echo "<input type=\"submit\" tabindex=\"4\" id=\"regularsubmit\" value=\"{$text}\" />";
+	echo "<input onclick=\"this.value='" . $this->t('{login:processing}') . "';this.disabled=true;this.form.submit();return true;\" type=\"submit\" tabindex=\"4\" id=\"regularsubmit\" value=\"{$text}\" />";
 }
 ?>
 			</td>
@@ -81,7 +81,7 @@ if ($this->data['rememberUsernameEnabled'] || $this->data['rememberMeEnabled']) 
 	$rowspan = (array_key_exists('organizations', $this->data) ? 2 : 1);
 ?>
 			<td style="padding: .4em;" rowspan="<?php echo $rowspan; ?>">
-				<input type="submit" tabindex="5" id="regularsubmit" value="<?php echo $this->t('{login:login_button}'); ?>" />
+				<input onclick="this.value='<?php echo $this->t('{login:processing}'); ?>';this.disabled=true;this.form.submit();return true;" type="submit" tabindex="5" id="regularsubmit" value="<?php echo $this->t('{login:login_button}'); ?>" />
 			</td>
 <?php
 }
@@ -121,7 +121,7 @@ foreach ($this->data['organizations'] as $orgId => $orgDesc) {
 }
 ?>
 	<tr><td></td><td>
-	<input type="submit" tabindex="5" id="mobilesubmit" value="<?php echo $this->t('{login:login_button}'); ?>" />
+	<input onclick="this.value='<?php echo $this->t('{login:processing}'); ?>';this.disabled=true;this.form.submit();return true;" type="submit" tabindex="5" id="mobilesubmit" value="<?php echo $this->t('{login:login_button}'); ?>" />
 	</td></tr>
 	</table>
 <?php
@@ -149,4 +149,3 @@ echo('<h2 class="logintext">' . $this->t('{login:help_header}') . '</h2>');
 echo('<p class="logintext">' . $this->t('{login:help_text}') . '</p>');
 
 $this->includeAtTemplateBase('includes/footer.php');
-?>

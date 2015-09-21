@@ -19,5 +19,3 @@ $config = array (
 	#'attributes' => TRUE, // enable transfer of attributes
 	
 );
-
-?>
