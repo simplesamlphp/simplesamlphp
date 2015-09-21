@@ -1,0 +1,24 @@
+We are glad to announce  a new release of the InfoCard
+module implementation for simpleSAMLphp.
+
+Sorry for being a bit late but I've just finished my degree exams.
+
+Here are the major changes:
+-In addition to user-password authentication, STS is also accepting Self-issued cards.
+-Fully compatible with MS Cardspace. Really! (Tested with Digitalme
+and Cardspaces)
+-mex.php has been fully rewritten, now it's short and understable. :)
+-I've added a link in the module main page so it's possible to get a
+managed card  once you get authenticated by means of a simple user-password form. Because of this getinfocard.php is replaced by getcardform.php
+-A new classs called STS has been added to handle the STS messages
+(issuing InfoCards, Request Service Token Response, Error Response).
+-tokenservice.php make use of STS class. This has allowed us to shorten it quite a log.
+-Commented and more elegant code.
+-Logging support:It's possible to log the RST (from the identity selector) and the RSTR (from the STS) messages in a configurable directory.
+-We carry on using transport binding for the communications.
+
+This work is being supported by RedIRIS (the spanish NREN, www.rediris.es) and CS Department of the University of Alcala (Spain).
+
+This modules has been developed by Samuel Muñoz Hidalgo.
+
+Contact: Enrique de la Hoz: enrique.delahoz@uah.es.

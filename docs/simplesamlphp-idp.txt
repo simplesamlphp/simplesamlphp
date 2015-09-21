@@ -55,7 +55,7 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 [`radius:Radius`](./radius:radius)
 : Authenticates an user to a Radius server.
 
-[`InfoCard:ICAuth`](https://github.com/simplesamlphp/simplesamlphp-module-infocard/blob/master/README.md)
+[`InfoCard:ICAuth`](./InfoCard:usage)
 : Authenticate with an InfoCard.
 
 [`multiauth:MultiAuth`](./multiauth:multiauth)
@@ -76,7 +76,7 @@ The next step is to configure the way users authenticate on your IdP. Various mo
 [`authtwitter:Twitter`](./authtwitter:oauthtwitter)
 : Authenticate with your Twitter account using the Twitter OAuth API.
 
-[`papi:PAPI`](https://github.com/rediris-es/simplesamlphp-module-papi/blog/master/README.md)
+[`papi:PAPI`](./papi:papi)
 : Authenticate by means of the PAPI protocol.
 
 In this guide, we will use the `exampleauth:UserPass` authentication module. This module does not have any dependencies, and is therefore simple to set up.
@@ -230,8 +230,9 @@ Support
 If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
 - [simpleSAMLphp homepage](https://simplesamlphp.org)
-- [List of all available simpleSAMLphp documentation](https://simplesamlphp.org/docs/)
-- [Join the simpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)
+- [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/)
+- [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
+- [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)
 
 
 

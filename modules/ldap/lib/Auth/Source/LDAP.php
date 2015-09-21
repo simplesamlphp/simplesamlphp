@@ -52,3 +52,6 @@ class sspmod_ldap_Auth_Source_LDAP extends sspmod_core_Auth_UserPassBase {
 	}
 
 }
+
+
+?>

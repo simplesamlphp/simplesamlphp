@@ -74,3 +74,5 @@ class sspmod_authYubiKey_Auth_Process_OTP2YubiPrefix extends SimpleSAML_Auth_Pro
 	}
 
 }
+
+?>

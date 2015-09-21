@@ -7,91 +7,109 @@
  * The configuration for this script is stored in config/authmemcookie.php.
  *
  * The file extra/auth_memcookie.conf contains an example of how Auth Memcookie can be configured
- * to use SimpleSAMLphp.
+ * to use simpleSAMLphp.
  */
 
 require_once('_include.php');
 
 try {
-    // load SimpleSAMLphp configuration
-    $globalConfig = SimpleSAML_Configuration::getInstance();
+	/* Load simpleSAMLphp configuration. */
+	$globalConfig = SimpleSAML_Configuration::getInstance();
 
-    // check if this module is enabled
-    if (!$globalConfig->getBoolean('enable.authmemcookie', false)) {
-        throw new SimpleSAML_Error_Error('NOACCESS');
-    }
+	/* Check if this module is enabled. */
+	if(!$globalConfig->getBoolean('enable.authmemcookie', FALSE)) {
+		throw new SimpleSAML_Error_Error('NOACCESS');
+	}
 
-    // load Auth MemCookie configuration
-    $amc = SimpleSAML_AuthMemCookie::getInstance();
+	/* Load Auth MemCookie configuration. */
+	$amc = SimpleSAML_AuthMemCookie::getInstance();
 
-    $sourceId = $amc->getAuthSource();
-    $s = new SimpleSAML_Auth_Simple($sourceId);
+	/* Determine the method we should use to authenticate the user and retrieve the attributes. */
+	$loginMethod = $amc->getLoginMethod();
+	switch($loginMethod) {
+	case 'authsource':
+		/* The default now. */
+		$sourceId = $amc->getAuthSource();
+		$s = new SimpleSAML_Auth_Simple($sourceId);
+		break;
+	case 'saml2':
+		$s = new SimpleSAML_Auth_BWC('saml2/sp/initSSO.php', 'saml2');
+		break;
+	case 'shib13':
+		$s = new SimpleSAML_Auth_BWC('shib13/sp/initSSO.php', 'shib13');
+		break;
+	default:
+		/* Should never happen, as the login method is checked in the AuthMemCookie class. */
+		throw new Exception('Invalid login method.');
+	}
 
-    // check if the user is authorized. We attempt to authenticate the user if not
-    $s->requireAuth();
+	/* Check if the user is authorized. We attempt to authenticate the user if not. */
+	$s->requireAuth();
 
-    // generate session id and save it in a cookie
-    $sessionID = SimpleSAML\Utils\Random::generateID();
+	/* Generate session id and save it in a cookie. */
+	$sessionID = SimpleSAML_Utilities::generateID();
 
-    $cookieName = $amc->getCookieName();
+	$cookieName = $amc->getCookieName();
 
-    $sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
-    $sessionHandler->setCookie($cookieName, $sessionID);
+	$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
+	$sessionHandler->setCookie($cookieName, $sessionID);
 
-    // generate the authentication information
-    $attributes = $s->getAttributes();
 
-    $authData = array();
+	/* Generate the authentication information. */
 
-    // username
-    $usernameAttr = $amc->getUsernameAttr();
-    if (!array_key_exists($usernameAttr, $attributes)) {
-        throw new Exception(
-            "The user doesn't have an attribute named '".$usernameAttr.
-            "'. This attribute is expected to contain the username."
-        );
-    }
-    $authData['UserName'] = $attributes[$usernameAttr];
+	$attributes = $s->getAttributes();
 
-    // groups
-    $groupsAttr = $amc->getGroupsAttr();
-    if ($groupsAttr !== null) {
-        if (!array_key_exists($groupsAttr, $attributes)) {
-            throw new Exception(
-                "The user doesn't have an attribute named '".$groupsAttr.
-                "'. This attribute is expected to contain the groups the user is a member of."
-            );
-        }
-        $authData['Groups'] = $attributes[$groupsAttr];
-    } else {
-        $authData['Groups'] = array();
-    }
+	$authData = array();
 
-    $authData['RemoteIP'] = $_SERVER['REMOTE_ADDR'];
+	/* Username. */
+	$usernameAttr = $amc->getUsernameAttr();
+	if(!array_key_exists($usernameAttr, $attributes)) {
+		throw new Exception('The user doesn\'t have an attribute named \'' . $usernameAttr .
+			'\'. This attribute is expected to contain the username.');
+	}
+	$authData['UserName'] = $attributes[$usernameAttr];
 
-    foreach ($attributes as $n => $v) {
-        $authData['ATTR_'.$n] = $v;
-    }
+	/* Groups. */
+	$groupsAttr = $amc->getGroupsAttr();
+	if($groupsAttr !== NULL) {
+		if(!array_key_exists($groupsAttr, $attributes)) {
+			throw new Exception('The user doesn\'t have an attribute named \'' . $groupsAttr .
+				'\'. This attribute is expected to contain the groups the user is a member of.');
+		}
+		$authData['Groups'] = $attributes[$groupsAttr];
+	} else {
+		$authData['Groups'] = array();
+	}
 
-    // store the authentication data in the memcache server
-    $data = '';
-    foreach ($authData as $n => $v) {
-        if (is_array($v)) {
-            $v = implode(':', $v);
-        }
-        $data .= $n.'='.$v."\r\n";
-    }
+	$authData['RemoteIP'] = $_SERVER['REMOTE_ADDR'];
 
-    $memcache = $amc->getMemcache();
-    $expirationTime = $s->getAuthData('Expire');
-    $memcache->set($sessionID, $data, 0, $expirationTime);
+	foreach($attributes as $n => $v) {
+		$authData['ATTR_' . $n] = $v;
+	}
 
-    // register logout handler
-    $session = SimpleSAML_Session::getSessionFromRequest();
-    $session->registerLogoutHandler($sourceId, 'SimpleSAML_AuthMemCookie', 'logoutHandler');
 
-    // redirect the user back to this page to signal that the login is completed
-    \SimpleSAML\Utils\HTTP::redirectTrustedURL(\SimpleSAML\Utils\HTTP::getSelfURL());
-} catch (Exception $e) {
-    throw new SimpleSAML_Error_Error('CONFIG', $e);
+	/* Store the authentication data in the memcache server. */
+
+	$data = '';
+	foreach($authData as $n => $v) {
+		if(is_array($v)) {
+			$v = implode(':', $v);
+		}
+
+		$data .= $n . '=' . $v . "\r\n";
+	}
+
+
+	$memcache = $amc->getMemcache();
+	$expirationTime = $s->getAuthData('Expire');
+	$memcache->set($sessionID, $data, 0, $expirationTime);
+
+	/* Register logout handler. */
+	$session = SimpleSAML_Session::getSessionFromRequest();
+	$session->registerLogoutHandler('SimpleSAML_AuthMemCookie', 'logoutHandler');
+
+	/* Redirect the user back to this page to signal that the login is completed. */
+	SimpleSAML_Utilities::redirectTrustedURL(SimpleSAML_Utilities::selfURL());
+} catch(Exception $e) {
+	throw new SimpleSAML_Error_Error('CONFIG', $e);
 }

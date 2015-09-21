@@ -74,7 +74,7 @@ if (array_key_exists('descr_purpose', $this->data['dstMetadata'])) {
         array(
             'SPNAME' => $dstName,
             'SPDESC' => $this->getTranslation(
-                SimpleSAML\Utils\Arrays::arrayize(
+                SimpleSAML_Utilities::arrayize(
                     $this->data['dstMetadata']['descr_purpose'],
                     'en'
                 )
@@ -167,7 +167,7 @@ function present_attributes($t, $attributes, $nameParent)
 
             $isHidden = in_array($nameraw, $t->data['hiddenAttributes'], true);
             if ($isHidden) {
-                $hiddenId = SimpleSAML\Utils\Random::generateID();
+                $hiddenId = SimpleSAML_Utilities::generateID();
 
                 $str .= '<div class="attrvalue" style="display: none;" id="hidden_' . $hiddenId . '">';
             } else {

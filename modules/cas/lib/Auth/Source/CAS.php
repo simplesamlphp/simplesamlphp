@@ -89,11 +89,11 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 	 * @return list username and attributes
 	 */
 	private function casValidate($ticket, $service){
-		$url = \SimpleSAML\Utils\HTTP::addURLParameters($this->_casConfig['validate'], array(
+		$url = SimpleSAML_Utilities::addURLparameter($this->_casConfig['validate'], array(
 				'ticket' => $ticket,
 				'service' => $service,
 		));
-		$result = \SimpleSAML\Utils\HTTP::fetch($url);
+		$result = SimpleSAML_Utilities::fetch($url);
 		$res = preg_split("/\r?\n/",$result);
 
 		if (strcmp($res[0], "yes") == 0) {
@@ -112,11 +112,11 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 	 * @return list username and attributes
 	 */
 	private function casServiceValidate($ticket, $service){
-		$url = \SimpleSAML\Utils\HTTP::addURLParameters($this->_casConfig['serviceValidate'], array(
+		$url = SimpleSAML_Utilities::addURLparameter($this->_casConfig['serviceValidate'], array(
 				'ticket' => $ticket,
 				'service' => $service,
 		));
-		$result = \SimpleSAML\Utils\HTTP::fetch($url);
+		$result = SimpleSAML_Utilities::fetch($url);
 
 		$dom = DOMDocument::loadXML($result);
 		$xPath = new DOMXpath($dom);
@@ -205,7 +205,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 
 		$serviceUrl = SimpleSAML_Module::getModuleURL('cas/linkback.php', array('stateID' => $stateID));
 
-		\SimpleSAML\Utils\HTTP::redirectTrustedURL($this->_loginMethod, array(
+		SimpleSAML_Utilities::redirectTrustedURL($this->_loginMethod, array(
 			'service' => $serviceUrl));
 	}
 
@@ -229,7 +229,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 
 		SimpleSAML_Auth_State::deleteState($state);
 		// we want cas to log us out
-		\SimpleSAML\Utils\HTTP::redirectTrustedURL($logoutUrl);
+		SimpleSAML_Utilities::redirectTrustedURL($logoutUrl);
 	}
 
 }

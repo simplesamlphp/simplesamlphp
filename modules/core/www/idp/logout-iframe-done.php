@@ -3,7 +3,15 @@
 if (!isset($_REQUEST['id'])) {
 	throw new SimpleSAML_Error_BadRequest('Missing required parameter: id');
 }
-$state = SimpleSAML_Auth_State::loadState($_REQUEST['id'], 'core:Logout-IFrame');
+$id = (string)$_REQUEST['id'];
+
+// sanitize the input
+$sid = SimpleSAML_Utilities::parseStateID($id);
+if (!is_null($sid['url'])) {
+	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
+}
+
+$state = SimpleSAML_Auth_State::loadState($id, 'core:Logout-IFrame');
 $idp = SimpleSAML_IdP::getByState($state);
 
 $associations = $idp->getAssociations();

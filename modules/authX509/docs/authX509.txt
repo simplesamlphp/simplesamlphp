@@ -29,8 +29,8 @@ this later).
 
 If your server or your client (or both!) have TLS renegotiation disabled
 as a workaround for CVE-2009-3555, then the configuration directive above
-must not appear in a &lt;Directory&gt;, &lt;Location&gt;, or in a name-based
-&lt;VirtualHost&gt;. You can only use them server-wide, or in &lt;VirtualHost&gt;s
+must not appear in a <Directory>, <Location>, or in a name-based
+<VirtualHost>. You can only use them server-wide, or in <VirtualHost>s
 with different IP address/port combinations.
 
 
@@ -106,21 +106,3 @@ can hack your metadata/saml20-idp-hosted.php file that way:
                             'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
     )
 
-Checking certificate expiry
-===========================
-
-To issue warnings to users whos certificate is about to expire, configure an authproc filter.
-
-Example:
-
-     10 => array(
-         'class' => 'authX509:ExpiryWarning',
-         'warndaysbefore' => '30',
-         'renewurl' => 'https://myca.com/renew',
-     ),
-
-Parameter `warndaysbefore` specifies the number of days the user's certificate needs to be valid before a warning is
-issued. The default is 30.
-
-Parameter `renewurl` specifies the URL of your Certification Authority. If specified, the user is suggested to renew the
-certificate immediately.

@@ -1,4 +1,4 @@
-SimpleSAMLphp Maintenance
+simpleSAMLphp Maintenance
 =========================
 
 <!-- 
@@ -16,18 +16,18 @@ simpleSAMLphp news and documentation
 This document is part of the simpleSAMLphp documentation suite.
 
  * [List of all simpleSAMLphp documentation](http://simplesamlphp.org/docs)
- * [Latest news about simpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also contains an RSS feed)
+ * [Latest news about simpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also conatins an RSS feed)
  * [simpleSAMLphp homepage](https://simplesamlphp.org)
 
 
 
 ## Session management
 
-SimpleSAMLphp has an abstraction layer for session management. That means it is possible to choose between different kind of session stores, as well as write new session store plugins.
+simpleSAMLphp has an abstraction layer for session management. That means it is possible to choose between different kind of session stores, as well as write new session store plugins.
 
 The `store.type` configuration option in `config.php` allows you to select which method SimpleSAMLphp should use to store the session information. Currently, three session handlers are included in the distribution:
 
-  * `phpsession` uses the built in session management in PHP. This is the default, and is simplest to use. It will not work in a load-balanced environment in most configurations.
+  * `phpsession` uses the built in session management in PHP. This is the default, and is simplest to use. It will not work in a load-balanced environement in most configurations.
   * `memcache` uses the memcache software to cache sessions in memory. Sessions can be distributed and replicated among several memcache servers, enabling both load-balancing and fail-over.
   * `sql` stores the session in an SQL database.
 
@@ -39,7 +39,7 @@ To use the memcache session handler, set the `store.type` parameter in `config.p
 
     'store.type' => 'memcache',
 
-memcache allows you to store multiple redundant copies of sessions on different memcache servers.
+memcache allows you to store multiple redudant copies of sessions on different memcache servers.
 
 The configuration parameter `memcache_store.servers` is an array of server groups. Every data item will be mirrored in every server group.
 
@@ -68,9 +68,9 @@ Each server is an array of parameters for the server. The following options are 
 
 Here are two examples of configuration of memcache session handling:
 
-**Example&nbsp;1.&nbsp;Example of redundant configuration with load balancing**
+**Example&nbsp;1.&nbsp;Example of redudant configuration with load balancing**
 
-Example of redundant configuration with load balancing: This configuration makes it possible to lose both servers in the a-group or both servers in the b-group without losing any sessions. Note that sessions will be lost if one server is lost from both the a-group and the b-group.
+Example of redudant configuration with load balancing: This configuration makes it possible to lose both servers in the a-group or both servers in the b-group without losing any sessions. Note that sessions will be lost if one server is lost from both the a-group and the b-group.
 
     'memcache_store.servers' => array(
       array(
@@ -112,7 +112,7 @@ Here is an example of this configuration parameter:
 
 #### Memcache PHP configuration
 
-Configure memcache to not do internal failover. This parameter is
+Configure memcahce to not do internal failover. This parameter is
 configured in `php.ini`.
 
     memcache.allow_failover = Off
@@ -121,7 +121,7 @@ configured in `php.ini`.
 
 Setup a firewall restricting access to the memcache server.
 
-Because SimpleSAMLphp uses a timestamp to check which session is most recent in a fail-over setup, it is very important to run synchronized clocks on all web servers where you run SimpleSAMLphp.
+Because simpleSAMLphp uses a timestamp to check which session is most recent in a fail-over setup, it is very important to run syncrhonized clocks on all webservers where you run simpleSAMLphp.
 
 
 ### Configuring SQL storage
@@ -131,7 +131,7 @@ SimpleSAMLphp uses [PDO](http://www.php.net/manual/en/book.pdo.php) when accessi
 The DSN is stored in the `store.sql.dsn` option. See the [PDO driver manual](http://www.php.net/manual/en/pdo.drivers.php) for the DSN syntax used by the different databases.
 Username and password for accessing the database can be configured in the `store.sql.username` and `store.sql.password` options.
 
-The required tables are created automatically. If you are storing data from multiple separate SimpleSAMLphp installations in the same database, you can use the `store.sql.prefix` option to prevent conflicts.
+The required tables are created automatically. If you are storing data from multiple separate simpleSAMLphp installations in the same database, you can use the `store.sql.prefix` option to prevent conflicts.
 
 
 ## Logging and statistics
@@ -154,7 +154,7 @@ Turn off PHPSESSID in query string.
 Here are some checkpoints
 
  1. Remove all entities in metadata files that you do not trust. It is easy to forget about some of the entities that were used for test. 
- 2. If you during testing have been using a certificate that has been exposed (notably: the one found in the SimpleSAMLphp distribution): Obtain and install a new one.
+ 2. If you during testing have been using a certificate that has been exposed (notably: the one found in the simpleSAMLphp distribution): Obtain and install a new one.
  3. Make sure you have installed the latest security upgrades for your OS.
  4. Make sure to use HTTPS rather than HTTP.
  5. Block access to your servers on anything except port 443. simpleSAMLphp only uses plain HTTP(S), so there is no need to open ports for SOAP or other communication.
@@ -175,12 +175,12 @@ To add support for a new language, add your new language to the `language.availa
 	'language.available' => array('en', 'no', 'da', 'es', 'xx'),
 	'language.default'   => 'en',
 
-Please use the standardized two-character
+Please use the standarized two-character
 [language codes as specified in ISO-639-1](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
 You also can set the default language. You should ensure that the default language is complete, as it is used as a fallback when a text is not available in the language selected by the user.
 
-Translation of simpleSAMLphp is done through the SimpleSAMLphp translation portal. To translate SimpleSAMLphp to a new language, please contact the authors at the mailing list, and the new language may be added to the translation portal.
+Translation of simpleSAMLphp is done through the SimpleSAMLphp translation portal. To translate simpleSAMLphp to a new language, please contact the authors at the mailinglist, and the new language may be added to the translation portal.
 
   * [Visit the SimpleSAMLphp translation portal](https://translation.rnd.feide.no/?aid=simplesamlphp)
 
@@ -204,6 +204,7 @@ Support
 
 If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
--  [SimpleSAMLphp homepage](https://simplesamlphp.org)
+-  [simpleSAMLphp homepage (at Feide RnD)](https://simplesamlphp.org)
 -  [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/)
--  [Join the simpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)
+-  [Join the simpleSAMLphp user's mailing list](http://rnd.feide.no/content/simplesamlphp-users-mailinglist)
+-  [Visit and contribute to the simpleSAMLphp wiki](https://ow.feide.no/simplesamlphp:start)

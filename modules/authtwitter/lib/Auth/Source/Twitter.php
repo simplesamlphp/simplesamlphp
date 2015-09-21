@@ -72,7 +72,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 		// Authorize the request token
 		$url = 'https://api.twitter.com/oauth/authenticate';
 		if ($this->force_login) {
-			$url = \SimpleSAML\Utils\HTTP::addURLParameters($url, array('force_login' => 'true'));
+			$url = SimpleSAML_Utilities::addURLparameter($url, array('force_login' => 'true'));
 		}
 		$consumer->getAuthorizeRequest($url, $requestToken);
 	}

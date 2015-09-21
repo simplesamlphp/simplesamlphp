@@ -122,7 +122,7 @@ class sspmod_statistics_Aggregator {
 				echo("----------------------------------------\n");
 				echo('Log line: ' . $logline . "\n");
 				echo('Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) . '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n");
-				echo htmlentities(print_r($content, true));
+				print_r($content);
 				if ($i >= 13) exit;
 			}
 			
@@ -145,15 +145,17 @@ class sspmod_statistics_Aggregator {
 				if ($type !== 'aggregate') continue;
 				
 				foreach($this->timeres AS $tres => $tresconfig ) {
-
+			
+					// echo 'Comparing action: [' . $rule['action'] . '] with [' . $action . ']' . "\n";
 					$dh = 'default';
 					if (isset($tresconfig['customDateHandler'])) $dh = $tresconfig['customDateHandler'];
 			
 					$timeslot = $datehandler['default']->toSlot($epoch, $tresconfig['slot']);
-					$fileslot = $datehandler[$dh]->toSlot($epoch, $tresconfig['fileslot']);
+					$fileslot = $datehandler[$dh]->toSlot($epoch, $tresconfig['fileslot']); //print_r($content);
 				
 					if (isset($rule['action']) && ($action !== $rule['action'])) continue;
-
+		
+					#$difcol = trim($content[$rule['col']]); // echo '[...' . $difcol . '...]';
 					$difcol = self::getDifCol($content, $rule['col']);
 		
 					if (!isset($results[$rulename][$tres][$fileslot][$timeslot]['_'])) $results[$rulename][$tres][$fileslot][$timeslot]['_'] = 0;
@@ -205,7 +207,9 @@ class sspmod_statistics_Aggregator {
 	
 	
 	public function store($results) {
-
+	
+		// print_r($results); // exit;
+	
 		$datehandler = array(
 			'default' => new sspmod_statistics_DateHandler($this->offset),
 			'month' => new  sspmod_statistics_DateHandlerMonth($this->offset),
@@ -213,7 +217,11 @@ class sspmod_statistics_Aggregator {
 	
 		// Iterate the first level of results, which is per rule, as defined in the config.
 		foreach ($results AS $rulename => $timeresdata) {
-
+		
+			// $timeresl = array_keys($timeresdata);
+			// 
+			// print_r($timeresl); exit;
+			
 			// Iterate over time resolutions
 			foreach($timeresdata AS $tres => $resres) {
 
@@ -232,6 +240,7 @@ class sspmod_statistics_Aggregator {
 				
 					// The last slot.
 					$maxslot = $slotlist[count($slotlist)-1];
+					#print_r($slotlist); 
 		
 					// Get start and end slot number within the file, based on the fileslot.
 					$start = (int)$datehandler['default']->toSlot(
@@ -240,28 +249,38 @@ class sspmod_statistics_Aggregator {
 					$end = (int)$datehandler['default']->toSlot(
 							$datehandler[$dh]->fromSlot($fileno+1, $this->timeres[$tres]['fileslot']), 
 							$this->timeres[$tres]['slot']);
-
+					
+					// echo('from slot ' . $start . ' to slot ' . $end . ' maxslot ' . $maxslot . "\n");
+					// print_r($slotlist);
+					// 			exit;
+					
 					// Fill in missing entries and sort file results
 					$filledresult = array();
 					for ($slot = $start; $slot < $end; $slot++) {
 						if (array_key_exists($slot,  $fileres)) {
 							$filledresult[$slot] = $fileres[$slot];
 						} else {
+							#echo('SLot [' . $slot . '] of [' . $maxslot . ']' . "\n");
 							if ($lastfile == $fileno && $slot > $maxslot) {
 								$filledresult[$slot] = array('_' => NULL);
 							} else {
 								$filledresult[$slot] = array('_' => 0);
-							}
+							}				
 						}
+						# print_r($filledresult[$slot]);
+						#  = (isset($fileres[$slot])) ? $fileres[$slot] : array('_' => NULL);
 					}
+					// print_r($filledresult); exit;
 					
 					$filename = $this->statdir . '/' . $rulename . '-' . $tres . '-' . $fileno . '.stat';
 					if (file_exists($filename)) {
+						// echo('Reading existing file: ' . $filename . "\n");
 						$previousData = unserialize(file_get_contents($filename));
 						$filledresult = $this->cummulateData($previousData, $filledresult);	
 					}
 				
 					// store file
+					# echo('Writing to file: ' . $filename . "\n");
 					file_put_contents($filename, serialize($filledresult), LOCK_EX);
 				}
 				

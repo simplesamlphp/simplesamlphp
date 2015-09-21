@@ -4,10 +4,19 @@
  * Handle linkback() response from MySpace.
  */
 
-if (!array_key_exists('stateid', $_REQUEST)) {
+if (array_key_exists('stateid', $_REQUEST)) {
+	$stateId = $_REQUEST['stateid'];
+} else {
 	throw new Exception('State Lost - not returned by MySpace Auth');
 }
-$state = SimpleSAML_Auth_State::loadState($_REQUEST['stateid'], sspmod_authmyspace_Auth_Source_MySpace::STAGE_INIT);
+
+// sanitize the input
+$sid = SimpleSAML_Utilities::parseStateID($stateId);
+if (!is_null($sid['url'])) {
+	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
+}
+
+$state = SimpleSAML_Auth_State::loadState($stateId, sspmod_authmyspace_Auth_Source_MySpace::STAGE_INIT);
 
 if (array_key_exists('oauth_problem', $_REQUEST)) {
 	// oauth_problem of 'user_refused' means user chose not to login with MySpace

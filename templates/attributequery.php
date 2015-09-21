@@ -78,4 +78,4 @@ if ($attributes !== NULL) {
 }
 ?>
 
-<?php $this->includeAtTemplateBase('includes/footer.php');
+<?php $this->includeAtTemplateBase('includes/footer.php'); ?>

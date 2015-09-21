@@ -16,3 +16,4 @@ $this->includeAtTemplateBase('includes/header.php');
 
 <?php
 $this->includeAtTemplateBase('includes/footer.php');
+?>

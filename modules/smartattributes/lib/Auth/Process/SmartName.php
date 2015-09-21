@@ -74,3 +74,5 @@ class sspmod_smartattribute_Auth_Process_SmartName extends SimpleSAML_Auth_Proce
 	}
 
 }
+
+?>

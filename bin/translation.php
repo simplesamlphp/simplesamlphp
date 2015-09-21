@@ -40,14 +40,14 @@ echo 'File base: [' . $basefile . ']'. "\n";
 switch($action) {
 	case 'pulldef':
 		
-		$content = \SimpleSAML\Utils\HTTP::fetch($base . 'export.php?aid=' . $application . '&type=def&file=' . $basefile);
+		$content = SimpleSAML_Utilities::fetch($base . 'export.php?aid=' . $application . '&type=def&file=' . $basefile);
 		file_put_contents($fileWithoutExt . '.definition.json' , $content);
 		break;
 		
 	case 'pull':
 
 		try {
-			$content = \SimpleSAML\Utils\HTTP::fetch($base . 'export.php?aid=' . $application . '&type=translation&file=' . $basefile);
+			$content = SimpleSAML_Utilities::fetch($base . 'export.php?aid=' . $application . '&type=translation&file=' . $basefile);
 			file_put_contents($fileWithoutExt . '.translation.json' , $content);
 		}
 		catch (SimpleSAML_Error_Exception $e) {
@@ -58,6 +58,8 @@ switch($action) {
 	
 	case 'push':
 
+		#$content = file_get_contents($base . 'export.php?aid=' . $application . '&type=translation&file=' . $basefile);
+		#file_put_contents($fileWithoutExt . '.translation.json' , $content);
 		push($file, $basefile, $application, $type);
 		
 		break;
@@ -192,3 +194,5 @@ function json_format($data, $indentation = '') {
 
 	return $ret;
 }
+
+?>

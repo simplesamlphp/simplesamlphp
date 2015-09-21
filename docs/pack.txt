@@ -1,0 +1,149 @@
+The pack.php tool - Installation of third party SimpleSAMLphp modules
+=====================================================================
+
+<!-- 
+	This file is written in Markdown syntax. 
+	For more information about how to use the Markdown syntax, read here:
+	http://daringfireball.net/projects/markdown/syntax
+-->
+
+<!-- {{TOC}} -->
+
+
+
+This document describes the use of the `bin/pack.php` command line tool, and how it can be used to install third party SimpleSAMLphp modules.
+
+*WARNING:* The *pack.php* tool is a recently added cutting edge tool that is considered experimental. We need to gather more experience and add better security before we will reccomend using this tool for production setups.
+
+
+Online Module Repository
+------------------------
+
+
+The official repository of SimpleSAMLphp modules is available at:
+
+  * <http://simplesamlphp.org/modules>
+
+Anyone can contribute simpleSAMLphp modules, so no guarantees on the quality of the module.
+
+
+The anatomy of a module
+-----------------------
+
+A module is represented by **an identifier** that should be unique (you may not install two modules with the same identifier). An example of such an identifier is `metalisting`. The identifier is also the name of the first level directory that will be placed within the `modules/` directory in your simpleSAMLphp installation.
+
+For a module to be handled by the *pack.php* tool, the module must have a **definition file**. The author or distributor of the module will provide a definition file. In order to install and upgrade modules and use the *pack.php* tool you do not need to care about the definition file, but it is good to know what is going on under the hood. The definition file is encoded in JSON and should be publicly available over HTTP. The URL of the defintion file is often used as a parameter to the *pack.php* tool. Once the module is installed you may switch to use the identifier as a parameter representing the module instead, and the identifier now is known to your local installation, and may find it's way to the remote defintion file automatically.
+
+Here is an example of a defintiion file:
+
+	{
+		"id"			: "selfregister",
+		"name"			: "Self-register",
+		"descr"			: "Allows users to register new accounts.",
+		
+		"definition"	: "http://simplesamlphp-labs.googlecode.com/svn/trunk/modules/selfregister/definition.json",
+		"branch"		: "dev",
+		
+		"access"		: {
+			"dev"		: {
+				"type"		: "svn",
+				"version"	: "0.1",
+				"url"		: "http://simplesamlphp-labs.googlecode.com/svn/trunk/modules/selfregister"
+			}
+		}	
+	}
+
+A module may be available as multiple **branches**. Typically a branch represents different levels of maturity; you may have a alpha branch including the latest feature but not well tested, and a stable branch including a well-tested version with not the latest features. Branches may also be used to provide multiple versions of the module that may work with different versions of simpleSAMLphp. Say that the module uses an internal SimpleSAMLphp API that changes from the simpleSAMLphp 1.X to 2.X version; then the module may exists in a 1.X and a 2.X version. The available branches shuold be well explained in the module description.
+
+A module may be offered using different alternative **access methods**. Currently two access methods is supported:
+
+  * zip: The module is provided compressed to a zip file, offered on a HTTP location. This access method requires installation of the *unzip* command line tool, if not already available.
+  * svn: The module is available in a public subversion repository. This access method requires installation of the command line *svn* tool, if not already available.
+
+
+
+
+
+
+A list of your installed modules
+--------------------------------
+
+In your simpleSAMLphp installation home page, on the *configuration* tab, there is a link *Available modules*. 
+
+This page shows a list of all modules available in your installation, and which of them that is currently *enabled*. For the third party modules some more information is available, such as the version number, the installed branch, and whether there exists a more recent version.
+
+The screenshot below shows an example from the available modules page:
+
+![](http://clippings.erlang.no/ZZ37ACC060.jpg)
+
+
+
+Using the pack.php tool
+-----------------------
+
+Use the command line, and go to the installation directory of simpleSAMLphp.
+
+
+### Installing a module
+
+To install a module you should use this command:
+
+	bin/pack.php install [module] [branch]
+
+The *[module]* parameter should be the URL of a definition file.
+
+If the *[branch]* argument is left out, the default branch will be installed. Here is an example for installing the metalisting module:
+
+	bin/pack.php install http://simplesamlphp-labs.googlecode.com/svn/trunk/modules/metalisting/definition.json
+
+The installation of a module will include the module in the `modules/` directory, and copy all configuratino files from `config-templates/` to the global `config/` directory. It will also force enabling the module, by creating an empty `enable` file in the module directory.
+
+
+### Removing a module
+
+To remove a module:
+
+	bin/pack.php remove [module]
+
+The [module] argument may be either a defintion URL, or a module identifier. In example to remove the metalisting module, type:
+
+	bin/pack.php remove metalisting
+ 
+
+### Upgrading a module
+
+To upgrade a module:
+
+	bin/pack.php upgrade [module]
+
+The [module] argument may be either a defintion URL, or a module identifier. In example to upgrade the metalisting module, type:
+
+	bin/pack.php upgrade metalisting
+
+Upgrading a module will upgrade to the latest version of the currently installed branch. If the access method is subversion, it will run `svn update`. If the access method is zip, it will compare the version number of the latest available version with the locally installed version.
+
+
+
+### Upgrading all modules
+
+
+If you type:
+
+	bin/pack.php upgrade-all
+
+all installed third party modules will be upgraded to the latest version of the currently installed branch.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

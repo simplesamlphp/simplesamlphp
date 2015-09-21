@@ -35,3 +35,4 @@ $run_text = $this->t('run_text');
 
 <?php
 $this->includeAtTemplateBase('includes/footer.php');
+?>

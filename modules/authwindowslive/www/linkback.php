@@ -4,10 +4,19 @@
  * Handle linkback() response from Windows Live ID.
  */
 
-if (!array_key_exists('wrap_client_state', $_REQUEST)) {
+if (array_key_exists('wrap_client_state', $_REQUEST)) {
+	$stateId = $_REQUEST['wrap_client_state'];
+	
+	// sanitize the input
+	$sid = SimpleSAML_Utilities::parseStateID($stateId);
+	if (!is_null($sid['url'])) {
+		SimpleSAML_Utilities::checkURLAllowed($sid['url']);
+	}
+
+	$state = SimpleSAML_Auth_State::loadState($stateId, sspmod_authwindowslive_Auth_Source_LiveID::STAGE_INIT);
+} else {
 	throw new Exception('Lost OAuth-WRAP Client State');
 }
-$state = SimpleSAML_Auth_State::loadState($_REQUEST['wrap_client_state'], sspmod_authwindowslive_Auth_Source_LiveID::STAGE_INIT);
 
 // http://msdn.microsoft.com/en-us/library/ff749771.aspx
 if (array_key_exists('wrap_verification_code', $_REQUEST)) {

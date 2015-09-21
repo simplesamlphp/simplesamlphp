@@ -32,3 +32,5 @@ if (!isset($validFunctions[$function])) {
 }
 
 include($validFunctions[$function].".php");
+
+?>

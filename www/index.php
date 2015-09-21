@@ -2,4 +2,5 @@
 
 require_once('_include.php');
 
-\SimpleSAML\Utils\HTTP::redirectTrustedURL(SimpleSAML_Module::getModuleURL('core/frontpage_welcome.php'));
+
+SimpleSAML_Utilities::redirectTrustedURL(SimpleSAML_Module::getModuleURL('core/frontpage_welcome.php'));

@@ -13,3 +13,5 @@ try {
 	/* An error here should be caused by metadata. */
 	throw new SimpleSAML_Error_Error('METADATA', $exception);
 }
+
+?>

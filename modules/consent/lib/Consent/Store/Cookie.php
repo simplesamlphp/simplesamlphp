@@ -199,7 +199,7 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
     {
         assert('is_string($data)');
 
-        $secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
+        $secretSalt = SimpleSAML_Utilities::getSecretSalt();
 
         return sha1($secretSalt . $data . $secretSalt) . ':' . $data;
     }
@@ -272,14 +272,14 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
             'httponly' => FALSE,
         );
 
-        if (\SimpleSAML\Utils\HTTP::isHTTPS()) {
+        if (SimpleSAML_Utilities::isHTTPS()) {
             /* Enable secure cookie for https-requests. */
             $params['secure'] = true;
         } else {
             $params['secure'] = false;
         }
 
-        \SimpleSAML\Utils\HTTP::setCookie($name, $value, $params, FALSE);
+        SimpleSAML_Utilities::setCookie($name, $value, $params, FALSE);
     }
 
 }

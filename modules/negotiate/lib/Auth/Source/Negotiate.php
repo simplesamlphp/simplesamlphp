@@ -75,15 +75,15 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 
 		// Check for disabled SPs. The disable flag is store in the SP
 		// metadata.
-		if (array_key_exists('SPMetadata', $state) && $this->spDisabledInMetadata($state['SPMetadata']))
+		if (array_key_exists('SPMetadata', $state) and $this->spDisabledInMetadata($state['SPMetadata']))
 			$this->fallBack($state);
 		// Go straight to fallback if Negotiate is disabled or if you are
 		// sent back to the IdP directly from the SP after having logged out
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$disabled = $session->getData('negotiate:disable', 'session');
 
-		if ($disabled ||
-		    (!empty($_COOKIE['NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT']) &&
+		if ($disabled or
+		    (!empty($_COOKIE['NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT']) and
 		     $_COOKIE['NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT'] == 'True')) {
 			SimpleSAML_Logger::debug('Negotiate - session disabled. falling back');
 			$this->fallBack($state);
@@ -160,7 +160,9 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 		if (array_key_exists('negotiate:disable', $spMetadata)) {
 			if ($spMetadata['negotiate:disable'] == TRUE) {
 				SimpleSAML_Logger::debug('Negotiate - SP disabled. falling back');
-				return true;
+				return True;
+				// Never executed
+				assert('FALSE');
 			} else {
 				SimpleSAML_Logger::debug('Negotiate - SP disable flag found but set to FALSE');
 			}
@@ -184,7 +186,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 			return TRUE;
 		$ip = $_SERVER['REMOTE_ADDR'];
 		foreach ($this->subnet as $cidr) {
-			$ret = SimpleSAML\Utils\Net::ipCIDRcheck($cidr);
+			$ret = SimpleSAML_Utilities::ipCIDRcheck($cidr);
 			if ($ret) {
 				SimpleSAML_Logger::debug('Negotiate: Client "'.$ip.'" matched subnet.');
 				return TRUE;

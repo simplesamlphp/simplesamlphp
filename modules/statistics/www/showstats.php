@@ -62,6 +62,7 @@ $maxes[] = $dataset->getMax();
 
 if (isset($preferRule2)) {
 	$statrule = $ruleset->getRule($preferRule2);
+#	$rule2 = $statrule->getRuleID();
 	$dataset2 = $statrule->getDataset($preferTimeRes, $preferTime);
 	$dataset2->aggregateSummary();
 	$dataset2->calculateMax();

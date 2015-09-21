@@ -20,3 +20,4 @@ if (!empty($this->data['logentries'])) {
 
 
 $this->includeAtTemplateBase('includes/footer.php');
+?>

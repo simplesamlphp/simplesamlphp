@@ -36,3 +36,4 @@ function statistics_hook_sanitycheck(&$hookinfo) {
 		$hookinfo['errors'][] = '[statistics] Input file [' . $inputfile . '] does not exists';
 	}
 }
+?>

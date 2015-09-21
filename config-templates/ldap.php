@@ -40,3 +40,5 @@ $config = array (
 	'auth.ldap.search.password' => NULL,
 
 );
+
+?>

@@ -10,8 +10,11 @@ class SimpleSAML_XML_Parser  {
 
 	var $simplexml = null;
 
-	function __construct($xml) {;
+	
+	function __construct($xml) {
+		#parent::construct($xml);
 		$this->simplexml = new SimpleXMLElement($xml);
+		
 		$this->simplexml->registerXPathNamespace('saml2',     'urn:oasis:names:tc:SAML:2.0:assertion');
 		$this->simplexml->registerXPathNamespace('saml2meta', 'urn:oasis:names:tc:SAML:2.0:metadata');
 		$this->simplexml->registerXPathNamespace('ds',        'http://www.w3.org/2000/09/xmldsig#');
@@ -62,3 +65,5 @@ class SimpleSAML_XML_Parser  {
 	}
 	
 }
+
+?>

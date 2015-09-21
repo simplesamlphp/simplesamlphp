@@ -33,3 +33,6 @@ $t->data['stateparams'] = array('AuthState' => $authStateId);
 $t->data['errorcode'] = $errorCode;
 $t->show();
 exit();
+
+
+?>

@@ -50,7 +50,7 @@ class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassB
 			$password = $userpass[1];
 
 			try {
-				$attributes = SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
+				$attributes = SimpleSAML_Utilities::parseAttributes($attributes);
 			} catch(Exception $e) {
 				throw new Exception('Invalid attributes for user ' . $username .
 					' in authentication source ' . $this->authId . ': ' .
@@ -88,3 +88,5 @@ class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassB
 	}
 
 }
+
+?>

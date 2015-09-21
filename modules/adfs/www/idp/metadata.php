@@ -9,7 +9,7 @@ if (!$config->getBoolean('enable.adfs-idp', false))
 
 /* Check if valid local session exists.. */
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    SimpleSAML\Utils\Auth::requireAdmin();
+	SimpleSAML_Utilities::requireAdmin();
 }
 
 
@@ -20,7 +20,7 @@ try {
 	$availableCerts = array();
 
 	$keys = array();
-	$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, FALSE, 'new_');
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, FALSE, 'new_');
 	if ($certInfo !== NULL) {
 		$availableCerts['new_idp.crt'] = $certInfo;
 		$keys[] = array(
@@ -34,7 +34,7 @@ try {
 		$hasNewCert = FALSE;
 	}
 
-	$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, TRUE);
+	$certInfo = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE);
 	$availableCerts['idp.crt'] = $certInfo;
 	$keys[] = array(
 		'type' => 'X509Certificate',
@@ -44,7 +44,7 @@ try {
 	);
 
 	if ($idpmeta->hasValue('https.certificate')) {
-		$httpsCert = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, TRUE, 'https.');
+		$httpsCert = SimpleSAML_Utilities::loadPublicKey($idpmeta, TRUE, 'https.');
 		assert('isset($httpsCert["certData"])');
 		$availableCerts['https.crt'] = $httpsCert;
 		$keys[] = array(
@@ -112,7 +112,7 @@ try {
 	$metaBuilder->addOrganizationInfo($metaArray);
 	$technicalContactEmail = $config->getString('technicalcontact_email', NULL);
 	if ($technicalContactEmail && $technicalContactEmail !== 'na@example.org') {
-		$metaBuilder->addContact('technical', \SimpleSAML\Utils\Config\Metadata::getContact(array(
+		$metaBuilder->addContact('technical', SimpleSAML_Utils_Config_Metadata::getContact(array(
 			'emailAddress' => $technicalContactEmail,
 			'name' => $config->getString('technicalcontact_name', NULL),
 			'contactType' => 'technical',
@@ -134,7 +134,7 @@ try {
 
 		$t->data['available_certs'] = $availableCerts;
 		$t->data['header'] = 'adfs-idp';
-		$t->data['metaurl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
+		$t->data['metaurl'] = SimpleSAML_Utilities::selfURLNoQuery();
 		$t->data['metadata'] = htmlspecialchars($metaxml);
 		$t->data['metadataflat'] = htmlspecialchars($metaflat);
 		$t->data['defaultidp'] = $defaultidp;

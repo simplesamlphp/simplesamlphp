@@ -40,6 +40,8 @@
    * @link        http://yubico.com/
    */
 
+#require_once 'PEAR.php';
+
 /**
  * Class for verifying Yubico One-Time-Passcodes
  *
@@ -158,3 +160,4 @@ class Auth_Yubico
 		return true;
 	}
 }
+?>

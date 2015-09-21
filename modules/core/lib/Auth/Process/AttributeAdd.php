@@ -45,6 +45,10 @@ class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFi
 				continue;
 			}
 
+			if(!is_string($name)) {
+				throw new Exception('Invalid attribute name: ' . var_export($name, TRUE));
+			}
+
 			if(!is_array($values)) {
 				$values = array($values);
 			}
@@ -83,3 +87,5 @@ class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFi
 	}
 
 }
+
+?>

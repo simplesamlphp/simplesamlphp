@@ -194,7 +194,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		 */
 		$url = SimpleSAML_Module::getModuleURL('core/loginuserpass.php');
 		$params = array('AuthState' => $id);
-		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, $params);
+		SimpleSAML_Utilities::redirectTrustedURL($url, $params);
 
 		/* The previous function never returns, so this code is never executed. */
 		assert('FALSE');
@@ -233,6 +233,12 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		assert('is_string($username)');
 		assert('is_string($password)');
 
+		// sanitize the input
+		$sid = SimpleSAML_Utilities::parseStateID($authStateId);
+		if (!is_null($sid['url'])) {
+			SimpleSAML_Utilities::checkURLAllowed($sid['url']);
+		}
+
 		/* Here we retrieve the state array we saved in the authenticate-function. */
 		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
 
@@ -267,3 +273,5 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	}
 
 }
+
+?>

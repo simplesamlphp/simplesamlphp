@@ -36,3 +36,4 @@ $casldapconfig = array (
 	),
 
 );
+?>

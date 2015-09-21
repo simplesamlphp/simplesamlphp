@@ -107,10 +107,17 @@ class sspmod_oauth_Registry {
 	}
 
 	public function metaToForm($metadata) {
-		return '<form action="registry.edit.php" method="post">' .
+		// $this->flattenLanguageField($metadata, 'name');
+		// $this->flattenLanguageField($metadata, 'description');
+		
+		return '<form action="registry.edit.php" method="post">' .		
 			'<div id="tabdiv">' .
 			'<ul>' .
-			'<li><a href="#basic">Name and descrition</a></li>' .
+			'<li><a href="#basic">Name and descrition</a></li>' . 
+			// '<li><a href="#saml">SAML 2.0</a></li>' . 
+			// '<li><a href="#attributes">Attributes</a></li>' . 
+			// '<li><a href="#orgs">Organizations</a></li>' . 
+			// '<li><a href="#contacts">Contacts</a></li>' . 
 			'</ul>' .
 			'<div id="basic"><table class="formtable">' .
 				$this->standardField($metadata, 'name', 'Name of client') .
@@ -120,9 +127,17 @@ class sspmod_oauth_Registry {
 				$this->readonlyField($metadata, 'secret', 'Consumer Secret<br/>(Used for HMAC_SHA1 signatures)') .
 				$this->standardField($metadata, 'RSAcertificate', 'RSA certificate (PEM)<br/>(Used for RSA_SHA1 signatures)', TRUE) .
 				$this->standardField($metadata, 'callback_url', 'Static/enforcing callback-url') .
+				
+//				$this->hiddenField('field_key', $metadata['key']) .
 				$this->hiddenField('field_secret', $metadata['secret']) .
 
-			'</table></div>' .
+			'</table></div>' . 
+			// '<div id="saml"><table class="formtable">' .
+			// 	$this->standardField($metadata, 'AssertionConsumerService', 'AssertionConsumerService endpoint') .
+			// 	$this->standardField($metadata, 'SingleLogoutService', 'SingleLogoutService endpoint') .
+			// 	// $this->standardField($metadata, 'certFingerprint', 'Certificate Fingerprint') .			
+			// 	
+			// '</table></div>' .
 			'</div>' .
 			'<input type="submit" name="submit" value="Save" style="margin-top: 5px" />' .
 		'</form>';

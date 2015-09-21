@@ -75,7 +75,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             if (!is_bool($config['includeValues'])) {
                 throw new SimpleSAML_Error_Exception(
                     'Consent: includeValues must be boolean. ' .
-                    var_export($config['includeValues'], true) . ' given.'
+                    var_export($config['includeValues']) . ' given.'
                 );
             }
             $this->_includeValues = $config['includeValues'];
@@ -85,7 +85,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             if (!is_bool($config['checked'])) {
                 throw new SimpleSAML_Error_Exception(
                     'Consent: checked must be boolean. ' .
-                    var_export($config['checked'], true) . ' given.'
+                    var_export($config['checked']) . ' given.'
                 );
             }
             $this->_checked = $config['checked'];
@@ -95,7 +95,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             if (!in_array($config['focus'], array('yes', 'no'), true)) {
                 throw new SimpleSAML_Error_Exception(
                     'Consent: focus must be a string with values `yes` or `no`. ' .
-                    var_export($config['focus'], true) . ' given.'
+                    var_export($config['focus']) . ' given.'
                 );
             }
             $this->_focus = $config['focus'];
@@ -105,7 +105,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             if (!is_array($config['hiddenAttributes'])) {
                 throw new SimpleSAML_Error_Exception(
                     'Consent: hiddenAttributes must be an array. ' .
-                    var_export($config['hiddenAttributes'], true) . ' given.'
+                    var_export($config['hiddenAttributes']) . ' given.'
                 );
             }
             $this->_hiddenAttributes = $config['hiddenAttributes'];
@@ -115,7 +115,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             if (!is_array($config['noconsentattributes'])) {
                 throw new SimpleSAML_Error_Exception(
                     'Consent: noconsentattributes must be an array. ' .
-                    var_export($config['noconsentattributes'], true) . ' given.'
+                    var_export($config['noconsentattributes']) . ' given.'
                 );
             }
             $this->_noconsentattributes = $config['noconsentattributes'];
@@ -267,7 +267,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
         $state['consent:showNoConsentAboutService'] = $this->_showNoConsentAboutService;
 
         // User interaction nessesary. Throw exception on isPassive request	
-        if (isset($state['isPassive']) && $state['isPassive'] === true) {
+        if (isset($state['isPassive']) && $state['isPassive'] == true) {
             SimpleSAML_Stats::log('consent:nopassive', $statsData);
             throw new SimpleSAML_Error_NoPassive(
                 'Unable to give consent on passive request.'
@@ -277,7 +277,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
         // Save state and redirect
         $id  = SimpleSAML_Auth_State::saveState($state, 'consent:request');
         $url = SimpleSAML_Module::getModuleURL('consent/getconsent.php');
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+        SimpleSAML_Utilities::redirectTrustedURL($url, array('StateId' => $id));
     }
 
     /**
@@ -290,7 +290,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
      */
     public static function getHashedUserID($userid, $source)
     {
-        return hash('sha1', $userid . '|' . SimpleSAML\Utils\Config::getSecretSalt() . '|' . $source);
+        return hash('sha1', $userid . '|' . SimpleSAML_Utilities::getSecretSalt() . '|' . $source);
     }
 
     /**
@@ -304,7 +304,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
      */
     public static function getTargetedID($userid, $source, $destination)
     {
-        return hash('sha1', $userid . '|' . SimpleSAML\Utils\Config::getSecretSalt() . '|' . $source . '|' . $destination);
+        return hash('sha1', $userid . '|' . SimpleSAML_Utilities::getSecretSalt() . '|' . $source . '|' . $destination);
     }
 
     /**

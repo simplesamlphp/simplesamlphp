@@ -39,3 +39,5 @@ function checkServiceURL($service, array $legal_service_urls) {
 	}
 	return FALSE;
 }
+
+?>

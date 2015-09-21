@@ -1,0 +1,76 @@
+SimpleSAMLphp Features
+======================
+
+<!-- 
+	This file is written in Markdown syntax. 
+	For more information about how to use the Markdown syntax, read here:
+	http://daringfireball.net/projects/markdown/syntax
+-->
+
+
+<!-- {{TOC}} -->
+
+## Automatic Metadata Retrieval
+
+SimpleSAMLphp supports regurlarly downloading SAML metadata form a HTTP location, optionally validating the signature on the metadata, and then cache the metadata to be used by a SP or IdP. Shibboleth introduced this functionality, and SimpleSAMLphp implements it in a compatible way.
+
+
+## User Concent on Attribute Release
+
+The consent module in simpleSAMLphp, originally developed by [wayf.dk](http://wayf.dk), asks the user for consent when logging in the a new Service Provider for the first time.
+
+## Generic Authentication Processing Filter API
+
+The *Authentication Processing Filter* API allows you to add modules and plugins that processes every time after authentication is completed. This API is used to among others:
+
+* Attribute name translation
+* User consent
+* Warning about access to Pre-production environment
+* Retrieval of attributes from an external source
+* Filtering attributes (Attribute Release Policy implementations)
+
+A bunch of pre-made *Authentication Processing Filter* is included in the simpleSAMLphp distribution. They can be used and re-configured out of the box, or can be used as examples of implementation of new processingn filters.
+
+## Multiple Protocol Support
+
+SimpleSAMLphp has implementations of a wide variety of federation protocols, including:
+
+* SAML 2.0
+* SAML 1.1 (Shibboleth 1.3 compatible protocol)
+* OAuth
+* OpenID
+* InfoCard
+* ADFS
+* CAS
+
+Authentication protocols that may be used:
+
+* LDAP authentication
+* SQL authentication
+* YubiKey authentication
+* Facebook API authentication
+* Twitter authentication
+
+
+## Protocol Bridging
+
+Because of the generic concept of authentication sources in simpleSAMLphp, it becomes easy to in example in an OpenID Provider, to configure to use the SAML 2.0 SP as an authentication source.
+
+Example of bridges:
+
+* SAML 2.0 to SAML 2.0
+* Shib 1.3 to SAML 2.0
+* OpenID Provider to SAML 2.0 SP
+
+## POST-Save
+
+SimpleSAMLphp SP allows you to restore a HTTP-POST sent from the browser, even if the session is timed out and a fresh authentication is required. 
+
+An example of a usability problem, is when you are editing a wiki, and are about to save your changes: if your session is timed out your work is lost when you return from reauthentication. SimpleSAMLphp is the only known federation software that have implemented a solution to this problem.
+
+## Dynamic SAML
+
+SimpleSAMLphp has experimental support for dynamically downloading the metadata of an Service Provider or Identity Provider when receiving a new incomming message where the entityId is unknown. Dynamic SAML requires the EntityID to be a URL pointing to the metadata of the entity.
+
+
+

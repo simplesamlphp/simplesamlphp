@@ -83,9 +83,6 @@
 	"metaconv_title": {
 		"en": "Metadata parser"
 	},
-	"metaconv_selectfile": {
-		"en": "or select a file:"
-	},
 	"metaconv_parse": {
 		"en": "Parse"
 	},

@@ -7,16 +7,12 @@ $this->includeAtTemplateBase('includes/header.php');
 
 <h2><?php echo $this->t('metaconv_title'); ?></h2>
 
-<form action="?" method="post" enctype="multipart/form-data">
+<form action="?" method="post">
 
 <p><?php echo($this->t('{admin:metaconv_xmlmetadata}')); ?></p>
 <p>
 <textarea rows="20" cols="120" name="xmldata"><?php echo htmlspecialchars($this->data['xmldata']); ?></textarea>
 </p>
-<p>
-<?php echo $this->t('metaconv_selectfile'); ?>
-<input type="file" name="xmlfile" /></p>
-
 <p>
 <input type="submit" value="<?php echo $this->t('metaconv_parse'); ?>" />
 </p>
@@ -44,3 +40,4 @@ if($output !== NULL) {
 
 <?php
 $this->includeAtTemplateBase('includes/footer.php');
+?>

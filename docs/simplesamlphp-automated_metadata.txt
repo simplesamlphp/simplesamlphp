@@ -75,10 +75,7 @@ Here's an example of a possible configuration for both the Kalmar Federation and
 				'sources'	=> array(
 					array(
 						'src' => 'https://kalmar.feide.no/simplesaml/module.php/aggregator/?id=kalmarcentral&mimetype=text/plain&exclude=norway',
-						'certificates' => array(
-							'current.crt',
-							'rollover.crt',
-						),
+						'validateFingerprint' => '591d4b4670463eeda91fcc816dc0af2a092aa801',
 						'template' => array(
 							'tags'	=> array('kalmar'),
 							'authproc' => array(
@@ -132,30 +129,10 @@ The metarefresh module supports the following configuration options:
 :   The format of the generated metadata files. This must match the
     metadata source added in `config.php`.
 
-`types`
-:	The sets of entities to load. An array containing strings identifying the different types of entities that will be
-	loaded. Valid types are:
-
-	* saml20-idp-remote
-	* saml20-sp-remote
-	* shib13-idp-remote
-	* shib13-sp-remote
-	* attributeauthority-remote
-
-	All entity types will be loaded by default.
-
 Each metadata source has the following options:
 
 `src`
 :   The source URL where the metadata will be fetched from.
-
-`certificates`
-:   An array of certificate files, the filename is relative to the `cert/`-directory,
-    that will be used to verify the signature of the metadata. The public key will
-    be extracted from the certificate and everything else will be ignored. So it is
-    possible to use a self signed certificate that has expired. Add more than one
-    certificate to be able to handle key rollover. This takes precedence over
-    validateFingerprint.
 
 `validateFingerprint`
 :   The fingerprint of the certificate used to sign the metadata. You
@@ -165,10 +142,6 @@ Each metadata source has the following options:
 `template`
 :   This is an array which will be combined with the metadata fetched to
     generate the final metadata array.
-
-`types`
-:	Same as the option with the same name at the metadata set level. This option has precedence when both are specified,
-	allowing a more fine grained configuration for every metadata source.
 
 
 After you have configured the metadata sources, you need to give the

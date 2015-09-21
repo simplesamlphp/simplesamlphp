@@ -1,0 +1,128 @@
+Using the Consent and ConsentAdmin modules
+
+When the Consent module is active, the end user must give his consent when attributes are sent to an SP.
+The Consent module can be configured to save the given consents to a database. 
+The user is then given the option to store the consent for later. Then the next time the attributes will be sent right away.
+
+When the Consent module is using persistent storage, you can activate the optional ConsentAdmin module.
+With this, the user can view and remove his consents for various SP's. 
+
+Installing the Consent module
+
+The Consent module is part of the simplesamlphp standard sources.
+
+It consists of the following files
+
+dictionaries/consent.php
+templates/default/consent.php
+lib/SimpleSAML/Consent/Consent.php
+lib/SimpleSAML/Consent/ConsentStorage.php
+
+Create the Consent database.
+
+Activate Consent module on IdP.
+
+Edit metadata/saml20-idp-hosted.php and set
+	requireconsent
+to true
+
+Configuring persistent storage of the Consent module.
+
+Create a database with the Consent schema and necessary user rights.
+For now, the examples assume you are using the MySQL database.
+Consult the database documentation to see how you grant permission to the database user which the Consent module must use.
+  
+The database schema is shown in the lib/SimpleSAML/Consent/ConsentStorage.php file:
+
+/**
+ * The Consent Storage class is used for storing Attribute Release consents.
+ *
+ * CREATE TABLE consent ( 
+ *	hashed_user_id varchar(128) NOT NULL, 
+ *	service_id varchar(128) NOT NULL, 
+ *	attribute varchar(128) NOT NULL, 
+ *	consent_date datetime NOT NULL, 
+ *	usage_date datetime NOT NULL, 
+ *	PRIMARY KEY USING BTREE (hashed_user_id, service_id) 
+ * );
+ *
+
+Edit the Consent section of config/config.php and set the database and user information.
+Remember to activate persistent Consent storage by setting the
+	consent_usestorage
+attribute to true
+
+/*
+	 * Configuration of Consent storage used for attribute consent.
+	 * connect, user and passwd is used with PDO (in example Mysql)
+	 */
+	'consent_usestorage' => true,
+	'consent_userid' => 'eduPersonPrincipalName',
+	'consent_salt' => 'sdkfjhsidu87werwe8r79w8e7r',
+	'consent_pdo_connect' => 'mysql:host=sql.example.org;dbname=simplesamlconsent',
+	'consent_pdo_user' => 'simplesamluser',
+	'consent_pdo_passwd' => 'xxxx',
+
+Installing the ConsentAdmin module
+The ConsentAdmin module adds a user interface to SimpleSaml which allows the end user to edit his/her consents for all the Service Providers.
+ 
+The ConsentAdmin module consists of the following files in the SimpleSaml directory structure:
+ 
+dictionaries/consentadmin.php
+docs/ConsentDocs.txt
+templates/default/consentadmin.php
+www/consent/ConsentAdminLib.php
+www/consent/consentAdmin.php
+www/consent/ConsentLib.php
+www/consent/consentSubmit.php
+www/consent/includes/
+www/consent/includes/consentSimpleAjax.js
+
+Dictionaries
+
+As you can see in the Consent file listing, the consent module uses two of its own dictionaries for translations, consent.php and consentadmin.php.
+The dictionaries are work-in-progress!
+Additionally, it uses the attributes.php dictionary for showing localised attribute names.	
+
+From the ConsentAdmin source files, you can copy these manually to the right places. 
+If you received the ConsentAdmin as a .tgz archive you can untar them directly into the SimpleSaml source files with these commands
+
+	$ cd <your simplesaml source root>
+	$ tar -wkzxvf <ConsentAdmin.tgz>
+  
+Configuring the Idp
+The ConsentAdmin module uses the IdP's list of remote SP's (configured in metadata/saml20-sp-remote.php). It uses the attributes 'name' and 'description'.
+Both these attributes must specify an array for language translations.
+Example:
+
+		saml2sp.example.org' => array(
+ 			'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/saml2/sp/AssertionConsumerService.php', 
+ 			'SingleLogoutService'      => 'https://saml2sp.example.org/simplesaml/saml2/sp/SingleLogoutService.php',
+ 
+	        'name' => array(
+				'en' => 'Saml2 SP english',
+				'no' => 'Saml2 SP bokmål',
+		  		'nn' => 'Saml2 SP nynorsk',
+				'da' => 'Saml2 SP dansk',
+		  		'es' => 'Saml2 SP español',
+    	  		'fr' => 'Saml2 SP français',
+		  		'de' => 'Saml2 SP deutsch',
+		  		'nl' => 'Saml2 SP dutch',
+		  		'lu' => 'Saml2 SP Luxembourgish',
+		  		'sl' => 'Saml2 SP Slovenščina',
+         	),
+	        'description' => array(
+				'en' => 'Saml2 SP description english',
+				'no' => 'Saml2 SP description bokmål',
+		  		'nn' => 'Saml2 SP description nynorsk',
+				'da' => 'Saml2 SP description dansk',
+		  		'es' => 'Saml2 SP description español',
+    	  		'fr' => 'Saml2 SP description français',
+		  		'de' => 'Saml2 SP description deutsch',
+		  		'nl' => 'Saml2 SP description dutch',
+		  		'lu' => 'Saml2 SP description Luxembourgish',
+		  		'sl' => 'Saml2 SP description Slovenščina',
+         	),
+ 		),
+
+ 

@@ -30,3 +30,4 @@ function core_hook_frontpage(&$links) {
 	);
 
 }
+?>

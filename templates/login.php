@@ -68,4 +68,4 @@
 	<p class="logintext"><?php echo $this->t('help_text'); ?></p>
 	
 
-<?php $this->includeAtTemplateBase('includes/footer.php');
+<?php $this->includeAtTemplateBase('includes/footer.php'); ?>

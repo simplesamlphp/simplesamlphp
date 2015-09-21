@@ -1,14 +1,14 @@
 <?php
 
 /**
- * This file implements a autoloader for SimpleSAMLphp modules.
+ * This file implements a autoloader for simpleSAMLphp modules.
  *
  * @author Boy Baukema, SURFnet
- * @package SimpleSAMLphp
+ * @package simpleSAMLphp
  */
 
 /**
- * Autoload function for SimpleSAMLphp modules.
+ * Autoload function for simpleSAMLphp modules.
  *
  * @param string $className Name of the class.
  */

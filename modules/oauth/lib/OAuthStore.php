@@ -62,8 +62,8 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore {
 		
 		if ($oConsumer && ($oConsumer->callback_url)) $url = $oConsumer->callback_url;
 		
-		$verifier = SimpleSAML\Utils\Random::generateID();
-		$url = \SimpleSAML\Utils\HTTP::addURLParameters($url, array("oauth_verifier"=>$verifier));
+		$verifier = SimpleSAML_Utilities::generateID();
+		$url = SimpleSAML_Utilities::addURLparameter($url, array("oauth_verifier"=>$verifier));
 		
 		$this->store->set('authorized', $requestTokenKey, $verifier, $data, $this->config->getValue('requestTokenDuration', 60*30) );
 		
@@ -111,6 +111,7 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore {
 		$callback = NULL;
 		if ($consumer['value']['callback_url']) $callback = $consumer['value']['callback_url'];
 
+		// SimpleSAML_Logger::info('OAuth consumer dump(' . var_export($consumer, TRUE) . ')');
 		if ($consumer['value']['RSAcertificate']) {
 			return new OAuthConsumer($consumer['value']['key'], $consumer['value']['RSAcertificate'], $callback);
 		} else {
@@ -137,7 +138,7 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore {
 		
 		$lifetime = $this->config->getValue('requestTokenDuration', 60*30); 
 		
-		$token = new OAuthToken(SimpleSAML\Utils\Random::generateID(), SimpleSAML\Utils\Random::generateID());
+		$token = new OAuthToken(SimpleSAML_Utilities::generateID(), SimpleSAML_Utilities::generateID());
 		$token->callback = $callback;	// OAuth1.0-RevA
 		$this->store->set('request', $token->key, $consumer->key, $token, $lifetime);
 		
@@ -157,7 +158,8 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore {
 
     function new_access_token($requestToken, $consumer, $verifier = null) {
 		SimpleSAML_Logger::info('OAuth new_access_token(' . $requestToken . ',' . $consumer . ')');
-		$accestoken = new OAuthToken(SimpleSAML\Utils\Random::generateID(), SimpleSAML\Utils\Random::generateID());
+		$accestoken = new OAuthToken(SimpleSAML_Utilities::generateID(), SimpleSAML_Utilities::generateID());
+		// SimpleSAML_Logger::info('OAuth new_access_token(' . $requestToken . ',' . $consumer . ',' . $accestoken . ')');
 		$this->store->set('access', $accestoken->key, $consumer->key, $accestoken, $this->config->getValue('accessTokenDuration', 60*60*24) );
         return $accestoken;
     }
