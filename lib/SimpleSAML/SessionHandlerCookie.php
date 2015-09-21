@@ -1,145 +1,139 @@
 <?php
 
-
 /**
- * This file is part of SimpleSAMLphp. See the file COPYING in the root of the distribution for licence information.
+ * This file is part of SimpleSAMLphp. See the file COPYING in the
+ * root of the distribution for licence information.
  *
- * This file defines a base class for session handlers that need to store the session id in a cookie. It takes care of
- * storing and retrieving the session id.
+ * This file defines a base class for session handlers that need to store
+ * the session id in a cookie. It takes care of storing and retrieving the
+ * session id.
  *
  * @author Olav Morken, UNINETT AS. <andreas.solberg@uninett.no>
- * @package SimpleSAMLphp
+ * @package simpleSAMLphp
  * @abstract
  */
-abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
-{
+abstract class SimpleSAML_SessionHandlerCookie
+extends SimpleSAML_SessionHandler {
 
-    /**
-     * This variable contains the current session id.
-     *
-     * @var string|null
-     */
-    private $session_id = null;
+	/* This variable contains the current session id. */
+	private $session_id = NULL;
 
 
-    /**
-     * This variable contains the session cookie name.
-     *
-     * @var string
-     */
-    protected $cookie_name;
+	/* This variable contains the session cookie name. */
+	protected $cookie_name;
 
 
-    /**
-     * This constructor initializes the session id based on what we receive in a cookie. We create a new session id and
-     * set a cookie with this id if we don't have a session id.
-     */
-    protected function __construct()
-    {
-        // call the constructor in the base class in case it should become necessary in the future
-        parent::__construct();
+	/* This constructor initializes the session id based on what
+	 * we receive in a cookie. We create a new session id and set
+	 * a cookie with this id if we don't have a session id.
+	 */
+	protected function __construct() {
+		/* Call the constructor in the base class in case it should
+		 * become necessary in the future.
+		 */
+		parent::__construct();
 
-        $config = SimpleSAML_Configuration::getInstance();
-        $this->cookie_name = $config->getString('session.cookie.name', 'SimpleSAMLSessionID');
-    }
-
-
-    /**
-     * Create and set new session id.
-     *
-     * @return string The new session id.
-     */
-    public function newSessionId()
-    {
-        $this->session_id = self::createSessionID();
-        SimpleSAML_Session::createSession($this->session_id);
-        $this->setCookie($this->cookie_name, $this->session_id);
-
-        return $this->session_id;
-    }
+		$config = SimpleSAML_Configuration::getInstance();
+		$this->cookie_name = $config->getString('session.cookie.name', 'SimpleSAMLSessionID');
+	}
 
 
-    /**
-     * Retrieve the session id of saved in the session cookie.
-     *
-     * @return string The session id saved in the cookie.
-     */
-    public function getCookieSessionId()
-    {
-        if ($this->session_id === null) {
-            if (self::hasSessionCookie()) {
-                // attempt to retrieve the session id from the cookie
-                $this->session_id = $_COOKIE[$this->cookie_name];
-            }
+	/**
+	 * Create and set new session id.
+	 *
+	 * @return string  The new session id.
+	 */
+	public function newSessionId() {
+		$this->session_id = self::createSessionID();
+		SimpleSAML_Session::createSession($this->session_id);
+		$this->setCookie($this->cookie_name, $this->session_id);
 
-            // check if we have a valid session id
-            if (!self::isValidSessionID($this->session_id)) {
-                // we don't have a valid session. Create a new session id
-                return self::newSessionId();
-            }
-        }
-
-        return $this->session_id;
-    }
+		return $this->session_id;
+	}
 
 
-    /**
-     * Retrieve the session cookie name.
-     *
-     * @return string The session cookie name.
-     */
-    public function getSessionCookieName()
-    {
-        return $this->cookie_name;
-    }
+	/**
+	 * Retrieve the session id of saved in the session cookie.
+	 *
+	 * @return string  The session id saved in the cookie.
+	 */
+	public function getCookieSessionId() {
+		if ($this->session_id === NULL) {
+			if(self::hasSessionCookie()) {
+				/* Attempt to retrieve the session id from the cookie. */
+				$this->session_id = $_COOKIE[$this->cookie_name];
+			}
+
+			/* Check if we have a valid session id. */
+			if(!self::isValidSessionID($this->session_id)) {
+				/* We don't have a valid session. Create a new session id. */
+				return self::newSessionId();
+			}
+		}
+
+		return $this->session_id;
+	}
 
 
-    /**
-     * This static function creates a session id. A session id consists of 32 random hexadecimal characters.
-     *
-     * @return string A random session id.
-     */
-    private static function createSessionID()
-    {
-        return bin2hex(openssl_random_pseudo_bytes(16));
-    }
+	/**
+	 * Retrieve the session cookie name.
+	 *
+	 * @return string  The session cookie name.
+	 */
+	public function getSessionCookieName() {
+
+		return $this->cookie_name;
+	}
 
 
-    /**
-     * This static function validates a session id. A session id is valid if it only consists of characters which are
-     * allowed in a session id and it is the correct length.
-     *
-     * @param string $session_id The session ID we should validate.
-     *
-     * @return boolean True if this session ID is valid, false otherwise.
-     */
-    private static function isValidSessionID($session_id)
-    {
-        if (!is_string($session_id)) {
-            return false;
-        }
-
-        if (strlen($session_id) != 32) {
-            return false;
-        }
-
-        if (preg_match('/[^0-9a-f]/', $session_id)) {
-            return false;
-        }
-
-        return true;
-    }
+	/* This static function creates a session id. A session id consists
+	 * of 32 random hexadecimal characters.
+	 *
+	 * Returns:
+	 *  A random session id.
+	 */
+	private static function createSessionID() {
+		return SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16));
+	}
 
 
-    /**
-     * Check whether the session cookie is set.
-     *
-     * This function will only return false if is is certain that the cookie isn't set.
-     *
-     * @return boolean True if it was set, false otherwise.
-     */
-    public function hasSessionCookie()
-    {
-        return array_key_exists($this->cookie_name, $_COOKIE);
-    }
+	/* This static function validates a session id. A session id is valid
+	 * if it only consists of characters which are allowed in a session id
+	 * and it is the correct length.
+	 *
+	 * Parameters:
+	 *  $session_id  The session id we should validate.
+	 *
+	 * Returns:
+	 *  TRUE if this session id is valid, FALSE if not.
+	 */
+	private static function isValidSessionID($session_id) {
+		if(!is_string($session_id)) {
+			return FALSE;
+		}
+
+		if(strlen($session_id) != 32) {
+			return FALSE;
+		}
+
+		if(preg_match('/[^0-9a-f]/', $session_id)) {
+			return FALSE;
+		}
+
+		return TRUE;
+	}
+
+
+	/**
+	 * Check whether the session cookie is set.
+	 *
+	 * This function will only return FALSE if is is certain that the cookie isn't set.
+	 *
+	 * @return bool  TRUE if it was set, FALSE if not.
+	 */
+	public function hasSessionCookie() {
+
+		return array_key_exists($this->cookie_name, $_COOKIE);
+	}
+
 }

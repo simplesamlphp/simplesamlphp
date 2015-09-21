@@ -15,4 +15,4 @@ if (!isset($_REQUEST['AuthId']) || !is_string($_REQUEST['AuthId'])) {
 }
 
 $as = new SimpleSAML_Auth_Simple($_REQUEST['AuthId']);
-$as->logout(\SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']));
+$as->logout(SimpleSAML_Utilities::checkURLAllowed($_REQUEST['ReturnTo']));

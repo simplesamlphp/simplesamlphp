@@ -12,7 +12,7 @@ $params = array(
 	'secure' => FALSE,
 	'httponly' => TRUE,
 );
-\SimpleSAML\Utils\HTTP::setCookie('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', NULL, $params, FALSE);
+SimpleSAML_Utilities::setCookie('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', NULL, $params, FALSE);
 
 $globalConfig = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();

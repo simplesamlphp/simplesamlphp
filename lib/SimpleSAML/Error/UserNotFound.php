@@ -10,3 +10,5 @@
 class SimpleSAML_Error_UserNotFound extends SimpleSAML_Error_User{
 	
 }
+
+?>

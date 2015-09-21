@@ -16,7 +16,7 @@ if(!array_key_exists('header', $this->data)) {
 	$this->data['header'] = 'selectidp';
 }
 $this->data['header'] = $this->t($this->data['header']);
-$this->data['jquery'] = array('core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
+$this->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 
 $this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" href="' . SimpleSAML_Module::getModuleUrl('discopower/style.css')  . '" />';
 
@@ -50,6 +50,17 @@ if (!empty($faventry)) $this->data['autofocus'] = 'favouritesubmit';
 
 $this->includeAtTemplateBase('includes/header.php');
 
+// foreach ($this->data['idplist'] AS $slist) {
+// 	foreach ($slist AS $idpentry) {
+// 		if (isset($idpentry['name']))
+// 			$this->includeInlineTranslation('idpname_' . $idpentry['entityid'], $idpentry['name']);
+// 		if (isset($idpentry['description']))
+// 			$this->includeInlineTranslation('idpdesc_' . $idpentry['entityid'], $idpentry['description']);
+// 	}
+// }
+// 
+
+
 function showEntry($t, $metadata, $favourite = FALSE) {
 	
 	$basequerystring = '?' . 
@@ -62,11 +73,21 @@ function showEntry($t, $metadata, $favourite = FALSE) {
 	
 	$html .= '' . htmlspecialchars(getTranslatedName($t, $metadata)) . '';
 
+	#print_r($metadata['scopes']); 
+
+	// if (!empty($idpentry['description'])) {
+	// 	$html .= '	<p>' . htmlspecialchars($t->t('idpdesc_' . $metadata['entityid'])) . '<br />';
+	// }
+	
 	if(array_key_exists('icon', $metadata) && $metadata['icon'] !== NULL) {
-		$iconUrl = \SimpleSAML\Utils\HTTP::resolveURL($metadata['icon']);
+		$iconUrl = SimpleSAML_Utilities::resolveURL($metadata['icon']);
 		$html .= '<img alt="Icon for identity provider" class="entryicon" src="' . htmlspecialchars($iconUrl) . '" />';
 	}
-
+	
+	// $html .= '<input id="preferredidp" type="submit" name="idp_' .
+	// 	htmlspecialchars($metadata['entityid']) . '" value="' .
+	// 	$t->t('select') . '" /></p>';
+	
 	$html .= '</a>';
 	
 	return $html;
@@ -80,6 +101,7 @@ function showEntry($t, $metadata, $favourite = FALSE) {
 <?php
 
 function getTranslatedName($t, $metadata) {
+#	if (is_null($metadata)) throw new Exception();
 	if (isset($metadata['UIInfo']['DisplayName'])) {
 		$displayName = $metadata['UIInfo']['DisplayName'];
 		assert('is_array($displayName)'); // Should always be an array of language code -> translation.
@@ -154,6 +176,10 @@ foreach( $this->data['idplist'] AS $tab => $slist) {
 	echo '<div id="' . $tab . '">';
 
 	if (!empty($slist)) {
+		
+		// echo 'Favourite :: ' . $this->data['preferredidp']; 
+		// echo '<pre>';
+		// print_r($slist); exit;
 
 		echo('	<div class="inlinesearch">');
 		echo('	<p>Incremental search...</p>');
@@ -184,4 +210,4 @@ foreach( $this->data['idplist'] AS $tab => $slist) {
 </div>
 
 		
-<?php $this->includeAtTemplateBase('includes/footer.php');
+<?php $this->includeAtTemplateBase('includes/footer.php'); ?>

@@ -34,6 +34,7 @@ class sspmod_statistics_RatioDataset extends sspmod_statistics_StatDataset {
 		
 		asort($this->summary);
 		$this->summary = array_reverse($this->summary, TRUE);
+		// echo '<pre>'; print_r($summaryDataset); exit;
 	}
 	
 	private function ag($k, $a) {
@@ -48,6 +49,7 @@ class sspmod_statistics_RatioDataset extends sspmod_statistics_StatDataset {
 	
 	public function combine($result1, $result2) {
 
+		
 		$combined = array();
 		
 		foreach($result2 AS $tick => $val) {
@@ -60,6 +62,17 @@ class sspmod_statistics_RatioDataset extends sspmod_statistics_StatDataset {
 			}
 			
 		}
+		
+		// echo('<pre>');
+		// echo('combine 1 ');
+		// print_r($result1);
+		// echo('combine 2 ');
+		// print_r($result2); 
+		// echo('combineed ');
+		// print_r($combined); 
+		// 
+		// exit;
+		
 		return $combined;
 	}
 	

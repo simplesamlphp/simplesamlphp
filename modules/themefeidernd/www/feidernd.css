@@ -1,0 +1,105 @@
+body {
+	font-family: 'Lucida Grande', arial, sans-serif;
+	background: #eee;	
+}
+
+.error {
+	background: #FFEFF7;
+	border: 1px solid #c69;
+	margin: 1em 5% 10px;
+	padding: 0 1em 0 1em;
+}
+
+#login input.input { 
+	width: 200px;
+	font-size: large;
+
+}
+#login input {
+/*	opacity: 0.6;*/
+}
+#login h1 {
+	color: #777;
+}
+#login input#wp-submit {
+	font-size: large;
+	padding: 4px 10px;
+}
+#languagebar a {
+	color: #aaa;
+}
+#languagebar {
+
+	color: #eee;
+	font-size: 80%;
+	
+	margin: 0em auto 1em;
+	padding: 0px 40px;
+	
+	color: #000;
+	width: 425px;
+}
+div#error {
+	
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	
+	border: 1px solid #999999;
+
+	background: #fff;
+	
+	margin: 10px auto 1em;
+	padding: 8px 20px;
+	
+	color: #000;
+}
+#login {
+	
+
+	-webkit-box-shadow:0px 3px 6px #333333;
+	-moz-box-shadow:0px 3px 6px #333333;	
+	box-shadow:0px 3px 6px #333333;
+	
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	
+	border: 0px solid #999999;
+
+	background: #F2F2F2 -webkit-gradient(linear, 0% 70%, 0% 100%, from(#fefefe), to(#ddd), color-stop(.6,#f0f0f0));
+	background: #F2F2F2 -moz-linear-gradient(0% 100% 90deg,#dddddd, #f0f0f0, #FEFEFE 31%);
+
+	margin: 5em auto 1em;
+	padding: 20px 40px;
+	
+	color: #000;
+	width: 425px;
+}
+#login ul.links a {
+	text-decoration: none;
+	color: #666;
+}
+#login ul.links a:hover {
+	color: #111;
+}
+#login ul.links {
+/*	border: 1px solid #111;*/
+	font-family: 'Lucida Grande', arial, sans-serif;
+	padding: 0px;
+	font-size: 85%;
+	list-style-type:square;
+	list-style-position: inside;
+}
+#login ul.links li {
+	margin-top: .3em;
+}
+
+
+#login p label { 
+	font-size: medium;
+	color: #222;
+	font-weight: bold;
+}
+

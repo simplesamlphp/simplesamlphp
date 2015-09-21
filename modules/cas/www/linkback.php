@@ -7,11 +7,19 @@
 if (!isset($_GET['stateID'])) {
 	throw new SimpleSAML_Error_BadRequest('Missing stateID parameter.');
 }
-$state = SimpleSAML_Auth_State::loadState($_GET['stateID'], sspmod_cas_Auth_Source_CAS::STAGE_INIT);
+$stateId = (string)$_GET['stateID'];
 
 if (!isset($_GET['ticket'])) {
 	throw new SimpleSAML_Error_BadRequest('Missing ticket parameter.');
 }
+
+// sanitize the input
+$sid = SimpleSAML_Utilities::parseStateID($stateId);
+if (!is_null($sid['url'])) {
+	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
+}
+
+$state = SimpleSAML_Auth_State::loadState($stateId, sspmod_cas_Auth_Source_CAS::STAGE_INIT);
 $state['cas:ticket'] = (string)$_GET['ticket'];
 
 /* Find authentication source. */

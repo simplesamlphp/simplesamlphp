@@ -4,7 +4,7 @@
  * The Shibboleth 1.3 Authentication Request. Not part of SAML 1.1, 
  * but an extension using query paramters no XML.
  *
- * @author Andreas Ã…kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package simpleSAMLphp
  */
 class SimpleSAML_XML_Shib13_AuthnRequest {
@@ -27,9 +27,13 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 		return $this->issuer;
 	}
 
-	public function createRedirect($destination, $shire) {
+	public function createRedirect($destination, $shire = NULL) {
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpmetadata = $metadata->getMetaDataConfig($destination, 'shib13-idp-remote');
+
+		if ($shire === NULL) {
+			$shire = $metadata->getGenerated('AssertionConsumerService', 'shib13-sp-hosted');
+		}
 
 		$desturl = $idpmetadata->getDefaultEndpoint('SingleSignOnService', array('urn:mace:shibboleth:1.0:profiles:AuthnRequest'));
 		$desturl = $desturl['Location'];
@@ -44,3 +48,5 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	}
 
 }
+
+?>

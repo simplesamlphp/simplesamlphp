@@ -1,0 +1,38 @@
+simpleSAMLphp from Subversion
+=============================
+
+These are some notes about running simpleSAMLphp from subversion.
+
+Installing from Subversion
+--------------------------
+
+Go to the directory where you want to install simpleSAMLphp:
+
+    cd /var
+
+Then do a subversion checkout:
+
+    svn checkout http://simplesamlphp.googlecode.com/svn/trunk/ simplesamlphp
+
+Initialize configuration and metadata:
+
+    cd /var/simplesamlphp
+    cp -r config-templates/* config/
+    cp -r metadata-templates/* metadata/
+
+Install the external dependencies with Composer (http://getcomposer.org/):
+
+    php composer.phar install
+
+
+Upgrading
+---------
+
+Go to the root directory of your simpleSAMLphp installation:
+    cd /var/simplesamlphp
+
+Ask subversion to update to the latest version:
+    svn update
+
+Install the external dependencies with Composer (http://getcomposer.org/):
+    php composer.phar install

@@ -2,19 +2,12 @@
 
 require_once('../_include.php');
 
-/* Make sure that the user has admin access rights. */
-SimpleSAML\Utils\Auth::requireAdmin();
-
 $config = SimpleSAML_Configuration::getInstance();
 
-if ( !empty($_FILES['xmlfile']['tmp_name']) ) {
-	$xmldata = file_get_contents($_FILES['xmlfile']['tmp_name']);
-} elseif ( array_key_exists('xmldata', $_POST) ) {
+if(array_key_exists('xmldata', $_POST)) {
 	$xmldata = $_POST['xmldata'];
-}
 
-if ( !empty($xmldata) ) {
-	\SimpleSAML\Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
+	SimpleSAML_Utilities::validateXMLDocument($xmldata, 'saml-meta');
 	$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsString($xmldata);
 
 	/* Get all metadata for the entities. */
@@ -29,7 +22,7 @@ if ( !empty($xmldata) ) {
 	}
 
 	/* Transpose from $entities[entityid][type] to $output[type][entityid]. */
-	$output = SimpleSAML\Utils\Arrays::transpose($entities);
+	$output = SimpleSAML_Utilities::transposeArray($entities);
 
 	/* Merge all metadata of each type to a single string which should be
 	 * added to the corresponding file.

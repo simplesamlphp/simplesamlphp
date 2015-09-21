@@ -1,0 +1,74 @@
+{
+	"wrong_IC": {
+		"en": "Invalid InfoCard"
+	},
+	"get_IC": {
+		"en": "Get your InfoCard"
+	},
+	"get_IC_link": {
+		"en": "Click here to get your InfoCard"
+	},
+	"form_username": {
+		"en": "Username"
+	},
+	"form_password": {
+		"en": "Password"
+	},
+	"error_header": {
+		"en": "Error"
+	},
+	"user_IC_header": {
+		"en": "Select an InfoCard"
+	},
+	"user_IC_text": {
+		"en": "A service has requested you to authenticate yourself. Please click on the image below to start a session with an InfoCard."
+	},
+	"login_button": {
+		"en": " "
+	},
+	"get_button": {
+		"en": "Get my Infocard"
+	},
+	"help_header": {
+		"en": "HELP! What is an InfoCard?"
+	},
+	"help_text": {
+		"en": "Information Cards (aka InfoCard) is a web authentication technology. Contact with your services provider in order to configure your computer and give you and Information Card (identification virtual card)."
+	},
+	"help_desk_link": {
+		"en": "Help desk homepage"
+	},
+	"help_desk_email": {
+		"en": "Send e-mail to help desk"
+	},
+	"contact_info": {
+		"en": "Contact information"
+	},
+	"getcardform_title": {
+		"en": "Authentication form"
+	},
+	"getcardform_self_title": {
+		"en": "Self-Issued Card form"
+	},
+	"getcardform_self_text": {
+		"en": "Please, enter a self issued InfoCard in order to link it with the managed one we are generating."
+	},
+	"getcardform_finished_title": {
+		"en": "Congratulations, your Infocard was succesfully generated"
+	},
+	"getcardform_finished_text": {
+		"en": "Please follow the next link to get to the login page."
+	},
+	"NO_password": {
+		"en": "Please fill in your password"
+	},
+	"NO_user": {
+		"en": "Please fill in your username"
+	},
+	"Wrong_user_pass": {
+		"en": "Wrong username or password"
+	},
+	"": {
+		"en": ""
+	}
+}

@@ -39,6 +39,7 @@ class sspmod_statistics_Statistics_Rulesets_BaseRule {
 			if (array_key_exists($tres, $this->available))
 				$available_times[$tres] = $tresconfig['name'];
 		}
+		// echo('<pre>'); print_r($available_times); exit;
 		return $available_times;
 	}
 

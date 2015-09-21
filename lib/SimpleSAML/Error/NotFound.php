@@ -27,7 +27,7 @@ class SimpleSAML_Error_NotFound extends SimpleSAML_Error_Error {
 
 		assert('is_null($reason) || is_string($reason)');
 
-		$url = \SimpleSAML\Utils\HTTP::getSelfURL();
+		$url = SimpleSAML_Utilities::selfURL();
 
 		if($reason === NULL) {
 			parent::__construct(array('NOTFOUND', '%URL%' => $url));

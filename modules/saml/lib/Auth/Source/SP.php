@@ -168,7 +168,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		SimpleSAML_Logger::debug('Starting SAML 1 SSO to ' . var_export($idpEntityId, TRUE) .
 			' from ' . var_export($this->entityId, TRUE) . '.');
-		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
+		SimpleSAML_Utilities::redirectTrustedURL($url);
 	}
 
 
@@ -188,12 +188,12 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$ar->setAssertionConsumerServiceURL(SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId));
 
-		if (isset($state['SimpleSAML_Auth_Source.ReturnURL'])) {
-			$ar->setRelayState($state['SimpleSAML_Auth_Source.ReturnURL']);
+		if (isset($state['SimpleSAML_Auth_Default.ReturnURL'])) {
+			$ar->setRelayState($state['SimpleSAML_Auth_Default.ReturnURL']);
 		}
 
 		if (isset($state['saml:AuthnContextClassRef'])) {
-			$accr = SimpleSAML\Utils\Arrays::arrayize($state['saml:AuthnContextClassRef']);
+			$accr = SimpleSAML_Utilities::arrayize($state['saml:AuthnContextClassRef']);
 			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr));
 		}
 
@@ -355,7 +355,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$params['isPassive'] = 'true';
 		}
 
-		\SimpleSAML\Utils\HTTP::redirectTrustedURL($discoURL, $params);
+		SimpleSAML_Utilities::redirectTrustedURL($discoURL, $params);
 	}
 
 
@@ -439,8 +439,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		// Update session state
 		$session = SimpleSAML_Session::getSessionFromRequest();
-		$authId = $state['saml:sp:AuthId'];
-		$session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
+		$session->doLogin($state['saml:sp:AuthId'], SimpleSAML_Auth_Default::extractPersistentAuthState($state));
 
 		// resume the login process
 		call_user_func($state['ReturnCallback'], $state);
@@ -579,29 +578,6 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 
 	/**
-	 * Handle an unsolicited login operations.
-	 *
-	 * This method creates a session from the information received. It will then redirect to the given URL. This is used
-	 * to handle IdP initiated SSO. This method will never return.
-	 *
-	 * @param string $authId The id of the authentication source that received the request.
-	 * @param array $state A state array.
-	 * @param string $redirectTo The URL we should redirect the user to after updating the session. The function will
-	 * check if the URL is allowed, so there is no need to manually check the URL on beforehand. Please refer to the
-	 * 'trusted.url.domains' configuration directive for more information about allowing (or disallowing) URLs.
-	 */
-	public static function handleUnsolicitedAuth($authId, array $state, $redirectTo) {
-		assert('is_string($authId)');
-		assert('is_string($redirectTo)');
-
-		$session = SimpleSAML_Session::getSessionFromRequest();
-		$session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
-
-		\SimpleSAML\Utils\HTTP::redirectUntrustedURL($redirectTo);
-	}
-
-
-	/**
 	 * Called when we have completed the procssing chain.
 	 *
 	 * @param array $authProcState  The processing chain state.
@@ -631,7 +607,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			} else {
 				$redirectTo = $source->getMetadata()->getString('RelayState', '/');
 			}
-			self::handleUnsolicitedAuth($sourceId, $state, $redirectTo);
+			SimpleSAML_Auth_Default::handleUnsolicitedAuth($sourceId, $state, $redirectTo);
 		}
 
 		SimpleSAML_Auth_Source::completeAuth($state);

@@ -103,7 +103,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
 
 		$url = SimpleSAML_Module::getModuleURL('authYubiKey/yubikeylogin.php');
-		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('AuthState' => $id));
+		SimpleSAML_Utilities::redirectTrustedURL($url, array('AuthState' => $id));
 	}
 	
 	
@@ -122,6 +122,12 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 	public static function handleLogin($authStateId, $otp) {
 		assert('is_string($authStateId)');
 		assert('is_string($otp)');
+
+		// sanitize the input
+		$sid = SimpleSAML_Utilities::parseStateID($authStateId);
+		if (!is_null($sid['url'])) {
+			SimpleSAML_Utilities::checkURLAllowed($sid['url']);
+		}
 
 		/* Retrieve the authentication state. */
 		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
@@ -201,3 +207,5 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 	}
 
 }
+
+?>

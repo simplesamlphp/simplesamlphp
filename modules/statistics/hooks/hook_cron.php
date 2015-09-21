@@ -33,3 +33,4 @@ function statistics_hook_cron(&$croninfo) {
 		$croninfo['summary'][] = $message;
 	}
 }
+?>

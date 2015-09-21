@@ -9,3 +9,5 @@
 class SimpleSAML_Error_InvalidCredential extends SimpleSAML_Error_User{
 	
 }
+
+?>

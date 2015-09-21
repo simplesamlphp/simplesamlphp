@@ -482,7 +482,14 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             $driver_options[PDO::ATTR_TIMEOUT] = $this->_timeout;
         }
 
+        // @TODO Cleanup this section
+        //try {
         $this->_db = new PDO($this->_dsn, $this->_username, $this->_password, $driver_options);
+        // 		} catch (PDOException $e) {
+        // 			SimpleSAML_Logger::error('consent:Database - Failed to connect to \'' .
+        // 				$this->_dsn . '\': '. $e->getMessage());
+        // 			$this->db = false;
+        // 		}
 
         return $this->_db;
     }

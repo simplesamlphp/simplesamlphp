@@ -276,10 +276,6 @@ $config = array(
         // The default is 0, which means no timeout.
         'timeout' => 0,
 
-        // The port used when accessing the LDAP server.
-        // The default is 389.
-        'port' => 389,
-
         // Set whether to follow referrals. AD Controllers may require FALSE to function.
         'referrals' => TRUE,
 

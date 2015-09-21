@@ -247,7 +247,7 @@ class sspmod_saml_IdP_SAML2 {
 					 * Less than five seconds has passed since we were
 					 * here the last time. Cookies are probably disabled.
 					 */
-					\SimpleSAML\Utils\HTTP::checkSessionCookie(\SimpleSAML\Utils\HTTP::getSelfURL());
+					SimpleSAML_Utilities::checkCookie(SimpleSAML_Utilities::selfURL());
 				}
 			}
 
@@ -332,7 +332,7 @@ class sspmod_saml_IdP_SAML2 {
 
 			$idpInit = FALSE;
 
-			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: incoming authentication request: '. var_export($spEntityId, TRUE));
+			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: Incomming Authentication request: '. var_export($spEntityId, TRUE));
 		}
 
 		SimpleSAML_Stats::log('saml:idp:AuthnRequest', array(
@@ -347,7 +347,7 @@ class sspmod_saml_IdP_SAML2 {
 		$acsEndpoint = self::getAssertionConsumerService($supportedBindings, $spMetadata, $consumerURL, $protocolBinding, $consumerIndex);
 
 		$IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', array())));
-		if ($ProxyCount === null) $ProxyCount = $spMetadata->getInteger('ProxyCount', null);
+		if ($ProxyCount == null) $ProxyCount = $spMetadata->getInteger('ProxyCount', null);
 
 		if (!$forceAuthn) {
 			$forceAuthn = $spMetadata->getBoolean('ForceAuthn', FALSE);
@@ -361,8 +361,8 @@ class sspmod_saml_IdP_SAML2 {
 			$sessionLostParams['RelayState'] = $relayState;
 		}
 
-		$sessionLostURL = \SimpleSAML\Utils\HTTP::addURLParameters(
-            \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
+		$sessionLostURL = SimpleSAML_Utilities::addURLparameter(
+			SimpleSAML_Utilities::selfURLNoQuery(),
 			$sessionLostParams);
 
 		$state = array(
@@ -628,7 +628,7 @@ class sspmod_saml_IdP_SAML2 {
 				$idpEntityId = $idpMetadata->getString('entityid');
 				$spEntityId = $spMetadata->getString('entityid');
 
-				$secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
+				$secretSalt = SimpleSAML_Utilities::getSecretSalt();
 
 				$uidData = 'uidhashbase' . $secretSalt;
 				$uidData .= strlen($idpEntityId) . ':' . $idpEntityId;
@@ -773,8 +773,6 @@ class sspmod_saml_IdP_SAML2 {
 		assert('isset($state["Attributes"])');
 		assert('isset($state["saml:ConsumerURL"])');
 
-		$now = time();
-
 		$signAssertion = $spMetadata->getBoolean('saml20.sign.assertion', NULL);
 		if ($signAssertion === NULL) {
 			$signAssertion = $idpMetadata->getBoolean('saml20.sign.assertion', TRUE);
@@ -790,13 +788,13 @@ class sspmod_saml_IdP_SAML2 {
 		$a->setIssuer($idpMetadata->getString('entityid'));
 		$a->setValidAudiences(array($spMetadata->getString('entityid')));
 
-		$a->setNotBefore($now - 30);
+		$a->setNotBefore(time() - 30);
 
 		$assertionLifetime = $spMetadata->getInteger('assertion.lifetime', NULL);
 		if ($assertionLifetime === NULL) {
 			$assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
 		}
-		$a->setNotOnOrAfter($now + $assertionLifetime);
+		$a->setNotOnOrAfter(time() + $assertionLifetime);
 
 		if (isset($state['saml:AuthnContextClassRef'])) {
 			$a->setAuthnContext($state['saml:AuthnContextClassRef']);
@@ -804,20 +802,22 @@ class sspmod_saml_IdP_SAML2 {
 			$a->setAuthnContext(SAML2_Const::AC_PASSWORD);
 		}
 
-		$sessionStart = $now;
 		if (isset($state['AuthnInstant'])) {
 			$a->setAuthnInstant($state['AuthnInstant']);
-			$sessionStart = $state['AuthnInstant'];
+		} else {
+			/* For backwards compatibility. Remove in version 1.8. */
+			$session = SimpleSAML_Session::getSessionFromRequest();
+			$a->setAuthnInstant($session->getAuthnInstant());
 		}
 
 		$sessionLifetime = $config->getInteger('session.duration', 8*60*60);
-		$a->setSessionNotOnOrAfter($sessionStart + $sessionLifetime);
+		$a->setSessionNotOnOrAfter(time() + $sessionLifetime);
 
-		$a->setSessionIndex(SimpleSAML\Utils\Random::generateID());
+		$a->setSessionIndex(SimpleSAML_Utilities::generateID());
 
 		$sc = new SAML2_XML_saml_SubjectConfirmation();
 		$sc->SubjectConfirmationData = new SAML2_XML_saml_SubjectConfirmationData();
-		$sc->SubjectConfirmationData->NotOnOrAfter = $now + $assertionLifetime;
+		$sc->SubjectConfirmationData->NotOnOrAfter = time() + $assertionLifetime;
 		$sc->SubjectConfirmationData->Recipient = $state['saml:ConsumerURL'];
 		$sc->SubjectConfirmationData->InResponseTo = $state['saml:RequestId'];
 
@@ -833,7 +833,7 @@ class sspmod_saml_IdP_SAML2 {
 		if ($hokAssertion) {
 			/* Holder-of-Key */
 			$sc->Method = SAML2_Const::CM_HOK;
-			if (\SimpleSAML\Utils\HTTP::isHTTPS()) {
+			if (SimpleSAML_Utilities::isHTTPS()) {
 				if (isset($_SERVER['SSL_CLIENT_CERT']) && !empty($_SERVER['SSL_CLIENT_CERT'])) {
 					/* Extract certificate data (if this is a certificate). */
 					$clientCert = $_SERVER['SSL_CLIENT_CERT'];
@@ -896,7 +896,7 @@ class sspmod_saml_IdP_SAML2 {
 
 			if ($nameIdFormat === SAML2_Const::NAMEID_TRANSIENT) {
 				/* generate a random id */
-				$nameIdValue = SimpleSAML\Utils\Random::generateID();
+				$nameIdValue = SimpleSAML_Utilities::generateID();
 			} else {
 				/* this code will end up generating either a fixed assigned id (via nameid.attribute)
 				   or random id if not assigned/configured */
@@ -904,7 +904,7 @@ class sspmod_saml_IdP_SAML2 {
 				if ($nameIdValue === NULL) {
 					SimpleSAML_Logger::warning('Falling back to transient NameID.');
 					$nameIdFormat = SAML2_Const::NAMEID_TRANSIENT;
-					$nameIdValue = SimpleSAML\Utils\Random::generateID();
+					$nameIdValue = SimpleSAML_Utilities::generateID();
 				}
 			}
 

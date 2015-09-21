@@ -1,0 +1,44 @@
+A-Select module for simpleSAMLphp
+---------------------------------
+
+This module allows one to use an A-Select server as authentication
+source for simpleSAMLphp.
+
+The module supports the A-Select protocol, including signing of
+requests. Not supported is A-Select Cross.
+
+Usage:
+
+Enable the module if not already enabled:
+$ touch modules/aselect/enabled
+
+In config/authsources.php, configure your A-Selectserver as an
+authentication source. The following is an example for a source
+named 'aselect':
+
+    'aselect' => array(
+        'aselect:aselect',
+        'app_id' => 'simplesamlphp',
+        'server_id' => 'sso.example.com',
+        'server_url' => 'https://test.sso.example.com/server',
+        'private_key' => 'file:///etc/ssl/private/aselect.key'
+    ),
+
+The parameters:
+- app_id: the application I for simpleSAMLphp as configured in
+  your A-Select server;
+- server_id: the A-Select server ID as configured in your
+  A-Select server;
+- server_url: the URL for your A-Selectserver, usually ends in
+  '/server/.
+- private_key: the key you want to use for signing requests.
+  If you're really sure you do not want request signing, you
+  can set this option to a null value.
+Options 'serverurl' and 'serverid' (without underscore) are
+supported for backwards compatibility.
+
+Author: Wessel Dankers <wsl@uvt.nl>
+
+Copyright: © 2011,2012 Tilburg University (http://www.tilburguniversity.edu)
+
+License: LGPL version 2.1

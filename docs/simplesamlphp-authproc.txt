@@ -128,7 +128,6 @@ The following filters are included in the simpleSAMLphp distribution:
 - [`authorize:Authorize`](./authorize:authorize): Access control based on regular expressions.
 - [`consent:Consent`](./consent:consent): Ask the user for consent before transmitting attributes.
 - [`core:AttributeAdd`](./core:authproc_attributeadd): Add attributes to the response.
-- [`core:AttributeCopy`](./core:authproc_attributecopy): Copy existing attributes to the response.
 - [`core:AttributeAlter`](./core:authproc_attributealter): Do search-and-replace on attributevalues.
 - [`core:AttributeLimit`](./core:authproc_attributelimit): Limit the attributes in the response.
 - [`core:AttributeMap`](./core:authproc_attributemap): Change the name of the attributes.

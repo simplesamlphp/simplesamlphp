@@ -1,35 +1,19 @@
 <?php
 
-
 /**
  * The main logger class for SimpleSAMLphp.
  *
  * @author Lasse Birnbaum Jensen, SDU.
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package SimpleSAMLphp
+ * @package simpleSAMLphp
  * @version $ID$
  */
+
 class SimpleSAML_Logger
 {
-
-    /**
-     * @var SimpleSAML_Logger_LoggingHandler|false|null
-     */
-    private static $loggingHandler = null;
-
-    /**
-     * @var integer|null
-     */
-    private static $logLevel = null;
-
-    /**
-     * @var boolean
-     */
-    private static $captureLog = false;
-
-    /**
-     * @var array
-     */
+    private static $loggingHandler = NULL;
+    private static $logLevel = NULL;
+    private static $captureLog = FALSE;
     private static $capturedLog = array();
 
     /**
@@ -50,7 +34,7 @@ class SimpleSAML_Logger
      * This variable holds the track ID we have retrieved from the session class. It can also be NULL, in which case
      * we haven't fetched the track ID yet, or TRACKID_FETCHING, which means that we are fetching the track ID now.
      */
-    private static $trackid = null;
+    private static $trackid = NULL;
 
     /**
      * This variable holds the format used to log any message. Its use varies depending on the log handler used (for
@@ -145,7 +129,6 @@ class SimpleSAML_Logger
         self::log(self::WARNING, $string);
     }
 
-
     /**
      * We reserve the notice level for statistics, so do not use this level for other kind of log messages.
      *
@@ -187,7 +170,7 @@ class SimpleSAML_Logger
      */
     public static function stats($string)
     {
-        self::log(self::NOTICE, $string, true);
+        self::log(self::NOTICE, $string, TRUE);
     }
 
 
@@ -196,7 +179,7 @@ class SimpleSAML_Logger
      *
      * @var boolean $val Whether to capture logs or not. Defaults to TRUE.
      */
-    public static function setCaptureLog($val = true)
+    public static function setCaptureLog($val = TRUE)
     {
         self::$captureLog = $val;
     }
@@ -214,7 +197,7 @@ class SimpleSAML_Logger
     private static function createLoggingHandler()
     {
         // set to FALSE to indicate that it is being initialized
-        self::$loggingHandler = false;
+        self::$loggingHandler = FALSE;
 
         // get the configuration
         $config = SimpleSAML_Configuration::getInstance();
@@ -236,7 +219,7 @@ class SimpleSAML_Logger
             $sh = new SimpleSAML_Logger_LoggingHandlerErrorLog();
         } else {
             throw new Exception(
-                'Invalid value for the [logging.handler] configuration option. Unknown handler: '.$handler
+                'Invalid value for the [logging.handler] configuration option. Unknown handler: ' . $handler
             );
         }
 
@@ -248,14 +231,9 @@ class SimpleSAML_Logger
     }
 
 
-    private static function log($level, $string, $statsLog = false)
+    private static function log($level, $string, $statsLog = FALSE)
     {
-        if (php_sapi_name() === 'cli' || defined('STDIN')) {
-            // we are being executed from the CLI, nowhere to log
-            return;
-        }
-
-        if (self::$loggingHandler === null) {
+        if (self::$loggingHandler === NULL) {
             /* Initialize logging. */
             self::createLoggingHandler();
 
@@ -266,7 +244,7 @@ class SimpleSAML_Logger
                     self::log($msg['level'], $msg['string'], $msg['statsLog']);
                 }
             }
-        } elseif (self::$loggingHandler === false) {
+        } elseif (self::$loggingHandler === FALSE) {
             // some error occurred while initializing logging
             if (empty(self::$earlyLog)) {
                 // this is the first message
@@ -279,7 +257,7 @@ class SimpleSAML_Logger
         }
 
         if (self::$captureLog) {
-            $ts = microtime(true);
+            $ts = microtime(TRUE);
             $msecs = (int) (($ts - (int) $ts) * 1000);
             $ts = GMdate('H:i:s', $ts).sprintf('.%03d', $msecs).'Z';
             self::$capturedLog[] = $ts.' '.$string;
@@ -318,7 +296,7 @@ class SimpleSAML_Logger
             return 'NA';
         }
 
-        if (self::$trackid === null) {
+        if (self::$trackid === NULL) {
             // no track ID yet, fetch it from the session class
 
             // mark it as currently being fetched

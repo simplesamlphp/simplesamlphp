@@ -5,7 +5,7 @@
  */
 class sspmod_statistics_DateHandler {
 
-	protected $offset;
+	private $offset;
 
 	/**
 	 * Constructor
@@ -27,6 +27,8 @@ class sspmod_statistics_DateHandler {
 	}
 
 	public function fromSlot($slot, $slotsize) {
+		// echo("slot $slot slotsize $slotsize offset  " . $this->offset);
+		// throw new Exception();
 		$temp = $slot*$slotsize - $this->offset;
 		$dst = $this->getDST($temp);
 		return $slot*$slotsize - $this->offset - $dst;
@@ -47,4 +49,16 @@ class sspmod_statistics_DateHandler {
 		$text .= $this->prettyDateSlot($to, $slotsize, $dateformat);
 		return $text;
 	}
+
 }
+
+// 	$datestr = substr($logline,0,$datenumbers);
+// 	#$datestr = substr($logline,0,23);
+// 	$timestamp = parse15($datestr) + $offset;
+// 	$restofline = substr($logline,$datenumbers+1);
+// 	$restcols = split(' ', $restofline);
+// 	$action = $restcols[5];
+	
+// 	print_r($timestamp);
+// 	print_r($restcols); if ($i++ > 5) exit;
+

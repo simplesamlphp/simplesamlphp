@@ -114,13 +114,13 @@ The script requires that the config file `translation.php` is copied from `confi
 
 The script may be used to these tasks:
 
-  * Uploading definition files
-  * Downloading definition files
-  * Downloading translation files
+  * upload definition files
+  * download defintion files
+  * download translation files
 
 ### Uploading defintion files
 
-You probably do not have access to upload definition files for the simpleSAMLphp application. But, from January 2010, the translation portal is generic to host multiple independent applications. What you may do is to contact Andreas to add your own application to the translation portal, where you of course have access to upload definition files.
+You probably do not have access to upload definition files for the simpleSAMLphp application. But, from January 2010, the translation portal is generic to host multiple independent applications. What you may do is to contact Andreas to add your own application to the translation portal, where you off course have access to upload definition files.
 
 **Note**: an application may very well be a local simpleSAMLphp module that you run.
 
@@ -152,7 +152,7 @@ The script uses OAuth to connect your session on the command line client with th
 
 
 
-### Deleting definition files
+### Deleting defintion files
 
 Is perfomed via the webbased translation portal.
 
@@ -162,7 +162,7 @@ Seldom used, as the defintion file is manually created locally. Anyway:
 
 	bin/translation.php pulldef modules/MODULENAME/dictionaries/BASENAME.definition.json
 
-Output example:
+Ooutput example:
 	
 	Action: [pulldef]
 	Application: [simplesamlphp]

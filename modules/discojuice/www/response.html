@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+	<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+	<title>IdP Discovery Response Receiver</title>
+
+	<script type="text/javascript">
+
+function parseURL(url) {
+	var a =  document.createElement('a');
+    a.href = url;
+    return a.hostname;
+}
+
+function receive() {
+	var urlParams = {},
+		cid = null;
+	(function () {
+		var e,
+			a = /\+/g,  // Regex for replacing addition symbol with a space
+			r = /([^&;=]+)=?([^&;]*)/g,
+			d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+			q = window.location.search.substring(1);
+
+		while (e = r.exec(q))
+		   urlParams[d(e[1])] = d(e[2]);
+	})();
+	
+	if (urlParams.cid) cid = urlParams.cid;
+		
+	var sender = parseURL(document.referrer);
+	
+	// Received a specific entity ID from the storage.
+	if (urlParams.entityID) {
+		window.parent.DiscoJuice.Utils.log('ResponseLocation: Response from discovery service [' + sender + ']: ' + urlParams.entityID + '   subID: ' + urlParams.subID);
+		window.parent.DiscoJuice.Control.discoResponse(sender, urlParams.entityID, urlParams.subID, cid);
+
+	// Received a textual error from the storage, to show in the debug log.
+	} else if (urlParams['error']) {
+		window.parent.DiscoJuice.Control.discoResponseError(cid, 
+			"Error from IdP Discovery Service [" + sender + "]:  " + urlParams.error);
+	
+	// Did not receive a response parameter. This probably means that the Disco storage did not have a stored preference
+	// for the user. Consequently: no error.
+	} else {
+		window.parent.DiscoJuice.Utils.log('No valid response parameters. cid[' + cid + ']');
+		window.parent.DiscoJuice.Control.discoResponseError(cid);
+	}
+
+}
+
+	</script>
+</head>
+
+<body onload="receive();">
+
+</body>
+</html>

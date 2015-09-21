@@ -1,0 +1,218 @@
+SP hosted metadata reference
+============================
+
+<!-- {{TOC}} -->
+
+This is a reference for the metadata files `metadata/saml20-sp-hosted.php` and `metadata/shib13-sp-hosted.php`. Both files have the following format:
+
+    <?php
+    /* The index of the array is the entity ID of this SP. */
+    $metadata['entity-id-1'] = array(
+        'host' => 'sp.example.org',
+        /* Configuration options for the first SP. */
+    );
+    $metadata['entity-id-2'] = array(
+        'host' => '__DEFAULT__',
+        /* Configuration options for the default SP. */
+    );
+    /* ... */
+
+The entity ID should be an URI. It can also be on the form `__DYNAMIC:1__`, `__DYNAMIC:2__`, `...`. In that case, the entity ID will be generated automatically.
+
+The `host` option is the hostname of the SP, and will be used to select the correct configuration. One entry in the metadata-list can have the host `__DEFAULT__`. This entry will be used when no other entry matches.
+
+
+Common options
+--------------
+
+`AssertionConsumerService`
+:   Override the default URL for the AssertionConsumerService for this SP. This is an absolute URL. The default value is `<simpleSAMLphp-root>/{shib13|saml2}/sp/AssertionConsumerService.php`.
+
+:   Note that this only changes the values in the generated metadata and in the messages sent to others. You must also configure your webserver to deliver this URL to the correct PHP page.
+
+`attributes`
+:   List of attributes this SP requests from the IdP.
+    This list will be added to the generated metadata.
+
+:   The attributes will be added without a `NameFormat` by default.
+    Use the `attributes.NameFormat` option to specify the `NameFormat` for the attributes.
+
+:   *Note*: This list will only be added to the metadata if the `name`-option is also specified.
+
+`attributes.NameFormat`
+:   The `NameFormat` for the requested attributes.
+
+`authproc`
+:   Used to manipulate attributes, and limit access for each SP. See the [authentication processing filter manual](simplesamlphp-authproc).
+
+`certData`
+:   Base64 encoded certificate data. Can be used instead of the `certificate` option.
+
+`certificate`
+:   File name of certificate for this SP. This certificate will be included in generated metadata.
+
+`description`
+:   A description of this SP. Will be added to the generated metadata.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated description:
+
+        'description' => array(
+            'en' => 'A service',
+            'no' => 'En tjeneste',
+        ),
+
+:   *Note*: For this to be added to the metadata, you must also specify the `attributes` and `name` options.
+
+`host`
+:   The hostname for this SP. One SP can also have the `host`-option set to `__DEFAULT__`, and that SP will be used when no other entries in the metadata matches.
+
+`idpdisco.url`
+:   Set which IdP discovery service this SP should use. If this is unset, the IdP discovery service specified in the global option `idpdisco.url.{saml20|shib13}` in `config/config.php` will be used. If that one is also unset, the builtin default discovery service will be used.
+
+`OrganizationName`
+:   The name of the organization responsible for this SPP.
+    This name does not need to be suitable for display to end users.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+
+        'OrganizationName' => array(
+            'en' => 'Example organization',
+            'no' => 'Eksempel organisation',
+        ),
+
+:   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
+
+`OrganizationDisplayName`
+:   The name of the organization responsible for this SPP.
+    This name must be suitable for display to end users.
+    If this option isn't specified, `OrganizationName` will be used instead.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
+
+:   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
+
+`OrganizationURL`
+:   A URL the end user can access for more information about the organization.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
+
+:   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
+
+`name`
+:   The name of this SP. Will be added to the generated metadata.
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+
+        'name' => array(
+            'en' => 'A service',
+            'no' => 'En tjeneste',
+        ),
+
+:   *Note*: You must also specify at least one attribute in the `attributes` option for this element to be added to the metadata.
+
+`NameIDFormat`
+:   Override the default NameIDFormat in the generated metadata and in the authentication request.
+
+:   The default value for SAML 2.0 is `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`, while the default for Shibboleth 1.3 is `urn:mace:shibboleth:1.0:nameIdentifier`. If you set the value to `NULL`, the `samlp:NameIDPolicy` element is removed from the authentication request.
+
+
+SAML 2.0 options
+----------------
+
+The following SAML 2.0 SP options are available:
+
+`AuthnContextClassRef`
+:   The SP can request authentication with a specific authentication context class. One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.
+
+`ForceAuthn`
+:   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
+
+`IsPassive`
+:   IsPassive allows you to enable passive authentication by default for this SP.
+
+`privatekey`
+:   File name of private key to be used for signing messages and decrypting messages from the IdP. This option is only required if you use encrypted assertions or if you enable signing of messages.
+
+`privatekey_pass`
+:   The passphrase for the private key, if it is encrypted. If the private key is unencrypted, this can be left out.
+
+`ProtocolBinding`
+:   The binding that should be used for SAML2 authentication responses.
+    This option controls the binding that is requested through the AuthnRequest message to the IdP.
+    By default the HTTP-Redirect binding is used.
+
+`RelayState`
+:   The page the user should be redirected to after an IdP initiated SSO.
+
+`saml.SOAPClient.certificate`
+:   A file with a certificate _and_ private key that should be used when issuing SOAP requests from this SP.
+    If this option isn't specified, the SP private key and certificate will be used.
+
+`saml.SOAPClient.privatekey_pass`
+:   The passphrase of the privatekey in `saml.SOAPClient.certificate`.
+
+`SingleLogoutService`
+:   Override the default URL for the SingleLogoutService for this SP. This is an absolute URL. The default value is `<simpleSAMLphp-root>/saml2/sp/SingleLogoutService.php`.
+
+:   Note that this only changes the values in the generated metadata and in the messages sent to others. You must also configure your webserver to deliver this URL to the correct PHP page.
+
+### Fields for signing and validating messages
+
+simpleSAMLphp SP doesn't signa any messages by default. To enable signing of authentication requests, logout requests and logout responses, enable the `redirect.sign` option. Validation of received messages can be enabled by the `redirect.validate` option.
+
+These options set the default for this SP, but options for each IdP can be set in `saml20-idp-remote`.
+
+`redirect.sign`
+:   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is `FALSE`.
+
+`redirect.validate`
+:   Whether logout requests and logout responses received received by this SP should be validated. The default is `FALSE`.
+
+
+**Example: Configuration for signed messages**
+
+     'redirect.sign' => true,
+
+### Fields for scoping
+
+Only relevant if you are a sp connected to a proxy/bridge.
+
+`IDPList`
+: The list of scoped idps ie. the list of entityids for idps that
+are relevant for this sp. The final list is the concatenation of the
+list given as parameter to InitSSO, the list configured at the sp
+(here) and the list configured at the ipd for this sp. The
+intersection of the final list and the idps configured at the
+proxy/bridge will be presented to the user at the discovery service
+if neccessary. If only one idp is in the intersection the
+discoveryservice will go directly to the idp.
+
+**Example: Configuration for scoping**
+
+     'IDPList' => array('https://idp1.wayf.dk', 'https://idp2.wayf.dk'),
+     
+Shibboleth 1.3 SP options
+----------------------
+
+There are no options specific for a Shibboleth 1.3 SP.
+
+
+Examples
+--------
+
+These are some examples of SP metadata
+
+### Minimal SAML 2.0 / Shibboleth 1.3 SP ###
+
+    <?php
+    /*
+     * We use the '__DYNAMIC:1__' entity ID so that the entity ID
+     * will be autogenerated.
+     */
+    $metadata['__DYNAMIC:1__'] = array(
+        /*
+         * We use '__DEFAULT__' as the hostname so we won't have to
+         * enter a hostname.
+         */
+        'host' => '__DEFAULT__',
+    );

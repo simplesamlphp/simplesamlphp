@@ -13,7 +13,7 @@ if (!isset($_REQUEST['ReturnTo'])) {
 	die('Missing ReturnTo parameter.');
 }
 
-$returnTo = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']);
+$returnTo = SimpleSAML_Utilities::checkURLAllowed($_REQUEST['ReturnTo']);
 
 
 /*
@@ -29,7 +29,15 @@ $returnTo = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']);
 if (!preg_match('@State=(.*)@', $returnTo, $matches)) {
 	die('Invalid ReturnTo URL for this example.');
 }
-SimpleSAML_Auth_State::loadState(urldecode($matches[1]), 'exampleauth:External');
+$stateId = urldecode($matches[1]);
+
+// sanitize the input
+$sid = SimpleSAML_Utilities::parseStateID($stateId);
+if (!is_null($sid['url'])) {
+	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
+}
+
+SimpleSAML_Auth_State::loadState($stateId, 'exampleauth:External');
 
 /*
  * The loadState-function will not return if the second parameter does not
@@ -85,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$_SESSION['mail'] = $user['mail'];
 		$_SESSION['type'] = $user['type'];
 
-		\SimpleSAML\Utils\HTTP::redirectTrustedURL($returnTo);
+		SimpleSAML_Utilities::redirectTrustedURL($returnTo);
 	}
 }
 

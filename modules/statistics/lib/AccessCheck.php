@@ -28,7 +28,7 @@ class sspmod_statistics_AccessCheck {
 			return;
 		}
 
-		if (SimpleSAML\Utils\Auth::isAdmin()) {
+		if (SimpleSAML_Utilities::isAdmin()) {
 			// User logged in as admin. OK.
 			SimpleSAML_Logger::debug('Statistics auth - logged in as admin, access granted');
 			return;
@@ -36,7 +36,7 @@ class sspmod_statistics_AccessCheck {
 
 		if (!isset($authsource)) {
 			// If authsource is not defined, init admin login.
-            SimpleSAML\Utils\Auth::requireAdmin();
+			SimpleSAML_Utilities::requireAdmin();
 		}
 
 		/* We are using an authsource for login. */

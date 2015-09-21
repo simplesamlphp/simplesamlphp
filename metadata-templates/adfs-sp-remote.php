@@ -10,3 +10,5 @@ $metadata['urn:federation:localhost'] = array(
 		),
 	),
 );
+
+?>

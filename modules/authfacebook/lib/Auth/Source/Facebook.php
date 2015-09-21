@@ -79,7 +79,7 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 		$url = $facebook->getLoginUrl(array('redirect_uri' => $linkback, 'scope' => $this->req_perms));
 		SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
 
-		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
+		SimpleSAML_Utilities::redirectTrustedURL($url);
 	}
 		
 
@@ -125,3 +125,5 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 	}
 
 }
+
+?>

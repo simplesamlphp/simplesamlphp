@@ -1,3 +1,0 @@
-src_dir: .
-coverage_clover: tools/phpunit/build/logs/clover.xml
-json_path: tools/phpunit/build/logs/coveralls-upload.json

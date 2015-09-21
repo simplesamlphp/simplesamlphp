@@ -130,3 +130,5 @@ class SimpleSAML_XML_Errors {
 	}
 
 }
+
+?>

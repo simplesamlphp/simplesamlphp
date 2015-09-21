@@ -14,3 +14,4 @@ function metarefresh_hook_frontpage(&$links) {
 	);
 
 }
+?>

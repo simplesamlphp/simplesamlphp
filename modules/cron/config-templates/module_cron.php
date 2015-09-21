@@ -11,3 +11,5 @@ $config = array (
 	'sendemail' => TRUE,
 
 );
+
+?>

@@ -9,7 +9,15 @@
 if (!array_key_exists('StateId', $_REQUEST)) {
 	throw new SimpleSAML_Error_BadRequest('Missing required StateId query parameter.');
 }
+
 $id = $_REQUEST['StateId'];
+
+// sanitize the input
+$sid = SimpleSAML_Utilities::parseStateID($id);
+if (!is_null($sid['url'])) {
+	SimpleSAML_Utilities::checkURLAllowed($sid['url']);
+}
+
 $state = SimpleSAML_Auth_State::loadState($id, 'core:short_sso_interval');
 $session = SimpleSAML_Session::getSessionFromRequest();
 
@@ -24,3 +32,6 @@ $t->data['target'] = SimpleSAML_Module::getModuleURL('core/short_sso_interval.ph
 $t->data['params'] = array('StateId' => $id);
 $t->data['trackId'] = $session->getTrackID();
 $t->show();
+
+
+?>

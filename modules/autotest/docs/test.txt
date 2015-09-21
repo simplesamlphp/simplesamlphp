@@ -1,0 +1,19 @@
+`autotest` module
+=================
+
+This module provides an interface to do automatic testing of authentication sources.
+To enable it, create a file named "`enable`" in `modules/autotest`.
+
+It provides three webpages:
+
+- `https://.../simplesaml/module.php/autotest/login.php`
+- `https://.../simplesaml/module.php/autotest/logout.php`
+- `https://.../simplesaml/module.php/autotest/attributes.php`
+
+All the webpages have a mandatory paremeter 'SourceID', which is the name of the authentication source.
+
+On success, the web pages print a single line with "OK".
+The attributes page will also list all the attributes of the user.
+On error they set the HTTP status code to 500 Internal Server Error, print a line with "ERROR" and then any information about the error.
+
+Note that you still have to parse the login pages to extract the parameters in the login form.

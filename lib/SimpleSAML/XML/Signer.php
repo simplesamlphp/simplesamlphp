@@ -117,7 +117,7 @@ class SimpleSAML_XML_Signer {
 		assert('is_string($file)');
 		assert('is_string($pass) || is_null($pass)');
 
-		$keyFile = \SimpleSAML\Utils\Config::getCertPath($file);
+		$keyFile = SimpleSAML_Utilities::resolveCert($file);
 		if (!file_exists($keyFile)) {
 			throw new Exception('Could not find private key file "' . $keyFile . '".');
 		}
@@ -167,7 +167,7 @@ class SimpleSAML_XML_Signer {
 	public function loadCertificate($file) {
 		assert('is_string($file)');
 
-		$certFile = \SimpleSAML\Utils\Config::getCertPath($file);
+		$certFile = SimpleSAML_Utilities::resolveCert($file);
 		if (!file_exists($certFile)) {
 			throw new Exception('Could not find certificate file "' . $certFile . '".');
 		}
@@ -202,7 +202,7 @@ class SimpleSAML_XML_Signer {
 	public function addCertificate($file) {
 		assert('is_string($file)');
 
-		$certFile = \SimpleSAML\Utils\Config::getCertPath($file);
+		$certFile = SimpleSAML_Utilities::resolveCert($file);
 		if (!file_exists($certFile)) {
 			throw new Exception('Could not find extra certificate file "' . $certFile . '".');
 		}
@@ -266,3 +266,5 @@ class SimpleSAML_XML_Signer {
 		$objXMLSecDSig->insertSignature($insertInto, $insertBefore);
 	}
 }
+
+?>

@@ -43,7 +43,7 @@ if [ -f "$TARGET/composer.json" ]; then
     php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
 fi
 
-mkdir -p "$TARGET/config" "$TARGET/metadata" "$TARGET/cert" "$TARGET/log"
+mkdir -p "$TARGET/config" "$TARGET/metadata"
 cp -rv "$TARGET/config-templates/"* "$TARGET/config/"
 cp -rv "$TARGET/metadata-templates/"* "$TARGET/metadata/"
 rm -rf "$TARGET/.git"

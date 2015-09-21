@@ -17,3 +17,4 @@ function sanitycheck_hook_moduleinfo(&$moduleinfo) {
 	);
 
 }
+?>

@@ -14,3 +14,5 @@ $config = array (
 	'cron_tag' => 'hourly',
 
 );
+
+?>

@@ -34,6 +34,8 @@ class sspmod_adfs_IdP_ADFS {
 
 		$state = array(
 			'Responder' => array('sspmod_adfs_IdP_ADFS', 'sendResponse'),
+//			SimpleSAML_Auth_State::EXCEPTION_HANDLER_FUNC => array('sspmod_adfs_IdP', 'handleAuthError'),
+//			SimpleSAML_Auth_State::RESTART => $sessionLostURL,
 			'SPMetadata' => $spMetadata->toArray(),
 			'ForceAuthn' => $forceAuthn,
 			'isPassive' => $isPassive,
@@ -44,10 +46,11 @@ class sspmod_adfs_IdP_ADFS {
 	}
 
 	public static function ADFS_GenerateResponse($issuer, $target, $nameid, $attributes) {
-		$issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
-		$notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
-		$assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 5);
-		$assertionID = SimpleSAML\Utils\Random::generateID();
+		#$nameid = 'hans@surfnet.nl';
+		$issueInstant = SimpleSAML_Utilities::generateTimestamp();
+		$notBefore = SimpleSAML_Utilities::generateTimestamp(time() - 30);
+		$assertionExpire = SimpleSAML_Utilities::generateTimestamp(time() + 60 * 5);
+		$assertionID = SimpleSAML_Utilities::generateID();
 		$nameidFormat = 'http://schemas.xmlsoap.org/claims/UPN';
 		$result =
 '<wst:RequestSecurityTokenResponse xmlns:wst="http://schemas.xmlsoap.org/ws/2005/02/trust">
@@ -72,7 +75,7 @@ class sspmod_adfs_IdP_ADFS {
 			$hasValue = FALSE;
 			$r = '<saml:Attribute AttributeNamespace="http://schemas.xmlsoap.org/claims" AttributeName="' . htmlspecialchars($name) .'">';
 			foreach ($values as $value) {
-				if ( (!isset($value)) || ($value === '')) continue;
+				if ( (!isset($value)) or ($value === '')) continue;
 				$r .= '<saml:AttributeValue>' . htmlspecialchars($value) . '</saml:AttributeValue>';
 				$hasValue = TRUE;
 			}
@@ -138,7 +141,7 @@ class sspmod_adfs_IdP_ADFS {
 			}
 			$nameid = $attributes[$nameidattribute][0];
 		} else {
-			$nameid = SimpleSAML\Utils\Random::generateID();
+			$nameid = SimpleSAML_Utilities::generateID();
 		}
 
 		$idp = SimpleSAML_IdP::getByState($state);		
@@ -153,8 +156,8 @@ class sspmod_adfs_IdP_ADFS {
 		
 		$response = sspmod_adfs_IdP_ADFS::ADFS_GenerateResponse($idpEntityId, $spEntityId, $nameid, $attributes);
 
-		$privateKeyFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('privatekey'));
-		$certificateFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('certificate'));
+		$privateKeyFile = SimpleSAML_Utilities::resolveCert($idpMetadata->getString('privatekey'));
+		$certificateFile = SimpleSAML_Utilities::resolveCert($idpMetadata->getString('certificate'));
 		$wresult = sspmod_adfs_IdP_ADFS::ADFS_SignResponse($response, $privateKeyFile, $certificateFile);
 
 		$wctx = $state['adfs:wctx'];
@@ -168,20 +171,22 @@ class sspmod_adfs_IdP_ADFS {
 		// NB:: we don't know from which SP the logout request came from
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $idp->getConfig();
-		\SimpleSAML\Utils\HTTP::redirectTrustedURL($idpMetadata->getValue('redirect-after-logout', \SimpleSAML\Utils\HTTP::getBaseURL()));
+		SimpleSAML_Utilities::redirectTrustedURL($idpMetadata->getValue('redirect-after-logout', SimpleSAML_Utilities::getBaseURL()));
 	}
 	
 	public static function receiveLogoutMessage(SimpleSAML_IdP $idp) {
 		// if a redirect is to occur based on wreply, we will redirect to url as
 		// this implies an override to normal sp notification.
 		if(isset($_GET['wreply']) && !empty($_GET['wreply'])) {
-			$idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed($_GET['wreply']));
+			$idp->doLogoutRedirect(SimpleSAML_Utilities::checkURLAllowed($_GET['wreply']));
 			assert(FALSE);
 		}
 
 		$state = array(
 			'Responder' => array('sspmod_adfs_IdP_ADFS', 'sendLogoutResponse'),
 		);
+		//$spEntityId = NULL;
+		//$assocId = 'adfs:' . $spEntityId;
 		$assocId = NULL;
 		// TODO: verify that this is really no problem for: 
 		//       a) SSP, because there's no caller SP...
@@ -194,6 +199,7 @@ class sspmod_adfs_IdP_ADFS {
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $idp->getConfig();
 		$spMetadata = $metadata->getMetaDataConfig($association['adfs:entityID'], 'adfs-sp-remote');
+		// 'https://adfs-test.showcase.surfnet.nl/adfs/ls/?wa=wsignoutcleanup1.0&wreply=https%3A%2F%2Flocalhost%2Fsimplesaml');
 		$returnTo = SimpleSAML_Module::getModuleURL('adfs/idp/prp.php?assocId=' . urlencode($association["id"]) . '&relayState=' . urlencode($relayState));
 		return $spMetadata->getValue('prp') . '?' . 'wa=wsignoutcleanup1.0&wreply=' . urlencode($returnTo);
 	}

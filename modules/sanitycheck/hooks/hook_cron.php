@@ -40,3 +40,4 @@ function sanitycheck_hook_cron(&$croninfo) {
 	}
 
 }
+?>
