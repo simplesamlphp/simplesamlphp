@@ -174,9 +174,6 @@ foreach ($assertions as $assertion) {
     }
 }
 
-// Add the raw xml response so we can store is as prove
-$attributes['raw_response'] = base64_decode($_POST['SAMLResponse']);
- 
 if (!$foundAuthnStatement) {
     $e = new SimpleSAML_Error_Exception('No AuthnStatement found in assertion(s).');
     SimpleSAML_Auth_State::throwException($state, $e);
