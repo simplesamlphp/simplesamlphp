@@ -1,60 +1,12 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e609dc6172b06d1dd51be10f92c4d18b",
+    "hash": "906956bd53381b35bc7ea898a724ad07",
+    "content-hash": "c581ee95ac5fd3030da7f032413fa26c",
     "packages": [
-        {
-            "name": "openid/php-openid",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/openid/php-openid.git",
-                "reference": "ee669c6a9d4d95b58ecd9b6945627276807694fb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/openid/php-openid/zipball/fff9217fb1acda132702730b66b10981ea9d4cac",
-                "reference": "ee669c6a9d4d95b58ecd9b6945627276807694fb",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-dom": "*",
-                "ext-gmp": "*",
-                "php": ">=4.3"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "Auth"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                "."
-            ],
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "JanRain Inc.",
-                    "homepage": "http://www.openidenabled.com"
-                }
-            ],
-            "description": "OpenID library for PHP5",
-            "homepage": "http://github.com/openid/php-openid",
-            "keywords": [
-                "Authentication",
-                "OpenId",
-                "auth",
-                "yadis"
-            ],
-            "time": "2013-10-03 21:21:20"
-        },
         {
             "name": "psr/log",
             "version": "1.0.0",
@@ -95,16 +47,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v0.5.0",
+            "version": "v0.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "497152245ec73c3f96c84306dcddf850017b84a8"
+                "reference": "2289ddc4e4cb30d95ded1ebb70312be300716151"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/497152245ec73c3f96c84306dcddf850017b84a8",
-                "reference": "497152245ec73c3f96c84306dcddf850017b84a8",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/2289ddc4e4cb30d95ded1ebb70312be300716151",
+                "reference": "2289ddc4e4cb30d95ded1ebb70312be300716151",
                 "shasum": ""
             },
             "require": {
@@ -112,12 +64,14 @@
                 "ext-mcrypt": "*",
                 "ext-openssl": "*",
                 "php": ">=5.3.3",
-                "psr/log": "1.0.0",
-                "simplesamlphp/xmlseclibs": "~1.3.1"
+                "psr/log": "~1.0",
+                "robrichards/xmlseclibs": "^1.3"
             },
             "require-dev": {
+                "mockery/mockery": "~0.9",
                 "phpmd/phpmd": "~1.5",
                 "phpunit/phpunit": "~3.7",
+                "satooshi/php-coveralls": "~0.6.1",
                 "sebastian/phpcpd": "~1.4",
                 "sensiolabs/security-checker": "~1.1",
                 "squizlabs/php_codesniffer": "~1.4"
@@ -139,7 +93,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2014-10-07 13:40:34"
+            "time": "2015-05-27 13:03:01"
         },
         {
             "name": "simplesamlphp/xmlseclibs",
@@ -195,18 +149,10 @@
     ],
     "packages-dev": [],
     "aliases": [],
-        {
-            "alias": "2.2.2",
-            "alias_normalized": "2.2.2.0",
-            "version": "9999999-dev",
-            "package": "openid/php-openid"
-        }
-    ],
     "minimum-stability": "stable",
     "stability-flags": [],
-        "openid/php-openid": 20
-    },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": "~5.3"
     },
