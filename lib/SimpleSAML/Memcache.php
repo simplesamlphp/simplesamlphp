@@ -207,8 +207,17 @@ class SimpleSAML_Memcache
             );
         }
 
+        // check if we are told to use a socket
+        $socket = false;
+        if (strpos($hostname, 'unix:///') === 0) {
+            $socket = true;
+        }
+
         // check if the user has specified a port number
-        if (array_key_exists('port', $server)) {
+        if ($socket) {
+            // force port to be 0 for sockets
+            $port = 0;
+        } elseif (array_key_exists('port', $server)) {
             // get the port number from the array, and validate it
             $port = (int) $server['port'];
             if (($port <= 0) || ($port > 65535)) {
