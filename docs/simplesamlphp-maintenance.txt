@@ -48,13 +48,16 @@ Each server group is an array of servers. The data items will be load-balanced b
 Each server is an array of parameters for the server. The following options are available:
 
 `hostname`
-:   Host name or ip address of a memcache server runs. This is the
-    only required option.
+:   Host name or ip address where the memcache server runs, or specify other transports like *unix:///path/ssp.sock* to
+    use UNIX domain sockets. In that case, port will be ignored and forced to *0*.
+
+    This is the only required option.
 
 `port`
-:   Port number of the memcache server. If not set, the
-    `memcache.default_port` ini setting is used. This is 11211 by
+:   Port number of the memcache server. If not set, the `memcache.default_port` ini setting is used. This is 11211 by
     default.
+
+    The port will be forced to *0* when a UNIX domain socket is specified in *hostname*.
 
 `weight`
 :   Weight of this server in this server group.
