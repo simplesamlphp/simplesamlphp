@@ -119,6 +119,8 @@ class HTTP
      * HTTP version is 1.1. Otherwise, a "HTTP 302 Found" redirection will be used.
      *
      * The function will also generate a simple web page with a clickable link to the target page.
+     * 
+     * The function requests that the session is saved if dirty to ensure it is available after the redirect.
      *
      * @param string   $url The URL we should redirect to. This URL may include query parameters. If this URL is a
      *     relative URL (starting with '/'), then it will be turned into an absolute URL by prefixing it with the
@@ -134,6 +136,7 @@ class HTTP
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Mads Freek Petersen
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     * @author Brett Merrick, Our School Ltd <brett.merrick@ourschool.co.nz>
      */
     private static function redirect($url, $parameters = array())
     {
@@ -159,6 +162,10 @@ class HTTP
         if (strlen($url) > 2048) {
             \SimpleSAML_Logger::warning('Redirecting to a URL longer than 2048 bytes.');
         }
+
+        // ensure session is saved and available after redirect
+        $session = \SimpleSAML_Session::getSessionFromRequest();
+        $session->save();
 
         // set the location header
         header('Location: '.$url, true, $code);
