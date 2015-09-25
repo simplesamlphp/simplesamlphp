@@ -152,7 +152,7 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
                     if ($this->subject === $this->target) {
                         $value = $new_value;
                     } else {
-                        $attributes[$this->target][] = $new_value;
+                        $attributes[$this->target] = array($new_value);
                     }
                 }
             }
