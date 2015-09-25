@@ -38,6 +38,11 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
 	 * Attribute to place the result in.
 	 */
 	private $target = '';
+
+        /**
+         * Default Value
+         */
+        private $default = '';
 	
 	/**
 	 * Initialize this filter.
@@ -89,6 +94,12 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
 			if ($name === 'target') {
 				$this->target = $value;
 			}
+
+                        // Set no match value
+                        if ($name === 'default') {
+                                 $this->default = $value;
+                        }
+                       
 		}
 	}
 
@@ -117,6 +128,14 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
                 "'%remove' are set.");
 		}
 
+       if (!empty($this->default) && empty($this->target)) { 
+            throw new SimpleSAML_Error_Exception("'default' is only allowed when 'target' is specified.");
+        }
+
+       if (!empty($this->default) && !$this-replace) { 
+            throw new SimpleSAML_Error_Exception("''%replace' must be set if 'default' is specified."); 
+        }
+
         if (!$this->replace && $this->replacement === null) {
             throw new SimpleSAML_Error_Exception("'%replace' must be set if 'replacement' is null.");
         }
@@ -127,6 +146,7 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
 
 		if (empty($this->target)) {
             // use subject as target if target is not set
+
 			$this->target = $this->subject;		
 		}
 
@@ -134,7 +154,7 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
             throw new SimpleSAML_Error_Exception("Cannot use '%remove' when 'target' is different than 'subject'.");
         }
 
-		if (!array_key_exists($this->subject, $attributes)) {
+	if (!array_key_exists($this->subject, $attributes)) {
             // if no such subject, stop gracefully
             return;
         }
@@ -154,6 +174,8 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
                     } else {
                         $attributes[$this->target][] = $new_value;
                     }
+                } elseif ( !empty($this->default) ) {  // Set the new attribute to the default value.
+                    $attributes[$this->target][] = $this->default;
                 }
             }
         } elseif ($this->remove) { // remove the whole value
