@@ -290,6 +290,15 @@ class SimpleSAML_Session
      */
     public function __destruct()
     {
+        $this->save();
+    }
+    
+    /**
+     * Saves the session to the session handler if the session has been
+     * marked as dirty. Do nothing otherwise.
+     */
+    public function save()
+    {
         if (!$this->dirty) {
             // session hasn't changed - don't bother saving it
             return;
