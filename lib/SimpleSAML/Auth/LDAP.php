@@ -80,7 +80,7 @@ class SimpleSAML_Auth_LDAP {
 		 */
 		$this->ldap = @ldap_connect($hostname, $port);
 		if ($this->ldap == FALSE)
-			throw new $this->makeException('Library - LDAP __construct(): Unable to connect to \'' . $hostname . '\'', ERR_INTERNAL);
+			throw $this->makeException('Library - LDAP __construct(): Unable to connect to \'' . $hostname . '\'', ERR_INTERNAL);
 
 		/* Enable LDAP protocol version 3. */
 		if (!@ldap_set_option($this->ldap, LDAP_OPT_PROTOCOL_VERSION, 3))
