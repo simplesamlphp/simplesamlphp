@@ -179,12 +179,7 @@ abstract class SimpleSAML_Auth_Source
                 'SimpleSAML_Auth_Source.logoutSource' => $this->authId,
             ),
         ));
-
-        if (is_string($return)) {
-            $state['SimpleSAML_Auth_Default.ReturnURL'] = $return; // TODO: remove in 2.0
-            $state['SimpleSAML_Auth_Source.ReturnURL'] = $return;
-        }
-
+		
         if ($errorURL !== null) {
             $state[SimpleSAML_Auth_State::EXCEPTION_HANDLER_URL] = $errorURL;
         }
