@@ -57,17 +57,12 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
                 // check if this is an option
                 if($value === '%replace') {
                     $this->replace = TRUE;
-                } elseif ($value == '%remove') {
+                } elseif ($value === '%remove') {
                     $this->remove = TRUE;
                 } else {
                     throw new SimpleSAML_Error_Exception('Unknown flag : ' . var_export($value, TRUE));
                 }
                 continue;
-            }
-
-            // Unknown flag
-            if (!is_string($name)) {
-                throw new SimpleSAML_Error_Exception('Unknown flag : ' . var_export($name, TRUE));
             }
 
             // Set pattern
