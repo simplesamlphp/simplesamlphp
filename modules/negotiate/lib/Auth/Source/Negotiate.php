@@ -37,11 +37,13 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 
 		$this->backend = $config->getString('fallback');
 		$this->hostname = $config->getString('hostname');
+		$this->port = $config->getInteger('port', 389);
+		$this->referrals = $config->getBoolean('referrals', TRUE);
 		$this->enableTLS = $config->getBoolean('enable_tls', FALSE);
 		$this->debugLDAP = $config->getBoolean('debugLDAP', FALSE);
-		$this->timeout = $config->getValue('timeout', 30);
+		$this->timeout = $config->getInteger('timeout', 30);
 		$this->keytab = $config->getString('keytab');
-		$this->base = $config->getString('base');
+		$this->base = $config->getArrayizeString('base');
 		$this->attr = $config->getString('attr', 'uid');
 		$this->subnet = $config->getArray('subnet', NULL);
 		$this->admin_user = $config->getString('adminUser', NULL);
@@ -100,7 +102,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 		SimpleSAML_Logger::debug('Negotiate - authenticate(): looking for Negotate');
 		if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
 			SimpleSAML_Logger::debug('Negotiate - authenticate(): Negotate found');
-			$this->ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debugLDAP, $this->timeout);
+			$this->ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debugLDAP, $this->timeout, $this->port, $this->referrals);
 
 			list($mech, $data) = explode(' ', $_SERVER['HTTP_AUTHORIZATION'],2);
 			if(strtolower($mech) == 'basic')
