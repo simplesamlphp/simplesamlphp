@@ -252,12 +252,14 @@ class sspmod_metarefresh_MetaLoader {
 	 */
 	private function loadXML($data, $source) {
 		$entities = array();
-		$doc = new DOMDocument();
-		$res = $doc->loadXML($data);
-		if($res !== TRUE) {
+		try {
+			$doc = SAML2_DOMDocumentFactory::fromString($data);
+		} catch (Exception $e) {
 			throw new Exception('Failed to read XML from ' . $source['src']);
 		}
-		if($doc->documentElement ===  NULL) throw new Exception('Opened file is not an XML document: ' . $source['src']);
+		if ($doc->documentElement === NULL) {
+			throw new Exception('Opened file is not an XML document: ' . $source['src']);
+		}
 		$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($doc->documentElement);
 		return $entities;
 	}

@@ -56,9 +56,9 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	public function setXML($xml) {
 		assert('is_string($xml)');
 
-		$this->dom = new DOMDocument();
-		$ok = $this->dom->loadXML(str_replace ("\r", "", $xml));
-		if (!$ok) {
+		try {
+			$this->dom = SAML2_DOMDocumentFactory::fromString(str_replace ("\r", "", $xml));
+		} catch(\Exception $e) {
 			throw new Exception('Unable to parse AuthnResponse XML.');
 		}
 	}

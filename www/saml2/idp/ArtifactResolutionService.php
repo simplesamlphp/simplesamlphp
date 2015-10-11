@@ -54,8 +54,7 @@ $responseData = $store->get('artifact', $artifact);
 $store->delete('artifact', $artifact);
 
 if ($responseData !== NULL) {
-	$document = new DOMDocument();
-	$document->loadXML($responseData);
+	$document = SAML2_DOMDocumentFactory::fromString($responseData);
 	$responseXML = $document->firstChild;
 } else {
 	$responseXML = NULL;

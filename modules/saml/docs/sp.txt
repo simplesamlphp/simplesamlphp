@@ -459,7 +459,7 @@ Here we will list some examples for this authentication source.
 
 ### Using samlp:Extensions
 
-    $dom = new DOMDocument();
+    $dom = SAML2_DOMDocumentFactory::create();
     $ce = $dom->createElementNS('http://www.example.com/XFoo', 'xfoo:test', 'Test data!');
     $ext[] = new SAML2_XML_Chunk($ce);
 
