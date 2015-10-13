@@ -282,7 +282,7 @@ class SimpleSAML_Auth_Simple {
         if (!$this->isAuthenticated()) {
             return null;
         }
-        $session = SipleSAML_Session::getSessionFromRequest();
+        $session = SimpleSAML_Session::getSessionFromRequest();
         return $session->($this->authSource);
     }
 
