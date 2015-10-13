@@ -111,7 +111,7 @@ class SimpleSAML_Auth_Simple {
         if (array_key_exists('KeepPost', $params)) {
             $keepPost = (bool)$params['KeepPost'];
         } else {
-            $keepPost = TRUE;
+            $keepPost = true;
         }
 
         if (array_key_exists('ReturnTo', $params)) {
