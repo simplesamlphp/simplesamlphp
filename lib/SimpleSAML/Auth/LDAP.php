@@ -22,8 +22,8 @@ if (!defined('LDAP_OPT_DIAGNOSTIC_MESSAGE')) {
  * @author Anders Lund, UNINETT AS. <anders.lund@uninett.no>
  * @package simpleSAMLphp
  */
-class SimpleSAML_Auth_LDAP {
-
+class SimpleSAML_Auth_LDAP
+{
 
     /**
      * LDAP link identifier.
@@ -55,7 +55,8 @@ class SimpleSAML_Auth_LDAP {
      * @param bool $referrals
      */
     // TODO: Flesh out documentation.
-    public function __construct($hostname, $enable_tls = TRUE, $debug = FALSE, $timeout = 0, $port = 389, $referrals = TRUE) {
+    public function __construct($hostname, $enable_tls = TRUE, $debug = FALSE, $timeout = 0, $port = 389, $referrals = TRUE)
+    {
 
         // Debug.
         SimpleSAML_Logger::debug('Library - LDAP __construct(): Setup LDAP with ' .
@@ -123,7 +124,8 @@ class SimpleSAML_Auth_LDAP {
      * The exception's description
      * @return Exception
      */
-    private function makeException($description, $type = NULL) {
+    private function makeException($description, $type = NULL)
+    {
         $errNo = 0x00;
 
         // Log LDAP code and description, if possible.
@@ -202,7 +204,8 @@ class SimpleSAML_Auth_LDAP {
      * @throws SimpleSAML_Error_UserNotFound if:
      * - Zero entries was found
      */
-    private function search($base, $attribute, $value) {
+    private function search($base, $attribute, $value)
+    {
 
         // Create the search filter.
         $attribute = self::escape_filter_value($attribute, FALSE);
@@ -271,7 +274,8 @@ class SimpleSAML_Auth_LDAP {
      * - $allowZeroHits er TRUE and no result is found
      *
      */
-    public function searchfordn($base, $attribute, $value, $allowZeroHits = FALSE) {
+    public function searchfordn($base, $attribute, $value, $allowZeroHits = FALSE)
+    {
 
         // Traverse all search bases, returning DN if found.
         $bases = SimpleSAML\Utils\Arrays::arrayize($base);
@@ -314,7 +318,8 @@ class SimpleSAML_Auth_LDAP {
      * @param bool $escape Weather to escape the filter values or not
      * @return array
      */
-    public function searchformultiple($bases, $filters, $attributes = array(), $and = TRUE, $escape = TRUE) {
+    public function searchformultiple($bases, $filters, $attributes = array(), $and = TRUE, $escape = TRUE)
+    {
 
         // Escape the filter values, if requested
         if ($escape) {
@@ -418,7 +423,8 @@ class SimpleSAML_Auth_LDAP {
      * LDAP_INAPPROPRIATE_AUTH, LDAP_INSUFFICIENT_ACCESS
      * @throws SimpleSAML_Error_Exception on other errors
      */
-    public function bind($dn, $password, array $sasl_args = NULL) {
+    public function bind($dn, $password, array $sasl_args = NULL)
+    {
         $authz_id = null;
 
         if ($sasl_args != NULL) {
@@ -480,7 +486,8 @@ class SimpleSAML_Auth_LDAP {
      * @param $value
      * @return void
      */
-    public function setOption($option, $value) {
+    public function setOption($option, $value)
+    {
 
         // Attempt to set the LDAP option
         if (!@ldap_set_option($this->ldap, $option, $value)) {
@@ -515,7 +522,8 @@ class SimpleSAML_Auth_LDAP {
      * The array of attributes and their values.
      * @see http://no.php.net/manual/en/function.ldap-read.php
      */
-    public function getAttributes($dn, $attributes = NULL, $maxsize = NULL) {
+    public function getAttributes($dn, $attributes = NULL, $maxsize = NULL)
+    {
 
         // Preparations, including a pretty debug message...
         $description = 'all attributes';
@@ -592,7 +600,8 @@ class SimpleSAML_Auth_LDAP {
      * @return array|bool
      */
     // TODO: Documentation; only cleared up exception/log messages.
-    public function validate($config, $username, $password = null) {
+    public function validate($config, $username, $password = null)
+    {
 
         /* Escape any characters with a special meaning in LDAP. The following
          * characters have a special meaning (according to RFC 2253):
@@ -640,7 +649,8 @@ class SimpleSAML_Auth_LDAP {
      * @param array $values Array of values to escape
      * @return array Array $values, but escaped
      */
-    public static function escape_filter_value($values = array(), $singleValue = TRUE) {
+    public static function escape_filter_value($values = array(), $singleValue = TRUE)
+    {
         // Parameter validation
         if (!is_array($values)) {
             $values = array($values);
@@ -679,7 +689,8 @@ class SimpleSAML_Auth_LDAP {
      * @static
      * @return string
      */
-    public static function asc2hex32($string) {
+    public static function asc2hex32($string)
+    {
         for ($i = 0; $i < strlen($string); $i++) {
             $char = substr($string, $i, 1);
             if (ord($char) < 32) {
@@ -696,7 +707,8 @@ class SimpleSAML_Auth_LDAP {
     /**
      * Convert SASL authz_id into a DN
      */
-    private  function authzid_to_dn($searchBase, $searchAttributes, $authz_id) {
+    private  function authzid_to_dn($searchBase, $searchAttributes, $authz_id)
+    {
         if (preg_match("/^dn:/", $authz_id)) {
             return preg_replace("/^dn:/", "", $authz_id);
         }
@@ -736,5 +748,4 @@ class SimpleSAML_Auth_LDAP {
 
         return $dn;
     }
-
 }
