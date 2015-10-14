@@ -75,6 +75,14 @@ class SimpleSAML_Session
 
 
     /**
+     * Tells the session object that the save callback has been registered and there's no need to register it again.
+     *
+     * @var bool
+     */
+    private $callback_registered = false;
+
+
+    /**
      * This is an array of objects which will expire automatically after a set time. It is used
      * where one needs to store some information - for example a logout request, but doesn't
      * want it to be stored forever.
@@ -139,7 +147,7 @@ class SimpleSAML_Session
 
         $this->trackid = bin2hex(openssl_random_pseudo_bytes(5));
 
-        $this->dirty = true;
+        $this->markDirty();
 
         // initialize data for session check function if defined
         $globalConfig = SimpleSAML_Configuration::getInstance();
@@ -285,17 +293,22 @@ class SimpleSAML_Session
     }
 
     /**
-     * Destructor for this class. It will save the session to the session handler
-     * in case the session has been marked as dirty. Do nothing otherwise.
+     * Save the session to the store.
+     *
+     * This method saves the session to the session handler in case it has been marked as dirty.
+     *
+     * WARNING: please do not use this method directly unless you really need to and know what you are doing. Use
+     * markDirty() instead.
      */
-    public function __destruct()
+    public function save()
     {
         if (!$this->dirty) {
-            // session hasn't changed - don't bother saving it
+            // session hasn't changed, don't bother saving it
             return;
         }
 
         $this->dirty = false;
+        $this->callback_registered = false;
 
         $sh = SimpleSAML_SessionHandler::getSessionHandler();
 
@@ -308,6 +321,39 @@ class SimpleSAML_Session
             SimpleSAML_Logger::error('Unable to save session.');
             $e->logError();
         }
+    }
+
+    /**
+     * Mark this session as dirty.
+     *
+     * This method will register a callback to save the session right before any output is sent to the browser.
+     */
+    public function markDirty()
+    {
+        $this->dirty = true;
+
+        if (!function_exists('header_register_callback')) {
+            // PHP version < 5.4, can't register the callback
+            return;
+        }
+
+        if ($this->callback_registered) {
+            // we already have a shutdown callback registered for this object, no need to add another one
+            return;
+        }
+        $this->callback_registered = header_register_callback(array($this, 'save'));
+    }
+
+
+    /**
+     * Destroy the session.
+     *
+     * Destructor for this class. It will save the session to the session handler
+     * in case the session has been marked as dirty. Do nothing otherwise.
+     */
+    public function __destruct()
+    {
+        $this->save();
     }
 
     /**
@@ -385,7 +431,7 @@ class SimpleSAML_Session
 
         SimpleSAML_Logger::debug('Session: doLogin("'.$authority.'")');
 
-        $this->dirty = true;
+        $this->markDirty();
 
         if (isset($this->authData[$authority])) {
             // we are already logged in, log the user out first
@@ -443,7 +489,7 @@ class SimpleSAML_Session
             return;
         }
 
-        $this->dirty = true;
+        $this->markDirty();
 
         $this->callLogoutHandlers($authority);
         unset($this->authData[$authority]);
@@ -554,7 +600,7 @@ class SimpleSAML_Session
         assert('isset($this->authData[$authority])');
         assert('is_int($expire) || is_null($expire)');
 
-        $this->dirty = true;
+        $this->markDirty();
 
         if ($expire === null) {
             $globalConfig = SimpleSAML_Configuration::getInstance();
@@ -587,7 +633,7 @@ class SimpleSAML_Session
         }
 
         $this->authData[$authority]['LogoutHandlers'][] = $logout_handler;
-        $this->dirty = true;
+        $this->markDirty();
     }
 
     /**
@@ -612,7 +658,7 @@ class SimpleSAML_Session
         }
 
         unset($this->dataStore[$type][$id]);
-        $this->dirty = true;
+        $this->markDirty();
     }
 
     /**
@@ -677,7 +723,7 @@ class SimpleSAML_Session
 
         $this->dataStore[$type][$id] = $dataInfo;
 
-        $this->dirty = true;
+        $this->markDirty();
     }
 
     /**
@@ -836,7 +882,7 @@ class SimpleSAML_Session
 
         $this->associations[$idp][$association['id']] = $association;
 
-        $this->dirty = true;
+        $this->markDirty();
     }
 
 
@@ -899,7 +945,7 @@ class SimpleSAML_Session
 
         unset($this->associations[$idp][$associationId]);
 
-        $this->dirty = true;
+        $this->markDirty();
     }
 
 
