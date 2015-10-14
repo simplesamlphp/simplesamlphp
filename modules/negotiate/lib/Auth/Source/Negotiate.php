@@ -16,6 +16,20 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source {
 
 	private $config;
 	protected $ldap = NULL;
+	protected $backend = '';
+	protected $hostname = '';
+	protected $port = 389;
+	protected $referrals = true;
+	protected $enableTLS = false;
+	protected $debugLDAP = false;
+	protected $timeout = 30;
+	protected $keytab = '';
+	protected $base = array();
+	protected $attr = 'uid';
+	protected $subnet = null;
+	protected $admin_user = null;
+	protected $admin_pw = null;
+	protected $attributes = null;
 
 	/**
 	 * Constructor for this authentication source.
