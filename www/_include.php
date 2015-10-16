@@ -91,6 +91,3 @@ if (!file_exists($configdir.'/config.php')) {
 
 // set the timezone
 SimpleSAML\Utils\Time::initTimezone();
-
-// disable XML external entity loading explicitly
-libxml_disable_entity_loader();

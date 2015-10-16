@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "71490cffa1b80de46763a342a15b55af",
-    "content-hash": "1adf316fa698b60b8e8563dca982f107",
+    "hash": "b4170f6ef1aa19cf7299c56a91332fff",
+    "content-hash": "37c3a3afccac2b94a358d00516a2a3a8",
     "packages": [
         {
             "name": "psr/log",
@@ -88,21 +88,20 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v1.6.1",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "da4f356dfee6eaabac4fb8afb0de045e571c476b"
+                "reference": "f89856e2afe6ab6758c7f34c1fbe4ed8c952a623"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/da4f356dfee6eaabac4fb8afb0de045e571c476b",
-                "reference": "da4f356dfee6eaabac4fb8afb0de045e571c476b",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/f89856e2afe6ab6758c7f34c1fbe4ed8c952a623",
+                "reference": "f89856e2afe6ab6758c7f34c1fbe4ed8c952a623",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
-                "ext-mcrypt": "*",
                 "ext-openssl": "*",
                 "php": ">=5.3.3",
                 "psr/log": "~1.0",
@@ -134,7 +133,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2015-07-13 10:00:26"
+            "time": "2015-10-06 09:55:13"
         },
         {
             "name": "whitehat101/apr1-md5",
