@@ -707,8 +707,7 @@ class sspmod_saml_IdP_SAML2 {
 					break;
 				case 'raw':
 					if (is_string($value)) {
-						$doc = new DOMDocument();
-						$doc->loadXML('<root>' . $value . '</root>');
+						$doc = SAML2_DOMDocumentFactory::fromString('<root>' . $value . '</root>');
 						$value = $doc->firstChild->childNodes;
 					}
 					assert('$value instanceof DOMNodeList');

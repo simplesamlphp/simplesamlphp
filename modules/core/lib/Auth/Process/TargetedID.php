@@ -136,7 +136,7 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 				$nameId['SPNameQualifier'] = $state['Destination']['entityid'];
 			}
 
-			$doc = new DOMDocument();
+			$doc = SAML2_DOMDocumentFactory::create();
 			$root = $doc->createElement('root');
 			$doc->appendChild($root);
 

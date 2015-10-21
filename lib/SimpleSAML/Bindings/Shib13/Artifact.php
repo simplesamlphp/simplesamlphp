@@ -74,8 +74,9 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 	private static function extractResponse($soapResponse) {
 		assert('is_string($soapResponse)');
 
-		$doc = new DOMDocument();
-		if (!$doc->loadXML($soapResponse)) {
+		try {
+			$doc = SAML2_DOMDocumentFactory::fromString($soapResponse);
+		} catch(\Exception $e) {
 			throw new SimpleSAML_Error_Exception('Error parsing SAML 1 artifact response.');
 		}
 
@@ -101,7 +102,7 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 		 * Save the <saml1p:Response> element. Note that we need to import it
 		 * into a new document, in order to preserve namespace declarations.
 		 */
-		$newDoc = new DOMDocument();
+		$newDoc = SAML2_DOMDocumentFactory::create();
 		$newDoc->appendChild($newDoc->importNode($responseElement, TRUE));
 		$responseXML = $newDoc->saveXML();
 

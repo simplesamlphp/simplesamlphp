@@ -215,12 +215,11 @@ class SimpleSAML_Metadata_SAMLParser
      */
     public static function parseFile($file)
     {
-        $doc = new DOMDocument();
-
         $data = \SimpleSAML\Utils\HTTP::fetch($file);
 
-        $res = $doc->loadXML($data);
-        if ($res !== true) {
+        try {
+            $doc = SAML2_DOMDocumentFactory::fromString($data);
+        } catch(\Exception $e) {
             throw new Exception('Failed to read XML from file: '.$file);
         }
 
@@ -238,10 +237,9 @@ class SimpleSAML_Metadata_SAMLParser
      */
     public static function parseString($metadata)
     {
-        $doc = new DOMDocument();
-
-        $res = $doc->loadXML($metadata);
-        if ($res !== true) {
+        try {
+            $doc = SAML2_DOMDocumentFactory::fromString($metadata);
+        } catch(\Exception $e) {
             throw new Exception('Failed to parse XML string.');
         }
 
@@ -302,11 +300,12 @@ class SimpleSAML_Metadata_SAMLParser
 
         $data = \SimpleSAML\Utils\HTTP::fetch($file);
 
-        $doc = new DOMDocument();
-        $res = $doc->loadXML($data);
-        if ($res !== true) {
+        try {
+            $doc = SAML2_DOMDocumentFactory::fromString($data);
+        } catch(\Exception $e) {
             throw new Exception('Failed to read XML from file: '.$file);
         }
+
         if ($doc->documentElement === null) {
             throw new Exception('Opened file is not an XML document: '.$file);
         }
@@ -328,10 +327,9 @@ class SimpleSAML_Metadata_SAMLParser
      */
     public static function parseDescriptorsString($string)
     {
-        $doc = new DOMDocument();
-
-        $res = $doc->loadXML($string);
-        if ($res !== true) {
+        try {
+            $doc = SAML2_DOMDocumentFactory::fromString($string);
+        } catch(\Exception $e) {
             throw new Exception('Failed to parse XML string.');
         }
 
