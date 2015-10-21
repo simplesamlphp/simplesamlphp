@@ -313,15 +313,11 @@ class HTTP
 
         // get the white list of domains
         if ($trustedSites === null) {
-            $trustedSites = \SimpleSAML_Configuration::getInstance()->getArray('trusted.url.domains', null);
-            // TODO: remove this before 2.0
-            if ($trustedSites === null) {
-                $trustedSites = \SimpleSAML_Configuration::getInstance()->getArray('redirect.trustedsites', null);
-            }
+            $trustedSites = \SimpleSAML_Configuration::getInstance()->getValue('trusted.url.domains', array());
         }
 
         // validates the URL's host is among those allowed
-        if ($trustedSites !== null) {
+        if (is_array($trustedSites)) {
             assert(is_array($trustedSites));
             preg_match('@^https?://([^/]+)@i', $url, $matches);
             $hostname = $matches[1];
