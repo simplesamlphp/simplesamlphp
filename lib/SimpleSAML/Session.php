@@ -215,6 +215,9 @@ class SimpleSAML_Session
         if ($sessionId === null) {
             $checkToken = true;
             $sessionId = $sh->getCookieSessionId();
+            if ($sessionId === null) {
+                return null;
+            }
         } else {
             $checkToken = false;
         }
