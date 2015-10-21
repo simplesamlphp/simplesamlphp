@@ -820,8 +820,6 @@ $config = array(
      * URLs obtained from the input on your own (i.e. ReturnTo or RelayState
      * parameters obtained from the $_REQUEST array).
      *
-     * Set to NULL to disable checking of URLs.
-     *
      * simpleSAMLphp will automatically add your own domain (either by checking
      * it dynamically, or by using the domain defined in the 'baseurlpath'
      * directive, the latter having precedence) to the list of trusted domains,
@@ -829,7 +827,10 @@ $config = array(
      * telling simpleSAMLphp to verify URLs.
      *
      * Set to an empty array to disallow ALL redirections or links pointing to
-     * an external URL other than your own domain.
+     * an external URL other than your own domain. This is the default behaviour.
+     *
+     * Set to NULL to disable checking of URLs. DO NOT DO THIS UNLESS YOU KNOW
+     * WHAT YOU ARE DOING!
      *
      * Example:
      *   'trusted.url.domains' => array('sp.example.com', 'app.example.com'),
