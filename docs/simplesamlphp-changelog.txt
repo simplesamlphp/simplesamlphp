@@ -42,6 +42,7 @@ Released TBD
   * Fixed an issue with the login form that resulted in a `NOSTATE` error if the user clicked the login button twice.
   * Fixed an issue with replay detection in IdP-initiated flows.
   * Fixed an issue with SessionNotOnOrAfter that kept moving forward in the future with every SSO authentication.
+  * Fixed an issue with the session cookie being set twice for the first time.
   * Fixed an issue that prevented the SAML 1.X IdP to restart when the session is lost.
   * Fixed an issue that prevented classes using namespaces to be loaded automatically.
   * Fixed an issue that prevented certain metadata signatures to be verified (fixed upstream in `xmlseclibs`).
