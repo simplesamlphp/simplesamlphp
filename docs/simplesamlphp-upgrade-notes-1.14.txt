@@ -8,6 +8,10 @@ documents, or using encryption, is is still needed.
 PHP session cookies are now set to HTTP-only by default. This relates to the `session.phpsession.httponly`
 configuration option.
 
+The default value for the 'trusted.url.domains' option in the config file has been changed from null to an empty array,
+making SimpleSAMLphp secure to open redirection attacks by default. Setting it explicitly to null will re-allow
+insecure redirections.
+
 The jQuery version in use has been bumped to the latest 1.8.X version.
 
 The following deprecated files, directories and endpoints have been removed:
@@ -180,4 +184,4 @@ The following modules will no longer be shipped with the next version of SimpleS
     * `saml2debug`
     * `themefeidernd`
 
-The default value for trusted.url.domains in the config template has been changed from NULL to an empty array(), this sets a higher grade of default security. Resetting to NULL will re-allow untrusted routing.
+
