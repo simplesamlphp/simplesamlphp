@@ -179,3 +179,5 @@ The following modules will no longer be shipped with the next version of SimpleS
     * `openidProvider`
     * `saml2debug`
     * `themefeidernd`
+
+The default value for trusted.url.domains in the config template has been changed from NULL to an empty array(), this sets a higher grade of default security. Resetting to NULL will re-allow untrusted routing.
