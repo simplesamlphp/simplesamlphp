@@ -24,6 +24,7 @@ Released TBD
   * Added support for the Sender-Vouches method.
   * Added support for WantAssertionsSigned and AuthnRequestsSigned in SAML 2.0 SP metadata.
   * Added support for file uploads in the metadata converter.
+  * Added support for setting the prefix for Memcache keys.
   * Added support for the Hide From Discovery REFEDS Entity Category.
   * Added support for the eduPersonAssurance attribute.
   * Added support for the full SCHAC 1.5.0 schema.
