@@ -75,5 +75,4 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store
 
 		SimpleSAML_Memcache::delete($name . '.' . $type . '.' . $key);
 	}
-
 }
