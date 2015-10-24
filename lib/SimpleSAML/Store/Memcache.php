@@ -10,7 +10,20 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store
     /**
      * Initialize the memcache datastore.
      */
+
+    /**
+     * This variable contains the session name prefix.
+     *
+     * @var string
+     */
+    private $prefix;
+
+    /**
+     * This function implements the constructor for this class. It loads the Memcache configuration.
+     */
     protected function __construct() {
+        $config = SimpleSAML_Configuration::getInstance();
+        $this->prefix = $config->getString('memcache_store.name', 'simpleSAMLphp');
     }
 
 
@@ -26,7 +39,7 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store
         assert('is_string($type)');
         assert('is_string($key)');
 
-        return SimpleSAML_Memcache::get('simpleSAMLphp.' . $type . '.' . $key);
+        return SimpleSAML_Memcache::get($this->prefix . '.' . $type . '.' . $key);
     }
 
 
@@ -48,7 +61,7 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store
             $expire = 0;
         }
 
-        SimpleSAML_Memcache::set('simpleSAMLphp.' . $type . '.' . $key, $value, $expire);
+        SimpleSAML_Memcache::set($this->prefix . '.' . $type . '.' . $key, $value, $expire);
     }
 
 
@@ -63,6 +76,6 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store
         assert('is_string($type)');
         assert('is_string($key)');
 
-        SimpleSAML_Memcache::delete('simpleSAMLphp.' . $type . '.' . $key);
+        SimpleSAML_Memcache::delete($this->prefix . '.' . $type . '.' . $key);
     }
 }
