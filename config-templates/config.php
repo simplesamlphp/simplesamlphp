@@ -765,6 +765,17 @@ $config = array(
 
 
     /*
+     * This value allows you to set a prefix for memcache-keys. The default
+     * for this value is 'simpleSAMLphp', which is fine in most cases.
+     *
+     * When running multiple instances of SSP on the same host, and more
+     * than one instance is using memcache, you probably want to assign
+     * a unique value per instance to this setting to avoid data collision.
+     */
+    'memcache_store.prefix' => null,
+
+
+    /*
      * This value is the duration data should be stored in memcache. Data
      * will be dropped from the memcache servers when this time expires.
      * The time will be reset every time the data is written to the
