@@ -5,12 +5,13 @@
  *
  * @package simpleSAMLphp
  */
-class SimpleSAML_Store_Memcache extends SimpleSAML_Store {
-
+class SimpleSAML_Store_Memcache extends SimpleSAML_Store
+{
 	/**
 	 * Initialize the memcache datastore.
 	 */
-	protected function __construct() {
+	protected function __construct()
+	{
 	}
 
 
@@ -21,7 +22,8 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store {
 	 * @param string $key  The key.
 	 * @return mixed|NULL  The value.
 	 */
-	public function get($type, $key) {
+	public function get($type, $key)
+	{
 		assert('is_string($type)');
 		assert('is_string($key)');
 
@@ -40,12 +42,13 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store {
 	 * @param mixed $value  The value.
 	 * @param int|NULL $expire  The expiration time (unix timestamp), or NULL if it never expires.
 	 */
-	public function set($type, $key, $value, $expire = NULL) {
+	public function set($type, $key, $value, $expire = null)
+	{
 		assert('is_string($type)');
 		assert('is_string($key)');
 		assert('is_null($expire) || (is_int($expire) && $expire > 2592000)');
 
-		if ($expire === NULL) {
+		if ($expire === null) {
 			$expire = 0;
 		}
 
@@ -62,11 +65,15 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store {
 	 * @param string $type  The datatype.
 	 * @param string $key  The key.
 	 */
-	public function delete($type, $key) {
+	public function delete($type, $key)
+	{
 		assert('is_string($type)');
 		assert('is_string($key)');
 
-		SimpleSAML_Memcache::delete('simpleSAMLphp.' . $type . '.' . $key);
+		$config = SimpleSAML_Configuration::getInstance();
+		$name = $config->getString('memcache_store.name', 'simpleSAMLphp');
+
+		SimpleSAML_Memcache::delete($name . '.' . $type . '.' . $key);
 	}
 
 }
