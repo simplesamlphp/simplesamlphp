@@ -763,6 +763,18 @@ $config = array(
         ),
     ),
 
+    /*
+     * This value is the name under which the data which the data should be
+     * stored in memcache. It defaults to 'simpleSAMLphp', which is fine
+     * in most cases.
+     *
+     * Change this value when you have multiple instances of SimpleSAMLphp
+     * running on the same host that all use memcache to avoid data
+     * collision.
+     *
+     */
+    'memcache_store.name' => null,
+
 
     /*
      * This value is the duration data should be stored in memcache. Data

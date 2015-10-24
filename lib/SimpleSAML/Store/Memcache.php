@@ -25,7 +25,10 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store {
 		assert('is_string($type)');
 		assert('is_string($key)');
 
-		return SimpleSAML_Memcache::get('simpleSAMLphp.' . $type . '.' . $key);
+		$config = SimpleSAML_Configuration::getInstance();
+		$name = $config->getString('memcache_store.name', 'simpleSAMLphp');
+
+		return SimpleSAML_Memcache::get($name . '.' . $type . '.' . $key);
 	}
 
 
@@ -46,7 +49,10 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store {
 			$expire = 0;
 		}
 
-		SimpleSAML_Memcache::set('simpleSAMLphp.' . $type . '.' . $key, $value, $expire);
+		$config = SimpleSAML_Configuration::getInstance();
+		$name = $config->getString('memcache_store.name', 'simpleSAMLphp');
+
+		SimpleSAML_Memcache::set($name . '.' . $type . '.' . $key, $value, $expire);
 	}
 
 
