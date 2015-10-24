@@ -23,7 +23,7 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store
      */
     protected function __construct() {
         $config = SimpleSAML_Configuration::getInstance();
-        $this->prefix = $config->getString('memcache_store.name', 'simpleSAMLphp');
+        $this->prefix = $config->getString('memcache_store.prefix', 'simpleSAMLphp');
     }
 
 
