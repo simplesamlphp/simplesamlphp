@@ -43,6 +43,10 @@ class SimpleSAML_SessionHandlerStore extends SimpleSAML_SessionHandlerCookie
 
         if ($sessionId === null) {
             $sessionId = $this->getCookieSessionId();
+            if ($sessionId === null) {
+                // no session cookie, nothing to load
+                return null;
+            }
         }
 
         $session = $this->store->get('session', $sessionId);

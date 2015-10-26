@@ -60,9 +60,9 @@ abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
 
 
     /**
-     * Retrieve the session id of saved in the session cookie.
+     * Retrieve the session ID saved in the session cookie, if there's one.
      *
-     * @return string The session id saved in the cookie.
+     * @return string|null The session id saved in the cookie or null if no session cookie was set.
      */
     public function getCookieSessionId()
     {
@@ -74,8 +74,8 @@ abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
 
             // check if we have a valid session id
             if (!self::isValidSessionID($this->session_id)) {
-                // we don't have a valid session. Create a new session id
-                return self::newSessionId();
+                // invalid, disregard this session
+                return null;
             }
         }
 
