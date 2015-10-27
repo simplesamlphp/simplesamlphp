@@ -37,6 +37,7 @@ Released TBD
 
   * Fixed an issue with friendly names in the attributes released.
   * Fixed an issue with memcache that would result in a push for every fetch, when several servers configured.
+  * Fixed an issue with memcache that would result in an endless loop if all servers are down.
   * Fixed an issue with HTML escaping in error reports.
   * Fixed an issue with the 'admin.protectmetadata' option not being enforced for SP metadata.
   * Fixed an issue with SAML 1.X SSO authentications that removed the NameID of the subject from available data.
