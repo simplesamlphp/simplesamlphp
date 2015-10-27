@@ -43,6 +43,7 @@ class SimpleSAML_Memcache
         $latestTime = 0.0;
         $latestData = null;
         $mustUpdate = false;
+        $allDown = true;
 
         // search all the servers for the given id
         foreach (self::getMemcacheServers() as $server) {
@@ -50,8 +51,13 @@ class SimpleSAML_Memcache
             if ($serializedInfo === false) {
                 // either the server is down, or we don't have the value stored on that server
                 $mustUpdate = true;
+                $up = $server->getstats();
+                if ($up !== false) {
+                    $allDown = false;
+                }
                 continue;
             }
+            $allDown = false;
 
             // unserialize the object
             $info = unserialize($serializedInfo);
@@ -105,6 +111,11 @@ class SimpleSAML_Memcache
         }
 
         if ($latestData === null) {
+            if ($allDown) {
+                // all servers are down, panic!
+                $e = new SimpleSAML_Error_Error('MEMCACHEDOWN', null, 503);
+                throw new SimpleSAML_Error_Exception('All memcache servers are down', 503, $e);
+            }
             // we didn't find any data matching the key
             SimpleSAML_Logger::debug("key $key not found in memcache");
             return null;
@@ -266,7 +277,7 @@ class SimpleSAML_Memcache
         }
 
         // add this server to the Memcache object
-        $memcache->addServer($hostname, $port, true, $weight, $timeout);
+        $memcache->addServer($hostname, $port, true, $weight, $timeout, $timeout, true);
     }
 
 
