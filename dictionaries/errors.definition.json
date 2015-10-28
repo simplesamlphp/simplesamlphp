@@ -234,6 +234,6 @@
 		"en": "Cannot retrieve session data"
 	},
 	"descr_MEMCACHEDOWN": {
-		"en": "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes"
+		"en": "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
 	}
 }
