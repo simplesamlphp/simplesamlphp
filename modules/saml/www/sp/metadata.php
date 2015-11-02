@@ -240,6 +240,7 @@ if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
 
 	$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
 
+	$t->data['clipboard.js'] = true;
 	$t->data['header'] = 'saml20-sp';
 	$t->data['metadata'] = htmlspecialchars($xml);
 	$t->data['metadataflat'] = '$metadata[' . var_export($entityId, TRUE) . '] = ' . var_export($metaArray20, TRUE) . ';';

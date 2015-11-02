@@ -76,6 +76,11 @@ if(!empty($jquery)) {
 	}
 }
 
+if (isset($this->data['clipboard.js'])) {
+	echo '<script type="text/javascript" src="/'. $this->data['baseurlpath'] .
+		 'resources/clipboard.min.js"></script>'."\n";
+}
+
 if(!empty($this->data['htmlinject']['htmlContentHead'])) {
 	foreach($this->data['htmlinject']['htmlContentHead'] AS $c) {
 		echo $c;

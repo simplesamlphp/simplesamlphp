@@ -84,9 +84,9 @@ try {
 		$defaultidp = $config->getString('default-shib13-idp', NULL);
 		
 		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
-	
+
+		$t->data['clipboard.js'] = true;
 		$t->data['header'] = 'shib13-idp';
-		
 		$t->data['metaurl'] = \SimpleSAML\Utils\HTTP::addURLParameters(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery(), array('output' => 'xml'));
 		$t->data['metadata'] = htmlspecialchars($metaxml);
 		$t->data['metadataflat'] = htmlspecialchars($metaflat);

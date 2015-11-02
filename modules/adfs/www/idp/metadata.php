@@ -132,6 +132,7 @@ try {
 
 		$t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
 
+		$t->data['clipboard.js'] = true;
 		$t->data['available_certs'] = $availableCerts;
 		$t->data['header'] = 'adfs-idp';
 		$t->data['metaurl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
