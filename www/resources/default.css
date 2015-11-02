@@ -320,6 +320,12 @@ table.attributes tr td {
 	
 	vertical-align: top;
 }
+
+.attrvalue {
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
 table#table_with_attributes tr:last-child td {
 	border-bottom: none;
 }
