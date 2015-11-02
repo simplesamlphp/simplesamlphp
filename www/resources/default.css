@@ -170,6 +170,13 @@ h6 {
 	font-size: 96%;
 }
 
+input {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 5px;
+	line-height: 1.5em;
+}
+
 h1 a {
 	text-decoration: none;
 	border: none ! important;
@@ -402,19 +409,21 @@ caption {
 	background-color: #eee;
 	background-image: linear-gradient(#fcfcfc, #eee);
 	text-align: center;
+	padding: 5px;
+	cursor: hand;
 }
 
 .btn:hover, .btnaddonright:hover {
 	border-color: #ccc;
 	background-color: #ddd;
 	background-image: linear-gradient(#eee, #ddd);
+
 }
 
 .btn img,
 .btnaddonright img {
 	max-height: 15px;
 	max-width: 15px;
-	margin: 5px;
 }
 
 .topright {
