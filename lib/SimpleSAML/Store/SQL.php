@@ -95,7 +95,12 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 			return;
 		}
 
-		$query = 'CREATE TABLE ' . $this->prefix . '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value TEXT NOT NULL, _expire TIMESTAMP, PRIMARY KEY (_key, _type))';
+		if ($this->driver === 'sqlsrv') {
+		  $query = 'CREATE TABLE ' . $this->prefix . '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value TEXT NOT NULL, _expire DATETIME, PRIMARY KEY (_key, _type))'; 
+		} else {
+		  $query = 'CREATE TABLE ' . $this->prefix . '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value TEXT NOT NULL, _expire TIMESTAMP, PRIMARY KEY (_key, _type))';
+		}
+    
 		$this->pdo->exec($query);
 
 		$query = 'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON '  . $this->prefix . '_kvstore (_expire)';
@@ -145,29 +150,87 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 	 * we abstract it away here.
 	 *
 	 * @param string $table  The table we should update.
-	 * @param array $key  The key columns.
+	 * @param array $keys  The key columns.
 	 * @param array $data  Associative array with columns.
 	 */
 	public function insertOrUpdate($table, array $keys, array $data) {
+		switch ($this->driver) {
+			case 'mysql':
+				$this->_insertOrUpdateMySQL($table, $keys, $data);
+				return;
+			case 'sqlite':
+				$this->_insertOrUpdateSQLLite($table, $keys, $data);
+				return;
+			case 'sqlsrv':
+				$this->_insertOrUpdateSQLServer($table, $keys, $data);
+				return;
+			default:
+				$this->_insertOrUpdateSqlEngine($table, $keys, $data);
+				return;
+		}
+	}
+
+	private function _insertOrUpdateSQLServer($table, array $keys, array $data) {
+		assert('is_string($table)');
+
+		$condParams = implode(', @', $keys);
+		$sourceCols = implode('], [', $keys);    
+		$allFields = array_keys($data);    
+		$allCols = implode('], [', $allFields);
+		$allParams = implode(', @', $allFields);
+		$updateCols = array_diff($allFields, $keys);
+
+		$onStatementConditions = array();    
+		foreach ($keys as $key) {
+			$onStatementConditions[] = '[target].[' . $key . '] = [source].[' . $key . ']';
+		}    
+		$onStatement = implode(' AND ', $onStatementConditions);
+
+		$setStatementAssignments = array();
+		foreach ($updateCols as $field) {
+			$setStatementAssignments[] = '[' . $field . '] = @' . $field;
+		}
+		$setStatement = implode(', ', $setStatementAssignments);
+
+		$query = 'MERGE [' . $table . '] WITH (HOLDLOCK) AS [target]';
+		$query .= ' USING (SELECT @' . $condParams . ') AS [source] ([' . $sourceCols . '])';
+		$query .= ' ON ' . $onStatement;
+		$query .= ' WHEN MATCHED THEN';
+		$query .= ' UPDATE SET ' . $setStatement;
+		$query .= ' WHEN NOT MATCHED THEN';
+		$query .= ' INSERT ([' . $allCols . ']) VALUES (@' . $allParams . ')';
+
+		$query = $this->pdo->prepare($query);
+		$query->execute($data);
+	}
+  
+	private function _insertOrUpdateMySQL($table, array $keys, array $data) {
 		assert('is_string($table)');
 
 		$colNames = '(' . implode(', ', array_keys($data)) . ')';
 		$values = 'VALUES(:' . implode(', :', array_keys($data)) . ')';
 
-		switch ($this->driver) {
-		case 'mysql':
-			$query = 'REPLACE INTO ' . $table . ' ' . $colNames . ' ' . $values;
-			$query = $this->pdo->prepare($query);
-			$query->execute($data);
-			return;
-		case 'sqlite':
-			$query = 'INSERT OR REPLACE INTO ' . $table . ' ' . $colNames . ' ' . $values;
-			$query = $this->pdo->prepare($query);
-			$query->execute($data);
-			return;
-		}
+		$query = 'REPLACE INTO ' . $table . ' ' . $colNames . ' ' . $values;
+		$query = $this->pdo->prepare($query);
+		$query->execute($data);
+	}
 
-		/* Default implementation. Try INSERT, and UPDATE if that fails. */
+	private function _insertOrUpdateSQLLite($table, array $keys, array $data) {
+		assert('is_string($table)');
+
+		$colNames = '(' . implode(', ', array_keys($data)) . ')';
+		$values = 'VALUES(:' . implode(', :', array_keys($data)) . ')';
+
+		$query = 'INSERT OR REPLACE INTO ' . $table . ' ' . $colNames . ' ' . $values;
+		$query = $this->pdo->prepare($query);
+		$query->execute($data);
+	}
+  
+	private function _insertOrUpdateSqlEngine($table, array $keys, array $data) {
+		assert('is_string($table)');
+
+		$colNames = '(' . implode(', ', array_keys($data)) . ')';
+		$values = 'VALUES(:' . implode(', :', array_keys($data)) . ')';
 
 		$insertQuery = 'INSERT INTO ' . $table . ' ' . $colNames . ' ' . $values;
 		$insertQuery = $this->pdo->prepare($insertQuery);
@@ -177,18 +240,17 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 		} catch (PDOException $e) {
 			$ecode = (string)$e->getCode();
 			switch ($ecode) {
-			case '23505': /* PostgreSQL */
-				break;
-			default:
-				SimpleSAML_Logger::error('Error while saving data: ' . $e->getMessage());
-				throw $e;
+				case '23505': /* PostgreSQL */
+					break;
+				default:
+					SimpleSAML_Logger::error('Error while saving data: ' . $e->getMessage());
+					throw $e;
 			}
 		}
 
 		$updateCols = array();
 		$condCols = array();
 		foreach ($data as $col => $value) {
-
 			$tmp = $col . ' = :' . $col;
 
 			if (in_array($col, $keys, TRUE)) {
