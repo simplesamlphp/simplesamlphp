@@ -404,6 +404,7 @@ caption {
 }
 
 .btn, .btnaddonright {
+	color: #000000;
 	border: 1px solid #eee;
 	border-radius: 3px;
 	background-color: #eee;
@@ -436,11 +437,13 @@ caption {
 }
 
 .input-group pre {
+	background: white;
 	position: relative;
 	width: 100%;
 	vertical-align: middle;
 	border: 1px solid #eee;
 	padding: 0.5em;
+	display: table-cell;
 }
 
 .input-group .btnaddonright {
@@ -455,10 +458,6 @@ caption {
 
 .input-group .btnaddonright:hover {
 	border-left: 1px solid #ccc;
-}
-
-.input-group pre {
-	display: table-cell;
 }
 
 .input-group .input-left {
