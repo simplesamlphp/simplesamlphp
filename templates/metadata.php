@@ -8,7 +8,7 @@ $this->includeAtTemplateBase('includes/header.php'); ?>
     <div class="input-group">
         <pre id="metadataurl" class="input-left"><?php echo htmlspecialchars($this->data['metaurl']); ?></pre>
         <button data-clipboard-target="#metadataurl" id="btnurl" class="btnaddonright">
-            <img src="<?php echo $this->data['baseurlpath'].'/resources/icons/clipboard.svg'; ?>"
+            <img src="/<?php echo $this->data['baseurlpath'].'/resources/icons/clipboard.svg'; ?>"
                  alt="Copy to clipboard">
         </button>
     </div>
@@ -17,7 +17,7 @@ $this->includeAtTemplateBase('includes/header.php'); ?>
     <p><?php echo($this->t('metadata_xmlformat')); ?></p>
     <div class="metadatabox">
          <button data-clipboard-target="#xmlmetadata" id="btnxml" class="btn topright" style="margin-right: 0.5em;">
-            <img src="<?php echo $this->data['baseurlpath'].'/resources/icons/clipboard.svg'; ?>"
+            <img src="/<?php echo $this->data['baseurlpath'].'/resources/icons/clipboard.svg'; ?>"
                  alt="Copy to clipboard">
         </button>
         <pre id="xmlmetadata"><?php echo $this->data['metadata']; ?></pre>
@@ -26,7 +26,7 @@ $this->includeAtTemplateBase('includes/header.php'); ?>
     <p><?php echo($this->t('metadata_simplesamlformat')); ?></p>
     <div class="metadatabox">
         <button data-clipboard-target="#phpmetadata" id="btnphp" class="btn topright" style="margin-right: 0.5em;">
-            <img src="<?php echo $this->data['baseurlpath'].'/resources/icons/clipboard.svg'; ?>"
+            <img src="/<?php echo $this->data['baseurlpath'].'/resources/icons/clipboard.svg'; ?>"
                  alt="Copy to clipboard">
         </button>
         <pre id="phpmetadata"><?php echo $this->data['metadataflat']; ?></pre>

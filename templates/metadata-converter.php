@@ -33,7 +33,7 @@ if (!empty($output)) {
     <div class="metadatabox">
         <button data-clipboard-target="#metadata<?php echo $i; ?>" id="btn<?php echo $i; ?>"
                 class="btn topright" style="margin-right: 0.5em;">
-            <img src="<?php echo $this->data['baseurlpath'].'/resources/icons/clipboard.svg'; ?>"
+            <img src="/<?php echo $this->data['baseurlpath'].'/resources/icons/clipboard.svg'; ?>"
                  alt="Copy to clipboard">
         </button>
         <pre id="metadata<?php echo $i; ?>"><?php
