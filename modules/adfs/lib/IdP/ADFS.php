@@ -96,6 +96,7 @@ class sspmod_adfs_IdP_ADFS {
 		$objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);	
 		$responsedom = SAML2_DOMDocumentFactory::fromString(str_replace ("\r", "", $response));
 		$firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
+		/* TODO: this hardcodes SHA-1. Can we upgrade to something better? */
 		$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1,
 			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
 			array('id_name' => 'AssertionID'));
