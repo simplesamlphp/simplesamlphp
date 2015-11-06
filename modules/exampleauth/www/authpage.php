@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$user = $users[$username];
 
 		if (!session_id()) {
-			/* session_start not called before. Do it here. */
+			// session_start not called before. Do it here.
 			session_start();
 		}
 

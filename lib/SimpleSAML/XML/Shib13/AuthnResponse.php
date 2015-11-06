@@ -75,17 +75,17 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		assert('$this->dom instanceof DOMDocument');
 
 		if ($this->messageValidated) {
-			/* This message was validated externally. */
+			// This message was validated externally
 			return TRUE;
 		}
 
-		/* Validate the signature. */
+		// Validate the signature
 		$this->validator = new SimpleSAML_XML_Validator($this->dom, array('ResponseID', 'AssertionID'));
 
-		// Get the issuer of the response.
+		// Get the issuer of the response
 		$issuer = $this->getIssuer();
 
-		/* Get the metadata of the issuer. */
+		// Get the metadata of the issuer
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$md = $metadata->getMetaDataConfig($issuer, 'shib13-idp-remote');
 
@@ -102,10 +102,10 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		} elseif ($md->hasValue('certFingerprint')) {
 			$certFingerprints = $md->getArrayizeString('certFingerprint');
 
-			/* Validate the fingerprint. */
+			// Validate the fingerprint
 			$this->validator->validateFingerprint($certFingerprints);
 		} elseif ($md->hasValue('caFile')) {
-			/* Validate against CA. */
+			// Validate against CA
 			$this->validator->validateCA(\SimpleSAML\Utils\Config::getCertPath($md->getString('caFile')));
 		} else {
 			throw new SimpleSAML_Error_Exception('Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider [' . $issuer . '].');
@@ -123,7 +123,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	private function isNodeValidated($node) {
 
 		if ($this->messageValidated) {
-			/* This message was validated externally. */
+			// This message was validated externally
 			return TRUE;
 		}
 
@@ -131,7 +131,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 			return FALSE;
 		}
 
-		/* Convert the node to a DOM node if it is an element from SimpleXML. */
+		// Convert the node to a DOM node if it is an element from SimpleXML
 		if($node instanceof SimpleXMLElement) {
 			$node = dom_import_simplexml($node);
 		}
@@ -308,7 +308,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		
 		$issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
 		
-		// 30 seconds timeskew back in time to allow differing clocks.
+		// 30 seconds timeskew back in time to allow differing clocks
 		$notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
 		
 		

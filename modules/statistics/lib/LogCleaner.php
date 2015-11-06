@@ -62,7 +62,7 @@ class sspmod_statistics_LogCleaner {
 			
 			$logline = fgets($file, 4096);
 			
-			// Continue if STAT is not found on line.
+			// Continue if STAT is not found on line
 			if (!preg_match('/STAT/', $logline)) continue;
 			$i++;
 			
@@ -119,9 +119,9 @@ class sspmod_statistics_LogCleaner {
 		
 		$file = fopen($this->inputfile, 'r');
 
-		/* Open the output file in a way that guarantees that we will not overwrite a random file. */
+		// Open the output file in a way that guarantees that we will not overwrite a random file.
 		if (file_exists($outputfile)) {
-			/* Delete existing output file. */
+			// Delete existing output file.
 			unlink($outputfile);
 		}
 		$outfile = fopen($outputfile, 'x'); /* Create the output file. */

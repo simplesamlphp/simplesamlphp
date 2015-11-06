@@ -111,7 +111,7 @@ class sspmod_saml_IdP_SQLNameID  {
 
 		$row = $query->fetch(PDO::FETCH_ASSOC);
 		if ($row === FALSE) {
-			/* No NameID found. */
+			// No NameID found
 			return NULL;
 		}
 

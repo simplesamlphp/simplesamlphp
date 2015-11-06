@@ -1009,7 +1009,7 @@ class SimpleSAML_Metadata_SAMLParser
                 if ($e instanceof SAML2_XML_mdattr_EntityAttributes && !empty($e->children)) {
                     foreach ($e->children as $attr) {
                         // only saml:Attribute are currently supported here. The specifications also allows
-                        // saml:Assertions, which more complex processing.
+                        // saml:Assertions, which more complex processing
                         if ($attr instanceof SAML2_XML_saml_Attribute) {
                             if (empty($attr->Name) || empty($attr->AttributeValue)) {
                                 continue;

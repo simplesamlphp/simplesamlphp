@@ -29,7 +29,7 @@ $title = $this->data['title'];
 $table = $this->data['table'];
 
 
-/* Identify column headings. */
+// Identify column headings
 $column_titles = array();
 foreach($table as $row_title => $row_data) {
 	foreach($row_data as $ct => $foo) {

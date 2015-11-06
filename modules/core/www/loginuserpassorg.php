@@ -9,7 +9,7 @@
  * @package SimpleSAMLphp
  */
 
-/* Retrieve the authentication state. */
+// Retrieve the authentication state
 if (!array_key_exists('AuthState', $_REQUEST)) {
 	throw new SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
 }
@@ -63,7 +63,7 @@ if ($organizations === NULL || !empty($organization)) {
 		try {
 			sspmod_core_Auth_UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
 		} catch (SimpleSAML_Error_Error $e) {
-			/* Login failed. Extract error code and parameters, to display the error. */
+			// Login failed. Extract error code and parameters, to display the error
 			$errorCode = $e->getErrorCode();
 			$errorParams = $e->getParameters();
 		}

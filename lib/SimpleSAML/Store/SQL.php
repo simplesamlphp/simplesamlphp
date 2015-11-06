@@ -91,7 +91,7 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 	private function initKVTable() {
 
 		if ($this->getTableVersion('kvstore') === 1) {
-			/* Table initialized. */
+			// Table initialized
 			return;
 		}
 
@@ -167,7 +167,7 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 			return;
 		}
 
-		/* Default implementation. Try INSERT, and UPDATE if that fails. */
+		// Default implementation. Try INSERT, and UPDATE if that fails.
 
 		$insertQuery = 'INSERT INTO ' . $table . ' ' . $colNames . ' ' . $values;
 		$insertQuery = $this->pdo->prepare($insertQuery);
@@ -177,7 +177,7 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 		} catch (PDOException $e) {
 			$ecode = (string)$e->getCode();
 			switch ($ecode) {
-			case '23505': /* PostgreSQL */
+			case '23505': // PostgreSQL
 				break;
 			default:
 				SimpleSAML_Logger::error('Error while saving data: ' . $e->getMessage());

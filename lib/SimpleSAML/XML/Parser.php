@@ -20,7 +20,7 @@ class SimpleSAML_XML_Parser  {
 	
 	public static function fromSimpleXMLElement(SimpleXMLElement $element) {
 		
-		// Traverse all existing namespaces in element.
+		// Traverse all existing namespaces in element
 		$namespaces = $element->getNamespaces();
 		foreach ($namespaces AS $prefix => $ns) {
 			$element[(($prefix === '') ? 'xmlns' : 'xmlns:' . $prefix)] = $ns;

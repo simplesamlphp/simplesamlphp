@@ -123,7 +123,7 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 		$uid = hash('sha1', $uidData);
 
 		if ($this->generateNameId) {
-			/* Convert the targeted ID to a SAML 2.0 name identifier element. */
+			// Convert the targeted ID to a SAML 2.0 name identifier element
 			$nameId = array(
 				'Format' => SAML2_Const::NAMEID_PERSISTENT,
 				'Value' => $uid,

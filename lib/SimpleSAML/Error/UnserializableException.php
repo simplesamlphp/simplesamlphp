@@ -34,7 +34,7 @@ class SimpleSAML_Error_UnserializableException extends SimpleSAML_Error_Exceptio
 		$code = $original->getCode();
 
 		if (!is_int($code)) {
-			/* PDOException uses a string as the code. Filter it out here. */
+			// PDOException uses a string as the code. Filter it out here.
 			$code = -1;
 		}
 

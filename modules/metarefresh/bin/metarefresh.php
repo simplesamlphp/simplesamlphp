@@ -7,10 +7,10 @@
  */
 
 
-/* This is the base directory of the SimpleSAMLphp installation. */
+// This is the base directory of the SimpleSAMLphp installation
 $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 
-/* Add library autoloader. */
+// Add library autoloader.
 require_once($baseDir . '/lib/_autoload.php');
 
 SimpleSAML_Session::useTransientSession(); /* No need to try to create a session here. */

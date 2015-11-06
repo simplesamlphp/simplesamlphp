@@ -60,7 +60,7 @@ class SimpleSAML_Auth_Default {
 
 		$as = SimpleSAML_Auth_Source::getById($authority);
 		if ($as === NULL) {
-			/* The authority wasn't an authentication source... */
+			// The authority wasn't an authentication source...
 			self::logoutCompleted($state);
  		}
 

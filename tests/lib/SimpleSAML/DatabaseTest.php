@@ -62,7 +62,7 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 
         $this->config = new SimpleSAML_Configuration($config, "test/SimpleSAML/DatabaseTest.php");
 
-        // Ensure that we have a functional configuration class.
+        // Ensure that we have a functional configuration class
         $this->assertInstanceOf('SimpleSAML_Configuration', $this->config);
         $this->assertEquals($config['database.dsn'], $this->config->getString('database.dsn'));
 

@@ -76,7 +76,7 @@ class SimpleSAML_Auth_Simple {
 		$session = SimpleSAML_Session::getSessionFromRequest();
 
 		if ($session->isValid($this->authSource)) {
-			/* Already authenticated. */
+			// Already authenticated
 			return;
 		}
 
@@ -239,11 +239,11 @@ class SimpleSAML_Auth_Simple {
 	public function getAttributes() {
 
 		if (!$this->isAuthenticated()) {
-			/* Not authenticated. */
+			// Not authenticated
 			return array();
 		}
 
-		/* Authenticated. */
+		// Authenticated
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		return $session->getAuthData($this->authSource, 'Attributes');
 	}

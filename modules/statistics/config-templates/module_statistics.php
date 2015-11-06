@@ -5,9 +5,9 @@
 
 $config = array (
 
-	/* Authentication & authorization for statistics. */
+	// Authentication & authorization for statistics
 
-	/* Whether the statistics require authentication before use. */
+	// Whether the statistics require authentication before use.
 	'protected' => FALSE,
 
 	/* The authentication source that should be used. */

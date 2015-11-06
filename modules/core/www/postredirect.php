@@ -34,7 +34,7 @@ if ($session === NULL) {
 $postData = $session->getData('core_postdatalink', $postId);
 
 if ($postData === NULL) {
-	/* The post data is missing, probably because it timed out. */
+	// The post data is missing, probably because it timed out
 	throw new Exception('The POST data we should restore was lost.');
 }
 

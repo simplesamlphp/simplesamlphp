@@ -44,7 +44,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		assert('is_array($info)');
 		assert('is_array($config)');
 
-		/* Call the parent constructor first, as required by the interface. */
+		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
 		if (!isset($config['entityID'])) {
@@ -115,7 +115,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-		/* First, look in saml20-idp-remote. */
+		// First, look in saml20-idp-remote.
 		try {
 			return $metadataHandler->getMetaDataConfig($entityId, 'saml20-idp-remote');
 		} catch (Exception $e) {

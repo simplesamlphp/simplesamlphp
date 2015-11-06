@@ -172,7 +172,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
      */
     protected function setHTTPCode()
     {
-        // Some mostly used HTTP codes.
+        // Some mostly used HTTP codes
         $httpCodesMap = array(
             400 => 'HTTP/1.0 400 Bad Request',
             403 => 'HTTP/1.0 403 Forbidden',

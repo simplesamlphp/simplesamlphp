@@ -1,8 +1,8 @@
 <?php
 // vim: foldmethod=marker
 
-/* Generic exception class
- */
+// Generic exception class
+
 class OAuthException extends Exception {
   // pass
 }
@@ -266,7 +266,7 @@ class OAuthRequest {
     $http_method = ($http_method) ? $http_method : $_SERVER['REQUEST_METHOD'];
 
     // We weren't handed any parameters, so let's find the ones relevant to
-    // this request.
+    // this request
     // If you run XML-RPC or similar you should use this to provide your own
     // parsed parameter-list
     if (!$parameters) {

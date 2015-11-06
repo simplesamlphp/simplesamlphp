@@ -16,7 +16,7 @@ if (array_key_exists('oauth_verifier', $_REQUEST)) {
 	throw new Exception('OAuth verifier not returned.');;
 }
 
-/* Find authentication source. */
+// Find authentication source
 assert('array_key_exists(sspmod_authlinkedin_Auth_Source_LinkedIn::AUTHID, $state)');
 $sourceId = $state[sspmod_authlinkedin_Auth_Source_LinkedIn::AUTHID];
 

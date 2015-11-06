@@ -14,7 +14,7 @@ if (!isset($_GET['ticket'])) {
 }
 $state['cas:ticket'] = (string)$_GET['ticket'];
 
-/* Find authentication source. */
+// Find authentication source
 assert('array_key_exists(sspmod_cas_Auth_Source_CAS::AUTHID, $state)');
 $sourceId = $state[sspmod_cas_Auth_Source_CAS::AUTHID];
 

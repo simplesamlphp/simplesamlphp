@@ -20,10 +20,10 @@ $config = array (
 	 * Searching the DN of the user.
 	 */
 
-	/* Set this to TRUE to enable searching. */
+	// Set this to TRUE to enable searching.
 	'auth.ldap.search.enable' => FALSE,
 
-	/* The base DN for the search. */
+	// The base DN for the search.
 	'auth.ldap.search.base' => NULL,
 
 	/* The attribute(s) to search for.

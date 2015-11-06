@@ -99,7 +99,7 @@ class sspmod_statistics_Graph_GoogleCharts {
 			// Dimension of graph. Default is 800x350
 			'chs=' . $this->x . 'x' . $this->y . 
 			
-			// Dateset values.
+			// Dateset values
 			'&chd=' . $this->encodedata($datasets) .
 			
 			// Fill area...

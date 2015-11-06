@@ -99,7 +99,7 @@ class SimpleSAML_Memcache
                 continue;
             }
 
-            // different data from different servers. We need to update at least one of them to maintain sync.
+            // different data from different servers. We need to update at least one of them to maintain sync
             $mustUpdate = true;
 
             // update if data in $info is newer than $latestData

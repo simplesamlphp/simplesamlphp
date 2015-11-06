@@ -172,7 +172,7 @@ class sspmod_adfs_IdP_ADFS {
 	
 	public static function receiveLogoutMessage(SimpleSAML_IdP $idp) {
 		// if a redirect is to occur based on wreply, we will redirect to url as
-		// this implies an override to normal sp notification.
+		// this implies an override to normal sp notification
 		if(isset($_GET['wreply']) && !empty($_GET['wreply'])) {
 			$idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed($_GET['wreply']));
 			assert(FALSE);
@@ -183,12 +183,12 @@ class sspmod_adfs_IdP_ADFS {
 		);
 		$assocId = NULL;
 		// TODO: verify that this is really no problem for: 
-		//       a) SSP, because there's no caller SP...
-		//       b) ADFS SP because caller will be called back...
+		//       a) SSP, because there's no caller SP.
+		//       b) ADFS SP because caller will be called back..
 		$idp->handleLogoutRequest($state, $assocId);
 	}
 
-	// accepts an association array, and returns a URL that can be accessed to terminate the association.
+	// accepts an association array, and returns a URL that can be accessed to terminate the association
 	public static function getLogoutURL(SimpleSAML_IdP $idp, array $association, $relayState) {
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $idp->getConfig();

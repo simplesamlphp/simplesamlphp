@@ -21,7 +21,7 @@ if (array_key_exists('otp', $_REQUEST)) {
 }
 
 if (!empty($otp)) {
-	/*  attempt to log in. */
+	// attempt to log in
 	$errorCode = sspmod_authYubiKey_Auth_Source_YubiKey::handleLogin($authStateId, $otp);
 } else {
 	$errorCode = NULL;

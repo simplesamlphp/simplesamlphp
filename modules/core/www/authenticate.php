@@ -21,7 +21,7 @@ if(array_key_exists('logout', $_REQUEST)) {
 }
 
 if (array_key_exists(SimpleSAML_Auth_State::EXCEPTION_PARAM, $_REQUEST)) {
-	/* This is just a simple example of an error. */
+	// This is just a simple example of an error
 
 	$state = SimpleSAML_Auth_State::loadExceptionState();
 	assert('array_key_exists(SimpleSAML_Auth_State::EXCEPTION_DATA, $state)');

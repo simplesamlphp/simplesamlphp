@@ -52,12 +52,12 @@ class sspmod_saml_Message {
 		$element->setSignatureKey($privateKey);
 
 		if ($certArray === NULL) {
-			/* We don't have a certificate to add. */
+			// We don't have a certificate to add
 			return;
 		}
 
 		if (!array_key_exists('PEM', $certArray)) {
-			/* We have a public key with only a fingerprint. */
+			// We have a public key with only a fingerprint.
 			return;
 		}
 

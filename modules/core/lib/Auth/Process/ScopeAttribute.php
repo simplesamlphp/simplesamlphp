@@ -83,7 +83,7 @@ class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_Processing
 				$value = $value . '@' . $scope;
 
 				if (in_array($value, $attributes[$this->targetAttribute], TRUE)) {
-					/* Already present. */
+					// Already present
 					continue;
 				}
 

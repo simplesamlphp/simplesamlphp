@@ -97,7 +97,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost
             assert('count($statusElements) === 1');
             $signer->sign($responseroot, $responseroot, $statusElements[0]);
         } else {
-            /* Sign the assertion */
+            // Sign the assertion
             $signer->sign($firstassertionroot, $firstassertionroot);
         }
 

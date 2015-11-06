@@ -47,7 +47,7 @@ class SimpleSAML_Auth_TimeLimitedToken {
 	 * Calculates a token value for a given offset
 	 */
 	private function calculate_tokenvalue($offset) {
-		// A secret salt that should be randomly generated for each installation.
+		// A secret salt that should be randomly generated for each installation
 		return sha1( $this->calculate_time_slot($offset) . ':' . $this->secretSalt);
 	}
 	

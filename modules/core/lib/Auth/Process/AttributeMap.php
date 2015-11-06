@@ -35,7 +35,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
 				if($newName === '%duplicate') {
 					$this->duplicate = TRUE;
 				} else {
-					/* No index given - this is a map file. */
+					// No index given - this is a map file
 					$mapFiles[] = $newName;
 				}
 				continue;

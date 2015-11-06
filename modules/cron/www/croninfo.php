@@ -7,7 +7,7 @@
 require_once('_include.php');
 
 
-/* Load SimpleSAMLphp, configuration and metadata */
+// Load SimpleSAMLphp, configuration and metadata
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 

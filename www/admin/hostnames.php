@@ -2,11 +2,11 @@
 
 require_once('../_include.php');
 
-/* Load SimpleSAMLphp, configuration */
+// Load SimpleSAMLphp, configuration
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 
-/* Check if valid local session exists.. */
+// Check if valid local session exists..
 SimpleSAML\Utils\Auth::requireAdmin();
 
 $attributes = array();

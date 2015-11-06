@@ -39,7 +39,7 @@ class sspmod_statistics_AccessCheck {
             SimpleSAML\Utils\Auth::requireAdmin();
 		}
 
-		/* We are using an authsource for login. */
+		// We are using an authsource for login.
 
 		$as = new SimpleSAML_Auth_Simple($authsource);
 		$as->requireAuth();

@@ -65,11 +65,11 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 	private static function getSPIdPAllowed(array &$request) {
 
 		if (array_key_exists('attributes', $request['Destination'])) {
-			/* SP Config. */
+			// SP Config
 			return $request['Destination']['attributes'];
 		}
 		if (array_key_exists('attributes', $request['Source'])) {
-			/* IdP Config. */
+			// IdP Config
 			return $request['Source']['attributes'];
 		}
 		return NULL;

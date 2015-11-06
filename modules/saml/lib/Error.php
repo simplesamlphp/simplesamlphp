@@ -101,7 +101,7 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 	public static function fromException(Exception $exception) {
 
 		if ($exception instanceof sspmod_saml_Error) {
-			/* Return the original exception unchanged. */
+			// Return the original exception unchanged
 			return $exception;
 
 		} elseif ($exception instanceof SimpleSAML_Error_NoPassive) {

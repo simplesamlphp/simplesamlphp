@@ -16,7 +16,7 @@ $state = SimpleSAML_Auth_State::loadState($id, 'warning:expire');
 
 
 if (array_key_exists('proceed', $_REQUEST)) {
-    /* The user has pressed the proceed-button. */
+    // The user has pressed the proceed-button
     SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
 }
 

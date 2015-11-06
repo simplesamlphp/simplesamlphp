@@ -61,7 +61,7 @@ function driveProcessingChain(
     SimpleSAML_Logger::info('consentAdmin: target: '.$targeted_id);
     SimpleSAML_Logger::info('consentAdmin: attribute: '.$attribute_hash);
 
-    /* Return values */
+    // Return values
     return array($targeted_id, $attribute_hash, $attributes);
 }
 
@@ -80,7 +80,7 @@ if (array_key_exists('logout', $_REQUEST)) {
 
 $hashAttributes = $cA_config->getValue('attributes.hash');
 
-/* Check if valid local session exists */
+// Check if valid local session exists
 $as->requireAuth();
 
 // Get released attributes

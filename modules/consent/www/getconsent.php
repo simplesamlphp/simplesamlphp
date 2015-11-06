@@ -61,7 +61,7 @@ if (array_key_exists('yes', $_REQUEST)) {
         && array_key_exists('saveconsent', $_REQUEST)
         && $_REQUEST['saveconsent'] === '1'
     ) {
-        /* Save consent. */
+        // Save consent
         $store = $state['consent:store'];
         $userId = $state['consent:store.userId'];
         $targetedId = $state['consent:store.destination'];

@@ -348,7 +348,7 @@ class SimpleSAML_Metadata_SAMLBuilder
 
             if ($indexed) {
                 if (!isset($ep['index'])) {
-                    /* Find the maximum index. */
+                    // Find the maximum index
                     $maxIndex = -1;
                     foreach ($endpoints as $ep) {
                         if (!isset($ep['index'])) {
@@ -678,7 +678,7 @@ class SimpleSAML_Metadata_SAMLBuilder
         assert('is_array($details)');
         assert('in_array($type, array("technical", "support", "administrative", "billing", "other"), TRUE)');
 
-        // TODO: remove this check as soon as getContact() is called always before calling this function.
+        // TODO: remove this check as soon as getContact() is called always before calling this function
         $details = \SimpleSAML\Utils\Config\Metadata::getContact($details);
 
         $e = new SAML2_XML_md_ContactPerson();

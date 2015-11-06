@@ -320,7 +320,7 @@ class SimpleSAML_Logger
         }
 
         if (self::$loggingHandler === null) {
-            /* Initialize logging. */
+            // Initialize logging
             self::createLoggingHandler();
 
             if (!empty(self::$earlyLog)) {

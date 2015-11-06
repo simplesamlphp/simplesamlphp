@@ -16,7 +16,7 @@ class sspmod_saml_IdP_SAML2 {
 		assert('isset($state["Attributes"])');
 		assert('isset($state["SPMetadata"])');
 		assert('isset($state["saml:ConsumerURL"])');
-		assert('array_key_exists("saml:RequestId", $state)'); // Can be NULL.
+		assert('array_key_exists("saml:RequestId", $state)'); // Can be NULL
 		assert('array_key_exists("saml:RelayState", $state)'); // Can be NULL.
 
 		$spMetadata = $state["SPMetadata"];
@@ -41,7 +41,7 @@ class sspmod_saml_IdP_SAML2 {
 			$assertion->setAuthenticatingAuthority($state['saml:AuthenticatingAuthority']);
 		}
 
-		/* Create the session association (for logout). */
+		// Create the session association (for logout).
 		$association = array(
 			'id' => 'saml:' . $spEntityId,
 			'Handler' => 'sspmod_saml_IdP_SAML2',
@@ -51,7 +51,7 @@ class sspmod_saml_IdP_SAML2 {
 			'saml:SessionIndex' => $assertion->getSessionIndex(),
 		);
 
-		/* Maybe encrypt the assertion. */
+		// Maybe encrypt the assertion.
 		$assertion = self::encryptAssertion($idpMetadata, $spMetadata, $assertion);
 
 		/* Create the response. */

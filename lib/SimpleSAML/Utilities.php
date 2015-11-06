@@ -143,7 +143,7 @@ class SimpleSAML_Utilities
 
         if (!empty($start)) {
             $startTime = SAML2_Utils::xsDateTimeToTimestamp($start);
-            /* Allow for a 10 minute difference in Time */
+            // Allow for a 10 minute difference in Time
             if (($startTime < 0) || (($startTime - 600) > $currentTime)) {
                 return false;
             }
@@ -230,14 +230,14 @@ class SimpleSAML_Utilities
             SimpleSAML_Logger::warning('Redirecting to a URL longer than 2048 bytes.');
         }
 
-        /* Set the location header. */
+        // Set the location header
         header('Location: '.$url, true, $code);
 
-        /* Disable caching of this response. */
+        // Disable caching of this response
         header('Pragma: no-cache');
         header('Cache-Control: no-cache, must-revalidate');
 
-        /* Show a minimal web page with a clickable link to the URL. */
+        // Show a minimal web page with a clickable link to the URL
         echo '<?xml version="1.0" encoding="UTF-8"?>'."\n";
         echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"'.
             ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'."\n";
@@ -257,7 +257,7 @@ class SimpleSAML_Utilities
         echo '</body>';
         echo '</html>';
 
-        /* End script execution. */
+        // End script execution
         exit;
     }
 

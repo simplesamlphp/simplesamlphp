@@ -5,7 +5,7 @@
 
 $config = array (
 
-	// Which tab should be set as default. 0 is the first tab.
+	// Which tab should be set as default. 0 is the first tab
 	'defaulttab' => 0,
 	
 	/*
@@ -39,7 +39,7 @@ $config = array (
 	 *
 	 * If this is NULL (the default), the common domain cookie will be deleted when the browser closes.
 	 *
-	 * Example: 'cdc.lifetime' => 180*24*60*60, // 180 days.
+	 * Example: 'cdc.lifetime' => 180*24*60*60, // 180 days
 	 */
 	'cdc.lifetime' => NULL,
 

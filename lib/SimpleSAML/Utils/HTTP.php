@@ -400,7 +400,7 @@ class HTTP
             throw new \SimpleSAML_Error_Exception('Error fetching '.var_export($url, true).':'.$error['message']);
         }
 
-        // data and headers.
+        // data and headers
         if ($getHeaders) {
             if (isset($http_response_header)) {
                 $headers = array();
@@ -830,7 +830,7 @@ class HTTP
      *
      * This function supports these forms of relative URLs:
      * - ^\w+: Absolute URL. E.g. "http://www.example.com:port/path?query#fragment".
-     * - ^// Same protocol. E.g. "//www.example.com:port/path?query#fragment".
+     * - ^// Same protocol. E.g. "//www.example.com:port/path?query#fragment"
      * - ^/ Same protocol and host. E.g. "/path?query#fragment".
      * - ^? Same protocol, host and path, replace query string & fragment. E.g. "?query#fragment".
      * - ^# Same protocol, host, path and query, replace fragment. E.g. "#fragment".

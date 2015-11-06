@@ -30,7 +30,7 @@ if (array_key_exists('wrap_verification_code', $_REQUEST)) {
 	throw new Exception('Authentication failed: [' . $_REQUEST['error_code'] . '] ' . $_REQUEST['wrap_error_reason']);
 }
 
-/* Find authentication source. */
+// Find authentication source
 assert('array_key_exists(sspmod_authwindowslive_Auth_Source_LiveID::AUTHID, $state)');
 $sourceId = $state[sspmod_authwindowslive_Auth_Source_LiveID::AUTHID];
 

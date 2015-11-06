@@ -18,7 +18,7 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 	private static function getArtifacts() {
 		assert('array_key_exists("QUERY_STRING", $_SERVER)');
 
-		/* We need to process the query string manually, to capture all SAMLart parameters. */
+		// We need to process the query string manually, to capture all SAMLart parameters
 
 		$artifacts = array();
 
@@ -161,7 +161,7 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 			),
 		);
 
-		/* Fetch the artifact. */
+		// Fetch the artifact
 		$response = \SimpleSAML\Utils\HTTP::fetch($url, $opts);
 		if ($response === FALSE) {
 			throw new SimpleSAML_Error_Exception('Failed to retrieve assertion from IdP.');
@@ -169,7 +169,7 @@ class SimpleSAML_Bindings_Shib13_Artifact {
 
 		\SimpleSAML\Utils\XML::debugSAMLMessage($response, 'in');
 
-		/* Find the response in the SOAP message. */
+		// Find the response in the SOAP message
 		$response = self::extractResponse($response);
 
 		return $response;

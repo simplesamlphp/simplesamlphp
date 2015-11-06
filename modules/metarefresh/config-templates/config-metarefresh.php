@@ -67,7 +67,7 @@ $config = array(
 					//'types' => array(),
 				),
 			),
-			'expireAfter' 		=> 60*60*24*4, // Maximum 4 days cache time.
+			'expireAfter' 		=> 60*60*24*4, // Maximum 4 days cache time
 			'outputDir' 	=> 'metadata/metadata-kalmar-consuming/',
 
 			/*

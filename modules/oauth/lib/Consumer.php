@@ -18,7 +18,7 @@ class sspmod_oauth_Consumer {
 		$this->signer = new OAuthSignatureMethod_HMAC_SHA1();
 	}
 	
-	// Used only to load the libextinc library early.
+	// Used only to load the libextinc library early
 	public static function dummy() {}
 	
 	
