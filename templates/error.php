@@ -22,7 +22,7 @@ if (isset($this->data['includeTemplate'])) {
         <div class="input-group" style="width: 1em;">
             <pre id="trackid" class="input-left"><?php echo $this->data['error']['trackId']; ?></pre>
             <button data-clipboard-target="#trackid" id="btntrackid" class="btnaddonright">
-                <img src="/<?php echo $this->data['baseurlpath'].'/resources/icons/clipboard.svg'; ?>"
+                <img src="<?php echo $this->data['baseurlpath'].'/resources/icons/clipboard.svg'; ?>"
                      alt="Copy to clipboard">
             </button>
         </div>
