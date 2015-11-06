@@ -11,7 +11,7 @@ There are only two requirements:
 - Never show any pages to the user directly from within the `authenticate()`-function.
   (This will lead to problems if the user decides to reload the page.)
 
-- Return control to simpleSAMLphp after authenticating the user.
+- Return control to SimpleSAMLphp after authenticating the user.
   If the module is able to authenticate the user without doing any redirects, it should just update the state-array and return.
   If the module does a redirect, it must call `SimpleSAML_Auth_Source::completeAuth()` with the updated state array.
 

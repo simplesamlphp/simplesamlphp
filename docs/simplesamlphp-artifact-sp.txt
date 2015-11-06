@@ -1,4 +1,4 @@
-Using HTTP-Artifact from a simpleSAMLphp SP
+Using HTTP-Artifact from a SimpleSAMLphp SP
 ===========================================
 
 This document describes how to use the HTTP-Artifact binding to receive authentication responses from the IdP.

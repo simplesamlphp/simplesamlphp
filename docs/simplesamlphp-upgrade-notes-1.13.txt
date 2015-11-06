@@ -1,4 +1,4 @@
-Upgrade notes for simpleSAMLphp 1.13
+Upgrade notes for SimpleSAMLphp 1.13
 ====================================
 
   * The RSA_1.5 (RSA with PKCS#1 v1.5 padding) algorithm is now longer allowed by default. This means messages received

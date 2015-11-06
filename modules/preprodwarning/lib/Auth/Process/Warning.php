@@ -3,7 +3,7 @@
 /**
  * Give a warning that the user is accessing a test system, not a production system.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_preprodwarning_Auth_Process_Warning extends SimpleSAML_Auth_ProcessingFilter {
 

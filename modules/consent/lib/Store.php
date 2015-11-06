@@ -2,7 +2,7 @@
 /**
  * Base class for consent storage handlers.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  * @author Olav Morken <olav.morken@uninett.no>
  * @author JAcob Christiansen <jach@wayf.dk>
  */

@@ -6,7 +6,7 @@ require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/lib
  * Authenticate using LinkedIn.
  *
  * @author Brook Schofield, TERENA.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source {
 

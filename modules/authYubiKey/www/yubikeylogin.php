@@ -6,7 +6,7 @@
  * username/password authentication.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 if (!array_key_exists('AuthState', $_REQUEST)) {

@@ -22,7 +22,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
     /**
      * This function initializes the XML metadata source. The configuration must contain one of
      * the following options:
-     * - 'file': Path to a file with the metadata. This path is relative to the simpleSAMLphp
+     * - 'file': Path to a file with the metadata. This path is relative to the SimpleSAMLphp
      *           base directory.
      * - 'url': URL we should download the metadata from. This is only meant for testing.
      *

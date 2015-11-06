@@ -20,7 +20,7 @@ if (!defined('LDAP_OPT_DIAGNOSTIC_MESSAGE')) {
  *
  * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @author Anders Lund, UNINETT AS. <anders.lund@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Auth_LDAP {
 

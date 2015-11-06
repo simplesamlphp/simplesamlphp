@@ -2,7 +2,7 @@
 /**
  * Class representing fed TokenTypesOffered.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_adfs_SAML2_XML_fed_TokenTypesOffered {
 	/**

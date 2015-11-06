@@ -3,7 +3,7 @@
 /**
  * Give a warning to the user if we receive multiple requests in a short time.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_WarnShortSSOInterval extends SimpleSAML_Auth_ProcessingFilter {
 

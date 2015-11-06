@@ -113,7 +113,7 @@ Common options
 
 `userid.attribute`
 :   The attribute name of an attribute which uniquely identifies
-    the user. This attribute is used if simpleSAMLphp needs to generate
+    the user. This attribute is used if SimpleSAMLphp needs to generate
     a persistent unique identifier for the user. This option can be set
     in both the IdP-hosted and the SP-remote metadata. The value in the
     sp-remote metadata has the highest priority. The default value is
@@ -254,7 +254,7 @@ The following SAML 2.0 options are available:
 `SingleSignOnService`
 :   Override the default URL for the SingleSignOnService for this
     IdP. This is an absolute URL. The default value is
-    `<simpleSAMLphp-root>/saml2/idp/SSOService.php`
+    `<SimpleSAMLphp-root>/saml2/idp/SSOService.php`
 
 :   Note that this only changes the values in the generated
     metadata and in the messages sent to others. You must also
@@ -275,7 +275,7 @@ The following SAML 2.0 options are available:
 `SingleLogoutService`
 :   Override the default URL for the SingleLogoutService for this
     IdP. This is an absolute URL. The default value is
-    `<simpleSAMLphp-root>/saml2/idp/SingleLogoutService.php`
+    `<SimpleSAMLphp-root>/saml2/idp/SingleLogoutService.php`
 
 :   Note that this only changes the values in the generated
     metadata and in the messages sent to others. You must also
@@ -320,7 +320,7 @@ The following SAML 2.0 options are available:
 
 ### Fields for signing and validating messages
 
-simpleSAMLphp only signs authentication responses by default.
+SimpleSAMLphp only signs authentication responses by default.
 Signing of logout requests and logout responses can be enabled by
 setting the `redirect.sign` option. Validation of received messages
 can be enabled by the `redirect.validate` option.

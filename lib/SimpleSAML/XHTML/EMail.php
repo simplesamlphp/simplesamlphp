@@ -4,7 +4,7 @@
  * A minimalistic Emailer class. Creates and sends HTML emails.
  *
  * @author Andreas kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_XHTML_EMail {
 
@@ -39,7 +39,7 @@ class SimpleSAML_XHTML_EMail {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>simpleSAMLphp Email report</title>
+	<title>SimpleSAMLphp Email report</title>
 	<style type="text/css">
 pre, div.box {
 	margin: .4em 2em .4em 1em;

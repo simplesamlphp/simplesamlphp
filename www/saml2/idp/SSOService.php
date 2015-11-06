@@ -5,7 +5,7 @@
  * to the SP with an Authentication Response.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 require_once('../../_include.php');

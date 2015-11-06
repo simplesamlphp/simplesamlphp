@@ -3,7 +3,7 @@
 /**
  * Class for representing a SAML 2 error.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 

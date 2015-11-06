@@ -17,7 +17,7 @@
  * </code>
  *
  * @author Alex Mihičinac, ARNES. <alexm@arnes.si>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_ProcessingFilter {

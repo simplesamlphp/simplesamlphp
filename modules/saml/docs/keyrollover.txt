@@ -1,7 +1,7 @@
-Key rollover with simpleSAMLphp
+Key rollover with SimpleSAMLphp
 ===============================
 
-This document gives a quick guide to doing key rollover with a simpleSAMLphp service provider or identity provider.
+This document gives a quick guide to doing key rollover with a SimpleSAMLphp service provider or identity provider.
 
 
 Create the new key and certificate
@@ -14,7 +14,7 @@ To create a self signed certificate, you may use the following command:
     openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
 
 
-Add the new key to simpleSAMLphp
+Add the new key to SimpleSAMLphp
 --------------------------------
 
 Where you add the new key depends on whether you are doing key rollover for a service provider or an identity provider.
@@ -24,7 +24,7 @@ If you are changing the keys for both an service provider and identity provider 
 
 The new certificate and key is added to the configuration with the prefix `new_`:
 
-When the new key is added, simpleSAMLphp will attempt to use both the new key and the old key for decryption of messages, but only the old key will be used for signing messages.
+When the new key is added, SimpleSAMLphp will attempt to use both the new key and the old key for decryption of messages, but only the old key will be used for signing messages.
 The metadata will be updated to list the new key for signing and encryption, and the old key will no longer listed as available for encryption.
 This ensures that both those entities that use your old metadata and those that use your new metadata will be able to send and receive messages from you.
 

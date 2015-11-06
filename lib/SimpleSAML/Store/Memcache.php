@@ -3,7 +3,7 @@
 /**
  * A memcache based datastore.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Store_Memcache extends SimpleSAML_Store
 {

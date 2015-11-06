@@ -4,7 +4,7 @@
  * Log a line in the STAT log with one attribute.
  *
  * @author Andreas Åkre Solberg, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_ProcessingFilter {
 

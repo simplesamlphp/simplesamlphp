@@ -1,4 +1,4 @@
-Upgrade notes for simpleSAMLphp 1.8
+Upgrade notes for SimpleSAMLphp 1.8
 ===================================
 
   * The IdP now sends the NotOnOrAfter attribute in LogoutRequest messages.

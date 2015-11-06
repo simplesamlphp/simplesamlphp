@@ -6,7 +6,7 @@ require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/lib
  * Authenticate using MySpace.
  *
  * @author Brook Schofield, TERENA.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_authmyspace_Auth_Source_MySpace extends SimpleSAML_Auth_Source {
 

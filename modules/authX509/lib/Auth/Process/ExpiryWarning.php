@@ -12,7 +12,7 @@
  * </code>
  *
  * @author Joost van Dijk, SURFnet. <Joost.vanDijk@surfnet.nl>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_ProcessingFilter {
 

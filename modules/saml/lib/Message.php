@@ -5,7 +5,7 @@
  * Common code for building SAML 2 messages based on the
  * available metadata.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_saml_Message {
 

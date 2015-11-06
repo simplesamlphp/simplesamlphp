@@ -1,6 +1,6 @@
 <?php
 /**
- * WS-Federation remote IdP metadata for simpleSAMLphp.
+ * WS-Federation remote IdP metadata for SimpleSAMLphp.
  */
 
 $metadata['urn:federation:pingfederate:localhost'] = array(

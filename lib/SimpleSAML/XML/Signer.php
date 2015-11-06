@@ -6,7 +6,7 @@
  * This is a helper class for signing XML documents.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_XML_Signer {
 

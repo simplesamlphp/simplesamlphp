@@ -1,6 +1,6 @@
 <?php
 /* 
- * The configuration of simpleSAMLphp statistics package
+ * The configuration of SimpleSAMLphp statistics package
  */
 
 $config = array (

@@ -1,9 +1,9 @@
 <?php
 /**
- * ADFS PRP IDP protocol support for simpleSAMLphp.
+ * ADFS PRP IDP protocol support for SimpleSAMLphp.
  *
  * @author Hans Zandbelt, SURFnet bv, <hans.zandbelt@surfnet.nl>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 SimpleSAML_Logger::info('ADFS - IdP.prp: Accessing ADFS IdP endpoint prp');

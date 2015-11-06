@@ -5,7 +5,7 @@
  * This filter can modify or replace attributes given a regular expression.
  *
  * @author Jacob Christiansen, WAYF
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_ProcessingFilter {
 

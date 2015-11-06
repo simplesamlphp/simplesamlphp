@@ -14,7 +14,7 @@ Introduction
 ------------
 
 The riak module implements a Store that can be used as a backend
-for simpleSAMLphp session data like the phpsession, sql, or memcache
+for SimpleSAMLphp session data like the phpsession, sql, or memcache
 backends.
 
 Preparations
@@ -39,7 +39,7 @@ enabling the following modules:
  2. riak
 
 The cron module allows you to do tasks regularly by setting up a
-cronjob that calls hooks in simpleSAMLphp. This is required by the
+cronjob that calls hooks in SimpleSAMLphp. This is required by the
 riak module to remove expired entries in the store.
 
 Enabling the riak module allows it to be loaded and used as a storage

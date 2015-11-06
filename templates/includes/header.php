@@ -29,12 +29,12 @@ if (array_key_exists('pageid', $this->data)) {
 // - o - o - o - o - o - o - o - o - o - o - o - o -
 
 /**
- * Do not allow to frame simpleSAMLphp pages from another location.
+ * Do not allow to frame SimpleSAMLphp pages from another location.
  * This prevents clickjacking attacks in modern browsers.
  *
  * If you don't want any framing at all you can even change this to
  * 'DENY', or comment it out if you actually want to allow foreign
- * sites to put simpleSAMLphp in a frame. The latter is however
+ * sites to put SimpleSAMLphp in a frame. The latter is however
  * probably not a good security practice.
  */
 header('X-Frame-Options: SAMEORIGIN');
@@ -49,7 +49,7 @@ header('X-Frame-Options: SAMEORIGIN');
 if(array_key_exists('header', $this->data)) {
 	echo $this->data['header'];
 } else {
-	echo 'simpleSAMLphp';
+	echo 'SimpleSAMLphp';
 }
 ?></title>
 
@@ -126,7 +126,7 @@ if($onLoad !== '') {
 	
 	<div id="header">
 		<h1><a style="text-decoration: none; color: white" href="/<?php echo $this->data['baseurlpath']; ?>"><?php 
-			echo (isset($this->data['header']) ? $this->data['header'] : 'simpleSAMLphp'); 
+			echo (isset($this->data['header']) ? $this->data['header'] : 'SimpleSAMLphp');
 		?></a></h1>
 	</div>
 

@@ -498,7 +498,7 @@ class HTTP
      * Retrieve the base URL of the SimpleSAMLphp installation. The URL will always end with a '/'. For example:
      *      https://idp.example.org/simplesaml/
      *
-     * @return string The absolute base URL for the simpleSAMLphp installation.
+     * @return string The absolute base URL for the SimpleSAMLphp installation.
      * @throws \SimpleSAML_Error_Exception If 'baseurlpath' has an invalid format.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>

@@ -4,7 +4,7 @@
  * A filter for limiting which attributes are passed on.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_ProcessingFilter {
 

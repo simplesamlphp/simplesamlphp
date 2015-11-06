@@ -6,7 +6,7 @@
  * a defined attribute, in DN format.
  *
  * @author Ryan Panning <panman@traileyes.com>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_Process_BaseFilter {
 

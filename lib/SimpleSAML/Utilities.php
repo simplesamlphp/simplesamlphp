@@ -5,7 +5,7 @@
  * Misc static functions that is used several places.in example parsing and id generation.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  *
  * @deprecated This entire class will be removed in SimpleSAMLphp 2.0.
  */

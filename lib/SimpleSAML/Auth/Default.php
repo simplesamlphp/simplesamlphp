@@ -7,7 +7,7 @@
  * save the session information it got from the authentication client in the users session.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  *
  * @deprecated This class will be removed in SSP 2.0.
  */

@@ -3,7 +3,7 @@
 /**
  * Endpoint for logging in with an authentication source.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 if (!is_string($_REQUEST['ReturnTo'])) {

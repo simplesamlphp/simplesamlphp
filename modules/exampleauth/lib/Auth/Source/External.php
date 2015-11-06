@@ -18,7 +18,7 @@
  *            '<mymodule>:External',
  *        ),
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 
@@ -64,7 +64,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 
 		/*
 		 * Find the attributes for the user.
-		 * Note that all attributes in simpleSAMLphp are multivalued, so we need
+		 * Note that all attributes in SimpleSAMLphp are multivalued, so we need
 		 * to store them as arrays.
 		 */
 

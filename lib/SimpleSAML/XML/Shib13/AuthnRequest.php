@@ -5,7 +5,7 @@
  * but an extension using query paramters no XML.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_XML_Shib13_AuthnRequest {
 

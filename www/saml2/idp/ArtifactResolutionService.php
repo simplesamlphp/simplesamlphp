@@ -5,7 +5,7 @@
  * And when the artifact is found, it sends a SAML2_ArtifactResponse.
  *
  * @author Danny Bollaert, UGent AS. <danny.bollaert@ugent.be>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 require_once('../../_include.php');

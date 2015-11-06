@@ -7,7 +7,7 @@
  * a static set of attributes.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_exampleauth_Auth_Source_Static extends SimpleSAML_Auth_Source {
 

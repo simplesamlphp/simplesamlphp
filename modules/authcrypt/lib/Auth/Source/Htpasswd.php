@@ -4,7 +4,7 @@
  * Authentication source for Apache 'htpasswd' files.
  *
  * @author Dyonisius (Dick) Visser, TERENA.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 use WhiteHat101\Crypt\APR1_MD5;

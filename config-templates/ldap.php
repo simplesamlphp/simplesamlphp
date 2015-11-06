@@ -33,7 +33,7 @@ $config = array (
 	 */
 	'auth.ldap.search.attributes' => NULL,
 
-	/* The username & password the simpleSAMLphp should bind as before searching. If this is left
+	/* The username & password the SimpleSAMLphp should bind as before searching. If this is left
 	 * as NULL, no bind will be performed before searching.
 	 */
 	'auth.ldap.search.username' => NULL,

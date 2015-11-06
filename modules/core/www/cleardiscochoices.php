@@ -6,7 +6,7 @@ require_once('_include.php');
  * This page clears the user's IdP discovery choices.
  */
 
-/* The base path for cookies. This should be the installation directory for simpleSAMLphp. */
+/* The base path for cookies. This should be the installation directory for SimpleSAMLphp. */
 $config = SimpleSAML_Configuration::getInstance();
 $cookiePath = '/' . $config->getBaseUrl();
 

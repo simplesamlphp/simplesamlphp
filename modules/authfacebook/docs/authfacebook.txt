@@ -1,4 +1,4 @@
-Using the Facebook authentication source with simpleSAMLphp
+Using the Facebook authentication source with SimpleSAMLphp
 ===========================================================
 
 Remember to configure `authsources.php`, with both App ID (or API Key) and App Secret.

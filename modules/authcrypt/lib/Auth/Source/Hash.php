@@ -7,7 +7,7 @@
  * and authenticates users against this array.
  *
  * @author Dyonisius Visser, TERENA.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase {
 

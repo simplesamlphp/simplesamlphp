@@ -244,7 +244,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
     /**
      * Display this error.
      *
-     * This method displays a standard simpleSAMLphp error page and exits.
+     * This method displays a standard SimpleSAMLphp error page and exits.
      */
     public function show()
     {

@@ -72,7 +72,7 @@ authentication source:
 		'search.attributes' => array('uid', 'mail'),
 
 		/*
-		 * The username & password where simpleSAMLphp should bind to before searching. If
+		 * The username & password where SimpleSAMLphp should bind to before searching. If
 		 * this is left NULL, no bind will be performed before searching.
 		 */
 		'search.username' => NULL,

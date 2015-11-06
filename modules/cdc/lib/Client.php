@@ -3,7 +3,7 @@
 /**
  * CDC client class.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_cdc_Client {
 

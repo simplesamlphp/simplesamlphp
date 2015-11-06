@@ -1,10 +1,10 @@
 <?php
 
 /**
- * A minimalistic XHTML PHP based template system implemented for simpleSAMLphp.
+ * A minimalistic XHTML PHP based template system implemented for SimpleSAMLphp.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_XHTML_Template {
 
@@ -463,7 +463,7 @@ class SimpleSAML_XHTML_Template {
      * @param $file         File name of dictionary to include
      * @param $otherConfig  Optionally provide a different configuration object than
      *  the one provided in the constructor to be used to find the dictionary directory.
-     *  This enables the possiblity of combining dictionaries inside simpleSAMLphp 
+     *  This enables the possiblity of combining dictionaries inside SimpleSAMLphp
      *  distribution with external dictionaries.
      */
     public function includeLanguageFile($file, $otherConfig = null) {

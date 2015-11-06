@@ -1,8 +1,8 @@
-Using Holder-of-Key Web Browser SSO Profile on a simpleSAMLphp SP
+Using Holder-of-Key Web Browser SSO Profile on a SimpleSAMLphp SP
 =================================================================
 
 This document describes how to enable the [SAML V2.0 Holder-of-Key (HoK) Web Browser SSO Profile](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-holder-of-key-browser-sso.pdf)
-on a simpleSAMLphp Service Provider (SP).
+on a SimpleSAMLphp Service Provider (SP).
 
 The SAML V2.0 HoK Web Browser SSO Profile is an alternate version of the standard SAML Web Browser SSO Profile. Its primary benefit is the enhanced security of the SSO process
 while preserving maximum compatibility with existing deployments on client and server side.

@@ -8,7 +8,7 @@
  *
  * This class is based on www/auth/login.php.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase {
 

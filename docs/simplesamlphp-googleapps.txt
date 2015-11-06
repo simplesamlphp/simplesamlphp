@@ -1,4 +1,4 @@
-Setting up a simpleSAMLphp SAML 2.0 IdP to use with Google Apps for Education
+Setting up a SimpleSAMLphp SAML 2.0 IdP to use with Google Apps for Education
 ============================================
 
 <!-- 
@@ -11,19 +11,19 @@ Setting up a simpleSAMLphp SAML 2.0 IdP to use with Google Apps for Education
 
 <!-- {{TOC}} -->
 
-simpleSAMLphp news and documentation
+SimpleSAMLphp news and documentation
 ------------------------------------
 
-This document is part of the simpleSAMLphp documentation suite.
+This document is part of the SimpleSAMLphp documentation suite.
 
- * [List of all simpleSAMLphp documentation](http://simplesamlphp.org/docs)
- * [Latest news about simpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also conatins an RSS feed)
- * [simpleSAMLphp homepage](https://simplesamlphp.org)
+ * [List of all SimpleSAMLphp documentation](http://simplesamlphp.org/docs)
+ * [Latest news about SimpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also conatins an RSS feed)
+ * [SimpleSAMLphp homepage](https://simplesamlphp.org)
 
 
 ## Introduction
 
-This article assumes that you have already read the simpleSAMLphp installation manual, and installed a version of simpleSAMLphp at your
+This article assumes that you have already read the SimpleSAMLphp installation manual, and installed a version of SimpleSAMLphp at your
 server.
 
 In this example we will setup this server as an IdP for Google Apps for Education:
@@ -40,7 +40,7 @@ Edit `config.php`, and enable the SAML 2.0 IdP:
 
 ## Setting up a SSL signing certificate
 
-For test purposes, you can skip this section, and use the certificate included in the simpleSAMLphp distribution. For a production system, you MUST generate a new certificate for your IdP.
+For test purposes, you can skip this section, and use the certificate included in the SimpleSAMLphp distribution. For a production system, you MUST generate a new certificate for your IdP.
 
 Here is an example of an openssl command to generate a new key and a self signed certificate to use for signing SAML messages:
 
@@ -63,7 +63,7 @@ Here is an example of typical user input when creating a certificate request:
     A challenge password []:
     An optional company name []:
 
-**Note**: simpleSAMLphp will only work with RSA and not DSA certificates.
+**Note**: SimpleSAMLphp will only work with RSA and not DSA certificates.
 
 
 
@@ -71,7 +71,7 @@ Here is an example of typical user input when creating a certificate request:
 Authentication source
 ---------------------
 
-The next step is to configure the way users authenticate on your IdP. Various modules in the `modules/` directory provides methods for authenticating your users. This is an overview of those that are included in the simpleSAMLphp distribution:
+The next step is to configure the way users authenticate on your IdP. Various modules in the `modules/` directory provides methods for authenticating your users. This is an overview of those that are included in the SimpleSAMLphp distribution:
 
 `exampleauth:UserPass`
 : Authenticate against a list of usernames and passwords.
@@ -87,7 +87,7 @@ For more authentication modules, see [SimpleSAMLphp Identity Provider QuickStart
 
 In this guide, we will use the `exampleauth:UserPass` authentication module. This module does not have any dependencies, and is therefore simple to set up.
 
-After you have successfuly tested that everything is working with the simple `exampleauth:UserPass`, you are encouraged to setup simpleSAMLphp IdP towards your user storage, such as an LDAP directory. (Use the links on the authentication sources above to read more about these setups. `ldap:LDAP` is the most common authentication source).
+After you have successfuly tested that everything is working with the simple `exampleauth:UserPass`, you are encouraged to setup SimpleSAMLphp IdP towards your user storage, such as an LDAP directory. (Use the links on the authentication sources above to read more about these setups. `ldap:LDAP` is the most common authentication source).
 
 
 Configuring the authentication source
@@ -95,7 +95,7 @@ Configuring the authentication source
 
 The `exampleauth:UserPass` authentication source is part of the `exampleauth` module. This module isn't enabled by default, so you will have to enable it. This is done by creating a file named `enable` in `modules/exampleauth/`.
 
-On unix, this can be done by running (from the simpleSAMLphp installation directory):
+On unix, this can be done by running (from the SimpleSAMLphp installation directory):
 
     touch modules/exampleauth/enable
 
@@ -234,15 +234,15 @@ replacing the last part with your own google apps domain name.
 
 Make sure that your IdP server runs HTTPS (SSL). The Apache documentation contains information for how to configure HTTPS.
 
-Make sure you have replaced the default certificate delivered with the simpleSAMLphp distribution with your own certificate.
+Make sure you have replaced the default certificate delivered with the SimpleSAMLphp distribution with your own certificate.
 
 Support
 -------
 
-If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
+If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
--  [simpleSAMLphp homepage](https://simplesamlphp.org)
--  [List of all available simpleSAMLphp documentation](https://simplesamlphp.org/docs/)
--  [Join the simpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)
+-  [SimpleSAMLphp homepage](https://simplesamlphp.org)
+-  [List of all available SimpleSAMLphp documentation](https://simplesamlphp.org/docs/)
+-  [Join the SimpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)
 
 

@@ -10,7 +10,7 @@
  * @todo Move this functionality to xmlseclibs.
  *
  * @author Daniel Tsosie
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_adfs_XMLSecurityDSig extends XMLSecurityDSig {
 

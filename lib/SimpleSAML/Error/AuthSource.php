@@ -2,7 +2,7 @@
 /**
  * Baseclass for auth source exceptions.
  * 
- * @package simpleSAMLphp_base
+ * @package SimpleSAMLphp_base
  *
  */
 class SimpleSAML_Error_AuthSource extends SimpleSAML_Error_Error {

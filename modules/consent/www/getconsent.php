@@ -5,7 +5,7 @@
  * This script displays a page to the user, which requests that the user
  * authorizes the release of attributes.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 /**
  * Explicit instruct consent page to send no-cache header to browsers to make 

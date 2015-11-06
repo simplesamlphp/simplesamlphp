@@ -577,7 +577,7 @@ class SimpleSAML_Metadata_SAMLParser
 
 
     /**
-     * This function returns the metadata for SAML 1.x IdPs in the format simpleSAMLphp expects.
+     * This function returns the metadata for SAML 1.x IdPs in the format SimpleSAMLphp expects.
      * This is an associative array with the following fields:
      * - 'entityid': The entity id of the entity described in the metadata.
      * - 'name': Auto generated name for this entity. Currently set to the entity id.
@@ -634,7 +634,7 @@ class SimpleSAML_Metadata_SAMLParser
 
 
     /**
-     * This function returns the metadata for SAML 2.0 SPs in the format simpleSAMLphp expects.
+     * This function returns the metadata for SAML 2.0 SPs in the format SimpleSAMLphp expects.
      * This is an associative array with the following fields:
      * - 'entityid': The entity id of the entity described in the metadata.
      * - 'AssertionConsumerService': String with the URL of the assertion consumer service which supports
@@ -727,7 +727,7 @@ class SimpleSAML_Metadata_SAMLParser
 
 
     /**
-     * This function returns the metadata for SAML 2.0 IdPs in the format simpleSAMLphp expects.
+     * This function returns the metadata for SAML 2.0 IdPs in the format SimpleSAMLphp expects.
      * This is an associative array with the following fields:
      * - 'entityid': The entity id of the entity described in the metadata.
      * - 'name': Auto generated name for this entity. Currently set to the entity id.

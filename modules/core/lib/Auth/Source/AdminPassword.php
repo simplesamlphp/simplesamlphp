@@ -4,7 +4,7 @@
  * Authentication source which verifies the password against
  * the 'auth.adminpassword' configuration option.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Source_AdminPassword extends sspmod_core_Auth_UserPassBase {
 

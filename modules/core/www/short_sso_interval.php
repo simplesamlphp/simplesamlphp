@@ -3,7 +3,7 @@
  * Show a warning to an user about the SP requesting SSO a short time after
  * doing it previously.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 if (!array_key_exists('StateId', $_REQUEST)) {

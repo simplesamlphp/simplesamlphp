@@ -7,7 +7,7 @@ This authentication source is used to authenticate against SAML 1 and SAML 2 IdP
 Metadata
 --------
 
-The metadata for your SP will be available from the federation page on your simpleSAMLphp installation.
+The metadata for your SP will be available from the federation page on your SimpleSAMLphp installation.
 
 SimpleSAMLphp supports generating metadata with the MDUI and MDRPI metadata extensions.
 See the documentation for those extensions for more details:
@@ -290,7 +290,7 @@ Options
 :   *Note*: SAML 2 specific.
     For SAML 1.1 SPs, you must specify the `TARGET` parameter in the authentication response.
     How to set that parameter is depends on the IdP.
-    For simpleSAMLphp, see the documentation for [IdP-first flow](./simplesamlphp-idp-more#section_4_1).
+    For SimpleSAMLphp, see the documentation for [IdP-first flow](./simplesamlphp-idp-more#section_4_1).
 
 `saml.SOAPClient.certificate`
 :   A file with a certificate _and_ private key that should be used when issuing SOAP requests from this SP.

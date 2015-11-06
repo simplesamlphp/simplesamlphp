@@ -4,7 +4,7 @@ Debugging "State Information Lost" errors
 **"State Information Lost"** (`SimpleSAML_Error_NoState: NOSTATE`)
 
 This is one of the most common errors that you can encounter when configuring
-simpleSAMLphp. Unfortunately, it is also a generic error that can have many
+SimpleSAMLphp. Unfortunately, it is also a generic error that can have many
 possible causes. This document will attempt to describe what this error
 actually means, and some of the situations that can cause it.
 
@@ -13,7 +13,7 @@ actually means, and some of the situations that can cause it.
 What is "state information"?
 ----------------------------
 
-The "state information" is data that simpleSAMLphp stores in association with a
+The "state information" is data that SimpleSAMLphp stores in association with a
 request. The request is typically a SAML 2.0 authentication request sent to
 the IdP, but it can also be other requests.
 
@@ -64,7 +64,7 @@ Or in php.ini:
 Note that if you use PHP sessions, you will also have to make sure that your
 application uses the same domain when it sets the cookie. How that is done
 depends on your application. (See the section about mismatch between
-application PHP session settings and simpleSAMLphp session settings.)
+application PHP session settings and SimpleSAMLphp session settings.)
 
 #### Hopping between http and https
 
@@ -74,17 +74,17 @@ https, check that you're using https consistently throughout the configuration.
 The best and most secure is to make your complete site available on https only,
 and redirect any http requests to https.
 
-#### Mismatch between PHP session settings for the application and simpleSAMLphp
+#### Mismatch between PHP session settings for the application and SimpleSAMLphp
 
 If both the application you are trying to add SAML 2.0 support to and
-simpleSAMLphp uses PHP session for session storage, and they don't agree on all
-the parameters, you can end up with this error. By default, simpleSAMLphp uses
+SimpleSAMLphp uses PHP session for session storage, and they don't agree on all
+the parameters, you can end up with this error. By default, SimpleSAMLphp uses
 the settings from `php.ini`, but these can be overridden in `config/config.php`.
 
 If this is the cause of your error, you have two choices: either change
-simpleSAMLphp to use a different session storage method (e.g. memcache or sql),
+SimpleSAMLphp to use a different session storage method (e.g. memcache or sql),
 or change the session settings to match between the application and
-simpleSAMLphp. In many cases it is simplest to adjust the session storage.
+SimpleSAMLphp. In many cases it is simplest to adjust the session storage.
 
 If you decide to make the session settings match, you should change the
 settings in `php.ini`. This is to make sure that the settings apply to everything
@@ -103,7 +103,7 @@ the application, and look at what parameters it uses.
 
 #### A generic problem saving sessions
 
-Sometimes the problem is caused by simpleSAMLphp being unable to load and/or save
+Sometimes the problem is caused by SimpleSAMLphp being unable to load and/or save
 sessions. This can be caused by the session settings being incorrect, or by a
 failure of some service required by the session storage. For example, if you
 are using memcache for session storage, you need to ensure that the memcache

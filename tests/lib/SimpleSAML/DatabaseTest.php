@@ -10,7 +10,7 @@
  * in an environment.
  *
  * @author Tyler Antonio, University of Alberta. <tantonio@ualberta.ca>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
 {

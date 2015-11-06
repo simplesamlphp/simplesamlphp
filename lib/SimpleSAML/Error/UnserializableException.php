@@ -10,7 +10,7 @@
  * It creates a new exception which contains the backtrace and message
  * of the original exception.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Error_UnserializableException extends SimpleSAML_Error_Exception {
 

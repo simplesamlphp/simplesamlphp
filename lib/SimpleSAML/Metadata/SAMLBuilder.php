@@ -2,11 +2,11 @@
 
 
 /**
- * Class for generating SAML 2.0 metadata from simpleSAMLphp metadata arrays.
+ * Class for generating SAML 2.0 metadata from SimpleSAMLphp metadata arrays.
  *
  * This class builds SAML 2.0 metadata for an entity by examining the metadata for the entity.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Metadata_SAMLBuilder
 {

@@ -66,7 +66,7 @@ No extra options are available for this filter.
 Generates and stores persistent NameIDs in a SQL datastore.
 
 This filter generates and stores a persistent NameID in a SQL datastore.
-To use this filter, simpleSAMLphp must be configured to use a SQL datastore.
+To use this filter, SimpleSAMLphp must be configured to use a SQL datastore.
 See the `store.type` configuration option in `config.php`.
 
 ### Options

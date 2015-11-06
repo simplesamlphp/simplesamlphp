@@ -125,5 +125,5 @@ Support
 If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
 -  [SimpleSAMLphp homepage](http://simplesamlphp.org)
--  [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/stable/)
+-  [List of all available SimpleSAMLphp documentation](http://simplesamlphp.org/docs/stable/)
 -  [Join the SimpleSAMLphp user's mailing list](http://simplesamlphp.org/lists)

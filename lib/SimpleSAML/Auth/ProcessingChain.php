@@ -8,7 +8,7 @@
  * checks, or attribute consent requirements.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Auth_ProcessingChain {
 

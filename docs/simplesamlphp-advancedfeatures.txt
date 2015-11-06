@@ -1,4 +1,4 @@
-simpleSAMLphp Advanced Features
+SimpleSAMLphp Advanced Features
 ===============================
 
 <!-- 
@@ -11,16 +11,16 @@ simpleSAMLphp Advanced Features
 
 <!-- {{TOC}} -->
 
-simpleSAMLphp documentation
+SimpleSAMLphp documentation
 ---------------------------
 
-This document is part of the simpleSAMLphp documentation suite.
+This document is part of the SimpleSAMLphp documentation suite.
 
-- [List of all simpleSAMLphp documentation](http://simplesamlphp.org/docs)
+- [List of all SimpleSAMLphp documentation](http://simplesamlphp.org/docs)
 
 
 This document assumes that you already have a installation of
-simpleSAMLphp running, configured and working. This is the next
+SimpleSAMLphp running, configured and working. This is the next
 step :)
 
 
@@ -28,7 +28,7 @@ Bridging between protocols
 --------------------------
 
 A bridge between two protocols is built using both an IdP and an SP, connected together.
-To let a SAML 2.0 SP talk to a SAML 1.1 IdP, you build a simpleSAMLphp bridge from a SAML 2.0 IdP and a SAML 1.1 SP.
+To let a SAML 2.0 SP talk to a SAML 1.1 IdP, you build a SimpleSAMLphp bridge from a SAML 2.0 IdP and a SAML 1.1 SP.
 The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the SAML 1.1 SP, which forwards it to the SAML 1.1 IdP.
 
 If you have followed the instructions for setting up an SP, and have configured an authentication source, all you need to do is to add that authentication source to the IdP.
@@ -67,15 +67,15 @@ Please see the [metarefresh documentation](simplesamlphp-automated_metadata).
 Auth MemCookie
 --------------
 
-It is possible to integrate simpleSAMLphp with [Auth MemCookie](http://authmemcookie.sourceforge.net/). This allows you to integrate simpleSAMLphp with web applications written in another language than PHP.
+It is possible to integrate SimpleSAMLphp with [Auth MemCookie](http://authmemcookie.sourceforge.net/). This allows you to integrate SimpleSAMLphp with web applications written in another language than PHP.
 
 Auth MemCookie works by reading authentication data from a memcache server and setting environment variables based on attributes in this data. It also allows you to use the default Apache access control features to restrict access to your site.
 
-The simpleSAMLphp Auth MemCookie module can be found in `www/authmemcookie.php` and the configuration should be stored in `config/authmemcookie.php`. You may have to copy this file from `config-template/authmemcookie.php`.
+The SimpleSAMLphp Auth MemCookie module can be found in `www/authmemcookie.php` and the configuration should be stored in `config/authmemcookie.php`. You may have to copy this file from `config-template/authmemcookie.php`.
 
 To use Auth MemCookie, you need to do the following steps:
 
-1.  Install and configure simpleSAMLphp for running as an SP.
+1.  Install and configure SimpleSAMLphp for running as an SP.
 2.  Install and configure a memcache server.
 3.  Install and configure Auth MemCookie. Go to the
     [Auth MemCookie homepage](http://authmemcookie.sourceforge.net/)
@@ -89,7 +89,7 @@ To use Auth MemCookie, you need to do the following steps:
                 # host:port-pairs.
                 # Note that this list must list the same servers as the
                 # 'authmemcookie.servers'-option in config.php in the
-                # configuration for simpleSAMLphp.
+                # configuration for SimpleSAMLphp.
                 Auth_memCookie_Memcached_AddrPort "127.0.0.1:11211"
         
                 # This must be set to 'on' to enable Auth MemCookie for
@@ -122,13 +122,13 @@ To use Auth MemCookie, you need to do the following steps:
         </Location>
 
 4. 
-    Configure the simpleSAMLphp Auth MemCookie module by editing
+    Configure the SimpleSAMLphp Auth MemCookie module by editing
     `config/authmemcookie.php`. You must set the `username` option to a
     valid attribute name. All other can most likely be left at their
     default values.
 
 5. 
-    Enable the simpleSAMLphp Auth MemCookie module by setting
+    Enable the SimpleSAMLphp Auth MemCookie module by setting
     `enable.authmemcookie` to *`true`* in `config/config.php`.
 
 6. 
@@ -156,7 +156,7 @@ To use Auth MemCookie, you need to do the following steps:
 Metadata signing
 ----------------
 
-simpleSAMLphp supports signing of the metadata it generates. Metadata signing is configured by four options:
+SimpleSAMLphp supports signing of the metadata it generates. Metadata signing is configured by four options:
 
 - `metadata.sign.enable`: Whether metadata signing should be enabled or not. Set to `TRUE` to enable metadata signing. Defaults to `FALSE`.
 - `metadata.sign.privatekey`: Name of the file with the private key which should be used to sign the metadata. This file must exist in in the `cert` directory.
@@ -165,7 +165,7 @@ simpleSAMLphp supports signing of the metadata it generates. Metadata signing is
 
 These options can be configured globally in the `config/config.php`-file, or per SP/IdP by adding them to the hosted metadata for the SP/IdP. The configuration in the metadata for the SP/IdP takes precedence over the global configuration.
 
-There is also an additional fallback for the private key and the certificate. If `metadata.sign.privatekey` and `metadata.sign.certificate` isn't configured, simpleSAMLphp will use the `privatekey`, `privatekey_pass` and `certificate` options in the metadata for the SP/IdP.
+There is also an additional fallback for the private key and the certificate. If `metadata.sign.privatekey` and `metadata.sign.certificate` isn't configured, SimpleSAMLphp will use the `privatekey`, `privatekey_pass` and `certificate` options in the metadata for the SP/IdP.
 
 
 
@@ -224,15 +224,15 @@ Support
 -------
 
 If you need help to make this work, or want to discuss
-simpleSAMLphp with other users of the software, you are fortunate:
-Around simpleSAMLphp there is a great Open source community, and
+SimpleSAMLphp with other users of the software, you are fortunate:
+Around SimpleSAMLphp there is a great Open source community, and
 you are welcome to join! The forums are open for you to ask
 questions, contribute answers other further questions, request
 improvements or contribute with code or plugins of your own.
 
--  [simpleSAMLphp homepage](https://simplesamlphp.org)
--  [List of all available simpleSAMLphp documentation](https://simplesamlphp.org/docs/)
--  [Join the simpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)
+-  [SimpleSAMLphp homepage](https://simplesamlphp.org)
+-  [List of all available SimpleSAMLphp documentation](https://simplesamlphp.org/docs/)
+-  [Join the SimpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)
 
 
 

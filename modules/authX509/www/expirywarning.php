@@ -3,7 +3,7 @@
 /**
  * This script warns a user that his/her certificate is about to expire.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 SimpleSAML_Logger::info('AuthX509 - Showing expiry warning to user');

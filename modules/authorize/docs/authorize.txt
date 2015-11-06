@@ -8,7 +8,7 @@ authorize Module
 -->
 
   * Author: Ernesto Revilla <erny@yaco.es>, Yaco Sistemas, Ryan Panning
-  * Package: simpleSAMLphp
+  * Package: SimpleSAMLphp
 
 This module provides a user authorization filter based on attribute matching for those applications that do not cleanly separate authentication from authorization and set some default permissions for authenticated users.
 

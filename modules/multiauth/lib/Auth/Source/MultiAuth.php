@@ -5,7 +5,7 @@
  * other authentication sources
  *
  * @author Lorenzo Gil, Yaco Sistemas S.L.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
@@ -203,7 +203,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 			/* We save the cookies for 90 days. */
 			'lifetime' => (60*60*24*90),
 			/* The base path for cookies.
-			This should be the installation directory for simpleSAMLphp. */
+			This should be the installation directory for SimpleSAMLphp. */
 			'path' => ('/' . $config->getBaseUrl()),
 			'httponly' => FALSE,
 		);

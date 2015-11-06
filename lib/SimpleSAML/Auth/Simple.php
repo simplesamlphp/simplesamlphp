@@ -3,7 +3,7 @@
 /**
  * Helper class for simple authentication applications.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Auth_Simple {
 

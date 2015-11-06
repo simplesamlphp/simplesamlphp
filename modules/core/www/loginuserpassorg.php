@@ -6,7 +6,7 @@
  * username/password/organization authentication.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 /* Retrieve the authentication state. */

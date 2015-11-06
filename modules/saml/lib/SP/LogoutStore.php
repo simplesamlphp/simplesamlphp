@@ -3,7 +3,7 @@
 /**
  * A directory over logout information.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_saml_SP_LogoutStore {
 

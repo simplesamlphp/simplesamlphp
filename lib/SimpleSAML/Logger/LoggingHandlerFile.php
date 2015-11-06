@@ -5,7 +5,7 @@
  *
  * @author Lasse Birnbaum Jensen, SDU.
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  * @version $ID$
  */
 
@@ -41,7 +41,7 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
         // get the metadata handler option from the configuration
         $this->logFile = $config->getPathValue('loggingdir', 'log/') .
             $config->getString('logging.logfile', 'simplesamlphp.log');
-        $this->processname = $config->getString('logging.processname', 'simpleSAMLphp');
+        $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
 
         if (@file_exists($this->logFile)) {
             if (!@is_writeable($this->logFile)) {

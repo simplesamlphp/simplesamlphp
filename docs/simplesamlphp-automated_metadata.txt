@@ -29,7 +29,7 @@ You need to enable the following modules:
  1. cron
  2. metarefresh
 
-The cron module allows you to do tasks regularly, by setting up a cron job that calls a hook in simpleSAMLphp.
+The cron module allows you to do tasks regularly, by setting up a cron job that calls a hook in SimpleSAMLphp.
 
 The metarefresh module will download and parse the metadata document and store it in metadata files cached locally.
 
@@ -53,7 +53,7 @@ instance, if we want to configure the metadata of the SWITCH AAI Test Federation
 	cd modules/metarefresh/bin
 	./metarefresh.php -s http://metadata.aai.switch.ch/metadata.aaitest.xml
 
-The `-s` option sends the output to the console (for testing purposes). If the output makes sense, continue. If you get a lot of error messages, try to read them and fix the problems that might be causing them. If you are having problems and you can't figure out the cause, you can always send an e-mail to the simpleSAMLphp mailing list and ask for advice.
+The `-s` option sends the output to the console (for testing purposes). If the output makes sense, continue. If you get a lot of error messages, try to read them and fix the problems that might be causing them. If you are having problems and you can't figure out the cause, you can always send an e-mail to the SimpleSAMLphp mailing list and ask for advice.
 
 
 
@@ -126,7 +126,7 @@ The metarefresh module supports the following configuration options:
 
 `outputDir`
 :   The directory where the generated metadata will be stored. The path
-    is relative to the simpleSAMLphp base directory.
+    is relative to the SimpleSAMLphp base directory.
 
 `outputFormat`
 :   The format of the generated metadata files. This must match the
@@ -177,7 +177,7 @@ web-server write access to the output directories. Following the previous exampl
 	chown www-data /var/simplesamlphp/metadata/metarefresh-kalmar/
 	chown www-data /var/simplesamlphp/metadata/metarefresh-ukaccess/
 
-Now you can configure simpleSAMLphp to use the metadata fetched by metarefresh. Edit the main
+Now you can configure SimpleSAMLphp to use the metadata fetched by metarefresh. Edit the main
 config.php file, and modify the `metadata.sources` directive accordingly: 
 
 	'metadata.sources' => array(
@@ -211,7 +211,7 @@ The configuration should look similar to this:
 Bear in mind that the key is used as a security feature, to restrict access to your cron. Therefore, you need to make sure that the string here is a random key available to no one but you. Additionally, make sure that you include here the appropriate tags that you previously told metarefresh
 to use in the `cron` directive.
 
-Next, use your web browser to go to `https://YOUR_SERVER/simplesaml/module.php/cron/croninfo.php`. Make sure to properly set your server's address, as well as use HTTP or HTTPS accordingly, and also to specify the correct path to the root of your simpleSAMLphp installation.
+Next, use your web browser to go to `https://YOUR_SERVER/simplesaml/module.php/cron/croninfo.php`. Make sure to properly set your server's address, as well as use HTTP or HTTPS accordingly, and also to specify the correct path to the root of your SimpleSAMLphp installation.
 
 Now, copy the cron configuration suggested:
 

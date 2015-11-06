@@ -1,4 +1,4 @@
-Using the X509 authentication source with simpleSAMLphp
+Using the X509 authentication source with SimpleSAMLphp
 =======================================================
 
 The authX509 module provides X509 authentication with certificate

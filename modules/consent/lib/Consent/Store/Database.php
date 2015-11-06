@@ -14,7 +14,7 @@
  * - table: The name of the table used. Optional, defaults to 'consent'.
  *
  * @author  Olav Morken <olav.morken@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 {

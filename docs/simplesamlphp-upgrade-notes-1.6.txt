@@ -1,4 +1,4 @@
-Upgrade notes for simpleSAMLphp 1.6
+Upgrade notes for SimpleSAMLphp 1.6
 ===================================
 
   * This release requires PHP version >= 5.2.0, as that was the first version to include `json_decode()`.
@@ -9,7 +9,7 @@ Upgrade notes for simpleSAMLphp 1.6
     There is a new option `session.cookie.secure` in `config.php`, which can be used to enable secure cookies.
 
   * Dictionaries have moved to JSON format.
-    The PHP format is still supported, but all dictionaries included with simpleSAMLphp are in JSON format.
+    The PHP format is still supported, but all dictionaries included with SimpleSAMLphp are in JSON format.
 
   * The iframe-specific logout endpoints on the IdP have been merged into the normal logout endpoints.
     This means that the metadata no longer needs to be changed when switching between logout handlers.

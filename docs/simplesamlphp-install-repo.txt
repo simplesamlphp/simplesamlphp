@@ -29,7 +29,7 @@ instructions on how to install Composer itself):
 Upgrading
 ---------
 
-Go to the root directory of your simpleSAMLphp installation:
+Go to the root directory of your SimpleSAMLphp installation:
 
     cd /var/simplesamlphp
 

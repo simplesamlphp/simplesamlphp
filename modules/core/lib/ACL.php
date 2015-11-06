@@ -3,7 +3,7 @@
 /**
  * Generic library for access control lists.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_ACL {
 

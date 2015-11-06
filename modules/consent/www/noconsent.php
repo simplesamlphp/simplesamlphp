@@ -2,7 +2,7 @@
 /**
  * This is the page the user lands on when choosing "no" in the consent form.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 if (!array_key_exists('StateId', $_REQUEST)) {
     throw new SimpleSAML_Error_BadRequest(

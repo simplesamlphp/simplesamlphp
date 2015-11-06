@@ -3,7 +3,7 @@
 /**
  * IdP implementation for SAML 1.1 protocol.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_saml_IdP_SAML1 {
 

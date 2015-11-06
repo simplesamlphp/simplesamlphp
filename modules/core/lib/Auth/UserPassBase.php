@@ -7,7 +7,7 @@
  * implementing a single function: login($username, $password)
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 
@@ -262,7 +262,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		assert('is_array($attributes)');
 		$state['Attributes'] = $attributes;
 
-		/* Return control to simpleSAMLphp after successful authentication. */
+		/* Return control to SimpleSAMLphp after successful authentication. */
 		SimpleSAML_Auth_Source::completeAuth($state);
 	}
 

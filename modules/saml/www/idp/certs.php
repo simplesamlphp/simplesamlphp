@@ -1,6 +1,6 @@
 <?php
 
-/* Load simpleSAMLphp, configuration and metadata */
+/* Load SimpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 

@@ -4,7 +4,7 @@
  * Authenticate using LiveID.
  *
  * @author Brook Schofield, TERENA.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source {
 

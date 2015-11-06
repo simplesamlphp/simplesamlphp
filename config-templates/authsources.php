@@ -32,7 +32,7 @@ $config = array(
          * WARNING: SHA-1 is disallowed starting January the 1st, 2014.
          *
          * Uncomment the following option to start using SHA-256 for your signatures.
-         * Currently, simpleSAMLphp defaults to SHA-1, which has been deprecated since
+         * Currently, SimpleSAMLphp defaults to SHA-1, which has been deprecated since
          * 2011, and will be disallowed by NIST as of 2014. Please refer to the following
          * document for more information:
          *
@@ -309,7 +309,7 @@ $config = array(
         // the array may match the value the username.
         'search.attributes' => array('uid', 'mail'),
 
-        // The username & password the simpleSAMLphp should bind to before searching. If
+        // The username & password the SimpleSAMLphp should bind to before searching. If
         // this is left as NULL, no bind will be performed before searching.
         'search.username' => NULL,
         'search.password' => NULL,
@@ -320,7 +320,7 @@ $config = array(
         // to get them. This is enabled with this option.
         'priv.read' => FALSE,
 
-        // The DN & password the simpleSAMLphp should bind to before
+        // The DN & password the SimpleSAMLphp should bind to before
         // retrieving attributes. These options are required if
         // 'priv.read' is set to TRUE.
         'priv.username' => NULL,

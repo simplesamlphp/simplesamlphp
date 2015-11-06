@@ -6,7 +6,7 @@
  * and connects to the ldap server.
  *
  * @author Ryan Panning <panman@traileyes.com>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_ProcessingFilter {
 

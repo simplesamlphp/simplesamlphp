@@ -5,7 +5,7 @@
  * certificate validation against an LDAP directory.
  *
  * @author Emmanuel Dreyfus <manu@netbsd.org>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
 

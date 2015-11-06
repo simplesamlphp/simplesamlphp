@@ -1,4 +1,4 @@
-Upgrade notes for simpleSAMLphp 1.14
+Upgrade notes for SimpleSAMLphp 1.14
 ====================================
 
 The `mcrypt` extension is no longer required by SimpleSAMLphp, so if no signatures or encryption are being used, it

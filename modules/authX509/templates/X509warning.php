@@ -7,7 +7,7 @@
  * - 'target': Target URL for the continue-button.
  * - 'data': Parameters which should be included in the request.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 $warning = $this->t('{authX509:X509warning:warning}', array(

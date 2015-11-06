@@ -17,7 +17,7 @@ if(!class_exists('Memcache')) {
 	exit(1);
 }
 
-/* This is the base directory of the simpleSAMLphp installation. */
+/* This is the base directory of the SimpleSAMLphp installation. */
 $baseDir = dirname(dirname(__FILE__));
 
 /* Add library autoloader. */
@@ -74,7 +74,7 @@ echo($sync . " keys in sync.\n");
 if($skipped > 0) {
 	echo($skipped . " keys skipped.\n");
 	echo("Keys are skipped because they are either expired, or are of a type unknown\n");
-	echo("to simpleSAMLphp.\n");
+	echo("to SimpleSAMLphp.\n");
 }
 
 if($warnServerDown > 0) {

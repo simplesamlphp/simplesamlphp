@@ -52,7 +52,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
             $this->directory = $globalConfig->getString('metadatadir', 'metadata/');
         }
 
-        /* Resolve this directory relative to the simpleSAMLphp directory (unless it is
+        /* Resolve this directory relative to the SimpleSAMLphp directory (unless it is
          * an absolute path).
          */
         $this->directory = $globalConfig->resolvePath($this->directory).'/';

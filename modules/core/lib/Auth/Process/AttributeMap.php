@@ -4,7 +4,7 @@
  * Attribute filter for renaming attributes.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFilter {
 

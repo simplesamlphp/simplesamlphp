@@ -6,7 +6,7 @@
  * Based on www/auth/login-cas.php by Mads Freek, RUC.
  *
  * @author Danny Bollaert, UGent.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 

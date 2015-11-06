@@ -27,7 +27,7 @@
  * @author Steve Moitozo
  * @author JAARS, Inc.
  * @author Ryan Panning
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Process_BaseFilter {
 

@@ -25,7 +25,7 @@
  * elements of the state array.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Auth_State {
 

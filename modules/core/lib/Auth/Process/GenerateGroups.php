@@ -4,7 +4,7 @@
  * Filter to generate a groups attribute based on many of the attributes of the user.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_ProcessingFilter {
 

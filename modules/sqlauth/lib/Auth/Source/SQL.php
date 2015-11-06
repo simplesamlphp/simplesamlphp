@@ -6,7 +6,7 @@
  * This class is an example authentication source which authenticates an user
  * against a SQL database.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 

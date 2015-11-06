@@ -7,7 +7,7 @@
  * will hide that, and pretend that no errors were logged.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_XML_Errors {
 

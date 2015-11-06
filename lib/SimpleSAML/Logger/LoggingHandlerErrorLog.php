@@ -6,7 +6,7 @@
  * @author Lasse Birnbaum Jensen, SDU.
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  * @version $ID$
  */
 class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_LoggingHandler
@@ -49,7 +49,7 @@ class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_Logg
     {
         $config = SimpleSAML_Configuration::getInstance();
         assert($config instanceof SimpleSAML_Configuration);
-        $processname = $config->getString('logging.processname', 'simpleSAMLphp');
+        $processname = $config->getString('logging.processname', 'SimpleSAMLphp');
 
         if (array_key_exists($level, self::$levelNames)) {
             $levelName = self::$levelNames[$level];

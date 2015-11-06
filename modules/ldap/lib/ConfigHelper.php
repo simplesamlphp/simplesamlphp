@@ -6,7 +6,7 @@
  * See the ldap-entry in config-templates/authsources.php for information about
  * configuration of these options.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_ldap_ConfigHelper {
 

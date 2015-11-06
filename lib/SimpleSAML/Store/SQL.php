@@ -3,7 +3,7 @@
 /**
  * A SQL datastore.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 

@@ -3,7 +3,7 @@
 /**
  * Statistics logger that writes to a set of log files
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Stats_Output_File extends SimpleSAML_Stats_Output {
 

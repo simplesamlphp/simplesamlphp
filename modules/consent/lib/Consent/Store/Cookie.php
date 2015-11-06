@@ -17,7 +17,7 @@
  * </code>
  *
  * @author  Olav Morken <olav.morken@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
 {

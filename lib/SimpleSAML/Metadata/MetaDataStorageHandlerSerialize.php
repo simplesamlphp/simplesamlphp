@@ -42,7 +42,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
 
         $this->directory = $cfgHelp->getString('directory');
 
-        /* Resolve this directory relative to the simpleSAMLphp directory (unless it is
+        /* Resolve this directory relative to the SimpleSAMLphp directory (unless it is
          * an absolute path).
          */
         $this->directory = $globalConfig->resolvePath($this->directory);

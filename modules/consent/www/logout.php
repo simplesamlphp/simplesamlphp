@@ -2,7 +2,7 @@
 /**
  * This is the handler for logout started from the consent page.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 if (!array_key_exists('StateId', $_GET)) {

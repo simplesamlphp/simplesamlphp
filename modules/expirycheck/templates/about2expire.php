@@ -13,7 +13,7 @@
  * - 'attributes': The attributes which are about to be released.
  * - 'sppp': URL to the privacy policy of the destination, or FALSE.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 # netid will expire today

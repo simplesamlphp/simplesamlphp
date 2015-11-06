@@ -88,7 +88,7 @@ The following options are common between both the SAML 2.0 protocol and Shibbole
         ),
 
 `SingleSignOnService`
-:   Endpoint URL for sign on. You should obtain this from the IdP. For SAML 2.0, simpleSAMLphp will use the HTTP-Redirect binding when contacting this endpoint.
+:   Endpoint URL for sign on. You should obtain this from the IdP. For SAML 2.0, SimpleSAMLphp will use the HTTP-Redirect binding when contacting this endpoint.
 
 :   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
 
@@ -155,7 +155,7 @@ The following SAML 2.0 options are available:
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `SPNameQualifier`
-:   This corresponds to the SPNameQualifier in the SAML 2.0 specification. It allows to give subjects a SP specific namespace. This option is rarely used, so if you don't need it, leave it out. When left out, simpleSAMLphp assumes the entityID of your SP as the SPNameQualifier.
+:   This corresponds to the SPNameQualifier in the SAML 2.0 specification. It allows to give subjects a SP specific namespace. This option is rarely used, so if you don't need it, leave it out. When left out, SimpleSAMLphp assumes the entityID of your SP as the SPNameQualifier.
 
 `validate.logout`
 :   Whether we require signatures on logout messages sent from this IdP.
@@ -168,7 +168,7 @@ The following SAML 2.0 options are available:
 
 It is possible to decrypt the assertions received from an IdP. Currently the only algorithm supported is `AES128_CBC` or `RIJNDAEL_128`.
 
-There are two modes of encryption supported by simpleSAMLphp. One is symmetric encryption, in which case both the SP and the IdP needs to share a key. The other mode is the use of public key encryption. In that mode, the public key of the SP is extracted from the certificate of the SP.
+There are two modes of encryption supported by SimpleSAMLphp. One is symmetric encryption, in which case both the SP and the IdP needs to share a key. The other mode is the use of public key encryption. In that mode, the public key of the SP is extracted from the certificate of the SP.
 
 `assertion.encryption`
 :   Whether assertions received from this IdP must be encrypted. The default value is `FALSE`.
@@ -183,7 +183,7 @@ There are two modes of encryption supported by simpleSAMLphp. One is symmetric e
 
 ### Fields for signing and validating messages
 
-simpleSAMLphp only signs authentication responses by default. Signing of authentication request, logout requests and logout responses can be enabled by setting the `redirect.sign` option. Validation of received messages can be enabled by the `redirect.validate` option.
+SimpleSAMLphp only signs authentication responses by default. Signing of authentication request, logout requests and logout responses can be enabled by setting the `redirect.sign` option. Validation of received messages can be enabled by the `redirect.validate` option.
 
 `redirect.sign`
 :   Whether authentication request, logout requests and logout responses sent to this IdP should be signed. The default is `FALSE`.
@@ -201,7 +201,7 @@ Shibboleth 1.3 options
 ----------------------
 
 `caFile`
-:   Alternative to specifying a certificate. Allows you to specify a file with root certificates, and responses from the service be validated against these certificates. Note that simpleSAMLphp doesn't support chains with any itermediate certificates between the root and the certificate used to sign the response. Support for PKIX in SimpleSAMLphp is experimental, and we encourage users to not rely on PKIX for validation of signatures; for background information review [the SAML 2.0 Metadata Interoperability Profile](http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop-cd-01.pdf).
+:   Alternative to specifying a certificate. Allows you to specify a file with root certificates, and responses from the service be validated against these certificates. Note that SimpleSAMLphp doesn't support chains with any itermediate certificates between the root and the certificate used to sign the response. Support for PKIX in SimpleSAMLphp is experimental, and we encourage users to not rely on PKIX for validation of signatures; for background information review [the SAML 2.0 Metadata Interoperability Profile](http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop-cd-01.pdf).
 
 `saml1.useartifact`
 :   Request that the IdP returns the result to the artifact binding.

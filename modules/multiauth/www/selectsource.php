@@ -7,7 +7,7 @@
  * delegateAuthentication method on it.
  *
  * @author Lorenzo Gil, Yaco Sistemas S.L.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 /* Retrieve the authentication state. */
