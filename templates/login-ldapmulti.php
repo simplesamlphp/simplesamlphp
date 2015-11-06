@@ -31,7 +31,7 @@
 
 					
 				<td style="padding: .4em;" rowspan="3">
-					<input type="submit" tabindex="3" id="regularsubmit" value="<?php echo $this->t('login_button'); ?>" />
+					<button type="submit" tabindex="3" id="regularsubmit" class="btn"><?php echo $this->t('login_button'); ?></button>
 					<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($this->data['relaystate']); ?>" />
 				</td>
 			</tr>
@@ -56,7 +56,7 @@
 				<td><input type="password" tabindex="2" name="password" /></td>
 			</tr>
 		<tr><td></td><td>
-		<input type="submit" tabindex="5" id="mobilesubmit" value="<?php echo $this->t('login_button'); ?>" />
+		<button type="submit" tabindex="5" id="mobilesubmit" class="btn"><?php echo $this->t('login_button'); ?></button>
 		</td></tr>
 		</table>
 		

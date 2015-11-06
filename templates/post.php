@@ -62,7 +62,7 @@ foreach ($post as $name => $value) {
 ?>
 
 		<noscript>
-			<input type="submit" value="Submit" />
+			<button type="submit" class="btn">Submit</button>
 		</noscript>
 	</form>
 

@@ -13,7 +13,7 @@ $this->includeAtTemplateBase('includes/header.php');
             <?php echo $this->t('metaconv_selectfile'); ?>
             <input type="file" name="xmlfile"/></p>
         <p>
-            <input type="submit" value="<?php echo $this->t('metaconv_parse'); ?>" class="btn"/>
+            <button type="submit" class="btn"><?php echo $this->t('metaconv_parse'); ?></button>
         </p>
     </form>
 <?php
