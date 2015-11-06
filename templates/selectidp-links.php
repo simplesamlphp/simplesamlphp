@@ -53,7 +53,7 @@ foreach ($this->data['idplist'] as $idpentry) {
             }
             echo('<button id="preferredidp" type="submit" class="btn" name="idp_'.
                 htmlspecialchars($idpentry['entityid']).'">'.
-                $this->t('select').'</button>"</p>');
+                $this->t('select').'</button></p>');
             echo '</div>';
         }
 
