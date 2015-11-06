@@ -646,7 +646,7 @@ abstract class BaseFacebook
    *
    * @return mixed The decoded response
    */
-  public function api(// apache + variants specific way of checking for https) {
+  public function api(/* polymorphic */) {
     $args = func_get_args();
     if (is_array($args[0])) {
       return $this->_restserver($args[0]);
