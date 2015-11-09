@@ -5,14 +5,14 @@
  * This filter can modify or replace attributes given a regular expression.
  *
  * @author Jacob Christiansen, WAYF
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_ProcessingFilter {
 
-	/**
-	 * Should the pattern found be replaced?
-	 */
-	private $replace = FALSE;
+    /**
+     * Should the pattern found be replaced?
+     */
+    private $replace = FALSE;
 
     /**
      * Should the value found be removed?
@@ -20,102 +20,97 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
     private $remove = FALSE;
 
     /**
-	 * Pattern to search for.
-	 */
-	private $pattern = '';
-	
-	/**
-	 * String to replace the pattern found with.
-	 */
-	private $replacement = FALSE;
-	
-	/**
-	 * Attribute to search in
-	 */
-	private $subject = '';
+     * Pattern to search for.
+     */
+    private $pattern = '';
 
-	/**
-	 * Attribute to place the result in.
-	 */
-	private $target = '';
-	
-	/**
-	 * Initialize this filter.
-	 *
-	 * @param array $config  Configuration information about this filter.
-	 * @param mixed $reserved  For future use.
+    /**
+     * String to replace the pattern found with.
+     */
+    private $replacement = FALSE;
+
+    /**
+     * Attribute to search in
+     */
+    private $subject = '';
+
+    /**
+     * Attribute to place the result in.
+     */
+    private $target = '';
+
+    /**
+     * Initialize this filter.
+     *
+     * @param array $config  Configuration information about this filter.
+     * @param mixed $reserved  For future use.
      * @throws SimpleSAML_Error_Exception In case of invalid configuration.
-	 */
-	public function __construct($config, $reserved) {
-		parent::__construct($config, $reserved);
+     */
+    public function __construct($config, $reserved) {
+        parent::__construct($config, $reserved);
 
         assert('is_array($config)');
 
-		// parse filter configuration
-		foreach ($config as $name => $value) {
-			if (is_int($name)) {
+        // parse filter configuration
+        foreach ($config as $name => $value) {
+            if (is_int($name)) {
                 // check if this is an option
-				if($value === '%replace') {
-					$this->replace = TRUE;
-				} elseif ($value == '%remove') {
-					$this->remove = TRUE;
-				} else {
-					throw new SimpleSAML_Error_Exception('Unknown flag : ' . var_export($value, TRUE));
-				}
-				continue;
-			}
-			
-			// Unknown flag
-			if (!is_string($name)) {
-				throw new SimpleSAML_Error_Exception('Unknown flag : ' . var_export($name, TRUE));
-			}
-			
-			// Set pattern
-			if ($name === 'pattern') {
-				$this->pattern = $value;
-			}
-			
-			// Set replacement
-			if ($name === 'replacement') {
-				$this->replacement = $value;
-			}
-			
-			// Set subject
-			if ($name === 'subject') {
-				$this->subject = $value;
-			}
-			
-			// Set target
-			if ($name === 'target') {
-				$this->target = $value;
-			}
-		}
-	}
+                if($value === '%replace') {
+                    $this->replace = TRUE;
+                } elseif ($value === '%remove') {
+                    $this->remove = TRUE;
+                } else {
+                    throw new SimpleSAML_Error_Exception('Unknown flag : ' . var_export($value, TRUE));
+                }
+                continue;
+            }
 
-	/**
-	 * Apply the filter to modify attributes.
-	 *
-	 * Modify existing attributes with the configured values.
-	 *
-	 * @param array &$request The current request.
+            // Set pattern
+            if ($name === 'pattern') {
+                $this->pattern = $value;
+            }
+
+            // Set replacement
+            if ($name === 'replacement') {
+                $this->replacement = $value;
+            }
+
+            // Set subject
+            if ($name === 'subject') {
+                $this->subject = $value;
+            }
+
+            // Set target
+            if ($name === 'target') {
+                $this->target = $value;
+            }
+        }
+    }
+
+    /**
+     * Apply the filter to modify attributes.
+     *
+     * Modify existing attributes with the configured values.
+     *
+     * @param array &$request The current request.
      * @throws SimpleSAML_Error_Exception In case of invalid configuration.
-	 */
-	public function process(&$request) {
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+     */
+    public function process(&$request) {
+        assert('is_array($request)');
+        assert('array_key_exists("Attributes", $request)');
 
-		// get attributes from request
-		$attributes =& $request['Attributes'];
+        // get attributes from request
+        $attributes =& $request['Attributes'];
 
-		// check that all required params are set in config
-		if (empty($this->pattern) || empty($this->subject)) {
-			throw new SimpleSAML_Error_Exception("Not all params set in config.");
-		}
+        // check that all required params are set in config
+        if (empty($this->pattern) || empty($this->subject)) {
+            throw new SimpleSAML_Error_Exception("Not all params set in config.");
+        }
 
-		if (!$this->replace && !$this->remove && $this->replacement === false) {
-			throw new SimpleSAML_Error_Exception("'replacement' must be set if neither '%replace' nor ".
+        if (!$this->replace && !$this->remove && $this->replacement === false) {
+            throw new SimpleSAML_Error_Exception("'replacement' must be set if neither '%replace' nor ".
                 "'%remove' are set.");
-		}
+        }
 
         if (!$this->replace && $this->replacement === null) {
             throw new SimpleSAML_Error_Exception("'%replace' must be set if 'replacement' is null.");
@@ -125,16 +120,16 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
             throw new SimpleSAML_Error_Exception("'%replace' and '%remove' cannot be used together.");
         }
 
-		if (empty($this->target)) {
+        if (empty($this->target)) {
             // use subject as target if target is not set
-			$this->target = $this->subject;		
-		}
+            $this->target = $this->subject;
+        }
 
         if ($this->subject !== $this->target && $this->remove) {
             throw new SimpleSAML_Error_Exception("Cannot use '%remove' when 'target' is different than 'subject'.");
         }
 
-		if (!array_key_exists($this->subject, $attributes)) {
+        if (!array_key_exists($this->subject, $attributes)) {
             // if no such subject, stop gracefully
             return;
         }
@@ -152,7 +147,7 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
                     if ($this->subject === $this->target) {
                         $value = $new_value;
                     } else {
-                        $attributes[$this->target][] = $new_value;
+                        $attributes[$this->target] = array($new_value);
                     }
                 }
             }
@@ -179,5 +174,5 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
                                                         $attributes[$this->subject]);
             }
         }
-	}
+    }
 }

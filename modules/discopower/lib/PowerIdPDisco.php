@@ -320,7 +320,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
             // the cookie is too long. Remove the oldest elements until it is short enough
             $tmp = explode(' ', $newCookie, 2);
             if (count($tmp) === 1) {
-                // we are left with a single entityID whose base64 representation is too long to fit in a cookie.
+                // we are left with a single entityID whose base64 representation is too long to fit in a cookie
                 break;
             }
             $newCookie = $tmp[1];

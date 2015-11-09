@@ -26,7 +26,7 @@
  * </code>
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilter {
 
@@ -123,7 +123,7 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 		$uid = hash('sha1', $uidData);
 
 		if ($this->generateNameId) {
-			/* Convert the targeted ID to a SAML 2.0 name identifier element. */
+			// Convert the targeted ID to a SAML 2.0 name identifier element
 			$nameId = array(
 				'Format' => SAML2_Const::NAMEID_PERSISTENT,
 				'Value' => $uid,
@@ -136,7 +136,7 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 				$nameId['SPNameQualifier'] = $state['Destination']['entityid'];
 			}
 
-			$doc = new DOMDocument();
+			$doc = SAML2_DOMDocumentFactory::create();
 			$root = $doc->createElement('root');
 			$doc->appendChild($root);
 

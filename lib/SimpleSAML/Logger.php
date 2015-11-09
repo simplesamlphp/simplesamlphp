@@ -6,6 +6,7 @@
  *
  * @author Lasse Birnbaum Jensen, SDU.
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  * @version $ID$
  */
@@ -44,13 +45,13 @@ class SimpleSAML_Logger
      * This constant defines the string we set the track ID to while we are fetching the track ID from the session
      * class. This is used to prevent infinite recursion.
      */
-    private static $TRACKID_FETCHING = '_NOTRACKIDYET_';
+    const NO_TRACKID = '_NOTRACKIDYET_';
 
     /**
      * This variable holds the track ID we have retrieved from the session class. It can also be NULL, in which case
-     * we haven't fetched the track ID yet, or TRACKID_FETCHING, which means that we are fetching the track ID now.
+     * we haven't fetched the track ID yet, or self::NO_TRACKID, which means that we are fetching the track ID now.
      */
-    private static $trackid = null;
+    private static $trackid = self::NO_TRACKID;
 
     /**
      * This variable holds the format used to log any message. Its use varies depending on the log handler used (for
@@ -80,6 +81,20 @@ class SimpleSAML_Logger
      * @var string The format of the log line.
      */
     private static $format = '%date{%b %d %H:%M:%S} %process %level %stat[%trackid] %msg';
+
+    /**
+     * This variable tells if we have a shutdown function registered or not.
+     *
+     * @var bool
+     */
+    private static $shutdownRegistered = false;
+
+    /**
+     * This variable tells if we are shutting down.
+     *
+     * @var bool
+     */
+    private static $shuttingDown = false;
 
     const EMERG = 0;
     const ALERT = 1;
@@ -211,6 +226,55 @@ class SimpleSAML_Logger
     }
 
 
+    /**
+     * Set the track identifier to use in all logs.
+     *
+     * @param $trackId string The track identifier to use during this session.
+     */
+    public static function setTrackId($trackId)
+    {
+        self::$trackid = $trackId;
+    }
+
+
+    /**
+     * Flush any pending log messages to the logging handler.
+     *
+     * This method is intended to be registered as a shutdown handler, so that any pending messages that weren't sent
+     * to the logging handler at that point, can still make it. It is therefore not intended to be called manually.
+     *
+     */
+    public static function flush()
+    {
+        $s = SimpleSAML_Session::getSessionFromRequest();
+        self::$trackid = $s->getTrackID();
+
+        self::$shuttingDown = true;
+        foreach (self::$earlyLog as $msg) {
+            self::log($msg['level'], $msg['string'], $msg['statsLog']);
+        }
+    }
+
+
+    /**
+     * Defer a message for later logging.
+     *
+     * @param int $level The log level corresponding to this message.
+     * @param string $message The message itself to log.
+     * @param boolean $stats Whether this is a stats message or a regular one.
+     */
+    private static function defer($level, $message, $stats)
+    {
+        // save the message for later
+        self::$earlyLog[] = array('level' => $level, 'string' => $message, 'statsLog' => $stats);
+
+        // register a shutdown handler if needed
+        if (!self::$shutdownRegistered) {
+            register_shutdown_function(array('SimpleSAML_Logger', 'flush'));
+            self::$shutdownRegistered = true;
+        }
+    }
+
     private static function createLoggingHandler()
     {
         // set to FALSE to indicate that it is being initialized
@@ -256,7 +320,7 @@ class SimpleSAML_Logger
         }
 
         if (self::$loggingHandler === null) {
-            /* Initialize logging. */
+            // Initialize logging
             self::createLoggingHandler();
 
             if (!empty(self::$earlyLog)) {
@@ -274,7 +338,7 @@ class SimpleSAML_Logger
             }
             error_log($string);
 
-            self::$earlyLog[] = array('level' => $level, 'string' => $string, 'statsLog' => $statsLog);
+            self::defer($level, $string, $statsLog);
             return;
         }
 
@@ -291,7 +355,7 @@ class SimpleSAML_Logger
             }
 
             $formats = array('%trackid', '%msg', '%srcip', '%stat');
-            $replacements = array(self::getTrackId(), $string, $_SERVER['REMOTE_ADDR']);
+            $replacements = array(self::$trackid, $string, $_SERVER['REMOTE_ADDR']);
 
             $stat = '';
             if ($statsLog) {
@@ -299,39 +363,19 @@ class SimpleSAML_Logger
             }
             array_push($replacements, $stat);
 
+            if (self::$trackid === self::NO_TRACKID && !self::$shuttingDown) {
+                // we have a log without track ID and we are not still shutting down, so defer logging
+                self::defer($level, $string, $statsLog);
+                return;
+            } elseif (self::$trackid === self::NO_TRACKID) {
+                // shutting down without a track ID, prettify it
+                array_shift($replacements);
+                array_unshift($replacements, 'N/A');
+            }
+
+            // we either have a track ID or we are shutting down, so just log the message
             $string = str_replace($formats, $replacements, self::$format);
             self::$loggingHandler->log($level, $string);
         }
-    }
-
-
-    /**
-     * Retrieve the track ID we should use for logging. It is used to avoid infinite recursion between the logger class
-     * and the session class.
-     *
-     * @return string The track ID we should use for logging, or 'NA' if we detect recursion.
-     */
-    private static function getTrackId()
-    {
-        if (self::$trackid === self::$TRACKID_FETCHING) {
-            // recursion detected!
-            return 'NA';
-        }
-
-        if (self::$trackid === null) {
-            // no track ID yet, fetch it from the session class
-
-            // mark it as currently being fetched
-            self::$trackid = self::$TRACKID_FETCHING;
-
-            // get the current session. This could cause recursion back to the logger class
-            $session = SimpleSAML_Session::getSessionFromRequest();
-
-            // update the track ID
-            self::$trackid = $session->getTrackID();
-        }
-
-        assert('is_string(self::$trackid)');
-        return self::$trackid;
     }
 }

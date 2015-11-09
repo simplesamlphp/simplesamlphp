@@ -1,7 +1,7 @@
 <?php
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_metarefresh_MetaLoader {
 
@@ -99,18 +99,18 @@ class sspmod_metarefresh_MetaLoader {
 				$this->addCachedMetadata($source);
 				return;
 			} elseif(!preg_match('@^HTTP/1\.[01]\s200\s@', $responseHeaders[0])) {
-				// Other error.
+				// Other error
 				SimpleSAML_Logger::debug('Error from ' . $source['src'] . ' - attempting to re-use cached metadata');
 				$this->addCachedMetadata($source);
 				return;
 			}
 		} else {
-			/* Local file. */
+			// Local file.
 			$data = file_get_contents($source['src']);
 			$responseHeaders = NULL;
 		}
 
-		/* Everything OK. Proceed. */
+		// Everything OK. Proceed.
 		if (isset($source['conditionalGET']) && $source['conditionalGET']) {
 			// Stale or no metadata, so a fresh copy
 			SimpleSAML_Logger::debug('Downloaded fresh copy');
@@ -252,12 +252,14 @@ class sspmod_metarefresh_MetaLoader {
 	 */
 	private function loadXML($data, $source) {
 		$entities = array();
-		$doc = new DOMDocument();
-		$res = $doc->loadXML($data);
-		if($res !== TRUE) {
+		try {
+			$doc = SAML2_DOMDocumentFactory::fromString($data);
+		} catch (Exception $e) {
 			throw new Exception('Failed to read XML from ' . $source['src']);
 		}
-		if($doc->documentElement ===  NULL) throw new Exception('Opened file is not an XML document: ' . $source['src']);
+		if ($doc->documentElement === NULL) {
+			throw new Exception('Opened file is not an XML document: ' . $source['src']);
+		}
 		$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($doc->documentElement);
 		return $entities;
 	}

@@ -1,13 +1,13 @@
 <?php
 
-/* Load simpleSAMLphp, configuration and metadata */
+// Load SimpleSAMLphp, configuration and metadata
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 if (!$config->getBoolean('enable.saml20-idp', false))
 	throw new SimpleSAML_Error_Error('NOACCESS');
 
-/* Check if valid local session exists.. */
+// Check if valid local session exists..
 if ($config->getBoolean('admin.protectmetadata', false)) {
     SimpleSAML\Utils\Auth::requireAdmin();
 }

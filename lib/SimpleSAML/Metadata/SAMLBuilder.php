@@ -2,11 +2,11 @@
 
 
 /**
- * Class for generating SAML 2.0 metadata from simpleSAMLphp metadata arrays.
+ * Class for generating SAML 2.0 metadata from SimpleSAMLphp metadata arrays.
  *
  * This class builds SAML 2.0 metadata for an entity by examining the metadata for the entity.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Metadata_SAMLBuilder
 {
@@ -348,7 +348,7 @@ class SimpleSAML_Metadata_SAMLBuilder
 
             if ($indexed) {
                 if (!isset($ep['index'])) {
-                    /* Find the maximum index. */
+                    // Find the maximum index
                     $maxIndex = -1;
                     foreach ($endpoints as $ep) {
                         if (!isset($ep['index'])) {
@@ -678,7 +678,7 @@ class SimpleSAML_Metadata_SAMLBuilder
         assert('is_array($details)');
         assert('in_array($type, array("technical", "support", "administrative", "billing", "other"), TRUE)');
 
-        // TODO: remove this check as soon as getContact() is called always before calling this function.
+        // TODO: remove this check as soon as getContact() is called always before calling this function
         $details = \SimpleSAML\Utils\Config\Metadata::getContact($details);
 
         $e = new SAML2_XML_md_ContactPerson();

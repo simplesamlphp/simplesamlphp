@@ -8,6 +8,8 @@
 namespace SimpleSAML\Utils;
 
 
+use Symfony\Component\Config\Definition\Exception\Exception;
+
 class XML
 {
 
@@ -226,8 +228,9 @@ class XML
             throw new \InvalidArgumentException('Invalid input parameters');
         }
 
-        $doc = new \DOMDocument();
-        if (!$doc->loadXML($xml)) {
+        try {
+            $doc = \SAML2_DOMDocumentFactory::fromString($xml);
+        } catch(\Exception $e) {
             throw new \DOMException('Error parsing XML string.');
         }
 
@@ -399,8 +402,12 @@ class XML
             $dom = $xml;
             $res = true;
         } else {
-            $dom = new \DOMDocument;
-            $res = $dom->loadXML($xml);
+            try {
+                $dom = \SAML2_DOMDocumentFactory::fromString($xml);
+                $res = true;
+            } catch(Exception $e) {
+                $res = false;
+            }
         }
 
         if ($res) {

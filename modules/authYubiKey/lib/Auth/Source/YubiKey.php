@@ -4,14 +4,14 @@
  * Copyright (C) 2009  Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * Copyright (C) 2009  Simon Josefsson <simon@yubico.com>.
  *
- * This file is part of simpleSAMLphp
+ * This file is part of SimpleSAMLphp
  *
- * simpleSAMLphp is free software; you can redistribute it and/or
+ * SimpleSAMLphp is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
  * as published by the Free Software Foundation; either version 3 of
  * the License, or (at your option) any later version.
  *
- * simpleSAMLphp is distributed in the hope that it will be useful,
+ * SimpleSAMLphp is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
@@ -37,7 +37,7 @@
  * To generate your own client id/key you will need one YubiKey, and then
  * go to http://yubico.com/developers/api/
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 
@@ -73,7 +73,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 		assert('is_array($info)');
 		assert('is_array($config)');
 
-		/* Call the parent constructor first, as required by the interface. */
+		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
 		if (array_key_exists('id', $config)) {
@@ -97,7 +97,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 	public function authenticate(&$state) {
 		assert('is_array($state)');
 
-		/* We are going to need the authId in order to retrieve this authentication source later. */
+		// We are going to need the authId in order to retrieve this authentication source later
 		$state[self::AUTHID] = $this->authId;
 
 		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);

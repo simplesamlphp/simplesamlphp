@@ -3,7 +3,7 @@
 /**
  * Helper class for working with persistent NameIDs stored in SQL datastore.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_saml_IdP_SQLNameID  {
 
@@ -45,7 +45,7 @@ class sspmod_saml_IdP_SQLNameID  {
 
 		$store = SimpleSAML_Store::getInstance();
 		if (!($store instanceof SimpleSAML_Store_SQL)) {
-			throw new SimpleSAML_Error_Exception('SQL NameID store requires simpleSAMLphp to be configured with a SQL datastore.');
+			throw new SimpleSAML_Error_Exception('SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.');
 		}
 
 		self::createTable($store);
@@ -111,7 +111,7 @@ class sspmod_saml_IdP_SQLNameID  {
 
 		$row = $query->fetch(PDO::FETCH_ASSOC);
 		if ($row === FALSE) {
-			/* No NameID found. */
+			// No NameID found
 			return NULL;
 		}
 

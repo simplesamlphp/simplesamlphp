@@ -18,7 +18,7 @@
  *            '<mymodule>:External',
  *        ),
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 
@@ -32,10 +32,10 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		assert('is_array($info)');
 		assert('is_array($config)');
 
-		/* Call the parent constructor first, as required by the interface. */
+		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
-		/* Do any other configuration we need here. */
+		// Do any other configuration we need here
 	}
 
 
@@ -64,7 +64,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 
 		/*
 		 * Find the attributes for the user.
-		 * Note that all attributes in simpleSAMLphp are multivalued, so we need
+		 * Note that all attributes in SimpleSAMLphp are multivalued, so we need
 		 * to store them as arrays.
 		 */
 

@@ -1,4 +1,4 @@
-Using the LinkedIn authentication source with simpleSAMLphp
+Using the LinkedIn authentication source with SimpleSAMLphp
 ===========================================================
 
 Remember to configure `authsources.php`, with both Consumer key and secret.

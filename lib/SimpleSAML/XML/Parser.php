@@ -4,7 +4,7 @@
  * This file will help doing XPath queries in SAML 2 XML documents.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_XML_Parser  {
 
@@ -20,7 +20,7 @@ class SimpleSAML_XML_Parser  {
 	
 	public static function fromSimpleXMLElement(SimpleXMLElement $element) {
 		
-		// Traverse all existing namespaces in element.
+		// Traverse all existing namespaces in element
 		$namespaces = $element->getNamespaces();
 		foreach ($namespaces AS $prefix => $ns) {
 			$element[(($prefix === '') ? 'xmlns' : 'xmlns:' . $prefix)] = $ns;

@@ -104,7 +104,7 @@ The SimpleSAMLphp translation portal is available here:
 
   * <https://translation.rnd.feide.no/>
 
-Use Feide OpenIdP to login, select the application you want to translate, simpleSAMLphp or your own application, then start translate to your langauge.
+Use Feide OpenIdP to login, select the application you want to translate, SimpleSAMLphp or your own application, then start translate to your langauge.
 
 ## The `translation.php` command line script
 
@@ -120,9 +120,9 @@ The script may be used to these tasks:
 
 ### Uploading defintion files
 
-You probably do not have access to upload definition files for the simpleSAMLphp application. But, from January 2010, the translation portal is generic to host multiple independent applications. What you may do is to contact Andreas to add your own application to the translation portal, where you of course have access to upload definition files.
+You probably do not have access to upload definition files for the SimpleSAMLphp application. But, from January 2010, the translation portal is generic to host multiple independent applications. What you may do is to contact Andreas to add your own application to the translation portal, where you of course have access to upload definition files.
 
-**Note**: an application may very well be a local simpleSAMLphp module that you run.
+**Note**: an application may very well be a local SimpleSAMLphp module that you run.
 
 To add a new application to the SimpleSAMLphp translation portal, contact Andreas with the following information:
 

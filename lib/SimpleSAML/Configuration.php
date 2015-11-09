@@ -526,7 +526,7 @@ class SimpleSAML_Configuration
 
         $dir = dirname($dir);
 
-        /* Add trailing slash. */
+        // Add trailing slash
         $dir .= '/';
 
         return $dir;
@@ -1216,7 +1216,7 @@ class SimpleSAML_Configuration
                     continue;
                 }
                 if (isset($key['X509Certificate'])) {
-                    /* Strip whitespace from key. */
+                    // Strip whitespace from key
                     $key['X509Certificate'] = preg_replace('/\s+/', '', $key['X509Certificate']);
                 }
                 $ret[] = $key;

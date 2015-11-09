@@ -170,6 +170,13 @@ h6 {
 	font-size: 96%;
 }
 
+input {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 5px;
+	line-height: 1.5em;
+}
+
 h1 a {
 	text-decoration: none;
 	border: none ! important;
@@ -274,7 +281,8 @@ th.rowtitle {
 .metadatabox {
 	overflow: scroll; 
 	border: 1px solid #eee; 
-	padding: 2px;
+	padding: 0.5em;
+	border-radius: 3px;
 }
 div.preferredidp {
 	border: 1px dashed #ccc;
@@ -319,6 +327,12 @@ table.attributes tr td {
 	
 	vertical-align: top;
 }
+
+.attrvalue {
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
 table#table_with_attributes tr:last-child td {
 	border-bottom: none;
 }
@@ -387,4 +401,68 @@ caption {
 	.youareadmin {
 		font-size: 50%;
 	}
+}
+
+.btn, .btnaddonright {
+	color: #000000;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	background-color: #eee;
+	background-image: linear-gradient(#fcfcfc, #eee);
+	text-align: center;
+	padding: 5px;
+	cursor: hand;
+}
+
+.btn:hover, .btnaddonright:hover {
+	border-color: #ccc;
+	background-color: #ddd;
+	background-image: linear-gradient(#eee, #ddd);
+
+}
+
+.btn img,
+.btnaddonright img {
+	max-height: 15px;
+	max-width: 15px;
+}
+
+.topright {
+	position: absolute;
+	right: 2em;
+}
+
+.input-group {
+	display: table;
+}
+
+.input-group pre {
+	background: white;
+	position: relative;
+	width: 100%;
+	vertical-align: middle;
+	border: 1px solid #eee;
+	padding: 0.5em;
+	display: table-cell;
+}
+
+.input-group .btnaddonright {
+	position: relative;
+	display: inline-block;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 3px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 3px;
+	border-left: none;
+}
+
+.input-group .btnaddonright:hover {
+	border-left: 1px solid #ccc;
+}
+
+.input-group .input-left {
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 0;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 0;
 }

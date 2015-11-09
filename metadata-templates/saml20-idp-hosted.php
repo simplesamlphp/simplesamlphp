@@ -1,6 +1,6 @@
 <?php
 /**
- * SAML 2.0 IdP configuration for simpleSAMLphp.
+ * SAML 2.0 IdP configuration for SimpleSAMLphp.
  *
  * See: https://simplesamlphp.org/docs/stable/simplesamlphp-reference-idp-hosted
  */
@@ -13,7 +13,7 @@ $metadata['__DYNAMIC:1__'] = array(
 	 */
 	'host' => '__DEFAULT__',
 
-	/* X.509 key and certificate. Relative to the cert directory. */
+	// X.509 key and certificate. Relative to the cert directory.
 	'privatekey' => 'server.pem',
 	'certificate' => 'server.crt',
 
@@ -27,7 +27,7 @@ $metadata['__DYNAMIC:1__'] = array(
 	 * WARNING: SHA-1 is disallowed starting January the 1st, 2014.
 	 *
 	 * Uncomment the following option to start using SHA-256 for your signatures.
-	 * Currently, simpleSAMLphp defaults to SHA-1, which has been deprecated since
+	 * Currently, SimpleSAMLphp defaults to SHA-1, which has been deprecated since
 	 * 2011, and will be disallowed by NIST as of 2014. Please refer to the following
 	 * document for more information:
 	 * 

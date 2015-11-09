@@ -1,6 +1,6 @@
 <?php
 /**
- * SAML 2.0 remote IdP metadata for simpleSAMLphp.
+ * SAML 2.0 remote IdP metadata for SimpleSAMLphp.
  *
  * Remember to remove the IdPs you don't use from this file.
  *

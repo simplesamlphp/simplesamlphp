@@ -20,7 +20,7 @@ class Test_Core_Auth_Process_TargetedID extends PHPUnit_Framework_TestCase
     }
 
 //    /**
-//     * Test the most basic functionality.
+//     * Test the most basic functionality
 //     */
 //    public function testBasic()
 //    {

@@ -7,7 +7,7 @@
 
 	<?php if (isset($this->data['error'])) { ?>
 		<div style="border-left: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; background: #f5f5f5">
-		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" class="float-l erroricon" style="margin: 15px" />
+		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" class="float-l erroricon" style="margin: 15px" alt="" />
 		<h2><?php echo $this->t('error_header'); ?></h2>
 		
 		<p><?php echo $this->t($this->data['error']); ?> </p>
@@ -22,7 +22,7 @@
 
 	<table>
 		<tr>
-			<td rowspan="2"><img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-authentication.48x48.png" id="loginicon" /></td>
+			<td rowspan="2"><img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-authentication.48x48.png" id="loginicon" alt="" /></td>
 			<td style="padding: .3em;"><?php echo $this->t('username'); ?></td>
 			
 			
@@ -45,7 +45,7 @@
 			</td>
 
 			<td style="padding: .4em;" rowspan="2">
-				<input type="submit" class="regularsubmit" tabindex="3" value="<?php echo $this->t('login_button'); ?>" />
+				<button type="submit" class="regularsubmit" tabindex="3" class="btn"><?php echo $this->t('login_button'); ?></button>
 				<input type="hidden" name="RelayState" value="<?php echo htmlspecialchars($this->data['relaystate']); ?>" />
 			</td>
 		</tr>
@@ -54,7 +54,7 @@
 			<td><input id="password" type="password" tabindex="2" name="password" /></td>
 		</tr>
 	<tr><td></td><td>
-	<input type="submit" tabindex="5" id="mobilesubmit" value="<?php echo $this->t('login_button'); ?>" />
+	<button type="submit" tabindex="5" id="mobilesubmit" class="btn"><?php echo $this->t('login_button'); ?></button>
 	</td></tr>
 	</table>
 	

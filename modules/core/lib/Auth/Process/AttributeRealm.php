@@ -5,7 +5,7 @@
  * and create a new attribute 'realm' that includes the value after the '@' sign.
  *
  * @author Andreas Åkre Solberg, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_AttributeRealm extends SimpleSAML_Auth_ProcessingFilter {
 

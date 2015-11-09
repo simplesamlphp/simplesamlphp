@@ -9,7 +9,7 @@ $ldapmulti = array (
 
 	'feide.no' => array(
 		'description'		=> 'Feide',
-		/* for a description of options see equivalent options in ldap.php starting with auth.ldap. */
+		// for a description of options see equivalent options in ldap.php starting with auth.ldap.
 		'dnpattern'			=> 'uid=%username%,dc=feide,dc=no,ou=feide,dc=uninett,dc=no',
 		'hostname'			=> 'ldap.uninett.no',
 		'attributes'		=> NULL,

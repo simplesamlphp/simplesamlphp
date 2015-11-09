@@ -6,7 +6,7 @@
  * username/password authentication.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 if (!array_key_exists('AuthState', $_REQUEST)) {
@@ -21,7 +21,7 @@ if (array_key_exists('otp', $_REQUEST)) {
 }
 
 if (!empty($otp)) {
-	/*  attempt to log in. */
+	// attempt to log in
 	$errorCode = sspmod_authYubiKey_Auth_Source_YubiKey::handleLogin($authStateId, $otp);
 } else {
 	$errorCode = NULL;

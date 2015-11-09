@@ -4,7 +4,7 @@
  * This class implements helper functions for XML validation.
  *
  * @author Olav Morken, UNINETT AS. 
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_XML_Validator {
 
@@ -50,10 +50,10 @@ class SimpleSAML_XML_Validator {
 			assert('$publickey === FALSE || is_array($publickey)');
 		}
 
-		/* Create an XML security object. */
+		// Create an XML security object
 		$objXMLSecDSig = new XMLSecurityDSig();
 
-		/* Add the id attribute if the user passed in an id attribute. */
+		// Add the id attribute if the user passed in an id attribute
 		if($idAttribute !== NULL) {
 			if (is_string($idAttribute)) {
 				$objXMLSecDSig->idKeys[] = $idAttribute;
@@ -63,33 +63,33 @@ class SimpleSAML_XML_Validator {
 			}
 		}
 
-		/* Locate the XMLDSig Signature element to be used. */
+		// Locate the XMLDSig Signature element to be used
 		$signatureElement = $objXMLSecDSig->locateSignature($xmlNode);
 		if (!$signatureElement) {
 			throw new Exception('Could not locate XML Signature element.');
 		}
 
-		/* Canonicalize the XMLDSig SignedInfo element in the message. */
+		// Canonicalize the XMLDSig SignedInfo element in the message
 		$objXMLSecDSig->canonicalizeSignedInfo();
 
-		/* Validate referenced xml nodes. */
+		// Validate referenced xml nodes
 		if (!$objXMLSecDSig->validateReference()) {
 			throw new Exception('XMLsec: digest validation failed');
 		}
 
 
-		/* Find the key used to sign the document. */
+		// Find the key used to sign the document
 		$objKey = $objXMLSecDSig->locateKey();
 		if (empty($objKey)) {
 			throw new Exception('Error loading key to handle XML signature');
 		}
 
-		/* Load the key data. */
+		// Load the key data
 		if ($publickey !== FALSE && array_key_exists('PEM', $publickey)) {
-			/* We have PEM data for the public key / certificate. */
+			// We have PEM data for the public key / certificate
 			$objKey->loadKey($publickey['PEM']);
 		} else {
-			/* No PEM data. Search for key in signature. */
+			// No PEM data. Search for key in signature
 
 			if (!XMLSecEnc::staticLocateKeyInfo($objKey, $signatureElement)) {
 				throw new Exception('Error finding key data for XML signature validation.');
@@ -104,25 +104,25 @@ class SimpleSAML_XML_Validator {
 
 				$certificate = $objKey->getX509Certificate();
 				if ($certificate === NULL) {
-					/* Wasn't signed with an X509 certificate. */
+					// Wasn't signed with an X509 certificate
 					throw new Exception('Message wasn\'t signed with an X509 certificate,' .
 						' and no public key was provided in the metadata.');
 				}
 
 				self::validateCertificateFingerprint($certificate, $publickey['certFingerprint']);
-				/* Key OK. */
+				// Key OK
 			}
 		}
 
-		/* Check the signature. */
+		// Check the signature
 		if (! $objXMLSecDSig->verify($objKey)) {
 			throw new Exception("Unable to validate Signature");
 		}
 
-		/* Extract the certificate. */
+		// Extract the certificate
 		$this->x509Certificate = $objKey->getX509Certificate();
 
-		/* Find the list of validated nodes. */
+		// Find the list of validated nodes
 		$this->validNodes = $objXMLSecDSig->getValidatedNodes();
 	}
 
@@ -156,19 +156,19 @@ class SimpleSAML_XML_Validator {
 		$data = '';
 
 		foreach($lines as $line) {
-			/* Remove '\r' from end of line if present. */
+			// Remove '\r' from end of line if present
 			$line = rtrim($line);
 			if($line === '-----BEGIN CERTIFICATE-----') {
-				/* Delete junk from before the certificate. */
+				// Delete junk from before the certificate
 				$data = '';
 			} elseif($line === '-----END CERTIFICATE-----') {
-				/* Ignore data after the certificate. */
+				// Ignore data after the certificate
 				break;
 			} elseif($line === '-----BEGIN PUBLIC KEY-----') {
-				/* This isn't an X509 certificate. */
+				// This isn't an X509 certificate
 				return NULL;
 			} else {
-				/* Append the current line to the certificate data. */
+				// Append the current line to the certificate data
 				$data .= $line;
 			}
 		}
@@ -195,7 +195,7 @@ class SimpleSAML_XML_Validator {
 
 		$certFingerprint = self::calculateX509Fingerprint($certificate);
 		if ($certFingerprint === NULL) {
-			/* Couldn't calculate fingerprint from X509 certificate. Should not happen. */
+			// Couldn't calculate fingerprint from X509 certificate. Should not happen.
 			throw new Exception('Unable to calculate fingerprint from X509' .
 				' certificate. Maybe it isn\'t an X509 certificate?');
 		}
@@ -204,13 +204,13 @@ class SimpleSAML_XML_Validator {
 			assert('is_string($fp)');
 
 			if ($fp === $certFingerprint) {
-				/* The fingerprints matched. */
+				// The fingerprints matched
 				return;
 			}
 
 		}
 
-		/* None of the fingerprints matched. Throw an exception describing the error. */
+		// None of the fingerprints matched. Throw an exception describing the error.
 		throw new Exception('Invalid fingerprint of certificate. Expected one of [' .
 			implode('], [', $fingerprints) . '], but got [' . $certFingerprint . ']');
 	}
@@ -237,11 +237,11 @@ class SimpleSAML_XML_Validator {
 			$fingerprints = array($fingerprints);
 		}
 
-		/* Normalize the fingerprints. */
+		// Normalize the fingerprints
 		foreach($fingerprints as &$fp) {
 			assert('is_string($fp)');
 
-			/* Make sure that the fingerprint is in the correct format. */
+			// Make sure that the fingerprint is in the correct format
 			$fp = strtolower(str_replace(":", "", $fp));
 		}
 
@@ -305,13 +305,13 @@ class SimpleSAML_XML_Validator {
 		assert('is_string($certificate)');
 		assert('is_string($caFile)');
 
-		/* Clear openssl errors. */
+		// Clear openssl errors
 		while(openssl_error_string() !== FALSE);
 
 		$res = openssl_x509_checkpurpose($certificate, X509_PURPOSE_ANY, array($caFile));
 
 		$errors = '';
-		/* Log errors. */
+		// Log errors
 		while( ($error = openssl_error_string()) !== FALSE) {
 			$errors .= ' [' . $error . ']';
 		}

@@ -16,7 +16,7 @@ try {
     $b = SAML2_Binding::getCurrentBinding();
 } catch (Exception $e) { // TODO: look for a specific exception
     // This is dirty. Instead of checking the message of the exception, SAML2_Binding::getCurrentBinding() should throw
-    // an specific exception when the binding is unknown, and we should capture that here.
+    // an specific exception when the binding is unknown, and we should capture that here
     if ($e->getMessage() === 'Unable to find the current binding.') {
         throw new SimpleSAML_Error_Error('ACSPARAMS', $e, 400);
     } else {
@@ -217,8 +217,8 @@ $state['saml:sp:prevAuth'] = array(
     'id'     => $response->getId(),
     'issuer' => $idp,
 );
-if (isset($state['SimpleSAML_Auth_Default.ReturnURL'])) {
-    $state['saml:sp:prevAuth']['redirect'] = $state['SimpleSAML_Auth_Default.ReturnURL'];
+if (isset($state['SimpleSAML_Auth_Source.ReturnURL'])) {
+    $state['saml:sp:prevAuth']['redirect'] = $state['SimpleSAML_Auth_Source.ReturnURL'];
 } elseif (isset($state['saml:sp:RelayState'])) {
     $state['saml:sp:prevAuth']['redirect'] = $state['saml:sp:RelayState'];
 }

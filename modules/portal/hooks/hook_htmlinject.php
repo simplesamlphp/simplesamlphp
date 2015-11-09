@@ -29,9 +29,8 @@ function portal_hook_htmlinject(&$hookinfo) {
 	
 	if (!$portal->isPortalized($hookinfo['page'])) return;
 
-	// Include jquery UI CSS files in header.
+	// Include jquery UI CSS files in header
 	$hookinfo['jquery']['css'] = TRUE;
-	$hookinfo['jquery']['version'] = '1.6';
 
 	// Header
 	$hookinfo['pre'][]  = '<div id="portalmenu" class="ui-tabs ui-widget ui-widget-content ui-corner-all">' . 

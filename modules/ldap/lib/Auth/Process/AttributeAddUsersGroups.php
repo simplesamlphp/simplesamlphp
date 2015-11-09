@@ -6,7 +6,7 @@
  * a defined attribute, in DN format.
  *
  * @author Ryan Panning <panman@traileyes.com>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_Process_BaseFilter {
 
@@ -83,7 +83,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
 			$this->title . 'Checking for groups based on the best method for the LDAP product.'
 		);
 
-		// Based on the directory service, search LDAP for groups.
+		// Based on the directory service, search LDAP for groups
 		// If any attributes are needed, prepare them before calling search method
 		switch ($this->product) {
 

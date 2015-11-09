@@ -12,7 +12,7 @@
  * </code>
  *
  * @author Joost van Dijk, SURFnet. <Joost.vanDijk@surfnet.nl>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_ProcessingFilter {
 
@@ -57,7 +57,7 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
         assert('is_array($state)');
 
         if (isset($state['isPassive']) && $state['isPassive'] === TRUE) {
-            /* We have a passive request. Skip the warning. */
+            // We have a passive request. Skip the warning
             return;
         }
 
@@ -76,7 +76,7 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
         $now = time();
         $daysleft = (int)(($validTo - $now) / (24*60*60));
         if ($daysleft > $this->warndaysbefore) {
-            /* We have a certificate that will be valid for some time. Skip the warning. */
+            // We have a certificate that will be valid for some time. Skip the warning
             return;
         }
 

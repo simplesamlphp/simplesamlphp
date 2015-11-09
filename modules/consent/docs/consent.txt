@@ -12,7 +12,7 @@ It is recommended to run the consent module at the IdP, and configure the
 filter to run after all attribute mangling filters is completed, to show the 
 user the exact same attributes that are sent to the SP.
 
-  * [Read more about processing filters in simpleSAMLphp](simplesamlphp-authproc)
+  * [Read more about processing filters in SimpleSAMLphp](simplesamlphp-authproc)
 
 
 How to setup the consent module
@@ -167,7 +167,7 @@ The following options can be used when configuring the Consent module
 External options
 ----------------
 
-The following options can/ be set in other places in simpleSAMLphp
+The following options can/ be set in other places in SimpleSAMLphp
 
 `privacypolicy`
 :   This is an absolute URL for where an user can find a privacy policy for SP. 

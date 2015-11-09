@@ -3,7 +3,7 @@
 /**
  * Filter for setting the SAML 2 common domain cookie.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter {
 
@@ -56,7 +56,7 @@ class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter {
 			return;
 		}
 
-		/* Save state and build request. */
+		// Save state and build request
 		$id = SimpleSAML_Auth_State::saveState($state, 'cdc:resume');
 
 		$returnTo = SimpleSAML_Module::getModuleURL('cdc/resume.php', array('domain' => $this->domain));

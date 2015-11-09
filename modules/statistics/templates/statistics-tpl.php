@@ -1,7 +1,7 @@
 <?php
 $this->data['header'] = 'SimpleSAMLphp Statistics';
 
-$this->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
+$this->data['jquery'] = array('core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 
 $this->data['head'] ='';
 $this->data['head'] .= '<script type="text/javascript">

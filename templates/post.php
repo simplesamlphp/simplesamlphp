@@ -20,7 +20,7 @@
 if (array_key_exists('post', $this->data)) {
 	$post = $this->data['post'];
 } else {
-	/* For backwards compatibility. */
+	// For backwards compatibility
 	assert('array_key_exists("response", $this->data)');
 	assert('array_key_exists("RelayStateName", $this->data)');
 	assert('array_key_exists("RelayState", $this->data)');
@@ -50,7 +50,7 @@ function printItem($name, $value) {
 		return;
 	}
 
-	/* This is an array... */
+	// This is an array...
 	foreach ($value as $index => $item) {
 		printItem($name . '[' . $index . ']', $item);
 	}
@@ -62,7 +62,7 @@ foreach ($post as $name => $value) {
 ?>
 
 		<noscript>
-			<input type="submit" value="Submit" />
+			<button type="submit" class="btn">Submit</button>
 		</noscript>
 	</form>
 

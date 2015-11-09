@@ -14,10 +14,10 @@ $config = array(
      * [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]
      * (note that it must end with a '/')
      *
-     * The full url format is useful if your simpleSAMLphp setup is hosted behind
+     * The full url format is useful if your SimpleSAMLphp setup is hosted behind
      * a reverse proxy. In that case you can specify the external url here.
      *
-     * Please note that simpleSAMLphp will then redirect all queries to the
+     * Please note that SimpleSAMLphp will then redirect all queries to the
      * external url, no matter where you come from (direct access or via the
      * reverse proxy).
      */
@@ -27,7 +27,7 @@ $config = array(
     'datadir' => 'data/',
 
     /*
-     * A directory where simpleSAMLphp can save temporary files.
+     * A directory where SimpleSAMLphp can save temporary files.
      *
      * SimpleSAMLphp will attempt to create this directory if it doesn't exist.
      */
@@ -35,7 +35,7 @@ $config = array(
 
 
     /*
-     * If you enable this option, simpleSAMLphp will log all sent and received messages
+     * If you enable this option, SimpleSAMLphp will log all sent and received messages
      * to the log file.
      *
      * This option also enables logging of the messages that are encrypted and decrypted.
@@ -71,7 +71,7 @@ $config = array(
 
     /**
      * This password must be kept secret, and modified from the default value 123.
-     * This password will give access to the installation page of simpleSAMLphp with
+     * This password will give access to the installation page of SimpleSAMLphp with
      * metadata listing and diagnostics pages.
      * You can also put a hash here; run "bin/pwgen.php" to generate one.
      */
@@ -80,7 +80,7 @@ $config = array(
     'admin.protectmetadata' => false,
 
     /**
-     * This is a secret salt used by simpleSAMLphp when it needs to generate a secure hash
+     * This is a secret salt used by SimpleSAMLphp when it needs to generate a secure hash
      * of a value. It must be changed from its default value to a secret value. The value of
      * 'secretsalt' can be any valid string of any length.
      *
@@ -99,7 +99,7 @@ $config = array(
 
     /*
      * The timezone of the server. This option should be set to the timezone you want
-     * simpleSAMLphp to report the time in. The default is to guess the timezone based
+     * SimpleSAMLphp to report the time in. The default is to guess the timezone based
      * on your system timezone.
      *
      * See this page for a list of valid timezones: http://php.net/manual/en/timezones.php
@@ -155,7 +155,7 @@ $config = array(
     /*
      * Choose which facility should be used when logging with syslog.
      *
-     * These can be used for filtering the syslog output from simpleSAMLphp into its
+     * These can be used for filtering the syslog output from SimpleSAMLphp into its
      * own file by configuring the syslog daemon.
      *
      * See the documentation for openlog (http://php.net/manual/en/function.openlog.php) for available
@@ -255,7 +255,7 @@ $config = array(
     /*
      * Enable
      *
-     * Which functionality in simpleSAMLphp do you want to enable. Normally you would enable only
+     * Which functionality in SimpleSAMLphp do you want to enable. Normally you would enable only
      * one of the functionalities below, but in some cases you could run multiple functionalities.
      * In example when you are setting up a federation bridge.
      */
@@ -496,7 +496,7 @@ $config = array(
     'idpdisco.layout' => 'dropdown',
 
     /*
-     * Whether simpleSAMLphp should sign the response or the assertion in SAML 1.1 authentication
+     * Whether SimpleSAMLphp should sign the response or the assertion in SAML 1.1 authentication
      * responses.
      *
      * The default is to sign the assertion element, but that can be overridden by setting this
@@ -673,7 +673,7 @@ $config = array(
 
 
     /*
-     * Configure the datastore for simpleSAMLphp.
+     * Configure the datastore for SimpleSAMLphp.
      *
      * - 'phpsession': Limited datastore, which uses the PHP session.
      * - 'memcache': Key-value datastore, based on memcache.
@@ -703,7 +703,7 @@ $config = array(
     /*
      * The prefix we should use on our tables.
      */
-    'store.sql.prefix' => 'simpleSAMLphp',
+    'store.sql.prefix' => 'SimpleSAMLphp',
 
 
     /*
@@ -765,6 +765,17 @@ $config = array(
 
 
     /*
+     * This value allows you to set a prefix for memcache-keys. The default
+     * for this value is 'SimpleSAMLphp', which is fine in most cases.
+     *
+     * When running multiple instances of SSP on the same host, and more
+     * than one instance is using memcache, you probably want to assign
+     * a unique value per instance to this setting to avoid data collision.
+     */
+    'memcache_store.prefix' => null,
+
+
+    /*
      * This value is the duration data should be stored in memcache. Data
      * will be dropped from the memcache servers when this time expires.
      * The time will be reset every time the data is written to the
@@ -815,25 +826,26 @@ $config = array(
 
     /*
      * Array of domains that are allowed when generating links or redirections
-     * to URLs. simpleSAMLphp will use this option to determine whether to
+     * to URLs. SimpleSAMLphp will use this option to determine whether to
      * to consider a given URL valid or not, but you should always validate
      * URLs obtained from the input on your own (i.e. ReturnTo or RelayState
      * parameters obtained from the $_REQUEST array).
      *
-     * Set to NULL to disable checking of URLs.
-     *
-     * simpleSAMLphp will automatically add your own domain (either by checking
+     * SimpleSAMLphp will automatically add your own domain (either by checking
      * it dynamically, or by using the domain defined in the 'baseurlpath'
      * directive, the latter having precedence) to the list of trusted domains,
      * in case this option is NOT set to NULL. In that case, you are explicitly
-     * telling simpleSAMLphp to verify URLs.
+     * telling SimpleSAMLphp to verify URLs.
      *
      * Set to an empty array to disallow ALL redirections or links pointing to
-     * an external URL other than your own domain.
+     * an external URL other than your own domain. This is the default behaviour.
+     *
+     * Set to NULL to disable checking of URLs. DO NOT DO THIS UNLESS YOU KNOW
+     * WHAT YOU ARE DOING!
      *
      * Example:
      *   'trusted.url.domains' => array('sp.example.com', 'app.example.com'),
      */
-    'trusted.url.domains' => null,
+    'trusted.url.domains' => array(),
 
 );

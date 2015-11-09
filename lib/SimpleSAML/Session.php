@@ -8,6 +8,7 @@
  * Single-Log-Out.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 class SimpleSAML_Session
@@ -32,6 +33,8 @@ class SimpleSAML_Session
 
     /**
      * This variable holds the instance of the session - Singleton approach.
+     *
+     * Warning: do not set the instance manually, call SimpleSAML_Session::load() instead.
      */
     private static $instance = null;
 
@@ -57,9 +60,9 @@ class SimpleSAML_Session
      * This is used in the debug logs and error messages to easily track more information
      * about what went wrong.
      *
-     * @var string|int
+     * @var string|null
      */
-    private $trackid = 0;
+    private $trackid = null;
 
 
     private $rememberMeExpire = null;
@@ -72,6 +75,14 @@ class SimpleSAML_Session
      * @var bool
      */
     private $dirty = false;
+
+
+    /**
+     * Tells the session object that the save callback has been registered and there's no need to register it again.
+     *
+     * @var bool
+     */
+    private $callback_registered = false;
 
 
     /**
@@ -128,34 +139,45 @@ class SimpleSAML_Session
     {
         $this->authData = array();
 
-        if ($transient) {
-            $this->trackid = 'XXXXXXXXXX';
+        if ($transient) { // transient session
+            $sh = SimpleSAML_SessionHandler::getSessionHandler();
+            $this->trackid = 'TR'.bin2hex(openssl_random_pseudo_bytes(4));
+            SimpleSAML_Logger::setTrackId($this->trackid);
             $this->transient = true;
-            return;
-        }
 
-        $sh = SimpleSAML_SessionHandler::getSessionHandler();
-        $this->sessionId = $sh->newSessionId();
+            /*
+             * Initialize the session ID. It might be that we have a session cookie but we couldn't load the session.
+             * If that's the case, use that ID. If not, create a new ID.
+             */
+            $this->sessionId = $sh->getCookieSessionId();
+            if ($this->sessionId === null) {
+                $this->sessionId = $sh->newSessionId();
+            }
 
-        $this->trackid = bin2hex(openssl_random_pseudo_bytes(5));
+        } else { // regular session
+            $sh = SimpleSAML_SessionHandler::getSessionHandler();
+            $this->sessionId = $sh->newSessionId();
 
-        $this->dirty = true;
+            $this->trackid = bin2hex(openssl_random_pseudo_bytes(5));
+            SimpleSAML_Logger::setTrackId($this->trackid);
 
-        // initialize data for session check function if defined
-        $globalConfig = SimpleSAML_Configuration::getInstance();
-        $checkFunction = $globalConfig->getArray('session.check_function', null);
-        if (isset($checkFunction)) {
-            assert('is_callable($checkFunction)');
-            call_user_func($checkFunction, $this, true);
+            $this->markDirty();
+
+            // initialize data for session check function if defined
+            $globalConfig = SimpleSAML_Configuration::getInstance();
+            $checkFunction = $globalConfig->getArray('session.check_function', null);
+            if (isset($checkFunction)) {
+                assert('is_callable($checkFunction)');
+                call_user_func($checkFunction, $this, true);
+            }
         }
     }
 
     /**
-     * Retrieves the current session. Will create a new session if there isn't a session.
+     * Retrieves the current session. Creates a new session if there's not one.
      *
      * @return SimpleSAML_Session The current session.
-     * @throws Exception When session couldn't be initialized and
-     * the session fallback is disabled by configuration.
+     * @throws Exception When session couldn't be initialized and the session fallback is disabled by configuration.
      */
     public static function getSessionFromRequest()
     {
@@ -165,35 +187,47 @@ class SimpleSAML_Session
         }
 
         // check if we have stored a session stored with the session handler
+        $prev = (self::$instance !== null);
         try {
-            self::$instance = self::getSession();
+            $session = self::getSession();
+
         } catch (Exception $e) {
             // for some reason, we were unable to initialize this session, use a transient session instead
             self::useTransientSession();
 
+            SimpleSAML_Logger::error('Error loading session: '.$e->getMessage());
             if ($e instanceof SimpleSAML_Error_Exception) {
-                SimpleSAML_Logger::error('Error loading session:');
-                $e->logError();
-            } else {
-                SimpleSAML_Logger::error('Error loading session: '.$e->getMessage());
+                $cause = $e->getCause();
+                if ($cause instanceof Exception) {
+                    throw $cause;
+                }
             }
-
             throw $e;
         }
 
-        if (self::$instance !== null) {
+        // if getSession() found it, use it
+        if ($session !== null) {
+            return self::load($session);
+        }
+
+        /*
+         * We didn't have a session loaded when we started, but we have it now. At this point, getSession() failed but
+         * it must have triggered the creation of a session at some point during the process (e.g. while logging an
+         * error message). This means we don't need to create a new session again, we can use the one that's loaded now
+         * instead.
+         */
+        if (self::$instance !== null && !$prev) {
             return self::$instance;
         }
 
         // create a new session
-        self::$instance = new SimpleSAML_Session();
-        return self::$instance;
+        return self::load(new SimpleSAML_Session());
     }
 
     /**
-     * Load a session from the session handler.
+     * Get a session from the session handler.
      *
-     * @param string|null $sessionId The session we should load, or null to load the current session.
+     * @param string|null $sessionId The session we should get, or null to get the current session.
      *
      * @return SimpleSAML_Session The session that is stored in the session handler, or null if the session wasn't
      * found.
@@ -207,6 +241,9 @@ class SimpleSAML_Session
         if ($sessionId === null) {
             $checkToken = true;
             $sessionId = $sh->getCookieSessionId();
+            if ($sessionId === null) {
+                return null;
+            }
         } else {
             $checkToken = false;
         }
@@ -257,6 +294,24 @@ class SimpleSAML_Session
         return $session;
     }
 
+
+    /**
+     * Load a given session as the current one.
+     *
+     * This method will also set the track ID in the logger to the one in the given session.
+     *
+     * Warning: never set self::$instance yourself, call this method instead.
+     *
+     * @param SimpleSAML_Session $session The session to load.
+     * @return SimpleSAML_Session The session we just loaded, just for convenience.
+     */
+    private static function load(SimpleSAML_Session $session)
+    {
+        SimpleSAML_Logger::setTrackId($session->getTrackID());
+        self::$instance = $session;
+        return self::$instance;
+    }
+
     /**
      * Use a transient session.
      *
@@ -270,7 +325,7 @@ class SimpleSAML_Session
             return;
         }
 
-        self::$instance = new SimpleSAML_Session(true);
+        self::load(new SimpleSAML_Session(true));
     }
 
     /**
@@ -285,17 +340,22 @@ class SimpleSAML_Session
     }
 
     /**
-     * Destructor for this class. It will save the session to the session handler
-     * in case the session has been marked as dirty. Do nothing otherwise.
+     * Save the session to the store.
+     *
+     * This method saves the session to the session handler in case it has been marked as dirty.
+     *
+     * WARNING: please do not use this method directly unless you really need to and know what you are doing. Use
+     * markDirty() instead.
      */
-    public function __destruct()
+    public function save()
     {
         if (!$this->dirty) {
-            // session hasn't changed - don't bother saving it
+            // session hasn't changed, don't bother saving it
             return;
         }
 
         $this->dirty = false;
+        $this->callback_registered = false;
 
         $sh = SimpleSAML_SessionHandler::getSessionHandler();
 
@@ -308,6 +368,43 @@ class SimpleSAML_Session
             SimpleSAML_Logger::error('Unable to save session.');
             $e->logError();
         }
+    }
+
+    /**
+     * Mark this session as dirty.
+     *
+     * This method will register a callback to save the session right before any output is sent to the browser.
+     */
+    public function markDirty()
+    {
+        if ($this->isTransient()) {
+            return;
+        }
+
+        $this->dirty = true;
+
+        if (!function_exists('header_register_callback')) {
+            // PHP version < 5.4, can't register the callback
+            return;
+        }
+
+        if ($this->callback_registered) {
+            // we already have a shutdown callback registered for this object, no need to add another one
+            return;
+        }
+        $this->callback_registered = header_register_callback(array($this, 'save'));
+    }
+
+
+    /**
+     * Destroy the session.
+     *
+     * Destructor for this class. It will save the session to the session handler
+     * in case the session has been marked as dirty. Do nothing otherwise.
+     */
+    public function __destruct()
+    {
+        $this->save();
     }
 
     /**
@@ -334,7 +431,7 @@ class SimpleSAML_Session
      * Get a unique ID that will be permanent for this session.
      * Used for debugging and tracing log files related to a session.
      *
-     * @return string The unique ID.
+     * @return string|null The unique ID.
      */
     public function getTrackID()
     {
@@ -385,7 +482,7 @@ class SimpleSAML_Session
 
         SimpleSAML_Logger::debug('Session: doLogin("'.$authority.'")');
 
-        $this->dirty = true;
+        $this->markDirty();
 
         if (isset($this->authData[$authority])) {
             // we are already logged in, log the user out first
@@ -443,7 +540,7 @@ class SimpleSAML_Session
             return;
         }
 
-        $this->dirty = true;
+        $this->markDirty();
 
         $this->callLogoutHandlers($authority);
         unset($this->authData[$authority]);
@@ -554,7 +651,7 @@ class SimpleSAML_Session
         assert('isset($this->authData[$authority])');
         assert('is_int($expire) || is_null($expire)');
 
-        $this->dirty = true;
+        $this->markDirty();
 
         if ($expire === null) {
             $globalConfig = SimpleSAML_Configuration::getInstance();
@@ -587,7 +684,7 @@ class SimpleSAML_Session
         }
 
         $this->authData[$authority]['LogoutHandlers'][] = $logout_handler;
-        $this->dirty = true;
+        $this->markDirty();
     }
 
     /**
@@ -612,7 +709,7 @@ class SimpleSAML_Session
         }
 
         unset($this->dataStore[$type][$id]);
-        $this->dirty = true;
+        $this->markDirty();
     }
 
     /**
@@ -677,7 +774,7 @@ class SimpleSAML_Session
 
         $this->dataStore[$type][$id] = $dataInfo;
 
-        $this->dirty = true;
+        $this->markDirty();
     }
 
     /**
@@ -836,7 +933,7 @@ class SimpleSAML_Session
 
         $this->associations[$idp][$association['id']] = $association;
 
-        $this->dirty = true;
+        $this->markDirty();
     }
 
 
@@ -899,7 +996,7 @@ class SimpleSAML_Session
 
         unset($this->associations[$idp][$associationId]);
 
-        $this->dirty = true;
+        $this->markDirty();
     }
 
 

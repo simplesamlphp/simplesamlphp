@@ -1,7 +1,7 @@
 <?php
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_statistics_Aggregator {
 
@@ -105,7 +105,7 @@ class sspmod_statistics_Aggregator {
 			
 			$logline = fgets($file, 4096);
 			
-			// Continue if STAT is not found on line.
+			// Continue if STAT is not found on line
 			if (!preg_match('/STAT/', $logline)) continue;
 			$i++; $lastlogline = $logline;
 			

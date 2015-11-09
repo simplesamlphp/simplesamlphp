@@ -7,7 +7,7 @@
  * implementing a single function: login($username, $password)
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 
@@ -89,7 +89,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 			$this->loginLinks = $config['core:loginpage_links'];
 		}
 
-		/* Call the parent constructor first, as required by the interface. */
+		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
 		// Get the remember username config options
@@ -192,7 +192,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		 */
 		$state[self::AUTHID] = $this->authId;
 
-		/* What username we should force, if any. */
+		// What username we should force, if any
 		if ($this->forcedUsername !== NULL) {
 			/*
 			 * This is accessed by the login form, to determine if the user
@@ -278,7 +278,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		assert('is_array($attributes)');
 		$state['Attributes'] = $attributes;
 
-		/* Return control to simpleSAMLphp after successful authentication. */
+		/* Return control to SimpleSAMLphp after successful authentication. */
 		SimpleSAML_Auth_Source::completeAuth($state);
 	}
 

@@ -1,4 +1,4 @@
-Using the Windows Live ID authentication source with simpleSAMLphp
+Using the Windows Live ID authentication source with SimpleSAMLphp
 ==================================================================
 
 Remember to configure `authsources.php`, with both your Client ID and Secret key.

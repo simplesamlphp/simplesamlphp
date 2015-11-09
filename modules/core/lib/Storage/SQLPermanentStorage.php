@@ -7,7 +7,7 @@
  * to store data permanently.
  *
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Storage_SQLPermanentStorage {
 	

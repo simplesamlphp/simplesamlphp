@@ -3,7 +3,7 @@
 /**
  * Generic library for access control lists.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_ACL {
 
@@ -99,7 +99,7 @@ class sspmod_core_ACL {
 
 		$op = array_shift($rule);
 		if ($op === NULL) {
-			/* An empty rule always matches. */
+			// An empty rule always matches
 			return TRUE;
 		}
 
@@ -139,7 +139,7 @@ class sspmod_core_ACL {
 			}
 		}
 
-		/* All matches. */
+		// All matches
 		return TRUE;
 	}
 

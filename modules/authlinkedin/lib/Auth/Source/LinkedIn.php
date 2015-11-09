@@ -6,7 +6,7 @@ require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/lib
  * Authenticate using LinkedIn.
  *
  * @author Brook Schofield, TERENA.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source {
 
@@ -34,7 +34,7 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source {
 		assert('is_array($info)');
 		assert('is_array($config)');
 
-		/* Call the parent constructor first, as required by the interface. */
+		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
 		if (!array_key_exists('key', $config))
@@ -58,7 +58,7 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source {
 	public function authenticate(&$state) {
 		assert('is_array($state)');
 
-		/* We are going to need the authId in order to retrieve this authentication source later. */
+		// We are going to need the authId in order to retrieve this authentication source later
 		$state[self::AUTHID] = $this->authId;
 
 		$stateID = SimpleSAML_Auth_State::getStateId($state);
@@ -97,7 +97,7 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source {
 		SimpleSAML_Logger::debug("Got an access token from the OAuth service provider [" .
 			$accessToken->key . "] with the secret [" . $accessToken->secret . "]");
 
-		// TODO: configure attributes (http://developer.linkedin.com/docs/DOC-1061) from config? Limited options via LinkedIn.
+		// TODO: configure attributes (http://developer.linkedin.com/docs/DOC-1061) from config? Limited options via LinkedIn
 		$userdata = $consumer->getUserInfo('https://api.linkedin.com/v1/people/~:(id,first-name,last-name,headline,summary,specialties,picture-url)', $accessToken, array('http' => array('header' => 'x-li-format: json')));
 
 		$attributes = array();

@@ -313,15 +313,11 @@ class HTTP
 
         // get the white list of domains
         if ($trustedSites === null) {
-            $trustedSites = \SimpleSAML_Configuration::getInstance()->getArray('trusted.url.domains', null);
-            // TODO: remove this before 2.0
-            if ($trustedSites === null) {
-                $trustedSites = \SimpleSAML_Configuration::getInstance()->getArray('redirect.trustedsites', null);
-            }
+            $trustedSites = \SimpleSAML_Configuration::getInstance()->getValue('trusted.url.domains', array());
         }
 
         // validates the URL's host is among those allowed
-        if ($trustedSites !== null) {
+        if (is_array($trustedSites)) {
             assert(is_array($trustedSites));
             preg_match('@^https?://([^/]+)@i', $url, $matches);
             $hostname = $matches[1];
@@ -404,7 +400,7 @@ class HTTP
             throw new \SimpleSAML_Error_Exception('Error fetching '.var_export($url, true).':'.$error['message']);
         }
 
-        // data and headers.
+        // data and headers
         if ($getHeaders) {
             if (isset($http_response_header)) {
                 $headers = array();
@@ -502,7 +498,7 @@ class HTTP
      * Retrieve the base URL of the SimpleSAMLphp installation. The URL will always end with a '/'. For example:
      *      https://idp.example.org/simplesaml/
      *
-     * @return string The absolute base URL for the simpleSAMLphp installation.
+     * @return string The absolute base URL for the SimpleSAMLphp installation.
      * @throws \SimpleSAML_Error_Exception If 'baseurlpath' has an invalid format.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
@@ -834,7 +830,7 @@ class HTTP
      *
      * This function supports these forms of relative URLs:
      * - ^\w+: Absolute URL. E.g. "http://www.example.com:port/path?query#fragment".
-     * - ^// Same protocol. E.g. "//www.example.com:port/path?query#fragment".
+     * - ^// Same protocol. E.g. "//www.example.com:port/path?query#fragment"
      * - ^/ Same protocol and host. E.g. "/path?query#fragment".
      * - ^? Same protocol, host and path, replace query string & fragment. E.g. "?query#fragment".
      * - ^# Same protocol, host, path and query, replace fragment. E.g. "#fragment".

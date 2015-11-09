@@ -6,7 +6,7 @@
  * This class is an example authentication source which authenticates an user
  * against a SQL database.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 
@@ -47,10 +47,10 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 		assert('is_array($info)');
 		assert('is_array($config)');
 
-		/* Call the parent constructor first, as required by the interface. */
+		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
-		/* Make sure that all required parameters are present. */
+		// Make sure that all required parameters are present.
 		foreach (array('dsn', 'username', 'password', 'query') as $param) {
 			if (!array_key_exists($param, $config)) {
 				throw new Exception('Missing required attribute \'' . $param .

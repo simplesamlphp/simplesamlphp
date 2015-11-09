@@ -11,13 +11,13 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
   const FBSS_COOKIE_NAME = 'fbss';
 
   // We can set this to a high number because the main session
-  // expiration will trump this.
+  // expiration will trump this
   const FBSS_COOKIE_EXPIRE = 31556926; // 1 year
 
-  // Stores the shared session ID if one is set.
+  // Stores the shared session ID if one is set
   protected $sharedSessionID;
 
-  /* SimpleSAMLPhp state array */
+  // SimpleSAMLphp state array
   protected $ssp_state;
 
   /**

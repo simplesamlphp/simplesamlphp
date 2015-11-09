@@ -99,9 +99,9 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
 
 
     /**
-     * Retrieve the session id of saved in the session cookie.
+     * Retrieve the session ID saved in the session cookie, if there's one.
      *
-     * @return string The session id saved in the cookie.
+     * @return string|null The session id saved in the cookie or null if no session cookie was set.
      *
      * @throws SimpleSAML_Error_Exception If the cookie is marked as secure but we are not using HTTPS.
      */
@@ -109,7 +109,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
     {
         if (session_id() === '') {
             if (!self::hasSessionCookie()) {
-                return self::newSessionId();
+                return null;
             }
 
             $session_cookie_params = session_get_cookie_params();

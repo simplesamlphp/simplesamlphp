@@ -2,7 +2,7 @@
 <?php
 
 
-/* Check that the memcache library is enabled. */
+// Check that the memcache library is enabled
 if(!class_exists('Memcache')) {
 	echo("Error: the memcache library appears to be unavailable.\n");
 	echo("\n");
@@ -17,21 +17,21 @@ if(!class_exists('Memcache')) {
 	exit(1);
 }
 
-/* This is the base directory of the simpleSAMLphp installation. */
+// This is the base directory of the SimpleSAMLphp installation
 $baseDir = dirname(dirname(__FILE__));
 
-/* Add library autoloader. */
+// Add library autoloader
 require_once($baseDir . '/lib/_autoload.php');
 
-/* Initialize the configuration. */
+// Initialize the configuration
 $configdir = SimpleSAML\Utils\Config::getConfigDir();
 SimpleSAML_Configuration::setConfigDir($configdir);
 
-/* Things we should warn the user about. */
+// Things we should warn the user about
 $warnServerDown = 0;
 $warnBigSlab = 0;
 
-/* We use the stats interface to determine which servers exists. */
+// We use the stats interface to determine which servers exists
 $stats = SimpleSAML_Memcache::getRawStats();
 
 $keys = array();
@@ -74,7 +74,7 @@ echo($sync . " keys in sync.\n");
 if($skipped > 0) {
 	echo($skipped . " keys skipped.\n");
 	echo("Keys are skipped because they are either expired, or are of a type unknown\n");
-	echo("to simpleSAMLphp.\n");
+	echo("to SimpleSAMLphp.\n");
 }
 
 if($warnServerDown > 0) {
@@ -105,7 +105,7 @@ function getServerKeys($server) {
 		exit(1);
 	}
 
-	/* Read list of slabs. */
+	// Read list of slabs
 	$slabs = array();
 	while( ($line = fgets($socket)) !== FALSE) {
 		$line = rtrim($line);
@@ -121,7 +121,7 @@ function getServerKeys($server) {
 		}
 	}
 
-	/* Dump keys in slabs. */
+	// Dump keys in slabs
 	$keys = array();
 	foreach($slabs as $slab) {
 

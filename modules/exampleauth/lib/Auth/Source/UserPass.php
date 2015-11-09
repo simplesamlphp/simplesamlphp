@@ -7,7 +7,7 @@
  * and authenticates users against this array.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassBase {
 
@@ -29,12 +29,12 @@ class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassB
 		assert('is_array($info)');
 		assert('is_array($config)');
 
-		/* Call the parent constructor first, as required by the interface. */
+		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
 		$this->users = array();
 
-		/* Validate and parse our configuration. */
+		// Validate and parse our configuration
 		foreach ($config as $userpass => $attributes) {
 			if (!is_string($userpass)) {
 				throw new Exception('Invalid <username>:<password> for authentication source ' .
@@ -50,7 +50,7 @@ class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassB
 			$password = $userpass[1];
 
 			try {
-				$attributes = SimpleSAML\Utils\Arrays::normalizeAttributesArray($attributes);
+				$attributes = SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
 			} catch(Exception $e) {
 				throw new Exception('Invalid attributes for user ' . $username .
 					' in authentication source ' . $this->authId . ': ' .

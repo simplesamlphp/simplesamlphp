@@ -19,10 +19,10 @@ if ($spEntityId === NULL) {
 $idpMetadata = $metadata->getMetadataConfig($idpEntityId, 'saml20-idp-hosted');
 $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-/* The endpoint we should deliver the message to. */
+// The endpoint we should deliver the message to
 $endpoint = $spMetadata->getString('testAttributeEndpoint');
 
-/* The attributes we will return. */
+// The attributes we will return
 $attributes = array(
 	'name' => array('value1', 'value2', 'value3'),
 	'test' => array('test'),

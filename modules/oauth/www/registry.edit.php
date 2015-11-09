@@ -1,6 +1,6 @@
 <?php
 
-/* Load simpleSAMLphp, configuration and metadata */
+// Load SimpleSAMLphp, configuration and metadata
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 $oauthconfig = SimpleSAML_Configuration::getOptionalConfig('module_oauth.php');

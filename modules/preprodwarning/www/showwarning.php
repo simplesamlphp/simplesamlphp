@@ -4,7 +4,7 @@
  * This script displays a page to the user, which requests that the user
  * authorizes the release of attributes.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 SimpleSAML_Logger::info('PreProdWarning - Showing warning to user');
@@ -17,7 +17,7 @@ $state = SimpleSAML_Auth_State::loadState($id, 'warning:request');
 
 
 if (array_key_exists('yes', $_REQUEST)) {
-	/* The user has pressed the yes-button. */
+	// The user has pressed the yes-button
 
 	SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
 }

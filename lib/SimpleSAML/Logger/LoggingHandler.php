@@ -3,7 +3,7 @@
  * The interface that must be implemented by any log handler.
  *
  * @author Jaime Perez Crespo, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  * @version $ID$
  */
 

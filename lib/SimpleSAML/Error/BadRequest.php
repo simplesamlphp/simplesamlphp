@@ -7,7 +7,7 @@
  * shown a 400 Bad Request error page.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Error_BadRequest extends SimpleSAML_Error_Error {
 

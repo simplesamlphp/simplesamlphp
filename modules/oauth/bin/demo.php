@@ -10,10 +10,10 @@ function _readline($prompt = '') {
 try {
 
 
-	/* This is the base directory of the simpleSAMLphp installation. */
+	// This is the base directory of the SimpleSAMLphp installation
 	$baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 
-	/* Add library autoloader. */
+	// Add library autoloader.
 	require_once($baseDir . '/lib/_autoload.php');
 
 

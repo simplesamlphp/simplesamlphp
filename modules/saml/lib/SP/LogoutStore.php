@@ -3,7 +3,7 @@
 /**
  * A directory over logout information.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_saml_SP_LogoutStore {
 
@@ -107,7 +107,7 @@ class sspmod_saml_SP_LogoutStore {
 			'now' => gmdate('Y-m-d H:i:s'),
 		);
 
-		/* We request the columns in lowercase in order to be compatible with PostgreSQL. */
+		// We request the columns in lowercase in order to be compatible with PostgreSQL
 		$query = 'SELECT _sessionIndex AS _sessionindex, _sessionId AS _sessionid FROM ' . $store->prefix . '_saml_LogoutStore' .
 			' WHERE _authSource = :_authSource AND _nameId = :_nameId AND _expire >= :now';
 		$query = $store->pdo->prepare($query);
@@ -172,7 +172,7 @@ class sspmod_saml_SP_LogoutStore {
 
 		$store = SimpleSAML_Store::getInstance();
 		if ($store === FALSE) {
-			/* We don't have a datastore. */
+			// We don't have a datastore.
 			return;
 		}
 

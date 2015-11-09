@@ -4,7 +4,7 @@
  * Filter to set and get language settings from attributes.
  *
  * @author Andreas Åkre Solberg, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_LanguageAdaptor extends SimpleSAML_Auth_ProcessingFilter {
 
@@ -54,10 +54,10 @@ class sspmod_core_Auth_Process_LanguageAdaptor extends SimpleSAML_Auth_Processin
 
 
 		if (isset($attrlang) && !isset($lang)) {
-			/* Language set in attribute but not in cookie - update cookie. */
+			// Language set in attribute but not in cookie - update cookie
 			SimpleSAML_XHTML_Template::setLanguageCookie($attrlang);
 		} elseif (!isset($attrlang) && isset($lang)) {
-			/* Language set in cookie, but not in attribute. Update attribute. */
+			// Language set in cookie, but not in attribute. Update attribute
 			$request['Attributes'][$this->langattr] = array($lang);
 		}
 

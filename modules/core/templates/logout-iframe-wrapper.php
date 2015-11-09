@@ -5,7 +5,7 @@ $SPs = $this->data['SPs'];
 
 $iframeURL = 'logout-iframe.php?type=embed&id=' . urlencode($id);
 
-/* Pretty arbitrary height, but should have enough safety margins for most cases. */
+// Pretty arbitrary height, but should have enough safety margins for most cases
 $iframeHeight = 25 + count($SPs) * 4;
 
 $this->data['header'] = $this->t('{logout:progress}');

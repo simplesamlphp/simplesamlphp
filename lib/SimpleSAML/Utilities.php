@@ -5,7 +5,7 @@
  * Misc static functions that is used several places.in example parsing and id generation.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  *
  * @deprecated This entire class will be removed in SimpleSAMLphp 2.0.
  */
@@ -143,7 +143,7 @@ class SimpleSAML_Utilities
 
         if (!empty($start)) {
             $startTime = SAML2_Utils::xsDateTimeToTimestamp($start);
-            /* Allow for a 10 minute difference in Time */
+            // Allow for a 10 minute difference in Time
             if (($startTime < 0) || (($startTime - 600) > $currentTime)) {
                 return false;
             }
@@ -234,14 +234,14 @@ class SimpleSAML_Utilities
                 throw new SimpleSAML_Error_Exception('Redirect was attempted with redirecting disabled: ' . var_export($url, TRUE));
         }
 
-        /* Set the location header. */
+        // Set the location header
         header('Location: '.$url, true, $code);
 
-        /* Disable caching of this response. */
+        // Disable caching of this response
         header('Pragma: no-cache');
         header('Cache-Control: no-cache, must-revalidate');
 
-        /* Show a minimal web page with a clickable link to the URL. */
+        // Show a minimal web page with a clickable link to the URL
         echo '<?xml version="1.0" encoding="UTF-8"?>'."\n";
         echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"'.
             ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'."\n";
@@ -261,7 +261,7 @@ class SimpleSAML_Utilities
         echo '</body>';
         echo '</html>';
 
-        /* End script execution. */
+        // End script execution
         exit;
     }
 
@@ -433,11 +433,11 @@ class SimpleSAML_Utilities
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use
-     * SimpleSAML\Utils\Arrays::normalizeAttributesArray() instead.
+     * SimpleSAML\Utils\Attributes::normalizeAttributesArray() instead.
      */
     public static function parseAttributes($attributes)
     {
-        return SimpleSAML\Utils\Arrays::normalizeAttributesArray($attributes);
+        return SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
     }
 
 

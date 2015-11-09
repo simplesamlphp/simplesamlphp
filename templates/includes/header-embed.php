@@ -6,7 +6,7 @@
 if(array_key_exists('header', $this->data)) {
 	echo $this->data['header'];
 } else {
-	echo 'simpleSAMLphp';
+	echo 'SimpleSAMLphp';
 }
 ?></title>
 

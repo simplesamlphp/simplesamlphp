@@ -58,8 +58,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost
         $privatekey = SimpleSAML\Utils\Crypto::loadPrivateKey($idpmd, true);
         $publickey = SimpleSAML\Utils\Crypto::loadPublicKey($idpmd, true);
 
-        $responsedom = new DOMDocument();
-        $responsedom->loadXML(str_replace("\r", "", $response));
+        $responsedom = SAML2_DOMDocumentFactory::fromString(str_replace("\r", "", $response));
 
         $responseroot = $responsedom->getElementsByTagName('Response')->item(0);
         $firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
@@ -98,7 +97,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost
             assert('count($statusElements) === 1');
             $signer->sign($responseroot, $responseroot, $statusElements[0]);
         } else {
-            /* Sign the assertion */
+            // Sign the assertion
             $signer->sign($firstassertionroot, $firstassertionroot);
         }
 

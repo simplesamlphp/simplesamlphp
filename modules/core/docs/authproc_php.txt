@@ -10,13 +10,9 @@ Parameters
 :   This is the name of the filter.
     It must be `'core:PHP'`.
 
-`function`
-:   The PHP function that should be run, defined as an anonymous function with one parameter called `$attributes`.
-    This is an associative array with the user's attributes, and can be modified to add or remove them.
-
 `code`
-:   **Deprecated**
-    If you are using this option, please migrate your code to an anonymous function defined in the `function` option.
+:   The PHP code that should be run. This code will have only one variable available: `$attributes`.
+    This is an associative array of attributes, and can be modified to add or remove attributes.
 
 Examples
 --------
@@ -25,15 +21,15 @@ Add the `mail` attribute based on the user's `uid` attribute:
 
     10 => array(
         'class' => 'core:PHP',
-        'function' => function (&$attributes) {
-            if (empty($attributes['uid'])) {
-                throw new Exception('Missing uid attribute.');
+        'code' => '
+            if (empty($attributes["uid"])) {
+                throw new Exception("Missing uid attribute.");
             }
 
-            $uid = $attributes['uid'][0];
-            $mail = $uid.'@example.net';
-            $attributes['mail'] = array($mail);
-        },
+            $uid = $attributes["uid"][0];
+            $mail = $uid . "@example.net";
+            $attributes["mail"] = array($mail);
+        ',
     ),
 
 
@@ -41,9 +37,9 @@ Create a random number variable:
 
     10 => array(
         'class' => 'core:PHP',
-        'code' => function (&$attributes) {
-            $attributes['random'] = array(
+        'code' => '
+            $attributes["random"] = array(
                 (string)rand(),
             );
-        },
+        ',
     ),

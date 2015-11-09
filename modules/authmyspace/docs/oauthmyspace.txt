@@ -1,4 +1,4 @@
-Using the MySpace authentication source with simpleSAMLphp
+Using the MySpace authentication source with SimpleSAMLphp
 ==========================================================
 
 Remember to configure `authsources.php`, with both your Client ID and Secret key.

@@ -2,11 +2,11 @@
 
 
 
-/* Load simpleSAMLphp, configuration */
+// Load SimpleSAMLphp, configuration
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 
-/* Check if valid local session exists.. */
+// Check if valid local session exists.
 if ($config->getBoolean('admin.protectindexpage', false)) {
     SimpleSAML\Utils\Auth::requireAdmin();
 }
@@ -103,6 +103,11 @@ if ($config->getBoolean('enable.adfs-idp', FALSE) === true) {
     } catch(Exception $e) {}
 }
 
+foreach ($metaentries['remote'] as $key => $value) {
+	if (empty($value)) {
+		unset($metaentries['remote'][$key]);
+	}
+}
 
 
 

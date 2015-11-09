@@ -215,12 +215,11 @@ class SimpleSAML_Metadata_SAMLParser
      */
     public static function parseFile($file)
     {
-        $doc = new DOMDocument();
-
         $data = \SimpleSAML\Utils\HTTP::fetch($file);
 
-        $res = $doc->loadXML($data);
-        if ($res !== true) {
+        try {
+            $doc = SAML2_DOMDocumentFactory::fromString($data);
+        } catch(\Exception $e) {
             throw new Exception('Failed to read XML from file: '.$file);
         }
 
@@ -238,10 +237,9 @@ class SimpleSAML_Metadata_SAMLParser
      */
     public static function parseString($metadata)
     {
-        $doc = new DOMDocument();
-
-        $res = $doc->loadXML($metadata);
-        if ($res !== true) {
+        try {
+            $doc = SAML2_DOMDocumentFactory::fromString($metadata);
+        } catch(\Exception $e) {
             throw new Exception('Failed to parse XML string.');
         }
 
@@ -302,11 +300,12 @@ class SimpleSAML_Metadata_SAMLParser
 
         $data = \SimpleSAML\Utils\HTTP::fetch($file);
 
-        $doc = new DOMDocument();
-        $res = $doc->loadXML($data);
-        if ($res !== true) {
+        try {
+            $doc = SAML2_DOMDocumentFactory::fromString($data);
+        } catch(\Exception $e) {
             throw new Exception('Failed to read XML from file: '.$file);
         }
+
         if ($doc->documentElement === null) {
             throw new Exception('Opened file is not an XML document: '.$file);
         }
@@ -328,10 +327,9 @@ class SimpleSAML_Metadata_SAMLParser
      */
     public static function parseDescriptorsString($string)
     {
-        $doc = new DOMDocument();
-
-        $res = $doc->loadXML($string);
-        if ($res !== true) {
+        try {
+            $doc = SAML2_DOMDocumentFactory::fromString($string);
+        } catch(\Exception $e) {
             throw new Exception('Failed to parse XML string.');
         }
 
@@ -579,7 +577,7 @@ class SimpleSAML_Metadata_SAMLParser
 
 
     /**
-     * This function returns the metadata for SAML 1.x IdPs in the format simpleSAMLphp expects.
+     * This function returns the metadata for SAML 1.x IdPs in the format SimpleSAMLphp expects.
      * This is an associative array with the following fields:
      * - 'entityid': The entity id of the entity described in the metadata.
      * - 'name': Auto generated name for this entity. Currently set to the entity id.
@@ -636,7 +634,7 @@ class SimpleSAML_Metadata_SAMLParser
 
 
     /**
-     * This function returns the metadata for SAML 2.0 SPs in the format simpleSAMLphp expects.
+     * This function returns the metadata for SAML 2.0 SPs in the format SimpleSAMLphp expects.
      * This is an associative array with the following fields:
      * - 'entityid': The entity id of the entity described in the metadata.
      * - 'AssertionConsumerService': String with the URL of the assertion consumer service which supports
@@ -729,7 +727,7 @@ class SimpleSAML_Metadata_SAMLParser
 
 
     /**
-     * This function returns the metadata for SAML 2.0 IdPs in the format simpleSAMLphp expects.
+     * This function returns the metadata for SAML 2.0 IdPs in the format SimpleSAMLphp expects.
      * This is an associative array with the following fields:
      * - 'entityid': The entity id of the entity described in the metadata.
      * - 'name': Auto generated name for this entity. Currently set to the entity id.
@@ -1011,7 +1009,7 @@ class SimpleSAML_Metadata_SAMLParser
                 if ($e instanceof SAML2_XML_mdattr_EntityAttributes && !empty($e->children)) {
                     foreach ($e->children as $attr) {
                         // only saml:Attribute are currently supported here. The specifications also allows
-                        // saml:Assertions, which more complex processing.
+                        // saml:Assertions, which more complex processing
                         if ($attr instanceof SAML2_XML_saml_Attribute) {
                             if (empty($attr->Name) || empty($attr->AttributeValue)) {
                                 continue;

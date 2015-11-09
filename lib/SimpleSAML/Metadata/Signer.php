@@ -180,8 +180,9 @@ class SimpleSAML_Metadata_Signer
 
 
         // convert the metadata to a DOM tree
-        $xml = new DOMDocument();
-        if (!$xml->loadXML($metadataString)) {
+        try {
+            $xml = SAML2_DOMDocumentFactory::fromString($metadataString);
+        } catch(Exception $e) {
             throw new Exception('Error parsing self-generated metadata.');
         }
 

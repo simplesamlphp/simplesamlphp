@@ -1,10 +1,10 @@
 <?php
 
 /**
- * A minimalistic XHTML PHP based template system implemented for simpleSAMLphp.
+ * A minimalistic XHTML PHP based template system implemented for SimpleSAMLphp.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_XHTML_Template {
 
@@ -64,7 +64,7 @@ class SimpleSAML_XHTML_Template {
         }
 
         if($defaultDictionary !== NULL && substr($defaultDictionary, -4) === '.php') {
-            /* For backwards compatibility - print warning. */
+            // For backwards compatibility - print warning
             $backtrace = debug_backtrace();
             $where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
             SimpleSAML_Logger::warning('Deprecated use of new SimpleSAML_Template(...) at ' . $where .
@@ -124,13 +124,13 @@ class SimpleSAML_XHTML_Template {
             return $languageCookie;
         }
 
-        /* Check if we can find a good language from the Accept-Language http header. */
+        // Check if we can find a good language from the Accept-Language http header
         $httpLanguage = $this->getHTTPLanguage();
         if ($httpLanguage !== NULL) {
             return $httpLanguage;
         }
 
-        // Language is not set, and we get the default language from the configuration.
+        // Language is not set, and we get the default language from the configuration
         return $this->getDefaultLanguage();
     }
 
@@ -149,19 +149,19 @@ class SimpleSAML_XHTML_Template {
          */
         $languageMap = self::$defaultLanguageMap;
 
-        /* Find the available language with the best score. */
+        // Find the available language with the best score
         $bestLanguage = NULL;
         $bestScore = -1.0;
 
         foreach($languageScore as $language => $score) {
 
-            /* Apply the language map to the language code. */
+            // Apply the language map to the language code
             if(array_key_exists($language, $languageMap)) {
                 $language = $languageMap[$language];
             }
 
             if(!in_array($language, $this->availableLanguages, TRUE)) {
-                /* Skip this language - we don't have it. */
+                // Skip this language - we don't have it
                 continue;
             }
 
@@ -266,19 +266,19 @@ class SimpleSAML_XHTML_Template {
     public function getTag($tag) {
         assert('is_string($tag)');
 
-        /* First check translations loaded by the includeInlineTranslation and includeLanguageFile methods. */
+        // First check translations loaded by the includeInlineTranslation and includeLanguageFile methods
         if(array_key_exists($tag, $this->langtext)) {
             return $this->langtext[$tag];
         }
 
-        /* Check whether we should use the default dictionary or a dictionary specified in the tag. */
+        // Check whether we should use the default dictionary or a dictionary specified in the tag
         if(substr($tag, 0, 1) === '{' && preg_match('/^{((?:\w+:)?\w+?):(.*)}$/D', $tag, $matches)) {
             $dictionary = $matches[1];
             $tag = $matches[2];
         } else {
             $dictionary = $this->defaultDictionary;
             if($dictionary === NULL) {
-                /* We don't have any dictionary to load the tag from. */
+                // We don't have any dictionary to load the tag from
                 return NULL;
             }
         }
@@ -301,30 +301,30 @@ class SimpleSAML_XHTML_Template {
     public function getTranslation($translations) {
         assert('is_array($translations)');
 
-        /* Look up translation of tag in the selected language. */
+        // Look up translation of tag in the selected language
         $selected_language = $this->getLanguage();
         if (array_key_exists($selected_language, $translations)) {
             return $translations[$selected_language];
         }
 
-        /* Look up translation of tag in the default language. */
+        // Look up translation of tag in the default language
         $default_language = $this->getDefaultLanguage();
         if(array_key_exists($default_language, $translations)) {
             return $translations[$default_language];
         }
 
-        /* Check for english translation. */
+        // Check for english translation
         if(array_key_exists('en', $translations)) {
             return $translations['en'];
         }
 
-        /* Pick the first translation available. */
+        // Pick the first translation available
         if(count($translations) > 0) {
             $languages = array_keys($translations);
             return $translations[$languages[0]];
         }
 
-        /* We don't have anything to return. */
+        // We don't have anything to return
         throw new Exception('Nothing to return from translation.');
     }
 
@@ -337,11 +337,11 @@ class SimpleSAML_XHTML_Template {
      */
     public function getAttributeTranslation($name) {
 
-        /* Normalize attribute name. */
+        // Normalize attribute name
         $normName = strtolower($name);
         $normName = str_replace(":", "_", $normName);
 
-        /* Check for an extra dictionary. */
+        // Check for an extra dictionary
         $extraDict = $this->configuration->getString('attributes.extradictionary', NULL);
         if ($extraDict !== NULL) {
             $dict = $this->getDictionary($extraDict);
@@ -350,13 +350,13 @@ class SimpleSAML_XHTML_Template {
             }
         }
 
-        /* Search the default attribute dictionary. */
+        // Search the default attribute dictionary
         $dict = $this->getDictionary('attributes');
         if (array_key_exists('attribute_' . $normName, $dict)) {
             return $this->getTranslation($dict['attribute_' . $normName]);
         }
 
-        /* No translations found. */
+        // No translations found
         return $name;
     }
 
@@ -384,13 +384,13 @@ class SimpleSAML_XHTML_Template {
     public function t($tag, $replacements = array(), $fallbackdefault = true, $oldreplacements = array(), $striptags = FALSE) {
         if(!is_array($replacements)) {
 
-            /* Old style call to t(...). Print warning to log. */
+            // Old style call to t(...). Print warning to log.
             $backtrace = debug_backtrace();
             $where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
             SimpleSAML_Logger::warning('Deprecated use of SimpleSAML_Template::t(...) at ' . $where .
                 '. Please update the code to use the new style of parameters.');
 
-            /* For backwards compatibility. */
+            // For backwards compatibility
             if(!$replacements && $this->getTag($tag) === NULL) {
                 SimpleSAML_Logger::warning('Code which uses $fallbackdefault === FALSE shouls be' .
                     ' updated to use the getTag-method instead.');
@@ -405,7 +405,7 @@ class SimpleSAML_XHTML_Template {
         } else {
             $tagData = $this->getTag($tag);
             if($tagData === NULL) {
-                /* Tag not found. */
+                // Tag not found
                 SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not translated at all.');
                 return $this->t_not_translated($tag, $fallbackdefault);
             }
@@ -414,7 +414,7 @@ class SimpleSAML_XHTML_Template {
         $translated = $this->getTranslation($tagData);
 
         foreach ($replacements as $k => $v) {
-            /* try to translate if no replacement is given */
+            // try to translate if no replacement is given
             if ($v == NULL) $v = $this->t($k);
             $translated = str_replace($k, $v, $translated);
         }
@@ -463,7 +463,7 @@ class SimpleSAML_XHTML_Template {
      * @param $file         File name of dictionary to include
      * @param $otherConfig  Optionally provide a different configuration object than
      *  the one provided in the constructor to be used to find the dictionary directory.
-     *  This enables the possiblity of combining dictionaries inside simpleSAMLphp 
+     *  This enables the possiblity of combining dictionaries inside SimpleSAMLphp
      *  distribution with external dictionaries.
      */
     public function includeLanguageFile($file, $otherConfig = null) {
@@ -558,7 +558,7 @@ class SimpleSAML_XHTML_Template {
     }
 
 
-    // Merge two translation arrays.
+    // Merge two translation arrays
     public static function lang_merge($def, $lang) {
         foreach($def AS $key => $value) {
             if (array_key_exists($key, $lang))
@@ -615,16 +615,16 @@ class SimpleSAML_XHTML_Template {
         }
 
 
-        /* First check the current theme. */
+        // First check the current theme
         if ($themeModule !== NULL) {
-            /* .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName> */
+            // .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName>
 
             $filename = SimpleSAML_Module::getModuleDir($themeModule) . '/themes/' . $themeName . '/' . $templateModule . '/' . $templateName;
         } elseif ($templateModule !== 'default') {
-            /* .../module/<templateModule>/templates/<themeName>/<templateName> */
+            // .../module/<templateModule>/templates/<themeName>/<templateName>
             $filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' . $templateName;
         } else {
-            /* .../templates/<theme>/<templateName> */
+            // .../templates/<theme>/<templateName>
             $filename = $this->configuration->getPathValue('templatedir', 'templates/') . $templateName;
         }
 
@@ -633,17 +633,17 @@ class SimpleSAML_XHTML_Template {
         }
 
 
-        /* Not found in current theme. */
+        // Not found in current theme
         SimpleSAML_Logger::debug($_SERVER['PHP_SELF'].' - Template: Could not find template file [' .
             $template . '] at [' . $filename . '] - now trying the base template');
 
 
-        /* Try default theme. */
+        // Try default theme
         if ($templateModule !== 'default') {
-            /* .../module/<templateModule>/templates/<templateName> */
+            // .../module/<templateModule>/templates/<templateName>
             $filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' . $templateName;
         } else {
-            /* .../templates/<templateName> */
+            // .../templates/<templateName>
             $filename = $this->configuration->getPathValue('templatedir', 'templates/') . '/' . $templateName;
         }
 
@@ -652,7 +652,7 @@ class SimpleSAML_XHTML_Template {
         }
 
 
-        /* Not found in default template - log error and throw exception. */
+        // Not found in default template - log error and throw exception
         $error = 'Template: Could not find template file [' . $template . '] at [' . $filename . ']';
         SimpleSAML_Logger::critical($_SERVER['PHP_SELF'] . ' - ' . $error);
 

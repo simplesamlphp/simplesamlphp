@@ -1,4 +1,4 @@
-Exception and error handling in simpleSAMLphp
+Exception and error handling in SimpleSAMLphp
 =============================================
 
 <!--
@@ -13,7 +13,7 @@ Exception and error handling in simpleSAMLphp
 This document describes the way errors and exceptions are handled in authentication sources and authentication processing filters.
 The basic goal is to be able to throw an exception during authentication, and then have that exception transported back to the SP in a way that the SP understands.
 
-This means that internal simpleSAMLphp exceptions must be mapped to transport specific error codes for the various transports that are supported by simpleSAMLphp.
+This means that internal SimpleSAMLphp exceptions must be mapped to transport specific error codes for the various transports that are supported by SimpleSAMLphp.
 E.g.: When a `SimpleSAML_Error_NoPassive` error is thrown by an authentication processing filter in a SAML 2.0 IdP, we want to map that exception to the `urn:oasis:names:tc:SAML:2.0:status:NoPassive` status code.
 That status code should then be returned to the SP.
 
@@ -92,7 +92,7 @@ Throwing SAML 2 errors will tie your code directly to the SAML 2 protocol, and i
 Converting SAML 2 errors to normal exceptions
 ---------------------------------------------
 
-On the SP side, we want to convert SAML 2 errors to simpleSAMLphp exceptions again.
+On the SP side, we want to convert SAML 2 errors to SimpleSAMLphp exceptions again.
 This is handled by the `toException()` method in `sspmod_saml_Error`.
 The assertion consumer script of the SAML 2 authentication source (`modules/saml2/sp/acs.php`) uses this method.
 The result is that generic exceptions are thrown from that authentication source.

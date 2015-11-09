@@ -17,7 +17,7 @@
  * </code>
  *
  * @author Alex Mihičinac, ARNES. <alexm@arnes.si>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_ProcessingFilter {
@@ -122,14 +122,14 @@ class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_Process
 		if (self::shWarning($state, $expireOnDate, $this->warndaysbefore)) {
 			assert('is_array($state)');
 			if (isset($state['isPassive']) && $state['isPassive'] === TRUE) {
-				/* We have a passive request. Skip the warning. */
+				// We have a passive request. Skip the warning.
 				return;
 			}
 
 			SimpleSAML_Logger::warning('expirycheck: NetID ' . $netId .
 			                           ' is about to expire!');
 
-			/* Save state and redirect. */
+			// Save state and redirect
 			$state['expireOnDate'] = date($this->date_format, $expireOnDate);
 			$state['netId'] = $netId;
 			$id = SimpleSAML_Auth_State::saveState($state, 'expirywarning:about2expire');

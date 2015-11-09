@@ -2,15 +2,15 @@
 <?php
 
 /*
- * This script can be used to generate metadata for simpleSAMLphp
+ * This script can be used to generate metadata for SimpleSAMLphp
  * based on an XML metadata file.
  */
 
 
-/* This is the base directory of the simpleSAMLphp installation. */
+// This is the base directory of the SimpleSAMLphp installation
 $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 
-/* Add library autoloader. */
+// Add library autoloader.
 require_once($baseDir . '/lib/_autoload.php');
 
 SimpleSAML_Session::useTransientSession(); /* No need to try to create a session here. */
@@ -171,7 +171,7 @@ function printHelp() {
 	echo(' -h, --help                   Print this help.' . "\n");
 	echo(' -o=<DIR>, --out-dir=<DIR>    Write the output to this directory. The' . "\n");
 	echo('                              default directory is metadata-generated/.' . "\n");
-	echo('                              Path will be relative to the simpleSAMLphp' . "\n");
+	echo('                              Path will be relative to the SimpleSAMLphp' . "\n");
 	echo('                              base directory.' . "\n");
 	echo(' -s, --stdout                 Write the output to stdout instead of' . "\n");
 	echo('                              seperate files in the output directory.' . "\n");

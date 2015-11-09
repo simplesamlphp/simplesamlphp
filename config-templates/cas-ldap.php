@@ -1,6 +1,6 @@
 <?php
 /* 
- * The configuration of simpleSAMLphp
+ * The configuration of SimpleSAMLphp
  * 
  * 
  */

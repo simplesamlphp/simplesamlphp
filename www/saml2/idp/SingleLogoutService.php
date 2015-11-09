@@ -5,7 +5,7 @@
  * and LogoutRequests and also receive LogoutResponses. It is implemeting SLO at the SAML 2.0 IdP.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 require_once('../../_include.php');
@@ -23,7 +23,7 @@ if (isset($_REQUEST['ReturnTo'])) {
         sspmod_saml_IdP_SAML2::receiveLogoutMessage($idp);
     } catch (Exception $e) { // TODO: look for a specific exception
         // This is dirty. Instead of checking the message of the exception, SAML2_Binding::getCurrentBinding() should throw
-        // an specific exception when the binding is unknown, and we should capture that here.
+        // an specific exception when the binding is unknown, and we should capture that here
         if ($e->getMessage() === 'Unable to find the current binding.') {
             throw new SimpleSAML_Error_Error('SLOSERVICEPARAMS', $e, 400);
         } else {

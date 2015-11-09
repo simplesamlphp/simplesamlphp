@@ -3,7 +3,7 @@
 /**
  * Statistics logger that writes to a set of log files
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Stats_Output_File extends SimpleSAML_Stats_Output {
 
@@ -64,7 +64,7 @@ class sspmod_core_Stats_Output_File extends SimpleSAML_Stats_Output {
 			throw new SimpleSAML_Error_Exception('Error opening log file: ' . var_export($fileName, TRUE));
 		}
 
-		/* Disable output buffering. */
+		// Disable output buffering
 		stream_set_write_buffer($this->file, 0);
 
 		$this->fileDate = $date;
@@ -84,7 +84,7 @@ class sspmod_core_Stats_Output_File extends SimpleSAML_Stats_Output {
 
 		$timestamp = gmdate('Y-m-d\TH:i:s', $time) . sprintf('.%03dZ', $milliseconds);
 
-		$outDate = substr($timestamp, 0, 10); /* The date-part of the timstamp. */
+		$outDate = substr($timestamp, 0, 10); // The date-part of the timstamp
 
 		if ($outDate !== $this->fileDate) {
 			$this->openLog($outDate);

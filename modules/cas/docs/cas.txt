@@ -1,4 +1,4 @@
-Using the CAS authentication source with simpleSAMLphp
+Using the CAS authentication source with SimpleSAMLphp
 ==========================================================
 
 This is completely based on the original cas authentication, 

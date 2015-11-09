@@ -90,6 +90,17 @@ Get the domain of the email and put it in a separate attribute:
         '%replace',
     ),
 
+Defaulting an attribute to one value (Add it with the default before altering) unless another attribute meets a condition: 
+
+    10 => array ('class' => 'core:AttributeAdd',
+                 'myAttribute' => 'default-value'),
+    11 => array ('class' => 'core:AttributeAlter',
+        'subject' => 'entitlement',
+        'pattern' => '/faculty/',
+        'target' => 'myAttribute',
+        '%replace',
+       ),
+ 
 Remove internal, private values from eduPersonEntitlement:
 
     10 => array(

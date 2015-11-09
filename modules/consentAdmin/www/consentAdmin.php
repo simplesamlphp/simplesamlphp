@@ -61,7 +61,7 @@ function driveProcessingChain(
     SimpleSAML_Logger::info('consentAdmin: target: '.$targeted_id);
     SimpleSAML_Logger::info('consentAdmin: attribute: '.$attribute_hash);
 
-    /* Return values */
+    // Return values
     return array($targeted_id, $attribute_hash, $attributes);
 }
 
@@ -80,7 +80,7 @@ if (array_key_exists('logout', $_REQUEST)) {
 
 $hashAttributes = $cA_config->getValue('attributes.hash');
 
-/* Check if valid local session exists */
+// Check if valid local session exists
 $as->requireAuth();
 
 // Get released attributes
@@ -205,8 +205,8 @@ $template_sp_content = array();
 
 // Init template
 $template = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
-$sp_empty_name = $template->translator->getTag('sp_empty_name');
-$sp_empty_description = $template->translator->getTag('sp_empty_description');
+$sp_empty_name = $template->getTag('sp_empty_name');
+$sp_empty_description = $template->getTag('sp_empty_description');
 
 // Process consents for all SP
 foreach ($all_sp_metadata as $sp_entityid => $sp_values) {

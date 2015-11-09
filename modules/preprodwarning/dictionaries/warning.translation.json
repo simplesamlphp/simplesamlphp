@@ -30,7 +30,8 @@
 		"id": "Sekarang anda sedang mengakses sistem pra-produksi. Setup autentifikasi ini untuk keperluan uji coba dan verifikasi pra-produksi",
 		"sr": "Pristupate sistemu koji se nalazi u pred-produkcionoj fazi. Ova autentifikaciona pode\u0161avanja slu\u017ee za testiranje i proveru ispravnosti rada pred-produkcionog sistema. Ako vam je neko poslao adresu koja pokazuje na ovu stranicu, a vi niste <i>osoba zadu\u017eena za testiranje<\/i>, verovatno ste <b>na ovu stranicu do\u0161li gre\u0161kom<\/b>.",
 		"ro": "\u00cen acest moment accesa\u021bi un sistem pre-produc\u021bie. Acest sistem de autentificare este realizat doar pentru testare \u0219i verificare. Dac\u0103 a\u021bi primit de la cineva acest link \u0219i nu sunte\u021bi <i>tester<\/i>, atunci probabil a\u021bi primit un link gre\u0219it \u0219i <b>nu<\/b> ar fi trebuit s\u0103 ajunge\u021bi aici.",
-		"eu": "Aurre-produzkio batean sartzen ari zara. Konfigurazio hau aurre-produkzioko sistemaren frogak egin eta egiaztatzeko bakarrik da. Hona iristeko norbaitek bidali dizun lotura bat jarraitu baduzu eta <i>frogatzaile<\/i> bat ez bazara, ziurrenik errore bat izango da, eta zuk <b>ez zenuke hemen egon behar<\/b>."
+		"eu": "Aurre-produzkio batean sartzen ari zara. Konfigurazio hau aurre-produkzioko sistemaren frogak egin eta egiaztatzeko bakarrik da. Hona iristeko norbaitek bidali dizun lotura bat jarraitu baduzu eta <i>frogatzaile<\/i> bat ez bazara, ziurrenik errore bat izango da, eta zuk <b>ez zenuke hemen egon behar<\/b>.",
+		"af": "Jy het nou toegang gekry tot 'n pre-produksie stelsel. Di\u00e9 verifikasie opstel is vir die toets en pre-produksie verifikasie aleen. Indien iemand vir jou 'n skakel gestuur wat na hier verwys en jy is nie <i> 'n toets persoon nie <\/i> het jy waarskynlik die verkeerde skakel en moet <b> jy nie hier <\/b> wees nie."
 	},
 	"warning_header": {
 		"no": "Advarsel om at dette er et test oppsett",
@@ -63,7 +64,8 @@
 		"lv": "Br\u012bdin\u0101jums par testa sist\u0113mas izmanto\u0161anu",
 		"id": "Peringatan tentang mengakses sistem pra-produksi",
 		"sr": "Upozorenje o pristupanju pred-produkcionom sistemu",
-		"ro": "Aten\u021bionare privind accesarea unui sistem pre-produc\u021bie"
+		"ro": "Aten\u021bionare privind accesarea unui sistem pre-produc\u021bie",
+		"af": "Waarskuwing oor toegang na 'n pre-produksie stelsel"
 	},
 	"yes": {
 		"no": "Ja, jeg holder p\u00e5 \u00e5 teste innlogging, og vet dette er et test-system.",
@@ -96,6 +98,7 @@
 		"lv": "J\u0101, es zinu, ka es izmantoju testa (pirmsprodukcijas) sist\u0113mu",
 		"id": "Ya, saya tahu kalau saya sedang mengakses sistem pra-produksi",
 		"sr": "Da, znam da pristupam sistemu koji je u pred-produkcionoj fazi",
-		"ro": "Da, \u00een\u021beleg c\u0103 accesez un sistem pre-produc\u021bie"
+		"ro": "Da, \u00een\u021beleg c\u0103 accesez un sistem pre-produc\u021bie",
+		"af": "Ja, ek weet ek verkry toegang tot 'n pre-produksie stelsel"
 	}
 }

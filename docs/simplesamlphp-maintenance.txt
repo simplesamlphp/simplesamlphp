@@ -10,14 +10,14 @@ SimpleSAMLphp Maintenance
 
 <!-- {{TOC}} -->
 
-simpleSAMLphp news and documentation
+SimpleSAMLphp news and documentation
 ------------------------------------
 
-This document is part of the simpleSAMLphp documentation suite.
+This document is part of the SimpleSAMLphp documentation suite.
 
- * [List of all simpleSAMLphp documentation](http://simplesamlphp.org/docs)
- * [Latest news about simpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also contains an RSS feed)
- * [simpleSAMLphp homepage](https://simplesamlphp.org)
+ * [List of all SimpleSAMLphp documentation](http://simplesamlphp.org/docs)
+ * [Latest news about SimpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also contains an RSS feed)
+ * [SimpleSAMLphp homepage](https://simplesamlphp.org)
 
 
 
@@ -48,13 +48,16 @@ Each server group is an array of servers. The data items will be load-balanced b
 Each server is an array of parameters for the server. The following options are available:
 
 `hostname`
-:   Host name or ip address of a memcache server runs. This is the
-    only required option.
+:   Host name or ip address where the memcache server runs, or specify other transports like *unix:///path/ssp.sock* to
+    use UNIX domain sockets. In that case, port will be ignored and forced to *0*.
+
+    This is the only required option.
 
 `port`
-:   Port number of the memcache server. If not set, the
-    `memcache.default_port` ini setting is used. This is 11211 by
+:   Port number of the memcache server. If not set, the `memcache.default_port` ini setting is used. This is 11211 by
     default.
+
+    The port will be forced to *0* when a UNIX domain socket is specified in *hostname*.
 
 `weight`
 :   Weight of this server in this server group.
@@ -136,7 +139,7 @@ The required tables are created automatically. If you are storing data from mult
 
 ## Logging and statistics
 
-simpleSAMLphp supports standard `syslog` logging. As an
+SimpleSAMLphp supports standard `syslog` logging. As an
 alternative, you may log to flat files.
 
 ## Apache configuration
@@ -157,7 +160,7 @@ Here are some checkpoints
  2. If you during testing have been using a certificate that has been exposed (notably: the one found in the SimpleSAMLphp distribution): Obtain and install a new one.
  3. Make sure you have installed the latest security upgrades for your OS.
  4. Make sure to use HTTPS rather than HTTP.
- 5. Block access to your servers on anything except port 443. simpleSAMLphp only uses plain HTTP(S), so there is no need to open ports for SOAP or other communication.
+ 5. Block access to your servers on anything except port 443. SimpleSAMLphp only uses plain HTTP(S), so there is no need to open ports for SOAP or other communication.
 
 
 ## Error handling, error reporting and metadata reporting
@@ -180,7 +183,7 @@ Please use the standardized two-character
 
 You also can set the default language. You should ensure that the default language is complete, as it is used as a fallback when a text is not available in the language selected by the user.
 
-Translation of simpleSAMLphp is done through the SimpleSAMLphp translation portal. To translate SimpleSAMLphp to a new language, please contact the authors at the mailing list, and the new language may be added to the translation portal.
+Translation of SimpleSAMLphp is done through the SimpleSAMLphp translation portal. To translate SimpleSAMLphp to a new language, please contact the authors at the mailing list, and the new language may be added to the translation portal.
 
   * [Visit the SimpleSAMLphp translation portal](https://translation.rnd.feide.no/?aid=simplesamlphp)
 
@@ -202,8 +205,8 @@ Documentation on theming is moved [to a separate document](simplesamlphp-theming
 Support
 -------
 
-If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
+If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
 -  [SimpleSAMLphp homepage](https://simplesamlphp.org)
--  [List of all available simpleSAMLphp documentation](http://simplesamlphp.org/docs/)
--  [Join the simpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)
+-  [List of all available SimpleSAMLphp documentation](http://simplesamlphp.org/docs/)
+-  [Join the SimpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)

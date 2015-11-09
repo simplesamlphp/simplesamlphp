@@ -104,7 +104,7 @@ try {
     }
 
     if ($idpmeta->getBoolean('saml20.sendartifact', false)) {
-        /* Artifact sending enabled. */
+        // Artifact sending enabled
         $metaArray['ArtifactResolutionService'][] = array(
             'index'    => 0,
             'Location' => \SimpleSAML\Utils\HTTP::getBaseURL().'saml2/idp/ArtifactResolutionService.php',
@@ -113,7 +113,7 @@ try {
     }
 
     if ($idpmeta->getBoolean('saml20.hok.assertion', false)) {
-        /* Prepend HoK SSO Service endpoint. */
+        // Prepend HoK SSO Service endpoint.
         array_unshift($metaArray['SingleSignOnService'], array(
             'hoksso:ProtocolBinding' => SAML2_Const::BINDING_HTTP_REDIRECT,
             'Binding'                => SAML2_Const::BINDING_HOK_SSO,
@@ -212,6 +212,7 @@ try {
 
         $t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
 
+        $t->data['clipboard.js'] = true;
         $t->data['available_certs'] = $availableCerts;
         $t->data['header'] = 'saml20-idp';
         $t->data['metaurl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();

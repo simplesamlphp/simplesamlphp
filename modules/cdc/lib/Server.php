@@ -3,7 +3,7 @@
 /**
  * CDC server class.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_cdc_Server {
 
@@ -362,7 +362,7 @@ class sspmod_cdc_Server {
 		foreach ($ret as &$idp) {
 			$idp = base64_decode($idp);
 			if ($idp === FALSE) {
-				/* Not properly base64 encoded. */
+				// Not properly base64 encoded
 				SimpleSAML_Logger::warning('CDC - Invalid base64-encoding of CDC entry.');
 				return array();
 			}
@@ -387,7 +387,7 @@ class sspmod_cdc_Server {
 		$cookie = implode(' ', $list);
 
 		while (strlen($cookie) > 4000) {
-			/* The cookie is too long. Remove the oldest elements until it is short enough. */
+			// The cookie is too long. Remove the oldest elements until it is short enough
 			$tmp = explode(' ', $cookie, 2);
 			if (count($tmp) === 1) {
 				/*

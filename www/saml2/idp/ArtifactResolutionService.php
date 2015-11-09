@@ -5,7 +5,7 @@
  * And when the artifact is found, it sends a SAML2_ArtifactResponse.
  *
  * @author Danny Bollaert, UGent AS. <danny.bollaert@ugent.be>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 require_once('../../_include.php');
@@ -54,8 +54,7 @@ $responseData = $store->get('artifact', $artifact);
 $store->delete('artifact', $artifact);
 
 if ($responseData !== NULL) {
-	$document = new DOMDocument();
-	$document->loadXML($responseData);
+	$document = SAML2_DOMDocumentFactory::fromString($responseData);
 	$responseXML = $document->firstChild;
 } else {
 	$responseXML = NULL;

@@ -62,9 +62,9 @@ abstract class SimpleSAML_SessionHandler
 
 
     /**
-     * Retrieve the session id of saved in the session cookie.
+     * Retrieve the session ID saved in the session cookie, if there's one.
      *
-     * @return string The session id saved in the cookie.
+     * @return string|null The session id saved in the cookie or null if no session cookie was set.
      */
     abstract public function getCookieSessionId();
 

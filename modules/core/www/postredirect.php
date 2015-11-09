@@ -3,7 +3,7 @@
 /**
  * This page provides a way to create a redirect to a POST request.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 if (array_key_exists('RedirId', $_REQUEST)) {
@@ -34,7 +34,7 @@ if ($session === NULL) {
 $postData = $session->getData('core_postdatalink', $postId);
 
 if ($postData === NULL) {
-	/* The post data is missing, probably because it timed out. */
+	// The post data is missing, probably because it timed out
 	throw new Exception('The POST data we should restore was lost.');
 }
 

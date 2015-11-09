@@ -17,7 +17,7 @@
  * </code>
  *
  * @author  Olav Morken <olav.morken@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
 {
@@ -273,7 +273,7 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
         );
 
         if (\SimpleSAML\Utils\HTTP::isHTTPS()) {
-            /* Enable secure cookie for https-requests. */
+            // Enable secure cookie for https-requests
             $params['secure'] = true;
         } else {
             $params['secure'] = false;

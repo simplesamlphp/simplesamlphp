@@ -3,7 +3,7 @@
 /**
  * about2expire.php
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 SimpleSAML_Logger::info('expirycheck - User has been warned that NetID is near to expirational date.');
@@ -15,7 +15,7 @@ $id = $_REQUEST['StateId'];
 $state = SimpleSAML_Auth_State::loadState($id, 'expirywarning:about2expire');
 
 if (array_key_exists('yes', $_REQUEST)) {
-	/* The user has pressed the yes-button. */
+	// The user has pressed the yes-button
 	SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
 }
 

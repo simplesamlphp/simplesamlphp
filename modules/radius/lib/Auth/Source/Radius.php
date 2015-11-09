@@ -5,7 +5,7 @@
  *
  * This class is based on www/auth/login-radius.php.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 
@@ -68,10 +68,10 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase {
 		assert('is_array($info)');
 		assert('is_array($config)');
 
-		/* Call the parent constructor first, as required by the interface. */
+		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
-		/* Parse configuration. */
+		// Parse configuration.
 		$config = SimpleSAML_Configuration::loadFromArray($config,
 			'Authentication source ' . var_export($this->authId, TRUE));
 

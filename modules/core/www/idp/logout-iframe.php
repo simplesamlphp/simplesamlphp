@@ -22,7 +22,7 @@ $state = SimpleSAML_Auth_State::loadState($_REQUEST['id'], 'core:Logout-IFrame')
 $idp = SimpleSAML_IdP::getByState($state);
 
 if ($type !== 'init') {
-	/* Update association state. */
+	// Update association state
 
 	$associations = $idp->getAssociations();
 
@@ -30,7 +30,7 @@ if ($type !== 'init') {
 
 		$spId = sha1($assocId);
 
-		/* Move SPs from 'onhold' to 'inprogress'. */
+		// Move SPs from 'onhold' to 'inprogress'
 		if ($sp['core:Logout-IFrame:State'] === 'onhold') {
 			$sp['core:Logout-IFrame:State'] = 'inprogress';
 		}
@@ -107,6 +107,6 @@ $t->data['id'] = $id;
 $t->data['type'] = $type;
 $t->data['from'] = $state['core:Logout-IFrame:From'];
 $t->data['SPs'] = $state['core:Logout-IFrame:Associations'];
-$t->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => FALSE, 'css' => FALSE);
+$t->data['jquery'] = array('core' => TRUE, 'ui' => FALSE, 'css' => FALSE);
 $t->show();
 exit(0);

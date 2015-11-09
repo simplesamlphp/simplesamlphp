@@ -5,7 +5,7 @@
  * other authentication sources
  *
  * @author Lorenzo Gil, Yaco Sistemas S.L.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
@@ -45,7 +45,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 		assert('is_array($info)');
 		assert('is_array($config)');
 
-		/* Call the parent constructor first, as required by the interface. */
+		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
 		if (!array_key_exists('sources', $config)) {
@@ -72,7 +72,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 			if (array_key_exists('css-class', $info)) {
 				$css_class = $info['css-class'];
 			} else {
-				/* Use the authtype as the css class */
+				// Use the authtype as the css class
 				$authconfig = $authsources->getArray($source, NULL);
 				if (!array_key_exists(0, $authconfig) || !is_string($authconfig[0])) {
 					$css_class = "";
@@ -203,7 +203,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 			/* We save the cookies for 90 days. */
 			'lifetime' => (60*60*24*90),
 			/* The base path for cookies.
-			This should be the installation directory for simpleSAMLphp. */
+			This should be the installation directory for SimpleSAMLphp. */
 			'path' => ('/' . $config->getBaseUrl()),
 			'httponly' => FALSE,
 		);

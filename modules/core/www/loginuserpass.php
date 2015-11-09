@@ -6,10 +6,10 @@
  * username/password authentication.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
-/* Retrieve the authentication state. */
+// Retrieve the authentication state
 if (!array_key_exists('AuthState', $_REQUEST)) {
 	throw new SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
 }
@@ -42,7 +42,7 @@ $errorCode = NULL;
 $errorParams = NULL;
 
 if (!empty($_REQUEST['username']) || !empty($password)) {
-	/* Either username or password set - attempt to log in. */
+	// Either username or password set - attempt to log in
 
 	if (array_key_exists('forcedUsername', $state)) {
 		$username = $state['forcedUsername'];

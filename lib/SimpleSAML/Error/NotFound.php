@@ -7,7 +7,7 @@
  * shown a 404 Not Found error page.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Error_NotFound extends SimpleSAML_Error_Error {
 

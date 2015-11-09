@@ -10,7 +10,7 @@ SimpleSAMLphp Identity Provider QuickStart
 
 <!-- {{TOC}} -->
 
-This guide will describe how to configure simpleSAMLphp as an identity provider (IdP). You should previously have installed simpleSAMLphp as described in [the simpleSAMLphp installation instructions](simplesamlphp-install)
+This guide will describe how to configure SimpleSAMLphp as an identity provider (IdP). You should previously have installed SimpleSAMLphp as described in [the SimpleSAMLphp installation instructions](simplesamlphp-install)
 
 
 Enabling the Identity Provider functionality
@@ -25,7 +25,7 @@ The first that must be done is to enable the identity provider functionality. Th
 Authentication module
 ---------------------
 
-The next step is to configure the way users authenticate on your IdP. Various modules in the `modules/` directory provides methods for authenticating your users. This is an overview of those that are included in the simpleSAMLphp distribution:
+The next step is to configure the way users authenticate on your IdP. Various modules in the `modules/` directory provides methods for authenticating your users. This is an overview of those that are included in the SimpleSAMLphp distribution:
 
 [`authcrypt:Hash`](./authcrypt:authcrypt)
 : Username & password authentication with hashed passwords.
@@ -87,7 +87,7 @@ Configuring the authentication module
 
 The `exampleauth:UserPass` authentication module is part of the `exampleauth` module. This module isn't enabled by default, so you will have to enable it. This is done by creating a file named `enable` in `modules/exampleauth/`.
 
-On unix, this can be done by running (from the simpleSAMLphp
+On unix, this can be done by running (from the SimpleSAMLphp
 installation directory):
 
     touch modules/exampleauth/enable
@@ -135,7 +135,7 @@ The certificate above will be valid for 10 years.
 
 ### Note ###
 
-simpleSAMLphp will only work with RSA certificates. DSA certificates are not supported.
+SimpleSAMLphp will only work with RSA certificates. DSA certificates are not supported.
 
 
 Configuring the IdP
@@ -191,7 +191,7 @@ Adding SPs to the IdP
 
 The identity provider you are configuring needs to know about the service providers you are going to connect to it.
 This is configured by metadata stored in `metadata/saml20-sp-remote.php` and `metadata/shib13-sp-remote.php`.
-This is a minimal example of a `metadata/saml20-sp-remote.php` metadata file for a simpleSAMLphp SP:
+This is a minimal example of a `metadata/saml20-sp-remote.php` metadata file for a SimpleSAMLphp SP:
 
     <?php
     $metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'] = array(
@@ -200,7 +200,7 @@ This is a minimal example of a `metadata/saml20-sp-remote.php` metadata file for
     );
 
 Note that the URI in the entityID and the URLs to the AssertionConsumerService and SingleLogoutService endpoints change between different service providers.
-If you have the metadata of the remote SP as an XML file, you can use the built-in XML to simpleSAMLphp metadata converter, which by default is available as `/admin/metadata-converter.php` in your simpleSAMLphp installation.
+If you have the metadata of the remote SP as an XML file, you can use the built-in XML to SimpleSAMLphp metadata converter, which by default is available as `/admin/metadata-converter.php` in your SimpleSAMLphp installation.
 
 For more information about available options in the sp-remote metadata files, see the [SP remote reference](simplesamlphp-reference-sp-remote).
 
@@ -214,24 +214,24 @@ The method for adding this IdP to a SP varies between different types of SPs. In
 Testing the IdP
 ---------------
 
-The simplest way to test the IdP is to configure a simpleSAMLphp SP
+The simplest way to test the IdP is to configure a SimpleSAMLphp SP
 on the same machine. See the instructions for
-[configuring simpleSAMLphp as an SP](simplesamlphp-sp).
+[configuring SimpleSAMLphp as an SP](simplesamlphp-sp).
 
 
 ### Note ###
 
-When running a simpleSAMLphp IdP and a simpleSAMLphp SP on the same computer, the SP and IdP **MUST** be configured with different hostnames. This prevents cookies from the SP to interfere with cookies from the IdP.
+When running a SimpleSAMLphp IdP and a SimpleSAMLphp SP on the same computer, the SP and IdP **MUST** be configured with different hostnames. This prevents cookies from the SP to interfere with cookies from the IdP.
 
 
 Support
 -------
 
-If you need help to make this work, or want to discuss simpleSAMLphp with other users of the software, you are fortunate: Around simpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
+If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 
-- [simpleSAMLphp homepage](https://simplesamlphp.org)
-- [List of all available simpleSAMLphp documentation](https://simplesamlphp.org/docs/)
-- [Join the simpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)
+- [SimpleSAMLphp homepage](https://simplesamlphp.org)
+- [List of all available SimpleSAMLphp documentation](https://simplesamlphp.org/docs/)
+- [Join the SimpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)
 
 
 
@@ -244,10 +244,10 @@ Here is an example of such a URL:
 
 	https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org
 
-If the SP is a simpleSAMLphp SP, you must also specify a `RelayState` parameter for the SP.
+If the SP is a SimpleSAMLphp SP, you must also specify a `RelayState` parameter for the SP.
 This must be set to a URL the user should be redirected to after authentication.
 The `RelayState` parameter can be specified in the [SP configuration](saml:sp), or it can be sent from the IdP.
-To send the RelayState parameter from a simpleSAMLphp IdP, specify it in the query string to SSOService.php:
+To send the RelayState parameter from a SimpleSAMLphp IdP, specify it in the query string to SSOService.php:
 
     https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org&RelayState=https://sp.example.org/welcome.php
 

@@ -66,15 +66,27 @@ No extra options are available for this filter.
 Generates and stores persistent NameIDs in a SQL datastore.
 
 This filter generates and stores a persistent NameID in a SQL datastore.
-To use this filter, simpleSAMLphp must be configured to use a SQL datastore.
+To use this filter, SimpleSAMLphp must be configured to use a SQL datastore.
 See the `store.type` configuration option in `config.php`.
-
-This filter will only create new NameIDs when the SP specifies `AllowCreate="true"` in the authentication request.
 
 ### Options
 
 `attribute`
 :   The name of the attribute we should use as the unique user ID.
+
+`allowUnspecified`
+:   Whether a persistent NameID should be created if the SP does not specify any NameID format in the request.
+    The default is `FALSE`.
+
+`allowDifferent`
+:   Whether a persistent NameID should be created if there are only other NameID formats specified in the request or the SP's metadata.
+    The default is `FALSE`.
+
+`alwaysCreate`
+:   Whether to ignore an explicit `AllowCreate="false"` in the authentication request's NameIDPolicy.
+    The default is `FALSE`, which will only create new NameIDs when the SP specifies `AllowCreate="true"` in the authentication request.
+
+Setting both `allowUnspecified` and `alwaysCreate` to `TRUE` causes `saml:SQLPersistentNameID` to behave like `saml:PersistentNameID` (and other NameID generation filters), at the expense of creating unnecessary entries in the SQL datastore.
 
 
 `saml:PersistentNameID2TargetedID`

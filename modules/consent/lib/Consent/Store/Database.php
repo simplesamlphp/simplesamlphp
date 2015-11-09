@@ -14,7 +14,7 @@
  * - table: The name of the table used. Optional, defaults to 'consent'.
  *
  * @author  Olav Morken <olav.morken@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 {
@@ -194,7 +194,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         assert('is_string($destinationId)');
         assert('is_string($attributeSet)');
 
-        /* Check for old consent (with different attribute set). */
+        // Check for old consent (with different attribute set)
         $st = $this->_execute(
             'UPDATE ' . $this->_table . ' ' .
             'SET consent_date = ' . $this->_dateTime . ', usage_date = ' . $this->_dateTime . ', attribute = ? ' .

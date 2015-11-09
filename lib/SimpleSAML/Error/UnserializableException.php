@@ -10,7 +10,7 @@
  * It creates a new exception which contains the backtrace and message
  * of the original exception.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Error_UnserializableException extends SimpleSAML_Error_Exception {
 
@@ -34,7 +34,7 @@ class SimpleSAML_Error_UnserializableException extends SimpleSAML_Error_Exceptio
 		$code = $original->getCode();
 
 		if (!is_int($code)) {
-			/* PDOException uses a string as the code. Filter it out here. */
+			// PDOException uses a string as the code. Filter it out here.
 			$code = -1;
 		}
 

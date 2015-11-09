@@ -3,7 +3,7 @@
 /**
  * Class defining the logout completed handler for the consent page.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_consent_Logout {
 

@@ -1,4 +1,4 @@
-Upgrade notes for simpleSAMLphp 1.14
+Upgrade notes for SimpleSAMLphp 1.14
 ====================================
 
 The `mcrypt` extension is no longer required by SimpleSAMLphp, so if no signatures or encryption are being used, it
@@ -7,6 +7,12 @@ documents, or using encryption, is is still needed.
 
 PHP session cookies are now set to HTTP-only by default. This relates to the `session.phpsession.httponly`
 configuration option.
+
+The default value for the 'trusted.url.domains' option in the config file has been changed from null to an empty array,
+making SimpleSAMLphp secure to open redirection attacks by default. Setting it explicitly to null will re-allow
+insecure redirections.
+
+The jQuery version in use has been bumped to the latest 1.8.X version.
 
 The following deprecated files, directories and endpoints have been removed:
 
@@ -71,8 +77,7 @@ The following deprecated methods and constants have been removed:
 
 The following methods have changed their signature. Refer to the code for the updated signatures:
 
-    * `SimpleSAML_Auth_Default::initLogout()`
-    * `SimpleSAML_Auth_Default::initLogoutReturn()`
+    * `SimpleSAML_Auth_Default::initLogin()`
     * `SimpleSAML_Metadata_MetaDataStorageHandler::getGenerated()`
     * `SimpleSAML_Metadata_MetaDataStorageHandler::getMetaData()`
     * `SimpleSAML_Metadata_MetaDataStorageHandler::getMetaDataCurrent()`
@@ -85,11 +90,15 @@ The following methods have changed their signature. Refer to the code for the up
 
 The following methods and classes have been deprecated. Refer to the code for alternatives:
 
-    * `SimpleSAML_Auth_Default`
+    * `SimpleSAML_Auth_Default`, together with all the `SimpleSAML_Auth_Default.*` keys in the state array.
     * `SimpleSAML_Auth_Default::extractPersistentAuthState()`
     * `SimpleSAML_Auth_Default::handleUnsolicitedAuth()`
     * `SimpleSAML_Auth_Default::initLogin()`
+    * `SimpleSAML_Auth_Default::initLogout()`
+    * `SimpleSAML_Auth_Default::initLogoutReturn()`
     * `SimpleSAML_Auth_Default::loginCompleted()`
+    * `SimpleSAML_Auth_Default::logoutCallback()`
+    * `SimpleSAML_Auth_Default::logoutCompleted()`
     * `SimpleSAML_Utilities`
     * `SimpleSAML_Utilities::addURLParameter()`
     * `SimpleSAML_Utilities::aesDecrypt()`
@@ -174,3 +183,5 @@ The following modules will no longer be shipped with the next version of SimpleS
     * `openidProvider`
     * `saml2debug`
     * `themefeidernd`
+
+

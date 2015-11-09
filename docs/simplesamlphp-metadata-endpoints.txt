@@ -1,7 +1,7 @@
 Metadata endpoints
 ==================
 
-This document gives a short introduction to the various methods forms metadata endpoints can take in simpleSAMLphp.
+This document gives a short introduction to the various methods forms metadata endpoints can take in SimpleSAMLphp.
 
 The endpoints we have are:
 

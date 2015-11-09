@@ -22,7 +22,7 @@
 		"it": "Selezionare il proprio identity provider",
 		"ja": "\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044",
 		"zh-tw": "\u9078\u64c7\u4f60\u7684\u8b58\u5225\u63d0\u4f9b\u8005(idp)",
-		"ru": "\u0412\u044b\u0431\u0438\u0440\u0435\u0442\u0435 \u0432\u0430\u0448 identity provider",
+		"ru": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0430\u0448\u0435\u0433\u043e identity provider",
 		"et": "Vali oma identiteedipakkuja",
 		"he": "\u05d1\u05d7\u05e8 \u05d0\u05ea \u05e1\u05e4\u05e7 \u05d4\u05d6\u05d4\u05d5\u05ea \u05e9\u05dc\u05da",
 		"zh": "\u9009\u62e9\u4f60\u7684\u8eab\u4efd\u63d0\u4f9b\u8005",
@@ -30,7 +30,8 @@
 		"id": "Pilih identity provider anda",
 		"lv": "Izv\u0113lieties identit\u0101tes pieg\u0101d\u0101t\u0101ju",
 		"sr": "Odaberite va\u0161eg davaoca identiteta",
-		"ro": "Alege\u021bi furnizorul de identitate"
+		"ro": "Alege\u021bi furnizorul de identitate",
+		"af": "Kies jou identiteits verskaffer"
 	},
 	"selectidp_full": {
 		"no": "Vennligst velg hvilken identitetsleverand\u00f8r du vil bruke for \u00e5 logge inn:",
@@ -55,7 +56,7 @@
 		"it": "Si prega di selezionare l'identity provider con il quale autenticarsi:",
 		"ja": "\u8a8d\u8a3c\u3092\u884c\u3044\u305f\u3044\u30a2\u30a4\u30c7\u30f3\u30c6\u30a3\u30c6\u30a3\u30d7\u30ed\u30d0\u30a4\u30c0\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044:",
 		"zh-tw": "\u8acb\u9078\u64c7\u60a8\u6240\u8981\u524d\u5f80\u8a8d\u8b49\u7684\u9a57\u8b49\u63d0\u4f9b\u8005\uff1a",
-		"ru": "\u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0432\u044b\u0431\u0438\u0440\u0435\u0442\u0435 identity provider \u0441 \u043f\u043e\u043c\u043e\u0449\u044c\u044e \u043a\u043e\u0442\u043e\u0440\u043e\u0433\u043e \u0432\u044b \u0445\u043e\u0442\u0438\u0442\u0435 \u043f\u0440\u043e\u0439\u0442\u0438 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e:",
+		"ru": "\u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0432\u044b\u0431\u0435\u0440\u0438\u0442\u0435 identity provider, \u0441 \u043f\u043e\u043c\u043e\u0449\u044c\u044e \u043a\u043e\u0442\u043e\u0440\u043e\u0433\u043e \u0432\u044b \u0445\u043e\u0442\u0438\u0442\u0435 \u043f\u0440\u043e\u0439\u0442\u0438 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e:",
 		"et": "Palun vali identiteedipakkuja, mille juures soovid autentida:",
 		"he": "\u05d1\u05d7\u05e8 \u05d0\u05ea \u05e1\u05e4\u05e7 \u05d4\u05d6\u05d9\u05d4\u05d5\u05ea \u05d0\u05dc\u05d9\u05d5 \u05d0\u05ea\u05d4 \u05e8\u05d5\u05e6\u05d4 \u05dc\u05d4\u05d9\u05d6\u05d3\u05d4\u05d5\u05ea:",
 		"zh": "\u9009\u62e9\u4f60\u8981\u8ba4\u8bc1\u7684\u8eab\u4efd\u63d0\u4f9b\u8005",
@@ -63,7 +64,8 @@
 		"id": "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi",
 		"lv": "L\u016bdzu izv\u0113lieties identit\u0101tes pieg\u0101d\u0101t\u0101ju, pie kura v\u0113laties autentific\u0113ties:",
 		"sr": "Molimo vas odaberite davaoca identiteta kod koga se \u017eelite autentifikovati:",
-		"ro": "V\u0103 rug\u0103m s\u0103 alege\u021bi furnizorul de identitate pe care dori\u021bi s\u0103-l folosi\u021bi pentru autentificarea dumneavoastr\u0103:"
+		"ro": "V\u0103 rug\u0103m s\u0103 alege\u021bi furnizorul de identitate pe care dori\u021bi s\u0103-l folosi\u021bi pentru autentificarea dumneavoastr\u0103:",
+		"af": "Kies asb. jou identiteits verskaffer waar jy wil verifieer:"
 	},
 	"select": {
 		"no": "Velg",
@@ -96,7 +98,8 @@
 		"id": "Pilih",
 		"lv": "Izv\u0113l\u0113ties",
 		"sr": "Odaberi",
-		"ro": "Selecta\u021bi"
+		"ro": "Selecta\u021bi",
+		"af": "Kies"
 	},
 	"remember": {
 		"no": "Husk mitt valg",
@@ -129,7 +132,8 @@
 		"id": "Ingat pilihan saya",
 		"lv": "Atcer\u0113ties manu izv\u0113li",
 		"sr": "Zapamti moj izbor",
-		"ro": "Memoreaz\u0103 alegerea f\u0103cut\u0103"
+		"ro": "Memoreaz\u0103 alegerea f\u0103cut\u0103",
+		"af": "Onthou my keuse"
 	},
 	"icon_prefered_idp": {
 		"no": "[Foretrukket valg]",
@@ -162,7 +166,8 @@
 		"sr": "[Preferirani izbor]",
 		"ro": "[Varianta preferat\u0103]",
 		"cs": "[Preferovan\u00e1 volba]",
-		"eu": "[Aukera gogokoena]"
+		"eu": "[Aukera gogokoena]",
+		"af": "[Verkies]"
 	},
 	"previous_auth": {
 		"no": "Du har tidligere valg \u00e5 autentisere deg hos",
@@ -194,7 +199,8 @@
 		"sr": "Prethodno ste izabrali da se autentifikujete kroz",
 		"ro": "Anterior a\u021bi ales s\u0103 v\u0103 autentifica\u021bi la",
 		"cs": "D\u0159\u00edve jste zvolil(a) ov\u011b\u0159en\u00ed u",
-		"eu": "Lehenago, hemen kautotzea hautatu duzu"
+		"eu": "Lehenago, hemen kautotzea hautatu duzu",
+		"af": "Jy het voorheen gekies om te verifieer deur:"
 	},
 	"login_at": {
 		"no": "Logg inn hos",
@@ -226,6 +232,7 @@
 		"sr": "Prijavi se kroz",
 		"ro": "Autentificare la",
 		"cs": "P\u0159ihl\u00e1\u0161en\u00ed k",
-		"eu": "Non identifikatu"
+		"eu": "Non identifikatu",
+		"af": "Meld aan by"
 	}
 }

@@ -6,7 +6,7 @@
  * - 'target': Target URL.
  * - 'params': Parameters which should be included in the request.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 

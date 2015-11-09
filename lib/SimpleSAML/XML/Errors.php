@@ -7,7 +7,7 @@
  * will hide that, and pretend that no errors were logged.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_XML_Errors {
 
@@ -44,13 +44,13 @@ class SimpleSAML_XML_Errors {
 	 */
 	public static function begin() {
 
-		/* Check whether the error access functions are present. */
+		// Check whether the error access functions are present
 		if(!function_exists('libxml_use_internal_errors')) {
 			return;
 		}
 
 		if(count(self::$errorStack) === 0) {
-			/* No error logging is currently in progress. Initialize it. */
+			// No error logging is currently in progress. Initialize it.
 			self::$xmlErrorState = libxml_use_internal_errors(TRUE);
 			libxml_clear_errors();
 		} else {
@@ -60,7 +60,7 @@ class SimpleSAML_XML_Errors {
 			self::addErrors();
 		}
 
-		/* Add a new level to the error stack. */
+		// Add a new level to the error stack
 		self::$errorStack[] = array();
 	}
 
@@ -72,20 +72,20 @@ class SimpleSAML_XML_Errors {
 	 */
 	public static function end() {
 
-		/* Check whether the error access functions are present. */
+		// Check whether the error access functions are present
 		if(!function_exists('libxml_use_internal_errors')) {
-			/* Pretend that no errors occurred. */
+			// Pretend that no errors occurred
 			return array();
 		}
 
-		/* Add any errors which may have occurred. */
+		// Add any errors which may have occurred
 		self::addErrors();
 
 
 		$ret = array_pop(self::$errorStack);
 
 		if(count(self::$errorStack) === 0) {
-			/* Disable our error logging and restore the previous state. */
+			// Disable our error logging and restore the previous state
 			libxml_use_internal_errors(self::$xmlErrorState);
 		}
 

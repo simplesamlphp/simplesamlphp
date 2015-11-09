@@ -4,7 +4,7 @@
  * Editor for OAuth Client Registry
  *
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_oauth_Registry {
 

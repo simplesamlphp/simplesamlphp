@@ -5,7 +5,7 @@
  * See docs directory.
  *
  * @author Ernesto Revilla, Yaco Sistemas SL., Ryan Panning
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_ProcessingFilter {
 
@@ -123,7 +123,7 @@ class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_Processing
 	 * @param array $request
 	 */
 	protected function unauthorized(&$request) {
-		/* Save state and redirect to 403 page. */
+		// Save state and redirect to 403 page
 		$id = SimpleSAML_Auth_State::saveState($request,
 			'authorize:Authorize');
 		$url = SimpleSAML_Module::getModuleURL(

@@ -44,7 +44,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		assert('is_array($info)');
 		assert('is_array($config)');
 
-		/* Call the parent constructor first, as required by the interface. */
+		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
 		if (!isset($config['entityID'])) {
@@ -115,7 +115,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-		/* First, look in saml20-idp-remote. */
+		// First, look in saml20-idp-remote.
 		try {
 			return $metadataHandler->getMetaDataConfig($entityId, 'saml20-idp-remote');
 		} catch (Exception $e) {
@@ -188,8 +188,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$ar->setAssertionConsumerServiceURL(SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId));
 
-		if (isset($state['SimpleSAML_Auth_Default.ReturnURL'])) {
-			$ar->setRelayState($state['SimpleSAML_Auth_Default.ReturnURL']);
+		if (isset($state['SimpleSAML_Auth_Source.ReturnURL'])) {
+			$ar->setRelayState($state['SimpleSAML_Auth_Source.ReturnURL']);
 		}
 
 		if (isset($state['saml:AuthnContextClassRef'])) {
@@ -440,8 +440,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		// Update session state
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$authId = $state['saml:sp:AuthId'];
-		$state = SimpleSAML_Auth_State::extractPersistentAuthState($state);
-		$session->doLogin($authId, $state);
+		$session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
 
 		// resume the login process
 		call_user_func($state['ReturnCallback'], $state);
@@ -596,7 +595,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		assert('is_string($redirectTo)');
 
 		$session = SimpleSAML_Session::getSessionFromRequest();
-		$session->doLogin($authId, SimpleSAML_Auth_State::extractPersistentAuthState($state));
+		$session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
 
 		\SimpleSAML\Utils\HTTP::redirectUntrustedURL($redirectTo);
 	}

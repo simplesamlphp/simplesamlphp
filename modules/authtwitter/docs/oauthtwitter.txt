@@ -1,4 +1,4 @@
-Using the Twitter authentication source with simpleSAMLphp
+Using the Twitter authentication source with SimpleSAMLphp
 ==========================================================
 
 Remember to configure `authsources.php`, with both Consumer key and secret.

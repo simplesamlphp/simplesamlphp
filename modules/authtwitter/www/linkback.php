@@ -9,7 +9,7 @@ if (!array_key_exists('AuthState', $_REQUEST) || empty($_REQUEST['AuthState'])) 
 }
 $state = SimpleSAML_Auth_State::loadState($_REQUEST['AuthState'], sspmod_authtwitter_Auth_Source_Twitter::STAGE_INIT);
 
-/* Find authentication source. */
+// Find authentication source
 if (!array_key_exists(sspmod_authtwitter_Auth_Source_Twitter::AUTHID, $state)) {
 	throw new SimpleSAML_Error_BadRequest('No data in state for ' . sspmod_authtwitter_Auth_Source_Twitter::AUTHID);
 }

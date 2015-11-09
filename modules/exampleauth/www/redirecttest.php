@@ -4,7 +4,7 @@
  * Request handler for redirect filter test.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 if (!array_key_exists('StateId', $_REQUEST)) {

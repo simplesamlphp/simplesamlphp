@@ -56,7 +56,7 @@ Instead of generating hashes, you can also use existing ones from OpenLDAP, prov
 `authCrypt:Htpasswd`
 --------------------
 
-Authenticate users against an [`.htpasswd`](http://httpd.apache.org/docs/2.2/programs/htpasswd.html) file. It can be used for example when you migrate a web site from basic HTTP authentication to simpleSAMLphp.
+Authenticate users against an [`.htpasswd`](http://httpd.apache.org/docs/2.2/programs/htpasswd.html) file. It can be used for example when you migrate a web site from basic HTTP authentication to SimpleSAMLphp.
 
 The simple structure of the `.htpasswd` file does not allow for per-user attributes, but you can define some static attributes for all users.
 

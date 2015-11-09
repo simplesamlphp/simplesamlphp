@@ -229,5 +229,11 @@
 	},
 	"descr_AUTHSOURCEERROR": {
 		"en": "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+	},
+	"title_MEMCACHEDOWN": {
+		"en": "Cannot retrieve session data"
+	},
+	"descr_MEMCACHEDOWN": {
+		"en": "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
 	}
 }

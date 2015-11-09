@@ -1,7 +1,7 @@
 <?php
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_statistics_Statistics_Rulesets_BaseRule {
 
@@ -68,7 +68,7 @@ class sspmod_statistics_Statistics_Rulesets_BaseRule {
 		$timeresavailable = array_keys($this->available);
 		$timeres = $timeresavailable[0];
 
-		// Then check if the user have provided one that is valid.
+		// Then check if the user have provided one that is valid
 		if (in_array($preferTimeRes, $timeresavailable)) {
 			$timeres = $preferTimeRes;
 		}

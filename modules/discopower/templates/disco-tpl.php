@@ -16,7 +16,7 @@ if(!array_key_exists('header', $this->data)) {
 	$this->data['header'] = 'selectidp';
 }
 $this->data['header'] = $this->t($this->data['header']);
-$this->data['jquery'] = array('version' => '1.6', 'core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
+$this->data['jquery'] = array('core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 
 $this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" href="' . SimpleSAML_Module::getModuleUrl('discopower/style.css')  . '" />';
 
@@ -82,7 +82,7 @@ function showEntry($t, $metadata, $favourite = FALSE) {
 function getTranslatedName($t, $metadata) {
 	if (isset($metadata['UIInfo']['DisplayName'])) {
 		$displayName = $metadata['UIInfo']['DisplayName'];
-		assert('is_array($displayName)'); // Should always be an array of language code -> translation.
+		assert('is_array($displayName)'); // Should always be an array of language code -> translation
 		if (!empty($displayName)) {
 			return $t->getTranslation($displayName);
 		}

@@ -7,18 +7,18 @@
  * delegateAuthentication method on it.
  *
  * @author Lorenzo Gil, Yaco Sistemas S.L.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
-/* Retrieve the authentication state. */
+// Retrieve the authentication state
 if (!array_key_exists('AuthState', $_REQUEST)) {
 	throw new SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
 $state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_multiauth_Auth_Source_MultiAuth::STAGEID);
 
-if (array_key_exists("SimpleSAML_Auth_Default.id", $state)) {
-	$authId = $state["SimpleSAML_Auth_Default.id"];
+if (array_key_exists("SimpleSAML_Auth_Source.id", $state)) {
+	$authId = $state["SimpleSAML_Auth_Source.id"];
 	$as = SimpleSAML_Auth_Source::getById($authId);
 } else {
 	$as = NULL;

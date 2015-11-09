@@ -6,7 +6,7 @@
  * Note that we don't actually validate the user in this example. This page
  * just serves to make the example work out of the box.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 if (!isset($_REQUEST['ReturnTo'])) {
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$user = $users[$username];
 
 		if (!session_id()) {
-			/* session_start not called before. Do it here. */
+			// session_start not called before. Do it here.
 			session_start();
 		}
 

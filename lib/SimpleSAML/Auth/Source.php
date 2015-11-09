@@ -162,23 +162,27 @@ abstract class SimpleSAML_Auth_Source
      */
     public function initLogin($return, $errorURL = null, array $params = array())
     {
-        assert('is_string($authId)');
         assert('is_string($return) || is_array($return)');
         assert('is_string($errorURL) || is_null($errorURL)');
 
         $state = array_merge($params, array(
-            'SimpleSAML_Auth_Default.id' => $this->authId,
-            'SimpleSAML_Auth_Default.Return' => $return,
-            'SimpleSAML_Auth_Default.ErrorURL' => $errorURL,
+            'SimpleSAML_Auth_Default.id' => $this->authId, // TODO: remove in 2.0
+            'SimpleSAML_Auth_Source.id' => $this->authId,
+            'SimpleSAML_Auth_Default.Return' => $return, // TODO: remove in 2.0
+            'SimpleSAML_Auth_Source.Return' => $return,
+            'SimpleSAML_Auth_Default.ErrorURL' => $errorURL, // TODO: remove in 2.0
+            'SimpleSAML_Auth_Source.ErrorURL' => $errorURL,
             'LoginCompletedHandler' => array(get_class(), 'loginCompleted'),
             'LogoutCallback' => array(get_class(), 'logoutCallback'),
             'LogoutCallbackState' => array(
-                'SimpleSAML_Auth_Default.logoutSource' => $this->authId,
+                'SimpleSAML_Auth_Default.logoutSource' => $this->authId, // TODO: remove in 2.0
+                'SimpleSAML_Auth_Source.logoutSource' => $this->authId,
             ),
         ));
 
         if (is_string($return)) {
-            $state['SimpleSAML_Auth_Default.ReturnURL'] = $return;
+            $state['SimpleSAML_Auth_Default.ReturnURL'] = $return; // TODO: remove in 2.0
+            $state['SimpleSAML_Auth_Source.ReturnURL'] = $return;
         }
 
         if ($errorURL !== null) {
@@ -204,21 +208,20 @@ abstract class SimpleSAML_Auth_Source
      *
      * @param array $state The state after the login has completed.
      */
-    protected static function loginCompleted($state)
+    public static function loginCompleted($state)
     {
         assert('is_array($state)');
-        assert('array_key_exists("SimpleSAML_Auth_Default.Return", $state)');
-        assert('array_key_exists("SimpleSAML_Auth_Default.id", $state)');
+        assert('array_key_exists("SimpleSAML_Auth_Source.Return", $state)');
+        assert('array_key_exists("SimpleSAML_Auth_Source.id", $state)');
         assert('array_key_exists("Attributes", $state)');
         assert('!array_key_exists("LogoutState", $state) || is_array($state["LogoutState"])');
 
-        $return = $state['SimpleSAML_Auth_Default.Return'];
+        $return = $state['SimpleSAML_Auth_Source.Return'];
 
         // save session state
         $session = SimpleSAML_Session::getSessionFromRequest();
-        $authId = $state['SimpleSAML_Auth_Default.id'];
-        $state = SimpleSAML_Auth_State::extractPersistentAuthState($state);
-        $session->doLogin($authId, $state);
+        $authId = $state['SimpleSAML_Auth_Source.id'];
+        $session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
 
         if (is_string($return)) { // redirect...
             \SimpleSAML\Utils\HTTP::redirectTrustedURL($return);
@@ -349,6 +352,31 @@ abstract class SimpleSAML_Auth_Source
             var_export($authId, true).'. Was '.var_export(get_class($ret), true).
             ', should be '.var_export($type, true).'.'
         );
+    }
+
+
+    /**
+     * Called when the authentication source receives an external logout request.
+     *
+     * @param array $state State array for the logout operation.
+     */
+    public static function logoutCallback($state)
+    {
+        assert('is_array($state)');
+        assert('array_key_exists("SimpleSAML_Auth_Source.logoutSource", $state)');
+
+        $source = $state['SimpleSAML_Auth_Source.logoutSource'];
+
+        $session = SimpleSAML_Session::getSessionFromRequest();
+        if (!$session->isValid($source)) {
+            SimpleSAML_Logger::warning(
+                'Received logout from an invalid authentication source '.
+                var_export($source, true)
+            );
+
+            return;
+        }
+        $session->doLogout($source);
     }
 
 

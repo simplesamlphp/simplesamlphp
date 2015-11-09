@@ -13,10 +13,10 @@ if (!isset($_REQUEST['cancel'])) {
 	SimpleSAML_Stats::log('core:idp:logout-iframe:page', array('type' => 'done'));
 	$SPs = $state['core:Logout-IFrame:Associations'];
 } else {
-	/* User skipped global logout. */
+	// User skipped global logout
 	SimpleSAML_Logger::stats('slo-iframe skip');
 	SimpleSAML_Stats::log('core:idp:logout-iframe:page', array('type' => 'skip'));
-	$SPs = array(); /* No SPs should have been logged out. */
+	$SPs = array(); // No SPs should have been logged out
 	$state['core:Failed'] = TRUE; /* Mark as partial logout. */
 }
 

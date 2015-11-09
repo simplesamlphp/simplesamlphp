@@ -16,10 +16,10 @@ class sspmod_exampleauth_Auth_Process_RedirectTest extends SimpleSAML_Auth_Proce
 		assert('is_array($state)');
 		assert('array_key_exists("Attributes", $state)');
 
-		/* To check whether the state is saved correctly. */
+		// To check whether the state is saved correctly
 		$state['Attributes']['RedirectTest1'] = array('OK');
 
-		/* Save state and redirect. */
+		// Save state and redirect
 		$id = SimpleSAML_Auth_State::saveState($state, 'exampleauth:redirectfilter-test');
 		$url = SimpleSAML_Module::getModuleURL('exampleauth/redirecttest.php');
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));

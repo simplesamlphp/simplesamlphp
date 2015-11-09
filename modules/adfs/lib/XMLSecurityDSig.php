@@ -10,12 +10,11 @@
  * @todo Move this functionality to xmlseclibs.
  *
  * @author Daniel Tsosie
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_adfs_XMLSecurityDSig extends XMLSecurityDSig {
 
     function __construct($metaxml) {
-        $sigdoc = new DOMDocument();
         $template = '';
 
         if (strpos("\n", $metaxml) === FALSE) {
@@ -25,7 +24,7 @@ class sspmod_adfs_XMLSecurityDSig extends XMLSecurityDSig {
             $template = self::template;
         }
 
-        $sigdoc->loadXML($template);
+        $sigdoc = SAML2_DOMDocumentFactory::fromString($template);
         $this->sigNode = $sigdoc->documentElement;
     }
 }

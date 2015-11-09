@@ -19,7 +19,7 @@ function metarefresh_hook_cron(&$croninfo) {
 		$stateFile = $config->getPathValue('datadir', 'data/') . 'metarefresh-state.php';
 
 		foreach ($sets AS $setkey => $set) {
-			// Only process sets where cron matches the current cron tag.
+			// Only process sets where cron matches the current cron tag
 			$cronTags = $set->getArray('cron');
 			if (!in_array($croninfo['tag'], $cronTags)) continue;
 

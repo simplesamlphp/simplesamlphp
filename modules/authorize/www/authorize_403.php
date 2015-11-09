@@ -2,7 +2,7 @@
 /**
  * Show a 403 Forbidden page about not authorized to access an application.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 
 if (!array_key_exists('StateId', $_REQUEST)) {

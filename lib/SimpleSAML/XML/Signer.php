@@ -6,7 +6,7 @@
  * This is a helper class for signing XML documents.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_XML_Signer {
 
@@ -146,11 +146,11 @@ class SimpleSAML_XML_Signer {
 		assert('is_array($publickey)');
 
 		if (!array_key_exists('PEM', $publickey)) {
-			/* We have a public key with only a fingerprint. */
+			// We have a public key with only a fingerprint
 			throw new Exception('Tried to add a certificate fingerprint in a signature.');
 		}
 
-		/* For now, we only assume that the public key is an X509 certificate. */
+		// For now, we only assume that the public key is an X509 certificate
 		$this->certificate = $publickey['PEM'];
 	}
 
@@ -254,11 +254,11 @@ class SimpleSAML_XML_Signer {
 
 
 		if($this->certificate !== FALSE) {
-			/* Add the certificate to the signature. */
+			// Add the certificate to the signature
 			$objXMLSecDSig->add509Cert($this->certificate, TRUE);
 		}
 
-		/* Add extra certificates. */
+		// Add extra certificates
 		foreach($this->extraCertificates as $certificate) {
 			$objXMLSecDSig->add509Cert($certificate, TRUE);
 		}

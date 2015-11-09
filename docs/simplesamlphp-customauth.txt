@@ -1,7 +1,7 @@
 Implementing custom username/password authentication
 ====================================================
 
-This is a step-by-step guide for creating a custom username/password [authentication source](./simplesamlphp-authsource) for simpleSAMLphp.
+This is a step-by-step guide for creating a custom username/password [authentication source](./simplesamlphp-authsource) for SimpleSAMLphp.
 An authentication source is responsible for authenticating the user, typically by getting a username and password, and looking it up in some sort of database.
 
 <!-- {{TOC}} -->
@@ -9,8 +9,8 @@ An authentication source is responsible for authenticating the user, typically b
 Create a custom module
 ----------------------
 
-All custom code for simpleSAMLphp should be contained in a [module](./simplesamlphp-modules).
-This ensures that you can upgrade your simpleSAMLphp installation without overwriting your own code.
+All custom code for SimpleSAMLphp should be contained in a [module](./simplesamlphp-modules).
+This ensures that you can upgrade your SimpleSAMLphp installation without overwriting your own code.
 In this example, we will call the module `mymodule`.
 It will be located under `modules/mymodule`.
 
@@ -56,7 +56,7 @@ Create the file `modules/mymodule/lib/Auth/Source/MyAuth.php` with the following
 Some things to note:
 
   - The classname is `sspmod_mymodule_Auth_Source_MyAuth`.
-    This tells simpleSAMLphp to look for the class in `modules/mymodule/lib/Auth/Source/MyAuth.php`.
+    This tells SimpleSAMLphp to look for the class in `modules/mymodule/lib/Auth/Source/MyAuth.php`.
 
   - Our authentication source subclassese `sspmod_core_Auth_UserPassBase`.
     This is a helper-class that implements much of the common code needed for username/password authentication.
@@ -97,13 +97,13 @@ You can add it to the beginning of the list, so that the file looks something li
 The instance name is used to refer to this authentication source in other configuration files.
 
 The first element of the configuration of the authentication source must be `'mymodule:MyAuth'`.
-This tells simpleSAMLphp to look for the `sspmod_mymodule_Auth_Source_MyAuth` class.
+This tells SimpleSAMLphp to look for the `sspmod_mymodule_Auth_Source_MyAuth` class.
 
 
 Testing our authentication source
 ---------------------------------
 
-Now that we have configured the authentication source, we can test it by accessing "authentication"-page of the simpleSAMLphp web interface.
+Now that we have configured the authentication source, we can test it by accessing "authentication"-page of the SimpleSAMLphp web interface.
 By default, the web interface can be found on `http://yourhostname.com/simplesaml/`.
 (Obviously, "yourhostname.com" should be replaced with your real hostname.)
 

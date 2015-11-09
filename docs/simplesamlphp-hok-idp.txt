@@ -2,7 +2,7 @@ Adding Holder-of-Key Web Browser SSO Profile support to the IdP
 ===============================================================
 
 This document describes the necessary steps to enable support for the [SAML V2.0 Holder-of-Key (HoK) Web Browser SSO Profile](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-holder-of-key-browser-sso.pdf)
-on a simpleSAMLphp Identity Provider (IdP).
+on a SimpleSAMLphp Identity Provider (IdP).
 
 The SAML V2.0 HoK Web Browser SSO Profile is an alternate version of the standard SAML Web Browser SSO Profile. Its primary benefit is the enhanced security of the SSO process
 while preserving maximum compatibility with existing deployments on client and server side.
@@ -40,7 +40,7 @@ Add new metadata to SPs
 
 After enabling the Holder-of-Key Web Browser SSO Profile your IdP metadata will change. An additional HoK `SingleSignOnService` endpoint is added.
 You therefore need to update the metadata for your IdP at your SPs.
-The `saml20-idp-remote` metadata for simpleSAMLphp SPs should contain something like the following code:
+The `saml20-idp-remote` metadata for SimpleSAMLphp SPs should contain something like the following code:
 
 	'SingleSignOnService' => array (
 		array (

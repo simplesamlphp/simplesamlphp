@@ -1,12 +1,12 @@
 <?php
 /**
- * SAML 2.0 remote SP metadata for simpleSAMLphp.
+ * SAML 2.0 remote SP metadata for SimpleSAMLphp.
  *
  * See: https://simplesamlphp.org/docs/stable/simplesamlphp-reference-sp-remote
  */
 
 /*
- * Example simpleSAMLphp SAML 2.0 SP
+ * Example SimpleSAMLphp SAML 2.0 SP
  */
 $metadata['https://saml2sp.example.org'] = array(
 	'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',

@@ -25,7 +25,8 @@
 		"sr": "Autentifikacija upotrebom X509 digitalnog sertifikata",
 		"ro": "Autentificare cu certificat X509",
 		"cs": "Autentizace certifik\u00e1tem X509",
-		"eu": "Kautotzea X509 ziurtagiri bidez"
+		"eu": "Kautotzea X509 ziurtagiri bidez",
+		"af": "X509 sertifikaat verifikasie"
 	},
 	"certificate_text": {
 		"fr": "Un certificat X509 est requis pour acc\u00e9der \u00e0 ce service.",
@@ -53,6 +54,7 @@
 		"sr": "Za pristup ovom servisu potrebno je da se autentifikujete upotrebom X509 sertifikata.",
 		"ro": "Pentru accesarea acestui serviciu este necesar\u0103 autentificarea cu certificat X509.",
 		"cs": "Pro p\u0159\u00edstup k t\u00e9to slu\u017eb\u011b je vy\u017eadov\u00e1n X509 certifik\u00e1t.",
-		"eu": "X509 ziurtagiriaren bidezko kautotzea beharrezkoa da zerbitzu honetan sartzeko"
+		"eu": "X509 ziurtagiriaren bidezko kautotzea beharrezkoa da zerbitzu honetan sartzeko",
+		"af": "X509 sertifikaat verifikasie word vereis vir toegang tot di\u00e9 diens. "
 	}
 }

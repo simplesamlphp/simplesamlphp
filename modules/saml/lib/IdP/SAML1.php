@@ -3,7 +3,7 @@
 /**
  * IdP implementation for SAML 1.1 protocol.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_saml_IdP_SAML1 {
 
@@ -16,7 +16,7 @@ class sspmod_saml_IdP_SAML1 {
 		assert('isset($state["Attributes"])');
 		assert('isset($state["SPMetadata"])');
 		assert('isset($state["saml:shire"])');
-		assert('array_key_exists("saml:target", $state)'); // Can be NULL.
+		assert('array_key_exists("saml:target", $state)'); // Can be NULL
 
 		$spMetadata = $state["SPMetadata"];
 		$spEntityId = $spMetadata['entityid'];
@@ -46,7 +46,7 @@ class sspmod_saml_IdP_SAML1 {
 		}
 		SimpleSAML_Stats::log('saml:idp:Response', $statsData);
 
-		/* Generate and send response. */
+		// Generate and send response.
 		$ar = new SimpleSAML_XML_Shib13_AuthnResponse();
 		$authnResponseXML = $ar->generate($idpMetadata, $spMetadata, $shire, $attributes);
 

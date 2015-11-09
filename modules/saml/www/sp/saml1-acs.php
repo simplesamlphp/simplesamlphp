@@ -26,7 +26,7 @@ SimpleSAML_Logger::debug('Received SAML1 response');
 $target = (string)$_REQUEST['TARGET'];
 
 if (preg_match('@^https?://@i', $target)) {
-	/* Unsolicited response. */
+	// Unsolicited response
 	$state = array(
 		'saml:sp:isUnsolicited' => TRUE,
 		'saml:sp:AuthId' => $sourceId,
@@ -35,7 +35,7 @@ if (preg_match('@^https?://@i', $target)) {
 } else {
 	$state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
 
-	/* Check that the authentication source is correct. */
+	// Check that the authentication source is correct.
 	assert('array_key_exists("saml:sp:AuthId", $state)');
 	if ($state['saml:sp:AuthId'] !== $sourceId) {
 		throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');

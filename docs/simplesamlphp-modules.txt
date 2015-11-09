@@ -1,4 +1,4 @@
-simpleSAMLphp modules
+SimpleSAMLphp modules
 ==================================================
 
 <!-- 
@@ -10,14 +10,14 @@ simpleSAMLphp modules
 
 <!-- {{TOC}} -->
 
-This document describes how the module system in simpleSAMLphp
+This document describes how the module system in SimpleSAMLphp
 works. It descibes what types of modules there are, how they are
 configured, and how to write new modules.
 
 Overview
 --------
 
-There are currently three parts of simpleSAMLphp which can be stored in modules - authentication sources, authentication processing filters and themes. There is also support for defining hooks - functions run at specific times. More than one thing can be stored in a single module. There is also support for storing supporting files, such as templates and dictionaries, in modules.
+There are currently three parts of SimpleSAMLphp which can be stored in modules - authentication sources, authentication processing filters and themes. There is also support for defining hooks - functions run at specific times. More than one thing can be stored in a single module. There is also support for storing supporting files, such as templates and dictionaries, in modules.
 
 The different functionalities which can be created as modules will be described in more detail in the following sections; what follows is a short introduction to what you can du with them:
 
@@ -28,7 +28,7 @@ The different functionalities which can be created as modules will be described 
 
 ## Module layout
 
-Each simpleSAMLphp module is stored in a directory under the the
+Each SimpleSAMLphp module is stored in a directory under the the
 `modules`-directory. The module directory contains the following
 directories and files:
 
@@ -64,11 +64,11 @@ lib
 :   This directory contains classes which belong to this module.
     All classes must be named in the following pattern:
     `sspmod_<module name>_<class name>` When looking up the filename of
-    a class, simpleSAMLphp will search for `<class name>` in the `lib`
+    a class, SimpleSAMLphp will search for `<class name>` in the `lib`
     directory. Underscores in the class name will be translated into
     slashes.
 
-:   Thus, if simpleSAMLphp needs to load a class named
+:   Thus, if SimpleSAMLphp needs to load a class named
     `sspmod_example_Auth_Source_Example`, it will load the file named
     `modules/example/lib/Auth/Source/Example.php`.
 

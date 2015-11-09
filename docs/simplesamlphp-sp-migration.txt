@@ -53,7 +53,7 @@ The entry should look something like this:
 
 `default-sp` is the name of the authentication source.
 It is used to refer to this authentication source when we use it.
-`saml:SP` tells simpleSAMLphp that authentication with this authentication source is handled by the `saml` module.
+`saml:SP` tells SimpleSAMLphp that authentication with this authentication source is handled by the `saml` module.
 
 The `idp` option should be set to the same value that is set in `default-saml20-idp` in `config.php`.
 
@@ -68,14 +68,14 @@ Add the metadata for this authentication source to the IdP
 ----------------------------------------------------------
 
 After adding the authentication source on the SP, you need to register the metadata on the IdP.
-To retrieve the metadata, open the frontpage of your simpleSAMLphp installation, and go to the federation tab.
+To retrieve the metadata, open the frontpage of your SimpleSAMLphp installation, and go to the federation tab.
 You should have a list of metadata entries, and one will be marked with the name of the new authentication source.
 In our case, that was `default-sp`.
 
 Click the `Show metadata` link, and you will arrive on a web page with the metadata for that service provider.
 How you proceed from here depends on which IdP you are connecting to.
 
-If you use a simpleSAMLphp IdP, you can use the metadata in the flat file format at the bottom of the page.
+If you use a SimpleSAMLphp IdP, you can use the metadata in the flat file format at the bottom of the page.
 That metadata should be added to `saml20-sp-remote.php` on the IdP.
 For other IdPs you probably want to use the XML metadata.
 
@@ -84,7 +84,7 @@ Test the new authentication source
 ----------------------------------
 
 You should now be able to log in using the new authentication source.
-Go to the frontpage of your simpleSAMLphp installation and open the authentication tab.
+Go to the frontpage of your SimpleSAMLphp installation and open the authentication tab.
 There you will find a link to test authentication sources.
 Click that link, and select the name of your authentication source (`default-sp` in our case).
 
@@ -94,7 +94,7 @@ You should be able to log in using that authentication source, and receive the a
 Convert the application to use the new API
 ------------------------------------------
 
-This section will go through some common changes that you need to do when you are using simpleSAMLphp from a different application.
+This section will go through some common changes that you need to do when you are using SimpleSAMLphp from a different application.
 
 ### `_include.php`
 
@@ -109,11 +109,11 @@ with:
 
     require_once('.../simplesamlphp/lib/_autoload.php');
 
-`_autoload.php` will register an autoloader function for the simpleSAMLphp classes.
+`_autoload.php` will register an autoloader function for the SimpleSAMLphp classes.
 This makes it possible to access the classes from your application.
 `_include.php` does the same, but also has some side-effects that you may not want in your application.
 
-If you load any simpleSAMLphp class files directly, you should remove those lines.
+If you load any SimpleSAMLphp class files directly, you should remove those lines.
 That means that you should remove lines like the following:
 
     require_once('SimpleSAML/Utilities.php');
@@ -123,7 +123,7 @@ That means that you should remove lines like the following:
 
 ### Authentication API
 
-There is a new authentication API in simpleSAMLphp which can be used to authenticate against authentication sources.
+There is a new authentication API in SimpleSAMLphp which can be used to authenticate against authentication sources.
 This API is designed to handle the common operations.
 
 
@@ -246,12 +246,12 @@ Make sure that it is still possible to log into the application.
 
 ### IdP initiated login
 
-If you use a simpleSAMLphp IdP, and you want users to be able to bookmark the login page, you need to test IdP initiated login.
-To test IdP initiated login from a simpleSAMLphp IdP, you can access:
+If you use a SimpleSAMLphp IdP, and you want users to be able to bookmark the login page, you need to test IdP initiated login.
+To test IdP initiated login from a SimpleSAMLphp IdP, you can access:
 
     https://.../simplesaml/saml2/idp/SSOService.php?spentityid=<entity ID of your SP>&RelayState=<URL the user should be sent to after login>
 
-Note that the RelayState parameter is only supported if the IdP runs version 1.5 of simpleSAMLphp.
+Note that the RelayState parameter is only supported if the IdP runs version 1.5 of SimpleSAMLphp.
 If it isn't supported by the IdP, you need to configure the `RelayState` option in the authentication source configuration.
 
 
@@ -275,12 +275,12 @@ Remove the old metadata from the IdP
 
 Once the new SP works correctly, you can remove the metadata for the old SP from the IdP.
 How you do that depends on the IdP.
-If you are running a simpleSAMLphp IdP, you can remove the entry for the old SP in `metadata/saml20-sp-remote.php`.
+If you are running a SimpleSAMLphp IdP, you can remove the entry for the old SP in `metadata/saml20-sp-remote.php`.
 
 
 Disable the old SAML 2 SP
 -------------------------
 
-You may also want to disable the old SP code in simpleSAMLphp.
+You may also want to disable the old SP code in SimpleSAMLphp.
 To do that, open `config/config.php`, and change the `enable.saml20-sp` option to `FALSE`.
 

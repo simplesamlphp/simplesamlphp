@@ -1,13 +1,13 @@
 <?php
 
 /**
- * The _include script registers a autoloader for the simpleSAMLphp libraries. It also
- * initializes the simpleSAMLphp config class with the correct path.
+ * The _include script registers a autoloader for the SimpleSAMLphp libraries. It also
+ * initializes the SimpleSAMLphp config class with the correct path.
  */
 require_once('_include.php');
 
 
-/* Load simpleSAMLphp, configuration and metadata */
+// Load SimpleSAMLphp, configuration and metadata
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 

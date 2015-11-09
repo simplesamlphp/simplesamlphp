@@ -4,7 +4,7 @@
  * Filter to generate a groups attribute based on many of the attributes of the user.
  *
  * @author Olav Morken, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_ProcessingFilter {
 
@@ -27,7 +27,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 		assert('is_array($config)');
 
 		if (count($config) === 0) {
-			/* Use default groups. */
+			// Use default groups
 			$this->generateGroupsFrom = array(
 				'eduPersonAffiliation',
 				'eduPersonOrgUnitDN',
@@ -35,7 +35,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 			);
 
 		} else {
-			/* Validate configuration. */
+			// Validate configuration
 			foreach ($config as $attributeName) {
 				if (!is_string($attributeName)) {
 					throw new Exception('Invalid attribute name for core:GenerateGroups filter: ' .

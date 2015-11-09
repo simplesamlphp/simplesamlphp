@@ -6,7 +6,7 @@
  * See the ldap-entry in config-templates/authsources.php for information about
  * configuration of these options.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_ldap_ConfigHelper {
 
@@ -130,7 +130,7 @@ class sspmod_ldap_ConfigHelper {
 
 		$this->location = $location;
 
-		/* Parse configuration. */
+		// Parse configuration
 		$config = SimpleSAML_Configuration::loadFromArray($config, $location);
 
 		$this->hostname = $config->getString('hostname');
@@ -155,7 +155,7 @@ class sspmod_ldap_ConfigHelper {
 			$this->dnPattern = $config->getString('dnpattern');
 		}
 
-		/* Are privs needed to get to the attributes? */
+		// Are privs needed to get to the attributes?
 		if ($this->privRead) {
 			$this->privUsername = $config->getString('priv.username');
 			$this->privPassword = $config->getString('priv.password');

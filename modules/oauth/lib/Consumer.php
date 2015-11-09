@@ -6,7 +6,7 @@ require_once(dirname(dirname(__FILE__)) . '/libextinc/OAuth.php');
  * OAuth Consumer
  *
  * @author Andreas Åkre Solberg, <andreas.solberg@uninett.no>, UNINETT AS.
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_oauth_Consumer {
 	
@@ -18,7 +18,7 @@ class sspmod_oauth_Consumer {
 		$this->signer = new OAuthSignatureMethod_HMAC_SHA1();
 	}
 	
-	// Used only to load the libextinc library early.
+	// Used only to load the libextinc library early
 	public static function dummy() {}
 	
 	

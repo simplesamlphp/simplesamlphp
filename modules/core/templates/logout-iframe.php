@@ -141,12 +141,12 @@ if ($type === 'init') {
 <form id="startform" method="get" style="display:inline;" action="logout-iframe.php">
 <input type="hidden" name="id" value="<?php echo $id; ?>" />
 <input type="hidden" id="logout-type-selector" name="type" value="nojs" />
-<input type="submit" id="logout-all" name="ok" value="<?php echo $this->t('{logout:logout_all}'); ?>" />
+<button type="submit" id="logout-all" name="ok" class="btn"><?php echo $this->t('{logout:logout_all}'); ?></button>
 </form>
 
 <form method="get" style="display:inline;" action="logout-iframe-done.php">
 <input type="hidden" name="id" value="<?php echo $id; ?>" />
-<input type="submit" name="cancel" value="<?php echo $logoutCancelText; ?>" />
+<button type="submit" name="cancel" class="btn"><?php echo $logoutCancelText; ?></button>
 </form>
 
 </div>
@@ -166,7 +166,7 @@ echo('<img src="/' . $this->data['baseurlpath'] . 'resources/icons/experience/gt
 echo('<p>' . $this->t('{logout:failedsps}') . '</p>');
 echo('<form method="post" action="logout-iframe-done.php" id="failed-form" target="_top">');
 echo('<input type="hidden" name="id" value="' . $id . '" />');
-echo('<input type="submit" name="continue" value="' . $this->t('{logout:return}'). '" />');
+echo('<button type="submit" name="continue" class="btn">' . $this->t('{logout:return}'). '</button>');
 echo('</form>');
 echo('</div>');
 
@@ -179,7 +179,7 @@ echo('<p>' . $this->t('{logout:success}') . '</p>');
 ?>
 <form method="post" action="logout-iframe-done.php" id="done-form" target="_top">
 	<input type="hidden" name="id" value="<?php echo $id; ?>" />
-	<input type="submit" name="continue" value="<?php echo $this->t('{logout:return}'); ?>" />
+	<button type="submit" name="continue" class="btn"><?php echo $this->t('{logout:return}'); ?></button>
 </form>
 </div>
 

@@ -3,7 +3,7 @@
 /**
  * Exception indicating user aborting the authentication process.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class SimpleSAML_Error_UserAborted extends SimpleSAML_Error_Error {
 

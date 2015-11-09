@@ -2,17 +2,17 @@
 
 require_once('../_include.php');
 
-/* Load simpleSAMLphp, configuration */
+// Load SimpleSAMLphp, configuration
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 
-/* Check if valid local session exists.. */
+// Check if valid local session exists..
 SimpleSAML\Utils\Auth::requireAdmin();
 
 $attributes = array();
 
 $attributes['HTTP_HOST'] = array($_SERVER['HTTP_HOST']);
-$attributes['HTTPS'] = array($_SERVER['HTTPS']);
+$attributes['HTTPS'] = isset($_SERVER['HTTPS'])? array($_SERVER['HTTPS']) : array();
 $attributes['SERVER_PROTOCOL'] = array($_SERVER['SERVER_PROTOCOL']);
 $attributes['SERVER_PORT'] = array($_SERVER['SERVER_PORT']);
 

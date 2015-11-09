@@ -4,7 +4,7 @@
  * Authentication source which verifies the password against
  * the 'auth.adminpassword' configuration option.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Source_AdminPassword extends sspmod_core_Auth_UserPassBase {
 
@@ -19,7 +19,7 @@ class sspmod_core_Auth_Source_AdminPassword extends sspmod_core_Auth_UserPassBas
 		assert('is_array($info)');
 		assert('is_array($config)');
 
-		/* Call the parent constructor first, as required by the interface. */
+		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
 		$this->setForcedUsername("admin");
@@ -46,7 +46,7 @@ class sspmod_core_Auth_Source_AdminPassword extends sspmod_core_Auth_UserPassBas
 		$config = SimpleSAML_Configuration::getInstance();
 		$adminPassword = $config->getString('auth.adminpassword', '123');
 		if ($adminPassword === '123') {
-			/* We require that the user changes the password. */
+			// We require that the user changes the password
 			throw new SimpleSAML_Error_Error('NOTSET');
 		}
 

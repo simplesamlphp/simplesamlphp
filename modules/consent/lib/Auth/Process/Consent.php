@@ -5,7 +5,7 @@
  * Filter for requesting the user to give consent before attributes are
  * released to the SP.
  *
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
 class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilter
 {

@@ -6,11 +6,11 @@ require_once('_include.php');
  * This page clears the user's IdP discovery choices.
  */
 
-/* The base path for cookies. This should be the installation directory for simpleSAMLphp. */
+// The base path for cookies. This should be the installation directory for SimpleSAMLphp.
 $config = SimpleSAML_Configuration::getInstance();
 $cookiePath = '/' . $config->getBaseUrl();
 
-/* We delete all cookies which starts with 'idpdisco_' */
+// We delete all cookies which starts with 'idpdisco_'
 foreach($_COOKIE as $cookieName => $value) {
 	if (substr($cookieName, 0, 9) !== 'idpdisco_') {
 		/* Not a idpdisco cookie. */

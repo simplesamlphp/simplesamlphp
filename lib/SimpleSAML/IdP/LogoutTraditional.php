@@ -37,7 +37,7 @@ class SimpleSAML_IdP_LogoutTraditional extends SimpleSAML_IdP_LogoutHandler
             $this->idp->terminateAssociation($id);
             $state['core:Failed'] = true;
 
-            /* Try the next SP. */
+            // Try the next SP
             $this->logoutNextSP($state);
             assert('FALSE');
         }

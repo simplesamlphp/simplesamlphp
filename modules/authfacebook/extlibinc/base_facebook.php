@@ -351,7 +351,7 @@ abstract class BaseFacebook
   public function setExtendedAccessToken() {
     try {
       // need to circumvent json_decode by calling _oauthRequest
-      // directly, since response isn't JSON format.
+      // directly, since response isn't JSON format
       $access_token_response = $this->_oauthRequest(
         $this->getUrl('graph', '/oauth/access_token'),
         $params = array(
@@ -363,8 +363,8 @@ abstract class BaseFacebook
       );
     }
     catch (FacebookApiException $e) {
-      // most likely that user very recently revoked authorization.
-      // In any event, we don't have an access token, so say so.
+      // most likely that user very recently revoked authorization
+      // In any event, we don't have an access token, so say so
       return false;
     }
 
@@ -403,7 +403,7 @@ abstract class BaseFacebook
 
     // first establish access token to be the application
     // access token, in case we navigate to the /oauth/access_token
-    // endpoint, where SOME access token is required.
+    // endpoint, where SOME access token is required
     $this->setAccessToken($this->getApplicationAccessToken());
     $user_access_token = $this->getUserAccessToken();
     if ($user_access_token) {
@@ -424,9 +424,9 @@ abstract class BaseFacebook
    *                could not be determined.
    */
   protected function getUserAccessToken() {
-    // first, consider a signed request if it's supplied.
+    // first, consider a signed request if it's supplied
     // if there is a signed request, then it alone determines
-    // the access token.
+    // the access token
     $signed_request = $this->getSignedRequest();
     if ($signed_request) {
       // apps.facebook.com hands the access_token in the signed_request
@@ -453,7 +453,7 @@ abstract class BaseFacebook
       }
 
       // signed request states there's no access token, so anything
-      // stored should be cleared.
+      // stored should be cleared
       $this->clearAllPersistentData();
       return false; // respect the signed request's data, even
                     // if there's an authorization code or something else
@@ -468,7 +468,7 @@ abstract class BaseFacebook
         return $access_token;
       }
 
-      // code was bogus, so everything based on it should be invalidated.
+      // code was bogus, so everything based on it should be invalidated
       $this->clearAllPersistentData();
       return false;
     }
@@ -507,7 +507,7 @@ abstract class BaseFacebook
    */
   public function getUser() {
     if ($this->user !== null) {
-      // we've already determined this and cached the value.
+      // we've already determined this and cached the value
       return $this->user;
     }
 
@@ -524,7 +524,7 @@ abstract class BaseFacebook
    */
   protected function getUserFromAvailableData() {
     // if a signed request is supplied, then it solely determines
-    // who the user is.
+    // who the user is
     $signed_request = $this->getSignedRequest();
     if ($signed_request) {
       if (array_key_exists('user_id', $signed_request)) {
@@ -539,7 +539,7 @@ abstract class BaseFacebook
       }
 
       // if the signed request didn't present a user id, then invalidate
-      // all entries in any persistent store.
+      // all entries in any persistent store
       $this->clearAllPersistentData();
       return 0;
     }
@@ -548,7 +548,7 @@ abstract class BaseFacebook
     $persisted_access_token = $this->getPersistentData('access_token');
 
     // use access_token to fetch user id if we have a user access_token, or if
-    // the cached access token has changed.
+    // the cached access token has changed
     $access_token = $this->getAccessToken();
     if ($access_token &&
         $access_token != $this->getApplicationAccessToken() &&
@@ -771,7 +771,7 @@ abstract class BaseFacebook
 
     try {
       // need to circumvent json_decode by calling _oauthRequest
-      // directly, since response isn't JSON format.
+      // directly, since response isn't JSON format
       $access_token_response =
         $this->_oauthRequest(
           $this->getUrl('graph', '/oauth/access_token'),
@@ -934,7 +934,7 @@ abstract class BaseFacebook
     $opts[CURLOPT_URL] = $url;
 
     // disable the 'Expect: 100-continue' behaviour. This causes CURL to wait
-    // for 2 seconds if the server does not support this header.
+    // for 2 seconds if the server does not support this header
     if (isset($opts[CURLOPT_HTTPHEADER])) {
       $existing_headers = $opts[CURLOPT_HTTPHEADER];
       $existing_headers[] = 'Expect:';
@@ -958,7 +958,7 @@ abstract class BaseFacebook
     // have IPv6 enabled but not have IPv6 connectivity.  If this is
     // the case, curl will try IPv4 first and if that fails, then it will
     // fall back to IPv6 and the error EHOSTUNREACH is returned by the
-    // operating system.
+    // operating system
     if ($result === false && empty($opts[CURLOPT_IPRESOLVE])) {
         $matches = array();
         $regex = '/Failed to connect to ([^:].*): Network is unreachable/';
