@@ -54,13 +54,13 @@ class sspmod_saml_IdP_SAML2 {
 		// Maybe encrypt the assertion.
 		$assertion = self::encryptAssertion($idpMetadata, $spMetadata, $assertion);
 
-		/* Create the response. */
+		// Create the response.
 		$ar = self::buildResponse($idpMetadata, $spMetadata, $consumerURL);
 		$ar->setInResponseTo($requestId);
 		$ar->setRelayState($relayState);
 		$ar->setAssertions(array($assertion));
 
-		/* Register the session association with the IdP. */
+		// Register the session association with the IdP.
 		$idp->addAssociation($association);
 
 		$statsData = array(
@@ -73,7 +73,7 @@ class sspmod_saml_IdP_SAML2 {
 		}
 		SimpleSAML_Stats::log('saml:idp:Response', $statsData);
 
-		/* Send the response. */
+		// Send the response.
 		$binding = SAML2_Binding::getBinding($protocolBinding);
 		if ($binding instanceof SAML2_SOAP) {
 			$binding->AssertionConsumerServiceURL = $consumerURL; 
@@ -167,7 +167,7 @@ class sspmod_saml_IdP_SAML2 {
 		assert('is_string($ProtocolBinding) || is_null($ProtocolBinding)');
 		assert('is_int($AssertionConsumerServiceIndex) || is_null($AssertionConsumerServiceIndex)');
 
-		/* We want to pick the best matching endpoint in the case where for example
+		// We want to pick the best matching endpoint in the case where for exam
 		 * only the ProtocolBinding is given. We therefore pick endpoints with the
 		 * following priority:
 		 *  1. isDefault="true"
@@ -189,24 +189,24 @@ class sspmod_saml_IdP_SAML2 {
 			}
 
 			if (!in_array($ep['Binding'], $supportedBindings, TRUE)) {
-				/* The endpoint has an unsupported binding. */
+				// The endpoint has an unsupported binding.
 				continue;
 			}
 
-			/* We have an endpoint that matches all our requirements. Check if it is the best one. */
+			// We have an endpoint that matches all our requirements. Check if it is the best one.
 
 			if (array_key_exists('isDefault', $ep)) {
 				if ($ep['isDefault'] === TRUE) {
-					/* This is the first matching endpoint with isDefault set to TRUE. */
+					// This is the first matching endpoint with isDefault set to TRUE.
 					return $ep;
 				}
-				/* isDefault is set to FALSE, but the endpoint is still useable. */
+				// isDefault is set to FALSE, but the endpoint is still useable.
 				if ($firstFalse === NULL) {
-					/* This is the first endpoint that we can use. */
+					// This is the first endpoint that we can use.
 					$firstFalse = $ep;
 				}
 			} else if ($firstNotFalse === NULL) {
-				/* This is the first endpoint without isDefault set. */
+				// This is the first endpoint without isDefault set.
 				$firstNotFalse = $ep;
 			}
 		}
@@ -228,7 +228,7 @@ class sspmod_saml_IdP_SAML2 {
 			SimpleSAML_Logger::warning('AssertionConsumerServiceIndex: ' . var_export($AssertionConsumerServiceIndex, TRUE));
 		}
 
-		/* We have no good endpoints. Our last resort is to just use the default endpoint. */
+		// We have no good endpoints. Our last resort is to just use the default endpoint.
 		return $spMetadata->getDefaultEndpoint('AssertionConsumerService', $supportedBindings);
 	}
 
@@ -241,7 +241,7 @@ class sspmod_saml_IdP_SAML2 {
 	 */
 	private static function processSOAPAuthnRequest(SimpleSAML_Configuration $idpMetadata, SimpleSAML_Configuration $spMetadata, SAML2_AuthnRequest $request, array &$state) {
 
-		/* Send the response via SOAP. */
+		// Send the response via SOAP.
 		$state['saml:Binding'] = SAML2_Const::BINDING_SOAP_RESPONSE;
 
 		$allowSOAP = $spMetadata->getBoolean('saml20.soap.auth.allow', NULL);
@@ -256,7 +256,7 @@ class sspmod_saml_IdP_SAML2 {
 			throw new SimpleSAML_Error_Exception('SOAP authentication request not signed.');
 		}
 
-		/* Add basic auth data. */
+		// Add basic auth data.
 		if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
 			SimpleSAML_Logger::debug('SOAP auth without authentication data.');
 			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
@@ -285,7 +285,7 @@ class sspmod_saml_IdP_SAML2 {
 		}
 
 		if (isset($_REQUEST['spentityid'])) {
-			/* IdP initiated authentication. */
+			// IdP initiated authentication.
 			$binding = NULL;
 
 			if (isset($_REQUEST['cookieTime'])) {
@@ -553,7 +553,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		$spEntityId = $message->getIssuer();
 		if ($spEntityId === NULL) {
-			/* Without an issuer we have no way to respond to the message. */
+			// Without an issuer we have no way to respond to the message.
 			throw new SimpleSAML_Error_BadRequest('Received message on logout endpoint without issuer.');
 		}
 
@@ -798,7 +798,7 @@ class sspmod_saml_IdP_SAML2 {
 	private static function getAttributeNameFormat(SimpleSAML_Configuration $idpMetadata,
 		SimpleSAML_Configuration $spMetadata) {
 
-		/* Try SP metadata first. */
+		// Try SP metadata first.
 		$attributeNameFormat = $spMetadata->getString('attributes.NameFormat', NULL);
 		if ($attributeNameFormat !== NULL) {
 			return $attributeNameFormat;
@@ -808,7 +808,7 @@ class sspmod_saml_IdP_SAML2 {
 			return $attributeNameFormat;
 		}
 
-		/* Look in IdP metadata. */
+		// Look in IdP metadata.
 		$attributeNameFormat = $idpMetadata->getString('attributes.NameFormat', NULL);
 		if ($attributeNameFormat !== NULL) {
 			return $attributeNameFormat;
@@ -818,7 +818,7 @@ class sspmod_saml_IdP_SAML2 {
 			return $attributeNameFormat;
 		}
 
-		/* Default. */
+		// Default.
 		return 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic';
 	}
 
@@ -884,7 +884,7 @@ class sspmod_saml_IdP_SAML2 {
 		$sc->SubjectConfirmationData->Recipient = $state['saml:ConsumerURL'];
 		$sc->SubjectConfirmationData->InResponseTo = $state['saml:RequestId'];
 
-		/* ProtcolBinding of SP's <AuthnRequest> overwrites IdP hosted metadata configuration. */
+		// ProtcolBinding of SP's <AuthnRequest> overwrites IdP hosted metadata configuration.
 		$hokAssertion = NULL;
 		if ($state['saml:Binding'] === SAML2_Const::BINDING_HOK_SSO) {
 		    $hokAssertion = TRUE;
@@ -894,15 +894,15 @@ class sspmod_saml_IdP_SAML2 {
 		}
 
 		if ($hokAssertion) {
-			/* Holder-of-Key */
+			// Holder-of-Key
 			$sc->Method = SAML2_Const::CM_HOK;
 			if (\SimpleSAML\Utils\HTTP::isHTTPS()) {
 				if (isset($_SERVER['SSL_CLIENT_CERT']) && !empty($_SERVER['SSL_CLIENT_CERT'])) {
-					/* Extract certificate data (if this is a certificate). */
+					// Extract certificate data (if this is a certificate).
 					$clientCert = $_SERVER['SSL_CLIENT_CERT'];
 					$pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
 					if (preg_match($pattern, $clientCert, $matches)) {
-						/* We have a client certificate from the browser which we add to the HoK assertion. */
+						// We have a client certificate from the browser which we add to the HoK assertion.
 						$x509Certificate = new SAML2_XML_ds_X509Certificate();
 						$x509Certificate->certificate = str_replace(array("\r", "\n", " "), '', $matches[1]);
 
@@ -917,12 +917,12 @@ class sspmod_saml_IdP_SAML2 {
 				} else throw new SimpleSAML_Error_Exception('Error creating HoK assertion: No client certificate provided during TLS handshake with IdP');
 			} else throw new SimpleSAML_Error_Exception('Error creating HoK assertion: No HTTPS connection to IdP, but required for Holder-of-Key SSO');
 		} else {
-			/* Bearer */
+			// Bearer
 			$sc->Method = SAML2_Const::CM_BEARER;
 		}
 		$a->setSubjectConfirmation(array($sc));
 
-		/* Add attributes. */
+		// Add attributes.
 
 		if ($spMetadata->getBoolean('simplesaml.attributes', TRUE)) {
 			$attributeNameFormat = self::getAttributeNameFormat($idpMetadata, $spMetadata);
@@ -932,7 +932,7 @@ class sspmod_saml_IdP_SAML2 {
 		}
 
 
-		/* Generate the NameID for the assertion. */
+		// Generate the NameID for the assertion.
 
 		if (isset($state['saml:NameIDFormat'])) {
 			$nameIdFormat = $state['saml:NameIDFormat'];
@@ -941,7 +941,7 @@ class sspmod_saml_IdP_SAML2 {
 		}
 
 		if ($nameIdFormat === NULL || !isset($state['saml:NameID'][$nameIdFormat])) {
-			/* Either not set in request, or not set to a format we supply. Fall back to old generation method. */
+			// Either not set in request, or not set to a format we supply. Fall back to old generation method.
 			$nameIdFormat = $spMetadata->getString('NameIDFormat', NULL);
 			if ($nameIdFormat === NULL) {
 				$nameIdFormat = $idpMetadata->getString('NameIDFormat', SAML2_Const::NAMEID_TRANSIENT);
@@ -958,10 +958,10 @@ class sspmod_saml_IdP_SAML2 {
 			}
 
 			if ($nameIdFormat === SAML2_Const::NAMEID_TRANSIENT) {
-				/* generate a random id */
+				// generate a random id
 				$nameIdValue = SimpleSAML\Utils\Random::generateID();
 			} else {
-				/* this code will end up generating either a fixed assigned id (via nameid.attribute)
+				// this code will end up generating either a fixed assigned id (via nameid.attribu
 				   or random id if not assigned/configured */
 				$nameIdValue = self::generateNameIdValue($idpMetadata, $spMetadata, $state);
 				if ($nameIdValue === NULL) {
@@ -1013,7 +1013,7 @@ class sspmod_saml_IdP_SAML2 {
 			$encryptAssertion = $idpMetadata->getBoolean('assertion.encryption', FALSE);
 		}
 		if (!$encryptAssertion) {
-			/* We are _not_ encrypting this assertion, and are therefore done. */
+			// We are _not_ encrypting this assertion, and are therefore done.
 			return $assertion;
 		}
 
@@ -1035,7 +1035,7 @@ class sspmod_saml_IdP_SAML2 {
 				throw new SimpleSAML_Error_Exception('Unsupported encryption key type: ' . $key['type']);
 			}
 
-			/* Extract the public key from the certificate for encryption. */
+			// Extract the public key from the certificate for encryption.
 			$key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, array('type'=>'public'));
 			$key->loadKey($pemKey);
 		}
