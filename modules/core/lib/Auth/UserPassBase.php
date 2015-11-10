@@ -176,7 +176,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 			$password = $state['core:auth:password'];
 
 			if ($this->forcedUsername !== NULL && $this->forcedUsername !== $username) {
-				throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+				throw new SimpleSAML_Error_Error('ECP_AUTH_FAILURE');
 			}
 
 			$attributes = $this->login($username, $password);

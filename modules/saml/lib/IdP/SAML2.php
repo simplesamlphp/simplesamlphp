@@ -94,7 +94,7 @@ class sspmod_saml_IdP_SAML2 {
 		assert('array_key_exists("saml:RequestId", $state)'); // Can be NULL.
 		assert('array_key_exists("saml:RelayState", $state)'); // Can be NULL.
 
- 		if ($exception instanceof SimpleSAML_Error_Error && $exception->getErrorCode() === 'WRONGUSERPASS') {
+ 		if ($exception instanceof SimpleSAML_Error_Error || $exception->getErrorCode() === 'ECP_AUTH_FAILURE') {
  			/*
  			 * This should only happen during SOAP authentication, and indicates
  			 * that we do not have a valid username or password.
