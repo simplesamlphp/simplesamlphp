@@ -241,8 +241,6 @@ class sspmod_saml_IdP_SAML2 {
 	 */
 	private static function processSOAPAuthnRequest(SimpleSAML_Configuration $idpMetadata, SimpleSAML_Configuration $spMetadata, SAML2_AuthnRequest $request, array &$state) {
 
-		$GLOBALS['SimpleSAML.debugDisableRedirect'] = TRUE;
-
 		/* Send the response via SOAP. */
 		$state['saml:Binding'] = SAML2_Const::BINDING_SOAP_RESPONSE;
 

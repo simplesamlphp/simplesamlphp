@@ -230,10 +230,6 @@ class SimpleSAML_Utilities
             SimpleSAML_Logger::warning('Redirecting to a URL longer than 2048 bytes.');
         }
 
-        if (isset($GLOBALS['SimpleSAML.debugDisableRedirect'])) {
-                throw new SimpleSAML_Error_Exception('Redirect was attempted with redirecting disabled: ' . var_export($url, TRUE));
-        }
-
         // Set the location header
         header('Location: '.$url, true, $code);
 
@@ -247,9 +243,9 @@ class SimpleSAML_Utilities
             ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'."\n";
         echo '<html xmlns="http://www.w3.org/1999/xhtml">';
         echo '<head>
-					<meta http-equiv="content-type" content="text/html; charset=utf-8">
-					<title>Redirect</title>
-				</head>';
+                    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+                    <title>Redirect</title>
+                </head>';
         echo '<body>';
         echo '<h1>Redirect</h1>';
         echo '<p>';
