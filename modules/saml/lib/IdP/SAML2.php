@@ -99,7 +99,7 @@ class sspmod_saml_IdP_SAML2 {
  			 * This should only happen during SOAP authentication, and indicates
  			 * that we do not have a valid username or password.
  			 */
- 			header('WWW-Authenticate: Basic realm="IDPAUTH"', TRUE, 401);
+			header('WWW-Authenticate: Basic realm="IDPAUTH"', true, 401);
  			header('Content-Type: text/plain');
  			echo('SOAP authentication requires basic auth.');
  			exit(0);
@@ -108,7 +108,7 @@ class sspmod_saml_IdP_SAML2 {
 		$spMetadata = $state["SPMetadata"];
 		$spEntityId = $spMetadata['entityid'];
 		$spMetadata = SimpleSAML_Configuration::loadFromArray($spMetadata,
-			'$metadata[' . var_export($spEntityId, TRUE) . ']');
+			'$metadata[' . var_export($spEntityId, true) . ']');
 
 		$requestId = $state['saml:RequestId'];
 		$relayState = $state['saml:RelayState'];
@@ -167,7 +167,7 @@ class sspmod_saml_IdP_SAML2 {
 		assert('is_string($ProtocolBinding) || is_null($ProtocolBinding)');
 		assert('is_int($AssertionConsumerServiceIndex) || is_null($AssertionConsumerServiceIndex)');
 
-		// We want to pick the best matching endpoint in the case where for exam
+		/** We want to pick the best matching endpoint in the case where for exam
 		 * only the ProtocolBinding is given. We therefore pick endpoints with the
 		 * following priority:
 		 *  1. isDefault="true"
@@ -259,7 +259,7 @@ class sspmod_saml_IdP_SAML2 {
 		// Add basic auth data.
 		if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
 			SimpleSAML_Logger::debug('SOAP auth without authentication data.');
-			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+			throw new SimpleSAML_Error_Error('ECP_AUTH_FAILURE');
 		}
 		$state['core:auth:username'] = $_SERVER['PHP_AUTH_USER'];
 		$state['core:auth:password'] = $_SERVER['PHP_AUTH_PW'];
@@ -961,8 +961,7 @@ class sspmod_saml_IdP_SAML2 {
 				// generate a random id
 				$nameIdValue = SimpleSAML\Utils\Random::generateID();
 			} else {
-				// this code will end up generating either a fixed assigned id (via nameid.attribu
-				   or random id if not assigned/configured */
+				// this code will end up generating either a fixed assigned id (via nameid.attribute or random id if not assigned/configured
 				$nameIdValue = self::generateNameIdValue($idpMetadata, $spMetadata, $state);
 				if ($nameIdValue === NULL) {
 					SimpleSAML_Logger::warning('Falling back to transient NameID.');
