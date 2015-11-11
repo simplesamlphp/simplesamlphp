@@ -245,14 +245,6 @@ class sspmod_saml_IdP_SAML2 {
 		// Send the response via SOAP.
 		$state['saml:Binding'] = SAML2_Const::BINDING_SOAP_RESPONSE;
 
-		$allowSOAP = $spMetadata->getBoolean('saml20.soap.auth.allow', NULL);
-		if ($allowSOAP === NULL) {
-			$allowSOAP = $idpMetadata->getBoolean('saml20.soap.auth.allow', FALSE);
-		}
-		if (!$allowSOAP) {
-			throw new SimpleSAML_Error_Exception('SOAP authentication not enabled.');
-		}
-
 		if (!sspmod_saml_Message::checkSign($spMetadata, $request)) {
 			throw new SimpleSAML_Error_Exception('SOAP authentication request not signed.');
 		}

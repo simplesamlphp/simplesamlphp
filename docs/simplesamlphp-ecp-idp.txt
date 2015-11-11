@@ -63,6 +63,3 @@ In general, this should look like the following code:
 	    ),
 	  ),
 
-For this SPs you have to enable to recieve authnrequests via SOAP, so put this code to the SP config:
-
-	'saml20.soap.auth.allow' => true,

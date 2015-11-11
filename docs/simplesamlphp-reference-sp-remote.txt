@@ -223,10 +223,6 @@ The following SAML 2.0 options are available:
     (if `assertion.encryption` is set to TRUE and `sharedkey` is
     unset.)
 
-`saml20.soap.auth.allow`
-:   If your IdP is ECP-enabled, set it `TRUE` for that SPs where ECP authnrequests can come from via SOAP. (SOAP authentication requests must be signed)
-    Defaults to `FALSE`.
-
 `saml20.sign.response`
 :   Whether `<samlp:Response>` messages should be signed.
     Defaults to `TRUE`.
