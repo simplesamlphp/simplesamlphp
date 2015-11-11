@@ -99,6 +99,7 @@ class sspmod_saml_IdP_SAML2 {
  			 * This should only happen during SOAP authentication, and indicates
  			 * that we do not have a valid username or password.
  			 */
+ 			SimpleSAML_Logger::info("Authentication failed. Error message: ".  $exception->getMessage() .". Sending HTTP 401 code back to the HTTP Client.");
 			header('WWW-Authenticate: Basic realm="IDPAUTH"', true, 401);
  			header('Content-Type: text/plain');
  			echo('SOAP authentication requires basic auth.');
@@ -121,7 +122,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		$error = sspmod_saml_Error::fromException($exception);
 
-		SimpleSAML_Logger::warning('Returning error to sp: ' . var_export($spEntityId, TRUE));
+		SimpleSAML_Logger::warning('Returning error to sp: ' . var_export($spEntityId, true));
 		$error->logWarning();
 
 		$ar = self::buildResponse($idpMetadata, $spMetadata, $consumerURL);
@@ -142,7 +143,7 @@ class sspmod_saml_IdP_SAML2 {
 			'error' => $status,
 		);
 		if (isset($state['saml:AuthnRequestReceivedAt'])) {
-			$statsData['logintime'] = microtime(TRUE) - $state['saml:AuthnRequestReceivedAt'];
+			$statsData['logintime'] = microtime(true) - $state['saml:AuthnRequestReceivedAt'];
 		}
 		SimpleSAML_Stats::log('saml:idp:Response:error', $statsData);
 
