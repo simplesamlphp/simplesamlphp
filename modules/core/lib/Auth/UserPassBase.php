@@ -172,17 +172,22 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 
 		if (isset($state['core:auth:username']) && isset($state['core:auth:password'])) {
 			// It looks like we are doing HTTP Basic authentication.
-			$username = $state['core:auth:username'];
-			$password = $state['core:auth:password'];
+			try {
+				$username = $state['core:auth:username'];
+				$password = $state['core:auth:password'];
 
-			if ($this->forcedUsername !== NULL && $this->forcedUsername !== $username) {
-				throw new SimpleSAML_Error_Error('ECP_AUTH_FAILURE');
+				if ($this->forcedUsername !== NULL && $this->forcedUsername !== $username) {
+					throw new SimpleSAML_Error_Error('ECP_AUTH_FAILURE');
+				}
+
+				$attributes = $this->login($username, $password);
+				assert('is_array($attributes)');
+				$state['Attributes'] = $attributes;
+				return;
+			} catch (Exception $e) {
+				SimpleSAML_Logger::error("Login error: " . $e->getMessage());
+				throw $e;
 			}
-
-			$attributes = $this->login($username, $password);
-			assert('is_array($attributes)');
-			$state['Attributes'] = $attributes;
-			return;
 		}
 
 		/*
