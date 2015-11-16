@@ -676,7 +676,8 @@
 		"zh-tw": "\u8a18\u4f4f\u6211\u7684\u4f7f\u7528\u8005\u540d\u7a31",
 		"nl": "Onthoud gebruikersnaam",
 		"da": "Husk mit brugernavn",
-		"af": "Onthou my gebruikersnaam"
+		"af": "Onthou my gebruikersnaam",
+		"pt-br": "Lembrar meu nome de usu\u00e1rio"
 	},
 	"remember_me": {
 		"es": "Recordarme",
@@ -685,6 +686,7 @@
 		"zh-tw": "\u8a18\u4f4f\u6211",
 		"nl": "Onthoud mij",
 		"da": "Husk mig",
-		"af": "Onthou my"
+		"af": "Onthou my",
+		"pt-br": "Lembre-me"
 	}
 }

@@ -2326,7 +2326,8 @@
 		"ro": "Informa\u021bia de stare a fost pierdut\u0103",
 		"ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0438 \u0443\u0442\u0435\u0440\u044f\u043d\u0430",
 		"eu": "Egoera informazioa galdua",
-		"af": "Toestandsinformasie verlore"
+		"af": "Toestandsinformasie verlore",
+		"pt-br": "Informa\u00e7\u00f5es de estado perdidas"
 	},
 	"descr_NOSTATE": {
 		"da": "State information er tabt og der er ikke muligt at gentage forsp\u00f8rgelsen",
@@ -2356,7 +2357,8 @@
 		"ro": "Informa\u021bia de stare a fost pierdut\u0103, cererea nu poate fi reluat\u0103",
 		"ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043e \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0438 \u0443\u0442\u0435\u0440\u044f\u043d\u0430, \u043d\u0435\u0442 \u0441\u043f\u043e\u0441\u043e\u0431\u0430 \u0438\u043d\u0438\u0446\u0438\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0437\u0430\u043f\u0440\u043e\u0441 \u0437\u0430\u043d\u043e\u0432\u043e",
 		"eu": "Egoera informazioa galdua eta ez dago modurik eskaera berrabiarazteko",
-		"af": "Toestandsinformasie verlore en daar is geen manier om die versoek weer te stuur nie"
+		"af": "Toestandsinformasie verlore en daar is geen manier om die versoek weer te stuur nie",
+		"pt-br": "Informa\u00e7\u00f5es de estado perdidas, e n\u00e3o \u00e9 poss\u00edvel reiniciar a requisi\u00e7\u00e3o"
 	},
 	"title_METADATANOTFOUND": {
 		"da": "Metadata ikke fundet",
@@ -2386,7 +2388,8 @@
 		"ru": "\u041c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u044b",
 		"cs": "Metadata nenalezena",
 		"eu": "Ez dira metadatuak aurkitu",
-		"af": "Metadata nie gevind nie"
+		"af": "Metadata nie gevind nie",
+		"pt-br": "Metadado n\u00e3o encontrado"
 	},
 	"descr_METADATANOTFOUND": {
 		"da": "Kan ikke finde metadata for %ENTITYID%",
@@ -2416,7 +2419,8 @@
 		"ru": "\u041d\u0435\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e \u043d\u0430\u0439\u0442\u0438 \u043c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u0435 \u0434\u043b\u044f %ENTITYID%",
 		"cs": "Nebyly nalezeny metadata pro %ENTITYID%",
 		"eu": "Ezin da aurkitu metadaturik %ENTITYID%-(a)rentzat",
-		"af": "Kan geen metadata vind vir %ENTITYID%"
+		"af": "Kan geen metadata vind vir %ENTITYID%",
+		"pt-br": "N\u00e3o foi poss\u00edvel localizar os metadados de %ENTITYID%"
 	},
 	"title_AUTHSOURCEERROR": {
 		"hr": "Gre\u0161ka u autentifikacijskom modulu",
@@ -2446,7 +2450,8 @@
 		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0430 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438",
 		"cs": "Chyba autentiza\u010dn\u00edho zdroje",
 		"eu": "Errorea kautotze jatorrian",
-		"af": "Fout in verifikasie bron"
+		"af": "Fout in verifikasie bron",
+		"pt-br": "Erro na fonte de autentica\u00e7\u00e3o"
 	},
 	"descr_AUTHSOURCEERROR": {
 		"hr": "Do\u0161lo je do gre\u0161ke u autentifikacijskom modulu %AUTHSOURCE%. Razlog: %REASON%",
@@ -2476,6 +2481,7 @@
 		"ru": "\u041e\u0448\u0438\u0431\u043a\u0430 \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0430 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 %AUTHSOURCE%. \u041f\u0440\u0438\u0447\u0438\u043d\u0430: %REASON%",
 		"cs": "Autentiza\u010dn\u00ed chyba ve zdroji %AUTHSOURCE%. D\u016fvodem bylo: %REASON%",
 		"eu": "Errorea kautotze jatorrian %AUTHSOURCE%. Arrazoia hau da: %REASON%",
-		"af": "Fout in verifikasie bron %AUTHSOURCE%. Die rede was %REASON%"
+		"af": "Fout in verifikasie bron %AUTHSOURCE%. Die rede was %REASON%",
+		"pt-br": "Erro de autentica\u00e7\u00e3o na origem %AUTHSOURCE%. O motivo foi:%REASON%"
 	}
 }
