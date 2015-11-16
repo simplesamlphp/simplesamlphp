@@ -9,6 +9,10 @@
          stopOnFailure="false"
          syntaxCheck="false"
          bootstrap="./../../vendor/autoload.php">
+    <php>
+        <!-- During testing we want all modules enabled -->
+        <env name="SIMPLESAMLPHP_ENABLE_ALL_MODULES" value="true"/>
+    </php>
     <testsuites>
         <testsuite name="Unit tests">
             <directory>./../../tests/</directory>
@@ -20,6 +24,7 @@
             <directory suffix=".php">./../../modules/consent/lib/</directory>
             <directory suffix=".php">./../../modules/core/lib/</directory>
             <directory suffix=".php">./../../modules/saml/lib/</directory>
+            <directory suffix=".php">./../../modules/metarefresh/lib/</directory>
             <exclude>
                 <directory>./../../vendor/</directory>
                 <directory>./../../tests/</directory>

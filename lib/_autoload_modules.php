@@ -29,6 +29,7 @@ function temporaryLoader($class)
 
     if (!strstr($class, 'SimpleSAML_')) {
         return; // not a valid class name for old classes
+
     }
     $original = $class;
 

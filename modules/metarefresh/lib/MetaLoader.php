@@ -124,6 +124,29 @@ class sspmod_metarefresh_MetaLoader {
 			return;
 		}
 
+        $filterFunction = null;
+        if (isset($source['filterCallback'])) {
+            if (!is_callable($source['filterCallback'])) {
+                SimpleSAML_Logger::debug('Invalid filter callback ' . $source['filterCallback'] . ' - attempting to re-use cached metadata');
+                $this->addCachedMetadata($source);
+                return;
+            } else {
+                $filterFunction = $source['filterCallback'];
+            }
+        }
+
+        if(isset($source['filterFactory'])) {
+            if (isset($filterFunction)) {
+                SimpleSAML_Logger::warning("Both 'filterCallback' and 'filterFactory' defined. Ignoring 'filterFactory");
+            } elseif (is_callable($source['filterFactory'])) {
+                $filterFunction = call_user_func_array($source['filterFactory'], $source['filterFactoryArgs']);
+            } else {
+                SimpleSAML_Logger::debug('Invalid filter factory ' . $source['filterFactory'] . ' - attempting to re-use cached metadata');
+                $this->addCachedMetadata($source);
+                return;
+            }
+        }
+
 		foreach($entities as $entity) {
 
 			if(isset($source['blacklist'])) {
@@ -139,6 +162,13 @@ class sspmod_metarefresh_MetaLoader {
 					continue;
 				}
 			}
+
+            if(isset($filterFunction)) {
+                if (!call_user_func($filterFunction, $entity)) {
+                    SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - filtered by custome filter.' . "\n");
+                    continue;
+                }
+            }
 
 			if(array_key_exists('certificates', $source) && $source['certificates'] !== NULL) {
 				if(!$entity->validateSignature($source['certificates'])) {
@@ -307,6 +337,13 @@ class sspmod_metarefresh_MetaLoader {
 			echo("\n");
 		}
 	}
+
+    /**
+     * @return array returns the metadata array
+     */
+    public function getMetadata() {
+        return $this->metadata;
+    }
 
 	
 	/**
