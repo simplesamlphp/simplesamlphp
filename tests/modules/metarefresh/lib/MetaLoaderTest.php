@@ -33,7 +33,7 @@ class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
 
         $src = array(
             'src' =>  __DIR__ . '/metadata-sample.xml',
-            'blacklist' => ['https://carmenwiki.osu.edu/shibboleth']
+            'blacklist' => array('https://carmenwiki.osu.edu/shibboleth')
         );
         $loader = new sspmod_metarefresh_MetaLoader();
         $loader->loadSource($src);
@@ -54,7 +54,7 @@ class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
 
         $src = array(
             'src' =>  __DIR__ . '/metadata-sample.xml',
-            'whitelist' => ['https://carmenwiki.osu.edu/shibboleth']
+            'whitelist' => array('https://carmenwiki.osu.edu/shibboleth')
         );
         $loader = new sspmod_metarefresh_MetaLoader();
         $loader->loadSource($src);
