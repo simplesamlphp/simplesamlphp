@@ -176,7 +176,7 @@ class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
     {
         $found = false;
         // Check both idp and sp
-        $types = ['saml20-idp-remote', 'saml20-sp-remote'];
+        $types = array('saml20-idp-remote', 'saml20-sp-remote');
         foreach ($types as $type) {
             if (!isset($metadata[$type])) {
                 continue;
