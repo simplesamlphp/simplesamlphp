@@ -94,18 +94,6 @@ class sspmod_saml_IdP_SAML2 {
 		assert('array_key_exists("saml:RequestId", $state)'); // Can be NULL.
 		assert('array_key_exists("saml:RelayState", $state)'); // Can be NULL.
 
- 		if ($exception instanceof SimpleSAML_Error_Error || $exception->getErrorCode() === 'ECP_AUTH_FAILURE') {
- 			/*
- 			 * This should only happen during SOAP authentication, and indicates
- 			 * that we do not have a valid username or password.
- 			 */
- 			SimpleSAML_Logger::info("Authentication failed. Error message: ".  $exception->getMessage() .". Sending HTTP 401 code back to the HTTP Client.");
-			header('WWW-Authenticate: Basic realm="IDPAUTH"', true, 401);
- 			header('Content-Type: text/plain');
- 			echo('SOAP authentication requires basic auth.');
- 			exit(0);
- 		}
-
 		$spMetadata = $state["SPMetadata"];
 		$spEntityId = $spMetadata['entityid'];
 		$spMetadata = SimpleSAML_Configuration::loadFromArray($spMetadata,
