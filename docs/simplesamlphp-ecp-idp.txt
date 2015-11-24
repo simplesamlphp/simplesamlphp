@@ -5,8 +5,13 @@ This document describes the necessary steps to enable support for the [SAML V2.0
 
 The SAML V2.0 Enhanced Client or Proxy (ECP) profile is a SSO profile for use with HTTP, and clients with the capability to directly contact a principal's identity provider(s) without requiring discovery and redirection by the service provider, as in the case of a browser. It is particularly useful for desktop or server-side HTTP clients.
 
+Limitation
+----------
+It supports the use of HTTP Basic Authentication, TLS Client Authentication but it doesn't support XML Signature mechanism and the related channel-binding verification. For TLS Client Authentication you have to enable [Holder-of-Key support](https://simplesamlphp.org/docs/stable/simplesamlphp-hok-idp) on th IdP.
+
+
 Enabling ECP Profile on the IdP
------------------------------------
+-------------------------------
 
 To enable the IdP to send ECP assertions you must add the `saml20.ecp` option to the `saml20-idp-hosted` metadata file:
 
