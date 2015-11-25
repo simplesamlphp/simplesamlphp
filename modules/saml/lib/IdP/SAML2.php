@@ -134,7 +134,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		$binding = SAML2_Binding::getBinding($protocolBinding);
         if ($binding instanceof SAML2_SOAP) {
-          $binding->setDestination($consumerURL);
+            $binding->setDestination($consumerURL);
         }
 		$binding->send($ar);
 	}
