@@ -75,9 +75,6 @@ class sspmod_saml_IdP_SAML2 {
 
 		// Send the response.
 		$binding = SAML2_Binding::getBinding($protocolBinding);
-		if ($binding instanceof SAML2_SOAP) {
-			$binding->AssertionConsumerServiceURL = $consumerURL; 
-		}
 		$binding->send($ar);
 	}
 
@@ -137,7 +134,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		$binding = SAML2_Binding::getBinding($protocolBinding);
         if ($binding instanceof SAML2_SOAP) {
-          $binding->AssertionConsumerServiceURL = $consumerURL;
+          $binding->setDestination($consumerURL);
         }
 		$binding->send($ar);
 	}
@@ -234,7 +231,7 @@ class sspmod_saml_IdP_SAML2 {
 	private static function processSOAPAuthnRequest(SimpleSAML_Configuration $idpMetadata, SimpleSAML_Configuration $spMetadata, SAML2_AuthnRequest $request, array &$state) {
 
 		// Send the response via SOAP.
-		$state['saml:Binding'] = SAML2_Const::BINDING_SOAP_RESPONSE;
+		$state['saml:Binding'] = SAML2_Const::BINDING_SOAP;
 
 		if (!sspmod_saml_Message::checkSign($spMetadata, $request)) {
 			throw new SimpleSAML_Error_Exception('SOAP authentication request not signed.');
