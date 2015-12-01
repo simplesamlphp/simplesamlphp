@@ -165,7 +165,7 @@ class sspmod_metarefresh_MetaLoader {
 
             if(isset($filterFunction)) {
                 if (!call_user_func($filterFunction, $entity)) {
-                    SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - filtered by custome filter.' . "\n");
+                    SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - filtered by custom filter.' . "\n");
                     continue;
                 }
             }

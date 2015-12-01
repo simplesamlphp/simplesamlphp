@@ -40,6 +40,12 @@ class sspmod_metarefresh_CommonFilters {
         if (!isset($metaData)) {
             $metaData = $entity->getMetadata20IdP();
         }
+        if (!isset($metaData)) {
+            $metaData = $entity->getMetadata1xSP();
+        }
+        if (!isset($metaData)) {
+            $metaData = $entity->getMetadata1xIdP();
+        }
         return $metaData;
     }
 }

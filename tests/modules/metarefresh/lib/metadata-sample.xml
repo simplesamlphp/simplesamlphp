@@ -900,4 +900,65 @@
             <EmailAddress>ds-apps@cac.washington.edu</EmailAddress>
         </ContactPerson>
     </EntityDescriptor>
+    <!-- SAML 1.1 SP -->
+    <!-- Serials Solutions -->
+    <EntityDescriptor entityID="https://auth.cs.serialssolutions.com/auth/Metadata/Shib" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+        <Extensions xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
+            <mdrpi:RegistrationInfo registrationAuthority="https://incommon.org"/>
+            <mdattr:EntityAttributes xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
+                <saml:Attribute Name="http://macedir.org/entity-category" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+                    <saml:AttributeValue>http://id.incommon.org/category/registered-by-incommon</saml:AttributeValue>
+                </saml:Attribute>
+            </mdattr:EntityAttributes>
+        </Extensions>
+        <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol">
+            <md:KeyDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata">
+                <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                    <ds:X509Data>
+                        <!-- Serial No. 1291860083, expires on Thu Jan  7 02:01:23 2016 GMT -->
+                        <ds:X509Certificate>
+                            MIIDjDCCAnSgAwIBAgIETQA4czANBgkqhkiG9w0BAQUFADCBhzELMAkGA1UEBhMC
+                            VVMxCzAJBgNVBAgTAldBMRAwDgYDVQQHEwdTZWF0dGxlMRowGAYDVQQKExFTZXJp
+                            YWxzIFNvbHV0aW9uczEaMBgGA1UECxMRU2VyaWFscyBTb2x1dGlvbnMxITAfBgNV
+                            BAMTGHd3dy5zZXJpYWxzc29sdXRpb25zLmNvbTAeFw0xMDEyMDkwMjAxMjNaFw0x
+                            NjAxMDcwMjAxMjNaMIGHMQswCQYDVQQGEwJVUzELMAkGA1UECBMCV0ExEDAOBgNV
+                            BAcTB1NlYXR0bGUxGjAYBgNVBAoTEVNlcmlhbHMgU29sdXRpb25zMRowGAYDVQQL
+                            ExFTZXJpYWxzIFNvbHV0aW9uczEhMB8GA1UEAxMYd3d3LnNlcmlhbHNzb2x1dGlv
+                            bnMuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAq2cevLb70/ZI
+                            7URgp+Rgz9KOHtJRg4W9ucFm91fvfoaww9tBBQ8GXEgq3wO3pmPYE4+bdA04xIW3
+                            sQgmB9UQe1sPVOhffUhHm/+MBzddIZ1WYg1lLOl3CQ/2J5Uak+/3hV8Z+ppbV0tx
+                            HBtqSrd+aaSrVftWKqoF5+gSmMi2ckuUGTrq9B8etqALhZoU4K2CFYhjrVK2vwaS
+                            sjT3+AXlO2m7PmE4xC+2jXjp33uxMbhwfjY7XgpK06h8tQQXCH7GPRbYLjSPWFw3
+                            IHQFm46bk4uyzDsJemjLcaGaazmbWwdMZhoWydGHphbO9Jw2so1Ht2ABOcfj3TpU
+                            GIKW9dmQ6QIDAQABMA0GCSqGSIb3DQEBBQUAA4IBAQB699XlVrbgegSecfHkxdwK
+                            J+7N2N5vqvAcOhoBEU1UAqIuuQF3lCpDot8QNfhxRHc3sxUh4OfqUDWcdD1rxavP
+                            7LzrCu9hJFli2pzNWOMle/AyAfbVRT3tDSmjqOlyrJs/G50PQV9QJyJxLvXJHg0P
+                            RQiV5GjOtMlE9fsVY5FIpoXTOJwP2yDvE5HF2QO4gEhKrNZvmXJ6X60NryxIApD2
+                            nQQ5159Bha3+D9szK4wwaGQ04ry+UW0j9C7xbhDCc/Kkd5JCqzvLqFp73F6Ma6nK
+                            32buuHZ/UERHs77NrmCGrS7i3oJppxFoakb9bfWEFMrbD7ZUV9DtoTDZFtFkR9jb
+                        </ds:X509Certificate>
+                    </ds:X509Data>
+                </ds:KeyInfo>
+            </md:KeyDescriptor>
+            <md:AssertionConsumerService xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://login.serialssolutions.com/sso/auth/CS/rcv/saml1" index="1"/>
+            <md:AssertionConsumerService xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://login.serialssolutions.com/sso/auth/CS/rcv/saml1" index="2"/>
+        </SPSSODescriptor>
+        <Organization>
+            <OrganizationName xml:lang="en">Serials Solutions</OrganizationName>
+            <OrganizationDisplayName xml:lang="en">Serials Solutions</OrganizationDisplayName>
+            <OrganizationURL xml:lang="en">http://serialssolutions.com/</OrganizationURL>
+        </Organization>
+        <ContactPerson contactType="administrative">
+            <GivenName>Tim Fujita-Yuhas</GivenName>
+            <EmailAddress>Tim.Fujita-Yuhas@SerialsSolutions.com</EmailAddress>
+        </ContactPerson>
+        <ContactPerson contactType="technical">
+            <GivenName>Tim Fujita-Yuhas</GivenName>
+            <EmailAddress>Tim.Fujita-Yuhas@SerialsSolutions.com</EmailAddress>
+        </ContactPerson>
+        <ContactPerson contactType="support">
+            <GivenName>Customer Care</GivenName>
+            <EmailAddress>clients@serialssolutions.com</EmailAddress>
+        </ContactPerson>
+    </EntityDescriptor>
     </EntitiesDescriptor>

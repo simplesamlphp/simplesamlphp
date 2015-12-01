@@ -167,6 +167,30 @@ class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Ensure both SAML 2 and 1.1 entities can be filtered
+     */
+    public function testLoadMetadataFileWithAuthorityFilterFactoryOnSAML1_1()
+    {
+
+        $src = array(
+            'src' =>  __DIR__ . '/metadata-sample.xml',
+            'filterFactory' => 'sspmod_metarefresh_CommonFilters::registeredAuthorityFilterFactory',
+            'filterFactoryArgs' => array('https://incommon.org')
+        );
+        $loader = new sspmod_metarefresh_MetaLoader();
+        $loader->loadSource($src);
+
+        $entities = $loader->getMetadata();
+
+        // Incommon SAML 2 and 1.1. entities should make it through
+        $this->verifyEntityPresent(true, $entities, 'urn:mace:incommon:osu.edu');
+        $this->verifyEntityPresent(true, $entities, 'https://carmenwiki.osu.edu/shibboleth');
+        $this->verifyEntityPresent(true, $entities, 'https://auth.cs.serialssolutions.com/auth/Metadata/Shib');
+        $this->verifyEntityPresent(false, $entities, 'https://idp.nuim.ie/idp/shibboleth');
+
+    }
+
+    /**
      * Assert that the metadata has or doesn't have the entityId
      * @param $present
      * @param $metadata
@@ -176,7 +200,7 @@ class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
     {
         $found = false;
         // Check both idp and sp
-        $types = array('saml20-idp-remote', 'saml20-sp-remote');
+        $types = array('saml20-idp-remote', 'saml20-sp-remote', 'shib13-sp-remote', 'shib13-idp-remote');
         foreach ($types as $type) {
             if (!isset($metadata[$type])) {
                 continue;
