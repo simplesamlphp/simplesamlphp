@@ -339,9 +339,12 @@ class sspmod_metarefresh_MetaLoader {
 	}
 
     /**
+	 * Metadata is an associative array of types (see $types). Each type is an array, with each element being an
+	 * associative array: 'filename' is the 'src' of the metadata, and 'metadata' is the actual metadata array for an entity
      * @return array returns the metadata array
      */
-    public function getMetadata() {
+    public function getMetadata()
+    {
         return $this->metadata;
     }
 

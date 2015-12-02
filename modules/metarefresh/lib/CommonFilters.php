@@ -1,31 +1,38 @@
 <?php
+
 /*
  * Filter callbacks and callback factories that are useful to most SSP users
  */
-class sspmod_metarefresh_CommonFilters {
+
+class sspmod_metarefresh_CommonFilters
+{
 
 
     /**
-     * @param $authority The registration authority the entity should match
-     * @return Closure A closure that will return true if called with an entity registered by $authority
+     * Creates a filter that checks the <mdrpi:RegistrationInfo/> element of an entity.
+     * @param $authority The registration authority the entity should match.
+     * @return Closure A closure that will return true if called with an entity registered by $authority.
      */
-    public static function registeredAuthorityFilterFactory($authority) {
-        return function(SimpleSAML_Metadata_SAMLParser $entityDesc) use ($authority) {
+    public static function registeredAuthorityFilterFactory($authority)
+    {
+        return function (SimpleSAML_Metadata_SAMLParser $entityDesc) use ($authority) {
             $metaData = sspmod_metarefresh_CommonFilters::getMetadata($entityDesc);
             return isset($metaData['RegistrationInfo']['registrationAuthority']) && $metaData['RegistrationInfo']['registrationAuthority'] === $authority;
         };
     }
 
     /**
-     * @param $name The name of the entity attribute to check
-     * @param $value The value that the entity attribute should contain
+     * Creates a filter that checks the <mdattr:EntityAttributes> element of an entity.
+     * @param $name The name of the attribute to check.
+     * @param $value A value that the attribute should contain.
      * @return Closure A closure that will return true if called with an entity that has an attribute with name $name
-     *  value $value.
+     *  and value $value.
      */
-    public static function entityAttributeFactory($name, $value) {
-        return function(SimpleSAML_Metadata_SAMLParser $entityDesc) use ($name, $value) {
+    public static function entityAttributeFactory($name, $value)
+    {
+        return function (SimpleSAML_Metadata_SAMLParser $entityDesc) use ($name, $value) {
             $metaData = sspmod_metarefresh_CommonFilters::getMetadata($entityDesc);
-            return isset($metaData['EntityAttributes'][$name]) && in_array($value,$metaData['EntityAttributes'][$name], true);
+            return isset($metaData['EntityAttributes'][$name]) && in_array($value, $metaData['EntityAttributes'][$name], true);
         };
     }
 
@@ -35,7 +42,8 @@ class sspmod_metarefresh_CommonFilters {
      * @param SimpleSAML_Metadata_SAMLParser $entity
      * @return array
      */
-    public static function getMetadata(SimpleSAML_Metadata_SAMLParser $entity) {
+    public static function getMetadata(SimpleSAML_Metadata_SAMLParser $entity)
+    {
         $metaData = $entity->getMetadata20SP();
         if (!isset($metaData)) {
             $metaData = $entity->getMetadata20IdP();
