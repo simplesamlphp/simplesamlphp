@@ -149,6 +149,9 @@ Each metadata source has the following options:
 `src`
 :   The source URL where the metadata will be fetched from.
 
+`blacklist`
+:   Array of Entity IDs to exclude from the src.
+
 `certificates`
 :   An array of certificate files, the filename is relative to the `cert/`-directory,
     that will be used to verify the signature of the metadata. The public key will
@@ -156,6 +159,26 @@ Each metadata source has the following options:
     possible to use a self signed certificate that has expired. Add more than one
     certificate to be able to handle key rollover. This takes precedence over
     validateFingerprint.
+
+`conditionalGET`
+:   Efficient downloading so polling can be done more frequently. Default values is `false`.
+    Works for sources that send 'Last-Modified' or 'Etag' headers. **Note** that the 'data'
+    directory needs to be writable for this to work. **Note** this option should NOT
+    be used with `expireAfter`. The cache times are not updated if the source returns
+    `304 Not Modified` which may cause SSP to think the metadata is expired.
+
+`filterCallback`
+:   The name of a function that accepts a `SimpleSAML_Metadata_SAMLParser` object and returns true/false.
+    The callback can be used for defining complex filtering rules on metadata.
+
+`filterFactory`
+:   The name of a function that returns a function that meets the requirements of `filterCallback`.
+    See `'sspmod_metarefresh_CommonFilters` for common examples.
+    Example: `'filterFactory' => 'sspmod_metarefresh_CommonFilters::registeredAuthorityFilterFactory'`
+
+`filterFactoryArgs`
+:   Array of arguments to the function defined in `filterFactory`.
+    Example: `'filterFactoryArgs' => array('https://incommon.org')`
 
 `validateFingerprint`
 :   The fingerprint of the certificate used to sign the metadata. You
@@ -170,6 +193,8 @@ Each metadata source has the following options:
 :	Same as the option with the same name at the metadata set level. This option has precedence when both are specified,
 	allowing a more fine grained configuration for every metadata source.
 
+`whitelist`
+:   Array of Entity IDs to keep.
 
 After you have configured the metadata sources, you need to give the
 web-server write access to the output directories. Following the previous example:
