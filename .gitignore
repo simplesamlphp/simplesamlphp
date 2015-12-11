@@ -4,6 +4,9 @@ config
 metadata
 cert
 
+!config/.gitkeep
+!metadata/.gitkeep
+
 # https://www.gitignore.io/api/osx,windows,linux,netbeans,sublimetext,composer,phpstorm,vagrant
 # Created by https://www.gitignore.io
 
