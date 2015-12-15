@@ -2,6 +2,7 @@
 =====================
 
 A filter which combines two attributes into a scoped attribute.
+That is, the value will be `something@scope`, usually to make it globally unique.
 
 Parameters
 ----------
@@ -38,3 +39,6 @@ Add eduPersonScopedAffiliation based on eduPersonAffiliation and eduPersonPrinci
         'targetAttribute' => 'eduPersonScopedAffiliation',
     ),
 
+With values being `eduPersonPrincipalName`: `jdoe@example.edu` and
+`eduPersonAffiliation`: `faculty`, this will result in the attribute
+`eduPersonScopedAffiliation` with value `faculty@example.edu`.
