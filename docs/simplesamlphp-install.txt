@@ -17,7 +17,6 @@ SimpleSAMLphp news and documentation
 This document is part of the SimpleSAMLphp documentation suite.
 
  * [List of all SimpleSAMLphp documentation](http://simplesamlphp.org/docs)
- * [Latest news about SimpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also contains an RSS feed)
  * [SimpleSAMLphp homepage](https://simplesamlphp.org)
 
 
@@ -224,7 +223,7 @@ Identity Provider.
 Here is an example screenshot of what the SimpleSAMLphp page looks
 like:
 
-![Screenshot of the SimpleSAMLphp installation page.](http://rnd.feide.no/doc/resources/simplesamlphp-install/screenshot-installationpage.png)
+![Screenshot of the SimpleSAMLphp installation page.](resources/simplesamlphp-install/screenshot-installationpage.png)
 
 ### Check your PHP environment
 

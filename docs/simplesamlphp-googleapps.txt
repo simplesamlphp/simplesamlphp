@@ -17,7 +17,6 @@ SimpleSAMLphp news and documentation
 This document is part of the SimpleSAMLphp documentation suite.
 
  * [List of all SimpleSAMLphp documentation](http://simplesamlphp.org/docs)
- * [Latest news about SimpleSAMLphp](http://rnd.feide.no/taxonomy/term/4). (Also conatins an RSS feed)
  * [SimpleSAMLphp homepage](https://simplesamlphp.org)
 
 
@@ -183,18 +182,18 @@ Then select "Advanced tools":
 
 **Figure&nbsp;1.&nbsp;We go to advanced tools**
 
-![We go to advanced tools](http://rnd.feide.no/doc/resources/simplesamlphp-googleapps/googleapps-menu.png)
+![We go to advanced tools](resources/simplesamlphp-googleapps/googleapps-menu.png)
 
 Then select "Set up single sign-on (SSO)":
 
 **Figure&nbsp;2.&nbsp;We go to setup SSO**
 
-![We go to setup SSO](http://rnd.feide.no/doc/resources/simplesamlphp-googleapps/googleapps-sso.png)
+![We go to setup SSO](resources/simplesamlphp-googleapps/googleapps-sso.png)
 Upload a certificate, such as the googleappsidp.crt created above:
 
 **Figure&nbsp;3.&nbsp;Uploading certificate**
 
-![Uploading certificate](http://rnd.feide.no/doc/resources/simplesamlphp-googleapps/googleapps-cert.png)
+![Uploading certificate](resources/simplesamlphp-googleapps/googleapps-cert.png)
 Fill out the remaining fields:
 
 The most important field is the Sign-in page URL. Set it to
@@ -216,7 +215,7 @@ The network mask determines which IP addresses will be asked for SSO login. IP a
 
 **Figure&nbsp;4.&nbsp;Fill out the remaining fields**
 
-![Fill out the remaining fields](http://rnd.feide.no/doc/resources/simplesamlphp-googleapps/googleapps-ssoconfig.png)
+![Fill out the remaining fields](resources/simplesamlphp-googleapps/googleapps-ssoconfig.png)
 
 ### Add a user in Google Apps that is known to the IdP
 
