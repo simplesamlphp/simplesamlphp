@@ -323,7 +323,7 @@ class SimpleSAML_Configuration
      */
     public function getVersion()
     {
-        return 'master';
+        return '1.14.0-rc1';
     }
 
 
