@@ -323,7 +323,7 @@ class SimpleSAML_Configuration
      */
     public function getVersion()
     {
-        return 'trunk';
+        return 'master';
     }
 
 
