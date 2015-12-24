@@ -55,7 +55,7 @@ if ($this->data['errorcode'] !== null) {
 } ?> value="<?php echo htmlspecialchars($this->data['username']); ?>"/>
                 </td>
             <?php
-            if ($this->data['rememberUsernameEnabled'] && !$this->data['forcedUsername']) {
+            if ($this->data['rememberUsernameEnabled'] && !$this->data['forceUsername']) {
                 // display the "remember my username" checkbox
             ?>
                 <td>
