@@ -10,7 +10,7 @@ matrix:
   allow_failures:
   - php: hhvm
 before_script:
-- if [[ "$TRAVIS_PHP_VERSION" == "5.3" -o "$TRAVIS_PHP_VERSION" == "5.4" ]];
+- if [[ "$TRAVIS_PHP_VERSION" == "5.3" || "$TRAVIS_PHP_VERSION" == "5.4" ]];
   then composer install --dev --prefer-lowest; else
   composer install --dev;
   fi
