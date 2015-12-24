@@ -54,6 +54,7 @@ Released TBD
 ### API and user interface
 
   * Added a new and simple database class to serve as PDO interface for all the database needs.
+  * Added the possibility to copy metadata and other elements by clicking a button in the web interface.
   * Removed the old, unused `pack` installer tool.
   * Improved usability by telling users the endpoints are not to be accessed directly.
   * Moved the hostname, port and protocol diagnostics tool to the admin directory.
