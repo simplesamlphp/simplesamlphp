@@ -41,6 +41,19 @@ if [ -f "$TARGET/composer.json" ]; then
 
     # Install dependencies (without vcs history or dev tools)
     php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-infocard:dev-master --update-no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-aggregator:dev-master --update-no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-aggregator2:dev-master --update-no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-autotest:dev-master --update-no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-consentsimpleadmin:dev-master --update-no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-logpeek:dev-master --update-no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-metaedit:dev-master --update-no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-modinfo:dev-master --update-no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" require "openid/php-openid:dev-master#ee669c6a9d4d95b58ecd9b6945627276807694fb" --update-no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-openid:dev-master --update-no-dev --prefer-dist -d "$TARGET"
+    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-openidprovider:dev-master --update-no-dev --prefer-dist -d "$TARGET"
+    php "$TARGET/composer.phar" require rediris-es/simplesamlphp-module-papi:dev-master --update-no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-saml2debug:dev-master --update-no-dev --prefer-dist -o -d "$TARGET"
 fi
 
 mkdir -p "$TARGET/config" "$TARGET/metadata" "$TARGET/cert" "$TARGET/log"
