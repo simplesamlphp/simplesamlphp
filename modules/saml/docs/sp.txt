@@ -92,6 +92,9 @@ Options
 
 :   *Note*: SAML 2 specific.
 
+`AssertionConsumerService`
+: Custom URL of Assertion Consumer Service sent in SSO request.
+
 `attributes`
 :   List of attributes this SP requests from the IdP.
     This list will be added to the generated metadata.
