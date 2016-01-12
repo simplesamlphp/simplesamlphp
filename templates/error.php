@@ -51,7 +51,7 @@ if (isset($this->data['errorReportAddress'])) {
     <form action="<?php echo htmlspecialchars($this->data['errorReportAddress']); ?>" method="post">
         <p><?php echo $this->t('report_text'); ?></p>
         <p><?php echo $this->t('report_email'); ?>
-            <input type="text" size="25" name="email" value="<?php echo htmlspecialchars($this->data['email']); ?>" />
+            <input type="email" size="25" name="email" value="<?php echo htmlspecialchars($this->data['email']); ?>" />
         </p>
         <p>
             <textarea class="metadatabox" name="text" rows="6" style="width: 100%; padding: 0.5em;"><?php
