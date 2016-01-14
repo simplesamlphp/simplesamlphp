@@ -1,12 +1,16 @@
 <?php
 
 /**
- * A minimalistic XHTML PHP based template system implemented for simpleSAMLphp.
+ * Choosing the language to localize to for our minimalistic XHTML PHP based template system.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
+ * @package SimpleSAMLphp
  */
-class SimpleSAML_Locale_Language {
+
+namespace SimpleSAML\Locale;
+
+class Language {
 
     /**
      * This is the default language map. It is used to map languages codes from the user agent to
@@ -32,7 +36,7 @@ class SimpleSAML_Locale_Language {
      * @param $configuration   Configuration object
      * @param $defaultDictionary  The default dictionary where tags will come from.
      */
-    function __construct(SimpleSAML_Configuration $configuration) {
+    function __construct(\SimpleSAML_Configuration $configuration) {
         $this->configuration = $configuration;
 
         $this->availableLanguages = $this->configuration->getArray('language.available', array('en'));
@@ -55,7 +59,7 @@ class SimpleSAML_Locale_Language {
         if (in_array($language, $this->availableLanguages, TRUE)) {
             $this->language = $language;
             if ($setLanguageCookie === TRUE) {
-                SimpleSAML_Locale_Language::setLanguageCookie($language);
+                Language::setLanguageCookie($language);
             }
         }
     }
@@ -85,7 +89,7 @@ class SimpleSAML_Locale_Language {
         }
 
         // Language is provided in a stored COOKIE
-        $languageCookie = SimpleSAML_Locale_Language::getLanguageCookie();
+        $languageCookie = Language::getLanguageCookie();
         if ($languageCookie !== NULL) {
             $this->language = $languageCookie;
             return $languageCookie;
@@ -109,7 +113,7 @@ class SimpleSAML_Locale_Language {
      *         languages in the header were available.
      */
     private function getHTTPLanguage() {
-        $languageScore = SimpleSAML_Utilities::getAcceptLanguage();
+        $languageScore = \SimpleSAML_Utilities::getAcceptLanguage();
 
         /* For now we only use the default language map. We may use a configurable language map
          * in the future.
@@ -185,7 +189,7 @@ class SimpleSAML_Locale_Language {
      * @return string|NULL  The language, or NULL if unset.
      */
     public static function getLanguageCookie() {
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML_Configuration::getInstance();
         $availableLanguages = $config->getArray('language.available', array('en'));
         $name = $config->getString('language.cookie.name', 'language');
 
@@ -209,7 +213,7 @@ class SimpleSAML_Locale_Language {
         assert('is_string($language)');
 
         $language = strtolower($language);
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML_Configuration::getInstance();
         $availableLanguages = $config->getArray('language.available', array('en'));
 
         if (!in_array($language, $availableLanguages, TRUE) || headers_sent()) {
@@ -224,7 +228,7 @@ class SimpleSAML_Locale_Language {
             'httponly' => FALSE,
         );
 
-        SimpleSAML_Utilities::setCookie($name, $language, $params, FALSE);
+        \SimpleSAML_Utilities::setCookie($name, $language, $params, FALSE);
     }
 
 }

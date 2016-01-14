@@ -1,12 +1,16 @@
 <?php
 
 /**
- * A minimalistic XHTML PHP based template system implemented for simpleSAMLphp.
+ * The translation-relevant bits from our original minimalistic XHTML PHP based template system.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
- * @package simpleSAMLphp
+ * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
+ * @package SimpleSAMLphp
  */
-class SimpleSAML_Locale_Translate {
+
+namespace SimpleSAML\Locale;
+
+class Translate {
 
     private $configuration = null;
 
@@ -31,15 +35,15 @@ class SimpleSAML_Locale_Translate {
      * @param $configuration   Configuration object
      * @param $defaultDictionary  The default dictionary where tags will come from.
      */
-    function __construct(SimpleSAML_Configuration $configuration, $defaultDictionary = NULL) {
+    function __construct(\SimpleSAML_Configuration $configuration, $defaultDictionary = NULL) {
         $this->configuration = $configuration;
-        $this->language = new SimpleSAML_Locale_Language($configuration);
+        $this->language = new Language($configuration);
 
         if($defaultDictionary !== NULL && substr($defaultDictionary, -4) === '.php') {
             /* For backwards compatibility - print warning. */
             $backtrace = debug_backtrace();
             $where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
-            SimpleSAML_Logger::warning('Deprecated use of new SimpleSAML_Locale_Translate(...) at ' . $where .
+            \SimpleSAML_Logger::warning('Deprecated use of new SimpleSAML\Locale\Translate(...) at ' . $where .
                 '. The last parameter is now a dictionary name, which should not end in ".php".');
 
             $this->defaultDictionary = substr($defaultDictionary, 0, -4);
@@ -66,7 +70,7 @@ class SimpleSAML_Locale_Translate {
             if($sepPos !== FALSE) {
                 $module = substr($name, 0, $sepPos);
                 $fileName = substr($name, $sepPos + 1);
-                $dictDir = SimpleSAML_Module::getModuleDir($module) . '/dictionaries/';
+                $dictDir = \SimpleSAML_Module::getModuleDir($module) . '/dictionaries/';
             } else {
                 $dictDir = $this->configuration->getPathValue('dictionarydir', 'dictionaries/');
                 $fileName = $name;
@@ -212,12 +216,12 @@ class SimpleSAML_Locale_Translate {
             /* Old style call to t(...). Print warning to log. */
             $backtrace = debug_backtrace();
             $where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
-            SimpleSAML_Logger::warning('Deprecated use of SimpleSAML_Template::t(...) at ' . $where .
+            \SimpleSAML_Logger::warning('Deprecated use of SimpleSAML_Template::t(...) at ' . $where .
                 '. Please update the code to use the new style of parameters.');
 
             /* For backwards compatibility. */
             if(!$replacements && $this->getTag($tag) === NULL) {
-                SimpleSAML_Logger::warning('Code which uses $fallbackdefault === FALSE shouls be' .
+                \SimpleSAML_Logger::warning('Code which uses $fallbackdefault === FALSE shouls be' .
                     ' updated to use the getTag-method instead.');
                 return NULL;
             }
@@ -231,7 +235,7 @@ class SimpleSAML_Locale_Translate {
             $tagData = $this->getTag($tag);
             if($tagData === NULL) {
                 /* Tag not found. */
-                SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not translated at all.');
+                \SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not translated at all.');
                 return $this->t_not_translated($tag, $fallbackdefault);
             }
         }
@@ -280,7 +284,7 @@ class SimpleSAML_Locale_Translate {
             throw new Exception("Inline translation should be string or array. Is " . gettype($translation) . " now!");
         }
 
-        SimpleSAML_Logger::debug('Template: Adding inline language translation for tag [' . $tag . ']');
+        \SimpleSAML_Logger::debug('Template: Adding inline language translation for tag [' . $tag . ']');
         $this->langtext[$tag] = $translation;
     }
 
@@ -304,7 +308,7 @@ class SimpleSAML_Locale_Translate {
 
 
         $lang = $this->readDictionaryFile($filebase . $file);
-        SimpleSAML_Logger::debug('Template: Merging language array. Loading [' . $file . ']');
+        \SimpleSAML_Logger::debug('Template: Merging language array. Loading [' . $file . ']');
         $this->langtext = array_merge($this->langtext, $lang);
     }
 
@@ -323,7 +327,7 @@ class SimpleSAML_Locale_Translate {
         $lang = json_decode($fileContent, TRUE);
 
         if (empty($lang)) {
-            SimpleSAML_Logger::error('Invalid dictionary definition file [' . $definitionFile . ']');
+            \SimpleSAML_Logger::error('Invalid dictionary definition file [' . $definitionFile . ']');
             return array();
         }
 
@@ -369,7 +373,7 @@ class SimpleSAML_Locale_Translate {
     private function readDictionaryFile($filename) {
         assert('is_string($filename)');
 
-        SimpleSAML_Logger::debug('Template: Reading [' . $filename . ']');
+        \SimpleSAML_Logger::debug('Template: Reading [' . $filename . ']');
 
         $jsonFile = $filename . '.definition.json';
         if (file_exists($jsonFile)) {
@@ -382,7 +386,7 @@ class SimpleSAML_Locale_Translate {
             return $this->readDictionaryPHP($filename);
         }
 
-        SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
+        \SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
         return array();
     }
 

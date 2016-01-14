@@ -25,7 +25,7 @@ class SimpleSAML_XHTML_Template {
         $this->configuration = $configuration;
         $this->template = $template;
         $this->data['baseurlpath'] = $this->configuration->getBaseURL();
-        $this->translator = new SimpleSAML_Locale_Translate($configuration, $defaultDictionary = NULL);
+        $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary = NULL);
     }
 
     /**
@@ -42,7 +42,7 @@ class SimpleSAML_XHTML_Template {
     }
 
     /**
-     * Wrap Translate->getTranslation
+     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Locale\Translate::getTranslation() instead.
      */
     public function getTranslation($translations) {
         return $this->translator->getTranslation($translations);
