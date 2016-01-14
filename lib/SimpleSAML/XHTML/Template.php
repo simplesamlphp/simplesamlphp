@@ -73,6 +73,14 @@ class SimpleSAML_XHTML_Template {
 
 
     /**
+     * Wraps Language->getLanguageList
+     */
+    public function includeInlineTranslation($tag, $translation) {
+        return $this->translator->includeInlineTranslation($tag, $translation);
+    }
+
+
+    /**
      * Show the template to the user.
      */
     public function show() {
