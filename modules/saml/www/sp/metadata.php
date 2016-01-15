@@ -58,6 +58,7 @@ $assertionsconsumerservices = $spconfig->getArray('acs.Bindings', $assertionscon
 
 $index = 0;
 $eps = array();
+$supported_protocols = array();
 foreach ($assertionsconsumerservices as $services) {
 
     $acsArray = array('index' => $index);
@@ -65,23 +66,38 @@ foreach ($assertionsconsumerservices as $services) {
         case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST':
             $acsArray['Binding'] = SAML2_Const::BINDING_HTTP_POST;
             $acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
+            if (!in_array(SAML2_Const::NS_SAMLP, $supported_protocols)) {
+                $supported_protocols[] = SAML2_Const::NS_SAMLP;
+            }
             break;
         case 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
             $acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/'.$sourceId);
+            if (!in_array('urn:oasis:names:tc:SAML:1.1:protocol', $supported_protocols)) {
+                $supported_protocols[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
+            }
             break;
         case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact';
             $acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
+            if (!in_array(SAML2_Const::NS_SAMLP, $supported_protocols)) {
+                $supported_protocols[] = SAML2_Const::NS_SAMLP;
+            }
             break;
         case 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01';
             $acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/'.$sourceId.'/artifact');
+            if (!in_array('urn:oasis:names:tc:SAML:1.1:protocol', $supported_protocols)) {
+                $supported_protocols[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
+            }
             break;
         case 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser';
             $acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
             $acsArray['hoksso:ProtocolBinding'] = SAML2_Const::BINDING_HTTP_REDIRECT;
+            if (!in_array(SAML2_Const::NS_SAMLP, $supported_protocols)) {
+                $supported_protocols[] = SAML2_Const::NS_SAMLP;
+            }
             break;
     }
     $eps[] = $acsArray;
@@ -212,8 +228,6 @@ if ($spconfig->hasValue('redirect.sign')) {
 } elseif ($spconfig->hasValue('sign.authnrequest')) {
     $metaArray20['validate.authnrequest'] = $spconfig->getBoolean('sign.authnrequest');
 }
-
-$supported_protocols = array('urn:oasis:names:tc:SAML:1.1:protocol', SAML2_Const::NS_SAMLP);
 
 $metaArray20['metadata-set'] = 'saml20-sp-remote';
 $metaArray20['entityid'] = $entityId;
