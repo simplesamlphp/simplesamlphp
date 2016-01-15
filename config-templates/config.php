@@ -830,7 +830,7 @@ $config = array(
      * Example:
      *   'proxy.auth' = 'myuser:password'
      */
-    'proxy.auth' => false
+    'proxy.auth' => false,
     
     /*
      * Array of domains that are allowed when generating links or redirections
