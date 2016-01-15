@@ -64,6 +64,17 @@ Please see the [metarefresh documentation](simplesamlphp-automated_metadata).
 
 
 
+Using simpleSAMLphp on a web server requiring the use of a web proxy
+--------------------------------------------------------------------
+
+Some modules in simpleSAMLphp may require fetching HTTP/HTTPS content from external websites (e.g. the metarefresh module needs to fetch the metadata from an external source).
+
+simpleSAMLphp can be configured to send HTTP/S requests via such a proxy. The proxy can be configured in the config/config.php option "proxy". Should the proxy require authentication, this can be configured with "proxy.auth".
+
+The default is not to use a proxy ('proxy' = null) and no username and password are used ('proxy.auth' = false).
+
+
+
 Auth MemCookie
 --------------
 
