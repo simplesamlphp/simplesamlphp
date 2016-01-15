@@ -367,7 +367,7 @@ class HTTP
             if (!isset($context['http']['proxy'])) {
                 $context['http']['proxy'] = $proxy;
             }
-            if ($proxy_auth !== false) ) {
+            if ($proxy_auth !== false) {
                 $context['http']['header'] = "Proxy-Authorization: Basic".base64_encode($proxy_auth);
             }
             if (!isset($context['http']['request_fulluri'])) {
