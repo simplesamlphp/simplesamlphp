@@ -350,8 +350,13 @@ class SimpleSAML_Logger
         }
 
         if (self::$logLevel >= $level || $statsLog) {
+            $raw_input = array($string);
             if (is_array($string)) {
+                $raw_input = $string;
                 $string = implode(",", $string);
+            }
+            if ((self::$format == 'json') && method_exists(self::$loggingHandler, 'setArray')) {
+                self::$loggingHandler->setArray($raw_input);
             }
 
             $formats = array('%trackid', '%msg', '%srcip', '%stat');

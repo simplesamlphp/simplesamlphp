@@ -182,10 +182,7 @@ class SimpleSAML_Error_Exception extends Exception
     public function logError()
     {
 
-        $lines = $this->format();
-        foreach ($lines as $line) {
-            SimpleSAML_Logger::error($line);
-        }
+        $this->log('error');
     }
 
 
@@ -197,10 +194,7 @@ class SimpleSAML_Error_Exception extends Exception
     public function logWarning()
     {
 
-        $lines = $this->format();
-        foreach ($lines as $line) {
-            SimpleSAML_Logger::warning($line);
-        }
+        $this->log('warning');
     }
 
 
@@ -212,10 +206,18 @@ class SimpleSAML_Error_Exception extends Exception
     public function logInfo()
     {
 
-        $lines = $this->format();
-        foreach ($lines as $line) {
-            SimpleSAML_Logger::debug($line);
-        }
+        $this->log('debug');
+    }
+
+
+    /**
+     * Abstracted logging method.
+     *
+     * @param string $level The log level (method to be called.)
+     */
+    private function log($level) {
+
+        SimpleSAML_Logger::$level($this->format());
     }
 
 
@@ -227,10 +229,7 @@ class SimpleSAML_Error_Exception extends Exception
     public function logDebug()
     {
 
-        $lines = $this->format();
-        foreach ($lines as $line) {
-            SimpleSAML_Logger::debug($line);
-        }
+        $this->log('debug');
     }
 
 
