@@ -1,0 +1,61 @@
+`core:GenerateAffiliation`
+===================
+
+Filter that generate an attribute to the user based on value(s) in another attribute.
+
+Default member attribute is memberOf, default target attribute is eduPersonAffiliation.
+%replace can be used to replace member attribute with target attribute, otherwise both will exist
+after processing filter. If the member attribute does not exist, nothing will be done or replaced.
+
+
+Examples
+--------
+
+Add student affiliation based on LDAP groupmembership
+Will add eduPersonAffiliation containing value "student" if memberOf attribute contains 'cn=student,o=some,o=organization,dc=org'.
+
+    'authproc' => array(
+        50 => array(
+            'class' => 'core:GenerateAffiliation',
+            'values' => array(
+                'student' => array(
+                    'cn=student,o=some,o=organization,dc=org',
+                ),
+        ),
+    ),
+
+
+Add student and employee affiliation based on LDAP groupmembership
+
+    'authproc' => array(
+        50 => array(
+            'class' => 'core:GenerateAffiliation',
+            'values' => array(
+                'student' => array(
+                    'cn=student,o=some,o=organization,dc=org',
+                ),
+                'employee' => array(
+                    'cn=employees,o=some,o=organization,dc=org',
+                ),
+        ),
+    ),
+
+Different memberof and target attributes, replace member attribute
+Will add 'affiliation' containing 'student' and/or 'employee' depending on the values in 'groups' attribute and remove the latter.
+
+    'authproc' => array(
+        50 => array(
+            'class' => 'core:GenerateAffiliation',
+            '%replace',
+            'attributename' => 'affiliation',
+            'memberattribute' => 'groups',
+            'values' => array(
+                'student' => array(
+                    'cn=student,o=some,o=organization,dc=org',
+                ),
+                'employee' => array(
+                    'cn=employees,o=some,o=organization,dc=org',
+                ),
+        ),
+    ),
+    
