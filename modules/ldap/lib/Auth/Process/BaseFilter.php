@@ -137,6 +137,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 			$authconfig = array();
 			$authconfig['ldap.hostname']   = @$authsource['hostname'];
 			$authconfig['ldap.enable_tls'] = @$authsource['enable_tls'];
+			$authconfig['ldap.port']       = @$authsource['port'];
 			$authconfig['ldap.timeout']    = @$authsource['timeout'];
 			$authconfig['ldap.debug']      = @$authsource['debug'];
 			$authconfig['ldap.basedn']     = (@$authsource['search.enable'] ? @$authsource['search.base'] : NULL);
