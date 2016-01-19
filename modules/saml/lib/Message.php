@@ -1,4 +1,6 @@
 <?php
+use RobRichards\XMLSecLibs\XMLSecurityKey;
+use XMLSecurityKey;
 
 
 /**
@@ -38,12 +40,12 @@ class sspmod_saml_Message {
 			 *
 			 * See http://csrc.nist.gov/publications/nistpubs/800-131A/sp800-131A.pdf for more info.
 			 *
-			 * TODO: change default to RobRichards\XMLSecLibs\XMLSecurityKey::RSA_SHA256.
+			 * TODO: change default to XMLSecurityKey::RSA_SHA256.
 			 */
-			$algo = $srcMetadata->getString('signature.algorithm', RobRichards\XMLSecLibs\XMLSecurityKey::RSA_SHA1);
+			$algo = $srcMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA1);
 		}
 
-		$privateKey = new RobRichards\XMLSecLibs\XMLSecurityKey($algo, array('type' => 'private'));
+		$privateKey = new XMLSecurityKey($algo, array('type' => 'private'));
 		if (array_key_exists('password', $keyArray)) {
 			$privateKey->passphrase = $keyArray['password'];
 		}
@@ -190,7 +192,7 @@ class sspmod_saml_Message {
 
 		$lastException = NULL;
 		foreach ($pemKeys as $i => $pem) {
-			$key = new RobRichards\XMLSecLibs\XMLSecurityKey(RobRichards\XMLSecLibs\XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
+			$key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'public'));
 			$key->loadKey($pem);
 
 			try {
@@ -273,7 +275,7 @@ class sspmod_saml_Message {
 
 		$sharedKey = $srcMetadata->getString('sharedkey', NULL);
 		if ($sharedKey !== NULL) {
-			$key = new RobRichards\XMLSecLibs\XMLSecurityKey(RobRichards\XMLSecLibs\XMLSecurityKey::AES128_CBC);
+			$key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
 			$key->loadKey($sharedKey);
 			return array($key);
 		}
@@ -285,7 +287,7 @@ class sspmod_saml_Message {
 		if ($keyArray !== NULL) {
 			assert('isset($keyArray["PEM"])');
 
-			$key = new RobRichards\XMLSecLibs\XMLSecurityKey(RobRichards\XMLSecLibs\XMLSecurityKey::RSA_1_5, array('type'=>'private'));
+			$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'private'));
 			if (array_key_exists('password', $keyArray)) {
 				$key->passphrase = $keyArray['password'];
 			}
@@ -297,7 +299,7 @@ class sspmod_saml_Message {
 		$keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, TRUE);
 		assert('isset($keyArray["PEM"])');
 
-		$key = new RobRichards\XMLSecLibs\XMLSecurityKey(RobRichards\XMLSecLibs\XMLSecurityKey::RSA_1_5, array('type'=>'private'));
+		$key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type'=>'private'));
 		if (array_key_exists('password', $keyArray)) {
 			$key->passphrase = $keyArray['password'];
 		}
@@ -322,7 +324,7 @@ class sspmod_saml_Message {
 
 		$blacklist = $srcMetadata->getArray('encryption.blacklisted-algorithms', NULL);
 		if ($blacklist === NULL) {
-			$blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', array(RobRichards\XMLSecLibs\XMLSecurityKey::RSA_1_5));
+			$blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', array(XMLSecurityKey::RSA_1_5));
 		}
 		return $blacklist;
 	}
@@ -746,13 +748,13 @@ class sspmod_saml_Message {
 	 * Retrieve the encryption key for the given entity.
 	 *
 	 * @param SimpleSAML_Configuration $metadata  The metadata of the entity.
-	 * @return RobRichards\XMLSecLibs\XMLSecurityKey  The encryption key.
+	 * @return XMLSecurityKey  The encryption key.
 	 */
 	public static function getEncryptionKey(SimpleSAML_Configuration $metadata) {
 
 		$sharedKey = $metadata->getString('sharedkey', NULL);
 		if ($sharedKey !== NULL) {
-			$key = new RobRichards\XMLSecLibs\XMLSecurityKey(RobRichards\XMLSecLibs\XMLSecurityKey::AES128_CBC);
+			$key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
 			$key->loadKey($sharedKey);
 			return $key;
 		}
@@ -764,7 +766,7 @@ class sspmod_saml_Message {
 				$pemKey = "-----BEGIN CERTIFICATE-----\n" .
 					chunk_split($key['X509Certificate'], 64) .
 					"-----END CERTIFICATE-----\n";
-				$key = new RobRichards\XMLSecLibs\XMLSecurityKey(RobRichards\XMLSecLibs\XMLSecurityKey::RSA_OAEP_MGF1P, array('type'=>'public'));
+				$key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, array('type'=>'public'));
 				$key->loadKey($pemKey);
 				return $key;
 			}

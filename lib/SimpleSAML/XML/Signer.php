@@ -1,4 +1,5 @@
 <?php
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
 
 /**
  * A helper class for signing XML.

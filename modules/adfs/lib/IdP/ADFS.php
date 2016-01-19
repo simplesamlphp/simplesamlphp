@@ -1,5 +1,7 @@
 <?php
 
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
+
 class sspmod_adfs_IdP_ADFS {
 
 	public static function receiveAuthnRequest(SimpleSAML_IdP $idp) {

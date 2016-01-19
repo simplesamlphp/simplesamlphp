@@ -1,4 +1,6 @@
 <?php
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use RobRichards\XMLSecLibs\XMLSecurityKey;
 
 
 /**
@@ -187,7 +189,7 @@ class SimpleSAML_Metadata_Signer
         }
 
         // load the private key
-        $objKey = new RobRichards\XMLSecLibs\XMLSecurityKey(RobRichards\XMLSecLibs\XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
+        $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
         if (array_key_exists('privatekey_pass', $keyCertFiles)) {
             $objKey->passphrase = $keyCertFiles['privatekey_pass'];
         }
