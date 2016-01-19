@@ -362,11 +362,11 @@ class HTTP
         $config = \SimpleSAML_Configuration::getInstance();
 
         $proxy = $config->getString('proxy', null);
-        $proxy_auth = $config->getString('proxy.auth', false);
         if ($proxy !== null) {
             if (!isset($context['http']['proxy'])) {
                 $context['http']['proxy'] = $proxy;
             }
+            $proxy_auth = $config->getString('proxy.auth', false);
             if ($proxy_auth !== false) {
                 $context['http']['header'] = "Proxy-Authorization: Basic".base64_encode($proxy_auth);
             }
