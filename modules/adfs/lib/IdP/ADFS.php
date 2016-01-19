@@ -94,12 +94,12 @@ class sspmod_adfs_IdP_ADFS {
 		$objXMLSecDSig = new XMLSecurityDSig();
 		$objXMLSecDSig->idKeys = array('AssertionID');	
 		$objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);	
-		$responsedom = SAML2_DOMDocumentFactory::fromString(str_replace ("\r", "", $response));
+		$responsedom = SAML2\DOMDocumentFactory::fromString(str_replace ("\r", "", $response));
 		$firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
 		$objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1,
 			array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
 			array('id_name' => 'AssertionID'));
-		$objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
+		$objKey = new RobRichards\XMLSecLibs\XMLSecurityKey(RobRichards\XMLSecLibs\XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
 		$objKey->loadKey($key, TRUE);
 		$objXMLSecDSig->sign($objKey);
 		if ($cert) {

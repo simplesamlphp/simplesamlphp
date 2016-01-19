@@ -96,7 +96,7 @@ class SimpleSAML_XML_Signer {
 		assert('is_array($privatekey)');
 		assert('array_key_exists("PEM", $privatekey)');
 
-		$this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
+		$this->privateKey = new RobRichards\XMLSecLibs\XMLSecurityKey(RobRichards\XMLSecLibs\XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
 		if (array_key_exists('password', $privatekey)) {
 			$this->privateKey->passphrase = $privatekey['password'];
 		}
