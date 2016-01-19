@@ -26,7 +26,7 @@ class sspmod_core_Auth_Process_GenerateAffiliation extends SimpleSAML_Auth_Proce
     /**
     * Wether $memberattribute should be replaced by target attribute
     */
-    private $replace = FALSE;
+    private $replace = false;
     
     /**
     * Initialize this filter.
@@ -44,9 +44,9 @@ class sspmod_core_Auth_Process_GenerateAffiliation extends SimpleSAML_Auth_Proce
             if (is_int($name)) {
                 // check if this is an option
                 if ($value === '%replace') {
-                        $this->replace = TRUE;
+                        $this->replace = true;
                 } else {
-                        throw new SimpleSAML_Error_Exception('Unknown flag : ' . var_export($value, TRUE));
+                        throw new SimpleSAML_Error_Exception('Unknown flag : ' . var_export($value, true));
                 }
                 continue;
             }
