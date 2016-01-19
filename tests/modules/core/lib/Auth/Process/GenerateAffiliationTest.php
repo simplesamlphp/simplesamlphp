@@ -14,7 +14,7 @@ class Test_Core_Auth_Process_GenerateAffiliation extends PHPUnit_Framework_TestC
      * @return array  The state array after processing.
      */
     private static function processFilter(array $config, array $request) {
-        $filter = new sspmod_core_Auth_Process_GenerateAffiliation($config, NULL);
+        $filter = new sspmod_core_Auth_Process_GenerateAffiliation($config, null);
         $filter->process($request);
         return $request;
     }
