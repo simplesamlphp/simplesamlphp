@@ -230,8 +230,6 @@ if ($spconfig->hasValue('redirect.sign')) {
     $metaArray20['validate.authnrequest'] = $spconfig->getBoolean('sign.authnrequest');
 }
 
-$supported_protocols = array('urn:oasis:names:tc:SAML:1.1:protocol', SAML2_Const::NS_SAMLP);
-
 $metaArray20['metadata-set'] = 'saml20-sp-remote';
 $metaArray20['entityid'] = $entityId;
 
