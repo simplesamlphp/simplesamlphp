@@ -41,8 +41,8 @@ Database layout used in some of the examples:
       eduPersonPrincipalName TEXT NOT NULL
     );
     CREATE TABLE usergroups (
-      uid TEXT REFERENCES users (uid) ON DELETE CASCADE ON UPDATE CASCADE,
-      groupname TEXT,
+      uid VARCHAR(30) NOT NULL REFERENCES users (uid) ON DELETE CASCADE ON UPDATE CASCADE,
+      groupname VARCHAR(30) NOT NULL,
       UNIQUE(uid, groupname)
     );
 
