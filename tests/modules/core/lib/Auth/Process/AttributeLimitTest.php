@@ -210,18 +210,6 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
     }
 
     /**
-     * Test for non-array config.
-     * 
-     * @expectedException Exception 
-     */
-    public function testConfigIsArray()
-    {
-        $config = 'invalid';
-
-        $result = self::processFilter($config, self::$request);
-    }
-
-    /**
      * Test for invalid attribute name
      * 
      * @expectedException Exception 
