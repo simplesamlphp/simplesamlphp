@@ -56,6 +56,11 @@ if [ -f "$TARGET/composer.json" ]; then
     php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-saml2debug:dev-master --update-no-dev --prefer-dist -o -d "$TARGET"
 fi
 
+for MOD in InfoCard aggregator aggregator2 autotest consentSimpleAdmin logpeek metaedit modinfo openid openidProvider papi saml2debug
+do
+    mv "$TARGET/modules/$MOD/default-enable" "$TARGET/modules/$MOD/default-disable"
+done
+
 mkdir -p "$TARGET/config" "$TARGET/metadata" "$TARGET/cert" "$TARGET/log"
 cp -rv "$TARGET/config-templates/"* "$TARGET/config/"
 cp -rv "$TARGET/metadata-templates/"* "$TARGET/metadata/"
