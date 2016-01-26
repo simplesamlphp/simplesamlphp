@@ -28,8 +28,9 @@
         "whitehat101/apr1-md5": "~1.0"
     },
     "require-dev": {
+        "ext-pdo_sqlite": "*",
         "phpunit/phpunit": "~3.7",
-        "satooshi/php-coveralls": "dev-master"
+        "satooshi/php-coveralls": "^1.0"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",
