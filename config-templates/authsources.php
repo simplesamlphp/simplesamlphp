@@ -303,6 +303,9 @@ $config = array(
         // array of strings, in which case they will be searched in the order given.
         'search.base' => 'ou=people,dc=example,dc=org',
 
+        // Additional LDAP filters appended to the default search
+        'search.filter' => '(objectclass=inetorgperson)',
+
         // The attribute(s) the username should match against.
         //
         // This is an array with one or more attribute names. Any of the attributes in

@@ -81,6 +81,10 @@ class sspmod_ldap_ConfigHelper {
 	 */
 	private $searchBase;
 
+	/**
+	 * Additional LDAP filter fields for the search
+	 */
+	private $searchFilter;
 
 	/**
 	 * The attributes which should match the username.
@@ -149,6 +153,7 @@ class sspmod_ldap_ConfigHelper {
 			}
 
 			$this->searchBase = $config->getArrayizeString('search.base');
+			$this->searchFilter = $config->getString('search.filter',NULL);
 			$this->searchAttributes = $config->getArray('search.attributes');
 
 		} else {
@@ -197,7 +202,7 @@ class sspmod_ldap_ConfigHelper {
 				}
 			}
 
-			$dn = $ldap->searchfordn($this->searchBase, $this->searchAttributes, $username, TRUE);
+			$dn = $ldap->searchfordn($this->searchBase, $this->searchAttributes, $username, TRUE, $this->searchFilter);
 			if ($dn === NULL) {
 				/* User not found with search. */
 				SimpleSAML_Logger::info($this->location . ': Unable to find users DN. username=\'' . $username . '\'');
