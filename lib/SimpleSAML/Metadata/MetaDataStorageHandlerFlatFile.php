@@ -113,7 +113,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
         foreach ($metadataSet as $entityId => &$entry) {
             if (preg_match('/__DYNAMIC(:[0-9]+)?__/', $entityId)) {
                 $entry['entityid'] = $this->generateDynamicHostedEntityID($set);
-            } else {
+            } else if (!array_key_exists('entityid', $entry) || !empty($entry['entityid'])) {
                 $entry['entityid'] = $entityId;
             }
         }
