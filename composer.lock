@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "79273d493e7d184e2726c3e6b13c0d05",
-    "content-hash": "675e663d2d81f0fb3ab32dbb80d2892d",
+    "hash": "75e524197b53d4ae052bb0c519f9fbb5",
+    "content-hash": "6e843f26cd794daae89dc8c11ab3a9ab",
     "packages": [
         {
             "name": "psr/log",
@@ -47,20 +47,20 @@
         },
         {
             "name": "robrichards/xmlseclibs",
-            "version": "1.4.1",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/robrichards/xmlseclibs.git",
-                "reference": "465f18a8e1196c279b1298a3b08bcbee71ea4e4e"
+                "reference": "1b78df099c107279e9069a7b7608be98fd530dfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/robrichards/xmlseclibs/zipball/465f18a8e1196c279b1298a3b08bcbee71ea4e4e",
-                "reference": "465f18a8e1196c279b1298a3b08bcbee71ea4e4e",
+                "url": "https://api.github.com/repos/robrichards/xmlseclibs/zipball/1b78df099c107279e9069a7b7608be98fd530dfd",
+                "reference": "1b78df099c107279e9069a7b7608be98fd530dfd",
                 "shasum": ""
             },
             "require": {
-                "php": ">= 5.2"
+                "php": ">= 5.3"
             },
             "suggest": {
                 "ext/mcrypt": "MCrypt extension",
@@ -68,9 +68,9 @@
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "src/"
-                ]
+                "psr-4": {
+                    "RobRichards\\XMLSecLibs\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -84,20 +84,20 @@
                 "xml",
                 "xmldsig"
             ],
-            "time": "2015-07-31 12:22:14"
+            "time": "2015-07-31 15:08:38"
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v1.7.1",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "4e360ddbefe04f1cf7a90eb417ca4a36c89a7ee2"
+                "reference": "089a5806bfb8a25ffae8fe1251f53c6e9fb88fb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/4e360ddbefe04f1cf7a90eb417ca4a36c89a7ee2",
-                "reference": "4e360ddbefe04f1cf7a90eb417ca4a36c89a7ee2",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/089a5806bfb8a25ffae8fe1251f53c6e9fb88fb6",
+                "reference": "089a5806bfb8a25ffae8fe1251f53c6e9fb88fb6",
                 "shasum": ""
             },
             "require": {
@@ -105,7 +105,7 @@
                 "ext-openssl": "*",
                 "php": ">=5.3.3",
                 "psr/log": "~1.0",
-                "robrichards/xmlseclibs": "^1.3"
+                "robrichards/xmlseclibs": "^2.0"
             },
             "require-dev": {
                 "mockery/mockery": "~0.9",
@@ -119,7 +119,7 @@
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "SAML2_": "src/"
+                    "SAML2\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -133,7 +133,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2015-12-17 09:02:34"
+            "time": "2016-01-11 16:05:56"
         },
         {
             "name": "whitehat101/apr1-md5",

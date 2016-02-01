@@ -108,15 +108,15 @@ try {
         $metaArray['ArtifactResolutionService'][] = array(
             'index'    => 0,
             'Location' => \SimpleSAML\Utils\HTTP::getBaseURL().'saml2/idp/ArtifactResolutionService.php',
-            'Binding'  => SAML2_Const::BINDING_SOAP,
+            'Binding'  => SAML2\Constants::BINDING_SOAP,
         );
     }
 
     if ($idpmeta->getBoolean('saml20.hok.assertion', false)) {
         // Prepend HoK SSO Service endpoint.
         array_unshift($metaArray['SingleSignOnService'], array(
-            'hoksso:ProtocolBinding' => SAML2_Const::BINDING_HTTP_REDIRECT,
-            'Binding'                => SAML2_Const::BINDING_HOK_SSO,
+            'hoksso:ProtocolBinding' => SAML2\Constants::BINDING_HTTP_REDIRECT,
+            'Binding'                => SAML2\Constants::BINDING_HOK_SSO,
             'Location'               => \SimpleSAML\Utils\HTTP::getBaseURL().'saml2/idp/SSOService.php'
         ));
     }

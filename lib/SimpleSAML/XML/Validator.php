@@ -1,4 +1,6 @@
 <?php
+use RobRichards\XMLSecLibs\XMLSecEnc;
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
 
 /**
  * This class implements helper functions for XML validation.
@@ -91,7 +93,7 @@ class SimpleSAML_XML_Validator {
 		} else {
 			// No PEM data. Search for key in signature
 
-			if (!XMLSecEnc::staticLocateKeyInfo($objKey, $signatureElement)) {
+			if (! XMLSecEnc::staticLocateKeyInfo($objKey, $signatureElement)) {
 				throw new Exception('Error finding key data for XML signature validation.');
 			}
 
