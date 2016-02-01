@@ -9,11 +9,7 @@ php:
 matrix:
   allow_failures:
   - php: hhvm
-before_script:
-- if [[ "$TRAVIS_PHP_VERSION" == "5.3" || "$TRAVIS_PHP_VERSION" == "5.4" ]];
-  then composer update --dev --prefer-lowest; else
-  composer install --dev;
-  fi
+before_script: composer install --dev
 script: phpunit --configuration tools/phpunit
 after_script:
 - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/bin/coveralls -v; fi
