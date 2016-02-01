@@ -149,7 +149,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 
 		/* Save the selected authentication source for the logout process. */
 		$session = SimpleSAML_Session::getSessionFromRequest();
-		$session->setData(self::SESSION_SOURCE, $state[self::AUTHID], $authId);
+		$session->setData(self::SESSION_SOURCE, $state[self::AUTHID], $authId, SimpleSAML_Session::DATA_TIMEOUT_SESSION_END);
 
 		try {
 			$as->authenticate($state);
