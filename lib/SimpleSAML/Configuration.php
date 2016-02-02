@@ -214,15 +214,22 @@ class SimpleSAML_Configuration
      *
      * @param array  $config The configuration array.
      * @param string $location The location which will be given when an error occurs. Optional.
+     * @param string|null $instance The name of this instance. If specified, the configuration will be loaded and an
+     * instance with that name will be kept for it to be retrieved later with getInstance($instance). If null, the
+     * configuration will not be kept for later use. Defaults to null.
      *
      * @return SimpleSAML_Configuration The configuration object.
      */
-    public static function loadFromArray($config, $location = '[ARRAY]')
+    public static function loadFromArray($config, $location = '[ARRAY]', $instance = null)
     {
         assert('is_array($config)');
         assert('is_string($location)');
 
-        return new SimpleSAML_Configuration($config, $location);
+        $c = new SimpleSAML_Configuration($config, $location);
+        if ($instance !== null) {
+            self::$instance[$instance] = $c;
+        }
+        return $c;
     }
 
 
@@ -245,14 +252,16 @@ class SimpleSAML_Configuration
     {
         assert('is_string($instancename)');
 
+        // check if the instance exists already
+        if (array_key_exists($instancename, self::$instance)) {
+            return self::$instance[$instancename];
+        }
+
         if ($instancename === 'simplesaml') {
             return self::getConfig();
         }
 
-        if (!array_key_exists($instancename, self::$instance)) {
-            throw new Exception('Configuration with name '.$instancename.' is not initialized.');
-        }
-        return self::$instance[$instancename];
+        throw new Exception('Configuration with name '.$instancename.' is not initialized.');
     }
 
 

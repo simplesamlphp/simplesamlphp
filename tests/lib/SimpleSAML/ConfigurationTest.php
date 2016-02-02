@@ -522,4 +522,35 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
         $c->getLocalizedString('opt');
     }
 
+
+    /**
+     * Test that the default instance fails to load even if we previously loaded another instance.
+     * @expectedException Exception
+     */
+    public function testLoadDefaultInstance()
+    {
+        SimpleSAML_Configuration::loadFromArray(array('key' => 'value'), '', 'dummy');
+        $c = SimpleSAML_Configuration::getInstance();
+        var_dump($c);
+    }
+
+
+    /**
+     * Test that Configuration objects can be initialized from an array.
+     *
+     * ATTENTION: this test must be kept the last.
+     */
+    public function testLoadInstanceFromArray()
+    {
+        $c = array(
+            'key' => 'value'
+        );
+        // test loading a custom instance
+        SimpleSAML_Configuration::loadFromArray($c, '', 'dummy');
+        $this->assertEquals('value', SimpleSAML_Configuration::getInstance('dummy')->getValue('key', null));
+
+        // test loading the default instance
+        SimpleSAML_Configuration::loadFromArray($c, '', 'simplesaml');
+        $this->assertEquals('value', SimpleSAML_Configuration::getInstance()->getValue('key', null));
+    }
 }
