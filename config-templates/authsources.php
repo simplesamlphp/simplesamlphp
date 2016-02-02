@@ -303,14 +303,14 @@ $config = array(
         // array of strings, in which case they will be searched in the order given.
         'search.base' => 'ou=people,dc=example,dc=org',
 
-        // Additional LDAP filters appended to the default search
-        'search.filter' => '(objectclass=inetorgperson)',
-
         // The attribute(s) the username should match against.
         //
         // This is an array with one or more attribute names. Any of the attributes in
         // the array may match the value the username.
         'search.attributes' => array('uid', 'mail'),
+
+        // Additional LDAP filters appended to the search attributes
+        'search.filter' => '(objectclass=inetorgperson)',
 
         // The username & password the SimpleSAMLphp should bind to before searching. If
         // this is left as NULL, no bind will be performed before searching.

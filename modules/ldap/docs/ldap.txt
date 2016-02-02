@@ -72,6 +72,14 @@ authentication source:
 		'search.attributes' => array('uid', 'mail'),
 
 		/*
+		 * Additional filters that must match for the entire LDAP search to be TRUE
+		 *
+		 * This should be a single string conforming to (RFC 1960, 2544)
+		 * The string is appended to the search attributes
+		 */
+		'search.filter' => '(&(objectClass=Person)(|(sn=Doe)(cn=John *)))',
+
+		/*
 		 * The username & password where SimpleSAMLphp should bind to before searching. If
 		 * this is left NULL, no bind will be performed before searching.
 		 */
@@ -102,6 +110,10 @@ You must then configure the `search.base` and the `search.attributes`
 options. The `search.base`-option must be the `dn` which should be used
 as the base/root of the search. The `search.attributes`-option is an
 array with attributes the username should be matched against.
+
+You can also append the `search.filter` option to further limit your search.
+The `search.filter` field is optional and need not be included in your
+configuration file.
 
 The `dnpattern` option will not be used if searching is enabled.
 
