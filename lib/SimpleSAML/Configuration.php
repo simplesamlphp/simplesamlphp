@@ -121,8 +121,10 @@ class SimpleSAML_Configuration
             // file does not exist, but is required
             throw new Exception('Missing configuration file: '.$filename);
         } else {
-            // file does not exist, but is optional
-            $config = array();
+            // file does not exist, but is optional, so return an empty configuration object without saving it
+            $cfg = new SimpleSAML_Configuration(array(), $filename);
+            $cfg->filename = $filename;
+            return $cfg;
         }
 
         $cfg = new SimpleSAML_Configuration($config, $filename);
