@@ -451,6 +451,23 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
         $c->getConfigList('opt');
     }
 
+
+    /**
+     * Test SimpleSAML_Configuration::getConfigList() with an array of wrong options.
+     * @expectedException Exception
+     */
+    public function testGetConfigListWrongArrayValues()
+    {
+        $c = SimpleSAML_Configuration::loadFromArray(array(
+            'opts' => array(
+                'a',
+                'b',
+            ),
+        ));
+        $c->getConfigList('opts');
+    }
+
+
     /**
      * Test SimpleSAML_Configuration::getOptions()
      */
