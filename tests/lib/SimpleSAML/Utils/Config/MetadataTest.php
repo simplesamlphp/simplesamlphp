@@ -12,6 +12,13 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
      */
     public function testGetContact()
     {
+        // test invalid argument
+        try {
+            $parsed = \SimpleSAML\Utils\Config\Metadata::getContact('string');
+        } catch (InvalidArgumentException $e) {
+            $this->assertEquals('Invalid input parameters', $e->getMessage());
+        }
+
         // test missing type
         $contact = array(
             'name' => 'John Doe'
@@ -159,6 +166,12 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
                 );
             }
         }
+        $valid_types = array('email@example.com', array('email1@example.com', 'email2@example.com'));
+        foreach ($valid_types as $type) {
+            $contact['emailAddress'] = $type;
+            $parsed = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
+            $this->assertEquals($type, $parsed['emailAddress']);
+        }
 
         // test telephoneNumber
         $contact = array(
@@ -184,6 +197,12 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals('Telephone numbers must be a string and cannot be empty.', $e->getMessage());
             }
+        }
+        $valid_types = array('1234', array('1234', '5678'));
+        foreach ($valid_types as $type) {
+            $contact['telephoneNumber'] = $type;
+            $parsed = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
+            $this->assertEquals($type, $parsed['telephoneNumber']);
         }
 
         // test completeness
