@@ -218,4 +218,40 @@ class Utils_MetadataTest extends PHPUnit_Framework_TestCase
         }
         $this->assertArrayNotHasKey('name', $parsed);
     }
+
+
+    /**
+     * Test \SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery().
+     */
+    public function testIsHiddenFromDiscovery()
+    {
+        // test for success
+        $metadata = array(
+            'EntityAttributes' => array(
+                \SimpleSAML\Utils\Config\Metadata::$ENTITY_CATEGORY => array(
+                    \SimpleSAML\Utils\Config\Metadata::$HIDE_FROM_DISCOVERY,
+                ),
+            ),
+        );
+        $this->assertTrue(\SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery($metadata));
+
+        // test for failures
+        $this->assertFalse(\SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery(array('foo')));
+        $this->assertFalse(\SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery(array(
+            'EntityAttributes' => 'bar',
+        )));
+        $this->assertFalse(\SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery(array(
+            'EntityAttributes' => array(),
+        )));
+        $this->assertFalse(\SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery(array(
+            'EntityAttributes' => array(
+                \SimpleSAML\Utils\Config\Metadata::$ENTITY_CATEGORY => '',
+            ),
+        )));
+        $this->assertFalse(\SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery(array(
+            'EntityAttributes' => array(
+                \SimpleSAML\Utils\Config\Metadata::$ENTITY_CATEGORY => array(),
+            ),
+        )));
+    }
 }
