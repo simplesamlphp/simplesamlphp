@@ -641,6 +641,15 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
         }
 
         // now make sure SingleSignOnService, SingleLogoutService and ArtifactResolutionService works fine
+        $a['metadata-set'] = 'shib13-idp-remote';
+        $c = SimpleSAML_Configuration::loadFromArray($a);
+        $this->assertEquals(
+            array(
+                'Location' => 'https://example.com/sso',
+                'Binding' => 'urn:mace:shibboleth:1.0:profiles:AuthnRequest',
+            ),
+            $c->getDefaultEndpoint('SingleSignOnService')
+        );
         $a['metadata-set'] = 'saml20-idp-remote';
         $c = SimpleSAML_Configuration::loadFromArray($a);
         $this->assertEquals(
@@ -652,17 +661,22 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
         );
         $this->assertEquals(
             array(
-                'Location' => 'https://example.com/sso',
-                'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
-            ),
-            $c->getDefaultEndpoint('SingleSignOnService')
-        );
-        $this->assertEquals(
-            array(
                 'Location' => 'https://example.com/slo',
                 'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
             ),
             $c->getDefaultEndpoint('SingleLogoutService')
+        );
+
+        // test for old shib1.3 AssertionConsumerService
+        $a['metadata-set'] = 'shib13-sp-remote';
+        $a['AssertionConsumerService'] = 'https://example.com/endpoint.php';
+        $c = SimpleSAML_Configuration::loadFromArray($a);
+        $this->assertEquals(
+            array(
+                'Location' => 'https://example.com/endpoint.php',
+                'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
+            ),
+            $c->getDefaultEndpoint('AssertionConsumerService')
         );
 
         // test for no valid endpoints specified
@@ -675,12 +689,19 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
         );
         $c = SimpleSAML_Configuration::loadFromArray($a);
         try {
-
             $c->getDefaultEndpoint('SingleLogoutService', $valid_bindings);
             $this->fail('Failed to detect invalid endpoint binding.');
         } catch (Exception $e) {
             $this->assertEquals('[ARRAY][\'SingleLogoutService\']:Could not find a supported SingleLogoutService '.
                 'endpoint.', $e->getMessage());
+        }
+        $a['metadata-set'] = 'foo';
+        $c = SimpleSAML_Configuration::loadFromArray($a);
+        try {
+            $c->getDefaultEndpoint('SingleSignOnService');
+            $this->fail('No valid metadata set specified.');
+        } catch (Exception $e) {
+            $this->assertStringStartsWith('Missing default binding for', $e->getMessage());
         }
     }
 
