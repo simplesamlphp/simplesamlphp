@@ -202,7 +202,7 @@ class SimpleSAML_Auth_LDAP {
      * @throws SimpleSAML_Error_UserNotFound if:
      * - Zero entries was found
      */
-    private function search($base, $attribute, $value) {
+    private function search($base, $attribute, $value, $searchFilter=NULL) {
 
         // Create the search filter
         $attribute = self::escape_filter_value($attribute, FALSE);
@@ -212,6 +212,11 @@ class SimpleSAML_Auth_LDAP {
             $filter .= '(' . $attr . '=' . $value. ')';
         }
         $filter = '(|' . $filter . ')';
+
+        // Append LDAP filters if defined
+        if ($searchFilter!=NULL) {
+            $filter = "(&".$filter."".$searchFilter.")";
+        }
 
         // Search using generated filter
         SimpleSAML_Logger::debug('Library - LDAP search(): Searching base \'' . $base . '\' for \'' . $filter . '\'');
@@ -271,7 +276,7 @@ class SimpleSAML_Auth_LDAP {
      * - $allowZeroHits er TRUE and no result is found
      *
      */
-    public function searchfordn($base, $attribute, $value, $allowZeroHits = FALSE) {
+    public function searchfordn($base, $attribute, $value, $allowZeroHits = FALSE, $searchFilter = NULL) {
 
         // Traverse all search bases, returning DN if found
         $bases = SimpleSAML\Utils\Arrays::arrayize($base);
@@ -279,7 +284,8 @@ class SimpleSAML_Auth_LDAP {
         foreach ($bases AS $current) {
             try {
                 // Single base search
-                $result = $this->search($current, $attribute, $value);
+                $result = $this->search($current, $attribute, $value, $searchFilter);
+
                 // We don't hawe to look any futher if user is found
                 if (!empty($result)) {
                     return $result;
