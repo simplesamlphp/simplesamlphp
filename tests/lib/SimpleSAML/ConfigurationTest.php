@@ -553,6 +553,20 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
                     'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
                 ),
             ),
+            // make sure endpoints with invalid bindings are ignored and those marked as NOT default are still used
+            array(
+                array(
+                    'index' => 1,
+                    'Location' => 'https://www1.example.com/endpoint.php',
+                    'Binding' => 'invalid_binding',
+                ),
+                array(
+                    'index' => 2,
+                    'isDefault' => false,
+                    'Location' => 'https://www2.example.com/endpoint.php',
+                    'Binding' => SAML2_Const::BINDING_HTTP_POST,
+                ),
+            ),
         );
         $acs_expected_eps = array(
             // output should be completed with the default binding (HTTP-POST for ACS)
@@ -589,20 +603,41 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
                 'isDefault' => true,
                 'index' => 2,
             ),
+            // the first valid enpoint should be used even if it's marked as NOT default
+            array(
+                'index' => 2,
+                'isDefault' => false,
+                'Location' => 'https://www2.example.com/endpoint.php',
+                'Binding' => SAML2_Const::BINDING_HTTP_POST,
+            )
         );
 
         $a = array(
             'metadata-set' => 'saml20-sp-remote',
             'ArtifactResolutionService' => 'https://example.com/ars',
             'SingleSignOnService' => 'https://example.com/sso',
-            'SingleLogoutService' => 'https://example.com/slo',
+            'SingleLogoutService' => array(
+                'Location' => 'https://example.com/slo',
+                'Binding' => 'valid_binding', // test unknown bindings if we don't specify a list of valid ones
+            ),
+        );
+
+        $valid_bindings = array(
+            SAML2_Const::BINDING_HTTP_POST,
+            SAML2_Const::BINDING_HTTP_REDIRECT,
+            SAML2_Const::BINDING_HOK_SSO,
+            SAML2_Const::BINDING_HTTP_ARTIFACT.
+            SAML2_Const::BINDING_SOAP,
         );
 
         // run all general tests with AssertionConsumerService endpoint type
         foreach ($acs_eps as $i => $ep) {
             $a['AssertionConsumerService'] = $ep;
             $c = SimpleSAML_Configuration::loadFromArray($a);
-            $this->assertEquals($acs_expected_eps[$i], $c->getDefaultEndpoint('AssertionConsumerService'));
+            $this->assertEquals($acs_expected_eps[$i], $c->getDefaultEndpoint(
+                'AssertionConsumerService',
+                $valid_bindings
+            ));
         }
 
         // now make sure SingleSignOnService, SingleLogoutService and ArtifactResolutionService works fine
@@ -629,6 +664,24 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
             ),
             $c->getDefaultEndpoint('SingleLogoutService')
         );
+
+        // test for no valid endpoints specified
+        $a['SingleLogoutService'] = array(
+            array(
+                'Location' => 'https://example.com/endpoint.php',
+                'Binding' => 'invalid_binding',
+                'isDefault' => true,
+            ),
+        );
+        $c = SimpleSAML_Configuration::loadFromArray($a);
+        try {
+
+            $c->getDefaultEndpoint('SingleLogoutService', $valid_bindings);
+            $this->fail('Failed to detect invalid endpoint binding.');
+        } catch (Exception $e) {
+            $this->assertEquals('[ARRAY][\'SingleLogoutService\']:Could not find a supported SingleLogoutService '.
+                'endpoint.', $e->getMessage());
+        }
     }
 
     /**
