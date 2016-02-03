@@ -490,6 +490,147 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
         $this->assertEquals($c->toArray(), array('a' => TRUE, 'b' => NULL));
     }
 
+
+    /**
+     * Test SimpleSAML_Configuration::getDefaultEndpoint().
+     *
+     * Iterate over all different valid definitions of endpoints and check if the expected output is produced.
+     */
+    public function testGetDefaultEndpoint()
+    {
+        /*
+         * First we run the full set of tests covering all possible configurations for indexed endpoint types,
+         * basically AssertionConsumerService and ArtifactResolutionService. Since both are the same, we just run the
+         * tests for AssertionConsumerService.
+         */
+        $acs_eps = array(
+            // just a string with the location
+            'https://example.com/endpoint.php',
+            // an array of strings with location of different endpoints
+            array(
+                'https://www1.example.com/endpoint.php',
+                'https://www2.example.com/endpoint.php',
+            ),
+            // define location and binding
+            array(
+                array(
+                    'Location' => 'https://example.com/endpoint.php',
+                    'Binding' => SAML2_Const::BINDING_HTTP_POST,
+                ),
+            ),
+            // define the ResponseLocation too
+            array(
+                array(
+                    'Location' => 'https://example.com/endpoint.php',
+                    'Binding' => SAML2_Const::BINDING_HTTP_POST,
+                    'ResponseLocation' => 'https://example.com/endpoint.php',
+                ),
+            ),
+            // make sure indexes are NOT taken into account (they just identify endpoints)
+            array(
+                array(
+                    'index' => 1,
+                    'Location' => 'https://www1.example.com/endpoint.php',
+                    'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+                ),
+                array(
+                    'index' => 2,
+                    'Location' => 'https://www2.example.com/endpoint.php',
+                    'Binding' => SAML2_Const::BINDING_HTTP_POST,
+                ),
+            ),
+            // make sure isDefault has priority over indexes
+            array(
+                array(
+                    'index' => 1,
+                    'Location' => 'https://www2.example.com/endpoint.php',
+                    'Binding' => SAML2_Const::BINDING_HTTP_POST,
+                ),
+                array(
+                    'index' => 2,
+                    'isDefault' => true,
+                    'Location' => 'https://www1.example.com/endpoint.php',
+                    'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+                ),
+            ),
+        );
+        $acs_expected_eps = array(
+            // output should be completed with the default binding (HTTP-POST for ACS)
+            array(
+                'Location' => 'https://example.com/endpoint.php',
+                'Binding' => SAML2_Const::BINDING_HTTP_POST,
+            ),
+            // we should just get the first endpoint with the default binding
+            array(
+                'Location' => 'https://www1.example.com/endpoint.php',
+                'Binding' => SAML2_Const::BINDING_HTTP_POST,
+            ),
+            // if we specify the binding, we should get it back
+            array(
+                'Location' => 'https://example.com/endpoint.php',
+                'Binding' => SAML2_Const::BINDING_HTTP_POST
+            ),
+            // if we specify ResponseLocation, we should get it back too
+            array(
+                'Location' => 'https://example.com/endpoint.php',
+                'Binding' => SAML2_Const::BINDING_HTTP_POST,
+                'ResponseLocation' => 'https://example.com/endpoint.php',
+            ),
+            // indexes must NOT be taken into account, order is the only thing that matters here
+            array(
+                'Location' => 'https://www1.example.com/endpoint.php',
+                'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+                'index' => 1,
+            ),
+            // isDefault must have higher priority than indexes
+            array(
+                'Location' => 'https://www1.example.com/endpoint.php',
+                'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+                'isDefault' => true,
+                'index' => 2,
+            ),
+        );
+
+        $a = array(
+            'metadata-set' => 'saml20-sp-remote',
+            'ArtifactResolutionService' => 'https://example.com/ars',
+            'SingleSignOnService' => 'https://example.com/sso',
+            'SingleLogoutService' => 'https://example.com/slo',
+        );
+
+        // run all general tests with AssertionConsumerService endpoint type
+        foreach ($acs_eps as $i => $ep) {
+            $a['AssertionConsumerService'] = $ep;
+            $c = SimpleSAML_Configuration::loadFromArray($a);
+            $this->assertEquals($acs_expected_eps[$i], $c->getDefaultEndpoint('AssertionConsumerService'));
+        }
+
+        // now make sure SingleSignOnService, SingleLogoutService and ArtifactResolutionService works fine
+        $a['metadata-set'] = 'saml20-idp-remote';
+        $c = SimpleSAML_Configuration::loadFromArray($a);
+        $this->assertEquals(
+            array(
+                'Location' => 'https://example.com/ars',
+                'Binding' => SAML2_Const::BINDING_SOAP,
+            ),
+            $c->getDefaultEndpoint('ArtifactResolutionService')
+        );
+        $this->assertEquals(
+            array(
+                'Location' => 'https://example.com/sso',
+                'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+            ),
+            $c->getDefaultEndpoint('SingleSignOnService')
+        );
+        $this->assertEquals(
+            array(
+                'Location' => 'https://example.com/slo',
+                'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+            ),
+            $c->getDefaultEndpoint('SingleLogoutService')
+        );
+    }
+
     /**
      * Test SimpleSAML_Configuration::getLocalizedString()
      */
