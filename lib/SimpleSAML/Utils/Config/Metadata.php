@@ -255,12 +255,11 @@ class Metadata
      *
      * @return boolean True if the entity should be hidden, false otherwise.
      */
-    public static function isHiddenFromDiscovery($metadata)
+    public static function isHiddenFromDiscovery(array $metadata)
     {
-        if (array_key_exists(self::$ENTITY_CATEGORY, $metadata['EntityAttributes'])) {
-            if (in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY])) {
-                return true;
-            }
+        try {
+            return in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY]);
+        } catch (\Exception $e) {
         }
         return false;
     }
