@@ -1,8 +1,8 @@
 {
     "name": "simplesamlphp/simplesamlphp",
-    "description": "A PHP implementation of SAML 2.0 service provider and identity provider functionality. And is also compatible with Shibboleth 1.3 and 2.0.",
+    "description": "A PHP implementation of a SAML 2.0 service provider and identity provider, also compatible with Shibboleth 1.3 and 2.0.",
     "type": "project",
-    "keywords": [ "saml2", "shibboleth","aselect","openid","oauth","ws-federation","sp","idp" ],
+    "keywords": [ "saml2", "shibboleth","oauth","ws-federation","sp","idp" ],
     "homepage": "http://simplesamlphp.org",
     "license": "LGPL-2.1",
     "authors": [
@@ -13,6 +13,10 @@
         {
             "name": "Olav Morken",
             "email": "olav.morken@uninett.no"
+        },
+	{
+            "name": "Jaime Perez",
+            "email": "jaime.perez@uninett.no"
         }
     ],
     "autoload": {
@@ -25,7 +29,8 @@
         "php": ">=5.3",
         "simplesamlphp/saml2": "~1.7",
         "robrichards/xmlseclibs": "~1.4.1",
-        "whitehat101/apr1-md5": "~1.0"
+        "whitehat101/apr1-md5": "~1.0",
+        "squizlabs/php_codesniffer": "^2.5.1"
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",
