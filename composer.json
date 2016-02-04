@@ -14,7 +14,7 @@
             "name": "Olav Morken",
             "email": "olav.morken@uninett.no"
         },
-	{
+        {
             "name": "Jaime Perez",
             "email": "jaime.perez@uninett.no"
         }
@@ -29,8 +29,7 @@
         "php": ">=5.3",
         "simplesamlphp/saml2": "~1.7",
         "robrichards/xmlseclibs": "~1.4.1",
-        "whitehat101/apr1-md5": "~1.0",
-        "squizlabs/php_codesniffer": "^2.5.1"
+        "whitehat101/apr1-md5": "~1.0"
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",
