@@ -692,8 +692,10 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
             $c->getDefaultEndpoint('SingleLogoutService', $valid_bindings);
             $this->fail('Failed to detect invalid endpoint binding.');
         } catch (Exception $e) {
-            $this->assertEquals('[ARRAY][\'SingleLogoutService\']:Could not find a supported SingleLogoutService '.
-                'endpoint.', $e->getMessage());
+            $this->assertEquals(
+                '[ARRAY][\'SingleLogoutService\']:Could not find a supported SingleLogoutService '.'endpoint.',
+                $e->getMessage()
+            );
         }
         $a['metadata-set'] = 'foo';
         $c = SimpleSAML_Configuration::loadFromArray($a);
@@ -704,6 +706,111 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
             $this->assertStringStartsWith('Missing default binding for', $e->getMessage());
         }
     }
+
+
+    /**
+     * Test SimpleSAML_Configuration::getEndpoints().
+     */
+    public function testGetEndpoints()
+    {
+        // test response location for old-style configurations
+        $c = SimpleSAML_Configuration::loadFromArray(array(
+            'metadata-set' => 'saml20-idp-remote',
+            'SingleSignOnService' => 'https://example.com/endpoint.php',
+            'SingleSignOnServiceResponse' => 'https://example.com/response.php',
+        ));
+        $e = array(
+            array(
+                'Location' => 'https://example.com/endpoint.php',
+                'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+                'ResponseLocation' => 'https://example.com/response.php',
+            )
+        );
+        $this->assertEquals($e, $c->getEndpoints('SingleSignOnService'));
+
+        // test for input failures
+
+        // define a basic configuration array
+        $a = array(
+            'metadata-set' => 'saml20-idp-remote',
+            'SingleSignOnService' => null,
+        );
+
+        // define a set of tests
+        $tests = array(
+            // invalid endpoint definition
+            10,
+            // invalid definition of endpoint inside the endpoints array
+            array(
+                1234
+            ),
+            // missing location
+            array(
+                array(
+                    'foo' => 'bar',
+                ),
+            ),
+            // invalid location
+            array(
+                array(
+                    'Location' => 1234,
+                )
+            ),
+            // missing binding
+            array(
+                array(
+                    'Location' => 'https://example.com/endpoint.php',
+                ),
+            ),
+            // invalid binding
+            array(
+                array(
+                    'Location' => 'https://example.com/endpoint.php',
+                    'Binding' => 1234,
+                ),
+            ),
+            // invalid response location
+            array(
+                array(
+                    'Location' => 'https://example.com/endpoint.php',
+                    'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+                    'ResponseLocation' => 1234,
+                ),
+            ),
+            // invalid index
+            array(
+                array(
+                    'Location' => 'https://example.com/endpoint.php',
+                    'Binding' => SAML2_Const::BINDING_HTTP_REDIRECT,
+                    'index' => 'string',
+                ),
+            ),
+        );
+
+        // define a set of exception messages to expect
+        $msgs = array(
+            'Expected array or string.',
+            'Expected a string or an array.',
+            'Missing Location.',
+            'Location must be a string.',
+            'Missing Binding.',
+            'Binding must be a string.',
+            'ResponseLocation must be a string.',
+            'index must be an integer.',
+        );
+
+        // now run all the tests expecting the correct exception message
+        foreach ($tests as $i => $test) {
+            $a['SingleSignOnService'] = $test;
+            $c = SimpleSAML_Configuration::loadFromArray($a);
+            try {
+                $c->getEndpoints('SingleSignOnService');
+            } catch (Exception $e) {
+                $this->assertStringEndsWith($msgs[$i], $e->getMessage());
+            }
+        }
+    }
+
 
     /**
      * Test SimpleSAML_Configuration::getLocalizedString()
