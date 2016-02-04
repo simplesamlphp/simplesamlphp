@@ -18,7 +18,6 @@
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./../../lib/</directory>
             <directory suffix=".php">./../../modules/core/lib/</directory>
-            <directory suffix=".php">./../../modules/saml/lib/</directory>
             <exclude>
                 <directory>./../../vendor/</directory>
                 <directory>./../../tests/</directory>
