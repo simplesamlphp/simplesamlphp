@@ -54,11 +54,13 @@ if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaent
             echo '<br />Index: '.$hm['metadata-index'];
         }
         if (!empty($hm['name'])) {
-            echo '<br /><strong>'.$this->getTranslation(SimpleSAML\Utils\Arrays::arrayize($hm['name'], 'en')).
+            echo '<br /><strong>'.
+                $this->getTranslator()->getPreferredTranslation(SimpleSAML\Utils\Arrays::arrayize($hm['name'], 'en')).
                 '</strong>';
         }
         if (!empty($hm['descr'])) {
-            echo '<br /><strong>'.$this->getTranslation(SimpleSAML\Utils\Arrays::arrayize($hm['descr'], 'en')).
+            echo '<br /><strong>'.
+                $this->getTranslator()->getPreferredTranslation(SimpleSAML\Utils\Arrays::arrayize($hm['descr'], 'en')).
                 '</strong>';
         }
 
@@ -84,11 +86,13 @@ if (is_array($this->data['metaentries']['remote']) && count($this->data['metaent
                     )
                 ).'">');
             if (!empty($entry['name'])) {
-                echo htmlspecialchars($this->getTranslation(SimpleSAML\Utils\Arrays::arrayize($entry['name'], 'en')));
+                echo htmlspecialchars($this->getTranslator()->getPreferredTranslation(
+                    SimpleSAML\Utils\Arrays::arrayize($entry['name'], 'en')
+                ));
             } elseif (!empty($entry['OrganizationDisplayName'])) {
-                echo htmlspecialchars(
-                    $this->getTranslation(SimpleSAML\Utils\Arrays::arrayize($entry['OrganizationDisplayName'], 'en'))
-                );
+                echo htmlspecialchars($this->getTranslator()->getPreferredTranslation(
+                    SimpleSAML\Utils\Arrays::arrayize($entry['OrganizationDisplayName'], 'en')
+                ));
             } else {
                 echo htmlspecialchars($entry['entityid']);
             }

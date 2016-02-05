@@ -72,7 +72,7 @@ if (array_key_exists('descr_purpose', $this->data['dstMetadata'])) {
         '{consent:consent:consent_purpose}',
         array(
             'SPNAME' => $dstName,
-            'SPDESC' => $this->getTranslation(
+            'SPDESC' => $this->getTranslator()->getPreferredTranslation(
                 SimpleSAML\Utils\Arrays::arrayize(
                     $this->data['dstMetadata']['descr_purpose'],
                     'en'
