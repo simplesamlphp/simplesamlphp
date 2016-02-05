@@ -72,8 +72,8 @@ span.showhide {
 			$hide_text = $this->t('hide');
 			$attributes_text = $this->t('attributes_text');
 			foreach ($spList AS $spName => $spValues) {
-				$this->includeInlineTranslation('spname', $spValues['name']);
-				$this->includeInlineTranslation('spdescription', $spValues['description']);
+				$this->getTranslator()->includeInlineTranslation('spname', $spValues['name']);
+				$this->getTranslator()->includeInlineTranslation('spdescription', $spValues['description']);
                 if (!is_null($spValues['serviceurl'])) {
                     $htmlSpName = '<a href="' . $spValues['serviceurl'] . '" style="color: black; font-weight: bold;">' . htmlspecialchars($this->t('spname', array(), false, true)) . '</a>';
                 } else {
