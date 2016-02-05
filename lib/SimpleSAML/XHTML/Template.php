@@ -1,25 +1,26 @@
 <?php
 
+
 /**
  * A minimalistic XHTML PHP based template system implemented for SimpleSAMLphp.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_XHTML_Template {
+class SimpleSAML_XHTML_Template
+{
+    public $data = null;
 
     private $configuration = null;
     private $template = 'default.php';
-
-    public $data = null;
 
 
     /**
      * Constructor
      *
-     * @param SimpleSAML_Configuration $configuration  Configuration object
-     * @param string $template Which template file to load
-     * @param string|null $defaultDictionary The default dictionary where tags will come from.
+     * @param SimpleSAML_Configuration $configuration Configuration object
+     * @param string                   $template Which template file to load
+     * @param string|null              $defaultDictionary The default dictionary where tags will come from.
      */
     public function __construct(SimpleSAML_Configuration $configuration, $template, $defaultDictionary = null)
     {
@@ -34,16 +35,24 @@ class SimpleSAML_XHTML_Template {
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Locale\Translate::getTranslation()
      * instead.
      */
-    public function getTranslation($translations) {
+    public function getTranslation($translations)
+    {
         return $this->translator->getTranslation($translations);
     }
+
 
     /**
      * Wrap Language->t to translate tag into the current language, with a fallback to english.
      *
      * @see \SimpleSAML\Locale\Translate::t()
      */
-    public function t($tag, $replacements = array(), $fallbackdefault = true, $oldreplacements = array(), $striptags = FALSE) {
+    public function t(
+        $tag,
+        $replacements = array(),
+        $fallbackdefault = true,
+        $oldreplacements = array(),
+        $striptags = false
+    ) {
         return $this->translator->t($tag, $replacements, $fallbackdefault, $oldreplacements, $striptags);
     }
 
@@ -53,16 +62,17 @@ class SimpleSAML_XHTML_Template {
      *
      * @see \SimpleSAML\Locale\Translate::includeInlineTranslation()
      */
-    public function includeInlineTranslation($tag, $translation) {
-        return $this->translator->includeInlineTranslation($tag, $translation);
+    public function includeInlineTranslation($tag, $translation)
+    {
+        $this->translator->includeInlineTranslation($tag, $translation);
     }
 
 
     /**
      * Show the template to the user.
      */
-    public function show() {
-
+    public function show()
+    {
         $filename = $this->findTemplatePath($this->template);
         require($filename);
     }
@@ -78,11 +88,13 @@ class SimpleSAML_XHTML_Template {
      * template file in the given module.
      *
      * @param string $template The relative path from the theme directory to the template file.
+     *
      * @return string The absolute path to the template file.
      *
      * @throws Exception If the template file couldn't be found.
      */
-    private function findTemplatePath($template) {
+    private function findTemplatePath($template)
+    {
         assert('is_string($template)');
 
         $tmp = explode(':', $template, 2);
@@ -99,51 +111,50 @@ class SimpleSAML_XHTML_Template {
             $themeModule = $tmp[0];
             $themeName = $tmp[1];
         } else {
-            $themeModule = NULL;
+            $themeModule = null;
             $themeName = $tmp[0];
         }
 
-
         // First check the current theme
-        if ($themeModule !== NULL) {
+        if ($themeModule !== null) {
             // .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName>
 
-            $filename = SimpleSAML_Module::getModuleDir($themeModule) . '/themes/' . $themeName . '/' . $templateModule . '/' . $templateName;
+            $filename = SimpleSAML_Module::getModuleDir($themeModule).
+                '/themes/'.$themeName.'/'.$templateModule.'/'.$templateName;
         } elseif ($templateModule !== 'default') {
             // .../module/<templateModule>/templates/<themeName>/<templateName>
-            $filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' . $templateName;
+            $filename = SimpleSAML_Module::getModuleDir($templateModule).'/templates/'.$templateName;
         } else {
             // .../templates/<theme>/<templateName>
-            $filename = $this->configuration->getPathValue('templatedir', 'templates/') . $templateName;
+            $filename = $this->configuration->getPathValue('templatedir', 'templates/').$templateName;
         }
 
         if (file_exists($filename)) {
             return $filename;
         }
 
-
         // Not found in current theme
-        SimpleSAML_Logger::debug($_SERVER['PHP_SELF'].' - Template: Could not find template file [' .
-            $template . '] at [' . $filename . '] - now trying the base template');
-
+        SimpleSAML_Logger::debug(
+            $_SERVER['PHP_SELF'].' - Template: Could not find template file ['. $template.'] at ['.
+            $filename.'] - now trying the base template'
+        );
 
         // Try default theme
         if ($templateModule !== 'default') {
             // .../module/<templateModule>/templates/<templateName>
-            $filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' . $templateName;
+            $filename = SimpleSAML_Module::getModuleDir($templateModule).'/templates/'.$templateName;
         } else {
             // .../templates/<templateName>
-            $filename = $this->configuration->getPathValue('templatedir', 'templates/') . '/' . $templateName;
+            $filename = $this->configuration->getPathValue('templatedir', 'templates/').'/'.$templateName;
         }
 
         if (file_exists($filename)) {
             return $filename;
         }
 
-
         // Not found in default template - log error and throw exception
-        $error = 'Template: Could not find template file [' . $template . '] at [' . $filename . ']';
-        SimpleSAML_Logger::critical($_SERVER['PHP_SELF'] . ' - ' . $error);
+        $error = 'Template: Could not find template file ['.$template.'] at ['.$filename.']';
+        SimpleSAML_Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
 
         throw new Exception($error);
     }
