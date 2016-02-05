@@ -17,19 +17,20 @@ class SimpleSAML_XHTML_Template {
     /**
      * Constructor
      *
-     * @param $configuration   Configuration object
-     * @param $template        Which template file to load
-     * @param $defaultDictionary  The default dictionary where tags will come from.
+     * @param SimpleSAML_Configuration $configuration  Configuration object
+     * @param string $template Which template file to load
+     * @param string|null $defaultDictionary The default dictionary where tags will come from.
      */
-    function __construct(SimpleSAML_Configuration $configuration, $template, $defaultDictionary = NULL) {
+    public function __construct(SimpleSAML_Configuration $configuration, $template, $defaultDictionary = null)
+    {
         $this->configuration = $configuration;
         $this->template = $template;
         $this->data['baseurlpath'] = $this->configuration->getBaseURL();
-        $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary = NULL);
+        $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary = null);
     }
 
     /**
-     * Includs a file relative to the template base directory.
+     * Includes a file relative to the template base directory.
      * This function can be used to include headers and footers etc.
      *
      */
@@ -42,7 +43,8 @@ class SimpleSAML_XHTML_Template {
     }
 
     /**
-     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Locale\Translate::getTranslation() instead.
+     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Locale\Translate::getTranslation()
+     * instead.
      */
     public function getTranslation($translations) {
         return $this->translator->getTranslation($translations);
@@ -50,6 +52,8 @@ class SimpleSAML_XHTML_Template {
 
     /**
      * Wrap Language->t to translate tag into the current language, with a fallback to english.
+     *
+     * @see \SimpleSAML\Locale\Translate::t()
      */
     public function t($tag, $replacements = array(), $fallbackdefault = true, $oldreplacements = array(), $striptags = FALSE) {
         return $this->translator->t($tag, $replacements, $fallbackdefault, $oldreplacements, $striptags);
@@ -73,7 +77,9 @@ class SimpleSAML_XHTML_Template {
 
 
     /**
-     * Wraps Language->getLanguageList
+     * Wraps Translate->includeInlineTranslation()
+     *
+     * @see \SimpleSAML\Locale\Translate::includeInlineTranslation()
      */
     public function includeInlineTranslation($tag, $translation) {
         return $this->translator->includeInlineTranslation($tag, $translation);
@@ -93,17 +99,16 @@ class SimpleSAML_XHTML_Template {
     /**
      * Find template path.
      *
-     * This function locates the given template based on the template name.
-     * It will first search for the template in the current theme directory, and
-     * then the default theme.
+     * This function locates the given template based on the template name. It will first search for the template in
+     * the current theme directory, and then the default theme.
      *
-     * The template name may be on the form <module name>:<template path>, in which case
-     * it will search for the template file in the given module.
+     * The template name may be on the form <module name>:<template path>, in which case it will search for the
+     * template file in the given module.
      *
-     * An error will be thrown if the template file couldn't be found.
+     * @param string $template The relative path from the theme directory to the template file.
+     * @return string The absolute path to the template file.
      *
-     * @param string $template  The relative path from the theme directory to the template file.
-     * @return string  The absolute path to the template file.
+     * @throws Exception If the template file couldn't be found.
      */
     private function findTemplatePath($template) {
         assert('is_string($template)');
