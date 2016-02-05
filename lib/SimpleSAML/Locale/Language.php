@@ -10,6 +10,8 @@
 
 namespace SimpleSAML\Locale;
 
+use SimpleSAML\Utils\HTTP;
+
 class Language
 {
 
@@ -119,7 +121,7 @@ class Language
      */
     private function getHTTPLanguage()
     {
-        $languageScore = \SimpleSAML_Utilities::getAcceptLanguage();
+        $languageScore = HTTP::getAcceptLanguage();
 
         // for now we only use the default language map. We may use a configurable language map in the future
         $languageMap = self::$defaultLanguageMap;
@@ -245,6 +247,6 @@ class Language
             'httponly' => false,
         );
 
-        \SimpleSAML_Utilities::setCookie($name, $language, $params, false);
+        HTTP::setCookie($name, $language, $params, false);
     }
 }
