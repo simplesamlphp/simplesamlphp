@@ -365,7 +365,7 @@ class Translate
             $fileContent = file_get_contents($translationFile);
             $moreTrans = json_decode($fileContent, true);
             if (!empty($moreTrans)) {
-                $lang = self::lang_merge($lang, $moreTrans);
+                $lang = array_merge_recursive($lang, $moreTrans);
             }
         }
 
@@ -422,17 +422,5 @@ class Translate
             $_SERVER['PHP_SELF'].' - Template: Could not find dictionary file at ['.$filename.']'
         );
         return array();
-    }
-
-
-    // Merge two translation arrays.
-    public static function lang_merge($def, $lang)
-    {
-        foreach ($def as $key => $value) {
-            if (array_key_exists($key, $lang)) {
-                $def[$key] = array_merge($value, $lang[$key]);
-            }
-        }
-        return $def;
     }
 }

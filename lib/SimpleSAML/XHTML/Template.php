@@ -79,6 +79,25 @@ class SimpleSAML_XHTML_Template
 
 
     /**
+     * Merge two translation arrays.
+     *
+     * @param array $def The array holding string definitions.
+     * @param array $lang The array holding translations for every string.
+     * @return array The recursive merge of both arrays.
+     * @deprecated This method will be removed in SimpleSAMLphp 2.0. Please use array_merge_recursive() instead.
+     */
+    public static function lang_merge($def, $lang)
+    {
+        foreach ($def as $key => $value) {
+            if (array_key_exists($key, $lang)) {
+                $def[$key] = array_merge($value, $lang[$key]);
+            }
+        }
+        return $def;
+    }
+
+
+    /**
      * Find template path.
      *
      * This function locates the given template based on the template name. It will first search for the template in
