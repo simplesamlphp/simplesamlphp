@@ -139,6 +139,8 @@ if ($this->data['sppp'] !== false) {
  */
 function present_attributes($t, $attributes, $nameParent)
 {
+    $translator = $t->getTranslator();
+
     $alternate = array('odd', 'even');
     $i = 0;
     $summary = 'summary="' . $t->t('{consent:consent:table_summary}') . '"';
@@ -155,7 +157,7 @@ function present_attributes($t, $attributes, $nameParent)
 
     foreach ($attributes as $name => $value) {
         $nameraw = $name;
-        $name = $t->getAttributeTranslation($parentStr . $nameraw);
+        $name = $translator->getAttributeTranslation($parentStr . $nameraw);
 
         if (preg_match('/^child_/', $nameraw)) {
             // insert child table

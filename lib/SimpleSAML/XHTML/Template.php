@@ -11,6 +11,13 @@ class SimpleSAML_XHTML_Template
 {
     public $data = null;
 
+    /**
+     * A translator instance configured to work with this template.
+     *
+     * @var \SimpleSAML\Locale\Translate
+     */
+    private $translator;
+
     private $configuration = null;
     private $template = 'default.php';
 
@@ -28,6 +35,17 @@ class SimpleSAML_XHTML_Template
         $this->template = $template;
         $this->data['baseurlpath'] = $this->configuration->getBaseURL();
         $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary = null);
+    }
+
+
+    /**
+     * Return the internal translator object used by this template.
+     *
+     * @return \SimpleSAML\Locale\Translate The translator that will be used with this template.
+     */
+    public function getTranslator()
+    {
+        return $this->translator;
     }
 
 
