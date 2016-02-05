@@ -32,12 +32,12 @@ class SimpleSAML_XHTML_Template
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Locale\Translate::getTranslation()
-     * instead.
+     * @deprecated This method will be removed in SSP 2.0. Please use
+     * SimpleSAML\Locale\Translate::getPreferredTranslation() instead.
      */
     public function getTranslation($translations)
     {
-        return $this->translator->getTranslation($translations);
+        return $this->translator->getPreferredTranslation($translations);
     }
 
 

@@ -127,7 +127,7 @@ class Translate {
      * @param $translations  The translations, as an associative array with language => text mappings.
      * @return The preferred translation.
      */
-    public function getTranslation($translations) {
+    public function getPreferredTranslation($translations) {
         assert('is_array($translations)');
 
         /* Look up translation of tag in the selected language. */
@@ -175,14 +175,14 @@ class Translate {
         if ($extraDict !== NULL) {
             $dict = $this->getDictionary($extraDict);
             if (array_key_exists($normName, $dict)) {
-                return $this->getTranslation($dict[$normName]);
+                return $this->getPreferredTranslation($dict[$normName]);
             }
         }
 
         /* Search the default attribute dictionary. */
         $dict = $this->getDictionary('attributes');
         if (array_key_exists('attribute_' . $normName, $dict)) {
-            return $this->getTranslation($dict['attribute_' . $normName]);
+            return $this->getPreferredTranslation($dict['attribute_' . $normName]);
         }
 
         /* No translations found. */
@@ -240,7 +240,7 @@ class Translate {
             }
         }
 
-        $translated = $this->getTranslation($tagData);
+        $translated = $this->getPreferredTranslation($tagData);
 
 #        if (!empty($replacements)){        echo('<pre> [' . $tag . ']'); print_r($replacements); exit; }
         foreach ($replacements as $k => $v) {
