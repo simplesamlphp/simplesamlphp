@@ -29,18 +29,6 @@ class SimpleSAML_XHTML_Template {
         $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary = null);
     }
 
-    /**
-     * Includes a file relative to the template base directory.
-     * This function can be used to include headers and footers etc.
-     *
-     */
-    private function includeAtTemplateBase($file) {
-        $data = $this->data;
-
-        $filename = $this->findTemplatePath($file);
-
-        include($filename);
-    }
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Locale\Translate::getTranslation()
@@ -57,22 +45,6 @@ class SimpleSAML_XHTML_Template {
      */
     public function t($tag, $replacements = array(), $fallbackdefault = true, $oldreplacements = array(), $striptags = FALSE) {
         return $this->translator->t($tag, $replacements, $fallbackdefault, $oldreplacements, $striptags);
-    }
-
-
-    /**
-     * Wrap Language->isLanguageRTL
-     */
-    private function isLanguageRTL() {
-        return $this->translator->language->isLanguageRTL();
-    }
-
-
-    /**
-     * Wraps Language->getLanguageList
-     */
-    private function getLanguageList() {
-        return $this->translator->language->getLanguageList();
     }
 
 
