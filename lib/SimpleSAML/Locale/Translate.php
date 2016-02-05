@@ -257,7 +257,7 @@ class Translate
             if ($tagData === null) {
                 // tag not found
                 \SimpleSAML_Logger::info('Template: Looking up ['.$tag.']: not translated at all.');
-                return $this->t_not_translated($tag, $fallbackdefault);
+                return $this->getStringNotTranslated($tag, $fallbackdefault);
             }
         }
 
@@ -283,7 +283,7 @@ class Translate
      *
      * @return string The string that should be used, or the tag name if $fallbacktag is set to false.
      */
-    private function t_not_translated($tag, $fallbacktag)
+    private function getStringNotTranslated($tag, $fallbacktag)
     {
         if ($fallbacktag) {
             return 'not translated ('.$tag.')';
