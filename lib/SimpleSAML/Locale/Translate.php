@@ -13,21 +13,31 @@ namespace SimpleSAML\Locale;
 class Translate
 {
 
-    private $configuration = null;
+    /**
+     * The configuration to be used for this translator.
+     *
+     * @var \SimpleSAML_Configuration
+     */
+    private $configuration;
 
     private $langtext = array();
-
 
     /**
      * Associative array of dictionaries.
      */
     private $dictionaries = array();
 
-
     /**
      * The default dictionary.
      */
     private $defaultDictionary = null;
+
+    /**
+     * The language object we'll use internally.
+     *
+     * @var \SimpleSAML\Locale\Language
+     */
+    private $language;
 
 
     /**
@@ -327,7 +337,6 @@ class Translate
      */
     public function includeLanguageFile($file, $otherConfig = null)
     {
-        $filebase = null;
         if (!empty($otherConfig)) {
             $filebase = $otherConfig->getPathValue('dictionarydir', 'dictionaries/');
         } else {
