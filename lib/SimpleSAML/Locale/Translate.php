@@ -32,8 +32,8 @@ class Translate {
     /**
      * Constructor
      *
-     * @param $configuration   Configuration object
-     * @param $defaultDictionary  The default dictionary where tags will come from.
+     * @param \SimpleSAML_Configuration $configuration Configuration object
+     * @param string|null $defaultDictionary The default dictionary where tags will come from.
      */
     function __construct(\SimpleSAML_Configuration $configuration, $defaultDictionary = NULL) {
         $this->configuration = $configuration;
@@ -54,13 +54,11 @@ class Translate {
 
 
     /**
-     * Retrieve a dictionary.
+     * This method retrieves a dictionary with the name given.
      *
-     * This function retrieves a dictionary with the given name.
-     *
-     * @param $name  The name of the dictionary, as the filename in the dictionary directory,
-     *               without the '.php'-ending.
-     * @return  An associative array with the dictionary.
+     * @param string $name The name of the dictionary, as the filename in the dictionary directory, without the
+     * '.php' ending.
+     * @return array An associative array with the dictionary.
      */
     private function getDictionary($name) {
         assert('is_string($name)');
@@ -84,13 +82,11 @@ class Translate {
 
 
     /**
-     * Retrieve a tag.
+     * This method retrieves a tag as an array with language => string mappings.
      *
-     * This function retrieves a tag as an array with language => string mappings.
-     *
-     * @param $tag  The tag name. The tag name can also be on the form '{<dictionary>:<tag>}', to retrieve
-     *              a tag from the specific dictionary.
-     * @return As associative array with language => string mappings, or NULL if the tag wasn't found.
+     * @param string $tag The tag name. The tag name can also be on the form '{<dictionary>:<tag>}', to retrieve a tag
+     * from the specific dictionary.
+     * @return array An associative array with language => string mappings, or null if the tag wasn't found.
      */
     public function getTag($tag) {
         assert('is_string($tag)');
@@ -124,8 +120,10 @@ class Translate {
     /**
      * Retrieve the preferred translation of a given text.
      *
-     * @param $translations  The translations, as an associative array with language => text mappings.
-     * @return The preferred translation.
+     * @param array $translations The translations, as an associative array with language => text mappings.
+     * @return string The preferred translation.
+     * 
+     * @throws \Exception If there's no suitable translation.
      */
     public function getPreferredTranslation($translations) {
         assert('is_array($translations)');
@@ -154,15 +152,15 @@ class Translate {
         }
 
         /* We don't have anything to return. */
-        throw new Exception('Nothing to return from translation.');
+        throw new \Exception('Nothing to return from translation.');
     }
 
 
     /**
-     * Translate a attribute name.
+     * Translate the name of an attribute.
      *
-     * @param string $name  The attribute name.
-     * @return string  The translated attribute name, or the original attribute name if no translation was found.
+     * @param string $name The attribute name.
+     * @return string The translated attribute name, or the original attribute name if no translation was found.
      */
     public function getAttributeTranslation($name) {
 
@@ -193,24 +191,30 @@ class Translate {
     /**
      * Translate a tag into the current language, with a fallback to english.
      *
-     * This function is used to look up a translation tag in dictionaries, and return the
-     * translation into the current language. If no translation into the current language can be
-     * found, english will be tried, and if that fails, placeholder text will be returned.
+     * This function is used to look up a translation tag in dictionaries, and return the translation into the current
+     * language. If no translation into the current language can be found, english will be tried, and if that fails,
+     * placeholder text will be returned.
      *
-     * An array can be passed as the tag. In that case, the array will be assumed to be on the
-     * form (language => text), and will be used as the source of translations.
+     * An array can be passed as the tag. In that case, the array will be assumed to be on the form (language => text),
+     * and will be used as the source of translations.
      *
-     * This function can also do replacements into the translated tag. It will search the
-     * translated tag for the keys provided in $replacements, and replace any found occurances
-     * with the value of the key.
+     * This function can also do replacements into the translated tag. It will search the translated tag for the keys
+     * provided in $replacements, and replace any found occurrences with the value of the key.
      *
-     * @param string|array $tag  A tag name for the translation which should be looked up, or an
-     *                           array with (language => text) mappings.
-     * @param array $replacements  An associative array of keys that should be replaced with
-     *                             values in the translated string.
+     * @param string|array $tag  A tag name for the translation which should be looked up, or an array with
+     * (language => text) mappings.
+     * @param array $replacements  An associative array of keys that should be replaced with values in the translated
+     * string.
+     * @param boolean $fallbackdefault Default translation to use as a fallback if no valid translation was found.
      * @return string  The translated tag, or a placeholder value if the tag wasn't found.
      */
-    public function t($tag, $replacements = array(), $fallbackdefault = true, $oldreplacements = array(), $striptags = FALSE) {
+    public function t(
+        $tag,
+        $replacements = array(),
+        $fallbackdefault = true,
+        $oldreplacements = array(), // TODO: remove this for 2.0
+        $striptags = FALSE // TODO: remove this for 2.0
+    ) {
         if(!is_array($replacements)) {
 
             /* Old style call to t(...). Print warning to log. */
@@ -221,8 +225,8 @@ class Translate {
 
             /* For backwards compatibility. */
             if(!$replacements && $this->getTag($tag) === NULL) {
-                \SimpleSAML_Logger::warning('Code which uses $fallbackdefault === FALSE shouls be' .
-                    ' updated to use the getTag-method instead.');
+                \SimpleSAML_Logger::warning('Code which uses $fallbackdefault === FALSE should be' .
+                    ' updated to use the getTag() method instead.');
                 return NULL;
             }
 
@@ -254,9 +258,11 @@ class Translate {
     /**
      * Return the string that should be used when no translation was found.
      *
-     * @param $tag                A name tag of the string that should be returned.
-     * @param $fallbacktag        If set to TRUE and string was not found in any languages, return
-     *                     the tag it self. If FALSE return NULL.
+     * @param string $tag A name tag of the string that should be returned.
+     * @param boolean $fallbacktag If set to true and string was not found in any languages, return the tag itself. If
+     * false return null.
+     *
+     * @return string The string that should be used, or the tag name if $fallbacktag is set to false.
      */
     private function t_not_translated($tag, $fallbacktag) {
         if ($fallbacktag) {
@@ -268,20 +274,21 @@ class Translate {
 
 
     /**
-     * You can include translation inline instead of putting translation
-     * in dictionaries. This function is reccomended to only be used from dynamic
-     * data, or when the translation is already provided from an external source, as
-     * a database or in metadata.
+     * Include a translation inline instead of putting translations in dictionaries. This function is recommended to be
+     * used ONLU from variable data, or when the translation is already provided by an external source, as a database
+     * or in metadata.
      *
-     * @param $tag         The tag that has a translation
-     * @param $translation The translation array
+     * @param string $tag The tag that has a translation
+     * @param array|string $translation The translation array
+     *
+     * @throws \Exception If $translation is neither a string nor an array.
      */
     public function includeInlineTranslation($tag, $translation) {
 
         if (is_string($translation)) {
             $translation = array('en' => $translation);
         } elseif (!is_array($translation)) {
-            throw new Exception("Inline translation should be string or array. Is " . gettype($translation) . " now!");
+            throw new \Exception("Inline translation should be string or array. Is " . gettype($translation) . " now!");
         }
 
         \SimpleSAML_Logger::debug('Template: Adding inline language translation for tag [' . $tag . ']');
@@ -289,13 +296,13 @@ class Translate {
     }
 
     /**
-     * Include language file from the dictionaries directory.
+     * Include a language file from the dictionaries directory.
      *
-     * @param $file         File name of dictionary to include
-     * @param $otherConfig  Optionally provide a different configuration object than
-     *  the one provided in the constructor to be used to find the dictionary directory.
-     *  This enables the possiblity of combining dictionaries inside simpleSAMLphp
-     *  distribution with external dictionaries.
+     * @param string $file File name of dictionary to include
+     * @param \SimpleSAML_Configuration|null $otherConfig Optionally provide a different configuration object than the
+     * one provided in the constructor to be used to find the directory of the dictionary. This allows to combine
+     * dictionaries inside the SimpleSAMLphp main code distribution together with external dictionaries. Defaults to
+     * null.
      */
     public function includeLanguageFile($file, $otherConfig = null) {
 
@@ -314,10 +321,10 @@ class Translate {
 
 
     /**
-     * Read a dictionary file in json format.
+     * Read a dictionary file in JSON format.
      *
-     * @param string $filename  The absolute path to the dictionary file, minus the .definition.json ending.
-     * @return array  The translation array from the file.
+     * @param string $filename The absolute path to the dictionary file, minus the .definition.json ending.
+     * @return array An array holding all the translations in the file.
      */
     private function readDictionaryJSON($filename) {
         $definitionFile = $filename . '.definition.json';
@@ -347,8 +354,8 @@ class Translate {
     /**
      * Read a dictionary file in PHP format.
      *
-     * @param string $filename  The absolute path to the dictionary file.
-     * @return array  The translation array from the file.
+     * @param string $filename The absolute path to the dictionary file.
+     * @return array An array holding all the translations in the file.
      */
     private function readDictionaryPHP($filename) {
         $phpFile = $filename . '.php';
@@ -367,8 +374,8 @@ class Translate {
     /**
      * Read a dictionary file.
      *
-     * @param $filename  The absolute path to the dictionary file.
-     * @return The translation array which was found in the dictionary file.
+     * @param string $filename The absolute path to the dictionary file.
+     * @return array An array holding all the translations in the file.
      */
     private function readDictionaryFile($filename) {
         assert('is_string($filename)');
