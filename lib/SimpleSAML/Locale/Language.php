@@ -13,8 +13,7 @@ namespace SimpleSAML\Locale;
 class Language {
 
     /**
-     * This is the default language map. It is used to map languages codes from the user agent to
-     * other language codes.
+     * This is the default language map. It is used to map languages codes from the user agent to other language codes.
      */
     private static $defaultLanguageMap = array('nb' => 'no');
 
@@ -33,8 +32,7 @@ class Language {
     /**
      * Constructor
      *
-     * @param $configuration   Configuration object
-     * @param $defaultDictionary  The default dictionary where tags will come from.
+     * @param \SimpleSAML_Configuration $configuration Configuration object
      */
     function __construct(\SimpleSAML_Configuration $configuration) {
         $this->configuration = $configuration;
@@ -49,10 +47,10 @@ class Language {
 
 
     /**
-     * setLanguage() will set a cookie for the user's browser to remember what language
-     * was selected
+     * This method will set a cookie for the user's browser to remember what language was selected.
      *
-     * @param $language    Language code for the language to set.
+     * @param string $language Language code for the language to set.
+     * @param boolean $setLanguageCookie Whether to set the language cookie or not. Defaults to true.
      */
     public function setLanguage($language, $setLanguageCookie = TRUE) {
         $language = strtolower($language);
@@ -65,11 +63,12 @@ class Language {
     }
 
     /**
-     * getLanguage() will return the language selected by the user, or the default language
-     * This function first looks for a cached language code,
-     * then checks for a language cookie,
-     * then it tries to calculate the preferred language from HTTP headers.
-     * Last it returns the default language.
+     * This method will return the language selected by the user, or the default language. It looks first for a cached
+     * language code, then checks for a language cookie, then it tries to calculate the preferred language from HTTP
+     * headers.
+     *
+     * @return string The language selected by the user according to the processing rules specified, or the default
+     * language in any other case.
      */
     public function getLanguage() {
 
@@ -107,10 +106,10 @@ class Language {
 
 
     /**
-     * This function gets the prefered language for the user based on the Accept-Language http header.
+     * This method returns the preferred language for the user based on the Accept-Language HTTP header.
      *
-     * @return The prefered language based on the Accept-Language http header, or NULL if none of the
-     *         languages in the header were available.
+     * @return string The preferred language based on the Accept-Language HTTP header, or null if none of the languages
+     * in the header is available.
      */
     private function getHTTPLanguage() {
         $languageScore = \SimpleSAML_Utilities::getAcceptLanguage();
@@ -152,14 +151,18 @@ class Language {
 
 
     /**
-     * Returns the language default (from configuration)
+     * Return the default language according to configuration.
+     *
+     * @return string The default language that has been configured. Defaults to english if not configured.
      */
     public function getDefaultLanguage() {
         return $this->configuration->getString('language.default', 'en');
     }
 
     /**
-     * Returns a list of all available languages.
+     * Return a list of all languages available.
+     *
+     * @return array An array holding all the languages available.
      */
     public function getLanguageList() {
         $thisLang = $this->getLanguage();
@@ -171,7 +174,9 @@ class Language {
     }
 
     /**
-     * Return TRUE if language is Right-to-Left.
+     * Check whether a language is right-to-left or not.
+     *
+     * @return boolean True if the language is right-to-left, false otherwise.
      */
     public function isLanguageRTL() {
         $rtlLanguages = $this->configuration->getArray('language.rtl', array());
@@ -186,7 +191,7 @@ class Language {
     /**
      * Retrieve the user-selected language from a cookie.
      *
-     * @return string|NULL  The language, or NULL if unset.
+     * @return string|null The selected language or null if unset.
      */
     public static function getLanguageCookie() {
         $config = \SimpleSAML_Configuration::getInstance();
@@ -205,9 +210,10 @@ class Language {
 
 
     /**
-     * Set the user-selected language in a cookie.
+     * This method will attempt to set the user-selected language in a cookie. It will do nothing if the language
+     * specified is not in the list of available languages, or the headers have already been sent to the browser.
      *
-     * @param string $language  The language.
+     * @param string $language The language set by the user.
      */
     public static function setLanguageCookie($language) {
         assert('is_string($language)');
