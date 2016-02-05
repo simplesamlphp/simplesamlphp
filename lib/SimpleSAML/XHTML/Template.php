@@ -220,6 +220,13 @@ class SimpleSAML_XHTML_Template
         \SimpleSAML\Locale\Language::setLanguageCookie($language);
     }
 
+    /**
+     * Wraps Language->getLanguageList
+     */
+    private function getLanguageList() {
+        return $this->translator->language->getLanguageList();
+    }
+
 
     /**
      * @param $tag
@@ -246,6 +253,20 @@ class SimpleSAML_XHTML_Template
 
 
     /**
+     * Includes a file relative to the template base directory.
+     * This function can be used to include headers and footers etc.
+     *
+     */
+    private function includeAtTemplateBase($file) {
+        $data = $this->data;
+
+        $filename = $this->findTemplatePath($file);
+
+        include($filename);
+    }
+
+
+    /**
      * Wraps Translate->includeInlineTranslation()
      *
      * @see \SimpleSAML\Locale\Translate::includeInlineTranslation()
@@ -267,6 +288,14 @@ class SimpleSAML_XHTML_Template
     public function includeLanguageFile($file, $otherConfig = null)
     {
         $this->translator->includeLanguageFile($file, $otherConfig);
+    }
+
+
+    /**
+     * Wrap Language->isLanguageRTL
+     */
+    private function isLanguageRTL() {
+        return $this->translator->language->isLanguageRTL();
     }
 
 
