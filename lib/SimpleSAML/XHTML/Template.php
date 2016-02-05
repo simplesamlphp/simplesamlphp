@@ -50,6 +50,8 @@ class SimpleSAML_XHTML_Template
 
 
     /**
+     * Temporary wrapper for SimpleSAML\Locale\Translate::getPreferredTranslation().
+     *
      * @deprecated This method will be removed in SSP 2.0. Please use
      * SimpleSAML\Locale\Translate::getPreferredTranslation() instead.
      */
@@ -93,25 +95,6 @@ class SimpleSAML_XHTML_Template
     {
         $filename = $this->findTemplatePath($this->template);
         require($filename);
-    }
-
-
-    /**
-     * Merge two translation arrays.
-     *
-     * @param array $def The array holding string definitions.
-     * @param array $lang The array holding translations for every string.
-     * @return array The recursive merge of both arrays.
-     * @deprecated This method will be removed in SimpleSAMLphp 2.0. Please use array_merge_recursive() instead.
-     */
-    public static function lang_merge($def, $lang)
-    {
-        foreach ($def as $key => $value) {
-            if (array_key_exists($key, $lang)) {
-                $def[$key] = array_merge($value, $lang[$key]);
-            }
-        }
-        return $def;
     }
 
 
@@ -194,5 +177,46 @@ class SimpleSAML_XHTML_Template
         SimpleSAML_Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
 
         throw new Exception($error);
+    }
+
+
+    /**
+     * Merge two translation arrays.
+     *
+     * @param array $def The array holding string definitions.
+     * @param array $lang The array holding translations for every string.
+     * @return array The recursive merge of both arrays.
+     * @deprecated This method will be removed in SimpleSAMLphp 2.0. Please use array_merge_recursive() instead.
+     */
+    public static function lang_merge($def, $lang)
+    {
+        foreach ($def as $key => $value) {
+            if (array_key_exists($key, $lang)) {
+                $def[$key] = array_merge($value, $lang[$key]);
+            }
+        }
+        return $def;
+    }
+
+
+    /**
+     * @return null|string
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::getLanguageCookie()
+     * instead.
+     */
+    public static function getLanguageCookie()
+    {
+        return \SimpleSAML\Locale\Language::getLanguageCookie();
+    }
+
+
+    /**
+     * @param $language
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::setLanguageCookie()
+     * instead.
+     */
+    public static function setLanguageCookie($language)
+    {
+        \SimpleSAML\Locale\Language::setLanguageCookie($language);
     }
 }
