@@ -1,7 +1,7 @@
 <?php $this->includeAtTemplateBase('includes/header.php'); ?>
 <!--  default theme -->
 <?php 
-$this->includeLanguageFile('attributes.php'); // attribute listings translated by this dictionary
+$this->getTranslator()->includeLanguageFile('attributes.php'); // attribute listings translated by this dictionary
  
 ?> 
 
