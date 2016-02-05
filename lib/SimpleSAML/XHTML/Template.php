@@ -115,7 +115,7 @@ class SimpleSAML_XHTML_Template
             $themeName = $tmp[0];
         }
 
-        // First check the current theme
+        // first check the current theme
         if ($themeModule !== null) {
             // .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName>
 
@@ -133,13 +133,13 @@ class SimpleSAML_XHTML_Template
             return $filename;
         }
 
-        // Not found in current theme
+        // not found in current theme
         SimpleSAML_Logger::debug(
             $_SERVER['PHP_SELF'].' - Template: Could not find template file ['. $template.'] at ['.
             $filename.'] - now trying the base template'
         );
 
-        // Try default theme
+        // try default theme
         if ($templateModule !== 'default') {
             // .../module/<templateModule>/templates/<templateName>
             $filename = SimpleSAML_Module::getModuleDir($templateModule).'/templates/'.$templateName;
@@ -152,7 +152,7 @@ class SimpleSAML_XHTML_Template
             return $filename;
         }
 
-        // Not found in default template - log error and throw exception
+        // not found in default template - log error and throw exception
         $error = 'Template: Could not find template file ['.$template.'] at ['.$filename.']';
         SimpleSAML_Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
 
