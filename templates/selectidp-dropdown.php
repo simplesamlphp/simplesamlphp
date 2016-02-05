@@ -9,12 +9,18 @@ $this->includeAtTemplateBase('includes/header.php');
 
 foreach ($this->data['idplist'] as $idpentry) {
     if (!empty($idpentry['name'])) {
-        $this->includeInlineTranslation('idpname_'.$idpentry['entityid'], $idpentry['name']);
+        $this->getTranslator()->includeInlineTranslation(
+            'idpname_'.$idpentry['entityid'],
+            $idpentry['name']
+        );
     } elseif (!empty($idpentry['OrganizationDisplayName'])) {
-        $this->includeInlineTranslation('idpname_'.$idpentry['entityid'], $idpentry['OrganizationDisplayName']);
+        $this->getTranslator()->includeInlineTranslation(
+            'idpname_'.$idpentry['entityid'],
+            $idpentry['OrganizationDisplayName']
+        );
     }
     if (!empty($idpentry['description'])) {
-        $this->includeInlineTranslation('idpdesc_'.$idpentry['entityid'], $idpentry['description']);
+        $this->getTranslator()->includeInlineTranslation('idpdesc_'.$idpentry['entityid'], $idpentry['description']);
     }
 }
 ?>
@@ -28,6 +34,7 @@ foreach ($this->data['idplist'] as $idpentry) {
         <select id="dropdownlist" name="idpentityid">
             <?php
             usort($this->data['idplist'], function ($idpentry1, $idpentry2) {
+                // TODO: this is only compatible with PHP >= 5.4, fix compat with 5.3!
                 return strcmp($this->t('idpname_'.$idpentry1['entityid']), $this->t('idpname_'.$idpentry2['entityid']));
             });
 
