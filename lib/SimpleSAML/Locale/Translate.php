@@ -419,7 +419,7 @@ class Translate
         }
 
         \SimpleSAML_Logger::error(
-            $_SERVER['PHP_SELF'].' - Template: Could not find template file ['.$this->template.'] at ['.$filename.']'
+            $_SERVER['PHP_SELF'].' - Template: Could not find dictionary file at ['.$filename.']'
         );
         return array();
     }
