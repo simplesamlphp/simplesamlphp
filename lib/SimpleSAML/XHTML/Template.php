@@ -9,7 +9,13 @@
  */
 class SimpleSAML_XHTML_Template
 {
-    public $data = null;
+
+    /**
+     * The data associated with this template, accessible within the template itself.
+     *
+     * @var array
+     */
+    public $data = array();
 
     /**
      * A translator instance configured to work with this template.
@@ -18,7 +24,18 @@ class SimpleSAML_XHTML_Template
      */
     private $translator;
 
-    private $configuration = null;
+    /**
+     * The configuration to use in this template.
+     *
+     * @var SimpleSAML_Configuration
+     */
+    private $configuration;
+
+    /**
+     * The file to load in this template.
+     *
+     * @var string
+     */
     private $template = 'default.php';
 
 
@@ -46,45 +63,6 @@ class SimpleSAML_XHTML_Template
     public function getTranslator()
     {
         return $this->translator;
-    }
-
-
-    /**
-     * Temporary wrapper for SimpleSAML\Locale\Translate::getPreferredTranslation().
-     *
-     * @deprecated This method will be removed in SSP 2.0. Please use
-     * SimpleSAML\Locale\Translate::getPreferredTranslation() instead.
-     */
-    public function getTranslation($translations)
-    {
-        return $this->translator->getPreferredTranslation($translations);
-    }
-
-
-    /**
-     * Wrap Language->t to translate tag into the current language, with a fallback to english.
-     *
-     * @see \SimpleSAML\Locale\Translate::t()
-     */
-    public function t(
-        $tag,
-        $replacements = array(),
-        $fallbackdefault = true,
-        $oldreplacements = array(),
-        $striptags = false
-    ) {
-        return $this->translator->t($tag, $replacements, $fallbackdefault, $oldreplacements, $striptags);
-    }
-
-
-    /**
-     * Wraps Translate->includeInlineTranslation()
-     *
-     * @see \SimpleSAML\Locale\Translate::includeInlineTranslation()
-     */
-    public function includeInlineTranslation($tag, $translation)
-    {
-        $this->translator->includeInlineTranslation($tag, $translation);
     }
 
 
@@ -180,22 +158,44 @@ class SimpleSAML_XHTML_Template
     }
 
 
-    /**
-     * Merge two translation arrays.
-     *
-     * @param array $def The array holding string definitions.
-     * @param array $lang The array holding translations for every string.
-     * @return array The recursive merge of both arrays.
-     * @deprecated This method will be removed in SimpleSAMLphp 2.0. Please use array_merge_recursive() instead.
+    /*
+     * Deprecated methods of this interface, all of them should go away.
      */
-    public static function lang_merge($def, $lang)
+
+
+    /**
+     * @param $name
+     *
+     * @return string
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::getLanguage()
+     * instead.
+     */
+    public function getAttributeTranslation($name)
     {
-        foreach ($def as $key => $value) {
-            if (array_key_exists($key, $lang)) {
-                $def[$key] = array_merge($value, $lang[$key]);
-            }
-        }
-        return $def;
+        return $this->translator->getAttributeTranslation($name);
+    }
+
+
+    /**
+     * @return string
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::getLanguage()
+     * instead.
+     */
+    public function getLanguage()
+    {
+        return $this->translator->getLanguage()->getLanguage();
+    }
+
+
+    /**
+     * @param      $language
+     * @param bool $setLanguageCookie
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::setLanguage()
+     * instead.
+     */
+    public function setLanguage($language, $setLanguageCookie = true)
+    {
+        $this->translator->getLanguage()->setLanguage($language, $setLanguageCookie);
     }
 
 
@@ -218,5 +218,90 @@ class SimpleSAML_XHTML_Template
     public static function setLanguageCookie($language)
     {
         \SimpleSAML\Locale\Language::setLanguageCookie($language);
+    }
+
+
+    /**
+     * @param $tag
+     *
+     * @return array
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::getTag() instead.
+     */
+    public function getTag($tag)
+    {
+        return $this->translator->getTag($tag);
+    }
+
+
+    /**
+     * Temporary wrapper for SimpleSAML\Locale\Translate::getPreferredTranslation().
+     *
+     * @deprecated This method will be removed in SSP 2.0. Please use
+     * SimpleSAML\Locale\Translate::getPreferredTranslation() instead.
+     */
+    public function getTranslation($translations)
+    {
+        return $this->translator->getPreferredTranslation($translations);
+    }
+
+
+    /**
+     * Wraps Translate->includeInlineTranslation()
+     *
+     * @see \SimpleSAML\Locale\Translate::includeInlineTranslation()
+     * @deprecated This method will be removed in SSP 2.0. Please use
+     * \SimpleSAML\Locale\Translate::includeInlineTranslation() instead.
+     */
+    public function includeInlineTranslation($tag, $translation)
+    {
+        $this->translator->includeInlineTranslation($tag, $translation);
+    }
+
+
+    /**
+     * @param      $file
+     * @param null $otherConfig
+     * @deprecated This method will be removed in SSP 2.0. Please use
+     * \SimpleSAML\Locale\Translate::includeLanguageFile() instead.
+     */
+    public function includeLanguageFile($file, $otherConfig = null)
+    {
+        $this->translator->includeLanguageFile($file, $otherConfig);
+    }
+
+
+    /**
+     * Merge two translation arrays.
+     *
+     * @param array $def The array holding string definitions.
+     * @param array $lang The array holding translations for every string.
+     * @return array The recursive merge of both arrays.
+     * @deprecated This method will be removed in SimpleSAMLphp 2.0. Please use array_merge_recursive() instead.
+     */
+    public static function lang_merge($def, $lang)
+    {
+        foreach ($def as $key => $value) {
+            if (array_key_exists($key, $lang)) {
+                $def[$key] = array_merge($value, $lang[$key]);
+            }
+        }
+        return $def;
+    }
+
+
+    /**
+     * Wrap Language->t to translate tag into the current language, with a fallback to english.
+     *
+     * @see \SimpleSAML\Locale\Translate::t()
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::t() instead.
+     */
+    public function t(
+        $tag,
+        $replacements = array(),
+        $fallbackdefault = true,
+        $oldreplacements = array(),
+        $striptags = false
+    ) {
+        return $this->translator->t($tag, $replacements, $fallbackdefault, $oldreplacements, $striptags);
     }
 }
