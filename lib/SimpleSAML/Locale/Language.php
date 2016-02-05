@@ -28,7 +28,7 @@ class Language
     /**
      * HTTP GET language parameter name.
      */
-    public $languageParameterName = 'language';
+    private $languageParameterName = 'language';
 
 
     /**
@@ -110,6 +110,17 @@ class Language
 
         // language is not set, and we get the default language from the configuration
         return $this->getDefaultLanguage();
+    }
+
+
+    /**
+     * Get the language parameter name.
+     *
+     * @return string The language parameter name.
+     */
+    public function getLanguageParameterName()
+    {
+        return $this->languageParameterName;
     }
 
 

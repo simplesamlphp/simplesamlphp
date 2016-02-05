@@ -69,6 +69,17 @@ class Translate
 
 
     /**
+     * Return the internal language object used by this translator.
+     *
+     * @return \SimpleSAML\Locale\Language
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+
+    /**
      * This method retrieves a dictionary with the name given.
      *
      * @param string $name The name of the dictionary, as the filename in the dictionary directory, without the
