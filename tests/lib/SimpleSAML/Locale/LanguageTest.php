@@ -30,4 +30,23 @@ class LanguageTest extends \PHPUnit_Framework_TestCase
         $_COOKIE['xyz'] = 'yy';
         $this->assertEquals('yy', Language::getLanguageCookie());
     }
+
+
+    /**
+     * Test SimpleSAML\Locale\Language::getLanguageParameterName().
+     */
+    public function testGetLanguageParameterName()
+    {
+        // test for default configuration
+        $c = \SimpleSAML_Configuration::loadFromArray(array());
+        $l = new Language($c);
+        $this->assertEquals('language', $l->getLanguageParameterName());
+
+        // test for valid configuration
+        $c = \SimpleSAML_Configuration::loadFromArray(array(
+            'language.parameter.name' => 'xyz'
+        ));
+        $l = new Language($c);
+        $this->assertEquals('xyz', $l->getLanguageParameterName());
+    }
 }
