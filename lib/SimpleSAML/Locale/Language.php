@@ -28,7 +28,7 @@ class Language
     /**
      * HTTP GET language parameter name.
      */
-    private $languageParameterName = 'language';
+    private $languageParameterName;
 
 
     /**
@@ -64,7 +64,7 @@ class Language
         if (in_array($language, $this->availableLanguages, true)) {
             $this->language = $language;
             if ($setLanguageCookie === true) {
-                Language::setLanguageCookie($language);
+                self::setLanguageCookie($language);
             }
         }
     }
