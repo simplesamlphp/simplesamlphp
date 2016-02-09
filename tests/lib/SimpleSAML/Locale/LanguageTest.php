@@ -49,4 +49,26 @@ class LanguageTest extends \PHPUnit_Framework_TestCase
         $l = new Language($c);
         $this->assertEquals('xyz', $l->getLanguageParameterName());
     }
+
+
+    /**
+     * Test SimpleSAML\Locale\Language::setLanguage().
+     */
+    public function testSetLanguage()
+    {
+        // test with valid configuration, no cookies set
+        $c = \SimpleSAML_Configuration::loadFromArray(array(
+            'language.available' => array('xx', 'yy', 'zz'),
+            'language.parameter.name' => 'xyz',
+            'language.parameter.setcookie' => false,
+        ));
+        $_GET['xyz'] = 'Zz'; // test also that lang code is transformed to lower caps
+        $l = new Language($c);
+        $this->assertEquals('zz', $l->getLanguage());
+
+        // test with valid configuration, no cookies, language set unavailable
+        $_GET['xyz'] = 'unavailable';
+        $l = new Language($c);
+        $this->assertEquals('xx', $l->getLanguage());
+    }
 }
