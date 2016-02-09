@@ -117,8 +117,7 @@ class Language
         }
 
         // run custom getLanguage function if defined
-        if (isset($this->customFunction)) {
-            assert('is_callable($customFunction)');
+        if (isset($this->customFunction) && is_callable($this->customFunction)) {
             $customLanguage = call_user_func($this->customFunction, $this);
             if ($customLanguage !== null && $customLanguage !== false) {
                 return $customLanguage;
@@ -216,12 +215,10 @@ class Language
      */
     public function getLanguageList()
     {
-        $thisLang = $this->getLanguage();
-        $lang = array();
-        foreach ($this->availableLanguages as $nl) {
-            $lang[$nl] = ($nl == $thisLang);
-        }
-        return $lang;
+        $current = $this->getLanguage();
+        $list = array_fill_keys($this->availableLanguages, false);
+        $list[$current] = true;
+        return $list;
     }
 
 
@@ -232,11 +229,7 @@ class Language
      */
     public function isLanguageRTL()
     {
-        $thisLang = $this->getLanguage();
-        if (in_array($thisLang, $this->rtlLanguages)) {
-            return true;
-        }
-        return false;
+        return in_array($this->getLanguage(), $this->rtlLanguages);
     }
 
 
