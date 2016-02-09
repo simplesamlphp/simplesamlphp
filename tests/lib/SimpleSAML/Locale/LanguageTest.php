@@ -9,6 +9,26 @@ class LanguageTest extends \PHPUnit_Framework_TestCase
 
 
     /**
+     * Test SimpleSAML\Locale\Language::getDefaultLanguage().
+     */
+    public function testGetDefaultLanguage()
+    {
+        // test default
+        $c = \SimpleSAML_Configuration::loadFromArray(array());
+        $l = new Language($c);
+        $this->assertEquals('en', $l->getDefaultLanguage());
+
+        // test defaults coming from configuration
+        $c = \SimpleSAML_Configuration::loadFromArray(array(
+            'language.available' => array('xx', 'yy', 'zz'),
+            'language.default' => 'yy',
+        ));
+        $l = new Language($c);
+        $this->assertEquals('yy', $l->getDefaultLanguage());
+    }
+
+
+    /**
      * Test SimpleSAML\Locale\Language::getLanguageCookie().
      */
     public function testGetLanguageCookie()
@@ -38,14 +58,14 @@ class LanguageTest extends \PHPUnit_Framework_TestCase
     public function testGetLanguageParameterName()
     {
         // test for default configuration
-        $c = \SimpleSAML_Configuration::loadFromArray(array());
+        $c = \SimpleSAML_Configuration::loadFromArray(array(), '', 'simplesaml');
         $l = new Language($c);
         $this->assertEquals('language', $l->getLanguageParameterName());
 
         // test for valid configuration
         $c = \SimpleSAML_Configuration::loadFromArray(array(
             'language.parameter.name' => 'xyz'
-        ));
+        ), '', 'simplesaml');
         $l = new Language($c);
         $this->assertEquals('xyz', $l->getLanguageParameterName());
     }
@@ -61,7 +81,7 @@ class LanguageTest extends \PHPUnit_Framework_TestCase
             'language.available' => array('xx', 'yy', 'zz'),
             'language.parameter.name' => 'xyz',
             'language.parameter.setcookie' => false,
-        ));
+        ), '', 'simplesaml');
         $_GET['xyz'] = 'Zz'; // test also that lang code is transformed to lower caps
         $l = new Language($c);
         $this->assertEquals('zz', $l->getLanguage());
@@ -69,6 +89,6 @@ class LanguageTest extends \PHPUnit_Framework_TestCase
         // test with valid configuration, no cookies, language set unavailable
         $_GET['xyz'] = 'unavailable';
         $l = new Language($c);
-        $this->assertEquals('xx', $l->getLanguage());
+        $this->assertEquals('en', $l->getLanguage());
     }
 }
