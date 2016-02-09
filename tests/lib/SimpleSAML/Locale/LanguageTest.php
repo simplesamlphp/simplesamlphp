@@ -47,8 +47,33 @@ class LanguageTest extends \PHPUnit_Framework_TestCase
             'language.available' => array('xx', 'yy', 'zz'),
             'language.cookie.name' => 'xyz'
         ), '', 'simplesaml');
-        $_COOKIE['xyz'] = 'yy';
+        $_COOKIE['xyz'] = 'Yy'; // test values are converted to lowercase too
         $this->assertEquals('yy', Language::getLanguageCookie());
+    }
+
+
+    /**
+     * Test SimpleSAML\Locale\Language::getLanguageList().
+     */
+    public function testGetLanguageList()
+    {
+        // test defaults
+        $c = \SimpleSAML_Configuration::loadFromArray(array(), '', 'simplesaml');
+        $l = new Language($c);
+        $l->setLanguage('en');
+        $this->assertEquals(array('en' => true), $l->getLanguageList());
+
+        // test non-defaults
+        $c = \SimpleSAML_Configuration::loadFromArray(array(
+            'language.available' => array('xx', 'yy', 'zz'),
+        ), '', 'simplesaml');
+        $l = new Language($c);
+        $l->setLanguage('yy');
+        $this->assertEquals(array(
+            'xx' => false,
+            'yy' => true,
+            'zz' => false,
+        ), $l->getLanguageList());
     }
 
 
