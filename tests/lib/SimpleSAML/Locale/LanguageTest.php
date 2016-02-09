@@ -72,6 +72,36 @@ class LanguageTest extends \PHPUnit_Framework_TestCase
 
 
     /**
+     * Test SimpleSAML\Locale\Language::isLanguageRTL().
+     */
+    public function testIsLanguageRTL()
+    {
+        // test defaults
+        $c = \SimpleSAML_Configuration::loadFromArray(array(), '', 'simplesaml');
+        $l = new Language($c);
+        $l->setLanguage('en');
+        $this->assertFalse($l->isLanguageRTL());
+
+        // test non-defaults, non-RTL
+        $c = \SimpleSAML_Configuration::loadFromArray(array(
+            'language.rtl' => array('xx', 'yy', 'zz'),
+        ), '', 'simplesaml');
+        $l = new Language($c);
+        $l->setLanguage('en');
+        $this->assertFalse($l->isLanguageRTL());
+
+        // test non-defaults, RTL
+        $c = \SimpleSAML_Configuration::loadFromArray(array(
+            'language.available' => array('xx', 'yy', 'zz', 'en'),
+            'language.rtl' => array('xx', 'yy'),
+        ), '', 'simplesaml');
+        $l = new Language($c);
+        $l->setLanguage('yy');
+        $this->assertTrue($l->isLanguageRTL());
+    }
+
+
+    /**
      * Test SimpleSAML\Locale\Language::setLanguage().
      */
     public function testSetLanguage()

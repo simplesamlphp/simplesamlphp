@@ -153,7 +153,7 @@ class Language
                 continue;
             }
 
-            /* Some user agents use very limited precicion of the quality value, but order the elements in descending
+            /* Some user agents use very limited precision of the quality value, but order the elements in descending
              * order. Therefore we rely on the order of the output from getAcceptLanguage() matching the order of the
              * languages in the header when two languages have the same quality.
              */
