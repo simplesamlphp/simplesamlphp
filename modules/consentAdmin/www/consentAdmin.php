@@ -205,8 +205,9 @@ $template_sp_content = array();
 
 // Init template
 $template = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
-$sp_empty_name = $template->getTag('sp_empty_name');
-$sp_empty_description = $template->getTag('sp_empty_description');
+$translator = $template->getTranslator();
+$sp_empty_name = $translator->getTag('sp_empty_name');
+$sp_empty_description = $translator->getTag('sp_empty_description');
 
 // Process consents for all SP
 foreach ($all_sp_metadata as $sp_entityid => $sp_values) {

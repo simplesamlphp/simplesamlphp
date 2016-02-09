@@ -1,7 +1,7 @@
 <?php $this->includeAtTemplateBase('includes/header.php'); ?>
 <!--  default theme -->
 <?php 
-$this->includeLanguageFile('attributes.php'); // attribute listings translated by this dictionary
+$this->getTranslator()->includeLanguageFile('attributes.php'); // attribute listings translated by this dictionary
  
 ?> 
 
@@ -72,8 +72,8 @@ span.showhide {
 			$hide_text = $this->t('hide');
 			$attributes_text = $this->t('attributes_text');
 			foreach ($spList AS $spName => $spValues) {
-				$this->includeInlineTranslation('spname', $spValues['name']);
-				$this->includeInlineTranslation('spdescription', $spValues['description']);
+				$this->getTranslator()->includeInlineTranslation('spname', $spValues['name']);
+				$this->getTranslator()->includeInlineTranslation('spdescription', $spValues['description']);
                 if (!is_null($spValues['serviceurl'])) {
                     $htmlSpName = '<a href="' . $spValues['serviceurl'] . '" style="color: black; font-weight: bold;">' . htmlspecialchars($this->t('spname', array(), false, true)) . '</a>';
                 } else {
@@ -101,7 +101,7 @@ TRSTART;
 				if (isset($this->data['attribute_' . htmlspecialchars(strtolower($name)) ])) {
 				  $name = $this->data['attribute_' . htmlspecialchars(strtolower($name))];
 				}
-				$name = $this->getAttributeTranslation($name); // translate
+				$name = $this->getTranslator()->getAttributeTranslation($name); // translate
 				if (sizeof($value) > 1) {
 						echo "<li>" . htmlspecialchars($name) . ":\n<ul>\n";
 						foreach ($value AS $v) {

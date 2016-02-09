@@ -1,6 +1,6 @@
 <?php
 if (array_key_exists('header', $this->data)) {
-    if ($this->getTag($this->data['header']) !== null) {
+    if ($this->getTranslator()->getTag($this->data['header']) !== null) {
         $this->data['header'] = $this->t($this->data['header']);
     }
 }

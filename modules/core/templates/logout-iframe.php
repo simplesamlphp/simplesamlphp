@@ -42,7 +42,7 @@ foreach ($SPs as $assocId => $sp) {
 }
 
 if ($from !== NULL) {
-	$from = $this->getTranslation($from);
+	$from = $this->getTranslator()->getPreferredTranslation($from);
 }
 
 
@@ -99,7 +99,7 @@ echo '<table id="slostatustable">';
 
 foreach ($SPs AS $assocId => $sp) {
 	if (isset($sp['core:Logout-IFrame:Name'])) {
-		$spName = $this->getTranslation($sp['core:Logout-IFrame:Name']);
+		$spName = $this->getTranslator()->getPreferredTranslation($sp['core:Logout-IFrame:Name']);
 	} else {
 		$spName = $assocId;
 	}

@@ -30,7 +30,7 @@ function present_assoc($attr) {
 	}
 }
 
-function present_attributes($t, $attributes, $nameParent) {
+function present_attributes(SimpleSAML_XHTML_Template $t, $attributes, $nameParent) {
 	$alternate = array('odd', 'even'); $i = 0;
 	
 	$parentStr = (strlen($nameParent) > 0)? strtolower($nameParent) . '_': '';
@@ -40,7 +40,7 @@ function present_attributes($t, $attributes, $nameParent) {
 	foreach ($attributes as $name => $value) {
 	
 		$nameraw = $name;
-		$name = $t->getAttributeTranslation($parentStr . $nameraw);
+		$name = $t->getTranslator()->getAttributeTranslation($parentStr . $nameraw);
 
 		if (preg_match('/^child_/', $nameraw)) {
 			$parentName = preg_replace('/^child_/', '', $nameraw);
