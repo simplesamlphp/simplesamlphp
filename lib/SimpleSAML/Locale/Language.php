@@ -20,10 +20,40 @@ class Language
      */
     private static $defaultLanguageMap = array('nb' => 'no');
 
-    private $configuration = null;
-    private $availableLanguages = array('en');
+    /**
+     * The configuration to use.
+     *
+     * @var \SimpleSAML_Configuration
+     */
+    private $configuration;
+
+    /**
+     * An array holding a list of languages available.
+     *
+     * @var array
+     */
+    private $availableLanguages;
+
+    /**
+     * The language currently in use.
+     *
+     * @var null|string
+     */
     private $language = null;
 
+    /**
+     * The language to use by default.
+     *
+     * @var string
+     */
+    private $defaultLanguage;
+
+    /**
+     * An array holding a list of languages that are written from right to left.
+     *
+     * @var array
+     */
+    private $rtlLanguages;
 
     /**
      * HTTP GET language parameter name.
@@ -39,10 +69,11 @@ class Language
     public function __construct(\SimpleSAML_Configuration $configuration)
     {
         $this->configuration = $configuration;
-
         $this->availableLanguages = $this->configuration->getArray('language.available', array('en'));
-
+        $this->defaultLanguage = $this->configuration->getString('language.default', 'en');
         $this->languageParameterName = $this->configuration->getString('language.parameter.name', 'language');
+        $this->customFunction = $this->configuration->getArray('language.get_language_function', null);
+        $this->rtlLanguages = $this->configuration->getArray('language.rtl', array());
         if (isset($_GET[$this->languageParameterName])) {
             $this->setLanguage(
                 $_GET[$this->languageParameterName],
@@ -86,10 +117,9 @@ class Language
         }
 
         // run custom getLanguage function if defined
-        $customFunction = $this->configuration->getArray('language.get_language_function', null);
-        if (isset($customFunction)) {
+        if (isset($this->customFunction)) {
             assert('is_callable($customFunction)');
-            $customLanguage = call_user_func($customFunction, $this);
+            $customLanguage = call_user_func($this->customFunction, $this);
             if ($customLanguage !== null && $customLanguage !== false) {
                 return $customLanguage;
             }
@@ -174,14 +204,15 @@ class Language
      */
     public function getDefaultLanguage()
     {
-        return $this->configuration->getString('language.default', 'en');
+        return $this->defaultLanguage;
     }
 
 
     /**
-     * Return a list of all languages available.
+     * Return an indexed list of all languages available.
      *
-     * @return array An array holding all the languages available.
+     * @return array An array holding all the languages available as the keys of the array. The value for each key is
+     * true in case that the language specified by that key is currently active, or false otherwise.
      */
     public function getLanguageList()
     {
@@ -195,15 +226,14 @@ class Language
 
 
     /**
-     * Check whether a language is right-to-left or not.
+     * Check whether a language is written from the right to the left or not.
      *
      * @return boolean True if the language is right-to-left, false otherwise.
      */
     public function isLanguageRTL()
     {
-        $rtlLanguages = $this->configuration->getArray('language.rtl', array());
         $thisLang = $this->getLanguage();
-        if (in_array($thisLang, $rtlLanguages)) {
+        if (in_array($thisLang, $this->rtlLanguages)) {
             return true;
         }
         return false;
