@@ -57,8 +57,17 @@ class Language
 
     /**
      * HTTP GET language parameter name.
+     *
+     * @var string
      */
     private $languageParameterName;
+
+    /**
+     * A custom function to use in order to determine the language in use.
+     *
+     * @var callable|null
+     */
+    private $customFunction;
 
 
     /**
