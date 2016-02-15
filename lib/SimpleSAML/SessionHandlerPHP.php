@@ -118,7 +118,24 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
                 throw new SimpleSAML_Error_Exception('Session start with secure cookie not allowed on http.');
             }
 
+            $cacheLimiter = session_cache_limiter();
+            if (headers_sent()) {
+                /*
+                 * session_start() tries to send HTTP headers depending on the configuration, according to the
+                 * documentation:
+                 *
+                 *      http://php.net/manual/en/function.session-start.php
+                 *
+                 * If headers have been already sent, it will then trigger an error since no more headers can be sent.
+                 * Being unable to send headers does not mean we cannot recover the session by calling session_start(),
+                 * so we still want to call it. In this case, though, we want to avoid session_start() to send any
+                 * headers at all so that no error is generated, so we clear the cache limiter temporarily (no headers
+                 * sent then) and restore it after successfully starting the session.
+                 */
+                session_cache_limiter('');
+            }
             session_start();
+            session_cache_limiter($cacheLimiter);
         }
 
         return session_id();
