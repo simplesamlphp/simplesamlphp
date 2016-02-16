@@ -257,10 +257,30 @@ class Metadata
      */
     public static function isHiddenFromDiscovery(array $metadata)
     {
-        try {
-            return @in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY]);
-        } catch (\Exception $e) {
+        if (!is_array($metadata)) {
+            return false;
         }
-        return false;
+
+        if (!array_key_exists('EntityAttributes', $metadata)) {
+            return false;
+        }
+
+        if (!is_array($metadata['EntityAttributes'])) {
+            return false;
+        }
+
+        if (!array_key_exists(self::$ENTITY_CATEGORY, $metadata['EntityAttributes'])) {
+            return false;
+        }
+
+        if (!is_array($metadata['EntityAttributes'][self::$ENTITY_CATEGORY])) {
+            return false;
+        }
+
+        if (!in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY])) {
+            return false;
+        }
+
+        return true;
     }
 }
