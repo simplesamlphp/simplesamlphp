@@ -258,7 +258,7 @@ class Metadata
     public static function isHiddenFromDiscovery(array $metadata)
     {
         try {
-            return in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY]);
+            return @in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY]);
         } catch (\Exception $e) {
         }
         return false;
