@@ -333,7 +333,7 @@ EOF;
         if (!$this->ldap->bind($this->admin_user, $this->admin_pw)) {
             $msg = 'Unable to authenticate system user (LDAP_INVALID_CREDENTIALS) '.var_export($this->admin_user, true);
             SimpleSAML_Logger::error('Negotiate - authenticate(): '.$msg);
-            throw new SimpleSAML_Error_AuthSource($msg);
+            throw new SimpleSAML_Error_AuthSource('negotiate', $msg);
         }
     }
 
