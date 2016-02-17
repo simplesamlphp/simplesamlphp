@@ -11,21 +11,21 @@
 require_once('../../_include.php');
 
 $config = SimpleSAML_Configuration::getInstance();
-if (!$config->getBoolean('enable.saml20-idp', FALSE)) {
-	throw new SimpleSAML_Error_Error('NOACCESS');
+if (!$config->getBoolean('enable.saml20-idp', false)) {
+    throw new SimpleSAML_Error_Error('NOACCESS');
 }
 
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-hosted');
 
-if (!$idpMetadata->getBoolean('saml20.sendartifact', FALSE)) {
-	throw new SimpleSAML_Error_Error('NOACCESS');
+if (!$idpMetadata->getBoolean('saml20.sendartifact', false)) {
+    throw new SimpleSAML_Error_Error('NOACCESS');
 }
 
 $store = SimpleSAML_Store::getInstance();
-if ($store === FALSE) {
-	throw new Exception('Unable to send artifact without a datastore configured.');
+if ($store === false) {
+    throw new Exception('Unable to send artifact without a datastore configured.');
 }
 
 $binding = new SAML2_SOAP();
@@ -42,7 +42,7 @@ try {
     }
 }
 if (!($request instanceof SAML2_ArtifactResolve)) {
-	throw new Exception('Message received on ArtifactResolutionService wasn\'t a ArtifactResolve request.');
+    throw new Exception('Message received on ArtifactResolutionService wasn\'t a ArtifactResolve request.');
 }
 
 $issuer = $request->getIssuer();
@@ -53,11 +53,11 @@ $artifact = $request->getArtifact();
 $responseData = $store->get('artifact', $artifact);
 $store->delete('artifact', $artifact);
 
-if ($responseData !== NULL) {
-	$document = SAML2_DOMDocumentFactory::fromString($responseData);
-	$responseXML = $document->firstChild;
+if ($responseData !== null) {
+    $document = SAML2_DOMDocumentFactory::fromString($responseData);
+    $responseXML = $document->firstChild;
 } else {
-	$responseXML = NULL;
+    $responseXML = null;
 }
 
 $artifactResponse = new SAML2_ArtifactResponse();
