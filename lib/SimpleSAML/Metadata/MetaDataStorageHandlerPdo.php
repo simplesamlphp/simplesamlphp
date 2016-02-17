@@ -196,18 +196,18 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
         );
 
         if ($retrivedEntityIDs !== false && count($retrivedEntityIDs) > 0) {
-            $stmt = $this->db->write(
+            $rows = $this->db->write(
                 "UPDATE $tableName SET entity_data = :entity_data WHERE entity_id = :entity_id",
                 $params
             );
         } else {
-            $stmt = $this->db->write(
+            $rows = $this->db->write(
                 "INSERT INTO $tableName (entity_id, entity_data) VALUES (:entity_id, :entity_data)",
                 $params
             );
         }
 
-        return 1 === $stmt->rowCount();
+        return $rows === 1;
     }
 
 
@@ -229,16 +229,29 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
     /**
      * Initialize the configured database
+     *
+     * @return int|false The number of SQL statements successfully executed, false if some error occurred.
      */
     public function initDatabase()
     {
+        $stmt = 0;
+        $fine = true;
         foreach ($this->supportedSets as $set) {
             $tableName = $this->getTableName($set);
-            $this->db->write(
+            $rows = $this->db->write(
                 "CREATE TABLE IF NOT EXISTS $tableName (entity_id VARCHAR(255) PRIMARY KEY NOT NULL, entity_data ".
                 "TEXT NOT NULL)"
             );
+            if ($rows === 0) {
+                $fine = false;
+            } else {
+                $stmt += $rows;
+            }
         }
+        if (!$fine) {
+            return false;
+        }
+        return $stmt;
     }
 
 }

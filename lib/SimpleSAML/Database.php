@@ -260,14 +260,15 @@ class Database
      * @param string $stmt Prepared SQL statement
      * @param array  $params Parameters
      *
-     * @return \PDOStatement object
+     * @return int The number of rows affected by the query.
      */
     public function write($stmt, $params = array())
     {
         $db = $this->dbMaster;
 
         if (is_array($params)) {
-            return $this->query($db, $stmt, $params);
+            $obj = $this->query($db, $stmt, $params);
+            return $obj->rowCount();
         } else {
             return $this->exec($db, $stmt);
         }
