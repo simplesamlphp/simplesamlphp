@@ -64,10 +64,10 @@ if ($this->data['errorcode'] !== null) {
                            name="remember_username" value="Yes"/>
                     <small><?php echo $this->t('{login:remember_username}'); ?></small>
                 </td>
-            </tr>
             <?php
             }
             ?>
+            </tr>
             <tr>
                 <td><label for="password"><?php echo $this->t('{login:password}'); ?></label></td>
                 <td>
@@ -83,9 +83,11 @@ if ($this->data['errorcode'] !== null) {
                            name="remember_me" value="Yes"/>
                     <small><?php echo $this->t('{login:remember_me}'); ?></small>
                 </td>
-            </tr>
             <?php
             }
+            ?>
+            </tr>
+            <?php
             if (array_key_exists('organizations', $this->data)) {
                 ?>
                 <tr>
