@@ -51,7 +51,7 @@ class SimpleSAML_XHTML_Template
         $this->configuration = $configuration;
         $this->template = $template;
         $this->data['baseurlpath'] = $this->configuration->getBaseURL();
-        $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary = null);
+        $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
     }
 
 
