@@ -54,7 +54,7 @@ function SimpleSAML_autoload_psr4($className)
     if (array_shift($elements) !== 'SimpleSAML') {
         return; // the first element is not "SimpleSAML"
     }
-    if (array_shift($elements) !== 'module') {
+    if (array_shift($elements) !== 'Module') {
         return; // the second element is not "module"
     }
 
