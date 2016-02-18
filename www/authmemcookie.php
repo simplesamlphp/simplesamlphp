@@ -8,6 +8,8 @@
  *
  * The file extra/auth_memcookie.conf contains an example of how Auth Memcookie can be configured
  * to use SimpleSAMLphp.
+ *
+ * @deprecated This file has been deprecated and will be removed in SSP 2.0. Use the memcookie module instead.
  */
 
 require_once('_include.php');

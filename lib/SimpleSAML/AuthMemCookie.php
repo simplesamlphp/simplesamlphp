@@ -7,6 +7,8 @@
  *
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
+ *
+ * @deprecated This class has been deprecated and will be removed in SSP 2.0. Use the memcookie module instead.
  */
 class SimpleSAML_AuthMemCookie
 {
