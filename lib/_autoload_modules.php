@@ -12,6 +12,8 @@
  * Autoload function for SimpleSAMLphp modules following PSR-0.
  *
  * @param string $className Name of the class.
+ *
+ * TODO: this autoloader should be removed once everything has been migrated to namespaces.
  */
 function SimpleSAML_autoload_psr0($className)
 {
@@ -22,17 +24,29 @@ function SimpleSAML_autoload_psr0($className)
     }
 
     $modNameEnd = strpos($className, '_', $modulePrefixLength);
-    $module = substr($className, $modulePrefixLength, $modNameEnd - $modulePrefixLength);
-    $moduleClass = substr($className, $modNameEnd + 1);
+    $module     = substr($className, $modulePrefixLength, $modNameEnd - $modulePrefixLength);
+    $path       = explode('_', substr($className, $modNameEnd + 1));
 
     if (!SimpleSAML_Module::isModuleEnabled($module)) {
         return;
     }
 
-    $file = SimpleSAML_Module::getModuleDir($module).'/lib/'.str_replace('_', '/', $moduleClass).'.php';
-
+    $file = SimpleSAML_Module::getModuleDir($module).'/lib/'.join('/', $path).'.php';
     if (file_exists($file)) {
         require_once($file);
+    }
+
+    if (!class_exists($className, false)) {
+        // the file exists, but the class is not defined. Is it using namespaces?
+        $nspath = join('\\', $path);
+        if (class_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath)) {
+            // the class has been migrated, create an alias and warn about it
+            SimpleSAML_Logger::warning(
+                "The class '$className' is now using namespaces, please use 'SimpleSAML\\Module\\$module\\".
+                "$nspath' instead."
+            );
+            class_alias("SimpleSAML\\Module\\$module\\$nspath", $className);
+        }
     }
 }
 
