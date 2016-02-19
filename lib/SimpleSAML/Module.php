@@ -142,17 +142,31 @@ class SimpleSAML_Module
         assert('is_string($subclass) || is_null($subclass)');
 
         $tmp = explode(':', $id, 2);
-        if (count($tmp) === 1) {
+        if (count($tmp) === 1) { // no module involved
             $className = $tmp[0];
-        } else {
-            $className = 'sspmod_'.$tmp[0].'_'.$type.'_'.$tmp[1];
+            if (!class_exists($className)) {
+                throw new Exception("Could not resolve '$id': no class named '$className'.");
+            }
+        } else { // should be a module
+            // make sure empty types are handled correctly
+            $type = (empty($type)) ? '_' : '_'.$type.'_';
+
+            // check for the old-style class names
+            $className = 'sspmod_'.$tmp[0].$type.$tmp[1];
+
+            if (!class_exists($className)) {
+                // check for the new-style class names, using namespaces
+                $type = str_replace('_', '\\', $type);
+                $newClassName = 'SimpleSAML\Module\\'.$tmp[0].$type.$tmp[1];
+
+                if (!class_exists($newClassName)) {
+                    throw new Exception("Could not resolve '$id': no class named '$className' or '$newClassName'.");
+                }
+                $className = $newClassName;
+            }
         }
 
-        if (!class_exists($className)) {
-            throw new Exception(
-                'Could not resolve \''.$id.'\': No class named \''.$className.'\'.'
-            );
-        } elseif ($subclass !== null && !is_subclass_of($className, $subclass)) {
+        if ($subclass !== null && !is_subclass_of($className, $subclass)) {
             throw new Exception(
                 'Could not resolve \''.$id.'\': The class \''.$className.'\' isn\'t a subclass of \''.$subclass.'\'.'
             );
