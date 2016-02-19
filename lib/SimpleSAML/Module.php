@@ -4,11 +4,90 @@
 /**
  * Helper class for accessing information about modules.
  *
- * @author Olav Morken, UNINETT AS.
+ * @author Olav Morken <olav.morken@uninett.no>, UNINETT AS.
+ * @author Boy Baukema, SURFnet.
+ * @author Jaime Perez <jaime.perez@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class SimpleSAML_Module
 {
+
+    /**
+     * Autoload function for SimpleSAMLphp modules following PSR-0.
+     *
+     * @param string $className Name of the class.
+     *
+     * TODO: this autoloader should be removed once everything has been migrated to namespaces.
+     */
+    public static function autoloadPSR0($className)
+    {
+        $modulePrefixLength = strlen('sspmod_');
+        $classPrefix = substr($className, 0, $modulePrefixLength);
+        if ($classPrefix !== 'sspmod_') {
+            return;
+        }
+
+        $modNameEnd = strpos($className, '_', $modulePrefixLength);
+        $module     = substr($className, $modulePrefixLength, $modNameEnd - $modulePrefixLength);
+        $path       = explode('_', substr($className, $modNameEnd + 1));
+
+        if (!self::isModuleEnabled($module)) {
+            return;
+        }
+
+        $file = self::getModuleDir($module).'/lib/'.join('/', $path).'.php';
+        if (file_exists($file)) {
+            require_once($file);
+        }
+
+        if (!class_exists($className, false)) {
+            // the file exists, but the class is not defined. Is it using namespaces?
+            $nspath = join('\\', $path);
+            if (class_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath)) {
+                // the class has been migrated, create an alias and warn about it
+                SimpleSAML_Logger::warning(
+                    "The class '$className' is now using namespaces, please use 'SimpleSAML\\Module\\$module\\".
+                    "$nspath' instead."
+                );
+                class_alias("SimpleSAML\\Module\\$module\\$nspath", $className);
+            }
+        }
+    }
+
+
+    /**
+     * Autoload function for SimpleSAMLphp modules following PSR-4.
+     *
+     * @param string $className Name of the class.
+     */
+    public static function autoloadPSR4($className)
+    {
+        $elements = explode('\\', $className);
+        if ($elements[0] === '') { // class name starting with /, ignore
+            array_shift($elements);
+        }
+        if (count($elements) < 4) {
+            return; // it can't be a module
+        }
+        if (array_shift($elements) !== 'SimpleSAML') {
+            return; // the first element is not "SimpleSAML"
+        }
+        if (array_shift($elements) !== 'Module') {
+            return; // the second element is not "module"
+        }
+
+        // this is a SimpleSAMLphp module following PSR-4
+        $module = array_shift($elements);
+        if (!self::isModuleEnabled($module)) {
+            return; // module not enabled, avoid giving out any information at all
+        }
+
+        $file = self::getModuleDir($module).'/lib/'.implode('/', $elements).'.php';
+
+        if (file_exists($file)) {
+            require_once($file);
+        }
+    }
 
 
     /**
@@ -32,7 +111,7 @@ class SimpleSAML_Module
     /**
      * Determine whether a module is enabled.
      *
-     * Will return false if the given module doesn't exists.
+     * Will return false if the given module doesn't exist.
      *
      * @param string $module Name of the module
      *
