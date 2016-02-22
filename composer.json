@@ -20,8 +20,8 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "SimpleSAML": "lib/"
+        "psr-4": {
+            "SimpleSAML\\": "lib/SimpleSAML"
         },
         "files": ["lib/_autoload_modules.php"]
     },
