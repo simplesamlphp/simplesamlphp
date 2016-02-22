@@ -138,7 +138,7 @@ class Module
                 return $moduleEnable[$module];
             }
 
-            throw new \Exception("Invalid module.enable value for for the module $module");
+            throw new \Exception("Invalid module.enable value for the '$module' module.");
         }
 
         if (assert_options(ASSERT_ACTIVE) &&
