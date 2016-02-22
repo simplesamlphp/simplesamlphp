@@ -1,7 +1,7 @@
 `core:AttributeValueMap`
 ===================
 
-Filter that creates a target attribute based on or more value(s) in source attribute.
+Filter that creates a target attribute based on one or more value(s) in source attribute.
 
 %replace can be used to replace all existing values in target with new ones (any existing values will be lost)
 %keep can be used to keep the source attribute, otherwise it will be removed.
