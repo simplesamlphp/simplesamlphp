@@ -37,5 +37,5 @@ function temporaryLoader($class)
 }
 
 spl_autoload_register("temporaryLoader");
-spl_autoload_register(array('SimpleSAML_Module', 'autoloadPSR0'));
-spl_autoload_register(array('SimpleSAML_Module', 'autoloadPSR4'));
+spl_autoload_register(array('SimpleSAML\Module', 'autoloadPSR0'));
+spl_autoload_register(array('SimpleSAML\Module', 'autoloadPSR4'));
