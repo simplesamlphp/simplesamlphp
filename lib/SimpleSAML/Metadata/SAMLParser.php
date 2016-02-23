@@ -124,6 +124,11 @@ class SimpleSAML_Metadata_SAMLParser
      */
     private $entityAttributes;
 
+    /**
+     * An associative array of attributes from the RegistrationInfo element.
+     * @var array
+     */
+    private $registrationInfo;
 
     /**
      * @var array
@@ -180,6 +185,7 @@ class SimpleSAML_Metadata_SAMLParser
         $this->scopes = $ext['scope'];
         $this->tags = $ext['tags'];
         $this->entityAttributes = $ext['EntityAttributes'];
+        $this->registrationInfo = $ext['RegistrationInfo'];
 
         // look over the RoleDescriptors
         foreach ($entityElement->RoleDescriptor as $child) {
@@ -484,6 +490,11 @@ class SimpleSAML_Metadata_SAMLParser
         $tags = array_merge($this->tags, array_diff($roleDescriptor['tags'], $this->tags));
         if (!empty($tags)) {
             $metadata['tags'] = $tags;
+        }
+
+
+        if (!empty($this->registrationInfo)) {
+            $metadata['RegistrationInfo'] = $this->registrationInfo;
         }
 
         if (!empty($this->entityAttributes)) {
@@ -993,6 +1004,7 @@ class SimpleSAML_Metadata_SAMLParser
             'scope'            => array(),
             'tags'             => array(),
             'EntityAttributes' => array(),
+            'RegistrationInfo' => array(),
             'UIInfo'           => array(),
             'DiscoHints'       => array(),
         );
@@ -1006,6 +1018,9 @@ class SimpleSAML_Metadata_SAMLParser
 
             // Entity Attributes are only allowed at entity level extensions and not at RoleDescriptor level
             if ($element instanceof SAML2_XML_md_EntityDescriptor) {
+                if ($e instanceof SAML2_XML_mdrpi_RegistrationInfo) {
+                    $ret['RegistrationInfo']['registrationAuthority'] = $e->registrationAuthority;
+                }
                 if ($e instanceof SAML2_XML_mdattr_EntityAttributes && !empty($e->children)) {
                     foreach ($e->children as $attr) {
                         // only saml:Attribute are currently supported here. The specifications also allows

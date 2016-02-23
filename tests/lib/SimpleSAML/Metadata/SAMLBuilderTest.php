@@ -8,7 +8,7 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * Test the requeste attributes are valued correctly.
+     * Test the requested attributes are valued correctly.
      */
     public function testAttributes()
     {

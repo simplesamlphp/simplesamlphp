@@ -1,7 +1,7 @@
 .gitignore
 log
 config
-metadata
+./metadata
 cert
 
 !config/.gitkeep
