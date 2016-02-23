@@ -33,7 +33,8 @@ XML
         $entities = \SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
-        $this->assertEquals($expected, $entities['theEntityID']->getMetadata20SP()['RegistrationInfo']);
+        $metadata = $entities['theEntityID']->getMetadata20SP();
+        $this->assertEquals($expected, $metadata['RegistrationInfo']);
 
     }
 }
