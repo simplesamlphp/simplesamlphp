@@ -127,7 +127,7 @@ class sspmod_metarefresh_MetaLoader {
         $filterFunction = null;
         if (isset($source['filterCallback'])) {
             if (!is_callable($source['filterCallback'])) {
-                SimpleSAML_Logger::debug('Invalid filter callback ' . $source['filterCallback'] . ' - attempting to re-use cached metadata');
+                SimpleSAML_Logger::warning('Invalid filter callback ' . $source['filterCallback'] . ' - attempting to re-use cached metadata');
                 $this->addCachedMetadata($source);
                 return;
             } else {
@@ -141,7 +141,7 @@ class sspmod_metarefresh_MetaLoader {
             } elseif (is_callable($source['filterFactory'])) {
                 $filterFunction = call_user_func_array($source['filterFactory'], $source['filterFactoryArgs']);
             } else {
-                SimpleSAML_Logger::debug('Invalid filter factory ' . $source['filterFactory'] . ' - attempting to re-use cached metadata');
+                SimpleSAML_Logger::warning('Invalid filter factory ' . $source['filterFactory'] . ' - attempting to re-use cached metadata');
                 $this->addCachedMetadata($source);
                 return;
             }

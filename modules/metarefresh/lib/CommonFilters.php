@@ -3,10 +3,8 @@
 /*
  * Filter callbacks and callback factories that are useful to most SSP users
  */
-
 class sspmod_metarefresh_CommonFilters
 {
-
 
     /**
      * Creates a filter that checks the <mdrpi:RegistrationInfo/> element of an entity.
@@ -37,13 +35,14 @@ class sspmod_metarefresh_CommonFilters
     }
 
     /**
-     * An internal helper function. Limitations in php 5.3 prevent referencing this helper function from anonymous methods
-     * unless it is public.
+     * An internal helper function. Limitations in php 5.3 prevent referencing this helper function from anonymous
+     * methods unless it is public.
      * @param SimpleSAML_Metadata_SAMLParser $entity
-     * @return array
+     * @return array An associative array with metadata or NULL if we are unable to generate metadata
      */
     public static function getMetadata(SimpleSAML_Metadata_SAMLParser $entity)
     {
+        // We don't know what type of metadata the entity contains so get each type until one returns data.
         $metaData = $entity->getMetadata20SP();
         if (!isset($metaData)) {
             $metaData = $entity->getMetadata20IdP();

@@ -1,13 +1,12 @@
 <?php
 /**
- * Test for the metarefres:MetaLoader filter.
+ * Test for the metarefresh:MetaLoader filter.
  */
 class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
 {
 
     /**
      * Test load metadata file with no filtering
-     *
      */
     public function testLoadMetadataFile()
     {
@@ -26,7 +25,6 @@ class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
 
     /**
      * Test load metadata file with blacklist
-     *
      */
     public function testLoadMetadataFileWithBlacklist()
     {
@@ -47,7 +45,6 @@ class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
 
     /**
      * Test load metadata file with whitelist
-     *
      */
     public function testLoadMetadataFileWithWhitelist()
     {
@@ -68,7 +65,6 @@ class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
 
     /**
      * Test load metadata file with callback
-     *
      */
     public function testLoadMetadataFileWithCallback()
     {
@@ -90,7 +86,13 @@ class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
         $this->verifyEntityPresent(false, $entities, 'https://beta.projecteuclid.org/shibboleth-sp');
     }
 
-    public static function entityIdIsWiki(SimpleSAML_Metadata_SAMLParser $entityDesc) {
+    /**
+     * Sample filter callback to use in tests
+     * @param SimpleSAML_Metadata_SAMLParser $entityDesc The parsed entity to check
+     * @return bool true if entity passes the filter.
+     */
+    public static function entityIdIsWiki(SimpleSAML_Metadata_SAMLParser $entityDesc)
+    {
         return strpos($entityDesc->getEntityID(), 'wiki') !== false;
     }
 
@@ -169,7 +171,7 @@ class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
     /**
      * Ensure both SAML 2 and 1.1 entities can be filtered
      */
-    public function testLoadMetadataFileWithAuthorityFilterFactoryOnSAML1_1()
+    public function testLoadMetadataFileWithAuthorityFilterFactoryOnSAML11()
     {
 
         $src = array(
@@ -192,9 +194,9 @@ class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
 
     /**
      * Assert that the metadata has or doesn't have the entityId
-     * @param $present
-     * @param $metadata
-     * @param $entityId
+     * @param $present Should the entityId exist or not?
+     * @param $metadata The assocativie array of metadata types
+     * @param $entityId The entityId to assert.
      */
     private function verifyEntityPresent($present, $metadata, $entityId)
     {
@@ -216,6 +218,4 @@ class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
         $this->assertEquals($present, $found, "Expected {$entityId} presence incorrect");
 
     }
-
-
 }
