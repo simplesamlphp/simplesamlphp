@@ -124,14 +124,14 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase
             if (!radius_add_server($radius,
                 $server['hostname'], $server['port'], $server['secret'], 
                 $this->timeout, $this->retries)) {
-                SimpleSAML_Logger::info("Could not connect to server: " .
+                SimpleSAML_Logger::info("Could not add radius server: " .
                     radius_strerror($radius));
                 continue;
             }
             $success = true;
         }
         if (!$success) {
-            throw new Exception('Error connecting to radius server, no servers available');
+            throw new Exception('Error adding radius servers, no servers available');
         }
 
         if (!radius_create_request($radius, RADIUS_ACCESS_REQUEST)) {
