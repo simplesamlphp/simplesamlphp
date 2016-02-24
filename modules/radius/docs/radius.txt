@@ -39,9 +39,9 @@ authentication source which uses the `radius:Radius` module to
 
         /*
          * The number of times we should retry connections to the RADIUS server.
-	 * Please note that retries would be attempted with each server before
-	 * trying with the next server in the queue, so if you want not to wait
-	 * before trying the next server, retries should be set to 1.
+         * Please note that retries would be attempted with each server before
+         * trying with the next server in the queue, so if you want not to wait
+         * before trying the next server, retries should be set to 1.
          * Optional, defaults to 3 attempts.
          */
         'retries' => 3,
@@ -71,7 +71,7 @@ from the RADIUS server.
 
 The code expects one vendor-attribute with a specific vendor and a specific
 vendor attribute type for each user attribute. The vendor-attribute must
-contain a value on the form <name>=<value>.
+contain a value of the form `&lt;name&gt;=&lt;value&gt;`.
 
 The following configuration options are available for user attributes:
 
