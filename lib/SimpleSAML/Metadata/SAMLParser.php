@@ -159,11 +159,13 @@ class SimpleSAML_Metadata_SAMLParser
      * @param int|NULL                      $maxExpireTime The unix timestamp for when this entity should expire, or
      *     NULL if unknown.
      * @param array                         $validators An array of parent elements that may validate this element.
+     * @param array                         $parentExtensions An optional array of extensions from the parent element.
      */
     private function __construct(
         SAML2_XML_md_EntityDescriptor $entityElement,
         $maxExpireTime,
-        array $validators = array()
+        array $validators = array(),
+        array $parentExtensions = null
     ) {
         assert('is_null($maxExpireTime) || is_int($maxExpireTime)');
 
@@ -181,7 +183,7 @@ class SimpleSAML_Metadata_SAMLParser
         $this->validators[] = $entityElement;
 
         // process Extensions element, if it exists
-        $ext = self::processExtensions($entityElement);
+        $ext = self::processExtensions($entityElement, $parentExtensions);
         $this->scopes = $ext['scope'];
         $this->tags = $ext['tags'];
         $this->entityAttributes = $ext['EntityAttributes'];
@@ -379,15 +381,21 @@ class SimpleSAML_Metadata_SAMLParser
      *     of the entities.
      * @param array                                                         $validators The parent-elements that may be
      *     signed.
+     * @param array                                                         $parentExtensions An optional array of
+     *     extensions from the parent element.
      *
      * @return SimpleSAML_Metadata_SAMLParser[] Array of SAMLParser instances.
      */
-    private static function processDescriptorsElement($element, $maxExpireTime = null, array $validators = array())
-    {
+    private static function processDescriptorsElement(
+        $element,
+        $maxExpireTime = null,
+        array $validators = array(),
+        array $parentExtensions = array()
+    ) {
         assert('is_null($maxExpireTime) || is_int($maxExpireTime)');
 
         if ($element instanceof SAML2_XML_md_EntityDescriptor) {
-            $ret = new SimpleSAML_Metadata_SAMLParser($element, $maxExpireTime, $validators);
+            $ret = new SimpleSAML_Metadata_SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
             $ret = array($ret->getEntityId() => $ret);
             /** @var SimpleSAML_Metadata_SAMLParser[] $ret */
             return $ret;
@@ -395,13 +403,14 @@ class SimpleSAML_Metadata_SAMLParser
 
         assert('$element instanceof SAML2_XML_md_EntitiesDescriptor');
 
+        $extensions = self::processExtensions($element, $parentExtensions);
         $expTime = self::getExpireTime($element, $maxExpireTime);
 
         $validators[] = $element;
 
         $ret = array();
         foreach ($element->children as $child) {
-            $ret += self::processDescriptorsElement($child, $expTime, $validators);
+            $ret += self::processDescriptorsElement($child, $expTime, $validators, $extensions);
         }
 
         return $ret;
@@ -992,13 +1001,15 @@ class SimpleSAML_Metadata_SAMLParser
 
 
     /**
-     * Parse an Extensions element.
+     * Parse an Extensions element. Extensions may appear in multiple elements and certain extension may get inherited
+     * from a parent element.
      *
      * @param mixed $element The element which contains the Extensions element.
+     * @param array $parentExtensions An optional array of extensions from the parent element.
      *
      * @return array An associative array with the extensions parsed.
      */
-    private static function processExtensions($element)
+    private static function processExtensions($element, $parentExtensions = array())
     {
         $ret = array(
             'scope'            => array(),
@@ -1009,6 +1020,12 @@ class SimpleSAML_Metadata_SAMLParser
             'DiscoHints'       => array(),
         );
 
+        // Some extensions may get inherited from a parent element
+        if (($element instanceof SAML2_XML_md_EntityDescriptor || $element instanceof SAML2_XML_md_EntitiesDescriptor)
+                && !empty($parentExtensions['RegistrationInfo'])) {
+            $ret['RegistrationInfo'] = $parentExtensions['RegistrationInfo'];
+        }
+
         foreach ($element->Extensions as $e) {
 
             if ($e instanceof SAML2_XML_shibmd_Scope) {
@@ -1017,9 +1034,18 @@ class SimpleSAML_Metadata_SAMLParser
             }
 
             // Entity Attributes are only allowed at entity level extensions and not at RoleDescriptor level
-            if ($element instanceof SAML2_XML_md_EntityDescriptor) {
+            if ($element instanceof SAML2_XML_md_EntityDescriptor ||
+                $element instanceof SAML2_XML_md_EntitiesDescriptor) {
+
+
                 if ($e instanceof SAML2_XML_mdrpi_RegistrationInfo) {
-                    $ret['RegistrationInfo']['registrationAuthority'] = $e->registrationAuthority;
+                    // Registration Authority cannot be overridden
+                    if (isset($ret['RegistrationInfo']['registrationAuthority'])) {
+                        SimpleSAML_Logger::debug('Invalid attempt to override registrationAuthority '
+                          . $ret['RegistrationInfo']['registrationAuthority'] . " with {$e->registrationAuthority}");
+                    } else {
+                        $ret['RegistrationInfo']['registrationAuthority'] = $e->registrationAuthority;
+                    }
                 }
                 if ($e instanceof SAML2_XML_mdattr_EntityAttributes && !empty($e->children)) {
                     foreach ($e->children as $attr) {
