@@ -40,6 +40,11 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase
     private $retries;
 
     /**
+     * The realm to be added to the entered username.
+     */
+    private $realm;
+
+    /**
      * The attribute name where the username should be stored.
      */
     private $usernameAttribute;
@@ -90,6 +95,7 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase
         }
         $this->timeout = $config->getInteger('timeout', 5);
         $this->retries = $config->getInteger('retries', 3);
+        $this->realm = $config->getString('realm', null);
         $this->usernameAttribute = $config->getString('username_attribute', null);
         $this->nasIdentifier = $config->getString('nas_identifier',
             isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost');
@@ -139,10 +145,14 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase
                 radius_strerror($radius));
         }
 
-        radius_put_attr($radius, RADIUS_USER_NAME, $username);
+        if ($this->realm === null) {
+            radius_put_attr($radius, RADIUS_USER_NAME, $username);
+        } else {
+            radius_put_attr($radius, RADIUS_USER_NAME, $username . '@' . $this->realm);
+        }
         radius_put_attr($radius, RADIUS_USER_PASSWORD, $password);
 
-        if ($this->nasIdentifier != null) {
+        if ($this->nasIdentifier !== null) {
             radius_put_attr($radius, RADIUS_NAS_IDENTIFIER, $this->nasIdentifier);
         }
 

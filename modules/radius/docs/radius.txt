@@ -53,6 +53,15 @@ authentication source which uses the `radius:Radius` module to
         'nas_identifier' => 'client.example.org',
 
         /*
+         * An optional realm that will be suffixed to the username entered
+         * by the user. When set to "example.edu", and the user enters
+         * "bob" as their username, the radius server will be queried for
+         * the username "bob@example.edu".
+         * Optional, defaults to NULL.
+         */
+        'realm' => 'example.edu',
+
+        /*
          * The attribute name we should store the username in. Ths username
          * will not be saved in any attribute if this is NULL.
          * Optional, defaults to NULL.
