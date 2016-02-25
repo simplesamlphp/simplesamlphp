@@ -1039,10 +1039,11 @@ class SimpleSAML_Metadata_SAMLParser
 
 
                 if ($e instanceof SAML2_XML_mdrpi_RegistrationInfo) {
-                    // Registration Authority cannot be overridden
-                    if (isset($ret['RegistrationInfo']['registrationAuthority'])) {
-                        SimpleSAML_Logger::debug('Invalid attempt to override registrationAuthority '
-                          . $ret['RegistrationInfo']['registrationAuthority'] . " with {$e->registrationAuthority}");
+                    // Registration Authority cannot be overridden (warn only if override attempts to change the value)
+                    if (isset($ret['RegistrationInfo']['registrationAuthority'])
+                        && $ret['RegistrationInfo']['registrationAuthority'] !== $e->registrationAuthority) {
+                        SimpleSAML_Logger::warning('Invalid attempt to override registrationAuthority \''
+                          . $ret['RegistrationInfo']['registrationAuthority'] . "' with '{$e->registrationAuthority}'");
                     } else {
                         $ret['RegistrationInfo']['registrationAuthority'] = $e->registrationAuthority;
                     }
