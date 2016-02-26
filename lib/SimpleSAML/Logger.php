@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML;
+
 
 /**
  * The main logger class for SimpleSAMLphp.
@@ -10,11 +12,11 @@
  * @package SimpleSAMLphp
  * @version $ID$
  */
-class SimpleSAML_Logger
+class Logger
 {
 
     /**
-     * @var SimpleSAML_Logger_LoggingHandler|false|null
+     * @var \SimpleSAML_Logger_LoggingHandler|false|null
      */
     private static $loggingHandler = null;
 
@@ -264,7 +266,7 @@ class SimpleSAML_Logger
      */
     public static function flush()
     {
-        $s = SimpleSAML_Session::getSessionFromRequest();
+        $s = \SimpleSAML_Session::getSessionFromRequest();
         self::$trackid = $s->getTrackID();
 
         self::$shuttingDown = true;
@@ -333,7 +335,7 @@ class SimpleSAML_Logger
 
         // register a shutdown handler if needed
         if (!self::$shutdownRegistered) {
-            register_shutdown_function(array('SimpleSAML_Logger', 'flush'));
+            register_shutdown_function(array('SimpleSAML\Logger', 'flush'));
             self::$shutdownRegistered = true;
         }
     }
@@ -344,8 +346,8 @@ class SimpleSAML_Logger
         self::$loggingHandler = false;
 
         // get the configuration
-        $config = SimpleSAML_Configuration::getInstance();
-        assert($config instanceof SimpleSAML_Configuration);
+        $config = \SimpleSAML_Configuration::getInstance();
+        assert($config instanceof \SimpleSAML_Configuration);
 
         // get the metadata handler option from the configuration
         $handler = $config->getString('logging.handler', 'syslog');
@@ -356,13 +358,13 @@ class SimpleSAML_Logger
         $handler = strtolower($handler);
 
         if ($handler === 'syslog') {
-            $sh = new SimpleSAML_Logger_LoggingHandlerSyslog();
+            $sh = new \SimpleSAML_Logger_LoggingHandlerSyslog();
         } elseif ($handler === 'file') {
-            $sh = new SimpleSAML_Logger_LoggingHandlerFile();
+            $sh = new \SimpleSAML_Logger_LoggingHandlerFile();
         } elseif ($handler === 'errorlog') {
-            $sh = new SimpleSAML_Logger_LoggingHandlerErrorLog();
+            $sh = new \SimpleSAML_Logger_LoggingHandlerErrorLog();
         } else {
-            throw new Exception(
+            throw new \Exception(
                 'Invalid value for the [logging.handler] configuration option. Unknown handler: '.$handler
             );
         }

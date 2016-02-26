@@ -1042,7 +1042,7 @@ class SimpleSAML_Metadata_SAMLParser
                     // Registration Authority cannot be overridden (warn only if override attempts to change the value)
                     if (isset($ret['RegistrationInfo']['registrationAuthority'])
                         && $ret['RegistrationInfo']['registrationAuthority'] !== $e->registrationAuthority) {
-                        SimpleSAML_Logger::warning('Invalid attempt to override registrationAuthority \''
+                        SimpleSAML\Logger::warning('Invalid attempt to override registrationAuthority \''
                           . $ret['RegistrationInfo']['registrationAuthority'] . "' with '{$e->registrationAuthority}'");
                     } else {
                         $ret['RegistrationInfo']['registrationAuthority'] = $e->registrationAuthority;
@@ -1465,7 +1465,7 @@ class SimpleSAML_Metadata_SAMLParser
                 }
             }
         }
-        SimpleSAML_Logger::debug('Could not validate signature');
+        SimpleSAML\Logger::debug('Could not validate signature');
         return false;
     }
 
@@ -1496,7 +1496,7 @@ class SimpleSAML_Metadata_SAMLParser
                 }
             }
         }
-        SimpleSAML_Logger::debug('Fingerprint was ['.$fingerprint.'] not one of ['.join(', ', $candidates).']');
+        SimpleSAML\Logger::debug('Fingerprint was ['.$fingerprint.'] not one of ['.join(', ', $candidates).']');
         return false;
     }
 }

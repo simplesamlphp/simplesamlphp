@@ -50,7 +50,7 @@ set_exception_handler('SimpleSAML_exception_handler');
 // log full backtrace on errors and warnings
 function SimpleSAML_error_handler($errno, $errstr, $errfile = null, $errline = 0, $errcontext = null)
 {
-    if (!class_exists('SimpleSAML_Logger')) {
+    if (!class_exists('SimpleSAML\Logger')) {
         /* We are probably logging a deprecation-warning during parsing. Unfortunately, the autoloader is disabled at
          * this point, so we should stop here.
          *
@@ -59,7 +59,7 @@ function SimpleSAML_error_handler($errno, $errstr, $errfile = null, $errline = 0
         return false;
     }
 
-    if (SimpleSAML_Logger::isErrorMasked($errno)) {
+    if (SimpleSAML\Logger::isErrorMasked($errno)) {
         // masked error
         return false;
     }
