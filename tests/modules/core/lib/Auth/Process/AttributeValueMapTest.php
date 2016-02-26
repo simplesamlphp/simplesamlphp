@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use SimpleSAML\Module\core\Auth\Process\AttributeValueMap;
 
 /**
  * Test for the core:AttributeValueMap filter.
@@ -18,7 +19,7 @@ class AttributeValueMapTest extends \PHPUnit_Framework_TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new \sspmod_core_Auth_Process_AttributeValueMap($config, null);
+        $filter = new AttributeValueMap($config, null);
         $filter->process($request);
         return $request;
     }

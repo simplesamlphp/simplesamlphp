@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Filter to create target attribute based on value(s) in source attribute
  *
  * @author Martin van Es, m7
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_AttributeValueMap extends SimpleSAML_Auth_ProcessingFilter
+class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
 {
 
     /**
@@ -39,7 +41,7 @@ class sspmod_core_Auth_Process_AttributeValueMap extends SimpleSAML_Auth_Process
      *
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
-     * @throws SimpleSAML_Error_Exception If the configuration is not valid.
+     * @throws \SimpleSAML_Error_Exception If the configuration is not valid.
     */
     public function __construct($config, $reserved)
     {
@@ -56,7 +58,7 @@ class sspmod_core_Auth_Process_AttributeValueMap extends SimpleSAML_Auth_Process
                 } elseif ($value === '%keep') {
                         $this->keep = true;
                 } else {
-                        throw new SimpleSAML_Error_Exception('Unknown flag : ' . var_export($value, true));
+                        throw new \SimpleSAML_Error_Exception('Unknown flag : ' . var_export($value, true));
                 }
                 continue;
             }
@@ -86,7 +88,7 @@ class sspmod_core_Auth_Process_AttributeValueMap extends SimpleSAML_Auth_Process
      */
     public function process(&$request)
     {
-        SimpleSAML_Logger::debug('AttributeValueMap - process');
+        \SimpleSAML_Logger::debug('AttributeValueMap - process');
 
         assert('is_array($request)');
         assert('array_key_exists("Attributes", $request)');
@@ -103,7 +105,7 @@ class sspmod_core_Auth_Process_AttributeValueMap extends SimpleSAML_Auth_Process
         if (is_array($sourceattribute)) {
             foreach ($this->values as $value => $require) {
                 if (count(array_intersect($require, $sourceattribute)) > 0) {
-                    SimpleSAML_Logger::debug('AttributeValueMap - intersect match for ' . $value);
+                    \SimpleSAML_Logger::debug('AttributeValueMap - intersect match for ' . $value);
                     $targetvalues[] = $value;
                 }
             }
