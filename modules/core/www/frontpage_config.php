@@ -53,6 +53,10 @@ $links_config[] = array(
 	'text' => '{core:frontpage:link_phpinfo}'
 );
 
+$links_config[] = array(
+	'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/sandbox.php',
+	'text' => '{core:frontpage:link_sandbox}'
+);
 
 
 
