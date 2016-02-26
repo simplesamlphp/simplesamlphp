@@ -59,7 +59,7 @@ function SimpleSAML_error_handler($errno, $errstr, $errfile = null, $errline = 0
         return false;
     }
 
-    if ($errno & SimpleSAML_Utilities::$logMask || !($errno & error_reporting())) {
+    if (SimpleSAML_Logger::isErrorMasked($errno)) {
         // masked error
         return false;
     }

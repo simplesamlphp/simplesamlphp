@@ -13,21 +13,7 @@ class SimpleSAML_Utilities
 {
 
     /**
-     * List of log levels.
-     *
-     * This list is used to restore the log levels after some log levels are disabled.
-     *
-     * @var array
-     */
-    private static $logLevelStack = array();
-
-
-    /**
-     * The current mask of disabled log levels.
-     *
-     * Note: This mask is not directly related to the PHP error reporting level.
-     *
-     * @var int
+     * @deprecated This property will be removed in SSP 2.0. Please use SimpleSAML_Logger::isErrorMasked() instead.
      */
     public static $logMask = 0;
 
@@ -629,29 +615,20 @@ class SimpleSAML_Utilities
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0.
+     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Logger::maskErrors() instead.
      */
     public static function maskErrors($mask)
     {
-        assert('is_int($mask)');
-
-        $currentEnabled = error_reporting();
-        self::$logLevelStack[] = array($currentEnabled, self::$logMask);
-
-        $currentEnabled &= ~$mask;
-        error_reporting($currentEnabled);
-        self::$logMask |= $mask;
+        SimpleSAML_Logger::maskErrors($mask);
     }
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0.
+     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Logger::popErrorMask() instead.
      */
     public static function popErrorMask()
     {
-        $lastMask = array_pop(self::$logLevelStack);
-        error_reporting($lastMask[0]);
-        self::$logMask = $lastMask[1];
+        SimpleSAML_Logger::popErrorMask();
     }
 
 
@@ -727,5 +704,4 @@ class SimpleSAML_Utilities
     {
         \SimpleSAML\Utils\HTTP::setCookie($name, $value, $params, $throw);
     }
-
 }

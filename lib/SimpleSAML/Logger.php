@@ -40,6 +40,24 @@ class SimpleSAML_Logger
      */
     private static $earlyLog = array();
 
+    /**
+     * List of log levels.
+     *
+     * This list is used to restore the log levels after some log levels have been disabled.
+     *
+     * @var array
+     */
+    private static $logLevelStack = array();
+
+    /**
+     * The current mask of log levels disabled.
+     *
+     * Note: this mask is not directly related to the PHP error reporting level.
+     *
+     * @var int
+     */
+    private static $logMask = 0;
+
 
     /**
      * This constant defines the string we set the track ID to while we are fetching the track ID from the session
@@ -253,6 +271,51 @@ class SimpleSAML_Logger
         foreach (self::$earlyLog as $msg) {
             self::log($msg['level'], $msg['string'], $msg['statsLog']);
         }
+    }
+
+
+    /**
+     * Evaluate whether errors of a certain error level are masked or not.
+     *
+     * @param int $errno The level of the error to check.
+     * @return bool True if the error is masked, false otherwise.
+     */
+    public static function isErrorMasked($errno)
+    {
+        return ($errno & self::$logMask) || !($errno & error_reporting());
+    }
+
+
+    /**
+     * Disable error reporting for the given log levels.
+     *
+     * Every call to this function must be followed by a call to popErrorMask().
+     *
+     * @param int $mask The log levels that should be masked.
+     */
+    public static function maskErrors($mask)
+    {
+        assert('is_int($mask)');
+
+        $currentEnabled = error_reporting();
+        self::$logLevelStack[] = array($currentEnabled, self::$logMask);
+
+        $currentEnabled &= ~$mask;
+        error_reporting($currentEnabled);
+        self::$logMask |= $mask;
+    }
+
+
+    /**
+     * Pop an error mask.
+     *
+     * This function restores the previous error mask.
+     */
+    public static function popErrorMask()
+    {
+        $lastMask = array_pop(self::$logLevelStack);
+        error_reporting($lastMask[0]);
+        self::$logMask = $lastMask[1];
     }
 
 
