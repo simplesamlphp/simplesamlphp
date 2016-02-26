@@ -1,9 +1,13 @@
 <?php
 
+namespace SimpleSAML\Test\Utils;
+
+use SimpleSAML\Utils\Config;
+
 /**
  * Tests for SimpleSAML\Utils\Config
  */
-class Utils_ConfigTest extends PHPUnit_Framework_TestCase
+class ConfigTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -13,10 +17,11 @@ class Utils_ConfigTest extends PHPUnit_Framework_TestCase
     {
         // clear env var
         putenv('SIMPLESAMLPHP_CONFIG_DIR');
-        $configDir = \SimpleSAML\Utils\Config::getConfigDir();
+        $configDir = Config::getConfigDir();
 
         $this->assertEquals($configDir, dirname(dirname(dirname(dirname(__DIR__)))) . '/config');
     }
+
 
     /**
      * Test valid dir specified by env var overrides default config dir
@@ -24,10 +29,11 @@ class Utils_ConfigTest extends PHPUnit_Framework_TestCase
     public function testEnvVariableConfigDir()
     {
         putenv('SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
-        $configDir = \SimpleSAML\Utils\Config::getConfigDir();
+        $configDir = Config::getConfigDir();
 
         $this->assertEquals($configDir, __DIR__);
     }
+
 
     /**
      * Test invalid dir specified by env var results in a thrown exception
@@ -44,6 +50,6 @@ class Utils_ConfigTest extends PHPUnit_Framework_TestCase
             'Given: "' . $invalidDir . '"'
         );
 
-        \SimpleSAML\Utils\Config::getConfigDir();
+        Config::getConfigDir();
     }
 }
