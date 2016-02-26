@@ -65,10 +65,12 @@ class SimpleSAML_XHTML_Template
         if (is_null($filename)) {
             return false;
         }
+        // TODO: Get cache-location from config
         $cache = $this->configuration->resolvePath('cache');
         $this->template = $twig_filename;
         $loader = new \Twig_Loader_Filesystem(array(dirname($filename), $this->configuration->resolvePath('templates')));
-        $this->twig = new \Twig_Environment($loader, array('cache' => $cache));
+        $auto_reload = true; // TODO: set this in config
+        $this->twig = new \Twig_Environment($loader, array('cache' => $cache, 'dauto_reload' => $auto_reload));
         return true;
     }
 
@@ -90,6 +92,7 @@ class SimpleSAML_XHTML_Template
         $languages = $this->translator->getLanguage()->getLanguageList();
         $langmap = NULL;
         if ( count($languages) > 1 ) {
+            // TODO: this array should not be defined here
             $langnames = array(
                 'no' => 'Bokmål', // Norwegian Bokmål
                 'nn' => 'Nynorsk', // Norwegian Nynorsk
