@@ -12,32 +12,32 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
 {
 
     /**
-    * The attributename we should assign values to (ie target)
+    * The name of the attribute we should assign values to (ie: the target attribute).
     */
     private $targetattribute;
 
     /**
-    * The attributename we should create values from
+    * The name of the attribute we should create values from.
     */
     private $sourceattribute;
 
     /**
-    * The required $sourceattribute values and target affiliations
+    * The required $sourceattribute values and target affiliations.
     */
     private $values = array();
     
     /**
-    * Whether $sourceattribute should be kept
+    * Whether $sourceattribute should be kept or not.
     */
     private $keep = false;
 
     /**
-    * Whether $target attribute values should be replaced by new values
+    * Whether $target attribute values should be replaced by new values or not.
     */
     private $replace = false;
     
     /**
-     * Initialize this filter.
+     * Initialize the filter.
      *
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
@@ -49,34 +49,48 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
 
         assert('is_array($config)');
 
-        // validate configuration
+        // parse configuration
         foreach ($config as $name => $value) {
             if (is_int($name)) {
                 // check if this is an option
                 if ($value === '%replace') {
-                        $this->replace = true;
+                    $this->replace = true;
                 } elseif ($value === '%keep') {
-                        $this->keep = true;
+                    $this->keep = true;
                 } else {
-                        throw new \SimpleSAML_Error_Exception('Unknown flag : ' . var_export($value, true));
+                    // unknown configuration option, log it and ignore the error
+                    \SimpleSAML_Logger::warning(
+                        "AttributeValueMap: unknown configuration flag '".var_export($value, true)."'"
+                    );
                 }
                 continue;
             }
 
-            // set targetattribute
+            // set the target attribute
             if ($name === 'targetattribute') {
                 $this->targetattribute = $value;
             }
 
-            // set sourceattribute
+            // set the source attribute
             if ($name === 'sourceattribute') {
                 $this->sourceattribute = $value;
             }
         
-            // set values
+            // set the values
             if ($name === 'values') {
                 $this->values = $value;
             }
+        }
+
+        // now validate it
+        if (!is_string($this->sourceattribute)) {
+            throw new \SimpleSAML_Error_Exception("AttributeValueMap: 'sourceattribute' configuration option not set.");
+        }
+        if (!is_string($this->targetattribute)) {
+            throw new \SimpleSAML_Error_Exception("AttributeValueMap: 'targetattribute' configuration option not set.");
+        }
+        if (!is_array($this->values)) {
+            throw new \SimpleSAML_Error_Exception("AttributeValueMap: 'values' configuration option is not an array.");
         }
     }
 
@@ -88,31 +102,34 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
      */
     public function process(&$request)
     {
-        \SimpleSAML_Logger::debug('AttributeValueMap - process');
+        \SimpleSAML_Logger::debug('Processing the AttributeValueMap filter.');
 
         assert('is_array($request)');
         assert('array_key_exists("Attributes", $request)');
         $attributes =& $request['Attributes'];
 
-        // Make sure sourceattribute exists
-        assert('array_key_exists($this->sourceattribute, $attributes)');
-        // Make sure the targetattribute is set
-        assert('is_string($this->targetattribute)');
-        
+        if (!array_key_exists($this->sourceattribute, $attributes)) {
+            // the source attribute does not exist, nothing to do here
+            return;
+        }
+
         $sourceattribute = $attributes[$this->sourceattribute];
         $targetvalues = array();
 
         if (is_array($sourceattribute)) {
-            foreach ($this->values as $value => $require) {
-                if (count(array_intersect($require, $sourceattribute)) > 0) {
-                    \SimpleSAML_Logger::debug('AttributeValueMap - intersect match for ' . $value);
+            foreach ($this->values as $value => $values) {
+                if (!is_array($values)) {
+                    $values = array($values);
+                }
+                if (count(array_intersect($values, $sourceattribute)) > 0) {
+                    \SimpleSAML_Logger::debug("AttributeValueMap: intersect match for '$value'");
                     $targetvalues[] = $value;
                 }
             }
         }
 
         if (count($targetvalues) > 0) {
-            if ($this->replace or !@is_array($attributes[$this->targetattribute])) {
+            if ($this->replace || !array_key_exists($this->targetattribute, $attributes)) {
                 $attributes[$this->targetattribute] = $targetvalues;
             } else {
                 $attributes[$this->targetattribute] = array_unique(array_merge(
@@ -123,6 +140,7 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
         }
 
         if (!$this->keep) {
+            // no need to keep the source attribute
             unset($attributes[$this->sourceattribute]);
         }
     }
