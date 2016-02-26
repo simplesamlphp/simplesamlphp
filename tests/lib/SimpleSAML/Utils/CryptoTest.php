@@ -1,20 +1,24 @@
 <?php
 
+namespace SimpleSAML\Test\Utils;
+
 
 /**
  * Tests for SimpleSAML\Utils\Crypto.
  */
-class CryptoTest extends PHPUnit_Framework_TestCase
+class CryptoTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
      * Test invalid input provided to the aesDecrypt() method.
      *
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
+     *
+     * @covers SimpleSAML\Utils\Crypto::_aesDecrypt
      */
     public function testAesDecryptBadInput()
     {
-        $m = new ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesDecrypt');
+        $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesDecrypt');
         $m->setAccessible(true);
 
         $m->invokeArgs(null, array(array(), 'SECRET'));
@@ -24,11 +28,13 @@ class CryptoTest extends PHPUnit_Framework_TestCase
     /**
      * Test invalid input provided to the aesEncrypt() method.
      *
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
+     *
+     * @covers SimpleSAML\Utils\Crypto::_aesEncrypt
      */
     public function testAesEncryptBadInput()
     {
-        $m = new ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesEncrypt');
+        $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesEncrypt');
         $m->setAccessible(true);
 
         $m->invokeArgs(null, array(array(), 'SECRET'));
@@ -38,6 +44,8 @@ class CryptoTest extends PHPUnit_Framework_TestCase
     /**
      * Test that aesDecrypt() works properly, being able to decrypt some previously known (and correct)
      * ciphertext.
+     *
+     * @covers SimpleSAML\Utils\Crypto::_aesDecrypt
      */
     public function testAesDecrypt()
     {
@@ -46,7 +54,7 @@ class CryptoTest extends PHPUnit_Framework_TestCase
         }
 
         $secret = 'SUPER_SECRET_SALT';
-        $m = new ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesDecrypt');
+        $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesDecrypt');
         $m->setAccessible(true);
 
         $plaintext = 'SUPER_SECRET_TEXT';
@@ -57,6 +65,9 @@ class CryptoTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test that aesEncrypt() produces ciphertexts that aesDecrypt() can decrypt.
+     *
+     * @covers SimpleSAML\Utils\Crypto::_aesDecrypt
+     * @covers SimpleSAML\Utils\Crypto::_aesEncrypt
      */
     public function testAesEncrypt()
     {
@@ -65,8 +76,8 @@ class CryptoTest extends PHPUnit_Framework_TestCase
         }
 
         $secret = 'SUPER_SECRET_SALT';
-        $e = new ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesEncrypt');
-        $d = new ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesDecrypt');
+        $e = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesEncrypt');
+        $d = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesDecrypt');
         $e->setAccessible(true);
         $d->setAccessible(true);
 
