@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * A minimalistic XHTML PHP based template system implemented for SimpleSAMLphp.
  *
@@ -46,14 +45,32 @@ class SimpleSAML_XHTML_Template
      * @param string                   $template Which template file to load
      * @param string|null              $defaultDictionary The default dictionary where tags will come from.
      */
-    public function __construct(SimpleSAML_Configuration $configuration, $template, $defaultDictionary = null)
+    public function __construct(\SimpleSAML_Configuration $configuration, $template, $defaultDictionary = null)
     {
         $this->configuration = $configuration;
         $this->template = $template;
         $this->data['baseurlpath'] = $this->configuration->getBaseURL();
-        $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
+        $this->translator = new \SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
+        $this->useTwig =  $this->setupTwig();
     }
 
+    /**
+     * Setup twig
+     */
+    private function setupTwig()
+    {
+        $twig_filename = basename($this->template, '.php').'.twig.html';
+        $filename = $this->findTemplatePath($twig_filename, $throw_exception=false);
+        // twig not in use for this page
+        if (is_null($filename)) {
+            return false;
+        }
+        $cache = $this->configuration->resolvePath('cache');
+        $this->template = $twig_filename;
+        $loader = new \Twig_Loader_Filesystem(array(dirname($filename), $this->configuration->resolvePath('templates')));
+        $this->twig = new \Twig_Environment($loader, array('cache' => $cache));
+        return true;
+    }
 
     /**
      * Return the internal translator object used by this template.
@@ -65,14 +82,121 @@ class SimpleSAML_XHTML_Template
         return $this->translator;
     }
 
+    /**
+     * Generate languagebar
+     */
+    private function generateLanguageBar()
+    {
+        $languages = $this->translator->getLanguage()->getLanguageList();
+        $langmap = NULL;
+        if ( count($languages) > 1 ) {
+            $langnames = array(
+                'no' => 'Bokmål', // Norwegian Bokmål
+                'nn' => 'Nynorsk', // Norwegian Nynorsk
+                'se' => 'Sámegiella', // Northern Sami
+                'sam' => 'Åarjelh-saemien giele', // Southern Sami
+                'da' => 'Dansk', // Danish
+                'en' => 'English',
+                'de' => 'Deutsch', // German
+                'sv' => 'Svenska', // Swedish
+                'fi' => 'Suomeksi', // Finnish
+                'es' => 'Español', // Spanish
+                'fr' => 'Français', // French
+                'it' => 'Italiano', // Italian
+                'nl' => 'Nederlands', // Dutch
+                'lb' => 'Lëtzebuergesch', // Luxembourgish
+                'cs' => 'Čeština', // Czech
+                'sl' => 'Slovenščina', // Slovensk
+                'lt' => 'Lietuvių kalba', // Lithuanian
+                'hr' => 'Hrvatski', // Croatian
+                'hu' => 'Magyar', // Hungarian
+                'pl' => 'Język polski', // Polish
+                'pt' => 'Português', // Portuguese
+                'pt-br' => 'Português brasileiro', // Portuguese
+                'ru' => 'русский язык', // Russian
+                'et' => 'eesti keel', // Estonian
+                'tr' => 'Türkçe', // Turkish
+                'el' => 'ελληνικά', // Greek
+                'ja' => '日本語', // Japanese
+                'zh' => '简体中文', // Chinese (simplified)
+                'zh-tw' => '繁體中文', // Chinese (traditional)
+                'ar' => 'العربية', // Arabic
+                'fa' => 'پارسی', // Persian
+                'ur' => 'اردو', // Urdu
+                'he' => 'עִבְרִית', // Hebrew
+                'id' => 'Bahasa Indonesia', // Indonesian
+                'sr' => 'Srpski', // Serbian
+                'lv' => 'Latviešu', // Latvian
+                'ro' => 'Românește', // Romanian
+                'eu' => 'Euskara', // Basque
+            );
+            $parameterName = $this->getTranslator()->getLanguage()->getLanguageParameterName();
+            $langmap = array();
+            foreach ($languages AS $lang => $current) {
+                $lang = strtolower($lang);
+                $langname = $langnames[$lang];
+                $url = false;
+                if (!$current) {
+                    $url = htmlspecialchars(\SimpleSAML\Utils\HTTP::addURLParameters('', array($parameterName => $lang)));
+                }
+                $langmap[$langname] = $url;
+            }
+        }
+        return $langmap;
+    }
+
+    /**
+     * Set some default context
+     */
+    private function twigDefaultContext()
+    {
+        $this->data['currentLanguage'] = $this->translator->getLanguage()->getLanguage();
+        // show language bar by default
+        if (!isset($this->data['hideLanguageBar'])) {
+            $this->data['hideLanguageBar'] = false;
+        }
+        // get languagebar
+        $this->data['languageBar'] = NULL;
+        if ($this->data['hideLanguageBar'] === false) {
+            $languageBar = $this->generateLanguageBar();
+            if (is_null($languageBar)) {
+                $this->data['hideLanguageBar'] = true;
+            } else {
+                $this->data['languageBar'] = $languageBar;
+            }
+        }
+
+        // assure that there is a <title> and <h1>
+        if (isset($this->data['header']) && !isset($this->data['pagetitle'])) {
+            $this->data['pagetitle'] = $this->data['header'];
+        }
+        if (!isset($this->data['pagetitle'])) {
+            $this->data['pagetitle'] = 'SimpleSAMLphp';
+        }
+
+        // set RTL
+        $this->data['isRTL'] = false;
+        if ($this->translator->getLanguage()->isLanguageRTL())
+        {
+            $this->data['isRTL'] = true;
+        }
+    }
+
 
     /**
      * Show the template to the user.
      */
     public function show()
     {
-        $filename = $this->findTemplatePath($this->template);
-        require($filename);
+        if ($this->useTwig) {
+            $this->twigDefaultContext();
+            echo $this->twig->render($this->template, $this->data);
+        }
+        else
+        {
+            $filename = $this->findTemplatePath($this->template);
+            require($filename);
+        }
     }
 
 
@@ -91,7 +215,7 @@ class SimpleSAML_XHTML_Template
      *
      * @throws Exception If the template file couldn't be found.
      */
-    private function findTemplatePath($template)
+    private function findTemplatePath($template, $throw_exception=true)
     {
         assert('is_string($template)');
 
@@ -117,11 +241,11 @@ class SimpleSAML_XHTML_Template
         if ($themeModule !== null) {
             // .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName>
 
-            $filename = SimpleSAML_Module::getModuleDir($themeModule).
+            $filename = \SimpleSAML\Module::getModuleDir($themeModule).
                 '/themes/'.$themeName.'/'.$templateModule.'/'.$templateName;
         } elseif ($templateModule !== 'default') {
             // .../module/<templateModule>/templates/<themeName>/<templateName>
-            $filename = SimpleSAML_Module::getModuleDir($templateModule).'/templates/'.$templateName;
+            $filename = \SimpleSAML\Module::getModuleDir($templateModule).'/templates/'.$templateName;
         } else {
             // .../templates/<theme>/<templateName>
             $filename = $this->configuration->getPathValue('templatedir', 'templates/').$templateName;
@@ -132,7 +256,7 @@ class SimpleSAML_XHTML_Template
         }
 
         // not found in current theme
-        SimpleSAML_Logger::debug(
+        \SimpleSAML_Logger::debug(
             $_SERVER['PHP_SELF'].' - Template: Could not find template file ['. $template.'] at ['.
             $filename.'] - now trying the base template'
         );
@@ -140,7 +264,7 @@ class SimpleSAML_XHTML_Template
         // try default theme
         if ($templateModule !== 'default') {
             // .../module/<templateModule>/templates/<templateName>
-            $filename = SimpleSAML_Module::getModuleDir($templateModule).'/templates/'.$templateName;
+            $filename = \SimpleSAML\Module::getModuleDir($templateModule).'/templates/'.$templateName;
         } else {
             // .../templates/<templateName>
             $filename = $this->configuration->getPathValue('templatedir', 'templates/').'/'.$templateName;
@@ -150,11 +274,19 @@ class SimpleSAML_XHTML_Template
             return $filename;
         }
 
-        // not found in default template - log error and throw exception
-        $error = 'Template: Could not find template file ['.$template.'] at ['.$filename.']';
-        SimpleSAML_Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
+        // not found in default template
+        if ($throw_exception) {
+            // log error and throw exception
+            $error = 'Template: Could not find template file ['.$template.'] at ['.$filename.']';
+            \SimpleSAML_Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
 
-        throw new Exception($error);
+            throw new Exception($error);
+        }
+        else
+        {
+            // missing template expected, return NULL
+            return NULL;
+        }
     }
 
 
@@ -241,10 +373,10 @@ class SimpleSAML_XHTML_Template
 
 
     /**
-     * Temporary wrapper for SimpleSAML\Locale\Translate::getPreferredTranslation().
+     * Temporary wrapper for \SimpleSAML\Locale\Translate::getPreferredTranslation().
      *
      * @deprecated This method will be removed in SSP 2.0. Please use
-     * SimpleSAML\Locale\Translate::getPreferredTranslation() instead.
+     * \SimpleSAML\Locale\Translate::getPreferredTranslation() instead.
      */
     public function getTranslation($translations)
     {
