@@ -257,30 +257,12 @@ class Metadata
      */
     public static function isHiddenFromDiscovery(array $metadata)
     {
-        if (!is_array($metadata)) {
-            return false;
+        \SimpleSAML_Logger::maskErrors(E_ALL);
+        $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY]);
+        \SimpleSAML_Logger::popErrorMask();
+        if (is_bool($hidden)) {
+            return $hidden;
         }
-
-        if (!array_key_exists('EntityAttributes', $metadata)) {
-            return false;
-        }
-
-        if (!is_array($metadata['EntityAttributes'])) {
-            return false;
-        }
-
-        if (!array_key_exists(self::$ENTITY_CATEGORY, $metadata['EntityAttributes'])) {
-            return false;
-        }
-
-        if (!is_array($metadata['EntityAttributes'][self::$ENTITY_CATEGORY])) {
-            return false;
-        }
-
-        if (!in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY])) {
-            return false;
-        }
-
-        return true;
+        return false;
     }
 }
